@@ -16,10 +16,20 @@ function item_claymore_custom:GetIntrinsicModifierName()
 	return "item_talisman_of_evasion_custom"
 end
 
+function item_claymore_custom:Spawn()
+	self.health_bonus = self:GetSpecialValueFor("health_bonus")
+	self.bonus_evasion = self:GetSpecialValueFor("bonus_evasion")
+end
+
 item_talisman_of_evasion_custom = class(mod_hidden)
 function item_talisman_of_evasion_custom:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
+function item_talisman_of_evasion_custom:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+end
+
 function item_talisman_of_evasion_custom:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_EVASION_CONSTANT,
@@ -33,11 +43,4 @@ end
 
 function item_talisman_of_evasion_custom:GetModifierHealthBonus()
 	return self.ability.health_bonus
-end
-
-function item_talisman_of_evasion_custom:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-	self.ability.health_bonus = self.ability:GetSpecialValueFor("health_bonus")
-	self.ability.bonus_evasion = self.ability:GetSpecialValueFor("bonus_evasion")
 end

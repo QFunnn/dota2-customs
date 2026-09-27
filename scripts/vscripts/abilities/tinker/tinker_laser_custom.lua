@@ -60,6 +60,8 @@ function tinker_laser_custom:Precache(context)
 	PrecacheResource("particle", "particles/tinker/laser_mark.vpcf", context)
 	PrecacheResource("particle", "particles/tinker/laser_proc_damage.vpcf", context)
 	PrecacheResource("particle", "particles/lina/soul_attack_end.vpcf", context)
+	PrecacheResource("particle", "particles/tinker/matrix_legendary_laser.vpcf", context)
+	PrecacheResource("particle", "particles/zeus/bolt_disarm.vpcf", context)
 end
 
 function tinker_laser_custom:UpdateTalents()
@@ -160,15 +162,11 @@ function tinker_laser_custom:GetIntrinsicModifierName()
 end
 
 function tinker_laser_custom:GetAOERadius()
-	return self.aoe_radius
+	return (self.aoe_radius or 0)
 end
 
 function tinker_laser_custom:GetCastPoint(iLevel)
 	return self.BaseClass.GetCastPoint(self) + (self.talents.has_h4 == 1 and self.talents.h4_cast or 0)
-end
-
-function tinker_laser_custom:GetCooldown(iLevel)
-	return self.BaseClass.GetCooldown(self, iLevel)
 end
 
 function tinker_laser_custom:GetRange()
@@ -214,7 +212,6 @@ function tinker_laser_custom:OnSpellStart()
 		or "attach_attack1"
 	local radius = self.aoe_radius
 	local duration = self.blind_duration
-	local stun_duration = false
 
 	local particle_name = wearables_system:GetParticleReplacementAbility(
 		self.caster,
@@ -261,9 +258,9 @@ function tinker_laser_custom:OnSpellStart()
 			if not self.caster:HasModifier("modifier_tinker_laser_custom_stun_cd") then
 				local mod = enemy:AddNewModifier(
 					self.caster,
-					self.ability,
+					self,
 					"modifier_stunned",
-					{ duration = (1 - enemy:GetStatusResistance()) * self.ability.talents.h4_stun }
+					{ duration = (1 - enemy:GetStatusResistance()) * self.talents.h4_stun }
 				)
 				enemy:EmitSound("Tinker.Laser_stun")
 				if mod then
@@ -304,13 +301,15 @@ function tinker_laser_custom:OnSpellStart()
 				{ duration = self.talents.q3_effect_duration }
 			)
 		end
+
 		if self.talents.has_q3 == 1 or self.talents.has_q4 == 1 then
+			local reduce_duration = self.talents.has_q3 == 1 and self.talents.q3_duration or self.talents.q4_duration
 			enemy:RemoveModifierByName("modifier_tinker_laser_custom_reduce")
 			enemy:AddNewModifier(
 				self.caster,
 				self,
 				"modifier_tinker_laser_custom_reduce",
-				{ duration = self.talents.q3_duration }
+				{ duration = reduce_duration }
 			)
 		end
 
@@ -337,10 +336,7 @@ function tinker_laser_custom:OnSpellStart()
 	end
 end
 
-modifier_tinker_laser_custom_blind = class({})
-function modifier_tinker_laser_custom_blind:IsHidden()
-	return false
-end
+modifier_tinker_laser_custom_blind = class(mod_visible)
 function modifier_tinker_laser_custom_blind:IsPurgable()
 	return true
 end
@@ -494,7 +490,8 @@ function modifier_tinker_laser_custom_legendary:OnIntervalThink(first)
 		self.target:EmitSound("Tinker.Laser_legendary_cast2")
 	end
 
-	self:GiveVision()
+	AddFOWViewer(self.target:GetTeamNumber(), self.parent:GetAbsOrigin(), 10, self.interval * 2, false)
+	AddFOWViewer(self.parent:GetTeamNumber(), self.target:GetAbsOrigin(), 10, self.interval * 2, false)
 	self.count = self.count + self.interval
 
 	self.parent:UpdateUIshort({
@@ -546,7 +543,7 @@ function modifier_tinker_laser_custom_legendary:OnDestroy()
 	end
 	self.ability:SetActivated(true)
 
-	if not self.interrupted then
+	if IsValid(self.target) and not self.interrupted then
 		self.target:AddNewModifier(
 			self.parent,
 			self.ability,
@@ -564,15 +561,9 @@ function modifier_tinker_laser_custom_legendary:OnDestroy()
 	self.parent:UpdateUIshort({ hide = 1, hide_full = 1, priority = 1, style = "TinkerLaser" })
 
 	self.parent:StopSound("Tinker.Laser_legendary_cast")
-	self.target:StopSound("Tinker.Laser_legendary_cast2")
-end
-
-function modifier_tinker_laser_custom_legendary:GiveVision()
-	if not IsServer() then
-		return
+	if IsValid(self.target) then
+		self.target:StopSound("Tinker.Laser_legendary_cast2")
 	end
-	AddFOWViewer(self.target:GetTeamNumber(), self.parent:GetAbsOrigin(), 10, self.interval * 2, false)
-	AddFOWViewer(self.parent:GetTeamNumber(), self.target:GetAbsOrigin(), 10, self.interval * 2, false)
 end
 
 modifier_tinker_laser_custom_slow = class(mod_hidden)
@@ -587,6 +578,7 @@ function modifier_tinker_laser_custom_slow:OnCreated()
 	if not IsServer() then
 		return
 	end
+	self.RemoveForDuel = true
 	self.parent:GenericParticle("particles/units/heroes/hero_terrorblade/terrorblade_reflection_slow.vpcf", self)
 end
 
@@ -614,6 +606,7 @@ function modifier_tinker_laser_custom_health_reduce:OnCreated(table)
 	if not IsServer() then
 		return
 	end
+	self.RemoveForDuel = true
 	self:OnRefresh()
 end
 
@@ -666,6 +659,7 @@ function modifier_tinker_laser_custom_legendary_stack:OnCreated()
 	if not IsServer() then
 		return
 	end
+	self.RemoveForDuel = true
 
 	if self.ability.talents.has_e7 == 0 then
 		self.particle = self.parent:GenericParticle("particles/laser/stun_stack.vpcf", self, true)
@@ -681,13 +675,10 @@ function modifier_tinker_laser_custom_legendary_stack:OnRefresh()
 		return
 	end
 	self:IncrementStackCount()
-end
 
-function modifier_tinker_laser_custom_legendary_stack:OnStackCountChanged(iStackCount)
-	if not self.particle then
-		return
+	if self.particle then
+		ParticleManager:SetParticleControl(self.particle, 1, Vector(0, self:GetStackCount(), 0))
 	end
-	ParticleManager:SetParticleControl(self.particle, 1, Vector(0, self:GetStackCount(), 0))
 end
 
 function modifier_tinker_laser_custom_legendary_stack:DeclareFunctions()

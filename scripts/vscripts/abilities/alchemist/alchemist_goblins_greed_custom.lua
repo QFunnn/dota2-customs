@@ -30,13 +30,7 @@ LinkLuaModifier(
 )
 
 alchemist_goblins_greed_custom = class({})
-
-function alchemist_goblins_greed_custom:GetIntrinsicModifierName()
-	if not self:GetCaster():IsRealHero() then
-		return
-	end
-	return "modifier_alchemist_goblins_greed_custom"
-end
+alchemist_goblins_greed_custom.talents = {}
 
 function alchemist_goblins_greed_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
@@ -53,7 +47,6 @@ function alchemist_goblins_greed_custom:Precache(context)
 	PrecacheResource("particle", "particles/generic_gameplay/rune_regen_owner.vpcf", context)
 	PrecacheResource("particle", "particles/generic_gameplay/rune_arcane_owner.vpcf", context)
 	PrecacheResource("particle", "particles/lc_odd_proc_.vpcf", context)
-	PrecacheResource("particle", "particles/items2_fx/hand_of_midas.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/econ/items/effigies/status_fx_effigies/status_effect_effigy_gold_lvl2.vpcf",
@@ -70,24 +63,52 @@ function alchemist_goblins_greed_custom:Precache(context)
 	dota1x6:PrecacheShopItems("npc_dota_hero_alchemist", context)
 end
 
+function alchemist_goblins_greed_custom:UpdateTalents()
+	local caster = self:GetCaster()
+	if not self.init then
+		self.init = true
+		self.talents = {
+			has_h6 = 0,
+			h6_cd = caster:GetTalentValue("modifier_alchemist_hero_6", "cd", true),
+			h6_cdr = caster:GetTalentValue("modifier_alchemist_hero_6", "cdr", true),
+			h6_max = caster:GetTalentValue("modifier_alchemist_hero_6", "max", true),
+
+			has_r7 = 0,
+			r7_points = caster:GetTalentValue("modifier_alchemist_rage_legendary", "points", true) / 100,
+		}
+	end
+
+	if caster:HasTalent("modifier_alchemist_hero_6") then
+		self.talents.has_h6 = 1
+	end
+
+	if caster:HasTalent("modifier_alchemist_rage_legendary") then
+		self.talents.has_r7 = 1
+	end
+end
+
+function alchemist_goblins_greed_custom:GetIntrinsicModifierName()
+	if not self:GetCaster():IsRealHero() then
+		return
+	end
+	return "modifier_alchemist_goblins_greed_custom"
+end
+
 modifier_alchemist_goblins_greed_custom = class(mod_visible)
-function modifier_alchemist_goblins_greed_custom:OnCreated(kv)
+function modifier_alchemist_goblins_greed_custom:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
+	self.ability.tracker = self
+	self.parent.goblins_greed_ability = self.ability
+	self.ability:UpdateTalents()
+
 	self.parent:AddDeathEvent(self, true)
 
-	self.base_gold = self.ability:GetSpecialValueFor("bonus_gold")
-	self.bonus_gold = self.ability:GetSpecialValueFor("bonus_bonus_gold")
-	self.max_gold = self.ability:GetSpecialValueFor("bonus_gold_cap")
-	self.duration = self.ability:GetSpecialValueFor("duration")
-	self.scepter_gold = self.ability:GetSpecialValueFor("scepter_gold")
-
-	self.rune_cd = self.parent:GetTalentValue("modifier_alchemist_hero_6", "cd", true)
-
-	self.legendary_init = self.parent:GetTalentValue("modifier_alchemist_rage_legendary", "points_start", true)
-	self.legendary_inc = self.parent:GetTalentValue("modifier_alchemist_rage_legendary", "points_inc", true)
-	self.points_current = 0
-	self.points_max = self.legendary_init
+	self.ability.bonus_gold = self.ability:GetSpecialValueFor("bonus_gold")
+	self.ability.bonus_bonus_gold = self.ability:GetSpecialValueFor("bonus_bonus_gold")
+	self.ability.bonus_gold_cap = self.ability:GetSpecialValueFor("bonus_gold_cap")
+	self.ability.duration = self.ability:GetSpecialValueFor("duration")
+	self.ability.scepter_gold = self.ability:GetSpecialValueFor("scepter_gold")
 
 	self.scepter_init = false
 
@@ -95,7 +116,6 @@ function modifier_alchemist_goblins_greed_custom:OnCreated(kv)
 		return
 	end
 	self:CheckStack()
-	self:UpdateTalent()
 
 	if self.ability:IsStolen() then
 		return
@@ -143,15 +163,15 @@ function modifier_alchemist_goblins_greed_custom:CheckStack()
 	if not IsServer() then
 		return
 	end
-	local stack = self.base_gold
+	local stack = self.ability.bonus_gold
 	local mod = self.parent:FindModifierByName("modifier_alchemist_goblins_greed_custom_stack")
 	if mod then
-		stack = stack + mod:GetStackCount() * self.bonus_gold
+		stack = stack + mod:GetStackCount() * self.ability.bonus_bonus_gold
 	end
 
-	local more_gold = self.parent:HasScepter() and self.scepter_gold or 0
+	local more_gold = self.parent:HasScepter() and self.ability.scepter_gold or 0
 
-	self:SetStackCount(math.min(self.max_gold + more_gold, stack))
+	self:SetStackCount(math.min(self.ability.bonus_gold_cap + more_gold, stack))
 end
 
 function modifier_alchemist_goblins_greed_custom:DeathEvent(params)
@@ -178,7 +198,7 @@ function modifier_alchemist_goblins_greed_custom:DeathEvent(params)
 		self.parent:UpdateQuest(gold)
 	end
 
-	self.parent:ModifyGoldFiltered(gold, false, DOTA_ModifyGold_Unspecified)
+	self.parent:GiveGold(gold, nil, true, self.ability)
 
 	local effect_name = wearables_system:GetParticleReplacementAbility(
 		self.parent,
@@ -211,12 +231,12 @@ function modifier_alchemist_goblins_greed_custom:DeathEvent(params)
 		self.parent,
 		self.ability,
 		"modifier_alchemist_goblins_greed_custom_stack",
-		{ duration = self.duration }
+		{ duration = self.ability.duration }
 	)
 
 	if
 		target:IsCreep()
-		and self.parent:HasTalent("modifier_alchemist_hero_6")
+		and self.ability.talents.has_h6 == 1
 		and not self.parent:HasModifier("modifier_alchemist_goblins_greed_custom_rune_cd")
 	then
 		local point = GetGroundPosition(self.parent:GetAbsOrigin() + self.parent:GetForwardVector() * 150, nil)
@@ -237,109 +257,73 @@ function modifier_alchemist_goblins_greed_custom:DeathEvent(params)
 			self.parent,
 			nil,
 			"modifier_alchemist_goblins_greed_custom_rune_cd",
-			{ duration = self.rune_cd }
+			{ duration = self.ability.talents.h6_cd }
 		)
 	end
 
-	if self.parent:HasTalent("modifier_alchemist_rage_legendary") then
-		local points = BluePoints[target:GetUnitName()]
-		if not points and Shared_Bounty[target:GetUnitName()] then
-			points = Shared_Bounty[target:GetUnitName()].blue
-		end
-
-		if not points then
-			return
-		end
-		self.points_current = self.points_current + points
-		if self.points_current >= self.points_max then
-			self.points_current = self.points_current - self.points_max
-			self.points_max = self.points_max + self.legendary_inc
-
-			dota1x6:CreateUpgradeOrb(self.parent, 1)
-		end
-
-		self.parent:UpdateUIlong({
-			max = self.points_max,
-			stack = self.points_current,
-			override_stack = tostring(self.points_current) .. "/" .. tostring(self.points_max),
-			no_min = 1,
-			style = "AlchemistPoints",
-		})
-	end
-end
-
-function modifier_alchemist_goblins_greed_custom:UpdateTalent(name)
-	if not IsServer() then
+	if self.ability.talents.has_r7 == 0 then
 		return
 	end
 
-	if name == "modifier_alchemist_rage_legendary" or self.parent:HasTalent("modifier_alchemist_rage_legendary") then
-		self.parent:UpdateUIlong({
-			max = self.points_max,
-			stack = self.points_current,
-			override_stack = tostring(self.points_current) .. "/" .. tostring(self.points_max),
-			no_min = 1,
-			style = "AlchemistPoints",
-		})
+	local stats = CreepsStats[target:GetUnitName()]
+	local points = stats and stats.blue
+	if not points and Shared_Bounty[target:GetUnitName()] then
+		points = Shared_Bounty[target:GetUnitName()].blue
 	end
+
+	if not points then
+		return
+	end
+	self.parent:AddPoints("white", points * self.ability.talents.r7_points, "modifier_alchemist_rage_legendary")
 end
 
 modifier_alchemist_goblins_greed_custom_stack = class(mod_hidden)
 function modifier_alchemist_goblins_greed_custom_stack:RemoveOnDeath()
 	return false
 end
-function modifier_alchemist_goblins_greed_custom_stack:OnCreated(table)
+function modifier_alchemist_goblins_greed_custom_stack:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
-	self.duration = self.ability:GetSpecialValueFor("duration")
+	self.duration = self.ability.duration
 
 	if not IsServer() then
 		return
 	end
-	self.mod = self.parent:FindModifierByName("modifier_alchemist_goblins_greed_custom")
+	self.mod = self.ability.tracker
 
-	self:AddStack()
+	self:OnRefresh()
 end
 
-function modifier_alchemist_goblins_greed_custom_stack:OnRefresh(table)
-	if not IsServer() then
-		return
-	end
-	self:AddStack()
-end
-
-function modifier_alchemist_goblins_greed_custom_stack:AddStack()
+function modifier_alchemist_goblins_greed_custom_stack:OnRefresh()
 	if not IsServer() then
 		return
 	end
 
 	Timers:CreateTimer(self.duration, function()
-		if self and not self:IsNull() then
-			self:DecrementStackCount()
-			if self:GetStackCount() <= 0 then
-				self:Destroy()
-			end
+		if not IsValid(self) then
+			return
+		end
+		self:DecrementStackCount()
+		if self:GetStackCount() <= 0 then
+			self:Destroy()
+			return
+		end
+		if IsValid(self.mod) then
+			self.mod:CheckStack()
 		end
 	end)
 
 	self:IncrementStackCount()
-end
-
-function modifier_alchemist_goblins_greed_custom_stack:OnStackCountChanged(iStackCount)
-	if not IsServer() then
-		return
+	if IsValid(self.mod) then
+		self.mod:CheckStack()
 	end
-	if not self.mod or self.mod:IsNull() then
-		return
-	end
-	self.mod:CheckStack()
 end
 
 function modifier_alchemist_goblins_greed_custom_stack:OnDestroy()
 	if not IsServer() then
 		return
 	end
-	if not self.mod or self.mod:IsNull() then
+	if not IsValid(self.mod) then
 		return
 	end
 	self.mod:CheckStack()
@@ -347,7 +331,7 @@ end
 
 modifier_alchemist_goblins_greed_custom_runes = class({})
 function modifier_alchemist_goblins_greed_custom_runes:IsHidden()
-	return not self.parent:HasTalent("modifier_alchemist_hero_6") or self:GetStackCount() >= self.max
+	return self.ability.talents.has_h6 == 0 or self:GetStackCount() >= self.max
 end
 function modifier_alchemist_goblins_greed_custom_runes:IsPurgable()
 	return false
@@ -360,14 +344,15 @@ function modifier_alchemist_goblins_greed_custom_runes:GetTexture()
 end
 function modifier_alchemist_goblins_greed_custom_runes:OnCreated()
 	self.parent = self:GetParent()
-	self.max = self.parent:GetTalentValue("modifier_alchemist_hero_6", "max", true)
-	self.cdr = self.parent:GetTalentValue("modifier_alchemist_hero_6", "cdr", true) / self.max
+	self.ability = self.parent.goblins_greed_ability
+
+	self.max = self.ability.talents.h6_max
 
 	if not IsServer() then
 		return
 	end
-	self:SetStackCount(1)
 	self:StartIntervalThink(0.5)
+	self:OnRefresh()
 end
 
 function modifier_alchemist_goblins_greed_custom_runes:OnRefresh()
@@ -377,7 +362,6 @@ function modifier_alchemist_goblins_greed_custom_runes:OnRefresh()
 	if self:GetStackCount() >= self.max then
 		return
 	end
-
 	self:IncrementStackCount()
 end
 
@@ -385,10 +369,10 @@ function modifier_alchemist_goblins_greed_custom_runes:OnIntervalThink()
 	if not IsServer() then
 		return
 	end
-	if self:GetStackCount() < self.max then
+	if self.ability.talents.has_h6 == 0 then
 		return
 	end
-	if not self.parent:HasTalent("modifier_alchemist_hero_6") then
+	if self:GetStackCount() < self.max then
 		return
 	end
 
@@ -404,10 +388,13 @@ function modifier_alchemist_goblins_greed_custom_runes:DeclareFunctions()
 end
 
 function modifier_alchemist_goblins_greed_custom_runes:GetModifierPercentageCooldown()
-	if not self.parent:HasTalent("modifier_alchemist_hero_6") then
+	if not IsValid(self.parent) then
 		return
 	end
-	return self:GetStackCount() * self.cdr
+	if self.ability.talents.has_h6 == 0 then
+		return
+	end
+	return (self.ability.talents.h6_cdr / self.max) * self:GetStackCount()
 end
 
 modifier_alchemist_goblins_greed_custom_rune_cd = class(mod_cd)

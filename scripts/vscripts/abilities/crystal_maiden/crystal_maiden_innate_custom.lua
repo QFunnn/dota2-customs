@@ -17,13 +17,6 @@ LinkLuaModifier(
 crystal_maiden_innate_custom = class({})
 crystal_maiden_innate_custom.talents = {}
 
-function crystal_maiden_innate_custom:GetIntrinsicModifierName()
-	if not self:GetCaster():IsRealHero() then
-		return
-	end
-	return "modifier_crystal_maiden_blueheart_custom"
-end
-
 function crystal_maiden_innate_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
@@ -59,14 +52,22 @@ function crystal_maiden_innate_custom:UpdateTalents(name)
 	end
 end
 
+function crystal_maiden_innate_custom:GetIntrinsicModifierName()
+	if not self:GetCaster():IsRealHero() then
+		return
+	end
+	return "modifier_crystal_maiden_blueheart_custom"
+end
+
 modifier_crystal_maiden_blueheart_custom = class(mod_hidden)
-function modifier_crystal_maiden_blueheart_custom:OnCreated(table)
+function modifier_crystal_maiden_blueheart_custom:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 	self.ability.tracker = self
 	self.ability:UpdateTalents()
 
 	self.mana = self.ability:GetSpecialValueFor("mana")
+	self.int = self.ability:GetSpecialValueFor("int") / 100
 
 	if not IsServer() then
 		return
@@ -82,7 +83,7 @@ function modifier_crystal_maiden_blueheart_custom:OnIntervalThink()
 		return
 	end
 
-	self.parent:AddPercentStat({ int = self.ability:GetSpecialValueFor("int") / 100 }, self)
+	self.parent:AddPercentStat({ int = self.int }, self)
 	self:StartIntervalThink(-1)
 end
 
@@ -132,8 +133,4 @@ end
 
 function modifier_crystal_maiden_blueheart_custom:GetModifierTotalPercentageManaRegen()
 	return self.mana
-end
-
-function modifier_crystal_maiden_blueheart_custom:GetModifierSpellAmplify_Percentage()
-	return self.damage * (self.parent:GetIntellect(false) / self.int)
 end

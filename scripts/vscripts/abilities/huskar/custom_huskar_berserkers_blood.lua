@@ -152,8 +152,8 @@ function custom_huskar_berserkers_blood:GetBehavior()
 end
 
 function custom_huskar_berserkers_blood:GetCooldown(iLevel)
-	if self.talents.has_e7 == 0 then
-		return
+	if self.talents.has_e7 ~= 1 then
+		return 0
 	end
 	return self.talents.e7_talent_cd
 end
@@ -162,16 +162,15 @@ function custom_huskar_berserkers_blood:GetHealthCost()
 	if IsServer() then
 		return
 	end
-	if not self.talents.has_e7 or self.talents.has_e7 == 0 then
+	if self.talents.has_e7 ~= 1 then
 		return
 	end
-	return self.talents.e7_cost * self:GetCaster():GetHealth()
+	return self.talents.e7_cost * self.caster:GetHealth()
 end
 
 function custom_huskar_berserkers_blood:OnSpellStart()
-	local caster = self:GetCaster()
-	caster:AddNewModifier(
-		caster,
+	self.caster:AddNewModifier(
+		self.caster,
 		self,
 		"modifier_custom_huskar_berserkers_blood_legendary_attack",
 		{ duration = self.talents.e7_duration }
@@ -424,7 +423,7 @@ end
 
 modifier_custom_huskar_berserkers_blood_bonus = class(mod_visible)
 function modifier_custom_huskar_berserkers_blood_bonus:GetTexture()
-	return "buffs/huskar/berserkers_Blood_3"
+	return "buffs/huskar/berserkers_blood_3"
 end
 function modifier_custom_huskar_berserkers_blood_bonus:OnCreated(table)
 	self.parent = self:GetParent()

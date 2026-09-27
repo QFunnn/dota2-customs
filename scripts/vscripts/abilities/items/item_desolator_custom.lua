@@ -28,17 +28,26 @@ function item_desolator_custom:Precache(context)
 	PrecacheResource("particle", "particles/items_fx/desolator_projectile.vpcf", context)
 end
 
+function item_desolator_custom:Spawn()
+	self.corruption_armor = self:GetSpecialValueFor("corruption_armor")
+	self.bonus_damage = self:GetSpecialValueFor("bonus_damage")
+	self.corruption_duration = self:GetSpecialValueFor("corruption_duration")
+end
+
 modifier_item_desolator_custom = class(mod_hidden)
+function modifier_item_desolator_custom:GetPriority()
+	return MODIFIER_PRIORITY_NORMAL
+end
 function modifier_item_desolator_custom:OnCreated()
 	self.caster = self:GetCaster()
 	self.ability = self:GetAbility()
 	self.caster:AddAttackEvent_out(self, true)
 
-	self.armor_reduce = self.ability:GetSpecialValueFor("corruption_armor")
-	self.damage = self.ability:GetSpecialValueFor("bonus_damage")
+	self.armor_reduce = self.ability.corruption_armor
+	self.damage = self.ability.bonus_damage
 
-	self.bonus_damage = self.ability:GetSpecialValueFor("bonus_damage")
-	self.corruption_duration = self.ability:GetSpecialValueFor("corruption_duration")
+	self.bonus_damage = self.ability.bonus_damage
+	self.corruption_duration = self.ability.corruption_duration
 end
 
 function modifier_item_desolator_custom:DeclareFunctions()
@@ -48,11 +57,7 @@ function modifier_item_desolator_custom:DeclareFunctions()
 	}
 end
 
-function modifier_item_desolator_custom:GetPriority()
-	return MODIFIER_PRIORITY_NORMAL
-end
-
-function modifier_item_desolator_custom:GetModifierPreAttack_BonusDamage(keys)
+function modifier_item_desolator_custom:GetModifierPreAttack_BonusDamage()
 	return self.bonus_damage
 end
 
@@ -61,6 +66,9 @@ function modifier_item_desolator_custom:GetModifierProjectileName()
 end
 
 function modifier_item_desolator_custom:AttackEvent_out(params)
+	if not IsValid(self.ability) then
+		return
+	end
 	if params.attacker ~= self.caster then
 		return
 	end
@@ -79,12 +87,14 @@ function modifier_item_desolator_custom:AttackEvent_out(params)
 	target:EmitSound("Item_Desolator.Target")
 end
 
-modifier_item_desolator_custom_debuff = class({})
+modifier_item_desolator_custom_debuff = class(mod_visible)
 function modifier_item_desolator_custom_debuff:IsPurgable()
 	return true
 end
 function modifier_item_desolator_custom_debuff:OnCreated()
-	self.corruption_armor = self:GetAbility():GetSpecialValueFor("corruption_armor")
+	self.ability = self:GetAbility()
+
+	self.corruption_armor = self.ability.corruption_armor
 end
 
 function modifier_item_desolator_custom_debuff:DeclareFunctions()

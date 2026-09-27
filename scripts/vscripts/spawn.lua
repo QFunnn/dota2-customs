@@ -183,7 +183,7 @@ function dota1x6:SpawnNecro(team, caster_team, damage_out, damage_inc)
 				unit.host_team = team
 				unit.is_necro_creep = true
 
-				unit:AddNewModifier(unit, nil, "modifier_waveupgrade", { wave = wave_number })
+				dota1x6:SetLaneCreepsStats(unit)
 				ally[#ally + 1] = unit
 
 				if i == #necro_wave_info then
@@ -283,7 +283,7 @@ function dota1x6:spawn_wave(team, wave_number, boss, lownet, more_gold, trap_wav
 
 			if not DontUpgradeCreeps then
 				if not boss or (unit:GetUnitName() == "npc_necro_melle" or unit:GetUnitName() == "npc_necro_range") then
-					unit:AddNewModifier(unit, nil, "modifier_waveupgrade", { wave = wave_number })
+					dota1x6:SetLaneCreepsStats(unit)
 				else
 					unit:AddNewModifier(unit, nil, "modifier_waveupgrade_boss", { wave = wave_number })
 				end

@@ -31,6 +31,7 @@ function item_wind_waker_custom:Precache(context)
 		"particles/econ/events/seasonal_reward_line_fall_2025/phase_boots_fallrewardline_2025.vpcf",
 		context
 	)
+	PrecacheResource("particle", "particles/items_fx/cyclone_custom.vpcf", context)
 end
 
 function item_wind_waker_custom:GetIntrinsicModifierName()
@@ -47,6 +48,7 @@ function item_wind_waker_custom:Spawn()
 	self.tornado_speed = self:GetSpecialValueFor("tornado_speed")
 	self.speed_duration = self:GetSpecialValueFor("speed_duration")
 	self.speed_move = self:GetSpecialValueFor("speed_move")
+	self.cdr_bonus = self:GetSpecialValueFor("cdr_bonus")
 end
 
 function item_wind_waker_custom:OnSpellStart()
@@ -136,7 +138,6 @@ function modifier_item_wind_waker_custom_active:OnDestroy()
 	if self.caster ~= self.parent then
 		return
 	end
-	--self.parent:AddNewModifier(self.parent, self.ability, "modifier_item_wind_waker_custom_speed", {duration = self.ability.speed_duration})
 end
 
 modifier_item_wind_waker_custom_speed = class(mod_visible)
@@ -174,14 +175,6 @@ function modifier_item_wind_waker_custom_speed:GetModifierMoveSpeedBonus_Percent
 end
 
 modifier_item_wind_waker_custom = class(mod_hidden)
-function modifier_item_wind_waker_custom:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
-		MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
-	}
-end
-
 function modifier_item_wind_waker_custom:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -189,7 +182,15 @@ function modifier_item_wind_waker_custom:OnCreated()
 	if not self.parent.cdr_items then
 		self.parent.cdr_items = {}
 	end
-	self.parent.cdr_items[self] = self.ability:GetSpecialValueFor("cdr_bonus")
+	self.parent.cdr_items[self] = self.ability.cdr_bonus
+end
+
+function modifier_item_wind_waker_custom:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
+		MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
+	}
 end
 
 function modifier_item_wind_waker_custom:GetModifierConstantManaRegen()

@@ -42,6 +42,7 @@ function bane_enfeeble_custom:Precache(context)
 	end
 	PrecacheResource("particle", "particles/units/heroes/hero_bane/bane_enfeeble.vpcf", context)
 	PrecacheResource("particle", "particles/bane/enfeeble_legendary_aoe.vpcf", context)
+	PrecacheResource("particle", "particles/bane/enfeeble_legendary_aoe_debuff.vpcf", context)
 	PrecacheResource("particle", "particles/bane/enfeeble_damage.vpcf", context)
 	PrecacheResource("particle", "particles/bane/enfeeble_root.vpcf", context)
 	PrecacheResource("particle", "particles/void_spirit/shield_buff.vpcf", context)
@@ -80,6 +81,8 @@ function bane_enfeeble_custom:UpdateTalents()
 			q7_radius = caster:GetTalentValue("modifier_bane_enfeeble_7", "radius", true),
 			q7_timer = caster:GetTalentValue("modifier_bane_enfeeble_7", "timer", true),
 			q7_max = caster:GetTalentValue("modifier_bane_enfeeble_7", "max", true),
+
+			has_r7 = 0,
 		}
 	end
 
@@ -105,16 +108,16 @@ function bane_enfeeble_custom:UpdateTalents()
 		self.talents.has_q4 = 1
 	end
 
+	if caster:HasTalent("modifier_bane_grip_7") then
+		self.talents.has_r7 = 1
+	end
+
 	if caster:HasTalent("modifier_bane_enfeeble_7") then
 		self.talents.has_q7 = 1
 		if IsServer() then
 			self.tracker:UpdateUI()
 		end
 	end
-end
-
-function bane_enfeeble_custom:Init()
-	self.caster = self:GetCaster()
 end
 
 function bane_enfeeble_custom:GetIntrinsicModifierName()
@@ -137,10 +140,10 @@ function bane_enfeeble_custom:GetAbilityTargetFlags()
 end
 
 function bane_enfeeble_custom:GetAOERadius()
-	if self.talents.has_q7 == 0 then
-		return self.radius and self.radius or 0
+	if self.talents.has_q7 == 1 then
+		return self.talents.q7_radius
 	end
-	return self.talents.q7_radius
+	return self.radius or 0
 end
 
 function bane_enfeeble_custom:GetManaCost(level)
@@ -201,10 +204,7 @@ function bane_enfeeble_custom:OnSpellStart()
 	end
 end
 
-modifier_bane_enfeeble_custom = class({})
-function modifier_bane_enfeeble_custom:IsHidden()
-	return false
-end
+modifier_bane_enfeeble_custom = class(mod_visible)
 function modifier_bane_enfeeble_custom:GetTexture()
 	return "bane_enfeeble"
 end
@@ -216,24 +216,20 @@ function modifier_bane_enfeeble_custom:OnCreated(table)
 	self.caster = self:GetCaster()
 	self.ability = self:GetAbility()
 
-	if IsServer() then
-		self.max_damage = self.parent:GetAverageTrueAttackDamage(nil)
-		self.range_max = self.parent:Script_GetAttackRange()
-	end
-
-	self.slow = self.ability:GetSpecialValueFor("slow")
-	self.search_radius = self.ability:GetSpecialValueFor("search_radius")
+	self.slow = self.ability.slow
 	self.range_reduce = self.ability.talents.q4_range
 
-	self.interval = self.ability:GetSpecialValueFor("damage_tick_rate")
-	self.damage = self.ability:GetSpecialValueFor("enfeeble_tick_damage")
-	self.radius = self.ability:GetSpecialValueFor("radius")
-	self.damage_reduce = self.ability:GetSpecialValueFor("damage_reduction")
+	self.interval = self.ability.damage_tick_rate
+	self.damage = self.ability.enfeeble_tick_damage
+	self.damage_reduce = self.ability.damage_reduction
 	self.range = 0
 
 	if not IsServer() then
 		return
 	end
+	self.max_damage = self.parent:GetAverageTrueAttackDamage(nil)
+	self.range_max = self.parent:Script_GetAttackRange()
+
 	self.is_main = table.is_main
 	if self.is_main == 1 then
 		self.ability:EndCd()
@@ -307,14 +303,13 @@ function modifier_bane_enfeeble_custom:OnIntervalThink()
 			duration = self.ability.talents.q7_duration,
 			damage = self.max_damage * self.damage_reduce / 100,
 			move = self.slow,
-			range = self.range_max * self.range_reduce,
+			range = self.ability.talents.has_q4 == 1 and self.range_max * self.range_reduce or 0,
 		})
 	end
 
 	DoDamage(self.damageTable)
 
 	if self.ability.talents.has_q4 == 1 then
-		self.range = 0
 		self.range = self.parent:Script_GetAttackRange() * self.range_reduce
 		self:SendBuffRefreshToClients()
 	end
@@ -402,11 +397,21 @@ function modifier_bane_enfeeble_custom_tracker:OnCreated()
 	self.ability.radius = self.ability:GetSpecialValueFor("radius")
 	self.ability.duration = self.ability:GetSpecialValueFor("duration")
 	self.ability.creeps = self.ability:GetSpecialValueFor("creeps") / 100
+	self.ability.slow = self.ability:GetSpecialValueFor("slow")
+	self.ability.damage_tick_rate = self.ability:GetSpecialValueFor("damage_tick_rate")
+	self.ability.enfeeble_tick_damage = self.ability:GetSpecialValueFor("enfeeble_tick_damage")
+	self.ability.damage_reduction = self.ability:GetSpecialValueFor("damage_reduction")
 
 	self.damageTable =
 		{ attacker = self.parent, ability = self.ability, damage_type = self.ability.talents.q3_damage_type }
 
 	self:StartIntervalThink(3)
+end
+
+function modifier_bane_enfeeble_custom_tracker:OnRefresh()
+	self.ability.slow = self.ability:GetSpecialValueFor("slow")
+	self.ability.enfeeble_tick_damage = self.ability:GetSpecialValueFor("enfeeble_tick_damage")
+	self.ability.damage_reduction = self.ability:GetSpecialValueFor("damage_reduction")
 end
 
 function modifier_bane_enfeeble_custom_tracker:OnIntervalThink()
@@ -513,6 +518,24 @@ function modifier_bane_enfeeble_custom_tracker:UpdateUI()
 end
 
 modifier_bane_enfeeble_custom_legendary = class(mod_hidden)
+function modifier_bane_enfeeble_custom_legendary:IsAura()
+	return true
+end
+function modifier_bane_enfeeble_custom_legendary:GetAuraDuration()
+	return 0.1
+end
+function modifier_bane_enfeeble_custom_legendary:GetAuraRadius()
+	return self.radius
+end
+function modifier_bane_enfeeble_custom_legendary:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_ENEMY
+end
+function modifier_bane_enfeeble_custom_legendary:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
+end
+function modifier_bane_enfeeble_custom_legendary:GetModifierAura()
+	return "modifier_bane_enfeeble_custom_legendary_effect"
+end
 function modifier_bane_enfeeble_custom_legendary:OnCreated(table)
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
@@ -559,8 +582,6 @@ function modifier_bane_enfeeble_custom_legendary:OnIntervalThink()
 		return
 	end
 
-	local mod = self.target:FindModifierByName("modifier_bane_enfeeble_custom")
-
 	if self:GetElapsedTime() > 0.05 and not self.init_sound then
 		self.init_sound = true
 		self.parent:EmitSound("Bane.Enfeeble_legendary_loop")
@@ -588,38 +609,14 @@ function modifier_bane_enfeeble_custom_legendary:OnDestroy()
 	self.parent:StopSound("Bane.Enfeeble_legendary_loop")
 end
 
-function modifier_bane_enfeeble_custom_legendary:IsAura()
-	return true
-end
-function modifier_bane_enfeeble_custom_legendary:GetAuraDuration()
-	return 0.1
-end
-function modifier_bane_enfeeble_custom_legendary:GetAuraRadius()
-	return self.radius
-end
-function modifier_bane_enfeeble_custom_legendary:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_ENEMY
-end
-function modifier_bane_enfeeble_custom_legendary:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
-end
 function modifier_bane_enfeeble_custom_legendary:GetAuraEntityReject(target)
 	if target:IsFieldInvun(self.caster) then
 		return true
 	end
 	return target ~= self.target
 end
-function modifier_bane_enfeeble_custom_legendary:GetModifierAura()
-	return "modifier_bane_enfeeble_custom_legendary_effect"
-end
 
-modifier_bane_enfeeble_custom_legendary_effect = class({})
-function modifier_bane_enfeeble_custom_legendary_effect:IsHidden()
-	return true
-end
-function modifier_bane_enfeeble_custom_legendary_effect:IsPurgable()
-	return false
-end
+modifier_bane_enfeeble_custom_legendary_effect = class(mod_hidden)
 function modifier_bane_enfeeble_custom_legendary_effect:GetEffectName()
 	return "particles/bane/enfeeble_legendary_aoe_debuff.vpcf"
 end
@@ -666,22 +663,16 @@ function modifier_bane_enfeeble_custom_legendary_caster:OnRefresh(table)
 	end
 	self:IncrementStackCount()
 
+	if IsValid(self.ability.tracker) then
+		self.ability.tracker:UpdateUI()
+	end
+
 	if self:GetStackCount() >= self.max then
 		self.parent:GenericParticle("particles/void_spirit/shield_buff.vpcf", self)
 	end
 
 	self:SendBuffRefreshToClients()
 	self.parent:CalculateStatBonus(true)
-end
-
-function modifier_bane_enfeeble_custom_legendary_caster:OnStackCountChanged(iStackCount)
-	if not IsServer() then
-		return
-	end
-	if not IsValid(self.ability.tracker) then
-		return
-	end
-	self.ability.tracker:UpdateUI()
 end
 
 function modifier_bane_enfeeble_custom_legendary_caster:OnDestroy()
@@ -743,10 +734,7 @@ function modifier_bane_enfeeble_custom_legendary_caster:GetModifierPhysicalArmor
 	return self.armor * (self:GetStackCount() * self.value)
 end
 
-modifier_bane_enfeeble_custom_root = class({})
-function modifier_bane_enfeeble_custom_root:IsHidden()
-	return true
-end
+modifier_bane_enfeeble_custom_root = class(mod_hidden)
 function modifier_bane_enfeeble_custom_root:IsPurgable()
 	return true
 end

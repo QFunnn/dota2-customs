@@ -42,10 +42,6 @@ LinkLuaModifier(
 antimage_counterspell_custom = class({})
 antimage_counterspell_custom.talents = {}
 
-function antimage_counterspell_custom:CreateTalent()
-	self:ToggleAutoCast()
-end
-
 function antimage_counterspell_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
@@ -54,18 +50,17 @@ function antimage_counterspell_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_antimage/antimage_spellshield_reflect.vpcf", context)
 	PrecacheResource("particle", "particles/am_lightning.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_antimage/antimage_counter.vpcf", context)
-	PrecacheResource("particle", "particles/am_lightning.vpcf", context)
 	PrecacheResource("particle", "particles/am_no_mana.vpcf", context)
 	PrecacheResource("particle", "particles/void_astral_slow.vpcf", context)
 	PrecacheResource("particle", "particles/zeus_resist_stack.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_oracle/oracle_purifyingflames.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_faceless_void/faceless_void_dialatedebuf_2.vpcf", context)
-	PrecacheResource("particle", "particles/am_spell_damage.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_antimage/antimage_manabreak_slow.vpcf", context)
-	PrecacheResource("particle", "particles/void_astral_slow.vpcf", context)
 	PrecacheResource("particle", "particles/antimage/counter_lowhp.vpcf", context)
 	PrecacheResource("particle", "particles/enigma/summon_perma.vpcf", context)
 	PrecacheResource("particle", "particles/bane/brain_shield.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_antimage/antimage_blink_start.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_antimage/antimage_blink_end.vpcf", context)
 end
 
 function antimage_counterspell_custom:UpdateTalents(name)
@@ -90,7 +85,7 @@ function antimage_counterspell_custom:UpdateTalents(name)
 			e3_base = 0,
 			e3_radius = caster:GetTalentValue("modifier_antimage_counter_3", "radius", true),
 			e3_damage_type = caster:GetTalentValue("modifier_antimage_counter_3", "damage_type", true),
-			e3_shield = caster:GetTalentValue("modifier_antimage_counter_3", "shield", true),
+			e3_shield = caster:GetTalentValue("modifier_antimage_counter_3", "shield", true) / 100,
 
 			has_e4 = 0,
 			e4_status = caster:GetTalentValue("modifier_antimage_counter_4", "status", true),
@@ -105,6 +100,7 @@ function antimage_counterspell_custom:UpdateTalents(name)
 			e7_shield = caster:GetTalentValue("modifier_antimage_counter_7", "shield", true) / 100,
 
 			has_r3 = 0,
+			r3_duration = caster:GetTalentValue("modifier_antimage_void_3", "duration", true),
 		}
 	end
 
@@ -142,8 +138,8 @@ function antimage_counterspell_custom:UpdateTalents(name)
 	end
 end
 
-function antimage_counterspell_custom:Init()
-	self.caster = self:GetCaster()
+function antimage_counterspell_custom:CreateTalent()
+	self:ToggleAutoCast()
 end
 
 function antimage_counterspell_custom:GetIntrinsicModifierName()
@@ -166,86 +162,8 @@ function antimage_counterspell_custom:GetManaCost(level)
 	return self.BaseClass.GetManaCost(self, level)
 end
 
-function antimage_counterspell_custom:ShardMana(mana)
-	if not IsServer() then
-		return
-	end
-	if not self:IsTrained() then
-		return
-	end
-	if not self.caster:HasShard() then
-		return
-	end
-
-	if self.caster.owner and self.caster.owner:HasAbility(self:GetName()) then
-		self.caster.owner:FindAbilityByName(self:GetName()):ShardMana(mana)
-		return
-	end
-
-	local shard_mana = mana * self.shard_mana
-	local over_mana = shard_mana - math.min(shard_mana, self.caster:GetMaxMana() - self.caster:GetMana())
-
-	self.caster:GiveMana(shard_mana)
-
-	if over_mana <= 0 then
-		return
-	end
-	self.caster:AddNewModifier(
-		self.caster,
-		self,
-		"modifier_antimage_counterspell_custom_shard_shield",
-		{ shield = over_mana, duration = self.shard_duration }
-	)
-end
-
 function antimage_counterspell_custom:OnSpellStart()
 	local duration = self.duration
-
-	if test then
-	end
-
-	if test and false then
-		local heroes = {
-			"npc_dota_hero_zuus",
-			"npc_dota_hero_axe",
-			"npc_dota_hero_alchemist",
-			"npc_dota_hero_bane",
-			"npc_dota_hero_bloodseeker",
-			"npc_dota_hero_morphling",
-			"npc_dota_hero_centaur",
-			"npc_dota_hero_life_stealer",
-			"npc_dota_hero_witch_doctor",
-			"npc_dota_hero_arc_warden",
-			"npc_dota_hero_bristleback",
-		}
-
-		local teams = {
-			[1] = 1,
-			[2] = 0,
-			[3] = 0,
-			[4] = 0,
-			[5] = 0,
-			[6] = 0,
-		}
-
-		local count = 1
-
-		for _, hero in pairs(heroes) do
-			local data = {}
-			data.value = hero
-
-			if teams[count] >= 2 then
-				count = count + 1
-			end
-			data.spawn_for_team = count
-
-			teams[count] = teams[count] + 1
-			data.PlayerID = caster:GetId()
-
-			DeepPrintTable(data)
-			test_mode:AddHero(data, true)
-		end
-	end
 
 	if self.caster.antimage_illusions then
 		for illusion, _ in pairs(self.caster.antimage_illusions) do
@@ -275,6 +193,38 @@ function antimage_counterspell_custom:OnSpellStart()
 			{ duration = duration }
 		)
 	end
+end
+
+function antimage_counterspell_custom:ShardMana(mana)
+	if not IsServer() then
+		return
+	end
+	if not self:IsTrained() then
+		return
+	end
+	if not self.caster:HasShard() then
+		return
+	end
+
+	if self.caster.owner and self.caster.owner.counterspell_ability then
+		self.caster.owner.counterspell_ability:ShardMana(mana)
+		return
+	end
+
+	local shard_mana = mana * self.shard_mana
+	local over_mana = shard_mana - math.min(shard_mana, self.caster:GetMaxMana() - self.caster:GetMana())
+
+	self.caster:GiveMana(shard_mana)
+
+	if over_mana <= 0 then
+		return
+	end
+	self.caster:AddNewModifier(
+		self.caster,
+		self,
+		"modifier_antimage_counterspell_custom_shard_shield",
+		{ shield = over_mana, duration = self.shard_duration }
+	)
 end
 
 modifier_antimage_counterspell_custom_active = class(mod_visible)
@@ -451,11 +401,13 @@ function modifier_antimage_counterspell_custom_active:GetReflectSpell(params)
 		end
 	end
 
-	if
-		target:HasModifier("modifier_item_lotus_orb_active")
-		or target:HasModifier("modifier_item_mirror_shield")
-		or params.ability.spell_shield_reflect
-	then
+	if target:HasModifier("modifier_item_lotus_orb_active") then
+		return
+	end
+	if target:HasModifier("modifier_item_mirror_shield") then
+		return
+	end
+	if params.ability.spell_shield_reflect then
 		return
 	end
 	if self.ignore_spells[reflected_spell_name] then
@@ -470,6 +422,7 @@ function modifier_antimage_counterspell_custom_active:GetReflectSpell(params)
 		end
 	end
 
+	local ability
 	if old_spell then
 		ability = self.parent:FindAbilityByName(reflected_spell_name)
 	else
@@ -490,15 +443,32 @@ function modifier_antimage_counterspell_custom_active:GetReflectSpell(params)
 		ability:OnChannelFinish(false)
 	end
 
-	local mod = self.parent:FindModifierByName("modifier_antimage_counterspell_custom")
-	if mod then
-		mod:OnIntervalThink()
+	if IsValid(self.ability.tracker) then
+		self.ability.tracker:OnIntervalThink()
 	end
 
 	return false
 end
 
 modifier_antimage_counterspell_custom = class(mod_hidden)
+function modifier_antimage_counterspell_custom:IsAura()
+	return self.ability.talents.has_e1 == 1 or self.ability.talents.has_e2 == 1 or self.ability.talents.has_r3 == 1
+end
+function modifier_antimage_counterspell_custom:GetAuraDuration()
+	return 0.1
+end
+function modifier_antimage_counterspell_custom:GetAuraRadius()
+	return self.ability.talents.e1_radius
+end
+function modifier_antimage_counterspell_custom:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_ENEMY
+end
+function modifier_antimage_counterspell_custom:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
+end
+function modifier_antimage_counterspell_custom:GetModifierAura()
+	return "modifier_antimage_counterspell_custom_burn_damage"
+end
 function modifier_antimage_counterspell_custom:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -522,24 +492,6 @@ end
 
 function modifier_antimage_counterspell_custom:OnRefresh(table)
 	self.ability.magic_resistance = self.ability:GetSpecialValueFor("magic_resistance")
-end
-
-function modifier_antimage_counterspell_custom:GetModifierStatusResistanceStacking()
-	if self.ability.talents.has_e4 == 0 then
-		return
-	end
-	return self.ability.talents.e4_status
-end
-
-function modifier_antimage_counterspell_custom:GetModifierMagicalResistanceBonus(params)
-	if self.parent:PassivesDisabled() then
-		return
-	end
-	return self.ability.magic_resistance
-end
-
-function modifier_antimage_counterspell_custom:GetModifierExtraHealthPercentage()
-	return self.ability.talents.e2_health
 end
 
 function modifier_antimage_counterspell_custom:OnIntervalThink()
@@ -579,29 +531,25 @@ function modifier_antimage_counterspell_custom:DeclareFunctions()
 	}
 end
 
-function modifier_antimage_counterspell_custom:IsAura()
-	return self.ability.talents.has_e1 == 1 or self.ability.talents.has_e2 == 1 or self.ability.talents.has_r3 == 1
+function modifier_antimage_counterspell_custom:GetModifierStatusResistanceStacking()
+	if self.ability.talents.has_e4 == 0 then
+		return
+	end
+	return self.ability.talents.e4_status
 end
-function modifier_antimage_counterspell_custom:GetAuraDuration()
-	return 0.1
+
+function modifier_antimage_counterspell_custom:GetModifierMagicalResistanceBonus(params)
+	if self.parent:PassivesDisabled() then
+		return
+	end
+	return self.ability.magic_resistance
 end
-function modifier_antimage_counterspell_custom:GetAuraRadius()
-	return self.ability.talents.e1_radius
-end
-function modifier_antimage_counterspell_custom:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_ENEMY
-end
-function modifier_antimage_counterspell_custom:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
-end
-function modifier_antimage_counterspell_custom:GetModifierAura()
-	return "modifier_antimage_counterspell_custom_burn_damage"
+
+function modifier_antimage_counterspell_custom:GetModifierExtraHealthPercentage()
+	return self.ability.talents.e2_health
 end
 
 modifier_antimage_counterspell_custom_burn_damage = class(mod_hidden)
-function modifier_antimage_counterspell_custom_burn_damage:GetTexture()
-	return "buffs/antimage/counterspell_1"
-end
 function modifier_antimage_counterspell_custom_burn_damage:OnCreated(table)
 	if not IsServer() then
 		return
@@ -638,12 +586,12 @@ function modifier_antimage_counterspell_custom_burn_damage:OnIntervalThink()
 		return
 	end
 
-	if self.caster.manavoid_ability and self.caster.manavoid_ability.talents.has_r3 == 1 then
+	if self.ability.talents.has_r3 == 1 and self.caster.manavoid_ability then
 		self.parent:AddNewModifier(
 			self.caster,
 			self.caster.manavoid_ability,
 			"modifier_antimage_mana_void_custom_int",
-			{ duration = self.caster.manavoid_ability.talents.r3_duration }
+			{ duration = self.ability.talents.r3_duration }
 		)
 	end
 
@@ -663,19 +611,6 @@ function modifier_antimage_counterspell_custom_burn_damage:OnIntervalThink()
 end
 
 modifier_antimage_counterspell_custom_legendary_damage = class(mod_visible)
-function modifier_antimage_counterspell_custom_legendary_damage:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
-	}
-end
-
-function modifier_antimage_counterspell_custom_legendary_damage:GetModifierMagicalResistanceBonus(params)
-	if IsServer() and (not params.attacker or params.attacker:FindOwner() ~= self.caster) then
-		return
-	end
-	return self.ability.talents.e7_magic
-end
-
 function modifier_antimage_counterspell_custom_legendary_damage:OnCreated(table)
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
@@ -684,6 +619,7 @@ function modifier_antimage_counterspell_custom_legendary_damage:OnCreated(table)
 	if not IsServer() then
 		return
 	end
+	self.RemoveForDuel = true
 	if self.parent:IsRealHero() and not IsValid(self.ability.legendary_mod) then
 		self.ability.legendary_mod = self
 		self:OnIntervalThink()
@@ -717,6 +653,19 @@ function modifier_antimage_counterspell_custom_legendary_damage:OnDestroy()
 	self.caster:UpdateUIshort({ hide = 1, hide_full = 1, style = "AntimageCounter" })
 end
 
+function modifier_antimage_counterspell_custom_legendary_damage:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
+	}
+end
+
+function modifier_antimage_counterspell_custom_legendary_damage:GetModifierMagicalResistanceBonus(params)
+	if IsServer() and (not params.attacker or params.attacker:FindOwner() ~= self.caster) then
+		return
+	end
+	return self.ability.talents.e7_magic
+end
+
 modifier_antimage_counterspell_custom_shield = class(mod_hidden)
 function modifier_antimage_counterspell_custom_shield:OnCreated()
 	self.parent = self:GetParent()
@@ -725,7 +674,9 @@ function modifier_antimage_counterspell_custom_shield:OnCreated()
 	self.attacker = nil
 
 	self.heal = self.parent:GetMaxHealth() * self.ability.talents.e3_heal + self.ability.talents.e3_base
-	self.max_shield = self.ability.talents.e7_shield * self.parent:GetMaxHealth()
+	self.max_shield = (
+		self.ability.talents.has_e7 == 1 and self.ability.talents.e7_shield or self.ability.talents.e3_shield
+	) * self.parent:GetMaxHealth()
 	self.shield = self.max_shield
 
 	self.end_anim = ACT_DOTA_CAST_ABILITY_2
@@ -806,6 +757,8 @@ function modifier_antimage_counterspell_custom_shield:OnDestroy()
 	)
 	ParticleManager:ReleaseParticleIndex(particle)
 
+	local radius = self.ability.talents.has_e7 == 1 and self.ability.talents.e7_radius or self.ability.talents.e3_radius
+
 	if self.ability.talents.has_e3 == 1 then
 		self.parent:GenericHeal(self.heal, self.ability, nil, nil, "modifier_antimage_counter_3")
 
@@ -813,14 +766,14 @@ function modifier_antimage_counterspell_custom_shield:OnDestroy()
 
 		local effect_cast = ParticleManager:CreateParticle("particles/am_spell_damage.vpcf", PATTACH_WORLDORIGIN, nil)
 		ParticleManager:SetParticleControl(effect_cast, 0, self.parent:GetAbsOrigin())
-		ParticleManager:SetParticleControl(effect_cast, 1, Vector(self.ability.talents.e7_radius, 0, 0))
+		ParticleManager:SetParticleControl(effect_cast, 1, Vector(radius, 0, 0))
 		ParticleManager:ReleaseParticleIndex(effect_cast)
 	end
 
 	self.parent:EmitSound("Hero_Antimage.Counterspell.Target")
 
 	local attack_hit = false
-	for _, target in pairs(self.parent:FindTargets(self.ability.talents.e7_radius)) do
+	for _, target in pairs(self.parent:FindTargets(radius)) do
 		if self.attacker and target == self.attacker then
 			attack_hit = true
 		end

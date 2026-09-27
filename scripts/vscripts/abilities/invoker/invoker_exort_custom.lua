@@ -140,6 +140,9 @@ function invoker_exort_custom:Precache(context)
 	PrecacheResource("particle", "particles/invoker/forge_attack.vpcf", context)
 	PrecacheResource("particle", "particles/invoker/meteor_leash.vpcf", context)
 	PrecacheResource("particle", "particles/juggernaut/omni_root.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_invoker/invoker_forge_spirit_ambient.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_invoker/invoker_forged_spirit_projectile.vpcf", context)
+	PrecacheResource("particle", "particles/void_astral_slow.vpcf", context)
 
 	PrecacheResource("model", "models/heroes/invoker/forge_spirit.vmdl", context)
 	PrecacheResource("model", "models/heroes/invoker_kid/invoker_kid_trainer_dragon.vmdl", context)
@@ -233,7 +236,7 @@ end
 
 function invoker_exort_custom:GetBehavior()
 	local bonus = 0
-	if self:GetCaster():HasShard() then
+	if self.caster:HasShard() then
 		bonus = DOTA_ABILITY_BEHAVIOR_IGNORE_SILENCE_CUSTOM + DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE
 	end
 	return DOTA_ABILITY_BEHAVIOR_NO_TARGET
@@ -243,11 +246,10 @@ function invoker_exort_custom:GetBehavior()
 end
 
 function invoker_exort_custom:OnSpellStart()
-	local caster = self:GetCaster()
-	local modifier = caster:AddNewModifier(caster, self, "modifier_invoker_exort_custom", {})
+	local modifier = self.caster:AddNewModifier(self.caster, self, "modifier_invoker_exort_custom", {})
 
-	if IsValid(caster.invoke_ability) then
-		caster.invoke_ability:AddOrb(modifier)
+	if IsValid(self.caster.invoke_ability) then
+		self.caster.invoke_ability:AddOrb(modifier)
 	end
 end
 
@@ -255,10 +257,9 @@ function invoker_exort_custom:ProcBash(target)
 	if not IsServer() then
 		return
 	end
-	if self.talents.has_e4 == 0 then
+	if self.talents.has_e4 ~= 1 then
 		return
 	end
-	local caster = self:GetCaster()
 
 	local particle = ParticleManager:CreateParticle(
 		"particles/units/heroes/hero_ogre_magi/ogre_magi_fireblast.vpcf",
@@ -279,45 +280,17 @@ function invoker_exort_custom:ProcBash(target)
 
 	target:EmitSound("Invoker.Forge_bash")
 	target:AddNewModifier(
-		caster,
+		self.caster,
 		self,
 		"modifier_invoker_exort_custom_bash_cd",
 		{ duration = self.talents.e4_talent_cd }
 	)
 	target:AddNewModifier(
-		caster,
-		caster:BkbAbility(self, true),
+		self.caster,
+		self.caster:BkbAbility(self, true),
 		"modifier_bashed",
 		{ duration = self.talents.e4_stun * (1 - target:GetStatusResistance()) }
 	)
-end
-
-modifier_invoker_exort_custom = class(mod_visible)
-function modifier_invoker_exort_custom:GetAttributes()
-	return MODIFIER_ATTRIBUTE_PERMANENT + MODIFIER_ATTRIBUTE_MULTIPLE
-end
-function modifier_invoker_exort_custom:OnCreated(kv)
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.ability.orb_count = self.ability.orb_count + 1
-end
-
-function modifier_invoker_exort_custom:OnDestroy()
-	self.ability.orb_count = self.ability.orb_count - 1
-end
-
-function modifier_invoker_exort_custom:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
-	}
-end
-
-function modifier_invoker_exort_custom:GetModifierPreAttack_BonusDamage()
-	if self.parent:HasShard() then
-		return
-	end
-	return self.ability.damage
 end
 
 modifier_invoker_exort_custom_passive = class(mod_hidden)
@@ -418,7 +391,11 @@ function modifier_invoker_exort_custom_passive:AttackEvent_out(params)
 			end
 		end
 
-		if target:IsRealHero() and IsValid(self.parent.invoke_ability.tracker) then
+		if
+			target:IsRealHero()
+			and IsValid(self.parent.invoke_ability)
+			and IsValid(self.parent.invoke_ability.tracker)
+		then
 			self.parent.invoke_ability.tracker:ScepterEvent("modifier_invoker_spells_2", 1)
 		end
 	end
@@ -492,6 +469,130 @@ function modifier_invoker_exort_custom_passive:GetModifierPreAttack_BonusDamage(
 	return self.ability.damage * 3
 end
 
+modifier_invoker_exort_custom = class(mod_visible)
+function modifier_invoker_exort_custom:GetAttributes()
+	return MODIFIER_ATTRIBUTE_PERMANENT + MODIFIER_ATTRIBUTE_MULTIPLE
+end
+function modifier_invoker_exort_custom:OnCreated(kv)
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.ability.orb_count = self.ability.orb_count + 1
+end
+
+function modifier_invoker_exort_custom:OnDestroy()
+	self.ability.orb_count = self.ability.orb_count - 1
+end
+
+function modifier_invoker_exort_custom:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
+	}
+end
+
+function modifier_invoker_exort_custom:GetModifierPreAttack_BonusDamage()
+	if self.parent:HasShard() then
+		return
+	end
+	return self.ability.damage
+end
+
+modifier_invoker_exort_custom_speed = class(mod_visible)
+function modifier_invoker_exort_custom_speed:GetTexture()
+	return "buffs/invoker/exort_1"
+end
+function modifier_invoker_exort_custom_speed:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.speed = self.ability.talents.e1_speed
+end
+
+function modifier_invoker_exort_custom_speed:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+	}
+end
+
+function modifier_invoker_exort_custom_speed:GetModifierAttackSpeedBonus_Constant()
+	return self.speed
+end
+
+modifier_invoker_exort_custom_attack = class(mod_hidden)
+function modifier_invoker_exort_custom_attack:OnCreated()
+	self.ability = self:GetAbility()
+	self.damage = self.ability.talents.e3_damage - 100
+end
+
+function modifier_invoker_exort_custom_attack:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE,
+	}
+end
+
+function modifier_invoker_exort_custom_attack:GetModifierTotalDamageOutgoing_Percentage(params)
+	if params.inflictor then
+		return
+	end
+	return self.damage
+end
+
+modifier_invoker_exort_custom_bash_cd = class(mod_hidden)
+
+modifier_invoker_exort_custom_bash_count = class(mod_hidden)
+function modifier_invoker_exort_custom_bash_count:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.max = self.ability.talents.e4_attacks
+	if not IsServer() then
+		return
+	end
+	self.RemoveForDuel = true
+	self:OnRefresh()
+end
+
+function modifier_invoker_exort_custom_bash_count:OnRefresh()
+	if not IsServer() then
+		return
+	end
+	if self:GetStackCount() >= self.max then
+		return
+	end
+	self:IncrementStackCount()
+
+	if self:GetStackCount() < self.max then
+		return
+	end
+	self.parent:GenericParticle("particles/invoker/meteor_mark.vpcf", self, true)
+end
+
+modifier_forged_spirit_melting_strike_custom_slow = class(mod_hidden)
+function modifier_forged_spirit_melting_strike_custom_slow:IsPurgable()
+	return true
+end
+function modifier_forged_spirit_melting_strike_custom_slow:OnCreated(kv)
+	self.parent = self:GetParent()
+	self.caster = self:GetCaster()
+	self.ability = self:GetAbility()
+	self.slow = self.ability.talents.w2_slow
+
+	if not IsServer() then
+		return
+	end
+	self.parent:GenericParticle("particles/void_astral_slow.vpcf", self)
+end
+
+function modifier_forged_spirit_melting_strike_custom_slow:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+	}
+end
+
+function modifier_forged_spirit_melting_strike_custom_slow:GetModifierMoveSpeedBonus_Percentage()
+	return self.slow
+end
+
 invoker_sun_strike_custom = class({})
 invoker_sun_strike_custom.talents = {}
 
@@ -507,27 +608,22 @@ function invoker_sun_strike_custom:UpdateTalents()
 	end
 end
 
-function invoker_sun_strike_custom:GetCooldown(level)
-	return self.BaseClass.GetCooldown(self, level)
+function invoker_sun_strike_custom:GetAbilityTextureName()
+	return wearables_system:GetAbilityIconReplacement(self.caster, "invoker_sun_strike", self)
 end
 
 function invoker_sun_strike_custom:GetCastRange(vLocation, hTarget)
 	if not IsClient() then
 		return
 	end
-	return (self.creep_radius and self.creep_radius or 0) - self:GetCaster():GetCastRangeBonus()
+	return (self.creep_radius or 0) - self.caster:GetCastRangeBonus()
 end
 
 function invoker_sun_strike_custom:GetAOERadius()
-	return self.area_of_effect
-end
-
-function invoker_sun_strike_custom:GetAbilityTextureName()
-	return wearables_system:GetAbilityIconReplacement(self.caster, "invoker_sun_strike", self)
+	return (self.area_of_effect or 0)
 end
 
 function invoker_sun_strike_custom:OnSpellStart(new_point, legendary_stack)
-	local caster = self:GetCaster()
 	local is_legendary = 0
 	local point
 	local delay = self.delay
@@ -535,46 +631,38 @@ function invoker_sun_strike_custom:OnSpellStart(new_point, legendary_stack)
 	local vision_duration = self.vision_duration
 	local stack = 0
 
-	local ult = caster:FindAbilityByName("invoker_invoke_custom")
-
 	if new_point then
 		point = new_point
 		delay = self.talents.e7_sun_delay
 		is_legendary = 1
 		stack = legendary_stack
 
-		local sound = wearables_system:GetSoundReplacement(caster, "Hero_Invoker.SunStrike.Charge", self)
-		EmitSoundOnLocationWithCaster(point, sound, caster)
+		local sound = wearables_system:GetSoundReplacement(self.caster, "Hero_Invoker.SunStrike.Charge", self)
+		EmitSoundOnLocationWithCaster(point, sound, self.caster)
 	else
-		local sound = wearables_system:GetSoundReplacement(caster, "Invoker.Sun_strike", self)
+		local sound = wearables_system:GetSoundReplacement(self.caster, "Invoker.Sun_strike", self)
 		point = self:GetCursorPosition()
-		caster:StartGesture(ACT_DOTA_CAST_SUN_STRIKE)
+		self.caster:StartGesture(ACT_DOTA_CAST_SUN_STRIKE)
 		CustomGameEventManager:Send_ServerToPlayer(
-			PlayerResource:GetPlayer(caster:GetPlayerOwnerID()),
+			PlayerResource:GetPlayer(self.caster:GetPlayerOwnerID()),
 			"generic_sound",
 			{ sound = sound }
 		)
 	end
 
 	CreateModifierThinker(
-		caster,
+		self.caster,
 		self,
 		"modifier_invoker_sun_strike_custom",
 		{ is_legendary = is_legendary, duration = delay, stack = stack },
 		point,
-		caster:GetTeamNumber(),
+		self.caster:GetTeamNumber(),
 		false
 	)
-	AddFOWViewer(caster:GetTeamNumber(), point, vision_distance, vision_duration, false)
+	AddFOWViewer(self.caster:GetTeamNumber(), point, vision_distance, vision_duration, false)
 end
 
-modifier_invoker_sun_strike_custom = class({})
-function modifier_invoker_sun_strike_custom:IsHidden()
-	return true
-end
-function modifier_invoker_sun_strike_custom:IsPurgable()
-	return false
-end
+modifier_invoker_sun_strike_custom = class(mod_hidden)
 function modifier_invoker_sun_strike_custom:OnCreated(kv)
 	if not IsServer() then
 		return
@@ -610,7 +698,7 @@ function modifier_invoker_sun_strike_custom:OnCreated(kv)
 	ParticleManager:ReleaseParticleIndex(effect_cast)
 end
 
-function modifier_invoker_sun_strike_custom:OnDestroy(kv)
+function modifier_invoker_sun_strike_custom:OnDestroy()
 	if not IsServer() then
 		return
 	end
@@ -626,7 +714,7 @@ function modifier_invoker_sun_strike_custom:OnDestroy(kv)
 				self.caster.invoke_ability:AbilityHit(enemy)
 			end
 			damageTable.victim = enemy
-			DoDamage(damageTable)
+			DoDamage(damageTable, self.is_legendary == 1 and "modifier_invoker_exort_7" or nil)
 		end
 	end
 
@@ -655,34 +743,6 @@ function modifier_invoker_sun_strike_custom:OnDestroy(kv)
 end
 
 modifier_invoker_sun_strike_custom_fire = class(mod_hidden)
-function modifier_invoker_sun_strike_custom_fire:OnCreated(table)
-	self.parent = self:GetParent()
-	self.caster = self:GetCaster()
-	self.ability = self:GetAbility()
-	self.radius = self.ability.burn_radius
-
-	if not IsServer() then
-		return
-	end
-	self.is_legendary = table.is_legendary
-	self.stack = table.stack
-	self.parent:EmitSound("Invoker.SunStrike_burn")
-
-	self.nFXIndex = ParticleManager:CreateParticle("particles/invoker/sun_fire.vpcf", PATTACH_WORLDORIGIN, nil)
-	ParticleManager:SetParticleControl(self.nFXIndex, 0, self.parent:GetOrigin())
-	ParticleManager:SetParticleControl(self.nFXIndex, 1, self.parent:GetOrigin())
-	ParticleManager:SetParticleControl(self.nFXIndex, 2, Vector(self:GetRemainingTime(), 0, 0))
-	ParticleManager:ReleaseParticleIndex(self.nFXIndex)
-	self:AddParticle(self.nFXIndex, false, false, -1, false, false)
-end
-
-function modifier_invoker_sun_strike_custom_fire:OnDestroy()
-	if not IsServer() then
-		return
-	end
-	self.parent:StopSound("Invoker.SunStrike_burn")
-end
-
 function modifier_invoker_sun_strike_custom_fire:IsAura()
 	return true
 end
@@ -701,19 +761,41 @@ end
 function modifier_invoker_sun_strike_custom_fire:GetAuraSearchType()
 	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
 end
+function modifier_invoker_sun_strike_custom_fire:OnCreated(kv)
+	self.parent = self:GetParent()
+	self.caster = self:GetCaster()
+	self.ability = self:GetAbility()
+	self.radius = self.ability.burn_radius
+
+	if not IsServer() then
+		return
+	end
+	self.is_legendary = kv.is_legendary
+	self.stack = kv.stack
+	self.parent:EmitSound("Invoker.SunStrike_burn")
+
+	self.nFXIndex = ParticleManager:CreateParticle("particles/invoker/sun_fire.vpcf", PATTACH_WORLDORIGIN, nil)
+	ParticleManager:SetParticleControl(self.nFXIndex, 0, self.parent:GetOrigin())
+	ParticleManager:SetParticleControl(self.nFXIndex, 1, self.parent:GetOrigin())
+	ParticleManager:SetParticleControl(self.nFXIndex, 2, Vector(self:GetRemainingTime(), 0, 0))
+	ParticleManager:ReleaseParticleIndex(self.nFXIndex)
+	self:AddParticle(self.nFXIndex, false, false, -1, false, false)
+end
+
+function modifier_invoker_sun_strike_custom_fire:OnDestroy()
+	if not IsServer() then
+		return
+	end
+	self.parent:StopSound("Invoker.SunStrike_burn")
+end
+
 function modifier_invoker_sun_strike_custom_fire:GetAuraEntityReject(hEntity)
 	return hEntity:IsCreep()
 		and (hEntity:GetAbsOrigin() - self.caster:GetAbsOrigin()):Length2D() > self.ability.creep_radius
 end
 
-modifier_invoker_sun_strike_custom_fire_debuff = class({})
-function modifier_invoker_sun_strike_custom_fire_debuff:IsHidden()
-	return true
-end
-function modifier_invoker_sun_strike_custom_fire_debuff:IsPurgable()
-	return false
-end
-function modifier_invoker_sun_strike_custom_fire_debuff:OnCreated(table)
+modifier_invoker_sun_strike_custom_fire_debuff = class(mod_hidden)
+function modifier_invoker_sun_strike_custom_fire_debuff:OnCreated()
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
 	self.ability = self:GetAbility()
@@ -729,6 +811,7 @@ function modifier_invoker_sun_strike_custom_fire_debuff:OnCreated(table)
 		local mod = owner:FindModifierByName("modifier_invoker_sun_strike_custom_fire")
 		if mod and mod.is_legendary == 1 and mod.stack then
 			self.damage = self.damage * (1 + mod.stack * self.ability.talents.e7_damage)
+			self.talent_name = "modifier_invoker_exort_7"
 		end
 	end
 
@@ -746,7 +829,7 @@ function modifier_invoker_sun_strike_custom_fire_debuff:OnIntervalThink()
 	if not IsServer() then
 		return
 	end
-	DoDamage(self.damageTable)
+	DoDamage(self.damageTable, self.talent_name)
 end
 
 invoker_chaos_meteor_custom = class({})
@@ -780,15 +863,8 @@ function invoker_chaos_meteor_custom:UpdateTalents()
 	end
 end
 
-function invoker_chaos_meteor_custom:GetManaCost(level)
-	return self.BaseClass.GetManaCost(self, level) * (1 + (self.talents.has_e7 == 1 and self.talents.e7_mana or 0))
-end
-
-function invoker_chaos_meteor_custom:GetChannelTime()
-	if not self:GetCaster():HasTalent("modifier_invoker_exort_7") then
-		return 0
-	end
-	return self:GetCastTime() + 0.1
+function invoker_chaos_meteor_custom:GetAbilityTextureName()
+	return wearables_system:GetAbilityIconReplacement(self.caster, "invoker_chaos_meteor", self)
 end
 
 function invoker_chaos_meteor_custom:GetBehavior()
@@ -804,34 +880,8 @@ function invoker_chaos_meteor_custom:GetBehavior()
 		+ bonus
 end
 
-function invoker_chaos_meteor_custom:GetAOERadius()
-	if self.talents.has_e7 == 1 then
-		return self.talents.e7_radius
-	end
-	return self.area_of_effect
-end
-
-function invoker_chaos_meteor_custom:GetMaxTime()
-	local caster = self:GetCaster()
-	if self.talents.has_e7 == 0 then
-		return 0
-	end
-	local bonus = 0
-	if caster:HasModifier("modifier_invoker_chaos_meteor_custom_cataclysm_stack") then
-		bonus = caster:GetUpgradeStack("modifier_invoker_chaos_meteor_custom_cataclysm_stack") * self.talents.e7_stack
-	end
-	return self.talents.e7_duration + bonus
-end
-
-function invoker_chaos_meteor_custom:GetCastTime()
-	if self.talents.has_e7 == 0 then
-		return 0
-	end
-	return self:GetMaxTime() + FrameTime() * 2
-end
-
-function invoker_chaos_meteor_custom:GetAbilityTextureName()
-	return wearables_system:GetAbilityIconReplacement(self.caster, "invoker_chaos_meteor", self)
+function invoker_chaos_meteor_custom:GetManaCost(level)
+	return self.BaseClass.GetManaCost(self, level) * (1 + (self.talents.has_e7 == 1 and self.talents.e7_mana or 0))
 end
 
 function invoker_chaos_meteor_custom:GetCooldown(level)
@@ -841,8 +891,21 @@ function invoker_chaos_meteor_custom:GetCooldown(level)
 	return self.BaseClass.GetCooldown(self, level)
 end
 
+function invoker_chaos_meteor_custom:GetAOERadius()
+	if self.talents.has_e7 == 1 then
+		return self.talents.e7_radius
+	end
+	return (self.area_of_effect or 0)
+end
+
+function invoker_chaos_meteor_custom:GetChannelTime()
+	if self.talents.has_e7 ~= 1 then
+		return 0
+	end
+	return self:GetCastTime() + 0.1
+end
+
 function invoker_chaos_meteor_custom:OnSpellStart(new_point, legendary_stack)
-	local caster = self:GetCaster()
 	local point
 	local is_legendary = 0
 	local stack = 0
@@ -856,7 +919,7 @@ function invoker_chaos_meteor_custom:OnSpellStart(new_point, legendary_stack)
 
 		if self.talents.has_e7 == 1 then
 			local max_time = self:GetMaxTime()
-			local mod = caster:FindModifierByName("modifier_invoker_chaos_meteor_custom_cataclysm_stack")
+			local mod = self.caster:FindModifierByName("modifier_invoker_chaos_meteor_custom_cataclysm_stack")
 			local mod_stack = 0
 
 			if mod then
@@ -874,41 +937,41 @@ function invoker_chaos_meteor_custom:OnSpellStart(new_point, legendary_stack)
 					)
 					ParticleManager:ReleaseParticleIndex(effect_cast)
 					CreateModifierThinker(
-						caster,
+						self.caster,
 						self,
 						"modifier_invoker_chaos_meteor_custom_cataclysm_root_aura",
 						{ duration = self.talents.e7_root },
 						point,
-						caster:GetTeamNumber(),
+						self.caster:GetTeamNumber(),
 						false
 					)
 				end
 			end
 			self.thinker = CreateModifierThinker(
-				caster,
+				self.caster,
 				self,
 				"modifier_invoker_chaos_meteor_custom_cataclysm",
 				{ max = max_time, stack = mod_stack },
 				point,
-				caster:GetTeamNumber(),
+				self.caster:GetTeamNumber(),
 				false
 			)
 		else
-			caster:StartGesture(ACT_DOTA_CAST_CHAOS_METEOR)
+			self.caster:StartGesture(ACT_DOTA_CAST_CHAOS_METEOR)
 		end
 	end
 
-	if point == caster:GetAbsOrigin() then
-		point = point + caster:GetForwardVector()
+	if point == self.caster:GetAbsOrigin() then
+		point = point + self.caster:GetForwardVector()
 	end
 
 	CreateModifierThinker(
-		caster,
+		self.caster,
 		self,
 		"modifier_invoker_chaos_meteor_custom_thinker",
 		{ is_legendary = is_legendary, stack = stack },
 		point,
-		caster:GetTeamNumber(),
+		self.caster:GetTeamNumber(),
 		false
 	)
 end
@@ -918,10 +981,30 @@ function invoker_chaos_meteor_custom:OnChannelFinish(bInterrupted)
 		self.thinker:Destroy()
 	end
 
-	local mod = self:GetCaster():FindModifierByName("modifier_invoker_chaos_meteor_custom_cataclysm_stack")
+	local mod = self.caster:FindModifierByName("modifier_invoker_chaos_meteor_custom_cataclysm_stack")
 	if mod then
 		mod:SetStackCount(0)
+		mod:UpdateUI()
 	end
+end
+
+function invoker_chaos_meteor_custom:GetMaxTime()
+	if self.talents.has_e7 ~= 1 then
+		return 0
+	end
+	local bonus = 0
+	if self.caster:HasModifier("modifier_invoker_chaos_meteor_custom_cataclysm_stack") then
+		bonus = self.caster:GetUpgradeStack("modifier_invoker_chaos_meteor_custom_cataclysm_stack")
+			* self.talents.e7_stack
+	end
+	return self.talents.e7_duration + bonus
+end
+
+function invoker_chaos_meteor_custom:GetCastTime()
+	if self.talents.has_e7 ~= 1 then
+		return 0
+	end
+	return self:GetMaxTime() + FrameTime() * 2
 end
 
 modifier_invoker_chaos_meteor_custom_thinker = class(mod_hidden)
@@ -1003,6 +1086,10 @@ function modifier_invoker_chaos_meteor_custom_thinker:OnDestroy()
 end
 
 function modifier_invoker_chaos_meteor_custom_thinker:OnIntervalThink()
+	if not IsServer() then
+		return
+	end
+
 	if not self.fallen then
 		self.fallen = true
 		self:Burn(true)
@@ -1045,7 +1132,20 @@ function modifier_invoker_chaos_meteor_custom_thinker:OnIntervalThink()
 		EmitSoundOnLocationWithCaster(self.parent_origin, "Hero_Invoker.ChaosMeteor.Impact", self.caster)
 		self:StartIntervalThink(self.interval)
 	else
-		self:Move_Burn()
+		local target = self.direction * self.speed * self.interval
+		self.parent:SetOrigin(self.parent:GetOrigin() + target)
+		self.nMoveStep = self.nMoveStep + 1
+		self:Burn()
+
+		if self.nMoveStep and self.nMoveStep > 20 then
+			self:Destroy()
+			return
+		end
+
+		if (self.parent:GetOrigin() - self.parent_origin + target):Length2D() > self.distance then
+			self:Destroy()
+			return
+		end
 	end
 end
 
@@ -1074,12 +1174,12 @@ function modifier_invoker_chaos_meteor_custom_thinker:Burn(first)
 			end
 		end
 
-		DoDamage(self.damageTable)
+		DoDamage(self.damageTable, self.is_legendary == 1 and "modifier_invoker_exort_7" or nil)
 		enemy:AddNewModifier(
 			self.caster,
 			self.ability,
 			"modifier_invoker_chaos_meteor_custom_burn",
-			{ stack = self.stack }
+			{ stack = self.stack, is_legendary = self.is_legendary }
 		)
 		enemy:AddNewModifier(
 			self.caster,
@@ -1087,27 +1187,6 @@ function modifier_invoker_chaos_meteor_custom_thinker:Burn(first)
 			"modifier_invoker_chaos_meteor_custom_burn_count",
 			{ duration = self.duration + 0.1 }
 		)
-	end
-end
-
-function modifier_invoker_chaos_meteor_custom_thinker:Move_Burn()
-	if not IsServer() then
-		return
-	end
-
-	local target = self.direction * self.speed * self.interval
-	self.parent:SetOrigin(self.parent:GetOrigin() + target)
-	self.nMoveStep = self.nMoveStep + 1
-	self:Burn()
-
-	if self.nMoveStep and self.nMoveStep > 20 then
-		self:Destroy()
-		return
-	end
-
-	if (self.parent:GetOrigin() - self.parent_origin + target):Length2D() > self.distance then
-		self:Destroy()
-		return
 	end
 end
 
@@ -1126,6 +1205,7 @@ function modifier_invoker_chaos_meteor_custom_burn:OnCreated(kv)
 	self.count = self.ability.burn_duration
 	self.damage = self.ability.burn_dps
 		* (1 + (self.ability.talents.has_e7 == 1 and kv.stack * self.ability.talents.e7_damage or 0))
+	self.talent_name = kv.is_legendary == 1 and "modifier_invoker_exort_7" or nil
 
 	self.damageTable = {
 		victim = self.parent,
@@ -1141,7 +1221,7 @@ function modifier_invoker_chaos_meteor_custom_burn:OnIntervalThink()
 	if not IsServer() then
 		return
 	end
-	DoDamage(self.damageTable)
+	DoDamage(self.damageTable, self.talent_name)
 	self.parent:EmitSound("Hero_Invoker.ChaosMeteor.Damage")
 
 	self.count = self.count - 1
@@ -1168,30 +1248,308 @@ function modifier_invoker_chaos_meteor_custom_burn:OnDestroy()
 end
 
 modifier_invoker_chaos_meteor_custom_burn_count = class(mod_visible)
+function modifier_invoker_chaos_meteor_custom_burn_count:GetEffectName()
+	return "particles/units/heroes/hero_invoker/invoker_chaos_meteor_burn_debuff.vpcf"
+end
+function modifier_invoker_chaos_meteor_custom_burn_count:GetStatusEffectName()
+	return "particles/status_fx/status_effect_burn.vpcf"
+end
+function modifier_invoker_chaos_meteor_custom_burn_count:StatusEffectPriority()
+	return MODIFIER_PRIORITY_NORMAL
+end
 function modifier_invoker_chaos_meteor_custom_burn_count:OnCreated()
 	if not IsServer() then
 		return
 	end
-	self:SetStackCount(1)
+	self:OnRefresh()
 end
 
-function modifier_invoker_chaos_meteor_custom_burn_count:OnRefresh(table)
+function modifier_invoker_chaos_meteor_custom_burn_count:OnRefresh()
 	if not IsServer() then
 		return
 	end
 	self:IncrementStackCount()
 end
 
-function modifier_invoker_chaos_meteor_custom_burn_count:GetEffectName()
-	return "particles/units/heroes/hero_invoker/invoker_chaos_meteor_burn_debuff.vpcf"
+modifier_invoker_chaos_meteor_custom_cataclysm = class(mod_hidden)
+function modifier_invoker_chaos_meteor_custom_cataclysm:OnCreated(kv)
+	if not IsServer() then
+		return
+	end
+	self.parent = self:GetParent()
+	self.caster = self:GetCaster()
+	self.ability = self:GetAbility()
+
+	self.sun_strike = self.caster.sun_ability
+	self.meteor = self.caster.meteor_ability
+
+	self.radius = self.ability.talents.e7_radius
+	self.meteor_max = self.ability.talents.e7_meteor
+	self.max = self.ability.talents.e7_sun
+	self.count = 0
+
+	self.stack = kv.stack
+	self.meteor_interval = (self.max + 1) / self.meteor_max
+	self.meteor_count = 0
+
+	self.interval = kv.max / self.max
+	self.ability:EndCd()
+
+	self.caster:AddNewModifier(
+		self.caster,
+		self.ability,
+		"modifier_invoker_chaos_meteor_custom_cataclysm_caster",
+		{ interval = self.interval }
+	)
+	self:StartIntervalThink(self.interval)
 end
 
-function modifier_invoker_chaos_meteor_custom_burn_count:GetStatusEffectName()
-	return "particles/status_fx/status_effect_burn.vpcf"
+function modifier_invoker_chaos_meteor_custom_cataclysm:OnDestroy()
+	if not IsServer() then
+		return
+	end
+	self.ability:StartCd()
+	self.caster:RemoveModifierByName("modifier_invoker_chaos_meteor_custom_cataclysm_caster")
 end
 
-function modifier_invoker_chaos_meteor_custom_burn_count:StatusEffectPriority()
-	return MODIFIER_PRIORITY_NORMAL
+function modifier_invoker_chaos_meteor_custom_cataclysm:OnIntervalThink()
+	if not IsServer() then
+		return
+	end
+	if self.count >= self.max then
+		return
+	end
+
+	self.count = self.count + 1
+	self.meteor_count = self.meteor_count + 1
+
+	if self.sun_strike then
+		self.sun_strike:OnSpellStart(self:GivePoint(1), self.stack)
+	end
+
+	if self.meteor_count >= self.meteor_interval then
+		self.meteor_count = 0
+		if self.meteor then
+			self.meteor:OnSpellStart(self:GivePoint(2), self.stack)
+		end
+	end
+
+	if self.count >= self.max then
+		self:Destroy()
+		return
+	end
+end
+
+function modifier_invoker_chaos_meteor_custom_cataclysm:GivePoint(k)
+	local radius = self.radius
+	local point = self.parent:GetAbsOrigin()
+
+	if k == 2 then
+		local dir = (self.caster:GetAbsOrigin() - self.parent:GetAbsOrigin()):Normalized()
+		point = self.parent:GetAbsOrigin() + dir * self.radius * 0.6
+		radius = self.radius * 0.6
+	end
+
+	return point + RandomVector(RandomInt(radius * 0.2, radius))
+end
+
+modifier_invoker_chaos_meteor_custom_cataclysm_caster = class(mod_hidden)
+function modifier_invoker_chaos_meteor_custom_cataclysm_caster:GetEffectName()
+	return "particles/econ/items/huskar/huskar_2021_immortal/huskar_2021_immortal_burning_spear_debuff.vpcf"
+end
+function modifier_invoker_chaos_meteor_custom_cataclysm_caster:GetStatusEffectName()
+	return "particles/status_fx/status_effect_omnislash.vpcf"
+end
+function modifier_invoker_chaos_meteor_custom_cataclysm_caster:StatusEffectPriority()
+	return MODIFIER_PRIORITY_ULTRA
+end
+function modifier_invoker_chaos_meteor_custom_cataclysm_caster:OnCreated(kv)
+	if not IsServer() then
+		return
+	end
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.parent:RemoveModifierByName("modifier_invoker_chaos_meteor_custom_cataclysm_visual")
+	self.duration = kv.interval * self.ability.talents.e7_sun
+
+	if self.duration <= 1.4 then
+		self.parent:StartGestureWithPlaybackRate(ACT_DOTA_CAST_TORNADO, 0.8)
+	else
+		self.parent:StartGesture(ACT_DOTA_GENERIC_CHANNEL_1)
+	end
+end
+
+function modifier_invoker_chaos_meteor_custom_cataclysm_caster:OnDestroy()
+	if not IsServer() then
+		return
+	end
+
+	self.parent:FadeGesture(ACT_DOTA_GENERIC_CHANNEL_1)
+	self.parent:FadeGesture(ACT_DOTA_CAST_TORNADO)
+end
+
+modifier_invoker_chaos_meteor_custom_cataclysm_root_aura = class(mod_hidden)
+function modifier_invoker_chaos_meteor_custom_cataclysm_root_aura:IsAura()
+	return true
+end
+function modifier_invoker_chaos_meteor_custom_cataclysm_root_aura:GetModifierAura()
+	return "modifier_invoker_chaos_meteor_custom_cataclysm_root"
+end
+function modifier_invoker_chaos_meteor_custom_cataclysm_root_aura:GetAuraRadius()
+	return self.radius
+end
+function modifier_invoker_chaos_meteor_custom_cataclysm_root_aura:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_ENEMY
+end
+function modifier_invoker_chaos_meteor_custom_cataclysm_root_aura:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
+end
+function modifier_invoker_chaos_meteor_custom_cataclysm_root_aura:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	if not IsServer() then
+		return
+	end
+	self.radius = self.ability.talents.e7_radius
+end
+
+modifier_invoker_chaos_meteor_custom_cataclysm_root = class(mod_hidden)
+function modifier_invoker_chaos_meteor_custom_cataclysm_root:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	if not IsServer() then
+		return
+	end
+	self.parent:GenericParticle("particles/invoker/forge_attack.vpcf")
+	self.parent:GenericParticle("particles/juggernaut/omni_root.vpcf", self)
+end
+
+function modifier_invoker_chaos_meteor_custom_cataclysm_root:CheckState()
+	return {
+		[MODIFIER_STATE_ROOTED] = true,
+	}
+end
+
+modifier_invoker_chaos_meteor_custom_cataclysm_stack = class(mod_hidden)
+function modifier_invoker_chaos_meteor_custom_cataclysm_stack:RemoveOnDeath()
+	return false
+end
+function modifier_invoker_chaos_meteor_custom_cataclysm_stack:OnCreated()
+	if not IsServer() then
+		return
+	end
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.reset = self.ability.talents.e7_reset
+	self.duration = self.ability.talents.e7_duration
+	self.stack = self.ability.talents.e7_stack
+	self.max_stack = self.ability.talents.e7_max
+
+	self:UpdateUI()
+end
+
+function modifier_invoker_chaos_meteor_custom_cataclysm_stack:AddStack(stack)
+	if not IsServer() then
+		return
+	end
+	if self.ability:GetCooldownTimeRemaining() > 0 then
+		return
+	end
+	if self.parent:HasModifier("modifier_invoker_chaos_meteor_custom_cataclysm_caster") then
+		return
+	end
+
+	self:StartIntervalThink(self.reset)
+
+	if self:GetStackCount() >= self.max_stack then
+		return
+	end
+
+	self:SetStackCount(math.min(self.max_stack, self:GetStackCount() + stack))
+	self:UpdateUI()
+
+	if self:GetStackCount() >= self.max_stack then
+		self.parent:AddNewModifier(
+			self.parent,
+			self.ability,
+			"modifier_invoker_chaos_meteor_custom_cataclysm_visual",
+			{}
+		)
+	end
+end
+
+function modifier_invoker_chaos_meteor_custom_cataclysm_stack:OnIntervalThink()
+	if not IsServer() then
+		return
+	end
+	if self.parent:HasModifier("modifier_invoker_chaos_meteor_custom_cataclysm_caster") then
+		return
+	end
+
+	self:SetStackCount(0)
+	self:UpdateUI()
+	self:StartIntervalThink(-1)
+end
+
+function modifier_invoker_chaos_meteor_custom_cataclysm_stack:UpdateUI()
+	if not IsServer() then
+		return
+	end
+
+	if self:GetStackCount() < self.max_stack then
+		self.parent:RemoveModifierByName("modifier_invoker_chaos_meteor_custom_cataclysm_visual")
+	end
+
+	self.cast = self:GetStackCount()
+
+	local no_min = 1
+
+	if self.ability:GetCooldownTimeRemaining() > 0 then
+		self.cast = 0
+		self.number = 0
+		no_min = 0
+	end
+
+	self.parent:UpdateUIlong({
+		max = self.max_stack,
+		stack = self.cast,
+		override_stack = self.cast,
+		no_min = no_min,
+		priority = 2,
+		style = "InvokerExort",
+	})
+end
+
+modifier_invoker_chaos_meteor_custom_cataclysm_visual = class(mod_hidden)
+function modifier_invoker_chaos_meteor_custom_cataclysm_visual:GetEffectName()
+	return "particles/econ/items/huskar/huskar_2021_immortal/huskar_2021_immortal_burning_spear_debuff.vpcf"
+end
+function modifier_invoker_chaos_meteor_custom_cataclysm_visual:GetStatusEffectName()
+	return "particles/status_fx/status_effect_omnislash.vpcf"
+end
+function modifier_invoker_chaos_meteor_custom_cataclysm_visual:StatusEffectPriority()
+	return MODIFIER_PRIORITY_ULTRA
+end
+function modifier_invoker_chaos_meteor_custom_cataclysm_visual:OnCreated()
+	self.parent = self:GetParent()
+	if not IsServer() then
+		return
+	end
+	self.parent:EmitSound("Invoker.Exort_legendary")
+end
+
+function modifier_invoker_chaos_meteor_custom_cataclysm_visual:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_MODEL_SCALE,
+	}
+end
+
+function modifier_invoker_chaos_meteor_custom_cataclysm_visual:GetModifierModelScale()
+	return 15
 end
 
 invoker_forge_spirit_custom = class({})
@@ -1213,6 +1571,9 @@ function invoker_forge_spirit_custom:UpdateTalents()
 			h2_armor = 0,
 
 			w2_range = 0,
+
+			has_r4 = 0,
+			r4_level = caster:GetTalentValue("modifier_invoker_invoke_4", "level", true),
 
 			has_s2 = 0,
 			s2_count = caster:GetTalentValue("modifier_invoker_spells_2", "count", true),
@@ -1236,13 +1597,13 @@ function invoker_forge_spirit_custom:UpdateTalents()
 		self.talents.w2_range = caster:GetTalentValue("modifier_invoker_wex_2", "range")
 	end
 
+	if caster:HasTalent("modifier_invoker_invoke_4") then
+		self.talents.has_r4 = 1
+	end
+
 	if caster:HasTalent("modifier_invoker_spells_2") then
 		self.talents.has_s2 = 1
 	end
-end
-
-function invoker_forge_spirit_custom:GetCooldown(level)
-	return self.BaseClass.GetCooldown(self, level)
 end
 
 function invoker_forge_spirit_custom:GetAbilityTextureName()
@@ -1250,13 +1611,12 @@ function invoker_forge_spirit_custom:GetAbilityTextureName()
 end
 
 function invoker_forge_spirit_custom:OnSpellStart()
-	local caster = self:GetCaster()
 	local spirit_count = self.spirit_count
-	if caster:HasScepter() and self.talents.has_s2 == 1 then
+	if self.caster:HasScepter() and self.talents.has_s2 == 1 then
 		spirit_count = spirit_count + self.talents.s2_count
 	end
 
-	caster:StartGesture(ACT_DOTA_CAST_FORGE_SPIRIT)
+	self.caster:StartGesture(ACT_DOTA_CAST_FORGE_SPIRIT)
 
 	for _, unit in pairs(self.forged_spirits) do
 		if IsValid(unit) and unit:IsAlive() then
@@ -1270,14 +1630,13 @@ function invoker_forge_spirit_custom:OnSpellStart()
 		self:SummonSpirit(true)
 	end
 
-	caster:EmitSound("Hero_Invoker.ForgeSpirit")
+	self.caster:EmitSound("Hero_Invoker.ForgeSpirit")
 end
 
 function invoker_forge_spirit_custom:SummonSpirit(active)
 	if not IsServer() then
 		return
 	end
-	local caster = self:GetCaster()
 	local damage = self.spirit_damage
 	local health = self.spirit_hp * (1 + self.talents.e2_health)
 	local duration = self.spirit_duration
@@ -1289,24 +1648,24 @@ function invoker_forge_spirit_custom:SummonSpirit(active)
 
 	local forged_spirit = CreateUnitByName(
 		"npc_dota_invoker_forged_spirit_custom",
-		caster:GetAbsOrigin() + RandomVector(100),
+		self.caster:GetAbsOrigin() + RandomVector(100),
 		false,
-		caster,
-		caster,
-		caster:GetTeamNumber()
+		self.caster,
+		self.caster,
+		self.caster:GetTeamNumber()
 	)
-	forged_spirit:AddNewModifier(caster, self, "modifier_kill", { duration = duration })
-	forged_spirit:AddNewModifier(caster, self, "modifier_forged_spirit_melting_strike_custom_range", {})
+	forged_spirit:AddNewModifier(self.caster, self, "modifier_kill", { duration = duration })
+	forged_spirit:AddNewModifier(self.caster, self, "modifier_forged_spirit_melting_strike_custom_range", {})
 
 	local forge_model = "models/heroes/invoker/forge_spirit.vmdl"
-	local new_forge_model = wearables_system:GetUnitModelReplacement(caster, "npc_dota_invoker_forged_spirit")
+	local new_forge_model = wearables_system:GetUnitModelReplacement(self.caster, "npc_dota_invoker_forged_spirit")
 	if new_forge_model then
 		forge_model = new_forge_model
 	end
 	forged_spirit:SetOriginalModel(forge_model)
 	forged_spirit:SetModel(forge_model)
 	local projectile_forge = wearables_system:GetParticleReplacementAbility(
-		caster,
+		self.caster,
 		"particles/units/heroes/hero_invoker/invoker_forged_spirit_projectile.vpcf"
 	)
 	if
@@ -1316,9 +1675,9 @@ function invoker_forge_spirit_custom:SummonSpirit(active)
 		forged_spirit:SetRangedProjectileName(projectile_forge)
 	end
 
-	forged_spirit.owner = caster
+	forged_spirit.owner = self.caster
 
-	forged_spirit:SetControllableByPlayer(caster:GetPlayerID(), true)
+	forged_spirit:SetControllableByPlayer(self.caster:GetPlayerID(), true)
 	forged_spirit:SetBaseMaxHealth(health)
 	forged_spirit:SetMaxHealth(health)
 	forged_spirit:SetHealth(health)
@@ -1329,14 +1688,12 @@ function invoker_forge_spirit_custom:SummonSpirit(active)
 	forged_spirit:SetPhysicalArmorBaseValue(spirit_armor)
 	FindClearSpaceForUnit(forged_spirit, forged_spirit:GetOrigin(), false)
 	forged_spirit:SetAngles(0, 0, 0)
-	forged_spirit:SetForwardVector(caster:GetForwardVector())
+	forged_spirit:FacePoint(forged_spirit:GetAbsOrigin() + self.caster:GetForwardVector())
 
 	if active == true then
 		self.forged_spirits[#self.forged_spirits + 1] = forged_spirit
 	end
 end
-
-forged_spirit_melting_strike_custom = class({})
 
 modifier_forged_spirit_melting_strike_custom_range = class(mod_hidden)
 function modifier_forged_spirit_melting_strike_custom_range:OnCreated(kv)
@@ -1350,8 +1707,8 @@ function modifier_forged_spirit_melting_strike_custom_range:OnCreated(kv)
 	local ability = self.parent:FindAbilityByName("forged_spirit_melting_strike_custom")
 	if ability and self.caster.exort_ability then
 		local level = self.caster.exort_ability:GetLevel()
-		if self.caster.invoke_ability and self.caster.invoke_ability.talents.has_r4 == 1 then
-			level = level + self.caster.invoke_ability.talents.r4_level
+		if self.ability.talents.has_r4 == 1 then
+			level = level + self.ability.talents.r4_level
 		end
 		if IsServer() then
 			ability:SetLevel(level)
@@ -1417,10 +1774,9 @@ function modifier_forged_spirit_melting_strike_custom_range:GetModifierPreAttack
 	return self.caster.exort_ability.damage * count * self.caster.exort_ability.forge_bonus
 end
 
-modifier_forged_spirit_melting_strike_custom_debuff = class({})
-function modifier_forged_spirit_melting_strike_custom_debuff:IsPurgable()
-	return false
-end
+forged_spirit_melting_strike_custom = class({})
+
+modifier_forged_spirit_melting_strike_custom_debuff = class(mod_visible)
 function modifier_forged_spirit_melting_strike_custom_debuff:OnCreated()
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
@@ -1433,7 +1789,7 @@ function modifier_forged_spirit_melting_strike_custom_debuff:OnCreated()
 	if not IsServer() then
 		return
 	end
-	self:SetStackCount(1)
+	self:OnRefresh()
 end
 
 function modifier_forged_spirit_melting_strike_custom_debuff:OnRefresh()
@@ -1454,386 +1810,4 @@ end
 
 function modifier_forged_spirit_melting_strike_custom_debuff:GetModifierPhysicalArmorBonus()
 	return self.base_armor + self.armor * self:GetStackCount()
-end
-
-modifier_invoker_chaos_meteor_custom_cataclysm_caster = class(mod_hidden)
-function modifier_invoker_chaos_meteor_custom_cataclysm_caster:GetEffectName()
-	return "particles/econ/items/huskar/huskar_2021_immortal/huskar_2021_immortal_burning_spear_debuff.vpcf"
-end
-function modifier_invoker_chaos_meteor_custom_cataclysm_caster:GetStatusEffectName()
-	return "particles/status_fx/status_effect_omnislash.vpcf"
-end
-function modifier_invoker_chaos_meteor_custom_cataclysm_caster:StatusEffectPriority()
-	return MODIFIER_PRIORITY_ULTRA
-end
-function modifier_invoker_chaos_meteor_custom_cataclysm_caster:OnCreated(kv)
-	if not IsServer() then
-		return
-	end
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.parent:RemoveModifierByName("modifier_invoker_chaos_meteor_custom_cataclysm_visual")
-	self.duration = kv.interval * self.ability.talents.e7_sun
-
-	if self.duration <= 1.4 then
-		self.parent:StartGestureWithPlaybackRate(ACT_DOTA_CAST_TORNADO, 0.8)
-	else
-		self.parent:StartGesture(ACT_DOTA_GENERIC_CHANNEL_1)
-	end
-end
-
-function modifier_invoker_chaos_meteor_custom_cataclysm_caster:OnIntervalThink()
-	if not IsServer() then
-		return
-	end
-	self.parent:StartGesture(ACT_DOTA_GENERIC_CHANNEL_1)
-	self:StartIntervalThink(-1)
-end
-
-function modifier_invoker_chaos_meteor_custom_cataclysm_caster:OnDestroy()
-	if not IsServer() then
-		return
-	end
-
-	self.parent:FadeGesture(ACT_DOTA_GENERIC_CHANNEL_1)
-	self.parent:FadeGesture(ACT_DOTA_CAST_TORNADO)
-end
-
-modifier_invoker_chaos_meteor_custom_cataclysm = class(mod_hidden)
-function modifier_invoker_chaos_meteor_custom_cataclysm:OnCreated(table)
-	if not IsServer() then
-		return
-	end
-	self.parent = self:GetParent()
-	self.caster = self:GetCaster()
-	self.ability = self:GetAbility()
-
-	self.sun_strike = self.caster.sun_ability
-	self.meteor = self.caster.meteor_ability
-
-	self.radius = self.ability.talents.e7_radius
-	self.meteor_max = self.ability.talents.e7_meteor
-	self.max = self.ability.talents.e7_sun
-	self.count = 0
-
-	self.stack = table.stack
-	self.meteor_interval = (self.max + 1) / self.meteor_max
-	self.meteor_count = 0
-
-	self.interval = table.max / self.max
-	self.ability:EndCd()
-
-	self.caster:AddNewModifier(
-		self.caster,
-		self.ability,
-		"modifier_invoker_chaos_meteor_custom_cataclysm_caster",
-		{ interval = self.interval }
-	)
-	self:StartIntervalThink(self.interval)
-end
-
-function modifier_invoker_chaos_meteor_custom_cataclysm:OnDestroy()
-	if not IsServer() then
-		return
-	end
-	self.ability:StartCd()
-	self.caster:RemoveModifierByName("modifier_invoker_chaos_meteor_custom_cataclysm_caster")
-end
-
-function modifier_invoker_chaos_meteor_custom_cataclysm:OnIntervalThink()
-	if not IsServer() then
-		return
-	end
-	if self.count >= self.max then
-		return
-	end
-
-	self.count = self.count + 1
-	self.meteor_count = self.meteor_count + 1
-
-	if self.sun_strike then
-		self.sun_strike:OnSpellStart(self:GivePoint(1), self.stack)
-	end
-
-	if self.meteor_count >= self.meteor_interval then
-		self.meteor_count = 0
-		if self.meteor then
-			self.meteor:OnSpellStart(self:GivePoint(2), self.stack)
-		end
-	end
-
-	if self.count >= self.max then
-		self:Destroy()
-		return
-	end
-end
-
-function modifier_invoker_chaos_meteor_custom_cataclysm:GivePoint(k)
-	local radius = self.radius
-	local point = self.parent:GetAbsOrigin()
-
-	if k == 2 then
-		local dir = (self.caster:GetAbsOrigin() - self.parent:GetAbsOrigin()):Normalized()
-		point = self.parent:GetAbsOrigin() + dir * self.radius * 0.6
-		radius = self.radius * 0.6
-	end
-
-	return point + RandomVector(RandomInt(radius * 0.2, radius))
-end
-
-modifier_invoker_chaos_meteor_custom_cataclysm_root_aura = class(mod_hidden)
-function modifier_invoker_chaos_meteor_custom_cataclysm_root_aura:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	if not IsServer() then
-		return
-	end
-	self.radius = self.ability.talents.e7_radius
-end
-
-function modifier_invoker_chaos_meteor_custom_cataclysm_root_aura:IsAura()
-	return true
-end
-function modifier_invoker_chaos_meteor_custom_cataclysm_root_aura:GetModifierAura()
-	return "modifier_invoker_chaos_meteor_custom_cataclysm_root"
-end
-function modifier_invoker_chaos_meteor_custom_cataclysm_root_aura:GetAuraRadius()
-	return self.radius
-end
-function modifier_invoker_chaos_meteor_custom_cataclysm_root_aura:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_ENEMY
-end
-function modifier_invoker_chaos_meteor_custom_cataclysm_root_aura:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
-end
-
-modifier_invoker_chaos_meteor_custom_cataclysm_stack = class(mod_hidden)
-function modifier_invoker_chaos_meteor_custom_cataclysm_stack:RemoveOnDeath()
-	return false
-end
-function modifier_invoker_chaos_meteor_custom_cataclysm_stack:OnCreated()
-	if not IsServer() then
-		return
-	end
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.reset = self.ability.talents.e7_reset
-	self.duration = self.ability.talents.e7_duration
-	self.stack = self.ability.talents.e7_stack
-	self.max_stack = self.ability.talents.e7_max
-
-	self:OnStackCountChanged()
-end
-
-function modifier_invoker_chaos_meteor_custom_cataclysm_stack:AddStack(stack)
-	if not IsServer() then
-		return
-	end
-	if self.ability:GetCooldownTimeRemaining() > 0 then
-		return
-	end
-	if self.parent:HasModifier("modifier_invoker_chaos_meteor_custom_cataclysm_caster") then
-		return
-	end
-
-	self:StartIntervalThink(self.reset)
-
-	if self:GetStackCount() >= self.max_stack then
-		return
-	end
-
-	self:SetStackCount(math.min(self.max_stack, self:GetStackCount() + stack))
-
-	if self:GetStackCount() >= self.max_stack then
-		self.parent:AddNewModifier(
-			self.parent,
-			self.ability,
-			"modifier_invoker_chaos_meteor_custom_cataclysm_visual",
-			{}
-		)
-	end
-end
-
-function modifier_invoker_chaos_meteor_custom_cataclysm_stack:OnIntervalThink()
-	if not IsServer() then
-		return
-	end
-	if self.parent:HasModifier("modifier_invoker_chaos_meteor_custom_cataclysm_caster") then
-		return
-	end
-
-	self:SetStackCount(0)
-	self:StartIntervalThink(-1)
-end
-
-function modifier_invoker_chaos_meteor_custom_cataclysm_stack:OnStackCountChanged()
-	if not IsServer() then
-		return
-	end
-
-	if self:GetStackCount() < self.max_stack then
-		self.parent:RemoveModifierByName("modifier_invoker_chaos_meteor_custom_cataclysm_visual")
-	end
-
-	self.cast = self:GetStackCount()
-
-	local no_min = 1
-
-	if self.ability:GetCooldownTimeRemaining() > 0 then
-		self.cast = 0
-		self.number = 0
-		no_min = 0
-	end
-
-	self.parent:UpdateUIlong({
-		max = self.max_stack,
-		stack = self.cast,
-		override_stack = self.cast,
-		no_min = no_min,
-		priority = 2,
-		style = "InvokerExort",
-	})
-end
-
-modifier_invoker_chaos_meteor_custom_cataclysm_visual = class(mod_hidden)
-function modifier_invoker_chaos_meteor_custom_cataclysm_visual:GetEffectName()
-	return "particles/econ/items/huskar/huskar_2021_immortal/huskar_2021_immortal_burning_spear_debuff.vpcf"
-end
-function modifier_invoker_chaos_meteor_custom_cataclysm_visual:GetStatusEffectName()
-	return "particles/status_fx/status_effect_omnislash.vpcf"
-end
-function modifier_invoker_chaos_meteor_custom_cataclysm_visual:StatusEffectPriority()
-	return MODIFIER_PRIORITY_ULTRA
-end
-function modifier_invoker_chaos_meteor_custom_cataclysm_visual:OnCreated()
-	if not IsServer() then
-		return
-	end
-	self:GetParent():EmitSound("Invoker.Exort_legendary")
-end
-
-function modifier_invoker_chaos_meteor_custom_cataclysm_visual:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_MODEL_SCALE,
-	}
-end
-
-function modifier_invoker_chaos_meteor_custom_cataclysm_visual:GetModifierModelScale()
-	return 15
-end
-
-modifier_forged_spirit_melting_strike_custom_slow = class(mod_hidden)
-function modifier_forged_spirit_melting_strike_custom_slow:IsPurgable()
-	return true
-end
-function modifier_forged_spirit_melting_strike_custom_slow:OnCreated(table)
-	self.parent = self:GetParent()
-	self.caster = self:GetCaster()
-	self.ability = self:GetAbility()
-	self.slow = self.ability.talents.w2_slow
-
-	if not IsServer() then
-		return
-	end
-	self.parent:GenericParticle("particles/void_astral_slow.vpcf", self)
-end
-
-function modifier_forged_spirit_melting_strike_custom_slow:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-	}
-end
-
-function modifier_forged_spirit_melting_strike_custom_slow:GetModifierMoveSpeedBonus_Percentage()
-	return self.slow
-end
-
-modifier_invoker_exort_custom_speed = class(mod_visible)
-function modifier_invoker_exort_custom_speed:GetTexture()
-	return "buffs/invoker/exort_1"
-end
-function modifier_invoker_exort_custom_speed:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.speed = self.ability.talents.e1_speed
-end
-
-function modifier_invoker_exort_custom_speed:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
-	}
-end
-
-function modifier_invoker_exort_custom_speed:GetModifierAttackSpeedBonus_Constant()
-	return self.speed
-end
-
-modifier_invoker_exort_custom_bash_cd = class(mod_hidden)
-
-modifier_invoker_exort_custom_attack = class(mod_hidden)
-function modifier_invoker_exort_custom_attack:OnCreated()
-	self.ability = self:GetAbility()
-	self.damage = self.ability.talents.e3_damage - 100
-end
-
-function modifier_invoker_exort_custom_attack:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE,
-	}
-end
-
-function modifier_invoker_exort_custom_attack:GetModifierTotalDamageOutgoing_Percentage(params)
-	if params.inflictor then
-		return
-	end
-	return self.damage
-end
-
-modifier_invoker_chaos_meteor_custom_cataclysm_root = class(mod_hidden)
-function modifier_invoker_chaos_meteor_custom_cataclysm_root:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	if not IsServer() then
-		return
-	end
-	self.parent:GenericParticle("particles/invoker/forge_attack.vpcf")
-	self.parent:GenericParticle("particles/juggernaut/omni_root.vpcf", self)
-end
-
-function modifier_invoker_chaos_meteor_custom_cataclysm_root:CheckState()
-	return {
-		[MODIFIER_STATE_ROOTED] = true,
-	}
-end
-
-modifier_invoker_exort_custom_bash_count = class(mod_hidden)
-function modifier_invoker_exort_custom_bash_count:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.max = self.ability.talents.e4_attacks
-	if not IsServer() then
-		return
-	end
-	self:OnRefresh()
-end
-
-function modifier_invoker_exort_custom_bash_count:OnRefresh()
-	if not IsServer() then
-		return
-	end
-	if self:GetStackCount() >= self.max then
-		return
-	end
-	self:IncrementStackCount()
-
-	if self:GetStackCount() < self.max then
-		return
-	end
-	self.parent:GenericParticle("particles/invoker/meteor_mark.vpcf", self, true)
 end

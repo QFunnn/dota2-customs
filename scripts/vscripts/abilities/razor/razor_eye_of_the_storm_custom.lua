@@ -306,7 +306,7 @@ function modifier_razor_eye_of_the_storm_custom:OnIntervalThink()
 	if
 		self.parent:HasTalent("modifier_razor_eye_7")
 		and self.bonus ~= 0
-		and self.parent:HasTalent("modifier_razor_eye_of_the_storm_custom_legendary")
+		and self.parent:HasModifier("modifier_razor_eye_of_the_storm_custom_legendary")
 	then
 		self.interval = self.interval / self.bonus
 	end
@@ -407,7 +407,7 @@ function modifier_razor_eye_of_the_storm_custom:Hit(enemy, perform_attack)
 	)
 
 	if
-		not enemy:HasTalent("modifier_razor_eye_of_the_storm_custom_cd")
+		not enemy:HasModifier("modifier_razor_eye_of_the_storm_custom_cd")
 		and self.parent:HasTalent("modifier_razor_eye_5")
 		and self.root_cd > 0
 	then
@@ -1050,10 +1050,10 @@ function modifier_razor_eye_of_the_storm_custom_tracker:AttackEvent_out(params)
 	if not self.parent:HasTalent("modifier_razor_eye_7") then
 		return
 	end
-	if not self.parent:HasTalent("modifier_razor_eye_of_the_storm_custom") then
+	if not self.parent:HasModifier("modifier_razor_eye_of_the_storm_custom") then
 		return
 	end
-	if self.parent:HasTalent("modifier_razor_eye_of_the_storm_custom_legendary") then
+	if self.parent:HasModifier("modifier_razor_eye_of_the_storm_custom_legendary") then
 		return
 	end
 	if self:GetStackCount() >= self.max then

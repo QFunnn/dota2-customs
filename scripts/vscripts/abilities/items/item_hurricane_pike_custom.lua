@@ -31,6 +31,7 @@ function item_hurricane_pike_custom:Precache(context)
 		return
 	end
 	PrecacheResource("particle", "particles/items_fx/force_staff.vpcf", context)
+	PrecacheResource("particle", "particles/status_fx/status_effect_forcestaff.vpcf", context)
 end
 
 function item_hurricane_pike_custom:GetIntrinsicModifierName()
@@ -120,6 +121,11 @@ modifier_item_hurricane_pike_custom = class(mod_hidden)
 function modifier_item_hurricane_pike_custom:RemoveOnDeath()
 	return false
 end
+function modifier_item_hurricane_pike_custom:OnCreated(table)
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+end
+
 function modifier_item_hurricane_pike_custom:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
@@ -128,11 +134,6 @@ function modifier_item_hurricane_pike_custom:DeclareFunctions()
 		MODIFIER_PROPERTY_HEALTH_BONUS,
 		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
 	}
-end
-
-function modifier_item_hurricane_pike_custom:OnCreated(table)
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
 end
 
 function modifier_item_hurricane_pike_custom:GetModifierHealthBonus()

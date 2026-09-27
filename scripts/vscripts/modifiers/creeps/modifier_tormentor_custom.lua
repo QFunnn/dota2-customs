@@ -324,7 +324,7 @@ function modifier_tormentor_custom:DeathReward(attacker)
 	else
 		local gold = tormentor_gold / #heroes
 		for _, player in pairs(heroes) do
-			player:ModifyGoldFiltered(gold, true, DOTA_ModifyGold_CreepKill)
+			player:GiveGold(gold, nil, true, "patrol")
 			player:SendNumber(0, gold)
 		end
 	end

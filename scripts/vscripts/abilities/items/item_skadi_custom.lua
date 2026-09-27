@@ -22,21 +22,33 @@ function item_skadi_custom:Precache(context)
 		return
 	end
 	PrecacheResource("particle", "particles/status_fx/status_effect_frost_lich.vpcf", context)
+	PrecacheResource("particle", "particles/items2_fx/skadi_projectile.vpcf", context)
+end
+
+function item_skadi_custom:Spawn()
+	self.bonus_all_stats = self:GetSpecialValueFor("bonus_all_stats")
+	self.cold_duration = self:GetSpecialValueFor("cold_duration")
+	self.cold_attack_slow = self:GetSpecialValueFor("cold_attack_slow")
+	self.cold_slow_ranged = self:GetSpecialValueFor("cold_slow_ranged")
+	self.cold_slow_melee = self:GetSpecialValueFor("cold_slow_melee")
+	self.heal_reduction = self:GetSpecialValueFor("heal_reduction")
 end
 
 modifier_item_skadi_custom = class(mod_hidden)
 function modifier_item_skadi_custom:RemoveOnDeath()
 	return false
 end
-
+function modifier_item_skadi_custom:GetPriority()
+	return MODIFIER_PRIORITY_NORMAL
+end
 function modifier_item_skadi_custom:OnCreated()
 	self.ability = self:GetAbility()
 	self.parent = self:GetParent()
 
-	self.bonus_strength = self.ability:GetSpecialValueFor("bonus_all_stats")
-	self.bonus_agility = self.ability:GetSpecialValueFor("bonus_all_stats")
-	self.bonus_intellect = self.ability:GetSpecialValueFor("bonus_all_stats")
-	self.cold_duration = self.ability:GetSpecialValueFor("cold_duration")
+	self.bonus_strength = self.ability.bonus_all_stats
+	self.bonus_agility = self.ability.bonus_all_stats
+	self.bonus_intellect = self.ability.bonus_all_stats
+	self.cold_duration = self.ability.cold_duration
 
 	if not IsServer() then
 		return
@@ -54,10 +66,6 @@ function modifier_item_skadi_custom:DeclareFunctions()
 		MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
 		MODIFIER_PROPERTY_PROJECTILE_NAME,
 	}
-end
-
-function modifier_item_skadi_custom:GetPriority()
-	return MODIFIER_PRIORITY_NORMAL
 end
 
 function modifier_item_skadi_custom:GetModifierProjectileName()
@@ -80,6 +88,9 @@ function modifier_item_skadi_custom:AttackEvent_out(params)
 	if not IsServer() then
 		return
 	end
+	if not IsValid(self.ability) then
+		return
+	end
 	if not params.target:IsUnit() then
 		return
 	end
@@ -95,18 +106,24 @@ function modifier_item_skadi_custom:AttackEvent_out(params)
 	)
 end
 
-modifier_item_skadi_custom_debuff = class({})
+modifier_item_skadi_custom_debuff = class(mod_visible)
 function modifier_item_skadi_custom_debuff:IsPurgable()
 	return true
+end
+function modifier_item_skadi_custom_debuff:GetStatusEffectName()
+	return "particles/status_fx/status_effect_frost_lich.vpcf"
+end
+function modifier_item_skadi_custom_debuff:StatusEffectPriority()
+	return MODIFIER_PRIORITY_NORMAL
 end
 function modifier_item_skadi_custom_debuff:OnCreated()
 	self.ability = self:GetAbility()
 	self.parent = self:GetParent()
 
-	self.attack_slow = self.ability:GetSpecialValueFor("cold_attack_slow")
-	self.cold_slow_ranged = self.ability:GetSpecialValueFor("cold_slow_ranged")
-	self.cold_slow_melee = self.ability:GetSpecialValueFor("cold_slow_melee")
-	self.heal_reduction = self.ability:GetSpecialValueFor("heal_reduction")
+	self.attack_slow = self.ability.cold_attack_slow
+	self.cold_slow_ranged = self.ability.cold_slow_ranged
+	self.cold_slow_melee = self.ability.cold_slow_melee
+	self.heal_reduction = self.ability.heal_reduction
 end
 
 function modifier_item_skadi_custom_debuff:DeclareFunctions()
@@ -131,12 +148,4 @@ end
 
 function modifier_item_skadi_custom_debuff:GetModifierHPRegenAmplify_Percentage()
 	return self.heal_reduction
-end
-
-function modifier_item_skadi_custom_debuff:GetStatusEffectName()
-	return "particles/status_fx/status_effect_frost_lich.vpcf"
-end
-
-function modifier_item_skadi_custom_debuff:StatusEffectPriority()
-	return MODIFIER_PRIORITY_NORMAL
 end

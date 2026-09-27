@@ -14,45 +14,29 @@ $.GetContextPanel().SetParent(parentHUDElements);
 var points_count = 0
 var max_points = 0
 
-var places_points
-var places_points_solo = [14,12,10,8,6,4]
-var places_points_duo = [12, 10, 8, 6, 4]
-
-var place_exp
-var place_exp_solo = [40,30,25,20,15,10]
-var place_exp_duo = [35,25,20,15,10]
-
-var kills_inc = 1
-var kills_max = 10
-var towers_inc = 4
-var bounty_inc = 0.5
-var bounty_max = 10
-
 var gained_exp = 0
 var init_exp = 0
 var max_exp = 0
 var current_exp = 0
 var level = 0
-var max_level = 30
+var max_level = 0
 var player_hero = ''
 var place_taken = 0
 
-var level_thresh = [6,12,18,25,30]
+var level_thresh = []
 
 var can_add_exp = false
 
 var account_points = 0
-var max_account_points = 500
-
-var sub_random_inc = 1.15
+var max_account_points = 0
 
 var subscribed = 0
 
-var valid_time = 0
+var match_points = {}
 
-var thresh = [50,60,70,80, 100,120,140,160,180,200, 230,260,290,320,350,380, 420,460,500,540,580,620,680, 800,900,1000,1100,1200, 1500 ]
+var thresh = []
 
-var sound  
+var sound
 var sound_exp
 
 var closed = true
@@ -68,10 +52,8 @@ var quest_name = ""
 
 var IsEndScreen = false
 
-
 function ShowHeroQuest(quest_data)
 {
-
 	let main = $.GetContextPanel().FindChildTraverse("EndScreenBonuses")
 	let quest = $.GetContextPanel().FindChildTraverse("EndScreenQuest")
 	let achivment = $.GetContextPanel().FindChildTraverse("EndScreenAchivment")
@@ -90,7 +72,7 @@ function ShowHeroQuest(quest_data)
 	}
 
 	$.Schedule(0.5, function()
-	{ 	
+	{
 		if (!main.BHasClass("EndScreenBonuses_hide"))
 		{
 			main.RemoveClass("EndScreenBonuses_show_from_top")
@@ -176,31 +158,14 @@ var max_games = 0
 
 Game.ShowEndWindow = (kv, is_end_screen) =>
 {
-
-	//let sum = 0
-
-	//for (var i = 0; i < Object.keys(thresh).length; i++) 
-	//{
-		//sum = sum + thresh[i]
-	//}
-
 	IsEndScreen = is_end_screen
- 
+
 	if (is_end_screen)
 	{
 		$.GetContextPanel().AddClass("MainEndScreen_down")
 	}else
 	{
 		$.GetContextPanel().AddClass("MainEndScreen_right")
-	}
-
-	
-	places_points = places_points_solo
-	place_exp = place_exp_solo
-	if (Game.GetGameMode() == 2)
-	{
-		places_points = places_points_duo 
-		place_exp = place_exp_duo
 	}
 
 	closed = false
@@ -218,7 +183,6 @@ Game.ShowEndWindow = (kv, is_end_screen) =>
 		achivment_complete = true
 	}
 
-
 	var sub_data = CustomNetTables.GetTableValue("sub_data", Players.GetLocalPlayer());
 
 	can_add_exp = false
@@ -235,14 +199,19 @@ Game.ShowEndWindow = (kv, is_end_screen) =>
 	var init_exp = 0
 	level = 1
 	account_points = 0
-	player_hero = Entities.GetUnitName( Players.GetPlayerHeroEntityIndex( Players.GetLocalPlayer() ) )//kv.hero
+	player_hero = Entities.GetUnitName(Players.GetPlayerHeroEntityIndex(Players.GetLocalPlayer()))
 
 	account_points = kv.points
 	subscribed = kv.subscribed
 	level = kv.level
 	init_exp = kv.exp
-	valid_time = kv.valid_time
-    max_exp = thresh[level - 1]
+	match_points = kv.match_points || {}
+	let sub_config = CustomNetTables.GetTableValue("custom_pick", "sub_config")
+	thresh = Object.values(sub_config.level_exp)
+	level_thresh = Object.values(sub_config.level_tiers)
+	max_level = sub_config.level_max
+	max_account_points = sub_config.points_max
+	max_exp = thresh[level - 1]
 
 	var info_text = $.Localize("#Sub_info")
 
@@ -253,18 +222,6 @@ Game.ShowEndWindow = (kv, is_end_screen) =>
 
 	if (subscribed == 1)
 	{
-		gained_exp = place_exp[place_taken - 1]
-
-		if (kv.randomed == 1)
-		{
-			gained_exp = Math.floor(gained_exp*sub_random_inc)
-		}
-
-		if (valid_time == 0)
-		{
-			gained_exp = 0
-		}
-
 		let time = kv.expire
 
 		let days = Math.floor((time/3600)/24)
@@ -278,27 +235,23 @@ Game.ShowEndWindow = (kv, is_end_screen) =>
 		HasSub.RemoveClass("BottomPanel_hidden")
 	}else
 	{
-
 		NoSub.RemoveClass("BottomPanel_hidden")
 		SubButton_info.SetPanelEvent('onmouseover', function() {
 			$.DispatchEvent('DOTAShowTextTooltip', SubButton_info, info_text)
 		});
 
-
 		SubButton_info.SetPanelEvent('onmouseout', function() {
 			$.DispatchEvent('DOTAHideTextTooltip', SubButton_info);
 		});
 
-		SubButton_info.SetPanelEvent("onactivate", function() 
-		{	
-			GameEvents.SendCustomGameEventToServer_custom( "browser_subscribe", {item_name: "sub"});	
-		});	
+		SubButton_info.SetPanelEvent("onactivate", function()
+		{
+			GameEvents.SendCustomGameEventToServer_custom("browser_subscribe", {item_name: "sub"});
+		});
 	}
 
-
-	gained_exp = gained_exp + quest_exp
+	gained_exp = match_points.exp || 0
 	var RandomBonus = $.GetContextPanel().FindChildTraverse("RandomBonus")
-
 
 	if (kv.randomed == 1)
 	{
@@ -312,19 +265,17 @@ Game.ShowEndWindow = (kv, is_end_screen) =>
 		RandomBonus.SetPanelEvent('onmouseout', function() {
 			$.DispatchEvent('DOTAHideTextTooltip', RandomBonus);
 		});
-	}else 
+	}else
 	{
 		RandomBonus.AddClass("RandomBonus_hidden")
 	}
-
 
 	var main = $.GetContextPanel().FindChild("EndScreenWindow_all")
 	main.RemoveClass("EndScreenWindow_all_hide")
 	main.AddClass("EndScreenWindow_show")
 
-
 	$.Schedule(0.8, function()
-	{ 	
+	{
 		main.AddClass("EndScreenWindow_all_glow")
 	})
 
@@ -333,8 +284,8 @@ Game.ShowEndWindow = (kv, is_end_screen) =>
 		timer = 0
 
 	$.Schedule(timer, function()
-	{ 
-		if (closed == false && (quest_complete == true || achivment_complete == true ))
+	{
+		if (closed == false && (quest_complete == true || achivment_complete == true))
 		{
 			let quest_table = null
 			if (quest_complete)
@@ -350,28 +301,26 @@ Game.ShowEndWindow = (kv, is_end_screen) =>
 	})
 
 	InitHeroLevel(init_exp, gained_exp)
-	ShowPoints(kills, towers, bounty, kv.randomed)
+	ShowPoints(kills, towers, bounty)
 
 	var TopText = $.GetContextPanel().FindChildTraverse("EndScreenWindow_top_text")
 
 	TopText.text = $.Localize("#end_place_" + String(kv.place))
 	var MidText = $.GetContextPanel().FindChildTraverse("EndScreenWindow_bot_text")
 
-
 	var rating_before = kv.rating_before
 	var rating_change = kv.rating_change
 	var sign = '+'
 	if (rating_change <= 0)
-	{	
+	{
 		sign = ""
 	}
 
-	
 	MidText.text = $.Localize("#rating_change") + ' ' + String(rating_before)
 
 	var ChangeText = $.GetContextPanel().FindChildTraverse("EndScreenWindow_bot_text_change")
 
-	ChangeText.text =  ' (' + sign + String(rating_change) + ')'
+	ChangeText.text = ' (' + sign + String(rating_change) + ')'
 
 	if (rating_change >= 0)
 	{
@@ -380,7 +329,7 @@ Game.ShowEndWindow = (kv, is_end_screen) =>
 	else
 	{
 		ChangeText.AddClass('Change_Minus')
-	} 
+	}
 
 	var Button_Watch = $.GetContextPanel().FindChildTraverse("EndScreenWindow_close")
 
@@ -393,56 +342,45 @@ Game.ShowEndWindow = (kv, is_end_screen) =>
 	}
 }
 
-
-
-
-
-
-
 function AddPoints()
 {
 	var count = $.GetContextPanel().FindChildTraverse("ShardsCount_text")
 	var bot_count = $.GetContextPanel().FindChildTraverse("ShardsBotCount_text")
 
-
 	count.text = '+' + String(points_count)
 
 	var max_text = ''
-	if (subscribed == 0) 
+	if (subscribed == 0)
 	{
 		max_text = '/' + String(max_account_points)
 	}
 
 	bot_count.text = String(account_points) + max_text
 
-
-	if ((points_count < max_points) && ((account_points < max_account_points) || (subscribed == 1)  ))
+	if (points_count < max_points)
 	{
-
-
 		points_count = points_count + 1
 		account_points = account_points + 1
 
-		$.Schedule(1.5 / max_points , function() 
-			{AddPoints()}
-		)
+		$.Schedule(1.5 / max_points, function()
+		{
+			AddPoints()
+		})
 	}
-	else 
+	else
 	{
 		if (sound != null)
 		{
 			Game.StopSound(sound)
 		}
 		Game.EmitSound("Sub.Points_end")
-		if ((account_points >= max_account_points) && (subscribed == 0) )
+		if ((account_points >= max_account_points) && (subscribed == 0))
 		{
 			bot_count.AddClass("Max_points")
 			count.AddClass("Max_points")
 		}
 
-
 		can_add_exp = true
-
 
 		var tier = 0
 		var j = 0
@@ -452,7 +390,7 @@ function AddPoints()
 			{
 				j = j + 1
 				tier = tier + 1
-			} 
+			}
 		}
 
 		if (tier < 5)
@@ -462,16 +400,13 @@ function AddPoints()
 				var level_text = $.GetContextPanel().FindChildTraverse("PlaceForLevel_exp")
 				level_text.text = '+' + String(gained_exp)
 			}
-			//level_text.AddClass("Exp_for_place_" + String(tier))
 
 			sound_exp = Game.EmitSound("Sub.Exp_count")
 		}
 	}
 }
 
-
-
-function ShowPoints(kills_n, towers_n, bounty_n, randomed)
+function ShowPoints(kills_n, towers_n, bounty_n)
 {
 	var main = $.GetContextPanel().FindChildTraverse("EndScreenPoints")
 
@@ -485,41 +420,17 @@ function ShowPoints(kills_n, towers_n, bounty_n, randomed)
 	bounty.AddClass("ShardInfo_label_hide")
 	place.AddClass("ShardInfo_label_hide")
 
-
 	points_count = 0
-
-
-	max_points = Math.min(kills_n*kills_inc, kills_max) + places_points[place_taken - 1] + towers_n*towers_inc + Math.floor(Math.min(bounty_n*bounty_inc, bounty_max))
-
-	max_points = max_points
-
-	if (randomed == 1)
-	{
-		max_points = Math.floor(max_points * sub_random_inc)
-	}
-
-
-	if (valid_time == 0)
-	{
-		max_points = 0
-	}
-
-
-	max_points = max_points + quest_shards
-
-
+	max_points = match_points.points || 0
 
 	sound = Game.EmitSound("Sub.Points_inc")
 	AddPoints()
 
 	$.Schedule(0.33, function()
-	{ 	
+	{
 		ShowShards_Place(kills_n, towers_n, bounty_n)
 	})
-
 }
-
-
 
 function ShowShards_Place(kills, towers, bounty)
 {
@@ -529,31 +440,21 @@ function ShowShards_Place(kills, towers, bounty)
 
 	var points = $.GetContextPanel().FindChildTraverse("ShardsInfo_place_text_points")
 
-	let bonus = String(places_points[place_taken - 1])
-
-	if (valid_time == 0)
-	{
-		bonus = 0
-	}
-
+	let bonus = match_points.place || 0
 
 	points.text = '(+' + bonus + ')';
 
-
 	var text = $.GetContextPanel().FindChildTraverse("ShardsInfo_place_text")
 	text.html = true;
-	text.text =$.Localize("#shard_place") + String(place_taken)
+	text.text = $.Localize("#shard_place") + String(place_taken)
 
 	$.Schedule(0.33, function()
-	{ 	
- 		ShowShards_Kills( kills, towers, bounty)
+	{
+		ShowShards_Kills(kills, towers, bounty)
 	})
-
 }
 
-
-
-function ShowShards_Kills( kills, towers, bounty)
+function ShowShards_Kills(kills, towers, bounty)
 {
 	var label = $.GetContextPanel().FindChildTraverse("ShardsCount_kills")
 	label.RemoveClass("ShardInfo_label_hide")
@@ -562,12 +463,7 @@ function ShowShards_Kills( kills, towers, bounty)
 	var text = $.GetContextPanel().FindChildTraverse("ShardsInfo_kills_text")
 	var points = $.GetContextPanel().FindChildTraverse("ShardsInfo_kills_text_points")
 
-	let bonus = String(Math.min(kills*kills_inc, kills_max) ) 
-
-	if (valid_time == 0)
-	{
-		bonus = 0
-	}
+	let bonus = match_points.kills || 0
 
 	points.text = '(+' + bonus + ')';
 
@@ -581,67 +477,44 @@ function ShowShards_Kills( kills, towers, bounty)
 	text.text = $.Localize("#shard_kills") + str
 
 	$.Schedule(0.33, function()
-	{ 	
- 		ShowShards_towers( towers, bounty)
+	{
+		ShowShards_towers(towers, bounty)
 	})
-
 }
 
-
-function ShowShards_towers( towers, bounty)
+function ShowShards_towers(towers, bounty)
 {
 	var label = $.GetContextPanel().FindChildTraverse("ShardsCount_towers")
 	label.RemoveClass("ShardInfo_label_hide")
 	label.AddClass("ShardInfo_label_show")
 
-
 	var points = $.GetContextPanel().FindChildTraverse("ShardsInfo_towers_text_points")
 
-	let bonus = String(towers*towers_inc)
-
-	if (valid_time == 0)
-	{
-		bonus = 0
-	}
+	let bonus = match_points.towers || 0
 
 	points.text = '(+' + bonus + ')';
-
-
 
 	var text = $.GetContextPanel().FindChildTraverse("ShardsInfo_towers_text")
 	text.html = true;
 	text.text = $.Localize("#shard_towers") + String(towers)
 
 	$.Schedule(0.33, function()
-	{ 	
- 		ShowShards_bounty(bounty)
+	{
+		ShowShards_bounty(bounty)
 	})
-
 }
-
-
 
 function ShowShards_bounty(bounty)
 {
-
-
 	var label = $.GetContextPanel().FindChildTraverse("ShardsCount_bounty")
 	label.RemoveClass("ShardInfo_label_hide")
 	label.AddClass("ShardInfo_label_show")
 
-
 	var points = $.GetContextPanel().FindChildTraverse("ShardsInfo_bounty_text_points")
 
-	let bonus = Math.floor(String(Math.min(bounty*bounty_inc, bounty_max) ))
-
-	if (valid_time == 0)
-	{
-		bonus = 0
-	}
+	let bonus = match_points.runes || 0
 
 	points.text = '(+' + bonus + ')';
-	
-
 
 	var str = String(bounty)
 	if (bounty > 20)
@@ -652,25 +525,20 @@ function ShowShards_bounty(bounty)
 	var text = $.GetContextPanel().FindChildTraverse("ShardsInfo_bounty_text")
 	text.html = true;
 	text.text = $.Localize("#shard_bounty") + str
-
-
-
 }
-
-
 
 function InitHeroLevel(exp, gained)
 {
 	var hero_icon = $.GetContextPanel().FindChildTraverse("HeroLevel_icon")
 	var hero_level = $.GetContextPanel().FindChildTraverse("HeroLevel_level")
-    var total_text = $.GetContextPanel().FindChildTraverse("HeroLevel_bar_text")
-    var level_text = $.GetContextPanel().FindChildTraverse("PlaceForLevel_level")
+	var total_text = $.GetContextPanel().FindChildTraverse("HeroLevel_bar_text")
+	var level_text = $.GetContextPanel().FindChildTraverse("PlaceForLevel_level")
 
 	let bar = $.GetContextPanel().FindChildTraverse("HeroLevel_bar")
 	let filler = $.GetContextPanel().FindChildTraverse("HeroLevel_bar_filler")
 
-    hero_icon.style.backgroundImage = 'url( "file://{images}/heroes/icons/' + player_hero + '.png" );'
-    hero_icon.style.backgroundSize = 'contain';
+	hero_icon.style.backgroundImage = 'url( "file://{images}/heroes/icons/' + player_hero + '.png" );'
+	hero_icon.style.backgroundSize = 'contain';
 
 	var tier = 0
 	var j = 0
@@ -680,49 +548,42 @@ function InitHeroLevel(exp, gained)
 		{
 			j = j + 1
 			tier = tier + 1
-		} 
+		}
 	}
-    
 
-    if (tier < 5)
-    {
-    	gained_exp = gained
-    	init_exp = exp
-    	current_exp = 0
-    	AddLevel()
-    }
-    else
-    {
-    	total_text.text = $.Localize('#hero_level') + String(level)
-    	level_text.style.visibility = "collapse";
+	if (tier < 5)
+	{
+		gained_exp = gained
+		init_exp = exp
+		current_exp = 0
+		AddLevel()
+	}
+	else
+	{
+		total_text.text = $.Localize('#hero_level') + String(level)
+		level_text.style.visibility = "collapse";
 		filler.style.width = '97%';
-    } 
+	}
 
-
-
-    hero_level.AddClass("HeroLevel_icon_" + String(tier))
-    bar.AddClass("HeroLevel_bar_" + String(tier))
-    filler.AddClass("HeroLevel_filler_" + String(tier))
-
-
+	hero_level.AddClass("HeroLevel_icon_" + String(tier))
+	bar.AddClass("HeroLevel_bar_" + String(tier))
+	filler.AddClass("HeroLevel_filler_" + String(tier))
 }
-
-
 
 function IncLevel()
 {
 	init_exp = 0
 	level = level + 1
-    max_exp = thresh[level - 1]
+	max_exp = thresh[level - 1]
 
-    Game.EmitSound("Sub.Hero_levelup")
+	Game.EmitSound("Sub.Hero_levelup")
 
 	var hero_level = $.GetContextPanel().FindChildTraverse("HeroLevel_level")
 
 	let bar = $.GetContextPanel().FindChildTraverse("HeroLevel_bar")
 	let filler = $.GetContextPanel().FindChildTraverse("HeroLevel_bar_filler")
 
-    var tier = 0
+	var tier = 0
 	var j = 0
 
 	for (var i = 0; i <= level; i++) {
@@ -730,55 +591,43 @@ function IncLevel()
 		{
 			j = j + 1
 			tier = tier + 1
-		} 
+		}
 	}
-    
 
-    hero_level.AddClass("HeroLevel_icon_" + String(tier))
-    bar.AddClass("HeroLevel_bar_" + String(tier))
-    filler.AddClass("HeroLevel_filler_" + String(tier))
-
+	hero_level.AddClass("HeroLevel_icon_" + String(tier))
+	bar.AddClass("HeroLevel_bar_" + String(tier))
+	filler.AddClass("HeroLevel_filler_" + String(tier))
 }
-
-
-
-
 
 function AddLevel()
 {
-
-
 	let filler = $.GetContextPanel().FindChildTraverse("HeroLevel_bar_filler")
-    var level_text = $.GetContextPanel().FindChildTraverse("PlaceForLevel_level")
-    var exp_text = $.GetContextPanel().FindChildTraverse("PlaceForLevel_exp")
-    var total_text = $.GetContextPanel().FindChildTraverse("HeroLevel_bar_text")
-
+	var level_text = $.GetContextPanel().FindChildTraverse("PlaceForLevel_level")
+	var exp_text = $.GetContextPanel().FindChildTraverse("PlaceForLevel_exp")
+	var total_text = $.GetContextPanel().FindChildTraverse("HeroLevel_bar_text")
 
 	if (level == max_level)
 	{
 		let text = '97%'
 		filler.style.width = text
-    	total_text.text = $.Localize('#hero_level') + String(level)
-    	level_text.style.visibility = "collapse";
-    	exp_text.style.visibility = "collapse";
+		total_text.text = $.Localize('#hero_level') + String(level)
+		level_text.style.visibility = "collapse";
+		exp_text.style.visibility = "collapse";
 		Game.StopSound(sound_exp)
 		return
 	}
 
-
-	let width = ( (init_exp)/max_exp) * 98
+	let width = ((init_exp)/max_exp) * 98
 
 	if (subscribed == 1)
 	{
-
-   		level_text.text = $.Localize('#hero_level') + String(level) 
-    	total_text.text =  String(init_exp) + '/' + String(max_exp)
-    }
-    else
-    {
-    	total_text.text = $.Localize("#level_no_sub")
-    }
-
+		level_text.text = $.Localize('#hero_level') + String(level)
+		total_text.text = String(init_exp) + '/' + String(max_exp)
+	}
+	else
+	{
+		total_text.text = $.Localize("#level_no_sub")
+	}
 
 	let text = String(width)+'%'
 
@@ -789,7 +638,6 @@ function AddLevel()
 
 	if (can_add_exp == false)
 	{
-
 		$.Schedule(0.1, function()
 		{
 			AddLevel()
@@ -812,13 +660,11 @@ function AddLevel()
 			AddLevel()
 		})
 	}
-	else 
+	else
 	{
-
 		Game.StopSound(sound_exp)
 	}
 }
-
 
 function CloseWindow()
 {
@@ -838,5 +684,4 @@ function CloseWindow()
 	main.AddClass("EndScreenWindow_all_hide")
 
 	Game.EmitSound("UI.Info_Close")
-
-}
+}

@@ -28,5 +28,3 @@ function item_alchemist_recipe:OnAbilityPhaseStart()
 	end
 	return true
 end
-
-------------------------------------------------------------

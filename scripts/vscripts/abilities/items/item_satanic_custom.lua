@@ -24,6 +24,15 @@ function item_satanic_custom:Precache(context)
 	PrecacheResource("particle", "particles/items2_fx/satanic_buff.vpcf", context)
 end
 
+function item_satanic_custom:Spawn()
+	self.bonus_strength = self:GetSpecialValueFor("bonus_strength")
+	self.bonus_damage = self:GetSpecialValueFor("bonus_damage")
+	self.bonus_health = self:GetSpecialValueFor("bonus_health")
+	self.lifesteal_percent = self:GetSpecialValueFor("lifesteal_percent") / 100
+	self.unholy_lifesteal_total_tooltip = self:GetSpecialValueFor("unholy_lifesteal_total_tooltip") / 100
+	self.unholy_duration = self:GetSpecialValueFor("unholy_duration")
+end
+
 function item_satanic_custom:OnSpellStart()
 	local caster = self:GetCaster()
 	caster:EmitSound("DOTA_Item.Satanic.Activate")
@@ -39,14 +48,6 @@ end
 function modifier_item_satanic_custom:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
-
-	self.ability.bonus_strength = self.ability:GetSpecialValueFor("bonus_strength")
-	self.ability.bonus_damage = self.ability:GetSpecialValueFor("bonus_damage")
-	self.ability.bonus_health = self.ability:GetSpecialValueFor("bonus_health")
-	self.ability.lifesteal_percent = self.ability:GetSpecialValueFor("lifesteal_percent") / 100
-	self.ability.unholy_lifesteal_total_tooltip = self.ability:GetSpecialValueFor("unholy_lifesteal_total_tooltip")
-		/ 100
-	self.ability.unholy_duration = self.ability:GetSpecialValueFor("unholy_duration")
 
 	if not IsServer() then
 		return
@@ -79,6 +80,9 @@ end
 
 function modifier_item_satanic_custom:DamageEvent_out(params)
 	if not IsServer() then
+		return
+	end
+	if not IsValid(self.ability) then
 		return
 	end
 	local result = self.parent:CheckLifesteal(params, 2)

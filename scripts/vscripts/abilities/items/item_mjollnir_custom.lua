@@ -35,19 +35,42 @@ function item_mjollnir_custom:Precache(context)
 		return
 	end
 	PrecacheResource("particle", "particles/items_fx/chain_lightning.vpcf", context)
+	PrecacheResource("particle", "particles/items2_fx/mjollnir_shield.vpcf", context)
+	PrecacheResource("particle", "particles/status_fx/status_effect_mjollnir_shield.vpcf", context)
 end
 
 function item_mjollnir_custom:GetIntrinsicModifierName()
 	return "modifier_item_mjollnir_custom"
 end
 
+function item_mjollnir_custom:Spawn()
+	self.active_radius = self:GetSpecialValueFor("active_radius")
+	self.static_duration = self:GetSpecialValueFor("static_duration")
+	self.chain_damage = self:GetSpecialValueFor("chain_damage")
+	self.static_damage = self:GetSpecialValueFor("static_damage")
+	self.static_strikes = self:GetSpecialValueFor("static_strikes")
+	self.static_chance = self:GetSpecialValueFor("static_chance")
+	self.proc_interval = self:GetSpecialValueFor("proc_interval")
+	self.static_cooldown = self:GetSpecialValueFor("static_cooldown")
+	self.bonus_attack_speed = self:GetSpecialValueFor("bonus_attack_speed")
+	self.bonus_damage = self:GetSpecialValueFor("bonus_damage")
+	self.chain_chance = self:GetSpecialValueFor("chain_chance")
+	self.chain_heal = self:GetSpecialValueFor("chain_heal")
+	self.chain_cooldown = self:GetSpecialValueFor("chain_cooldown")
+	self.bonus_health = self:GetSpecialValueFor("bonus_health")
+	self.chain_radius = self:GetSpecialValueFor("chain_radius")
+	self.chain_strikes = self:GetSpecialValueFor("chain_strikes")
+	self.chain_delay = self:GetSpecialValueFor("chain_delay")
+	self.slow_proc = self:GetSpecialValueFor("slow_proc")
+end
+
 function item_mjollnir_custom:GetCastRange(vLocation, hTarget)
-	return self:GetSpecialValueFor("active_radius")
+	return self.active_radius
 end
 
 function item_mjollnir_custom:OnSpellStart()
 	local caster = self:GetCaster()
-	local duration = self:GetSpecialValueFor("static_duration")
+	local duration = self.static_duration
 
 	caster:EmitSound("DOTA_Item.Mjollnir.Activate")
 	caster:AddNewModifier(caster, self, "modifier_item_mjollnir_custom_active", { duration = duration })
@@ -62,31 +85,33 @@ function item_mjollnir_custom:DealDamage(target)
 		attacker = caster,
 		ability = self,
 		damage_type = DAMAGE_TYPE_MAGICAL,
-		damage = self:GetSpecialValueFor("chain_damage"),
+		damage = self.chain_damage,
 		victim = target,
 	}
 
 	DoDamage(damageTable)
-	--target:AddNewModifier(caster, self, "modifier_item_mjollnir_custom_slow", {duration = (1 - target:GetStatusResistance())*self:GetSpecialValueFor("slow_duration")})
 end
 
-modifier_item_mjollnir_custom_active = class({})
-function modifier_item_mjollnir_custom_active:IsHidden()
-	return false
-end
+modifier_item_mjollnir_custom_active = class(mod_visible)
 function modifier_item_mjollnir_custom_active:IsPurgable()
 	return true
+end
+function modifier_item_mjollnir_custom_active:GetStatusEffectName()
+	return "particles/status_fx/status_effect_mjollnir_shield.vpcf"
+end
+function modifier_item_mjollnir_custom_active:StatusEffectPriority()
+	return MODIFIER_PRIORITY_HIGH
 end
 function modifier_item_mjollnir_custom_active:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.damage = self.ability:GetSpecialValueFor("static_damage")
-	self.max = self.ability:GetSpecialValueFor("static_strikes")
-	self.radius = self.ability:GetSpecialValueFor("active_radius")
-	self.chance = self.ability:GetSpecialValueFor("static_chance")
-	self.interval = self.ability:GetSpecialValueFor("proc_interval") - FrameTime()
-	self.cd = self.ability:GetSpecialValueFor("static_cooldown")
+	self.damage = self.ability.static_damage
+	self.max = self.ability.static_strikes
+	self.radius = self.ability.active_radius
+	self.chance = self.ability.static_chance
+	self.interval = self.ability.proc_interval - FrameTime()
+	self.cd = self.ability.static_cooldown
 
 	if not IsServer() then
 		return
@@ -170,6 +195,9 @@ function modifier_item_mjollnir_custom_active:DamageEvent_inc(params)
 	if not IsServer() then
 		return
 	end
+	if not IsValid(self.ability) then
+		return
+	end
 	if self.parent:HasModifier("modifier_item_mjollnir_custom_active_cd") then
 		return
 	end
@@ -206,21 +234,32 @@ function modifier_item_mjollnir_custom_active:OnDestroy()
 	self.parent:EmitSound("DOTA_Item.Mjollnir.DeActivate")
 end
 
-function modifier_item_mjollnir_custom_active:GetStatusEffectName()
-	return "particles/status_fx/status_effect_mjollnir_shield.vpcf"
+modifier_item_mjollnir_custom = class(mod_hidden)
+function modifier_item_mjollnir_custom:OnCreated(table)
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.speed = self.ability.bonus_attack_speed
+	self.damage = self.ability.bonus_damage
+	self.chance = self.ability.chain_chance
+	self.cd = self.ability.chain_cooldown
+	self.bonus_health = self.ability.bonus_health
+
+	self.records = {}
+
+	if not IsServer() then
+		return
+	end
+	if not self.parent:IsRealHero() then
+		return
+	end
+	self:RollProc()
+
+	self.parent:AddRecordDestroyEvent(self, true)
+	self.parent:AddAttackStartEvent_out(self)
+	self.parent:AddAttackEvent_out(self, true)
 end
 
-function modifier_item_mjollnir_custom_active:StatusEffectPriority()
-	return MODIFIER_PRIORITY_HIGH
-end
-
-modifier_item_mjollnir_custom = class({})
-function modifier_item_mjollnir_custom:IsHidden()
-	return true
-end
-function modifier_item_mjollnir_custom:IsPurgable()
-	return false
-end
 function modifier_item_mjollnir_custom:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
@@ -250,32 +289,6 @@ function modifier_item_mjollnir_custom:CheckState()
 	}
 end
 
-function modifier_item_mjollnir_custom:OnCreated(table)
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.speed = self.ability:GetSpecialValueFor("bonus_attack_speed")
-	self.damage = self.ability:GetSpecialValueFor("bonus_damage")
-	self.chance = self.ability:GetSpecialValueFor("chain_chance")
-	self.ability.chain_heal = self.ability:GetSpecialValueFor("chain_heal")
-	self.cd = self.ability:GetSpecialValueFor("chain_cooldown")
-	self.bonus_health = self.ability:GetSpecialValueFor("bonus_health")
-
-	self.records = {}
-
-	if not IsServer() then
-		return
-	end
-	if not self.parent:IsRealHero() then
-		return
-	end
-	self:RollProc()
-
-	self.parent:AddRecordDestroyEvent(self, true)
-	self.parent:AddAttackStartEvent_out(self)
-	self.parent:AddAttackEvent_out(self, true)
-end
-
 function modifier_item_mjollnir_custom:RecordDestroyEvent(params)
 	if not self.records[params.record] then
 		return
@@ -301,10 +314,16 @@ function modifier_item_mjollnir_custom:AttackStartEvent_out(params)
 	if not IsServer() then
 		return
 	end
+	if not IsValid(self.ability) then
+		return
+	end
 	if not params.target:IsUnit() then
 		return
 	end
 	if self.parent ~= params.attacker then
+		return
+	end
+	if params.target:GetTeamNumber() == self.parent:GetTeamNumber() then
 		return
 	end
 
@@ -325,6 +344,9 @@ end
 
 function modifier_item_mjollnir_custom:AttackEvent_out(params)
 	if not IsServer() then
+		return
+	end
+	if not IsValid(self.ability) then
 		return
 	end
 	if not params.target:IsUnit() then
@@ -348,13 +370,7 @@ function modifier_item_mjollnir_custom:AttackEvent_out(params)
 	params.target:EmitSound("Item.Maelstrom.Chain_Lightning")
 end
 
-modifier_item_mjollnir_custom_passive = class({})
-function modifier_item_mjollnir_custom_passive:IsHidden()
-	return true
-end
-function modifier_item_mjollnir_custom_passive:IsPurgable()
-	return false
-end
+modifier_item_mjollnir_custom_passive = class(mod_hidden)
 function modifier_item_mjollnir_custom_passive:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
@@ -362,9 +378,9 @@ function modifier_item_mjollnir_custom_passive:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.radius = self.ability:GetSpecialValueFor("chain_radius")
-	self.max = self.ability:GetSpecialValueFor("chain_strikes")
-	self.interval = self.ability:GetSpecialValueFor("chain_delay")
+	self.radius = self.ability.chain_radius
+	self.max = self.ability.chain_strikes
+	self.interval = self.ability.chain_delay
 
 	if not IsServer() then
 		return
@@ -455,15 +471,11 @@ function modifier_item_mjollnir_custom_passive:OnIntervalThink()
 	self.last_target = new_unit
 end
 
-modifier_item_mjollnir_custom_slow = class({})
-function modifier_item_mjollnir_custom_slow:IsHidden()
-	return true
-end
-function modifier_item_mjollnir_custom_slow:IsPurgable()
-	return false
-end
+modifier_item_mjollnir_custom_slow = class(mod_hidden)
 function modifier_item_mjollnir_custom_slow:OnCreated()
-	self.slow = self:GetAbility():GetSpecialValueFor("slow_proc")
+	self.ability = self:GetAbility()
+
+	self.slow = self.ability.slow_proc
 end
 
 function modifier_item_mjollnir_custom_slow:DeclareFunctions()
@@ -476,26 +488,8 @@ function modifier_item_mjollnir_custom_slow:GetModifierMoveSpeedBonus_Percentage
 	return self.slow
 end
 
-modifier_item_mjollnir_custom_proc = class({})
-function modifier_item_mjollnir_custom_proc:IsHidden()
-	return true
-end
-function modifier_item_mjollnir_custom_proc:IsPurgable()
-	return false
-end
+modifier_item_mjollnir_custom_proc = class(mod_hidden)
 
-modifier_item_mjollnir_custom_cd = class({})
-function modifier_item_mjollnir_custom_cd:IsHidden()
-	return true
-end
-function modifier_item_mjollnir_custom_cd:IsPurgable()
-	return false
-end
+modifier_item_mjollnir_custom_cd = class(mod_hidden)
 
-modifier_item_mjollnir_custom_active_cd = class({})
-function modifier_item_mjollnir_custom_active_cd:IsHidden()
-	return true
-end
-function modifier_item_mjollnir_custom_active_cd:IsPurgable()
-	return false
-end
+modifier_item_mjollnir_custom_active_cd = class(mod_hidden)

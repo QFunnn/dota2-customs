@@ -23,11 +23,19 @@ function item_magic_wand_custom:Precache(context)
 	PrecacheResource("particle", "particles/items2_fx/magic_stick.vpcf", context)
 end
 
+function item_magic_wand_custom:Spawn()
+	self.restore_per_charge = self:GetSpecialValueFor("restore_per_charge")
+	self.charge_radius = self:GetSpecialValueFor("charge_radius")
+	self.passive_cooldown = self:GetSpecialValueFor("passive_cooldown")
+	self.max_charges = self:GetSpecialValueFor("max_charges")
+	self.bonus_all_stats = self:GetSpecialValueFor("bonus_all_stats")
+end
+
 function item_magic_wand_custom:OnSpellStart()
 	local caster = self:GetCaster()
 
-	local mana = self:GetSpecialValueFor("restore_per_charge") * self:GetCurrentCharges()
-	local heal = self:GetSpecialValueFor("restore_per_charge") * self:GetCurrentCharges()
+	local mana = self.restore_per_charge * self:GetCurrentCharges()
+	local heal = self.restore_per_charge * self:GetCurrentCharges()
 
 	caster:GenericHeal(heal, self, false, "")
 	caster:GiveMana(mana)
@@ -37,8 +45,7 @@ function item_magic_wand_custom:OnSpellStart()
 	local particle =
 		ParticleManager:CreateParticle("particles/items2_fx/magic_stick.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
 	ParticleManager:SetParticleControl(particle, 1, Vector(self:GetCurrentCharges() / 10, 0, 0))
-	ParticleManager:DestroyParticle(particle, false)
-	ParticleManager:ReleaseParticleIndex(particle)
+	ParticleManager:Delete(particle, 1)
 
 	local mod = caster:FindModifierByName("modifier_item_magic_wand_custom")
 	if mod and mod.cooldown then
@@ -48,25 +55,18 @@ function item_magic_wand_custom:OnSpellStart()
 	self:SetCurrentCharges(0)
 end
 
-modifier_item_magic_wand_custom = class({})
-
-function modifier_item_magic_wand_custom:IsHidden()
-	return true
-end
-function modifier_item_magic_wand_custom:IsPurgable()
-	return false
-end
+modifier_item_magic_wand_custom = class(mod_hidden)
 function modifier_item_magic_wand_custom:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.radius = self.ability:GetSpecialValueFor("charge_radius")
-	self.cooldown = self.ability:GetSpecialValueFor("passive_cooldown")
-	self.max = self.ability:GetSpecialValueFor("max_charges")
+	self.radius = self.ability.charge_radius
+	self.cooldown = self.ability.passive_cooldown
+	self.max = self.ability.max_charges
 
-	self.agi = self.ability:GetSpecialValueFor("bonus_all_stats")
-	self.str = self.ability:GetSpecialValueFor("bonus_all_stats")
-	self.int = self.ability:GetSpecialValueFor("bonus_all_stats")
+	self.agi = self.ability.bonus_all_stats
+	self.str = self.ability.bonus_all_stats
+	self.int = self.ability.bonus_all_stats
 
 	if not IsServer() then
 		return

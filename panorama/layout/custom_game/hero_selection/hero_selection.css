@@ -576,14 +576,6 @@
 	animation-iteration-count: 1;
 }
 
-.player_and_timer_base_pick
-{
-	width: 100%;
-	height: 116.768px;
-	margin-top: 7px;
-	horizontal-align: center;
-}
-
 .player_portrait_background_base
 {
 	width: 170px;
@@ -901,24 +893,93 @@
 	border-bottom: 1px solid #ccc;
 }
 
-.lobby_rating_text
+.lobby_rating_row
 {
 	align: center center;
+	flow-children: right;
+}
+
+.lobby_rating_icon
+{
+	width: 34px;
+	height: 34px;
+	margin-left: 6px;
+	vertical-align: center;
+	visibility: collapse;
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+
+.lobby_rating_icon_visible
+{
+	visibility: visible;
+}
+
+.lobby_rating_icon_0
+{
+	background-image: url("s2r://panorama/images/rank_tier_icons/rank0_psd.vtex");
+}
+
+.lobby_rating_icon_1
+{
+	background-image: url("s2r://panorama/images/rank_tier_icons/rank2_psd.vtex");
+}
+
+.lobby_rating_icon_2
+{
+	background-image: url("s2r://panorama/images/rank_tier_icons/rank3_psd.vtex");
+}
+
+.lobby_rating_icon_3
+{
+	background-image: url("s2r://panorama/images/rank_tier_icons/rank4_psd.vtex");
+}
+
+.lobby_rating_icon_4
+{
+	background-image: url("s2r://panorama/images/rank_tier_icons/rank5_psd.vtex");
+}
+
+.lobby_rating_icon_5
+{
+	background-image: url("s2r://panorama/images/rank_tier_icons/rank6_psd.vtex");
+}
+
+.lobby_rating_icon_6
+{
+	background-image: url("s2r://panorama/images/rank_tier_icons/rank7_psd.vtex");
+}
+
+.lobby_rating_icon_7
+{
+	background-image: url("s2r://panorama/images/rank_tier_icons/rank8_psd.vtex");
+}
+
+.lobby_rating_text
+{
+	vertical-align: center;
 	color: gradient( linear, 0% 100%, 0% 0%, from( #aaa ), to( #ffffff ) );
 	font-weight: bold;
 	text-align: center;
 	text-shadow: 0px 0px 5px 2.0 black;
-	font-size: 22px;
+	font-size: 21px;
 	font-weight: bold;
 	font-family: Radiance;
 }
 
-.player_and_timer
+.lobby_rating_text_1
 {
-	width: 100%;
-	height: 128px;
-	margin-top: 21px;
-	horizontal-align: center;
+	color: gradient( linear, 0% 100%, 0% 0%, from( #ae8357 ), to( #d8ba9c ) );
+}
+
+.lobby_rating_text_2
+{
+	color: gradient( linear, 0% 100%, 0% 0%, from( #829aa3 ), to( #c2e0f1 ) );
+}
+
+.lobby_rating_text_3
+{
+	color: gradient( linear, 0% 100%, 0% 0%, from( #c0b765 ), to( #fff7c3 ) );
 }
 
 .player_and_timer_local
@@ -2819,7 +2880,7 @@
 	align: center center;
 }
 
-.LeaveBan
+.pick_block
 {
 	align: center center;
 	flow-children: down;
@@ -2827,403 +2888,59 @@
 	border-right: 4px solid #cb3b3b;
 	background-color: gradient( linear, 0% 0%, 0% 100%, from( #3b2f2f ), to( #000000 ) );
 	border-radius: 10px;
+	width: 700px;
+	height: fit-children;
 }
 
-.LeaveBanNotLocal
+.pick_block_title
 {
-	width: 580px;
-	height: 325px;
-}
-
-.LeaveBanLocal
-{
-	width: 590px;
-	height: 480px;
-}
-
-#LeaveBanLocal_top
-{
-	width: 100%;
-	height: 80px;
-}
-
-#LeaveBanLocal_mid
-{
-	width: 100%;
-	flow-children: down;
-}
-
-#LeaveBanLocal_mid_top
-{
-	height: 50px;
-	flow-children: right;
+	width: 90%;
+	height: fit-children;
 	horizontal-align: center;
-	margin-top: 5px;
+	margin-top: 30px;
 }
 
-#LeaveBanLocal_mid_center
+.pick_block_text
 {
-	horizontal-align: center;
-	margin-top: 5px;
-	flow-children: down;
-	height: 160px;
-	width: 350px;
-	background-color: gradient( linear, 0% 100%, 0% 0%, from( #000 ), to( #222 ) );
-	border: 1px solid #cb3b3b55;
-	flow-children: down;
-}
-
-.LeaveBanLocal_mid_center_text
-{
-	font-family: defaultFont;
-	font-weight: bold;
-	color: gradient( linear, 0% 100%, 0% 0%, from( #aaa ), to( #eee ) );
-	font-size: 26px;
-	text-shadow: 1px 1px 2px 2 black;
-	horizontal-align: center;
-	text-align: center;
-	margin-top: 15px;
-}
-
-.LeaveBanLocal_mid_bot
-{
-	horizontal-align: center;
-	margin-top: 20px;
-	flow-children: right;
-}
-
-.LeaveBanLocal_mid_bot_text
-{
-	margin-left: 6px;
-	font-family: defaultFont;
-	font-weight: bold;
-	color: #75cbf7;
-	font-size: 22px;
-	text-shadow: 1px 1px 2px 2 black;
-	align: center center;
-	text-align: center;
-	text-decoration: underline;
-}
-
-#LeaveBanNotLocal_top
-{
-	width: 100%;
-	height: 80px;
-}
-
-#LeaveBanNotLocal_mid
-{
-	width: 100%;
-	flow-children: down;
-}
-
-#LeaveBanNotLocal_bot
-{
-	width: 100%;
-	margin-top: 15px;
-	flow-children: down;
-}
-
-#LeaveBanNotLocal_mid_top
-{
-	height: 50px;
-	flow-children: right;
+	width: 80%;
+	height: fit-children;
 	horizontal-align: center;
 	margin-top: 20px;
 }
 
-.PlayerBanned
+.pick_block_image
 {
-	align: center center;
-	flow-children: down;
-	border-left: 4px solid #cb3b3b;
-	border-right: 4px solid #cb3b3b;
-	background-color: gradient( linear, 0% 0%, 0% 100%, from( #3b2f2f ), to( #000000 ) );
-	border-radius: 10px;
-}
-
-.PlayerBannedNotLocal
-{
-	width: 580px;
-	height: 280px;
-}
-
-.PlayerBannedLocal
-{
-	width: 590px;
-	height: 300px;
-}
-
-#PlayerBannedLocal_top
-{
-	width: 100%;
-	height: 80px;
-}
-
-#PlayerBannedNotLocal_top
-{
-	width: 100%;
-	height: 80px;
-}
-
-#PlayerBannedLocal_mid
-{
-	width: 100%;
-	flow-children: down;
-}
-
-#PlayerBannedNotLocal_mid
-{
-	width: 100%;
-	flow-children: down;
-}
-
-#PlayerBannedNotLocal_mid_top
-{
-	height: 50px;
-	flow-children: right;
-	horizontal-align: center;
-	margin-top: 5px;
-}
-
-.PlayerBannedLocal_mid_bot_text
-{
-	margin-top: 10px;
-	margin-left: 6px;
-	font-family: defaultFont;
-	font-weight: bold;
-	color: #75cbf7;
-	font-size: 22px;
-	text-shadow: 1px 1px 2px 2 black;
-	align: center center;
-	text-align: center;
-	text-decoration: underline;
-}
-
-.PlayerBannedLocal_mid_bot_text:hover
-{
-	brightness: 1.5;
-}
-
-.LowGames
-{
-	align: center center;
-	flow-children: down;
-	border-left: 4px solid #cb3b3b;
-	border-right: 4px solid #cb3b3b;
-	background-color: gradient( linear, 0% 0%, 0% 100%, from( #3b2f2f ), to( #000000 ) );
-	border-radius: 10px;
-}
-
-.LowGamesNotLocal
-{
-	width: 580px;
-	height: 330px;
-}
-
-.LowGamesLocal
-{
-	width: 590px;
-	height: 450px;
-}
-
-#LowGamesLocal_top
-{
-	width: 100%;
-	height: 80px;
-}
-
-#LowGamesLocal_mid
-{
-	width: 100%;
-	flow-children: down;
-}
-
-#LowGamesLocal_mid_top
-{
-	height: 50px;
-	flow-children: right;
-	horizontal-align: center;
-	margin-top: 5px;
-}
-
-#LowGamesLocal_mid_center
-{
-	horizontal-align: center;
-	margin-top: 5px;
-	flow-children: down;
-}
-
-.LowGamesLocal_mid_bot
-{
-	horizontal-align: center;
-	margin-top: 40px;
-	flow-children: right;
-}
-
-.LowGamesLocal_mid_bot_text
-{
-	margin-left: 6px;
-	font-family: defaultFont;
-	font-weight: bold;
-	color: #75cbf7;
-	font-size: 22px;
-	text-shadow: 1px 1px 2px 2 black;
-	align: center center;
-	text-align: center;
-	text-decoration: underline;
-}
-
-.LowGamesLocal_mid_bot:hover
-{
-	brightness: 2;
-}
-
-#LowGamesNotLocal_top
-{
-	width: 100%;
-	height: 80px;
-}
-
-#LowGamesNotLocal_mid
-{
-	width: 100%;
-	flow-children: down;
-}
-
-#LowGamesNotLocal_mid_top
-{
-	height: 50px;
-	flow-children: right;
-	horizontal-align: center;
-	margin-top: 20px;
-}
-
-#LowGamesNotLocal_mid_bot
-{
-	height: 50px;
-	horizontal-align: center;
-	margin-top: 5px;
-}
-
-.ReportsAlert
-{
-	align: center center;
-	flow-children: down;
-	border-left: 4px solid #cb3b3b;
-	border-right: 4px solid #cb3b3b;
-	background-color: gradient( linear, 0% 0%, 0% 100%, from( #3b2f2f ), to( #000000 ) );
-	border-radius: 10px;
-}
-
-.ReportsAlertNotLocal
-{
-	width: 580px;
-	height: 375px;
-}
-
-.ReportsAlertLocal
-{
-	width: 600px;
-	height: 330px;
-}
-
-#ReportsAlertLocal_top
-{
-	width: 100%;
-	height: 80px;
-}
-
-#ReportsAlertLocal_mid
-{
-	width: 100%;
-	flow-children: down;
-}
-
-#ReportsAlertLocal_mid_top
-{
-	height: 50px;
-	horizontal-align: center;
-	flow-children: right;
-}
-
-#ReportsAlertLocal_mid_bot
-{
-	height: 50px;
-	flow-children: right;
 	horizontal-align: center;
 	margin-top: 25px;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 100%;
 }
 
-#ReportsAlertNotLocal_top
+.pick_block_image_local_server
 {
-	width: 100%;
-	height: 80px;
+	width: 480px;
+	height: 258px;
 }
 
-#ReportsAlertNotLocal_mid
+.pick_block_image_map
 {
-	width: 100%;
-	height: 170px;
-	flow-children: down;
+	width: 320px;
+	height: 197px;
 }
 
-#ReportsAlertNotLocal_mid_top
-{
-	height: 50px;
-	flow-children: right;
-	horizontal-align: center;
-	margin-top: 20px;
-}
-
-#ReportsAlertNotLocal_mid_plus
+.pick_block_label
 {
 	font-family: defaultFont;
 	font-weight: bold;
 	color: gradient( linear, 0% 100%, 0% 0%, from( #aaa ), to( #eee ) );
-	font-size: 32px;
+	font-size: 22px;
 	text-shadow: 1px 1px 2px 2 black;
 	align: center center;
 	text-align: center;
 }
 
-#ReportsAlertNotLocal_mid_bot
-{
-	height: 50px;
-	horizontal-align: center;
-	flow-children: right;
-}
-
-.BadMap
-{
-	align: center center;
-	flow-children: down;
-	border-left: 4px solid #cb3b3b;
-	border-right: 4px solid #cb3b3b;
-	background-color: gradient( linear, 0% 0%, 0% 100%, from( #3b2f2f ), to( #000000 ) );
-	border-radius: 10px;
-}
-
-.BadMapNotLocal
-{
-	width: 580px;
-	height: 340px;
-}
-
-#BadMapNotLocal_top
-{
-	width: 100%;
-	height: 80px;
-}
-
-#BadMapNotLocal_mid
-{
-	width: 100%;
-	height: 150px;
-	flow-children: down;
-}
-
-#BadMapNotLocal_mid_top
+.pick_block_player
 {
 	height: 50px;
 	flow-children: right;
@@ -3231,14 +2948,7 @@
 	margin-top: 20px;
 }
 
-#BadMapNotLocal_mid_bot
-{
-	height: 50px;
-	horizontal-align: center;
-	margin-top: 5px;
-}
-
-.BadMapNotLocal_mid_icon
+.pick_block_avatar
 {
 	width: 45px;
 	height: 45px;
@@ -3249,59 +2959,48 @@
 	box-shadow: fill #000 0px 0px 9px -3px;
 }
 
-.BadMapLocal
+.pick_block_list
 {
-	width: 700px;
-	height: 550px;
+	height: fit-children;
+	horizontal-align: center;
+	flow-children: down;
+	margin-top: 10px;
+}
+
+.pick_block_list .pick_block_label
+{
+	font-size: 26px;
+	margin-top: 15px;
+}
+
+.pick_block_link
+{
+	height: fit-children;
+	horizontal-align: center;
+	margin-top: 10px;
+}
+
+.pick_block_link .pick_block_label
+{
+	color: #75cbf7;
+	text-decoration: underline;
+}
+
+.pick_block_link:hover
+{
+	brightness: 1.5;
+}
+
+.pick_block #BadMap_leave_panel
+{
+	vertical-align: top;
+	margin-top: 15px;
+	margin-bottom: 20px;
 }
 
 .BadMap_hidden
 {
 	opacity: 0;
-}
-
-.BadMap_top
-{
-	width: 100%;
-	height: 12%;
-}
-
-.BadMap_text
-{
-	font-family: defaultFont;
-	font-weight: bold;
-	color: gradient( linear, 0% 100%, 0% 0%, from( #aaa ), to( #eee ) );
-	font-size: 22px;
-	text-shadow: 1px 1px 2px 2 black;
-	align: center center;
-	text-align: center;
-}
-
-.BadMap_your_mmr
-{
-	width: 100%;
-	height: 6%;
-}
-
-.BadMap_map_mmr
-{
-	width: 100%;
-	height: 8%;
-}
-
-.BadMap_bottom
-{
-	width: 80%;
-	height: 22%;
-	horizontal-align: center;
-}
-
-.BadMap_image
-{
-	width: 250px;
-	height: 155px;
-	align: center top;
-	border: 1px solid #ccc;
 }
 
 #BadMap_leave_panel
@@ -3375,6 +3074,13 @@
 	height: 140px;
 }
 
+.IsSoloMode .lobby_team_panel
+{
+	height: 128px;
+	margin-top: 21px;
+	horizontal-align: center;
+}
+
 .lobby_team_panel_base
 {
 	width: 100%;
@@ -3382,10 +3088,24 @@
 	height: 120px;
 }
 
+.IsSoloMode .lobby_team_panel_base
+{
+	height: 116.768px;
+	margin-top: 7px;
+	horizontal-align: center;
+}
+
 .DuoPlayersPanel
 {
 	align: center center;
 	flow-children: right;
+	height: 100%;
+}
+
+.IsSoloMode .DuoPlayersPanel
+{
+	align: left top;
+	width: 100%;
 	height: 100%;
 }
 

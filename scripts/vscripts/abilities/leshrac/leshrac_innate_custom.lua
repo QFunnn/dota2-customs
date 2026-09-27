@@ -73,7 +73,7 @@ function leshrac_innate_custom:GetIntrinsicModifierName()
 end
 
 function leshrac_innate_custom:GetRange()
-	return self.parent:GetIntellect(false) * self.radius * (1 + self.talents.h3_range)
+	return self.parent:GetIntellect(false) * (self.radius or 0) * (1 + (self.talents.h3_range or 0))
 end
 
 modifier_leshrac_defilement_custom = class(mod_hidden)

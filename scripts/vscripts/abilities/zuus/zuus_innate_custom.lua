@@ -25,8 +25,13 @@ function zuus_innate_custom:Precache(context)
 	end
 	PrecacheResource("particle", "particles/units/heroes/hero_zuus/zuus_static_field.vpcf", context)
 	PrecacheResource("particle", "particles/zeus/lowhp_damage_reduce.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_zeus/zeus_cloud_strike.vpcf", context)
+	PrecacheResource(
+		"particle",
+		"particles/econ/items/zeus/zeus_immortal_2021/zeus_immortal_2021_static_field.vpcf",
+		context
+	)
 	PrecacheResource("soundfile", "soundevents/vo_custom/zuus_vo_custom.vsndevts", context)
-
 	PrecacheResource("soundfile", "soundevents/npc_dota_hero_zuus.vsndevts", context)
 	dota1x6:PrecacheShopItems("npc_dota_hero_zuus", context)
 end
@@ -36,7 +41,6 @@ function zuus_innate_custom:UpdateTalents(name)
 	if not self.init then
 		self.init = true
 		self.talents = {
-			has_h3 = 0,
 			h3_range = 0,
 			h3_mana = 0,
 
@@ -52,7 +56,6 @@ function zuus_innate_custom:UpdateTalents(name)
 	end
 
 	if caster:HasTalent("modifier_zuus_hero_3") then
-		self.talents.has_h3 = 1
 		self.talents.h3_range = caster:GetTalentValue("modifier_zuus_hero_3", "range")
 		self.talents.h3_mana = caster:GetTalentValue("modifier_zuus_hero_3", "mana")
 	end
@@ -63,23 +66,19 @@ function zuus_innate_custom:UpdateTalents(name)
 	end
 end
 
-function zuus_innate_custom:Init()
-	self.caster = self:GetCaster()
-end
-
-function zuus_innate_custom:GetAbilityTargetFlags()
-	if self:GetCaster():HasShard() then
-		return DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
-	else
-		return DOTA_UNIT_TARGET_FLAG_NONE
-	end
-end
-
 function zuus_innate_custom:GetIntrinsicModifierName()
 	if not self:GetCaster():IsRealHero() then
 		return
 	end
 	return "modifier_zuus_innate_custom"
+end
+
+function zuus_innate_custom:GetAbilityTargetFlags()
+	if self.caster:HasShard() then
+		return DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
+	else
+		return DOTA_UNIT_TARGET_FLAG_NONE
+	end
 end
 
 function zuus_innate_custom:DealDamage(target)
@@ -279,7 +278,7 @@ function modifier_zuus_innate_custom:DamageEvent_inc(params)
 			knockback_distance = (point - unit:GetAbsOrigin()):Length2D(),
 			knockback_height = 0,
 		}
-		unit:AddNewModifier(self.parent, self, "modifier_knockback", knockbackProperties)
+		unit:AddNewModifier(self.parent, self.ability, "modifier_knockback", knockbackProperties)
 	end
 end
 

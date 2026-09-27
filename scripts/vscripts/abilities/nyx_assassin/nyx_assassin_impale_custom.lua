@@ -51,7 +51,6 @@ LinkLuaModifier(
 
 nyx_assassin_impale_custom = class({})
 nyx_assassin_impale_custom.talents = {}
-nyx_assassin_impale_custom.active_damage_mod = nil
 nyx_assassin_impale_custom.hit_array = {}
 nyx_assassin_impale_custom.current_index = 0
 
@@ -68,11 +67,12 @@ function nyx_assassin_impale_custom:Precache(context)
 	PrecacheResource("particle", "particles/nyx_assassin/impale_delay_aoe.vpcf", context)
 	PrecacheResource("particle", "particles/nyx_assassin/impale_base_hit.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_huskar/huskar_inner_fire_debuff.vpcf", context)
-end
-
-function nyx_assassin_impale_custom:GetAbilityTextureName()
-	local caster = self:GetCaster()
-	return wearables_system:GetAbilityIconReplacement(self.caster, "nyx_assassin_impale", self)
+	PrecacheResource("particle", "particles/sand_king/sand_king_wave.vpcf", context)
+	PrecacheResource(
+		"particle",
+		"particles/units/heroes/hero_sandking/sandking_sandstorm_burrowstrike_field_explosion.vpcf",
+		context
+	)
 end
 
 function nyx_assassin_impale_custom:UpdateTalents()
@@ -80,17 +80,17 @@ function nyx_assassin_impale_custom:UpdateTalents()
 	if not self.init then
 		self.init = true
 		self.talents = {
-			damage_inc = 0,
+			q1_damage = 0,
 
-			cd_inc = 0,
-			stun_inc = 0,
+			q2_cd = 0,
+			q2_stun = 0,
 
-			has_burn = 0,
-			burn_damage = 0,
-			burn_spell = 0,
-			burn_interval = caster:GetTalentValue("modifier_nyx_impale_3", "interval", true),
-			burn_duration = caster:GetTalentValue("modifier_nyx_impale_3", "duration", true),
-			burn_damage_type = caster:GetTalentValue("modifier_nyx_impale_3", "damage_type", true),
+			has_q3 = 0,
+			q3_damage = 0,
+			q3_spell = 0,
+			q3_interval = caster:GetTalentValue("modifier_nyx_impale_3", "interval", true),
+			q3_duration = caster:GetTalentValue("modifier_nyx_impale_3", "duration", true),
+			q3_damage_type = caster:GetTalentValue("modifier_nyx_impale_3", "damage_type", true),
 
 			has_q4 = 0,
 			q4_cast = caster:GetTalentValue("modifier_nyx_impale_4", "cast", true),
@@ -101,23 +101,27 @@ function nyx_assassin_impale_custom:UpdateTalents()
 	end
 
 	if caster:HasTalent("modifier_nyx_impale_1") then
-		self.talents.damage_inc = caster:GetTalentValue("modifier_nyx_impale_1", "damage") / 100
+		self.talents.q1_damage = caster:GetTalentValue("modifier_nyx_impale_1", "damage") / 100
 	end
 
 	if caster:HasTalent("modifier_nyx_impale_2") then
-		self.talents.cd_inc = caster:GetTalentValue("modifier_nyx_impale_2", "cd")
-		self.talents.stun_inc = caster:GetTalentValue("modifier_nyx_impale_2", "stun")
+		self.talents.q2_cd = caster:GetTalentValue("modifier_nyx_impale_2", "cd")
+		self.talents.q2_stun = caster:GetTalentValue("modifier_nyx_impale_2", "stun")
 	end
 
 	if caster:HasTalent("modifier_nyx_impale_3") then
-		self.talents.has_burn = 1
-		self.talents.burn_damage = caster:GetTalentValue("modifier_nyx_impale_3", "damage") / 100
-		self.talents.burn_spell = caster:GetTalentValue("modifier_nyx_impale_3", "spell")
+		self.talents.has_q3 = 1
+		self.talents.q3_damage = caster:GetTalentValue("modifier_nyx_impale_3", "damage") / 100
+		self.talents.q3_spell = caster:GetTalentValue("modifier_nyx_impale_3", "spell")
 	end
 
 	if caster:HasTalent("modifier_nyx_impale_4") then
 		self.talents.has_q4 = 1
 	end
+end
+
+function nyx_assassin_impale_custom:GetAbilityTextureName()
+	return wearables_system:GetAbilityIconReplacement(self.caster, "nyx_assassin_impale", self)
 end
 
 function nyx_assassin_impale_custom:GetIntrinsicModifierName()
@@ -132,55 +136,36 @@ function nyx_assassin_impale_custom:GetCastPoint(iLevel)
 end
 
 function nyx_assassin_impale_custom:GetCooldown(level)
-	return self.BaseClass.GetCooldown(self, level) + (self.talents.cd_inc and self.talents.cd_inc or 0)
+	return self.BaseClass.GetCooldown(self, level) + (self.talents.q2_cd or 0)
 end
 
-function nyx_assassin_impale_custom:GetIndex()
-	local index = self.current_index
-	self.current_index = self.current_index + 1
-	if self.current_index >= 10 then
-		self.current_index = 0
-	end
-	return index
-end
-
-function nyx_assassin_impale_custom:GetEffect()
-	local caster = self:GetCaster()
-	local particle = "particles/nyx_assassin/impale_base.vpcf"
-	local particle_dota = wearables_system:GetParticleReplacementAbility(
-		self:GetCaster(),
-		"particles/units/heroes/hero_nyx_assassin/nyx_assassin_impale.vpcf",
-		self
-	)
-	if particle_dota ~= "particles/units/heroes/hero_nyx_assassin/nyx_assassin_impale.vpcf" then
-		particle = particle_dota
-	end
-	return particle
+function nyx_assassin_impale_custom:GetDamage(target)
+	local bonus = target:IsCreep() and (self.damage_creeps + 1) or 1
+	return (self.impale_damage + self.talents.q1_damage * self.caster:GetIntellect(false)) * bonus
 end
 
 function nyx_assassin_impale_custom:OnSpellStart()
-	local caster = self:GetCaster()
 	local point = self:GetCursorPosition()
-	local origin = caster:GetAbsOrigin()
+	local origin = self.caster:GetAbsOrigin()
 
 	if point == origin then
-		point = origin + caster:GetForwardVector() * 10
+		point = origin + self.caster:GetForwardVector() * 10
 	end
 
-	local distance = self.length + caster:GetCastRangeBonus()
+	local distance = self.length + self.caster:GetCastRangeBonus()
 	local vec = (point - origin):Normalized()
 
 	local particle = self:GetEffect()
 
-	caster:EmitSound("Hero_NyxAssassin.Impale")
+	self.caster:EmitSound("Hero_NyxAssassin.Impale")
 
 	local index = self:GetIndex()
 	self.hit_array[index] = 0
 
 	local info = {
-		Source = caster,
+		Source = self.caster,
 		Ability = self,
-		vSpawnOrigin = caster:GetAbsOrigin(),
+		vSpawnOrigin = self.caster:GetAbsOrigin(),
 		bDeleteOnHit = false,
 		iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
 		iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
@@ -191,7 +176,7 @@ function nyx_assassin_impale_custom:OnSpellStart()
 		vVelocity = vec * self.speed,
 		bProvidesVision = true,
 		iVisionRadius = self.width,
-		iVisionTeamNumber = caster:GetTeamNumber(),
+		iVisionTeamNumber = self.caster:GetTeamNumber(),
 		ExtraData = {
 			is_auto = 0,
 			index = index,
@@ -202,7 +187,6 @@ function nyx_assassin_impale_custom:OnSpellStart()
 end
 
 function nyx_assassin_impale_custom:OnProjectileHit_ExtraData(target, location, table)
-	local caster = self:GetCaster()
 	local is_auto = table.is_auto
 	local index = table.index
 
@@ -214,18 +198,17 @@ function nyx_assassin_impale_custom:OnProjectileHit_ExtraData(target, location, 
 	end
 
 	local damage = self:GetDamage(target)
-	local stun = self.duration + self.talents.stun_inc
-	local damage_ability = nil
+	local stun = self.duration + self.talents.q2_stun
 
 	local damageTable =
-		{ victim = target, attacker = caster, ability = self, damage_type = DAMAGE_TYPE_MAGICAL, damage = damage }
-	DoDamage(damageTable, damage_ability)
+		{ victim = target, attacker = self.caster, ability = self, damage_type = DAMAGE_TYPE_MAGICAL, damage = damage }
+	DoDamage(damageTable)
 
 	self:AbilityHit(target)
 
 	local hit_effect = "particles/nyx_assassin/impale_base_hit.vpcf"
 	local hit_dota = wearables_system:GetParticleReplacementAbility(
-		self:GetCaster(),
+		self.caster,
 		"particles/units/heroes/hero_nyx_assassin/nyx_assassin_impale_hit.vpcf",
 		self
 	)
@@ -234,7 +217,7 @@ function nyx_assassin_impale_custom:OnProjectileHit_ExtraData(target, location, 
 	end
 	target:GenericParticle(hit_effect)
 	target:AddNewModifier(
-		caster,
+		self.caster,
 		self,
 		"modifier_nyx_assassin_impale_custom_stun",
 		{ is_auto = is_auto, duration = stun * (1 - target:GetStatusResistance()) }
@@ -242,7 +225,7 @@ function nyx_assassin_impale_custom:OnProjectileHit_ExtraData(target, location, 
 
 	if self.talents.has_q4 == 1 then
 		target:AddNewModifier(
-			caster,
+			self.caster,
 			self,
 			"modifier_nyx_assassin_impale_custom_damage_reduce",
 			{ duration = self.talents.q4_duration }
@@ -250,8 +233,8 @@ function nyx_assassin_impale_custom:OnProjectileHit_ExtraData(target, location, 
 	end
 
 	if target:IsRealHero() then
-		if caster:GetQuest() == "Nyx.Quest_5" and not caster:QuestCompleted() then
-			caster:UpdateQuest(1)
+		if self.caster:GetQuest() == "Nyx.Quest_5" and not self.caster:QuestCompleted() then
+			self.caster:UpdateQuest(1)
 		end
 	end
 
@@ -266,9 +249,26 @@ function nyx_assassin_impale_custom:OnProjectileHit_ExtraData(target, location, 
 	end
 end
 
-function nyx_assassin_impale_custom:GetDamage(target)
-	local bonus = target:IsCreep() and (self.damage_creeps + 1) or 1
-	return (self.impale_damage + self.talents.damage_inc * self:GetCaster():GetIntellect(false)) * bonus
+function nyx_assassin_impale_custom:GetIndex()
+	local index = self.current_index
+	self.current_index = self.current_index + 1
+	if self.current_index >= 10 then
+		self.current_index = 0
+	end
+	return index
+end
+
+function nyx_assassin_impale_custom:GetEffect()
+	local particle = "particles/nyx_assassin/impale_base.vpcf"
+	local particle_dota = wearables_system:GetParticleReplacementAbility(
+		self.caster,
+		"particles/units/heroes/hero_nyx_assassin/nyx_assassin_impale.vpcf",
+		self
+	)
+	if particle_dota ~= "particles/units/heroes/hero_nyx_assassin/nyx_assassin_impale.vpcf" then
+		particle = particle_dota
+	end
+	return particle
 end
 
 function nyx_assassin_impale_custom:ProcCd()
@@ -289,23 +289,28 @@ function nyx_assassin_impale_custom:AbilityHit(target)
 	if not IsServer() then
 		return
 	end
-	if not self:IsTrained() or self.talents.has_burn == 0 then
+	if not self:IsTrained() then
 		return
 	end
-	local caster = self:GetCaster()
+	if self.talents.has_q3 == 0 then
+		return
+	end
 
-	target:AddNewModifier(caster, self, "modifier_nyx_assassin_impale_custom_burn", {})
+	target:AddNewModifier(self.caster, self, "modifier_nyx_assassin_impale_custom_burn", {})
 end
 
-modifier_nyx_assassin_impale_custom_stun = class({})
-function modifier_nyx_assassin_impale_custom_stun:IsPurgable()
-	return false
-end
+modifier_nyx_assassin_impale_custom_stun = class(mod_visible)
 function modifier_nyx_assassin_impale_custom_stun:IsPurgeException()
 	return true
 end
 function modifier_nyx_assassin_impale_custom_stun:IsStunDebuff()
 	return true
+end
+function modifier_nyx_assassin_impale_custom_stun:GetEffectName()
+	return "particles/generic_gameplay/generic_stunned.vpcf"
+end
+function modifier_nyx_assassin_impale_custom_stun:GetEffectAttachType()
+	return PATTACH_OVERHEAD_FOLLOW
 end
 function modifier_nyx_assassin_impale_custom_stun:OnCreated(table)
 	if not IsServer() then
@@ -379,14 +384,6 @@ function modifier_nyx_assassin_impale_custom_stun:OnDestroy()
 	self.parent:FadeGesture(ACT_DOTA_DISABLED)
 end
 
-function modifier_nyx_assassin_impale_custom_stun:GetEffectName()
-	return "particles/generic_gameplay/generic_stunned.vpcf"
-end
-
-function modifier_nyx_assassin_impale_custom_stun:GetEffectAttachType()
-	return PATTACH_OVERHEAD_FOLLOW
-end
-
 modifier_nyx_assassin_impale_custom_tracker = class(mod_hidden)
 function modifier_nyx_assassin_impale_custom_tracker:OnCreated(table)
 	self.parent = self:GetParent()
@@ -412,6 +409,7 @@ end
 function modifier_nyx_assassin_impale_custom_tracker:OnRefresh()
 	self.ability.width = self.ability:GetSpecialValueFor("width")
 	self.ability.impale_damage = self.ability:GetSpecialValueFor("impale_damage")
+	self.ability.duration = self.ability:GetSpecialValueFor("duration")
 end
 
 function modifier_nyx_assassin_impale_custom_tracker:DeclareFunctions()
@@ -421,63 +419,159 @@ function modifier_nyx_assassin_impale_custom_tracker:DeclareFunctions()
 end
 
 function modifier_nyx_assassin_impale_custom_tracker:GetModifierSpellAmplify_Percentage()
-	return self.ability.talents.burn_spell
+	return self.ability.talents.q3_spell
+end
+
+modifier_nyx_assassin_impale_custom_burn = class(mod_visible)
+function modifier_nyx_assassin_impale_custom_burn:GetTexture()
+	return "buffs/nyx_assassin/impale_3"
+end
+function modifier_nyx_assassin_impale_custom_burn:OnCreated(table)
+	self.parent = self:GetParent()
+	self.caster = self:GetCaster()
+	self.ability = self:GetAbility()
+
+	self.duration = self.ability.talents.q3_duration
+	self.interval = self.ability.talents.q3_interval
+	self.total_damage = 0
+	self.ticks = self.duration / self.interval
+
+	if not IsServer() then
+		return
+	end
+	self.parent:GenericParticle("particles/items2_fx/sange_maim.vpcf", self)
+	self.parent:GenericParticle("particles/status_fx/status_effect_snapfire_slow.vpcf", self)
+
+	self.count = self.ticks
+	self.RemoveForDuel = true
+	self:AddDamage()
+
+	self.damageTable = {
+		victim = self.parent,
+		attacker = self.caster,
+		ability = self.ability,
+		damage_type = self.ability.talents.q3_damage_type,
+	}
+	self:StartIntervalThink(self.interval)
+end
+
+function modifier_nyx_assassin_impale_custom_burn:OnRefresh(table)
+	if not IsServer() then
+		return
+	end
+	self:AddDamage()
+end
+
+function modifier_nyx_assassin_impale_custom_burn:AddDamage()
+	if not IsServer() then
+		return
+	end
+	self.count = self.ticks
+	self:SetDuration(self.duration + 0.1, true)
+	self.total_damage = self.total_damage + self.ability:GetDamage(self.parent) * self.ability.talents.q3_damage
+	self.tick_damage = self.total_damage / self.ticks
+end
+
+function modifier_nyx_assassin_impale_custom_burn:OnIntervalThink()
+	if not IsServer() then
+		return
+	end
+	self.damageTable.damage = self.tick_damage
+	self.total_damage = self.total_damage - self.tick_damage
+
+	DoDamage(self.damageTable, "modifier_nyx_impale_3")
+
+	self.count = self.count - 1
+	if self.count <= 0 then
+		self:Destroy()
+		return
+	end
+end
+
+modifier_nyx_assassin_impale_custom_damage_reduce = class(mod_hidden)
+function modifier_nyx_assassin_impale_custom_damage_reduce:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.damage_reduce = self.ability.talents.q4_damage_reduce
+	if not IsServer() then
+		return
+	end
+	self.parent:GenericParticle("particles/units/heroes/hero_huskar/huskar_inner_fire_debuff.vpcf", self, true)
+end
+
+function modifier_nyx_assassin_impale_custom_damage_reduce:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE,
+		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
+	}
+end
+
+function modifier_nyx_assassin_impale_custom_damage_reduce:GetModifierDamageOutgoing_Percentage()
+	return self.damage_reduce
+end
+
+function modifier_nyx_assassin_impale_custom_damage_reduce:GetModifierSpellAmplify_Percentage()
+	return self.damage_reduce
 end
 
 nyx_assassin_impale_custom_legendary = class({})
-function nyx_assassin_impale_custom_legendary:CreateTalent()
-	self:SetHidden(false)
-end
+nyx_assassin_impale_custom_legendary.talents = {}
 
 function nyx_assassin_impale_custom_legendary:UpdateTalents()
 	local caster = self:GetCaster()
-	if not self.init and caster:HasTalent("modifier_nyx_impale_7") then
+	if not self.init then
 		self.init = true
-		self.cd = caster:GetTalentValue("modifier_nyx_impale_7", "talent_cd")
-		self.radius = caster:GetTalentValue("modifier_nyx_impale_7", "radius")
-		self.damage = caster:GetTalentValue("modifier_nyx_impale_7", "damage") / 100
-		self.delay = caster:GetTalentValue("modifier_nyx_impale_7", "delay")
-		self.slow_duration = caster:GetTalentValue("modifier_nyx_impale_7", "slow_duration")
-		self.slow = caster:GetTalentValue("modifier_nyx_impale_7", "slow")
-		self.max = caster:GetTalentValue("modifier_nyx_impale_7", "max")
-		self.stack_duration = caster:GetTalentValue("modifier_nyx_impale_7", "stack_duration")
-		self.effect_duration = caster:GetTalentValue("modifier_nyx_impale_7", "effect_duration")
-		self.stun = caster:GetTalentValue("modifier_nyx_impale_7", "stun")
-		self.stun_full = caster:GetTalentValue("modifier_nyx_impale_7", "stun_full")
-		self.damage_inc = caster:GetTalentValue("modifier_nyx_impale_7", "damage_inc")
+		self.talents = {
+			q7_talent_cd = caster:GetTalentValue("modifier_nyx_impale_7", "talent_cd", true),
+			q7_radius = caster:GetTalentValue("modifier_nyx_impale_7", "radius", true),
+			q7_damage = caster:GetTalentValue("modifier_nyx_impale_7", "damage", true) / 100,
+			q7_delay = caster:GetTalentValue("modifier_nyx_impale_7", "delay", true),
+			q7_slow_duration = caster:GetTalentValue("modifier_nyx_impale_7", "slow_duration", true),
+			q7_slow = caster:GetTalentValue("modifier_nyx_impale_7", "slow", true),
+			q7_max = caster:GetTalentValue("modifier_nyx_impale_7", "max", true),
+			q7_stack_duration = caster:GetTalentValue("modifier_nyx_impale_7", "stack_duration", true),
+			q7_effect_duration = caster:GetTalentValue("modifier_nyx_impale_7", "effect_duration", true),
+			q7_stun = caster:GetTalentValue("modifier_nyx_impale_7", "stun", true),
+			q7_stun_full = caster:GetTalentValue("modifier_nyx_impale_7", "stun_full", true),
+			q7_damage_inc = caster:GetTalentValue("modifier_nyx_impale_7", "damage_inc", true),
+		}
 	end
 end
 
 function nyx_assassin_impale_custom_legendary:GetAOERadius()
-	return self.radius and self.radius or 0
+	return self.talents.q7_radius or 0
 end
 
 function nyx_assassin_impale_custom_legendary:GetCooldown(level)
-	return (self.cd and self.cd or 0) / self.caster:GetCooldownReduction()
+	return (self.talents.q7_talent_cd or 0) / self.caster:GetCooldownReduction()
+end
+
+function nyx_assassin_impale_custom_legendary:CreateTalent()
+	self:SetHidden(false)
 end
 
 function nyx_assassin_impale_custom_legendary:OnSpellStart()
-	local caster = self:GetCaster()
 	local point = self:GetCursorPosition()
 
-	local caster_point = caster:GetAbsOrigin() + caster:GetForwardVector() * 80
+	local caster_point = self.caster:GetAbsOrigin() + self.caster:GetForwardVector() * 80
 
-	caster:EmitSound("Nyx.Impale_legendary_cast")
+	self.caster:EmitSound("Nyx.Impale_legendary_cast")
 	local effect_cast =
 		ParticleManager:CreateParticle("particles/sand_king/sand_king_wave.vpcf", PATTACH_WORLDORIGIN, nil)
 	ParticleManager:SetParticleControl(effect_cast, 0, caster_point)
 	ParticleManager:SetParticleControl(effect_cast, 1, Vector(150, 1, 1))
 	ParticleManager:ReleaseParticleIndex(effect_cast)
 
-	self:EndCd(self.cd)
+	self:EndCd(self.talents.q7_talent_cd)
 
 	CreateModifierThinker(
-		caster,
+		self.caster,
 		self,
 		"modifier_nyx_assassin_impale_custom_legendary_thinker",
-		{ duration = self.delay },
+		{ duration = self.talents.q7_delay },
 		point,
-		caster:GetTeamNumber(),
+		self.caster:GetTeamNumber(),
 		false
 	)
 end
@@ -490,16 +584,16 @@ function modifier_nyx_assassin_impale_custom_legendary_thinker:OnCreated()
 
 	self.point = self.parent:GetAbsOrigin()
 
-	self.radius = self.ability.radius
-	self.slow_duration = self.ability.slow_duration
-	self.stack_duration = self.ability.stack_duration
-	self.delay = self.ability.delay
-	self.damage = self.ability.damage
+	self.radius = self.ability.talents.q7_radius
+	self.slow_duration = self.ability.talents.q7_slow_duration
+	self.stack_duration = self.ability.talents.q7_stack_duration
+	self.delay = self.ability.talents.q7_delay
+	self.damage = self.ability.talents.q7_damage
 
-	self.max = self.ability.max
-	self.stun = self.ability.stun
-	self.stun_full = self.ability.stun_full
-	self.effect_duration = self.ability.effect_duration
+	self.max = self.ability.talents.q7_max
+	self.stun = self.ability.talents.q7_stun
+	self.stun_full = self.ability.talents.q7_stun_full
+	self.effect_duration = self.ability.talents.q7_effect_duration
 
 	if not IsServer() then
 		return
@@ -585,7 +679,7 @@ function modifier_nyx_assassin_impale_custom_legendary_thinker:OnDestroy()
 
 		damageTable.damage = self.impale:GetDamage(target) * self.damage
 		damageTable.victim = target
-		DoDamage(damageTable)
+		DoDamage(damageTable, "modifier_nyx_impale_7")
 		target:AddNewModifier(
 			self.caster,
 			self.ability,
@@ -622,12 +716,24 @@ modifier_nyx_assassin_impale_custom_legendary_slow = class(mod_hidden)
 function modifier_nyx_assassin_impale_custom_legendary_slow:IsPurgable()
 	return true
 end
+function modifier_nyx_assassin_impale_custom_legendary_slow:GetEffectName()
+	return "particles/units/heroes/hero_snapfire/hero_snapfire_shotgun_debuff.vpcf"
+end
+function modifier_nyx_assassin_impale_custom_legendary_slow:GetEffectAttachType()
+	return PATTACH_ABSORIGIN_FOLLOW
+end
+function modifier_nyx_assassin_impale_custom_legendary_slow:GetStatusEffectName()
+	return "particles/status_fx/status_effect_snapfire_slow.vpcf"
+end
+function modifier_nyx_assassin_impale_custom_legendary_slow:StatusEffectPriority()
+	return MODIFIER_PRIORITY_NORMAL
+end
 function modifier_nyx_assassin_impale_custom_legendary_slow:OnCreated()
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
 	self.ability = self:GetAbility()
 
-	self.slow = self.ability.slow
+	self.slow = self.ability.talents.q7_slow
 end
 
 function modifier_nyx_assassin_impale_custom_legendary_slow:DeclareFunctions()
@@ -640,22 +746,6 @@ function modifier_nyx_assassin_impale_custom_legendary_slow:GetModifierMoveSpeed
 	return self.slow
 end
 
-function modifier_nyx_assassin_impale_custom_legendary_slow:GetEffectName()
-	return "particles/units/heroes/hero_snapfire/hero_snapfire_shotgun_debuff.vpcf"
-end
-
-function modifier_nyx_assassin_impale_custom_legendary_slow:GetEffectAttachType()
-	return PATTACH_ABSORIGIN_FOLLOW
-end
-
-function modifier_nyx_assassin_impale_custom_legendary_slow:GetStatusEffectName()
-	return "particles/status_fx/status_effect_snapfire_slow.vpcf"
-end
-
-function modifier_nyx_assassin_impale_custom_legendary_slow:StatusEffectPriority()
-	return MODIFIER_PRIORITY_NORMAL
-end
-
 modifier_nyx_assassin_impale_custom_legendary_stack = class(mod_visible)
 function modifier_nyx_assassin_impale_custom_legendary_stack:OnCreated()
 	self.parent = self:GetParent()
@@ -666,7 +756,7 @@ function modifier_nyx_assassin_impale_custom_legendary_stack:OnCreated()
 		return
 	end
 	self.particle = self.parent:GenericParticle("particles/sand_king/stinger_stack.vpcf", self, true)
-	self:SetStackCount(1)
+	self:OnRefresh()
 end
 
 function modifier_nyx_assassin_impale_custom_legendary_stack:OnRefresh()
@@ -674,25 +764,25 @@ function modifier_nyx_assassin_impale_custom_legendary_stack:OnRefresh()
 		return
 	end
 	self:IncrementStackCount()
-end
 
-function modifier_nyx_assassin_impale_custom_legendary_stack:OnStackCountChanged(iStackCount)
-	if not IsServer() then
-		return
+	if self.particle then
+		ParticleManager:SetParticleControl(self.particle, 1, Vector(0, self:GetStackCount(), 0))
 	end
-	if not self.particle then
-		return
-	end
-	ParticleManager:SetParticleControl(self.particle, 1, Vector(0, self:GetStackCount(), 0))
 end
 
 modifier_nyx_assassin_impale_custom_legendary_damage = class(mod_visible)
+function modifier_nyx_assassin_impale_custom_legendary_damage:GetStatusEffectName()
+	return "particles/status_fx/status_effect_rupture.vpcf"
+end
+function modifier_nyx_assassin_impale_custom_legendary_damage:StatusEffectPriority()
+	return MODIFIER_PRIORITY_ULTRA
+end
 function modifier_nyx_assassin_impale_custom_legendary_damage:OnCreated()
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
 	self.ability = self:GetAbility()
 
-	self.damage = self.ability.damage_inc
+	self.damage = self.ability.talents.q7_damage_inc
 
 	if not IsServer() then
 		return
@@ -739,138 +829,41 @@ function modifier_nyx_assassin_impale_custom_legendary_damage:DeclareFunctions()
 end
 
 function modifier_nyx_assassin_impale_custom_legendary_damage:GetModifierIncomingDamage_Percentage(params)
-	if IsServer() and (not params.attacker or params.attacker:FindOwner() ~= self.caster) then
+	if not IsServer() then
+		return self.damage
+	end
+	if not params.attacker then
+		return
+	end
+	if params.attacker:FindOwner() ~= self.caster then
 		return
 	end
 
-	if IsServer() then
-		local hit_effect = ParticleManager:CreateParticle(
-			"particles/units/heroes/hero_monkey_king/monkey_king_quad_tap_hit.vpcf",
-			PATTACH_CUSTOMORIGIN,
-			self.parent
-		)
-		ParticleManager:SetParticleControlEnt(
-			hit_effect,
-			0,
-			self.parent,
-			PATTACH_POINT_FOLLOW,
-			"attach_hitloc",
-			self.parent:GetAbsOrigin(),
-			false
-		)
-		ParticleManager:SetParticleControlEnt(
-			hit_effect,
-			1,
-			self.parent,
-			PATTACH_POINT_FOLLOW,
-			"attach_hitloc",
-			self.parent:GetAbsOrigin(),
-			false
-		)
-		ParticleManager:ReleaseParticleIndex(hit_effect)
-		self.parent:EmitSound("Nyx.Impale_legendary_damage")
-	end
+	local hit_effect = ParticleManager:CreateParticle(
+		"particles/units/heroes/hero_monkey_king/monkey_king_quad_tap_hit.vpcf",
+		PATTACH_CUSTOMORIGIN,
+		self.parent
+	)
+	ParticleManager:SetParticleControlEnt(
+		hit_effect,
+		0,
+		self.parent,
+		PATTACH_POINT_FOLLOW,
+		"attach_hitloc",
+		self.parent:GetAbsOrigin(),
+		false
+	)
+	ParticleManager:SetParticleControlEnt(
+		hit_effect,
+		1,
+		self.parent,
+		PATTACH_POINT_FOLLOW,
+		"attach_hitloc",
+		self.parent:GetAbsOrigin(),
+		false
+	)
+	ParticleManager:ReleaseParticleIndex(hit_effect)
+	self.parent:EmitSound("Nyx.Impale_legendary_damage")
 
 	return self.damage
-end
-
-function modifier_nyx_assassin_impale_custom_legendary_damage:GetStatusEffectName()
-	return "particles/status_fx/status_effect_rupture.vpcf"
-end
-
-function modifier_nyx_assassin_impale_custom_legendary_damage:StatusEffectPriority()
-	return MODIFIER_PRIORITY_ULTRA
-end
-
-modifier_nyx_assassin_impale_custom_burn = class(mod_visible)
-function modifier_nyx_assassin_impale_custom_burn:GetTexture()
-	return "buffs/nyx_assassin/impale_3"
-end
-function modifier_nyx_assassin_impale_custom_burn:OnCreated(table)
-	self.parent = self:GetParent()
-	self.caster = self:GetCaster()
-	self.ability = self:GetAbility()
-
-	self.duration = self.ability.talents.burn_duration
-	self.interval = self.ability.talents.burn_interval
-	self.total_damage = 0
-	self.ticks = self.duration / self.interval
-
-	if not IsServer() then
-		return
-	end
-	self.parent:GenericParticle("particles/items2_fx/sange_maim.vpcf", self)
-	self.parent:GenericParticle("particles/status_fx/status_effect_snapfire_slow.vpcf", self)
-
-	self.count = self.ticks
-	self.RemoveForDuel = true
-	self:AddDamage()
-
-	self.damageTable = {
-		victim = self.parent,
-		attacker = self.caster,
-		ability = self.ability,
-		damage_type = self.ability.talents.burn_damage_type,
-	}
-	self:StartIntervalThink(self.interval)
-end
-
-function modifier_nyx_assassin_impale_custom_burn:OnRefresh(table)
-	if not IsServer() then
-		return
-	end
-	self:AddDamage()
-end
-
-function modifier_nyx_assassin_impale_custom_burn:AddDamage()
-	if not IsServer() then
-		return
-	end
-	self.count = self.ticks
-	self:SetDuration(self.duration + 0.1, true)
-	self.total_damage = self.total_damage + self.ability:GetDamage(self.parent) * self.ability.talents.burn_damage
-	self.tick_damage = self.total_damage / self.ticks
-end
-
-function modifier_nyx_assassin_impale_custom_burn:OnIntervalThink()
-	if not IsServer() then
-		return
-	end
-	self.damageTable.damage = self.tick_damage
-	self.total_damage = self.total_damage - self.tick_damage
-
-	local real_damage = DoDamage(self.damageTable, "modifier_nyx_impale_3")
-
-	self.count = self.count - 1
-	if self.count <= 0 then
-		self:Destroy()
-		return
-	end
-end
-
-modifier_nyx_assassin_impale_custom_damage_reduce = class(mod_hidden)
-function modifier_nyx_assassin_impale_custom_damage_reduce:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.damage_reduce = self.ability.talents.q4_damage_reduce
-	if not IsServer() then
-		return
-	end
-	self.parent:GenericParticle("particles/units/heroes/hero_huskar/huskar_inner_fire_debuff.vpcf", self, true)
-end
-
-function modifier_nyx_assassin_impale_custom_damage_reduce:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE,
-		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
-	}
-end
-
-function modifier_nyx_assassin_impale_custom_damage_reduce:GetModifierDamageOutgoing_Percentage()
-	return self.damage_reduce
-end
-
-function modifier_nyx_assassin_impale_custom_damage_reduce:GetModifierSpellAmplify_Percentage()
-	return self.damage_reduce
 end

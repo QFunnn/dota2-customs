@@ -52,10 +52,6 @@ LinkLuaModifier(
 hoodwink_scurry_custom = class({})
 hoodwink_scurry_custom.talents = {}
 
-function hoodwink_scurry_custom:CreateTalent()
-	self:ToggleAutoCast()
-end
-
 function hoodwink_scurry_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
@@ -71,10 +67,7 @@ function hoodwink_scurry_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_sniper/sniper_headshot_slow.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_hoodwink/hoodwink_acorn_shot_slow.vpcf", context)
 	PrecacheResource("particle", "particles/hoodwink/scurry_shield.vpcf", context)
-end
-
-function hoodwink_scurry_custom:GetAbilityTextureName()
-	return wearables_system:GetAbilityIconReplacement(self.caster, "hoodwink_scurry", self)
+	PrecacheResource("particle", "particles/hoodwink/acorn_refresh.vpcf", context)
 end
 
 function hoodwink_scurry_custom:UpdateTalents()
@@ -147,6 +140,14 @@ function hoodwink_scurry_custom:UpdateTalents()
 	end
 end
 
+function hoodwink_scurry_custom:CreateTalent()
+	self:ToggleAutoCast()
+end
+
+function hoodwink_scurry_custom:GetAbilityTextureName()
+	return wearables_system:GetAbilityIconReplacement(self.caster, "hoodwink_scurry", self)
+end
+
 function hoodwink_scurry_custom:GetIntrinsicModifierName()
 	if not self:GetCaster():IsRealHero() then
 		return
@@ -163,46 +164,30 @@ function hoodwink_scurry_custom:GetBehavior()
 end
 
 function hoodwink_scurry_custom:GetAbilityChargeRestoreTime(level)
-	return (self.AbilityChargeRestoreTime and self.AbilityChargeRestoreTime or 0)
+	return (self.AbilityChargeRestoreTime or 0)
 end
 
 function hoodwink_scurry_custom:OnSpellStart()
-	local caster = self:GetCaster()
-	caster:AddNewModifier(caster, self, "modifier_hoodwink_scurry_custom_cd", { duration = 1 })
+	self.caster:AddNewModifier(self.caster, self, "modifier_hoodwink_scurry_custom_cd", { duration = 1 })
 
 	local duration = self.duration + self.talents.e2_duration
 
-	if self.talents.has_e4 == 1 then
-		if self:GetAutoCastState() and not caster:IsRooted() and not caster:IsLeashed() then
-			local point = caster:GetAbsOrigin()
-			local range = self.talents.e4_range
-
-			FindClearSpaceForUnit(caster, point + caster:GetForwardVector() * range, true)
-
-			local effect =
-				ParticleManager:CreateParticle("particles/items3_fx/blink_swift_start.vpcf", PATTACH_WORLDORIGIN, nil)
-			ParticleManager:SetParticleControl(effect, 0, point)
-			ParticleManager:ReleaseParticleIndex(effect)
-
-			effect = ParticleManager:CreateParticle(
-				"particles/items3_fx/blink_swift_end.vpcf",
-				PATTACH_ABSORIGIN_FOLLOW,
-				caster
-			)
-			ParticleManager:SetParticleControl(effect, 0, caster:GetAbsOrigin())
-			ParticleManager:ReleaseParticleIndex(effect)
-
-			ProjectileManager:ProjectileDodge(caster)
-			caster:EmitSound("Hoodwink.Scurry_blink")
-		end
+	if self.talents.has_e4 == 1 and self:GetAutoCastState() and self.caster:CanBlink() then
+		self.caster:Teleport(
+			self.caster:GetAbsOrigin() + self.caster:GetForwardVector() * self.talents.e4_range,
+			true,
+			"particles/items3_fx/blink_swift_start.vpcf",
+			"particles/items3_fx/blink_swift_end.vpcf"
+		)
+		self.caster:EmitSound("Hoodwink.Scurry_blink")
 	end
 
 	if self.talents.has_e3 == 1 then
-		caster:AddNewModifier(caster, self, "modifier_hoodwink_scurry_custom_attacks", {})
+		self.caster:AddNewModifier(self.caster, self, "modifier_hoodwink_scurry_custom_attacks", {})
 	end
 
-	caster:RemoveModifierByName("modifier_hoodwink_scurry_custom_buff")
-	caster:AddNewModifier(caster, self, "modifier_hoodwink_scurry_custom_buff", { duration = duration })
+	self.caster:RemoveModifierByName("modifier_hoodwink_scurry_custom_buff")
+	self.caster:AddNewModifier(self.caster, self, "modifier_hoodwink_scurry_custom_buff", { duration = duration })
 end
 
 function hoodwink_scurry_custom:OnProjectileHit(target, location)
@@ -212,43 +197,21 @@ function hoodwink_scurry_custom:OnProjectileHit(target, location)
 	if not target or not target:IsUnit() then
 		return
 	end
-	local caster = self:GetCaster()
 
-	caster:AddNewModifier(caster, self, "modifier_hoodwink_scurry_custom_attack_mod", { duration = 1 })
-	caster:PerformAttack(target, true, true, true, true, false, false, false)
-	caster:RemoveModifierByName("modifier_hoodwink_scurry_custom_attack_mod")
+	self.caster:AddNewModifier(self.caster, self, "modifier_hoodwink_scurry_custom_attack_mod", { duration = 1 })
+	self.caster:PerformAttack(target, true, true, true, true, false, false, false)
+	self.caster:RemoveModifierByName("modifier_hoodwink_scurry_custom_attack_mod")
 	target:EmitSound("Hoodwink.Scurry_attack")
 end
 
 modifier_hoodwink_scurry_custom = class(mod_hidden)
-function modifier_hoodwink_scurry_custom:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
-		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
-		MODIFIER_PROPERTY_SLOW_RESISTANCE_STACKING,
-	}
-end
-
-function modifier_hoodwink_scurry_custom:GetModifierSlowResistance_Stacking()
-	if self.ability.talents.has_e4 == 0 then
-		return
-	end
-	return self.ability.talents.e4_slow_resist
-end
-
-function modifier_hoodwink_scurry_custom:GetModifierAttackRangeBonus()
-	return self.ability.talents.e3_range
-end
-
-function modifier_hoodwink_scurry_custom:GetModifierMoveSpeedBonus_Constant()
-	return self.ability.talents.e2_move
-end
-
 function modifier_hoodwink_scurry_custom:OnCreated(kv)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 	self.ability.tracker = self
 	self.ability:UpdateTalents()
+
+	self.parent.scurry_ability = self.ability
 
 	self.ability.movement_speed_pct = self.ability:GetSpecialValueFor("movement_speed_pct")
 	self.ability.cast_range = self.ability:GetSpecialValueFor("cast_range")
@@ -261,7 +224,6 @@ function modifier_hoodwink_scurry_custom:OnCreated(kv)
 	end
 	self.distance = 0
 	self.interval = 0.1
-	self.last_time = 0
 	self.old_pos = self.parent:GetAbsOrigin()
 end
 
@@ -287,14 +249,17 @@ function modifier_hoodwink_scurry_custom:AttackEvent_out(params)
 	if self.ability:GetCurrentAbilityCharges() >= self.ability:GetMaxAbilityCharges(self.ability:GetLevel()) then
 		return
 	end
-	if GameRules:GetDOTATime(false, false) - self.last_time <= self.ability.talents.e4_talent_cd then
-		return
-	end
-	if not RollPseudoRandomPercentage(self.ability.talents.e4_chance, 3290, self.parent) then
+	if
+		not self.parent:CheckCd(
+			"hoodwink_scurry_4",
+			self.ability.talents.e4_talent_cd,
+			self.ability.talents.e4_chance,
+			3290
+		)
+	then
 		return
 	end
 
-	self.last_time = GameRules:GetDOTATime(false, false)
 	self.ability:AddCharge(1, "particles/hoodwink/acorn_refresh.vpcf", "Hoodwink.Scurry_refresh")
 end
 
@@ -367,7 +332,30 @@ function modifier_hoodwink_scurry_custom:OnIntervalThink()
 	self:StartIntervalThink(self.interval)
 end
 
-modifier_hoodwink_scurry_custom_buff = class({})
+function modifier_hoodwink_scurry_custom:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
+		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
+		MODIFIER_PROPERTY_SLOW_RESISTANCE_STACKING,
+	}
+end
+
+function modifier_hoodwink_scurry_custom:GetModifierSlowResistance_Stacking()
+	if self.ability.talents.has_e4 == 0 then
+		return
+	end
+	return self.ability.talents.e4_slow_resist
+end
+
+function modifier_hoodwink_scurry_custom:GetModifierAttackRangeBonus()
+	return self.ability.talents.e3_range
+end
+
+function modifier_hoodwink_scurry_custom:GetModifierMoveSpeedBonus_Constant()
+	return self.ability.talents.e2_move
+end
+
+modifier_hoodwink_scurry_custom_buff = class(mod_visible)
 function modifier_hoodwink_scurry_custom_buff:IsPurgable()
 	return true
 end
@@ -434,8 +422,8 @@ function modifier_hoodwink_scurry_custom_buff:CheckState()
 end
 
 modifier_hoodwink_scurry_custom_legendary = class(mod_hidden)
-function modifier_hoodwink_scurry_custom_legendary:GetTexture()
-	return "buffs/scurry_ground"
+function modifier_hoodwink_scurry_custom_legendary:GetPriority()
+	return MODIFIER_PRIORITY_HIGH
 end
 function modifier_hoodwink_scurry_custom_legendary:OnCreated(table)
 	self.parent = self:GetParent()
@@ -525,16 +513,15 @@ function modifier_hoodwink_scurry_custom_legendary:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT,
 		MODIFIER_PROPERTY_PROJECTILE_NAME,
-		MODIFIER_PROPERTY_TOOLTIP,
 	}
-end
-
-function modifier_hoodwink_scurry_custom_legendary:GetPriority()
-	return MODIFIER_PRIORITY_HIGH
 end
 
 function modifier_hoodwink_scurry_custom_legendary:GetModifierProjectileName()
 	return "particles/hoodwink/scurry_proj.vpcf"
+end
+
+function modifier_hoodwink_scurry_custom_legendary:GetModifierBaseAttackTimeConstant()
+	return self.bva
 end
 
 function modifier_hoodwink_scurry_custom_legendary:AttackStartEvent_out(params)
@@ -556,10 +543,6 @@ function modifier_hoodwink_scurry_custom_legendary:AttackStartEvent_out(params)
 	)
 end
 
-function modifier_hoodwink_scurry_custom_legendary:GetModifierBaseAttackTimeConstant()
-	return self.bva
-end
-
 function modifier_hoodwink_scurry_custom_legendary:AttackEvent_out(params)
 	if not IsServer() then
 		return
@@ -573,10 +556,6 @@ function modifier_hoodwink_scurry_custom_legendary:AttackEvent_out(params)
 
 	self.damageTable.victim = params.target
 	DoDamage(self.damageTable, "modifier_hoodwink_scurry_7")
-end
-
-function modifier_hoodwink_scurry_custom_legendary:GetModifierBaseAttackTimeConstant()
-	return self.bva
 end
 
 modifier_hoodwink_scurry_custom_cd = class(mod_hidden)
@@ -600,7 +579,8 @@ function modifier_hoodwink_scurry_custom_speed:GetTexture()
 	return "buffs/hoodwink/scurry_1"
 end
 function modifier_hoodwink_scurry_custom_speed:OnCreated()
-	self.speed = self:GetAbility().talents.e1_speed
+	self.ability = self:GetAbility()
+	self.speed = self.ability.talents.e1_speed
 end
 
 function modifier_hoodwink_scurry_custom_speed:DeclareFunctions()
@@ -688,4 +668,5 @@ function modifier_hoodwink_scurry_custom_attacks:OnIntervalThink()
 end
 
 modifier_hoodwink_scurry_custom_attack_mod = class(mod_hidden)
+
 modifier_hoodwink_scurry_custom_attack_thinker = class(mod_hidden)

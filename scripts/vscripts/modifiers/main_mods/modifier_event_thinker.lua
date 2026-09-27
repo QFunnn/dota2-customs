@@ -57,6 +57,8 @@ function modifier_event_thinker:OnCreated(table)
 		"modifier_dragon_fire_ability",
 		"modifier_lizard_frenzy",
 		"modifier_prawler_clap",
+		"modifier_neutral_frog_water_bubble",
+		"modifier_neutral_frog_tendrils",
 	}
 
 	self.items_effects = {
@@ -101,6 +103,7 @@ function modifier_event_thinker:OnCreated(table)
 	end
 
 	self.active = false
+	self.thinking = false
 	self.interval = test and FrameTime() or FrameTime()
 end
 
@@ -146,7 +149,10 @@ function modifier_event_thinker:OnIntervalThink()
 	if all_done then
 		self.done_count = self.done_count + 1
 		self.active = false
-		self:StartIntervalThink(-1)
+		if self.thinking then
+			self.thinking = false
+			self:StartIntervalThink(-1)
+		end
 		--print('done!!')
 	end
 
@@ -211,7 +217,10 @@ self.caster_table[caster:GetUnitName()].count = self.caster_table[caster:GetUnit
 		if not test then
 			self:OnIntervalThink()
 		end
-		self:StartIntervalThink(self.interval)
+		if self.active and not self.thinking then
+			self.thinking = true
+			self:StartIntervalThink(self.interval)
+		end
 	end
 end
 
@@ -261,6 +270,7 @@ function modifier_event_thinker:DeclareFunctions()
 		MODIFIER_EVENT_ON_RESPAWN,
 		MODIFIER_EVENT_ON_HEAL_RECEIVED,
 		MODIFIER_EVENT_ON_ABILITY_START,
+		MODIFIER_EVENT_ON_STATE_CHANGED,
 	}
 end
 
@@ -300,9 +310,8 @@ function modifier_event_thinker:OnModifierAdded(params)
 		return
 	end
 
-	local modifier_hero_wearables_system = unit:FindModifierByName("modifier_hero_wearables_system")
-	if modifier_hero_wearables_system then
-		modifier_hero_wearables_system:AddModifier(mod)
+	if IsValid(unit.modifier_hero_wearables_system) then
+		unit.modifier_hero_wearables_system:AddModifier(mod)
 	end
 end
 
@@ -622,8 +631,8 @@ function modifier_event_thinker:OnAbilityExecuted(params)
 		return
 	end
 	if
-		(params.unit:IsRooted() or params.unit:IsLeashed())
-		and bit.band(ability:GetBehaviorInt(), DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES) ~= 0
+		bit.band(ability:GetBehaviorInt(), DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES) ~= 0
+		and (params.unit:IsRooted() or params.unit:IsLeashed())
 	then
 		return
 	end
@@ -647,6 +656,36 @@ function modifier_event_thinker:OnAbilityExecuted(params)
 
 	if _G.WtfMode == true then
 		caster:SetMana(caster:GetMaxMana())
+	end
+end
+
+function modifier_event_thinker:OnStateChanged(params)
+	if not IsServer() then
+		return
+	end
+
+	local unit = params.unit
+	if not unit then
+		return
+	end
+
+	if unit.state_event_mods then
+		for mod, sync_type in pairs(unit.state_event_mods) do
+			if IsValid(mod) and mod.StateEvent ~= nil then
+				if sync_type == 2 then
+					local callback = function()
+						if IsValid(mod, params.unit) then
+							mod:StateEvent(params)
+						end
+					end
+					self:StartThink(callback, mod, "StateEvent")
+				else
+					mod:StateEvent(params)
+				end
+			else
+				unit.state_event_mods[mod] = nil
+			end
+		end
 	end
 end
 
@@ -690,6 +729,8 @@ function modifier_event_thinker:OnDeath(params)
 	end
 	local killer = params.attacker
 	local unit = params.unit
+
+	NeutralCreeps[unit] = nil
 
 	if killer == nil then
 		return
@@ -776,6 +817,9 @@ function modifier_event_thinker:OnAttack(params)
 	if attacker == nil or target == nil then
 		return
 	end
+	if attacker.is_item_attack then
+		return
+	end
 
 	local attacker_mod = attacker
 	if attacker_mod.owner and not attacker.is_arc_tempest and not attacker.is_monkey_soldier then
@@ -835,6 +879,9 @@ function modifier_event_thinker:OnAttackLanded(params)
 	local attacker = params.attacker
 	local target = params.target
 	if attacker == nil or target == nil then
+		return
+	end
+	if attacker.is_item_attack then
 		return
 	end
 
@@ -1044,9 +1091,61 @@ function modifier_event_thinker:FillHealingTable(damage_table, ability_name, uni
 		damage_table[ability_name].damage = 0
 		damage_table[ability_name].type = ability_type
 		damage_table[ability_name].healing_type = healing_type
+		damage_table[ability_name].damage_types = {}
+		damage_table[ability_name].damage_types["healing"] = 0
+		damage_table[ability_name].damage_types["shield"] = 0
 	end
 
 	damage_table[ability_name].damage = damage_table[ability_name].damage + amount
+	damage_table[ability_name].damage_types[healing_type] = damage_table[ability_name].damage_types[healing_type]
+		+ amount
+end
+
+function modifier_event_thinker:ResourceTableCount(unit, resource_type, source, amount)
+	local unit_table = players[unit:GetId()]
+	if not unit_table then
+		return
+	end
+
+	local name = source
+	local inflictor = nil
+
+	if type(source) ~= "string" then
+		if not IsValid(source) then
+			return
+		end
+		inflictor = source
+		name = source:GetName()
+	end
+
+	local resource_table = unit_table.resource[resource_type]
+
+	if not resource_table[name] then
+		local unit_name = unit_table:GetUnitName()
+		local icons_table = (talents_icons[unit_name] and talents_icons[unit_name][name]) and talents_icons[unit_name]
+			or talents_icons["general"]
+		local icon_name = "info_table/" .. name
+		local color = ""
+		local source_type = "resource"
+
+		if icons_table and icons_table[name] and icons_table[name].icon then
+			icon_name = icons_table[name].icon
+			if icons_table[name].color then
+				color = icons_table[name].color
+			end
+			source_type = "talent"
+		elseif inflictor then
+			source_type = inflictor:IsItem() and "item" or "ability"
+		end
+
+		resource_table[name] = {}
+		resource_table[name].new_icon = icon_name
+		resource_table[name].color = color
+		resource_table[name].amount = 0
+		resource_table[name].type = source_type
+	end
+
+	resource_table[name].amount = resource_table[name].amount + amount
 end
 
 function modifier_event_thinker:OnTakeDamage(params)
@@ -1073,6 +1172,10 @@ function modifier_event_thinker:OnTakeDamage(params)
 	local attacker_mod = attacker
 	if attacker_mod.owner and not attacker.is_arc_tempest and not attacker.is_monkey_soldier then
 		attacker_mod = attacker_mod.owner
+	end
+
+	if test then
+		attacker.attack_target = unit
 	end
 
 	local target_mod = unit
@@ -1219,7 +1322,11 @@ function modifier_event_thinker:DamageTableCount(params, new_name, override_atta
 	local attacker_table = players[attacker:GetId()]
 	local target_table = players[target:GetId()]
 
-	if not attacker_table or not target_table then
+	if target == test_mode.target_dummy then
+		target_table = nil
+	end
+
+	if not attacker_table then
 		return
 	end
 
@@ -1230,22 +1337,24 @@ function modifier_event_thinker:DamageTableCount(params, new_name, override_atta
 	local inflictor = params.inflictor
 	local ability_name = IsValid(inflictor) and inflictor:GetName() or nil
 
-	if not target_table.damage_inc[attacker_name] then
-		target_table.damage_inc[attacker_name] = {}
-		target_table.damage_inc[attacker_name].phys = 0
-		target_table.damage_inc[attacker_name].magic = 0
-		target_table.damage_inc[attacker_name].pure = 0
-		target_table.damage_inc[attacker_name].all_damage = 0
-	end
+	if target_table then
+		if not target_table.damage_inc[attacker_name] then
+			target_table.damage_inc[attacker_name] = {}
+			target_table.damage_inc[attacker_name].phys = 0
+			target_table.damage_inc[attacker_name].magic = 0
+			target_table.damage_inc[attacker_name].pure = 0
+			target_table.damage_inc[attacker_name].all_damage = 0
+		end
 
-	target_table.damage_inc[attacker_name].all_damage = target_table.damage_inc[attacker_name].all_damage + damage
+		target_table.damage_inc[attacker_name].all_damage = target_table.damage_inc[attacker_name].all_damage + damage
 
-	if damage_type == DAMAGE_TYPE_PHYSICAL then
-		target_table.damage_inc[attacker_name].phys = target_table.damage_inc[attacker_name].phys + damage
-	elseif damage_type == DAMAGE_TYPE_MAGICAL then
-		target_table.damage_inc[attacker_name].magic = target_table.damage_inc[attacker_name].magic + damage
-	elseif damage_type == DAMAGE_TYPE_PURE then
-		target_table.damage_inc[attacker_name].pure = target_table.damage_inc[attacker_name].pure + damage
+		if damage_type == DAMAGE_TYPE_PHYSICAL then
+			target_table.damage_inc[attacker_name].phys = target_table.damage_inc[attacker_name].phys + damage
+		elseif damage_type == DAMAGE_TYPE_MAGICAL then
+			target_table.damage_inc[attacker_name].magic = target_table.damage_inc[attacker_name].magic + damage
+		elseif damage_type == DAMAGE_TYPE_PURE then
+			target_table.damage_inc[attacker_name].pure = target_table.damage_inc[attacker_name].pure + damage
+		end
 	end
 
 	local ability_type = "attack"
@@ -1263,26 +1372,13 @@ function modifier_event_thinker:DamageTableCount(params, new_name, override_atta
 	end
 
 	local time = GameRules:GetDOTATime(false, false)
-	if not target_table.temp_damage_stat[attacker_name] then
-		target_table.temp_damage_stat[attacker_name] = {}
-		target_table.temp_damage_stat[attacker_name].damages = {}
-	end
 
 	if not attacker_table.temp_damage_stat["outgoing"] then
 		attacker_table.temp_damage_stat["outgoing"] = {}
 		attacker_table.temp_damage_stat["outgoing"].damages = {}
 	end
 	attacker_table.temp_damage_stat["outgoing"].time = time
-	target_table.temp_damage_stat[attacker_name].time = time
 
-	self:FillDamageTable(
-		target_table.temp_damage_stat[attacker_name].damages,
-		ability_name,
-		attacker_name,
-		ability_type,
-		damage_type,
-		damage
-	)
 	self:FillDamageTable(
 		attacker_table.temp_damage_stat["outgoing"].damages,
 		ability_name,
@@ -1299,6 +1395,25 @@ function modifier_event_thinker:DamageTableCount(params, new_name, override_atta
 		damage_type,
 		damage,
 		time
+	)
+
+	if not target_table then
+		return
+	end
+
+	if not target_table.temp_damage_stat[attacker_name] then
+		target_table.temp_damage_stat[attacker_name] = {}
+		target_table.temp_damage_stat[attacker_name].damages = {}
+	end
+	target_table.temp_damage_stat[attacker_name].time = time
+
+	self:FillDamageTable(
+		target_table.temp_damage_stat[attacker_name].damages,
+		ability_name,
+		attacker_name,
+		ability_type,
+		damage_type,
+		damage
 	)
 end
 

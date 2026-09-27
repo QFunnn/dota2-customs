@@ -12,8 +12,13 @@ LinkLuaModifier("modifier_patrol_warp_amulet", "abilities/items/item_patrol_warp
 
 item_patrol_warp_amulet = class({})
 
+function item_patrol_warp_amulet:Spawn()
+	self.duration = self:GetSpecialValueFor("duration")
+	self.duration_building = self:GetSpecialValueFor("duration_building")
+end
+
 function item_patrol_warp_amulet:GetChannelTime()
-	return self:GetSpecialValueFor("duration")
+	return self.duration
 end
 
 function item_patrol_warp_amulet:Precache(context)
@@ -103,6 +108,8 @@ function item_patrol_warp_amulet:OnSpellStart()
 end
 
 function item_patrol_warp_amulet:OnChannelThink(fInterval)
+	AddFOWViewer(self:GetCaster():GetTeamNumber(), self.point, 700, flInterval, false)
+
 	if
 		self:GetCaster():IsRooted()
 		or self:GetCaster():HasModifier("modifier_custom_puck_dream_coil")
@@ -111,10 +118,6 @@ function item_patrol_warp_amulet:OnChannelThink(fInterval)
 		self:GetCaster():Stop()
 		self:GetCaster():Interrupt()
 	end
-end
-
-function item_patrol_warp_amulet:OnChannelThink(flInterval)
-	AddFOWViewer(self:GetCaster():GetTeamNumber(), self.point, 700, flInterval, false)
 end
 
 function item_patrol_warp_amulet:OnChannelFinish(bInterrupted)
@@ -132,23 +135,18 @@ function item_patrol_warp_amulet:OnChannelFinish(bInterrupted)
 	self:GetCaster():RemoveGesture(ACT_DOTA_TELEPORT)
 
 	if bInterrupted then
-		ParticleManager:DestroyParticle(self.teleportFromEffect, true)
-		ParticleManager:ReleaseParticleIndex(self.teleportFromEffect)
-		ParticleManager:DestroyParticle(self.teleportToEffect, true)
-		ParticleManager:ReleaseParticleIndex(self.teleportToEffect)
+		ParticleManager:Delete(self.teleportFromEffect, 2)
+		ParticleManager:Delete(self.teleportToEffect, 2)
 
 		return
 	end
 
-	ParticleManager:DestroyParticle(self.teleportFromEffect, false)
-	ParticleManager:ReleaseParticleIndex(self.teleportFromEffect)
-	ParticleManager:DestroyParticle(self.teleportToEffect, false)
-	ParticleManager:ReleaseParticleIndex(self.teleportToEffect)
+	ParticleManager:Delete(self.teleportFromEffect, 1)
+	ParticleManager:Delete(self.teleportToEffect, 1)
 
 	EmitSoundOnLocationWithCaster(self.point_start, "Portal.Hero_Disappear", self:GetCaster())
 
-	self:GetCaster():SetAbsOrigin(self.point)
-	FindClearSpaceForUnit(self:GetCaster(), self.point, true)
+	self:GetCaster():Teleport(self.point)
 	self:GetCaster():Stop()
 	self:GetCaster():Interrupt()
 	EmitSoundOn("Portal.Hero_Disappear", self:GetCaster())
@@ -173,60 +171,23 @@ function item_patrol_warp_amulet:OnChannelFinish(bInterrupted)
 		})
 	end
 
-	self:GetCaster():AddNewModifier(
-		self:GetCaster(),
-		self,
-		"modifier_can_not_push",
-		{ duration = self:GetSpecialValueFor("duration_building") }
-	)
+	self:GetCaster()
+		:AddNewModifier(self:GetCaster(), self, "modifier_can_not_push", { duration = self.duration_building })
 
 	self:SpendCharge(0)
 end
 
-modifier_patrol_warp_amulet = class({})
-
-function modifier_patrol_warp_amulet:IsHidden()
-	return false
-end
-function modifier_patrol_warp_amulet:IsPurgable()
-	return false
-end
+modifier_patrol_warp_amulet = class(mod_visible)
 function modifier_patrol_warp_amulet:GetTexture()
 	return "buffs/warp_amulet"
 end
-
-function modifier_patrol_warp_amulet:DeclareFunctions()
-	local decFuncs = {
-		MODIFIER_PROPERTY_OVERRIDE_ANIMATION,
-	}
-
-	return decFuncs
-end
-
-function modifier_patrol_warp_amulet:GetOverrideAnimation()
-	return ACT_DOTA_TELEPORT
-end
-
-function modifier_patrol_warp_amulet:DamageEvent_inc(params)
-	if not IsServer() then
-		return
-	end
-	if self:GetParent() ~= params.unit then
-		return
-	end
-	if self:GetParent() == params.attacker then
-		return
-	end
-
-	self:GetParent():Stop()
-end
-
 function modifier_patrol_warp_amulet:OnCreated(table)
+	self.parent = self:GetParent()
+
 	if not IsServer() then
 		return
 	end
 
-	self.parent = self:GetParent()
 	if self.parent:IsRealHero() then
 		self.parent:AddDamageEvent_inc(self, true)
 	end
@@ -240,12 +201,36 @@ function modifier_patrol_warp_amulet:OnCreated(table)
 	self:StartIntervalThink(0.1)
 end
 
+function modifier_patrol_warp_amulet:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_OVERRIDE_ANIMATION,
+	}
+end
+
+function modifier_patrol_warp_amulet:GetOverrideAnimation()
+	return ACT_DOTA_TELEPORT
+end
+
+function modifier_patrol_warp_amulet:DamageEvent_inc(params)
+	if not IsServer() then
+		return
+	end
+	if self.parent ~= params.unit then
+		return
+	end
+	if self.parent == params.attacker then
+		return
+	end
+
+	self.parent:Stop()
+end
+
 function modifier_patrol_warp_amulet:OnIntervalThink()
 	if not IsServer() then
 		return
 	end
 
 	if self.point then
-		AddFOWViewer(self:GetParent():GetTeamNumber(), self.point, 150, 0.1, false)
+		AddFOWViewer(self.parent:GetTeamNumber(), self.point, 150, 0.1, false)
 	end
 end

@@ -119,6 +119,11 @@ function arc_warden_tempest_double_custom:Precache(context)
 	PrecacheResource("particle", "particles/arc_warden/tempest_eam.vpcf", context)
 	PrecacheResource("particle", "particles/razor/link_purge.vpcf", context)
 	PrecacheResource("particle", "particles/arc_warden/scepter_shields.vpcf", context)
+	PrecacheResource("particle", "particles/enigma/summon_perma.vpcf", context)
+	PrecacheResource("particle", "particles/enigma/summon_spell_damage.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_kez/status_effect_kez_shield.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_arc_warden/arc_warden_flux_cast.vpcf", context)
+	PrecacheResource("particle", "particles/arc_warden/field_attack.vpcf", context)
 end
 
 function arc_warden_tempest_double_custom:UpdateTalents()
@@ -130,11 +135,6 @@ function arc_warden_tempest_double_custom:UpdateTalents()
 			r1_crit = 0,
 			r1_chance = caster:GetTalentValue("modifier_arc_warden_double_1", "chance", true),
 			r1_heal = caster:GetTalentValue("modifier_arc_warden_double_1", "heal", true) / 100,
-
-			has_r2 = 0,
-			r2_move = 0,
-			r2_range = 0,
-			r2_bonus = caster:GetTalentValue("modifier_arc_warden_double_2", "bonus", true),
 
 			has_r3 = 0,
 			r3_damage = 0,
@@ -160,12 +160,7 @@ function arc_warden_tempest_double_custom:UpdateTalents()
 		self.talents.has_r1 = 1
 		self.talents.r1_crit = caster:GetTalentValue("modifier_arc_warden_double_1", "crit")
 		caster:AddDamageEvent_out(self.tracker, true)
-	end
-
-	if caster:HasTalent("modifier_arc_warden_double_2") then
-		self.talents.has_r2 = 1
-		self.talents.r2_move = caster:GetTalentValue("modifier_arc_warden_double_2", "move")
-		self.talents.r2_range = caster:GetTalentValue("modifier_arc_warden_double_2", "range")
+		caster:AddRecordDestroyEvent(self.tracker, true)
 	end
 
 	if caster:HasTalent("modifier_arc_warden_double_3") then
@@ -178,17 +173,9 @@ function arc_warden_tempest_double_custom:UpdateTalents()
 		caster:AddDamageEvent_inc(self.tracker, true)
 	end
 
-	if caster:HasTalent("modifier_arc_warden_double_7") then
-		self.talents.has_r7 = 1
-	end
-
 	if caster:HasTalent("modifier_arc_warden_hero_6") then
 		self.talents.has_h6 = 1
 	end
-end
-
-function arc_warden_tempest_double_custom:Init()
-	self.caster = self:GetCaster()
 end
 
 function arc_warden_tempest_double_custom:GetIntrinsicModifierName()
@@ -215,7 +202,7 @@ function arc_warden_tempest_double_custom:OnInventoryContentsChanged()
 end
 
 function arc_warden_tempest_double_custom:OnAbilityPhaseStart()
-	return not self:GetCaster():IsTempestDouble()
+	return not self.caster:IsTempestDouble()
 end
 
 function arc_warden_tempest_double_custom:OnSpellStart(new_point, new_duration)
@@ -253,7 +240,7 @@ function arc_warden_tempest_double_custom:OnSpellStart(new_point, new_duration)
 
 	local duration = nil
 	if not self.caster:HasScepter() then
-		duration = new_duration and new_duration or self:GetSpecialValueFor("duration")
+		duration = new_duration and new_duration or self.duration
 		tempest:AddNewModifier(self.caster, self, "modifier_kill", { duration = duration })
 	end
 	tempest:AddNewModifier(self.caster, self, "modifier_arc_warden_tempest_double_custom", { duration = duration })
@@ -329,10 +316,10 @@ function arc_warden_tempest_double_custom:GetHerotempest()
 				self.caster,
 				self.caster:GetTeamNumber()
 			)
-			local tempes_ability = tempest:FindAbilityByName(self:GetName())
+			local tempest_ability = tempest:FindAbilityByName(self:GetName())
 
 			tempest:AddNewModifier(self.caster, self, "modifier_arc_warden_tempest_double", {})
-			tempest:AddNewModifier(tempest, tempes_ability, "modifier_arc_warden_tempest_double_custom_tracker", {})
+			tempest:AddNewModifier(tempest, tempest_ability, "modifier_arc_warden_tempest_double_custom_tracker", {})
 			local particle = ParticleManager:CreateParticle(
 				"particles/units/heroes/hero_arc_warden/arc_warden_tempest_eyes.vpcf",
 				PATTACH_ABSORIGIN,
@@ -430,7 +417,7 @@ function arc_warden_tempest_double_custom:ManageItems(tempest)
 		local itemName = self.caster:GetItemInSlot(itemSlot)
 		if
 			itemName
-			and itemName:GetName() ~= "item_rapier"
+			and itemName:GetName() ~= "item_rapier_custom"
 			and itemName:GetName() ~= "item_gem"
 			and itemName:GetName() ~= "item_patrol_necro"
 			and itemName:IsPermanent()
@@ -479,10 +466,10 @@ function arc_warden_tempest_double_custom:ManageBuffs(tempest)
 
 	tempest:SetAbilityPoints(0)
 
-	if active_talents[self.caster:GetUnitName()] then
+	if active_talents[self.caster:GetId()] then
 		local need_refresh = false
 
-		for talent, data in pairs(active_talents[self.caster:GetUnitName()]) do
+		for talent, data in pairs(active_talents[self.caster:GetId()]) do
 			if data.allow_illusion == 1 then
 				if not tempest.talents[talent] then
 					tempest.talents[talent] = 0
@@ -502,9 +489,8 @@ function arc_warden_tempest_double_custom:ManageBuffs(tempest)
 			end
 		end
 		if need_refresh then
-			local mod = tempest:FindModifierByName("modifier_general_stats_illusion")
-			if mod then
-				tempest:AddNewModifier(tempest, mod:GetAbility(), mod:GetName(), {})
+			if IsValid(tempest.stats_tracker) then
+				tempest:AddNewModifier(tempest, tempest.stats_tracker.ability, "modifier_general_stats", {})
 			end
 		end
 		tempest.global_refresh = nil
@@ -571,10 +557,9 @@ function modifier_arc_warden_tempest_double_custom:OnCreated()
 
 	self.parent:AddDeathEvent(self, true)
 
-	self.far_distance = self.ability:GetSpecialValueFor("far_distance")
-	self.damage_reduce = self.ability:GetSpecialValueFor("damage_reduce")
-	self.health_loss = self.ability:GetSpecialValueFor("health_loss")
-	self.bounty = self.ability:GetSpecialValueFor("bounty")
+	self.far_distance = self.ability.far_distance
+	self.damage_reduce = self.ability.damage_reduce
+	self.health_loss = self.ability.health_loss
 
 	if not IsServer() then
 		return
@@ -596,6 +581,7 @@ function modifier_arc_warden_tempest_double_custom:OnCreated()
 				item_handle:SetRenderColor(0, 0, 190)
 			end
 		end
+		counter = counter + 1
 		if counter >= 20 then
 			return
 		end
@@ -678,13 +664,12 @@ modifier_arc_warden_tempest_double_custom_far = class(mod_hidden)
 function modifier_arc_warden_tempest_double_custom_far:GetEffectName()
 	return "particles/enigma/summon_spell_damage.vpcf"
 end
-
-function modifier_arc_warden_tempest_double_custom_far:OnCreated()
-	self.damage = self:GetAbility():GetSpecialValueFor("damage_inc")
-end
-
 function modifier_arc_warden_tempest_double_custom_far:GetEffectAttachType()
 	return PATTACH_OVERHEAD_FOLLOW
+end
+function modifier_arc_warden_tempest_double_custom_far:OnCreated()
+	self.ability = self:GetAbility()
+	self.damage = self.ability.damage_inc
 end
 
 function modifier_arc_warden_tempest_double_custom_far:DeclareFunctions()
@@ -701,28 +686,25 @@ modifier_arc_warden_tempest_double_custom_tracker = class(mod_hidden)
 function modifier_arc_warden_tempest_double_custom_tracker:RemoveOnDeath()
 	return false
 end
-function modifier_arc_warden_tempest_double_custom_tracker:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
-		MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE,
-		MODIFIER_PROPERTY_STATUS_RESISTANCE_STACKING,
-		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
-		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
-	}
-end
-
 function modifier_arc_warden_tempest_double_custom_tracker:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 	self.ability.tracker = self
 	self.ability:UpdateTalents()
 
+	self.ability.duration = self.ability:GetSpecialValueFor("duration")
+	self.ability.far_distance = self.ability:GetSpecialValueFor("far_distance")
+	self.ability.damage_reduce = self.ability:GetSpecialValueFor("damage_reduce")
+	self.ability.health_loss = self.ability:GetSpecialValueFor("health_loss")
+	self.ability.damage_inc = self.ability:GetSpecialValueFor("damage_inc")
+	self.ability.scepter_move = self.ability:GetSpecialValueFor("scepter_move")
+	self.ability.scepter_damage_reduce = self.ability:GetSpecialValueFor("scepter_damage_reduce")
+
 	self.interval = 0.1
 	self.count = 0
 	self.max = 5
 
-	self.legendary_ability = self.parent:FindAbilityByName("modifier_arc_warden_tempest_double_custom_legendary_caster")
+	self.legendary_ability = self.parent:FindAbilityByName("arc_warden_tempest_double_custom_legendary")
 	if self.legendary_ability then
 		self.legendary_ability:UpdateTalents()
 	end
@@ -745,10 +727,21 @@ function modifier_arc_warden_tempest_double_custom_tracker:OnCreated()
 end
 
 function modifier_arc_warden_tempest_double_custom_tracker:OnRefresh()
+	self.ability.duration = self.ability:GetSpecialValueFor("duration")
+
 	if not IsServer() then
 		return
 	end
 	self.tempest_init = false
+end
+
+function modifier_arc_warden_tempest_double_custom_tracker:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
+		MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE,
+		MODIFIER_PROPERTY_STATUS_RESISTANCE_STACKING,
+		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
+	}
 end
 
 function modifier_arc_warden_tempest_double_custom_tracker:OnIntervalThink()
@@ -857,16 +850,6 @@ function modifier_arc_warden_tempest_double_custom_tracker:GetCritDamage()
 	return self.ability.talents.r1_crit
 end
 
-function modifier_arc_warden_tempest_double_custom_tracker:GetModifierMoveSpeedBonus_Constant()
-	return self.ability.talents.r2_move
-		* (self.parent:HasModifier("modifier_arc_warden_tempest_double_custom") and self.ability.talents.r2_bonus or 1)
-end
-
-function modifier_arc_warden_tempest_double_custom_tracker:GetModifierAttackRangeBonus()
-	return self.ability.talents.r2_range
-		* (self.parent:HasModifier("modifier_arc_warden_tempest_double_custom") and self.ability.talents.r2_bonus or 1)
-end
-
 function modifier_arc_warden_tempest_double_custom_tracker:GetModifierStatusResistanceStacking()
 	if not self.parent:HasModifier("modifier_arc_warden_tempest_double_custom") then
 		return
@@ -908,6 +891,9 @@ function modifier_arc_warden_tempest_double_custom_tracker:SpellEvent(params)
 	if not self.ability.cd_items[params.ability:GetName()] then
 		return
 	end
+	if not IsValid(tempest) then
+		return
+	end
 
 	local item = tempest:FindItemInInventory(params.ability:GetName())
 
@@ -924,7 +910,7 @@ function modifier_arc_warden_tempest_double_custom_tracker:GetModifierPreAttack_
 	if not self.parent:HasModifier("modifier_arc_warden_tempest_double_custom") then
 		return
 	end
-	if not self.ability.talents.has_r1 == 0 then
+	if self.ability.talents.has_r1 == 0 then
 		return
 	end
 	if not params.target:IsUnit() then
@@ -943,7 +929,7 @@ function modifier_arc_warden_tempest_double_custom_tracker:DamageEvent_out(param
 	if not IsServer() then
 		return
 	end
-	if not self.ability.talents.has_r1 == 0 then
+	if self.ability.talents.has_r1 == 0 then
 		return
 	end
 	if not self.parent:HasModifier("modifier_arc_warden_tempest_double_custom") then
@@ -1044,11 +1030,13 @@ function modifier_arc_warden_tempest_double_custom_tracker:GetModifierIncomingDa
 	end
 
 	local tempest = self.parent.tempest_double_tempest
-	if
-		not IsValid(tempest)
-		or not tempest:IsAlive()
-		or (tempest:GetAbsOrigin() - self.parent:GetAbsOrigin()):Length2D() > self.ability.talents.h6_radius
-	then
+	if not IsValid(tempest) then
+		return
+	end
+	if not tempest:IsAlive() then
+		return
+	end
+	if (tempest:GetAbsOrigin() - self.parent:GetAbsOrigin()):Length2D() > self.ability.talents.h6_radius then
 		return
 	end
 	if params.original_damage <= 0 then
@@ -1070,6 +1058,120 @@ function modifier_arc_warden_tempest_double_custom_tracker:GetModifierIncomingDa
 	return reduce
 end
 
+modifier_arc_warden_tempest_double_custom_lowhp = class(mod_hidden)
+function modifier_arc_warden_tempest_double_custom_lowhp:OnCreated(table)
+	if not IsServer() then
+		return
+	end
+	self.parent = self:GetParent()
+	self.target = EntIndexToHScript(table.target)
+
+	self.parent:EmitSound("Arc.Tempest_reduce")
+	self.parent:GenericParticle("particles/arc_warden/tempest_reduce.vpcf", self)
+
+	self.particle = ParticleManager:CreateParticle(
+		"particles/arc_warden/tempest_tether.vpcf",
+		PATTACH_ABSORIGIN_FOLLOW,
+		self.parent
+	)
+	ParticleManager:SetParticleControlEnt(
+		self.particle,
+		0,
+		self.parent,
+		PATTACH_POINT_FOLLOW,
+		"attach_hitloc",
+		self.parent:GetOrigin(),
+		true
+	)
+	ParticleManager:SetParticleControlEnt(
+		self.particle,
+		1,
+		self.target,
+		PATTACH_POINT_FOLLOW,
+		"attach_hitloc",
+		self.target:GetOrigin(),
+		true
+	)
+	self:AddParticle(self.particle, false, false, -1, false, false)
+end
+
+modifier_arc_warden_tempest_double_custom_items = class(mod_hidden)
+function modifier_arc_warden_tempest_double_custom_items:RemoveOnDeath()
+	return false
+end
+function modifier_arc_warden_tempest_double_custom_items:OnCreated()
+	if not IsServer() then
+		return
+	end
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+	self:StartIntervalThink(0.1)
+end
+
+function modifier_arc_warden_tempest_double_custom_items:OnIntervalThink()
+	if not IsServer() then
+		return
+	end
+	if not self.parent:IsAlive() then
+		return
+	end
+	if self.parent:IsChanneling() then
+		return
+	end
+
+	self.ability:ManageItems(self.parent)
+	self:Destroy()
+end
+
+modifier_arc_warden_tempest_double_custom_bkb_cd = class(mod_cd)
+function modifier_arc_warden_tempest_double_custom_bkb_cd:GetTexture()
+	return "buffs/arc_warden/double_4"
+end
+
+modifier_arc_warden_tempest_double_custom_auto_damage = class(mod_hidden)
+function modifier_arc_warden_tempest_double_custom_auto_damage:OnCreated()
+	self.ability = self:GetAbility()
+	self.damage = self.ability.talents.r3_damage - 100
+end
+
+function modifier_arc_warden_tempest_double_custom_auto_damage:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE,
+	}
+end
+
+function modifier_arc_warden_tempest_double_custom_auto_damage:GetModifierTotalDamageOutgoing_Percentage()
+	return self.damage
+end
+
+modifier_arc_warden_tempest_double_custom_scepter = class(mod_visible)
+function modifier_arc_warden_tempest_double_custom_scepter:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.damage_reduce = self.ability.scepter_damage_reduce
+	self.move = self.ability.scepter_move
+	if not IsServer() then
+		return
+	end
+	self.parent:GenericParticle("particles/arc_warden/scepter_shields.vpcf", self)
+end
+
+function modifier_arc_warden_tempest_double_custom_scepter:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+	}
+end
+
+function modifier_arc_warden_tempest_double_custom_scepter:GetModifierMoveSpeedBonus_Percentage()
+	return self.move
+end
+
+function modifier_arc_warden_tempest_double_custom_scepter:GetModifierIncomingDamage_Percentage()
+	return self.damage_reduce
+end
+
 arc_warden_tempest_double_custom_legendary = class({})
 arc_warden_tempest_double_custom_legendary.talents = {}
 
@@ -1079,41 +1181,52 @@ end
 
 function arc_warden_tempest_double_custom_legendary:UpdateTalents()
 	local caster = self:GetCaster()
-	if not self.init and caster:HasTalent("modifier_arc_warden_double_7") then
+	if not self.init then
 		self.init = true
+		self.talents = {
+			has_r7 = 0,
+			r7_cast = caster:GetTalentValue("modifier_arc_warden_double_7", "cast", true),
+			r7_talent_cd = caster:GetTalentValue("modifier_arc_warden_double_7", "talent_cd", true),
+			r7_duration = caster:GetTalentValue("modifier_arc_warden_double_7", "duration", true),
+			r7_damage_reduce = caster:GetTalentValue("modifier_arc_warden_double_7", "damage_reduce", true),
+			r7_range = caster:GetTalentValue("modifier_arc_warden_double_7", "range", true),
+			r7_damage = caster:GetTalentValue("modifier_arc_warden_double_7", "damage", true),
+			r7_health = caster:GetTalentValue("modifier_arc_warden_double_7", "health", true),
+		}
+	end
+
+	if caster:HasTalent("modifier_arc_warden_double_7") then
+		self.talents.has_r7 = 1
 		if IsServer() and not self:IsTrained() then
 			self:SetLevel(1)
 		end
-		self.talents.cast = caster:GetTalentValue("modifier_arc_warden_double_7", "cast")
-		self.talents.cd = caster:GetTalentValue("modifier_arc_warden_double_7", "talent_cd")
-		self.talents.duration = caster:GetTalentValue("modifier_arc_warden_double_7", "duration")
-		self.talents.damage_reduce = caster:GetTalentValue("modifier_arc_warden_double_7", "damage_reduce")
-		self.talents.stack = caster:GetTalentValue("modifier_arc_warden_double_7", "stack")
-		self.talents.range = caster:GetTalentValue("modifier_arc_warden_double_7", "range")
-		self.talents.damage = caster:GetTalentValue("modifier_arc_warden_double_7", "damage")
-		self.talents.health = caster:GetTalentValue("modifier_arc_warden_double_7", "health")
 	end
 end
 
 function arc_warden_tempest_double_custom_legendary:GetCooldown()
-	return (self.talents.cd and self.talents.cd or 0)
+	return self.talents.has_r7 == 1 and self.talents.r7_talent_cd or 0
 end
 
 function arc_warden_tempest_double_custom_legendary:OnSpellStart()
-	local caster = self:GetCaster()
-	caster:AddNewModifier(
-		caster,
+	self.caster:AddNewModifier(
+		self.caster,
 		self,
 		"modifier_arc_warden_tempest_double_custom_legendary_caster",
-		{ duration = self.talents.cast + 0.1 }
+		{ duration = self.talents.r7_cast + 0.1 }
 	)
 end
 
 modifier_arc_warden_tempest_double_custom_legendary_caster = class(mod_hidden)
+function modifier_arc_warden_tempest_double_custom_legendary_caster:GetStatusEffectName()
+	return "particles/units/heroes/hero_kez/status_effect_kez_shield.vpcf"
+end
+function modifier_arc_warden_tempest_double_custom_legendary_caster:StatusEffectPriority()
+	return MODIFIER_PRIORITY_ULTRA
+end
 function modifier_arc_warden_tempest_double_custom_legendary_caster:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
-	self.damage_reduce = self.ability.talents.damage_reduce
+	self.damage_reduce = self.ability.talents.r7_damage_reduce
 
 	if not IsServer() then
 		return
@@ -1146,7 +1259,7 @@ function modifier_arc_warden_tempest_double_custom_legendary_caster:OnIntervalTh
 			self.parent,
 			self.ability,
 			"modifier_arc_warden_tempest_double_custom_legendary",
-			{ duration = self.ability.talents.duration }
+			{ duration = self.ability.talents.r7_duration }
 		)
 	end
 end
@@ -1202,14 +1315,6 @@ function modifier_arc_warden_tempest_double_custom_legendary_caster:GetOverrideA
 	return ACT_DOTA_TELEPORT
 end
 
-function modifier_arc_warden_tempest_double_custom_legendary_caster:GetStatusEffectName()
-	return "particles/units/heroes/hero_kez/status_effect_kez_shield.vpcf"
-end
-
-function modifier_arc_warden_tempest_double_custom_legendary_caster:StatusEffectPriority()
-	return MODIFIER_PRIORITY_ULTRA
-end
-
 function modifier_arc_warden_tempest_double_custom_legendary_caster:CheckState()
 	return {
 		[MODIFIER_STATE_ROOTED] = true,
@@ -1218,22 +1323,28 @@ function modifier_arc_warden_tempest_double_custom_legendary_caster:CheckState()
 end
 
 modifier_arc_warden_tempest_double_custom_legendary = class(mod_hidden)
+function modifier_arc_warden_tempest_double_custom_legendary:GetEffectName()
+	return "particles/generic_gameplay/rune_doubledamage_owner.vpcf"
+end
+function modifier_arc_warden_tempest_double_custom_legendary:GetPriority()
+	return MODIFIER_PRIORITY_HIGH
+end
 function modifier_arc_warden_tempest_double_custom_legendary:OnCreated(table)
 	self.caster = self:GetCaster()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.range = self.ability.talents.range
-	self.cast = self.ability.talents.cast
+	self.range = self.ability.talents.r7_range
+	self.cast = self.ability.talents.r7_cast
 
 	self.interval = 0.1
 	self.max = self.cast / self.interval
 
-	self.damage = self.ability.talents.damage / self.max
-	self.health = self.ability.talents.health / self.max
+	self.damage = self.ability.talents.r7_damage / self.max
+	self.health = self.ability.talents.r7_health / self.max
 	self.size = 30 / self.max
 
-	self.duration = self.ability.talents.duration
+	self.duration = self.ability.talents.r7_duration
 
 	if not IsServer() then
 		return
@@ -1373,96 +1484,30 @@ function modifier_arc_warden_tempest_double_custom_legendary:GetModifierModelSca
 	return self.size * self:GetStackCount()
 end
 
-function modifier_arc_warden_tempest_double_custom_legendary:GetEffectName()
-	return "particles/generic_gameplay/rune_doubledamage_owner.vpcf"
-end
-
 function modifier_arc_warden_tempest_double_custom_legendary:GetModifierProjectileName()
 	return "particles/arc_warden/field_attack.vpcf"
 end
 
-function modifier_arc_warden_tempest_double_custom_legendary:GetPriority()
-	return MODIFIER_PRIORITY_HIGH
-end
-
-modifier_arc_warden_tempest_double_custom_lowhp = class(mod_hidden)
-function modifier_arc_warden_tempest_double_custom_lowhp:OnCreated(table)
-	if not IsServer() then
-		return
-	end
-	self.parent = self:GetParent()
-	self.target = EntIndexToHScript(table.target)
-
-	self.parent:EmitSound("Arc.Tempest_reduce")
-	self.parent:GenericParticle("particles/arc_warden/tempest_reduce.vpcf", self)
-
-	self.particle = ParticleManager:CreateParticle(
-		"particles/arc_warden/tempest_tether.vpcf",
-		PATTACH_ABSORIGIN_FOLLOW,
-		self.parent
-	)
-	ParticleManager:SetParticleControlEnt(
-		self.particle,
-		0,
-		self.parent,
-		PATTACH_POINT_FOLLOW,
-		"attach_hitloc",
-		self.parent:GetOrigin(),
-		true
-	)
-	ParticleManager:SetParticleControlEnt(
-		self.particle,
-		1,
-		self.target,
-		PATTACH_POINT_FOLLOW,
-		"attach_hitloc",
-		self.target:GetOrigin(),
-		true
-	)
-	self:AddParticle(self.particle, false, false, -1, false, false)
-end
-
-modifier_arc_warden_tempest_double_custom_items = class(mod_hidden)
-function modifier_arc_warden_tempest_double_custom_items:RemoveOnDeath()
-	return false
-end
-function modifier_arc_warden_tempest_double_custom_items:OnCreated()
-	if not IsServer() then
-		return
-	end
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-	self:StartIntervalThink(0.1)
-end
-
-function modifier_arc_warden_tempest_double_custom_items:OnIntervalThink()
-	if not IsServer() then
-		return
-	end
-	if not self.parent:IsAlive() then
-		return
-	end
-	if self.parent:IsChanneling() then
-		return
-	end
-
-	self.ability:ManageItems(self.parent)
-	self:Destroy()
-end
-
 arc_warden_tempest_double_custom_reunion = class({})
+function arc_warden_tempest_double_custom_reunion:Init()
+	if not self:GetCaster() then
+		return
+	end
+	self.caster = self:GetCaster()
+
+	self.channel_time = self:GetLevelSpecialValueFor("channel_time", 1)
+end
 
 function arc_warden_tempest_double_custom_reunion:GetChannelTime()
-	return self:GetSpecialValueFor("channel_time")
+	return self.channel_time or 0
 end
 
 function arc_warden_tempest_double_custom_reunion:OnAbilityPhaseStart()
-	return self:GetCaster():CanTeleport()
+	return self.caster:CanTeleport()
 end
 
 function arc_warden_tempest_double_custom_reunion:OnSpellStart()
-	local caster = self:GetCaster()
-	local tempest = caster:GetTempest()
+	local tempest = self.caster:GetTempest()
 	if tempest then
 		local ability = tempest:FindAbilityByName(self:GetName())
 		if ability then
@@ -1470,14 +1515,13 @@ function arc_warden_tempest_double_custom_reunion:OnSpellStart()
 		end
 	end
 
-	caster:AddNewModifier(caster, self, "modifier_arc_warden_tempest_double_custom_scepter_tp", {})
+	self.caster:AddNewModifier(self.caster, self, "modifier_arc_warden_tempest_double_custom_scepter_tp", {})
 end
 
 function arc_warden_tempest_double_custom_reunion:OnChannelFinish(bInterrupted)
-	local caster = self:GetCaster()
-	caster:RemoveModifierByName("modifier_arc_warden_tempest_double_custom_scepter_tp")
+	self.caster:RemoveModifierByName("modifier_arc_warden_tempest_double_custom_scepter_tp")
 
-	local target = caster:GetTempest()
+	local target = self.caster:GetTempest()
 	if bInterrupted then
 		return
 	end
@@ -1487,25 +1531,25 @@ function arc_warden_tempest_double_custom_reunion:OnChannelFinish(bInterrupted)
 
 	local point = target:GetAbsOrigin()
 
-	EmitSoundOnLocationWithCaster(caster:GetAbsOrigin(), "Arc.Teleport_start", caster)
-	EmitSoundOnLocationWithCaster(caster:GetAbsOrigin(), "Arc.Teleport_start2", caster)
-	EmitSoundOnLocationWithCaster(point, "Arc.Teleport_end", caster)
+	EmitSoundOnLocationWithCaster(self.caster:GetAbsOrigin(), "Arc.Teleport_start", self.caster)
+	EmitSoundOnLocationWithCaster(self.caster:GetAbsOrigin(), "Arc.Teleport_start2", self.caster)
+	EmitSoundOnLocationWithCaster(point, "Arc.Teleport_end", self.caster)
 
 	local particle =
 		ParticleManager:CreateParticle("particles/arc_warden/legendary_tp_start.vpcf", PATTACH_WORLDORIGIN, nil)
-	ParticleManager:SetParticleControl(particle, 0, caster:GetAbsOrigin())
+	ParticleManager:SetParticleControl(particle, 0, self.caster:GetAbsOrigin())
 	ParticleManager:ReleaseParticleIndex(particle)
 
 	particle = ParticleManager:CreateParticle(
 		"particles/units/heroes/hero_arc_warden/arc_warden_tempest_cast.vpcf",
 		PATTACH_WORLDORIGIN,
-		caster
+		self.caster
 	)
-	ParticleManager:SetParticleControl(particle, 0, caster:GetAbsOrigin())
+	ParticleManager:SetParticleControl(particle, 0, self.caster:GetAbsOrigin())
 	ParticleManager:ReleaseParticleIndex(particle)
 
-	caster:AddNewModifier(
-		caster,
+	self.caster:AddNewModifier(
+		self.caster,
 		self,
 		"modifier_arc_warden_tempest_double_custom_scepter_tp_invun",
 		{ duration = 0.2, x = point.x, y = point.y }
@@ -1517,10 +1561,9 @@ function arc_warden_tempest_double_custom_reunion:OnChannelFinish(bInterrupted)
 end
 
 function arc_warden_tempest_double_custom_reunion:OnChannelThink(fInterval)
-	local caster = self:GetCaster()
-	if not caster:TeleportThink() then
-		caster:Stop()
-		caster:Interrupt()
+	if not self.caster:TeleportThink() then
+		self.caster:Stop()
+		self.caster:Interrupt()
 	end
 end
 
@@ -1556,18 +1599,7 @@ function modifier_arc_warden_tempest_double_custom_scepter_tp:CheckState()
 	}
 end
 
-modifier_arc_warden_tempest_double_custom_bkb_cd = class(mod_cd)
-function modifier_arc_warden_tempest_double_custom_bkb_cd:GetTexture()
-	return "buffs/arc_warden/double_4"
-end
-
-modifier_arc_warden_tempest_double_custom_scepter_tp_invun = class({})
-function modifier_arc_warden_tempest_double_custom_scepter_tp_invun:IsHidden()
-	return true
-end
-function modifier_arc_warden_tempest_double_custom_scepter_tp_invun:IsPurgable()
-	return false
-end
+modifier_arc_warden_tempest_double_custom_scepter_tp_invun = class(mod_hidden)
 function modifier_arc_warden_tempest_double_custom_scepter_tp_invun:OnCreated(table)
 	if not IsServer() then
 		return
@@ -1606,7 +1638,7 @@ function modifier_arc_warden_tempest_double_custom_scepter_tp_invun:OnDestroy()
 	self.parent:EmitSound("Arc.Teleport_end2")
 	self.parent:StartGesture(ACT_DOTA_TELEPORT_END)
 
-	particle = ParticleManager:CreateParticle(
+	local particle = ParticleManager:CreateParticle(
 		"particles/units/heroes/hero_arc_warden/arc_warden_tempest_cast.vpcf",
 		PATTACH_WORLDORIGIN,
 		self.parent
@@ -1622,47 +1654,4 @@ function modifier_arc_warden_tempest_double_custom_scepter_tp_invun:CheckState()
 		[MODIFIER_STATE_INVULNERABLE] = true,
 		[MODIFIER_STATE_OUT_OF_GAME] = true,
 	}
-end
-
-modifier_arc_warden_tempest_double_custom_auto_damage = class(mod_hidden)
-function modifier_arc_warden_tempest_double_custom_auto_damage:OnCreated()
-	self.damage = self:GetAbility().talents.r3_damage - 100
-end
-
-function modifier_arc_warden_tempest_double_custom_auto_damage:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE,
-	}
-end
-
-function modifier_arc_warden_tempest_double_custom_auto_damage:GetModifierTotalDamageOutgoing_Percentage()
-	return self.damage
-end
-
-modifier_arc_warden_tempest_double_custom_scepter = class(mod_visible)
-function modifier_arc_warden_tempest_double_custom_scepter:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.damage_reduce = self.ability:GetSpecialValueFor("scepter_damage_reduce")
-	self.move = self.ability:GetSpecialValueFor("scepter_move")
-	if not IsServer() then
-		return
-	end
-	self.parent:GenericParticle("particles/arc_warden/scepter_shields.vpcf", self)
-end
-
-function modifier_arc_warden_tempest_double_custom_scepter:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-	}
-end
-
-function modifier_arc_warden_tempest_double_custom_scepter:GetModifierMoveSpeedBonus_Percentage()
-	return self.move
-end
-
-function modifier_arc_warden_tempest_double_custom_scepter:GetModifierIncomingDamage_Percentage()
-	return self.damage_reduce
 end

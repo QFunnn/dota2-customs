@@ -57,10 +57,6 @@ LinkLuaModifier(
 pangolier_swashbuckle_custom = class({})
 pangolier_swashbuckle_custom.talents = {}
 
-function pangolier_swashbuckle_custom:GetAbilityTextureName()
-	return wearables_system:GetAbilityIconReplacement(self.caster, "pangolier_swashbuckle", self)
-end
-
 function pangolier_swashbuckle_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
@@ -68,11 +64,9 @@ function pangolier_swashbuckle_custom:Precache(context)
 
 	PrecacheResource("particle", "particles/jugg_legendary_proc_.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_pangolier/pangolier_swashbuckler_dash.vpcf", context)
-	PrecacheResource("particle", "particles/units/heroes/hero_pangolier/pangolier_swashbuckler_dash.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_marci/marci_rebound_allymovespeed.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_pangolier/pangolier_swashbuckler.vpcf", context)
 	PrecacheResource("particle", "particles/pangolier/buckle_stacks.vpcf", context)
-	PrecacheResource("particle", "particles/units/heroes/hero_pangolier/pangolier_swashbuckler.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_sniper/sniper_headshot_slow.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_snapfire_slow.vpcf", context)
 	PrecacheResource("particle", "particles/pangolier/linken_active.vpcf", context)
@@ -126,6 +120,9 @@ function pangolier_swashbuckle_custom:UpdateTalents(name)
 
 			has_e2 = 0,
 			e2_range = 0,
+
+			has_e4 = 0,
+			e4_cd_legendary = caster:GetTalentValue("modifier_pangolier_lucky_4", "cd_legendary", true) / 100,
 		}
 	end
 
@@ -140,19 +137,19 @@ function pangolier_swashbuckle_custom:UpdateTalents(name)
 		self.talents.has_q2 = 1
 		self.talents.q2_cd = caster:GetTalentValue("modifier_pangolier_buckle_2", "cd")
 		self.talents.q2_slow = caster:GetTalentValue("modifier_pangolier_buckle_2", "slow")
-		self.caster:AddAttackEvent_out(self.tracker, true)
+		caster:AddAttackEvent_out(self.tracker, true)
 	end
 
 	if caster:HasTalent("modifier_pangolier_buckle_3") then
 		self.talents.has_q3 = 1
 		self.talents.q3_crit = caster:GetTalentValue("modifier_pangolier_buckle_3", "crit")
 		self.talents.q3_damage = caster:GetTalentValue("modifier_pangolier_buckle_3", "damage") / 100
-		self.caster:AddAttackEvent_out(self.tracker, true)
+		caster:AddAttackEvent_out(self.tracker, true)
 	end
 
 	if caster:HasTalent("modifier_pangolier_buckle_4") then
 		self.talents.has_q4 = 1
-		self.caster:AddAttackEvent_out(self.tracker, true)
+		caster:AddAttackEvent_out(self.tracker, true)
 	end
 
 	if caster:HasTalent("modifier_pangolier_buckle_7") then
@@ -168,6 +165,14 @@ function pangolier_swashbuckle_custom:UpdateTalents(name)
 		self.talents.has_e2 = 1
 		self.talents.e2_range = caster:GetTalentValue("modifier_pangolier_lucky_2", "range")
 	end
+
+	if caster:HasTalent("modifier_pangolier_lucky_4") then
+		self.talents.has_e4 = 1
+	end
+end
+
+function pangolier_swashbuckle_custom:GetAbilityTextureName()
+	return wearables_system:GetAbilityIconReplacement(self.caster, "pangolier_swashbuckle", self)
 end
 
 function pangolier_swashbuckle_custom:GetIntrinsicModifierName()
@@ -178,7 +183,7 @@ function pangolier_swashbuckle_custom:GetIntrinsicModifierName()
 end
 
 function pangolier_swashbuckle_custom:GetCooldown(iLevel)
-	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.q2_cd and self.talents.q2_cd or 0)
+	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.q2_cd or 0)
 end
 
 function pangolier_swashbuckle_custom:GetCastRange(vLocation, hTarget)
@@ -190,7 +195,7 @@ function pangolier_swashbuckle_custom:GetCastRange(vLocation, hTarget)
 end
 
 function pangolier_swashbuckle_custom:GetRange()
-	return self.range + (self.talents.e2_range and self.talents.e2_range or 0)
+	return self.range + (self.talents.e2_range or 0)
 end
 
 function pangolier_swashbuckle_custom:GetManaCost(level)
@@ -230,7 +235,7 @@ function pangolier_swashbuckle_custom:OnVectorCastStart(vStartLocation, vDirecti
 	vector.z = 0
 	vector = vector:Normalized()
 
-	self.caster:SetForwardVector(direction)
+	self.caster:FacePoint(self.caster:GetAbsOrigin() + direction)
 
 	local duration = dist / speed + 0.3
 	self.caster:AddNewModifier(
@@ -246,9 +251,13 @@ function pangolier_swashbuckle_custom:OnVectorCastStart(vStartLocation, vDirecti
 		duration = duration,
 	})
 
-	if IsValid(self.caster.lucky_ability) and self.caster.lucky_ability:GetCooldownTimeRemaining() > 0 then
+	if
+		self.talents.has_e4 == 1
+		and IsValid(self.caster.lucky_ability)
+		and self.caster.lucky_ability:GetCooldownTimeRemaining() > 0
+	then
 		if self.talents.has_q7 == 1 then
-			self.caster:CdAbility(self.caster.lucky_ability, nil, self.caster.lucky_ability.talents.e4_cd_legendary)
+			self.caster:CdAbility(self.caster.lucky_ability, nil, self.talents.e4_cd_legendary)
 		else
 			self.caster.lucky_ability:EndCooldown()
 		end
@@ -278,12 +287,12 @@ end
 
 modifier_pangolier_swashbuckle_custom_dash = class(mod_hidden)
 function modifier_pangolier_swashbuckle_custom_dash:OnCreated(kv)
-	if not IsServer() then
-		return
-	end
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
+	if not IsServer() then
+		return
+	end
 	self.parent:EmitSound("Hero_Pangolier.Swashbuckle.Cast")
 	self.parent:EmitSound("Hero_Pangolier.Swashbuckle.Layer")
 
@@ -344,9 +353,11 @@ end
 function modifier_pangolier_swashbuckle_custom_dash:GetOverrideAnimation()
 	return ACT_DOTA_CAST_ABILITY_1
 end
+
 function modifier_pangolier_swashbuckle_custom_dash:GetModifierDisableTurning()
 	return 1
 end
+
 function modifier_pangolier_swashbuckle_custom_dash:OnDestroy()
 	if not IsServer() then
 		return
@@ -493,8 +504,8 @@ function modifier_pangolier_swashbuckle_custom_attacks:OnIntervalThink()
 				target:GenericParticle("particles/jugg_legendary_proc_.vpcf")
 				target:EmitSound("Pango.Swash_legendary_stun")
 				target:AddNewModifier(
-					self.caster,
-					self,
+					self.parent,
+					self.ability,
 					"modifier_stunned",
 					{ duration = (1 - target:GetStatusResistance()) * self.ability.talents.q7_stun }
 				)
@@ -623,7 +634,7 @@ function modifier_pangolier_swashbuckle_custom_tracker:UpdateUI()
 	if not IsServer() then
 		return
 	end
-	if not self.ability.talents.has_q7 == 0 then
+	if self.ability.talents.has_q7 == 0 then
 		return
 	end
 
@@ -770,20 +781,14 @@ function modifier_pangolier_swashbuckle_custom_legendary_stack:OnRefresh()
 	end
 	self:IncrementStackCount()
 
+	if self.ability.tracker then
+		self.ability.tracker:UpdateUI()
+	end
+
 	if self:GetStackCount() >= self.max then
 		self.parent:EmitSound("Pango.Swash_legendary_ready")
 		self.parent:GenericParticle("particles/lc_odd_proc_.vpcf")
 		self.parent:GenericParticle("particles/sven/cleave_speed_ready.vpcf", self, true)
-	end
-end
-
-function modifier_pangolier_swashbuckle_custom_legendary_stack:OnStackCountChanged()
-	if not IsServer() then
-		return
-	end
-
-	if self.ability.tracker then
-		self.ability.tracker:UpdateUI()
 	end
 end
 
@@ -960,7 +965,8 @@ function modifier_pangolier_swashbuckle_custom_slow:IsPurgable()
 	return true
 end
 function modifier_pangolier_swashbuckle_custom_slow:OnCreated()
-	self.slow = self:GetAbility().slow
+	self.ability = self:GetAbility()
+	self.slow = self.ability.slow
 end
 
 function modifier_pangolier_swashbuckle_custom_slow:DeclareFunctions()
@@ -1043,7 +1049,7 @@ function modifier_pangolier_swashbuckle_custom_blood:OnCreated(table)
 	self.parent:GenericParticle("particles/items2_fx/sange_maim.vpcf", self)
 
 	self.RemoveForDuel = true
-	self:AddStack(table.damage)
+	self:OnRefresh(table)
 	self:StartIntervalThink(self.interval)
 end
 
@@ -1051,14 +1057,7 @@ function modifier_pangolier_swashbuckle_custom_blood:OnRefresh(table)
 	if not IsServer() then
 		return
 	end
-	self:AddStack(table.damage)
-end
-
-function modifier_pangolier_swashbuckle_custom_blood:AddStack(damage)
-	if not IsServer() then
-		return
-	end
-	self.total_damage = self.total_damage + damage
+	self.total_damage = self.total_damage + table.damage
 	self.tick = self.total_damage / self.duration
 	self.count = self.duration
 	self.damageTable.damage = self.tick

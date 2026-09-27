@@ -62,9 +62,12 @@ function modifier_duel_field_thinker:OnCreated(table)
 	self:StartIntervalThink(self.interval)
 end
 
-function modifier_duel_field_thinker:CheckPos(pos)
+function modifier_duel_field_thinker:CheckPos(pos, radius)
 	if not IsServer() then
 		return
+	end
+	if radius then
+		return ((pos - self.center):Length2D() <= radius)
 	end
 	return ((pos - self.center):Length2D() <= self.radius and GetGroundHeight(pos, nil) >= self.height)
 end
@@ -128,9 +131,7 @@ function modifier_duel_field_thinker:OnIntervalThink()
 				self.thinker_vision,
 				DOTA_UNIT_TARGET_TEAM_ENEMY,
 				DOTA_UNIT_TARGET_HERO,
-				DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
-					+ DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD
-					+ MODIFIER_STATE_INVULNERABLE,
+				DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD + MODIFIER_STATE_INVULNERABLE,
 				FIND_CLOSEST,
 				false
 			)
@@ -158,35 +159,55 @@ function modifier_duel_field_thinker:OnIntervalThink()
 			end
 		end
 
-		local all_units = FindUnitsInRadius(
-			self.parent:GetTeamNumber(),
-			self.parent:GetAbsOrigin(),
-			nil,
-			FIND_UNITS_EVERYWHERE,
-			DOTA_UNIT_TARGET_TEAM_BOTH,
-			DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-			DOTA_UNIT_TARGET_FLAG_INVULNERABLE
-				+ DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
-				+ DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD,
-			FIND_CLOSEST,
-			false
-		)
+		local types = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
+		local flags = DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD
 
-		for _, unit in pairs(all_units) do
-			if
-				not unit:IsCourier()
-				and unit:GetUnitName() ~= "npc_teleport"
-				and unit:GetTeamNumber() ~= DOTA_TEAM_NEUTRALS
-				and unit:GetTeamNumber() ~= DOTA_TEAM_CUSTOM_5
-			then
-				local is_allowed = false
-				for _, team in pairs(duel_mod.teams) do
-					if team == unit:GetTeamNumber() then
-						is_allowed = true
-						break
-					end
+		for _, team in pairs(duel_mod.teams) do
+			for _, unit in
+				pairs(
+					FindUnitsInRadius(
+						team,
+						self.center,
+						nil,
+						FIND_UNITS_EVERYWHERE,
+						DOTA_UNIT_TARGET_TEAM_FRIENDLY,
+						types,
+						flags,
+						FIND_ANY_ORDER,
+						false
+					)
+				)
+			do
+				if not unit:IsCourier() and unit:GetUnitName() ~= "npc_teleport" then
+					self:CheckPosition(unit, true)
 				end
-				self:CheckPosition(unit, is_allowed)
+			end
+		end
+
+		for _, unit in
+			pairs(
+				FindUnitsInRadius(
+					self.parent:GetTeamNumber(),
+					self.center,
+					nil,
+					self.radius + 100,
+					DOTA_UNIT_TARGET_TEAM_BOTH,
+					types,
+					flags,
+					FIND_ANY_ORDER,
+					false
+				)
+			)
+		do
+			local team = unit:GetTeamNumber()
+			if
+				not duel_mod.teams_check[team]
+				and team ~= DOTA_TEAM_NEUTRALS
+				and team ~= DOTA_TEAM_CUSTOM_5
+				and not unit:IsCourier()
+				and unit:GetUnitName() ~= "npc_teleport"
+			then
+				self:CheckPosition(unit, false)
 			end
 		end
 
@@ -280,7 +301,7 @@ function modifier_duel_field_thinker:OnIntervalThink()
 				self.radius,
 				DOTA_UNIT_TARGET_TEAM_ENEMY,
 				DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-				DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD,
+				DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD,
 				FIND_CLOSEST,
 				false
 			)
@@ -560,7 +581,7 @@ function modifier_duel_field_active_thinker:OnCreated(params)
 	end
 
 	for i, team in pairs(self.teams) do
-		if duel_data[self.index].top3 then
+		if duel_data[self.index].top3 == 1 then
 			towers[team].won_duel = -1
 		end
 		local ids = dota1x6:FindPlayers(team)
@@ -597,6 +618,9 @@ function modifier_duel_field_active_thinker:OnCreated(params)
 					hero:StopSound("UI.Duel_teleport_loop")
 					hero:RemoveModifierByName("modifier_duel_hero_teleport")
 
+					hero:Stop()
+					hero:InterruptMotionControllers(false)
+
 					hero:SetAbsOrigin(point)
 					FindClearSpaceForUnit(hero, point, false)
 					hero:SetForwardVector(start_dir[i])
@@ -604,6 +628,20 @@ function modifier_duel_field_active_thinker:OnCreated(params)
 
 					self:SetStart(hero, point)
 				end
+			end
+		end
+	end
+
+	for _, thinker in pairs(Entities:FindAllByClassname("npc_dota_thinker")) do
+		if towers[thinker:GetTeamNumber()] and self.thinker_mod:CheckPos(thinker:GetAbsOrigin(), 2500) then
+			for _, mod in pairs(thinker:FindAllModifiers()) do
+				if IsValid(mod) then
+					mod:Destroy()
+				end
+			end
+
+			if IsValid(thinker) then
+				UTIL_Remove(thinker)
 			end
 		end
 	end
@@ -628,7 +666,7 @@ function modifier_duel_field_active_thinker:SetStart(hero, point)
 		"modifier_duel_hero_thinker",
 		{ team_1 = self.teams[1], team_2 = self.teams[2], x = point.x, y = point.y }
 	)
-	hero:AddNewModifier(hero, nil, "modifier_duel_hero_start", { duration = duel_start })
+	hero:AddNewModifier(hero, nil, "modifier_duel_hero_start", { duration = duel_start, index = self.index })
 
 	local mod = hero:FindModifierByName("modifier_custom_necromastery_souls")
 	if mod then
@@ -821,19 +859,15 @@ function modifier_duel_field_active_thinker:FinishDuel()
 			end
 		else
 			local mod = hero:FindModifierByName("modifier_duel_hero_thinker")
-			if mod and not mod.ended then
-				mod:SetEnd(self.winner == team)
+			if mod then
+				mod:SetEnd()
 			end
 
 			if not hero:IsAlive() and players[hero:GetId()] then
 				hero:SetTimeUntilRespawn(2)
 			end
 
-			hero:ModifyGoldFiltered(300, true, DOTA_ModifyGold_Unspecified)
-
-			Timers:CreateTimer(0.1, function()
-				dota1x6:EndAllCooldowns(hero)
-			end)
+			hero:GiveGold(300, nil, true, "lane")
 		end
 	end
 
@@ -849,6 +883,12 @@ function modifier_duel_field_active_thinker:FinishDuel()
 		for _, team in pairs(self.teams) do
 			if towers[team] then
 				towers[team].duel_data = -1
+				towers[team]:AddNewModifier(
+					towers[team],
+					nil,
+					"modifier_duel_tower_return",
+					{ duration = duel_end_time + duel_return_time, winner = team == self.winner and 1 or 0 }
+				)
 			end
 		end
 
@@ -965,8 +1005,6 @@ function modifier_duel_hero_thinker:OnCreated(table)
 
 	self.parent.field_invun_mod = self
 
-	self.ended = false
-	self.winner = false
 	self:StartIntervalThink(duel_start)
 end
 
@@ -974,6 +1012,8 @@ function modifier_duel_hero_thinker:OnIntervalThink()
 	if not IsServer() then
 		return
 	end
+	self.parent:Stop()
+	self.parent:InterruptMotionControllers(false)
 	self.parent:Purge(false, true, false, true, true)
 	self.parent:SetAbsOrigin(self.point)
 	FindClearSpaceForUnit(self.parent, self.point, false)
@@ -982,22 +1022,17 @@ function modifier_duel_hero_thinker:OnIntervalThink()
 	self:StartIntervalThink(-1)
 end
 
-function modifier_duel_hero_thinker:SetEnd(winner)
+function modifier_duel_hero_thinker:SetEnd()
 	if not IsServer() then
 		return
 	end
-	self.ended = true
-	self.winner = winner
-	self:SetDuration(2, true)
-end
-
-function modifier_duel_hero_thinker:CheckState()
-	if not self.ended then
-		return
-	end
-	return {
-		[MODIFIER_STATE_INVULNERABLE] = true,
-	}
+	self.parent:AddNewModifier(
+		self.parent,
+		nil,
+		"modifier_duel_hero_return",
+		{ duration = duel_end_time + duel_return_time }
+	)
+	self:Destroy()
 end
 
 function modifier_duel_hero_thinker:OnDestroy()
@@ -1008,34 +1043,6 @@ function modifier_duel_hero_thinker:OnDestroy()
 	if self.parent.field_invun_mod == self then
 		self.parent.field_invun_mod = nil
 	end
-
-	if not self.ended then
-		return
-	end
-
-	if towers[self.parent:GetTeamNumber()] then
-		local point = towers[self.parent:GetTeamNumber()]:GetAbsOrigin() + RandomVector(300)
-		self.parent:Purge(false, true, false, true, true)
-		self.parent:SetAbsOrigin(point)
-		FindClearSpaceForUnit(self.parent, point, false)
-
-		self.parent:AddNewModifier(self.parent, nil, "modifier_invulnerable", { duration = 3 })
-
-		local id = self.parent:GetPlayerOwnerID()
-
-		PlayerResource:SetCameraTarget(id, self.parent)
-		Timers:CreateTimer(0.5, function()
-			PlayerResource:SetCameraTarget(id, nil)
-		end)
-	end
-
-	if self.winner then
-		dota1x6:CreateUpgradeOrb(self.parent, 1)
-	end
-
-	self.parent:Purge(false, true, false, true, true)
-	self.parent:SetHealth(self.parent:GetMaxHealth())
-	self.parent:SetMana(self.parent:GetMaxMana())
 end
 
 function modifier_duel_hero_thinker:DeclareFunctions()
@@ -1055,9 +1062,6 @@ function modifier_duel_hero_thinker:NoDamage(unit)
 		return
 	end
 	if not self.team_1 or not self.team_2 then
-		return
-	end
-	if self.ended then
 		return
 	end
 
@@ -1132,6 +1136,98 @@ function modifier_duel_hero_thinker:GetAbsoluteNoDamagePure(params)
 	return self:NoDamage(params.attacker)
 end
 
+modifier_duel_hero_return = class(mod_hidden)
+function modifier_duel_hero_return:RemoveOnDeath()
+	return false
+end
+function modifier_duel_hero_return:CheckState()
+	return {
+		[MODIFIER_STATE_INVULNERABLE] = true,
+		[MODIFIER_STATE_MUTED] = true,
+		[MODIFIER_STATE_SILENCED] = true,
+	}
+end
+
+modifier_duel_tower_return = class(mod_hidden)
+function modifier_duel_tower_return:OnCreated(table)
+	if not IsServer() then
+		return
+	end
+	self.parent = self:GetParent()
+	self.team = self.parent:GetTeamNumber()
+	self.center = self.parent:GetAbsOrigin()
+	self.radius = 1200
+	self.winner = table.winner
+	self.arrived = false
+
+	self:StartIntervalThink(duel_end_time)
+end
+
+function modifier_duel_tower_return:OnIntervalThink()
+	if not IsServer() then
+		return
+	end
+	self:StartIntervalThink(0.1)
+
+	local ids = dota1x6:FindPlayers(self.team)
+	if not ids then
+		return
+	end
+
+	for _, id in pairs(ids) do
+		local hero = players[id]
+		if hero and (hero:GetAbsOrigin() - self.center):Length2D() > self.radius then
+			local point = self.center + RandomVector(300)
+
+			hero:Stop()
+			hero:InterruptMotionControllers(false)
+			hero:Purge(false, true, false, true, true)
+			hero:SetAbsOrigin(point)
+			FindClearSpaceForUnit(hero, point, false)
+		end
+	end
+
+	if self.arrived then
+		return
+	end
+	self.arrived = true
+
+	if not self.parent:HasModifier("modifier_the_hunt_custom_tower") then
+		local barrier = self.parent:FindModifierByName("modifier_backdoor_knock_aura")
+
+		if barrier and barrier.target_team ~= self.team then
+			barrier:Destroy()
+		end
+
+		self.parent:AddNewModifier(
+			self.parent,
+			nil,
+			"modifier_backdoor_knock_aura",
+			{ target_team = self.team, fixed = 1, duration = duel_barrier_time }
+		)
+	end
+
+	for _, id in pairs(ids) do
+		local hero = players[id]
+		if hero then
+			PlayerResource:SetCameraTarget(id, hero)
+			Timers:CreateTimer(0.5, function()
+				PlayerResource:SetCameraTarget(id, nil)
+			end)
+
+			if self.winner == 1 then
+				dota1x6:CreateUpgradeOrb(hero, 1)
+			end
+
+			hero:Purge(false, true, false, true, true)
+			hero:SetHealth(hero:GetMaxHealth())
+			hero:SetMana(hero:GetMaxMana())
+
+			dota1x6:EndAllCooldowns(hero)
+		end
+	end
+end
+
 modifier_duel_hero_start = class(mod_hidden)
 function modifier_duel_hero_start:GetTexture()
 	return "legion_commander_duel"
@@ -1151,6 +1247,8 @@ function modifier_duel_hero_start:OnCreated(table)
 	self.ability = self:GetAbility()
 
 	self.parent:EmitSound("UI.Duel_start")
+	self.index = table.index
+
 	local point = self.parent:GetAbsOrigin()
 
 	local duel_particle = ParticleManager:CreateParticle("particles/legion_duel_ring.vpcf", PATTACH_WORLDORIGIN, nil)
@@ -1186,6 +1284,12 @@ function modifier_duel_hero_start:OnDestroy()
 		if ability then
 			ability:EndCooldown()
 			ability:StartCooldown(4)
+		end
+	end
+
+	if duel_data[self.index].final_duel == 1 then
+		if IsValid(self.parent.xmark_ability) then
+			self.parent.xmark_ability:ApplyShield()
 		end
 	end
 end

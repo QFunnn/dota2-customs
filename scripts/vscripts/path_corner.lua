@@ -128,7 +128,7 @@ function MoveToNextCornerThink(unit, corner_name)
 			unit:RemoveModifierByName("modifier_patrol_start")
 			return
 		end
-	else
+	elseif unit.ordered_corner ~= current_corner or not unit:IsMoving() then
 		if unit:GetAggroTarget() == nil or (unit:GetAggroTarget() and not unit:GetAggroTarget():IsAlive()) then
 			local order = {
 				UnitIndex = unit:entindex(),
@@ -137,6 +137,7 @@ function MoveToNextCornerThink(unit, corner_name)
 				Queue = false,
 			}
 			ExecuteOrderFromTable(order)
+			unit.ordered_corner = current_corner
 			--unit:MoveToPositionAggressive(point_corner)
 		end
 	end

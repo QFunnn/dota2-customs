@@ -25,7 +25,6 @@ LinkLuaModifier(
 )
 
 npc_muerta_centaur_charge = class({})
-
 function npc_muerta_centaur_charge:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
@@ -116,10 +115,10 @@ function modifier_npc_muerta_centaur_chrarge:OnCreated(kv)
 	self.parent:EmitSound("Lc.Odds_Charge")
 
 	self.angle = (self.point - self.parent:GetAbsOrigin()):Normalized()
-	self.parent:SetForwardVector(self.angle)
-	self.parent:FaceTowards(self.point)
+	self.parent:FacePoint(self.point)
 
 	self.stun = self.ability.stun
+	self.speed = self.ability.speed
 
 	self.targets = {}
 
@@ -152,7 +151,7 @@ function modifier_npc_muerta_centaur_chrarge:UpdateHorizontalMotion(me, dt)
 	local pos = self.parent:GetAbsOrigin()
 	GridNav:DestroyTreesAroundPoint(pos, 80, false)
 
-	local next_pos = GetGroundPosition(pos + self.angle * self.ability.speed * dt, self.parent)
+	local next_pos = GetGroundPosition(pos + self.angle * self.speed * dt, self.parent)
 	self.parent:SetAbsOrigin(next_pos)
 
 	for _, unit in pairs(self.parent:FindTargets(170)) do
@@ -198,7 +197,6 @@ function modifier_npc_muerta_centaur_chrarge:OnDestroy()
 end
 
 npc_muerta_centaur_stun = class({})
-
 function npc_muerta_centaur_stun:Spawn()
 	if not self:GetCaster() then
 		return
@@ -214,7 +212,7 @@ function npc_muerta_centaur_stun:Spawn()
 end
 
 function npc_muerta_centaur_stun:GetChannelTime()
-	return self.AbilityChannelTime and self.AbilityChannelTime or 0
+	return self.AbilityChannelTime or 0
 end
 
 function npc_muerta_centaur_stun:OnSpellStart()
@@ -310,8 +308,8 @@ function modifier_npc_muerta_centaur_stuns_cast:CastAnim()
 	self.parent:EmitSound("n_creep_Centaur.Stomp")
 	self.parent:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_1, 0.8)
 
-	self.effect_cast = ParticleManager:CreateParticle("particles/red_zone.vpcf", PATTACH_CUSTOMORIGIN, self:GetCaster())
-	ParticleManager:SetParticleControl(self.effect_cast, 0, self:GetCaster():GetOrigin())
+	self.effect_cast = ParticleManager:CreateParticle("particles/red_zone.vpcf", PATTACH_CUSTOMORIGIN, self.parent)
+	ParticleManager:SetParticleControl(self.effect_cast, 0, self.parent:GetOrigin())
 	ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(self.radius, 0, -self.radius / self.delay))
 	ParticleManager:SetParticleControl(self.effect_cast, 2, Vector(self.delay, 0, 0))
 	self:AddParticle(self.effect_cast, false, false, -1, false, false)
@@ -325,7 +323,6 @@ function modifier_npc_muerta_centaur_stuns_cast:OnDestroy()
 end
 
 npc_muerta_centaur_passive = class({})
-
 function npc_muerta_centaur_passive:GetIntrinsicModifierName()
 	return "modifier_npc_muerta_centaur_passive"
 end
@@ -341,12 +338,6 @@ function npc_muerta_centaur_passive:Spawn()
 end
 
 modifier_npc_muerta_centaur_passive = class(mod_hidden)
-function modifier_npc_muerta_centaur_passive:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_PROCATTACK_FEEDBACK,
-	}
-end
-
 function modifier_npc_muerta_centaur_passive:OnCreated(table)
 	if not IsServer() then
 		return
@@ -354,7 +345,16 @@ function modifier_npc_muerta_centaur_passive:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
+	self.attacks = self.ability.attacks
+	self.stun = self.ability.stun
+
 	self:SetStackCount(0)
+end
+
+function modifier_npc_muerta_centaur_passive:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_PROCATTACK_FEEDBACK,
+	}
 end
 
 function modifier_npc_muerta_centaur_passive:GetModifierProcAttack_Feedback(params)
@@ -367,7 +367,7 @@ function modifier_npc_muerta_centaur_passive:GetModifierProcAttack_Feedback(para
 
 	self:IncrementStackCount()
 
-	if self:GetStackCount() < self.ability.attacks then
+	if self:GetStackCount() < self.attacks then
 		return
 	end
 
@@ -378,6 +378,6 @@ function modifier_npc_muerta_centaur_passive:GetModifierProcAttack_Feedback(para
 		self.parent,
 		self.ability,
 		"modifier_bashed",
-		{ duration = (1 - params.target:GetStatusResistance()) * self.ability.stun }
+		{ duration = (1 - params.target:GetStatusResistance()) * self.stun }
 	)
 end

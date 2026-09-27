@@ -14,11 +14,6 @@ LinkLuaModifier(
 	LUA_MODIFIER_MOTION_NONE
 )
 LinkLuaModifier(
-	"modifier_moment_of_courage_custom_armor",
-	"abilities/legion_commander/custom_legion_commander_moment_of_courage",
-	LUA_MODIFIER_MOTION_NONE
-)
-LinkLuaModifier(
 	"modifier_moment_of_courage_custom_crit_attack",
 	"abilities/legion_commander/custom_legion_commander_moment_of_courage",
 	LUA_MODIFIER_MOTION_NONE
@@ -133,6 +128,8 @@ function custom_legion_commander_moment_of_courage:UpdateTalents(name)
 			e7_talent_cd = caster:GetTalentValue("modifier_legion_moment_7", "talent_cd", true),
 			e7_heal = caster:GetTalentValue("modifier_legion_moment_7", "heal", true) / 100,
 			e7_damage_reduce = caster:GetTalentValue("modifier_legion_moment_7", "damage_reduce", true),
+
+			has_r7 = 0,
 		}
 	end
 
@@ -163,22 +160,15 @@ function custom_legion_commander_moment_of_courage:UpdateTalents(name)
 
 	if caster:HasTalent("modifier_legion_moment_7") then
 		self.talents.has_e7 = 1
+		caster:AddAttackStartEvent_out(self.tracker, true)
 		if IsServer() and name == "modifier_legion_moment_7" then
 			self:OnToggle()
-			caster:AddAttackStartEvent_out(self.tracker, true)
 		end
 	end
-end
 
-function custom_legion_commander_moment_of_courage:ResetToggleOnRespawn()
-	return false
-end
-
-function custom_legion_commander_moment_of_courage:GetIntrinsicModifierName()
-	if not self:GetCaster():IsRealHero() then
-		return
+	if caster:HasTalent("modifier_legion_duel_7") then
+		self.talents.has_r7 = 1
 	end
-	return "modifier_moment_of_courage_custom_tracker"
 end
 
 function custom_legion_commander_moment_of_courage:GetAbilityTextureName()
@@ -188,8 +178,19 @@ function custom_legion_commander_moment_of_courage:GetAbilityTextureName()
 	return wearables_system:GetAbilityIconReplacement(self.caster, "legion_commander_moment_of_courage", self)
 end
 
+function custom_legion_commander_moment_of_courage:GetIntrinsicModifierName()
+	if not self:GetCaster():IsRealHero() then
+		return
+	end
+	return "modifier_moment_of_courage_custom_tracker"
+end
+
+function custom_legion_commander_moment_of_courage:ResetToggleOnRespawn()
+	return false
+end
+
 function custom_legion_commander_moment_of_courage:GetBehavior()
-	if self.ability.talents.has_e7 == 1 then
+	if self.talents.has_e7 == 1 then
 		return DOTA_ABILITY_BEHAVIOR_NO_TARGET
 			+ DOTA_ABILITY_BEHAVIOR_TOGGLE
 			+ DOTA_ABILITY_BEHAVIOR_IMMEDIATE
@@ -197,10 +198,6 @@ function custom_legion_commander_moment_of_courage:GetBehavior()
 			+ DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE
 	end
 	return DOTA_ABILITY_BEHAVIOR_PASSIVE
-end
-
-function custom_legion_commander_moment_of_courage:GetCooldown(iLevel)
-	return self.BaseClass.GetCooldown(self, iLevel)
 end
 
 function custom_legion_commander_moment_of_courage:OnToggle()
@@ -354,7 +351,7 @@ function modifier_moment_of_courage_custom_tracker:AddStack(new_target)
 	end
 end
 
-function modifier_moment_of_courage_custom_tracker:RefreshStack(new)
+function modifier_moment_of_courage_custom_tracker:RefreshStack()
 	if not IsServer() then
 		return
 	end
@@ -431,7 +428,7 @@ function modifier_moment_of_courage_custom_tracker:ProcAttack(target, is_attack)
 		mod:ReduceCd(self.ability.talents.e3_cd_reduce)
 	end
 
-	if IsValid(self.parent.duel_ability) and self.parent.duel_ability.talents.has_r7 == 0 then
+	if self.ability.talents.has_r7 == 0 and IsValid(self.parent.duel_ability) then
 		self.parent.duel_ability:ApplyArmor(target)
 	end
 end
@@ -553,17 +550,11 @@ end
 
 modifier_moment_of_courage_custom_attack = class(mod_hidden)
 
-modifier_moment_of_courage_custom_crit_cd = class(mod_visible)
+modifier_moment_of_courage_custom_crit_cd = class(mod_cd)
 function modifier_moment_of_courage_custom_crit_cd:GetTexture()
 	return "buffs/legion_commander/moment_3"
 end
-function modifier_moment_of_courage_custom_crit_cd:RemoveOnDeath()
-	return false
-end
-function modifier_moment_of_courage_custom_crit_cd:IsDebuff()
-	return true
-end
-function modifier_moment_of_courage_custom_crit_cd:OnCreated(table)
+function modifier_moment_of_courage_custom_crit_cd:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
@@ -618,7 +609,7 @@ modifier_moment_of_courage_custom_legendary_attack = class(mod_hidden)
 function modifier_moment_of_courage_custom_legendary_attack:RemoveOnDeath()
 	return false
 end
-function modifier_moment_of_courage_custom_legendary_attack:OnCreated(table)
+function modifier_moment_of_courage_custom_legendary_attack:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
@@ -650,7 +641,7 @@ modifier_moment_of_courage_custom_legendary_defence = class(mod_hidden)
 function modifier_moment_of_courage_custom_legendary_defence:RemoveOnDeath()
 	return false
 end
-function modifier_moment_of_courage_custom_legendary_defence:OnCreated(table)
+function modifier_moment_of_courage_custom_legendary_defence:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
@@ -688,6 +679,7 @@ function modifier_moment_of_courage_custom_legendary_defence:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
 		MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE,
+		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
 	}
 end
 
@@ -696,6 +688,10 @@ function modifier_moment_of_courage_custom_legendary_defence:GetModifierIncoming
 end
 
 function modifier_moment_of_courage_custom_legendary_defence:GetModifierDamageOutgoing_Percentage()
+	return self.ability.talents.e7_damage_reduce
+end
+
+function modifier_moment_of_courage_custom_legendary_defence:GetModifierSpellAmplify_Percentage()
 	return self.ability.talents.e7_damage_reduce
 end
 
@@ -730,12 +726,6 @@ modifier_moment_of_courage_custom_slow = class(mod_hidden)
 function modifier_moment_of_courage_custom_slow:IsPurgable()
 	return true
 end
-function modifier_moment_of_courage_custom_slow:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-	}
-end
-
 function modifier_moment_of_courage_custom_slow:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -745,6 +735,12 @@ function modifier_moment_of_courage_custom_slow:OnCreated()
 	end
 	self.parent:GenericParticle("particles/items2_fx/sange_maim.vpcf", self)
 	self.parent:EmitSound("DOTA_Item.Maim")
+end
+
+function modifier_moment_of_courage_custom_slow:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+	}
 end
 
 function modifier_moment_of_courage_custom_slow:GetModifierMoveSpeedBonus_Percentage()
@@ -760,6 +756,11 @@ function modifier_moment_of_courage_custom_speed:OnCreated()
 	self.ability = self:GetAbility()
 
 	self.max = self.ability.talents.e1_max
+
+	if not IsServer() then
+		return
+	end
+	self.RemoveForDuel = true
 	self:OnRefresh()
 end
 

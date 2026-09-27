@@ -24,11 +24,6 @@ LinkLuaModifier(
 	LUA_MODIFIER_MOTION_NONE
 )
 LinkLuaModifier(
-	"modifier_hoodwink_sharpshooter_custom_move",
-	"abilities/hoodwink/hoodwink_sharpshooter_custom",
-	LUA_MODIFIER_MOTION_NONE
-)
-LinkLuaModifier(
 	"modifier_hoodwink_sharpshooter_custom_sound",
 	"abilities/hoodwink/hoodwink_sharpshooter_custom",
 	LUA_MODIFIER_MOTION_NONE
@@ -66,7 +61,7 @@ function hoodwink_sharpshooter_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_hoodwink/hoodwink_sharpshooter_timer.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_hoodwink/hoodwink_sharpshooter_debuff.vpcf", context)
 	PrecacheResource("particle", "particles/items2_fx/sange_maim.vpcf", context)
-	PrecacheResource("particle", "particles/general/patrol_refresh.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_hoodwink/hoodwink_acorn_shot_slow.vpcf", context)
 	PrecacheResource("particle", "particles/hoodwink/legendary_count.vpcf", context)
 end
 
@@ -88,11 +83,11 @@ function hoodwink_sharpshooter_custom:UpdateTalents()
 			r3_delay = caster:GetTalentValue("modifier_hoodwink_sharp_3", "delay", true) / 100,
 
 			has_r4 = 0,
-			r4_cdr = 0,
-			r4_items = caster:GetTalentValue("modifier_hoodwink_sharp_4", "cd_items", true),
-			r4_items_legendary = caster:GetTalentValue("modifier_hoodwink_sharp_4", "cd_items_legendary", true),
+			r4_cdr = caster:GetTalentValue("modifier_hoodwink_sharp_4", "cdr", true),
+			r4_cd_items = caster:GetTalentValue("modifier_hoodwink_sharp_4", "cd_items", true),
+			r4_cd_items_legendary = caster:GetTalentValue("modifier_hoodwink_sharp_4", "cd_items_legendary", true),
 			r4_knock_max = caster:GetTalentValue("modifier_hoodwink_sharp_4", "knock_max", true),
-			r4_knock_duration = caster:GetTalentValue("modifier_hoodwink_sharp_4", "duration", true),
+			r4_duration = caster:GetTalentValue("modifier_hoodwink_sharp_4", "duration", true),
 			r4_knock_range = caster:GetTalentValue("modifier_hoodwink_sharp_4", "knock_range", true),
 
 			has_h6 = 0,
@@ -133,7 +128,6 @@ function hoodwink_sharpshooter_custom:UpdateTalents()
 
 	if caster:HasTalent("modifier_hoodwink_sharp_4") then
 		self.talents.has_r4 = 1
-		self.talents.r4_cdr = caster:GetTalentValue("modifier_hoodwink_sharp_4", "cdr")
 	end
 
 	if caster:HasTalent("modifier_hoodwink_hero_6") then
@@ -150,7 +144,6 @@ function hoodwink_sharpshooter_custom:UpdateTalents()
 end
 
 function hoodwink_sharpshooter_custom:GetAbilityTextureName()
-	local caster = self:GetCaster()
 	return wearables_system:GetAbilityIconReplacement(self.caster, "hoodwink_sharpshooter", self)
 end
 
@@ -163,7 +156,7 @@ end
 
 function hoodwink_sharpshooter_custom:GetCooldown(level)
 	local bonus_k = self.talents.has_r7 == 1 and (1 + self.talents.r7_cd) or 1
-	return (self.BaseClass.GetCooldown(self, level) + (self.talents.r2_cd and self.talents.r2_cd or 0)) * bonus_k
+	return (self.BaseClass.GetCooldown(self, level) + (self.talents.r2_cd or 0)) * bonus_k
 end
 
 function hoodwink_sharpshooter_custom:GetManaCost(level)
@@ -172,16 +165,20 @@ end
 
 function hoodwink_sharpshooter_custom:OnSpellStart()
 	local point = self:GetCursorPosition()
-	local caster = self:GetCaster()
 	local duration = self.misfire_time
 
 	if self.talents.has_h6 == 1 then
 		local invun = self.talents.has_r7 == 1 and self.talents.h6_invun_legendary or self.talents.h6_invun
-		caster:AddNewModifier(caster, self, "modifier_hoodwink_sharpshooter_custom_invun", { duration = invun })
+		self.caster:AddNewModifier(
+			self.caster,
+			self,
+			"modifier_hoodwink_sharpshooter_custom_invun",
+			{ duration = invun }
+		)
 	end
 
-	caster:AddNewModifier(
-		caster,
+	self.caster:AddNewModifier(
+		self.caster,
 		self,
 		"modifier_hoodwink_sharpshooter_custom",
 		{ duration = duration, x = point.x, y = point.y }
@@ -198,7 +195,6 @@ end
 
 function hoodwink_sharpshooter_custom:OnProjectileHit_ExtraData(target, location, ExtraData)
 	local sound = EntIndexToHScript(ExtraData.sound)
-	local caster = self:GetCaster()
 	if IsValid(sound) then
 		sound:StopSound("Hero_Hoodwink.Sharpshooter.Projectile")
 		UTIL_Remove(sound)
@@ -228,7 +224,7 @@ function hoodwink_sharpshooter_custom:OnProjectileHit_ExtraData(target, location
 
 	target:RemoveModifierByName("modifier_hoodwink_sharpshooter_custom_debuff")
 	target:AddNewModifier(
-		caster,
+		self.caster,
 		self,
 		"modifier_hoodwink_sharpshooter_custom_debuff",
 		{ duration = duration * (1 - target:GetStatusResistance()) }
@@ -240,12 +236,12 @@ function hoodwink_sharpshooter_custom:OnProjectileHit_ExtraData(target, location
 		and not target:IsDebuffImmune()
 		and vec:Length2D() <= self.talents.r4_knock_range
 	then
-		local mod = target:AddNewModifier(caster, self, "modifier_generic_knockback", {
+		target:AddNewModifier(self.caster, self, "modifier_generic_knockback", {
 			direction_x = dir.x,
 			direction_y = dir.y,
 			distance = self.talents.r4_knock_max * pct,
 			height = 0,
-			duration = self.talents.r4_knock_duration,
+			duration = self.talents.r4_duration,
 			IsStun = false,
 			IsFlail = true,
 			Purgable = 1,
@@ -253,20 +249,20 @@ function hoodwink_sharpshooter_custom:OnProjectileHit_ExtraData(target, location
 	end
 
 	local damageTable =
-		{ victim = target, attacker = caster, damage = damage, damage_type = DAMAGE_TYPE_MAGICAL, ability = self }
+		{ victim = target, attacker = self.caster, damage = damage, damage_type = DAMAGE_TYPE_MAGICAL, ability = self }
 	local real = DoDamage(damageTable, damage_ability)
 
-	if pct >= 1 and target:IsRealHero() and caster:GetQuest() == "Hoodwink.Quest_8" then
-		caster:UpdateQuest(1)
+	if pct >= 1 and target:IsRealHero() and self.caster:GetQuest() == "Hoodwink.Quest_8" then
+		self.caster:UpdateQuest(1)
 	end
 
 	if pct >= 1 then
-		if target:IsValidKill(caster) then
-			caster:AddNewModifier(caster, self, "modifier_hoodwink_sharpshooter_custom_hits", {})
+		if target:IsValidKill(self.caster) then
+			self.caster:AddNewModifier(self.caster, self, "modifier_hoodwink_sharpshooter_custom_hits", {})
 		end
 		if self.talents.has_r7 == 1 then
 			target:AddNewModifier(
-				caster,
+				self.caster,
 				self,
 				"modifier_hoodwink_sharpshooter_custom_legendary",
 				{ duration = self.talents.r7_duration }
@@ -274,15 +270,15 @@ function hoodwink_sharpshooter_custom:OnProjectileHit_ExtraData(target, location
 		end
 	end
 
-	if self.talents.has_w3 == 1 and IsValid(caster.bush_ability) then
-		caster.bush_ability:AddPoison(target, math.floor(pct * self.talents.w3_sharp))
+	if self.talents.has_w3 == 1 and IsValid(self.caster.bush_ability) then
+		self.caster.bush_ability:AddPoison(target, math.floor(pct * self.talents.w3_sharp))
 	end
 
 	target:SendNumber(6, real)
-	AddFOWViewer(caster:GetTeamNumber(), target:GetOrigin(), 300, 4, false)
+	AddFOWViewer(self.caster:GetTeamNumber(), target:GetOrigin(), 300, 4, false)
 
 	local pfx_impact = wearables_system:GetParticleReplacementAbility(
-		caster,
+		self.caster,
 		"particles/units/heroes/hero_hoodwink/hoodwink_sharpshooter_impact.vpcf",
 		self
 	)
@@ -293,21 +289,6 @@ function hoodwink_sharpshooter_custom:OnProjectileHit_ExtraData(target, location
 	ParticleManager:SetParticleControlForward(effect_cast, 1, dir)
 	ParticleManager:ReleaseParticleIndex(effect_cast)
 	target:EmitSound("Hero_Hoodwink.Sharpshooter.Target")
-end
-
-hoodwink_sharpshooter_release_custom = class({})
-
-function hoodwink_sharpshooter_release_custom:GetAbilityTextureName()
-	local caster = self:GetCaster()
-	return wearables_system:GetAbilityIconReplacement(self.caster, "hoodwink_sharpshooter_release", self)
-end
-
-function hoodwink_sharpshooter_release_custom:OnSpellStart()
-	local mod = self:GetCaster():FindModifierByName("modifier_hoodwink_sharpshooter_custom")
-	if not mod then
-		return
-	end
-	mod:Destroy()
 end
 
 modifier_hoodwink_sharpshooter_custom = class(mod_visible)
@@ -356,7 +337,7 @@ function modifier_hoodwink_sharpshooter_custom:OnCreated(kv)
 	self:SetDirection(vec)
 	self.current_dir = self.target_dir
 	self.face_target = true
-	self.parent:SetForwardVector(self.current_dir)
+	self.parent:FacePoint(self.parent:GetAbsOrigin() + self.current_dir)
 	self.max_charge = false
 
 	local projectile_name = wearables_system:GetParticleReplacementAbility(
@@ -421,7 +402,7 @@ function modifier_hoodwink_sharpshooter_custom:Shoot(is_auto)
 
 	local sound = CreateModifierThinker(
 		self.parent,
-		self,
+		self.ability,
 		"modifier_hoodwink_sharpshooter_custom_sound",
 		{},
 		self.parent:GetOrigin(),
@@ -494,8 +475,8 @@ function modifier_hoodwink_sharpshooter_custom:OnDestroy()
 		local pct = math.min(1, (math.min(self:GetElapsedTime(), self.charge) / self.charge + self.base))
 		local cd_items = pct
 			* (
-				self.ability.talents.has_r7 == 1 and self.ability.talents.r4_items_legendary
-				or self.ability.talents.r4_items
+				self.ability.talents.has_r7 == 1 and self.ability.talents.r4_cd_items_legendary
+				or self.ability.talents.r4_cd_items
 			)
 		self.parent:CdItems(cd_items)
 	end
@@ -519,6 +500,9 @@ function modifier_hoodwink_sharpshooter_custom:GetOverrideAnimation()
 end
 
 function modifier_hoodwink_sharpshooter_custom:OrderEvent(params)
+	if not IsServer() then
+		return
+	end
 	if
 		params.order_type == DOTA_UNIT_ORDER_MOVE_TO_POSITION
 		or params.order_type == DOTA_UNIT_ORDER_MOVE_TO_DIRECTION
@@ -534,10 +518,6 @@ end
 
 function modifier_hoodwink_sharpshooter_custom:GetModifierMoveSpeed_Limit()
 	return 0.1
-end
-
-function modifier_hoodwink_sharpshooter_custom:GetModifierTurnRate_Percentage()
-	return -self.turn_rate
 end
 
 function modifier_hoodwink_sharpshooter_custom:GetModifierDisableTurning()
@@ -557,9 +537,6 @@ function modifier_hoodwink_sharpshooter_custom:OnIntervalThink()
 	end
 
 	self:TurnLogic()
-	local startpos = self.parent:GetOrigin()
-	local visions = self.projectile_range / self.projectile_width
-	local delta = self.parent:GetForwardVector() * self.projectile_width
 	local time = self:GetElapsedTime()
 	local full_time = self.charge * (1 - self.base)
 
@@ -608,6 +585,7 @@ function modifier_hoodwink_sharpshooter_custom:OnIntervalThink()
 		)
 		ParticleManager:SetParticleControl(effect_cast, 1, Vector(1, seconds, mid))
 		ParticleManager:SetParticleControl(effect_cast, 2, Vector(len, 0, 0))
+		ParticleManager:ReleaseParticleIndex(effect_cast)
 	end
 end
 
@@ -661,14 +639,7 @@ function modifier_hoodwink_sharpshooter_custom:UpdateStack()
 	self:SetStackCount(pct)
 end
 
-function modifier_hoodwink_sharpshooter_custom:UpdateEffect()
-	local startpos = self.parent:GetAbsOrigin()
-	local endpos = startpos + self.current_dir * self.projectile_range
-	ParticleManager:SetParticleControl(self.effect_cast, 0, startpos)
-	ParticleManager:SetParticleControl(self.effect_cast, 1, endpos)
-end
-
-modifier_hoodwink_sharpshooter_custom_debuff = class({})
+modifier_hoodwink_sharpshooter_custom_debuff = class(mod_visible)
 function modifier_hoodwink_sharpshooter_custom_debuff:IsPurgable()
 	return not self.caster:HasShard()
 end
@@ -729,24 +700,8 @@ function modifier_hoodwink_sharpshooter_custom_hits:OnCreated(table)
 	if not IsServer() then
 		return
 	end
-	self:SetStackCount(1)
 	self:StartIntervalThink(2)
-end
-
-function modifier_hoodwink_sharpshooter_custom_hits:OnIntervalThink()
-	if not IsServer() then
-		return
-	end
-	if self:GetStackCount() < self.max then
-		return
-	end
-	if self.ability.talents.has_r1 == 0 then
-		return
-	end
-
-	self.parent:GenericParticle("particles/general/patrol_refresh.vpcf")
-	self.parent:EmitSound("BS.Thirst_legendary_active")
-	self:StartIntervalThink(-1)
+	self:IncrementStackCount()
 end
 
 function modifier_hoodwink_sharpshooter_custom_hits:OnRefresh()
@@ -757,6 +712,22 @@ function modifier_hoodwink_sharpshooter_custom_hits:OnRefresh()
 		return
 	end
 	self:IncrementStackCount()
+end
+
+function modifier_hoodwink_sharpshooter_custom_hits:OnIntervalThink()
+	if not IsServer() then
+		return
+	end
+	if self.ability.talents.has_r1 == 0 then
+		return
+	end
+	if self:GetStackCount() < self.max then
+		return
+	end
+
+	self.parent:GenericParticle("particles/general/patrol_refresh.vpcf")
+	self.parent:EmitSound("BS.Thirst_legendary_active")
+	self:StartIntervalThink(-1)
 end
 
 function modifier_hoodwink_sharpshooter_custom_hits:DeclareFunctions()
@@ -784,7 +755,7 @@ function modifier_hoodwink_sharpshooter_custom_legendary:OnCreated()
 
 	self.effect_cast = self.parent:GenericParticle("particles/hoodwink/legendary_count.vpcf", self, true)
 	self.RemoveForDuel = true
-	self:SetStackCount(1)
+	self:OnRefresh()
 end
 
 function modifier_hoodwink_sharpshooter_custom_legendary:OnRefresh()
@@ -795,25 +766,13 @@ function modifier_hoodwink_sharpshooter_custom_legendary:OnRefresh()
 		return
 	end
 	self:IncrementStackCount()
+
+	if self.effect_cast then
+		ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(0, self:GetStackCount(), 0))
+	end
 end
 
-function modifier_hoodwink_sharpshooter_custom_legendary:OnStackCountChanged(iStackCount)
-	if not IsServer() then
-		return
-	end
-	if not self.effect_cast then
-		return
-	end
-	ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(0, self:GetStackCount(), 0))
-end
-
-modifier_hoodwink_sharpshooter_custom_tracker = class({})
-function modifier_hoodwink_sharpshooter_custom_tracker:IsHidden()
-	return true
-end
-function modifier_hoodwink_sharpshooter_custom_tracker:IsPurgable()
-	return false
-end
+modifier_hoodwink_sharpshooter_custom_tracker = class(mod_hidden)
 function modifier_hoodwink_sharpshooter_custom_tracker:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -887,6 +846,9 @@ function modifier_hoodwink_sharpshooter_custom_tracker:DeclareFunctions()
 end
 
 function modifier_hoodwink_sharpshooter_custom_tracker:GetModifierPercentageCooldown()
+	if self.ability.talents.has_r4 == 0 then
+		return
+	end
 	return self.ability.talents.r4_cdr
 end
 
@@ -896,4 +858,17 @@ function modifier_hoodwink_sharpshooter_custom_invun:CheckState()
 		[MODIFIER_STATE_NO_HEALTH_BAR] = true,
 		[MODIFIER_STATE_INVULNERABLE] = true,
 	}
+end
+
+hoodwink_sharpshooter_release_custom = class({})
+function hoodwink_sharpshooter_release_custom:GetAbilityTextureName()
+	return wearables_system:GetAbilityIconReplacement(self.caster, "hoodwink_sharpshooter_release", self)
+end
+
+function hoodwink_sharpshooter_release_custom:OnSpellStart()
+	local mod = self.caster:FindModifierByName("modifier_hoodwink_sharpshooter_custom")
+	if not mod then
+		return
+	end
+	mod:Destroy()
 end

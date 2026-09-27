@@ -28,16 +28,36 @@ function broodmother_shard_ability_custom:Precache(context)
 	end
 	PrecacheResource("particle", "particles/broodmother/shard_end.vpcf", context)
 	PrecacheResource("particle", "particles/broodmother/broodmother_web.vpcf", context)
+	PrecacheResource("particle", "particles/broodmother/web_silence_tether.vpcf", context)
+end
+
+function broodmother_shard_ability_custom:Init()
+	if not self:GetCaster() then
+		return
+	end
+	self.caster = self:GetCaster()
+
+	self.start_speed = self:GetLevelSpecialValueFor("start_speed", 1)
+	self.drag_speed = self:GetLevelSpecialValueFor("drag_speed", 1)
+	self.range = self:GetLevelSpecialValueFor("range", 1)
+	self.duration = self:GetLevelSpecialValueFor("duration", 1)
+	self.range_delta = self:GetLevelSpecialValueFor("range_delta", 1)
+	self.damage_reduce = self:GetLevelSpecialValueFor("damage_reduce", 1)
+	self.drag_duration = self:GetLevelSpecialValueFor("drag_duration", 1)
 end
 
 function broodmother_shard_ability_custom:OnVectorCastStart(vStartLocation, vDirection)
-	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
-	local point = caster:GetAbsOrigin() + caster:GetForwardVector() * self:GetSpecialValueFor("range_delta")
+	local point = self.caster:GetAbsOrigin() + self.caster:GetForwardVector() * self.range_delta
 
-	local duration = self:GetSpecialValueFor("duration")
-	local unit =
-		CreateUnitByName("npc_dota_broodmother_spiderling_custom_shard", point, false, nil, nil, caster:GetTeamNumber())
+	local unit = CreateUnitByName(
+		"npc_dota_broodmother_spiderling_custom_shard",
+		point,
+		false,
+		nil,
+		nil,
+		self.caster:GetTeamNumber()
+	)
 
 	local vec = vDirection
 	if self.vectorTargetPosition2 then
@@ -46,19 +66,16 @@ function broodmother_shard_ability_custom:OnVectorCastStart(vStartLocation, vDir
 		vec = vec:Normalized()
 	end
 
-	caster:EmitSound("Brood.Shard_start")
-	caster:EmitSound("Brood.Shard_start2")
+	self.caster:EmitSound("Brood.Shard_start")
+	self.caster:EmitSound("Brood.Shard_start2")
 	unit:AddNewModifier(
-		caster,
+		self.caster,
 		self,
 		"modifier_broodmother_shard_ability_custom_spider",
-		{ x = vec.x, y = vec.y, target = target:entindex(), duration = duration }
+		{ x = vec.x, y = vec.y, target = target:entindex(), duration = self.duration }
 	)
-	unit.owner = caster
-
-	local face_vec = target:GetAbsOrigin() - unit:GetAbsOrigin()
-	unit:SetForwardVector(face_vec:Normalized())
-	unit:FaceTowards(target:GetAbsOrigin())
+	unit.owner = self.caster
+	unit:FacePoint(target:GetAbsOrigin())
 end
 
 modifier_broodmother_shard_ability_custom_spider = class(mod_hidden)
@@ -67,11 +84,11 @@ function modifier_broodmother_shard_ability_custom_spider:OnCreated(table)
 	self.caster = self:GetCaster()
 	self.ability = self:GetAbility()
 
-	self.speed = self.ability:GetSpecialValueFor("start_speed")
-	self.range = self.ability:GetSpecialValueFor("range")
-	self.drag_speed = self.ability:GetSpecialValueFor("drag_speed")
-	self.range_delta = self.ability:GetSpecialValueFor("range_delta")
-	self.drag_duration = self.ability:GetSpecialValueFor("drag_duration")
+	self.speed = self.ability.start_speed
+	self.range = self.ability.range
+	self.drag_speed = self.ability.drag_speed
+	self.range_delta = self.ability.range_delta
+	self.drag_duration = self.ability.drag_duration
 
 	if not IsServer() then
 		return
@@ -182,18 +199,19 @@ end
 
 modifier_broodmother_shard_ability_custom_target = class(mod_hidden)
 function modifier_broodmother_shard_ability_custom_target:OnCreated(table)
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.range_delta = self.ability.range_delta
+	self.damage_reduce = self.ability.damage_reduce
+
 	if not IsServer() then
 		return
 	end
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
 	self.target = EntIndexToHScript(table.target)
 
 	self.parent:EmitSound("Brood.Shard_target")
 	self.parent:EmitSound("Brood.Shard_target2")
-
-	self.range_delta = self.ability:GetSpecialValueFor("range_delta")
-	self.damage_reduce = self.ability:GetSpecialValueFor("damage_reduce")
 
 	local particle = ParticleManager:CreateParticle(
 		"particles/broodmother/web_silence_tether.vpcf",
@@ -237,6 +255,7 @@ function modifier_broodmother_shard_ability_custom_target:OnIntervalThink()
 	end
 	if not IsValid(self.target) or not self.target:IsAlive() then
 		self:Destroy()
+		return
 	end
 
 	local point = self.target:GetAbsOrigin() - self.target:GetForwardVector() * self.range_delta

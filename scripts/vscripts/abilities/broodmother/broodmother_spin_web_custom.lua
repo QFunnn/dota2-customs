@@ -81,10 +81,7 @@ function broodmother_spin_web_custom:Precache(context)
 	PrecacheResource("particle", "particles/broodmother/web_legendary_snare.vpcf", context)
 	PrecacheResource("particle", "particles/broodmother/web_legendary_line.vpcf", context)
 	PrecacheResource("particle", "particles/broodmother/web_stack.vpcf", context)
-end
-
-function broodmother_spin_web_custom:GetAbilityTextureName()
-	return wearables_system:GetAbilityIconReplacement(self.caster, "broodmother_spin_web", self)
+	PrecacheResource("particle", "particles/broodmother/bite_legendary_attack.vpcf", context)
 end
 
 function broodmother_spin_web_custom:UpdateTalents()
@@ -94,6 +91,7 @@ function broodmother_spin_web_custom:UpdateTalents()
 		self.talents = {
 			has_w2 = 0,
 			w2_heal_reduce = 0,
+			w2_radius = caster:GetTalentValue("modifier_broodmother_web_2", "radius", true),
 
 			has_h1 = 0,
 			h1_slow = 0,
@@ -122,6 +120,10 @@ function broodmother_spin_web_custom:UpdateTalents()
 	end
 end
 
+function broodmother_spin_web_custom:GetAbilityTextureName()
+	return wearables_system:GetAbilityIconReplacement(self.caster, "broodmother_spin_web", self)
+end
+
 function broodmother_spin_web_custom:GetIntrinsicModifierName()
 	if not self:GetCaster():IsRealHero() then
 		return
@@ -134,20 +136,7 @@ function broodmother_spin_web_custom:GetBehavior()
 end
 
 function broodmother_spin_web_custom:GetAbilityChargeRestoreTime(level)
-	return (self.cd and self.cd or 0)
-end
-
-function broodmother_spin_web_custom:OnInventoryContentsChanged()
-	if not IsServer() then
-		return
-	end
-	if self:IsStolen() then
-		return
-	end
-	if not IsValid(self.tracker) then
-		return
-	end
-	self.tracker:InitScepter()
+	return self.cd or 0
 end
 
 function broodmother_spin_web_custom:GetCastRange(vLocation, target)
@@ -168,7 +157,7 @@ function broodmother_spin_web_custom:GetCastRange(vLocation, target)
 end
 
 function broodmother_spin_web_custom:GetAOERadius()
-	return self.radius and self.radius or 0
+	return self.radius or 0
 end
 
 function broodmother_spin_web_custom:OnAbilityPhaseStart()
@@ -178,7 +167,7 @@ function broodmother_spin_web_custom:OnAbilityPhaseStart()
 			local unit = EntIndexToHScript(index)
 			if IsValid(unit) and (unit:GetAbsOrigin() - point):Length2D() <= self.radius / 1.5 then
 				CustomGameEventManager:Send_ServerToPlayer(
-					PlayerResource:GetPlayer(self:GetCaster():GetPlayerOwnerID()),
+					PlayerResource:GetPlayer(self.caster:GetPlayerOwnerID()),
 					"CreateIngameErrorMessage",
 					{ message = "#brood_web_error" }
 				)
@@ -190,36 +179,54 @@ function broodmother_spin_web_custom:OnAbilityPhaseStart()
 end
 
 function broodmother_spin_web_custom:OnSpellStart()
-	local caster = self:GetCaster()
 	local point = self:GetCursorPosition()
 
 	local cast_fx = wearables_system:GetParticleReplacementAbility(
-		caster,
+		self.caster,
 		"particles/units/heroes/hero_broodmother/broodmother_spin_web_cast.vpcf",
 		self
 	)
-	local cast_effect = ParticleManager:CreateParticle(cast_fx, PATTACH_CUSTOMORIGIN_FOLLOW, caster)
+	local cast_effect = ParticleManager:CreateParticle(cast_fx, PATTACH_CUSTOMORIGIN_FOLLOW, self.caster)
 	ParticleManager:SetParticleControlEnt(
 		cast_effect,
 		0,
-		caster,
+		self.caster,
 		PATTACH_POINT_FOLLOW,
 		"attach_attack1",
-		caster:GetAbsOrigin(),
+		self.caster:GetAbsOrigin(),
 		true
 	)
 	ParticleManager:SetParticleControl(cast_effect, 1, point)
 	ParticleManager:SetParticleControl(cast_effect, 2, Vector(self.radius, 0, 0))
 	ParticleManager:ReleaseParticleIndex(cast_effect)
 
-	caster:EmitSound("Hero_Broodmother.SpinWebCast")
+	self.caster:EmitSound("Hero_Broodmother.SpinWebCast")
 
-	local unit =
-		CreateUnitByName("npc_dota_broodmother_web_custom", point, false, caster, caster, caster:GetTeamNumber())
-	unit.owner = caster
-	unit:SetOwner(caster)
-	unit:SetControllableByPlayer(caster:GetPlayerID(), true)
-	unit:AddNewModifier(caster, self, "modifier_broodmother_spin_web_custom", {})
+	local unit = CreateUnitByName(
+		"npc_dota_broodmother_web_custom",
+		point,
+		false,
+		self.caster,
+		self.caster,
+		self.caster:GetTeamNumber()
+	)
+	unit.owner = self.caster
+	unit:SetOwner(self.caster)
+	unit:SetControllableByPlayer(self.caster:GetPlayerID(), true)
+	unit:AddNewModifier(self.caster, self, "modifier_broodmother_spin_web_custom", {})
+end
+
+function broodmother_spin_web_custom:OnInventoryContentsChanged()
+	if not IsServer() then
+		return
+	end
+	if self:IsStolen() then
+		return
+	end
+	if not IsValid(self.tracker) then
+		return
+	end
+	self.tracker:InitScepter()
 end
 
 modifier_broodmother_spin_web_custom_tracker = class(mod_hidden)
@@ -231,13 +238,11 @@ function modifier_broodmother_spin_web_custom_tracker:OnCreated(table)
 
 	self.parent.web_ability = self.ability
 
-	self.silence_ability = self.parent:FindAbilityByName("broodmother_spin_web_custom_silence")
-	if self.silence_ability then
-		self.silence_ability:UpdateTalents()
-	end
-
 	self.legendary_ability = self.parent:FindAbilityByName("broodmother_spin_web_custom_legendary")
-	if self.legendary_ability then
+	if IsValid(self.legendary_ability) then
+		if IsServer() and not self.legendary_ability:IsTrained() then
+			self.legendary_ability:SetLevel(1)
+		end
 		self.legendary_ability:UpdateTalents()
 	end
 
@@ -398,6 +403,24 @@ function modifier_broodmother_spin_web_custom_tracker:CheckTalent()
 end
 
 modifier_broodmother_spin_web_custom = class(mod_hidden)
+function modifier_broodmother_spin_web_custom:IsAura()
+	return true
+end
+function modifier_broodmother_spin_web_custom:GetAuraDuration()
+	return 0
+end
+function modifier_broodmother_spin_web_custom:GetAuraRadius()
+	return self.radius
+end
+function modifier_broodmother_spin_web_custom:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_BOTH
+end
+function modifier_broodmother_spin_web_custom:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
+end
+function modifier_broodmother_spin_web_custom:GetModifierAura()
+	return "modifier_broodmother_spin_web_custom_buff"
+end
 function modifier_broodmother_spin_web_custom:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -523,24 +546,6 @@ function modifier_broodmother_spin_web_custom:CheckState()
 	}
 end
 
-function modifier_broodmother_spin_web_custom:IsAura()
-	return true
-end
-function modifier_broodmother_spin_web_custom:GetAuraDuration()
-	return 0
-end
-function modifier_broodmother_spin_web_custom:GetAuraRadius()
-	return self.radius
-end
-function modifier_broodmother_spin_web_custom:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_BOTH
-end
-function modifier_broodmother_spin_web_custom:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
-end
-function modifier_broodmother_spin_web_custom:GetModifierAura()
-	return "modifier_broodmother_spin_web_custom_buff"
-end
 function modifier_broodmother_spin_web_custom:GetAuraEntityReject(hEntity)
 	if hEntity:IsFieldInvun(self.caster) then
 		return true
@@ -549,10 +554,9 @@ function modifier_broodmother_spin_web_custom:GetAuraEntityReject(hEntity)
 		if self.ability.talents.has_h1 == 0 and self.ability.talents.has_w2 == 0 then
 			return true
 		end
-		if
-			not self.caster:IsAlive()
-			or (self.caster:GetAbsOrigin() - hEntity:GetAbsOrigin()):Length2D() > self.ability.talents.h1_radius
-		then
+		local radius = self.ability.talents.has_h1 == 1 and self.ability.talents.h1_radius
+			or self.ability.talents.w2_radius
+		if not self.caster:IsAlive() or (self.caster:GetAbsOrigin() - hEntity:GetAbsOrigin()):Length2D() > radius then
 			return true
 		end
 		return false
@@ -561,13 +565,6 @@ function modifier_broodmother_spin_web_custom:GetAuraEntityReject(hEntity)
 end
 
 modifier_broodmother_spin_web_custom_vision_thinker = class(mod_hidden)
-function modifier_broodmother_spin_web_custom_vision_thinker:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-	self.caster = self:GetCaster()
-	self.radius = self.ability.radius
-end
-
 function modifier_broodmother_spin_web_custom_vision_thinker:IsAura()
 	return self.ability.talents.has_h4 == 1
 end
@@ -586,6 +583,13 @@ end
 function modifier_broodmother_spin_web_custom_vision_thinker:GetModifierAura()
 	return "modifier_generic_vision"
 end
+function modifier_broodmother_spin_web_custom_vision_thinker:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+	self.caster = self:GetCaster()
+	self.radius = self.ability.radius
+end
+
 function modifier_broodmother_spin_web_custom_vision_thinker:GetAuraEntityReject(hEntity)
 	if hEntity:IsFieldInvun(self.caster) then
 		return true
@@ -647,9 +651,7 @@ function modifier_broodmother_spin_web_custom_buff:DeclareFunctions()
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
 		MODIFIER_PROPERTY_TURN_RATE_CONSTANT,
 		MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS,
-		--MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET,
 		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
-		--MODIFIER_PROPERTY_LIFESTEAL_AMPLIFY_PERCENTAGE,
 	}
 end
 
@@ -674,13 +676,6 @@ function modifier_broodmother_spin_web_custom_buff:GetModifierTurnRateConstant()
 	return self.turn
 end
 
-function modifier_broodmother_spin_web_custom_buff:GetModifierLifestealRegenAmplify_Percentage()
-	if not self.is_enemy then
-		return
-	end
-	return self.ability.talents.w2_heal_reduce
-end
-
 function modifier_broodmother_spin_web_custom_buff:GetModifierHealChange()
 	if not self.is_enemy then
 		return
@@ -693,18 +688,6 @@ function modifier_broodmother_spin_web_custom_buff:GetModifierHPRegenAmplify_Per
 		return
 	end
 	return self.ability.talents.w2_heal_reduce
-end
-
-broodmother_spin_web_destroy_custom = class({})
-function broodmother_spin_web_destroy_custom:OnSpellStart()
-	local caster = self:GetCaster()
-	local mod = caster:FindModifierByName("modifier_broodmother_spin_web_custom")
-
-	if mod then
-		mod:Destroy()
-	end
-
-	caster:RemoveSelf()
 end
 
 modifier_broodmother_spin_web_custom_scepter_thinker = class(mod_hidden)
@@ -760,7 +743,7 @@ function modifier_broodmother_spin_web_custom_scepter_thinker:OnIntervalThink()
 		and self.caster:IsAlive()
 		and not self.caster:HasModifier("modifier_end_choise")
 		and players[self.caster:GetId()]
-		and #players[self.parent:GetId()].choise == 0
+		and #players[self.caster:GetId()].choise == 0
 		and self.ability.tracker
 		and self.ability.tracker.talent_que == nil
 	then
@@ -834,62 +817,19 @@ function modifier_broodmother_spin_web_custom_scepter_thinker:OnDestroy()
 	UTIL_Remove(self.parent)
 end
 
-modifier_broodmother_spin_web_custom_silence = class(mod_hidden)
-function modifier_broodmother_spin_web_custom_silence:IsPurgable()
-	return true
-end
-function modifier_broodmother_spin_web_custom_silence:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
+broodmother_spin_web_destroy_custom = class({})
+function broodmother_spin_web_destroy_custom:OnSpellStart()
+	local mod = self.caster:FindModifierByName("modifier_broodmother_spin_web_custom")
 
-	self.slow = self.ability.talents.w4_slow
-
-	if not IsServer() then
-		return
+	if mod then
+		mod:Destroy()
 	end
-	self:StartIntervalThink(self.ability.talents.w4_knock_duration)
-end
 
-function modifier_broodmother_spin_web_custom_silence:OnIntervalThink()
-	if not IsServer() then
-		return
-	end
-	self.parent:GenericParticle("particles/units/heroes/hero_broodmother/broodmother_silken_bola_root.vpcf", self)
-	self:StartIntervalThink(-1)
-end
-
-function modifier_broodmother_spin_web_custom_silence:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-	}
-end
-
-function modifier_broodmother_spin_web_custom_silence:GetModifierMoveSpeedBonus_Percentage()
-	return self.slow
-end
-
-function modifier_broodmother_spin_web_custom_silence:CheckState()
-	return {
-		[MODIFIER_STATE_SILENCED] = true,
-	}
-end
-
-function modifier_broodmother_spin_web_custom_silence:GetEffectName()
-	return "particles/generic_gameplay/generic_silenced.vpcf"
-end
-function modifier_broodmother_spin_web_custom_silence:ShouldUseOverheadOffset()
-	return true
-end
-function modifier_broodmother_spin_web_custom_silence:GetEffectAttachType()
-	return PATTACH_OVERHEAD_FOLLOW
+	self.caster:RemoveSelf()
 end
 
 broodmother_spin_web_custom_legendary = class({})
 broodmother_spin_web_custom_legendary.talents = {}
-
-function broodmother_spin_web_custom_legendary:CreateTalent()
-	self:SetHidden(false)
-end
 
 function broodmother_spin_web_custom_legendary:UpdateTalents()
 	local caster = self:GetCaster()
@@ -956,44 +896,43 @@ function broodmother_spin_web_custom_legendary:GetBehavior()
 end
 
 function broodmother_spin_web_custom_legendary:GetAOERadius()
-	return self.talents.w4_radius and self.talents.w4_radius or 0
+	return self.talents.w4_radius or 0
 end
 
 function broodmother_spin_web_custom_legendary:GetCastRange()
-	return self.talents.w7_range and self.talents.w7_range or 0
+	return self.talents.w7_range or 0
 end
 
 function broodmother_spin_web_custom_legendary:GetCooldown(level)
 	if self.talents.has_w7 == 0 then
-		return self.talents.w4_talent_cd and self.talents.w4_talent_cd or 0
+		return self.talents.w4_talent_cd or 0
 	end
-	return self.talents.w7_talent_cd and self.talents.w7_talent_cd or 0
+	return self.talents.w7_talent_cd or 0
 end
 
 function broodmother_spin_web_custom_legendary:OnSpellStart()
-	local caster = self:GetCaster()
 	local point = self:GetCursorPosition()
 
 	if
 		self.talents.has_w4 == 1
-		and (not caster:HasModifier("modifier_broodmother_spin_web_custom_silence_cd") or self.talents.has_w7 == 0)
+		and (not self.caster:HasModifier("modifier_broodmother_spin_web_custom_silence_cd") or self.talents.has_w7 == 0)
 	then
 		local silence_point = point + Vector(0, 0, 20)
 		if self.talents.has_w7 == 1 then
-			caster:AddNewModifier(
-				caster,
+			self.caster:AddNewModifier(
+				self.caster,
 				self,
 				"modifier_broodmother_spin_web_custom_silence_cd",
 				{ duration = self.talents.w4_talent_cd }
 			)
 		end
 		CreateModifierThinker(
-			caster,
+			self.caster,
 			self,
 			"modifier_broodmother_spin_web_custom_silence_thinker",
 			{ duration = self.talents.w4_silence },
 			silence_point,
-			caster:GetTeamNumber(),
+			self.caster:GetTeamNumber(),
 			false
 		)
 	end
@@ -1002,14 +941,18 @@ function broodmother_spin_web_custom_legendary:OnSpellStart()
 		return
 	end
 	CreateModifierThinker(
-		caster,
+		self.caster,
 		self,
 		"modifier_broodmother_spin_web_custom_legendary_thinker",
 		{},
 		point,
-		caster:GetTeamNumber(),
+		self.caster:GetTeamNumber(),
 		false
 	)
+end
+
+function broodmother_spin_web_custom_legendary:CreateTalent()
+	self:SetHidden(false)
 end
 
 modifier_broodmother_spin_web_custom_silence_thinker = class(mod_hidden)
@@ -1054,7 +997,7 @@ function modifier_broodmother_spin_web_custom_silence_thinker:OnCreated()
 			activity = ACT_DOTA_FLAIL,
 		})
 
-		local mod = target:AddNewModifier(
+		target:AddNewModifier(
 			self.caster,
 			self.ability,
 			"modifier_broodmother_spin_web_custom_silence",
@@ -1062,6 +1005,55 @@ function modifier_broodmother_spin_web_custom_silence_thinker:OnCreated()
 		)
 		target:EmitSound("Brood.Web_silence_target")
 	end
+end
+
+modifier_broodmother_spin_web_custom_silence = class(mod_hidden)
+function modifier_broodmother_spin_web_custom_silence:IsPurgable()
+	return true
+end
+function modifier_broodmother_spin_web_custom_silence:GetEffectName()
+	return "particles/generic_gameplay/generic_silenced.vpcf"
+end
+function modifier_broodmother_spin_web_custom_silence:ShouldUseOverheadOffset()
+	return true
+end
+function modifier_broodmother_spin_web_custom_silence:GetEffectAttachType()
+	return PATTACH_OVERHEAD_FOLLOW
+end
+function modifier_broodmother_spin_web_custom_silence:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.slow = self.ability.talents.w4_slow
+
+	if not IsServer() then
+		return
+	end
+	self:StartIntervalThink(self.ability.talents.w4_knock_duration)
+end
+
+function modifier_broodmother_spin_web_custom_silence:OnIntervalThink()
+	if not IsServer() then
+		return
+	end
+	self.parent:GenericParticle("particles/units/heroes/hero_broodmother/broodmother_silken_bola_root.vpcf", self)
+	self:StartIntervalThink(-1)
+end
+
+function modifier_broodmother_spin_web_custom_silence:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+	}
+end
+
+function modifier_broodmother_spin_web_custom_silence:GetModifierMoveSpeedBonus_Percentage()
+	return self.slow
+end
+
+function modifier_broodmother_spin_web_custom_silence:CheckState()
+	return {
+		[MODIFIER_STATE_SILENCED] = true,
+	}
 end
 
 modifier_broodmother_spin_web_custom_legendary_thinker = class(mod_hidden)
@@ -1154,8 +1146,7 @@ function modifier_broodmother_spin_web_custom_legendary_thinker:OnIntervalThink(
 		direction.z = 0
 		self.jump_duration = distance / self.ability.talents.w7_speed
 
-		self.caster:FaceTowards(self.parent:GetOrigin())
-		self.caster:SetForwardVector(direction)
+		self.caster:FacePoint(self.parent:GetOrigin())
 
 		self.jump_mod = self.caster:AddNewModifier(self.caster, self.ability, "modifier_generic_arc", {
 			dir_x = direction.x,
@@ -1170,10 +1161,7 @@ function modifier_broodmother_spin_web_custom_legendary_thinker:OnIntervalThink(
 		})
 		self.jump_mod:SetEndCallback(function()
 			if IsValid(self.caster) then
-				local vec = self.caster:GetForwardVector()
-				vec.z = 0
-				self.caster:SetForwardVector(vec)
-				self.caster:FaceTowards(self.caster:GetAbsOrigin() + vec * 10)
+				self.caster:FacePoint()
 			end
 		end)
 
@@ -1319,7 +1307,7 @@ function modifier_broodmother_spin_web_custom_legendary_health_reduce:OnCreated(
 	end
 
 	self.duration = self:GetRemainingTime()
-	self:SetStackCount(1)
+	self:OnRefresh()
 end
 
 function modifier_broodmother_spin_web_custom_legendary_health_reduce:OnRefresh()
@@ -1332,17 +1320,12 @@ function modifier_broodmother_spin_web_custom_legendary_health_reduce:OnRefresh(
 
 	self:IncrementStackCount()
 
-	if self:GetStackCount() >= self.max then
-		self.parent:GenericParticle("particles/items4_fx/spirit_vessel_damage.vpcf", self)
-	end
-end
-
-function modifier_broodmother_spin_web_custom_legendary_health_reduce:OnStackCountChanged(iStackCount)
-	if not IsServer() then
-		return
-	end
 	if self.effect_cast then
 		ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(0, self:GetStackCount(), 0))
+	end
+
+	if self:GetStackCount() >= self.max then
+		self.parent:GenericParticle("particles/items4_fx/spirit_vessel_damage.vpcf", self)
 	end
 
 	if not self.parent:IsHero() then
@@ -1355,7 +1338,10 @@ function modifier_broodmother_spin_web_custom_legendary_health_reduce:OnDestroy(
 	if not IsServer() then
 		return
 	end
-	self:OnStackCountChanged()
+	if not self.parent:IsHero() then
+		return
+	end
+	self.parent:CalculateStatBonus(true)
 end
 
 function modifier_broodmother_spin_web_custom_legendary_health_reduce:DeclareFunctions()

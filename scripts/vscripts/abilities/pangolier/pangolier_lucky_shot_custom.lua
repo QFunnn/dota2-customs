@@ -89,11 +89,12 @@ function pangolier_lucky_shot_custom:Precache(context)
 		"particles/units/heroes/hero_phantom_assassin/phantom_assassin_crit_impact_mechanical.vpcf",
 		context
 	)
-	PrecacheResource("particle", "particles/items2_fx/sange_maim.vpcf", context)
 	PrecacheResource("particle", "particles/pangolier/lucky_stack_max.vpcf", context)
 	PrecacheResource("particle", "particles/pangolier/lucky_legendary_delay.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_oracle/oracle_false_promise_heal.vpcf", context)
 	PrecacheResource("particle", "particles/pangolier/lucky_cleave.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_pangolier/pangolier_heartpiercer_debuff.vpcf", context)
+	PrecacheResource("particle", "particles/sven/cleave_speed_ready.vpcf", context)
 end
 
 function pangolier_lucky_shot_custom:UpdateTalents(name)
@@ -160,7 +161,7 @@ function pangolier_lucky_shot_custom:UpdateTalents(name)
 		self.talents.e3_armor = caster:GetTalentValue("modifier_pangolier_lucky_3", "armor") / 100
 		self.talents.e3_armor_legendary = caster:GetTalentValue("modifier_pangolier_lucky_3", "armor_legendary") / 100
 		if IsServer() then
-			self.caster:AddPercentStat({ agi = self.talents.e3_agi }, self.tracker)
+			caster:AddPercentStat({ agi = self.talents.e3_agi }, self.tracker)
 		end
 	end
 
@@ -238,7 +239,7 @@ function pangolier_lucky_shot_custom:OnSpellStart()
 	if target then
 		point = target:GetAbsOrigin()
 		target:EmitSound("Pango.Lucky_dash2")
-		target:AddNewModifier(caster, self, "modifier_stunned", { duration = self.talents.e4_stun })
+		target:AddNewModifier(self.caster, self, "modifier_stunned", { duration = self.talents.e4_stun })
 		local hit_effect = ParticleManager:CreateParticle(
 			"particles/units/heroes/hero_monkey_king/monkey_king_quad_tap_hit.vpcf",
 			PATTACH_CUSTOMORIGIN,
@@ -302,13 +303,13 @@ function pangolier_lucky_shot_custom:ProcPassive(target, proc)
 
 	target:AddNewModifier(
 		self.caster,
-		self.caster:BkbAbility(self.ability, self.talents.has_h5 == 1),
+		self.caster:BkbAbility(self, self.talents.has_h5 == 1),
 		"modifier_pangolier_lucky_shot_custom_disarm",
 		{ duration = self.duration * (1 - target:GetStatusResistance()) }
 	)
 	target:EmitSound("Hero_Pangolier.LuckyShot.Proc")
 
-	if self.ability.talents.has_e7 == 0 then
+	if self.talents.has_e7 == 0 then
 		self:ApplyArmor(target)
 	end
 
@@ -400,7 +401,7 @@ function pangolier_lucky_shot_custom:ApplyArmor(target)
 	if not self:IsTrained() then
 		return
 	end
-	if self.ability.talents.has_e3 == 0 then
+	if self.talents.has_e3 == 0 then
 		return
 	end
 	if target:IsCreep() then
@@ -660,6 +661,9 @@ function modifier_pangolier_lucky_shot_custom_disarm:GetModifierDamageOutgoing_P
 end
 
 modifier_pangolier_lucky_shot_custom_dash = class(mod_hidden)
+function modifier_pangolier_lucky_shot_custom_dash:GetEffectName()
+	return "particles/units/heroes/hero_pangolier/pangolier_swashbuckler_dash.vpcf"
+end
 function modifier_pangolier_lucky_shot_custom_dash:OnCreated(kv)
 	if not IsServer() then
 		return
@@ -751,12 +755,11 @@ end
 function modifier_pangolier_lucky_shot_custom_dash:GetOverrideAnimation()
 	return ACT_DOTA_CAST_ABILITY_1
 end
+
 function modifier_pangolier_lucky_shot_custom_dash:GetModifierDisableTurning()
 	return 1
 end
-function modifier_pangolier_lucky_shot_custom_dash:GetEffectName()
-	return "particles/units/heroes/hero_pangolier/pangolier_swashbuckler_dash.vpcf"
-end
+
 function modifier_pangolier_lucky_shot_custom_dash:OnDestroy()
 	if not IsServer() then
 		return
@@ -768,18 +771,137 @@ function modifier_pangolier_lucky_shot_custom_dash:OnDestroy()
 
 	self.parent:InterruptMotionControllers(true)
 
-	self.parent:FacePoint(self.target and self.target:GetAbsOrigin() or nil)
+	self.parent:FacePoint(IsValid(self.target) and self.target:GetAbsOrigin() or nil)
 	ResolveNPCPositions(self.parent:GetAbsOrigin(), 128)
 	self.parent:FadeGesture(ACT_DOTA_CAST_ABILITY_1)
 end
 
+modifier_pangolier_lucky_shot_custom_armor = class(mod_visible)
+function modifier_pangolier_lucky_shot_custom_armor:GetTexture()
+	return "buffs/pangolier/lucky_3"
+end
+function modifier_pangolier_lucky_shot_custom_armor:OnCreated()
+	self.parent = self:GetParent()
+	self.caster = self:GetCaster()
+	self.ability = self.caster.lucky_ability
+
+	if not self.ability then
+		self:Destroy()
+		return
+	end
+
+	if not IsServer() then
+		return
+	end
+
+	self.max = self.ability.talents.e3_max
+	self.armor = self.ability.talents.e3_base
+
+	if self.ability.talents.has_e7 == 1 then
+		self.armor = self.armor + self.parent:GetArmor(self) * self.ability.talents.e3_armor_legendary
+	else
+		self.armor = self.armor + self.parent:GetArmor(self) * self.ability.talents.e3_armor
+	end
+
+	self.armor = self.armor / self.max
+
+	self:SetHasCustomTransmitterData(true)
+	self:OnRefresh()
+	self:SendBuffRefreshToClients()
+end
+
+function modifier_pangolier_lucky_shot_custom_armor:OnRefresh()
+	if not IsServer() then
+		return
+	end
+	if self:GetStackCount() >= self.max then
+		return
+	end
+	self:IncrementStackCount()
+
+	if self:GetStackCount() >= self.max then
+		self.parent:AddNewModifier(self.caster, self.ability, "modifier_pangolier_lucky_shot_custom_armor_effect", {})
+	end
+end
+
+function modifier_pangolier_lucky_shot_custom_armor:OnDestroy()
+	if not IsServer() then
+		return
+	end
+	self.parent:RemoveModifierByName("modifier_pangolier_lucky_shot_custom_armor_effect")
+end
+
+function modifier_pangolier_lucky_shot_custom_armor:AddCustomTransmitterData()
+	return {
+		armor = self.armor,
+	}
+end
+
+function modifier_pangolier_lucky_shot_custom_armor:HandleCustomTransmitterData(data)
+	self.armor = data.armor
+end
+
+function modifier_pangolier_lucky_shot_custom_armor:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
+	}
+end
+
+function modifier_pangolier_lucky_shot_custom_armor:GetModifierPhysicalArmorBonus()
+	if not self.armor then
+		return
+	end
+	return self.armor * self:GetStackCount()
+end
+
+modifier_pangolier_lucky_shot_custom_armor_effect = class(mod_hidden)
+function modifier_pangolier_lucky_shot_custom_armor_effect:GetStatusEffectName()
+	return "particles/status_fx/status_effect_rupture.vpcf"
+end
+function modifier_pangolier_lucky_shot_custom_armor_effect:StatusEffectPriority()
+	return MODIFIER_PRIORITY_HIGH
+end
+function modifier_pangolier_lucky_shot_custom_armor_effect:OnCreated()
+	if not IsServer() then
+		return
+	end
+	self.parent = self:GetParent()
+	self.caster = self:GetCaster()
+	self.ability = self:GetAbility()
+
+	if self.ability.talents.has_e7 == 0 then
+		self.parent:EmitSound("Pango.Lucky_legendary_proc")
+		self.parent:EmitSound("Pango.Lucky_dash2")
+
+		local dir = (self.caster:GetAbsOrigin() - self.parent:GetAbsOrigin()):Normalized()
+		dir.z = 0
+
+		local coup_pfx = ParticleManager:CreateParticle(
+			"particles/units/heroes/hero_phantom_assassin/phantom_assassin_crit_impact_mechanical.vpcf",
+			PATTACH_ABSORIGIN_FOLLOW,
+			self.parent
+		)
+		ParticleManager:SetParticleControlEnt(
+			coup_pfx,
+			0,
+			self.parent,
+			PATTACH_POINT_FOLLOW,
+			"attach_hitloc",
+			self.parent:GetOrigin(),
+			true
+		)
+		ParticleManager:SetParticleControl(coup_pfx, 1, self.parent:GetOrigin())
+		ParticleManager:SetParticleControlForward(coup_pfx, 1, dir)
+		ParticleManager:ReleaseParticleIndex(coup_pfx)
+	end
+
+	self.parent:GenericParticle("particles/items2_fx/sange_maim.vpcf", self)
+	self.parent:GenericParticle("particles/units/heroes/hero_pangolier/pangolier_heartpiercer_debuff.vpcf", self, true)
+	self.parent:GenericParticle("particles/hoodwink/bush_damage.vpcf", self)
+end
+
 pangolier_heartpiercer_custom = class({})
 pangolier_heartpiercer_custom.talents = {}
-
-function pangolier_heartpiercer_custom:CreateTalent()
-	self:SetHidden(false)
-	self:SetLevel(1)
-end
 
 function pangolier_heartpiercer_custom:UpdateTalents(name)
 	local caster = self:GetCaster()
@@ -805,6 +927,11 @@ end
 
 function pangolier_heartpiercer_custom:GetCooldown()
 	return self.talents.e7_talent_cd or 0
+end
+
+function pangolier_heartpiercer_custom:CreateTalent()
+	self:SetHidden(false)
+	self:SetLevel(1)
 end
 
 function pangolier_heartpiercer_custom:OnAbilityPhaseStart()
@@ -1131,7 +1258,7 @@ function modifier_pangolier_lucky_shot_custom_legendary:AttackStartEvent_inc(par
 
 	self.parent:AddNewModifier(
 		self.caster,
-		self.caster:BkbAbility(self, true),
+		self.ability,
 		"modifier_bashed",
 		{ duration = (1 - self.parent:GetStatusResistance()) * self.ability.talents.e7_stun }
 	)
@@ -1273,129 +1400,4 @@ end
 
 function modifier_pangolier_lucky_shot_custom_legendary_speed:GetModifierAttackSpeedBonus_Constant()
 	return self.speed * self:GetStackCount()
-end
-
-modifier_pangolier_lucky_shot_custom_armor = class(mod_visible)
-function modifier_pangolier_lucky_shot_custom_armor:GetTexture()
-	return "buffs/pangolier/lucky_3"
-end
-function modifier_pangolier_lucky_shot_custom_armor:OnCreated()
-	self.parent = self:GetParent()
-	self.caster = self:GetCaster()
-	self.ability = self.caster.lucky_ability
-
-	if not self.ability then
-		self:Destroy()
-		return
-	end
-
-	if not IsServer() then
-		return
-	end
-
-	self.max = self.ability.talents.e3_max
-	self.armor = self.ability.talents.e3_base
-
-	if self.ability.talents.has_e7 == 1 then
-		self.armor = self.armor + self.parent:GetArmor(self) * self.ability.talents.e3_armor_legendary
-	else
-		self.armor = self.armor + self.parent:GetArmor(self) * self.ability.talents.e3_armor
-	end
-
-	self.armor = self.armor / self.max
-
-	self:OnRefresh()
-
-	self:SendBuffRefreshToClients()
-	self:SetHasCustomTransmitterData(true)
-end
-
-function modifier_pangolier_lucky_shot_custom_armor:OnRefresh()
-	if not IsServer() then
-		return
-	end
-	if self:GetStackCount() >= self.max then
-		return
-	end
-	self:IncrementStackCount()
-
-	if self:GetStackCount() >= self.max then
-		self.parent:AddNewModifier(self.caster, self.ability, "modifier_pangolier_lucky_shot_custom_armor_effect", {})
-	end
-end
-
-function modifier_pangolier_lucky_shot_custom_armor:OnDestroy()
-	if not IsServer() then
-		return
-	end
-	self.parent:RemoveModifierByName("modifier_pangolier_lucky_shot_custom_armor_effect")
-end
-
-function modifier_pangolier_lucky_shot_custom_armor:AddCustomTransmitterData()
-	return {
-		armor = self.armor,
-	}
-end
-
-function modifier_pangolier_lucky_shot_custom_armor:HandleCustomTransmitterData(data)
-	self.armor = data.armor
-end
-
-function modifier_pangolier_lucky_shot_custom_armor:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
-	}
-end
-
-function modifier_pangolier_lucky_shot_custom_armor:GetModifierPhysicalArmorBonus()
-	if not self.armor then
-		return
-	end
-	return self.armor * self:GetStackCount()
-end
-
-modifier_pangolier_lucky_shot_custom_armor_effect = class(mod_hidden)
-function modifier_pangolier_lucky_shot_custom_armor_effect:GetStatusEffectName()
-	return "particles/status_fx/status_effect_rupture.vpcf"
-end
-function modifier_pangolier_lucky_shot_custom_armor_effect:StatusEffectPriority()
-	return MODIFIER_PRIORITY_HIGH
-end
-function modifier_pangolier_lucky_shot_custom_armor_effect:OnCreated()
-	if not IsServer() then
-		return
-	end
-	self.parent = self:GetParent()
-	self.caster = self:GetCaster()
-	self.ability = self:GetAbility()
-
-	if self.ability.talents.has_e7 == 0 then
-		self.parent:EmitSound("Pango.Lucky_legendary_proc")
-		self.parent:EmitSound("Pango.Lucky_dash2")
-
-		local dir = (self.caster:GetAbsOrigin() - self.parent:GetAbsOrigin()):Normalized()
-		dir.z = 0
-
-		local coup_pfx = ParticleManager:CreateParticle(
-			"particles/units/heroes/hero_phantom_assassin/phantom_assassin_crit_impact_mechanical.vpcf",
-			PATTACH_ABSORIGIN_FOLLOW,
-			self.parent
-		)
-		ParticleManager:SetParticleControlEnt(
-			coup_pfx,
-			0,
-			self.parent,
-			PATTACH_POINT_FOLLOW,
-			"attach_hitloc",
-			self.parent:GetOrigin(),
-			true
-		)
-		ParticleManager:SetParticleControl(coup_pfx, 1, self.parent:GetOrigin())
-		ParticleManager:SetParticleControlForward(coup_pfx, 1, dir)
-		ParticleManager:ReleaseParticleIndex(coup_pfx)
-	end
-
-	self.parent:GenericParticle("particles/items2_fx/sange_maim.vpcf", self)
-	self.parent:GenericParticle("particles/units/heroes/hero_pangolier/pangolier_heartpiercer_debuff.vpcf", self, true)
-	self.parent:GenericParticle("particles/hoodwink/bush_damage.vpcf", self)
 end

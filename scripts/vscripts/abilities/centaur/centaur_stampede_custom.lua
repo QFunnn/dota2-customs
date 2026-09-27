@@ -78,7 +78,7 @@ function centaur_stampede_custom:Precache(context)
 	end
 	PrecacheResource("particle", "particles/units/heroes/hero_centaur/centaur_stampede_cast.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_centaur/centaur_stampede_overhead.vpcf", context)
-	PrecacheResource("particle", "particles/units/heroes/hero_centaur/centaur_stampede_cast.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_centaur/centaur_stampede.vpcf", context)
 	PrecacheResource("particle", "particles/items2_fx/leashed.vpcf", context)
 	PrecacheResource(
 		"particle",
@@ -91,12 +91,27 @@ function centaur_stampede_custom:Precache(context)
 	PrecacheResource("particle", "particles/centaur/stampede_legendary_cast.vpcf", context)
 	PrecacheResource("particle", "particles/centaur/stomp_legendary_stack.vpcf", context)
 	PrecacheResource("particle", "particles/centaur/stampede_hit.vpcf", context)
+	PrecacheResource("particle", "particles/items_fx/drum_of_endurance_buff.vpcf", context)
+	PrecacheResource("particle", "particles/centaur/stomp_attack.vpcf", context)
+	PrecacheResource("particle", "particles/centaur/stomp_crit.vpcf", context)
+	PrecacheResource("particle", "particles/centaur/stomp_crit_hit.vpcf", context)
+	PrecacheResource(
+		"particle",
+		"particles/units/heroes/hero_phantom_assassin/phantom_assassin_crit_impact.vpcf",
+		context
+	)
+	PrecacheResource("particle", "particles/units/heroes/hero_bloodseeker/bloodseeker_bloodbath.vpcf", context)
+	PrecacheResource(
+		"particle",
+		"particles/econ/items/sven/sven_ti7_sword/sven_ti7_sword_spell_great_cleave_gods_strength.vpcf",
+		context
+	)
 end
 
-function centaur_stampede_custom:UpdateTalents()
+function centaur_stampede_custom:UpdateTalents(name)
 	local caster = self:GetCaster()
-
 	if not self.init then
+		self.init = true
 		self.talents = {
 			has_r1 = 0,
 			r1_damage = 0,
@@ -121,14 +136,13 @@ function centaur_stampede_custom:UpdateTalents()
 			r4_duration = caster:GetTalentValue("modifier_centaur_stampede_4", "duration", true),
 			r4_cd_inc = caster:GetTalentValue("modifier_centaur_stampede_4", "cd_inc", true) / 100,
 
-			has_bkb = 0,
-			bkb_duration = caster:GetTalentValue("modifier_centaur_hero_6", "bkb", true),
+			has_h6 = 0,
+			h6_bkb = caster:GetTalentValue("modifier_centaur_hero_6", "bkb", true),
 
-			has_legendary = 0,
-			legendary_stack_duration = caster:GetTalentValue("modifier_centaur_stampede_7", "stack_duration", true),
-			legendary_stack_radius = caster:GetTalentValue("modifier_centaur_stampede_7", "stack_radius", true),
-			legendary_max = caster:GetTalentValue("modifier_centaur_stampede_7", "max", true),
-			legendary_slow = caster:GetTalentValue("modifier_centaur_stampede_7", "slow", true),
+			has_r7 = 0,
+			r7_stack_duration = caster:GetTalentValue("modifier_centaur_stampede_7", "stack_duration", true),
+			r7_stack_radius = caster:GetTalentValue("modifier_centaur_stampede_7", "stack_radius", true),
+			r7_max = caster:GetTalentValue("modifier_centaur_stampede_7", "max", true),
 		}
 	end
 
@@ -160,19 +174,18 @@ function centaur_stampede_custom:UpdateTalents()
 	end
 
 	if caster:HasTalent("modifier_centaur_hero_6") then
-		self.talents.has_bkb = 1
+		self.talents.has_h6 = 1
 	end
 
 	if caster:HasTalent("modifier_centaur_stampede_7") then
-		self.talents.has_legendary = 1
+		self.talents.has_r7 = 1
 		self.tracker:UpdateUI()
 		caster:AddAttackEvent_out(self.tracker, true)
 	end
 end
 
 function centaur_stampede_custom:GetAbilityTextureName()
-	local caster = self:GetCaster()
-	if caster:HasModifier("modifier_centaur_stampede_custom_recast") then
+	if self.caster:HasModifier("modifier_centaur_stampede_custom_recast") then
 		return "stampede_recast"
 	end
 	return wearables_system:GetAbilityIconReplacement(self.caster, "centaur_stampede", self)
@@ -187,54 +200,30 @@ end
 
 function centaur_stampede_custom:GetBehavior()
 	local bonus = 0
-	if self.talents.has_bkb == 1 then
+	if self.talents.has_h6 == 1 then
 		bonus = DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE
 	end
 	return DOTA_ABILITY_BEHAVIOR_NO_TARGET + DOTA_ABILITY_BEHAVIOR_IMMEDIATE + bonus
 end
 
-function centaur_stampede_custom:GetCooldown(level)
-	return self.BaseClass.GetCooldown(self, level)
-end
-
 function centaur_stampede_custom:GetManaCost(level)
-	if self:GetCaster():HasModifier("modifier_centaur_stampede_custom_recast") then
+	if self.caster:HasModifier("modifier_centaur_stampede_custom_recast") then
 		return 0
 	end
 	return self.BaseClass.GetManaCost(self, level)
 end
 
-function centaur_stampede_custom:DealDamage(target)
-	local caster = self:GetCaster()
-	local damage_str = self.strength_damage
-	local slow_duration = self.slow_duration + (self.talents.has_r4 == 1 and self.talents.r4_duration or 0)
-	local damage = damage_str * caster:GetStrength()
-
-	if IsValid(caster.stomp_ability) then
-		caster.stomp_ability:ApplyReduce(target)
-	end
-
-	target:AddNewModifier(
-		caster,
-		self,
-		"modifier_centaur_stampede_custom_slow",
-		{ duration = slow_duration * (1 - target:GetStatusResistance()) }
-	)
-	DoDamage({ attacker = caster, ability = self, damage_type = DAMAGE_TYPE_MAGICAL, damage = damage, victim = target })
-end
-
 function centaur_stampede_custom:OnSpellStart()
-	local caster = self:GetCaster()
 	local duration = self.duration + self.talents.r2_duration
-	local mod = caster:FindModifierByName("modifier_centaur_stampede_custom_recast")
+	local mod = self.caster:FindModifierByName("modifier_centaur_stampede_custom_recast")
 
 	if mod then
-		caster:EmitSound("Centaur.Stampede_bkb")
-		caster:AddNewModifier(
-			caster,
+		self.caster:EmitSound("Centaur.Stampede_bkb")
+		self.caster:AddNewModifier(
+			self.caster,
 			self,
 			"modifier_generic_debuff_immune",
-			{ duration = self.talents.bkb_duration, effect = 2 }
+			{ duration = self.talents.h6_bkb, effect = 2 }
 		)
 		mod:Destroy()
 		self:EndCd()
@@ -242,7 +231,7 @@ function centaur_stampede_custom:OnSpellStart()
 	end
 
 	local targets = FindUnitsInRadius(
-		caster:GetTeamNumber(),
+		self.caster:GetTeamNumber(),
 		Vector(0, 0, 0),
 		nil,
 		FIND_UNITS_EVERYWHERE,
@@ -252,16 +241,21 @@ function centaur_stampede_custom:OnSpellStart()
 		0,
 		false
 	)
-	caster:EmitSound("Hero_Centaur.Stampede.Cast")
-	caster:StartGesture(ACT_DOTA_CENTAUR_STAMPEDE)
+	self.caster:EmitSound("Hero_Centaur.Stampede.Cast")
+	self.caster:StartGesture(ACT_DOTA_CENTAUR_STAMPEDE)
 
-	if self.talents.has_bkb == 1 then
-		caster:Purge(false, true, false, true, true)
-		caster:AddNewModifier(caster, self, "modifier_centaur_stampede_custom_recast", { duration = duration })
+	if self.talents.has_h6 == 1 then
+		self.caster:Purge(false, true, false, true, true)
+		self.caster:AddNewModifier(
+			self.caster,
+			self,
+			"modifier_centaur_stampede_custom_recast",
+			{ duration = duration }
+		)
 	end
 
 	for _, target in pairs(targets) do
-		target:AddNewModifier(caster, self, "modifier_centaur_stampede_custom", { duration = duration })
+		target:AddNewModifier(self.caster, self, "modifier_centaur_stampede_custom", { duration = duration })
 	end
 end
 
@@ -272,7 +266,6 @@ function modifier_centaur_stampede_custom:OnCreated(table)
 	self.ability = self:GetAbility()
 
 	self.speed = 100
-	self.distance_pass = 0
 
 	if self.caster:HasScepter() and self.caster == self.parent then
 		self.speed = self.ability.scepter_stampede
@@ -283,7 +276,6 @@ function modifier_centaur_stampede_custom:OnCreated(table)
 	end
 
 	self.cd_stack = 0
-	self.stomp_ability = self.parent:FindAbilityByName("centaur_hoof_stomp_custom")
 
 	local mod = self.parent:FindModifierByName("modifier_centaur_stampede_custom_crit_attack_cd")
 	if mod then
@@ -297,18 +289,21 @@ function modifier_centaur_stampede_custom:OnCreated(table)
 	}
 	self.parent:EmitSound("Hero_Centaur.Stampede.Movement")
 	self.over_head = self.parent:GenericParticle(
-		wearables_system:GetParticleReplacementAbility(self.caster, pfx_list[2], self),
+		wearables_system:GetParticleReplacementAbility(self.caster, pfx_list[2], self.ability),
 		self,
 		true
 	)
-	self.parent:GenericParticle(wearables_system:GetParticleReplacementAbility(self.caster, pfx_list[1], self), self)
-	self.parent:GenericParticle(wearables_system:GetParticleReplacementAbility(self.caster, pfx_list[3], self))
+	self.parent:GenericParticle(
+		wearables_system:GetParticleReplacementAbility(self.caster, pfx_list[1], self.ability),
+		self
+	)
+	self.parent:GenericParticle(wearables_system:GetParticleReplacementAbility(self.caster, pfx_list[3], self.ability))
 
 	if self.parent ~= self.caster then
 		return
 	end
 
-	self.ability:EndCd(self.ability.talents.has_bkb == 1 and 0.2 or nil)
+	self.ability:EndCd(self.ability.talents.has_h6 == 1 and 0.2 or nil)
 
 	self.radius = self.ability.radius
 	self.targets = {}
@@ -322,8 +317,8 @@ function modifier_centaur_stampede_custom:OnIntervalThink()
 	if not IsServer() then
 		return
 	end
-	ParticleManager:SetParticleControlForward(self.over_head, 0, self:GetParent():GetForwardVector())
-	ParticleManager:SetParticleControlForward(self.over_head, 1, self:GetParent():GetForwardVector())
+	ParticleManager:SetParticleControlForward(self.over_head, 0, self.parent:GetForwardVector())
+	ParticleManager:SetParticleControlForward(self.over_head, 1, self.parent:GetForwardVector())
 	self.interval_think = self.interval_think + FrameTime()
 	if self.interval_think >= 0.1 then
 		self.interval_think = 0
@@ -337,12 +332,30 @@ function modifier_centaur_stampede_custom:OnIntervalThink()
 			if not self.targets[target:entindex()] then
 				self.targets[target:entindex()] = true
 
-				if self.stomp_ability and not self.cd_proc then
+				if IsValid(self.caster.stomp_ability) and not self.cd_proc then
 					self.cd_proc = true
-					self.stomp_ability:ProcCd()
+					self.caster.stomp_ability:ProcCd()
 				end
 
-				self.ability:DealDamage(target)
+				if IsValid(self.caster.stomp_ability) then
+					self.caster.stomp_ability:ApplyReduce(target)
+				end
+
+				local slow_duration = self.ability.slow_duration
+					+ (self.ability.talents.has_r4 == 1 and self.ability.talents.r4_duration or 0)
+				target:AddNewModifier(
+					self.caster,
+					self.ability,
+					"modifier_centaur_stampede_custom_slow",
+					{ duration = slow_duration * (1 - target:GetStatusResistance()) }
+				)
+				DoDamage({
+					attacker = self.caster,
+					ability = self.ability,
+					damage_type = DAMAGE_TYPE_MAGICAL,
+					damage = self.ability.strength_damage * self.caster:GetStrength(),
+					victim = target,
+				})
 				target:EmitSound("Hero_Centaur.Stampede.Stun")
 			end
 		end
@@ -395,7 +408,13 @@ function modifier_centaur_stampede_custom_tracker:OnCreated()
 	self.ability:UpdateTalents()
 
 	self.legendary_ability = self.parent:FindAbilityByName("centaur_stampede_custom_legendary")
-	if self.legendary_ability then
+	self.parent.stampede_legendary_ability = self.legendary_ability
+
+	if IsValid(self.legendary_ability) then
+		if IsServer() and not self.legendary_ability:IsTrained() then
+			self.legendary_ability:SetLevel(1)
+			self.legendary_ability:SetActivated(false)
+		end
 		self.legendary_ability:UpdateTalents()
 	end
 
@@ -405,9 +424,6 @@ function modifier_centaur_stampede_custom_tracker:OnCreated()
 	self.ability.radius = self.ability:GetSpecialValueFor("radius")
 	self.ability.slow_movement_speed = self.ability:GetSpecialValueFor("slow_movement_speed")
 	self.ability.scepter_stampede = self.ability:GetSpecialValueFor("scepter_stampede")
-
-	self.stack = 0
-	self.pos = self.parent:GetAbsOrigin()
 end
 
 function modifier_centaur_stampede_custom_tracker:OnRefresh()
@@ -480,7 +496,7 @@ function modifier_centaur_stampede_custom_tracker:AttackEvent_out(params)
 		end
 	end
 
-	if self.ability.talents.has_legendary == 0 then
+	if self.ability.talents.has_r7 == 0 then
 		return
 	end
 	if not self.legendary_ability or self.legendary_ability:GetCooldownTimeRemaining() > 0 then
@@ -491,7 +507,7 @@ function modifier_centaur_stampede_custom_tracker:AttackEvent_out(params)
 		self.parent,
 		self.ability,
 		"modifier_centaur_stampede_custom_legendary_stack",
-		{ duration = self.ability.talents.legendary_stack_duration }
+		{ duration = self.ability.talents.r7_stack_duration }
 	)
 end
 
@@ -573,7 +589,7 @@ function modifier_centaur_stampede_custom_tracker:DamageEvent_out(params)
 	self.parent:GenericParticle("particles/centaur/stomp_crit_hit.vpcf")
 
 	if
-		self.ability.talents.has_legendary == 1
+		self.ability.talents.has_r7 == 1
 		and self.legendary_ability
 		and self.legendary_ability:GetCooldownTimeRemaining() <= 0
 	then
@@ -582,7 +598,7 @@ function modifier_centaur_stampede_custom_tracker:DamageEvent_out(params)
 				self.parent,
 				self.ability,
 				"modifier_centaur_stampede_custom_legendary_stack",
-				{ duration = self.ability.talents.legendary_stack_duration }
+				{ duration = self.ability.talents.r7_stack_duration }
 			)
 		end
 	end
@@ -594,7 +610,7 @@ function modifier_centaur_stampede_custom_tracker:UpdateUI()
 	if not IsServer() then
 		return
 	end
-	if not self.ability.talents.has_legendary == 0 then
+	if self.ability.talents.has_r7 == 0 then
 		return
 	end
 	local stack = 0
@@ -609,27 +625,20 @@ function modifier_centaur_stampede_custom_tracker:UpdateUI()
 		self.legendary_ability:SetActivated(false)
 	end
 
-	self.parent:UpdateUIlong({ stack = stack, max = self.ability.talents.legendary_max, style = "CentaurStampede" })
+	self.parent:UpdateUIlong({ stack = stack, max = self.ability.talents.r7_max, style = "CentaurStampede" })
 end
 
-modifier_centaur_stampede_custom_slow = class({})
-function modifier_centaur_stampede_custom_slow:IsHidden()
-	return false
+modifier_centaur_stampede_custom_slow = class(mod_visible)
+function modifier_centaur_stampede_custom_slow:IsPurgable()
+	return self.ability.talents.has_r4 == 0
 end
 function modifier_centaur_stampede_custom_slow:GetTexture()
 	return "centaur_stampede"
 end
-function modifier_centaur_stampede_custom_slow:IsPurgable()
-	return self.ability.talents.has_r4 == 0
-end
 function modifier_centaur_stampede_custom_slow:OnCreated()
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
-	self.ability = self.caster:FindAbilityByName("centaur_stampede_custom")
-	if not self.ability then
-		self:Destroy()
-		return
-	end
+	self.ability = self:GetAbility()
 
 	self.slow = self.ability.slow_movement_speed
 	if not IsServer() then
@@ -677,450 +686,35 @@ function modifier_centaur_stampede_custom_slow:CheckState()
 	}
 end
 
-centaur_stampede_custom_legendary = class({})
-
-function centaur_stampede_custom_legendary:CreateTalent()
-	self:SetHidden(false)
-	self:UpdateVectorValues()
-end
-
-function centaur_stampede_custom_legendary:UpdateTalents()
-	local caster = self:GetCaster()
-
-	if not self.init and caster:HasTalent("modifier_centaur_stampede_7") then
-		self.init = true
-		if IsServer() and not self:IsTrained() then
-			self:SetLevel(1)
-			self:SetActivated(false)
-		end
-		self.cd = caster:GetTalentValue("modifier_centaur_stampede_7", "talent_cd", true)
-		self.duration = caster:GetTalentValue("modifier_centaur_stampede_7", "duration", true)
-		self.max_stack = caster:GetTalentValue("modifier_centaur_stampede_7", "max", true)
-		self.silence = caster:GetTalentValue("modifier_centaur_stampede_7", "silence", true)
-		self.damage = caster:GetTalentValue("modifier_centaur_stampede_7", "damage", true)
-
-		self.width = self:GetSpecialValueFor("width")
-		self.interval = self:GetSpecialValueFor("interval")
-		self.speed = self:GetSpecialValueFor("speed")
-		self.hit_radius = self:GetSpecialValueFor("hit_radius")
-		self.hit_stun = self:GetSpecialValueFor("hit_stun")
-		self.hit_knock = self:GetSpecialValueFor("hit_knock")
-		self.distance = self:GetSpecialValueFor("distance")
-	end
-end
-
-function centaur_stampede_custom_legendary:GetCooldown()
-	return self.cd
-end
-
-function centaur_stampede_custom_legendary:OnVectorCastStart(vStartLocation, vDirection)
-	local caster = self:GetCaster()
-
-	local mod = caster:FindModifierByName("modifier_centaur_stampede_custom_legendary_stack")
-	if not mod then
-		return
-	end
-
-	local stack = mod:GetStackCount()
-	local duration = stack * self.duration + 0.2
-	mod:Destroy()
-
-	local point = vStartLocation
-	local vec = vDirection
-
-	if self:GetCursorPosition() == caster:GetAbsOrigin() then
-		point = caster:GetAbsOrigin() + caster:GetForwardVector() * 10
-		vec = caster:GetForwardVector()
-	end
-
-	caster:EmitSound("Centaur.Stampede_legendary_cast1")
-
-	local particle = ParticleManager:CreateParticle(
-		"particles/centaur/stampede_legendary_cast.vpcf",
-		PATTACH_ABSORIGIN_FOLLOW,
-		caster
-	)
-	ParticleManager:SetParticleControlEnt(
-		particle,
-		1,
-		caster,
-		PATTACH_POINT_FOLLOW,
-		"attach_head",
-		caster:GetOrigin(),
-		true
-	)
-	ParticleManager:ReleaseParticleIndex(particle)
-
-	particle = ParticleManager:CreateParticle(
-		"particles/items_fx/drum_of_endurance_buff.vpcf",
-		PATTACH_ABSORIGIN_FOLLOW,
-		caster
-	)
-	ParticleManager:DestroyParticle(particle, false)
-	ParticleManager:ReleaseParticleIndex(particle)
-
-	CreateModifierThinker(
-		caster,
-		self,
-		"modifier_centaur_stampede_custom_legendary_thinker",
-		{ duration = duration, stack = stack, x = vec.x, y = vec.y },
-		point,
-		caster:GetTeamNumber(),
-		false
-	)
-end
-
-modifier_centaur_stampede_custom_legendary_thinker = class(mod_hidden)
-function modifier_centaur_stampede_custom_legendary_thinker:OnCreated(table)
-	self.parent = self:GetParent()
-	self.caster = self:GetCaster()
-	self.ability = self:GetAbility()
-
-	self.distance_start = 100
-	self.width = self.ability.width
-	self.interval = self.ability.interval
-	self.hit_radius = self.ability.hit_radius
-	self.distance = self.ability.distance
-	self.speed = self.ability.speed
-
-	if not IsServer() then
-		return
-	end
-
-	self.stack = table.stack
-
-	if self.stack >= self.ability.max_stack then
-		self.caster:EmitSound("Centaur.Stampede_legendary_cast2")
-	end
-
-	self.vec = Vector(table.x, table.y, 0)
-	self.center_point = self.parent:GetAbsOrigin() - self.distance_start * self.vec
-	local line_pos = self.center_point + self.vec * self.width
-
-	self.left = RotatePosition(self.center_point, QAngle(0, 90, 0), line_pos)
-	self.right = RotatePosition(self.center_point, QAngle(0, -90, 0), line_pos)
-
-	self.dir = (self.right - self.left)
-	self.length = self.dir:Length2D()
-	self.dir = self.dir:Normalized()
-
-	self.last_left = 0
-	self.last_right = 0
-
-	self.parent:SetAbsOrigin(GetGroundPosition((self.parent:GetAbsOrigin() + self.vec * self.distance / 2), nil))
-	self.parent:EmitSound("Centaur.Stampede_legendary_thinker")
-
-	self.units = {}
-	self:OnIntervalThink()
-	self:StartIntervalThink(self.interval)
-end
-
-function modifier_centaur_stampede_custom_legendary_thinker:OnDestroy()
-	if not IsServer() then
-		return
-	end
-
-	self.parent:StopSound("Centaur.Stampede_legendary_thinker")
-end
-
-function modifier_centaur_stampede_custom_legendary_thinker:OnIntervalThink()
-	if not IsServer() then
-		return
-	end
-
-	local length
-	local count = 0
-
-	repeat
-		length = RandomInt(0, self.length / 2)
-		count = count + 1
-	until (math.abs(length - self.last_left) > self.hit_radius) or (count >= 20)
-
-	count = 0
-
-	local point = self.center_point + self.dir * length
-	self.last_left = length
-	self:SpawnUnit(point)
-
-	repeat
-		length = RandomInt(0, self.length / 2)
-		count = count + 1
-	until (
-			(math.abs(length - self.last_right) > self.hit_radius)
-			and (math.abs(length - self.last_left) > self.hit_radius)
-		) or (count >= 20)
-
-	point = self.center_point - self.dir * length
-	self.last_right = length
-	self:SpawnUnit(point)
-
-	self:StartIntervalThink(self.interval)
-end
-
-function modifier_centaur_stampede_custom_legendary_thinker:SpawnUnit(point)
-	if not IsServer() then
-		return
-	end
-
-	local unit = CreateUnitByName(
-		"custom_centaur_scepter_unit_" .. tostring(RandomInt(1, 2)),
-		point,
-		false,
-		self.caster,
-		self.caster,
-		self.caster:GetTeamNumber()
-	)
-	unit.owner = self.caster
-	unit:SetForwardVector(self.vec)
-	unit:FaceTowards(unit:GetAbsOrigin() + self.vec * 5)
-	unit:AddNewModifier(
-		self.caster,
-		self.ability,
-		"modifier_centaur_stampede_custom_legendary_unit",
-		{ duration = self.distance / self.speed + 2, stack = self.stack, x = self.vec.x, y = self.vec.y }
-	)
-end
-
-modifier_centaur_stampede_custom_legendary_unit = class(mod_hidden)
-function modifier_centaur_stampede_custom_legendary_unit:OnCreated(table)
-	self.parent = self:GetParent()
-	self.caster = self:GetCaster()
-	self.ability = self:GetAbility()
-	self.distance = self.ability.distance
-	self.hit_radius = self.ability.hit_radius
-	self.hit_stun = self.ability.hit_stun
-	self.hit_knock = self.ability.hit_knock
-	self.silence = self.ability.silence
-	self.speed = self.ability.speed
-	self.max = self.ability.max_stack
-	self.silence = self.ability.silence
-
-	if not IsServer() then
-		return
-	end
-	self.stack = table.stack
-
-	local pfx_list = {
-		"particles/units/heroes/hero_centaur/centaur_stampede.vpcf",
-		"particles/units/heroes/hero_centaur/centaur_stampede_overhead.vpcf",
-		"particles/units/heroes/hero_centaur/centaur_stampede_cast.vpcf",
-	}
-
-	if self.stack >= self.max then
-		self.stampede_particle = self.parent:GenericParticle(pfx_list[2], self, true)
-		self.parent:GenericParticle(pfx_list[3])
-	end
-
-	self.parent:GenericParticle(pfx_list[1], self)
-	self.parent:EmitSound("Hero_Centaur.Stampede.Movement")
-
-	local effect = ParticleManager:CreateParticle(
-		"particles/centaur/stampede_legendary_start.vpcf",
-		PATTACH_CUSTOMORIGIN,
-		self.parent
-	)
-	ParticleManager:SetParticleControlEnt(
-		effect,
-		0,
-		self.parent,
-		PATTACH_POINT_FOLLOW,
-		"attach_hitloc",
-		self.parent:GetOrigin(),
-		true
-	)
-	ParticleManager:ReleaseParticleIndex(effect)
-
-	self.stampede_particle = nil
-	self.targets = {}
-
-	self.dir = Vector(table.x, table.y, 0)
-	self.final_point = self.parent:GetAbsOrigin() + self.dir * self.distance
-
-	self.pass = 0
-	self.position = self.parent:GetAbsOrigin()
-
-	self:OnIntervalThink()
-	self:StartIntervalThink(0.2)
-end
-
-function modifier_centaur_stampede_custom_legendary_unit:CheckState()
-	return {
-		[MODIFIER_STATE_NO_HEALTH_BAR] = true,
-		[MODIFIER_STATE_OUT_OF_GAME] = true,
-		[MODIFIER_STATE_DISARMED] = true,
-		[MODIFIER_STATE_UNSELECTABLE] = true,
-		[MODIFIER_STATE_UNTARGETABLE] = true,
-		[MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY] = true,
-		[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
-		[MODIFIER_STATE_INVULNERABLE] = true,
-	}
-end
-
-function modifier_centaur_stampede_custom_legendary_unit:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE,
-		MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS,
-	}
-end
-
-function modifier_centaur_stampede_custom_legendary_unit:GetActivityTranslationModifiers()
-	return "haste"
-end
-
-function modifier_centaur_stampede_custom_legendary_unit:GetModifierMoveSpeed_Absolute()
-	return self.speed
-end
-
-function modifier_centaur_stampede_custom_legendary_unit:OnIntervalThink()
-	if not IsServer() then
-		return
-	end
-
-	self.parent:MoveToPosition(self.final_point + self.dir * 500)
-
-	local point = self.parent:GetAbsOrigin()
-	self.pass = self.pass + (point - self.position):Length2D()
-	self.position = point
-
-	if self.pass >= self.distance then
-		self:Destroy()
-		return
-	end
-
-	for _, target in pairs(self.parent:FindTargets(self.hit_radius)) do
-		if not self.targets[target:entindex()] then
-			self.targets[target:entindex()] = true
-			target:EmitSound("Hero_Centaur.Stampede.Stun")
-
-			if self.stack >= self.max then
-				target:AddNewModifier(
-					self.caster,
-					self.caster:BkbAbility(self.ability, true),
-					"modifier_centaur_stampede_custom_legendary_silence",
-					{ duration = (1 - target:GetStatusResistance()) * self.silence }
-				)
-			end
-
-			self.caster:AddNewModifier(
-				self.caster,
-				self.ability,
-				"modifier_centaur_stampede_custom_legendary_damage",
-				{ duration = 1 }
-			)
-			self.caster:PerformAttack(target, true, true, true, true, false, false, true)
-			self.caster:RemoveModifierByName("modifier_centaur_stampede_custom_legendary_damage")
-
-			local center = target:GetAbsOrigin() - self.dir * 10
-			local knockbackProperties = {
-				center_x = center.x,
-				center_y = center.y,
-				center_z = center.z,
-				duration = self.hit_stun,
-				knockback_duration = self.hit_stun,
-				knockback_distance = self.hit_knock,
-				knockback_height = 30,
-				should_stun = 1,
-			}
-			target:AddNewModifier(
-				self.caster,
-				self.caster:BkbAbility(self.ability, true),
-				"modifier_knockback",
-				knockbackProperties
-			)
-		end
-	end
-end
-
-function modifier_centaur_stampede_custom_legendary_unit:OnDestroy()
-	if not IsServer() then
-		return
-	end
-
-	local effect =
-		ParticleManager:CreateParticle("particles/centaur/stampede_legendary_end.vpcf", PATTACH_WORLDORIGIN, nil)
-	ParticleManager:SetParticleControl(effect, 0, self.parent:GetOrigin())
-	ParticleManager:ReleaseParticleIndex(effect)
-
-	self.parent:StopSound("Hero_Centaur.Stampede.Movement")
-	UTIL_Remove(self.parent)
-end
-
-modifier_centaur_stampede_custom_legendary_damage = class(mod_hidden)
-function modifier_centaur_stampede_custom_legendary_damage:OnCreated()
-	self.damage = self:GetAbility().damage - 100
-end
-
-function modifier_centaur_stampede_custom_legendary_damage:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE,
-	}
-end
-
-function modifier_centaur_stampede_custom_legendary_damage:GetModifierTotalDamageOutgoing_Percentage(params)
-	if params.inflictor then
-		return
-	end
-	return self.damage
-end
-
-modifier_centaur_stampede_custom_legendary_silence = class({})
-function modifier_centaur_stampede_custom_legendary_silence:IsHidden()
-	return true
-end
-function modifier_centaur_stampede_custom_legendary_silence:IsPurgable()
-	return true
-end
-function modifier_centaur_stampede_custom_legendary_silence:OnCreated(table)
-	self.ability = self:GetCaster():FindAbilityByName("centaur_stampede_custom")
-	if not self.ability then
-		self:Destroy()
-		return
-	end
-
-	self.slow = self.ability.talents.legendary_slow
-end
-
-function modifier_centaur_stampede_custom_legendary_silence:CheckState()
-	return {
-		[MODIFIER_STATE_SILENCED] = true,
-	}
-end
-
-function modifier_centaur_stampede_custom_legendary_silence:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-	}
-end
-
-function modifier_centaur_stampede_custom_legendary_silence:GetModifierMoveSpeedBonus_Percentage()
-	return self.slow
-end
-
-function modifier_centaur_stampede_custom_legendary_silence:GetEffectName()
-	return "particles/generic_gameplay/generic_silenced.vpcf"
-end
-function modifier_centaur_stampede_custom_legendary_silence:ShouldUseOverheadOffset()
-	return true
-end
-function modifier_centaur_stampede_custom_legendary_silence:GetEffectAttachType()
-	return PATTACH_OVERHEAD_FOLLOW
-end
-
 modifier_centaur_stampede_custom_legendary_stack = class(mod_hidden)
 function modifier_centaur_stampede_custom_legendary_stack:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
-	self.max = self.ability.talents.legendary_max
-	self.radius = self.ability.talents.legendary_stack_radius
-	self.duration = self.ability.talents.legendary_stack_duration
+	self.max = self.ability.talents.r7_max
+	self.radius = self.ability.talents.r7_stack_radius
+	self.duration = self.ability.talents.r7_stack_duration
 
 	if not IsServer() then
 		return
 	end
-	self.mod = self.parent:FindModifierByName("modifier_centaur_stampede_custom_tracker")
+	self.mod = self.ability.tracker
 
-	self:SetStackCount(1)
+	self:OnRefresh()
 	self:StartIntervalThink(0.2)
+end
+
+function modifier_centaur_stampede_custom_legendary_stack:OnRefresh()
+	if not IsServer() then
+		return
+	end
+	if self:GetStackCount() >= self.max then
+		return
+	end
+	self:IncrementStackCount()
+
+	if self.mod then
+		self.mod:UpdateUI()
+	end
 end
 
 function modifier_centaur_stampede_custom_legendary_stack:OnIntervalThink()
@@ -1142,26 +736,6 @@ function modifier_centaur_stampede_custom_legendary_stack:OnIntervalThink()
 	if #targets > 0 then
 		self:SetDuration(self.duration, true)
 	end
-end
-
-function modifier_centaur_stampede_custom_legendary_stack:OnRefresh()
-	if not IsServer() then
-		return
-	end
-	if self:GetStackCount() >= self.max then
-		return
-	end
-	self:IncrementStackCount()
-end
-
-function modifier_centaur_stampede_custom_legendary_stack:OnStackCountChanged()
-	if not IsServer() then
-		return
-	end
-	if not self.mod then
-		return
-	end
-	self.mod:UpdateUI()
 end
 
 function modifier_centaur_stampede_custom_legendary_stack:OnDestroy()
@@ -1247,12 +821,15 @@ modifier_centaur_stampede_custom_crit_attack_cd = class(mod_cd)
 function modifier_centaur_stampede_custom_crit_attack_cd:GetTexture()
 	return "buffs/centaur/stampede_3"
 end
+function modifier_centaur_stampede_custom_crit_attack_cd:OnCreated()
+	self.ability = self:GetAbility()
+	self.RemoveForDuel = true
+end
+
 function modifier_centaur_stampede_custom_crit_attack_cd:OnDestroy()
 	if not IsServer() then
 		return
 	end
-	self.ability = self:GetAbility()
-
 	if not self.ability.tracker then
 		return
 	end
@@ -1271,6 +848,7 @@ function modifier_centaur_stampede_custom_damage_bonus:OnCreated()
 	if not IsServer() then
 		return
 	end
+	self.RemoveForDuel = true
 	self:OnRefresh()
 end
 
@@ -1295,3 +873,427 @@ function modifier_centaur_stampede_custom_damage_bonus:GetModifierDamageOutgoing
 end
 
 modifier_centaur_stampede_custom_recast = class(mod_hidden)
+
+centaur_stampede_custom_legendary = class({})
+centaur_stampede_custom_legendary.talents = {}
+
+function centaur_stampede_custom_legendary:Init()
+	if not self:GetCaster() then
+		return
+	end
+	self.caster = self:GetCaster()
+
+	self.width = self:GetLevelSpecialValueFor("width", 1)
+	self.interval = self:GetLevelSpecialValueFor("interval", 1)
+	self.speed = self:GetLevelSpecialValueFor("speed", 1)
+	self.hit_radius = self:GetLevelSpecialValueFor("hit_radius", 1)
+	self.hit_stun = self:GetLevelSpecialValueFor("hit_stun", 1)
+	self.hit_knock = self:GetLevelSpecialValueFor("hit_knock", 1)
+	self.distance = self:GetLevelSpecialValueFor("distance", 1)
+end
+
+function centaur_stampede_custom_legendary:CreateTalent()
+	self:SetHidden(false)
+	self:UpdateVectorValues()
+end
+
+function centaur_stampede_custom_legendary:UpdateTalents(name)
+	local caster = self:GetCaster()
+	if not self.init then
+		self.init = true
+		self.talents = {
+			has_r7 = 0,
+			r7_talent_cd = caster:GetTalentValue("modifier_centaur_stampede_7", "talent_cd", true),
+			r7_duration = caster:GetTalentValue("modifier_centaur_stampede_7", "duration", true),
+			r7_max = caster:GetTalentValue("modifier_centaur_stampede_7", "max", true),
+			r7_silence = caster:GetTalentValue("modifier_centaur_stampede_7", "silence", true),
+			r7_damage = caster:GetTalentValue("modifier_centaur_stampede_7", "damage", true),
+			r7_slow = caster:GetTalentValue("modifier_centaur_stampede_7", "slow", true),
+		}
+	end
+
+	if caster:HasTalent("modifier_centaur_stampede_7") then
+		self.talents.has_r7 = 1
+	end
+end
+
+function centaur_stampede_custom_legendary:GetCooldown()
+	return self.talents.r7_talent_cd or 0
+end
+
+function centaur_stampede_custom_legendary:OnVectorCastStart(vStartLocation, vDirection)
+	local mod = self.caster:FindModifierByName("modifier_centaur_stampede_custom_legendary_stack")
+	if not mod then
+		return
+	end
+
+	local stack = mod:GetStackCount()
+	local duration = stack * self.talents.r7_duration + 0.2
+	mod:Destroy()
+
+	local point = vStartLocation
+	local vec = vDirection
+
+	if self:GetCursorPosition() == self.caster:GetAbsOrigin() then
+		point = self.caster:GetAbsOrigin() + self.caster:GetForwardVector() * 10
+		vec = self.caster:GetForwardVector()
+	end
+
+	self.caster:EmitSound("Centaur.Stampede_legendary_cast1")
+
+	local particle = ParticleManager:CreateParticle(
+		"particles/centaur/stampede_legendary_cast.vpcf",
+		PATTACH_ABSORIGIN_FOLLOW,
+		self.caster
+	)
+	ParticleManager:SetParticleControlEnt(
+		particle,
+		1,
+		self.caster,
+		PATTACH_POINT_FOLLOW,
+		"attach_head",
+		self.caster:GetOrigin(),
+		true
+	)
+	ParticleManager:ReleaseParticleIndex(particle)
+
+	particle = ParticleManager:CreateParticle(
+		"particles/items_fx/drum_of_endurance_buff.vpcf",
+		PATTACH_ABSORIGIN_FOLLOW,
+		self.caster
+	)
+	ParticleManager:DestroyParticle(particle, false)
+	ParticleManager:ReleaseParticleIndex(particle)
+
+	CreateModifierThinker(
+		self.caster,
+		self,
+		"modifier_centaur_stampede_custom_legendary_thinker",
+		{ duration = duration, stack = stack, x = vec.x, y = vec.y },
+		point,
+		self.caster:GetTeamNumber(),
+		false
+	)
+end
+
+modifier_centaur_stampede_custom_legendary_thinker = class(mod_hidden)
+function modifier_centaur_stampede_custom_legendary_thinker:OnCreated(table)
+	self.parent = self:GetParent()
+	self.caster = self:GetCaster()
+	self.ability = self:GetAbility()
+
+	self.distance_start = 100
+	self.width = self.ability.width
+	self.interval = self.ability.interval
+	self.hit_radius = self.ability.hit_radius
+	self.distance = self.ability.distance
+	self.speed = self.ability.speed
+
+	if not IsServer() then
+		return
+	end
+
+	self.stack = table.stack
+
+	if self.stack >= self.ability.talents.r7_max then
+		self.caster:EmitSound("Centaur.Stampede_legendary_cast2")
+	end
+
+	self.vec = Vector(table.x, table.y, 0)
+	self.center_point = self.parent:GetAbsOrigin() - self.distance_start * self.vec
+	local line_pos = self.center_point + self.vec * self.width
+
+	self.left = RotatePosition(self.center_point, QAngle(0, 90, 0), line_pos)
+	self.right = RotatePosition(self.center_point, QAngle(0, -90, 0), line_pos)
+
+	self.dir = (self.right - self.left)
+	self.length = self.dir:Length2D()
+	self.dir = self.dir:Normalized()
+
+	self.last_left = 0
+	self.last_right = 0
+
+	self.parent:SetAbsOrigin(GetGroundPosition((self.parent:GetAbsOrigin() + self.vec * self.distance / 2), nil))
+	self.parent:EmitSound("Centaur.Stampede_legendary_thinker")
+
+	self.units = {}
+	self:OnIntervalThink()
+	self:StartIntervalThink(self.interval)
+end
+
+function modifier_centaur_stampede_custom_legendary_thinker:OnDestroy()
+	if not IsServer() then
+		return
+	end
+	self.parent:StopSound("Centaur.Stampede_legendary_thinker")
+end
+
+function modifier_centaur_stampede_custom_legendary_thinker:OnIntervalThink()
+	if not IsServer() then
+		return
+	end
+	local length
+	local count = 0
+
+	repeat
+		length = RandomInt(0, self.length / 2)
+		count = count + 1
+	until (math.abs(length - self.last_left) > self.hit_radius) or (count >= 20)
+
+	count = 0
+
+	local point = self.center_point + self.dir * length
+	self.last_left = length
+	self:SpawnUnit(point)
+
+	repeat
+		length = RandomInt(0, self.length / 2)
+		count = count + 1
+	until (
+			(math.abs(length - self.last_right) > self.hit_radius)
+			and (math.abs(length - self.last_left) > self.hit_radius)
+		) or (count >= 20)
+
+	point = self.center_point - self.dir * length
+	self.last_right = length
+	self:SpawnUnit(point)
+
+	self:StartIntervalThink(self.interval)
+end
+
+function modifier_centaur_stampede_custom_legendary_thinker:SpawnUnit(point)
+	if not IsServer() then
+		return
+	end
+	local unit = CreateUnitByName(
+		"custom_centaur_scepter_unit_" .. tostring(RandomInt(1, 2)),
+		point,
+		false,
+		self.caster,
+		self.caster,
+		self.caster:GetTeamNumber()
+	)
+	unit.owner = self.caster
+	unit:FacePoint(unit:GetAbsOrigin() + self.vec * 5)
+	unit:AddNewModifier(
+		self.caster,
+		self.ability,
+		"modifier_centaur_stampede_custom_legendary_unit",
+		{ duration = self.distance / self.speed + 2, stack = self.stack, x = self.vec.x, y = self.vec.y }
+	)
+end
+
+modifier_centaur_stampede_custom_legendary_unit = class(mod_hidden)
+function modifier_centaur_stampede_custom_legendary_unit:OnCreated(table)
+	self.parent = self:GetParent()
+	self.caster = self:GetCaster()
+	self.ability = self:GetAbility()
+	self.distance = self.ability.distance
+	self.hit_radius = self.ability.hit_radius
+	self.hit_stun = self.ability.hit_stun
+	self.hit_knock = self.ability.hit_knock
+	self.silence = self.ability.talents.r7_silence
+	self.speed = self.ability.speed
+	self.max = self.ability.talents.r7_max
+
+	if not IsServer() then
+		return
+	end
+	self.stack = table.stack
+
+	local pfx_list = {
+		"particles/units/heroes/hero_centaur/centaur_stampede.vpcf",
+		"particles/units/heroes/hero_centaur/centaur_stampede_overhead.vpcf",
+		"particles/units/heroes/hero_centaur/centaur_stampede_cast.vpcf",
+	}
+
+	if self.stack >= self.max then
+		self.stampede_particle = self.parent:GenericParticle(pfx_list[2], self, true)
+		self.parent:GenericParticle(pfx_list[3])
+	end
+
+	self.parent:GenericParticle(pfx_list[1], self)
+	self.parent:EmitSound("Hero_Centaur.Stampede.Movement")
+
+	local effect = ParticleManager:CreateParticle(
+		"particles/centaur/stampede_legendary_start.vpcf",
+		PATTACH_CUSTOMORIGIN,
+		self.parent
+	)
+	ParticleManager:SetParticleControlEnt(
+		effect,
+		0,
+		self.parent,
+		PATTACH_POINT_FOLLOW,
+		"attach_hitloc",
+		self.parent:GetOrigin(),
+		true
+	)
+	ParticleManager:ReleaseParticleIndex(effect)
+
+	self.stampede_particle = nil
+	self.targets = {}
+
+	self.dir = Vector(table.x, table.y, 0)
+	self.final_point = self.parent:GetAbsOrigin() + self.dir * self.distance
+
+	self.pass = 0
+	self.position = self.parent:GetAbsOrigin()
+
+	self:OnIntervalThink()
+	self:StartIntervalThink(0.2)
+end
+
+function modifier_centaur_stampede_custom_legendary_unit:CheckState()
+	return {
+		[MODIFIER_STATE_NO_HEALTH_BAR] = true,
+		[MODIFIER_STATE_OUT_OF_GAME] = true,
+		[MODIFIER_STATE_DISARMED] = true,
+		[MODIFIER_STATE_UNSELECTABLE] = true,
+		[MODIFIER_STATE_UNTARGETABLE] = true,
+		[MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY] = true,
+		[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
+		[MODIFIER_STATE_INVULNERABLE] = true,
+	}
+end
+
+function modifier_centaur_stampede_custom_legendary_unit:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE,
+		MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS,
+	}
+end
+
+function modifier_centaur_stampede_custom_legendary_unit:GetActivityTranslationModifiers()
+	return "haste"
+end
+
+function modifier_centaur_stampede_custom_legendary_unit:GetModifierMoveSpeed_Absolute()
+	return self.speed
+end
+
+function modifier_centaur_stampede_custom_legendary_unit:OnIntervalThink()
+	if not IsServer() then
+		return
+	end
+	self.parent:MoveToPosition(self.final_point + self.dir * 500)
+
+	local point = self.parent:GetAbsOrigin()
+	self.pass = self.pass + (point - self.position):Length2D()
+	self.position = point
+
+	if self.pass >= self.distance then
+		self:Destroy()
+		return
+	end
+
+	for _, target in pairs(self.parent:FindTargets(self.hit_radius)) do
+		if not self.targets[target:entindex()] then
+			self.targets[target:entindex()] = true
+			target:EmitSound("Hero_Centaur.Stampede.Stun")
+
+			if self.stack >= self.max then
+				target:AddNewModifier(
+					self.caster,
+					self.caster:BkbAbility(self.ability, true),
+					"modifier_centaur_stampede_custom_legendary_silence",
+					{ duration = (1 - target:GetStatusResistance()) * self.silence }
+				)
+			end
+
+			self.caster:AddNewModifier(
+				self.caster,
+				self.ability,
+				"modifier_centaur_stampede_custom_legendary_damage",
+				{ duration = 1 }
+			)
+			self.caster:PerformAttack(target, true, true, true, true, false, false, true)
+			self.caster:RemoveModifierByName("modifier_centaur_stampede_custom_legendary_damage")
+
+			local center = target:GetAbsOrigin() - self.dir * 10
+			local knockbackProperties = {
+				center_x = center.x,
+				center_y = center.y,
+				center_z = center.z,
+				duration = self.hit_stun,
+				knockback_duration = self.hit_stun,
+				knockback_distance = self.hit_knock,
+				knockback_height = 30,
+				should_stun = 1,
+			}
+			target:AddNewModifier(
+				self.caster,
+				self.caster:BkbAbility(self.ability, true),
+				"modifier_knockback",
+				knockbackProperties
+			)
+		end
+	end
+end
+
+function modifier_centaur_stampede_custom_legendary_unit:OnDestroy()
+	if not IsServer() then
+		return
+	end
+	local effect =
+		ParticleManager:CreateParticle("particles/centaur/stampede_legendary_end.vpcf", PATTACH_WORLDORIGIN, nil)
+	ParticleManager:SetParticleControl(effect, 0, self.parent:GetOrigin())
+	ParticleManager:ReleaseParticleIndex(effect)
+
+	self.parent:StopSound("Hero_Centaur.Stampede.Movement")
+	UTIL_Remove(self.parent)
+end
+
+modifier_centaur_stampede_custom_legendary_damage = class(mod_hidden)
+function modifier_centaur_stampede_custom_legendary_damage:OnCreated()
+	self.ability = self:GetAbility()
+	self.damage = self.ability.talents.r7_damage - 100
+end
+
+function modifier_centaur_stampede_custom_legendary_damage:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE,
+	}
+end
+
+function modifier_centaur_stampede_custom_legendary_damage:GetModifierTotalDamageOutgoing_Percentage(params)
+	if params.inflictor then
+		return
+	end
+	return self.damage
+end
+
+modifier_centaur_stampede_custom_legendary_silence = class(mod_hidden)
+function modifier_centaur_stampede_custom_legendary_silence:IsPurgable()
+	return true
+end
+function modifier_centaur_stampede_custom_legendary_silence:GetEffectName()
+	return "particles/generic_gameplay/generic_silenced.vpcf"
+end
+function modifier_centaur_stampede_custom_legendary_silence:ShouldUseOverheadOffset()
+	return true
+end
+function modifier_centaur_stampede_custom_legendary_silence:GetEffectAttachType()
+	return PATTACH_OVERHEAD_FOLLOW
+end
+function modifier_centaur_stampede_custom_legendary_silence:OnCreated()
+	self.caster = self:GetCaster()
+	self.ability = self.caster.stampede_legendary_ability
+	self.slow = IsValid(self.ability) and self.ability.talents.r7_slow or 0
+end
+
+function modifier_centaur_stampede_custom_legendary_silence:CheckState()
+	return {
+		[MODIFIER_STATE_SILENCED] = true,
+	}
+end
+
+function modifier_centaur_stampede_custom_legendary_silence:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+	}
+end
+
+function modifier_centaur_stampede_custom_legendary_silence:GetModifierMoveSpeedBonus_Percentage()
+	return self.slow
+end

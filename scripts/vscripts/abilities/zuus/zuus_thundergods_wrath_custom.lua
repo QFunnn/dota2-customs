@@ -86,6 +86,12 @@ function zuus_thundergods_wrath_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_zuus/zuus_static_field.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_mjollnir_shield.vpcf", context)
 	PrecacheResource("particle", "particles/zeus/wrath_legendary_refresh.vpcf", context)
+	PrecacheResource("particle", "particles/zuus_shield_wrath.vpcf", context)
+	PrecacheResource("particle", "particles/zeus/arc_legendary_active.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_zuus/zuus_lightning_bolt_aoe.vpcf", context)
+	PrecacheResource("particle", "particles/zuus_speed.vpcf", context)
+	PrecacheResource("particle", "particles/econ/items/zeus/arcana_chariot/zeus_arcana_thundergods_wrath.vpcf", context)
+	PrecacheResource("particle", "particles/zeus/arcana_ulti.vpcf", context)
 end
 
 function zuus_thundergods_wrath_custom:UpdateTalents(name)
@@ -93,11 +99,9 @@ function zuus_thundergods_wrath_custom:UpdateTalents(name)
 	if not self.init then
 		self.init = true
 		self.talents = {
-			has_r1 = 0,
 			r1_damage = 0,
 			r1_spell = 0,
 
-			has_r2 = 0,
 			r2_cd = 0,
 
 			has_r3 = 0,
@@ -133,13 +137,11 @@ function zuus_thundergods_wrath_custom:UpdateTalents(name)
 	end
 
 	if caster:HasTalent("modifier_zuus_wrath_1") then
-		self.talents.has_r1 = 1
 		self.talents.r1_damage = caster:GetTalentValue("modifier_zuus_wrath_1", "damage") / 100
 		self.talents.r1_spell = caster:GetTalentValue("modifier_zuus_wrath_1", "spell")
 	end
 
 	if caster:HasTalent("modifier_zuus_wrath_2") then
-		self.talents.has_r2 = 1
 		self.talents.r2_cd = caster:GetTalentValue("modifier_zuus_wrath_2", "cd")
 	end
 
@@ -165,16 +167,8 @@ function zuus_thundergods_wrath_custom:UpdateTalents(name)
 	end
 end
 
-function zuus_thundergods_wrath_custom:Init()
-	self.caster = self:GetCaster()
-end
-
 function zuus_thundergods_wrath_custom:GetAbilityTextureName()
 	return wearables_system:GetAbilityIconReplacement(self.caster, "zuus_thundergods_wrath", self)
-end
-
-function zuus_thundergods_wrath_custom:GetCooldown(iLevel)
-	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.r2_cd and self.talents.r2_cd or 0)
 end
 
 function zuus_thundergods_wrath_custom:GetIntrinsicModifierName()
@@ -184,12 +178,16 @@ function zuus_thundergods_wrath_custom:GetIntrinsicModifierName()
 	return "modifier_zuus_thundergods_wrath_custom_tracker"
 end
 
+function zuus_thundergods_wrath_custom:GetCooldown(iLevel)
+	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.r2_cd or 0)
+end
+
 function zuus_thundergods_wrath_custom:GetCastRange(vLocation, hTarget)
-	return self.damage_range and self.damage_range or 0
+	return (self.damage_range or 0)
 end
 
 function zuus_thundergods_wrath_custom:GetCastPoint(iLevel)
-	return self.BaseClass.GetCastPoint(self) + (self.caster:HasScepter() and self.scepter_cast or 0)
+	return self.BaseClass.GetCastPoint(self) + (self.caster:HasScepter() and (self.scepter_cast or 0) or 0)
 end
 
 function zuus_thundergods_wrath_custom:OnAbilityPhaseStart()
@@ -306,10 +304,6 @@ function zuus_thundergods_wrath_custom:OnSpellStart()
 end
 
 function zuus_thundergods_wrath_custom:DealDamage()
-	local damage_reduction = self:GetSpecialValueFor("damage_reduction") / 100
-
-	local position = self.caster:GetAbsOrigin()
-
 	if self.talents.has_h2 == 1 then
 		if IsValid(self.shield_mod) then
 			self.shield_mod:Destroy()
@@ -528,12 +522,93 @@ function zuus_thundergods_wrath_custom:CreateCloud(point, ignore_random)
 	)
 end
 
-modifier_zuus_thundergods_wrath_custom_kills = class({})
+modifier_zuus_thundergods_wrath_custom_tracker = class(mod_hidden)
+function modifier_zuus_thundergods_wrath_custom_tracker:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+	self.ability.tracker = self
+	self.ability:UpdateTalents()
+
+	self.parent.wrath_ability = self.ability
+	self.parent.cloud_ability = self.parent:FindAbilityByName("zuus_cloud_custom")
+
+	if IsValid(self.parent.cloud_ability) then
+		if IsServer() and not self.parent.cloud_ability:IsTrained() then
+			self.parent.cloud_ability:SetLevel(1)
+		end
+		self.parent.cloud_ability:UpdateTalents()
+	end
+
+	self.ability.sight_duration = self.ability:GetSpecialValueFor("sight_duration")
+	self.ability.vision_radius = self.ability:GetSpecialValueFor("vision_radius")
+	self.ability.damage = self.ability:GetSpecialValueFor("damage")
+	self.ability.health_damage = self.ability:GetSpecialValueFor("health_damage") / 100
+	self.ability.damage_range = self.ability:GetSpecialValueFor("damage_range")
+	self.ability.damage_reduction = self.ability:GetSpecialValueFor("damage_reduction") / 100
+
+	self.ability.scepter_cast = self.ability:GetSpecialValueFor("scepter_cast")
+	self.ability.scepter_stun = self.ability:GetSpecialValueFor("scepter_stun")
+	self.ability.scepter_duration = self.ability:GetSpecialValueFor("scepter_duration")
+	self.ability.scepter_delay = self.ability:GetSpecialValueFor("scepter_delay")
+	self.ability.scepter_aoe = self.ability:GetSpecialValueFor("scepter_aoe")
+	self.ability.scepter_speed = self.ability:GetSpecialValueFor("scepter_speed")
+end
+
+function modifier_zuus_thundergods_wrath_custom_tracker:OnRefresh()
+	self.ability.damage = self.ability:GetSpecialValueFor("damage")
+	self.ability.health_damage = self.ability:GetSpecialValueFor("health_damage") / 100
+end
+
+function modifier_zuus_thundergods_wrath_custom_tracker:SpellEvent(params)
+	if not IsServer() then
+		return
+	end
+	if params.unit ~= self.parent then
+		return
+	end
+	if self.ability.talents.has_r4 == 0 then
+		return
+	end
+
+	if params.ability:IsItem() then
+		self.parent:RemoveModifierByName("modifier_zuus_thundergods_wrath_custom_speed")
+		self.parent:AddNewModifier(
+			self.parent,
+			self.ability,
+			"modifier_zuus_thundergods_wrath_custom_speed",
+			{ duration = self.ability.talents.r4_duration }
+		)
+	else
+		local cd = 0
+		if params.ability == self.ability then
+			cd = self.ability.talents.r4_cd_items_wrath
+		elseif self.parent.bolt_ability and self.parent.bolt_ability == params.ability then
+			cd = self.ability.talents.r4_cd_items
+		end
+		if cd ~= 0 then
+			self.parent:CdItems(cd)
+		end
+	end
+end
+
+function modifier_zuus_thundergods_wrath_custom_tracker:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
+		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
+	}
+end
+
+function modifier_zuus_thundergods_wrath_custom_tracker:GetModifierPhysicalArmorBonus()
+	return self.ability.talents.h2_armor
+end
+
+function modifier_zuus_thundergods_wrath_custom_tracker:GetModifierSpellAmplify_Percentage()
+	return self.ability.talents.r1_spell
+end
+
+modifier_zuus_thundergods_wrath_custom_kills = class(mod_visible)
 function modifier_zuus_thundergods_wrath_custom_kills:IsHidden()
 	return self.ability.talents.has_h6 == 0 or self:GetStackCount() >= self.max
-end
-function modifier_zuus_thundergods_wrath_custom_kills:IsPurgable()
-	return false
 end
 function modifier_zuus_thundergods_wrath_custom_kills:RemoveOnDeath()
 	return false
@@ -553,6 +628,16 @@ function modifier_zuus_thundergods_wrath_custom_kills:OnCreated(table)
 	self:StartIntervalThink(2)
 end
 
+function modifier_zuus_thundergods_wrath_custom_kills:OnRefresh(table)
+	if not IsServer() then
+		return
+	end
+	if self:GetStackCount() >= self.max then
+		return
+	end
+	self:IncrementStackCount()
+end
+
 function modifier_zuus_thundergods_wrath_custom_kills:OnIntervalThink()
 	if not IsServer() then
 		return
@@ -567,16 +652,6 @@ function modifier_zuus_thundergods_wrath_custom_kills:OnIntervalThink()
 	self.parent:EmitSound("BS.Thirst_legendary_active")
 	self.parent:GenericParticle("particles/rare_orb_patrol.vpcf")
 	self:StartIntervalThink(-1)
-end
-
-function modifier_zuus_thundergods_wrath_custom_kills:OnRefresh(table)
-	if not IsServer() then
-		return
-	end
-	if self:GetStackCount() >= self.max then
-		return
-	end
-	self:IncrementStackCount()
 end
 
 function modifier_zuus_thundergods_wrath_custom_kills:DeclareFunctions()
@@ -601,6 +676,9 @@ end
 
 function modifier_zuus_thundergods_wrath_custom_kills_tracker:DeathEvent(params)
 	if not IsServer() then
+		return
+	end
+	if not params.attacker then
 		return
 	end
 	local attacker = params.attacker
@@ -684,12 +762,164 @@ function modifier_zuus_thundergods_wrath_custom_vision:OnDestroy()
 	end
 end
 
-zuus_thundergods_wrath_custom_legendary = class({})
-
-function zuus_thundergods_wrath_custom_legendary:Init()
+modifier_zuus_thundergods_wrath_custom_cloud = class(mod_hidden)
+function modifier_zuus_thundergods_wrath_custom_cloud:OnCreated(table)
+	if not IsServer() then
+		return
+	end
+	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
+	self.ability = self:GetAbility()
+
+	self.parent:EmitSound("Zuus.Wrath_cloud")
+	self.radius = self.ability.talents.r3_radius
+
+	self.point = GetGroundPosition(self.parent:GetAbsOrigin(), nil)
+
+	self.zuus_nimbus_particle =
+		ParticleManager:CreateParticle("particles/zeus_wrath_cloud.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
+	ParticleManager:SetParticleControl(self.zuus_nimbus_particle, 0, self.parent:GetAbsOrigin())
+	ParticleManager:SetParticleControl(self.zuus_nimbus_particle, 2, self.parent:GetAbsOrigin())
+	self:AddParticle(self.zuus_nimbus_particle, false, false, -1, false, false)
+
+	self.count = self.ability.talents.r3_duration + 1
+
+	self.damageTable = {
+		attacker = self.caster,
+		ability = self.ability,
+		damage = self.ability.talents.r3_damage,
+		damage_type = self.ability.talents.r3_damage_type,
+	}
+	self:OnIntervalThink()
+	self:StartIntervalThink(1)
 end
 
+function modifier_zuus_thundergods_wrath_custom_cloud:OnIntervalThink()
+	if not IsServer() then
+		return
+	end
+
+	local particle = ParticleManager:CreateParticle(
+		"particles/units/heroes/hero_zuus/zuus_lightning_bolt_aoe.vpcf",
+		PATTACH_WORLDORIGIN,
+		nil
+	)
+	ParticleManager:SetParticleControl(particle, 0, self.point)
+	ParticleManager:SetParticleControl(particle, 1, Vector(self.radius, 0, 0))
+	ParticleManager:ReleaseParticleIndex(particle)
+
+	for _, unit in pairs(self.parent:FindTargets(self.radius)) do
+		self.damageTable.victim = unit
+		DoDamage(self.damageTable, "modifier_zuus_wrath_3")
+		local particle = ParticleManager:CreateParticle(
+			"particles/units/heroes/hero_zeus/zeus_cloud_strike.vpcf",
+			PATTACH_ABSORIGIN_FOLLOW,
+			self.parent
+		)
+		ParticleManager:SetParticleControl(particle, 0, self.parent:GetAbsOrigin())
+		ParticleManager:SetParticleControlEnt(
+			particle,
+			1,
+			unit,
+			PATTACH_POINT_FOLLOW,
+			"attach_hitloc",
+			unit:GetAbsOrigin(),
+			true
+		)
+		ParticleManager:DestroyParticle(particle, false)
+		ParticleManager:ReleaseParticleIndex(particle)
+
+		unit:GenericParticle("particles/units/heroes/hero_zuus/zuus_static_field.vpcf")
+		unit:EmitSound("Hero_Zuus.StaticField")
+
+		unit:AddNewModifier(
+			self.caster,
+			self.ability,
+			"modifier_zuus_thundergods_wrath_custom_magic",
+			{ duration = self.ability.talents.r3_effect_duration }
+		)
+	end
+
+	self.parent:EmitSound("Zuus.Wrath_cloud_ground")
+
+	self.count = self.count - 1
+	if self.count <= 0 then
+		self:Destroy()
+		return
+	end
+end
+
+modifier_zuus_thundergods_wrath_custom_speed = class(mod_visible)
+function modifier_zuus_thundergods_wrath_custom_speed:GetTexture()
+	return "buffs/zeus/wrath_4"
+end
+function modifier_zuus_thundergods_wrath_custom_speed:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	if not IsServer() then
+		return
+	end
+	self.parent:GenericParticle("particles/zuus_speed.vpcf", self)
+end
+
+function modifier_zuus_thundergods_wrath_custom_speed:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+		MODIFIER_PROPERTY_SLOW_RESISTANCE_STACKING,
+	}
+end
+
+function modifier_zuus_thundergods_wrath_custom_speed:GetModifierSlowResistance_Stacking()
+	return self.ability.talents.r4_resist
+end
+
+function modifier_zuus_thundergods_wrath_custom_speed:GetModifierMoveSpeedBonus_Percentage()
+	return self.ability.talents.r4_move
+end
+
+modifier_zuus_thundergods_wrath_custom_magic = class(mod_visible)
+function modifier_zuus_thundergods_wrath_custom_magic:GetTexture()
+	return "buffs/zeus/wrath_3"
+end
+function modifier_zuus_thundergods_wrath_custom_magic:OnCreated(table)
+	self.parent = self:GetParent()
+	self.caster = self:GetCaster()
+	self.ability = self:GetAbility()
+
+	self.max = self.ability.talents.r3_max
+	if not IsServer() then
+		return
+	end
+	self.RemoveForDuel = true
+	self:OnRefresh()
+end
+
+function modifier_zuus_thundergods_wrath_custom_magic:OnRefresh(stack)
+	if not IsServer() then
+		return
+	end
+	if self:GetStackCount() >= self.max then
+		return
+	end
+	self:IncrementStackCount()
+
+	if self:GetStackCount() >= self.max then
+		self.parent:GenericParticle("particles/general/generic_magic_reduction.vpcf", self, true)
+	end
+end
+
+function modifier_zuus_thundergods_wrath_custom_magic:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
+	}
+end
+
+function modifier_zuus_thundergods_wrath_custom_magic:GetModifierMagicalResistanceBonus()
+	return self:GetStackCount() * self.ability.talents.r3_magic
+end
+
+zuus_thundergods_wrath_custom_legendary = class({})
 function zuus_thundergods_wrath_custom_legendary:OnSpellStart()
 	local ability = self.caster.wrath_ability
 	if not ability then
@@ -885,13 +1115,7 @@ function modifier_zuus_thundergods_wrath_custom_legendary_thinker:OnDestroy()
 	ParticleManager:ReleaseParticleIndex(effect_cast)
 end
 
-modifier_zuus_thundergods_wrath_custom_legendary_teleport = class({})
-function modifier_zuus_thundergods_wrath_custom_legendary_teleport:IsHidden()
-	return true
-end
-function modifier_zuus_thundergods_wrath_custom_legendary_teleport:IsPurgable()
-	return false
-end
+modifier_zuus_thundergods_wrath_custom_legendary_teleport = class(mod_hidden)
 function modifier_zuus_thundergods_wrath_custom_legendary_teleport:OnCreated(table)
 	if not IsServer() then
 		return
@@ -941,186 +1165,16 @@ function modifier_zuus_thundergods_wrath_custom_legendary_teleport:OnDestroy()
 	self.parent:StartGesture(ACT_DOTA_SPAWN)
 end
 
-modifier_zuus_thundergods_wrath_custom_tracker = class(mod_hidden)
-function modifier_zuus_thundergods_wrath_custom_tracker:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-	self.ability.tracker = self
-	self.ability:UpdateTalents()
-
-	self.parent.wrath_ability = self.ability
-
-	self.legendary_ability = self.parent:FindAbilityByName("zuus_cloud_custom")
-	if self.legendary_ability then
-		self.legendary_ability:UpdateTalents()
-	end
-
-	self.ability.sight_duration = self.ability:GetSpecialValueFor("sight_duration")
-	self.ability.vision_radius = self.ability:GetSpecialValueFor("vision_radius")
-	self.ability.damage = self.ability:GetSpecialValueFor("damage")
-	self.ability.health_damage = self.ability:GetSpecialValueFor("health_damage") / 100
-	self.ability.damage_range = self.ability:GetSpecialValueFor("damage_range")
-	self.ability.damage_reduction = self.ability:GetSpecialValueFor("damage_reduction") / 100
-
-	self.ability.scepter_cast = self.ability:GetSpecialValueFor("scepter_cast")
-	self.ability.scepter_stun = self.ability:GetSpecialValueFor("scepter_stun")
-	self.ability.scepter_duration = self.ability:GetSpecialValueFor("scepter_duration")
-	self.ability.scepter_delay = self.ability:GetSpecialValueFor("scepter_delay")
-	self.ability.scepter_aoe = self.ability:GetSpecialValueFor("scepter_aoe")
-	self.ability.scepter_speed = self.ability:GetSpecialValueFor("scepter_speed")
-end
-
-function modifier_zuus_thundergods_wrath_custom_tracker:OnRefresh()
-	self.ability.damage = self.ability:GetSpecialValueFor("damage")
-	self.ability.health_damage = self.ability:GetSpecialValueFor("health_damage") / 100
-end
-
-function modifier_zuus_thundergods_wrath_custom_tracker:SpellEvent(params)
-	if not IsServer() then
-		return
-	end
-	if params.unit ~= self.parent then
-		return
-	end
-	if self.ability.talents.has_r4 == 0 then
-		return
-	end
-
-	if params.ability:IsItem() then
-		self.parent:RemoveModifierByName("modifier_zuus_thundergods_wrath_custom_speed")
-		self.parent:AddNewModifier(
-			self.parent,
-			self.ability,
-			"modifier_zuus_thundergods_wrath_custom_speed",
-			{ duration = self.ability.talents.r4_duration }
-		)
-	else
-		local cd = 0
-		if params.ability == self.ability then
-			cd = self.ability.talents.r4_cd_items_wrath
-		elseif self.parent.bolt_ability and self.parent.bolt_ability == params.ability then
-			cd = self.ability.talents.r4_cd_items
-		end
-		if cd ~= 0 then
-			self.parent:CdItems(cd)
-		end
-	end
-end
-
-function modifier_zuus_thundergods_wrath_custom_tracker:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
-		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
-	}
-end
-
-function modifier_zuus_thundergods_wrath_custom_tracker:GetModifierPhysicalArmorBonus()
-	return self.ability.talents.h2_armor
-end
-
-function modifier_zuus_thundergods_wrath_custom_tracker:GetModifierSpellAmplify_Percentage()
-	return self.ability.talents.r1_spell
-end
-
-modifier_zuus_thundergods_wrath_custom_cloud = class(mod_hidden)
-function modifier_zuus_thundergods_wrath_custom_cloud:OnCreated(table)
-	if not IsServer() then
-		return
-	end
-	self.parent = self:GetParent()
-	self.caster = self:GetCaster()
-	self.ability = self:GetAbility()
-
-	self.parent:EmitSound("Zuus.Wrath_cloud")
-	self.radius = self.ability.talents.r3_radius
-
-	self.point = GetGroundPosition(self.parent:GetAbsOrigin(), nil)
-
-	self.zuus_nimbus_particle =
-		ParticleManager:CreateParticle("particles/zeus_wrath_cloud.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
-	ParticleManager:SetParticleControl(self.zuus_nimbus_particle, 0, self.parent:GetAbsOrigin())
-	ParticleManager:SetParticleControl(self.zuus_nimbus_particle, 2, self.parent:GetAbsOrigin())
-	self:AddParticle(self.zuus_nimbus_particle, false, false, -1, false, false)
-
-	self.count = self.ability.talents.r3_duration + 1
-
-	self.damageTable = {
-		attacker = self.caster,
-		ability = self.ability,
-		damage = self.ability.talents.r3_damage,
-		damage_type = self.ability.talents.r3_damage_type,
-	}
-	self:OnIntervalThink()
-	self:StartIntervalThink(1)
-end
-
-function modifier_zuus_thundergods_wrath_custom_cloud:OnIntervalThink()
-	if not IsServer() then
-		return
-	end
-
-	local particle = ParticleManager:CreateParticle(
-		"particles/units/heroes/hero_zuus/zuus_lightning_bolt_aoe.vpcf",
-		PATTACH_WORLDORIGIN,
-		nil
-	)
-	ParticleManager:SetParticleControl(particle, 0, self.point)
-	ParticleManager:SetParticleControl(particle, 1, Vector(self.radius, 0, 0))
-	ParticleManager:ReleaseParticleIndex(particle)
-
-	for _, unit in pairs(self.parent:FindTargets(self.radius)) do
-		self.damageTable.victim = unit
-		local real_damage = DoDamage(self.damageTable, "modifier_zuus_wrath_3")
-		local particle = ParticleManager:CreateParticle(
-			"particles/units/heroes/hero_zeus/zeus_cloud_strike.vpcf",
-			PATTACH_ABSORIGIN_FOLLOW,
-			self.parent
-		)
-		ParticleManager:SetParticleControl(particle, 0, self.parent:GetAbsOrigin())
-		ParticleManager:SetParticleControlEnt(
-			particle,
-			1,
-			unit,
-			PATTACH_POINT_FOLLOW,
-			"attach_hitloc",
-			unit:GetAbsOrigin(),
-			true
-		)
-		ParticleManager:DestroyParticle(particle, false)
-		ParticleManager:ReleaseParticleIndex(particle)
-
-		unit:GenericParticle("particles/units/heroes/hero_zuus/zuus_static_field.vpcf")
-		unit:EmitSound("Hero_Zuus.StaticField")
-
-		unit:AddNewModifier(
-			self.parent,
-			self.ability,
-			"modifier_zuus_thundergods_wrath_custom_magic",
-			{ duration = self.ability.talents.r3_effect_duration }
-		)
-	end
-
-	self.parent:EmitSound("Zuus.Wrath_cloud_ground")
-
-	self.count = self.count - 1
-	if self.count <= 0 then
-		self:Destroy()
-		return
-	end
-end
-
 zuus_cloud_custom = class({})
 zuus_cloud_custom.talents = {}
-
-function zuus_cloud_custom:CreateTalent()
-	self:SetHidden(false)
-end
 
 function zuus_cloud_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
 	end
 	PrecacheResource("particle", "particles/units/heroes/hero_zeus/zeus_cloud.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_zeus/zeus_cloud_strike.vpcf", context)
+	PrecacheResource("particle", "particles/zeus/wrath_legendary_refresh.vpcf", context)
 end
 
 function zuus_cloud_custom:UpdateTalents(name)
@@ -1141,25 +1195,25 @@ function zuus_cloud_custom:UpdateTalents(name)
 	end
 end
 
-function zuus_cloud_custom:Init()
-	self.caster = self:GetCaster()
+function zuus_cloud_custom:CreateTalent()
+	self:SetHidden(false)
 end
 
 function zuus_cloud_custom:GetAOERadius()
-	return self.talents.r7_radius and self.talents.r7_radius or 0
+	return (self.talents.r7_radius or 0)
 end
 
 function zuus_cloud_custom:GetCooldown()
-	return self.talents.r7_talent_cd and self.talents.r7_talent_cd or 0
+	return (self.talents.r7_talent_cd or 0)
 end
 
 function zuus_cloud_custom:OnSpellStart()
 	local target_point = self:GetCursorPosition()
-	if self.caster.wrath_ability then
-		self.caster.wrath_ability:CreateCloud(target_point)
-	else
+	if not self.caster.wrath_ability then
 		return
 	end
+
+	self.caster.wrath_ability:CreateCloud(target_point)
 
 	EmitSoundOnLocationWithCaster(target_point, "Hero_Zuus.Cloud.Cast", self.caster)
 	CreateModifierThinker(
@@ -1220,7 +1274,7 @@ function modifier_zuus_cloud_custom:OnDestroy()
 		end
 		local damage = target:IsCreep() and self.ability.talents.r7_damage_creeps
 			or self.ability.talents.r7_damage * target:GetMaxHealth()
-		local real_damage = DoDamage(
+		DoDamage(
 			{
 				victim = target,
 				attacker = self.caster,
@@ -1289,35 +1343,15 @@ function modifier_zuus_cloud_custom:OnDestroy()
 		ParticleManager:ReleaseParticleIndex(particle)
 
 		if self.caster.bolt_ability then
-			self.caster:CdAbility(
-				self.caster.bolt_ability,
-				self.caster.bolt_ability:GetEffectiveCooldown(self.caster.bolt_ability:GetLevel())
-					* self.ability.talents.r7_cd_bolt
-			)
+			self.caster:CdAbility(self.caster.bolt_ability, nil, self.ability.talents.r7_cd_bolt)
 		end
 		if self.caster.wrath_ability and hit_hero then
-			self.caster:CdAbility(
-				self.caster.wrath_ability,
-				self.caster.wrath_ability:GetEffectiveCooldown(self.caster.wrath_ability:GetLevel())
-					* self.ability.talents.r7_cd_wrath
-			)
+			self.caster:CdAbility(self.caster.wrath_ability, nil, self.ability.talents.r7_cd_wrath)
 		end
 	end
 end
 
 modifier_zuus_cloud_custom_unit = class(mod_hidden)
-function modifier_zuus_cloud_custom_unit:CheckState()
-	return {
-		[MODIFIER_STATE_INVULNERABLE] = true,
-		[MODIFIER_STATE_OUT_OF_GAME] = true,
-		[MODIFIER_STATE_NO_HEALTH_BAR] = true,
-		[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
-		[MODIFIER_STATE_UNSELECTABLE] = true,
-		[MODIFIER_STATE_UNTARGETABLE] = true,
-		[MODIFIER_STATE_NOT_ON_MINIMAP] = true,
-	}
-end
-
 function modifier_zuus_cloud_custom_unit:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -1337,6 +1371,18 @@ function modifier_zuus_cloud_custom_unit:OnCreated()
 	self:AddParticle(self.zuus_nimbus_particle, false, false, -1, false, false)
 end
 
+function modifier_zuus_cloud_custom_unit:CheckState()
+	return {
+		[MODIFIER_STATE_INVULNERABLE] = true,
+		[MODIFIER_STATE_OUT_OF_GAME] = true,
+		[MODIFIER_STATE_NO_HEALTH_BAR] = true,
+		[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
+		[MODIFIER_STATE_UNSELECTABLE] = true,
+		[MODIFIER_STATE_UNTARGETABLE] = true,
+		[MODIFIER_STATE_NOT_ON_MINIMAP] = true,
+	}
+end
+
 function modifier_zuus_cloud_custom_unit:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_VISUAL_Z_DELTA,
@@ -1345,73 +1391,4 @@ end
 
 function modifier_zuus_cloud_custom_unit:GetVisualZDelta()
 	return 450
-end
-
-modifier_zuus_thundergods_wrath_custom_speed = class(mod_visible)
-function modifier_zuus_thundergods_wrath_custom_speed:GetTexture()
-	return "buffs/zeus/wrath_4"
-end
-function modifier_zuus_thundergods_wrath_custom_speed:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	if not IsServer() then
-		return
-	end
-	self.parent:GenericParticle("particles/zuus_speed.vpcf", self)
-end
-
-function modifier_zuus_thundergods_wrath_custom_speed:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-		MODIFIER_PROPERTY_SLOW_RESISTANCE_STACKING,
-	}
-end
-
-function modifier_zuus_thundergods_wrath_custom_speed:GetModifierSlowResistance_Stacking()
-	return self.ability.talents.r4_resist
-end
-
-function modifier_zuus_thundergods_wrath_custom_speed:GetModifierMoveSpeedBonus_Percentage()
-	return self.ability.talents.r4_move
-end
-
-modifier_zuus_thundergods_wrath_custom_magic = class(mod_visible)
-function modifier_zuus_thundergods_wrath_custom_magic:GetTexture()
-	return "buffs/zeus/wrath_3"
-end
-function modifier_zuus_thundergods_wrath_custom_magic:OnCreated(table)
-	self.parent = self:GetParent()
-	self.caster = self:GetCaster()
-	self.ability = self:GetAbility()
-
-	self.max = self.ability.talents.r3_max
-	if not IsServer() then
-		return
-	end
-	self:OnRefresh()
-end
-
-function modifier_zuus_thundergods_wrath_custom_magic:OnRefresh(stack)
-	if not IsServer() then
-		return
-	end
-	if self:GetStackCount() >= self.max then
-		return
-	end
-	self:IncrementStackCount()
-
-	if self:GetStackCount() >= self.max then
-		self.parent:GenericParticle("particles/general/generic_magic_reduction.vpcf", self, true)
-	end
-end
-
-function modifier_zuus_thundergods_wrath_custom_magic:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
-	}
-end
-
-function modifier_zuus_thundergods_wrath_custom_magic:GetModifierMagicalResistanceBonus()
-	return self:GetStackCount() * self.ability.talents.r3_magic
 end

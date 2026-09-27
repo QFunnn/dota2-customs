@@ -480,7 +480,7 @@ function modifier_snapfire_scatterblast_custom_stack:GetTexture()
 end
 function modifier_snapfire_scatterblast_custom_stack:OnCreated(table)
 	self.parent = self:GetParent()
-	self.max = self.parent:GetTalentValue("modifier_snapfire_scatter_4", "max")
+	self.max = self.parent:GetTalentValue("modifier_snapfire_scatter_4", "max", true)
 	self.damage = self.parent:GetTalentValue("modifier_snapfire_scatter_4", "damage") / self.max
 
 	if not IsServer() then

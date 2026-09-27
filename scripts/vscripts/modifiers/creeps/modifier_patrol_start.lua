@@ -118,13 +118,8 @@ function modifier_patrol_death:OnDestroy()
 	end
 
 	local no_friends = true
-	local drop_orb = true
 
 	for _, friend in pairs(self.parent.friends) do
-		if friend.drop_orb ~= nil then
-			drop_orb = false
-		end
-
 		if not friend:IsNull() and friend:IsAlive() then
 			no_friends = false
 		end
@@ -135,20 +130,6 @@ function modifier_patrol_death:OnDestroy()
 			dota1x6.radiant_patrol_alive = false
 		else
 			dota1x6.dire_patrol_alive = false
-		end
-
-		if self.killer and dota1x6.current_wave >= patrol_wave_2 and drop_orb == true then
-			self.parent.drop_orb = true
-
-			local ids = dota1x6:FindPlayers(self.killer:GetTeamNumber())
-			if ids then
-				for _, id in pairs(ids) do
-					local player = players[id]
-					if player then
-						dota1x6:CreateUpgradeOrb(player, 1)
-					end
-				end
-			end
 		end
 	end
 end

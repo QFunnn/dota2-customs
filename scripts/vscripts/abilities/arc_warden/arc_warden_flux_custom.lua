@@ -51,8 +51,6 @@ LinkLuaModifier(
 
 arc_warden_flux_custom = class({})
 arc_warden_flux_custom.talents = {}
-arc_warden_flux_custom.active_mod = nil
-arc_warden_flux_custom.shield_mod = nil
 
 function arc_warden_flux_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
@@ -75,6 +73,9 @@ function arc_warden_flux_custom:Precache(context)
 	)
 	PrecacheResource("particle", "particles/generic_gameplay/generic_silenced.vpcf", context)
 	PrecacheResource("particle", "particles/ta_trap_damage.vpcf", context)
+	PrecacheResource("particle", "particles/arc_warden/spark_heall.vpcf", context)
+	PrecacheResource("particle", "particles/generic_gameplay/rune_arcane_owner.vpcf", context)
+	PrecacheResource("particle", "particles/enigma/summon_spell_damage.vpcf", context)
 end
 
 function arc_warden_flux_custom:UpdateTalents()
@@ -95,7 +96,6 @@ function arc_warden_flux_custom:UpdateTalents()
 			q3_heal_reduce = 0,
 			q3_max = caster:GetTalentValue("modifier_arc_warden_flux_3", "max", true),
 			q3_duration = caster:GetTalentValue("modifier_arc_warden_flux_3", "duration", true),
-			q3_stack = caster:GetTalentValue("modifier_arc_warden_flux_3", "stack", true),
 
 			has_q4 = 0,
 			q4_shield = caster:GetTalentValue("modifier_arc_warden_flux_4", "shield", true) / 100,
@@ -155,10 +155,6 @@ function arc_warden_flux_custom:UpdateTalents()
 	end
 end
 
-function arc_warden_flux_custom:Init()
-	self.caster = self:GetCaster()
-end
-
 function arc_warden_flux_custom:GetIntrinsicModifierName()
 	if not self:GetCaster():IsRealHero() then
 		return
@@ -174,11 +170,11 @@ function arc_warden_flux_custom:GetBehavior()
 end
 
 function arc_warden_flux_custom:GetAOERadius()
-	return self.talents.q7_radius and self.talents.q7_radius or 0
+	return self.talents.has_q7 == 1 and self.talents.q7_radius or 0
 end
 
 function arc_warden_flux_custom:GetCooldown(level)
-	return self.BaseClass.GetCooldown(self, level) + (self.talents.q2_cd and self.talents.q2_cd or 0)
+	return self.BaseClass.GetCooldown(self, level) + (self.talents.q2_cd or 0)
 end
 
 function arc_warden_flux_custom:GetCastPoint(iLevel)
@@ -216,9 +212,7 @@ function arc_warden_flux_custom:OnSpellStart()
 		end
 	end
 
-	local duration = self:GetSpecialValueFor("duration")
-	local caster_mod = nil
-	local target_mod = nil
+	local duration = self.duration
 
 	self.caster:EmitSound("Hero_ArcWarden.Flux.Cast")
 
@@ -230,14 +224,14 @@ function arc_warden_flux_custom:OnSpellStart()
 		local point = self:GetCursorPosition()
 		if target then
 			point = target:GetAbsOrigin()
-			caster_mod = target:AddNewModifier(
+			target:AddNewModifier(
 				self.caster,
 				self,
 				"modifier_arc_warden_flux_custom_legendary",
 				{ duration = duration }
 			)
 		else
-			caster_mod = CreateModifierThinker(
+			CreateModifierThinker(
 				self.caster,
 				self,
 				"modifier_arc_warden_flux_custom_legendary",
@@ -281,7 +275,7 @@ function arc_warden_flux_custom:OnSpellStart()
 			ParticleManager:ReleaseParticleIndex(cast_particle)
 		end
 	else
-		target_mod = target:AddNewModifier(
+		target:AddNewModifier(
 			self.caster,
 			self,
 			"modifier_arc_warden_flux_custom",
@@ -404,12 +398,9 @@ function arc_warden_flux_custom:ApplyHeal(target, effect)
 	end
 end
 
-modifier_arc_warden_flux_custom = class({})
+modifier_arc_warden_flux_custom = class(mod_hidden)
 function modifier_arc_warden_flux_custom:IsPurgable()
 	return self.ability.talents.has_q7 == 1
-end
-function modifier_arc_warden_flux_custom:IsHidden()
-	return true
 end
 function modifier_arc_warden_flux_custom:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
@@ -419,14 +410,14 @@ function modifier_arc_warden_flux_custom:OnCreated(table)
 	self.caster = self:GetCaster()
 	self.ability = self:GetAbility()
 
-	self.think_interval = self.ability:GetSpecialValueFor("think_interval")
-	self.search_radius = self.ability:GetSpecialValueFor("search_radius")
-	self.move_speed_slow_pct = self.ability:GetSpecialValueFor("move_speed_slow_pct") + self.ability.talents.q2_slow
-	self.damage_per_interval = self.ability:GetSpecialValueFor("damage_per_second")
+	self.think_interval = self.ability.think_interval
+	self.search_radius = self.ability.search_radius
+	self.move_speed_slow_pct = self.ability.move_speed_slow_pct + self.ability.talents.q2_slow
+	self.damage_per_interval = self.ability.damage_per_second
 		+ self.caster:GetMaxHealth() * self.ability.talents.q1_damage
 	self.damage_per_interval = self.damage_per_interval * self.think_interval
 
-	local duration = self.ability:GetSpecialValueFor("duration")
+	local duration = self.ability.duration
 
 	if IsServer() then
 		self:SetStackCount(self.move_speed_slow_pct * (1 - self.parent:GetStatusResistance()))
@@ -559,10 +550,12 @@ function modifier_arc_warden_flux_custom_count:OnCreated()
 	self.think_interval = 1
 
 	self.tracker = self.ability.tracker
-	if self.caster.owner and self.caster.flux_ability then
+	if self.caster.owner and self.caster.owner.flux_ability then
 		self.tracker = self.caster.owner.flux_ability.tracker
 	end
-	self.tracker:UpdateMod(self)
+	if self.tracker then
+		self.tracker:UpdateMod(self)
+	end
 
 	self:StartIntervalThink(self.think_interval - FrameTime())
 end
@@ -610,7 +603,7 @@ function modifier_arc_warden_flux_custom_legendary:OnCreated(table)
 	self.ability = self:GetAbility()
 
 	self.cd = self.ability.talents.q7_interval - 0.1
-	self.duration = self.ability:GetSpecialValueFor("duration")
+	self.duration = self.ability.duration
 
 	if not IsServer() then
 		return
@@ -724,12 +717,22 @@ function modifier_arc_warden_flux_custom_tracker:OnCreated()
 	self.ability.tracker = self
 	self.ability:UpdateTalents()
 
+	self.ability.duration = self.ability:GetSpecialValueFor("duration")
+	self.ability.damage_per_second = self.ability:GetSpecialValueFor("damage_per_second")
+	self.ability.search_radius = self.ability:GetSpecialValueFor("search_radius")
+	self.ability.think_interval = self.ability:GetSpecialValueFor("think_interval")
+	self.ability.move_speed_slow_pct = self.ability:GetSpecialValueFor("move_speed_slow_pct")
 	self.ability.aoe_count = self.ability:GetSpecialValueFor("aoe_count")
 	self.ability.aoe_radius = self.ability:GetSpecialValueFor("aoe_radius")
 
 	self.parent.flux_ability = self.ability
 	self.active_mods = {}
 	self.current_think = false
+end
+
+function modifier_arc_warden_flux_custom_tracker:OnRefresh()
+	self.ability.damage_per_second = self.ability:GetSpecialValueFor("damage_per_second")
+	self.ability.move_speed_slow_pct = self.ability:GetSpecialValueFor("move_speed_slow_pct")
 end
 
 function modifier_arc_warden_flux_custom_tracker:UpdateMod(mod, remove)
@@ -846,14 +849,8 @@ end
 function modifier_arc_warden_flux_custom_resist:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
-		--MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET,
 		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
-		--MODIFIER_PROPERTY_LIFESTEAL_AMPLIFY_PERCENTAGE,
 	}
-end
-
-function modifier_arc_warden_flux_custom_resist:GetModifierLifestealRegenAmplify_Percentage()
-	return self.heal_reduce * self:GetStackCount()
 end
 
 function modifier_arc_warden_flux_custom_resist:GetModifierHealChange()
@@ -871,6 +868,15 @@ end
 modifier_arc_warden_flux_custom_silence = class(mod_hidden)
 function modifier_arc_warden_flux_custom_silence:IsPurgable()
 	return true
+end
+function modifier_arc_warden_flux_custom_silence:GetEffectName()
+	return "particles/generic_gameplay/generic_silenced.vpcf"
+end
+function modifier_arc_warden_flux_custom_silence:ShouldUseOverheadOffset()
+	return true
+end
+function modifier_arc_warden_flux_custom_silence:GetEffectAttachType()
+	return PATTACH_OVERHEAD_FOLLOW
 end
 function modifier_arc_warden_flux_custom_silence:OnCreated(table)
 	self.parent = self:GetParent()
@@ -891,14 +897,4 @@ function modifier_arc_warden_flux_custom_silence:CheckState()
 	return {
 		[MODIFIER_STATE_SILENCED] = true,
 	}
-end
-
-function modifier_arc_warden_flux_custom_silence:GetEffectName()
-	return "particles/generic_gameplay/generic_silenced.vpcf"
-end
-function modifier_arc_warden_flux_custom_silence:ShouldUseOverheadOffset()
-	return true
-end
-function modifier_arc_warden_flux_custom_silence:GetEffectAttachType()
-	return PATTACH_OVERHEAD_FOLLOW
 end

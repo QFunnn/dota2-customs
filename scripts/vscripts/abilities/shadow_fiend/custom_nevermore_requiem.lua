@@ -970,7 +970,7 @@ end
 function modifier_custom_reqiuem_speed_damage:OnCreated(table)
 	self.parent = self:GetParent()
 
-	self.max = self.parent:GetTalentValue("modifier_nevermore_requiem_4", "max")
+	self.max = self.parent:GetTalentValue("modifier_nevermore_requiem_4", "max", true)
 	self.damage = self.parent:GetTalentValue("modifier_nevermore_requiem_4", "damage") / self.max
 	self.speed = self.parent:GetTalentValue("modifier_nevermore_requiem_4", "speed") / self.max
 	if not IsServer() then

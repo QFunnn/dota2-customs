@@ -52,10 +52,6 @@ LinkLuaModifier(
 night_stalker_void_custom = class({})
 night_stalker_void_custom.talents = {}
 
-function night_stalker_void_custom:GetAbilityTextureName()
-	return wearables_system:GetAbilityIconReplacement(self.caster, "night_stalker_void", self)
-end
-
 function night_stalker_void_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
@@ -73,6 +69,7 @@ function night_stalker_void_custom:Precache(context)
 	PrecacheResource("particle", "particles/night_stalker/void_delay_damage.vpcf", context)
 	PrecacheResource("particle", "particles/night_stalker/void_proc.vpcf", context)
 	PrecacheResource("particle", "particles/night_stalker/void_move.vpcf", context)
+	PrecacheResource("particle", "particles/night_stalker/fear_legendary_hit.vpcf", context)
 end
 
 function night_stalker_void_custom:UpdateTalents(name)
@@ -83,6 +80,7 @@ function night_stalker_void_custom:UpdateTalents(name)
 			has_q1 = 0,
 			q1_spell = 0,
 			q1_damage = 0,
+			q1_creeps = 0,
 
 			has_q2 = 0,
 			q2_cd = 0,
@@ -110,7 +108,6 @@ function night_stalker_void_custom:UpdateTalents(name)
 			q7_duration_orb = caster:GetTalentValue("modifier_stalker_void_7", "duration_orb", true),
 			q7_duration_orb_creeps = caster:GetTalentValue("modifier_stalker_void_7", "duration_orb_creeps", true),
 			q7_spawn_radius = caster:GetTalentValue("modifier_stalker_void_7", "spawn_radius", true),
-			q7_mana = caster:GetTalentValue("modifier_stalker_void_7", "mana", true),
 			q7_cd_inc = caster:GetTalentValue("modifier_stalker_void_7", "cd_inc", true) / 100,
 			q7_max = caster:GetTalentValue("modifier_stalker_void_7", "max", true),
 			q7_radius = caster:GetTalentValue("modifier_stalker_void_7", "radius", true),
@@ -162,15 +159,15 @@ function night_stalker_void_custom:UpdateTalents(name)
 	end
 end
 
+function night_stalker_void_custom:GetAbilityTextureName()
+	return wearables_system:GetAbilityIconReplacement(self.caster, "night_stalker_void", self)
+end
+
 function night_stalker_void_custom:GetIntrinsicModifierName()
 	if not self:GetCaster():IsRealHero() then
 		return
 	end
 	return "modifier_night_stalker_void_custom"
-end
-
-function night_stalker_void_custom:GetManaCost(level)
-	return self.BaseClass.GetManaCost(self, level)
 end
 
 function night_stalker_void_custom:GetCooldown(level)
@@ -182,7 +179,7 @@ function night_stalker_void_custom:GetCooldown(level)
 	then
 		k = 1 + self.caster.dark_ability.shard_cd
 	end
-	return (self.BaseClass.GetCooldown(self, level) + (self.talents.q2_cd and self.talents.q2_cd or 0)) * k
+	return (self.BaseClass.GetCooldown(self, level) + (self.talents.q2_cd or 0)) * k
 end
 
 function night_stalker_void_custom:GetCastPoint(iLevel)
@@ -190,11 +187,7 @@ function night_stalker_void_custom:GetCastPoint(iLevel)
 end
 
 function night_stalker_void_custom:GetAOERadius()
-	return self.cast_radius and self.cast_radius or 0
-end
-
-function night_stalker_void_custom:LegendaryDamage(stack)
-	return self.talents.q7_damage * stack
+	return self.cast_radius or 0
 end
 
 function night_stalker_void_custom:OnSpellStart()
@@ -216,7 +209,7 @@ function night_stalker_void_custom:OnSpellStart()
 	local duration = self.duration_day
 	if not is_day then
 		duration = self.duration_night
-		target:AddNewModifier(caster, self, "modifier_stunned", { duration = 0.1 })
+		target:AddNewModifier(self.caster, self, "modifier_stunned", { duration = 0.1 })
 	end
 
 	if self.talents.has_h4 == 1 then
@@ -229,7 +222,7 @@ function night_stalker_void_custom:OnSpellStart()
 		if not target:IsDebuffImmune() and target:CheckCd("night_stalker_h4", self.talents.h4_talent_cd) then
 			target:GenericParticle("particles/night_stalker/fear_legendary_hit.vpcf")
 			target:AddNewModifier(
-				caster,
+				self.caster,
 				self,
 				"modifier_stunned",
 				{ duration = (1 - target:GetStatusResistance()) * self.talents.h4_stun }
@@ -266,7 +259,7 @@ function night_stalker_void_custom:OnSpellStart()
 					or self.talents.q1_damage * aoe_target:GetMaxHealth()
 				)
 		end
-		damage = damage * (1 + self.ability:LegendaryDamage(stack))
+		damage = damage * (1 + self:LegendaryDamage(stack))
 
 		if aoe_target:IsCreep() then
 			damage = damage * (1 + self.creeps)
@@ -280,7 +273,7 @@ function night_stalker_void_custom:OnSpellStart()
 				self.caster,
 				self,
 				"modifier_night_stalker_void_custom_damage_stack",
-				{ duration = self.q3_duration, damage = damage }
+				{ duration = self.talents.q3_duration, damage = damage }
 			)
 		end
 
@@ -327,24 +320,26 @@ function night_stalker_void_custom:OnProjectileHit(target, vLocation)
 	self.caster:EmitSound("Stalker.Void_legendary_buff")
 end
 
+function night_stalker_void_custom:LegendaryDamage(stack)
+	return self.talents.q7_damage * stack
+end
+
 function night_stalker_void_custom:CreateOrb(target)
 	if not IsServer() then
 		return
 	end
 
-	local point =
-		GetGroundPosition(self.parent:GetAbsOrigin() + RandomVector(self.ability.talents.q7_spawn_radius), nil)
-	local duration = target:IsCreep() and self.ability.talents.q7_duration_orb_creeps
-		or self.ability.talents.q7_duration_orb
+	local point = GetGroundPosition(self.caster:GetAbsOrigin() + RandomVector(self.talents.q7_spawn_radius), nil)
+	local duration = target:IsCreep() and self.talents.q7_duration_orb_creeps or self.talents.q7_duration_orb
 
 	target:EmitSound("Stalker.Void_legendary_orb")
 	CreateModifierThinker(
-		self.parent,
-		self.ability,
+		self.caster,
+		self,
 		"modifier_night_stalker_void_custom_legendary_thinker",
-		{ target = self.parent:entindex(), duration = duration },
+		{ target = self.caster:entindex(), duration = duration },
 		point,
-		self.parent:GetTeamNumber(),
+		self.caster:GetTeamNumber(),
 		false
 	)
 end
@@ -352,6 +347,24 @@ end
 modifier_night_stalker_void_custom = class(mod_hidden)
 function modifier_night_stalker_void_custom:IsHidden()
 	return self.ability.talents.has_q7 == 0
+end
+function modifier_night_stalker_void_custom:IsAura()
+	return IsServer() and self.parent:IsAlive() and self.ability.talents.has_q3 == 1
+end
+function modifier_night_stalker_void_custom:GetAuraDuration()
+	return 0.2
+end
+function modifier_night_stalker_void_custom:GetAuraRadius()
+	return self.ability.talents.q3_radius
+end
+function modifier_night_stalker_void_custom:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_ENEMY
+end
+function modifier_night_stalker_void_custom:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
+end
+function modifier_night_stalker_void_custom:GetModifierAura()
+	return "modifier_night_stalker_void_custom_magic"
 end
 function modifier_night_stalker_void_custom:OnCreated(table)
 	self.parent = self:GetParent()
@@ -413,7 +426,7 @@ function modifier_night_stalker_void_custom:UpdateUI()
 	if not IsServer() then
 		return
 	end
-	if not self.ability.talents.has_q7 == 0 then
+	if self.ability.talents.has_q7 == 0 then
 		return
 	end
 
@@ -457,25 +470,6 @@ end
 
 function modifier_night_stalker_void_custom:GetModifierCastRangeBonusStacking()
 	return self.ability.talents.q2_range
-end
-
-function modifier_night_stalker_void_custom:IsAura()
-	return IsServer() and self.parent:IsAlive() and self.ability.talents.has_q3 == 1
-end
-function modifier_night_stalker_void_custom:GetAuraDuration()
-	return 0.2
-end
-function modifier_night_stalker_void_custom:GetAuraRadius()
-	return self.ability.talents.q3_radius
-end
-function modifier_night_stalker_void_custom:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_ENEMY
-end
-function modifier_night_stalker_void_custom:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
-end
-function modifier_night_stalker_void_custom:GetModifierAura()
-	return "modifier_night_stalker_void_custom_magic"
 end
 
 modifier_night_stalker_void_custom_slow = class(mod_visible)
@@ -659,83 +653,6 @@ function modifier_night_stalker_void_custom_legendary_thinker:OnIntervalThink()
 	self:StartIntervalThink(self.interval)
 end
 
-night_stalker_void_custom_legendary = class(mod_hidden)
-function night_stalker_void_custom_legendary:UpdateTalents(name)
-	local caster = self:GetCaster()
-	if not self.init then
-		self.init = true
-		self.talents = {
-			q7_talent_cd = caster:GetTalentValue("modifier_stalker_void_7", "talent_cd", true),
-			q7_max = caster:GetTalentValue("modifier_stalker_void_7", "max", true),
-		}
-	end
-end
-
-function night_stalker_void_custom_legendary:Init()
-	self.caster = self:GetCaster()
-end
-
-function night_stalker_void_custom_legendary:GetCooldown(level)
-	return (self.talents.q7_talent_cd and self.talents.q7_talent_cd or 0)
-end
-
-function night_stalker_void_custom_legendary:OnAbilityPhaseStart()
-	self.caster:AddNewModifier(self.caster, self.ability, "modifier_night_stalker_void_custom_legendary_cast", {})
-	self.caster:StartGesture(ACT_DOTA_CAST_ABILITY_1)
-	return true
-end
-
-function night_stalker_void_custom_legendary:OnAbilityPhaseInterrupted()
-	self.caster:RemoveModifierByName("modifier_night_stalker_void_custom_legendary_cast")
-	self.caster:FadeGesture(ACT_DOTA_CAST_ABILITY_1)
-	return true
-end
-
-function night_stalker_void_custom_legendary:OnSpellStart()
-	self.caster:RemoveModifierByName("modifier_night_stalker_void_custom_legendary_cast")
-
-	if not self.caster.void_ability then
-		return
-	end
-	if not self.caster.void_ability.tracker then
-		return
-	end
-
-	local legendary = self.caster:FindModifierByName("modifier_night_stalker_void_custom_legendary_buff")
-	local count = 0
-	local max = self.talents.q7_max
-	if legendary then
-		max = self.talents.q7_max - legendary:GetStackCount()
-	end
-
-	for mod, _ in pairs(self.caster.void_ability.tracker.active_legendary) do
-		if IsValid(mod) then
-			if count >= max then
-				break
-			end
-
-			mod.force_ended = true
-			mod:OnIntervalThink()
-			count = count + 1
-		end
-	end
-
-	self.caster:GenericParticle("particles/night_stalker/void_legendary_cast.vpcf")
-	self.caster:EmitSound("Stalker.Void_legendary_active")
-	self.caster:EmitSound("Stalker.Void_legendary_active2")
-end
-
-modifier_night_stalker_void_custom_legendary_cast = class(mod_hidden)
-function modifier_night_stalker_void_custom_legendary_cast:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS,
-	}
-end
-
-function modifier_night_stalker_void_custom_legendary_cast:GetActivityTranslationModifiers()
-	return "nihility"
-end
-
 modifier_night_stalker_void_custom_legendary_buff = class(mod_hidden)
 function modifier_night_stalker_void_custom_legendary_buff:OnCreated()
 	if not IsServer() then
@@ -748,7 +665,7 @@ function modifier_night_stalker_void_custom_legendary_buff:OnCreated()
 	self.visual_max = 6
 	self.particle = self.parent:GenericParticle("particles/night_stalker/void_legendary_stack.vpcf", self, true)
 
-	self:IncrementStackCount()
+	self:OnRefresh()
 	self:StartIntervalThink(0.5)
 end
 
@@ -778,12 +695,6 @@ function modifier_night_stalker_void_custom_legendary_buff:OnRefresh()
 		return
 	end
 	self:IncrementStackCount()
-end
-
-function modifier_night_stalker_void_custom_legendary_buff:OnStackCountChanged()
-	if not IsServer() then
-		return
-	end
 
 	if self.ability.tracker then
 		self.ability.tracker:UpdateUI()
@@ -917,4 +828,79 @@ end
 
 function modifier_night_stalker_void_custom_move:GetModifierSlowResistance_Stacking()
 	return self.slow_resist
+end
+
+night_stalker_void_custom_legendary = class({})
+night_stalker_void_custom_legendary.talents = {}
+
+function night_stalker_void_custom_legendary:UpdateTalents(name)
+	local caster = self:GetCaster()
+	if not self.init then
+		self.init = true
+		self.talents = {
+			q7_talent_cd = caster:GetTalentValue("modifier_stalker_void_7", "talent_cd", true),
+			q7_max = caster:GetTalentValue("modifier_stalker_void_7", "max", true),
+		}
+	end
+end
+
+function night_stalker_void_custom_legendary:GetCooldown(level)
+	return self.talents.q7_talent_cd or 0
+end
+
+function night_stalker_void_custom_legendary:OnAbilityPhaseStart()
+	self.caster:AddNewModifier(self.caster, self, "modifier_night_stalker_void_custom_legendary_cast", {})
+	self.caster:StartGesture(ACT_DOTA_CAST_ABILITY_1)
+	return true
+end
+
+function night_stalker_void_custom_legendary:OnAbilityPhaseInterrupted()
+	self.caster:RemoveModifierByName("modifier_night_stalker_void_custom_legendary_cast")
+	self.caster:FadeGesture(ACT_DOTA_CAST_ABILITY_1)
+	return true
+end
+
+function night_stalker_void_custom_legendary:OnSpellStart()
+	self.caster:RemoveModifierByName("modifier_night_stalker_void_custom_legendary_cast")
+
+	if not self.caster.void_ability then
+		return
+	end
+	if not self.caster.void_ability.tracker then
+		return
+	end
+
+	local legendary = self.caster:FindModifierByName("modifier_night_stalker_void_custom_legendary_buff")
+	local count = 0
+	local max = self.talents.q7_max
+	if legendary then
+		max = self.talents.q7_max - legendary:GetStackCount()
+	end
+
+	for mod, _ in pairs(self.caster.void_ability.tracker.active_legendary) do
+		if IsValid(mod) then
+			if count >= max then
+				break
+			end
+
+			mod.force_ended = true
+			mod:OnIntervalThink()
+			count = count + 1
+		end
+	end
+
+	self.caster:GenericParticle("particles/night_stalker/void_legendary_cast.vpcf")
+	self.caster:EmitSound("Stalker.Void_legendary_active")
+	self.caster:EmitSound("Stalker.Void_legendary_active2")
+end
+
+modifier_night_stalker_void_custom_legendary_cast = class(mod_hidden)
+function modifier_night_stalker_void_custom_legendary_cast:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS,
+	}
+end
+
+function modifier_night_stalker_void_custom_legendary_cast:GetActivityTranslationModifiers()
+	return "nihility"
 end

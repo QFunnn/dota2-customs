@@ -16,8 +16,21 @@ LinkLuaModifier(
 
 item_enhancement_vampiric_custom = class({})
 
+function item_enhancement_vampiric_custom:Precache(context)
+	if self:GetCaster() and self:GetCaster():IsIllusion() then
+		return
+	end
+	PrecacheResource("particle", "particles/items3_fx/octarine_core_lifesteal.vpcf", context)
+end
+
 function item_enhancement_vampiric_custom:GetIntrinsicModifierName()
 	return "modifier_item_enhancement_vampiric_custom"
+end
+
+function item_enhancement_vampiric_custom:Spawn()
+	self.health_regen = self:GetSpecialValueFor("health_regen")
+	self.lifesteal = self:GetSpecialValueFor("lifesteal")
+	self.creeps = self:GetSpecialValueFor("creeps")
 end
 
 modifier_item_enhancement_vampiric_custom = class(mod_hidden)
@@ -28,9 +41,9 @@ function modifier_item_enhancement_vampiric_custom:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.health_regen = self.ability:GetSpecialValueFor("health_regen")
-	self.lifesteal = self.ability:GetSpecialValueFor("lifesteal") / 100
-	self.creeps = self.ability:GetSpecialValueFor("creeps")
+	self.health_regen = self.ability.health_regen
+	self.lifesteal = self.ability.lifesteal / 100
+	self.creeps = self.ability.creeps
 
 	if not self.parent:IsRealHero() then
 		return
@@ -50,6 +63,9 @@ end
 
 function modifier_item_enhancement_vampiric_custom:DamageEvent_out(params)
 	if not IsServer() then
+		return
+	end
+	if not IsValid(self.ability) then
 		return
 	end
 	if not self.parent:CheckLifesteal(params) then

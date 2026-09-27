@@ -92,9 +92,7 @@ function muerta_the_calling_custom:Precache(context)
 	PrecacheResource("particle", "particles/muerta/muerta_calling_caster_end.vpcf", context)
 	PrecacheResource("particle", "particles/muerta/muerta_calling_caster_start.vpcf", context)
 	PrecacheResource("particle", "particles/muerta/calling_root.vpcf", context)
-	PrecacheResource("particle", "particles/muerta/muerta_calling_caster_start.vpcf", context)
 	PrecacheResource("particle", "particles/econ/events/ti7/blink_dagger_end_ti7.vpcf", context)
-	PrecacheResource("particle", "particles/muerta/muerta_calling_caster_end.vpcf", context)
 	PrecacheResource("particle", "particles/muerta/resist_stackb.vpcf", context)
 	PrecacheResource("particle", "particles/muerta/muerta_calling_revenant_custom.vpcf", context)
 	PrecacheResource("particle", "particles/mueta/muerta_shield.vpcf", context)
@@ -296,11 +294,11 @@ function muerta_the_calling_custom:OnSpellStart()
 	)
 	EmitSoundOnLocationWithCaster(point, "Hero_Muerta.Revenants.Cast", self.caster)
 
-	if self.ability.talents.has_h5 == 0 then
+	if self.talents.has_h5 == 0 then
 		return
 	end
 
-	if self.ability.talents.has_w7 == 1 then
+	if self.talents.has_w7 == 1 then
 		if self:GetAutoCastState() and not self.caster:IsLeashed() and not self.caster:IsRooted() then
 			self:Teleport()
 		end
@@ -337,6 +335,7 @@ function muerta_the_calling_custom:Teleport()
 		nil
 	)
 	ParticleManager:SetParticleControl(effect, 0, old_pos)
+	ParticleManager:ReleaseParticleIndex(effect)
 
 	ProjectileManager:ProjectileDodge(self.caster)
 
@@ -347,8 +346,8 @@ function muerta_the_calling_custom:Teleport()
 		self.shield_mod:Destroy()
 	end
 
-	self.shield_mod = self.parent:AddNewModifier(self.parent, self.ability, "modifier_generic_shield", {
-		max_shield = self.talents.h5_base + self.talents.h5_shield * self.parent:GetMaxHealth(),
+	self.shield_mod = self.caster:AddNewModifier(self.caster, self, "modifier_generic_shield", {
+		max_shield = self.talents.h5_base + self.talents.h5_shield * self.caster:GetMaxHealth(),
 		start_full = 1,
 		shield_talent = "modifier_muerta_hero_5",
 		duration = self.talents.h5_duration,
@@ -358,15 +357,15 @@ function muerta_the_calling_custom:Teleport()
 		self.particle = ParticleManager:CreateParticle(
 			"particles/mueta/muerta_shield.vpcf",
 			PATTACH_CUSTOMORIGIN_FOLLOW,
-			self.parent
+			self.caster
 		)
 		ParticleManager:SetParticleControlEnt(
 			self.particle,
 			0,
-			self.parent,
+			self.caster,
 			PATTACH_POINT_FOLLOW,
 			"attach_hitloc",
-			self.parent:GetAbsOrigin(),
+			self.caster:GetAbsOrigin(),
 			true
 		)
 		self.shield_mod:AddParticle(self.particle, false, false, -1, false, false)
@@ -422,7 +421,7 @@ function muerta_the_calling_custom:DealDamage(target, damage_ability, use_fear)
 			self.caster,
 			self,
 			"modifier_muerta_the_calling_custom_slow",
-			{ duration = self.ability.talents.w3_slow_duration }
+			{ duration = self.talents.w3_slow_duration }
 		)
 	else
 		target:AddNewModifier(
@@ -461,6 +460,24 @@ function muerta_the_calling_custom:DealDamage(target, damage_ability, use_fear)
 end
 
 modifier_muerta_the_calling_custom = class(mod_hidden)
+function modifier_muerta_the_calling_custom:IsAura()
+	return true
+end
+function modifier_muerta_the_calling_custom:GetModifierAura()
+	return "modifier_muerta_the_calling_custom_debuff"
+end
+function modifier_muerta_the_calling_custom:GetAuraRadius()
+	return self.aura_radius
+end
+function modifier_muerta_the_calling_custom:GetAuraDuration()
+	return self.aura_linger
+end
+function modifier_muerta_the_calling_custom:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_ENEMY
+end
+function modifier_muerta_the_calling_custom:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
+end
 function modifier_muerta_the_calling_custom:OnCreated()
 	if not IsServer() then
 		return
@@ -654,41 +671,44 @@ function modifier_muerta_the_calling_custom:OnDestroy()
 	self.parent:StopSound("Hero_Muerta.Revenants")
 
 	for i, wisp in pairs(self.wisps) do
-		if i <= self.legendary_stack and IsValid(self.legendary_target) then
-			local mod = wisp:FindModifierByName("modifier_muerta_the_calling_custom_revenant")
-			mod:SetTarget(
-				self.legendary_target,
-				"modifier_muerta_calling_7",
-				self.legendary_stack >= self.ability.talents.w7_fear_stack
-			)
-		elseif IsValid(wisp) then
-			UTIL_Remove(wisp)
+		if IsValid(wisp) then
+			local mod = i <= self.legendary_stack
+				and IsValid(self.legendary_target)
+				and wisp:FindModifierByName("modifier_muerta_the_calling_custom_revenant")
+			if mod then
+				mod:SetTarget(
+					self.legendary_target,
+					"modifier_muerta_calling_7",
+					self.legendary_stack >= self.ability.talents.w7_fear_stack
+				)
+			else
+				UTIL_Remove(wisp)
+			end
 		end
 	end
-end
-
-function modifier_muerta_the_calling_custom:IsAura()
-	return true
-end
-function modifier_muerta_the_calling_custom:GetModifierAura()
-	return "modifier_muerta_the_calling_custom_debuff"
-end
-function modifier_muerta_the_calling_custom:GetAuraRadius()
-	return self.aura_radius
-end
-function modifier_muerta_the_calling_custom:GetAuraDuration()
-	return self.aura_linger
-end
-function modifier_muerta_the_calling_custom:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_ENEMY
-end
-function modifier_muerta_the_calling_custom:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
 end
 
 modifier_muerta_the_calling_custom_revenant = class(mod_hidden)
 function modifier_muerta_the_calling_custom_revenant:RemoveOnDeath()
 	return false
+end
+function modifier_muerta_the_calling_custom_revenant:IsAura()
+	return IsServer() and self.aura
+end
+function modifier_muerta_the_calling_custom_revenant:GetModifierAura()
+	return "modifier_muerta_the_calling_custom_damage"
+end
+function modifier_muerta_the_calling_custom_revenant:GetAuraRadius()
+	return self.hit_radius
+end
+function modifier_muerta_the_calling_custom_revenant:GetAuraDuration()
+	return 0
+end
+function modifier_muerta_the_calling_custom_revenant:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_ENEMY
+end
+function modifier_muerta_the_calling_custom_revenant:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
 end
 function modifier_muerta_the_calling_custom_revenant:OnCreated(table)
 	if not IsServer() then
@@ -752,7 +772,8 @@ function modifier_muerta_the_calling_custom_revenant:SetTarget(target, damage_ab
 	end
 
 	self.aura = false
-	self.auto_radius = self.ability.talents.w7_radius
+	self.auto_radius = damage_ability == "modifier_muerta_calling_3" and self.ability.talents.w3_radius
+		or self.ability.talents.w7_radius
 	self.target_max_speed = 1000
 	self.target_speed = self.target_speed_initial
 	self.speed_duration = 1
@@ -860,31 +881,15 @@ function modifier_muerta_the_calling_custom_revenant:CheckState()
 	}
 end
 
-function modifier_muerta_the_calling_custom_revenant:IsAura()
-	return IsServer() and self.aura
-end
-function modifier_muerta_the_calling_custom_revenant:GetModifierAura()
-	return "modifier_muerta_the_calling_custom_damage"
-end
-function modifier_muerta_the_calling_custom_revenant:GetAuraRadius()
-	return self.hit_radius
-end
-function modifier_muerta_the_calling_custom_revenant:GetAuraDuration()
-	return 0
-end
-function modifier_muerta_the_calling_custom_revenant:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_ENEMY
-end
-function modifier_muerta_the_calling_custom_revenant:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
-end
-
 modifier_muerta_the_calling_custom_damage = class(mod_hidden)
 function modifier_muerta_the_calling_custom_damage:OnCreated()
 	if not IsServer() then
 		return
 	end
-	self:GetAbility():DealDamage(self:GetParent())
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.ability:DealDamage(self.parent)
 end
 
 modifier_muerta_the_calling_custom_debuff = class(mod_visible)
@@ -1163,7 +1168,6 @@ function modifier_muerta_the_calling_custom_legendary_stack:OnDestroy()
 end
 
 muerta_the_calling_custom_shard = class({})
-
 function muerta_the_calling_custom_shard:Spawn()
 	if not self:GetCaster() then
 		return

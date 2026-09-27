@@ -30,7 +30,6 @@ LinkLuaModifier(
 )
 
 life_stealer_ursa_clap = class({})
-
 function life_stealer_ursa_clap:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
@@ -39,60 +38,62 @@ function life_stealer_ursa_clap:Precache(context)
 	PrecacheResource("particle", "particles/hoodwink/bush_damage.vpcf", context)
 end
 
+function life_stealer_ursa_clap:Init()
+	if not self:GetCaster() then
+		return
+	end
+	self.caster = self:GetCaster()
+
+	self.duration = self:GetLevelSpecialValueFor("duration", 1)
+	self.aoe = self:GetLevelSpecialValueFor("aoe", 1)
+	self.count = self:GetLevelSpecialValueFor("count", 1)
+end
+
 function life_stealer_ursa_clap:GetCastRange(vector, hTarget)
-	return self:GetSpecialValueFor("aoe")
+	return self.aoe or 0
+end
+
+function life_stealer_ursa_clap:GetCooldown(level)
+	return self.BaseClass.GetCooldown(self, level)
+		+ (self.caster.infest_ability and self.caster.infest_ability.talents.r1_cd_creep or 0)
 end
 
 function life_stealer_ursa_clap:OnAbilityPhaseStart()
-	local caster = self:GetCaster()
-	caster:EmitSound("n_creep_Ursa.Clap")
-
-	caster:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_1, 1.3)
+	self.caster:EmitSound("n_creep_Ursa.Clap")
+	self.caster:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_1, 1.3)
 	return true
 end
 
 function life_stealer_ursa_clap:OnAbilityPhaseInterrupted()
-	self:GetCaster():StopSound("n_creep_Ursa.Clap")
-	self:GetCaster():FadeGesture(ACT_DOTA_CAST_ABILITY_1)
-end
-
-function life_stealer_ursa_clap:GetCooldown(level)
-	local bonus = 0
-	if self.caster.infest_ability and self.caster.infest_ability.talents.r1_cd_creep then
-		bonus = self.caster.infest_ability.talents.r1_cd_creep
-	end
-	return self.BaseClass.GetCooldown(self, level) + bonus
+	self.caster:StopSound("n_creep_Ursa.Clap")
+	self.caster:FadeGesture(ACT_DOTA_CAST_ABILITY_1)
 end
 
 function life_stealer_ursa_clap:OnSpellStart()
-	local caster = self:GetCaster()
-	local duration = self:GetSpecialValueFor("duration")
-	local radius = self:GetSpecialValueFor("aoe")
-
 	local trail_pfx =
-		ParticleManager:CreateParticle("particles/neutral_fx/ursa_thunderclap.vpcf", PATTACH_ABSORIGIN, caster)
-	ParticleManager:SetParticleControl(trail_pfx, 1, Vector(radius, radius, radius))
+		ParticleManager:CreateParticle("particles/neutral_fx/ursa_thunderclap.vpcf", PATTACH_ABSORIGIN, self.caster)
+	ParticleManager:SetParticleControl(trail_pfx, 1, Vector(self.aoe, self.aoe, self.aoe))
 	ParticleManager:ReleaseParticleIndex(trail_pfx)
 
-	for _, target in pairs(caster:FindTargets(radius)) do
+	for _, target in pairs(self.caster:FindTargets(self.aoe)) do
 		target:RemoveModifierByName("modifier_life_stealer_ursa_clap_slow")
-		target:AddNewModifier(caster, self, "modifier_life_stealer_ursa_clap_slow", { duration = duration })
+		target:AddNewModifier(self.caster, self, "modifier_life_stealer_ursa_clap_slow", { duration = self.duration })
 	end
 end
 
-modifier_life_stealer_ursa_clap_slow = class({})
-function modifier_life_stealer_ursa_clap_slow:IsPurgable()
-	return false
+modifier_life_stealer_ursa_clap_slow = class(mod_visible)
+function modifier_life_stealer_ursa_clap_slow:GetEffectName()
+	return "particles/units/heroes/hero_snapfire/hero_snapfire_shotgun_debuff.vpcf"
 end
-function modifier_life_stealer_ursa_clap_slow:IsHidden()
-	return false
+function modifier_life_stealer_ursa_clap_slow:GetEffectAttachType()
+	return PATTACH_ABSORIGIN_FOLLOW
 end
-function modifier_life_stealer_ursa_clap_slow:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-	}
+function modifier_life_stealer_ursa_clap_slow:GetStatusEffectName()
+	return "particles/status_fx/status_effect_snapfire_slow.vpcf"
 end
-
+function modifier_life_stealer_ursa_clap_slow:StatusEffectPriority()
+	return MODIFIER_PRIORITY_NORMAL
+end
 function modifier_life_stealer_ursa_clap_slow:OnCreated()
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
@@ -103,8 +104,15 @@ function modifier_life_stealer_ursa_clap_slow:OnCreated()
 	if not IsServer() then
 		return
 	end
-	self:SetStackCount(self.ability:GetSpecialValueFor("count"))
+	self.RemoveForDuel = true
+	self:SetStackCount(self.ability.count)
 	self.effect = self.parent:GenericParticle("particles/hoodwink/bush_damage.vpcf", self)
+end
+
+function modifier_life_stealer_ursa_clap_slow:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+	}
 end
 
 function modifier_life_stealer_ursa_clap_slow:RemoveEffect()
@@ -124,24 +132,7 @@ function modifier_life_stealer_ursa_clap_slow:GetModifierMoveSpeedBonus_Percenta
 	return self.slow
 end
 
-function modifier_life_stealer_ursa_clap_slow:GetEffectName()
-	return "particles/units/heroes/hero_snapfire/hero_snapfire_shotgun_debuff.vpcf"
-end
-
-function modifier_life_stealer_ursa_clap_slow:GetEffectAttachType()
-	return PATTACH_ABSORIGIN_FOLLOW
-end
-
-function modifier_life_stealer_ursa_clap_slow:GetStatusEffectName()
-	return "particles/status_fx/status_effect_snapfire_slow.vpcf"
-end
-
-function modifier_life_stealer_ursa_clap_slow:StatusEffectPriority()
-	return MODIFIER_PRIORITY_NORMAL
-end
-
 life_stealer_ursa_overpower = class({})
-
 function life_stealer_ursa_overpower:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
@@ -149,9 +140,17 @@ function life_stealer_ursa_overpower:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_ursa/ursa_overpower_buff.vpcf", context)
 end
 
+function life_stealer_ursa_overpower:Init()
+	if not self:GetCaster() then
+		return
+	end
+	self.caster = self:GetCaster()
+
+	self.duration = self:GetLevelSpecialValueFor("duration", 1)
+end
+
 function life_stealer_ursa_overpower:OnSpellStart()
-	local caster = self:GetCaster()
-	local duration = self:GetSpecialValueFor("duration")
+	local duration = self.duration
 
 	if self.caster.infest_ability and self.caster.infest_ability.talents.has_h6 == 1 then
 		duration = duration + self.caster.infest_ability.talents.h6_duration_creep
@@ -167,15 +166,21 @@ function life_stealer_ursa_overpower:OnSpellStart()
 		)
 	end
 
-	caster:EmitSound("Lifestealer.Infest_ursa_overpower")
-	caster:StartGesture(ACT_DOTA_OVERRIDE_ABILITY_3)
-	caster:RemoveModifierByName("modifier_life_stealer_infest_custom_legendary_creep_status")
-	caster:RemoveModifierByName("modifier_life_stealer_ursa_overpower")
-	caster:AddNewModifier(caster, self, "modifier_life_stealer_ursa_overpower", { duration = duration })
+	self.caster:EmitSound("Lifestealer.Infest_ursa_overpower")
+	self.caster:StartGesture(ACT_DOTA_OVERRIDE_ABILITY_3)
+	self.caster:RemoveModifierByName("modifier_life_stealer_infest_custom_legendary_creep_status")
+	self.caster:RemoveModifierByName("modifier_life_stealer_ursa_overpower")
+	self.caster:AddNewModifier(self.caster, self, "modifier_life_stealer_ursa_overpower", { duration = duration })
 end
 
 modifier_life_stealer_ursa_overpower = class(mod_visible)
-function modifier_life_stealer_ursa_overpower:OnCreated(table)
+function modifier_life_stealer_ursa_overpower:GetStatusEffectName()
+	return "particles/status_fx/status_effect_overpower.vpcf"
+end
+function modifier_life_stealer_ursa_overpower:StatusEffectPriority()
+	return MODIFIER_PRIORITY_ULTRA
+end
+function modifier_life_stealer_ursa_overpower:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
@@ -264,16 +269,7 @@ function modifier_life_stealer_ursa_overpower:GetModifierAttackSpeedBonus_Consta
 	return self.speed
 end
 
-function modifier_life_stealer_ursa_overpower:GetStatusEffectName()
-	return "particles/status_fx/status_effect_overpower.vpcf"
-end
-
-function modifier_life_stealer_ursa_overpower:StatusEffectPriority()
-	return MODIFIER_PRIORITY_ULTRA
-end
-
 life_stealer_ursa_crit = class({})
-
 function life_stealer_ursa_crit:GetIntrinsicModifierName()
 	return "modifier_life_stealer_ursa_crit"
 end
@@ -304,10 +300,6 @@ function modifier_life_stealer_ursa_crit:OnIntervalThink()
 	self:StartIntervalThink(-1)
 end
 
-function modifier_life_stealer_ursa_crit:OnRefresh(table)
-	self.crit = self.ability:GetSpecialValueFor("damage")
-end
-
 function modifier_life_stealer_ursa_crit:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE,
@@ -328,9 +320,9 @@ function modifier_life_stealer_ursa_crit:GetModifierPreAttack_CriticalStrike(par
 	self.record = params.record
 	local damage = mod.crit
 
-	local mod = params.target:FindModifierByName("modifier_life_stealer_infest_custom_legendary_bonus")
-	if mod then
-		damage = damage + mod.bonus * mod:GetStackCount() * 100
+	local bonus_mod = params.target:FindModifierByName("modifier_life_stealer_infest_custom_legendary_bonus")
+	if bonus_mod then
+		damage = damage + bonus_mod.bonus * bonus_mod:GetStackCount() * 100
 	end
 	return damage
 end
@@ -343,23 +335,34 @@ function modifier_life_stealer_ursa_crit:AttackStartEvent_out(params)
 		return
 	end
 
-	if self.record == params.record then
-		local mod = params.target:FindModifierByName("modifier_life_stealer_ursa_clap_slow")
-		if mod then
-			mod:DecrementStackCount()
-			if mod:GetStackCount() <= 0 then
-				mod:RemoveEffect()
-				if self.parent.infest_ability and self.parent.infest_ability.talents.has_r3 == 1 then
-					params.target:AddNewModifier(
-						self.parent,
-						self.parent.infest_ability,
-						"modifier_life_stealer_infest_custom_legendary_bonus",
-						{ duration = self.parent.infest_ability.talents.r3_duration }
-					)
-				end
-			end
-		end
+	if self.record ~= params.record then
+		return
 	end
+
+	local mod = params.target:FindModifierByName("modifier_life_stealer_ursa_clap_slow")
+	if not mod then
+		return
+	end
+
+	mod:DecrementStackCount()
+	if mod:GetStackCount() > 0 then
+		return
+	end
+
+	mod:RemoveEffect()
+	if not self.parent.infest_ability then
+		return
+	end
+	if self.parent.infest_ability.talents.has_r3 ~= 1 then
+		return
+	end
+
+	params.target:AddNewModifier(
+		self.parent,
+		self.parent.infest_ability,
+		"modifier_life_stealer_infest_custom_legendary_bonus",
+		{ duration = self.parent.infest_ability.talents.r3_duration }
+	)
 end
 
 function modifier_life_stealer_ursa_crit:AttackEvent_out(params)
@@ -392,6 +395,7 @@ function modifier_life_stealer_ursa_crit_armor:OnCreated()
 	if not IsServer() then
 		return
 	end
+	self.RemoveForDuel = true
 	self:OnRefresh()
 end
 

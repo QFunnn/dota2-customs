@@ -23,8 +23,21 @@ function item_dagon_custom:GetIntrinsicModifierName()
 	return "modifier_item_dagon_custom"
 end
 
+function item_dagon_custom:Spawn()
+	self.aoe_radius = self:GetSpecialValueFor("aoe_radius")
+	self.bonus_damage = self:GetSpecialValueFor("bonus_damage")
+	self.bonus_health = self:GetSpecialValueFor("bonus_health")
+	self.bonus_mana = self:GetSpecialValueFor("bonus_mana")
+	self.bonus_range = self:GetSpecialValueFor("bonus_range")
+	self.active_heal = self:GetSpecialValueFor("active_heal")
+	self.damage = self:GetSpecialValueFor("damage")
+	self.mana_damage = self:GetSpecialValueFor("mana_damage")
+	self.illusion_damage = self:GetSpecialValueFor("illusion_damage")
+	self.cd_inc = self:GetSpecialValueFor("cd_inc")
+end
+
 function item_dagon_custom:GetAOERadius()
-	return self:GetSpecialValueFor("aoe_radius")
+	return self.aoe_radius
 end
 
 function item_dagon_custom:OnSpellStart()
@@ -39,13 +52,29 @@ item_dagon_3_custom = class(item_dagon_custom)
 item_dagon_4_custom = class(item_dagon_custom)
 item_dagon_5_custom = class(item_dagon_custom)
 
-modifier_item_dagon_custom = class({})
-function modifier_item_dagon_custom:IsHidden()
-	return true
+modifier_item_dagon_custom = class(mod_hidden)
+function modifier_item_dagon_custom:OnCreated()
+	self.ability = self:GetAbility()
+	self.parent = self:GetParent()
+
+	self.bonus_damage = self.ability.bonus_damage
+	self.bonus_health = self.ability.bonus_health
+	self.bonus_mana = self.ability.bonus_mana
+	self.bonus_range = self.ability.bonus_range
+	self.active_heal = self.ability.active_heal / 100
+
+	self.radius = self.ability.aoe_radius
+	self.damage = self.ability.damage
+	self.mana_damage = self.ability.mana_damage / 100
+	self.illusion_damage = self.ability.illusion_damage / 100
+	self.cd_inc = self.ability.cd_inc / 100
+
+	if not IsServer() then
+		return
+	end
+	self.parent:AddSpellEvent(self, true)
 end
-function modifier_item_dagon_custom:IsPurgable()
-	return false
-end
+
 function modifier_item_dagon_custom:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
@@ -77,29 +106,11 @@ function modifier_item_dagon_custom:GetModifierCastRangeBonusStacking()
 	return self.bonus_range
 end
 
-function modifier_item_dagon_custom:OnCreated()
-	self.ability = self:GetAbility()
-	self.parent = self:GetParent()
-
-	self.bonus_damage = self.ability:GetSpecialValueFor("bonus_damage")
-	self.bonus_health = self.ability:GetSpecialValueFor("bonus_health")
-	self.bonus_mana = self.ability:GetSpecialValueFor("bonus_mana")
-	self.bonus_range = self.ability:GetSpecialValueFor("bonus_range")
-	self.active_heal = self.ability:GetSpecialValueFor("active_heal") / 100
-
-	self.radius = self.ability:GetSpecialValueFor("aoe_radius")
-	self.damage = self.ability:GetSpecialValueFor("damage")
-	self.mana_damage = self.ability:GetSpecialValueFor("mana_damage") / 100
-	self.cd_inc = self.ability:GetSpecialValueFor("cd_inc") / 100
-
+function modifier_item_dagon_custom:SpellEvent(params)
 	if not IsServer() then
 		return
 	end
-	self.parent:AddSpellEvent(self, true)
-end
-
-function modifier_item_dagon_custom:SpellEvent(params)
-	if not IsServer() then
+	if not IsValid(self.ability) then
 		return
 	end
 	if self.parent ~= params.unit then
@@ -179,6 +190,8 @@ function modifier_item_dagon_custom:DealDamage(target, damage_k)
 		ParticleManager:ReleaseParticleIndex(dagon_pfx)
 
 		damage_table.victim = enemy
+		damage_table.damage = enemy:IsIllusion() and damage * (1 + self.illusion_damage) or damage
+
 		local damage = DoDamage(damage_table)
 
 		if enemy == target then
@@ -186,9 +199,6 @@ function modifier_item_dagon_custom:DealDamage(target, damage_k)
 			if result then
 				caster:GenericHeal(damage * self.active_heal * result, self.ability)
 			end
-		end
-		if enemy:IsIllusion() and not enemy:HasModifier("modifier_chaos_knight_phantasm_illusion") then
-			enemy:Kill(self.ability, caster)
 		end
 	end
 end

@@ -70,6 +70,8 @@ function custom_huskar_inner_fire:Precache(context)
 	PrecacheResource("particle", "particles/huskar/inner_fire_charge.vpcf", context)
 	PrecacheResource("particle", "particles/huskar_burn_aura.vpcf", context)
 	PrecacheResource("particle", "particles/ember_spirit/guard_resist_max.vpcf", context)
+	PrecacheResource("particle", "particles/huskar/shard_shield.vpcf", context)
+	PrecacheResource("particle", "particles/huskar_earth_stack.vpcf", context)
 end
 
 function custom_huskar_inner_fire:UpdateTalents()
@@ -77,11 +79,9 @@ function custom_huskar_inner_fire:UpdateTalents()
 	if not self.init then
 		self.init = true
 		self.talents = {
-			has_q1 = 0,
 			q1_damage = 0,
 			q1_spell = 0,
 
-			has_q2 = 0,
 			q2_cd = 0,
 			q2_damage_reduce = 0,
 
@@ -123,13 +123,11 @@ function custom_huskar_inner_fire:UpdateTalents()
 	end
 
 	if caster:HasTalent("modifier_huskar_disarm_1") then
-		self.talents.has_q1 = 1
 		self.talents.q1_damage = caster:GetTalentValue("modifier_huskar_disarm_1", "damage") / 100
 		self.talents.q1_spell = caster:GetTalentValue("modifier_huskar_disarm_1", "spell")
 	end
 
 	if caster:HasTalent("modifier_huskar_disarm_2") then
-		self.talents.has_q2 = 1
 		self.talents.q2_cd = caster:GetTalentValue("modifier_huskar_disarm_2", "cd")
 		self.talents.q2_damage_reduce = caster:GetTalentValue("modifier_huskar_disarm_2", "damage_reduce")
 	end
@@ -154,14 +152,14 @@ function custom_huskar_inner_fire:UpdateTalents()
 end
 
 function custom_huskar_inner_fire:GetAbilityTextureName()
-	if self:GetCaster():HasModifier("modifier_custom_huskar_inner_fire_legendary") then
+	if self.caster:HasModifier("modifier_custom_huskar_inner_fire_legendary") then
 		return "Inner_Fire_Stop"
 	end
 	return wearables_system:GetAbilityIconReplacement(self.caster, "huskar_inner_fire", self)
 end
 
 function custom_huskar_inner_fire:GetAOERadius()
-	return (self.radius and self.radius or 0)
+	return self.radius or 0
 end
 
 function custom_huskar_inner_fire:GetIntrinsicModifierName()
@@ -172,7 +170,7 @@ function custom_huskar_inner_fire:GetIntrinsicModifierName()
 end
 
 function custom_huskar_inner_fire:GetManaCost(level)
-	if self:GetCaster():HasModifier("modifier_custom_huskar_inner_fire_legendary") then
+	if self.caster:HasModifier("modifier_custom_huskar_inner_fire_legendary") then
 		return 0
 	end
 	return self.BaseClass.GetManaCost(self, level)
@@ -189,21 +187,19 @@ function custom_huskar_inner_fire:CastFilterResultTarget(target)
 	if self.talents.has_q4 == 0 then
 		return true
 	end
-	local caster = self:GetCaster()
-	if target:GetTeamNumber() == caster:GetTeamNumber() and caster ~= target then
+	if target:GetTeamNumber() == self.caster:GetTeamNumber() and self.caster ~= target then
 		return UF_FAIL_FRIENDLY
 	end
-	return UnitFilter(target, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, 0, caster:GetTeamNumber())
+	return UnitFilter(target, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_HERO, 0, self.caster:GetTeamNumber())
 end
 
 function custom_huskar_inner_fire:GetBehavior()
-	local caster = self:GetCaster()
-	if self.talents.has_h4 == 1 and caster:IsStunned() then
+	if self.talents.has_h4 == 1 and self.caster:IsStunned() then
 		return DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE
 			+ DOTA_ABILITY_BEHAVIOR_NO_TARGET
 			+ DOTA_ABILITY_BEHAVIOR_IMMEDIATE
 	end
-	if caster:HasModifier("modifier_custom_huskar_inner_fire_legendary") then
+	if self.caster:HasModifier("modifier_custom_huskar_inner_fire_legendary") then
 		return DOTA_ABILITY_BEHAVIOR_NO_TARGET + DOTA_ABILITY_BEHAVIOR_IMMEDIATE
 	end
 	if self.talents.has_q4 == 1 then
@@ -223,62 +219,43 @@ function custom_huskar_inner_fire:GetCastRange(vLocation, hTarget)
 	if self.talents.has_q4 == 1 then
 		return self.talents.q4_range
 	end
-	return (self.radius and self.radius or 0) - self:GetCaster():GetCastRangeBonus()
+	return (self.radius or 0) - self.caster:GetCastRangeBonus()
 end
 
 function custom_huskar_inner_fire:GetCooldown(iLevel)
-	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.q2_cd and self.talents.q2_cd or 0)
+	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.q2_cd or 0)
 end
 
 function custom_huskar_inner_fire:GetDamage()
-	return self.damage + self.talents.q1_damage * self:GetCaster():GetMaxMana()
-end
-
-function custom_huskar_inner_fire:ApplyBurn(target, is_legendary)
-	if not IsServer() then
-		return
-	end
-	if not self:IsTrained() then
-		return
-	end
-	if self.talents.has_q3 == 0 then
-		return
-	end
-
-	if not is_legendary then
-		target:AddNewModifier(
-			self.caster,
-			self,
-			"modifier_custom_huskar_inner_fire_burn_damage",
-			{ duration = self.talents.q3_duration }
-		)
-	else
-		target:AddNewModifier(self.caster, self, "modifier_custom_huskar_inner_fire_burn_legendary", { duration = 4 })
-	end
+	return self.damage + self.talents.q1_damage * self.caster:GetMaxMana()
 end
 
 function custom_huskar_inner_fire:OnSpellStart(new_ability, override_point)
-	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 
-	local mod = caster:FindModifierByName("modifier_custom_huskar_inner_fire_legendary")
+	local mod = self.caster:FindModifierByName("modifier_custom_huskar_inner_fire_legendary")
 	if mod and not new_ability then
 		mod:Destroy()
 		return
 	end
 
-	local point = caster:GetAbsOrigin()
+	local point = self.caster:GetAbsOrigin()
 	local new_point = false
-	if self.talents.has_q4 == 1 and not new_ability and (not target or target ~= caster) and not caster:IsStunned() then
+	if
+		self.talents.has_q4 == 1
+		and not new_ability
+		and (not target or target ~= self.caster)
+		and not self.caster:IsStunned()
+	then
 		point = self:GetCursorPosition()
 		new_point = point
 	end
 
 	if self.talents.has_h4 == 1 and not new_ability then
-		if caster:IsStunned() then
-			point = caster:GetAbsOrigin()
+		if self.caster:IsStunned() then
+			point = self.caster:GetAbsOrigin()
 		else
-			caster:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_1, 1.4)
+			self.caster:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_1, 1.4)
 		end
 	end
 
@@ -303,14 +280,14 @@ function custom_huskar_inner_fire:OnSpellStart(new_ability, override_point)
 		part = "particles/huskar/inner_fire_legendary.vpcf"
 		sound = "Huskar.Inner_legendary"
 
-		local health = caster:GetMaxHealth() * self.talents.q7_health
-		caster:SetHealth(math.max(1, caster:GetHealth() - health))
+		local health = self.caster:GetMaxHealth() * self.talents.q7_health
+		self.caster:SetHealth(math.max(1, self.caster:GetHealth() - health))
 
 		knockback_duration = self.talents.q7_knock_duration
 		damage = damage * self.talents.q7_damage
 	end
 
-	EmitSoundOnLocationWithCaster(point, sound, caster)
+	EmitSoundOnLocationWithCaster(point, sound, self.caster)
 
 	local particle = ParticleManager:CreateParticle(part, PATTACH_WORLDORIGIN, nil)
 	ParticleManager:SetParticleControl(particle, 0, point)
@@ -318,9 +295,9 @@ function custom_huskar_inner_fire:OnSpellStart(new_ability, override_point)
 	ParticleManager:SetParticleControl(particle, 3, point)
 	ParticleManager:ReleaseParticleIndex(particle)
 
-	local damageTable = { damage = damage, damage_type = DAMAGE_TYPE_MAGICAL, attacker = caster, ability = self }
+	local damageTable = { damage = damage, damage_type = DAMAGE_TYPE_MAGICAL, attacker = self.caster, ability = self }
 
-	for _, enemy in pairs(caster:FindTargets(radius, point)) do
+	for _, enemy in pairs(self.caster:FindTargets(radius, point)) do
 		local status = (1 - enemy:GetStatusResistance())
 
 		if IsValid(self.caster.break_ability) and self.talents.has_q7 == 1 and not new_ability then
@@ -348,7 +325,7 @@ function custom_huskar_inner_fire:OnSpellStart(new_ability, override_point)
 				+ (self.knockback_duration - self.knockback_min) * (distance / self.knockback_distance)
 		end
 
-		local mod = enemy:AddNewModifier(caster, self, "modifier_generic_knockback", {
+		local mod = enemy:AddNewModifier(self.caster, self, "modifier_generic_knockback", {
 			direction_x = vec.x,
 			direction_y = vec.y,
 			distance = distance * status,
@@ -365,7 +342,7 @@ function custom_huskar_inner_fire:OnSpellStart(new_ability, override_point)
 
 		if self.talents.has_q4 == 1 and not new_ability and enemy:IsHero() then
 			enemy:AddNewModifier(
-				caster,
+				self.caster,
 				self,
 				"modifier_custom_huskar_inner_fire_root",
 				{ duration = self.talents.q4_leash, x = point.x, y = point.y }
@@ -373,7 +350,7 @@ function custom_huskar_inner_fire:OnSpellStart(new_ability, override_point)
 		end
 		if not new_ability then
 			enemy:AddNewModifier(
-				caster,
+				self.caster,
 				self,
 				"modifier_custom_huskar_inner_fire_silence",
 				{ duration = silence_duration * status }
@@ -381,7 +358,7 @@ function custom_huskar_inner_fire:OnSpellStart(new_ability, override_point)
 		end
 		if self.talents.has_q7 == 1 then
 			enemy:AddNewModifier(
-				caster,
+				self.caster,
 				self,
 				"modifier_custom_huskar_inner_fire_legendary_magic",
 				{ duration = self.talents.q7_duration }
@@ -396,8 +373,8 @@ function custom_huskar_inner_fire:OnSpellStart(new_ability, override_point)
 	if self.talents.has_q7 == 1 then
 		local new_x = new_point and new_point.x or nil
 		local new_y = new_point and new_point.y or nil
-		caster:AddNewModifier(
-			caster,
+		self.caster:AddNewModifier(
+			self.caster,
 			self,
 			"modifier_custom_huskar_inner_fire_legendary",
 			{ new_x = new_x, new_y = new_y }
@@ -408,9 +385,10 @@ function custom_huskar_inner_fire:OnSpellStart(new_ability, override_point)
 		if IsValid(self.active_shield) then
 			self.active_shield:Destroy()
 		end
-		self.active_shield = caster:AddNewModifier(caster, self, "modifier_generic_shield", {
+		self.active_shield = self.caster:AddNewModifier(self.caster, self, "modifier_generic_shield", {
 			duration = self.talents.h4_duration,
-			max_shield = self.talents.h4_base + (caster:GetMaxHealth() - caster:GetHealth()) * self.talents.h4_shield,
+			max_shield = self.talents.h4_base
+				+ (self.caster:GetMaxHealth() - self.caster:GetHealth()) * self.talents.h4_shield,
 			start_full = 1,
 			shield_talent = "modifier_huskar_hero_4",
 		})
@@ -418,9 +396,9 @@ function custom_huskar_inner_fire:OnSpellStart(new_ability, override_point)
 		if self.active_shield then
 			self.active_shield:SetFilterFunction(function(params)
 				if
-					IsValid(caster)
+					IsValid(self.caster)
 					and params.attacker
-					and params.attacker:GetTeamNumber() == caster:GetTeamNumber()
+					and params.attacker:GetTeamNumber() == self.caster:GetTeamNumber()
 				then
 					return false
 				end
@@ -428,14 +406,14 @@ function custom_huskar_inner_fire:OnSpellStart(new_ability, override_point)
 			end)
 
 			self.particle =
-				ParticleManager:CreateParticle("particles/huskar/shard_shield.vpcf", PATTACH_CUSTOMORIGIN, caster)
+				ParticleManager:CreateParticle("particles/huskar/shard_shield.vpcf", PATTACH_CUSTOMORIGIN, self.caster)
 			ParticleManager:SetParticleControlEnt(
 				self.particle,
 				0,
-				caster,
+				self.caster,
 				PATTACH_POINT_FOLLOW,
 				"attach_hitloc",
-				caster:GetOrigin(),
+				self.caster:GetOrigin(),
 				true
 			)
 			self.active_shield:AddParticle(self.particle, false, false, -1, false, false)
@@ -444,14 +422,37 @@ function custom_huskar_inner_fire:OnSpellStart(new_ability, override_point)
 
 	if self.talents.has_q4 == 1 then
 		CreateModifierThinker(
-			caser,
+			self.caster,
 			self,
 			"modifier_custom_huskar_inner_fire_coil",
 			{ duration = self.talents.q4_leash },
 			point,
-			caster:GetTeamNumber(),
+			self.caster:GetTeamNumber(),
 			false
 		)
+	end
+end
+
+function custom_huskar_inner_fire:ApplyBurn(target, is_legendary)
+	if not IsServer() then
+		return
+	end
+	if not self:IsTrained() then
+		return
+	end
+	if self.talents.has_q3 == 0 then
+		return
+	end
+
+	if not is_legendary then
+		target:AddNewModifier(
+			self.caster,
+			self,
+			"modifier_custom_huskar_inner_fire_burn_damage",
+			{ duration = self.talents.q3_duration }
+		)
+	else
+		target:AddNewModifier(self.caster, self, "modifier_custom_huskar_inner_fire_burn_legendary", { duration = 4 })
 	end
 end
 
@@ -511,7 +512,7 @@ function modifier_custom_huskar_inner_fire_root:OnIntervalThink()
 	local vec = self.center - self.parent:GetAbsOrigin()
 	local target_point = self.center - vec:Normalized() * self.knock_dist
 
-	local mod = self.parent:AddNewModifier(self.caster, self.ability, "modifier_generic_knockback", {
+	self.parent:AddNewModifier(self.caster, self.ability, "modifier_generic_knockback", {
 		direction_x = vec.x,
 		direction_y = vec.y,
 		distance = (target_point - self.parent:GetAbsOrigin()):Length2D(),
@@ -543,6 +544,27 @@ function modifier_custom_huskar_inner_fire_coil:OnCreated(table)
 end
 
 modifier_custom_huskar_inner_fire_tracker = class(mod_hidden)
+function modifier_custom_huskar_inner_fire_tracker:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+	self.ability.tracker = self
+	self.ability:UpdateTalents()
+
+	self.parent.inner_ability = self.ability
+
+	self.ability.damage = self.ability:GetSpecialValueFor("damage")
+	self.ability.silence_duration = self.ability:GetSpecialValueFor("silence_duration")
+	self.ability.radius = self.ability:GetSpecialValueFor("radius")
+	self.ability.knockback_distance = self.ability:GetSpecialValueFor("knockback_distance")
+	self.ability.knockback_duration = self.ability:GetSpecialValueFor("knockback_duration")
+	self.ability.knockback_min = self.ability:GetSpecialValueFor("knockback_min")
+end
+
+function modifier_custom_huskar_inner_fire_tracker:OnRefresh()
+	self.ability.damage = self.ability:GetSpecialValueFor("damage")
+	self.ability.silence_duration = self.ability:GetSpecialValueFor("silence_duration")
+end
+
 function modifier_custom_huskar_inner_fire_tracker:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE,
@@ -566,27 +588,6 @@ function modifier_custom_huskar_inner_fire_tracker:GetModifierPercentageCooldown
 	return self.ability.talents.q3_cdr
 end
 
-function modifier_custom_huskar_inner_fire_tracker:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-	self.ability.tracker = self
-	self.ability:UpdateTalents()
-
-	self.parent.inner_ability = self.ability
-
-	self.ability.damage = self.ability:GetSpecialValueFor("damage")
-	self.ability.silence_duration = self.ability:GetSpecialValueFor("silence_duration")
-	self.ability.radius = self.ability:GetSpecialValueFor("radius")
-	self.ability.knockback_distance = self.ability:GetSpecialValueFor("knockback_distance")
-	self.ability.knockback_duration = self.ability:GetSpecialValueFor("knockback_duration")
-	self.ability.knockback_min = self.ability:GetSpecialValueFor("knockback_min")
-end
-
-function modifier_custom_huskar_inner_fire_tracker:OnRefresh()
-	self.ability.damage = self.ability:GetSpecialValueFor("damage")
-	self.ability.silence_duration = self.ability:GetSpecialValueFor("silence_duration")
-end
-
 modifier_custom_huskar_inner_fire_burn_damage = class(mod_visible)
 function modifier_custom_huskar_inner_fire_burn_damage:GetTexture()
 	return "buffs/huskar/inner_fire_3"
@@ -597,14 +598,13 @@ function modifier_custom_huskar_inner_fire_burn_damage:OnCreated()
 	self.ability = self:GetAbility()
 
 	self.interval = self.ability.talents.q3_interval
-	self.duration = self.ability.talents.q3_duration
 	self.max = self.ability.talents.q3_max
-	self.count = 0
 	self.damage = self.ability.talents.q3_damage * self.interval
 
 	if not IsServer() then
 		return
 	end
+	self.RemoveForDuel = true
 	self:OnRefresh()
 
 	self.parent:GenericParticle("particles/huskar_burn_aura.vpcf", self)
@@ -640,23 +640,18 @@ function modifier_custom_huskar_inner_fire_burn_damage:OnIntervalThink()
 	DoDamage(self.damageTable, "modifier_huskar_disarm_3")
 end
 
-modifier_custom_huskar_inner_fire_silence = class({})
-function modifier_custom_huskar_inner_fire_silence:IsHidden()
-	return true
-end
+modifier_custom_huskar_inner_fire_silence = class(mod_hidden)
 function modifier_custom_huskar_inner_fire_silence:IsPurgable()
 	return true
 end
-function modifier_custom_huskar_inner_fire_silence:CheckState()
-	return {
-		[MODIFIER_STATE_SILENCED] = true,
-	}
-end
-
 function modifier_custom_huskar_inner_fire_silence:OnCreated(table)
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
 	self.ability = self:GetAbility()
+
+	if not IsServer() then
+		return
+	end
 	if not self.parent:IsRealHero() then
 		return
 	end
@@ -668,6 +663,12 @@ function modifier_custom_huskar_inner_fire_silence:OnCreated(table)
 	if self.caster:GetQuest() == "Huskar.Quest_5" then
 		self:StartIntervalThink(0.1)
 	end
+end
+
+function modifier_custom_huskar_inner_fire_silence:CheckState()
+	return {
+		[MODIFIER_STATE_SILENCED] = true,
+	}
 end
 
 function modifier_custom_huskar_inner_fire_silence:OnIntervalThink()
@@ -785,7 +786,7 @@ function modifier_custom_huskar_inner_fire_legendary_magic:OnCreated(table)
 	end
 	self.effect_cast = self.parent:GenericParticle("particles/huskar_earth_stack.vpcf", self, true)
 	self.RemoveForDuel = true
-	self:SetStackCount(1)
+	self:OnRefresh()
 end
 
 function modifier_custom_huskar_inner_fire_legendary_magic:OnRefresh(table)
@@ -796,15 +797,6 @@ function modifier_custom_huskar_inner_fire_legendary_magic:OnRefresh(table)
 		return
 	end
 	self:IncrementStackCount()
-end
-
-function modifier_custom_huskar_inner_fire_legendary_magic:OnStackCountChanged(iStackCount)
-	if not IsServer() then
-		return
-	end
-	if not self.effect_cast then
-		return
-	end
 	ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(0, self:GetStackCount(), 0))
 end
 

@@ -71,41 +71,40 @@ function nyx_assassin_jolt_custom:UpdateTalents()
 	if not self.init then
 		self.init = true
 		self.talents = {
-			damage_inc = 0,
+			w1_damage = 0,
 
-			has_slow = 0,
-			range_inc = 0,
-			range_slow = 0,
-			slow_duration = caster:GetTalentValue("modifier_nyx_mind_2", "duration", true),
+			has_w2 = 0,
+			w2_range = 0,
+			w2_slow = 0,
+			w2_duration = caster:GetTalentValue("modifier_nyx_mind_2", "duration", true),
 
-			has_mana = 0,
-			mana_add = 0,
+			has_h1 = 0,
+			h1_mana = 0,
 
-			has_cd = 0,
-			heal_inc = 0,
+			has_w3 = 0,
+			w3_heal = 0,
 			w3_cd = 0,
 
-			has_silence = 0,
-			silence_duration = caster:GetTalentValue("modifier_nyx_mind_4", "silence", true),
-			silence_thresh = caster:GetTalentValue("modifier_nyx_mind_4", "thresh", true),
-			silence_mana = caster:GetTalentValue("modifier_nyx_mind_4", "mana", true) / 100,
-			silence_speed = caster:GetTalentValue("modifier_nyx_mind_4", "speed", true),
-			silence_cd = caster:GetTalentValue("modifier_nyx_mind_4", "talent_cd", true),
+			has_w4 = 0,
+			w4_silence = caster:GetTalentValue("modifier_nyx_mind_4", "silence", true),
+			w4_thresh = caster:GetTalentValue("modifier_nyx_mind_4", "thresh", true),
+			w4_mana = caster:GetTalentValue("modifier_nyx_mind_4", "mana", true) / 100,
+			w4_speed = caster:GetTalentValue("modifier_nyx_mind_4", "speed", true),
+			w4_talent_cd = caster:GetTalentValue("modifier_nyx_mind_4", "talent_cd", true),
 
-			has_shield = 0,
-			magic_inc = 0,
-			shield_cd = caster:GetTalentValue("modifier_nyx_hero_5", "talent_cd", true),
-			shield_duration = caster:GetTalentValue("modifier_nyx_hero_5", "duration", true),
-			shield_amount = caster:GetTalentValue("modifier_nyx_hero_5", "shield", true) / 100,
-			shield_amount_nomana = caster:GetTalentValue("modifier_nyx_hero_5", "no_mana", true),
+			has_h5 = 0,
+			h5_magic = caster:GetTalentValue("modifier_nyx_hero_5", "magic", true),
+			h5_talent_cd = caster:GetTalentValue("modifier_nyx_hero_5", "talent_cd", true),
+			h5_duration = caster:GetTalentValue("modifier_nyx_hero_5", "duration", true),
+			h5_shield = caster:GetTalentValue("modifier_nyx_hero_5", "shield", true) / 100,
+			h5_no_mana = caster:GetTalentValue("modifier_nyx_hero_5", "no_mana", true),
 
-			has_legendary = 0,
-			legendary_damage_min = caster:GetTalentValue("modifier_nyx_mind_7", "damage_min", true) / 100,
-			legendary_damage_max = caster:GetTalentValue("modifier_nyx_mind_7", "damage_max", true) / 100,
-			legendary_mana = caster:GetTalentValue("modifier_nyx_mind_7", "mana", true) / 100,
-			legendary_mana_damage = caster:GetTalentValue("modifier_nyx_mind_7", "mana_damage", true) / 100,
-			legendary_heal = caster:GetTalentValue("modifier_nyx_mind_7", "heal", true) / 100,
-			legendary_duration = caster:GetTalentValue("modifier_nyx_mind_7", "duration", true),
+			has_w7 = 0,
+			w7_damage_min = caster:GetTalentValue("modifier_nyx_mind_7", "damage_min", true) / 100,
+			w7_damage_max = caster:GetTalentValue("modifier_nyx_mind_7", "damage_max", true) / 100,
+			w7_mana = caster:GetTalentValue("modifier_nyx_mind_7", "mana", true) / 100,
+			w7_mana_damage = caster:GetTalentValue("modifier_nyx_mind_7", "mana_damage", true) / 100,
+			w7_duration = caster:GetTalentValue("modifier_nyx_mind_7", "duration", true),
 
 			has_q1 = 0,
 			q1_heal = 0,
@@ -117,18 +116,18 @@ function nyx_assassin_jolt_custom:UpdateTalents()
 	end
 
 	if caster:HasTalent("modifier_nyx_mind_1") then
-		self.talents.damage_inc = caster:GetTalentValue("modifier_nyx_mind_1", "damage") / 100
+		self.talents.w1_damage = caster:GetTalentValue("modifier_nyx_mind_1", "damage") / 100
 	end
 
 	if caster:HasTalent("modifier_nyx_mind_2") then
-		self.talents.has_slow = 1
-		self.talents.range_inc = caster:GetTalentValue("modifier_nyx_mind_2", "range")
-		self.talents.range_slow = caster:GetTalentValue("modifier_nyx_mind_2", "slow")
+		self.talents.has_w2 = 1
+		self.talents.w2_range = caster:GetTalentValue("modifier_nyx_mind_2", "range")
+		self.talents.w2_slow = caster:GetTalentValue("modifier_nyx_mind_2", "slow")
 	end
 
 	if caster:HasTalent("modifier_nyx_hero_1") then
-		self.talents.has_mana = 1
-		self.talents.mana_add = caster:GetTalentValue("modifier_nyx_hero_1", "mana") / 100
+		self.talents.has_h1 = 1
+		self.talents.h1_mana = caster:GetTalentValue("modifier_nyx_hero_1", "mana") / 100
 		if IsServer() then
 			local stats = caster:GetTalentValue("modifier_nyx_hero_1", "stats") / 100
 			caster:AddPercentStat({ agi = stats, str = stats, int = stats }, self.tracker)
@@ -136,24 +135,23 @@ function nyx_assassin_jolt_custom:UpdateTalents()
 	end
 
 	if caster:HasTalent("modifier_nyx_mind_3") then
-		self.talents.has_cd = 1
-		self.talents.heal_inc = caster:GetTalentValue("modifier_nyx_mind_3", "heal") / 100
+		self.talents.has_w3 = 1
+		self.talents.w3_heal = caster:GetTalentValue("modifier_nyx_mind_3", "heal") / 100
 		self.talents.w3_cd = caster:GetTalentValue("modifier_nyx_mind_3", "cd") / 100
 		caster:AddSpellEvent(self.tracker, true)
 	end
 
 	if caster:HasTalent("modifier_nyx_mind_4") then
-		self.talents.has_silence = 1
+		self.talents.has_w4 = 1
 	end
 
 	if caster:HasTalent("modifier_nyx_hero_5") then
-		self.talents.has_shield = 1
-		self.talents.magic_inc = caster:GetTalentValue("modifier_nyx_hero_5", "magic")
+		self.talents.has_h5 = 1
 		caster:AddSpellEvent(self.tracker, true)
 	end
 
 	if caster:HasTalent("modifier_nyx_mind_7") then
-		self.talents.has_legendary = 1
+		self.talents.has_w7 = 1
 	end
 
 	if caster:HasTalent("modifier_nyx_impale_1") then
@@ -179,7 +177,7 @@ function nyx_assassin_jolt_custom:GetAbilityTextureName()
 end
 
 function nyx_assassin_jolt_custom:GetBehavior()
-	local bonus = self.talents.has_legendary == 1 and DOTA_ABILITY_BEHAVIOR_AUTOCAST or 0
+	local bonus = self.talents.has_w7 == 1 and DOTA_ABILITY_BEHAVIOR_AUTOCAST or 0
 	return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET
 		+ DOTA_ABILITY_BEHAVIOR_AOE
 		+ DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING
@@ -195,11 +193,10 @@ function nyx_assassin_jolt_custom:GetCooldown(level)
 end
 
 function nyx_assassin_jolt_custom:GetAOERadius()
-	return self.radius and self.radius or 0
+	return self.radius or 0
 end
 
 function nyx_assassin_jolt_custom:OnSpellStart(new_target)
-	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 	if new_target then
 		target = new_target
@@ -208,15 +205,15 @@ function nyx_assassin_jolt_custom:OnSpellStart(new_target)
 	local hit_effect = ParticleManager:CreateParticle(
 		"particles/units/heroes/hero_nyx_assassin/nyx_assassin_mana_burn_start.vpcf",
 		PATTACH_CUSTOMORIGIN_FOLLOW,
-		caster
+		self.caster
 	)
 	ParticleManager:SetParticleControlEnt(
 		hit_effect,
 		0,
-		caster,
+		self.caster,
 		PATTACH_POINT_FOLLOW,
 		"attach_mouth",
-		caster:GetAbsOrigin(),
+		self.caster:GetAbsOrigin(),
 		false
 	)
 	ParticleManager:ReleaseParticleIndex(hit_effect)
@@ -225,15 +222,15 @@ function nyx_assassin_jolt_custom:OnSpellStart(new_target)
 		local beam_effect = ParticleManager:CreateParticle(
 			"particles/units/heroes/hero_nyx_assassin/nyx_assassin_jolt.vpcf",
 			PATTACH_CUSTOMORIGIN_FOLLOW,
-			caster
+			self.caster
 		)
 		ParticleManager:SetParticleControlEnt(
 			beam_effect,
 			0,
-			caster,
+			self.caster,
 			PATTACH_POINT_FOLLOW,
 			"attach_mouth",
-			caster:GetAbsOrigin(),
+			self.caster:GetAbsOrigin(),
 			false
 		)
 		ParticleManager:SetParticleControlEnt(
@@ -248,10 +245,10 @@ function nyx_assassin_jolt_custom:OnSpellStart(new_target)
 		ParticleManager:ReleaseParticleIndex(beam_effect)
 
 		self.cd_used = false
-		caster:EmitSound("Hero_NyxAssassin.Jolt.Cast")
+		self.caster:EmitSound("Hero_NyxAssassin.Jolt.Cast")
 		target:EmitSound("Hero_NyxAssassin.Jolt.Target")
 	else
-		caster:EmitSound("Hero_NyxAssassin.ManaBurn.Cast")
+		self.caster:EmitSound("Hero_NyxAssassin.ManaBurn.Cast")
 		target:EmitSound("Hero_NyxAssassin.ManaBurn.Target")
 		target:EmitSound("Nyx.Mind_legendary_mana")
 	end
@@ -275,46 +272,45 @@ function nyx_assassin_jolt_custom:OnSpellStart(new_target)
 		damage = damage + target:GetMaxMana() * self.max_mana_as_damage_pct
 	end
 
-	if self.talents.has_legendary == 1 and not no_mana then
+	if self.talents.has_w7 == 1 and not no_mana then
 		damage = (
-			self.talents.legendary_damage_min
-			+ (self.talents.legendary_damage_max - self.talents.legendary_damage_min)
-				* (1 - target:GetManaPercent() / 100)
+			self.talents.w7_damage_min
+			+ (self.talents.w7_damage_max - self.talents.w7_damage_min) * (1 - target:GetManaPercent() / 100)
 		) * target:GetMaxHealth()
 	end
 
-	damage = damage * (1 + self.talents.damage_inc)
+	damage = damage * (1 + self.talents.w1_damage)
 
-	local damageTable = { attacker = caster, damage = damage, ability = self, damage_type = DAMAGE_TYPE_MAGICAL }
+	local damageTable = { attacker = self.caster, damage = damage, ability = self, damage_type = DAMAGE_TYPE_MAGICAL }
 
-	for _, aoe_target in pairs(caster:FindTargets(self.radius, target:GetAbsOrigin())) do
+	for _, aoe_target in pairs(self.caster:FindTargets(self.radius, target:GetAbsOrigin())) do
 		aoe_target:GenericParticle("particles/units/heroes/hero_nyx_assassin/nyx_assassin_mana_burn.vpcf")
 		damageTable.victim = aoe_target
 
 		if not new_target then
 			local real_damage = DoDamage(damageTable)
-			if self.talents.has_legendary == 1 then
+			if self.talents.has_w7 == 1 then
 				aoe_target:SendNumber(6, real_damage)
 			end
 		else
 			aoe_target:AddNewModifier(
-				caster,
+				self.caster,
 				self,
 				"modifier_nyx_assassin_jolt_custom_legendary_mana",
-				{ duration = self.talents.legendary_duration + 0.1 }
+				{ duration = self.talents.w7_duration + 0.1 }
 			)
 		end
 
-		if IsValid(caster.impale_ability) then
-			caster.impale_ability:AbilityHit(aoe_target)
+		if IsValid(self.caster.impale_ability) then
+			self.caster.impale_ability:AbilityHit(aoe_target)
 		end
 
-		if self.talents.has_slow == 1 then
+		if self.talents.has_w2 == 1 then
 			aoe_target:AddNewModifier(
-				caster,
+				self.caster,
 				self,
 				"modifier_nyx_assassin_jolt_custom_slow",
-				{ duration = self.talents.slow_duration }
+				{ duration = self.talents.w2_duration }
 			)
 		end
 	end
@@ -323,8 +319,8 @@ function nyx_assassin_jolt_custom:OnSpellStart(new_target)
 		self.caster.impale_ability:ProcCd()
 	end
 
-	if IsValid(caster.carapace_ability) then
-		caster.carapace_ability:SpeedStack()
+	if IsValid(self.caster.carapace_ability) then
+		self.caster.carapace_ability:SpeedStack()
 	end
 end
 
@@ -364,11 +360,14 @@ function modifier_nyx_assassin_jolt_custom_tracker:DeclareFunctions()
 end
 
 function modifier_nyx_assassin_jolt_custom_tracker:GetModifierCastRangeBonusStacking()
-	return self.ability.talents.range_inc
+	return self.ability.talents.w2_range
 end
 
 function modifier_nyx_assassin_jolt_custom_tracker:GetModifierMagicalResistanceBonus()
-	return self.ability.talents.magic_inc
+	if self.ability.talents.has_h5 == 0 then
+		return
+	end
+	return self.ability.talents.h5_magic
 end
 
 function modifier_nyx_assassin_jolt_custom_tracker:DamageEvent_out(params)
@@ -385,8 +384,8 @@ function modifier_nyx_assassin_jolt_custom_tracker:DamageEvent_out(params)
 		return
 	end
 
-	if self.ability.talents.has_mana == 1 then
-		local mana_add = params.damage * self.ability.talents.mana_add
+	if self.ability.talents.has_h1 == 1 then
+		local mana_add = params.damage * self.ability.talents.h1_mana
 
 		local result = self.parent:CanLifesteal(unit)
 		if result then
@@ -394,8 +393,8 @@ function modifier_nyx_assassin_jolt_custom_tracker:DamageEvent_out(params)
 		end
 	end
 
-	if self.ability.talents.has_silence == 1 then
-		local mana_burn = params.damage * self.ability.talents.silence_mana
+	if self.ability.talents.has_w4 == 1 then
+		local mana_burn = params.damage * self.ability.talents.w4_mana
 
 		if unit:GetMaxMana() ~= 0 then
 			if not params.inflictor or not params.inflictor:IsItem() then
@@ -404,7 +403,7 @@ function modifier_nyx_assassin_jolt_custom_tracker:DamageEvent_out(params)
 			unit:Script_ReduceMana(mana_burn, self.ability)
 		end
 		if
-			unit:GetManaPercent() <= self.ability.talents.silence_thresh
+			unit:GetManaPercent() <= self.ability.talents.w4_thresh
 			and not unit:HasModifier("modifier_nyx_assassin_jolt_custom_silence_cd")
 			and params.inflictor
 			and params.inflictor == self.ability
@@ -414,23 +413,23 @@ function modifier_nyx_assassin_jolt_custom_tracker:DamageEvent_out(params)
 				self.parent,
 				self.ability,
 				"modifier_nyx_assassin_jolt_custom_silence_cd",
-				{ duration = self.ability.talents.silence_cd }
+				{ duration = self.ability.talents.w4_talent_cd }
 			)
 			unit:AddNewModifier(
 				self.parent,
 				self.ability,
 				"modifier_nyx_assassin_jolt_custom_silence",
-				{ duration = self.ability.talents.silence_duration * (1 - unit:GetStatusResistance()) }
+				{ duration = self.ability.talents.w4_silence * (1 - unit:GetStatusResistance()) }
 			)
 		end
 	end
 
-	if self.ability.talents.has_cd == 1 or self.ability.talents.has_q1 == 1 or self.ability.talents.has_e2 == 1 then
+	if self.ability.talents.has_w3 == 1 or self.ability.talents.has_q1 == 1 or self.ability.talents.has_e2 == 1 then
 		local result = self.parent:CanLifesteal(unit)
 		if result then
-			if self.ability.talents.has_cd == 1 and params.inflictor and params.inflictor == self.ability then
+			if self.ability.talents.has_w3 == 1 and params.inflictor and params.inflictor == self.ability then
 				self.parent:GenericHeal(
-					result * params.damage * self.ability.talents.heal_inc,
+					result * params.damage * self.ability.talents.w3_heal,
 					self.ability,
 					true,
 					"particles/generic/lifesteal_blue.vpcf",
@@ -483,7 +482,7 @@ function modifier_nyx_assassin_jolt_custom_tracker:SpellEvent(params)
 	end
 
 	if
-		self.ability.talents.has_cd == 1
+		self.ability.talents.has_w3 == 1
 		and self.parent == params.unit
 		and params.ability ~= self.legendary_ability
 		and not self.ability.cd_used
@@ -509,7 +508,7 @@ function modifier_nyx_assassin_jolt_custom_tracker:SpellEvent(params)
 		ParticleManager:ReleaseParticleIndex(particle)
 	end
 
-	if self.ability.talents.has_shield == 0 then
+	if self.ability.talents.has_h5 == 0 then
 		return
 	end
 
@@ -531,19 +530,19 @@ function modifier_nyx_assassin_jolt_custom_tracker:SpellEvent(params)
 		return
 	end
 
-	local shield = unit:GetMaxMana() > 0 and unit:GetMaxMana() * self.ability.talents.shield_amount
-		or self.ability.talents.shield_amount_nomana
+	local shield = unit:GetMaxMana() > 0 and unit:GetMaxMana() * self.ability.talents.h5_shield
+		or self.ability.talents.h5_no_mana
 
 	self.parent:AddNewModifier(
 		self.parent,
 		self.ability,
 		"modifier_nyx_assassin_jolt_custom_shield_cd",
-		{ duration = self.ability.talents.shield_cd }
+		{ duration = self.ability.talents.h5_talent_cd }
 	)
 	local mod = self.parent:AddNewModifier(self.parent, self.ability, "modifier_generic_shield", {
 		max_shield = shield,
 		start_full = 1,
-		duration = self.ability.talents.shield_duration,
+		duration = self.ability.talents.h5_duration,
 		shield_talent = "modifier_nyx_hero_5",
 	})
 
@@ -628,21 +627,14 @@ function modifier_nyx_assassin_jolt_custom_damage_count:OnCreated(table)
 	if not IsServer() then
 		return
 	end
-	self:AddStack(table.damage)
+	self:OnRefresh(table)
 end
 
 function modifier_nyx_assassin_jolt_custom_damage_count:OnRefresh(table)
 	if not IsServer() then
 		return
 	end
-	self:AddStack(table.damage)
-end
-
-function modifier_nyx_assassin_jolt_custom_damage_count:AddStack(damage)
-	if not IsServer() then
-		return
-	end
-	local stack = damage
+	local stack = table.damage
 	self.damage_stack = self.damage_stack + stack
 
 	Timers:CreateTimer(self.duration, function()
@@ -683,9 +675,9 @@ function modifier_nyx_assassin_jolt_custom_legendary_mana:OnCreated()
 	self.caster = self:GetCaster()
 	self.ability = self:GetAbility()
 
-	self.max = self.ability.talents.legendary_duration + 1
-	self.mana = self.ability.talents.legendary_mana / self.max
-	self.mana_damage = self.ability.talents.legendary_mana_damage
+	self.max = self.ability.talents.w7_duration + 1
+	self.mana = self.ability.talents.w7_mana / self.max
+	self.mana_damage = self.ability.talents.w7_mana_damage
 
 	if not IsServer() then
 		return
@@ -715,12 +707,12 @@ function modifier_nyx_assassin_jolt_custom_legendary_mana:OnIntervalThink()
 	local mana = self.mana * self.parent:GetMaxMana()
 	local real_mana = self.parent:Script_ReduceMana(mana, self.ability)
 
-	if self.ability.talents.has_silence == 0 then
+	if self.ability.talents.has_w4 == 0 then
 		self.parent:GenericParticle("particles/generic_gameplay/generic_manaburn.vpcf")
 	end
 
 	if real_mana > 0 then
-		self.damageTable.damage = real_mana * self.mana_damage * (1 + self.ability.talents.damage_inc)
+		self.damageTable.damage = real_mana * self.mana_damage * (1 + self.ability.talents.w1_damage)
 		DoDamage(self.damageTable, "modifier_nyx_mind_7")
 	end
 
@@ -736,8 +728,15 @@ function modifier_nyx_assassin_jolt_custom_slow:IsPurgable()
 	return true
 end
 function modifier_nyx_assassin_jolt_custom_slow:OnCreated()
-	self.slow = self:GetAbility().talents.range_slow
-	self:GetParent():GenericParticle("particles/units/heroes/hero_terrorblade/terrorblade_reflection_slow.vpcf", self)
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.slow = self.ability.talents.w2_slow
+
+	if not IsServer() then
+		return
+	end
+	self.parent:GenericParticle("particles/units/heroes/hero_terrorblade/terrorblade_reflection_slow.vpcf", self)
 end
 
 function modifier_nyx_assassin_jolt_custom_slow:DeclareFunctions()
@@ -754,21 +753,6 @@ modifier_nyx_assassin_jolt_custom_silence = class(mod_hidden)
 function modifier_nyx_assassin_jolt_custom_silence:IsPurgable()
 	return true
 end
-function modifier_nyx_assassin_jolt_custom_silence:OnCreated()
-	self.parent = self:GetParent()
-	self.caster = self:GetCaster()
-	self.ability = self:GetAbility()
-
-	self.speed = self.ability.talents.silence_speed
-	self.parent:GenericParticle("particles/nyx_assassin/mind_silence.vpcf", self)
-end
-
-function modifier_nyx_assassin_jolt_custom_silence:CheckState()
-	return {
-		[MODIFIER_STATE_SILENCED] = true,
-	}
-end
-
 function modifier_nyx_assassin_jolt_custom_silence:GetEffectName()
 	return "particles/generic_gameplay/generic_silenced.vpcf"
 end
@@ -778,6 +762,25 @@ end
 function modifier_nyx_assassin_jolt_custom_silence:GetEffectAttachType()
 	return PATTACH_OVERHEAD_FOLLOW
 end
+function modifier_nyx_assassin_jolt_custom_silence:OnCreated()
+	self.parent = self:GetParent()
+	self.caster = self:GetCaster()
+	self.ability = self:GetAbility()
+
+	self.speed = self.ability.talents.w4_speed
+
+	if not IsServer() then
+		return
+	end
+	self.parent:GenericParticle("particles/nyx_assassin/mind_silence.vpcf", self)
+end
+
+function modifier_nyx_assassin_jolt_custom_silence:CheckState()
+	return {
+		[MODIFIER_STATE_SILENCED] = true,
+	}
+end
+
 function modifier_nyx_assassin_jolt_custom_silence:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
@@ -809,14 +812,14 @@ function nyx_assassin_jolt_custom_legendary:UpdateTalents(name)
 end
 
 function nyx_assassin_jolt_custom_legendary:GetCooldown()
-	return (self.talents.w7_cd and self.talents.w7_cd or 0) / self.caster:GetCooldownReduction()
+	return (self.talents.w7_cd or 0) / self.caster:GetCooldownReduction()
 end
 
 function nyx_assassin_jolt_custom_legendary:GetAOERadius()
 	if not self.caster.mind_ability then
-		return
+		return 0
 	end
-	return self.caster.mind_ability.radius and self.caster.mind_ability.radius or 0
+	return self.caster.mind_ability.radius or 0
 end
 
 function nyx_assassin_jolt_custom_legendary:OnSpellStart()

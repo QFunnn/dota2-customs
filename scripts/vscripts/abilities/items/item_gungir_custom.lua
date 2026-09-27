@@ -21,27 +21,42 @@ function item_gungir_custom:Precache(context)
 	PrecacheResource("particle", "particles/items3_fx/gleipnir_root.vpcf", context)
 	PrecacheResource("particle", "particles/items3_fx/gleipnir_projectile.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_techies/techies_tazer.vpcf", context)
+	PrecacheResource("particle", "particles/status_fx/status_effect_mjollnir_shield.vpcf", context)
 end
 
 function item_gungir_custom:GetIntrinsicModifierName()
 	return "modifier_item_gungir_custom"
 end
 
+function item_gungir_custom:Spawn()
+	self.radius = self:GetSpecialValueFor("radius")
+	self.duration = self:GetSpecialValueFor("duration")
+	self.ticks = self:GetSpecialValueFor("ticks")
+	self.damage = self:GetSpecialValueFor("damage")
+	self.projectile_speed = self:GetSpecialValueFor("projectile_speed")
+	self.bonus_hp = self:GetSpecialValueFor("bonus_hp")
+	self.bonus_intellect = self:GetSpecialValueFor("bonus_intellect")
+	self.bonus_mana = self:GetSpecialValueFor("bonus_mana")
+	self.cast_speed = self:GetSpecialValueFor("cast_speed")
+	self.bonus_damage = self:GetSpecialValueFor("bonus_damage")
+	self.movespeed = self:GetSpecialValueFor("movespeed")
+end
+
 function item_gungir_custom:GetAOERadius()
-	return self:GetSpecialValueFor("radius")
+	return self.radius
 end
 
 function item_gungir_custom:OnSpellStart()
 	local caster = self:GetCaster()
 	caster:EmitSound("Item.Gleipnir.Cast")
-	local aoe = self:GetSpecialValueFor("radius")
+	local aoe = self.radius
 	local point = self:GetCursorPosition()
 
 	local info = {
 		Source = caster,
 		Ability = self,
 		EffectName = "particles/items3_fx/gleipnir_projectile.vpcf",
-		iMoveSpeed = 1900,
+		iMoveSpeed = self.projectile_speed,
 		bReplaceExisting = false,
 		bProvidesVision = true,
 		iVisionRadius = 30,
@@ -53,10 +68,8 @@ function item_gungir_custom:OnSpellStart()
 		ProjectileManager:CreateTrackingProjectile(info)
 	end
 
-	local duration = self:GetSpecialValueFor("duration")
+	local duration = self.duration
 	AddFOWViewer(caster:GetTeamNumber(), point, aoe, duration * 2, false)
-
-	--caster:AddNewModifier(caster, self, "modifier_item_gungir_custom_speed", {duration = self:GetSpecialValueFor("speed_duration")})
 end
 
 function item_gungir_custom:OnProjectileHit(target, vLocation)
@@ -70,42 +83,28 @@ function item_gungir_custom:OnProjectileHit(target, vLocation)
 
 	local caster = self:GetCaster()
 	target:EmitSound("Item.Gleipnir.Target")
-	target:AddNewModifier(
-		caster,
-		self,
-		"modifier_item_gungir_custom_root",
-		{ duration = self:GetSpecialValueFor("duration") }
-	)
+	target:AddNewModifier(caster, self, "modifier_item_gungir_custom_root", { duration = self.duration })
 end
 
-modifier_item_gungir_custom_root = class({})
-function modifier_item_gungir_custom_root:IsHidden()
-	return true
-end
+modifier_item_gungir_custom_root = class(mod_hidden)
 function modifier_item_gungir_custom_root:IsPurgable()
 	return true
-end
-function modifier_item_gungir_custom_root:CheckState()
-	return {
-		[MODIFIER_STATE_ROOTED] = true,
-	}
 end
 function modifier_item_gungir_custom_root:GetEffectName()
 	return "particles/items3_fx/gleipnir_root.vpcf"
 end
-
 function modifier_item_gungir_custom_root:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 	self.caster = self:GetCaster()
 
-	self.ticks = self.ability:GetSpecialValueFor("ticks")
+	self.ticks = self.ability.ticks
 
 	if not IsServer() then
 		return
 	end
 
-	local damage = self.ability:GetSpecialValueFor("damage")
+	local damage = self.ability.damage
 
 	self.damageTable = {
 		victim = self.parent,
@@ -120,6 +119,12 @@ function modifier_item_gungir_custom_root:OnCreated()
 
 	self:OnIntervalThink()
 	self:StartIntervalThink(self.interval)
+end
+
+function modifier_item_gungir_custom_root:CheckState()
+	return {
+		[MODIFIER_STATE_ROOTED] = true,
+	}
 end
 
 function modifier_item_gungir_custom_root:OnRefresh(table)
@@ -152,11 +157,11 @@ function modifier_item_gungir_custom:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.health = self.ability:GetSpecialValueFor("bonus_hp")
-	self.int = self.ability:GetSpecialValueFor("bonus_intellect")
-	self.mana = self.ability:GetSpecialValueFor("bonus_mana")
-	self.cast = self.ability:GetSpecialValueFor("cast_speed")
-	self.bonus_damage = self.ability:GetSpecialValueFor("bonus_damage")
+	self.health = self.ability.bonus_hp
+	self.int = self.ability.bonus_intellect
+	self.mana = self.ability.bonus_mana
+	self.cast = self.ability.cast_speed
+	self.bonus_damage = self.ability.bonus_damage
 end
 
 function modifier_item_gungir_custom:DeclareFunctions()
@@ -184,17 +189,20 @@ function modifier_item_gungir_custom:GetModifierBonusStats_Intellect()
 	return self.int
 end
 
-modifier_item_gungir_custom_speed = class({})
-function modifier_item_gungir_custom_speed:IsHidden()
-	return false
-end
+modifier_item_gungir_custom_speed = class(mod_visible)
 function modifier_item_gungir_custom_speed:IsPurgable()
 	return true
+end
+function modifier_item_gungir_custom_speed:GetStatusEffectName()
+	return "particles/status_fx/status_effect_mjollnir_shield.vpcf"
+end
+function modifier_item_gungir_custom_speed:StatusEffectPriority()
+	return MODIFIER_PRIORITY_HIGH
 end
 function modifier_item_gungir_custom_speed:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
-	self.movespeed = self.ability:GetSpecialValueFor("movespeed")
+	self.movespeed = self.ability.movespeed
 	if not IsServer() then
 		return
 	end
@@ -209,12 +217,4 @@ end
 
 function modifier_item_gungir_custom_speed:GetModifierMoveSpeedBonus_Percentage()
 	return self.movespeed
-end
-
-function modifier_item_gungir_custom_speed:GetStatusEffectName()
-	return "particles/status_fx/status_effect_mjollnir_shield.vpcf"
-end
-
-function modifier_item_gungir_custom_speed:StatusEffectPriority()
-	return MODIFIER_PRIORITY_HIGH
 end

@@ -15,14 +15,6 @@ LinkLuaModifier(
 )
 
 invoker_innate_custom = class({})
-
-function invoker_innate_custom:GetIntrinsicModifierName()
-	if not self:GetCaster():IsRealHero() then
-		return
-	end
-	return "modifier_invoker_mastermind_custom"
-end
-
 function invoker_innate_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
@@ -31,17 +23,18 @@ function invoker_innate_custom:Precache(context)
 	PrecacheResource("soundfile", "soundevents/vo_custom/invoker_vo_custom.vsndevts", context)
 end
 
-modifier_invoker_mastermind_custom = class({})
-function modifier_invoker_mastermind_custom:IsHidden()
-	return true
+function invoker_innate_custom:GetIntrinsicModifierName()
+	if not self:GetCaster():IsRealHero() then
+		return
+	end
+	return "modifier_invoker_mastermind_custom"
 end
-function modifier_invoker_mastermind_custom:IsPurgable()
-	return false
-end
+
+modifier_invoker_mastermind_custom = class(mod_hidden)
 function modifier_invoker_mastermind_custom:RemoveOnDeath()
 	return false
 end
-function modifier_invoker_mastermind_custom:OnCreated(table)
+function modifier_invoker_mastermind_custom:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 	self.exp = self.ability:GetSpecialValueFor("exp")

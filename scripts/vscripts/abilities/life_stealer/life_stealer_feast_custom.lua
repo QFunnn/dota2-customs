@@ -98,9 +98,16 @@ function life_stealer_feast_custom:Precache(context)
 	PrecacheResource("particle", "particles/lifestealer/heal_shield.vpcf", context)
 	PrecacheResource("particle", "particles/lifestealer/heal_shield_creeps.vpcf", context)
 	PrecacheResource("particle", "particles/lifestealer/double_attack_creep.vpcf", context)
+	PrecacheResource("particle", "particles/lifestealer/rage_legendary_attack.vpcf", context)
+	PrecacheResource("particle", "particles/lifestealer/rage_legendary_attack_2.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_life_stealer/life_stealer_health_steal.vpcf", context)
+	PrecacheResource("particle", "particles/brist_lowhp_.vpcf", context)
+	PrecacheResource("particle", "particles/lifestealer/scepter_blood.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_bloodseeker/bloodseeker_bloodbath.vpcf", context)
+	PrecacheResource("particle", "particles/sand_king/sandking_caustic_finale_explode_custom.vpcf", context)
 end
 
-function life_stealer_feast_custom:UpdateTalents()
+function life_stealer_feast_custom:UpdateTalents(name)
 	local caster = self:GetCaster()
 	if not self.init then
 		self.init = true
@@ -124,11 +131,8 @@ function life_stealer_feast_custom:UpdateTalents()
 
 			has_e4 = 0,
 			e4_duration = caster:GetTalentValue("modifier_lifestealer_ghoul_4", "duration", true),
-			e4_cd = caster:GetTalentValue("modifier_lifestealer_ghoul_4", "cd", true),
-			e4_attacks = caster:GetTalentValue("modifier_lifestealer_ghoul_4", "attacks", true),
 			e4_max = caster:GetTalentValue("modifier_lifestealer_ghoul_4", "max", true),
 			e4_damage_reduce = caster:GetTalentValue("modifier_lifestealer_ghoul_4", "damage_reduce", true),
-			e4_shield = caster:GetTalentValue("modifier_lifestealer_ghoul_4", "shield", true) / 100,
 
 			has_e7 = 0,
 			e7_duration = caster:GetTalentValue("modifier_lifestealer_ghoul_7", "duration", true),
@@ -140,7 +144,6 @@ function life_stealer_feast_custom:UpdateTalents()
 			e7_talent_cd = caster:GetTalentValue("modifier_lifestealer_ghoul_7", "talent_cd", true),
 			e7_interval = caster:GetTalentValue("modifier_lifestealer_ghoul_7", "interval", true),
 
-			has_h2 = 0,
 			h2_status = 0,
 			h2_move = 0,
 
@@ -150,7 +153,6 @@ function life_stealer_feast_custom:UpdateTalents()
 			h3_max = caster:GetTalentValue("modifier_lifestealer_hero_3", "max", true),
 			h3_duration = caster:GetTalentValue("modifier_lifestealer_hero_3", "duration", true),
 
-			has_q1 = 0,
 			q1_damage_burn = 0,
 
 			has_q7 = 0,
@@ -190,7 +192,6 @@ function life_stealer_feast_custom:UpdateTalents()
 	end
 
 	if caster:HasTalent("modifier_lifestealer_hero_2") then
-		self.talents.has_h2 = 1
 		self.talents.h2_status = caster:GetTalentValue("modifier_lifestealer_hero_2", "status")
 		self.talents.h2_move = caster:GetTalentValue("modifier_lifestealer_hero_2", "move")
 	end
@@ -203,7 +204,6 @@ function life_stealer_feast_custom:UpdateTalents()
 	end
 
 	if caster:HasTalent("modifier_lifestealer_rage_1") then
-		self.talents.has_q1 = 1
 		self.talents.q1_damage_burn = caster:GetTalentValue("modifier_lifestealer_rage_1", "damage_burn")
 	end
 
@@ -216,6 +216,13 @@ function life_stealer_feast_custom:UpdateTalents()
 	end
 end
 
+function life_stealer_feast_custom:GetIntrinsicModifierName()
+	if not self:GetCaster():IsRealHero() or self:GetCaster():IsCreepHero() then
+		return
+	end
+	return "modifier_life_stealer_feast_custom_tracker"
+end
+
 function life_stealer_feast_custom:GetBehavior()
 	if self.talents.has_e7 == 1 then
 		return DOTA_ABILITY_BEHAVIOR_NO_TARGET + DOTA_ABILITY_BEHAVIOR_IMMEDIATE
@@ -224,16 +231,7 @@ function life_stealer_feast_custom:GetBehavior()
 end
 
 function life_stealer_feast_custom:GetCooldown(level)
-	if self.talents.has_e7 == 1 then
-		return self.talents.e7_talent_cd
-	end
-end
-
-function life_stealer_feast_custom:GetIntrinsicModifierName()
-	if not self:GetCaster():IsRealHero() or self:GetCaster():IsCreepHero() then
-		return
-	end
-	return "modifier_life_stealer_feast_custom_tracker"
+	return self.talents.has_e7 == 1 and self.talents.e7_talent_cd or 0
 end
 
 function life_stealer_feast_custom:OnSpellStart()
@@ -322,7 +320,7 @@ function modifier_life_stealer_feast_custom_tracker:OnIntervalThink()
 		return
 	end
 
-	local mod = nil
+	local mod
 	local stack = 0
 	local time = 0
 
@@ -358,7 +356,6 @@ function modifier_life_stealer_feast_custom_tracker:DeclareFunctions()
 		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
 		MODIFIER_PROPERTY_HEALTH_BONUS,
 		MODIFIER_PROPERTY_TOOLTIP,
-
 		MODIFIER_PROPERTY_STATUS_RESISTANCE_STACKING,
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
 		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
@@ -376,7 +373,7 @@ function modifier_life_stealer_feast_custom_tracker:AttackStartEvent_out(params)
 
 	local target = params.target
 	local real_attacker = params.attacker
-	local attacker = (real_attacker.lifestealer_creep and real_attacker.owner) and real_attacker.owner or real_attacker
+	local attacker = real_attacker.lifestealer_creep and real_attacker.owner or real_attacker
 
 	if not target:IsUnit() then
 		return
@@ -384,7 +381,7 @@ function modifier_life_stealer_feast_custom_tracker:AttackStartEvent_out(params)
 	if self.parent ~= attacker then
 		return
 	end
-	if params.pre_attack_flag and params.pre_attack_flag == "lifestealer_double" then
+	if params.pre_attack_flag == "lifestealer_double" then
 		return
 	end
 
@@ -425,7 +422,7 @@ function modifier_life_stealer_feast_custom_tracker:AttackEvent_out(params)
 
 	local target = params.target
 	local real_attacker = params.attacker
-	local attacker = (real_attacker.lifestealer_creep and real_attacker.owner) and real_attacker.owner or real_attacker
+	local attacker = real_attacker.lifestealer_creep and real_attacker.owner or real_attacker
 
 	if attacker ~= self.parent then
 		return
@@ -457,7 +454,7 @@ function modifier_life_stealer_feast_custom_tracker:AttackEvent_out(params)
 			target:EmitSound("Lifestealer.Rage_legenary_attack")
 		end
 
-		if params.attack_flag and params.attack_flag == "lifestealer_double" then
+		if params.attack_flag == "lifestealer_double" then
 			heal = heal * self.ability.talents.e3_damage / 100
 		end
 
@@ -568,23 +565,30 @@ function modifier_life_stealer_feast_custom_tracker:DeathEvent(params)
 	if not players[self.parent:GetId()] then
 		return
 	end
-
-	if
-		params.unit:IsRealHero()
-		and not params.unit:IsReincarnating()
-		and not params.unit:IsTempestDouble()
-		and params.unit:GetTeamNumber() ~= self.parent:GetTeamNumber()
-		and self:GetStackCount() < self.ability.scepter_max
-	then
-		local point = params.unit:GetAbsOrigin()
-		local unit = CreateUnitByName("npc_lifestealer_scepter_unit", point, true, nil, nil, DOTA_TEAM_NEUTRALS)
-		unit:AddNewModifier(
-			self.parent,
-			self.ability,
-			"modifier_life_stealer_feast_custom_scepter_unit",
-			{ duration = self.ability.scepter_timer }
-		)
+	if not params.unit:IsRealHero() then
+		return
 	end
+	if params.unit:IsReincarnating() then
+		return
+	end
+	if params.unit:IsTempestDouble() then
+		return
+	end
+	if params.unit:GetTeamNumber() == self.parent:GetTeamNumber() then
+		return
+	end
+	if self:GetStackCount() >= self.ability.scepter_max then
+		return
+	end
+
+	local point = params.unit:GetAbsOrigin()
+	local unit = CreateUnitByName("npc_lifestealer_scepter_unit", point, true, nil, nil, DOTA_TEAM_NEUTRALS)
+	unit:AddNewModifier(
+		self.parent,
+		self.ability,
+		"modifier_life_stealer_feast_custom_scepter_unit",
+		{ duration = self.ability.scepter_timer }
+	)
 end
 
 function modifier_life_stealer_feast_custom_tracker:AddStack()
@@ -698,6 +702,12 @@ function modifier_life_stealer_feast_custom_tracker:GetModifierMoveSpeedBonus_Co
 end
 
 modifier_life_stealer_feast_custom_legendary_poison = class(mod_visible)
+function modifier_life_stealer_feast_custom_legendary_poison:GetStatusEffectName()
+	return "particles/status_fx/status_effect_poison_venomancer.vpcf"
+end
+function modifier_life_stealer_feast_custom_legendary_poison:StatusEffectPriority()
+	return MODIFIER_PRIORITY_NORMAL
+end
 function modifier_life_stealer_feast_custom_legendary_poison:OnCreated()
 	if not IsServer() then
 		return
@@ -742,25 +752,23 @@ function modifier_life_stealer_feast_custom_legendary_poison:OnIntervalThink()
 	local real_damage = DoDamage(self.damageTable, "modifier_lifestealer_ghoul_7")
 	self.parent:SendNumber(OVERHEAD_ALERT_BONUS_POISON_DAMAGE, real_damage)
 
-	local caster = self.caster
+	local heal_target = self.caster
 
-	local mod = caster:FindModifierByName("modifier_life_stealer_infest_custom")
+	local mod = self.caster:FindModifierByName("modifier_life_stealer_infest_custom")
 	if mod and mod.target and mod.is_legendary == 1 then
-		caster = mod.target
+		heal_target = mod.target
 	end
 
-	local result = caster:CanLifesteal(self.parent)
+	local result = heal_target:CanLifesteal(self.parent)
 	if result then
-		caster:GenericHeal(real_damage * self.heal * result, self.ability, true, "", "modifier_lifestealer_ghoul_7")
+		heal_target:GenericHeal(
+			real_damage * self.heal * result,
+			self.ability,
+			true,
+			"",
+			"modifier_lifestealer_ghoul_7"
+		)
 	end
-end
-
-function modifier_life_stealer_feast_custom_legendary_poison:GetStatusEffectName()
-	return "particles/status_fx/status_effect_poison_venomancer.vpcf"
-end
-
-function modifier_life_stealer_feast_custom_legendary_poison:StatusEffectPriority()
-	return MODIFIER_PRIORITY_NORMAL
 end
 
 modifier_life_stealer_feast_custom_active = class(mod_visible)
@@ -804,19 +812,17 @@ function modifier_life_stealer_feast_custom_double:OnCreated(table)
 
 	self.caster:EmitSound("Lifestealer.Frenzy_double_start")
 
-	if self.caster then
-		local name = self.caster.lifestealer_creep and "particles/lifestealer/double_attack_creep.vpcf"
-			or "particles/lifestealer/double_attack.vpcf"
-		local dir = (self.parent:GetOrigin() - self.caster:GetOrigin()):Normalized()
-		self.caster:StartGestureWithPlaybackRate(ACT_DOTA_ATTACK, 3)
-		local particle = ParticleManager:CreateParticle(name, PATTACH_ABSORIGIN_FOLLOW, self.caster)
-		ParticleManager:SetParticleControl(particle, 0, self.caster:GetAbsOrigin())
-		ParticleManager:SetParticleControl(particle, 1, self.caster:GetAbsOrigin())
-		ParticleManager:SetParticleControlForward(particle, 1, dir)
-		ParticleManager:SetParticleControl(particle, 2, Vector(1, 1, 1))
-		ParticleManager:SetParticleControlForward(particle, 5, dir)
-		ParticleManager:ReleaseParticleIndex(particle)
-	end
+	local name = self.caster.lifestealer_creep and "particles/lifestealer/double_attack_creep.vpcf"
+		or "particles/lifestealer/double_attack.vpcf"
+	local dir = (self.parent:GetOrigin() - self.caster:GetOrigin()):Normalized()
+	self.caster:StartGestureWithPlaybackRate(ACT_DOTA_ATTACK, 3)
+	local particle = ParticleManager:CreateParticle(name, PATTACH_ABSORIGIN_FOLLOW, self.caster)
+	ParticleManager:SetParticleControl(particle, 0, self.caster:GetAbsOrigin())
+	ParticleManager:SetParticleControl(particle, 1, self.caster:GetAbsOrigin())
+	ParticleManager:SetParticleControlForward(particle, 1, dir)
+	ParticleManager:SetParticleControl(particle, 2, Vector(1, 1, 1))
+	ParticleManager:SetParticleControlForward(particle, 5, dir)
+	ParticleManager:ReleaseParticleIndex(particle)
 
 	self:StartIntervalThink(self.delay)
 end
@@ -856,14 +862,15 @@ function modifier_life_stealer_feast_custom_double:OnIntervalThink()
 	if self:GetStackCount() <= 0 then
 		self:Destroy()
 		return
-	else
-		self.caster:EmitSound("Lifestealer.Frenzy_double_start")
 	end
+
+	self.caster:EmitSound("Lifestealer.Frenzy_double_start")
 end
 
 modifier_life_stealer_feast_custom_double_damage = class(mod_hidden)
 function modifier_life_stealer_feast_custom_double_damage:OnCreated()
-	self.damage = self:GetAbility().talents.e3_damage - 100
+	self.ability = self:GetAbility()
+	self.damage = self.ability.talents.e3_damage - 100
 end
 
 function modifier_life_stealer_feast_custom_double_damage:DeclareFunctions()
@@ -955,10 +962,7 @@ function modifier_life_stealer_feast_custom_speed_bonus:OnRefresh(table)
 	self:IncrementStackCount()
 end
 
-modifier_life_stealer_feast_custom_slow = class({})
-function modifier_life_stealer_feast_custom_slow:IsHidden()
-	return false
-end
+modifier_life_stealer_feast_custom_slow = class(mod_visible)
 function modifier_life_stealer_feast_custom_slow:IsPurgable()
 	return true
 end
@@ -977,6 +981,7 @@ function modifier_life_stealer_feast_custom_slow:OnCreated()
 	if not IsServer() then
 		return
 	end
+	self.RemoveForDuel = true
 	self:OnRefresh()
 end
 
@@ -998,18 +1003,12 @@ end
 function modifier_life_stealer_feast_custom_slow:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-		--MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET,
 		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
-		--MODIFIER_PROPERTY_LIFESTEAL_AMPLIFY_PERCENTAGE,
 	}
 end
 
 function modifier_life_stealer_feast_custom_slow:GetModifierMoveSpeedBonus_Percentage()
 	return self.slow * self:GetStackCount()
-end
-
-function modifier_life_stealer_feast_custom_slow:GetModifierLifestealRegenAmplify_Percentage()
-	return self.heal_reduce * self:GetStackCount()
 end
 
 function modifier_life_stealer_feast_custom_slow:GetModifierHealChange()
@@ -1025,7 +1024,8 @@ function modifier_life_stealer_feast_custom_double_slow:IsPurgable()
 	return true
 end
 function modifier_life_stealer_feast_custom_double_slow:OnCreated()
-	self.slow = self:GetAbility().talents.e3_slow
+	self.ability = self:GetAbility()
+	self.slow = self.ability.talents.e3_slow
 end
 
 function modifier_life_stealer_feast_custom_double_slow:DeclareFunctions()
@@ -1050,6 +1050,7 @@ function modifier_life_stealer_feast_custom_damage_reduce:OnCreated()
 	if not IsServer() then
 		return
 	end
+	self.RemoveForDuel = true
 	self:OnRefresh()
 end
 
@@ -1079,18 +1080,6 @@ function modifier_life_stealer_feast_custom_damage_reduce:GetModifierSpellAmplif
 end
 
 modifier_life_stealer_feast_custom_scepter_unit = class(mod_hidden)
-function modifier_life_stealer_feast_custom_scepter_unit:CheckState()
-	return {
-		[MODIFIER_STATE_INVULNERABLE] = true,
-		[MODIFIER_STATE_OUT_OF_GAME] = true,
-		[MODIFIER_STATE_UNSELECTABLE] = true,
-		[MODIFIER_STATE_UNTARGETABLE] = true,
-		[MODIFIER_STATE_NO_HEALTH_BAR] = true,
-		[MODIFIER_STATE_FROZEN] = true,
-		[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
-	}
-end
-
 function modifier_life_stealer_feast_custom_scepter_unit:OnCreated()
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
@@ -1128,26 +1117,19 @@ function modifier_life_stealer_feast_custom_scepter_unit:OnCreated()
 	self:StartIntervalThink(self.interval)
 end
 
-function modifier_life_stealer_feast_custom_scepter_unit:OnIntervalThink()
-	if not IsServer() then
-		return
-	end
-
-	self:UpdateParticle()
-
-	if (self.caster:GetAbsOrigin() - self.pos):Length2D() > self.radius then
-		self.timer = 0
-	else
-		self.timer = self.timer + self.interval
-		if self.timer >= self.max_timer then
-			self.collected = true
-			self:Destroy()
-			return
-		end
-	end
+function modifier_life_stealer_feast_custom_scepter_unit:CheckState()
+	return {
+		[MODIFIER_STATE_INVULNERABLE] = true,
+		[MODIFIER_STATE_OUT_OF_GAME] = true,
+		[MODIFIER_STATE_UNSELECTABLE] = true,
+		[MODIFIER_STATE_UNTARGETABLE] = true,
+		[MODIFIER_STATE_NO_HEALTH_BAR] = true,
+		[MODIFIER_STATE_FROZEN] = true,
+		[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
+	}
 end
 
-function modifier_life_stealer_feast_custom_scepter_unit:UpdateParticle()
+function modifier_life_stealer_feast_custom_scepter_unit:OnIntervalThink()
 	if not IsServer() then
 		return
 	end
@@ -1164,13 +1146,22 @@ function modifier_life_stealer_feast_custom_scepter_unit:UpdateParticle()
 		self:AddParticle(self.part_particle, false, false, -1, false, false)
 	end
 
-	if not self.part_particle then
-		return
+	if self.part_particle then
+		ParticleManager:SetParticleControl(self.part_particle, 3, Vector(255, 90, 90))
+		ParticleManager:SetParticleControl(self.part_particle, 9, Vector(self.radius * 1.3, 0, 0))
+		ParticleManager:SetParticleControl(self.part_particle, 17, Vector(self.timer / self.max_timer, 0, 0))
 	end
 
-	ParticleManager:SetParticleControl(self.part_particle, 3, Vector(255, 90, 90))
-	ParticleManager:SetParticleControl(self.part_particle, 9, Vector(self.radius * 1.3, 0, 0))
-	ParticleManager:SetParticleControl(self.part_particle, 17, Vector(self.timer / self.max_timer, 0, 0))
+	if (self.caster:GetAbsOrigin() - self.pos):Length2D() > self.radius then
+		self.timer = 0
+	else
+		self.timer = self.timer + self.interval
+		if self.timer >= self.max_timer then
+			self.collected = true
+			self:Destroy()
+			return
+		end
+	end
 end
 
 function modifier_life_stealer_feast_custom_scepter_unit:OnDestroy()
@@ -1186,9 +1177,9 @@ function modifier_life_stealer_feast_custom_scepter_unit:OnDestroy()
 		end
 
 		self.parent:EmitSound("Lifestealer.Wounds_death")
-		local mod = self.caster:FindModifierByName("modifier_life_stealer_feast_custom_tracker")
-		if mod then
-			mod:AddStack()
+		local tracker = self.caster:FindModifierByName("modifier_life_stealer_feast_custom_tracker")
+		if tracker then
+			tracker:AddStack()
 		end
 
 		if self.caster:GetQuest() == "Lifestealer.Quest_7" and not self.caster:QuestCompleted() then

@@ -53,7 +53,6 @@ LinkLuaModifier(
 	"abilities/axe/axe_berserkers_call_custom",
 	LUA_MODIFIER_MOTION_NONE
 )
-
 LinkLuaModifier(
 	"modifier_axe_berserkers_call_custom_damage_reduce",
 	"abilities/axe/axe_berserkers_call_custom",
@@ -96,6 +95,8 @@ function axe_berserkers_call_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_axe/axe_armor.vpcf", context)
 	PrecacheResource("particle", "particles/axe/call_shields.vpcf", context)
 	PrecacheResource("particle", "particles/bloodseeker/thirst_crit.vpcf", context)
+	PrecacheResource("particle", "particles/axe/axe_charge.vpcf", context)
+	PrecacheResource("particle", "particles/econ/items/invoker/invoker_ti7/status_effect_alacrity_ti7.vpcf", context)
 	dota1x6:PrecacheShopItems("npc_dota_hero_axe", context)
 end
 
@@ -124,14 +125,6 @@ function axe_berserkers_call_custom:UpdateTalents()
 			q4_cd_inc = caster:GetTalentValue("modifier_axe_call_4", "cd_inc", true) / 100,
 			q4_mana = caster:GetTalentValue("modifier_axe_call_4", "mana", true),
 			q4_cast = caster:GetTalentValue("modifier_axe_call_4", "cast", true),
-
-			has_q7 = 0,
-			q7_radius = caster:GetTalentValue("modifier_axe_call_7", "radius", true),
-			q7_max = caster:GetTalentValue("modifier_axe_call_7", "max", true) / 100,
-			q7_bonus = caster:GetTalentValue("modifier_axe_call_7", "bonus", true),
-			q7_duration = caster:GetTalentValue("modifier_axe_call_7", "duration", true),
-			q7_damage = caster:GetTalentValue("modifier_axe_call_7", "damage", true) / 100,
-			q7_duration_creeps = caster:GetTalentValue("modifier_axe_call_7", "duration_creeps", true),
 
 			has_h1 = 0,
 			h1_heal_reduce = 0,
@@ -169,10 +162,6 @@ function axe_berserkers_call_custom:UpdateTalents()
 		caster:AddAttackEvent_out(self.tracker, true)
 	end
 
-	if caster:HasTalent("modifier_axe_call_7") then
-		self.talents.has_q7 = 1
-	end
-
 	if caster:HasTalent("modifier_axe_hero_1") then
 		self.talents.has_h1 = 1
 		self.talents.h1_heal_reduce = caster:GetTalentValue("modifier_axe_hero_1", "heal_reduce")
@@ -183,10 +172,6 @@ function axe_berserkers_call_custom:UpdateTalents()
 		self.talents.has_h4 = 1
 		caster:AddSpellEvent(self.tracker, true)
 	end
-end
-
-function axe_berserkers_call_custom:Init()
-	self.caster = self:GetCaster()
 end
 
 function axe_berserkers_call_custom:GetAbilityTextureName()
@@ -201,11 +186,7 @@ function axe_berserkers_call_custom:GetIntrinsicModifierName()
 end
 
 function axe_berserkers_call_custom:GetCastPoint()
-	return self:GetSpecialValueFor("AbilityCastPoint") + (self.talents.has_q4 == 1 and self.talents.q4_cast or 0)
-end
-
-function axe_berserkers_call_custom:GetCooldown(level)
-	return self.BaseClass.GetCooldown(self, level)
+	return self.BaseClass.GetCastPoint(self) + (self.talents.has_q4 == 1 and self.talents.q4_cast or 0)
 end
 
 function axe_berserkers_call_custom:GetManaCost(level)
@@ -223,12 +204,12 @@ function axe_berserkers_call_custom:GetBehavior()
 end
 
 function axe_berserkers_call_custom:GetRadius()
-	return self:GetSpecialValueFor("radius") + (self.talents.q2_range and self.talents.q2_range or 0)
+	return (self.radius or 0) + (self.talents.q2_range or 0)
 end
 
 function axe_berserkers_call_custom:GetCastRange(vLocation, hTarget)
 	if self.caster:HasShard() then
-		return IsServer() and 99999 or self:GetSpecialValueFor("shard_range")
+		return IsServer() and 99999 or (self.shard_range or 0)
 	end
 	return self:GetRadius()
 end
@@ -248,7 +229,7 @@ function axe_berserkers_call_custom:OnAbilityPhaseInterrupted()
 end
 
 function axe_berserkers_call_custom:OnSpellStart()
-	local duration = self:GetSpecialValueFor("duration") + self.talents.q2_duration
+	local duration = self.duration + self.talents.q2_duration
 
 	local radius = self:GetRadius()
 	local target = self:GetCursorTarget()
@@ -268,13 +249,13 @@ function axe_berserkers_call_custom:OnSpellStart()
 		if point == origin then
 			point = origin + self.caster:GetForwardVector() * 10
 		end
-		local max_range = self:GetSpecialValueFor("shard_range") + self.caster:GetCastRangeBonus()
+		local max_range = self.shard_range + self.caster:GetCastRangeBonus()
 		local vec = point - self.caster:GetAbsOrigin()
 		if vec:Length2D() >= max_range then
 			point = origin + vec:Normalized() * max_range
 		end
 
-		local charge_duration = ((point - origin):Length2D()) / self:GetSpecialValueFor("shard_speed")
+		local charge_duration = ((point - origin):Length2D()) / self.shard_speed
 		self.caster:AddNewModifier(
 			self.caster,
 			self,
@@ -317,6 +298,9 @@ function axe_berserkers_call_custom:ProcCd()
 	if not IsServer() then
 		return
 	end
+	if not self:IsTrained() then
+		return
+	end
 	if self.talents.has_q4 == 0 then
 		return
 	end
@@ -325,11 +309,17 @@ function axe_berserkers_call_custom:ProcCd()
 end
 
 modifier_axe_berserkers_call_custom_buff = class(mod_visible)
+function modifier_axe_berserkers_call_custom_buff:GetEffectName()
+	return "particles/units/heroes/hero_axe/axe_beserkers_call.vpcf"
+end
+function modifier_axe_berserkers_call_custom_buff:GetEffectAttachType()
+	return PATTACH_ABSORIGIN_FOLLOW
+end
 function modifier_axe_berserkers_call_custom_buff:OnCreated(kv)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.armor = self.ability:GetSpecialValueFor("bonus_armor")
+	self.armor = self.ability.bonus_armor
 	self.radius = self.ability:GetRadius()
 
 	if not IsServer() then
@@ -399,14 +389,6 @@ function modifier_axe_berserkers_call_custom_buff:GetModifierPhysicalArmorBonus(
 	return self.armor
 end
 
-function modifier_axe_berserkers_call_custom_buff:GetEffectName()
-	return "particles/units/heroes/hero_axe/axe_beserkers_call.vpcf"
-end
-
-function modifier_axe_berserkers_call_custom_buff:GetEffectAttachType()
-	return PATTACH_ABSORIGIN_FOLLOW
-end
-
 function modifier_axe_berserkers_call_custom_buff:OnDestroy()
 	if not IsServer() then
 		return
@@ -415,6 +397,12 @@ function modifier_axe_berserkers_call_custom_buff:OnDestroy()
 end
 
 modifier_axe_berserkers_call_custom_debuff = class(mod_visible)
+function modifier_axe_berserkers_call_custom_debuff:GetStatusEffectName()
+	return "particles/status_fx/status_effect_beserkers_call.vpcf"
+end
+function modifier_axe_berserkers_call_custom_debuff:StatusEffectPriority()
+	return MODIFIER_PRIORITY_ULTRA
+end
 function modifier_axe_berserkers_call_custom_debuff:OnCreated(kv)
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
@@ -457,14 +445,6 @@ function modifier_axe_berserkers_call_custom_debuff:CheckState()
 	}
 end
 
-function modifier_axe_berserkers_call_custom_debuff:GetStatusEffectName()
-	return "particles/status_fx/status_effect_beserkers_call.vpcf"
-end
-
-function modifier_axe_berserkers_call_custom_debuff:StatusEffectPriority()
-	return MODIFIER_PRIORITY_ULTRA
-end
-
 modifier_axe_berserkers_call_custom_tracker = class(mod_hidden)
 function modifier_axe_berserkers_call_custom_tracker:OnCreated()
 	self.parent = self:GetParent()
@@ -474,7 +454,12 @@ function modifier_axe_berserkers_call_custom_tracker:OnCreated()
 
 	self.parent.call_ability = self.ability
 
-	self.visual_max = 5
+	self.ability.radius = self.ability:GetSpecialValueFor("radius")
+	self.ability.bonus_armor = self.ability:GetSpecialValueFor("bonus_armor")
+	self.ability.duration = self.ability:GetSpecialValueFor("duration")
+	self.ability.shard_range = self.ability:GetSpecialValueFor("shard_range")
+	self.ability.shard_speed = self.ability:GetSpecialValueFor("shard_speed")
+
 	self.legendary_ability = self.parent:FindAbilityByName("axe_berserkers_call_custom_legendary")
 	if self.legendary_ability then
 		self.legendary_ability:UpdateTalents()
@@ -482,11 +467,14 @@ function modifier_axe_berserkers_call_custom_tracker:OnCreated()
 	self.record = true
 end
 
+function modifier_axe_berserkers_call_custom_tracker:OnRefresh(table)
+	self.ability.bonus_armor = self.ability:GetSpecialValueFor("bonus_armor")
+	self.ability.duration = self.ability:GetSpecialValueFor("duration")
+end
+
 function modifier_axe_berserkers_call_custom_tracker:DeclareFunctions()
 	return {
-		--MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET,
 		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
-		--MODIFIER_PROPERTY_LIFESTEAL_AMPLIFY_PERCENTAGE,
 		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
 		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
 		MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE,
@@ -500,10 +488,6 @@ end
 function modifier_axe_berserkers_call_custom_tracker:GetModifierAttackSpeedBonus_Constant()
 	return self.ability.talents.q1_speed
 		* (self.parent:HasModifier("modifier_axe_berserkers_call_custom_speed") and self.ability.talents.q1_bonus or 1)
-end
-
-function modifier_axe_berserkers_call_custom_tracker:GetModifierLifestealRegenAmplify_Percentage()
-	return self.ability.talents.h1_heal_inc
 end
 
 function modifier_axe_berserkers_call_custom_tracker:GetModifierHealChange()
@@ -683,6 +667,195 @@ function modifier_axe_berserkers_call_custom_auto_cd:OnCreated(table)
 	self.RemoveForDuel = true
 end
 
+modifier_axe_berserkers_call_custom_shard_charge = class(mod_hidden)
+function modifier_axe_berserkers_call_custom_shard_charge:GetEffectName()
+	return "particles/axe/axe_charge.vpcf"
+end
+function modifier_axe_berserkers_call_custom_shard_charge:GetStatusEffectName()
+	return "particles/econ/items/invoker/invoker_ti7/status_effect_alacrity_ti7.vpcf"
+end
+function modifier_axe_berserkers_call_custom_shard_charge:StatusEffectPriority()
+	return MODIFIER_PRIORITY_NORMAL
+end
+function modifier_axe_berserkers_call_custom_shard_charge:OnCreated(table)
+	if not IsServer() then
+		return
+	end
+	self.caster = self:GetCaster()
+	self.ability = self:GetAbility()
+	self.caster:StartGesture(ACT_DOTA_RUN)
+
+	self.point = GetGroundPosition(Vector(table.x, table.y, 0), nil)
+
+	self.bkb = self.caster:AddNewModifier(self.caster, self.ability, "modifier_generic_debuff_immune", {})
+
+	local vec = self.point - self.caster:GetAbsOrigin()
+	self.angle = vec:Normalized()
+
+	self.caster:FacePoint(self.point)
+	self.distance = vec:Length2D() / (self:GetDuration() / FrameTime())
+
+	if self:ApplyHorizontalMotionController() == false then
+		self:Destroy()
+	end
+end
+
+function modifier_axe_berserkers_call_custom_shard_charge:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS,
+		MODIFIER_PROPERTY_DISABLE_TURNING,
+	}
+end
+
+function modifier_axe_berserkers_call_custom_shard_charge:GetActivityTranslationModifiers()
+	return "haste"
+end
+
+function modifier_axe_berserkers_call_custom_shard_charge:GetModifierDisableTurning()
+	return 1
+end
+
+function modifier_axe_berserkers_call_custom_shard_charge:OnDestroy()
+	if not IsServer() then
+		return
+	end
+
+	if IsValid(self.bkb) then
+		self.bkb:Destroy()
+	end
+
+	self.caster:InterruptMotionControllers(true)
+	self.caster:FadeGesture(ACT_DOTA_RUN)
+
+	ResolveNPCPositions(self.caster:GetAbsOrigin(), 128)
+
+	self.caster:FacePoint()
+end
+
+function modifier_axe_berserkers_call_custom_shard_charge:UpdateHorizontalMotion(me, dt)
+	if not IsServer() then
+		return
+	end
+	local pos = self.caster:GetAbsOrigin()
+	local pos_p = self.angle * self.distance
+	local next_pos = GetGroundPosition(pos + pos_p, self.caster)
+	self.caster:SetAbsOrigin(next_pos)
+
+	GridNav:DestroyTreesAroundPoint(pos, 120, false)
+
+	local mod = self.caster:FindModifierByName("modifier_axe_berserkers_call_custom_buff")
+	if mod then
+		mod:Taunt()
+	end
+end
+
+function modifier_axe_berserkers_call_custom_shard_charge:OnHorizontalMotionInterrupted()
+	self:Destroy()
+end
+
+function modifier_axe_berserkers_call_custom_shard_charge:CheckState()
+	return {
+		[MODIFIER_STATE_DISARMED] = true,
+		[MODIFIER_STATE_SILENCED] = true,
+	}
+end
+
+modifier_axe_berserkers_call_custom_heal_change = class(mod_hidden)
+function modifier_axe_berserkers_call_custom_heal_change:OnCreated()
+	self.parent = self:GetParent()
+	self.caster = self:GetCaster()
+	self.ability = self:GetAbility()
+
+	self.heal_reduce = self.ability.talents.h1_heal_reduce
+
+	if not IsServer() then
+		return
+	end
+	self.RemoveForDuel = true
+	self.parent:GenericParticle("particles/items2_fx/sange_maim.vpcf", self)
+end
+
+function modifier_axe_berserkers_call_custom_heal_change:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
+	}
+end
+
+function modifier_axe_berserkers_call_custom_heal_change:GetModifierHealChange()
+	return self.heal_reduce
+end
+
+function modifier_axe_berserkers_call_custom_heal_change:GetModifierHPRegenAmplify_Percentage()
+	return self.heal_reduce
+end
+
+modifier_axe_berserkers_call_custom_damage_reduce = class(mod_hidden)
+function modifier_axe_berserkers_call_custom_damage_reduce:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.damage_reduce = self.ability.talents.h4_damage_reduce
+	if not IsServer() then
+		return
+	end
+	self.parent:GenericParticle("particles/axe/call_shields.vpcf", self)
+end
+
+function modifier_axe_berserkers_call_custom_damage_reduce:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
+	}
+end
+
+function modifier_axe_berserkers_call_custom_damage_reduce:GetModifierIncomingDamage_Percentage()
+	return self.damage_reduce
+end
+
+modifier_axe_berserkers_call_custom_speed = class(mod_hidden)
+
+modifier_axe_berserkers_call_custom_armor = class(mod_visible)
+function modifier_axe_berserkers_call_custom_armor:GetTexture()
+	return "buffs/axe/call_3"
+end
+function modifier_axe_berserkers_call_custom_armor:OnCreated(table)
+	self.parent = self:GetParent()
+	self.caster = self:GetCaster()
+	self.ability = self:GetAbility()
+
+	self.max = self.ability.talents.q3_max
+	self.armor = self.ability.talents.q3_armor
+
+	if not IsServer() then
+		return
+	end
+	self.RemoveForDuel = true
+	self:OnRefresh()
+end
+
+function modifier_axe_berserkers_call_custom_armor:OnRefresh(table)
+	if not IsServer() then
+		return
+	end
+	if self:GetStackCount() >= self.max then
+		return
+	end
+	self:IncrementStackCount()
+
+	if self:GetStackCount() >= self.max then
+		self.parent:GenericParticle("particles/general/generic_armor_reduction.vpcf", self, true)
+	end
+end
+
+function modifier_axe_berserkers_call_custom_armor:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
+	}
+end
+
+function modifier_axe_berserkers_call_custom_armor:GetModifierPhysicalArmorBonus()
+	return self:GetStackCount() * self.armor
+end
+
 axe_berserkers_call_custom_legendary = class({})
 axe_berserkers_call_custom_legendary.talents = {}
 
@@ -696,7 +869,6 @@ function axe_berserkers_call_custom_legendary:UpdateTalents(name)
 	if not self.init then
 		self.init = true
 		self.talents = {
-			has_q7 = 0,
 			q7_radius = caster:GetTalentValue("modifier_axe_call_7", "radius", true),
 			q7_interval = caster:GetTalentValue("modifier_axe_call_7", "interval", true),
 			q7_cost = caster:GetTalentValue("modifier_axe_call_7", "cost", true) / 100,
@@ -709,11 +881,7 @@ function axe_berserkers_call_custom_legendary:UpdateTalents(name)
 end
 
 function axe_berserkers_call_custom_legendary:GetCooldown()
-	return self.talents.q7_talent_cd and self.talents.q7_talent_cd or 0
-end
-
-function axe_berserkers_call_custom_legendary:Init()
-	self.caster = self:GetCaster()
+	return self.talents.q7_talent_cd or 0
 end
 
 function axe_berserkers_call_custom_legendary:GetCastAnimation()
@@ -742,6 +910,30 @@ function axe_berserkers_call_custom_legendary:OnSpellStart()
 end
 
 modifier_axe_berserkers_call_custom_legendary = class(mod_hidden)
+function modifier_axe_berserkers_call_custom_legendary:GetStatusEffectName()
+	return "particles/econ/items/invoker/invoker_ti7/status_effect_alacrity_ti7.vpcf"
+end
+function modifier_axe_berserkers_call_custom_legendary:StatusEffectPriority()
+	return MODIFIER_PRIORITY_HIGH
+end
+function modifier_axe_berserkers_call_custom_legendary:IsAura()
+	return IsServer() and self.parent:IsAlive()
+end
+function modifier_axe_berserkers_call_custom_legendary:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_ENEMY
+end
+function modifier_axe_berserkers_call_custom_legendary:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
+end
+function modifier_axe_berserkers_call_custom_legendary:GetModifierAura()
+	return "modifier_axe_berserkers_call_custom_legendary_target"
+end
+function modifier_axe_berserkers_call_custom_legendary:GetAuraRadius()
+	return self.radius
+end
+function modifier_axe_berserkers_call_custom_legendary:GetAuraDuration()
+	return 0.1
+end
 function modifier_axe_berserkers_call_custom_legendary:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -778,7 +970,7 @@ function modifier_axe_berserkers_call_custom_legendary:OnCreated()
 	self.parent:GenericParticle("particles/econ/events/fall_2022/radiance/radiance_owner_fall2022.vpcf", self)
 	self.parent:GenericParticle("particles/axe/calling_legendary_cast.vpcf")
 
-	self.parent:AddDamageEvent_out(self)
+	self.parent:AddDamageEvent_out(self, true)
 
 	self:OnIntervalThink()
 	self:StartIntervalThink(self.ability.talents.q7_interval)
@@ -869,35 +1061,10 @@ function modifier_axe_berserkers_call_custom_legendary:GetModifierMoveSpeedBonus
 	return self.ability.talents.q7_move
 end
 
-function modifier_axe_berserkers_call_custom_legendary:GetStatusEffectName()
-	return "particles/econ/items/invoker/invoker_ti7/status_effect_alacrity_ti7.vpcf"
-end
-function modifier_axe_berserkers_call_custom_legendary:StatusEffectPriority()
-	return MODIFIER_PRIORITY_HIGH
-end
-
-function modifier_axe_berserkers_call_custom_legendary:IsAura()
-	return IsServer() and self.parent:IsAlive()
-end
-function modifier_axe_berserkers_call_custom_legendary:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_ENEMY
-end
-function modifier_axe_berserkers_call_custom_legendary:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
-end
-function modifier_axe_berserkers_call_custom_legendary:GetModifierAura()
-	return "modifier_axe_berserkers_call_custom_legendary_target"
-end
-function modifier_axe_berserkers_call_custom_legendary:GetAuraRadius()
-	return self.radius
-end
-function modifier_axe_berserkers_call_custom_legendary:GetAuraDuration()
-	return 0.1
-end
-
 modifier_axe_berserkers_call_custom_legendary_attack = class(mod_hidden)
 function modifier_axe_berserkers_call_custom_legendary_attack:OnCreated()
-	self.damage = self:GetAbility().talents.q7_damage - 100
+	self.ability = self:GetAbility()
+	self.damage = self.ability.talents.q7_damage - 100
 end
 
 function modifier_axe_berserkers_call_custom_legendary_attack:DeclareFunctions()
@@ -914,6 +1081,12 @@ function modifier_axe_berserkers_call_custom_legendary_attack:GetModifierTotalDa
 end
 
 modifier_axe_berserkers_call_custom_legendary_target = class(mod_hidden)
+function modifier_axe_berserkers_call_custom_legendary_target:GetStatusEffectName()
+	return "particles/status_fx/status_effect_burn.vpcf"
+end
+function modifier_axe_berserkers_call_custom_legendary_target:StatusEffectPriority()
+	return MODIFIER_PRIORITY_NORMAL
+end
 function modifier_axe_berserkers_call_custom_legendary_target:OnCreated()
 	if not IsServer() then
 		return
@@ -946,216 +1119,4 @@ function modifier_axe_berserkers_call_custom_legendary_target:OnCreated()
 		true
 	)
 	self:AddParticle(self.particle_index, false, false, -1, false, false)
-end
-
-function modifier_axe_berserkers_call_custom_legendary_target:GetStatusEffectName()
-	return "particles/status_fx/status_effect_burn.vpcf"
-end
-
-function modifier_axe_berserkers_call_custom_legendary_target:StatusEffectPriority()
-	return MODIFIER_PRIORITY_NORMAL
-end
-
-modifier_axe_berserkers_call_custom_shard_charge = class(mod_hidden)
-function modifier_axe_berserkers_call_custom_shard_charge:GetEffectName()
-	return "particles/axe/axe_charge.vpcf"
-end
-function modifier_axe_berserkers_call_custom_shard_charge:GetStatusEffectName()
-	return "particles/econ/items/invoker/invoker_ti7/status_effect_alacrity_ti7.vpcf"
-end
-function modifier_axe_berserkers_call_custom_shard_charge:StatusEffectPriority()
-	return MODIFIER_PRIORITY_NORMAL
-end
-function modifier_axe_berserkers_call_custom_shard_charge:OnCreated(table)
-	if not IsServer() then
-		return
-	end
-	self.caster = self:GetCaster()
-	self.ability = self:GetAbility()
-	self.caster:StartGesture(ACT_DOTA_RUN)
-
-	self.point = GetGroundPosition(Vector(table.x, table.y, 0), nil)
-
-	self.bkb = self.caster:AddNewModifier(self.caster, self.ability, "modifier_generic_debuff_immune", {})
-
-	local vec = self.point - self.caster:GetAbsOrigin()
-	self.angle = vec:Normalized()
-
-	self.caster:FaceTowards(self.point)
-	self.caster:SetForwardVector(self.angle)
-	self.distance = vec:Length2D() / (self:GetDuration() / FrameTime())
-
-	if self:ApplyHorizontalMotionController() == false then
-		self:Destroy()
-	end
-end
-
-function modifier_axe_berserkers_call_custom_shard_charge:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS,
-		MODIFIER_PROPERTY_DISABLE_TURNING,
-	}
-end
-
-function modifier_axe_berserkers_call_custom_shard_charge:GetActivityTranslationModifiers()
-	return "haste"
-end
-
-function modifier_axe_berserkers_call_custom_shard_charge:GetModifierDisableTurning()
-	return 1
-end
-
-function modifier_axe_berserkers_call_custom_shard_charge:OnDestroy()
-	if not IsServer() then
-		return
-	end
-
-	if IsValid(self.bkb) then
-		self.bkb:Destroy()
-	end
-
-	self.caster:InterruptMotionControllers(true)
-	self.caster:FadeGesture(ACT_DOTA_RUN)
-
-	ResolveNPCPositions(self.caster:GetAbsOrigin(), 128)
-
-	local dir = self.caster:GetForwardVector()
-	dir.z = 0
-	self.caster:SetForwardVector(dir)
-	self.caster:FaceTowards(self.caster:GetAbsOrigin() + dir * 10)
-end
-
-function modifier_axe_berserkers_call_custom_shard_charge:UpdateHorizontalMotion(me, dt)
-	if not IsServer() then
-		return
-	end
-	local pos = self.caster:GetAbsOrigin()
-	local pos_p = self.angle * self.distance
-	local next_pos = GetGroundPosition(pos + pos_p, self.caster)
-	self.caster:SetAbsOrigin(next_pos)
-
-	GridNav:DestroyTreesAroundPoint(pos, 120, false)
-
-	local mod = self.caster:FindModifierByName("modifier_axe_berserkers_call_custom_buff")
-	if mod then
-		mod:Taunt()
-	end
-end
-
-function modifier_axe_berserkers_call_custom_shard_charge:OnHorizontalMotionInterrupted()
-	self:Destroy()
-end
-
-function modifier_axe_berserkers_call_custom_shard_charge:CheckState()
-	return {
-		[MODIFIER_STATE_DISARMED] = true,
-		[MODIFIER_STATE_SILENCED] = true,
-	}
-end
-
-modifier_axe_berserkers_call_custom_heal_change = class(mod_hidden)
-function modifier_axe_berserkers_call_custom_heal_change:OnCreated()
-	self.parent = self:GetParent()
-	self.caster = self:GetCaster()
-	self.ability = self:GetAbility()
-
-	self.heal_reduce = self.ability.talents.h1_heal_reduce
-
-	if not IsServer() then
-		return
-	end
-	self.parent:GenericParticle("particles/items2_fx/sange_maim.vpcf", self)
-end
-
-function modifier_axe_berserkers_call_custom_heal_change:DeclareFunctions()
-	return {
-		--MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET,
-		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
-		--MODIFIER_PROPERTY_LIFESTEAL_AMPLIFY_PERCENTAGE,
-	}
-end
-
-function modifier_axe_berserkers_call_custom_heal_change:GetModifierLifestealRegenAmplify_Percentage()
-	return self.heal_reduce
-end
-
-function modifier_axe_berserkers_call_custom_heal_change:GetModifierHealChange()
-	return self.heal_reduce
-end
-
-function modifier_axe_berserkers_call_custom_heal_change:GetModifierHPRegenAmplify_Percentage()
-	return self.heal_reduce
-end
-
-modifier_axe_berserkers_call_custom_damage_reduce = class(mod_hidden)
-function modifier_axe_berserkers_call_custom_damage_reduce:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.damage_reduce = self.ability.talents.h4_damage_reduce
-	if not IsServer() then
-		return
-	end
-	self.parent:GenericParticle("particles/axe/call_shields.vpcf", self)
-end
-
-function modifier_axe_berserkers_call_custom_damage_reduce:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
-	}
-end
-
-function modifier_axe_berserkers_call_custom_damage_reduce:GetModifierIncomingDamage_Percentage()
-	return self.damage_reduce
-end
-
-modifier_axe_berserkers_call_custom_speed = class(mod_hidden)
-
-modifier_axe_berserkers_call_custom_armor = class(mod_visible)
-function modifier_axe_berserkers_call_custom_armor:GetTexture()
-	return "buffs/axe/call_3"
-end
-function modifier_axe_berserkers_call_custom_armor:OnCreated(table)
-	self.parent = self:GetParent()
-	self.caster = self:GetCaster()
-	self.ability = self:GetAbility()
-
-	self.max = self.ability.talents.q3_max
-	self.armor = self.ability.talents.q3_armor
-
-	if not IsServer() then
-		return
-	end
-	self:AddStack()
-end
-
-function modifier_axe_berserkers_call_custom_armor:OnRefresh(table)
-	if not IsServer() then
-		return
-	end
-	self:AddStack()
-end
-
-function modifier_axe_berserkers_call_custom_armor:AddStack()
-	if not IsServer() then
-		return
-	end
-	if self:GetStackCount() >= self.max then
-		return
-	end
-	self:IncrementStackCount()
-
-	if self:GetStackCount() >= self.max then
-		self.parent:GenericParticle("particles/general/generic_armor_reduction.vpcf", self, true)
-	end
-end
-
-function modifier_axe_berserkers_call_custom_armor:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
-	}
-end
-
-function modifier_axe_berserkers_call_custom_armor:GetModifierPhysicalArmorBonus()
-	return self:GetStackCount() * self.armor
 end

@@ -10,16 +10,6 @@
 
 /* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
 
-#Contents
-{
-	padding: 0px;
-	background-color: rgba(16, 16, 16, 0);
-	border: 0px solid red;
-	flow-children: none;
-	box-shadow: rgba(255, 255, 255, 0) 0px 0px 0px 0px;
-	flow-children: down;
-}
-
 .Season_Summer2026 #Contents
 {
 	background-color: rgba(0, 0, 0, 0);
@@ -27,10 +17,12 @@
 	flow-children: down;
 }
 
-.skill_tooltip
+#Contents
 {
-	background-color: #13162700;
+	padding: 0px;
 	flow-children: down;
+	background-color: #00000000;
+	box-shadow: #000000 0px 0px 0px 0px;
 }
 
 #TooltipBlock
@@ -38,7 +30,6 @@
 	flow-children: down;
 	padding: 10px;
 	padding-bottom: 8px;
-	box-shadow: 0px 0px 20px #000;
 }
 
 .TooltipBlock2
@@ -49,8 +40,6 @@
 	height: 44px;
 	background-color: gradient(linear, 90% 100%, 0% 0%, from(#0d0600), to(#2e1702));
 	border: 1px solid #c46610;
-	box-shadow: 0px 0px 6px #000;
-	margin-top: 3px;
 }
 
 .TooltipBlock_collapse
@@ -85,6 +74,12 @@
 	margin-left: 12px;
 }
 
+.TooltipBlock_gray
+{
+	background-color: gradient(linear, 90% 100%, 0% 0%, from(#060606), to(#242424));
+	border: 1px solid #6b6b6b;
+}
+
 .TooltipBlock_blue
 {
 	background-color: gradient(linear, 90% 100%, 0% 0%, from(#00050d), to(#061c40));
@@ -103,6 +98,12 @@
 	border: 1px solid #c46610;
 }
 
+.TooltipBlock_hunt
+{
+	background-color: gradient(linear, 90% 100%, 0% 0%, from(#140404), to(#3e0404));
+	border: 1px solid #8b0d14;
+}
+
 .TooltipBlock_chest
 {
 	background-color: gradient(linear, 90% 100%, 0% 0%, from(#0d0c00), to(#271e02));
@@ -115,6 +116,13 @@
 	color: #ffdda2;
 	background-color: #d67c1545;
 	border: 1px solid #c46610;
+}
+
+.tooltip_header_text_gray
+{
+	color: #dcdcdc;
+	background-color: #8a8a8a45;
+	border: 1px solid #6b6b6b;
 }
 
 .tooltip_header_text_blue
@@ -139,6 +147,18 @@
 	border-radius: 3px;
 }
 
+.tooltip_header_text_hunt
+{
+	color: #f0b1b1;
+	background-color: #c9181845;
+	border: 1px solid #ad2d34;
+}
+
+.tooltip_header_gray
+{
+	border-bottom: 1px solid #dcdcdc;
+}
+
 .tooltip_header_blue
 {
 	border-bottom: 1px solid #96d4fa;
@@ -159,9 +179,19 @@
 	border-bottom: 1px solid #ffefa2;
 }
 
+.tooltip_header_hunt
+{
+	border-bottom: 1px solid #f0b1b1;
+}
+
 .tooltip_header_lvl_legendary
 {
 	color: #ffdda2;
+}
+
+.tooltip_header_lvl_gray
+{
+	color: #dcdcdc;
 }
 
 .tooltip_header_lvl_blue
@@ -177,6 +207,16 @@
 .tooltip_header_lvl_chest
 {
 	color: #dcd199;
+}
+
+.tooltip_header_lvl_hunt
+{
+	color: #f0b1b1;
+}
+
+.bottom_border_gray
+{
+	border-top: 1px solid #dcdcdc;
 }
 
 .bottom_border_blue
@@ -381,12 +421,6 @@
 	horizontal-align: center;
 }
 
-#Contents
-{
-	box-shadow: 0px 0px 30px #000;
-	padding: 0px;
-}
-
 #LeftArrow,#TopArrow,#RightArrow,#BottomArrow
 {
 	wash-color: #fff;
@@ -427,6 +461,11 @@
 .bottom_panel_filler_legendary
 {
 	background-color: gradient(linear, 0% 0%, 100% 0%, from(#924612), to(#f77d2a));
+}
+
+.bottom_panel_filler_gray
+{
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#5c5c5c), to(#9e9e9e));
 }
 
 .bottom_panel_filler_blue

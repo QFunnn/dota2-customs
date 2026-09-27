@@ -28,6 +28,19 @@ function item_guardian_greaves_custom:GetIntrinsicModifierName()
 	return "modifier_item_guardian_greaves_custom"
 end
 
+function item_guardian_greaves_custom:Spawn()
+	self.bonus_movement = self:GetSpecialValueFor("bonus_movement")
+	self.bonus_armor = self:GetSpecialValueFor("bonus_armor")
+	self.bonus_mana_regen = self:GetSpecialValueFor("bonus_mana_regen")
+	self.bonus_mana = self:GetSpecialValueFor("bonus_mana")
+	self.aura_health_regen = self:GetSpecialValueFor("aura_health_regen")
+	self.aura_reduction = self:GetSpecialValueFor("aura_reduction")
+	self.aura_bonus_threshold = self:GetSpecialValueFor("aura_bonus_threshold")
+	self.replenish_health = self:GetSpecialValueFor("replenish_health")
+	self.replenish_mana = self:GetSpecialValueFor("replenish_mana")
+	self.radius = self:GetSpecialValueFor("radius")
+end
+
 function item_guardian_greaves_custom:OnSpellStart()
 	local caster = self:GetCaster()
 	local heal = self.replenish_health / 100
@@ -47,24 +60,14 @@ function item_guardian_greaves_custom:OnSpellStart()
 	caster:GenericParticle(default_effect)
 	caster:Purge(false, true, false, false, false)
 
-	local friends = FindUnitsInRadius(
-		caster:GetTeamNumber(),
-		caster:GetAbsOrigin(),
-		nil,
-		radius,
-		DOTA_UNIT_TARGET_TEAM_FRIENDLY,
-		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-		DOTA_UNIT_TARGET_FLAG_INVULNERABLE,
-		FIND_CLOSEST,
-		false
-	)
+	local friends = caster:FindFriends(radius, nil, nil, DOTA_UNIT_TARGET_FLAG_INVULNERABLE)
 
 	for _, friend in pairs(friends) do
 		local heal_amount = heal * friend:GetMaxHealth()
 		local mana_amount = mana * friend:GetMaxMana()
 
 		friend:GiveMana(mana_amount)
-		SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_ADD, friend, mana_amount, nil)
+		friend:SendNumber(OVERHEAD_ALERT_MANA_ADD, mana_amount)
 		friend:GenericHeal(heal_amount, self)
 
 		friend:EmitSound("Item.GuardianGreaves.Target")
@@ -90,6 +93,15 @@ end
 function modifier_item_guardian_greaves_custom:RemoveOnDeath()
 	return false
 end
+function modifier_item_guardian_greaves_custom:OnCreated(table)
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	if self.parent:IsRealHero() then
+		self.parent:AddDamageEvent_inc(self, true)
+	end
+end
+
 function modifier_item_guardian_greaves_custom:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
@@ -101,28 +113,11 @@ function modifier_item_guardian_greaves_custom:DeclareFunctions()
 	}
 end
 
-function modifier_item_guardian_greaves_custom:OnCreated(table)
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.ability.bonus_movement = self.ability:GetSpecialValueFor("bonus_movement")
-	self.ability.bonus_armor = self.ability:GetSpecialValueFor("bonus_armor")
-	self.ability.bonus_mana_regen = self.ability:GetSpecialValueFor("bonus_mana_regen")
-	self.ability.bonus_mana = self.ability:GetSpecialValueFor("bonus_mana")
-	self.ability.aura_health_regen = self.ability:GetSpecialValueFor("aura_health_regen")
-	self.ability.aura_reduction = self.ability:GetSpecialValueFor("aura_reduction")
-	self.ability.aura_bonus_threshold = self.ability:GetSpecialValueFor("aura_bonus_threshold")
-	self.ability.replenish_health = self.ability:GetSpecialValueFor("replenish_health")
-	self.ability.replenish_mana = self.ability:GetSpecialValueFor("replenish_mana")
-	self.ability.radius = self.ability:GetSpecialValueFor("radius")
-
-	if self.parent:IsRealHero() then
-		self.parent:AddDamageEvent_inc(self, true)
-	end
-end
-
 function modifier_item_guardian_greaves_custom:DamageEvent_inc(params)
 	if not IsServer() then
+		return
+	end
+	if not IsValid(self.ability) then
 		return
 	end
 	if self.parent ~= params.unit then
@@ -141,7 +136,7 @@ function modifier_item_guardian_greaves_custom:DamageEvent_inc(params)
 		return
 	end
 
-	self.ability:UseResources(false, false, false, true)
+	self.ability:StartCd()
 	self.ability:OnSpellStart()
 end
 

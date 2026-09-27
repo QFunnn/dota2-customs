@@ -62,6 +62,11 @@ modifier_item_butterfly_custom = class(mod_hidden)
 function modifier_item_butterfly_custom:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
+function modifier_item_butterfly_custom:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+end
+
 function modifier_item_butterfly_custom:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
@@ -70,11 +75,6 @@ function modifier_item_butterfly_custom:DeclareFunctions()
 		MODIFIER_PROPERTY_HEALTH_BONUS,
 		MODIFIER_PROPERTY_EVASION_CONSTANT,
 	}
-end
-
-function modifier_item_butterfly_custom:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
 end
 
 function modifier_item_butterfly_custom:GetModifierBonusStats_Agility()

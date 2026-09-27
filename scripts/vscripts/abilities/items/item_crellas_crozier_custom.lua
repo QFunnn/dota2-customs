@@ -49,6 +49,23 @@ function item_crellas_crozier_custom:Precache(context)
 	PrecacheResource("particle", "particles/items8_fx/crellas_crozier_debuff.vpcf", context)
 end
 
+function item_crellas_crozier_custom:Spawn()
+	self.bonus_all_stats = self:GetSpecialValueFor("bonus_all_stats")
+	self.bonus_health = self:GetSpecialValueFor("bonus_health")
+	self.bonus_mana = self:GetSpecialValueFor("bonus_mana")
+	self.duration = self:GetSpecialValueFor("duration")
+	self.extra_spell_damage_percent = self:GetSpecialValueFor("extra_spell_damage_percent")
+	self.radius = self:GetSpecialValueFor("radius")
+	self.health_steal = self:GetSpecialValueFor("health_steal")
+	self.interval = self:GetSpecialValueFor("interval")
+	self.active_radius = self:GetSpecialValueFor("active_radius")
+	self.active_health_steal = self:GetSpecialValueFor("active_health_steal")
+	self.movement_slow = self:GetSpecialValueFor("movement_slow")
+	self.health_reduce = self:GetSpecialValueFor("health_reduce")
+	self.effect_duration = self:GetSpecialValueFor("effect_duration")
+	self.max = self:GetSpecialValueFor("max")
+end
+
 function item_crellas_crozier_custom:OnSpellStart()
 	local caster = self:GetCaster()
 
@@ -61,25 +78,24 @@ modifier_item_crellas_crozier_custom_stats = class(mod_hidden)
 function modifier_item_crellas_crozier_custom_stats:RemoveOnDeath()
 	return false
 end
-function modifier_item_crellas_crozier_custom_stats:OnCreated(keys)
+function modifier_item_crellas_crozier_custom_stats:GetAuraRadius()
+	return self.ability.radius
+end
+function modifier_item_crellas_crozier_custom_stats:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_ENEMY
+end
+function modifier_item_crellas_crozier_custom_stats:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
+end
+function modifier_item_crellas_crozier_custom_stats:GetModifierAura()
+	return "modifier_item_crellas_crozier_custom_aura"
+end
+function modifier_item_crellas_crozier_custom_stats:IsAura()
+	return IsServer() and self.parent:IsRealHero() and self.parent:IsAlive()
+end
+function modifier_item_crellas_crozier_custom_stats:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
-
-	self.ability.bonus_all_stats = self.ability:GetSpecialValueFor("bonus_all_stats")
-	self.ability.bonus_health = self.ability:GetSpecialValueFor("bonus_health")
-	self.ability.bonus_mana = self.ability:GetSpecialValueFor("bonus_mana")
-	self.ability.duration = self.ability:GetSpecialValueFor("duration")
-	self.ability.extra_spell_damage_percent = self.ability:GetSpecialValueFor("extra_spell_damage_percent")
-	self.ability.radius = self.ability:GetSpecialValueFor("radius")
-	self.ability.health_steal = self.ability:GetSpecialValueFor("health_steal")
-	self.ability.interval = self.ability:GetSpecialValueFor("interval")
-	self.ability.active_radius = self.ability:GetSpecialValueFor("active_radius")
-	self.ability.active_health_steal = self.ability:GetSpecialValueFor("active_health_steal")
-
-	self.ability.movement_slow = self.ability:GetSpecialValueFor("movement_slow")
-	self.ability.health_reduce = self.ability:GetSpecialValueFor("health_reduce")
-	self.ability.effect_duration = self.ability:GetSpecialValueFor("effect_duration")
-	self.ability.max = self.ability:GetSpecialValueFor("max")
 end
 
 function modifier_item_crellas_crozier_custom_stats:DeclareFunctions()
@@ -110,22 +126,6 @@ end
 
 function modifier_item_crellas_crozier_custom_stats:GetModifierManaBonus()
 	return self.ability.bonus_mana
-end
-
-function modifier_item_crellas_crozier_custom_stats:GetAuraRadius()
-	return self.ability.radius
-end
-function modifier_item_crellas_crozier_custom_stats:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_ENEMY
-end
-function modifier_item_crellas_crozier_custom_stats:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
-end
-function modifier_item_crellas_crozier_custom_stats:GetModifierAura()
-	return "modifier_item_crellas_crozier_custom_aura"
-end
-function modifier_item_crellas_crozier_custom_stats:IsAura()
-	return IsServer() and self.parent:IsRealHero() and self.parent:IsAlive()
 end
 
 modifier_item_crellas_crozier_custom_aura = class(mod_visible)

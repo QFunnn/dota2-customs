@@ -17,7 +17,7 @@ function dota1x6:RandomUnit(unit1, max)
 	end
 end
 
-function dota1x6:spawn_patrol(index, is_tormentor, is_portal, special_vision)
+function dota1x6:spawn_patrol(index, is_tormentor, is_portal, special_vision, force_tier)
 	local units = {}
 	local count = 4
 	local second_tier = false
@@ -122,7 +122,7 @@ function dota1x6:spawn_patrol(index, is_tormentor, is_portal, special_vision)
 		team = tostring(teams[current])
 	end
 
-	if dota1x6.current_wave >= patrol_wave_2 then
+	if (force_tier and force_tier == 2) or (not force_tier and dota1x6.current_wave >= patrol_wave_2) then
 		second_tier = true
 		patrol_item = "patrol_2"
 	elseif not is_tormentor and teams then
@@ -192,7 +192,7 @@ function dota1x6:spawn_patrol(index, is_tormentor, is_portal, special_vision)
 
 		units[i].spawn = new_pos
 		units[i]:AddNewModifier(units[i], nil, "modifier_patrol_death", {})
-		units[i]:AddNewModifier(units[i], nil, "modifier_patrolupgrade", {})
+		dota1x6:SetPatrolCreepsStats(units[i])
 		units[i].is_patrol_creep = true
 		units[i].patrol_teams = map_teams
 

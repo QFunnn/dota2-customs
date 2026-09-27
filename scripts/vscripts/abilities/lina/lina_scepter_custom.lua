@@ -12,16 +12,18 @@ LinkLuaModifier("modifier_lina_scepter_custom", "abilities/lina/lina_scepter_cus
 LinkLuaModifier("modifier_lina_scepter_custom_caster", "abilities/lina/lina_scepter_custom", LUA_MODIFIER_MOTION_NONE)
 
 lina_scepter_custom = class({})
-
 function lina_scepter_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
 	end
 	PrecacheResource("particle", "particles/econ/events/fall_2022/radiance/radiance_owner_fall2022.vpcf", context)
 	PrecacheResource("particle", "particles/lina/stun_clone.vpcf", context)
+	PrecacheResource("particle", "particles/items3_fx/blink_overwhelming_start.vpcf", context)
+	PrecacheResource("particle", "particles/items3_fx/blink_overwhelming_end.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_lina/lina_spell_light_strike_array.vpcf", context)
 end
 
-function lina_scepter_custom:Spawn()
+function lina_scepter_custom:Init()
 	if not self:GetCaster() then
 		return
 	end
@@ -43,6 +45,13 @@ function lina_scepter_custom:GetAbilityTextureName()
 	return "lina_scepter_ability"
 end
 
+function lina_scepter_custom:GetBehavior()
+	if self.caster:HasModifier("modifier_lina_scepter_custom_caster") then
+		return DOTA_ABILITY_BEHAVIOR_IMMEDIATE + DOTA_ABILITY_BEHAVIOR_NO_TARGET + DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES
+	end
+	return DOTA_ABILITY_BEHAVIOR_POINT
+end
+
 function lina_scepter_custom:GetManaCost(iLevel)
 	if self.caster:HasModifier("modifier_lina_scepter_custom_caster") then
 		return 0
@@ -50,11 +59,8 @@ function lina_scepter_custom:GetManaCost(iLevel)
 	return self.BaseClass.GetManaCost(self, iLevel)
 end
 
-function lina_scepter_custom:GetBehavior()
-	if self.caster:HasModifier("modifier_lina_scepter_custom_caster") then
-		return DOTA_ABILITY_BEHAVIOR_IMMEDIATE + DOTA_ABILITY_BEHAVIOR_NO_TARGET + DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES
-	end
-	return DOTA_ABILITY_BEHAVIOR_POINT
+function lina_scepter_custom:GetCastRange(vLocation, hTarget)
+	return IsClient() and ((self.range or 0) - self.caster:GetCastRangeBonus()) or 999999
 end
 
 function lina_scepter_custom:GetCastAnimation()
@@ -64,35 +70,19 @@ function lina_scepter_custom:GetCastAnimation()
 	return ACT_DOTA_CAST_ABILITY_1
 end
 
-function lina_scepter_custom:GetCastRange(vLocation, hTarget)
-	return IsClient() and ((self.range and self.range or 0) - self.caster:GetCastRangeBonus()) or 999999
-end
-
 function lina_scepter_custom:OnSpellStart()
 	local mod = self.caster:FindModifierByName("modifier_lina_scepter_custom_caster")
 	if mod then
 		if IsValid(self.lina_clone) then
 			local pos = self.lina_clone:GetAbsOrigin()
-			self.caster:FaceTowards(pos + self.lina_clone:GetForwardVector() * 10)
-			self.caster:SetForwardVector(self.lina_clone:GetForwardVector())
-
-			EmitSoundOnLocationWithCaster(self.caster:GetAbsOrigin(), "Lina.Array_blink", self.caster)
-
-			local effect_end = ParticleManager:CreateParticle(
+			self.caster:Teleport(
+				pos,
+				true,
 				"particles/items3_fx/blink_overwhelming_start.vpcf",
-				PATTACH_WORLDORIGIN,
-				nil
+				"particles/items3_fx/blink_overwhelming_end.vpcf",
+				"Lina.Array_blink"
 			)
-			ParticleManager:SetParticleControl(effect_end, 0, self.caster:GetAbsOrigin())
-			ParticleManager:ReleaseParticleIndex(effect_end)
-
-			ProjectileManager:ProjectileDodge(self.caster)
-
-			self.caster:SetAbsOrigin(pos)
-			FindClearSpaceForUnit(self.caster, pos, false)
-
-			self.caster:GenericParticle("particles/items3_fx/blink_overwhelming_end.vpcf")
-
+			self.caster:FacePoint(self.caster:GetAbsOrigin() + self.lina_clone:GetForwardVector() * 10)
 			self.lina_clone:RemoveModifierByName("modifier_lina_scepter_custom")
 		end
 		return
@@ -120,14 +110,13 @@ function lina_scepter_custom:OnSpellStart()
 
 		illusion:AddNewModifier(
 			self.caster,
-			self.ability,
+			self,
 			"modifier_lina_scepter_custom",
 			{ duration = duration, x = vec.x, y = vec.y }
 		)
 		illusion:SetOrigin(self.caster:GetAbsOrigin() + dir:Normalized() * 50)
 
-		illusion:SetForwardVector(dir:Normalized())
-		illusion:FaceTowards(vec)
+		illusion:FacePoint(vec)
 		illusion:MoveToPosition(vec)
 	end
 end
@@ -269,7 +258,6 @@ function modifier_lina_scepter_custom:CheckState()
 		[MODIFIER_STATE_DISARMED] = true,
 		[MODIFIER_STATE_UNSELECTABLE] = true,
 		[MODIFIER_STATE_UNTARGETABLE] = true,
-		[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
 		[MODIFIER_STATE_NO_HEALTH_BAR] = true,
 	}
 	if self.state == 1 then

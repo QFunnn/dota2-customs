@@ -17,10 +17,21 @@ LinkLuaModifier("modifier_item_midas_noblue", "abilities/items/item_hand_of_mida
 
 item_hand_of_midas_custom = class({})
 
+function item_hand_of_midas_custom:Spawn()
+	self.gold = self:GetSpecialValueFor("gold")
+	self.duo_bonus = self:GetSpecialValueFor("duo_bonus")
+	self.blue = self:GetSpecialValueFor("blue")
+	self.blue_creeps = self:GetSpecialValueFor("blue_creeps")
+	self.move_speed = self:GetSpecialValueFor("move_speed")
+	self.attack_speed = self:GetSpecialValueFor("attack_speed")
+	self.radius = self:GetSpecialValueFor("radius")
+end
+
 function item_hand_of_midas_custom:GetAbilityTextureName()
-	if self:GetCaster() then
-		return wearables_system:GetAbilityIconReplacement(self.caster, "item_hand_of_midas", self)
+	if not self:GetCaster() then
+		return
 	end
+	return wearables_system:GetAbilityIconReplacement(self:GetCaster(), "item_hand_of_midas", self)
 end
 
 function item_hand_of_midas_custom:Precache(context)
@@ -35,32 +46,33 @@ function item_hand_of_midas_custom:GetIntrinsicModifierName()
 end
 
 function item_hand_of_midas_custom:CastFilterResultTarget(target)
-	if IsServer() then
-		local caster = self:GetCaster()
-
-		if
-			target:GetTeamNumber() == DOTA_TEAM_CUSTOM_5
-			or target:IsAncient()
-			or dota1x6:IsPatrol(target:GetUnitName())
-			or target.is_patrol_creep
-		then
-			return UF_FAIL_OTHER
-		end
-
-		return UnitFilter(
-			target,
-			self:GetAbilityTargetTeam(),
-			self:GetAbilityTargetType(),
-			self:GetAbilityTargetFlags(),
-			self:GetCaster():GetTeamNumber()
-		)
+	if not IsServer() then
+		return
 	end
+	local caster = self:GetCaster()
+
+	if
+		target:GetTeamNumber() == DOTA_TEAM_CUSTOM_5
+		or target:IsAncient()
+		or dota1x6:IsPatrol(target:GetUnitName())
+		or target.is_patrol_creep
+	then
+		return UF_FAIL_OTHER
+	end
+
+	return UnitFilter(
+		target,
+		self:GetAbilityTargetTeam(),
+		self:GetAbilityTargetType(),
+		self:GetAbilityTargetFlags(),
+		self:GetCaster():GetTeamNumber()
+	)
 end
 
 function item_hand_of_midas_custom:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
-	local gold = self:GetSpecialValueFor("gold")
+	local gold = self.gold
 
 	self:GiveBonuses(target, false)
 
@@ -70,7 +82,7 @@ function item_hand_of_midas_custom:OnSpellStart()
 	if caster:GetQuest() == "General.Quest_5" then
 		caster:UpdateQuest(gold)
 	end
-	caster:GiveGold(gold, true)
+	caster:GiveGold(gold, true, nil, self)
 
 	caster.no_blue = true
 
@@ -87,23 +99,23 @@ function item_hand_of_midas_custom:GiveBonuses(target, givegold)
 	local duo_bonus = 1
 
 	if not IsSoloMode() then
-		duo_bonus = self:GetSpecialValueFor("duo_bonus")
+		duo_bonus = self.duo_bonus
 	end
 
 	if givegold == true then
-		local bonus_gold = self:GetSpecialValueFor("gold") / duo_bonus
+		local bonus_gold = self.gold / duo_bonus
 		if caster:GetQuest() == "General.Quest_5" then
 			caster:UpdateQuest(bonus_gold)
 		end
-		caster:GiveGold(bonus_gold, true)
+		caster:GiveGold(bonus_gold, true, nil, self)
 
-		dota1x6:AddBluePoints(caster, self:GetSpecialValueFor("blue") / duo_bonus)
+		caster:AddPoints("blue", self.blue / duo_bonus, self)
 	else
 		local points = 0
-		if BluePoints[target:GetUnitName()] then
-			points = BluePoints[target:GetUnitName()] * self:GetSpecialValueFor("blue_creeps")
+		if CreepsStats[target:GetUnitName()] then
+			points = CreepsStats[target:GetUnitName()].blue * self.blue_creeps
 		end
-		dota1x6:AddBluePoints(caster, points)
+		caster:AddPoints("blue", points, self)
 	end
 
 	caster:EmitSound("DOTA_Item.Hand_Of_Midas")
@@ -125,16 +137,21 @@ function item_hand_of_midas_custom:GiveBonuses(target, givegold)
 	ParticleManager:ReleaseParticleIndex(item_effect)
 end
 
-modifier_item_hand_of_midas_custom = class({})
-function modifier_item_hand_of_midas_custom:IsHidden()
-	return true
-end
-function modifier_item_hand_of_midas_custom:IsPurgable()
-	return false
-end
+modifier_item_hand_of_midas_custom = class(mod_hidden)
 function modifier_item_hand_of_midas_custom:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
+function modifier_item_hand_of_midas_custom:OnCreated(table)
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.parent:AddDeathEvent(self, true)
+
+	self.move = self.ability.move_speed
+	self.speed = self.ability.attack_speed
+	self.radius = self.ability.radius
+end
+
 function modifier_item_hand_of_midas_custom:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
@@ -150,17 +167,6 @@ function modifier_item_hand_of_midas_custom:GetModifierMoveSpeedBonus_Constant()
 	return self.move
 end
 
-function modifier_item_hand_of_midas_custom:OnCreated(table)
-	self.parent = self:GetParent()
-	self.parent:AddDeathEvent(self)
-
-	self.ability = self:GetAbility()
-
-	self.move = self.ability:GetSpecialValueFor("move_speed")
-	self.speed = self.ability:GetSpecialValueFor("attack_speed")
-	self.radius = self.ability:GetSpecialValueFor("radius")
-end
-
 function modifier_item_hand_of_midas_custom:DeathEvent(params)
 	if not IsServer() then
 		return
@@ -168,7 +174,7 @@ function modifier_item_hand_of_midas_custom:DeathEvent(params)
 	if not self.parent:IsRealHero() then
 		return
 	end
-	if not self.ability then
+	if not IsValid(self.ability) then
 		return
 	end
 	if self.parent:HasModifier("modifier_monkey_king_wukongs_command_custom_soldier") then
@@ -192,7 +198,7 @@ function modifier_item_hand_of_midas_custom:DeathEvent(params)
 
 	if
 		((self.parent:GetAbsOrigin() - params.unit:GetAbsOrigin()):Length2D() > self.radius)
-		and attacker ~= self:GetParent()
+		and attacker ~= self.parent
 	then
 		return
 	end
@@ -200,10 +206,4 @@ function modifier_item_hand_of_midas_custom:DeathEvent(params)
 	self.ability:GiveBonuses(params.unit, true)
 end
 
-modifier_item_midas_noblue = class({})
-function modifier_item_midas_noblue:IsHidden()
-	return true
-end
-function modifier_item_midas_noblue:IsPurgable()
-	return false
-end
+modifier_item_midas_noblue = class(mod_hidden)

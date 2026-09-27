@@ -77,6 +77,7 @@ function morphling_morph_agi_custom:Precache(context)
 	PrecacheResource("particle", "particles/morphling/attack_cleave.vpcf", context)
 	PrecacheResource("particle", "particles/morphling/adaptive_str_stun.vpcf", context)
 	PrecacheResource("particle", "particles/morphling/attribute_burn.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_morphling/morphling_base_attack.vpcf", context)
 end
 
 function morphling_morph_agi_custom:UpdateTalents()
@@ -181,35 +182,22 @@ end
 
 function morphling_morph_agi_custom:GetBehavior()
 	local bonus = 0
-	if self:GetCaster():HasShard() then
+	if self.caster:HasShard() then
 		bonus = DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE
 	end
 	return DOTA_ABILITY_BEHAVIOR_NO_TARGET + DOTA_ABILITY_BEHAVIOR_TOGGLE + bonus
 end
 
-function morphling_morph_agi_custom:SendJs()
-	if not IsServer() then
-		return
-	end
-	local caster = self:GetCaster()
-	CustomGameEventManager:Send_ServerToPlayer(
-		PlayerResource:GetPlayer(caster:GetId()),
-		"morph_stats_refresh",
-		{ has_legendary = self.talents.has_e7 == 1, agi = caster:GetBaseAgility(), str = caster:GetBaseStrength() }
-	)
-end
-
 function morphling_morph_agi_custom:OnToggle()
-	local caster = self:GetCaster()
 	local state = self:GetToggleState()
-	local str_ability = caster:FindAbilityByName("morphling_morph_str_custom")
+	local str_ability = self.caster.str_ability
 
-	caster:RemoveModifierByName("modifier_morphling_morph_custom_toggle")
+	self.caster:RemoveModifierByName("modifier_morphling_morph_custom_toggle")
 	if state then
 		if str_ability and str_ability:GetToggleState() then
 			str_ability:ToggleAbility()
 		end
-		caster:AddNewModifier(caster, self, "modifier_morphling_morph_custom_toggle", { mode = 0 })
+		self.caster:AddNewModifier(self.caster, self, "modifier_morphling_morph_custom_toggle", { mode = 0 })
 	end
 end
 
@@ -217,7 +205,6 @@ function morphling_morph_agi_custom:OnProjectileHit(target, location)
 	if not target then
 		return
 	end
-	local caster = self:GetCaster()
 
 	target:EmitSound("Morph.Attribute_double")
 
@@ -243,9 +230,29 @@ function morphling_morph_agi_custom:OnProjectileHit(target, location)
 	)
 	ParticleManager:ReleaseParticleIndex(hit_effect)
 
-	caster:AddNewModifier(target, self, "modifier_morphling_morph_custom_double_damage", { duration = FrameTime() })
-	caster:PerformAttack(target, true, true, true, true, false, false, false)
-	caster:RemoveModifierByName("modifier_morphling_morph_custom_double_damage")
+	self.caster:AddNewModifier(
+		target,
+		self,
+		"modifier_morphling_morph_custom_double_damage",
+		{ duration = FrameTime() }
+	)
+	self.caster:PerformAttack(target, true, true, true, true, false, false, false)
+	self.caster:RemoveModifierByName("modifier_morphling_morph_custom_double_damage")
+end
+
+function morphling_morph_agi_custom:SendJs()
+	if not IsServer() then
+		return
+	end
+	CustomGameEventManager:Send_ServerToPlayer(
+		PlayerResource:GetPlayer(self.caster:GetId()),
+		"morph_stats_refresh",
+		{
+			has_legendary = self.talents.has_e7 == 1,
+			agi = self.caster:GetBaseAgility(),
+			str = self.caster:GetBaseStrength(),
+		}
+	)
 end
 
 morphling_morph_str_custom = class({})
@@ -265,23 +272,22 @@ end
 
 function morphling_morph_str_custom:GetBehavior()
 	local bonus = 0
-	if self:GetCaster():HasShard() then
+	if self.caster:HasShard() then
 		bonus = DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE
 	end
 	return DOTA_ABILITY_BEHAVIOR_NO_TARGET + DOTA_ABILITY_BEHAVIOR_TOGGLE + bonus
 end
 
 function morphling_morph_str_custom:OnToggle()
-	local caster = self:GetCaster()
 	local state = self:GetToggleState()
-	local agi_ability = caster:FindAbilityByName("morphling_morph_agi_custom")
+	local agi_ability = self.caster.agi_ability
 
-	caster:RemoveModifierByName("modifier_morphling_morph_custom_toggle")
+	self.caster:RemoveModifierByName("modifier_morphling_morph_custom_toggle")
 	if state then
 		if agi_ability and agi_ability:GetToggleState() then
 			agi_ability:ToggleAbility()
 		end
-		caster:AddNewModifier(caster, self, "modifier_morphling_morph_custom_toggle", { mode = 1 })
+		self.caster:AddNewModifier(self.caster, self, "modifier_morphling_morph_custom_toggle", { mode = 1 })
 	end
 end
 
@@ -294,8 +300,8 @@ function modifier_morphling_morph_custom_toggle:OnCreated(table)
 		return
 	end
 
-	self.agi_ability = self.parent:FindAbilityByName("morphling_morph_agi_custom")
-	if self.agi_ability.tracker then
+	self.agi_ability = self.parent.agi_ability
+	if self.agi_ability and self.agi_ability.tracker then
 		self.agi_ability.tracker:OnIntervalThink()
 	end
 
@@ -387,36 +393,39 @@ function modifier_morphling_morph_agi_custom_tracker:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 	self.ability.tracker = self
-	self.ability:UpdateTalents()
 
 	self.str_ability = self.parent:FindAbilityByName("morphling_morph_str_custom")
-	if self.str_ability then
-		self.str_ability:UpdateTalents()
-		self.str_ability.morph_rate_tooltip = self.ability:GetSpecialValueFor("morph_rate_tooltip")
-		self.str_ability.mana_cost = self.ability:GetSpecialValueFor("mana_cost")
-		self.str_ability.shard_speed = self.ability:GetSpecialValueFor("shard_speed") / 100
-	end
-
 	self.legendary_ability = self.parent:FindAbilityByName("morphling_attribute_legendary_custom")
-	if self.legendary_ability then
-		self.legendary_ability.strike_duration = self.legendary_ability:GetSpecialValueFor("strike_duration")
-		self.legendary_ability.strike_bva = self.legendary_ability:GetSpecialValueFor("strike_bva")
-		self.legendary_ability.strike_stun = self.legendary_ability:GetSpecialValueFor("strike_stun")
-		self.legendary_ability.strike_cd = self.legendary_ability:GetSpecialValueFor("strike_cd") / 100
-	end
+	self.visual_max = 5
 
 	self.parent.agi_ability = self.ability
+	self.parent.str_ability = self.str_ability
 	self.parent.attribute_legendary = self.legendary_ability
 
 	self.ability.morph_rate_tooltip = self.ability:GetSpecialValueFor("morph_rate_tooltip")
 	self.ability.mana_cost = self.ability:GetSpecialValueFor("mana_cost")
 	self.ability.shard_speed = self.ability:GetSpecialValueFor("shard_speed") / 100
 
+	if self.str_ability then
+		self.str_ability.morph_rate_tooltip = self.ability.morph_rate_tooltip
+		self.str_ability.mana_cost = self.ability.mana_cost
+		self.str_ability.shard_speed = self.ability.shard_speed
+	end
+
+	self.ability:UpdateTalents()
+
+	if self.str_ability then
+		self.str_ability:UpdateTalents()
+	end
+
+	if self.legendary_ability then
+		self.legendary_ability:UpdateTalents()
+	end
+
 	if not IsServer() then
 		return
 	end
 	self.attack_count = 0
-	self.visual_max = 5
 	self.damageTable = {
 		attacker = self.parent,
 		ability = self.ability,
@@ -431,15 +440,7 @@ function modifier_morphling_morph_agi_custom_tracker:OnRefresh()
 	self.ability.morph_rate_tooltip = self.ability:GetSpecialValueFor("morph_rate_tooltip")
 
 	if self.str_ability then
-		self.str_ability.morph_rate_tooltip = self.ability:GetSpecialValueFor("morph_rate_tooltip")
-	end
-
-	self.legendary_ability = self.parent:FindAbilityByName("morphling_attribute_legendary_custom")
-	if self.legendary_ability then
-		self.legendary_ability.strike_duration = self.legendary_ability:GetSpecialValueFor("strike_duration")
-		self.legendary_ability.strike_bva = self.legendary_ability:GetSpecialValueFor("strike_bva")
-		self.legendary_ability.strike_stun = self.legendary_ability:GetSpecialValueFor("strike_stun")
-		self.legendary_ability.strike_cd = self.legendary_ability:GetSpecialValueFor("strike_cd") / 100
+		self.str_ability.morph_rate_tooltip = self.ability.morph_rate_tooltip
 	end
 
 	if not IsServer() then
@@ -654,9 +655,8 @@ function modifier_morphling_morph_agi_custom_tracker:UpdateUI()
 		if self.legendary_ability and not self.legendary_ability:IsActivated() then
 			self.legendary_ability:StartCd()
 			self.ability:SetActivated(true)
-			local str_ability = self.parent:FindAbilityByName("morphling_morph_str_custom")
-			if str_ability then
-				str_ability:SetActivated(true)
+			if self.str_ability then
+				self.str_ability:SetActivated(true)
 			end
 		end
 	end
@@ -703,9 +703,6 @@ function modifier_morphling_morph_agi_custom_tracker:GetModifierAttackRangeBonus
 end
 
 modifier_morphling_morph_custom_legendary_stack = class(mod_hidden)
-function modifier_morphling_morph_custom_legendary_stack:IsDebuff()
-	return true
-end
 function modifier_morphling_morph_custom_legendary_stack:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -719,8 +716,31 @@ function modifier_morphling_morph_custom_legendary_stack:OnCreated()
 	self.visual_max = 5
 	self.particle = self.parent:GenericParticle("particles/morphling/attribute_legendary_stack.vpcf", self, true)
 
-	self:SetStackCount(1)
+	self:OnRefresh()
 	self:StartIntervalThink(0.2)
+end
+
+function modifier_morphling_morph_custom_legendary_stack:OnRefresh()
+	if not IsServer() then
+		return
+	end
+	if self:GetStackCount() >= self.max then
+		return
+	end
+	self:IncrementStackCount()
+
+	self.ability.tracker:UpdateUI()
+	if not self.particle then
+		return
+	end
+
+	for i = 1, self.visual_max do
+		if i <= math.floor(self:GetStackCount() / (self.max / self.visual_max)) then
+			ParticleManager:SetParticleControl(self.particle, i, Vector(1, 0, 0))
+		else
+			ParticleManager:SetParticleControl(self.particle, i, Vector(0, 0, 0))
+		end
+	end
 end
 
 function modifier_morphling_morph_custom_legendary_stack:OnIntervalThink()
@@ -744,255 +764,11 @@ function modifier_morphling_morph_custom_legendary_stack:OnIntervalThink()
 	end
 end
 
-function modifier_morphling_morph_custom_legendary_stack:OnRefresh()
-	if not IsServer() then
-		return
-	end
-	if self:GetStackCount() >= self.max then
-		return
-	end
-	self:IncrementStackCount()
-
-	if self:GetStackCount() >= self.max then
-	end
-end
-
-function modifier_morphling_morph_custom_legendary_stack:OnStackCountChanged()
-	if not IsServer() then
-		return
-	end
-
-	self.ability.tracker:UpdateUI()
-	if not self.particle then
-		return
-	end
-
-	for i = 1, self.visual_max do
-		if i <= math.floor(self:GetStackCount() / (self.max / self.visual_max)) then
-			ParticleManager:SetParticleControl(self.particle, i, Vector(1, 0, 0))
-		else
-			ParticleManager:SetParticleControl(self.particle, i, Vector(0, 0, 0))
-		end
-	end
-end
-
 function modifier_morphling_morph_custom_legendary_stack:OnDestroy()
 	if not IsServer() then
 		return
 	end
 	self.ability.tracker:UpdateUI()
-end
-
-morphling_attribute_legendary_custom = class({})
-morphling_attribute_legendary_custom.talents = {}
-
-function morphling_attribute_legendary_custom:CreateTalent()
-	if self:GetCaster():HasModifier("modifier_morphling_replicate_custom") then
-		return
-	end
-	self:SetHidden(false)
-end
-
-function morphling_attribute_legendary_custom:UpdateTalents()
-	local caster = self:GetCaster()
-	if not self.init then
-		self.init = true
-		self.talents = {
-			e7_talent_cd = caster:GetTalentValue("modifier_morphling_attribute_7", "talent_cd", true),
-			e7_max = caster:GetTalentValue("modifier_morphling_attribute_7", "max", true),
-			e7_duration = caster:GetTalentValue("modifier_morphling_attribute_7", "duration", true),
-			e7_duration_k = caster:GetTalentValue("modifier_morphling_attribute_7", "duration_k", true),
-			e7_strike_duration = caster:GetTalentValue("modifier_morphling_attribute_7", "strike_duration", true),
-		}
-	end
-end
-
-function morphling_attribute_legendary_custom:GetCooldown()
-	return self.talents.e7_talent_cd and self.talents.e7_talent_cd or 0
-end
-
-function morphling_attribute_legendary_custom:OnAbilityPhaseStart()
-	local caster = self:GetCaster()
-	local mod = caster:FindModifierByName("modifier_morphling_morph_custom_legendary_stack")
-	if not mod or mod:GetStackCount() <= 0 then
-		CustomGameEventManager:Send_ServerToPlayer(
-			PlayerResource:GetPlayer(caster:GetPlayerOwnerID()),
-			"CreateIngameErrorMessage",
-			{ message = "#dota_hud_error_no_charges" }
-		)
-		return false
-	end
-	return true
-end
-
-function morphling_attribute_legendary_custom:OnSpellStart()
-	local caster = self:GetCaster()
-
-	local mod = caster:FindModifierByName("modifier_morphling_morph_custom_legendary_stack")
-	if not mod or mod:GetStackCount() <= 0 then
-		return
-	end
-
-	local duration = self.talents.e7_duration
-		* math.pow(mod:GetStackCount() / self.talents.e7_max, self.talents.e7_duration_k)
-	caster:AddNewModifier(caster, self, "modifier_morphling_morph_custom_legendary", { duration = duration })
-	caster:StartGestureWithPlaybackRate(ACT_DOTA_SPAWN, 1.2)
-	mod:Destroy()
-end
-
-modifier_morphling_morph_custom_legendary = class(mod_hidden)
-function modifier_morphling_morph_custom_legendary:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	if not IsServer() then
-		return
-	end
-
-	self.RemoveForDuel = true
-
-	local agility = self.parent:GetBaseAgility()
-	local strength = self.parent:GetBaseStrength()
-
-	self.str_bonus = agility > strength and (agility - strength) or 0
-	self.agi_bonus = strength > agility and (strength - agility) or 0
-
-	self.agi_ability = self.parent:FindAbilityByName("morphling_morph_agi_custom")
-	self.str_ability = self.parent:FindAbilityByName("morphling_morph_str_custom")
-
-	if self.agi_ability then
-		if self.agi_ability:GetToggleState() then
-			self.agi_ability:ToggleAbility()
-		end
-		self.agi_ability:SetActivated(false)
-	end
-
-	if self.str_ability then
-		if self.str_ability:GetToggleState() then
-			self.str_ability:ToggleAbility()
-		end
-		self.str_ability:SetActivated(false)
-	end
-
-	self.parent:GenericParticle("particles/morphling/attribute_legendary_effect.vpcf", self)
-	self.parent:GenericParticle("particles/units/heroes/hero_morphling/morphling_morph_str.vpcf", self)
-
-	self.max = self.ability.talents.e7_max
-	self.time_max = self.ability.talents.e7_duration
-	self.visual_max = 5
-
-	self.particle = self.parent:GenericParticle("particles/morphling/attribute_legendary_stack.vpcf", self, true)
-
-	local radius = 250
-	local effect2 = ParticleManager:CreateParticle(
-		"particles/morphling/attribute_legendary_active.vpcf",
-		PATTACH_ABSORIGIN_FOLLOW,
-		self.parent
-	)
-	ParticleManager:SetParticleControl(effect2, 0, self.parent:GetAbsOrigin())
-	ParticleManager:SetParticleControl(effect2, 1, Vector(radius, radius, radius))
-	ParticleManager:ReleaseParticleIndex(effect2)
-
-	self.parent:EmitSound("Morph.Attribute_legendary_cast")
-	self.parent:EmitSound("Morph.Attribute_legendary_cast2")
-	self.parent:EmitSound("Morph.Attribute_legendary_loop")
-
-	self.ability:EndCd()
-	self.parent:CalculateStatBonus(true)
-
-	self:OnIntervalThink()
-	self:StartIntervalThink(0.1)
-end
-
-function modifier_morphling_morph_custom_legendary:OnIntervalThink()
-	if not IsServer() then
-		return
-	end
-
-	if self.agi_ability.tracker then
-		self.agi_ability.tracker:UpdateUI()
-	end
-
-	if not self.particle then
-		return
-	end
-
-	for i = 1, self.visual_max do
-		if i <= (math.floor((self:GetRemainingTime() - 0.1) / (self.time_max / self.visual_max)) + 1) then
-			ParticleManager:SetParticleControl(self.particle, i, Vector(1, 0, 0))
-		else
-			ParticleManager:SetParticleControl(self.particle, i, Vector(0, 0, 0))
-		end
-	end
-end
-
-function modifier_morphling_morph_custom_legendary:OnDestroy()
-	if not IsServer() then
-		return
-	end
-
-	if self.agi_ability.tracker then
-		self.agi_ability.tracker:UpdateUI()
-	end
-
-	self.parent:StopSound("Morph.Attribute_legendary_loop")
-
-	self.ability:StartCd()
-
-	if self.agi_ability then
-		self.agi_ability:SetActivated(true)
-	end
-
-	if self.str_ability then
-		self.str_ability:SetActivated(true)
-	end
-end
-
-function modifier_morphling_morph_custom_legendary:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_MODEL_SCALE,
-		MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
-		MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
-	}
-end
-
-function modifier_morphling_morph_custom_legendary:GetModifierModelScale()
-	return 35
-end
-
-function modifier_morphling_morph_custom_legendary:GetModifierBonusStats_Strength()
-	return self.str_bonus
-end
-
-function modifier_morphling_morph_custom_legendary:GetModifierBonusStats_Agility()
-	return self.agi_bonus
-end
-
-function modifier_morphling_morph_custom_legendary:GetStatusEffectName()
-	return "particles/butterfly_status.vpcf"
-end
-
-function modifier_morphling_morph_custom_legendary:StatusEffectPriority()
-	return MODIFIER_PRIORITY_ULTRA
-end
-
-modifier_morphling_morph_custom_legendary_attack = class(mod_visible)
-function modifier_morphling_morph_custom_legendary_attack:GetTexture()
-	return "attribute_legendary"
-end
-function modifier_morphling_morph_custom_legendary_attack:OnCreated()
-	self.ability = self:GetAbility()
-	self.bva = self.ability.strike_bva
-end
-
-function modifier_morphling_morph_custom_legendary_attack:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT,
-	}
-end
-
-function modifier_morphling_morph_custom_legendary_attack:GetModifierBaseAttackTimeConstant()
-	return self.bva
 end
 
 modifier_morphling_morph_custom_stats_inc = class(mod_visible)
@@ -1003,11 +779,12 @@ function modifier_morphling_morph_custom_stats_inc:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.max = self.ability.talents.e3_max
+	self.max = self.ability.talents.e3_stats_max
 	self.stats = self.ability.talents.e3_stats
 	if not IsServer() then
 		return
 	end
+	self.RemoveForDuel = true
 	self:OnRefresh()
 end
 
@@ -1047,6 +824,12 @@ end
 modifier_morphling_morph_custom_stun_cd = class(mod_hidden)
 
 modifier_morphling_morph_custom_burn = class(mod_hidden)
+function modifier_morphling_morph_custom_burn:GetStatusEffectName()
+	return "particles/status_fx/status_effect_naga_riptide.vpcf"
+end
+function modifier_morphling_morph_custom_burn:StatusEffectPriority()
+	return MODIFIER_PRIORITY_HIGH
+end
 function modifier_morphling_morph_custom_burn:OnCreated()
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
@@ -1085,18 +868,10 @@ function modifier_morphling_morph_custom_burn:OnIntervalThink()
 	DoDamage(self.damageTable, "modifier_morphling_attribute_1")
 
 	self.count = self.count + 1
-	if self.count >= self.ability.talents.e1_duration then
+	if self.count >= self.duration then
 		self:Destroy()
 		return
 	end
-end
-
-function modifier_morphling_morph_custom_burn:GetStatusEffectName()
-	return "particles/status_fx/status_effect_naga_riptide.vpcf"
-end
-
-function modifier_morphling_morph_custom_burn:StatusEffectPriority()
-	return MODIFIER_PRIORITY_HIGH
 end
 
 modifier_morphling_morph_custom_double = class(mod_hidden)
@@ -1153,7 +928,8 @@ end
 
 modifier_morphling_morph_custom_double_damage = class(mod_hidden)
 function modifier_morphling_morph_custom_double_damage:OnCreated()
-	self.damage = self:GetAbility().talents.e3_damage - 100
+	self.ability = self:GetAbility()
+	self.damage = self.ability.talents.e3_damage - 100
 end
 
 function modifier_morphling_morph_custom_double_damage:DeclareFunctions()
@@ -1164,4 +940,223 @@ end
 
 function modifier_morphling_morph_custom_double_damage:GetModifierDamageOutgoing_Percentage()
 	return self.damage
+end
+
+morphling_attribute_legendary_custom = class({})
+morphling_attribute_legendary_custom.talents = {}
+
+function morphling_attribute_legendary_custom:Init()
+	if not self:GetCaster() then
+		return
+	end
+	self.caster = self:GetCaster()
+
+	self.strike_duration = self:GetLevelSpecialValueFor("strike_duration", 1)
+	self.strike_bva = self:GetLevelSpecialValueFor("strike_bva", 1)
+	self.strike_stun = self:GetLevelSpecialValueFor("strike_stun", 1)
+	self.strike_cd = self:GetLevelSpecialValueFor("strike_cd", 1) / 100
+end
+
+function morphling_attribute_legendary_custom:UpdateTalents()
+	local caster = self:GetCaster()
+	if not self.init then
+		self.init = true
+		self.talents = {
+			e7_talent_cd = caster:GetTalentValue("modifier_morphling_attribute_7", "talent_cd", true),
+			e7_max = caster:GetTalentValue("modifier_morphling_attribute_7", "max", true),
+			e7_duration = caster:GetTalentValue("modifier_morphling_attribute_7", "duration", true),
+			e7_duration_k = caster:GetTalentValue("modifier_morphling_attribute_7", "duration_k", true),
+			e7_strike_duration = caster:GetTalentValue("modifier_morphling_attribute_7", "strike_duration", true),
+		}
+	end
+end
+
+function morphling_attribute_legendary_custom:GetCooldown()
+	return self.talents.e7_talent_cd or 0
+end
+
+function morphling_attribute_legendary_custom:OnAbilityPhaseStart()
+	local mod = self.caster:FindModifierByName("modifier_morphling_morph_custom_legendary_stack")
+	if not mod or mod:GetStackCount() <= 0 then
+		CustomGameEventManager:Send_ServerToPlayer(
+			PlayerResource:GetPlayer(self.caster:GetPlayerOwnerID()),
+			"CreateIngameErrorMessage",
+			{ message = "#dota_hud_error_no_charges" }
+		)
+		return false
+	end
+	return true
+end
+
+function morphling_attribute_legendary_custom:OnSpellStart()
+	local mod = self.caster:FindModifierByName("modifier_morphling_morph_custom_legendary_stack")
+	if not mod or mod:GetStackCount() <= 0 then
+		return
+	end
+
+	local duration = self.talents.e7_duration
+		* math.pow(mod:GetStackCount() / self.talents.e7_max, self.talents.e7_duration_k)
+	self.caster:AddNewModifier(self.caster, self, "modifier_morphling_morph_custom_legendary", { duration = duration })
+	self.caster:StartGestureWithPlaybackRate(ACT_DOTA_SPAWN, 1.2)
+	mod:Destroy()
+end
+
+function morphling_attribute_legendary_custom:CreateTalent()
+	if self.caster:HasModifier("modifier_morphling_replicate_custom") then
+		return
+	end
+	self:SetHidden(false)
+end
+
+modifier_morphling_morph_custom_legendary = class(mod_hidden)
+function modifier_morphling_morph_custom_legendary:GetStatusEffectName()
+	return "particles/butterfly_status.vpcf"
+end
+function modifier_morphling_morph_custom_legendary:StatusEffectPriority()
+	return MODIFIER_PRIORITY_ULTRA
+end
+function modifier_morphling_morph_custom_legendary:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	if not IsServer() then
+		return
+	end
+
+	self.RemoveForDuel = true
+
+	local agility = self.parent:GetBaseAgility()
+	local strength = self.parent:GetBaseStrength()
+
+	self.str_bonus = agility > strength and (agility - strength) or 0
+	self.agi_bonus = strength > agility and (strength - agility) or 0
+
+	self.agi_ability = self.parent.agi_ability
+	self.str_ability = self.parent.str_ability
+
+	if self.agi_ability then
+		if self.agi_ability:GetToggleState() then
+			self.agi_ability:ToggleAbility()
+		end
+		self.agi_ability:SetActivated(false)
+	end
+
+	if self.str_ability then
+		if self.str_ability:GetToggleState() then
+			self.str_ability:ToggleAbility()
+		end
+		self.str_ability:SetActivated(false)
+	end
+
+	self.parent:GenericParticle("particles/morphling/attribute_legendary_effect.vpcf", self)
+	self.parent:GenericParticle("particles/units/heroes/hero_morphling/morphling_morph_str.vpcf", self)
+
+	self.max = self.ability.talents.e7_max
+	self.time_max = self.ability.talents.e7_duration
+	self.visual_max = 5
+
+	self.particle = self.parent:GenericParticle("particles/morphling/attribute_legendary_stack.vpcf", self, true)
+
+	local radius = 250
+	local effect2 = ParticleManager:CreateParticle(
+		"particles/morphling/attribute_legendary_active.vpcf",
+		PATTACH_ABSORIGIN_FOLLOW,
+		self.parent
+	)
+	ParticleManager:SetParticleControl(effect2, 0, self.parent:GetAbsOrigin())
+	ParticleManager:SetParticleControl(effect2, 1, Vector(radius, radius, radius))
+	ParticleManager:ReleaseParticleIndex(effect2)
+
+	self.parent:EmitSound("Morph.Attribute_legendary_cast")
+	self.parent:EmitSound("Morph.Attribute_legendary_cast2")
+	self.parent:EmitSound("Morph.Attribute_legendary_loop")
+
+	self.ability:EndCd()
+	self.parent:CalculateStatBonus(true)
+
+	self:OnIntervalThink()
+	self:StartIntervalThink(0.1)
+end
+
+function modifier_morphling_morph_custom_legendary:OnIntervalThink()
+	if not IsServer() then
+		return
+	end
+
+	if self.agi_ability and self.agi_ability.tracker then
+		self.agi_ability.tracker:UpdateUI()
+	end
+
+	if not self.particle then
+		return
+	end
+
+	for i = 1, self.visual_max do
+		if i <= (math.floor((self:GetRemainingTime() - 0.1) / (self.time_max / self.visual_max)) + 1) then
+			ParticleManager:SetParticleControl(self.particle, i, Vector(1, 0, 0))
+		else
+			ParticleManager:SetParticleControl(self.particle, i, Vector(0, 0, 0))
+		end
+	end
+end
+
+function modifier_morphling_morph_custom_legendary:OnDestroy()
+	if not IsServer() then
+		return
+	end
+
+	if self.agi_ability and self.agi_ability.tracker then
+		self.agi_ability.tracker:UpdateUI()
+	end
+
+	self.parent:StopSound("Morph.Attribute_legendary_loop")
+
+	self.ability:StartCd()
+
+	if self.agi_ability then
+		self.agi_ability:SetActivated(true)
+	end
+
+	if self.str_ability then
+		self.str_ability:SetActivated(true)
+	end
+end
+
+function modifier_morphling_morph_custom_legendary:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_MODEL_SCALE,
+		MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
+		MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
+	}
+end
+
+function modifier_morphling_morph_custom_legendary:GetModifierModelScale()
+	return 35
+end
+
+function modifier_morphling_morph_custom_legendary:GetModifierBonusStats_Strength()
+	return self.str_bonus
+end
+
+function modifier_morphling_morph_custom_legendary:GetModifierBonusStats_Agility()
+	return self.agi_bonus
+end
+
+modifier_morphling_morph_custom_legendary_attack = class(mod_visible)
+function modifier_morphling_morph_custom_legendary_attack:GetTexture()
+	return "attribute_legendary"
+end
+function modifier_morphling_morph_custom_legendary_attack:OnCreated()
+	self.ability = self:GetAbility()
+	self.bva = self.ability.strike_bva
+end
+
+function modifier_morphling_morph_custom_legendary_attack:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT,
+	}
+end
+
+function modifier_morphling_morph_custom_legendary_attack:GetModifierBaseAttackTimeConstant()
+	return self.bva
 end

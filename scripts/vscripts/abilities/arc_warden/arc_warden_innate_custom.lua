@@ -39,13 +39,17 @@ function arc_warden_innate_custom:UpdateTalents(name)
 			has_w2 = 0,
 			w2_heal = 0,
 			w2_bonus = caster:GetTalentValue("modifier_arc_warden_field_2", "bonus", true),
-			w2_duration = caster:GetTalentValue("modifier_arc_warden_field_2", "duration", true),
 
 			has_w3 = 0,
 			w3_damage = 0,
 
 			has_e3 = 0,
 			e3_heal = 0,
+
+			has_r2 = 0,
+			r2_move = 0,
+			r2_range = 0,
+			r2_bonus = caster:GetTalentValue("modifier_arc_warden_double_2", "bonus", true),
 		}
 	end
 
@@ -64,6 +68,12 @@ function arc_warden_innate_custom:UpdateTalents(name)
 		self.talents.has_e3 = 1
 		self.talents.e3_heal = caster:GetTalentValue("modifier_arc_warden_spark_3", "heal") / 100
 		caster:AddDamageEvent_out(self.tracker, true)
+	end
+
+	if caster:HasTalent("modifier_arc_warden_double_2") then
+		self.talents.has_r2 = 1
+		self.talents.r2_move = caster:GetTalentValue("modifier_arc_warden_double_2", "move")
+		self.talents.r2_range = caster:GetTalentValue("modifier_arc_warden_double_2", "range")
 	end
 end
 
@@ -165,6 +175,8 @@ function modifier_arc_warden_ancients_ally_custom:DeclareFunctions()
 		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
 		MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE,
 		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
+		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
 	}
 end
 
@@ -201,19 +213,35 @@ function modifier_arc_warden_ancients_ally_custom:GetModifierAttackSpeedBonus_Co
 end
 
 function modifier_arc_warden_ancients_ally_custom:GetModifierBaseAttack_BonusDamage()
-	if self.parent:IsNull() then
+	if not IsValid(self.parent) then
 		return
 	end
 	return self.parent:GetAgility() * self.ability.talents.w3_damage
 end
 
-modifier_arc_warden_ancients_ally_custom_runes = class({})
-function modifier_arc_warden_ancients_ally_custom_runes:IsHidden()
-	return false
+function modifier_arc_warden_ancients_ally_custom:GetModifierMoveSpeedBonus_Constant()
+	if not IsValid(self.parent) then
+		return
+	end
+	if self.ability.talents.has_r2 == 0 then
+		return
+	end
+	return self.ability.talents.r2_move
+		* (self.parent:HasModifier("modifier_arc_warden_tempest_double_custom") and self.ability.talents.r2_bonus or 1)
 end
-function modifier_arc_warden_ancients_ally_custom_runes:IsPurgable()
-	return false
+
+function modifier_arc_warden_ancients_ally_custom:GetModifierAttackRangeBonus()
+	if not IsValid(self.parent) then
+		return
+	end
+	if self.ability.talents.has_r2 == 0 then
+		return
+	end
+	return self.ability.talents.r2_range
+		* (self.parent:HasModifier("modifier_arc_warden_tempest_double_custom") and self.ability.talents.r2_bonus or 1)
 end
+
+modifier_arc_warden_ancients_ally_custom_runes = class(mod_visible)
 function modifier_arc_warden_ancients_ally_custom_runes:RemoveOnDeath()
 	return false
 end

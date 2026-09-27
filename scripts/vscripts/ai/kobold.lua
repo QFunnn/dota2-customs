@@ -8,281 +8,71 @@
 ]]
 
 
-find_behavior = { data32 = {} }
-for i = 1, 32 do
-	find_behavior.data32[i] = 2 ^ (32 - i)
-end
-
-function find_behavior:d2b(arg)
-	local tr = {}
-	for i = 1, 32 do
-		if arg >= self.data32[i] then
-			tr[i] = 1
-			arg = arg - self.data32[i]
-		else
-			tr[i] = 0
-		end
-	end
-	return tr
-end --bit:d2b
-
-function find_behavior:b2d(arg)
-	local nr = 0
-	for i = 1, 32 do
-		if arg[i] == 1 then
-			nr = nr + 2 ^ (32 - i)
-		end
-	end
-	return nr
-end
-
-function find_behavior:_and(a, b)
-	local op1 = self:d2b(a)
-	local op2 = self:d2b(b)
-	local r = {}
-
-	for i = 1, 32 do
-		if op1[i] == 1 and op2[i] == 1 then
-			r[i] = 1
-		else
-			r[i] = 0
-		end
-	end
-	return self:b2d(r)
-end
-
-function ContainsValue(sum, nValue)
-	if type(sum) == "userdata" then
-		sum = tonumber(tostring(sum))
-	end
-
-	if find_behavior:_and(sum, nValue) == nValue then
-		return true
-	else
-		return false
-	end
-end
-
-check_mods = {
-	{ "npc_werewolf_rupture", "modifier_bloodseeker_rupture" },
-	{ "npc_ogre_root", "modifier_ogre_root" },
-	{ "npc_centaur_double", "modifier_centaur_double_slow" },
-	{ "npc_satyr_purge", "modifier_satyr_slow" },
-	{ "npc_satyr_stomp", "modifier_stomp_break" },
-	{ "npc_arc_field", "modifier_arc_field_buf" },
-	{ "npc_dazzle_grave", "modifier_dazzle_grave" },
-	{ "npc_frostbitten_heal", "modifier_frostbitten_heal" },
-	{ "npc_silencer_lastword", "modifier_silencer_lastword_debuff" },
+local check_mods = {
+	["npc_werewolf_rupture"] = "modifier_bloodseeker_rupture",
+	["npc_ogre_root"] = "modifier_ogre_root",
+	["npc_centaur_double"] = "modifier_centaur_double_slow",
+	["npc_satyr_purge"] = "modifier_satyr_slow",
+	["npc_satyr_stomp"] = "modifier_stomp_break",
+	["npc_arc_field"] = "modifier_arc_field_buf",
+	["npc_dazzle_grave"] = "modifier_dazzle_grave",
+	["npc_frostbitten_heal"] = "modifier_frostbitten_heal",
+	["npc_silencer_lastword"] = "modifier_silencer_lastword_debuff",
 }
 
-check_mods_friend = {
-	{ "npc_frostbitten_spam", "modifier_frostbitten_spam" },
+local check_mods_friend = {
+	["npc_frostbitten_spam"] = "modifier_frostbitten_spam",
 }
 
-not_require_attack = {
+local not_require_attack = {
 	["npc_troll_summon"] = true,
 	["npc_skelet_aura"] = true,
 }
 
-check_self = {
-	"npc_arc_field",
+local check_self = {
+	["npc_arc_field"] = true,
 }
 
-require_friend = {
-	"npc_wolf_howl",
+local require_friend = {
+	["npc_wolf_howl"] = true,
 }
 
-radius_check = {
-	"npc_arc_knockback",
+local radius_check = {
+	["npc_arc_knockback"] = true,
 }
 
-check_health = {
+local check_health = {
 	["npc_cone_armor"] = true,
 }
 
-dont_check_order = {
+local dont_check_order = {
 	["npc_cone_armor"] = true,
 	["npc_skelet_aura"] = true,
 	["npc_treant_passive"] = true,
 }
 
-new_return = {
-	{ "npc_wolf_howl", 0.5 },
-	{ "npc_satyr_manaburn", 0.5 },
-	{ "npc_frostbitten_spam", 0.5 },
-	{ "npc_frostbitten_heal", 0.5 },
-	{ "npc_dazzle_grave", 0.7 },
+local new_return = {
+	["npc_wolf_howl"] = 0.5,
+	["npc_satyr_manaburn"] = 0.5,
+	["npc_frostbitten_spam"] = 0.5,
+	["npc_frostbitten_heal"] = 0.5,
+	["npc_dazzle_grave"] = 0.7,
 }
 
-function check_mod_ally(entity, ability)
-	local name = ability:GetAbilityName()
-	local flag = false
-	local mod = ""
-
-	for i = 1, #check_mods_friend do
-		if check_mods_friend[i][1] == name then
-			mod = check_mods_friend[i][2]
-			flag = true
-			break
-		end
-	end
-
-	if flag == false then
-		return true
-	end
-
-	for i = 1, #entity.ally do
-		if entity.ally[i].ability ~= nil and not entity.ally[i]:IsNull() then
-			if
-				entity.ally[i]:IsAlive()
-				and entity.ally[i]:HasModifier(mod)
-				and entity.number > entity.ally[i].number
-			then
-				return false
-			end
-		end
-	end
-
-	return true
-end
-
-function check_mod(ability)
-	local name = ability:GetAbilityName()
-	for i = 1, #check_mods do
-		if check_mods[i][1] == name then
-			return check_mods[i][2]
-		end
-	end
-	return "-1"
-end
-
-function check_radius(ability)
-	local name = ability:GetAbilityName()
-	for i = 1, #radius_check do
-		if radius_check[i] == name then
-			return true
-		end
-	end
-	return false
-end
-
-function check_self_buff(ability)
-	local name = ability:GetAbilityName()
-	for i = 1, #check_self do
-		if check_self[i] == name then
-			return true
-		end
-	end
-	return false
-end
-
-function check_friend(ability)
-	local name = ability:GetAbilityName()
-	for i = 1, #require_friend do
-		if require_friend[i] == name then
-			return true
-		end
-	end
-	return false
-end
-
-function check_return(ability)
-	local name = ability:GetAbilityName()
-	for i = 1, #new_return do
-		if new_return[i][1] == name then
-			return new_return[i][2]
-		end
-	end
-	return -1
-end
-
-function check_order(entity)
-	local ability = entity.ability
-
-	if dont_check_order[ability:GetName()] then
-		return true
-	end
-
-	for i = 1, #entity.ally do
-		if entity.ally[i].ability ~= nil and not entity.ally[i]:IsNull() then
-			if
-				entity.ally[i]:IsAlive()
-				and entity.ally[i].ability:GetAbilityName() == ability:GetAbilityName()
-				and entity.number > entity.ally[i].number
-			then
-				if entity.ally[i].ability:GetCooldownTimeRemaining() == 0 then
-					return false
-				end
-			end
-		end
-	end
-	return true
-end
-
-function Spawn(entityKeyValues)
-	if not IsServer() then
-		return
-	end
+local function bevavior()
 	if not IsValidEntity(thisEntity) then
 		return
 	end
-
-	thisEntity.init = false
-	thisEntity.tower = nil
-	thisEntity.ability = nil
-	thisEntity.abilityBehavior = ""
-	for i = 0, thisEntity:GetAbilityCount() - 1 do
-		local a = thisEntity:GetAbilityByIndex(i)
-		if not a then
-			break
-		end
-
-		if not ContainsValue(a:GetBehavior(), DOTA_ABILITY_BEHAVIOR_PASSIVE) then
-			thisEntity.ability = a
-		else
-			break
-		end
-
-		if ContainsValue(thisEntity.ability:GetBehavior(), DOTA_ABILITY_BEHAVIOR_NO_TARGET) then
-			thisEntity.abilityBehavior = "NoTarget"
-		end
-		if ContainsValue(thisEntity.ability:GetBehavior(), DOTA_ABILITY_BEHAVIOR_POINT) then
-			thisEntity.abilityBehavior = "Point"
-		end
-
-		if
-			ContainsValue(thisEntity.ability:GetBehavior(), DOTA_ABILITY_BEHAVIOR_UNIT_TARGET)
-			and ContainsValue(thisEntity.ability:GetAbilityTargetTeam(), DOTA_UNIT_TARGET_TEAM_FRIENDLY)
-		then
-			thisEntity.abilityBehavior = "TargetFriendly"
-		end
-
-		if
-			ContainsValue(thisEntity.ability:GetBehavior(), DOTA_ABILITY_BEHAVIOR_UNIT_TARGET)
-			and ContainsValue(thisEntity.ability:GetAbilityTargetTeam(), DOTA_UNIT_TARGET_TEAM_ENEMY)
-		then
-			thisEntity.abilityBehavior = "TargetEnemy"
-		end
-		break
-	end
-
-	thisEntity:SetContextThink("bevavior", function()
-		local _, result = xpcall(bevavior, function(a, b, c)
-			print(a, b, c)
-		end)
-		return result or 1
-	end, 0.1)
-end
-
-function bevavior()
-	if not IsValidEntity(thisEntity) then
-		return
+	if not thisEntity:IsAlive() then
+		return -1
 	end
 	if not thisEntity.host_team then
 		return 0.5
 	end
 
-	if not towers[thisEntity.host_team] or not towers[thisEntity.host_team]:IsAlive() then
+	local tower = towers[thisEntity.host_team]
+
+	if not tower or not tower:IsAlive() then
 		thisEntity:AddNewModifier(thisEntity, nil, "modifier_death", {})
 		thisEntity:Kill(nil, nil)
 		return 1
@@ -290,34 +80,72 @@ function bevavior()
 
 	if not thisEntity.init then
 		thisEntity.init = true
-
 		thisEntity.start_abs = thisEntity:GetAbsOrigin()
-		thisEntity.tower = towers[thisEntity.host_team]
-		thisEntity.tower_location = towers[thisEntity.host_team]:GetAbsOrigin()
+		thisEntity.tower = tower
+		thisEntity.tower_location = tower:GetAbsOrigin()
+
+		local first = thisEntity:GetAbilityByIndex(0)
+
+		if IsValid(first) and bit.band(first:GetBehaviorInt(), DOTA_ABILITY_BEHAVIOR_PASSIVE) == 0 then
+			local behavior = first:GetBehaviorInt()
+			local team = first:GetAbilityTargetTeam()
+			local name = first:GetAbilityName()
+
+			thisEntity.ability = first
+			thisEntity.ability_name = name
+			thisEntity.ability_mod = check_mods[name]
+			thisEntity.ability_ally_mod = check_mods_friend[name]
+			thisEntity.ability_delay = new_return[name] or first:GetCastPoint() * 1.5
+			thisEntity.ability_range = first:GetCastRange(thisEntity:GetAbsOrigin(), thisEntity)
+
+			if
+				bit.band(behavior, DOTA_ABILITY_BEHAVIOR_UNIT_TARGET) ~= 0
+				and bit.band(team, DOTA_UNIT_TARGET_TEAM_ENEMY) ~= 0
+			then
+				thisEntity.abilityBehavior = "TargetEnemy"
+			elseif
+				bit.band(behavior, DOTA_ABILITY_BEHAVIOR_UNIT_TARGET) ~= 0
+				and bit.band(team, DOTA_UNIT_TARGET_TEAM_FRIENDLY) ~= 0
+			then
+				thisEntity.abilityBehavior = "TargetFriendly"
+			elseif bit.band(behavior, DOTA_ABILITY_BEHAVIOR_POINT) ~= 0 then
+				thisEntity.abilityBehavior = "Point"
+			elseif bit.band(behavior, DOTA_ABILITY_BEHAVIOR_NO_TARGET) ~= 0 then
+				thisEntity.abilityBehavior = "NoTarget"
+			end
+
+			if check_health[name] or thisEntity.abilityBehavior == "TargetFriendly" then
+				thisEntity.ability_health = first:GetSpecialValueFor("thealth")
+			end
+
+			if radius_check[name] then
+				thisEntity.ability_radius = first:GetSpecialValueFor("radius_to_use")
+			end
+
+			if name == "npc_werewolf_rupture" then
+				thisEntity.ability_rupture = first:GetSpecialValueFor("range")
+			end
+		end
 	end
 
-	if thisEntity.ally == nil and not thisEntity.summoned then
+	if not thisEntity.ally and not thisEntity.summoned then
 		return 0.5
 	end
-	if GameRules:IsGamePaused() == true then
+	if GameRules:IsGamePaused() then
 		return 0.5
 	end
 	if thisEntity:IsChanneling() then
 		return 0.5
 	end
-
 	if thisEntity:HasModifier("modifier_return_to_path") then
 		return 0.3
 	end
-	local path_dist = thisEntity:GetPathPoint(true)
-	if path_dist >= 700 then
+
+	if thisEntity:GetPathPoint(true) >= 700 then
 		thisEntity:AddNewModifier(thisEntity, nil, "modifier_return_to_path", { duration = 6 })
 		return 1
 	end
 
-	if not thisEntity:IsAlive() then
-		return -1
-	end
 	if not IsValidEntity(thisEntity.tower) then
 		return -1
 	end
@@ -325,171 +153,159 @@ function bevavior()
 		return -1
 	end
 
-	---------------------------------------------------------------------------------------------------
+	local ability = thisEntity.ability
+	local cast = IsValid(ability)
+		and not thisEntity:IsSilenced()
+		and not thisEntity:IsHexed()
+		and ability:IsFullyCastable()
+	local name = cast and thisEntity.ability_name
 
-	local enemy_for_ability = nil
-	local friends_for_ability = nil
-	local enemy_for_attack = nil
-
-	enemy_for_ability = FindUnitsInRadius(
-		thisEntity:GetTeamNumber(),
-		thisEntity:GetAbsOrigin(),
-		nil,
-		1000,
-		DOTA_UNIT_TARGET_TEAM_ENEMY,
-		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-		DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE,
-		FIND_CLOSEST,
-		false
-	)
-	friends_for_ability = FindUnitsInRadius(
-		thisEntity:GetTeamNumber(),
-		thisEntity:GetAbsOrigin(),
-		nil,
-		1000,
-		DOTA_UNIT_TARGET_TEAM_FRIENDLY,
-		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-		DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE,
-		FIND_ANY_ORDER,
-		false
-	)
-	enemy_for_attack = FindUnitsInRadius(
-		thisEntity:GetTeamNumber(),
-		thisEntity:GetAbsOrigin(),
-		nil,
-		1000,
-		DOTA_UNIT_TARGET_TEAM_ENEMY,
-		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-		DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE
-			+ DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
-			+ DOTA_UNIT_TARGET_FLAG_INVULNERABLE
-			+ DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD,
-		FIND_CLOSEST,
-		false
-	)
-
-	local control = false
-	if thisEntity:IsSilenced() or thisEntity:IsHexed() then
-		control = true
+	if cast and not dont_check_order[name] then
+		for _, ally in pairs(thisEntity.ally) do
+			if
+				ally.ability
+				and not ally:IsNull()
+				and ally:IsAlive()
+				and ally.ability:GetAbilityName() == name
+				and thisEntity.number > ally.number
+				and ally.ability:GetCooldownTimeRemaining() == 0
+			then
+				cast = false
+				break
+			end
+		end
 	end
 
-	if thisEntity.ability ~= nil and control == false then
-		local nReturn = thisEntity.ability:GetCastPoint() * 1.5
-		if check_return(thisEntity.ability) ~= -1 then
-			nReturn = check_return(thisEntity.ability)
-		end
+	if cast then
+		local behavior = thisEntity.abilityBehavior
+		local mod = thisEntity.ability_mod
+		local delay = thisEntity.ability_delay
+		local origin = thisEntity:GetAbsOrigin()
 
-		if thisEntity.ability:IsFullyCastable() then
-			if thisEntity.abilityBehavior == "TargetEnemy" then
-				if
-					IsValidEntity(enemy_for_ability[1])
-					and check_order(thisEntity)
-					and not enemy_for_ability[1]:HasModifier(check_mod(thisEntity.ability))
-					and check_mod_ally(thisEntity, thisEntity.ability)
-					and (
-						(thisEntity:GetAbsOrigin() - enemy_for_ability[1]:GetAbsOrigin()):Length2D()
-							<= thisEntity.ability:GetCastRange(thisEntity:GetAbsOrigin(), thisEntity)
-						or (
-							(thisEntity.ability:GetName() == "npc_werewolf_rupture")
-							and (thisEntity:GetAbsOrigin() - enemy_for_ability[1]:GetAbsOrigin()):Length2D()
-								<= thisEntity.ability:GetSpecialValueFor("range")
-						)
-					)
-				then
-					thisEntity:CastAbilityOnTarget(enemy_for_ability[1], thisEntity.ability, 1)
-					return nReturn
-				end
+		if behavior == "TargetEnemy" then
+			local target = thisEntity:FindTargets(1000, nil, nil, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE)[1]
+			local ally_mod = thisEntity.ability_ally_mod
+			local use = target and (not mod or not target:HasModifier(mod))
+
+			if use then
+				local distance = (origin - target:GetAbsOrigin()):Length2D()
+				use = distance <= thisEntity.ability_range
+					or (thisEntity.ability_rupture and distance <= thisEntity.ability_rupture)
 			end
 
-			if thisEntity.abilityBehavior == "NoTarget" then
-				if
-					(
-						(
-							thisEntity:GetAttackTarget() ~= nil
-							and not thisEntity:GetAttackTarget():HasModifier(check_mod(thisEntity.ability))
-						) or not_require_attack[thisEntity.ability:GetName()]
-					)
-					and (not check_health[thisEntity.ability:GetName()] or (thisEntity:GetHealthPercent() <= thisEntity.ability:GetSpecialValueFor(
-						"thealth"
-					)))
-					and ((not check_self_buff(thisEntity.ability)) or (not thisEntity:HasModifier(
-						check_mod(thisEntity.ability)
-					)))
-					and ((not check_radius(thisEntity.ability) or not_require_attack[thisEntity.ability:GetName()]) or ((
-						thisEntity:GetAbsOrigin() - thisEntity:GetAttackTarget():GetAbsOrigin()
-					):Length2D() <= thisEntity.ability:GetSpecialValueFor("radius_to_use")))
-					and check_order(thisEntity)
-					and ((not check_friend(thisEntity.ability)) or (#friends_for_ability > 1))
-				then
-					thisEntity:CastAbilityNoTarget(thisEntity.ability, 1)
-					return nReturn
-				end
-			end
-
-			if thisEntity.abilityBehavior == "Point" then
-				if
-					IsValidEntity(enemy_for_ability[1])
-					and check_order(thisEntity)
-					and (thisEntity:GetAbsOrigin() - enemy_for_ability[1]:GetAbsOrigin()):Length2D()
-						<= thisEntity.ability:GetCastRange(thisEntity:GetAbsOrigin(), thisEntity)
-				then
-					thisEntity:CastAbilityOnPosition(enemy_for_ability[1]:GetAbsOrigin(), thisEntity.ability, 1)
-					return nReturn
-				end
-			end
-
-			if thisEntity.abilityBehavior == "TargetFriendly" then
-				if check_order(thisEntity) then
-					if IsValidEntity(friends_for_ability[1]) then
-						for _, friend in pairs(friends_for_ability) do
-							if
-								friend:GetHealthPercent() <= thisEntity.ability:GetSpecialValueFor("thealth")
-								and friend:GetUnitName() ~= "npc_psi_blades_crystal"
-								and friend:GetUnitName() ~= "npc_psi_blades_crystal_mini"
-								and (thisEntity:GetAbsOrigin() - friend:GetAbsOrigin()):Length2D() <= thisEntity.ability:GetCastRange(
-									thisEntity:GetAbsOrigin(),
-									thisEntity
-								)
-								and not friend:HasModifier(check_mod(thisEntity.ability))
-							then
-								thisEntity:CastAbilityOnTarget(friend, thisEntity.ability, 1)
-								return nReturn
-							end
-						end
+			if use and ally_mod then
+				for _, ally in pairs(thisEntity.ally) do
+					if
+						ally.ability
+						and not ally:IsNull()
+						and ally:IsAlive()
+						and ally:HasModifier(ally_mod)
+						and thisEntity.number > ally.number
+					then
+						use = false
+						break
 					end
 				end
 			end
+
+			if use then
+				thisEntity:CastAbilityOnTarget(target, ability, 1)
+				return delay
+			end
+		elseif behavior == "NoTarget" then
+			local target = thisEntity:GetAttackTarget()
+			local use = not_require_attack[name] or (target and (not mod or not target:HasModifier(mod)))
+
+			if use and check_health[name] then
+				use = thisEntity:GetHealthPercent() <= thisEntity.ability_health
+			end
+
+			if use and check_self[name] then
+				use = not mod or not thisEntity:HasModifier(mod)
+			end
+
+			if use and radius_check[name] and not not_require_attack[name] then
+				use = (origin - target:GetAbsOrigin()):Length2D() <= thisEntity.ability_radius
+			end
+
+			if use and require_friend[name] then
+				use = #thisEntity:FindFriends(1000, nil, FIND_ANY_ORDER, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE) > 1
+			end
+
+			if use then
+				thisEntity:CastAbilityNoTarget(ability, 1)
+				return delay
+			end
+		elseif behavior == "Point" then
+			local target = thisEntity:FindTargets(1000, nil, nil, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE)[1]
+
+			if target and (origin - target:GetAbsOrigin()):Length2D() <= thisEntity.ability_range then
+				thisEntity:CastAbilityOnPosition(target:GetAbsOrigin(), ability, 1)
+				return delay
+			end
+		elseif behavior == "TargetFriendly" then
+			local health = thisEntity.ability_health
+			local range = thisEntity.ability_range
+
+			for _, friend in pairs(thisEntity:FindFriends(1000, nil, FIND_ANY_ORDER, DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE)) do
+				local friend_name = friend:GetUnitName()
+				if
+					friend:GetHealthPercent() <= health
+					and friend_name ~= "npc_psi_blades_crystal"
+					and friend_name ~= "npc_psi_blades_crystal_mini"
+					and (origin - friend:GetAbsOrigin()):Length2D() <= range
+					and (not mod or not friend:HasModifier(mod))
+				then
+					thisEntity:CastAbilityOnTarget(friend, ability, 1)
+					return delay
+				end
+			end
 		end
 	end
 
-	local enemy = nil
-
-	if
-		IsValidEntity(enemy_for_attack[1])
-		and not enemy_for_attack[1]:IgnoredByCreeps()
-		and (enemy_for_attack[1]:GetAbsOrigin() - thisEntity.tower:GetAbsOrigin()):Length2D() > 800
-	then
-		enemy = enemy_for_attack[1]
+	if (thisEntity:GetAbsOrigin() - thisEntity.tower_location):Length2D() <= 1000 then
+		thisEntity:SetForceAttackTarget(thisEntity.tower)
+		return 0.5
 	end
 
-	for _, target in pairs(enemy_for_attack) do
+	local enemies = thisEntity:FindTargets(
+		1000,
+		nil,
+		nil,
+		DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD
+	)
+	local enemy = enemies[1]
+
+	if enemy and (enemy:IgnoredByCreeps() or (enemy:GetAbsOrigin() - thisEntity.tower_location):Length2D() <= 800) then
+		enemy = nil
+	end
+
+	for _, target in pairs(enemies) do
 		if
-			IsValidEntity(target)
-			and not target:IgnoredByCreeps()
-			and (target:GetAbsOrigin() - thisEntity.tower:GetAbsOrigin()):Length2D() > 800
+			not target:IgnoredByCreeps()
 			and not target:IsInvulnerable()
 			and not target:IsAttackImmune()
+			and (target:GetAbsOrigin() - thisEntity.tower_location):Length2D() > 800
 		then
 			enemy = target
 			break
 		end
 	end
 
-	if IsValidEntity(enemy) and (thisEntity:GetAbsOrigin() - thisEntity.tower_location):Length2D() > 1000 then
-		thisEntity:SetForceAttackTarget(enemy)
-	else
-		thisEntity:SetForceAttackTarget(thisEntity.tower)
+	thisEntity:SetForceAttackTarget(enemy or thisEntity.tower)
+	return 0.5
+end
+
+function Spawn()
+	if not IsServer() then
+		return
+	end
+	if not IsValidEntity(thisEntity) then
+		return
 	end
 
-	return 0.5
+	thisEntity:SetContextThink("bevavior", function()
+		local _, result = xpcall(bevavior, print)
+		return result or 1
+	end, 0.1)
 end

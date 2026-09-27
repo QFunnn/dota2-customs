@@ -20,7 +20,6 @@ LinkLuaModifier(
 )
 
 witch_doctor_scepter_ability_custom = class({})
-
 function witch_doctor_scepter_ability_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
@@ -43,22 +42,32 @@ function witch_doctor_scepter_ability_custom:Precache(context)
 	PrecacheResource("particle", "particles/witch_doctor/scepter_heal.vpcf", context)
 end
 
-function witch_doctor_scepter_ability_custom:OnSpellStart()
-	local caster = self:GetCaster()
-	local target = self:GetCursorTarget()
-	local speed = self:GetSpecialValueFor("speed")
+function witch_doctor_scepter_ability_custom:Init()
+	if not self:GetCaster() then
+		return
+	end
+	self.caster = self:GetCaster()
 
-	caster:EmitSound("WD.Scepter_cast")
-	caster:EmitSound("WD.Scepter_cast2")
-	caster:EmitSound("WD.Scepter_cast_vo")
+	self.speed = self:GetLevelSpecialValueFor("speed", 1)
+	self.duration = self:GetLevelSpecialValueFor("duration", 1)
+	self.heal_pct = self:GetLevelSpecialValueFor("heal_pct", 1) / 100
+	self.damage_pct = self:GetLevelSpecialValueFor("damage_pct", 1) / 100
+end
+
+function witch_doctor_scepter_ability_custom:OnSpellStart()
+	local target = self:GetCursorTarget()
+
+	self.caster:EmitSound("WD.Scepter_cast")
+	self.caster:EmitSound("WD.Scepter_cast2")
+	self.caster:EmitSound("WD.Scepter_cast_vo")
 
 	local info = {
 		Target = target,
-		Source = caster,
+		Source = self.caster,
 		Ability = self,
 		iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_1,
 		EffectName = "particles/units/heroes/hero_alchemist/alchemist_berserk_potion_projectile.vpcf",
-		iMoveSpeed = speed,
+		iMoveSpeed = self.speed,
 		bDodgeable = false,
 		bVisibleToEnemies = true,
 		bProvidesVision = false,
@@ -74,13 +83,39 @@ function witch_doctor_scepter_ability_custom:OnProjectileHit(target, vLocation)
 		return
 	end
 
-	local caster = self:GetCaster()
-	local duration = self:GetSpecialValueFor("duration")
-
-	target:AddNewModifier(caster, self, "modifier_witch_doctor_scepter_ability_custom", { duration = duration })
+	target:AddNewModifier(
+		self.caster,
+		self,
+		"modifier_witch_doctor_scepter_ability_custom",
+		{ duration = self.duration }
+	)
 end
 
 modifier_witch_doctor_scepter_ability_custom = class(mod_visible)
+function modifier_witch_doctor_scepter_ability_custom:GetStatusEffectName()
+	return "particles/status_fx/status_effect_nullifier.vpcf"
+end
+function modifier_witch_doctor_scepter_ability_custom:StatusEffectPriority()
+	return MODIFIER_PRIORITY_HIGH
+end
+function modifier_witch_doctor_scepter_ability_custom:IsAura()
+	return true
+end
+function modifier_witch_doctor_scepter_ability_custom:GetAuraDuration()
+	return 0
+end
+function modifier_witch_doctor_scepter_ability_custom:GetAuraRadius()
+	return 1200
+end
+function modifier_witch_doctor_scepter_ability_custom:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_ENEMY
+end
+function modifier_witch_doctor_scepter_ability_custom:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
+end
+function modifier_witch_doctor_scepter_ability_custom:GetModifierAura()
+	return "modifier_witch_doctor_scepter_ability_custom_aura"
+end
 function modifier_witch_doctor_scepter_ability_custom:OnCreated(table)
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
@@ -94,8 +129,7 @@ function modifier_witch_doctor_scepter_ability_custom:OnCreated(table)
 	self.parent:EmitSound("WD.Scepter_target2")
 	self.parent:EmitSound("WD.Scepter_target3")
 
-	self.heal_pct = self.ability:GetSpecialValueFor("heal_pct") / 100
-	self.damage_pct = self.ability:GetSpecialValueFor("damage_pct") / 100
+	self.heal_pct = self.ability.heal_pct
 
 	self.damageTable = {
 		attacker = self.caster,
@@ -139,31 +173,6 @@ function modifier_witch_doctor_scepter_ability_custom:GetDisableHealing()
 	return 1
 end
 
-function modifier_witch_doctor_scepter_ability_custom:GetStatusEffectName()
-	return "particles/status_fx/status_effect_nullifier.vpcf"
-end
-function modifier_witch_doctor_scepter_ability_custom:StatusEffectPriority()
-	return MODIFIER_PRIORITY_HIGH
-end
-function modifier_witch_doctor_scepter_ability_custom:IsAura()
-	return true
-end
-function modifier_witch_doctor_scepter_ability_custom:GetAuraDuration()
-	return 0
-end
-function modifier_witch_doctor_scepter_ability_custom:GetAuraRadius()
-	return 1200
-end
-function modifier_witch_doctor_scepter_ability_custom:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_ENEMY
-end
-function modifier_witch_doctor_scepter_ability_custom:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
-end
-function modifier_witch_doctor_scepter_ability_custom:GetModifierAura()
-	return "modifier_witch_doctor_scepter_ability_custom_aura"
-end
-
 modifier_witch_doctor_scepter_ability_custom_aura = class(mod_hidden)
 function modifier_witch_doctor_scepter_ability_custom_aura:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
@@ -176,7 +185,7 @@ function modifier_witch_doctor_scepter_ability_custom_aura:OnCreated()
 	if not IsServer() then
 		return
 	end
-	self.damage_pct = self.ability:GetSpecialValueFor("damage_pct") / 100
+	self.damage_pct = self.ability.damage_pct
 end
 
 function modifier_witch_doctor_scepter_ability_custom_aura:NoDamage(params)

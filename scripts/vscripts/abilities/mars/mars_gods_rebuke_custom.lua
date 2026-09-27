@@ -65,6 +65,7 @@ function mars_gods_rebuke_custom:Precache(context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_gods_strength.vpcf", context)
 	PrecacheResource("particle", "particles/wraith_king/reinc_shield.vpcf", context)
 	PrecacheResource("particle", "particles/mars/rebuke_legenadry_head.vpcf", context)
+	PrecacheResource("particle", "particles/lc_odd_proc_.vpcf", context)
 end
 
 function mars_gods_rebuke_custom:UpdateTalents(name)
@@ -167,7 +168,7 @@ function mars_gods_rebuke_custom:GetCooldown(iLevel)
 	if self.caster:HasModifier("modifier_mars_gods_rebuke_custom_legendary") then
 		k = 1 + self.talents.w7_cd_inc
 	end
-	return (self.BaseClass.GetCooldown(self, iLevel) + (self.talents.w2_cd and self.talents.w2_cd or 0)) * k
+	return (self.BaseClass.GetCooldown(self, iLevel) + (self.talents.w2_cd or 0)) * k
 end
 
 function mars_gods_rebuke_custom:GetManaCost(level)
@@ -178,7 +179,7 @@ function mars_gods_rebuke_custom:GetManaCost(level)
 end
 
 function mars_gods_rebuke_custom:GetRadius()
-	return (self.radius and self.radius or 0) + (self.talents.has_h5 == 1 and self.talents.h5_radius or 0)
+	return (self.radius or 0) + (self.talents.has_h5 == 1 and self.talents.h5_radius or 0)
 end
 
 function mars_gods_rebuke_custom:GetAOERadius()
@@ -206,12 +207,7 @@ function mars_gods_rebuke_custom:OnSpellStart(skip_charge)
 		point = origin + self.caster:GetForwardVector() * 5
 	end
 
-	if
-		self.ability.talents.has_h5 == 1
-		and not skip_charge
-		and not self.parent:IsLeashed()
-		and not self.parent:IsRooted()
-	then
+	if self.talents.has_h5 == 1 and not skip_charge and not self.caster:IsLeashed() and not self.caster:IsRooted() then
 		local dir = point - origin
 		dir.z = 0
 
@@ -274,7 +270,7 @@ function mars_gods_rebuke_custom:OnSpellStart(skip_charge)
 				)
 
 				if not enemy:HasModifier("modifier_mars_spear_custom_debuff") then
-					if self.talents.has_e7 == 1 and self.ability.talents.has_w4 == 1 then
+					if self.talents.has_e7 == 1 and self.talents.has_w4 == 1 then
 						local point = self.caster:GetAbsOrigin() + enemy_direction * self.talents.w4_min_distance
 						distance = (point - enemy:GetAbsOrigin()):Length2D()
 						if (origin - enemy:GetAbsOrigin()):Length2D() <= self.talents.w4_min_distance then
@@ -355,15 +351,15 @@ function mars_gods_rebuke_custom:OnSpellStart(skip_charge)
 					self.particle = ParticleManager:CreateParticle(
 						"particles/wraith_king/reinc_shield.vpcf",
 						PATTACH_CUSTOMORIGIN_FOLLOW,
-						self.parent
+						self.caster
 					)
 					ParticleManager:SetParticleControlEnt(
 						self.particle,
 						0,
-						self.parent,
+						self.caster,
 						PATTACH_POINT_FOLLOW,
 						"attach_hitloc",
-						self.parent:GetAbsOrigin(),
+						self.caster:GetAbsOrigin(),
 						true
 					)
 					self.shield_mod:AddParticle(self.particle, false, false, -1, false, false)
@@ -459,6 +455,12 @@ modifier_mars_gods_rebuke_custom_slow = class(mod_hidden)
 function modifier_mars_gods_rebuke_custom_slow:IsPurgable()
 	return true
 end
+function modifier_mars_gods_rebuke_custom_slow:GetStatusEffectName()
+	return "particles/status_fx/status_effect_brewmaster_thunder_clap.vpcf"
+end
+function modifier_mars_gods_rebuke_custom_slow:StatusEffectPriority()
+	return MODIFIER_PRIORITY_NORMAL
+end
 function modifier_mars_gods_rebuke_custom_slow:OnCreated(table)
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
@@ -483,14 +485,6 @@ end
 
 function modifier_mars_gods_rebuke_custom_slow:GetModifierMoveSpeedBonus_Percentage()
 	return self.slow
-end
-
-function modifier_mars_gods_rebuke_custom_slow:GetStatusEffectName()
-	return "particles/status_fx/status_effect_brewmaster_thunder_clap.vpcf"
-end
-
-function modifier_mars_gods_rebuke_custom_slow:StatusEffectPriority()
-	return MODIFIER_PRIORITY_NORMAL
 end
 
 modifier_mars_gods_rebuke_custom_tracker = class(mod_hidden)
@@ -590,11 +584,7 @@ function modifier_mars_gods_rebuke_custom_charge:OnCreated(table)
 	self.bkb = self.parent:AddNewModifier(self.parent, self.ability, "modifier_generic_debuff_immune", {})
 
 	self.point = GetGroundPosition(Vector(table.x, table.y, 0), nil)
-	self.dir = (self.point - self.parent:GetAbsOrigin()):Normalized()
-	self.dir.z = 0
-
-	self.parent:FaceTowards(self.point)
-	self.parent:SetForwardVector(self.dir)
+	self.parent:FacePoint(self.point)
 
 	self.anim = false
 	self.parent:EmitSound("Mars.Rebuke_charge")
@@ -747,7 +737,6 @@ function mars_avatar_custom:UpdateTalents(name)
 	if not self.init then
 		self.init = true
 		self.talents = {
-			has_w7 = 0,
 			w7_duration = caster:GetTalentValue("modifier_mars_rebuke_7", "duration", true),
 			w7_max = caster:GetTalentValue("modifier_mars_rebuke_7", "max", true),
 			w7_talent_cd = caster:GetTalentValue("modifier_mars_rebuke_7", "talent_cd", true),
@@ -756,7 +745,7 @@ function mars_avatar_custom:UpdateTalents(name)
 end
 
 function mars_avatar_custom:GetCooldown()
-	return self.talents.w7_talent_cd and self.talents.w7_talent_cd or 0
+	return self.talents.w7_talent_cd or 0
 end
 
 function mars_avatar_custom:OnSpellStart()

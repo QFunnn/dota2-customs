@@ -894,7 +894,7 @@ end
 function modifier_sven_gods_strength_custom_str_bonus:OnCreated()
 	self.parent = self:GetParent()
 
-	self.max = self.parent:GetTalentValue("modifier_sven_god_4", "max")
+	self.max = self.parent:GetTalentValue("modifier_sven_god_4", "max", true)
 	self.str = self.parent:GetTalentValue("modifier_sven_god_4", "str") / self.max
 	self.bonus = self.parent:GetTalentValue("modifier_sven_god_4", "bonus")
 

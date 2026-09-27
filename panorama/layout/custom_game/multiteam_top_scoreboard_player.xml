@@ -21,23 +21,31 @@
 	</scripts>
 	<Panel hittest="false" class="ScoreboardPlayerWrapper">
 		<Panel hittest="false" id="RespawnIndicator">
+			<Panel hittest="false" id="LostSkull" />
 			<Label hittest="false" id="RespawnTimer" />
 		</Panel>
 		<Panel hittest="false" class="ScoreboardPlayer" id="TopHero">
 			<Button class="PlayerPortraitWrapper">
 				<Panel hittest="false" id="PlayerColorBar" />
 				<Image hittest="false" id="HeroIcon">
-					<Panel hittest="false" id="AegisIndicator" />
-					<Panel hittest="false" id="BuybackIndicator" />
-					<Panel hittest="false" id="PurpleIndicator" />
+					<Panel hittest="false" id="TierFrame">
+						<Panel hittest="false" class="TierFrameSide" />
+						<Panel hittest="false" class="TierFrameSide TierFrameSideRight" />
+					</Panel>
+					<Panel hittest="false" id="RespawnRewardIndicator" />
+					<Panel hittest="false" id="HuntIndicatorShadow" />
+					<Panel hittest="false" id="HuntIndicator" />
 					<Panel hittest="false" class="LevelIndicator" id="LevelIndicator" />
+					<Panel hittest="false" id="PurpleScoreBox">
+						<Label hittest="false" class="PurpleText" id="PurpleScore" />
+						<Panel hittest="false" id="PurpleScoreIcon" />
+					</Panel>
 				</Image>
 			</Button>
 			<Image hittest="false" id="DisconnectionIndicator" src="s2r://panorama/images/custom_game/icon_disconnect_png.vtex" />
 		</Panel>
 		<Panel class="BlackScreen" id="BlackScreen">
 			<Panel class="GoldLogo" id="GoldLogo" />
-			<Label class="PurpleText" id="PurpleScore" text="0" />
 		</Panel>
 		<Panel id="TeamOverlayBar">
 			<Panel id="TeamDarkenWash" />
@@ -45,7 +53,7 @@
 				<Label id="TeamScore" text="999" />
 			</Panel>
 		</Panel>
-		<Panel id="PlayerTipContainer" class="PlayerTipContainer_low">
+		<Panel id="PlayerTipContainer" class="PlayerTipContainer_high">
 			<Button id="PlayerTipButton" class="PlayerTipButton_top" onactivate="TipPlayer($.GetContextPanel().GetAttributeInt( &apos;player_id&apos;, -1 ));">
 				<Label id="PlayerTipLabel" text="#tip_button" />
 			</Button>

@@ -38,21 +38,27 @@ function item_angels_demise_custom:Precache(context)
 	PrecacheResource("particle", "particles/empyreal_lens.vpcf", context)
 	PrecacheResource("particle", "particles/items/khanda_active.vpcf", context)
 	PrecacheResource("particle", "particles/items/khanda_proc.vpcf", context)
+	PrecacheResource("particle", "particles/items_fx/phylactery.vpcf", context)
+	PrecacheResource("particle", "particles/items3_fx/silver_edge.vpcf", context)
+	PrecacheResource("particle", "particles/generic_gameplay/generic_break.vpcf", context)
+end
+
+function item_angels_demise_custom:Spawn()
+	self.bonus_all_stats = self:GetSpecialValueFor("bonus_all_stats")
+	self.bonus_damage = self:GetSpecialValueFor("bonus_damage")
+	self.min_damage_to_activate = self:GetSpecialValueFor("min_damage_to_activate")
+	self.max_damage = self:GetSpecialValueFor("max_damage")
+	self.crit_damage = self:GetSpecialValueFor("crit_damage")
+	self.crit_chance = self:GetSpecialValueFor("crit_chance")
+	self.crit_bonus = self:GetSpecialValueFor("crit_bonus")
+	self.break_duration = self:GetSpecialValueFor("break_duration")
+	self.slow = self:GetSpecialValueFor("slow")
 end
 
 modifier_item_angels_demise_custom = class(mod_hidden)
 function modifier_item_angels_demise_custom:RemoveOnDeath()
 	return false
 end
-function modifier_item_angels_demise_custom:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
-		MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
-		MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
-		MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
-	}
-end
-
 function modifier_item_angels_demise_custom:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -62,22 +68,34 @@ function modifier_item_angels_demise_custom:OnCreated()
 		self.parent:AddSpellEvent(self, true)
 	end
 
-	self.stats = self.ability:GetSpecialValueFor("bonus_all_stats")
-	self.damage = self.ability:GetSpecialValueFor("bonus_damage")
+	self.stats = self.ability.bonus_all_stats
+	self.damage = self.ability.bonus_damage
 
-	self.min_damage = self.ability:GetSpecialValueFor("min_damage_to_activate")
-	self.max_damage = self.ability:GetSpecialValueFor("max_damage")
-	self.crit_damage = self.ability:GetSpecialValueFor("crit_damage") / 100
-	self.crit_chance = self.ability:GetSpecialValueFor("crit_chance")
-	self.crit_bonus = self.ability:GetSpecialValueFor("crit_bonus")
-	self.break_duration = self.ability:GetSpecialValueFor("break_duration")
+	self.min_damage = self.ability.min_damage_to_activate
+	self.max_damage = self.ability.max_damage
+	self.crit_damage = self.ability.crit_damage / 100
+	self.crit_chance = self.ability.crit_chance
+	self.crit_bonus = self.ability.crit_bonus
+	self.break_duration = self.ability.break_duration
 
 	self.damageTable =
 		{ attacker = self.parent, ability = self.ability, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION }
 end
 
+function modifier_item_angels_demise_custom:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
+		MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
+		MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
+		MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
+	}
+end
+
 function modifier_item_angels_demise_custom:SpellEvent(params)
 	if not IsServer() then
+		return
+	end
+	if not IsValid(self.ability) then
 		return
 	end
 	if not self.ability:IsFullyCastable() then
@@ -132,6 +150,9 @@ end
 
 function modifier_item_angels_demise_custom:DamageEvent_out(params)
 	if not IsServer() then
+		return
+	end
+	if not IsValid(self.ability) then
 		return
 	end
 	if params.attacker ~= self.parent then
@@ -205,35 +226,33 @@ function modifier_item_angels_demise_custom:GetModifierBonusStats_Intellect()
 	return self.stats
 end
 
-modifier_item_angels_demise_custom_break = class({})
-function modifier_item_angels_demise_custom_break:IsHidden()
-	return false
-end
-function modifier_item_angels_demise_custom_break:IsPurgable()
-	return false
-end
-function modifier_item_angels_demise_custom_break:CheckState()
-	return { [MODIFIER_STATE_PASSIVES_DISABLED] = true }
-end
+modifier_item_angels_demise_custom_break = class(mod_visible)
 function modifier_item_angels_demise_custom_break:GetEffectName()
 	return "particles/items3_fx/silver_edge.vpcf"
 end
-
-function modifier_item_angels_demise_custom_break:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-	}
-end
-
 function modifier_item_angels_demise_custom_break:OnCreated(table)
-	self.speed = self:GetAbility():GetSpecialValueFor("slow")
 	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.speed = self.ability.slow
 	if not IsServer() then
 		return
 	end
 	self.parent:EmitSound("DOTA_Item.SilverEdge.Target")
 	self.parent:GenericParticle("particles/generic_gameplay/generic_break.vpcf", self, true)
 	self.parent:GenericParticle("particles/items/khanda_active.vpcf", self)
+end
+
+function modifier_item_angels_demise_custom_break:CheckState()
+	return {
+		[MODIFIER_STATE_PASSIVES_DISABLED] = true,
+	}
+end
+
+function modifier_item_angels_demise_custom_break:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+	}
 end
 
 function modifier_item_angels_demise_custom_break:GetModifierMoveSpeedBonus_Percentage()

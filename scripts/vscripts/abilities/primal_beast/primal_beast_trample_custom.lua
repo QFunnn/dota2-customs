@@ -588,7 +588,7 @@ end
 function modifier_primal_beast_trample_slow:OnCreated(table)
 	self.caster = self:GetCaster()
 	self.parent = self:GetParent()
-	self.max = self.caster:GetTalentValue("modifier_primal_beast_trample_4", "max")
+	self.max = self.caster:GetTalentValue("modifier_primal_beast_trample_4", "max", true)
 	self.slow = self.caster:GetTalentValue("modifier_primal_beast_trample_4", "slow") / self.max
 	self.damage = self.caster:GetTalentValue("modifier_primal_beast_trample_4", "damage") / self.max
 	if not IsServer() then

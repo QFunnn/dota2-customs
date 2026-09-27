@@ -12,29 +12,31 @@ LinkLuaModifier("modifier_patrol_vision", "abilities/items/item_patrol_vision", 
 
 item_patrol_vision = class({})
 
+function item_patrol_vision:Precache(context)
+	if self:GetCaster() and self:GetCaster():IsIllusion() then
+		return
+	end
+	PrecacheResource("particle", "particles/general/patrol_refresh.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_oracle/oracle_false_promise_heal.vpcf", context)
+end
+
+function item_patrol_vision:Spawn()
+	self.duration = self:GetSpecialValueFor("duration")
+	self.radius = self:GetSpecialValueFor("radius")
+end
+
 function item_patrol_vision:OnSpellStart()
 	local caster = self:GetCaster()
 
 	if not dota1x6:FinalDuel() then
-		caster:AddNewModifier(
-			caster,
-			self,
-			"modifier_patrol_vision",
-			{ duration = self:GetSpecialValueFor("duration") }
-		)
+		caster:AddNewModifier(caster, self, "modifier_patrol_vision", { duration = self.duration })
 		EmitSoundOnEntityForPlayer("Item.SeerStone", caster, caster:GetPlayerOwnerID())
 	end
 
 	self:SpendCharge(0)
 end
 
-modifier_patrol_vision = class({})
-function modifier_patrol_vision:IsHidden()
-	return false
-end
-function modifier_patrol_vision:IsPurgable()
-	return false
-end
+modifier_patrol_vision = class(mod_visible)
 function modifier_patrol_vision:RemoveOnDeath()
 	return false
 end
@@ -43,10 +45,10 @@ function modifier_patrol_vision:GetTexture()
 end
 function modifier_patrol_vision:OnCreated(table)
 	self.parent = self:GetParent()
-	self.parent:AddDeathEvent(self)
+	self.parent:AddDeathEvent(self, true)
 
 	self.ability = self:GetAbility()
-	self.radius = self.ability:GetSpecialValueFor("radius")
+	self.radius = self.ability.radius
 
 	if not IsServer() then
 		return

@@ -35,6 +35,18 @@ function item_ethereal_blade_custom:GetIntrinsicModifierName()
 	return "modifier_item_ethereal_blade_custom"
 end
 
+function item_ethereal_blade_custom:Spawn()
+	self.bonus_stats = self:GetSpecialValueFor("bonus_stats")
+	self.cast_speed = self:GetSpecialValueFor("cast_speed")
+	self.blast_movement_slow = self:GetSpecialValueFor("blast_movement_slow")
+	self.duration = self:GetSpecialValueFor("duration")
+	self.blast_stat_multiplier = self:GetSpecialValueFor("blast_stat_multiplier") / 100
+	self.blast_damage_base = self:GetSpecialValueFor("blast_damage_base")
+	self.duration_ally = self:GetSpecialValueFor("duration_ally")
+	self.extra_spell_damage_percent = self:GetSpecialValueFor("extra_spell_damage_percent")
+	self.projectile_speed = self:GetSpecialValueFor("projectile_speed")
+end
+
 function item_ethereal_blade_custom:OnSpellStart()
 	local caster = self:GetCaster()
 	caster:EmitSound("DOTA_Item.EtherealBlade.Activate")
@@ -134,6 +146,11 @@ function modifier_item_ethereal_blade_custom_active_slow:GetModifierMoveSpeedBon
 end
 
 modifier_item_ethereal_blade_custom = class(mod_hidden)
+function modifier_item_ethereal_blade_custom:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+end
+
 function modifier_item_ethereal_blade_custom:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
@@ -141,21 +158,6 @@ function modifier_item_ethereal_blade_custom:DeclareFunctions()
 		MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
 		MODIFIER_PROPERTY_CASTTIME_PERCENTAGE,
 	}
-end
-
-function modifier_item_ethereal_blade_custom:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.ability.bonus_stats = self.ability:GetSpecialValueFor("bonus_stats")
-	self.ability.cast_speed = self.ability:GetSpecialValueFor("cast_speed")
-	self.ability.blast_movement_slow = self.ability:GetSpecialValueFor("blast_movement_slow")
-	self.ability.duration = self.ability:GetSpecialValueFor("duration")
-	self.ability.blast_stat_multiplier = self.ability:GetSpecialValueFor("blast_stat_multiplier") / 100
-	self.ability.blast_damage_base = self.ability:GetSpecialValueFor("blast_damage_base")
-	self.ability.duration_ally = self.ability:GetSpecialValueFor("duration_ally")
-	self.ability.extra_spell_damage_percent = self.ability:GetSpecialValueFor("extra_spell_damage_percent")
-	self.ability.projectile_speed = self.ability:GetSpecialValueFor("projectile_speed")
 end
 
 function modifier_item_ethereal_blade_custom:GetModifierPercentageCasttime()

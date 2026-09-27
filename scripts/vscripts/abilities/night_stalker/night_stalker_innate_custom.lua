@@ -35,6 +35,8 @@ function night_stalker_innate_custom:Precache(context)
 	PrecacheResource("particle", "particles/enigma/summon_perma.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_night_stalker/nightstalker_shard_hunter.vpcf", context)
 	PrecacheResource("particle", "particles/night_stalker/scepter_stack.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_night_stalker/nightstalker_night_buff.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_night_stalker/nightstalker_change.vpcf", context)
 	PrecacheResource("soundfile", "soundevents/npc_dota_hero_night_stalker.vsndevts", context)
 	dota1x6:PrecacheShopItems("npc_dota_hero_night_stalker", context)
 end
@@ -53,7 +55,6 @@ function night_stalker_innate_custom:UpdateTalents(name)
 
 			has_h3 = 0,
 			h3_max_move = 0,
-			h3_max = 0,
 			h3_move = 0,
 
 			has_h6 = 0,
@@ -89,7 +90,6 @@ function night_stalker_innate_custom:UpdateTalents(name)
 		self.talents.has_h3 = 1
 		self.talents.h3_move = caster:GetTalentValue("modifier_stalker_hero_3", "move")
 		self.talents.h3_max_move = caster:GetTalentValue("modifier_stalker_hero_3", "max_move")
-		self.talents.h3_max = caster:GetTalentValue("modifier_stalker_hero_3", "max")
 	end
 
 	if caster:HasTalent("modifier_stalker_hero_6") then
@@ -103,19 +103,19 @@ function night_stalker_innate_custom:UpdateTalents(name)
 		self.talents.e1_damage = caster:GetTalentValue("modifier_stalker_hunter_1", "damage")
 	end
 
-	if self.caster:HasTalent("modifier_stalker_hunter_4") then
+	if caster:HasTalent("modifier_stalker_hunter_4") then
 		self.talents.has_e4 = 1
 	end
 
-	if self.caster:HasTalent("modifier_stalker_void_7") then
+	if caster:HasTalent("modifier_stalker_void_7") then
 		self.talents.has_q7 = 1
 	end
 
-	if self.caster:HasTalent("modifier_stalker_hunter_7") then
+	if caster:HasTalent("modifier_stalker_hunter_7") then
 		self.talents.has_e7 = 1
 	end
 
-	if self.caster:HasTalent("modifier_stalker_dark_7") then
+	if caster:HasTalent("modifier_stalker_dark_7") then
 		self.talents.has_r7 = 1
 	end
 
@@ -133,9 +133,9 @@ function night_stalker_innate_custom:UpdateTalents(name)
 
 	local dark_legendary = caster:FindAbilityByName("night_stalker_darkness_custom_legendary")
 	local void_legendary = caster:FindAbilityByName("night_stalker_void_custom_legendary")
-	local hunter_chrage = caster:FindAbilityByName("night_stalker_midnight_feast_custom_charge")
+	local hunter_charge = caster:FindAbilityByName("night_stalker_midnight_feast_custom_charge")
 
-	if not dark_legendary or not void_legendary or not hunter_chrage then
+	if not dark_legendary or not void_legendary or not hunter_charge then
 		return
 	end
 
@@ -151,8 +151,15 @@ function night_stalker_innate_custom:UpdateTalents(name)
 	end
 
 	if self.talents.has_e4 == 1 then
-		hunter_chrage:SetHidden(false)
+		hunter_charge:SetHidden(false)
 	end
+end
+
+function night_stalker_innate_custom:GetIntrinsicModifierName()
+	if not self:GetCaster():IsRealHero() then
+		return
+	end
+	return "modifier_night_stalker_innate_custom"
 end
 
 function night_stalker_innate_custom:OnInventoryContentsChanged()
@@ -174,17 +181,6 @@ function night_stalker_innate_custom:OnInventoryContentsChanged()
 
 	self.scepter_init = true
 	self.tracker:ScepterInit()
-end
-
-function night_stalker_innate_custom:GetIntrinsicModifierName()
-	if not self:GetCaster():IsRealHero() then
-		return
-	end
-	return "modifier_night_stalker_innate_custom"
-end
-
-function night_stalker_innate_custom:Init()
-	self.caster = self:GetCaster()
 end
 
 modifier_night_stalker_innate_custom = class(mod_hidden)
@@ -521,6 +517,8 @@ function modifier_night_stalker_innate_custom_stats:OnRefresh(table)
 		return
 	end
 	self:IncrementStackCount()
+	self.parent:GenericParticle("particles/night_stalker/scepter_stack.vpcf")
+	self.parent:CalculateStatBonus(true)
 
 	local target = EntIndexToHScript(table.target)
 	if target then
@@ -554,14 +552,6 @@ function modifier_night_stalker_innate_custom_stats:OnRefresh(table)
 		GameRules:BeginNightstalkerNight(99999)
 		CustomGameEventManager:Send_ServerToAllClients("NightStalker", {})
 	end)
-end
-
-function modifier_night_stalker_innate_custom_stats:OnStackCountChanged(iStackCount)
-	if not IsServer() then
-		return
-	end
-	self.parent:GenericParticle("particles/night_stalker/scepter_stack.vpcf")
-	self.parent:CalculateStatBonus(true)
 end
 
 function modifier_night_stalker_innate_custom_stats:DeclareFunctions()

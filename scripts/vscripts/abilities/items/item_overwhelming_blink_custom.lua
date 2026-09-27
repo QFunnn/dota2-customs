@@ -29,6 +29,7 @@ function item_overwhelming_blink_custom:Precache(context)
 	PrecacheResource("particle", "particles/items3_fx/blink_overwhelming_end.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_brewmaster/brewmaster_thunder_clap_debuff.vpcf", context)
 	PrecacheResource("particle", "particles/items3_fx/blink_overwhelming_burst.vpcf", context)
+	PrecacheResource("particle", "particles/status_fx/status_effect_brewmaster_thunder_clap.vpcf", context)
 end
 
 function item_overwhelming_blink_custom:GetIntrinsicModifierName()
@@ -98,8 +99,7 @@ function item_overwhelming_blink_custom:OnSpellStart()
 	end
 
 	if not self.multicast_k then
-		caster:SetForwardVector(dir:Normalized())
-		caster:FaceTowards(point)
+		caster:FacePoint(point)
 		caster:Teleport(point, not caster:HasModifier("modifier_blink_break_custom"), pfx_name_start, pfx_name_end)
 	end
 	caster:EmitSound("DOTA_Item.Overwhelming_Blink.Activate")
@@ -134,6 +134,13 @@ function item_overwhelming_blink_custom:OnSpellStart()
 end
 
 modifier_item_overwhelming_blink_custom = class(mod_hidden)
+function modifier_item_overwhelming_blink_custom:OnCreated()
+	self.ability = self:GetAbility()
+	self.parent = self:GetParent()
+
+	self.parent:AddDamageEvent_inc(self)
+end
+
 function modifier_item_overwhelming_blink_custom:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
@@ -144,15 +151,11 @@ function modifier_item_overwhelming_blink_custom:GetModifierBonusStats_Strength(
 	return self.ability.bonus_strength
 end
 
-function modifier_item_overwhelming_blink_custom:OnCreated()
-	self.ability = self:GetAbility()
-	self.parent = self:GetParent()
-
-	self.parent:AddDamageEvent_inc(self)
-end
-
 function modifier_item_overwhelming_blink_custom:DamageEvent_inc(params)
 	if not IsServer() then
+		return
+	end
+	if not IsValid(self.ability) then
 		return
 	end
 	self.parent:CheckBlink(params, self.ability)

@@ -52,6 +52,8 @@ talents_icons = {}
 
 active_talents = {}
 
+talent_increase_functions = {}
+
 talents_heroes = {}
 
 perma_mods = {}
@@ -63,371 +65,175 @@ pickrate_talents = {}
 function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_skills)
 	local global_values = {
 		general = {
-			["modifier_up_primary"] = {
-				skill_icon = "Possessed_Mask",
-				rarity = "gray",
-				exception = { "only_normal" },
-
-				allow_illusion = 1,
-				update_mod = "modifier_general_stats",
-				general_bonus = 4,
-			},
 			["modifier_up_health"] = {
-				skill_icon = "Vitality_Booster",
+				skill_icon = "gray_health",
 				rarity = "gray",
 
 				allow_illusion = 1,
-				update_mod = "modifier_general_stats",
-				general_bonus = 100,
+				general_bonus = { 100, 200, 300, 400, 500 },
+				max_bonus = { 0, 0, 0, 0, 8 },
+			},
+			["modifier_up_mana"] = {
+				skill_icon = "gray_mana",
+				rarity = "gray",
+				max_level = 3,
+
+				allow_illusion = 1,
+				general_bonus = { 150, 300, 450 },
+				max_bonus = { 0, 0, 8 },
 			},
 			["modifier_up_damage"] = {
-				skill_icon = "Broadsword",
+				skill_icon = "gray_damage",
 				rarity = "gray",
 
 				allow_illusion = 1,
-				update_mod = "modifier_general_stats",
-				general_bonus = 10,
+				general_bonus = { 10, 20, 30, 40, 50 },
+				max_bonus = { 0, 0, 0, 0, -5 },
+				max_duration = 6,
 			},
 			["modifier_up_armor"] = {
-				skill_icon = "Chainmail",
+				skill_icon = "gray_armor",
 				rarity = "gray",
 
 				allow_illusion = 1,
-				update_mod = "modifier_general_stats",
-				general_bonus = 4,
+				general_bonus = { 3, 6, 9, 12, 15 },
+				max_bonus = { 0, 0, 0, 0, 25 },
 			},
-			["modifier_up_secondary"] = {
-				skill_icon = "Pupil_Gift",
+			["modifier_up_stats"] = {
+				skill_icon = "gray_primary",
 				rarity = "gray",
-				exception = { "only_normal" },
 
 				allow_illusion = 1,
-				update_mod = "modifier_general_stats",
-				general_bonus = 3,
+				general_bonus = { 2, 4, 6, 8, 10 },
+				max_bonus = { 0, 0, 0, 0, 8 },
 			},
 			["modifier_up_spelldamage"] = {
-				skill_icon = "Kaya",
+				skill_icon = "gray_spell",
 				rarity = "gray",
-				exception = { "mage" },
 
 				allow_illusion = 1,
-				update_mod = "modifier_general_stats",
-				general_bonus = 2,
+				general_bonus = { 2, 4, 6, 8, 10 },
+				max_bonus = { 0, 0, 0, 0, 10 },
 			},
 			["modifier_up_movespeed"] = {
-				skill_icon = "Boots_of_Speed",
+				skill_icon = "gray_move",
 				rarity = "gray",
 
 				allow_illusion = 1,
-				update_mod = "modifier_general_stats",
-				general_bonus = 10,
-			},
-			["modifier_up_evasion"] = {
-				skill_icon = "Talisman_of_Evasion",
-				rarity = "gray",
-
-				allow_illusion = 1,
-				update_mod = "modifier_general_stats",
-				general_bonus = 6,
+				general_bonus = { 12, 24, 36, 48, 60 },
+				max_bonus = { 0, 0, 0, 0, 15 },
 			},
 			["modifier_up_lifesteal"] = {
-				skill_icon = "Morbid_Mask",
+				skill_icon = "gray_lifesteal",
 				rarity = "gray",
 
 				damage_info = 1,
-				update_mod = "modifier_general_stats",
-				general_bonus = 6,
+				allow_illusion = 1,
+				general_bonus = { 5, 10, 15, 20, 25 },
+				max_bonus = { 0, 0, 0, 0, 15 },
 			},
 			["modifier_up_speed"] = {
-				skill_icon = "Gloves_of_Haste",
+				skill_icon = "gray_speed",
 				rarity = "gray",
+				alt_version = 1,
 
 				allow_illusion = 1,
-				update_mod = "modifier_general_stats",
-				general_bonus = 10,
-			},
-			["modifier_up_spellsteal"] = {
-				skill_icon = "Voodoo_Mask",
-				rarity = "gray",
-				exception = { "mage" },
-
-				damage_info = 1,
-				creeps = 3,
-				update_mod = "modifier_general_stats",
-				general_bonus = 5,
-			},
-			["modifier_up_statusresist"] = {
-				skill_icon = "Titan_Sliver",
-				rarity = "gray",
-
-				allow_illusion = 1,
-				update_mod = "modifier_general_stats",
-				general_bonus = 5,
-			},
-			["modifier_up_cleave"] = {
-				skill_icon = "Battle_Fury",
-				rarity = "gray",
-				exception = { "melle" },
-
-				update_mod = "modifier_general_stats",
-				general_bonus = 10,
+				general_bonus = { 12, 24, 36, 48, 60 },
+				max_bonus = { 0, 0, 0, 0, 60 },
+				max_bonus_range = { 0, 0, 0, 0, 120 },
 			},
 			["modifier_up_magicresist"] = {
-				skill_icon = "Cloak",
+				skill_icon = "gray_magic",
 				rarity = "gray",
 
 				allow_illusion = 1,
-				update_mod = "modifier_general_stats",
-				general_bonus = 4,
-			},
-			["modifier_up_javelin"] = {
-				skill_icon = "Javelin",
-				rarity = "gray",
-
-				damage = 20,
-				update_mod = "modifier_general_stats",
-				allow_illusion = 1,
-				general_bonus = 15,
-			},
-			["modifier_up_creeps"] = {
-				skill_icon = "Quelling_Blade",
-				rarity = "gray",
-
-				allow_illusion = 1,
-				update_mod = "modifier_general_stats",
-				general_bonus = 10,
-			},
-			["modifier_up_manaregen"] = {
-				skill_icon = "Voidstone",
-				rarity = "gray",
-
-				update_mod = "modifier_general_stats",
-				general_bonus = 3,
-			},
-			["modifier_up_allstats"] = {
-				skill_icon = "circlet",
-				rarity = "gray",
-				exception = { "only_all" },
-
-				allow_illusion = 1,
-				update_mod = "modifier_general_stats",
-				general_bonus = 2,
-			},
-			["modifier_up_ignore_armor"] = {
-				skill_icon = "blight",
-				rarity = "gray",
-
-				update_mod = "modifier_general_stats",
-				general_bonus = 1,
-				duration = 4,
+				general_bonus = { 3, 6, 9, 12, 15 },
+				max_bonus = { 0, 0, 0, 0, -10 },
+				is_breakable = 1,
 			},
 			["modifier_up_aoe_damage"] = {
-				skill_icon = "dragon",
+				skill_icon = "gray_burn",
 				rarity = "gray",
 
-				radius = 500,
+				radius = 600,
 				damage_info = 1,
-				update_mod = "modifier_general_stats",
-				general_bonus = 12,
+				damage_type = DAMAGE_TYPE_MAGICAL,
+				general_bonus = { 12, 24, 36, 48, 60 },
+				max_bonus = { 0, 0, 0, 0, -10 },
+				max_duration = 6,
 			},
+			["modifier_up_javelin"] = {
+				skill_icon = "gray_proc",
+				rarity = "gray",
 
-			["modifier_up_slow"] = {
-				skill_icon = "Penta-Edged_Sword",
-				rarity = "blue",
-
-				attack_slow = { -30, -45, -60 },
-				move_slow = { -20, -30, -40 },
-				is_purgable_self = 1,
-				duration = 4,
-				update_mod = "modifier_general_stats",
-				chance = 25,
-			},
-			["modifier_up_gainprimary"] = {
-				skill_icon = "Crown",
-				rarity = "blue",
-				exception = { "only_normal" },
-
-				stats = { 8, 12, 16 },
-				update_mod = "modifier_general_stats",
+				damage_info = 1,
+				damage_type = DAMAGE_TYPE_MAGICAL,
+				chance = 30,
+				radius = 250,
+				general_bonus = { 25, 50, 75, 100, 125 },
+				max_bonus = { 0, 0, 0, 0, 1 },
 				allow_illusion = 1,
 			},
-			["modifier_up_gainsecondary"] = {
-				skill_icon = "Ocean_Heart",
-				rarity = "blue",
-				exception = { "only_normal" },
+			["modifier_up_control_shield"] = {
+				skill_icon = "gray_shield",
+				rarity = "gray",
 
-				stats = { 8, 12, 16 },
-				update_mod = "modifier_general_stats",
+				damage_info = 1,
+				talent_cd = 10,
+				duration = 6,
+				general_bonus = { 80, 160, 240, 320, 400 },
+				max_bonus = { 0, 0, 0, 0, -10 },
+				max_health = 40,
+				is_breakable = 1,
 				allow_illusion = 1,
 			},
-			["modifier_up_magicblock"] = {
-				skill_icon = "Hood_of_Defiance",
-				rarity = "blue",
+			["modifier_up_spell_proc"] = {
+				skill_icon = "gray_items",
+				rarity = "gray",
 
-				cd = 10,
 				damage_info = 1,
-				update_mod = "modifier_general_stats",
-				block = { 200, 400, 600 },
+				damage_type = DAMAGE_TYPE_MAGICAL,
+				talent_cd = 3,
+				radius = 250,
+				general_bonus = { 30, 60, 90, 120, 150 },
+				max_bonus = { 0, 0, 0, 0, 150 },
+				allow_illusion = 1,
 			},
-			["modifier_up_attackblock"] = {
-				skill_icon = "Crimson_Guard",
-				rarity = "blue",
+			["modifier_up_income"] = {
+				skill_icon = "gray_gpm",
+				rarity = "gray",
+				max_level = 3,
 
-				cd = 10,
 				damage_info = 1,
-				update_mod = "modifier_general_stats",
-				block = { 200, 400, 600 },
-			},
-			["modifier_up_cooldown"] = {
-				skill_icon = "Octarine_Core",
-				rarity = "blue",
+				general_bonus = { 40, 80, 120 },
+				max_bonus = 20,
 
-				cdr = { 6, 9, 12 },
-				update_mod = "modifier_general_stats",
+				is_talent_upgrade = 1,
+				talent_upgrade_func = function(data, parent)
+					if not data.rarity then
+						return
+					end
+					if data.rarity ~= "gray" then
+						return
+					end
+					if
+						parent:TalentLevel("modifier_up_income")
+						< parent:GetTalentValue("modifier_up_income", "max_level", true)
+					then
+						return
+					end
+					return parent:GetTalentValue("modifier_up_income", "max_bonus", true) / 100
+				end,
 			},
-			["modifier_up_stun"] = {
-				skill_icon = "vest",
-				rarity = "blue",
-
-				update_mod = "modifier_general_stats",
-				damage_reduce = { -10, -15, -20 },
-			},
-			["modifier_up_root"] = {
-				skill_icon = "earthbind",
-				rarity = "blue",
+			["modifier_up_gold"] = {
+				skill_icon = "gold",
+				rarity = "gray",
+				no_level = 1,
 				alt_panel = 1,
 
-				cd = 15,
-				update_mod = "modifier_general_stats",
-				is_purgable_self = 1,
-				duration = { 1, 1.5, 2 },
-			},
-			["modifier_up_bigdamage"] = {
-				skill_icon = "Defend_Matrix",
-				rarity = "blue",
-				alt_panel = 1,
-
-				cd = 40,
-				update_mod = "modifier_general_stats",
-				duration = 3,
-				damage_reduce = { -10, -20, -30 },
-				health = 30,
-				regen = { 10, 15, 20 },
-			},
-			["modifier_up_venom"] = {
-				skill_icon = "venom",
-				rarity = "blue",
-
-				update_mod = "modifier_general_stats",
-				heal_reduce = { -15, -25, -35 },
-				health = 40,
-				duration = 2,
-			},
-			["modifier_up_range"] = {
-				skill_icon = "dragon_lance",
-				rarity = "blue",
-
-				cast_range = { 100, 150, 200 },
-				update_mod = "modifier_general_stats",
-				allow_illusion = 1,
-				attack_range = { 50, 75, 100 },
-			},
-			["modifier_up_gainall"] = {
-				skill_icon = "Crown",
-				rarity = "blue",
-				exception = { "only_all" },
-
-				stats = { 5, 7.5, 10 },
-				update_mod = "modifier_general_stats",
-				allow_illusion = 1,
-			},
-			["modifier_up_teamfight"] = {
-				skill_icon = "Martyr",
-				rarity = "blue",
-
-				update_mod = "modifier_general_stats",
-				radius = 800,
-				damage_bonus = { 10, 15, 20 },
-				damage_reduce = { -10, -15, -20 },
-			},
-			["modifier_up_random_gray"] = {
-				skill_icon = "Gray",
-				rarity = "blue",
-
-				count = 3,
+				damage_info = 1,
 				general_trigger = 1,
-			},
-
-			["modifier_up_primaryupgrade"] = {
-				skill_icon = "Apex",
-				rarity = "purple",
-				exception = { "only_normal" },
-
-				allow_illusion = 1,
-				int = 20,
-				agi = 10,
-				str = 10,
-				percent = 1,
-			},
-			["modifier_up_secondaryupgrade"] = {
-				skill_icon = "Ultimate_Orb",
-				rarity = "purple",
-				exception = { "only_normal" },
-
-				allow_illusion = 1,
-				int = 20,
-				agi = 10,
-				str = 10,
-				percent = 1,
-			},
-			["modifier_up_allupgrade"] = {
-				skill_icon = "Apex",
-				rarity = "purple",
-				exception = { "only_all" },
-
-				allow_illusion = 1,
-				all = 60,
-				int = 20,
-				agi = 10,
-				str = 10,
-				percent = 0.6,
-			},
-			["modifier_up_graypoints"] = {
-				skill_icon = "Gray",
-				rarity = "purple",
-
-				count = 1,
-				bonus = 30,
-				allow_illusion = 1,
-			},
-			["modifier_up_bluepoints"] = {
-				skill_icon = "Blue",
-				rarity = "purple",
-
-				count = 4,
-				general_trigger = 1,
-			},
-			["modifier_up_res"] = {
-				skill_icon = "Phoenix_Ash",
-				rarity = "purple",
-				alt_panel = 1,
-
-				damage_info = 1,
-				heal = 20,
-				radius = 500,
-				cd = 4,
-				invun = 0.2,
-				stun = 1.5,
-				update_mod = "modifier_general_stats",
-			},
-			["modifier_up_damagestack"] = {
-				skill_icon = "Timeless_Relic",
-				rarity = "purple",
-
-				damage = 1,
-				radius = 800,
-				max = 20,
-				duration = 3,
+				gold = 250,
 			},
 		},
 
@@ -436,6 +242,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "blue",
 				skill_icon = "restrained_orb",
 				patrol_1 = 1,
+				damage_info = 1,
 				blue = 100,
 				gold = 100,
 			},
@@ -451,6 +258,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				skill_icon = "Wards",
 				patrol_1 = 1,
 
+				damage_info = 1,
 				duration = 120,
 				radius = 700,
 				max = 3,
@@ -461,6 +269,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				skill_icon = "patrol_midas",
 				patrol_1 = 1,
 
+				damage_info = 1,
 				duration = 70,
 				gold = 25,
 			},
@@ -486,11 +295,18 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 			["modifier_patrol_reward_buff"] = {
 				rarity = "purple",
 				skill_icon = "patrol_empower",
-				patrol_2 = 1,
 
 				duration = 120,
 				damage_inc = -15,
 				damage_out = 15,
+			},
+			["modifier_patrol_reward_upgrade"] = {
+				rarity = "purple",
+				skill_icon = "Gray",
+				patrol_2 = 1,
+
+				damage_info = 1,
+				blue = 50,
 			},
 			["modifier_patrol_reward_necro"] = {
 				rarity = "purple",
@@ -590,6 +406,146 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 			},
 		},
 
+		kunkka_shop = {
+			["modifier_kunkka_shop_1"] = {
+				mini_icon = "kunkka_shop_1",
+				skill_icon = "xmark",
+				rarity = "blue",
+				max_level = 5,
+				skill_number = 5,
+
+				cost = 10,
+				speed = { 30, 45, 60, 75, 90 },
+				duration = 6,
+			},
+			["modifier_kunkka_shop_2"] = {
+				mini_icon = "kunkka_shop_2",
+				skill_icon = "xmark",
+				rarity = "blue",
+				max_level = 5,
+				skill_number = 5,
+
+				cost = 10,
+				damage = { 16, 24, 32, 40, 48 },
+				bonus = 50,
+				heal = 100,
+				damage_type = DAMAGE_TYPE_MAGICAL,
+				damage_info = 1,
+			},
+			["modifier_kunkka_shop_3"] = {
+				mini_icon = "kunkka_shop_3",
+				skill_icon = "xmark",
+				rarity = "blue",
+				max_level = 5,
+				skill_number = 5,
+
+				cost = 10,
+				stats = { 12, 18, 24, 30, 36 },
+			},
+			["modifier_kunkka_shop_4"] = {
+				mini_icon = "kunkka_shop_4",
+				skill_icon = "xmark",
+				rarity = "blue",
+				max_level = 5,
+				skill_number = 5,
+
+				cost = 10,
+				bonus = { 10, 20, 30, 40, 50 },
+				is_talent_upgrade = 1,
+				talent_upgrade_func = function(data, parent)
+					if not data.skill_number or not data.rarity then
+						return
+					end
+					if data.rarity ~= "blue" then
+						return
+					end
+					if data.skill_number ~= 2 and data.skill_number ~= 3 and data.skill_number ~= 0 then
+						return
+					end
+					return parent:GetTalentValue("modifier_kunkka_shop_4", "bonus") / 100
+				end,
+			},
+
+			["modifier_kunkka_shop_5"] = {
+				mini_icon = "kunkka_shop_5",
+				skill_icon = "xmark",
+				rarity = "purple",
+				max_level = 2,
+				skill_number = 5,
+
+				cost = 25,
+				stats = { 5, 10 },
+				bonus = { 2, 4 },
+				max = 10,
+				duration = 12,
+				duration_creeps = 4,
+			},
+			["modifier_kunkka_shop_6"] = {
+				mini_icon = "kunkka_shop_6",
+				skill_icon = "xmark",
+				rarity = "purple",
+				max_level = 2,
+				skill_number = 5,
+
+				cost = 25,
+				status = { 30, 50 },
+				bva = { -0.2, -0.3 },
+			},
+			["modifier_kunkka_shop_7"] = {
+				mini_icon = "kunkka_shop_7",
+				skill_icon = "xmark",
+				rarity = "purple",
+				max_level = 2,
+				skill_number = 5,
+
+				cost = 25,
+				gold = { -10, -20 },
+				speed = { 2, 4 },
+			},
+
+			["modifier_kunkka_shop_8"] = {
+				mini_icon = "kunkka_shop_8",
+				skill_icon = "xmark",
+				rarity = "legendary",
+				max_level = 1,
+				skill_number = 5,
+
+				cost = 50,
+				range = 150,
+				damage = 40,
+				delay = 0.2,
+				talent_cd = 0.4,
+				damage_info = 1,
+			},
+			["modifier_kunkka_shop_9"] = {
+				mini_icon = "kunkka_shop_9",
+				skill_icon = "xmark",
+				rarity = "legendary",
+				max_level = 1,
+				skill_number = 5,
+
+				cost = 50,
+				delay = 50,
+				damage = 80,
+				damage_info = 1,
+			},
+			["modifier_kunkka_shop_10"] = {
+				mini_icon = "kunkka_shop_10",
+				skill_icon = "xmark",
+				rarity = "legendary",
+				max_level = 1,
+				skill_number = 5,
+
+				cost = 50,
+				max = 4,
+				gold = 50,
+				move = 20,
+				shield = 20,
+				duration = 45,
+				damage_info = 1,
+			},
+		},
+
 		broodmother_spiders = {
 			["modifier_broodmother_scepter_1"] = {
 				mini_icon = "brood_scepter_1",
@@ -597,6 +553,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "blue",
 				max_level = 3,
 
+				damage_info = 1,
 				gold = { 4, 6, 8 },
 			},
 			["modifier_broodmother_scepter_2"] = {
@@ -838,6 +795,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 2,
 
 				speed = 1500,
 				talent_cd = 10,
@@ -900,6 +858,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 2,
 
 				duration = 4,
 				cd_inc = -25,
@@ -960,6 +919,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 1,
 
 				status = 20,
 				damage = 15,
@@ -1022,6 +982,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 1,
 
 				cd_inc = 10,
 				distance = 320,
@@ -1034,331 +995,376 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 		},
 
 		npc_dota_hero_phantom_assassin = {
-			["modifier_phantom_assassin_dagger_1"] = {
-				skill_number = 1,
-				mini_icon = "Stifling_Dagger_1",
-				skill_icon = "Stifling_Dagger",
+			["modifier_phantom_assassin_hero_1"] = {
+				skill_number = 0,
+				mini_icon = "hero_1",
 				rarity = "blue",
 
-				cd = { -1, -1.5, -2 },
-				cast = { -0.1, -0.15, -0.2 },
+				move = { 20, 30, 40 },
+				magic = { 6, 9, 12 },
+				bonus = 2,
+				duration = 5,
+				allow_illusion = 1,
+			},
+			["modifier_phantom_assassin_hero_2"] = {
+				skill_number = 0,
+				mini_icon = "hero_2",
+				rarity = "blue",
+				is_perma = 1,
+				skill_icon = "grace",
+				mod_name = "modifier_phantom_assassin_innate_custom",
+				max = 5,
+
+				stats = { 6, 9, 12 },
+				stats_hunt = { 2, 3, 4 },
+				allow_illusion = 1,
+			},
+			["modifier_phantom_assassin_hero_3"] = {
+				skill_number = 0,
+				mini_icon = "hero_3",
+				rarity = "blue",
+
+				heal_reduce = { -12, -18, -24 },
+				slow = { -20, -30, -40 },
+				duration = 5,
+			},
+			["modifier_phantom_assassin_hero_4"] = {
+				skill_number = 0,
+				mini_icon = "hero_4",
+				rarity = "purple",
+				has_video = 1,
+
+				speed = 35,
+				vision = 10,
+				range = 350,
+				root = 2.5,
+				talent_cd = 10,
+				is_purgable_self = 1,
+			},
+			["modifier_phantom_assassin_hero_5"] = {
+				skill_number = 0,
+				mini_icon = "hero_5",
+				rarity = "purple",
+				has_video = 1,
+
+				status = 15,
+				damage = -50,
+				duration = 1,
+				talent_cd = 18,
+				is_breakable = 1,
+			},
+			["modifier_phantom_assassin_hero_6"] = {
+				skill_number = 0,
+				mini_icon = "hero_6",
+				rarity = "purple",
+				skill_icon = "grace",
+				is_perma = 1,
+				mod_name = "modifier_phantom_assassin_innate_custom",
+				max = 5,
+
+				cd = 10,
+				health = 300,
+				gold = 400,
+				cdr = 3,
+			},
+
+			["modifier_phantom_assassin_dagger_1"] = {
+				skill_number = 1,
+				mini_icon = "stifling_1",
+				skill_icon = "stifling",
+				rarity = "blue",
+
+				spell = { 4, 6, 8 },
+				damage = { 20, 30, 40 },
+				int = { 30, 45, 60 },
 			},
 			["modifier_phantom_assassin_dagger_2"] = {
 				skill_number = 1,
-				mini_icon = "Stifling_Dagger_2",
-				skill_icon = "Stifling_Dagger",
+				mini_icon = "stifling_2",
+				skill_icon = "stifling",
 				rarity = "blue",
 
-				move = { 4, 6, 8 },
-				max = 3,
-				heal = { 8, 12, 16 },
-				duration = 8,
+				range = { 100, 150, 200 },
+				cd = { -1, -1.5, -2 },
 			},
 			["modifier_phantom_assassin_dagger_3"] = {
 				skill_number = 1,
-				mini_icon = "Stifling_Dagger_3",
-				skill_icon = "Stifling_Dagger",
-				rarity = "blue",
+				mini_icon = "stifling_3",
+				skill_icon = "stifling",
+				rarity = "purple",
+				main_epic = 1,
 				has_video = 1,
 
-				damage = { 40, 60, 80 },
-				is_purgable_self = 1,
-				bonus = 3,
+				heal = { 20, 35 },
+				damage = { 35, 60 },
+				range = 350,
 				duration = 8,
+				damage_type = DAMAGE_TYPE_MAGICAL,
 			},
 			["modifier_phantom_assassin_dagger_4"] = {
 				skill_number = 1,
-				mini_icon = "Stifling_Dagger_4",
-				skill_icon = "Stifling_Dagger",
+				mini_icon = "stifling_4",
+				skill_icon = "stifling",
 				rarity = "purple",
-				main_epic = 1,
+				has_video = 1,
 
-				chance = { 30, 50 },
-				radius = 1000,
-				delay = 0.3,
-				cdr = { 8, 12 },
-			},
-			["modifier_phantom_assassin_dagger_5"] = {
-				skill_number = 1,
-				mini_icon = "Stifling_Dagger_5",
-				skill_icon = "Stifling_Dagger",
-				rarity = "purple",
-
-				range = 150,
-				duration = 10,
-			},
-			["modifier_phantom_assassin_dagger_6"] = {
-				skill_number = 1,
-				mini_icon = "Stifling_Dagger_6",
-				skill_icon = "Stifling_Dagger",
-				rarity = "purple",
-
-				cd = 15,
-				duration = 1.8,
-				damage_reduce = -50,
-				status = 50,
+				cd_items = -1,
+				cd_items_legendary = -0.4,
+				chance = 35,
+				mana = 35,
+				damage = 60,
+				slow_duration = 1.5,
 			},
 			["modifier_phantom_assassin_dagger_7"] = {
 				skill_number = 1,
-				mini_icon = "Stifling_Dagger",
-				skill_icon = "Stifling_Dagger",
+				mini_icon = "stifling",
+				skill_icon = "stifling",
 				rarity = "orange",
+				has_video = 1,
+				complexity = 2,
+				build_type = 2,
 
-				stack_max = 5,
-				cd = 15,
-				trigger_ability = "custom_phantom_assassin_stifling_dagger",
-				cast_inc = -0.4,
 				skill_name = "custom_phantom_assassin_stifling_dagger",
-				cast = 2.8,
-				timer = 10,
+
 				max = 8,
+				cast = 2.8,
+				cast_min = 0.7,
+				stack_max = 7,
+				damage = 30,
+				stun = 0.1,
+				timer = 14,
+				talent_cd = 16,
+				width = 120,
+				random_dist = 120,
+				speed = 30,
+
+				trigger_ability = "custom_phantom_assassin_stifling_dagger_legendary",
+				skill_change = "grace_magic",
+				banned_talent = "modifier_phantom_assassin_crit_7",
 			},
+
 			["modifier_phantom_assassin_blink_1"] = {
 				skill_number = 2,
-				mini_icon = "Phantom_Strike_1",
-				skill_icon = "Phantom_Strike",
+				mini_icon = "phantom_1",
+				skill_icon = "phantom",
 				rarity = "blue",
 
-				duration = 2,
-				range = { 100, 150, 200 },
-				slow = { -15, -25, -35 },
+				spell = { 4, 6, 8 },
+				damage = { 20, 30, 40 },
+				health = { 2, 3, 4 },
 			},
 			["modifier_phantom_assassin_blink_2"] = {
 				skill_number = 2,
-				mini_icon = "Phantom_Strike_2",
-				skill_icon = "Phantom_Strike",
+				mini_icon = "phantom_2",
+				skill_icon = "phantom",
 				rarity = "blue",
 
-				agi = { 10, 15, 20 },
-				allow_illusion = 1,
-				duration = { 0.5, 1, 1.5 },
+				cd = { -1, -1.5, -2 },
+				cast = { -20, -30, -40 },
 			},
 			["modifier_phantom_assassin_blink_3"] = {
 				skill_number = 2,
-				mini_icon = "Phantom_Strike_3",
-				skill_icon = "Phantom_Strike",
-				rarity = "blue",
+				mini_icon = "phantom_3",
+				skill_icon = "phantom",
+				rarity = "purple",
+				main_epic = 1,
+				has_video = 1,
 
-				allow_illusion = 1,
-				is_purgable = 1,
-				health = { 1.5, 2, 2.5 },
-				shield = { 100, 175, 250 },
+				damage = { 60, 100 },
+				health = { 1.2, 2 },
+				magic = { -3, -5 },
+				max = 6,
+				chance = 50,
+				chance_clone = 20,
+				duration = 14,
 			},
 			["modifier_phantom_assassin_blink_4"] = {
 				skill_number = 2,
-				mini_icon = "Phantom_Strike_4",
-				skill_icon = "Phantom_Strike",
-				rarity = "purple",
-				main_epic = 1,
-
-				damage = { 80, 130 },
-				is_through_bkb = 1,
-				heal = 75,
-				radius = 300,
-				max = 5,
-			},
-			["modifier_phantom_assassin_blink_5"] = {
-				skill_number = 2,
-				mini_icon = "Phantom_Strike_5",
-				skill_icon = "Phantom_Strike",
+				mini_icon = "phantom_4",
+				skill_icon = "phantom",
 				rarity = "purple",
 				has_video = 1,
 
-				cd = -1,
+				move = 30,
+				heal = 5,
 				duration = 2,
-				slow = -50,
-			},
-			["modifier_phantom_assassin_blink_6"] = {
-				skill_number = 2,
-				mini_icon = "Phantom_Strike_6",
-				skill_icon = "Phantom_Strike",
-				rarity = "purple",
-
-				is_root_disabled = 1,
-				range = 35,
-				move = 25,
-				allow_illusion = 1,
-				duration = 1,
+				chance = 35,
+				talent_cd = 5,
 			},
 			["modifier_phantom_assassin_blink_7"] = {
 				skill_number = 2,
-				mini_icon = "Phantom_Strike",
-				skill_icon = "Phantom_Strike",
+				mini_icon = "phantom",
+				skill_icon = "phantom",
 				rarity = "orange",
+				has_video = 1,
+				complexity = 2,
+				build_type = 2,
 
-				damage = 10,
-				incoming = 600,
-				agi_duration_creeps = 5,
-				radius = 1000,
-				trigger_ability = "custom_phantom_assassin_phantom_strike",
-				agi_duration_heroes = 12,
-				duration = 4,
-				agi = 50,
+				cd_reduce = 50,
+				damage = 50,
+				damage_taken = 190,
+				radius = 200,
+				delay = 0.25,
+				speed = 1200,
+				duration_hero = 18,
+				duration_creeps = 6,
 				skill_name = "custom_phantom_assassin_phantom_strike",
-				max = 80,
+				skill_change = "grace_magic",
+				banned_talent = "modifier_phantom_assassin_crit_7",
 			},
+
 			["modifier_phantom_assassin_blur_1"] = {
 				skill_number = 3,
-				mini_icon = "Blur_1",
-				skill_icon = "Blur",
+				mini_icon = "blur_1",
+				skill_icon = "blur",
 				rarity = "blue",
+				has_video = 1,
 
-				evasion = { 8, 12, 16 },
-				delay = { 0.4, 0.6, 0.8 },
+				damage = { 50, 75, 100 },
+				agi = { 20, 30, 40 },
+				radius = 250,
+				chance = 25,
+				illusion_chance = 10,
+				damage_type = DAMAGE_TYPE_MAGICAL,
 			},
 			["modifier_phantom_assassin_blur_2"] = {
 				skill_number = 3,
-				mini_icon = "Blur_2",
-				skill_icon = "Blur",
+				mini_icon = "blur_2",
+				skill_icon = "blur",
 				rarity = "blue",
 
-				speed = { 10, 15, 20 },
-				heal = { 10, 15, 20 },
-				duration = 4,
+				duration = { 0.4, 0.6, 0.8 },
+				agi = { 10, 15, 20 },
+				agi_duration = 4,
+				allow_illusion = 1,
 			},
 			["modifier_phantom_assassin_blur_3"] = {
 				skill_number = 3,
-				mini_icon = "Blur_3",
-				skill_icon = "Blur",
-				rarity = "blue",
+				mini_icon = "blur_3",
+				skill_icon = "blur",
+				rarity = "purple",
+				main_epic = 1,
+				has_video = 1,
 
-				speed = { 20, 30, 40 },
-				bonus = 2,
-				duration = 4,
+				agi = { 12, 20 },
+				attacks = { 1, 2 },
+				damage = 60,
+				duration = 5,
+				delay = 0.2,
+				allow_illusion = 1,
 			},
 			["modifier_phantom_assassin_blur_4"] = {
 				skill_number = 3,
-				mini_icon = "Blur_4",
-				skill_icon = "Blur",
-				rarity = "purple",
-				main_epic = 1,
-
-				damage = { 4, 6 },
-				effect_duration = 8,
-				slow = { -30, -50 },
-				radius = 360,
-				duration = 6,
-				max = 5,
-			},
-			["modifier_phantom_assassin_blur_5"] = {
-				skill_number = 3,
-				mini_icon = "Blur_5",
-				skill_icon = "Blur",
-				rarity = "purple",
-
-				distance = 300,
-				range = 80,
-				effect_duration = 3,
-				stun = 1.2,
-				bonus = 2,
-				duration = 0.2,
-			},
-			["modifier_phantom_assassin_blur_6"] = {
-				skill_number = 3,
-				mini_icon = "Blur_6",
-				skill_icon = "Blur",
-				rarity = "purple",
-
-				cd_items = 3,
-				cd_inc = -0.4,
-				duration = 1,
-			},
-			["modifier_phantom_assassin_blur_7"] = {
-				skill_number = 3,
-				mini_icon = "Blur",
-				skill_icon = "Blur",
-				rarity = "orange",
-
-				damage = 8,
-				max_creeps = 150,
-				skill_name = "custom_phantom_assassin_blur",
-				radius = 360,
-				evasion = 70,
-				duration = 6,
-			},
-			["modifier_phantom_assassin_crit_1"] = {
-				skill_number = 4,
-				mini_icon = "Coup_de_Grace_1",
-				skill_icon = "Coup_de_Grace",
-				rarity = "blue",
-
-				damage = { 20, 30, 40 },
-				allow_illusion = 1,
-				chance = { 4, 6, 8 },
-				duration = 4,
-			},
-			["modifier_phantom_assassin_crit_2"] = {
-				skill_number = 4,
-				mini_icon = "Coup_de_Grace_2",
-				skill_icon = "Coup_de_Grace",
-				rarity = "blue",
-
-				heal = { 8, 12, 16 },
-				allow_illusion = 1,
-				bonus = 2,
-				creeps = 3,
-			},
-			["modifier_phantom_assassin_crit_3"] = {
-				skill_number = 4,
-				mini_icon = "Coup_de_Grace_3",
-				skill_icon = "Coup_de_Grace",
-				rarity = "blue",
-
-				is_through_bkb = 1,
-				duration = 4,
-				heal_reduce = { -15, -20, -25 },
-				damage_reduce = { -10, -15, -20 },
-			},
-			["modifier_phantom_assassin_crit_4"] = {
-				skill_number = 4,
-				mini_icon = "Coup_de_Grace_4",
-				skill_icon = "Coup_de_Grace",
-				rarity = "purple",
-				main_epic = 1,
-
-				armor = -1,
-				is_through_bkb = 1,
-				max = { 10, 18 },
-				crit_stack = 3,
-				duration = 6,
-			},
-			["modifier_phantom_assassin_crit_5"] = {
-				skill_number = 4,
-				mini_icon = "Coup_de_Grace_5",
-				skill_icon = "Coup_de_Grace",
+				mini_icon = "blur_4",
+				skill_icon = "blur",
 				rarity = "purple",
 				has_video = 1,
 
-				silence = 2.5,
-				is_through_bkb = 1,
-				cd = 15,
-				slow = -150,
-			},
-			["modifier_phantom_assassin_crit_6"] = {
-				skill_number = 4,
-				mini_icon = "Coup_de_Grace_6",
-				skill_icon = "Coup_de_Grace",
-				rarity = "purple",
+				cd_reduce = 40,
+				attacks = 10,
+				attacks_legendary = 20,
+				slow = -60,
+				duration = 4,
+				radius = 350,
+				window = 4,
 
-				status = 20,
+				alt_talent = "modifier_phantom_assassin_blur_7",
+			},
+			["modifier_phantom_assassin_blur_7"] = {
+				skill_number = 3,
+				mini_icon = "blur",
+				skill_icon = "blur",
+				rarity = "orange",
+				has_video = 1,
+				complexity = 1,
+				build_type = 1,
+
+				damage = -70,
+				agi = 6,
 				duration = 10,
-				shield = 7,
+				illusions = 2,
+				illusion_incoming = 160,
+				illusion_outgoing = 60,
+				illusion_move = 25,
+
+				skill_name = "custom_phantom_assassin_blur",
+			},
+
+			["modifier_phantom_assassin_crit_1"] = {
+				skill_number = 4,
+				mini_icon = "grace_1",
+				skill_icon = "grace",
+				rarity = "blue",
+
+				cleave = { 20, 30, 40 },
+				damage = { 12, 18, 24 },
 				max = 3,
+				duration_hero = 12,
+				duration_creeps = 6,
+				cleave_start = 150,
+				cleave_end = 300,
+				cleave_distance = 550,
+			},
+			["modifier_phantom_assassin_crit_2"] = {
+				skill_number = 4,
+				mini_icon = "grace_2",
+				skill_icon = "grace",
+				rarity = "blue",
+
+				lifesteal = { 10, 15, 20 },
+				range = { 40, 60, 80 },
+				multiplier = 2,
+				allow_illusion = 1,
+			},
+			["modifier_phantom_assassin_crit_3"] = {
+				skill_number = 4,
+				mini_icon = "grace_3",
+				skill_icon = "grace",
+				rarity = "purple",
+				main_epic = 1,
+				is_through_bkb = 1,
+
+				armor = { -12, -20 },
+				attack = { 60, 100 },
+				max = 25,
+				procs = 3,
+				armor_duration = 12,
+				duration = 3,
+			},
+			["modifier_phantom_assassin_crit_4"] = {
+				skill_number = 4,
+				mini_icon = "grace_4",
+				skill_icon = "grace",
+				rarity = "purple",
+				has_video = 1,
+
+				chance = 5,
+				shield = 100,
+				health = 5,
+				move = 20,
+				max = 3,
+				duration = 10,
 			},
 			["modifier_phantom_assassin_crit_7"] = {
 				skill_number = 4,
-				mini_icon = "Coup_de_Grace",
-				skill_icon = "Coup_de_Grace",
+				mini_icon = "grace",
+				skill_icon = "grace",
 				rarity = "orange",
+				has_video = 1,
+				complexity = 1,
+				build_type = 1,
 
-				damage = 15,
-				cd = 40,
-				range = 700,
-				max = 10,
+				duration = 7,
+				attack = 60,
+				chance = 100,
+				crit = 10,
+				mark_duration = 15,
+				procs = 3,
+				talent_cd = 4,
+
 				skill_name = "custom_phantom_assassin_coup_de_grace",
-				delay = 10,
-				bva = 1.5,
-				duration = 90,
+				trigger_ability = "custom_phantom_assassin_coup_de_grace_legendary",
+				banned_talent = { "modifier_phantom_assassin_dagger_7", "modifier_phantom_assassin_blink_7" },
 			},
 		},
 
@@ -1477,6 +1483,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 2,
 
 				interval = 1,
 				count = 3,
@@ -1542,6 +1549,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 1,
 
 				duration = 6,
 				damage_inc = 30,
@@ -1606,6 +1614,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 1,
 
 				cost = 50,
 				damage = 100,
@@ -1666,6 +1675,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 2,
 
 				cd_inc = 80,
 				health = 50,
@@ -2464,6 +2474,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 2,
 
 				max = 3,
 				damage = 40,
@@ -2535,6 +2546,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				skill_icon = "Press",
 				rarity = "orange",
 				complexity = 1,
+				build_type = 2,
 				has_video = 1,
 
 				duration = 3,
@@ -2601,6 +2613,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 1,
 
 				bva = -0.3,
 				talent_cd = 1,
@@ -2665,6 +2678,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 1,
 
 				duration = 6,
 				duration_inc = 1,
@@ -2789,6 +2803,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 1,
 
 				stack = 4,
 				duration = 8,
@@ -2855,6 +2870,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 2,
 
 				mana = 15,
 				thresh = 50,
@@ -2923,6 +2939,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 2,
 
 				cost = 6,
 				cd = -20,
@@ -2983,6 +3000,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 1,
 
 				radius = 220,
 				range = 700,
@@ -4113,6 +4131,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				skill_icon = "Chain",
 				rarity = "orange",
 				complexity = 1,
+				build_type = 1,
 				has_video = 1,
 
 				attacks = 3,
@@ -4174,6 +4193,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 2,
 
 				duration = 8,
 				damage_inc = 10,
@@ -4242,6 +4262,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 1,
 
 				speed = 50,
 				duration = 3,
@@ -4304,6 +4325,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 2,
 
 				talent_cd = 40,
 				cast = 1.5,
@@ -4761,6 +4783,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 1,
 
 				cd_inc = 40,
 				armor = -1.5,
@@ -4824,6 +4847,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 2,
 
 				max = 3,
 				magic = -50,
@@ -4890,6 +4914,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 1,
 
 				distance = 850,
 				bva = 1.5,
@@ -4953,6 +4978,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				skill_icon = "sharp",
 				rarity = "orange",
 				complexity = 2,
+				build_type = 2,
 				has_video = 1,
 
 				cd = -50,
@@ -5087,6 +5113,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 2,
 
 				duration = 6,
 				damage = 40,
@@ -5146,6 +5173,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 1,
 
 				count = 4,
 				damage = 60,
@@ -5210,6 +5238,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 1,
 
 				chance = 40,
 				damage = -30,
@@ -5276,6 +5305,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 2,
 
 				heal = 30,
 				cd_inc = 50,
@@ -5413,6 +5443,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 2,
 
 				count = 5,
 				linger = 3,
@@ -5481,6 +5512,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 1,
 
 				max = 12,
 				duration = 15,
@@ -5548,6 +5580,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 1,
 
 				damage = 35,
 				mana = 25,
@@ -5618,6 +5651,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 2,
 
 				duration = 2,
 				move = 20,
@@ -6100,6 +6134,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 1,
 
 				interval = 1,
 				heal = 200,
@@ -6164,6 +6199,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 2,
 
 				damage = 3,
 				max = 20,
@@ -6224,6 +6260,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 2,
 
 				duration = 3,
 				talent_cd = 8,
@@ -6292,6 +6329,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 1,
 
 				attacks = 3,
 				health = 50,
@@ -6385,7 +6423,6 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				cd = { -2, -3, -4 },
 				mana = { 16, 24, 32 },
-				update_mod = "modifier_alchemist_acid_spray_custom_tracker",
 			},
 			["modifier_alchemist_spray_3"] = {
 				skill_number = 1,
@@ -6420,6 +6457,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 2,
 
 				skill_name = "alchemist_acid_spray_custom",
 				trigger_ability = "alchemist_acid_spray_mixing",
@@ -6471,7 +6509,6 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				cd_items = -4,
 				range = 250,
-				update_mod = "modifier_alchemist_unstable_concoction_custom_tracker",
 			},
 			["modifier_alchemist_unstable_legendary"] = {
 				skill_number = 2,
@@ -6480,6 +6517,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 2,
 
 				skill_name = "alchemist_unstable_concoction_custom",
 				damage = 75,
@@ -6520,7 +6558,6 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				talent_cd = 0.3,
 				heal = 100,
 				damage_type = DAMAGE_TYPE_MAGICAL,
-				update_mod = "modifier_alchemist_corrosive_weaponry_custom",
 			},
 			["modifier_alchemist_greed_4"] = {
 				skill_number = 3,
@@ -6540,6 +6577,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 1,
 
 				talent_cd = 12,
 				duration = 8,
@@ -6607,14 +6645,26 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				skill_icon = "chemical",
 				rarity = "orange",
 				complexity = 1,
+				build_type = 1,
 
 				bonus = 100,
 				duration = 10,
 				cd = 10,
-				points_start = 40,
-				points_inc = 15,
+				points = 80,
 				orbs_count = 6,
-				update_mod = "modifier_alchemist_goblins_greed_custom",
+				is_talent_upgrade = 1,
+				talent_upgrade_func = function(data, parent)
+					if not data.rarity then
+						return
+					end
+					if data.rarity ~= "gray" then
+						return
+					end
+					if not parent:HasModifier("modifier_alchemist_chemical_rage_custom_legendary") then
+						return
+					end
+					return parent:GetTalentValue("modifier_alchemist_rage_legendary", "bonus") / 100
+				end,
 				skill_name = "alchemist_chemical_rage_custom",
 				trigger_ability = "alchemist_enrage_potion",
 			},
@@ -6735,6 +6785,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 2,
 
 				speed = 1800,
 				distance = 400,
@@ -6806,6 +6857,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 1,
 
 				duration = 5,
 				chance = 50,
@@ -6874,6 +6926,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 1,
 
 				duration = 3,
 				cost = 6,
@@ -6958,6 +7011,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				skill_icon = "multicast",
 				rarity = "orange",
 				complexity = 2,
+				build_type = 2,
 				has_video = 1,
 
 				cdr = 45,
@@ -7095,6 +7149,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 1,
 
 				damage = 150,
 				talent_cd = 5,
@@ -7161,6 +7216,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 1,
 
 				agi = 80,
 				max = 6,
@@ -7235,6 +7291,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 2,
 
 				magic = -60,
 				stun = 1.5,
@@ -7298,6 +7355,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 2,
 
 				delay = 3,
 				talent_cd = 8,
@@ -7735,6 +7793,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 2,
 
 				damage = 400,
 				channel = 2,
@@ -7802,6 +7861,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 2,
 
 				magic = -8,
 				max = 8,
@@ -7872,6 +7932,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 1,
 
 				damage = 75,
 				speed = 70,
@@ -7948,6 +8009,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 1,
 
 				cd_inc = -0.1,
 				speed = 55,
@@ -8412,6 +8474,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 1,
 
 				cost = 4,
 				bonus = 125,
@@ -8470,6 +8533,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 2,
 
 				duration = 6,
 				cost = 4,
@@ -8534,6 +8598,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 1,
 
 				range = 800,
 				min_range = 300,
@@ -8597,6 +8662,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 2,
 
 				damage = 15,
 				damage_reduce = -80,
@@ -8727,13 +8793,16 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 1,
 
 				duration = 5,
 				max = 3,
 				damage = 2.3,
+				stun = -50,
 				bva = 0.3,
+				spell = -25,
 				mana = -50,
-				cd = -3,
+				cd = -2,
 				range = 1200,
 				damage_k = 1.5,
 				skill_name = "monkey_king_boundless_strike_custom",
@@ -8792,6 +8861,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				skill_icon = "tree",
 				rarity = "orange",
 				complexity = 2,
+				build_type = 2,
 
 				damage = 2,
 				duration = 135,
@@ -8802,7 +8872,12 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				bonus_2 = 25,
 				max = 40,
 				legendary = 20,
-				bounty = 60,
+				gold = 100,
+				gold_inc = 3,
+				exp = 135,
+				exp_inc = 5,
+				blue = 16,
+				blue_inc = 0.5,
 				vision = 500,
 				charge = 2,
 				chance = 10,
@@ -8868,6 +8943,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 1,
 
 				speed = 2200,
 				move_slow = -50,
@@ -8939,6 +9015,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 2,
 
 				delay = 1,
 				heal = 75,
@@ -9070,6 +9147,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 2,
 
 				damage = 150,
 				radius = 350,
@@ -9139,6 +9217,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 1,
 
 				cd_inc = -50,
 				duration = 5,
@@ -9210,6 +9289,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 1,
 
 				max = 4,
 				duration = 6,
@@ -9273,6 +9353,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 2,
 
 				damage = 125,
 				damage_inc = 50,
@@ -9410,6 +9491,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 1,
 
 				damage = 100,
 				active_damage = 120,
@@ -9475,6 +9557,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 2,
 
 				max = 5,
 				damage = 30,
@@ -9542,6 +9625,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 1,
 
 				duration = 10,
 				duration_creeps = 4,
@@ -9606,6 +9690,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 2,
 
 				delay = 1.6,
 				damage = 14,
@@ -9744,6 +9829,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 1,
 
 				chance = 20,
 				chance_inc = 20,
@@ -9810,6 +9896,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 2,
 
 				magic = -2,
 				stun = 1.2,
@@ -9878,6 +9965,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 1,
 
 				damage = 350,
 				radius = 280,
@@ -9942,6 +10030,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 2,
 
 				cast = 1.8,
 				mana = 100,
@@ -10065,6 +10154,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 1,
 
 				attack_range = 200,
 				radius = 800,
@@ -10128,6 +10218,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 2,
 
 				damage = 60,
 				slow = -50,
@@ -10191,6 +10282,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 1,
 
 				duration = 2,
 				cdr = 2.5,
@@ -10258,6 +10350,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 2,
 
 				talent_cd = 12,
 				count = 4,
@@ -11408,6 +11501,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				skill_icon = "dead",
 				rarity = "orange",
 				complexity = 2,
+				build_type = 2,
 				has_video = 1,
 
 				cd = -50,
@@ -11480,6 +11574,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				skill_icon = "calling",
 				rarity = "orange",
 				complexity = 1,
+				build_type = 2,
 				has_video = 1,
 
 				small_radius = 450,
@@ -11551,6 +11646,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				skill_icon = "gun",
 				rarity = "orange",
 				complexity = 1,
+				build_type = 1,
 				has_video = 1,
 
 				damage_reduce = -60,
@@ -11625,6 +11721,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				skill_icon = "veil",
 				rarity = "orange",
 				complexity = 2,
+				build_type = 1,
 				has_video = 1,
 
 				duration = 0.2,
@@ -11757,6 +11854,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 1,
 
 				attack = 1,
 				damage = 80,
@@ -11817,6 +11915,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				skill_icon = "shield",
 				rarity = "orange",
 				complexity = 1,
+				build_type = 2,
 				has_video = 1,
 
 				duration = 12,
@@ -11896,6 +11995,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 1,
 
 				speed = 50,
 				max = 4,
@@ -11961,6 +12061,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 2,
 
 				max = 3,
 				damage = 125,
@@ -12108,6 +12209,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 2,
 
 				interval = 2,
 				allow_illusion = 1,
@@ -12172,6 +12274,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 3,
+				build_type = 1,
 
 				talent_cd = 12,
 				damage = 50,
@@ -12238,6 +12341,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 3,
+				build_type = 2,
 
 				cast = 1.5,
 				damage = 1400,
@@ -12307,6 +12411,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 1,
 
 				cast = 6,
 				duration = 10,
@@ -12432,6 +12537,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 2,
 
 				damage = 85,
 				stun = 3,
@@ -12498,6 +12604,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 1,
 
 				attacks = 1,
 				range = 1600,
@@ -12565,6 +12672,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 1,
 
 				radius = 340,
 				meteor = 3,
@@ -12630,6 +12738,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 3,
+				build_type = 2,
 
 				duration = 10,
 				talent_cd = 20,
@@ -13424,6 +13533,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 2,
 
 				damage = 20,
 				health = 60,
@@ -13500,6 +13610,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 1,
 
 				bva = -0.3,
 				duration = 4,
@@ -13574,6 +13685,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 1,
 
 				speed = 250,
 				damage_reduce = -80,
@@ -13647,6 +13759,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 2,
 
 				cd_inc = -70,
 				duration = 20,
@@ -13771,6 +13884,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 2,
 
 				damage = 130,
 				radius = 150,
@@ -13836,6 +13950,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 2,
 
 				damage = 5,
 				max = 12,
@@ -13900,6 +14015,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 1,
 
 				bonus = 4,
 				duration_creeps = 7,
@@ -13967,6 +14083,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 1,
 
 				heal = 200,
 				damage = 75,
@@ -14106,6 +14223,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 1,
 
 				speed = 2500,
 				duration = 8,
@@ -14176,6 +14294,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 2,
 
 				spell = 30,
 				duration = 6,
@@ -14231,6 +14350,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 2,
 
 				cd = -30,
 				max = 3,
@@ -14294,6 +14414,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 1,
 
 				talent_cd = 5,
 				duration = 0.5,
@@ -14745,6 +14866,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 2,
 
 				damage = 350,
 				cost = 10,
@@ -14810,6 +14932,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 2,
 
 				spell = 2,
 				pact = 1.5,
@@ -14883,6 +15006,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 1,
 
 				range = 500,
 				attacks = 5,
@@ -14947,6 +15071,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 1,
 
 				cd = 6,
 				bva_base = 2,
@@ -15078,6 +15203,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 2,
 
 				distance = 300,
 				max = 6,
@@ -15143,6 +15269,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 2,
 
 				creeps = 3,
 				talent_cd = 12,
@@ -15212,6 +15339,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 1,
 
 				speed = 20,
 				effect_duration = 8,
@@ -15281,6 +15409,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 1,
 
 				damage = 250,
 				stack_radius = 1000,
@@ -15406,6 +15535,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 1,
 
 				damage_end = 1800,
 				damage_k = 1.75,
@@ -15470,6 +15600,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 1,
 
 				health = 15,
 				radius = 800,
@@ -15535,6 +15666,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 2,
 
 				duration = 3,
 				invun = 1.5,
@@ -15593,6 +15725,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 2,
 
 				damage_inc = 135,
 				max = 4,
@@ -15729,6 +15862,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 1,
 
 				value = 200,
 				radius = 600,
@@ -15786,6 +15920,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 2,
 
 				mana = 30,
 				damage_reduce = -80,
@@ -15852,6 +15987,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 1,
 
 				damage = 140,
 				effect_duration = 12,
@@ -15914,6 +16050,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 2,
 
 				duration = 6,
 				stun = 1.5,
@@ -15983,6 +16120,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				int = 1.5,
 				heal = 40,
 				invun = 0.7,
+				max = 16,
 			},
 			["modifier_morphling_hero_6"] = {
 				skill_number = 0,
@@ -16052,6 +16190,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 2,
 
 				cd_inc = 10,
 				distance = 200,
@@ -16115,6 +16254,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 2,
 
 				attack = -20,
 				damage = 180,
@@ -16189,6 +16329,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 1,
 
 				duration = 15,
 				max = 12,
@@ -16258,6 +16399,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 3,
+				build_type = 1,
 
 				bva = 0.5,
 				damage_base = 75,
@@ -16394,6 +16536,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 1,
 
 				feast = 2,
 				cd = -50,
@@ -16453,6 +16596,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 2,
 
 				radius = 600,
 				duration = 8,
@@ -16521,6 +16665,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 1,
 
 				attack_damage = -25,
 				duration = 3,
@@ -16598,6 +16743,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 3,
+				build_type = 2,
 
 				health = 50,
 				health_creep = 50,
@@ -16721,6 +16867,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 2,
 
 				duration = 2,
 				range = 650,
@@ -16793,6 +16940,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 1,
 
 				range = 900,
 				width = 700,
@@ -16865,6 +17013,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 1,
 
 				attacks = 8,
 				attacks_turret = 3,
@@ -16930,6 +17079,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 3,
+				build_type = 2,
 
 				damage_base = 30,
 				damage = 50,
@@ -17072,6 +17222,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 1,
 
 				chance = 30,
 				count = 1,
@@ -17141,6 +17292,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 2,
 
 				talent_cd = 5,
 				mana = 40,
@@ -17205,6 +17357,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 2,
 
 				talent_cd = 2,
 				speed = 1800,
@@ -17269,6 +17422,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 1,
 
 				bva = 0.45,
 				channel = -50,
@@ -17398,6 +17552,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 2,
 
 				talent_cd = 3,
 				delay = 0.5,
@@ -17466,6 +17621,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 2,
 
 				damage_min = 10,
 				damage_max = 40,
@@ -17529,6 +17685,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 1,
 
 				duration = 5,
 				bva = 1.2,
@@ -17600,6 +17757,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 1,
 
 				cd = 3.5,
 				bva = 0.3,
@@ -17737,6 +17895,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 1,
 
 				duration = 3,
 				damage_inc = 3,
@@ -17809,6 +17968,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 2,
 
 				delay = 1,
 				stun = 1,
@@ -17878,6 +18038,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 1,
 
 				max = 8,
 				duration = 9,
@@ -17937,6 +18098,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 2,
 
 				cd = -30,
 				damage = 70,
@@ -18066,6 +18228,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 2,
 
 				cd = 1,
 				damage = 40,
@@ -18137,6 +18300,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 2,
 
 				cd = 1,
 				cd_inc = 0.5,
@@ -18207,6 +18371,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				has_video = 1,
 				has_video = 1,
 				complexity = 1,
+				build_type = 1,
 
 				duration = 6,
 				attacks = 6,
@@ -18278,6 +18443,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 1,
 
 				range = 1400,
 				charge = 1,
@@ -18407,6 +18573,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 2,
 
 				cd = -50,
 				damage = 4,
@@ -18477,6 +18644,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 2,
+				build_type = 1,
 
 				damage = 35,
 				max = 4,
@@ -18547,6 +18715,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 1,
 
 				max = 3,
 				damage_reduce = -25,
@@ -18617,6 +18786,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "orange",
 				has_video = 1,
 				complexity = 1,
+				build_type = 2,
 
 				charge = 3,
 				duration = -50,
@@ -18638,32 +18808,64 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				skill_number = 0,
 				mini_icon = "hero_1",
 				rarity = "blue",
+
+				armor = { 4, 6, 8 },
+				move = { 30, 45, 60 },
+				bonus = 2,
 			},
 			["modifier_kunkka_hero_2"] = {
 				skill_number = 0,
 				mini_icon = "hero_2",
 				rarity = "blue",
+
+				base = { 30, 45, 60 },
+				heal = { 2, 3, 4 },
+				duration = 3,
+				reduce = { -12, -18, -24 },
+				reduce_duration = 6,
 			},
 			["modifier_kunkka_hero_3"] = {
 				skill_number = 0,
 				mini_icon = "hero_3",
 				rarity = "blue",
+
+				cdr = { 6, 9, 12 },
+				duration = { 1, 1.5, 2 },
 			},
 
 			["modifier_kunkka_hero_4"] = {
 				skill_number = 0,
 				mini_icon = "hero_4",
 				rarity = "purple",
+				has_video = 1,
+
+				is_purgable_self = 1,
+				radius = 60,
+				cast = 40,
+				silence = 1.5,
+				torrent_cd = 8,
 			},
 			["modifier_kunkka_hero_5"] = {
 				skill_number = 0,
 				mini_icon = "hero_5",
 				rarity = "purple",
+				has_video = 1,
+
+				absorb = 10,
+				burn = 40,
+				shield = 40,
 			},
 			["modifier_kunkka_hero_6"] = {
 				skill_number = 0,
 				mini_icon = "hero_6",
 				rarity = "purple",
+				has_video = 1,
+
+				status = 15,
+				bkb = 2.5,
+				speed = 600,
+				duration_legendary = 2,
+				alt_talent = "modifier_kunkka_ship_7",
 			},
 
 			["modifier_kunkka_torrent_1"] = {
@@ -18671,12 +18873,20 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				mini_icon = "torrent_1",
 				skill_icon = "torrent",
 				rarity = "blue",
+
+				cd = { -1, -1.5, -2 },
+				damage = { 30, 45, 60 },
+				int = { 40, 60, 80 },
 			},
 			["modifier_kunkka_torrent_2"] = {
 				skill_number = 1,
 				mini_icon = "torrent_2",
 				skill_icon = "torrent",
 				rarity = "blue",
+
+				spell = { 6, 9, 12 },
+				range = { 100, 150, 200 },
+				alt_talent = "modifier_kunkka_ship_7",
 			},
 			["modifier_kunkka_torrent_3"] = {
 				skill_number = 1,
@@ -18684,12 +18894,25 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				skill_icon = "torrent",
 				rarity = "purple",
 				main_epic = 1,
+				has_video = 1,
+
+				cd_inc = { 25, 40 },
+				damage = { 20, 35 },
+				duration = 12,
+				alt_talent = "modifier_kunkka_torrent_7",
 			},
 			["modifier_kunkka_torrent_4"] = {
 				skill_number = 1,
 				mini_icon = "torrent_4",
 				skill_icon = "torrent",
 				rarity = "purple",
+
+				delay = -0.6,
+				slow = -20,
+				slow_legendary = -15,
+				cd_items = 2,
+				cd_items_ship = 4,
+				alt_talent = "modifier_kunkka_torrent_7",
 			},
 			["modifier_kunkka_torrent_7"] = {
 				skill_number = 1,
@@ -18697,6 +18920,24 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				skill_icon = "torrent",
 				rarity = "orange",
 				has_video = 1,
+				complexity = 2,
+				build_type = 2,
+
+				step = 280,
+				delay_step = 12,
+				radius = 250,
+				duration = 12,
+				max = 6,
+				decay = 2,
+				crash = 150,
+				damage = 350,
+				damage_duration = 1.2,
+				damage_ticks = 5,
+				slow = -25,
+				turn = -50,
+				deep = -100,
+				talent_cd = 2,
+				cd = 2,
 
 				skill_name = "kunkka_torrent_custom",
 			},
@@ -18706,12 +18947,23 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				mini_icon = "tidebringer_1",
 				skill_icon = "tidebringer",
 				rarity = "blue",
+
+				damage = { 20, 30, 40 },
+				cleave = { 20, 30, 40 },
+				damage_wave = { 30, 45, 60 },
+				alt_talent = "modifier_kunkka_tidebringer_7",
 			},
 			["modifier_kunkka_tidebringer_2"] = {
 				skill_number = 2,
 				mini_icon = "tidebringer_2",
 				skill_icon = "tidebringer",
 				rarity = "blue",
+
+				cd = { -2, -3, -4 },
+				cd_legendary = { -10, -15, -20 },
+				slow = { -20, -30, -40 },
+				duration = 3,
+				alt_talent = "modifier_kunkka_tidebringer_7",
 			},
 			["modifier_kunkka_tidebringer_3"] = {
 				skill_number = 2,
@@ -18719,12 +18971,24 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				skill_icon = "tidebringer",
 				rarity = "purple",
 				main_epic = 1,
+				has_video = 1,
+
+				chance = { 30, 50 },
+				procs = 2,
+				armor = { -1.5, -2.5 },
+				max = 6,
+				duration = 14,
 			},
 			["modifier_kunkka_tidebringer_4"] = {
 				skill_number = 2,
 				mini_icon = "tidebringer_4",
 				skill_icon = "tidebringer",
 				rarity = "purple",
+				has_video = 1,
+
+				distance = 150,
+				root = 2,
+				talent_cd = 8,
 			},
 			["modifier_kunkka_tidebringer_7"] = {
 				skill_number = 2,
@@ -18732,6 +18996,26 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				skill_icon = "tidebringer",
 				rarity = "orange",
 				has_video = 1,
+				complexity = 1,
+				build_type = 1,
+
+				is_through_bkb = 1,
+				cd = -6,
+				hits = -1,
+				max = 6,
+				duration = 12,
+
+				waves = 3,
+				talent_cd = 2,
+				wave_duration = 15,
+				damage = 160,
+				armor = -60,
+				width = 750,
+				speed = 1200,
+				distance = 2000,
+				spawn_distance = 500,
+				stun = 0.4,
+				knockback = 250,
 
 				skill_name = "kunkka_tidebringer_custom",
 			},
@@ -18741,12 +19025,20 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				mini_icon = "xmark_1",
 				skill_icon = "xmark",
 				rarity = "blue",
+
+				chance = 25,
+				crit = { 30, 45, 60 },
+				bonus = 2,
 			},
 			["modifier_kunkka_xmark_2"] = {
 				skill_number = 3,
 				mini_icon = "xmark_2",
 				skill_icon = "xmark",
 				rarity = "blue",
+
+				lifesteal = { 10, 15, 20 },
+				cd = { -2, -3, -4 },
+				bonus = 2,
 			},
 			["modifier_kunkka_xmark_3"] = {
 				skill_number = 3,
@@ -18754,20 +19046,49 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				skill_icon = "xmark",
 				rarity = "purple",
 				main_epic = 1,
+				has_video = 1,
+
+				bonus_duration = { 1.5, 3 },
+				damage = { 20, 35 },
+				duration = 8,
+				interval = 1,
+				damage_type = DAMAGE_TYPE_MAGICAL,
 			},
 			["modifier_kunkka_xmark_4"] = {
 				skill_number = 3,
 				mini_icon = "xmark_4",
 				skill_icon = "xmark",
 				rarity = "purple",
+				has_video = 1,
+
+				is_root_disabled = 1,
+				range = 1000,
+				move = 30,
+				slow_resist = 50,
+				delay = 0.2,
 			},
 			["modifier_kunkka_xmark_7"] = {
 				skill_number = 3,
 				mini_icon = "xmark",
 				skill_icon = "xmark",
 				rarity = "orange",
-				has_video = 1,
+				complexity = 3,
+				build_type = 1,
 
+				spawn_gap = 5000,
+				tower_radius = 1600,
+				vision_radius = 800,
+				pick_radius = 120,
+				min_gold = 2,
+				max_gold = 8,
+				kill_gold = 3,
+				bounty_gold = 2,
+				start_gold = 30,
+				legendary = 150,
+				chest_timer = 60,
+				max_chest = 3,
+				chest_gold = 30,
+				chest_blue = 4,
 				skill_name = "kunkka_x_marks_the_spot_custom",
 			},
 
@@ -18776,12 +19097,22 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				mini_icon = "ship_1",
 				skill_icon = "ship",
 				rarity = "blue",
+
+				magic = { -8, -12, -16 },
+				magic_legendary = { -2, -3, -4 },
+				damage = { 40, 60, 80 },
+				health = { 4, 6, 8 },
+				duration = 8,
+				alt_talent = "modifier_kunkka_ship_7",
 			},
 			["modifier_kunkka_ship_2"] = {
 				skill_number = 4,
 				mini_icon = "ship_2",
 				skill_icon = "ship",
 				rarity = "blue",
+
+				cd = { -4, -6, -8 },
+				stun = { 0.2, 0.3, 0.4 },
 			},
 			["modifier_kunkka_ship_3"] = {
 				skill_number = 4,
@@ -18789,12 +19120,30 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				skill_icon = "ship",
 				rarity = "purple",
 				main_epic = 1,
+				has_video = 1,
+
+				lifesteal = { 25, 40 },
+				damage = { 20, 35 },
+				duration = 12,
+				damage_max = 70,
+				damage_type = DAMAGE_TYPE_MAGICAL,
+				delay = 0.5,
+				cd = 2,
 			},
 			["modifier_kunkka_ship_4"] = {
 				skill_number = 4,
 				mini_icon = "ship_4",
 				skill_icon = "ship",
 				rarity = "purple",
+
+				delay = -0.8,
+				cannon_cd = -0.5,
+				spell = 15,
+				health = 15,
+				max = 20,
+				is_perma = 1,
+				mod_name = "modifier_kunkka_ghostship_custom_perma",
+				alt_talent = "modifier_kunkka_ship_7",
 			},
 			["modifier_kunkka_ship_7"] = {
 				skill_number = 4,
@@ -18802,6 +19151,33 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				skill_icon = "ship",
 				rarity = "orange",
 				has_video = 1,
+				complexity = 2,
+				build_type = 2,
+
+				duration = 9,
+				cd = -4,
+				speed = 480,
+				speed_max = 900,
+				accel = 220,
+				decel = 400,
+				turn_rate = 90,
+				turn_rate_min = 55,
+				spawn_distance = 600,
+				pickup = 0.6,
+				hit_radius = 200,
+				push = 250,
+				push_duration = 0.4,
+				push_cd = 1.2,
+				cannon_damage = 40,
+				cannon_speed = 1300,
+				cannon_radius = 150,
+				cannon_aoe = 300,
+				cannon_stun = 0.3,
+				cannon_magic = -8,
+				cannon_debuff = 12,
+				cannon_max = 10,
+				talent_cd = 1.5,
+				cannon_distance = 900,
 
 				skill_name = "kunkka_ghostship_custom",
 			},
@@ -19025,6 +19401,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 			["banned_talent"] = true,
 			["alt_talent2"] = true,
 			["skill_change"] = true,
+			["build_type"] = true,
 		}
 
 		print(string.rep(" ", 1 * 2) .. "{")
@@ -19133,12 +19510,20 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 			if hero_name == "npc_dota_hero_muerta" then
 				search_table[2] = "muerta_quest"
 			end
+			if hero_name == "npc_dota_hero_kunkka" then
+				search_table[2] = "kunkka_shop"
+			end
 		end
 
 		for _, name in pairs(search_table) do
 			for table_name, table_data in pairs(global_values) do
 				if table_name == name then
-					if name == "general" or name == "broodmother_spiders" then
+					if
+						name == "general"
+						or name == "broodmother_spiders"
+						or name == "kunkka_shop"
+						or name == "patrol"
+					then
 						if not talents_icons["general"] then
 							talents_icons["general"] = {}
 						end
@@ -19149,6 +19534,13 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 								if name == "broodmother_spiders" then
 									talents_icons["general"][talent_name].icon = "npc_dota_hero_broodmother/"
 										.. talent["mini_icon"]
+								end
+								if name == "kunkka_shop" then
+									talents_icons["general"][talent_name].icon = "npc_dota_hero_kunkka/"
+										.. talent["mini_icon"]
+								end
+								if name == "patrol" then
+									talents_icons["general"][talent_name].icon = "patrol_icons/" .. talent["skill_icon"]
 								end
 								talents_icons["general"][talent_name].color = talent["rarity"]
 							end
@@ -19173,5 +19565,5 @@ talents_values:SendTalents(nil, { "general", "patrol", "alchemist_items" })
 
 if test then
 	--"printtest"
-	--talents_values:SendTalents(nil, "npc_dota_hero_pangolier", "", {"modifier_pangolier_hero_4"})
+	--talents_values:SendTalents(nil, "kunkka_shop", "modifier_kunkka_shop_", {""})
 end

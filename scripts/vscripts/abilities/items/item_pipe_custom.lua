@@ -26,11 +26,22 @@ function item_pipe_custom:GetIntrinsicModifierName()
 	return "modifier_item_pipe_custom"
 end
 
+function item_pipe_custom:Spawn()
+	self.barrier_radius = self:GetSpecialValueFor("barrier_radius")
+	self.barrier_duration = self:GetSpecialValueFor("barrier_duration")
+	self.aura_radius = self:GetSpecialValueFor("aura_radius")
+	self.health_regen = self:GetSpecialValueFor("health_regen")
+	self.magic_resistance = self:GetSpecialValueFor("magic_resistance")
+	self.aura_armor = self:GetSpecialValueFor("aura_armor")
+	self.magic_resistance_aura = self:GetSpecialValueFor("magic_resistance_aura")
+	self.barrier_block = self:GetSpecialValueFor("barrier_block")
+end
+
 function item_pipe_custom:OnSpellStart()
 	if not IsServer() then
 		return
 	end
-	local radius = self:GetSpecialValueFor("barrier_radius")
+	local radius = self.barrier_radius
 
 	self:GetCaster():EmitSound("DOTA_Item.Pipe.Activate")
 
@@ -41,17 +52,7 @@ function item_pipe_custom:OnSpellStart()
 	)
 	ParticleManager:ReleaseParticleIndex(particle)
 
-	local units = FindUnitsInRadius(
-		self:GetCaster():GetTeamNumber(),
-		self:GetCaster():GetAbsOrigin(),
-		nil,
-		radius,
-		DOTA_UNIT_TARGET_TEAM_FRIENDLY,
-		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-		DOTA_UNIT_TARGET_FLAG_INVULNERABLE,
-		FIND_ANY_ORDER,
-		false
-	)
+	local units = self:GetCaster():FindFriends(radius, nil, nil, DOTA_UNIT_TARGET_FLAG_INVULNERABLE)
 
 	for _, unit in pairs(units) do
 		unit:RemoveModifierByName("modifier_item_pipe_custom_active")
@@ -59,51 +60,15 @@ function item_pipe_custom:OnSpellStart()
 			self:GetCaster(),
 			self,
 			"modifier_item_pipe_custom_active",
-			{ duration = self:GetSpecialValueFor("barrier_duration") }
+			{ duration = self.barrier_duration }
 		)
 	end
 end
 
-modifier_item_pipe_custom = class({})
-
-function modifier_item_pipe_custom:IsHidden()
-	return true
-end
-function modifier_item_pipe_custom:IsPurgable()
-	return false
-end
+modifier_item_pipe_custom = class(mod_hidden)
 function modifier_item_pipe_custom:RemoveOnDeath()
 	return false
 end
-
-function modifier_item_pipe_custom:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
-		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
-	}
-end
-
-function modifier_item_pipe_custom:GetModifierConstantHealthRegen()
-	if self:GetAbility() then
-		return self:GetAbility():GetSpecialValueFor("health_regen")
-	end
-end
-
-function modifier_item_pipe_custom:GetModifierMagicalResistanceBonus()
-	if self:GetParent():HasModifier("modifier_item_consecrated_wraps_custom") then
-		return
-	end
-	if self:GetParent():HasModifier("modifier_item_spell_breaker") then
-		return
-	end
-	if self:GetParent():HasModifier("modifier_item_mage_slayer") then
-		return
-	end
-	if self:GetAbility() then
-		return self:GetAbility():GetSpecialValueFor("magic_resistance")
-	end
-end
-
 function modifier_item_pipe_custom:IsAura()
 	return true
 end
@@ -111,7 +76,7 @@ function modifier_item_pipe_custom:IsAuraActiveOnDeath()
 	return false
 end
 function modifier_item_pipe_custom:GetAuraRadius()
-	return self:GetAbility():GetSpecialValueFor("aura_radius")
+	return self.ability.aura_radius
 end
 function modifier_item_pipe_custom:GetAuraSearchFlags()
 	return DOTA_UNIT_TARGET_FLAG_INVULNERABLE
@@ -125,22 +90,48 @@ end
 function modifier_item_pipe_custom:GetModifierAura()
 	return "modifier_item_pipe_custom_aura"
 end
+function modifier_item_pipe_custom:OnCreated()
+	self.parent = self:GetParent()
+	self.caster = self:GetCaster()
+	self.ability = self:GetAbility()
+end
+
+function modifier_item_pipe_custom:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
+		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
+	}
+end
+
+function modifier_item_pipe_custom:GetModifierConstantHealthRegen()
+	return self.ability.health_regen
+end
+
+function modifier_item_pipe_custom:GetModifierMagicalResistanceBonus()
+	if self.parent:HasModifier("modifier_item_consecrated_wraps_custom") then
+		return
+	end
+	if self.parent:HasModifier("modifier_item_spell_breaker") then
+		return
+	end
+	if self.parent:HasModifier("modifier_item_mage_slayer") then
+		return
+	end
+	return self.ability.magic_resistance
+end
 
 function modifier_item_pipe_custom:GetAuraEntityReject(hEntity)
 	return (hEntity:IsRealHero() and not hEntity:HasModifier("modifier_life_stealer_infest_custom_legendary_creep"))
 		or not hEntity.owner
-		or hEntity.owner ~= self:GetCaster()
+		or hEntity.owner ~= self.caster
 end
 
-modifier_item_pipe_custom_aura = class({})
-
-function modifier_item_pipe_custom_aura:IsPurgable()
-	return false
-end
-
+modifier_item_pipe_custom_aura = class(mod_visible)
 function modifier_item_pipe_custom_aura:OnCreated(params)
-	self.aura_armor = self:GetAbility():GetSpecialValueFor("aura_armor")
-	self.magic_resistance_aura = self:GetAbility():GetSpecialValueFor("magic_resistance_aura")
+	self.ability = self:GetAbility()
+
+	self.aura_armor = self.ability.aura_armor
+	self.magic_resistance_aura = self.ability.magic_resistance_aura
 end
 
 function modifier_item_pipe_custom_aura:DeclareFunctions()
@@ -158,24 +149,18 @@ function modifier_item_pipe_custom_aura:GetModifierMagicalResistanceBonus()
 	return self.magic_resistance_aura
 end
 
-modifier_item_pipe_custom_active = class({})
-
+modifier_item_pipe_custom_active = class(mod_visible)
 function modifier_item_pipe_custom_active:IsDebuff()
-	return false
-end
-function modifier_item_pipe_custom_active:IsHidden()
-	return false
-end
-function modifier_item_pipe_custom_active:IsPurgable()
 	return false
 end
 function modifier_item_pipe_custom_active:IsPurgeException()
 	return false
 end
-
 function modifier_item_pipe_custom_active:OnCreated(params)
 	self.parent = self:GetParent()
-	self.max_shield = self:GetAbility():GetSpecialValueFor("barrier_block")
+	self.ability = self:GetAbility()
+
+	self.max_shield = self.ability.barrier_block
 
 	if not IsServer() then
 		return
@@ -185,24 +170,24 @@ function modifier_item_pipe_custom_active:OnCreated(params)
 	self.particle = ParticleManager:CreateParticle(
 		"particles/items2_fx/pipe_of_insight_v2.vpcf",
 		PATTACH_OVERHEAD_FOLLOW,
-		self:GetParent()
+		self.parent
 	)
-	ParticleManager:SetParticleControl(self.particle, 0, self:GetParent():GetAbsOrigin())
+	ParticleManager:SetParticleControl(self.particle, 0, self.parent:GetAbsOrigin())
 	ParticleManager:SetParticleControlEnt(
 		self.particle,
 		1,
-		self:GetParent(),
+		self.parent,
 		PATTACH_POINT_FOLLOW,
 		"attach_origin",
-		self:GetParent():GetAbsOrigin(),
+		self.parent:GetAbsOrigin(),
 		true
 	)
-	ParticleManager:SetParticleControl(self.particle, 2, Vector(self:GetParent():GetModelRadius() * 1.1, 0, 0))
+	ParticleManager:SetParticleControl(self.particle, 2, Vector(self.parent:GetModelRadius() * 1.1, 0, 0))
 	self:AddParticle(self.particle, false, false, -1, false, false)
 end
 
 function modifier_item_pipe_custom_active:OnRefresh()
-	self.max_shield = self:GetAbility():GetSpecialValueFor("barrier_block")
+	self.max_shield = self.ability.barrier_block
 
 	if not IsServer() then
 		return
@@ -215,9 +200,6 @@ function modifier_item_pipe_custom_active:DeclareFunctions()
 		MODIFIER_PROPERTY_INCOMING_SPELL_DAMAGE_CONSTANT,
 	}
 end
-
---if self:GetParent():HasModifier("modifier_templar_assassin_refraction_custom_absorb") then return end
---if self:GetParent():HasModifier("modifier_sven_warcry_custom_legendary") then return end
 
 function modifier_item_pipe_custom_active:GetModifierIncomingSpellDamageConstant(params)
 	if IsClient() then

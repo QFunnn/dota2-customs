@@ -22,6 +22,7 @@ function item_force_staff_custom:Precache(context)
 		return
 	end
 	PrecacheResource("particle", "particles/items_fx/force_staff.vpcf", context)
+	PrecacheResource("particle", "particles/status_fx/status_effect_forcestaff.vpcf", context)
 end
 
 function item_force_staff_custom:GetIntrinsicModifierName()
@@ -74,16 +75,16 @@ modifier_item_force_staff_custom = class(mod_hidden)
 function modifier_item_force_staff_custom:RemoveOnDeath()
 	return false
 end
+function modifier_item_force_staff_custom:OnCreated(table)
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+end
+
 function modifier_item_force_staff_custom:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
 		MODIFIER_PROPERTY_HEALTH_BONUS,
 	}
-end
-
-function modifier_item_force_staff_custom:OnCreated(table)
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
 end
 
 function modifier_item_force_staff_custom:GetModifierHealthBonus()

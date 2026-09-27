@@ -20,13 +20,13 @@ function item_enhancement_vast_custom:GetIntrinsicModifierName()
 	return "modifier_item_enhancement_vast_custom"
 end
 
-modifier_item_enhancement_vast_custom = class({})
-function modifier_item_enhancement_vast_custom:IsHidden()
-	return true
+function item_enhancement_vast_custom:Spawn()
+	self.attack_range = self:GetSpecialValueFor("attack_range")
+	self.attack_range_melle = self:GetSpecialValueFor("attack_range_melle")
+	self.cast_range = self:GetSpecialValueFor("cast_range")
 end
-function modifier_item_enhancement_vast_custom:IsPurgable()
-	return false
-end
+
+modifier_item_enhancement_vast_custom = class(mod_hidden)
 function modifier_item_enhancement_vast_custom:RemoveOnDeath()
 	return false
 end
@@ -34,9 +34,9 @@ function modifier_item_enhancement_vast_custom:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.ranged_range = self.ability:GetSpecialValueFor("attack_range")
-	self.melle_range = self.ability:GetSpecialValueFor("attack_range_melle")
-	self.cast_range = self.ability:GetSpecialValueFor("cast_range")
+	self.ranged_range = self.ability.attack_range
+	self.melle_range = self.ability.attack_range_melle
+	self.cast_range = self.ability.cast_range
 end
 
 function modifier_item_enhancement_vast_custom:DeclareFunctions()

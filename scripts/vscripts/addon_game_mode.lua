@@ -12,9 +12,10 @@ if dota1x6 == nil then
 	_G.dota1x6 = class({})
 end
 
--- Zа Русский МИР ZV Русские идут !!! Можем повторить!!! РОССИЯ, ПУТИН, ПОБЕДА! Z
+_G.CreepsUpgradeTimer = 4 * 60
 
 Convars:RegisterConvar("matchId", "", "123", 0)
+Convars:SetFloat("dota_neutral_spawn_type_upgrade_interval", CreepsUpgradeTimer - 0.1)
 
 _G.test_pick_stage = false
 _G.Time_to_pick_Hero = 25
@@ -48,6 +49,9 @@ _G.custom_rules_data = {
 }
 
 _G.test = true and IsInToolsMode()
+_G.hero_test = false and IsInToolsMode()
+_G.hero_test_name = "npc_dota_hero_kunkka"
+_G.hero_test_base = 2
 _G.twitch_alert = false
 _G.sale_alert = false
 _G.sale_type = 0
@@ -72,13 +76,18 @@ _G.waves = {}
 _G.boss_waves = {}
 _G.players = {}
 _G.towers = {}
+_G.hero_tiers = {}
+_G.hero_names = {}
 _G.timer = 0
 _G.Deaths = 0
+_G.LpGiven = false
 
 _G.GAME_STARTED = false
 _G.SpawnedPlayers = 0
 _G.ReadyPlayers = 0
 _G.GlobalHeroes = {}
+_G.loading_ended = false
+_G.EndLoading_timeout = 10
 
 Rating_Table = { 40, 30, 10, -10, -30, -40 }
 Rating_Table_Max = { 20, 15, 5, -5, -15, -20 }
@@ -96,12 +105,11 @@ _G.PreGame_time = 30
 _G.game_start = false
 _G.Game_end = false
 
-_G.new_round = false
-
 _G.duel_start = 5
 
-_G.orb_shrines_count = RandomInt(1, 3)
+_G.orb_shrines_count = 1
 _G.orb_shrines = {}
+_G.orb_shrines_total = 0
 _G.orb_shrines_wave = 5
 
 _G.duel_timer = 90
@@ -111,6 +119,9 @@ _G.duel_timer_normal = 45 + duel_start
 _G.field_stun = 0.5
 _G.duel_push_time = 10
 _G.duel_push_teleport = 6
+_G.duel_barrier_time = 10
+_G.duel_end_time = 2
+_G.duel_return_time = 1
 _G.duel_start_wave = 11
 
 _G.Target_timer_first = RandomInt(9 * 60, 12 * 60)
@@ -118,127 +129,20 @@ _G.Target_timer_min = 13 * 60
 _G.Target_timer_max = 17 * 60
 _G.Target_cd = 90
 _G.Target_gold_diff = 1.2
+_G.Target_k = 0.5
+_G.Target_damage_cd = 15
 _G.Target_proc_count = 0
 _G.Target_duration = 120
-_G.Target_gold = 0
 _G.Target_radius = 1500
 dota1x6.TargetCurrentCd = nil
 dota1x6.TargetCurrentActive = false
 
-_G.Streak_k = 0.25
-
-_G.Active_Roshan = false
-_G.RoshanTimers = {
-	1260,
-	1800,
-	2400,
-	3000,
-	3600,
-	4200,
-	4800,
-	5400,
-	6000,
-	6600,
-	7200,
-	7800,
-	8400,
-	9000,
-	9600,
-	10200,
-	10800,
-	11400,
-	12000,
-	12600,
-	13200,
-	13800,
-	14400,
-	15000,
-	15600,
-	16200,
-	16800,
-	17400,
-	18000,
-	18600,
-	19200,
-	19800,
-	20400,
-	21000,
-	21600,
-	22200,
-	22800,
-	23400,
-	24000,
-	24600,
-	25200,
-	25800,
-	26400,
-	27000,
-	27600,
-	28200,
-	28800,
-	29400,
-	30000,
-	30600,
-	31200,
-	31800,
-	32400,
-	33000,
-	33600,
-	34200,
-	34800,
-	35400,
-	36000,
-	36600,
-	37200,
-	37800,
-	38400,
-	39000,
-	39600,
-	40200,
-	40800,
-	41400,
-	42000,
-	42600,
-	43200,
-	43800,
-	44400,
-	45000,
-	45600,
-	46200,
-	46800,
-	47400,
-	48000,
-	48600,
-	49200,
-	49800,
-	50400,
-	51000,
-	51600,
-	52200,
-	52800,
-	53400,
-	54000,
-	54600,
-	55200,
-	55800,
-	56400,
-	57000,
-	57600,
-	58200,
-	58800,
-	59400,
-	60000,
-	60600,
-	61200,
-}
-_G.roshan_number = 1
-_G.roshan_timer = 1
-_G.roshan_alert = 60
+_G.Streak_k = 0.35
 
 _G.test_patrol = false
-_G.patrol_timer = 0
 _G.patrol_timer_max = 40
 _G.patrol_timer_max_2 = 50
+_G.patrol_duel_delay = 15
 _G.patrol_wave = 5
 _G.patrol_wave_2 = 13
 _G.patrol_second_init = false
@@ -255,22 +159,10 @@ _G.lobby_rating = {}
 _G.lobby_rating_change = {}
 _G.lobby_double_rating = {}
 
-_G.DeathTimer = 2
 _G.StartDeathTimer = 3
 _G.DeathTimer_PerWave = 2.5
 _G.Short_Respawn_target = 10
 _G.DeathTimerDuo = 0.25
-
-_G.lownet_gold = 1
-_G.lownet_purple = 2
-_G.lownet_blue = 2
-_G.lownet_duration = 180
-
-_G.teleport_cd = 20
-_G.teleport_range = 350
-
-_G.UpgradeGray = 0.2
-_G.BlueMorePoints = 0.25
 
 _G.WaveMoreGold_max = 300
 _G.WaveMoreGold_min = 100
@@ -281,21 +173,22 @@ _G.PlusPurple = 1
 _G.PlusPurpleMore = 2
 _G.PlusPurpleThrash = 4
 
-_G.auto_pick_talent = 120
-
 _G.low_net_gold = 90
 _G.low_net_waves = { [RandomInt(8, 9)] = true, [RandomInt(10, 11)] = true }
 _G.low_net_max = 2
 _G.more_gold_wave = 5
 
-_G.StartBlue = 40
-_G.PlusBlue = 20
+_G.StartBlue = 35
+_G.PlusBlue = 15
+_G.StartWhite = 30
+_G.PlusWhite = 10
+_G.ShrineTicks = 10
+_G.ShrineGold = 60
+_G.ShrineGoldWave = 20
 
 _G.Necro_Timer = 20
 
 _G.PortalDelay = 5
-_G.NeutralChance = 12
-_G.MaxNeutral = 4
 
 _G.dont_end_pick_hero = false and test
 _G.dont_end_game = false and test
@@ -304,8 +197,10 @@ _G.creeps_team_health = 2
 _G.creeps_team_damage = 1.3
 _G.tormentor_team_health = 1.5
 
+_G.CreepsUpgradeCount = 0
+_G.NeutralCreeps = {}
+
 _G.enable_pause = false
-_G.only_night = false
 _G.healing = true
 
 _G.push_timer = 17 * 60
@@ -319,28 +214,24 @@ _G.Pause_Time_Pro = 60
 
 _G.Trap_Duration = 35
 
-_G.ValidGame_Time = 900
-
-_G.kill_net_gold = 200
-_G.more_gold_radius = 900
+_G.kill_net_gold = 150
+_G.more_gold_radius = 1000
+_G.kill_gold_base = 100
+_G.kill_gold_level = 8
+_G.kill_purple_radius = 1200
+_G.ward_gold = 100
 
 _G.bounty_timer = 0
 _G.bounty_max_timer = 120
-_G.bounty_init = false
 _G.bounty_start = 120
 _G.bounty_gold_init = 90
 _G.bounty_gold_per_minute = 3
 _G.bounty_exp_init = 120
 _G.bounty_exp_per_minute = 5
-_G.bounty_blue_init = 15
-_G.bounty_blue_per_minute = 0.5
+_G.bounty_white_init = 10
+_G.bounty_white_rune = 1
 _G.bounty_net_min = 1
 _G.bounty_net_max = 2
-
-_G.Grenade_Creeps_Max = 6
-_G.Grenade_Max = 4
-_G.Grenade_Timer = 1200
-_G.Grenade_start = false
 
 _G.LowPriorityTime = 600
 _G.SafeToLeave = false
@@ -356,13 +247,10 @@ _G.After_Lich = false
 
 _G.ACT_DOTA_SPAWN_STATUE = ACT_DOTA_SPAWN_STATUE or 1766
 
-_G.No_end_screen = {}
-
 _G.RATING_CHANGE_BASE = { 40, 30, 10, -10, -30, -40 }
 _G.RATING_CHANGE_BASE_DUO = { 40, 20, -20, -40 }
 
 _G.glyph_cd = 360
-_G.glyph_cd_mid = 240
 _G.glyph_duration = 5
 
 _G.current_day = "night"
@@ -440,7 +328,14 @@ _G.spell_start_mods = {}
 _G.death_mods = {}
 
 _G.bounty_abs = {}
+_G.bounty_runes = {}
+_G.bounty_icons = {}
+_G.minimap_icons = {}
+_G.minimap_overview = {}
+_G.watcher_mods = {}
 _G.hero_icons = {}
+_G.shop_items = {}
+_G.neutral_items = {}
 
 dota1x6.KillCount = 0
 
@@ -489,7 +384,6 @@ require("voice_radius")
 
 _G.precache_items = require("precache_items")
 _G.precache_units = require("precache_units")
-_G.ChangeItemsCooldown = 5
 
 _G.base_heroes_data = require("base_heroes_data")
 
@@ -662,6 +556,12 @@ function dota1x6:PostMatchPoints(player)
 	if not HTTP.IsValidGame(PlayerCount) then
 		return
 	end
+	if not test_end and not HTTP.serverData.isStatsMatch then
+		return
+	end
+	if not test_end and SafeToLeave == true then
+		return
+	end
 
 	local id = player:GetId()
 	local player_array = HTTP.playersData[id]
@@ -701,25 +601,33 @@ function dota1x6:PostMatchPoints(player)
 		sub_places_points = sub_places_points_duo
 	end
 
-	local points = math.min(kills * sub_kills_inc, sub_kills_max)
-		+ sub_places_points[place]
-		+ towers * sub_towers_inc
-		+ math.floor(math.min(runes * sub_bounty_inc, sub_bounty_max))
+	local result = {
+		place = sub_places_points[place],
+		kills = math.min(kills * sub_kills_inc, sub_kills_max),
+		towers = towers * sub_towers_inc,
+		runes = math.floor(math.min(runes * sub_bounty_inc, sub_bounty_max)),
+		points = 0,
+		exp = 0,
+	}
 
-	points = math.floor(points * random_k)
+	if GameRules:GetDOTATime(false, false) < push_timer then
+		result.place = 0
+		result.kills = 0
+		result.towers = 0
+		result.runes = 0
+	end
+
+	local points = math.floor((result.place + result.kills + result.towers + result.runes) * random_k)
 
 	if table_data.subscribed == 0 then
 		points = math.min(math.max(sub_points_max - table_data.points, 0), points)
-	end
-
-	if GameRules:GetDOTATime(false, false) < push_timer then
-		points = 0
 	end
 
 	HTTP.AddPlayerMatchShardsReceipt(id, points, "endGame")
 	HTTP.AddPlayerMatchShardsReceipt(id, quest_shards, "questCompleted")
 
 	points = points + quest_shards
+	result.points = points
 
 	table_data.points = table_data.points + points
 
@@ -738,6 +646,7 @@ function dota1x6:PostMatchPoints(player)
 		HTTP.playersData[id].dpHeroQuestXp = quest_exp
 
 		exp_inc = exp_inc + quest_exp
+		result.exp = exp_inc
 
 		local exp_left = exp_inc
 
@@ -762,9 +671,11 @@ function dota1x6:PostMatchPoints(player)
 
 		table_data.heroes_data[player:GetUnitName()].exp = exp
 		table_data.heroes_data[player:GetUnitName()].level = level
+		HTTP.UpdateHeroTier(table_data.heroes_data[player:GetUnitName()])
 	end
 
 	CustomNetTables:SetTableValue("sub_data", tostring(id), table_data)
+	return result
 end
 
 function dota1x6:InitGameMode()
@@ -776,21 +687,24 @@ r:SetHTTPRequestAbsoluteTimeoutMS( 600 * 1000 )
 r:Send( function( res ) end)
 ]]
 
-	GameRules:SetCustomGameSetupAutoLaunchDelay(0)
-
 	local custom_rules = pro_mod and pro_mod_data.custom_rules
 	local team_size = players_in_team
+	local setup_delay = 0
+
 	if team_size == 2 then
 		low_net_max = 1
-		GameRules:SetCustomGameSetupAutoLaunchDelay(15)
+		setup_delay = 15
 	end
 
 	if pro_mod == true then
 		GameRules:SetCustomGameTeamMaxPlayers(1, 2)
-		GameRules:SetCustomGameSetupAutoLaunchDelay(custom_rules and 150 or 30)
+		setup_delay = custom_rules and 150 or 30
 	else
 		GameRules:SetCustomGameTeamMaxPlayers(1, 0)
 	end
+
+	_G.setup_delay = setup_delay
+	GameRules:SetCustomGameSetupAutoLaunchDelay(setup_delay > 0 and 99999 or 0)
 
 	hero_select:RegisterHeroes()
 	upgrade:InitGameMode()
@@ -798,6 +712,8 @@ r:Send( function( res ) end)
 	start_quest:InitGameMode()
 	talents_values:InitGameMode()
 	voice_radius:Init()
+	dota1x6:UpdateLaneCreepsStats()
+	dota1x6:UpdatePatrolCreepsStats()
 
 	for i = 1, max_teams do
 		if AvailableTeams[i] then
@@ -809,6 +725,16 @@ r:Send( function( res ) end)
 		"custom_pick",
 		"game_mode",
 		{ team_size = team_size, max_teams = max_teams, win_place = win_place, is_ranked = not IsUnrankedMap() }
+	)
+	CustomNetTables:SetTableValue(
+		"custom_pick",
+		"sub_config",
+		{
+			level_exp = sub_level_thresh,
+			level_tiers = level_thresh,
+			level_max = sub_level_max,
+			points_max = sub_points_max,
+		}
 	)
 
 	GameRules:GetGameModeEntity():SetThink("OnThink", self, "GlobalThink", 0)
@@ -836,15 +762,18 @@ r:Send( function( res ) end)
 	GameRules:GetGameModeEntity():SetLoseGoldOnDeath(false)
 	GameRules:SetSafeToLeave(true)
 	GameRules:GetGameModeEntity():SetPauseEnabled(false)
+	GameRules:GetGameModeEntity():SetForcedHUDSkin("reborn")
 
 	--GameRules:GetGameModeEntity():SetDamageFilter( Dynamic_Wrap( dota1x6, "DamageFilter" ), self )
 	--GameRules:GetGameModeEntity():SetHealingFilter( Dynamic_Wrap( dota1x6, "HealingFilter" ), self )
 	GameRules:GetGameModeEntity():SetBountyRunePickupFilter(Dynamic_Wrap(self, "BountyRunePickupFilter"), self)
+
 	GameRules:GetGameModeEntity():SetModifyExperienceFilter(Dynamic_Wrap(self, "ExpFilter"), self)
 	GameRules:GetGameModeEntity():SetExecuteOrderFilter(Dynamic_Wrap(dota1x6, "ExecuteOrderFilterCustom"), self)
 	GameRules:GetGameModeEntity():SetItemAddedToInventoryFilter(Dynamic_Wrap(self, "ItemAddedFilter"), self)
 	GameRules:GetGameModeEntity():SetModifyGoldFilter(Dynamic_Wrap(self, "ModifyGoldFilter"), self)
 	GameRules:SetFilterMoreGold(true)
+	GameRules:SetUseBaseGoldBountyOnHeroes(true)
 
 	ListenToGameEvent("entity_killed", Dynamic_Wrap(self, "OnEntityKilled"), self)
 	ListenToGameEvent("dota_rune_activated_server", Dynamic_Wrap(self, "OnRuneActivated"), self)
@@ -899,14 +828,13 @@ r:Send( function( res ) end)
 	CustomGameEventManager:RegisterListener("heroes_vote_free", Dynamic_Wrap(shop, "heroes_vote_free"))
 	CustomGameEventManager:RegisterListener("get_bonus_shards", Dynamic_Wrap(shop, "get_bonus_shards"))
 	CustomGameEventManager:RegisterListener("browser_subscribe", Dynamic_Wrap(shop, "browser_subscribe"))
-	CustomGameEventManager:RegisterListener("player_change_keybind", Dynamic_Wrap(self, "player_change_keybind"))
 	CustomGameEventManager:RegisterListener("change_premium_pet", Dynamic_Wrap(shop, "ChangePetPremium"))
-	CustomGameEventManager:RegisterListener("end_choise_js", Dynamic_Wrap(upgrade, "EndChoiseJs"))
 	CustomGameEventManager:RegisterListener("ChangeSettings", Dynamic_Wrap(self, "ChangeSettings"))
 	CustomGameEventManager:RegisterListener("RequestSettings", Dynamic_Wrap(self, "SendSettingsChange"))
-	CustomGameEventManager:RegisterListener("LcDuelPick", Dynamic_Wrap(self, "LcDuelPick"))
-	CustomGameEventManager:RegisterListener("PaHuntPick", Dynamic_Wrap(self, "PaHuntPick"))
-	CustomGameEventManager:RegisterListener("TbReflectionPick", Dynamic_Wrap(self, "TbReflectionPick"))
+	CustomGameEventManager:RegisterListener("request_player_heroes", Dynamic_Wrap(self, "SendPlayerHeroes"))
+	CustomGameEventManager:RegisterListener("request_items", Dynamic_Wrap(self, "SendItems"))
+	CustomGameEventManager:RegisterListener("request_minimap_icons", Dynamic_Wrap(self, "RequestMinimapIcons"))
+	CustomGameEventManager:RegisterListener("CustomPick", Dynamic_Wrap(self, "CustomPick"))
 	CustomGameEventManager:RegisterListener("TipPlayer", Dynamic_Wrap(self, "TipPlayer"))
 	CustomGameEventManager:RegisterListener("select_current_emblem", Dynamic_Wrap(shop, "select_current_emblem"))
 	CustomGameEventManager:RegisterListener("select_current_effect", Dynamic_Wrap(shop, "select_current_effect"))
@@ -922,12 +850,10 @@ r:Send( function( res ) end)
 	CustomGameEventManager:RegisterListener("stop_timer", Dynamic_Wrap(self, "stop_timer"))
 	CustomGameEventManager:RegisterListener("wtf_mode", Dynamic_Wrap(self, "wtf_mode"))
 	CustomGameEventManager:RegisterListener("SelectQuest", Dynamic_Wrap(shop, "SelectQuest"))
-	CustomGameEventManager:RegisterListener("check_id", Dynamic_Wrap(self, "check_id"))
 	CustomGameEventManager:RegisterListener("update_tip_list", Dynamic_Wrap(shop, "update_tip_list"))
 	CustomGameEventManager:RegisterListener("select_current_tip", Dynamic_Wrap(shop, "select_current_tip"))
 	CustomGameEventManager:RegisterListener("select_current_high_five", Dynamic_Wrap(shop, "select_current_high_five"))
 	CustomGameEventManager:RegisterListener("send_cursor_position", Dynamic_Wrap(self, "send_cursor_position"))
-	CustomGameEventManager:RegisterListener("send_vector_point", Dynamic_Wrap(self, "send_vector_point"))
 	CustomGameEventManager:RegisterListener("send_promo_code", Dynamic_Wrap(shop, "send_promo_code"))
 	CustomGameEventManager:RegisterListener("accept_gift", Dynamic_Wrap(shop, "accept_gift"))
 	CustomGameEventManager:RegisterListener(
@@ -956,7 +882,10 @@ r:Send( function( res ) end)
 	CustomGameEventManager:RegisterListener("send_courier_name", Dynamic_Wrap(shop, "send_courier_name"))
 	CustomGameEventManager:RegisterListener("get_patrol_position", Dynamic_Wrap(self, "GetPatrolPosition"))
 	CustomGameEventManager:RegisterListener("ChangeCustomRules", Dynamic_Wrap(self, "ChangeCustomRules"))
-	CustomGameEventManager:RegisterListener("RequestCustomRules", Dynamic_Wrap(self, "RequestCustomRules"))
+	CustomGameEventManager:RegisterListener("setup_start_now", Dynamic_Wrap(self, "SetupStartNow"))
+	CustomGameEventManager:RegisterListener("RequestKunkkaPanel", Dynamic_Wrap(self, "RequestKunkkaPanel"))
+	CustomGameEventManager:RegisterListener("kunkka_shop_buy", Dynamic_Wrap(self, "kunkka_shop_buy"))
+	CustomGameEventManager:RegisterListener("RequestTalentIncrease", Dynamic_Wrap(self, "RequestTalentIncrease"))
 	CustomGameEventManager:RegisterListener("GetPlayerNames", Dynamic_Wrap(self, "GetPlayerNames"))
 
 	CustomNetTables:SetTableValue(
@@ -982,6 +911,23 @@ r:Send( function( res ) end)
 				_G.tormentor_wave = 0
 			end
 		end
+	end
+
+	local overview = LoadKeyValues("resource/overviews/" .. GetMapName() .. ".txt")
+	if overview then
+		minimap_overview.x = tonumber(overview.pos_x)
+		minimap_overview.y = tonumber(overview.pos_y)
+		minimap_overview.size = tonumber(overview.scale) * 1024
+	end
+
+	local items = LoadKeyValues("scripts/shops.txt")
+	for name, data in pairs(items) do
+		shop_items[name] = data
+	end
+
+	local neutrals = LoadKeyValues("scripts/npc/neutral_items.txt").neutral_tiers
+	for tier, data in pairs(neutrals) do
+		neutral_items[tier] = data
 	end
 
 	local items_list = LoadKeyValues("scripts/npc/npc_ability_ids.txt")
@@ -1012,13 +958,23 @@ function dota1x6:OnNPCSpawned(event)
 			return
 		end
 
-		local gold = unit:GetMinimumGoldBounty() * 0.8
-		local exp = (unit:GetDeathXP() * 0.7)
-		unit:SetMaximumGoldBounty(gold)
-		unit:SetMinimumGoldBounty(gold)
-		unit:SetDeathXP(exp)
+		local stats = CreepsStats[unit:GetUnitName()]
+		local gold = stats and stats.gold or unit:GetMinimumGoldBounty()
+		local exp = stats and stats.exp or unit:GetDeathXP()
 
-		if dota1x6:IsCustomRules("only_cone") and BluePoints[unit:GetUnitName()] then
+		if stats then
+			dota1x6:SetCreepStats(unit)
+			unit:AddNewModifier(unit, nil, "modifier_neutral_creep", {})
+			if not dota1x6:IsCustomRules("only_cone") then
+				NeutralCreeps[unit] = true
+			end
+		end
+
+		unit:SetMaximumGoldBounty(gold * GoldK)
+		unit:SetMinimumGoldBounty(gold * GoldK)
+		unit:SetDeathXP(exp * ExpK)
+
+		if dota1x6:IsCustomRules("only_cone") and stats then
 			unit:AddNewModifier(unit, nil, "modifier_rule_only_cone", {})
 		end
 	end
@@ -1057,6 +1013,187 @@ function dota1x6:OnNPCSpawned(event)
 	end
 end
 
+function dota1x6:SetCreepStats(unit)
+	if unit.creeps_upgrade == CreepsUpgradeCount then
+		return
+	end
+	unit.creeps_upgrade = CreepsUpgradeCount
+
+	local stats = CreepsStats[unit:GetUnitName()]
+	local damage = math.floor(stats.damage * (1 + CreepsUpgradeCount * CreepsUpgradeDamage / 100))
+	local health = math.floor(stats.health * (1 + CreepsUpgradeCount * CreepsUpgradeHealth / 100))
+	local health_k = unit:GetHealth() / unit:GetMaxHealth()
+
+	unit:SetBaseDamageMin(damage)
+	unit:SetBaseDamageMax(damage)
+	unit:SetBaseMaxHealth(health)
+	unit:SetMaxHealth(health)
+	unit:SetHealth(math.max(1, unit:GetMaxHealth() * health_k))
+end
+
+function dota1x6:UpdateLaneCreepsStats()
+	local wave = dota1x6.current_wave
+	local stats = {
+		health = 1,
+		damage = 1,
+		exp = 0.85,
+		armor = 0,
+		magic = 10,
+		speed = 0,
+		pure = 0,
+		amp = 33 * math.max(wave - 1, 0),
+	}
+
+	for i = 2, wave do
+		if i >= 20 then
+			stats.health = stats.health * 1.23
+			stats.damage = stats.damage * 1.18
+		elseif i >= 15 then
+			stats.health = stats.health * 1.20
+			stats.damage = stats.damage * 1.17
+		elseif i >= 10 then
+			stats.health = stats.health * 1.21
+			stats.damage = stats.damage * 1.18
+		else
+			stats.health = stats.health * 1.30
+			stats.damage = stats.damage * 1.23
+		end
+
+		if i == 11 then
+			stats.health = stats.health * 1.3
+			stats.damage = stats.damage * 1.3
+		end
+
+		stats.exp = stats.exp * 1.04
+	end
+
+	if wave >= 20 then
+		stats.armor = 8
+		stats.magic = -20
+		stats.speed = 80
+		stats.pure = 20
+	elseif wave >= 15 then
+		stats.armor = 6
+		stats.magic = -10
+		stats.speed = 40
+		stats.pure = 10
+	elseif wave >= 10 then
+		stats.armor = 4
+		stats.magic = 0
+		stats.speed = 20
+	end
+
+	dota1x6.lane_creeps_stats = stats
+end
+
+function dota1x6:SetLaneCreepsStats(unit)
+	local stats = dota1x6.lane_creeps_stats
+	local health = stats.health
+	local damage = stats.damage
+	local ids = dota1x6:FindPlayers(unit.host_team)
+
+	if ids and #ids == 2 then
+		health = health * creeps_team_health
+		damage = damage * creeps_team_damage
+	end
+
+	unit:AddNewModifier(unit, nil, "modifier_waveupgrade", { amp = stats.amp, speed = stats.speed, pure = stats.pure })
+
+	local max_health = math.floor(unit:GetBaseMaxHealth() * health)
+	local bonus_damage = math.floor(unit:GetBaseDamageMin() * (damage - 1))
+	local gold = unit:GetMinimumGoldBounty() * 1.15
+
+	unit:SetBaseMaxHealth(max_health)
+	unit:SetMaxHealth(max_health)
+	unit:SetHealth(max_health)
+	unit:SetBaseDamageMin(unit:GetBaseDamageMin() + bonus_damage)
+	unit:SetBaseDamageMax(unit:GetBaseDamageMax() + bonus_damage)
+	unit:SetPhysicalArmorBaseValue(unit:GetPhysicalArmorBaseValue() + stats.armor)
+	unit:SetBaseMagicalResistanceValue(unit:GetBaseMagicalResistanceValue() + stats.magic)
+	unit:SetMinimumGoldBounty(gold)
+	unit:SetMaximumGoldBounty(gold)
+	unit:SetDeathXP(unit:GetDeathXP() * stats.exp)
+end
+
+function dota1x6:UpdatePatrolCreepsStats()
+	local wave = dota1x6.current_wave
+	local stats = {
+		health = 1,
+		damage = 1,
+		gold = 1,
+		exp = 1,
+		blue = 1,
+		magic = 0,
+		pure = 0,
+	}
+
+	for i = 5, wave do
+		if i >= 25 then
+			stats.health = stats.health * 1.11
+			stats.damage = stats.damage * 1.10
+		elseif i >= 20 then
+			stats.health = stats.health * 1.13
+			stats.damage = stats.damage * 1.11
+		elseif i >= 15 then
+			stats.health = stats.health * 1.14
+			stats.damage = stats.damage * 1.12
+		elseif i >= 10 then
+			stats.health = stats.health * 1.15
+			stats.damage = stats.damage * 1.13
+		else
+			stats.health = stats.health * 1.15
+			stats.damage = stats.damage * 1.20
+		end
+
+		if i == 13 then
+			stats.health = stats.health * 1.4
+		end
+
+		stats.gold = stats.gold + 0.05
+		stats.exp = stats.exp + 0.05
+		stats.blue = stats.blue + 0.05
+	end
+
+	if wave >= 25 then
+		stats.magic = -20
+		stats.pure = 20
+	elseif wave >= 20 then
+		stats.magic = -15
+		stats.pure = 15
+	elseif wave >= 15 then
+		stats.magic = -10
+		stats.pure = 10
+	end
+
+	dota1x6.patrol_creeps_stats = stats
+end
+
+function dota1x6:SetPatrolCreepsStats(unit)
+	local stats = dota1x6.patrol_creeps_stats
+	local health = stats.health
+	local damage = stats.damage
+
+	if not IsSoloMode() then
+		health = health * creeps_team_health
+		damage = damage * creeps_team_damage
+	end
+
+	unit.patrol_pure = stats.pure
+	unit.patrol_gold = stats.gold
+	unit.patrol_blue = stats.blue
+
+	local max_health = math.floor(unit:GetBaseMaxHealth() * health)
+	local bonus_damage = math.floor(unit:GetBaseDamageMin() * (damage - 1))
+
+	unit:SetBaseMaxHealth(max_health)
+	unit:SetMaxHealth(max_health)
+	unit:SetHealth(max_health)
+	unit:SetBaseDamageMin(unit:GetBaseDamageMin() + bonus_damage)
+	unit:SetBaseDamageMax(unit:GetBaseDamageMax() + bonus_damage)
+	unit:SetBaseMagicalResistanceValue(unit:GetBaseMagicalResistanceValue() + stats.magic)
+	unit:SetDeathXP(unit:GetDeathXP() * stats.exp)
+end
+
 function dota1x6:PlaceHero(id)
 	if ValidId(id) and SelectedBases[id] and GlobalHeroes[id] then
 		local unit = GlobalHeroes[id]
@@ -1092,19 +1229,33 @@ function dota1x6:PlaceHero(id)
 			unit:Stop()
 		end)
 
-		_G.ReadyPlayers = _G.ReadyPlayers + 1
+		if not unit.placed_in_base then
+			unit.placed_in_base = true
+			_G.ReadyPlayers = _G.ReadyPlayers + 1
+		end
 
-		if _G.ReadyPlayers == PlayerCount then
-			CustomGameEventManager:Send_ServerToAllClients("end_loading", {})
-			CustomGameEventManager:Send_ServerToAllClients("PreGameEnd_top", {})
-			--	CustomGameEventManager:Send_ServerToAllClients( 'WaitingPlayers_end', {} )
-
-			Timers:CreateTimer(1, function()
-				dota1x6:UpdateHeroIcons()
-				dota1x6:CheckBanStatus()
-			end)
+		if _G.ReadyPlayers >= PlayerCount then
+			dota1x6:EndLoading()
 		end
 	end
+end
+
+function dota1x6:EndLoading()
+	if _G.loading_ended then
+		return
+	end
+
+	_G.loading_ended = true
+	_G.ReadyPlayers = PlayerCount
+
+	CustomGameEventManager:Send_ServerToAllClients("end_loading", {})
+	CustomGameEventManager:Send_ServerToAllClients("PreGameEnd_top", {})
+	--CustomGameEventManager:Send_ServerToAllClients( 'WaitingPlayers_end', {} )
+
+	Timers:CreateTimer(1, function()
+		dota1x6:UpdateHeroIcons()
+		dota1x6:CheckBanStatus()
+	end)
 end
 
 function dota1x6:clear_towers()
@@ -1219,6 +1370,7 @@ function dota1x6:SetTower(unit, new_point)
 				towers[team].can_use_trap = false
 				towers[team].ids = dota1x6:FindPlayers(team)
 				towers[team].active_patrol = {}
+				towers[team].bounty_runes = 0
 
 				towers[team]:AddNewModifier(building, nil, "modifier_tower_level", {})
 
@@ -1253,11 +1405,13 @@ function dota1x6:SetTower(unit, new_point)
 end
 
 function dota1x6:UpdateHeroIcons()
-	for _, icon in pairs(hero_icons) do
-		if not icon:IsNull() and icon:IsAlive() then
-			icon:ForceKill(false)
+	for _, icon_id in pairs(hero_icons) do
+		for team, _ in pairs(minimap_icons) do
+			dota1x6:RemoveMinimapIcon(team, icon_id)
 		end
 	end
+
+	hero_icons = {}
 
 	for icon_team, icon_tower in pairs(towers) do
 		local ids = dota1x6:FindPlayers(icon_team)
@@ -1266,26 +1420,20 @@ function dota1x6:UpdateHeroIcons()
 			for _, id in pairs(ids) do
 				local player = players[id]
 				if player then
+					local icon_id = "base_" .. id
+
 					for target_team, target_tower in pairs(towers) do
 						if target_team ~= icon_team or test then
-							local abs = icon_tower:GetAbsOrigin()
-							if #ids == 2 then
-								local delta = 1400
-								abs = icon_tower:GetAbsOrigin() + Vector(-delta / 2 + count * delta, 0, 0)
-							end
-							local hero_icon = CreateUnitByName(
-								dota1x6:GetHeroIcon(id, icon_ic) .. "_icon",
-								abs,
-								false,
-								nil,
-								nil,
-								target_team
+							dota1x6:SetMinimapIcon(
+								target_team,
+								icon_id,
+								icon_tower:GetAbsOrigin(),
+								{ player = id, slot = count, slots = #ids }
 							)
-							hero_icon:AddNewModifier(nil, nil, "modifier_unselect", {})
-							hero_icon.is_hero_icon = true
-							table.insert(hero_icons, hero_icon)
 						end
 					end
+
+					hero_icons[#hero_icons + 1] = icon_id
 				end
 				count = count + 1
 			end
@@ -1302,6 +1450,7 @@ function dota1x6:PreGame()
 		local abs = spawner:GetAbsOrigin()
 		abs.z = GetGroundPosition(abs, nil).z + 50
 		bounty_abs[#bounty_abs + 1] = Vector(abs.x, abs.y, abs.z)
+		bounty_icons[#bounty_abs] = {}
 	end
 
 	for index, data in pairs(dota1x6.duel_arenas) do
@@ -1371,6 +1520,7 @@ function dota1x6:PreGame()
 		local orb_shrine = Entities:FindByName(nil, "orbs_shrine_" .. index)
 		if orb_shrine then
 			orb_shrines[index] = orb_shrine
+			orb_shrines_total = orb_shrines_total + 1
 			for arena_index, data in pairs(dota1x6.duel_arenas) do
 				if
 					data.arena_thinker
@@ -1382,6 +1532,10 @@ function dota1x6:PreGame()
 			end
 			orb_shrine:AddNewModifier(orb_shrine, nil, "modifier_orbs_shrine_custom", {})
 		end
+	end
+
+	if orb_shrines_total >= 2 then
+		orb_shrines_count = RandomInt(1, math.floor(orb_shrines_total / 2))
 	end
 
 	for index, data in pairs(dota1x6.patrol_data) do
@@ -1409,11 +1563,13 @@ function dota1x6:PreGame()
 	end
 
 	for _, watcher in pairs(Entities:FindAllByName("watcher_radiant")) do
-		watcher:AddNewModifier(watcher, nil, "modifier_watcher_custom", { material = 1 })
+		watcher_mods[#watcher_mods + 1] =
+			watcher:AddNewModifier(watcher, nil, "modifier_watcher_custom", { material = 1 })
 	end
 
 	for _, watcher in pairs(Entities:FindAllByName("watcher_dire")) do
-		watcher:AddNewModifier(watcher, nil, "modifier_watcher_custom", { material = 2 })
+		watcher_mods[#watcher_mods + 1] =
+			watcher:AddNewModifier(watcher, nil, "modifier_watcher_custom", { material = 2 })
 	end
 
 	if (IsInToolsMode() or GameRules:IsCheatMode() or not HTTP.IsValidGame(PlayerCount)) or enable_pause then
@@ -1449,6 +1605,8 @@ function dota1x6:EndPickStage()
 		if ValidId(id) and GlobalHeroes[id] and towers[GlobalHeroes[id]:GetTeamNumber()] == nil then
 			dota1x6:PlaceHero(id)
 		end
+
+		hero_select:EnsureHero(id)
 	end
 
 	for _, tower in pairs(towers) do
@@ -1461,6 +1619,10 @@ function dota1x6:EndPickStage()
 	end
 
 	GameRules:GetGameModeEntity():SetThink(start_game_timer, "StartGameTimer", 1)
+
+	Timers:CreateTimer(EndLoading_timeout, function()
+		dota1x6:EndLoading()
+	end)
 end
 
 function start_game_timer()
@@ -1737,14 +1899,38 @@ function dota1x6:OnGameRulesStateChange()
 			end)
 		end
 
+		if setup_delay > 0 then
+			_G.setup_deadline = GameRules:GetGameTime() + setup_delay
+
+			Timers:CreateTimer(0.5, function()
+				if GameRules:State_Get() ~= DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP then
+					return
+				end
+
+				local left = math.max(0, math.ceil(setup_deadline - GameRules:GetGameTime()))
+
+				CustomGameEventManager:Send_ServerToAllClients("setup_time", { time = left })
+
+				if left <= 0 then
+					GameRules:FinishCustomGameSetup()
+					return
+				end
+
+				return 0.5
+			end)
+		end
+
 		dota1x6:clear_towers()
 	end
 
 	if nNewState == DOTA_GAMERULES_STATE_HERO_SELECTION then
 		for id = 0, 24 do
 			if ValidId(id) then
-				if not IsSoloMode() and PlayerResource:GetTeam(id) == DOTA_TEAM_NOTEAM then
+				if PlayerResource:GetTeam(id) == DOTA_TEAM_NOTEAM then
 					local teams = { 2, 3, 6, 7 }
+					if IsSoloMode() then
+						teams = { 2, 3, 6, 7, 12, 9 }
+					end
 					for _, team in pairs(teams) do
 						if PlayerResource:GetPlayerCountForTeam(team) < players_in_team then
 							PlayerResource:SetCustomTeamAssignment(id, team)
@@ -1760,10 +1946,10 @@ function dota1x6:OnGameRulesStateChange()
 			end
 		end
 
-		CustomNetTables:SetTableValue("custom_pick", "pick_state", { in_progress = true })
+		CustomNetTables:SetTableValue("custom_pick", "pick_state", { in_progress = not hero_test })
 		CustomNetTables:SetTableValue("custom_pick", "avg_rating", { avg_rating = avg_rating })
 
-		Timers:CreateTimer("", {
+		Timers:CreateTimer("hero_select_init", {
 			useGameTime = false,
 			endTime = 1,
 			callback = function()
@@ -1775,7 +1961,13 @@ function dota1x6:OnGameRulesStateChange()
 			useGameTime = false,
 			endTime = 0,
 			callback = function()
-				dota1x6:spawn_timer()
+				if not dota1x6:pcall(dota1x6.spawn_timer) and dota1x6.wave_tick_open then
+					dota1x6.wave_tick_open = false
+					timer = 0
+					if dota1x6.go_wave >= #waves then
+						dota1x6.go_wave = 0
+					end
+				end
 
 				return main_timer_interval
 			end,
@@ -1798,13 +1990,6 @@ function dota1x6:TowerKill(hero, killed_tower)
 		return
 	end
 
-	local tower_count = 0
-	for _, tower in pairs(towers) do
-		if tower ~= killed_tower and tower:IsAlive() then
-			tower_count = tower_count + 1
-		end
-	end
-
 	local heroes = dota1x6:FindPlayers(team, false, true)
 	for _, player in pairs(heroes) do
 		local orb = 3
@@ -1816,10 +2001,6 @@ function dota1x6:TowerKill(hero, killed_tower)
 		if GameRules:GetDOTATime(false, false) >= push_timer then
 			dota1x6:RefreshCooldowns(player, true)
 			dota1x6:CreateUpgradeOrb(player, orb)
-		end
-
-		if tower_count == 2 and IsSoloMode() then
-			player:AddNewModifier(player, nil, "modifier_duel_damage_final", {})
 		end
 	end
 end
@@ -1843,6 +2024,7 @@ function dota1x6:Destroy_Wave_Creeps()
 			and wave_creep:IsAlive()
 			and not wave_creep.player_unit
 		then
+			wave_creep:AddNewModifier(wave_creep, nil, "modifier_death", {})
 			wave_creep:ForceKill(false)
 		end
 	end
@@ -1920,6 +2102,176 @@ function MaxTime(n)
 	return 70
 end
 
+function dota1x6:SetWaveTimer(left)
+	timer = MaxTimer - left
+end
+
+function dota1x6:SetPatrolLaunched(state)
+	patrol_launched = state
+end
+
+function dota1x6:SpawnBountyRunes()
+	for i = 1, #bounty_abs do
+		if not IsValid(bounty_runes[i]) then
+			bounty_runes[i] = CreateRune(bounty_abs[i], DOTA_RUNE_BOUNTY)
+
+			for team, _ in pairs(towers) do
+				if not bounty_icons[i][team] then
+					bounty_icons[i][team] = true
+					dota1x6:SetMinimapIcon(
+						team,
+						"bounty_" .. i,
+						bounty_abs[i],
+						{ image = "file://{images}/custom_game/icons/mini/alerts_mini/bounty.png" }
+					)
+				end
+			end
+		end
+	end
+end
+
+function dota1x6:StartBountyWatch()
+	Timers:CreateTimer("bounty_watch", {
+		endTime = 0.1,
+		callback = function()
+			local waiting = 0
+
+			for i = 1, #bounty_abs do
+				if not IsValid(bounty_runes[i]) then
+					for team, _ in pairs(bounty_icons[i]) do
+						if IsLocationVisible(team, bounty_abs[i]) then
+							bounty_icons[i][team] = nil
+							dota1x6:RemoveMinimapIcon(team, "bounty_" .. i)
+						else
+							waiting = waiting + 1
+						end
+					end
+				end
+			end
+
+			if waiting == 0 then
+				return nil
+			end
+
+			return 1
+		end,
+	})
+end
+
+function dota1x6:StartWatcherWatch()
+	Timers:CreateTimer("watcher_watch", {
+		endTime = 0.1,
+		callback = function()
+			local waiting = 0
+
+			for _, mod in pairs(watcher_mods) do
+				if IsValid(mod) then
+					waiting = waiting + mod:UpdateIcons()
+				end
+			end
+
+			if waiting == 0 then
+				return nil
+			end
+
+			return 1
+		end,
+	})
+end
+
+function dota1x6:RemoveTeamIcons(team)
+	for i = 1, #bounty_abs do
+		bounty_icons[i][team] = nil
+		dota1x6:RemoveMinimapIcon(team, "bounty_" .. i)
+	end
+
+	for _, mod in pairs(watcher_mods) do
+		if IsValid(mod) then
+			mod:RemoveTeamIcon(team)
+		end
+	end
+end
+
+function dota1x6:StartTheHunt(tower)
+	if not IsValid(tower) then
+		return false
+	end
+	if dota1x6.TargetCurrentActive then
+		return false
+	end
+
+	local mod = tower:AddNewModifier(tower, nil, "modifier_the_hunt_custom_tower", { duration = Target_duration })
+
+	return mod ~= nil
+end
+
+function dota1x6:GetPatrolIndexes()
+	local count = 0
+	for _, tower in pairs(towers) do
+		count = count + 1
+	end
+
+	local patrol_map = {}
+	local patrol_count = 0
+	local special_vision = nil
+
+	if count == 4 and dota1x6.patrol_data["mid"] then
+		special_vision = {}
+
+		for index, data in pairs(dota1x6.patrol_data) do
+			patrol_map[index] = false
+			local team_count = 0
+			if data.teams then
+				local solo_team
+				for team, tower in pairs(towers) do
+					for _, check_team in pairs(data.teams) do
+						if tower.map_team == check_team then
+							team_count = team_count + 1
+							solo_team = team
+						end
+					end
+				end
+				if team_count == 1 and solo_team then
+					special_vision[solo_team] = true
+				end
+			end
+			if team_count >= 2 then
+				patrol_map[index] = true
+				patrol_count = patrol_count + 1
+			end
+		end
+
+		if patrol_count <= 1 then
+			patrol_map["mid"] = true
+		end
+	end
+
+	local allowed = {}
+
+	for index, data in pairs(dota1x6.patrol_data) do
+		local allow = false
+		if dota1x6.patrol_data["mid"] then
+			if count == 4 then
+				allow = patrol_map[index]
+			else
+				if (count <= 3 and index == "mid") or (count > 3 and index ~= "mid") then
+					allow = true
+				end
+			end
+
+			if dota1x6:IsCustomRules("patrol_center") then
+				allow = index == "mid"
+			end
+		else
+			allow = true
+		end
+
+		allowed[index] = allow
+	end
+
+	return allowed, special_vision
+end
+
 function dota1x6:CheckPatrol()
 	if dota1x6:FinalDuel() then
 		return
@@ -1965,6 +2317,21 @@ function dota1x6:CheckPatrol()
 		patrol_max = patrol_timer_max_2
 	end
 
+	for _, data in pairs(duel_data) do
+		if data.finished == 0 and data.duel_mod and not data.duel_mod:IsNull() then
+			dota1x6.patrol_duel_end = timer
+			result.duel_wait = 1
+		end
+	end
+
+	if result.duel_wait then
+		return result
+	end
+
+	if dota1x6.patrol_duel_end then
+		patrol_max = dota1x6.patrol_duel_end + patrol_duel_delay
+	end
+
 	local show_portal = timer + PortalDelay == patrol_max
 	local spawn_creeps = timer == patrol_max
 
@@ -1977,64 +2344,9 @@ function dota1x6:CheckPatrol()
 		return result
 	end
 
-	local count = 0
-	for _, tower in pairs(towers) do
-		count = count + 1
-	end
+	local allowed, special_vision = dota1x6:GetPatrolIndexes()
 
-	local patrol_map = {}
-	local patrol_count = 0
-	local special_vision = nil
-
-	if count == 4 and dota1x6.patrol_data["mid"] then
-		special_vision = {}
-
-		for index, data in pairs(dota1x6.patrol_data) do
-			patrol_map[index] = false
-			local team_count = 0
-			if data.teams then
-				local solo_team
-				for team, tower in pairs(towers) do
-					for _, check_team in pairs(data.teams) do
-						if tower.map_team == check_team then
-							team_count = team_count + 1
-							solo_team = team
-						end
-					end
-				end
-				if team_count == 1 and solo_team then
-					special_vision[solo_team] = true
-				end
-			end
-			if team_count >= 2 then
-				patrol_map[index] = true
-				patrol_count = patrol_count + 1
-			end
-		end
-
-		if patrol_count <= 1 then
-			patrol_map["mid"] = true
-		end
-	end
-
-	for index, data in pairs(dota1x6.patrol_data) do
-		local allow = false
-		if dota1x6.patrol_data["mid"] then
-			if count == 4 then
-				allow = patrol_map[index]
-			else
-				if (count <= 3 and index == "mid") or (count > 3 and index ~= "mid") then
-					allow = true
-				end
-			end
-
-			if dota1x6:IsCustomRules("patrol_center") then
-				allow = index == "mid"
-			end
-		else
-			allow = true
-		end
-
+	for index, allow in pairs(allowed) do
 		if allow then
 			if show_portal then
 				dota1x6:spawn_patrol(index, is_tormentor, true, special_vision)
@@ -2046,7 +2358,7 @@ function dota1x6:CheckPatrol()
 	end
 
 	if spawn_creeps then
-		patrol_launched = true
+		dota1x6:SetPatrolLaunched(true)
 		if is_tormentor then
 			tormentor_wave = tormentor_wave + tormentor_inc
 		end
@@ -2147,39 +2459,40 @@ function dota1x6:GetTeamsNet()
 	return team_net
 end
 
-function dota1x6:ActivateOrbShrines(override_wave)
+function dota1x6:ActivateOrbShrines(override_wave, instant)
 	local wave = override_wave and override_wave or dota1x6.current_wave
 	if wave < orb_shrines_wave then
 		return
 	end
-	if not IsSoloMode() then
+	if orb_shrines_total < 2 then
 		return
 	end
 
+	local half = math.floor(orb_shrines_total / 2)
 	local active = {}
 
 	if dota1x6:IsCustomRules("random_shrines") then
-		local random1 = RandomInt(1, 6)
+		local random1 = RandomInt(1, orb_shrines_total)
 		repeat
-			random2 = RandomInt(1, 6)
+			random2 = RandomInt(1, orb_shrines_total)
 		until random2 ~= random1
 
 		active[random1] = true
 		active[random2] = true
 	else
 		active[orb_shrines_count] = true
-		active[orb_shrines_count + 3] = true
+		active[orb_shrines_count + half] = true
 	end
 
 	for index, thinker in pairs(orb_shrines) do
 		local mod = thinker:FindModifierByName("modifier_orbs_shrine_custom")
 		if mod then
-			mod:Activate(wave, active[index])
+			mod:Activate(wave, active[index], instant)
 		end
 	end
 
 	orb_shrines_count = orb_shrines_count + 1
-	if orb_shrines_count > 3 then
+	if orb_shrines_count > half then
 		orb_shrines_count = 1
 	end
 end
@@ -2205,13 +2518,8 @@ function dota1x6:UpdatePlayersTable(id)
 		return
 	end
 
-	local team = player:GetTeamNumber()
 	local no_buyback = player.no_buyback
 	local hero_name = player:GetUnitName()
-	local hero_kills_table = nil
-	if GameRules:GetDOTATime(false, false) < Player_damage_time then
-		hero_kills_table = player.hero_kills
-	end
 
 	local razor_count = -1
 	if dota1x6.current_wave > duel_start_wave and player.razor_count then
@@ -2224,14 +2532,23 @@ function dota1x6:UpdatePlayersTable(id)
 		damage_bonus = math.max(0, (mod:GetStackCount() - 1) * Player_damage_inc)
 	end
 
+	local hunted = 0
+	if player:HasModifier("modifier_the_hunt_custom_hero") then
+		hunted = 1
+	end
+
+	local respawn_reward = 0
+	if player:HasModifier("modifier_patrol_reward_2_respawn") then
+		respawn_reward = 1
+	end
+
 	CustomNetTables:SetTableValue("networth_players", tostring(id), {
 		place = -1,
-		team = team,
 		no_buyback = no_buyback,
+		hunted = hunted,
+		respawn_reward = respawn_reward,
 		net = player.networth, --PlayerResource:GetNetWorth(id),
 		damage_bonus = damage_bonus,
-		hero_kills = hero_kills_table,
-		hero_has_aegis = false,
 		hero_tier = player.hero_tier,
 		hide_tier = player.hide_tier,
 		subscribed = player.subscribed,
@@ -2239,10 +2556,10 @@ function dota1x6:UpdatePlayersTable(id)
 		steam_id = PlayerResource:GetSteamID(id),
 		rare = player.blue,
 		purple = player.purple,
+		gray = player.gray,
 		legendary = player.chosen_skill_name,
 		legendary_talent = player.legendary_talent,
 		legendary_skill_name = player.legendary_skill_name,
-		base = dota1x6:GetBase(player:GetTeamNumber()),
 		tips_available = player.tips_available,
 		tips_cooldown = player.tips_cooldown,
 		razor_count = razor_count,
@@ -2265,6 +2582,7 @@ function dota1x6:spawn_timer()
 		and not enable_pause
 	local should_pause = false
 	local is_paused = GameRules:IsGamePaused()
+
 	local team_net = dota1x6:GetTeamsNet()
 	local low_net_teams = {}
 	local more_gold_teams = {}
@@ -2319,6 +2637,18 @@ function dota1x6:spawn_timer()
 		end
 
 		bounty_timer = bounty_timer + 1
+
+		if math.floor(current_time / CreepsUpgradeTimer) > CreepsUpgradeCount then
+			CreepsUpgradeCount = math.floor(current_time / CreepsUpgradeTimer)
+
+			for creep, _ in pairs(NeutralCreeps) do
+				if IsValid(creep) and creep:IsAlive() and creep:GetTeamNumber() == DOTA_TEAM_NEUTRALS then
+					dota1x6:SetCreepStats(creep)
+				else
+					NeutralCreeps[creep] = nil
+				end
+			end
+		end
 
 		for _, data in pairs(duel_data) do
 			if data and data.finished and data.finished == 0 and data.duel_mod and not data.duel_mod:IsNull() then
@@ -2412,7 +2742,11 @@ function dota1x6:spawn_timer()
 	if timer >= MaxTimer then
 		if dota1x6:FinalDuel() == false then
 			dota1x6.current_wave = dota1x6.current_wave + 1
-			patrol_launched = false
+			dota1x6:UpdateLaneCreepsStats()
+			dota1x6:UpdatePatrolCreepsStats()
+			dota1x6.wave_tick_open = true
+			dota1x6:SetPatrolLaunched(false)
+			dota1x6.patrol_duel_end = nil
 
 			for n = 1, #Wave_boss_number do
 				if dota1x6.current_wave == Wave_boss_number[n] then
@@ -2433,25 +2767,9 @@ function dota1x6:spawn_timer()
 		end
 	end
 
-	if current_time >= bounty_start and bounty_init == false then
-		bounty_init = true
-
-		for i = 1, #bounty_abs do
-			local b_thinker = CreateUnitByName("npc_bounty_thinker", bounty_abs[i], false, nil, nil, DOTA_TEAM_NEUTRALS)
-			b_thinker:AddNewModifier(b_thinker, nil, "modifier_bounty_map", {})
-		end
-	end
-
 	if bounty_timer >= bounty_max_timer and current_time >= bounty_start then
 		bounty_timer = 0
-
-		for i = 1, #bounty_abs do
-			local near_rune =
-				Entities:FindByModelWithin(nil, "models/props_gameplay/rune_goldxp.vmdl", bounty_abs[i], 200)
-			if not near_rune then
-				CreateRune(bounty_abs[i], DOTA_RUNE_BOUNTY)
-			end
-		end
+		dota1x6:SpawnBountyRunes()
 	end
 
 	for timing, state in pairs(ItemsTiming) do
@@ -2518,6 +2836,7 @@ function dota1x6:spawn_timer()
 					(HTTP.serverData.isStatsMatch == true or test)
 					and SafeToLeave == false
 					and current_time <= LowPriorityTime
+					and data.total_games > LOW_PRIORITY_IMMUNITY
 				then
 					lp_games = lp_games + 1
 
@@ -2534,14 +2853,10 @@ function dota1x6:spawn_timer()
 
 			if SafeToLeave == false and current_time < 3 then
 				local data = CustomNetTables:GetTableValue("server_data", tostring(id))
-				if data then
-					if data.wrong_map_status == 2 or data.ranked_low_games ~= 0 then
-						_G.SafeToLeave = true
-						SafeToLeave_reason = 2
-					elseif data.reports_teammate ~= -1 or data.leave_banned ~= 0 or data.is_banned ~= 0 then
-						_G.SafeToLeave = true
-						SafeToLeave_reason = 3
-					end
+
+				if data and data.block then
+					_G.SafeToLeave = true
+					SafeToLeave_reason = data.block.leave_reason
 				end
 			end
 
@@ -2638,6 +2953,7 @@ function dota1x6:spawn_timer()
 						and current_time > 1
 					then
 						should_pause = true
+						player.pause_shown = true
 
 						local time = player.pause_time
 						local hero_name = player:GetUnitName()
@@ -2663,7 +2979,8 @@ function dota1x6:spawn_timer()
 
 							player.after_pause_time = player.after_pause_time - 1
 						end
-					else
+					elseif player.pause_shown then
+						player.pause_shown = false
 						CustomGameEventManager:Send_ServerToAllClients("pause_end", { id = id })
 					end
 				end
@@ -2713,8 +3030,13 @@ function dota1x6:spawn_timer()
 					max_timer = duel.max_timer
 				end
 
+				local day_time = dota1x6.eternal_night and -1
+					or ((current_day == "night" and night_timer or day_timer) - day_count)
+
 				if duel_timer then
 					CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(id), "duel_timer_progress", {
+						day = current_day,
+						day_time = day_time,
 						time = time,
 						max = max_timer,
 						stage = duel.stage,
@@ -2739,6 +3061,8 @@ function dota1x6:spawn_timer()
 					end
 					local data = {
 						stage = duel and duel.stage or 0,
+						day = current_day,
+						day_time = day_time,
 						necro = necro,
 						units = -1,
 						units_max = -1,
@@ -2890,6 +3214,7 @@ function dota1x6:spawn_timer()
 
 		dota1x6:ActivateOrbShrines()
 		timer = 0
+		dota1x6.wave_tick_open = false
 	end
 
 	if can_pause then
@@ -2942,65 +3267,79 @@ function dota1x6:DestroyPlayerUnits(id)
 		end
 	end
 
-	local allunits = FindUnitsInRadius(
-		DOTA_TEAM_NOTEAM,
-		Vector(0, 0, 0),
-		nil,
-		FIND_UNITS_EVERYWHERE,
-		DOTA_UNIT_TARGET_TEAM_BOTH,
-		DOTA_UNIT_TARGET_ALL,
-		DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
-			+ DOTA_UNIT_TARGET_FLAG_INVULNERABLE
-			+ DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD,
-		0,
-		false
-	)
+	local teams = { team }
+	local checked_teams = { [team] = true }
 
-	for _, unit in pairs(allunits) do
-		local unit_id = nil
-		if unit and not unit:IsNull() then
-			unit_id = unit:GetId()
+	for _, hero in pairs(players) do
+		local hero_team = hero:GetTeamNumber()
+
+		if not checked_teams[hero_team] then
+			checked_teams[hero_team] = true
+			teams[#teams + 1] = hero_team
+		end
+	end
+
+	local index = 1
+
+	Timers:CreateTimer(0.1, function()
+		if not IsValid(player) then
+			return nil
 		end
 
-		if
-			unit
-			and not unit:IsNull()
-			and unit ~= player
-			and unit:GetUnitName() ~= "npc_teleport"
-			and not unit:IsBuilding()
-		then
-			for _, mod in pairs(unit:FindAllModifiers()) do
-				if not mod:IsNull() and mod:GetCaster() and mod:GetCaster() == player then
-					if mod:GetName() == "modifier_monkey_king_wukongs_command_custom_soldier" then
+		local target_team = teams[index]
+
+		if not target_team then
+			return nil
+		end
+
+		index = index + 1
+		local units = FindUnitsInRadius(
+			target_team,
+			Vector(0, 0, 0),
+			nil,
+			FIND_UNITS_EVERYWHERE,
+			DOTA_UNIT_TARGET_TEAM_FRIENDLY,
+			DOTA_UNIT_TARGET_ALL,
+			DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
+				+ DOTA_UNIT_TARGET_FLAG_INVULNERABLE
+				+ DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD,
+			0,
+			false
+		)
+		for _, unit in pairs(units) do
+			if IsValid(unit) and unit ~= player and not unit:IsBuilding() and unit:GetUnitName() ~= "npc_teleport" then
+				if target_team == team and unit:GetId() == id then
+					unit:Kill(nil, nil)
+
+					if IsValid(unit) and unit:IsCourier() then
 						UTIL_Remove(unit)
-						break
-					else
-						mod:Destroy()
+					end
+				else
+					for _, mod in pairs(unit:FindAllModifiers()) do
+						if not mod:IsNull() and mod:GetCaster() == player then
+							if mod:GetName() == "modifier_monkey_king_wukongs_command_custom_soldier" then
+								UTIL_Remove(unit)
+								break
+							else
+								mod:Destroy()
+							end
+						end
 					end
 				end
 			end
 		end
+		return 0.5
+	end)
 
-		if
-			unit
-			and not unit:IsNull()
-			and unit_id
-			and players[unit_id]
-			and players[unit_id] == players[id]
-			and not unit:IsBuilding()
-		then
-			unit:Kill(nil, nil)
-			if unit and not unit:IsNull() and unit:IsCourier() then
-				UTIL_Remove(unit)
+	for _, thinker in pairs(Entities:FindAllByClassname("npc_dota_thinker")) do
+		if thinker:GetTeamNumber() == team then
+			for _, mod in pairs(thinker:FindAllModifiers()) do
+				local caster = mod:GetCaster()
+				if IsValid(caster) and caster:FindOwner() == player then
+					UTIL_Remove(thinker)
+					break
+				end
 			end
-		end
-	end
-
-	local thinkers = Entities:FindAllByClassname("npc_dota_thinker")
-
-	for _, thinker in pairs(thinkers) do
-		if thinker:GetTeamNumber() == player:GetTeamNumber() then
-			UTIL_Remove(thinker)
 		end
 	end
 end
@@ -3048,7 +3387,7 @@ function dota1x6:CheckTowerDeath(tower)
 	end
 end
 
-function dota1x6:destroy_tower(tower)
+function dota1x6:destroy_tower(tower, no_end)
 	local team = tower:GetTeamNumber()
 
 	local fillers = FindUnitsInRadius(
@@ -3107,6 +3446,13 @@ function dota1x6:destroy_tower(tower)
 	end
 
 	towers[team] = nil
+
+	dota1x6:RemoveTeamIcons(team)
+
+	if no_end then
+		return
+	end
+
 	local teams_register = {}
 	local team_array = {}
 	local team_count = 0
@@ -3120,11 +3466,27 @@ function dota1x6:destroy_tower(tower)
 		end
 	end
 
-	if team_count == 3 then
-		if IsSoloMode() then
-			CustomGameEventManager:Send_ServerToAllClients("destroy_tower", {})
+	if
+		LpGiven == false
+		and team_count <= win_place
+		and SafeToLeave == false
+		and (HTTP.serverData.isStatsMatch == true or test)
+	then
+		LpGiven = true
+		for player_id in pairs(players) do
+			local lp_data = CustomNetTables:GetTableValue("server_data", tostring(player_id))
+			if lp_data and lp_data.lp_games_remaining > 0 then
+				lp_data.lp_games_remaining = lp_data.lp_games_remaining - 1
+				CustomNetTables:SetTableValue("server_data", tostring(player_id), lp_data)
+			end
 		end
+	end
 
+	if team_count > 2 then
+		dota1x6:ResetDuelPairs()
+	end
+
+	if team_count == 3 then
 		for _, tower in pairs(towers) do
 			tower:RemoveModifierByName("modifier_the_hunt_custom_tower")
 		end
@@ -3423,17 +3785,20 @@ function dota1x6:initiate_player(player, is_bot)
 	player.choise = {}
 	player.respawn_mod = {}
 	player.choise_table = {}
-	player.hero_kills = {}
 	player.damage_out = {}
 	player.damage_inc = {}
 	player.healing_inc = {}
+	player.resource = {}
+	player.resource["gold"] = {}
+	player.resource["blue_points"] = {}
+	player.resource["gray_points"] = {}
 	player.temp_damage_stat = {}
 
 	player.team_color = hex_color
-	player.HeroType = dota1x6:GetHeroType(player)
 	player.upgrades = {}
 	player.bluepoints = 0
 	player.purplepoints = 0
+	player.whitepoints = 0
 	player.death = 0
 	player.purple = 0
 	player.gray = 0
@@ -3442,6 +3807,7 @@ function dota1x6:initiate_player(player, is_bot)
 	player.chosen_skill_name = 0
 	player.bluemax = StartBlue
 	player.purplemax = StartPurple
+	player.whitemax = StartWhite
 	player.ActiveWave = nil
 	player.banned = false
 	player.randomed = 0
@@ -3471,17 +3837,12 @@ function dota1x6:initiate_player(player, is_bot)
 	player.connect_state = 0
 
 	player.pause = -1
-	player.x_min = -8100
-	player.x_max = 8100
-	player.y_min = -8100
-	player.y_max = 8100
 
 	player.z = 215
 	player.HideDouble = 0
 	player.orange_count = 0
 	player.patrol_kills = 0
 	player.obs_placed = 0
-	player.sentry_placed = 0
 	player.obs_kills = 0
 	player.sentry_kills = 0
 	player.tips_cooldown = 0
@@ -3504,10 +3865,12 @@ function dota1x6:initiate_player(player, is_bot)
 		or 0
 
 	player.base_attack_type = player:GetAttackCapability()
-	player.base_model = player:GetModelName()
 	player.base_model_scale = player:GetModelScale()
 
 	player.networth = 0
+
+	player:SetMinimumGoldBounty(0)
+	player:SetMaximumGoldBounty(0)
 
 	FireGameEvent("save_abilities", {
 		ent_index = player:entindex(),
@@ -3544,14 +3907,6 @@ function dota1x6:initiate_player(player, is_bot)
 
 	if custom_voice[player:GetUnitName()] then
 		player:AddNewModifier(player, nil, "modifier_voice_module", {})
-	end
-
-	if false then
-		if is_bot then
-			player:GenericParticle("particles/econ/events/ti9/ti9_emblem_effect.vpcf")
-		else
-			player:GenericParticle("amir4an/particles/events/amir4an_1x6_reward/amir4an_1x6_emblem_2025_ambient.vpcf")
-		end
 	end
 
 	player:AddNewModifier(player, nil, "modifier_player_main_custom", {})
@@ -3714,7 +4069,7 @@ function dota1x6:initiate_player(player, is_bot)
 	Timers:CreateTimer(0.2, function()
 		player:HeroLevelUp(false)
 		player:HeroLevelUp(false)
-		player:ModifyGoldFiltered(850, true, DOTA_ModifyGold_Unspecified)
+		player:GiveGold(850, nil, true)
 	end)
 
 	for _, name in pairs(start_abilities) do
@@ -3772,22 +4127,12 @@ function dota1x6:initiate_player(player, is_bot)
 
 	dota1x6:RequestSubscribed({ PlayerID = id })
 
-	CustomNetTables:SetTableValue(
-		"hero_portrait_levels",
-		tostring(hero_name),
-		{ tier = lvl, id = id, entindex = player:entindex() }
-	)
+	hero_tiers[id] = lvl
+	hero_names[id] = hero_name
 
-	CustomNetTables:SetTableValue(
-		"spectator_points",
-		tostring(id),
-		{ blue = player.bluepoints, purple = player.purplepoints, max = StartBlue, max_p = StartPurple }
-	)
-	CustomGameEventManager:Send_ServerToPlayer(
-		PlayerResource:GetPlayer(id),
-		"kill_progress",
-		{ blue = player.bluepoints, purple = player.purplepoints, max = StartBlue, max_p = StartPurple }
-	)
+	dota1x6:SendPlayerHeroes()
+
+	player:UpdateVisualPoints()
 	CustomGameEventManager:Send_ServerToPlayer(
 		PlayerResource:GetPlayer(id),
 		"init_damage_table",
@@ -3822,18 +4167,27 @@ function dota1x6:initiate_player(player, is_bot)
 		end
 	end
 
+	for _, hero in pairs(players) do
+		if hero.morph_ability and hero.morph_ability.tracker then
+			hero.morph_ability.tracker:OnCreated()
+		end
+
+		if hero.hunt_ability and hero.hunt_ability.tracker then
+			hero.hunt_ability.tracker:UpdateTargets()
+		end
+	end
+
 	if not is_bot then
+		local hero_list = CustomNetTables:GetTableValue("custom_pick", "hero_list")
+
+		if hero_list and not hero_list[player:GetUnitName()] then
+			player.banned = true
+		end
 		return
 	end
 
 	if not towers[player:GetTeamNumber()] then
 		dota1x6:SetTower(player)
-	end
-
-	for _, morph in pairs(players) do
-		if morph.morph_ability and morph.morph_ability.tracker then
-			morph.morph_ability.tracker:OnCreated()
-		end
 	end
 
 	Timers:CreateTimer(0.1, function()
@@ -3875,7 +4229,66 @@ function dota1x6:FindPlayers(team, give_names, give_heroes)
 	end
 end
 
-function dota1x6:FindDuelPairs()
+function dota1x6:ResetDuelPairs()
+	if dota1x6:FinalDuel() then
+		return
+	end
+	if not dota1x6:IsDuelWave() then
+		return
+	end
+
+	for _, data in pairs(duel_data) do
+		if data.finished == 0 and data.stage ~= 1 then
+			return
+		end
+	end
+
+	local keep = {}
+
+	for _, data in pairs(duel_data) do
+		if data.finished == 0 then
+			data.finished = 1
+
+			if IsValid(data.tower1, data.tower2) then
+				keep[data.tower1:GetTeamNumber()] = data.tower2:GetTeamNumber()
+				keep[data.tower2:GetTeamNumber()] = data.tower1:GetTeamNumber()
+			end
+
+			if IsValid(data.tower1) then
+				data.tower1.duel_data = -1
+			end
+
+			if IsValid(data.tower2) then
+				data.tower2.duel_data = -1
+			end
+
+			if IsValid(data.duel_mod) then
+				data.duel_mod:Destroy()
+			end
+		end
+	end
+
+	duel_alert_init = false
+
+	dota1x6:FindDuelPairs(keep)
+end
+
+function dota1x6:FindDuelPairs(keep)
+	local count = 0
+	for _, tower in pairs(towers) do
+		count = count + 1
+	end
+
+	if count == 3 then
+		for _, data in pairs(duel_data) do
+			if data.finished == 0 then
+				dota1x6.waiting_top3_duel = true
+				return
+			end
+		end
+		dota1x6.waiting_top3_duel = false
+	end
+
 	local net = dota1x6:GetTeamsNet()
 
 	if #net > 1 then
@@ -3926,6 +4339,16 @@ function dota1x6:FindDuelPairs()
 				end
 			end
 
+			if duel_2_team_2 == -1 and keep then
+				if keep[duel_1_team_1] == net[#net - 1].team or keep[duel_2_team_1] == net[#net - 2].team then
+					duel_1_team_2 = net[#net - 1].team
+					duel_2_team_2 = net[#net - 2].team
+				elseif keep[duel_1_team_1] == net[#net - 2].team or keep[duel_2_team_1] == net[#net - 1].team then
+					duel_1_team_2 = net[#net - 2].team
+					duel_2_team_2 = net[#net - 1].team
+				end
+			end
+
 			if duel_2_team_2 == -1 then
 				local random = RandomInt(1, 2)
 
@@ -3943,14 +4366,6 @@ function dota1x6:FindDuelPairs()
 		dota1x6:InitDuel(duel_1_team_1, duel_1_team_2, 0)
 		dota1x6:InitDuel(duel_2_team_1, duel_2_team_2, 0)
 	elseif #net > 2 then
-		for _, data in pairs(duel_data) do
-			if data.finished == 0 then
-				dota1x6.waiting_top3_duel = true
-				return
-			end
-		end
-		dota1x6.waiting_top3_duel = false
-
 		local team_1 = nil
 		local team_2 = nil
 

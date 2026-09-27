@@ -39,13 +39,11 @@ function life_stealer_innate_custom:UpdateTalents()
 	if not self.init then
 		self.init = true
 		self.talents = {
-			has_e1 = 0,
 			e1_speed = 0,
 		}
 	end
 
 	if caster:HasTalent("modifier_lifestealer_ghoul_1") then
-		self.talents.has_e1 = 1
 		self.talents.e1_speed = caster:GetTalentValue("modifier_lifestealer_ghoul_1", "speed")
 	end
 end
@@ -57,10 +55,7 @@ function life_stealer_innate_custom:GetIntrinsicModifierName()
 	return "modifier_life_stealer_innate_custom_tracker"
 end
 
-modifier_life_stealer_innate_custom_tracker = class(mod_hidden)
-function modifier_life_stealer_innate_custom_tracker:IsHidden()
-	return false
-end
+modifier_life_stealer_innate_custom_tracker = class(mod_visible)
 function modifier_life_stealer_innate_custom_tracker:OnCreated(table)
 	self.caster = self:GetCaster()
 	self.parent = self:GetParent()

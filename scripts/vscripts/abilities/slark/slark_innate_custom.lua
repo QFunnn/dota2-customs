@@ -34,7 +34,6 @@ LinkLuaModifier(
 	LUA_MODIFIER_MOTION_NONE
 )
 LinkLuaModifier("modifier_slark_innate_custom_burn", "abilities/slark/slark_innate_custom", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_slark_innate_custom_speed", "abilities/slark/slark_innate_custom", LUA_MODIFIER_MOTION_NONE)
 
 slark_innate_custom = class({})
 slark_innate_custom.talents = {}
@@ -69,7 +68,6 @@ function slark_innate_custom:UpdateTalents()
 			e3_attacks = 0,
 			e3_damage = caster:GetTalentValue("modifier_slark_essence_3", "damage", true),
 			e3_duration = caster:GetTalentValue("modifier_slark_essence_3", "duration", true),
-			e3_duration = caster:GetTalentValue("modifier_slark_essence_3", "duration", true),
 			e3_slow = caster:GetTalentValue("modifier_slark_essence_3", "slow", true),
 			e3_delay = caster:GetTalentValue("modifier_slark_essence_3", "delay", true),
 			e3_cd = caster:GetTalentValue("modifier_slark_essence_3", "cd", true),
@@ -93,7 +91,7 @@ function slark_innate_custom:UpdateTalents()
 			r3_damage_type = caster:GetTalentValue("modifier_slark_dance_3", "damage_type", true),
 
 			has_r4 = 0,
-			r4_heal = caster:GetTalentValue("modifier_slark_dance_4", "heal", true),
+			r4_heal = caster:GetTalentValue("modifier_slark_dance_4", "heal", true) / 100,
 			r4_bonus = caster:GetTalentValue("modifier_slark_dance_4", "bonus", true),
 
 			has_h5 = 0,
@@ -172,7 +170,6 @@ function slark_innate_custom:AddStack(target)
 		return
 	end
 
-	local caster = self:GetCaster()
 	local duration = self.duration
 	if self.talents.has_e4 == 1 then
 		duration = duration + self.talents.e4_duration
@@ -182,15 +179,15 @@ function slark_innate_custom:AddStack(target)
 	end
 
 	if target:IsHero() then
-		target:AddNewModifier(caster, self, "modifier_slark_innate_custom_target", { duration = duration })
+		target:AddNewModifier(self.caster, self, "modifier_slark_innate_custom_target", { duration = duration })
 	end
 
-	local mod = caster:FindModifierByName("modifier_slark_innate_custom_caster")
+	local mod = self.caster:FindModifierByName("modifier_slark_innate_custom_caster")
 	if mod and mod:GetRemainingTime() > duration then
 		mod:AddStack(duration)
 		return
 	end
-	caster:AddNewModifier(caster, self, "modifier_slark_innate_custom_caster", { duration = duration })
+	self.caster:AddNewModifier(self.caster, self, "modifier_slark_innate_custom_caster", { duration = duration })
 end
 
 modifier_slark_innate_custom = class(mod_hidden)
@@ -272,7 +269,7 @@ function modifier_slark_innate_custom:DamageEvent_out(params)
 	end
 
 	if self.ability.talents.has_r4 == 1 and not params.inflictor then
-		local heal = result * params.damage * self.ability.talents.r4_heal / 100
+		local heal = result * params.damage * self.ability.talents.r4_heal
 		local effect = ""
 		if self.parent:HasModifier("modifier_slark_shadow_dance_custom_effect") then
 			heal = heal * self.ability.talents.r4_bonus
@@ -654,18 +651,6 @@ function modifier_slark_innate_custom_target:OnDestroy()
 		return
 	end
 	self.parent:CalculateStatBonus(true)
-
-	if self.parent:IsAlive() then
-		return
-	end
-	if not self.parent:IsValidKill(self.caster) then
-		return
-	end
-	if not self.caster:IsAlive() then
-		return
-	end
-
-	--self.caster:AddNewModifier(self.caster, nil, "modifier_slark_innate_custom_perma", {})
 end
 
 function modifier_slark_innate_custom_target:DeclareFunctions()
@@ -701,7 +686,6 @@ function modifier_slark_innate_custom_perma:GetTexture()
 	return "slark_essence_shift"
 end
 function modifier_slark_innate_custom_perma:OnCreated(table)
-	self.ability = self:GetAbility()
 	self.parent = self:GetParent()
 
 	self.ability = self.parent.essence_ability
@@ -712,6 +696,9 @@ function modifier_slark_innate_custom_perma:OnCreated(table)
 
 	self.max = self.ability.steal_max
 	self.agi = self.ability.perma_agi
+	if not IsServer() then
+		return
+	end
 	self:SetStackCount(1)
 end
 
@@ -817,13 +804,7 @@ function modifier_slark_innate_custom_double:OnDestroy()
 	)
 end
 
-modifier_slark_innate_custom_double_cd = class(mod_visible)
-function modifier_slark_innate_custom_double_cd:IsDebuff()
-	return true
-end
-function modifier_slark_innate_custom_double_cd:RemoveOnDeath()
-	return false
-end
+modifier_slark_innate_custom_double_cd = class(mod_cd)
 function modifier_slark_innate_custom_double_cd:GetTexture()
 	return "buffs/slark/essence_3"
 end
@@ -886,7 +867,8 @@ end
 
 modifier_slark_innate_custom_double_attack = class(mod_hidden)
 function modifier_slark_innate_custom_double_attack:OnCreated()
-	self.damage = self:GetAbility().talents.e3_damage - 100
+	self.ability = self:GetAbility()
+	self.damage = self.ability.talents.e3_damage - 100
 end
 
 function modifier_slark_innate_custom_double_attack:DeclareFunctions()

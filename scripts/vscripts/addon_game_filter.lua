@@ -8,6 +8,65 @@
 ]]
 
 
+local duel_allowed_orders = {
+	[DOTA_UNIT_ORDER_CAST_TARGET] = true,
+	[DOTA_UNIT_ORDER_CAST_NO_TARGET] = true,
+	[DOTA_UNIT_ORDER_CAST_POSITION] = true,
+	[DOTA_UNIT_ORDER_CAST_TOGGLE] = true,
+}
+
+local pickup_orders = {
+	[DOTA_UNIT_ORDER_PICKUP_RUNE] = true,
+	[DOTA_UNIT_ORDER_PICKUP_ITEM] = true,
+}
+
+local infest_cast_orders = {
+	[DOTA_UNIT_ORDER_CAST_POSITION] = true,
+	[DOTA_UNIT_ORDER_CAST_NO_TARGET] = true,
+	[DOTA_UNIT_ORDER_CAST_TARGET] = true,
+}
+
+local infest_redirect_orders = {
+	[DOTA_UNIT_ORDER_MOVE_TO_POSITION] = true,
+	[DOTA_UNIT_ORDER_ATTACK_MOVE] = true,
+	[DOTA_UNIT_ORDER_STOP] = true,
+	[DOTA_UNIT_ORDER_HOLD_POSITION] = true,
+	[DOTA_UNIT_ORDER_MOVE_TO_TARGET] = true,
+	[DOTA_UNIT_ORDER_ATTACK_TARGET] = true,
+}
+
+local channel_blocked_orders = {
+	[DOTA_UNIT_ORDER_CAST_POSITION] = true,
+	[DOTA_UNIT_ORDER_CAST_TARGET] = true,
+	[DOTA_UNIT_ORDER_CAST_TARGET_TREE] = true,
+	[DOTA_UNIT_ORDER_MOVE_TO_POSITION] = true,
+	[DOTA_UNIT_ORDER_MOVE_TO_TARGET] = true,
+	[DOTA_UNIT_ORDER_ATTACK_MOVE] = true,
+	[DOTA_UNIT_ORDER_ATTACK_TARGET] = true,
+	[DOTA_UNIT_ORDER_CAST_NO_TARGET] = true,
+	[DOTA_UNIT_ORDER_PICKUP_ITEM] = true,
+	[DOTA_UNIT_ORDER_PICKUP_RUNE] = true,
+}
+
+local custom_move_orders = {
+	[DOTA_UNIT_ORDER_ATTACK_TARGET] = true,
+	[DOTA_UNIT_ORDER_MOVE_TO_TARGET] = true,
+	[DOTA_UNIT_ORDER_MOVE_TO_POSITION] = true,
+	[DOTA_UNIT_ORDER_ATTACK_MOVE] = true,
+	[DOTA_UNIT_ORDER_PICKUP_ITEM] = true,
+	[DOTA_UNIT_ORDER_PICKUP_RUNE] = true,
+	[DOTA_UNIT_ORDER_MOVE_TO_DIRECTION] = true,
+}
+
+local ward_break_orders = {
+	[DOTA_UNIT_ORDER_MOVE_TO_POSITION] = true,
+	[DOTA_UNIT_ORDER_MOVE_TO_TARGET] = true,
+	[DOTA_UNIT_ORDER_MOVE_TO_DIRECTION] = true,
+	[DOTA_UNIT_ORDER_ATTACK_MOVE] = true,
+	[DOTA_UNIT_ORDER_STOP] = true,
+	[DOTA_UNIT_ORDER_HOLD_POSITION] = true,
+}
+
 function dota1x6:ExecuteOrderFilterCustom(ord)
 	local target = nil
 	local player = PlayerResource:GetPlayer(ord["issuer_player_id_const"])
@@ -19,6 +78,10 @@ function dota1x6:ExecuteOrderFilterCustom(ord)
 		unit = EntIndexToHScript(ord.units["0"])
 	end
 
+	if order == DOTA_UNIT_ORDER_RADAR then
+		return false
+	end
+
 	if not unit then
 		return true
 	end
@@ -27,12 +90,13 @@ function dota1x6:ExecuteOrderFilterCustom(ord)
 		target = EntIndexToHScript(ord.entindex_target)
 	end
 
-	if ord.entindex_ability and ord.entindex_ability ~= -1 then
+	if ord.entindex_ability and ord.entindex_ability > 0 and order ~= DOTA_UNIT_ORDER_PURCHASE_ITEM then
 		ability = EntIndexToHScript(ord.entindex_ability)
 	end
 
-	if unit:HasModifier("modifier_teleport_cast") then
-		unit:RemoveModifierByName("modifier_teleport_cast")
+	local teleport_mod = unit:FindModifierByName("modifier_teleport_cast")
+	if teleport_mod and not teleport_mod.ords[order] then
+		teleport_mod:Destroy()
 	end
 
 	if
@@ -42,17 +106,9 @@ function dota1x6:ExecuteOrderFilterCustom(ord)
 		unit:RemoveModifierByName("modifier_life_stealer_unfettered_custom")
 	end
 
-	if unit:HasModifier("modifier_legion_commander_duel_custom_buff") then
-		local mod = unit:FindModifierByName("modifier_legion_commander_duel_custom_buff")
-		local allow = {
-			[DOTA_UNIT_ORDER_CAST_TARGET] = true,
-			[DOTA_UNIT_ORDER_CAST_NO_TARGET] = true,
-			[DOTA_UNIT_ORDER_CAST_POSITION] = true,
-			[DOTA_UNIT_ORDER_CAST_TOGGLE] = true,
-		}
-		if mod and not mod.is_enemy and not allow[order] then
-			return false
-		end
+	local duel_mod = unit:FindModifierByName("modifier_legion_commander_duel_custom_buff")
+	if duel_mod and not duel_mod.is_enemy and not duel_allowed_orders[order] then
+		return false
 	end
 
 	if
@@ -104,8 +160,11 @@ function dota1x6:ExecuteOrderFilterCustom(ord)
 			unit:HasModifier("modifier_mid_teleport_cast")
 			or (target:GetTeamNumber() ~= unit:GetTeamNumber() and target:GetName() ~= "edge_teleport_1" and target:GetName() ~= "edge_teleport_2")
 			or unit:IsChanneling()
-			or unit:HasModifier("modifier_teleport_cast")
 		then
+			return false
+		end
+
+		if IsValid(infest_mod) and infest_mod.is_legendary ~= 1 then
 			return false
 		end
 
@@ -120,7 +179,7 @@ function dota1x6:ExecuteOrderFilterCustom(ord)
 			return false
 		end
 		local cast_unit = unit
-		if IsValid(infest_mod) and infest_mod.is_legendary and infest_mod.target then
+		if IsValid(infest_mod) and infest_mod.target then
 			cast_unit = infest_mod.target
 		end
 
@@ -134,14 +193,12 @@ function dota1x6:ExecuteOrderFilterCustom(ord)
 		end
 	end
 
-	if
-		target
-		and order == DOTA_UNIT_ORDER_ATTACK_TARGET
-		and unit:HasModifier("modifier_witch_doctor_death_ward_custom")
-	then
-		local ward_mod = unit:FindModifierByName("modifier_witch_doctor_death_ward_custom")
-		ward_mod:SetTarget(target)
-		return
+	if target and order == DOTA_UNIT_ORDER_ATTACK_TARGET then
+		local death_ward_mod = unit:FindModifierByName("modifier_witch_doctor_death_ward_custom")
+		if death_ward_mod then
+			death_ward_mod:SetTarget(target)
+			return false
+		end
 	end
 
 	if unit.marci_creep and order == DOTA_UNIT_ORDER_MOVE_TO_POSITION then
@@ -160,16 +217,11 @@ function dota1x6:ExecuteOrderFilterCustom(ord)
 	end
 
 	if unit_controlled then
-		local move_orders = {
-			[DOTA_UNIT_ORDER_PICKUP_RUNE] = true,
-			[DOTA_UNIT_ORDER_PICKUP_ITEM] = true,
-		}
-
 		if unit:IsChanneling() and order ~= DOTA_UNIT_ORDER_STOP and order ~= DOTA_UNIT_ORDER_HOLD_POSITION then
 			return false
 		end
 
-		if move_orders[order] and target then
+		if pickup_orders[order] and target then
 			local order_table = {
 				UnitIndex = unit:entindex(),
 				OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION,
@@ -204,13 +256,7 @@ function dota1x6:ExecuteOrderFilterCustom(ord)
 			or order == DOTA_UNIT_ORDER_HOLD_POSITION
 		)
 	then
-		local cast_mods = {
-			[DOTA_UNIT_ORDER_CAST_POSITION] = true,
-			[DOTA_UNIT_ORDER_CAST_NO_TARGET] = true,
-			[DOTA_UNIT_ORDER_CAST_TARGET] = true,
-		}
-
-		if cast_mods[order] and ability then
+		if infest_cast_orders[order] and ability then
 			if
 				(infest_mod.target:IsSilenced() and not ability:IsItem())
 				or infest_mod.target:IsHexed()
@@ -229,20 +275,7 @@ function dota1x6:ExecuteOrderFilterCustom(ord)
 			end
 		end
 
-		local allowed_orders = {
-			[DOTA_UNIT_ORDER_MOVE_TO_POSITION] = true,
-			[DOTA_UNIT_ORDER_ATTACK_MOVE] = true,
-			[DOTA_UNIT_ORDER_STOP] = true,
-			[DOTA_UNIT_ORDER_HOLD_POSITION] = true,
-			[DOTA_UNIT_ORDER_MOVE_TO_TARGET] = true,
-			[DOTA_UNIT_ORDER_ATTACK_TARGET] = true,
-		}
-		local move_orders = {
-			[DOTA_UNIT_ORDER_PICKUP_RUNE] = true,
-			[DOTA_UNIT_ORDER_PICKUP_ITEM] = true,
-		}
-
-		if allowed_orders[order] then
+		if infest_redirect_orders[order] then
 			local order_table = {
 				UnitIndex = infest_mod.target:entindex(),
 				OrderType = order,
@@ -254,7 +287,7 @@ function dota1x6:ExecuteOrderFilterCustom(ord)
 
 			ord.units["0"] = nil
 			return true
-		elseif move_orders[order] and target then
+		elseif pickup_orders[order] and target then
 			local order_table = {
 				UnitIndex = infest_mod.target:entindex(),
 				OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION,
@@ -329,46 +362,27 @@ function dota1x6:ExecuteOrderFilterCustom(ord)
 		end
 	end
 
-	local orders = {
-		[DOTA_UNIT_ORDER_CAST_POSITION] = true,
-		[DOTA_UNIT_ORDER_CAST_TARGET] = true,
-		[DOTA_UNIT_ORDER_CAST_TARGET_TREE] = true,
-		[DOTA_UNIT_ORDER_MOVE_TO_POSITION] = true,
-		[DOTA_UNIT_ORDER_MOVE_TO_TARGET] = true,
-		[DOTA_UNIT_ORDER_ATTACK_MOVE] = true,
-		[DOTA_UNIT_ORDER_ATTACK_TARGET] = true,
-		[DOTA_UNIT_ORDER_CAST_NO_TARGET] = true,
-		[DOTA_UNIT_ORDER_PICKUP_ITEM] = true,
-		[DOTA_UNIT_ORDER_PICKUP_RUNE] = true,
-	}
-
 	if
-		unit
-		and unit:HasModifier("modifier_centaur_hoof_stomp_custom_prepair")
-		and ability
+		ability
 		and ability:GetName() == "centaur_hoof_stomp_custom"
+		and unit:HasModifier("modifier_centaur_hoof_stomp_custom_prepair")
 	then
 		return false
 	end
 
 	if
-		unit
+		channel_blocked_orders[order]
 		and (
 			unit:HasModifier("modifier_custom_ability_teleport")
 			or unit:HasModifier("modifier_patrol_warp_amulet")
 			or unit:HasModifier("modifier_tinker_rearm_custom")
 		)
 	then
-		if orders[order] == true then
-			if order ~= DOTA_UNIT_ORDER_CAST_NO_TARGET then
-				return false
-			else
-				if
-					ability and not dota1x6:ContainsValue(ability:GetBehavior(), DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL)
-				then
-					return false
-				end
-			end
+		if order ~= DOTA_UNIT_ORDER_CAST_NO_TARGET then
+			return false
+		end
+		if ability and not dota1x6:ContainsValue(ability:GetBehavior(), DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL) then
+			return false
 		end
 	end
 
@@ -385,6 +399,15 @@ function dota1x6:ExecuteOrderFilterCustom(ord)
 			return false
 		end
 
+		if unit:IsCourier() and pickedItem:GetName() == "item_rapier_custom" then
+			CustomGameEventManager:Send_ServerToPlayer(
+				player,
+				"CreateIngameErrorMessage",
+				{ message = "#wrong_sphere" }
+			)
+			return false
+		end
+
 		if unit:IsCourier() and pickedItem:GetPurchaser() ~= players[unit:GetId()] then
 			CustomGameEventManager:Send_ServerToPlayer(
 				player,
@@ -394,7 +417,11 @@ function dota1x6:ExecuteOrderFilterCustom(ord)
 			return false
 		end
 
-		if (pickedItem:GetPurchaser() ~= unit) and (pickedItem:GetName() ~= "item_rapier") and not unit:IsCourier() then
+		if
+			(pickedItem:GetPurchaser() ~= unit)
+			and (pickedItem:GetName() ~= "item_rapier_custom")
+			and not unit:IsCourier()
+		then
 			CustomGameEventManager:Send_ServerToPlayer(
 				player,
 				"CreateIngameErrorMessage",
@@ -402,6 +429,20 @@ function dota1x6:ExecuteOrderFilterCustom(ord)
 			)
 			return false
 		end
+	end
+
+	if order == DOTA_UNIT_ORDER_GIVE_ITEM and ability and ability:GetName() == "item_rapier_custom" then
+		CustomGameEventManager:Send_ServerToPlayer(player, "CreateIngameErrorMessage", { message = "#wrong_sphere" })
+		return false
+	end
+
+	if
+		order == DOTA_UNIT_ORDER_DROP_ITEM
+		and ability
+		and ability:GetName() == "item_rapier_custom"
+		and ability.rapier_free
+	then
+		return false
 	end
 
 	if
@@ -445,8 +486,8 @@ function dota1x6:ExecuteOrderFilterCustom(ord)
 	end
 
 	if
-		unit:HasModifier("modifier_duel_hero_thinker")
-		and (order == DOTA_UNIT_ORDER_PURCHASE_ITEM or order == DOTA_UNIT_ORDER_EJECT_ITEM_FROM_STASH)
+		(order == DOTA_UNIT_ORDER_PURCHASE_ITEM or order == DOTA_UNIT_ORDER_EJECT_ITEM_FROM_STASH)
+		and unit:HasModifier("modifier_duel_hero_thinker")
 	then
 		return false
 	end
@@ -476,8 +517,7 @@ function dota1x6:ExecuteOrderFilterCustom(ord)
 	end
 
 	if
-		unit
-		and order == DOTA_UNIT_ORDER_CAST_TOGGLE_AUTO
+		order == DOTA_UNIT_ORDER_CAST_TOGGLE_AUTO
 		and ability
 		and auto_cast_spells[ability:GetName()] ~= nil
 		and bit.band(ability:GetBehaviorInt(), DOTA_ABILITY_BEHAVIOR_AUTOCAST) ~= 0
@@ -508,20 +548,16 @@ function dota1x6:ExecuteOrderFilterCustom(ord)
 		end
 	end
 
-	if unit and unit:HasModifier("modifier_pangolier_gyroshell_custom") then
-		local validMoveOrders = {
-			[DOTA_UNIT_ORDER_ATTACK_TARGET] = true,
-			[DOTA_UNIT_ORDER_MOVE_TO_TARGET] = true,
-			[DOTA_UNIT_ORDER_MOVE_TO_POSITION] = true,
-			[DOTA_UNIT_ORDER_ATTACK_MOVE] = true,
-			[DOTA_UNIT_ORDER_PICKUP_ITEM] = true,
-			[DOTA_UNIT_ORDER_PICKUP_RUNE] = true,
-			[DOTA_UNIT_ORDER_MOVE_TO_DIRECTION] = true,
-		}
+	if custom_move_orders[order] then
+		local gyroshell_mod = unit:FindModifierByName("modifier_pangolier_gyroshell_custom")
+		if gyroshell_mod then
+			gyroshell_mod:OnOrderCustom(new_pos, target)
+			return false
+		end
 
-		if validMoveOrders[order] then
-			unit:FindModifierByName("modifier_pangolier_gyroshell_custom")
-				:OnOrderCustom(Vector(ord.position_x, ord.position_y, ord.position_z), target)
+		local sail_mod = unit:FindModifierByName("modifier_kunkka_ghostship_custom_legendary_sail")
+		if sail_mod then
+			sail_mod:OnOrderCustom(new_pos, target)
 			return false
 		end
 	end
@@ -529,15 +565,16 @@ function dota1x6:ExecuteOrderFilterCustom(ord)
 	if
 		order == DOTA_UNIT_ORDER_ATTACK_TARGET
 		and target
-		and target:IsBaseNPC()
 		and not target:IsNull()
+		and target:IsBaseNPC()
 		and unit:IsAlive()
 		and unit:IsRealHero()
 	then
-		if target:GetUnitName() == "npc_dota_observer_wards" or target:GetUnitName() == "npc_dota_sentry_wards" then
-			unit:AddNewModifier(unit, nil, "modifier_ward_attack_range", {})
-		elseif unit:HasModifier("modifier_ward_attack_range") then
-			unit:RemoveModifierByName("modifier_ward_attack_range")
+		local target_name = target:GetUnitName()
+		if target_name == "npc_dota_observer_wards" or target_name == "npc_dota_sentry_wards" then
+			unit:AddNewModifier(unit, nil, "modifier_ward_attack_range", { ward = target:entindex() })
+		elseif ord.queue ~= 1 and IsValid(unit.ward_attack_mod) then
+			unit.ward_attack_mod:Destroy()
 		end
 
 		if target:IsHero() and not unit:HasModifier("modifier_attacking_hero") then
@@ -546,6 +583,8 @@ function dota1x6:ExecuteOrderFilterCustom(ord)
 		if not target:IsHero() and unit:HasModifier("modifier_attacking_hero") then
 			unit:RemoveModifierByName("modifier_attacking_hero")
 		end
+	elseif ward_break_orders[order] and ord.queue ~= 1 and IsValid(unit.ward_attack_mod) then
+		unit.ward_attack_mod:Destroy()
 	end
 
 	if not ability or not ability.GetBehaviorInt then
@@ -567,7 +606,6 @@ function dota1x6:ExecuteOrderFilterCustom(ord)
 	then
 		if order == DOTA_UNIT_ORDER_VECTOR_TARGET_POSITION then
 			ability.vectorTargetPosition2 = Vector(ord.position_x, ord.position_y, 0)
-			-- CustomGameEventManager:Send_ServerToPlayer(player, "get_vector_point", {ability = ability:entindex()})
 			ability.vectorTargetPosition = ability.vectorTargetPosition2
 			if IsValid(target) then
 				ability.vectorTargetPosition = target:GetAbsOrigin()
@@ -580,12 +618,19 @@ function dota1x6:ExecuteOrderFilterCustom(ord)
 			ability.vectorTargetPosition = Vector(ord.position_x, ord.position_y, 0)
 		end
 
-		local position_start = ability.vectorTargetPosition
-		local position_end = ability.vectorTargetPosition2
+		local position_start = ability.vectorTargetPosition or unit:GetAbsOrigin()
+		local position_end = ability.vectorTargetPosition2 or position_start
 		local vec = position_end - position_start
+		vec.z = 0
 
-		if position_start == position_end then
-			vec = position_start + Vector(10, 0, 0)
+		if vec:Length2D() < 1 then
+			vec = position_start - unit:GetAbsOrigin()
+			vec.z = 0
+		end
+
+		if vec:Length2D() < 1 then
+			vec = unit:GetForwardVector()
+			vec.z = 0
 		end
 
 		local direction = vec:Normalized()
@@ -600,19 +645,6 @@ function dota1x6:ExecuteOrderFilterCustom(ord)
 	end
 
 	return true
-end
-
-function dota1x6:send_vector_point(params)
-	if params.PlayerID == nil then
-		return
-	end
-	local res = Vector(params.x, params.y, 0)
-	local ability = EntIndexToHScript(params.ability)
-	if not ability then
-		return
-	end
-
-	ability.vectorTargetPosition2 = res
 end
 
 function dota1x6:OnRuneActivated(params)
@@ -644,52 +676,51 @@ function dota1x6:OnRuneActivated(params)
 	end
 
 	local heroes = dota1x6:FindPlayers(team, false, true)
+	local white = 0
+	local tower = towers[team]
+	if tower then
+		white = bounty_white_init + tower.bounty_runes * bounty_white_rune
+		tower.bounty_runes = tower.bounty_runes + 1
+	end
 
-	if params.banana_k then
-		heroes = { unit }
-	else
-		start_quest:CheckQuest({ id = id, quest_name = "Quest_8" })
+	start_quest:CheckQuest({ id = id, quest_name = "Quest_8" })
 
-		players[id].bounty_runes_picked = players[id].bounty_runes_picked + 1
+	players[id].bounty_runes_picked = players[id].bounty_runes_picked + 1
 
-		if unit:GetQuest() == "General.Quest_6" then
-			unit:UpdateQuest(1)
-		end
+	if unit:GetQuest() == "General.Quest_6" then
+		unit:UpdateQuest(1)
+	end
 
-		if unit:HasModifier("modifier_templar_assassin_innate_custom") then
-			local mod = unit:FindModifierByName("modifier_templar_assassin_innate_custom")
-			mod:UseSmoke()
-		end
+	if unit:HasModifier("modifier_templar_assassin_innate_custom") then
+		local mod = unit:FindModifierByName("modifier_templar_assassin_innate_custom")
+		mod:UseSmoke()
+	end
 
-		local bottle = unit:FindItemInInventory("item_bottle_custom")
-		if bottle then
-			unit:AddNewModifier(unit, bottle, "modifier_item_bottle_custom_rune", {})
-		end
+	local bottle = unit:FindItemInInventory("item_bottle_custom")
+	if bottle then
+		unit:AddNewModifier(unit, bottle, "modifier_item_bottle_custom_rune", {})
+	end
 
-		if unit:HasAbility("alchemist_goblins_greed_custom") then
-			unit:AddNewModifier(unit, nil, "modifier_alchemist_goblins_greed_custom_runes", {})
-		end
+	if IsValid(unit.xmark_ability) and IsValid(unit.xmark_ability.tracker) then
+		unit.xmark_ability.tracker:ShopGold(nil, 2)
+	end
 
-		if unit:HasAbility("arc_warden_innate_custom") then
-			unit:AddNewModifier(
-				unit,
-				unit:FindAbilityByName("arc_warden_innate_custom"),
-				"modifier_arc_warden_ancients_ally_custom_runes",
-				{}
-			)
-		end
+	if unit:HasAbility("alchemist_goblins_greed_custom") then
+		unit:AddNewModifier(unit, nil, "modifier_alchemist_goblins_greed_custom_runes", {})
+	end
+
+	if unit:HasAbility("arc_warden_innate_custom") then
+		unit:AddNewModifier(
+			unit,
+			unit:FindAbilityByName("arc_warden_innate_custom"),
+			"modifier_arc_warden_ancients_ally_custom_runes",
+			{}
+		)
 	end
 
 	local minute = math.floor(GameRules:GetDOTATime(false, false) / 60)
 	local gold = ((bounty_gold_init + minute * bounty_gold_per_minute) / #heroes) * net_k
-	local blue = ((bounty_blue_init + minute * bounty_blue_per_minute) / #heroes) * net_k
 	local exp = ((bounty_exp_init + minute * bounty_exp_per_minute) / #heroes) * net_k
-
-	if params.banana_k then
-		gold = gold * params.banana_k
-		blue = blue * params.banana_k
-		exp = exp * params.banana_k
-	end
 
 	local names = {}
 	for _, hero in pairs(heroes) do
@@ -704,13 +735,13 @@ function dota1x6:OnRuneActivated(params)
 		)
 
 		local gold_k = 1
-		local blue_k = 1
+		local white_k = 1
 		local exp_k = 1
 
 		if hero:HasModifier("modifier_templar_assassin_innate_custom") then
 			local mod = hero:FindModifierByName("modifier_templar_assassin_innate_custom")
 			if mod then
-				blue_k = blue_k + (mod.bonus - 1)
+				white_k = white_k + (mod.bonus - 1)
 				exp_k = exp_k + (mod.bonus - 1)
 				gold_k = gold_k + (mod.bonus - 1)
 			end
@@ -726,7 +757,7 @@ function dota1x6:OnRuneActivated(params)
 			or hero:FindModifierByName("modifier_item_travel_boots_2_custom")
 		) or hero:FindModifierByName("modifier_item_travel_boots_2_perma")
 		if travel_mod and travel_mod.bounty_bonus then
-			blue_k = blue_k + travel_mod.bounty_bonus
+			white_k = white_k + travel_mod.bounty_bonus
 			exp_k = exp_k + travel_mod.bounty_bonus
 			gold_k = gold_k + travel_mod.bounty_bonus
 		end
@@ -735,10 +766,9 @@ function dota1x6:OnRuneActivated(params)
 
 		if dota1x6:IsCustomRules("bounty_orb") then
 			dota1x6:CreateUpgradeOrb(hero, 1)
-		else
-			dota1x6:AddBluePoints(hero, blue * blue_k)
 		end
-		hero:ModifyGoldFiltered(gold * gold_k, true, DOTA_ModifyGold_BountyRune)
+		hero:AddPoints("white", white * white_k, "bounty_rune")
+		hero:GiveGold(gold * gold_k, nil, true, "bounty_rune")
 		hero:SendNumber(0, gold * gold_k)
 	end
 
@@ -751,6 +781,7 @@ end
 function dota1x6:BountyRunePickupFilter(params)
 	CustomGameEventManager:Send_ServerToAllClients("delete_bounty", {})
 	params["gold_bounty"] = 0
+	dota1x6:StartBountyWatch()
 	return true
 end
 
@@ -880,6 +911,48 @@ function dota1x6:OnEntityKilled(param)
 		hero_player:GiveKillExp(unit)
 	end
 
+	if
+		hero_player
+		and (unit:GetTeamNumber() == DOTA_TEAM_NEUTRALS or unit:GetTeamNumber() == DOTA_TEAM_CUSTOM_5)
+		and unit:GetMaximumGoldBounty() > 0
+	then
+		local gold = unit:GetMaximumGoldBounty()
+		local source = "lane"
+		if unit:GetTeamNumber() == DOTA_TEAM_NEUTRALS then
+			source = unit:IsAncient() and "ancient" or "neutral"
+		end
+
+		local total = gold
+		hero_player:GiveGold(gold, nil, true, source)
+
+		if unit:GetTeamNumber() == DOTA_TEAM_NEUTRALS and (hero == hero_player or hero.owner == hero_player) then
+			local patrol_mod = hero_player:FindModifierByName("modifier_patrol_reward_1_gold")
+			if patrol_mod then
+				local bonus = math.max(1, gold * patrol_mod.gold)
+				total = total + bonus
+				hero_player:GiveGold(bonus, nil, true, "modifier_patrol_reward_gold")
+			end
+
+			local bfury_mod = hero_player:FindModifierByName("modifier_item_bfury_custom")
+			if bfury_mod then
+				local bonus = math.max(1, gold * bfury_mod.gold_bonus)
+				total = total + bonus
+				hero_player:GiveGold(bonus, nil, true, bfury_mod:GetAbility())
+			end
+		end
+
+		hero_player:SendNumber(0, total)
+	end
+
+	if
+		hero_player
+		and unit:GetUnitName() == "npc_dota_observer_wards"
+		and unit:GetTeamNumber() ~= hero_player:GetTeamNumber()
+	then
+		hero_player:GiveGold(ward_gold, nil, true, "ward")
+		hero_player:SendNumber(0, ward_gold)
+	end
+
 	local no_purple_for_hero = false
 
 	if hero.owner ~= nil then
@@ -966,6 +1039,8 @@ function dota1x6:OnEntityKilled(param)
 			hero_player.kills_done = hero_player.kills_done + 1
 		end
 
+		dota1x6:KillGold(unit, hero)
+
 		if not unit.died_on_duel then
 			if unit_player then
 				if
@@ -989,50 +1064,6 @@ function dota1x6:OnEntityKilled(param)
 					mod = hero:FindModifierByName("modifier_player_main_custom")
 					if mod then
 						mod:SetStackCount(0)
-					end
-				end
-
-				if hero_player ~= nil and hero ~= unit and hero:IsHero() then
-					local target_array = unit_player
-					local killer_array = hero_player
-
-					if killer_array.hero_kills[unit:GetTeamNumber()] == nil then
-						killer_array.hero_kills[unit:GetTeamNumber()] = 0
-					end
-
-					killer_array.hero_kills[unit:GetTeamNumber()] = killer_array.hero_kills[unit:GetTeamNumber()] + 1
-
-					if target_array then
-						target_array.hero_kills[hero:GetTeamNumber()] = 0
-					end
-				end
-
-				if hero:IsHero() then
-					local net_killer = 0
-					local net_victim = 0
-
-					local heroes = {}
-
-					for id, player in pairs(players) do
-						if player:GetTeamNumber() == unit:GetTeamNumber() then
-							net_victim = net_victim + players[id].networth -- PlayerResource:GetNetWorth(id)
-						elseif player:GetTeamNumber() == hero:GetTeamNumber() then
-							if
-								player == hero
-								or (player:GetAbsOrigin() - unit:GetAbsOrigin()):Length2D() <= max_dist
-							then
-								heroes[#heroes + 1] = player
-							end
-							net_killer = net_killer + players[id].networth --PlayerResource:GetNetWorth(id)
-						end
-					end
-
-					if net_victim > net_killer and #heroes > 0 then
-						local more_gold = ((net_victim - net_killer) * Streak_k) / #heroes
-						for _, player in pairs(heroes) do
-							player:ModifyGoldFiltered(more_gold, true, DOTA_ModifyGold_HeroKill)
-							player:SendNumber(0, more_gold)
-						end
 					end
 				end
 
@@ -1081,6 +1112,13 @@ function dota1x6:OnEntityKilled(param)
 				unit:SetTimeUntilRespawn(5)
 			end
 		end
+
+		local tower = towers[unit:GetTeamNumber()]
+		local hunt = tower and tower:FindModifierByName("modifier_the_hunt_custom_tower")
+
+		if hunt then
+			hunt:TargetKilled(unit, hero)
+		end
 	end
 
 	if not hero:IsHero() and not hero:IsBuilding() then
@@ -1089,7 +1127,7 @@ function dota1x6:OnEntityKilled(param)
 
 	local drop = true
 
-	if (unit:GetTeam() == DOTA_TEAM_CUSTOM_5) and unit.ally and not unit.is_necro_creep then
+	if (unit:GetTeam() == DOTA_TEAM_CUSTOM_5) and unit.ally and not unit.is_necro_creep and not unit.is_test_creep then
 		local count_mob = 0
 
 		for i = 1, #unit.ally do
@@ -1120,7 +1158,7 @@ function dota1x6:OnEntityKilled(param)
 
 						if not hero:IsBuilding() and hero ~= player and distance <= max_dist and player:IsAlive() then
 							local gold = unit:GetMaximumGoldBounty()
-							player:ModifyGoldFiltered(gold, true, DOTA_ModifyGold_CreepKill)
+							player:GiveGold(gold, nil, true, "lane")
 							player:SendNumber(0, gold)
 						end
 
@@ -1174,30 +1212,30 @@ function dota1x6:OnEntityKilled(param)
 
 	if
 		(unit:GetTeam() == DOTA_TEAM_NEUTRALS or unit:IsBuilding())
-			and hero_player
-			and not hero:HasModifier("modifier_duel_hero_thinker")
-			and not hero.no_blue
-			and BluePoints[unit:GetUnitName()]
-		or Shared_Bounty[unit:GetUnitName()]
+		and hero_player
+		and not hero:HasModifier("modifier_duel_hero_thinker")
+		and not hero.no_blue
+		and (CreepsStats[unit:GetUnitName()] or Shared_Bounty[unit:GetUnitName()])
 	then
 		local points
-		if BluePoints[unit:GetUnitName()] then
-			points = BluePoints[unit:GetUnitName()]
-			dota1x6:AddBluePoints(hero, points, true)
+		if CreepsStats[unit:GetUnitName()] then
+			points = CreepsStats[unit:GetUnitName()].blue
+			hero:AddPoints("blue", points, unit:IsAncient() and "ancient" or "neutral", true)
 		end
 		if Shared_Bounty[unit:GetUnitName()] then
 			points = Shared_Bounty[unit:GetUnitName()].blue
 			local gold = Shared_Bounty[unit:GetUnitName()].gold
+			local source = unit:IsBuilding() and "shrine" or "patrol"
 
 			local ids = dota1x6:FindPlayers(hero:GetTeamNumber())
 			if ids and gold then
-				points = points / #ids
-				gold = gold / #ids
+				points = points * (unit.patrol_blue or 1) / #ids
+				gold = gold * (unit.patrol_gold or 1) / #ids
 				for _, id in pairs(ids) do
 					local player = players[id]
 					if player then
-						dota1x6:AddBluePoints(player, points, true)
-						player:ModifyGoldFiltered(gold, true, DOTA_ModifyGold_CreepKill)
+						player:AddPoints("blue", points, source, true)
+						player:GiveGold(gold, nil, true, source)
 						player:SendNumber(0, gold)
 					end
 				end
@@ -1205,42 +1243,173 @@ function dota1x6:OnEntityKilled(param)
 		end
 	end
 
-	if
-		unit:IsRealHero()
-		and not unit:IsCreepHero()
-		and unit_player
-		and (not no_purple_for_hero or test)
-		and hero:GetTeamNumber() ~= unit:GetTeamNumber()
-		and (not dota1x6:FinalDuel() or duel_data[#duel_data].rounds == 0)
-		and not unit:IsReincarnating()
-	then
-		local more_heroes = dota1x6:FindPlayers(hero:GetTeamNumber(), false, true)
-		local near_heroes = {}
+	dota1x6:KillPurple(unit, hero, no_purple_for_hero)
+end
 
-		for _, ally in pairs(more_heroes) do
-			if (ally:GetAbsOrigin() - unit:GetAbsOrigin()):Length2D() <= max_dist or ally == hero then
-				near_heroes[#near_heroes + 1] = ally
+function dota1x6:KillGoldTeam(net_victim, net_team, count, k)
+	local gold = kill_net_gold
+	local diff = net_victim - net_team
+
+	if diff > 0 then
+		gold = gold + math.floor((diff * k) / count)
+	end
+
+	return gold
+end
+
+function dota1x6:KillGold(unit, hero)
+	if hero and hero:GetTeamNumber() == unit:GetTeamNumber() then
+		return
+	end
+
+	local unit_player = players[unit:GetId()]
+	local hunt = unit:HasModifier("modifier_the_hunt_custom_hero") and hero ~= nil and players[hero:GetId()] ~= nil
+	local k = hunt and Target_k or Streak_k
+
+	local net_teams = {}
+	local near_teams = {}
+	local killer_team = hero and hero:GetTeamNumber()
+
+	if killer_team then
+		near_teams[killer_team] = true
+	end
+
+	for id, player in pairs(players) do
+		local team = player:GetTeamNumber()
+		net_teams[team] = (net_teams[team] or 0) + player.networth
+
+		if hunt or (player:GetAbsOrigin() - unit:GetAbsOrigin()):Length2D() <= more_gold_radius then
+			near_teams[team] = true
+		end
+	end
+
+	near_teams[unit:GetTeamNumber()] = nil
+
+	local gold_teams = {}
+
+	for id, player in pairs(players) do
+		local team = player:GetTeamNumber()
+
+		if near_teams[team] then
+			gold_teams[team] = gold_teams[team] or {}
+			gold_teams[team][#gold_teams[team] + 1] = player
+		end
+	end
+
+	local team_gold = {}
+
+	for team, list in pairs(gold_teams) do
+		local gold = dota1x6:KillGoldTeam(net_teams[unit:GetTeamNumber()] or 0, net_teams[team] or 0, #list, k)
+
+		for _, player in pairs(list) do
+			local total = gold
+
+			if player == hero then
+				total = total + kill_gold_base + kill_gold_level * unit:GetLevel()
+			end
+
+			team_gold[team] = (team_gold[team] or 0) + total
+
+			player:GiveGold(total, nil, true, "hero_kill")
+			player:SendNumber(0, total)
+		end
+	end
+
+	local team_ids = {}
+	local team_heroes = {}
+	local team_colors = {}
+
+	if killer_team and gold_teams[killer_team] then
+		for _, player in pairs(gold_teams[killer_team]) do
+			local index = player == hero and 1 or #team_ids + 1
+			table.insert(team_ids, index, player:GetPlayerOwnerID())
+			table.insert(team_heroes, index, player:GetUnitName())
+			table.insert(team_colors, index, player.team_color)
+		end
+	end
+
+	local other_teams = {}
+
+	for team, _ in pairs(gold_teams) do
+		if team ~= killer_team then
+			table.insert(other_teams, team)
+		end
+	end
+
+	table.sort(other_teams)
+
+	local other_ids = {}
+	local other_heroes = {}
+	local other_gold = {}
+
+	for _, team in pairs(other_teams) do
+		local ids = {}
+		local heroes = {}
+
+		for _, player in pairs(gold_teams[team]) do
+			table.insert(ids, player:GetPlayerOwnerID())
+			table.insert(heroes, player:GetUnitName())
+		end
+
+		table.insert(other_ids, table.concat(ids, ","))
+		table.insert(other_heroes, table.concat(heroes, ","))
+		table.insert(other_gold, team_gold[team])
+	end
+
+	CustomGameEventManager:Send_ServerToAllClients("kill_feed_gold", {
+		team_ids = table.concat(team_ids, ","),
+		team_heroes = table.concat(team_heroes, ","),
+		team_colors = table.concat(team_colors, ","),
+		victim = unit:GetPlayerOwnerID(),
+		victim_hero = unit:GetUnitName(),
+		victim_color = unit_player and unit_player.team_color or "#ffffff",
+		gold = killer_team and team_gold[killer_team] or 0,
+		other_ids = table.concat(other_ids, ";"),
+		other_heroes = table.concat(other_heroes, ";"),
+		other_gold = table.concat(other_gold, ";"),
+	})
+end
+
+function dota1x6:KillPurple(unit, hero, no_purple)
+	if not unit:IsRealHero() or unit:IsCreepHero() or not players[unit:GetId()] or unit:IsReincarnating() then
+		return
+	end
+	if no_purple and not test then
+		return
+	end
+	if hero:GetTeamNumber() == unit:GetTeamNumber() then
+		return
+	end
+	if dota1x6:FinalDuel() and duel_data[#duel_data].rounds ~= 0 then
+		return
+	end
+
+	local more_heroes = dota1x6:FindPlayers(hero:GetTeamNumber(), false, true)
+	local near_heroes = {}
+
+	for _, ally in pairs(more_heroes) do
+		if (ally:GetAbsOrigin() - unit:GetAbsOrigin()):Length2D() <= kill_purple_radius or ally == hero then
+			near_heroes[#near_heroes + 1] = ally
+		end
+	end
+
+	local reward_for = nil
+	if #near_heroes == 1 then
+		reward_for = near_heroes[1]
+	elseif #near_heroes == 2 then
+		local tower = towers[hero:GetTeamNumber()]
+		for _, near_hero in pairs(near_heroes) do
+			if near_hero ~= tower.last_reward_for then
+				tower.last_reward_for = near_hero
+				reward_for = near_hero
+				near_hero:GenericParticle("particles/ui/purple_orb_point.vpcf")
+				break
 			end
 		end
+	end
 
-		local reward_for = nil
-		if #near_heroes == 1 then
-			reward_for = near_heroes[1]
-		elseif #near_heroes == 2 then
-			local tower = towers[hero:GetTeamNumber()]
-			for _, near_hero in pairs(near_heroes) do
-				if near_hero ~= tower.last_reward_for then
-					tower.last_reward_for = near_hero
-					reward_for = near_hero
-					near_hero:GenericParticle("particles/ui/purple_orb_point.vpcf")
-					break
-				end
-			end
-		end
-
-		if reward_for then
-			dota1x6:AddPurplePoints(reward_for, 1)
-		end
+	if reward_for then
+		reward_for:AddPoints("purple", 1)
 	end
 end
 
@@ -1347,11 +1516,6 @@ function dota1x6:ReconnectFilter(pid)
 		CustomGameEventManager:Send_ServerToPlayer(player, "reconnect_hero_image", {})
 
 		for target_pid, player_unit in pairs(players) do
-			CustomGameEventManager:Send_ServerToPlayer(
-				player,
-				"reconnect_hero_levels",
-				{ hero = player_unit:GetUnitName() }
-			)
 			if player_unit and player_unit.pet and IsValid(player_unit.pet) then
 				CustomGameEventManager:Send_ServerToAllClients(
 					"event_update_pets_index",
@@ -1381,18 +1545,12 @@ function dota1x6:ReconnectFilter(pid)
 
 		CustomGameEventManager:Send_ServerToPlayer(player, "init_custom_item_build", {})
 
-		CustomGameEventManager:Send_ServerToPlayer(player, "kill_progress", {
-			blue = math.floor(player_table.bluepoints),
-			purple = player_table.purplepoints,
-			max = player_table.bluemax,
-			max_p = math.floor(player_table.purplemax),
-		})
+		player_table:UpdateVisualPoints()
 
 		if player_table:HasModifier("modifier_end_choise") then
 			CustomGameEventManager:Send_ServerToPlayer(player, "show_choise", {
 				choise = player_table.choise_table.content,
 				mods = player_table.choise_table.mod_stacks,
-				hasup = player_table.choise_table.gray,
 				alert = player_table.choise_table.alert,
 				refresh = player_table.choise_table.refresh,
 				rarity = player_table.choise_table.rarity,
@@ -1464,6 +1622,19 @@ function dota1x6:ModifyGoldFilter(params)
 	local gold = params.gold
 	local player = players[params.player_id_const]
 	local reason = params.reason_const
+
+	if reason == DOTA_ModifyGold_HeroKill then
+		return false
+	end
+	if reason == DOTA_ModifyGold_CreepKill then
+		return false
+	end
+	if reason == DOTA_ModifyGold_NeutralKill then
+		return false
+	end
+	if reason == DOTA_ModifyGold_Building then
+		return false
+	end
 
 	if
 		player

@@ -51,18 +51,14 @@ function marci_companion_run_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_marci/marci_rebound_charge_projectile.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_marci/marci_rebound_bounce.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_marci/marci_rebound_landing_zone.vpcf", context)
-	PrecacheResource("particle", "particles/units/heroes/hero_marci/marci_rebound_bounce_impact.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_marci/marci_rebound_allymovespeed.vpcf", context)
-	PrecacheResource("particle", "particles/units/heroes/hero_marci/marci_rebound_landing_zone.vpcf", context)
 	PrecacheResource("particle", "particles/items3_fx/blink_overwhelming_burst.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_marci/marci_unleash_pulse.vpcf", context)
-	PrecacheResource("particle", "particles/units/heroes/hero_marci/marci_rebound_bounce_impact.vpcf", context)
-	PrecacheResource("particle", "particles/units/heroes/hero_marci/marci_rebound_bounce.vpcf", context)
 	PrecacheResource("particle", "particles/marci_field.vpcf", context)
 	PrecacheResource("particle", "particles/alch_stun_legendary.vpcf", context)
 	PrecacheResource("particle", "particles/marci/rebound_double.vpcf", context)
-	PrecacheResource("particle", "particles/units/heroes/hero_marci/marci_rebound_bounce_impact.vpcf", context)
 	PrecacheResource("particle", "particles/marci/rebound_legendary_stack.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_marci/marci_unleash_attack.vpcf", context)
 end
 
 function marci_companion_run_custom:UpdateTalents(name)
@@ -70,7 +66,6 @@ function marci_companion_run_custom:UpdateTalents(name)
 	if not self.init then
 		self.init = true
 		self.talents = {
-			has_w1 = 0,
 			w1_damage = 0,
 			w1_spell = 0,
 
@@ -105,7 +100,6 @@ function marci_companion_run_custom:UpdateTalents(name)
 	end
 
 	if caster:HasTalent("modifier_marci_rebound_1") then
-		self.talents.has_w1 = 1
 		self.talents.w1_damage = caster:GetTalentValue("modifier_marci_rebound_1", "damage")
 		self.talents.w1_spell = caster:GetTalentValue("modifier_marci_rebound_1", "spell")
 	end
@@ -145,6 +139,18 @@ function marci_companion_run_custom:GetIntrinsicModifierName()
 	return "modifier_marci_companion_run_custom_tracker"
 end
 
+function marci_companion_run_custom:GetCooldown(iLevel)
+	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.w2_cd or 0)
+end
+
+function marci_companion_run_custom:GetCustomCastErrorTarget()
+	return "#dota_hud_error_cant_cast_on_self"
+end
+
+function marci_companion_run_custom:GetDamage()
+	return self.impact_damage
+end
+
 function marci_companion_run_custom:CastFilterResultTarget(hTarget)
 	if self.caster == hTarget then
 		return UF_FAIL_CUSTOM
@@ -154,7 +160,7 @@ function marci_companion_run_custom:CastFilterResultTarget(hTarget)
 		hTarget,
 		DOTA_UNIT_TARGET_TEAM_BOTH,
 		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP,
-		DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
+		DOTA_UNIT_TARGET_FLAG_NONE,
 		self.caster:GetTeamNumber()
 	)
 	if nResult ~= UF_SUCCESS then
@@ -163,26 +169,6 @@ function marci_companion_run_custom:CastFilterResultTarget(hTarget)
 
 	self.targetcast = hTarget
 	return UF_SUCCESS
-end
-
-function marci_companion_run_custom:GetManaCost(iLevel)
-	return self.BaseClass.GetManaCost(self, iLevel)
-end
-
-function marci_companion_run_custom:GetCastRange(vLocation, hTarget)
-	return self.BaseClass.GetCastRange(self, vLocation, hTarget)
-end
-
-function marci_companion_run_custom:GetCooldown(iLevel)
-	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.w2_cd and self.talents.w2_cd or 0)
-end
-
-function marci_companion_run_custom:GetCustomCastErrorTarget()
-	return "#dota_hud_error_cant_cast_on_self"
-end
-
-function marci_companion_run_custom:GetDamage()
-	return self.impact_damage
 end
 
 function marci_companion_run_custom:OnVectorCastStart(vStartLocation, vDirection)
@@ -194,7 +180,7 @@ function marci_companion_run_custom:OnVectorCastStart(vStartLocation, vDirection
 
 	if
 		target:GetTeamNumber() ~= self.caster:GetTeamNumber()
-		and self.ability.talents.has_h5 == 0
+		and self.talents.has_h5 == 0
 		and target:TriggerSpellAbsorb(self)
 	then
 		return
@@ -218,9 +204,7 @@ function marci_companion_run_custom:OnVectorCastStart(vStartLocation, vDirection
 	local point = self.vectorTargetPosition2
 	local point_check = target:GetAbsOrigin()
 
-	local dir = (point_check - self.caster:GetAbsOrigin()):Normalized()
-	self.caster:SetForwardVector(dir)
-	self.caster:FaceTowards(point_check)
+	self.caster:FacePoint(point_check)
 	self.caster:RemoveGesture(ACT_DOTA_CAST_ABILITY_3)
 	self.caster:RemoveGesture(ACT_DOTA_ATTACK)
 
@@ -276,7 +260,7 @@ function marci_companion_run_custom:DealDamage(forced_point)
 	local stun = self.stun_duration + (self.talents.has_h5 == 1 and self.talents.h5_stun or 0)
 	local damage = self.impact_damage + self.talents.w1_damage
 
-	if self.ability.talents.has_w7 == 1 then
+	if self.talents.has_w7 == 1 then
 		stun = stun * (1 + self.talents.w7_stun)
 	end
 
@@ -314,7 +298,7 @@ function marci_companion_run_custom:DealDamage(forced_point)
 					self.caster,
 					self,
 					"modifier_marci_companion_run_custom_legendary_magic",
-					{ duration = self.ability.talents.w7_duration }
+					{ duration = self.talents.w7_duration }
 				)
 			end
 		end
@@ -343,7 +327,7 @@ function marci_companion_run_custom:ApplyProc(target, is_innate)
 		return
 	end
 
-	if self.talents.has_w3 == 1 and RollPseudoRandomPercentage(self.ability.talents.w3_chance, 9230, self.parent) then
+	if self.talents.has_w3 == 1 and RollPseudoRandomPercentage(self.talents.w3_chance, 9230, self.parent) then
 		target:AddNewModifier(self.caster, self, "modifier_marci_companion_run_custom_damage", {})
 	end
 
@@ -357,7 +341,7 @@ function marci_companion_run_custom:ApplyProc(target, is_innate)
 		self.caster,
 		self,
 		"modifier_marci_companion_run_custom_heal_reduce",
-		{ duration = self.ability.talents.w2_duration }
+		{ duration = self.talents.w2_duration }
 	)
 end
 
@@ -384,6 +368,7 @@ function modifier_marci_companion_run_custom:OnCreated(kv)
 	if not self:ApplyHorizontalMotionController() then
 		self.interrupted = true
 		self:Destroy()
+		return
 	end
 
 	if self.ability.talents.has_h5 == 1 then
@@ -434,7 +419,6 @@ function modifier_marci_companion_run_custom:UpdateHorizontalMotion(me, dt)
 	local pos = ProjectileManager:GetTrackingProjectileLocation(self.projectile)
 	me:SetOrigin(GetGroundPosition(pos, nil))
 	me:FaceTowards(target_pos)
-	--me:SetForwardVector((target_pos - self.parent:GetAbsOrigin()):Normalized())
 end
 
 function modifier_marci_companion_run_custom:OnHorizontalMotionInterrupted()
@@ -472,11 +456,9 @@ function modifier_marci_companion_run_custom:OnDestroy()
 		return
 	end
 
-	self.parent:SetForwardVector(self.vector_direction)
+	self.parent:FacePoint(self.parent:GetAbsOrigin() + self.vector_direction)
 
 	if IsValid(self.target) then
-		self.parent:FaceTowards(self.target:GetAbsOrigin() + self.vector_direction * 50)
-
 		if self.target:GetTeamNumber() ~= self.parent:GetTeamNumber() then
 			if IsValid(self.parent.dispose_ability) then
 				self.parent.dispose_ability:ApplyHealth(self.target)
@@ -634,6 +616,7 @@ function modifier_marci_companion_run_custom_heal_reduce:OnCreated(table)
 	if not IsServer() then
 		return
 	end
+	self.RemoveForDuel = true
 	self.parent:GenericParticle("particles/items2_fx/sange_maim.vpcf", self)
 end
 
@@ -666,7 +649,7 @@ function modifier_marci_companion_run_custom_damage:OnCreated(table)
 	self.min = self.ability.talents.w3_min
 	self.count = self.min
 
-	for i = self.min, (self.ability.talents.w3_max - self.min) do
+	for i = 1, self.ability.talents.w3_max - self.min do
 		local index = 9231 + i
 		if RollPseudoRandomPercentage(self.ability.talents.w3_chance_inc, index, self.parent) then
 			self.count = self.count + 1
@@ -735,6 +718,7 @@ function modifier_marci_companion_run_custom_legendary_magic:OnCreated(table)
 	if not IsServer() then
 		return
 	end
+	self.RemoveForDuel = true
 	self.effect_cast = self.parent:GenericParticle("particles/marci/rebound_legendary_stack.vpcf", self, true)
 	self:OnRefresh()
 end

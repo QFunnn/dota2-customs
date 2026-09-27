@@ -8,6 +8,34 @@
 ]]
 
 
+local invis_mods_set = nil
+
+local wearables_nodraw_heroes = {
+	["npc_dota_hero_crystal_maiden"] = true,
+	["npc_dota_hero_lina"] = true,
+	["npc_dota_hero_terrorblade"] = true,
+}
+
+local hero_effect_kinds = {}
+local function HeroHasItemEffect(hero_name, kind)
+	if not hero_effect_kinds[hero_name] then
+		local kinds = {}
+		local items_list = wearables_system.ITEMS_LIST[hero_name]
+		if items_list then
+			for _, item in pairs(items_list) do
+				local effects = wearables_item_effects[tonumber(item.item_id)]
+				if effects then
+					for effect_kind, _ in pairs(effects) do
+						kinds[string.gsub(effect_kind, "_style", "")] = true
+					end
+				end
+			end
+		end
+		hero_effect_kinds[hero_name] = kinds
+	end
+	return hero_effect_kinds[hero_name][kind] == true
+end
+
 modifier_hero_wearables_system = class({})
 function modifier_hero_wearables_system:IsHidden()
 	return true
@@ -26,12 +54,26 @@ function modifier_hero_wearables_system:OnCreated()
 	if not IsServer() then
 		return
 	end
-	print("INIT modifier_hero_wearables_system")
+	if not invis_mods_set then
+		invis_mods_set = {}
+		for _, name in pairs(invis_mods) do
+			invis_mods_set[name] = true
+		end
+	end
 	self.model_changed = false
+	self.parent.modifier_hero_wearables_system = self
 	self.hero_name = self.parent:GetUnitName()
-	self.parent:AddDeathEvent(self)
+	if
+		wearables_nodraw_heroes[self.hero_name]
+		or HeroHasItemEffect(self.hero_name, "kill")
+		or HeroHasItemEffect(self.hero_name, "death")
+	then
+		self.parent:AddDeathEvent(self)
+	end
 	self.parent:AddRespawnEvent(self)
-	self.parent:AddAttackEvent_out(self, true)
+	if HeroHasItemEffect(self.hero_name, "attack") then
+		self.parent:AddAttackEvent_out(self, true)
+	end
 	self.no_draw_mods = {}
 	self.status_table = {}
 	self.no_draw_exception = {}
@@ -59,8 +101,8 @@ function modifier_hero_wearables_system:UpdatePlayerItems()
 	self:CheckStatusTable()
 end
 
-function modifier_hero_wearables_system:UpdateEffectsList(modifier)
-	local modifier_name = modifier:GetName()
+function modifier_hero_wearables_system:UpdateEffectsList(modifier, modifier_name)
+	modifier_name = modifier_name or modifier:GetName()
 	if modifier_name == "modifier_morphling_replicate_custom" then
 		return
 	end
@@ -80,38 +122,49 @@ function modifier_hero_wearables_system:UpdateEffectsList(modifier)
 	else
 		status_name = modifier:GetStatusEffectName()
 	end
-	if modifier.StatusEffectPriority ~= nil and modifier:StatusEffectPriority() ~= nil then
-		priority = modifier:StatusEffectPriority()
+	if modifier.StatusEffectPriority ~= nil then
+		local mod_priority = modifier:StatusEffectPriority()
+		if mod_priority ~= nil then
+			priority = mod_priority
+		end
 	end
 	table_result.mod_table = {}
-	local items_list = self.parent:GetPlayerWearables()
-	for _, item in pairs(items_list) do
-		if item and not item:IsNull() then
-			table.insert(
-				table_result.mod_table,
-				item:AddNewModifier(
-					self.parent,
-					nil,
-					"modifier_status_effect_thinker_custom",
-					{ name = status_name, priority = priority }
+	local items_list = self.parent.items_list
+	if items_list then
+		for _, item in pairs(items_list) do
+			if item and not item:IsNull() then
+				table.insert(
+					table_result.mod_table,
+					item:AddNewModifier(
+						self.parent,
+						nil,
+						"modifier_status_effect_thinker_custom",
+						{ name = status_name, priority = priority }
+					)
 				)
-			)
+			end
 		end
 	end
 	if priority == MODIFIER_PRIORITY_ILLUSION then
 		return
 	end
 	self.status_table[table_result] = true
-	self:CheckStatusTable()
+	if not self.status_state then
+		self.status_state = true
+		self:CheckInterval()
+	end
 end
 
 function modifier_hero_wearables_system:AddModifier(mod)
 	if not IsServer() then
 		return
 	end
-	self:UpdateEffectsList(mod)
-	self:UpdateInvis()
-	if modifiers_alpha[mod:GetName()] then
+	local mod_name = mod:GetName()
+	self:UpdateEffectsList(mod, mod_name)
+	if invis_mods_set[mod_name] then
+		self:UpdateInvis()
+	end
+	if modifiers_alpha[mod_name] then
 		self:AddNoDrawMod(mod)
 	end
 end
@@ -323,11 +376,11 @@ function modifier_hero_wearables_system:DeathEvent(params)
 		return
 	end
 	if params.unit == self.parent and self.parent:IsRealHero() then
-		if self.parent:GetUnitName() == "npc_dota_hero_crystal_maiden" and not self.parent:IsAlive() then
+		if self.hero_name == "npc_dota_hero_crystal_maiden" and not self.parent:IsAlive() then
 			self.NoDraw = true
 			self:AddNoDrawMod(self)
 		end
-		if self.parent:GetUnitName() == "npc_dota_hero_lina" then
+		if self.hero_name == "npc_dota_hero_lina" then
 			Timers:CreateTimer(2.1, function()
 				if not self.parent:IsAlive() then
 					self.NoDraw = true
@@ -336,7 +389,7 @@ function modifier_hero_wearables_system:DeathEvent(params)
 				end
 			end)
 		end
-		if self.parent:GetUnitName() == "npc_dota_hero_terrorblade" then
+		if self.hero_name == "npc_dota_hero_terrorblade" then
 			Timers:CreateTimer(1.7, function()
 				if not self.parent:IsAlive() then
 					self.NoDraw = true
@@ -349,333 +402,38 @@ function modifier_hero_wearables_system:DeathEvent(params)
 	self:ItemsDeathEvent(params)
 end
 
+function modifier_hero_wearables_system:GetItemEffect(kind)
+	local items_list = self.parent.items_list_ids
+	if not items_list then
+		return
+	end
+	local items_data = wearables_system.ITEMS_DATA[self.hero_name]
+	for _, item_id in pairs(items_list) do
+		local item_data = items_data and items_data[tonumber(item_id)]
+		local dota_id = item_data and tonumber(item_data.dota_id) or tonumber(item_id)
+		local effects = wearables_item_effects[dota_id]
+		if effects then
+			local style = item_data and tonumber(item_data.ItemStyle) or 0
+			if style == 1 and effects[kind .. "_style"] then
+				return effects[kind .. "_style"]
+			end
+			if effects[kind] then
+				return effects[kind]
+			end
+		end
+	end
+end
+
 function modifier_hero_wearables_system:ItemsDeathEvent(params)
 	if params.attacker == self.parent and params.unit:IsRealHero() and params.unit ~= self.parent then
-		if params.attacker:HasUnequipItem(6914) then
-			local target_effect = ParticleManager:CreateParticle(
-				"particles/econ/items/zeus/arcana_chariot/zeus_arcana_kill_remnant.vpcf",
-				PATTACH_ABSORIGIN_FOLLOW,
-				params.unit
-			)
-			ParticleManager:SetParticleControl(target_effect, 1, params.unit:GetAbsOrigin())
-			ParticleManager:ReleaseParticleIndex(target_effect)
-		elseif
-			params.attacker:HasUnequipItem(18539)
-			and wearables_system.item_styles_saved[self.parent:GetUnitName()][18539]
-			and wearables_system.item_styles_saved[self.parent:GetUnitName()][18539] == 1
-		then
-			-- Death kill effect
-			local caster_effect = ParticleManager:CreateParticle(
-				"particles/econ/items/skywrath_mage/skywrath_arcana/skywrath_arcana_kill_caster_v2.vpcf",
-				PATTACH_ABSORIGIN_FOLLOW,
-				self.parent
-			)
-			ParticleManager:SetParticleControlEnt(
-				caster_effect,
-				0,
-				self.parent,
-				PATTACH_ABSORIGIN_FOLLOW,
-				"attach_hitloc",
-				self.parent:GetAbsOrigin(),
-				true
-			)
-			ParticleManager:SetParticleControlEnt(
-				caster_effect,
-				1,
-				self.parent,
-				PATTACH_ABSORIGIN_FOLLOW,
-				"attach_hitloc",
-				self.parent:GetAbsOrigin(),
-				true
-			)
-			ParticleManager:ReleaseParticleIndex(caster_effect)
-
-			local target_effect = ParticleManager:CreateParticle(
-				"particles/econ/items/skywrath_mage/skywrath_arcana/skywrath_arcana_kill_target_v2.vpcf",
-				PATTACH_ABSORIGIN_FOLLOW,
-				params.unit
-			)
-			ParticleManager:SetParticleControlEnt(
-				target_effect,
-				0,
-				self.parent,
-				PATTACH_ABSORIGIN_FOLLOW,
-				"attach_hitloc",
-				self.parent:GetAbsOrigin(),
-				true
-			)
-			ParticleManager:SetParticleControl(target_effect, 1, params.unit:GetAbsOrigin())
-			ParticleManager:ReleaseParticleIndex(target_effect)
-		elseif params.attacker:HasUnequipItem(18539) then
-			-- Death kill effect
-			local caster_effect = ParticleManager:CreateParticle(
-				"particles/econ/items/skywrath_mage/skywrath_arcana/skywrath_arcana_kill_caster.vpcf",
-				PATTACH_ABSORIGIN_FOLLOW,
-				self.parent
-			)
-			ParticleManager:SetParticleControlEnt(
-				caster_effect,
-				0,
-				self.parent,
-				PATTACH_ABSORIGIN_FOLLOW,
-				"attach_hitloc",
-				self.parent:GetAbsOrigin(),
-				true
-			)
-			ParticleManager:SetParticleControlEnt(
-				caster_effect,
-				1,
-				self.parent,
-				PATTACH_ABSORIGIN_FOLLOW,
-				"attach_hitloc",
-				self.parent:GetAbsOrigin(),
-				true
-			)
-			ParticleManager:ReleaseParticleIndex(caster_effect)
-
-			local target_effect = ParticleManager:CreateParticle(
-				"particles/econ/items/skywrath_mage/skywrath_arcana/skywrath_arcana_kill_target.vpcf",
-				PATTACH_ABSORIGIN_FOLLOW,
-				params.unit
-			)
-			ParticleManager:SetParticleControlEnt(
-				target_effect,
-				0,
-				self.parent,
-				PATTACH_ABSORIGIN_FOLLOW,
-				"attach_hitloc",
-				self.parent:GetAbsOrigin(),
-				true
-			)
-			ParticleManager:SetParticleControl(target_effect, 1, params.unit:GetAbsOrigin())
-			ParticleManager:ReleaseParticleIndex(target_effect)
-		elseif
-			params.attacker:HasUnequipItem(19090)
-			and wearables_system.item_styles_saved[self.parent:GetUnitName()][19090]
-			and wearables_system.item_styles_saved[self.parent:GetUnitName()][19090] == 1
-		then
-			-- Death kill effect
-			local caster_effect = ParticleManager:CreateParticle(
-				"particles/econ/items/drow/drow_arcana/drow_v2_arcana_revenge_kill_effect_caster.vpcf",
-				PATTACH_ABSORIGIN_FOLLOW,
-				self.parent
-			)
-			ParticleManager:SetParticleControlEnt(
-				caster_effect,
-				0,
-				self.parent,
-				PATTACH_ABSORIGIN_FOLLOW,
-				"attach_hitloc",
-				self.parent:GetAbsOrigin(),
-				true
-			)
-			ParticleManager:SetParticleControlEnt(
-				caster_effect,
-				1,
-				self.parent,
-				PATTACH_ABSORIGIN_FOLLOW,
-				"attach_hitloc",
-				self.parent:GetAbsOrigin(),
-				true
-			)
-			ParticleManager:ReleaseParticleIndex(caster_effect)
-
-			local target_effect = ParticleManager:CreateParticle(
-				"particles/econ/items/drow/drow_arcana/drow_v2_arcana_revenge_kill_effect_target.vpcf",
-				PATTACH_ABSORIGIN_FOLLOW,
-				params.unit
-			)
-			ParticleManager:SetParticleControlEnt(
-				target_effect,
-				0,
-				self.parent,
-				PATTACH_ABSORIGIN_FOLLOW,
-				"attach_hitloc",
-				self.parent:GetAbsOrigin(),
-				true
-			)
-			ParticleManager:SetParticleControl(target_effect, 1, params.unit:GetAbsOrigin())
-			ParticleManager:ReleaseParticleIndex(target_effect)
-		elseif params.attacker:HasUnequipItem(19090) then
-			-- Death kill effect
-			local caster_effect = ParticleManager:CreateParticle(
-				"particles/econ/items/drow/drow_arcana/drow_arcana_revenge_kill_effect_caster.vpcf",
-				PATTACH_ABSORIGIN_FOLLOW,
-				self.parent
-			)
-			ParticleManager:SetParticleControlEnt(
-				caster_effect,
-				0,
-				self.parent,
-				PATTACH_ABSORIGIN_FOLLOW,
-				"attach_hitloc",
-				self.parent:GetAbsOrigin(),
-				true
-			)
-			ParticleManager:SetParticleControlEnt(
-				caster_effect,
-				1,
-				self.parent,
-				PATTACH_ABSORIGIN_FOLLOW,
-				"attach_hitloc",
-				self.parent:GetAbsOrigin(),
-				true
-			)
-			ParticleManager:ReleaseParticleIndex(caster_effect)
-
-			local target_effect = ParticleManager:CreateParticle(
-				"particles/econ/items/drow/drow_arcana/drow_arcana_revenge_kill_effect_target.vpcf",
-				PATTACH_ABSORIGIN_FOLLOW,
-				params.unit
-			)
-			ParticleManager:SetParticleControlEnt(
-				target_effect,
-				0,
-				self.parent,
-				PATTACH_ABSORIGIN_FOLLOW,
-				"attach_hitloc",
-				self.parent:GetAbsOrigin(),
-				true
-			)
-			ParticleManager:SetParticleControl(target_effect, 1, params.unit:GetAbsOrigin())
-			ParticleManager:ReleaseParticleIndex(target_effect)
-		elseif
-			params.attacker:HasUnequipItem(23095)
-			and wearables_system.item_styles_saved[self.parent:GetUnitName()][23095]
-			and wearables_system.item_styles_saved[self.parent:GetUnitName()][23095] == 1
-		then
-			-- Death kill effect
-			local caster_effect = ParticleManager:CreateParticle(
-				"particles/econ/items/razor/razor_arcana/razor_arcana_kill_effect_caster_v2.vpcf",
-				PATTACH_ABSORIGIN_FOLLOW,
-				self.parent
-			)
-			ParticleManager:SetParticleControl(caster_effect, 2, self.parent:GetAbsOrigin())
-			ParticleManager:SetParticleControl(caster_effect, 3, self.parent:GetAbsOrigin())
-			ParticleManager:SetParticleControlEnt(
-				caster_effect,
-				0,
-				self.parent,
-				PATTACH_ABSORIGIN_FOLLOW,
-				"attach_hitloc",
-				self.parent:GetAbsOrigin(),
-				true
-			)
-			ParticleManager:ReleaseParticleIndex(caster_effect)
-
-			local target_effect = ParticleManager:CreateParticle(
-				"particles/econ/items/razor/razor_arcana/razor_arcana_kill_effect_target_v2.vpcf",
-				PATTACH_ABSORIGIN_FOLLOW,
-				params.unit
-			)
-			ParticleManager:SetParticleControl(target_effect, 1, params.unit:GetAbsOrigin())
-			ParticleManager:ReleaseParticleIndex(target_effect)
-		elseif params.attacker:HasUnequipItem(23095) then
-			-- Death kill effect
-			local caster_effect = ParticleManager:CreateParticle(
-				"particles/econ/items/razor/razor_arcana/razor_arcana_kill_effect_caster.vpcf",
-				PATTACH_ABSORIGIN_FOLLOW,
-				self.parent
-			)
-			ParticleManager:SetParticleControl(caster_effect, 2, self.parent:GetAbsOrigin())
-			ParticleManager:SetParticleControl(caster_effect, 3, self.parent:GetAbsOrigin())
-			ParticleManager:SetParticleControlEnt(
-				caster_effect,
-				0,
-				self.parent,
-				PATTACH_ABSORIGIN_FOLLOW,
-				"attach_hitloc",
-				self.parent:GetAbsOrigin(),
-				true
-			)
-			ParticleManager:ReleaseParticleIndex(caster_effect)
-
-			local target_effect = ParticleManager:CreateParticle(
-				"particles/econ/items/razor/razor_arcana/razor_arcana_kill_effect_target.vpcf",
-				PATTACH_ABSORIGIN_FOLLOW,
-				params.unit
-			)
-			ParticleManager:SetParticleControl(target_effect, 1, params.unit:GetAbsOrigin())
-			ParticleManager:ReleaseParticleIndex(target_effect)
+		local effect = self:GetItemEffect("kill")
+		if effect then
+			effect(self.parent, params.unit)
 		end
 	elseif params.unit == self.parent and not self.parent:IsIllusion() then
-		if params.unit:HasUnequipItem(6996) then
-			local nFXIndex = ParticleManager:CreateParticle(
-				"particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_death.vpcf",
-				PATTACH_ABSORIGIN_FOLLOW,
-				self.parent
-			)
-			ParticleManager:SetParticleControlEnt(
-				nFXIndex,
-				0,
-				self.parent,
-				PATTACH_ABSORIGIN_FOLLOW,
-				nil,
-				self.parent:GetOrigin(),
-				false
-			)
-			ParticleManager:SetParticleControlEnt(
-				nFXIndex,
-				1,
-				self.parent,
-				PATTACH_ABSORIGIN_FOLLOW,
-				nil,
-				self.parent:GetOrigin(),
-				false
-			)
-			ParticleManager:ReleaseParticleIndex(nFXIndex)
-		elseif params.unit:HasUnequipItem(7247) then
-			local particle = ParticleManager:CreateParticle(
-				"particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_death.vpcf",
-				PATTACH_ABSORIGIN_FOLLOW,
-				self.parent
-			)
-			ParticleManager:SetParticleControl(particle, 1, self.parent:GetAbsOrigin())
-			ParticleManager:ReleaseParticleIndex(particle)
-		elseif params.unit:HasUnequipItem(7385) then
-			local particle = ParticleManager:CreateParticle(
-				"particles/econ/items/crystal_maiden/crystal_maiden_maiden_of_icewrack/maiden_death_arcana.vpcf",
-				PATTACH_WORLDORIGIN,
-				nil
-			)
-			ParticleManager:SetParticleControl(particle, 0, self.parent:GetAbsOrigin())
-			ParticleManager:ReleaseParticleIndex(particle)
-		elseif
-			params.attacker:HasUnequipItem(23095)
-			and wearables_system.item_styles_saved[self.parent:GetUnitName()][23095]
-			and wearables_system.item_styles_saved[self.parent:GetUnitName()][23095] == 1
-		then
-			local nFXIndex = ParticleManager:CreateParticle(
-				"particles/econ/items/razor/razor_arcana/razor_arcana_death_v2.vpcf",
-				PATTACH_ABSORIGIN_FOLLOW,
-				self.parent
-			)
-			ParticleManager:SetParticleControlEnt(
-				nFXIndex,
-				0,
-				self.parent,
-				PATTACH_ABSORIGIN_FOLLOW,
-				nil,
-				self.parent:GetOrigin(),
-				false
-			)
-			ParticleManager:ReleaseParticleIndex(nFXIndex)
-		elseif params.attacker:HasUnequipItem(23095) then
-			local nFXIndex = ParticleManager:CreateParticle(
-				"particles/econ/items/razor/razor_arcana/razor_arcana_death.vpcf",
-				PATTACH_ABSORIGIN_FOLLOW,
-				self.parent
-			)
-			ParticleManager:SetParticleControlEnt(
-				nFXIndex,
-				0,
-				self.parent,
-				PATTACH_ABSORIGIN_FOLLOW,
-				nil,
-				self.parent:GetOrigin(),
-				false
-			)
-			ParticleManager:ReleaseParticleIndex(nFXIndex)
+		local effect = self:GetItemEffect("death")
+		if effect then
+			effect(self.parent, self.parent)
 		end
 	end
 end
@@ -684,103 +442,14 @@ function modifier_hero_wearables_system:AttackEvent_out(params)
 	if not IsServer() then
 		return
 	end
-	if params.attacker == self.parent then
-		if
-			params.attacker:HasUnequipItem(23095)
-			and wearables_system.item_styles_saved[self.parent:GetUnitName()][23095]
-			and wearables_system.item_styles_saved[self.parent:GetUnitName()][23095] == 1
-		then
-			local particle_attack = ParticleManager:CreateParticle(
-				"particles/econ/items/razor/razor_arcana/razor_arcana_v2_base_attack_impact.vpcf",
-				PATTACH_ABSORIGIN_FOLLOW,
-				params.target
-			)
-			ParticleManager:SetParticleControlEnt(
-				particle_attack,
-				1,
-				params.target,
-				PATTACH_ABSORIGIN_FOLLOW,
-				"attach_hitloc",
-				params.target:GetAbsOrigin(),
-				true
-			)
-			ParticleManager:ReleaseParticleIndex(particle_attack)
-			local length = params.target:GetAbsOrigin() - self.parent:GetAbsOrigin()
-			length.z = 0
-			length = length:Length2D()
-			if length >= 200 then
-				local particle_on_hit = ParticleManager:CreateParticle(
-					"particles/econ/items/razor/razor_arcana/razor_arcana_v2_base_attack.vpcf",
-					PATTACH_ABSORIGIN_FOLLOW,
-					self.parent
-				)
-				ParticleManager:SetParticleControlEnt(
-					particle_on_hit,
-					3,
-					self.parent,
-					PATTACH_ABSORIGIN_FOLLOW,
-					"attach_hitloc",
-					self.parent:GetAbsOrigin(),
-					true
-				)
-				ParticleManager:SetParticleControlEnt(
-					particle_on_hit,
-					1,
-					params.target,
-					PATTACH_ABSORIGIN_FOLLOW,
-					"attach_hitloc",
-					params.target:GetAbsOrigin(),
-					true
-				)
-				ParticleManager:ReleaseParticleIndex(particle_on_hit)
-			end
-		elseif params.attacker:HasUnequipItem(23095) then
-			local particle_attack = ParticleManager:CreateParticle(
-				"particles/econ/items/razor/razor_arcana/razor_arcana_base_attack_impact.vpcf",
-				PATTACH_ABSORIGIN_FOLLOW,
-				params.target
-			)
-			ParticleManager:SetParticleControlEnt(
-				particle_attack,
-				1,
-				params.target,
-				PATTACH_ABSORIGIN_FOLLOW,
-				"attach_hitloc",
-				params.target:GetAbsOrigin(),
-				true
-			)
-			ParticleManager:ReleaseParticleIndex(particle_attack)
-			local length = params.target:GetAbsOrigin() - self.parent:GetAbsOrigin()
-			length.z = 0
-			length = length:Length2D()
-			if length >= 200 then
-				local particle_on_hit = ParticleManager:CreateParticle(
-					"particles/econ/items/razor/razor_arcana/razor_arcana_base_attack.vpcf",
-					PATTACH_ABSORIGIN_FOLLOW,
-					self.parent
-				)
-				ParticleManager:SetParticleControlEnt(
-					particle_on_hit,
-					3,
-					self.parent,
-					PATTACH_ABSORIGIN_FOLLOW,
-					"attach_hitloc",
-					self.parent:GetAbsOrigin(),
-					true
-				)
-				ParticleManager:SetParticleControlEnt(
-					particle_on_hit,
-					1,
-					params.target,
-					PATTACH_ABSORIGIN_FOLLOW,
-					"attach_hitloc",
-					params.target:GetAbsOrigin(),
-					true
-				)
-				ParticleManager:ReleaseParticleIndex(particle_on_hit)
-			end
-		end
+	if params.attacker ~= self.parent then
+		return
 	end
+	local effect = self:GetItemEffect("attack")
+	if not effect then
+		return
+	end
+	effect(self.parent, params.target)
 end
 
 function modifier_hero_wearables_system:HideItems(no_hide)

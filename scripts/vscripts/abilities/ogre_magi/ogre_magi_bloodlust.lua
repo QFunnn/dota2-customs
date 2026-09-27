@@ -124,7 +124,6 @@ function ogre_magi_bloodlust_custom:Precache(context)
 		context
 	)
 	PrecacheResource("particle", "particles/units/heroes/hero_furion/furion_arboreal_might_buff.vpcf", context)
-
 	PrecacheResource("particle", "particles/general/patrol_refresh.vpcf", context)
 	PrecacheResource("particle", "particles/rare_orb_patrol.vpcf", context)
 	PrecacheResource("particle", "particles/lc_odd_proc_.vpcf", context)
@@ -132,6 +131,10 @@ function ogre_magi_bloodlust_custom:Precache(context)
 	PrecacheResource("particle", "particles/ogre_magi/blood_resist.vpcf", context)
 	PrecacheResource("particle", "particles/brist_lowhp_.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_zuus/zuus_shard_slow.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_ogre_magi/ogre_magi_multicast.vpcf", context)
+	PrecacheResource("particle", "particles/items_fx/chain_lightning.vpcf", context)
+	PrecacheResource("particle", "particles/ogre_magichit.vpcf", context)
+	PrecacheResource("particle", "particles/ogre_magi/fire_shield.vpcf", context)
 end
 
 function ogre_magi_bloodlust_custom:UpdateTalents(name)
@@ -139,30 +142,22 @@ function ogre_magi_bloodlust_custom:UpdateTalents(name)
 	if not self.init then
 		self.init = true
 		self.talents = {
-			has_e1 = 0,
 			e1_speed = 0,
 			e1_range = 0,
 			e1_speed_legendary = 0,
 
-			has_e2 = 0,
 			e2_armor_reduce = 0,
 			e2_armor = 0,
 
 			has_e3 = 0,
 			e3_str = 0,
 			e3_damage = 0,
-			e3_bonus = caster:GetTalentValue("modifier_ogremagi_bloodlust_3", "bonus", true),
 			e3_max = caster:GetTalentValue("modifier_ogremagi_bloodlust_3", "max", true),
 
 			has_e4 = 0,
 			e4_cd_inc = caster:GetTalentValue("modifier_ogremagi_bloodlust_4", "cd_inc", true),
-			e4_stun = caster:GetTalentValue("modifier_ogremagi_bloodlust_4", "stun", true),
 			e4_knock_distance = caster:GetTalentValue("modifier_ogremagi_bloodlust_4", "knock_distance", true),
-			e4_range = caster:GetTalentValue("modifier_ogremagi_bloodlust_4", "range", true),
-			e4_talent_cd = caster:GetTalentValue("modifier_ogremagi_bloodlust_4", "talent_cd", true),
 			e4_slow_resist = caster:GetTalentValue("modifier_ogremagi_bloodlust_4", "slow_resist", true),
-			e4_duration = caster:GetTalentValue("modifier_ogremagi_bloodlust_4", "duration", true),
-			e4_radius = caster:GetTalentValue("modifier_ogremagi_bloodlust_4", "radius", true),
 
 			has_e7 = 0,
 			e7_bash_duration = caster:GetTalentValue("modifier_ogremagi_bloodlust_7", "bash_duration", true),
@@ -183,7 +178,6 @@ function ogre_magi_bloodlust_custom:UpdateTalents(name)
 			e7_bash_cd = caster:GetTalentValue("modifier_ogremagi_bloodlust_7", "bash_cd", true),
 			e7_cd = caster:GetTalentValue("modifier_ogremagi_bloodlust_7", "cd", true),
 
-			has_h2 = 0,
 			h2_magic = 0,
 			h2_move = 0,
 
@@ -200,14 +194,12 @@ function ogre_magi_bloodlust_custom:UpdateTalents(name)
 	end
 
 	if caster:HasTalent("modifier_ogremagi_bloodlust_1") then
-		self.talents.has_e1 = 1
 		self.talents.e1_speed = caster:GetTalentValue("modifier_ogremagi_bloodlust_1", "speed")
 		self.talents.e1_range = caster:GetTalentValue("modifier_ogremagi_bloodlust_1", "range")
 		self.talents.e1_speed_legendary = caster:GetTalentValue("modifier_ogremagi_bloodlust_1", "speed_legendary")
 	end
 
 	if caster:HasTalent("modifier_ogremagi_bloodlust_2") then
-		self.talents.has_e2 = 1
 		self.talents.e2_armor_reduce = caster:GetTalentValue("modifier_ogremagi_bloodlust_2", "armor_reduce")
 		self.talents.e2_armor = caster:GetTalentValue("modifier_ogremagi_bloodlust_2", "armor")
 	end
@@ -217,7 +209,7 @@ function ogre_magi_bloodlust_custom:UpdateTalents(name)
 		self.talents.e3_str = caster:GetTalentValue("modifier_ogremagi_bloodlust_3", "str")
 		self.talents.e3_damage = caster:GetTalentValue("modifier_ogremagi_bloodlust_3", "damage")
 		if IsServer() then
-			self.caster:CalculateStatBonus(true)
+			caster:CalculateStatBonus(true)
 		end
 	end
 
@@ -231,7 +223,6 @@ function ogre_magi_bloodlust_custom:UpdateTalents(name)
 	end
 
 	if caster:HasTalent("modifier_ogremagi_hero_2") then
-		self.talents.has_h2 = 1
 		self.talents.h2_magic = caster:GetTalentValue("modifier_ogremagi_hero_2", "magic")
 		self.talents.h2_move = caster:GetTalentValue("modifier_ogremagi_hero_2", "move")
 	end
@@ -245,6 +236,10 @@ function ogre_magi_bloodlust_custom:UpdateTalents(name)
 	end
 end
 
+function ogre_magi_bloodlust_custom:GetAbilityTextureName()
+	return wearables_system:GetAbilityIconReplacement(self.caster, "ogre_magi_bloodlust", self)
+end
+
 function ogre_magi_bloodlust_custom:GetIntrinsicModifierName()
 	if not self:GetCaster():IsRealHero() then
 		return
@@ -252,18 +247,10 @@ function ogre_magi_bloodlust_custom:GetIntrinsicModifierName()
 	return "modifier_ogre_magi_bloodlust_custom_tracker"
 end
 
-function ogre_magi_bloodlust_custom:GetAbilityTextureName()
-	return wearables_system:GetAbilityIconReplacement(self.caster, "ogre_magi_bloodlust", self)
-end
-
 function ogre_magi_bloodlust_custom:GetBehavior()
 	return DOTA_ABILITY_BEHAVIOR_NO_TARGET
 		+ DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK
 		+ (self.talents.has_h6 == 1 and DOTA_ABILITY_BEHAVIOR_IMMEDIATE or 0)
-end
-
-function ogre_magi_bloodlust_custom:GetManaCost(level)
-	return self.BaseClass.GetManaCost(self, level)
 end
 
 function ogre_magi_bloodlust_custom:OnSpellStart()
@@ -507,7 +494,14 @@ function modifier_ogre_magi_bloodlust_custom_tracker:OnCreated()
 	self.ability:UpdateTalents()
 
 	self.parent.bloodlust_ability = self.ability
-	self.parent.bloodlust_chrage_ability = self.parent:FindAbilityByName("ogre_magi_bloodlust_custom_charge")
+	self.parent.bloodlust_charge_ability = self.parent:FindAbilityByName("ogre_magi_bloodlust_custom_charge")
+
+	if IsValid(self.parent.bloodlust_charge_ability) then
+		if IsServer() and not self.parent.bloodlust_charge_ability:IsTrained() then
+			self.parent.bloodlust_charge_ability:SetLevel(1)
+		end
+		self.parent.bloodlust_charge_ability:UpdateTalents()
+	end
 
 	self.ability.bonus_movement_speed = self.ability:GetSpecialValueFor("bonus_movement_speed")
 	self.ability.self_bonus = self.ability:GetSpecialValueFor("self_bonus")
@@ -597,8 +591,8 @@ function modifier_ogre_magi_bloodlust_custom_tracker:AttackEvent_out(params)
 		end
 	end
 
-	if self.ability.talents.has_e4 == 1 and self.parent.bloodlust_chrage_ability then
-		self.parent:CdAbility(self.parent.bloodlust_chrage_ability, self.ability.talents.e4_cd_inc)
+	if self.ability.talents.has_e4 == 1 and self.parent.bloodlust_charge_ability then
+		self.parent:CdAbility(self.parent.bloodlust_charge_ability, self.ability.talents.e4_cd_inc)
 	end
 
 	if self.parent:GetQuest() == "Ogre.Quest_7" and not self.parent:QuestCompleted() and target:IsRealHero() then
@@ -692,11 +686,13 @@ function modifier_ogre_magi_bloodlust_custom_legendary:OnDestroy()
 		self.parent:RemoveModifierByName(mod)
 	end
 
-	Timers:CreateTimer(0.2, function()
-		if IsValid(self.parent.multicast_ability) then
-			self.parent.multicast_ability:StartCd()
-		end
-	end)
+	if not self.reroll then
+		Timers:CreateTimer(0.2, function()
+			if IsValid(self.parent.multicast_ability) then
+				self.parent.multicast_ability:StartCd()
+			end
+		end)
+	end
 
 	self.ability.tracker:UpdateUI()
 end
@@ -708,7 +704,7 @@ function modifier_ogre_magi_bloodlust_custom_legendary_reroll:OnCreated()
 	end
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
-	self.cd = self.parent.bloodlust_ability.talents.e7_cd
+	self.cd = self.ability.talents.e7_cd
 	self.RemoveForDuel = true
 
 	self.ability:StartCooldown(self.cd)
@@ -723,9 +719,6 @@ end
 
 function modifier_ogre_magi_bloodlust_custom_legendary_reroll:OnDestroy()
 	if not IsServer() then
-		return
-	end
-	if self.reroll then
 		return
 	end
 	self.ability:EndCd()
@@ -804,7 +797,7 @@ function modifier_ogre_magi_bloodlust_custom_legendary_buff:AttackEvent_out(para
 		for _, aoe_target in pairs(self.parent:FindTargets(self.ability.talents.e7_crit_radius, target:GetAbsOrigin())) do
 			if aoe_target ~= target then
 				damageTable.victim = aoe_target
-				DoDamage(damageTable)
+				DoDamage(damageTable, "modifier_ogremagi_bloodlust_7")
 			end
 		end
 	end
@@ -1067,13 +1060,109 @@ function modifier_ogre_magi_bloodlust_custom_incoming:GetEffectName()
 	return "particles/ogre_magi/fire_shield.vpcf"
 end
 
+modifier_ogre_magi_bloodlust_custom_quest = class(mod_hidden)
+function modifier_ogre_magi_bloodlust_custom_quest:OnCreated(table)
+	if not IsServer() then
+		return
+	end
+	self.caster = self:GetCaster()
+
+	self:SetStackCount(1)
+end
+
+function modifier_ogre_magi_bloodlust_custom_quest:OnRefresh(table)
+	if not IsServer() then
+		return
+	end
+	if not self.caster:GetQuest() then
+		return
+	end
+
+	self:IncrementStackCount()
+
+	if self:GetStackCount() >= self.caster.quest.number then
+		self.caster:UpdateQuest(1)
+		self:Destroy()
+	end
+end
+
+modifier_ogre_magi_bloodlust_custom_str = class(mod_visible)
+function modifier_ogre_magi_bloodlust_custom_str:GetTexture()
+	return "buffs/ogre_magi/blooldust_3"
+end
+function modifier_ogre_magi_bloodlust_custom_str:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.max = self.ability.talents.e3_max
+
+	if not IsServer() then
+		return
+	end
+	self.RemoveForDuel = true
+	self:OnRefresh()
+end
+
+function modifier_ogre_magi_bloodlust_custom_str:OnRefresh()
+	if not IsServer() then
+		return
+	end
+	if self:GetStackCount() >= self.max then
+		return
+	end
+
+	self:IncrementStackCount()
+	self.parent:CalculateStatBonus(true)
+end
+
+function modifier_ogre_magi_bloodlust_custom_str:OnDestroy()
+	if not IsServer() then
+		return
+	end
+	self.parent:CalculateStatBonus(true)
+end
+
+modifier_ogre_magi_bloodlust_custom_armor = class(mod_hidden)
+function modifier_ogre_magi_bloodlust_custom_armor:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.armor = self.ability.talents.e2_armor_reduce
+	if not IsServer() then
+		return
+	end
+	self.parent:GenericParticle("particles/general/generic_armor_reduction.vpcf", self, true)
+end
+
+function modifier_ogre_magi_bloodlust_custom_armor:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
+	}
+end
+
+function modifier_ogre_magi_bloodlust_custom_armor:GetModifierPhysicalArmorBonus()
+	return self.armor
+end
+
 ogre_magi_bloodlust_custom_charge = class({})
+ogre_magi_bloodlust_custom_charge.talents = {}
+
+function ogre_magi_bloodlust_custom_charge:UpdateTalents(name)
+	local caster = self:GetCaster()
+	if not self.init then
+		self.init = true
+		self.talents = {
+			e4_range = caster:GetTalentValue("modifier_ogremagi_bloodlust_4", "range", true),
+			e4_talent_cd = caster:GetTalentValue("modifier_ogremagi_bloodlust_4", "talent_cd", true),
+			e4_duration = caster:GetTalentValue("modifier_ogremagi_bloodlust_4", "duration", true),
+			e4_radius = caster:GetTalentValue("modifier_ogremagi_bloodlust_4", "radius", true),
+			e4_stun = caster:GetTalentValue("modifier_ogremagi_bloodlust_4", "stun", true),
+		}
+	end
+end
 
 function ogre_magi_bloodlust_custom_charge:GetRange()
-	if not self.caster.bloodlust_ability then
-		return 0
-	end
-	return self.caster.bloodlust_ability.talents.e4_range
+	return self.talents.e4_range or 0
 end
 
 function ogre_magi_bloodlust_custom_charge:GetCastRange(vLocation, hTarget)
@@ -1081,22 +1170,15 @@ function ogre_magi_bloodlust_custom_charge:GetCastRange(vLocation, hTarget)
 end
 
 function ogre_magi_bloodlust_custom_charge:GetCooldown(level)
-	if not self.caster.bloodlust_ability then
-		return 0
-	end
-	return self.caster.bloodlust_ability.talents.e4_talent_cd
+	return self.talents.e4_talent_cd or 0
 end
 
 function ogre_magi_bloodlust_custom_charge:OnSpellStart()
-	if not self.caster.bloodlust_ability then
-		return
-	end
-
 	self.caster:AddNewModifier(
 		self.caster,
 		self,
 		"modifier_ogre_magi_bloodlust_custom_charge",
-		{ duration = self.caster.bloodlust_ability.talents.e4_duration }
+		{ duration = self.talents.e4_duration }
 	)
 end
 
@@ -1118,12 +1200,7 @@ function modifier_ogre_magi_bloodlust_custom_charge:OnCreated()
 		return
 	end
 	self.parent = self:GetParent()
-	self.ability = self.parent.bloodlust_ability
-
-	if not self.ability then
-		self:Destroy()
-		return
-	end
+	self.ability = self:GetAbility()
 
 	self.parent:StartGesture(ACT_DOTA_FLAIL)
 
@@ -1231,92 +1308,4 @@ end
 
 function modifier_ogre_magi_bloodlust_custom_charge:OnHorizontalMotionInterrupted()
 	self:Destroy()
-end
-
-modifier_ogre_magi_bloodlust_custom_quest = class({})
-function modifier_ogre_magi_bloodlust_custom_quest:IsHidden()
-	return true
-end
-function modifier_ogre_magi_bloodlust_custom_quest:IsPurgable()
-	return false
-end
-function modifier_ogre_magi_bloodlust_custom_quest:OnCreated(table)
-	if not IsServer() then
-		return
-	end
-
-	self:SetStackCount(1)
-end
-
-function modifier_ogre_magi_bloodlust_custom_quest:OnRefresh(table)
-	if not IsServer() then
-		return
-	end
-	if not self:GetCaster():GetQuest() then
-		return
-	end
-
-	self:IncrementStackCount()
-
-	if self:GetStackCount() >= self:GetCaster().quest.number then
-		self:GetCaster():UpdateQuest(1)
-		self:Destroy()
-	end
-end
-
-modifier_ogre_magi_bloodlust_custom_str = class(mod_visible)
-function modifier_ogre_magi_bloodlust_custom_str:GetTexture()
-	return "buffs/ogre_magi/blooldust_3"
-end
-function modifier_ogre_magi_bloodlust_custom_str:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.max = self.ability.talents.e3_max
-
-	if not IsServer() then
-		return
-	end
-	self:OnRefresh()
-end
-
-function modifier_ogre_magi_bloodlust_custom_str:OnRefresh()
-	if not IsServer() then
-		return
-	end
-	if self:GetStackCount() >= self.max then
-		return
-	end
-
-	self:IncrementStackCount()
-	self.parent:CalculateStatBonus(true)
-end
-
-function modifier_ogre_magi_bloodlust_custom_str:OnDestroy()
-	if not IsServer() then
-		return
-	end
-	self.parent:CalculateStatBonus(true)
-end
-
-modifier_ogre_magi_bloodlust_custom_armor = class(mod_hidden)
-function modifier_ogre_magi_bloodlust_custom_armor:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.armor = self.ability.talents.e2_armor_reduce
-	if not IsServer() then
-		return
-	end
-	self.parent:GenericParticle("particles/general/generic_armor_reduction.vpcf", self, true)
-end
-
-function modifier_ogre_magi_bloodlust_custom_armor:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
-	}
-end
-
-function modifier_ogre_magi_bloodlust_custom_armor:GetModifierPhysicalArmorBonus()
-	return self.armor
 end

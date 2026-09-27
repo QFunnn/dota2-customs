@@ -9,11 +9,6 @@
 
 
 LinkLuaModifier(
-	"modifier_mars_spear_custom_debuff_knockback",
-	"abilities/mars/mars_spear_custom",
-	LUA_MODIFIER_MOTION_BOTH
-)
-LinkLuaModifier(
 	"modifier_mars_arena_of_blood_custom_thinker",
 	"abilities/mars/mars_arena_of_blood_custom",
 	LUA_MODIFIER_MOTION_NONE
@@ -131,8 +126,6 @@ function mars_arena_of_blood_custom:UpdateTalents(name)
 			r3_max = caster:GetTalentValue("modifier_mars_arena_3", "max", true),
 
 			has_r4 = 0,
-			r4_heal = caster:GetTalentValue("modifier_mars_arena_4", "heal", true),
-			r4_duration = caster:GetTalentValue("modifier_mars_arena_4", "duration", true),
 			r4_damage_reduce = caster:GetTalentValue("modifier_mars_arena_4", "damage_reduce", true),
 
 			has_r7 = 0,
@@ -161,7 +154,7 @@ function mars_arena_of_blood_custom:UpdateTalents(name)
 		self.talents.has_r3 = 1
 		self.talents.r3_damage = caster:GetTalentValue("modifier_mars_arena_3", "damage") / 100
 		self.talents.r3_magic = caster:GetTalentValue("modifier_mars_arena_3", "magic")
-		self.caster:AddAttackEvent_out(self.tracker, true)
+		caster:AddAttackEvent_out(self.tracker, true)
 	end
 
 	if caster:HasTalent("modifier_mars_arena_4") then
@@ -177,21 +170,6 @@ function mars_arena_of_blood_custom:UpdateTalents(name)
 	end
 end
 
-function mars_arena_of_blood_custom:OnInventoryContentsChanged()
-	if not IsServer() then
-		return
-	end
-	if not self.caster:HasScepter() then
-		return
-	end
-	if self.scepter_init then
-		return
-	end
-
-	self:ToggleAutoCast()
-	self.scepter_init = true
-end
-
 function mars_arena_of_blood_custom:GetIntrinsicModifierName()
 	if not self:GetCaster():IsRealHero() then
 		return
@@ -200,20 +178,20 @@ function mars_arena_of_blood_custom:GetIntrinsicModifierName()
 end
 
 function mars_arena_of_blood_custom:GetCastPoint(iLevel)
-	return self.BaseClass.GetCastPoint(self) + (self.caster:HasScepter() and self.scepter_cast or 0)
+	return self.BaseClass.GetCastPoint(self) + (self.caster:HasScepter() and (self.scepter_cast or 0) or 0)
 end
 
 function mars_arena_of_blood_custom:GetCastRange(vLocation, hTarget)
 	return self.BaseClass.GetCastRange(self, vLocation, hTarget)
-		+ (self.caster:HasScepter() and self.scepter_range or 0)
+		+ (self.caster:HasScepter() and (self.scepter_range or 0) or 0)
 end
 
 function mars_arena_of_blood_custom:GetAOERadius()
-	return self.radius and self.radius or 0
+	return self.radius or 0
 end
 
 function mars_arena_of_blood_custom:GetCooldown(iLevel)
-	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.r2_cd and self.talents.r2_cd or 0)
+	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.r2_cd or 0)
 end
 
 function mars_arena_of_blood_custom:GetBehavior()
@@ -260,7 +238,8 @@ function mars_arena_of_blood_custom:OnSpellStart()
 	end
 
 	if
-		IsValid(self.caster.arena_ability_legendary)
+		self.talents.has_r7 == 1
+		and IsValid(self.caster.arena_ability_legendary)
 		and self.caster.arena_ability_legendary:GetCooldownTimeRemaining() > 0
 	then
 		self.caster:CdAbility(
@@ -280,6 +259,21 @@ function mars_arena_of_blood_custom:OnSpellStart()
 	)
 end
 
+function mars_arena_of_blood_custom:OnInventoryContentsChanged()
+	if not IsServer() then
+		return
+	end
+	if not self.caster:HasScepter() then
+		return
+	end
+	if self.scepter_init then
+		return
+	end
+
+	self:ToggleAutoCast()
+	self.scepter_init = true
+end
+
 function mars_arena_of_blood_custom:DoDamage(target, damage_ability)
 	if not IsServer() then
 		return
@@ -289,7 +283,7 @@ function mars_arena_of_blood_custom:DoDamage(target, damage_ability)
 		{ attacker = self.caster, ability = self, damage_type = DAMAGE_TYPE_MAGICAL, custom_flag = "mars_r" }
 	local damage_k = 1
 	if damage_ability == "modifier_mars_arena_3" then
-		damage_k = self.ability.talents.r3_damage
+		damage_k = self.talents.r3_damage
 	end
 
 	damageTable.victim = target
@@ -323,11 +317,35 @@ function mars_arena_of_blood_custom:SpawnSoldier(point)
 	unit:EmitSound("Mars.Bulwark_spawn")
 	unit:RemoveGesture(ACT_DOTA_SPAWN)
 	unit.ignore_assault = true
-	unit:AddNewModifier(self.parent, self.ability, "modifier_mars_arena_of_blood_custom_unit", {})
-	unit:AddNewModifier(self.parent, self.ability, "modifier_kill", { duration = self.ability.talents.r3_duration })
+	unit:AddNewModifier(self.caster, self, "modifier_mars_arena_of_blood_custom_unit", {})
+	unit:AddNewModifier(self.caster, self, "modifier_kill", { duration = self.talents.r3_duration })
 end
 
 modifier_mars_arena_of_blood_custom_thinker = class(mod_hidden)
+function modifier_mars_arena_of_blood_custom_thinker:IsAura()
+	return true
+end
+function modifier_mars_arena_of_blood_custom_thinker:GetModifierAura()
+	return "modifier_mars_arena_of_blood_custom_projectile_aura"
+end
+function modifier_mars_arena_of_blood_custom_thinker:GetAuraRadius()
+	return self.radius
+end
+function modifier_mars_arena_of_blood_custom_thinker:GetAuraDuration()
+	return 0.3
+end
+function modifier_mars_arena_of_blood_custom_thinker:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_BOTH
+end
+function modifier_mars_arena_of_blood_custom_thinker:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
+end
+function modifier_mars_arena_of_blood_custom_thinker:GetAuraSearchFlags()
+	return DOTA_UNIT_TARGET_FLAG_INVULNERABLE
+end
+function modifier_mars_arena_of_blood_custom_thinker:GetAuraEntityReject(hEntity)
+	return hEntity == self.parent
+end
 function modifier_mars_arena_of_blood_custom_thinker:OnCreated(kv)
 	self.ability = self:GetAbility()
 	self.caster = self:GetCaster()
@@ -405,31 +423,6 @@ function modifier_mars_arena_of_blood_custom_thinker:OnDestroy()
 	end
 
 	UTIL_Remove(self.parent)
-end
-
-function modifier_mars_arena_of_blood_custom_thinker:IsAura()
-	return true
-end
-function modifier_mars_arena_of_blood_custom_thinker:GetModifierAura()
-	return "modifier_mars_arena_of_blood_custom_projectile_aura"
-end
-function modifier_mars_arena_of_blood_custom_thinker:GetAuraRadius()
-	return self.radius
-end
-function modifier_mars_arena_of_blood_custom_thinker:GetAuraDuration()
-	return 0.3
-end
-function modifier_mars_arena_of_blood_custom_thinker:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_BOTH
-end
-function modifier_mars_arena_of_blood_custom_thinker:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
-end
-function modifier_mars_arena_of_blood_custom_thinker:GetAuraSearchFlags()
-	return DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_INVULNERABLE
-end
-function modifier_mars_arena_of_blood_custom_thinker:GetAuraEntityReject(hEntity)
-	return hEntity == self.parent
 end
 
 modifier_mars_arena_of_blood_custom_projectile_aura = class(mod_hidden)
@@ -645,234 +638,6 @@ function modifier_mars_arena_of_blood_custom_tracker:GetModifierSpellAmplify_Per
 	return self.ability.talents.r1_spell
 end
 
-mars_revenge_custom = class({})
-mars_revenge_custom.talents = {}
-
-function mars_revenge_custom:CreateTalent()
-	self:SetHidden(false)
-end
-
-function mars_revenge_custom:UpdateTalents(name)
-	local caster = self:GetCaster()
-	if not self.init then
-		self.init = true
-		self.talents = {
-			has_r7 = 0,
-			r7_damage = caster:GetTalentValue("modifier_mars_arena_7", "damage", true) / 100,
-			r7_radius = caster:GetTalentValue("modifier_mars_arena_7", "radius", true),
-			r7_knock_duration = caster:GetTalentValue("modifier_mars_arena_7", "knock_duration", true),
-			r7_knock_distance = caster:GetTalentValue("modifier_mars_arena_7", "knock_distance", true),
-			r7_duration = caster:GetTalentValue("modifier_mars_arena_7", "duration", true),
-			r7_slow_duration = caster:GetTalentValue("modifier_mars_arena_7", "slow_duration", true),
-			r7_cast = caster:GetTalentValue("modifier_mars_arena_7", "cast", true),
-			r7_max = caster:GetTalentValue("modifier_mars_arena_7", "max", true),
-			r7_talent_cd = caster:GetTalentValue("modifier_mars_arena_7", "talent_cd", true),
-			r7_cd_inc = caster:GetTalentValue("modifier_mars_arena_7", "cd_inc", true),
-			r7_slow = caster:GetTalentValue("modifier_mars_arena_7", "slow", true),
-
-			has_q2 = 0,
-			q2_radius = 0,
-		}
-	end
-
-	if caster:HasTalent("modifier_mars_spear_2") then
-		self.talents.has_q2 = 1
-		self.talents.q2_radius = caster:GetTalentValue("modifier_mars_spear_2", "radius")
-	end
-end
-
-function mars_revenge_custom:GetCooldown()
-	local k = 1
-	if self.caster:HasModifier("modifier_mars_arena_of_blood_custom_projectile_aura") and self.talents.r7_cd_inc then
-		k = self.talents.r7_cd_inc
-	end
-	return (self.talents.r7_talent_cd and self.talents.r7_talent_cd or 0) / k
-end
-
-function mars_revenge_custom:GetCastAnimation()
-	return 0
-end
-
-function mars_revenge_custom:GetCastPoint()
-	return self.talents.r7_cast and self.talents.r7_cast or 0
-end
-
-function mars_revenge_custom:GetCastRange(vLocation, hTarget)
-	return self:GetAOERadius() - self.caster:GetCastRangeBonus()
-end
-
-function mars_revenge_custom:GetAOERadius()
-	return (self.talents.r7_radius or self.talents.r7_radius or 0)
-		+ (self.talents.q2_radius and self.talents.q2_radius or 0)
-end
-
-function mars_revenge_custom:OnAbilityPhaseStart()
-	self.caster:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_4, 0.3)
-	self.caster:EmitSound("Mars.Revenge_pre")
-	self.caster:EmitSound("Mars.Revenge_pre2")
-
-	local timer = self.talents.r7_cast
-	local radius = self:GetAOERadius()
-
-	self.effect_cast =
-		ParticleManager:CreateParticle("particles/mars_revenge_pre.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.caster)
-	ParticleManager:SetParticleControl(self.effect_cast, 0, self.caster:GetOrigin())
-	ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(radius, 0, -radius / timer))
-	ParticleManager:SetParticleControl(self.effect_cast, 2, Vector(timer, 0, 0))
-	return true
-end
-
-function mars_revenge_custom:OnAbilityPhaseInterrupted()
-	self.caster:FadeGesture(ACT_DOTA_CAST_ABILITY_4)
-	ParticleManager:DestroyParticle(self.effect_cast, true)
-	ParticleManager:ReleaseParticleIndex(self.effect_cast)
-end
-
-function mars_revenge_custom:OnSpellStart()
-	self.caster:RemoveGesture(ACT_DOTA_CAST_ABILITY_4)
-	self.caster:StartGesture(ACT_DOTA_CAST_ABILITY_4)
-
-	ParticleManager:DestroyParticle(self.effect_cast, true)
-	ParticleManager:ReleaseParticleIndex(self.effect_cast)
-
-	self.caster:EmitSound("Mars.Revenge_end")
-	self.caster:EmitSound("Mars.Revenge_end2")
-
-	if not self.caster.arena_ability then
-		return
-	end
-	local radius = self:GetAOERadius()
-
-	local effect_cast = ParticleManager:CreateParticle("particles/mars_revenge.vpcf", PATTACH_WORLDORIGIN, self.caster)
-	ParticleManager:SetParticleControl(effect_cast, 0, self.caster:GetOrigin())
-	ParticleManager:SetParticleControl(effect_cast, 1, Vector(radius, radius, radius))
-	ParticleManager:ReleaseParticleIndex(effect_cast)
-
-	for _, enemy in pairs(self.caster:FindTargets(radius)) do
-		enemy:EmitSound("Mars.Revenge_end_target")
-		local damage = self.caster.arena_ability:GetDamage(enemy) * self.talents.r7_damage
-
-		local effect_cast = ParticleManager:CreateParticle(
-			"particles/units/heroes/hero_mars/mars_shield_bash_crit.vpcf",
-			PATTACH_WORLDORIGIN,
-			enemy
-		)
-		ParticleManager:SetParticleControl(effect_cast, 0, enemy:GetOrigin())
-		ParticleManager:SetParticleControl(effect_cast, 1, enemy:GetOrigin())
-		ParticleManager:SetParticleControlForward(
-			effect_cast,
-			1,
-			(enemy:GetAbsOrigin() - self.caster:GetAbsOrigin()):Normalized()
-		)
-		ParticleManager:ReleaseParticleIndex(effect_cast)
-
-		local real_damage = DoDamage({
-			victim = enemy,
-			attacker = self.caster,
-			damage = damage,
-			damage_type = DAMAGE_TYPE_MAGICAL,
-			ability = self,
-		})
-		enemy:SendNumber(106, real_damage)
-
-		if self.caster:HasModifier("modifier_mars_arena_of_blood_custom_projectile_aura") then
-			local center = self.caster:GetAbsOrigin()
-			local dir = (enemy:GetAbsOrigin() - center):Normalized()
-			local point = self.caster:GetAbsOrigin() + dir * self.talents.r7_knock_distance
-
-			local knockbackProperties = {
-				center_x = center.x,
-				center_y = center.y,
-				center_z = center.z,
-				duration = self.talents.r7_knock_duration,
-				knockback_duration = self.talents.r7_knock_duration,
-				knockback_distance = (point - enemy:GetAbsOrigin()):Length2D(),
-				knockback_height = 0,
-				should_stun = 0,
-			}
-			enemy:AddNewModifier(self.caster, self, "modifier_knockback", knockbackProperties)
-		end
-
-		enemy:AddNewModifier(
-			self.caster,
-			self,
-			"modifier_mars_arena_of_blood_custom_legendary_stack",
-			{ duration = self.talents.r7_duration }
-		)
-		enemy:AddNewModifier(
-			self.caster,
-			self,
-			"modifier_mars_arena_of_blood_custom_legendary_slow",
-			{ duration = self.talents.r7_slow_duration * (1 - enemy:GetStatusResistance()) }
-		)
-	end
-end
-
-modifier_mars_arena_of_blood_custom_legendary_stack = class(mod_visible)
-function modifier_mars_arena_of_blood_custom_legendary_stack:OnCreated(table)
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.max = self.ability.talents.r7_max
-
-	if not IsServer() then
-		return
-	end
-	self.RemoveForDuel = true
-	self:OnRefresh()
-end
-
-function modifier_mars_arena_of_blood_custom_legendary_stack:OnRefresh()
-	if not IsServer() then
-		return
-	end
-	if self:GetStackCount() >= self.max then
-		return
-	end
-	self:IncrementStackCount()
-end
-
-function modifier_mars_arena_of_blood_custom_legendary_stack:OnStackCountChanged(iStackCount)
-	if not IsServer() then
-		return
-	end
-	if not self.effect_cast then
-		self.effect_cast = self.parent:GenericParticle("particles/mars_taunt_timer.vpcf", self, true)
-	end
-	ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(0, self:GetStackCount(), 0))
-end
-
-modifier_mars_arena_of_blood_custom_legendary_slow = class(mod_hidden)
-function modifier_mars_arena_of_blood_custom_legendary_slow:IsPurgable()
-	return true
-end
-function modifier_mars_arena_of_blood_custom_legendary_slow:GetStatusEffectName()
-	return "particles/status_fx/status_effect_brewmaster_thunder_clap.vpcf"
-end
-function modifier_mars_arena_of_blood_custom_legendary_slow:StatusEffectPriority()
-	return MODIFIER_PRIORITY_NORMAL
-end
-function modifier_mars_arena_of_blood_custom_legendary_slow:OnCreated(table)
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.slow = self.ability.talents.r7_slow
-	if not IsServer() then
-		return
-	end
-	self.parent:GenericParticle("particles/units/heroes/hero_brewmaster/brewmaster_thunder_clap_debuff.vpcf", self)
-end
-
-function modifier_mars_arena_of_blood_custom_legendary_slow:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-	}
-end
-
-function modifier_mars_arena_of_blood_custom_legendary_slow:GetModifierMoveSpeedBonus_Percentage()
-	return self.slow
-end
-
 modifier_mars_arena_of_blood_custom_magic = class(mod_visible)
 function modifier_mars_arena_of_blood_custom_magic:GetTexture()
 	return "buffs/mars/arena_3"
@@ -967,7 +732,281 @@ function modifier_mars_arena_of_blood_custom_unit:GetModifierAttackRangeBonus()
 	return 150
 end
 
+modifier_mars_arena_of_blood_custom_cd_items = class(mod_hidden)
+function modifier_mars_arena_of_blood_custom_cd_items:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.move = self.ability.talents.q4_move
+	self.cd_items = self.ability.talents.q4_cd_items_arena
+	self.interval = 0.5
+
+	if not IsServer() then
+		return
+	end
+	self.parent:GenericParticle("particles/units/heroes/hero_marci/marci_rebound_allymovespeed.vpcf", self)
+	self:StartIntervalThink(self.interval)
+end
+
+function modifier_mars_arena_of_blood_custom_cd_items:OnIntervalThink()
+	if not IsServer() then
+		return
+	end
+	self.parent:CdItems(self.cd_items * self.interval)
+end
+
+function modifier_mars_arena_of_blood_custom_cd_items:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+		MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS,
+	}
+end
+
+function modifier_mars_arena_of_blood_custom_cd_items:GetActivityTranslationModifiers()
+	return "spear_stun"
+end
+
+function modifier_mars_arena_of_blood_custom_cd_items:GetModifierMoveSpeedBonus_Percentage()
+	if self.parent:HasModifier("modifier_mars_spear_custom_hit_speed") then
+		return
+	end
+	return self.move
+end
+
+mars_revenge_custom = class({})
+mars_revenge_custom.talents = {}
+
+function mars_revenge_custom:CreateTalent()
+	self:SetHidden(false)
+end
+
+function mars_revenge_custom:UpdateTalents(name)
+	local caster = self:GetCaster()
+	if not self.init then
+		self.init = true
+		self.talents = {
+			r7_damage = caster:GetTalentValue("modifier_mars_arena_7", "damage", true) / 100,
+			r7_radius = caster:GetTalentValue("modifier_mars_arena_7", "radius", true),
+			r7_knock_duration = caster:GetTalentValue("modifier_mars_arena_7", "knock_duration", true),
+			r7_knock_distance = caster:GetTalentValue("modifier_mars_arena_7", "knock_distance", true),
+			r7_duration = caster:GetTalentValue("modifier_mars_arena_7", "duration", true),
+			r7_slow_duration = caster:GetTalentValue("modifier_mars_arena_7", "slow_duration", true),
+			r7_cast = caster:GetTalentValue("modifier_mars_arena_7", "cast", true),
+			r7_max = caster:GetTalentValue("modifier_mars_arena_7", "max", true),
+			r7_talent_cd = caster:GetTalentValue("modifier_mars_arena_7", "talent_cd", true),
+			r7_cd_inc = caster:GetTalentValue("modifier_mars_arena_7", "cd_inc", true),
+			r7_slow = caster:GetTalentValue("modifier_mars_arena_7", "slow", true),
+
+			has_q2 = 0,
+			q2_radius = 0,
+		}
+	end
+
+	if caster:HasTalent("modifier_mars_spear_2") then
+		self.talents.has_q2 = 1
+		self.talents.q2_radius = caster:GetTalentValue("modifier_mars_spear_2", "radius")
+	end
+end
+
+function mars_revenge_custom:GetCooldown()
+	local k = 1
+	if self.caster:HasModifier("modifier_mars_arena_of_blood_custom_projectile_aura") then
+		k = self.talents.r7_cd_inc or 1
+	end
+	return (self.talents.r7_talent_cd or 0) / k
+end
+
+function mars_revenge_custom:GetCastAnimation()
+	return 0
+end
+
+function mars_revenge_custom:GetCastPoint()
+	return self.talents.r7_cast or 0
+end
+
+function mars_revenge_custom:GetCastRange(vLocation, hTarget)
+	return self:GetAOERadius() - self.caster:GetCastRangeBonus()
+end
+
+function mars_revenge_custom:GetAOERadius()
+	return (self.talents.r7_radius or 0) + (self.talents.q2_radius or 0)
+end
+
+function mars_revenge_custom:OnAbilityPhaseStart()
+	self.caster:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_4, 0.3)
+	self.caster:EmitSound("Mars.Revenge_pre")
+	self.caster:EmitSound("Mars.Revenge_pre2")
+
+	local timer = self.talents.r7_cast
+	local radius = self:GetAOERadius()
+
+	self.effect_cast =
+		ParticleManager:CreateParticle("particles/mars_revenge_pre.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.caster)
+	ParticleManager:SetParticleControl(self.effect_cast, 0, self.caster:GetOrigin())
+	ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(radius, 0, -radius / timer))
+	ParticleManager:SetParticleControl(self.effect_cast, 2, Vector(timer, 0, 0))
+	return true
+end
+
+function mars_revenge_custom:OnAbilityPhaseInterrupted()
+	self.caster:FadeGesture(ACT_DOTA_CAST_ABILITY_4)
+	ParticleManager:DestroyParticle(self.effect_cast, true)
+	ParticleManager:ReleaseParticleIndex(self.effect_cast)
+end
+
+function mars_revenge_custom:OnSpellStart()
+	self.caster:RemoveGesture(ACT_DOTA_CAST_ABILITY_4)
+	self.caster:StartGesture(ACT_DOTA_CAST_ABILITY_4)
+
+	ParticleManager:DestroyParticle(self.effect_cast, true)
+	ParticleManager:ReleaseParticleIndex(self.effect_cast)
+
+	self.caster:EmitSound("Mars.Revenge_end")
+	self.caster:EmitSound("Mars.Revenge_end2")
+
+	if not self.caster.arena_ability then
+		return
+	end
+	local radius = self:GetAOERadius()
+
+	local effect_cast = ParticleManager:CreateParticle("particles/mars_revenge.vpcf", PATTACH_WORLDORIGIN, self.caster)
+	ParticleManager:SetParticleControl(effect_cast, 0, self.caster:GetOrigin())
+	ParticleManager:SetParticleControl(effect_cast, 1, Vector(radius, radius, radius))
+	ParticleManager:ReleaseParticleIndex(effect_cast)
+
+	for _, enemy in pairs(self.caster:FindTargets(radius)) do
+		enemy:EmitSound("Mars.Revenge_end_target")
+		local damage = self.caster.arena_ability:GetDamage(enemy) * self.talents.r7_damage
+
+		local effect_cast = ParticleManager:CreateParticle(
+			"particles/units/heroes/hero_mars/mars_shield_bash_crit.vpcf",
+			PATTACH_WORLDORIGIN,
+			enemy
+		)
+		ParticleManager:SetParticleControl(effect_cast, 0, enemy:GetOrigin())
+		ParticleManager:SetParticleControl(effect_cast, 1, enemy:GetOrigin())
+		ParticleManager:SetParticleControlForward(
+			effect_cast,
+			1,
+			(enemy:GetAbsOrigin() - self.caster:GetAbsOrigin()):Normalized()
+		)
+		ParticleManager:ReleaseParticleIndex(effect_cast)
+
+		local real_damage = DoDamage(
+			{
+				victim = enemy,
+				attacker = self.caster,
+				damage = damage,
+				damage_type = DAMAGE_TYPE_MAGICAL,
+				ability = self,
+			},
+			"modifier_mars_arena_7"
+		)
+		enemy:SendNumber(106, real_damage)
+
+		if self.caster:HasModifier("modifier_mars_arena_of_blood_custom_projectile_aura") then
+			local center = self.caster:GetAbsOrigin()
+			local dir = (enemy:GetAbsOrigin() - center):Normalized()
+			local point = self.caster:GetAbsOrigin() + dir * self.talents.r7_knock_distance
+
+			local knockbackProperties = {
+				center_x = center.x,
+				center_y = center.y,
+				center_z = center.z,
+				duration = self.talents.r7_knock_duration,
+				knockback_duration = self.talents.r7_knock_duration,
+				knockback_distance = (point - enemy:GetAbsOrigin()):Length2D(),
+				knockback_height = 0,
+				should_stun = 0,
+			}
+			enemy:AddNewModifier(self.caster, self, "modifier_knockback", knockbackProperties)
+		end
+
+		enemy:AddNewModifier(
+			self.caster,
+			self,
+			"modifier_mars_arena_of_blood_custom_legendary_stack",
+			{ duration = self.talents.r7_duration }
+		)
+		enemy:AddNewModifier(
+			self.caster,
+			self,
+			"modifier_mars_arena_of_blood_custom_legendary_slow",
+			{ duration = self.talents.r7_slow_duration * (1 - enemy:GetStatusResistance()) }
+		)
+	end
+end
+
+modifier_mars_arena_of_blood_custom_legendary_stack = class(mod_visible)
+function modifier_mars_arena_of_blood_custom_legendary_stack:OnCreated(table)
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.max = self.ability.talents.r7_max
+
+	if not IsServer() then
+		return
+	end
+	self.RemoveForDuel = true
+	self:OnRefresh()
+end
+
+function modifier_mars_arena_of_blood_custom_legendary_stack:OnRefresh()
+	if not IsServer() then
+		return
+	end
+	if self:GetStackCount() >= self.max then
+		return
+	end
+	self:IncrementStackCount()
+
+	if not self.effect_cast then
+		self.effect_cast = self.parent:GenericParticle("particles/mars_taunt_timer.vpcf", self, true)
+	end
+	ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(0, self:GetStackCount(), 0))
+end
+
+modifier_mars_arena_of_blood_custom_legendary_slow = class(mod_hidden)
+function modifier_mars_arena_of_blood_custom_legendary_slow:IsPurgable()
+	return true
+end
+function modifier_mars_arena_of_blood_custom_legendary_slow:GetStatusEffectName()
+	return "particles/status_fx/status_effect_brewmaster_thunder_clap.vpcf"
+end
+function modifier_mars_arena_of_blood_custom_legendary_slow:StatusEffectPriority()
+	return MODIFIER_PRIORITY_NORMAL
+end
+function modifier_mars_arena_of_blood_custom_legendary_slow:OnCreated(table)
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.slow = self.ability.talents.r7_slow
+	if not IsServer() then
+		return
+	end
+	self.parent:GenericParticle("particles/units/heroes/hero_brewmaster/brewmaster_thunder_clap_debuff.vpcf", self)
+end
+
+function modifier_mars_arena_of_blood_custom_legendary_slow:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+	}
+end
+
+function modifier_mars_arena_of_blood_custom_legendary_slow:GetModifierMoveSpeedBonus_Percentage()
+	return self.slow
+end
+
 mars_wall_custom = class({})
+function mars_wall_custom:Precache(context)
+	if self:GetCaster() and self:GetCaster():IsIllusion() then
+		return
+	end
+
+	PrecacheResource("particle", "particles/mars/shard_wall.vpcf", context)
+	PrecacheResource("particle", "particles/centaur/return_legendary_pulses.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_brewmaster/brewmaster_thunder_clap_debuff.vpcf", context)
+end
 
 function mars_wall_custom:Init()
 	if not self:GetCaster() then
@@ -1002,6 +1041,24 @@ function mars_wall_custom:OnSpellStart()
 end
 
 modifier_mars_arena_of_blood_custom_wall = class(mod_hidden)
+function modifier_mars_arena_of_blood_custom_wall:IsAura()
+	return true
+end
+function modifier_mars_arena_of_blood_custom_wall:GetModifierAura()
+	return "modifier_mars_arena_of_blood_custom_wall_slow"
+end
+function modifier_mars_arena_of_blood_custom_wall:GetAuraRadius()
+	return self.radius
+end
+function modifier_mars_arena_of_blood_custom_wall:GetAuraDuration()
+	return 0.5
+end
+function modifier_mars_arena_of_blood_custom_wall:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_ENEMY
+end
+function modifier_mars_arena_of_blood_custom_wall:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
+end
 function modifier_mars_arena_of_blood_custom_wall:OnCreated()
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
@@ -1124,25 +1181,6 @@ function modifier_mars_arena_of_blood_custom_wall:OnDestroy()
 	self.parent:EmitSound("Mars.Wall_end")
 end
 
-function modifier_mars_arena_of_blood_custom_wall:IsAura()
-	return true
-end
-function modifier_mars_arena_of_blood_custom_wall:GetModifierAura()
-	return "modifier_mars_arena_of_blood_custom_wall_slow"
-end
-function modifier_mars_arena_of_blood_custom_wall:GetAuraRadius()
-	return self.radius
-end
-function modifier_mars_arena_of_blood_custom_wall:GetAuraDuration()
-	return 0.5
-end
-function modifier_mars_arena_of_blood_custom_wall:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_ENEMY
-end
-function modifier_mars_arena_of_blood_custom_wall:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
-end
-
 modifier_mars_arena_of_blood_custom_wall_slow = class(mod_hidden)
 function modifier_mars_arena_of_blood_custom_wall_slow:OnCreated()
 	self.parent = self:GetParent()
@@ -1176,44 +1214,3 @@ function modifier_mars_arena_of_blood_custom_wall_leash:CheckState()
 end
 
 modifier_mars_arena_of_blood_custom_wall_blocker = class(mod_hidden)
-
-modifier_mars_arena_of_blood_custom_cd_items = class(mod_hidden)
-function modifier_mars_arena_of_blood_custom_cd_items:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.move = self.ability.talents.q4_move
-	self.cd_items = self.ability.talents.q4_cd_items_arena
-	self.interval = 0.5
-
-	if not IsServer() then
-		return
-	end
-	self.parent:GenericParticle("particles/units/heroes/hero_marci/marci_rebound_allymovespeed.vpcf", self)
-	self:StartIntervalThink(self.interval)
-end
-
-function modifier_mars_arena_of_blood_custom_cd_items:OnIntervalThink()
-	if not IsServer() then
-		return
-	end
-	self.parent:CdItems(self.cd_items * self.interval)
-end
-
-function modifier_mars_arena_of_blood_custom_cd_items:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-		MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS,
-	}
-end
-
-function modifier_mars_arena_of_blood_custom_cd_items:GetActivityTranslationModifiers()
-	return "spear_stun"
-end
-
-function modifier_mars_arena_of_blood_custom_cd_items:GetModifierMoveSpeedBonus_Percentage()
-	if self.parent:HasModifier("modifier_mars_spear_custom_hit_speed") then
-		return
-	end
-	return self.move
-end

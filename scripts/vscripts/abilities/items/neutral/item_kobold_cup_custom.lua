@@ -28,16 +28,19 @@ function item_kobold_cup_custom:Precache(context)
 	PrecacheResource("particle", "particles/items5_fx/kobold_cup.vpcf", context)
 end
 
+function item_kobold_cup_custom:Spawn()
+	self.duration = self:GetSpecialValueFor("duration")
+	self.radius = self:GetSpecialValueFor("radius")
+	self.linger = self:GetSpecialValueFor("linger")
+	self.movespeed = self:GetSpecialValueFor("movespeed")
+	self.evasion = self:GetSpecialValueFor("evasion")
+end
+
 function item_kobold_cup_custom:OnSpellStart()
 	local caster = self:GetCaster()
 	caster:EmitSound("item_kobold_cup.activate")
 	caster:RemoveModifierByName("modifier_item_kobold_cup_custom")
-	caster:AddNewModifier(
-		caster,
-		self,
-		"modifier_item_kobold_cup_custom",
-		{ duration = self:GetSpecialValueFor("duration") }
-	)
+	caster:AddNewModifier(caster, self, "modifier_item_kobold_cup_custom", { duration = self.duration })
 end
 
 modifier_item_kobold_cup_custom = class(mod_visible)
@@ -62,8 +65,8 @@ end
 function modifier_item_kobold_cup_custom:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
-	self.radius = self.ability:GetSpecialValueFor("radius")
-	self.linger = self.ability:GetSpecialValueFor("linger")
+	self.radius = self.ability.radius
+	self.linger = self.ability.linger
 	self.parent:AddAttackEvent_inc(self, true)
 end
 
@@ -86,8 +89,8 @@ function modifier_item_kobold_cup_custom_movespeed:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.movespeed = self.ability:GetSpecialValueFor("movespeed")
-	self.evasion = self.ability:GetSpecialValueFor("evasion")
+	self.movespeed = self.ability.movespeed
+	self.evasion = self.ability.evasion
 
 	if not IsServer() then
 		return

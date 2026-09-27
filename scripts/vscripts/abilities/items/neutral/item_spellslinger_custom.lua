@@ -30,6 +30,12 @@ function item_spellslinger_custom:Precache(context)
 	PrecacheResource("particle", "particles/items8_fx/foragers_kit_buff_mana.vpcf", context)
 end
 
+function item_spellslinger_custom:Spawn()
+	self.health = self:GetSpecialValueFor("health")
+	self.chance = self:GetSpecialValueFor("chance")
+	self.mana = self:GetSpecialValueFor("mana")
+end
+
 modifier_item_spellslinger_custom = class(mod_hidden)
 function modifier_item_spellslinger_custom:RemoveOnDeath()
 	return false
@@ -38,9 +44,9 @@ function modifier_item_spellslinger_custom:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.health = self.ability:GetSpecialValueFor("health") / 100
-	self.chance = self.ability:GetSpecialValueFor("chance")
-	self.mana = self.ability:GetSpecialValueFor("mana") / 100
+	self.health = self.ability.health / 100
+	self.chance = self.ability.chance
+	self.mana = self.ability.mana / 100
 	if not self.parent:IsRealHero() then
 		return
 	end
@@ -61,6 +67,9 @@ function modifier_item_spellslinger_custom:SpellEvent(params)
 	if not IsServer() then
 		return
 	end
+	if not IsValid(self.ability) then
+		return
+	end
 	if not self.ability:IsFullyCastable() then
 		return
 	end
@@ -77,5 +86,5 @@ function modifier_item_spellslinger_custom:SpellEvent(params)
 	self.parent:SendNumber(OVERHEAD_ALERT_MANA_ADD, heal)
 	self.parent:GenericParticle("particles/items8_fx/foragers_kit_buff_mana.vpcf")
 
-	self.ability:UseResources(false, false, false, true)
+	self.ability:StartCd()
 end

@@ -90,6 +90,9 @@ function jakiro_ice_path_custom:Precache(context)
 	PrecacheResource("particle", "particles/jakiro/path_legendary_caster_fire.vpcf", context)
 	PrecacheResource("particle", "particles/jakiro/path_legendary_caster_ice.vpcf", context)
 	PrecacheResource("particle", "particles/jakiro/ice_path_custom_both.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_jakiro/jakiro_base_attack.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_jakiro/jakiro_base_attack_dual.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_jakiro/jakiro_icepath_debuff.vpcf", context)
 end
 
 function jakiro_ice_path_custom:UpdateTalents(name)
@@ -129,7 +132,6 @@ function jakiro_ice_path_custom:UpdateTalents(name)
 			w7_damage = caster:GetTalentValue("modifier_jakiro_path_7", "damage", true),
 			w7_range = caster:GetTalentValue("modifier_jakiro_path_7", "range", true),
 			w7_armor = caster:GetTalentValue("modifier_jakiro_path_7", "armor", true) / 100,
-			w7_shield = caster:GetTalentValue("modifier_jakiro_path_7", "shield", true) / 100,
 			w7_speed = caster:GetTalentValue("modifier_jakiro_path_7", "speed", true),
 			w7_stun = caster:GetTalentValue("modifier_jakiro_path_7", "stun", true),
 			w7_max = caster:GetTalentValue("modifier_jakiro_path_7", "max", true),
@@ -145,7 +147,7 @@ function jakiro_ice_path_custom:UpdateTalents(name)
 		self.talents.w1_damage = caster:GetTalentValue("modifier_jakiro_path_1", "damage")
 		self.talents.w1_range = caster:GetTalentValue("modifier_jakiro_path_1", "range")
 		if IsServer() then
-			self.caster:AddSpellEvent(self.tracker, true)
+			caster:AddSpellEvent(self.tracker, true)
 		end
 	end
 
@@ -203,6 +205,18 @@ function jakiro_ice_path_custom:GetAbilityTextureName()
 	return "jakiro_ice_path_fire"
 end
 
+function jakiro_ice_path_custom:GetCastAnimation()
+	return 0
+end
+
+function jakiro_ice_path_custom:GetBehavior()
+	return DOTA_ABILITY_BEHAVIOR_POINT + (self.caster:HasShard() and DOTA_ABILITY_BEHAVIOR_AUTOCAST or 0)
+end
+
+function jakiro_ice_path_custom:GetCastPoint(iLevel)
+	return self.BaseClass.GetCastPoint(self) + (self.talents.has_w4 == 1 and self.talents.w4_cast or 0)
+end
+
 function jakiro_ice_path_custom:OnInventoryContentsChanged()
 	if not IsServer() then
 		return
@@ -216,18 +230,6 @@ function jakiro_ice_path_custom:OnInventoryContentsChanged()
 
 	self.shard_init = true
 	self:ToggleAutoCast()
-end
-
-function jakiro_ice_path_custom:GetCastAnimation()
-	return 0
-end
-
-function jakiro_ice_path_custom:GetBehavior()
-	return DOTA_ABILITY_BEHAVIOR_POINT + (self.caster:HasShard() and DOTA_ABILITY_BEHAVIOR_AUTOCAST or 0)
-end
-
-function jakiro_ice_path_custom:GetCastPoint(iLevel)
-	return self.BaseClass.GetCastPoint(self) + (self.talents.has_w4 == 1 and self.talents.w4_cast or 0)
 end
 
 function jakiro_ice_path_custom:OnAbilityPhaseStart()
@@ -251,10 +253,9 @@ function jakiro_ice_path_custom:OnSpellStart()
 	local duration = self.path_duration
 	local both = self.caster:HasModifier("modifier_jakiro_liquid_fire_custom_legendary_acitve") and 1 or 0
 	local is_ice = (self.caster:HasModifier("modifier_jakiro_innate_custom_active_frost") and both == 0) and 1 or 0
-	local new_spell = 0
 
 	if IsValid(self.caster.jakiro_innate) then
-		new_spell = self.caster.jakiro_innate:SpellCast(self, is_ice)
+		self.caster.jakiro_innate:SpellCast(self, is_ice)
 	end
 
 	if
@@ -296,6 +297,9 @@ end
 
 function jakiro_ice_path_custom:OnProjectileHit(target, vLocation)
 	if not IsServer() then
+		return
+	end
+	if not target then
 		return
 	end
 
@@ -541,7 +545,7 @@ function modifier_jakiro_ice_path_custom_tracker:GetModifierProcAttack_Feedback(
 		ParticleManager:ReleaseParticleIndex(effect)
 
 		target:AddNewModifier(
-			self.caster,
+			self.parent,
 			self.ability,
 			"modifier_jakiro_ice_path_custom_legendary_armor",
 			{ duration = 0.1 }
@@ -813,13 +817,6 @@ end
 function modifier_jakiro_ice_path_custom_stun:StatusEffectPriority()
 	return MODIFIER_PRIORITY_NORMAL
 end
-function modifier_jakiro_ice_path_custom_stun:CheckState()
-	return {
-		[MODIFIER_STATE_FROZEN] = true,
-		[MODIFIER_STATE_STUNNED] = true,
-	}
-end
-
 function modifier_jakiro_ice_path_custom_stun:OnCreated()
 	if not IsServer() then
 		return
@@ -827,6 +824,13 @@ function modifier_jakiro_ice_path_custom_stun:OnCreated()
 	self.parent = self:GetParent()
 	self.parent:GenericParticle("particles/units/heroes/hero_jakiro/jakiro_icepath_debuff.vpcf", self)
 	self.parent:GenericParticle("particles/generic_gameplay/generic_stunned.vpcf", self, true)
+end
+
+function modifier_jakiro_ice_path_custom_stun:CheckState()
+	return {
+		[MODIFIER_STATE_FROZEN] = true,
+		[MODIFIER_STATE_STUNNED] = true,
+	}
 end
 
 modifier_jakiro_ice_path_custom_fire_debuff = class(mod_visible)
@@ -1124,12 +1128,6 @@ function modifier_jakiro_ice_path_custom_legendary_stack:OnRefresh()
 		return
 	end
 	self:IncrementStackCount()
-end
-
-function modifier_jakiro_ice_path_custom_legendary_stack:OnStackCountChanged()
-	if not IsServer() then
-		return
-	end
 
 	if self.ability.tracker then
 		self.ability.tracker:UpdateUI()

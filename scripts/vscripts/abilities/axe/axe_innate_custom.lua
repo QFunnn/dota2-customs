@@ -20,6 +20,7 @@ function axe_innate_custom:Precache(context)
 	PrecacheResource("model", "models/items/axe/axe_carnival/axe_carnival_base.vmdl", context)
 	PrecacheResource("soundfile", "soundevents/npc_dota_hero_axe.vsndevts", context)
 	PrecacheResource("soundfile", "soundevents/vo_custom/axe_vo_custom.vsndevts", context)
+	PrecacheResource("particle", "particles/brist_lowhp_.vpcf", context)
 end
 
 function axe_innate_custom:UpdateTalents(name)
@@ -81,8 +82,6 @@ function modifier_axe_coat_of_blood_custom:OnCreated(table)
 	self.ability.tracker = self
 	self.ability:UpdateTalents()
 
-	self.parent:AddDeathEvent(self, true)
-
 	self.armor = self.ability:GetSpecialValueFor("armor")
 	self.str = self.ability:GetSpecialValueFor("str")
 	self.max = self.ability:GetSpecialValueFor("max")
@@ -90,6 +89,7 @@ function modifier_axe_coat_of_blood_custom:OnCreated(table)
 	if not IsServer() then
 		return
 	end
+	self.parent:AddDeathEvent(self, true)
 	self:SetStackCount(0)
 end
 
@@ -106,26 +106,31 @@ function modifier_axe_coat_of_blood_custom:DamageEvent_out(params)
 		return
 	end
 
-	if not params.inflictor and self.ability.talents.has_r2 == 1 then
-		local effect = ""
-		local heal = params.damage * result * self.ability.talents.r2_heal
-		if params.unit:GetHealthPercent() >= self.ability.talents.r2_health then
-			heal = heal * self.ability.talents.r2_bonus
-			effect = nil
+	if params.inflictor then
+		if self.ability.talents.has_w3 == 0 then
+			return
 		end
-		self.parent:GenericHeal(heal, self.ability, true, effect, "modifier_axe_culling_2")
+		self.parent:GenericHeal(
+			params.damage * self.ability.talents.w3_heal * result,
+			self.ability,
+			true,
+			"particles/items3_fx/octarine_core_lifesteal.vpcf",
+			"modifier_axe_hunger_3"
+		)
 		return
 	end
-	if self.ability.talents.has_w3 == 0 then
+
+	if self.ability.talents.has_r2 == 0 then
 		return
 	end
-	self.parent:GenericHeal(
-		params.damage * self.ability.talents.w3_heal * result,
-		self.ability,
-		true,
-		"particles/items3_fx/octarine_core_lifesteal.vpcf",
-		"modifier_axe_hunger_3"
-	)
+
+	local effect = ""
+	local heal = params.damage * result * self.ability.talents.r2_heal
+	if params.unit:GetHealthPercent() >= self.ability.talents.r2_health then
+		heal = heal * self.ability.talents.r2_bonus
+		effect = nil
+	end
+	self.parent:GenericHeal(heal, self.ability, true, effect, "modifier_axe_culling_2")
 end
 
 function modifier_axe_coat_of_blood_custom:DeclareFunctions()

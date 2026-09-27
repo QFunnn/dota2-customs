@@ -25,17 +25,29 @@ function item_manta_custom:GetIntrinsicModifierName()
 	return "item_manta_custom_passive"
 end
 
+function item_manta_custom:Spawn()
+	self.invuln_duration = self:GetSpecialValueFor("invuln_duration")
+	self.vision_radius = self:GetSpecialValueFor("vision_radius")
+	self.illusion_damage_range = self:GetSpecialValueFor("illusion_damage_range")
+	self.illusion_damage_melee = self:GetSpecialValueFor("illusion_damage_melee")
+	self.illusion_incoming = self:GetSpecialValueFor("illusion_incoming")
+	self.illusion_duration = self:GetSpecialValueFor("illusion_duration")
+	self.images_count = self:GetSpecialValueFor("images_count")
+	self.bonus_agility = self:GetSpecialValueFor("bonus_agility")
+	self.bonus_strength = self:GetSpecialValueFor("bonus_strength")
+	self.bonus_intellect = self:GetSpecialValueFor("bonus_intellect")
+	self.bonus_movement_speed = self:GetSpecialValueFor("bonus_movement_speed")
+	self.bonus_attack_speed = self:GetSpecialValueFor("bonus_attack_speed")
+	self.illusion_heal = self:GetSpecialValueFor("illusion_heal")
+	self.illusion_move = self:GetSpecialValueFor("illusion_move")
+end
+
 function item_manta_custom:OnSpellStart()
 	local caster = self:GetCaster()
 
 	caster:EmitSound("DOTA_Item.Manta.Activate")
 	caster:Purge(false, true, false, false, false)
-	caster:AddNewModifier(
-		caster,
-		self,
-		"item_manta_custom_invulnerable",
-		{ duration = self:GetSpecialValueFor("invuln_duration") }
-	)
+	caster:AddNewModifier(caster, self, "item_manta_custom_invulnerable", { duration = self.invuln_duration })
 
 	ProjectileManager:ProjectileDodge(caster)
 end
@@ -44,7 +56,6 @@ item_manta_custom_invulnerable = class(mod_hidden)
 function item_manta_custom_invulnerable:GetEffectName()
 	return "particles/items2_fx/manta_phase.vpcf"
 end
-
 function item_manta_custom_invulnerable:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -60,18 +71,12 @@ function item_manta_custom_invulnerable:OnDestroy()
 
 	self.parent:Stop()
 
-	AddFOWViewer(
-		self.parent:GetTeamNumber(),
-		self.parent:GetAbsOrigin(),
-		self.ability:GetSpecialValueFor("vision_radius"),
-		1,
-		false
-	)
+	AddFOWViewer(self.parent:GetTeamNumber(), self.parent:GetAbsOrigin(), self.ability.vision_radius, 1, false)
 
-	local damage = self.parent:IsRangedAttacker() and self.ability:GetSpecialValueFor("illusion_damage_range")
-		or self.ability:GetSpecialValueFor("illusion_damage_melee")
-	local incoming = self.ability:GetSpecialValueFor("illusion_incoming") - 100
-	local duration = self.ability:GetSpecialValueFor("illusion_duration")
+	local damage = self.parent:IsRangedAttacker() and self.ability.illusion_damage_range
+		or self.ability.illusion_damage_melee
+	local incoming = self.ability.illusion_incoming - 100
+	local duration = self.ability.illusion_duration
 
 	local illusions = CreateIllusions(self.parent, self.parent, {
 		outgoing_damage = damage - 100,
@@ -81,7 +86,7 @@ function item_manta_custom_invulnerable:OnDestroy()
 		outgoing_damage_structure = nil,
 		outgoing_damage_roshan = nil,
 		duration = duration,
-	}, self.ability:GetSpecialValueFor("images_count"), 120, true, true)
+	}, self.ability.images_count, 120, true, true)
 
 	for _, illusion in pairs(illusions) do
 		illusion.owner = self.parent
@@ -110,6 +115,23 @@ item_manta_custom_passive = class(mod_hidden)
 function item_manta_custom_passive:RemoveOnDeath()
 	return false
 end
+function item_manta_custom_passive:OnCreated(table)
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.agi = self.ability.bonus_agility
+	self.str = self.ability.bonus_strength
+	self.int = self.ability.bonus_intellect
+
+	self.move = self.ability.bonus_movement_speed
+	self.attack = self.ability.bonus_attack_speed
+	self.heal = self.ability.illusion_heal / 100
+	if not IsServer() then
+		return
+	end
+	self.parent:AddAttackEvent_out(self, true)
+end
+
 function item_manta_custom_passive:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
@@ -120,25 +142,11 @@ function item_manta_custom_passive:DeclareFunctions()
 	}
 end
 
-function item_manta_custom_passive:OnCreated(table)
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.agi = self.ability:GetSpecialValueFor("bonus_agility")
-	self.str = self.ability:GetSpecialValueFor("bonus_strength")
-	self.int = self.ability:GetSpecialValueFor("bonus_intellect")
-
-	self.move = self.ability:GetSpecialValueFor("bonus_movement_speed")
-	self.attack = self.ability:GetSpecialValueFor("bonus_attack_speed")
-	self.heal = self.ability:GetSpecialValueFor("illusion_heal") / 100
+function item_manta_custom_passive:AttackEvent_out(params)
 	if not IsServer() then
 		return
 	end
-	self.parent:AddAttackEvent_out(self, true)
-end
-
-function item_manta_custom_passive:AttackEvent_out(params)
-	if not IsServer() then
+	if not IsValid(self.ability) then
 		return
 	end
 	local target = params.target
@@ -166,12 +174,15 @@ end
 function item_manta_custom_passive:GetModifierBonusStats_Agility()
 	return self.agi
 end
+
 function item_manta_custom_passive:GetModifierBonusStats_Strength()
 	return self.str
 end
+
 function item_manta_custom_passive:GetModifierAttackSpeedBonus_Constant()
 	return self.attack
 end
+
 function item_manta_custom_passive:GetModifierBonusStats_Intellect()
 	return self.int
 end
@@ -193,17 +204,11 @@ function item_manta_custom_passive:GetModifierMoveSpeedBonus_Percentage_Unique()
 	return self.move
 end
 
-item_manta_custom_illusion = class({})
-function item_manta_custom_illusion:IsHidden()
-	return true
-end
-function item_manta_custom_illusion:IsPurgable()
-	return false
-end
+item_manta_custom_illusion = class(mod_hidden)
 function item_manta_custom_illusion:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
-	self.move = self.ability:GetSpecialValueFor("illusion_move")
+	self.move = self.ability.illusion_move
 end
 
 function item_manta_custom_illusion:DeclareFunctions()

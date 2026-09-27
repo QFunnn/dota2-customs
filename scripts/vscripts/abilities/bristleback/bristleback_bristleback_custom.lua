@@ -54,9 +54,7 @@ function bristleback_bristleback_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_bristleback/bristleback_back_dmg.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_bristleback/bristleback_quill_spray_impact.vpcf", context)
 	PrecacheResource("particle", "particles/pangolier/linken_proc.vpcf", context)
-	PrecacheResource("particle", "particles/units/heroes/hero_bristleback/bristleback_back_dmg.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_bristleback/bristleback_back_lrg_dmg.vpcf", context)
-	PrecacheResource("particle", "particles/units/heroes/hero_bristleback/bristleback_back_dmg.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_pangolier/pangolier_tailthump_buff.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_pangolier/pangolier_tailthump_buff_egg.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_pangolier/pangolier_tailthump_buff_streaks.vpcf", context)
@@ -75,9 +73,12 @@ function bristleback_bristleback_custom:Precache(context)
 	)
 	PrecacheResource("particle", "particles/bristleback/back_mana.vpcf", context)
 	PrecacheResource("particle", "particles/bristleback/back_taunt.vpcf", context)
+	PrecacheResource("particle", "particles/brist_proc.vpcf", context)
+	PrecacheResource("particle", "particles/lc_lowhp.vpcf", context)
+	PrecacheResource("particle", "particles/bristleback/spray_double.vpcf", context)
 end
 
-function bristleback_bristleback_custom:UpdateTalents()
+function bristleback_bristleback_custom:UpdateTalents(name)
 	local caster = self:GetCaster()
 	if not self.init then
 		self.init = true
@@ -129,7 +130,7 @@ function bristleback_bristleback_custom:UpdateTalents()
 		self.talents.has_e3 = 1
 		self.talents.e3_health = caster:GetTalentValue("modifier_bristle_back_3", "health")
 		self.talents.e3_spell = caster:GetTalentValue("modifier_bristle_back_3", "spell")
-		if IsServer() then
+		if IsServer() and self.tracker then
 			self.tracker:UpdateUI()
 			caster:CalculateStatBonus(true)
 		end
@@ -137,10 +138,6 @@ function bristleback_bristleback_custom:UpdateTalents()
 
 	if caster:HasTalent("modifier_bristle_back_4") then
 		self.talents.has_e4 = 1
-	end
-
-	if caster:HasTalent("modifier_bristle_back_7") then
-		self.talents.has_e7 = 1
 	end
 
 	if caster:HasTalent("modifier_bristle_hero_5") then
@@ -178,6 +175,7 @@ function bristleback_bristleback_custom:GetCooldown(iLevel)
 	if self.talents.has_h5 == 1 then
 		return self.talents.h5_talent_cd
 	end
+	return 0
 end
 
 function bristleback_bristleback_custom:OnSpellStart()
@@ -241,7 +239,7 @@ function bristleback_bristleback_custom:GetFacing(attacker)
 		return 1
 	end
 
-	if (difference <= (self.back_angle / 1)) or (difference >= (360 - (self.back_angle / 1))) then
+	if (difference <= self.back_angle) or (difference >= (360 - self.back_angle)) then
 		return 1
 	elseif difference <= self.side_angle or difference >= (360 - self.side_angle) then
 		return 2
@@ -511,7 +509,10 @@ function modifier_bristleback_bristleback_custom_tracker:IncStacks(stack, attack
 				self.parent,
 				self.ability,
 				"modifier_bristleback_bristleback_custom_buff_count",
-				{ duration = self.ability.talents.e3_stack_duration }
+				{
+					duration = self.ability.talents.has_e3 == 1 and self.ability.talents.e3_stack_duration
+						or self.ability.talents.e4_stack_duration,
+				}
 			)
 		end
 
@@ -574,22 +575,13 @@ function modifier_bristleback_bristleback_custom_buff_count:OnCreated(table)
 	end
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
+	self.RemoveForDuel = true
 
 	self.stack = 0
-	self.max = self.ability.talents.e3_stack
+	self.max = self.ability.talents.has_e3 == 1 and self.ability.talents.e3_stack or self.ability.talents.e4_stack
 	self.visual_max = self.max
 	self.particle = self.parent:GenericParticle("particles/bristleback/back_buff_count.vpcf", self, true)
 	self:OnRefresh()
-end
-
-function modifier_bristleback_bristleback_custom_buff_count:OnDestroy()
-	if not IsServer() then
-		return
-	end
-
-	if self.ability.tracker then
-		self.ability.tracker:UpdateUI()
-	end
 end
 
 function modifier_bristleback_bristleback_custom_buff_count:OnRefresh()
@@ -668,6 +660,16 @@ function modifier_bristleback_bristleback_custom_buff_count:OnRefresh()
 	end
 end
 
+function modifier_bristleback_bristleback_custom_buff_count:OnDestroy()
+	if not IsServer() then
+		return
+	end
+
+	if self.ability.tracker then
+		self.ability.tracker:UpdateUI()
+	end
+end
+
 modifier_bristleback_bristleback_custom_buff_active = class(mod_visible)
 function modifier_bristleback_bristleback_custom_buff_active:GetTexture()
 	return "buffs/bristleback/back_3"
@@ -684,6 +686,7 @@ function modifier_bristleback_bristleback_custom_buff_active:OnCreated(table)
 	end
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
+	self.RemoveForDuel = true
 
 	self.parent:EmitSound("Lc.Moment_Lowhp")
 	self.parent:GenericParticle("particles/lc_lowhp.vpcf", self)
@@ -794,9 +797,17 @@ end
 bristleback_quill_spray_custom_legendary = class({})
 bristleback_quill_spray_custom_legendary.talents = {}
 
-function bristleback_quill_spray_custom_legendary:CreateTalent()
-	self:SetHidden(false)
-	self:SetLevel(1)
+function bristleback_quill_spray_custom_legendary:Init()
+	if not self:GetCaster() then
+		return
+	end
+	self.caster = self:GetCaster()
+
+	self.activation_delay = self:GetLevelSpecialValueFor("activation_delay", 1)
+	self.activation_spray_interval = self:GetLevelSpecialValueFor("activation_spray_interval", 1)
+	self.activation_angle = self:GetLevelSpecialValueFor("activation_angle", 1)
+	self.caster.spray_legendary_ability = self
+	self:UpdateTalents()
 end
 
 function bristleback_quill_spray_custom_legendary:UpdateTalents(name)
@@ -804,23 +815,14 @@ function bristleback_quill_spray_custom_legendary:UpdateTalents(name)
 	if not self.init then
 		self.init = true
 		self.talents = {
-			has_e7 = 0,
 			e7_health = caster:GetTalentValue("modifier_bristle_back_7", "health", true),
 			e7_talent_cd = caster:GetTalentValue("modifier_bristle_back_7", "talent_cd", true),
 		}
 	end
 end
 
-function bristleback_quill_spray_custom_legendary:Init()
-	if not self:GetCaster() then
-		return
-	end
-	self.caster = self:GetCaster()
-	self:UpdateTalents()
-end
-
 function bristleback_quill_spray_custom_legendary:GetCooldown(iLevel)
-	return self.talents.e7_talent_cd
+	return self.talents.e7_talent_cd or 0
 end
 
 function bristleback_quill_spray_custom_legendary:OnSpellStart()
@@ -842,18 +844,23 @@ function bristleback_quill_spray_custom_legendary:OnSpellStart()
 	end
 end
 
+function bristleback_quill_spray_custom_legendary:CreateTalent()
+	self:SetHidden(false)
+	self:SetLevel(1)
+end
+
 modifier_bristleback_bristleback_custom_legendary = class(mod_hidden)
 function modifier_bristleback_bristleback_custom_legendary:OnCreated()
 	if not IsServer() then
 		return
 	end
-	self.ability = self:GetAbility()
 	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
 
 	self.count = 0
 	self.max =
 		math.max(1, math.floor((self.parent:GetMaxHealth() - self.parent:GetHealth()) / self.ability.talents.e7_health))
-	self.interval = self.ability:GetSpecialValueFor("activation_spray_interval")
+	self.interval = self.ability.activation_spray_interval
 	self.quill_spray_ability = self.parent.spray_ability
 
 	local number_1 = self.max >= 10 and math.floor(self.max / 10) or self.max
@@ -866,7 +873,7 @@ function modifier_bristleback_bristleback_custom_legendary:OnCreated()
 	ParticleManager:ReleaseParticleIndex(effect_cast)
 
 	self.ability:EndCd()
-	self:StartIntervalThink(self.ability:GetSpecialValueFor("activation_delay"))
+	self:StartIntervalThink(self.ability.activation_delay)
 end
 
 function modifier_bristleback_bristleback_custom_legendary:OnIntervalThink()

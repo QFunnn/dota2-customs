@@ -34,6 +34,16 @@ function item_conjurers_catalyst_custom:Precache(context)
 	end
 	PrecacheResource("particle", "particles/items7_fx/misrule_focus.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_invoker/invoker_chaos_meteor_burn_debuff.vpcf", context)
+	PrecacheResource("particle", "particles/items3_fx/octarine_core_lifesteal.vpcf", context)
+	PrecacheResource("particle", "particles/status_fx/status_effect_burn.vpcf", context)
+end
+
+function item_conjurers_catalyst_custom:Spawn()
+	self.duration = self:GetSpecialValueFor("duration")
+	self.damage = self:GetSpecialValueFor("damage")
+	self.damage_health = self:GetSpecialValueFor("damage_health") / 100
+	self.heal = self:GetSpecialValueFor("heal") / 100
+	self.radius = self:GetSpecialValueFor("radius")
 end
 
 modifier_item_conjurers_catalyst_custom = class(mod_hidden)
@@ -44,17 +54,14 @@ function modifier_item_conjurers_catalyst_custom:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.ability.duration = self.ability:GetSpecialValueFor("duration")
-	self.ability.damage = self.ability:GetSpecialValueFor("damage")
-	self.ability.damage_health = self.ability:GetSpecialValueFor("damage_health") / 100
-	self.ability.heal = self.ability:GetSpecialValueFor("heal") / 100
-	self.ability.radius = self.ability:GetSpecialValueFor("radius")
-
 	self.parent:AddSpellEvent(self, true)
 end
 
 function modifier_item_conjurers_catalyst_custom:SpellEvent(params)
 	if not IsServer() then
+		return
+	end
+	if not IsValid(self.ability) then
 		return
 	end
 	if not self.ability:IsFullyCastable() then
@@ -96,12 +103,21 @@ function modifier_item_conjurers_catalyst_custom:SpellEvent(params)
 		aoe_target:AddNewModifier(self.parent, self.ability, "modifier_item_conjurers_catalyst_custom_burn", {})
 	end
 
-	self.ability:UseResources(false, false, false, true)
+	self.ability:StartCd()
 end
 
 modifier_item_conjurers_catalyst_custom_burn = class(mod_hidden)
 function modifier_item_conjurers_catalyst_custom_burn:IsPurgable()
 	return true
+end
+function modifier_item_conjurers_catalyst_custom_burn:GetEffectName()
+	return "particles/units/heroes/hero_invoker/invoker_chaos_meteor_burn_debuff.vpcf"
+end
+function modifier_item_conjurers_catalyst_custom_burn:GetStatusEffectName()
+	return "particles/status_fx/status_effect_burn.vpcf"
+end
+function modifier_item_conjurers_catalyst_custom_burn:StatusEffectPriority()
+	return MODIFIER_PRIORITY_NORMAL
 end
 function modifier_item_conjurers_catalyst_custom_burn:OnCreated()
 	self.ability = self:GetAbility()
@@ -152,16 +168,4 @@ function modifier_item_conjurers_catalyst_custom_burn:OnIntervalThink()
 		self:Destroy()
 		return
 	end
-end
-
-function modifier_item_conjurers_catalyst_custom_burn:GetEffectName()
-	return "particles/units/heroes/hero_invoker/invoker_chaos_meteor_burn_debuff.vpcf"
-end
-
-function modifier_item_conjurers_catalyst_custom_burn:GetStatusEffectName()
-	return "particles/status_fx/status_effect_burn.vpcf"
-end
-
-function modifier_item_conjurers_catalyst_custom_burn:StatusEffectPriority()
-	return MODIFIER_PRIORITY_NORMAL
 end

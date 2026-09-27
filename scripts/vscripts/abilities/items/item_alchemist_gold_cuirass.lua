@@ -62,11 +62,35 @@ function item_alchemist_gold_cuirass:Precache(context)
 
 	PrecacheResource("particle", "particles/econ/events/ti10/mjollnir_shield_ti10.vpcf", context)
 	PrecacheResource("particle", "particles/econ/events/ti10/maelstrom_ti10.vpcf", context)
+	PrecacheResource("particle", "particles/status_fx/status_effect_mjollnir_shield.vpcf", context)
+end
+
+function item_alchemist_gold_cuirass:Spawn()
+	self.static_duration = self:GetSpecialValueFor("static_duration")
+	self.radius = self:GetSpecialValueFor("radius")
+	self.bonus_damage = self:GetSpecialValueFor("bonus_damage")
+	self.bonus_attack_speed = self:GetSpecialValueFor("bonus_attack_speed")
+	self.bonus_armor = self:GetSpecialValueFor("bonus_armor")
+	self.bonus_health = self:GetSpecialValueFor("bonus_health")
+	self.chain_chance = self:GetSpecialValueFor("chain_chance")
+	self.chain_cooldown = self:GetSpecialValueFor("chain_cooldown")
+	self.aura_negative_armor = self:GetSpecialValueFor("aura_negative_armor")
+	self.aura_heal_reduce = self:GetSpecialValueFor("aura_heal_reduce")
+	self.aura_resist = self:GetSpecialValueFor("aura_resist")
+	self.bonus_speed = self:GetSpecialValueFor("bonus_speed")
+	self.chain_damage = self:GetSpecialValueFor("chain_damage")
+	self.slow_duration = self:GetSpecialValueFor("slow_duration")
+	self.proc_heal = self:GetSpecialValueFor("proc_heal")
+	self.static_cooldown = self:GetSpecialValueFor("static_cooldown")
+	self.slow_proc = self:GetSpecialValueFor("slow_proc")
+	self.chain_radius = self:GetSpecialValueFor("chain_radius")
+	self.chain_strikes = self:GetSpecialValueFor("chain_strikes")
+	self.chain_delay = self:GetSpecialValueFor("chain_delay")
 end
 
 function item_alchemist_gold_cuirass:OnSpellStart()
 	local caster = self:GetCaster()
-	local duration = self:GetSpecialValueFor("static_duration")
+	local duration = self.static_duration
 
 	caster:EmitSound("DOTA_Item.Mjollnir.Activate")
 	caster:AddNewModifier(caster, self, "modifier_item_alchemist_gold_cuirass_shield", { duration = duration })
@@ -76,20 +100,37 @@ modifier_item_alchemist_gold_cuirass = class(mod_hidden)
 function modifier_item_alchemist_gold_cuirass:RemoveOnDeath()
 	return false
 end
-
+function modifier_item_alchemist_gold_cuirass:GetAuraRadius()
+	return self.radius
+end
+function modifier_item_alchemist_gold_cuirass:GetAuraSearchFlags()
+	return DOTA_UNIT_TARGET_FLAG_NONE
+end
+function modifier_item_alchemist_gold_cuirass:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_ENEMY
+end
+function modifier_item_alchemist_gold_cuirass:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
+end
+function modifier_item_alchemist_gold_cuirass:GetModifierAura()
+	return "modifier_item_alchemist_gold_cuirass_armor_reduce"
+end
+function modifier_item_alchemist_gold_cuirass:IsAura()
+	return true
+end
 function modifier_item_alchemist_gold_cuirass:OnCreated()
 	self.ability = self:GetAbility()
 	self.parent = self:GetParent()
 
-	self.radius = self.ability:GetSpecialValueFor("radius")
+	self.radius = self.ability.radius
 
-	self.bonus_damage = self.ability:GetSpecialValueFor("bonus_damage")
-	self.bonus_attack_speed = self.ability:GetSpecialValueFor("bonus_attack_speed")
-	self.bonus_armor = self.ability:GetSpecialValueFor("bonus_armor")
-	self.bonus_health = self.ability:GetSpecialValueFor("bonus_health")
+	self.bonus_damage = self.ability.bonus_damage
+	self.bonus_attack_speed = self.ability.bonus_attack_speed
+	self.bonus_armor = self.ability.bonus_armor
+	self.bonus_health = self.ability.bonus_health
 
-	self.chance = self.ability:GetSpecialValueFor("chain_chance")
-	self.cd = self.ability:GetSpecialValueFor("chain_cooldown")
+	self.chance = self.ability.chain_chance
+	self.cd = self.ability.chain_cooldown
 
 	self.records = {}
 
@@ -137,6 +178,9 @@ function modifier_item_alchemist_gold_cuirass:AttackStartEvent_out(params)
 	if not IsServer() then
 		return
 	end
+	if not IsValid(self.ability) then
+		return
+	end
 	if not params.target:IsUnit() then
 		return
 	end
@@ -161,6 +205,9 @@ end
 
 function modifier_item_alchemist_gold_cuirass:AttackEvent_out(params)
 	if not IsServer() then
+		return
+	end
+	if not IsValid(self.ability) then
 		return
 	end
 	if not params.target:IsUnit() then
@@ -221,32 +268,12 @@ function modifier_item_alchemist_gold_cuirass:CheckState()
 	}
 end
 
-function modifier_item_alchemist_gold_cuirass:GetAuraRadius()
-	return self.radius
-end
-function modifier_item_alchemist_gold_cuirass:GetAuraSearchFlags()
-	return DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
-end
-function modifier_item_alchemist_gold_cuirass:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_ENEMY
-end
-function modifier_item_alchemist_gold_cuirass:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
-end
-function modifier_item_alchemist_gold_cuirass:GetModifierAura()
-	return "modifier_item_alchemist_gold_cuirass_armor_reduce"
-end
-function modifier_item_alchemist_gold_cuirass:IsAura()
-	return true
-end
-
 modifier_item_alchemist_gold_cuirass_armor_reduce = class(mod_visible)
-
 function modifier_item_alchemist_gold_cuirass_armor_reduce:OnCreated()
 	self.ability = self:GetAbility()
-	self.armor = self.ability:GetSpecialValueFor("aura_negative_armor")
-	self.aura_heal_reduce = self.ability:GetSpecialValueFor("aura_heal_reduce")
-	self.resist = self.ability:GetSpecialValueFor("aura_resist")
+	self.armor = self.ability.aura_negative_armor
+	self.aura_heal_reduce = self.ability.aura_heal_reduce
+	self.resist = self.ability.aura_resist
 end
 
 function modifier_item_alchemist_gold_cuirass_armor_reduce:DeclareFunctions()
@@ -274,19 +301,25 @@ function modifier_item_alchemist_gold_cuirass_armor_reduce:GetModifierPhysicalAr
 end
 
 modifier_item_alchemist_gold_cuirass_shield = class(mod_visible)
+function modifier_item_alchemist_gold_cuirass_shield:GetStatusEffectName()
+	return "particles/status_fx/status_effect_mjollnir_shield.vpcf"
+end
+function modifier_item_alchemist_gold_cuirass_shield:StatusEffectPriority()
+	return MODIFIER_PRIORITY_HIGH
+end
 function modifier_item_alchemist_gold_cuirass_shield:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.bonus_speed = self.ability:GetSpecialValueFor("bonus_speed")
+	self.bonus_speed = self.ability.bonus_speed
 
-	self.damage = self.ability:GetSpecialValueFor("chain_damage")
+	self.damage = self.ability.chain_damage
 
-	self.chance = self.ability:GetSpecialValueFor("chain_chance")
-	self.duration = self.ability:GetSpecialValueFor("slow_duration")
-	self.heal = self.ability:GetSpecialValueFor("proc_heal") / 100
+	self.chance = self.ability.chain_chance
+	self.duration = self.ability.slow_duration
+	self.heal = self.ability.proc_heal / 100
 
-	self.cd = self.ability:GetSpecialValueFor("static_cooldown")
+	self.cd = self.ability.static_cooldown
 
 	self.damageTable =
 		{ attacker = self.parent, ability = self.ability, damage = self.damage, damage_type = DAMAGE_TYPE_MAGICAL }
@@ -348,6 +381,9 @@ function modifier_item_alchemist_gold_cuirass_shield:DamageEvent_inc(params)
 	if not IsServer() then
 		return
 	end
+	if not IsValid(self.ability) then
+		return
+	end
 	if params.attacker:HasModifier("modifier_item_alchemist_gold_cuirass_shield_cd") then
 		return
 	end
@@ -384,14 +420,6 @@ function modifier_item_alchemist_gold_cuirass_shield:OnDestroy()
 	self.parent:EmitSound("DOTA_Item.Mjollnir.DeActivate")
 end
 
-function modifier_item_alchemist_gold_cuirass_shield:GetStatusEffectName()
-	return "particles/status_fx/status_effect_mjollnir_shield.vpcf"
-end
-
-function modifier_item_alchemist_gold_cuirass_shield:StatusEffectPriority()
-	return MODIFIER_PRIORITY_HIGH
-end
-
 function modifier_item_alchemist_gold_cuirass_shield:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
@@ -402,15 +430,11 @@ function modifier_item_alchemist_gold_cuirass_shield:GetModifierAttackSpeedBonus
 	return self.bonus_speed * self:GetStackCount()
 end
 
-modifier_item_alchemist_gold_cuirass_shield_slow = class({})
-function modifier_item_alchemist_gold_cuirass_shield_slow:IsHidden()
-	return true
-end
-function modifier_item_alchemist_gold_cuirass_shield_slow:IsPurgable()
-	return false
-end
+modifier_item_alchemist_gold_cuirass_shield_slow = class(mod_hidden)
 function modifier_item_alchemist_gold_cuirass_shield_slow:OnCreated()
-	self.slow = self:GetAbility():GetSpecialValueFor("slow_proc")
+	self.ability = self:GetAbility()
+
+	self.slow = self.ability.slow_proc
 end
 
 function modifier_item_alchemist_gold_cuirass_shield_slow:DeclareFunctions()
@@ -423,13 +447,7 @@ function modifier_item_alchemist_gold_cuirass_shield_slow:GetModifierMoveSpeedBo
 	return self.slow
 end
 
-modifier_item_alchemist_gold_cuirass_passive = class({})
-function modifier_item_alchemist_gold_cuirass_passive:IsHidden()
-	return true
-end
-function modifier_item_alchemist_gold_cuirass_passive:IsPurgable()
-	return false
-end
+modifier_item_alchemist_gold_cuirass_passive = class(mod_hidden)
 function modifier_item_alchemist_gold_cuirass_passive:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
@@ -437,12 +455,12 @@ function modifier_item_alchemist_gold_cuirass_passive:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.damage = self.ability:GetSpecialValueFor("chain_damage")
-	self.radius = self.ability:GetSpecialValueFor("chain_radius")
-	self.max = self.ability:GetSpecialValueFor("chain_strikes")
-	self.interval = self.ability:GetSpecialValueFor("chain_delay")
+	self.damage = self.ability.chain_damage
+	self.radius = self.ability.chain_radius
+	self.max = self.ability.chain_strikes
+	self.interval = self.ability.chain_delay
 
-	self.duration = self.ability:GetSpecialValueFor("slow_duration")
+	self.duration = self.ability.slow_duration
 
 	self.damageTable = {
 		attacker = self.parent,
@@ -456,10 +474,7 @@ function modifier_item_alchemist_gold_cuirass_passive:OnCreated(table)
 	end
 
 	if self.parent:HasModifier("modifier_item_alchemist_gold_cuirass_shield") then
-		self.parent:GenericHeal(
-			self.parent:GetMaxHealth() * self.ability:GetSpecialValueFor("proc_heal") / 100,
-			self.ability
-		)
+		self.parent:GenericHeal(self.parent:GetMaxHealth() * self.ability.proc_heal / 100, self.ability)
 	end
 
 	self.last_target = self.parent

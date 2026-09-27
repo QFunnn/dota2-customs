@@ -57,7 +57,6 @@ function ember_spirit_searing_chains_custom:Precache(context)
 		"particles/units/heroes/hero_ember_spirit/ember_spirit_weapon_blur_overhead.vpcf",
 		context
 	)
-
 	PrecacheResource(
 		"particle",
 		"particles/units/heroes/hero_ember_spirit/ember_spirit_searing_chains_cast.vpcf",
@@ -83,6 +82,12 @@ function ember_spirit_searing_chains_custom:Precache(context)
 	PrecacheResource("particle", "particles/ember_spirit/chains_stack.vpcf", context)
 	PrecacheResource("particle", "particles/ember_spirit/chains_buff_ready.vpcf", context)
 	PrecacheResource("particle", "particles/ember_spirit/chains_buff_ready_hands.vpcf", context)
+	PrecacheResource(
+		"particle",
+		"particles/econ/items/juggernaut/jugg_arcana/juggernaut_arcana_v2_omni_slash_tgt.vpcf",
+		context
+	)
+	PrecacheResource("particle", "particles/units/heroes/hero_marci/marci_unleash_stack.vpcf", context)
 end
 
 function ember_spirit_searing_chains_custom:UpdateTalents()
@@ -94,7 +99,6 @@ function ember_spirit_searing_chains_custom:UpdateTalents()
 			q1_armor = 0,
 			q1_duration = caster:GetTalentValue("modifier_ember_chain_1", "duration", true),
 
-			has_q2 = 0,
 			q2_duration = 0,
 			q2_cd = 0,
 
@@ -130,7 +134,6 @@ function ember_spirit_searing_chains_custom:UpdateTalents()
 	end
 
 	if caster:HasTalent("modifier_ember_chain_2") then
-		self.talents.has_q2 = 1
 		self.talents.q2_duration = caster:GetTalentValue("modifier_ember_chain_2", "duration")
 		self.talents.q2_cd = caster:GetTalentValue("modifier_ember_chain_2", "cd")
 	end
@@ -175,7 +178,7 @@ function ember_spirit_searing_chains_custom:GetAbilityTargetFlags()
 end
 
 function ember_spirit_searing_chains_custom:GetCooldown(iLevel)
-	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.q2_cd and self.talents.q2_cd or 0)
+	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.q2_cd or 0)
 end
 
 function ember_spirit_searing_chains_custom:GetManaCost(level)
@@ -183,7 +186,7 @@ function ember_spirit_searing_chains_custom:GetManaCost(level)
 end
 
 function ember_spirit_searing_chains_custom:GetRadius()
-	return (self.radius and self.radius or 0) + (self.talents.has_q4 == 1 and self.talents.q4_radius or 0)
+	return (self.radius or 0) + (self.talents.has_q4 == 1 and self.talents.q4_radius or 0)
 end
 
 function ember_spirit_searing_chains_custom:GetCastRange(vLocation, hTarget)
@@ -193,6 +196,8 @@ end
 function ember_spirit_searing_chains_custom:OnSpellStart()
 	local caster_loc = self.caster:GetAbsOrigin()
 	local duration = self.duration + self.talents.q2_duration
+	local radius = self:GetRadius()
+	local ability = self.talents.has_q4 == 1 and self.caster:BkbAbility(self, true) or self
 
 	self.caster:EmitSound("Hero_EmberSpirit.SearingChains.Cast")
 
@@ -205,17 +210,13 @@ function ember_spirit_searing_chains_custom:OnSpellStart()
 	ParticleManager:SetParticleControl(cast_pfx, 1, Vector(radius, 1, 1))
 	ParticleManager:ReleaseParticleIndex(cast_pfx)
 
-	local targets = self.caster:FindTargets(
-		self:GetRadius(),
-		nil,
-		nil,
-		DOTA_UNIT_TARGET_FLAG_NO_INVIS + DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE
-	)
+	local targets =
+		self.caster:FindTargets(radius, nil, nil, DOTA_UNIT_TARGET_FLAG_NO_INVIS + DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE)
 	for _, target in pairs(targets) do
 		if self.talents.has_q1 == 1 then
 			target:AddNewModifier(
 				self.caster,
-				self.caster:BkbAbility(self, self.talents.has_q4 == 1),
+				ability,
 				"modifier_searing_chains_custom_armor",
 				{ duration = self.talents.q1_duration }
 			)
@@ -228,11 +229,28 @@ function ember_spirit_searing_chains_custom:OnSpellStart()
 
 		target:AddNewModifier(
 			self.caster,
-			self.caster:BkbAbility(self, self.talents.has_q4 == 1),
+			ability,
 			"modifier_searing_chains_custom_debuff",
 			{ duration = duration * (1 - target:GetStatusResistance()) }
 		)
-		self:PlayEffect(target)
+
+		target:EmitSound("Hero_EmberSpirit.SearingChains.Target")
+		local impact_pfx = ParticleManager:CreateParticle(
+			"particles/units/heroes/hero_ember_spirit/ember_spirit_searing_chains_start.vpcf",
+			PATTACH_ABSORIGIN_FOLLOW,
+			target
+		)
+		ParticleManager:SetParticleControl(impact_pfx, 0, self.caster:GetAbsOrigin())
+		ParticleManager:SetParticleControlEnt(
+			impact_pfx,
+			1,
+			target,
+			PATTACH_POINT_FOLLOW,
+			"attach_hitloc",
+			target:GetAbsOrigin(),
+			true
+		)
+		ParticleManager:ReleaseParticleIndex(impact_pfx)
 
 		if
 			self.talents.has_q4 == 1
@@ -260,29 +278,6 @@ function ember_spirit_searing_chains_custom:OnSpellStart()
 			end
 		end
 	end
-end
-
-function ember_spirit_searing_chains_custom:PlayEffect(target)
-	if not IsServer() then
-		return
-	end
-	target:EmitSound("Hero_EmberSpirit.SearingChains.Target")
-	local impact_pfx = ParticleManager:CreateParticle(
-		"particles/units/heroes/hero_ember_spirit/ember_spirit_searing_chains_start.vpcf",
-		PATTACH_ABSORIGIN_FOLLOW,
-		target
-	)
-	ParticleManager:SetParticleControl(impact_pfx, 0, self.caster:GetAbsOrigin())
-	ParticleManager:SetParticleControlEnt(
-		impact_pfx,
-		1,
-		target,
-		PATTACH_POINT_FOLLOW,
-		"attach_hitloc",
-		target:GetAbsOrigin(),
-		true
-	)
-	ParticleManager:ReleaseParticleIndex(impact_pfx)
 end
 
 modifier_searing_chains_custom_tracker = class(mod_hidden)
@@ -456,10 +451,7 @@ function modifier_searing_chains_custom_tracker:DamageEvent_out(params)
 	)
 end
 
-modifier_searing_chains_custom_debuff = class({})
-function modifier_searing_chains_custom_debuff:IsHidden()
-	return false
-end
+modifier_searing_chains_custom_debuff = class(mod_visible)
 function modifier_searing_chains_custom_debuff:IsPurgable()
 	return true
 end
@@ -471,11 +463,6 @@ function modifier_searing_chains_custom_debuff:GetEffectName()
 end
 function modifier_searing_chains_custom_debuff:GetEffectAttachType()
 	return PATTACH_ABSORIGIN_FOLLOW
-end
-function modifier_searing_chains_custom_debuff:CheckState()
-	return {
-		[MODIFIER_STATE_ROOTED] = true,
-	}
 end
 function modifier_searing_chains_custom_debuff:OnCreated()
 	self.parent = self:GetParent()
@@ -493,6 +480,12 @@ function modifier_searing_chains_custom_debuff:OnCreated()
 	self.damageTable =
 		{ victim = self.parent, attacker = self.caster, ability = self.ability, damage_type = DAMAGE_TYPE_MAGICAL }
 	self:StartIntervalThink(self.tick_interval - FrameTime())
+end
+
+function modifier_searing_chains_custom_debuff:CheckState()
+	return {
+		[MODIFIER_STATE_ROOTED] = true,
+	}
 end
 
 function modifier_searing_chains_custom_debuff:OnIntervalThink()
@@ -532,13 +525,19 @@ end
 modifier_searing_chains_custom_armor = class(mod_hidden)
 function modifier_searing_chains_custom_armor:OnCreated()
 	self.parent = self:GetParent()
-	self.ability = self:GetCaster().chains_ability
+	self.caster = self:GetCaster()
+	self.ability = self.caster.chains_ability
 	if not self.ability then
 		self:Destroy()
 		return
 	end
 
 	self.armor = self.ability.talents.q1_armor
+
+	if not IsServer() then
+		return
+	end
+	self.RemoveForDuel = true
 end
 
 function modifier_searing_chains_custom_armor:DeclareFunctions()
@@ -687,11 +686,8 @@ function modifier_searing_chains_custom_legendary_stack:OnRefresh()
 		return
 	end
 	self:IncrementStackCount()
-end
 
-function modifier_searing_chains_custom_legendary_stack:OnStackCountChanged(iStackCount)
-	if not self.effect_cast then
-		return
+	if self.effect_cast then
+		ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(0, self:GetStackCount(), 0))
 	end
-	ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(0, self:GetStackCount(), 0))
 end

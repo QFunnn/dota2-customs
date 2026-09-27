@@ -32,6 +32,9 @@ function hoodwink_innate_custom:Precache(context)
 		return
 	end
 	PrecacheResource("soundfile", "soundevents/npc_dota_hero_hoodwink.vsndevts", context)
+	PrecacheResource("particle", "particles/hoodwink/scurry_shield.vpcf", context)
+	PrecacheResource("particle", "particles/butterfly_proc.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_hoodwink/hoodwink_scurry_passive.vpcf", context)
 	dota1x6:PrecacheShopItems("npc_dota_hero_hoodwink", context)
 end
 
@@ -63,10 +66,6 @@ function hoodwink_innate_custom:UpdateTalents()
 		self.talents.h3_status = caster:GetTalentValue("modifier_hoodwink_hero_3", "status")
 	end
 
-	if caster:HasTalent("modifier_hoodwink_hero_5") then
-		self.talents.h7_cd = caster:GetTalentValue("modifier_hoodwink_hero_7", "cd")
-	end
-
 	if caster:HasTalent("modifier_hoodwink_acorn_2") then
 		self.talents.has_q2 = 1
 		self.talents.q2_heal = caster:GetTalentValue("modifier_hoodwink_acorn_2", "heal") / 100
@@ -92,12 +91,9 @@ function hoodwink_innate_custom:GetIntrinsicModifierName()
 	return "modifier_hoodwink_innate_custom"
 end
 
-modifier_hoodwink_innate_custom = class({})
+modifier_hoodwink_innate_custom = class(mod_hidden)
 function modifier_hoodwink_innate_custom:IsHidden()
 	return self:GetStackCount() ~= 0
-end
-function modifier_hoodwink_innate_custom:IsPurgable()
-	return false
 end
 function modifier_hoodwink_innate_custom:RemoveOnDeath()
 	return false

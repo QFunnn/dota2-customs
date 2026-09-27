@@ -75,7 +75,6 @@ function pangolier_gyroshell_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_centaur/centaur_warstomp.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_techies/techies_blast_off_trail.vpcf", context)
 	PrecacheResource("particle", "particles/generic_gameplay/generic_stunned.vpcf", context)
-	PrecacheResource("particle", "particles/pangolier/pangolier_gyroshell_cast.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/units/heroes/hero_pangolier/pangolier_shard_rollup_cast_dust_poof.vpcf",
@@ -90,11 +89,6 @@ function pangolier_gyroshell_custom:Precache(context)
 	)
 	PrecacheResource(
 		"particle",
-		"particles/units/heroes/hero_pangolier/pangolier_shard_rollup_cast_dust_poof.vpcf",
-		context
-	)
-	PrecacheResource(
-		"particle",
 		"particles/units/heroes/hero_primal_beast/primal_beast_onslaught_charge_active.vpcf",
 		context
 	)
@@ -102,6 +96,8 @@ function pangolier_gyroshell_custom:Precache(context)
 	PrecacheResource("particle", "particles/pangolier/pangolier_gyroshell_cast_fast.vpcf", context)
 	PrecacheResource("particle", "particles/lc_odd_charge_mark.vpcf", context)
 	PrecacheResource("particle", "particles/ogre_magi/multicast_radius.vpcf", context)
+	PrecacheResource("particle", "particles/jugg_legendary_proc_.vpcf", context)
+	PrecacheResource("particle", "particles/items3_fx/iron_talon_active.vpcf", context)
 	PrecacheResource("model", "models/heroes/pangolier/pangolier_gyroshell2.vmdl", context)
 end
 
@@ -156,6 +152,8 @@ function pangolier_gyroshell_custom:UpdateTalents(name)
 			has_w7 = 0,
 			w7_stun_reduce = caster:GetTalentValue("modifier_pangolier_shield_7", "stun_reduce", true) / 100,
 
+			has_w1 = 0,
+
 			has_w2 = 0,
 			w2_radius = 0,
 		}
@@ -208,6 +206,10 @@ function pangolier_gyroshell_custom:UpdateTalents(name)
 
 	if caster:HasTalent("modifier_pangolier_shield_7") then
 		self.talents.has_w7 = 1
+	end
+
+	if caster:HasTalent("modifier_pangolier_shield_1") then
+		self.talents.has_w1 = 1
 	end
 
 	if caster:HasTalent("modifier_pangolier_shield_2") then
@@ -354,18 +356,18 @@ function pangolier_gyroshell_custom:DealDamage(enemy, scepter_k)
 	local damage = self.damage + self.caster:GetIntellect(false) * self.talents.r1_damage
 	local damage_ability = nil
 
-	local legendary = self.parent:FindModifierByName("modifier_pangolier_gyroshell_custom_legendary")
+	local legendary = self.caster:FindModifierByName("modifier_pangolier_gyroshell_custom_legendary")
 	if legendary then
-		damage = damage * self.ability.talents.r7_damage
+		damage = damage * self.talents.r7_damage
 		damage_ability = "modifier_pangolier_rolling_7"
 
 		if enemy:IsRealHero() then
 			enemy:EmitSound("Pango.Ulti_legendary_hit")
 			enemy:AddNewModifier(
 				self.caster,
-				self.caster:BkbAbility(self.ability, true),
+				self.caster:BkbAbility(self, true),
 				"modifier_pangolier_gyroshell_custom_legendary_health",
-				{ duration = self.ability.talents.r7_effect_duration }
+				{ duration = self.talents.r7_effect_duration }
 			)
 			legendary:SetDuration(0.2, true)
 		end
@@ -388,7 +390,7 @@ function pangolier_gyroshell_custom:DealDamage(enemy, scepter_k)
 		if IsValid(self.caster.shield_ability) then
 			self.caster.shield_ability:ApplyMagic(enemy)
 
-			if self.caster.shield_ability.talents.has_w1 == 1 then
+			if self.talents.has_w1 == 1 then
 				enemy:AddNewModifier(
 					self.caster,
 					self.caster.shield_ability,
@@ -446,7 +448,7 @@ function pangolier_gyroshell_custom:ProcCd(is_reduced)
 	if not self:IsTrained() then
 		return
 	end
-	if self.ability.talents.has_r4 == 0 then
+	if self.talents.has_r4 == 0 then
 		return
 	end
 
@@ -641,7 +643,10 @@ function modifier_pangolier_gyroshell_custom:OnOrderCustom(new_pos, target)
 end
 
 function modifier_pangolier_gyroshell_custom:UpdateHorizontalMotionCustom()
-	if not IsServer() or not self.parent then
+	if not IsServer() then
+		return
+	end
+	if not self.parent then
 		return
 	end
 	if
@@ -712,8 +717,7 @@ function modifier_pangolier_gyroshell_custom:Crash()
 	local vAngles = self.parent:GetAngles()
 	local old_vec = self.parent:GetForwardVector()
 
-	self.parent:FaceTowards(self.parent:GetAbsOrigin() - old_vec)
-	self.parent:SetForwardVector(old_vec * -1)
+	self.parent:FacePoint(self.parent:GetAbsOrigin() - old_vec)
 	self.parent:SetOrigin(vResetPos)
 	self.parent.flDesiredYaw = self.parent:GetAnglesAsVector().y
 
@@ -723,7 +727,7 @@ function modifier_pangolier_gyroshell_custom:Crash()
 
 	self.parent.roll_crash_mod = self.parent:AddNewModifier(self.parent, self.ability, "modifier_generic_arc", {
 		dir_x = old_vec.x * -1,
-		dir_x = old_vec.y * -1,
+		dir_y = old_vec.y * -1,
 		distance = 0,
 		height = 50,
 		duration = self.ability.jump_recover_time,
@@ -893,7 +897,10 @@ function modifier_pangolier_gyroshell_custom_tracker:GetModifierStatusResistance
 end
 
 function modifier_pangolier_gyroshell_custom_tracker:GetModifierTotalDamageOutgoing_Percentage(params)
-	if not self.parent.pangolier_r or params.inflictor then
+	if not self.parent.pangolier_r then
+		return
+	end
+	if params.inflictor then
 		return
 	end
 	return self.ability.attack_damage - 100
@@ -1004,7 +1011,9 @@ function modifier_pangolier_gyroshell_custom_stunned:OnCreated(table)
 		self.parent:GetAbsOrigin(),
 		true
 	)
-	mod:AddParticle(cast_effect, false, false, -1, false, false)
+	if mod then
+		mod:AddParticle(cast_effect, false, false, -1, false, false)
+	end
 
 	self:StartIntervalThink(knock_duration)
 end
@@ -1032,8 +1041,149 @@ function modifier_pangolier_gyroshell_custom_stunned:OnDestroy()
 	self.parent:FadeGesture(ACT_DOTA_DISABLED)
 end
 
-pangolier_rollup_custom = class({})
+modifier_pangolier_gyroshell_custom_turn_boost = class(mod_hidden)
 
+modifier_pangolier_gyroshell_custom_delay = class(mod_visible)
+function modifier_pangolier_gyroshell_custom_delay:GetTexture()
+	return "buffs/pangolier/rolling_3"
+end
+function modifier_pangolier_gyroshell_custom_delay:OnCreated(table)
+	self.parent = self:GetParent()
+	self.caster = self:GetCaster()
+	self.ability = self:GetAbility()
+
+	self.max = self.ability.talents.r3_max
+
+	if not IsServer() then
+		return
+	end
+	self.stack = 0
+	self.parent:AddDamageEvent_inc(self, true)
+	self.damageTable = {
+		victim = self.parent,
+		attacker = self.caster,
+		ability = self.ability,
+		damage_type = self.ability.talents.r3_damage_type,
+		damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION,
+	}
+	self.parent:GenericParticle("particles/lc_odd_charge_mark.vpcf", self, true)
+end
+
+function modifier_pangolier_gyroshell_custom_delay:DamageEvent_inc(params)
+	if not IsServer() then
+		return
+	end
+	if self.parent ~= params.unit then
+		return
+	end
+	if params.attacker ~= self.caster then
+		return
+	end
+
+	self.stack = math.min(
+		self.parent:GetMaxHealth() * self.max,
+		self.stack + params.original_damage * self.ability.talents.r3_damage
+	)
+	self:SetStackCount(self.stack)
+end
+
+function modifier_pangolier_gyroshell_custom_delay:OnDestroy()
+	if not IsServer() then
+		return
+	end
+	if self.stack <= 0 then
+		return
+	end
+	if not self.parent:IsAlive() then
+		return
+	end
+
+	self.damageTable.damage = math.min(self.parent:GetMaxHealth() * self.max, self.stack)
+
+	self.parent:EmitSound("Pango.Rolling_delay_damage")
+	self.parent:EmitSound("Pango.Rolling_delay_damage2")
+	self.parent:GenericParticle("particles/jugg_legendary_proc_.vpcf")
+
+	local trail_pfx =
+		ParticleManager:CreateParticle("particles/items3_fx/iron_talon_active.vpcf", PATTACH_ABSORIGIN, self.parent)
+	ParticleManager:SetParticleControlEnt(
+		trail_pfx,
+		0,
+		self.parent,
+		PATTACH_ABSORIGIN_FOLLOW,
+		nil,
+		self.parent:GetAbsOrigin(),
+		true
+	)
+	ParticleManager:SetParticleControlEnt(
+		trail_pfx,
+		1,
+		self.parent,
+		PATTACH_ABSORIGIN_FOLLOW,
+		nil,
+		self.parent:GetAbsOrigin(),
+		true
+	)
+	ParticleManager:ReleaseParticleIndex(trail_pfx)
+
+	local real_damage = DoDamage(self.damageTable, "modifier_pangolier_rolling_3")
+	self.parent:SendNumber(106, real_damage)
+end
+
+modifier_pangolier_gyroshell_custom_legendary_health = class(mod_visible)
+function modifier_pangolier_gyroshell_custom_legendary_health:GetTexture()
+	return "pangolier_heartpiercer"
+end
+function modifier_pangolier_gyroshell_custom_legendary_health:OnCreated()
+	self.parent = self:GetParent()
+	self.caster = self:GetCaster()
+	self.ability = self.caster.rolling_ability
+	if not self.ability then
+		self:Destroy()
+		return
+	end
+
+	self.health = self.ability.talents.r7_health_reduce
+	self.max = self.ability.talents.r7_max
+
+	if not IsServer() then
+		return
+	end
+	self.effect_cast = self.parent:GenericParticle("particles/pangolier/rolling_stack.vpcf", self, true)
+	self:OnRefresh()
+end
+
+function modifier_pangolier_gyroshell_custom_legendary_health:OnRefresh()
+	if not IsServer() then
+		return
+	end
+	if self:GetStackCount() >= self.max then
+		return
+	end
+	self:IncrementStackCount()
+
+	ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(0, self:GetStackCount(), 0))
+	self.parent:CalculateStatBonus(true)
+end
+
+function modifier_pangolier_gyroshell_custom_legendary_health:OnDestroy()
+	if not IsServer() then
+		return
+	end
+	self.parent:CalculateStatBonus(true)
+end
+
+function modifier_pangolier_gyroshell_custom_legendary_health:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_EXTRA_HEALTH_PERCENTAGE,
+	}
+end
+
+function modifier_pangolier_gyroshell_custom_legendary_health:GetModifierExtraHealthPercentage()
+	return self.health * self:GetStackCount()
+end
+
+pangolier_rollup_custom = class({})
 function pangolier_rollup_custom:Spawn()
 	if not self:GetCaster() then
 		return
@@ -1307,8 +1457,6 @@ function modifier_pangolier_rollup_custom:OnDestroy()
 	self.ability:StartCd()
 end
 
-modifier_pangolier_gyroshell_custom_turn_boost = class(mod_hidden)
-
 pangolier_gyroshell_custom_legendary = class({})
 pangolier_gyroshell_custom_legendary.talents = {}
 
@@ -1333,8 +1481,8 @@ function pangolier_gyroshell_custom_legendary:UpdateTalents(name)
 		}
 	end
 
-	if caster:HasTalent("modifier_pangolier_shield_7") then
-		self.talents.has_w7 = 1
+	if caster:HasTalent("modifier_pangolier_rolling_7") then
+		self.talents.has_r7 = 1
 	end
 end
 
@@ -1531,144 +1679,4 @@ function modifier_pangolier_gyroshell_custom_legendary:OnDestroy()
 		return
 	end
 	self.parent:StopSound("Pango.Ulti_legendary")
-end
-
-modifier_pangolier_gyroshell_custom_delay = class(mod_visible)
-function modifier_pangolier_gyroshell_custom_delay:GetTexture()
-	return "buffs/pangolier/rolling_3"
-end
-function modifier_pangolier_gyroshell_custom_delay:OnCreated(table)
-	self.parent = self:GetParent()
-	self.caster = self:GetCaster()
-	self.ability = self:GetAbility()
-
-	self.max = self.ability.talents.r3_max
-
-	if not IsServer() then
-		return
-	end
-	self.stack = 0
-	self.parent:AddDamageEvent_inc(self, true)
-	self.damageTable = {
-		victim = self.parent,
-		attacker = self.caster,
-		ability = self.ability,
-		damage_type = self.ability.talents.r3_damage_type,
-		damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION,
-	}
-	self.parent:GenericParticle("particles/lc_odd_charge_mark.vpcf", self, true)
-end
-
-function modifier_pangolier_gyroshell_custom_delay:DamageEvent_inc(params)
-	if not IsServer() then
-		return
-	end
-	if self.parent ~= params.unit then
-		return
-	end
-	if params.attacker ~= self.caster then
-		return
-	end
-
-	self.stack = math.min(
-		self.parent:GetMaxHealth() * self.max,
-		self.stack + params.original_damage * self.ability.talents.r3_damage
-	)
-	self:SetStackCount(self.stack)
-end
-
-function modifier_pangolier_gyroshell_custom_delay:OnDestroy()
-	if not IsServer() then
-		return
-	end
-	if self.stack <= 0 then
-		return
-	end
-	if not self.parent:IsAlive() then
-		return
-	end
-
-	self.damageTable.damage = math.min(self.parent:GetMaxHealth() * self.max, self.stack)
-
-	self.parent:EmitSound("Pango.Rolling_delay_damage")
-	self.parent:EmitSound("Pango.Rolling_delay_damage2")
-	self.parent:GenericParticle("particles/jugg_legendary_proc_.vpcf")
-
-	local trail_pfx =
-		ParticleManager:CreateParticle("particles/items3_fx/iron_talon_active.vpcf", PATTACH_ABSORIGIN, self.parent)
-	ParticleManager:SetParticleControlEnt(
-		trail_pfx,
-		0,
-		self.parent,
-		PATTACH_ABSORIGIN_FOLLOW,
-		nil,
-		self.parent:GetAbsOrigin(),
-		true
-	)
-	ParticleManager:SetParticleControlEnt(
-		trail_pfx,
-		1,
-		self.parent,
-		PATTACH_ABSORIGIN_FOLLOW,
-		nil,
-		self.parent:GetAbsOrigin(),
-		true
-	)
-	ParticleManager:ReleaseParticleIndex(trail_pfx)
-
-	local real_damage = DoDamage(self.damageTable, "modifier_pangolier_rolling_3")
-	self.parent:SendNumber(106, real_damage)
-end
-
-modifier_pangolier_gyroshell_custom_legendary_health = class(mod_visible)
-function modifier_pangolier_gyroshell_custom_legendary_health:GetTexture()
-	return "pangolier_heartpiercer"
-end
-function modifier_pangolier_gyroshell_custom_legendary_health:OnCreated()
-	self.parent = self:GetParent()
-	self.caster = self:GetCaster()
-	self.ability = self.caster.rolling_ability
-	if not self.ability then
-		self:Destroy()
-		return
-	end
-
-	self.health = self.ability.talents.r7_health_reduce
-	self.max = self.ability.talents.r7_max
-
-	if not IsServer() then
-		return
-	end
-	self.effect_cast = self.parent:GenericParticle("particles/pangolier/rolling_stack.vpcf", self, true)
-	self:OnRefresh()
-end
-
-function modifier_pangolier_gyroshell_custom_legendary_health:OnRefresh()
-	if not IsServer() then
-		return
-	end
-	if self:GetStackCount() >= self.max then
-		return
-	end
-	self:IncrementStackCount()
-
-	ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(0, self:GetStackCount(), 0))
-	self.parent:CalculateStatBonus(true)
-end
-
-function modifier_pangolier_gyroshell_custom_legendary_health:OnDestroy()
-	if not IsServer() then
-		return
-	end
-	self.parent:CalculateStatBonus(true)
-end
-
-function modifier_pangolier_gyroshell_custom_legendary_health:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_EXTRA_HEALTH_PERCENTAGE,
-	}
-end
-
-function modifier_pangolier_gyroshell_custom_legendary_health:GetModifierExtraHealthPercentage()
-	return self.health * self:GetStackCount()
 end

@@ -22,10 +22,17 @@ function item_stonefeather_satchel_custom:Precache(context)
 	end
 	PrecacheResource("particle", "particles/items7_fx/archimedes_satchel.vpcf", context)
 	PrecacheResource("particle", "particles/items7_fx/archimedes_satchel_speed.vpcf", context)
+
+	PrecacheResource("particle", "particles/items7_fx/archimedes_satchel_armor.vpcf", context)
 end
 
 function item_stonefeather_satchel_custom:GetIntrinsicModifierName()
 	return "modifier_item_stonefeather_satchel_custom"
+end
+
+function item_stonefeather_satchel_custom:Spawn()
+	self.feather_movespeed = self:GetSpecialValueFor("feather_movespeed")
+	self.rocks_armor = self:GetSpecialValueFor("rocks_armor")
 end
 
 function item_stonefeather_satchel_custom:GetAbilityTextureName()
@@ -48,8 +55,8 @@ function modifier_item_stonefeather_satchel_custom:OnCreated()
 	self.ability = self:GetAbility()
 	self.ability.tracker = self
 
-	self.speed = self.ability:GetSpecialValueFor("feather_movespeed")
-	self.armor = self.ability:GetSpecialValueFor("rocks_armor")
+	self.speed = self.ability.feather_movespeed
+	self.armor = self.ability.rocks_armor
 	if not IsServer() then
 		return
 	end

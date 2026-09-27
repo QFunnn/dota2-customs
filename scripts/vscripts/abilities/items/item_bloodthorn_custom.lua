@@ -71,10 +71,7 @@ function item_bloodthorn_custom:OnSpellStart()
 	)
 end
 
-modifier_item_bloodthorn_custom_debuff = class({})
-function modifier_item_bloodthorn_custom_debuff:IsHidden()
-	return false
-end
+modifier_item_bloodthorn_custom_debuff = class(mod_visible)
 function modifier_item_bloodthorn_custom_debuff:IsPurgable()
 	return true
 end
@@ -124,6 +121,9 @@ function modifier_item_bloodthorn_custom_debuff:AttackRecordEvent_inc(params)
 	if not IsServer() then
 		return
 	end
+	if not IsValid(self.ability) then
+		return
+	end
 	if not params.attacker:IsUnit() then
 		return
 	end
@@ -144,6 +144,9 @@ end
 
 function modifier_item_bloodthorn_custom_debuff:DamageEvent_inc(params)
 	if not IsServer() then
+		return
+	end
+	if not IsValid(self.ability) then
 		return
 	end
 	if self.parent ~= params.unit then
@@ -228,7 +231,6 @@ function modifier_item_bloodthorn_custom:OnCreated()
 
 	self.parent:AddRecordDestroyEvent(self, true)
 	self.parent:AddAttackStartEvent_out(self)
-	self.parent:AddAttackEvent_out(self, true)
 end
 
 function modifier_item_bloodthorn_custom:CheckState()
@@ -263,6 +265,9 @@ end
 
 function modifier_item_bloodthorn_custom:AttackStartEvent_out(params)
 	if not IsServer() then
+		return
+	end
+	if not IsValid(self.ability) then
 		return
 	end
 	if not params.target:IsUnit() then

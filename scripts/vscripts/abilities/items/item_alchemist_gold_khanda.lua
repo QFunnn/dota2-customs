@@ -50,14 +50,42 @@ function item_alchemist_gold_khanda:Precache(context)
 		"particles/econ/items/skywrath_mage/skywrath_arcana/skywrath_arcana_phylactery_v2_target.vpcf",
 		context
 	)
+	PrecacheResource("particle", "particles/items3_fx/silver_edge.vpcf", context)
+	PrecacheResource("particle", "particles/generic_gameplay/generic_break.vpcf", context)
+	PrecacheResource("particle", "particles/items/khanda_proc.vpcf", context)
 end
 
 function item_alchemist_gold_khanda:GetIntrinsicModifierName()
 	return "modifier_item_alchemist_gold_khanda_stats"
 end
 
+function item_alchemist_gold_khanda:Spawn()
+	self.impact_radius = self:GetSpecialValueFor("impact_radius")
+	self.max_duration = self:GetSpecialValueFor("max_duration")
+	self.stun_duration = self:GetSpecialValueFor("stun_duration")
+	self.impact_damage_units = self:GetSpecialValueFor("impact_damage_units")
+	self.break_duration = self:GetSpecialValueFor("break_duration")
+	self.land_time = self:GetSpecialValueFor("land_time")
+	self.movespeed_slow = self:GetSpecialValueFor("movespeed_slow")
+	self.damage_count = self:GetSpecialValueFor("damage_count")
+	self.burn_dps_units = self:GetSpecialValueFor("burn_dps_units")
+	self.leash_duration = self:GetSpecialValueFor("leash_duration")
+	self.bonus_mana = self:GetSpecialValueFor("bonus_mana")
+	self.stats_agi = self:GetSpecialValueFor("stats_agi")
+	self.stats_str = self:GetSpecialValueFor("stats_str")
+	self.stats_int = self:GetSpecialValueFor("stats_int")
+	self.spell_amp = self:GetSpecialValueFor("spell_amp")
+	self.mana_regen_multiplier = self:GetSpecialValueFor("mana_regen_multiplier")
+	self.range_bonus = self:GetSpecialValueFor("range_bonus")
+	self.health_bonus = self:GetSpecialValueFor("health_bonus")
+	self.min_damage_to_activate = self:GetSpecialValueFor("min_damage_to_activate")
+	self.crit_damage = self:GetSpecialValueFor("crit_damage")
+	self.crit_chance = self:GetSpecialValueFor("crit_chance")
+	self.crit_bonus = self:GetSpecialValueFor("crit_bonus")
+end
+
 function item_alchemist_gold_khanda:GetAOERadius()
-	return self:GetSpecialValueFor("impact_radius")
+	return self.impact_radius
 end
 
 function item_alchemist_gold_khanda:OnSpellStart()
@@ -68,7 +96,7 @@ function item_alchemist_gold_khanda:OnSpellStart()
 		caster,
 		self,
 		"modifier_item_alchemist_gold_khanda_thinker",
-		{ duration = self:GetSpecialValueFor("max_duration") },
+		{ duration = self.max_duration },
 		position,
 		caster:GetTeamNumber(),
 		false
@@ -85,11 +113,11 @@ function modifier_item_alchemist_gold_khanda_thinker:OnCreated()
 	self.ability = self:GetAbility()
 	self.caster = self:GetCaster()
 
-	self.impact_radius = self.ability:GetSpecialValueFor("impact_radius")
-	self.stun_duration = self.ability:GetSpecialValueFor("stun_duration")
+	self.impact_radius = self.ability.impact_radius
+	self.stun_duration = self.ability.stun_duration
 
-	self.damage = self.ability:GetSpecialValueFor("impact_damage_units")
-	self.burn_duration = self.ability:GetSpecialValueFor("break_duration")
+	self.damage = self.ability.impact_damage_units
+	self.burn_duration = self.ability.break_duration
 
 	AddFOWViewer(
 		self.caster:GetTeamNumber(),
@@ -108,7 +136,7 @@ function modifier_item_alchemist_gold_khanda_thinker:OnCreated()
 	ParticleManager:SetParticleControl(self.particle, 2, Vector(self:GetRemainingTime() + 0.1, 1, 1))
 	self:AddParticle(self.particle, false, false, -1, false, false)
 
-	self:StartIntervalThink(self:GetRemainingTime() - self.ability:GetSpecialValueFor("land_time"))
+	self:StartIntervalThink(self:GetRemainingTime() - self.ability.land_time)
 end
 
 function modifier_item_alchemist_gold_khanda_thinker:OnIntervalThink()
@@ -174,28 +202,22 @@ function modifier_item_alchemist_gold_khanda_thinker:OnDestroy()
 end
 
 modifier_item_alchemist_gold_khanda_burn = class(mod_visible)
-function modifier_item_alchemist_gold_khanda_burn:GetEffectName()
-	return "particles/items4_fx/meteor_hammer_spell_debuff.vpcf"
-end
 function modifier_item_alchemist_gold_khanda_burn:IgnoreTenacity()
 	return true
-end
-function modifier_item_alchemist_gold_khanda_burn:CheckState()
-	return { [MODIFIER_STATE_PASSIVES_DISABLED] = true }
 end
 function modifier_item_alchemist_gold_khanda_burn:GetEffectName()
 	return "particles/items3_fx/silver_edge.vpcf"
 end
 function modifier_item_alchemist_gold_khanda_burn:OnCreated()
-	if not self:GetAbility() then
+	self.parent = self:GetParent()
+	self.caster = self:GetCaster()
+	self.ability = self:GetAbility()
+
+	if not self.ability then
 		return
 	end
 
-	self.ability = self:GetAbility()
-	self.caster = self:GetCaster()
-	self.parent = self:GetParent()
-
-	self.slow = self.ability:GetSpecialValueFor("movespeed_slow")
+	self.slow = self.ability.movespeed_slow
 
 	if not IsServer() then
 		return
@@ -207,8 +229,8 @@ function modifier_item_alchemist_gold_khanda_burn:OnCreated()
 
 	self.parent:GenericParticle("particles/generic_gameplay/generic_break.vpcf", self, true)
 
-	self.count = self.ability:GetSpecialValueFor("damage_count")
-	self.inc_damage = self.ability:GetSpecialValueFor("burn_dps_units")
+	self.count = self.ability.damage_count
+	self.inc_damage = self.ability.burn_dps_units
 	self.burn_interval = self:GetRemainingTime() / self.count
 
 	self.damage_table = {
@@ -219,6 +241,12 @@ function modifier_item_alchemist_gold_khanda_burn:OnCreated()
 		ability = self.ability,
 	}
 	self:StartIntervalThink(self.burn_interval - FrameTime())
+end
+
+function modifier_item_alchemist_gold_khanda_burn:CheckState()
+	return {
+		[MODIFIER_STATE_PASSIVES_DISABLED] = true,
+	}
 end
 
 function modifier_item_alchemist_gold_khanda_burn:OnIntervalThink()
@@ -238,29 +266,29 @@ function modifier_item_alchemist_gold_khanda_burn:GetModifierMoveSpeedBonus_Perc
 	return self.slow
 end
 
-modifier_item_alchemist_gold_khanda_stun = class({})
-function modifier_item_alchemist_gold_khanda_stun:IsHidden()
-	return true
-end
-function modifier_item_alchemist_gold_khanda_stun:IsPurgable()
-	return false
-end
+modifier_item_alchemist_gold_khanda_stun = class(mod_hidden)
 function modifier_item_alchemist_gold_khanda_stun:IsPurgeException()
 	return true
 end
 function modifier_item_alchemist_gold_khanda_stun:IsStunDebuff()
 	return true
 end
-
+function modifier_item_alchemist_gold_khanda_stun:GetEffectName()
+	return "particles/generic_gameplay/generic_stunned.vpcf"
+end
+function modifier_item_alchemist_gold_khanda_stun:GetEffectAttachType()
+	return PATTACH_OVERHEAD_FOLLOW
+end
 function modifier_item_alchemist_gold_khanda_stun:OnCreated(table)
-	if not IsServer() then
-		return
-	end
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
 	self.ability = self:GetAbility()
 
-	self.leash_duration = self.ability:GetSpecialValueFor("leash_duration")
+	if not IsServer() then
+		return
+	end
+
+	self.leash_duration = self.ability.leash_duration
 
 	self.center = GetGroundPosition(Vector(table.x, table.y, 0), nil)
 
@@ -274,11 +302,11 @@ function modifier_item_alchemist_gold_khanda_stun:OnCreated(table)
 		not self.parent:IsCurrentlyVerticalMotionControlled()
 		and not self.parent:IsCurrentlyHorizontalMotionControlled()
 	then
-		self.mod = self.parent:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_knockback", {
+		self.mod = self.parent:AddNewModifier(self.caster, self.ability, "modifier_knockback", {
 			center_x = self.center.x,
 			center_y = self.center.y,
 			center_z = self.center.z,
-			knockback_distance = 0, --(point - self.parent:GetAbsOrigin()):Length2D(),
+			knockback_distance = 0,
 			knockback_height = 130,
 			duration = self.anim_time,
 			knockback_duration = self.anim_time,
@@ -330,15 +358,36 @@ function modifier_item_alchemist_gold_khanda_stun:OnDestroy()
 	self.parent:RemoveGesture(ACT_DOTA_FLAIL)
 end
 
-function modifier_item_alchemist_gold_khanda_stun:GetEffectName()
-	return "particles/generic_gameplay/generic_stunned.vpcf"
-end
-
-function modifier_item_alchemist_gold_khanda_stun:GetEffectAttachType()
-	return PATTACH_OVERHEAD_FOLLOW
-end
-
 modifier_item_alchemist_gold_khanda_stats = class(mod_hidden)
+function modifier_item_alchemist_gold_khanda_stats:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	if self.parent:IsRealHero() then
+		self.parent:AddDamageEvent_out(self, true)
+	end
+
+	self.mana = self.ability.bonus_mana
+	self.agi = self.ability.stats_agi
+	self.str = self.ability.stats_str
+	self.int = self.ability.stats_int
+	self.amp = self.ability.spell_amp
+	self.regen = self.ability.mana_regen_multiplier
+	self.range_bonus = self.ability.range_bonus
+	self.health_bonus = self.ability.health_bonus / 100
+
+	self.min_damage = self.ability.min_damage_to_activate
+	self.crit_damage = self.ability.crit_damage / 100
+	self.crit_chance = self.ability.crit_chance
+	self.crit_bonus = self.ability.crit_bonus
+	self.damageTable = {
+		attacker = self.parent,
+		ability = self.ability,
+		damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION,
+		custom_flag = CUSTOM_FLAG_GOLD_KHANDA,
+	}
+end
+
 function modifier_item_alchemist_gold_khanda_stats:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
@@ -352,44 +401,18 @@ function modifier_item_alchemist_gold_khanda_stats:DeclareFunctions()
 	}
 end
 
-function modifier_item_alchemist_gold_khanda_stats:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	if self.parent:IsRealHero() then
-		self.parent:AddDamageEvent_out(self, true)
-	end
-
-	self.mana = self.ability:GetSpecialValueFor("bonus_mana")
-	self.agi = self.ability:GetSpecialValueFor("stats_agi")
-	self.str = self.ability:GetSpecialValueFor("stats_str")
-	self.int = self.ability:GetSpecialValueFor("stats_int")
-	self.amp = self.ability:GetSpecialValueFor("spell_amp")
-	self.regen = self.ability:GetSpecialValueFor("mana_regen_multiplier")
-	self.range_bonus = self.ability:GetSpecialValueFor("range_bonus")
-	self.health_bonus = self.ability:GetSpecialValueFor("health_bonus") / 100
-
-	self.min_damage = self.ability:GetSpecialValueFor("min_damage_to_activate")
-	self.crit_damage = self.ability:GetSpecialValueFor("crit_damage") / 100
-	self.crit_chance = self.ability:GetSpecialValueFor("crit_chance")
-	self.crit_bonus = self.ability:GetSpecialValueFor("crit_bonus")
-	self.damageTable = {
-		attacker = self.parent,
-		ability = self.ability,
-		damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION,
-		custom_flag = CUSTOM_FLAG_GOLD_KHANDA,
-	}
-end
-
 function modifier_item_alchemist_gold_khanda_stats:GetModifierManaBonus()
 	return self.mana
 end
+
 function modifier_item_alchemist_gold_khanda_stats:GetModifierBonusStats_Agility()
 	return self.agi
 end
+
 function modifier_item_alchemist_gold_khanda_stats:GetModifierBonusStats_Strength()
 	return self.str
 end
+
 function modifier_item_alchemist_gold_khanda_stats:GetModifierBonusStats_Intellect()
 	return self.int
 end
@@ -463,6 +486,9 @@ end
 
 function modifier_item_alchemist_gold_khanda_stats:DamageEvent_out(params)
 	if not IsServer() then
+		return
+	end
+	if not IsValid(self.ability) then
 		return
 	end
 	if self.parent:HasModifier("modifier_item_angels_demise_custom") then

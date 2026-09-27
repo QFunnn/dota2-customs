@@ -46,6 +46,18 @@ function item_wraith_aura_custom:Precache(context)
 	PrecacheResource("particle", "particles/items/wraith_pact_shield.vpcf", context)
 end
 
+function item_wraith_aura_custom:Spawn()
+	self.duration = self:GetSpecialValueFor("duration")
+	self.damage_reduce = self:GetSpecialValueFor("damage_reduce")
+	self.caster_heal = self:GetSpecialValueFor("caster_heal") / 100
+	self.armor_aura = self:GetSpecialValueFor("armor_aura")
+	self.mana_regen_aura = self:GetSpecialValueFor("mana_regen_aura")
+	self.lifesteal_aura = self:GetSpecialValueFor("lifesteal_aura") / 100
+	self.damage_aura = self:GetSpecialValueFor("damage_aura")
+	self.aura_radius = self:GetSpecialValueFor("aura_radius")
+	self.all_stats = self:GetSpecialValueFor("all_stats")
+end
+
 function item_wraith_aura_custom:OnSpellStart()
 	local caster = self:GetCaster()
 
@@ -53,6 +65,24 @@ function item_wraith_aura_custom:OnSpellStart()
 end
 
 modifier_item_wraith_aura_custom_active = class(mod_visible)
+function modifier_item_wraith_aura_custom_active:GetAuraRadius()
+	return self.ability.aura_radius
+end
+function modifier_item_wraith_aura_custom_active:GetAuraSearchFlags()
+	return DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD
+end
+function modifier_item_wraith_aura_custom_active:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_FRIENDLY
+end
+function modifier_item_wraith_aura_custom_active:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
+end
+function modifier_item_wraith_aura_custom_active:GetModifierAura()
+	return "modifier_item_wraith_aura_custom_active_aura"
+end
+function modifier_item_wraith_aura_custom_active:IsAura()
+	return true
+end
 function modifier_item_wraith_aura_custom_active:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -96,24 +126,6 @@ function modifier_item_wraith_aura_custom_active:OnCreated()
 	ParticleManager:ReleaseParticleIndex(effect_cast)
 end
 
-function modifier_item_wraith_aura_custom_active:GetAuraRadius()
-	return self.ability.aura_radius
-end
-function modifier_item_wraith_aura_custom_active:GetAuraSearchFlags()
-	return DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD
-end
-function modifier_item_wraith_aura_custom_active:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_FRIENDLY
-end
-function modifier_item_wraith_aura_custom_active:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
-end
-function modifier_item_wraith_aura_custom_active:GetModifierAura()
-	return "modifier_item_wraith_aura_custom_active_aura"
-end
-function modifier_item_wraith_aura_custom_active:IsAura()
-	return true
-end
 function modifier_item_wraith_aura_custom_active:GetAuraEntityReject(hEntity)
 	return not hEntity.owner or hEntity.owner ~= self.parent
 end
@@ -168,22 +180,6 @@ modifier_item_wraith_aura_custom = class(mod_hidden)
 function modifier_item_wraith_aura_custom:RemoveOnDeath()
 	return false
 end
-function modifier_item_wraith_aura_custom:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.ability.duration = self.ability:GetSpecialValueFor("duration")
-	self.ability.damage_reduce = self.ability:GetSpecialValueFor("damage_reduce")
-	self.ability.caster_heal = self.ability:GetSpecialValueFor("caster_heal") / 100
-
-	self.ability.armor_aura = self.ability:GetSpecialValueFor("armor_aura")
-	self.ability.mana_regen_aura = self.ability:GetSpecialValueFor("mana_regen_aura")
-	self.ability.lifesteal_aura = self.ability:GetSpecialValueFor("lifesteal_aura") / 100
-	self.ability.damage_aura = self.ability:GetSpecialValueFor("damage_aura")
-	self.ability.aura_radius = self.ability:GetSpecialValueFor("aura_radius")
-	self.ability.all_stats = self.ability:GetSpecialValueFor("all_stats")
-end
-
 function modifier_item_wraith_aura_custom:GetAuraRadius()
 	return self.ability.aura_radius
 end
@@ -201,6 +197,10 @@ function modifier_item_wraith_aura_custom:GetModifierAura()
 end
 function modifier_item_wraith_aura_custom:IsAura()
 	return IsServer() and self.parent:IsAlive() and self.parent:IsRealHero() and not self.parent:IsTempestDouble()
+end
+function modifier_item_wraith_aura_custom:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
 end
 
 function modifier_item_wraith_aura_custom:DeclareFunctions()
@@ -266,6 +266,9 @@ function modifier_item_wraith_aura_custom_aura:DamageEvent_out(params)
 	if not IsServer() then
 		return
 	end
+	if not IsValid(self.ability) then
+		return
+	end
 	if not params.unit:IsUnit() then
 		return
 	end
@@ -287,27 +290,32 @@ function modifier_item_wraith_aura_custom_aura:DamageEvent_out(params)
 
 	self.unit_owner = attacker:FindOwner()
 
-	if
-		self.unit_owner
-		and attacker.owner
-		and self.unit_owner:HasModifier("modifier_item_wraith_aura_custom_active")
-		and self.unit_owner == self.caster
-	then
-		local effect_cast = ParticleManager:CreateParticle(
-			"particles/units/heroes/hero_skeletonking/wraith_king_vampiric_aura_lifesteal.vpcf",
-			PATTACH_ABSORIGIN_FOLLOW,
-			self.unit_owner
-		)
-		ParticleManager:SetParticleControlEnt(
-			effect_cast,
-			1,
-			self.unit_owner,
-			PATTACH_POINT_FOLLOW,
-			"attach_hitloc",
-			self.unit_owner:GetAbsOrigin(),
-			true
-		)
-		ParticleManager:ReleaseParticleIndex(effect_cast)
-		self.unit_owner:GenericHeal(params.damage * self.active_heal * lifesteal, self.ability, true, "")
+	if not self.unit_owner then
+		return
 	end
+	if not attacker.owner then
+		return
+	end
+	if not self.unit_owner:HasModifier("modifier_item_wraith_aura_custom_active") then
+		return
+	end
+	if self.unit_owner ~= self.caster then
+		return
+	end
+	local effect_cast = ParticleManager:CreateParticle(
+		"particles/units/heroes/hero_skeletonking/wraith_king_vampiric_aura_lifesteal.vpcf",
+		PATTACH_ABSORIGIN_FOLLOW,
+		self.unit_owner
+	)
+	ParticleManager:SetParticleControlEnt(
+		effect_cast,
+		1,
+		self.unit_owner,
+		PATTACH_POINT_FOLLOW,
+		"attach_hitloc",
+		self.unit_owner:GetAbsOrigin(),
+		true
+	)
+	ParticleManager:ReleaseParticleIndex(effect_cast)
+	self.unit_owner:GenericHeal(params.damage * self.active_heal * lifesteal, self.ability, true, "")
 end

@@ -14,6 +14,7 @@ LinkLuaModifier(
 	"abilities/items/item_essence_of_speed",
 	LUA_MODIFIER_MOTION_NONE
 )
+
 item_essence_of_speed = class({})
 
 function item_essence_of_speed:GetIntrinsicModifierName()
@@ -23,16 +24,16 @@ function item_essence_of_speed:GetIntrinsicModifierName()
 	return "modifier_item_essence_of_speed_auto"
 end
 
+function item_essence_of_speed:Spawn()
+	self.speed_bonus = self:GetSpecialValueFor("speed_bonus")
+end
+
 function item_essence_of_speed:OnAbilityPhaseStart()
 	if not IsServer() then
 		return
 	end
 	if self:GetCaster():HasModifier("modifier_item_essence_of_speed") then
-		CustomGameEventManager:Send_ServerToPlayer(
-			PlayerResource:GetPlayer(self:GetCaster():GetPlayerOwnerID()),
-			"CreateIngameErrorMessage",
-			{ message = "#essence_speed" }
-		)
+		self:GetCaster():SendError("#essence_speed")
 
 		return false
 	end
@@ -51,13 +52,7 @@ function item_essence_of_speed:OnSpellStart()
 	self:SpendCharge(0)
 end
 
-modifier_item_essence_of_speed_auto = class({})
-function modifier_item_essence_of_speed_auto:IsHidden()
-	return true
-end
-function modifier_item_essence_of_speed_auto:IsPurgable()
-	return false
-end
+modifier_item_essence_of_speed_auto = class(mod_hidden)
 function modifier_item_essence_of_speed_auto:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -86,13 +81,7 @@ function modifier_item_essence_of_speed_auto:OnIntervalThink()
 	self.ability:OnSpellStart()
 end
 
-modifier_item_essence_of_speed = class({})
-function modifier_item_essence_of_speed:IsHidden()
-	return false
-end
-function modifier_item_essence_of_speed:IsPurgable()
-	return false
-end
+modifier_item_essence_of_speed = class(mod_visible)
 function modifier_item_essence_of_speed:GetTexture()
 	return "items/essence_speed"
 end
@@ -100,11 +89,13 @@ function modifier_item_essence_of_speed:RemoveOnDeath()
 	return false
 end
 function modifier_item_essence_of_speed:OnCreated(table)
+	self.ability = self:GetAbility()
+
 	self.StackOnIllusion = true
-	if not self:GetAbility() then
+	if not self.ability then
 		self.speed = 50
 	else
-		self.speed = self:GetAbility():GetSpecialValueFor("speed_bonus")
+		self.speed = self.ability.speed_bonus
 	end
 end
 

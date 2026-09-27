@@ -48,7 +48,6 @@ function abaddon_innate_custom:UpdateTalents(name)
 			has_r2 = 0,
 			r2_heal = 0,
 
-			has_h1 = 0,
 			h1_move = 0,
 
 			has_h3 = 0,
@@ -72,7 +71,6 @@ function abaddon_innate_custom:UpdateTalents(name)
 	end
 
 	if caster:HasTalent("modifier_abaddon_hero_1") then
-		self.talents.has_h1 = 1
 		self.talents.h1_move = caster:GetTalentValue("modifier_abaddon_hero_1", "move")
 	end
 
@@ -88,10 +86,6 @@ function abaddon_innate_custom:UpdateTalents(name)
 	end
 end
 
-function abaddon_innate_custom:Init()
-	self.caster = self:GetCaster()
-end
-
 function abaddon_innate_custom:GetIntrinsicModifierName()
 	if not self:GetCaster():IsRealHero() then
 		return
@@ -99,23 +93,17 @@ function abaddon_innate_custom:GetIntrinsicModifierName()
 	return "modifier_abaddon_font_of_avernus_custom"
 end
 
-modifier_abaddon_font_of_avernus_custom = class({})
-function modifier_abaddon_font_of_avernus_custom:IsHidden()
-	return true
-end
-function modifier_abaddon_font_of_avernus_custom:IsPurgable()
-	return false
-end
+modifier_abaddon_font_of_avernus_custom = class(mod_hidden)
 function modifier_abaddon_font_of_avernus_custom:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 	self.ability.tracker = self
 	self.ability:UpdateTalents()
 
-	self.duration = self.ability:GetSpecialValueFor("duration")
-	self.health = self.ability:GetSpecialValueFor("health")
-
-	self.health_bonus = self.parent:GetTalentValue("modifier_abaddon_hero_3", "health")
+	self.ability.duration = self.ability:GetSpecialValueFor("duration")
+	self.ability.health = self.ability:GetSpecialValueFor("health")
+	self.ability.heal_reduce = self.ability:GetSpecialValueFor("heal_reduce")
+	self.ability.damage_reduction = self.ability:GetSpecialValueFor("damage_reduction")
 
 	if not IsServer() then
 		return
@@ -130,15 +118,19 @@ function modifier_abaddon_font_of_avernus_custom:SpellEvent(params)
 	if params.unit ~= self.parent then
 		return
 	end
-
-	if self.ability.talents.has_h3 == 1 and not params.ability:IsItem() then
-		self.parent:AddNewModifier(
-			self.parent,
-			self.ability,
-			"modifier_abaddon_font_of_avernus_custom_regen",
-			{ duration = self.ability.talents.h3_duration }
-		)
+	if self.ability.talents.has_h3 == 0 then
+		return
 	end
+	if params.ability:IsItem() then
+		return
+	end
+
+	self.parent:AddNewModifier(
+		self.parent,
+		self.ability,
+		"modifier_abaddon_font_of_avernus_custom_regen",
+		{ duration = self.ability.talents.h3_duration }
+	)
 end
 
 function modifier_abaddon_font_of_avernus_custom:DamageEvent_out(params)
@@ -214,16 +206,14 @@ function modifier_abaddon_font_of_avernus_custom:DamageEvent_out(params)
 	if self.parent:PassivesDisabled() then
 		return
 	end
-	local health = self.health + self.health_bonus
-
-	if unit:GetHealthPercent() > health then
+	if unit:GetHealthPercent() > self.ability.health then
 		return
 	end
 	unit:AddNewModifier(
 		self.parent,
-		self.parent:BkbAbility(self.ability, self.parent:HasTalent("modifier_abaddon_hero_7")),
+		self.ability,
 		"modifier_abaddon_font_of_avernus_custom_heal_reduce",
-		{ duration = self.duration }
+		{ duration = self.ability.duration }
 	)
 end
 
@@ -242,39 +232,26 @@ function modifier_abaddon_font_of_avernus_custom:GetModifierPercentageCooldown()
 	return self.ability.talents.h3_cdr
 end
 
-modifier_abaddon_font_of_avernus_custom_heal_reduce = class({})
-function modifier_abaddon_font_of_avernus_custom_heal_reduce:IsHidden()
-	return true
-end
+modifier_abaddon_font_of_avernus_custom_heal_reduce = class(mod_hidden)
 function modifier_abaddon_font_of_avernus_custom_heal_reduce:IsPurgable()
 	return true
 end
+function modifier_abaddon_font_of_avernus_custom_heal_reduce:GetEffectName()
+	return "particles/units/heroes/hero_abaddon/abaddon_withering_mist_debuff.vpcf"
+end
 function modifier_abaddon_font_of_avernus_custom_heal_reduce:OnCreated()
-	self.caster = self:GetCaster()
-	self.ability = self.caster:FindAbilityByName("abaddon_innate_custom")
-	if not self.ability then
-		self:Destroy()
-		return
-	end
+	self.ability = self:GetAbility()
 
-	self.heal_reduce = self.ability:GetSpecialValueFor("heal_reduce")
-		+ self.caster:GetTalentValue("modifier_abaddon_hero_3", "effect")
-	self.damage_reduction = self.ability:GetSpecialValueFor("damage_reduction")
-		+ self.caster:GetTalentValue("modifier_abaddon_hero_3", "effect")
+	self.heal_reduce = self.ability.heal_reduce
+	self.damage_reduction = self.ability.damage_reduction
 end
 
 function modifier_abaddon_font_of_avernus_custom_heal_reduce:DeclareFunctions()
 	return {
-		--MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET,
 		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
-		--MODIFIER_PROPERTY_LIFESTEAL_AMPLIFY_PERCENTAGE,
 		MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE,
 		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
 	}
-end
-
-function modifier_abaddon_font_of_avernus_custom_heal_reduce:GetModifierLifestealRegenAmplify_Percentage()
-	return self.heal_reduce
 end
 
 function modifier_abaddon_font_of_avernus_custom_heal_reduce:GetModifierHealChange()
@@ -293,10 +270,6 @@ function modifier_abaddon_font_of_avernus_custom_heal_reduce:GetModifierDamageOu
 	return self.damage_reduction
 end
 
-function modifier_abaddon_font_of_avernus_custom_heal_reduce:GetEffectName()
-	return "particles/units/heroes/hero_abaddon/abaddon_withering_mist_debuff.vpcf"
-end
-
 modifier_abaddon_font_of_avernus_custom_regen = class(mod_visible)
 function modifier_abaddon_font_of_avernus_custom_regen:OnCreated()
 	self.parent = self:GetParent()
@@ -307,17 +280,11 @@ function modifier_abaddon_font_of_avernus_custom_regen:OnCreated()
 	if not IsServer() then
 		return
 	end
-	self:AddStack()
+	self.RemoveForDuel = true
+	self:OnRefresh()
 end
 
 function modifier_abaddon_font_of_avernus_custom_regen:OnRefresh()
-	if not IsServer() then
-		return
-	end
-	self:AddStack()
-end
-
-function modifier_abaddon_font_of_avernus_custom_regen:AddStack()
 	if not IsServer() then
 		return
 	end

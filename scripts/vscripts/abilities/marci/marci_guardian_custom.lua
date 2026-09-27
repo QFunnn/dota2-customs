@@ -71,7 +71,6 @@ LinkLuaModifier(
 
 marci_guardian_custom = class({})
 marci_guardian_custom.talents = {}
-marci_guardian_custom.shield_mods = {}
 
 function marci_guardian_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
@@ -87,12 +86,12 @@ function marci_guardian_custom:Precache(context)
 	PrecacheResource("particle", "particles/marci_heal.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_marci/marci_unleash_attack.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_marci/marci_dispose_debuff.vpcf", context)
-	PrecacheResource("particle", "particles/units/heroes/hero_marci/marci_rebound_allymovespeed.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_troll_warlord/troll_warlord_bersekers_net.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_wisp/wisp_overcharge.vpcf", context)
 	PrecacheResource("particle", "particles/jugg_parry.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_wisp/wisp_base_attack.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_wisp/wisp_ambient.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_wisp/wisp_tether.vpcf", context)
 end
 
 function marci_guardian_custom:UpdateTalents(name)
@@ -134,11 +133,9 @@ function marci_guardian_custom:UpdateTalents(name)
 			e7_range = caster:GetTalentValue("modifier_marci_sidekick_7", "range", true),
 			e7_damage = caster:GetTalentValue("modifier_marci_sidekick_7", "damage", true),
 
-			has_h2 = 0,
 			h2_shield = 0,
 			h2_status = 0,
 
-			has_w3 = 0,
 			w3_heal = 0,
 
 			has_q7 = 0,
@@ -177,19 +174,17 @@ function marci_guardian_custom:UpdateTalents(name)
 		self.talents.has_e7 = 1
 		if not self.e7_init and IsServer() then
 			self.e7_init = true
-			self.caster:SwapAbilities("marci_summon_custom_wisp", "marci_dispose_hits", true, false)
+			caster:SwapAbilities("marci_summon_custom_wisp", "marci_dispose_hits", true, false)
 			caster:AddSpellEvent(self.tracker, true)
 		end
 	end
 
 	if caster:HasTalent("modifier_marci_hero_2") then
-		self.talents.has_h2 = 1
 		self.talents.h2_shield = caster:GetTalentValue("modifier_marci_hero_2", "shield") / 100
 		self.talents.h2_status = caster:GetTalentValue("modifier_marci_hero_2", "status")
 	end
 
 	if caster:HasTalent("modifier_marci_rebound_3") then
-		self.talents.has_w3 = 1
 		self.talents.w3_heal = caster:GetTalentValue("modifier_marci_rebound_3", "heal") / 100
 	end
 
@@ -207,14 +202,6 @@ function marci_guardian_custom:GetIntrinsicModifierName()
 		return
 	end
 	return "modifier_marci_guardian_custom_tracker"
-end
-
-function marci_guardian_custom:GetManaCost(level)
-	return self.BaseClass.GetManaCost(self, level)
-end
-
-function marci_guardian_custom:GetCooldown(iLevel)
-	return self.BaseClass.GetCooldown(self, iLevel)
 end
 
 function marci_guardian_custom:OnSpellStart()
@@ -246,12 +233,12 @@ function marci_guardian_custom:OnSpellStart()
 				dont_destroy = 1,
 			})
 
-			if self.ability.talents.has_e4 == 1 then
+			if self.talents.has_e4 == 1 then
 				target:AddNewModifier(
 					self.caster,
 					self,
 					"modifier_marci_guardian_custom_block",
-					{ duration = self.ability.talents.e4_duration }
+					{ duration = self.talents.e4_duration }
 				)
 			end
 
@@ -280,7 +267,7 @@ function marci_guardian_custom:OnSpellStart()
 							ParticleManager:SetParticleControl(particle, 1, caster:GetAbsOrigin())
 							ParticleManager:ReleaseParticleIndex(particle)
 						end
-						return 1 + self.ability.talents.e4_damage_reduce
+						return 1 + self.talents.e4_damage_reduce
 					end
 				end)
 
@@ -292,8 +279,8 @@ function marci_guardian_custom:OnSpellStart()
 				ParticleManager:SetParticleControl(particle, 1, target:GetOrigin())
 				ParticleManager:SetParticleControl(particle, 2, Vector(1, 0, 0))
 				mod:AddParticle(particle, false, false, 1, false, true)
+				self.shield_mods[mod] = true
 			end
-			self.shield_mods[mod] = true
 		end
 	end
 end
@@ -305,21 +292,21 @@ function marci_guardian_custom:ProcCd(reason)
 	if not self:IsTrained() then
 		return
 	end
-	if self.ability.talents.has_e4 == 0 then
+	if self.talents.has_e4 == 0 then
 		return
 	end
 
 	local allow = false
-	local cd = self.ability.talents.e4_cd_inc
-	if reason == 1 and self.talents.has_e7 == 0 and self.talents.has_q7 == 0 and self.talents.has_w7 == 0 then --пульсация
+	local cd = self.talents.e4_cd_inc
+	if reason == 1 and self.talents.has_e7 == 0 and self.talents.has_q7 == 0 and self.talents.has_w7 == 0 then
 		allow = true
 	end
-	if reason == 2 and (self.talents.has_q7 == 1 or self.talents.has_w7 == 1) and self.talents.has_e7 == 0 then --атака
+	if reason == 2 and (self.talents.has_q7 == 1 or self.talents.has_w7 == 1) and self.talents.has_e7 == 0 then
 		allow = true
 	end
-	if reason == 3 and self.talents.has_e7 == 1 then -- атака духа
+	if reason == 3 and self.talents.has_e7 == 1 then
 		allow = true
-		cd = self.ability.talents.e4_cd_inc_legendary
+		cd = self.talents.e4_cd_inc_legendary
 	end
 
 	if not allow then
@@ -333,15 +320,28 @@ function modifier_marci_guardian_custom_tracker:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 	self.ability.tracker = self
+	self.ability.shield_mods = {}
 	self.ability:UpdateTalents()
-	self.cleave = self.ability:GetSpecialValueFor("cleave_damage")
 
 	self.parent.bodyguard_ability = self.ability
 	self.parent.marci_combat_timer = 0
 
-	self.legendary_ability = self.parent:FindAbilityByName("marci_summon_custom_wisp")
-	if self.legendary_ability then
-		self.legendary_ability:UpdateTalents()
+	self.parent.bodyguard_legendary_ability = self.parent:FindAbilityByName("marci_summon_custom_wisp")
+
+	if IsValid(self.parent.bodyguard_legendary_ability) then
+		if IsServer() and not self.parent.bodyguard_legendary_ability:IsTrained() then
+			self.parent.bodyguard_legendary_ability:SetLevel(1)
+		end
+		self.parent.bodyguard_legendary_ability:UpdateTalents()
+	end
+
+	self.parent.bodyguard_tether_ability = self.parent:FindAbilityByName("marci_summon_custom_wisp_tether")
+
+	if IsValid(self.parent.bodyguard_tether_ability) then
+		if IsServer() and not self.parent.bodyguard_tether_ability:IsTrained() then
+			self.parent.bodyguard_tether_ability:SetLevel(1)
+		end
+		self.parent.bodyguard_tether_ability:UpdateTalents()
 	end
 
 	self.ability.shield = self.ability:GetSpecialValueFor("shield")
@@ -453,7 +453,7 @@ function modifier_marci_guardian_custom_tracker:DamageEvent_out(params)
 	end
 
 	local heal = self.ability.lifesteal_pct
-	if self.ability.talents.has_w3 == 1 and params.inflictor then
+	if params.inflictor then
 		heal = heal + self.ability.talents.w3_heal
 	end
 
@@ -549,7 +549,6 @@ function modifier_marci_guardian_custom_armor:OnCreated()
 	self.ability = self:GetAbility()
 	self.caster = self:GetCaster()
 
-	self.radius = self.ability.talents.e1_radius
 	self.armor = self.ability.talents.e1_armor
 	if self.caster:GetTeamNumber() ~= self.parent:GetTeamNumber() then
 		self.armor = self.ability.talents.e1_armor_reduce
@@ -666,7 +665,7 @@ function modifier_marci_guardian_custom_crit:OnCreated()
 	self.crit = self.ability.talents.e3_crit
 
 	self.parent:AddAttackEvent_out(self)
-	self:SetStackCount(self.ability.talents.e3_attacks)
+	self:OnRefresh()
 end
 
 function modifier_marci_guardian_custom_crit:OnRefresh()
@@ -744,6 +743,7 @@ function modifier_marci_guardian_custom_crit_damage:OnCreated()
 	if not IsServer() then
 		return
 	end
+	self.RemoveForDuel = true
 	self:OnRefresh()
 end
 
@@ -767,6 +767,52 @@ function modifier_marci_guardian_custom_crit_damage:GetModifierDamageOutgoing_Pe
 	return self.damage * self:GetStackCount()
 end
 
+modifier_marci_guardian_custom_legendary_speed = class(mod_hidden)
+function modifier_marci_guardian_custom_legendary_speed:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.speed = self.ability.talents.e7_speed
+	if not IsServer() then
+		return
+	end
+
+	self.parent:EmitSound("Hero_Wisp.Overcharge")
+
+	self.effect = ParticleManager:CreateParticle(
+		"particles/units/heroes/hero_wisp/wisp_overcharge.vpcf",
+		PATTACH_CUSTOMORIGIN_FOLLOW,
+		self.parent
+	)
+	ParticleManager:SetParticleControlEnt(
+		self.effect,
+		0,
+		self.parent,
+		PATTACH_POINT_FOLLOW,
+		"attach_hitloc",
+		self.parent:GetAbsOrigin(),
+		false
+	)
+	self:AddParticle(self.effect, false, false, -1, true, false)
+end
+
+function modifier_marci_guardian_custom_legendary_speed:OnDestroy()
+	if not IsServer() then
+		return
+	end
+	self.parent:StopSound("Hero_Wisp.Overcharge")
+end
+
+function modifier_marci_guardian_custom_legendary_speed:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+	}
+end
+
+function modifier_marci_guardian_custom_legendary_speed:GetModifierAttackSpeedBonus_Constant()
+	return self.speed
+end
+
 marci_summon_custom_wisp = class({})
 marci_summon_custom_wisp.talents = {}
 
@@ -775,6 +821,9 @@ function marci_summon_custom_wisp:UpdateTalents(name)
 	if not self.init then
 		self.init = true
 		self.talents = {
+			has_e2 = 0,
+			e2_duration = caster:GetTalentValue("modifier_marci_sidekick_2", "duration", true),
+
 			e7_range = caster:GetTalentValue("modifier_marci_sidekick_7", "range", true),
 			e7_health = caster:GetTalentValue("modifier_marci_sidekick_7", "health", true) / 100,
 			e7_talent_cd = caster:GetTalentValue("modifier_marci_sidekick_7", "talent_cd", true),
@@ -783,19 +832,21 @@ function marci_summon_custom_wisp:UpdateTalents(name)
 			e7_bva = caster:GetTalentValue("modifier_marci_sidekick_7", "bva", true),
 			e7_slow_resist = caster:GetTalentValue("modifier_marci_sidekick_7", "slow_resist", true),
 
-			has_r2 = 0,
 			r2_speed_legendary = 0,
 		}
 	end
 
+	if caster:HasTalent("modifier_marci_sidekick_2") then
+		self.talents.has_e2 = 1
+	end
+
 	if caster:HasTalent("modifier_marci_unleash_2") then
-		self.talents.has_r2 = 1
 		self.talents.r2_speed_legendary = caster:GetTalentValue("modifier_marci_unleash_2", "speed_legendary")
 	end
 end
 
 function marci_summon_custom_wisp:GetCooldown()
-	return self.talents.e7_talent_cd and self.talents.e7_talent_cd or 0
+	return self.talents.e7_talent_cd or 0
 end
 
 function marci_summon_custom_wisp:OnAbilityPhaseStart()
@@ -815,7 +866,6 @@ function marci_summon_custom_wisp:OnSpellStart()
 	unit:SetControllableByPlayer(self.caster:GetPlayerOwnerID(), true)
 	unit:SetOwner(self.caster)
 
-	--unit:SetAttackCapability(DOTA_UNIT_CAP_NO_ATTACK)
 	unit.owner = self.caster
 	unit.marci_creep = true
 	unit:EmitSound("Marci.Sidekick_summon")
@@ -839,12 +889,12 @@ function marci_summon_custom_wisp:OnProjectileHit(target, vLocation)
 
 	local ability = self.parent.bodyguard_ability
 	if IsValid(ability) then
-		if ability.talents.has_e2 == 1 then
+		if self.talents.has_e2 == 1 then
 			target:AddNewModifier(
 				self.parent,
 				ability,
 				"modifier_marci_guardian_custom_damage_reduce",
-				{ duration = ability.talents.e2_duration }
+				{ duration = self.talents.e2_duration }
 			)
 		end
 		ability:ProcCd(3)
@@ -888,8 +938,8 @@ function modifier_marci_guardian_custom_legendary_unit:OnCreated()
 	self.caster.marci_wisp = self.parent
 
 	self.ability:EndCd()
-	self.tether = self.caster:FindAbilityByName("marci_summon_custom_wisp_tether")
-	if not self.ability:IsHidden() and self.tether and self.tether:IsHidden() then
+	self.tether = self.caster.bodyguard_tether_ability
+	if not self.ability:IsHidden() and IsValid(self.tether) and self.tether:IsHidden() then
 		self.tether:ToggleAbility()
 		self.caster:SwapAbilities(self.ability:GetName(), self.tether:GetName(), false, true)
 	end
@@ -971,7 +1021,7 @@ function modifier_marci_guardian_custom_legendary_unit:OnDestroy()
 	self.parent:EmitSound("wisp_death")
 	self.parent:StopSound("Hero_Wisp.IdleLoop")
 
-	if self.ability:IsHidden() and not self.tether:IsHidden() then
+	if IsValid(self.tether) and self.ability:IsHidden() and not self.tether:IsHidden() then
 		if self.tether:GetToggleState() then
 			self.tether:ToggleAbility()
 		end
@@ -1043,7 +1093,6 @@ function modifier_marci_guardian_custom_legendary_unit_passive:DeclareFunctions(
 		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
 		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
 		MODIFIER_PROPERTY_SLOW_RESISTANCE_STACKING,
-		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
 		MODIFIER_PROPERTY_ATTACK_RANGE_BASE_OVERRIDE,
 		MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT,
 		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
@@ -1077,53 +1126,19 @@ function modifier_marci_guardian_custom_legendary_unit_passive:GetModifierAttack
 	return self.ability.talents.r2_speed_legendary
 end
 
-modifier_marci_guardian_custom_legendary_speed = class(mod_hidden)
-function modifier_marci_guardian_custom_legendary_speed:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.speed = self.ability.talents.e7_speed
-	if not IsServer() then
-		return
-	end
-
-	self.parent:EmitSound("Hero_Wisp.Overcharge")
-
-	self.effect = ParticleManager:CreateParticle(
-		"particles/units/heroes/hero_wisp/wisp_overcharge.vpcf",
-		PATTACH_CUSTOMORIGIN_FOLLOW,
-		self.parent
-	)
-	ParticleManager:SetParticleControlEnt(
-		self.effect,
-		0,
-		self.parent,
-		PATTACH_POINT_FOLLOW,
-		"attach_hitloc",
-		self.parent:GetAbsOrigin(),
-		false
-	)
-	self:AddParticle(self.effect, false, false, -1, true, false)
-end
-
-function modifier_marci_guardian_custom_legendary_speed:OnDestroy()
-	if not IsServer() then
-		return
-	end
-	self.parent:StopSound("Hero_Wisp.Overcharge")
-end
-
-function modifier_marci_guardian_custom_legendary_speed:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
-	}
-end
-
-function modifier_marci_guardian_custom_legendary_speed:GetModifierAttackSpeedBonus_Constant()
-	return self.speed
-end
-
 marci_summon_custom_wisp_tether = class({})
+marci_summon_custom_wisp_tether.talents = {}
+
+function marci_summon_custom_wisp_tether:UpdateTalents(name)
+	local caster = self:GetCaster()
+	if not self.init then
+		self.init = true
+		self.talents = {
+			e7_range = caster:GetTalentValue("modifier_marci_sidekick_7", "range", true),
+			e7_movespeed = caster:GetTalentValue("modifier_marci_sidekick_7", "movespeed", true),
+		}
+	end
+end
 
 function marci_summon_custom_wisp_tether:OnToggle()
 	if not IsValid(self.caster.marci_wisp) then
@@ -1146,13 +1161,7 @@ modifier_marci_guardian_custom_legendary_tether_wisp = class(mod_hidden)
 function modifier_marci_guardian_custom_legendary_tether_wisp:OnCreated()
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
-	self.ability = self.caster.bodyguard_ability
-	self.main_ability = self:GetAbility()
-
-	if not self.ability then
-		self:Destroy()
-		return
-	end
+	self.ability = self:GetAbility()
 
 	if not IsServer() then
 		self.effect = ParticleManager:CreateParticle(
@@ -1252,8 +1261,8 @@ function modifier_marci_guardian_custom_legendary_tether_wisp:OnDestroy()
 	self.caster:StopSound("Hero_Wisp.Tether")
 	self.caster:EmitSound("Hero_Wisp.Tether.Stop")
 
-	if self.main_ability:GetToggleState() then
-		self.main_ability:ToggleAbility()
+	if self.ability:GetToggleState() then
+		self.ability:ToggleAbility()
 	end
 end
 

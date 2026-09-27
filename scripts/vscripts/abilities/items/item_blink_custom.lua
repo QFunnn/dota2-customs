@@ -74,8 +74,7 @@ function item_blink_custom:OnSpellStart()
 	end
 
 	if not self.multicast_k then
-		caster:SetForwardVector(dir:Normalized())
-		caster:FaceTowards(point)
+		caster:FacePoint(point)
 		caster:Teleport(point, not caster:HasModifier("modifier_blink_break_custom"), pfx_name_start, pfx_name_end)
 	end
 
@@ -96,6 +95,9 @@ end
 
 function modifier_item_blink_custom:DamageEvent_inc(params)
 	if not IsServer() then
+		return
+	end
+	if not IsValid(self.ability) then
 		return
 	end
 	self.parent:CheckBlink(params, self.ability)

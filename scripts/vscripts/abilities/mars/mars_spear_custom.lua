@@ -25,8 +25,6 @@ LinkLuaModifier("modifier_mars_spear_custom_heal_reduce", "abilities/mars/mars_s
 
 mars_spear_custom = class({})
 mars_spear_custom.talents = {}
-mars_spear_custom.projectiles = {}
-mars_spear_custom.index = 0
 
 function mars_spear_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
@@ -61,6 +59,8 @@ function mars_spear_custom:UpdateTalents(name)
 	local caster = self:GetCaster()
 	if not self.init then
 		self.init = true
+		self.projectiles = {}
+		self.index = 0
 		self.talents = {
 			has_q1 = 0,
 			q1_damage_creeps = 0,
@@ -84,7 +84,6 @@ function mars_spear_custom:UpdateTalents(name)
 			q4_duration = caster:GetTalentValue("modifier_mars_spear_4", "duration", true),
 
 			has_q7 = 0,
-			q7_range = caster:GetTalentValue("modifier_mars_spear_7", "range", true),
 			q7_turn_speed = caster:GetTalentValue("modifier_mars_spear_7", "turn_speed", true),
 			q7_cast = caster:GetTalentValue("modifier_mars_spear_7", "cast", true),
 			q7_radius = caster:GetTalentValue("modifier_mars_spear_7", "radius", true),
@@ -158,7 +157,7 @@ function mars_spear_custom:GetManaCost(level)
 end
 
 function mars_spear_custom:GetCastRange(vLocation, hTarget)
-	return self.spear_range and self.spear_range or 0
+	return self.spear_range or 0
 end
 
 function mars_spear_custom:GetBehavior()
@@ -183,7 +182,7 @@ function mars_spear_custom:GetCastAnimation()
 end
 
 function mars_spear_custom:GetCooldown(iLevel)
-	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.q2_cd and self.talents.q2_cd or 0)
+	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.q2_cd or 0)
 end
 
 function mars_spear_custom:GetDamage(target)
@@ -216,8 +215,7 @@ function mars_spear_custom:OnSpellStart()
 
 	if self.talents.has_q7 == 1 then
 		self.caster:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_5, 0.06)
-		self.caster:SetForwardVector((point - self.caster:GetAbsOrigin()):Normalized())
-		self.caster:FaceTowards(point)
+		self.caster:FacePoint(point)
 
 		local origin = self.caster:GetAbsOrigin()
 
@@ -264,79 +262,6 @@ function mars_spear_custom:OnSpellStart()
 	end
 end
 
-function mars_spear_custom:LaunchSpear(origin, point, legendary_k)
-	if not IsServer() then
-		return
-	end
-
-	local projectile_distance = self:GetRange()
-	local projectile_speed = self.spear_speed * (1 + (self.talents.has_h4 == 1 and self.talents.h4_speed or 0))
-
-	local direction = point - origin
-	direction.z = 0
-	direction = direction:Normalized()
-
-	self.index = self.index + 1
-
-	local pfx = wearables_system:GetParticleReplacementAbility(
-		self.caster,
-		"particles/units/heroes/hero_mars/mars_spear.vpcf",
-		self
-	)
-
-	local info = {
-		Source = self.caster,
-		Ability = self,
-		vSpawnOrigin = origin,
-		bDeleteOnHit = false,
-		iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
-		iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-		EffectName = pfx,
-		fDistance = projectile_distance,
-		fStartRadius = self.spear_width,
-		fEndRadius = self.spear_width,
-		vVelocity = direction * projectile_speed,
-		bHasFrontalCone = false,
-		bReplaceExisting = false,
-		bProvidesVision = true,
-		iVisionRadius = self.spear_vision,
-		fVisionDuration = 10,
-		iVisionTeamNumber = self.caster:GetTeamNumber(),
-		ExtraData = {
-			index = self.index,
-		},
-	}
-
-	if legendary_k >= 0.99 then
-		local particle =
-			ParticleManager:CreateParticle("particles/jugg_refresh.vpcf", PATTACH_CUSTOMORIGIN, self.parent)
-		ParticleManager:SetParticleControlEnt(
-			particle,
-			0,
-			self.parent,
-			PATTACH_POINT_FOLLOW,
-			"attach_hitloc",
-			self.parent:GetOrigin(),
-			true
-		)
-		ParticleManager:ReleaseParticleIndex(particle)
-
-		self.caster:CdAbility(self, nil, self.talents.q7_cd_inc)
-	end
-
-	self.projectiles[self.index] = {}
-
-	self.caster:EmitSound("Hero_Mars.Spear.Cast")
-	self.caster:EmitSound("Hero_Mars.Spear")
-
-	local id = ProjectileManager:CreateLinearProjectile(info)
-	self.projectiles[self.index].projid = id
-	self.projectiles[self.index].direction = direction
-	self.projectiles[self.index].origin = origin
-	self.projectiles[self.index].point = origin
-	self.projectiles[self.index].legendary_k = legendary_k
-end
-
 function mars_spear_custom:OnProjectileHit_ExtraData(target, location, table)
 	if not IsServer() then
 		return
@@ -363,12 +288,12 @@ function mars_spear_custom:OnProjectileHit_ExtraData(target, location, table)
 		ParticleManager:DestroyParticle(self.particle_aoe_fx, false)
 		ParticleManager:ReleaseParticleIndex(self.particle_aoe_fx)
 
-		self.caster:CdItems(self.ability.talents.q4_cd_items)
+		self.caster:CdItems(self.talents.q4_cd_items)
 		self.caster:AddNewModifier(
 			self.caster,
 			self,
 			"modifier_mars_spear_custom_hit_speed",
-			{ duration = self.ability.talents.q4_duration }
+			{ duration = self.talents.q4_duration }
 		)
 	end
 
@@ -386,7 +311,7 @@ function mars_spear_custom:OnProjectileHit_ExtraData(target, location, table)
 			self.caster,
 			self,
 			"modifier_mars_spear_custom_heal_reduce",
-			{ duration = self.ability.talents.q1_duration }
+			{ duration = self.talents.q1_duration }
 		)
 	end
 
@@ -398,7 +323,7 @@ function mars_spear_custom:OnProjectileHit_ExtraData(target, location, table)
 	DoDamage({
 		victim = target,
 		attacker = self.caster,
-		damage = self.ability:GetDamage(target) * damage_k,
+		damage = self:GetDamage(target) * damage_k,
 		damage_type = DAMAGE_TYPE_MAGICAL,
 		ability = self,
 	})
@@ -430,8 +355,7 @@ function mars_spear_custom:OnProjectileHit_ExtraData(target, location, table)
 		return false
 	end
 
-	target:SetForwardVector(-direction)
-	target:FaceTowards(target:GetAbsOrigin() - direction * 10)
+	target:FacePoint(target:GetAbsOrigin() - direction * 10)
 
 	self.projectiles[index].entindex = target:entindex()
 	self.projectiles[index].mod = target:AddNewModifier(self.caster, self, "modifier_mars_spear_custom", {})
@@ -495,7 +419,7 @@ function mars_spear_custom:OnProjectileThink_ExtraData(vLocation, table)
 		building_radius,
 		DOTA_UNIT_TARGET_TEAM_BOTH,
 		DOTA_UNIT_TARGET_BUILDING,
-		DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_INVULNERABLE,
+		DOTA_UNIT_TARGET_FLAG_INVULNERABLE,
 		0,
 		false
 	)
@@ -503,6 +427,79 @@ function mars_spear_custom:OnProjectileThink_ExtraData(vLocation, table)
 		self:Pinned(index)
 		return
 	end
+end
+
+function mars_spear_custom:LaunchSpear(origin, point, legendary_k)
+	if not IsServer() then
+		return
+	end
+
+	local projectile_distance = self:GetRange()
+	local projectile_speed = self.spear_speed * (1 + (self.talents.has_h4 == 1 and self.talents.h4_speed or 0))
+
+	local direction = point - origin
+	direction.z = 0
+	direction = direction:Normalized()
+
+	self.index = self.index + 1
+
+	local pfx = wearables_system:GetParticleReplacementAbility(
+		self.caster,
+		"particles/units/heroes/hero_mars/mars_spear.vpcf",
+		self
+	)
+
+	local info = {
+		Source = self.caster,
+		Ability = self,
+		vSpawnOrigin = origin,
+		bDeleteOnHit = false,
+		iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
+		iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
+		EffectName = pfx,
+		fDistance = projectile_distance,
+		fStartRadius = self.spear_width,
+		fEndRadius = self.spear_width,
+		vVelocity = direction * projectile_speed,
+		bHasFrontalCone = false,
+		bReplaceExisting = false,
+		bProvidesVision = true,
+		iVisionRadius = self.spear_vision,
+		fVisionDuration = 10,
+		iVisionTeamNumber = self.caster:GetTeamNumber(),
+		ExtraData = {
+			index = self.index,
+		},
+	}
+
+	if legendary_k >= 0.99 then
+		local particle =
+			ParticleManager:CreateParticle("particles/jugg_refresh.vpcf", PATTACH_CUSTOMORIGIN, self.caster)
+		ParticleManager:SetParticleControlEnt(
+			particle,
+			0,
+			self.caster,
+			PATTACH_POINT_FOLLOW,
+			"attach_hitloc",
+			self.caster:GetOrigin(),
+			true
+		)
+		ParticleManager:ReleaseParticleIndex(particle)
+
+		self.caster:CdAbility(self, nil, self.talents.q7_cd_inc)
+	end
+
+	self.projectiles[self.index] = {}
+
+	self.caster:EmitSound("Hero_Mars.Spear.Cast")
+	self.caster:EmitSound("Hero_Mars.Spear")
+
+	local id = ProjectileManager:CreateLinearProjectile(info)
+	self.projectiles[self.index].projid = id
+	self.projectiles[self.index].direction = direction
+	self.projectiles[self.index].origin = origin
+	self.projectiles[self.index].point = origin
+	self.projectiles[self.index].legendary_k = legendary_k
 end
 
 function mars_spear_custom:Pinned(index, is_arena)
@@ -531,7 +528,7 @@ function mars_spear_custom:Pinned(index, is_arena)
 		FindClearSpaceForUnit(unit, point, true)
 	end
 
-	unit:AddNewModifier(self.caster, ability, "modifier_mars_spear_custom_debuff", { duration = duration })
+	unit:AddNewModifier(self.caster, self, "modifier_mars_spear_custom_debuff", { duration = duration })
 
 	if unit:IsValidKill(self.caster) then
 		if self.caster:GetQuest() == "Mars.Quest_5" then
@@ -662,11 +659,7 @@ end
 function modifier_mars_spear_custom_debuff:OnCreated(kv)
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
-	self.ability = self.caster.spear_ability
-	if not self.ability then
-		self:Destroy()
-		return
-	end
+	self.ability = self:GetAbility()
 
 	if not IsServer() then
 		return
@@ -786,13 +779,9 @@ function modifier_mars_spear_custom_legendary:OnDestroy()
 		{ state = 2 }
 	)
 
-	local dir = self.parent:GetForwardVector()
-	dir.z = 0
-
 	self.ability:StartCd()
 
-	self.parent:FaceTowards(self.parent:GetAbsOrigin() + dir * 10)
-	self.parent:SetForwardVector(dir)
+	self.parent:FacePoint()
 
 	FindClearSpaceForUnit(self.parent, self.parent:GetAbsOrigin(), false)
 

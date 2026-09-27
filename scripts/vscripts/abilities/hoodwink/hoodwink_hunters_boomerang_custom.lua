@@ -20,7 +20,6 @@ LinkLuaModifier(
 )
 
 hoodwink_hunters_boomerang_custom = class({})
-
 function hoodwink_hunters_boomerang_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
@@ -30,36 +29,30 @@ function hoodwink_hunters_boomerang_custom:Precache(context)
 	PrecacheResource("particle", "particles/hoodwink/hoodwink_boomerang_custom_hit.vpcf", context)
 end
 
-function hoodwink_hunters_boomerang_custom:InitSpell()
-	if not IsServer() then
+function hoodwink_hunters_boomerang_custom:Init()
+	if not self:GetCaster() then
 		return
 	end
-	if self.speed then
-		return
-	end
+	self.caster = self:GetCaster()
 
-	self.speed = self:GetSpecialValueFor("speed")
-	self.radius = self:GetSpecialValueFor("radius")
-	self.damage = self:GetSpecialValueFor("damage")
-	self.duration = self:GetSpecialValueFor("duration")
-	self.range = self:GetSpecialValueFor("AbilityCastRange")
-
+	self.speed = self:GetLevelSpecialValueFor("speed", 1)
+	self.radius = self:GetLevelSpecialValueFor("radius", 1)
+	self.damage = self:GetLevelSpecialValueFor("damage", 1)
+	self.duration = self:GetLevelSpecialValueFor("duration", 1)
+	self.range = self:GetLevelSpecialValueFor("AbilityCastRange", 1)
 	self.damageTable =
-		{ attacker = self:GetCaster(), ability = self, damage = self.damage, damage_type = DAMAGE_TYPE_MAGICAL }
+		{ attacker = self.caster, ability = self, damage = self.damage, damage_type = DAMAGE_TYPE_MAGICAL }
 end
 
 function hoodwink_hunters_boomerang_custom:GetCastRange(location, target)
-	return self.BaseClass.GetCastRange(self, location, target) - self:GetCaster():GetCastRangeBonus()
+	return self.BaseClass.GetCastRange(self, location, target) - self.caster:GetCastRangeBonus()
 end
 
 function hoodwink_hunters_boomerang_custom:OnSpellStart()
-	local caster = self:GetCaster()
-	self:InitSpell()
-
-	local origin = caster:GetAbsOrigin()
+	local origin = self.caster:GetAbsOrigin()
 	local point = self:GetCursorPosition()
 	if origin == point then
-		point = origin + caster:GetForwardVector() * 10
+		point = origin + self.caster:GetForwardVector() * 10
 	end
 
 	local vec = point - origin
@@ -67,28 +60,28 @@ function hoodwink_hunters_boomerang_custom:OnSpellStart()
 	local cast_point = GetGroundPosition((origin + vec:Normalized() * max_range), nil) + Vector(0, 0, 100)
 
 	local target = CreateModifierThinker(
-		caster,
+		self.caster,
 		self,
 		"modifier_hoodwink_hunters_boomerang_custom_target",
 		{ duration = 10 },
 		cast_point,
-		caster:GetTeamNumber(),
+		self.caster:GetTeamNumber(),
 		false
 	)
 	local thinker = CreateModifierThinker(
-		caster,
+		self.caster,
 		self,
 		"modifier_hoodwink_hunters_boomerang_custom_thinker",
 		{},
 		origin,
-		caster:GetTeamNumber(),
+		self.caster:GetTeamNumber(),
 		false
 	)
 
 	self.info = {
 		Ability = self,
 		Target = target,
-		Source = caster,
+		Source = self.caster,
 		EffectName = "particles/hoodwink/hoodwink_boomerang_custom.vpcf",
 		iMoveSpeed = self.speed,
 		bDodgeable = true,
@@ -96,7 +89,7 @@ function hoodwink_hunters_boomerang_custom:OnSpellStart()
 		bProvidesVision = true,
 		iVisionRadius = 200,
 		iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_HITLOCATION,
-		iVisionTeamNumber = caster:GetTeamNumber(),
+		iVisionTeamNumber = self.caster:GetTeamNumber(),
 		ExtraData = {
 			target = target:entindex(),
 			thinker = thinker:entindex(),
@@ -104,7 +97,7 @@ function hoodwink_hunters_boomerang_custom:OnSpellStart()
 			y = origin.y,
 		},
 	}
-	caster:EmitSound("Hero_Hoodwink.Boomerang.Cast")
+	self.caster:EmitSound("Hero_Hoodwink.Boomerang.Cast")
 	ProjectileManager:CreateTrackingProjectile(self.info)
 end
 
@@ -122,9 +115,7 @@ function hoodwink_hunters_boomerang_custom:OnProjectileThink_ExtraData(location,
 		return
 	end
 
-	local caster = self:GetCaster()
-
-	local targets = caster:FindTargets(self.radius, location)
+	local targets = self.caster:FindTargets(self.radius, location)
 	for _, target in pairs(targets) do
 		if not mod.targets[target] then
 			mod.targets[target] = true
@@ -151,13 +142,13 @@ function hoodwink_hunters_boomerang_custom:OnProjectileThink_ExtraData(location,
 				target:IsCreep() and "Hero_Hoodwink.Boomerang.Slow.Creep" or "Hero_Hoodwink.Boomerang.Slow"
 			)
 
-			if IsValid(caster.sharp_ability) then
+			if IsValid(self.caster.sharp_ability) then
 				target:RemoveModifierByName("modifier_hoodwink_sharpshooter_custom_debuff")
 				local origin = Vector(table.x, table.y, 0)
 				local dir = (target:GetAbsOrigin() - origin):Normalized()
 				target:AddNewModifier(
-					caster,
-					caster.sharp_ability,
+					self.caster,
+					self.caster.sharp_ability,
 					"modifier_hoodwink_sharpshooter_custom_debuff",
 					{ duration = self.duration * (1 - target:GetStatusResistance()), x = dir.x, y = dir.y }
 				)
@@ -187,14 +178,13 @@ function hoodwink_hunters_boomerang_custom:OnProjectileHit_ExtraData(target, loc
 		return
 	end
 
-	local target = EntIndexToHScript(table.target)
-	if not IsValid(target) then
+	local dummy = EntIndexToHScript(table.target)
+	if not IsValid(dummy) then
 		return
 	end
 
-	local caster = self:GetCaster()
-	self.info.Source = target
-	self.info.Target = caster
+	self.info.Source = dummy
+	self.info.Target = self.caster
 	self.info.iSourceAttachment = nil
 	self.info.EffectName = "particles/hoodwink/hoodwink_boomerang_custom_2.vpcf"
 	self.info.ExtraData = {
@@ -206,8 +196,8 @@ function hoodwink_hunters_boomerang_custom:OnProjectileHit_ExtraData(target, loc
 
 	mod.targets = {}
 
-	EmitSoundOnLocationWithCaster(location, "Hero_Hoodwink.Boomerang.Return", caster)
-	target:Destroy()
+	EmitSoundOnLocationWithCaster(location, "Hero_Hoodwink.Boomerang.Return", self.caster)
+	dummy:Destroy()
 end
 
 modifier_hoodwink_hunters_boomerang_custom_target = class(mod_hidden)

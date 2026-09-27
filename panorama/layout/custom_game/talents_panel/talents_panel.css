@@ -67,6 +67,44 @@
 	
 }
 
+@keyframes 'CardAnimationBuild1'
+{
+	0%
+	{
+		box-shadow: fill #df4835 0px 0px 3px -1px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #df4835 0px 0px 6px -1px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #df4835 0px 0px 3px -1px;
+	}
+	
+}
+
+@keyframes 'CardAnimationBuild2'
+{
+	0%
+	{
+		box-shadow: fill #3f86f0 0px 0px 3px -1px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #3f86f0 0px 0px 6px -1px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #3f86f0 0px 0px 3px -1px;
+	}
+	
+}
+
 @keyframes 'CardAnimationOpen'
 {
 	0%
@@ -433,9 +471,14 @@
 	margin-right: 2px;
 	margin-top: 2px;
 	margin-bottom: 2px;
-	border: 3px solid #c2bfbc;
-	border-radius: 5%;
+	border: 2px solid #c2bfbc;
+	border-radius: 3px;
 	box-shadow: inset #000000aa 0px 2px 3px 2px;
+}
+
+.general_image_priority
+{
+	border: 2px solid #53ea48;
 }
 
 .general_image_blue
@@ -480,14 +523,14 @@
 
 .general_stack
 {
-	text-shadow: 0px 0px 4px 6 #000000;
-	color: white;
-	margin-left: 2px;
-	margin-top: 2px;
-	horizontal-align: center;
-	vertical-align: center;
-	font-family: monospaceNumbersFont;
-	font-size: 25px;
+	text-shadow: 0px 0px 3px 5 #000000;
+	color: gradient( linear, 0% 100%, 0% 0%, from( #bbb ), to( #eee ) );
+	margin-right: 7px;
+	margin-bottom: 4px;
+	align: right bottom;
+	font-family: Radiance;
+	font-weight: semi-bold;
+	font-size: 21px;
 	overflow: noclip noclip;
 }
 
@@ -567,6 +610,26 @@
 	box-shadow: fill #f7942b 0px 0px 2px -1px;
 }
 
+#talent_orange_card.talent_orange_card_build_1
+{
+	box-shadow: fill #e0402c 0px 0px 2px -1px;
+}
+
+#talent_orange_card.talent_orange_card_build_2
+{
+	box-shadow: fill #3f86f0 0px 0px 2px -1px;
+}
+
+.orange_content_anim.talent_orange_card_build_1
+{
+	animation-name: CardAnimationBuild1;
+}
+
+.orange_content_anim.talent_orange_card_build_2
+{
+	animation-name: CardAnimationBuild2;
+}
+
 #talent_orange_icon
 {
 	width: 59.25px;
@@ -576,6 +639,19 @@
 	box-shadow: fill #3a3632 0px 0px 2px 0px;
 	background-size: contain;
 	background-repeat: no-repeat;
+	border-radius: 2px;
+}
+
+.talent_orange_card_build_1 #talent_orange_icon
+{
+	box-shadow: fill #e0402c 0px 0px 0px 0px;
+	border: 1px solid #cf3a2e;
+}
+
+.talent_orange_card_build_2 #talent_orange_icon
+{
+	box-shadow: fill #3f86f0 0px 0px 0px 0px;
+	border: 1px solid #3774dd;
 }
 
 #talent_orange_lvl
@@ -588,6 +664,34 @@
 	background-repeat: no-repeat;
 	background-size: 100%;
 	margin-bottom: 4.5px;
+}
+
+#talent_orange_build
+{
+	width: 69px;
+	horizontal-align: center;
+	vertical-align: bottom;
+	margin-bottom: 3.5px;
+	border-radius: 2px;
+	text-align: center;
+	font-family: Radiance;
+	font-weight: semi-bold;
+	font-size: 13px;
+	text-shadow: 0px 0px 3px 2.0 #000000;
+}
+
+.talent_orange_build_1
+{
+	background-color: gradient( linear, 0% 0%, 0% 90%, from( #1e0404 ), to( #4c0d0d ) );
+	border: 1px solid #b8342a;
+	color: #ffab94;
+}
+
+.talent_orange_build_2
+{
+	background-color: gradient( linear, 0% 0%, 0% 90%, from( #040a1e ), to( #0d2250 ) );
+	border: 1px solid #3169c9;
+	color: #9cc6ff;
 }
 
 #orange_container
@@ -1200,4 +1304,191 @@
 		box-shadow: fill #b28ebe 0px 0px 2px -1px;
 	}
 	
+}
+
+#UniqueTalents_Kunkka_Header
+{
+	width: 100%;
+	height: 40px;
+	horizontal-align: center;
+	border-bottom: 2px solid #111;
+	box-shadow: fill #916c45 0px 0px 5px -1px;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #0c101b ), to( #342b22 ) );
+	flow-children: none;
+	z-index: -10;
+}
+
+#UniqueTalents_Kunkka_HeaderInner
+{
+	width: fit-children;
+	height: 100%;
+	horizontal-align: center;
+	flow-children: right;
+}
+
+#UniqueTalents_Kunkka_HeaderTexture
+{
+	background-image: url("s2r://panorama/images/hud/facets/ripple_texture_png.vtex");
+	background-size: cover;
+	background-position: center;
+	-s2-mix-blend-mode: screen;
+	opacity: 0.3;
+	height: 100%;
+	width: 100%;
+	wash-color: #604a32;
+	ignore-parent-flow: true;
+}
+
+#UniqueTalents_Kunkka_HeaderIcon
+{
+	width: 28px;
+	height: 28px;
+	vertical-align: center;
+	brightness: 0.8;
+	margin-top: 4px;
+	border: 1px solid #c1994b;
+	box-shadow: fill #000 0px 0px 14px -2px;
+	border-radius: 2px;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_kunkka/xmark_png.vtex");
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+#UniqueTalents_Kunkka_HeaderText
+{
+	font-family: Reaver;
+	font-weight: bold;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#cfa25c), to(#f8dcb0));
+	text-shadow: 0px 1px 0px 2.5 #000000;
+	font-size: 18px;
+	text-align: center;
+	vertical-align: center;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	margin-left: 10px;
+	margin-top: 4px;
+}
+
+#UniqueTalents_Kunkka_Content
+{
+	align: center center;
+	width: 100%;
+	flow-children: down;
+}
+
+.UniqueTalents_Kunkka_Row
+{
+	width: 100%;
+	height: 70px;
+	margin: 5px 0px;
+	border-top: 1px solid #4c4436;
+	border-bottom: 1px solid #4c4436;
+	border-color: #4c4436;
+	box-shadow: fill #00000033 0px 0px 18px -1px;
+}
+
+#KunkkaRow_blue
+{
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#00050daa), to(#041735aa));
+}
+
+#KunkkaRow_purple
+{
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#0e011aaa), to(#200337aa));
+}
+
+#KunkkaRow_legendary
+{
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#0d0600aa), to(#2e1702aa));
+}
+
+.KunkkaRow_items_content
+{
+	flow-children: right;
+	align: center center;
+	height: 100%;
+}
+
+.UniqueTalents_Kunkka_item_back
+{
+	width: 42px;
+	background-color: black;
+	flow-children: down;
+	border-radius: 2px;
+	border: 1px solid #575144;
+	margin: 0px 5px;
+	vertical-align: center;
+}
+
+.UniqueTalents_Kunkka_item_back_active
+{
+	border: 1px solid #a99369;
+}
+
+.UniqueTalents_Kunkka_item_back_max
+{
+	animation-name: KunkkaPanelMax;
+	animation-iteration-count: infinite;
+	animation-duration: 2s;
+	transition-property: opacity, transform, pre-transform-scale2d;
+	transition-duration: 0.1s;
+	border: 1px solid #a99369;
+}
+
+@keyframes 'KunkkaPanelMax'
+{
+	0%
+	{
+		box-shadow: fill #bb9356 0px 0px 3px -1px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #bb9356 0px 0px 6px -1px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #bb9356 0px 0px 3px -1px;
+	}
+	
+}
+
+.UniqueTalents_Kunkka_item_icon
+{
+	width: 30px;
+	height: 30px;
+	background-color: gray;
+	horizontal-align: center;
+	margin-top: 6px;
+	border: 1px solid #7b7260;
+}
+
+.UniqueTalents_Kunkka_item_icon_not_active
+{
+	wash-color: #666;
+	saturation: 0.4;
+}
+
+.UniqueTalents_Kunkka_item_level
+{
+	width: 30px;
+	height: 10px;
+	horizontal-align: center;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #111 ), to( #222 ) );
+	margin: 4px 0px;
+	border: 1px solid #443e32;
+}
+
+.UniqueTalents_Kunkka_level_fill
+{
+	height: 7px;
+	margin-top: 0.5px;
+	margin-left: 1px;
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #755b32 ), to( #b98f4d ) );
+}
+
+.UniqueTalents_Kunkka_level_fill_max
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #9a7845 ), to( #d9b06f ) );
 }

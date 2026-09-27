@@ -25,18 +25,32 @@ function item_basher_custom:Precache(context)
 		"particles/econ/items/troll_warlord/troll_warlord_ti7_axe/troll_ti7_axe_bash_explosion.vpcf",
 		context
 	)
+	PrecacheResource("particle", "particles/generic_gameplay/generic_minibash.vpcf", context)
 end
 
-modifier_item_basher_custom = class({})
+function item_basher_custom:Spawn()
+	self.bonus_strength = self:GetSpecialValueFor("bonus_strength")
+	self.bonus_damage = self:GetSpecialValueFor("bonus_damage")
+	self.bash_chance_melee = self:GetSpecialValueFor("bash_chance_melee")
+	self.bash_chance_ranged = self:GetSpecialValueFor("bash_chance_ranged")
+	self.bash_duration = self:GetSpecialValueFor("bash_duration")
+	self.bonus_chance_damage = self:GetSpecialValueFor("bonus_chance_damage")
+end
 
-function modifier_item_basher_custom:IsHidden()
-	return true
-end
-function modifier_item_basher_custom:IsPurgable()
-	return false
-end
+modifier_item_basher_custom = class(mod_hidden)
 function modifier_item_basher_custom:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
+end
+function modifier_item_basher_custom:OnCreated(table)
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.str = self.ability.bonus_strength
+	self.damage = self.ability.bonus_damage
+	self.chance_melee = self.ability.bash_chance_melee
+	self.chance_range = self.ability.bash_chance_ranged
+	self.bash_duration = self.ability.bash_duration
+	self.bash_damage = self.ability.bonus_chance_damage
 end
 
 function modifier_item_basher_custom:DeclareFunctions()
@@ -53,18 +67,6 @@ end
 
 function modifier_item_basher_custom:GetModifierPreAttack_BonusDamage()
 	return self.damage
-end
-
-function modifier_item_basher_custom:OnCreated(table)
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.str = self.ability:GetSpecialValueFor("bonus_strength")
-	self.damage = self.ability:GetSpecialValueFor("bonus_damage")
-	self.chance_melee = self.ability:GetSpecialValueFor("bash_chance_melee")
-	self.chance_range = self.ability:GetSpecialValueFor("bash_chance_ranged")
-	self.bash_duration = self.ability:GetSpecialValueFor("bash_duration")
-	self.bash_damage = self.ability:GetSpecialValueFor("bonus_chance_damage")
 end
 
 function modifier_item_basher_custom:GetModifierProcAttack_BonusDamage_Physical(params)
@@ -92,6 +94,9 @@ function modifier_item_basher_custom:GetModifierProcAttack_BonusDamage_Physical(
 	if not params.target:IsUnit() then
 		return
 	end
+	if params.target:GetTeamNumber() == self.parent:GetTeamNumber() then
+		return
+	end
 
 	local chance = self.chance_melee
 	if params.ranged_attack then
@@ -111,7 +116,7 @@ function modifier_item_basher_custom:GetModifierProcAttack_BonusDamage_Physical(
 		"modifier_bashed",
 		{ duration = (1 - target:GetStatusResistance()) * self.bash_duration }
 	)
-	self.ability:UseResources(false, false, false, true)
+	self.ability:StartCd()
 	target:SendNumber(4, self.bash_damage)
 
 	local troll_bash = wearables_system:GetParticleReplacementAbility(

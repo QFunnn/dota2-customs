@@ -3220,6 +3220,12 @@
 	align: left top;
 }
 
+.leaderboard_player_place_heroes
+{
+	width: 6.2%;
+	border-right: 1px solid #666666;
+}
+
 .leaderboard_name_text
 {
 	font-size: 24px;
@@ -3303,6 +3309,50 @@
 	border-left: 1px solid #666666;
 }
 
+.leaderboard_player_heroes_label
+{
+	width: 24%;
+	height: 100%;
+	align: left center;
+	border-left: 1px solid #666666;
+	overflow: squish squish;
+}
+
+.leaderboard_player_heroes_row
+{
+	width: fit-children;
+	height: 100%;
+	align: center center;
+	flow-children: right;
+}
+
+.leaderboard_player_hero_slot
+{
+	width: 42px;
+	height: 100%;
+}
+
+.leaderboard_player_hero_small
+{
+	width: 36px;
+	height: 36px;
+}
+
+.leaderboard_player_name_heroes
+{
+	width: fill-parent-flow( 1.0 );
+	height: 60%;
+	align: left center;
+}
+
+.leaderboard_player_games_last
+{
+	width: 11%;
+	height: 100%;
+	align: left center;
+	border-left: 1px solid #666666;
+}
+
 .leaderboard_text
 {
 	font-size: 24px;
@@ -3366,11 +3416,59 @@
 	border-right: 1px solid #999;
 }
 
+.leaderboard_stat_info_player_heroes
+{
+	width: 58.8%;
+	height: 100%;
+	align: left top;
+	border-right: 1px solid #999;
+}
+
 .leaderboard_stat_info_hero
 {
 	width: 12%;
 	height: 100%;
 	align: center center;
+}
+
+.leaderboard_stat_info_heroes
+{
+	width: 24%;
+	height: 100%;
+	align: left top;
+	border-right: 1px solid #999;
+}
+
+.leaderboard_stat_info_heroes_content
+{
+	width: fit-children;
+	height: 100%;
+	align: center center;
+	flow-children: right;
+}
+
+.leaderboard_stat_info_heroes_text
+{
+	width: fit-children;
+	align: center center;
+}
+
+.leaderboard_stat_info_heroes_icon
+{
+	width: 26px;
+	height: 26px;
+	align: center center;
+	margin-left: 6px;
+	background-image: url("s2r://panorama/images/hero_badges/hero_badge_rank_5_png.vtex");
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+
+.leaderboard_stat_info_games_last
+{
+	width: 11%;
+	height: 100%;
+	align: left top;
 }
 
 .info_window
@@ -8332,9 +8430,12 @@ Slider.HorizontalSlider
 
 .slot_panel_new
 {
-	width: 240.24px;
-	height: 356.35px;
-	margin: 8px;
+	width: 23.3%;
+	height: width-percentage(148.33%);
+	margin-left: 0.8%;
+	margin-right: 0.8%;
+	margin-top: 8px;
+	margin-bottom: 8px;
 	transition-property: brightness, pre-transform-scale2d;
 	transition-duration: 0.2s;
 	box-shadow: fill black 0px 0px 12px -2px;
@@ -8342,8 +8443,8 @@ Slider.HorizontalSlider
 
 .shop_window_show_selection .slot_panel_new
 {
-	width: 264px;
-	height: 385.44px;
+	width: 31.6%;
+	height: width-percentage(146%);
 }
 
 .slot_panel_new:hover
@@ -8419,8 +8520,21 @@ Slider.HorizontalSlider
 	width: 100%;
 }
 
+#panel_rare .BlockItem
+{
+	width: 15.2%;
+	margin-left: 0.7%;
+	margin-right: 0.7%;
+}
+
+.shop_window_show_selection #panel_rare .BlockItem
+{
+	width: 18.5%;
+}
+
 .panels_sets_list
 {
+	width: 100%;
 	horizontal-align: center;
 	flow-children: right-wrap;
 }
@@ -8894,46 +9008,6 @@ Slider.HorizontalSlider
 		opacity: 1;
 	}
 	
-}
-
-.buy_items_show_panel
-{
-	width: 24%;
-	height: 30%;
-	align: right top;
-	margin-top: 12%;
-	flow-children: right;
-}
-
-.buy_items_show_button_off
-{
-	width: 25px;
-	height: 25px;
-	align: left center;
-	margin-left: 2%;
-	background-image: url("s2r://panorama/images/custom_game/tip_off_png.vtex");
-	background-size: contain;
-}
-
-.buy_items_show_button_on
-{
-	width: 25px;
-	height: 25px;
-	align: left center;
-	margin-left: 2%;
-	background-image: url("s2r://panorama/images/custom_game/tip_on_png.vtex");
-	background-size: contain;
-}
-
-.buy_items_show_button_text
-{
-	font-size: 22px;
-	align: left center;
-	margin-left: 3%;
-	color: gradient( linear, 0% 100%, 0% 0%, from( #dddddd ), to( #ffffff ) );
-	font-weight: bold;
-	font-family: Radiance;
-	text-shadow: 0px 0px 5px 2.0 black;
 }
 
 .hero_no_items

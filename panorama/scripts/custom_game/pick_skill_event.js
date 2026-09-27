@@ -142,7 +142,7 @@ function ShowAltTalents(data)
 	{
 		let name = talents[i]
 		let talent_data = Game.talents_values[hero_name][name] 
-		let level = Game.HasTalent(hero_name, name, true)
+		let level = Game.HasTalent(Game.GetLocalPlayerID(), name, true)
 
 		let talent_panel = $.CreatePanel("Panel", content, "AltTalentPanel_talent")
 
@@ -159,7 +159,7 @@ function ShowAltTalents(data)
 		let talent_text = $.CreatePanel("Label", talent_label, "AltTalentPanel_talent_text")
 		talent_text.html = true
 
-		talent_text.text = Game.ShowTalentValues("#upgrade_disc_" + name, name, level, false, false, false, false, legendary)
+		talent_text.text = Game.ShowTalentValues(Game.GetTalentTextKey("#upgrade_disc_" + name, name), name, level, false, false, false, false, legendary)
 	}
 
 	let timer = 7 + length * 3

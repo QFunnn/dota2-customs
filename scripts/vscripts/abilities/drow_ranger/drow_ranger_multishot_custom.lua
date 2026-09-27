@@ -44,55 +44,60 @@ function drow_ranger_multishot_custom:Precache(context)
 	PrecacheResource("particle", "particles/drow_ranger/multi_damage_reduce.vpcf", context)
 	PrecacheResource("particle", "particles/drow_ranger/multi_armor.vpcf", context)
 	PrecacheResource("particle", "particles/zuus_speed.vpcf", context)
+	PrecacheResource("particle", "particles/crystal_maiden/frostbite_legendary_stack.vpcf", context)
+	PrecacheResource(
+		"particle",
+		"particles/econ/items/drow/drow_ti9_immortal/status_effect_drow_ti9_frost_arrow.vpcf",
+		context
+	)
 end
 
 function drow_ranger_multishot_custom:UpdateTalents()
 	local caster = self:GetCaster()
-
 	if not self.init then
 		self.init = true
 		self.talents = {
-			damage_inc = 0,
+			e1_damage = 0,
 
-			cd_inc = 0,
-			range_bonus = 0,
+			e2_cd = 0,
+			e2_range = 0,
 
-			has_proc = 0,
-			proc_damage = 0,
+			has_e3 = 0,
+			e3_damage = 0,
 			e3_max = 0,
-			proc_damage_type = caster:GetTalentValue("modifier_drow_multishot_3", "damage_type", true),
+			e3_damage_type = caster:GetTalentValue("modifier_drow_multishot_3", "damage_type", true),
 
 			has_e4 = 0,
 			e4_damage_reduce = caster:GetTalentValue("modifier_drow_multishot_4", "damage_reduce", true),
 			e4_cdr = caster:GetTalentValue("modifier_drow_multishot_4", "cdr", true),
 			e4_cd_items = caster:GetTalentValue("modifier_drow_multishot_4", "cd_items", true),
 
-			has_legendary = 0,
-			legendary_cd = caster:GetTalentValue("modifier_drow_multishot_7", "cd", true) / 100,
-			legendary_max = caster:GetTalentValue("modifier_drow_multishot_7", "max", true),
-			legendary_damage = caster:GetTalentValue("modifier_drow_multishot_7", "damage", true) / 100,
-			legendary_fear = caster:GetTalentValue("modifier_drow_multishot_7", "fear", true),
-			legendary_duration = caster:GetTalentValue("modifier_drow_multishot_7", "duration", true),
+			has_e7 = 0,
+			e7_cd = caster:GetTalentValue("modifier_drow_multishot_7", "cd", true) / 100,
+			e7_max = caster:GetTalentValue("modifier_drow_multishot_7", "max", true),
+			e7_damage = caster:GetTalentValue("modifier_drow_multishot_7", "damage", true) / 100,
+			e7_fear = caster:GetTalentValue("modifier_drow_multishot_7", "fear", true),
+			e7_duration = caster:GetTalentValue("modifier_drow_multishot_7", "duration", true),
 
-			has_frost_legendary = 0,
+			has_q7 = 0,
 
 			r2_range = 0,
 		}
 	end
 
 	if caster:HasTalent("modifier_drow_multishot_1") then
-		self.talents.damage_inc = caster:GetTalentValue("modifier_drow_multishot_1", "damage") / 100
+		self.talents.e1_damage = caster:GetTalentValue("modifier_drow_multishot_1", "damage") / 100
 	end
 
 	if caster:HasTalent("modifier_drow_multishot_2") then
-		self.talents.cd_inc = caster:GetTalentValue("modifier_drow_multishot_2", "cd")
-		self.talents.range_bonus = caster:GetTalentValue("modifier_drow_multishot_2", "range")
+		self.talents.e2_cd = caster:GetTalentValue("modifier_drow_multishot_2", "cd")
+		self.talents.e2_range = caster:GetTalentValue("modifier_drow_multishot_2", "range")
 	end
 
 	if caster:HasTalent("modifier_drow_multishot_3") then
-		self.talents.has_proc = 1
+		self.talents.has_e3 = 1
 		self.talents.e3_max = caster:GetTalentValue("modifier_drow_multishot_3", "max")
-		self.talents.proc_damage = caster:GetTalentValue("modifier_drow_multishot_3", "damage") / 100
+		self.talents.e3_damage = caster:GetTalentValue("modifier_drow_multishot_3", "damage") / 100
 	end
 
 	if caster:HasTalent("modifier_drow_multishot_4") then
@@ -100,12 +105,12 @@ function drow_ranger_multishot_custom:UpdateTalents()
 	end
 
 	if caster:HasTalent("modifier_drow_multishot_7") then
-		self.talents.has_legendary = 1
+		self.talents.has_e7 = 1
 		caster:AddSpellEvent(self.tracker, true)
 	end
 
 	if caster:HasTalent("modifier_drow_frost_7") then
-		self.talents.has_frost_legendary = 1
+		self.talents.has_q7 = 1
 	end
 
 	if caster:HasTalent("modifier_drow_marksman_2") then
@@ -125,11 +130,11 @@ function drow_ranger_multishot_custom:GetIntrinsicModifierName()
 end
 
 function drow_ranger_multishot_custom:GetManaCost(iLevel)
-	return (self.AbilityManaCost and self.AbilityManaCost or 0)
+	return self.AbilityManaCost or 0
 end
 
-function drow_ranger_multishot_custom:GetCooldown(level)
-	return self.BaseClass.GetCooldown(self, level) + (self.talents.cd_inc and self.talents.cd_inc or 0)
+function drow_ranger_multishot_custom:GetCooldown(iLevel)
+	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.e2_cd or 0)
 end
 
 function drow_ranger_multishot_custom:GetCastAnimation()
@@ -140,10 +145,9 @@ function drow_ranger_multishot_custom:GetRange()
 	if not self.arrow_range_multiplier then
 		return 0
 	end
-	return (self.caster:Script_GetAttackRange() - (self.talents.r2_range and self.talents.r2_range or 0))
-			* self.arrow_range_multiplier
+	return (self.caster:Script_GetAttackRange() - (self.talents.r2_range or 0)) * self.arrow_range_multiplier
 		+ self.arrow_width
-		+ (self.talents.range_bonus and self.talents.range_bonus or 0)
+		+ (self.talents.e2_range or 0)
 end
 
 function drow_ranger_multishot_custom:GetCastRange(vLocation, hTarget)
@@ -151,26 +155,23 @@ function drow_ranger_multishot_custom:GetCastRange(vLocation, hTarget)
 end
 
 function drow_ranger_multishot_custom:OnSpellStart()
-	local caster = self:GetCaster()
 	local point = self:GetCursorPosition()
 
-	if point == caster:GetAbsOrigin() then
-		point = caster:GetAbsOrigin() + caster:GetForwardVector() * 10
+	if point == self.caster:GetAbsOrigin() then
+		point = self.caster:GetAbsOrigin() + self.caster:GetForwardVector() * 10
 	end
 
-	local duration = self.duration
-	local dir = (point - caster:GetAbsOrigin()):Normalized()
-	dir.z = 0
+	self.caster:FacePoint(point)
 
-	caster:FaceTowards(point)
-	caster:SetForwardVector(dir)
-
-	self.modifier =
-		caster:AddNewModifier(caster, self, "modifier_drow_ranger_multishot_custom", { duration = duration })
+	self.modifier = self.caster:AddNewModifier(
+		self.caster,
+		self,
+		"modifier_drow_ranger_multishot_custom",
+		{ duration = self.duration }
+	)
 end
 
 function drow_ranger_multishot_custom:OnProjectileHit_ExtraData(target, location, data)
-	local caster = self:GetCaster()
 	local index = data.index
 	local hit = false
 
@@ -180,22 +181,22 @@ function drow_ranger_multishot_custom:OnProjectileHit_ExtraData(target, location
 
 	if target and self.cast_data[index].targets[target:entindex()] ~= data.wave then
 		self.cast_data[index].targets[target:entindex()] = data.wave
-		local damage = self.arrow_damage_pct + self.talents.damage_inc
+		local damage = self.arrow_damage_pct + self.talents.e1_damage
 		local bonus = 0
 
-		if data.gust_proc == 1 and IsValid(caster.gust_ability) then
-			caster.gust_ability:ProcDamage(target)
+		if data.gust_proc == 1 and IsValid(self.caster.gust_ability) then
+			self.caster.gust_ability:ProcDamage(target)
 		end
 
 		if data.frost == 1 then
-			local ability = caster:FindAbilityByName("drow_ranger_frost_arrows_custom")
-			if ability then
-				bonus = bonus + ability.damage
-				ability:ApplySlow(target)
+			local frost = self.caster.frost_arrow_ability
+			if IsValid(frost) then
+				bonus = bonus + frost.damage
+				frost:ApplySlow(target)
 			end
 		end
 
-		damage = (caster:GetAttackDamage() + bonus) * damage
+		damage = (self.caster:GetAttackDamage() + bonus) * damage
 
 		local mod = target:FindModifierByName("modifier_drow_ranger_multishot_custom_legendary")
 		if mod and mod.max and mod:GetStackCount() >= (mod.max - 1) then
@@ -203,13 +204,13 @@ function drow_ranger_multishot_custom:OnProjectileHit_ExtraData(target, location
 				mod.feared = true
 				target:EmitSound("Generic.Fear")
 				target:AddNewModifier(
-					caster,
+					self.caster,
 					nil,
 					"modifier_nevermore_requiem_fear",
-					{ duration = self.talents.legendary_fear * (1 - target:GetStatusResistance()) }
+					{ duration = self.talents.e7_fear * (1 - target:GetStatusResistance()) }
 				)
 			end
-			damage = damage * (1 + self.talents.legendary_damage)
+			damage = damage * (1 + self.talents.e7_damage)
 			target:EmitSound("Drow.Multi_scepter_proc_damage")
 		end
 
@@ -219,7 +220,7 @@ function drow_ranger_multishot_custom:OnProjectileHit_ExtraData(target, location
 
 		local damageTable = {
 			victim = target,
-			attacker = caster,
+			attacker = self.caster,
 			damage = damage,
 			damage_type = DAMAGE_TYPE_PHYSICAL,
 			ability = self,
@@ -228,8 +229,8 @@ function drow_ranger_multishot_custom:OnProjectileHit_ExtraData(target, location
 		DoDamage(damageTable)
 
 		if data.pure_bonus == 1 then
-			damageTable.damage = damage * self.talents.proc_damage
-			damageTable.damage_type = self.talents.proc_damage_type
+			damageTable.damage = damage * self.talents.e3_damage
+			damageTable.damage_type = self.talents.e3_damage_type
 			local real_damage = DoDamage(damageTable, "modifier_drow_multishot_3")
 			target:SendNumber(6, real_damage)
 			target:EmitSound("DOTA_Item.Daedelus.Crit")
@@ -247,6 +248,12 @@ function drow_ranger_multishot_custom:OnProjectileHit_ExtraData(target, location
 	return hit
 end
 
+function drow_ranger_multishot_custom:OnChannelFinish(bInterrupted)
+	if IsValid(self.modifier) then
+		self.modifier:Destroy()
+	end
+end
+
 function drow_ranger_multishot_custom:CheckData(index)
 	if not IsServer() then
 		return
@@ -254,17 +261,16 @@ function drow_ranger_multishot_custom:CheckData(index)
 	if not self.cast_data[index] then
 		return
 	end
-	local caster = self:GetCaster()
 	if self.cast_data[index].count >= self.cast_data[index].max then
-		if self.talents.has_legendary == 1 then
+		if self.talents.has_e7 == 1 then
 			for entindex, _ in pairs(self.cast_data[index].targets) do
 				local target = EntIndexToHScript(entindex)
 				if IsValid(target) then
 					target:AddNewModifier(
-						caster,
+						self.caster,
 						self,
 						"modifier_drow_ranger_multishot_custom_legendary",
-						{ duration = self.talents.legendary_duration }
+						{ duration = self.talents.e7_duration }
 					)
 				end
 			end
@@ -274,24 +280,19 @@ function drow_ranger_multishot_custom:CheckData(index)
 	end
 end
 
-function drow_ranger_multishot_custom:OnChannelFinish(bInterrupted)
-	if not self.modifier:IsNull() then
-		self.modifier:Destroy()
-	end
-end
-
 modifier_drow_ranger_multishot_custom = class(mod_visible)
+function modifier_drow_ranger_multishot_custom:StatusEffectPriority()
+	return MODIFIER_PRIORITY_HIGH
+end
 function modifier_drow_ranger_multishot_custom:OnCreated(kv)
-	self.parent = self:GetCaster()
+	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	local range = self.ability.arrow_range_multiplier
 	self.width = self.ability.arrow_width
 	self.speed = self.ability.arrow_speed
 	self.wave = self.ability.wave_count + self.ability.talents.e3_max
 	self.arrows = self.ability.arrow_count_per_wave
 	self.duration = self.ability.duration
-	self.scepter_count = self.ability.scepter_count
 	self.move_reduce = self.ability.move_reduce
 
 	if self.parent:HasShard() then
@@ -325,17 +326,12 @@ function modifier_drow_ranger_multishot_custom:OnCreated(kv)
 
 	self.current_wave = 0
 	self.real_max = 0
-	self.frost = false
-
 	self.pure_bonus = 0
 
-	local ability = self.parent:FindAbilityByName("drow_ranger_frost_arrows_custom")
-	if ability and ability:GetLevel() > 0 then
-		self.frost = true
+	self.frost = 0
+	if IsValid(self.parent.frost_arrow_ability) and self.parent.frost_arrow_ability:IsTrained() then
+		self.frost = 1
 	end
-
-	self.gust_mod = self.parent:FindModifierByName("modifier_drow_ranger_wave_of_silence_custom_tracker")
-	self.ulti_ability = self.parent:FindAbilityByName("drow_ranger_marksmanship_custom")
 
 	self.info = {
 		Source = self.parent,
@@ -345,7 +341,7 @@ function modifier_drow_ranger_multishot_custom:OnCreated(kv)
 
 		iUnitTargetTeam = self.ability:GetAbilityTargetTeam(),
 		iUnitTargetType = self.ability:GetAbilityTargetType(),
-		iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
+		iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_NONE,
 
 		fDistance = self.ability:GetRange(),
 		fStartRadius = self.width,
@@ -386,7 +382,7 @@ function modifier_drow_ranger_multishot_custom:OnDestroy()
 
 	if self.ability.cast_data[self.index] then
 		self.ability.cast_data[self.index].max = self.real_max
-		self.ability:CheckData(index)
+		self.ability:CheckData(self.index)
 	end
 
 	if self.parent:HasShard() then
@@ -397,22 +393,6 @@ function modifier_drow_ranger_multishot_custom:OnDestroy()
 	self.ability:StartCd()
 	self.parent:FadeGesture(ACT_DOTA_CHANNEL_ABILITY_3)
 	self.parent:StopSound("Hero_DrowRanger.Multishot.Channel")
-end
-
-function modifier_drow_ranger_multishot_custom:GetEffect()
-	if not IsServer() then
-		return
-	end
-
-	local projectile_name = wearables_system:GetParticleReplacementAbility(
-		self:GetCaster(),
-		"particles/drow_ranger/multi_proj_scepter.vpcf",
-		self
-	)
-	if self.pure_bonus == 1 then
-		projectile_name = "particles/drow_ranger/multi_scepter_proc_red_low.vpcf"
-	end
-	return projectile_name
 end
 
 function modifier_drow_ranger_multishot_custom:OnIntervalThink()
@@ -439,7 +419,7 @@ function modifier_drow_ranger_multishot_custom:OnIntervalThink()
 
 	self.current_wave = self.current_wave + 1
 
-	if self.ability.talents.has_proc == 1 and self.current_wave >= self.wave then
+	if self.ability.talents.has_e3 == 1 and self.current_wave >= self.wave then
 		self.pure_bonus = 1
 	end
 
@@ -451,8 +431,8 @@ function modifier_drow_ranger_multishot_custom:OnIntervalThink()
 		self.parent.frost_arrow_ability:ApplyHaste()
 	end
 
-	if self.ulti_ability then
-		self.ulti_ability:LegendaryStack()
+	if IsValid(self.parent.marksmanship_ability) then
+		self.parent.marksmanship_ability:LegendaryStack()
 	end
 
 	local gust_proc = 0
@@ -465,22 +445,28 @@ function modifier_drow_ranger_multishot_custom:OnIntervalThink()
 		end
 	end
 
+	local effect = wearables_system:GetParticleReplacementAbility(
+		self.parent,
+		"particles/drow_ranger/multi_proj_scepter.vpcf",
+		self
+	)
+	local sound = "Hero_DrowRanger.Multishot.Attack"
+	if self.pure_bonus == 1 then
+		effect = "particles/drow_ranger/multi_scepter_proc_red_low.vpcf"
+		sound = "Drow.Multi_scepter_proc"
+	end
+
 	for i = 1, self.arrows do
 		local info = self.info
 		local step = self.angle / (self.arrows - 1)
 		local angle = -self.angle / 2 + (i - 1) * step
-
-		local sound = "Hero_DrowRanger.Multishot.Attack"
-		if self.pure_bonus == 1 then
-			sound = "Drow.Multi_scepter_proc"
-		end
 
 		self.direction = self.parent:GetForwardVector()
 		self.direction.z = 0
 
 		local projectile_direction = RotatePosition(Vector(0, 0, 0), QAngle(0, angle, 0), self.direction)
 
-		info.EffectName = self:GetEffect()
+		info.EffectName = effect
 		info.vSpawnOrigin = self.parent:GetAttachmentOrigin(self.parent:ScriptLookupAttachment("attach_hitloc"))
 		if
 			info.EffectName ~= "particles/drow_ranger/multi_proj_scepter.vpcf"
@@ -558,10 +544,6 @@ function modifier_drow_ranger_multishot_custom:GetStatusEffectName()
 	return "particles/econ/items/drow/drow_ti9_immortal/status_effect_drow_ti9_frost_arrow.vpcf"
 end
 
-function modifier_drow_ranger_multishot_custom:StatusEffectPriority()
-	return MODIFIER_PRIORITY_HIGH
-end
-
 modifier_drow_ranger_multishot_custom_tracker = class(mod_hidden)
 function modifier_drow_ranger_multishot_custom_tracker:OnCreated()
 	self.parent = self:GetParent()
@@ -596,7 +578,7 @@ function modifier_drow_ranger_multishot_custom_tracker:SpellEvent(params)
 	if not IsServer() then
 		return
 	end
-	if self.ability.talents.has_legendary == 0 then
+	if self.ability.talents.has_e7 == 0 then
 		return
 	end
 	if params.unit ~= self.parent then
@@ -605,14 +587,11 @@ function modifier_drow_ranger_multishot_custom_tracker:SpellEvent(params)
 	if self.ability == params.ability then
 		return
 	end
-
 	if self.ability:GetCooldownTimeRemaining() <= 0 then
 		return
 	end
-	local cd = self.parent:CdAbility(
-		self.ability,
-		self.ability:GetEffectiveCooldown(self.ability:GetLevel()) * self.ability.talents.legendary_cd
-	)
+
+	local cd = self.parent:CdAbility(self.ability, nil, self.ability.talents.e7_cd)
 
 	if cd then
 		local particle = ParticleManager:CreateParticle(
@@ -648,7 +627,7 @@ function modifier_drow_ranger_multishot_custom_tracker:GetModifierPercentageCool
 end
 
 function modifier_drow_ranger_multishot_custom_tracker:GetModifierCastRangeBonusStacking()
-	return self.ability.talents.range_bonus
+	return self.ability.talents.e2_range
 end
 
 modifier_drow_ranger_multishot_custom_legendary = class(mod_visible)
@@ -657,17 +636,20 @@ function modifier_drow_ranger_multishot_custom_legendary:OnCreated()
 	self.caster = self:GetCaster()
 	self.ability = self:GetAbility()
 
-	self.max = self.ability.talents.legendary_max
+	self.max = self.ability.talents.e7_max
 	self.feared = false
 
 	if not IsServer() then
 		return
 	end
-	if self.ability.talents.has_frost_legendary == 0 then
+	self.RemoveForDuel = true
+
+	if self.ability.talents.has_q7 == 0 then
 		self.effect_cast =
 			self.parent:GenericParticle("particles/crystal_maiden/frostbite_legendary_stack.vpcf", self, true)
 	end
-	self:SetStackCount(1)
+
+	self:OnRefresh()
 end
 
 function modifier_drow_ranger_multishot_custom_legendary:OnRefresh()
@@ -676,16 +658,13 @@ function modifier_drow_ranger_multishot_custom_legendary:OnRefresh()
 	end
 	self:IncrementStackCount()
 
+	if self.effect_cast then
+		ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(0, self:GetStackCount(), 0))
+	end
+
 	if self:GetStackCount() >= self.max then
 		self:Destroy()
 	end
-end
-
-function modifier_drow_ranger_multishot_custom_legendary:OnStackCountChanged(iStackCount)
-	if not self.effect_cast then
-		return
-	end
-	ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(0, self:GetStackCount(), 0))
 end
 
 function modifier_drow_ranger_multishot_custom_legendary:DeclareFunctions()

@@ -222,6 +222,7 @@ _G.invis_mods = {
 	"modifier_sniper_headshot_custom_invis",
 	"modifier_templar_assassin_meld_custom_buff",
 	"modifier_phantom_assassin_phantom_smoke",
+	"modifier_phantom_assassin_phantom_blur_auto",
 	"modifier_hoodwink_bushwhack_custom_legendary_invis",
 }
 
@@ -240,6 +241,339 @@ _G.dota_modifiers_status = {
 	["modifier_arc_warden_tempest_double"] = {
 		"particles/status_fx/status_effect_arc_warden_tempest.vpcf",
 		MODIFIER_PRIORITY_ILLUSION,
+	},
+}
+
+_G.wearables_item_effects = {
+	[6914] = {
+		kill = function(caster, target)
+			local target_effect = ParticleManager:CreateParticle(
+				wearables_system:GetParticleReplacement(
+					caster,
+					"particles/econ/items/zeus/arcana_chariot/zeus_arcana_kill_remnant.vpcf"
+				),
+				PATTACH_ABSORIGIN_FOLLOW,
+				target
+			)
+			ParticleManager:SetParticleControl(target_effect, 1, target:GetAbsOrigin())
+			ParticleManager:ReleaseParticleIndex(target_effect)
+		end,
+	},
+	[18539] = {
+		kill = function(caster, target)
+			local caster_effect = ParticleManager:CreateParticle(
+				wearables_system:GetParticleReplacement(
+					caster,
+					"particles/econ/items/skywrath_mage/skywrath_arcana/skywrath_arcana_kill_caster.vpcf"
+				),
+				PATTACH_ABSORIGIN_FOLLOW,
+				caster
+			)
+			ParticleManager:SetParticleControlEnt(
+				caster_effect,
+				0,
+				caster,
+				PATTACH_ABSORIGIN_FOLLOW,
+				"attach_hitloc",
+				caster:GetAbsOrigin(),
+				true
+			)
+			ParticleManager:SetParticleControlEnt(
+				caster_effect,
+				1,
+				caster,
+				PATTACH_ABSORIGIN_FOLLOW,
+				"attach_hitloc",
+				caster:GetAbsOrigin(),
+				true
+			)
+			ParticleManager:ReleaseParticleIndex(caster_effect)
+
+			local target_effect = ParticleManager:CreateParticle(
+				wearables_system:GetParticleReplacement(
+					caster,
+					"particles/econ/items/skywrath_mage/skywrath_arcana/skywrath_arcana_kill_target.vpcf"
+				),
+				PATTACH_ABSORIGIN_FOLLOW,
+				target
+			)
+			ParticleManager:SetParticleControlEnt(
+				target_effect,
+				0,
+				caster,
+				PATTACH_ABSORIGIN_FOLLOW,
+				"attach_hitloc",
+				caster:GetAbsOrigin(),
+				true
+			)
+			ParticleManager:SetParticleControl(target_effect, 1, target:GetAbsOrigin())
+			ParticleManager:ReleaseParticleIndex(target_effect)
+		end,
+	},
+	[19090] = {
+		kill = function(caster, target)
+			local caster_effect = ParticleManager:CreateParticle(
+				wearables_system:GetParticleReplacement(
+					caster,
+					"particles/econ/items/drow/drow_arcana/drow_arcana_revenge_kill_effect_caster.vpcf"
+				),
+				PATTACH_ABSORIGIN_FOLLOW,
+				caster
+			)
+			ParticleManager:SetParticleControlEnt(
+				caster_effect,
+				0,
+				caster,
+				PATTACH_ABSORIGIN_FOLLOW,
+				"attach_hitloc",
+				caster:GetAbsOrigin(),
+				true
+			)
+			ParticleManager:SetParticleControlEnt(
+				caster_effect,
+				1,
+				caster,
+				PATTACH_ABSORIGIN_FOLLOW,
+				"attach_hitloc",
+				caster:GetAbsOrigin(),
+				true
+			)
+			ParticleManager:ReleaseParticleIndex(caster_effect)
+
+			local target_effect = ParticleManager:CreateParticle(
+				wearables_system:GetParticleReplacement(
+					caster,
+					"particles/econ/items/drow/drow_arcana/drow_arcana_revenge_kill_effect_target.vpcf"
+				),
+				PATTACH_ABSORIGIN_FOLLOW,
+				target
+			)
+			ParticleManager:SetParticleControlEnt(
+				target_effect,
+				0,
+				caster,
+				PATTACH_ABSORIGIN_FOLLOW,
+				"attach_hitloc",
+				caster:GetAbsOrigin(),
+				true
+			)
+			ParticleManager:SetParticleControl(target_effect, 1, target:GetAbsOrigin())
+			ParticleManager:ReleaseParticleIndex(target_effect)
+		end,
+	},
+	[23095] = {
+		kill = function(caster, target)
+			local caster_effect = ParticleManager:CreateParticle(
+				wearables_system:GetParticleReplacement(
+					caster,
+					"particles/econ/items/razor/razor_arcana/razor_arcana_kill_effect_caster.vpcf"
+				),
+				PATTACH_ABSORIGIN_FOLLOW,
+				caster
+			)
+			ParticleManager:SetParticleControl(caster_effect, 2, caster:GetAbsOrigin())
+			ParticleManager:SetParticleControl(caster_effect, 3, caster:GetAbsOrigin())
+			ParticleManager:SetParticleControlEnt(
+				caster_effect,
+				0,
+				caster,
+				PATTACH_ABSORIGIN_FOLLOW,
+				"attach_hitloc",
+				caster:GetAbsOrigin(),
+				true
+			)
+			ParticleManager:ReleaseParticleIndex(caster_effect)
+
+			local target_effect = ParticleManager:CreateParticle(
+				wearables_system:GetParticleReplacement(
+					caster,
+					"particles/econ/items/razor/razor_arcana/razor_arcana_kill_effect_target.vpcf"
+				),
+				PATTACH_ABSORIGIN_FOLLOW,
+				target
+			)
+			ParticleManager:SetParticleControl(target_effect, 1, target:GetAbsOrigin())
+			ParticleManager:ReleaseParticleIndex(target_effect)
+		end,
+		death = function(caster, target)
+			local nFXIndex = ParticleManager:CreateParticle(
+				wearables_system:GetParticleReplacement(
+					caster,
+					"particles/econ/items/razor/razor_arcana/razor_arcana_death.vpcf"
+				),
+				PATTACH_ABSORIGIN_FOLLOW,
+				caster
+			)
+			ParticleManager:SetParticleControlEnt(
+				nFXIndex,
+				0,
+				caster,
+				PATTACH_ABSORIGIN_FOLLOW,
+				nil,
+				caster:GetOrigin(),
+				false
+			)
+			ParticleManager:ReleaseParticleIndex(nFXIndex)
+		end,
+		attack = function(caster, target)
+			local particle_attack = ParticleManager:CreateParticle(
+				wearables_system:GetParticleReplacement(
+					caster,
+					"particles/econ/items/razor/razor_arcana/razor_arcana_base_attack_impact.vpcf"
+				),
+				PATTACH_ABSORIGIN_FOLLOW,
+				target
+			)
+			ParticleManager:SetParticleControlEnt(
+				particle_attack,
+				1,
+				target,
+				PATTACH_ABSORIGIN_FOLLOW,
+				"attach_hitloc",
+				target:GetAbsOrigin(),
+				true
+			)
+			ParticleManager:ReleaseParticleIndex(particle_attack)
+			if (target:GetAbsOrigin() - caster:GetAbsOrigin()):Length2D() < 200 then
+				return
+			end
+			local particle_on_hit = ParticleManager:CreateParticle(
+				wearables_system:GetParticleReplacement(
+					caster,
+					"particles/econ/items/razor/razor_arcana/razor_arcana_base_attack.vpcf"
+				),
+				PATTACH_ABSORIGIN_FOLLOW,
+				caster
+			)
+			ParticleManager:SetParticleControlEnt(
+				particle_on_hit,
+				3,
+				caster,
+				PATTACH_ABSORIGIN_FOLLOW,
+				"attach_hitloc",
+				caster:GetAbsOrigin(),
+				true
+			)
+			ParticleManager:SetParticleControlEnt(
+				particle_on_hit,
+				1,
+				target,
+				PATTACH_ABSORIGIN_FOLLOW,
+				"attach_hitloc",
+				target:GetAbsOrigin(),
+				true
+			)
+			ParticleManager:ReleaseParticleIndex(particle_on_hit)
+		end,
+		attack_style = function(caster, target)
+			local particle_attack = ParticleManager:CreateParticle(
+				wearables_system:GetParticleReplacement(
+					caster,
+					"particles/econ/items/razor/razor_arcana/razor_arcana_v2_base_attack_impact.vpcf"
+				),
+				PATTACH_ABSORIGIN_FOLLOW,
+				target
+			)
+			ParticleManager:SetParticleControlEnt(
+				particle_attack,
+				1,
+				target,
+				PATTACH_ABSORIGIN_FOLLOW,
+				"attach_hitloc",
+				target:GetAbsOrigin(),
+				true
+			)
+			ParticleManager:ReleaseParticleIndex(particle_attack)
+			if (target:GetAbsOrigin() - caster:GetAbsOrigin()):Length2D() < 200 then
+				return
+			end
+			local particle_on_hit = ParticleManager:CreateParticle(
+				wearables_system:GetParticleReplacement(
+					caster,
+					"particles/econ/items/razor/razor_arcana/razor_arcana_v2_base_attack.vpcf"
+				),
+				PATTACH_ABSORIGIN_FOLLOW,
+				caster
+			)
+			ParticleManager:SetParticleControlEnt(
+				particle_on_hit,
+				3,
+				caster,
+				PATTACH_ABSORIGIN_FOLLOW,
+				"attach_hitloc",
+				caster:GetAbsOrigin(),
+				true
+			)
+			ParticleManager:SetParticleControlEnt(
+				particle_on_hit,
+				1,
+				target,
+				PATTACH_ABSORIGIN_FOLLOW,
+				"attach_hitloc",
+				target:GetAbsOrigin(),
+				true
+			)
+			ParticleManager:ReleaseParticleIndex(particle_on_hit)
+		end,
+	},
+	[6996] = {
+		death = function(caster, target)
+			local nFXIndex = ParticleManager:CreateParticle(
+				wearables_system:GetParticleReplacement(
+					caster,
+					"particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_death.vpcf"
+				),
+				PATTACH_ABSORIGIN_FOLLOW,
+				caster
+			)
+			ParticleManager:SetParticleControlEnt(
+				nFXIndex,
+				0,
+				caster,
+				PATTACH_ABSORIGIN_FOLLOW,
+				nil,
+				caster:GetOrigin(),
+				false
+			)
+			ParticleManager:SetParticleControlEnt(
+				nFXIndex,
+				1,
+				caster,
+				PATTACH_ABSORIGIN_FOLLOW,
+				nil,
+				caster:GetOrigin(),
+				false
+			)
+			ParticleManager:ReleaseParticleIndex(nFXIndex)
+		end,
+	},
+	[7247] = {
+		death = function(caster, target)
+			local particle = ParticleManager:CreateParticle(
+				wearables_system:GetParticleReplacement(
+					caster,
+					"particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_death.vpcf"
+				),
+				PATTACH_ABSORIGIN_FOLLOW,
+				caster
+			)
+			ParticleManager:SetParticleControl(particle, 1, caster:GetAbsOrigin())
+			ParticleManager:ReleaseParticleIndex(particle)
+		end,
+	},
+	[7385] = {
+		death = function(caster, target)
+			local particle = ParticleManager:CreateParticle(
+				wearables_system:GetParticleReplacement(
+					caster,
+					"particles/econ/items/crystal_maiden/crystal_maiden_maiden_of_icewrack/maiden_death_arcana.vpcf"
+				),
+				PATTACH_WORLDORIGIN,
+				nil
+			)
+			ParticleManager:SetParticleControl(particle, 0, caster:GetAbsOrigin())
+			ParticleManager:ReleaseParticleIndex(particle)
+		end,
 	},
 }
 

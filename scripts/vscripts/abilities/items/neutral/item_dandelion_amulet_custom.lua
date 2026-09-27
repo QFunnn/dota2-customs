@@ -26,6 +26,7 @@ function item_dandelion_amulet_custom:Precache(context)
 		return
 	end
 	PrecacheResource("particle", "particles/items7_fx/medallion_of_valor_friend.vpcf", context)
+	PrecacheResource("particle", "particles/generic/lifesteal_blue.vpcf", context)
 end
 
 function item_dandelion_amulet_custom:GetIntrinsicModifierName()
@@ -33,6 +34,12 @@ function item_dandelion_amulet_custom:GetIntrinsicModifierName()
 		return
 	end
 	return "modifier_item_dandelion_amulet_custom"
+end
+
+function item_dandelion_amulet_custom:Spawn()
+	self.shield = self:GetSpecialValueFor("shield")
+	self.duration = self:GetSpecialValueFor("duration")
+	self.health = self:GetSpecialValueFor("shield_health") / 100
 end
 
 modifier_item_dandelion_amulet_custom = class(mod_hidden)
@@ -43,9 +50,7 @@ function modifier_item_dandelion_amulet_custom:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.ability.shield = self.ability:GetSpecialValueFor("shield")
-	self.duration = self.ability:GetSpecialValueFor("duration")
-	self.ability.health = self.ability:GetSpecialValueFor("shield_health") / 100
+	self.duration = self.ability.duration
 end
 
 function modifier_item_dandelion_amulet_custom:DeclareFunctions()
@@ -76,13 +81,10 @@ function modifier_item_dandelion_amulet_custom:GetAbsorbSpell(params)
 		"modifier_item_dandelion_amulet_custom_shield",
 		{ duration = self.duration }
 	)
-	self.ability:UseResources(false, false, false, true)
+	self.ability:StartCd()
 end
 
-modifier_item_dandelion_amulet_custom_shield = class({})
-function modifier_item_dandelion_amulet_custom_shield:IsHidden()
-	return true
-end
+modifier_item_dandelion_amulet_custom_shield = class(mod_hidden)
 function modifier_item_dandelion_amulet_custom_shield:IsPurgable()
 	return true
 end

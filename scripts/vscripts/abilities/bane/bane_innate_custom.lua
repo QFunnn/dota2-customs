@@ -12,7 +12,6 @@ LinkLuaModifier("modifier_bane_innate_custom", "abilities/bane/bane_innate_custo
 LinkLuaModifier("modifier_bane_innate_custom_buff", "abilities/bane/bane_innate_custom", LUA_MODIFIER_MOTION_NONE)
 
 bane_innate_custom = class({})
-
 function bane_innate_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
@@ -48,14 +47,8 @@ function bane_innate_custom:GetIntrinsicModifierName()
 	return "modifier_bane_innate_custom"
 end
 
-modifier_bane_innate_custom = class({})
-function modifier_bane_innate_custom:IsHidden()
-	return true
-end
-function modifier_bane_innate_custom:IsPurgable()
-	return false
-end
-function modifier_bane_innate_custom:OnCreated(table)
+modifier_bane_innate_custom = class(mod_hidden)
+function modifier_bane_innate_custom:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 	self.ability.tracker = self
@@ -149,7 +142,7 @@ function modifier_bane_innate_custom_buff:OnCreated()
 	if not IsServer() then
 		return
 	end
-	self:OnRefresh(table)
+	self:OnRefresh()
 end
 
 function modifier_bane_innate_custom_buff:OnRefresh()

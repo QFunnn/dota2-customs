@@ -36,8 +36,6 @@ function modifier_orbs_shrine_custom:OnCreated(params)
 	self.center = self.parent:GetAbsOrigin()
 
 	self.orbs_max = 0
-	self.orbs_inc = 12
-	self.gold = 75
 	self.start_wave = orb_shrines_wave
 
 	self.interval = 0.1
@@ -62,7 +60,7 @@ function modifier_orbs_shrine_custom:OnCreated(params)
 	self:StartIntervalThink(self.interval)
 end
 
-function modifier_orbs_shrine_custom:Activate(current_wave, activate)
+function modifier_orbs_shrine_custom:Activate(current_wave, activate, instant)
 	if not IsServer() then
 		return
 	end
@@ -72,14 +70,20 @@ function modifier_orbs_shrine_custom:Activate(current_wave, activate)
 
 	self.orbs_left = 0
 	self.reset_timer = 0
+	self.waiting_reset = false
 
 	if not activate then
 		return
 	end
 
-	self.give_gold = true
-	self.orbs_max = current_wave * self.orbs_inc
+	self.orbs_max = ShrineTicks
+	self.gold_tick = math.floor((ShrineGold + ShrineGoldWave * current_wave) / ShrineTicks)
 	self.waiting_reset = true
+
+	if instant then
+		self.reset_timer = self.reset_max
+	end
+
 	self:StartIntervalThink(self.interval)
 end
 
@@ -142,7 +146,12 @@ function modifier_orbs_shrine_custom:OnIntervalThink()
 		if tower.ids then
 			for _, id in pairs(tower.ids) do
 				local player = players[id]
-				if player and player:IsAlive() and (player:GetAbsOrigin() - self.center):Length2D() <= self.radius then
+				if
+					player
+					and player:IsAlive()
+					and (team == self.team_captured or not player:HasModifier("modifier_orbs_shrine_custom_hero"))
+					and (player:GetAbsOrigin() - self.center):Length2D() <= self.radius
+				then
 					has_players = true
 					last_hero = player
 				end
@@ -170,7 +179,7 @@ function modifier_orbs_shrine_custom:OnIntervalThink()
 		if not self.capture_particle then
 			self.parent:EmitSound("OrbsShrine.capture")
 			self.capture_particle = ParticleManager:CreateParticle(
-				"particles/generic/blue_shrine_capture.vpcf",
+				"particles/base_static/experience_shrine_active.vpcf",
 				PATTACH_ABSORIGIN_FOLLOW,
 				self.parent
 			)
@@ -181,20 +190,12 @@ function modifier_orbs_shrine_custom:OnIntervalThink()
 		ParticleManager:SetParticleControl(
 			self.capture_particle,
 			1,
-			Vector(self.radius, self.radius * (self.capture_progress / self.capture_max), 0)
+			Vector(self.radius, self.radius * (self.capture_progress / self.capture_max) * 1.2, 0)
 		)
 
 		if self.capture_progress >= self.capture_max then
 			self.team_captured = self.hero_capturing:GetTeamNumber()
 			self.hero_captured = self.hero_capturing
-
-			if self.give_gold then
-				self.give_gold = false
-				local team_players = dota1x6:FindPlayers(self.team_captured, false, true)
-				for _, team_player in pairs(team_players) do
-					team_player:GiveGold(self.gold / #team_players, true)
-				end
-			end
 
 			local mod = self.parent:FindModifierByName("modifier_orbs_shrine_custom_animation_captured")
 			if not mod then
@@ -270,7 +271,7 @@ function modifier_orbs_shrine_custom_animation_active:OnIntervalThink()
 	end
 
 	self.active_particle = ParticleManager:CreateParticle(
-		"particles/generic/blue_shrine_active.vpcf",
+		"particles/base_static/experience_shrine_ambient.vpcf",
 		PATTACH_ABSORIGIN_FOLLOW,
 		self.parent
 	)
@@ -297,8 +298,10 @@ function modifier_orbs_shrine_custom_animation_captured:OnCreated(table)
 
 	self.orbs_max = table.orbs_max
 	self.max_time = 50
-	self.interval = nil
-	self.orbs_tick = nil
+	self.interval = self.max_time / self.orbs_max
+	self.orbs_tick = 1
+	self.tick_interval = 0.5
+	self.timer = 0
 
 	self.hero_mods = {}
 
@@ -307,24 +310,7 @@ function modifier_orbs_shrine_custom_animation_captured:OnCreated(table)
 	self.clock_particle = {}
 	self.progress = 1
 
-	for per_tick = 1, self.orbs_max do
-		if self.orbs_max % per_tick == 0 then
-			local ticks = self.orbs_max / per_tick
-			local interval = self.max_time / ticks
-			if interval >= 1 then
-				self.interval = interval
-				self.orbs_tick = per_tick
-				break
-			end
-		end
-	end
-
-	if not self.interval then
-		self.interval = self.max_time
-		self.orbs_tick = self.orbs_max
-	end
-
-	self:StartIntervalThink(self.interval)
+	self:StartIntervalThink(self.tick_interval)
 end
 
 function modifier_orbs_shrine_custom_animation_captured:ChangeOwner(new_owner)
@@ -336,26 +322,12 @@ function modifier_orbs_shrine_custom_animation_captured:ChangeOwner(new_owner)
 			mod:Destroy()
 		end
 	end
+	self.hero_mods = {}
 
 	self.hero_captured = new_owner
 	self.team_captured = new_owner:GetTeamNumber()
 
-	local heroes = dota1x6:FindPlayers(self.team_captured, nil, true)
-	if heroes then
-		for _, hero in pairs(heroes) do
-			local mod = hero:AddNewModifier(
-				hero,
-				nil,
-				"modifier_orbs_shrine_custom_hero",
-				{
-					duration = (self.mod.orbs_left / self.orbs_tick) * self.interval + 0.1,
-					orbs_max = self.orbs_max,
-					time = self.max_time,
-				}
-			)
-			table.insert(self.hero_mods, mod)
-		end
-	end
+	self:GiveHeroMods()
 
 	if self.particle_hero_icon then
 		ParticleManager:DestroyParticle(self.particle_hero_icon, true)
@@ -363,7 +335,7 @@ function modifier_orbs_shrine_custom_animation_captured:ChangeOwner(new_owner)
 		self.particle_hero_icon = nil
 	end
 
-	self.parent:GenericParticle("particles/generic/blue_shrine_trigger.vpcf")
+	self.parent:GenericParticle("particles/base_static/experience_shrine_ambient_endcap.vpcf")
 	self.parent:EmitSound("OrbsShrine.trigger")
 	self.parent:EmitSound("OrbsShrine.trigger2")
 
@@ -392,6 +364,36 @@ function modifier_orbs_shrine_custom_animation_captured:ChangeOwner(new_owner)
 	self:UpdateParticle()
 end
 
+function modifier_orbs_shrine_custom_animation_captured:GiveHeroMods()
+	if not IsServer() then
+		return
+	end
+	if not self.team_captured then
+		return
+	end
+
+	local heroes = dota1x6:FindPlayers(self.team_captured, nil, true)
+	if not heroes then
+		return
+	end
+
+	local duration = (self.mod.orbs_left / self.orbs_tick) * self.interval - self.timer + self.tick_interval
+
+	for _, hero in pairs(heroes) do
+		if hero:IsAlive() and not hero:HasModifier("modifier_orbs_shrine_custom_hero") then
+			local mod = hero:AddNewModifier(
+				hero,
+				nil,
+				"modifier_orbs_shrine_custom_hero",
+				{ duration = duration, gold = self.mod.gold_tick * self.orbs_max }
+			)
+			if mod then
+				table.insert(self.hero_mods, mod)
+			end
+		end
+	end
+end
+
 function modifier_orbs_shrine_custom_animation_captured:OnIntervalThink()
 	if not IsServer() then
 		return
@@ -400,11 +402,26 @@ function modifier_orbs_shrine_custom_animation_captured:OnIntervalThink()
 		self:Destroy()
 		return
 	end
-	local tick = math.min(self.orbs_tick, self.mod.orbs_left)
 
-	self.mod.orbs_left = self.mod.orbs_left - tick
-	self.progress = self.mod.orbs_left / self.orbs_max
+	self:GiveHeroMods()
+
+	self.timer = self.timer + self.tick_interval
+	self.progress = (self.mod.orbs_left - self.timer / self.interval) / self.orbs_max
 	self:UpdateParticle()
+
+	if self.timer % 1 == 0 then
+		for _, hero in pairs(dota1x6:FindPlayers(self.team_captured, false, true)) do
+			hero:AddPoints("white", 1, "sanctuary")
+		end
+	end
+
+	if self.timer < self.interval then
+		return
+	end
+	self.timer = 0
+
+	local tick = math.min(self.orbs_tick, self.mod.orbs_left)
+	self.mod.orbs_left = self.mod.orbs_left - tick
 
 	if not self.team_captured then
 		return
@@ -412,8 +429,7 @@ function modifier_orbs_shrine_custom_animation_captured:OnIntervalThink()
 	local heroes = dota1x6:FindPlayers(self.team_captured, false, true)
 	if heroes then
 		for _, hero in pairs(heroes) do
-			dota1x6:AddBluePoints(hero, tick)
-			hero:SendNumber(11, tick)
+			hero:GiveGold(self.mod.gold_tick, nil, false, "sanctuary")
 		end
 	end
 end
@@ -433,17 +449,17 @@ function modifier_orbs_shrine_custom_animation_captured:UpdateParticle()
 			)
 			ParticleManager:SetParticleControl(self.clock_particle[team], 0, self.center + Vector(0, 0, 5))
 			ParticleManager:SetParticleControl(self.clock_particle[team], 11, Vector(0, 0, 1))
+			self:AddParticle(self.clock_particle[team], false, false, -1, false, false)
 		end
 
 		if self.team_captured == team then
-			ParticleManager:SetParticleControl(self.clock_particle[team], 3, Vector(41, 144, 231))
+			ParticleManager:SetParticleControl(self.clock_particle[team], 3, Vector(114, 75, 224))
 			ParticleManager:SetParticleControl(self.clock_particle[team], 9, Vector(self.clock_radius, 0, 0))
 		else
 			ParticleManager:SetParticleControl(self.clock_particle[team], 3, Vector(255, 79, 22))
 			ParticleManager:SetParticleControl(self.clock_particle[team], 9, Vector(self.clock_radius, 0, 0))
 		end
 		ParticleManager:SetParticleControl(self.clock_particle[team], 17, Vector(self.progress, 0, 0))
-		self:AddParticle(self.clock_particle[team], false, false, -1, false, false)
 	end
 end
 
@@ -472,8 +488,7 @@ function modifier_orbs_shrine_custom_hero:OnCreated(table)
 	if not IsServer() then
 		return
 	end
-	self.time = table.time
-	self.orbs_max = table.orbs_max
+	self.gold = table.gold
 
 	self:SetHasCustomTransmitterData(true)
 	self:SendBuffRefreshToClients()
@@ -481,27 +496,20 @@ end
 
 function modifier_orbs_shrine_custom_hero:AddCustomTransmitterData()
 	return {
-		time = self.time,
-		orbs_max = self.orbs_max,
+		gold = self.gold,
 	}
 end
 
 function modifier_orbs_shrine_custom_hero:HandleCustomTransmitterData(data)
-	self.time = data.time
-	self.orbs_max = data.orbs_max
+	self.gold = data.gold
 end
 
 function modifier_orbs_shrine_custom_hero:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_TOOLTIP,
-		MODIFIER_PROPERTY_TOOLTIP2,
 	}
 end
 
 function modifier_orbs_shrine_custom_hero:OnTooltip()
-	return self.orbs_max
-end
-
-function modifier_orbs_shrine_custom_hero:OnTooltip2()
-	return self.time
+	return self.gold
 end

@@ -18,22 +18,8 @@ LinkLuaModifier(
 	"abilities/phantom_assassin/custom_phantom_assassin_fan_of_knives",
 	LUA_MODIFIER_MOTION_NONE
 )
-LinkLuaModifier(
-	"modifier_custom_phantom_assassin_fan_of_damage",
-	"abilities/phantom_assassin/custom_phantom_assassin_fan_of_knives",
-	LUA_MODIFIER_MOTION_NONE
-)
 
 custom_phantom_assassin_fan_of_knives = class({})
-
-function custom_phantom_assassin_fan_of_knives:GetAbilityTextureName()
-	return wearables_system:GetAbilityIconReplacement(self.caster, "phantom_assassin_fan_of_knives", self)
-end
-
-function custom_phantom_assassin_fan_of_knives:GetAOERadius()
-	return self:GetSpecialValueFor("radius")
-end
-
 function custom_phantom_assassin_fan_of_knives:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
@@ -59,67 +45,71 @@ function custom_phantom_assassin_fan_of_knives:Precache(context)
 		"particles/units/heroes/hero_phantom_assassin_persona/pa_persona_shard_fan_of_knives_debuff.vpcf",
 		context
 	)
+	PrecacheResource("particle", "particles/units/heroes/hero_life_stealer/life_stealer_open_wounds.vpcf", context)
+end
+
+function custom_phantom_assassin_fan_of_knives:Init()
+	if not self:GetCaster() then
+		return
+	end
+	self.caster = self:GetCaster()
+
+	self.duration = self:GetLevelSpecialValueFor("duration", 1)
+	self.radius = self:GetLevelSpecialValueFor("radius", 1)
+	self.speed = self:GetLevelSpecialValueFor("projectile_speed", 1)
+	self.stun = self:GetLevelSpecialValueFor("stun", 1)
+end
+
+function custom_phantom_assassin_fan_of_knives:GetAOERadius()
+	return self.radius or 0
 end
 
 function custom_phantom_assassin_fan_of_knives:OnSpellStart()
-	local caster = self:GetCaster()
-	local radius = self:GetSpecialValueFor("radius")
-	local projectile_speed = self:GetSpecialValueFor("projectile_speed")
-	local location = caster:GetAbsOrigin()
-	local duration = radius / projectile_speed
-
-	if not IsServer() then
-		return
-	end
-	local ability = caster:FindAbilityByName("custom_phantom_assassin_coup_de_grace")
-	if ability and ability:IsTrained() then
-		caster:AddNewModifier(
-			caster,
-			ability,
+	if IsValid(self.caster.crit_ability) then
+		self.caster:AddNewModifier(
+			self.caster,
+			self.caster.crit_ability,
 			"modifier_phantom_assassin_phantom_coup_de_grace_focus",
-			{ duration = ability:GetSpecialValueFor("duration") }
+			{ duration = self.caster.crit_ability.focus_duration }
 		)
 	end
 
-	caster:EmitSound("Hero_PhantomAssassin.FanOfKnives.Cast")
+	self.caster:EmitSound("Hero_PhantomAssassin.FanOfKnives.Cast")
+
 	CreateModifierThinker(
-		caster,
+		self.caster,
 		self,
 		"modifier_custom_phantom_assassin_fan_of_knives_thinker",
-		{ duration = duration },
-		location,
-		caster:GetTeamNumber(),
+		{ duration = self.radius / self.speed },
+		self.caster:GetAbsOrigin(),
+		self.caster:GetTeamNumber(),
 		false
 	)
 end
 
-modifier_custom_phantom_assassin_fan_of_knives_thinker = class({})
-
+modifier_custom_phantom_assassin_fan_of_knives_thinker = class(mod_hidden)
 function modifier_custom_phantom_assassin_fan_of_knives_thinker:OnCreated()
-	self.ability = self:GetAbility()
-	self.caster = self:GetCaster()
 	self.parent = self:GetParent()
-
-	self.duration = self.ability:GetSpecialValueFor("duration")
-	self.radius = self.ability:GetSpecialValueFor("radius")
-	self.damage = self.ability:GetSpecialValueFor("damage")
-	self.damage_creeps = self.ability:GetSpecialValueFor("damage_creeps")
+	self.caster = self:GetCaster()
+	self.ability = self:GetAbility()
 
 	if not IsServer() then
 		return
 	end
 
-	local start_effect = wearables_system:GetParticleReplacementAbility(
+	self.hit = {}
+
+	local effect = wearables_system:GetParticleReplacementAbility(
 		self.caster,
 		"particles/units/heroes/hero_phantom_assassin/phantom_assassin_shard_fan_of_knives.vpcf",
 		self
 	)
-	self.particle = ParticleManager:CreateParticle(start_effect, PATTACH_ABSORIGIN, self.parent)
-	ParticleManager:SetParticleControl(self.particle, 0, self:GetParent():GetAbsOrigin())
-	ParticleManager:SetParticleControl(self.particle, 3, self:GetParent():GetAbsOrigin())
+
+	self.particle = ParticleManager:CreateParticle(effect, PATTACH_ABSORIGIN, self.parent)
+	ParticleManager:SetParticleControl(self.particle, 0, self.parent:GetAbsOrigin())
+	ParticleManager:SetParticleControl(self.particle, 3, self.parent:GetAbsOrigin())
 	self:AddParticle(self.particle, false, false, -1, false, false)
 
-	self.hit_enemies = {}
 	self:StartIntervalThink(FrameTime())
 end
 
@@ -128,82 +118,70 @@ function modifier_custom_phantom_assassin_fan_of_knives_thinker:OnIntervalThink(
 		return
 	end
 
-	local radius_pct = math.min((self:GetDuration() - self:GetRemainingTime()) / self:GetDuration(), 1)
-	local enemies = FindUnitsInRadius(
-		self.parent:GetTeamNumber(),
-		self.parent:GetAbsOrigin(),
-		nil,
-		self.radius * radius_pct,
-		DOTA_UNIT_TARGET_TEAM_ENEMY,
-		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-		DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
-		FIND_ANY_ORDER,
-		false
-	)
+	local radius = self.ability.radius
+		* math.min((self:GetDuration() - self:GetRemainingTime()) / self:GetDuration(), 1)
 
-	for _, enemy in pairs(enemies) do
-		if not self.hit_enemies[enemy] then
-			local damage = enemy:GetMaxHealth() * self.damage / 100
-			if enemy:IsCreep() then
-				damage = damage / self.damage_creeps
-			end
+	for _, enemy in pairs(self.parent:FindTargets(radius, self.parent:GetAbsOrigin())) do
+		if not self.hit[enemy] then
+			self.hit[enemy] = true
+
+			local status = 1 - enemy:GetStatusResistance()
 
 			enemy:AddNewModifier(
 				self.caster,
 				self.ability,
 				"modifier_custom_phantom_assassin_fan_of_knives",
-				{ duration = self.duration * (1 - enemy:GetStatusResistance()) }
+				{ duration = self.ability.duration * status }
+			)
+			enemy:AddNewModifier(
+				self.caster,
+				self.ability,
+				"modifier_stunned",
+				{ duration = self.ability.stun * status }
 			)
 			enemy:EmitSound("Hero_PhantomAssassin.Attack")
-
-			self.hit_enemies[enemy] = true
-
-			local real_damage = DoDamage({
-				victim = enemy,
-				attacker = self.caster,
-				damage = damage,
-				ability = self.ability,
-				damage_type = DAMAGE_TYPE_PHYSICAL,
-			})
-			enemy:SendNumber(4, real_damage)
+			enemy:EmitSound("PA.Scepter_target")
 		end
 	end
 end
 
-modifier_custom_phantom_assassin_fan_of_knives = class({})
-function modifier_custom_phantom_assassin_fan_of_knives:IsHidden()
-	return false
-end
-function modifier_custom_phantom_assassin_fan_of_knives:IsPurgable()
-	return false
-end
-function modifier_custom_phantom_assassin_fan_of_knives:CheckState()
-	return { [MODIFIER_STATE_PASSIVES_DISABLED] = true }
-end
+modifier_custom_phantom_assassin_fan_of_knives = class(mod_visible)
 function modifier_custom_phantom_assassin_fan_of_knives:GetEffectName()
 	return "particles/items3_fx/silver_edge.vpcf"
 end
-
-function modifier_custom_phantom_assassin_fan_of_knives:OnCreated(table)
+function modifier_custom_phantom_assassin_fan_of_knives:OnCreated()
 	self.parent = self:GetParent()
+	self.caster = self:GetCaster()
+	self.ability = self:GetAbility()
 
 	if not IsServer() then
 		return
 	end
 
-	local particle_name = wearables_system:GetParticleReplacementAbility(
-		self:GetCaster(),
-		"particles/units/heroes/hero_phantom_assassin/phantom_assassin_shard_fan_of_knives_dot.vpcf",
+	self.parent:GenericParticle(
+		wearables_system:GetParticleReplacementAbility(
+			self.caster,
+			"particles/units/heroes/hero_phantom_assassin/phantom_assassin_shard_fan_of_knives_dot.vpcf",
+			self
+		),
 		self
 	)
+	self.parent:GenericParticle("particles/generic_gameplay/generic_break.vpcf", self, true)
+	self.parent:GenericParticle("particles/units/heroes/hero_life_stealer/life_stealer_open_wounds.vpcf", self)
+end
 
-	self.parent:GenericParticle(particle_name, self)
+function modifier_custom_phantom_assassin_fan_of_knives:CheckState()
+	return {
+		[MODIFIER_STATE_PASSIVES_DISABLED] = true,
+	}
+end
 
-	self.particle = ParticleManager:CreateParticle(
-		"particles/generic_gameplay/generic_break.vpcf",
-		PATTACH_OVERHEAD_FOLLOW,
-		self.parent
-	)
-	ParticleManager:SetParticleControl(self.particle, 1, self.parent:GetAbsOrigin())
-	self:AddParticle(self.particle, false, false, -1, false, false)
+function modifier_custom_phantom_assassin_fan_of_knives:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_DISABLE_HEALING,
+	}
+end
+
+function modifier_custom_phantom_assassin_fan_of_knives:GetDisableHealing()
+	return 1
 end

@@ -83,7 +83,6 @@ function bloodseeker_thirst_custom:Precache(context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_thirst_vision.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_bloodseeker/bloodseeker_thirst_owner.vpcf", context)
 	PrecacheResource("particle", "particles/items4_fx/ascetic_cap.vpcf", context)
-	PrecacheResource("particle", "particles/units/heroes/hero_bloodseeker/bloodseeker_thirst_owner.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_gods_strength.vpcf", context)
 	PrecacheResource("particle", "particles/bloodseeker_vision.vpcf", context)
 	PrecacheResource("particle", "particles/bloodseeker/thirst_legendary.vpcf", context)
@@ -100,12 +99,12 @@ function bloodseeker_thirst_custom:UpdateTalents()
 		self.init = true
 
 		self.talents = {
-			damage_inc = 0,
-			damage_max = caster:GetTalentValue("modifier_bloodseeker_thirst_1", "max", true),
+			e1_damage = 0,
+			e1_max = caster:GetTalentValue("modifier_bloodseeker_thirst_1", "max", true),
 
-			has_cleave = 0,
-			move_bonus = 0,
-			cleave_bonus = 0,
+			has_e2 = 0,
+			e2_move = 0,
+			e2_cleave = 0,
 
 			has_e3 = 0,
 			e3_heal = 0,
@@ -121,34 +120,37 @@ function bloodseeker_thirst_custom:UpdateTalents()
 			e4_stun = caster:GetTalentValue("modifier_bloodseeker_thirst_4", "stun", true),
 			e4_talent_cd = caster:GetTalentValue("modifier_bloodseeker_thirst_4", "talent_cd", true),
 
-			has_vision = 0,
-			vision_duration = caster:GetTalentValue("modifier_bloodseeker_hero_5", "duration", true),
-			kill_damage = caster:GetTalentValue("modifier_bloodseeker_hero_5", "damage", true),
-			kill_health = caster:GetTalentValue("modifier_bloodseeker_hero_5", "health", true),
-			kill_max = caster:GetTalentValue("modifier_bloodseeker_hero_5", "max", true),
-			kill_radius = caster:GetTalentValue("modifier_bloodseeker_hero_5", "radius", true),
+			has_h5 = 0,
+			h5_duration = caster:GetTalentValue("modifier_bloodseeker_hero_5", "duration", true),
+			h5_damage = caster:GetTalentValue("modifier_bloodseeker_hero_5", "damage", true),
+			h5_health = caster:GetTalentValue("modifier_bloodseeker_hero_5", "health", true),
+			h5_max = caster:GetTalentValue("modifier_bloodseeker_hero_5", "max", true),
+			h5_radius = caster:GetTalentValue("modifier_bloodseeker_hero_5", "radius", true),
 
-			legendary_cd = caster:GetTalentValue("modifier_bloodseeker_thirst_7", "talent_cd", true),
-			legendary_range = caster:GetTalentValue("modifier_bloodseeker_thirst_7", "range", true),
-			legendary_min_range = caster:GetTalentValue("modifier_bloodseeker_thirst_7", "min_range", true),
-			legendary_speed = caster:GetTalentValue("modifier_bloodseeker_thirst_7", "speed", true),
-			legendary_damage = caster:GetTalentValue("modifier_bloodseeker_thirst_7", "damage", true),
-			legendary_attacks = caster:GetTalentValue("modifier_bloodseeker_thirst_7", "attacks", true),
-			legendary_attacks_creeps = caster:GetTalentValue("modifier_bloodseeker_thirst_7", "attacks_creeps", true),
-			legendary_delay = caster:GetTalentValue("modifier_bloodseeker_thirst_7", "delay", true),
-			legendary_cd_inc = caster:GetTalentValue("modifier_bloodseeker_thirst_7", "cd_inc", true),
+			has_q7 = 0,
+
+			has_e7 = 0,
+			e7_talent_cd = caster:GetTalentValue("modifier_bloodseeker_thirst_7", "talent_cd", true),
+			e7_range = caster:GetTalentValue("modifier_bloodseeker_thirst_7", "range", true),
+			e7_min_range = caster:GetTalentValue("modifier_bloodseeker_thirst_7", "min_range", true),
+			e7_speed = caster:GetTalentValue("modifier_bloodseeker_thirst_7", "speed", true),
+			e7_damage = caster:GetTalentValue("modifier_bloodseeker_thirst_7", "damage", true),
+			e7_attacks = caster:GetTalentValue("modifier_bloodseeker_thirst_7", "attacks", true),
+			e7_attacks_creeps = caster:GetTalentValue("modifier_bloodseeker_thirst_7", "attacks_creeps", true),
+			e7_delay = caster:GetTalentValue("modifier_bloodseeker_thirst_7", "delay", true),
+			e7_cd_inc = caster:GetTalentValue("modifier_bloodseeker_thirst_7", "cd_inc", true),
 			e7_health = caster:GetTalentValue("modifier_bloodseeker_thirst_7", "health", true),
 		}
 	end
 
 	if caster:HasTalent("modifier_bloodseeker_thirst_1") then
-		self.talents.damage_inc = caster:GetTalentValue("modifier_bloodseeker_thirst_1", "damage") / 100
+		self.talents.e1_damage = caster:GetTalentValue("modifier_bloodseeker_thirst_1", "damage") / 100
 	end
 
 	if caster:HasTalent("modifier_bloodseeker_thirst_2") then
-		self.talents.has_cleave = 1
-		self.talents.move_bonus = caster:GetTalentValue("modifier_bloodseeker_thirst_2", "move")
-		self.talents.cleave_bonus = caster:GetTalentValue("modifier_bloodseeker_thirst_2", "cleave") / 100
+		self.talents.has_e2 = 1
+		self.talents.e2_move = caster:GetTalentValue("modifier_bloodseeker_thirst_2", "move")
+		self.talents.e2_cleave = caster:GetTalentValue("modifier_bloodseeker_thirst_2", "cleave") / 100
 		caster:AddAttackEvent_out(self.tracker, true)
 	end
 
@@ -167,20 +169,23 @@ function bloodseeker_thirst_custom:UpdateTalents()
 	end
 
 	if caster:HasTalent("modifier_bloodseeker_hero_5") then
-		self.talents.has_vision = 1
+		self.talents.has_h5 = 1
 		caster:AddDamageEvent_out(self.tracker)
 		if IsServer() then
 			caster:CalculateStatBonus(true)
 		end
 	end
 
+	if caster:HasTalent("modifier_bloodseeker_bloodrage_7") then
+		self.talents.has_q7 = 1
+	end
+
 	if caster:HasTalent("modifier_bloodseeker_thirst_7") then
-		self.talents.has_legendary = 1
+		self.talents.has_e7 = 1
 	end
 end
 
 function bloodseeker_thirst_custom:GetAbilityTextureName()
-	local caster = self:GetCaster()
 	return wearables_system:GetAbilityIconReplacement(self.caster, "bloodseeker_thirst", self)
 end
 
@@ -192,14 +197,14 @@ function bloodseeker_thirst_custom:GetIntrinsicModifierName()
 end
 
 function bloodseeker_thirst_custom:GetCooldown(iLevel)
-	if self.talents.has_legendary == 0 then
-		return
+	if self.talents.has_e7 ~= 1 then
+		return 0
 	end
-	return self.talents.legendary_cd
+	return self.talents.e7_talent_cd
 end
 
 function bloodseeker_thirst_custom:GetBehavior()
-	if self.talents.has_legendary == 1 then
+	if self.talents.has_e7 == 1 then
 		return DOTA_ABILITY_BEHAVIOR_POINT + DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES
 	end
 	return DOTA_ABILITY_BEHAVIOR_PASSIVE
@@ -210,35 +215,34 @@ function bloodseeker_thirst_custom:GetCastAnimation()
 end
 
 function bloodseeker_thirst_custom:GetCastRange(vector, hTarget)
-	if self.talents.has_legendary == 0 then
-		return
+	if self.talents.has_e7 ~= 1 then
+		return 0
 	end
 	if IsServer() then
 		return 99999
 	end
-	return self.talents.legendary_range
+	return self.talents.e7_range
 end
 
 function bloodseeker_thirst_custom:OnSpellStart()
 	local point = self:GetCursorPosition()
-	local caster = self:GetCaster()
 
-	local dir = point - caster:GetAbsOrigin()
+	local dir = point - self.caster:GetAbsOrigin()
 	local length = dir:Length2D()
 	local direction = dir:Normalized()
 	direction.z = 0
 
-	local max_range = self.talents.legendary_range + caster:GetCastRangeBonus()
+	local max_range = self.talents.e7_range + self.caster:GetCastRangeBonus()
 	if length > max_range then
-		point = caster:GetAbsOrigin() + max_range * direction
-	elseif length < self.talents.legendary_min_range then
-		point = caster:GetAbsOrigin() + direction * self.talents.legendary_min_range
+		point = self.caster:GetAbsOrigin() + max_range * direction
+	elseif length < self.talents.e7_min_range then
+		point = self.caster:GetAbsOrigin() + direction * self.talents.e7_min_range
 	end
 
-	caster:EmitSound("BS.Bloodrite_charge1")
-	caster:EmitSound("BS.Bloodrite_charge2")
-	caster:AddNewModifier(
-		caster,
+	self.caster:EmitSound("BS.Bloodrite_charge1")
+	self.caster:EmitSound("BS.Bloodrite_charge2")
+	self.caster:AddNewModifier(
+		self.caster,
 		self,
 		"modifier_bloodseeker_thirst_custom_legendary_dash",
 		{ x = point.x, y = point.y }
@@ -252,10 +256,10 @@ function modifier_bloodseeker_thirst_custom:OnCreated()
 	self.ability.tracker = self
 	self.ability:UpdateTalents()
 
-	self.min_bonus_pct = self.ability:GetSpecialValueFor("min_bonus_pct")
-	self.max_bonus_pct = self.ability:GetSpecialValueFor("max_bonus_pct")
-	self.bonus_movement_speed = self.ability:GetSpecialValueFor("bonus_movement_speed")
-	self.linger_duration = self.ability:GetSpecialValueFor("linger_duration")
+	self.ability.min_bonus_pct = self.ability:GetSpecialValueFor("min_bonus_pct")
+	self.ability.max_bonus_pct = self.ability:GetSpecialValueFor("max_bonus_pct")
+	self.ability.bonus_movement_speed = self.ability:GetSpecialValueFor("bonus_movement_speed")
+	self.ability.linger_duration = self.ability:GetSpecialValueFor("linger_duration")
 
 	self.records = {}
 
@@ -266,17 +270,17 @@ function modifier_bloodseeker_thirst_custom:OnCreated()
 end
 
 function modifier_bloodseeker_thirst_custom:OnRefresh(table)
-	self.bonus_movement_speed = self.ability:GetSpecialValueFor("bonus_movement_speed")
+	self.ability.bonus_movement_speed = self.ability:GetSpecialValueFor("bonus_movement_speed")
 end
 
 function modifier_bloodseeker_thirst_custom:GetBonus()
 	if self.parent:PassivesDisabled() then
 		return 0
 	end
-	local max_bonus_pct = self.max_bonus_pct
+	local max_bonus_pct = self.ability.max_bonus_pct
 		+ (self.ability.talents.has_e4 == 1 and self.ability.talents.e4_thresh or 0)
 
-	return math.max(0, (self:GetStackCount() / (self.min_bonus_pct - max_bonus_pct)))
+	return math.max(0, (self:GetStackCount() / (self.ability.min_bonus_pct - max_bonus_pct)))
 end
 
 function modifier_bloodseeker_thirst_custom:OnIntervalThink()
@@ -284,11 +288,12 @@ function modifier_bloodseeker_thirst_custom:OnIntervalThink()
 		return
 	end
 
-	local low_health = self.max_bonus_pct + (self.ability.talents.has_e4 == 1 and self.ability.talents.e4_thresh or 0)
+	local low_health = self.ability.max_bonus_pct
+		+ (self.ability.talents.has_e4 == 1 and self.ability.talents.e4_thresh or 0)
 	local min_health = 100
 	local target = nil
 	local has_bonus = false
-	local has_bloodrage = self.parent:HasTalent("modifier_bloodseeker_bloodrage_7")
+	local has_bloodrage = self.ability.talents.has_q7 == 1
 
 	for _, player in pairs(players) do
 		if
@@ -317,15 +322,15 @@ function modifier_bloodseeker_thirst_custom:OnIntervalThink()
 	end
 
 	local bonus = 0
-	if min_health < self.min_bonus_pct then
-		bonus = self.min_bonus_pct - min_health
-		if bonus > (self.min_bonus_pct - low_health) then
-			bonus = (self.min_bonus_pct - low_health)
+	if min_health < self.ability.min_bonus_pct then
+		bonus = self.ability.min_bonus_pct - min_health
+		if bonus > (self.ability.min_bonus_pct - low_health) then
+			bonus = (self.ability.min_bonus_pct - low_health)
 		end
 	end
 
 	if self.parent:HasModifier("modifier_bloodseeker_thirst_custom_kill") then
-		bonus = (self.min_bonus_pct - low_health)
+		bonus = (self.ability.min_bonus_pct - low_health)
 	end
 
 	self:SetStackCount(bonus)
@@ -345,7 +350,7 @@ function modifier_bloodseeker_thirst_custom:OnIntervalThink()
 		self.parent:RemoveModifierByName("modifier_bloodseeker_thirst_custom_visual")
 	end
 
-	if self.ability.talents.has_legendary == 1 then
+	if self.ability.talents.has_e7 == 1 then
 		self.parent:UpdateUIlong({
 			max = 100,
 			stack = 100 - min_health,
@@ -354,7 +359,7 @@ function modifier_bloodseeker_thirst_custom:OnIntervalThink()
 			style = "BloodseekerThirst",
 		})
 		if self.ability:GetCooldownTimeRemaining() > 0 and min_health <= self.ability.talents.e7_health then
-			local cd_inc = self.interval * (self.ability.talents.legendary_cd_inc - 1)
+			local cd_inc = self.interval * (self.ability.talents.e7_cd_inc - 1)
 			self.parent:CdAbility(self.ability, cd_inc)
 		end
 	end
@@ -373,21 +378,18 @@ function modifier_bloodseeker_thirst_custom:DeclareFunctions()
 end
 
 function modifier_bloodseeker_thirst_custom:GetModifierMoveSpeedBonus_Percentage(params)
-	return self:GetBonus() * self.bonus_movement_speed
+	return self:GetBonus() * self.ability.bonus_movement_speed
 end
 
 function modifier_bloodseeker_thirst_custom:GetModifierMoveSpeedBonus_Constant()
-	return self.ability.talents.move_bonus
+	return self.ability.talents.e2_move
 end
 
 function modifier_bloodseeker_thirst_custom:GetModifierPreAttack_BonusDamage()
-	if self.ability.talents.damage_inc <= 0 then
-		return
-	end
 	return math.min(
-		self.ability.talents.damage_max,
+		self.ability.talents.e1_max,
 		self.parent:GetMoveSpeedModifier(self.parent:GetBaseMoveSpeed(), false)
-	) * self.ability.talents.damage_inc
+	) * self.ability.talents.e1_damage
 end
 
 function modifier_bloodseeker_thirst_custom:GetModifierMoveSpeed_Max(params)
@@ -461,7 +463,7 @@ function modifier_bloodseeker_thirst_custom:DamageEvent_out(params)
 	local target = params.unit
 
 	if
-		self.ability.talents.has_vision == 1
+		self.ability.talents.has_h5 == 1
 		and (not params.inflictor or (not params.inflictor:IsItem() and params.inflictor:GetName() ~= "custom_ability_dust"))
 		and target:IsRealHero()
 		and target:GetTeamNumber() ~= self.parent:GetTeamNumber()
@@ -470,7 +472,7 @@ function modifier_bloodseeker_thirst_custom:DamageEvent_out(params)
 			self.parent,
 			self.ability,
 			"modifier_bloodseeker_thirst_custom_vision",
-			{ duration = self.ability.talents.vision_duration }
+			{ duration = self.ability.talents.h5_duration }
 		)
 	end
 
@@ -601,12 +603,12 @@ function modifier_bloodseeker_thirst_custom:AttackEvent_out(params)
 
 	local target = params.target
 
-	if self.ability.talents.has_cleave == 1 then
+	if self.ability.talents.has_e2 == 1 then
 		DoCleaveAttack(
 			self.parent,
 			target,
 			self.ability,
-			self.ability.talents.cleave_bonus * params.damage,
+			self.ability.talents.e2_cleave * params.damage,
 			150,
 			360,
 			650,
@@ -630,7 +632,7 @@ function modifier_bloodseeker_thirst_custom:DeathEvent(params)
 			self.parent,
 			self.ability,
 			"modifier_bloodseeker_thirst_custom_kill",
-			{ duration = self.linger_duration }
+			{ duration = self.ability.linger_duration }
 		)
 	end
 
@@ -638,7 +640,7 @@ function modifier_bloodseeker_thirst_custom:DeathEvent(params)
 		target:IsValidKill(self.parent)
 		and (
 			self.parent == params.attacker
-			or (self.parent:GetAbsOrigin() - target:GetAbsOrigin()):Length2D() <= self.ability.talents.kill_radius
+			or (self.parent:GetAbsOrigin() - target:GetAbsOrigin()):Length2D() <= self.ability.talents.h5_radius
 		)
 	then
 		self.parent:AddNewModifier(self.parent, self.ability, "modifier_bloodseeker_thirst_custom_cdr", {})
@@ -652,11 +654,10 @@ function modifier_bloodseeker_thirst_custom:OnDestroy()
 	self.parent:RemoveModifierByName("modifier_bloodseeker_thirst_custom_visual")
 end
 
-modifier_bloodseeker_thirst_custom_debuff = class({})
-function modifier_bloodseeker_thirst_custom_debuff:IsPurgable()
-	return false
+modifier_bloodseeker_thirst_custom_debuff = class(mod_visible)
+function modifier_bloodseeker_thirst_custom_debuff:GetStatusEffectName()
+	return "particles/units/heroes/hero_bloodseeker/bloodseeker_vision.vpcf"
 end
-
 function modifier_bloodseeker_thirst_custom_debuff:OnCreated()
 	if not IsServer() then
 		return
@@ -676,24 +677,12 @@ function modifier_bloodseeker_thirst_custom_debuff:OnIntervalThink()
 	self.parent:AddNewModifier(self.caster, self.ability, "modifier_truesight", { duration = self.interval * 2 })
 end
 
-function modifier_bloodseeker_thirst_custom_debuff:GetStatusEffectName()
-	return "particles/units/heroes/hero_bloodseeker/bloodseeker_vision.vpcf"
-end
-
-modifier_bloodseeker_thirst_custom_visual = class({})
-function modifier_bloodseeker_thirst_custom_visual:IsPurgable()
-	return false
-end
+modifier_bloodseeker_thirst_custom_visual = class(mod_visible)
 function modifier_bloodseeker_thirst_custom_visual:GetStatusEffectName()
 	return "particles/status_fx/status_effect_thirst_vision.vpcf"
 end
 function modifier_bloodseeker_thirst_custom_visual:StatusEffectPriority()
 	return MODIFIER_PRIORITY_NORMAL
-end
-function modifier_bloodseeker_thirst_custom_visual:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS,
-	}
 end
 function modifier_bloodseeker_thirst_custom_visual:OnCreated()
 	self.parent = self:GetParent()
@@ -733,6 +722,12 @@ function modifier_bloodseeker_thirst_custom_visual:OnCreated()
 	end
 end
 
+function modifier_bloodseeker_thirst_custom_visual:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS,
+	}
+end
+
 function modifier_bloodseeker_thirst_custom_visual:GetActivityTranslationModifiers()
 	if self.parent:HasModifier("modifier_bloodseeker_thirst_custom_legendary_dash") then
 		return
@@ -744,7 +739,7 @@ modifier_bloodseeker_thirst_custom_kill = class(mod_hidden)
 
 modifier_bloodseeker_thirst_custom_cdr = class({})
 function modifier_bloodseeker_thirst_custom_cdr:IsHidden()
-	return self.ability.talents.has_vision == 0 or self:GetStackCount() >= self.ability.talents.kill_max
+	return self.ability.talents.has_h5 == 0 or self:GetStackCount() >= self.ability.talents.h5_max
 end
 function modifier_bloodseeker_thirst_custom_cdr:IsPurgable()
 	return false
@@ -759,15 +754,13 @@ function modifier_bloodseeker_thirst_custom_cdr:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.max = self.ability.talents.kill_max
-	self.damage = self.ability.talents.kill_damage / self.max
-	self.health = self.ability.talents.kill_health / self.max
+	self.max = self.ability.talents.h5_max
 
 	if not IsServer() then
 		return
 	end
 	self:StartIntervalThink(2)
-	self:SetStackCount(1)
+	self:OnRefresh()
 end
 
 function modifier_bloodseeker_thirst_custom_cdr:OnRefresh()
@@ -786,7 +779,7 @@ function modifier_bloodseeker_thirst_custom_cdr:OnIntervalThink()
 	if not IsServer() then
 		return
 	end
-	if self.ability.talents.has_vision == 0 then
+	if self.ability.talents.has_h5 == 0 then
 		return
 	end
 	if self:GetStackCount() < self.max then
@@ -807,27 +800,33 @@ function modifier_bloodseeker_thirst_custom_cdr:DeclareFunctions()
 end
 
 function modifier_bloodseeker_thirst_custom_cdr:GetModifierExtraHealthPercentage()
-	if self.ability.talents.has_vision == 0 then
+	if self.ability.talents.has_h5 == 0 then
 		return
 	end
-	return self.health * self:GetStackCount()
+	return (self.ability.talents.h5_health / self.max) * self:GetStackCount()
 end
 
 function modifier_bloodseeker_thirst_custom_cdr:GetModifierDamageOutgoing_Percentage()
-	if self.ability.talents.has_vision == 0 then
+	if self.ability.talents.has_h5 == 0 then
 		return
 	end
-	return self.damage * self:GetStackCount()
+	return (self.ability.talents.h5_damage / self.max) * self:GetStackCount()
 end
 
 function modifier_bloodseeker_thirst_custom_cdr:GetModifierSpellAmplify_Percentage()
-	if self.ability.talents.has_vision == 0 then
+	if self.ability.talents.has_h5 == 0 then
 		return
 	end
-	return self.damage * self:GetStackCount()
+	return (self.ability.talents.h5_damage / self.max) * self:GetStackCount()
 end
 
 modifier_bloodseeker_thirst_custom_legendary_dash = class(mod_hidden)
+function modifier_bloodseeker_thirst_custom_legendary_dash:GetStatusEffectName()
+	return "particles/status_fx/status_effect_grimstroke_ink_swell.vpcf"
+end
+function modifier_bloodseeker_thirst_custom_legendary_dash:StatusEffectPriority()
+	return MODIFIER_PRIORITY_ULTRA
+end
 function modifier_bloodseeker_thirst_custom_legendary_dash:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -839,7 +838,7 @@ function modifier_bloodseeker_thirst_custom_legendary_dash:OnCreated(table)
 	self.parent:RemoveModifierByName("modifier_bloodseeker_thirst_custom_unmiss")
 
 	self.radius = 170
-	self.speed = self.ability.talents.legendary_speed
+	self.speed = self.ability.talents.e7_speed
 	self.point = GetGroundPosition(Vector(table.x, table.y, 0), nil)
 	self.dir = self.point - self.parent:GetAbsOrigin()
 	self:SetDuration(self.dir:Length2D() / self.speed, false)
@@ -876,14 +875,6 @@ function modifier_bloodseeker_thirst_custom_legendary_dash:OnHorizontalMotionInt
 	self:Destroy()
 end
 
-function modifier_bloodseeker_thirst_custom_legendary_dash:GetStatusEffectName()
-	return "particles/status_fx/status_effect_grimstroke_ink_swell.vpcf"
-end
-
-function modifier_bloodseeker_thirst_custom_legendary_dash:StatusEffectPriority()
-	return MODIFIER_PRIORITY_ULTRA
-end
-
 function modifier_bloodseeker_thirst_custom_legendary_dash:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS,
@@ -915,10 +906,7 @@ function modifier_bloodseeker_thirst_custom_legendary_dash:OnDestroy()
 	end
 	self.parent:RemoveHorizontalMotionController(self)
 
-	self.vec = self.parent:GetForwardVector()
-	self.vec.z = 0
-	self.parent:SetForwardVector(self.vec)
-	self.parent:FaceTowards(self.parent:GetAbsOrigin() + self.vec * 10)
+	self.parent:FacePoint()
 	FindClearSpaceForUnit(self.parent, self.parent:GetAbsOrigin(), false)
 
 	self.parent:RemoveGesture(ACT_DOTA_CAST_ABILITY_2)
@@ -939,8 +927,7 @@ function modifier_bloodseeker_thirst_custom_legendary_attack:OnCreated(table)
 	end
 
 	self.attacker = self.caster
-	local attacks = self.parent:IsHero() and self.ability.talents.legendary_attacks
-		or self.ability.talents.legendary_attacks_creeps
+	local attacks = self.parent:IsHero() and self.ability.talents.e7_attacks or self.ability.talents.e7_attacks_creeps
 	self:SetStackCount(attacks)
 
 	self:OnIntervalThink()
@@ -998,7 +985,7 @@ function modifier_bloodseeker_thirst_custom_legendary_attack:OnIntervalThink()
 		return
 	end
 
-	self:StartIntervalThink(self.ability.talents.legendary_delay)
+	self:StartIntervalThink(self.ability.talents.e7_delay)
 end
 
 function modifier_bloodseeker_thirst_custom_legendary_attack:DeclareFunctions()
@@ -1013,7 +1000,8 @@ end
 
 modifier_bloodseeker_thirst_custom_legendary_attack_damage = class(mod_hidden)
 function modifier_bloodseeker_thirst_custom_legendary_attack_damage:OnCreated()
-	self.damage = self:GetAbility().talents.legendary_damage - 100
+	self.ability = self:GetAbility()
+	self.damage = self.ability.talents.e7_damage - 100
 end
 
 function modifier_bloodseeker_thirst_custom_legendary_attack_damage:DeclareFunctions()

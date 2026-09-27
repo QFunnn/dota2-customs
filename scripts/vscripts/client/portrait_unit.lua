@@ -96,6 +96,10 @@ function Spawn()
 		ModelScale = "1",
 	}
 
+	if unit_name == "npc_dota_hero_pangolier" then
+		unit_data.MapUnitName = "npc_dota_thinker"
+	end
+
 	if _G.AllItemsData[unit:GetPlayerOwnerID()] ~= nil then
 		local item_num = 0
 		for k, item_id in pairs(_G.AllItemsData[unit:GetPlayerOwnerID()]) do

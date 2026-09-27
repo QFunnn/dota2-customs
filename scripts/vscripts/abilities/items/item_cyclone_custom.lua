@@ -16,7 +16,7 @@ function item_cyclone_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
 	end
-	PrecacheResource("particle", "", context)
+	PrecacheResource("particle", "particles/items_fx/cyclone_custom.vpcf", context)
 end
 
 function item_cyclone_custom:GetIntrinsicModifierName()
@@ -75,17 +75,17 @@ function item_cyclone_custom:OnSpellStart()
 end
 
 modifier_item_cyclone_custom = class(mod_hidden)
+function modifier_item_cyclone_custom:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+end
+
 function modifier_item_cyclone_custom:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
 		MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
 	}
-end
-
-function modifier_item_cyclone_custom:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
 end
 
 function modifier_item_cyclone_custom:GetModifierConstantManaRegen()

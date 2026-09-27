@@ -176,10 +176,6 @@ function arc_warden_magnetic_field_custom:UpdateTalents()
 	end
 end
 
-function arc_warden_magnetic_field_custom:Init()
-	self.caster = self:GetCaster()
-end
-
 function arc_warden_magnetic_field_custom:GetIntrinsicModifierName()
 	if not self:GetCaster():IsRealHero() then
 		return
@@ -194,7 +190,7 @@ function arc_warden_magnetic_field_custom:GetBehavior()
 end
 
 function arc_warden_magnetic_field_custom:GetAOERadius()
-	return self:GetSpecialValueFor("radius")
+	return self.radius or 0
 end
 
 function arc_warden_magnetic_field_custom:GetCastPoint(iLevel)
@@ -210,7 +206,7 @@ function arc_warden_magnetic_field_custom:GetAbilityTextureName()
 	if icon == "arc_warden_magnetic_field_frostivus" then
 		return icon
 	end
-	if self:GetCaster():HasModifier("modifier_arc_warden_tempest_double") then
+	if self.caster:HasModifier("modifier_arc_warden_tempest_double") then
 		return wearables_system:GetAbilityIconReplacement(self.caster, "arc_warden_magnetic_field_tempest", self)
 	end
 	return wearables_system:GetAbilityIconReplacement(self.caster, "arc_warden_magnetic_field", self)
@@ -220,13 +216,11 @@ function arc_warden_magnetic_field_custom:OnSpellStart()
 	self.caster:EmitSound("Hero_ArcWarden.MagneticField.Cast")
 	self.caster:GenericParticle("particles/units/heroes/hero_arc_warden/arc_warden_magnetic_cast.vpcf")
 
-	local duration = self:GetSpecialValueFor("duration")
+	local duration = self.duration
 	local point = self:GetCursorTarget() and self:GetCursorTarget():GetAbsOrigin() or self:GetCursorPosition()
-	local radius = self:GetSpecialValueFor("radius")
 
 	if self.talents.has_w7 == 1 then
 		point = self.caster:GetAbsOrigin()
-		radius = self.talents.w7_radius
 	elseif self.talents.has_w4 == 1 and not self.caster:IsRooted() and not self.caster:IsLeashed() then
 		ProjectileManager:ProjectileDodge(self.caster)
 		EmitSoundOnLocationWithCaster(self.caster:GetAbsOrigin(), "Arc.Field_blink_start", self.caster)
@@ -275,26 +269,27 @@ function arc_warden_magnetic_field_custom:OnSpellStart()
 	end
 end
 
-function arc_warden_magnetic_field_custom:CheckActive()
-	local legendary_ability = self.caster:FindAbilityByName("arc_warden_magnetic_field_custom_legendary")
-
-	if self.talents.has_w7 == 0 then
-		self:StartCd()
-	elseif
-		not self:IsActivated()
-		and not self.caster:HasModifier("modifier_arc_warden_magnetic_field_custom_thinker_speed")
-		and not self.caster:HasModifier("modifier_arc_warden_magnetic_field_custom_legendary")
-	then
-		if legendary_ability and not legendary_ability:IsHidden() then
-			self.caster:SwapAbilities(self:GetName(), legendary_ability:GetName(), true, false)
-		end
-		self:StartCd()
-	end
-end
-
 modifier_arc_warden_magnetic_field_custom_thinker_speed = class(mod_hidden)
 function modifier_arc_warden_magnetic_field_custom_thinker_speed:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
+end
+function modifier_arc_warden_magnetic_field_custom_thinker_speed:IsAura()
+	return true
+end
+function modifier_arc_warden_magnetic_field_custom_thinker_speed:GetAuraDuration()
+	return 0.1
+end
+function modifier_arc_warden_magnetic_field_custom_thinker_speed:GetAuraRadius()
+	return self.radius
+end
+function modifier_arc_warden_magnetic_field_custom_thinker_speed:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_FRIENDLY
+end
+function modifier_arc_warden_magnetic_field_custom_thinker_speed:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_HERO
+end
+function modifier_arc_warden_magnetic_field_custom_thinker_speed:GetModifierAura()
+	return "modifier_arc_warden_magnetic_field_custom_speed"
 end
 function modifier_arc_warden_magnetic_field_custom_thinker_speed:OnCreated(table)
 	if not IsServer() then
@@ -328,8 +323,8 @@ function modifier_arc_warden_magnetic_field_custom_thinker_speed:OnCreated(table
 		self.parent:SwapAbilities(self.ability:GetName(), self.legendary_ability:GetName(), false, true)
 	end
 
-	self.duration = self.ability:GetSpecialValueFor("duration")
-	self.radius = self.ability:GetSpecialValueFor("radius")
+	self.duration = self.ability.duration
+	self.radius = self.ability.radius
 	if self.parent:IsHero() then
 		self.radius = self.ability.talents.w7_radius
 	end
@@ -338,7 +333,7 @@ function modifier_arc_warden_magnetic_field_custom_thinker_speed:OnCreated(table
 
 	local part = self.has_knock and "particles/arc_warden/arc_warden_magnetic_shard.vpcf"
 		or "particles/arc_warden/arc_warden_magnetic.vpcf"
-	part = wearables_system:GetParticleReplacementAbility(self.caster, part, self)
+	part = wearables_system:GetParticleReplacementAbility(self.caster, part, self.ability)
 
 	self.magnetic_particle = ParticleManager:CreateParticle(part, PATTACH_ABSORIGIN_FOLLOW, self.parent)
 	ParticleManager:SetParticleControl(self.magnetic_particle, 1, Vector(self.radius, 1, 1))
@@ -424,7 +419,7 @@ function modifier_arc_warden_magnetic_field_custom_thinker_speed:OnIntervalThink
 			local point = self.parent:GetAbsOrigin() + direction * (self.radius + self.knock_range)
 			local distance = (enemy:GetAbsOrigin() - point):Length2D()
 
-			local mod = enemy:AddNewModifier(caster, self, "modifier_generic_arc", {
+			local mod = enemy:AddNewModifier(self.caster, self.ability, "modifier_generic_arc", {
 				target_x = point.x,
 				target_y = point.y,
 				distance = distance,
@@ -465,26 +460,26 @@ function modifier_arc_warden_magnetic_field_custom_thinker_speed:OnDestroy()
 
 	self.parent_owner:UpdateUIshort({ hide = 1, hide_full = 1, priority = self.priority, style = self.event })
 
-	self.ability:CheckActive()
-end
+	if self.ability.talents.has_w7 == 0 then
+		self.ability:StartCd()
+		return
+	end
 
-function modifier_arc_warden_magnetic_field_custom_thinker_speed:IsAura()
-	return true
-end
-function modifier_arc_warden_magnetic_field_custom_thinker_speed:GetAuraDuration()
-	return 0.1
-end
-function modifier_arc_warden_magnetic_field_custom_thinker_speed:GetAuraRadius()
-	return self.radius
-end
-function modifier_arc_warden_magnetic_field_custom_thinker_speed:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_FRIENDLY
-end
-function modifier_arc_warden_magnetic_field_custom_thinker_speed:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_HERO
-end
-function modifier_arc_warden_magnetic_field_custom_thinker_speed:GetModifierAura()
-	return "modifier_arc_warden_magnetic_field_custom_speed"
+	if self.ability:IsActivated() then
+		return
+	end
+	if self.caster:HasModifier("modifier_arc_warden_magnetic_field_custom_thinker_speed") then
+		return
+	end
+	if self.caster:HasModifier("modifier_arc_warden_magnetic_field_custom_legendary") then
+		return
+	end
+
+	local legendary_ability = self.caster.field_legendary_ability
+	if legendary_ability and not legendary_ability:IsHidden() then
+		self.caster:SwapAbilities(self.ability:GetName(), legendary_ability:GetName(), true, false)
+	end
+	self.ability:StartCd()
 end
 
 modifier_arc_warden_magnetic_field_custom_speed = class(mod_hidden)
@@ -497,13 +492,13 @@ function modifier_arc_warden_magnetic_field_custom_speed:OnCreated()
 	self.aura_owner = self:GetAuraOwner()
 	self.caster = self:GetCaster()
 
-	self.radius = self.ability:GetSpecialValueFor("radius")
+	self.radius = self.ability.radius
 
 	if IsValid(self.aura_owner) and self.aura_owner:IsHero() then
 		self.radius = self.ability.talents.w7_radius
 	end
 
-	self.evasion_chance = self.ability:GetSpecialValueFor("evasion_chance")
+	self.evasion_chance = self.ability.evasion_chance
 
 	if not IsServer() then
 		return
@@ -546,8 +541,8 @@ function modifier_arc_warden_magnetic_field_custom_speed_count:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.attack_speed_bonus = self.ability:GetSpecialValueFor("attack_speed_bonus") + self.ability.talents.w1_speed
-	self.flight_speed = self.ability:GetSpecialValueFor("flight_speed")
+	self.attack_speed_bonus = self.ability.attack_speed_bonus + self.ability.talents.w1_speed
+	self.flight_speed = self.ability.flight_speed
 
 	if not IsServer() then
 		return
@@ -566,23 +561,17 @@ function modifier_arc_warden_magnetic_field_custom_speed_count:OnDestroy()
 	if not IsServer() then
 		return
 	end
-
-	local mod = self.parent:FindModifierByName("modifier_arc_warden_magnetic_field_custom_speed_count")
-	if mod then
-		mod:DecrementStackCount()
-		if mod:GetStackCount() <= 0 then
-			mod:Destroy()
-		end
-	end
-
 	if self.ability.talents.has_h2 == 0 and self.ability.talents.has_w2 == 0 then
 		return
 	end
+
+	local duration = self.ability.talents.has_w2 == 1 and self.ability.talents.w2_duration
+		or self.ability.talents.h2_duration
 	self.parent:AddNewModifier(
 		self.parent,
 		self.ability,
 		"modifier_arc_warden_magnetic_field_custom_linger",
-		{ duration = self.ability.talents.w2_duration }
+		{ duration = duration }
 	)
 end
 
@@ -605,18 +594,17 @@ modifier_arc_warden_magnetic_field_custom_tracker = class(mod_hidden)
 function modifier_arc_warden_magnetic_field_custom_tracker:RemoveOnDeath()
 	return false
 end
-function modifier_arc_warden_magnetic_field_custom_tracker:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_STATUS_RESISTANCE_STACKING,
-		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
-	}
-end
-
 function modifier_arc_warden_magnetic_field_custom_tracker:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 	self.ability.tracker = self
 	self.ability:UpdateTalents()
+
+	self.ability.radius = self.ability:GetSpecialValueFor("radius")
+	self.ability.duration = self.ability:GetSpecialValueFor("duration")
+	self.ability.attack_speed_bonus = self.ability:GetSpecialValueFor("attack_speed_bonus")
+	self.ability.evasion_chance = self.ability:GetSpecialValueFor("evasion_chance")
+	self.ability.flight_speed = self.ability:GetSpecialValueFor("flight_speed")
 
 	self.parent.magnetic_ability = self.ability
 
@@ -636,11 +624,16 @@ function modifier_arc_warden_magnetic_field_custom_tracker:OnCreated()
 	}
 end
 
-function modifier_arc_warden_magnetic_field_custom_tracker:OnIntervalThink()
-	if not IsServer() then
-		return
-	end
-	self.ability:CheckActive()
+function modifier_arc_warden_magnetic_field_custom_tracker:OnRefresh()
+	self.ability.duration = self.ability:GetSpecialValueFor("duration")
+	self.ability.attack_speed_bonus = self.ability:GetSpecialValueFor("attack_speed_bonus")
+end
+
+function modifier_arc_warden_magnetic_field_custom_tracker:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_STATUS_RESISTANCE_STACKING,
+		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
+	}
 end
 
 function modifier_arc_warden_magnetic_field_custom_tracker:AttackStartEvent_out(params)
@@ -732,7 +725,7 @@ function modifier_arc_warden_magnetic_field_custom_tracker:AttackEvent_out(param
 end
 
 function modifier_arc_warden_magnetic_field_custom_tracker:GetModifierStatusResistanceStacking()
-	if self.parent:IsNull() then
+	if not IsValid(self.parent) then
 		return
 	end
 	return self.ability.talents.h2_status
@@ -747,7 +740,7 @@ function modifier_arc_warden_magnetic_field_custom_tracker:GetModifierStatusResi
 end
 
 function modifier_arc_warden_magnetic_field_custom_tracker:GetModifierPhysicalArmorBonus()
-	if self.parent:IsNull() then
+	if not IsValid(self.parent) then
 		return
 	end
 	return self.ability.talents.h2_armor
@@ -759,6 +752,111 @@ function modifier_arc_warden_magnetic_field_custom_tracker:GetModifierPhysicalAr
 				and self.ability.talents.h2_bonus
 			or 1
 		)
+end
+
+modifier_arc_warden_magnetic_field_custom_knock_cd = class(mod_hidden)
+function modifier_arc_warden_magnetic_field_custom_knock_cd:RemoveOnDeath()
+	return false
+end
+function modifier_arc_warden_magnetic_field_custom_knock_cd:OnCreated()
+	self.RemoveForDuel = true
+end
+
+modifier_arc_warden_magnetic_field_custom_stun = class(mod_hidden)
+function modifier_arc_warden_magnetic_field_custom_stun:IsStunDebuff()
+	return true
+end
+function modifier_arc_warden_magnetic_field_custom_stun:IsPurgeException()
+	return true
+end
+function modifier_arc_warden_magnetic_field_custom_stun:StatusEffectPriority()
+	return MODIFIER_PRIORITY_HIGH
+end
+function modifier_arc_warden_magnetic_field_custom_stun:GetStatusEffectName()
+	return "particles/status_fx/status_effect_faceless_chronosphere.vpcf"
+end
+function modifier_arc_warden_magnetic_field_custom_stun:CheckState()
+	return {
+		[MODIFIER_STATE_FROZEN] = true,
+		[MODIFIER_STATE_STUNNED] = true,
+	}
+end
+
+modifier_arc_warden_magnetic_field_custom_linger = class(mod_hidden)
+
+modifier_arc_warden_magnetic_field_custom_agi = class(mod_visible)
+function modifier_arc_warden_magnetic_field_custom_agi:GetTexture()
+	return "buffs/arc_warden/field_3"
+end
+function modifier_arc_warden_magnetic_field_custom_agi:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+	if self.parent.owner and self.parent.owner.magnetic_ability then
+		self.ability = self.parent.owner.magnetic_ability
+	end
+
+	self.agi = self.ability.talents.w3_agi
+	self.max = self.ability.talents.w3_max
+
+	if not IsServer() then
+		return
+	end
+	self.StackOnIllusion = true
+	self:OnRefresh()
+end
+
+function modifier_arc_warden_magnetic_field_custom_agi:OnRefresh(table)
+	if not IsServer() then
+		return
+	end
+	if self:GetStackCount() >= self.max then
+		return
+	end
+	self:IncrementStackCount()
+	self.parent:CalculateStatBonus(true)
+end
+
+function modifier_arc_warden_magnetic_field_custom_agi:OnDestroy()
+	if not IsServer() then
+		return
+	end
+	self.parent:CalculateStatBonus(true)
+end
+
+function modifier_arc_warden_magnetic_field_custom_agi:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
+	}
+end
+
+function modifier_arc_warden_magnetic_field_custom_agi:GetModifierBonusStats_Agility()
+	return self.agi * self:GetStackCount()
+end
+
+modifier_arc_warden_magnetic_field_custom_slow = class(mod_hidden)
+function modifier_arc_warden_magnetic_field_custom_slow:IsPurgable()
+	return true
+end
+function modifier_arc_warden_magnetic_field_custom_slow:OnCreated()
+	self.parent = self:GetParent()
+	self.caster = self:GetCaster()
+	self.ability = self:GetAbility()
+
+	self.slow = self.ability.talents.w4_slow
+	if not IsServer() then
+		return
+	end
+	self.parent:GenericParticle("particles/units/heroes/hero_terrorblade/terrorblade_reflection_slow.vpcf", self)
+end
+
+function modifier_arc_warden_magnetic_field_custom_slow:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+	}
+end
+
+function modifier_arc_warden_magnetic_field_custom_slow:GetModifierMoveSpeedBonus_Percentage()
+	return self.slow
 end
 
 arc_warden_magnetic_field_custom_legendary = class({})
@@ -791,12 +889,8 @@ function arc_warden_magnetic_field_custom_legendary:UpdateTalents()
 	end
 end
 
-function arc_warden_magnetic_field_custom_legendary:Init()
-	self.caster = self:GetCaster()
-end
-
 function arc_warden_magnetic_field_custom_legendary:GetCooldown()
-	return (self.talents.w7_talent_cd and self.talents.w7_talent_cd or 0) / self.caster:GetCooldownReduction()
+	return (self.talents.w7_talent_cd or 0) / self.caster:GetCooldownReduction()
 end
 
 function arc_warden_magnetic_field_custom_legendary:GetBehavior()
@@ -881,7 +975,7 @@ function modifier_arc_warden_magnetic_field_custom_legendary:OnCreated(table)
 
 	self.parent:NoDraw(self)
 	self.parent:AddNoDraw()
-	if not self.ability.talents.has_w4 == 0 then
+	if self.ability.talents.has_w4 == 0 then
 		return
 	end
 	self:StartIntervalThink(0.2)
@@ -929,13 +1023,13 @@ function modifier_arc_warden_magnetic_field_custom_legendary:OnDestroy()
 		duration = self.ability.talents.w7_duration,
 		outgoing_damage = -100 + self.ability.talents.w7_damage,
 		incoming_damage = self.ability.talents.w7_incoming - 100,
-	}, 1, self.radius / 2 + 60, self.ability.talents.blink_range == 0, true)
+	}, 1, self.radius / 2 + 60, false, true)
 
 	for k, illusion in pairs(illusions) do
 		illusion.owner = self.parent
 		for _, mod in pairs(self.parent:FindAllModifiers()) do
-			if mod.StackOnIllusion ~= nil and mod.StackOnIllusion == true then
-				illusion:UpgradeIllusion(mod:GetName(), mod:GetStackCount())
+			if mod.StackOnIllusion == true then
+				illusion:UpgradeIllusion(mod:GetName(), mod:GetStackCount(), mod)
 			end
 		end
 
@@ -1001,7 +1095,7 @@ function modifier_arc_warden_magnetic_field_custom_legendary:PlayEffect(unit)
 		self.parent,
 		self.main_ability,
 		"modifier_arc_warden_magnetic_field_custom_thinker_speed",
-		{ duration = self.main_ability:GetSpecialValueFor("duration"), original = 0 }
+		{ duration = self.main_ability.duration, original = 0 }
 	)
 
 	unit:MoveToPositionAggressive(unit:GetAbsOrigin())
@@ -1112,110 +1206,4 @@ function modifier_arc_warden_magnetic_field_custom_legendary_illusion:CheckState
 		[MODIFIER_STATE_COMMAND_RESTRICTED] = true,
 		[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
 	}
-end
-
-modifier_arc_warden_magnetic_field_custom_knock_cd = class(mod_hidden)
-function modifier_arc_warden_magnetic_field_custom_knock_cd:RemoveOnDeath()
-	return false
-end
-function modifier_arc_warden_magnetic_field_custom_knock_cd:OnCreated()
-	self.RemoveForDuel = true
-end
-
-modifier_arc_warden_magnetic_field_custom_stun = class(mod_hidden)
-function modifier_arc_warden_magnetic_field_custom_stun:IsStunDebuff()
-	return true
-end
-function modifier_arc_warden_magnetic_field_custom_stun:IsPurgeException()
-	return true
-end
-function modifier_arc_warden_magnetic_field_custom_stun:StatusEffectPriority()
-	return MODIFIER_PRIORITY_HIGH
-end
-function modifier_arc_warden_magnetic_field_custom_stun:GetStatusEffectName()
-	return "particles/status_fx/status_effect_faceless_chronosphere.vpcf"
-end
-function modifier_arc_warden_magnetic_field_custom_stun:CheckState()
-	return {
-		[MODIFIER_STATE_FROZEN] = true,
-		[MODIFIER_STATE_STUNNED] = true,
-	}
-end
-
-modifier_arc_warden_magnetic_field_custom_linger = class(mod_hidden)
-
-modifier_arc_warden_magnetic_field_custom_agi = class(mod_visible)
-function modifier_arc_warden_magnetic_field_custom_agi:GetTexture()
-	return "buffs/arc_warden/field_3"
-end
-function modifier_arc_warden_magnetic_field_custom_agi:OnCreated()
-	if not IsServer() then
-		return
-	end
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-	if self.parent.owner then
-		self.ability = self.parent.owner.magnetic_ability
-	end
-
-	self.agi = self.ability.talents.w3_agi
-	self.max = self.ability.talents.w3_max
-
-	self.StackOnIllusion = true
-	self:SetStackCount(1)
-	self.parent:CalculateStatBonus(true)
-end
-
-function modifier_arc_warden_magnetic_field_custom_agi:OnRefresh(table)
-	if not IsServer() then
-		return
-	end
-	if self:GetStackCount() >= self.max then
-		return
-	end
-	self:IncrementStackCount()
-	self.parent:CalculateStatBonus(true)
-end
-
-function modifier_arc_warden_magnetic_field_custom_agi:OnDestroy()
-	if not IsServer() then
-		return
-	end
-	self.parent:CalculateStatBonus(true)
-end
-
-function modifier_arc_warden_magnetic_field_custom_agi:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
-	}
-end
-
-function modifier_arc_warden_magnetic_field_custom_agi:GetModifierBonusStats_Agility()
-	return self.agi * self:GetStackCount()
-end
-
-modifier_arc_warden_magnetic_field_custom_slow = class(mod_hidden)
-function modifier_arc_warden_magnetic_field_custom_slow:IsPurgable()
-	return true
-end
-function modifier_arc_warden_magnetic_field_custom_slow:OnCreated()
-	self.parent = self:GetParent()
-	self.caster = self:GetCaster()
-	self.ability = self:GetAbility()
-
-	self.slow = self.ability.talents.w4_slow
-	if not IsServer() then
-		return
-	end
-	self.parent:GenericParticle("particles/units/heroes/hero_terrorblade/terrorblade_reflection_slow.vpcf", self)
-end
-
-function modifier_arc_warden_magnetic_field_custom_slow:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-	}
-end
-
-function modifier_arc_warden_magnetic_field_custom_slow:GetModifierMoveSpeedBonus_Percentage()
-	return self.slow
 end

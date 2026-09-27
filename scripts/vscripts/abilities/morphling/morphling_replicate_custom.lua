@@ -98,6 +98,11 @@ function morphling_replicate_custom:Precache(context)
 	PrecacheResource("particle", "particles/morphling/morph_attack_range.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_lina/lina_supercharge_buff.vpcf", context)
 	PrecacheResource("particle", "particles/drow_ranger/frost_heal.vpcf", context)
+	PrecacheResource("particle", "particles/morphling/attribute_double.vpcf", context)
+	PrecacheResource("particle", "particles/morphling/wave_legendary_attack.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_morphling/morphling_base_attack.vpcf", context)
+	PrecacheResource("particle", "particles/morphling/wave_health_reducea.vpcf", context)
+	PrecacheResource("particle", "particles/morphling/lowhp_health.vpcf", context)
 end
 
 function morphling_replicate_custom:UpdateTalents()
@@ -147,14 +152,14 @@ function morphling_replicate_custom:UpdateTalents()
 			has_e3 = 0,
 			e3_damage = 0,
 			e3_max_legendary = caster:GetTalentValue("modifier_morphling_attribute_3", "max_legendary", true),
-			e3_duration = caster:GetTalentValue("modifier_morphling_attribute_3", "duration", true),
-			e3_duration_creeps = caster:GetTalentValue("modifier_morphling_attribute_3", "duration_creeps", true),
 
 			has_e4 = 0,
 			e4_range = caster:GetTalentValue("modifier_morphling_attribute_4", "range", true),
 
 			has_e2 = 0,
 			e2_range = 0,
+
+			has_e7 = 0,
 		}
 	end
 
@@ -209,6 +214,19 @@ function morphling_replicate_custom:UpdateTalents()
 		self.talents.has_e4 = 1
 		caster:AddAttackEvent_out(self.tracker, true)
 	end
+
+	if caster:HasTalent("modifier_morphling_attribute_7") then
+		self.talents.has_e7 = 1
+	end
+
+	if not IsServer() then
+		return
+	end
+
+	local morph_mod = caster:FindModifierByName("modifier_morphling_replicate_custom")
+	if morph_mod then
+		morph_mod:UpdateEvents()
+	end
 end
 
 function morphling_replicate_custom:GetAbilityTextureName()
@@ -220,73 +238,6 @@ function morphling_replicate_custom:GetIntrinsicModifierName()
 		return
 	end
 	return "modifier_morphling_replicate_custom_tracker"
-end
-
-function morphling_replicate_custom:OnInventoryContentsChanged()
-	if not IsServer() then
-		return
-	end
-	if self.scepter_init then
-		return
-	end
-	if not self.caster:HasScepter() then
-		return
-	end
-
-	self.scepter_init = true
-
-	local index = nil
-	local mod = self.tracker
-	if not mod or not mod.heroes_in_game then
-		return
-	end
-
-	for id, target in pairs(mod.heroes_in_game) do
-		if target and not target:IsNull() and target:GetTeamNumber() ~= self.caster:GetTeamNumber() then
-			index = target:entindex()
-			break
-		end
-	end
-
-	if not index then
-		return
-	end
-	self.caster:RemoveModifierByName("modifier_morphling_replicate_custom_scepter_save")
-	self.caster:AddNewModifier(self.caster, self, "modifier_morphling_replicate_custom_scepter_save", { index = index })
-end
-
-morphling_morph_replicate_custom = class({})
-morphling_morph_replicate_custom.talents = {}
-
-function morphling_morph_replicate_custom:GetAbilityTextureName()
-	return wearables_system:GetAbilityIconReplacement(self.caster, "morphling_morph_replicate", self)
-end
-
-function morphling_morph_replicate_custom:UpdateTalents()
-	local caster = self:GetCaster()
-	if not self.init then
-		self.init = true
-		self.talents = {}
-	end
-end
-
-function morphling_morph_replicate_custom:GetBehavior()
-	return DOTA_ABILITY_BEHAVIOR_NO_TARGET
-		+ DOTA_ABILITY_BEHAVIOR_DONT_RESUME_MOVEMENT
-		+ DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK
-		+ DOTA_ABILITY_BEHAVIOR_IMMEDIATE
-		+ DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING
-end
-
-function morphling_morph_replicate_custom:OnSpellStart()
-	local caster = self:GetCaster()
-
-	local morphling_replicate_custom = caster:FindAbilityByName("morphling_replicate_custom")
-	if caster:HasModifier("modifier_morphling_replicate_custom") then
-		caster:RemoveModifierByName("modifier_morphling_replicate_custom")
-	else
-		caster:AddNewModifier(caster, morphling_replicate_custom, "modifier_morphling_replicate_custom", {})
-	end
 end
 
 function morphling_replicate_custom:GetCooldown(level)
@@ -319,7 +270,7 @@ function morphling_replicate_custom:CastFilterResultTarget(target)
 	if not target:IsHero() and not target.lifestealer_creep then
 		return UF_FAIL_CREEP
 	end
-	if target:GetTeamNumber() == self:GetCaster():GetTeamNumber() then
+	if target:GetTeamNumber() == self.caster:GetTeamNumber() then
 		return UF_FAIL_FRIENDLY
 	end
 	if target:IsIllusion() then
@@ -328,29 +279,15 @@ function morphling_replicate_custom:CastFilterResultTarget(target)
 	return UF_SUCCESS
 end
 
-function morphling_replicate_custom:CheckToggle()
-	local caster = self:GetCaster()
-	if caster:HasModifier("modifier_morphling_replicate_custom_scepter_cd") then
-		CustomGameEventManager:Send_ServerToPlayer(
-			PlayerResource:GetPlayer(caster:GetId()),
-			"CreateIngameErrorMessage",
-			{ message = "#midteleport_cd" }
-		)
-		return false
-	end
-	return true
-end
-
 function morphling_replicate_custom:OnSpellStart()
-	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
-	if caster:GetUnitName() ~= "npc_dota_hero_morphling" then
+	if self.caster:GetUnitName() ~= "npc_dota_hero_morphling" then
 		return
 	end
 
 	local duration = self.duration
 
-	if not caster:HasScepter() then
+	if not self.caster:HasScepter() then
 		if target:TriggerSpellAbsorb(self) then
 			return
 		end
@@ -358,7 +295,7 @@ function morphling_replicate_custom:OnSpellStart()
 			target = target.owner
 		end
 	else
-		local mod = caster:FindModifierByName("modifier_morphling_replicate_custom_scepter_save")
+		local mod = self.caster:FindModifierByName("modifier_morphling_replicate_custom_scepter_save")
 		if not mod then
 			return
 		end
@@ -367,20 +304,25 @@ function morphling_replicate_custom:OnSpellStart()
 		if not target or target:IsNull() then
 			return
 		end
-		caster:RemoveModifierByName("modifier_morphling_replicate_custom_scepter_pick")
+		self.caster:RemoveModifierByName("modifier_morphling_replicate_custom_scepter_pick")
 	end
 
-	if not caster:HasModifier("modifier_morphling_replicate_custom_active") then
-		caster:AddNewModifier(
-			caster,
+	if not self.caster:HasModifier("modifier_morphling_replicate_custom_active") then
+		self.caster:AddNewModifier(
+			self.caster,
 			self,
 			"modifier_morphling_replicate_custom_active",
 			{ duration = duration, target = target:entindex() }
 		)
 	end
 
-	caster:AddNewModifier(caster, self, "modifier_morphling_replicate_custom_manager", { target = target:entindex() })
-	caster:AddNewModifier(caster, self, "modifier_morphling_replicate_custom", {})
+	self.caster:AddNewModifier(
+		self.caster,
+		self,
+		"modifier_morphling_replicate_custom_manager",
+		{ target = target:entindex() }
+	)
+	self.caster:AddNewModifier(self.caster, self, "modifier_morphling_replicate_custom", {})
 end
 
 function morphling_replicate_custom:OnProjectileHit_ExtraData(target, location, table)
@@ -448,6 +390,51 @@ function morphling_replicate_custom:OnProjectileHit_ExtraData(target, location, 
 	self.caster:RemoveModifierByName("modifier_morphling_replicate_custom_attack_proc_damage")
 end
 
+function morphling_replicate_custom:OnInventoryContentsChanged()
+	if not IsServer() then
+		return
+	end
+	if self.scepter_init then
+		return
+	end
+	if not self.caster:HasScepter() then
+		return
+	end
+
+	self.scepter_init = true
+
+	local index = nil
+	local mod = self.tracker
+	if not mod or not mod.heroes_in_game then
+		return
+	end
+
+	for id, target in pairs(mod.heroes_in_game) do
+		if target and not target:IsNull() and target:GetTeamNumber() ~= self.caster:GetTeamNumber() then
+			index = target:entindex()
+			break
+		end
+	end
+
+	if not index then
+		return
+	end
+	self.caster:RemoveModifierByName("modifier_morphling_replicate_custom_scepter_save")
+	self.caster:AddNewModifier(self.caster, self, "modifier_morphling_replicate_custom_scepter_save", { index = index })
+end
+
+function morphling_replicate_custom:CheckToggle()
+	if self.caster:HasModifier("modifier_morphling_replicate_custom_scepter_cd") then
+		CustomGameEventManager:Send_ServerToPlayer(
+			PlayerResource:GetPlayer(self.caster:GetId()),
+			"CreateIngameErrorMessage",
+			{ message = "#midteleport_cd" }
+		)
+		return false
+	end
+	return true
+end
+
 modifier_morphling_replicate_custom_active = class(mod_visible)
 function modifier_morphling_replicate_custom_active:GetTexture()
 	return self.name
@@ -496,7 +483,6 @@ function modifier_morphling_replicate_custom_active:OnCreated(params)
 	end
 
 	self:SetHasCustomTransmitterData(true)
-	self.name = target:GetUnitName()
 
 	if self.ability.talents.has_r7 == 0 then
 		return
@@ -721,6 +707,18 @@ function modifier_morphling_replicate_custom_manager:OnDestroy()
 end
 
 modifier_morphling_replicate_custom = class(mod_hidden)
+function modifier_morphling_replicate_custom:GetEffectAttachType()
+	return PATTACH_ABSORIGIN_FOLLOW
+end
+function modifier_morphling_replicate_custom:GetEffectName()
+	return "particles/units/heroes/hero_morphling/morphling_replicate_buff.vpcf"
+end
+function modifier_morphling_replicate_custom:GetStatusEffectName()
+	return "particles/status_fx/status_effect_morphling_morph_target.vpcf"
+end
+function modifier_morphling_replicate_custom:StatusEffectPriority()
+	return MODIFIER_PRIORITY_ILLUSION
+end
 function modifier_morphling_replicate_custom:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -756,9 +754,7 @@ function modifier_morphling_replicate_custom:OnCreated()
 		end
 	end
 
-	if self.ability.talents.has_h5 == 1 then
-		self.parent:AddDamageEvent_inc(self, true)
-	end
+	self:UpdateEvents()
 
 	local manager = self.parent:FindModifierByName("modifier_morphling_replicate_custom_manager")
 	if manager then
@@ -931,7 +927,7 @@ function modifier_morphling_replicate_custom:OnDestroy()
 		end
 
 		local was_visible = ability:GetName() == "morphling_attribute_legendary_custom"
-				and self.parent:HasTalent("modifier_morphling_attribute_7")
+				and self.ability.talents.has_e7 == 1
 			or data.was_visible
 
 		ability:SetHidden(not was_visible)
@@ -952,6 +948,17 @@ function modifier_morphling_replicate_custom:OnDestroy()
 		{ value = 0 }
 	)
 	self.parent:CalculateStatBonus(true)
+end
+
+function modifier_morphling_replicate_custom:UpdateEvents()
+	if not IsServer() then
+		return
+	end
+	if self.ability.talents.has_h5 == 0 then
+		return
+	end
+
+	self.parent:AddDamageEvent_inc(self, true)
 end
 
 function modifier_morphling_replicate_custom:DeclareFunctions()
@@ -1020,22 +1027,6 @@ function modifier_morphling_replicate_custom:GetModifierAttackRangeOverride()
 	return self.attack_range
 end
 
-function modifier_morphling_replicate_custom:GetEffectAttachType()
-	return PATTACH_ABSORIGIN_FOLLOW
-end
-
-function modifier_morphling_replicate_custom:GetEffectName()
-	return "particles/units/heroes/hero_morphling/morphling_replicate_buff.vpcf"
-end
-
-function modifier_morphling_replicate_custom:GetStatusEffectName()
-	return "particles/status_fx/status_effect_morphling_morph_target.vpcf"
-end
-
-function modifier_morphling_replicate_custom:StatusEffectPriority()
-	return MODIFIER_PRIORITY_ILLUSION
-end
-
 modifier_morphling_replicate_custom_tracker = class(mod_hidden)
 function modifier_morphling_replicate_custom_tracker:OnCreated()
 	self.parent = self:GetParent()
@@ -1098,6 +1089,7 @@ function modifier_morphling_replicate_custom_tracker:OnCreated()
 		["custom_legion_commander_duel_scepter"] = true,
 		["monkey_king_innate_custom"] = true,
 		["marci_innate_custom"] = true,
+		["phantom_assassin_innate_custom"] = true,
 	}
 
 	self.invoker_skills = {
@@ -1116,9 +1108,8 @@ function modifier_morphling_replicate_custom_tracker:OnCreated()
 		["skeleton_king_innate_custom"] = true,
 		["marci_innate_custom"] = true,
 		["witch_doctor_innate_custom"] = true,
+		["phantom_assassin_innate_custom"] = true,
 	}
-
-	self.records = {}
 
 	self.heroes_kv = LoadKeyValues("scripts/npc/npc_heroes_custom.txt")
 	self.heroes_data = {}
@@ -1492,11 +1483,8 @@ function modifier_morphling_replicate_custom_tracker:OnIntervalThink()
 				self.parent:RemoveAbilityByHandle(hSpell)
 				UTIL_Remove(hSpell)
 				hSpell = nil
-
-				--	print('no mods :(', name)
 			end
 		else
-			--	print('remove!!!', name)
 			self.parent.spell_steal_history[hSpell] = nil
 		end
 	end
@@ -1573,6 +1561,7 @@ function modifier_morphling_replicate_custom_armor_reduce:OnCreated()
 	if not IsServer() then
 		return
 	end
+	self.RemoveForDuel = true
 	self:OnRefresh()
 end
 
@@ -1691,11 +1680,13 @@ function modifier_morphling_replicate_custom_scepter_pick:OnIntervalThink()
 	if not IsServer() then
 		return
 	end
-	CustomGameEventManager:Send_ServerToPlayer(
-		PlayerResource:GetPlayer(self.parent:GetPlayerOwnerID()),
-		"tb_reflection_init",
-		self.targets
-	)
+	local targets = {}
+
+	for i, data in pairs(self.targets) do
+		targets[i] = { hero = data.target }
+	end
+
+	self.parent:UpdateUIpick({ mod = self, text = "#pa_pick_hero", targets = targets })
 end
 
 function modifier_morphling_replicate_custom_scepter_pick:EndPick(pick)
@@ -1725,11 +1716,7 @@ function modifier_morphling_replicate_custom_scepter_pick:OnDestroy()
 		return
 	end
 
-	CustomGameEventManager:Send_ServerToPlayer(
-		PlayerResource:GetPlayer(self.parent:GetPlayerOwnerID()),
-		"tb_reflection_init_end",
-		{}
-	)
+	self.parent:UpdateUIpick({ hide = 1 })
 end
 
 modifier_morphling_replicate_custom_scepter_autocast = class(mod_hidden)
@@ -1776,7 +1763,7 @@ function modifier_morphling_replicate_custom_scepter_save:OnCreated(table)
 	if not IsServer() then
 		return
 	end
-	self.ability = self.parent:FindAbilityByName("morphling_replicate_custom")
+	self.ability = self:GetAbility()
 	self.index = table.index
 
 	self.unit = EntIndexToHScript(self.index)
@@ -1803,4 +1790,35 @@ end
 modifier_morphling_replicate_custom_bkb_cd = class(mod_cd)
 function modifier_morphling_replicate_custom_bkb_cd:GetTexture()
 	return "buffs/morphling/morph_4"
+end
+
+morphling_morph_replicate_custom = class({})
+morphling_morph_replicate_custom.talents = {}
+
+function morphling_morph_replicate_custom:GetAbilityTextureName()
+	return wearables_system:GetAbilityIconReplacement(self.caster, "morphling_morph_replicate", self)
+end
+
+function morphling_morph_replicate_custom:UpdateTalents()
+	local caster = self:GetCaster()
+	if not self.init then
+		self.init = true
+		self.talents = {}
+	end
+end
+
+function morphling_morph_replicate_custom:GetBehavior()
+	return DOTA_ABILITY_BEHAVIOR_NO_TARGET
+		+ DOTA_ABILITY_BEHAVIOR_DONT_RESUME_MOVEMENT
+		+ DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK
+		+ DOTA_ABILITY_BEHAVIOR_IMMEDIATE
+		+ DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING
+end
+
+function morphling_morph_replicate_custom:OnSpellStart()
+	if self.caster:HasModifier("modifier_morphling_replicate_custom") then
+		self.caster:RemoveModifierByName("modifier_morphling_replicate_custom")
+	else
+		self.caster:AddNewModifier(self.caster, self.caster.morph_ability, "modifier_morphling_replicate_custom", {})
+	end
 end

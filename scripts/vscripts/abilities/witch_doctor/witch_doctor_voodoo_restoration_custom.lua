@@ -57,14 +57,6 @@ LinkLuaModifier(
 witch_doctor_voodoo_restoration_custom = class({})
 witch_doctor_voodoo_restoration_custom.talents = {}
 
-function witch_doctor_voodoo_restoration_custom:CreateTalent()
-	local caster = self:GetCaster()
-	if self:GetToggleState() then
-		self:ToggleAbility()
-	end
-	caster:AddNewModifier(caster, self, "modifier_witch_doctor_voodoo_restoration_custom", {})
-end
-
 function witch_doctor_voodoo_restoration_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
@@ -77,6 +69,14 @@ function witch_doctor_voodoo_restoration_custom:Precache(context)
 	PrecacheResource("model", "models/items/hex/sheep_hex/sheep_hex.vmdl", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_lina/lina_supercharge_buff.vpcf", context)
 	PrecacheResource("particle", "particles/witch_doctor/voodoo_proc.vpcf", context)
+	PrecacheResource("particle", "particles/items_fx/item_sheepstick.vpcf", context)
+end
+
+function witch_doctor_voodoo_restoration_custom:CreateTalent()
+	if self:GetToggleState() then
+		self:ToggleAbility()
+	end
+	self.caster:AddNewModifier(self.caster, self, "modifier_witch_doctor_voodoo_restoration_custom", {})
 end
 
 function witch_doctor_voodoo_restoration_custom:UpdateTalents(name)
@@ -84,7 +84,6 @@ function witch_doctor_voodoo_restoration_custom:UpdateTalents(name)
 	if not self.init then
 		self.init = true
 		self.talents = {
-			has_w1 = 0,
 			w1_base = 0,
 			w1_heal = 0,
 			w1_damage = 0,
@@ -141,7 +140,6 @@ function witch_doctor_voodoo_restoration_custom:UpdateTalents(name)
 			h4_shield = caster:GetTalentValue("modifier_witch_doctor_hero_4", "shield", true) / 100,
 			h4_duration = caster:GetTalentValue("modifier_witch_doctor_hero_4", "duration", true),
 
-			has_e2 = 0,
 			e2_radius_voodoo = 0,
 
 			has_e3 = 0,
@@ -155,7 +153,6 @@ function witch_doctor_voodoo_restoration_custom:UpdateTalents(name)
 	end
 
 	if caster:HasTalent("modifier_witch_doctor_voodoo_1") then
-		self.talents.has_w1 = 1
 		self.talents.w1_base = caster:GetTalentValue("modifier_witch_doctor_voodoo_1", "base")
 		self.talents.w1_heal = caster:GetTalentValue("modifier_witch_doctor_voodoo_1", "heal") / 100
 		self.talents.w1_damage = caster:GetTalentValue("modifier_witch_doctor_voodoo_1", "damage") / 100
@@ -209,15 +206,14 @@ function witch_doctor_voodoo_restoration_custom:UpdateTalents(name)
 	end
 
 	if caster:HasTalent("modifier_witch_doctor_maledict_2") then
-		self.talents.has_e2 = 1
 		self.talents.e2_radius_voodoo = caster:GetTalentValue("modifier_witch_doctor_maledict_2", "radius_voodoo")
 		if
 			IsServer()
 			and name == "modifier_witch_doctor_maledict_2"
-			and self.parent:HasModifier("modifier_witch_doctor_voodoo_restoration_custom")
+			and self.caster:HasModifier("modifier_witch_doctor_voodoo_restoration_custom")
 		then
-			self.parent:RemoveModifierByName("modifier_witch_doctor_voodoo_restoration_custom")
-			self.parent:AddNewModifier(self.parent, self.ability, "modifier_witch_doctor_voodoo_restoration_custom", {})
+			self.caster:RemoveModifierByName("modifier_witch_doctor_voodoo_restoration_custom")
+			self.caster:AddNewModifier(self.caster, self, "modifier_witch_doctor_voodoo_restoration_custom", {})
 		end
 	end
 
@@ -255,23 +251,21 @@ function witch_doctor_voodoo_restoration_custom:GetBehavior()
 end
 
 function witch_doctor_voodoo_restoration_custom:GetCooldown()
-	if self.talents.has_w7 == 0 then
-		return
+	if self.talents.has_w7 ~= 1 then
+		return 0
 	end
-	return (self.talents.w7_talent_cd and self.talents.w7_talent_cd or 0)
+	return self.talents.w7_talent_cd or 0
 end
 
 function witch_doctor_voodoo_restoration_custom:GetManaCost(level)
-	if self.talents.has_w7 == 0 then
-		return self.mana_pct and (self.mana_per_second + self.mana_pct * self.caster:GetMaxMana()) or 0
+	if self.talents.has_w7 == 1 then
+		return self.caster:GetMaxMana() * (self.talents.w7_mana or 0)
 	end
-	return (self.talents.w7_mana and self.caster:GetMaxMana() * self.talents.w7_mana or 0)
+	return (self.mana_per_second or 0) + (self.mana_pct or 0) * self.caster:GetMaxMana()
 end
 
 function witch_doctor_voodoo_restoration_custom:GetCastRange(vector, hTarget)
-	return (self.radius and self.radius or 0)
-		+ (self.talents.e2_radius_voodoo and self.talents.e2_radius_voodoo or 0)
-		- self.caster:GetCastRangeBonus()
+	return (self.radius or 0) + (self.talents.e2_radius_voodoo or 0) - self.caster:GetCastRangeBonus()
 end
 
 function witch_doctor_voodoo_restoration_custom:GetDamage(passive, target)
@@ -326,7 +320,7 @@ function witch_doctor_voodoo_restoration_custom:ProcDamage(target, is_proc)
 	if not self:IsTrained() then
 		return
 	end
-	if self.ability.talents.has_w3 == 0 then
+	if self.talents.has_w3 == 0 then
 		return
 	end
 
@@ -334,18 +328,18 @@ function witch_doctor_voodoo_restoration_custom:ProcDamage(target, is_proc)
 		if target:HasModifier("modifier_witch_doctor_voodoo_restoration_custom_damage_cd") then
 			return
 		end
-		if not RollPseudoRandomPercentage(self.ability.talents.w3_chance, 6899, self.parent) then
+		if not RollPseudoRandomPercentage(self.talents.w3_chance, 6899, self.caster) then
 			return
 		end
 	end
 
-	local damage = self.ability.talents.w3_base + self.ability.talents.w3_damage * self.parent:GetMaxHealth()
+	local damage = self.talents.w3_base + self.talents.w3_damage * self.caster:GetMaxHealth()
 	local real_damage = DoDamage(
 		{
 			victim = target,
-			attacker = self.parent,
-			ability = self.ability,
-			damage_type = self.ability.talents.w3_damage_type,
+			attacker = self.caster,
+			ability = self,
+			damage_type = self.talents.w3_damage_type,
 			damage = damage,
 		},
 		"modifier_witch_doctor_voodoo_3"
@@ -353,10 +347,10 @@ function witch_doctor_voodoo_restoration_custom:ProcDamage(target, is_proc)
 	target:SendNumber(4, real_damage)
 	target:EmitSound("WD.Voodoo_damage")
 	target:AddNewModifier(
-		self.parent,
-		self.ability,
+		self.caster,
+		self,
 		"modifier_witch_doctor_voodoo_restoration_custom_damage_cd",
-		{ duration = self.ability.talents.w3_talent_cd }
+		{ duration = self.talents.w3_talent_cd }
 	)
 
 	local hit_effect =
@@ -385,6 +379,24 @@ end
 modifier_witch_doctor_voodoo_restoration_custom = class(mod_hidden)
 function modifier_witch_doctor_voodoo_restoration_custom:RemoveOnDeath()
 	return false
+end
+function modifier_witch_doctor_voodoo_restoration_custom:IsAura()
+	return true
+end
+function modifier_witch_doctor_voodoo_restoration_custom:GetAuraDuration()
+	return 0.2
+end
+function modifier_witch_doctor_voodoo_restoration_custom:GetAuraRadius()
+	return self.radius
+end
+function modifier_witch_doctor_voodoo_restoration_custom:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_BOTH
+end
+function modifier_witch_doctor_voodoo_restoration_custom:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
+end
+function modifier_witch_doctor_voodoo_restoration_custom:GetModifierAura()
+	return "modifier_witch_doctor_voodoo_restoration_custom_aura"
 end
 function modifier_witch_doctor_voodoo_restoration_custom:OnCreated()
 	self.parent = self:GetParent()
@@ -548,26 +560,10 @@ function modifier_witch_doctor_voodoo_restoration_custom:OnDestroy()
 	self.parent:StopSound("Hero_WitchDoctor.Voodoo_Restoration.Loop")
 end
 
-function modifier_witch_doctor_voodoo_restoration_custom:IsAura()
-	return true
-end
-function modifier_witch_doctor_voodoo_restoration_custom:GetAuraDuration()
-	return 0.2
-end
-function modifier_witch_doctor_voodoo_restoration_custom:GetAuraRadius()
-	return self.radius
-end
-function modifier_witch_doctor_voodoo_restoration_custom:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_BOTH
-end
-function modifier_witch_doctor_voodoo_restoration_custom:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
-end
-function modifier_witch_doctor_voodoo_restoration_custom:GetModifierAura()
-	return "modifier_witch_doctor_voodoo_restoration_custom_aura"
-end
-
 modifier_witch_doctor_voodoo_restoration_custom_aura = class(mod_visible)
+function modifier_witch_doctor_voodoo_restoration_custom_aura:StatusEffectPriority()
+	return MODIFIER_PRIORITY_NORMAL
+end
 function modifier_witch_doctor_voodoo_restoration_custom_aura:OnCreated()
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
@@ -582,6 +578,13 @@ function modifier_witch_doctor_voodoo_restoration_custom_aura:OnCreated()
 	self.damageTable =
 		{ attacker = self.caster, victim = self.parent, ability = self.ability, damage_type = DAMAGE_TYPE_MAGICAL }
 	self:StartIntervalThink(self.interval)
+end
+
+function modifier_witch_doctor_voodoo_restoration_custom_aura:GetStatusEffectName()
+	if not self.is_enemy then
+		return
+	end
+	return "particles/status_fx/status_effect_enchantress_shard_debuff.vpcf"
 end
 
 function modifier_witch_doctor_voodoo_restoration_custom_aura:OnIntervalThink()
@@ -631,16 +634,6 @@ function modifier_witch_doctor_voodoo_restoration_custom_aura:GetModifierMoveSpe
 		return
 	end
 	return self.ability.talents.w2_slow
-end
-
-function modifier_witch_doctor_voodoo_restoration_custom_aura:StatusEffectPriority()
-	return MODIFIER_PRIORITY_NORMAL
-end
-function modifier_witch_doctor_voodoo_restoration_custom_aura:GetStatusEffectName()
-	if not self.is_enemy then
-		return
-	end
-	return "particles/status_fx/status_effect_enchantress_shard_debuff.vpcf"
 end
 
 modifier_witch_doctor_voodoo_restoration_custom_tracker = class(mod_hidden)
@@ -815,7 +808,7 @@ function modifier_witch_doctor_voodoo_restoration_custom_legendary:OnDestroy()
 		local damage = self.ability:GetDamage(false, target) * self.ability.talents.w7_damage
 		damageTable.victim = target
 		damageTable.damage = damage
-		local real_damage = DoDamage(damageTable, "modifier_witch_doctor_voodoo_7")
+		DoDamage(damageTable, "modifier_witch_doctor_voodoo_7")
 		self.ability:ProcDamage(target, true)
 	end
 
@@ -870,17 +863,10 @@ function modifier_witch_doctor_voodoo_restoration_custom_hex_timer:OnCreated(tab
 		return
 	end
 	self.count = 0
-	self:AddStack(table.interval)
+	self:OnRefresh(table)
 end
 
 function modifier_witch_doctor_voodoo_restoration_custom_hex_timer:OnRefresh(table)
-	if not IsServer() then
-		return
-	end
-	self:AddStack(table.interval)
-end
-
-function modifier_witch_doctor_voodoo_restoration_custom_hex_timer:AddStack(interval)
 	if not IsServer() then
 		return
 	end
@@ -888,12 +874,21 @@ function modifier_witch_doctor_voodoo_restoration_custom_hex_timer:AddStack(inte
 		return
 	end
 
-	self.count = self.count + interval
+	self.count = self.count + table.interval
 	if self.count < 0.98 then
 		return
 	end
 	self.count = 0
 	self:IncrementStackCount()
+
+	if self.ability.talents.has_e7 == 0 then
+		if not self.particle then
+			self.particle = self.parent:GenericParticle("particles/witch_doctor/voodoo_stack.vpcf", self, true)
+		end
+		if self.particle then
+			ParticleManager:SetParticleControl(self.particle, 1, Vector(0, self:GetStackCount(), 0))
+		end
+	end
 
 	if self:GetStackCount() < self.min then
 		return
@@ -907,24 +902,6 @@ function modifier_witch_doctor_voodoo_restoration_custom_hex_timer:AddStack(inte
 		)
 		self:Destroy()
 	end
-end
-
-function modifier_witch_doctor_voodoo_restoration_custom_hex_timer:OnStackCountChanged()
-	if not IsServer() then
-		return
-	end
-	if self.ability.talents.has_e7 == 1 then
-		return
-	end
-
-	if not self.particle then
-		self.particle = self.parent:GenericParticle("particles/witch_doctor/voodoo_stack.vpcf", self, true)
-	end
-
-	if not self.particle then
-		return
-	end
-	ParticleManager:SetParticleControl(self.particle, 1, Vector(0, self:GetStackCount(), 0))
 end
 
 modifier_witch_doctor_voodoo_restoration_custom_hex = class(mod_hidden)
@@ -989,4 +966,11 @@ function modifier_witch_doctor_voodoo_restoration_custom_hex:GetModifierModelCha
 end
 
 modifier_witch_doctor_voodoo_restoration_custom_armor_bonus = class(mod_hidden)
+function modifier_witch_doctor_voodoo_restoration_custom_armor_bonus:OnCreated()
+	if not IsServer() then
+		return
+	end
+	self.RemoveForDuel = true
+end
+
 modifier_witch_doctor_voodoo_restoration_custom_damage_cd = class(mod_hidden)

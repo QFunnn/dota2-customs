@@ -66,6 +66,8 @@ function mars_bulwark_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_pangolier/pangolier_tailthump_buff_streaks.vpcf", context)
 	PrecacheResource("particle", "particles/nyx_assassin/vendetta_bash.vpcf", context)
 	PrecacheResource("particle", "particles/mars/bulwark_legendary_start.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_sven/sven_spell_gods_strength.vpcf", context)
+	PrecacheResource("particle", "particles/mars_shield_legendary.vpcf", context)
 end
 
 function mars_bulwark_custom:UpdateTalents(name)
@@ -114,13 +116,13 @@ function mars_bulwark_custom:UpdateTalents(name)
 		self.talents.has_e1 = 1
 		self.talents.e1_damage = caster:GetTalentValue("modifier_mars_bulwark_1", "damage")
 		self.talents.e1_speed = caster:GetTalentValue("modifier_mars_bulwark_1", "speed")
-		self.caster:AddAttackEvent_out(self.tracker, true)
+		caster:AddAttackEvent_out(self.tracker, true)
 	end
 
 	if caster:HasTalent("modifier_mars_bulwark_3") then
 		self.talents.has_e3 = 1
 		self.talents.e3_damage = caster:GetTalentValue("modifier_mars_bulwark_3", "damage")
-		self.caster:AddAttackEvent_out(self.tracker, true)
+		caster:AddAttackEvent_out(self.tracker, true)
 	end
 
 	if caster:HasTalent("modifier_mars_bulwark_4") then
@@ -129,7 +131,7 @@ function mars_bulwark_custom:UpdateTalents(name)
 
 	if caster:HasTalent("modifier_mars_bulwark_7") then
 		self.talents.has_e7 = 1
-		self.caster:AddAttackEvent_out(self.tracker, true)
+		caster:AddAttackEvent_out(self.tracker, true)
 	end
 
 	if caster:HasTalent("modifier_mars_hero_6") then
@@ -168,7 +170,7 @@ function mars_bulwark_custom:GetBehavior()
 end
 
 function mars_bulwark_custom:OnSpellStart()
-	local mod = self.parent:FindModifierByName("modifier_mars_bulwark_custom_idle")
+	local mod = self.caster:FindModifierByName("modifier_mars_bulwark_custom_idle")
 	if mod then
 		mod:Destroy()
 		return
@@ -270,10 +272,10 @@ function mars_bulwark_custom:ProcStun(target, is_proc)
 
 	local chance = nil
 	if not is_proc then
-		chance = self.ability.talents.e4_chance
+		chance = self.talents.e4_chance
 	end
 
-	if not target:CheckCd("mars_e4", self.ability.talents.e4_talent_cd, chance, 5491) then
+	if not target:CheckCd("mars_e4", self.talents.e4_talent_cd, chance, 5491) then
 		return
 	end
 
@@ -304,10 +306,10 @@ function mars_bulwark_custom:ProcStun(target, is_proc)
 	ParticleManager:ReleaseParticleIndex(effect)
 
 	target:AddNewModifier(
-		self.parent,
-		self.parent:BkbAbility(self.ability, true),
+		self.caster,
+		self.caster:BkbAbility(self, true),
 		"modifier_bashed",
-		{ duration = self.ability.talents.e4_stun * (1 - target:GetStatusResistance()) }
+		{ duration = self.talents.e4_stun * (1 - target:GetStatusResistance()) }
 	)
 end
 
@@ -324,12 +326,12 @@ function mars_bulwark_custom:ProcSoldier(new_point, is_proc)
 	if not IsValid(self.tracker) then
 		return
 	end
-	if self.tracker:GetStackCount() >= self.ability.talents.e3_max then
+	if self.tracker:GetStackCount() >= self.talents.e3_max then
 		return
 	end
 
 	if not is_proc then
-		if not RollPseudoRandomPercentage(self.ability.talents.e3_chance, 5999, self.parent) then
+		if not RollPseudoRandomPercentage(self.talents.e3_chance, 5999, self.caster) then
 			return
 		end
 	end
@@ -352,7 +354,7 @@ function mars_bulwark_custom:CreateSoldier(point)
 	unit:EmitSound("Mars.Bulwark_spawn")
 	unit:RemoveGesture(ACT_DOTA_SPAWN)
 	unit.ignore_assault = true
-	unit:AddNewModifier(self.parent, self.ability, "modifier_mars_bulwark_custom_unit_passive", {})
+	unit:AddNewModifier(self.caster, self, "modifier_mars_bulwark_custom_unit_passive", {})
 
 	return unit
 end
@@ -372,7 +374,6 @@ function modifier_mars_bulwark_custom_idle:OnCreated(data)
 	self.parent:EmitSound("Mars.Bulwark_spawn")
 	self.parent:EmitSound("Hero_Mars.Shield.Block")
 	self.parent:GenericParticle("particles/units/heroes/hero_mars/mars_shield_of_mars.vpcf")
-	self.RemoveForDuel = true
 
 	self.soldier_attack_range = self.ability.soldier_range
 		+ (self.ability.talents.has_e4 == 1 and self.ability.talents.e4_range or 0)
@@ -775,10 +776,7 @@ function modifier_mars_bulwark_custom_unit_active:OnIntervalThink()
 		self.radius,
 		DOTA_UNIT_TARGET_TEAM_ENEMY,
 		DOTA_UNIT_TARGET_HERO,
-		DOTA_UNIT_TARGET_FLAG_INVULNERABLE
-			+ DOTA_UNIT_TARGET_FLAG_NO_INVIS
-			+ DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE
-			+ DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
+		DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_NO_INVIS + DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE,
 		FIND_CLOSEST,
 		false
 	)
@@ -789,10 +787,7 @@ function modifier_mars_bulwark_custom_unit_active:OnIntervalThink()
 		self.radius,
 		DOTA_UNIT_TARGET_TEAM_ENEMY,
 		DOTA_UNIT_TARGET_BASIC,
-		DOTA_UNIT_TARGET_FLAG_INVULNERABLE
-			+ DOTA_UNIT_TARGET_FLAG_NO_INVIS
-			+ DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE
-			+ DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
+		DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_NO_INVIS + DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE,
 		FIND_CLOSEST,
 		false
 	)
@@ -1031,7 +1026,6 @@ function modifier_mars_bulwark_custom:AttackEvent_out(params)
 		end
 
 		self.parent:PerformAttack(target, true, true, true, true, false, false, true, { damage = flag, attack = flag })
-		self.parent.mars_e3 = false
 
 		if flag == "mars_e3" then
 			self.parent.mars_e3 = false

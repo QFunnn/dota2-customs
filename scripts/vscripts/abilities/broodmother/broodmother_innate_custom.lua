@@ -14,17 +14,7 @@ LinkLuaModifier(
 	LUA_MODIFIER_MOTION_NONE
 )
 LinkLuaModifier(
-	"modifier_broodmother_innate_custom_poison",
-	"abilities/broodmother/broodmother_innate_custom",
-	LUA_MODIFIER_MOTION_NONE
-)
-LinkLuaModifier(
 	"modifier_broodmother_innate_custom_attack",
-	"abilities/broodmother/broodmother_innate_custom",
-	LUA_MODIFIER_MOTION_NONE
-)
-LinkLuaModifier(
-	"modifier_broodmother_innate_custom_attack_poison",
 	"abilities/broodmother/broodmother_innate_custom",
 	LUA_MODIFIER_MOTION_NONE
 )
@@ -58,6 +48,8 @@ function broodmother_innate_custom:Precache(context)
 	)
 	PrecacheResource("particle", "particles/broodmother/innate_proc.vpcf", context)
 	PrecacheResource("particle", "particles/broodmother/bite_legendary_attack.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_venomancer/venomancer_poison_debuff.vpcf", context)
+	PrecacheResource("particle", "particles/broodmother/web_silence_tether.vpcf", context)
 	dota1x6:PrecacheShopItems("npc_dota_hero_broodmother", context)
 end
 
@@ -89,7 +81,6 @@ function broodmother_innate_custom:UpdateTalents()
 			h6_duration = caster:GetTalentValue("modifier_broodmother_hero_6", "duration", true),
 			h6_max_move_real = caster:GetTalentValue("modifier_broodmother_hero_6", "max_move_real", true),
 
-			has_w1 = 0,
 			w1_damage = 0,
 			w1_base = 0,
 
@@ -98,9 +89,22 @@ function broodmother_innate_custom:UpdateTalents()
 			w3_base = 0,
 			w3_heal = caster:GetTalentValue("modifier_broodmother_web_3", "heal", true) / 100,
 			w3_duration = caster:GetTalentValue("modifier_broodmother_web_3", "duration", true),
+			w3_max = caster:GetTalentValue("modifier_broodmother_web_3", "max", true),
 			w3_radius = caster:GetTalentValue("modifier_broodmother_web_3", "radius", true),
 			w3_interval = caster:GetTalentValue("modifier_broodmother_web_3", "interval", true),
 			w3_damage_type = caster:GetTalentValue("modifier_broodmother_web_3", "damage_type", true),
+
+			has_e1 = 0,
+
+			has_e4 = 0,
+			e4_stun = caster:GetTalentValue("modifier_broodmother_bite_4", "stun", true),
+			e4_chance = caster:GetTalentValue("modifier_broodmother_bite_4", "chance", true),
+			e4_chance_hero = caster:GetTalentValue("modifier_broodmother_bite_4", "chance_hero", true),
+			e4_talent_cd = caster:GetTalentValue("modifier_broodmother_bite_4", "talent_cd", true),
+
+			has_e7 = 0,
+
+			s6_chance = 0,
 		}
 	end
 
@@ -133,7 +137,6 @@ function broodmother_innate_custom:UpdateTalents()
 	end
 
 	if caster:HasTalent("modifier_broodmother_web_1") then
-		self.talents.has_w1 = 1
 		self.talents.w1_damage = caster:GetTalentValue("modifier_broodmother_web_1", "damage") / 100
 		self.talents.w1_base = caster:GetTalentValue("modifier_broodmother_web_1", "base")
 	end
@@ -142,6 +145,22 @@ function broodmother_innate_custom:UpdateTalents()
 		self.talents.has_w3 = 1
 		self.talents.w3_damage = caster:GetTalentValue("modifier_broodmother_web_3", "damage") / 100
 		self.talents.w3_base = caster:GetTalentValue("modifier_broodmother_web_3", "base")
+	end
+
+	if caster:HasTalent("modifier_broodmother_bite_1") then
+		self.talents.has_e1 = 1
+	end
+
+	if caster:HasTalent("modifier_broodmother_bite_4") then
+		self.talents.has_e4 = 1
+	end
+
+	if caster:HasTalent("modifier_broodmother_bite_7") then
+		self.talents.has_e7 = 1
+	end
+
+	if caster:HasTalent("modifier_broodmother_scepter_6") then
+		self.talents.s6_chance = caster:GetTalentValue("modifier_broodmother_scepter_6", "chance")
 	end
 end
 
@@ -152,74 +171,6 @@ function broodmother_innate_custom:GetIntrinsicModifierName()
 	return "modifier_broodmother_innate_custom"
 end
 
-function broodmother_innate_custom:DealDamage(target, damage_ability)
-	if not IsServer() then
-		return
-	end
-	local caster = self:GetCaster()
-	local damage = self.damage + self.talents.w1_base + self.talents.w1_damage * caster:GetMaxHealth()
-
-	target:EmitSound("Brood.Innate_proc")
-	target:EmitSound("Brood.Innate_proc2")
-	target:GenericParticle("particles/broodmother/innate_proc.vpcf")
-
-	if self.talents.has_r4 == 1 and (not damage_ability or target:IsRealHero()) then
-		caster:CdItems(self.talents.r4_cd_items)
-	end
-
-	local cast_effect = ParticleManager:CreateParticle(
-		"particles/units/heroes/hero_dragon_knight/dragon_knight_elder_dragon_corrosive_explosion.vpcf",
-		PATTACH_POINT_FOLLOW,
-		target
-	)
-	ParticleManager:SetParticleControlEnt(
-		cast_effect,
-		3,
-		target,
-		PATTACH_POINT_FOLLOW,
-		"attach_hitloc",
-		target:GetAbsOrigin(),
-		true
-	)
-	ParticleManager:ReleaseParticleIndex(cast_effect)
-
-	local damageTable =
-		{ victim = target, attacker = caster, ability = self, damage_type = DAMAGE_TYPE_MAGICAL, damage = damage }
-	local real_damage = DoDamage(damageTable, damage_ability)
-
-	if self.talents.has_r3 == 1 or self.talents.has_w3 == 1 then
-		target:AddNewModifier(
-			caster,
-			self,
-			"modifier_broodmother_innate_custom_magic",
-			{ duration = self.talents.r3_duration }
-		)
-	end
-
-	target:SendNumber(9, real_damage)
-	local result = caster:CanLifesteal(target)
-	if not result then
-		return
-	end
-
-	local search_targets = {}
-	if IsValid(caster.spawn_ability) and caster.spawn_ability.active_spiders then
-		search_targets = caster.spawn_ability.active_spiders
-	end
-
-	search_targets[caster] = true
-
-	for heal_target, _ in pairs(search_targets) do
-		if
-			IsValid(heal_target)
-			and heal_target:IsAlive()
-			and (target:GetAbsOrigin() - heal_target:GetAbsOrigin()):Length2D() <= self.kill_heal_aoe
-		then
-			heal_target:GenericHeal(real_damage * self.heal, self, true, "")
-		end
-	end
-end
-
 function broodmother_innate_custom:OnProjectileHit(target, location)
 	if not IsServer() then
 		return
@@ -227,7 +178,6 @@ function broodmother_innate_custom:OnProjectileHit(target, location)
 	if not target or not target:IsUnit() then
 		return
 	end
-	local caster = self:GetCaster()
 
 	local hit_effect =
 		ParticleManager:CreateParticle("particles/broodmother/bite_legendary_attack.vpcf", PATTACH_CUSTOMORIGIN, target)
@@ -253,13 +203,76 @@ function broodmother_innate_custom:OnProjectileHit(target, location)
 
 	target:EmitSound("Brood.Auto_attack_hit")
 
-	caster:AddNewModifier(caster, self, "modifier_broodmother_innate_custom_attack", { duration = 1 })
-	caster:PerformAttack(target, true, true, true, true, false, false, true)
-	caster:RemoveModifierByName("modifier_broodmother_innate_custom_attack")
+	self.caster:AddNewModifier(self.caster, self, "modifier_broodmother_innate_custom_attack", { duration = 1 })
+	self.caster:PerformAttack(target, true, true, true, true, false, false, true)
+	self.caster:RemoveModifierByName("modifier_broodmother_innate_custom_attack")
 
-	if IsValid(caster.spawn_ability) and RollPseudoRandomPercentage(self.talents.h6_chance, 5124, caster) then
+	if IsValid(self.caster.spawn_ability) and RollPseudoRandomPercentage(self.talents.h6_chance, 5124, self.caster) then
 		target:EmitSound("Brood.Spawn_passive")
-		caster.spawn_ability:CreateSpider(target:GetAbsOrigin(), nil, self.talents.h6_duration)
+		self.caster.spawn_ability:CreateSpider(target:GetAbsOrigin(), nil, self.talents.h6_duration)
+	end
+end
+
+function broodmother_innate_custom:DealDamage(target, damage_ability)
+	if not IsServer() then
+		return
+	end
+	local damage = self.damage + self.talents.w1_base + self.talents.w1_damage * self.caster:GetMaxHealth()
+
+	target:EmitSound("Brood.Innate_proc")
+	target:EmitSound("Brood.Innate_proc2")
+	target:GenericParticle("particles/broodmother/innate_proc.vpcf")
+
+	if self.talents.has_r4 == 1 and (not damage_ability or target:IsRealHero()) then
+		self.caster:CdItems(self.talents.r4_cd_items)
+	end
+
+	local cast_effect = ParticleManager:CreateParticle(
+		"particles/units/heroes/hero_dragon_knight/dragon_knight_elder_dragon_corrosive_explosion.vpcf",
+		PATTACH_POINT_FOLLOW,
+		target
+	)
+	ParticleManager:SetParticleControlEnt(
+		cast_effect,
+		3,
+		target,
+		PATTACH_POINT_FOLLOW,
+		"attach_hitloc",
+		target:GetAbsOrigin(),
+		true
+	)
+	ParticleManager:ReleaseParticleIndex(cast_effect)
+
+	local damageTable =
+		{ victim = target, attacker = self.caster, ability = self, damage_type = DAMAGE_TYPE_MAGICAL, damage = damage }
+	local real_damage = DoDamage(damageTable, damage_ability)
+
+	if self.talents.has_r3 == 1 or self.talents.has_w3 == 1 then
+		local duration = self.talents.has_r3 == 1 and self.talents.r3_duration or self.talents.w3_duration
+		target:AddNewModifier(self.caster, self, "modifier_broodmother_innate_custom_magic", { duration = duration })
+	end
+
+	target:SendNumber(9, real_damage)
+	local result = self.caster:CanLifesteal(target)
+	if not result then
+		return
+	end
+
+	local search_targets = { [self.caster] = true }
+	if IsValid(self.caster.spawn_ability) and self.caster.spawn_ability.active_spiders then
+		for spider, _ in pairs(self.caster.spawn_ability.active_spiders) do
+			search_targets[spider] = true
+		end
+	end
+
+	for heal_target, _ in pairs(search_targets) do
+		if
+			IsValid(heal_target)
+			and heal_target:IsAlive()
+			and (target:GetAbsOrigin() - heal_target:GetAbsOrigin()):Length2D() <= self.kill_heal_aoe
+		then
+			heal_target:GenericHeal(real_damage * result * self.heal, self, true, "")
+		end
 	end
 end
 
@@ -348,20 +361,20 @@ function modifier_broodmother_innate_custom:AttackEvent_out(params)
 				real_attacker == self.parent
 				or real_attacker:IsIllusion()
 				or (
-					ability.talents.has_e7 == 1
+					self.ability.talents.has_e7 == 1
 					and real_attacker:HasModifier("modifier_broodmother_spawn_spiderlings_custom_spider")
 				)
 			)
 		then
 			target:AddNewModifier(
 				self.parent,
-				self.parent:BkbAbility(ability, ability.talents.has_e4 == 1),
+				self.parent:BkbAbility(ability, self.ability.talents.has_e4 == 1),
 				"modifier_broodmother_incapacitating_bite_custom",
 				{ duration = ability.duration }
 			)
 		end
 
-		if ability.talents.has_e1 == 1 then
+		if self.ability.talents.has_e1 == 1 then
 			if target:HasModifier("modifier_broodmother_incapacitating_bite_custom") then
 				real_attacker:AddNewModifier(
 					self.parent,
@@ -375,14 +388,14 @@ function modifier_broodmother_innate_custom:AttackEvent_out(params)
 		end
 
 		if
-			ability.talents.has_e4 == 1
+			self.ability.talents.has_e4 == 1
 			and (real_attacker == self.parent or real_attacker:HasModifier(
 				"modifier_broodmother_spawn_spiderlings_custom_spider"
 			))
 			and not target:HasModifier("modifier_broodmother_incapacitating_bite_custom_bash_cd")
 		then
-			local chance = (real_attacker == self.parent) and ability.talents.e4_chance_hero
-				or ability.talents.e4_chance
+			local chance = (real_attacker == self.parent) and self.ability.talents.e4_chance_hero
+				or self.ability.talents.e4_chance
 			local index = (real_attacker == self.parent) and 5122 or 5123
 
 			if RollPseudoRandomPercentage(chance, index, self.parent) then
@@ -405,15 +418,15 @@ function modifier_broodmother_innate_custom:AttackEvent_out(params)
 
 				target:AddNewModifier(
 					self.parent,
-					self.parent:BkbAbility(ability, ability.talents.has_e4 == 1),
+					self.parent:BkbAbility(ability, true),
 					"modifier_bashed",
-					{ duration = (1 - target:GetStatusResistance()) * ability.talents.e4_stun }
+					{ duration = (1 - target:GetStatusResistance()) * self.ability.talents.e4_stun }
 				)
 				target:AddNewModifier(
 					self.parent,
 					ability,
 					"modifier_broodmother_incapacitating_bite_custom_bash_cd",
-					{ duration = ability.talents.e4_talent_cd }
+					{ duration = self.ability.talents.e4_talent_cd }
 				)
 			end
 		end
@@ -458,7 +471,7 @@ function modifier_broodmother_innate_custom:AttackEvent_out(params)
 		then
 			local chance = ability.spiderite_chance
 			if self.parent:HasScepter() then
-				chance = chance + ability.talents.s6_chance
+				chance = chance + self.ability.talents.s6_chance
 			end
 			if RollPseudoRandomPercentage(chance, 8742, self.parent) then
 				target:EmitSound("Brood.Spawn_passive")
@@ -483,12 +496,12 @@ function modifier_broodmother_innate_custom:AttackEvent_out(params)
 		)
 	end
 
-	local search_targets = {}
+	local search_targets = { [self.parent] = true }
 	if IsValid(self.parent.spawn_ability) and self.parent.spawn_ability.active_spiders then
-		search_targets = self.parent.spawn_ability.active_spiders
+		for spider, _ in pairs(self.parent.spawn_ability.active_spiders) do
+			search_targets[spider] = true
+		end
 	end
-
-	search_targets[self.parent] = true
 
 	for heal_target, _ in pairs(search_targets) do
 		if
@@ -593,7 +606,8 @@ modifier_broodmother_innate_custom_effect_cd = class(mod_hidden)
 
 modifier_broodmother_innate_custom_attack = class(mod_hidden)
 function modifier_broodmother_innate_custom_attack:OnCreated()
-	self.damage = self:GetAbility().talents.h6_damage - 100
+	self.ability = self:GetAbility()
+	self.damage = self.ability.talents.h6_damage - 100
 end
 
 function modifier_broodmother_innate_custom_attack:DeclareFunctions()
@@ -615,7 +629,7 @@ function modifier_broodmother_innate_custom_magic:OnCreated()
 	self.caster = self:GetCaster()
 	self.ability = self:GetAbility()
 
-	self.max = self.ability.talents.r3_max
+	self.max = self.ability.talents.has_r3 == 1 and self.ability.talents.r3_max or self.ability.talents.w3_max
 	self.magic = self.ability.talents.r3_magic
 
 	if not IsServer() then
@@ -637,6 +651,16 @@ function modifier_broodmother_innate_custom_magic:OnCreated()
 	end
 
 	self:OnRefresh()
+end
+
+function modifier_broodmother_innate_custom_magic:OnRefresh(table)
+	if not IsServer() then
+		return
+	end
+	if self:GetStackCount() >= self.max then
+		return
+	end
+	self:IncrementStackCount()
 end
 
 function modifier_broodmother_innate_custom_magic:OnIntervalThink()
@@ -726,16 +750,6 @@ function modifier_broodmother_innate_custom_magic:OnIntervalThink()
 			self.particle = nil
 		end
 	end
-end
-
-function modifier_broodmother_innate_custom_magic:OnRefresh(table)
-	if not IsServer() then
-		return
-	end
-	if self:GetStackCount() >= self.max then
-		return
-	end
-	self:IncrementStackCount()
 end
 
 function modifier_broodmother_innate_custom_magic:DeclareFunctions()

@@ -24,8 +24,30 @@ item_muerta_shovel_custom.items = {
 	"item_patrol_midas",
 }
 
+function item_muerta_shovel_custom:Precache(context)
+	if self:GetCaster() and self:GetCaster():IsIllusion() then
+		return
+	end
+	PrecacheResource("particle", "particles/econ/events/ti9/shovel_dig.vpcf", context)
+	PrecacheResource("particle", "particles/muerta_dig_drop.vpcf", context)
+	PrecacheResource("particle", "particles/econ/events/ti9/shovel_revealed_nothing.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_alchemist/alchemist_lasthit_coins.vpcf", context)
+	PrecacheResource("particle", "particles/econ/events/ti9/shovel_smoke_cloud.vpcf", context)
+end
+
 function item_muerta_shovel_custom:GetIntrinsicModifierName()
 	return "modifier_muerta_shovel_custom_stats"
+end
+
+function item_muerta_shovel_custom:Spawn()
+	self.time = self:GetSpecialValueFor("time")
+	self.radius = self:GetSpecialValueFor("radius")
+	self.movespeed = self:GetSpecialValueFor("movespeed")
+	self.stats = self:GetSpecialValueFor("stats")
+	self.goal = self:GetSpecialValueFor("goal")
+	self.cd = self:GetSpecialValueFor("cd")
+	self.duration = self:GetSpecialValueFor("duration")
+	self.innate_bonus = self:GetSpecialValueFor("innate_bonus")
 end
 
 function item_muerta_shovel_custom:OnAbilityPhaseStart()
@@ -46,9 +68,7 @@ function item_muerta_shovel_custom:OnAbilityPhaseStart()
 		caster.muerta_innate.tracker.quest_dig_radius,
 		DOTA_UNIT_TARGET_TEAM_FRIENDLY,
 		DOTA_UNIT_TARGET_ALL,
-		DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
-			+ DOTA_UNIT_TARGET_FLAG_INVULNERABLE
-			+ DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD,
+		DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD,
 		0,
 		false
 	)
@@ -63,11 +83,7 @@ function item_muerta_shovel_custom:OnAbilityPhaseStart()
 	end
 
 	if dig == false then
-		CustomGameEventManager:Send_ServerToPlayer(
-			PlayerResource:GetPlayer(caster:GetPlayerOwnerID()),
-			"CreateIngameErrorMessage",
-			{ message = "#no_dig_area" }
-		)
+		caster:SendError("#no_dig_area")
 	end
 	return dig
 end
@@ -98,11 +114,8 @@ function item_muerta_shovel_custom:OnChannelFinish(bInterrupted)
 
 	caster:StopSound("SeasonalConsumable.TI9.Shovel.Dig")
 
-	if self.pfx then
-		ParticleManager:DestroyParticle(self.pfx, false)
-		ParticleManager:ReleaseParticleIndex(self.pfx)
-		self.pfx = nil
-	end
+	ParticleManager:Delete(self.pfx, 1)
+	self.pfx = nil
 
 	if not IsValid(self.area) then
 		return
@@ -119,9 +132,7 @@ function item_muerta_shovel_custom:OnChannelFinish(bInterrupted)
 		self.radius,
 		DOTA_UNIT_TARGET_TEAM_FRIENDLY,
 		DOTA_UNIT_TARGET_ALL,
-		DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
-			+ DOTA_UNIT_TARGET_FLAG_INVULNERABLE
-			+ DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD,
+		DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD,
 		0,
 		false
 	)
@@ -171,13 +182,6 @@ function modifier_muerta_shovel_custom_stats:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.ability.time = self.ability:GetSpecialValueFor("time")
-	self.ability.radius = self.ability:GetSpecialValueFor("radius")
-	self.ability.movespeed = self.ability:GetSpecialValueFor("movespeed")
-	self.ability.stats = self.ability:GetSpecialValueFor("stats")
-	self.ability.goal = self.ability:GetSpecialValueFor("goal")
-	self.ability.cd = self.ability:GetSpecialValueFor("cd")
-	self.ability.duration = self.ability:GetSpecialValueFor("duration")
 	if not IsServer() then
 		return
 	end
@@ -188,11 +192,15 @@ function modifier_muerta_shovel_custom_stats:SendStack(reset)
 	if not IsServer() then
 		return
 	end
-	self:SetStackCount(reset and 0 or self.ability:GetSpecialValueFor("innate_bonus"))
+	self:SetStackCount(reset and 0 or self.ability.innate_bonus)
 
-	if IsValid(self.parent.muerta_innate) and self.parent.muerta_innate.tracker then
-		self.parent.muerta_innate.tracker:ChangeStack()
+	if not IsValid(self.parent.muerta_innate) then
+		return
 	end
+	if not self.parent.muerta_innate.tracker then
+		return
+	end
+	self.parent.muerta_innate.tracker:ChangeStack()
 end
 
 function modifier_muerta_shovel_custom_stats:OnDestroy()

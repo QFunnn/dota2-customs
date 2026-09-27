@@ -20,7 +20,6 @@ LinkLuaModifier(
 )
 
 npc_muerta_satyr_silence = class({})
-
 function npc_muerta_satyr_silence:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
@@ -123,7 +122,6 @@ function npc_muerta_satyr_silence:OnProjectileHit(target, vLocation)
 end
 
 npc_muerta_satyr_bkb = class({})
-
 function npc_muerta_satyr_bkb:Spawn()
 	if not self:GetCaster() then
 		return
@@ -150,6 +148,8 @@ function modifier_npc_muerta_satyr_bkb:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
+	self.lifesteal = self.ability.lifesteal
+
 	self.parent:AddDamageEvent_out(self, true)
 end
 
@@ -162,11 +162,10 @@ function modifier_npc_muerta_satyr_bkb:DamageEvent_out(params)
 		return
 	end
 
-	self.parent:GenericHeal(result * params.damage * self.ability.lifesteal, self.ability, false, false)
+	self.parent:GenericHeal(result * params.damage * self.lifesteal, self.ability, false, false)
 end
 
 npc_muerta_satyr_passive = class({})
-
 function npc_muerta_satyr_passive:GetIntrinsicModifierName()
 	return "modifier_npc_muerta_satyr_passive"
 end
@@ -185,6 +184,9 @@ modifier_npc_muerta_satyr_passive = class(mod_hidden)
 function modifier_npc_muerta_satyr_passive:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
+
+	self.mana = self.ability.mana
+	self.damage = self.ability.damage
 end
 
 function modifier_npc_muerta_satyr_passive:DeclareFunctions()
@@ -203,10 +205,10 @@ function modifier_npc_muerta_satyr_passive:GetModifierProcAttack_BonusDamage_Mag
 
 	local target = params.target
 
-	local mana = target:GetMaxMana() * self.ability.mana
+	local mana = target:GetMaxMana() * self.mana
 	params.target:Script_ReduceMana(mana, self.ability)
 
-	local damage = mana * self.ability.damage
+	local damage = mana * self.damage
 	target:SendNumber(4, damage)
 
 	target:EmitSound("n_creep_SatyrSoulstealer.ManaBurn")

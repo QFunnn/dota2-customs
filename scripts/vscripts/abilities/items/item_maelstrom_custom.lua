@@ -34,7 +34,39 @@ function item_maelstrom_custom:GetIntrinsicModifierName()
 	return "modifier_item_maelstrom_custom"
 end
 
+function item_maelstrom_custom:Spawn()
+	self.bonus_damage = self:GetSpecialValueFor("bonus_damage")
+	self.bonus_attack_speed = self:GetSpecialValueFor("bonus_attack_speed")
+	self.chain_chance = self:GetSpecialValueFor("chain_chance")
+	self.chain_damage = self:GetSpecialValueFor("chain_damage")
+	self.chain_strikes = self:GetSpecialValueFor("chain_strikes")
+	self.chain_heal = self:GetSpecialValueFor("chain_heal")
+	self.chain_radius = self:GetSpecialValueFor("chain_radius")
+	self.chain_delay = self:GetSpecialValueFor("chain_delay")
+	self.chain_cooldown = self:GetSpecialValueFor("chain_cooldown")
+	self.bonus_health = self:GetSpecialValueFor("bonus_health")
+end
+
 modifier_item_maelstrom_custom = class(mod_hidden)
+function modifier_item_maelstrom_custom:OnCreated(table)
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.records = {}
+
+	if not IsServer() then
+		return
+	end
+	if not self.parent:IsRealHero() then
+		return
+	end
+	self:RollProc()
+
+	self.parent:AddRecordDestroyEvent(self, true)
+	self.parent:AddAttackStartEvent_out(self)
+	self.parent:AddAttackEvent_out(self, true)
+end
+
 function modifier_item_maelstrom_custom:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
@@ -67,35 +99,6 @@ function modifier_item_maelstrom_custom:CheckState()
 	}
 end
 
-function modifier_item_maelstrom_custom:OnCreated(table)
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.ability.bonus_damage = self.ability:GetSpecialValueFor("bonus_damage")
-	self.ability.bonus_attack_speed = self.ability:GetSpecialValueFor("bonus_attack_speed")
-	self.ability.chain_chance = self.ability:GetSpecialValueFor("chain_chance")
-	self.ability.chain_damage = self.ability:GetSpecialValueFor("chain_damage")
-	self.ability.chain_strikes = self.ability:GetSpecialValueFor("chain_strikes")
-	self.ability.chain_heal = self.ability:GetSpecialValueFor("chain_heal")
-	self.ability.chain_radius = self.ability:GetSpecialValueFor("chain_radius")
-	self.ability.chain_delay = self.ability:GetSpecialValueFor("chain_delay")
-	self.ability.chain_cooldown = self.ability:GetSpecialValueFor("chain_cooldown")
-	self.ability.bonus_health = self.ability:GetSpecialValueFor("bonus_health")
-	self.records = {}
-
-	if not IsServer() then
-		return
-	end
-	if not self.parent:IsRealHero() then
-		return
-	end
-	self:RollProc()
-
-	self.parent:AddRecordDestroyEvent(self, true)
-	self.parent:AddAttackStartEvent_out(self)
-	self.parent:AddAttackEvent_out(self, true)
-end
-
 function modifier_item_maelstrom_custom:RecordDestroyEvent(params)
 	if not self.records[params.record] then
 		return
@@ -124,10 +127,16 @@ function modifier_item_maelstrom_custom:AttackStartEvent_out(params)
 	if not IsServer() then
 		return
 	end
+	if not IsValid(self.ability) then
+		return
+	end
 	if not params.target:IsUnit() then
 		return
 	end
 	if self.parent ~= params.attacker then
+		return
+	end
+	if params.target:GetTeamNumber() == self.parent:GetTeamNumber() then
 		return
 	end
 
@@ -147,6 +156,9 @@ end
 
 function modifier_item_maelstrom_custom:AttackEvent_out(params)
 	if not IsServer() then
+		return
+	end
+	if not IsValid(self.ability) then
 		return
 	end
 	if not params.target:IsUnit() then

@@ -71,6 +71,13 @@ function enigma_midnight_pulse_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_dark_seer/dark_seer_surge.vpcf", context)
 	PrecacheResource("particle", "particles/enigma/midnight_speed.vpcf", context)
 	PrecacheResource("particle", "particles/enigma/midnight_pull_target.vpcf", context)
+	PrecacheResource(
+		"particle",
+		"particles/units/heroes/hero_enigma/enigma_black_hole_scepter_pull_debuff.vpcf",
+		context
+	)
+	PrecacheResource("particle", "particles/enigma/summon_heal.vpcf", context)
+	PrecacheResource("particle", "particles/void_astral_slow.vpcf", context)
 end
 
 function enigma_midnight_pulse_custom:UpdateTalents()
@@ -96,7 +103,7 @@ function enigma_midnight_pulse_custom:UpdateTalents()
 			e3_damage_type = caster:GetTalentValue("modifier_enigma_midnight_3", "damage_type", true),
 
 			has_e4 = 0,
-			e4_health = 0,
+			e4_health = caster:GetTalentValue("modifier_enigma_midnight_4", "health", true),
 			e4_heal = caster:GetTalentValue("modifier_enigma_midnight_4", "heal", true) / 100,
 
 			has_h5 = 0,
@@ -133,7 +140,6 @@ function enigma_midnight_pulse_custom:UpdateTalents()
 
 	if caster:HasTalent("modifier_enigma_midnight_4") then
 		self.talents.has_e4 = 1
-		self.talents.e4_health = caster:GetTalentValue("modifier_enigma_midnight_4", "health")
 		if IsServer() then
 			caster:CalculateStatBonus(true)
 		end
@@ -164,16 +170,14 @@ function enigma_midnight_pulse_custom:GetAbilityTextureName()
 end
 
 function enigma_midnight_pulse_custom:GetCastAnimation()
-	local caster = self:GetCaster()
-	if caster:HasModifier("modifier_enigma_midnight_pulse_custom_can_channel") then
+	if self.caster:HasModifier("modifier_enigma_midnight_pulse_custom_can_channel") then
 		return 0
 	end
 	return ACT_DOTA_MIDNIGHT_PULSE
 end
 
 function enigma_midnight_pulse_custom:GetBehavior()
-	local caster = self:GetCaster()
-	if caster:HasModifier("modifier_enigma_midnight_pulse_custom_can_channel") then
+	if self.caster:HasModifier("modifier_enigma_midnight_pulse_custom_can_channel") then
 		return DOTA_ABILITY_BEHAVIOR_NO_TARGET
 	end
 	if self.talents.has_e7 == 1 then
@@ -183,8 +187,7 @@ function enigma_midnight_pulse_custom:GetBehavior()
 end
 
 function enigma_midnight_pulse_custom:GetManaCost(level)
-	local caster = self:GetCaster()
-	if caster:HasModifier("modifier_enigma_midnight_pulse_custom_can_channel") then
+	if self.caster:HasModifier("modifier_enigma_midnight_pulse_custom_can_channel") then
 		return 0
 	end
 	return self.BaseClass.GetManaCost(self, level)
@@ -195,7 +198,7 @@ function enigma_midnight_pulse_custom:GetAOERadius()
 end
 
 function enigma_midnight_pulse_custom:GetCooldown(level)
-	return self.BaseClass.GetCooldown(self, level) + (self.talents.e2_cd and self.talents.e2_cd or 0)
+	return self.BaseClass.GetCooldown(self, level) + (self.talents.e2_cd or 0)
 end
 
 function enigma_midnight_pulse_custom:GetCastRange(vLocation, hTarget)
@@ -207,18 +210,17 @@ function enigma_midnight_pulse_custom:GetCastPoint(iLevel)
 end
 
 function enigma_midnight_pulse_custom:GetRadius()
-	return (self.radius and self.radius or 0) + (self.talents.e2_radius or self.talents.e2_radius or 0)
+	return (self.radius or 0) + (self.talents.e2_radius or 0)
 end
 
 function enigma_midnight_pulse_custom:OnSpellStart()
-	local caster = self:GetCaster()
 	local point = self:GetCursorPosition()
 
-	local mod = caster:FindModifierByName("modifier_enigma_midnight_pulse_custom_can_channel")
+	local mod = self.caster:FindModifierByName("modifier_enigma_midnight_pulse_custom_can_channel")
 	if mod then
-		caster:EmitSound("Enigma.Midnight_pull_voice")
-		caster:AddNewModifier(
-			caster,
+		self.caster:EmitSound("Enigma.Midnight_pull_voice")
+		self.caster:AddNewModifier(
+			self.caster,
 			self,
 			"modifier_enigma_midnight_pulse_custom_channel",
 			{ duration = self.talents.e7_duration }
@@ -229,10 +231,15 @@ function enigma_midnight_pulse_custom:OnSpellStart()
 	end
 
 	if self.talents.has_e7 == 1 then
-		point = caster:GetAbsOrigin()
-		caster:AddNewModifier(caster, self, "modifier_enigma_midnight_pulse_custom", { duration = self.duration })
-		caster:AddNewModifier(
-			caster,
+		point = self.caster:GetAbsOrigin()
+		self.caster:AddNewModifier(
+			self.caster,
+			self,
+			"modifier_enigma_midnight_pulse_custom",
+			{ duration = self.duration }
+		)
+		self.caster:AddNewModifier(
+			self.caster,
 			self,
 			"modifier_enigma_midnight_pulse_custom_can_channel",
 			{ duration = self.duration }
@@ -240,12 +247,12 @@ function enigma_midnight_pulse_custom:OnSpellStart()
 		self:EndCd(0.5)
 	else
 		CreateModifierThinker(
-			caster,
+			self.caster,
 			self,
 			"modifier_enigma_midnight_pulse_custom",
 			{ duration = self.duration },
 			point,
-			caster:GetTeamNumber(),
+			self.caster:GetTeamNumber(),
 			false
 		)
 		self:EndCd()
@@ -260,7 +267,7 @@ function enigma_midnight_pulse_custom:OnSpellStart()
 		)
 		for _, target in pairs(self.caster:FindTargets(self:GetRadius(), point)) do
 			target:AddNewModifier(
-				caster,
+				self.caster,
 				self,
 				"modifier_enigma_midnight_pulse_custom_silence",
 				{ duration = self.talents.h5_duration * (1 - target:GetStatusResistance()) }
@@ -269,7 +276,74 @@ function enigma_midnight_pulse_custom:OnSpellStart()
 	end
 end
 
+modifier_enigma_midnight_pulse_custom_tracker = class(mod_hidden)
+function modifier_enigma_midnight_pulse_custom_tracker:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+	self.ability.tracker = self
+	self.ability:UpdateTalents()
+
+	self.ability.radius = self.ability:GetSpecialValueFor("radius")
+	self.ability.damage_percent = self.ability:GetSpecialValueFor("damage_percent") / 100
+	self.ability.duration = self.ability:GetSpecialValueFor("duration")
+	self.ability.base_damage = self.ability:GetSpecialValueFor("base_damage")
+	self.ability.damage_creeps = self.ability:GetSpecialValueFor("damage_creeps")
+	self.ability.tick_rate = self.ability:GetSpecialValueFor("tick_rate")
+
+	if not IsServer() then
+		return
+	end
+	self:StartIntervalThink(2)
+end
+
+function modifier_enigma_midnight_pulse_custom_tracker:OnRefresh(table)
+	self.ability.damage_percent = self.ability:GetSpecialValueFor("damage_percent") / 100
+	self.ability.base_damage = self.ability:GetSpecialValueFor("base_damage")
+	self.ability.damage_creeps = self.ability:GetSpecialValueFor("damage_creeps")
+end
+
+function modifier_enigma_midnight_pulse_custom_tracker:OnIntervalThink()
+	if not IsServer() then
+		return
+	end
+
+	if (not self.ability.active_mod or self.ability.active_mod:IsNull()) and not self.ability:IsActivated() then
+		self.ability:StartCd()
+	end
+end
+
+function modifier_enigma_midnight_pulse_custom_tracker:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_EXTRA_HEALTH_PERCENTAGE,
+	}
+end
+
+function modifier_enigma_midnight_pulse_custom_tracker:GetModifierExtraHealthPercentage()
+	if self.ability.talents.has_e4 == 0 then
+		return
+	end
+	return self.ability.talents.e4_health
+end
+
 modifier_enigma_midnight_pulse_custom = class(mod_visible)
+function modifier_enigma_midnight_pulse_custom:IsAura()
+	return true
+end
+function modifier_enigma_midnight_pulse_custom:GetAuraDuration()
+	return 0.5
+end
+function modifier_enigma_midnight_pulse_custom:GetAuraRadius()
+	return self.radius
+end
+function modifier_enigma_midnight_pulse_custom:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_BOTH
+end
+function modifier_enigma_midnight_pulse_custom:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
+end
+function modifier_enigma_midnight_pulse_custom:GetModifierAura()
+	return "modifier_enigma_midnight_pulse_custom_debuff"
+end
 function modifier_enigma_midnight_pulse_custom:OnCreated(table)
 	self.caster = self:GetCaster()
 	self.parent = self:GetParent()
@@ -311,24 +385,6 @@ function modifier_enigma_midnight_pulse_custom:OnDestroy()
 	self.ability:StartCd()
 end
 
-function modifier_enigma_midnight_pulse_custom:IsAura()
-	return true
-end
-function modifier_enigma_midnight_pulse_custom:GetAuraDuration()
-	return 0.5
-end
-function modifier_enigma_midnight_pulse_custom:GetAuraRadius()
-	return self.radius
-end
-function modifier_enigma_midnight_pulse_custom:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_BOTH
-end
-function modifier_enigma_midnight_pulse_custom:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
-end
-function modifier_enigma_midnight_pulse_custom:GetModifierAura()
-	return "modifier_enigma_midnight_pulse_custom_debuff"
-end
 function modifier_enigma_midnight_pulse_custom:GetAuraEntityReject(hEntity)
 	if hEntity:IsFieldInvun(self.caster) then
 		return true
@@ -342,6 +398,24 @@ end
 modifier_enigma_midnight_pulse_custom_debuff = class(mod_visible)
 function modifier_enigma_midnight_pulse_custom_debuff:IsHidden()
 	return self.is_friend and self.ability.talents.has_e7 == 1
+end
+function modifier_enigma_midnight_pulse_custom_debuff:IsAura()
+	return self.parent:IsRealHero() and self.ability.talents.has_r3 == 1
+end
+function modifier_enigma_midnight_pulse_custom_debuff:GetAuraDuration()
+	return 0
+end
+function modifier_enigma_midnight_pulse_custom_debuff:GetAuraRadius()
+	return self.ability.talents.r3_radius
+end
+function modifier_enigma_midnight_pulse_custom_debuff:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_ENEMY
+end
+function modifier_enigma_midnight_pulse_custom_debuff:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_HERO
+end
+function modifier_enigma_midnight_pulse_custom_debuff:GetModifierAura()
+	return "modifier_enigma_black_hole_custom_spell_active"
 end
 function modifier_enigma_midnight_pulse_custom_debuff:OnCreated()
 	self.parent = self:GetParent()
@@ -448,72 +522,8 @@ function modifier_enigma_midnight_pulse_custom_debuff:GetModifierConstantHealthR
 	return self.parent:GetMaxHealth() * self.ability.talents.e4_heal * (1 - self.parent:GetHealthPercent() / 100)
 end
 
-function modifier_enigma_midnight_pulse_custom_debuff:IsAura()
-	return self.parent:IsRealHero() and self.ability.talents.has_r3 == 1
-end
-function modifier_enigma_midnight_pulse_custom_debuff:GetAuraDuration()
-	return 0
-end
-function modifier_enigma_midnight_pulse_custom_debuff:GetAuraRadius()
-	return self.ability.talents.r3_radius
-end
-function modifier_enigma_midnight_pulse_custom_debuff:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_ENEMY
-end
-function modifier_enigma_midnight_pulse_custom_debuff:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_HERO
-end
-function modifier_enigma_midnight_pulse_custom_debuff:GetModifierAura()
-	return "modifier_enigma_black_hole_custom_spell_active"
-end
 function modifier_enigma_midnight_pulse_custom_debuff:GetAuraEntityReject(hEntity)
 	return self.caster ~= hEntity
-end
-
-modifier_enigma_midnight_pulse_custom_tracker = class(mod_hidden)
-function modifier_enigma_midnight_pulse_custom_tracker:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-	self.ability.tracker = self
-	self.ability:UpdateTalents()
-
-	self.ability.radius = self.ability:GetSpecialValueFor("radius")
-	self.ability.damage_percent = self.ability:GetSpecialValueFor("damage_percent") / 100
-	self.ability.duration = self.ability:GetSpecialValueFor("duration")
-	self.ability.base_damage = self.ability:GetSpecialValueFor("base_damage")
-	self.ability.damage_creeps = self.ability:GetSpecialValueFor("damage_creeps")
-	self.ability.tick_rate = self.ability:GetSpecialValueFor("tick_rate")
-
-	if not IsServer() then
-		return
-	end
-	self:StartIntervalThink(2)
-end
-
-function modifier_enigma_midnight_pulse_custom_tracker:OnRefresh(table)
-	self.ability.damage_percent = self.ability:GetSpecialValueFor("damage_percent") / 100
-	self.ability.base_damage = self.ability:GetSpecialValueFor("base_damage")
-	self.ability.damage_creeps = self.ability:GetSpecialValueFor("damage_creeps")
-end
-
-function modifier_enigma_midnight_pulse_custom_tracker:OnIntervalThink()
-	if not IsServer() then
-		return
-	end
-
-	if (not self.ability.active_mod or self.ability.active_mod:IsNull()) and not self.ability:IsActivated() then
-		self.ability:StartCd()
-	end
-end
-
-function modifier_enigma_midnight_pulse_custom_tracker:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_EXTRA_HEALTH_PERCENTAGE,
-	}
-end
-
-function modifier_enigma_midnight_pulse_custom_tracker:GetModifierExtraHealthPercentage()
-	return self.ability.talents.e4_health
 end
 
 modifier_enigma_midnight_pulse_custom_can_channel = class(mod_hidden)
@@ -554,21 +564,6 @@ function modifier_enigma_midnight_pulse_custom_channel:OnCreated()
 	self.targets = {}
 	self:OnIntervalThink()
 	self:StartIntervalThink(0.1)
-end
-
-function modifier_enigma_midnight_pulse_custom_channel:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_MODEL_SCALE,
-		MODIFIER_PROPERTY_OVERRIDE_ANIMATION,
-	}
-end
-
-function modifier_enigma_midnight_pulse_custom_channel:GetOverrideAnimation()
-	return ACT_DOTA_CAST_ABILITY_4
-end
-
-function modifier_enigma_midnight_pulse_custom_channel:GetModifierModelScale()
-	return 40
 end
 
 function modifier_enigma_midnight_pulse_custom_channel:OnIntervalThink()
@@ -619,6 +614,21 @@ function modifier_enigma_midnight_pulse_custom_channel:OrderEvent(params)
 	end
 end
 
+function modifier_enigma_midnight_pulse_custom_channel:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_MODEL_SCALE,
+		MODIFIER_PROPERTY_OVERRIDE_ANIMATION,
+	}
+end
+
+function modifier_enigma_midnight_pulse_custom_channel:GetOverrideAnimation()
+	return ACT_DOTA_CAST_ABILITY_4
+end
+
+function modifier_enigma_midnight_pulse_custom_channel:GetModifierModelScale()
+	return 40
+end
+
 function modifier_enigma_midnight_pulse_custom_channel:CheckState()
 	local result = {
 		[MODIFIER_STATE_ROOTED] = true,
@@ -633,6 +643,12 @@ function modifier_enigma_midnight_pulse_custom_channel:CheckState()
 end
 
 modifier_enigma_midnight_pulse_custom_channel_pull = class(mod_hidden)
+function modifier_enigma_midnight_pulse_custom_channel_pull:GetStatusEffectName()
+	return "particles/status_fx/status_effect_enigma_blackhole_tgt.vpcf"
+end
+function modifier_enigma_midnight_pulse_custom_channel_pull:StatusEffectPriority()
+	return MODIFIER_PRIORITY_HIGH
+end
 function modifier_enigma_midnight_pulse_custom_channel_pull:OnCreated()
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
@@ -750,14 +766,6 @@ function modifier_enigma_midnight_pulse_custom_channel_pull:CheckState()
 	return {
 		[MODIFIER_STATE_ROOTED] = true,
 	}
-end
-
-function modifier_enigma_midnight_pulse_custom_channel_pull:GetStatusEffectName()
-	return "particles/status_fx/status_effect_enigma_blackhole_tgt.vpcf"
-end
-
-function modifier_enigma_midnight_pulse_custom_channel_pull:StatusEffectPriority()
-	return MODIFIER_PRIORITY_HIGH
 end
 
 modifier_enigma_midnight_pulse_custom_move = class(mod_hidden)

@@ -89,12 +89,6 @@ function monkey_king_boundless_strike_custom:Precache(context)
 		"particles/units/heroes/hero_monkey_king/monkey_king_attack_05_near_blur.vpcf",
 		context
 	)
-	PrecacheResource(
-		"particle",
-		"particles/units/heroes/hero_monkey_king/monkey_king_attack_06_near_blur.vpcf",
-		context
-	)
-
 	PrecacheResource("particle", "particles/units/heroes/hero_monkey_king/monkey_king_strike_cast.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_monkey_king/monkey_king_strike.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_monkey_king/monkey_king_strike_slow_impact.vpcf", context)
@@ -118,6 +112,13 @@ function monkey_king_boundless_strike_custom:Precache(context)
 	PrecacheResource("particle", "particles/monkey_king/strike_refresh.vpcf", context)
 	PrecacheResource("particle", "particles/mars_revenge_proc.vpcf", context)
 	PrecacheResource("particle", "particles/monkey_king/strike_radius.vpcf", context)
+	PrecacheResource("particle", "particles/monkey_king/command_buff.vpcf", context)
+	PrecacheResource("particle", "particles/mk_buff_start.vpcf", context)
+	PrecacheResource(
+		"particle",
+		"particles/econ/items/monkey_king/mk_ti9_immortal/status_effect_mk_ti9_immortal_army.vpcf",
+		context
+	)
 end
 
 function monkey_king_boundless_strike_custom:UpdateTalents(name)
@@ -155,11 +156,13 @@ function monkey_king_boundless_strike_custom:UpdateTalents(name)
 			has_q7 = 0,
 			q7_max = caster:GetTalentValue("modifier_monkey_king_boundless_7", "max", true),
 			q7_damage = caster:GetTalentValue("modifier_monkey_king_boundless_7", "damage", true),
+			q7_stun = caster:GetTalentValue("modifier_monkey_king_boundless_7", "stun", true) / 100,
 			q7_range = caster:GetTalentValue("modifier_monkey_king_boundless_7", "range", true),
 			q7_duration = caster:GetTalentValue("modifier_monkey_king_boundless_7", "duration", true),
 			q7_damage_k = caster:GetTalentValue("modifier_monkey_king_boundless_7", "damage_k", true),
 			q7_cd = caster:GetTalentValue("modifier_monkey_king_boundless_7", "cd", true),
 			q7_bva = caster:GetTalentValue("modifier_monkey_king_boundless_7", "bva", true),
+			q7_spell = caster:GetTalentValue("modifier_monkey_king_boundless_7", "spell", true),
 			q7_mana = caster:GetTalentValue("modifier_monkey_king_boundless_7", "mana", true) / 100,
 
 			has_h1 = 0,
@@ -233,7 +236,7 @@ end
 
 function monkey_king_boundless_strike_custom:GetCooldown(iLevel)
 	return self.BaseClass.GetCooldown(self, iLevel)
-		+ (self.talents.q2_cd and self.talents.q2_cd or 0)
+		+ (self.talents.q2_cd or 0)
 		+ (self.talents.has_q7 == 1 and self.talents.q7_cd or 0)
 end
 
@@ -259,7 +262,7 @@ function monkey_king_boundless_strike_custom:GetCastRange(vLocation, hTarget)
 end
 
 function monkey_king_boundless_strike_custom:GetRange()
-	return (self.strike_cast_range and self.strike_cast_range or 0)
+	return (self.strike_cast_range or 0)
 end
 
 function monkey_king_boundless_strike_custom:OnAbilityPhaseStart()
@@ -375,12 +378,13 @@ function monkey_king_boundless_strike_custom:Strike(start_point, end_point, more
 
 	if more_crit then
 		crit = crit * more_crit
+		stun = stun * (1 + self.talents.q7_stun)
 		flag_data = { damage = "monkey_q7" }
 
 		if more_crit >= self.talents.q7_damage then
 			full_charge = true
 		end
-	elseif self.ability.talents.has_q7 == 0 and buff_mod then
+	elseif self.talents.has_q7 == 0 and buff_mod then
 		full_charge = true
 	end
 
@@ -543,7 +547,7 @@ function modifier_monkey_king_boundless_strike_custom_crit:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.damage = self.ability:GetSpecialValueFor("bonus_damage")
+	self.damage = self.ability.bonus_damage
 	self.crit = table.crit
 end
 
@@ -682,10 +686,7 @@ function modifier_monkey_king_boundless_strike_custom_legendary:Activate_Strike(
 
 	self.caster:RemoveModifierByName("modifier_monkey_king_boundless_strike_custom_legendary_caster")
 
-	local dir = (self.cast_point - self.parent:GetAbsOrigin()):Normalized()
-
-	self.parent:FaceTowards(self.cast_point)
-	self.parent:SetForwardVector(dir)
+	self.parent:FacePoint(self.cast_point)
 	self.parent:FadeGesture(ACT_DOTA_VICTORY)
 
 	local anim_k = self.ability.BaseClass.GetCastPoint(self.ability)
@@ -863,17 +864,17 @@ modifier_monkey_king_boundless_strike_custom_damage_bonus = class(mod_visible)
 function modifier_monkey_king_boundless_strike_custom_damage_bonus:GetTexture()
 	return "buffs/monkey_king/boundless_1"
 end
-function modifier_monkey_king_boundless_strike_custom_damage_bonus:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
-	}
-end
-
 function modifier_monkey_king_boundless_strike_custom_damage_bonus:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
 	self.damage = self.ability.talents.q1_damage
+end
+
+function modifier_monkey_king_boundless_strike_custom_damage_bonus:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
+	}
 end
 
 function modifier_monkey_king_boundless_strike_custom_damage_bonus:GetModifierPreAttack_BonusDamage()
@@ -949,6 +950,7 @@ function modifier_monkey_king_boundless_strike_custom_tracker:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_CAST_RANGE_BONUS_STACKING,
 		MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT,
+		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
 		MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE,
 	}
 end
@@ -965,6 +967,13 @@ function modifier_monkey_king_boundless_strike_custom_tracker:GetModifierBaseAtt
 		return
 	end
 	return self.ability.talents.q7_bva + self.bva
+end
+
+function modifier_monkey_king_boundless_strike_custom_tracker:GetModifierSpellAmplify_Percentage()
+	if self.ability.talents.has_q7 == 0 then
+		return
+	end
+	return self.ability.talents.q7_spell
 end
 
 function modifier_monkey_king_boundless_strike_custom_tracker:GetModifierTotalDamageOutgoing_Percentage(params)
@@ -1032,8 +1041,8 @@ function modifier_monkey_king_boundless_strike_custom_armor:OnCreated(table)
 		self.base_armor = self.parent:GetArmor(self)
 	end
 
-	self:SendBuffRefreshToClients()
 	self:SetHasCustomTransmitterData(true)
+	self:SendBuffRefreshToClients()
 end
 
 function modifier_monkey_king_boundless_strike_custom_armor:AddCustomTransmitterData()

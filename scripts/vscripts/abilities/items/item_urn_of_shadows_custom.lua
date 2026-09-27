@@ -42,10 +42,29 @@ function item_urn_of_shadows_custom_class:Precache(context)
 	PrecacheResource("particle", "particles/items4_fx/spirit_vessel_damage.vpcf", context)
 	PrecacheResource("particle", "particles/items4_fx/spirit_vessel_cast.vpcf", context)
 	PrecacheResource("particle", "particles/items6_fx/essence_distiller_heal.vpcf", context)
+	PrecacheResource("particle", "particles/items3_fx/octarine_core_lifesteal.vpcf", context)
+	PrecacheResource("particle", "particles/items6_fx/essence_distiller_wraith.vpcf", context)
 end
 
 function item_urn_of_shadows_custom_class:GetIntrinsicModifierName()
 	return "modifier_item_urn_of_shadows_custom_passive"
+end
+
+function item_urn_of_shadows_custom_class:Spawn()
+	self.bonus_lifesteal = self:GetSpecialValueFor("bonus_lifesteal") / 100
+	self.bonus_damage = self:GetSpecialValueFor("bonus_damage")
+	self.mana_regen = self:GetSpecialValueFor("mana_regen")
+	self.bonus_all_stats = self:GetSpecialValueFor("bonus_all_stats")
+	self.bonus_armor = self:GetSpecialValueFor("bonus_armor")
+	self.damage_init = self:GetSpecialValueFor("damage_init")
+	self.damage_health = self:GetSpecialValueFor("damage_health") / 100
+	self.duration = self:GetSpecialValueFor("duration")
+	self.radius = self:GetSpecialValueFor("radius")
+	self.cast_radius = self:GetSpecialValueFor("cast_radius")
+	self.damage_heal_reduce = self:GetSpecialValueFor("damage_heal_reduce")
+	self.damage_heal = self:GetSpecialValueFor("damage_heal") / 100
+	self.damage_inc = self:GetSpecialValueFor("damage_inc") / 100
+	self.damage_max = self:GetSpecialValueFor("damage_max")
 end
 
 function item_urn_of_shadows_custom_class:GetAOERadius()
@@ -102,23 +121,6 @@ function modifier_item_urn_of_shadows_custom_passive:OnCreated()
 	self.ability = self:GetAbility()
 	self.parent = self:GetParent()
 
-	self.ability.bonus_lifesteal = self.ability:GetSpecialValueFor("bonus_lifesteal") / 100
-	self.ability.bonus_damage = self.ability:GetSpecialValueFor("bonus_damage")
-	self.ability.mana_regen = self.ability:GetSpecialValueFor("mana_regen")
-	self.ability.bonus_all_stats = self.ability:GetSpecialValueFor("bonus_all_stats")
-	self.ability.bonus_armor = self.ability:GetSpecialValueFor("bonus_armor")
-	self.ability.damage_init = self.ability:GetSpecialValueFor("damage_init")
-	self.ability.damage_health = self.ability:GetSpecialValueFor("damage_health") / 100
-	self.ability.duration = self.ability:GetSpecialValueFor("duration")
-	self.ability.radius = self.ability:GetSpecialValueFor("radius")
-
-	self.ability.cast_radius = self.ability:GetSpecialValueFor("cast_radius")
-	self.ability.damage_heal_reduce = self.ability:GetSpecialValueFor("damage_heal_reduce")
-	self.ability.damage_heal = self.ability:GetSpecialValueFor("damage_heal") / 100
-
-	self.ability.damage_inc = self.ability:GetSpecialValueFor("damage_inc") / 100
-	self.ability.damage_max = self.ability:GetSpecialValueFor("damage_max")
-
 	if not self.parent:IsRealHero() then
 		return
 	end
@@ -132,6 +134,9 @@ end
 
 function modifier_item_urn_of_shadows_custom_passive:DamageEvent_out(params)
 	if not IsServer() then
+		return
+	end
+	if not IsValid(self.ability) then
 		return
 	end
 	if self.ability.bonus_lifesteal <= 0 then
@@ -191,6 +196,9 @@ end
 
 function modifier_item_urn_of_shadows_custom_passive:DeathEvent(params)
 	if not IsServer() then
+		return
+	end
+	if not IsValid(self.ability) then
 		return
 	end
 	if not self.parent:IsRealHero() or self.parent:IsTempestDouble() then
@@ -260,6 +268,24 @@ function modifier_item_urn_of_shadows_custom_passive_stacks:OnTooltip()
 end
 
 modifier_item_urn_of_shadows_custom_aoe = class(mod_hidden)
+function modifier_item_urn_of_shadows_custom_aoe:IsAura()
+	return IsServer() and IsValid(self.ability)
+end
+function modifier_item_urn_of_shadows_custom_aoe:GetAuraDuration()
+	return self.duration
+end
+function modifier_item_urn_of_shadows_custom_aoe:GetAuraRadius()
+	return self.radius
+end
+function modifier_item_urn_of_shadows_custom_aoe:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_ENEMY
+end
+function modifier_item_urn_of_shadows_custom_aoe:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
+end
+function modifier_item_urn_of_shadows_custom_aoe:GetModifierAura()
+	return "modifier_item_urn_of_shadows_custom_active_enemy"
+end
 function modifier_item_urn_of_shadows_custom_aoe:OnCreated()
 	if not IsServer() then
 		return
@@ -288,28 +314,9 @@ function modifier_item_urn_of_shadows_custom_aoe:OnCreated()
 	self:StartIntervalThink(self.interval)
 end
 
-function modifier_item_urn_of_shadows_custom_aoe:IsAura()
-	return IsServer() and IsValid(self.ability)
-end
-function modifier_item_urn_of_shadows_custom_aoe:GetAuraDuration()
-	return self.duration
-end
-function modifier_item_urn_of_shadows_custom_aoe:GetAuraRadius()
-	return self.radius
-end
-function modifier_item_urn_of_shadows_custom_aoe:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_ENEMY
-end
-function modifier_item_urn_of_shadows_custom_aoe:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
-end
-function modifier_item_urn_of_shadows_custom_aoe:GetModifierAura()
-	return "modifier_item_urn_of_shadows_custom_active_enemy"
-end
-
-modifier_item_urn_of_shadows_custom_active_enemy = class({})
-function modifier_item_urn_of_shadows_custom_active_enemy:IsHidden()
-	return false
+modifier_item_urn_of_shadows_custom_active_enemy = class(mod_visible)
+function modifier_item_urn_of_shadows_custom_active_enemy:IsPurgable()
+	return true
 end
 function modifier_item_urn_of_shadows_custom_active_enemy:OnCreated(params)
 	self.parent = self:GetParent()

@@ -44,10 +44,38 @@ function item_consecrated_wraps_custom:GetIntrinsicModifierName()
 	return "modifier_item_consecrated_wraps_custom"
 end
 
+function item_consecrated_wraps_custom:Spawn()
+	self.bonus_spell_resist = self:GetSpecialValueFor("bonus_spell_resist")
+	self.bonus_all_stats = self:GetSpecialValueFor("bonus_all_stats")
+	self.bonus_health = self:GetSpecialValueFor("bonus_health")
+	self.bonus_mana = self:GetSpecialValueFor("bonus_mana")
+	self.shield = self:GetSpecialValueFor("shield")
+	self.resist_bonus = self:GetSpecialValueFor("resist_bonus")
+	self.resist_max = self:GetSpecialValueFor("resist_max")
+	self.shield_cd = self:GetSpecialValueFor("shield_cd")
+	self.move_bonus = self:GetSpecialValueFor("move_bonus")
+	self.stack_duration = self:GetSpecialValueFor("stack_duration")
+end
+
 modifier_item_consecrated_wraps_custom = class(mod_hidden)
 function modifier_item_consecrated_wraps_custom:RemoveOnDeath()
 	return false
 end
+function modifier_item_consecrated_wraps_custom:OnCreated()
+	self.ability = self:GetAbility()
+	self.parent = self:GetParent()
+	self.ability.tracker = self
+
+	if not IsServer() then
+		return
+	end
+	if not self.parent:IsRealHero() then
+		return
+	end
+	self.parent:RemoveModifierByName("modifier_item_consecrated_wraps_custom_shield")
+	self:StartIntervalThink(self.ability.shield_cd)
+end
+
 function modifier_item_consecrated_wraps_custom:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_HEALTH_BONUS,
@@ -94,32 +122,6 @@ end
 
 function modifier_item_consecrated_wraps_custom:GetModifierBonusStats_Intellect()
 	return self.ability.bonus_all_stats
-end
-
-function modifier_item_consecrated_wraps_custom:OnCreated()
-	self.ability = self:GetAbility()
-	self.parent = self:GetParent()
-	self.ability.tracker = self
-
-	self.ability.bonus_spell_resist = self.ability:GetSpecialValueFor("bonus_spell_resist")
-	self.ability.bonus_all_stats = self.ability:GetSpecialValueFor("bonus_all_stats")
-	self.ability.bonus_health = self.ability:GetSpecialValueFor("bonus_health")
-	self.ability.bonus_mana = self.ability:GetSpecialValueFor("bonus_mana")
-	self.ability.shield = self.ability:GetSpecialValueFor("shield")
-	self.ability.resist_bonus = self.ability:GetSpecialValueFor("resist_bonus")
-	self.ability.resist_max = self.ability:GetSpecialValueFor("resist_max")
-	self.ability.shield_cd = self.ability:GetSpecialValueFor("shield_cd")
-	self.ability.move_bonus = self.ability:GetSpecialValueFor("move_bonus")
-	self.ability.stack_duration = self.ability:GetSpecialValueFor("stack_duration")
-
-	if not IsServer() then
-		return
-	end
-	if not self.parent:IsRealHero() then
-		return
-	end
-	self.parent:RemoveModifierByName("modifier_item_consecrated_wraps_custom_shield")
-	self:StartIntervalThink(self.ability.shield_cd)
 end
 
 function modifier_item_consecrated_wraps_custom:OnDestroy()

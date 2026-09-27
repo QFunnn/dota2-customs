@@ -158,41 +158,41 @@ function lina_fiery_soul_custom:UpdateTalents(name)
 		self.talents.has_e1 = 1
 		self.talents.e1_speed = caster:GetTalentValue("modifier_lina_soul_1", "speed")
 		self.talents.e1_slow = caster:GetTalentValue("modifier_lina_soul_1", "slow")
-		self.caster:AddAttackEvent_out(self.tracker, true)
+		caster:AddAttackEvent_out(self.tracker, true)
 	end
 
 	if caster:HasTalent("modifier_lina_soul_2") then
 		self.talents.has_e2 = 1
 		self.talents.e2_armor_reduce = caster:GetTalentValue("modifier_lina_soul_2", "armor_reduce")
 		self.talents.e2_armor = caster:GetTalentValue("modifier_lina_soul_2", "armor")
-		self.caster:AddAttackEvent_out(self.tracker, true)
+		caster:AddAttackEvent_out(self.tracker, true)
 	end
 
 	if caster:HasTalent("modifier_lina_soul_3") then
 		self.talents.has_e3 = 1
 		self.talents.e3_damage = caster:GetTalentValue("modifier_lina_soul_3", "damage")
 		self.talents.e3_crit = caster:GetTalentValue("modifier_lina_soul_3", "crit")
-		self.caster:AddAttackEvent_out(self.tracker, true)
-		self.caster:AddRecordDestroyEvent(self.tracker, true)
+		caster:AddAttackEvent_out(self.tracker, true)
+		caster:AddRecordDestroyEvent(self.tracker, true)
 	end
 
 	if caster:HasTalent("modifier_lina_soul_4") then
 		self.talents.has_e4 = 1
-		self.caster:AddAttackEvent_out(self.tracker, true)
+		caster:AddAttackEvent_out(self.tracker, true)
 	end
 
 	if caster:HasTalent("modifier_lina_soul_7") then
 		self.talents.has_e7 = 1
 		if IsServer() and not self.e7_init then
 			self.e7_init = true
-			self.ability:SetActivated(false)
-			self.caster:AddSpellEvent(self.tracker, true)
+			self:SetActivated(false)
+			caster:AddSpellEvent(self.tracker, true)
 		end
 	end
 
 	if caster:HasTalent("modifier_lina_hero_4") then
 		self.talents.has_h4 = 1
-		self.caster:AddDamageEvent_inc(self.tracker, true)
+		caster:AddDamageEvent_inc(self.tracker, true)
 	end
 
 	if caster:HasTalent("modifier_lina_hero_5") then
@@ -211,6 +211,32 @@ function lina_fiery_soul_custom:GetIntrinsicModifierName()
 	return "modifier_lina_fiery_soul_custom"
 end
 
+function lina_fiery_soul_custom:GetBehavior()
+	if self.talents.has_h5 == 1 then
+		return DOTA_ABILITY_BEHAVIOR_POINT + (self.talents.has_e7 == 0 and DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES or 0)
+	end
+	if self.talents.has_e7 == 1 then
+		return DOTA_ABILITY_BEHAVIOR_NO_TARGET
+	end
+	return DOTA_ABILITY_BEHAVIOR_PASSIVE
+end
+
+function lina_fiery_soul_custom:GetCooldown(iLevel)
+	if self.talents.has_e7 == 1 then
+		return self.talents.e7_talent_cd
+	elseif self.talents.has_h5 == 1 then
+		return self.talents.h5_cd
+	end
+	return 0
+end
+
+function lina_fiery_soul_custom:GetManaCost(iLevel)
+	if self.talents.has_e7 == 1 or self.talents.has_h5 == 1 then
+		return self.talents.e7_mana
+	end
+	return 0
+end
+
 function lina_fiery_soul_custom:GetCastRange(vLocation, hTarget)
 	if self.talents.has_h5 == 1 then
 		return IsClient()
@@ -223,36 +249,10 @@ function lina_fiery_soul_custom:GetCastRange(vLocation, hTarget)
 	return 0
 end
 
-function lina_fiery_soul_custom:GetBehavior()
-	if self.talents.has_h5 == 1 then
-		return DOTA_ABILITY_BEHAVIOR_POINT + (self.talents.has_e7 == 0 and DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES or 0)
-	end
-	if self.talents.has_e7 == 1 then
-		return DOTA_ABILITY_BEHAVIOR_NO_TARGET
-	end
-	return DOTA_ABILITY_BEHAVIOR_PASSIVE
-end
-
-function lina_fiery_soul_custom:GetManaCost(iLevel)
-	if self.talents.has_e7 == 1 or self.talents.has_h5 == 1 then
-		return self.talents.e7_mana
-	end
-	return 0
-end
-
-function lina_fiery_soul_custom:GetCooldown(iLevel)
-	if self.talents.has_e7 == 1 then
-		return self.talents.e7_talent_cd
-	elseif self.talents.has_h5 == 1 then
-		return self.talents.h5_cd
-	end
-	return
-end
-
 function lina_fiery_soul_custom:OnSpellStart()
 	self.caster:RemoveModifierByName("modifier_lina_fiery_soul_custom_legendary_cast")
 
-	if self.talents.has_h5 == 1 and not self.parent:IsLeashed() and not self.parent:IsRooted() then
+	if self.talents.has_h5 == 1 and self.caster:CanBlink() then
 		local point = self:GetCursorPosition()
 		local dir = (point - self.caster:GetAbsOrigin()):Normalized()
 		if point == self.caster:GetAbsOrigin() then
@@ -300,7 +300,7 @@ function lina_fiery_soul_custom:LegendaryProc()
 		direction.z = 0
 		direction = direction:Normalized()
 
-		if self.caster == enemyAbs then
+		if enemyAbs == center then
 			direction = enemy:GetForwardVector()
 		end
 
@@ -335,11 +335,11 @@ function lina_fiery_soul_custom:LegendaryProc()
 	if not hit_hero then
 		return
 	end
-	self.parent:AddNewModifier(
-		self.parent,
-		self.ability,
+	self.caster:AddNewModifier(
+		self.caster,
+		self,
 		"modifier_lina_fiery_soul_custom_stack",
-		{ is_legendary = 1, duration = self.ability.fiery_soul_stack_duration }
+		{ is_legendary = 1, duration = self.fiery_soul_stack_duration }
 	)
 end
 
@@ -350,15 +350,15 @@ function lina_fiery_soul_custom:ApplyCrit(target)
 	if not self:IsTrained() then
 		return
 	end
-	if self.ability.talents.has_e3 == 0 then
+	if self.talents.has_e3 == 0 then
 		return
 	end
 
 	target:AddNewModifier(
-		self.parent,
-		self.ability,
+		self.caster,
+		self,
 		"modifier_lina_fiery_soul_custom_crit",
-		{ duration = self.ability.talents.e3_duration }
+		{ duration = self.talents.e3_duration }
 	)
 end
 
@@ -537,6 +537,9 @@ function modifier_lina_fiery_soul_custom:SpellEvent(params)
 end
 
 function modifier_lina_fiery_soul_custom:GetMinHealth()
+	if self.ability.talents.has_h4 == 0 then
+		return
+	end
 	if self.parent:LethalDisabled() then
 		return
 	end
@@ -544,9 +547,6 @@ function modifier_lina_fiery_soul_custom:GetMinHealth()
 		return
 	end
 	if not self.parent:IsAlive() then
-		return
-	end
-	if self.ability.talents.has_h4 == 0 then
 		return
 	end
 	if self.parent:HasModifier("modifier_lina_fiery_soul_custom_heal_cd") then
@@ -800,6 +800,7 @@ function modifier_lina_fiery_soul_custom_heal:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
+	self.RemoveForDuel = true
 	self.interval = 1
 	self.max = self.ability.talents.h4_duration
 	self.reduce = (self.ability.talents.h4_health_loss / self.max) * self.interval
@@ -905,6 +906,7 @@ function modifier_lina_fiery_soul_custom_damage_reduce:OnCreated()
 	if not IsServer() then
 		return
 	end
+	self.RemoveForDuel = true
 	self:OnRefresh()
 end
 
@@ -945,6 +947,7 @@ function modifier_lina_fiery_soul_custom_str:OnCreated()
 	if not IsServer() then
 		return
 	end
+	self.RemoveForDuel = true
 	self:OnRefresh()
 end
 
@@ -979,6 +982,12 @@ end
 modifier_lina_fiery_soul_custom_quest = class(mod_hidden)
 
 modifier_lina_fiery_soul_custom_blink = class(mod_hidden)
+function modifier_lina_fiery_soul_custom_blink:GetStatusEffectName()
+	return "particles/status_fx/status_effect_lina_flame_cloak.vpcf"
+end
+function modifier_lina_fiery_soul_custom_blink:StatusEffectPriority()
+	return MODIFIER_PRIORITY_ULTRA
+end
 function modifier_lina_fiery_soul_custom_blink:OnCreated(params)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -995,14 +1004,25 @@ function modifier_lina_fiery_soul_custom_blink:OnCreated(params)
 	self.dir = (self.point - self.parent:GetAbsOrigin())
 	self.dir.z = 0
 
-	self.parent:FaceTowards(self.point)
-	self.parent:SetForwardVector(self.dir)
+	self.parent:FacePoint(self.point)
 
 	self.distance = self.dir:Length2D() / self:GetDuration()
 
 	if self:ApplyHorizontalMotionController() == false then
 		self:Destroy()
 	end
+end
+
+function modifier_lina_fiery_soul_custom_blink:OnDestroy()
+	if not IsServer() then
+		return
+	end
+	self.ability:LegendaryProc()
+
+	self.parent:InterruptMotionControllers(true)
+	self.parent:FacePoint()
+
+	ResolveNPCPositions(self.parent:GetAbsOrigin(), 128)
 end
 
 function modifier_lina_fiery_soul_custom_blink:DeclareFunctions()
@@ -1013,27 +1033,6 @@ end
 
 function modifier_lina_fiery_soul_custom_blink:GetModifierDisableTurning()
 	return 1
-end
-function modifier_lina_fiery_soul_custom_blink:GetStatusEffectName()
-	return "particles/status_fx/status_effect_lina_flame_cloak.vpcf"
-end
-function modifier_lina_fiery_soul_custom_blink:StatusEffectPriority()
-	return MODIFIER_PRIORITY_ULTRA
-end
-
-function modifier_lina_fiery_soul_custom_blink:OnDestroy()
-	if not IsServer() then
-		return
-	end
-	self.ability:LegendaryProc()
-
-	self.parent:InterruptMotionControllers(true)
-	local dir = self.parent:GetForwardVector()
-	dir.z = 0
-	self.parent:SetForwardVector(dir)
-	self.parent:FaceTowards(self.parent:GetAbsOrigin() + dir * 10)
-
-	ResolveNPCPositions(self.parent:GetAbsOrigin(), 128)
 end
 
 function modifier_lina_fiery_soul_custom_blink:UpdateHorizontalMotion(me, dt)

@@ -11,6 +11,9 @@
 var parentHUDElements = $.GetContextPanel().GetParent().GetParent().GetParent().FindChild("HUDElements");
 $.GetContextPanel().SetParent(parentHUDElements);
 
+var dotaHud = $.GetContextPanel().GetParent().GetParent().GetParent()
+var time_until = null
+
 function init()
 {
 
@@ -150,6 +153,29 @@ function ShowDuelTimer()
 
 var ping_cd = false
 
+function UpdateTimeUntil( day, day_time )
+{
+	if (!time_until)
+		time_until = dotaHud.FindChildTraverse("TimeUntil")
+
+	if (!time_until)
+		return
+
+	if (day_time < 0)
+	{
+		time_until.text = $.Localize("#time_eternal_night")
+		return
+	}
+
+	let min = Math.trunc(day_time/60)
+	let sec = String(day_time - min*60)
+
+	if (sec.length < 2)
+		sec = "0" + sec
+
+	time_until.text = String(min) + ":" + sec + " " + $.Localize(day == "night" ? "#time_until_dawn" : "#time_until_dusk")
+}
+
 function OnTimer( kv )
 {
 	let units = kv.units
@@ -167,6 +193,8 @@ function OnTimer( kv )
 	let upgrade = kv.upgrade
 	let patrol_table = kv.patrol_table
 	let hide = kv.game_start 
+
+	UpdateTimeUntil(kv.day, kv.day_time)
 
 	if (hide == 1)
 	{
@@ -200,6 +228,7 @@ function OnTimer( kv )
 		let patrol_player_data = patrol_table.patrol_creeps[Game.GetLocalPlayerID()]
 
 		let timer = patrol_table.timer
+		let duel_wait = patrol_table.duel_wait == 1
 		let type = 0
 		let count = 0
 		if (patrol_player_data)
@@ -209,7 +238,7 @@ function OnTimer( kv )
 				count = patrol_player_data.count
 		}
 
-		if (type != 0 && (count > 0 || timer >= 0))
+		if (type != 0 && (count > 0 || timer >= 0 || duel_wait))
 		{
 			allow_patrol = true
 			let text = ""
@@ -221,6 +250,7 @@ function OnTimer( kv )
 			}
 			PatrolText.text = text
 			PatrolIcon.RemoveClass("Timer_hidden")
+			PatrolIcon.SetHasClass("PatrolDuelWait", duel_wait)
 
 			let info_text = "#timer_info_patrol"
 			if (type == 1)
@@ -233,6 +263,11 @@ function OnTimer( kv )
 
 				PatrolIcon.RemoveClass("PatrolCreep")
 				PatrolIcon.AddClass("PatrolTormentor")
+			}
+
+			if (duel_wait)
+			{
+				info_text = "#timer_info_duel_wait"
 			}
 
 			PatrolIcon.SetPanelEvent('onmouseover', function() {
@@ -501,6 +536,8 @@ function OnTimer( kv )
 
 function OnDuelTimer( kv )
 {
+	UpdateTimeUntil(kv.day, kv.day_time)
+
 	let time = kv.time
 	let max = kv.max
 	let show = kv.show 

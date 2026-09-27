@@ -41,6 +41,7 @@ function enigma_innate_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_enigma/enigma_gravity_effect.vpcf", context)
 	PrecacheResource("particle", "particles/enigma/shard_disarm.vpcf", context)
 	PrecacheResource("particle", "particles/enigma/innate_shard_damage.vpcf", context)
+	PrecacheResource("particle", "particles/enigma/summon_perma.vpcf", context)
 	dota1x6:PrecacheShopItems("npc_dota_hero_enigma", context)
 end
 
@@ -89,6 +90,13 @@ function enigma_innate_custom:UpdateTalents()
 	end
 end
 
+function enigma_innate_custom:GetIntrinsicModifierName()
+	if not self:GetCaster():IsRealHero() then
+		return
+	end
+	return "modifier_enigma_innate_custom"
+end
+
 function enigma_innate_custom:OnInventoryContentsChanged()
 	if not IsServer() then
 		return
@@ -99,23 +107,33 @@ function enigma_innate_custom:OnInventoryContentsChanged()
 	if self.scepter_init then
 		return
 	end
-	local caster = self:GetCaster()
-	if not caster:HasScepter() then
+	if not self.caster:HasScepter() then
 		return
 	end
 
 	self.scepter_init = true
-	caster:AddDeathEvent(self.tracker, true)
-end
-
-function enigma_innate_custom:GetIntrinsicModifierName()
-	if not self:GetCaster():IsRealHero() then
-		return
-	end
-	return "modifier_enigma_innate_custom"
+	self.caster:AddDeathEvent(self.tracker, true)
 end
 
 modifier_enigma_innate_custom = class(mod_hidden)
+function modifier_enigma_innate_custom:IsAura()
+	return not self.parent:PassivesDisabled() and self.active
+end
+function modifier_enigma_innate_custom:GetAuraDuration()
+	return 0.1
+end
+function modifier_enigma_innate_custom:GetAuraRadius()
+	return self.ability.radius
+end
+function modifier_enigma_innate_custom:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_ENEMY
+end
+function modifier_enigma_innate_custom:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
+end
+function modifier_enigma_innate_custom:GetModifierAura()
+	return "modifier_enigma_innate_custom_debuff"
+end
 function modifier_enigma_innate_custom:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -145,24 +163,6 @@ function modifier_enigma_innate_custom:OnIntervalThink()
 	self:StartIntervalThink(-1)
 end
 
-function modifier_enigma_innate_custom:IsAura()
-	return not self.parent:PassivesDisabled() and self.active
-end
-function modifier_enigma_innate_custom:GetAuraDuration()
-	return 0.1
-end
-function modifier_enigma_innate_custom:GetAuraRadius()
-	return self.ability.radius
-end
-function modifier_enigma_innate_custom:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_ENEMY
-end
-function modifier_enigma_innate_custom:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
-end
-function modifier_enigma_innate_custom:GetModifierAura()
-	return "modifier_enigma_innate_custom_debuff"
-end
 function modifier_enigma_innate_custom:GetAuraEntityReject(hEntity)
 	if hEntity:IsFieldInvun(self.parent) then
 		return true
@@ -287,9 +287,7 @@ function modifier_enigma_innate_custom_debuff:DeclareFunctions()
 		MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE,
 		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-		--MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET,
 		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
-		--MODIFIER_PROPERTY_LIFESTEAL_AMPLIFY_PERCENTAGE,
 	}
 end
 
@@ -316,10 +314,6 @@ function modifier_enigma_innate_custom_debuff:GetModifierSpellAmplify_Percentage
 		return self.ability.talents.h4_damage_reduce
 	end
 	return self.damage_reduce * self:GetK()
-end
-
-function modifier_enigma_innate_custom_debuff:GetModifierLifestealRegenAmplify_Percentage()
-	return self.heal_reduce * self:GetK()
 end
 
 function modifier_enigma_innate_custom_debuff:GetModifierHealChange()
@@ -390,7 +384,7 @@ function modifier_enigma_innate_custom_scepter_stats:OnCreated()
 	if not IsServer() then
 		return
 	end
-	self:SetStackCount(1)
+	self:OnRefresh()
 end
 
 function modifier_enigma_innate_custom_scepter_stats:OnRefresh()
@@ -402,20 +396,15 @@ function modifier_enigma_innate_custom_scepter_stats:OnRefresh()
 	end
 	self:IncrementStackCount()
 
+	self.parent:GenericParticle("particles/ui/purple_orb_point.vpcf")
+	self.parent:CalculateStatBonus(true)
+
 	if self:GetStackCount() < self.max then
 		return
 	end
 
 	self.parent:GenericParticle("particles/enigma/summon_perma.vpcf")
 	self.parent:EmitSound("BS.Thirst_legendary_active")
-end
-
-function modifier_enigma_innate_custom_scepter_stats:OnStackCountChanged(iStackCount)
-	if not IsServer() then
-		return
-	end
-	self.parent:GenericParticle("particles/ui/purple_orb_point.vpcf")
-	self.parent:CalculateStatBonus(true)
 end
 
 function modifier_enigma_innate_custom_scepter_stats:DeclareFunctions()

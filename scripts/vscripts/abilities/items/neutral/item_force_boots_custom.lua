@@ -22,6 +22,12 @@ function item_force_boots_custom:Precache(context)
 	end
 	PrecacheResource("particle", "particles/items_fx/force_staff.vpcf", context)
 	PrecacheResource("particle", "particles/items_fx/harpoon_pull.vpcf", context)
+	PrecacheResource("particle", "particles/status_fx/status_effect_forcestaff.vpcf", context)
+end
+
+function item_force_boots_custom:Spawn()
+	self.push_duration = self:GetSpecialValueFor("push_duration")
+	self.push_length = self:GetSpecialValueFor("push_length")
 end
 
 function item_force_boots_custom:OnSpellStart()
@@ -29,30 +35,29 @@ function item_force_boots_custom:OnSpellStart()
 
 	caster:Purge(false, true, false, false, false)
 	caster:EmitSound("DOTA_Item.Force_Boots.Cast")
-	caster:AddNewModifier(
-		caster,
-		self,
-		"modifier_item_force_boots_custom_active",
-		{ duration = self:GetSpecialValueFor("push_duration") }
-	)
+	caster:AddNewModifier(caster, self, "modifier_item_force_boots_custom_active", { duration = self.push_duration })
 end
 
-modifier_item_force_boots_custom_active = class({})
-
+modifier_item_force_boots_custom_active = class(mod_hidden)
+function modifier_item_force_boots_custom_active:IsPurgable()
+	return true
+end
 function modifier_item_force_boots_custom_active:IsDebuff()
 	return false
 end
-function modifier_item_force_boots_custom_active:IsHidden()
-	return true
+function modifier_item_force_boots_custom_active:GetStatusEffectName()
+	return "particles/status_fx/status_effect_forcestaff.vpcf"
 end
-
+function modifier_item_force_boots_custom_active:StatusEffectPriority()
+	return MODIFIER_PRIORITY_NORMAL
+end
 function modifier_item_force_boots_custom_active:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
 	if not IsServer() then
 		return
 	end
-
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
 
 	self.parent:GenericParticle("particles/items_fx/force_staff.vpcf", self)
 	self.parent:GenericParticle("particles/items_fx/harpoon_pull.vpcf", self)
@@ -60,18 +65,11 @@ function modifier_item_force_boots_custom_active:OnCreated()
 	self.parent:StartGesture(ACT_DOTA_FLAIL)
 	self.angle = self.parent:GetForwardVector():Normalized()
 
-	self.distance = self.ability:GetSpecialValueFor("push_length") / (self:GetDuration() / FrameTime())
+	self.distance = self.ability.push_length / (self:GetDuration() / FrameTime())
 
 	if self:ApplyHorizontalMotionController() == false then
 		self:Destroy()
 	end
-end
-
-function modifier_item_force_boots_custom_active:GetStatusEffectName()
-	return "particles/status_fx/status_effect_forcestaff.vpcf"
-end
-function modifier_item_force_boots_custom_active:StatusEffectPriority()
-	return MODIFIER_PRIORITY_NORMAL
 end
 
 function modifier_item_force_boots_custom_active:OnDestroy()
@@ -82,10 +80,7 @@ function modifier_item_force_boots_custom_active:OnDestroy()
 	self.parent:InterruptMotionControllers(true)
 	self.parent:FadeGesture(ACT_DOTA_FLAIL)
 
-	local vec = self.parent:GetForwardVector()
-	vec.z = 0
-	self.parent:SetForwardVector(vec)
-	self.parent:FaceTowards(self.parent:GetAbsOrigin() + vec * 10)
+	self.parent:FacePoint()
 
 	ResolveNPCPositions(self.parent:GetAbsOrigin(), 128)
 end
@@ -98,7 +93,7 @@ function modifier_item_force_boots_custom_active:UpdateHorizontalMotion(me, dt)
 	local pos = self.parent:GetAbsOrigin()
 	GridNav:DestroyTreesAroundPoint(pos, 80, false)
 	local pos_p = self.angle * self.distance
-	local next_pos = GetGroundPosition(pos + pos_p, self:GetParent())
+	local next_pos = GetGroundPosition(pos + pos_p, self.parent)
 	self.parent:SetAbsOrigin(next_pos)
 end
 

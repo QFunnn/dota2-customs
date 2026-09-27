@@ -90,6 +90,8 @@ function bane_nightmare_custom:Precache(context)
 	PrecacheResource("particle", "particles/void_buf2.vpcf", context)
 	PrecacheResource("particle", "particles/void_astral_slow.vpcf", context)
 	PrecacheResource("particle", "particles/enigma/summon_perma.vpcf", context)
+	PrecacheResource("particle", "particles/items_fx/phylactery.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_bane/bane_projectile.vpcf", context)
 end
 
 function bane_nightmare_custom:UpdateTalents()
@@ -122,10 +124,6 @@ function bane_nightmare_custom:UpdateTalents()
 			e4_regen = caster:GetTalentValue("modifier_bane_nightmare_4", "regen", true),
 
 			has_e7 = 0,
-			e7_duration = caster:GetTalentValue("modifier_bane_nightmare_7", "duration", true),
-			e7_damage = caster:GetTalentValue("modifier_bane_nightmare_7", "damage", true),
-			e7_talent_cd = caster:GetTalentValue("modifier_bane_nightmare_7", "talent_cd", true),
-			e7_effect_duration = caster:GetTalentValue("modifier_bane_nightmare_7", "effect_duration", true),
 
 			has_h2 = 0,
 			h2_health = 0,
@@ -176,10 +174,6 @@ function bane_nightmare_custom:UpdateTalents()
 	end
 end
 
-function bane_nightmare_custom:Init()
-	self.caster = self:GetCaster()
-end
-
 function bane_nightmare_custom:GetAbilityTextureName()
 	return wearables_system:GetAbilityIconReplacement(self.caster, "bane_nightmare", self)
 end
@@ -192,7 +186,7 @@ function bane_nightmare_custom:GetIntrinsicModifierName()
 end
 
 function bane_nightmare_custom:GetCooldown(level)
-	return self.BaseClass.GetCooldown(self, level) + (self.talents.h2_cd and self.talents.h2_cd or 0)
+	return self.BaseClass.GetCooldown(self, level) + (self.talents.h2_cd or 0)
 end
 
 function bane_nightmare_custom:GetCastRange(vLocation, hTarget)
@@ -256,7 +250,7 @@ function bane_nightmare_custom:ApplyEffect(target, from_attack)
 		attack = 1
 	end
 
-	local duration = self:GetSpecialValueFor("duration")
+	local duration = self.duration
 	if target:GetTeamNumber() ~= self.caster:GetTeamNumber() then
 		duration = duration * (1 - target:GetStatusResistance())
 	end
@@ -268,10 +262,7 @@ function bane_nightmare_custom:ApplyEffect(target, from_attack)
 	)
 end
 
-modifier_bane_nightmare_custom = class({})
-function modifier_bane_nightmare_custom:IsHidden()
-	return false
-end
+modifier_bane_nightmare_custom = class(mod_visible)
 function modifier_bane_nightmare_custom:IsPurgable()
 	return true
 end
@@ -281,6 +272,12 @@ end
 function modifier_bane_nightmare_custom:IsDebuff()
 	return true
 end
+function modifier_bane_nightmare_custom:GetStatusEffectName()
+	return "particles/status_fx/status_effect_nightmare.vpcf"
+end
+function modifier_bane_nightmare_custom:StatusEffectPriority()
+	return MODIFIER_PRIORITY_HIGH
+end
 function modifier_bane_nightmare_custom:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -288,9 +285,8 @@ function modifier_bane_nightmare_custom:OnCreated(table)
 	self.is_friend = self.caster:GetTeamNumber() == self.parent:GetTeamNumber()
 
 	self.rate = 0.2
-	self.max = self.ability:GetSpecialValueFor("max_damage")
-		+ self.ability.talents.h2_health * self.parent:GetMaxHealth()
-	self.invun = self.ability:GetSpecialValueFor("nightmare_invuln_time")
+	self.max = self.ability.max_damage + self.ability.talents.h2_health * self.parent:GetMaxHealth()
+	self.invun = self.ability.nightmare_invuln_time
 	self.max_time = self:GetRemainingTime()
 
 	self.regen = 0
@@ -332,8 +328,8 @@ function modifier_bane_nightmare_custom:OnCreated(table)
 		self:SetStackCount(self.max)
 	else
 		self.ability.friend_mod = self
-		local ability = self.caster:FindAbilityByName("bane_nightmare_end_custom")
-		if ability and ability:IsHidden() then
+		local ability = self.ability.end_ability
+		if IsValid(ability) and ability:IsHidden() then
 			self.caster:SwapAbilities(self.ability:GetName(), ability:GetName(), false, true)
 		end
 	end
@@ -392,7 +388,6 @@ function modifier_bane_nightmare_custom:OnDestroy()
 
 	self.parent:Stop()
 	FindClearSpaceForUnit(self.parent, self.parent:GetAbsOrigin(), false)
-	self.parent:RemoveModifierByName("modifier_bane_nightmare_custom_move")
 
 	if
 		self.parent:IsRealHero()
@@ -424,8 +419,8 @@ function modifier_bane_nightmare_custom:OnDestroy()
 		self.caster:UpdateUIshort({ hide = 1, hide_full = 1, style = "BaneNightmare" })
 	else
 		self.ability.friend_mod = nil
-		local ability = self.caster:FindAbilityByName("bane_nightmare_end_custom")
-		if ability and not ability:IsHidden() then
+		local ability = self.ability.end_ability
+		if IsValid(ability) and not ability:IsHidden() then
 			self.caster:SwapAbilities(self.ability:GetName(), ability:GetName(), true, false)
 		end
 	end
@@ -503,27 +498,17 @@ function modifier_bane_nightmare_custom:GetBonusVisionPercentage()
 	return -100
 end
 
-function modifier_bane_nightmare_custom:GetStatusEffectName()
-	return "particles/status_fx/status_effect_nightmare.vpcf"
-end
-
-function modifier_bane_nightmare_custom:StatusEffectPriority()
-	return MODIFIER_PRIORITY_HIGH
-end
-
 function modifier_bane_nightmare_custom:AttackRecordEvent_inc(params)
 	if not IsServer() then
+		return
+	end
+	if not self.is_friend then
 		return
 	end
 	if not params.attacker:IsUnit() then
 		return
 	end
 	if self.parent ~= params.target then
-		return
-	end
-
-	local attacker = params.attacker
-	if not self.is_friend then
 		return
 	end
 
@@ -539,6 +524,12 @@ function modifier_bane_nightmare_custom_tracker:OnCreated()
 	self.ability.tracker = self
 	self.ability:UpdateTalents()
 
+	self.parent.nightmare_ability = self.ability
+	self.ability.end_ability = self.parent:FindAbilityByName("bane_nightmare_end_custom")
+
+	self.ability.duration = self.ability:GetSpecialValueFor("duration")
+	self.ability.max_damage = self.ability:GetSpecialValueFor("max_damage")
+	self.ability.nightmare_invuln_time = self.ability:GetSpecialValueFor("nightmare_invuln_time")
 	self.ability.shard_cast = self.ability:GetSpecialValueFor("shard_cast")
 	self.ability.shard_invun = self.ability:GetSpecialValueFor("shard_invun")
 	self.ability.shard_cd = self.ability:GetSpecialValueFor("shard_cd") / 100
@@ -549,6 +540,11 @@ function modifier_bane_nightmare_custom_tracker:OnCreated()
 	end
 
 	self:StartIntervalThink(3)
+end
+
+function modifier_bane_nightmare_custom_tracker:OnRefresh()
+	self.ability.duration = self.ability:GetSpecialValueFor("duration")
+	self.ability.max_damage = self.ability:GetSpecialValueFor("max_damage")
 end
 
 function modifier_bane_nightmare_custom_tracker:OnIntervalThink()
@@ -584,6 +580,9 @@ function modifier_bane_nightmare_custom_tracker:GetModifierAttackRangeBonus()
 end
 
 function modifier_bane_nightmare_custom_tracker:GetModifierDamageOutgoing_Percentage()
+	if not IsValid(self.parent) then
+		return
+	end
 	return self.ability.talents.e2_damage
 		* (self.parent:HasModifier("modifier_bane_nightmare_custom_damage") and self.ability.talents.e2_bonus or 1)
 end
@@ -654,32 +653,179 @@ function modifier_bane_nightmare_custom_tracker:DamageEvent_out(params)
 	self.parent:GenericHeal(heal * result, self.ability, true, effect, "modifier_bane_nightmare_4")
 end
 
-bane_nightmare_end_custom = class({})
+modifier_bane_nightmare_custom_damage = class(mod_visible)
+function modifier_bane_nightmare_custom_damage:GetTexture()
+	return "buffs/bane/nightmare_2"
+end
 
+modifier_bane_nightmare_custom_slow = class(mod_hidden)
+function modifier_bane_nightmare_custom_slow:IsPurgable()
+	return true
+end
+function modifier_bane_nightmare_custom_slow:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.slow = self.ability.talents.e1_slow
+	if not IsServer() then
+		return
+	end
+	self:SetStackCount(1)
+	self.parent:GenericParticle("particles/void_astral_slow.vpcf", self)
+end
+
+function modifier_bane_nightmare_custom_slow:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+	}
+end
+
+function modifier_bane_nightmare_custom_slow:GetModifierMoveSpeedBonus_Percentage()
+	return self.slow
+end
+
+modifier_bane_nightmare_custom_silence = class(mod_hidden)
+function modifier_bane_nightmare_custom_silence:IsPurgable()
+	return true
+end
+function modifier_bane_nightmare_custom_silence:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+	self.slow = self.ability.talents.h5_slow
+	if not IsServer() then
+		return
+	end
+	self.parent:EmitSound("Sf.Raze_Silence")
+	self.parent:GenericParticle("particles/void_astral_slow.vpcf", self)
+	self.parent:GenericParticle("particles/bane/nightmare_legendary_silence.vpcf", self, true)
+end
+
+function modifier_bane_nightmare_custom_silence:CheckState()
+	return {
+		[MODIFIER_STATE_SILENCED] = true,
+	}
+end
+
+function modifier_bane_nightmare_custom_silence:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+	}
+end
+
+function modifier_bane_nightmare_custom_silence:GetModifierMoveSpeedBonus_Percentage()
+	return self.slow
+end
+
+modifier_bane_nightmare_custom_attack = class(mod_hidden)
+function modifier_bane_nightmare_custom_attack:OnCreated()
+	self.ability = self:GetAbility()
+	self.damage = self.ability.talents.e3_damage - 100
+end
+
+function modifier_bane_nightmare_custom_attack:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE,
+	}
+end
+
+function modifier_bane_nightmare_custom_attack:GetModifierTotalDamageOutgoing_Percentage(params)
+	if params.inflictor then
+		return
+	end
+	return self.damage
+end
+
+modifier_bane_nightmare_custom_invun = class(mod_hidden)
+function modifier_bane_nightmare_custom_invun:CheckState()
+	return {
+		[MODIFIER_STATE_NO_HEALTH_BAR] = true,
+		[MODIFIER_STATE_INVULNERABLE] = true,
+		[MODIFIER_STATE_UNSLOWABLE] = true,
+	}
+end
+
+modifier_bane_nightmare_custom_attacks_mod = class(mod_visible)
+function modifier_bane_nightmare_custom_attacks_mod:OnCreated()
+	self.parent = self:GetParent()
+	self.caster = self:GetCaster()
+	self.ability = self:GetAbility()
+
+	self.max = self.ability.talents.e3_max
+	self.attacks = self.ability.talents.e3_attacks
+	self.attack_range = self.ability.talents.e3_radius
+	self.attack_interval = self.ability.talents.e3_duration / self.attacks
+	self.attacks_made = 0
+
+	if not IsServer() then
+		return
+	end
+	self:StartIntervalThink(self.attack_interval)
+end
+
+function modifier_bane_nightmare_custom_attacks_mod:OnIntervalThink()
+	if not IsServer() then
+		return
+	end
+
+	self.attacks_made = self.attacks_made + 1
+
+	local projectile = {
+		Source = self.caster,
+		Ability = self.ability,
+		EffectName = "particles/units/heroes/hero_bane/bane_projectile.vpcf",
+		iMoveSpeed = self.caster:GetProjectileSpeed(),
+		vSourceLoc = self.caster:GetAbsOrigin(),
+		bDodgeable = true,
+		bProvidesVision = false,
+	}
+
+	local count = 0
+	local targets = self.parent:FindTargets(self.attack_range)
+	if #targets > 0 then
+		self.caster:EmitSound("Hero_Bane.Attack")
+		for _, target in pairs(targets) do
+			count = count + 1
+			projectile.Target = target
+			ProjectileManager:CreateTrackingProjectile(projectile)
+			if count >= self.max then
+				break
+			end
+		end
+	end
+
+	if self.attacks_made >= self.attacks then
+		self:Destroy()
+		return
+	end
+end
+
+bane_nightmare_end_custom = class({})
 function bane_nightmare_end_custom:GetAbilityTextureName()
 	return wearables_system:GetAbilityIconReplacement(self.caster, "bane_nightmare_end", self)
 end
 
 function bane_nightmare_end_custom:OnSpellStart()
-	local caster = self:GetCaster()
-	local ability = caster:FindAbilityByName("bane_nightmare_custom")
-	if not ability then
+	local ability = self.caster.nightmare_ability
+	if not IsValid(ability) then
 		return
 	end
 
-	local mod = ability.friend_mod
-	if mod and not mod:IsNull() then
-		mod:Destroy()
-		return
+	if IsValid(ability.friend_mod) then
+		ability.friend_mod:Destroy()
 	end
 end
 
 bane_nightmare_custom_legendary = class({})
 bane_nightmare_custom_legendary.talents = {}
 
-function bane_nightmare_custom_legendary:CreateTalent()
-	self:SetHidden(false)
-	self:SetLevel(1)
+function bane_nightmare_custom_legendary:Init()
+	if not self:GetCaster() then
+		return
+	end
+	self.caster = self:GetCaster()
+
+	self.start_duration = self:GetLevelSpecialValueFor("start_duration", 1)
+	self.end_duration = self:GetLevelSpecialValueFor("end_duration", 1)
 end
 
 function bane_nightmare_custom_legendary:UpdateTalents(name)
@@ -687,44 +833,67 @@ function bane_nightmare_custom_legendary:UpdateTalents(name)
 	if not self.init then
 		self.init = true
 		self.talents = {
-			has_e7 = 0,
 			e7_duration = caster:GetTalentValue("modifier_bane_nightmare_7", "duration", true),
 			e7_damage = caster:GetTalentValue("modifier_bane_nightmare_7", "damage", true),
 			e7_talent_cd = caster:GetTalentValue("modifier_bane_nightmare_7", "talent_cd", true),
 			e7_effect_duration = caster:GetTalentValue("modifier_bane_nightmare_7", "effect_duration", true),
+
+			has_h5 = 0,
+			h5_silence = caster:GetTalentValue("modifier_bane_hero_5", "silence", true),
+			h5_slow = caster:GetTalentValue("modifier_bane_hero_5", "slow", true),
 		}
+	end
+
+	if caster:HasTalent("modifier_bane_hero_5") then
+		self.talents.has_h5 = 1
 	end
 end
 
 function bane_nightmare_custom_legendary:GetCooldown()
-	return self.talents.e7_talent_cd and self.talents.e7_talent_cd or 0
+	return self.talents.e7_talent_cd or 0
 end
 
 function bane_nightmare_custom_legendary:OnSpellStart()
-	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
-	local start_duration = self:GetSpecialValueFor("start_duration")
+	local start_duration = self.start_duration
 	local duration = self.talents.e7_duration + start_duration
 
 	target:RemoveModifierByName("modifier_bane_nightmare_custom_legendary_damage")
-	target:AddNewModifier(caster, self, "modifier_bane_nightmare_custom_legendary_damage", { duration = duration + 1 })
 	target:AddNewModifier(
-		caster,
+		self.caster,
+		self,
+		"modifier_bane_nightmare_custom_legendary_damage",
+		{ duration = duration + 1 }
+	)
+	target:AddNewModifier(
+		self.caster,
 		self,
 		"modifier_bane_nightmare_custom_legendary",
-		{ duration = duration, enemy = caster:entindex() }
+		{ duration = duration, enemy = self.caster:entindex() }
 	)
-	caster:AddNewModifier(
-		caster,
+	self.caster:AddNewModifier(
+		self.caster,
 		self,
 		"modifier_bane_nightmare_custom_legendary",
 		{ duration = duration, enemy = target:entindex() }
 	)
 end
 
+function bane_nightmare_custom_legendary:CreateTalent()
+	self:SetHidden(false)
+	self:SetLevel(1)
+	self:UpdateTalents()
+end
+
 modifier_bane_nightmare_custom_legendary = class(mod_visible)
 function modifier_bane_nightmare_custom_legendary:IsDebuff()
 	return true
+end
+function modifier_bane_nightmare_custom_legendary:GetStatusEffectName()
+	return "particles/status_fx/status_effect_nightmare.vpcf"
+end
+function modifier_bane_nightmare_custom_legendary:StatusEffectPriority()
+	return MODIFIER_PRIORITY_ULTRA
 end
 function modifier_bane_nightmare_custom_legendary:OnCreated(table)
 	self.parent = self:GetParent()
@@ -732,8 +901,8 @@ function modifier_bane_nightmare_custom_legendary:OnCreated(table)
 	self.ability = self:GetAbility()
 
 	self.is_enemy = self.parent:GetTeamNumber() ~= self.caster:GetTeamNumber()
-	self.start_duration = self.ability:GetSpecialValueFor("start_duration")
-	self.end_duration = self.ability:GetSpecialValueFor("end_duration")
+	self.start_duration = self.ability.start_duration
+	self.end_duration = self.ability.end_duration
 
 	if not IsServer() then
 		return
@@ -811,6 +980,12 @@ function modifier_bane_nightmare_custom_legendary:OnCreated(table)
 		self.illusion = illusion
 		illusion:Stop()
 
+		for _, mod in pairs(self.parent:FindAllModifiers()) do
+			if mod.StackOnIllusion then
+				illusion:UpgradeIllusion(mod:GetName(), mod:GetStackCount(), mod)
+			end
+		end
+
 		illusion:AddNewModifier(self.parent, nil, "modifier_chaos_knight_phantasm_illusion", {})
 		illusion:AddNewModifier(self.parent, nil, "modifier_bane_nightmare_custom_legendary_illusion", {})
 
@@ -818,12 +993,6 @@ function modifier_bane_nightmare_custom_legendary:OnCreated(table)
 		FindClearSpaceForUnit(illusion, self.point, true)
 
 		illusion.owner = self.parent
-
-		for _, mod in pairs(self.parent:FindAllModifiers()) do
-			if mod.StackOnIllusion ~= nil and mod.StackOnIllusion == true then
-				illusion:UpgradeIllusion(mod:GetName(), mod:GetStackCount())
-			end
-		end
 	end
 
 	local center = self.parent:GetAbsOrigin() + RandomVector(10)
@@ -1064,14 +1233,6 @@ function modifier_bane_nightmare_custom_legendary:OnDestroy()
 	end
 end
 
-function modifier_bane_nightmare_custom_legendary:GetStatusEffectName()
-	return "particles/status_fx/status_effect_nightmare.vpcf"
-end
-
-function modifier_bane_nightmare_custom_legendary:StatusEffectPriority()
-	return MODIFIER_PRIORITY_ULTRA
-end
-
 function modifier_bane_nightmare_custom_legendary:CheckState()
 	local state = {
 		[MODIFIER_STATE_NIGHTMARED] = true,
@@ -1092,6 +1253,12 @@ function modifier_bane_nightmare_custom_legendary:CheckState()
 end
 
 modifier_bane_nightmare_custom_legendary_illusion = class(mod_hidden)
+function modifier_bane_nightmare_custom_legendary_illusion:GetStatusEffectName()
+	return "particles/status_fx/status_effect_nightmare.vpcf"
+end
+function modifier_bane_nightmare_custom_legendary_illusion:StatusEffectPriority()
+	return MODIFIER_PRIORITY_ILLUSION
+end
 function modifier_bane_nightmare_custom_legendary_illusion:OnCreated(table)
 	if not IsServer() then
 		return
@@ -1144,14 +1311,6 @@ function modifier_bane_nightmare_custom_legendary_illusion:CheckState()
 		[MODIFIER_STATE_OUT_OF_GAME] = true,
 		[MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY] = true,
 	}
-end
-
-function modifier_bane_nightmare_custom_legendary_illusion:GetStatusEffectName()
-	return "particles/status_fx/status_effect_nightmare.vpcf"
-end
-
-function modifier_bane_nightmare_custom_legendary_illusion:StatusEffectPriority()
-	return MODIFIER_PRIORITY_ILLUSION
 end
 
 function modifier_bane_nightmare_custom_legendary_illusion:DeclareFunctions()
@@ -1220,8 +1379,7 @@ function modifier_bane_nightmare_custom_legendary_end:OnCreated(table)
 
 	self.parent:SetAbsOrigin(self.point)
 	FindClearSpaceForUnit(self.parent, self.point, false)
-	self.parent:SetForwardVector(self.illusion:GetForwardVector())
-	self.parent:FaceTowards(self.illusion:GetAbsOrigin() + self.illusion:GetForwardVector() * 10)
+	self.parent:FacePoint(self.illusion:GetAbsOrigin() + self.illusion:GetForwardVector() * 10)
 
 	ProjectileManager:ProjectileDodge(self.parent)
 end
@@ -1230,7 +1388,7 @@ function modifier_bane_nightmare_custom_legendary_end:OnDestroy()
 	if not IsServer() then
 		return
 	end
-	if not self.parent or self.parent:IsNull() then
+	if not IsValid(self.parent) then
 		return
 	end
 
@@ -1251,17 +1409,12 @@ function modifier_bane_nightmare_custom_legendary_end:OnDestroy()
 		self.illusion:Kill(nil, nil)
 	end
 
-	local main_ability = self.caster:FindAbilityByName("bane_nightmare_custom")
-	if
-		main_ability
-		and main_ability.talents.has_h5 == 1
-		and self.caster:GetTeamNumber() ~= self.parent:GetTeamNumber()
-	then
+	if self.ability.talents.has_h5 == 1 and self.caster:GetTeamNumber() ~= self.parent:GetTeamNumber() then
 		self.parent:AddNewModifier(
 			self.caster,
-			main_ability,
+			self.ability,
 			"modifier_bane_nightmare_custom_silence",
-			{ duration = (1 - self.parent:GetStatusResistance()) * main_ability.talents.h5_silence }
+			{ duration = (1 - self.parent:GetStatusResistance()) * self.ability.talents.h5_silence }
 		)
 	end
 end
@@ -1280,11 +1433,12 @@ end
 modifier_bane_nightmare_custom_legendary_end_effect = class(mod_hidden)
 function modifier_bane_nightmare_custom_legendary_end_effect:OnCreated(table)
 	self.parent = self:GetParent()
+	self.caster = self:GetCaster()
 	if not IsServer() then
 		return
 	end
 	local effect_name = wearables_system:GetParticleReplacementAbility(
-		self:GetCaster(),
+		self.caster,
 		"particles/units/heroes/hero_bane/bane_nightmare.vpcf",
 		self
 	)
@@ -1303,19 +1457,16 @@ function modifier_bane_nightmare_custom_legendary_end_effect:OnDestroy()
 	self.parent:FadeGesture(ACT_DOTA_DISABLED)
 end
 
-modifier_bane_nightmare_custom_legendary_damage = class({})
+modifier_bane_nightmare_custom_legendary_damage = class(mod_visible)
 function modifier_bane_nightmare_custom_legendary_damage:IsHidden()
 	return self:GetStackCount() == 1
-end
-function modifier_bane_nightmare_custom_legendary_damage:IsPurgable()
-	return false
 end
 function modifier_bane_nightmare_custom_legendary_damage:OnCreated()
 	self.caster = self:GetCaster()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.delay = self.ability:GetSpecialValueFor("end_duration")
+	self.delay = self.ability.end_duration
 	self.damage = self.ability.talents.e7_damage
 
 	if not IsServer() then
@@ -1373,154 +1524,4 @@ function modifier_bane_nightmare_custom_legendary_damage:GetModifierIncomingDama
 		return
 	end
 	return self.damage
-end
-
-modifier_bane_nightmare_custom_damage = class(mod_visible)
-function modifier_bane_nightmare_custom_damage:GetTexture()
-	return "buffs/bane/nightmare_2"
-end
-
-modifier_bane_nightmare_custom_slow = class({})
-function modifier_bane_nightmare_custom_slow:IsHidden()
-	return true
-end
-function modifier_bane_nightmare_custom_slow:IsPurgable()
-	return true
-end
-function modifier_bane_nightmare_custom_slow:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.slow = self.ability.talents.e1_slow
-	if not IsServer() then
-		return
-	end
-	self:SetStackCount(1)
-	self.parent:GenericParticle("particles/void_astral_slow.vpcf", self)
-end
-
-function modifier_bane_nightmare_custom_slow:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-	}
-end
-
-function modifier_bane_nightmare_custom_slow:GetModifierMoveSpeedBonus_Percentage()
-	return self.slow
-end
-
-modifier_bane_nightmare_custom_silence = class({})
-function modifier_bane_nightmare_custom_silence:IsHidden()
-	return true
-end
-function modifier_bane_nightmare_custom_silence:IsPurgable()
-	return true
-end
-function modifier_bane_nightmare_custom_silence:OnCreated()
-	self.parent = self:GetParent()
-	self.slow = self:GetAbility().talents.h5_slow
-	if not IsServer() then
-		return
-	end
-	self.parent:EmitSound("Sf.Raze_Silence")
-	self.parent:GenericParticle("particles/void_astral_slow.vpcf", self)
-	self.parent:GenericParticle("particles/bane/nightmare_legendary_silence.vpcf", self, true)
-end
-
-function modifier_bane_nightmare_custom_silence:CheckState()
-	return {
-		[MODIFIER_STATE_SILENCED] = true,
-	}
-end
-
-function modifier_bane_nightmare_custom_silence:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-	}
-end
-
-function modifier_bane_nightmare_custom_silence:GetModifierMoveSpeedBonus_Percentage()
-	return self.slow
-end
-
-modifier_bane_nightmare_custom_attack = class(mod_hidden)
-function modifier_bane_nightmare_custom_attack:OnCreated()
-	self.damage = self:GetAbility().talents.e3_damage - 100
-end
-
-function modifier_bane_nightmare_custom_attack:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE,
-	}
-end
-
-function modifier_bane_nightmare_custom_attack:GetModifierTotalDamageOutgoing_Percentage(params)
-	if params.inflictor then
-		return
-	end
-	return self.damage
-end
-
-modifier_bane_nightmare_custom_invun = class(mod_hidden)
-function modifier_bane_nightmare_custom_invun:CheckState()
-	return {
-		[MODIFIER_STATE_NO_HEALTH_BAR] = true,
-		[MODIFIER_STATE_INVULNERABLE] = true,
-		[MODIFIER_STATE_UNSLOWABLE] = true,
-	}
-end
-
-modifier_bane_nightmare_custom_attacks_mod = class(mod_visible)
-function modifier_bane_nightmare_custom_attacks_mod:OnCreated()
-	self.parent = self:GetParent()
-	self.caster = self:GetCaster()
-	self.ability = self:GetAbility()
-
-	self.max = self.ability.talents.e3_max
-	self.attacks = self.ability.talents.e3_attacks
-	self.attack_range = self.ability.talents.e3_radius
-	self.attack_interval = self.ability.talents.e3_duration / self.attacks
-	self.attacks_made = 0
-
-	if not IsServer() then
-		return
-	end
-	self:StartIntervalThink(self.attack_interval)
-end
-
-function modifier_bane_nightmare_custom_attacks_mod:OnIntervalThink()
-	if not IsServer() then
-		return
-	end
-
-	self.attacks_made = self.attacks_made + 1
-
-	local projectile = {
-		Source = self.caster,
-		Ability = self.ability,
-		EffectName = "particles/units/heroes/hero_bane/bane_projectile.vpcf",
-		iMoveSpeed = self.caster:GetProjectileSpeed(),
-		vSourceLoc = self.caster:GetAbsOrigin(),
-		bDodgeable = true,
-		bProvidesVision = false,
-	}
-
-	local count = 0
-	local targets = self.parent:FindTargets(self.attack_range)
-	if #targets > 0 then
-		self.caster:EmitSound("Hero_Bane.Attack")
-		for _, target in pairs(targets) do
-			count = count + 1
-			projectile.Target = target
-			ProjectileManager:CreateTrackingProjectile(projectile)
-			if count >= self.max then
-				break
-			end
-		end
-	end
-
-	if self.attacks_made >= self.attacks then
-		self:Destroy()
-		return
-	end
 end

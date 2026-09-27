@@ -88,7 +88,7 @@ function modifier_patrol_reward_1_ward:DeathEvent(params)
 	end
 
 	self:DecrementStackCount()
-	self.parent:GiveGold(self.gold, true)
+	self.parent:GiveGold(self.gold, true, nil, "modifier_patrol_reward_ward")
 
 	if self:GetStackCount() <= 0 then
 		self:Destroy()

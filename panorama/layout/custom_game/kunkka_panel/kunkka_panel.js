@@ -240,7 +240,7 @@ function GetCost(data)
         return
 
     let bonus = 0
-    let level = Game.HasTalent("npc_dota_hero_kunkka", "modifier_kunkka_shop_7", true)
+    let level = Game.HasTalent(Game.GetLocalPlayerID(), "modifier_kunkka_shop_7", true)
     if (level)
         bonus = Game.GetTalentValue("modifier_kunkka_shop_7", "gold")[level]/100
 

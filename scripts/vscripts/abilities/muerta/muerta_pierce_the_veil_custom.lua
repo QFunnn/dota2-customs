@@ -73,9 +73,12 @@ function muerta_pierce_the_veil_custom:Precache(context)
 	)
 	PrecacheResource("particle", "particles/muerta/muerta_quest_item.vpcf", context)
 	PrecacheResource("particle", "particles/muerta/muerta_attack_slow.vpcf", context)
-	PrecacheResource("particle", "particles/muerta/muerta_attack_slow.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_muerta/muerta_parting_shot_tether.vpcf", context)
 	PrecacheResource("particle", "particles/muerta/veil_radius.vpcf", context)
+	PrecacheResource("particle", "particles/wk_burn.vpcf", context)
+	PrecacheResource("particle", "particles/muerta/magic_hit.vpcf", context)
+	PrecacheResource("particle", "particles/muerta_item_active.vpcf", context)
+	PrecacheResource("particle", "particles/muerta/resist_stackb.vpcf", context)
 end
 
 function muerta_pierce_the_veil_custom:UpdateTalents(name)
@@ -135,14 +138,14 @@ function muerta_pierce_the_veil_custom:UpdateTalents(name)
 		self.talents.has_r1 = 1
 		self.talents.r1_damage = caster:GetTalentValue("modifier_muerta_veil_1", "damage") / 100
 		self.talents.r1_base = caster:GetTalentValue("modifier_muerta_veil_1", "base")
-		self.caster:AddAttackEvent_out(self.tracker, true)
+		caster:AddAttackEvent_out(self.tracker, true)
 	end
 
 	if caster:HasTalent("modifier_muerta_veil_2") then
 		self.talents.has_r2 = 1
 		self.talents.r2_range = caster:GetTalentValue("modifier_muerta_veil_2", "range")
 		self.talents.r2_slow = caster:GetTalentValue("modifier_muerta_veil_2", "slow")
-		self.caster:AddAttackEvent_out(self.tracker, true)
+		caster:AddAttackEvent_out(self.tracker, true)
 	end
 
 	if caster:HasTalent("modifier_muerta_veil_3") then
@@ -180,10 +183,6 @@ function muerta_pierce_the_veil_custom:GetCastAnimation()
 	return ACT_DOTA_CAST_ABILITY_4
 end
 
-function muerta_pierce_the_veil_custom:GetCooldown(level)
-	return self.BaseClass.GetCooldown(self, level)
-end
-
 function muerta_pierce_the_veil_custom:GetBehavior()
 	return DOTA_ABILITY_BEHAVIOR_NO_TARGET
 		+ (
@@ -193,38 +192,12 @@ function muerta_pierce_the_veil_custom:GetBehavior()
 		)
 end
 
-function muerta_pierce_the_veil_custom:LegendaryStack(is_shot)
-	if not IsServer() then
-		return
-	end
-	if not self:IsTrained() then
-		return
-	end
-	if self.ability.talents.has_r7 == 0 then
-		return
-	end
-	if self.ability:GetCooldownTimeRemaining() > 0 then
-		return
-	end
-	if self.parent:HasModifier("modifier_muerta_pierce_the_veil_custom") then
-		return
-	end
-
-	local stack = is_shot and self.talents.r7_shot_stack or 1
-	self.caster:AddNewModifier(
-		self.caster,
-		self,
-		"modifier_muerta_pierce_the_veil_custom_legendary_stack",
-		{ duration = self.talents.r7_stack_duration, stack = stack }
-	)
-end
-
 function muerta_pierce_the_veil_custom:OnSpellStart()
 	local duration = self.duration
 	local transform_duration = self.transform_duration
 	local stack = 0
 
-	if self.ability.talents.has_r7 == 1 then
+	if self.talents.has_r7 == 1 then
 		local mod = self.caster:FindModifierByName("modifier_muerta_pierce_the_veil_custom_legendary_stack")
 		if mod then
 			local max_duration = self.talents.r7_max * self.talents.r7_duration + self.talents.r3_duration_legendary
@@ -239,11 +212,11 @@ function muerta_pierce_the_veil_custom:OnSpellStart()
 	self.caster:Purge(false, true, false, false, false)
 	ProjectileManager:ProjectileDodge(self.caster)
 
-	if self.ability.talents.has_h6 == 1 then
+	if self.talents.has_h6 == 1 then
 		self.caster:StartGesture(ACT_DOTA_CAST_ABILITY_4)
 		self.caster:GenericHeal(
 			self.caster:GetMaxHealth() * self.talents.h6_heal,
-			self.ability,
+			self,
 			true,
 			"",
 			"modifier_muerta_hero_6"
@@ -305,7 +278,7 @@ function muerta_pierce_the_veil_custom:OnSpellStart()
 				mod:AddParticle(particle, false, false, -1, false, false)
 
 				if IsValid(self.caster.dead_ability) then
-					self.caster.dead_ability:ApplyFear(unit, self.ability.talents.r7_fear, nil, nil, true)
+					self.caster.dead_ability:ApplyFear(unit, self.talents.r7_fear, nil, nil, true)
 				end
 			end
 		end
@@ -328,9 +301,50 @@ function muerta_pierce_the_veil_custom:OnSpellStart()
 	self.caster:EmitSound("Hero_Muerta.PierceTheVeil.Cast")
 end
 
+function muerta_pierce_the_veil_custom:LegendaryStack(is_shot)
+	if not IsServer() then
+		return
+	end
+	if not self:IsTrained() then
+		return
+	end
+	if self.talents.has_r7 == 0 then
+		return
+	end
+	if self:GetCooldownTimeRemaining() > 0 then
+		return
+	end
+	if self.caster:HasModifier("modifier_muerta_pierce_the_veil_custom") then
+		return
+	end
+
+	local stack = is_shot and self.talents.r7_shot_stack or 1
+	self.caster:AddNewModifier(
+		self.caster,
+		self,
+		"modifier_muerta_pierce_the_veil_custom_legendary_stack",
+		{ duration = self.talents.r7_stack_duration, stack = stack }
+	)
+end
+
 modifier_muerta_pierce_the_veil_custom = class(mod_hidden)
 function modifier_muerta_pierce_the_veil_custom:GetPriority()
 	return MODIFIER_PRIORITY_ULTRA
+end
+function modifier_muerta_pierce_the_veil_custom:IsAura()
+	return IsServer() and self.parent:IsAlive() and self:GetStackCount() >= self.ability.talents.r7_max_magic
+end
+function modifier_muerta_pierce_the_veil_custom:GetModifierAura()
+	return "modifier_muerta_pierce_the_veil_custom_legendary_magic"
+end
+function modifier_muerta_pierce_the_veil_custom:GetAuraRadius()
+	return self.ability.talents.r7_radius
+end
+function modifier_muerta_pierce_the_veil_custom:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_ENEMY
+end
+function modifier_muerta_pierce_the_veil_custom:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
 end
 function modifier_muerta_pierce_the_veil_custom:OnCreated(table)
 	self.parent = self:GetParent()
@@ -452,23 +466,22 @@ function modifier_muerta_pierce_the_veil_custom:CheckState()
 	return result
 end
 
-function modifier_muerta_pierce_the_veil_custom:IsAura()
-	return IsServer() and self.parent:IsAlive() and self:GetStackCount() >= self.ability.talents.r7_max_magic
-end
-function modifier_muerta_pierce_the_veil_custom:GetModifierAura()
-	return "modifier_muerta_pierce_the_veil_custom_legendary_magic"
-end
-function modifier_muerta_pierce_the_veil_custom:GetAuraRadius()
-	return self.ability.talents.r7_radius
-end
-function modifier_muerta_pierce_the_veil_custom:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_ENEMY
-end
-function modifier_muerta_pierce_the_veil_custom:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
-end
-
 modifier_muerta_pierce_the_veil_custom_tracker = class(mod_hidden)
+function modifier_muerta_pierce_the_veil_custom_tracker:IsAura()
+	return true
+end
+function modifier_muerta_pierce_the_veil_custom_tracker:GetModifierAura()
+	return "modifier_muerta_pierce_the_veil"
+end
+function modifier_muerta_pierce_the_veil_custom_tracker:GetAuraRadius()
+	return 50
+end
+function modifier_muerta_pierce_the_veil_custom_tracker:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_FRIENDLY
+end
+function modifier_muerta_pierce_the_veil_custom_tracker:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_HERO
+end
 function modifier_muerta_pierce_the_veil_custom_tracker:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -567,8 +580,8 @@ function modifier_muerta_pierce_the_veil_custom_tracker:AttackEvent_out(params)
 		ParticleManager:ReleaseParticleIndex(particle)
 
 		local damage = self.parent:GetIntellect(false) * self.ability.talents.r1_damage + self.ability.talents.r1_base
-		for _, target in pairs(self.parent:FindTargets(self.ability.talents.r1_radius, target:GetAbsOrigin())) do
-			target:AddNewModifier(
+		for _, unit in pairs(self.parent:FindTargets(self.ability.talents.r1_radius, target:GetAbsOrigin())) do
+			unit:AddNewModifier(
 				self.parent,
 				self.ability,
 				"modifier_muerta_pierce_the_veil_custom_burn",
@@ -578,21 +591,6 @@ function modifier_muerta_pierce_the_veil_custom_tracker:AttackEvent_out(params)
 	end
 end
 
-function modifier_muerta_pierce_the_veil_custom_tracker:IsAura()
-	return true
-end
-function modifier_muerta_pierce_the_veil_custom_tracker:GetModifierAura()
-	return "modifier_muerta_pierce_the_veil"
-end
-function modifier_muerta_pierce_the_veil_custom_tracker:GetAuraRadius()
-	return 50
-end
-function modifier_muerta_pierce_the_veil_custom_tracker:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_FRIENDLY
-end
-function modifier_muerta_pierce_the_veil_custom_tracker:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_HERO
-end
 function modifier_muerta_pierce_the_veil_custom_tracker:GetAuraEntityReject(hEntity)
 	return hEntity ~= self.parent
 end
@@ -627,6 +625,9 @@ end
 modifier_muerta_pierce_the_veil_custom_slow_bonus = class(mod_visible)
 function modifier_muerta_pierce_the_veil_custom_slow_bonus:IsPurgable()
 	return true
+end
+function modifier_muerta_pierce_the_veil_custom_slow_bonus:GetTexture()
+	return "buffs/muerta/veil_2"
 end
 
 modifier_muerta_pierce_the_veil_custom_attack_cd = class(mod_cd)

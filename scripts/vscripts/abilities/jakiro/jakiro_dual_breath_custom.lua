@@ -67,6 +67,7 @@ function jakiro_dual_breath_custom:Precache(context)
 	PrecacheResource("particle", "particles/jakiro/dual_legendary_proc.vpcf", context)
 	PrecacheResource("particle", "particles/jakiro/macropyre_refresh_ice.vpcf", context)
 	PrecacheResource("particle", "particles/jakiro/macropyre_refresh_fire.vpcf", context)
+	PrecacheResource("particle", "particles/jakiro/ice_path_frost_debuff.vpcf", context)
 end
 
 function jakiro_dual_breath_custom:UpdateTalents(name)
@@ -182,9 +183,9 @@ function jakiro_dual_breath_custom:GetCastRange(vLocation, hTarget)
 end
 
 function jakiro_dual_breath_custom:GetRange()
-	return (self.AbilityCastRange and self.AbilityCastRange or 0)
+	return (self.AbilityCastRange or 0)
 		+ self.parent:GetUpgradeStack("modifier_jakiro_dual_breath_custom_legendary_damage")
-			* (self.talents.q7_range and self.talents.q7_range or 0)
+			* (self.talents.q7_range or 0)
 end
 
 function jakiro_dual_breath_custom:GetManaCost(level)
@@ -192,12 +193,11 @@ function jakiro_dual_breath_custom:GetManaCost(level)
 end
 
 function jakiro_dual_breath_custom:GetCooldown(iLevel)
-	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.q2_cd and self.talents.q2_cd or 0)
+	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.q2_cd or 0)
 end
 
 function jakiro_dual_breath_custom:GetDuration()
-	return (self.slow_duration and self.slow_duration or 0)
-		+ (self.talents.has_q4 == 1 and self.talents.q4_duration or 0)
+	return (self.slow_duration or 0) + (self.talents.has_q4 == 1 and self.talents.q4_duration or 0)
 end
 
 function jakiro_dual_breath_custom:GetDamage(is_ice)
@@ -222,7 +222,6 @@ function jakiro_dual_breath_custom:OnSpellStart(new_point)
 		point = new_point
 	end
 	local origin = self.caster:GetAbsOrigin()
-	local new_spell = 0
 
 	local projectile_distance = self:GetRange() + self.caster:GetCastRangeBonus()
 	local projectile_direction = point - origin
@@ -351,9 +350,9 @@ function jakiro_dual_breath_custom:OnProjectileHit_ExtraData(target, vLocation, 
 		self.caster.jakiro_innate:AbilityHit(target, self, table.is_ice)
 	end
 
-	if self.ability.talents.has_r7 == 1 and target:IsRealHero() and self.caster.macropyre_ability then
+	if self.talents.has_r7 == 1 and target:IsRealHero() and self.caster.macropyre_ability then
 		local mod = target:FindModifierByName("modifier_jakiro_macropyre_custom_legendary_damage")
-		if mod and mod:GetStackCount() >= self.ability.talents.r7_stack_max then
+		if mod and mod:GetStackCount() >= self.talents.r7_stack_max then
 			local particle = table.is_ice == 1 and "particles/jakiro/macropyre_refresh_ice.vpcf"
 				or "particles/jakiro/macropyre_refresh_fire.vpcf"
 			self.caster.macropyre_ability:AddCharge(1, particle)
@@ -550,6 +549,12 @@ end
 function modifier_jakiro_dual_breath_custom_ice_debuff:IsPurgable()
 	return self.ability.talents.has_q4 == 0
 end
+function modifier_jakiro_dual_breath_custom_ice_debuff:GetStatusEffectName()
+	return "particles/status_fx/status_effect_frost.vpcf"
+end
+function modifier_jakiro_dual_breath_custom_ice_debuff:StatusEffectPriority()
+	return MODIFIER_PRIORITY_NORMAL
+end
 function modifier_jakiro_dual_breath_custom_ice_debuff:OnCreated()
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
@@ -590,14 +595,6 @@ end
 
 function modifier_jakiro_dual_breath_custom_ice_debuff:GetModifierAttackSpeedBonus_Constant()
 	return self.attack_slow
-end
-
-function modifier_jakiro_dual_breath_custom_ice_debuff:GetStatusEffectName()
-	return "particles/status_fx/status_effect_frost.vpcf"
-end
-
-function modifier_jakiro_dual_breath_custom_ice_debuff:StatusEffectPriority()
-	return MODIFIER_PRIORITY_NORMAL
 end
 
 modifier_jakiro_dual_breath_custom_heal_reduce = class(mod_hidden)
@@ -669,12 +666,6 @@ modifier_jakiro_dual_breath_custom_disarm = class(mod_hidden)
 function modifier_jakiro_dual_breath_custom_disarm:IsPurgable()
 	return true
 end
-function modifier_jakiro_dual_breath_custom_disarm:CheckState()
-	return {
-		[MODIFIER_STATE_DISARMED] = true,
-	}
-end
-
 function modifier_jakiro_dual_breath_custom_disarm:OnCreated()
 	if not IsServer() then
 		return
@@ -683,6 +674,12 @@ function modifier_jakiro_dual_breath_custom_disarm:OnCreated()
 
 	self.parent:EmitSound("Jakiro.Dual_disarm")
 	self.parent:GenericParticle("particles/jakiro/ice_path_frost_debuff.vpcf", self, true)
+end
+
+function modifier_jakiro_dual_breath_custom_disarm:CheckState()
+	return {
+		[MODIFIER_STATE_DISARMED] = true,
+	}
 end
 
 modifier_jakiro_dual_breath_custom_legendary_mark = class(mod_hidden)
@@ -717,17 +714,10 @@ function modifier_jakiro_dual_breath_custom_legendary_damage:OnCreated(table)
 	if not IsServer() then
 		return
 	end
-	self:AddStack(table)
+	self:OnRefresh(table)
 end
 
 function modifier_jakiro_dual_breath_custom_legendary_damage:OnRefresh(table)
-	if not IsServer() then
-		return
-	end
-	self:AddStack(table)
-end
-
-function modifier_jakiro_dual_breath_custom_legendary_damage:AddStack(table)
 	if not IsServer() then
 		return
 	end

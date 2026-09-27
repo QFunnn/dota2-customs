@@ -8,7 +8,7 @@
 ]]
 
 
-<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf37:version{f9a1c8c4-159b-4786-b740-4d1a118c8f46} -->
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf66:version{dd571be4-586e-4f41-8b2d-5bbc969e1c53} -->
 {
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
@@ -84,9 +84,13 @@
 			m_flRadius2 = -10.0
 		},
 		{
-			_class = "C_INIT_RandomLifeTime"
-			m_fLifetimeMax = 0.5
-			m_fLifetimeMin = 0.5
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.5
+			}
+			m_nOutputField = 1
 		},
 		{
 			_class = "C_INIT_CreateInEpitrochoid"
@@ -107,14 +111,21 @@
 			m_ColorMax = [ 237, 63, 63 ]
 		},
 		{
-			_class = "C_INIT_RandomRadius"
-			m_flRadiusMin = 18.0
-			m_flRadiusMax = 18.0
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 18.0
+			}
 		},
 		{
-			_class = "C_INIT_RandomAlpha"
-			m_nAlphaMin = 75
-			m_nAlphaMax = 75
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.294118
+			}
+			m_nOutputField = 7
 		},
 	]
 	m_Operators = 

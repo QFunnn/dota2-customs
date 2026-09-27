@@ -14,6 +14,20 @@ LinkLuaModifier(
 	LUA_MODIFIER_MOTION_NONE
 )
 
+local function PirateHatBonus(data, parent)
+	if not data.rarity then
+		return
+	end
+	if data.rarity ~= "gray" then
+		return
+	end
+	if not parent:HasModifier("modifier_item_pirate_hat_custom") then
+		return
+	end
+
+	return parent.pirate_hat_bonus
+end
+
 item_pirate_hat_custom = class({})
 
 function item_pirate_hat_custom:Precache(context)
@@ -26,6 +40,12 @@ end
 
 function item_pirate_hat_custom:GetIntrinsicModifierName()
 	return "modifier_item_pirate_hat_custom"
+end
+
+function item_pirate_hat_custom:Spawn()
+	self.cd = self:GetSpecialValueFor("cd")
+	self.bonus = self:GetSpecialValueFor("bonus")
+	self.blue = self:GetSpecialValueFor("blue")
 end
 
 function item_pirate_hat_custom:OnAbilityPhaseStart()
@@ -66,40 +86,28 @@ function item_pirate_hat_custom:OnSpellStart()
 	local position = self:GetCursorPosition()
 	caster:StopSound("SeasonalConsumable.TI9.Shovel.Dig")
 	caster:EmitSound("Alch.gold")
-	self:StartCooldown(self:GetSpecialValueFor("cd"))
+	self:StartCooldown(self.cd)
 
 	dota1x6:CreateUpgradeOrb(caster, 1, position)
 
-	local effect_cast = ParticleManager:CreateParticle(
-		"particles/units/heroes/hero_alchemist/alchemist_lasthit_coins.vpcf",
-		PATTACH_ABSORIGIN_FOLLOW,
-		caster
-	)
-	ParticleManager:SetParticleControl(effect_cast, 1, caster:GetOrigin())
-	ParticleManager:ReleaseParticleIndex(effect_cast)
+	caster:GenericParticle("particles/units/heroes/hero_alchemist/alchemist_lasthit_coins.vpcf", nil, nil, { 1 })
 end
 
-modifier_item_pirate_hat_custom = class({})
-function modifier_item_pirate_hat_custom:IsHidden()
-	return true
-end
-function modifier_item_pirate_hat_custom:IsPurgable()
-	return false
-end
+modifier_item_pirate_hat_custom = class(mod_hidden)
 function modifier_item_pirate_hat_custom:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
-	self.bonus = self.ability:GetSpecialValueFor("bonus")
-	self.blue_bonus = self.ability:GetSpecialValueFor("blue") / 100
-	if not IsServer() then
-		return
-	end
-	self.parent:UpdateCommonBonus()
+	self.bonus = self.ability.bonus
+	self.blue_bonus = self.ability.blue / 100
+
+	self.parent.pirate_hat_bonus = self.bonus / 100
+	self.parent:AddTalentIncreaseFunction("modifier_item_pirate_hat_custom", PirateHatBonus)
+	self.parent:RefreshTalentIncrease()
 end
 
 function modifier_item_pirate_hat_custom:OnDestroy()
-	if not IsServer() then
+	if not IsValid(self.parent) then
 		return
 	end
-	self.parent:UpdateCommonBonus()
+	self.parent:RefreshTalentIncrease()
 end

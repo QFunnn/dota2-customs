@@ -158,10 +158,6 @@ function bane_brain_sap_custom:UpdateTalents(name)
 	end
 end
 
-function bane_brain_sap_custom:Init()
-	self.caster = self:GetCaster()
-end
-
 function bane_brain_sap_custom:GetIntrinsicModifierName()
 	if not self:GetCaster():IsRealHero() then
 		return
@@ -170,12 +166,12 @@ function bane_brain_sap_custom:GetIntrinsicModifierName()
 end
 
 function bane_brain_sap_custom:GetCooldown(level)
-	return (self.BaseClass.GetCooldown(self, level) + (self.talents.w1_cd and self.talents.w1_cd or 0))
+	return (self.BaseClass.GetCooldown(self, level) + (self.talents.w1_cd or 0))
 		* (1 + (self.talents.has_w7 == 1 and self.talents.w7_cd or 0))
 end
 
 function bane_brain_sap_custom:GetAOERadius()
-	return self:GetSpecialValueFor("radius")
+	return self.radius or 0
 end
 
 function bane_brain_sap_custom:GetCastRange(vLocation, hTarget)
@@ -204,13 +200,8 @@ function bane_brain_sap_custom:OnSpellStart()
 end
 
 function bane_brain_sap_custom:DealDamage(target, is_auto)
-	local damage = self:GetSpecialValueFor("brain_sap_damage")
-		+ self.talents.w2_base
-		+ self.talents.w2_damage * self.caster:GetMaxMana()
-	local radius = self:GetSpecialValueFor("radius")
-	local heal = self:GetSpecialValueFor("heal") / 100
+	local damage = self.brain_sap_damage + self.talents.w2_base + self.talents.w2_damage * self.caster:GetMaxMana()
 	local damage_ability = nil
-	local visual_caster = self:GetCaster()
 
 	if self.talents.has_w7 == 1 then
 		damage = damage * (1 + (1 - self.caster:GetMana() / self.caster:GetMaxMana()) * self.talents.w7_damage)
@@ -248,20 +239,20 @@ function bane_brain_sap_custom:DealDamage(target, is_auto)
 
 	local damage_table = { attacker = self.caster, ability = self, damage = damage, damage_type = DAMAGE_TYPE_PURE }
 
-	local targets = self.caster:FindTargets(radius, target:GetAbsOrigin())
+	local targets = self.caster:FindTargets(self.radius, target:GetAbsOrigin())
 	for _, unit in pairs(targets) do
 		local effect_cast = ParticleManager:CreateParticle(
 			"particles/units/heroes/hero_bane/bane_sap.vpcf",
 			PATTACH_CUSTOMORIGIN,
-			visual_caster
+			self.caster
 		)
 		ParticleManager:SetParticleControlEnt(
 			effect_cast,
 			0,
-			visual_caster,
+			self.caster,
 			PATTACH_POINT_FOLLOW,
 			"attach_hitloc",
-			visual_caster:GetOrigin(),
+			self.caster:GetOrigin(),
 			true
 		)
 		ParticleManager:SetParticleControlEnt(
@@ -278,29 +269,21 @@ function bane_brain_sap_custom:DealDamage(target, is_auto)
 		damage_table.victim = unit
 		local real_damage = DoDamage(damage_table, damage_ability)
 		if target == unit and not target:IsIllusion() then
-			self.caster:GenericHeal(real_damage * heal, self, nil, nil, damage_ability)
+			self.caster:GenericHeal(real_damage * self.heal, self, nil, nil, damage_ability)
 		end
 	end
 end
 
 modifier_bane_brain_sap_custom_tracker = class(mod_hidden)
-function modifier_bane_brain_sap_custom_tracker:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_MANACOST_PERCENTAGE_STACKING,
-		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
-		MODIFIER_PROPERTY_CAST_RANGE_BONUS_STACKING,
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
-		--MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET,
-		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
-		--MODIFIER_PROPERTY_LIFESTEAL_AMPLIFY_PERCENTAGE,
-	}
-end
-
 function modifier_bane_brain_sap_custom_tracker:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 	self.ability.tracker = self
 	self.ability:UpdateTalents()
+
+	self.ability.radius = self.ability:GetSpecialValueFor("radius")
+	self.ability.brain_sap_damage = self.ability:GetSpecialValueFor("brain_sap_damage")
+	self.ability.heal = self.ability:GetSpecialValueFor("heal") / 100
 
 	self.legendary_ability = self.parent:FindAbilityByName("bane_brain_sap_custom_legendary")
 	if self.legendary_ability then
@@ -308,11 +291,18 @@ function modifier_bane_brain_sap_custom_tracker:OnCreated(table)
 	end
 end
 
-function modifier_bane_brain_sap_custom_tracker:GetModifierLifestealRegenAmplify_Percentage()
-	if self.ability.talents.has_h4 == 0 then
-		return
-	end
-	return self.ability.talents.h4_heal_inc
+function modifier_bane_brain_sap_custom_tracker:OnRefresh(table)
+	self.ability.brain_sap_damage = self.ability:GetSpecialValueFor("brain_sap_damage")
+end
+
+function modifier_bane_brain_sap_custom_tracker:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_MANACOST_PERCENTAGE_STACKING,
+		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
+		MODIFIER_PROPERTY_CAST_RANGE_BONUS_STACKING,
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
+		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
+	}
 end
 
 function modifier_bane_brain_sap_custom_tracker:GetModifierHealChange()
@@ -338,20 +328,20 @@ function modifier_bane_brain_sap_custom_tracker:GetModifierMoveSpeedBonus_Consta
 end
 
 function modifier_bane_brain_sap_custom_tracker:GetModifierSpellAmplify_Percentage()
-	if self.ability.talents.w3_mana <= 0 then
+	if not IsValid(self.parent) then
+		return
+	end
+	if self.ability.talents.has_w3 == 0 then
 		return
 	end
 	return self.parent:GetMaxMana() / self.ability.talents.w3_mana
 end
 
 function modifier_bane_brain_sap_custom_tracker:GetModifierPercentageManacostStacking(params)
-	if self.ability.talents.has_w7 == 1 then
-		if params.ability and params.ability == self.ability then
-			return self.ability.talents.w1_mana
-		else
-			return 100
-		end
+	if self.ability.talents.has_w7 == 1 and params.ability and params.ability ~= self.ability then
+		return 100
 	end
+
 	return self.ability.talents.w1_mana
 end
 
@@ -407,7 +397,7 @@ function modifier_bane_brain_sap_custom_tracker:DamageEvent_inc(params)
 	end
 
 	if IsValid(self.shield_mod) then
-		self.shield:Destroy()
+		self.shield_mod:Destroy()
 	end
 
 	self.shield_mod = self.parent:AddNewModifier(self.parent, self.ability, "modifier_generic_shield", {
@@ -556,138 +546,6 @@ function modifier_bane_brain_sap_custom_tracker:SpellEvent(params)
 	end
 end
 
-bane_brain_sap_custom_legendary = class({})
-bane_brain_sap_custom_legendary.talents = {}
-
-function bane_brain_sap_custom_legendary:CreateTalent()
-	self:SetHidden(false)
-	self:SetLevel(1)
-end
-
-function bane_brain_sap_custom_legendary:UpdateTalents(name)
-	local caster = self:GetCaster()
-	if not self.init then
-		self.init = true
-		self.talents = {
-			has_w7 = 0,
-			w7_duration = caster:GetTalentValue("modifier_bane_brain_7", "duration", true),
-			w7_damage_reduce = caster:GetTalentValue("modifier_bane_brain_7", "damage_reduce", true),
-			w7_talent_cd = caster:GetTalentValue("modifier_bane_brain_7", "talent_cd", true),
-		}
-	end
-end
-
-function bane_brain_sap_custom_legendary:Init()
-	self.caster = self:GetCaster()
-end
-
-function bane_brain_sap_custom_legendary:GetCooldown()
-	return self.talents.w7_talent_cd and self.talents.w7_talent_cd or 0
-end
-
-function bane_brain_sap_custom_legendary:OnAbilityPhaseStart()
-	if self.caster:GetManaPercent() >= 99 then
-		CustomGameEventManager:Send_ServerToPlayer(
-			PlayerResource:GetPlayer(self.caster:GetPlayerOwnerID()),
-			"CreateIngameErrorMessage",
-			{ message = "#bane_full_mana" }
-		)
-		return false
-	end
-	return true
-end
-
-function bane_brain_sap_custom_legendary:OnSpellStart()
-	self.caster:EmitSound("Bane.Sap_legendary_voice")
-	self.caster:EmitSound("Bane.Sap_legendary_cast")
-	self.caster:EmitSound("Bane.Sap_legendary_cast2")
-
-	self.caster:GenericParticle("particles/bane/sap_legendary_start.vpcf")
-	self.caster:AddNewModifier(
-		self.caster,
-		self,
-		"modifier_bane_brain_sap_custom_legendary",
-		{ duration = self.talents.w7_duration }
-	)
-end
-
-modifier_bane_brain_sap_custom_legendary = class(mod_visible)
-function modifier_bane_brain_sap_custom_legendary:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.damage_reduce = self.ability.talents.w7_damage_reduce
-	self.mana = 100 / self:GetRemainingTime()
-
-	if not IsServer() then
-		return
-	end
-	self.parent:GenericParticle("particles/generic_gameplay/generic_sleep.vpcf", self, true)
-	self.parent:GenericParticle("particles/bane/sap_legendary.vpcf", self)
-	self.parent:StartGestureWithPlaybackRate(ACT_DOTA_DISABLED, 0.5)
-
-	self.interval = 0.1
-
-	self.effect_interval = 0.5
-	self.effect_count = 0
-
-	self:OnIntervalThink()
-	self:StartIntervalThink(self.interval)
-end
-
-function modifier_bane_brain_sap_custom_legendary:OnIntervalThink()
-	if not IsServer() then
-		return
-	end
-
-	self.effect_count = self.effect_count + self.interval
-	if self.effect_count >= self.effect_interval then
-		self.effect_count = 0
-		self.parent:GenericParticle("particles/bane/sap_mana.vpcf")
-	end
-
-	local mana = self.mana * self.interval * self.parent:GetMaxMana() / 100
-	self.parent:GiveMana(mana)
-
-	if self.parent:GetManaPercent() >= 99 then
-		self:Destroy()
-		return
-	end
-end
-
-function modifier_bane_brain_sap_custom_legendary:GetStatusEffectName()
-	return "particles/status_fx/status_effect_nightmare.vpcf"
-end
-
-function modifier_bane_brain_sap_custom_legendary:StatusEffectPriority()
-	return MODIFIER_PRIORITY_ULTRA
-end
-
-function modifier_bane_brain_sap_custom_legendary:CheckState()
-	return {
-		[MODIFIER_STATE_STUNNED] = true,
-	}
-end
-
-function modifier_bane_brain_sap_custom_legendary:OnDestroy()
-	if not IsServer() then
-		return
-	end
-	self.parent:StopSound("Bane.Sap_legendary_cast")
-	self.parent:EmitSound("Bane.Sap_legendary_end")
-	self.parent:FadeGesture(ACT_DOTA_DISABLED)
-end
-
-function modifier_bane_brain_sap_custom_legendary:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
-	}
-end
-
-function modifier_bane_brain_sap_custom_legendary:GetModifierIncomingDamage_Percentage()
-	return self.damage_reduce
-end
-
 modifier_bane_brain_sap_custom_auto_cd = class(mod_cd)
 function modifier_bane_brain_sap_custom_auto_cd:GetTexture()
 	return "buffs/bane/brain_3"
@@ -735,15 +593,8 @@ end
 
 function modifier_bane_brain_sap_custom_heal_reduce:DeclareFunctions()
 	return {
-
-		--MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET,
 		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
-		--MODIFIER_PROPERTY_LIFESTEAL_AMPLIFY_PERCENTAGE,
 	}
-end
-
-function modifier_bane_brain_sap_custom_heal_reduce:GetModifierLifestealRegenAmplify_Percentage()
-	return self.heal_reduce
 end
 
 function modifier_bane_brain_sap_custom_heal_reduce:GetModifierHealChange()
@@ -752,4 +603,129 @@ end
 
 function modifier_bane_brain_sap_custom_heal_reduce:GetModifierHPRegenAmplify_Percentage()
 	return self.heal_reduce
+end
+
+bane_brain_sap_custom_legendary = class({})
+bane_brain_sap_custom_legendary.talents = {}
+
+function bane_brain_sap_custom_legendary:CreateTalent()
+	self:SetHidden(false)
+	self:SetLevel(1)
+end
+
+function bane_brain_sap_custom_legendary:UpdateTalents(name)
+	local caster = self:GetCaster()
+	if not self.init then
+		self.init = true
+		self.talents = {
+			w7_duration = caster:GetTalentValue("modifier_bane_brain_7", "duration", true),
+			w7_damage_reduce = caster:GetTalentValue("modifier_bane_brain_7", "damage_reduce", true),
+			w7_talent_cd = caster:GetTalentValue("modifier_bane_brain_7", "talent_cd", true),
+		}
+	end
+end
+
+function bane_brain_sap_custom_legendary:GetCooldown()
+	return self.talents.w7_talent_cd or 0
+end
+
+function bane_brain_sap_custom_legendary:OnAbilityPhaseStart()
+	if self.caster:GetManaPercent() >= 99 then
+		CustomGameEventManager:Send_ServerToPlayer(
+			PlayerResource:GetPlayer(self.caster:GetPlayerOwnerID()),
+			"CreateIngameErrorMessage",
+			{ message = "#bane_full_mana" }
+		)
+		return false
+	end
+	return true
+end
+
+function bane_brain_sap_custom_legendary:OnSpellStart()
+	self.caster:EmitSound("Bane.Sap_legendary_voice")
+	self.caster:EmitSound("Bane.Sap_legendary_cast")
+	self.caster:EmitSound("Bane.Sap_legendary_cast2")
+
+	self.caster:GenericParticle("particles/bane/sap_legendary_start.vpcf")
+	self.caster:AddNewModifier(
+		self.caster,
+		self,
+		"modifier_bane_brain_sap_custom_legendary",
+		{ duration = self.talents.w7_duration }
+	)
+end
+
+modifier_bane_brain_sap_custom_legendary = class(mod_visible)
+function modifier_bane_brain_sap_custom_legendary:GetStatusEffectName()
+	return "particles/status_fx/status_effect_nightmare.vpcf"
+end
+function modifier_bane_brain_sap_custom_legendary:StatusEffectPriority()
+	return MODIFIER_PRIORITY_ULTRA
+end
+function modifier_bane_brain_sap_custom_legendary:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.damage_reduce = self.ability.talents.w7_damage_reduce
+	self.mana = 100 / self:GetRemainingTime()
+
+	if not IsServer() then
+		return
+	end
+	self.parent:GenericParticle("particles/generic_gameplay/generic_sleep.vpcf", self, true)
+	self.parent:GenericParticle("particles/bane/sap_legendary.vpcf", self)
+	self.parent:StartGestureWithPlaybackRate(ACT_DOTA_DISABLED, 0.5)
+
+	self.interval = 0.1
+
+	self.effect_interval = 0.5
+	self.effect_count = 0
+
+	self:OnIntervalThink()
+	self:StartIntervalThink(self.interval)
+end
+
+function modifier_bane_brain_sap_custom_legendary:OnIntervalThink()
+	if not IsServer() then
+		return
+	end
+
+	self.effect_count = self.effect_count + self.interval
+	if self.effect_count >= self.effect_interval then
+		self.effect_count = 0
+		self.parent:GenericParticle("particles/bane/sap_mana.vpcf")
+	end
+
+	local mana = self.mana * self.interval * self.parent:GetMaxMana() / 100
+	self.parent:GiveMana(mana)
+
+	if self.parent:GetManaPercent() >= 99 then
+		self:Destroy()
+		return
+	end
+end
+
+function modifier_bane_brain_sap_custom_legendary:OnDestroy()
+	if not IsServer() then
+		return
+	end
+	self.parent:StopSound("Bane.Sap_legendary_cast")
+	self.parent:EmitSound("Bane.Sap_legendary_end")
+	self.parent:FadeGesture(ACT_DOTA_DISABLED)
+end
+
+function modifier_bane_brain_sap_custom_legendary:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
+	}
+end
+
+function modifier_bane_brain_sap_custom_legendary:CheckState()
+	return {
+		[MODIFIER_STATE_STUNNED] = true,
+	}
+end
+
+function modifier_bane_brain_sap_custom_legendary:GetModifierIncomingDamage_Percentage()
+	return self.damage_reduce
 end

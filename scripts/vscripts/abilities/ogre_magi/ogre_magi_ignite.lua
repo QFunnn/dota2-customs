@@ -60,6 +60,11 @@ function ogre_magi_ignite_custom:Precache(context)
 		"particles/econ/items/ogre_magi/ogre_magi_arcana/ogre_magi_arcana_fireblast.vpcf",
 		context
 	)
+	PrecacheResource(
+		"particle",
+		"particles/econ/items/ogre_magi/ogre_magi_arcana/ogre_magi_arcana_ignite_debuff_explosion.vpcf",
+		context
+	)
 end
 
 function ogre_magi_ignite_custom:UpdateTalents(name)
@@ -67,11 +72,9 @@ function ogre_magi_ignite_custom:UpdateTalents(name)
 	if not self.init then
 		self.init = true
 		self.talents = {
-			has_w1 = 0,
 			w1_damage = 0,
 			w1_bonus = 0,
 
-			has_w2 = 0,
 			w2_cd = 0,
 
 			has_w3 = 0,
@@ -82,10 +85,12 @@ function ogre_magi_ignite_custom:UpdateTalents(name)
 			w3_radius = caster:GetTalentValue("modifier_ogremagi_ignite_3", "radius", true),
 			w3_chance = caster:GetTalentValue("modifier_ogremagi_ignite_3", "chance", true),
 			w3_slow_duration = caster:GetTalentValue("modifier_ogremagi_ignite_3", "slow_duration", true),
+			w3_cd = caster:GetTalentValue("modifier_ogremagi_ignite_3", "cd", true),
 
 			has_w4 = 0,
 			w4_duration = caster:GetTalentValue("modifier_ogremagi_ignite_4", "duration", true),
 			w4_range = caster:GetTalentValue("modifier_ogremagi_ignite_4", "range", true),
+			w4_cd = caster:GetTalentValue("modifier_ogremagi_ignite_4", "cd", true),
 
 			has_w7 = 0,
 			w7_duration = caster:GetTalentValue("modifier_ogremagi_ignite_7", "duration", true),
@@ -109,13 +114,11 @@ function ogre_magi_ignite_custom:UpdateTalents(name)
 	end
 
 	if caster:HasTalent("modifier_ogremagi_ignite_1") then
-		self.talents.has_w1 = 1
 		self.talents.w1_damage = caster:GetTalentValue("modifier_ogremagi_ignite_1", "damage")
 		self.talents.w1_bonus = caster:GetTalentValue("modifier_ogremagi_ignite_1", "bonus") / 100
 	end
 
 	if caster:HasTalent("modifier_ogremagi_ignite_2") then
-		self.talents.has_w2 = 1
 		self.talents.w2_cd = caster:GetTalentValue("modifier_ogremagi_ignite_2", "cd")
 	end
 
@@ -123,7 +126,7 @@ function ogre_magi_ignite_custom:UpdateTalents(name)
 		self.talents.has_w3 = 1
 		self.talents.w3_bva = caster:GetTalentValue("modifier_ogremagi_ignite_3", "bva")
 		self.talents.w3_damage = caster:GetTalentValue("modifier_ogremagi_ignite_3", "damage") / 100
-		self.caster:AddAttackEvent_out(self.tracker, true)
+		caster:AddAttackEvent_out(self.tracker, true)
 	end
 
 	if caster:HasTalent("modifier_ogremagi_ignite_4") then
@@ -160,10 +163,11 @@ end
 
 function ogre_magi_ignite_custom:GetCooldown(iLevel)
 	return self.BaseClass.GetCooldown(self, iLevel)
-		+ (self.talents.w2_cd and self.talents.w2_cd or 0)
+		+ (self.talents.w2_cd or 0)
 		+ (
-			(self.talents.has_w3 == 1 or self.talents.has_w4 == 1 or self.talents.has_w7 == 1)
-				and self.talents.w7_cd
+			self.talents.has_w7 == 1 and self.talents.w7_cd
+			or self.talents.has_w4 == 1 and self.talents.w4_cd
+			or self.talents.has_w3 == 1 and self.talents.w3_cd
 			or 0
 		)
 end
@@ -173,7 +177,7 @@ function ogre_magi_ignite_custom:GetCastPoint(iLevel)
 end
 
 function ogre_magi_ignite_custom:GetAOERadius()
-	return self.aoe_radius and self.aoe_radius or 0
+	return self.aoe_radius or 0
 end
 
 function ogre_magi_ignite_custom:GetDamage(target, is_proc)
@@ -188,7 +192,7 @@ function ogre_magi_ignite_custom:GetDamage(target, is_proc)
 end
 
 function ogre_magi_ignite_custom:OnSpellStart(new_target)
-	local target = new_target and new_target or self:GetCursorTarget()
+	local target = new_target or self:GetCursorTarget()
 	local particle_name = wearables_system:GetParticleReplacementAbility(
 		self.caster,
 		"particles/units/heroes/hero_ogre_magi/ogre_magi_ignite.vpcf",
@@ -222,15 +226,15 @@ function ogre_magi_ignite_custom:OnSpellStart(new_target)
 			self.caster,
 			self,
 			"modifier_ogre_magi_ignite_custom_buff",
-			{ duration = self.talents.w7_duration }
+			{
+				duration = self.talents.has_w7 == 1 and self.talents.w7_duration
+					or self.talents.has_w4 == 1 and self.talents.w4_duration
+					or self.talents.w3_duration,
+			}
 		)
 	end
 
-	if
-		self.ability.talents.has_e3 == 1
-		and self.ability.talents.has_e7 == 0
-		and IsValid(self.caster.bloodlust_ability)
-	then
+	if self.talents.has_e3 == 1 and self.talents.has_e7 == 0 and IsValid(self.caster.bloodlust_ability) then
 		self.caster:AddNewModifier(
 			self.caster,
 			self.caster.bloodlust_ability,
@@ -240,29 +244,6 @@ function ogre_magi_ignite_custom:OnSpellStart(new_target)
 	end
 
 	self.caster:EmitSound("Hero_OgreMagi.Ignite.Cast")
-end
-
-function ogre_magi_ignite_custom:ApplySilence(target, type)
-	if not IsServer() then
-		return
-	end
-	if not self:IsTrained() then
-		return
-	end
-	if self.talents.has_h5 == 0 then
-		return
-	end
-	if not target:CheckCd(type, self.ability.talents.h5_talent_cd) then
-		return
-	end
-
-	target:RemoveModifierByName("modifier_ogre_magi_ignite_custom_silence")
-	target:AddNewModifier(
-		self.caster,
-		self,
-		"modifier_ogre_magi_ignite_custom_silence",
-		{ duration = (1 - target:GetStatusResistance()) * self.talents.h5_silence }
-	)
 end
 
 function ogre_magi_ignite_custom:OnProjectileHit_ExtraData(target, location, data)
@@ -294,11 +275,34 @@ function ogre_magi_ignite_custom:OnProjectileHit_ExtraData(target, location, dat
 	target:EmitSound("Hero_OgreMagi.Ignite.Target")
 end
 
+function ogre_magi_ignite_custom:ApplySilence(target, type)
+	if not IsServer() then
+		return
+	end
+	if not self:IsTrained() then
+		return
+	end
+	if self.talents.has_h5 == 0 then
+		return
+	end
+	if not target:CheckCd(type, self.talents.h5_talent_cd) then
+		return
+	end
+
+	target:RemoveModifierByName("modifier_ogre_magi_ignite_custom_silence")
+	target:AddNewModifier(
+		self.caster,
+		self,
+		"modifier_ogre_magi_ignite_custom_silence",
+		{ duration = (1 - target:GetStatusResistance()) * self.talents.h5_silence }
+	)
+end
+
 modifier_ogre_magi_ignite_custom = class(mod_visible)
 function modifier_ogre_magi_ignite_custom:IsPurgable()
 	return true
 end
-function modifier_ogre_magi_ignite_custom:OnCreated(kv)
+function modifier_ogre_magi_ignite_custom:OnCreated()
 	self.caster = self:GetCaster()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -751,6 +755,6 @@ function modifier_ogre_magi_ignite_custom_legendary_damage:OnDestroy()
 	ParticleManager:ReleaseParticleIndex(particle)
 	self.parent:EmitSound("Hero_OgreMagi.Fireblast.Target")
 
-	local real_damage = DoDamage(self.damageTable)
+	local real_damage = DoDamage(self.damageTable, "modifier_ogremagi_ignite_7")
 	self.parent:SendNumber(109, real_damage)
 end

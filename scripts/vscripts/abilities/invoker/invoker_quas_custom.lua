@@ -59,12 +59,12 @@ LinkLuaModifier(
 )
 
 invoker_quas_custom = class({})
+invoker_quas_custom.talents = {}
 
 function invoker_quas_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
 	end
-
 	PrecacheResource("particle", "particles/units/heroes/hero_invoker/invoker_cold_snap_status.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_invoker/invoker_cold_snap.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_invoker/invoker_ghost_walk.vpcf", context)
@@ -137,7 +137,7 @@ end
 
 function invoker_quas_custom:GetBehavior()
 	local bonus = 0
-	if self:GetCaster():HasShard() then
+	if self.caster:HasShard() then
 		bonus = DOTA_ABILITY_BEHAVIOR_IGNORE_SILENCE_CUSTOM + DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE
 	end
 	return DOTA_ABILITY_BEHAVIOR_NO_TARGET
@@ -147,11 +147,10 @@ function invoker_quas_custom:GetBehavior()
 end
 
 function invoker_quas_custom:OnSpellStart()
-	local caster = self:GetCaster()
-	local modifier = caster:AddNewModifier(caster, self, "modifier_invoker_quas_custom", {})
+	local modifier = self.caster:AddNewModifier(self.caster, self, "modifier_invoker_quas_custom", {})
 
-	if IsValid(caster.invoke_ability) then
-		caster.invoke_ability:AddOrb(modifier)
+	if IsValid(self.caster.invoke_ability) then
+		self.caster.invoke_ability:AddOrb(modifier)
 	end
 end
 
@@ -159,7 +158,7 @@ modifier_invoker_quas_custom = class(mod_visible)
 function modifier_invoker_quas_custom:GetAttributes()
 	return MODIFIER_ATTRIBUTE_PERMANENT + MODIFIER_ATTRIBUTE_MULTIPLE
 end
-function modifier_invoker_quas_custom:OnCreated(kv)
+function modifier_invoker_quas_custom:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 end
@@ -178,6 +177,26 @@ function modifier_invoker_quas_custom:GetModifierConstantHealthRegen()
 end
 
 modifier_invoker_quas_custom_passive = class(mod_hidden)
+function modifier_invoker_quas_custom_passive:IsAura()
+	return (self.ability.talents.has_q7 == 1 or self.ability.talents.has_s1 == 0)
+		and IsServer()
+		and self.parent:IsAlive()
+end
+function modifier_invoker_quas_custom_passive:GetAuraDuration()
+	return 0.1
+end
+function modifier_invoker_quas_custom_passive:GetAuraRadius()
+	return self.ability.talents.q7_radius
+end
+function modifier_invoker_quas_custom_passive:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_ENEMY
+end
+function modifier_invoker_quas_custom_passive:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
+end
+function modifier_invoker_quas_custom_passive:GetModifierAura()
+	return "modifier_invoker_cold_snap_custom_legendary_aura"
+end
 function modifier_invoker_quas_custom_passive:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -235,27 +254,6 @@ function modifier_invoker_quas_custom_passive:GetModifierConstantHealthRegen()
 	return 3 * self.ability.health_regen
 end
 
-function modifier_invoker_quas_custom_passive:IsAura()
-	return (self.ability.talents.has_q7 == 1 or self.ability.talents.has_s1 == 0)
-		and IsServer()
-		and self.parent:IsAlive()
-end
-function modifier_invoker_quas_custom_passive:GetAuraDuration()
-	return 0.1
-end
-function modifier_invoker_quas_custom_passive:GetAuraRadius()
-	return self.ability.talents.q7_radius
-end
-function modifier_invoker_quas_custom_passive:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_ENEMY
-end
-function modifier_invoker_quas_custom_passive:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
-end
-function modifier_invoker_quas_custom_passive:GetModifierAura()
-	return "modifier_invoker_cold_snap_custom_legendary_aura"
-end
-
 function modifier_invoker_quas_custom_passive:GetAuraEntityReject(target)
 	if target:IsFieldInvun(self.parent) then
 		return true
@@ -263,6 +261,210 @@ function modifier_invoker_quas_custom_passive:GetAuraEntityReject(target)
 	return not target:HasModifier("modifier_invoker_cold_snap_custom")
 		and not target:HasModifier("modifier_invoker_ghost_walk_custom_debuff")
 		and not target:HasModifier("modifier_invoker_ice_wall_custom_slow")
+end
+
+modifier_invoker_cold_snap_custom_legendary_aura = class(mod_hidden)
+function modifier_invoker_cold_snap_custom_legendary_aura:OnCreated()
+	self.parent = self:GetParent()
+	self.caster = self:GetCaster()
+	self.ability = self:GetAbility()
+	if not IsServer() then
+		return
+	end
+	self:StartIntervalThink(1)
+end
+
+function modifier_invoker_cold_snap_custom_legendary_aura:OnIntervalThink()
+	if not IsServer() then
+		return
+	end
+	if self.parent:IsInvulnerable() then
+		return
+	end
+
+	if self.parent:IsRealHero() and self.caster.invoke_ability then
+		self.caster.invoke_ability.tracker:ScepterEvent("modifier_invoker_spells_1", 1)
+	end
+
+	if self.ability.talents.has_q7 == 0 then
+		return
+	end
+	if self.parent:HasModifier("modifier_invoker_cold_snap_custom_legendary_proc") then
+		return
+	end
+	self.parent:AddNewModifier(
+		self.caster,
+		self.ability,
+		"modifier_invoker_cold_snap_custom_legendary",
+		{ duration = self.ability.talents.q7_duration }
+	)
+end
+
+modifier_invoker_cold_snap_custom_legendary = class(mod_hidden)
+function modifier_invoker_cold_snap_custom_legendary:OnCreated()
+	self.parent = self:GetParent()
+	self.caster = self:GetCaster()
+	self.ability = self:GetAbility()
+
+	self.max = self.ability.talents.q7_max
+
+	if not IsServer() then
+		return
+	end
+	self.RemoveForDuel = true
+	self.effect_cast =
+		self.parent:GenericParticle("particles/units/heroes/hero_drow/drow_hypothermia_counter_stack.vpcf", self, true)
+	self:OnRefresh()
+end
+
+function modifier_invoker_cold_snap_custom_legendary:OnRefresh()
+	if not IsServer() then
+		return
+	end
+	if self:GetStackCount() >= self.max then
+		return
+	end
+
+	self:IncrementStackCount()
+
+	if self.effect_cast then
+		ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(0, self:GetStackCount(), 0))
+	end
+
+	if self:GetStackCount() >= self.max then
+		self.parent:AddNewModifier(
+			self.caster,
+			self.ability,
+			"modifier_invoker_cold_snap_custom_legendary_proc",
+			{ duration = self.ability.talents.q7_stun }
+		)
+		self:Destroy()
+	end
+end
+
+modifier_invoker_cold_snap_custom_legendary_proc = class(mod_hidden)
+function modifier_invoker_cold_snap_custom_legendary_proc:GetStatusEffectName()
+	return "particles/status_fx/status_effect_frost.vpcf"
+end
+function modifier_invoker_cold_snap_custom_legendary_proc:StatusEffectPriority()
+	return MODIFIER_PRIORITY_ULTRA
+end
+function modifier_invoker_cold_snap_custom_legendary_proc:OnCreated()
+	self.parent = self:GetParent()
+	self.caster = self:GetCaster()
+	self.ability = self:GetAbility()
+
+	if not IsServer() then
+		return
+	end
+
+	self.max_time = self:GetRemainingTime()
+	if self.parent:IsRealHero() and not IsValid(self.ability.legendary_mod) then
+		self.ability.legendary_mod = self
+		self:OnIntervalThink()
+		self:StartIntervalThink(0.1)
+	end
+
+	self.damageTable = {
+		victim = self.parent,
+		attacker = self.caster,
+		damage_type = DAMAGE_TYPE_MAGICAL,
+		ability = self.ability,
+		custom_flag = CUSTOM_FLAG_INVOKER_SNAP,
+	}
+	self.parent:AddDamageEvent_inc(self, true)
+
+	self.parent:GenericParticle("particles/maiden_mark.vpcf", self, true)
+	self.parent:EmitSound("Invoker.Quas_legendary_max")
+end
+
+function modifier_invoker_cold_snap_custom_legendary_proc:OnIntervalThink()
+	if not IsServer() then
+		return
+	end
+	self.caster:UpdateUIshort({
+		max_time = self.max_time,
+		time = self:GetRemainingTime(),
+		stack = self:GetRemainingTime(),
+		use_zero = 1,
+		style = "InvokerQuas",
+		priority = 0,
+	})
+end
+
+function modifier_invoker_cold_snap_custom_legendary_proc:OnDestroy()
+	if not IsServer() then
+		return
+	end
+	if self.ability.legendary_mod ~= self then
+		return
+	end
+	self.ability.legendary_mod = nil
+	self.caster:UpdateUIshort({ hide = 1, hide_full = 1, style = "InvokerQuas", priority = 0 })
+end
+
+function modifier_invoker_cold_snap_custom_legendary_proc:CheckState()
+	return {
+		[MODIFIER_STATE_STUNNED] = true,
+		[MODIFIER_STATE_FROZEN] = true,
+	}
+end
+
+function modifier_invoker_cold_snap_custom_legendary_proc:DamageEvent_inc(params)
+	if not IsServer() then
+		return
+	end
+	if not params.attacker then
+		return
+	end
+	if self.caster:GetTeamNumber() ~= params.attacker:GetTeamNumber() then
+		return
+	end
+	if params.unit ~= self.parent then
+		return
+	end
+	if params.damage < 10 and params.damage ~= 0 then
+		return
+	end
+	if params.custom_flag and params.custom_flag == CUSTOM_FLAG_INVOKER_SNAP then
+		return
+	end
+	if
+		params.inflictor
+		and (
+			params.inflictor:GetName() == "item_phylactery_custom"
+			or params.inflictor:GetName() == "item_angels_demise_custom"
+		)
+	then
+		return
+	end
+	if not IsValid(self.caster.snap_ability) then
+		return
+	end
+
+	self.damageTable.damage = self.caster.snap_ability:GetDamage(self.parent) * self.ability.talents.q7_damage
+
+	local real_damage = DoDamage(self.damageTable, "modifier_invoker_quas_7")
+	self.parent:SendNumber(4, real_damage)
+
+	local effect_cast = ParticleManager:CreateParticle(
+		"particles/units/heroes/hero_invoker/invoker_cold_snap.vpcf",
+		PATTACH_POINT_FOLLOW,
+		self.parent
+	)
+	ParticleManager:SetParticleControlEnt(
+		effect_cast,
+		0,
+		self.parent,
+		PATTACH_POINT_FOLLOW,
+		"attach_hitloc",
+		Vector(0, 0, 0),
+		true
+	)
+	ParticleManager:SetParticleControl(effect_cast, 1, params.attacker:GetAbsOrigin())
+	ParticleManager:ReleaseParticleIndex(effect_cast)
+
+	self.parent:EmitSound("Invoker.Legendary_snap_damage")
 end
 
 invoker_cold_snap_custom = class({})
@@ -278,7 +480,6 @@ function invoker_cold_snap_custom:UpdateTalents()
 			q1_creeps = 0,
 			q1_duration = 0,
 
-			has_q2 = 0,
 			q2_cd = 0,
 
 			has_q3 = 0,
@@ -301,7 +502,6 @@ function invoker_cold_snap_custom:UpdateTalents()
 	end
 
 	if caster:HasTalent("modifier_invoker_quas_2") then
-		self.talents.has_q2 = 1
 		self.talents.q2_cd = caster:GetTalentValue("modifier_invoker_quas_2", "cd")
 	end
 
@@ -316,21 +516,8 @@ function invoker_cold_snap_custom:UpdateTalents()
 	end
 end
 
-function invoker_cold_snap_custom:GetCooldown(level)
-	return self.BaseClass.GetCooldown(self, level) + (self.talents.q2_cd and self.talents.q2_cd or 0)
-end
-
-function invoker_cold_snap_custom:GetManaCost(level)
-	return self.BaseClass.GetManaCost(self, level)
-end
-
-function invoker_cold_snap_custom:OnAbilityPhaseStart()
-	self:GetCaster():StartGesture(ACT_DOTA_CAST_COLD_SNAP)
-	return true
-end
-
-function invoker_cold_snap_custom:OnAbilityPhaseInterrupted()
-	self:GetCaster():FadeGesture(ACT_DOTA_CAST_COLD_SNAP)
+function invoker_cold_snap_custom:GetAbilityTextureName()
+	return wearables_system:GetAbilityIconReplacement(self.caster, "invoker_cold_snap", self)
 end
 
 function invoker_cold_snap_custom:GetIntrinsicModifierName()
@@ -343,12 +530,20 @@ function invoker_cold_snap_custom:GetIntrinsicModifierName()
 	return "modifier_invoker_stolen_ability_tracker"
 end
 
-function invoker_cold_snap_custom:GetAbilityTextureName()
-	return wearables_system:GetAbilityIconReplacement(self.caster, "invoker_cold_snap", self)
+function invoker_cold_snap_custom:GetCooldown(level)
+	return self.BaseClass.GetCooldown(self, level) + (self.talents.q2_cd or 0)
+end
+
+function invoker_cold_snap_custom:OnAbilityPhaseStart()
+	self.caster:StartGesture(ACT_DOTA_CAST_COLD_SNAP)
+	return true
+end
+
+function invoker_cold_snap_custom:OnAbilityPhaseInterrupted()
+	self.caster:FadeGesture(ACT_DOTA_CAST_COLD_SNAP)
 end
 
 function invoker_cold_snap_custom:OnSpellStart()
-	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 
 	if target:TriggerSpellAbsorb(self) then
@@ -357,11 +552,11 @@ function invoker_cold_snap_custom:OnSpellStart()
 
 	local duration = self.duration + self.talents.q1_duration
 
-	if IsValid(caster.invoke_ability) then
-		caster.invoke_ability:AbilityHit(target)
+	if IsValid(self.caster.invoke_ability) then
+		self.caster.invoke_ability:AbilityHit(target)
 	end
 
-	target:AddNewModifier(caster, self, "modifier_invoker_cold_snap_custom", { duration = duration })
+	target:AddNewModifier(self.caster, self, "modifier_invoker_cold_snap_custom", { duration = duration })
 
 	target:EmitSound("Hero_Invoker.ColdSnap.Cast")
 	target:EmitSound("Hero_Invoker.ColdSnap")
@@ -378,13 +573,12 @@ function invoker_cold_snap_custom:ProcResist(target, is_wall)
 		return
 	end
 
-	local caster = self:GetCaster()
 	local wall = 0
 	if is_wall then
 		wall = 1
 	end
 	target:AddNewModifier(
-		caster,
+		self.caster,
 		self,
 		"modifier_invoker_cold_snap_custom_resist",
 		{ duration = self.talents.q3_duration, wall = wall }
@@ -395,7 +589,6 @@ function invoker_cold_snap_custom:GetDamage(target)
 	if not IsServer() then
 		return
 	end
-	local caster = self:GetCaster()
 	local real_damage = self.freeze_damage
 
 	if self.talents.has_q1 == 1 then
@@ -408,11 +601,17 @@ function invoker_cold_snap_custom:GetDamage(target)
 	return real_damage
 end
 
-modifier_invoker_cold_snap_custom = class({})
+modifier_invoker_cold_snap_custom = class(mod_visible)
 function modifier_invoker_cold_snap_custom:IsPurgable()
 	return self.ability.talents.has_s1 == 0 or not self.caster:HasScepter()
 end
-function modifier_invoker_cold_snap_custom:OnCreated(kv)
+function modifier_invoker_cold_snap_custom:GetEffectName()
+	return "particles/units/heroes/hero_invoker/invoker_cold_snap_status.vpcf"
+end
+function modifier_invoker_cold_snap_custom:GetEffectAttachType()
+	return PATTACH_ABSORIGIN_FOLLOW
+end
+function modifier_invoker_cold_snap_custom:OnCreated()
 	self.caster = self:GetCaster()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -438,7 +637,7 @@ function modifier_invoker_cold_snap_custom:OnCreated(kv)
 		ability = self.ability,
 	}
 
-	self.parent:AddDamageEvent_inc(self)
+	self.parent:AddDamageEvent_inc(self, true)
 
 	self.onCooldown = false
 	self:Freeze(self.caster)
@@ -471,6 +670,9 @@ function modifier_invoker_cold_snap_custom:DamageEvent_inc(params)
 end
 
 function modifier_invoker_cold_snap_custom:OnIntervalThink()
+	if not IsServer() then
+		return
+	end
 	self.onCooldown = false
 	self:StartIntervalThink(-1)
 end
@@ -525,20 +727,18 @@ function modifier_invoker_cold_snap_custom:Freeze(attacker)
 	self:StartIntervalThink(self.cooldown)
 end
 
-function modifier_invoker_cold_snap_custom:GetEffectName()
-	return "particles/units/heroes/hero_invoker/invoker_cold_snap_status.vpcf"
-end
-
-function modifier_invoker_cold_snap_custom:GetEffectAttachType()
-	return PATTACH_ABSORIGIN_FOLLOW
-end
-
 modifier_invoker_cold_snap_custom_stun = class(mod_hidden)
 function modifier_invoker_cold_snap_custom_stun:IsPurgeException()
 	return true
 end
 function modifier_invoker_cold_snap_custom_stun:IsStunDebuff()
 	return true
+end
+function modifier_invoker_cold_snap_custom_stun:GetStatusEffectName()
+	return "particles/status_fx/status_effect_frost.vpcf"
+end
+function modifier_invoker_cold_snap_custom_stun:StatusEffectPriority()
+	return MODIFIER_PRIORITY_HIGH
 end
 function modifier_invoker_cold_snap_custom_stun:CheckState()
 	return {
@@ -547,12 +747,68 @@ function modifier_invoker_cold_snap_custom_stun:CheckState()
 	}
 end
 
-function modifier_invoker_cold_snap_custom_stun:GetStatusEffectName()
-	return "particles/status_fx/status_effect_frost.vpcf"
+modifier_invoker_cold_snap_custom_resist = class(mod_visible)
+function modifier_invoker_cold_snap_custom_resist:GetTexture()
+	return "buffs/invoker/quas_3"
+end
+function modifier_invoker_cold_snap_custom_resist:OnCreated(kv)
+	self.parent = self:GetParent()
+	self.caster = self:GetCaster()
+	self.ability = self:GetAbility()
+
+	self.max = self.ability.talents.q3_max
+	self.resist = self.ability.talents.q3_magic
+	self.heal_reduce = self.ability.talents.q3_heal_reduce
+	self.wall_count = 0
+
+	if not IsServer() then
+		return
+	end
+	self.RemoveForDuel = true
+	self:OnRefresh(kv)
 end
 
-function modifier_invoker_cold_snap_custom_stun:StatusEffectPriority()
-	return MODIFIER_PRIORITY_HIGH
+function modifier_invoker_cold_snap_custom_resist:OnRefresh(kv)
+	if not IsServer() then
+		return
+	end
+	if self:GetStackCount() >= self.max then
+		return
+	end
+
+	if kv.wall == 1 then
+		self.wall_count = self.wall_count + 1
+		if self.wall_count < self.ability.talents.q3_wall then
+			return
+		end
+		self.wall_count = 0
+	end
+
+	self:IncrementStackCount()
+
+	if self:GetStackCount() >= self.max then
+		self.parent:GenericParticle("particles/drow_ranger/multi_armor.vpcf", self, true)
+		self.parent:GenericParticle("particles/drow_ranger/frost_legendary_active.vpcf", self)
+	end
+end
+
+function modifier_invoker_cold_snap_custom_resist:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
+		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
+	}
+end
+
+function modifier_invoker_cold_snap_custom_resist:GetModifierMagicalResistanceBonus()
+	return self.resist * self:GetStackCount()
+end
+
+function modifier_invoker_cold_snap_custom_resist:GetModifierHealChange()
+	return self.heal_reduce * self:GetStackCount()
+end
+
+function modifier_invoker_cold_snap_custom_resist:GetModifierHPRegenAmplify_Percentage()
+	return self.heal_reduce * self:GetStackCount()
 end
 
 invoker_ghost_walk_custom = class({})
@@ -563,7 +819,6 @@ function invoker_ghost_walk_custom:UpdateTalents()
 	if not self.init then
 		self.init = true
 		self.talents = {
-			has_q2 = 0,
 			q2_cd = 0,
 
 			has_h4 = 0,
@@ -574,13 +829,16 @@ function invoker_ghost_walk_custom:UpdateTalents()
 	end
 
 	if caster:HasTalent("modifier_invoker_quas_2") then
-		self.talents.has_q2 = 1
 		self.talents.q2_cd = caster:GetTalentValue("modifier_invoker_quas_2", "cd")
 	end
 
 	if caster:HasTalent("modifier_invoker_hero_4") then
 		self.talents.has_h4 = 1
 	end
+end
+
+function invoker_ghost_walk_custom:GetAbilityTextureName()
+	return wearables_system:GetAbilityIconReplacement(self.caster, "invoker_ghost_walk", self)
 end
 
 function invoker_ghost_walk_custom:GetBehavior()
@@ -593,23 +851,36 @@ function invoker_ghost_walk_custom:GetBehavior()
 end
 
 function invoker_ghost_walk_custom:GetCooldown(level)
-	return self.BaseClass.GetCooldown(self, level) + (self.talents.q2_cd and self.talents.q2_cd or 0)
-end
-
-function invoker_ghost_walk_custom:GetAbilityTextureName()
-	return wearables_system:GetAbilityIconReplacement(self.caster, "invoker_ghost_walk", self)
+	return self.BaseClass.GetCooldown(self, level) + (self.talents.q2_cd or 0)
 end
 
 function invoker_ghost_walk_custom:OnSpellStart()
-	local caster = self:GetCaster()
-	caster:StartGesture(ACT_DOTA_CAST_GHOST_WALK)
+	self.caster:StartGesture(ACT_DOTA_CAST_GHOST_WALK)
 
-	caster:AddNewModifier(caster, self, "modifier_invoker_ghost_walk_custom", { duration = self.duration })
-	caster:GenericParticle("particles/units/heroes/hero_invoker/invoker_ghost_walk.vpcf")
-	caster:EmitSound("Hero_Invoker.GhostWalk")
+	self.caster:AddNewModifier(self.caster, self, "modifier_invoker_ghost_walk_custom", { duration = self.duration })
+	self.caster:GenericParticle("particles/units/heroes/hero_invoker/invoker_ghost_walk.vpcf")
+	self.caster:EmitSound("Hero_Invoker.GhostWalk")
 end
 
 modifier_invoker_ghost_walk_custom = class(mod_visible)
+function modifier_invoker_ghost_walk_custom:IsAura()
+	return true
+end
+function modifier_invoker_ghost_walk_custom:GetModifierAura()
+	return "modifier_invoker_ghost_walk_custom_debuff"
+end
+function modifier_invoker_ghost_walk_custom:GetAuraRadius()
+	return self.radius
+end
+function modifier_invoker_ghost_walk_custom:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_ENEMY
+end
+function modifier_invoker_ghost_walk_custom:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
+end
+function modifier_invoker_ghost_walk_custom:GetAuraDuration()
+	return self.aura_duration
+end
 function modifier_invoker_ghost_walk_custom:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -624,8 +895,8 @@ function modifier_invoker_ghost_walk_custom:OnCreated()
 		return
 	end
 
-	self.parent:AddAttackStartEvent_out(self)
-	self.parent:AddSpellEvent(self)
+	self.parent:AddAttackStartEvent_out(self, true)
+	self.parent:AddSpellEvent(self, true)
 
 	if self.ability.talents.has_h4 == 1 then
 		self.parent:GenericParticle("particles/arc_warden/scepter_shields.vpcf", self)
@@ -665,24 +936,6 @@ function modifier_invoker_ghost_walk_custom:CheckState()
 	return state_table
 end
 
-function modifier_invoker_ghost_walk_custom:IsAura()
-	return true
-end
-function modifier_invoker_ghost_walk_custom:GetModifierAura()
-	return "modifier_invoker_ghost_walk_custom_debuff"
-end
-function modifier_invoker_ghost_walk_custom:GetAuraRadius()
-	return self.radius
-end
-function modifier_invoker_ghost_walk_custom:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_ENEMY
-end
-function modifier_invoker_ghost_walk_custom:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
-end
-function modifier_invoker_ghost_walk_custom:GetAuraDuration()
-	return self.aura_duration
-end
 function modifier_invoker_ghost_walk_custom:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
@@ -766,6 +1019,18 @@ function modifier_invoker_ghost_walk_custom:GetModifierIncomingDamage_Percentage
 end
 
 modifier_invoker_ghost_walk_custom_debuff = class(mod_visible)
+function modifier_invoker_ghost_walk_custom_debuff:GetEffectName()
+	return "particles/units/heroes/hero_invoker/invoker_ghost_walk_debuff.vpcf"
+end
+function modifier_invoker_ghost_walk_custom_debuff:GetEffectAttachType()
+	return PATTACH_ABSORIGIN_FOLLOW
+end
+function modifier_invoker_ghost_walk_custom_debuff:GetStatusEffectName()
+	return "particles/status_fx/status_effect_frost.vpcf"
+end
+function modifier_invoker_ghost_walk_custom_debuff:StatusEffectPriority()
+	return MODIFIER_PRIORITY_NORMAL
+end
 function modifier_invoker_ghost_walk_custom_debuff:OnCreated()
 	self.ability = self:GetAbility()
 	self.enemy_slow = self.ability.enemy_slow
@@ -781,19 +1046,6 @@ function modifier_invoker_ghost_walk_custom_debuff:GetModifierMoveSpeedBonus_Per
 	return self.enemy_slow
 end
 
-function modifier_invoker_ghost_walk_custom_debuff:GetEffectName()
-	return "particles/units/heroes/hero_invoker/invoker_ghost_walk_debuff.vpcf"
-end
-function modifier_invoker_ghost_walk_custom_debuff:GetEffectAttachType()
-	return PATTACH_ABSORIGIN_FOLLOW
-end
-function modifier_invoker_ghost_walk_custom_debuff:GetStatusEffectName()
-	return "particles/status_fx/status_effect_frost.vpcf"
-end
-function modifier_invoker_ghost_walk_custom_debuff:StatusEffectPriority()
-	return MODIFIER_PRIORITY_NORMAL
-end
-
 invoker_ice_wall_custom = class({})
 invoker_ice_wall_custom.talents = {}
 
@@ -802,18 +1054,15 @@ function invoker_ice_wall_custom:UpdateTalents()
 	if not self.init then
 		self.init = true
 		self.talents = {
-			has_q2 = 0,
 			q2_cd = 0,
 
 			has_q4 = 0,
-			q4_wall = caster:GetTalentValue("modifier_invoker_quas_4", "wall", true),
 			q4_range = caster:GetTalentValue("modifier_invoker_quas_4", "range", true),
 			q4_root = caster:GetTalentValue("modifier_invoker_quas_4", "root", true),
 		}
 	end
 
 	if caster:HasTalent("modifier_invoker_quas_2") then
-		self.talents.has_q2 = 1
 		self.talents.q2_cd = caster:GetTalentValue("modifier_invoker_quas_2", "cd")
 	end
 
@@ -830,10 +1079,6 @@ function invoker_ice_wall_custom:GetAbilityTextureName()
 	return wearables_system:GetAbilityIconReplacement(self.caster, "invoker_ice_wall", self)
 end
 
-function invoker_ice_wall_custom:GetCooldown(level)
-	return self.BaseClass.GetCooldown(self, level) + (self.talents.q2_cd and self.talents.q2_cd or 0)
-end
-
 function invoker_ice_wall_custom:GetBehavior()
 	if self.talents.has_q4 == 1 then
 		return DOTA_ABILITY_BEHAVIOR_POINT
@@ -846,6 +1091,10 @@ function invoker_ice_wall_custom:GetBehavior()
 		+ DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING
 end
 
+function invoker_ice_wall_custom:GetCooldown(level)
+	return self.BaseClass.GetCooldown(self, level) + (self.talents.q2_cd or 0)
+end
+
 function invoker_ice_wall_custom:GetCastRange(vLocation, hTarget)
 	if self.talents.has_q4 ~= 1 then
 		return
@@ -853,18 +1102,30 @@ function invoker_ice_wall_custom:GetCastRange(vLocation, hTarget)
 	return self.talents.q4_range
 end
 
+function invoker_ice_wall_custom:OnSpellStart()
+	local target_point = self.caster:GetAbsOrigin() + self.caster:GetForwardVector() * self.wall_place_distance
+	CreateModifierThinker(
+		self.caster,
+		self,
+		"modifier_invoker_ice_wall_custom",
+		{ duration = self.duration },
+		target_point,
+		self.caster:GetTeamNumber(),
+		false
+	)
+end
+
 function invoker_ice_wall_custom:OnVectorCastStart(vStartLocation, vDirection)
-	local caster = self:GetCaster()
 	local target = self:GetCursorPosition()
-	if target == caster:GetAbsOrigin() then
-		target = caster:GetAbsOrigin() + caster:GetForwardVector() * 10
+	if target == self.caster:GetAbsOrigin() then
+		target = self.caster:GetAbsOrigin() + self.caster:GetForwardVector() * 10
 	end
 
 	local ice_wall_length = self.wall_element_spacing * self.num_wall_elements
 	local pos1 = GetGroundPosition(self:GetVectorPosition() + (ice_wall_length / 2) * vDirection, nil)
 	local pos2 = GetGroundPosition(self:GetVectorPosition() - (ice_wall_length / 2) * vDirection, nil)
 
-	CreateModifierThinker(caster, self, "modifier_invoker_ice_wall_custom", {
+	CreateModifierThinker(self.caster, self, "modifier_invoker_ice_wall_custom", {
 		duration = self.duration,
 		start_x = pos1.x,
 		start_y = pos1.y,
@@ -872,25 +1133,64 @@ function invoker_ice_wall_custom:OnVectorCastStart(vStartLocation, vDirection)
 		end_x = pos2.x,
 		end_y = pos2.y,
 		end_z = pos2.z,
-	}, target, caster:GetTeamNumber(), false)
-end
-
-function invoker_ice_wall_custom:OnSpellStart()
-	local caster = self:GetCaster()
-	local caster_direction = caster:GetForwardVector()
-	local target_point = caster:GetAbsOrigin() + caster_direction * self.wall_place_distance
-	CreateModifierThinker(
-		caster,
-		self,
-		"modifier_invoker_ice_wall_custom",
-		{ duration = self.duration },
-		target_point,
-		caster:GetTeamNumber(),
-		false
-	)
+	}, target, self.caster:GetTeamNumber(), false)
 end
 
 modifier_invoker_ice_wall_custom = class(mod_hidden)
+function modifier_invoker_ice_wall_custom:OnCreated(kv)
+	if not IsServer() then
+		return
+	end
+	self.ability = self:GetAbility()
+	self.caster = self:GetCaster()
+	self.parent = self:GetParent()
+
+	self.caster:StartGesture(ACT_DOTA_CAST_ICE_WALL)
+	self.parent:EmitSound("Hero_Invoker.IceWall.Cast")
+
+	self.hit_targets = {}
+	self.walls = {}
+
+	self.ice_wall_length = self.ability.wall_element_spacing * self.ability.num_wall_elements
+
+	self:CreateWall(kv)
+
+	if self.ability.talents.has_q4 == 1 and self.walls[1] then
+		local dir = (self.walls[1].ice_wall_end_point - self.walls[1].ice_wall_start_point):Normalized()
+		dir = Vector(-dir.y, dir.x, 0)
+
+		local pos1 = self.parent:GetAbsOrigin() + dir * self.ice_wall_length / 2
+		local pos2 = self.parent:GetAbsOrigin() - dir * self.ice_wall_length / 2
+
+		self:CreateWall({
+			start_x = pos1.x,
+			start_y = pos1.y,
+			start_z = pos1.z,
+			end_x = pos2.x,
+			end_y = pos2.y,
+			end_z = pos2.z,
+		})
+	end
+
+	self.slow_duration = self.ability.slow_duration
+	self.ice_wall_area_of_effect = self.ability.wall_element_radius / 3
+	self.search_area = self.ice_wall_length + (self.ice_wall_area_of_effect * 2)
+	self.origin = self.parent:GetAbsOrigin()
+
+	self.max_count = 0.5
+	self.damage = self.ability.damage_per_second * self.max_count
+	self.creeps = self.ability.creeps
+
+	self.interval = 0.1
+	self.count = self.max_count
+
+	self.damageTable =
+		{ attacker = self.caster, damage = self.damage, damage_type = DAMAGE_TYPE_MAGICAL, ability = self.ability }
+
+	self:OnIntervalThink()
+	self:StartIntervalThink(self.interval)
+end
+
 function modifier_invoker_ice_wall_custom:CreateWall(kv)
 	if not IsServer() then
 		return
@@ -926,61 +1226,6 @@ function modifier_invoker_ice_wall_custom:CreateWall(kv)
 	ParticleManager:SetParticleControl(ice_spikes_particle_effect, 0, self.walls[index].ice_wall_start_point)
 	ParticleManager:SetParticleControl(ice_spikes_particle_effect, 1, self.walls[index].ice_wall_end_point)
 	self:AddParticle(ice_spikes_particle_effect, false, false, -1, false, true)
-end
-
-function modifier_invoker_ice_wall_custom:OnCreated(kv)
-	if not IsServer() then
-		return
-	end
-	self.ability = self:GetAbility()
-	self.caster = self:GetCaster()
-	self.parent = self:GetParent()
-
-	self.caster:StartGesture(ACT_DOTA_CAST_ICE_WALL)
-	self.parent:EmitSound("Hero_Invoker.IceWall.Cast")
-
-	self.hit_targets = {}
-	self.walls = {}
-
-	self.ice_wall_length = self.ability.wall_element_spacing * self.ability.num_wall_elements
-
-	self:CreateWall(kv)
-
-	if self.ability.talents.has_q4 == 1 and self.walls[1] then
-		local dir = (self.walls[1].ice_wall_end_point - self.walls[1].ice_wall_start_point):Normalized()
-
-		dir = Vector(-dir.y, dir.x, 0)
-
-		local pos1 = self.parent:GetAbsOrigin() + dir * self.ice_wall_length / 2
-		local pos2 = self.parent:GetAbsOrigin() - dir * self.ice_wall_length / 2
-
-		self:CreateWall({
-			start_x = pos1.x,
-			start_y = pos1.y,
-			start_z = pos1.z,
-			end_x = pos2.x,
-			end_y = pos2.y,
-			end_z = pos2.z,
-		})
-	end
-
-	self.slow_duration = self.ability.slow_duration
-	self.ice_wall_area_of_effect = self.ability.wall_element_radius / 3
-	self.search_area = self.ice_wall_length + (self.ice_wall_area_of_effect * 2)
-	self.origin = self.parent:GetAbsOrigin()
-
-	self.max_count = 0.5
-	self.damage = self.ability.damage_per_second * self.max_count
-	self.creeps = self.ability.creeps
-
-	self.interval = 0.1
-	self.count = self.max_count
-
-	self.damageTable =
-		{ attacker = self.caster, damage = self.damage, damage_type = DAMAGE_TYPE_MAGICAL, ability = self.ability }
-
-	self:OnIntervalThink()
-	self:StartIntervalThink(self.interval)
 end
 
 function modifier_invoker_ice_wall_custom:OnIntervalThink()
@@ -1072,7 +1317,7 @@ end
 function modifier_invoker_ice_wall_custom_slow:StatusEffectPriority()
 	return MODIFIER_PRIORITY_NORMAL
 end
-function modifier_invoker_ice_wall_custom_slow:OnCreated(table)
+function modifier_invoker_ice_wall_custom_slow:OnCreated()
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
 	self.ability = self:GetAbility()
@@ -1089,234 +1334,22 @@ function modifier_invoker_ice_wall_custom_slow:GetModifierMoveSpeedBonus_Percent
 	return self.slow
 end
 
-modifier_invoker_cold_snap_custom_legendary_aura = class(mod_hidden)
-function modifier_invoker_cold_snap_custom_legendary_aura:OnCreated()
-	self.parent = self:GetParent()
-	self.caster = self:GetCaster()
-	self.ability = self:GetAbility()
-	if not IsServer() then
-		return
-	end
-	self:StartIntervalThink(1)
-end
-
-function modifier_invoker_cold_snap_custom_legendary_aura:OnIntervalThink()
-	if not IsServer() then
-		return
-	end
-	if self.parent:IsInvulnerable() then
-		return
-	end
-
-	if self.parent:IsRealHero() and self.caster.invoke_ability then
-		self.caster.invoke_ability.tracker:ScepterEvent("modifier_invoker_spells_1", 1)
-	end
-
-	if self.ability.talents.has_q7 == 0 then
-		return
-	end
-	if self.parent:HasModifier("modifier_invoker_cold_snap_custom_legendary_proc") then
-		return
-	end
-	self.parent:AddNewModifier(
-		self.caster,
-		self.ability,
-		"modifier_invoker_cold_snap_custom_legendary",
-		{ duration = self.ability.talents.q7_duration }
-	)
-end
-
-modifier_invoker_cold_snap_custom_legendary = class(mod_hidden)
-function modifier_invoker_cold_snap_custom_legendary:OnCreated()
-	self.parent = self:GetParent()
-	self.caster = self:GetCaster()
-	self.ability = self:GetAbility()
-
-	self.max = self.ability.talents.q7_max
-
-	if not IsServer() then
-		return
-	end
-	self.RemoveForDuel = true
-	self.effect_cast =
-		self.parent:GenericParticle("particles/units/heroes/hero_drow/drow_hypothermia_counter_stack.vpcf", self, true)
-	self:SetStackCount(1)
-end
-
-function modifier_invoker_cold_snap_custom_legendary:OnRefresh()
-	if not IsServer() then
-		return
-	end
-	if self:GetStackCount() >= self.max then
-		return
-	end
-
-	self:IncrementStackCount()
-
-	if self:GetStackCount() >= self.max then
-		self.parent:AddNewModifier(
-			self.caster,
-			self.ability,
-			"modifier_invoker_cold_snap_custom_legendary_proc",
-			{ duration = self.ability.talents.q7_stun }
-		)
-		self:Destroy()
-	end
-end
-
-function modifier_invoker_cold_snap_custom_legendary:OnStackCountChanged(iStackCount)
-	if self:GetStackCount() == 0 then
-		return
-	end
-	if not self.effect_cast then
-		return
-	end
-	ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(0, self:GetStackCount(), 0))
-end
-
-modifier_invoker_cold_snap_custom_legendary_proc = class(mod_hidden)
-function modifier_invoker_cold_snap_custom_legendary_proc:IsHidden()
-	return true
-end
-function modifier_invoker_cold_snap_custom_legendary_proc:IsPurgable()
-	return false
-end
-function modifier_invoker_cold_snap_custom_legendary_proc:CheckState()
-	return {
-		[MODIFIER_STATE_STUNNED] = true,
-		[MODIFIER_STATE_FROZEN] = true,
-	}
-end
-
-function modifier_invoker_cold_snap_custom_legendary_proc:GetStatusEffectName()
-	return "particles/status_fx/status_effect_frost.vpcf"
-end
-
-function modifier_invoker_cold_snap_custom_legendary_proc:StatusEffectPriority()
-	return MODIFIER_PRIORITY_ULTRA
-end
-
-function modifier_invoker_cold_snap_custom_legendary_proc:OnCreated()
-	self.parent = self:GetParent()
-	self.caster = self:GetCaster()
-	self.ability = self:GetAbility()
-
-	if not IsServer() then
-		return
-	end
-
-	self.max_time = self:GetRemainingTime()
-	if self.parent:IsRealHero() and not IsValid(self.ability.legendary_mod) then
-		self.ability.legendary_mod = self
-		self:OnIntervalThink()
-		self:StartIntervalThink(0.1)
-	end
-
-	self.damageTable = {
-		victim = self.parent,
-		attacker = self.caster,
-		damage_type = DAMAGE_TYPE_MAGICAL,
-		ability = self.ability,
-		custom_flag = CUSTOM_FLAG_INVOKER_SNAP,
-	}
-	self.parent:AddDamageEvent_inc(self, true)
-
-	self.parent:GenericParticle("particles/maiden_mark.vpcf", self, true)
-	self.parent:EmitSound("Invoker.Quas_legendary_max")
-end
-
-function modifier_invoker_cold_snap_custom_legendary_proc:OnIntervalThink()
-	if not IsServer() then
-		return
-	end
-	self.caster:UpdateUIshort({
-		max_time = self.max_time,
-		time = self:GetRemainingTime(),
-		stack = self:GetRemainingTime(),
-		use_zero = 1,
-		style = "InvokerQuas",
-		priority = 0,
-	})
-end
-
-function modifier_invoker_cold_snap_custom_legendary_proc:OnDestroy()
-	if not IsServer() then
-		return
-	end
-	if self.ability.legendary_mod ~= self then
-		return
-	end
-	self.ability.legendary_mod = nil
-	self.caster:UpdateUIshort({ hide = 1, hide_full = 1, style = "InvokerQuas", priority = 0 })
-end
-
-function modifier_invoker_cold_snap_custom_legendary_proc:DamageEvent_inc(params)
-	if not IsServer() then
-		return
-	end
-	if self.caster:GetTeamNumber() ~= params.attacker:GetTeamNumber() then
-		return
-	end
-	if params.unit ~= self.parent then
-		return
-	end
-	if params.damage < 10 and params.damage ~= 0 then
-		return
-	end
-	if params.custom_flag and params.custom_flag == CUSTOM_FLAG_INVOKER_SNAP then
-		return
-	end
-	if
-		params.inflictor
-		and (
-			params.inflictor:GetName() == "item_phylactery_custom"
-			or params.inflictor:GetName() == "item_angels_demise_custom"
-		)
-	then
-		return
-	end
-	if not IsValid(self.caster.snap_ability) then
-		return
-	end
-
-	self.damageTable.damage = self.caster.snap_ability:GetDamage(self.parent) * self.ability.talents.q7_damage
-
-	local real_damage = DoDamage(self.damageTable, "modifier_invoker_quas_7")
-	self.parent:SendNumber(4, real_damage)
-
-	local effect_cast = ParticleManager:CreateParticle(
-		"particles/units/heroes/hero_invoker/invoker_cold_snap.vpcf",
-		PATTACH_POINT_FOLLOW,
-		self.parent
-	)
-	ParticleManager:SetParticleControlEnt(
-		effect_cast,
-		0,
-		self.parent,
-		PATTACH_POINT_FOLLOW,
-		"attach_hitloc",
-		Vector(0, 0, 0),
-		true
-	)
-	ParticleManager:SetParticleControl(effect_cast, 1, params.attacker:GetAbsOrigin())
-	ParticleManager:ReleaseParticleIndex(effect_cast)
-
-	self.parent:EmitSound("Invoker.Legendary_snap_damage")
-end
-
-modifier_invoker_ice_wall_custom_root = class({})
-function modifier_invoker_ice_wall_custom_root:IsHidden()
-	return true
-end
+modifier_invoker_ice_wall_custom_root = class(mod_hidden)
 function modifier_invoker_ice_wall_custom_root:IsPurgable()
 	return true
 end
-function modifier_invoker_ice_wall_custom_root:CheckState()
-	return {
-		[MODIFIER_STATE_ROOTED] = true,
-	}
+function modifier_invoker_ice_wall_custom_root:GetEffectName()
+	return "particles/units/heroes/hero_crystalmaiden/maiden_frostbite_buff.vpcf"
 end
-
+function modifier_invoker_ice_wall_custom_root:GetEffectAttachType()
+	return PATTACH_ABSORIGIN_FOLLOW
+end
+function modifier_invoker_ice_wall_custom_root:GetStatusEffectName()
+	return "particles/status_fx/status_effect_frost.vpcf"
+end
+function modifier_invoker_ice_wall_custom_root:StatusEffectPriority()
+	return MODIFIER_PRIORITY_HIGH
+end
 function modifier_invoker_ice_wall_custom_root:OnCreated()
 	if not IsServer() then
 		return
@@ -1332,91 +1365,8 @@ function modifier_invoker_ice_wall_custom_root:OnDestroy()
 	self.parent:StopSound("hero_Crystal.frostbite")
 end
 
-function modifier_invoker_ice_wall_custom_root:GetEffectName()
-	return "particles/units/heroes/hero_crystalmaiden/maiden_frostbite_buff.vpcf"
-end
-function modifier_invoker_ice_wall_custom_root:GetEffectAttachType()
-	return PATTACH_ABSORIGIN_FOLLOW
-end
-function modifier_invoker_ice_wall_custom_root:GetStatusEffectName()
-	return "particles/status_fx/status_effect_frost.vpcf"
-end
-function modifier_invoker_ice_wall_custom_root:StatusEffectPriority()
-	return MODIFIER_PRIORITY_HIGH
-end
-
-modifier_invoker_cold_snap_custom_resist = class(mod_visible)
-function modifier_invoker_cold_snap_custom_resist:GetTexture()
-	return "buffs/invoker/quas_3"
-end
-function modifier_invoker_cold_snap_custom_resist:OnCreated(table)
-	self.parent = self:GetParent()
-	self.caster = self:GetCaster()
-	self.ability = self:GetAbility()
-
-	self.max = self.ability.talents.q3_max
-	self.resist = self.ability.talents.q3_magic
-	self.heal_reduce = self.ability.talents.q3_heal_reduce
-	self.wall_count = 0
-
-	if not IsServer() then
-		return
-	end
-	self:AddStack(table.wall)
-end
-
-function modifier_invoker_cold_snap_custom_resist:OnRefresh(table)
-	if not IsServer() then
-		return
-	end
-	self:AddStack(table.wall)
-end
-
-function modifier_invoker_cold_snap_custom_resist:AddStack(wall)
-	if not IsServer() then
-		return
-	end
-	if self:GetStackCount() >= self.max then
-		return
-	end
-
-	if wall == 1 then
-		self.wall_count = self.wall_count + 1
-		if self.wall_count < self.ability.talents.q3_wall then
-			return
-		end
-		self.wall_count = 0
-	end
-
-	self:IncrementStackCount()
-
-	if self:GetStackCount() >= self.max then
-		self.parent:GenericParticle("particles/drow_ranger/multi_armor.vpcf", self, true)
-		self.parent:GenericParticle("particles/drow_ranger/frost_legendary_active.vpcf", self)
-	end
-end
-
-function modifier_invoker_cold_snap_custom_resist:DeclareFunctions()
+function modifier_invoker_ice_wall_custom_root:CheckState()
 	return {
-		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
-		--MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET,
-		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
-		--MODIFIER_PROPERTY_LIFESTEAL_AMPLIFY_PERCENTAGE
+		[MODIFIER_STATE_ROOTED] = true,
 	}
-end
-
-function modifier_invoker_cold_snap_custom_resist:GetModifierMagicalResistanceBonus()
-	return self.resist * self:GetStackCount()
-end
-
-function modifier_invoker_cold_snap_custom_resist:GetModifierLifestealRegenAmplify_Percentage()
-	return self.heal_reduce * self:GetStackCount()
-end
-
-function modifier_invoker_cold_snap_custom_resist:GetModifierHealChange()
-	return self.heal_reduce * self:GetStackCount()
-end
-
-function modifier_invoker_cold_snap_custom_resist:GetModifierHPRegenAmplify_Percentage()
-	return self.heal_reduce * self:GetStackCount()
 end

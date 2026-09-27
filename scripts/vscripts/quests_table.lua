@@ -76,7 +76,7 @@ _G.All_Quests = {
 		["npc_dota_hero_phantom_assassin"] = {
 			[1] = {
 				["name"] = "Phantom.Quest_1",
-				["icon"] = "Stifling_Dagger",
+				["icon"] = "stifling",
 				["reward_shards"] = 20,
 				["reward_exp"] = 100,
 				["goal"] = 1,
@@ -84,7 +84,7 @@ _G.All_Quests = {
 			},
 			[2] = {
 				["name"] = "Phantom.Quest_2",
-				["icon"] = "Phantom_Strike",
+				["icon"] = "phantom",
 				["reward_shards"] = 20,
 				["reward_exp"] = 100,
 				["goal"] = 1,
@@ -100,7 +100,7 @@ _G.All_Quests = {
 			},
 			[4] = {
 				["name"] = "Phantom.Quest_4",
-				["icon"] = "Coup_de_Grace",
+				["icon"] = "grace",
 				["reward_shards"] = 20,
 				["reward_exp"] = 100,
 				["goal"] = 1,
@@ -108,18 +108,19 @@ _G.All_Quests = {
 			},
 			[5] = {
 				["name"] = "Phantom.Quest_5",
-				["icon"] = "Stifling_Dagger",
+				["icon"] = "stifling",
 				["reward_shards"] = 15,
 				["reward_exp"] = 80,
-				["goal"] = 30,
-				["number"] = 800,
+				["goal"] = 50,
+				["number"] = 700,
 			},
 			[6] = {
 				["name"] = "Phantom.Quest_6",
-				["icon"] = "Phantom_Strike",
+				["icon"] = "phantom",
 				["reward_shards"] = 15,
 				["reward_exp"] = 80,
 				["goal"] = 25000,
+				["number"] = 3,
 			},
 			[7] = {
 				["name"] = "Phantom.Quest_7",
@@ -131,11 +132,10 @@ _G.All_Quests = {
 			},
 			[8] = {
 				["name"] = "Phantom.Quest_8",
-				["icon"] = "Coup_de_Grace",
+				["icon"] = "grace",
 				["reward_shards"] = 15,
 				["reward_exp"] = 80,
-				["goal"] = 15,
-				["number"] = 2,
+				["goal"] = 8,
 			},
 		},
 
@@ -3507,14 +3507,15 @@ _G.All_Quests = {
 				["icon"] = "torrent",
 				["reward_shards"] = 15,
 				["reward_exp"] = 80,
-				["goal"] = 25000,
+				["goal"] = 40,
 			},
 			[6] = {
 				["name"] = "Kunkka.Quest_6",
 				["icon"] = "tidebringer",
 				["reward_shards"] = 15,
 				["reward_exp"] = 80,
-				["goal"] = 80,
+				["goal"] = 60,
+				["number"] = 400,
 			},
 			[7] = {
 				["name"] = "Kunkka.Quest_7",
@@ -3528,7 +3529,8 @@ _G.All_Quests = {
 				["icon"] = "ship",
 				["reward_shards"] = 15,
 				["reward_exp"] = 80,
-				["goal"] = 100,
+				["goal"] = 20000,
+				["number"] = 3,
 			},
 		},
 	},

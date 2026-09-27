@@ -63,7 +63,6 @@ function custom_juggernaut_blade_dance:Precache(context)
 	end
 
 	PrecacheResource("particle", "particles/units/heroes/hero_mars/mars_shield_bash_crit_strike.vpcf", context)
-	PrecacheResource("particle", "particles/units/heroes/hero_mars/mars_shield_bash_crit_strike.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_mars/mars_shield_bash.vpcf", context)
 	PrecacheResource(
 		"particle",
@@ -72,26 +71,20 @@ function custom_juggernaut_blade_dance:Precache(context)
 	)
 	PrecacheResource("particle", "particles/jugger_legendary.vpcf", context)
 	PrecacheResource("particle", "particles/lc_lowhp.vpcf", context)
-
 	PrecacheResource("particle", "particles/bloodseeker/thirst_cleave.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_huskar_lifebreak.vpcf", context)
 	PrecacheResource("particle", "particles/jugg_omni_proc.vpcf", context)
 	PrecacheResource("particle", "particles/jugger_stack.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_juggernaut/juggernaut_crit_tgt.vpcf", context)
-	PrecacheResource(
-		"particle",
-		"particles/econ/items/juggernaut/jugg_arcana/juggernaut_arcana_v2_omni_slash_trail.vpcf",
-		context
-	)
-	PrecacheResource("particle", "particles/econ/events/ti10/blink_dagger_start_ti10_lvl2_sparkles.vpcf", context)
-	PrecacheResource(
-		"particle",
-		"particles/econ/items/juggernaut/jugg_arcana/juggernaut_arcana_v2_omni_dash.vpcf",
-		context
-	)
 	PrecacheResource("particle", "particles/items2_fx/sange_maim.vpcf", context)
 	PrecacheResource("particle", "particles/juggernaut/dance_shield.vpcf", context)
 	PrecacheResource("particle", "particles/juggernaut/dance_shield_purge.vpcf", context)
+	PrecacheResource("particle", "particles/jugg_parry.vpcf", context)
+	PrecacheResource(
+		"particle",
+		"particles/econ/items/juggernaut/jugg_arcana/juggernaut_arcana_v2_body_ambient.vpcf",
+		context
+	)
 end
 
 function custom_juggernaut_blade_dance:UpdateTalents()
@@ -99,7 +92,6 @@ function custom_juggernaut_blade_dance:UpdateTalents()
 	if not self.init then
 		self.init = true
 		self.talents = {
-			has_e1 = 0,
 			e1_speed = 0,
 			e1_chance = 0,
 
@@ -148,7 +140,6 @@ function custom_juggernaut_blade_dance:UpdateTalents()
 	end
 
 	if caster:HasTalent("modifier_juggernaut_bladedance_1") then
-		self.talents.has_e1 = 1
 		self.talents.e1_speed = caster:GetTalentValue("modifier_juggernaut_bladedance_1", "speed")
 		self.talents.e1_chance = caster:GetTalentValue("modifier_juggernaut_bladedance_1", "chance")
 	end
@@ -216,33 +207,30 @@ function custom_juggernaut_blade_dance:GetCooldown(iLevel)
 	if self.talents.has_e7 == 1 then
 		return self.talents.e7_talent_cd
 	end
+	return 0
 end
 
 function custom_juggernaut_blade_dance:OnAbilityPhaseStart()
-	local caster = self:GetCaster()
-	caster:AddNewModifier(caster, self, "modifier_custom_juggernaut_blade_dance_anim", {})
-	caster:StartGesture(ACT_DOTA_ATTACK_EVENT)
+	self.caster:AddNewModifier(self.caster, self, "modifier_custom_juggernaut_blade_dance_anim", {})
+	self.caster:StartGesture(ACT_DOTA_ATTACK_EVENT)
 	return true
 end
 
 function custom_juggernaut_blade_dance:OnAbilityPhaseInterrupted()
-	local caster = self:GetCaster()
-	caster:FadeGesture(ACT_DOTA_ATTACK_EVENT)
-	caster:RemoveModifierByName("modifier_custom_juggernaut_blade_dance_anim")
+	self.caster:FadeGesture(ACT_DOTA_ATTACK_EVENT)
+	self.caster:RemoveModifierByName("modifier_custom_juggernaut_blade_dance_anim")
 end
 
 function custom_juggernaut_blade_dance:OnSpellStart()
-	local caster = self:GetCaster()
-
-	caster:RemoveModifierByName("modifier_custom_juggernaut_blade_dance_anim")
-	caster:EmitSound("Hero_Juggernaut.ArcanaTrigger")
-	caster:EmitSound("Juggernaut.ShockWave")
+	self.caster:RemoveModifierByName("modifier_custom_juggernaut_blade_dance_anim")
+	self.caster:EmitSound("Hero_Juggernaut.ArcanaTrigger")
+	self.caster:EmitSound("Juggernaut.ShockWave")
 
 	local range = 300
-	local enemies = caster:FindTargets(range)
+	local enemies = self.caster:FindTargets(range)
 
-	local origin = caster:GetOrigin()
-	local cast_direction = (caster:GetAbsOrigin() + caster:GetForwardVector() * range - origin):Normalized()
+	local origin = self.caster:GetOrigin()
+	local cast_direction = (self.caster:GetAbsOrigin() + self.caster:GetForwardVector() * range - origin):Normalized()
 	local cast_angle = VectorToAngles(cast_direction).y
 	local angle = 140 / 2
 
@@ -262,7 +250,7 @@ function custom_juggernaut_blade_dance:OnSpellStart()
 			ParticleManager:SetParticleControlForward(
 				effect,
 				1,
-				(enemy:GetOrigin() - caster:GetAbsOrigin()):Normalized()
+				(enemy:GetOrigin() - self.caster:GetAbsOrigin()):Normalized()
 			)
 			ParticleManager:ReleaseParticleIndex(effect)
 		end
@@ -271,15 +259,15 @@ function custom_juggernaut_blade_dance:OnSpellStart()
 	local effect_cast = ParticleManager:CreateParticle(
 		"particles/units/heroes/hero_mars/mars_shield_bash.vpcf",
 		PATTACH_WORLDORIGIN,
-		caster
+		self.caster
 	)
-	ParticleManager:SetParticleControl(effect_cast, 0, caster:GetOrigin())
+	ParticleManager:SetParticleControl(effect_cast, 0, self.caster:GetOrigin())
 	ParticleManager:SetParticleControl(effect_cast, 1, Vector(range, range, range))
 	ParticleManager:SetParticleControlForward(effect_cast, 0, cast_direction)
 	ParticleManager:ReleaseParticleIndex(effect_cast)
 
-	caster:AddNewModifier(
-		caster,
+	self.caster:AddNewModifier(
+		self.caster,
 		self,
 		"modifier_custom_juggernaut_blade_dance_legendary",
 		{ duration = self.talents.e7_duration }
@@ -290,14 +278,12 @@ function custom_juggernaut_blade_dance:GetCrit(ignore_random)
 	if not IsServer() then
 		return
 	end
-	local caster = self:GetCaster()
-
-	if caster:PassivesDisabled() and self.talents.has_e4 == 0 then
+	if self.caster:PassivesDisabled() and self.talents.has_e4 == 0 then
 		return
 	end
 
 	local damage = self.damage
-	local mod = caster:FindModifierByName("modifier_custom_juggernaut_blade_dance_legendary")
+	local mod = self.caster:FindModifierByName("modifier_custom_juggernaut_blade_dance_legendary")
 	if mod then
 		damage = math.min(self.talents.e7_damage_max, damage + mod.stack * self.talents.e7_damage)
 	end
@@ -307,15 +293,18 @@ function custom_juggernaut_blade_dance:GetCrit(ignore_random)
 	end
 	local chance = self.chance + self.talents.e1_chance
 	local index = 1392
-	if IsValid(caster.omnislash_ability) and caster:HasModifier("modifier_custom_juggernaut_omnislash_attack") then
-		chance = chance * caster.omnislash_ability.crit_bonus
+	if
+		IsValid(self.caster.omnislash_ability)
+		and self.caster:HasModifier("modifier_custom_juggernaut_omnislash_attack")
+	then
+		chance = chance * self.caster.omnislash_ability.crit_bonus
 		index = 1393
 	end
 
-	if caster:HasModifier("modifier_custom_juggernaut_blade_dance_illusion_damage") then
+	if self.caster:HasModifier("modifier_custom_juggernaut_blade_dance_illusion_damage") then
 		return
 	end
-	if not RollPseudoRandomPercentage(chance, index, caster) then
+	if not RollPseudoRandomPercentage(chance, index, self.caster) then
 		return
 	end
 
@@ -326,28 +315,27 @@ function custom_juggernaut_blade_dance:CasterProc(is_fury)
 	if not IsServer() then
 		return
 	end
-	local caster = self:GetCaster()
 
-	local legendary_mod = caster:FindModifierByName("modifier_custom_juggernaut_blade_dance_legendary")
+	local legendary_mod = self.caster:FindModifierByName("modifier_custom_juggernaut_blade_dance_legendary")
 	if legendary_mod then
 		local bonus = is_fury and (1 / self.talents.e7_blade_fury) or 1
 		legendary_mod.stack = legendary_mod.stack + bonus
 	end
 
 	if not is_fury and self.talents.has_r1 == 1 then
-		caster:AddNewModifier(
-			caster,
+		self.caster:AddNewModifier(
+			self.caster,
 			self,
 			"modifier_custom_juggernaut_blade_dance_bonus",
 			{ duration = self.talents.r1_duration }
 		)
 	end
 
-	if IsValid(caster.swift_ability) then
-		caster:CdAbility(caster.swift_ability, caster.swift_ability.cd_inc)
+	if IsValid(self.caster.swift_ability) then
+		self.caster:CdAbility(self.caster.swift_ability, self.caster.swift_ability.cd_inc)
 	end
 
-	local mod = caster:FindModifierByName("modifier_custom_juggernaut_blade_dance_shield_cd")
+	local mod = self.caster:FindModifierByName("modifier_custom_juggernaut_blade_dance_shield_cd")
 	if not mod then
 		return
 	end
@@ -364,11 +352,10 @@ function custom_juggernaut_blade_dance:ProcCrit(target)
 	if not IsServer() then
 		return
 	end
-	local caster = self:GetCaster()
 
 	if self.talents.has_h3 == 1 then
 		target:AddNewModifier(
-			caster,
+			self.caster,
 			self,
 			"modifier_custom_juggernaut_blade_dance_slow",
 			{ duration = self.talents.h3_duration }
@@ -388,7 +375,16 @@ function modifier_custom_juggernaut_blade_dance_anim:GetActivityTranslationModif
 end
 
 modifier_custom_juggernaut_blade_dance_legendary = class(mod_hidden)
-function modifier_custom_juggernaut_blade_dance_legendary:OnCreated(table)
+function modifier_custom_juggernaut_blade_dance_legendary:GetStatusEffectName()
+	return "particles/status_fx/status_effect_monkey_king_fur_army.vpcf"
+end
+function modifier_custom_juggernaut_blade_dance_legendary:StatusEffectPriority()
+	return MODIFIER_PRIORITY_HIGH
+end
+function modifier_custom_juggernaut_blade_dance_legendary:GetEffectName()
+	return "particles/jugger_legendary.vpcf"
+end
+function modifier_custom_juggernaut_blade_dance_legendary:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
@@ -414,7 +410,7 @@ function modifier_custom_juggernaut_blade_dance_legendary:OnIntervalThink()
 	self.parent:UpdateUIshort({
 		max_time = self.max_time,
 		time = self:GetRemainingTime(),
-		stack = math.floor(self.ability:GetCrit(true)) .. "%",
+		stack = math.floor(self.ability:GetCrit(true) or 0) .. "%",
 		priority = 2,
 		style = "JuggernautDance",
 	})
@@ -428,12 +424,6 @@ function modifier_custom_juggernaut_blade_dance_legendary:OnDestroy()
 	self.ability:StartCd()
 end
 
-function modifier_custom_juggernaut_blade_dance_legendary:GetStatusEffectName()
-	return "particles/status_fx/status_effect_monkey_king_fur_army.vpcf"
-end
-function modifier_custom_juggernaut_blade_dance_legendary:StatusEffectPriority()
-	return MODIFIER_PRIORITY_HIGH
-end
 function modifier_custom_juggernaut_blade_dance_legendary:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS,
@@ -454,37 +444,8 @@ function modifier_custom_juggernaut_blade_dance_legendary:GetActivityTranslation
 	return "chase"
 end
 
-function modifier_custom_juggernaut_blade_dance_legendary:GetEffectName()
-	return "particles/jugger_legendary.vpcf"
-end
-
 modifier_custom_juggernaut_blade_dance = class(mod_hidden)
-function modifier_custom_juggernaut_blade_dance:GetCritDamage()
-	return self.ability:GetCrit(true)
-end
-
-function modifier_custom_juggernaut_blade_dance:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE,
-		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
-		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
-	}
-end
-
-function modifier_custom_juggernaut_blade_dance:GetModifierAttackRangeBonus()
-	return self.ability.talents.e2_range
-end
-
-function modifier_custom_juggernaut_blade_dance:GetModifierAttackSpeedBonus_Constant()
-	return self.ability.talents.e1_speed
-end
-
-function modifier_custom_juggernaut_blade_dance:GetModifierMoveSpeedBonus_Constant()
-	return self.ability.talents.h3_move
-end
-
-function modifier_custom_juggernaut_blade_dance:OnCreated(table)
+function modifier_custom_juggernaut_blade_dance:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 	self.ability.tracker = self
@@ -520,11 +481,6 @@ function modifier_custom_juggernaut_blade_dance:UpdateEffects()
 		return
 	end
 	self.sound = wearables_system:GetSoundReplacement(self.parent, "Hero_Juggernaut.BladeDance", self)
-	self.effect = wearables_system:GetParticleReplacementAbility(
-		self.parent,
-		"particles/units/heroes/hero_juggernaut/jugg_crit_blur.vpcf",
-		self
-	)
 	self.effect_2 = wearables_system:GetParticleReplacementAbility(
 		self.parent,
 		"particles/units/heroes/hero_juggernaut/juggernaut_crit_tgt.vpcf",
@@ -532,7 +488,7 @@ function modifier_custom_juggernaut_blade_dance:UpdateEffects()
 	)
 end
 
-function modifier_custom_juggernaut_blade_dance:PlayEffect(target, auto)
+function modifier_custom_juggernaut_blade_dance:PlayEffect(target)
 	if not IsServer() then
 		return
 	end
@@ -546,10 +502,6 @@ function modifier_custom_juggernaut_blade_dance:PlayEffect(target, auto)
 	end
 	target:EmitSound(mod.sound)
 
-	--if mod.effect ~= "particles/units/heroes/hero_juggernaut/jugg_crit_blur.vpcf" and not auto then
-	--  self.parent:GenericParticle(mod.effect)
-	--end
-
 	local particle_crit = ParticleManager:CreateParticle(mod.effect_2, PATTACH_ABSORIGIN_FOLLOW, target)
 	ParticleManager:SetParticleControlEnt(
 		particle_crit,
@@ -561,6 +513,31 @@ function modifier_custom_juggernaut_blade_dance:PlayEffect(target, auto)
 		true
 	)
 	ParticleManager:ReleaseParticleIndex(particle_crit)
+end
+
+function modifier_custom_juggernaut_blade_dance:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE,
+		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
+		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+	}
+end
+
+function modifier_custom_juggernaut_blade_dance:GetModifierAttackRangeBonus()
+	return self.ability.talents.e2_range
+end
+
+function modifier_custom_juggernaut_blade_dance:GetModifierAttackSpeedBonus_Constant()
+	return self.ability.talents.e1_speed
+end
+
+function modifier_custom_juggernaut_blade_dance:GetModifierMoveSpeedBonus_Constant()
+	return self.ability.talents.h3_move
+end
+
+function modifier_custom_juggernaut_blade_dance:GetCritDamage()
+	return self.ability:GetCrit(true)
 end
 
 function modifier_custom_juggernaut_blade_dance:GetModifierPreAttack_CriticalStrike(params)
@@ -603,7 +580,6 @@ function modifier_custom_juggernaut_blade_dance:AttackEvent_out(params)
 	end
 
 	if attacker == self.parent then
-		local force_effect = false
 		local illusion_mod = real_attacker:FindModifierByName("modifier_custom_juggernaut_blade_dance_illusion")
 		if illusion_mod and illusion_mod.attack_count and illusion_mod.attack_count > 0 then
 			illusion_mod.attack_count = illusion_mod.attack_count - 1
@@ -613,7 +589,6 @@ function modifier_custom_juggernaut_blade_dance:AttackEvent_out(params)
 			if illusion_mod.record then
 				illusion_mod.record = nil
 				self.force_crit = true
-				force_effect = true
 			end
 
 			self.parent:AddNewModifier(
@@ -629,7 +604,7 @@ function modifier_custom_juggernaut_blade_dance:AttackEvent_out(params)
 
 		local mod = real_attacker:FindModifierByName(self:GetName())
 		if mod and mod.record == params.record then
-			mod:PlayEffect(target, params.no_attack_cooldown)
+			mod:PlayEffect(target)
 		end
 	end
 
@@ -659,7 +634,7 @@ function modifier_custom_juggernaut_blade_dance:AttackEvent_out(params)
 		return
 	end
 
-	if (self.parent:GetQuest() == "Jugg.Quest_6") and target:IsRealHero() then
+	if self.parent:GetQuest() == "Jugg.Quest_6" and target:IsRealHero() then
 		self.parent:UpdateQuest(1)
 	end
 
@@ -675,7 +650,7 @@ function modifier_custom_juggernaut_blade_dance:AttackEvent_out(params)
 	if self.ability.talents.has_e3 == 1 and not IsValid(self.ability.active_illusion) then
 		local duration = self.ability.talents.e3_duration
 		local damage = -100
-		local illusion = CreateIllusions(
+		local illusions = CreateIllusions(
 			self.parent,
 			self.parent,
 			{ duration = duration, outgoing_damage = damage, incoming_damage = 0 },
@@ -685,10 +660,10 @@ function modifier_custom_juggernaut_blade_dance:AttackEvent_out(params)
 			true
 		)
 
-		for _, illusion in pairs(illusion) do
+		for _, illusion in pairs(illusions) do
 			for _, mod in pairs(self.parent:FindAllModifiers()) do
-				if mod.StackOnIllusion ~= nil and mod.StackOnIllusion == true then
-					illusion:UpgradeIllusion(mod:GetName(), mod:GetStackCount())
+				if mod.StackOnIllusion == true then
+					illusion:UpgradeIllusion(mod:GetName(), mod:GetStackCount(), mod)
 				end
 			end
 			illusion.owner = self.parent
@@ -805,6 +780,9 @@ function modifier_custom_juggernaut_blade_dance_armor:OnCreated()
 	self.ability = self:GetAbility()
 
 	self.armor = self.ability.talents.e4_armor
+	if not IsServer() then
+		return
+	end
 	self.parent:AddDamageEvent_inc(self, true)
 end
 
@@ -860,6 +838,18 @@ function modifier_custom_juggernaut_blade_dance_armor:GetModifierPhysicalArmorBo
 end
 
 modifier_custom_juggernaut_blade_dance_illusion = class(mod_hidden)
+function modifier_custom_juggernaut_blade_dance_illusion:GetStatusEffectName()
+	return "particles/status_fx/status_effect_monkey_king_fur_army.vpcf"
+end
+function modifier_custom_juggernaut_blade_dance_illusion:StatusEffectPriority()
+	return MODIFIER_PRIORITY_ILLUSION
+end
+function modifier_custom_juggernaut_blade_dance_illusion:GetEffectName()
+	return "particles/econ/items/juggernaut/jugg_arcana/juggernaut_arcana_v2_body_ambient.vpcf"
+end
+function modifier_custom_juggernaut_blade_dance_illusion:GetEffectAttachType()
+	return PATTACH_ABSORIGIN_FOLLOW
+end
 function modifier_custom_juggernaut_blade_dance_illusion:OnCreated(params)
 	self.caster = self:GetCaster()
 	self.parent = self:GetParent()
@@ -905,7 +895,7 @@ function modifier_custom_juggernaut_blade_dance_illusion:OnIntervalThink()
 		return
 	end
 
-	if self.target and not self.target:IsNull() and self.target:IsAlive() then
+	if IsValid(self.target) and self.target:IsAlive() then
 		if self.parent:GetForceAttackTarget() == nil then
 			self.parent:SetForceAttackTarget(self.target)
 		end
@@ -936,19 +926,6 @@ function modifier_custom_juggernaut_blade_dance_illusion:CheckState()
 		[MODIFIER_STATE_UNTARGETABLE] = true,
 		[MODIFIER_STATE_INVULNERABLE] = true,
 	}
-end
-
-function modifier_custom_juggernaut_blade_dance_illusion:GetStatusEffectName()
-	return "particles/status_fx/status_effect_monkey_king_fur_army.vpcf"
-end
-function modifier_custom_juggernaut_blade_dance_illusion:StatusEffectPriority()
-	return MODIFIER_PRIORITY_ILLUSION
-end
-function modifier_custom_juggernaut_blade_dance_illusion:GetEffectName()
-	return "particles/econ/items/juggernaut/jugg_arcana/juggernaut_arcana_v2_body_ambient.vpcf"
-end
-function modifier_custom_juggernaut_blade_dance_illusion:GetEffectAttachType()
-	return PATTACH_ABSORIGIN_FOLLOW
 end
 
 function modifier_custom_juggernaut_blade_dance_illusion:DeclareFunctions()
@@ -995,13 +972,18 @@ modifier_custom_juggernaut_blade_dance_shield_cd = class(mod_cd)
 function modifier_custom_juggernaut_blade_dance_shield_cd:GetTexture()
 	return "buffs/juggernaut/hero_7"
 end
-function modifier_custom_juggernaut_blade_dance_shield_cd:OnDestroy()
+function modifier_custom_juggernaut_blade_dance_shield_cd:OnCreated()
 	if not IsServer() then
 		return
 	end
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
+end
 
+function modifier_custom_juggernaut_blade_dance_shield_cd:OnDestroy()
+	if not IsServer() then
+		return
+	end
 	if not self.ability.tracker then
 		return
 	end
@@ -1020,6 +1002,7 @@ function modifier_custom_juggernaut_blade_dance_bonus:OnCreated()
 	if not IsServer() then
 		return
 	end
+	self.RemoveForDuel = true
 	self:OnRefresh()
 end
 

@@ -67,11 +67,9 @@ function witch_doctor_death_ward_custom:UpdateTalents()
 	if not self.init then
 		self.init = true
 		self.talents = {
-			has_r1 = 0,
 			r1_damage = 0,
 			r1_attack = 0,
 
-			has_r2 = 0,
 			r2_duration = 0,
 			r2_cd = 0,
 
@@ -86,7 +84,6 @@ function witch_doctor_death_ward_custom:UpdateTalents()
 
 			has_r7 = 0,
 			r7_channel = caster:GetTalentValue("modifier_witch_doctor_deathward_7", "channel", true) / 100,
-			r7_charges = caster:GetTalentValue("modifier_witch_doctor_deathward_7", "charges", true),
 			r7_health = caster:GetTalentValue("modifier_witch_doctor_deathward_7", "health", true) / 100,
 			r7_magic = caster:GetTalentValue("modifier_witch_doctor_deathward_7", "magic", true),
 			r7_bva = caster:GetTalentValue("modifier_witch_doctor_deathward_7", "bva", true),
@@ -95,14 +92,11 @@ function witch_doctor_death_ward_custom:UpdateTalents()
 
 			has_h6 = 0,
 			h6_bkb_cd = caster:GetTalentValue("modifier_witch_doctor_hero_6", "bkb_cd", true),
-			h6_duration = caster:GetTalentValue("modifier_witch_doctor_hero_6", "duration", true),
 			h6_damage_reduce = caster:GetTalentValue("modifier_witch_doctor_hero_6", "damage_reduce", true),
 			h6_bkb = caster:GetTalentValue("modifier_witch_doctor_hero_6", "bkb", true),
 
-			has_q1 = 0,
 			q1_speed_ward = 0,
 
-			has_q2 = 0,
 			q2_range = 0,
 
 			has_q7 = 0,
@@ -110,13 +104,11 @@ function witch_doctor_death_ward_custom:UpdateTalents()
 	end
 
 	if caster:HasTalent("modifier_witch_doctor_deathward_1") then
-		self.talents.has_r1 = 1
 		self.talents.r1_damage = caster:GetTalentValue("modifier_witch_doctor_deathward_1", "damage") / 100
 		self.talents.r1_attack = caster:GetTalentValue("modifier_witch_doctor_deathward_1", "attack")
 	end
 
 	if caster:HasTalent("modifier_witch_doctor_deathward_2") then
-		self.talents.has_r2 = 1
 		self.talents.r2_duration = caster:GetTalentValue("modifier_witch_doctor_deathward_2", "duration")
 		self.talents.r2_cd = caster:GetTalentValue("modifier_witch_doctor_deathward_2", "cd")
 	end
@@ -140,12 +132,10 @@ function witch_doctor_death_ward_custom:UpdateTalents()
 	end
 
 	if caster:HasTalent("modifier_witch_doctor_cask_1") then
-		self.talents.has_q1 = 1
 		self.talents.q1_speed_ward = caster:GetTalentValue("modifier_witch_doctor_cask_1", "speed_ward")
 	end
 
 	if caster:HasTalent("modifier_witch_doctor_cask_2") then
-		self.talents.has_q2 = 1
 		self.talents.q2_range = caster:GetTalentValue("modifier_witch_doctor_cask_2", "range")
 	end
 
@@ -166,81 +156,42 @@ function witch_doctor_death_ward_custom:GetIntrinsicModifierName()
 end
 
 function witch_doctor_death_ward_custom:GetChannelTime()
-	local k = self.ability.talents.has_r7 == 1 and (1 + self.ability.talents.r7_channel) or 1
-	return (
-		(self.channel and self.channel or 0) + (self.ability.talents.has_r4 == 1 and self.ability.talents.r4_cast or 0)
-	) * k
+	local k = self.talents.has_r7 == 1 and (1 + self.talents.r7_channel) or 1
+	return ((self.channel or 0) + (self.talents.has_r4 == 1 and self.talents.r4_cast or 0)) * k
 end
 
 function witch_doctor_death_ward_custom:GetCooldown(level)
-	return self.BaseClass.GetCooldown(self, level) + (self.talents.r2_cd and self.talents.r2_cd or 0)
+	return self.BaseClass.GetCooldown(self, level) + (self.talents.r2_cd or 0)
+end
+
+function witch_doctor_death_ward_custom:GetDamage()
+	return self.damage + self.talents.r1_damage * self.caster:GetAverageTrueAttackDamage(nil)
 end
 
 function witch_doctor_death_ward_custom:OnSpellStart()
-	local caster = self:GetCaster()
 	local point = self:GetCursorPosition()
 	self.ward = self:CreateWard(point)
-	caster:AddNewModifier(
-		caster,
+	self.caster:AddNewModifier(
+		self.caster,
 		self,
 		"modifier_witch_doctor_death_ward_custom_caster",
 		{ ward = self.ward:entindex(), duration = self:GetChannelTime() }
 	)
 end
 
-function witch_doctor_death_ward_custom:CreateWard(point, source)
-	local caster = self:GetCaster()
-	local duration = self.duration + self.ability.talents.r2_duration
-
-	local ward =
-		CreateUnitByName("npc_dota_witch_doctor_death_ward_custom", point, true, caster, nil, caster:GetTeamNumber())
-	local new_model_name = "models/heroes/witchdoctor/witchdoctor_ward.vmdl"
-	local model_pfx = wearables_system:GetUnitModelReplacement(caster, "npc_dota_witch_doctor_death_ward")
-	if model_pfx then
-		new_model_name = model_pfx
-	end
-	if new_model_name ~= "models/heroes/witchdoctor/witchdoctor_ward.vmdl" then
-		ward:SetOriginalModel(new_model_name)
-		--ward:SetModel(new_model_name)
-	end
-
-	if source and source == "auto" then
-		duration = self.talents.r3_duration
-		ward.wd_r3 = true
-	end
-
-	if source and source == "shard" then
-		local ability = caster:FindAbilityByName("witch_doctor_voodoo_switcheroo_custom")
-		if ability then
-			duration = ability:GetSpecialValueFor("duration")
-		end
-	end
-
-	ward:SetControllableByPlayer(caster:GetId(), false)
-	ward:SetOwner(caster)
-	FindClearSpaceForUnit(ward, point, false)
-	ward.owner = caster
-	ward.is_wd_ward = true
-	ward:AddNewModifier(caster, self, "modifier_witch_doctor_death_ward_custom", { source = source })
-	ward:AddNewModifier(caster, self, "modifier_witch_doctor_death_ward_custom_unit", { source = source })
-	ward:AddNewModifier(caster, self, "modifier_kill", { duration = duration })
-
-	return ward
-end
-
 function witch_doctor_death_ward_custom:OnChannelFinish(bInterrupted)
-	local caster = self:GetCaster()
-
-	caster:RemoveModifierByName("modifier_witch_doctor_death_ward_custom_caster")
-
-	if IsValid(self.ward) and bInterrupted then
-		self.ward:RemoveModifierByName("modifier_witch_doctor_death_ward_custom")
-		self.ward = nil
+	self.caster:RemoveModifierByName("modifier_witch_doctor_death_ward_custom_caster")
+	if not bInterrupted then
+		return
 	end
+	if not IsValid(self.ward) then
+		return
+	end
+	self.ward:RemoveModifierByName("modifier_witch_doctor_death_ward_custom")
+	self.ward = nil
 end
 
 function witch_doctor_death_ward_custom:OnProjectileHit_ExtraData(target, location, table)
-	local caster = self:GetCaster()
 	local particle = table.particle
 	local ward = EntIndexToHScript(table.ward)
 
@@ -260,7 +211,7 @@ function witch_doctor_death_ward_custom:OnProjectileHit_ExtraData(target, locati
 	local attacker = ward
 	local fake = true
 	if self.talents.has_r7 == 1 then
-		attacker = caster
+		attacker = self.caster
 		fake = false
 	end
 
@@ -272,7 +223,10 @@ end
 function witch_doctor_death_ward_custom:OnProjectileThink_ExtraData(vLocation, table)
 	local particle = table.particle
 	local target = EntIndexToHScript(table.target)
-	if not IsValid(target) or not particle then
+	if not IsValid(target) then
+		return
+	end
+	if not particle then
 		return
 	end
 
@@ -283,8 +237,47 @@ function witch_doctor_death_ward_custom:OnProjectileThink_ExtraData(vLocation, t
 	)
 end
 
-function witch_doctor_death_ward_custom:GetDamage()
-	return self.damage + self.talents.r1_damage * self.caster:GetAverageTrueAttackDamage(nil)
+function witch_doctor_death_ward_custom:CreateWard(point, source)
+	local duration = self.duration + self.talents.r2_duration
+
+	local ward = CreateUnitByName(
+		"npc_dota_witch_doctor_death_ward_custom",
+		point,
+		true,
+		self.caster,
+		nil,
+		self.caster:GetTeamNumber()
+	)
+	local new_model_name = "models/heroes/witchdoctor/witchdoctor_ward.vmdl"
+	local model_pfx = wearables_system:GetUnitModelReplacement(self.caster, "npc_dota_witch_doctor_death_ward")
+	if model_pfx then
+		new_model_name = model_pfx
+	end
+	if new_model_name ~= "models/heroes/witchdoctor/witchdoctor_ward.vmdl" then
+		ward:SetOriginalModel(new_model_name)
+	end
+
+	if source == "auto" then
+		duration = self.talents.r3_duration
+		ward.wd_r3 = true
+	end
+
+	if source == "shard" then
+		if IsValid(self.caster.switcheroo_ability) then
+			duration = self.caster.switcheroo_ability.duration
+		end
+	end
+
+	ward:SetControllableByPlayer(self.caster:GetId(), false)
+	ward:SetOwner(self.caster)
+	FindClearSpaceForUnit(ward, point, false)
+	ward.owner = self.caster
+	ward.is_wd_ward = true
+	ward:AddNewModifier(self.caster, self, "modifier_witch_doctor_death_ward_custom", { source = source })
+	ward:AddNewModifier(self.caster, self, "modifier_witch_doctor_death_ward_custom_unit", { source = source })
+	ward:AddNewModifier(self.caster, self, "modifier_kill", { duration = duration })
+
+	return ward
 end
 
 modifier_witch_doctor_death_ward_custom = class(mod_hidden)
@@ -302,14 +295,13 @@ function modifier_witch_doctor_death_ward_custom:OnCreated(table)
 	self.ability.wards[self.parent] = true
 
 	self.is_auto = false
-	if table.source then
-		if table.source == "auto" then
-			self.is_auto = true
-		end
-		if table.source == "shard" then
-			self.is_shard = true
-		end
+	if table.source == "auto" then
+		self.is_auto = true
 	end
+	if table.source == "shard" then
+		self.is_shard = true
+	end
+	self:SetHasCustomTransmitterData(true)
 
 	self.attack_count = 0
 	self.forced_target = nil
@@ -428,6 +420,18 @@ function modifier_witch_doctor_death_ward_custom:OnCreated(table)
 	self:StartIntervalThink(0.1)
 end
 
+function modifier_witch_doctor_death_ward_custom:AddCustomTransmitterData()
+	return {
+		is_auto = self.is_auto and 1 or 0,
+		is_shard = self.is_shard and 1 or 0,
+	}
+end
+
+function modifier_witch_doctor_death_ward_custom:HandleCustomTransmitterData(data)
+	self.is_auto = data.is_auto == 1
+	self.is_shard = data.is_shard == 1
+end
+
 function modifier_witch_doctor_death_ward_custom:OnIntervalThink()
 	if not IsServer() then
 		return
@@ -510,9 +514,6 @@ function modifier_witch_doctor_death_ward_custom:OnIntervalThink()
 		end
 	end
 
-	if self.is_auto == false then
-	end
-
 	self:StartIntervalThink(interval)
 end
 
@@ -523,7 +524,10 @@ function modifier_witch_doctor_death_ward_custom:SetTarget(target)
 	if not IsValid(target) then
 		return
 	end
-	if not target:IsUnit() or target:GetTeamNumber() == self.caster:GetTeamNumber() then
+	if not target:IsUnit() then
+		return
+	end
+	if target:GetTeamNumber() == self.caster:GetTeamNumber() then
 		return
 	end
 
@@ -604,7 +608,6 @@ function modifier_witch_doctor_death_ward_custom:DeclareFunctions()
 		MODIFIER_PROPERTY_DISABLE_TURNING,
 		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
 		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
-		MODIFIER_PROPERTY_BASEATTACK_BONUSDAMAGE,
 		MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL,
 		MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_MAGICAL,
 		MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PURE,
@@ -653,7 +656,6 @@ function modifier_witch_doctor_death_ward_custom_unit:OnCreated(table)
 	self.ability = self:GetAbility()
 
 	self.bva = self.ability.bva
-	self.bva_interval = 0.5
 	if self.ability.talents.has_r7 == 1 then
 		self.bva = self.ability.talents.r7_bva
 	end
@@ -663,25 +665,17 @@ function modifier_witch_doctor_death_ward_custom_unit:OnCreated(table)
 	end
 	self.damage_k = 1
 
-	if table.source then
-		if table.source == "auto" then
-			self.damage_k = self.ability.talents.r3_damage
-			self.bva = self.ability.talents.r3_bva
-			self.is_wd_ward_auto = true
-		end
-		if table.source == "shard" then
-			self.is_wd_ward_shard = true
-			local ability = self.caster:FindAbilityByName("witch_doctor_voodoo_switcheroo_custom")
-			if ability then
-				self.bva = ability:GetSpecialValueFor("bva")
-			end
+	if table.source == "auto" then
+		self.damage_k = self.ability.talents.r3_damage
+		self.bva = self.ability.talents.r3_bva
+		self.is_wd_ward_auto = true
+	end
+	if table.source == "shard" then
+		self.is_wd_ward_shard = true
+		if IsValid(self.caster.switcheroo_ability) then
+			self.bva = self.caster.switcheroo_ability.bva
 		end
 	end
-
-	if self.is_wd_ward_auto or self.is_wd_ward_shard then
-		return
-	end
-	self:StartIntervalThink(self.bva_interval)
 end
 
 function modifier_witch_doctor_death_ward_custom_unit:DeclareFunctions()
@@ -714,6 +708,7 @@ function modifier_witch_doctor_death_ward_custom_tracker:OnCreated(table)
 
 	self.parent.deathward_ability = self.ability
 	self.parent.deathward_legendary_ability = self.parent:FindAbilityByName("witch_doctor_death_ward_custom_legendary")
+	self.parent.switcheroo_ability = self.parent:FindAbilityByName("witch_doctor_voodoo_switcheroo_custom")
 
 	self.ability.damage = self.ability:GetSpecialValueFor("damage")
 	self.ability.bva = self.ability:GetSpecialValueFor("bva")
@@ -781,11 +776,13 @@ function modifier_witch_doctor_death_ward_custom_tracker:AttackEvent_out(params)
 	if not target:IsUnit() then
 		return
 	end
-	if
-		not attacker.owner
-		or attacker.owner ~= self.parent
-		or not attacker:HasModifier("modifier_witch_doctor_death_ward_custom_unit")
-	then
+	if not attacker.owner then
+		return
+	end
+	if attacker.owner ~= self.parent then
+		return
+	end
+	if not attacker:HasModifier("modifier_witch_doctor_death_ward_custom_unit") then
 		return
 	end
 
@@ -956,13 +953,17 @@ function modifier_witch_doctor_death_ward_custom_caster:GetModifierIncomingDamag
 	return self.ability.talents.h6_damage_reduce
 end
 
+modifier_witch_doctor_death_ward_custom_bkb_cd = class(mod_cd)
+function modifier_witch_doctor_death_ward_custom_bkb_cd:GetTexture()
+	return "buffs/witch_doctor/hero_6"
+end
+
 witch_doctor_death_ward_custom_legendary = class({})
 function witch_doctor_death_ward_custom_legendary:CreateTalent()
 	if not self:IsHidden() then
 		return
 	end
-	self:GetCaster()
-		:SwapAbilities("witch_doctor_death_ward_custom", "witch_doctor_death_ward_custom_legendary", false, true)
+	self.caster:SwapAbilities("witch_doctor_death_ward_custom", "witch_doctor_death_ward_custom_legendary", false, true)
 end
 
 function witch_doctor_death_ward_custom_legendary:GetAbilityTextureName()
@@ -970,15 +971,15 @@ function witch_doctor_death_ward_custom_legendary:GetAbilityTextureName()
 end
 
 function witch_doctor_death_ward_custom_legendary:GetChannelTime()
-	if not self.caster.deathward_ability then
-		return
+	if not IsValid(self.caster.deathward_ability) then
+		return 0
 	end
 	return self.caster.deathward_ability:GetChannelTime()
 end
 
 function witch_doctor_death_ward_custom_legendary:GetAbilityChargeRestoreTime(level)
-	if not self.caster.deathward_ability then
-		return
+	if not IsValid(self.caster.deathward_ability) then
+		return 0
 	end
 	return self.caster.deathward_ability:GetCooldown(self:GetLevel())
 end
@@ -1011,12 +1012,17 @@ function witch_doctor_death_ward_custom_legendary:OnChannelFinish(bInterrupted)
 	self.ward = nil
 end
 
-modifier_witch_doctor_death_ward_custom_bkb_cd = class(mod_cd)
-function modifier_witch_doctor_death_ward_custom_bkb_cd:GetTexture()
-	return "buffs/witch_doctor/hero_6"
-end
-
 witch_doctor_voodoo_switcheroo_custom = class({})
+function witch_doctor_voodoo_switcheroo_custom:Init()
+	if not self:GetCaster() then
+		return
+	end
+	self.caster = self:GetCaster()
+
+	self.duration = self:GetLevelSpecialValueFor("duration", 1)
+	self.bva = self:GetLevelSpecialValueFor("bva", 1)
+	self.AbilityCastRange = self:GetLevelSpecialValueFor("AbilityCastRange", 1)
+end
 
 function witch_doctor_voodoo_switcheroo_custom:GetCastRange(vLocation, hTarget)
 	if IsClient() then
@@ -1026,14 +1032,14 @@ function witch_doctor_voodoo_switcheroo_custom:GetCastRange(vLocation, hTarget)
 end
 
 function witch_doctor_voodoo_switcheroo_custom:GetManaCost(level)
-	if self:GetCaster():HasModifier("modifier_witch_doctor_death_ward_custom_shard") then
+	if self.caster:HasModifier("modifier_witch_doctor_death_ward_custom_shard") then
 		return 0
 	end
 	return self.BaseClass.GetManaCost(self, level)
 end
 
 function witch_doctor_voodoo_switcheroo_custom:GetBehavior()
-	if self:GetCaster():HasModifier("modifier_witch_doctor_death_ward_custom_shard") then
+	if self.caster:HasModifier("modifier_witch_doctor_death_ward_custom_shard") then
 		return DOTA_ABILITY_BEHAVIOR_IMMEDIATE
 			+ DOTA_ABILITY_BEHAVIOR_NO_TARGET
 			+ DOTA_ABILITY_BEHAVIOR_IGNORE_SILENCE_CUSTOM
@@ -1042,13 +1048,15 @@ function witch_doctor_voodoo_switcheroo_custom:GetBehavior()
 end
 
 function witch_doctor_voodoo_switcheroo_custom:OnSpellStart()
-	local caster = self:GetCaster()
-	local ability = caster:FindAbilityByName("witch_doctor_death_ward_custom")
-	if not ability or not ability:IsTrained() then
+	local ability = self.caster.deathward_ability
+	if not IsValid(ability) then
+		return
+	end
+	if not ability:IsTrained() then
 		return
 	end
 
-	local mod = caster:FindModifierByName("modifier_witch_doctor_death_ward_custom_shard")
+	local mod = self.caster:FindModifierByName("modifier_witch_doctor_death_ward_custom_shard")
 	if mod then
 		mod:Destroy()
 		return
@@ -1057,25 +1065,29 @@ function witch_doctor_voodoo_switcheroo_custom:OnSpellStart()
 	local point = self:GetCursorPosition()
 	local target = self:GetCursorTarget()
 
-	if (target and target == caster) or caster:IsLeashed() or caster:IsRooted() then
-		point = caster:GetAbsOrigin()
+	if (target and target == self.caster) or self.caster:IsLeashed() or self.caster:IsRooted() then
+		point = self.caster:GetAbsOrigin()
 	else
-		local max_dist = self:GetSpecialValueFor("AbilityCastRange") + caster:GetCastRangeBonus()
-		local dir = point - caster:GetAbsOrigin()
+		local max_dist = self.AbilityCastRange + self.caster:GetCastRangeBonus()
+		local dir = point - self.caster:GetAbsOrigin()
 
-		if point == caster:GetAbsOrigin() then
-			point = caster:GetAbsOrigin() + caster:GetForwardVector() * 10
+		if point == self.caster:GetAbsOrigin() then
+			point = self.caster:GetAbsOrigin() + self.caster:GetForwardVector() * 10
 		end
 
 		if dir:Length2D() > max_dist then
-			point = caster:GetAbsOrigin() + dir:Normalized() * max_dist
+			point = self.caster:GetAbsOrigin() + dir:Normalized() * max_dist
 		end
 	end
 
-	caster:Teleport(point, true, "particles/witch_doctor/ward_shard_cast.vpcf")
+	self.caster:Teleport(point, true, "particles/witch_doctor/ward_shard_cast.vpcf")
 
-	local duration = self:GetSpecialValueFor("duration")
-	mod = caster:AddNewModifier(caster, self, "modifier_witch_doctor_death_ward_custom_shard", { duration = duration })
+	mod = self.caster:AddNewModifier(
+		self.caster,
+		self,
+		"modifier_witch_doctor_death_ward_custom_shard",
+		{ duration = self.duration }
+	)
 	local ward = ability:CreateWard(point, "shard")
 
 	if mod then

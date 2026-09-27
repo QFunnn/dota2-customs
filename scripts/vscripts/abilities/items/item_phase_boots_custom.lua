@@ -28,6 +28,14 @@ function item_phase_boots_custom:GetIntrinsicModifierName()
 	return "modifier_item_phase_boots_custom"
 end
 
+function item_phase_boots_custom:Spawn()
+	self.bonus_movement_speed = self:GetSpecialValueFor("bonus_movement_speed")
+	self.bonus_damage = self:GetSpecialValueFor("bonus_damage")
+	self.phase_movement_speed = self:GetSpecialValueFor("phase_movement_speed")
+	self.phase_duration = self:GetSpecialValueFor("phase_duration")
+	self.bonus_armor = self:GetSpecialValueFor("bonus_armor")
+end
+
 function item_phase_boots_custom:OnSpellStart()
 	local caster = self:GetCaster()
 	caster:EmitSound("DOTA_Item.PhaseBoots.Activate")
@@ -38,23 +46,17 @@ modifier_item_phase_boots_custom = class(mod_hidden)
 function modifier_item_phase_boots_custom:RemoveOnDeath()
 	return false
 end
+function modifier_item_phase_boots_custom:OnCreated(table)
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+end
+
 function modifier_item_phase_boots_custom:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE,
 		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
 	}
-end
-
-function modifier_item_phase_boots_custom:OnCreated(table)
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.ability.bonus_movement_speed = self.ability:GetSpecialValueFor("bonus_movement_speed")
-	self.ability.bonus_damage = self.ability:GetSpecialValueFor("bonus_damage")
-	self.ability.phase_movement_speed = self.ability:GetSpecialValueFor("phase_movement_speed")
-	self.ability.phase_duration = self.ability:GetSpecialValueFor("phase_duration")
-	self.ability.bonus_armor = self.ability:GetSpecialValueFor("bonus_armor")
 end
 
 function modifier_item_phase_boots_custom:GetModifierMoveSpeedBonus_Special_Boots()

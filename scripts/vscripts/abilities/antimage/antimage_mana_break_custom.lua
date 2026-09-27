@@ -61,6 +61,7 @@ function antimage_mana_break_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
 	end
+
 	PrecacheResource("particle", "particles/am_heal_mana.vpcf", context)
 	PrecacheResource("particle", "particles/ogre_hit.vpcf", context)
 	PrecacheResource("particle", "particles/am_no_mana.vpcf", context)
@@ -74,11 +75,7 @@ function antimage_mana_break_custom:Precache(context)
 	PrecacheResource("particle", "particles/am_damage.vpcf", context)
 	PrecacheResource("particle", "particles/items3_fx/gleipnir_root.vpcf", context)
 	PrecacheResource("particle", "particles/anti-mage/manabreak_cleave.vpcf", context)
-	PrecacheResource("particle", "particles/am_heal_mana.vpcf", context)
 	PrecacheResource("particle", "particles/generic_gameplay/generic_manaburn.vpcf", context)
-	PrecacheResource("particle", "particles/am_no_mana.vpcf", context)
-	PrecacheResource("particle", "particles/am_break_2.vpcf", context)
-	PrecacheResource("particle", "particles/am_break_legendary.vpcf", context)
 	PrecacheResource("particle", "particles/anti-mage/nomana_haste.vpcf", context)
 	PrecacheResource(
 		"particle",
@@ -86,6 +83,9 @@ function antimage_mana_break_custom:Precache(context)
 		context
 	)
 	PrecacheResource("particle", "particles/units/heroes/hero_keeper_of_the_light/keeper_mana_leak.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_antimage/antimage_manabreak_slow.vpcf", context)
+	PrecacheResource("particle", "particles/am_mana_mark.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_kez/status_effect_kez_afterimage_buff.vpcf", context)
 end
 
 function antimage_mana_break_custom:UpdateTalents(name)
@@ -167,7 +167,7 @@ function antimage_mana_break_custom:UpdateTalents(name)
 		self.talents.has_q3 = 1
 		self.talents.q3_speed = caster:GetTalentValue("modifier_antimage_break_3", "speed")
 		self.talents.q3_mana = caster:GetTalentValue("modifier_antimage_break_3", "mana")
-		caster:AddAttackRecordEvent_out(self.tracker)
+		caster:AddAttackRecordEvent_out(self.tracker, true)
 	end
 
 	if caster:HasTalent("modifier_antimage_break_4") then
@@ -227,24 +227,12 @@ function antimage_mana_break_custom:GetIntrinsicModifierName()
 	return "modifier_antimage_mana_break_custom"
 end
 
-function antimage_mana_break_custom:GetAbilityTargetFlags()
-	if self.talents.has_h6 == 1 then
-		return DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
-	else
-		return DOTA_UNIT_TARGET_FLAG_NONE
-	end
-end
-
 function antimage_mana_break_custom:GetAbilityTextureName()
-	local caster = self:GetCaster()
 	return wearables_system:GetAbilityIconReplacement(self.caster, "antimage_mana_break", self)
 end
 
 function antimage_mana_break_custom:GetCooldown(iLevel)
-	if self.talents.has_q7 == 1 then
-		return self.talents.q7_talent_cd
-	end
-	return
+	return self.talents.has_q7 == 1 and self.talents.q7_talent_cd or 0
 end
 
 function antimage_mana_break_custom:GetBehavior()
@@ -254,26 +242,9 @@ function antimage_mana_break_custom:GetBehavior()
 	return DOTA_ABILITY_BEHAVIOR_PASSIVE
 end
 
-function antimage_mana_break_custom:Init()
-	self.caster = self:GetCaster()
-end
-
-function antimage_mana_break_custom:GetManaK(target)
-	local max_mana = target:GetMaxMana()
-	local min_mana = target:GetMana()
-	local mana_k = 0
-
-	if max_mana == 0 then
-		max_mana = self:GetSpecialValueFor("nomana_max")
-		min_mana = self:GetSpecialValueFor("nomana_min")
-	end
-	mana_k = min_mana / max_mana
-
-	return mana_k
-end
-
 function antimage_mana_break_custom:OnAbilityPhaseStart()
 	self.caster:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_2, 1.3)
+	return true
 end
 
 function antimage_mana_break_custom:OnAbilityPhaseInterrupted()
@@ -283,7 +254,7 @@ end
 function antimage_mana_break_custom:OnSpellStart()
 	self.caster:EmitSound("Antimage.Break_legendary")
 	local target = self:GetCursorTarget()
-	local stack = self.talents.q7_damage * (1 - target:GetMana() / target:GetMaxMana())
+	local stack = self.talents.q7_damage * (1 - self:GetManaK(target))
 
 	self.caster:AddNewModifier(
 		self.caster,
@@ -299,6 +270,18 @@ function antimage_mana_break_custom:OnSpellStart()
 	)
 end
 
+function antimage_mana_break_custom:GetManaK(target)
+	local max_mana = target:GetMaxMana()
+	local min_mana = target:GetMana()
+
+	if max_mana == 0 then
+		max_mana = self.nomana_max
+		min_mana = self.nomana_min
+	end
+
+	return min_mana / max_mana
+end
+
 modifier_antimage_mana_break_custom = class(mod_hidden)
 function modifier_antimage_mana_break_custom:OnCreated(kv)
 	self.parent = self:GetParent()
@@ -308,20 +291,18 @@ function modifier_antimage_mana_break_custom:OnCreated(kv)
 
 	self.parent.manabreak_ability = self.ability
 
-	self.nomana_max = self.ability:GetSpecialValueFor("nomana_max")
-	self.nomana_min = self.ability:GetSpecialValueFor("nomana_min")
-
-	self.percent_damage_per_burn = self.ability:GetSpecialValueFor("percent_damage_per_burn")
-	self.creeps_bonus = self.ability:GetSpecialValueFor("creeps_bonus")
-
-	self.mana_illusion = self.ability:GetSpecialValueFor("illusion_burn")
-	self.mana_flat = self.ability:GetSpecialValueFor("mana_per_hit")
-	self.mana_pct = self.ability:GetSpecialValueFor("mana_per_hit_pct")
+	self.ability.nomana_max = self.ability:GetSpecialValueFor("nomana_max")
+	self.ability.nomana_min = self.ability:GetSpecialValueFor("nomana_min")
+	self.ability.percent_damage_per_burn = self.ability:GetSpecialValueFor("percent_damage_per_burn")
+	self.ability.creeps_bonus = self.ability:GetSpecialValueFor("creeps_bonus")
+	self.ability.illusion_burn = self.ability:GetSpecialValueFor("illusion_burn")
+	self.ability.mana_per_hit = self.ability:GetSpecialValueFor("mana_per_hit")
+	self.ability.mana_per_hit_pct = self.ability:GetSpecialValueFor("mana_per_hit_pct")
 end
 
 function modifier_antimage_mana_break_custom:OnRefresh(kv)
-	self.mana_flat = self.ability:GetSpecialValueFor("mana_per_hit")
-	self.mana_pct = self.ability:GetSpecialValueFor("mana_per_hit_pct")
+	self.ability.mana_per_hit = self.ability:GetSpecialValueFor("mana_per_hit")
+	self.ability.mana_per_hit_pct = self.ability:GetSpecialValueFor("mana_per_hit_pct")
 end
 
 function modifier_antimage_mana_break_custom:OnIntervalThink()
@@ -440,18 +421,20 @@ function modifier_antimage_mana_break_custom:AttackRecordEvent_out(params)
 	if not params.target:IsUnit() then
 		return
 	end
-
-	local target = params.target
-	local mana_k = self.ability:GetManaK(target)
-
-	if self.ability.talents.has_q1 == 1 or self.ability.talents.has_q3 == 1 then
-		self.parent:AddNewModifier(
-			self.parent,
-			self.ability,
-			"modifier_antimage_mana_break_custom_caster_effect",
-			{ mana_k = mana_k, duration = self.ability.talents.q1_duration }
-		)
+	if self.ability.talents.has_q1 == 0 and self.ability.talents.has_q3 == 0 then
+		return
 	end
+
+	local mana_k = self.ability:GetManaK(params.target)
+	local duration = self.ability.talents.has_q3 == 1 and self.ability.talents.q3_duration
+		or self.ability.talents.q1_duration
+
+	self.parent:AddNewModifier(
+		self.parent,
+		self.ability,
+		"modifier_antimage_mana_break_custom_caster_effect",
+		{ mana_k = mana_k, duration = duration }
+	)
 end
 
 function modifier_antimage_mana_break_custom:DeclareFunctions()
@@ -472,11 +455,17 @@ function modifier_antimage_mana_break_custom:GetModifierBaseAttack_BonusDamage()
 end
 
 function modifier_antimage_mana_break_custom:GetModifierMoveSpeedBonus_Constant()
+	if not IsValid(self.parent) then
+		return
+	end
 	return self.ability.talents.w2_move
 		* (self.parent:HasModifier("modifier_antimage_blink_custom_move") and self.ability.talents.w2_bonus or 1)
 end
 
 function modifier_antimage_mana_break_custom:GetModifierEvasion_Constant()
+	if not IsValid(self.parent) then
+		return
+	end
 	return self.ability.talents.w2_evasion
 		* (self.parent:HasModifier("modifier_antimage_blink_custom_move") and self.ability.talents.w2_bonus or 1)
 end
@@ -486,6 +475,9 @@ function modifier_antimage_mana_break_custom:GetModifierAttackRangeBonus()
 end
 
 function modifier_antimage_mana_break_custom:GetModifierBonusStats_Strength()
+	if not IsValid(self.parent) then
+		return
+	end
 	return self.ability.talents.h3_stats_init
 		* (
 			1
@@ -496,6 +488,9 @@ function modifier_antimage_mana_break_custom:GetModifierBonusStats_Strength()
 end
 
 function modifier_antimage_mana_break_custom:GetModifierBonusStats_Intellect()
+	if not IsValid(self.parent) then
+		return
+	end
 	return self.ability.talents.h3_stats_init
 		* (
 			1
@@ -506,6 +501,9 @@ function modifier_antimage_mana_break_custom:GetModifierBonusStats_Intellect()
 end
 
 function modifier_antimage_mana_break_custom:GetModifierBonusStats_Agility()
+	if not IsValid(self.parent) then
+		return
+	end
 	return self.ability.talents.h3_stats_init
 		* (
 			1
@@ -567,14 +565,20 @@ function modifier_antimage_mana_break_custom:GetModifierProcAttack_BonusDamage_P
 	local max_mana = target:GetMaxMana()
 	local min_mana = target:GetMana()
 	if max_mana == 0 then
-		max_mana = self.nomana_max
-		min_mana = self.nomana_min
+		max_mana = self.ability.nomana_max
+		min_mana = self.ability.nomana_min
 	end
 
 	local bkb_ability = self.parent:BkbAbility(self.ability, self.ability.talents.has_h6 == 1)
 
-	local mana_burn = self.parent:IsIllusion() and self.mana_illusion
-		or (self.mana_flat + (max_mana / 100 * (self.mana_pct + self.ability.talents.q3_mana)))
+	local mana_burn = self.parent:IsIllusion() and self.ability.illusion_burn
+		or (
+			self.ability.mana_per_hit + (
+				max_mana
+				/ 100
+				* (self.ability.mana_per_hit_pct + self.ability.talents.q3_mana)
+			)
+		)
 	mana_burn = math.min(min_mana, mana_burn)
 
 	if
@@ -667,8 +671,8 @@ function modifier_antimage_mana_break_custom:GetModifierProcAttack_BonusDamage_P
 		return
 	end
 
-	local damage_bonus = target:IsCreep() and self.creeps_bonus * self.percent_damage_per_burn
-		or self.percent_damage_per_burn
+	local damage_bonus = target:IsCreep() and self.ability.creeps_bonus * self.ability.percent_damage_per_burn
+		or self.ability.percent_damage_per_burn
 	return mana_burn * damage_bonus
 end
 
@@ -697,22 +701,13 @@ end
 
 function modifier_antimage_mana_break_custom_target_effect:DeclareFunctions()
 	return {
-		--MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET,
 		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
 		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
-		--MODIFIER_PROPERTY_LIFESTEAL_AMPLIFY_PERCENTAGE
 	}
 end
 
 function modifier_antimage_mana_break_custom_target_effect:GetModifierPhysicalArmorBonus()
 	return self.armor * (1 - self:GetStackCount() / 100)
-end
-
-function modifier_antimage_mana_break_custom_target_effect:GetModifierLifestealRegenAmplify_Percentage()
-	if self.ability.talents.has_q4 == 0 then
-		return
-	end
-	return self:GetStackCount() <= self.heal_mana and self.heal_reduce or 0
 end
 
 function modifier_antimage_mana_break_custom_target_effect:GetModifierHealChange()
@@ -737,6 +732,7 @@ function modifier_antimage_mana_break_custom_legendary:OnCreated(table)
 	if not IsServer() then
 		return
 	end
+	self.RemoveForDuel = true
 	self.parent:GenericParticle("particles/am_break_2.vpcf", self)
 	self.parent:GenericParticle("particles/am_break_legendary.vpcf", self)
 	self:SetStackCount(table.stack)
@@ -840,10 +836,12 @@ function modifier_antimage_mana_break_custom_stats:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 	self.max = self.ability.talents.h3_max
+
 	if not IsServer() then
 		return
 	end
-	self:SetStackCount(1)
+	self.RemoveForDuel = true
+	self:OnRefresh()
 end
 
 function modifier_antimage_mana_break_custom_stats:OnRefresh()
@@ -854,18 +852,18 @@ function modifier_antimage_mana_break_custom_stats:OnRefresh()
 		return
 	end
 	self:IncrementStackCount()
-end
-
-function modifier_antimage_mana_break_custom_stats:OnStackCountChanged(iStackCount)
-	if not IsServer() then
-		return
-	end
 	self.parent:CalculateStatBonus(true)
 end
 
 modifier_antimage_mana_break_custom_haste = class(mod_visible)
 function modifier_antimage_mana_break_custom_haste:GetTexture()
 	return "buffs/antimage/hero_8"
+end
+function modifier_antimage_mana_break_custom_haste:GetStatusEffectName()
+	return "particles/units/heroes/hero_kez/status_effect_kez_afterimage_buff.vpcf"
+end
+function modifier_antimage_mana_break_custom_haste:StatusEffectPriority()
+	return IsValid(self.parent) and self.parent:IsIllusion() and MODIFIER_PRIORITY_ILLUSION or MODIFIER_PRIORITY_HIGH
 end
 function modifier_antimage_mana_break_custom_haste:OnCreated()
 	self.parent = self:GetParent()
@@ -907,19 +905,10 @@ function modifier_antimage_mana_break_custom_haste:CheckState()
 	}
 end
 
-function modifier_antimage_mana_break_custom_haste:GetStatusEffectName()
-	return "particles/units/heroes/hero_kez/status_effect_kez_afterimage_buff.vpcf"
-end
-
-function modifier_antimage_mana_break_custom_haste:StatusEffectPriority()
-	return MODIFIER_PRIORITY_HIGH
-end
-
 modifier_antimage_mana_break_custom_haste_target = class(mod_hidden)
 function modifier_antimage_mana_break_custom_haste_target:GetEffectName()
 	return "particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_mana_leak.vpcf"
 end
-
 function modifier_antimage_mana_break_custom_haste_target:OnCreated()
 	self.parent = self:GetParent()
 
@@ -946,6 +935,7 @@ function modifier_antimage_mana_break_custom_legendary_target:OnCreated(table)
 	if not IsServer() then
 		return
 	end
+	self.RemoveForDuel = true
 	self.ability:EndCd()
 	self:SetStackCount(table.stack)
 	self.parent:GenericParticle("particles/am_mana_mark.vpcf", self, true)
@@ -968,7 +958,6 @@ end
 function modifier_antimage_mana_break_custom_legendary_target:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
-		MODIFIER_PROPERTY_evas,
 	}
 end
 

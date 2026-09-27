@@ -23,19 +23,21 @@ function item_flayers_bota_custom:Precache(context)
 	PrecacheResource("particle", "particles/items6_fx/flayers_bota.vpcf", context)
 end
 
+function item_flayers_bota_custom:Spawn()
+	self.cost = self:GetSpecialValueFor("cost")
+	self.duration = self:GetSpecialValueFor("duration")
+	self.damage = self:GetSpecialValueFor("damage")
+	self.speed = self:GetSpecialValueFor("speed")
+end
+
 function item_flayers_bota_custom:OnSpellStart()
 	local caster = self:GetCaster()
 	caster:EmitSound("item_flayers_bota")
 
-	local cost = caster:GetHealth() * self:GetSpecialValueFor("cost") / 100
+	local cost = caster:GetHealth() * self.cost / 100
 	caster:SetHealth(math.max(1, caster:GetHealth() - cost))
 
-	caster:AddNewModifier(
-		caster,
-		self,
-		"modifier_item_flayers_bota_custom",
-		{ duration = self:GetSpecialValueFor("duration") }
-	)
+	caster:AddNewModifier(caster, self, "modifier_item_flayers_bota_custom", { duration = self.duration })
 end
 
 modifier_item_flayers_bota_custom = class(mod_visible)
@@ -43,8 +45,8 @@ function modifier_item_flayers_bota_custom:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.damage = self.ability:GetSpecialValueFor("damage")
-	self.speed = self.ability:GetSpecialValueFor("speed")
+	self.damage = self.ability.damage
+	self.speed = self.ability.speed
 
 	if not IsServer() then
 		return

@@ -47,10 +47,6 @@ LinkLuaModifier(
 zuus_lightning_bolt_custom = class({})
 zuus_lightning_bolt_custom.talents = {}
 
-function zuus_lightning_bolt_custom:GetAbilityTextureName()
-	return wearables_system:GetAbilityIconReplacement(self.caster, "zuus_lightning_bolt", self)
-end
-
 function zuus_lightning_bolt_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
@@ -64,6 +60,13 @@ function zuus_lightning_bolt_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_zuus/zuus_lightning_bolt_aoe.vpcf", context)
 	PrecacheResource("particle", "particles/zeus/bolt_disarm.vpcf", context)
 	PrecacheResource("particle", "particles/zeus/bolt_legendary_stack2.vpcf", context)
+	PrecacheResource(
+		"particle",
+		"particles/econ/items/zeus/lightning_weapon_fx/zuus_lightning_bolt_immortal_lightning.vpcf",
+		context
+	)
+	PrecacheResource("particle", "particles/econ/items/zeus/lightning_weapon_fx/zuus_lb_cfx_il.vpcf", context)
+	PrecacheResource("particle", "particles/items3_fx/gleipnir_root.vpcf", context)
 end
 
 function zuus_lightning_bolt_custom:UpdateTalents(name)
@@ -71,7 +74,6 @@ function zuus_lightning_bolt_custom:UpdateTalents(name)
 	if not self.init then
 		self.init = true
 		self.talents = {
-			has_w1 = 0,
 			w1_cd = 0,
 
 			has_w2 = 0,
@@ -93,19 +95,15 @@ function zuus_lightning_bolt_custom:UpdateTalents(name)
 			w4_root = caster:GetTalentValue("modifier_zuus_bolt_4", "root", true),
 			w4_cast = caster:GetTalentValue("modifier_zuus_bolt_4", "cast", true) / 100,
 
-			has_w7 = 0,
 			w7_damage_inc = caster:GetTalentValue("modifier_zuus_bolt_7", "damage_inc", true) / 100,
 			w7_damage_k = caster:GetTalentValue("modifier_zuus_bolt_7", "damage_k", true),
 			w7_max_stack = caster:GetTalentValue("modifier_zuus_bolt_7", "max_stack", true),
 
-			has_h1 = 0,
-			h1_slow = 0,
 			h1_stun = 0,
 		}
 	end
 
 	if caster:HasTalent("modifier_zuus_bolt_1") then
-		self.talents.has_w1 = 1
 		self.talents.w1_cd = caster:GetTalentValue("modifier_zuus_bolt_1", "cd")
 	end
 
@@ -126,19 +124,13 @@ function zuus_lightning_bolt_custom:UpdateTalents(name)
 		self.talents.has_w4 = 1
 	end
 
-	if caster:HasTalent("modifier_zuus_bolt_7") then
-		self.talents.has_w7 = 1
-	end
-
 	if caster:HasTalent("modifier_zuus_hero_1") then
-		self.talents.has_h1 = 1
-		self.talents.h1_slow = caster:GetTalentValue("modifier_zuus_hero_1", "slow")
 		self.talents.h1_stun = caster:GetTalentValue("modifier_zuus_hero_1", "stun")
 	end
 end
 
-function zuus_lightning_bolt_custom:Init()
-	self.caster = self:GetCaster()
+function zuus_lightning_bolt_custom:GetAbilityTextureName()
+	return wearables_system:GetAbilityIconReplacement(self.caster, "zuus_lightning_bolt", self)
 end
 
 function zuus_lightning_bolt_custom:GetIntrinsicModifierName()
@@ -148,22 +140,22 @@ function zuus_lightning_bolt_custom:GetIntrinsicModifierName()
 	return "modifier_zuus_lightning_bolt_custom_tracker"
 end
 
-function zuus_lightning_bolt_custom:OnAbilityPhaseStart()
-	local sound = wearables_system:GetSoundReplacement(self.caster, "Hero_Zuus.LightningBolt.Cast", self)
-	self.caster:EmitSound(sound)
-	return true
-end
-
 function zuus_lightning_bolt_custom:GetAOERadius()
-	return self.radius and self.radius or 0
+	return (self.radius or 0)
 end
 
 function zuus_lightning_bolt_custom:GetCooldown(iLevel)
-	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.w1_cd and self.talents.w1_cd or 0)
+	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.w1_cd or 0)
 end
 
 function zuus_lightning_bolt_custom:GetCastPoint(iLevel)
 	return self.BaseClass.GetCastPoint(self) * (1 + (self.talents.has_w4 == 1 and self.talents.w4_cast or 0))
+end
+
+function zuus_lightning_bolt_custom:OnAbilityPhaseStart()
+	local sound = wearables_system:GetSoundReplacement(self.caster, "Hero_Zuus.LightningBolt.Cast", self)
+	self.caster:EmitSound(sound)
+	return true
 end
 
 function zuus_lightning_bolt_custom:OnSpellStart()
@@ -346,12 +338,15 @@ function modifier_zuus_lightning_bolt_custom_tracker:OnCreated()
 	self.ability.tracker = self
 	self.ability:UpdateTalents()
 
-	self.legendary_ability = self.parent:FindAbilityByName("zuus_stormkeeper_custom")
-	if self.legendary_ability then
-		self.legendary_ability:UpdateTalents()
-	end
-
 	self.parent.bolt_ability = self.ability
+	self.parent.stormkeeper_ability = self.parent:FindAbilityByName("zuus_stormkeeper_custom")
+
+	if IsValid(self.parent.stormkeeper_ability) then
+		if IsServer() and not self.parent.stormkeeper_ability:IsTrained() then
+			self.parent.stormkeeper_ability:SetLevel(1)
+		end
+		self.parent.stormkeeper_ability:UpdateTalents()
+	end
 
 	self.ability.damage = self.ability:GetSpecialValueFor("damage")
 	self.ability.true_sight_radius = self.ability:GetSpecialValueFor("true_sight_radius")
@@ -411,7 +406,7 @@ function modifier_zuus_lightning_bolt_custom_item_stack:OnCreated(table)
 	self.radius = self.ability.talents.w3_radius
 	self.RemoveForDuel = true
 
-	self:SetStackCount(1)
+	self:OnRefresh(table)
 end
 
 function modifier_zuus_lightning_bolt_custom_item_stack:OnRefresh(table)
@@ -452,12 +447,62 @@ function modifier_zuus_lightning_bolt_custom_item_stack:OnIntervalThink()
 	self:Destroy()
 end
 
+modifier_zuus_lightning_bolt_custom_root_cd = class(mod_hidden)
+function modifier_zuus_lightning_bolt_custom_root_cd:RemoveOnDeath()
+	return false
+end
+function modifier_zuus_lightning_bolt_custom_root_cd:OnCreated()
+	self.RemoveForDuel = true
+end
+
+modifier_zuus_lightning_bolt_custom_root = class(mod_hidden)
+function modifier_zuus_lightning_bolt_custom_root:IsPurgable()
+	return true
+end
+function modifier_zuus_lightning_bolt_custom_root:GetEffectName()
+	return "particles/items3_fx/gleipnir_root.vpcf"
+end
+function modifier_zuus_lightning_bolt_custom_root:OnCreated()
+	if not IsServer() then
+		return
+	end
+	self.parent = self:GetParent()
+	self.parent:GenericParticle("particles/zeus/bolt_disarm.vpcf", self, true)
+end
+
+function modifier_zuus_lightning_bolt_custom_root:CheckState()
+	return {
+		[MODIFIER_STATE_ROOTED] = true,
+		[MODIFIER_STATE_DISARMED] = true,
+	}
+end
+
+modifier_zuus_lightning_bolt_custom_root_heal_reduce = class(mod_hidden)
+function modifier_zuus_lightning_bolt_custom_root_heal_reduce:OnCreated()
+	self.ability = self:GetAbility()
+	self.heal_reduce = self.ability.talents.w2_heal_reduce
+	if not IsServer() then
+		return
+	end
+	self.RemoveForDuel = true
+end
+
+function modifier_zuus_lightning_bolt_custom_root_heal_reduce:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
+	}
+end
+
+function modifier_zuus_lightning_bolt_custom_root_heal_reduce:GetModifierHealChange()
+	return self.heal_reduce
+end
+
+function modifier_zuus_lightning_bolt_custom_root_heal_reduce:GetModifierHPRegenAmplify_Percentage()
+	return self.heal_reduce
+end
+
 zuus_stormkeeper_custom = class({})
 zuus_stormkeeper_custom.talents = {}
-
-function zuus_stormkeeper_custom:CreateTalent()
-	self:SetHidden(false)
-end
 
 function zuus_stormkeeper_custom:UpdateTalents(name)
 	local caster = self:GetCaster()
@@ -477,20 +522,20 @@ function zuus_stormkeeper_custom:UpdateTalents(name)
 	end
 end
 
-function zuus_stormkeeper_custom:Init()
-	self.caster = self:GetCaster()
+function zuus_stormkeeper_custom:CreateTalent()
+	self:SetHidden(false)
 end
 
 function zuus_stormkeeper_custom:GetAOERadius()
-	return self.talents.w7_radius and self.talents.w7_radius or 0
+	return (self.talents.w7_radius or 0)
 end
 
 function zuus_stormkeeper_custom:GetChannelTime()
-	return self.talents.w7_interval * (self.talents.w7_max - 1) + 0.1
+	return (self.talents.w7_interval or 0) * ((self.talents.w7_max or 1) - 1) + 0.1
 end
 
 function zuus_stormkeeper_custom:GetCooldown()
-	return self.talents.w7_talent_cd and self.talents.w7_talent_cd or 0
+	return (self.talents.w7_talent_cd or 0)
 end
 
 function zuus_stormkeeper_custom:OnSpellStart()
@@ -550,6 +595,7 @@ function modifier_zuus_lightning_bolt_custom_legendary:OnCreated(table)
 	self:OnIntervalThink()
 	self:StartIntervalThink(self.ability.talents.w7_interval)
 end
+
 function modifier_zuus_lightning_bolt_custom_legendary:OnIntervalThink()
 	if not IsServer() then
 		return
@@ -612,7 +658,7 @@ function modifier_zuus_lightning_bolt_custom_legendary:OnIntervalThink()
 			unit:AddNewModifier(self.parent, self.ability, "modifier_stunned", { duration = self.stun })
 
 			self.damageTable.victim = unit
-			DoDamage(self.damageTable)
+			DoDamage(self.damageTable, "modifier_zuus_bolt_7")
 		end
 	end
 
@@ -644,10 +690,9 @@ function modifier_zuus_lightning_bolt_custom_legendary_stack_count:OnCreated(tab
 	if not IsServer() then
 		return
 	end
-	self.duration = self:GetRemainingTime()
 	self.RemoveForDuel = true
 	self.particle = self.parent:GenericParticle("particles/zuus_attack_stack.vpcf", self, true)
-	self:SetStackCount(1)
+	self:OnRefresh()
 end
 
 function modifier_zuus_lightning_bolt_custom_legendary_stack_count:OnRefresh()
@@ -658,12 +703,6 @@ function modifier_zuus_lightning_bolt_custom_legendary_stack_count:OnRefresh()
 		return
 	end
 	self:IncrementStackCount()
-end
-
-function modifier_zuus_lightning_bolt_custom_legendary_stack_count:OnStackCountChanged(iStackCount)
-	if not IsServer() then
-		return
-	end
 
 	if self:GetStackCount() >= 10 then
 		if self.particle then
@@ -686,63 +725,4 @@ end
 
 function modifier_zuus_lightning_bolt_custom_legendary_stack_count:OnTooltip()
 	return self.damage * self:GetStackCount()
-end
-
-modifier_zuus_lightning_bolt_custom_root_cd = class(mod_hidden)
-function modifier_zuus_lightning_bolt_custom_root_cd:RemoveOnDeath()
-	return false
-end
-function modifier_zuus_lightning_bolt_custom_root_cd:OnCreated()
-	self.RemoveForDuel = true
-end
-
-modifier_zuus_lightning_bolt_custom_root = class({})
-function modifier_zuus_lightning_bolt_custom_root:IsHidden()
-	return true
-end
-function modifier_zuus_lightning_bolt_custom_root:IsPurgable()
-	return true
-end
-function modifier_zuus_lightning_bolt_custom_root:CheckState()
-	return {
-		[MODIFIER_STATE_ROOTED] = true,
-		[MODIFIER_STATE_DISARMED] = true,
-	}
-end
-
-function modifier_zuus_lightning_bolt_custom_root:GetEffectName()
-	return "particles/items3_fx/gleipnir_root.vpcf"
-end
-function modifier_zuus_lightning_bolt_custom_root:OnCreated()
-	if not IsServer() then
-		return
-	end
-	self.parent = self:GetParent()
-	self.parent:GenericParticle("particles/zeus/bolt_disarm.vpcf", self, true)
-end
-
-modifier_zuus_lightning_bolt_custom_root_heal_reduce = class(mod_hidden)
-function modifier_zuus_lightning_bolt_custom_root_heal_reduce:OnCreated()
-	self.ability = self:GetAbility()
-	self.heal_reduce = self.ability.talents.w2_heal_reduce
-end
-
-function modifier_zuus_lightning_bolt_custom_root_heal_reduce:DeclareFunctions()
-	return {
-		--MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET,
-		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
-		--MODIFIER_PROPERTY_LIFESTEAL_AMPLIFY_PERCENTAGE,
-	}
-end
-
-function modifier_zuus_lightning_bolt_custom_root_heal_reduce:GetModifierLifestealRegenAmplify_Percentage()
-	return self.heal_reduce
-end
-
-function modifier_zuus_lightning_bolt_custom_root_heal_reduce:GetModifierHealChange()
-	return self.heal_reduce
-end
-
-function modifier_zuus_lightning_bolt_custom_root_heal_reduce:GetModifierHPRegenAmplify_Percentage()
-	return self.heal_reduce
 end

@@ -34,6 +34,27 @@ function item_spirit_vessel_custom:Precache(context)
 	PrecacheResource("particle", "particles/items4_fx/spirit_vessel_damage.vpcf", context)
 end
 
+function item_spirit_vessel_custom:Spawn()
+	self.duration = self:GetSpecialValueFor("duration")
+	self.soul_cooldown = self:GetSpecialValueFor("soul_cooldown")
+	self.bonus_armor = self:GetSpecialValueFor("bonus_armor")
+	self.bonus_mana_regen = self:GetSpecialValueFor("bonus_mana_regen")
+	self.bonus_all_stats = self:GetSpecialValueFor("bonus_all_stats")
+	self.bonus_health = self:GetSpecialValueFor("bonus_health")
+	self.bonus_mana = self:GetSpecialValueFor("bonus_mana")
+	self.soul_radius = self:GetSpecialValueFor("soul_radius")
+	self.soul_additional_charges = self:GetSpecialValueFor("soul_additional_charges")
+	self.max_health = self:GetSpecialValueFor("max_health")
+	self.max_mana = self:GetSpecialValueFor("max_mana")
+	self.duo_charge = self:GetSpecialValueFor("duo_charge")
+	self.max_stacks = self:GetSpecialValueFor("max_stacks")
+	self.init_charges = self:GetSpecialValueFor("init_charges")
+	self.soul_damage_amount = self:GetSpecialValueFor("soul_damage_amount")
+	self.enemy_hp_drain = self:GetSpecialValueFor("enemy_hp_drain")
+	self.hp_regen_reduction_enemy = self:GetSpecialValueFor("hp_regen_reduction_enemy")
+	self.soul_heal_amount = self:GetSpecialValueFor("soul_heal_amount")
+end
+
 function item_spirit_vessel_custom:CastFilterResultTarget(target)
 	if not IsServer() then
 		return
@@ -64,7 +85,7 @@ function item_spirit_vessel_custom:CastFilterResultTarget(target)
 end
 
 function item_spirit_vessel_custom:OnSpellStart()
-	local duration = self:GetSpecialValueFor("duration")
+	local duration = self.duration
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 
@@ -92,7 +113,6 @@ end
 function modifier_item_spirit_vessel_custom_passive:DestroyOnExpire()
 	return false
 end
-
 function modifier_item_spirit_vessel_custom_passive:OnCreated()
 	self.item = self:GetAbility()
 	self.parent = self:GetParent()
@@ -101,23 +121,23 @@ function modifier_item_spirit_vessel_custom_passive:OnCreated()
 		self.parent:AddDeathEvent(self, true)
 	end
 
-	self.soul_cooldown = self.item:GetSpecialValueFor("soul_cooldown")
-	self.bonus_armor = self.item:GetSpecialValueFor("bonus_armor")
-	self.bonus_mana_regen = self.item:GetSpecialValueFor("bonus_mana_regen")
-	self.bonus_agility = self.item:GetSpecialValueFor("bonus_all_stats")
-	self.bonus_strength = self.item:GetSpecialValueFor("bonus_all_stats")
-	self.bonus_intelligence = self.item:GetSpecialValueFor("bonus_all_stats")
-	self.health_bonus = self.item:GetSpecialValueFor("bonus_health")
-	self.mana_bonus = self.item:GetSpecialValueFor("bonus_mana")
-	self.radius = self.item:GetSpecialValueFor("soul_radius")
-	self.kill_charges = self.item:GetSpecialValueFor("soul_additional_charges")
-	self.max_health = self.item:GetSpecialValueFor("max_health")
-	self.max_mana = self.item:GetSpecialValueFor("max_mana")
+	self.soul_cooldown = self.item.soul_cooldown
+	self.bonus_armor = self.item.bonus_armor
+	self.bonus_mana_regen = self.item.bonus_mana_regen
+	self.bonus_agility = self.item.bonus_all_stats
+	self.bonus_strength = self.item.bonus_all_stats
+	self.bonus_intelligence = self.item.bonus_all_stats
+	self.health_bonus = self.item.bonus_health
+	self.mana_bonus = self.item.bonus_mana
+	self.radius = self.item.soul_radius
+	self.kill_charges = self.item.soul_additional_charges
+	self.max_health = self.item.max_health
+	self.max_mana = self.item.max_mana
 	if not IsSoloMode() then
-		self.kill_charges = self.item:GetSpecialValueFor("duo_charge")
+		self.kill_charges = self.item.duo_charge
 	end
 	self.duration = self.soul_cooldown
-	self.max_stacks = self.item:GetSpecialValueFor("max_stacks")
+	self.max_stacks = self.item.max_stacks
 
 	if not IsServer() then
 		return
@@ -125,9 +145,7 @@ function modifier_item_spirit_vessel_custom_passive:OnCreated()
 
 	if not self.item.init then
 		self.item.init = true
-		self.item:SetCurrentCharges(
-			math.max(self.item:GetCurrentCharges(), self.item:GetSpecialValueFor("init_charges"))
-		)
+		self.item:SetCurrentCharges(math.max(self.item:GetCurrentCharges(), self.item.init_charges))
 	end
 
 	self:OnIntervalThink()
@@ -198,6 +216,9 @@ function modifier_item_spirit_vessel_custom_passive:GetModifierManaBonus()
 end
 
 function modifier_item_spirit_vessel_custom_passive:DeathEvent(params)
+	if not IsValid(self.item) then
+		return
+	end
 	local target = params.unit
 	if not self.parent:IsRealHero() then
 		return
@@ -218,10 +239,7 @@ function modifier_item_spirit_vessel_custom_passive:DeathEvent(params)
 	end
 end
 
-modifier_item_spirit_vessel_custom_active_enemy = class({})
-function modifier_item_spirit_vessel_custom_active_enemy:IsHidden()
-	return false
-end
+modifier_item_spirit_vessel_custom_active_enemy = class(mod_visible)
 function modifier_item_spirit_vessel_custom_active_enemy:IsPurgable()
 	return true
 end
@@ -231,11 +249,11 @@ function modifier_item_spirit_vessel_custom_active_enemy:OnCreated(params)
 	self.ability = self:GetAbility()
 
 	self.interval = 0.5
-	self.damage_per_second = self.ability:GetSpecialValueFor("soul_damage_amount")
-	self.enemy_hp_drain = self.ability:GetSpecialValueFor("enemy_hp_drain") / 100
-	self.hp_reduction_heal = -1 * self.ability:GetSpecialValueFor("hp_regen_reduction_enemy")
-	self.heal = self.ability:GetSpecialValueFor("soul_heal_amount") / 100
-	self.duration = self.ability:GetSpecialValueFor("duration") / self.interval
+	self.damage_per_second = self.ability.soul_damage_amount
+	self.enemy_hp_drain = self.ability.enemy_hp_drain / 100
+	self.hp_reduction_heal = -1 * self.ability.hp_regen_reduction_enemy
+	self.heal = self.ability.soul_heal_amount / 100
+	self.duration = self.ability.duration / self.interval
 
 	if not IsServer() then
 		return
@@ -279,8 +297,6 @@ end
 function modifier_item_spirit_vessel_custom_active_enemy:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
-		--MODIFIER_PROPERTY_LIFESTEAL_AMPLIFY_PERCENTAGE,
-		--MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET,
 	}
 end
 

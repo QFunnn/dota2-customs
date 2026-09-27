@@ -23,13 +23,13 @@ function item_mysterious_hat_custom:GetIntrinsicModifierName()
 	return "modifier_item_mysterious_hat_custom"
 end
 
-modifier_item_mysterious_hat_custom = class({})
-function modifier_item_mysterious_hat_custom:IsHidden()
-	return true
+function item_mysterious_hat_custom:Spawn()
+	self.damage = self:GetSpecialValueFor("damage")
+	self.resist = self:GetSpecialValueFor("resist")
+	self.health = self:GetSpecialValueFor("health")
 end
-function modifier_item_mysterious_hat_custom:IsPurgable()
-	return false
-end
+
+modifier_item_mysterious_hat_custom = class(mod_hidden)
 function modifier_item_mysterious_hat_custom:RemoveOnDeath()
 	return false
 end
@@ -37,9 +37,9 @@ function modifier_item_mysterious_hat_custom:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.damage = self.ability:GetSpecialValueFor("damage")
-	self.resist = self.ability:GetSpecialValueFor("resist")
-	self.health = self.ability:GetSpecialValueFor("health")
+	self.damage = self.ability.damage
+	self.resist = self.ability.resist
+	self.health = self.ability.health
 end
 
 function modifier_item_mysterious_hat_custom:DeclareFunctions()

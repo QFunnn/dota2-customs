@@ -14,11 +14,6 @@ LinkLuaModifier(
 	LUA_MODIFIER_MOTION_NONE
 )
 LinkLuaModifier(
-	"modifier_crystal_maiden_frostbite_custom_attack_cd",
-	"abilities/crystal_maiden/crystal_maiden_frostbite_custom",
-	LUA_MODIFIER_MOTION_NONE
-)
-LinkLuaModifier(
 	"modifier_crystal_maiden_frostbite_custom_tracker",
 	"abilities/crystal_maiden/crystal_maiden_frostbite_custom",
 	LUA_MODIFIER_MOTION_NONE
@@ -100,14 +95,12 @@ function crystal_maiden_frostbite_custom:Precache(context)
 	PrecacheResource("particle", "particles/maiden_frostbite_area.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_lich/lich_ice_age_debuff.vpcf", context)
 	PrecacheResource("particle", "particles/maiden_area_damage.vpcf", context)
-
 	PrecacheResource("particle", "particles/units/heroes/hero_crystalmaiden/maiden_death.vpcf", context)
 	PrecacheResource("particle", "particles/cm_death_custom/maiden_death.vpcf", context)
 end
 
 function crystal_maiden_frostbite_custom:UpdateTalents()
 	local caster = self:GetCaster()
-
 	if not self.init then
 		self.init = true
 		self.talents = {
@@ -139,23 +132,24 @@ function crystal_maiden_frostbite_custom:UpdateTalents()
 			w4_cd = caster:GetTalentValue("modifier_maiden_frostbite_4", "cd", true),
 			w4_cd_items = caster:GetTalentValue("modifier_maiden_frostbite_4", "cd_items", true),
 
-			has_block = 0,
-			block_heal_inc = 0,
-			block_heal = caster:GetTalentValue("modifier_maiden_hero_5", "heal", true) / 100,
-			block_duration = caster:GetTalentValue("modifier_maiden_hero_5", "duration", true),
-			block_cd = caster:GetTalentValue("modifier_maiden_hero_5", "talent_cd", true),
+			has_h5 = 0,
+			h5_heal_inc = caster:GetTalentValue("modifier_maiden_hero_5", "heal_inc", true),
+			h5_heal = caster:GetTalentValue("modifier_maiden_hero_5", "heal", true) / 100,
+			h5_duration = caster:GetTalentValue("modifier_maiden_hero_5", "duration", true),
+			h5_talent_cd = caster:GetTalentValue("modifier_maiden_hero_5", "talent_cd", true),
 
-			has_legendary = 0,
-			legendary_radius = caster:GetTalentValue("modifier_maiden_frostbite_7", "radius", true),
-			legendary_slow = caster:GetTalentValue("modifier_maiden_frostbite_7", "slow", true),
-			legendary_damage = caster:GetTalentValue("modifier_maiden_frostbite_7", "damage", true),
-			legendary_max = caster:GetTalentValue("modifier_maiden_frostbite_7", "max", true),
-			legendary_duration = caster:GetTalentValue("modifier_maiden_frostbite_7", "duration", true),
+			has_w7 = 0,
+			w7_radius = caster:GetTalentValue("modifier_maiden_frostbite_7", "radius", true),
+			w7_slow = caster:GetTalentValue("modifier_maiden_frostbite_7", "slow", true),
+			w7_damage = caster:GetTalentValue("modifier_maiden_frostbite_7", "damage", true),
+			w7_max = caster:GetTalentValue("modifier_maiden_frostbite_7", "max", true),
+			w7_duration = caster:GetTalentValue("modifier_maiden_frostbite_7", "duration", true),
 
 			has_e7 = 0,
 
 			has_r1 = 0,
 			r1_heal_reduce = 0,
+			r1_duration = caster:GetTalentValue("modifier_maiden_freezing_1", "duration", true),
 		}
 	end
 
@@ -177,13 +171,12 @@ function crystal_maiden_frostbite_custom:UpdateTalents()
 	end
 
 	if caster:HasTalent("modifier_maiden_hero_5") then
-		self.talents.has_block = 1
-		self.talents.block_heal_inc = caster:GetTalentValue("modifier_maiden_hero_5", "heal_inc")
+		self.talents.has_h5 = 1
 		caster:AddDamageEvent_inc(self.tracker, true)
 	end
 
 	if caster:HasTalent("modifier_maiden_frostbite_7") then
-		self.talents.has_legendary = 1
+		self.talents.has_w7 = 1
 		if IsServer() then
 			self.tracker:OnIntervalThink()
 		end
@@ -216,7 +209,6 @@ function crystal_maiden_frostbite_custom:UpdateTalents()
 end
 
 function crystal_maiden_frostbite_custom:GetAbilityTextureName()
-	local caster = self:GetCaster()
 	return wearables_system:GetAbilityIconReplacement(self.caster, "crystal_maiden_frostbite", self)
 end
 
@@ -231,22 +223,7 @@ function crystal_maiden_frostbite_custom:GetCooldown(iLevel)
 	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.has_w4 == 1 and self.talents.w4_cd or 0)
 end
 
-function crystal_maiden_frostbite_custom:ApplyEffect(target, new_duration)
-	if not IsServer() then
-		return
-	end
-	local caster = self:GetCaster()
-	local duration = new_duration * (1 - target:GetStatusResistance())
-	local mod = target:FindModifierByName("modifier_crystal_maiden_frostbite_custom_legendary_slow")
-	if mod and mod:GetStackCount() >= self.talents.legendary_max then
-		duration = new_duration
-	end
-
-	target:AddNewModifier(caster, self, "modifier_crystal_maiden_frostbite_custom", { duration = duration })
-end
-
 function crystal_maiden_frostbite_custom:OnSpellStart()
-	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 
 	if target:TriggerSpellAbsorb(self) then
@@ -258,7 +235,7 @@ function crystal_maiden_frostbite_custom:OnSpellStart()
 			self.caster,
 			self,
 			"modifier_crystal_maiden_frostbite_custom_resist",
-			{ duration = self.talents.w1_duration }
+			{ duration = self.talents.has_w1 == 1 and self.talents.w1_duration or self.talents.r1_duration }
 		)
 	end
 
@@ -267,41 +244,45 @@ function crystal_maiden_frostbite_custom:OnSpellStart()
 	end
 
 	self:ApplyEffect(target, self.duration)
-	self:PlayEffect(target)
-end
 
-function crystal_maiden_frostbite_custom:PlayEffect(target)
-	if not IsServer() then
-		return
-	end
-	local caster = self:GetCaster()
-
-	local projectile_name = wearables_system:GetParticleReplacementAbility(
-		caster,
-		"particles/units/heroes/hero_crystalmaiden/maiden_frostbite.vpcf",
-		self
-	)
-
-	local projectile_speed = 1000
 	local info = {
 		Target = target,
-		Source = caster,
+		Source = self.caster,
 		Ability = self,
-
-		EffectName = projectile_name,
-		iMoveSpeed = projectile_speed,
-		vSourceLoc = caster:GetAbsOrigin(),
+		EffectName = wearables_system:GetParticleReplacementAbility(
+			self.caster,
+			"particles/units/heroes/hero_crystalmaiden/maiden_frostbite.vpcf",
+			self
+		),
+		iMoveSpeed = 1000,
+		vSourceLoc = self.caster:GetAbsOrigin(),
 		bDodgeable = false,
 	}
 	ProjectileManager:CreateTrackingProjectile(info)
 end
 
-modifier_crystal_maiden_frostbite_custom = class({})
-function modifier_crystal_maiden_frostbite_custom:IsHidden()
-	return false
+function crystal_maiden_frostbite_custom:ApplyEffect(target, new_duration)
+	if not IsServer() then
+		return
+	end
+	local duration = new_duration * (1 - target:GetStatusResistance())
+	local mod = target:FindModifierByName("modifier_crystal_maiden_frostbite_custom_legendary_slow")
+	if mod and mod:GetStackCount() >= self.talents.w7_max then
+		duration = new_duration
+	end
+
+	target:AddNewModifier(self.caster, self, "modifier_crystal_maiden_frostbite_custom", { duration = duration })
 end
+
+modifier_crystal_maiden_frostbite_custom = class(mod_visible)
 function modifier_crystal_maiden_frostbite_custom:IsPurgable()
 	return true
+end
+function modifier_crystal_maiden_frostbite_custom:GetStatusEffectName()
+	return "particles/status_fx/status_effect_frost.vpcf"
+end
+function modifier_crystal_maiden_frostbite_custom:StatusEffectPriority()
+	return MODIFIER_PRIORITY_NORMAL
 end
 function modifier_crystal_maiden_frostbite_custom:OnCreated(kv)
 	self.parent = self:GetParent()
@@ -314,8 +295,6 @@ function modifier_crystal_maiden_frostbite_custom:OnCreated(kv)
 	if not IsServer() then
 		return
 	end
-	self.parent:RemoveModifierByName("modifier_crystal_maiden_arcane_aura_custom_legendary_clone")
-
 	if self.parent:IsCreep() then
 		self.damage = self.damage * self.ability.creeps_damage
 	end
@@ -335,7 +314,7 @@ function modifier_crystal_maiden_frostbite_custom:OnCreated(kv)
 	self.parent:GenericParticle(particle_name, self)
 
 	local mod = self.parent:FindModifierByName("modifier_crystal_maiden_frostbite_custom_legendary_slow")
-	if mod and mod:GetStackCount() >= self.ability.talents.legendary_max then
+	if mod and mod:GetStackCount() >= self.ability.talents.w7_max then
 		self:SetStackCount(1)
 		self.parent:EmitSound("Maiden.Arcane_frostbite")
 		self.parent:EmitSound("Maiden.Frostbite_stun")
@@ -394,28 +373,17 @@ function modifier_crystal_maiden_frostbite_custom:OnDestroy()
 end
 
 function modifier_crystal_maiden_frostbite_custom:CheckState()
-	local state = {
-		[MODIFIER_STATE_DISARMED] = true,
-		[MODIFIER_STATE_ROOTED] = true,
-	}
 	if self:GetStackCount() == 1 then
-		state = {
+		return {
 			[MODIFIER_STATE_FROZEN] = true,
 			[MODIFIER_STATE_STUNNED] = true,
 		}
 	end
-	return state
-end
 
-function modifier_crystal_maiden_frostbite_custom:GetStatusEffectName()
-	if self.stun == 0 then
-		return
-	end
-	return "particles/status_fx/status_effect_frost.vpcf"
-end
-
-function modifier_crystal_maiden_frostbite_custom:StatusEffectPriority()
-	return MODIFIER_PRIORITY_NORMAL
+	return {
+		[MODIFIER_STATE_DISARMED] = true,
+		[MODIFIER_STATE_ROOTED] = true,
+	}
 end
 
 modifier_crystal_maiden_frostbite_custom_tracker = class(mod_hidden)
@@ -426,8 +394,6 @@ function modifier_crystal_maiden_frostbite_custom_tracker:OnCreated(table)
 	self.ability:UpdateTalents()
 
 	self.parent.frostbite_ability = self.ability
-	self.active_mods = {}
-	self.current_think = false
 
 	self.ability.damage_per_second = self.ability:GetSpecialValueFor("damage_per_second")
 	self.ability.duration = self.ability:GetSpecialValueFor("duration")
@@ -442,9 +408,7 @@ end
 function modifier_crystal_maiden_frostbite_custom_tracker:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_HEALTH_BONUS,
-		--MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET,
 		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
-		--MODIFIER_PROPERTY_LIFESTEAL_AMPLIFY_PERCENTAGE,
 		MODIFIER_PROPERTY_MIN_HEALTH,
 	}
 end
@@ -453,16 +417,18 @@ function modifier_crystal_maiden_frostbite_custom_tracker:GetModifierHealthBonus
 	return self.parent:GetIntellect(false) * self.ability.talents.h2_health
 end
 
-function modifier_crystal_maiden_frostbite_custom_tracker:GetModifierLifestealRegenAmplify_Percentage()
-	return self.ability.talents.block_heal_inc
-end
-
 function modifier_crystal_maiden_frostbite_custom_tracker:GetModifierHealChange()
-	return self.ability.talents.block_heal_inc
+	if self.ability.talents.has_h5 == 0 then
+		return
+	end
+	return self.ability.talents.h5_heal_inc
 end
 
 function modifier_crystal_maiden_frostbite_custom_tracker:GetModifierHPRegenAmplify_Percentage()
-	return self.ability.talents.block_heal_inc
+	if self.ability.talents.has_h5 == 0 then
+		return
+	end
+	return self.ability.talents.h5_heal_inc
 end
 
 function modifier_crystal_maiden_frostbite_custom_tracker:DamageEvent_inc(params)
@@ -472,7 +438,7 @@ function modifier_crystal_maiden_frostbite_custom_tracker:DamageEvent_inc(params
 	if self.parent ~= params.unit then
 		return
 	end
-	if self.ability.talents.has_block == 0 then
+	if self.ability.talents.has_h5 == 0 then
 		return
 	end
 	if self.parent:GetHealth() > 1 then
@@ -493,18 +459,18 @@ function modifier_crystal_maiden_frostbite_custom_tracker:DamageEvent_inc(params
 		self.parent,
 		self.ability,
 		"modifier_crystal_maiden_frostbite_custom_lowhp",
-		{ duration = self.ability.talents.block_duration }
+		{ duration = self.ability.talents.h5_duration }
 	)
 	self.parent:AddNewModifier(
 		self.parent,
 		self.ability,
 		"modifier_crystal_maiden_frostbite_custom_lowhp_cd",
-		{ duration = self.ability.talents.block_cd }
+		{ duration = self.ability.talents.h5_talent_cd }
 	)
 end
 
 function modifier_crystal_maiden_frostbite_custom_tracker:GetMinHealth()
-	if self.ability.talents.has_block == 0 then
+	if self.ability.talents.has_h5 == 0 then
 		return
 	end
 	if not self.parent:IsAlive() then
@@ -530,6 +496,9 @@ function modifier_crystal_maiden_frostbite_custom_tracker:SpellEvent(params)
 	if not IsServer() then
 		return
 	end
+	if self.parent ~= params.unit then
+		return
+	end
 	if not self.parent:IsAlive() then
 		return
 	end
@@ -542,7 +511,10 @@ function modifier_crystal_maiden_frostbite_custom_tracker:SpellEvent(params)
 			self.parent,
 			self.ability,
 			"modifier_crystal_maiden_frostbite_custom_regen",
-			{ duration = self.ability.talents.h3_duration }
+			{
+				duration = self.ability.talents.has_h3 == 1 and self.ability.talents.h3_duration
+					or self.ability.talents.h2_duration,
+			}
 		)
 	end
 
@@ -552,9 +524,7 @@ function modifier_crystal_maiden_frostbite_custom_tracker:SpellEvent(params)
 	if params.ability:GetName() == "crystal_maiden_arcane_aura_custom" then
 		return
 	end
-	if self.parent ~= params.unit then
-		return
-	end
+
 	local point = self.parent:GetAbsOrigin()
 	if params.target then
 		point = params.target:GetAbsOrigin()
@@ -588,10 +558,10 @@ function modifier_crystal_maiden_frostbite_custom_tracker:OnIntervalThink()
 	if not IsServer() then
 		return
 	end
-	if self.ability.talents.has_legendary == 0 then
+	if self.ability.talents.has_w7 == 0 then
 		return
 	end
-	local radius = self.ability.talents.legendary_radius
+	local radius = self.ability.talents.w7_radius
 
 	local enemies = self.parent:FindTargets(radius)
 
@@ -659,18 +629,18 @@ function modifier_crystal_maiden_frostbite_custom_legendary_slow:OnCreated(table
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.max = self.ability.talents.legendary_max
-	self.slow = self.ability.talents.legendary_slow / self.max
-	self.damage = self.ability.talents.legendary_damage / self.max
-	self.radius = self.ability.talents.legendary_radius
-	self.duration = self.ability.talents.legendary_duration
+	self.max = self.ability.talents.w7_max
+	self.slow = self.ability.talents.w7_slow / self.max
+	self.damage = self.ability.talents.w7_damage / self.max
+	self.radius = self.ability.talents.w7_radius
+	self.duration = self.ability.talents.w7_duration
 
 	if not IsServer() then
 		return
 	end
+	self.RemoveForDuel = true
 	self.end_timer = self.duration
 	self.start_timer = 1
-	self.interval = 0.5
 
 	self:OnIntervalThink()
 	self:StartIntervalThink(1)
@@ -729,12 +699,7 @@ function modifier_crystal_maiden_frostbite_custom_legendary_slow:OnStackCountCha
 			ParticleManager:ReleaseParticleIndex(self.effect_cast)
 			self.effect_cast = nil
 		end
-		self.parent:AddNewModifier(
-			self.parent,
-			self:GetAbility(),
-			"modifier_crystal_maiden_frostbite_custom_max_slow",
-			{}
-		)
+		self.parent:AddNewModifier(self.parent, self.ability, "modifier_crystal_maiden_frostbite_custom_max_slow", {})
 	end
 end
 
@@ -770,15 +735,12 @@ modifier_crystal_maiden_frostbite_custom_max_slow = class(mod_hidden)
 function modifier_crystal_maiden_frostbite_custom_max_slow:GetStatusEffectName()
 	return "particles/status_fx/status_effect_frost.vpcf"
 end
-
 function modifier_crystal_maiden_frostbite_custom_max_slow:StatusEffectPriority()
 	return MODIFIER_PRIORITY_ULTRA
 end
-
 function modifier_crystal_maiden_frostbite_custom_max_slow:GetEffectName()
 	return "particles/maiden_frostbite_slow.vpcf"
 end
-
 function modifier_crystal_maiden_frostbite_custom_max_slow:OnCreated()
 	if not IsServer() then
 		return
@@ -789,7 +751,7 @@ end
 
 modifier_crystal_maiden_frostbite_custom_resist = class(mod_visible)
 function modifier_crystal_maiden_frostbite_custom_resist:GetTexture()
-	return "buffs/crystal_maiden/hero_4"
+	return "buffs/crystal_maiden/frostbite_1"
 end
 function modifier_crystal_maiden_frostbite_custom_resist:OnCreated(table)
 	self.parent = self:GetParent()
@@ -800,18 +762,12 @@ end
 function modifier_crystal_maiden_frostbite_custom_resist:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
-		--MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET,
 		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
-		--MODIFIER_PROPERTY_LIFESTEAL_AMPLIFY_PERCENTAGE,
 	}
 end
 
 function modifier_crystal_maiden_frostbite_custom_resist:GetModifierMagicalResistanceBonus()
 	return self.ability.talents.w1_resist
-end
-
-function modifier_crystal_maiden_frostbite_custom_resist:GetModifierLifestealRegenAmplify_Percentage()
-	return self.ability.talents.r1_heal_reduce
 end
 
 function modifier_crystal_maiden_frostbite_custom_resist:GetModifierHealChange()
@@ -830,12 +786,11 @@ function modifier_crystal_maiden_frostbite_custom_lowhp:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.heal = self.ability.talents.block_heal * self.parent:GetMaxHealth() / self:GetRemainingTime()
+	self.heal = self.ability.talents.h5_heal * self.parent:GetMaxHealth() / self:GetRemainingTime()
 
 	if not IsServer() then
 		return
 	end
-
 	self.parent:EmitSound("Creep.Wyvern_heal")
 	self.shallow_grave_particle = ParticleManager:CreateParticle(
 		"particles/econ/items/winter_wyvern/winter_wyvern_ti7/wyvern_cold_embrace_ti7buff.vpcf",
@@ -851,17 +806,17 @@ function modifier_crystal_maiden_frostbite_custom_lowhp:OnCreated(table)
 	self:StartIntervalThink(self.interval)
 end
 
-function modifier_crystal_maiden_frostbite_custom_lowhp:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
-	}
-end
-
 function modifier_crystal_maiden_frostbite_custom_lowhp:OnIntervalThink()
 	if not IsServer() then
 		return
 	end
 	SendOverheadEventMessage(self.parent, 10, self.parent, self.interval * self.heal, nil)
+end
+
+function modifier_crystal_maiden_frostbite_custom_lowhp:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
+	}
 end
 
 function modifier_crystal_maiden_frostbite_custom_lowhp:GetModifierConstantHealthRegen()
@@ -881,15 +836,25 @@ function modifier_crystal_maiden_frostbite_custom_lowhp_cd:GetTexture()
 	return "buffs/crystal_maiden/hero_6"
 end
 
-modifier_crystal_maiden_frostbite_custom_attack_cd = class(mod_hidden)
-function modifier_crystal_maiden_frostbite_custom_attack_cd:RemoveOnDeath()
-	return false
-end
-function modifier_crystal_maiden_frostbite_custom_attack_cd:OnCreated()
-	self.RemoveForDuel = true
-end
-
 modifier_crystal_maiden_frostbite_custom_area = class(mod_hidden)
+function modifier_crystal_maiden_frostbite_custom_area:IsAura()
+	return true
+end
+function modifier_crystal_maiden_frostbite_custom_area:GetAuraDuration()
+	return 0
+end
+function modifier_crystal_maiden_frostbite_custom_area:GetAuraRadius()
+	return self.radius
+end
+function modifier_crystal_maiden_frostbite_custom_area:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_ENEMY
+end
+function modifier_crystal_maiden_frostbite_custom_area:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
+end
+function modifier_crystal_maiden_frostbite_custom_area:GetModifierAura()
+	return "modifier_crystal_maiden_frostbite_custom_area_effect"
+end
 function modifier_crystal_maiden_frostbite_custom_area:OnCreated(table)
 	if not IsServer() then
 		return
@@ -927,26 +892,25 @@ function modifier_crystal_maiden_frostbite_custom_area:OnIntervalThink()
 	ParticleManager:ReleaseParticleIndex(damage_ring)
 end
 
-function modifier_crystal_maiden_frostbite_custom_area:IsAura()
-	return true
+modifier_crystal_maiden_frostbite_custom_area_effect = class(mod_hidden)
+function modifier_crystal_maiden_frostbite_custom_area_effect:IsAura()
+	return IsServer() and self.parent:IsRealHero() and self.parent:IsAlive()
 end
-function modifier_crystal_maiden_frostbite_custom_area:GetAuraDuration()
+function modifier_crystal_maiden_frostbite_custom_area_effect:GetAuraDuration()
 	return 0
 end
-function modifier_crystal_maiden_frostbite_custom_area:GetAuraRadius()
+function modifier_crystal_maiden_frostbite_custom_area_effect:GetAuraRadius()
 	return self.radius
 end
-function modifier_crystal_maiden_frostbite_custom_area:GetAuraSearchTeam()
+function modifier_crystal_maiden_frostbite_custom_area_effect:GetAuraSearchTeam()
 	return DOTA_UNIT_TARGET_TEAM_ENEMY
 end
-function modifier_crystal_maiden_frostbite_custom_area:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
+function modifier_crystal_maiden_frostbite_custom_area_effect:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_HERO
 end
-function modifier_crystal_maiden_frostbite_custom_area:GetModifierAura()
-	return "modifier_crystal_maiden_frostbite_custom_area_effect"
+function modifier_crystal_maiden_frostbite_custom_area_effect:GetModifierAura()
+	return "modifier_crystal_maiden_frostbite_custom_spell_count"
 end
-
-modifier_crystal_maiden_frostbite_custom_area_effect = class(mod_hidden)
 function modifier_crystal_maiden_frostbite_custom_area_effect:OnCreated(table)
 	if not IsServer() then
 		return
@@ -981,24 +945,6 @@ function modifier_crystal_maiden_frostbite_custom_area_effect:OnIntervalThink()
 	self.parent:GenericParticle("particles/units/heroes/hero_lich/lich_ice_age_debuff.vpcf")
 end
 
-function modifier_crystal_maiden_frostbite_custom_area_effect:IsAura()
-	return IsServer() and self.parent:IsRealHero() and self.parent:IsAlive()
-end
-function modifier_crystal_maiden_frostbite_custom_area_effect:GetAuraDuration()
-	return 0
-end
-function modifier_crystal_maiden_frostbite_custom_area_effect:GetAuraRadius()
-	return self.radius
-end
-function modifier_crystal_maiden_frostbite_custom_area_effect:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_ENEMY
-end
-function modifier_crystal_maiden_frostbite_custom_area_effect:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_HERO
-end
-function modifier_crystal_maiden_frostbite_custom_area_effect:GetModifierAura()
-	return "modifier_crystal_maiden_frostbite_custom_spell_count"
-end
 function modifier_crystal_maiden_frostbite_custom_area_effect:GetAuraEntityReject(hEntity)
 	return hEntity ~= self.caster
 end
@@ -1075,10 +1021,20 @@ function modifier_crystal_maiden_frostbite_custom_spell:OnCreated()
 	if not IsServer() then
 		return
 	end
-	self:SetStackCount(1)
-
+	self.RemoveForDuel = true
+	self:OnRefresh()
 	self:StartIntervalThink(0.2)
 	self:OnIntervalThink()
+end
+
+function modifier_crystal_maiden_frostbite_custom_spell:OnRefresh()
+	if not IsServer() then
+		return
+	end
+	if self:GetStackCount() >= self.max then
+		return
+	end
+	self:IncrementStackCount()
 end
 
 function modifier_crystal_maiden_frostbite_custom_spell:OnIntervalThink()
@@ -1094,16 +1050,6 @@ function modifier_crystal_maiden_frostbite_custom_spell:OnIntervalThink()
 		override_stack = self:GetStackCount(),
 		style = "MaidenFrostbite",
 	})
-end
-
-function modifier_crystal_maiden_frostbite_custom_spell:OnRefresh()
-	if not IsServer() then
-		return
-	end
-	if self:GetStackCount() >= self.max then
-		return
-	end
-	self:IncrementStackCount()
 end
 
 function modifier_crystal_maiden_frostbite_custom_spell:OnDestroy()

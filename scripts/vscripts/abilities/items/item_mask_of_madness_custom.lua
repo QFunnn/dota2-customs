@@ -32,6 +32,17 @@ function item_mask_of_madness_custom:Precache(context)
 	PrecacheResource("particle", "particles/econ/items/drow/drow_head_mania/mask_of_madness_active_mania.vpcf", context)
 end
 
+function item_mask_of_madness_custom:Spawn()
+	self.bonus_speed = self:GetSpecialValueFor("bonus_speed")
+	self.bonus_health = self:GetSpecialValueFor("bonus_health")
+	self.lifesteal_percent = self:GetSpecialValueFor("lifesteal_percent") / 100
+	self.berserk_bonus_attack_speed = self:GetSpecialValueFor("berserk_bonus_attack_speed")
+	self.berserk_bonus_movement_speed = self:GetSpecialValueFor("berserk_bonus_movement_speed")
+	self.incoming_damage = self:GetSpecialValueFor("incoming_damage")
+	self.berserk_duration = self:GetSpecialValueFor("berserk_duration")
+	self.slow_resist = self:GetSpecialValueFor("slow_resist")
+end
+
 function item_mask_of_madness_custom:GetAbilityTextureName()
 	if not self or not self:GetCaster() then
 		return
@@ -39,7 +50,7 @@ function item_mask_of_madness_custom:GetAbilityTextureName()
 	if self:GetCaster():HasModifier("modifier_item_mask_of_madness_custom_speed") then
 		return "items/mask_of_madness_active"
 	end
-	return wearables_system:GetAbilityIconReplacement(self.caster, "item_mask_of_madness", self)
+	return wearables_system:GetAbilityIconReplacement(self:GetCaster(), "item_mask_of_madness", self)
 end
 
 function item_mask_of_madness_custom:GetIntrinsicModifierName()
@@ -61,6 +72,15 @@ modifier_item_mask_of_madness_custom = class(mod_hidden)
 function modifier_item_mask_of_madness_custom:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
+function modifier_item_mask_of_madness_custom:OnCreated()
+	self.ability = self:GetAbility()
+	self.parent = self:GetParent()
+
+	if self.parent:IsRealHero() then
+		self.parent:AddDamageEvent_out(self, true)
+	end
+end
+
 function modifier_item_mask_of_madness_custom:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
@@ -76,26 +96,11 @@ function modifier_item_mask_of_madness_custom:GetModifierAttackSpeedBonus_Consta
 	return self.ability.bonus_speed
 end
 
-function modifier_item_mask_of_madness_custom:OnCreated()
-	self.ability = self:GetAbility()
-	self.parent = self:GetParent()
-
-	self.ability.bonus_speed = self.ability:GetSpecialValueFor("bonus_speed")
-	self.ability.bonus_health = self.ability:GetSpecialValueFor("bonus_health")
-	self.ability.lifesteal_percent = self.ability:GetSpecialValueFor("lifesteal_percent") / 100
-	self.ability.berserk_bonus_attack_speed = self.ability:GetSpecialValueFor("berserk_bonus_attack_speed")
-	self.ability.berserk_bonus_movement_speed = self.ability:GetSpecialValueFor("berserk_bonus_movement_speed")
-	self.ability.incoming_damage = self.ability:GetSpecialValueFor("incoming_damage")
-	self.ability.berserk_duration = self.ability:GetSpecialValueFor("berserk_duration")
-	self.ability.slow_resist = self.ability:GetSpecialValueFor("slow_resist")
-
-	if self.parent:IsRealHero() then
-		self.parent:AddDamageEvent_out(self, true)
-	end
-end
-
 function modifier_item_mask_of_madness_custom:DamageEvent_out(params)
 	if not IsServer() then
+		return
+	end
+	if not IsValid(self.ability) then
 		return
 	end
 	local result = self.parent:CheckLifesteal(params, 2)
@@ -105,16 +110,14 @@ function modifier_item_mask_of_madness_custom:DamageEvent_out(params)
 	self.parent:GenericHeal(self.ability.lifesteal_percent * result * params.damage, self.ability, true)
 end
 
-modifier_item_mask_of_madness_custom_speed = class({})
-function modifier_item_mask_of_madness_custom_speed:IsHidden()
-	return false
-end
+modifier_item_mask_of_madness_custom_speed = class(mod_visible)
 function modifier_item_mask_of_madness_custom_speed:IsPurgable()
 	return true
 end
 function modifier_item_mask_of_madness_custom_speed:OnCreated(table)
-	self.ability = self:GetAbility()
 	self.parent = self:GetParent()
+	self.caster = self:GetCaster()
+	self.ability = self:GetAbility()
 
 	self.incoming_damage = self.ability.incoming_damage
 	self.attack_speed = self.ability.berserk_bonus_attack_speed
@@ -125,11 +128,8 @@ function modifier_item_mask_of_madness_custom_speed:OnCreated(table)
 		return
 	end
 
-	local default_particle = wearables_system:GetParticleReplacementAbility(
-		self:GetCaster(),
-		"particles/items2_fx/mask_of_madness.vpcf",
-		self
-	)
+	local default_particle =
+		wearables_system:GetParticleReplacementAbility(self.caster, "particles/items2_fx/mask_of_madness.vpcf", self)
 	if default_particle == "particles/econ/items/drow/drow_head_mania/mask_of_madness_mania.vpcf" then
 		local new_particle = ParticleManager:CreateParticle(
 			"particles/econ/items/drow/drow_head_mania/mask_of_madness_active_mania.vpcf",

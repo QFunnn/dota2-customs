@@ -26,7 +26,6 @@ LinkLuaModifier(
 LinkLuaModifier("modifier_npc_muerta_ursa_slow", "abilities/muerta/npc_muerta_ursa_abilities", LUA_MODIFIER_MOTION_NONE)
 
 npc_muerta_ursa_speed = class({})
-
 function npc_muerta_ursa_speed:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
@@ -151,7 +150,6 @@ function modifier_npc_muerta_ursa_speed:AttackStartEvent_out(params)
 end
 
 npc_muerta_ursa_passive = class({})
-
 function npc_muerta_ursa_passive:GetIntrinsicModifierName()
 	return "modifier_npc_muerta_ursa_passive"
 end
@@ -167,17 +165,20 @@ function npc_muerta_ursa_passive:Spawn()
 end
 
 modifier_npc_muerta_ursa_passive = class(mod_hidden)
-function modifier_npc_muerta_ursa_passive:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_PROCATTACK_BONUS_DAMAGE_PHYSICAL,
-	}
-end
-
 function modifier_npc_muerta_ursa_passive:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
+	self.damage = self.ability.damage
+	self.duration = self.ability.duration
+
 	self.parent.ursa_creep_passive = self.ability
+end
+
+function modifier_npc_muerta_ursa_passive:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_PROCATTACK_BONUS_DAMAGE_PHYSICAL,
+	}
 end
 
 function modifier_npc_muerta_ursa_passive:GetModifierProcAttack_BonusDamage_Physical(params)
@@ -193,12 +194,12 @@ function modifier_npc_muerta_ursa_passive:GetModifierProcAttack_BonusDamage_Phys
 		self.parent,
 		self.ability,
 		"modifier_npc_muerta_ursa_debuff",
-		{ duration = self.ability.duration }
+		{ duration = self.duration }
 	)
 	local damage = 0
 
 	if mod then
-		damage = mod:GetStackCount() * self.parent:GetAverageTrueAttackDamage(nil) * self.ability.damage / 100
+		damage = mod:GetStackCount() * self.parent:GetAverageTrueAttackDamage(nil) * self.damage / 100
 	end
 
 	return damage
@@ -239,7 +240,6 @@ function modifier_npc_muerta_ursa_debuff:OnTooltip()
 end
 
 npc_muerta_ursa_clap = class({})
-
 function npc_muerta_ursa_clap:Spawn()
 	if not self:GetCaster() then
 		return
@@ -272,9 +272,12 @@ function npc_muerta_ursa_clap:OnAbilityPhaseInterrupted()
 	if self.sign then
 		ParticleManager:DestroyParticle(self.sign, true)
 		ParticleManager:ReleaseParticleIndex(self.sign)
+		self.sign = nil
+	end
+
+	if self.effect_cast then
 		ParticleManager:DestroyParticle(self.effect_cast, true)
 		ParticleManager:ReleaseParticleIndex(self.effect_cast)
-		self.sign = nil
 		self.effect_cast = nil
 	end
 
@@ -282,14 +285,17 @@ function npc_muerta_ursa_clap:OnAbilityPhaseInterrupted()
 end
 
 function npc_muerta_ursa_clap:OnSpellStart()
-	ParticleManager:DestroyParticle(self.sign, true)
-	ParticleManager:ReleaseParticleIndex(self.sign)
+	if self.sign then
+		ParticleManager:DestroyParticle(self.sign, true)
+		ParticleManager:ReleaseParticleIndex(self.sign)
+		self.sign = nil
+	end
 
-	ParticleManager:DestroyParticle(self.effect_cast, true)
-	ParticleManager:ReleaseParticleIndex(self.effect_cast)
-
-	self.sign = nil
-	self.effect_cast = nil
+	if self.effect_cast then
+		ParticleManager:DestroyParticle(self.effect_cast, true)
+		ParticleManager:ReleaseParticleIndex(self.effect_cast)
+		self.effect_cast = nil
+	end
 
 	self.caster:EmitSound("Hero_Ursa.Earthshock")
 

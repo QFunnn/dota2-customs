@@ -52,4 +52,10 @@ return {
 			},
 		},
 	},
+	["particles/econ/items/kunkka/kunkka_shoes/kunkka_shoes_ambient.vpcf"] = {
+		["attach_type"] = "customorigin_follow",
+		["attach_entity"] = "parent",
+		["mega_attach"] = "parent",
+		["control_points"] = {},
+	},
 }

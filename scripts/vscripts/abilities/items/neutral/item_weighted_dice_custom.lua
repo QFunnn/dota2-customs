@@ -23,6 +23,12 @@ function item_weighted_dice_custom:GetIntrinsicModifierName()
 	return "modifier_item_weighted_dice_custom"
 end
 
+function item_weighted_dice_custom:Spawn()
+	self.chance = self:GetSpecialValueFor("chance")
+	self.damage = self:GetSpecialValueFor("damage")
+	self.gold = self:GetSpecialValueFor("gold")
+end
+
 modifier_item_weighted_dice_custom = class(mod_hidden)
 function modifier_item_weighted_dice_custom:RemoveOnDeath()
 	return false
@@ -31,9 +37,9 @@ function modifier_item_weighted_dice_custom:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.chance = self.ability:GetSpecialValueFor("chance")
-	self.damage = self.ability:GetSpecialValueFor("damage")
-	self.gold = self.ability:GetSpecialValueFor("gold")
+	self.chance = self.ability.chance
+	self.damage = self.ability.damage
+	self.gold = self.ability.gold
 
 	self.parent:AddDeathEvent(self, true)
 end
@@ -55,7 +61,7 @@ function modifier_item_weighted_dice_custom:DeathEvent(params)
 		return
 	end
 
-	self.parent:GiveGold(self.gold)
+	self.parent:GiveGold(self.gold, nil, nil, self.ability)
 end
 
 function modifier_item_weighted_dice_custom:DeclareFunctions()

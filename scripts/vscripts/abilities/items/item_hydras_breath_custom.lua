@@ -18,11 +18,6 @@ LinkLuaModifier(
 	"abilities/items/item_hydras_breath_custom",
 	LUA_MODIFIER_MOTION_NONE
 )
-LinkLuaModifier(
-	"modifier_item_hydras_breath_custom_damage",
-	"abilities/items/item_hydras_breath_custom",
-	LUA_MODIFIER_MOTION_NONE
-)
 
 item_hydras_breath_custom = class({})
 
@@ -37,6 +32,23 @@ function item_hydras_breath_custom:Precache(context)
 	PrecacheResource("particle", "particles/items8_fx/hydras_breath_endcap.vpcf", context)
 	PrecacheResource("particle", "particles/items8_fx/hydras_breath_single_proc.vpcf", context)
 	PrecacheResource("particle", "particles/items8_fx/hydras_breath_burn_debuff.vpcf", context)
+	PrecacheResource("particle", "particles/items3_fx/octarine_core_lifesteal.vpcf", context)
+end
+
+function item_hydras_breath_custom:Spawn()
+	self.agility = self:GetSpecialValueFor("agility")
+	self.damage = self:GetSpecialValueFor("damage")
+	self.spell_lifesteal = self:GetSpecialValueFor("spell_lifesteal") / 100
+	self.count = self:GetSpecialValueFor("count")
+	self.secondary_target_range_bonus = self:GetSpecialValueFor("secondary_target_range_bonus")
+	self.secondary_target_angle = self:GetSpecialValueFor("secondary_target_angle")
+	self.proc_chance = self:GetSpecialValueFor("proc_chance")
+	self.proc_damage = self:GetSpecialValueFor("proc_damage")
+	self.burn_base = self:GetSpecialValueFor("burn_base")
+	self.burn_damage = self:GetSpecialValueFor("burn_damage") / 100
+	self.burn_duration = self:GetSpecialValueFor("burn_duration")
+	self.bonus_health = self:GetSpecialValueFor("bonus_health")
+	self.cooldown = self:GetSpecialValueFor("AbilityCooldown")
 end
 
 function item_hydras_breath_custom:GetCooldown()
@@ -49,9 +61,9 @@ function item_hydras_breath_custom:OnProjectileHit(target, location)
 	end
 	local caster = self:GetCaster()
 
-	caster:AddNewModifier(caster, self, "modifier_item_hydras_breath_custom_damage", {})
+	caster.is_item_attack = self
 	caster:PerformAttack(target, true, false, true, true, false, false, true)
-	caster:RemoveModifierByName("modifier_item_hydras_breath_custom_damage")
+	caster.is_item_attack = false
 	self:ProcEffect(target)
 end
 
@@ -61,6 +73,20 @@ function item_hydras_breath_custom:ProcEffect(target)
 	end
 	local caster = self:GetCaster()
 	target:EmitSound("Item.Brooch.Attack")
+
+	local mainParticle =
+		ParticleManager:CreateParticle("particles/items8_fx/hydras_breath_endcap.vpcf", PATTACH_POINT_FOLLOW, target)
+	ParticleManager:SetParticleControlEnt(
+		mainParticle,
+		3,
+		target,
+		PATTACH_POINT_FOLLOW,
+		"attach_hitloc",
+		target:GetAbsOrigin(),
+		true
+	)
+	ParticleManager:ReleaseParticleIndex(mainParticle)
+
 	target:AddNewModifier(caster, self, "modifier_item_hydras_breath_custom_burn", {})
 end
 
@@ -72,21 +98,6 @@ function modifier_item_hydras_breath_custom:OnCreated()
 	self.ability = self:GetAbility()
 	self.parent = self:GetParent()
 
-	self.ability.agility = self.ability:GetSpecialValueFor("agility")
-	self.ability.damage = self.ability:GetSpecialValueFor("damage")
-	self.ability.spell_lifesteal = self.ability:GetSpecialValueFor("spell_lifesteal") / 100
-	self.ability.count = self.ability:GetSpecialValueFor("count")
-	self.ability.secondary_target_range_bonus = self.ability:GetSpecialValueFor("secondary_target_range_bonus")
-	self.ability.secondary_target_angle = self.ability:GetSpecialValueFor("secondary_target_angle")
-	self.ability.proc_chance = self.ability:GetSpecialValueFor("proc_chance")
-	self.ability.proc_damage = self.ability:GetSpecialValueFor("proc_damage")
-	self.ability.burn_base = self.ability:GetSpecialValueFor("burn_base")
-	self.ability.burn_damage = self.ability:GetSpecialValueFor("burn_damage") / 100
-	self.ability.burn_duration = self.ability:GetSpecialValueFor("burn_duration")
-	self.ability.melee_count = self.ability:GetSpecialValueFor("melee_count")
-	self.ability.bonus_health = self.ability:GetSpecialValueFor("bonus_health")
-	self.ability.cooldown = self.ability:GetSpecialValueFor("AbilityCooldown")
-
 	if not IsServer() then
 		return
 	end
@@ -95,7 +106,7 @@ function modifier_item_hydras_breath_custom:OnCreated()
 	end
 	self.records = {}
 	self.parent:AddDamageEvent_out(self, true)
-	self.parent:AddAttackStartEvent_out(self)
+	self.parent:AddAttackStartEvent_out(self, true)
 	self.parent:AddAttackEvent_out(self, true)
 	self.parent:AddRecordDestroyEvent(self, true)
 end
@@ -105,6 +116,7 @@ function modifier_item_hydras_breath_custom:DeclareFunctions()
 		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
 		MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
 		MODIFIER_PROPERTY_HEALTH_BONUS,
+		MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE,
 	}
 end
 
@@ -120,14 +132,30 @@ function modifier_item_hydras_breath_custom:GetModifierBonusStats_Agility()
 	return self.ability.agility
 end
 
+function modifier_item_hydras_breath_custom:GetModifierTotalDamageOutgoing_Percentage(params)
+	if params.inflictor then
+		return
+	end
+	if self.parent.is_item_attack ~= self.ability then
+		return
+	end
+	return self.ability.proc_damage - 100
+end
+
 function modifier_item_hydras_breath_custom:AttackStartEvent_out(params)
 	if not IsServer() then
+		return
+	end
+	if not IsValid(self.ability) then
 		return
 	end
 	if self.parent ~= params.attacker then
 		return
 	end
 	if not params.target:IsUnit() then
+		return
+	end
+	if params.target:GetTeamNumber() == self.parent:GetTeamNumber() then
 		return
 	end
 	local target = params.target
@@ -143,10 +171,9 @@ function modifier_item_hydras_breath_custom:AttackStartEvent_out(params)
 
 	local count = 0
 	local speed = 900
-	local max = self.ability.melee_count
+	local max = self.ability.count
 	if self.parent:IsRangedAttacker() then
 		speed = self.parent:GetProjectileSpeed()
-		max = self.ability.count
 	end
 
 	local info = {
@@ -185,6 +212,9 @@ function modifier_item_hydras_breath_custom:AttackEvent_out(params)
 	if not IsServer() then
 		return
 	end
+	if not IsValid(self.ability) then
+		return
+	end
 	if self.parent ~= params.attacker then
 		return
 	end
@@ -192,25 +222,14 @@ function modifier_item_hydras_breath_custom:AttackEvent_out(params)
 		return
 	end
 
-	local target = params.target
-
-	local mainParticle =
-		ParticleManager:CreateParticle("particles/items8_fx/hydras_breath_endcap.vpcf", PATTACH_POINT_FOLLOW, target)
-	ParticleManager:SetParticleControlEnt(
-		mainParticle,
-		3,
-		target,
-		PATTACH_POINT_FOLLOW,
-		"attach_hitloc",
-		target:GetAbsOrigin(),
-		true
-	)
-	ParticleManager:ReleaseParticleIndex(mainParticle)
-	self.ability:ProcEffect(target)
+	self.ability:ProcEffect(params.target)
 end
 
 function modifier_item_hydras_breath_custom:DamageEvent_out(params)
 	if not IsServer() then
+		return
+	end
+	if not IsValid(self.ability) then
 		return
 	end
 	local result = self.parent:CheckLifesteal(params, 1)
@@ -289,24 +308,4 @@ function modifier_item_hydras_breath_custom_burn:OnIntervalThink()
 		self:Destroy()
 		return
 	end
-end
-
-modifier_item_hydras_breath_custom_damage = class(mod_hidden)
-function modifier_item_hydras_breath_custom_damage:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-	self.damage = self.ability.proc_damage - 100
-end
-
-function modifier_item_hydras_breath_custom_damage:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE,
-	}
-end
-
-function modifier_item_hydras_breath_custom_damage:GetModifierTotalDamageOutgoing_Percentage(params)
-	if params.inflictor then
-		return
-	end
-	return self.damage
 end

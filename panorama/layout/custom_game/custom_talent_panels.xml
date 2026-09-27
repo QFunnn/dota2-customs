@@ -18,56 +18,121 @@
 		<include src="s2r://panorama/scripts/custom_game/custom_talent_panels.vjs_c" />
 	</scripts>
 	<Panel class="Talent_Panel_Main" hittest="false">
-		<Panel class="PA_Hunt_Panel_hidden" id="PA_Hunt_Panel" hittest="false">
-			<Panel class="PA_Hunt_Icon" id="PA_Hunt_Icon" hittest="false" />
-			<Panel class="PA_Hunt_Bar" hittest="false">
-				<Label class="PA_Hunt_gold_timer" id="PA_Hunt_gold_timer" hittest="false" />
+		<Panel class="PickUI_Panel_hidden" id="PickUI_Panel" hittest="false">
+			<Panel id="PickUI_top" hittest="false">
+				<Label id="PickUI_text" />
 			</Panel>
-		</Panel>
-		<Panel class="Legion_Duel_Panel_hidden" id="Legion_Duel_Panel" hittest="false">
-			<Panel id="Legion_Duel_top" hittest="false">
-				<Label id="Legion_Duel_text" text="#legion_pick_hero" />
-			</Panel>
-			<Panel id="Legion_Duel_bot" hittest="false">
-				<Panel id="Legion_Duel_hero_1" hittest="true" />
-				<Panel id="Legion_Duel_hero_2" hittest="true" />
-			</Panel>
-		</Panel>
-		<Panel class="Pa_hunt_init_Panel_hidden" id="Pa_hunt_init_Panel" hittest="false">
-			<Panel id="Pa_hunt_init_top" hittest="false">
-				<Label id="Pa_hunt_init_text" text="#pa_pick_hero" />
-			</Panel>
-			<Panel id="Pa_hunt_init_bot" hittest="false">
-				<Panel id="Pa_hunt_init_hero_1" class="Pa_hunt_init_hero" hittest="true">
-					<Panel id="Pa_hunt_init_hero_killed_overlay_1" class="Pa_hunt_init_hero_killed_overlay" />
+			<Panel id="PickUI_bot" hittest="false">
+				<Panel id="PickUI_target_1" class="PickUI_target" hittest="false">
+					<Panel id="PickUI_target_icon_1" class="PickUI_target_icon" hittest="true">
+						<Panel id="PickUI_target_killed_1" class="PickUI_target_killed" />
+						<Panel id="PickUI_target_gold_1" class="PickUI_target_gold" hittest="false">
+							<Panel class="PickUI_target_gold_row" hittest="false">
+								<Label id="PickUI_target_gold_number_1" class="PickUI_target_gold_number" hittest="false" />
+								<Panel class="PickUI_target_gold_icon" hittest="false" />
+							</Panel>
+						</Panel>
+					</Panel>
 				</Panel>
-				<Panel id="Pa_hunt_init_hero_2" class="Pa_hunt_init_hero" hittest="true">
-					<Panel id="Pa_hunt_init_hero_killed_overlay_2" class="Pa_hunt_init_hero_killed_overlay" />
+				<Panel id="PickUI_target_2" class="PickUI_target" hittest="false">
+					<Panel id="PickUI_target_icon_2" class="PickUI_target_icon" hittest="true">
+						<Panel id="PickUI_target_killed_2" class="PickUI_target_killed" />
+						<Panel id="PickUI_target_gold_2" class="PickUI_target_gold" hittest="false">
+							<Panel class="PickUI_target_gold_row" hittest="false">
+								<Label id="PickUI_target_gold_number_2" class="PickUI_target_gold_number" hittest="false" />
+								<Panel class="PickUI_target_gold_icon" hittest="false" />
+							</Panel>
+						</Panel>
+					</Panel>
 				</Panel>
-				<Panel id="Pa_hunt_init_hero_3" class="Pa_hunt_init_hero" hittest="true">
-					<Panel id="Pa_hunt_init_hero_killed_overlay_3" class="Pa_hunt_init_hero_killed_overlay" />
+				<Panel id="PickUI_target_3" class="PickUI_target" hittest="false">
+					<Panel id="PickUI_target_icon_3" class="PickUI_target_icon" hittest="true">
+						<Panel id="PickUI_target_killed_3" class="PickUI_target_killed" />
+						<Panel id="PickUI_target_gold_3" class="PickUI_target_gold" hittest="false">
+							<Panel class="PickUI_target_gold_row" hittest="false">
+								<Label id="PickUI_target_gold_number_3" class="PickUI_target_gold_number" hittest="false" />
+								<Panel class="PickUI_target_gold_icon" hittest="false" />
+							</Panel>
+						</Panel>
+					</Panel>
 				</Panel>
-				<Panel id="Pa_hunt_init_hero_4" class="Pa_hunt_init_hero" hittest="true">
-					<Panel id="Pa_hunt_init_hero_killed_overlay_4" class="Pa_hunt_init_hero_killed_overlay" />
+				<Panel id="PickUI_target_4" class="PickUI_target" hittest="false">
+					<Panel id="PickUI_target_icon_4" class="PickUI_target_icon" hittest="true">
+						<Panel id="PickUI_target_killed_4" class="PickUI_target_killed" />
+						<Panel id="PickUI_target_gold_4" class="PickUI_target_gold" hittest="false">
+							<Panel class="PickUI_target_gold_row" hittest="false">
+								<Label id="PickUI_target_gold_number_4" class="PickUI_target_gold_number" hittest="false" />
+								<Panel class="PickUI_target_gold_icon" hittest="false" />
+							</Panel>
+						</Panel>
+					</Panel>
 				</Panel>
-				<Panel id="Pa_hunt_init_hero_5" class="Pa_hunt_init_hero" hittest="true">
-					<Panel id="Pa_hunt_init_hero_killed_overlay_5" class="Pa_hunt_init_hero_killed_overlay" />
+				<Panel id="PickUI_target_5" class="PickUI_target" hittest="false">
+					<Panel id="PickUI_target_icon_5" class="PickUI_target_icon" hittest="true">
+						<Panel id="PickUI_target_killed_5" class="PickUI_target_killed" />
+						<Panel id="PickUI_target_gold_5" class="PickUI_target_gold" hittest="false">
+							<Panel class="PickUI_target_gold_row" hittest="false">
+								<Label id="PickUI_target_gold_number_5" class="PickUI_target_gold_number" hittest="false" />
+								<Panel class="PickUI_target_gold_icon" hittest="false" />
+							</Panel>
+						</Panel>
+					</Panel>
 				</Panel>
-			</Panel>
-		</Panel>
-		<Panel class="Tb_reflection_init_Panel_hidden" id="Tb_reflection_init_Panel" hittest="false">
-			<Panel id="Tb_reflection_init_top" hittest="false">
-				<Label id="Tb_reflection_init_text" text="#pa_pick_hero" />
-			</Panel>
-			<Panel id="Tb_reflection_init_bot" hittest="false">
-				<Panel id="Tb_reflection_init_hero_1" class="Tb_reflection_init_hero" hittest="true" />
-				<Panel id="Tb_reflection_init_hero_2" class="Tb_reflection_init_hero" hittest="true" />
-				<Panel id="Tb_reflection_init_hero_3" class="Tb_reflection_init_hero" hittest="true" />
-				<Panel id="Tb_reflection_init_hero_4" class="Tb_reflection_init_hero" hittest="true" />
-				<Panel id="Tb_reflection_init_hero_5" class="Tb_reflection_init_hero" hittest="true" />
-				<Panel id="Tb_reflection_init_hero_6" class="Tb_reflection_init_hero" hittest="true" />
-				<Panel id="Tb_reflection_init_hero_7" class="Tb_reflection_init_hero" hittest="true" />
-				<Panel id="Tb_reflection_init_hero_8" class="Tb_reflection_init_hero" hittest="true" />
+				<Panel id="PickUI_target_6" class="PickUI_target" hittest="false">
+					<Panel id="PickUI_target_icon_6" class="PickUI_target_icon" hittest="true">
+						<Panel id="PickUI_target_killed_6" class="PickUI_target_killed" />
+						<Panel id="PickUI_target_gold_6" class="PickUI_target_gold" hittest="false">
+							<Panel class="PickUI_target_gold_row" hittest="false">
+								<Label id="PickUI_target_gold_number_6" class="PickUI_target_gold_number" hittest="false" />
+								<Panel class="PickUI_target_gold_icon" hittest="false" />
+							</Panel>
+						</Panel>
+					</Panel>
+				</Panel>
+				<Panel id="PickUI_target_7" class="PickUI_target" hittest="false">
+					<Panel id="PickUI_target_icon_7" class="PickUI_target_icon" hittest="true">
+						<Panel id="PickUI_target_killed_7" class="PickUI_target_killed" />
+						<Panel id="PickUI_target_gold_7" class="PickUI_target_gold" hittest="false">
+							<Panel class="PickUI_target_gold_row" hittest="false">
+								<Label id="PickUI_target_gold_number_7" class="PickUI_target_gold_number" hittest="false" />
+								<Panel class="PickUI_target_gold_icon" hittest="false" />
+							</Panel>
+						</Panel>
+					</Panel>
+				</Panel>
+				<Panel id="PickUI_target_8" class="PickUI_target" hittest="false">
+					<Panel id="PickUI_target_icon_8" class="PickUI_target_icon" hittest="true">
+						<Panel id="PickUI_target_killed_8" class="PickUI_target_killed" />
+						<Panel id="PickUI_target_gold_8" class="PickUI_target_gold" hittest="false">
+							<Panel class="PickUI_target_gold_row" hittest="false">
+								<Label id="PickUI_target_gold_number_8" class="PickUI_target_gold_number" hittest="false" />
+								<Panel class="PickUI_target_gold_icon" hittest="false" />
+							</Panel>
+						</Panel>
+					</Panel>
+				</Panel>
+				<Panel id="PickUI_target_9" class="PickUI_target" hittest="false">
+					<Panel id="PickUI_target_icon_9" class="PickUI_target_icon" hittest="true">
+						<Panel id="PickUI_target_killed_9" class="PickUI_target_killed" />
+						<Panel id="PickUI_target_gold_9" class="PickUI_target_gold" hittest="false">
+							<Panel class="PickUI_target_gold_row" hittest="false">
+								<Label id="PickUI_target_gold_number_9" class="PickUI_target_gold_number" hittest="false" />
+								<Panel class="PickUI_target_gold_icon" hittest="false" />
+							</Panel>
+						</Panel>
+					</Panel>
+				</Panel>
+				<Panel id="PickUI_target_10" class="PickUI_target" hittest="false">
+					<Panel id="PickUI_target_icon_10" class="PickUI_target_icon" hittest="true">
+						<Panel id="PickUI_target_killed_10" class="PickUI_target_killed" />
+						<Panel id="PickUI_target_gold_10" class="PickUI_target_gold" hittest="false">
+							<Panel class="PickUI_target_gold_row" hittest="false">
+								<Label id="PickUI_target_gold_number_10" class="PickUI_target_gold_number" hittest="false" />
+								<Panel class="PickUI_target_gold_icon" hittest="false" />
+							</Panel>
+						</Panel>
+					</Panel>
+				</Panel>
 			</Panel>
 		</Panel>
 		<Panel class="LifestealerInfest_Panel LifestealerInfest_Panel_hidden" id="LifestealerInfest_Panel" hittest="true">

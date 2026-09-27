@@ -65,29 +65,29 @@ function InitHeroes()
 		hero_label_all.AddClass("hero_label_all")
 		hero_label_all.text = $.Localize("#stats_all")
 		const all_row = $.CreatePanel("Panel", heroes_panel, "AllHeroes");
-		for (var i = 0; i < Object.keys(heroes_strength).length; i++) 
+		for (var i = 0; i < Object.keys(heroes_strength).length; i++)
 		{
 			CreateHeroPanel(str_row, heroes_strength[i], 1)
 		}
-		for (var i = 0; i < Object.keys(heroes_agility).length; i++) 
+		for (var i = 0; i < Object.keys(heroes_agility).length; i++)
 		{
 			CreateHeroPanel(agi_row, heroes_agility[i], 2)
 		}
-		for (var i = 0; i < Object.keys(heroes_intellect).length; i++) 
+		for (var i = 0; i < Object.keys(heroes_intellect).length; i++)
 		{
 			CreateHeroPanel(int_row, heroes_intellect[i], 3)
 		}
-		for (var i = 0; i < Object.keys(heroes_all).length; i++) 
+		for (var i = 0; i < Object.keys(heroes_all).length; i++)
 		{
 			CreateHeroPanel(all_row, heroes_all[i], 4)
 		}
 	}
 }
 
-function CreateHeroPanel(panel, hero_name, stat) 
+function CreateHeroPanel(panel, hero_name, stat)
 {
 	var player_data_local = player_table_shop
- 	var BlockHero = $.CreatePanel("Panel", panel, "");
+	var BlockHero = $.CreatePanel("Panel", panel, "");
 	BlockHero.AddClass("BlockHero");
 	var HeroImage = $.CreatePanel(`DOTAHeroImage`, BlockHero, "", {scaling: "stretch-to-cover-preserve-aspect", heroname : String(hero_name), tabindex : "auto", class: "HeroImage", heroimagestyle : "portrait"});
 	var LevelPanel = $.CreatePanel("Panel", BlockHero, "");
@@ -99,26 +99,25 @@ function CreateHeroPanel(panel, hero_name, stat)
 	HeroLevelLabel.AddClass("HeroLevelLabel");
 	if (player_data_local["heroes_data"][hero_name]['has_level'] == 1)
 	{
-        let level = Number(player_data_local["heroes_data"][hero_name]["level"])
-        let tier = Number(player_data_local["heroes_data"][hero_name]["tier"])
+		let level = Number(player_data_local["heroes_data"][hero_name]["level"])
+		let tier = Number(player_data_local["heroes_data"][hero_name]["tier"])
 		HeroLevelLabel.text = level
-        if (level < 10)
-        {
-            HeroLevelLabel.AddClass("HeroLevelLabel_1")
-        }
+		if (level < 10)
+		{
+			HeroLevelLabel.AddClass("HeroLevelLabel_1")
+		}
 		BlockHero.AddClass("BlockHero_" + String(tier))
-        LevelPanel.AddClass("LevelPanel_" + String(tier))
-        HeroImage.AddClass("HeroImage_" + String(tier))
-
-	}else 
+		LevelPanel.AddClass("LevelPanel_" + String(tier))
+		HeroImage.AddClass("HeroImage_" + String(tier))
+	}else
 	{
-        LevelPanel.style.opacity = 0
+		LevelPanel.style.opacity = 0
 		HeroLevelLabel.text = 0
 	}
-	BlockHero.SetPanelEvent("onactivate", function() 
-	{	
+	BlockHero.SetPanelEvent("onactivate", function()
+	{
 		OpenGeneralInformation(hero_name)
-	});	
+	});
 }
 
 function OpenGeneralInformation(hero_name)
@@ -184,18 +183,16 @@ function InitHeroGeneralInformation(panel, hero_name)
 				text = $.Localize('#NoQuests')
 				QuestPanelName.AddClass("QuestPanelName");
 			}
-            else 
+			else
 			{
-
 				QuestPanelName.AddClass("QuestPanelName_nosub");
 			}
 			QuestPanelName.text = text
 		}
-        else
+		else
 		{
 			for (var i = 1; i <= Object.keys(quest_data[String(hero_name)]).length; i++)
 			{
-
 				CreateQuest(QuestsGeneralPanel, quest_data[String(hero_name)][i])
 			}
 		}
@@ -212,7 +209,8 @@ function InitHeroGeneralInformation(panel, hero_name)
 	var HeroLevelProgressLabel = $.CreatePanel("Label", HeroLevelProgressLine, "");
 	HeroLevelProgressLabel.AddClass("HeroLevelProgressLabel");
 	HeroLevelProgressLabel.text = ""
-	let level_thresh = [6,12,18,25,30]
+	let sub_config = CustomNetTables.GetTableValue("custom_pick", "sub_config")
+	let level_thresh = Object.values(sub_config.level_tiers)
 	let next_level = player_data_local["heroes_data"][hero_name]["level"] + 1
 	let next_tier = 0
 	for (var i = 0; i <= Object.keys(level_thresh).length; i++)
@@ -221,7 +219,7 @@ function InitHeroGeneralInformation(panel, hero_name)
 		if (next_level >= thresh)
 		{
 			next_tier = i+1
-		}else 
+		}else
 		{
 			break
 		}
@@ -247,17 +245,17 @@ function InitHeroGeneralInformation(panel, hero_name)
 		if (player_data_local["heroes_data"][hero_name])
 		{
 			let init_exp = player_data_local["heroes_data"][hero_name]["exp"]
-			let max_exp =  thresh[player_data_local["heroes_data"][hero_name]["level"] - 1]
+			let max_exp = sub_config.level_exp[player_data_local["heroes_data"][hero_name]["level"]]
 			if (max_exp)
 			{
-				let width = ( (init_exp)/max_exp) * 100
-				HeroLevelProgressTop_text.text =  $.Localize('#hero_level_full') + String(player_data_local["heroes_data"][hero_name]["level"])
-				HeroLevelProgressLabel.text =  String(init_exp) + ' / ' + String(max_exp)
+				let width = ((init_exp)/max_exp) * 100
+				HeroLevelProgressTop_text.text = $.Localize('#hero_level_full') + String(player_data_local["heroes_data"][hero_name]["level"])
+				HeroLevelProgressLabel.text = String(init_exp) + ' / ' + String(max_exp)
 				HeroLevelProgressFront.style.width = String(width)+'%'
-			} 
-            else 
-            {
-				HeroLevelProgressTop_text.text =  $.Localize('#hero_level_full') + String(player_data_local["heroes_data"][hero_name]["level"])
+			}
+			else
+			{
+				HeroLevelProgressTop_text.text = $.Localize('#hero_level_full') + String(player_data_local["heroes_data"][hero_name]["level"])
 				HeroLevelProgressFront.style.width = "99%"
 			}
 		}
@@ -284,24 +282,24 @@ function CreateQuest(panel, data, player_data)
 	QuestPanelText.AddClass("QuestPanelText");
 	var QuestPanelReward = $.CreatePanel("Panel", QuestPanel, "");
 	QuestPanelReward.AddClass("QuestPanelReward");
-	var QuestPanelReward_shards = $.CreatePanel("Panel", QuestPanelReward , "");
+	var QuestPanelReward_shards = $.CreatePanel("Panel", QuestPanelReward, "");
 	QuestPanelReward_shards.AddClass("QuestPanelReward_shards");
-	var QuestPanelReward_exp = $.CreatePanel("Panel", QuestPanelReward , "");
+	var QuestPanelReward_exp = $.CreatePanel("Panel", QuestPanelReward, "");
 	QuestPanelReward_exp.AddClass("QuestPanelReward_exp");
-	var QuestPanelReward_shards_icon = $.CreatePanel("Panel", QuestPanelReward_shards , "");
+	var QuestPanelReward_shards_icon = $.CreatePanel("Panel", QuestPanelReward_shards, "");
 	QuestPanelReward_shards_icon.AddClass("QuestPanelReward_shards_icon");
-	var QuestPanelReward_exp_icon = $.CreatePanel("Panel", QuestPanelReward_exp , "");
+	var QuestPanelReward_exp_icon = $.CreatePanel("Panel", QuestPanelReward_exp, "");
 	QuestPanelReward_exp_icon.AddClass("QuestPanelReward_exp_icon");
-	var QuestPanelRewardLabel_shards = $.CreatePanel("Label",  QuestPanelReward_shards, "");
+	var QuestPanelRewardLabel_shards = $.CreatePanel("Label", QuestPanelReward_shards, "");
 	QuestPanelRewardLabel_shards.AddClass("QuestPanelReward_text");
 	QuestPanelRewardLabel_shards.text ="+" + data.shards
-	var QuestPanelRewardLabel_exp = $.CreatePanel("Label",  QuestPanelReward_exp, "");
+	var QuestPanelRewardLabel_exp = $.CreatePanel("Label", QuestPanelReward_exp, "");
 	QuestPanelRewardLabel_exp.AddClass("QuestPanelReward_text");
 	QuestPanelRewardLabel_exp.text = "+" + data.exp
 	var QuestPanelName = $.CreatePanel("Label", QuestPanelText, "");
 	QuestPanelName.AddClass("QuestPanelName");
 	QuestPanelName.html = true;
-	QuestPanelName.text = $.Localize("#"+data.name)  + $.Localize("#QuestGoal") + "<b><font color='#53ea48'>" + String(data.goal) + "</font></b>"
+	QuestPanelName.text = $.Localize("#"+data.name) + $.Localize("#QuestGoal") + "<b><font color='#53ea48'>" + String(data.goal) + "</font></b>"
 	if (!QUEST_BLUR)
 	{
 		QuestPanel.style.blur = "gaussian( 50 )"
@@ -323,8 +321,8 @@ function CreateSoundInGeneralInformation(panel, level, sound, hero_name)
 	SoundLocked.style.height = "25px"
 	var SoundIcon = $.CreatePanel("Panel", SoundSelect, "");
 	SoundIcon.AddClass("SoundIcon");
-	SoundIcon.SetPanelEvent("onactivate", function() 
-	{	
+	SoundIcon.SetPanelEvent("onactivate", function()
+	{
 		Game.EmitSound(sound[2])
 	});
 	var SoundHeroIcon = $.CreatePanel("Panel", SoundSelect, "");

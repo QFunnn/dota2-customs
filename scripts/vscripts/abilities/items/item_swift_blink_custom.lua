@@ -23,6 +23,7 @@ function item_swift_blink_custom:Precache(context)
 	end
 	PrecacheResource("particle", "particles/items3_fx/blink_swift_start.vpcf", context)
 	PrecacheResource("particle", "particles/items3_fx/blink_swift_end.vpcf", context)
+	PrecacheResource("particle", "particles/items3_fx/blink_swift_buff.vpcf", context)
 end
 
 function item_swift_blink_custom:GetIntrinsicModifierName()
@@ -85,8 +86,7 @@ function item_swift_blink_custom:OnSpellStart()
 	end
 
 	if not self.multicast_k then
-		caster:SetForwardVector(dir:Normalized())
-		caster:FaceTowards(point)
+		caster:FacePoint(point)
 		caster:Teleport(point, not caster:HasModifier("modifier_blink_break_custom"), pfx_name_start, pfx_name_end)
 	end
 
@@ -99,6 +99,13 @@ function item_swift_blink_custom:OnSpellStart()
 end
 
 modifier_item_swift_blink_custom = class(mod_hidden)
+function modifier_item_swift_blink_custom:OnCreated()
+	self.ability = self:GetAbility()
+	self.parent = self:GetParent()
+
+	self.parent:AddDamageEvent_inc(self)
+end
+
 function modifier_item_swift_blink_custom:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
@@ -109,15 +116,11 @@ function modifier_item_swift_blink_custom:GetModifierBonusStats_Agility()
 	return self.ability.bonus_agility
 end
 
-function modifier_item_swift_blink_custom:OnCreated()
-	self.ability = self:GetAbility()
-	self.parent = self:GetParent()
-
-	self.parent:AddDamageEvent_inc(self)
-end
-
 function modifier_item_swift_blink_custom:DamageEvent_inc(params)
 	if not IsServer() then
+		return
+	end
+	if not IsValid(self.ability) then
 		return
 	end
 	self.parent:CheckBlink(params, self.ability)

@@ -107,9 +107,9 @@ for id = 0, 24 do
 		items = {},
 		team = -1,
 		buffs = {},
-		playerName = "",
 		isLeaver = false,
 		ratingChange = 0,
+		playerName = "",
 		lost_game = false,
 		dpHeroMatchXp = 0,
 		dpHeroQuestXp = 0,
@@ -241,8 +241,8 @@ function HTTP.FillOfflineServerData()
 				all_heroes_data[hero_name].exp = 0 --RandomInt(1, 60)
 				all_heroes_data[hero_name].level = 1
 
-				if hero_name == "npc_dota_hero_jakiro" then
-					--all_heroes_data[hero_name].level = 30
+				if hero_name == "npc_dota_hero_phantom_assassin" then
+					--all_heroes_data[hero_name].level = 3
 				end
 
 				player_items_onequip[hero_name] = {}
@@ -271,7 +271,7 @@ function HTTP.FillOfflineServerData()
 			if test then
 				sub = 1
 			end
-			local points = 100000
+			local points = 0
 			if test then
 				points = 100000
 			end
@@ -370,18 +370,30 @@ function HTTP.FillOfflineServerData()
 	HTTP.InitServerData()
 end
 
+function HTTP.UpdateHeroTier(hero_data)
+	hero_data.tier = 0
+	for i, thresh in ipairs(level_thresh) do
+		if hero_data.level < thresh then
+			break
+		end
+		hero_data.tier = i
+	end
+
+	hero_data.has_level = (hero_data.level > 1 or hero_data.exp > 0) and 1 or 0
+end
+
 function HTTP.InitServerData()
 	local total = 0
-	local count = 0
+	local player_count = 0
 	for id = 0, 24 do
 		if ValidId(id) then
 			_G.lobby_rating[id] = HTTP.serverData.players[id].rating
 			total = total + lobby_rating[id]
-			count = count + 1
+			player_count = player_count + 1
 		end
 	end
 
-	_G.avg_rating = math.floor(total / math.max(1, count))
+	_G.avg_rating = math.floor(total / math.max(1, player_count))
 
 	local name = GetMapName()
 	local min = 0
@@ -419,6 +431,22 @@ function HTTP.InitServerData()
 				rating = row.rating,
 				favorite_hero = row.favoriteHero,
 				total_matches = row.matchCount,
+			}
+		end)
+	)
+
+	CustomNetTables:SetTableValue(
+		"leaderboard",
+		"leaderboard_heroes",
+		TableMap(HTTP.serverData.leaderboard_heroes, function(row)
+			return {
+				playerId = row.playerId,
+				heroes = TableMap(row.heroes, function(hero)
+					return {
+						hero_name = hero.heroName,
+						total_matches = hero.gameCount,
+					}
+				end),
 			}
 		end)
 	)
@@ -545,22 +573,7 @@ function HTTP.InitServerData()
 				end
 			end
 
-			local tier = 0
-
-			for i, thresh in pairs(level_thresh) do
-				if all_heroes_data[hero_name].level >= thresh then
-					tier = i
-				else
-					break
-				end
-			end
-
-			all_heroes_data[hero_name].tier = tier
-			all_heroes_data[hero_name].has_level = 0
-
-			if all_heroes_data[hero_name].level > 1 or all_heroes_data[hero_name].exp > 0 then
-				all_heroes_data[hero_name].has_level = 1
-			end
+			HTTP.UpdateHeroTier(all_heroes_data[hero_name])
 		end
 
 		sub_data.heroes_data = all_heroes_data
@@ -597,21 +610,12 @@ function HTTP.InitServerData()
 
 			local wrong_map_status = 0
 			local unranked_penalty = 0
-			local reports_teammate = -1
-			local ranked_low_games = 0
-			local leave_banned = 0
-			local ranked_game_count = 0
 			local unranked_penalty_reason = 0
-			local is_banned = 0
 
 			if player.rating and HTTP.serverData.isStatsMatch == true then
 				if player.rating > max or player.rating < min then
 					wrong_map_status = 2
 				end
-			end
-
-			if player.IsBannedByLeaveReports == true then
-				leave_banned = 1
 			end
 
 			--[[
@@ -623,16 +627,6 @@ function HTTP.InitServerData()
 				wrong_map_status = 2
 			end
 		end]]
-
-			if player.reports and IsSoloMode() then
-				for other_player, report_count in pairs(player.reports) do
-					local other_pid = HTTP.GetPlayerBySteamID(other_player)
-					if report_count >= MAX_REPORTS then
-						reports_teammate = other_pid
-						break
-					end
-				end
-			end
 
 			if HTTP.global_party == false then
 				if IsUnrankedMap() and not pro_mod then
@@ -681,24 +675,11 @@ function HTTP.InitServerData()
 				end
 			end
 
-			if player.isBanned then
-				is_banned = 1
-			end
-
-			if
-				not IsUnrankedMap()
-				and IsSoloMode()
-				and not HTTP.serverData.isOffline
-				and (HTTP.serverData.isStatsMatch or test)
-			then
-				if
-					(player.unrankedStats and player.unrankedStats.matchCountTotal < RANKED_GAME_COUNT)
-					and player.matchCount < RANKED_GAME_COUNT_TOTAL
-				then
-					ranked_low_games = RANKED_GAME_COUNT
-					ranked_game_count = player.unrankedStats.matchCountTotal
-				end
-			end
+			local block = GetPickBlock(
+				pid,
+				player,
+				{ player_count = player_count, wrong_map_status = wrong_map_status, min = min, max = max }
+			)
 
 			local tier = 0
 			local in_ranked = 0
@@ -720,20 +701,14 @@ function HTTP.InitServerData()
 			local can_use_free_build = HTTP.CanUseFreeBuild(free_build_used, player.matchCount) and 1 or 0
 
 			CustomNetTables:SetTableValue("server_data", tostring(pid), {
-				leave_data = player.LeaveReports,
-				leave_banned = leave_banned,
 				stats_match = HTTP.serverData.isStatsMatch,
 				total_games = player.matchCount,
-				ranked_game_count = ranked_game_count,
 				rating = player.rating,
 				ranked_tier = tier,
-				is_banned = is_banned,
-				max_leave = MAX_LEAVE,
+				block = block,
 				rank_tier = 0,
 				in_ranked = in_ranked,
 				leaderboard_rank = 0,
-				ranked_low_games = ranked_low_games,
-				reports_teammate = reports_teammate,
 				map_rating = { min = min, max = max },
 				wrong_map_status = wrong_map_status,
 				unranked_penalty = unranked_penalty,
@@ -833,17 +808,18 @@ function ChangeUserData(array, new_array)
 	end
 end
 
-function HTTP.Request(url, data, cb, tries, isStats)
+function HTTP.Request(url, data, cb, tries, isStats, is_get)
 	if not isStats then
 		data.matchId = HTTP.GetMatchId()
 		data.matchKey = HTTP.MATCH_KEY
 	end
 
-	local r = CreateHTTPRequestScriptVM("POST", (isStats and HTTP.STATS_HOST or HTTP.GAME_HOST) .. url)
+	local r =
+		CreateHTTPRequestScriptVM(is_get and "GET" or "POST", (isStats and HTTP.STATS_HOST or HTTP.GAME_HOST) .. url)
 
-	print("POST" .. " Request - ", (isStats and HTTP.STATS_HOST or HTTP.GAME_HOST) .. url)
+	--print("POST" .. " Request - ", ( isStats and HTTP.STATS_HOST or HTTP.GAME_HOST ) .. url, HTTP.playersData[0].playerName)
 
-	if r == nil then
+	if not r then
 		return
 	end
 
@@ -861,10 +837,7 @@ function HTTP.Request(url, data, cb, tries, isStats)
 		local body = nil
 		local StatusCode = tonumber(res.StatusCode)
 
-		--print( "Req", url, StatusCode, res.Body )
-
 		if StatusCode == 200 then
-			--print( "Req Body", res.Body, url )
 			body = json.decode(res.Body or "{}")
 			if cb then
 				cb(body)
@@ -882,9 +855,6 @@ function HTTP.Request(url, data, cb, tries, isStats)
 			end
 
 			if tries and tries > 0 then
-				--local hero = players[0]
-				--GameRules:ExecuteTeamPing(hero:GetTeamNumber(), hero:GetAbsOrigin().x, hero:GetAbsOrigin().y, PlayerResource:GetPlayer(hero:GetId()), 8 )
-
 				Timers:CreateTimer(3, function()
 					HTTP.Request(url, data, cb, tries - 1)
 				end)
@@ -1181,6 +1151,16 @@ function HTTP.MatchLeaderboardData()
 		end
 	end
 
+	HTTP.Request("/v2/leaderboard/heromasters", steamIDs, function(data)
+		if not data then
+			print("no heromasters")
+			return
+		end
+
+		HTTP.serverData.leaderboard_heroes = data.data and data.data.heroMasters
+		HTTP.InitServerData()
+	end, nil, true, true)
+
 	HTTP.Request("/match_leaderboard", steamIDs, function(data)
 		if not data then
 			print("no leaderboard")
@@ -1273,10 +1253,12 @@ function HTTP.PlayerEnd(id)
 		}
 	end
 
+	local match_points = dota1x6:PostMatchPoints(hero)
+
 	local quest_table = {}
 	local achivment_table = {}
 
-	if (hero:GetQuest() ~= nil) and hero:QuestCompleted() and player_data.place <= win_place then
+	if match_points and (hero:GetQuest() ~= nil) and hero:QuestCompleted() and player_data.place <= win_place then
 		quest_table.name = hero.quest.name
 		quest_table.icon = hero.quest.icon
 		quest_table.exp = hero.quest.exp
@@ -1316,7 +1298,7 @@ function HTTP.PlayerEnd(id)
 		expire = subData_visual.expire,
 		quest_table = quest_table,
 		achivment_table = achivment_table,
-		valid_time = GameRules:GetDOTATime(false, false) >= push_timer,
+		match_points = match_points,
 		total_games = serverData.total_games,
 	}
 
@@ -1328,8 +1310,6 @@ function HTTP.PlayerEnd(id)
 		CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(id), "EndScreen_game_end", screen_table)
 	end
 
-	dota1x6:PostMatchPoints(hero)
-
 	local data = CustomNetTables:GetTableValue("server_data", tostring(id))
 	local penalty_type = 0
 	local lp_games = data.lp_games_remaining
@@ -1339,14 +1319,6 @@ function HTTP.PlayerEnd(id)
 			penalty_type = 1
 		end
 	end
-
-	if lp_games > 0 and player_data.place <= win_place and SafeToLeave == false then
-		lp_games = lp_games - 1
-	end
-
-	data.lp_games_remaining = lp_games
-
-	CustomNetTables:SetTableValue("server_data", tostring(id), data)
 
 	if not test_end then
 		if not HTTP.serverData.isStatsMatch then
@@ -1887,6 +1859,123 @@ function HTTP.CheckReports()
 			if player.banned ~= true then
 				player.banned = server_player.isBanned
 			end
+		end
+	end
+end
+
+_G.PICK_BLOCKS = {
+	[1] = {
+		name = "local_server",
+		leave_reason = 2,
+		check = function(pid, player, ctx)
+			if IsDedicatedServer() then
+				return
+			end
+			if ctx.player_count < max_teams * players_in_team then
+				return
+			end
+
+			return {}
+		end,
+	},
+
+	[2] = {
+		name = "player_banned",
+		leave_reason = 3,
+		check = function(pid, player, ctx)
+			if not player.isBanned then
+				return
+			end
+
+			return {}
+		end,
+	},
+
+	[3] = {
+		name = "leave_banned",
+		leave_reason = 3,
+		check = function(pid, player, ctx)
+			if player.IsBannedByLeaveReports ~= true then
+				return
+			end
+
+			return { leave_data = player.LeaveReports, max_leave = MAX_LEAVE }
+		end,
+	},
+
+	[4] = {
+		name = "reports",
+		leave_reason = 3,
+		check = function(pid, player, ctx)
+			if not player.reports then
+				return
+			end
+			if not IsSoloMode() then
+				return
+			end
+
+			for other_player, report_count in pairs(player.reports) do
+				if report_count >= MAX_REPORTS then
+					local other_pid = HTTP.GetPlayerBySteamID(other_player)
+					if other_pid == -1 then
+						return
+					end
+
+					return { teammate = other_pid }
+				end
+			end
+		end,
+	},
+
+	[5] = {
+		name = "low_games",
+		leave_reason = 2,
+		check = function(pid, player, ctx)
+			if IsUnrankedMap() or not IsSoloMode() or HTTP.serverData.isOffline then
+				return
+			end
+			if not HTTP.serverData.isStatsMatch and not test then
+				return
+			end
+			if not player.unrankedStats or player.unrankedStats.matchCountTotal >= RANKED_GAME_COUNT then
+				return
+			end
+			if player.matchCount >= RANKED_GAME_COUNT_TOTAL then
+				return
+			end
+
+			return { games = player.unrankedStats.matchCountTotal, max_games = RANKED_GAME_COUNT }
+		end,
+	},
+
+	[6] = {
+		name = "wrong_map",
+		leave_reason = 2,
+		check = function(pid, player, ctx)
+			if ctx.wrong_map_status ~= 2 then
+				return
+			end
+
+			return { rating = player.rating, min = ctx.min, max = ctx.max }
+		end,
+	},
+}
+
+function GetPickBlock(pid, player, ctx)
+	local order = {}
+
+	for priority in pairs(PICK_BLOCKS) do
+		table.insert(order, priority)
+	end
+
+	table.sort(order)
+
+	for _, priority in ipairs(order) do
+		local rule = PICK_BLOCKS[priority]
+		local data = rule.check(pid, player, ctx)
+
+		if data then
+			return { name = rule.name, leave_reason = rule.leave_reason, data = data }
 		end
 	end
 end

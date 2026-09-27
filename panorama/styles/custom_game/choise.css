@@ -447,7 +447,7 @@
 	align: center center;
 	background-repeat: no-repeat;
 	background-size: contain;
-	background-image: url("s2r://panorama/images/custom_game/shop/effects/emblems/emblem_4_png.vtex");
+	background-image: url("s2r://panorama/images/custom_game/glyph_panel_png.vtex");
 }
 
 .card_body_skill
@@ -482,15 +482,15 @@
 
 .text_stacks
 {
-	font-size: 27px;
-	font-family: defaultFont;
-	font-weight: bold;
+	font-size: 25px;
+	font-family: Radiance;
+	font-weight: semi-bold;
 	color: #e7e7e7;
 	text-shadow: 1px 1px 2px 4 black;
 	z-index: 2;
 	align: left bottom;
 	margin-bottom: 10px;
-	margin-left: 15px;
+	margin-left: 14px;
 	text-align: center;
 }
 
@@ -799,6 +799,12 @@
 	flow-children: down;
 }
 
+.complexity_row
+{
+	width: 100%;
+	flow-children: down;
+}
+
 .complexity_block_text
 {
 	align: center top;
@@ -832,6 +838,97 @@
 {
 	wash-color: #555;
 	saturation: 0.9;
+}
+
+.complexity_block_build
+{
+	width: 200px;
+	height: 60px;
+	margin-top: 28px;
+	box-shadow: fill black 0px 0px 8px -1px;
+}
+
+.complexity_block_build_1
+{
+	background-color: gradient( linear, 0% 0%, 0% 90%, from( #1e0404 ), to( #4c0d0d ) );
+	border: 1px solid #b8342a;
+}
+
+.complexity_block_build_2
+{
+	background-color: gradient( linear, 0% 0%, 0% 90%, from( #040a1e ), to( #0d2250 ) );
+	border: 1px solid #3169c9;
+}
+
+.build_type_text
+{
+	align: center top;
+	font-weight: semi-bold;
+	font-size: 24px;
+	text-shadow: 0px 0px 5px 2.0 #000000;
+	font-family: Radiance;
+	margin-top: 4px;
+}
+
+.complexity_block_build_1 .build_type_text
+{
+	color: gradient( linear, 0% 90%, 0% 0%, from( #ffd6c8 ), to( #ff7650 ) );
+}
+
+.complexity_block_build_2 .build_type_text
+{
+	color: gradient( linear, 0% 90%, 0% 0%, from( #d6e6ff ), to( #66a8ff ) );
+}
+
+.complexity_block_build .complexity_row
+{
+	width: fit-children;
+	horizontal-align: center;
+	flow-children: right;
+	margin-top: 2px;
+}
+
+.complexity_block_build .complexity_block_text
+{
+	align: left center;
+	font-size: 16px;
+	margin-top: 0px;
+	margin-right: 8px;
+}
+
+.complexity_block_build_1 .complexity_block_text
+{
+	color: #d9a89c;
+}
+
+.complexity_block_build_2 .complexity_block_text
+{
+	color: #a3bde6;
+}
+
+.complexity_block_build .complexity_levels
+{
+	margin-bottom: 0px;
+}
+
+.complexity_block_build .complexity_level
+{
+	height: 11px;
+	width: 18px;
+	margin: 0px 1.5px;
+	border-radius: 2px;
+}
+
+.complexity_block_build_1 .complexity_level
+{
+	background-color: gradient( linear, 0% 80%, 0% 0%, from( #b8342a ), to( #eba89c ) );
+	border: 1px solid #2a0505;
+}
+
+.complexity_block_build_2 .complexity_level
+{
+	background-color: gradient( linear, 0% 80%, 0% 0%, from( #3169c9 ), to( #a8c6f2 ) );
+	border: 1px solid #050d24;
 }
 
 #ChoiseSmallMode
@@ -1200,6 +1297,21 @@
 	ignore-parent-flow: true;
 }
 
+.stack_text_gray
+{
+	color: gradient( linear, 0% 0%, 0% 100%, from( #ccc ), to( #999 ) );
+}
+
+.stack_text_blue
+{
+	color: gradient( linear, 0% 0%, 0% 100%, from( #91afd8 ), to( #6199e5 ) );
+}
+
+.stack_text_purple
+{
+	color: gradient( linear, 0% 0%, 0% 100%, from( #baa3e8 ), to( #915fec ) );
+}
+
 .ChoiseSmallCardInfo
 {
 	width: 186px;
@@ -1352,6 +1464,17 @@
 	margin-right: 15px;
 }
 
+.ButtonStyle_priority
+{
+	width: fit-children;
+	padding-left: 16px;
+	padding-right: 18px;
+	flow-children: right;
+	background-color: gradient( linear, 0% 0%, 90% 90%, from( #0b150c ), to( #152416 ) );
+	border: 1px solid #73db77;
+	margin-right: 15px;
+}
+
 .ButtonStyle_close
 {
 	background-color: gradient( linear, 0% 0%, 0% 100%, from( #2a2a2a ), to( #181818 ) );
@@ -1399,6 +1522,32 @@
 .ButtonText_refresh
 {
 	color: gradient( linear, 0% 100%, 0% 0%, from( #95ca8e ), to( #cffbd1 ) );
+}
+
+.ButtonText_priority
+{
+	color: gradient( linear, 0% 100%, 0% 0%, from( #95ca8e ), to( #cffbd1 ) );
+}
+
+.PriorityCheckbox
+{
+	width: 25px;
+	height: 25px;
+	margin-left: 12px;
+	vertical-align: center;
+	background-color: black;
+	border: 2px solid #5e686966;
+	box-shadow: #00000099 0px 0px 1px 3px;
+	transition-property: background-color;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+}
+
+.PriorityCheckbox_active
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #e7f6f599 ), to( #a0d6d7 ) );
+	border: 3px solid #000000;
+	box-shadow: #5b62bf77 0px 0px 7px 0px;
 }
 
 @keyframes 'SmallBlurRefresh'

@@ -20,6 +20,11 @@ function item_enhancement_brawny_custom:GetIntrinsicModifierName()
 	return "modifier_item_enhancement_brawny_custom"
 end
 
+function item_enhancement_brawny_custom:Spawn()
+	self.health_bonus = self:GetSpecialValueFor("health_bonus")
+	self.heal_bonus = self:GetSpecialValueFor("heal_bonus")
+end
+
 modifier_item_enhancement_brawny_custom = class(mod_hidden)
 function modifier_item_enhancement_brawny_custom:RemoveOnDeath()
 	return false
@@ -28,16 +33,14 @@ function modifier_item_enhancement_brawny_custom:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.health_bonus = self.ability:GetSpecialValueFor("health_bonus")
-	self.heal_bonus = self.ability:GetSpecialValueFor("heal_bonus")
+	self.health_bonus = self.ability.health_bonus
+	self.heal_bonus = self.ability.heal_bonus
 end
 
 function modifier_item_enhancement_brawny_custom:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_HEALTH_BONUS,
-		--MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET,
 		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
-		--MODIFIER_PROPERTY_LIFESTEAL_AMPLIFY_PERCENTAGE
 	}
 end
 

@@ -18,18 +18,12 @@ LinkLuaModifier(
 centaur_innate_custom = class({})
 centaur_innate_custom.talents = {}
 
-function centaur_innate_custom:GetIntrinsicModifierName()
-	if not self:GetCaster():IsRealHero() then
-		return
-	end
-	return "modifier_centaur_innate_custom"
-end
-
 function centaur_innate_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
 	end
 	PrecacheResource("soundfile", "soundevents/npc_dota_hero_centaur.vsndevts", context)
+	PrecacheResource("particle", "particles/centaur/edge_shield.vpcf", context)
 	dota1x6:PrecacheShopItems("npc_dota_hero_centaur", context)
 end
 
@@ -71,6 +65,13 @@ function centaur_innate_custom:UpdateTalents(name)
 	end
 end
 
+function centaur_innate_custom:GetIntrinsicModifierName()
+	if not self:GetCaster():IsRealHero() then
+		return
+	end
+	return "modifier_centaur_innate_custom"
+end
+
 function centaur_innate_custom:OnInventoryContentsChanged()
 	if not IsServer() then
 		return
@@ -85,13 +86,7 @@ function centaur_innate_custom:OnInventoryContentsChanged()
 	self.tracker:ScepterInit()
 end
 
-modifier_centaur_innate_custom = class({})
-function modifier_centaur_innate_custom:IsHidden()
-	return false
-end
-function modifier_centaur_innate_custom:IsPurgable()
-	return false
-end
+modifier_centaur_innate_custom = class(mod_visible)
 function modifier_centaur_innate_custom:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -146,7 +141,7 @@ function modifier_centaur_innate_custom:DamageEvent_out(params)
 		)
 	end
 
-	if self.ability.talents.has_e2 == 1 and not params.inflictor and self.parent.retaliate_ability then
+	if self.ability.talents.has_e2 == 1 and not params.inflictor and IsValid(self.parent.retaliate_ability) then
 		self.parent.retaliate_ability:ProcHeal(params.damage * result)
 	end
 
@@ -192,7 +187,6 @@ function modifier_centaur_innate_custom:AddShield(shield, max_shield)
 	if not IsServer() then
 		return
 	end
-
 	local add_shield = shield
 	local max = self.parent:GetMaxHealth() * self.ability.talents.w4_max_shield
 	if max_shield then

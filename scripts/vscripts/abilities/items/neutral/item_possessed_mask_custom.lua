@@ -28,6 +28,12 @@ function item_possessed_mask_custom:GetIntrinsicModifierName()
 	return "modifier_item_possessed_mask_custom"
 end
 
+function item_possessed_mask_custom:Spawn()
+	self.duration = self:GetSpecialValueFor("duration")
+	self.str = self:GetSpecialValueFor("str")
+	self.max = self:GetSpecialValueFor("max")
+end
+
 modifier_item_possessed_mask_custom = class(mod_hidden)
 function modifier_item_possessed_mask_custom:RemoveOnDeath()
 	return false
@@ -36,12 +42,15 @@ function modifier_item_possessed_mask_custom:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.duration = self.ability:GetSpecialValueFor("duration")
+	self.duration = self.ability.duration
 	self.parent:AddAttackEvent_out(self, true)
 end
 
 function modifier_item_possessed_mask_custom:AttackEvent_out(params)
 	if not IsServer() then
+		return
+	end
+	if not IsValid(self.ability) then
 		return
 	end
 	if self.parent ~= params.attacker then
@@ -71,12 +80,12 @@ function modifier_item_possessed_mask_custom_health:OnCreated()
 	self.caster = self:GetCaster()
 	self.ability = self:GetAbility()
 
-	self.str = self.ability:GetSpecialValueFor("str")
+	self.str = self.ability.str
 	if self.caster:GetTeamNumber() ~= self.parent:GetTeamNumber() then
 		self.str = self.str * -1
 	end
 
-	self.max = self.ability:GetSpecialValueFor("max")
+	self.max = self.ability.max
 	if not IsServer() then
 		return
 	end

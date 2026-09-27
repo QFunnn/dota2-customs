@@ -19,8 +19,6 @@ dota_neutral_shop_window.style.overflow = "squish scroll";
 dotaHud.FindChildrenWithClassTraverse("LeftRightFlow")[0].MoveChildBefore($.GetContextPanel(),dotaHud.FindChildTraverse("StatBranch"))
 
 
-Hack()
-
 
 //rating1()
 
@@ -295,19 +293,29 @@ for (var i = 8; i < 30; i++)
 
 
 
-function Hack()
+var dota_stat_branch = dotaHud.FindChildTraverse("StatBranch")
+var dota_stat_branch_drawer = dotaH.FindChildTraverse("StatBranchDrawer")
+var center_block = dotaH.FindChildTraverse("center_block")
+var upgrades_button = dotaHud.FindChildrenWithClassTraverse("LeftRightFlow")[0].FindChildrenWithClassTraverse("MainUpgrades")[0]
+
+function UpdateTalentsButton()
 {
-	var parentHUDElements = $.GetContextPanel().GetParent().GetParent().GetParent().GetParent().GetParent().GetParent().GetParent().FindChild("HUDElements");
-	var check_local = parentHUDElements.FindChildTraverse("center_block");
-	var Button = dotaHud.FindChildrenWithClassTraverse("LeftRightFlow")[0].FindChildrenWithClassTraverse("MainUpgrades")[0]
- 
-    if (check_local.BHasClass("NonHero")) {
-        Button.visible = false;
-      
-    } else {
-    	  Button.visible = true;
-    }
-    $.Schedule(0.03, Hack)
+	let no_talents = Game.IsNoTalentsHero()
+
+	upgrades_button.visible = !center_block.BHasClass("NonHero") && !no_talents
+
+	let dota_talents = no_talents ? "visible" : "collapse"
+
+	dota_stat_branch.style.visibility = dota_talents
+	dota_stat_branch_drawer.style.visibility = dota_talents
 }
 
-
+function OnPortraitChanged()
+{
+	$.Schedule(0, UpdateTalentsButton)
+}
+
+GameEvents.Subscribe("dota_player_update_selected_unit", OnPortraitChanged)
+GameEvents.Subscribe("dota_player_update_query_unit", OnPortraitChanged)
+
+UpdateTalentsButton()

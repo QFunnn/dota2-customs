@@ -28,13 +28,25 @@ function item_bloodstone_custom:Precache(context)
 	end
 	PrecacheResource("particle", "particles/items3_fx/octarine_core_lifesteal.vpcf", context)
 	PrecacheResource("particle", "particles/items_fx/bloodstone_heal.vpcf", context)
+	PrecacheResource("particle", "particles/items2_fx/veil_of_discord_debuff.vpcf", context)
+end
+
+function item_bloodstone_custom:Spawn()
+	self.buff_duration = self:GetSpecialValueFor("buff_duration")
+	self.bonus_health = self:GetSpecialValueFor("bonus_health")
+	self.bonus_mana = self:GetSpecialValueFor("bonus_mana")
+	self.spell_lifesteal = self:GetSpecialValueFor("spell_lifesteal") / 100
+	self.bonus_int = self:GetSpecialValueFor("bonus_int")
+	self.lifesteal_active = self:GetSpecialValueFor("lifesteal_active") / 100
+	self.spell_amp = self:GetSpecialValueFor("spell_amp")
+	self.aura_radius = self:GetSpecialValueFor("aura_radius")
 end
 
 function item_bloodstone_custom:OnSpellStart()
 	local caster = self:GetCaster()
 	caster:EmitSound("DOTA_Item.Bloodstone.Cast")
 
-	local duration = self:GetSpecialValueFor("buff_duration")
+	local duration = self.buff_duration
 	caster:AddNewModifier(caster, self, "modifier_item_bloodstone_custom_buff", { duration = duration })
 end
 
@@ -42,13 +54,34 @@ function item_bloodstone_custom:GetIntrinsicModifierName()
 	return "modifier_item_bloodstone_custom"
 end
 
-modifier_item_bloodstone_custom = class({})
-function modifier_item_bloodstone_custom:IsHidden()
+modifier_item_bloodstone_custom = class(mod_hidden)
+function modifier_item_bloodstone_custom:GetAuraRadius()
+	return self.ability.aura_radius
+end
+function modifier_item_bloodstone_custom:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_ENEMY
+end
+function modifier_item_bloodstone_custom:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
+end
+function modifier_item_bloodstone_custom:GetModifierAura()
+	return "modifier_item_bloodstone_custom_damage_inc"
+end
+function modifier_item_bloodstone_custom:IsAura()
 	return true
 end
-function modifier_item_bloodstone_custom:IsPurgable()
-	return false
+function modifier_item_bloodstone_custom:OnCreated(table)
+	self.ability = self:GetAbility()
+	self.parent = self:GetParent()
+
+	if self.parent:IsRealHero() then
+		self.parent:AddDamageEvent_out(self, true)
+	end
+
+	self.lifesteal = self.ability.spell_lifesteal
+	self.lifesteal_active = self.ability.lifesteal_active
 end
+
 function modifier_item_bloodstone_custom:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_HEALTH_BONUS,
@@ -69,29 +102,11 @@ function modifier_item_bloodstone_custom:GetModifierBonusStats_Intellect()
 	return self.ability.bonus_int
 end
 
-function modifier_item_bloodstone_custom:OnCreated(table)
-	self.ability = self:GetAbility()
-	self.parent = self:GetParent()
-
-	if self.parent:IsRealHero() then
-		self.parent:AddDamageEvent_out(self, true)
-	end
-
-	self.ability.bonus_health = self.ability:GetSpecialValueFor("bonus_health")
-	self.ability.bonus_mana = self.ability:GetSpecialValueFor("bonus_mana")
-	self.ability.spell_lifesteal = self.ability:GetSpecialValueFor("spell_lifesteal") / 100
-	self.ability.bonus_int = self.ability:GetSpecialValueFor("bonus_int")
-	self.ability.buff_duration = self.ability:GetSpecialValueFor("buff_duration")
-	self.ability.lifesteal_active = self.ability:GetSpecialValueFor("lifesteal_active") / 100
-	self.ability.spell_amp = self.ability:GetSpecialValueFor("spell_amp")
-	self.ability.aura_radius = self.ability:GetSpecialValueFor("aura_radius")
-
-	self.lifesteal = self.ability:GetSpecialValueFor("spell_lifesteal") / 100
-	self.lifesteal_active = self.ability:GetSpecialValueFor("lifesteal_active") / 100
-end
-
 function modifier_item_bloodstone_custom:DamageEvent_out(params)
 	if not IsServer() then
+		return
+	end
+	if not IsValid(self.ability) then
 		return
 	end
 	local result = self.parent:CheckLifesteal(params, 1)
@@ -115,22 +130,6 @@ function modifier_item_bloodstone_custom:DamageEvent_out(params)
 		hide_number,
 		"particles/items3_fx/octarine_core_lifesteal.vpcf"
 	)
-end
-
-function modifier_item_bloodstone_custom:GetAuraRadius()
-	return self.ability.aura_radius
-end
-function modifier_item_bloodstone_custom:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_ENEMY
-end
-function modifier_item_bloodstone_custom:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
-end
-function modifier_item_bloodstone_custom:GetModifierAura()
-	return "modifier_item_bloodstone_custom_damage_inc"
-end
-function modifier_item_bloodstone_custom:IsAura()
-	return true
 end
 
 modifier_item_bloodstone_custom_buff = class(mod_visible)

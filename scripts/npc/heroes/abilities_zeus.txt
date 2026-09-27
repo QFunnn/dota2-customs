@@ -8,27 +8,21 @@
 ]]
 
 
-
 "DOTAAbilities"
 {
-
-"Version"		"1"
-
-
-
-
+"Version"                           "1"
 
 "zuus_arc_lightning_custom"
 {
     "BaseClass"                     "ability_lua"
-    "ScriptFile"                    "abilities/zuus/zuus_arc_lightning_custom" 
+    "ScriptFile"                    "abilities/zuus/zuus_arc_lightning_custom"
     "AbilityTextureName"            "zuus_arc_lightning"
     "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
     "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
     "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
     "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
-    "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_1"
+    "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_1"
 
     "AbilityCastRange"              "850"
     "AbilityCastPoint"              "0.2"
@@ -37,23 +31,21 @@
 
     "AbilityValues"
     {
-        "arc_damage"            "105 130 155 180"
-        "creeps_damage"         "2"
-        "radius"                "550"
-        "jump_count"            "5 7 9 15"
-        "jump_delay"            "0.25"
+        "arc_damage"                "105 130 155 180"
+        "creeps_damage"             "2"
+        "radius"                    "550"
+        "jump_count"                "5 7 9 15"
+        "jump_delay"                "0.25"
     }
 }
-
-
 
 "zuus_stormkeeper_custom"
 {
     "BaseClass"                     "ability_lua"
-    "ScriptFile"                    "abilities/zuus/zuus_lightning_bolt_custom" 
+    "ScriptFile"                    "abilities/zuus/zuus_lightning_bolt_custom"
     "AbilityTextureName"            "zuus_lightning_hands"
-    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
-    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_CHANNELLED" 
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
     "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
 
     "AbilityCastRange"              "1000"
@@ -63,19 +55,18 @@
 
     "AbilityValues"
     {
-
     }
 }
 
 "zuus_lightning_bolt_custom"
 {
     "BaseClass"                     "ability_lua"
-    "ScriptFile"                    "abilities/zuus/zuus_lightning_bolt_custom" 
+    "ScriptFile"                    "abilities/zuus/zuus_lightning_bolt_custom"
     "AbilityTextureName"            "zuus_lightning_bolt"
     "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
     "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
     "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
     "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
     "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_2"
 
@@ -88,22 +79,22 @@
 
     "AbilityValues"
     {
-        "damage"                "100 160 220 280"
-        "true_sight_radius"     "750"
-        "sight_duration"        "6"
-        "radius"                "250"
-        "stun_duration"         "0.35"
-        "creeps"                "30"
+        "damage"                    "100 160 220 280"
+        "true_sight_radius"         "750"
+        "sight_duration"            "6"
+        "radius"                    "250"
+        "stun_duration"             "0.35"
+        "creeps"                    "30"
     }
 }
 
 "zuus_heavenly_jump_custom"
 {
     "BaseClass"                     "ability_lua"
-    "ScriptFile"                    "abilities/zuus/zuus_heavenly_jump_custom" 
+    "ScriptFile"                    "abilities/zuus/zuus_heavenly_jump_custom"
     "AbilityTextureName"            "zuus_heavenly_jump"
     "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
-    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
     "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
     "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
 
@@ -116,30 +107,28 @@
 
     "AbilityValues"
     {
-        "speed"                    "40 60 80 100"
+        "speed"                     "40 60 80 100"
         "speed_duration"            "4"
         "hop_distance"              "375 450 525 600"
-        "hop_duration"      "0.5"
-        "hop_height"        "250"
-        "range"             "700 800 900 1000"
-        "vision_duration"       "3"
-        "vision_radius"         "900"
-        "duration"          "1.6"
-        "move_slow"             "-80"
-        "aspd_slow"             "-100"
-        "max_targets"           "3"
+        "hop_duration"              "0.5"
+        "hop_height"                "250"
+        "range"                     "700 800 900 1000"
+        "vision_duration"           "3"
+        "vision_radius"             "900"
+        "duration"                  "1.6"
+        "move_slow"                 "-80"
+        "aspd_slow"                 "-100"
+        "max_targets"               "3"
     }
 }
-
-
 
 "zuus_cloud_custom"
 {
     "BaseClass"                     "ability_lua"
-    "ScriptFile"                    "abilities/zuus/zuus_thundergods_wrath_custom" 
+    "ScriptFile"                    "abilities/zuus/zuus_thundergods_wrath_custom"
     "AbilityTextureName"            "zuus_cloud"
     "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
     "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
     "MaxLevel"                      "1"
     "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_4"
@@ -154,16 +143,14 @@
     }
 }
 
-
-
 "zuus_thundergods_wrath_custom"
 {
     "BaseClass"                     "ability_lua"
-    "ScriptFile"                    "abilities/zuus/zuus_thundergods_wrath_custom" 
+    "ScriptFile"                    "abilities/zuus/zuus_thundergods_wrath_custom"
     "AbilityTextureName"            "zuus_thundergods_wrath"
     "AbilityType"                   "ABILITY_TYPE_ULTIMATE"
     "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
     "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
     "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_5"
     "LinkedAbility"                 "zuus_thundergods_wrath_custom_legendary"
@@ -171,32 +158,32 @@
     "AbilityCastPoint"              "0.4 0.4 0.4 0.4"
     "AbilityCooldown"               "60"
     "AbilityManaCost"               "150"
-    "HasScepterUpgrade"               "1"
+    "HasScepterUpgrade"             "1"
 
     "AbilityValues"
     {
-        "sight_duration"        "3.0"
-        "vision_radius"         "400"
-        "damage"                "150 200 250"
-        "health_damage"         "12 14 16"
-        "damage_range"          "2500"
-        "damage_reduction"      "60"
+        "sight_duration"            "3.0"
+        "vision_radius"             "400"
+        "damage"                    "150 200 250"
+        "health_damage"             "12 14 16"
+        "damage_range"              "2500"
+        "damage_reduction"          "60"
 
-        "scepter_cast"          "-0.2"
-        "scepter_stun"          "2"
-        "scepter_duration"      "10"
-        "scepter_delay"         "2.5"
-        "scepter_aoe"           "480"
-        "scepter_speed"         "300"
+        "scepter_cast"              "-0.2"
+        "scepter_stun"              "2"
+        "scepter_duration"          "10"
+        "scepter_delay"             "2.5"
+        "scepter_aoe"               "480"
+        "scepter_speed"             "300"
 
-        "slow_resist"           "0"
+        "slow_resist"               "0"
     }
 }
 
 "zuus_thundergods_wrath_custom_legendary"
 {
     "BaseClass"                     "ability_lua"
-    "ScriptFile"                    "abilities/zuus/zuus_thundergods_wrath_custom" 
+    "ScriptFile"                    "abilities/zuus/zuus_thundergods_wrath_custom"
     "AbilityTextureName"            "zuus_static_field"
     "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
     "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_5"
@@ -212,12 +199,11 @@
     }
 }
 
-
 "zuus_innate_custom"
 {
     "BaseClass"                     "ability_lua"
-    "ScriptFile"                    "abilities/zuus/zuus_innate_custom"  
-    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+    "ScriptFile"                    "abilities/zuus/zuus_innate_custom"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
     "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
 
     "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
@@ -228,21 +214,10 @@
 
     "AbilityValues"
     {
-        "damage"                "4"
-        "damage_creeps"        "100"
-        "shard_heal"            "75"
-        "shard_damage"          "1"
+        "damage"                    "4"
+        "damage_creeps"             "100"
+        "shard_heal"                "75"
+        "shard_damage"              "1"
     }
 }
-
-
-
-
-
-
-
-
-
-
-
 }

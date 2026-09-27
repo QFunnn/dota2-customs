@@ -16,12 +16,34 @@ Game.pickrate_talents = {}
 Game.local_chosen_build = -1
 Game.CustomTooltipOpened = false
 Game.Subscribed = false
-
+var talent_increase_multipliers = {}
 
 CustomNetTables.SubscribeNetTableListener( "sub_data", update_hero_image );
 CustomNetTables.SubscribeNetTableListener( "local_items", update_hero_image_local );
 CustomNetTables.SubscribeNetTableListener( "custom_pick", update_custom_pick );
 GameEvents.Subscribe_custom("reconnect_hero_image", reconnect_hero_image)
+
+var player_heroes = {}
+
+
+function update_player_heroes(data)
+{
+	player_heroes = data
+}
+
+Game.GetPlayerHero = (player_id) =>
+{
+	let data = player_heroes[String(player_id)]
+
+	return data && data.hero
+}
+
+Game.GetPlayerTier = (player_id) =>
+{
+	let data = player_heroes[String(player_id)]
+
+	return data ? data.tier : -1
+}
 
 var custom_pick_table
 
@@ -44,19 +66,21 @@ GameEvents.OnLoaded(() => {
   GameEvents.Subscribe_custom('SendNewTalentSystem', SendNewTalentSystem)
   GameEvents.Subscribe_custom('SendAchivments', SendAchivments)
   GameEvents.Subscribe_custom('SendPickRates', SendPickRates)
-  GameEvents.Subscribe_custom('SendPickRates', SendPickRates)
   GameEvents.Subscribe_custom('SendSubscribed', SendSubscribed)
   GameEvents.Subscribe_custom('select_unit_custom', select_unit_custom)
   GameEvents.Subscribe_custom('send_arcana_icons', send_arcana_icons)
   GameEvents.Subscribe_custom('print_names', print_names)
+  GameEvents.Subscribe_custom('update_talent_increase', update_talent_increase)
+  GameEvents.Subscribe_custom('player_heroes', update_player_heroes)
   GameEvents.Subscribe_custom('get_player_names', get_player_names)
-
 
   GameEvents.SendCustomGameEventToServer_custom("RequestAchivments", {})
   GameEvents.SendCustomGameEventToServer_custom("RequestPickRates", {})
   GameEvents.SendCustomGameEventToServer_custom("RequestSubscribed", {})
   GameEvents.SendCustomGameEventToServer_custom("RequestArcanaIcons", {})
   GameEvents.SendCustomGameEventToServer_custom("RequestNames", {})
+  GameEvents.SendCustomGameEventToServer_custom("RequestTalentIncrease", {})
+  GameEvents.SendCustomGameEventToServer_custom("request_player_heroes", {})
 })
 
 var talents_recieved = false
@@ -65,6 +89,12 @@ var pickrate_recieved = false
 var images_keys =
 {
 
+}
+
+function get_player_names(data)
+{
+	let name = Players.GetPlayerName(data.id)
+  	GameEvents.SendCustomGameEventToServer_custom("GetPlayerNames", {name : name, id : data.id})
 }
 
 function send_arcana_icons(data)
@@ -99,11 +129,6 @@ function SendAchivments(data)
 	}
 }
 
-function get_player_names(data)
-{
-	let name = Players.GetPlayerName(data.id)
-  	GameEvents.SendCustomGameEventToServer_custom("GetPlayerNames", {name : name, id : data.id})
-}
 
 function SendSubscribed(data)
 {
@@ -246,11 +271,12 @@ function SendTalents(data)
 	if (true) return
 
 	let only_legendary = false
-	let for_patchnote = "npc_dota_hero_pangolier"
+	let for_patchnote = "npc_dota_hero_phantom_assassin"
 	let rarity = ["blue", "purple", "orange"]
 	let local = ["Редкие таланты:", "Эпические таланты:", "Легендарный талант:"]
 
-	if (only_legendary)
+
+	if(only_legendary)
 	{
 		rarity = ["orange"]
 		local = ["Легендарный талант:"]
@@ -405,7 +431,16 @@ Game.GetMaxLevel = (data) =>
 	let rarity = data["rarity"]
 	let max_level = 0
 
-    if (rarity == "blue")
+    if (data["no_level"] == 1)
+        return 0
+
+    if (data["max_level"])
+        return data["max_level"]
+
+    if (rarity == "gray")
+    {
+        max_level = 5
+    }else if (rarity == "blue")
     {
         max_level = 3
     }else if (rarity == "purple" || rarity == "orange")
@@ -421,31 +456,26 @@ Game.GetMaxLevel = (data) =>
 
 Game.GetLocalLegendary = () =>
 {	
-	let IDs = Game.GetAllPlayerIDs()
-	let hero = Entities.GetUnitName(Players.GetLocalPlayerPortraitUnit())
+	let player_id = Entities.GetPlayerOwnerID(Players.GetLocalPlayerPortraitUnit())
 	let result = []
 	result[0] = 0
 	result[1] = 0
 	result[2] = 0
 
-	for (var i = 0; i < Object.keys(IDs).length; i++) 
+	var table = CustomNetTables.GetTableValue("networth_players", String(player_id));
+	if (table)
 	{
-		var table = CustomNetTables.GetTableValue("networth_players", IDs[i].toString());
-		if (table && table.hero_name && table.hero_name == hero)
+		if (table.legendary)
 		{
-			if (table.legendary)
-			{
-				result[0] = table.legendary
-			}
-			if (table.legendary_talent)
-			{
-				result[1] = table.legendary_talent
-			}
-			if (table.legendary_skill_name)
-			{
-				result[2] = table.legendary_skill_name
-			}
-			break
+			result[0] = table.legendary
+		}
+		if (table.legendary_talent)
+		{
+			result[1] = table.legendary_talent
+		}
+		if (table.legendary_skill_name)
+		{
+			result[2] = table.legendary_skill_name
 		}
 	}
 	return result
@@ -453,10 +483,9 @@ Game.GetLocalLegendary = () =>
 
 
 
-Game.HasTalent = (hero_name, talent_name, return_level) =>
+Game.HasTalent = (player_id, talent_name, return_level) =>
 {
-
-	let talents = CustomNetTables.GetTableValue("upgrades_player", hero_name)
+	let talents = CustomNetTables.GetTableValue("upgrades_player", String(player_id))
 
 	if ((talents == undefined) || (talents == null))
 	{
@@ -597,7 +626,17 @@ Game.GetHeroImage = (id, hero_name) =>
 	return name
 }
 
-Game.GetTalentValue = (name, value_name) => 
+Game.GetLocalHeroName = () => 
+{
+	let index = Players.GetPlayerHeroEntityIndex(Game.GetLocalPlayerID())
+
+	if (index == -1)
+		return ""
+
+	return Entities.GetUnitName(index)
+}
+
+Game.GetTalentValue = (name, value_name, player_id) => 
 {
 	for (const hero_name of Object.keys(Game.talents_values)) 
 	{	
@@ -608,8 +647,23 @@ Game.GetTalentValue = (name, value_name) =>
 
 				if ((talent_data == name) && (Game.talents_values[hero_name][talent_data][value_name] !== undefined))
 				{
+					let result = Game.talents_values[hero_name][talent_data][value_name]
 
-					return Game.talents_values[hero_name][talent_data][value_name]
+					if (typeof(result) == "object" && result !== null)
+					{
+						let multipliers = talent_increase_multipliers[player_id !== undefined ? player_id : Game.GetLocalPlayerID()]
+						let k = multipliers && multipliers[name]
+						if (k !== undefined)
+						{
+        					let new_result = {}
+							for (let key in result)
+					    {
+								new_result[key] = result[key] * k;
+					    }
+        					result = new_result
+						}
+					}
+					return result
 				}
 			} 
 		}
@@ -618,6 +672,13 @@ Game.GetTalentValue = (name, value_name) =>
 }
 
 
+function update_talent_increase(data)
+{
+	if (data.id === undefined)
+		return
+
+	talent_increase_multipliers[data.id] = data.multipliers || {}
+}
 
 
 Game.GetValuesArray = (text) => {
@@ -645,7 +706,7 @@ Game.roundPlus = (x, n) =>
 
 }
 
-Game.CheckAltTalent = (hero, text, name, force_talent) =>
+Game.CheckAltTalent = (player_id, text, name, force_talent) =>
 {
 	let result = text
 	for (let add of ["", "2"])
@@ -662,7 +723,7 @@ Game.CheckAltTalent = (hero, text, name, force_talent) =>
 
 		for (var j in alt_table)
 		{
-			let allow = force_talent == undefined ? Game.HasTalent(hero, alt_table[j]) : (force_talent == alt_table[j])
+			let allow = force_talent == undefined ? Game.HasTalent(player_id, alt_table[j]) : (force_talent == alt_table[j])
 			if (allow)
 			{	
 				let key = text + "_alt" + add
@@ -683,14 +744,15 @@ Game.CheckAltTalent = (hero, text, name, force_talent) =>
 }
 
 
-Game.ShowTalentValues = (text, name, level, all_levels, legendary, no_color, no_tags, force_alt) => 
+Game.ShowTalentValues = (text, name, level, all_levels, legendary, no_color, no_tags, force_alt, talent_hero, talent_player) => 
 {
 	let talent_text = $.Localize(text)
-	let hero = Entities.GetUnitName(Players.GetPlayerHeroEntityIndex(Game.GetLocalPlayerID()))
+	let hero = talent_hero || Game.GetLocalHeroName()
+	let player_id = talent_player !== undefined ? talent_player : Game.GetLocalPlayerID()
 
 	if (hero != undefined)
 	{	
-		talent_text = Game.CheckAltTalent(hero, text, name, force_alt)
+		talent_text = Game.CheckAltTalent(player_id, text, name, force_alt)
 	}
 
     let values_array = Game.GetValuesArray(talent_text)
@@ -698,7 +760,7 @@ Game.ShowTalentValues = (text, name, level, all_levels, legendary, no_color, no_
    
     for (const value of values_array) 
     {	
-    	values_map[value] = Game.GetTalentValue(name, value)
+    	values_map[value] = Game.GetTalentValue(name, value, player_id)
     }
 
     talent_text = replaceValues(talent_text, values_map, level, all_levels, legendary, no_color, no_tags);  
@@ -784,3 +846,151 @@ Game.AllowShop = (id) =>
   }
   return true
 }
+
+
+
+var talent_max_keys = {}
+var talent_text_keys = {}
+
+Game.GetHeroRangeName = (hero, player_id) =>
+{
+	let hero_index = Players.GetPlayerHeroEntityIndex(Number(player_id))
+
+	if (!hero_index || hero_index == -1)
+		return ""
+
+	if (Entities.GetUnitName(hero_index) != hero)
+		return ""
+
+	return Entities.IsRangedAttacker(hero_index) ? "ranged" : "melee"
+}
+
+
+Game.HasAltVersion = (name) =>
+{
+	let general = Game.talents_values["general"]
+
+	return general !== undefined && general[name] !== undefined && general[name]["alt_version"] == 1
+}
+
+
+Game.GetTalentVariants = (hero, player_id) =>
+{
+	if (!hero)
+		hero = Entities.GetUnitName(Players.GetPlayerHeroEntityIndex(Game.GetLocalPlayerID()))
+
+	if (player_id === undefined)
+		player_id = Game.GetLocalPlayerID()
+
+	return [Game.GetHeroRangeName(hero, player_id)]
+}
+
+
+Game.FindVariantKey = (base, variants) =>
+{
+	for (let suffix of variants)
+	{
+		if (suffix == "")
+			continue
+
+		let key = base + "_" + suffix
+
+		if ($.Localize(key) != key)
+			return key
+	}
+
+	return ""
+}
+
+
+Game.GetTalentTextKey = (text, name, hero, player_id) =>
+{
+	if (!Game.HasAltVersion(name))
+		return text
+
+	let variants = Game.GetTalentVariants(hero, player_id)
+	let cache_key = text + "|" + variants.join("|")
+
+	if (talent_text_keys[cache_key] === undefined)
+		talent_text_keys[cache_key] = Game.FindVariantKey(text, variants) || text
+
+	return talent_text_keys[cache_key]
+}
+
+
+Game.FindTalentMaxKey = (name, variants) =>
+{
+	if (Game.GetTalentValue(name, "max_bonus") === undefined)
+		return ""
+
+	let base = "#upgrade_disc_" + name + "_max"
+
+	if (Game.HasAltVersion(name))
+	{
+		let key = Game.FindVariantKey(base, variants)
+
+		if (key != "")
+			return key
+	}
+
+	if ($.Localize(base) != base)
+		return base
+
+	return ""
+}
+
+
+Game.GetTalentMaxKey = (name, hero, player_id) =>
+{
+	let variants = Game.GetTalentVariants(hero, player_id)
+	let cache_key = name + "|" + variants.join("|")
+
+	if (talent_max_keys[cache_key] === undefined)
+		talent_max_keys[cache_key] = Game.FindTalentMaxKey(name, variants)
+
+	return talent_max_keys[cache_key]
+}
+
+
+Game.ShowTalentMax = (name, level, max_level, hero, player_id, on_pick) =>
+{
+	let key = Game.GetTalentMaxKey(name, hero, player_id)
+
+	if (key == "")
+		return ""
+
+	// lvl невзятого таланта приходит как undefined - без || 0 получится NaN
+	let max = Number(max_level) || 0
+	let current = Math.min(Number(level) || 0, max)
+
+	// бонус уже получен, либо этот выбор его даёт
+	if (max != 0 && current + (on_pick ? 1 : 0) >= max)
+		return "<br><br>" + Game.ShowTalentValues(key, name, max_level, false, false, false, false, undefined, hero, player_id)
+
+	let prefix = $.Localize("#talent_max_level").replace("{current}", String(current)).replace("{max}", String(max))
+
+	return "<br><br><font color='#888'>" + prefix + Game.ShowTalentValues(key, name, max_level, false, false, true, true, undefined, hero, player_id) + "</font>"
+}
+
+
+Game.MouseOverTalent = (panel, talent_text, name, lvl, all_levels, rarity, max_level, player_id, hero, is_scepter, skill_change, is_upgrade) =>
+{
+    panel.SetPanelEvent("onmouseover", () => 
+    {
+        Game.CustomTooltipOpened = true
+
+        $.DispatchEvent(
+            "UIShowCustomLayoutParametersTooltip",
+            panel,
+            "skill_tooltip",
+            "file://{resources}/layout/custom_game/custom_tooltip.xml",
+            "talent_text=" + talent_text + "&name=" + name + "&lvl=" + lvl + "&all_levels=" + all_levels + "&rarity=" + rarity + "&max_level=" + max_level + "&player_id=" + player_id + "&hero_name=" + hero + "&is_scepter=" + is_scepter + "&skill_change=" + skill_change + "&is_upgrade=" + is_upgrade,
+        );
+    });
+    panel.SetPanelEvent("onmouseout", () => 
+    {
+        Game.CustomTooltipOpened = false
+        $.DispatchEvent("UIHideCustomLayoutTooltip", panel, "skill_tooltip");
+    });
+
+}

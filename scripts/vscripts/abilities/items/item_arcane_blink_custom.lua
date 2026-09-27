@@ -82,8 +82,7 @@ function item_arcane_blink_custom:OnSpellStart()
 	end
 
 	if not self.multicast_k then
-		caster:SetForwardVector(dir:Normalized())
-		caster:FaceTowards(point)
+		caster:FacePoint(point)
 		caster:Teleport(point, not caster:HasModifier("modifier_blink_break_custom"), pfx_name_start, pfx_name_end)
 	end
 	caster:EmitSound("DOTA_Item.Arcane_Blink.Activate")
@@ -101,6 +100,13 @@ function item_arcane_blink_custom:OnSpellStart()
 end
 
 modifier_item_arcane_blink_custom = class(mod_hidden)
+function modifier_item_arcane_blink_custom:OnCreated()
+	self.ability = self:GetAbility()
+	self.parent = self:GetParent()
+
+	self.parent:AddDamageEvent_inc(self)
+end
+
 function modifier_item_arcane_blink_custom:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
@@ -111,15 +117,11 @@ function modifier_item_arcane_blink_custom:GetModifierBonusStats_Intellect()
 	return self.ability.bonus_intellect
 end
 
-function modifier_item_arcane_blink_custom:OnCreated()
-	self.ability = self:GetAbility()
-	self.parent = self:GetParent()
-
-	self.parent:AddDamageEvent_inc(self)
-end
-
 function modifier_item_arcane_blink_custom:DamageEvent_inc(params)
 	if not IsServer() then
+		return
+	end
+	if not IsValid(self.ability) then
 		return
 	end
 	self.parent:CheckBlink(params, self.ability)

@@ -26,11 +26,25 @@ LinkLuaModifier(
 
 item_sisters_shroud_custom = class({})
 
+function item_sisters_shroud_custom:Precache(context)
+	if self:GetCaster() and self:GetCaster():IsIllusion() then
+		return
+	end
+	PrecacheResource("particle", "particles/items4_fx/veiled_sisters_pall.vpcf", context)
+end
+
 function item_sisters_shroud_custom:GetIntrinsicModifierName()
 	if not self:GetCaster():IsRealHero() then
 		return
 	end
 	return "modifier_item_sisters_shroud_custom"
+end
+
+function item_sisters_shroud_custom:Spawn()
+	self.hp_threshold = self:GetSpecialValueFor("hp_threshold")
+	self.max_duration = self:GetSpecialValueFor("max_duration")
+	self.evasion = self:GetSpecialValueFor("evasion")
+	self.attacks = self:GetSpecialValueFor("attacks")
 end
 
 function item_sisters_shroud_custom:GetAbilityTextureName()
@@ -51,8 +65,8 @@ function modifier_item_sisters_shroud_custom:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.health_threshold = self.ability:GetSpecialValueFor("hp_threshold")
-	self.duration = self.ability:GetSpecialValueFor("max_duration")
+	self.health_threshold = self.ability.hp_threshold
+	self.duration = self.ability.max_duration
 
 	if not IsServer() then
 		return
@@ -64,7 +78,7 @@ function modifier_item_sisters_shroud_custom:DamageEvent_inc(params)
 	if not IsServer() then
 		return
 	end
-	if not self.ability or self.ability:IsNull() then
+	if not IsValid(self.ability) then
 		return
 	end
 	if self.parent:HasModifier("modifier_item_sisters_shroud_custom_blocked") then
@@ -107,7 +121,7 @@ function modifier_item_sisters_shroud_custom_evasion:OnCreated()
 	self.ability = self:GetAbility()
 	self.parent = self:GetParent()
 
-	self.evasion = self.ability:GetSpecialValueFor("evasion")
+	self.evasion = self.ability.evasion
 
 	if not IsServer() then
 		return
@@ -115,7 +129,7 @@ function modifier_item_sisters_shroud_custom_evasion:OnCreated()
 
 	self.parent:AddAttackFailEvent_inc(self)
 
-	self:SetStackCount(self.ability:GetSpecialValueFor("attacks"))
+	self:SetStackCount(self.ability.attacks)
 	self.parent:EmitSound("DOTA_Item.Butterfly")
 	self.parent:GenericParticle("particles/items4_fx/veiled_sisters_pall.vpcf", self)
 end
@@ -148,7 +162,7 @@ end
 modifier_item_sisters_shroud_custom_blocked = class(mod_hidden)
 function modifier_item_sisters_shroud_custom_blocked:OnCreated()
 	self.parent = self:GetParent()
-	self.parent:AddDeathEvent(self)
+	self.parent:AddDeathEvent(self, true)
 end
 
 function modifier_item_sisters_shroud_custom_blocked:DeathEvent(params)

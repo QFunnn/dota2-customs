@@ -68,6 +68,9 @@ function witch_doctor_paralyzing_cask_custom:Precache(context)
 	PrecacheResource("particle", "particles/witch_doctor/cask_delay.vpcf", context)
 	PrecacheResource("particle", "particles/alchemist/weaponry_proc.vpcf", context)
 	PrecacheResource("particle", "particles/leshrac/storm_refresh.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_lina/lina_supercharge_buff.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_marci/marci_rebound_bounce_impact_debuff.vpcf", context)
+	PrecacheResource("particle", "particles/witch_doctor/ward_root.vpcf", context)
 end
 
 function witch_doctor_paralyzing_cask_custom:UpdateTalents()
@@ -75,7 +78,6 @@ function witch_doctor_paralyzing_cask_custom:UpdateTalents()
 	if not self.init then
 		self.init = true
 		self.talents = {
-			has_q1 = 0,
 			q1_damage = 0,
 			q1_speed = 0,
 
@@ -87,7 +89,7 @@ function witch_doctor_paralyzing_cask_custom:UpdateTalents()
 			has_q3 = 0,
 			q3_base = 0,
 			q3_damage = 0,
-			q3_heal = caster:GetTalentValue("modifier_witch_doctor_cask_3", "heal", true),
+			q3_heal = caster:GetTalentValue("modifier_witch_doctor_cask_3", "heal", true) / 100,
 			q3_duration = caster:GetTalentValue("modifier_witch_doctor_cask_3", "duration", true),
 			q3_interval = caster:GetTalentValue("modifier_witch_doctor_cask_3", "interval", true),
 			q3_chance = caster:GetTalentValue("modifier_witch_doctor_cask_3", "chance", true),
@@ -111,7 +113,6 @@ function witch_doctor_paralyzing_cask_custom:UpdateTalents()
 			q7_count = caster:GetTalentValue("modifier_witch_doctor_cask_7", "count", true),
 			q7_damage = caster:GetTalentValue("modifier_witch_doctor_cask_7", "damage", true) / 100,
 
-			has_h1 = 0,
 			h1_cd = 0,
 			h1_range = 0,
 
@@ -126,7 +127,6 @@ function witch_doctor_paralyzing_cask_custom:UpdateTalents()
 	end
 
 	if caster:HasTalent("modifier_witch_doctor_cask_1") then
-		self.talents.has_q1 = 1
 		self.talents.q1_damage = caster:GetTalentValue("modifier_witch_doctor_cask_1", "damage") / 100
 		self.talents.q1_speed = caster:GetTalentValue("modifier_witch_doctor_cask_1", "speed")
 	end
@@ -157,7 +157,6 @@ function witch_doctor_paralyzing_cask_custom:UpdateTalents()
 	end
 
 	if caster:HasTalent("modifier_witch_doctor_hero_1") then
-		self.talents.has_h1 = 1
 		self.talents.h1_cd = caster:GetTalentValue("modifier_witch_doctor_hero_1", "cd")
 		self.talents.h1_range = caster:GetTalentValue("modifier_witch_doctor_hero_1", "range")
 	end
@@ -184,28 +183,23 @@ function witch_doctor_paralyzing_cask_custom:GetIntrinsicModifierName()
 end
 
 function witch_doctor_paralyzing_cask_custom:GetCooldown(level)
-	return self.BaseClass.GetCooldown(self, level) + (self.talents.h1_cd and self.talents.h1_cd or 0)
+	return self.BaseClass.GetCooldown(self, level) + (self.talents.h1_cd or 0)
 end
 
 function witch_doctor_paralyzing_cask_custom:OnSpellStart(new_target, source, ward_unit)
-	local caster = self:GetCaster()
-	local target = new_target and new_target or self:GetCursorTarget()
-	local legendary = (source and source == "legendary") and 1 or 0
-	local auto = (source and source == "auto") and 1 or 0
-	local ward = nil
-	if ward_unit then
-		ward = ward_unit
+	local target = new_target or self:GetCursorTarget()
+	local legendary = source == "legendary" and 1 or 0
+	local auto = source == "auto" and 1 or 0
+
+	if self.talents.has_r7 == 1 and IsValid(self.caster.deathward_legendary_ability) and not new_target then
+		self.caster.deathward_legendary_ability:AddCharge(1, "particles/leshrac/storm_refresh.vpcf")
 	end
 
-	if self.talents.has_r7 == 1 and IsValid(self.parent.deathward_legendary_ability) and not new_target then
-		self.parent.deathward_legendary_ability:AddCharge(1, "particles/leshrac/storm_refresh.vpcf")
-	end
-
-	caster:AddNewModifier(
-		caster,
+	self.caster:AddNewModifier(
+		self.caster,
 		self,
 		"modifier_witch_doctor_paralyzing_cask_custom",
-		{ target = target:entindex(), legendary = legendary, auto = auto, new_caster = ward }
+		{ target = target:entindex(), legendary = legendary, auto = auto, new_caster = ward_unit }
 	)
 end
 
@@ -214,7 +208,6 @@ function witch_doctor_paralyzing_cask_custom:OnProjectileHit_ExtraData(target, v
 		return
 	end
 
-	local caster = self:GetCaster()
 	local mod = self.active_mods[table.mod_index]
 	if not IsValid(mod) then
 		return
@@ -222,6 +215,9 @@ function witch_doctor_paralyzing_cask_custom:OnProjectileHit_ExtraData(target, v
 
 	local damage_ability = nil
 	local damage_k = 1
+	if table.is_auto == 1 then
+		damage_ability = "modifier_witch_doctor_cask_4"
+	end
 	if table.is_legendary == 1 then
 		damage_ability = "modifier_witch_doctor_cask_7"
 		damage_k = self.talents.q7_damage
@@ -229,15 +225,15 @@ function witch_doctor_paralyzing_cask_custom:OnProjectileHit_ExtraData(target, v
 
 	mod:NewTarget(target:GetAbsOrigin())
 
-	if caster:GetTeamNumber() ~= target:GetTeamNumber() then
-		if table.is_first and table.is_first == 1 then
+	if self.caster:GetTeamNumber() ~= target:GetTeamNumber() then
+		if table.is_first == 1 then
 			if target:TriggerSpellAbsorb(self) then
 				return
 			end
 		end
 		local stun = self.stun_duration + (self.talents.has_q4 == 1 and self.talents.q4_stun or 0)
 		local damage = (self.base_damage + self.caster:GetAverageTrueAttackDamage(nil) * self.attack_damage)
-			* (1 + self.ability.talents.q1_damage)
+			* (1 + self.talents.q1_damage)
 		if target:IsCreep() then
 			damage = damage * self.creep_damage
 		end
@@ -246,32 +242,32 @@ function witch_doctor_paralyzing_cask_custom:OnProjectileHit_ExtraData(target, v
 			damage = damage * damage_k,
 			ability = self,
 			damage_type = DAMAGE_TYPE_MAGICAL,
-			attacker = caster,
+			attacker = self.caster,
 		}
 		DoDamage(damageTable, damage_ability)
 
 		target:AddNewModifier(
-			caster,
+			self.caster,
 			self,
 			"modifier_stunned",
 			{ duration = (1 - target:GetStatusResistance()) * stun }
 		)
 
-		if target:IsRealHero() and caster:GetQuest() == "WitchDoctor.Quest_5" then
-			caster:UpdateQuest(1)
+		if target:IsRealHero() and self.caster:GetQuest() == "WitchDoctor.Quest_5" then
+			self.caster:UpdateQuest(1)
 		end
 	end
 
-	local bounce_sound = wearables_system:GetSoundReplacement(caster, "Hero_WitchDoctor.Paralyzing_Cask_Bounce", self)
+	local bounce_sound =
+		wearables_system:GetSoundReplacement(self.caster, "Hero_WitchDoctor.Paralyzing_Cask_Bounce", self)
 	target:EmitSound(bounce_sound)
 end
 
 function witch_doctor_paralyzing_cask_custom:SearchTarget(current_target, point)
-	local caster = self:GetCaster()
 	local radius = self.bounce_range + (self.talents.has_q4 == 1 and self.talents.q4_range or 0)
-	local ward_ability = caster:FindAbilityByName("witch_doctor_death_ward_custom")
+	local ward_ability = self.caster.deathward_ability
 
-	local targets = caster:FindTargets(radius, point)
+	local targets = self.caster:FindTargets(radius, point)
 
 	for index, target in pairs(targets) do
 		if IsValid(current_target) and target == current_target then
@@ -279,12 +275,12 @@ function witch_doctor_paralyzing_cask_custom:SearchTarget(current_target, point)
 		end
 	end
 
-	if #targets <= 0 and current_target:GetTeamNumber() ~= caster:GetTeamNumber() then
-		if caster:IsAlive() and (caster:GetAbsOrigin() - point):Length2D() <= radius then
-			table.insert(targets, caster)
+	if #targets <= 0 and IsValid(current_target) and current_target:GetTeamNumber() ~= self.caster:GetTeamNumber() then
+		if self.caster:IsAlive() and (self.caster:GetAbsOrigin() - point):Length2D() <= radius then
+			table.insert(targets, self.caster)
 		end
 
-		if ward_ability and ward_ability.wards then
+		if IsValid(ward_ability) and ward_ability.wards then
 			for ward, _ in pairs(ward_ability.wards) do
 				if (ward:GetAbsOrigin() - point):Length2D() <= radius then
 					table.insert(targets, ward)
@@ -307,54 +303,49 @@ function witch_doctor_paralyzing_cask_custom:ProcAttack(target, is_ward)
 	if self.talents.has_q2 == 1 then
 		target:AddNewModifier(
 			self.caster,
-			self.ability,
+			self,
 			"modifier_witch_doctor_paralyzing_cask_custom_slow",
-			{ duration = self.ability.talents.q2_duration }
+			{ duration = self.talents.q2_duration }
 		)
 	end
 
 	if self.talents.has_q3 == 1 then
-		local chance = self.ability.talents.q3_chance
+		local chance = self.talents.q3_chance
 		local index = 9988
 		if is_ward then
-			chance = self.ability.talents.q3_chance_ward
+			chance = self.talents.q3_chance_ward
 			index = 9989
 		end
-		if RollPseudoRandomPercentage(chance, index, self.parent) then
+		if RollPseudoRandomPercentage(chance, index, self.caster) then
 			target:AddNewModifier(
-				self.parent,
-				self.ability,
+				self.caster,
+				self,
 				"modifier_witch_doctor_paralyzing_cask_custom_poison",
-				{ duration = self.ability.talents.q3_duration + 0.2 }
+				{ duration = self.talents.q3_duration + 0.2 }
 			)
 		end
 	end
 
-	if self.ability.talents.has_r4 == 1 then
+	if self.talents.has_r4 == 1 then
 		if target:IsRealHero() then
-			target:AddNewModifier(
-				self.parent,
-				self.ability,
-				"modifier_generic_vision",
-				{ duration = self.ability.talents.r4_vision }
-			)
+			target:AddNewModifier(self.caster, self, "modifier_generic_vision", { duration = self.talents.r4_vision })
 		end
 		if
 			not target:HasModifier("modifier_witch_doctor_paralyzing_cask_custom_root_cd")
 			and not target:IsDebuffImmune()
-			and RollPseudoRandomPercentage(self.ability.talents.r4_chance, 1502, self.parent)
+			and RollPseudoRandomPercentage(self.talents.r4_chance, 1502, self.caster)
 		then
 			target:AddNewModifier(
-				self.parent,
-				self.ability,
+				self.caster,
+				self,
 				"modifier_witch_doctor_paralyzing_cask_custom_root",
-				{ duration = (1 - target:GetStatusResistance()) * self.ability.talents.r4_root }
+				{ duration = (1 - target:GetStatusResistance()) * self.talents.r4_root }
 			)
 			target:AddNewModifier(
-				self.parent,
-				self.ability,
+				self.caster,
+				self,
 				"modifier_witch_doctor_paralyzing_cask_custom_root_cd",
-				{ duration = self.ability.talents.r4_talent_cd }
+				{ duration = self.talents.r4_talent_cd }
 			)
 		end
 	end
@@ -465,6 +456,7 @@ function modifier_witch_doctor_paralyzing_cask_custom:Launch(new_target)
 			mod_index = self.mod_index,
 			is_first = self.is_first,
 			is_legendary = self.is_legendary,
+			is_auto = self.is_auto,
 			stack = self:GetStackCount(),
 		},
 	}
@@ -526,7 +518,6 @@ function modifier_witch_doctor_paralyzing_cask_custom_tracker:OnCreated(table)
 	self.ability.bounce_range = self.ability:GetSpecialValueFor("bounce_range")
 	self.ability.speed = self.ability:GetSpecialValueFor("speed")
 	self.ability.bounce_delay = self.ability:GetSpecialValueFor("bounce_delay")
-	self.ability.creep_damage_pct = self.ability:GetSpecialValueFor("creep_damage_pct")
 	self.ability.attack_damage = self.ability:GetSpecialValueFor("attack_damage") / 100
 end
 
@@ -545,7 +536,7 @@ function modifier_witch_doctor_paralyzing_cask_custom_tracker:AttackEvent_out(pa
 	if not params.target:IsUnit() then
 		return
 	end
-	if params.attack_flag and params.attack_flag == "wd_ward" then
+	if params.attack_flag == "wd_ward" then
 		return
 	end
 
@@ -580,6 +571,9 @@ function modifier_witch_doctor_paralyzing_cask_custom_tracker:SpellEvent(params)
 		return
 	end
 	if self.ability.talents.has_q4 == 0 then
+		return
+	end
+	if not self.parent:IsAlive() then
 		return
 	end
 	if self.parent:HasModifier("modifier_witch_doctor_paralyzing_cask_custom_auto_cd") then
@@ -649,7 +643,7 @@ function modifier_witch_doctor_paralyzing_cask_custom_tracker:UpdateUI()
 	if not IsServer() then
 		return
 	end
-	if not self.ability.talents.has_q7 == 0 then
+	if self.ability.talents.has_q7 == 0 then
 		return
 	end
 	local stack = 0
@@ -675,9 +669,26 @@ function modifier_witch_doctor_paralyzing_cask_custom_legendary_speed:OnCreated(
 	if not IsServer() then
 		return
 	end
-	self.mod = self.parent:FindModifierByName("modifier_witch_doctor_paralyzing_cask_custom_tracker")
-	self:SetStackCount(1)
+	self.RemoveForDuel = true
 	self:StartIntervalThink(0.5)
+	self:OnRefresh()
+end
+
+function modifier_witch_doctor_paralyzing_cask_custom_legendary_speed:OnRefresh()
+	if not IsServer() then
+		return
+	end
+	if self:GetStackCount() >= self.max then
+		return
+	end
+	self:IncrementStackCount()
+
+	if self:GetStackCount() >= self.max then
+		self.parent:EmitSound("WD.Voodoo_health_max")
+		self.parent:GenericParticle("particles/units/heroes/hero_lina/lina_supercharge_buff.vpcf", self)
+	end
+
+	self.ability.tracker:UpdateUI()
 end
 
 function modifier_witch_doctor_paralyzing_cask_custom_legendary_speed:OnIntervalThink()
@@ -701,19 +712,12 @@ function modifier_witch_doctor_paralyzing_cask_custom_legendary_speed:OnInterval
 	end
 end
 
-function modifier_witch_doctor_paralyzing_cask_custom_legendary_speed:OnRefresh()
+function modifier_witch_doctor_paralyzing_cask_custom_legendary_speed:OnDestroy()
 	if not IsServer() then
 		return
 	end
-	if self:GetStackCount() >= self.max then
-		return
-	end
-	self:IncrementStackCount()
-
-	if self:GetStackCount() >= self.max then
-		self.parent:EmitSound("WD.Voodoo_health_max")
-		self.parent:GenericParticle("particles/units/heroes/hero_lina/lina_supercharge_buff.vpcf", self)
-	end
+	self:SetStackCount(0)
+	self.ability.tracker:UpdateUI()
 end
 
 function modifier_witch_doctor_paralyzing_cask_custom_legendary_speed:DeclareFunctions()
@@ -726,26 +730,6 @@ function modifier_witch_doctor_paralyzing_cask_custom_legendary_speed:GetModifie
 	return self.speed * self:GetStackCount()
 end
 
-function modifier_witch_doctor_paralyzing_cask_custom_legendary_speed:OnStackCountChanged(iStackCount)
-	if not IsServer() then
-		return
-	end
-	if not self.mod then
-		return
-	end
-	self.mod:UpdateUI()
-end
-
-function modifier_witch_doctor_paralyzing_cask_custom_legendary_speed:OnDestroy()
-	if not IsServer() then
-		return
-	end
-	if not self.mod then
-		return
-	end
-	self.mod:UpdateUI()
-end
-
 modifier_witch_doctor_paralyzing_cask_custom_poison = class(mod_visible)
 function modifier_witch_doctor_paralyzing_cask_custom_poison:GetTexture()
 	return "buffs/witch_doctor/cask_3"
@@ -755,7 +739,7 @@ function modifier_witch_doctor_paralyzing_cask_custom_poison:OnCreated(table)
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
 
-	self.heal = self.ability.talents.q3_heal / 100
+	self.heal = self.ability.talents.q3_heal
 	self.interval = self.ability.talents.q3_interval
 	self.duration = self.ability.talents.q3_duration
 
@@ -769,6 +753,7 @@ function modifier_witch_doctor_paralyzing_cask_custom_poison:OnCreated(table)
 	if not IsServer() then
 		return
 	end
+	self.RemoveForDuel = true
 
 	for i = 1, 2 do
 		self.parent:GenericParticle("particles/units/heroes/hero_venomancer/venomancer_poison_debuff.vpcf", self)

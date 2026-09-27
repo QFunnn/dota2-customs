@@ -35,14 +35,43 @@ function item_phylactery_custom:GetIntrinsicModifierName()
 	return "modifier_item_phylactery_custom"
 end
 
+function item_phylactery_custom:Spawn()
+	self.bonus_all_stats = self:GetSpecialValueFor("bonus_all_stats")
+	self.bonus_damage = self:GetSpecialValueFor("bonus_damage")
+	self.min_damage_to_activate = self:GetSpecialValueFor("min_damage_to_activate")
+	self.max_damage = self:GetSpecialValueFor("max_damage")
+	self.crit_damage = self:GetSpecialValueFor("crit_damage")
+	self.crit_chance = self:GetSpecialValueFor("crit_chance")
+end
+
 function item_phylactery_custom:GetAbilityTextureName()
-	return wearables_system:GetAbilityIconReplacement(self.caster, "item_phylactery", self)
+	return wearables_system:GetAbilityIconReplacement(self:GetCaster(), "item_phylactery", self)
 end
 
 modifier_item_phylactery_custom = class(mod_hidden)
 function modifier_item_phylactery_custom:RemoveOnDeath()
 	return false
 end
+function modifier_item_phylactery_custom:OnCreated(table)
+	self.ability = self:GetAbility()
+	self.parent = self:GetParent()
+
+	self.bonus_all_stats = self.ability.bonus_all_stats
+	self.damage = self.ability.bonus_damage
+
+	self.min_damage = self.ability.min_damage_to_activate
+	self.max_damage = self.ability.max_damage
+	self.crit_damage = self.ability.crit_damage / 100
+	self.crit_chance = self.ability.crit_chance
+
+	if self.parent:IsRealHero() then
+		self.parent:AddDamageEvent_out(self, true)
+	end
+
+	self.damageTable =
+		{ attacker = self.parent, ability = self.ability, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION }
+end
+
 function modifier_item_phylactery_custom:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
@@ -68,28 +97,11 @@ function modifier_item_phylactery_custom:GetModifierBonusStats_Intellect()
 	return self.bonus_all_stats
 end
 
-function modifier_item_phylactery_custom:OnCreated(table)
-	self.ability = self:GetAbility()
-	self.parent = self:GetParent()
-
-	self.bonus_all_stats = self.ability:GetSpecialValueFor("bonus_all_stats")
-	self.damage = self.ability:GetSpecialValueFor("bonus_damage")
-
-	self.min_damage = self.ability:GetSpecialValueFor("min_damage_to_activate")
-	self.max_damage = self.ability:GetSpecialValueFor("max_damage")
-	self.crit_damage = self.ability:GetSpecialValueFor("crit_damage") / 100
-	self.crit_chance = self.ability:GetSpecialValueFor("crit_chance")
-
-	if self.parent:IsRealHero() then
-		self.parent:AddDamageEvent_out(self, true)
-	end
-
-	self.damageTable =
-		{ attacker = self.parent, ability = self.ability, damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION }
-end
-
 function modifier_item_phylactery_custom:DamageEvent_out(params)
 	if not IsServer() then
+		return
+	end
+	if not IsValid(self.ability) then
 		return
 	end
 	if params.attacker ~= self.parent then

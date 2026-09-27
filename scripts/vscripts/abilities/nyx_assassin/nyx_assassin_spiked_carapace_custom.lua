@@ -85,10 +85,12 @@ function nyx_assassin_spiked_carapace_custom:Precache(context)
 	PrecacheResource("particle", "particles/nyx_assassin/carapace_attack.vpcf", context)
 	PrecacheResource("particle", "particles/zuus_speed.vpcf", context)
 	PrecacheResource("particle", "particles/nyx_assasin/carapace_haste.vpcf", context)
-end
-
-function nyx_assassin_spiked_carapace_custom:GetAbilityTextureName()
-	return wearables_system:GetAbilityIconReplacement(self.caster, "nyx_assassin_spiked_carapace", self)
+	PrecacheResource("particle", "particles/nyx_assassin/mind_refresh.vpcf", context)
+	PrecacheResource(
+		"particle",
+		"particles/units/heroes/hero_nyx_assassin/status_effect_nyx_assassin_spiked_carapace.vpcf",
+		context
+	)
 end
 
 function nyx_assassin_spiked_carapace_custom:UpdateTalents()
@@ -96,25 +98,26 @@ function nyx_assassin_spiked_carapace_custom:UpdateTalents()
 	if not self.init then
 		self.init = true
 		self.talents = {
-			has_speed = 0,
+			has_e1 = 0,
 			e1_agi = 0,
-			speed_max = caster:GetTalentValue("modifier_nyx_carapace_1", "max", true),
-			speed_duration = caster:GetTalentValue("modifier_nyx_carapace_1", "duration", true),
+			e1_max = caster:GetTalentValue("modifier_nyx_carapace_1", "max", true),
+			e1_duration = caster:GetTalentValue("modifier_nyx_carapace_1", "duration", true),
 
 			has_e2 = 0,
 			e2_duration = caster:GetTalentValue("modifier_nyx_carapace_2", "duration", true),
 
-			has_armor = 0,
-			armor_inc = 0,
-			armor_max = caster:GetTalentValue("modifier_nyx_hero_2", "max", true),
-			armor_duration = caster:GetTalentValue("modifier_nyx_hero_2", "duration", true),
+			has_h2 = 0,
+			h2_status = 0,
+			h2_armor = 0,
+			h2_max = caster:GetTalentValue("modifier_nyx_hero_2", "max", true),
+			h2_duration = caster:GetTalentValue("modifier_nyx_hero_2", "duration", true),
 
-			has_attack = 0,
-			attack_health = 0,
-			attack_cd = 0,
-			attack_radius = caster:GetTalentValue("modifier_nyx_carapace_3", "radius", true),
-			attack_max = caster:GetTalentValue("modifier_nyx_carapace_3", "max", true),
-			attack_duration = caster:GetTalentValue("modifier_nyx_carapace_3", "duration", true),
+			has_e3 = 0,
+			e3_health = 0,
+			e3_cd = 0,
+			e3_radius = caster:GetTalentValue("modifier_nyx_carapace_3", "radius", true),
+			e3_max = caster:GetTalentValue("modifier_nyx_carapace_3", "max", true),
+			e3_duration = caster:GetTalentValue("modifier_nyx_carapace_3", "duration", true),
 
 			has_e4 = 0,
 			e4_damage_reduce = caster:GetTalentValue("modifier_nyx_carapace_4", "damage_reduce", true),
@@ -132,13 +135,12 @@ function nyx_assassin_spiked_carapace_custom:UpdateTalents()
 			e7_cd_inc = caster:GetTalentValue("modifier_nyx_carapace_7", "cd_inc", true) / 100,
 			e7_duration = caster:GetTalentValue("modifier_nyx_carapace_7", "duration", true),
 			e7_creeps = caster:GetTalentValue("modifier_nyx_carapace_7", "creeps", true),
-			e7_damage_type = caster:GetTalentValue("modifier_nyx_carapace_7", "damage_type", true),
 			e7_damage = caster:GetTalentValue("modifier_nyx_carapace_7", "damage", true),
 		}
 	end
 
 	if caster:HasTalent("modifier_nyx_carapace_1") then
-		self.talents.has_speed = 1
+		self.talents.has_e1 = 1
 		self.talents.e1_agi = caster:GetTalentValue("modifier_nyx_carapace_1", "agi")
 	end
 
@@ -147,16 +149,16 @@ function nyx_assassin_spiked_carapace_custom:UpdateTalents()
 	end
 
 	if caster:HasTalent("modifier_nyx_hero_2") then
-		self.talents.has_armor = 1
-		self.talents.status_inc = caster:GetTalentValue("modifier_nyx_hero_2", "status")
-		self.talents.armor_inc = caster:GetTalentValue("modifier_nyx_hero_2", "armor")
+		self.talents.has_h2 = 1
+		self.talents.h2_status = caster:GetTalentValue("modifier_nyx_hero_2", "status")
+		self.talents.h2_armor = caster:GetTalentValue("modifier_nyx_hero_2", "armor")
 		caster:AddDamageEvent_inc(self.tracker, true)
 	end
 
 	if caster:HasTalent("modifier_nyx_carapace_3") then
-		self.talents.has_attack = 1
-		self.talents.attack_health = caster:GetTalentValue("modifier_nyx_carapace_3", "health")
-		self.talents.attack_cd = caster:GetTalentValue("modifier_nyx_carapace_3", "cd")
+		self.talents.has_e3 = 1
+		self.talents.e3_health = caster:GetTalentValue("modifier_nyx_carapace_3", "health")
+		self.talents.e3_cd = caster:GetTalentValue("modifier_nyx_carapace_3", "cd")
 		caster:AddAttackEvent_out(self.tracker, true)
 		caster:AddDamageEvent_inc(self.tracker, true)
 	end
@@ -172,6 +174,10 @@ function nyx_assassin_spiked_carapace_custom:UpdateTalents()
 	if caster:HasTalent("modifier_nyx_carapace_7") then
 		self.talents.has_e7 = 1
 	end
+end
+
+function nyx_assassin_spiked_carapace_custom:GetAbilityTextureName()
+	return wearables_system:GetAbilityIconReplacement(self.caster, "nyx_assassin_spiked_carapace", self)
 end
 
 function nyx_assassin_spiked_carapace_custom:GetIntrinsicModifierName()
@@ -191,12 +197,16 @@ function nyx_assassin_spiked_carapace_custom:GetCooldown(level)
 end
 
 function nyx_assassin_spiked_carapace_custom:OnSpellStart()
-	local caster = self:GetCaster()
 	local duration = self.reflect_duration + (self.talents.has_e4 == 1 and self.talents.e4_duration or 0)
 
-	caster:EmitSound("Hero_NyxAssassin.SpikedCarapace")
-	caster:RemoveModifierByName("modifier_nyx_assassin_spiked_carapace_custom_legendary")
-	caster:AddNewModifier(caster, self, "modifier_nyx_assassin_spiked_carapace_custom", { duration = duration })
+	self.caster:EmitSound("Hero_NyxAssassin.SpikedCarapace")
+	self.caster:RemoveModifierByName("modifier_nyx_assassin_spiked_carapace_custom_legendary")
+	self.caster:AddNewModifier(
+		self.caster,
+		self,
+		"modifier_nyx_assassin_spiked_carapace_custom",
+		{ duration = duration }
+	)
 end
 
 function nyx_assassin_spiked_carapace_custom:SpeedStack()
@@ -206,16 +216,15 @@ function nyx_assassin_spiked_carapace_custom:SpeedStack()
 	if not self:IsTrained() then
 		return
 	end
-	if self.talents.has_speed == 0 then
+	if self.talents.has_e1 == 0 then
 		return
 	end
 
-	local caster = self:GetCaster()
-	caster:AddNewModifier(
-		caster,
+	self.caster:AddNewModifier(
+		self.caster,
 		self,
 		"modifier_nyx_assassin_spiked_carapace_custom_speed",
-		{ duration = self.talents.speed_duration }
+		{ duration = self.talents.e1_duration }
 	)
 end
 
@@ -243,6 +252,9 @@ function modifier_nyx_assassin_spiked_carapace_custom_tracker:AttackEvent_out(pa
 	if not IsServer() then
 		return
 	end
+	if self.ability.talents.has_e3 == 0 then
+		return
+	end
 	if self.parent ~= params.attacker then
 		return
 	end
@@ -252,14 +264,12 @@ function modifier_nyx_assassin_spiked_carapace_custom_tracker:AttackEvent_out(pa
 		return
 	end
 
-	if self.ability.talents.has_attack == 1 then
-		target:AddNewModifier(
-			self.parent,
-			self.ability,
-			"modifier_nyx_assassin_spiked_carapace_custom_attack_health",
-			{ duration = self.ability.talents.attack_duration }
-		)
-	end
+	target:AddNewModifier(
+		self.parent,
+		self.ability,
+		"modifier_nyx_assassin_spiked_carapace_custom_attack_health",
+		{ duration = self.ability.talents.e3_duration }
+	)
 end
 
 function modifier_nyx_assassin_spiked_carapace_custom_tracker:DamageEvent_inc(params)
@@ -275,16 +285,16 @@ function modifier_nyx_assassin_spiked_carapace_custom_tracker:DamageEvent_inc(pa
 		return
 	end
 
-	if self.ability.talents.has_armor == 1 and not params.inflictor then
+	if self.ability.talents.has_h2 == 1 and not params.inflictor then
 		self.parent:AddNewModifier(
 			self.parent,
 			self.ability,
 			"modifier_nyx_assassin_spiked_carapace_custom_armor",
-			{ duration = self.ability.talents.armor_duration }
+			{ duration = self.ability.talents.h2_duration }
 		)
 	end
 
-	if self.ability.talents.has_attack == 0 then
+	if self.ability.talents.has_e3 == 0 then
 		return
 	end
 	if bit.band(params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) == DOTA_DAMAGE_FLAG_REFLECTION then
@@ -296,7 +306,7 @@ function modifier_nyx_assassin_spiked_carapace_custom_tracker:DamageEvent_inc(pa
 	if not attacker:IsAlive() then
 		return
 	end
-	if (attacker:GetAbsOrigin() - self.parent:GetAbsOrigin()):Length2D() > self.ability.talents.attack_radius then
+	if (attacker:GetAbsOrigin() - self.parent:GetAbsOrigin()):Length2D() > self.ability.talents.e3_radius then
 		return
 	end
 	if attacker:HasModifier("modifier_nyx_assassin_spiked_carapace_custom_attack_cd") then
@@ -307,7 +317,7 @@ function modifier_nyx_assassin_spiked_carapace_custom_tracker:DamageEvent_inc(pa
 		self.parent,
 		self.ability,
 		"modifier_nyx_assassin_spiked_carapace_custom_attack_cd",
-		{ duration = self.ability.talents.attack_cd }
+		{ duration = self.ability.talents.e3_cd }
 	)
 	self.parent:AddNewModifier(self.parent, self.ability, "modifier_nyx_assassin_spiked_carapace_custom_attack", {})
 	self.parent:PerformAttack(attacker, true, true, true, true, false, false, true)
@@ -348,10 +358,20 @@ function modifier_nyx_assassin_spiked_carapace_custom_tracker:DeclareFunctions()
 end
 
 function modifier_nyx_assassin_spiked_carapace_custom_tracker:GetModifierStatusResistanceStacking()
-	return self.ability.talents.status_inc
+	return self.ability.talents.h2_status
 end
 
 modifier_nyx_assassin_spiked_carapace_custom = class(mod_visible)
+function modifier_nyx_assassin_spiked_carapace_custom:GetStatusEffectName()
+	return wearables_system:GetParticleReplacementAbility(
+		self.parent,
+		"particles/units/heroes/hero_nyx_assassin/status_effect_nyx_assassin_spiked_carapace.vpcf",
+		self.ability
+	)
+end
+function modifier_nyx_assassin_spiked_carapace_custom:StatusEffectPriority()
+	return MODIFIER_PRIORITY_HIGH
+end
 function modifier_nyx_assassin_spiked_carapace_custom:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -368,7 +388,7 @@ function modifier_nyx_assassin_spiked_carapace_custom:OnCreated()
 	local particle_name = wearables_system:GetParticleReplacementAbility(
 		self.parent,
 		"particles/units/heroes/hero_nyx_assassin/nyx_assassin_spiked_carapace.vpcf",
-		self
+		self.ability
 	)
 	self.parent:GenericParticle(particle_name, self)
 
@@ -385,6 +405,32 @@ function modifier_nyx_assassin_spiked_carapace_custom:OnCreated()
 		"modifier_nyx_assassin_spiked_carapace_custom_legendary",
 		{ duration = self:GetRemainingTime() + 0.1 }
 	)
+end
+
+function modifier_nyx_assassin_spiked_carapace_custom:OnDestroy()
+	if not IsServer() then
+		return
+	end
+	self.ability:StartCd()
+
+	if not self.proced and self.ability.talents.has_e7 == 1 then
+		self.parent:CdAbility(self.ability, nil, self.ability.talents.e7_cd_inc)
+		local particle = ParticleManager:CreateParticle(
+			"particles/nyx_assassin/mind_refresh.vpcf",
+			PATTACH_CUSTOMORIGIN,
+			self.parent
+		)
+		ParticleManager:SetParticleControlEnt(
+			particle,
+			0,
+			self.parent,
+			PATTACH_POINT_FOLLOW,
+			"attach_hitloc",
+			self.parent:GetOrigin(),
+			true
+		)
+		ParticleManager:ReleaseParticleIndex(particle)
+	end
 end
 
 function modifier_nyx_assassin_spiked_carapace_custom:DeclareFunctions()
@@ -406,18 +452,6 @@ end
 
 function modifier_nyx_assassin_spiked_carapace_custom:GetAbsoluteNoDamageMagical(params)
 	return self:ReflectDamage(params)
-end
-
-function modifier_nyx_assassin_spiked_carapace_custom:GetStatusEffectName()
-	return wearables_system:GetParticleReplacementAbility(
-		self:GetCaster(),
-		"particles/units/heroes/hero_nyx_assassin/status_effect_nyx_assassin_spiked_carapace.vpcf",
-		self
-	)
-end
-
-function modifier_nyx_assassin_spiked_carapace_custom:StatusEffectPriority()
-	return MODIFIER_PRIORITY_HIGH
 end
 
 function modifier_nyx_assassin_spiked_carapace_custom:GetModifierIncomingDamage_Percentage()
@@ -492,7 +526,7 @@ function modifier_nyx_assassin_spiked_carapace_custom:ProcStun(params)
 	local particle_name = wearables_system:GetParticleReplacementAbility(
 		self.parent,
 		"particles/units/heroes/hero_nyx_assassin/nyx_assassin_spiked_carapace_hit.vpcf",
-		self
+		self.ability
 	)
 
 	local stun_effect = ParticleManager:CreateParticle(particle_name, PATTACH_CUSTOMORIGIN_FOLLOW, attacker)
@@ -579,32 +613,6 @@ function modifier_nyx_assassin_spiked_carapace_custom:ReflectDamage(params)
 	return block
 end
 
-function modifier_nyx_assassin_spiked_carapace_custom:OnDestroy()
-	if not IsServer() then
-		return
-	end
-	self.ability:StartCd()
-
-	if not self.proced and self.ability.talents.has_e7 == 1 then
-		self.parent:CdAbility(self.ability, nil, self.ability.talents.e7_cd_inc)
-		local particle = ParticleManager:CreateParticle(
-			"particles/nyx_assassin/mind_refresh.vpcf",
-			PATTACH_CUSTOMORIGIN,
-			self.parent
-		)
-		ParticleManager:SetParticleControlEnt(
-			particle,
-			0,
-			self.parent,
-			PATTACH_POINT_FOLLOW,
-			"attach_hitloc",
-			self.parent:GetOrigin(),
-			true
-		)
-		ParticleManager:ReleaseParticleIndex(particle)
-	end
-end
-
 modifier_nyx_assassin_spiked_carapace_custom_legendary = class(mod_hidden)
 function modifier_nyx_assassin_spiked_carapace_custom_legendary:OnCreated()
 	self.parent = self:GetParent()
@@ -632,14 +640,42 @@ function modifier_nyx_assassin_spiked_carapace_custom_legendary:OnCreated()
 	self:StartIntervalThink(self.interval)
 end
 
-function modifier_nyx_assassin_spiked_carapace_custom_legendary:AttackEvent_out(params)
+function modifier_nyx_assassin_spiked_carapace_custom_legendary:OnIntervalThink()
 	if not IsServer() then
 		return
 	end
-	if self.parent ~= params.attacker then
+
+	local time = 0
+	local stack = 0
+	local active = 0
+
+	if self:GetStackCount() == 0 and IsValid(self.mod) then
+		time = self.mod:GetRemainingTime()
+		stack = self.mod.health
+	end
+
+	if self:GetStackCount() == 1 then
+		time = self:GetRemainingTime()
+		stack = "+" .. math.floor(self.ability.talents.e7_damage) .. "%"
+		active = 1
+	end
+
+	self.parent:UpdateUIshort({
+		max_time = self.max_time,
+		time = time,
+		stack = stack,
+		active = active,
+		priority = 2,
+		style = "NyxCarapace",
+	})
+end
+
+function modifier_nyx_assassin_spiked_carapace_custom_legendary:OnDestroy()
+	if not IsServer() then
 		return
 	end
-	params.target:EmitSound("Nyx.Carapace_legendary_attack")
+	self.parent:UpdateUIshort({ hide = 1, priority = 2, hide_full = 1, style = "NyxCarapace" })
+	self.parent:RemoveModifierByName("modifier_nyx_assassin_spiked_carapace_custom_legendary_effect")
 end
 
 function modifier_nyx_assassin_spiked_carapace_custom_legendary:ChangeStage()
@@ -701,42 +737,14 @@ function modifier_nyx_assassin_spiked_carapace_custom_legendary:ChangeStage()
 	self.parent:AddAttackEvent_out(self, true)
 end
 
-function modifier_nyx_assassin_spiked_carapace_custom_legendary:OnIntervalThink()
+function modifier_nyx_assassin_spiked_carapace_custom_legendary:AttackEvent_out(params)
 	if not IsServer() then
 		return
 	end
-
-	local time = 0
-	local stack = 0
-	local active = 0
-
-	if self:GetStackCount() == 0 and IsValid(self.mod) then
-		time = self.mod:GetRemainingTime()
-		stack = self.mod.health
-	end
-
-	if self:GetStackCount() == 1 then
-		time = self:GetRemainingTime()
-		stack = "+" .. math.floor(self.ability.talents.e7_damage) .. "%"
-		active = 1
-	end
-
-	self.parent:UpdateUIshort({
-		max_time = self.max_time,
-		time = time,
-		stack = stack,
-		active = active,
-		priority = 2,
-		style = "NyxCarapace",
-	})
-end
-
-function modifier_nyx_assassin_spiked_carapace_custom_legendary:OnDestroy()
-	if not IsServer() then
+	if self.parent ~= params.attacker then
 		return
 	end
-	self.parent:UpdateUIshort({ hide = 1, priority = 2, hide_full = 1, style = "NyxCarapace" })
-	self.parent:RemoveModifierByName("modifier_nyx_assassin_spiked_carapace_custom_legendary_effect")
+	params.target:EmitSound("Nyx.Carapace_legendary_attack")
 end
 
 function modifier_nyx_assassin_spiked_carapace_custom_legendary:AttackRecordEvent_out(params)
@@ -798,7 +806,6 @@ modifier_nyx_assassin_spiked_carapace_custom_legendary_effect = class(mod_hidden
 function modifier_nyx_assassin_spiked_carapace_custom_legendary_effect:GetStatusEffectName()
 	return "particles/status_fx/status_effect_life_stealer_rage.vpcf"
 end
-
 function modifier_nyx_assassin_spiked_carapace_custom_legendary_effect:StatusEffectPriority()
 	return MODIFIER_PRIORITY_ULTRA
 end
@@ -812,12 +819,12 @@ function modifier_nyx_assassin_spiked_carapace_custom_speed:OnCreated()
 	self.ability = self:GetAbility()
 
 	self.agi = self.ability.talents.e1_agi
-	self.max = self.ability.talents.speed_max
+	self.max = self.ability.talents.e1_max
 
 	if not IsServer() then
 		return
 	end
-	self:SetStackCount(1)
+	self:OnRefresh()
 end
 
 function modifier_nyx_assassin_spiked_carapace_custom_speed:OnRefresh()
@@ -828,12 +835,6 @@ function modifier_nyx_assassin_spiked_carapace_custom_speed:OnRefresh()
 		return
 	end
 	self:IncrementStackCount()
-end
-
-function modifier_nyx_assassin_spiked_carapace_custom_speed:OnStackCountChanged()
-	if not IsServer() then
-		return
-	end
 	self.parent:CalculateStatBonus(true)
 end
 
@@ -892,17 +893,17 @@ function modifier_nyx_assassin_spiked_carapace_custom_attack_health:GetTexture()
 	return "buffs/nyx_assassin/carapace_3"
 end
 function modifier_nyx_assassin_spiked_carapace_custom_attack_health:OnCreated()
-	self.ability = self:GetAbility()
 	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
 
-	self.max = self.ability.talents.attack_max
-	self.health_reduce = self.ability.talents.attack_health
+	self.max = self.ability.talents.e3_max
+	self.health_reduce = self.ability.talents.e3_health
 
 	if not IsServer() then
 		return
 	end
-	self:SetStackCount(1)
 	self.RemoveForDuel = true
+	self:OnRefresh()
 end
 
 function modifier_nyx_assassin_spiked_carapace_custom_attack_health:OnRefresh()
@@ -913,16 +914,9 @@ function modifier_nyx_assassin_spiked_carapace_custom_attack_health:OnRefresh()
 		return
 	end
 	self:IncrementStackCount()
-end
-
-function modifier_nyx_assassin_spiked_carapace_custom_attack_health:OnStackCountChanged()
-	if not IsServer() then
-		return
+	if self.parent:IsHero() then
+		self.parent:CalculateStatBonus(true)
 	end
-	if not self.parent:IsHero() then
-		return
-	end
-	self.parent:CalculateStatBonus(true)
 end
 
 function modifier_nyx_assassin_spiked_carapace_custom_attack_health:OnDestroy()
@@ -953,13 +947,13 @@ function modifier_nyx_assassin_spiked_carapace_custom_armor:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.max = self.ability.talents.armor_max
-	self.armor = self.ability.talents.armor_inc
+	self.max = self.ability.talents.h2_max
+	self.armor = self.ability.talents.h2_armor
 
 	if not IsServer() then
 		return
 	end
-	self:SetStackCount(1)
+	self:OnRefresh()
 end
 
 function modifier_nyx_assassin_spiked_carapace_custom_armor:OnRefresh()

@@ -119,7 +119,7 @@ end
 function modifier_high_five_search:OnDestroy()
 	if self.finded == true then
 		if self.selected_id == 10 then
-			self.parent:GiveGold(RandomInt(1, 3), true)
+			self.parent:GiveGold(RandomInt(1, 3), true, nil, self.ability)
 		end
 	end
 

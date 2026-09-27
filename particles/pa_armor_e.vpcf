@@ -8,7 +8,7 @@
 ]]
 
 
-<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf37:version{f9a1c8c4-159b-4786-b740-4d1a118c8f46} -->
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf66:version{dd571be4-586e-4f41-8b2d-5bbc969e1c53} -->
 {
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
@@ -48,26 +48,43 @@
 	m_Initializers = 
 	[
 		{
-			_class = "C_INIT_RandomLifeTime"
-			m_fLifetimeMax = 1.5
-			m_fLifetimeMin = 0.5
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 0.5
+				m_flRandomMax = 1.5
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+			m_nOutputField = 1
 		},
 		{
-			_class = "C_INIT_RandomRadius"
-			m_flRadiusMax = 32.0
-			m_flRadiusMin = 16.0
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 16.0
+				m_flRandomMax = 32.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
 		},
 		{
 			_class = "C_INIT_RandomSequence"
 			m_nSequenceMax = 21
 		},
 		{
-			_class = "C_INIT_RandomAlpha"
-			m_nAlphaMin = 100
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_RANDOM_UNIFORM"
+				m_flRandomMin = 0.392157
+				m_flRandomMax = 1.0
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+			}
+			m_nOutputField = 7
 		},
 		{
 			_class = "C_INIT_RingWave"
-			m_nControlPointNumber = 1
 			m_flInitialRadius = 
 			{
 				m_nType = "PF_TYPE_LITERAL"
@@ -87,6 +104,10 @@
 			{
 				m_nType = "PF_TYPE_LITERAL"
 				m_flLiteralValue = -50.0
+			}
+			m_TransformInput = 
+			{
+				m_nControlPoint = 1
 			}
 		},
 		{
@@ -122,7 +143,10 @@
 		},
 		{
 			_class = "C_OP_PositionLock"
-			m_nControlPointNumber = 1
+			m_TransformInput = 
+			{
+				m_nControlPoint = 1
+			}
 		},
 		{
 			_class = "C_OP_RampScalarLinearSimple"
@@ -150,7 +174,7 @@
 			m_nFieldInput = 18
 		},
 		{
-			_class = "C_OP_DistanceToCP"
+			_class = "C_OP_DistanceToTransform"
 			m_nFieldOutput = 18
 		},
 		{

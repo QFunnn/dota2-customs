@@ -97,9 +97,12 @@ function skeleton_king_reincarnation_custom:Precache(context)
 	PrecacheResource("particle", "particles/wraith_king/reinc_shield.vpcf", context)
 	PrecacheResource("particle", "particles/wraith_king/reinc_shield_base.vpcf", context)
 	PrecacheResource("particle", "particles/wraith_king/reinc_magic.vpcf", context)
+	PrecacheResource("particle", "particles/wraith_king/scepter_skelet.vpcf", context)
+	PrecacheResource("particle", "particles/wraith_king/blast_radius.vpcf", context)
+	PrecacheResource("particle", "particles/lc_odd_proc_.vpcf", context)
 end
 
-function skeleton_king_reincarnation_custom:UpdateTalents()
+function skeleton_king_reincarnation_custom:UpdateTalents(name)
 	local caster = self:GetCaster()
 	if not self.init then
 		self.init = true
@@ -121,8 +124,8 @@ function skeleton_king_reincarnation_custom:UpdateTalents()
 			r3_str = 0,
 			r3_magic = 0,
 			r3_duration = caster:GetTalentValue("modifier_skeleton_reincarnation_3", "duration", true),
-			r3_stun = caster:GetTalentValue("modifier_skeleton_reincarnation_3", "stun", true),
 			r3_max = caster:GetTalentValue("modifier_skeleton_reincarnation_3", "max", true),
+			r3_radius = caster:GetTalentValue("modifier_skeleton_reincarnation_3", "radius", true),
 
 			has_r4 = 0,
 			r4_cd = caster:GetTalentValue("modifier_skeleton_reincarnation_4", "cd", true),
@@ -132,7 +135,6 @@ function skeleton_king_reincarnation_custom:UpdateTalents()
 			has_r7 = 0,
 			r7_cd_inc = caster:GetTalentValue("modifier_skeleton_reincarnation_7", "cd_inc", true) / 100,
 
-			has_h3 = 0,
 			h3_status = 0,
 			h3_move = 0,
 			h3_bonus = caster:GetTalentValue("modifier_skeleton_hero_3", "bonus", true),
@@ -174,7 +176,6 @@ function skeleton_king_reincarnation_custom:UpdateTalents()
 	end
 
 	if caster:HasTalent("modifier_skeleton_hero_3") then
-		self.talents.has_h3 = 1
 		self.talents.h3_status = caster:GetTalentValue("modifier_skeleton_hero_3", "status")
 		self.talents.h3_move = caster:GetTalentValue("modifier_skeleton_hero_3", "move")
 	end
@@ -195,10 +196,6 @@ function skeleton_king_reincarnation_custom:GetIntrinsicModifierName()
 	return "modifier_skeleton_king_reincarnation_custom"
 end
 
-function skeleton_king_reincarnation_custom:GetCooldown(level)
-	return self.BaseClass.GetCooldown(self, level) + (self.caster:HasShard() and self.shard_cd or 0)
-end
-
 function skeleton_king_reincarnation_custom:GetBehavior()
 	if self.caster:HasScepter() then
 		return DOTA_ABILITY_BEHAVIOR_NO_TARGET
@@ -208,12 +205,12 @@ function skeleton_king_reincarnation_custom:GetBehavior()
 	return DOTA_ABILITY_BEHAVIOR_PASSIVE
 end
 
-function skeleton_king_reincarnation_custom:GetManaCost(level)
-	return self.BaseClass.GetManaCost(self, level)
+function skeleton_king_reincarnation_custom:GetCooldown(level)
+	return self.BaseClass.GetCooldown(self, level) + (self.caster:HasShard() and self.shard_cd or 0)
 end
 
 function skeleton_king_reincarnation_custom:GetCastRange(vLocation, hTarget)
-	return (self.slow_radius and self.slow_radius or 0) - self.caster:GetCastRangeBonus()
+	return (self.slow_radius or 0) - self.caster:GetCastRangeBonus()
 end
 
 function skeleton_king_reincarnation_custom:OnSpellStart()
@@ -281,7 +278,7 @@ function skeleton_king_reincarnation_custom:ReincarnationStart(params, modifier)
 			self.caster,
 			self.caster:BkbAbility(self, self.caster:HasShard()),
 			"modifier_skeleton_king_reincarnation_custom_slow",
-			{ duration = self.slow_duration }
+			{ duration = slow_duration }
 		)
 
 		if self.talents.has_h6 == 1 then
@@ -336,6 +333,21 @@ function skeleton_king_reincarnation_custom:ReincarnationStart(params, modifier)
 end
 
 modifier_skeleton_king_reincarnation_custom = class(mod_hidden)
+function modifier_skeleton_king_reincarnation_custom:GetAuraRadius()
+	return self.ability.talents.has_r1 == 1 and self.ability.talents.r1_radius or self.ability.talents.r3_radius
+end
+function modifier_skeleton_king_reincarnation_custom:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_ENEMY
+end
+function modifier_skeleton_king_reincarnation_custom:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
+end
+function modifier_skeleton_king_reincarnation_custom:GetModifierAura()
+	return "modifier_skeleton_king_reincarnation_custom_aura_damage"
+end
+function modifier_skeleton_king_reincarnation_custom:IsAura()
+	return self.ability.talents.has_r1 == 1 or self.ability.talents.has_r3 == 1
+end
 function modifier_skeleton_king_reincarnation_custom:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -348,7 +360,10 @@ function modifier_skeleton_king_reincarnation_custom:OnCreated(table)
 	self.parent.reincarnate_ability = self.ability
 
 	self.legendary_ability = self.parent:FindAbilityByName("skeleton_king_reincarnation_custom_legendary")
-	if self.legendary_ability then
+	if IsValid(self.legendary_ability) then
+		if IsServer() and not self.legendary_ability:IsTrained() then
+			self.legendary_ability:SetLevel(1)
+		end
 		self.legendary_ability:UpdateTalents()
 	end
 
@@ -548,16 +563,20 @@ function modifier_skeleton_king_reincarnation_custom:ReincarnateTime()
 	if not IsServer() then
 		return
 	end
-	if
-		self.parent:IsRealHero()
-		and (not self.parent:HasModifier("modifier_death") or self.parent:HasModifier(
-			"modifier_axe_culling_blade_custom_aegis"
-		))
-		and self.ability:IsFullyCastable()
-	then
-		return self.ability.reincarnate_time + (self.ability.talents.has_h6 == 1 and self.ability.talents.h6_delay or 0)
+	if not self.parent:IsRealHero() then
+		return
 	end
-	return nil
+	if
+		self.parent:HasModifier("modifier_death")
+		and not self.parent:HasModifier("modifier_axe_culling_blade_custom_aegis")
+	then
+		return
+	end
+	if not self.ability:IsFullyCastable() then
+		return
+	end
+
+	return self.ability.reincarnate_time + (self.ability.talents.has_h6 == 1 and self.ability.talents.h6_delay or 0)
 end
 
 function modifier_skeleton_king_reincarnation_custom:GetActivityTranslationModifiers()
@@ -572,7 +591,6 @@ function modifier_skeleton_king_reincarnation_custom:DeathEvent(params)
 		return
 	end
 	local unit = params.unit
-	local reincarnate = params.reincarnate
 	if self.parent ~= unit then
 		return
 	end
@@ -581,22 +599,6 @@ function modifier_skeleton_king_reincarnation_custom:DeathEvent(params)
 	end
 
 	self.ability:ReincarnationStart(params, self)
-end
-
-function modifier_skeleton_king_reincarnation_custom:GetAuraRadius()
-	return self.ability.talents.r1_radius
-end
-function modifier_skeleton_king_reincarnation_custom:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_ENEMY
-end
-function modifier_skeleton_king_reincarnation_custom:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
-end
-function modifier_skeleton_king_reincarnation_custom:GetModifierAura()
-	return "modifier_skeleton_king_reincarnation_custom_aura_damage"
-end
-function modifier_skeleton_king_reincarnation_custom:IsAura()
-	return self.ability.talents.has_r1 == 1 or self.ability.talents.has_r3 == 1
 end
 
 modifier_skeleton_king_reincarnation_custom_aura_damage = class(mod_hidden)
@@ -684,7 +686,7 @@ function modifier_skeleton_king_reincarnation_custom_slow:OnCreated()
 		wearables_system:GetParticleReplacementAbility(
 			self.caster,
 			"particles/units/heroes/hero_skeletonking/wraith_king_reincarnate_slow_debuff.vpcf",
-			self
+			self.ability
 		),
 		self
 	)
@@ -747,210 +749,6 @@ function modifier_skeleton_king_reincarnation_custom_slow:GetModifierAttackSpeed
 	return self.attack_slow
 end
 
-skeleton_king_reincarnation_custom_legendary = class({})
-skeleton_king_reincarnation_custom_legendary.talents = {}
-
-function skeleton_king_reincarnation_custom_legendary:CreateTalent()
-	self:SetHidden(false)
-end
-
-function skeleton_king_reincarnation_custom_legendary:UpdateTalents(name)
-	local caster = self:GetCaster()
-	if not self.init then
-		self.init = true
-		self.talents = {
-			has_r7 = 0,
-			r7_heal = caster:GetTalentValue("modifier_skeleton_reincarnation_7", "heal", true) / 100,
-			r7_base = caster:GetTalentValue("modifier_skeleton_reincarnation_7", "base", true),
-			r7_damage = caster:GetTalentValue("modifier_skeleton_reincarnation_7", "damage", true) / 100,
-			r7_talent_cd = caster:GetTalentValue("modifier_skeleton_reincarnation_7", "talent_cd", true),
-			r7_cd_inc = caster:GetTalentValue("modifier_skeleton_reincarnation_7", "cd_inc", true),
-			r7_duration = caster:GetTalentValue("modifier_skeleton_reincarnation_7", "duration", true),
-			r7_radius = caster:GetTalentValue("modifier_skeleton_reincarnation_7", "radius", true),
-			r7_slow = caster:GetTalentValue("modifier_skeleton_reincarnation_7", "slow", true),
-			r7_move = caster:GetTalentValue("modifier_skeleton_reincarnation_7", "move", true),
-			r7_damage_type = caster:GetTalentValue("modifier_skeleton_reincarnation_7", "damage_type", true),
-		}
-	end
-end
-
-function skeleton_king_reincarnation_custom_legendary:Init()
-	self.caster = self:GetCaster()
-end
-
-function skeleton_king_reincarnation_custom_legendary:GetCooldown()
-	return (self.talents.r7_talent_cd and self.talents.r7_talent_cd or 0)
-end
-
-function skeleton_king_reincarnation_custom_legendary:OnSpellStart()
-	self.caster:AddNewModifier(
-		self.caster,
-		self,
-		"modifier_skeleton_king_reincarnation_custom_legendary",
-		{ duration = self.talents.r7_duration }
-	)
-end
-
-modifier_skeleton_king_reincarnation_custom_legendary = class(mod_visible)
-function modifier_skeleton_king_reincarnation_custom_legendary:GetStatusEffectName()
-	return "particles/status_fx/status_effect_wraithking_ghosts.vpcf"
-end
-function modifier_skeleton_king_reincarnation_custom_legendary:StatusEffectPriority()
-	return MODIFIER_PRIORITY_SUPER_ULTRA
-end
-function modifier_skeleton_king_reincarnation_custom_legendary:GetEffectName()
-	return "particles/units/heroes/hero_muerta/muerta_ultimate_form_ethereal.vpcf"
-end
-function modifier_skeleton_king_reincarnation_custom_legendary:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_MODEL_SCALE,
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-		MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
-	}
-end
-
-function modifier_skeleton_king_reincarnation_custom_legendary:GetModifierConstantHealthRegen()
-	return self.heal
-end
-
-function modifier_skeleton_king_reincarnation_custom_legendary:GetModifierMoveSpeedBonus_Percentage()
-	return self.move
-end
-
-function modifier_skeleton_king_reincarnation_custom_legendary:GetModifierModelScale()
-	return 30
-end
-
-function modifier_skeleton_king_reincarnation_custom_legendary:OnCreated(table)
-	self.ability = self:GetAbility()
-	self.parent = self:GetParent()
-
-	self.base = self.ability.talents.r7_base
-	self.heal = (self.base + (self.parent:GetMaxHealth() - self.parent:GetHealth()) * self.ability.talents.r7_heal)
-		/ self:GetRemainingTime()
-	self.move = self.ability.talents.r7_move
-	self.radius = self.ability.talents.r7_radius
-	self.damage = self.ability.talents.r7_damage
-	self.interval = 0.5
-
-	if not IsServer() then
-		return
-	end
-
-	self.radius_visual =
-		ParticleManager:CreateParticle("particles/wraith_king/blast_radius.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
-	ParticleManager:SetParticleControl(self.radius_visual, 0, self.parent:GetAbsOrigin())
-	ParticleManager:SetParticleControl(self.radius_visual, 1, Vector(self.radius, 0, 0))
-	self:AddParticle(self.radius_visual, false, false, -1, false, false)
-
-	self.RemoveForDuel = true
-	self.parent:EmitSound("WK.Ult_legendary_start")
-
-	self.damageTable =
-		{ attacker = self.parent, ability = self.ability, damage_type = self.ability.talents.r7_damage_type }
-
-	self:OnIntervalThink()
-	self:StartIntervalThink(self.interval - FrameTime())
-end
-
-function modifier_skeleton_king_reincarnation_custom_legendary:OnIntervalThink()
-	if not IsServer() then
-		return
-	end
-
-	for _, unit in pairs(self.parent:FindTargets(self.radius)) do
-		self.damageTable.damage = self.interval * self.heal * self.damage
-		self.damageTable.victim = unit
-		DoDamage(self.damageTable)
-	end
-end
-
-function modifier_skeleton_king_reincarnation_custom_legendary:OnDestroy()
-	if not IsServer() then
-		return
-	end
-	self.parent:EmitSound("WK.Ult_end")
-	self.parent:GenericParticle("particles/muerta/muerta_calling_caster_end.vpcf")
-end
-
-function modifier_skeleton_king_reincarnation_custom_legendary:CheckState()
-	return {
-		[MODIFIER_STATE_DISARMED] = true,
-		[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
-		[MODIFIER_STATE_UNSLOWABLE] = true,
-	}
-end
-
-function modifier_skeleton_king_reincarnation_custom_legendary:GetAuraDuration()
-	return 0
-end
-function modifier_skeleton_king_reincarnation_custom_legendary:GetAuraRadius()
-	return self.radius
-end
-function modifier_skeleton_king_reincarnation_custom_legendary:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_ENEMY
-end
-function modifier_skeleton_king_reincarnation_custom_legendary:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
-end
-function modifier_skeleton_king_reincarnation_custom_legendary:GetModifierAura()
-	return "modifier_skeleton_king_reincarnation_custom_legendary_target"
-end
-function modifier_skeleton_king_reincarnation_custom_legendary:IsAura()
-	return true
-end
-
-modifier_skeleton_king_reincarnation_custom_legendary_target = class(mod_hidden)
-function modifier_skeleton_king_reincarnation_custom_legendary_target:OnCreated()
-	self.caster = self:GetCaster()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	if not IsServer() then
-		return
-	end
-	local mod = self.caster:FindModifierByName("modifier_skeleton_king_reincarnation_custom_legendary")
-	if not mod then
-		return
-	end
-
-	local particle = ParticleManager:CreateParticle(
-		"particles/wraith_king/ult_legendary_damage.vpcf",
-		PATTACH_CUSTOMORIGIN,
-		self.caster
-	)
-	ParticleManager:SetParticleControlEnt(
-		particle,
-		0,
-		self.caster,
-		PATTACH_POINT_FOLLOW,
-		"attach_hitloc",
-		self.caster:GetAbsOrigin(),
-		true
-	)
-	ParticleManager:SetParticleControlEnt(
-		particle,
-		1,
-		self.parent,
-		PATTACH_POINT_FOLLOW,
-		"attach_hitloc",
-		self.parent:GetAbsOrigin(),
-		true
-	)
-	ParticleManager:SetParticleControl(particle, 5, Vector(mod:GetRemainingTime(), 0, 0))
-	self:AddParticle(particle, false, false, -1, false, false)
-end
-
-function modifier_skeleton_king_reincarnation_custom_legendary_target:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-	}
-end
-
-function modifier_skeleton_king_reincarnation_custom_legendary_target:GetModifierMoveSpeedBonus_Percentage()
-	return self.ability.talents.r7_slow
-end
-
 modifier_skeleton_king_reincarnation_custom_aura_str = class(mod_visible)
 function modifier_skeleton_king_reincarnation_custom_aura_str:GetTexture()
 	return "buffs/wraith_king/reincarnation_3"
@@ -963,30 +761,22 @@ function modifier_skeleton_king_reincarnation_custom_aura_str:OnCreated(table)
 	self.ability = self:GetAbility()
 
 	self.max = self.ability.talents.r3_max
-	self:AddStack(table.stack)
+
+	if not IsServer() then
+		return
+	end
+	self.RemoveForDuel = true
+	self:OnRefresh(table)
 end
 
 function modifier_skeleton_king_reincarnation_custom_aura_str:OnRefresh(table)
 	if not IsServer() then
 		return
 	end
-	self:AddStack(table.stack)
-end
-
-function modifier_skeleton_king_reincarnation_custom_aura_str:AddStack(stack)
-	if not IsServer() then
-		return
-	end
 	if self:GetStackCount() >= self.max then
 		return
 	end
-	self:SetStackCount(math.min(self.max, self:GetStackCount() + stack))
-end
-
-function modifier_skeleton_king_reincarnation_custom_aura_str:OnStackCountChanged(iStackCount)
-	if not IsServer() then
-		return
-	end
+	self:SetStackCount(math.min(self.max, self:GetStackCount() + table.stack))
 	self.parent:CalculateStatBonus(true)
 end
 
@@ -1084,13 +874,16 @@ modifier_skeleton_king_reincarnation_custom_shield_cd = class(mod_cd)
 function modifier_skeleton_king_reincarnation_custom_shield_cd:GetTexture()
 	return "buffs/wraith_king/reincarnation_2"
 end
+function modifier_skeleton_king_reincarnation_custom_shield_cd:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+	self.RemoveForDuel = true
+end
+
 function modifier_skeleton_king_reincarnation_custom_shield_cd:OnDestroy()
 	if not IsServer() then
 		return
 	end
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
 	if not self.ability.tracker then
 		return
 	end
@@ -1107,27 +900,22 @@ function modifier_skeleton_king_reincarnation_custom_magic:OnCreated(table)
 	self.ability = self:GetAbility()
 
 	self.max = self.ability.talents.r3_max
+
 	if not IsServer() then
 		return
 	end
-	self:AddStack(table.stack)
+	self.RemoveForDuel = true
+	self:OnRefresh(table)
 end
 
 function modifier_skeleton_king_reincarnation_custom_magic:OnRefresh(table)
 	if not IsServer() then
 		return
 	end
-	self:AddStack(table.stack)
-end
-
-function modifier_skeleton_king_reincarnation_custom_magic:AddStack(stack)
-	if not IsServer() then
-		return
-	end
 	if self:GetStackCount() >= self.max then
 		return
 	end
-	self:SetStackCount(math.min(self.max, self:GetStackCount() + stack))
+	self:SetStackCount(math.min(self.max, self:GetStackCount() + table.stack))
 
 	if self:GetStackCount() >= self.max then
 		self.parent:GenericParticle("particles/wraith_king/reinc_magic.vpcf", self)
@@ -1182,4 +970,206 @@ end
 
 function modifier_skeleton_king_reincarnation_custom_fear_slow:GetModifierMoveSpeed_AbsoluteMax()
 	return self.move
+end
+
+skeleton_king_reincarnation_custom_legendary = class({})
+skeleton_king_reincarnation_custom_legendary.talents = {}
+
+function skeleton_king_reincarnation_custom_legendary:UpdateTalents(name)
+	local caster = self:GetCaster()
+	if not self.init then
+		self.init = true
+		self.talents = {
+			has_r7 = 0,
+			r7_heal = caster:GetTalentValue("modifier_skeleton_reincarnation_7", "heal", true) / 100,
+			r7_base = caster:GetTalentValue("modifier_skeleton_reincarnation_7", "base", true),
+			r7_damage = caster:GetTalentValue("modifier_skeleton_reincarnation_7", "damage", true) / 100,
+			r7_talent_cd = caster:GetTalentValue("modifier_skeleton_reincarnation_7", "talent_cd", true),
+			r7_duration = caster:GetTalentValue("modifier_skeleton_reincarnation_7", "duration", true),
+			r7_radius = caster:GetTalentValue("modifier_skeleton_reincarnation_7", "radius", true),
+			r7_slow = caster:GetTalentValue("modifier_skeleton_reincarnation_7", "slow", true),
+			r7_move = caster:GetTalentValue("modifier_skeleton_reincarnation_7", "move", true),
+			r7_damage_type = caster:GetTalentValue("modifier_skeleton_reincarnation_7", "damage_type", true),
+		}
+	end
+
+	if caster:HasTalent("modifier_skeleton_reincarnation_7") then
+		self.talents.has_r7 = 1
+	end
+end
+
+function skeleton_king_reincarnation_custom_legendary:CreateTalent()
+	self:SetHidden(false)
+end
+
+function skeleton_king_reincarnation_custom_legendary:GetCooldown()
+	return self.talents.has_r7 == 1 and self.talents.r7_talent_cd or 0
+end
+
+function skeleton_king_reincarnation_custom_legendary:OnSpellStart()
+	self.caster:AddNewModifier(
+		self.caster,
+		self,
+		"modifier_skeleton_king_reincarnation_custom_legendary",
+		{ duration = self.talents.r7_duration }
+	)
+end
+
+modifier_skeleton_king_reincarnation_custom_legendary = class(mod_visible)
+function modifier_skeleton_king_reincarnation_custom_legendary:GetStatusEffectName()
+	return "particles/status_fx/status_effect_wraithking_ghosts.vpcf"
+end
+function modifier_skeleton_king_reincarnation_custom_legendary:StatusEffectPriority()
+	return MODIFIER_PRIORITY_SUPER_ULTRA
+end
+function modifier_skeleton_king_reincarnation_custom_legendary:GetEffectName()
+	return "particles/units/heroes/hero_muerta/muerta_ultimate_form_ethereal.vpcf"
+end
+function modifier_skeleton_king_reincarnation_custom_legendary:GetAuraDuration()
+	return 0
+end
+function modifier_skeleton_king_reincarnation_custom_legendary:GetAuraRadius()
+	return self.radius
+end
+function modifier_skeleton_king_reincarnation_custom_legendary:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_ENEMY
+end
+function modifier_skeleton_king_reincarnation_custom_legendary:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
+end
+function modifier_skeleton_king_reincarnation_custom_legendary:GetModifierAura()
+	return "modifier_skeleton_king_reincarnation_custom_legendary_target"
+end
+function modifier_skeleton_king_reincarnation_custom_legendary:IsAura()
+	return true
+end
+function modifier_skeleton_king_reincarnation_custom_legendary:OnCreated(table)
+	self.ability = self:GetAbility()
+	self.parent = self:GetParent()
+
+	self.base = self.ability.talents.r7_base
+	self.heal = (self.base + (self.parent:GetMaxHealth() - self.parent:GetHealth()) * self.ability.talents.r7_heal)
+		/ self:GetRemainingTime()
+	self.move = self.ability.talents.r7_move
+	self.radius = self.ability.talents.r7_radius
+	self.damage = self.ability.talents.r7_damage
+	self.interval = 0.5
+
+	if not IsServer() then
+		return
+	end
+
+	self.radius_visual =
+		ParticleManager:CreateParticle("particles/wraith_king/blast_radius.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
+	ParticleManager:SetParticleControl(self.radius_visual, 0, self.parent:GetAbsOrigin())
+	ParticleManager:SetParticleControl(self.radius_visual, 1, Vector(self.radius, 0, 0))
+	self:AddParticle(self.radius_visual, false, false, -1, false, false)
+
+	self.RemoveForDuel = true
+	self.parent:EmitSound("WK.Ult_legendary_start")
+
+	self.damageTable =
+		{ attacker = self.parent, ability = self.ability, damage_type = self.ability.talents.r7_damage_type }
+
+	self:OnIntervalThink()
+	self:StartIntervalThink(self.interval - FrameTime())
+end
+
+function modifier_skeleton_king_reincarnation_custom_legendary:OnIntervalThink()
+	if not IsServer() then
+		return
+	end
+
+	for _, unit in pairs(self.parent:FindTargets(self.radius)) do
+		self.damageTable.damage = self.interval * self.heal * self.damage
+		self.damageTable.victim = unit
+		DoDamage(self.damageTable, "modifier_skeleton_reincarnation_7")
+	end
+end
+
+function modifier_skeleton_king_reincarnation_custom_legendary:OnDestroy()
+	if not IsServer() then
+		return
+	end
+	self.parent:EmitSound("WK.Ult_end")
+	self.parent:GenericParticle("particles/muerta/muerta_calling_caster_end.vpcf")
+end
+
+function modifier_skeleton_king_reincarnation_custom_legendary:CheckState()
+	return {
+		[MODIFIER_STATE_DISARMED] = true,
+		[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
+		[MODIFIER_STATE_UNSLOWABLE] = true,
+	}
+end
+
+function modifier_skeleton_king_reincarnation_custom_legendary:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_MODEL_SCALE,
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+		MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
+	}
+end
+
+function modifier_skeleton_king_reincarnation_custom_legendary:GetModifierConstantHealthRegen()
+	return self.heal
+end
+
+function modifier_skeleton_king_reincarnation_custom_legendary:GetModifierMoveSpeedBonus_Percentage()
+	return self.move
+end
+
+function modifier_skeleton_king_reincarnation_custom_legendary:GetModifierModelScale()
+	return 30
+end
+
+modifier_skeleton_king_reincarnation_custom_legendary_target = class(mod_hidden)
+function modifier_skeleton_king_reincarnation_custom_legendary_target:OnCreated()
+	self.caster = self:GetCaster()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	if not IsServer() then
+		return
+	end
+	local mod = self.caster:FindModifierByName("modifier_skeleton_king_reincarnation_custom_legendary")
+	if not mod then
+		return
+	end
+
+	local particle = ParticleManager:CreateParticle(
+		"particles/wraith_king/ult_legendary_damage.vpcf",
+		PATTACH_CUSTOMORIGIN,
+		self.caster
+	)
+	ParticleManager:SetParticleControlEnt(
+		particle,
+		0,
+		self.caster,
+		PATTACH_POINT_FOLLOW,
+		"attach_hitloc",
+		self.caster:GetAbsOrigin(),
+		true
+	)
+	ParticleManager:SetParticleControlEnt(
+		particle,
+		1,
+		self.parent,
+		PATTACH_POINT_FOLLOW,
+		"attach_hitloc",
+		self.parent:GetAbsOrigin(),
+		true
+	)
+	ParticleManager:SetParticleControl(particle, 5, Vector(mod:GetRemainingTime(), 0, 0))
+	self:AddParticle(particle, false, false, -1, false, false)
+end
+
+function modifier_skeleton_king_reincarnation_custom_legendary_target:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+	}
+end
+
+function modifier_skeleton_king_reincarnation_custom_legendary_target:GetModifierMoveSpeedBonus_Percentage()
+	return self.ability.talents.r7_slow
 end

@@ -46,10 +46,8 @@ function ember_spirit_flame_guard_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_ogre_magi/ogre_magi_fireblast.vpcf", context)
 	PrecacheResource("particle", "particles/ember_spirit/guard_stack.vpcf", context)
 	PrecacheResource("particle", "particles/ember_spirit/guard_resist_max.vpcf", context)
-end
-
-function ember_spirit_flame_guard_custom:GetAbilityTextureName()
-	return wearables_system:GetAbilityIconReplacement(self.caster, "ember_spirit_flame_guard", self)
+	PrecacheResource("particle", "particles/ember_spirit/chains_bkb.vpcf", context)
+	PrecacheResource("particle", "particles/ember_spirit/chains_buff_ready.vpcf", context)
 end
 
 function ember_spirit_flame_guard_custom:UpdateTalents()
@@ -57,11 +55,9 @@ function ember_spirit_flame_guard_custom:UpdateTalents()
 	if not self.init then
 		self.init = true
 		self.talents = {
-			has_e1 = 0,
 			e1_burn = 0,
 			e1_damage = 0,
 
-			has_e2 = 0,
 			e2_range = 0,
 			e2_shield = 0,
 
@@ -86,7 +82,6 @@ function ember_spirit_flame_guard_custom:UpdateTalents()
 			e7_speed = caster:GetTalentValue("modifier_ember_guard_7", "speed", true),
 			e7_max = caster:GetTalentValue("modifier_ember_guard_7", "max", true),
 
-			has_h2 = 0,
 			h2_magic = 0,
 			h2_armor = 0,
 
@@ -98,13 +93,11 @@ function ember_spirit_flame_guard_custom:UpdateTalents()
 	end
 
 	if caster:HasTalent("modifier_ember_guard_1") then
-		self.talents.has_e1 = 1
 		self.talents.e1_burn = caster:GetTalentValue("modifier_ember_guard_1", "burn") / 100
 		self.talents.e1_damage = caster:GetTalentValue("modifier_ember_guard_1", "damage")
 	end
 
 	if caster:HasTalent("modifier_ember_guard_2") then
-		self.talents.has_e2 = 1
 		self.talents.e2_range = caster:GetTalentValue("modifier_ember_guard_2", "range")
 		self.talents.e2_shield = caster:GetTalentValue("modifier_ember_guard_2", "shield") / 100
 	end
@@ -114,7 +107,7 @@ function ember_spirit_flame_guard_custom:UpdateTalents()
 		self.talents.e3_agi = caster:GetTalentValue("modifier_ember_guard_3", "agi") / 100
 		self.talents.e3_str = caster:GetTalentValue("modifier_ember_guard_3", "str") / 100
 		if IsServer() then
-			self.caster:AddPercentStat({ agi = self.talents.e3_agi, str = self.talents.e3_str }, self.tracker)
+			caster:AddPercentStat({ agi = self.talents.e3_agi, str = self.talents.e3_str }, self.tracker)
 		end
 	end
 
@@ -127,7 +120,6 @@ function ember_spirit_flame_guard_custom:UpdateTalents()
 	end
 
 	if caster:HasTalent("modifier_ember_hero_2") then
-		self.talents.has_h2 = 1
 		self.talents.h2_magic = caster:GetTalentValue("modifier_ember_hero_2", "magic")
 		self.talents.h2_armor = caster:GetTalentValue("modifier_ember_hero_2", "armor")
 	end
@@ -135,6 +127,19 @@ function ember_spirit_flame_guard_custom:UpdateTalents()
 	if caster:HasTalent("modifier_ember_hero_6") then
 		self.talents.has_h6 = 1
 	end
+
+	if not IsServer() then
+		return
+	end
+
+	local guard_mod = caster:FindModifierByName("modifier_ember_spirit_flame_guard_custom")
+	if guard_mod then
+		guard_mod:UpdateEvents()
+	end
+end
+
+function ember_spirit_flame_guard_custom:GetAbilityTextureName()
+	return wearables_system:GetAbilityIconReplacement(self.caster, "ember_spirit_flame_guard", self)
 end
 
 function ember_spirit_flame_guard_custom:GetIntrinsicModifierName()
@@ -149,10 +154,10 @@ function ember_spirit_flame_guard_custom:GetCooldown(iLevel)
 end
 
 function ember_spirit_flame_guard_custom:GetRadius()
-	return (self.radius and self.radius or 0) + (self.talents.e2_range and self.talents.e2_range or 0)
+	return (self.radius or 0) + (self.talents.e2_range or 0)
 end
 
-function ember_spirit_flame_guard_custom:GetCastRange(Vector, hTarget)
+function ember_spirit_flame_guard_custom:GetCastRange(vLocation, hTarget)
 	return self:GetRadius() - self.caster:GetCastRangeBonus()
 end
 
@@ -161,15 +166,14 @@ function ember_spirit_flame_guard_custom:GetDuration()
 end
 
 function ember_spirit_flame_guard_custom:OnSpellStart()
-	local caster = self:GetCaster()
 	local duration = self.duration + (self.talents.has_e4 == 1 and self.talents.e4_duration or 0)
 	if self.talents.has_e7 == 1 then
 		duration = nil
 	end
 
-	caster:EmitSound("Hero_EmberSpirit.FlameGuard.Cast")
-	caster:RemoveModifierByName("modifier_ember_spirit_flame_guard_custom")
-	caster:AddNewModifier(caster, self, "modifier_ember_spirit_flame_guard_custom", { duration = duration })
+	self.caster:EmitSound("Hero_EmberSpirit.FlameGuard.Cast")
+	self.caster:RemoveModifierByName("modifier_ember_spirit_flame_guard_custom")
+	self.caster:AddNewModifier(self.caster, self, "modifier_ember_spirit_flame_guard_custom", { duration = duration })
 end
 
 modifier_ember_spirit_flame_guard_custom = class(mod_visible)
@@ -190,6 +194,8 @@ function modifier_ember_spirit_flame_guard_custom:OnCreated(keys)
 		return
 	end
 
+	self.damageTable = { attacker = self.parent, ability = self.ability, damage_type = DAMAGE_TYPE_MAGICAL }
+
 	self.duration = self:GetRemainingTime()
 	if self.ability.talents.has_e7 == 1 then
 		self.interval = 0.1
@@ -198,8 +204,6 @@ function modifier_ember_spirit_flame_guard_custom:OnCreated(keys)
 		self.max_time = self.duration
 		self:OnIntervalThink()
 	end
-
-	self.damageTable = { attacker = self.parent, ability = self.ability, damage_type = DAMAGE_TYPE_MAGICAL }
 
 	local pfx_name = wearables_system:GetParticleReplacementAbility(
 		self.parent,
@@ -233,12 +237,21 @@ function modifier_ember_spirit_flame_guard_custom:OnCreated(keys)
 	self.RemoveForDuel = true
 	self:SetHasCustomTransmitterData(true)
 
-	if self.ability.talents.has_e3 == 1 or self.ability.talents.has_e7 == 1 then
-		self.parent:AddAttackEvent_out(self, true)
-	end
+	self:UpdateEvents()
 
 	self.parent:EmitSound("Hero_EmberSpirit.FlameGuard.Loop")
 	self:StartIntervalThink(self.interval)
+end
+
+function modifier_ember_spirit_flame_guard_custom:UpdateEvents()
+	if not IsServer() then
+		return
+	end
+	if self.ability.talents.has_e3 == 0 and self.ability.talents.has_e7 == 0 then
+		return
+	end
+
+	self.parent:AddAttackEvent_out(self, true)
 end
 
 function modifier_ember_spirit_flame_guard_custom:OnIntervalThink()
@@ -397,21 +410,26 @@ function modifier_ember_spirit_flame_guard_custom:AttackEvent_out(params)
 		)
 	end
 
-	if self.ability.talents.has_e7 == 1 then
-		self.duration = self.max_time
-		if params.target:IsRealHero() and self:GetStackCount() < self.ability.talents.e7_max then
-			self:IncrementStackCount()
-			if
-				self:GetStackCount() >= self.ability.talents.e7_max / 2
-				and not self.parent:HasModifier("modifier_ember_spirit_flame_guard_custom_max_visual")
-			then
-				self.parent:AddNewModifier(
-					self.parent,
-					self.ability,
-					"modifier_ember_spirit_flame_guard_custom_max_visual",
-					{}
-				)
-			end
+	if self.ability.talents.has_e7 == 0 then
+		return
+	end
+	if not self.max_time then
+		return
+	end
+
+	self.duration = self.max_time
+	if params.target:IsRealHero() and self:GetStackCount() < self.ability.talents.e7_max then
+		self:IncrementStackCount()
+		if
+			self:GetStackCount() >= self.ability.talents.e7_max / 2
+			and not self.parent:HasModifier("modifier_ember_spirit_flame_guard_custom_max_visual")
+		then
+			self.parent:AddNewModifier(
+				self.parent,
+				self.ability,
+				"modifier_ember_spirit_flame_guard_custom_max_visual",
+				{}
+			)
 		end
 	end
 end
@@ -535,6 +553,7 @@ function modifier_ember_spirit_flame_guard_custom_stats:OnCreated()
 	if not IsServer() then
 		return
 	end
+	self.RemoveForDuel = true
 	self.max = self.ability.talents.e3_max
 	self.agi = self.ability.talents.e3_agi * (self.ability.talents.e3_bonus - 1) / self.max
 	self.str = self.ability.talents.e3_str * (self.ability.talents.e3_bonus - 1) / self.max
@@ -578,7 +597,6 @@ function modifier_ember_spirit_flame_guard_custom_max_visual:OnCreated()
 	if not IsServer() then
 		return
 	end
-
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 

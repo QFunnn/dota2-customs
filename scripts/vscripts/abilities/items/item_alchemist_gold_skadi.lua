@@ -49,11 +49,31 @@ function item_alchemist_gold_skadi:Precache(context)
 	PrecacheResource("particle", "particles/items_fx/diffusal_slow.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_drow/drow_hypothermia_counter_stack.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_crystalmaiden/maiden_frostbite_buff.vpcf", context)
+	PrecacheResource("particle", "particles/items_fx/disperser_buff.vpcf", context)
+	PrecacheResource("particle", "particles/items_fx/disperser_buff_feet.vpcf", context)
+	PrecacheResource("particle", "particles/status_fx/status_effect_frost.vpcf", context)
+end
+
+function item_alchemist_gold_skadi:Spawn()
+	self.purge_slow_duration = self:GetSpecialValueFor("purge_slow_duration")
+	self.self_speed = self:GetSpecialValueFor("self_speed")
+	self.purge_slow = self:GetSpecialValueFor("purge_slow")
+	self.root_hits = self:GetSpecialValueFor("root_hits")
+	self.stun_duration = self:GetSpecialValueFor("stun_duration")
+	self.bonus_strength = self:GetSpecialValueFor("bonus_strength")
+	self.bonus_agility = self:GetSpecialValueFor("bonus_agility")
+	self.bonus_intellect = self:GetSpecialValueFor("bonus_intellect")
+	self.cold_duration = self:GetSpecialValueFor("cold_duration")
+	self.feedback_mana_burn = self:GetSpecialValueFor("feedback_mana_burn")
+	self.feedback_mana_burn_illusion_melee = self:GetSpecialValueFor("feedback_mana_burn_illusion_melee")
+	self.attack_slow = self:GetSpecialValueFor("attack_slow")
+	self.cold_slow_ranged = self:GetSpecialValueFor("cold_slow_ranged")
+	self.heal_reduction = self:GetSpecialValueFor("heal_reduction")
 end
 
 function item_alchemist_gold_skadi:OnSpellStart()
 	local caster = self:GetCaster()
-	local duration = self:GetSpecialValueFor("purge_slow_duration")
+	local duration = self.purge_slow_duration
 	local target = self:GetCursorTarget()
 
 	target:GenericParticle("particles/generic_gameplay/generic_manaburn.vpcf")
@@ -68,10 +88,7 @@ function item_alchemist_gold_skadi:OnSpellStart()
 	end
 end
 
-modifier_item_alchemist_gold_skadi_buff = class({})
-function modifier_item_alchemist_gold_skadi_buff:IsHidden()
-	return false
-end
+modifier_item_alchemist_gold_skadi_buff = class(mod_visible)
 function modifier_item_alchemist_gold_skadi_buff:IsPurgable()
 	return true
 end
@@ -79,7 +96,7 @@ function modifier_item_alchemist_gold_skadi_buff:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.self_speed = self.ability:GetSpecialValueFor("self_speed")
+	self.self_speed = self.ability.self_speed
 
 	if not IsServer() then
 		return
@@ -106,10 +123,7 @@ function modifier_item_alchemist_gold_skadi_buff:GetModifierMoveSpeedBonus_Perce
 	return self.self_speed
 end
 
-modifier_item_alchemist_gold_skadi_debuff_active = class({})
-function modifier_item_alchemist_gold_skadi_debuff_active:IsHidden()
-	return false
-end
+modifier_item_alchemist_gold_skadi_debuff_active = class(mod_visible)
 function modifier_item_alchemist_gold_skadi_debuff_active:IsPurgable()
 	return true
 end
@@ -121,9 +135,9 @@ function modifier_item_alchemist_gold_skadi_debuff_active:OnCreated(table)
 	self.caster = self:GetCaster()
 	self.ability = self:GetAbility()
 
-	self.purge_slow = self.ability:GetSpecialValueFor("purge_slow")
-	self.max = self.ability:GetSpecialValueFor("root_hits")
-	self.stun_duration = self.ability:GetSpecialValueFor("stun_duration")
+	self.purge_slow = self.ability.purge_slow
+	self.max = self.ability.root_hits
+	self.stun_duration = self.ability.stun_duration
 
 	if not IsServer() then
 		return
@@ -175,10 +189,7 @@ function modifier_item_alchemist_gold_skadi_debuff_active:AddStack(params)
 	self.proced = true
 	self:SetStackCount(0)
 
-	if self.effect_cast then
-		ParticleManager:DestroyParticle(self.effect_cast, false)
-		ParticleManager:ReleaseParticleIndex(self.effect_cast)
-	end
+	ParticleManager:Delete(self.effect_cast, 1)
 
 	self.parent:EmitSound("Hero_Crystal.frostbite")
 	self.parent:AddNewModifier(
@@ -193,18 +204,17 @@ modifier_item_alchemist_gold_skadi = class(mod_hidden)
 function modifier_item_alchemist_gold_skadi:RemoveOnDeath()
 	return false
 end
-
 function modifier_item_alchemist_gold_skadi:OnCreated()
 	self.ability = self:GetAbility()
 	self.parent = self:GetParent()
 
-	self.bonus_strength = self.ability:GetSpecialValueFor("bonus_strength")
-	self.bonus_agility = self.ability:GetSpecialValueFor("bonus_agility")
-	self.bonus_intellect = self.ability:GetSpecialValueFor("bonus_intellect")
-	self.cold_duration = self.ability:GetSpecialValueFor("cold_duration")
+	self.bonus_strength = self.ability.bonus_strength
+	self.bonus_agility = self.ability.bonus_agility
+	self.bonus_intellect = self.ability.bonus_intellect
+	self.cold_duration = self.ability.cold_duration
 
-	self.mana_burn = self.ability:GetSpecialValueFor("feedback_mana_burn")
-	self.mana_burn_illusion = self.ability:GetSpecialValueFor("feedback_mana_burn_illusion_melee")
+	self.mana_burn = self.ability.feedback_mana_burn
+	self.mana_burn_illusion = self.ability.feedback_mana_burn_illusion_melee
 end
 
 function modifier_item_alchemist_gold_skadi:DeclareFunctions()
@@ -274,24 +284,28 @@ function modifier_item_alchemist_gold_skadi:GetModifierProcAttack_BonusDamage_Ph
 	return mana
 end
 
-modifier_item_alchemist_gold_skadi_debuff = class({})
+modifier_item_alchemist_gold_skadi_debuff = class(mod_visible)
 function modifier_item_alchemist_gold_skadi_debuff:IsPurgable()
 	return true
 end
+function modifier_item_alchemist_gold_skadi_debuff:GetStatusEffectName()
+	return "particles/status_fx/status_effect_frost_lich.vpcf"
+end
+function modifier_item_alchemist_gold_skadi_debuff:StatusEffectPriority()
+	return MODIFIER_PRIORITY_NORMAL
+end
 function modifier_item_alchemist_gold_skadi_debuff:OnCreated()
 	self.ability = self:GetAbility()
-	self.attack_slow = self.ability:GetSpecialValueFor("attack_slow")
-	self.move_slow = self.ability:GetSpecialValueFor("cold_slow_ranged")
-	self.heal_reduction = self.ability:GetSpecialValueFor("heal_reduction")
+	self.attack_slow = self.ability.attack_slow
+	self.move_slow = self.ability.cold_slow_ranged
+	self.heal_reduction = self.ability.heal_reduction
 end
 
 function modifier_item_alchemist_gold_skadi_debuff:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
 		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
-		--MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET,
 		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
-		--MODIFIER_PROPERTY_LIFESTEAL_AMPLIFY_PERCENTAGE,
 	}
 end
 
@@ -315,36 +329,19 @@ function modifier_item_alchemist_gold_skadi_debuff:GetModifierHPRegenAmplify_Per
 	return self.heal_reduction
 end
 
-function modifier_item_alchemist_gold_skadi_debuff:GetStatusEffectName()
-	return "particles/status_fx/status_effect_frost_lich.vpcf"
-end
-
-function modifier_item_alchemist_gold_skadi_debuff:StatusEffectPriority()
-	return MODIFIER_PRIORITY_NORMAL
-end
-
-modifier_item_alchemist_gold_skadi_stun = class({})
-function modifier_item_alchemist_gold_skadi_stun:IsHidden()
-	return true
-end
-function modifier_item_alchemist_gold_skadi_stun:IsPurgable()
-	return false
-end
+modifier_item_alchemist_gold_skadi_stun = class(mod_hidden)
 function modifier_item_alchemist_gold_skadi_stun:IsStunDebuff()
 	return true
 end
 function modifier_item_alchemist_gold_skadi_stun:IsPurgeException()
 	return true
 end
-
 function modifier_item_alchemist_gold_skadi_stun:GetStatusEffectName()
 	return "particles/status_fx/status_effect_frost.vpcf"
 end
-
 function modifier_item_alchemist_gold_skadi_stun:StatusEffectPriority()
 	return MODIFIER_PRIORITY_NORMAL
 end
-
 function modifier_item_alchemist_gold_skadi_stun:CheckState()
 	return {
 		[MODIFIER_STATE_FROZEN] = true,

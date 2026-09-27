@@ -35,14 +35,7 @@ LinkLuaModifier(
 )
 
 terrorblade_innate_custom = class({})
-
-function terrorblade_innate_custom:GetIntrinsicModifierName()
-	if self:GetCaster():IsRealHero() then
-		return "modifier_terrorblade_innate_custom"
-	else
-		return "modifier_terrorblade_innate_custom_tracker"
-	end
-end
+terrorblade_innate_custom.talents = {}
 
 function terrorblade_innate_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
@@ -52,13 +45,82 @@ function terrorblade_innate_custom:Precache(context)
 	PrecacheResource("soundfile", "soundevents/vo_custom/terrorblade_vo_custom.vsndevts", context)
 end
 
-modifier_terrorblade_innate_custom_tracker = class({})
-function modifier_terrorblade_innate_custom_tracker:IsHidden()
-	return true
+function terrorblade_innate_custom:UpdateTalents(name)
+	local caster = self:GetCaster()
+	if not self.init then
+		self.init = true
+		self.talents = {
+			has_w1 = 0,
+			w1_damage = 0,
+			w1_slow = 0,
+			w1_radius = caster:GetTalentValue("modifier_terror_illusion_1", "radius", true),
+			w1_radius_meta = caster:GetTalentValue("modifier_terror_illusion_1", "radius_meta", true),
+			w1_interval = caster:GetTalentValue("modifier_terror_illusion_1", "interval", true),
+
+			w3_move = 0,
+			w3_magic = 0,
+
+			w4_damage = 0,
+			w4_agility = 0,
+			w4_max = caster:GetTalentValue("modifier_terror_illusion_4", "max", true),
+
+			has_w6 = 0,
+			w6_duration = caster:GetTalentValue("modifier_terror_illusion_6", "duration", true),
+			w6_damage_self = caster:GetTalentValue("modifier_terror_illusion_6", "damage_self", true),
+			w6_damage_reduce = caster:GetTalentValue("modifier_terror_illusion_6", "damage_reduce", true),
+
+			e2_range = 0,
+			e2_bonus = caster:GetTalentValue("modifier_terror_meta_2", "bonus", true),
+
+			has_e6 = 0,
+			e6_status = caster:GetTalentValue("modifier_terror_meta_6", "status", true),
+
+			r2_health = 0,
+		}
+	end
+
+	if caster:HasTalent("modifier_terror_illusion_1") then
+		self.talents.has_w1 = 1
+		self.talents.w1_damage = caster:GetTalentValue("modifier_terror_illusion_1", "damage")
+		self.talents.w1_slow = caster:GetTalentValue("modifier_terror_illusion_1", "slow")
+	end
+
+	if caster:HasTalent("modifier_terror_illusion_3") then
+		self.talents.w3_move = caster:GetTalentValue("modifier_terror_illusion_3", "move")
+		self.talents.w3_magic = caster:GetTalentValue("modifier_terror_illusion_3", "magic")
+	end
+
+	if caster:HasTalent("modifier_terror_illusion_4") then
+		self.talents.w4_damage = caster:GetTalentValue("modifier_terror_illusion_4", "damage")
+		self.talents.w4_agility = caster:GetTalentValue("modifier_terror_illusion_4", "agility")
+	end
+
+	if caster:HasTalent("modifier_terror_illusion_6") then
+		self.talents.has_w6 = 1
+	end
+
+	if caster:HasTalent("modifier_terror_meta_2") then
+		self.talents.e2_range = caster:GetTalentValue("modifier_terror_meta_2", "range")
+	end
+
+	if caster:HasTalent("modifier_terror_meta_6") then
+		self.talents.has_e6 = 1
+	end
+
+	if caster:HasTalent("modifier_terror_sunder_2") then
+		self.talents.r2_health = caster:GetTalentValue("modifier_terror_sunder_2", "health")
+	end
 end
-function modifier_terrorblade_innate_custom_tracker:IsPurgable()
-	return false
+
+function terrorblade_innate_custom:GetIntrinsicModifierName()
+	if self:GetCaster():IsRealHero() then
+		return "modifier_terrorblade_innate_custom"
+	else
+		return "modifier_terrorblade_innate_custom_tracker"
+	end
 end
+
+modifier_terrorblade_innate_custom_tracker = class(mod_hidden)
 function modifier_terrorblade_innate_custom_tracker:OnCreated()
 	if not IsServer() then
 		return
@@ -79,97 +141,68 @@ function modifier_terrorblade_innate_custom_tracker:OnIntervalThink()
 
 	self.parent:AddNewModifier(self.parent.owner, self.ability, "modifier_terrorblade_innate_custom", {})
 
-	if self.parent:HasModifier("modifier_terrorblade_innate_custom") then
-		self:StartIntervalThink(-1)
+	if not self.parent:HasModifier("modifier_terrorblade_innate_custom") then
+		return
 	end
+
+	self:StartIntervalThink(-1)
 end
 
-modifier_terrorblade_innate_custom = class({})
+modifier_terrorblade_innate_custom = class(mod_visible)
 function modifier_terrorblade_innate_custom:IsHidden()
-	return self:GetParent():IsIllusion()
-end
-function modifier_terrorblade_innate_custom:IsPurgable()
-	return false
+	return IsValid(self.parent) and self.parent:IsIllusion()
 end
 function modifier_terrorblade_innate_custom:RemoveOnDeath()
 	return false
 end
+function modifier_terrorblade_innate_custom:IsAura()
+	return self.ability.talents.has_w1 == 1
+end
+function modifier_terrorblade_innate_custom:GetAuraRadius()
+	return self.parent:HasModifier("modifier_custom_terrorblade_metamorphosis") and self.ability.talents.w1_radius_meta
+		or self.ability.talents.w1_radius
+end
+function modifier_terrorblade_innate_custom:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_ENEMY
+end
+function modifier_terrorblade_innate_custom:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
+end
+function modifier_terrorblade_innate_custom:GetModifierAura()
+	return "modifier_terrorblade_innate_custom_aura_damage"
+end
 function modifier_terrorblade_innate_custom:OnCreated(table)
 	self.parent = self:GetParent()
-	self.parent:AddDeathEvent(self)
+	self.parent:AddDeathEvent(self, true)
 
 	self.caster = self:GetCaster()
 	self.ability = self:GetAbility()
+	self.ability.tracker = self
+	self.ability:UpdateTalents()
 
 	self.radius = self.ability:GetSpecialValueFor("radius")
-	self.damage_inc = self.ability:GetSpecialValueFor("damage_inc")
-		+ self.caster:GetTalentValue("modifier_terror_illusion_4", "damage")
+	self.damage_inc = self.ability:GetSpecialValueFor("damage_inc") + self.ability.talents.w4_damage
 	self.damage_reduce = self.ability:GetSpecialValueFor("damage_reduce")
-
-	self.status_bonus = self.caster:GetTalentValue("modifier_terror_meta_6", "status", true)
-
-	self.range_bonus = self.caster:GetTalentValue("modifier_terror_meta_2", "bonus", true)
-
-	self.agility_max = self.caster:GetTalentValue("modifier_terror_illusion_4", "max", true)
-
-	self.burn_radius = self.caster:GetTalentValue("modifier_terror_illusion_1", "radius", true)
-	self.meta_radius = self.caster:GetTalentValue("modifier_terror_illusion_1", "radius_meta", true)
-
-	self.health_bonus = 0
-	self.magic_bonus = 0
-	self.move_bonus = 0
-	self.agi_bonus = 0
-	self.attack_range = 0
 
 	if not IsServer() then
 		return
 	end
 
-	if self.parent:HasTalent("modifier_terror_illusion_6") and self.parent:IsIllusion() then
+	if self.ability.talents.has_w6 == 1 and self.parent:IsIllusion() then
 		self.parent:AddNewModifier(
 			self.parent,
 			self.ability,
 			"modifier_terrorblade_innate_custom_damage_reduce",
-			{ duration = self.parent:GetTalentValue("modifier_terror_illusion_6", "duration") }
+			{ duration = self.ability.talents.w6_duration }
 		)
 	end
 
-	self:UpdateTalent()
-	self:SetHasCustomTransmitterData(true)
 	if not self.parent:IsRealHero() then
 		return
 	end
 	self.interval = 0.2
 	self:OnIntervalThink()
 	self:StartIntervalThink(self.interval)
-end
-
-function modifier_terrorblade_innate_custom:UpdateTalent()
-	self.health_bonus = self.parent:GetTalentValue("modifier_terror_sunder_2", "health")
-	self.magic_bonus = self.parent:GetTalentValue("modifier_terror_illusion_3", "magic")
-	self.move_bonus = self.parent:GetTalentValue("modifier_terror_illusion_3", "move")
-	self.agi_bonus = self.parent:GetTalentValue("modifier_terror_illusion_4", "agility")
-	self.attack_range = self.parent:GetTalentValue("modifier_terror_meta_2", "range")
-
-	self:SendBuffRefreshToClients()
-end
-
-function modifier_terrorblade_innate_custom:AddCustomTransmitterData()
-	return {
-		health_bonus = self.health_bonus,
-		magic_bonus = self.magic_bonus,
-		move_bonus = self.move_bonus,
-		agi_bonus = self.agi_bonus,
-		attack_range = self.attack_range,
-	}
-end
-
-function modifier_terrorblade_innate_custom:HandleCustomTransmitterData(data)
-	self.health_bonus = data.health_bonus
-	self.magic_bonus = data.magic_bonus
-	self.move_bonus = data.move_bonus
-	self.agi_bonus = data.agi_bonus
-	self.attack_range = data.attack_range
 end
 
 function modifier_terrorblade_innate_custom:OnIntervalThink()
@@ -180,7 +213,10 @@ function modifier_terrorblade_innate_custom:OnIntervalThink()
 end
 
 function modifier_terrorblade_innate_custom:CheckState()
-	if not self.parent:HasTalent("modifier_terror_illusion_6") then
+	if self.ability.talents.has_w6 == 0 then
+		return
+	end
+	if not IsValid(self.parent) then
 		return
 	end
 	if not self.parent:IsIllusion() then
@@ -215,6 +251,7 @@ function modifier_terrorblade_innate_custom:DeathEvent(params)
 	if not self.parent:IsRealHero() then
 		return
 	end
+
 	local particle = ParticleManager:CreateParticle(
 		"particles/units/heroes/hero_terrorblade/terrorblade_death_custom.vpcf",
 		PATTACH_CUSTOMORIGIN_FOLLOW,
@@ -247,30 +284,35 @@ function modifier_terrorblade_innate_custom:DeathEvent(params)
 		ParticleManager:SetParticleControl(particle, 16, Vector(1, 0, 0))
 	end
 	local parent = self.parent
+
 	Timers:CreateTimer(FrameTime(), function()
-		if parent:IsAlive() then
-			ParticleManager:DestroyParticle(particle, true)
-			ParticleManager:ReleaseParticleIndex(particle)
+		if not IsValid(parent) then
+			return
 		end
-		return FrameTime()
+		if not parent:IsAlive() then
+			return FrameTime()
+		end
+
+		ParticleManager:DestroyParticle(particle, true)
+		ParticleManager:ReleaseParticleIndex(particle)
 	end)
 end
 
 function modifier_terrorblade_innate_custom:GetModifierStatusResistanceStacking()
-	if not self.parent:HasTalent("modifier_terror_meta_6") then
+	if self.ability.talents.has_e6 == 0 then
 		return
 	end
-	return self.status_bonus
+	return self.ability.talents.e6_status
 end
 
 function modifier_terrorblade_innate_custom:GetModifierHealthBonus()
-	return self.health_bonus * self.parent:GetAgility()
+	return self.ability.talents.r2_health * self.parent:GetAgility()
 end
 
 function modifier_terrorblade_innate_custom:GetModifierAttackRangeBonus()
-	local bonus = self.attack_range
+	local bonus = self.ability.talents.e2_range
 	if self.parent:HasModifier("modifier_custom_terrorblade_metamorphosis") then
-		bonus = bonus * self.range_bonus
+		bonus = bonus * self.ability.talents.e2_bonus
 	end
 	return bonus
 end
@@ -280,22 +322,22 @@ function modifier_terrorblade_innate_custom:GetModifierBonusStats_Agility()
 	if self.parent:IsIllusion() and self.caster:HasModifier(self:GetName()) then
 		stack = self.caster:GetUpgradeStack(self:GetName())
 	end
-	stack = math.min(stack, self.agility_max)
-	return self.agi_bonus * stack
+	stack = math.min(stack, self.ability.talents.w4_max)
+	return self.ability.talents.w4_agility * stack
 end
 
 function modifier_terrorblade_innate_custom:GetModifierMagicalResistanceBonus()
 	if self.parent:IsIllusion() or self:GetStackCount() == 0 then
 		return
 	end
-	return self.magic_bonus
+	return self.ability.talents.w3_magic
 end
 
 function modifier_terrorblade_innate_custom:GetModifierMoveSpeedBonus_Constant()
 	if self.parent:IsRealHero() and self:GetStackCount() == 0 then
 		return
 	end
-	return self.move_bonus
+	return self.ability.talents.w3_move
 end
 
 function modifier_terrorblade_innate_custom:GetModifierIncomingDamage_Percentage(params)
@@ -312,7 +354,7 @@ function modifier_terrorblade_innate_custom:GetModifierIncomingDamage_Percentage
 		return
 	end
 
-	return self.magic_bonus * -1
+	return self.ability.talents.w3_magic * -1
 end
 
 function modifier_terrorblade_innate_custom:GetModifierTotalDamageOutgoing_Percentage(params)
@@ -351,38 +393,10 @@ function modifier_terrorblade_innate_custom:GetModifierDamageOutgoing_Percentage
 	return stack
 end
 
-function modifier_terrorblade_innate_custom:GetAuraRadius()
-	if self.parent:HasModifier("modifier_custom_terrorblade_metamorphosis") then
-		return self.meta_radius
-	else
-		return self.burn_radius
-	end
-end
-
-function modifier_terrorblade_innate_custom:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_ENEMY
-end
-function modifier_terrorblade_innate_custom:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
-end
-function modifier_terrorblade_innate_custom:GetModifierAura()
-	return "modifier_terrorblade_innate_custom_aura_damage"
-end
-function modifier_terrorblade_innate_custom:IsAura()
-	return self.caster:HasTalent("modifier_terror_illusion_1")
-end
-
-modifier_terrorblade_innate_custom_aura_damage = class({})
-function modifier_terrorblade_innate_custom_aura_damage:IsHidden()
-	return true
-end
-function modifier_terrorblade_innate_custom_aura_damage:IsPurgable()
-	return false
-end
+modifier_terrorblade_innate_custom_aura_damage = class(mod_hidden)
 function modifier_terrorblade_innate_custom_aura_damage:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
-
 function modifier_terrorblade_innate_custom_aura_damage:OnCreated(table)
 	if not IsServer() then
 		return
@@ -402,21 +416,17 @@ function modifier_terrorblade_innate_custom_aura_damage:OnDestroy()
 		return
 	end
 	local mod = self.parent:FindModifierByName("modifier_terrorblade_innate_custom_aura_damage_count")
-	if mod then
-		mod:DecrementStackCount()
-		if mod:GetStackCount() < 1 then
-			mod:Destroy()
-		end
+	if not mod then
+		return
+	end
+
+	mod:DecrementStackCount()
+	if mod:GetStackCount() < 1 then
+		mod:Destroy()
 	end
 end
 
-modifier_terrorblade_innate_custom_aura_damage_count = class({})
-function modifier_terrorblade_innate_custom_aura_damage_count:IsHidden()
-	return false
-end
-function modifier_terrorblade_innate_custom_aura_damage_count:IsPurgable()
-	return false
-end
+modifier_terrorblade_innate_custom_aura_damage_count = class(mod_visible)
 function modifier_terrorblade_innate_custom_aura_damage_count:GetTexture()
 	return "buffs/illusion_burn"
 end
@@ -428,9 +438,9 @@ function modifier_terrorblade_innate_custom_aura_damage_count:OnCreated(table)
 	self.caster = self:GetCaster()
 	self.ability = self:GetAbility()
 
-	self.interval = self.caster:GetTalentValue("modifier_terror_illusion_1", "interval")
-	self.slow = self.caster:GetTalentValue("modifier_terror_illusion_1", "slow")
-	self.damage = self.caster:GetTalentValue("modifier_terror_illusion_1", "damage") * self.interval
+	self.interval = self.ability.talents.w1_interval
+	self.slow = self.ability.talents.w1_slow
+	self.damage = self.ability.talents.w1_damage * self.interval
 
 	if not IsServer() then
 		return
@@ -469,20 +479,15 @@ function modifier_terrorblade_innate_custom_aura_damage_count:GetModifierMoveSpe
 	return self.slow
 end
 
-modifier_terrorblade_innate_custom_damage_reduce = class({})
-function modifier_terrorblade_innate_custom_damage_reduce:IsHidden()
-	return true
-end
-function modifier_terrorblade_innate_custom_damage_reduce:IsPurgable()
-	return false
-end
+modifier_terrorblade_innate_custom_damage_reduce = class(mod_hidden)
 function modifier_terrorblade_innate_custom_damage_reduce:OnCreated()
 	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
 
 	if self.parent:IsRealHero() then
-		self.damage_reduce = self.parent:GetTalentValue("modifier_terror_illusion_6", "damage_self")
+		self.damage_reduce = self.ability.talents.w6_damage_self
 	else
-		self.damage_reduce = self.parent:GetTalentValue("modifier_terror_illusion_6", "damage_reduce")
+		self.damage_reduce = self.ability.talents.w6_damage_reduce
 	end
 
 	if not IsServer() then

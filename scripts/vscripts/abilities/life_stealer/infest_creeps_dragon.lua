@@ -40,7 +40,6 @@ LinkLuaModifier(
 )
 
 life_stealer_dragon_fireball = class({})
-
 function life_stealer_dragon_fireball:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
@@ -51,41 +50,47 @@ function life_stealer_dragon_fireball:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_phoenix/phoenix_icarus_dive_burn_debuff.vpcf", context)
 end
 
+function life_stealer_dragon_fireball:Init()
+	if not self:GetCaster() then
+		return
+	end
+	self.caster = self:GetCaster()
+
+	self.projectile_speed = self:GetLevelSpecialValueFor("projectile_speed", 1)
+	self.aoe_radius = self:GetLevelSpecialValueFor("aoe_radius", 1)
+	self.fire_duration = self:GetLevelSpecialValueFor("fire_duration", 1)
+	self.resist_duration = self:GetLevelSpecialValueFor("resist_duration", 1)
+end
+
 function life_stealer_dragon_fireball:GetAOERadius()
-	return self:GetSpecialValueFor("aoe_radius")
+	return self.aoe_radius or 0
 end
 
 function life_stealer_dragon_fireball:GetCooldown(level)
-	local bonus = 0
-	if self.caster.infest_ability and self.caster.infest_ability.talents.r1_cd_creep then
-		bonus = self.caster.infest_ability.talents.r1_cd_creep
-	end
-	return self.BaseClass.GetCooldown(self, level) + bonus
+	return self.BaseClass.GetCooldown(self, level)
+		+ (self.caster.infest_ability and self.caster.infest_ability.talents.r1_cd_creep or 0)
 end
 
 function life_stealer_dragon_fireball:OnSpellStart()
-	local caster = self:GetCaster()
 	local point = self:GetCursorPosition()
-	local speed = self:GetSpecialValueFor("projectile_speed")
-	local dir = (point - caster:GetAbsOrigin())
+	local dir = (point - self.caster:GetAbsOrigin())
 
-	caster:EmitSound("Lifestealer.Infest_dragin_fire_cast")
+	self.caster:EmitSound("Lifestealer.Infest_dragin_fire_cast")
 	local projectile = {
 		Ability = self,
 		EffectName = "particles/lifestealer/infest_dragon_proj.vpcf",
-		vSpawnOrigin = caster:GetAbsOrigin() + Vector(0, 0, 150),
+		vSpawnOrigin = self.caster:GetAbsOrigin() + Vector(0, 0, 150),
 		fDistance = dir:Length2D(),
 		fStartRadius = 0,
 		fEndRadius = 0,
-		Source = caster,
+		Source = self.caster,
 		bHasFrontalCone = false,
 		bReplaceExisting = false,
 		fExpireTime = GameRules:GetGameTime() + 5.0,
 		bDeleteOnHit = false,
-		vVelocity = dir:Normalized() * speed * (Vector(1, 1, 0)),
-
+		vVelocity = dir:Normalized() * self.projectile_speed * (Vector(1, 1, 0)),
 		bProvidesVision = true,
-		iVisionTeamNumber = caster:GetTeamNumber(),
+		iVisionTeamNumber = self.caster:GetTeamNumber(),
 		iVisionRadius = 100,
 	}
 	ProjectileManager:CreateLinearProjectile(projectile)
@@ -95,21 +100,17 @@ function life_stealer_dragon_fireball:OnProjectileHit(target, vLocation)
 	if target then
 		return
 	end
-	local caster = self:GetCaster()
 
-	local duration = self:GetSpecialValueFor("fire_duration")
 	local point = GetGroundPosition(vLocation, nil)
-	local radius = self:GetSpecialValueFor("aoe_radius")
 	local damage = self:GetSpecialValueFor("damage_init")
-	local resist_duration = self:GetSpecialValueFor("resist_duration")
 
 	local effect =
 		ParticleManager:CreateParticle("particles/lifestealer/infest_dragon_projf.vpcf", PATTACH_WORLDORIGIN, nil)
 	ParticleManager:SetParticleControl(effect, 0, point + Vector(0, 0, 60))
 	ParticleManager:ReleaseParticleIndex(effect)
 
-	local damageTable = { attacker = caster, ability = self, damage = damage, damage_type = DAMAGE_TYPE_MAGICAL }
-	for _, target in pairs(caster:FindTargets(radius, vLocation)) do
+	local damageTable = { attacker = self.caster, ability = self, damage = damage, damage_type = DAMAGE_TYPE_MAGICAL }
+	for _, target in pairs(self.caster:FindTargets(self.aoe_radius, vLocation)) do
 		damageTable.victim = target
 		local target_damage = damage
 
@@ -132,54 +133,28 @@ function life_stealer_dragon_fireball:OnProjectileHit(target, vLocation)
 		end
 
 		target:AddNewModifier(
-			caster,
+			self.caster,
 			self,
 			"modifier_life_stealer_dragon_fireball_resist",
-			{ duration = resist_duration }
+			{ duration = self.resist_duration }
 		)
 	end
 
-	EmitSoundOnLocationWithCaster(point, "Lifestealer.Infest_dragin_fire_hit", caster)
-	AddFOWViewer(caster:GetTeamNumber(), point, radius, duration, false)
+	EmitSoundOnLocationWithCaster(point, "Lifestealer.Infest_dragin_fire_hit", self.caster)
+	AddFOWViewer(self.caster:GetTeamNumber(), point, self.aoe_radius, self.fire_duration, false)
 
 	CreateModifierThinker(
-		caster,
+		self.caster,
 		self,
 		"modifier_life_stealer_dragon_fireball_thinker",
-		{ duration = duration },
+		{ duration = self.fire_duration },
 		point,
-		caster:GetTeamNumber(),
+		self.caster:GetTeamNumber(),
 		false
 	)
 end
 
 modifier_life_stealer_dragon_fireball_thinker = class(mod_hidden)
-function modifier_life_stealer_dragon_fireball_thinker:OnCreated(table)
-	if not IsServer() then
-		return
-	end
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.radius = self.ability:GetSpecialValueFor("aoe_radius")
-	self.duration = self:GetRemainingTime()
-
-	self.nFXIndex =
-		ParticleManager:CreateParticle("particles/lifestealer/infest_dragon_fire.vpcf", PATTACH_WORLDORIGIN, nil)
-	ParticleManager:SetParticleControl(self.nFXIndex, 0, self.parent:GetOrigin())
-	ParticleManager:SetParticleControl(self.nFXIndex, 1, Vector(self.duration, 0, 0))
-	self:AddParticle(self.nFXIndex, false, false, -1, false, false)
-
-	self.parent:EmitSound("Lifestealer.Infest_dragin_fire_burn")
-end
-
-function modifier_life_stealer_dragon_fireball_thinker:OnDestroy()
-	if not IsServer() then
-		return
-	end
-	self.parent:StopSound("Lifestealer.Infest_dragin_fire_burn")
-end
-
 function modifier_life_stealer_dragon_fireball_thinker:IsAura()
 	return true
 end
@@ -198,8 +173,39 @@ end
 function modifier_life_stealer_dragon_fireball_thinker:GetModifierAura()
 	return "modifier_life_stealer_dragon_fireball_burn"
 end
+function modifier_life_stealer_dragon_fireball_thinker:OnCreated(table)
+	if not IsServer() then
+		return
+	end
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.radius = self.ability.aoe_radius
+	self.duration = self:GetRemainingTime()
+
+	self.nFXIndex =
+		ParticleManager:CreateParticle("particles/lifestealer/infest_dragon_fire.vpcf", PATTACH_WORLDORIGIN, nil)
+	ParticleManager:SetParticleControl(self.nFXIndex, 0, self.parent:GetOrigin())
+	ParticleManager:SetParticleControl(self.nFXIndex, 1, Vector(self.duration, 0, 0))
+	self:AddParticle(self.nFXIndex, false, false, -1, false, false)
+
+	self.parent:EmitSound("Lifestealer.Infest_dragin_fire_burn")
+end
+
+function modifier_life_stealer_dragon_fireball_thinker:OnDestroy()
+	if not IsServer() then
+		return
+	end
+	self.parent:StopSound("Lifestealer.Infest_dragin_fire_burn")
+end
 
 modifier_life_stealer_dragon_fireball_burn = class(mod_hidden)
+function modifier_life_stealer_dragon_fireball_burn:GetStatusEffectName()
+	return "particles/status_fx/status_effect_burn.vpcf"
+end
+function modifier_life_stealer_dragon_fireball_burn:StatusEffectPriority()
+	return MODIFIER_PRIORITY_NORMAL
+end
 function modifier_life_stealer_dragon_fireball_burn:OnCreated()
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
@@ -226,15 +232,10 @@ function modifier_life_stealer_dragon_fireball_burn:OnIntervalThink()
 	self.parent:SendNumber(4, real_damage)
 end
 
-function modifier_life_stealer_dragon_fireball_burn:GetStatusEffectName()
-	return "particles/status_fx/status_effect_burn.vpcf"
-end
-
-function modifier_life_stealer_dragon_fireball_burn:StatusEffectPriority()
-	return MODIFIER_PRIORITY_NORMAL
-end
-
 modifier_life_stealer_dragon_fireball_resist = class(mod_visible)
+function modifier_life_stealer_dragon_fireball_resist:GetEffectName()
+	return "particles/units/heroes/hero_phoenix/phoenix_icarus_dive_burn_debuff.vpcf"
+end
 function modifier_life_stealer_dragon_fireball_resist:OnCreated()
 	self.ability = self:GetAbility()
 	self.parent = self:GetParent()
@@ -244,7 +245,8 @@ function modifier_life_stealer_dragon_fireball_resist:OnCreated()
 	if not IsServer() then
 		return
 	end
-	self:SetStackCount(1)
+	self.RemoveForDuel = true
+	self:OnRefresh()
 end
 
 function modifier_life_stealer_dragon_fireball_resist:OnRefresh()
@@ -272,12 +274,7 @@ function modifier_life_stealer_dragon_fireball_resist:GetModifierMagicalResistan
 	return self.magic_resist * self:GetStackCount()
 end
 
-function modifier_life_stealer_dragon_fireball_resist:GetEffectName()
-	return "particles/units/heroes/hero_phoenix/phoenix_icarus_dive_burn_debuff.vpcf"
-end
-
 life_stealer_dragon_flight = class({})
-
 function life_stealer_dragon_flight:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
@@ -286,7 +283,6 @@ function life_stealer_dragon_flight:Precache(context)
 end
 
 function life_stealer_dragon_flight:OnSpellStart()
-	local caster = self:GetCaster()
 	local duration = self:GetSpecialValueFor("duration")
 
 	if self.caster.infest_ability and self.caster.infest_ability.talents.has_h6 == 1 then
@@ -303,21 +299,21 @@ function life_stealer_dragon_flight:OnSpellStart()
 		)
 	end
 
-	caster:EmitSound("Lifestealer.Infest_dragin_flight")
-	caster:RemoveModifierByName("modifier_life_stealer_dragon_flight")
-	caster:AddNewModifier(caster, self, "modifier_life_stealer_dragon_flight", { duration = duration })
+	self.caster:EmitSound("Lifestealer.Infest_dragin_flight")
+	self.caster:RemoveModifierByName("modifier_life_stealer_dragon_flight")
+	self.caster:AddNewModifier(self.caster, self, "modifier_life_stealer_dragon_flight", { duration = duration })
 end
 
 modifier_life_stealer_dragon_flight = class(mod_visible)
+function modifier_life_stealer_dragon_flight:GetEffectName()
+	return "particles/lifestealer/infest_dragon_flight.vpcf"
+end
 function modifier_life_stealer_dragon_flight:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
 	self.move = self.ability:GetSpecialValueFor("move")
 	self.vision = self.ability:GetSpecialValueFor("vision")
-	if not IsServer() then
-		return
-	end
 end
 
 function modifier_life_stealer_dragon_flight:DeclareFunctions()
@@ -345,10 +341,6 @@ function modifier_life_stealer_dragon_flight:CheckState()
 		[MODIFIER_STATE_FLYING] = true,
 		[MODIFIER_STATE_UNSLOWABLE] = true,
 	}
-end
-
-function modifier_life_stealer_dragon_flight:GetEffectName()
-	return "particles/lifestealer/infest_dragon_flight.vpcf"
 end
 
 function modifier_life_stealer_dragon_flight:OnDestroy()
@@ -381,12 +373,12 @@ function modifier_life_stealer_dragon_arcane_power:OnIntervalThink()
 	end
 	local owner = self.parent.owner
 
-	if owner and not owner:IsNull() then
+	if IsValid(owner) then
 		if not owner:HasModifier("modifier_life_stealer_dragon_arcane_power_aura") then
 			owner:AddNewModifier(owner, self.ability, "modifier_life_stealer_dragon_arcane_power_aura", {})
 		end
 
-		if not self.parent:IsAlive() or self.parent:IsNull() then
+		if not IsValid(self.parent) or not self.parent:IsAlive() then
 			owner:RemoveModifierByName("modifier_life_stealer_dragon_arcane_power_aura")
 			self:StartIntervalThink(-1)
 		end

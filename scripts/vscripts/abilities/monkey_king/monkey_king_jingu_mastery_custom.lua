@@ -196,7 +196,7 @@ function monkey_king_jingu_mastery_custom:GetIntrinsicModifierName()
 end
 
 function monkey_king_jingu_mastery_custom:GetAbilityTextureName()
-	if self.ability.talents.has_w7 == 1 or self.ability.talents.has_r7 == 1 then
+	if self.talents.has_w7 == 1 or self.talents.has_r7 == 1 then
 		return "jingu_mastery_magic"
 	end
 	return "monkey_king_jingu_mastery"
@@ -225,7 +225,6 @@ end
 
 function monkey_king_jingu_mastery_custom:OnSpellStart()
 	local target = self:GetCursorTarget()
-	local target_loc = target:GetAbsOrigin()
 
 	self.caster:RemoveModifierByName("modifier_monkey_king_tree_dance_custom")
 	FindClearSpaceForUnit(self.caster, self.caster:GetAbsOrigin(), false)
@@ -246,7 +245,7 @@ function monkey_king_jingu_mastery_custom:ApplyHits(target)
 	if not self:IsTrained() then
 		return
 	end
-	if self.ability.talents.has_e3 == 0 then
+	if self.talents.has_e3 == 0 then
 		return
 	end
 
@@ -461,6 +460,9 @@ function modifier_monkey_king_jingu_mastery_custom_tracker:GetModifierTotalDamag
 end
 
 function modifier_monkey_king_jingu_mastery_custom_tracker:GetModifierHealthBonus()
+	if not IsValid(self.parent) then
+		return
+	end
 	return self.ability.talents.e2_health * self.parent:GetAgility()
 end
 
@@ -476,6 +478,9 @@ function modifier_monkey_king_jingu_mastery_custom_tracker:GetModifierIncomingDa
 	if self.ability.talents.has_e4 == 0 then
 		return
 	end
+	if not IsValid(self.parent) then
+		return
+	end
 	if self.parent:PassivesDisabled() then
 		return
 	end
@@ -489,6 +494,9 @@ function modifier_monkey_king_jingu_mastery_custom_tracker:GetModifierStatusResi
 	if self.ability.talents.has_e4 == 0 then
 		return
 	end
+	if not IsValid(self.parent) then
+		return
+	end
 	if self.parent:PassivesDisabled() then
 		return
 	end
@@ -499,9 +507,6 @@ function modifier_monkey_king_jingu_mastery_custom_tracker:GetModifierStatusResi
 end
 
 modifier_monkey_king_jingu_mastery_custom_hit = class(mod_visible)
-function modifier_monkey_king_jingu_mastery_custom_hit:IsPurgable()
-	return false
-end
 function modifier_monkey_king_jingu_mastery_custom_hit:RemoveOnDeath()
 	return false
 end
@@ -841,6 +846,7 @@ function modifier_monkey_king_jingu_mastery_custom_arc:OnCreated(kv)
 
 	if not self:ApplyHorizontalMotionController() or not self:ApplyVerticalMotionController() then
 		self:Destroy()
+		return
 	end
 
 	self.parent:GenericParticle("particles/units/heroes/hero_monkey_king/monkey_king_jump_trail.vpcf", self)
@@ -856,13 +862,11 @@ function modifier_monkey_king_jingu_mastery_custom_arc:OnDestroy()
 	FindClearSpaceForUnit(self.parent, self.parent:GetAbsOrigin(), false)
 
 	self.parent:StartGestureWithPlaybackRate(ACT_DOTA_MK_SPRING_END, 1.2)
-	local target_loc = self.target:GetAbsOrigin()
+	if not IsValid(self.target) then
+		return
+	end
 
-	local dir = (target_loc - self.parent:GetAbsOrigin()):Normalized()
-	dir.z = 0
-	self.parent:SetForwardVector(dir)
-	self.parent:FaceTowards(target_loc)
-
+	self.parent:FacePoint(self.target:GetAbsOrigin())
 	self.parent:MoveToTargetToAttack(self.target)
 end
 
@@ -1072,7 +1076,7 @@ function modifier_monkey_king_jingu_mastery_custom_agility:OnCreated(table)
 		return
 	end
 	self.RemoveForDuel = true
-	self:AddStack()
+	self:OnRefresh()
 
 	self:StartIntervalThink(0.1)
 end
@@ -1081,25 +1085,6 @@ function modifier_monkey_king_jingu_mastery_custom_agility:OnRefresh(table)
 	if not IsServer() then
 		return
 	end
-	self:AddStack()
-end
-
-function modifier_monkey_king_jingu_mastery_custom_agility:OnIntervalThink()
-	if not IsServer() then
-		return
-	end
-	if not self.ability.tracker then
-		return
-	end
-	self.ability.tracker:UpdateUI()
-end
-
-function modifier_monkey_king_jingu_mastery_custom_agility:AddStack()
-	if not IsServer() then
-		return
-	end
-
-	self.max_timer = self:GetRemainingTime()
 
 	Timers:CreateTimer(self.ability.talents.e7_duration, function()
 		if IsValid(self) then
@@ -1112,6 +1097,16 @@ function modifier_monkey_king_jingu_mastery_custom_agility:AddStack()
 
 	self:IncrementStackCount()
 	self.parent:CalculateStatBonus(true)
+end
+
+function modifier_monkey_king_jingu_mastery_custom_agility:OnIntervalThink()
+	if not IsServer() then
+		return
+	end
+	if not self.ability.tracker then
+		return
+	end
+	self.ability.tracker:UpdateUI()
 end
 
 function modifier_monkey_king_jingu_mastery_custom_agility:OnDestroy()

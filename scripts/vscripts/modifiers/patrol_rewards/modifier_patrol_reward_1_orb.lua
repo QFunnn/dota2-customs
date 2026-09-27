@@ -73,8 +73,8 @@ function modifier_patrol_reward_1_orb:DeathEvent(params)
 		return
 	end
 
-	self.parent:GiveGold(self.gold, true)
-	dota1x6:AddBluePoints(self.parent, self.blue)
+	self.parent:GiveGold(self.gold, true, nil, "modifier_patrol_reward_orb")
+	self.parent:AddPoints("blue", self.blue, "modifier_patrol_reward_orb")
 
 	self:DecrementStackCount()
 

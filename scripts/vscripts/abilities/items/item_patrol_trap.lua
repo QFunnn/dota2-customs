@@ -8,8 +8,6 @@
 ]]
 
 
---LinkLuaModifier("", "abilities/items/item_patrol_trap", LUA_MODIFIER_MOTION_NONE)
-
 item_patrol_trap = class({})
 
 function item_patrol_trap:OnAbilityPhaseStart()
@@ -21,29 +19,17 @@ function item_patrol_trap:OnAbilityPhaseStart()
 	end
 
 	if tower.trap_wave == true then
-		CustomGameEventManager:Send_ServerToPlayer(
-			PlayerResource:GetPlayer(self:GetCaster():GetPlayerOwnerID()),
-			"CreateIngameErrorMessage",
-			{ message = "#active_trap" }
-		)
+		self:GetCaster():SendError("#active_trap")
 		return false
 	end
 
 	if duel_data[tower.duel_data] and duel_data[tower.duel_data].finished == 0 then
-		CustomGameEventManager:Send_ServerToPlayer(
-			PlayerResource:GetPlayer(self:GetCaster():GetPlayerOwnerID()),
-			"CreateIngameErrorMessage",
-			{ message = "#active_duel" }
-		)
+		self:GetCaster():SendError("#active_duel")
 		return false
 	end
 
 	if tower.can_use_trap == false then
-		CustomGameEventManager:Send_ServerToPlayer(
-			PlayerResource:GetPlayer(self:GetCaster():GetPlayerOwnerID()),
-			"CreateIngameErrorMessage",
-			{ message = "#active_necro" }
-		)
+		self:GetCaster():SendError("#active_necro")
 		return false
 	end
 
@@ -62,8 +48,6 @@ function item_patrol_trap:OnSpellStart()
 	if not tower then
 		return
 	end
-
-	--CustomGameEventManager:Send_ServerToAllClients("TrapAlert",  {victim = self:GetCaster():GetUnitName()})
 
 	CustomGameEventManager:Send_ServerToAllClients(
 		"mini_alert_event",

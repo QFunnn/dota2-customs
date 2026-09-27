@@ -736,7 +736,7 @@ function modifier_sniper_take_aim_custom_damage:GetTexture()
 end
 function modifier_sniper_take_aim_custom_damage:OnCreated()
 	self.parent = self:GetParent()
-	self.max = self.parent:GetTalentValue("modifier_sniper_aim_3", "max")
+	self.max = self.parent:GetTalentValue("modifier_sniper_aim_3", "max", true)
 	self.damage = self.parent:GetTalentValue("modifier_sniper_aim_3", "damage") / self.max
 	self.move = self.parent:GetTalentValue("modifier_sniper_aim_3", "move") / self.max
 	if not IsServer() then
@@ -747,6 +747,9 @@ function modifier_sniper_take_aim_custom_damage:OnCreated()
 end
 
 function modifier_sniper_take_aim_custom_damage:OnRefresh()
+	self.damage = self.parent:GetTalentValue("modifier_sniper_aim_3", "damage") / self.max
+	self.move = self.parent:GetTalentValue("modifier_sniper_aim_3", "move") / self.max
+
 	if not IsServer() then
 		return
 	end

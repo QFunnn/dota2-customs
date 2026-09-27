@@ -28,39 +28,30 @@ function item_arcane_boots_custom:Precache(context)
 	PrecacheResource("particle", "particles/items_fx/arcane_boots_recipient.vpcf", context)
 end
 
+function item_arcane_boots_custom:Spawn()
+	self.replenish_amount = self:GetSpecialValueFor("replenish_amount")
+	self.radius = self:GetSpecialValueFor("radius")
+	self.bonus_movement = self:GetSpecialValueFor("bonus_movement")
+	self.mana_regen = self:GetSpecialValueFor("mana_regen")
+	self.mana_bonus = self:GetSpecialValueFor("mana_bonus")
+end
+
 function item_arcane_boots_custom:OnSpellStart()
 	local caster = self:GetCaster()
-	local replenish_amount = self:GetSpecialValueFor("replenish_amount")
-	local radius = self:GetSpecialValueFor("radius")
+	local replenish_amount = self.replenish_amount
+	local radius = self.radius
 
 	caster:EmitSound("DOTA_Item.ArcaneBoots.Activate")
 
-	local particle_1 =
-		ParticleManager:CreateParticle("particles/items_fx/arcane_boots.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
-	ParticleManager:ReleaseParticleIndex(particle_1)
+	caster:GenericParticle("particles/items_fx/arcane_boots.vpcf")
 
-	local friends = FindUnitsInRadius(
-		caster:GetTeamNumber(),
-		caster:GetAbsOrigin(),
-		nil,
-		radius,
-		DOTA_UNIT_TARGET_TEAM_FRIENDLY,
-		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-		DOTA_UNIT_TARGET_FLAG_INVULNERABLE,
-		FIND_CLOSEST,
-		false
-	)
+	local friends = caster:FindFriends(radius, nil, nil, DOTA_UNIT_TARGET_FLAG_INVULNERABLE)
 
 	for _, friend in pairs(friends) do
-		local particle_2 = ParticleManager:CreateParticle(
-			"particles/items_fx/arcane_boots_recipient.vpcf",
-			PATTACH_ABSORIGIN_FOLLOW,
-			friend
-		)
-		ParticleManager:ReleaseParticleIndex(particle_2)
+		friend:GenericParticle("particles/items_fx/arcane_boots_recipient.vpcf")
 		friend:GiveMana(replenish_amount)
 
-		SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_ADD, friend, replenish_amount, nil)
+		friend:SendNumber(OVERHEAD_ALERT_MANA_ADD, replenish_amount)
 	end
 end
 
@@ -68,21 +59,17 @@ modifier_item_arcane_boots_custom = class(mod_hidden)
 function modifier_item_arcane_boots_custom:RemoveOnDeath()
 	return false
 end
+function modifier_item_arcane_boots_custom:OnCreated(table)
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+end
+
 function modifier_item_arcane_boots_custom:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE,
 		MODIFIER_PROPERTY_MANA_BONUS,
 		MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
 	}
-end
-
-function modifier_item_arcane_boots_custom:OnCreated(table)
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.ability.bonus_movement = self.ability:GetSpecialValueFor("bonus_movement")
-	self.ability.mana_regen = self.ability:GetSpecialValueFor("mana_regen")
-	self.ability.mana_bonus = self.ability:GetSpecialValueFor("mana_bonus")
 end
 
 function modifier_item_arcane_boots_custom:GetModifierMoveSpeedBonus_Special_Boots()

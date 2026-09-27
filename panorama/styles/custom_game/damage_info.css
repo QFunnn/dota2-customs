@@ -27,13 +27,13 @@
 {
 	margin-top: 15px;
 	margin-right: 0px;
-	width: 400px;
+	width: 460px;
 	align: center top;
 }
 
 .DamageBlockWithButton_opened
 {
-	width: 400px;
+	width: 460px;
 }
 
 .DamageBlockWithButton_closed:hover
@@ -90,7 +90,7 @@
 
 .DamageRoundHistory
 {
-	width: 400px;
+	width: 460px;
 	height: 510px;
 	transition-property: height;
 	transition-duration: 0.1s;
@@ -120,7 +120,7 @@
 
 .MenuButton
 {
-	width: 33.33%;
+	width: 25%;
 	height: 100%;
 	background-color: gradient( linear, 0% 0%, 100% 0%, from( #555555 ), to( #222222 ) );
 	border: 1px solid black;
@@ -144,7 +144,7 @@
 .DamageAbilitiesButton_select
 {
 	border-color: #4e94e4;
-	background-color: gradient( linear, 0% 0%, 0% 100%, from( #274cb5aa ), to( #436bddaa ) );
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #1f3d93aa ), to( #3656b8aa ) );
 	box-shadow: fill black 0px 0px 20px -1px;
 	z-index: 999;
 }
@@ -157,13 +157,26 @@
 	z-index: 999;
 }
 
+.DamageAbilitiesResourceButton_select
+{
+	border-color: #c99a26;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #3d2c06 ), to( #735410aa ) );
+	box-shadow: fill black 0px 0px 20px -1px;
+	z-index: 999;
+}
+
 .MenuButtonLabel
 {
 	align: center center;
 	font-weight: bold;
-	font-size: 18px;
+	font-size: 17px;
+	color: gradient( linear, 0% 0%, 0% 100%, from( #c4c4c4 ), to( #a0a0a0 ) );
+	text-shadow: 0px 0px 6px 3 black;
+}
+
+.DamageAbilitiesIncomeButton_select .MenuButtonLabel,.DamageAbilitiesButton_select .MenuButtonLabel,.DamageAbilitiesHealingButton_select .MenuButtonLabel,.DamageAbilitiesResourceButton_select .MenuButtonLabel
+{
 	color: gradient( linear, 0% 0%, 0% 100%, from( #fff ), to( #cdcdcd ) );
-	text-shadow: 0px 0px 4px 2 black;
 }
 
 .damage_close .MenuButton
@@ -226,9 +239,60 @@
 
 .DamageStatsParent
 {
-	height: 428px;
+	height: 427px;
 	width: 100%;
 	overflow: squish scroll;
+}
+
+.ResourcePointsSection
+{
+	width: 100%;
+	flow-children: down;
+	margin-bottom: 16px;
+}
+
+.ResourcePointsHeader
+{
+	width: 100%;
+	height: 34px;
+	flow-children: right;
+	margin-bottom: 4px;
+	border-bottom: 1px solid #fff;
+	border-brush: gradient( linear, 0% 0%, 100% 0%, from( #fff0 ), color-stop( 0.04, #fff0 ), color-stop( 0.15, #ffffff55 ), color-stop( 0.85, #ffffff55 ), color-stop( 0.96, #fff0 ), to( #fff0 ) );
+}
+
+.ResourcePointsIcon
+{
+	width: 36px;
+	height: 26px;
+	vertical-align: center;
+	margin-left: 6px;
+	box-shadow: black 0px 0px 5px 0px;
+}
+
+.ResourcePointsTitle
+{
+	vertical-align: center;
+	margin-left: 10px;
+	font-size: 20px;
+	font-weight: bold;
+	text-shadow: 0px 0px 6px 3 black;
+}
+
+.ResourcePointsTitle_blue
+{
+	color: gradient( linear, 0% 0%, 0% 100%, from( #b7d6ff ), to( #4f8fe6 ) );
+}
+
+.ResourcePointsTitle_gray
+{
+	color: gradient( linear, 0% 0%, 0% 100%, from( #ffffff ), to( #9fa5aa ) );
+}
+
+.ResourcePointsList
+{
+	width: 100%;
+	flow-children: down;
 }
 
 #BattlePassTier2Only
@@ -489,6 +553,21 @@
 	background-color: gradient( linear, 0% 0%, 100% 0%, from( #7c632c ), to( #ffcd62 ) );
 }
 
+.DamageLine_gold
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #5c4106 ), to( #c8941c ) );
+}
+
+.DamageLine_blue_points
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #1b3a78 ), to( #3f7fd6 ) );
+}
+
+.DamageLine_gray_points
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #3e4245 ), to( #9fa5aa ) );
+}
+
 .DamageTalentColor_gray
 {
 	box-shadow: fill #c9cbce 0px 0px 4px -1px;
@@ -522,18 +601,6 @@
 {
 	width: 100%;
 	flow-children: down;
-}
-
-.TempHeader
-{
-	font-weight: bold;
-	color: gradient( linear, 0% 0%, 0% 100%, from( #fff ), to( #ccc ) );
-	text-shadow: 0px 0px 9px #000000;
-	width: 100%;
-	height: 28px;
-	vertical-align: center;
-	text-align: center;
-	font-size: 21px;
 }
 
 .TempContent
@@ -579,58 +646,22 @@
 
 .TopPanel
 {
-	horizontal-align: right;
-	height: 28px;
-	margin-top: 6px;
-	margin-bottom: 6px;
+	height: 35px;
 	width: 100%;
-	border-bottom: 2px solid #fff;
-	border-brush: gradient( radial, 50% 55%, 0% 0%, 55% 60%, from( white ), to( #fff0 ) );
-	transition-property: brightness, pre-transform-scale2d;
-	transition-duration: 0.15s;
+	margin-bottom: 6px;
+	flow-children: right;
+	box-shadow: #000000cc 0px 3px 6px 0px;
+	z-index: 5;
 }
 
-.TopPanel:hover
+.TopPanel .MenuButton
 {
-	pre-transform-scale2d: 1.01;
-	brightness: 1.6;
+	width: 50%;
 }
 
-#BottomPanelText
+.TopPanel .MenuButtonLabel
 {
-	color: gradient( linear, 0% 0%, 0% 100%, from( #dfdfdf ), to( #bbb ) );
-	font-weight: bold;
-	vertical-align: center;
-	text-align: left;
-	text-shadow: 0px 0px 9px #000000;
-	font-size: 19px;
-}
-
-#BottomPanelCheckbox
-{
-	width: 20px;
-	height: 20px;
-	margin-right: 12px;
-	align: right center;
-	margin-left: 5px;
-	margin-top: 2px;
-	transition-property: background-color;
-	transition-duration: 0.2s;
-	transition-timing-function: ease-in-out;
-}
-
-.BottomPanelCheckbox_inactive
-{
-	background-color: black;
-	border: 2px solid #5e686966;
-	box-shadow: #00000099 0px 0px 1px 3px;
-}
-
-.BottomPanelCheckbox_active
-{
-	background-color: gradient( linear, 0% 0%, 0% 100%, from( #e7f6f599 ), to( #a0d6d7 ) );
-	border: 3px solid #000000;
-	box-shadow: #5b62bf77 0px 0px 5px 0px;
+	font-size: 20px;
 }
 
 .TempTextNoData

@@ -93,7 +93,6 @@ function ogre_magi_multicast_custom:UpdateTalents(name)
 			r2_duration = caster:GetTalentValue("modifier_ogremagi_multi_2", "duration", true),
 			r2_max = caster:GetTalentValue("modifier_ogremagi_multi_2", "max", true),
 
-			has_r3 = 0,
 			r3_heal_reduce = 0,
 			r3_damage = 0,
 			r3_max = caster:GetTalentValue("modifier_ogremagi_multi_3", "max", true),
@@ -122,6 +121,7 @@ function ogre_magi_multicast_custom:UpdateTalents(name)
 
 			has_e7 = 0,
 			e7_cost = caster:GetTalentValue("modifier_ogremagi_bloodlust_7", "cost", true) / 100,
+			e7_cd = caster:GetTalentValue("modifier_ogremagi_bloodlust_7", "cd", true),
 
 			has_q7 = 0,
 		}
@@ -139,7 +139,6 @@ function ogre_magi_multicast_custom:UpdateTalents(name)
 	end
 
 	if caster:HasTalent("modifier_ogremagi_multi_3") then
-		self.talents.has_r3 = 1
 		self.talents.r3_heal_reduce = caster:GetTalentValue("modifier_ogremagi_multi_3", "heal_reduce")
 		self.talents.r3_damage = caster:GetTalentValue("modifier_ogremagi_multi_3", "damage")
 	end
@@ -154,7 +153,7 @@ function ogre_magi_multicast_custom:UpdateTalents(name)
 
 	if caster:HasTalent("modifier_ogremagi_hero_4") then
 		self.talents.has_h4 = 1
-		self.caster:AddDamageEvent_inc(self.tracker, true)
+		caster:AddDamageEvent_inc(self.tracker, true)
 	end
 
 	if caster:HasTalent("modifier_ogremagi_bloodlust_7") then
@@ -178,7 +177,7 @@ end
 
 function ogre_magi_multicast_custom:GetHealthCost(level)
 	if not self.caster:HasModifier("modifier_ogre_magi_bloodlust_custom_legendary_reroll") then
-		return
+		return 0
 	end
 	return self.talents.e7_cost * self.caster:GetHealth()
 end
@@ -191,18 +190,17 @@ function ogre_magi_multicast_custom:GetIntrinsicModifierName()
 end
 
 function ogre_magi_multicast_custom:GetCooldown(iLevel)
-	return (self.ability.talents.has_r7 == 1 and self.ability.talents.has_e7 == 0) and self.ability.talents.r7_talent_cd
-		or 0
+	return (self.talents.has_r7 == 1 and self.talents.has_e7 == 0) and self.talents.r7_talent_cd or 0
 end
 
 function ogre_magi_multicast_custom:GetBehavior()
-	if self.ability.talents.has_e7 == 1 then
+	if self.talents.has_e7 == 1 then
 		return DOTA_ABILITY_BEHAVIOR_NO_TARGET
 			+ DOTA_ABILITY_BEHAVIOR_IMMEDIATE
 			+ DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE
 			+ DOTA_ABILITY_BEHAVIOR_IGNORE_SILENCE_CUSTOM
 	end
-	if self.ability.talents.has_r7 == 1 then
+	if self.talents.has_r7 == 1 then
 		return DOTA_ABILITY_BEHAVIOR_NO_TARGET + DOTA_ABILITY_BEHAVIOR_IMMEDIATE
 	end
 	return DOTA_ABILITY_BEHAVIOR_PASSIVE
@@ -218,7 +216,7 @@ function ogre_magi_multicast_custom:GetChance(name)
 end
 
 function ogre_magi_multicast_custom:OnSpellStart()
-	if self.ability.talents.has_e7 == 1 then
+	if self.talents.has_e7 == 1 then
 		if not self.caster.bloodlust_ability then
 			return
 		end
@@ -232,10 +230,26 @@ function ogre_magi_multicast_custom:OnSpellStart()
 		return
 	end
 
-	if self.ability.talents.has_r7 == 0 then
+	if self.talents.has_r7 == 0 then
 		return
 	end
 	self.caster:AddNewModifier(self.caster, self, "modifier_ogre_magi_multicast_custom_legendary", {})
+end
+
+function ogre_magi_multicast_custom:OnProjectileHit(target, vLocation)
+	if not target then
+		return
+	end
+	DoDamage(
+		{
+			victim = target,
+			attacker = self.caster,
+			ability = self,
+			damage_type = self.talents.r1_damage_type,
+			damage = self.talents.r1_damage,
+		},
+		"modifier_ogremagi_multi_1"
+	)
 end
 
 function ogre_magi_multicast_custom:TriggerSpell(ability, target)
@@ -276,22 +290,6 @@ function ogre_magi_multicast_custom:TriggerSpell(ability, target)
 			end
 		end
 	end
-end
-
-function ogre_magi_multicast_custom:OnProjectileHit(target, vLocation)
-	if not target then
-		return
-	end
-	DoDamage(
-		{
-			victim = target,
-			attacker = self.caster,
-			ability = self,
-			damage_type = self.talents.r1_damage_type,
-			damage = self.talents.r1_damage,
-		},
-		"modifier_ogremagi_multi_1"
-	)
 end
 
 modifier_ogre_magi_multicast_custom = class(mod_hidden)
@@ -373,8 +371,7 @@ function modifier_ogre_magi_multicast_custom:SpellEvent(params)
 		return
 	end
 
-	local delay = ability.multicast_delay and ability.multicast_delay or self.ability.talents.r7_interval
-	local no_target = (bit.band(ability:GetBehaviorInt(), DOTA_ABILITY_BEHAVIOR_NO_TARGET) ~= 0) and 1 or 0
+	local delay = ability.multicast_delay or self.ability.talents.r7_interval
 	local target = params.target and params.target:entindex() or nil
 	local x
 	local y
@@ -497,7 +494,6 @@ function modifier_ogre_magi_multicast_custom_cast:OnCreated(table)
 
 	self.cast_ability = EntIndexToHScript(table.ability)
 	self.target = nil
-	self.no_target = table.no_target
 	self.point = nil
 	local effect_target = self.parent
 
@@ -512,7 +508,7 @@ function modifier_ogre_magi_multicast_custom_cast:OnCreated(table)
 
 	self.count = table.count
 	self.delay = table.delay
-	self.damage = (1 + self.ability.talents.r7_damage)
+	self.damage = 1 + (self.ability.talents.has_r7 == 1 and self.ability.talents.r7_damage or 0)
 	if
 		self.cast_ability == self.parent.fireblast_ability
 		or self.cast_ability == self.parent.fireblast_scepter_ability
@@ -555,7 +551,7 @@ function modifier_ogre_magi_multicast_custom_cast:OnIntervalThink()
 	local old_point = self.parent:GetCursorPosition()
 	local allow_cast = true
 
-	if self.no_target ~= 0 and self.target then
+	if self.target then
 		if self.target:IsNull() then
 			self:Destroy()
 			return
@@ -598,6 +594,27 @@ end
 function modifier_ogre_magi_multicast_custom_legendary:StatusEffectPriority()
 	return MODIFIER_PRIORITY_HIGH
 end
+function modifier_ogre_magi_multicast_custom_legendary:IsAura()
+	return IsServer() and self.parent:IsAlive()
+end
+function modifier_ogre_magi_multicast_custom_legendary:GetAuraDuration()
+	return 0
+end
+function modifier_ogre_magi_multicast_custom_legendary:GetAuraRadius()
+	return self.aura_radius
+end
+function modifier_ogre_magi_multicast_custom_legendary:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_ENEMY
+end
+function modifier_ogre_magi_multicast_custom_legendary:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_HERO
+end
+function modifier_ogre_magi_multicast_custom_legendary:GetAuraSearchFlags()
+	return DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE
+end
+function modifier_ogre_magi_multicast_custom_legendary:GetModifierAura()
+	return "modifier_ogre_magi_multicast_custom_legendary_status"
+end
 function modifier_ogre_magi_multicast_custom_legendary:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -610,6 +627,7 @@ function modifier_ogre_magi_multicast_custom_legendary:OnCreated()
 	if not IsServer() then
 		return
 	end
+	self.RemoveForDuel = true
 	self.timer = self.duration
 	self.parent:GenericParticle("particles/ogre_magi/ogre_magi_multicast_infinity.vpcf", self, true)
 	self.parent:GenericParticle("particles/ogre_magi/ogre_magi_multicast_buff.vpcf", self)
@@ -698,28 +716,6 @@ function modifier_ogre_magi_multicast_custom_legendary:GetModifierPercentageCool
 	return self.cdr
 end
 
-function modifier_ogre_magi_multicast_custom_legendary:IsAura()
-	return IsServer() and self.parent:IsAlive()
-end
-function modifier_ogre_magi_multicast_custom_legendary:GetAuraDuration()
-	return 0
-end
-function modifier_ogre_magi_multicast_custom_legendary:GetAuraRadius()
-	return self.aura_radius
-end
-function modifier_ogre_magi_multicast_custom_legendary:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_ENEMY
-end
-function modifier_ogre_magi_multicast_custom_legendary:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_HERO
-end
-function modifier_ogre_magi_multicast_custom_legendary:GetAuraSearchFlags()
-	return DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE
-end
-function modifier_ogre_magi_multicast_custom_legendary:GetModifierAura()
-	return "modifier_ogre_magi_multicast_custom_legendary_status"
-end
-
 modifier_ogre_magi_multicast_custom_legendary_status = class(mod_hidden)
 function modifier_ogre_magi_multicast_custom_legendary_status:OnCreated()
 	self.parent = self:GetParent()
@@ -750,6 +746,7 @@ function modifier_ogre_magi_multicast_custom_heal:OnCreated(table)
 	if not IsServer() then
 		return
 	end
+	self.RemoveForDuel = true
 	self:OnRefresh()
 end
 
@@ -819,6 +816,13 @@ function modifier_ogre_magi_multicast_custom_fire:OnRefresh(table)
 	end
 
 	self:IncrementStackCount()
+
+	if self.effect_cast then
+		local number_1 = self:GetStackCount()
+		local double = math.floor(number_1 / 10)
+		local number_2 = number_1 - double * 10
+		ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(double, number_1, number_2))
+	end
 end
 
 function modifier_ogre_magi_multicast_custom_fire:OnDestroy()
@@ -847,20 +851,6 @@ function modifier_ogre_magi_multicast_custom_fire:DeclareFunctions()
 		MODIFIER_PROPERTY_TOOLTIP,
 		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
 	}
-end
-
-function modifier_ogre_magi_multicast_custom_fire:OnStackCountChanged(iStackCount)
-	if not IsServer() then
-		return
-	end
-	if not self.effect_cast then
-		return
-	end
-	local number_1 = self:GetStackCount()
-	local double = math.floor(number_1 / 10)
-	local number_2 = number_1 - double * 10
-
-	ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(double, number_1, number_2))
 end
 
 function modifier_ogre_magi_multicast_custom_fire:OnTooltip()

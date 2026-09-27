@@ -38,9 +38,7 @@ function GetDotaHud()
 
 var names =
 [
-  "Legion_Duel_Panel",
-  "Pa_hunt_init_Panel",
-  "Tb_reflection_init_Panel",
+  "PickUI_Panel",
   "TalentUI_short_Panel",
 ]
 
@@ -55,33 +53,7 @@ for (var i = 0; i < Object.keys(names).length; i++)
 }
 
 
-CustomNetTables.SubscribeNetTableListener( "hero_portrait_levels", update_levels );
-GameEvents.Subscribe_custom("reconnect_hero_levels", reconnect_hero_levels)
-
-
-
 const level_colors = ['#edb96e','#d5edf3','#feeb44',"#c4eaff",'#d1ce89','#d1ce89']
-var level_init = false
-var level_heroes = {}
-
-function update_levels(table, key, data)
-{
-  if (table != "hero_portrait_levels") return
-  if (key == "") return
-
-  if (key == -1 || key == "-1" || key == "") return
-
-  level_heroes[key] = data
-}
-
-
-function reconnect_hero_levels(kv)
-{
-  let hero = kv.hero
-  update_levels("hero_portrait_levels", hero, CustomNetTables.GetTableValue("hero_portrait_levels", hero))
-}
-
-
 
 function check_level_timer()
 {
@@ -90,7 +62,7 @@ function check_level_timer()
   let hero = Entities.GetUnitName(hero_id)
 
 
-  let level_data = level_heroes[hero]
+  let tier = Game.GetPlayerTier(Entities.GetPlayerOwnerID(hero_id))
   let level_icon = $.GetContextPanel().FindChildTraverse("level_icon_custom")
   let hero_label = $.GetContextPanel().GetParent().FindChildTraverse("UnitNameLabel");
 
@@ -108,10 +80,10 @@ function check_level_timer()
   }  
   
 
-  if ((level_data)&&(level_data.tier != undefined)&&(level_data.tier > -1))
+  if (tier != undefined && tier > -1)
   {
-    hero_label.style.color = level_colors[level_data.tier];
-    level_icon.style.backgroundImage = 'url("s2r://panorama/images/hud/portrait_hero_badge_frame_tier_' + String(level_data.tier + 1) + '_psd.vtex")';
+    hero_label.style.color = level_colors[tier];
+    level_icon.style.backgroundImage = 'url("s2r://panorama/images/hud/portrait_hero_badge_frame_tier_' + String(tier + 1) + '_psd.vtex")';
     level_icon.style.opacity = "1";
 
   }
@@ -120,13 +92,6 @@ function check_level_timer()
     hero_label.style.color = 'white';
     level_icon.style.opacity = "0";
   }
-
-
-  $.Schedule( 0.1, function()
-  { 
-    check_level_timer()
-  })
-  
 }
 
 
@@ -134,20 +99,14 @@ function check_level_timer()
 function init()
 {
 
-  GameEvents.Subscribe_custom('pa_hunt_think', pa_hunt_think)
-  GameEvents.Subscribe_custom('pa_hunt_end', pa_hunt_end)
-  GameEvents.Subscribe_custom('pa_hunt_init', pa_hunt_init)
-  GameEvents.Subscribe_custom('pa_hunt_init_end', pa_hunt_init_end)
-
-  GameEvents.Subscribe_custom('tb_reflection_init', tb_reflection_init)
-  GameEvents.Subscribe_custom('tb_reflection_init_end', tb_reflection_init_end)
-  
-  GameEvents.Subscribe_custom('legion_duel_init', legion_duel_init)
-  GameEvents.Subscribe_custom('legion_duel_end', legion_duel_end)
+  GameEvents.Subscribe_custom('pick_ui', pick_ui)
 
   GameEvents.Subscribe_custom('lifestealer_infest', lifestealer_infest)
 
   GameEvents.Subscribe_custom('init_hero_level', init_hero_level)
+  GameEvents.Subscribe_custom('player_heroes', init_hero_level)
+  GameEvents.Subscribe('dota_player_update_selected_unit', init_hero_level)
+  GameEvents.Subscribe('dota_player_update_query_unit', init_hero_level)
 
   GameEvents.Subscribe_custom('invoker_hide_neutral', invoker_hide_neutral)
 
@@ -199,7 +158,7 @@ function InvokerAbuse()
 
 function init_hero_level(kv)
 {
-  check_level_timer()
+  $.Schedule(0, check_level_timer)
 }
 
 
@@ -424,6 +383,8 @@ function talent_ui_short(kv)
   let override_ability = kv.override_ability
   let text = kv.top_text
   let stack_icon_zero = kv.stack_icon_zero
+  let glow = kv.glow
+  let glow_style_short = style + "_Glow"
 
   if (hide == 1)  
   {
@@ -488,6 +449,28 @@ function talent_ui_short(kv)
     filler_short.AddClass(style + "_Filler")
     icon_short.AddClass(style + "_Icon")
     current_style_short = style
+  }
+
+  if (glow == 1)
+  {
+    let add_style = glow_style_short
+    if (active == 1)
+      add_style = glow_style_short + "_Active"
+
+    if (!bar_short.BHasClass(add_style))
+    {
+      bar_short.AddClass(add_style)
+      icon_short.AddClass(add_style)
+    }
+  }else
+  {
+    if (bar_short.BHasClass(glow_style_short) || bar_short.BHasClass(glow_style_short + "_Active"))
+    {
+      bar_short.RemoveClass(glow_style_short)
+      icon_short.RemoveClass(glow_style_short)
+      bar_short.RemoveClass(glow_style_short + "_Active")
+      icon_short.RemoveClass(glow_style_short + "_Active")
+    }
   }
 
   if (text != -1)
@@ -612,60 +595,6 @@ function talent_ui_short(kv)
 
 
 
-function pa_hunt_think(kv)
-{
-
-
-  let main = $.GetContextPanel().FindChildTraverse("PA_Hunt_Panel")
-  if (main.BHasClass("PA_Hunt_Panel_hidden"))
-  {
-    main.RemoveClass("PA_Hunt_Panel_hidden")
-    main.AddClass("PA_Hunt_Panel")
-  }
-
-
-  let hero_icon = $.GetContextPanel().FindChildTraverse("PA_Hunt_Icon")
-  hero_icon.style.backgroundImage = "url('file://{images}/heroes/" + kv.hero + ".png')"
-  hero_icon.style.backgroundSize = "contain";
-
-  var text = ''
-  var min = String( Math.trunc(kv.timer/60 ))
-  var sec_n =  kv.timer - 60*Math.trunc(kv.timer/60)  
-  var sec = String(sec_n)
-  if (sec_n < 10) 
-  {
-    sec = '0' + sec
-
-  }
-
-  text = min  + ':' + sec
-
-
-
-  let timer = $.GetContextPanel().FindChildTraverse("PA_Hunt_gold_timer")
-  timer.text = text
-
-}
-
-
-function pa_hunt_end(kv)
-{
-
-
-  let main = $.GetContextPanel().FindChildTraverse("PA_Hunt_Panel")
-  
-  if (main.BHasClass("PA_Hunt_Panel"))
-  {
-    main.RemoveClass("PA_Hunt_Panel")
-    main.AddClass("PA_Hunt_Panel_hidden")
-  }
-}
-
-
-
-
-
-
 function roundPlus(x, n) { //x - число, n - количество знаков
 
   if (isNaN(x) || isNaN(n)) return false;
@@ -680,289 +609,116 @@ function roundPlus(x, n) { //x - число, n - количество знако
 
 
 
-function legion_duel_init(kv)
+function pick_ui(data)
 {
-  let main = DotaHud.FindChildTraverse("Legion_Duel_Panel")
+  let main = DotaHud.FindChildTraverse("PickUI_Panel")
 
-  if (main.BHasClass("Legion_Duel_Panel_show") || main.BHasClass("Legion_Duel_Panel_visible") || main.BHasClass("Legion_Duel_Panel_hide"))
+  if (data.hide == 1)
   {
+    pick_ui_hide(main)
     return
-  }else 
-  {
-    main.RemoveClass("Legion_Duel_Panel_hidden")
-    main.RemoveClass("Legion_Duel_Panel_hide")
-    main.AddClass("Legion_Duel_Panel_show")
-    main.AddClass("Legion_Duel_Panel_visible")
-
-    $.Schedule( 0.3, function()
-    { 
-      main.RemoveClass("Legion_Duel_Panel_show")
-    })
   }
+
+  pick_ui_show(main)
+
+  let text = main.FindChildTraverse("PickUI_text")
+  text.text = $.Localize(data.text)
+
+  for (var i = 1; i <= 10; i++)
+  {
+    let slot = main.FindChildTraverse("PickUI_target_" + String(i))
+    if (!slot)
+      break
+
+    let target = data.targets ? data.targets[i] : null
+
+    if (!target)
+    {
+      slot.style.visibility = "collapse"
+      continue
+    }
+
+    slot.style.visibility = "visible"
+
+    let icon = main.FindChildTraverse("PickUI_target_icon_" + String(i))
+    icon.style.backgroundImage = 'url("' + target.image + '")'
+    icon.style.backgroundSize = '100%'
+
+    let killed = main.FindChildTraverse("PickUI_target_killed_" + String(i))
+    let gold = main.FindChildTraverse("PickUI_target_gold_" + String(i))
+    let gold_number = main.FindChildTraverse("PickUI_target_gold_number_" + String(i))
+
+    if (target.gold > 0 && target.killed != 1)
+    {
+      gold.RemoveClass("PickUI_target_gold_hidden")
+      gold_number.text = String(target.gold)
+    }else
+    {
+      gold.AddClass("PickUI_target_gold_hidden")
+    }
+
+    if (target.killed == 1)
+    {
+      icon.AddClass("PickUI_target_icon_killed")
+      killed.AddClass("PickUI_target_killed_show")
+      icon.SetPanelEvent("onactivate", function() {});
+    }else
+    {
+      icon.RemoveClass("PickUI_target_icon_killed")
+      killed.RemoveClass("PickUI_target_killed_show")
+      pick_ui_set_event(main, icon, i)
+    }
+  }
+}
+
+
+function pick_ui_show(main)
+{
+  if (main.BHasClass("PickUI_Panel_show") || main.BHasClass("PickUI_Panel_visible"))
+    return
+
+  main.RemoveClass("PickUI_Panel_hidden")
+  main.RemoveClass("PickUI_Panel_hide")
+  main.AddClass("PickUI_Panel_show")
+  main.AddClass("PickUI_Panel_visible")
 
   Game.EmitSound("Lc.Duel_target_start")
-
-  let hero_1 = main.FindChildTraverse("Legion_Duel_hero_1")
-  let hero_2 = main.FindChildTraverse("Legion_Duel_hero_2")
-
-
-  hero_1.style.backgroundImage =  'url( "file://{images}/heroes/' + kv.hero_1 + '.png")'
-  hero_1.style.backgroundSize = '100%'
-
-  hero_2.style.backgroundImage =  'url( "file://{images}/heroes/' + kv.hero_2 + '.png")'
-  hero_2.style.backgroundSize = '100%'
-
-
-  hero_1.SetPanelEvent("onactivate", function() 
-  {
-    if ( !main.BHasClass("Legion_Duel_Panel_show") && !main.BHasClass("Legion_Duel_Panel_hide"))
-    {
-      Game.EmitSound("UI.Click")
-      GameEvents.SendCustomGameEventToServer_custom("LcDuelPick", {pick : 1}); 
-    }
-  });
-
-
-  hero_2.SetPanelEvent("onactivate", function() 
-  {
-    if ( !main.BHasClass("Legion_Duel_Panel_show") && !main.BHasClass("Legion_Duel_Panel_hide"))
-    {
-      Game.EmitSound("UI.Click")
-      GameEvents.SendCustomGameEventToServer_custom("LcDuelPick", {pick : 2}); 
-    }
-  });
-
-}
-
-
-
-
-
-function legion_duel_end(kv)
-{
-  let main = DotaHud.FindChildTraverse("Legion_Duel_Panel")
-
-  if (main.BHasClass("Legion_Duel_Panel_hidden") || main.BHasClass("Legion_Duel_Panel_show") || main.BHasClass("Legion_Duel_Panel_hide"))
-  {
-    return
-  }else 
-  {
-    main.RemoveClass("Legion_Duel_Panel_visible")
-    main.RemoveClass("Legion_Duel_Panel_show")
-    main.AddClass("Legion_Duel_Panel_hide")
-    main.AddClass("Legion_Duel_Panel_hidden")
-
-    $.Schedule( 0.3, function()
-    { 
-      main.RemoveClass("Legion_Duel_Panel_hide")
-    })
-  }
-
-
-}
-
-
-
-
-
-function pa_hunt_init(data)
-{
-
-  let main = DotaHud.FindChildTraverse("Pa_hunt_init_Panel")
-
-  if (main.BHasClass("Pa_hunt_init_Panel_show") || main.BHasClass("Pa_hunt_init_Panel_visible") || main.BHasClass("Pa_hunt_init_Panel_hide"))
-  {
-    return
-  }else 
-  {
-    main.RemoveClass("Pa_hunt_init_Panel_hidden")
-    main.RemoveClass("Pa_hunt_init_Panel_hide")
-    main.AddClass("Pa_hunt_init_Panel_show")
-    main.AddClass("Pa_hunt_init_Panel_visible")
-
-    $.Schedule( 0.3, function()
-    { 
-      main.RemoveClass("Pa_hunt_init_Panel_show")
-    })
-  }
-
-  Game.EmitSound("Lc.Duel_target_start")
-
-
-  for (var i = 1; i <= Object.keys(data).length; i++)  
-  {
-    let icon = main.FindChildTraverse("Pa_hunt_init_hero_" + String(i))
-    if (icon)
-    {
-      icon.SetPanelEvent("onactivate", function() 
-      {
-
-      });
-
-      if (data[i] && data[i]["target"])
-      {
-        let name = data[i]["target"]
-        let red = data[i]["killed"]
-        icon.style.backgroundImage =  'url( "file://{images}/heroes/' + name + '.png")'
-        icon.style.backgroundSize = '100%'
-        
-        if (red == 1)
-        {
-          let killed = icon.FindChildTraverse("Pa_hunt_init_hero_killed_overlay_" + String(i))
-          if (icon)
-          {
-            killed.AddClass("Pa_hunt_init_hero_killed_overlay_show")
-          }else 
-          {
-            killed.RemoveClass("Pa_hunt_init_hero_killed_overlay_show")
-          }
-          icon.AddClass("Pa_hunt_init_hero_killed")
-        }else 
-        {
-          pa_hunt_set_event(icon, i)
-          icon.RemoveClass("Pa_hunt_init_hero_killed")
-        }
-      }
-    }
-  }
-}
-
-function pa_hunt_set_event(panel, i)
-{
-  let main = DotaHud.FindChildTraverse("Pa_hunt_init_Panel")
-  panel.SetPanelEvent("onactivate", function() 
-  {
-    if ( !main.BHasClass("Pa_hunt_init_Panel_show") && !main.BHasClass("Pa_hunt_init_Panel_hide"))
-    {
-      Game.EmitSound("UI.Click")
-      GameEvents.SendCustomGameEventToServer_custom("PaHuntPick", {pick : i}); 
-    }
-  });
-}
-
-
-function pa_hunt_init_end(kv)
-{
-  let main = DotaHud.FindChildTraverse("Pa_hunt_init_Panel")
-
-  if (main.BHasClass("Pa_hunt_init_Panel_hidden") || main.BHasClass("Pa_hunt_init_Panel_show") || main.BHasClass("Pa_hunt_init_Panel_hide"))
-  {
-    return
-  }else 
-  {
-    main.RemoveClass("Pa_hunt_init_Panel_visible")
-    main.RemoveClass("Pa_hunt_init_Panel_show")
-    main.AddClass("Pa_hunt_init_Panel_hide")
-    main.AddClass("Pa_hunt_init_Panel_hidden")
-
-    $.Schedule( 0.3, function()
-    { 
-      main.RemoveClass("Pa_hunt_init_Panel_hide")
-    })
-  }
-}
-
-
-
-
-
-
-
-
-function tb_reflection_init(data)
-{
-
-let main = DotaHud.FindChildTraverse("Tb_reflection_init_Panel")
-
-if (main.BHasClass("Tb_reflection_init_Panel_show") || main.BHasClass("Tb_reflection_init_Panel_visible") || main.BHasClass("Tb_reflection_init_Panel_hide"))
-{
-  return
-}else 
-{
-  main.RemoveClass("Tb_reflection_init_Panel_hidden")
-  main.RemoveClass("Tb_reflection_init_Panel_hide")
-  main.AddClass("Tb_reflection_init_Panel_show")
-  main.AddClass("Tb_reflection_init_Panel_visible")
 
   $.Schedule( 0.3, function()
-  { 
-    main.RemoveClass("Tb_reflection_init_Panel_show")
+  {
+    main.RemoveClass("PickUI_Panel_show")
   })
 }
 
-for (var i = 1; i <= 10; i++)  
-{
-  let icon = main.FindChildTraverse("Tb_reflection_init_hero_" + String(i))
-  if (icon)
-  {
-    icon.SetPanelEvent("onactivate", function() 
-    {
 
-    });
-    if (data[i])
-    {
-      if (data["lifestealer_legendary"])
-      {
-        let name = data[i]
-        icon.style.visibility = "visible"
-        icon.style.backgroundImage =  "url('file://{images}/custom_game/icons/mini/npc_dota_hero_life_stealer/" + name + ".png')"
-        icon.style.backgroundSize = '100%'
-      }else
-      {
-        let name = data[i]["target"]
-        icon.style.visibility = "visible"
-        icon.style.backgroundImage =  'url( "file://{images}/heroes/' + name + '.png")'
-        icon.style.backgroundSize = '100%'
-      }
-      tb_reflection_set_event(icon, i)
-    }else
-    {
-      icon.style.visibility = "collapse"
-    } 
-  }else
+function pick_ui_hide(main)
+{
+  if (main.BHasClass("PickUI_Panel_hidden"))
+    return
+
+  main.RemoveClass("PickUI_Panel_visible")
+  main.RemoveClass("PickUI_Panel_show")
+  main.AddClass("PickUI_Panel_hide")
+  main.AddClass("PickUI_Panel_hidden")
+
+  $.Schedule( 0.3, function()
   {
-    break
-  }
+    main.RemoveClass("PickUI_Panel_hide")
+  })
 }
 
-}
 
-function tb_reflection_set_event(panel, i)
+function pick_ui_set_event(main, panel, i)
 {
-  let main = DotaHud.FindChildTraverse("Tb_reflection_init_Panel")
-  panel.SetPanelEvent("onactivate", function() 
+  panel.SetPanelEvent("onactivate", function()
   {
-    if ( !main.BHasClass("Tb_reflection_init_Panel_show") && !main.BHasClass("Tb_reflection_init_Panel_hide"))
+    if ( !main.BHasClass("PickUI_Panel_show") && !main.BHasClass("PickUI_Panel_hide"))
     {
       Game.EmitSound("UI.Click")
-      GameEvents.SendCustomGameEventToServer_custom("TbReflectionPick", {pick : i}); 
+      GameEvents.SendCustomGameEventToServer_custom("CustomPick", {pick : i});
     }
   });
 }
-
-
-function tb_reflection_init_end(kv)
-{
-  let main = DotaHud.FindChildTraverse("Tb_reflection_init_Panel")
-
-  if (main.BHasClass("Tb_reflection_init_Panel_hidden") || main.BHasClass("Tb_reflection_init_Panel_show") || main.BHasClass("Tb_reflection_init_Panel_hide"))
-  {
-    return
-  }else 
-  {
-    main.RemoveClass("Tb_reflection_init_Panel_visible")
-    main.RemoveClass("Tb_reflection_init_Panel_show")
-    main.AddClass("Tb_reflection_init_Panel_hide")
-    main.AddClass("Tb_reflection_init_Panel_hidden")
-
-    $.Schedule( 0.3, function()
-    { 
-      main.RemoveClass("Tb_reflection_init_Panel_hide")
-    })
-  }
-}
-
-
 
 
 var lifestealer_init = false

@@ -24,6 +24,14 @@ function item_crippling_crossbow_custom:Precache(context)
 	PrecacheResource("particle", "particles/items4_fx/hefty_crossbow_debuff.vpcf", context)
 end
 
+function item_crippling_crossbow_custom:Spawn()
+	self.projectile_speed = self:GetSpecialValueFor("projectile_speed")
+	self.damage = self:GetSpecialValueFor("damage")
+	self.duration = self:GetSpecialValueFor("duration")
+	self.slow_pct = self:GetSpecialValueFor("slow_pct")
+	self.damage_reduce = self:GetSpecialValueFor("damage_reduce")
+end
+
 function item_crippling_crossbow_custom:OnSpellStart()
 	local caster = self:GetCaster()
 	caster:EmitSound("item_crippling_crossbow.cast")
@@ -33,7 +41,7 @@ function item_crippling_crossbow_custom:OnSpellStart()
 		Source = caster,
 		Ability = self,
 		EffectName = "particles/items4_fx/hefty_crossbow.vpcf",
-		iMoveSpeed = self:GetSpecialValueFor("projectile_speed"),
+		iMoveSpeed = self.projectile_speed,
 		bReplaceExisting = false,
 		bProvidesVision = true,
 		iVisionRadius = 30,
@@ -56,13 +64,13 @@ function item_crippling_crossbow_custom:OnProjectileHit(hTarget, vLocation)
 		attacker = caster,
 		ability = self,
 		damage_type = DAMAGE_TYPE_MAGICAL,
-		damage = self:GetSpecialValueFor("damage"),
+		damage = self.damage,
 	})
 	hTarget:AddNewModifier(
 		caster,
 		self,
 		"modifier_item_crippling_crossbow_custom",
-		{ duration = self:GetSpecialValueFor("duration") * (1 - hTarget:GetStatusResistance()) }
+		{ duration = self.duration * (1 - hTarget:GetStatusResistance()) }
 	)
 	hTarget:EmitSound("item_crippling_crossbow.target")
 end
@@ -78,8 +86,8 @@ function modifier_item_crippling_crossbow_custom:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.slow = self.ability:GetSpecialValueFor("slow_pct")
-	self.damage_reduce = self.ability:GetSpecialValueFor("damage_reduce")
+	self.slow = self.ability.slow_pct
+	self.damage_reduce = self.ability.damage_reduce
 end
 
 function modifier_item_crippling_crossbow_custom:DeclareFunctions()

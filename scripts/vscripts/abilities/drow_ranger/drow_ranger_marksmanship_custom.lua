@@ -39,11 +39,6 @@ LinkLuaModifier(
 	LUA_MODIFIER_MOTION_NONE
 )
 LinkLuaModifier(
-	"modifier_drow_ranger_marksmanship_custom_armor_reduce",
-	"abilities/drow_ranger/drow_ranger_marksmanship_custom",
-	LUA_MODIFIER_MOTION_NONE
-)
-LinkLuaModifier(
 	"modifier_drow_ranger_marksmanship_custom_gust_spell",
 	"abilities/drow_ranger/drow_ranger_marksmanship_custom",
 	LUA_MODIFIER_MOTION_NONE
@@ -56,6 +51,7 @@ LinkLuaModifier(
 
 drow_ranger_marksmanship_custom = class({})
 drow_ranger_marksmanship_custom.talents = {}
+drow_ranger_marksmanship_custom.visual_max = 5
 
 function drow_ranger_marksmanship_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
@@ -70,11 +66,21 @@ function drow_ranger_marksmanship_custom:Precache(context)
 		"particles/econ/items/drow/drow_arcana/drow_arcana_crit_or_marksmanship_proc_frost.vpcf",
 		context
 	)
+	PrecacheResource("particle", "particles/drow_ranger/frost_cleave.vpcf", context)
+	PrecacheResource("particle", "particles/drow_ranger/silence_legendary_damage.vpcf", context)
+	PrecacheResource("particle", "particles/drow_ranger/multi_refresh.vpcf", context)
+	PrecacheResource("particle", "particles/drow_ranger/multi_armor.vpcf", context)
+	PrecacheResource("particle", "particles/drow_ranger/frost_heal.vpcf", context)
+	PrecacheResource("particle", "particles/maiden_shield_active.vpcf", context)
+	PrecacheResource(
+		"particle",
+		"particles/econ/items/drow/drow_ti9_immortal/status_effect_drow_ti9_frost_arrow.vpcf",
+		context
+	)
 end
 
 function drow_ranger_marksmanship_custom:UpdateTalents()
 	local caster = self:GetCaster()
-
 	if not self.init then
 		self.init = true
 		self.talents = {
@@ -87,23 +93,22 @@ function drow_ranger_marksmanship_custom:UpdateTalents()
 			r2_heal = 0,
 			r2_range = 0,
 
-			has_stack = 0,
+			has_r3 = 0,
 			r3_damage_alt = 0,
-			stack_damage = 0,
-			stack_bonus = 0,
-			stack_max = caster:GetTalentValue("modifier_drow_marksman_3", "max", true),
-			stack_duration_creeps = caster:GetTalentValue("modifier_drow_marksman_3", "duration_creeps", true),
-			stack_duration = caster:GetTalentValue("modifier_drow_marksman_3", "duration", true),
+			r3_damage = 0,
+			r3_bonus = 0,
+			r3_max = caster:GetTalentValue("modifier_drow_marksman_3", "max", true),
+			r3_duration_creeps = caster:GetTalentValue("modifier_drow_marksman_3", "duration_creeps", true),
+			r3_duration = caster:GetTalentValue("modifier_drow_marksman_3", "duration", true),
 
-			has_legendary = 0,
-			legendary_max = caster:GetTalentValue("modifier_drow_marksman_7", "max", true),
-			legendary_chance = caster:GetTalentValue("modifier_drow_marksman_7", "chance", true),
-			legendary_duration = caster:GetTalentValue("modifier_drow_marksman_7", "duration", true),
-			legendary_stack_duration = caster:GetTalentValue("modifier_drow_marksman_7", "stack_duration", true),
-			legendary_cd = caster:GetTalentValue("modifier_drow_marksman_7", "talent_cd", true),
-			legendary_radius = caster:GetTalentValue("modifier_drow_marksman_7", "radius", true),
+			has_r7 = 0,
+			r7_max = caster:GetTalentValue("modifier_drow_marksman_7", "max", true),
+			r7_chance = caster:GetTalentValue("modifier_drow_marksman_7", "chance", true),
+			r7_duration = caster:GetTalentValue("modifier_drow_marksman_7", "duration", true),
+			r7_stack_duration = caster:GetTalentValue("modifier_drow_marksman_7", "stack_duration", true),
+			r7_talent_cd = caster:GetTalentValue("modifier_drow_marksman_7", "talent_cd", true),
+			r7_radius = caster:GetTalentValue("modifier_drow_marksman_7", "radius", true),
 			r7_status = caster:GetTalentValue("modifier_drow_marksman_7", "status", true),
-			legendary_visual_max = 5,
 
 			has_w7 = 0,
 			w7_spell = caster:GetTalentValue("modifier_drow_gust_7", "spell", true),
@@ -128,14 +133,14 @@ function drow_ranger_marksmanship_custom:UpdateTalents()
 	end
 
 	if caster:HasTalent("modifier_drow_marksman_3") then
-		self.talents.has_stack = 1
-		self.talents.stack_damage = caster:GetTalentValue("modifier_drow_marksman_3", "damage") / 100
-		self.talents.stack_bonus = caster:GetTalentValue("modifier_drow_marksman_3", "bonus") / self.talents.stack_max
+		self.talents.has_r3 = 1
+		self.talents.r3_damage = caster:GetTalentValue("modifier_drow_marksman_3", "damage") / 100
+		self.talents.r3_bonus = caster:GetTalentValue("modifier_drow_marksman_3", "bonus")
 		self.talents.r3_damage_alt = caster:GetTalentValue("modifier_drow_marksman_3", "damage_alt") / 100
 	end
 
 	if caster:HasTalent("modifier_drow_marksman_7") then
-		self.talents.has_legendary = 1
+		self.talents.has_r7 = 1
 		self.tracker:UpdateUI()
 	end
 
@@ -149,7 +154,6 @@ function drow_ranger_marksmanship_custom:UpdateTalents()
 end
 
 function drow_ranger_marksmanship_custom:GetAbilityTextureName()
-	local caster = self:GetCaster()
 	return wearables_system:GetAbilityIconReplacement(self.caster, "drow_ranger_marksmanship", self)
 end
 
@@ -161,40 +165,44 @@ function drow_ranger_marksmanship_custom:GetIntrinsicModifierName()
 end
 
 function drow_ranger_marksmanship_custom:GetCastRange()
-	return (self.range and self.range or 0) - self:GetCaster():GetCastRangeBonus()
+	return (self.range or 0) - self.caster:GetCastRangeBonus()
 end
 
 function drow_ranger_marksmanship_custom:GetCooldown(iLevel)
-	if self.talents.has_legendary == 0 then
-		return
-	end
-	return self.talents.legendary_cd
+	return self.talents.has_r7 == 1 and self.talents.r7_talent_cd or 0
 end
 
 function drow_ranger_marksmanship_custom:GetBehavior()
-	if self.talents.has_legendary == 1 then
+	if self.talents.has_r7 == 1 then
 		return DOTA_ABILITY_BEHAVIOR_NO_TARGET
 	end
 	return DOTA_ABILITY_BEHAVIOR_PASSIVE
 end
 
 function drow_ranger_marksmanship_custom:GetCastAnimation()
-	if self.talents.has_legendary == 0 then
+	if self.talents.has_r7 == 0 then
 		return
 	end
 	return ACT_DOTA_CAST_ABILITY_3
 end
 
+function drow_ranger_marksmanship_custom:GetProj()
+	return wearables_system:GetParticleReplacementAbility(
+		self.caster,
+		"particles/units/heroes/hero_drow/drow_marksmanship_attack.vpcf",
+		self
+	)
+end
+
 function drow_ranger_marksmanship_custom:OnAbilityPhaseStart()
-	if self.talents.has_legendary == 0 then
+	if self.talents.has_r7 == 0 then
 		return
 	end
-	local caster = self:GetCaster()
 
-	local mod = caster:FindModifierByName("modifier_drow_ranger_marksmanship_custom_legendary_stack")
+	local mod = self.caster:FindModifierByName("modifier_drow_ranger_marksmanship_custom_legendary_stack")
 	if not mod or mod:GetStackCount() <= 0 then
 		CustomGameEventManager:Send_ServerToPlayer(
-			PlayerResource:GetPlayer(caster:GetId()),
+			PlayerResource:GetPlayer(self.caster:GetId()),
 			"CreateIngameErrorMessage",
 			{ message = "#arc_no_charges" }
 		)
@@ -204,100 +212,52 @@ function drow_ranger_marksmanship_custom:OnAbilityPhaseStart()
 end
 
 function drow_ranger_marksmanship_custom:OnSpellStart()
-	local caster = self:GetCaster()
-	local mod = caster:FindModifierByName("modifier_drow_ranger_marksmanship_custom_legendary_stack")
+	local mod = self.caster:FindModifierByName("modifier_drow_ranger_marksmanship_custom_legendary_stack")
 
 	if not mod or mod:GetStackCount() <= 0 then
 		return
 	end
 
 	local stack = mod:GetStackCount()
-	caster:EmitSound("Drow.Shard_active1")
-	caster:EmitSound("Drow.Shard_active2")
+	self.caster:EmitSound("Drow.Shard_active1")
+	self.caster:EmitSound("Drow.Shard_active2")
 
-	caster:AddNewModifier(
-		caster,
+	self.caster:AddNewModifier(
+		self.caster,
 		self,
 		"modifier_drow_ranger_marksmanship_custom_legendary_active",
-		{ duration = stack * self.talents.legendary_duration }
+		{ duration = stack * self.talents.r7_duration }
 	)
 	mod:Destroy()
-end
-
-function drow_ranger_marksmanship_custom:ApplyArmor(target)
-	if not IsServer() then
-		return
-	end
-	local caster = self:GetCaster()
-
-	if caster.current_model == "models/items/drow/drow_arcana/drow_arcana.vmdl" then
-		local vec = (target:GetAbsOrigin() - caster:GetAbsOrigin()):Normalized()
-		local mark_crit_arcana = ParticleManager:CreateParticle(
-			"particles/econ/items/drow/drow_arcana/drow_arcana_crit_or_marksmanship_proc_frost.vpcf",
-			PATTACH_CUSTOMORIGIN_FOLLOW,
-			target
-		)
-		ParticleManager:SetParticleControlEnt(
-			mark_crit_arcana,
-			0,
-			target,
-			PATTACH_POINT_FOLLOW,
-			"attach_hitloc",
-			target:GetOrigin(),
-			true
-		)
-		ParticleManager:SetParticleControl(mark_crit_arcana, 1, target:GetOrigin())
-		ParticleManager:SetParticleControlForward(mark_crit_arcana, 1, -vec)
-		ParticleManager:ReleaseParticleIndex(mark_crit_arcana)
-	end
-
-	target:AddNewModifier(
-		caster,
-		self,
-		"modifier_drow_ranger_marksmanship_custom_proc_armor",
-		{ duration = FrameTime() }
-	)
-end
-
-function drow_ranger_marksmanship_custom:GetProj()
-	local caster = self:GetCaster()
-	local ulti_effect = wearables_system:GetParticleReplacementAbility(
-		caster,
-		"particles/units/heroes/hero_drow/drow_marksmanship_attack.vpcf",
-		self
-	)
-	return ulti_effect
 end
 
 function drow_ranger_marksmanship_custom:LegendaryStack()
 	if not self:IsTrained() then
 		return
 	end
-	if self.talents.has_legendary == 0 then
+	if self.talents.has_r7 == 0 then
 		return
 	end
 	if self:GetCooldownTimeRemaining() > 0 then
 		return
 	end
-	local caster = self:GetCaster()
-
-	if not caster:HasModifier("modifier_drow_ranger_innate_custom_active") then
+	if not self.caster:HasModifier("modifier_drow_ranger_innate_custom_active") then
 		return
 	end
-	if caster:HasModifier("modifier_drow_ranger_marksmanship_custom_legendary_active") then
+	if self.caster:HasModifier("modifier_drow_ranger_marksmanship_custom_legendary_active") then
 		return
 	end
 
-	caster:AddNewModifier(
-		caster,
+	self.caster:AddNewModifier(
+		self.caster,
 		self,
 		"modifier_drow_ranger_marksmanship_custom_legendary_stack",
-		{ duration = self.talents.legendary_stack_duration }
+		{ duration = self.talents.r7_stack_duration }
 	)
 end
 
 modifier_drow_ranger_marksmanship_custom_tracker = class(mod_hidden)
-function modifier_drow_ranger_marksmanship_custom_tracker:OnCreated(table)
+function modifier_drow_ranger_marksmanship_custom_tracker:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 	self.ability.tracker = self
@@ -312,7 +272,6 @@ function modifier_drow_ranger_marksmanship_custom_tracker:OnCreated(table)
 	self.ability.cleave_radius = self.ability:GetSpecialValueFor("cleave_radius")
 	self.ability.chance = self.ability:GetSpecialValueFor("chance")
 
-	self.heal_record = {}
 	self.records = {}
 	self.damageTable = {
 		attacker = self.parent,
@@ -323,13 +282,12 @@ function modifier_drow_ranger_marksmanship_custom_tracker:OnCreated(table)
 	self.GustTable =
 		{ attacker = self.parent, ability = self.ability, damage_type = self.ability.talents.w7_damage_type }
 
-	self.level = self.ability:GetLevel()
 	self.parent:AddRecordDestroyEvent(self, true)
 	self.parent:AddAttackRecordEvent_out(self)
 	self.parent:AddAttackStartEvent_out(self)
 end
 
-function modifier_drow_ranger_marksmanship_custom_tracker:OnRefresh(table)
+function modifier_drow_ranger_marksmanship_custom_tracker:OnRefresh()
 	self.ability.damage = self.ability:GetSpecialValueFor("bonus_damage")
 	self.ability.chance = self.ability:GetSpecialValueFor("chance")
 end
@@ -347,7 +305,7 @@ function modifier_drow_ranger_marksmanship_custom_tracker:UpdateUI()
 	if not IsServer() then
 		return
 	end
-	if not self.ability.talents.has_legendary == 0 then
+	if self.ability.talents.has_r7 == 0 then
 		return
 	end
 
@@ -356,7 +314,7 @@ function modifier_drow_ranger_marksmanship_custom_tracker:UpdateUI()
 	local interval = -1
 	local active = 0
 	local zero = nil
-	local max = self.ability.talents.legendary_max
+	local max = self.ability.talents.r7_max
 	local mod = self.parent:FindModifierByName("modifier_drow_ranger_marksmanship_custom_legendary_stack")
 	local active_mod = self.parent:FindModifierByName("modifier_drow_ranger_marksmanship_custom_legendary_active")
 
@@ -374,7 +332,7 @@ function modifier_drow_ranger_marksmanship_custom_tracker:UpdateUI()
 		if mod then
 			stack = mod:GetStackCount()
 		elseif active_mod then
-			max = self.ability.talents.legendary_duration * self.ability.talents.legendary_max
+			max = self.ability.talents.r7_duration * self.ability.talents.r7_max
 			stack = active_mod:GetRemainingTime()
 			override = active_mod:GetRemainingTime()
 			zero = 1
@@ -384,7 +342,7 @@ function modifier_drow_ranger_marksmanship_custom_tracker:UpdateUI()
 			if not self.particle then
 				self.particle =
 					self.parent:GenericParticle("particles/drow_ranger/mark_legendary_stack.vpcf", self, true)
-				for i = 1, self.ability.talents.legendary_visual_max do
+				for i = 1, self.ability.visual_max do
 					ParticleManager:SetParticleControl(self.particle, i, Vector(0, 0, 0))
 				end
 			end
@@ -431,7 +389,7 @@ function modifier_drow_ranger_marksmanship_custom_tracker:RollRandom()
 		return
 	end
 	local chance = self.parent:HasModifier("modifier_drow_ranger_marksmanship_custom_legendary_active")
-			and self.ability.talents.legendary_chance
+			and self.ability.talents.r7_chance
 		or self.ability.chance
 	return RollPseudoRandomPercentage(chance, 4059, self.parent)
 end
@@ -496,11 +454,7 @@ function modifier_drow_ranger_marksmanship_custom_tracker:AttackStartEvent_out(p
 			and self.parent.gust_ability.can_legendary_cd
 		then
 			self.parent.gust_ability.can_legendary_cd = false
-			self.parent:CdAbility(
-				self.parent.gust_ability,
-				self.parent.gust_ability:GetEffectiveCooldown(self.parent.gust_ability:GetLevel())
-					* self.ability.talents.w7_cd_inc
-			)
+			self.parent:CdAbility(self.parent.gust_ability, nil, self.ability.talents.w7_cd_inc)
 			self.parent:EmitSound("Drow.Gust_legendary_cd")
 
 			local particle = ParticleManager:CreateParticle(
@@ -569,9 +523,9 @@ function modifier_drow_ranger_marksmanship_custom_tracker:GetModifierProcAttack_
 	local effect = "particles/drow_ranger/frost_cleave.vpcf"
 	local damage = self.ability.damage
 
-	if self.ability.talents.has_stack then
+	if self.ability.talents.has_r3 == 1 then
 		if self.ability.talents.has_q7 == 0 then
-			damage = damage + self.ability.talents.stack_damage * self.parent:GetAgility()
+			damage = damage + self.ability.talents.r3_damage * self.parent:GetAgility()
 		else
 			damage = damage + self.ability.talents.r3_damage_alt * self.parent:GetAverageTrueAttackDamage(nil)
 		end
@@ -594,7 +548,7 @@ function modifier_drow_ranger_marksmanship_custom_tracker:GetModifierProcAttack_
 				{ duration = self.ability.talents.w7_duration }
 			)
 			self.GustTable.victim = aoe_target
-			DoDamage(self.GustTable)
+			DoDamage(self.GustTable, "modifier_drow_gust_7")
 		end
 		if target ~= aoe_target then
 			self.damageTable.victim = aoe_target
@@ -607,9 +561,9 @@ function modifier_drow_ranger_marksmanship_custom_tracker:GetModifierProcAttack_
 	ParticleManager:SetParticleControl(particle, 1, Vector(250, 0, 0))
 	ParticleManager:ReleaseParticleIndex(particle)
 
-	if self.ability.talents.has_stack == 1 then
-		local duration = target:IsCreep() and self.ability.talents.stack_duration_creeps
-			or self.ability.talents.stack_duration
+	if self.ability.talents.has_r3 == 1 then
+		local duration = target:IsCreep() and self.ability.talents.r3_duration_creeps
+			or self.ability.talents.r3_duration
 		local mod = self.parent:FindModifierByName("modifier_drow_ranger_marksmanship_custom_agi_bonus")
 		if mod then
 			duration = math.max(duration, mod:GetRemainingTime())
@@ -622,8 +576,6 @@ function modifier_drow_ranger_marksmanship_custom_tracker:GetModifierProcAttack_
 		)
 	end
 
-	self.heal_record[params.record] = true
-
 	if target:IsRealHero() then
 		self.parent:AddNewModifier(self.parent, self.ability, "modifier_drow_ranger_marksmanship_custom_perma", {})
 	end
@@ -631,13 +583,39 @@ function modifier_drow_ranger_marksmanship_custom_tracker:GetModifierProcAttack_
 	if self.ability.talents.has_w7 == 1 then
 		return
 	end
-	self.ability:ApplyArmor(params.target)
+
+	if self.parent.current_model == "models/items/drow/drow_arcana/drow_arcana.vmdl" then
+		local vec = (target:GetAbsOrigin() - self.parent:GetAbsOrigin()):Normalized()
+		local mark_crit_arcana = ParticleManager:CreateParticle(
+			"particles/econ/items/drow/drow_arcana/drow_arcana_crit_or_marksmanship_proc_frost.vpcf",
+			PATTACH_CUSTOMORIGIN_FOLLOW,
+			target
+		)
+		ParticleManager:SetParticleControlEnt(
+			mark_crit_arcana,
+			0,
+			target,
+			PATTACH_POINT_FOLLOW,
+			"attach_hitloc",
+			target:GetOrigin(),
+			true
+		)
+		ParticleManager:SetParticleControl(mark_crit_arcana, 1, target:GetOrigin())
+		ParticleManager:SetParticleControlForward(mark_crit_arcana, 1, -vec)
+		ParticleManager:ReleaseParticleIndex(mark_crit_arcana)
+	end
+
+	target:AddNewModifier(
+		self.parent,
+		self.ability,
+		"modifier_drow_ranger_marksmanship_custom_proc_armor",
+		{ duration = FrameTime() }
+	)
 	return damage
 end
 
 function modifier_drow_ranger_marksmanship_custom_tracker:RecordDestroyEvent(params)
 	self.records[params.record] = nil
-	self.heal_record[params.record] = nil
 end
 
 function modifier_drow_ranger_marksmanship_custom_tracker:GetPriority()
@@ -655,11 +633,7 @@ function modifier_drow_ranger_marksmanship_custom_tracker:GetModifierProjectileN
 		not self.parent:HasModifier("modifier_drow_ranger_frost_arrows_custom_tracker")
 		and self.parent:HasModifier("modifier_drow_ranger_marksmanship_custom_proc")
 	then
-		return wearables_system:GetParticleReplacementAbility(
-			self.parent,
-			"particles/units/heroes/hero_drow/drow_marksmanship_attack.vpcf",
-			self
-		)
+		return self.ability:GetProj()
 	end
 end
 
@@ -671,13 +645,14 @@ function modifier_drow_ranger_marksmanship_custom_agi_bonus:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.max = self.ability.talents.stack_max
-	self.bonus = self.ability.talents.stack_bonus
+	self.max = self.ability.talents.r3_max
+	self.bonus = self.ability.talents.r3_bonus / self.max
 
 	if not IsServer() then
 		return
 	end
-	self:SetStackCount(1)
+	self.RemoveForDuel = true
+	self:OnRefresh()
 end
 
 function modifier_drow_ranger_marksmanship_custom_agi_bonus:OnRefresh()
@@ -702,7 +677,9 @@ end
 
 modifier_drow_ranger_marksmanship_custom_proc_armor = class(mod_hidden)
 function modifier_drow_ranger_marksmanship_custom_proc_armor:OnCreated()
-	self.armor = self:GetParent():GetPhysicalArmorBaseValue() * self:GetAbility().armor * -1
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+	self.armor = self.parent:GetPhysicalArmorBaseValue() * self.ability.armor * -1
 end
 
 function modifier_drow_ranger_marksmanship_custom_proc_armor:DeclareFunctions()
@@ -716,14 +693,19 @@ function modifier_drow_ranger_marksmanship_custom_proc_armor:GetModifierPhysical
 end
 
 modifier_drow_ranger_marksmanship_custom_legendary_active = class(mod_visible)
-function modifier_drow_ranger_marksmanship_custom_legendary_active:OnCreated(table)
+function modifier_drow_ranger_marksmanship_custom_legendary_active:GetStatusEffectName()
+	return "particles/econ/items/drow/drow_ti9_immortal/status_effect_drow_ti9_frost_arrow.vpcf"
+end
+function modifier_drow_ranger_marksmanship_custom_legendary_active:StatusEffectPriority()
+	return MODIFIER_PRIORITY_HIGH
+end
+function modifier_drow_ranger_marksmanship_custom_legendary_active:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
 	if not IsServer() then
 		return
 	end
-
 	self.RemoveForDuel = true
 	self.ability:EndCd()
 
@@ -759,14 +741,6 @@ function modifier_drow_ranger_marksmanship_custom_legendary_active:OnCreated(tab
 	self:AddParticle(self.ground_particle, false, false, -1, true, false)
 end
 
-function modifier_drow_ranger_marksmanship_custom_legendary_active:GetStatusEffectName()
-	return "particles/econ/items/drow/drow_ti9_immortal/status_effect_drow_ti9_frost_arrow.vpcf"
-end
-
-function modifier_drow_ranger_marksmanship_custom_legendary_active:StatusEffectPriority()
-	return MODIFIER_PRIORITY_HIGH
-end
-
 function modifier_drow_ranger_marksmanship_custom_legendary_active:OnDestroy()
 	if not IsServer() then
 		return
@@ -788,20 +762,44 @@ modifier_drow_ranger_marksmanship_custom_legendary_stack = class(mod_hidden)
 function modifier_drow_ranger_marksmanship_custom_legendary_stack:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
-	self.max = self.ability.talents.legendary_max
-	self.radius = self.ability.talents.legendary_radius
-	self.duration = self.ability.talents.legendary_stack_duration
+	self.max = self.ability.talents.r7_max
+	self.radius = self.ability.talents.r7_radius
+	self.duration = self.ability.talents.r7_stack_duration
 
 	if not IsServer() then
 		return
 	end
-	self.mod = self.parent:FindModifierByName("modifier_drow_ranger_marksmanship_custom_tracker")
-
-	self.visual_max = self.ability.talents.legendary_visual_max
+	self.mod = self.ability.tracker
 	self.particle = self.parent:GenericParticle("particles/drow_ranger/mark_legendary_stack.vpcf", self, true)
 
-	self:SetStackCount(1)
+	self:OnRefresh()
 	self:StartIntervalThink(0.5)
+end
+
+function modifier_drow_ranger_marksmanship_custom_legendary_stack:OnRefresh()
+	if not IsServer() then
+		return
+	end
+	if self:GetStackCount() >= self.max then
+		return
+	end
+	self:IncrementStackCount()
+
+	if self.mod then
+		self.mod:UpdateUI()
+	end
+
+	if not self.particle then
+		return
+	end
+
+	for i = 1, self.ability.visual_max do
+		if i <= math.floor(self:GetStackCount() / (self.max / self.ability.visual_max)) then
+			ParticleManager:SetParticleControl(self.particle, i, Vector(1, 0, 0))
+		else
+			ParticleManager:SetParticleControl(self.particle, i, Vector(0, 0, 0))
+		end
+	end
 end
 
 function modifier_drow_ranger_marksmanship_custom_legendary_stack:OnIntervalThink()
@@ -825,38 +823,6 @@ function modifier_drow_ranger_marksmanship_custom_legendary_stack:OnIntervalThin
 	end
 end
 
-function modifier_drow_ranger_marksmanship_custom_legendary_stack:OnRefresh()
-	if not IsServer() then
-		return
-	end
-	if self:GetStackCount() >= self.max then
-		return
-	end
-	self:IncrementStackCount()
-end
-
-function modifier_drow_ranger_marksmanship_custom_legendary_stack:OnStackCountChanged()
-	if not IsServer() then
-		return
-	end
-	if not self.mod then
-		return
-	end
-	self.mod:UpdateUI()
-
-	if not self.particle then
-		return
-	end
-
-	for i = 1, self.visual_max do
-		if i <= math.floor(self:GetStackCount() / (self.max / self.visual_max)) then
-			ParticleManager:SetParticleControl(self.particle, i, Vector(1, 0, 0))
-		else
-			ParticleManager:SetParticleControl(self.particle, i, Vector(0, 0, 0))
-		end
-	end
-end
-
 function modifier_drow_ranger_marksmanship_custom_legendary_stack:OnDestroy()
 	if not IsServer() then
 		return
@@ -876,9 +842,11 @@ function modifier_drow_ranger_marksmanship_custom_gust_spell:OnCreated()
 	self.ability = self:GetAbility()
 
 	self.spell = self.ability.talents.w7_spell
+
 	if not IsServer() then
 		return
 	end
+	self.RemoveForDuel = true
 	self.parent:EmitSound("Drow.Silence_legendary_damage")
 	self.parent:EmitSound("Drow.Silence_legendary_damage2")
 	self.parent:GenericParticle("particles/drow_ranger/multi_armor.vpcf", self, true)
@@ -891,9 +859,19 @@ function modifier_drow_ranger_marksmanship_custom_gust_spell:DeclareFunctions()
 end
 
 function modifier_drow_ranger_marksmanship_custom_gust_spell:GetModifierIncomingDamage_Percentage(params)
-	if IsServer() and (not params.attacker or params.attacker:FindOwner() ~= self.caster or not params.inflictor) then
+	if not IsServer() then
+		return self.spell
+	end
+	if not params.attacker then
 		return
 	end
+	if params.attacker:FindOwner() ~= self.caster then
+		return
+	end
+	if not params.inflictor then
+		return
+	end
+
 	return self.spell
 end
 
@@ -915,7 +893,6 @@ function modifier_drow_ranger_marksmanship_custom_perma:OnCreated(table)
 	self.ability = self:GetAbility()
 
 	self.max = self.ability.talents.r1_max
-	self.count = 0
 
 	if not IsServer() then
 		return

@@ -83,7 +83,7 @@ end
 
 function monkey_king_tree_dance_custom:GetCastPoint()
 	if self.caster:HasModifier("modifier_monkey_king_tree_dance_custom") then
-		return self.tree_cast and self.tree_cast or 0
+		return self.tree_cast or 0
 	end
 	return self.BaseClass.GetCastPoint(self)
 end
@@ -93,7 +93,7 @@ function monkey_king_tree_dance_custom:OnAbilityPhaseStart()
 	if mod and mod.tree and mod.tree == self:GetCursorTarget() then
 		return false
 	end
-	return tree
+	return true
 end
 
 function monkey_king_tree_dance_custom:OnSpellStart()
@@ -113,8 +113,7 @@ function monkey_king_tree_dance_custom:OnSpellStart()
 	self.caster:RemoveModifierByName("modifier_monkey_king_innate_custom")
 	self.caster:RemoveGesture(ACT_DOTA_MK_SPRING_END)
 
-	self.caster:FaceTowards(tree:GetAbsOrigin())
-	self.caster:SetForwardVector(dir:Normalized())
+	self.caster:FacePoint(tree:GetAbsOrigin())
 
 	local modifier = self.caster:AddNewModifier(self.caster, self, "modifier_generic_arc", {
 		target_x = tree:GetOrigin().x,
@@ -203,6 +202,24 @@ function modifier_monkey_king_tree_dance_custom_tracker:DamageEvent_inc(params)
 end
 
 modifier_monkey_king_tree_dance_custom = class(mod_hidden)
+function modifier_monkey_king_tree_dance_custom:IsAura()
+	return IsServer() and self.parent:IsAlive() and self.parent:IsOnDuel()
+end
+function modifier_monkey_king_tree_dance_custom:GetAuraRadius()
+	return 600
+end
+function modifier_monkey_king_tree_dance_custom:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_ENEMY
+end
+function modifier_monkey_king_tree_dance_custom:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_HERO
+end
+function modifier_monkey_king_tree_dance_custom:GetAuraSearchFlags()
+	return DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD + DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS
+end
+function modifier_monkey_king_tree_dance_custom:GetModifierAura()
+	return "modifier_monkey_king_tree_dance_vision"
+end
 function modifier_monkey_king_tree_dance_custom:OnCreated(kv)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -225,6 +242,7 @@ function modifier_monkey_king_tree_dance_custom:OnCreated(kv)
 	if not self:ApplyHorizontalMotionController() or not self:ApplyVerticalMotionController() then
 		self.interrupted = true
 		self:Destroy()
+		return
 	end
 
 	self.parent:EmitSound("Hero_MonkeyKing.TreeJump.Tree")
@@ -236,7 +254,7 @@ function modifier_monkey_king_tree_dance_custom:OnIntervalThink()
 		return
 	end
 
-	if (self.tree.IsStanding and not self.tree:IsStanding()) or self.tree:IsNull() then
+	if self.tree:IsNull() or (self.tree.IsStanding and not self.tree:IsStanding()) then
 		self.parent:AddNewModifier(
 			self.parent,
 			self.ability,
@@ -276,20 +294,19 @@ function modifier_monkey_king_tree_dance_custom:OnDestroy()
 		return
 	end
 
-	local parent = self.parent
 	local point = self.target_point
 	local distance = 150
 	local height = self.perched_spot_height
 	local speed = 550
 	local duration = distance / speed
 
-	local direction = (point - parent:GetOrigin())
+	local direction = (point - self.parent:GetOrigin())
 	direction.z = 0
 	direction = direction:Normalized()
 
-	parent:SetForwardVector(direction)
+	self.parent:FacePoint(point)
 
-	local modifier = parent:AddNewModifier(parent, nil, "modifier_generic_arc", {
+	local modifier = self.parent:AddNewModifier(self.parent, nil, "modifier_generic_arc", {
 		dir_x = direction.x,
 		activity = ACT_DOTA_MK_STRIKE_END,
 		dir_y = direction.y,
@@ -303,10 +320,10 @@ function modifier_monkey_king_tree_dance_custom:OnDestroy()
 
 	if modifier then
 		modifier:SetEndCallback(function()
-			FindClearSpaceForUnit(parent, parent:GetOrigin(), true)
+			FindClearSpaceForUnit(self.parent, self.parent:GetOrigin(), true)
 		end)
 		self.parent:RemoveModifierByName("modifier_monkey_king_tree_dance_custom_activity")
-		parent:GenericParticle("particles/units/heroes/hero_monkey_king/monkey_king_jump_trail.vpcf", modifier)
+		self.parent:GenericParticle("particles/units/heroes/hero_monkey_king/monkey_king_jump_trail.vpcf", modifier)
 	end
 
 	self.ability:StartCooldown(duration + self.ability:GetCooldown(self.ability:GetLevel()))
@@ -372,33 +389,6 @@ function modifier_monkey_king_tree_dance_custom:OnHorizontalMotionInterrupted()
 	self:Destroy()
 end
 
-function modifier_monkey_king_tree_dance_custom:GetAuraRadius()
-	return 600
-end
-
-function modifier_monkey_king_tree_dance_custom:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_ENEMY
-end
-
-function modifier_monkey_king_tree_dance_custom:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_HERO
-end
-
-function modifier_monkey_king_tree_dance_custom:GetAuraSearchFlags()
-	return DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
-		+ DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD
-		+ DOTA_UNIT_TARGET_FLAG_INVULNERABLE
-		+ DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS
-end
-
-function modifier_monkey_king_tree_dance_custom:GetModifierAura()
-	return "modifier_monkey_king_tree_dance_vision"
-end
-
-function modifier_monkey_king_tree_dance_custom:IsAura()
-	return IsServer() and self.parent:IsAlive() and self.parent:IsOnDuel()
-end
-
 modifier_monkey_king_tree_dance_vision = class(mod_hidden)
 function modifier_monkey_king_tree_dance_vision:CheckState()
 	return {
@@ -407,21 +397,12 @@ function modifier_monkey_king_tree_dance_vision:CheckState()
 end
 
 modifier_monkey_king_tree_dance_custom_activity = class(mod_hidden)
-function modifier_monkey_king_tree_dance_custom_activity:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS,
-		MODIFIER_PROPERTY_OVERRIDE_ANIMATION,
-	}
-end
-
 function modifier_monkey_king_tree_dance_custom_activity:OnCreated()
 	if not IsServer() then
 		return
 	end
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
-
-	--self.parent:Stop()
 end
 
 function modifier_monkey_king_tree_dance_custom_activity:OnDestroy()
@@ -430,6 +411,13 @@ function modifier_monkey_king_tree_dance_custom_activity:OnDestroy()
 	end
 	self.parent:Stop()
 	self.parent:RemoveGesture(ACT_DOTA_IDLE)
+end
+
+function modifier_monkey_king_tree_dance_custom_activity:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS,
+		MODIFIER_PROPERTY_OVERRIDE_ANIMATION,
+	}
 end
 
 function modifier_monkey_king_tree_dance_custom_activity:GetActivityTranslationModifiers()

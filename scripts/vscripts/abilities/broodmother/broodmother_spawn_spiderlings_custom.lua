@@ -51,7 +51,6 @@ LinkLuaModifier(
 
 broodmother_spawn_spiderlings_custom = class({})
 broodmother_spawn_spiderlings_custom.talents = {}
-broodmother_spawn_spiderlings_custom.active_spiders = {}
 broodmother_spawn_spiderlings_custom.legendary_stack = nil
 
 function broodmother_spawn_spiderlings_custom:Precache(context)
@@ -61,10 +60,9 @@ function broodmother_spawn_spiderlings_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_broodmother/broodmother_web_cast.vpcf", context)
 	PrecacheResource("particle", "particles/broodmother/spawn_stack.vpcf", context)
 	PrecacheResource("particle", "particles/broodmother/spawn_death_effect.vpcf", context)
-end
-
-function broodmother_spawn_spiderlings_custom:GetAbilityTextureName()
-	return wearables_system:GetAbilityIconReplacement(self.caster, "broodmother_spawn_spiderlings", self)
+	PrecacheResource("particle", "particles/units/heroes/hero_broodmother/broodmother_spiderlings_spawn.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_broodmother/broodmother_spiderling_ambient.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_broodmother/broodmother_spiderlings_debuff.vpcf", context)
 end
 
 function broodmother_spawn_spiderlings_custom:UpdateTalents()
@@ -72,11 +70,9 @@ function broodmother_spawn_spiderlings_custom:UpdateTalents()
 	if not self.init then
 		self.init = true
 		self.talents = {
-			has_r1 = 0,
 			r1_spell = 0,
 			r1_damage = 0,
 
-			has_r2 = 0,
 			r2_cd = 0,
 			r2_range = 0,
 
@@ -85,13 +81,11 @@ function broodmother_spawn_spiderlings_custom:UpdateTalents()
 			r4_mana = caster:GetTalentValue("modifier_broodmother_spawn_4", "mana", true),
 
 			has_r7 = 0,
-			r7_count = caster:GetTalentValue("modifier_broodmother_spawn_7", "count", true),
 			r7_damage = caster:GetTalentValue("modifier_broodmother_spawn_7", "damage", true) / 100,
 			r7_max = caster:GetTalentValue("modifier_broodmother_spawn_7", "max", true),
 			r7_duration = caster:GetTalentValue("modifier_broodmother_spawn_7", "duration", true),
 			r7_interval = caster:GetTalentValue("modifier_broodmother_spawn_7", "interval", true),
 
-			has_h3 = 0,
 			h3_str = 0,
 			h3_health = 0,
 
@@ -108,14 +102,10 @@ function broodmother_spawn_spiderlings_custom:UpdateTalents()
 			s3_move = 0,
 			s3_max_move = 0,
 
-			has_s4 = 0,
 			s4_damage = 0,
 
-			has_s5 = 0,
 			s5_health = 0,
 
-			has_s6 = 0,
-			s6_chance = 0,
 			s6_max = 0,
 
 			has_s7 = 0,
@@ -135,13 +125,11 @@ function broodmother_spawn_spiderlings_custom:UpdateTalents()
 	end
 
 	if caster:HasTalent("modifier_broodmother_spawn_1") then
-		self.talents.has_r1 = 1
 		self.talents.r1_spell = caster:GetTalentValue("modifier_broodmother_spawn_1", "spell")
 		self.talents.r1_damage = caster:GetTalentValue("modifier_broodmother_spawn_1", "damage") / 100
 	end
 
 	if caster:HasTalent("modifier_broodmother_spawn_2") then
-		self.talents.has_r2 = 1
 		self.talents.r2_cd = caster:GetTalentValue("modifier_broodmother_spawn_2", "cd")
 		self.talents.r2_range = caster:GetTalentValue("modifier_broodmother_spawn_2", "range")
 	end
@@ -158,7 +146,6 @@ function broodmother_spawn_spiderlings_custom:UpdateTalents()
 	end
 
 	if caster:HasTalent("modifier_broodmother_hero_3") then
-		self.talents.has_h3 = 1
 		self.talents.h3_str = caster:GetTalentValue("modifier_broodmother_hero_3", "str")
 		self.talents.h3_health = caster:GetTalentValue("modifier_broodmother_hero_3", "health") / 100
 		if IsServer() then
@@ -188,18 +175,14 @@ function broodmother_spawn_spiderlings_custom:UpdateTalents()
 	end
 
 	if caster:HasTalent("modifier_broodmother_scepter_4") then
-		self.talents.has_s4 = 1
 		self.talents.s4_damage = caster:GetTalentValue("modifier_broodmother_scepter_4", "damage")
 	end
 
 	if caster:HasTalent("modifier_broodmother_scepter_5") then
-		self.talents.has_s5 = 1
 		self.talents.s5_health = caster:GetTalentValue("modifier_broodmother_scepter_5", "health") / 100
 	end
 
 	if caster:HasTalent("modifier_broodmother_scepter_6") then
-		self.talents.has_s6 = 1
-		self.talents.s6_chance = caster:GetTalentValue("modifier_broodmother_scepter_6", "chance")
 		self.talents.s6_max = caster:GetTalentValue("modifier_broodmother_scepter_6", "max")
 	end
 
@@ -216,6 +199,10 @@ function broodmother_spawn_spiderlings_custom:UpdateTalents()
 	end
 end
 
+function broodmother_spawn_spiderlings_custom:GetAbilityTextureName()
+	return wearables_system:GetAbilityIconReplacement(self.caster, "broodmother_spawn_spiderlings", self)
+end
+
 function broodmother_spawn_spiderlings_custom:GetIntrinsicModifierName()
 	if not self:GetCaster():IsRealHero() then
 		return
@@ -224,7 +211,7 @@ function broodmother_spawn_spiderlings_custom:GetIntrinsicModifierName()
 end
 
 function broodmother_spawn_spiderlings_custom:GetCooldown(level)
-	return self.BaseClass.GetCooldown(self, level) + (self.talents.r2_cd and self.talents.r2_cd or 0)
+	return self.BaseClass.GetCooldown(self, level) + (self.talents.r2_cd or 0)
 end
 
 function broodmother_spawn_spiderlings_custom:GetCastPoint()
@@ -232,35 +219,34 @@ function broodmother_spawn_spiderlings_custom:GetCastPoint()
 end
 
 function broodmother_spawn_spiderlings_custom:GetMax()
-	return self.spiderling_max + ((self.talents.s6_max and self:GetCaster():HasScepter()) and self.talents.s6_max or 0)
+	return self.spiderling_max + (self.caster:HasScepter() and (self.talents.s6_max or 0) or 0)
 end
 
 function broodmother_spawn_spiderlings_custom:OnSpellStart(new_target)
-	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 	local is_legendary = 0
 	if new_target then
 		target = new_target
 		is_legendary = 1
-		caster:EmitSound("Brood.Spawn_legendary_cast")
+		self.caster:EmitSound("Brood.Spawn_legendary_cast")
 	else
-		caster:EmitSound("Hero_Broodmother.SpawnSpiderlingsCast")
+		self.caster:EmitSound("Hero_Broodmother.SpawnSpiderlingsCast")
 	end
 
 	local proj_fx = wearables_system:GetParticleReplacementAbility(
-		caster,
+		self.caster,
 		"particles/units/heroes/hero_broodmother/broodmother_web_cast.vpcf",
 		self
 	)
 
 	local projectile = {
-		Source = caster,
+		Source = self.caster,
 		Target = target,
 		Ability = self,
 		iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_1,
 		EffectName = proj_fx,
 		iMoveSpeed = self.projectile_speed,
-		vSourceLoc = caster:GetAbsOrigin(),
+		vSourceLoc = self.caster:GetAbsOrigin(),
 		bDrawsOnMinimap = false,
 		bDodgeable = self.talents.has_r7 == 0,
 		bIsAttack = false,
@@ -275,8 +261,8 @@ function broodmother_spawn_spiderlings_custom:OnSpellStart(new_target)
 
 	local mod = target:FindModifierByName("modifier_broodmother_spawn_spiderlings_custom_legendary_stack")
 	if mod and is_legendary == 0 then
-		caster:AddNewModifier(
-			caster,
+		self.caster:AddNewModifier(
+			self.caster,
 			self,
 			"modifier_broodmother_spawn_spiderlings_custom_legendary_caster",
 			{ target = target:entindex(), count = mod:GetStackCount() }
@@ -294,9 +280,8 @@ function broodmother_spawn_spiderlings_custom:OnProjectileHit_ExtraData(target, 
 		return
 	end
 
-	local caster = self:GetCaster()
 	local is_legendary = table.is_legendary
-	local damage = self.damage + self.talents.r1_damage * caster:GetIntellect(false)
+	local damage = self.damage + self.talents.r1_damage * self.caster:GetIntellect(false)
 	local damage_ability = nil
 
 	if is_legendary == 1 then
@@ -311,7 +296,7 @@ function broodmother_spawn_spiderlings_custom:OnProjectileHit_ExtraData(target, 
 			self:DeathSpawn(target)
 		else
 			target:AddNewModifier(
-				caster,
+				self.caster,
 				self,
 				"modifier_broodmother_spawn_spiderlings_custom",
 				{ duration = self.buff_duration }
@@ -320,7 +305,7 @@ function broodmother_spawn_spiderlings_custom:OnProjectileHit_ExtraData(target, 
 
 		if self.talents.has_r7 == 1 then
 			target:AddNewModifier(
-				caster,
+				self.caster,
 				self,
 				"modifier_broodmother_spawn_spiderlings_custom_legendary_stack",
 				{ duration = self.talents.r7_duration }
@@ -329,14 +314,14 @@ function broodmother_spawn_spiderlings_custom:OnProjectileHit_ExtraData(target, 
 	end
 
 	target:AddNewModifier(
-		caster,
+		self.caster,
 		self,
 		"modifier_broodmother_spawn_spiderlings_custom_slow",
 		{ duration = self.slow_duration }
 	)
 
 	local damage_table =
-		{ victim = target, attacker = caster, damage = damage, damage_type = DAMAGE_TYPE_MAGICAL, ability = self }
+		{ victim = target, attacker = self.caster, damage = damage, damage_type = DAMAGE_TYPE_MAGICAL, ability = self }
 	DoDamage(damage_table, damage_ability)
 end
 
@@ -351,7 +336,7 @@ function broodmother_spawn_spiderlings_custom:GiveGold()
 		return
 	end
 
-	self.caster:GiveGold(self.talents.s1_gold)
+	self.caster:GiveGold(self.talents.s1_gold, nil, nil, "modifier_broodmother_scepter_1")
 end
 
 function broodmother_spawn_spiderlings_custom:DeathSpawn(target)
@@ -371,13 +356,12 @@ function broodmother_spawn_spiderlings_custom:CreateSpider(point, is_respawn, ne
 	if not IsServer() then
 		return
 	end
-	local caster = self:GetCaster()
-	if not caster:IsAlive() then
+	if not self.caster:IsAlive() then
 		return
 	end
 
 	local duration = self.spiderling_duration
-	if caster:HasScepter() then
+	if self.caster:HasScepter() and self.talents.has_s9 == 1 then
 		duration = duration + self.talents.s9_duration
 	end
 	if new_duration then
@@ -388,24 +372,30 @@ function broodmother_spawn_spiderlings_custom:CreateSpider(point, is_respawn, ne
 		return
 	end
 
-	local unit =
-		CreateUnitByName("npc_dota_broodmother_spiderling_custom", point, false, caster, caster, caster:GetTeamNumber())
+	local unit = CreateUnitByName(
+		"npc_dota_broodmother_spiderling_custom",
+		point,
+		false,
+		self.caster,
+		self.caster,
+		self.caster:GetTeamNumber()
+	)
 	unit:AddNewModifier(
-		caster,
+		self.caster,
 		self,
 		"modifier_broodmother_spawn_spiderlings_custom_spider",
 		{ is_respawn = is_respawn and 1 or 0, new_duration = duration }
 	)
-	local modifier_kill = unit:AddNewModifier(caster, self, "modifier_kill", { duration = duration })
+	local modifier_kill = unit:AddNewModifier(self.caster, self, "modifier_kill", { duration = duration })
 
-	local new_model = wearables_system:GetUnitModelReplacement(caster, "npc_dota_broodmother_spiderling")
+	local new_model = wearables_system:GetUnitModelReplacement(self.caster, "npc_dota_broodmother_spiderling")
 	if new_model then
 		unit:SetModel(new_model)
 		unit:SetOriginalModel(new_model)
 	end
 
 	local pfx_spider_name = wearables_system:GetParticleReplacementAbility(
-		self:GetCaster(),
+		self.caster,
 		"particles/units/heroes/hero_broodmother/broodmother_spiderling_ambient.vpcf",
 		self,
 		"broodmother_spawn_spiderlings_custom"
@@ -414,17 +404,17 @@ function broodmother_spawn_spiderlings_custom:CreateSpider(point, is_respawn, ne
 		unit:GenericParticle(pfx_spider_name, modifier_kill)
 	end
 
-	if caster:HasScepter() and self.talents.has_s9 == 1 then
+	if self.caster:HasScepter() and self.talents.has_s9 == 1 then
 		unit:AddNewModifier(
-			caster,
+			self.caster,
 			self,
 			"modifier_broodmother_spawn_spiderlings_custom_invun",
 			{ duration = self.talents.s9_invun }
 		)
 	end
 
-	unit.owner = caster
-	unit:SetControllableByPlayer(caster:GetPlayerID(), true)
+	unit.owner = self.caster
+	unit:SetControllableByPlayer(self.caster:GetPlayerID(), true)
 	FindClearSpaceForUnit(unit, unit:GetAbsOrigin(), false)
 end
 
@@ -433,6 +423,7 @@ function modifier_broodmother_spawn_spiderlings_custom_tracker:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 	self.ability.tracker = self
+	self.ability.active_spiders = {}
 	self.ability:UpdateTalents()
 
 	self.parent.spawn_ability = self.ability
@@ -447,7 +438,6 @@ function modifier_broodmother_spawn_spiderlings_custom_tracker:OnCreated(table)
 	self.ability.slow_duration = self.ability:GetSpecialValueFor("slow_duration")
 	self.ability.count = self.ability:GetSpecialValueFor("count")
 	self.ability.movement_speed = self.ability:GetSpecialValueFor("movement_speed")
-
 	self.ability.spiderite_chance = self.ability:GetSpecialValueFor("spiderite_chance")
 end
 
@@ -485,6 +475,9 @@ function modifier_broodmother_spawn_spiderlings_custom_tracker:DeathEvent(params
 		return
 	end
 	if not params.unit:IsUnit() then
+		return
+	end
+	if not params.attacker then
 		return
 	end
 
@@ -651,7 +644,6 @@ function modifier_broodmother_spawn_spiderlings_custom_spider:OnCreated(table)
 	end
 
 	self.parent:SetBaseMaxHealth(health)
-	--self.parent:SetHealth(health)
 
 	self.parent:SetBaseDamageMin(damage)
 	self.parent:SetBaseDamageMax(damage)
@@ -762,8 +754,6 @@ function modifier_broodmother_spawn_spiderlings_custom_spider:GetModifierMoveSpe
 	return self.ability.talents.has_s3 == 1 and self.ability.talents.s3_max_move or nil
 end
 
-broodmother_spawn_spiderite_custom = class({})
-
 modifier_broodmother_spawn_spiderlings_custom_legendary_stack = class(mod_visible)
 function modifier_broodmother_spawn_spiderlings_custom_legendary_stack:OnCreated()
 	self.parent = self:GetParent()
@@ -783,7 +773,7 @@ function modifier_broodmother_spawn_spiderlings_custom_legendary_stack:OnCreated
 		self.effect_cast = self.parent:GenericParticle("particles/broodmother/spawn_stack.vpcf", self, true)
 	end
 
-	self:SetStackCount(1)
+	self:OnRefresh()
 end
 
 function modifier_broodmother_spawn_spiderlings_custom_legendary_stack:OnRefresh()
@@ -792,20 +782,15 @@ function modifier_broodmother_spawn_spiderlings_custom_legendary_stack:OnRefresh
 	end
 	self:IncrementStackCount()
 
+	if self.effect_cast then
+		ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(0, self:GetStackCount(), 0))
+		if IsValid(self.ability.tracker) and self.ability.legendary_stack == self then
+			self.ability.tracker:UpdateUI()
+		end
+	end
+
 	if self:GetStackCount() >= self.max then
 		self:Destroy()
-		return
-	end
-end
-
-function modifier_broodmother_spawn_spiderlings_custom_legendary_stack:OnStackCountChanged(iStackCount)
-	if not self.effect_cast then
-		return
-	end
-	ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(0, self:GetStackCount(), 0))
-
-	if IsValid(self.ability.tracker) and self.ability.legendary_stack == self then
-		self.ability.tracker:UpdateUI()
 	end
 end
 
@@ -899,3 +884,5 @@ function modifier_broodmother_spawn_spiderlings_custom_invun:CheckState()
 		[MODIFIER_STATE_INVULNERABLE] = true,
 	}
 end
+
+broodmother_spawn_spiderite_custom = class({})

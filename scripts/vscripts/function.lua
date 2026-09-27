@@ -51,7 +51,6 @@ end
 
 function CDOTA_BaseNPC:InitTalent(skill_name)
 	local playerID = self:GetId()
-	local hero_name = self:GetUnitName()
 
 	local skill_data = nil
 	local group = nil
@@ -71,13 +70,10 @@ function CDOTA_BaseNPC:InitTalent(skill_name)
 	end
 
 	local max = upgrade:GetMaxLevel(skill_data)
-	if skill_data["max_level"] then
-		max = skill_data["max_level"]
-	end
 
 	local type_name = skill_data["rarity"]
 
-	if type_name == "gray" or group == "patrol" or group == "alchemist_items" then
+	if group == "patrol" or group == "alchemist_items" then
 		max = 999999
 	end
 
@@ -108,6 +104,11 @@ function CDOTA_BaseNPC:InitTalent(skill_name)
 		return
 	end
 
+	if group == "kunkka_shop" then
+		self:AddTalent(skill_name)
+		return
+	end
+
 	if type_name == "orange" and not self.is_bot then
 		if HTTP.playersData[playerID].firstOrangeTalent then
 			if HTTP.playersData[playerID].SecondMainTalent == "" then
@@ -126,9 +127,9 @@ function CDOTA_BaseNPC:InitTalent(skill_name)
 		player_table.legendary_talent = skill_name
 		player_table.legendary_skill_name = self:GetTalentValue(skill_name, "skill_name", true)
 
-		if active_talents[hero_name] then
+		if active_talents[playerID] then
 			local result_table = {}
-			for talent, data in pairs(active_talents[hero_name]) do
+			for talent, data in pairs(active_talents[playerID]) do
 				for _, key in pairs({ "alt_talent", "alt_talent2" }) do
 					local alt_talent = self:GetTalentValue(talent, key, true)
 					if alt_talent ~= 0 then
@@ -169,10 +170,8 @@ function CDOTA_BaseNPC:InitTalent(skill_name)
 
 	if self:IsAlive() then
 		if group == "alchemist_items" then
-			local mod = self:FindModifierByName("modifier_general_stats")
-
-			if mod and mod.GeneralTrigger ~= nil then
-				mod:GeneralTrigger(skill_name)
+			if IsValid(self.stats_tracker) then
+				self.stats_tracker:GeneralTrigger(skill_name)
 			end
 		else
 			self:AddTalent(skill_name)
@@ -214,7 +213,7 @@ function CDOTA_BaseNPC:UpdateTalentsClient(skip_reconect)
 			--player:AddNewModifier(player, nil, "modifier_general_stats", {})
 		end
 
-		local player_id = player:GetUnitName()
+		local player_id = player:GetId()
 
 		if active_talents[player_id] then
 			for name, data in pairs(active_talents[player_id]) do
@@ -229,7 +228,7 @@ function CDOTA_BaseNPC:UpdateTalentsClient(skip_reconect)
 end
 
 function CDOTA_BaseNPC:AddTalent(talent)
-	local player_id = self:GetUnitName() -- self:GetId()
+	local player_id = self:GetId()
 
 	if not active_talents[player_id] then
 		active_talents[player_id] = {}
@@ -254,11 +253,27 @@ function CDOTA_BaseNPC:AddTalent(talent)
 		level = level,
 	})
 
-	players[self:GetId()].upgrades[talent] = level
+	if self:GetTalentValue(talent, "no_level", true) ~= 1 then
+		players[self:GetId()].upgrades[talent] = level
+	end
 	self:UpdateCommonBonus()
+
+	local is_talent_upgrade = self:GetTalentValue(talent, "is_talent_upgrade", true)
+	if is_talent_upgrade and is_talent_upgrade == 1 then
+		local func = self:GetTalentValue(talent, "talent_upgrade_func", true)
+		if func then
+			self:AddTalentIncreaseFunction(talent, func)
+		end
+	end
 
 	self:TalentQuests(talent)
 	self:ProcTrigger(talent)
+
+	local general_data = ingame_talents["general"][talent]
+	if general_data and level >= upgrade:GetMaxLevel(general_data) then
+		self:GenericParticle("particles/generica/common_talent_max.vpcf")
+		self:EmitSound("BS.Thirst_legendary_active")
+	end
 end
 
 function CDOTA_BaseNPC:UpdateCommonBonus()
@@ -266,44 +281,122 @@ function CDOTA_BaseNPC:UpdateCommonBonus()
 		return
 	end
 
-	local bonus = 0
-	if self:HasTalent("modifier_up_graypoints") then
-		bonus = bonus + self:GetTalentValue("modifier_up_graypoints", "bonus")
+	CustomNetTables:SetTableValue("upgrades_player", tostring(self:GetId()), {
+		upgrades = players[self:GetId()].upgrades,
+		priority = players[self:GetId()].priority_talent,
+	})
+end
+
+function CDOTA_BaseNPC:RemoveTalent(talent)
+	local player_id = self:GetId()
+
+	if not active_talents[player_id] then
+		return
+	end
+	if not active_talents[player_id][talent] then
+		return
 	end
 
-	if self:HasModifier("modifier_item_pirate_hat_custom") then
-		local mod = self:FindModifierByName("modifier_item_pirate_hat_custom")
-		if mod and mod.bonus then
-			bonus = bonus + mod.bonus
+	local player_table = players[player_id]
+
+	active_talents[player_id][talent] = nil
+
+	if talent_increase_functions[player_id] then
+		talent_increase_functions[player_id][talent] = nil
+	end
+
+	if self:HasModifier(talent) then
+		self:RemoveModifierByName(talent)
+	end
+
+	if player_table then
+		player_table.upgrades[talent] = nil
+
+		if player_table.legendary_talent == talent then
+			player_table.chosen_skill = 0
+			player_table.chosen_skill_name = 0
+			player_table.legendary_talent = nil
+			player_table.legendary_skill_name = nil
+
+			dota1x6:UpdatePlayersTable(self:GetTeamNumber())
+			CustomGameEventManager:Send_ServerToPlayer(
+				PlayerResource:GetPlayer(player_id),
+				"UpdateInnatePanel",
+				{ legendary = 0, legendary_talent = "", legendary_skill_name = "" }
+			)
 		end
 	end
 
-	CustomNetTables:SetTableValue("upgrades_player", self:GetUnitName(), {
-		upgrades = players[self:GetId()].upgrades,
-		hasup = self:HasTalent("modifier_up_graypoints"),
-		common_bonus = bonus,
+	if self:GetTalentValue(talent, "is_basher", true) == 1 then
+		self.has_basher_talent = nil
+	end
+
+	local banned_talent = self:GetTalentValue(talent, "banned_talent", true)
+
+	if self.banned_talents and banned_talent ~= 0 then
+		if type(banned_talent) == "table" then
+			for _, name in pairs(banned_talent) do
+				self.banned_talents[name] = nil
+			end
+		else
+			self.banned_talents[banned_talent] = nil
+		end
+	end
+
+	local ability_name = self:GetTalentValue(talent, "trigger_ability", true)
+
+	if ability_name ~= 0 then
+		local ability = self:FindAbilityByName(ability_name)
+		if ability and not ability:IsHidden() then
+			ability:SetHidden(true)
+		end
+	end
+
+	FireGameEvent("talent_added", {
+		ent_index = self:entindex(),
+		talent = talent,
+		level = 0,
 	})
+
+	self:ResetTalentValues(talent)
+	self:UpdateCommonBonus()
+	self:RefreshTalentIncrease()
+end
+
+function CDOTA_BaseNPC:RefreshTalentValues(talent)
+	if not self.base_abilities then
+		return
+	end
+
+	for _, name in pairs(self.base_abilities) do
+		local ability = self:FindAbilityByName(name)
+		if ability and ability.UpdateTalents and ability:IsTrained() then
+			ability:UpdateTalents(talent)
+		end
+	end
+end
+
+function CDOTA_BaseNPC:ResetTalentValues(talent)
+	if not self.base_abilities then
+		return
+	end
+
+	for _, name in pairs(self.base_abilities) do
+		local ability = self:FindAbilityByName(name)
+		if ability and ability.UpdateTalents then
+			ability.init = nil
+			if ability:IsTrained() then
+				ability:UpdateTalents(talent)
+			end
+		end
+	end
 end
 
 function CDOTA_BaseNPC:ProcTrigger(talent)
 	local update_mod = self:GetTalentValue(talent, "update_mod")
 	local ability_name = self:GetTalentValue(talent, "trigger_ability")
 
-	if update_mod and update_mod == "modifier_general_stats" then
-		local ability = self:FindAbilityByName("custom_general_talents")
-		if ability and ability.UpdateTalents then
-			ability:UpdateTalents(talent)
-		end
-	else
-		if self.base_abilities then
-			for _, name in pairs(self.base_abilities) do
-				local ability = self:FindAbilityByName(name)
-				if ability and ability.UpdateTalents and ability:IsTrained() then
-					ability:UpdateTalents(talent)
-				end
-			end
-		end
-	end
+	self:RefreshTalentValues(talent)
 
 	local general_trigger = self:GetTalentValue(talent, "general_trigger")
 	local is_basher = self:GetTalentValue(talent, "is_basher")
@@ -349,10 +442,8 @@ function CDOTA_BaseNPC:ProcTrigger(talent)
 	end
 
 	if (general_trigger and general_trigger == 1) or ingame_talents["patrol"][talent] then
-		local mod = self:FindModifierByName("modifier_general_stats")
-
-		if mod and mod.GeneralTrigger ~= nil then
-			mod:GeneralTrigger(talent)
+		if IsValid(self.stats_tracker) then
+			self.stats_tracker:GeneralTrigger(talent)
 		end
 	end
 end
@@ -381,7 +472,7 @@ function CDOTA_BaseNPC:TalentQuests(talent)
 	if (self:GetQuest() == "General.Quest_7") and not self:QuestCompleted() then
 		local max = 0
 		for name, skill in pairs(ingame_talents["general"]) do
-			if self:TalentLevel(name) >= max and skill["rarity"] == "gray" then
+			if self:TalentLevel(name) >= max and skill["rarity"] == "gray" and skill["no_level"] ~= 1 then
 				max = self:TalentLevel(name)
 			end
 		end
@@ -396,21 +487,12 @@ function CDOTA_BaseNPC:TalentQuests(talent)
 	end
 
 	if (self:GetQuest() == "General.Quest_9") and not self:QuestCompleted() and skill_data["rarity"] == "purple" then
-		for name, skill in pairs(ingame_talents["general"]) do
-			if self:HasTalent(name) and name == talent then
-				self:UpdateQuest(1)
-				break
-			end
-		end
+		self:UpdateQuest(1)
 	end
 end
 
 function CDOTA_BaseNPC:TalentLevel(talent)
-	local player_id = self:GetUnitName() -- self:GetId()
-
-	if self:HasModifier(talent) then
-		return self:FindModifierByName(talent):GetStackCount()
-	end
+	local player_id = self:GetId()
 
 	if not active_talents[player_id] then
 		return 0
@@ -427,11 +509,8 @@ function CDOTA_BaseNPC:HasTalent(talent)
 		return false
 	end
 
-	local player_id = self:GetUnitName() -- self:GetId()
+	local player_id = self:GetId()
 
-	if self:HasModifier(talent) then
-		return true
-	end
 	if not active_talents[player_id] or not active_talents[player_id][talent] then
 		return false
 	end
@@ -449,11 +528,41 @@ function CDOTA_BaseNPC:HasTalent(talent)
 	return true
 end
 
+function CDOTA_BaseNPC:AddTalentIncreaseFunction(name, func)
+	local player_id = self:GetId()
+
+	if not talent_increase_functions[player_id] then
+		talent_increase_functions[player_id] = {}
+	end
+
+	if not talent_increase_functions[player_id][name] then
+		talent_increase_functions[player_id][name] = func
+	end
+
+	if self:IsIllusion() or self:IsTempestDouble() then
+		return
+	end
+
+	dota1x6:SendTalentIncrease({ PlayerID = self:GetId() })
+end
+
+function CDOTA_BaseNPC:RefreshTalentIncrease()
+	if IsValid(self.stats_tracker) then
+		self.stats_tracker.ability:UpdateTalents()
+	end
+
+	dota1x6:SendTalentIncrease({ PlayerID = self:GetId() })
+end
+
 function CDOTA_BaseNPC:GetTalentValue(name, property, ignore_level)
+	if not self.unit_name then
+		self.unit_name = self:GetUnitName()
+	end
+
 	local hero_table = nil
 
-	if ingame_talents[self:GetUnitName()] and ingame_talents[self:GetUnitName()][name] then
-		hero_table = ingame_talents[self:GetUnitName()]
+	if ingame_talents[self.unit_name] and ingame_talents[self.unit_name][name] then
+		hero_table = ingame_talents[self.unit_name]
 	elseif ingame_talents["general"][name] then
 		hero_table = ingame_talents["general"]
 	elseif ingame_talents["patrol"][name] then
@@ -509,7 +618,14 @@ function CDOTA_BaseNPC:GetTalentValue(name, property, ignore_level)
 	end
 
 	if type(value) == "table" then
-		return value[level]
+		local k = 1
+		if talent_increase_functions[self:GetId()] then
+			for func_name, func in pairs(talent_increase_functions[self:GetId()]) do
+				local result = func(talent_table, self)
+				k = k + (result or 0)
+			end
+		end
+		return value[level] * k
 	else
 		if property == "general_bonus" then
 			return value * level
@@ -661,27 +777,28 @@ function CDOTA_BaseNPC:IsLeashed()
 		return
 	end
 
+	local debuff_immune = nil
+
 	for _, mod in pairs(self:FindAllModifiers()) do
-		local tables = {}
-		mod:CheckStateToTable(tables)
-		local bkb_allowed = true
-
-		if mod:GetAbility() then
-			local behavior = mod:GetAbility():GetAbilityTargetFlags()
-
-			if bit.band(behavior, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES) == 0 and self:IsDebuffImmune() then
-				bkb_allowed = false
+		local states = {}
+		mod:CheckStateToTable(states)
+		if states[MODIFIER_STATE_TETHERED] ~= nil or states[tostring(MODIFIER_STATE_TETHERED)] ~= nil then
+			local ability = mod:GetAbility()
+			if not ability then
+				return true
 			end
-		end
-
-		if bkb_allowed == true then
-			for state_name, mod_table in pairs(tables) do
-				if tostring(state_name) == "45" then
-					return true
-				end
+			if debuff_immune == nil then
+				debuff_immune = self:IsDebuffImmune()
+			end
+			if
+				not debuff_immune
+				or bit.band(ability:GetAbilityTargetFlags(), DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES) ~= 0
+			then
+				return true
 			end
 		end
 	end
+
 	return false
 end
 
@@ -721,8 +838,21 @@ function CDOTA_BaseNPC:GetPathPoint(get_dist)
 	end
 end
 
-function CDOTA_BaseNPC:WallKnock(center, radius, height, inside, extra_dist)
+function CDOTA_BaseNPC:WallKnock(center, radius, height, inside, extra_dist, no_path)
 	if IsValid(self.wall_knock_mod) then
+		return
+	end
+
+	local ship_mod = self:FindModifierByName("modifier_kunkka_ghostship_custom_ship_mod")
+	if not ship_mod then
+		local sail_mod = self:FindModifierByName("modifier_kunkka_ghostship_custom_legendary_sail")
+		if sail_mod and IsValid(sail_mod.ship) then
+			ship_mod = sail_mod.ship:FindModifierByName("modifier_kunkka_ghostship_custom_ship_mod")
+		end
+	end
+
+	if ship_mod then
+		ship_mod:Crash()
 		return
 	end
 
@@ -772,7 +902,9 @@ function CDOTA_BaseNPC:WallKnock(center, radius, height, inside, extra_dist)
 
 	self:Stop()
 	self:InterruptMotionControllers(false)
-	self:AddNewModifier(self, nil, "modifier_generic_path", { duration = 2 })
+	if not no_path then
+		self:AddNewModifier(self, nil, "modifier_generic_path", { duration = 2 })
+	end
 
 	self:EmitSound("UI.Walls_hit")
 	local attack_particle = ParticleManager:CreateParticle("particles/duel_stun.vpcf", PATTACH_ABSORIGIN_FOLLOW, self)
@@ -857,6 +989,17 @@ function CDOTA_BaseNPC:CheckOwner()
 	end
 end
 
+function CDOTA_BaseNPC:CanBlink()
+	if self:IsRooted() then
+		return false
+	end
+	if self:IsLeashed() then
+		return false
+	end
+
+	return true
+end
+
 function CDOTA_BaseNPC:TeleportThink()
 	if IsValid(self.tinker_innate) and self:HasScepter() and self:IsSilenced() then
 		return false
@@ -864,9 +1007,9 @@ function CDOTA_BaseNPC:TeleportThink()
 
 	if
 		self:IsRooted()
-		or self:IsLeashed()
 		or self:IsHexed()
 		or self:HasModifier("modifier_custom_puck_phase_shift")
+		or self:IsLeashed()
 	then
 		return false
 	end
@@ -1018,12 +1161,17 @@ function CDOTA_BaseNPC:GetTempest()
 	return target
 end
 
-function CDOTA_BaseNPC:GiveGold(gold, sound)
+function CDOTA_BaseNPC:GiveGold(gold, sound, no_effect, source)
 	if sound then
 		EmitSoundOnEntityForPlayer("UI.Tip_Player", self, self:GetId())
 	end
 
-	self:ModifyGoldFiltered(gold, true, DOTA_ModifyGold_CreepKill)
+	self:ModifyGoldFiltered(gold, true, DOTA_ModifyGold_Unspecified)
+	self:AddResourceInfo("gold", source, math.floor(gold))
+
+	if no_effect then
+		return
+	end
 
 	local effect_cast = ParticleManager:CreateParticleForPlayer(
 		"particles/units/heroes/hero_alchemist/alchemist_lasthit_coins.vpcf",
@@ -1045,6 +1193,87 @@ function CDOTA_BaseNPC:GiveGold(gold, sound)
 	ParticleManager:SetParticleControl(effect_cast_2, 2, Vector(1, digit, 0))
 	ParticleManager:SetParticleControl(effect_cast_2, 3, Vector(255, 255, 0))
 	ParticleManager:ReleaseParticleIndex(effect_cast_2)
+end
+
+function CDOTA_BaseNPC:AddPoints(points_type, points, source, for_kill)
+	if not IsServer() then
+		return
+	end
+
+	local player = players[self:GetId()]
+	if not player then
+		return
+	end
+
+	local types_data = {
+		blue = { points = "bluepoints", max = "bluemax", plus = PlusBlue, rarity = 2, resource = "blue_points" },
+		purple = { points = "purplepoints", max = "purplemax", plus = PlusPurple, rarity = 3 },
+		white = { points = "whitepoints", max = "whitemax", plus = PlusWhite, rarity = 1, resource = "gray_points" },
+	}
+
+	local data = types_data[points_type]
+	local add_points = points
+	player:AddResourceInfo(data.resource, source, points)
+
+	if for_kill then
+		local bfury_mod = player:FindModifierByName("modifier_item_bfury_custom")
+		if bfury_mod then
+			add_points = add_points + points * bfury_mod.blue_bonus
+			player:AddResourceInfo(data.resource, bfury_mod:GetAbility(), points * bfury_mod.blue_bonus)
+		end
+
+		local hat_mod = player:FindModifierByName("modifier_item_pirate_hat_custom")
+		if hat_mod then
+			add_points = add_points + points * hat_mod.blue_bonus
+			player:AddResourceInfo(data.resource, hat_mod:GetAbility(), points * hat_mod.blue_bonus)
+		end
+	end
+
+	player[data.points] = player[data.points] + add_points
+
+	if player[data.points] < math.floor(player[data.max]) then
+		player:UpdateVisualPoints()
+		return
+	end
+
+	player:UpdateVisualPoints(points_type)
+
+	while player[data.points] >= math.floor(player[data.max]) do
+		local plus = data.plus
+		if points_type == "purple" and player.purplemax >= PlusPurpleThrash then
+			plus = PlusPurpleMore
+		end
+
+		player[data.points] = player[data.points] - math.floor(player[data.max])
+		player[data.max] = player[data.max] + plus
+		dota1x6:CreateUpgradeOrb(self, data.rarity)
+	end
+
+	Timers:CreateTimer(0.5, function()
+		if not IsValid(player) then
+			return
+		end
+		player:UpdateVisualPoints()
+	end)
+end
+
+function CDOTA_BaseNPC:UpdateVisualPoints(full_type)
+	if not IsServer() then
+		return
+	end
+
+	local id = self:GetId()
+	local data = {
+		blue = full_type == "blue" and math.floor(self.bluemax) or math.floor(self.bluepoints),
+		purple = full_type == "purple" and math.floor(self.purplemax) or math.floor(self.purplepoints),
+		white = full_type == "white" and math.floor(self.whitemax) or math.floor(self.whitepoints),
+		max = math.floor(self.bluemax),
+		max_p = math.floor(self.purplemax),
+		max_w = math.floor(self.whitemax),
+	}
+
+	CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(id), "kill_progress", data)
+	CustomNetTables:SetTableValue("spectator_points", tostring(id), data)
 end
 
 function CDOTA_BaseNPC:FindIllusions(new_radius)
@@ -1097,6 +1326,24 @@ function CDOTA_BaseNPC:FindTargets(radius, point, order, more_flags)
 		nil,
 		radius,
 		DOTA_UNIT_TARGET_TEAM_ENEMY,
+		DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO,
+		search_flags,
+		search_order,
+		false
+	)
+end
+
+function CDOTA_BaseNPC:FindFriends(radius, point, order, more_flags)
+	local search_point = point and point or self:GetAbsOrigin()
+	local search_order = order and order or FIND_CLOSEST
+	local search_flags = more_flags and more_flags or DOTA_UNIT_TARGET_FLAG_NONE
+
+	return FindUnitsInRadius(
+		self:GetTeamNumber(),
+		search_point,
+		nil,
+		radius,
+		DOTA_UNIT_TARGET_TEAM_FRIENDLY,
 		DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO,
 		search_flags,
 		search_order,
@@ -1157,10 +1404,8 @@ function CDOTA_BaseNPC:IsUnit()
 	return not self:IsNull()
 		and (self:IsHero() or self:IsCreep() or self.is_crystal or self.is_wd_ward)
 		and self:GetUnitName() ~= "npc_teleport"
-		and not self.is_hero_icon
 		and not self.crystal_clone
 		and self:GetUnitName() ~= "npc_dota_donate_item_illusion"
-		and not self:HasModifier("modifier_bounty_map")
 		and not self:HasModifier("modifier_monkey_king_wukongs_command_custom_soldier")
 end
 
@@ -1391,7 +1636,12 @@ function CDOTA_BaseNPC:CheckLifesteal(params, type, ignore_attacker)
 		if type == 1 and not inflictor then
 			return false
 		end
-		if type == 2 and inflictor and inflictor:GetName() ~= "muerta_pierce_the_veil_custom" then
+		if
+			type == 2
+			and inflictor
+			and inflictor:GetName() ~= "muerta_pierce_the_veil_custom"
+			and not inflictor.attack_lifesteal
+		then
 			return false
 		end
 	end
@@ -1579,6 +1829,9 @@ function CDOTA_BaseNPC:SendNumber(type, number)
 		[108] = "particles/furion/teleport_legendary_number.vpcf",
 		[109] = "particles/ogre-magi/fireblast_number.vpcf",
 		[110] = "particles/pangolier/swashbuckle_bleed_number.vpcf",
+		[111] = "particles/kunkka/xmark_bleed_number.vpcf",
+		[112] = "particles/phantom_assassin/crit_bleed.vpcf",
+		[113] = "particles/phantom_assassin/phantom_proc_number.vpcf",
 	}
 
 	if type_table[type] then
@@ -1690,6 +1943,25 @@ function CDOTA_BaseNPC:AddHealingInfo(params)
 		end
 	end
 	dota1x6.event_thinker_mod:StartThink(callback, dota1x6.event_thinker_mod, "HealingTableCount")
+end
+
+function CDOTA_BaseNPC:AddResourceInfo(resource_type, source, amount)
+	if not resource_type then
+		return
+	end
+	if not source then
+		return
+	end
+	if not IsValid(dota1x6.event_thinker_mod) then
+		return
+	end
+
+	local callback = function()
+		if IsValid(self) then
+			dota1x6.event_thinker_mod:ResourceTableCount(self, resource_type, source, amount)
+		end
+	end
+	dota1x6.event_thinker_mod:StartThink(callback, dota1x6.event_thinker_mod, "ResourceTableCount")
 end
 
 function CDOTA_BaseNPC:SetQuest(table)
@@ -2023,6 +2295,7 @@ function CDOTA_BaseNPC:UpdateUIshort(params)
 	local dots = params.dots and params.dots or -1
 	local override_ability = params.override_ability and params.override_ability or -1
 	local top_text = params.top_text and params.top_text or -1
+	local glow = params.glow and params.glow or 0
 
 	CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(self:GetId()), "talent_ui_short", {
 		hide = hide,
@@ -2038,6 +2311,7 @@ function CDOTA_BaseNPC:UpdateUIshort(params)
 		override_ability = override_ability,
 		style = style,
 		top_text = top_text,
+		glow = glow,
 	})
 end
 
@@ -2076,6 +2350,32 @@ function CDOTA_BaseNPC:UpdateUIlong(params)
 		glow = glow,
 		stack_icon = stack_icon,
 		special_data = special_data,
+	})
+end
+
+function CDOTA_BaseNPC:UpdateUIpick(params)
+	if params.hide == 1 then
+		self.pick_mod = nil
+		CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(self:GetId()), "pick_ui", { hide = 1 })
+		return
+	end
+
+	self.pick_mod = params.mod
+
+	local targets = {}
+
+	for i, data in pairs(params.targets) do
+		targets[i] = {
+			image = data.image and data.image or ("file://{images}/heroes/" .. data.hero .. ".png"),
+			killed = data.killed and 1 or 0,
+			gold = data.gold and math.floor(data.gold) or 0,
+		}
+	end
+
+	CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(self:GetId()), "pick_ui", {
+		hide = 0,
+		text = params.text and params.text or "#pick_ui_text",
+		targets = targets,
 	})
 end
 
@@ -2160,6 +2460,29 @@ function CDOTA_BaseNPC:AddRespawnEvent(new_mod, sync)
 		--print('added respawn!', self:GetUnitName(), new_mod:GetName())
 	end
 	self.respawn_event_mods[new_mod] = sync and 2 or 1
+end
+
+function CDOTA_BaseNPC:AddStateEvent(new_mod, sync)
+	if not IsValid(new_mod) then
+		return
+	end
+	if self:IsIllusion() then
+		return
+	end
+
+	if not self.state_event_mods then
+		self.state_event_mods = {}
+	else
+		for mod, _ in pairs(self.state_event_mods) do
+			if mod and not mod:IsNull() and mod == new_mod then
+				return
+			end
+		end
+	end
+	if test then
+		--print('added state!', self:GetUnitName(), new_mod:GetName())
+	end
+	self.state_event_mods[new_mod] = sync and 2 or 1
 end
 
 function CDOTA_BaseNPC:AddDeathEvent(new_mod, sync)
@@ -2574,14 +2897,17 @@ function CDOTA_BaseNPC:EndNoDraw(mod)
 end
 
 DoCleaveAttack_old = DoCleaveAttack
-function DoCleaveAttack(attacker, target, ability, damage, start_width, end_width, cleave_radius, effect, sound)
+function DoCleaveAttack(attacker, target, ability, damage, start_width, end_width, cleave_radius, effect)
 	local caster_pos = attacker:GetAbsOrigin()
 	local target_pos = target:GetAbsOrigin()
 
-	local direction = (target_pos - caster_pos):Normalized()
+	local direction = (target_pos - caster_pos)
 	direction.z = 0
 
-	DoCleaveAttack_old(attacker, target, ability, 0, start_width, end_width, cleave_radius, effect)
+	local length = direction:Length2D()
+	direction = direction:Normalized()
+
+	DoCleaveAttack_old(attacker, target, ability, 0, start_width, end_width, cleave_radius - length, effect)
 
 	local damageTable = {
 		damage_type = DAMAGE_TYPE_PHYSICAL,
@@ -2590,6 +2916,7 @@ function DoCleaveAttack(attacker, target, ability, damage, start_width, end_widt
 		damage = damage,
 		damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION,
 	}
+	local targets = {}
 
 	for _, unit in pairs(attacker:FindTargets(cleave_radius)) do
 		if unit ~= target then
@@ -2608,13 +2935,13 @@ function DoCleaveAttack(attacker, target, ability, damage, start_width, end_widt
 				if ortho_dist <= current_max_width then
 					damageTable.victim = unit
 					DoDamage(damageTable)
-					if sound then
-						target:EmitSound(sound)
-					end
+					table.insert(targets, unit)
 				end
 			end
 		end
 	end
+
+	return targets
 end
 
 CDOTA_BaseNPC_Hero.GetIntellect_old = CDOTA_BaseNPC_Hero.GetIntellect
@@ -2730,7 +3057,7 @@ function CDOTA_BaseNPC:PerformAttack(
 		self.no_cleave_flag = no_cleave_flag
 	end
 
-	self:PerformAttack_old(
+	return self:PerformAttack_old(
 		hTarget,
 		bUseCastAttackOrb,
 		bProcessProcs,

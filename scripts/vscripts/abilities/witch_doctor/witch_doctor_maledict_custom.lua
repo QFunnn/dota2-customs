@@ -49,8 +49,6 @@ function witch_doctor_maledict_custom:Precache(context)
 	PrecacheResource("particle", "particles/witch_doctor/maledict_legendary_stack.vpcf", context)
 	PrecacheResource("particle", "particles/econ/events/ti9/phase_boots_ti9.vpcf", context)
 	PrecacheResource("particle", "particles/void_astral_slow.vpcf", context)
-
-	--self.parent:EmitSound("Hero_WitchDoctor.Maledict_Loop")
 end
 
 function witch_doctor_maledict_custom:UpdateTalents()
@@ -58,18 +56,15 @@ function witch_doctor_maledict_custom:UpdateTalents()
 	if not self.init then
 		self.init = true
 		self.talents = {
-			has_e1 = 0,
 			e1_damage = 0,
 			e1_spell = 0,
 
-			has_e2 = 0,
-			e2_radius_voodoo = 0,
 			e2_radius = 0,
 			e2_cd = 0,
 
 			has_e3 = 0,
-			e3_magic = 0,
-			e3_heal_reduce = 0,
+			e3_magic_stack = 0,
+			e3_heal_reduce_stack = 0,
 			e3_max = caster:GetTalentValue("modifier_witch_doctor_maledict_3", "max", true),
 
 			has_e4 = 0,
@@ -86,28 +81,25 @@ function witch_doctor_maledict_custom:UpdateTalents()
 			h5_cast = caster:GetTalentValue("modifier_witch_doctor_hero_5", "cast", true),
 			h5_silence = caster:GetTalentValue("modifier_witch_doctor_hero_5", "silence", true),
 
-			has_w2 = 0,
 			w2_slow = 0,
 		}
 	end
 
 	if caster:HasTalent("modifier_witch_doctor_maledict_1") then
-		self.talents.has_e1 = 1
 		self.talents.e1_damage = caster:GetTalentValue("modifier_witch_doctor_maledict_1", "damage") / 100
 		self.talents.e1_spell = caster:GetTalentValue("modifier_witch_doctor_maledict_1", "spell")
 	end
 
 	if caster:HasTalent("modifier_witch_doctor_maledict_2") then
-		self.talents.has_e2 = 1
-		self.talents.e2_radius_voodoo = caster:GetTalentValue("modifier_witch_doctor_maledict_2", "radius_voodoo")
 		self.talents.e2_radius = caster:GetTalentValue("modifier_witch_doctor_maledict_2", "radius")
 		self.talents.e2_cd = caster:GetTalentValue("modifier_witch_doctor_maledict_2", "cd")
 	end
 
 	if caster:HasTalent("modifier_witch_doctor_maledict_3") then
 		self.talents.has_e3 = 1
-		self.talents.e3_magic = caster:GetTalentValue("modifier_witch_doctor_maledict_3", "magic") / self.talents.e3_max
-		self.talents.e3_heal_reduce = caster:GetTalentValue("modifier_witch_doctor_maledict_3", "heal_reduce")
+		self.talents.e3_magic_stack = caster:GetTalentValue("modifier_witch_doctor_maledict_3", "magic")
+			/ self.talents.e3_max
+		self.talents.e3_heal_reduce_stack = caster:GetTalentValue("modifier_witch_doctor_maledict_3", "heal_reduce")
 			/ self.talents.e3_max
 	end
 
@@ -124,9 +116,12 @@ function witch_doctor_maledict_custom:UpdateTalents()
 	end
 
 	if caster:HasTalent("modifier_witch_doctor_voodoo_2") then
-		self.talents.has_w2 = 1
 		self.talents.w2_slow = caster:GetTalentValue("modifier_witch_doctor_voodoo_2", "slow")
 	end
+end
+
+function witch_doctor_maledict_custom:GetAbilityTextureName()
+	return wearables_system:GetAbilityIconReplacement(self.caster, "witch_doctor_maledict", self)
 end
 
 function witch_doctor_maledict_custom:GetIntrinsicModifierName()
@@ -137,19 +132,67 @@ function witch_doctor_maledict_custom:GetIntrinsicModifierName()
 end
 
 function witch_doctor_maledict_custom:GetCooldown(level)
-	return self.BaseClass.GetCooldown(self, level) + (self.talents.e2_cd and self.talents.e2_cd or 0)
+	return self.BaseClass.GetCooldown(self, level) + (self.talents.e2_cd or 0)
 end
 
 function witch_doctor_maledict_custom:GetAOERadius()
-	return (self.radius and self.radius or 0) + (self.talents.e2_radius and self.talents.e2_radius or 0)
+	return (self.radius or 0) + (self.talents.e2_radius or 0)
 end
 
 function witch_doctor_maledict_custom:GetCastPoint(iLevel)
 	return self.BaseClass.GetCastPoint(self) + (self.talents.has_h5 == 1 and self.talents.h5_cast or 0)
 end
 
-function witch_doctor_maledict_custom:GetAbilityTextureName()
-	return wearables_system:GetAbilityIconReplacement(self.caster, "witch_doctor_maledict", self)
+function witch_doctor_maledict_custom:OnSpellStart()
+	local point = self:GetCursorPosition()
+
+	local radius = self:GetAOERadius()
+	local duration = self.duration + (self.talents.has_e4 == 1 and self.talents.e4_duration or 0)
+
+	local targets = self.caster:FindTargets(radius, point)
+	local sound = "Hero_WitchDoctor.Maledict_CastFail"
+
+	local particle_name = wearables_system:GetParticleReplacementAbility(
+		self.caster,
+		"particles/units/heroes/hero_witchdoctor/witchdoctor_maledict_aoe.vpcf",
+		self
+	)
+	local aoe_pfx = ParticleManager:CreateParticle(particle_name, PATTACH_WORLDORIGIN, nil)
+	ParticleManager:SetParticleControl(aoe_pfx, 0, point)
+	ParticleManager:SetParticleControl(aoe_pfx, 1, Vector(radius, radius, radius))
+	ParticleManager:ReleaseParticleIndex(aoe_pfx)
+
+	if #targets > 0 then
+		sound = "Hero_WitchDoctor.Maledict_Cast"
+		for _, target in pairs(targets) do
+			target:RemoveModifierByName("modifier_witch_doctor_maledict_custom")
+			target:AddNewModifier(
+				self.caster,
+				self,
+				"modifier_witch_doctor_maledict_custom",
+				{ duration = duration + 0.2 }
+			)
+
+			if self.talents.has_h5 == 1 then
+				if target:IsHero() then
+					target:EmitSound("SF.Raze_silence")
+				end
+				target:AddNewModifier(
+					self.caster,
+					self,
+					"modifier_generic_silence",
+					{ duration = (1 - target:GetStatusResistance()) * self.talents.h5_silence }
+				)
+			end
+		end
+
+		self:EndCd()
+		if self.talents.has_e7 == 1 and not self:IsHidden() then
+			self.caster:SwapAbilities(self:GetName(), "witch_doctor_maledict_custom_legendary", false, true)
+		end
+	end
+
+	EmitSoundOnLocationWithCaster(point, sound, self.caster)
 end
 
 function witch_doctor_maledict_custom:CheckMods()
@@ -170,57 +213,8 @@ function witch_doctor_maledict_custom:CheckMods()
 	end
 	self:StartCd()
 	if self.talents.has_e7 == 1 and self:IsHidden() then
-		local caster = self:GetCaster()
-		caster:SwapAbilities(self:GetName(), "witch_doctor_maledict_custom_legendary", true, false)
+		self.caster:SwapAbilities(self:GetName(), "witch_doctor_maledict_custom_legendary", true, false)
 	end
-end
-
-function witch_doctor_maledict_custom:OnSpellStart()
-	local caster = self:GetCaster()
-	local point = self:GetCursorPosition()
-
-	local radius = self:GetAOERadius()
-	local duration = self.duration + (self.talents.has_e4 == 1 and self.talents.e4_duration or 0)
-
-	local targets = caster:FindTargets(radius, point)
-	local sound = "Hero_WitchDoctor.Maledict_CastFail"
-
-	local particle_name = wearables_system:GetParticleReplacementAbility(
-		caster,
-		"particles/units/heroes/hero_witchdoctor/witchdoctor_maledict_aoe.vpcf",
-		self
-	)
-	local aoe_pfx = ParticleManager:CreateParticle(particle_name, PATTACH_WORLDORIGIN, nil)
-	ParticleManager:SetParticleControl(aoe_pfx, 0, point)
-	ParticleManager:SetParticleControl(aoe_pfx, 1, Vector(radius, radius, radius))
-	ParticleManager:ReleaseParticleIndex(aoe_pfx)
-
-	if #targets > 0 then
-		sound = "Hero_WitchDoctor.Maledict_Cast"
-		for _, target in pairs(targets) do
-			target:RemoveModifierByName("modifier_witch_doctor_maledict_custom")
-			target:AddNewModifier(caster, self, "modifier_witch_doctor_maledict_custom", { duration = duration + 0.2 })
-
-			if self.talents.has_h5 == 1 then
-				if target:IsHero() then
-					target:EmitSound("SF.Raze_silence")
-				end
-				target:AddNewModifier(
-					caster,
-					self,
-					"modifier_generic_silence",
-					{ duration = (1 - target:GetStatusResistance()) * self.talents.h5_silence }
-				)
-			end
-		end
-
-		self:EndCd()
-		if self.talents.has_e7 == 1 and not self:IsHidden() then
-			caster:SwapAbilities(self:GetName(), "witch_doctor_maledict_custom_legendary", false, true)
-		end
-	end
-
-	EmitSoundOnLocationWithCaster(point, sound, caster)
 end
 
 modifier_witch_doctor_maledict_custom = class(mod_visible)
@@ -250,7 +244,7 @@ function modifier_witch_doctor_maledict_custom:OnCreated()
 	self.legendary_stack = 0
 
 	self.damage = self.ability.damage
-	self.health_damage = self.ability.bonus_damage / 100
+	self.health_damage = self.ability.bonus_damage
 
 	if not IsServer() then
 		return
@@ -298,6 +292,7 @@ function modifier_witch_doctor_maledict_custom:OnIntervalThink()
 
 	if not self.parent:IsAlive() then
 		self:Destroy()
+		return
 	end
 
 	if self.ability.talents.has_e3 == 1 and self:GetStackCount() < self.ability.talents.e3_max then
@@ -336,15 +331,8 @@ function modifier_witch_doctor_maledict_custom:OnIntervalThink()
 		return
 	end
 	self.tick_count = 0
-	self:HealthDamage()
-end
 
-function modifier_witch_doctor_maledict_custom:HealthDamage()
-	if not IsServer() then
-		return
-	end
-
-	damage = (self.start_health - self.parent:GetHealth()) * self.health_damage * self:DamageInc()
+	local damage = (self.start_health - self.parent:GetHealth()) * self.health_damage * self:DamageInc()
 	self.parent:EmitSound("Hero_WitchDoctor.Maledict_Tick")
 
 	if
@@ -372,7 +360,7 @@ function modifier_witch_doctor_maledict_custom:HealthDamage()
 	end
 
 	self.damageTable.damage = damage
-	local real_damage = DoDamage(self.damageTable)
+	DoDamage(self.damageTable)
 	self.parent:SendNumber(4, damage)
 
 	if
@@ -383,6 +371,20 @@ function modifier_witch_doctor_maledict_custom:HealthDamage()
 	then
 		self.caster:UpdateQuest(1)
 	end
+end
+
+function modifier_witch_doctor_maledict_custom:OnDestroy()
+	if not IsServer() then
+		return
+	end
+
+	if self.ability.main_mod and self.ability.main_mod == self then
+		self.caster:UpdateUIshort({ hide = 1, hide_full = 1, style = "WitchDoctorMaledict" })
+		self.ability.main_mod = nil
+	end
+
+	self.ability.active_mods[self] = nil
+	self.ability:CheckMods()
 end
 
 function modifier_witch_doctor_maledict_custom:DamageInc()
@@ -417,9 +419,7 @@ end
 
 function modifier_witch_doctor_maledict_custom:DeclareFunctions()
 	return {
-		--MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET,
 		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
-		--MODIFIER_PROPERTY_LIFESTEAL_AMPLIFY_PERCENTAGE,
 		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
 		MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE,
 		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
@@ -432,19 +432,15 @@ function modifier_witch_doctor_maledict_custom:GetModifierMoveSpeedBonus_Percent
 end
 
 function modifier_witch_doctor_maledict_custom:GetModifierMagicalResistanceBonus()
-	return self.ability.talents.e3_magic * self:GetStackCount()
-end
-
-function modifier_witch_doctor_maledict_custom:GetModifierLifestealRegenAmplify_Percentage()
-	return self.ability.talents.e3_heal_reduce * self:GetStackCount()
+	return self.ability.talents.e3_magic_stack * self:GetStackCount()
 end
 
 function modifier_witch_doctor_maledict_custom:GetModifierHealChange()
-	return self.ability.talents.e3_heal_reduce * self:GetStackCount()
+	return self.ability.talents.e3_heal_reduce_stack * self:GetStackCount()
 end
 
 function modifier_witch_doctor_maledict_custom:GetModifierHPRegenAmplify_Percentage()
-	return self.ability.talents.e3_heal_reduce * self:GetStackCount()
+	return self.ability.talents.e3_heal_reduce_stack * self:GetStackCount()
 end
 
 function modifier_witch_doctor_maledict_custom:GetModifierDamageOutgoing_Percentage()
@@ -461,20 +457,6 @@ function modifier_witch_doctor_maledict_custom:GetModifierSpellAmplify_Percentag
 	return self.ability.talents.h5_damage_reduce
 end
 
-function modifier_witch_doctor_maledict_custom:OnDestroy()
-	if not IsServer() then
-		return
-	end
-
-	if self.ability.main_mod and self.ability.main_mod == self then
-		self.caster:UpdateUIshort({ hide = 1, hide_full = 1, style = "WitchDoctorMaledict" })
-		self.ability.main_mod = nil
-	end
-
-	self.ability.active_mods[self] = nil
-	self.ability:CheckMods()
-end
-
 modifier_witch_doctor_maledict_custom_tracker = class(mod_hidden)
 function modifier_witch_doctor_maledict_custom_tracker:OnCreated(table)
 	self.parent = self:GetParent()
@@ -483,14 +465,17 @@ function modifier_witch_doctor_maledict_custom_tracker:OnCreated(table)
 	self.ability:UpdateTalents()
 
 	self.parent.maledict_ability = self.ability
-
 	self.parent.maledict_legendary_ability = self.parent:FindAbilityByName("witch_doctor_maledict_custom_legendary")
-	if self.parent.maledict_legendary_ability then
+
+	if IsValid(self.parent.maledict_legendary_ability) then
+		if IsServer() and not self.parent.maledict_legendary_ability:IsTrained() then
+			self.parent.maledict_legendary_ability:SetLevel(1)
+		end
 		self.parent.maledict_legendary_ability:UpdateTalents()
 	end
 
 	self.ability.radius = self.ability:GetSpecialValueFor("radius")
-	self.ability.bonus_damage = self.ability:GetSpecialValueFor("bonus_damage")
+	self.ability.bonus_damage = self.ability:GetSpecialValueFor("bonus_damage") / 100
 	self.ability.damage = self.ability:GetSpecialValueFor("AbilityDamage")
 	self.ability.ticks = self.ability:GetSpecialValueFor("ticks")
 	self.ability.duration = self.ability:GetSpecialValueFor("AbilityDuration")
@@ -499,7 +484,7 @@ function modifier_witch_doctor_maledict_custom_tracker:OnCreated(table)
 end
 
 function modifier_witch_doctor_maledict_custom_tracker:OnRefresh()
-	self.ability.bonus_damage = self.ability:GetSpecialValueFor("bonus_damage")
+	self.ability.bonus_damage = self.ability:GetSpecialValueFor("bonus_damage") / 100
 	self.ability.damage = self.ability:GetSpecialValueFor("AbilityDamage")
 end
 
@@ -518,151 +503,6 @@ end
 
 function modifier_witch_doctor_maledict_custom_tracker:GetModifierSpellAmplify_Percentage()
 	return self.ability.talents.e1_spell
-end
-
-witch_doctor_maledict_custom_legendary = class({})
-witch_doctor_maledict_custom_legendary.talents = {}
-
-function witch_doctor_maledict_custom_legendary:UpdateTalents()
-	local caster = self:GetCaster()
-
-	if not self.init then
-		self.init = true
-		self.talents = {
-			has_e7 = 0,
-			e7_impact_damage = caster:GetTalentValue("modifier_witch_doctor_maledict_7", "impact_damage", true) / 100,
-			e7_base = caster:GetTalentValue("modifier_witch_doctor_maledict_7", "base", true),
-			e7_speed = caster:GetTalentValue("modifier_witch_doctor_maledict_7", "speed", true),
-			e7_talent_cd = caster:GetTalentValue("modifier_witch_doctor_maledict_7", "talent_cd", true),
-			e7_damage_type = caster:GetTalentValue("modifier_witch_doctor_maledict_7", "damage_type", true),
-			e7_radius = caster:GetTalentValue("modifier_witch_doctor_maledict_7", "radius", true),
-
-			has_e2 = 0,
-			e2_radius = 0,
-		}
-
-		if IsServer() then
-			self:SetLevel(1)
-		end
-	end
-
-	if caster:HasTalent("modifier_witch_doctor_maledict_2") then
-		self.talents.e2_radius = caster:GetTalentValue("modifier_witch_doctor_maledict_2", "radius")
-	end
-end
-
-function witch_doctor_maledict_custom_legendary:GetCooldown()
-	return self.talents.e7_talent_cd and self.talents.e7_talent_cd or 0
-end
-
-function witch_doctor_maledict_custom_legendary:GetAOERadius()
-	return (self.talents.e7_radius and self.talents.e7_radius or 0)
-		+ (self.talents.e2_radius and self.talents.e2_radius or 0)
-end
-
-function witch_doctor_maledict_custom_legendary:OnSpellStart()
-	local caster = self:GetCaster()
-	local point = self:GetCursorPosition()
-	local origin = caster:GetAbsOrigin()
-
-	if point == origin then
-		point = origin + caster:GetForwardVector() * 50
-	end
-
-	local vec = point - origin
-	local speed = self.talents.e7_speed
-	local duration = vec:Length2D() / speed
-
-	local dummy = CreateUnitByName("npc_dota_target_custom", point, false, nil, nil, caster:GetTeamNumber())
-	dummy:AddNewModifier(
-		caster,
-		self,
-		"modifier_witch_doctor_maledict_custom_legendary_thinker",
-		{ duration = duration + 1 }
-	)
-	dummy:SetAbsOrigin(dummy:GetAbsOrigin() + Vector(0, 0, 20))
-	dummy.maledict_target = true
-
-	caster:EmitSound("WD.Maledict_legendary_cast")
-	caster:EmitSound("WD.Maledict_legendary_cast2")
-
-	local info = {
-		Target = dummy,
-		Source = caster,
-		Ability = self,
-		iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_1,
-		EffectName = "particles/witch_doctor/maledict_legendary_proj.vpcf",
-		iMoveSpeed = speed,
-		bDodgeable = false,
-		bVisibleToEnemies = true,
-		bProvidesVision = false,
-	}
-	ProjectileManager:CreateTrackingProjectile(info)
-end
-
-function witch_doctor_maledict_custom_legendary:OnProjectileHit(target, location)
-	if not IsValid(target) then
-		return
-	end
-	if not target.maledict_target then
-		return
-	end
-	local caster = self:GetCaster()
-	local radius = self:GetAOERadius()
-	local point = GetGroundPosition(location, nil)
-
-	AddFOWViewer(caster:GetTeamNumber(), point, radius, 3, false)
-	EmitSoundOnLocationWithCaster(point, "WD.Maledict_legendary_hit", caster)
-
-	local aoe_pfx =
-		ParticleManager:CreateParticle("particles/witch_doctor/maledict_legendary_aoe.vpcf", PATTACH_WORLDORIGIN, nil)
-	ParticleManager:SetParticleControl(aoe_pfx, 0, point)
-	ParticleManager:SetParticleControl(aoe_pfx, 1, Vector(radius, radius, radius))
-	ParticleManager:ReleaseParticleIndex(aoe_pfx)
-
-	local damageTable = {
-		damage = self.talents.e7_base + caster:GetIntellect(false) * self.talents.e7_impact_damage,
-		ability = self,
-		damage_type = self.talents.e7_damage_type,
-		attacker = caster,
-	}
-	local targets = caster:FindTargets(radius, point)
-
-	for _, target in pairs(targets) do
-		damageTable.victim = target
-		local real_damage = DoDamage(damageTable, "modifier_witch_doctor_maledict_7")
-		local mod = target:FindModifierByName("modifier_witch_doctor_maledict_custom")
-		if mod then
-			mod:AddStack()
-		end
-
-		if IsValid(self.caster.voodoo_ability) then
-			self.caster.voodoo_ability:ProcDamage(target, true)
-		end
-	end
-
-	if #targets > 0 then
-		EmitSoundOnLocationWithCaster(point, "WD.Maledict_legendary_hit2", caster)
-	end
-end
-
-modifier_witch_doctor_maledict_custom_legendary_thinker = class(mod_hidden)
-function modifier_witch_doctor_maledict_custom_legendary_thinker:CheckState()
-	return {
-		[MODIFIER_STATE_INVULNERABLE] = true,
-		[MODIFIER_STATE_OUT_OF_GAME] = true,
-		[MODIFIER_STATE_NOT_ON_MINIMAP] = true,
-		[MODIFIER_STATE_NO_HEALTH_BAR] = true,
-		[MODIFIER_STATE_UNSELECTABLE] = true,
-		[MODIFIER_STATE_UNTARGETABLE] = true,
-		[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
-	}
-end
-function modifier_witch_doctor_maledict_custom_legendary_thinker:OnDestroy()
-	if not IsServer() then
-		return
-	end
-	UTIL_Remove(self:GetParent())
 end
 
 modifier_witch_doctor_maledict_custom_haste = class(mod_visible)
@@ -694,3 +534,143 @@ function modifier_witch_doctor_maledict_custom_haste:GetModifierMoveSpeedBonus_P
 end
 
 modifier_witch_doctor_maledict_custom_cd_items = class(mod_hidden)
+
+witch_doctor_maledict_custom_legendary = class({})
+witch_doctor_maledict_custom_legendary.talents = {}
+
+function witch_doctor_maledict_custom_legendary:UpdateTalents()
+	local caster = self:GetCaster()
+	if not self.init then
+		self.init = true
+		self.talents = {
+			e7_impact_damage = caster:GetTalentValue("modifier_witch_doctor_maledict_7", "impact_damage", true) / 100,
+			e7_base = caster:GetTalentValue("modifier_witch_doctor_maledict_7", "base", true),
+			e7_speed = caster:GetTalentValue("modifier_witch_doctor_maledict_7", "speed", true),
+			e7_talent_cd = caster:GetTalentValue("modifier_witch_doctor_maledict_7", "talent_cd", true),
+			e7_damage_type = caster:GetTalentValue("modifier_witch_doctor_maledict_7", "damage_type", true),
+			e7_radius = caster:GetTalentValue("modifier_witch_doctor_maledict_7", "radius", true),
+
+			e2_radius = 0,
+		}
+	end
+
+	if caster:HasTalent("modifier_witch_doctor_maledict_2") then
+		self.talents.e2_radius = caster:GetTalentValue("modifier_witch_doctor_maledict_2", "radius")
+	end
+end
+
+function witch_doctor_maledict_custom_legendary:GetCooldown()
+	return self.talents.e7_talent_cd or 0
+end
+
+function witch_doctor_maledict_custom_legendary:GetAOERadius()
+	return (self.talents.e7_radius or 0) + (self.talents.e2_radius or 0)
+end
+
+function witch_doctor_maledict_custom_legendary:OnSpellStart()
+	local point = self:GetCursorPosition()
+	local origin = self.caster:GetAbsOrigin()
+
+	if point == origin then
+		point = origin + self.caster:GetForwardVector() * 50
+	end
+
+	local vec = point - origin
+	local speed = self.talents.e7_speed
+	local duration = vec:Length2D() / speed
+
+	local dummy = CreateUnitByName("npc_dota_target_custom", point, false, nil, nil, self.caster:GetTeamNumber())
+	dummy:AddNewModifier(
+		self.caster,
+		self,
+		"modifier_witch_doctor_maledict_custom_legendary_thinker",
+		{ duration = duration + 1 }
+	)
+	dummy:SetAbsOrigin(dummy:GetAbsOrigin() + Vector(0, 0, 20))
+	dummy.maledict_target = true
+
+	self.caster:EmitSound("WD.Maledict_legendary_cast")
+	self.caster:EmitSound("WD.Maledict_legendary_cast2")
+
+	local info = {
+		Target = dummy,
+		Source = self.caster,
+		Ability = self,
+		iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_1,
+		EffectName = "particles/witch_doctor/maledict_legendary_proj.vpcf",
+		iMoveSpeed = speed,
+		bDodgeable = false,
+		bVisibleToEnemies = true,
+		bProvidesVision = false,
+	}
+	ProjectileManager:CreateTrackingProjectile(info)
+end
+
+function witch_doctor_maledict_custom_legendary:OnProjectileHit(target, location)
+	if not IsValid(target) then
+		return
+	end
+	if not target.maledict_target then
+		return
+	end
+	local radius = self:GetAOERadius()
+	local point = GetGroundPosition(location, nil)
+
+	AddFOWViewer(self.caster:GetTeamNumber(), point, radius, 3, false)
+	EmitSoundOnLocationWithCaster(point, "WD.Maledict_legendary_hit", self.caster)
+
+	local aoe_pfx =
+		ParticleManager:CreateParticle("particles/witch_doctor/maledict_legendary_aoe.vpcf", PATTACH_WORLDORIGIN, nil)
+	ParticleManager:SetParticleControl(aoe_pfx, 0, point)
+	ParticleManager:SetParticleControl(aoe_pfx, 1, Vector(radius, radius, radius))
+	ParticleManager:ReleaseParticleIndex(aoe_pfx)
+
+	local damageTable = {
+		damage = self.talents.e7_base + self.caster:GetIntellect(false) * self.talents.e7_impact_damage,
+		ability = self,
+		damage_type = self.talents.e7_damage_type,
+		attacker = self.caster,
+	}
+	local targets = self.caster:FindTargets(radius, point)
+
+	for _, target in pairs(targets) do
+		damageTable.victim = target
+		DoDamage(damageTable, "modifier_witch_doctor_maledict_7")
+		local mod = target:FindModifierByName("modifier_witch_doctor_maledict_custom")
+		if mod then
+			mod:AddStack()
+		end
+
+		if IsValid(self.caster.voodoo_ability) then
+			self.caster.voodoo_ability:ProcDamage(target, true)
+		end
+	end
+
+	if #targets > 0 then
+		EmitSoundOnLocationWithCaster(point, "WD.Maledict_legendary_hit2", self.caster)
+	end
+end
+
+modifier_witch_doctor_maledict_custom_legendary_thinker = class(mod_hidden)
+function modifier_witch_doctor_maledict_custom_legendary_thinker:OnCreated()
+	self.parent = self:GetParent()
+end
+
+function modifier_witch_doctor_maledict_custom_legendary_thinker:CheckState()
+	return {
+		[MODIFIER_STATE_INVULNERABLE] = true,
+		[MODIFIER_STATE_OUT_OF_GAME] = true,
+		[MODIFIER_STATE_NOT_ON_MINIMAP] = true,
+		[MODIFIER_STATE_NO_HEALTH_BAR] = true,
+		[MODIFIER_STATE_UNSELECTABLE] = true,
+		[MODIFIER_STATE_UNTARGETABLE] = true,
+		[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
+	}
+end
+
+function modifier_witch_doctor_maledict_custom_legendary_thinker:OnDestroy()
+	if not IsServer() then
+		return
+	end
+	UTIL_Remove(self.parent)
+end

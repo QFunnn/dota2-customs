@@ -38,11 +38,6 @@ LinkLuaModifier(
 	"abilities/bloodseeker/bloodseeker_rupture_custom",
 	LUA_MODIFIER_MOTION_HORIZONTAL
 )
-LinkLuaModifier(
-	"modifier_bloodseeker_rupture_custom_damage",
-	"abilities/bloodseeker/bloodseeker_rupture_custom",
-	LUA_MODIFIER_MOTION_NONE
-)
 
 bloodseeker_rupture_custom = class({})
 bloodseeker_rupture_custom.talents = {}
@@ -64,6 +59,7 @@ function bloodseeker_rupture_custom:Precache(context)
 	PrecacheResource("particle", "particles/bloodseeker/rupture_proc_damage.vpcf", context)
 	PrecacheResource("particle", "particles/phantom_assassin/crit_shield.vpcf", context)
 	PrecacheResource("particle", "particles/brist_proc.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_bloodseeker/bloodseeker_thirst_owner.vpcf", context)
 end
 
 function bloodseeker_rupture_custom:UpdateTalents()
@@ -72,52 +68,48 @@ function bloodseeker_rupture_custom:UpdateTalents()
 		self.init = true
 
 		self.talents = {
-			has_damage = 0,
-			damage_inc = 0,
-			damage_max = caster:GetTalentValue("modifier_bloodseeker_rupture_1", "max", true),
+			has_r1 = 0,
+			r1_damage = 0,
+			r1_max = caster:GetTalentValue("modifier_bloodseeker_rupture_1", "max", true),
 
-			cd_inc = 0,
+			r2_cd = 0,
 			r2_range = 0,
 
-			has_stack = 0,
-			heal_reduce = 0,
-			stack_damage = 0,
-			stack_radius = caster:GetTalentValue("modifier_bloodseeker_rupture_3", "radius", true),
-			stack_damage_type = caster:GetTalentValue("modifier_bloodseeker_rupture_3", "damage_type", true),
+			has_r3 = 0,
+			r3_heal_reduce = 0,
+			r3_damage = 0,
+			r3_radius = caster:GetTalentValue("modifier_bloodseeker_rupture_3", "radius", true),
+			r3_damage_type = caster:GetTalentValue("modifier_bloodseeker_rupture_3", "damage_type", true),
 
 			has_r4 = 0,
 			r4_cdr = caster:GetTalentValue("modifier_bloodseeker_rupture_4", "cdr", true),
-			cd_items = caster:GetTalentValue("modifier_bloodseeker_rupture_4", "cd_items", true) / 100,
+			r4_cd_items = caster:GetTalentValue("modifier_bloodseeker_rupture_4", "cd_items", true) / 100,
 			r4_slow_resist = caster:GetTalentValue("modifier_bloodseeker_rupture_4", "slow_resist", true),
 
-			has_fear = 0,
-			cast_inc = caster:GetTalentValue("modifier_bloodseeker_hero_6", "cast", true),
-			fear_duration = caster:GetTalentValue("modifier_bloodseeker_hero_6", "fear", true),
+			has_h6 = 0,
+			h6_cast = caster:GetTalentValue("modifier_bloodseeker_hero_6", "cast", true),
+			h6_fear = caster:GetTalentValue("modifier_bloodseeker_hero_6", "fear", true),
 
-			has_legendary = 0,
-			legendary_cd = caster:GetTalentValue("modifier_bloodseeker_rupture_7", "talent_cd", true),
-			legendary_duration = caster:GetTalentValue("modifier_bloodseeker_rupture_7", "duration", true),
-			legendary_damage = caster:GetTalentValue("modifier_bloodseeker_rupture_7", "damage", true),
-			legendary_damage_reduce = caster:GetTalentValue("modifier_bloodseeker_rupture_7", "damage_reduce", true),
-			legendary_cd_inc = caster:GetTalentValue("modifier_bloodseeker_rupture_7", "cd_inc", true),
-			legendary_cd_distance = caster:GetTalentValue("modifier_bloodseeker_rupture_7", "cd_distance", true),
+			has_r7 = 0,
+			r7_cd_inc = caster:GetTalentValue("modifier_bloodseeker_rupture_7", "cd_inc", true),
+			r7_cd_distance = caster:GetTalentValue("modifier_bloodseeker_rupture_7", "cd_distance", true),
 		}
 	end
 
 	if caster:HasTalent("modifier_bloodseeker_rupture_1") then
-		self.talents.has_damage = 1
-		self.talents.damage_inc = caster:GetTalentValue("modifier_bloodseeker_rupture_1", "damage") / 100
+		self.talents.has_r1 = 1
+		self.talents.r1_damage = caster:GetTalentValue("modifier_bloodseeker_rupture_1", "damage") / 100
 	end
 
 	if caster:HasTalent("modifier_bloodseeker_rupture_2") then
-		self.talents.cd_inc = caster:GetTalentValue("modifier_bloodseeker_rupture_2", "cd")
+		self.talents.r2_cd = caster:GetTalentValue("modifier_bloodseeker_rupture_2", "cd")
 		self.talents.r2_range = caster:GetTalentValue("modifier_bloodseeker_rupture_2", "range")
 	end
 
 	if caster:HasTalent("modifier_bloodseeker_rupture_3") then
-		self.talents.has_stack = 1
-		self.talents.heal_reduce = caster:GetTalentValue("modifier_bloodseeker_rupture_3", "heal_reduce")
-		self.talents.stack_damage = caster:GetTalentValue("modifier_bloodseeker_rupture_3", "damage") / 100
+		self.talents.has_r3 = 1
+		self.talents.r3_heal_reduce = caster:GetTalentValue("modifier_bloodseeker_rupture_3", "heal_reduce")
+		self.talents.r3_damage = caster:GetTalentValue("modifier_bloodseeker_rupture_3", "damage") / 100
 	end
 
 	if caster:HasTalent("modifier_bloodseeker_rupture_4") then
@@ -125,11 +117,11 @@ function bloodseeker_rupture_custom:UpdateTalents()
 	end
 
 	if caster:HasTalent("modifier_bloodseeker_hero_6") then
-		self.talents.has_fear = 1
+		self.talents.has_h6 = 1
 	end
 
 	if caster:HasTalent("modifier_bloodseeker_rupture_7") then
-		self.talents.has_legendary = 1
+		self.talents.has_r7 = 1
 		if not self.legendary_init then
 			self.legendary_init = true
 			self.tracker.pos = caster:GetAbsOrigin()
@@ -150,36 +142,35 @@ function bloodseeker_rupture_custom:GetIntrinsicModifierName()
 end
 
 function bloodseeker_rupture_custom:GetCastPoint()
-	return self.cast_point + (self.talents.has_fear == 1 and self.talents.cast_inc or 0)
+	return self.BaseClass.GetCastPoint(self) + (self.talents.has_h6 == 1 and self.talents.h6_cast or 0)
 end
 
 function bloodseeker_rupture_custom:GetCooldown(iLevel)
-	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.cd_inc and self.talents.cd_inc or 0)
+	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.r2_cd or 0)
 end
 
 function bloodseeker_rupture_custom:GetCastAnimation()
-	if self.talents.has_fear == 1 then
+	if self.talents.has_h6 == 1 then
 		return 0
 	end
 	return ACT_DOTA_CAST_ABILITY_6
 end
 
 function bloodseeker_rupture_custom:OnAbilityPhaseStart()
-	if self.talents.has_fear == 1 then
-		self:GetCaster():StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_6, 1.4)
+	if self.talents.has_h6 == 1 then
+		self.caster:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_6, 1.4)
 	end
 	return true
 end
 
 function bloodseeker_rupture_custom:OnAbilityPhaseInterrupted()
-	if self.talents.has_fear == 0 then
+	if self.talents.has_h6 == 0 then
 		return
 	end
-	self:GetCaster():RemoveGesture(ACT_DOTA_CAST_ABILITY_6)
+	self.caster:RemoveGesture(ACT_DOTA_CAST_ABILITY_6)
 end
 
 function bloodseeker_rupture_custom:OnSpellStart()
-	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 
 	if target:TriggerSpellAbsorb(self) then
@@ -187,14 +178,19 @@ function bloodseeker_rupture_custom:OnSpellStart()
 	end
 	local duration = self.duration
 
-	if not caster:HasScepter() then
+	if not self.caster:HasScepter() then
 		duration = duration * (1 - target:GetStatusResistance())
 	end
 
-	target:AddNewModifier(caster, self, "modifier_bloodseeker_rupture_custom", { duration = duration })
-	caster:AddNewModifier(caster, self, "modifier_bloodseeker_rupture_custom_caster", { target = target:entindex() })
+	target:AddNewModifier(self.caster, self, "modifier_bloodseeker_rupture_custom", { duration = duration })
+	self.caster:AddNewModifier(
+		self.caster,
+		self,
+		"modifier_bloodseeker_rupture_custom_caster",
+		{ target = target:entindex() }
+	)
 
-	caster:EmitSound("hero_bloodseeker.rupture.cast")
+	self.caster:EmitSound("hero_bloodseeker.rupture.cast")
 	target:EmitSound("hero_bloodseeker.rupture")
 end
 
@@ -214,7 +210,7 @@ function modifier_bloodseeker_rupture_custom:OnCreated()
 	self.no_damage_distance = self.ability.no_damage_distance
 	self.hp_pct = self.ability.hp_pct
 
-	self.heal_reduce = self.ability.talents.heal_reduce
+	self.heal_reduce = self.ability.talents.r3_heal_reduce
 
 	if not IsServer() then
 		return
@@ -222,7 +218,7 @@ function modifier_bloodseeker_rupture_custom:OnCreated()
 
 	self.damage_stack = 0
 	self.scepter_count = 0
-	if self.caster:HasScepter() or self.ability.talents.has_fear == 1 then
+	if self.caster:HasScepter() or self.ability.talents.has_h6 == 1 then
 		self.parent:AddSpellEvent(self, true)
 	end
 
@@ -231,16 +227,14 @@ function modifier_bloodseeker_rupture_custom:OnCreated()
 	self.origin = self.parent:GetAbsOrigin()
 	self.max_duration = self:GetRemainingTime()
 
-	if self.ability.talents.has_stack == 1 then
+	if self.ability.talents.has_r3 == 1 then
 		self.parent:AddDamageEvent_inc(self, true)
 		if not self.ability:IsHidden() then
 			self.caster:SwapAbilities(self.ability:GetName(), "bloodseeker_rupture_custom_recast", false, true)
-			self.caster:FindAbilityByName("bloodseeker_rupture_custom_recast"):StartCooldown(0.5)
+			if IsValid(self.caster.rupture_recast_ability) then
+				self.caster.rupture_recast_ability:StartCooldown(0.5)
+			end
 		end
-	end
-
-	if self.ability.talents.has_fear == 1 then
-		self.parent:AddDamageEvent_inc(self, true)
 	end
 
 	DoDamage({
@@ -300,7 +294,7 @@ function modifier_bloodseeker_rupture_custom:OnIntervalThink(first)
 
 	ParticleManager:SetParticleControl(self.timer_particle, 1, Vector((self.elapsed / self.max_duration) * 100, 0, 0))
 
-	if self.ability.talents.has_stack == 1 and not self.proc_damage then
+	if self.ability.talents.has_r3 == 1 and not self.proc_damage then
 		self.caster:UpdateUIshort({
 			max_time = self.max_duration,
 			time = self:GetRemainingTime(),
@@ -313,7 +307,7 @@ function modifier_bloodseeker_rupture_custom:OnIntervalThink(first)
 	self.count = self.count + self.interval
 	if self.count >= 1 - FrameTime() then
 		self.count = 0
-		if self.ability.talents.has_damage == 1 and self.damage_stack < self.ability.talents.damage_max then
+		if self.ability.talents.has_r1 == 1 and self.damage_stack < self.ability.talents.r1_max then
 			self.damage_stack = self.damage_stack + 1
 		end
 		if self.caster.bath_ability then
@@ -321,7 +315,7 @@ function modifier_bloodseeker_rupture_custom:OnIntervalThink(first)
 		end
 	end
 
-	local bonus_damage = 1 + self.ability.talents.damage_inc * (self.damage_stack / self.ability.talents.damage_max)
+	local bonus_damage = 1 + self.ability.talents.r1_damage * (self.damage_stack / self.ability.talents.r1_max)
 
 	if self.parent:IsCreep() then
 		DoDamage({
@@ -338,7 +332,7 @@ function modifier_bloodseeker_rupture_custom:OnIntervalThink(first)
 	if not self.is_invun then
 		local current_origin = self.parent:GetAbsOrigin()
 		local distance = (self.origin - current_origin):Length2D()
-		if distance < self.ability.no_damage_distance then
+		if distance < self.no_damage_distance then
 			local damage = distance * (self.movement_damage_pct * bonus_damage)
 			if damage > 0 then
 				DoDamage({
@@ -371,17 +365,24 @@ function modifier_bloodseeker_rupture_custom:DamageEvent_inc(params)
 	if self.parent ~= params.unit then
 		return
 	end
-
-	if self.ability.talents.has_stack == 1 and params.attacker:FindOwner() == self.caster and not self.proc_damage then
-		self:SetStackCount(self:GetStackCount() + params.damage * self.ability.talents.stack_damage)
+	if self.ability.talents.has_r3 == 0 then
+		return
 	end
+	if params.attacker:FindOwner() ~= self.caster then
+		return
+	end
+	if self.proc_damage then
+		return
+	end
+
+	self:SetStackCount(self:GetStackCount() + params.damage * self.ability.talents.r3_damage)
 end
 
 function modifier_bloodseeker_rupture_custom:ProcDamage()
 	if not IsServer() then
 		return
 	end
-	if self.ability.talents.has_stack == 0 then
+	if self.ability.talents.has_r3 == 0 then
 		return
 	end
 	if self.proc_damage then
@@ -403,11 +404,11 @@ function modifier_bloodseeker_rupture_custom:ProcDamage()
 	local damage_table = {
 		attacker = self.caster,
 		ability = self.ability,
-		damage_type = self.ability.talents.stack_damage_type,
+		damage_type = self.ability.talents.r3_damage_type,
 		damage = damage,
 		damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION,
 	}
-	for _, target in pairs(self.caster:FindTargets(self.ability.talents.stack_radius, self.parent:GetAbsOrigin())) do
+	for _, target in pairs(self.caster:FindTargets(self.ability.talents.r3_radius, self.parent:GetAbsOrigin())) do
 		damage_table.victim = target
 		local real_damage = DoDamage(damage_table, "modifier_bloodseeker_rupture_3")
 		if target == self.parent then
@@ -443,14 +444,14 @@ function modifier_bloodseeker_rupture_custom:SpellEvent(params)
 		return
 	end
 
-	if self.ability.talents.has_fear == 1 and not self.proc_fear and not self.parent:IsInvulnerable() then
+	if self.ability.talents.has_h6 == 1 and not self.proc_fear and not self.parent:IsInvulnerable() then
 		self.proc_fear = true
 		self.parent:EmitSound("Generic.Fear")
 		self.parent:AddNewModifier(
 			self.caster,
 			self.ability,
 			"modifier_nevermore_requiem_fear",
-			{ duration = self.ability.talents.fear_duration * (1 - self.parent:GetStatusResistance()) }
+			{ duration = self.ability.talents.h6_fear * (1 - self.parent:GetStatusResistance()) }
 		)
 	end
 
@@ -479,14 +480,8 @@ end
 
 function modifier_bloodseeker_rupture_custom:DeclareFunctions()
 	return {
-		--MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET,
 		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
-		--MODIFIER_PROPERTY_LIFESTEAL_AMPLIFY_PERCENTAGE,
 	}
-end
-
-function modifier_bloodseeker_rupture_custom:GetModifierLifestealRegenAmplify_Percentage()
-	return self.heal_reduce
 end
 
 function modifier_bloodseeker_rupture_custom:GetModifierHealChange()
@@ -505,11 +500,22 @@ function modifier_bloodseeker_rupture_custom_tracker:OnCreated()
 	self.ability:UpdateTalents()
 
 	self.legendary_ability = self.parent:FindAbilityByName("bloodseeker_rupture_custom_legendary")
-	if self.legendary_ability then
+	if IsValid(self.legendary_ability) then
+		if IsServer() and not self.legendary_ability:IsTrained() then
+			self.legendary_ability:SetLevel(1)
+		end
 		self.legendary_ability:UpdateTalents()
 	end
 
-	self.ability.cast_point = self.ability:GetSpecialValueFor("AbilityCastPoint")
+	self.parent.rupture_recast_ability = self.parent:FindAbilityByName("bloodseeker_rupture_custom_recast")
+	if
+		IsValid(self.parent.rupture_recast_ability)
+		and IsServer()
+		and not self.parent.rupture_recast_ability:IsTrained()
+	then
+		self.parent.rupture_recast_ability:SetLevel(1)
+	end
+
 	self.ability.duration = self.ability:GetSpecialValueFor("duration")
 	self.ability.no_damage_distance = self.ability:GetSpecialValueFor("no_damage_distance")
 	self.ability.movement_damage_pct = self.ability:GetSpecialValueFor("movement_damage_pct") / 100
@@ -532,10 +538,10 @@ function modifier_bloodseeker_rupture_custom_tracker:OnIntervalThink()
 	if not IsServer() then
 		return
 	end
-	if not self.legendary_ability then
+	if not IsValid(self.legendary_ability) then
 		return
 	end
-	if self.ability.talents.has_legendary == 0 then
+	if self.ability.talents.has_r7 == 0 then
 		return
 	end
 
@@ -548,12 +554,12 @@ function modifier_bloodseeker_rupture_custom_tracker:OnIntervalThink()
 	end
 
 	local final = self.distance + pass
-	local legendary_distance = self.ability.talents.legendary_cd_distance
+	local legendary_distance = self.ability.talents.r7_cd_distance
 
 	if final >= legendary_distance then
 		local delta = math.floor(final / legendary_distance)
 		for i = 1, delta do
-			self.parent:CdAbility(self.legendary_ability, self.ability.talents.legendary_cd_inc)
+			self.parent:CdAbility(self.legendary_ability, self.ability.talents.r7_cd_inc)
 		end
 		self.distance = final - delta * legendary_distance
 	else
@@ -565,8 +571,6 @@ function modifier_bloodseeker_rupture_custom_tracker:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE,
 		MODIFIER_PROPERTY_CAST_RANGE_BONUS_STACKING,
-		MODIFIER_PROPERTY_OVERRIDE_ABILITY_SPECIAL,
-		MODIFIER_PROPERTY_OVERRIDE_ABILITY_SPECIAL_VALUE,
 	}
 end
 
@@ -611,7 +615,7 @@ function modifier_bloodseeker_rupture_custom_caster:OnIntervalThink()
 	end
 
 	if self.ability.talents.has_r4 == 1 then
-		self.parent:CdItems(self.ability.talents.cd_items * self.interval)
+		self.parent:CdItems(self.ability.talents.r4_cd_items * self.interval)
 	end
 
 	if not IsValid(self.target) or not self.target:HasModifier("modifier_bloodseeker_rupture_custom") then
@@ -649,14 +653,12 @@ function modifier_bloodseeker_rupture_custom_caster:GetModifierSlowResistance_St
 end
 
 bloodseeker_rupture_custom_recast = class({})
-
 function bloodseeker_rupture_custom_recast:GetAbilityTextureName()
 	return wearables_system:GetAbilityIconReplacement(self.caster, "bloodseeker_rupture", self)
 end
 
 function bloodseeker_rupture_custom_recast:OnSpellStart()
-	local caster = self:GetCaster()
-	local caster_mod = caster:FindModifierByName("modifier_bloodseeker_rupture_custom_caster")
+	local caster_mod = self.caster:FindModifierByName("modifier_bloodseeker_rupture_custom_caster")
 	if not caster_mod or not IsValid(caster_mod.target) then
 		return
 	end
@@ -670,56 +672,70 @@ end
 
 bloodseeker_rupture_custom_legendary = class({})
 bloodseeker_rupture_custom_legendary.talents = {}
+
+function bloodseeker_rupture_custom_legendary:Init()
+	if not self:GetCaster() then
+		return
+	end
+	self.caster = self:GetCaster()
+
+	self.knockback_count = self:GetLevelSpecialValueFor("knockback_count", 1)
+	self.knockback_duration = self:GetLevelSpecialValueFor("knockback_duration", 1)
+	self.knockback_cd = self:GetLevelSpecialValueFor("knockback_cd", 1)
+end
+
 function bloodseeker_rupture_custom_legendary:CreateTalent()
 	self:SetHidden(false)
 end
 
 function bloodseeker_rupture_custom_legendary:UpdateTalents()
 	local caster = self:GetCaster()
-	if not self.init and caster:HasTalent("modifier_bloodseeker_rupture_7") then
+	if not self.init then
 		self.init = true
-		if IsServer() and not self:IsTrained() then
-			self:SetLevel(1)
-		end
-		self.talents.legendary_duration = caster:GetTalentValue("modifier_bloodseeker_rupture_7", "duration", true)
-		self.talents.legendary_damage = caster:GetTalentValue("modifier_bloodseeker_rupture_7", "damage", true)
-		self.talents.legendary_cd = caster:GetTalentValue("modifier_bloodseeker_rupture_7", "talent_cd", true)
-		self.talents.legendary_damage_reduce =
-			caster:GetTalentValue("modifier_bloodseeker_rupture_7", "damage_reduce", true)
-		self.talents.legendary_damage_creeps = caster:GetTalentValue("modifier_bloodseeker_rupture_7", "creeps", true)
+		self.talents = {
+			has_r7 = 0,
+			r7_duration = caster:GetTalentValue("modifier_bloodseeker_rupture_7", "duration", true),
+			r7_damage = caster:GetTalentValue("modifier_bloodseeker_rupture_7", "damage", true),
+			r7_talent_cd = caster:GetTalentValue("modifier_bloodseeker_rupture_7", "talent_cd", true),
+			r7_damage_reduce = caster:GetTalentValue("modifier_bloodseeker_rupture_7", "damage_reduce", true),
+			r7_creeps = caster:GetTalentValue("modifier_bloodseeker_rupture_7", "creeps", true),
+		}
+	end
+
+	if caster:HasTalent("modifier_bloodseeker_rupture_7") then
+		self.talents.has_r7 = 1
 	end
 end
 
 function bloodseeker_rupture_custom_legendary:GetChannelTime()
-	return self.talents.legendary_duration
+	return self.talents.r7_duration or 0
 end
 
 function bloodseeker_rupture_custom_legendary:GetCooldown()
-	return self.talents.legendary_cd
+	return self.talents.r7_talent_cd or 0
 end
 
 function bloodseeker_rupture_custom_legendary:OnSpellStart()
-	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 
-	if caster:GetUnitName() ~= "npc_dota_hero_bloodseeker" then
+	if self.caster:GetUnitName() ~= "npc_dota_hero_bloodseeker" then
 		return
 	end
-	if not caster:HasTalent("modifier_bloodseeker_rupture_7") then
+	if self.talents.has_r7 == 0 then
 		return
 	end
 
 	if target:TriggerSpellAbsorb(self) then
-		caster:Stop()
+		self.caster:Stop()
 		return
 	end
 
-	caster:EmitSound("BS.Rupture_legendary_cast")
-	caster:AddNewModifier(
-		caster,
+	self.caster:EmitSound("BS.Rupture_legendary_cast")
+	self.caster:AddNewModifier(
+		self.caster,
 		self,
 		"modifier_bloodseeker_rupture_custom_legendary",
-		{ duration = self.talents.legendary_duration, target = target:entindex() }
+		{ duration = self.talents.r7_duration, target = target:entindex() }
 	)
 end
 
@@ -727,7 +743,7 @@ function bloodseeker_rupture_custom_legendary:OnChannelFinish(bInterrupted)
 	if not IsServer() then
 		return
 	end
-	self:GetCaster():RemoveModifierByName("modifier_bloodseeker_rupture_custom_legendary")
+	self.caster:RemoveModifierByName("modifier_bloodseeker_rupture_custom_legendary")
 end
 
 modifier_bloodseeker_rupture_custom_legendary = class(mod_hidden)
@@ -741,7 +757,7 @@ function modifier_bloodseeker_rupture_custom_legendary:OnCreated(table)
 	self.caster = self:GetCaster()
 	self.ability = self:GetAbility()
 
-	self.damage_reduce = self.ability.talents.legendary_damage_reduce
+	self.damage_reduce = self.ability.talents.r7_damage_reduce
 
 	if not IsServer() then
 		return
@@ -755,9 +771,9 @@ function modifier_bloodseeker_rupture_custom_legendary:OnCreated(table)
 	)
 	AddFOWViewer(self.target:GetTeamNumber(), self.caster:GetAbsOrigin(), 150, self:GetRemainingTime(), false)
 
-	self.knockback_count = self.ability:GetSpecialValueFor("knockback_count") + 1
-	self.knockback_duration = self.ability:GetSpecialValueFor("knockback_duration")
-	self.knockback_cd = self.ability:GetSpecialValueFor("knockback_cd")
+	self.knockback_count = self.ability.knockback_count + 1
+	self.knockback_duration = self.ability.knockback_duration
+	self.knockback_cd = self.ability.knockback_cd
 	self.knockback_distance = ((self.caster:GetAbsOrigin() - self.target:GetAbsOrigin()):Length2D() - 100)
 		/ self.knockback_count
 	self.damageTable = {
@@ -765,7 +781,7 @@ function modifier_bloodseeker_rupture_custom_legendary:OnCreated(table)
 		attacker = self.caster,
 		ability = self.ability,
 		damage_type = DAMAGE_TYPE_PURE,
-		damage = self.ability.talents.legendary_damage_creeps / self.knockback_count,
+		damage = self.ability.talents.r7_creeps / self.knockback_count,
 	}
 
 	self.caster:GenericParticle("particles/phantom_assassin/crit_shield.vpcf", self)
@@ -800,13 +816,13 @@ function modifier_bloodseeker_rupture_custom_legendary:OnIntervalThink()
 	if not IsServer() then
 		return
 	end
+	if not IsValid(self.target) then
+		return
+	end
 	self.target:EmitSound("BS.Rupture_legendary")
 
 	self.caster:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_6, 1.4)
 
-	if not IsValid(self.target) then
-		return
-	end
 	if not self.target:HasModifier("modifier_bloodseeker_rupture_custom_legendary_damage") then
 		self.target:AddNewModifier(
 			self.caster,
@@ -817,7 +833,7 @@ function modifier_bloodseeker_rupture_custom_legendary:OnIntervalThink()
 	end
 
 	if self.target:IsCreep() then
-		DoDamage(self.damageTable)
+		DoDamage(self.damageTable, "modifier_bloodseeker_rupture_7")
 	end
 
 	self.target:AddNewModifier(
@@ -864,7 +880,7 @@ function modifier_bloodseeker_rupture_custom_legendary_knockback:OnCreated(param
 
 	self.parent:StartGesture(ACT_DOTA_FLAIL)
 
-	self.knockback_duration = self.ability:GetSpecialValueFor("knockback_duration")
+	self.knockback_duration = self.ability.knockback_duration
 
 	self.knockback_distance = params.distance
 	self.dir = (self.caster:GetAbsOrigin() - self.parent:GetAbsOrigin()):Normalized()
@@ -909,18 +925,17 @@ function modifier_bloodseeker_rupture_custom_legendary_knockback:OnDestroy()
 
 	self.parent:RemoveHorizontalMotionController(self)
 
-	self.vec = self.parent:GetForwardVector()
-	self.vec.z = 0
-	self.parent:SetForwardVector(self.vec)
-	self.parent:FaceTowards(self.parent:GetAbsOrigin() + self.vec * 10)
+	self.parent:FacePoint()
 	FindClearSpaceForUnit(self.parent, self.parent:GetAbsOrigin(), false)
 end
 
 modifier_bloodseeker_rupture_custom_legendary_damage = class(mod_hidden)
 function modifier_bloodseeker_rupture_custom_legendary_damage:OnCreated()
-	self.damage = self:GetAbility().talents.legendary_damage
+	self.ability = self:GetAbility()
 	self.caster = self:GetCaster()
 	self.parent = self:GetParent()
+
+	self.damage = self.ability.talents.r7_damage
 end
 
 function modifier_bloodseeker_rupture_custom_legendary_damage:DeclareFunctions()

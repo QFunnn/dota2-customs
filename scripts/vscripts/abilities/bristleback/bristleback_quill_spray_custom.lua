@@ -65,11 +65,9 @@ function bristleback_quill_spray_custom:UpdateTalents(name)
 	if not self.init then
 		self.init = true
 		self.talents = {
-			has_w1 = 0,
 			w1_damage = 0,
 			w1_damage_max = caster:GetTalentValue("modifier_bristle_spray_1", "damage_max", true) / 100,
 
-			has_w2 = 0,
 			w2_radius = 0,
 			w2_cd = 0,
 
@@ -98,12 +96,10 @@ function bristleback_quill_spray_custom:UpdateTalents(name)
 	end
 
 	if caster:HasTalent("modifier_bristle_spray_1") then
-		self.talents.has_w1 = 1
 		self.talents.w1_damage = caster:GetTalentValue("modifier_bristle_spray_1", "damage") / 100
 	end
 
 	if caster:HasTalent("modifier_bristle_spray_2") then
-		self.talents.has_w2 = 1
 		self.talents.w2_radius = caster:GetTalentValue("modifier_bristle_spray_2", "radius")
 		self.talents.w2_cd = caster:GetTalentValue("modifier_bristle_spray_2", "cd")
 	end
@@ -140,7 +136,7 @@ function bristleback_quill_spray_custom:GetIntrinsicModifierName()
 end
 
 function bristleback_quill_spray_custom:GetRadius()
-	return (self.radius and self.radius or 0) + (self.talents.w2_radius and self.talents.w2_radius or 0)
+	return (self.radius or 0) + (self.talents.w2_radius or 0)
 end
 
 function bristleback_quill_spray_custom:GetCastRange(vLocation, hTarget)
@@ -154,7 +150,7 @@ function bristleback_quill_spray_custom:GetHealthCost(level)
 	if not self.caster:HasModifier("modifier_custom_bristleback_quill_spray_autocast") then
 		return
 	end
-	return (self.talents.e7_cost and self.talents.e7_cost or 0) * self.caster:GetMaxHealth()
+	return (self.talents.e7_cost or 0) * self.caster:GetMaxHealth()
 end
 
 function bristleback_quill_spray_custom:GetManaCost(level)
@@ -169,15 +165,11 @@ function bristleback_quill_spray_custom:GetCooldown(iLevel)
 	if self.talents.has_e7 == 1 and self.caster:HasModifier("modifier_custom_bristleback_quill_spray_autocast") then
 		bonus = 1 + self.talents.e7_cd
 	end
-	return (self.BaseClass.GetCooldown(self, iLevel) + (self.talents.w2_cd and self.talents.w2_cd or 0)) * bonus
+	return (self.BaseClass.GetCooldown(self, iLevel) + (self.talents.w2_cd or 0)) * bonus
 end
 
 function bristleback_quill_spray_custom:GetAbilityTargetFlags()
-	if self.talents.has_w7 == 0 then
-		return DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
-	else
-		return DOTA_UNIT_TARGET_FLAG_NONE
-	end
+	return DOTA_UNIT_TARGET_FLAG_NONE
 end
 
 function bristleback_quill_spray_custom:OnSpellStart()
@@ -205,7 +197,6 @@ function bristleback_quill_spray_custom:ProcHeal(is_back)
 end
 
 function bristleback_quill_spray_custom:MakeSpray(location, is_passive, is_legendary, is_double)
-	local radius = self:GetRadius()
 	local sound_name = wearables_system:GetSoundReplacement(self.caster, "Hero_Bristleback.QuillSpray.Cast", self)
 	if not location then
 		self.caster:FadeGesture(ACT_DOTA_CAST_ABILITY_2)
@@ -293,9 +284,9 @@ function modifier_custom_bristleback_quillspray_thinker:OnCreated(table)
 	self.angle = 0
 
 	if self.cone == 1 then
-		self.legendary_ability = self.caster:FindAbilityByName("bristleback_quill_spray_custom_legendary")
+		self.legendary_ability = self.caster.spray_legendary_ability
 		if self.legendary_ability then
-			self.angle = self.legendary_ability:GetSpecialValueFor("activation_angle")
+			self.angle = self.legendary_ability.activation_angle
 		end
 		self.direction = self.direction * -1
 		self.caster:GenericParticle(
@@ -636,7 +627,7 @@ function modifier_custom_bristleback_quill_spray_double:OnCreated()
 
 	local effect_cast =
 		ParticleManager:CreateParticle("particles/bristleback/spray_double.vpcf", PATTACH_OVERHEAD_FOLLOW, self.parent)
-	ParticleManager:SetParticleControl(effect_cast, 1, Vector(self.count, nil, 0))
+	ParticleManager:SetParticleControl(effect_cast, 1, Vector(self.count, 0, 0))
 	ParticleManager:ReleaseParticleIndex(effect_cast)
 
 	self:StartIntervalThink(self.ability.talents.w3_interval)

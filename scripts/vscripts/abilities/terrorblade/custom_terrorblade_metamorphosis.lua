@@ -75,31 +75,7 @@ LinkLuaModifier(
 )
 
 custom_terrorblade_metamorphosis = class({})
-
-function custom_terrorblade_metamorphosis:GetAbilityTextureName()
-	return wearables_system:GetAbilityIconReplacement(self.caster, "terrorblade_metamorphosis", self)
-end
-
-function custom_terrorblade_metamorphosis:CreateTalent()
-	local caster = self:GetCaster()
-	caster:RemoveModifierByName("modifier_custom_terrorblade_metamorphosis")
-	caster:RemoveModifierByName("modifier_custom_terrorblade_metamorphosis_transform")
-	self:EndCd(0)
-	caster:AddNewModifier(caster, self, "modifier_custom_terrorblade_metamorphosis_legendary_stack", {})
-	local ability = caster:FindAbilityByName("terrorblade_demon_zeal_custom")
-	if ability then
-		ability:SetHidden(false)
-		ability:SetActivated(false)
-	end
-end
-
-function custom_terrorblade_metamorphosis:OnUpgrade()
-	local caster = self:GetCaster()
-	local mod = caster:FindModifierByName("modifier_custom_terrorblade_metamorphosis")
-	if mod then
-		caster:AddNewModifier(caster, self, mod:GetName(), { duration = mod:GetRemainingTime() })
-	end
-end
+custom_terrorblade_metamorphosis.talents = {}
 
 function custom_terrorblade_metamorphosis:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
@@ -144,6 +120,96 @@ function custom_terrorblade_metamorphosis:Precache(context)
 	PrecacheResource("particle", "particles/ogre_dd.vpcf", context)
 end
 
+function custom_terrorblade_metamorphosis:UpdateTalents(name)
+	local caster = self:GetCaster()
+	if not self.init then
+		self.init = true
+		self.talents = {
+			has_e1 = 0,
+			e1_chance = 0,
+			e1_crit = caster:GetTalentValue("modifier_terror_meta_1", "crit", true),
+			e1_slow = caster:GetTalentValue("modifier_terror_meta_1", "slow", true),
+			e1_duration = caster:GetTalentValue("modifier_terror_meta_1", "duration", true),
+
+			has_e2 = 0,
+			e2_cleave = 0,
+			e2_radius = caster:GetTalentValue("modifier_terror_meta_2", "radius", true),
+			e2_bonus = caster:GetTalentValue("modifier_terror_meta_2", "bonus", true),
+
+			e3_cd = 0,
+			e3_duration = 0,
+			e3_max = 0,
+
+			has_e4 = 0,
+			e4_heal = 0,
+			e4_damage = 0,
+			e4_creeps = caster:GetTalentValue("modifier_terror_meta_4", "creeps", true),
+			e4_max = caster:GetTalentValue("modifier_terror_meta_4", "max", true),
+
+			has_e5 = 0,
+			e5_move = caster:GetTalentValue("modifier_terror_meta_5", "move", true),
+			e5_duration = caster:GetTalentValue("modifier_terror_meta_5", "duration", true),
+
+			has_e6 = 0,
+			e6_range = caster:GetTalentValue("modifier_terror_meta_6", "range", true),
+			e6_cd = caster:GetTalentValue("modifier_terror_meta_6", "cd", true),
+			e6_fear = caster:GetTalentValue("modifier_terror_meta_6", "fear", true),
+
+			has_e7 = 0,
+			e7_delay = caster:GetTalentValue("modifier_terror_meta_7", "delay", true),
+			e7_max = caster:GetTalentValue("modifier_terror_meta_7", "max", true),
+		}
+	end
+
+	if caster:HasTalent("modifier_terror_meta_1") then
+		self.talents.has_e1 = 1
+		self.talents.e1_chance = caster:GetTalentValue("modifier_terror_meta_1", "chance")
+	end
+
+	if caster:HasTalent("modifier_terror_meta_2") then
+		self.talents.has_e2 = 1
+		self.talents.e2_cleave = caster:GetTalentValue("modifier_terror_meta_2", "cleave") / 100
+	end
+
+	if caster:HasTalent("modifier_terror_meta_3") then
+		self.talents.e3_cd = caster:GetTalentValue("modifier_terror_meta_3", "cd")
+		self.talents.e3_duration = caster:GetTalentValue("modifier_terror_meta_3", "duration")
+		self.talents.e3_max = caster:GetTalentValue("modifier_terror_meta_3", "max")
+	end
+
+	if caster:HasTalent("modifier_terror_meta_4") then
+		self.talents.has_e4 = 1
+		self.talents.e4_heal = caster:GetTalentValue("modifier_terror_meta_4", "heal") / 100
+		self.talents.e4_damage = caster:GetTalentValue("modifier_terror_meta_4", "damage")
+	end
+
+	if caster:HasTalent("modifier_terror_meta_5") then
+		self.talents.has_e5 = 1
+	end
+
+	if caster:HasTalent("modifier_terror_meta_6") then
+		self.talents.has_e6 = 1
+	end
+
+	if caster:HasTalent("modifier_terror_meta_7") then
+		self.talents.has_e7 = 1
+		caster:AddAttackStartEvent_out(self.tracker, true)
+	end
+
+	if not IsServer() then
+		return
+	end
+
+	local meta_mod = caster:FindModifierByName("modifier_custom_terrorblade_metamorphosis")
+	if meta_mod then
+		meta_mod:UpdateEvents()
+	end
+end
+
+function custom_terrorblade_metamorphosis:GetAbilityTextureName()
+	return wearables_system:GetAbilityIconReplacement(self.caster, "terrorblade_metamorphosis", self)
+end
+
 function custom_terrorblade_metamorphosis:GetIntrinsicModifierName()
 	if not self:GetCaster():IsRealHero() then
 		return
@@ -152,61 +218,77 @@ function custom_terrorblade_metamorphosis:GetIntrinsicModifierName()
 end
 
 function custom_terrorblade_metamorphosis:GetManaCost(level)
-	if self:GetCaster():HasTalent("modifier_terror_meta_7") then
+	if self.talents.has_e7 == 1 then
 		return 0
 	end
 	return self.BaseClass.GetManaCost(self, level)
 end
 
 function custom_terrorblade_metamorphosis:GetBehavior()
-	if self:GetCaster():HasTalent("modifier_terror_meta_7") then
+	if self.talents.has_e7 == 1 then
 		return DOTA_ABILITY_BEHAVIOR_PASSIVE
 	end
 	local bonus = 0
-	if self:GetCaster():HasTalent("modifier_terror_meta_5") then
+	if self.talents.has_e5 == 1 then
 		bonus = DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE
 	end
 	return DOTA_ABILITY_BEHAVIOR_NO_TARGET + DOTA_ABILITY_BEHAVIOR_IMMEDIATE + bonus
 end
 
 function custom_terrorblade_metamorphosis:GetCooldown(iLevel)
-	local bonus = 0
-	if self:GetCaster():HasTalent("modifier_terror_meta_3") then
-		bonus = self:GetCaster():GetTalentValue("modifier_terror_meta_3", "cd")
-	end
-	return self.BaseClass.GetCooldown(self, iLevel) + bonus
+	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.e3_cd or 0)
 end
 
 function custom_terrorblade_metamorphosis:OnSpellStart()
-	local caster = self:GetCaster()
-	if caster:HasTalent("modifier_terror_meta_7") then
+	if self.talents.has_e7 == 1 then
 		return
 	end
 
-	local delay = self:GetSpecialValueFor("transformation_time")
-	if caster:HasTalent("modifier_terror_meta_5") then
-		caster:Purge(false, true, false, true, true)
-		caster:AddNewModifier(
-			caster,
+	local delay = self.transformation_time
+	if self.talents.has_e5 == 1 then
+		self.caster:Purge(false, true, false, true, true)
+		self.caster:AddNewModifier(
+			self.caster,
 			self,
 			"modifier_generic_debuff_immune",
-			{ duration = caster:GetTalentValue("modifier_terror_meta_5", "duration") + delay, effect = 1 }
+			{ duration = self.talents.e5_duration + delay, effect = 1 }
 		)
-		caster:GenericParticle("particles/units/heroes/hero_brewmaster/brewmaster_dispel_magic.vpcf")
-		caster:EmitSound("TB.Meta_stack")
+		self.caster:GenericParticle("particles/units/heroes/hero_brewmaster/brewmaster_dispel_magic.vpcf")
+		self.caster:EmitSound("TB.Meta_stack")
 	end
 
-	caster:AddNewModifier(caster, self, "modifier_custom_terrorblade_metamorphosis_transform", { duration = delay })
+	self.caster:AddNewModifier(
+		self.caster,
+		self,
+		"modifier_custom_terrorblade_metamorphosis_transform",
+		{ duration = delay }
+	)
 end
 
-modifier_custom_terrorblade_metamorphosis_transform = class({})
-function modifier_custom_terrorblade_metamorphosis_transform:IsHidden()
-	return true
-end
-function modifier_custom_terrorblade_metamorphosis_transform:IsPurgable()
-	return false
+function custom_terrorblade_metamorphosis:OnUpgrade()
+	local mod = self.caster:FindModifierByName("modifier_custom_terrorblade_metamorphosis")
+	if not mod then
+		return
+	end
+
+	self.caster:AddNewModifier(self.caster, self, mod:GetName(), { duration = mod:GetRemainingTime() })
 end
 
+function custom_terrorblade_metamorphosis:CreateTalent()
+	self.caster:RemoveModifierByName("modifier_custom_terrorblade_metamorphosis")
+	self.caster:RemoveModifierByName("modifier_custom_terrorblade_metamorphosis_transform")
+	self:EndCd(0)
+	self.caster:AddNewModifier(self.caster, self, "modifier_custom_terrorblade_metamorphosis_legendary_stack", {})
+	local ability = self.caster:FindAbilityByName("terrorblade_demon_zeal_custom")
+	if not ability then
+		return
+	end
+
+	ability:SetHidden(false)
+	ability:SetActivated(false)
+end
+
+modifier_custom_terrorblade_metamorphosis_transform = class(mod_hidden)
 function modifier_custom_terrorblade_metamorphosis_transform:OnCreated(table)
 	if not IsServer() then
 		return
@@ -215,15 +297,14 @@ function modifier_custom_terrorblade_metamorphosis_transform:OnCreated(table)
 	self.caster = self:GetCaster()
 	self.ability = self:GetAbility()
 
-	self.duration = self.ability:GetSpecialValueFor("duration")
-		+ self.parent:GetTalentValue("modifier_terror_meta_3", "duration")
+	self.duration = self.ability.duration + self.ability.talents.e3_duration
 
 	local slark_mod = self.parent:FindModifierByName("modifier_slark_essence_shift_custom_legendary_steal")
 	if slark_mod then
 		self.duration = slark_mod:GetRemainingTime()
 	end
 
-	if self.parent:IsIllusion() or self.parent:HasTalent("modifier_terror_meta_7") then
+	if self.parent:IsIllusion() or self.ability.talents.has_e7 == 1 then
 		self.duration = nil
 	end
 
@@ -235,15 +316,12 @@ function modifier_custom_terrorblade_metamorphosis_transform:OnCreated(table)
 		PATTACH_ABSORIGIN_FOLLOW,
 		self.parent
 	)
-	if self:GetCaster().current_model == "models/heroes/terrorblade/terrorblade_arcana.vmdl" then
-		local color = self:GetCaster():GetTerrorbladeColor()
+	if self.caster.current_model == "models/heroes/terrorblade/terrorblade_arcana.vmdl" then
+		local color = self.caster:GetTerrorbladeColor()
 		ParticleManager:SetParticleControl(transform_particle, 15, color)
 		ParticleManager:SetParticleControl(transform_particle, 16, Vector(1, 0, 0))
 	end
 	ParticleManager:ReleaseParticleIndex(transform_particle)
-
-	if self.parent:IsRealHero() then
-	end
 end
 
 function modifier_custom_terrorblade_metamorphosis_transform:OnDestroy()
@@ -271,14 +349,10 @@ function modifier_custom_terrorblade_metamorphosis_transform:CheckState()
 	}
 end
 
-modifier_custom_terrorblade_metamorphosis = class({})
-function modifier_custom_terrorblade_metamorphosis:IsPurgable()
-	return false
+modifier_custom_terrorblade_metamorphosis = class(mod_visible)
+function modifier_custom_terrorblade_metamorphosis:GetPriority()
+	return MODIFIER_PRIORITY_LOW
 end
-function modifier_custom_terrorblade_metamorphosis:IsHidden()
-	return false
-end
-
 function modifier_custom_terrorblade_metamorphosis:OnCreated(table)
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
@@ -286,18 +360,16 @@ function modifier_custom_terrorblade_metamorphosis:OnCreated(table)
 		self.caster = self.caster.owner
 	end
 
-	self.parent:AddRecordDestroyEvent(self)
 	self.parent:AddAttackRecordEvent_out(self)
 	self.ability = self:GetAbility()
 
+	self:UpdateEvents()
+
 	self.RemoveForDuel = true
 
-	self.bonus_range = self.ability:GetSpecialValueFor("bonus_range")
-	self.bonus_damage = self.ability:GetSpecialValueFor("bonus_damage")
+	self.heal_creeps = self.ability.talents.e4_creeps
 
-	self.heal_creeps = self.parent:GetTalentValue("modifier_terror_meta_4", "creeps", true)
-
-	self.crit_damage = self.parent:GetTalentValue("modifier_terror_meta_1", "crit", true)
+	self.crit_damage = self.ability.talents.e1_crit
 
 	if not IsServer() then
 		return
@@ -305,12 +377,10 @@ function modifier_custom_terrorblade_metamorphosis:OnCreated(table)
 
 	self.parent:NoDraw(self, true)
 	self.records = {}
+	self.parent.meta_records = self.records
 
-	if self.parent:IsRealHero() then
-		self.parent:AddDamageEvent_out(self)
-		if not self.parent:HasTalent("modifier_terror_meta_7") then
-			self.ability:EndCd()
-		end
+	if self.parent:IsRealHero() and self.ability.talents.has_e7 == 0 then
+		self.ability:EndCd()
 	end
 
 	self.material_group = "default"
@@ -346,7 +416,7 @@ function modifier_custom_terrorblade_metamorphosis:OnCreated(table)
 
 	self.parent:SetAttackCapability(DOTA_UNIT_CAP_RANGED_ATTACK)
 
-	if self:GetParent():IsRealHero() then
+	if self.parent:IsRealHero() then
 		CustomGameEventManager:Send_ServerToAllClients("dota1x6_update_terrorblade_form", {})
 	end
 
@@ -355,18 +425,34 @@ function modifier_custom_terrorblade_metamorphosis:OnCreated(table)
 	end
 end
 
-function modifier_custom_terrorblade_metamorphosis:OnRefresh()
-	self.bonus_range = self.ability:GetSpecialValueFor("bonus_range")
-	self.bonus_damage = self.ability:GetSpecialValueFor("bonus_damage")
+function modifier_custom_terrorblade_metamorphosis:UpdateEvents()
+	if not IsServer() then
+		return
+	end
+
+	if self.ability.talents.has_e1 == 1 then
+		self.parent:AddRecordDestroyEvent(self, true)
+	end
+
+	if self.ability.talents.has_e4 == 0 then
+		return
+	end
+	if not self.parent:IsRealHero() then
+		return
+	end
+
+	self.parent:AddDamageEvent_out(self, true)
 end
 
 function modifier_custom_terrorblade_metamorphosis:OnIntervalThink()
 	if not IsServer() then
 		return
 	end
-	if self.ability:IsHidden() then
-		self:Destroy()
+	if not self.ability:IsHidden() then
+		return
 	end
+
+	self:Destroy()
 end
 
 function modifier_custom_terrorblade_metamorphosis:RecordDestroyEvent(params)
@@ -387,7 +473,7 @@ function modifier_custom_terrorblade_metamorphosis:AttackRecordEvent_out(params)
 
 	self.parent:EmitSound("Hero_Terrorblade_Morphed.preAttack")
 
-	if not self.parent:HasTalent("modifier_terror_meta_1") then
+	if self.ability.talents.has_e1 == 0 then
 		return
 	end
 	if not params.target:IsUnit() then
@@ -395,16 +481,12 @@ function modifier_custom_terrorblade_metamorphosis:AttackRecordEvent_out(params)
 	end
 
 	self.parent:RemoveModifierByName("modifier_custom_terrorblade_metamorphosis_crit_attack")
-	local chance = self.parent:GetTalentValue("modifier_terror_meta_1", "chance")
 
-	if RollPseudoRandomPercentage(chance, 1608, self.parent) then
-		self.parent:AddNewModifier(
-			self.parent,
-			self.ability,
-			"modifier_custom_terrorblade_metamorphosis_crit_attack",
-			{}
-		)
+	if not RollPseudoRandomPercentage(self.ability.talents.e1_chance, 1608, self.parent) then
+		return
 	end
+
+	self.parent:AddNewModifier(self.parent, self.ability, "modifier_custom_terrorblade_metamorphosis_crit_attack", {})
 end
 
 function modifier_custom_terrorblade_metamorphosis:CheckState()
@@ -423,31 +505,31 @@ function modifier_custom_terrorblade_metamorphosis:OnDestroy()
 
 	self.parent:EndNoDraw(self)
 
-	if self.parent:IsRealHero() and not self.parent:HasTalent("modifier_terror_meta_7") then
+	if self.parent:IsRealHero() and self.ability.talents.has_e7 == 0 then
 		self.ability:StartCd()
 	end
 
 	self.parent:StartGesture(ACT_DOTA_CAST_ABILITY_3_END)
 	self.parent:SetAttackCapability(self.previous_attack_cability)
-	if self:GetParent():IsRealHero() then
-		CustomGameEventManager:Send_ServerToAllClients("dota1x6_update_terrorblade_form", {})
+	if not self.parent:IsRealHero() then
+		return
 	end
+
+	CustomGameEventManager:Send_ServerToAllClients("dota1x6_update_terrorblade_form", {})
 end
 
 function modifier_custom_terrorblade_metamorphosis:DamageEvent_out(params)
 	if not IsServer() then
 		return
 	end
-	if not self.parent:HasTalent("modifier_terror_meta_4") then
+	if self.ability.talents.has_e4 == 0 then
 		return
 	end
 	if not self.parent:CheckLifesteal(params, 2) then
 		return
 	end
 
-	local heal = (1 - self.parent:GetHealthPercent() / 100)
-		* self.parent:GetTalentValue("modifier_terror_meta_4", "heal")
-		/ 100
+	local heal = (1 - self.parent:GetHealthPercent() / 100) * self.ability.talents.e4_heal
 	if params.unit:IsCreep() then
 		heal = heal / self.heal_creeps
 	end
@@ -469,13 +551,10 @@ function modifier_custom_terrorblade_metamorphosis:DeclareFunctions()
 end
 
 function modifier_custom_terrorblade_metamorphosis:GetModifierMoveSpeedBonus_Percentage()
-	if not self.parent:HasTalent("modifier_terror_meta_5") then
+	if self.ability.talents.has_e5 == 0 then
 		return
 	end
-	if not self.move_bonus then
-		self.move_bonus = self.parent:GetTalentValue("modifier_terror_meta_5", "move")
-	end
-	return self.move_bonus
+	return self.ability.talents.e5_move
 end
 
 function modifier_custom_terrorblade_metamorphosis:GetCritDamage()
@@ -496,30 +575,26 @@ function modifier_custom_terrorblade_metamorphosis:GetModifierPreAttack_Critical
 end
 
 function modifier_custom_terrorblade_metamorphosis:GetModifierAttackRangeBonus()
-	return self.bonus_range
+	return self.ability.bonus_range
 end
 
 function modifier_custom_terrorblade_metamorphosis:GetModifierBaseAttack_BonusDamage()
 	local bonus = 0
 	if
-		self.caster:HasTalent("modifier_terror_meta_4")
-		and self.caster:HasModifier("modifier_custom_terrorblade_metamorphosis_perma")
+		self.ability.talents.has_e4 == 1 and self.caster:HasModifier("modifier_custom_terrorblade_metamorphosis_perma")
 	then
 		bonus = self.caster:GetUpgradeStack("modifier_custom_terrorblade_metamorphosis_perma")
-			* self.caster:GetTalentValue("modifier_terror_meta_4", "damage")
+			* self.ability.talents.e4_damage
 	end
 
-	return self.bonus_damage + bonus
+	return self.ability.bonus_damage + bonus
 end
 
 function modifier_custom_terrorblade_metamorphosis:GetModifierModelScale()
-	if self.model == "models/terrorblade_custom/terrorblade_ultimate_depravity_ability.vmdl" then
-		return -10
+	if self.model ~= "models/terrorblade_custom/terrorblade_ultimate_depravity_ability.vmdl" then
+		return
 	end
-end
-
-function modifier_custom_terrorblade_metamorphosis:GetPriority()
-	return MODIFIER_PRIORITY_LOW
+	return -10
 end
 
 function modifier_custom_terrorblade_metamorphosis:GetModifierProjectileName()
@@ -563,14 +638,67 @@ function modifier_custom_terrorblade_metamorphosis:GetAttackSound()
 	return "Hero_Terrorblade_Morphed.Attack"
 end
 
-modifier_custom_terrorblade_metamorphosis_tracker = class({})
-function modifier_custom_terrorblade_metamorphosis_tracker:IsHidden()
-	return true
+modifier_custom_terrorblade_metamorphosis_tracker = class(mod_hidden)
+function modifier_custom_terrorblade_metamorphosis_tracker:IsAura()
+	return self.parent:HasModifier("modifier_custom_terrorblade_metamorphosis_transform")
+		or self.parent:HasModifier("modifier_custom_terrorblade_metamorphosis")
 end
-function modifier_custom_terrorblade_metamorphosis_tracker:IsPurgable()
-	return false
+function modifier_custom_terrorblade_metamorphosis_tracker:GetAuraEntityReject(hTarget)
+	return not hTarget:IsIllusion()
+		or not hTarget.owner
+		or hTarget.owner ~= self.parent
+		or hTarget:GetName() ~= self.parent:GetName()
 end
-function modifier_custom_terrorblade_metamorphosis_tracker:OnCreated() end
+function modifier_custom_terrorblade_metamorphosis_tracker:GetAuraDuration()
+	return 0.5
+end
+function modifier_custom_terrorblade_metamorphosis_tracker:GetAuraRadius()
+	return self.ability.metamorph_aura_tooltip
+end
+function modifier_custom_terrorblade_metamorphosis_tracker:GetAuraSearchFlags()
+	return DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD
+end
+function modifier_custom_terrorblade_metamorphosis_tracker:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_FRIENDLY
+end
+function modifier_custom_terrorblade_metamorphosis_tracker:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_HERO
+end
+function modifier_custom_terrorblade_metamorphosis_tracker:GetModifierAura()
+	return "modifier_custom_terrorblade_metamorphosis_transform_aura"
+end
+function modifier_custom_terrorblade_metamorphosis_tracker:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+	self.ability.tracker = self
+	self.ability:UpdateTalents()
+
+	local zeal_ability = self.parent:FindAbilityByName("terrorblade_demon_zeal_custom")
+	if zeal_ability then
+		zeal_ability:UpdateTalents()
+	end
+
+	self.ability.duration = self.ability:GetSpecialValueFor("duration")
+	self.ability.transformation_time = self.ability:GetSpecialValueFor("transformation_time")
+	self.ability.bonus_range = self.ability:GetSpecialValueFor("bonus_range")
+	self.ability.bonus_damage = self.ability:GetSpecialValueFor("bonus_damage")
+	self.ability.metamorph_aura_tooltip = self.ability:GetSpecialValueFor("metamorph_aura_tooltip")
+
+	self.visual_max = 5
+
+	self.parent:AddAttackEvent_out(self, true)
+
+	if not IsServer() then
+		return
+	end
+	self.player = PlayerResource:GetPlayer(self.parent:GetPlayerID())
+	self:StartIntervalThink(1)
+end
+
+function modifier_custom_terrorblade_metamorphosis_tracker:OnRefresh()
+	self.ability.bonus_range = self.ability:GetSpecialValueFor("bonus_range")
+	self.ability.bonus_damage = self.ability:GetSpecialValueFor("bonus_damage")
+end
 
 function modifier_custom_terrorblade_metamorphosis_tracker:DeclareFunctions()
 	return {
@@ -582,7 +710,7 @@ function modifier_custom_terrorblade_metamorphosis_tracker:GetAbsorbSpell(params
 	if not IsServer() then
 		return
 	end
-	if not self.parent:HasTalent("modifier_terror_meta_6") then
+	if self.ability.talents.has_e6 == 0 then
 		return
 	end
 	if not self.parent:HasModifier("modifier_custom_terrorblade_metamorphosis") then
@@ -605,7 +733,7 @@ function modifier_custom_terrorblade_metamorphosis_tracker:GetAbsorbSpell(params
 	if caster:GetTeamNumber() == self.parent:GetTeamNumber() then
 		return
 	end
-	if (caster:GetAbsOrigin() - self.parent:GetAbsOrigin()):Length2D() > self.fear_range then
+	if (caster:GetAbsOrigin() - self.parent:GetAbsOrigin()):Length2D() > self.ability.talents.e6_range then
 		return
 	end
 
@@ -637,44 +765,15 @@ function modifier_custom_terrorblade_metamorphosis_tracker:GetAbsorbSpell(params
 		self.parent,
 		self.ability,
 		"modifier_nevermore_requiem_fear",
-		{ duration = self.fear_duration * (1 - caster:GetStatusResistance()) }
+		{ duration = self.ability.talents.e6_fear * (1 - caster:GetStatusResistance()) }
 	)
 	caster:AddNewModifier(
 		self.parent,
 		self.ability,
 		"modifier_custom_terrorblade_metamorphosis_fear_cd",
-		{ duration = self.fear_cd }
+		{ duration = self.ability.talents.e6_cd }
 	)
 	return false
-end
-
-function modifier_custom_terrorblade_metamorphosis_tracker:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.fear_duration = self.parent:GetTalentValue("modifier_terror_meta_6", "fear", true)
-	self.fear_cd = self.parent:GetTalentValue("modifier_terror_meta_6", "cd", true)
-	self.fear_range = self.parent:GetTalentValue("modifier_terror_meta_6", "range", true)
-
-	self.cleave_radius = self.parent:GetTalentValue("modifier_terror_meta_2", "radius", true)
-	self.cleave_bonus = self.parent:GetTalentValue("modifier_terror_meta_2", "bonus", true)
-
-	self.delay = self.ability:GetSpecialValueFor("transformation_time")
-
-	self.crit_slow = self.parent:GetTalentValue("modifier_terror_meta_1", "duration", true)
-
-	self.metamorph_aura_tooltip = self:GetAbility():GetSpecialValueFor("metamorph_aura_tooltip")
-
-	self.visual_max = 5
-
-	self.parent:AddAttackStartEvent_out(self)
-	self.parent:AddAttackEvent_out(self)
-
-	if not IsServer() then
-		return
-	end
-	self.player = PlayerResource:GetPlayer(self.parent:GetPlayerID())
-	self:StartIntervalThink(1)
 end
 
 function modifier_custom_terrorblade_metamorphosis_tracker:OnIntervalThink()
@@ -682,7 +781,7 @@ function modifier_custom_terrorblade_metamorphosis_tracker:OnIntervalThink()
 		return
 	end
 
-	if self.parent:HasTalent("modifier_terror_meta_7") then
+	if self.ability.talents.has_e7 == 1 then
 		if
 			self.ability:IsFullyCastable()
 			and self.parent:IsAlive()
@@ -693,7 +792,7 @@ function modifier_custom_terrorblade_metamorphosis_tracker:OnIntervalThink()
 				self.parent,
 				self.ability,
 				"modifier_custom_terrorblade_metamorphosis_transform",
-				{ duration = self.delay }
+				{ duration = self.ability.transformation_time }
 			)
 		end
 
@@ -773,37 +872,6 @@ function modifier_custom_terrorblade_metamorphosis_tracker:UpdateUI()
 	})
 end
 
-function modifier_custom_terrorblade_metamorphosis_tracker:IsAura()
-	return self.parent:HasModifier("modifier_custom_terrorblade_metamorphosis_transform")
-		or self.parent:HasModifier("modifier_custom_terrorblade_metamorphosis")
-end
-
-function modifier_custom_terrorblade_metamorphosis_tracker:GetAuraEntityReject(hTarget)
-	return not hTarget:IsIllusion()
-		or not hTarget.owner
-		or hTarget.owner ~= self.parent
-		or hTarget:GetName() ~= self.parent:GetName()
-end
-
-function modifier_custom_terrorblade_metamorphosis_tracker:GetAuraDuration()
-	return 0.5
-end
-function modifier_custom_terrorblade_metamorphosis_tracker:GetAuraRadius()
-	return self.metamorph_aura_tooltip
-end
-function modifier_custom_terrorblade_metamorphosis_tracker:GetAuraSearchFlags()
-	return DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD
-end
-function modifier_custom_terrorblade_metamorphosis_tracker:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_FRIENDLY
-end
-function modifier_custom_terrorblade_metamorphosis_tracker:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_HERO
-end
-function modifier_custom_terrorblade_metamorphosis_tracker:GetModifierAura()
-	return "modifier_custom_terrorblade_metamorphosis_transform_aura"
-end
-
 function modifier_custom_terrorblade_metamorphosis_tracker:AttackStartEvent_out(params)
 	local attacker = params.attacker
 	if attacker:GetTeamNumber() ~= self.parent:GetTeamNumber() then
@@ -813,7 +881,7 @@ function modifier_custom_terrorblade_metamorphosis_tracker:AttackStartEvent_out(
 		return
 	end
 
-	if not self.parent:HasTalent("modifier_terror_meta_7") then
+	if self.ability.talents.has_e7 == 0 then
 		return
 	end
 	if attacker ~= self.parent then
@@ -824,10 +892,12 @@ function modifier_custom_terrorblade_metamorphosis_tracker:AttackStartEvent_out(
 	end
 
 	local mod = self.parent:FindModifierByName("modifier_custom_terrorblade_metamorphosis_legendary_stack")
-	if mod then
-		mod:AddStack(params.target)
-		self:UpdateUI()
+	if not mod then
+		return
 	end
+
+	mod:AddStack(params.target)
+	self:UpdateUI()
 end
 
 function modifier_custom_terrorblade_metamorphosis_tracker:AttackEvent_out(params)
@@ -850,6 +920,7 @@ function modifier_custom_terrorblade_metamorphosis_tracker:AttackEvent_out(param
 
 	local target = params.target
 	local mod = attacker:FindModifierByName("modifier_custom_terrorblade_metamorphosis")
+	local records = mod and mod.records or attacker.meta_records
 
 	if mod then
 		target:EmitSound("Hero_Terrorblade_Morphed.projectileImpact")
@@ -859,16 +930,20 @@ function modifier_custom_terrorblade_metamorphosis_tracker:AttackEvent_out(param
 		return
 	end
 
-	if mod and mod.records and mod.records[params.record] then
+	if records and records[params.record] then
 		EmitSoundOnLocationWithCaster(target:GetAbsOrigin(), "TB.Meta_crit", target)
 		if attacker == self.parent then
 			target:AddNewModifier(
 				self.parent,
 				self.ability,
 				"modifier_custom_terrorblade_metamorphosis_slow",
-				{ duration = (1 - target:GetStatusResistance()) * self.crit_slow }
+				{ duration = (1 - target:GetStatusResistance()) * self.ability.talents.e1_duration }
 			)
 		end
+	end
+
+	if not mod then
+		attacker.meta_records = nil
 	end
 
 	if attacker ~= self.parent then
@@ -879,14 +954,14 @@ function modifier_custom_terrorblade_metamorphosis_tracker:AttackEvent_out(param
 		attacker:AddNewModifier(self.parent, self.ability, "modifier_custom_terrorblade_metamorphosis_perma", {})
 	end
 
-	if not self.parent:HasTalent("modifier_terror_meta_2") then
+	if self.ability.talents.has_e2 == 0 then
 		return
 	end
 
-	local damage = params.damage * self.parent:GetTalentValue("modifier_terror_meta_2", "cleave") / 100
+	local damage = params.damage * self.ability.talents.e2_cleave
 
 	if mod then
-		damage = damage * self.cleave_bonus
+		damage = damage * self.ability.talents.e2_bonus
 
 		local effect_cast = ParticleManager:CreateParticle("particles/tb_aoe.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
 		ParticleManager:SetParticleControl(effect_cast, 0, target:GetAbsOrigin())
@@ -894,7 +969,7 @@ function modifier_custom_terrorblade_metamorphosis_tracker:AttackEvent_out(param
 		ParticleManager:DestroyParticle(effect_cast, false)
 		ParticleManager:ReleaseParticleIndex(effect_cast)
 
-		for _, aoe_target in pairs(self.parent:FindTargets(self.cleave_radius, target:GetAbsOrigin())) do
+		for _, aoe_target in pairs(self.parent:FindTargets(self.ability.talents.e2_radius, target:GetAbsOrigin())) do
 			if target ~= aoe_target then
 				DoDamage({
 					victim = aoe_target,
@@ -928,7 +1003,7 @@ function modifier_custom_terrorblade_metamorphosis_transform_aura:OnCreated()
 		self.caster,
 		self.ability,
 		"modifier_custom_terrorblade_metamorphosis_transform",
-		{ duration = self.ability:GetSpecialValueFor("transformation_time") }
+		{ duration = self.ability.transformation_time }
 	)
 end
 
@@ -944,12 +1019,9 @@ function modifier_custom_terrorblade_metamorphosis_transform_aura:OnDestroy()
 	self.parent:RemoveModifierByName("modifier_custom_terrorblade_metamorphosis")
 end
 
-modifier_custom_terrorblade_metamorphosis_perma = class({})
+modifier_custom_terrorblade_metamorphosis_perma = class(mod_visible)
 function modifier_custom_terrorblade_metamorphosis_perma:IsHidden()
-	return not self:GetCaster():HasTalent("modifier_terror_meta_4")
-end
-function modifier_custom_terrorblade_metamorphosis_perma:IsPurgable()
-	return false
+	return self.ability.talents.has_e4 ~= 1
 end
 function modifier_custom_terrorblade_metamorphosis_perma:RemoveOnDeath()
 	return false
@@ -959,7 +1031,8 @@ function modifier_custom_terrorblade_metamorphosis_perma:GetTexture()
 end
 function modifier_custom_terrorblade_metamorphosis_perma:OnCreated()
 	self.parent = self:GetParent()
-	self.max = self.parent:GetTalentValue("modifier_terror_meta_4", "max", true)
+	self.ability = self:GetAbility()
+	self.max = self.ability.talents.e4_max
 
 	if not IsServer() then
 		return
@@ -986,7 +1059,7 @@ function modifier_custom_terrorblade_metamorphosis_perma:OnIntervalThink()
 	if self:GetStackCount() < self.max then
 		return
 	end
-	if not self.parent:HasTalent("modifier_terror_meta_4") then
+	if self.ability.talents.has_e4 == 0 then
 		return
 	end
 
@@ -996,56 +1069,42 @@ function modifier_custom_terrorblade_metamorphosis_perma:OnIntervalThink()
 	self:StartIntervalThink(-1)
 end
 
-modifier_custom_terrorblade_metamorphosis_fear_cd = class({})
-function modifier_custom_terrorblade_metamorphosis_fear_cd:IsHidden()
-	return true
-end
-function modifier_custom_terrorblade_metamorphosis_fear_cd:IsPurgable()
-	return false
-end
+modifier_custom_terrorblade_metamorphosis_fear_cd = class(mod_hidden)
 function modifier_custom_terrorblade_metamorphosis_fear_cd:RemoveOnDeath()
 	return false
 end
 
-modifier_custom_terrorblade_metamorphosis_slow = class({})
-function modifier_custom_terrorblade_metamorphosis_slow:IsHidden()
-	return true
-end
+modifier_custom_terrorblade_metamorphosis_slow = class(mod_hidden)
 function modifier_custom_terrorblade_metamorphosis_slow:IsPurgable()
 	return true
 end
 function modifier_custom_terrorblade_metamorphosis_slow:GetEffectName()
 	return "particles/units/heroes/hero_terrorblade/terrorblade_reflection_slow.vpcf"
 end
+function modifier_custom_terrorblade_metamorphosis_slow:OnCreated()
+	self.ability = self:GetAbility()
+	self.slow = self.ability.talents.e1_slow
+end
+
 function modifier_custom_terrorblade_metamorphosis_slow:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
 	}
 end
 
-function modifier_custom_terrorblade_metamorphosis_slow:OnCreated()
-	self.slow = self:GetCaster():GetTalentValue("modifier_terror_meta_1", "slow")
-end
-
 function modifier_custom_terrorblade_metamorphosis_slow:GetModifierMoveSpeedBonus_Percentage()
 	return self.slow
 end
 
-modifier_custom_terrorblade_metamorphosis_legendary_stack = class({})
-function modifier_custom_terrorblade_metamorphosis_legendary_stack:IsHidden()
-	return true
-end
-function modifier_custom_terrorblade_metamorphosis_legendary_stack:IsPurgable()
-	return false
-end
+modifier_custom_terrorblade_metamorphosis_legendary_stack = class(mod_hidden)
 function modifier_custom_terrorblade_metamorphosis_legendary_stack:RemoveOnDeath()
 	return false
 end
 function modifier_custom_terrorblade_metamorphosis_legendary_stack:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
-	self.max = self.parent:GetTalentValue("modifier_terror_meta_7", "max")
-	self.delay = self.parent:GetTalentValue("modifier_terror_meta_7", "delay")
+	self.max = self.ability.talents.e7_max
+	self.delay = self.ability.talents.e7_delay
 
 	self.interval = 0.2
 
@@ -1056,7 +1115,7 @@ function modifier_custom_terrorblade_metamorphosis_legendary_stack:OnCreated()
 end
 
 function modifier_custom_terrorblade_metamorphosis_legendary_stack:GetMax()
-	return self.max + self.parent:GetTalentValue("modifier_terror_meta_3", "max")
+	return self.max + self.ability.talents.e3_max
 end
 
 function modifier_custom_terrorblade_metamorphosis_legendary_stack:AddStack(target)
@@ -1107,7 +1166,15 @@ function modifier_custom_terrorblade_metamorphosis_legendary_stack:OnStackCountC
 	ability:SetActivated(self:GetStackCount() > 0)
 end
 
+modifier_custom_terrorblade_metamorphosis_crit_attack = class(mod_hidden)
+
+modifier_custom_terrorblade_metamorphosis_portrait = class(mod_hidden)
+function modifier_custom_terrorblade_metamorphosis_portrait:GetEffectName()
+	return "particles/ogre_dd.vpcf"
+end
+
 terrorblade_demon_zeal_custom = class({})
+terrorblade_demon_zeal_custom.talents = {}
 
 function terrorblade_demon_zeal_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
@@ -1116,59 +1183,88 @@ function terrorblade_demon_zeal_custom:Precache(context)
 	PrecacheResource("particle", "particles/models/heroes/terrorblade/demon_zeal.vpcf", context)
 end
 
-function terrorblade_demon_zeal_custom:GetCooldown()
-	local bonus = 0
-	if self:GetCaster():HasTalent("modifier_terror_meta_3") then
-		bonus = self:GetCaster():GetTalentValue("modifier_terror_meta_3", "cd")
+function terrorblade_demon_zeal_custom:UpdateTalents(name)
+	local caster = self:GetCaster()
+	if not self.init then
+		self.init = true
+		self.talents = {
+			e3_cd = 0,
+
+			has_e5 = 0,
+			e5_duration = caster:GetTalentValue("modifier_terror_meta_5", "duration", true),
+
+			has_e7 = 0,
+			e7_cd = caster:GetTalentValue("modifier_terror_meta_7", "cd", true),
+			e7_duration = caster:GetTalentValue("modifier_terror_meta_7", "duration", true),
+			e7_bva = caster:GetTalentValue("modifier_terror_meta_7", "bva", true),
+		}
 	end
-	return self:GetCaster():GetTalentValue("modifier_terror_meta_7", "cd") + bonus
+
+	if caster:HasTalent("modifier_terror_meta_3") then
+		self.talents.e3_cd = caster:GetTalentValue("modifier_terror_meta_3", "cd")
+	end
+
+	if caster:HasTalent("modifier_terror_meta_5") then
+		self.talents.has_e5 = 1
+	end
+
+	if caster:HasTalent("modifier_terror_meta_7") then
+		self.talents.has_e7 = 1
+	end
+end
+
+function terrorblade_demon_zeal_custom:GetCooldown()
+	return (self.talents.has_e7 == 1 and self.talents.e7_cd or 0) + (self.talents.e3_cd or 0)
 end
 
 function terrorblade_demon_zeal_custom:OnAbilityPhaseStart()
-	local caster = self:GetCaster()
-	local mod = caster:FindModifierByName("modifier_custom_terrorblade_metamorphosis_legendary_stack")
-	return self:GetCaster():HasModifier("modifier_custom_terrorblade_metamorphosis") and mod and mod:GetStackCount() > 0
+	local mod = self.caster:FindModifierByName("modifier_custom_terrorblade_metamorphosis_legendary_stack")
+	return self.caster:HasModifier("modifier_custom_terrorblade_metamorphosis") and mod and mod:GetStackCount() > 0
 end
 
 function terrorblade_demon_zeal_custom:OnSpellStart()
-	local caster = self:GetCaster()
-	local mod = caster:FindModifierByName("modifier_custom_terrorblade_metamorphosis_legendary_stack")
+	local mod = self.caster:FindModifierByName("modifier_custom_terrorblade_metamorphosis_legendary_stack")
 
 	if not mod or mod:GetStackCount() <= 0 then
 		return
 	end
 
-	if caster:HasTalent("modifier_terror_meta_5") then
-		caster:Purge(false, true, false, true, true)
-		caster:AddNewModifier(
-			caster,
+	if self.talents.has_e5 == 1 then
+		self.caster:Purge(false, true, false, true, true)
+		self.caster:AddNewModifier(
+			self.caster,
 			self,
 			"modifier_generic_debuff_immune",
-			{ duration = caster:GetTalentValue("modifier_terror_meta_5", "duration"), effect = 1 }
+			{ duration = self.talents.e5_duration, effect = 1 }
 		)
-		caster:GenericParticle("particles/units/heroes/hero_brewmaster/brewmaster_dispel_magic.vpcf")
+		self.caster:GenericParticle("particles/units/heroes/hero_brewmaster/brewmaster_dispel_magic.vpcf")
 	end
 
-	local duration = mod:GetStackCount() * caster:GetTalentValue("modifier_terror_meta_7", "duration")
+	local duration = mod:GetStackCount() * self.talents.e7_duration
 	mod:SetStackCount(0)
 
-	caster:EmitSound("Hero_Terrorblade.DemonZeal.Cast")
-	caster:EmitSound("TB.Meta_stack")
-	caster:AddNewModifier(caster, self, "modifier_terrorblade_demon_zeal_custom_buff", { duration = duration })
+	self.caster:EmitSound("Hero_Terrorblade.DemonZeal.Cast")
+	self.caster:EmitSound("TB.Meta_stack")
+	self.caster:AddNewModifier(
+		self.caster,
+		self,
+		"modifier_terrorblade_demon_zeal_custom_buff",
+		{ duration = duration }
+	)
 end
 
-modifier_terrorblade_demon_zeal_custom_buff = class({})
-function modifier_terrorblade_demon_zeal_custom_buff:IsHidden()
-	return true
+modifier_terrorblade_demon_zeal_custom_buff = class(mod_hidden)
+function modifier_terrorblade_demon_zeal_custom_buff:GetStatusEffectName()
+	return "particles/status_fx/status_effect_dark_willow_shadow_realm.vpcf"
 end
-function modifier_terrorblade_demon_zeal_custom_buff:IsPurgable()
-	return false
+function modifier_terrorblade_demon_zeal_custom_buff:StatusEffectPriority()
+	return MODIFIER_PRIORITY_ULTRA
 end
 function modifier_terrorblade_demon_zeal_custom_buff:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.bva = self.parent:GetTalentValue("modifier_terror_meta_7", "bva")
+	self.bva = self.ability.talents.e7_bva
 	if not IsServer() then
 		return
 	end
@@ -1228,52 +1324,51 @@ function modifier_terrorblade_demon_zeal_custom_buff:GetModifierModelScale()
 	return 20
 end
 
-function modifier_terrorblade_demon_zeal_custom_buff:StatusEffectPriority()
-	return MODIFIER_PRIORITY_ULTRA
-end
-
-function modifier_terrorblade_demon_zeal_custom_buff:GetStatusEffectName()
-	return "particles/status_fx/status_effect_dark_willow_shadow_realm.vpcf"
-end
-
-modifier_custom_terrorblade_metamorphosis_crit_attack = class({})
-function modifier_custom_terrorblade_metamorphosis_crit_attack:IsHidden()
-	return true
-end
-function modifier_custom_terrorblade_metamorphosis_crit_attack:IsPurgable()
-	return false
-end
-
 custom_terrorblade_terror_wave = class({})
+
+function custom_terrorblade_terror_wave:Init()
+	if not self:GetCaster() then
+		return
+	end
+	self.caster = self:GetCaster()
+
+	self.fear_duration = self:GetLevelSpecialValueFor("fear_duration", 1)
+	self.scepter_radius = self:GetLevelSpecialValueFor("scepter_radius", 1)
+	self.scepter_speed = self:GetLevelSpecialValueFor("scepter_speed", 1)
+	self.scepter_spawn_delay = self:GetLevelSpecialValueFor("scepter_spawn_delay", 1)
+	self.range = self:GetLevelSpecialValueFor("range", 1)
+	self.radius = self:GetLevelSpecialValueFor("radius", 1)
+	self.blink_radius = self:GetLevelSpecialValueFor("blink_radius", 1)
+	self.damage = self:GetLevelSpecialValueFor("damage", 1)
+end
 
 function custom_terrorblade_terror_wave:GetCastRange(vLocation, hTarget)
 	if IsClient() then
-		return self:GetSpecialValueFor("range")
+		return self.range or 0
 	end
 	return 99999
 end
 
 function custom_terrorblade_terror_wave:OnSpellStart(table)
-	local caster = self:GetCaster()
 	local point = self:GetCursorPosition()
 
-	if point == caster:GetAbsOrigin() then
-		point = caster:GetAbsOrigin() + caster:GetForwardVector() * 10
+	if point == self.caster:GetAbsOrigin() then
+		point = self.caster:GetAbsOrigin() + self.caster:GetForwardVector() * 10
 	end
 
-	local vec = (point - caster:GetAbsOrigin())
-	local max_range = self:GetSpecialValueFor("range") + caster:GetCastRangeBonus()
-	local delay = self:GetSpecialValueFor("scepter_spawn_delay")
+	local vec = (point - self.caster:GetAbsOrigin())
+	local max_range = self.range + self.caster:GetCastRangeBonus()
+	local delay = self.scepter_spawn_delay
 
 	if vec:Length2D() > max_range then
-		point = caster:GetAbsOrigin() + vec:Normalized() * max_range
+		point = self.caster:GetAbsOrigin() + vec:Normalized() * max_range
 	end
 
 	local units = FindUnitsInRadius(
-		caster:GetTeamNumber(),
-		caster:GetAbsOrigin(),
+		self.caster:GetTeamNumber(),
+		self.caster:GetAbsOrigin(),
 		nil,
-		self:GetSpecialValueFor("radius"),
+		self.radius,
 		DOTA_UNIT_TARGET_TEAM_FRIENDLY,
 		DOTA_UNIT_TARGET_HERO,
 		DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO
@@ -1285,12 +1380,12 @@ function custom_terrorblade_terror_wave:OnSpellStart(table)
 
 	for _, unit in pairs(units) do
 		if
-			unit == caster
-			or (unit.owner and unit.owner == caster and unit:IsIllusion())
+			unit == self.caster
+			or (unit.owner and unit.owner == self.caster and unit:IsIllusion())
 				and not unit:HasModifier("modifier_custom_terrorblade_reflection_unit")
 		then
 			unit:AddNewModifier(
-				caster,
+				self.caster,
 				self,
 				"modifier_custom_terrorblade_metamorphosis_fear_thinker",
 				{ x = point.x, y = point.y, duration = delay }
@@ -1299,22 +1394,7 @@ function custom_terrorblade_terror_wave:OnSpellStart(table)
 	end
 end
 
-modifier_custom_terrorblade_metamorphosis_fear_thinker = class({})
-function modifier_custom_terrorblade_metamorphosis_fear_thinker:IsHidden()
-	return true
-end
-function modifier_custom_terrorblade_metamorphosis_fear_thinker:IsPurgable()
-	return false
-end
-function modifier_custom_terrorblade_metamorphosis_fear_thinker:CheckState()
-	return {
-		[MODIFIER_STATE_STUNNED] = true,
-		[MODIFIER_STATE_OUT_OF_GAME] = true,
-		[MODIFIER_STATE_INVULNERABLE] = true,
-		[MODIFIER_STATE_NO_HEALTH_BAR] = true,
-	}
-end
-
+modifier_custom_terrorblade_metamorphosis_fear_thinker = class(mod_hidden)
 function modifier_custom_terrorblade_metamorphosis_fear_thinker:OnCreated(params)
 	if not IsServer() then
 		return
@@ -1324,9 +1404,9 @@ function modifier_custom_terrorblade_metamorphosis_fear_thinker:OnCreated(params
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.radius = self.ability:GetSpecialValueFor("scepter_radius")
-	self.speed = self.ability:GetSpecialValueFor("scepter_speed")
-	self.blink_radius = self.ability:GetSpecialValueFor("blink_radius")
+	self.radius = self.ability.scepter_radius
+	self.speed = self.ability.scepter_speed
+	self.blink_radius = self.ability.blink_radius
 
 	local start_point = self.parent:GetAbsOrigin()
 
@@ -1384,20 +1464,22 @@ function modifier_custom_terrorblade_metamorphosis_fear_thinker:OnDestroy()
 	)
 end
 
-modifier_custom_terrorblade_metamorphosis_ring = class({})
-function modifier_custom_terrorblade_metamorphosis_ring:IsHidden()
-	return true
+function modifier_custom_terrorblade_metamorphosis_fear_thinker:CheckState()
+	return {
+		[MODIFIER_STATE_STUNNED] = true,
+		[MODIFIER_STATE_OUT_OF_GAME] = true,
+		[MODIFIER_STATE_INVULNERABLE] = true,
+		[MODIFIER_STATE_NO_HEALTH_BAR] = true,
+	}
 end
-function modifier_custom_terrorblade_metamorphosis_ring:IsPurgable()
-	return false
-end
+
+modifier_custom_terrorblade_metamorphosis_ring = class(mod_hidden)
 function modifier_custom_terrorblade_metamorphosis_ring:RemoveOnDeath()
 	return false
 end
 function modifier_custom_terrorblade_metamorphosis_ring:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
-
 function modifier_custom_terrorblade_metamorphosis_ring:OnCreated(kv)
 	if not IsServer() then
 		return
@@ -1406,17 +1488,17 @@ function modifier_custom_terrorblade_metamorphosis_ring:OnCreated(kv)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.fear_duration = self.ability:GetSpecialValueFor("fear_duration")
-	self.radius = self.ability:GetSpecialValueFor("scepter_radius")
-	self.speed = self.ability:GetSpecialValueFor("scepter_speed")
-	self.damage = self.ability:GetSpecialValueFor("damage")
+	self.fear_duration = self.ability.fear_duration
+	self.radius = self.ability.scepter_radius
+	self.speed = self.ability.scepter_speed
+	self.damage = self.ability.damage
 
 	self.effect_cast = ParticleManager:CreateParticle(
 		"particles/units/heroes/hero_terrorblade/terrorblade_scepter.vpcf",
 		PATTACH_WORLDORIGIN,
 		nil
 	)
-	ParticleManager:SetParticleControl(self.effect_cast, 0, self:GetParent():GetAbsOrigin())
+	ParticleManager:SetParticleControl(self.effect_cast, 0, self.parent:GetAbsOrigin())
 	ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(self.speed, self.speed, self.speed))
 
 	if self.parent.current_model == "models/heroes/terrorblade/terrorblade_arcana.vmdl" then
@@ -1427,7 +1509,7 @@ function modifier_custom_terrorblade_metamorphosis_ring:OnCreated(kv)
 
 	self:AddParticle(self.effect_cast, false, false, -1, false, false)
 
-	self.origin = self:GetParent():GetAbsOrigin()
+	self.origin = self.parent:GetAbsOrigin()
 
 	self.start_radius = 0
 	self.end_radius = self.radius
@@ -1447,7 +1529,7 @@ function modifier_custom_terrorblade_metamorphosis_ring:OnIntervalThink()
 	end
 
 	local targets = FindUnitsInRadius(
-		self:GetParent():GetTeamNumber(),
+		self.parent:GetTeamNumber(),
 		self.origin,
 		nil,
 		radius,
@@ -1477,15 +1559,4 @@ function modifier_custom_terrorblade_metamorphosis_ring:OnIntervalThink()
 			})
 		end
 	end
-end
-
-modifier_custom_terrorblade_metamorphosis_portrait = class({})
-function modifier_custom_terrorblade_metamorphosis_portrait:IsHidden()
-	return true
-end
-function modifier_custom_terrorblade_metamorphosis_portrait:IsPurgable()
-	return false
-end
-function modifier_custom_terrorblade_metamorphosis_portrait:GetEffectName()
-	return "particles/ogre_dd.vpcf"
 end

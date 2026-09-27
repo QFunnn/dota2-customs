@@ -88,6 +88,9 @@ function tinker_deploy_turrets_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_tinker/tinker_linear_missile.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_tinker/turret_death_explosion.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_tinker/turret_missile_explosion.vpcf", context)
+	PrecacheResource("particle", "particles/items_fx/chain_lightning.vpcf", context)
+	PrecacheResource("particle", "particles/tinker/laser_stun.vpcf", context)
+	PrecacheResource("particle", "particles/laser/stun_stack.vpcf", context)
 
 	PrecacheResource("model", "models/heroes/tinker/tinker_turret.vmdl", context)
 end
@@ -105,7 +108,6 @@ function tinker_deploy_turrets_custom:UpdateTalents()
 			e1_chance_turret = caster:GetTalentValue("modifier_tinker_matrix_1", "chance_turret", true),
 			e1_damage_type = caster:GetTalentValue("modifier_tinker_matrix_1", "damage_type", true),
 
-			has_e2 = 0,
 			e2_move = 0,
 
 			has_e4 = 0,
@@ -125,7 +127,6 @@ function tinker_deploy_turrets_custom:UpdateTalents()
 			e7_talent_cd = caster:GetTalentValue("modifier_tinker_matrix_7", "talent_cd", true),
 			e7_turrets_interval = caster:GetTalentValue("modifier_tinker_matrix_7", "turrets_interval", true),
 
-			has_w2 = 0,
 			w2_speed = 0,
 		}
 	end
@@ -139,7 +140,6 @@ function tinker_deploy_turrets_custom:UpdateTalents()
 	end
 
 	if caster:HasTalent("modifier_tinker_matrix_2") then
-		self.talents.has_e2 = 1
 		self.talents.e2_move = caster:GetTalentValue("modifier_tinker_matrix_2", "move")
 	end
 
@@ -153,7 +153,6 @@ function tinker_deploy_turrets_custom:UpdateTalents()
 	end
 
 	if caster:HasTalent("modifier_tinker_march_2") then
-		self.talents.has_w2 = 1
 		self.talents.w2_speed = caster:GetTalentValue("modifier_tinker_march_2", "speed") / 100
 	end
 end
@@ -165,12 +164,8 @@ function tinker_deploy_turrets_custom:GetIntrinsicModifierName()
 	return "modifier_tinker_deploy_turrets_custom_tracker"
 end
 
-function tinker_deploy_turrets_custom:GetBehavior()
-	return DOTA_ABILITY_BEHAVIOR_POINT + DOTA_ABILITY_BEHAVIOR_AOE
-end
-
 function tinker_deploy_turrets_custom:GetAOERadius()
-	return (self.drop_aoe_radius and self.drop_aoe_radius or 0)
+	return (self.drop_aoe_radius or 0)
 end
 
 function tinker_deploy_turrets_custom:OnSpellStart()
@@ -186,6 +181,76 @@ function tinker_deploy_turrets_custom:OnSpellStart()
 	)
 end
 
+function tinker_deploy_turrets_custom:OnProjectileHit_ExtraData(target, vLocation, table)
+	if not IsServer() then
+		return
+	end
+	if not target then
+		return
+	end
+
+	local nParticleIndex = ParticleManager:CreateParticle(
+		"particles/units/heroes/hero_tinker/turret_missile_explosion.vpcf",
+		PATTACH_CUSTOMORIGIN_FOLLOW,
+		target
+	)
+	ParticleManager:SetParticleControlEnt(
+		nParticleIndex,
+		0,
+		target,
+		PATTACH_POINT_FOLLOW,
+		"attach_hitloc",
+		target:GetAbsOrigin(),
+		true
+	)
+	ParticleManager:ReleaseParticleIndex(nParticleIndex)
+	target:EmitSound("Hero_TinkerTurret.Target")
+
+	local damage = (self.missile_damage + self.missile_damage_attack * self.caster:GetAverageTrueAttackDamage(nil))
+		* (1 + self.talents.e1_attack)
+	local damageTable = { attacker = self.caster, ability = self, damage_type = DAMAGE_TYPE_PHYSICAL }
+
+	for _, aoe_target in pairs(self.caster:FindTargets(self.radius_explosion, target:GetAbsOrigin())) do
+		local target_damage = damage
+		if aoe_target ~= target then
+			target_damage = target_damage * self.splash_pct
+		end
+		if aoe_target:IsCreep() then
+			target_damage = target_damage * (1 + self.creeps)
+		end
+		damageTable.victim = aoe_target
+		damageTable.damage = target_damage
+		DoDamage(damageTable)
+	end
+
+	local attacker = EntIndexToHScript(table.attacker)
+	if IsValid(attacker) then
+		self:ProcDamage(target, attacker)
+	end
+
+	if
+		self.talents.has_e4 == 1
+		and not target:IsDebuffImmune()
+		and target:CheckCd("tinker_e4", self.talents.e4_talent_cd)
+	then
+		target:EmitSound("Tinker.March_root")
+		target:AddNewModifier(
+			self.caster,
+			self,
+			"modifier_tinker_deploy_turrets_custom_root",
+			{ duration = (1 - target:GetStatusResistance()) * self.talents.e4_root }
+		)
+	end
+
+	self:LegendaryStack(target, 1)
+
+	if IsValid(self.caster.march_ability) then
+		self.caster.march_ability:ProcEffects(target)
+	end
+
+	return true
+end
+
 function tinker_deploy_turrets_custom:ProcDamage(target, attacker)
 	if not IsServer() then
 		return
@@ -193,7 +258,7 @@ function tinker_deploy_turrets_custom:ProcDamage(target, attacker)
 	if not self:IsTrained() then
 		return
 	end
-	if self.ability.talents.has_e1 == 0 then
+	if self.talents.has_e1 == 0 then
 		return
 	end
 
@@ -242,76 +307,6 @@ function tinker_deploy_turrets_custom:ProcDamage(target, attacker)
 	)
 end
 
-function tinker_deploy_turrets_custom:OnProjectileHit_ExtraData(target, vLocation, table)
-	if not IsServer() then
-		return
-	end
-	if not target then
-		return
-	end
-
-	local nParticleIndex = ParticleManager:CreateParticle(
-		"particles/units/heroes/hero_tinker/turret_missile_explosion.vpcf",
-		PATTACH_CUSTOMORIGIN_FOLLOW,
-		target
-	)
-	ParticleManager:SetParticleControlEnt(
-		nParticleIndex,
-		0,
-		target,
-		PATTACH_POINT_FOLLOW,
-		"attach_hitloc",
-		target:GetAbsOrigin(),
-		true
-	)
-	ParticleManager:ReleaseParticleIndex(nParticleIndex)
-	target:EmitSound("Hero_TinkerTurret.Target")
-
-	local damage = (self.missile_damage + self.missile_damage_attack * self.caster:GetAverageTrueAttackDamage(nil))
-		* (1 + self.ability.talents.e1_attack)
-	local damageTable = { attacker = self.caster, ability = self.ability, damage_type = DAMAGE_TYPE_PHYSICAL }
-
-	for _, aoe_target in pairs(self.caster:FindTargets(self.ability.radius_explosion, target:GetAbsOrigin())) do
-		local target_damage = damage
-		if aoe_target ~= target then
-			target_damage = target_damage * self.splash_pct
-		end
-		if aoe_target:IsCreep() then
-			target_damage = target_damage * (1 + self.creeps)
-		end
-		damageTable.victim = aoe_target
-		damageTable.damage = target_damage
-		DoDamage(damageTable)
-	end
-
-	local attacker = EntIndexToHScript(table.attacker)
-	if IsValid(attacker) then
-		self:ProcDamage(target, attacker)
-	end
-
-	if
-		self.talents.has_e4 == 1
-		and not target:IsDebuffImmune()
-		and target:CheckCd("tinker_e4", self.ability.talents.e4_talent_cd)
-	then
-		target:EmitSound("Tinker.March_root")
-		target:AddNewModifier(
-			self.caster,
-			self,
-			"modifier_tinker_deploy_turrets_custom_root",
-			{ duration = (1 - target:GetStatusResistance()) * self.talents.e4_root }
-		)
-	end
-
-	self:LegendaryStack(target, 1)
-
-	if IsValid(self.caster.march_ability) then
-		self.caster.march_ability:ProcEffects(target)
-	end
-
-	return true
-end
-
 function tinker_deploy_turrets_custom:LegendaryStack(target, is_turret)
 	if not IsServer() then
 		return
@@ -325,15 +320,15 @@ function tinker_deploy_turrets_custom:LegendaryStack(target, is_turret)
 	if not target:IsRealHero() then
 		return
 	end
-	if target:HasCd("tinker_e7", self.ability.talents.e7_talent_cd) then
+	if target:HasCd("tinker_e7", self.talents.e7_talent_cd) then
 		return
 	end
 
 	target:AddNewModifier(
-		self.parent,
-		self.ability,
+		self.caster,
+		self,
 		"modifier_tinker_deploy_turrets_custom_legendary_stack",
-		{ duration = self.ability.talents.e7_stack_duration, is_turret = is_turret }
+		{ duration = self.talents.e7_stack_duration, is_turret = is_turret }
 	)
 end
 
@@ -389,7 +384,7 @@ function modifier_tinker_deploy_turrets_custom:OnCreated()
 		fDistance = self.missile_range,
 		iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
 		iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-		iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
+		iUnitTargetFlags = DOTA_UNIT_TARGET_FLAG_NONE,
 		bProvidesVision = true,
 		bDeleteOnHit = true,
 		iVisionTeamNumber = self.caster:GetTeamNumber(),
@@ -437,7 +432,7 @@ function modifier_tinker_deploy_turrets_custom:OnIntervalThink()
 				self.damageTable.victim = target
 				DoDamage(self.damageTable)
 			end
-			target:AddNewModifier(caster, self, "modifier_generic_knockback", {
+			target:AddNewModifier(self.caster, self.ability, "modifier_generic_knockback", {
 				direction_x = vec.x,
 				direction_y = vec.y,
 				distance = dist,
@@ -637,10 +632,7 @@ function modifier_tinker_deploy_turrets_custom_tracker:AttackEvent_out(params)
 		return
 	end
 
-	if self.ability.talents.has_e1 == 1 then
-		self.ability:ProcDamage(target, self.parent)
-	end
-
+	self.ability:ProcDamage(target, self.parent)
 	self.ability:LegendaryStack(target)
 end
 
@@ -663,14 +655,28 @@ function modifier_tinker_deploy_turrets_custom_tracker:GetModifierMoveSpeedBonus
 end
 
 modifier_tinker_deploy_turrets_custom_legendary = class(mod_hidden)
+function modifier_tinker_deploy_turrets_custom_legendary:IsAura()
+	return true
+end
+function modifier_tinker_deploy_turrets_custom_legendary:GetAuraDuration()
+	return 0
+end
+function modifier_tinker_deploy_turrets_custom_legendary:GetAuraRadius()
+	return self.radius * 1.1
+end
+function modifier_tinker_deploy_turrets_custom_legendary:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_ENEMY
+end
+function modifier_tinker_deploy_turrets_custom_legendary:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
+end
+function modifier_tinker_deploy_turrets_custom_legendary:GetModifierAura()
+	return "modifier_tinker_deploy_turrets_custom_legendary_aura"
+end
 function modifier_tinker_deploy_turrets_custom_legendary:OnCreated(params)
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
-	self.ability = self.caster.turret_ability
-	if not self.ability then
-		self:Destroy()
-		return
-	end
+	self.ability = self:GetAbility()
 
 	self.radius = self.ability.talents.e7_radius
 	if not IsServer() then
@@ -817,24 +823,6 @@ function modifier_tinker_deploy_turrets_custom_legendary:OnDestroy()
 	self.parent:StopSound("Tinker.Matrix_legendary_loop")
 end
 
-function modifier_tinker_deploy_turrets_custom_legendary:IsAura()
-	return true
-end
-function modifier_tinker_deploy_turrets_custom_legendary:GetAuraDuration()
-	return 0
-end
-function modifier_tinker_deploy_turrets_custom_legendary:GetAuraRadius()
-	return self.radius * 1.1
-end
-function modifier_tinker_deploy_turrets_custom_legendary:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_ENEMY
-end
-function modifier_tinker_deploy_turrets_custom_legendary:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
-end
-function modifier_tinker_deploy_turrets_custom_legendary:GetModifierAura()
-	return "modifier_tinker_deploy_turrets_custom_legendary_aura"
-end
 function modifier_tinker_deploy_turrets_custom_legendary:GetAuraEntityReject(hEntity)
 	return hEntity ~= self.target
 end
@@ -842,15 +830,14 @@ end
 modifier_tinker_deploy_turrets_custom_knock_cd = class(mod_hidden)
 
 modifier_tinker_deploy_turrets_custom_legendary_aura = class(mod_hidden)
+function modifier_tinker_deploy_turrets_custom_legendary_aura:GetStatusEffectName()
+	return "particles/status_fx/status_effect_mjollnir_shield.vpcf"
+end
+function modifier_tinker_deploy_turrets_custom_legendary_aura:StatusEffectPriority()
+	return MODIFIER_PRIORITY_HIGH
+end
 function modifier_tinker_deploy_turrets_custom_legendary_aura:OnCreated()
 	self.parent = self:GetParent()
-	self.caster = self:GetCaster()
-	self.ability = self.caster.turret_ability
-	if not self.ability then
-		self:Destroy()
-		return
-	end
-
 	if not IsServer() then
 		return
 	end
@@ -861,15 +848,31 @@ function modifier_tinker_deploy_turrets_custom_legendary_aura:OnCreated()
 	ParticleManager:SetParticleControl(self.particle, 1, Vector(100, 0, 0))
 end
 
-function modifier_tinker_deploy_turrets_custom_legendary_aura:GetStatusEffectName()
+modifier_tinker_deploy_turrets_custom_legendary_speed = class(mod_hidden)
+function modifier_tinker_deploy_turrets_custom_legendary_speed:GetStatusEffectName()
 	return "particles/status_fx/status_effect_mjollnir_shield.vpcf"
 end
-
-function modifier_tinker_deploy_turrets_custom_legendary_aura:StatusEffectPriority()
+function modifier_tinker_deploy_turrets_custom_legendary_speed:StatusEffectPriority()
 	return MODIFIER_PRIORITY_HIGH
 end
-
-modifier_tinker_deploy_turrets_custom_legendary_speed = class(mod_hidden)
+function modifier_tinker_deploy_turrets_custom_legendary_speed:IsAura()
+	return IsServer() and self.parent:IsAlive() and self.is_caster
+end
+function modifier_tinker_deploy_turrets_custom_legendary_speed:GetAuraDuration()
+	return 0
+end
+function modifier_tinker_deploy_turrets_custom_legendary_speed:GetAuraRadius()
+	return 2000
+end
+function modifier_tinker_deploy_turrets_custom_legendary_speed:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_FRIENDLY
+end
+function modifier_tinker_deploy_turrets_custom_legendary_speed:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
+end
+function modifier_tinker_deploy_turrets_custom_legendary_speed:GetModifierAura()
+	return "modifier_tinker_deploy_turrets_custom_legendary_speed"
+end
 function modifier_tinker_deploy_turrets_custom_legendary_speed:OnCreated()
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
@@ -878,7 +881,6 @@ function modifier_tinker_deploy_turrets_custom_legendary_speed:OnCreated()
 	self.speed = self.ability.talents.e7_speed
 	self.is_caster = self.parent == self.caster
 
-	self.radius = 1000
 	if not IsServer() then
 		return
 	end
@@ -937,32 +939,6 @@ function modifier_tinker_deploy_turrets_custom_legendary_speed:GetModifierAttack
 	return self.speed
 end
 
-function modifier_tinker_deploy_turrets_custom_legendary_speed:GetStatusEffectName()
-	return "particles/status_fx/status_effect_mjollnir_shield.vpcf"
-end
-
-function modifier_tinker_deploy_turrets_custom_legendary_speed:StatusEffectPriority()
-	return MODIFIER_PRIORITY_HIGH
-end
-
-function modifier_tinker_deploy_turrets_custom_legendary_speed:IsAura()
-	return IsServer() and self.parent:IsAlive() and self.is_caster
-end
-function modifier_tinker_deploy_turrets_custom_legendary_speed:GetAuraDuration()
-	return 0
-end
-function modifier_tinker_deploy_turrets_custom_legendary_speed:GetAuraRadius()
-	return 2000
-end
-function modifier_tinker_deploy_turrets_custom_legendary_speed:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_FRIENDLY
-end
-function modifier_tinker_deploy_turrets_custom_legendary_speed:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
-end
-function modifier_tinker_deploy_turrets_custom_legendary_speed:GetModifierAura()
-	return "modifier_tinker_deploy_turrets_custom_legendary_speed"
-end
 function modifier_tinker_deploy_turrets_custom_legendary_speed:GetAuraEntityReject(hEntity)
 	return not hEntity:HasModifier("modifier_tinker_deploy_turrets_custom_unit") or self.caster ~= hEntity.owner
 end
@@ -979,6 +955,7 @@ function modifier_tinker_deploy_turrets_custom_legendary_stack:OnCreated(table)
 	if not IsServer() then
 		return
 	end
+	self.RemoveForDuel = true
 	self:OnRefresh(table)
 end
 
@@ -996,6 +973,11 @@ function modifier_tinker_deploy_turrets_custom_legendary_stack:OnRefresh(table)
 	end
 
 	self:IncrementStackCount()
+
+	if not self.particle then
+		self.particle = self.parent:GenericParticle("particles/laser/stun_stack.vpcf", self, true)
+	end
+	ParticleManager:SetParticleControl(self.particle, 1, Vector(0, self:GetStackCount(), 0))
 
 	if self:GetStackCount() < self.max then
 		return
@@ -1023,16 +1005,6 @@ function modifier_tinker_deploy_turrets_custom_legendary_stack:OnRefresh(table)
 		false
 	)
 	self:Destroy()
-end
-
-function modifier_tinker_deploy_turrets_custom_legendary_stack:OnStackCountChanged(iStackCount)
-	if not IsServer() then
-		return
-	end
-	if not self.particle then
-		self.particle = self.parent:GenericParticle("particles/laser/stun_stack.vpcf", self, true)
-	end
-	ParticleManager:SetParticleControl(self.particle, 1, Vector(0, self:GetStackCount(), 0))
 end
 
 modifier_tinker_deploy_turrets_custom_root = class(mod_hidden)

@@ -20,10 +20,20 @@ function item_claymore_custom:GetIntrinsicModifierName()
 	return "modifier_item_claymore_custom_passive"
 end
 
+function item_claymore_custom:Spawn()
+	self.health_bonus = self:GetSpecialValueFor("health_bonus")
+	self.bonus_damage = self:GetSpecialValueFor("bonus_damage")
+end
+
 modifier_item_claymore_custom_passive = class(mod_hidden)
 function modifier_item_claymore_custom_passive:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
+function modifier_item_claymore_custom_passive:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+end
+
 function modifier_item_claymore_custom_passive:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
@@ -37,11 +47,4 @@ end
 
 function modifier_item_claymore_custom_passive:GetModifierHealthBonus()
 	return self.ability.health_bonus
-end
-
-function modifier_item_claymore_custom_passive:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-	self.ability.health_bonus = self.ability:GetSpecialValueFor("health_bonus")
-	self.ability.bonus_damage = self.ability:GetSpecialValueFor("bonus_damage")
 end

@@ -28,22 +28,19 @@ function item_ash_legion_shield_custom:Precache(context)
 	PrecacheResource("particle", "particles/items/ash_legion_buckler_custom.vpcf", context)
 end
 
+function item_ash_legion_shield_custom:Spawn()
+	self.block_radius = self:GetSpecialValueFor("block_radius")
+	self.duration = self:GetSpecialValueFor("duration")
+	self.block_amount = self:GetSpecialValueFor("block_amount")
+	self.slow = self:GetSpecialValueFor("slow")
+end
+
 function item_ash_legion_shield_custom:OnSpellStart()
 	local caster = self:GetCaster()
 
-	local radius = self:GetSpecialValueFor("block_radius")
-	local duration = self:GetSpecialValueFor("duration")
-	local friends = FindUnitsInRadius(
-		caster:GetTeamNumber(),
-		caster:GetAbsOrigin(),
-		nil,
-		radius,
-		DOTA_UNIT_TARGET_TEAM_FRIENDLY,
-		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-		DOTA_UNIT_TARGET_FLAG_INVULNERABLE,
-		FIND_CLOSEST,
-		false
-	)
+	local radius = self.block_radius
+	local duration = self.duration
+	local friends = caster:FindFriends(radius, nil, nil, DOTA_UNIT_TARGET_FLAG_INVULNERABLE)
 	caster:EmitSound("item_ash_legion_shield")
 
 	for _, friend in pairs(friends) do
@@ -59,8 +56,8 @@ function modifier_item_ash_legion_shield_custom:OnCreated(params)
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
 	self.ability = self:GetAbility()
-	self.max_shield = self.ability:GetSpecialValueFor("block_amount")
-	self.slow = self.ability:GetSpecialValueFor("slow")
+	self.max_shield = self.ability.block_amount
+	self.slow = self.ability.slow
 	self.shield = self.max_shield
 
 	if not IsServer() then

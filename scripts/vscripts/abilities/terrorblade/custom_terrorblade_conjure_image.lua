@@ -40,12 +40,8 @@ LinkLuaModifier(
 )
 
 custom_terrorblade_conjure_image = class({})
-
+custom_terrorblade_conjure_image.talents = {}
 custom_terrorblade_conjure_image.illusions = {}
-
-function custom_terrorblade_conjure_image:GetAbilityTextureName()
-	return wearables_system:GetAbilityIconReplacement(self.caster, "terrorblade_conjure_image", self)
-end
 
 function custom_terrorblade_conjure_image:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
@@ -65,7 +61,6 @@ function custom_terrorblade_conjure_image:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_r.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_l.vpcf", context)
 	PrecacheResource("particle", "particles/terrorblade_custom/terrorblade_feet_effects.vpcf", context)
-
 	PrecacheResource("particle", "particles/units/heroes/hero_terrorblade/terrorblade_sunder.vpcf", context)
 	PrecacheResource(
 		"particle",
@@ -79,43 +74,54 @@ function custom_terrorblade_conjure_image:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_terrorblade/terrorblade_death_custom.vpcf", context)
 end
 
-function custom_terrorblade_conjure_image:GetCooldown(iLevel)
-	local upgrade_cooldown = 0
-	if self:GetCaster():HasTalent("modifier_terror_illusion_2") then
-		upgrade_cooldown = self:GetCaster():GetTalentValue("modifier_terror_illusion_2", "cd")
-	end
-	return self.BaseClass.GetCooldown(self, iLevel) + upgrade_cooldown
-end
-
-function custom_terrorblade_conjure_image:GetManaCost(level)
+function custom_terrorblade_conjure_image:UpdateTalents(name)
 	local caster = self:GetCaster()
-	local bonus = 0
+	if not self.init then
+		self.init = true
+		self.talents = {
+			w2_cd = 0,
+			w2_mana = 0,
+
+			has_w5 = 0,
+			w5_range = caster:GetTalentValue("modifier_terror_illusion_5", "range", true),
+			w5_invun = caster:GetTalentValue("modifier_terror_illusion_5", "invun", true),
+
+			has_w6 = 0,
+			w6_duration = caster:GetTalentValue("modifier_terror_illusion_6", "duration", true),
+			w6_damage_self = caster:GetTalentValue("modifier_terror_illusion_6", "damage_self", true),
+			w6_damage_reduce = caster:GetTalentValue("modifier_terror_illusion_6", "damage_reduce", true),
+
+			has_w7 = 0,
+			w7_duration = caster:GetTalentValue("modifier_terror_illusion_7", "duration", true),
+			w7_damage = caster:GetTalentValue("modifier_terror_illusion_7", "damage", true),
+			w7_incoming = caster:GetTalentValue("modifier_terror_illusion_7", "incoming", true),
+			w7_max = caster:GetTalentValue("modifier_terror_illusion_7", "max", true),
+			w7_chance = caster:GetTalentValue("modifier_terror_illusion_7", "chance", true),
+			w7_heal = caster:GetTalentValue("modifier_terror_illusion_7", "heal", true),
+		}
+	end
+
 	if caster:HasTalent("modifier_terror_illusion_2") then
-		bonus = caster:GetTalentValue("modifier_terror_illusion_2", "mana")
+		self.talents.w2_cd = caster:GetTalentValue("modifier_terror_illusion_2", "cd")
+		self.talents.w2_mana = caster:GetTalentValue("modifier_terror_illusion_2", "mana")
 	end
-	return self.BaseClass.GetManaCost(self, level) + bonus
+
+	if caster:HasTalent("modifier_terror_illusion_5") then
+		self.talents.has_w5 = 1
+	end
+
+	if caster:HasTalent("modifier_terror_illusion_6") then
+		self.talents.has_w6 = 1
+	end
+
+	if caster:HasTalent("modifier_terror_illusion_7") then
+		self.talents.has_w7 = 1
+		caster:AddAttackEvent_out(self.tracker, true)
+	end
 end
 
-function custom_terrorblade_conjure_image:GetCastRange(vLocation, hTarget)
-	local caster = self:GetCaster()
-	if not caster:HasTalent("modifier_terror_illusion_5") then
-		return
-	end
-
-	if IsClient() then
-		return caster:GetTalentValue("modifier_terror_illusion_5", "range")
-	end
-	return 999999
-end
-
-function custom_terrorblade_conjure_image:GetBehavior()
-	local bonus = 0
-	local base = DOTA_ABILITY_BEHAVIOR_NO_TARGET
-	if self:GetCaster():HasTalent("modifier_terror_illusion_5") then
-		base = DOTA_ABILITY_BEHAVIOR_POINT
-		bonus = DOTA_ABILITY_BEHAVIOR_IMMEDIATE
-	end
-	return base + bonus
+function custom_terrorblade_conjure_image:GetAbilityTextureName()
+	return wearables_system:GetAbilityIconReplacement(self.caster, "terrorblade_conjure_image", self)
 end
 
 function custom_terrorblade_conjure_image:GetIntrinsicModifierName()
@@ -125,27 +131,74 @@ function custom_terrorblade_conjure_image:GetIntrinsicModifierName()
 	return "modifier_conjure_image_custom_tracker"
 end
 
-function custom_terrorblade_conjure_image:SpawnIllusion(spaw_unit, attack_target)
-	local caster = self:GetCaster()
+function custom_terrorblade_conjure_image:GetCooldown(iLevel)
+	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.w2_cd or 0)
+end
 
-	local duration = self:GetSpecialValueFor("illusion_duration")
-	local outgoing = self:GetSpecialValueFor("illusion_outgoing_damage")
-	local incoming = self:GetSpecialValueFor("illusion_incoming_damage")
+function custom_terrorblade_conjure_image:GetManaCost(level)
+	return self.BaseClass.GetManaCost(self, level) + (self.talents.w2_mana or 0)
+end
+
+function custom_terrorblade_conjure_image:GetCastRange(vLocation, hTarget)
+	if self.talents.has_w5 ~= 1 then
+		return
+	end
+	if IsClient() then
+		return self.talents.w5_range
+	end
+	return 999999
+end
+
+function custom_terrorblade_conjure_image:GetBehavior()
+	if self.talents.has_w5 == 1 then
+		return DOTA_ABILITY_BEHAVIOR_POINT + DOTA_ABILITY_BEHAVIOR_IMMEDIATE
+	end
+	return DOTA_ABILITY_BEHAVIOR_NO_TARGET
+end
+
+function custom_terrorblade_conjure_image:OnSpellStart()
+	if self.talents.has_w5 == 1 and not self.caster:IsRooted() and not self.caster:IsLeashed() then
+		local point = self:GetCursorPosition()
+		if point == self.caster:GetAbsOrigin() then
+			point = self.caster:GetAbsOrigin() + self.caster:GetForwardVector() * 10
+		end
+
+		local vec = point - self.caster:GetAbsOrigin()
+		local max_range = self.talents.w5_range + self.caster:GetCastRangeBonus()
+		if vec:Length2D() > max_range then
+			point = self.caster:GetAbsOrigin() + vec:Normalized() * max_range
+		end
+
+		self.caster:AddNewModifier(
+			self.caster,
+			self,
+			"modifier_conjure_image_custom_invun",
+			{ x = point.x, y = point.y, duration = self.talents.w5_invun }
+		)
+	else
+		self:SpawnIllusion()
+	end
+end
+
+function custom_terrorblade_conjure_image:SpawnIllusion(spaw_unit, attack_target)
+	local duration = self.illusion_duration
+	local outgoing = self.illusion_outgoing_damage
+	local incoming = self.illusion_incoming_damage
 
 	local position = 108
 	local scramble = false
 	local count = 1
 
-	if caster:HasTalent("modifier_terror_illusion_5") then
+	if self.talents.has_w5 == 1 then
 		position = 0
 		scramble = true
 	end
 
 	if spaw_unit then
 		spaw_unit:EmitSound("Hero_Terrorblade.ConjureImage")
-		duration = caster:GetTalentValue("modifier_terror_illusion_7", "duration")
-		outgoing = caster:GetTalentValue("modifier_terror_illusion_7", "damage") - 100
-		incoming = caster:GetTalentValue("modifier_terror_illusion_7", "incoming") - 100
+		duration = self.talents.w7_duration
+		outgoing = self.talents.w7_damage - 100
+		incoming = self.talents.w7_incoming - 100
 		scramble = false
 
 		local effect = ParticleManager:CreateParticle(
@@ -164,19 +217,19 @@ function custom_terrorblade_conjure_image:SpawnIllusion(spaw_unit, attack_target
 		)
 		ParticleManager:ReleaseParticleIndex(effect)
 	else
-		if caster:HasTalent("modifier_terror_illusion_6") then
-			caster:AddNewModifier(
-				caster,
+		if self.talents.has_w6 == 1 then
+			self.caster:AddNewModifier(
+				self.caster,
 				self,
 				"modifier_terrorblade_innate_custom_damage_reduce",
-				{ duration = caster:GetTalentValue("modifier_terror_illusion_6", "duration") }
+				{ duration = self.talents.w6_duration }
 			)
 		end
 
-		caster:EmitSound("Hero_Terrorblade.ConjureImage")
+		self.caster:EmitSound("Hero_Terrorblade.ConjureImage")
 	end
 
-	local illusions = CreateIllusions(caster, caster, {
+	local illusions = CreateIllusions(self.caster, self.caster, {
 		outgoing_damage = outgoing,
 		incoming_damage = incoming,
 		bounty_base = nil,
@@ -187,10 +240,10 @@ function custom_terrorblade_conjure_image:SpawnIllusion(spaw_unit, attack_target
 	}, count, position, scramble, true, spaw_unit ~= nil)
 
 	for _, illusion in pairs(illusions) do
-		illusion.owner = caster
+		illusion.owner = self.caster
 
 		illusion:AddNewModifier(
-			caster,
+			self.caster,
 			self,
 			"modifier_conjure_image_custom_illusion_basic",
 			{ duration = duration, is_legendary = spaw_unit ~= nil }
@@ -208,7 +261,7 @@ function custom_terrorblade_conjure_image:SpawnIllusion(spaw_unit, attack_target
 			end
 
 			illusion:AddNewModifier(
-				caster,
+				self.caster,
 				self,
 				"modifier_conjure_image_custom_legendary_illusion_mod",
 				{ target = target }
@@ -223,7 +276,7 @@ function custom_terrorblade_conjure_image:SpawnIllusion(spaw_unit, attack_target
 
 		illusion:StartGesture(ACT_DOTA_CAST_ABILITY_3_END)
 
-		for _, mod in pairs(caster:FindAllModifiers()) do
+		for _, mod in pairs(self.caster:FindAllModifiers()) do
 			if mod.StackOnIllusion ~= nil and mod.StackOnIllusion == true then
 				illusion:UpgradeIllusion(mod:GetName(), mod:GetStackCount())
 			end
@@ -231,49 +284,21 @@ function custom_terrorblade_conjure_image:SpawnIllusion(spaw_unit, attack_target
 	end
 end
 
-function custom_terrorblade_conjure_image:OnSpellStart()
-	local caster = self:GetCaster()
-
-	if caster:HasTalent("modifier_terror_illusion_5") and not caster:IsRooted() and not caster:IsLeashed() then
-		local point = self:GetCursorPosition()
-		if point == caster:GetAbsOrigin() then
-			point = caster:GetAbsOrigin() + caster:GetForwardVector() * 10
-		end
-
-		local vec = point - caster:GetAbsOrigin()
-		local max_range = caster:GetTalentValue("modifier_terror_illusion_5", "range") + caster:GetCastRangeBonus()
-		if vec:Length2D() > max_range then
-			point = caster:GetAbsOrigin() + vec:Normalized() * max_range
-		end
-
-		caster:AddNewModifier(
-			caster,
-			self,
-			"modifier_conjure_image_custom_invun",
-			{ x = point.x, y = point.y, duration = caster:GetTalentValue("modifier_terror_illusion_5", "invun") }
-		)
-	else
-		self:SpawnIllusion()
-	end
-end
-
-modifier_conjure_image_custom_tracker = class({})
-function modifier_conjure_image_custom_tracker:IsHidden()
-	return true
-end
-function modifier_conjure_image_custom_tracker:IsPurgable()
-	return false
-end
-
+modifier_conjure_image_custom_tracker = class(mod_hidden)
 function modifier_conjure_image_custom_tracker:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
+	self.ability.tracker = self
+	self.ability:UpdateTalents()
 
-	self.legendary_max = self.parent:GetTalentValue("modifier_terror_illusion_7", "max", true)
-	self.legendary_chance = self.parent:GetTalentValue("modifier_terror_illusion_7", "chance", true)
-	self.legendary_radius = self.parent:GetTalentValue("modifier_terror_illusion_7", "radius", true)
-	self.legendary_heal = self.parent:GetTalentValue("modifier_terror_illusion_7", "heal", true)
-	self.parent:AddAttackEvent_out(self)
+	self.ability.illusion_duration = self.ability:GetSpecialValueFor("illusion_duration")
+	self.ability.illusion_outgoing_damage = self.ability:GetSpecialValueFor("illusion_outgoing_damage")
+	self.ability.illusion_incoming_damage = self.ability:GetSpecialValueFor("illusion_incoming_damage")
+	self.ability.illusion_max = self.ability:GetSpecialValueFor("illusion_max")
+end
+
+function modifier_conjure_image_custom_tracker:OnRefresh()
+	self.ability.illusion_outgoing_damage = self.ability:GetSpecialValueFor("illusion_outgoing_damage")
 end
 
 function modifier_conjure_image_custom_tracker:AttackEvent_out(params)
@@ -290,18 +315,18 @@ function modifier_conjure_image_custom_tracker:AttackEvent_out(params)
 	local attacker = params.attacker
 
 	if
-		self.parent:HasTalent("modifier_terror_illusion_7")
+		self.ability.talents.has_w7 == 1
 		and attacker:IsIllusion()
 		and attacker.owner
 		and attacker.owner == self.parent
-		and self:GetStackCount() < self.legendary_max
+		and self:GetStackCount() < self.ability.talents.w7_max
 	then
-		if RollPseudoRandomPercentage(self.legendary_chance, 1842, self.parent) then
+		if RollPseudoRandomPercentage(self.ability.talents.w7_chance, 1842, self.parent) then
 			self.ability:SpawnIllusion(attacker, params.target:entindex())
 		end
 	end
 
-	if not self.parent:HasTalent("modifier_terror_illusion_7") then
+	if self.ability.talents.has_w7 == 0 then
 		return
 	end
 	if
@@ -313,17 +338,10 @@ function modifier_conjure_image_custom_tracker:AttackEvent_out(params)
 		return
 	end
 
-	attacker.owner:GenericHeal(self.legendary_heal, self.ability, true, "", "modifier_terror_illusion_7")
+	attacker.owner:GenericHeal(self.ability.talents.w7_heal, self.ability, true, "", "modifier_terror_illusion_7")
 end
 
-modifier_conjure_image_custom_invun = class({})
-function modifier_conjure_image_custom_invun:IsHidden()
-	return true
-end
-function modifier_conjure_image_custom_invun:IsPurgable()
-	return false
-end
-
+modifier_conjure_image_custom_invun = class(mod_hidden)
 function modifier_conjure_image_custom_invun:OnCreated(table)
 	self.ability = self:GetAbility()
 	self.parent = self:GetParent()
@@ -387,25 +405,20 @@ function modifier_conjure_image_custom_invun:CheckState()
 	}
 end
 
-modifier_conjure_image_custom_legendary_illusion_mod = class({})
-function modifier_conjure_image_custom_legendary_illusion_mod:IsHidden()
-	return true
-end
-function modifier_conjure_image_custom_legendary_illusion_mod:IsPurgable()
-	return false
-end
+modifier_conjure_image_custom_legendary_illusion_mod = class(mod_hidden)
 function modifier_conjure_image_custom_legendary_illusion_mod:OnCreated(table)
 	if not IsServer() then
 		return
 	end
-	self.target = nil
 	self.parent = self:GetParent()
+	self.caster = self:GetCaster()
+	self.target = nil
 
 	if table.target then
 		self.target = EntIndexToHScript(table.target)
 	end
 
-	self.mod = self:GetCaster():FindModifierByName("modifier_conjure_image_custom_tracker")
+	self.mod = self.caster:FindModifierByName("modifier_conjure_image_custom_tracker")
 	if self.mod then
 		self.mod:IncrementStackCount()
 	end
@@ -452,17 +465,11 @@ function modifier_conjure_image_custom_legendary_illusion_mod:CheckState()
 	}
 end
 
-modifier_conjure_image_custom_illusion_basic = class({})
-function modifier_conjure_image_custom_illusion_basic:IsHidden()
-	return true
-end
-function modifier_conjure_image_custom_illusion_basic:IsPurgable()
-	return false
-end
+modifier_conjure_image_custom_illusion_basic = class(mod_hidden)
 function modifier_conjure_image_custom_illusion_basic:OnCreated(table)
 	self.ability = self:GetAbility()
 	self.parent = self:GetParent()
-	self.max = self.ability:GetSpecialValueFor("illusion_max")
+	self.max = self.ability.illusion_max
 	if not IsServer() then
 		return
 	end

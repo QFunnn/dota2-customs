@@ -29,6 +29,7 @@ item_ancient_janggo_custom = class({})
 function item_ancient_janggo_custom:GetIntrinsicModifierName()
 	return "modifier_item_ancient_janggo_custom"
 end
+
 function item_ancient_janggo_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
@@ -36,20 +37,20 @@ function item_ancient_janggo_custom:Precache(context)
 	PrecacheResource("particle", "particles/items_fx/drum_of_endurance_buff.vpcf", context)
 end
 
+function item_ancient_janggo_custom:Spawn()
+	self.aura_movement_speed = self:GetSpecialValueFor("aura_movement_speed")
+	self.aura_regen = self:GetSpecialValueFor("aura_regen")
+	self.bonus_str = self:GetSpecialValueFor("bonus_str")
+	self.bonus_attack_speed_pct = self:GetSpecialValueFor("bonus_attack_speed_pct")
+	self.bonus_movement_speed_pct = self:GetSpecialValueFor("bonus_movement_speed_pct")
+	self.duration = self:GetSpecialValueFor("duration")
+	self.radius = self:GetSpecialValueFor("radius")
+end
+
 function item_ancient_janggo_custom:OnSpellStart()
 	local caster = self:GetCaster()
 
-	local units = FindUnitsInRadius(
-		self:GetTeamNumber(),
-		caster:GetAbsOrigin(),
-		nil,
-		self.radius,
-		DOTA_UNIT_TARGET_TEAM_FRIENDLY,
-		DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO,
-		DOTA_UNIT_TARGET_FLAG_INVULNERABLE,
-		FIND_CLOSEST,
-		false
-	)
+	local units = caster:FindFriends(self.radius, nil, nil, DOTA_UNIT_TARGET_FLAG_INVULNERABLE)
 	for _, unit in pairs(units) do
 		unit:AddNewModifier(caster, self, "modifier_item_ancient_janggo_custom_active", { duration = self.duration })
 	end
@@ -58,29 +59,6 @@ function item_ancient_janggo_custom:OnSpellStart()
 end
 
 modifier_item_ancient_janggo_custom = class(mod_hidden)
-function modifier_item_ancient_janggo_custom:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
-	}
-end
-
-function modifier_item_ancient_janggo_custom:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.ability.aura_movement_speed = self.ability:GetSpecialValueFor("aura_movement_speed")
-	self.ability.aura_regen = self.ability:GetSpecialValueFor("aura_regen")
-	self.ability.bonus_str = self.ability:GetSpecialValueFor("bonus_str")
-	self.ability.bonus_attack_speed_pct = self.ability:GetSpecialValueFor("bonus_attack_speed_pct")
-	self.ability.bonus_movement_speed_pct = self.ability:GetSpecialValueFor("bonus_movement_speed_pct")
-	self.ability.duration = self.ability:GetSpecialValueFor("duration")
-	self.ability.radius = self.ability:GetSpecialValueFor("radius")
-end
-
-function modifier_item_ancient_janggo_custom:GetModifierBonusStats_Strength()
-	return self.ability.bonus_str
-end
-
 function modifier_item_ancient_janggo_custom:IsAura()
 	return true
 end
@@ -95,6 +73,20 @@ function modifier_item_ancient_janggo_custom:GetModifierAura()
 end
 function modifier_item_ancient_janggo_custom:GetAuraRadius()
 	return self.ability.radius
+end
+function modifier_item_ancient_janggo_custom:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+end
+
+function modifier_item_ancient_janggo_custom:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
+	}
+end
+
+function modifier_item_ancient_janggo_custom:GetModifierBonusStats_Strength()
+	return self.ability.bonus_str
 end
 
 modifier_item_ancient_janggo_custom_aura = class(mod_visible)
@@ -121,10 +113,7 @@ function modifier_item_ancient_janggo_custom_aura:GetModifierMoveSpeedBonus_Cons
 	return self.speed
 end
 
-modifier_item_ancient_janggo_custom_active = class({})
-function modifier_item_ancient_janggo_custom_active:IsHidden()
-	return false
-end
+modifier_item_ancient_janggo_custom_active = class(mod_visible)
 function modifier_item_ancient_janggo_custom_active:IsPurgable()
 	return true
 end

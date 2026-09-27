@@ -13,11 +13,14 @@ Game.cd = false
 
 let cooldown = 0.4
 
-function Upgrades_Click(new_hero) 
+function Upgrades_Click(new_id) 
 {
     let alt_hero
-    if (new_hero)
-        alt_hero = String(new_hero)
+    if (new_id !== undefined)
+        alt_hero = Game.GetPlayerHero(new_id)
+
+    if (Game.isopened === false && Game.IsNoTalentsHero(alt_hero))
+        return
 
     var parentHUDElements = $.GetContextPanel().GetParent().GetParent().GetParent().FindChild("HUDElements");
     if (!parentHUDElements)
@@ -64,7 +67,7 @@ function Upgrades_Click(new_hero)
         LayerGeneral.AddClass("LayerGeneralOpen");
         LayerGeneral.style.visibility = "visible";
         
-        Game.init_talent_panel(LayerGeneral, alt_hero)
+        Game.init_talent_panel(LayerGeneral, new_id)
 
         $.Schedule(cooldown, function() 
         {
@@ -94,7 +97,3 @@ function Upgrades_Click(new_hero)
 
 
 Game.Upgrades = Upgrades_Click
-
-
-
-

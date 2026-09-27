@@ -25,7 +25,6 @@ LinkLuaModifier(
 )
 
 item_meteor_hammer_custom = class({})
-modifier_item_meteor_hammer_custom_burn = class({})
 
 function item_meteor_hammer_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
@@ -41,25 +40,38 @@ function item_meteor_hammer_custom:GetIntrinsicModifierName()
 	return "modifier_item_meteor_hammer_custom_stats"
 end
 
+function item_meteor_hammer_custom:Spawn()
+	self.impact_radius = self:GetSpecialValueFor("impact_radius")
+	self.max_duration = self:GetSpecialValueFor("max_duration")
+	self.burn_duration = self:GetSpecialValueFor("burn_duration")
+	self.burn_interval = self:GetSpecialValueFor("burn_interval")
+	self.land_time = self:GetSpecialValueFor("land_time")
+	self.impact_damage_units = self:GetSpecialValueFor("impact_damage_units")
+	self.stun_duration = self:GetSpecialValueFor("stun_duration")
+	self.movespeed_slow = self:GetSpecialValueFor("movespeed_slow")
+	self.burn_dps_units = self:GetSpecialValueFor("burn_dps_units")
+	self.stats_agi = self:GetSpecialValueFor("stats_agi")
+	self.stats_str = self:GetSpecialValueFor("stats_str")
+	self.stats_int = self:GetSpecialValueFor("stats_int")
+	self.spell_amp = self:GetSpecialValueFor("spell_amp")
+	self.mana_regen_multiplier = self:GetSpecialValueFor("mana_regen_multiplier")
+	self.health_bonus = self:GetSpecialValueFor("health_bonus")
+end
+
 function item_meteor_hammer_custom:GetAOERadius()
-	return self:GetSpecialValueFor("impact_radius")
+	return self.impact_radius
 end
 
 function item_meteor_hammer_custom:GetAbilityTextureName()
-	return wearables_system:GetAbilityIconReplacement(self.caster, "item_meteor_hammer", self)
+	return wearables_system:GetAbilityIconReplacement(self:GetCaster(), "item_meteor_hammer", self)
 end
 
 function item_meteor_hammer_custom:GetChannelTime()
-	return self:GetSpecialValueFor("max_duration")
+	return self.max_duration
 end
 
 function item_meteor_hammer_custom:OnSpellStart()
 	self.caster = self:GetCaster()
-
-	self.burn_duration = self:GetSpecialValueFor("burn_duration")
-	self.burn_interval = self:GetSpecialValueFor("burn_interval")
-	self.land_time = self:GetSpecialValueFor("land_time")
-	self.impact_radius = self:GetSpecialValueFor("impact_radius")
 
 	if not IsServer() then
 		return
@@ -69,17 +81,15 @@ function item_meteor_hammer_custom:OnSpellStart()
 		self.caster,
 		self,
 		"modifier_item_meteor_hammer_custom_cast",
-		{ duration = self:GetSpecialValueFor("max_duration") }
+		{ duration = self.max_duration }
 	)
 
 	local position = self:GetCursorPosition()
 
-	-- Play the channel sound
 	self.caster:EmitSound("DOTA_Item.MeteorHammer.Channel")
 
 	AddFOWViewer(self.caster:GetTeam(), position, self.impact_radius, 3.8, false)
 
-	-- Impact location particles
 	self.particle =
 		ParticleManager:CreateParticle("particles/items4_fx/meteor_hammer_aoe.vpcf", PATTACH_WORLDORIGIN, self.caster)
 	ParticleManager:SetParticleControl(self.particle, 0, position)
@@ -118,7 +128,7 @@ function item_meteor_hammer_custom:OnChannelFinish(bInterrupted)
 			PATTACH_WORLDORIGIN,
 			self.caster
 		)
-		ParticleManager:SetParticleControl(self.particle3, 0, self.position + Vector(0, 0, 1000)) -- 1000 feels kinda arbitrary but it also feels correct
+		ParticleManager:SetParticleControl(self.particle3, 0, self.position + Vector(0, 0, 1000))
 		ParticleManager:SetParticleControl(self.particle3, 1, self.position)
 		ParticleManager:SetParticleControl(self.particle3, 2, Vector(self.land_time, 0, 0))
 		ParticleManager:ReleaseParticleIndex(self.particle3)
@@ -129,18 +139,8 @@ function item_meteor_hammer_custom:OnChannelFinish(bInterrupted)
 
 				EmitSoundOnLocationWithCaster(self.position, "DOTA_Item.MeteorHammer.Impact", self.caster)
 
-				local damage = self:GetSpecialValueFor("impact_damage_units")
-				local enemies = FindUnitsInRadius(
-					self.caster:GetTeamNumber(),
-					self.position,
-					nil,
-					self.impact_radius,
-					DOTA_UNIT_TARGET_TEAM_ENEMY,
-					DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO,
-					DOTA_UNIT_TARGET_FLAG_NONE,
-					FIND_ANY_ORDER,
-					false
-				)
+				local damage = self.impact_damage_units
+				local enemies = self.caster:FindTargets(self.impact_radius, self.position)
 
 				local damage_table = {
 					damage = damage,
@@ -162,7 +162,7 @@ function item_meteor_hammer_custom:OnChannelFinish(bInterrupted)
 						self.caster,
 						self,
 						"modifier_stunned",
-						{ duration = self:GetSpecialValueFor("stun_duration") * (1 - enemy:GetStatusResistance()) }
+						{ duration = self.stun_duration * (1 - enemy:GetStatusResistance()) }
 					)
 
 					damage_table.victim = enemy
@@ -176,39 +176,32 @@ function item_meteor_hammer_custom:OnChannelFinish(bInterrupted)
 	ParticleManager:ReleaseParticleIndex(self.particle2)
 end
 
-modifier_item_meteor_hammer_custom_burn = class({})
-
+modifier_item_meteor_hammer_custom_burn = class(mod_visible)
 function modifier_item_meteor_hammer_custom_burn:IsPurgable()
 	return true
 end
-function modifier_item_meteor_hammer_custom_burn:IsHidden()
-	return false
-end
-
 function modifier_item_meteor_hammer_custom_burn:GetEffectName()
 	return "particles/items4_fx/meteor_hammer_spell_debuff.vpcf"
 end
-
 function modifier_item_meteor_hammer_custom_burn:IgnoreTenacity()
 	return true
 end
-
 function modifier_item_meteor_hammer_custom_burn:OnCreated()
-	if not self:GetAbility() then
+	self.parent = self:GetParent()
+	self.caster = self:GetCaster()
+	self.ability = self:GetAbility()
+
+	if not self.ability then
 		return
 	end
 
-	self.slow = self:GetAbility():GetSpecialValueFor("movespeed_slow")
+	self.slow = self.ability.movespeed_slow
 	if not IsServer() then
 		return
 	end
 
-	self.ability = self:GetAbility()
-	self.caster = self:GetCaster()
-	self.parent = self:GetParent()
-
-	self.inc_damage = self:GetAbility():GetSpecialValueFor("burn_dps_units")
-	self.burn_interval = self:GetAbility():GetSpecialValueFor("burn_interval")
+	self.inc_damage = self.ability.burn_dps_units
+	self.burn_interval = self.ability.burn_interval
 
 	self.damage_table = {
 		victim = self.parent,
@@ -239,13 +232,19 @@ function modifier_item_meteor_hammer_custom_burn:GetModifierMoveSpeedBonus_Perce
 	return self.slow
 end
 
-modifier_item_meteor_hammer_custom_stats = class({})
-function modifier_item_meteor_hammer_custom_stats:IsHidden()
-	return true
+modifier_item_meteor_hammer_custom_stats = class(mod_hidden)
+function modifier_item_meteor_hammer_custom_stats:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.agi = self.ability.stats_agi
+	self.str = self.ability.stats_str
+	self.int = self.ability.stats_int
+	self.amp = self.ability.spell_amp
+	self.regen = self.ability.mana_regen_multiplier
+	self.health_bonus = self.ability.health_bonus / 100
 end
-function modifier_item_meteor_hammer_custom_stats:IsPurgable()
-	return false
-end
+
 function modifier_item_meteor_hammer_custom_stats:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
@@ -257,24 +256,14 @@ function modifier_item_meteor_hammer_custom_stats:DeclareFunctions()
 	}
 end
 
-function modifier_item_meteor_hammer_custom_stats:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.agi = self.ability:GetSpecialValueFor("stats_agi")
-	self.str = self.ability:GetSpecialValueFor("stats_str")
-	self.int = self.ability:GetSpecialValueFor("stats_int")
-	self.amp = self.ability:GetSpecialValueFor("spell_amp")
-	self.regen = self.ability:GetSpecialValueFor("mana_regen_multiplier")
-	self.health_bonus = self.ability:GetSpecialValueFor("health_bonus") / 100
-end
-
 function modifier_item_meteor_hammer_custom_stats:GetModifierBonusStats_Agility()
 	return self.agi
 end
+
 function modifier_item_meteor_hammer_custom_stats:GetModifierBonusStats_Strength()
 	return self.str
 end
+
 function modifier_item_meteor_hammer_custom_stats:GetModifierBonusStats_Intellect()
 	return self.int
 end
@@ -327,10 +316,4 @@ function modifier_item_meteor_hammer_custom_stats:GetModifierHealthBonus()
 	return self.health_bonus * self.parent:GetMaxMana()
 end
 
-modifier_item_meteor_hammer_custom_cast = class({})
-function modifier_item_meteor_hammer_custom_cast:IsHidden()
-	return false
-end
-function modifier_item_meteor_hammer_custom_cast:IsPurgable()
-	return false
-end
+modifier_item_meteor_hammer_custom_cast = class(mod_visible)

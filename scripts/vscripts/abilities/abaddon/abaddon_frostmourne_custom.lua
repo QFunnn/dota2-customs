@@ -52,10 +52,6 @@ LinkLuaModifier(
 abaddon_frostmourne_custom = class({})
 abaddon_frostmourne_custom.talents = {}
 
-function abaddon_frostmourne_custom:GetAbilityTextureName()
-	return wearables_system:GetAbilityIconReplacement(self.caster, "abaddon_frostmourne", self)
-end
-
 function abaddon_frostmourne_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
@@ -73,8 +69,9 @@ function abaddon_frostmourne_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_abaddon/abaddon_frost_buff.vpcf", context)
 	PrecacheResource("particle", "particles/abaddon/curse_legendary_active.vpcf", context)
 	PrecacheResource("particle", "particles/abaddon/curse_legendary_active_circle.vpcf", context)
+	PrecacheResource("particle", "particles/abaddon/curse_legendary_active_head.vpcf", context)
+	PrecacheResource("particle", "particles/abaddon/shield_legendary_stack.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_dark_seer_illusion.vpcf", context)
-	PrecacheResource("particle", "particles/units/heroes/hero_abaddon/abaddon_curse_frostmourne_debuff.vpcf", context)
 end
 
 function abaddon_frostmourne_custom:UpdateTalents(name)
@@ -111,8 +108,6 @@ function abaddon_frostmourne_custom:UpdateTalents(name)
 			e7_stats = caster:GetTalentValue("modifier_abaddon_curse_7", "stats", true),
 			e7_talent_cd = caster:GetTalentValue("modifier_abaddon_curse_7", "talent_cd", true),
 
-			has_h1 = 0,
-			h1_move = 0,
 			h1_slow = 0,
 
 			has_w7 = 0,
@@ -136,7 +131,7 @@ function abaddon_frostmourne_custom:UpdateTalents(name)
 		self.talents.e3_stats = caster:GetTalentValue("modifier_abaddon_curse_3", "stats") / 100
 		self.talents.e3_damage = caster:GetTalentValue("modifier_abaddon_curse_3", "damage")
 		if IsServer() then
-			self.caster:AddPercentStat(
+			caster:AddPercentStat(
 				{ agi = self.talents.e3_stats, str = self.talents.e3_stats, int = self.talents.e3_stats },
 				self.tracker
 			)
@@ -156,7 +151,6 @@ function abaddon_frostmourne_custom:UpdateTalents(name)
 	end
 
 	if caster:HasTalent("modifier_abaddon_hero_1") then
-		self.talents.has_h1 = 1
 		self.talents.h1_slow = caster:GetTalentValue("modifier_abaddon_hero_1", "slow")
 	end
 
@@ -165,8 +159,8 @@ function abaddon_frostmourne_custom:UpdateTalents(name)
 	end
 end
 
-function abaddon_frostmourne_custom:Init()
-	self.caster = self:GetCaster()
+function abaddon_frostmourne_custom:GetAbilityTextureName()
+	return wearables_system:GetAbilityIconReplacement(self.caster, "abaddon_frostmourne", self)
 end
 
 function abaddon_frostmourne_custom:GetIntrinsicModifierName()
@@ -180,6 +174,7 @@ function abaddon_frostmourne_custom:GetCooldown(iLevel)
 	if self.talents.has_e7 == 1 then
 		return self.talents.e7_talent_cd
 	end
+	return 0
 end
 
 function abaddon_frostmourne_custom:GetBehavior()
@@ -192,51 +187,8 @@ end
 function abaddon_frostmourne_custom:GetAbilityTargetFlags()
 	if self.talents.has_e4 == 1 then
 		return DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
-	else
-		return DOTA_UNIT_TARGET_FLAG_NONE
 	end
-end
-
-function abaddon_frostmourne_custom:ProcIllusion(target)
-	if not IsServer() then
-		return
-	end
-	if not self:IsTrained() then
-		return
-	end
-	if self.talents.has_e3 == 0 then
-		return
-	end
-
-	target:EmitSound("Hero_Abaddon.Curse.Proc")
-
-	local duration = self.talents.e3_talent_cd
-	local damage = self.talents.e3_damage - 100
-
-	local illusion = CreateIllusions(
-		self.caster,
-		self.caster,
-		{ duration = duration, outgoing_damage = damage, incoming_damage = 0 },
-		1,
-		0,
-		false,
-		true
-	)
-	for _, illusion in pairs(illusion) do
-		for _, mod in pairs(self.caster:FindAllModifiers()) do
-			if mod.StackOnIllusion ~= nil and mod.StackOnIllusion == true then
-				illusion:UpgradeIllusion(mod:GetName(), mod:GetStackCount())
-			end
-		end
-		illusion.owner = self.caster
-		FindClearSpaceForUnit(illusion, target:GetAbsOrigin() + RandomVector(200), false)
-		illusion:AddNewModifier(
-			self.caster,
-			self,
-			"modifier_abaddon_frostmourne_custom_illusion",
-			{ target = target:entindex() }
-		)
-	end
+	return DOTA_UNIT_TARGET_FLAG_NONE
 end
 
 function abaddon_frostmourne_custom:OnSpellStart()
@@ -260,6 +212,48 @@ function abaddon_frostmourne_custom:OnSpellStart()
 	)
 end
 
+function abaddon_frostmourne_custom:ProcIllusion(target)
+	if not IsServer() then
+		return
+	end
+	if not self:IsTrained() then
+		return
+	end
+	if self.talents.has_e3 == 0 then
+		return
+	end
+
+	target:EmitSound("Hero_Abaddon.Curse.Proc")
+
+	local duration = self.talents.e3_talent_cd
+	local damage = self.talents.e3_damage - 100
+
+	local illusions = CreateIllusions(
+		self.caster,
+		self.caster,
+		{ duration = duration, outgoing_damage = damage, incoming_damage = 0 },
+		1,
+		0,
+		false,
+		true
+	)
+	for _, illusion in pairs(illusions) do
+		for _, mod in pairs(self.caster:FindAllModifiers()) do
+			if mod.StackOnIllusion == true then
+				illusion:UpgradeIllusion(mod:GetName(), mod:GetStackCount(), mod)
+			end
+		end
+		illusion.owner = self.caster
+		FindClearSpaceForUnit(illusion, target:GetAbsOrigin() + RandomVector(200), false)
+		illusion:AddNewModifier(
+			self.caster,
+			self,
+			"modifier_abaddon_frostmourne_custom_illusion",
+			{ target = target:entindex() }
+		)
+	end
+end
+
 modifier_abaddon_frostmourne_custom = class(mod_hidden)
 function modifier_abaddon_frostmourne_custom:OnCreated(table)
 	self.parent = self:GetParent()
@@ -276,14 +270,7 @@ function modifier_abaddon_frostmourne_custom:OnCreated(table)
 	self.ability.curse_interval = self.ability:GetSpecialValueFor("curse_interval")
 	self.ability.creeps = self.ability:GetSpecialValueFor("creeps") / 100
 
-	if self.parent:IsRealHero() then
-		self.parent:AddAttackEvent_out(self, true)
-	end
-
-	if not IsServer() then
-		return
-	end
-	self.player = PlayerResource:GetPlayer(self.parent:GetPlayerOwnerID())
+	self.parent:AddAttackEvent_out(self, true)
 end
 
 function modifier_abaddon_frostmourne_custom:OnRefresh()
@@ -392,7 +379,7 @@ function modifier_abaddon_frostmourne_custom:AttackEvent_out(params)
 			self.parent,
 			self.ability,
 			"modifier_abaddon_frostmourne_custom_count",
-			{ duration = self.ability.talents.e4_duration, target = target:entindex() }
+			{ duration = self.ability.talents.e4_duration }
 		)
 	end
 
@@ -444,6 +431,18 @@ function modifier_abaddon_frostmourne_custom_curse:IsPurgable()
 end
 function modifier_abaddon_frostmourne_custom_curse:GetTexture()
 	return "abaddon_frostmourne"
+end
+function modifier_abaddon_frostmourne_custom_curse:GetEffectName()
+	return "particles/units/heroes/hero_abaddon/abaddon_curse_frostmourne_debuff.vpcf"
+end
+function modifier_abaddon_frostmourne_custom_curse:GetEffectAttachType()
+	return PATTACH_ABSORIGIN_FOLLOW
+end
+function modifier_abaddon_frostmourne_custom_curse:GetStatusEffectName()
+	return "particles/status_fx/status_effect_abaddon_frostmourne.vpcf"
+end
+function modifier_abaddon_frostmourne_custom_curse:StatusEffectPriority()
+	return MODIFIER_PRIORITY_NORMAL
 end
 function modifier_abaddon_frostmourne_custom_curse:OnCreated(params)
 	self.caster = self:GetCaster()
@@ -539,20 +538,13 @@ function modifier_abaddon_frostmourne_custom_curse:GetModifierMoveSpeedBonus_Per
 	return self.slow
 end
 
-function modifier_abaddon_frostmourne_custom_curse:GetEffectName()
-	return "particles/units/heroes/hero_abaddon/abaddon_curse_frostmourne_debuff.vpcf"
+modifier_abaddon_frostmourne_custom_buff = class(mod_visible)
+function modifier_abaddon_frostmourne_custom_buff:GetEffectName()
+	return "particles/units/heroes/hero_abaddon/abaddon_frost_buff.vpcf"
 end
-function modifier_abaddon_frostmourne_custom_curse:GetEffectAttachType()
+function modifier_abaddon_frostmourne_custom_buff:GetEffectAttachType()
 	return PATTACH_ABSORIGIN_FOLLOW
 end
-function modifier_abaddon_frostmourne_custom_curse:GetStatusEffectName()
-	return "particles/status_fx/status_effect_abaddon_frostmourne.vpcf"
-end
-function modifier_abaddon_frostmourne_custom_curse:StatusEffectPriority()
-	return MODIFIER_PRIORITY_NORMAL
-end
-
-modifier_abaddon_frostmourne_custom_buff = class(mod_visible)
 function modifier_abaddon_frostmourne_custom_buff:OnCreated(table)
 	self.caster = self:GetCaster()
 	self.parent = self:GetParent()
@@ -582,14 +574,6 @@ function modifier_abaddon_frostmourne_custom_buff:GetModifierAttackSpeedBonus_Co
 	return self.speed + self:GetStackCount() * self.ability.talents.e1_speed
 end
 
-function modifier_abaddon_frostmourne_custom_buff:GetEffectName()
-	return "particles/units/heroes/hero_abaddon/abaddon_frost_buff.vpcf"
-end
-
-function modifier_abaddon_frostmourne_custom_buff:GetEffectAttachType()
-	return PATTACH_ABSORIGIN_FOLLOW
-end
-
 modifier_abaddon_frostmourne_custom_count = class(mod_hidden)
 function modifier_abaddon_frostmourne_custom_count:OnCreated()
 	self.caster = self:GetCaster()
@@ -602,19 +586,32 @@ function modifier_abaddon_frostmourne_custom_count:OnCreated()
 	self:OnRefresh()
 end
 
-function modifier_abaddon_frostmourne_custom_count:OnRefresh(table)
+function modifier_abaddon_frostmourne_custom_count:OnRefresh()
 	if not IsServer() then
 		return
 	end
 	self:IncrementStackCount()
 
-	if self:GetStackCount() < self.ability.talents.e4_attacks then
+	if self.ability.talents.has_w7 == 0 then
+		if not self.particle then
+			self.particle = self.parent:GenericParticle("particles/abaddon/shield_legendary_stack.vpcf", self, true)
+		end
+
+		local number_1 = self:GetStackCount()
+		local double = math.floor(number_1 / 10)
+		local number_2 = number_1 - double * 10
+
+		ParticleManager:SetParticleControl(self.particle, 1, Vector(double, number_1, number_2))
+	end
+
+	local attacks = self.ability.talents.has_e4 == 1 and self.ability.talents.e4_attacks
+		or self.ability.talents.e3_attacks
+	if self:GetStackCount() < attacks then
 		return
 	end
 
 	if self.ability.talents.has_e3 == 1 then
-		local target = EntIndexToHScript(table.target)
-		self.ability:ProcIllusion(target)
+		self.ability:ProcIllusion(self.parent)
 	end
 
 	if self.ability.talents.has_e4 == 1 then
@@ -627,32 +624,15 @@ function modifier_abaddon_frostmourne_custom_count:OnRefresh(table)
 		)
 	end
 
+	local cd = self.ability.talents.has_e4 == 1 and self.ability.talents.e4_talent_cd
+		or self.ability.talents.e3_talent_cd
 	self.caster:AddNewModifier(
 		self.caster,
-		self.abilityb,
+		self.ability,
 		"modifier_abaddon_frostmourne_custom_silence_cd",
-		{ duration = self.ability.talents.e4_talent_cd }
+		{ duration = cd }
 	)
 	self:Destroy()
-end
-
-function modifier_abaddon_frostmourne_custom_count:OnStackCountChanged()
-	if not IsServer() then
-		return
-	end
-	if self.ability.talents.has_w7 == 1 then
-		return
-	end
-
-	if not self.particle then
-		self.particle = self.parent:GenericParticle("particles/abaddon/shield_legendary_stack.vpcf", self, true)
-	end
-
-	local number_1 = self:GetStackCount()
-	local double = math.floor(number_1 / 10)
-	local number_2 = number_1 - double * 10
-
-	ParticleManager:SetParticleControl(self.particle, 1, Vector(double, number_1, number_2))
 end
 
 modifier_abaddon_frostmourne_custom_legendary = class(mod_hidden)
@@ -747,41 +727,24 @@ end
 
 modifier_abaddon_frostmourne_custom_legendary_stats = class(mod_hidden)
 function modifier_abaddon_frostmourne_custom_legendary_stats:OnCreated(table)
-	self.caster = self:GetCaster()
 	self.parent = self:GetParent()
-	self.ability = self.caster.avernus_ability
+	self.ability = self:GetAbility()
 
 	self.stats = self.ability.talents.e7_stats
-	self.is_enemy = self.caster:GetTeamNumber() ~= self.parent:GetTeamNumber()
 	if not IsServer() then
 		return
 	end
 	self.RemoveForDuel = true
-	self:AddStack(table.stack_duration)
+	self:OnRefresh(table)
 end
 
 function modifier_abaddon_frostmourne_custom_legendary_stats:OnRefresh(table)
 	if not IsServer() then
 		return
 	end
-	self:AddStack(table.stack_duration)
-end
-
-function modifier_abaddon_frostmourne_custom_legendary_stats:OnDestroy()
-	if not IsServer() then
-		return
-	end
-	self.parent:CalculateStatBonus(true)
-end
-
-function modifier_abaddon_frostmourne_custom_legendary_stats:AddStack(duration)
-	if not IsServer() then
-		return
-	end
-
 	self.max_timer = self:GetRemainingTime()
 
-	Timers:CreateTimer(duration, function()
+	Timers:CreateTimer(table.stack_duration, function()
 		if self and not self:IsNull() then
 			self:DecrementStackCount()
 			if self:GetStackCount() <= 0 then
@@ -791,6 +754,13 @@ function modifier_abaddon_frostmourne_custom_legendary_stats:AddStack(duration)
 	end)
 
 	self:IncrementStackCount()
+	self.parent:CalculateStatBonus(true)
+end
+
+function modifier_abaddon_frostmourne_custom_legendary_stats:OnDestroy()
+	if not IsServer() then
+		return
+	end
 	self.parent:CalculateStatBonus(true)
 end
 
@@ -815,13 +785,24 @@ function modifier_abaddon_frostmourne_custom_legendary_stats:GetModifierBonusSta
 end
 
 modifier_abaddon_frostmourne_custom_illusion = class(mod_hidden)
+function modifier_abaddon_frostmourne_custom_illusion:GetStatusEffectName()
+	return "particles/status_fx/status_effect_dark_seer_illusion.vpcf"
+end
+function modifier_abaddon_frostmourne_custom_illusion:StatusEffectPriority()
+	return MODIFIER_PRIORITY_ILLUSION
+end
+function modifier_abaddon_frostmourne_custom_illusion:GetEffectName()
+	return "particles/units/heroes/hero_abaddon/abaddon_curse_frostmourne_debuff.vpcf"
+end
+function modifier_abaddon_frostmourne_custom_illusion:GetEffectAttachType()
+	return PATTACH_ABSORIGIN_FOLLOW
+end
 function modifier_abaddon_frostmourne_custom_illusion:OnCreated(params)
 	self.caster = self:GetCaster()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
 	self.stats = self.ability.talents.e7_stats
-	self.stats_bonus = self.ability.talents.e7_bonus
 
 	if not IsServer() then
 		return
@@ -830,9 +811,6 @@ function modifier_abaddon_frostmourne_custom_illusion:OnCreated(params)
 		{ agi = self.ability.talents.e3_stats, str = self.ability.talents.e3_stats, int = self.ability.talents.e3_stats },
 		self
 	)
-
-	self.attacks = self.ability.talents.e3_attacks
-	self.attack_count = self.attacks
 
 	self.target = EntIndexToHScript(params.target)
 	self:OnIntervalThink()
@@ -926,26 +904,12 @@ function modifier_abaddon_frostmourne_custom_illusion:CheckState()
 	}
 end
 
-function modifier_abaddon_frostmourne_custom_illusion:GetStatusEffectName()
-	return "particles/status_fx/status_effect_dark_seer_illusion.vpcf"
-end
-function modifier_abaddon_frostmourne_custom_illusion:StatusEffectPriority()
-	return MODIFIER_PRIORITY_ILLUSION
-end
-function modifier_abaddon_frostmourne_custom_illusion:GetEffectName()
-	return "particles/units/heroes/hero_abaddon/abaddon_curse_frostmourne_debuff.vpcf"
-end
-function modifier_abaddon_frostmourne_custom_illusion:GetEffectAttachType()
-	return PATTACH_ABSORIGIN_FOLLOW
-end
-
 function modifier_abaddon_frostmourne_custom_illusion:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
 		MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
 		MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
 		MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
-		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
 		MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE,
 		MODIFIER_PROPERTY_MODEL_SCALE,
 	}

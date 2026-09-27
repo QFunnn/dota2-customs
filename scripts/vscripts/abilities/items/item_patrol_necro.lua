@@ -15,10 +15,10 @@ LinkLuaModifier("modifier_item_patrol_necro_timer", "abilities/items/item_patrol
 
 item_patrol_necro = class({})
 
-function item_patrol_necro:Precache(context)
-	if self:GetCaster() and self:GetCaster():IsIllusion() then
-		return
-	end
+function item_patrol_necro:Spawn()
+	self.delay = self:GetSpecialValueFor("delay")
+	self.damage_out = self:GetSpecialValueFor("damage_out")
+	self.damage_inc = self:GetSpecialValueFor("damage_inc")
 end
 
 function item_patrol_necro:OnSpellStart()
@@ -46,11 +46,7 @@ function item_patrol_necro:OnSpellStart()
 		return
 	end
 	if tower:HasModifier("modifier_item_patrol_necro") then
-		CustomGameEventManager:Send_ServerToPlayer(
-			PlayerResource:GetPlayer(caster:GetPlayerOwnerID()),
-			"CreateIngameErrorMessage",
-			{ message = "#necro_used" }
-		)
+		caster:SendError("#necro_used")
 		return
 	end
 
@@ -60,9 +56,9 @@ function item_patrol_necro:OnSpellStart()
 		{ hero_1 = caster:GetUnitName(), heroes_2 = heroes, event_type = "necro" }
 	)
 
-	local delay = self:GetSpecialValueFor("delay")
-	local damage_out = self:GetSpecialValueFor("damage_out")
-	local damage_inc = self:GetSpecialValueFor("damage_inc")
+	local delay = self.delay
+	local damage_out = self.damage_out
+	local damage_inc = self.damage_inc
 
 	tower:AddNewModifier(
 		caster,
@@ -148,13 +144,7 @@ function modifier_item_patrol_necro:OnDestroy()
 	end
 end
 
-modifier_item_patrol_necro_creeps = class({})
-function modifier_item_patrol_necro_creeps:IsHidden()
-	return true
-end
-function modifier_item_patrol_necro_creeps:IsPurgable()
-	return false
-end
+modifier_item_patrol_necro_creeps = class(mod_hidden)
 function modifier_item_patrol_necro_creeps:OnCreated(table)
 	if not IsServer() then
 		return
@@ -191,9 +181,13 @@ function modifier_item_patrol_necro_creeps:GetAbsoluteNoDamagePhysical(params)
 	if not IsServer() then
 		return
 	end
-	if params.attacker and params.attacker:IsBuilding() then
-		return 1
+	if not params.attacker then
+		return
 	end
+	if not params.attacker:IsBuilding() then
+		return
+	end
+	return 1
 end
 
 modifier_item_patrol_necro_caster = class(mod_visible)

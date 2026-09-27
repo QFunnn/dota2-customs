@@ -28,34 +28,16 @@ function item_enhancement_timeless_custom:GetIntrinsicModifierName()
 	return "modifier_item_enhancement_timeless_custom"
 end
 
-modifier_item_enhancement_timeless_custom = class({})
-function modifier_item_enhancement_timeless_custom:IsHidden()
-	return true
+function item_enhancement_timeless_custom:Spawn()
+	self.radius = self:GetSpecialValueFor("radius")
+	self.spell_amp = self:GetSpecialValueFor("spell_amp")
+	self.status_amp = self:GetSpecialValueFor("status_amp")
 end
-function modifier_item_enhancement_timeless_custom:IsPurgable()
-	return false
-end
+
+modifier_item_enhancement_timeless_custom = class(mod_hidden)
 function modifier_item_enhancement_timeless_custom:RemoveOnDeath()
 	return false
 end
-function modifier_item_enhancement_timeless_custom:OnCreated(table)
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.radius = self.ability:GetSpecialValueFor("radius")
-	self.damage = self.ability:GetSpecialValueFor("spell_amp")
-end
-
-function modifier_item_enhancement_timeless_custom:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
-	}
-end
-
-function modifier_item_enhancement_timeless_custom:GetModifierSpellAmplify_Percentage()
-	return self.damage
-end
-
 function modifier_item_enhancement_timeless_custom:GetAuraDuration()
 	return 0.1
 end
@@ -77,16 +59,29 @@ end
 function modifier_item_enhancement_timeless_custom:IsAura()
 	return true
 end
+function modifier_item_enhancement_timeless_custom:OnCreated(table)
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
 
-modifier_item_enhancement_timeless_custom_aura = class({})
-function modifier_item_enhancement_timeless_custom_aura:IsHidden()
-	return true
+	self.radius = self.ability.radius
+	self.damage = self.ability.spell_amp
 end
-function modifier_item_enhancement_timeless_custom_aura:IsPurgable()
-	return false
+
+function modifier_item_enhancement_timeless_custom:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
+	}
 end
+
+function modifier_item_enhancement_timeless_custom:GetModifierSpellAmplify_Percentage()
+	return self.damage
+end
+
+modifier_item_enhancement_timeless_custom_aura = class(mod_hidden)
 function modifier_item_enhancement_timeless_custom_aura:OnCreated()
-	self.status = self:GetAbility():GetSpecialValueFor("status_amp")
+	self.ability = self:GetAbility()
+
+	self.status = self.ability.status_amp
 end
 
 function modifier_item_enhancement_timeless_custom_aura:DeclareFunctions()

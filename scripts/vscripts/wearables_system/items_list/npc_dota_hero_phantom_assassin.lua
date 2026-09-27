@@ -1230,6 +1230,7 @@ return {
 					["phantom_assassin_stifling_dagger"] = "phantom_assassin_arcana_stifling_dagger",
 					["phantom_assassin_blur"] = "phantom_assassin_arcana_blur",
 					["phantom_assassin_phantom_strike"] = "phantom_assassin_arcana_phantom_strike",
+					["grace_magic"] = "grace_magic_arcana",
 					["phantom_assassin_coup_de_grace"] = "phantom_assassin_arcana_coup_de_grace",
 				},
 			},
@@ -2996,6 +2997,7 @@ return {
 				["default"] = {
 					["phantom_assassin_blur"] = "phantom_assassin/persona/phantom_assassin_blur_persona1",
 					["phantom_assassin_coup_de_grace"] = "phantom_assassin/persona/phantom_assassin_coup_de_grace_persona2",
+					["grace_magic"] = "grace_magic_persona",
 					["phantom_assassin_fan_of_knives"] = "phantom_assassin/persona/phantom_assassin_fan_of_knives_persona1",
 					["phantom_assassin_phantom_strike"] = "phantom_assassin/persona/phantom_assassin_phantom_strike_persona1",
 					["phantom_assassin_stifling_dagger"] = "phantom_assassin/persona/phantom_assassin_stifling_dagger_persona1",

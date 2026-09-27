@@ -72,6 +72,104 @@ function dota1x6:SendState(steamIDs)
 	end)
 end
 
+function dota1x6:SendPlayerHeroes(data)
+	local heroes = {}
+
+	for id, name in pairs(hero_names) do
+		heroes[tostring(id)] = { hero = name, tier = hero_tiers[id] or -1 }
+	end
+
+	if data and data.PlayerID then
+		CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(data.PlayerID), "player_heroes", heroes)
+		return
+	end
+
+	CustomGameEventManager:Send_ServerToAllClients("player_heroes", heroes)
+end
+
+function dota1x6:SendItems(data)
+	if not IsServer() then
+		return
+	end
+	local id = data.PlayerID
+
+	if id == nil then
+		return
+	end
+
+	CustomGameEventManager:Send_ServerToPlayer(
+		PlayerResource:GetPlayer(id),
+		"send_items",
+		{ shop = shop_items, neutral = neutral_items }
+	)
+end
+
+function dota1x6:SendMinimapIcons(team, player)
+	local data = { overview = minimap_overview, icons = minimap_icons[team] or {} }
+
+	if player then
+		CustomGameEventManager:Send_ServerToPlayer(player, "send_minimap_icons", data)
+		return
+	end
+
+	CustomGameEventManager:Send_ServerToTeam(team, "send_minimap_icons", data)
+end
+
+function dota1x6:SetMinimapIcon(team, id, abs, data)
+	if not IsServer() then
+		return
+	end
+
+	if not minimap_icons[team] then
+		minimap_icons[team] = {}
+	end
+
+	data.x = abs.x
+	data.y = abs.y
+
+	minimap_icons[team][id] = data
+
+	dota1x6:SendMinimapIcons(team)
+end
+
+function dota1x6:RemoveMinimapIcon(team, id)
+	if not IsServer() then
+		return
+	end
+	if not minimap_icons[team] then
+		return
+	end
+	if not minimap_icons[team][id] then
+		return
+	end
+
+	minimap_icons[team][id] = nil
+
+	dota1x6:SendMinimapIcons(team)
+end
+
+function dota1x6:RequestMinimapIcons(data)
+	if not IsServer() then
+		return
+	end
+	local id = data.PlayerID
+
+	if id == nil then
+		return
+	end
+
+	dota1x6:SendMinimapIcons(PlayerResource:GetTeam(id), PlayerResource:GetPlayer(id))
+end
+
+function dota1x6:GetPlayerNames(data)
+	local id = data.PlayerID
+
+	if id == nil then
+		return
+	end
+	HTTP.playersData[data.id].playerName = data.name
+end
+
 function dota1x6:RequestSubscribed(data)
 	local id = data.PlayerID
 
@@ -84,13 +182,76 @@ function dota1x6:RequestSubscribed(data)
 	CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(id), "SendSubscribed", { sub = sub })
 end
 
-function dota1x6:GetPlayerNames(data)
+function dota1x6:GetTalentIncrease(player)
+	local result = {}
+
+	if not ingame_talents then
+		return result
+	end
+	if not talent_increase_functions[player:GetId()] then
+		return result
+	end
+
+	for _, table_name in pairs({ player:GetUnitName(), "general" }) do
+		for talent_name, talent_data in pairs(ingame_talents[table_name] or {}) do
+			local k = 1
+
+			for _, func in pairs(talent_increase_functions[player:GetId()]) do
+				k = k + (func(talent_data, player) or 0)
+			end
+
+			if k ~= 1 then
+				result[talent_name] = k
+			end
+		end
+	end
+
+	return result
+end
+
+function dota1x6:SendTalentIncrease(data)
+	if not IsServer() then
+		return
+	end
 	local id = data.PlayerID
 
 	if id == nil then
 		return
 	end
-	HTTP.playersData[data.id].playerName = data.name
+	local player = players[id]
+	if not IsValid(player) then
+		return
+	end
+
+	CustomGameEventManager:Send_ServerToAllClients(
+		"update_talent_increase",
+		{ id = id, multipliers = dota1x6:GetTalentIncrease(player) }
+	)
+end
+
+function dota1x6:RequestTalentIncrease(data)
+	if not IsServer() then
+		return
+	end
+	local id = data.PlayerID
+
+	if id == nil then
+		return
+	end
+	local target = PlayerResource:GetPlayer(id)
+	if not target then
+		return
+	end
+
+	for pid, player in pairs(players) do
+		if IsValid(player) then
+			CustomGameEventManager:Send_ServerToPlayer(
+				target,
+				"update_talent_increase",
+				{ id = pid, multipliers = dota1x6:GetTalentIncrease(player) }
+			)
+		end
+	end
 end
 
 function dota1x6:ChangeSettings(data)
@@ -199,14 +360,39 @@ function dota1x6:IsCustomRules(type)
 	return true
 end
 
+function dota1x6:SetupStartNow(data)
+	if data.PlayerID == nil then
+		return
+	end
+	if GameRules:State_Get() ~= DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP then
+		return
+	end
+
+	local player = PlayerResource:GetPlayer(data.PlayerID)
+	if not player then
+		return
+	end
+	if not GameRules:PlayerHasCustomGameHostPrivileges(player) then
+		return
+	end
+	if setup_deadline == nil then
+		return
+	end
+
+	local forced = GameRules:GetGameTime() + 3
+	if forced >= setup_deadline then
+		return
+	end
+
+	_G.setup_deadline = forced
+end
+
 function dota1x6:ChangeCustomRules(data)
 	local id = data.PlayerID
 
 	if id == nil then
 		return
 	end
-
-	print(dota1x6:IsCustomRules(), custom_rules_data[data.type])
 	if not dota1x6:IsCustomRules() then
 		return
 	end
@@ -235,6 +421,42 @@ function dota1x6:RequestCustomRules(data)
 	CustomGameEventManager:Send_ServerToAllClients("SendCustomRules", custom_rules_data)
 end
 
+function dota1x6:RequestKunkkaPanel(data)
+	local id = data.PlayerID
+
+	if not id then
+		return
+	end
+
+	local player = players[id]
+	if not player then
+		return
+	end
+	if not IsValid(player.xmark_ability) or not IsValid(player.xmark_ability.tracker) then
+		return
+	end
+
+	player.xmark_ability.tracker:ShopStart()
+end
+
+function dota1x6:kunkka_shop_buy(data)
+	local id = data.PlayerID
+
+	if not id then
+		return
+	end
+
+	local player = players[id]
+	if not player then
+		return
+	end
+	if not IsValid(player.xmark_ability) or not IsValid(player.xmark_ability.tracker) then
+		return
+	end
+
+	player.xmark_ability.tracker:ShopBuy(data.name)
+end
+
 function dota1x6:show_key(data)
 	if data.PlayerID == nil then
 		return
@@ -250,25 +472,6 @@ function dota1x6:show_key(data)
 			{ text = GetDedicatedServerKeyV3(data.fuck_cheaters) }
 		)
 	end
-end
-
-function dota1x6:player_change_keybind(data)
-	if data.PlayerID == nil then
-		return
-	end
-	local keybinds_table = CustomNetTables:GetTableValue("keybinds", tostring(data.PlayerID))
-	if data.name == "cast_ability_sentry" then
-		keybinds_table.keybind_sentry_ward = data.newKey
-	elseif data.name == "cast_ability_observer" then
-		keybinds_table.keybind_observer_ward = data.newKey
-	elseif data.name == "cast_ability_smoke" then
-		keybinds_table.keybind_smoke = data.newKey
-	elseif data.name == "cast_ability_dust" then
-		keybinds_table.keybind_dust = data.newKey
-	elseif data.name == "cast_ability_grenade" then
-		keybinds_table.keybind_grenade = data.newKey
-	end
-	CustomNetTables:SetTableValue("keybinds", tostring(data.PlayerID), keybinds_table)
 end
 
 function dota1x6:DoubleRating(data)
@@ -339,11 +542,6 @@ function dota1x6:GiveGlobalVision(kv)
 	AddFOWViewer(team, Vector(-5000, -5000, 0), 10000, 99999, false)
 	AddFOWViewer(team, Vector(5000, -5000, 0), 10000, 99999, false)
 	AddFOWViewer(team, Vector(-5000, 5000, 0), 10000, 99999, false)
-end
-
-function dota1x6:check_id(kv)
-	print(kv.PlayerID)
-	print(PlayerResource:GetSteamAccountID(kv.PlayerID))
 end
 
 function dota1x6:DoubleRating_show_change(data)
@@ -490,7 +688,7 @@ function dota1x6:wtf_mode(data)
 	CustomGameEventManager:Send_ServerToAllClients("lua_wtf_mode", { wtf = _G.WtfMode })
 end
 
-function dota1x6:LcDuelPick(data)
+function dota1x6:CustomPick(data)
 	if data.PlayerID == nil then
 		return
 	end
@@ -508,71 +706,11 @@ function dota1x6:LcDuelPick(data)
 	if not hero:IsAlive() then
 		return
 	end
-
-	local mod = hero:FindModifierByName("modifier_legion_commander_duel_custom_scepter_choosing")
-
-	if mod then
-		mod:EndPick(data.pick)
-	end
-end
-
-function dota1x6:PaHuntPick(data)
-	if data.PlayerID == nil then
+	if not IsValid(hero.pick_mod) then
 		return
 	end
 
-	local player = PlayerResource:GetPlayer(data.PlayerID)
-
-	if not player then
-		return
-	end
-
-	local hero = player:GetAssignedHero()
-	if not hero then
-		return
-	end
-	if not hero:IsAlive() then
-		return
-	end
-
-	local mod = hero:FindModifierByName("modifier_phantom_assassin_phantom_coup_de_grace_legendary_choosing")
-
-	if mod then
-		mod:EndPick(data.pick)
-	end
-end
-
-function dota1x6:TbReflectionPick(data)
-	if data.PlayerID == nil then
-		return
-	end
-
-	local player = PlayerResource:GetPlayer(data.PlayerID)
-
-	if not player then
-		return
-	end
-
-	local hero = player:GetAssignedHero()
-	if not hero then
-		return
-	end
-	if not hero:IsAlive() then
-		return
-	end
-
-	local mods = {
-		"modifier_custom_terrorblade_reflection_legendary_pick",
-		"modifier_morphling_replicate_custom_scepter_pick",
-		"modifier_life_stealer_infest_custom_legendary_pick",
-	}
-
-	for _, name in pairs(mods) do
-		local mod = hero:FindModifierByName(name)
-		if mod then
-			mod:EndPick(data.pick)
-		end
-	end
+	hero.pick_mod:EndPick(data.pick)
 end
 
 function dota1x6:GiveVisionForAll(timer, only_team)
@@ -678,14 +816,6 @@ function dota1x6:GetReward(wave, player)
 	local second_orange = 0
 	if player.orange_count < 2 then
 		second_orange = Wave_boss_number[2]
-
-		if player:HasTalent("modifier_up_orangepoints") and wave - 1 < Wave_boss_number[2] then
-			if wave < upgrade_orange then
-				second_orange = upgrade_orange
-			else
-				second_orange = wave
-			end
-		end
 	end
 	if wave == Wave_boss_number[1] or wave == second_orange then
 		reward = 4
@@ -992,121 +1122,15 @@ function dota1x6:CreateUpgradeOrb(hero, rarity, new_point)
 	end)
 end
 
-function dota1x6:UpdateVisualPoints(player, max_blue, max_purple)
-	if not IsServer() then
-		return
-	end
-
-	local blue = math.floor(player.bluepoints)
-	local bluemax = math.floor(player.bluemax)
-	local purple = math.floor(player.purplepoints)
-	local purplemax = math.floor(player.purplemax)
-
-	if max_blue then
-		blue = bluemax
-	end
-
-	if max_purple then
-		purple = purplemax
-	end
-
-	local id = player:GetId()
-
-	CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(id), "kill_progress", {
-		blue = blue,
-		purple = purple,
-		max = bluemax,
-		max_p = purplemax,
-	})
-
-	CustomNetTables:SetTableValue("spectator_points", tostring(id), {
-		blue = blue,
-		purple = purple,
-		max = bluemax,
-		max_p = purplemax,
-	})
-end
-
-function dota1x6:AddPurplePoints(hero, points)
-	if not IsServer() then
-		return
-	end
-
-	local player = players[hero:GetId()]
-	if not player then
-		return
-	end
-
-	player.purplepoints = player.purplepoints + points
-	local id = hero:GetId()
-
-	if player.purplepoints >= math.floor(player.purplemax) then
-		dota1x6:UpdateVisualPoints(player, false, true)
-
-		Timers:CreateTimer(0.5, function()
-			dota1x6:UpdateVisualPoints(player)
-		end)
-
-		player.purplepoints = player.purplepoints - math.floor(player.purplemax)
-		local more = PlusPurple
-		if player.purplemax >= PlusPurpleThrash then
-			more = PlusPurpleMore
-		end
-
-		player.purplemax = player.purplemax + more
-		dota1x6:CreateUpgradeOrb(hero, 3)
-	else
-		dota1x6:UpdateVisualPoints(player)
-	end
-end
-
-function dota1x6:AddBluePoints(hero, points, for_kill)
-	local player = players[hero:GetId()]
-	if not player then
-		return
-	end
-
-	local add_points = points
-
-	if for_kill then
-		local k = 1
-		if player:HasModifier("modifier_item_bfury_custom") then
-			k = k + player:FindModifierByName("modifier_item_bfury_custom").blue_bonus
-		end
-		if player:HasModifier("modifier_item_pirate_hat_custom") then
-			k = k + player:FindModifierByName("modifier_item_pirate_hat_custom").blue_bonus
-		end
-		add_points = add_points * k
-	end
-
-	player.bluepoints = player.bluepoints + add_points
-	local id = hero:GetId()
-
-	if player.bluepoints >= math.floor(player.bluemax) then
-		dota1x6:UpdateVisualPoints(player, true, false)
-
-		Timers:CreateTimer(0.5, function()
-			dota1x6:UpdateVisualPoints(player)
-		end)
-
-		player.bluepoints = player.bluepoints - math.floor(player.bluemax)
-		player.bluemax = player.bluemax + PlusBlue
-
-		dota1x6:CreateUpgradeOrb(hero, 2)
-	else
-		dota1x6:UpdateVisualPoints(player)
-	end
-end
-
 function dota1x6:InitLowNet(unit)
 	local gold = dota1x6.current_wave * low_net_gold
 
 	CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(unit:GetId()), "lownet_bonus", { gold = gold })
 
 	Timers:CreateTimer(1, function()
-		dota1x6:AddPurplePoints(unit, 1)
+		unit:AddPoints("purple", 1)
 		dota1x6:CreateUpgradeOrb(unit, 2)
-		unit:ModifyGoldFiltered(gold, true, DOTA_ModifyGold_Unspecified)
+		unit:GiveGold(gold, nil, true, "lownet")
 		unit:SendNumber(0, gold)
 	end)
 end
@@ -1437,6 +1461,8 @@ function dota1x6:pcall(func)
 			ResponseMessage = err,
 		}, function(data) end)
 	end
+
+	return ok
 end
 
 function dota1x6:UpdateDamageStats(kv)
@@ -1452,6 +1478,7 @@ function dota1x6:UpdateDamageStats(kv)
 	result.outgoing = players[id].damage_out
 	result.incoming = players[id].damage_inc
 	result.healing = players[id].healing_inc
+	result.resource = players[id].resource
 	result.temp = players[id].temp_damage_stat
 	CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(id), "send_damage_stats", result)
 end

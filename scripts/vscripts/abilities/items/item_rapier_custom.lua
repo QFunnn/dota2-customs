@@ -19,6 +19,12 @@ function item_rapier_custom:GetIntrinsicModifierName()
 	return "modifier_item_rapier_custom"
 end
 
+function item_rapier_custom:Spawn()
+	self.bonus_damage = self:GetSpecialValueFor("bonus_damage")
+	self.bonus_damage_base = self:GetSpecialValueFor("bonus_damage_base")
+	self.bonus_spell_amp = self:GetSpecialValueFor("bonus_spell_amp")
+end
+
 function item_rapier_custom:GetAbilityTextureName()
 	if self:GetToggleState() then
 		return "item_rapier_alt"
@@ -56,9 +62,13 @@ function item_rapier_custom:UpdateOwner(unit)
 
 	local purchaser = self:GetPurchaser()
 
-	if IsValid(purchaser) and purchaser:GetTeamNumber() ~= unit:GetTeamNumber() then
-		self.rapier_free = true
+	if not IsValid(purchaser) then
+		return
 	end
+	if purchaser:GetTeamNumber() == unit:GetTeamNumber() then
+		return
+	end
+	self.rapier_free = true
 end
 
 function item_rapier_custom:DropOnDeath(unit)
@@ -72,9 +82,9 @@ end
 function modifier_item_rapier_custom:OnCreated(table)
 	self.ability = self:GetAbility()
 	self.parent = self:GetParent()
-	self.bonus_damage = self.ability:GetSpecialValueFor("bonus_damage")
-	self.bonus_damage_base = self.ability:GetSpecialValueFor("bonus_damage_base")
-	self.bonus_spell_amp = self.ability:GetSpecialValueFor("bonus_spell_amp")
+	self.bonus_damage = self.ability.bonus_damage
+	self.bonus_damage_base = self.ability.bonus_damage_base
+	self.bonus_spell_amp = self.ability.bonus_spell_amp
 
 	if not IsServer() then
 		return
@@ -91,6 +101,9 @@ end
 
 function modifier_item_rapier_custom:DeathEvent(params)
 	if not IsServer() then
+		return
+	end
+	if not IsValid(self.ability) then
 		return
 	end
 	if self.parent ~= params.unit then

@@ -54,7 +54,7 @@ function marci_grapple_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_marci/marci_attack_blur_r01.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_marci/marci_attack_blur_r02.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_marci/marci_attack_blur_kick01.vpcf", context)
-
+	PrecacheResource("particle", "particles/units/heroes/hero_marci/marci_dispose_land.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_marci/marci_dispose_land_aoe.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_marci/marci_dispose_aoe_damage.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_marci/marci_dispose_debuff.vpcf", context)
@@ -75,11 +75,9 @@ function marci_grapple_custom:UpdateTalents(name)
 	if not self.init then
 		self.init = true
 		self.talents = {
-			has_q1 = 0,
 			q1_base = 0,
 			q1_damage = 0,
 
-			has_q2 = 0,
 			q2_cd = 0,
 			q2_range = 0,
 
@@ -108,13 +106,11 @@ function marci_grapple_custom:UpdateTalents(name)
 	end
 
 	if caster:HasTalent("modifier_marci_dispose_1") then
-		self.talents.has_q1 = 1
 		self.talents.q1_base = caster:GetTalentValue("modifier_marci_dispose_1", "base")
 		self.talents.q1_damage = caster:GetTalentValue("modifier_marci_dispose_1", "damage") / 100
 	end
 
 	if caster:HasTalent("modifier_marci_dispose_2") then
-		self.talents.has_q2 = 1
 		self.talents.q2_cd = caster:GetTalentValue("modifier_marci_dispose_2", "cd")
 		self.talents.q2_range = caster:GetTalentValue("modifier_marci_dispose_2", "range")
 	end
@@ -142,18 +138,18 @@ function marci_grapple_custom:UpdateTalents(name)
 	end
 end
 
-function marci_grapple_custom:GetIntrinsicModifierName()
-	if not self:GetCaster():IsRealHero() then
-		return
-	end
-	return "modifier_marci_dispose_custom_tracker"
-end
-
 function marci_grapple_custom:GetAbilityTextureName()
 	if self.caster:HasModifier("modifier_marci_dispose_custom_swap") then
 		return "dispose_knockback"
 	end
 	return "marci_grapple"
+end
+
+function marci_grapple_custom:GetIntrinsicModifierName()
+	if not self:GetCaster():IsRealHero() then
+		return
+	end
+	return "modifier_marci_dispose_custom_tracker"
 end
 
 function marci_grapple_custom:GetCastAnimation()
@@ -165,9 +161,9 @@ end
 
 function marci_grapple_custom:GetAOERadius()
 	if self.caster:HasModifier("modifier_marci_dispose_custom_swap") then
-		return
+		return 0
 	end
-	return self.landing_radius and self.landing_radius or 0
+	return (self.landing_radius or 0)
 end
 
 function marci_grapple_custom:GetManaCost(iLevel)
@@ -178,7 +174,7 @@ function marci_grapple_custom:GetManaCost(iLevel)
 end
 
 function marci_grapple_custom:GetCooldown(iLevel)
-	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.q2_cd and self.talents.q2_cd or 0)
+	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.q2_cd or 0)
 end
 
 function marci_grapple_custom:GetDamage()
@@ -271,7 +267,7 @@ function marci_grapple_custom:OnSpellStart()
 		self:PlayEffects3(aoe_target, self.air_duration)
 		self:PlayEffects4()
 
-		local arc = aoe_target:AddNewModifier(self.caster, ability, "modifier_generic_arc", {
+		local arc = aoe_target:AddNewModifier(self.caster, self, "modifier_generic_arc", {
 			target_x = targetpos.x,
 			target_y = targetpos.y,
 			duration = self.air_duration,
@@ -288,35 +284,37 @@ function marci_grapple_custom:OnSpellStart()
 			self.caster.rebound_ability:ApplyProc(aoe_target)
 		end
 
-		arc:SetEndCallback(function()
-			aoe_target:AddNewModifier(
-				self.caster,
-				self,
-				"modifier_marci_dispose_custom_slow",
-				{ duration = self.slow_duration * (1 - aoe_target:GetStatusResistance()) }
-			)
-
-			if self.talents.has_h4 == 1 then
+		if arc then
+			arc:SetEndCallback(function()
 				aoe_target:AddNewModifier(
 					self.caster,
 					self,
-					"modifier_generic_silence",
-					{
-						duration = self.talents.h4_silence * (1 - aoe_target:GetStatusResistance()),
-						sound = "Sf.Raze_Silence",
-					}
+					"modifier_marci_dispose_custom_slow",
+					{ duration = self.slow_duration * (1 - aoe_target:GetStatusResistance()) }
 				)
-			end
 
-			damageTable.damage = damage * damage_k
-			damageTable.victim = aoe_target
-			DoDamage(damageTable)
+				if self.talents.has_h4 == 1 then
+					aoe_target:AddNewModifier(
+						self.caster,
+						self,
+						"modifier_generic_silence",
+						{
+							duration = self.talents.h4_silence * (1 - aoe_target:GetStatusResistance()),
+							sound = "Sf.Raze_Silence",
+						}
+					)
+				end
 
-			if aoe_target == target then
-				self:PlayEffects1(aoe_target:GetOrigin())
-				GridNav:DestroyTreesAroundPoint(aoe_target:GetOrigin(), self.landing_radius, false)
-			end
-		end)
+				damageTable.damage = damage * damage_k
+				damageTable.victim = aoe_target
+				DoDamage(damageTable)
+
+				if aoe_target == target then
+					self:PlayEffects1(aoe_target:GetOrigin())
+					GridNav:DestroyTreesAroundPoint(aoe_target:GetOrigin(), self.landing_radius, false)
+				end
+			end)
+		end
 	end
 end
 
@@ -545,7 +543,10 @@ function modifier_marci_dispose_custom_tracker:OnCreated(table)
 	self.ability:UpdateTalents()
 
 	self.parent.dispose_ability_legendary = self.parent:FindAbilityByName("marci_dispose_hits")
-	if self.parent.dispose_ability_legendary then
+	if IsValid(self.parent.dispose_ability_legendary) then
+		if IsServer() and not self.parent.dispose_ability_legendary:IsTrained() then
+			self.parent.dispose_ability_legendary:SetLevel(1)
+		end
 		self.parent.dispose_ability_legendary:UpdateTalents()
 	end
 
@@ -675,23 +676,16 @@ function modifier_marci_dispose_custom_health_reduce:OnCreated(table)
 
 	self.duration = self:GetRemainingTime()
 
-	self:AddStack(table)
+	self:OnRefresh(table)
 end
 
 function modifier_marci_dispose_custom_health_reduce:OnRefresh(table)
 	if not IsServer() then
 		return
 	end
-	self:AddStack(table)
-end
-
-function modifier_marci_dispose_custom_health_reduce:AddStack(table)
-	if not IsServer() then
-		return
-	end
 
 	if self:GetStackCount() < self.max then
-		local stack = table.stack and table.stack or 1
+		local stack = table.stack or 1
 		self:SetStackCount(math.min(self.max, self:GetStackCount() + stack))
 
 		if self:GetStackCount() >= self.max then
@@ -699,12 +693,8 @@ function modifier_marci_dispose_custom_health_reduce:AddStack(table)
 		end
 	end
 
-	self:SendHealth()
-end
-
-function modifier_marci_dispose_custom_health_reduce:SendHealth()
-	if not IsServer() then
-		return
+	if self.parent:IsHero() then
+		self.parent:CalculateStatBonus(true)
 	end
 
 	local health = self.max_health * self.health * self:GetStackCount() / 100
@@ -722,16 +712,6 @@ function modifier_marci_dispose_custom_health_reduce:SendHealth()
 	end
 end
 
-function modifier_marci_dispose_custom_health_reduce:OnStackCountChanged(iStackCount)
-	if not IsServer() then
-		return
-	end
-	if not self.parent:IsHero() then
-		return
-	end
-	self.parent:CalculateStatBonus(true)
-end
-
 function modifier_marci_dispose_custom_health_reduce:OnDestroy()
 	if not IsServer() then
 		return
@@ -740,7 +720,9 @@ function modifier_marci_dispose_custom_health_reduce:OnDestroy()
 		self.health_mod:Destroy()
 	end
 
-	self:OnStackCountChanged()
+	if self.parent:IsHero() then
+		self.parent:CalculateStatBonus(true)
+	end
 end
 
 function modifier_marci_dispose_custom_health_reduce:DeclareFunctions()
@@ -767,6 +749,7 @@ function modifier_marci_dispose_custom_health_inc:OnCreated(table)
 	if not IsServer() then
 		return
 	end
+	self.RemoveForDuel = true
 	self:AddHealth(table)
 end
 
@@ -788,6 +771,78 @@ function modifier_marci_dispose_custom_health_inc:GetModifierHealthBonus()
 	return self:GetStackCount()
 end
 
+modifier_marci_dispose_custom_legendary_count = class(mod_hidden)
+function modifier_marci_dispose_custom_legendary_count:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.max = self.ability.talents.q7_count
+	self.radius = 1000
+	self.duration = self.ability.talents.q7_duration
+	if not IsServer() then
+		return
+	end
+	self.RemoveForDuel = true
+
+	self:OnRefresh()
+	self:StartIntervalThink(1)
+end
+
+function modifier_marci_dispose_custom_legendary_count:OnIntervalThink()
+	if not IsServer() then
+		return
+	end
+	local targets = FindUnitsInRadius(
+		self.parent:GetTeamNumber(),
+		self.parent:GetAbsOrigin(),
+		nil,
+		self.radius,
+		DOTA_UNIT_TARGET_TEAM_ENEMY,
+		DOTA_UNIT_TARGET_HERO,
+		DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE,
+		FIND_CLOSEST,
+		false
+	)
+
+	if #targets > 0 then
+		self:SetDuration(self.duration, true)
+	end
+end
+
+function modifier_marci_dispose_custom_legendary_count:OnRefresh()
+	if not IsServer() then
+		return
+	end
+	if self:GetStackCount() >= self.max then
+		return
+	end
+	self:IncrementStackCount()
+
+	if self.ability.tracker then
+		self.ability.tracker:UpdateUI()
+	end
+
+	if self:GetStackCount() >= self.max then
+		if IsValid(self.parent.dispose_ability_legendary) then
+			self.parent.dispose_ability_legendary:SetActivated(true)
+		end
+	end
+end
+
+function modifier_marci_dispose_custom_legendary_count:OnDestroy()
+	if not IsServer() then
+		return
+	end
+
+	if self.ability.tracker then
+		self.ability.tracker:UpdateUI()
+	end
+
+	if IsValid(self.parent.dispose_ability_legendary) then
+		self.parent.dispose_ability_legendary:SetActivated(false)
+	end
+end
+
 marci_dispose_hits = class({})
 marci_dispose_hits.talents = {}
 
@@ -802,7 +857,6 @@ function marci_dispose_hits:UpdateTalents(name)
 	if not self.init then
 		self.init = true
 		self.talents = {
-			has_q7 = 0,
 			q7_talent_cd = caster:GetTalentValue("modifier_marci_dispose_7", "talent_cd", true),
 			q7_slow = caster:GetTalentValue("modifier_marci_dispose_7", "slow", true),
 			q7_linger = caster:GetTalentValue("modifier_marci_dispose_7", "linger", true),
@@ -815,15 +869,15 @@ function marci_dispose_hits:UpdateTalents(name)
 end
 
 function marci_dispose_hits:GetChannelTime()
-	return (self.talents.q7_channel and self.talents.q7_channel or 0)
+	return self.talents.q7_channel or 0
 end
 
 function marci_dispose_hits:GetCooldown()
-	return self.talents.q7_talent_cd and self.talents.q7_talent_cd or 0
+	return self.talents.q7_talent_cd or 0
 end
 
 function marci_dispose_hits:GetCastRange(vLocation, hTarget)
-	return self.talents.q7_range and self.talents.q7_range
+	return self.talents.q7_range or 0
 end
 
 function marci_dispose_hits:OnSpellStart()
@@ -837,13 +891,9 @@ function marci_dispose_hits:OnSpellStart()
 		self.caster.unleash_ability:Pulse(self.caster:GetAbsOrigin(), true)
 	end
 
-	local dir = point - self.caster:GetAbsOrigin()
-	dir.z = 0
-
 	self.caster:RemoveModifierByName("modifier_marci_dispose_custom_legendary_count")
 
-	self.caster:SetForwardVector(dir:Normalized())
-	self.caster:FaceTowards(point)
+	self.caster:FacePoint(point)
 	self.caster:AddNewModifier(
 		self.caster,
 		self,
@@ -998,7 +1048,7 @@ function modifier_marci_dispose_custom_hits:OnIntervalThink()
 			{ duration = self.slow_duration }
 		)
 		self.damageTable.victim = enemy
-		DoDamage(self.damageTable)
+		DoDamage(self.damageTable, "modifier_marci_dispose_7")
 
 		local particle = ParticleManager:CreateParticle(
 			"particles/units/heroes/hero_marci/marci_unleash_attack.vpcf",
@@ -1063,75 +1113,4 @@ end
 
 function modifier_marci_dispose_custom_hits_slow:GetModifierMoveSpeedBonus_Percentage()
 	return self.slow
-end
-
-modifier_marci_dispose_custom_legendary_count = class(mod_hidden)
-function modifier_marci_dispose_custom_legendary_count:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.max = self.ability.talents.q7_count
-	self.radius = 1000
-	self.duration = self.ability.talents.q7_duration
-	if not IsServer() then
-		return
-	end
-
-	self:OnRefresh()
-	self:StartIntervalThink(1)
-end
-
-function modifier_marci_dispose_custom_legendary_count:OnIntervalThink()
-	if not IsServer() then
-		return
-	end
-	local targets = FindUnitsInRadius(
-		self.parent:GetTeamNumber(),
-		self.parent:GetAbsOrigin(),
-		nil,
-		self.radius,
-		DOTA_UNIT_TARGET_TEAM_ENEMY,
-		DOTA_UNIT_TARGET_HERO,
-		DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE,
-		FIND_CLOSEST,
-		false
-	)
-
-	if #targets > 0 then
-		self:SetDuration(self.duration, true)
-	end
-end
-
-function modifier_marci_dispose_custom_legendary_count:OnRefresh()
-	if not IsServer() then
-		return
-	end
-	if self:GetStackCount() >= self.max then
-		return
-	end
-	self:IncrementStackCount()
-
-	if self.ability.tracker then
-		self.ability.tracker:UpdateUI()
-	end
-
-	if self:GetStackCount() >= self.max then
-		if IsValid(self.parent.dispose_ability_legendary) then
-			self.parent.dispose_ability_legendary:SetActivated(true)
-		end
-	end
-end
-
-function modifier_marci_dispose_custom_legendary_count:OnDestroy()
-	if not IsServer() then
-		return
-	end
-
-	if self.ability.tracker then
-		self.ability.tracker:UpdateUI()
-	end
-
-	if IsValid(self.parent.dispose_ability_legendary) then
-		self.parent.dispose_ability_legendary:SetActivated(false)
-	end
 end

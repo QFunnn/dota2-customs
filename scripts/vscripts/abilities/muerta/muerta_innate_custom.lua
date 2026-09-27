@@ -48,6 +48,11 @@ function muerta_innate_custom:Precache(context)
 	end
 	PrecacheResource("model", "models/muerta/muerta.vmdl", context)
 	PrecacheResource("soundfile", "soundevents/npc_dota_hero_muerta.vsndevts", context)
+	PrecacheResource("particle", "particles/muerta_dig_ground.vpcf", context)
+	PrecacheResource("particle", "particles/econ/events/ti9/muerta_dig_treasure.vpcf", context)
+	PrecacheResource("particle", "particles/heroes/muerta/muerta_quest_kill.vpcf", context)
+	PrecacheResource("particle", "particles/muerta/muerta_quest_item.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_muerta/muerta_ultimate_form_ethereal.vpcf", context)
 	dota1x6:PrecacheShopItems("npc_dota_hero_muerta", context)
 end
 
@@ -78,6 +83,11 @@ function muerta_innate_custom:UpdateTalents()
 			has_e7 = 0,
 
 			has_r7 = 0,
+
+			s1_radius = caster:GetTalentValue("modifier_muerta_quest_1", "radius", true),
+			s1_max = caster:GetTalentValue("modifier_muerta_quest_1", "max", true),
+			s2_max = caster:GetTalentValue("modifier_muerta_quest_2", "max", true),
+			s3_max = caster:GetTalentValue("modifier_muerta_quest_3", "max", true),
 		}
 	end
 
@@ -85,16 +95,16 @@ function muerta_innate_custom:UpdateTalents()
 		self.talents.has_w2 = 1
 		self.talents.w2_heal = caster:GetTalentValue("modifier_muerta_calling_2", "heal") / 100
 		self.talents.w2_health = caster:GetTalentValue("modifier_muerta_calling_2", "health")
-		self.caster:AddDamageEvent_out(self.tracker, true)
+		caster:AddDamageEvent_out(self.tracker, true)
 		if IsServer() then
-			self.caster:CalculateStatBonus(true)
+			caster:CalculateStatBonus(true)
 		end
 	end
 
 	if caster:HasTalent("modifier_muerta_gun_2") then
 		self.talents.has_e2 = 1
 		self.talents.e2_heal = caster:GetTalentValue("modifier_muerta_gun_2", "heal") / 100
-		self.caster:AddDamageEvent_out(self.tracker, true)
+		caster:AddDamageEvent_out(self.tracker, true)
 	end
 
 	if caster:HasTalent("modifier_muerta_hero_2") then
@@ -111,7 +121,7 @@ function muerta_innate_custom:UpdateTalents()
 
 	if caster:HasTalent("modifier_muerta_veil_2") then
 		self.talents.has_r2 = 1
-		self.caster:AddDamageEvent_out(self.tracker, true)
+		caster:AddDamageEvent_out(self.tracker, true)
 	end
 
 	if caster:HasTalent("modifier_muerta_gun_7") then
@@ -158,10 +168,10 @@ function modifier_muerta_innate_custom_tracker:OnCreated(table)
 	self.ability.max = self.ability:GetSpecialValueFor("max")
 	self.ability.waste = self.ability:GetSpecialValueFor("waste") / 100
 
-	self.quest_dig_radius = self.parent:GetTalentValue("modifier_muerta_quest_1", "radius", true)
-	self.quest_dig_goal = self.parent:GetTalentValue("modifier_muerta_quest_1", "max", true)
-	self.quest_ghost_goal = self.parent:GetTalentValue("modifier_muerta_quest_2", "max", true)
-	self.quest_leash_goal = self.parent:GetTalentValue("modifier_muerta_quest_3", "max", true)
+	self.quest_dig_radius = self.ability.talents.s1_radius
+	self.quest_dig_goal = self.ability.talents.s1_max
+	self.quest_ghost_goal = self.ability.talents.s2_max
+	self.quest_leash_goal = self.ability.talents.s3_max
 	self.quest_duration = 120
 	self.quest_cd = 30
 	self.quest_max_start = 15
@@ -231,7 +241,7 @@ function modifier_muerta_innate_custom_tracker:DamageEvent_out(params)
 
 	if
 		self.ability.talents.has_e2 == 1
-		and (not params.inflictor or inflictor:GetName() == "muerta_pierce_the_veil_custom")
+		and (not params.inflictor or params.inflictor:GetName() == "muerta_pierce_the_veil_custom")
 	then
 		self.parent:GenericHeal(
 			self.ability.talents.e2_heal * result * params.damage,
@@ -919,13 +929,15 @@ end
 
 function modifier_muerta_innate_custom_creep:AddCustomTransmitterData()
 	return {
-		armor = self.armor,
+		change_damage = self.change_damage,
+		change_health = self.change_health,
 		speed = self.speed,
 	}
 end
 
 function modifier_muerta_innate_custom_creep:HandleCustomTransmitterData(data)
-	self.armor = data.armor
+	self.change_damage = data.change_damage
+	self.change_health = data.change_health
 	self.speed = data.speed
 end
 

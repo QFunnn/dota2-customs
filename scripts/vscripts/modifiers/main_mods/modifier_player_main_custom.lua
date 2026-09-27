@@ -52,6 +52,7 @@ function modifier_player_main_custom:OnCreated(table)
 	self.rewards = {}
 	self.reward_count = 0
 	self.interval = 0.5
+	self.parent:SetBaseMagicalResistanceValue(30)
 
 	if self.parent:IsIllusion() or self.parent:IsTempestDouble() then
 		self.interval = 1
@@ -62,9 +63,7 @@ function modifier_player_main_custom:OnCreated(table)
 		ability:SetLevel(1)
 	end
 	if ability then
-		local name = (self.parent:IsIllusion() or self.parent:IsTempestDouble()) and "modifier_general_stats_illusion"
-			or "modifier_general_stats"
-		self.parent:AddNewModifier(self.parent, ability, name, {})
+		self.parent:AddNewModifier(self.parent, ability, "modifier_general_stats", {})
 	end
 
 	self:StartIntervalThink(0.1)
@@ -93,7 +92,12 @@ function modifier_player_main_custom:DeclareFunctions()
 		MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
 		MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
 		MODIFIER_PROPERTY_PROJECTILE_NAME,
+		MODIFIER_PROPERTY_BASE_MRES_PER_INT_BONUS_PERCENTAGE,
 	}
+end
+
+function modifier_player_main_custom:GetModifierBaseMagicResistPerIntBonusPercentage()
+	return -23
 end
 
 function modifier_player_main_custom:GetPriority()
@@ -297,45 +301,6 @@ function modifier_player_main_custom:DeathEvent(params)
 
 	if unit:IsTempestDouble() or unit:IsCreepHero() then
 		return
-	end
-
-	local attacker = params.attacker
-	if attacker.owner then
-		attacker = attacker.owner
-	end
-
-	if attacker == self.parent and unit:GetTeamNumber() == DOTA_TEAM_NEUTRALS and unit:GetMaximumGoldBounty() > 0 then
-		local k = 0
-		if self.parent:HasModifier("modifier_lownet_gold_buff") then
-			k = k + lownet_gold
-		end
-
-		if self.parent:HasModifier("modifier_patrol_reward_1_gold") then
-			k = k + self.parent:FindModifierByName("modifier_patrol_reward_1_gold").gold
-		end
-
-		if self.parent:HasModifier("modifier_item_bfury_custom") then
-			k = k + self.parent:FindModifierByName("modifier_item_bfury_custom").gold_bonus
-		end
-
-		if k > 0 then
-			local gold = math.max(1, unit:GetMaximumGoldBounty() * k)
-
-			self.parent:GiveGold(gold)
-		end
-	end
-
-	if
-		unit:IsRealHero()
-		and unit:GetTeamNumber() ~= self.parent:GetTeamNumber()
-		and not unit:IsReincarnating()
-		and (
-			(unit:GetAbsOrigin() - self.parent:GetAbsOrigin()):Length2D() < more_gold_radius
-			or self.parent == attacker
-		)
-	then
-		self.parent:ModifyGoldFiltered(kill_net_gold, true, DOTA_ModifyGold_HeroKill)
-		self.parent:SendNumber(0, kill_net_gold)
 	end
 
 	local player = players[self.parent:GetId()]

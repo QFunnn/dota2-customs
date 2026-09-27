@@ -122,6 +122,11 @@ modifier_item_heavens_halberd_custom = class(mod_hidden)
 function modifier_item_heavens_halberd_custom:RemoveOnDeath()
 	return false
 end
+function modifier_item_heavens_halberd_custom:OnCreated(table)
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+end
+
 function modifier_item_heavens_halberd_custom:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
@@ -152,26 +157,23 @@ function modifier_item_heavens_halberd_custom:GetModifierEvasion_Constant()
 	return self.ability.bonus_evasion
 end
 
-function modifier_item_heavens_halberd_custom:OnCreated(table)
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-end
-
 modifier_item_heavens_halberd_custom_disarm = class(mod_hidden)
 function modifier_item_heavens_halberd_custom_disarm:IsPurgeException()
 	return true
 end
+function modifier_item_heavens_halberd_custom_disarm:OnCreated()
+	self.parent = self:GetParent()
+
+	if not IsServer() then
+		return
+	end
+	self.parent:GenericParticle("particles/items2_fx/heavens_halberd.vpcf", self, true)
+end
+
 function modifier_item_heavens_halberd_custom_disarm:CheckState()
 	return {
 		[MODIFIER_STATE_DISARMED] = true,
 	}
-end
-
-function modifier_item_heavens_halberd_custom_disarm:OnCreated()
-	if not IsServer() then
-		return
-	end
-	self:GetParent():GenericParticle("particles/items2_fx/heavens_halberd.vpcf", self, true)
 end
 
 modifier_item_heavens_halberd_custom_steal = class(mod_visible)

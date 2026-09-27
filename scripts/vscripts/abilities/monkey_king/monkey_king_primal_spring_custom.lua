@@ -51,6 +51,7 @@ LinkLuaModifier(
 
 monkey_king_primal_spring_custom = class({})
 monkey_king_primal_spring_custom.talents = {}
+monkey_king_primal_spring_custom.bananas = 0
 
 function monkey_king_primal_spring_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
@@ -71,6 +72,8 @@ function monkey_king_primal_spring_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_marci/marci_rebound_allymovespeed.vpcf", context)
 	PrecacheResource("particle", "particles/monkey_king/primal_double.vpcf", context)
 	PrecacheResource("particle", "particles/monkey_king/tree_shield.vpcf", context)
+	PrecacheResource("particle", "particles/mk_heal_red_1.vpcf", context)
+	PrecacheResource("particle", "particles/monkey_king/strike_refresh.vpcf", context)
 end
 
 function monkey_king_primal_spring_custom:UpdateTalents(name)
@@ -112,7 +115,12 @@ function monkey_king_primal_spring_custom:UpdateTalents(name)
 			w7_bonus_1 = caster:GetTalentValue("modifier_monkey_king_tree_7", "bonus_1", true),
 			w7_max = caster:GetTalentValue("modifier_monkey_king_tree_7", "max", true),
 			w7_refresh_cd = caster:GetTalentValue("modifier_monkey_king_tree_7", "refresh_cd", true),
-			w7_bounty = caster:GetTalentValue("modifier_monkey_king_tree_7", "bounty", true) / 100,
+			w7_gold = caster:GetTalentValue("modifier_monkey_king_tree_7", "gold", true),
+			w7_gold_inc = caster:GetTalentValue("modifier_monkey_king_tree_7", "gold_inc", true),
+			w7_exp = caster:GetTalentValue("modifier_monkey_king_tree_7", "exp", true),
+			w7_exp_inc = caster:GetTalentValue("modifier_monkey_king_tree_7", "exp_inc", true),
+			w7_blue = caster:GetTalentValue("modifier_monkey_king_tree_7", "blue", true),
+			w7_blue_inc = caster:GetTalentValue("modifier_monkey_king_tree_7", "blue_inc", true),
 			w7_charge = caster:GetTalentValue("modifier_monkey_king_tree_7", "charge", true),
 			w7_vision = caster:GetTalentValue("modifier_monkey_king_tree_7", "vision", true),
 			w7_mana = caster:GetTalentValue("modifier_monkey_king_tree_7", "mana", true) / 100,
@@ -211,15 +219,13 @@ end
 function monkey_king_primal_spring_custom:GetChannelTime()
 	local bonus = 1
 	if self.caster:HasModifier("modifier_monkey_king_tree_dance_custom") then
-		bonus = 1 + self.tree_cast
+		bonus = 1 + (self.tree_cast or 0)
 	end
-	return (self.AbilityChannelTime and self.AbilityChannelTime or 0)
-		* (1 + (self.talents.has_w4 == 1 and self.talents.w4_cast or 0))
-		* bonus
+	return (self.AbilityChannelTime or 0) * (1 + (self.talents.has_w4 == 1 and self.talents.w4_cast or 0)) * bonus
 end
 
 function monkey_king_primal_spring_custom:GetAOERadius()
-	return self.impact_radius and self.impact_radius or 0
+	return self.impact_radius or 0
 end
 
 function monkey_king_primal_spring_custom:GetBehavior()
@@ -243,14 +249,13 @@ end
 function monkey_king_primal_spring_custom:GetRange()
 	local bonus = 0
 	if self.caster:HasModifier("modifier_monkey_king_tree_dance_custom") then
-		bonus = self.tree_range
+		bonus = self.tree_range or 0
 	end
-	return (self.max_distance and self.max_distance or 0) + bonus
+	return (self.max_distance or 0) + bonus
 end
 
 function monkey_king_primal_spring_custom:GetCd()
-	return (self.AbilityChargeRestoreTime and self.AbilityChargeRestoreTime or 0)
-		+ (self.talents.w2_cd and self.talents.w2_cd or 0)
+	return (self.AbilityChargeRestoreTime or 0) + (self.talents.w2_cd or 0)
 end
 
 function monkey_king_primal_spring_custom:GetAbilityChargeRestoreTime(iLevel)
@@ -348,7 +353,6 @@ function monkey_king_primal_spring_custom:OnChannelFinish(bInterrupted)
 	self.caster:SetOrigin(origin + Vector(0, 0, -50))
 
 	local speed = self.speed * (1 + (self.talents.has_h5 == 1 and self.talents.h5_speed or 0))
-	local perch_height = -192
 	local ground = GetGroundPosition(origin, nil)
 	local perch_height = -1 * (origin.z - ground.z)
 
@@ -357,8 +361,7 @@ function monkey_king_primal_spring_custom:OnChannelFinish(bInterrupted)
 		height = 0
 	end
 
-	self.caster:FaceTowards(self.point)
-	self.caster:SetForwardVector(direction)
+	self.caster:FacePoint(self.point)
 
 	if IsValid(self.caster.command_ability) and IsValid(self.caster.command_ability.legendary_soldier) then
 		local mod = self.caster.command_ability.legendary_soldier:FindModifierByName(
@@ -561,19 +564,6 @@ function monkey_king_primal_spring_custom:DealDamage(point, channel_pct, new_rad
 	EmitSoundOnLocationWithCaster(point, sound_cast, self.caster)
 end
 
-monkey_king_primal_spring_early_custom = class({})
-
-function monkey_king_primal_spring_early_custom:GetAbilityTextureName()
-	return wearables_system:GetAbilityIconReplacement(self.caster, "monkey_king_primal_spring", self)
-end
-
-function monkey_king_primal_spring_early_custom:OnSpellStart()
-	if not IsValid(self.caster.spring_ability) then
-		return
-	end
-	self.caster.spring_ability:EndChannel(true)
-end
-
 modifier_monkey_king_primal_spring_custom = class(mod_visible)
 function modifier_monkey_king_primal_spring_custom:IsPurgable()
 	return true
@@ -725,7 +715,7 @@ function modifier_monkey_king_primal_spring_custom_tracker:OnIntervalThink()
 	self.count = self.count + 1
 
 	local time = math.max(0, (self.ability.talents.w7_cd - self.count))
-	local min = tostring(math.floor(time / self.ability.talents.w7_cd))
+	local min = tostring(math.floor(time / 60))
 	local sec = time - 60 * math.floor(time / 60)
 	if sec < 10 then
 		sec = "0" .. tostring(sec)
@@ -792,6 +782,9 @@ function modifier_monkey_king_primal_spring_custom_tracker:GetModifierSpellAmpli
 end
 
 function modifier_monkey_king_primal_spring_custom_tracker:GetModifierMoveSpeedBonus_Constant()
+	if not IsValid(self.parent) then
+		return
+	end
 	if self.is_clone then
 		return
 	end
@@ -804,6 +797,9 @@ function modifier_monkey_king_primal_spring_custom_tracker:GetModifierMoveSpeedB
 end
 
 function modifier_monkey_king_primal_spring_custom_tracker:GetModifierEvasion_Constant()
+	if not IsValid(self.parent) then
+		return
+	end
 	if self.is_clone then
 		return
 	end
@@ -866,17 +862,6 @@ function modifier_monkey_king_primal_spring_custom_tracker:GetModifierOverrideAb
 end
 
 modifier_monkey_king_primal_spring_custom_banana = class(mod_hidden)
-function modifier_monkey_king_primal_spring_custom_banana:CheckState()
-	return {
-		[MODIFIER_STATE_INVULNERABLE] = true,
-		[MODIFIER_STATE_UNSELECTABLE] = true,
-		[MODIFIER_STATE_OUT_OF_GAME] = true,
-		[MODIFIER_STATE_NO_HEALTH_BAR] = true,
-		[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
-		[MODIFIER_STATE_UNTARGETABLE] = true,
-	}
-end
-
 function modifier_monkey_king_primal_spring_custom_banana:OnCreated(table)
 	if not IsServer() then
 		return
@@ -889,7 +874,6 @@ function modifier_monkey_king_primal_spring_custom_banana:OnCreated(table)
 	self.expire_timer = self.ability.talents.w7_cd
 	self.radius = self.ability.talents.w7_radius
 	self.vision = self.ability.talents.w7_vision
-	self.bounty = self.ability.talents.w7_bounty
 
 	if self.original and self.original == 1 then
 		local part = ParticleManager:CreateParticle(
@@ -915,6 +899,17 @@ function modifier_monkey_king_primal_spring_custom_banana:OnCreated(table)
 	self:StartIntervalThink(0.2)
 end
 
+function modifier_monkey_king_primal_spring_custom_banana:CheckState()
+	return {
+		[MODIFIER_STATE_INVULNERABLE] = true,
+		[MODIFIER_STATE_UNSELECTABLE] = true,
+		[MODIFIER_STATE_OUT_OF_GAME] = true,
+		[MODIFIER_STATE_NO_HEALTH_BAR] = true,
+		[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
+		[MODIFIER_STATE_UNTARGETABLE] = true,
+	}
+end
+
 function modifier_monkey_king_primal_spring_custom_banana:OnIntervalThink()
 	if not IsServer() then
 		return
@@ -931,9 +926,27 @@ function modifier_monkey_king_primal_spring_custom_banana:OnIntervalThink()
 	self.caster:EmitSound("MK.Tree_legendary_buff")
 	self.caster:GenericParticle("particles/mk_buff_start.vpcf")
 
-	self.caster:AddNewModifier(self.caster, self.ability, "modifier_monkey_king_primal_spring_custom_legendary", {})
+	local count = self.ability.bananas
+	self.caster:GiveGold(
+		self.ability.talents.w7_gold + self.ability.talents.w7_gold_inc * count,
+		true,
+		nil,
+		"modifier_monkey_king_tree_7"
+	)
+	self.caster:AddExperience(
+		self.ability.talents.w7_exp + self.ability.talents.w7_exp_inc * count,
+		DOTA_ModifyXP_Unspecified,
+		false,
+		false
+	)
+	self.caster:AddPoints(
+		"blue",
+		self.ability.talents.w7_blue + self.ability.talents.w7_blue_inc * count,
+		"modifier_monkey_king_tree_7"
+	)
+	self.ability.bananas = count + 1
 
-	dota1x6:OnRuneActivated({ banana_k = self.bounty, rune = DOTA_RUNE_BOUNTY, PlayerID = self.caster:GetId() })
+	self.caster:AddNewModifier(self.caster, self.ability, "modifier_monkey_king_primal_spring_custom_legendary", {})
 
 	self.caster:EmitSound("MK.Tree_bounty")
 	self:Destroy()
@@ -985,17 +998,10 @@ function modifier_monkey_king_primal_spring_custom_legendary:OnCreated(table)
 	if not IsServer() then
 		return
 	end
-	self:AddStack(table)
+	self:OnRefresh(table)
 end
 
 function modifier_monkey_king_primal_spring_custom_legendary:OnRefresh(table)
-	if not IsServer() then
-		return
-	end
-	self:AddStack(table)
-end
-
-function modifier_monkey_king_primal_spring_custom_legendary:AddStack(table)
 	if not IsServer() then
 		return
 	end
@@ -1135,8 +1141,15 @@ modifier_monkey_king_primal_spring_custom_shield_cd = class(mod_cd)
 function modifier_monkey_king_primal_spring_custom_shield_cd:GetTexture()
 	return "buffs/monkey_king/tree_4"
 end
-function modifier_monkey_king_primal_spring_custom_shield_cd:OnDestroy()
+function modifier_monkey_king_primal_spring_custom_shield_cd:OnCreated()
 	self.ability = self:GetAbility()
+	self.RemoveForDuel = true
+end
+
+function modifier_monkey_king_primal_spring_custom_shield_cd:OnDestroy()
+	if not IsServer() then
+		return
+	end
 	if not self.ability.tracker then
 		return
 	end
@@ -1144,4 +1157,16 @@ function modifier_monkey_king_primal_spring_custom_shield_cd:OnDestroy()
 		return
 	end
 	self.ability.tracker:CheckShield()
+end
+
+monkey_king_primal_spring_early_custom = class({})
+function monkey_king_primal_spring_early_custom:GetAbilityTextureName()
+	return wearables_system:GetAbilityIconReplacement(self.caster, "monkey_king_primal_spring", self)
+end
+
+function monkey_king_primal_spring_early_custom:OnSpellStart()
+	if not IsValid(self.caster.spring_ability) then
+		return
+	end
+	self.caster.spring_ability:EndChannel(true)
 end

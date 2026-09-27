@@ -61,7 +61,6 @@ function custom_huskar_life_break:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_oracle/oracle_purifyingflames.vpcf", context)
 	PrecacheResource("particle", "particles/huskar_earth_hit.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_snapfire/hero_snapfire_ultimate_calldown.vpcf", context)
-	PrecacheResource("particle", "particles/huskar_earth_hit.vpcf", context)
 	PrecacheResource("particle", "particles/huskar_earth_stack.vpcf", context)
 	PrecacheResource("particle", "particles/huskar_fire.vpcf", context)
 	PrecacheResource("particle", "particles/huskar/break_root.vpcf", context)
@@ -86,7 +85,6 @@ function custom_huskar_life_break:UpdateTalents()
 			r1_damage_type = caster:GetTalentValue("modifier_huskar_leap_1", "damage_type", true),
 			r1_interval = caster:GetTalentValue("modifier_huskar_leap_1", "interval", true),
 
-			has_r2 = 0,
 			r2_cd = 0,
 
 			has_r3 = 0,
@@ -94,7 +92,6 @@ function custom_huskar_life_break:UpdateTalents()
 			r3_damage = 0,
 			r3_damage_type = caster:GetTalentValue("modifier_huskar_leap_3", "damage_type", true),
 			r3_delay = caster:GetTalentValue("modifier_huskar_leap_3", "delay", true),
-			r3_health = caster:GetTalentValue("modifier_huskar_leap_3", "health", true),
 
 			has_r4 = 0,
 			r4_health = caster:GetTalentValue("modifier_huskar_leap_4", "health", true),
@@ -129,7 +126,6 @@ function custom_huskar_life_break:UpdateTalents()
 	end
 
 	if caster:HasTalent("modifier_huskar_leap_2") then
-		self.talents.has_r2 = 1
 		self.talents.r2_cd = caster:GetTalentValue("modifier_huskar_leap_2", "cd")
 	end
 
@@ -191,7 +187,7 @@ function custom_huskar_life_break:GetHealthCost()
 end
 
 function custom_huskar_life_break:GetCooldown(iLevel)
-	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.r2_cd and self.talents.r2_cd or 0)
+	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.r2_cd or 0)
 end
 
 function custom_huskar_life_break:GetCastPoint()
@@ -199,61 +195,59 @@ function custom_huskar_life_break:GetCastPoint()
 end
 
 function custom_huskar_life_break:GetBehavior()
-	if self:GetCaster():HasShard() then
+	if self.caster:HasShard() then
 		return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET + DOTA_ABILITY_BEHAVIOR_POINT + DOTA_ABILITY_BEHAVIOR_AOE
 	end
 	return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET + DOTA_ABILITY_BEHAVIOR_AOE
 end
 
 function custom_huskar_life_break:GetAOERadius()
-	return self.aoe_radius and self.aoe_radius or 0
+	return self.aoe_radius or 0
 end
 
 function custom_huskar_life_break:GetCastRange(vLocation, hTarget)
-	if IsServer() and not hTarget and self:GetCaster():HasShard() then
+	if IsServer() and not hTarget and self.caster:HasShard() then
 		return 99999
 	end
-	return (self.AbilityCastRange and self.AbilityCastRange or 0)
-		+ (self:GetCaster():HasShard() and self.shard_range or 0)
+	return (self.AbilityCastRange or 0) + (self.caster:HasShard() and (self.shard_range or 0) or 0)
 end
 
 function custom_huskar_life_break:OnSpellStart()
-	local caster = self:GetCaster()
 	local point = self:GetCursorPosition()
 	local target = self:GetCursorTarget()
-	caster:EmitSound("Hero_Huskar.Life_Break")
+	self.caster:EmitSound("Hero_Huskar.Life_Break")
 
 	if target and target:TriggerSpellAbsorb(self) then
 		return
 	end
 
 	if not target then
-		local vec = point - caster:GetAbsOrigin()
-		local max_range = self.AbilityCastRange + self.shard_range + caster:GetCastRangeBonus()
+		local vec = point - self.caster:GetAbsOrigin()
+		local max_range = self.AbilityCastRange + self.shard_range + self.caster:GetCastRangeBonus()
 		if vec:Length2D() > max_range then
-			point = caster:GetAbsOrigin() + vec:Normalized() * max_range
+			point = self.caster:GetAbsOrigin() + vec:Normalized() * max_range
 		end
 	end
 
-	caster:Purge(false, true, false, false, false)
+	self.caster:Purge(false, true, false, false, false)
 	if target then
-		caster:AddNewModifier(
-			caster,
+		self.caster:AddNewModifier(
+			self.caster,
 			self,
 			"modifier_custom_huskar_life_break",
 			{ duration = 5, ent_index = target:entindex() }
 		)
 		if
 			target:IsRealHero()
-			and caster:GetQuest() == "Huskar.Quest_8"
-			and not caster:QuestCompleted()
-			and caster:GetHealthPercent() <= caster.quest.number
+			and self.caster:GetQuest() == "Huskar.Quest_8"
+			and not self.caster:QuestCompleted()
+			and self.caster:GetHealthPercent() <= self.caster.quest.number
 		then
-			caster:UpdateQuest(1)
+			self.caster:UpdateQuest(1)
 		end
 	else
-		caster:AddNewModifier(
-			caster,
+		self.caster:AddNewModifier(
+			self.caster,
 			self,
 			"modifier_custom_huskar_life_break",
 			{ duration = 5, x = point.x, y = point.y }
@@ -268,16 +262,16 @@ function custom_huskar_life_break:ApplyDelay(target)
 	if not self:IsTrained() then
 		return
 	end
-	if self.ability.talents.has_r3 == 0 then
+	if self.talents.has_r3 == 0 then
 		return
 	end
 
 	target:RemoveModifierByName("modifier_custom_huskar_life_delay_damage")
 	target:AddNewModifier(
-		self.parent,
-		self.ability,
+		self.caster,
+		self,
 		"modifier_custom_huskar_life_delay_damage",
-		{ duration = self.ability.talents.r3_delay }
+		{ duration = self.talents.r3_delay }
 	)
 end
 
@@ -293,10 +287,6 @@ function modifier_custom_huskar_life_break:OnCreated(params)
 	self.charge_speed = self.ability.charge_speed
 	self.aoe_radius = self.ability.aoe_radius
 
-	if self.ability.talents.has_r7 == 1 then
-		self.health_cost_percent = self.health_cost_percent
-	end
-
 	if self.ability.talents.has_h6 == 1 and self.parent:GetHealthPercent() <= self.ability.talents.h6_health then
 		self.use_taunt = 1
 	end
@@ -310,18 +300,15 @@ function modifier_custom_huskar_life_break:OnCreated(params)
 	end
 	self.bkb = self.parent:AddNewModifier(self.parent, self.ability, "modifier_generic_debuff_immune", {})
 
-	self.particle_name_end = wearables_system:GetParticleReplacementAbility(
-		self:GetCaster(),
-		"particles/huskar/huskar_life_break.vpcf",
-		self
-	)
+	self.particle_name_end =
+		wearables_system:GetParticleReplacementAbility(self.parent, "particles/huskar/huskar_life_break.vpcf", self)
 	local particle_name_start = wearables_system:GetParticleReplacementAbility(
-		self:GetCaster(),
+		self.parent,
 		"particles/units/heroes/hero_huskar/huskar_life_break_spellstart.vpcf",
 		self
 	)
 	local particle_name_cast = wearables_system:GetParticleReplacementAbility(
-		self:GetCaster(),
+		self.parent,
 		"particles/units/heroes/hero_huskar/huskar_life_break_cast.vpcf",
 		self
 	)
@@ -379,6 +366,10 @@ function modifier_custom_huskar_life_break:UpdateHorizontalMotion(me, dt)
 	if not IsServer() then
 		return
 	end
+	if self.target and not IsValid(self.target) then
+		self:Destroy()
+		return
+	end
 
 	local target
 	if self.target then
@@ -387,7 +378,7 @@ function modifier_custom_huskar_life_break:UpdateHorizontalMotion(me, dt)
 		target = self.point
 	end
 
-	me:FaceTowards(target)
+	self.parent:FaceTowards(target)
 
 	local distance = (target - me:GetOrigin()):Normalized()
 	me:SetOrigin(me:GetOrigin() + distance * self.charge_speed * dt)
@@ -452,7 +443,65 @@ function modifier_custom_huskar_life_break:OnDestroy()
 			ParticleManager:ReleaseParticleIndex(particle)
 		else
 			for _, unit in pairs(targets) do
-				self:ImpactDamage(unit)
+				if self.ability.talents.has_q7 == 0 then
+					self.ability:ApplyDelay(unit)
+				end
+
+				if IsValid(self.parent.inner_ability) then
+					self.parent.inner_ability:ApplyBurn(unit)
+				end
+
+				local particle = ParticleManager:CreateParticle(self.particle_name_end, PATTACH_WORLDORIGIN, nil)
+				ParticleManager:SetParticleControl(particle, 0, unit:GetAbsOrigin())
+				ParticleManager:SetParticleControl(particle, 1, unit:GetAbsOrigin())
+				ParticleManager:ReleaseParticleIndex(particle)
+
+				unit:AddNewModifier(
+					self.parent,
+					self.ability,
+					"modifier_custom_huskar_life_break_slow",
+					{ duration = self.ability.slow_durtion * (1 - unit:GetStatusResistance()) }
+				)
+
+				local unit_damage = self.heroes_damage * unit:GetHealth()
+				local unit_damage_type = DAMAGE_TYPE_MAGICAL
+				local source = nil
+				if self.ability.talents.has_r7 == 1 then
+					unit_damage_type = self.ability.talents.r7_damage_type
+					unit_damage = self.ability.talents.r7_damage
+						* (self.parent:GetMaxHealth() - self.parent:GetHealth())
+					source = "modifier_huskar_leap_7"
+				end
+				if unit:IsCreep() then
+					unit_damage = self.creeps_damage * self.parent:GetMaxHealth()
+					source = nil
+				end
+
+				if self.use_taunt == 1 and not unit:HasModifier("modifier_custom_huskar_life_taunt_cd") then
+					unit:AddNewModifier(
+						self.parent,
+						self.ability,
+						"modifier_custom_huskar_life_taunt_cd",
+						{ duration = self.ability.talents.h6_talent_cd }
+					)
+					unit:AddNewModifier(
+						self.parent,
+						self.ability,
+						"modifier_generic_taunt",
+						{ duration = (1 - unit:GetStatusResistance()) * self.ability.talents.h6_taunt }
+					)
+				end
+
+				DoDamage(
+					{
+						victim = unit,
+						attacker = self.parent,
+						damage = unit_damage,
+						damage_type = unit_damage_type,
+						ability = self.ability,
+					},
+					source
+				)
 			end
 		end
 
@@ -505,69 +554,7 @@ function modifier_custom_huskar_life_break:GetModifierDisableTurning()
 	return 1
 end
 
-function modifier_custom_huskar_life_break:ImpactDamage(target)
-	if not IsServer() then
-		return
-	end
-
-	if self.ability.talents.has_q7 == 0 then
-		self.ability:ApplyDelay(target)
-	end
-
-	if IsValid(self.parent.inner_ability) then
-		self.parent.inner_ability:ApplyBurn(target)
-	end
-
-	local particle = ParticleManager:CreateParticle(self.particle_name_end, PATTACH_WORLDORIGIN, nil)
-	ParticleManager:SetParticleControl(particle, 0, target:GetAbsOrigin())
-	ParticleManager:SetParticleControl(particle, 1, target:GetAbsOrigin())
-	ParticleManager:ReleaseParticleIndex(particle)
-
-	target:AddNewModifier(
-		self.parent,
-		self.ability,
-		"modifier_custom_huskar_life_break_slow",
-		{ duration = self.ability.slow_durtion * (1 - target:GetStatusResistance()) }
-	)
-
-	local damage = self.heroes_damage * target:GetHealth()
-	local damage_type = DAMAGE_TYPE_MAGICAL
-	if self.ability.talents.has_r7 == 1 then
-		damage_type = self.ability.talents.r7_damage_type
-		damage = self.ability.talents.r7_damage * (self.parent:GetMaxHealth() - self.parent:GetHealth())
-	end
-	if target:IsCreep() then
-		damage = self.creeps_damage * self.parent:GetMaxHealth()
-	end
-
-	if self.use_taunt == 1 and not target:HasModifier("modifier_custom_huskar_life_taunt_cd") then
-		target:AddNewModifier(
-			self.parent,
-			self.ability,
-			"modifier_custom_huskar_life_taunt_cd",
-			{ duration = self.ability.talents.h6_talent_cd }
-		)
-		target:AddNewModifier(
-			self.parent,
-			self.ability,
-			"modifier_generic_taunt",
-			{ duration = (1 - target:GetStatusResistance()) * self.ability.talents.h6_taunt }
-		)
-	end
-
-	DoDamage({
-		victim = target,
-		attacker = self.parent,
-		damage = damage,
-		damage_type = damage_type,
-		ability = self.ability,
-	})
-end
-
-modifier_custom_huskar_life_break_slow = class({})
-function modifier_custom_huskar_life_break_slow:IsHidden()
-	return false
-end
+modifier_custom_huskar_life_break_slow = class(mod_visible)
 function modifier_custom_huskar_life_break_slow:IsPurgable()
 	return true
 end
@@ -587,7 +574,8 @@ function modifier_custom_huskar_life_break_slow:OnCreated()
 end
 
 function modifier_custom_huskar_life_break_slow:OnRefresh()
-	self:OnCreated()
+	self.attackspeed = self.ability.attack_speed
+	self.movespeed = self.ability.movespeed
 end
 
 function modifier_custom_huskar_life_break_slow:DeclareFunctions()
@@ -600,11 +588,30 @@ end
 function modifier_custom_huskar_life_break_slow:GetModifierAttackSpeedBonus_Constant()
 	return self.attackspeed
 end
+
 function modifier_custom_huskar_life_break_slow:GetModifierMoveSpeedBonus_Percentage()
 	return self.movespeed
 end
 
 modifier_custom_huskar_life_break_tracker = class(mod_hidden)
+function modifier_custom_huskar_life_break_tracker:IsAura()
+	return self.ability.talents.has_r1 == 1
+end
+function modifier_custom_huskar_life_break_tracker:GetAuraDuration()
+	return 0.1
+end
+function modifier_custom_huskar_life_break_tracker:GetAuraRadius()
+	return self.ability.talents.r1_radius
+end
+function modifier_custom_huskar_life_break_tracker:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_ENEMY
+end
+function modifier_custom_huskar_life_break_tracker:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
+end
+function modifier_custom_huskar_life_break_tracker:GetModifierAura()
+	return "modifier_custom_huskar_life_break_aura_damage"
+end
 function modifier_custom_huskar_life_break_tracker:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -675,9 +682,6 @@ function modifier_custom_huskar_life_break_tracker:OnIntervalThink()
 		return
 	end
 
-	--local cd_inc = self.ability.talents.r7_cd_inc
-	--cd_inc = math.min(cd_inc, cd_inc - ((self.parent:GetHealthPercent() - self.ability.talents.r7_health) / (100 - self.ability.talents.r7_health) * cd_inc))
-
 	local stack = 0
 	local override = (self.ability.talents.r7_damage * (self.parent:GetMaxHealth() - self.parent:GetHealth()))
 		* (1 + self.parent:GetSpellAmplification(false))
@@ -691,25 +695,6 @@ function modifier_custom_huskar_life_break_tracker:OnIntervalThink()
 	end
 
 	self.parent:UpdateUIlong({ stack = stack, override_stack = math.floor(override), max = 1, style = "HuskarBreak" })
-end
-
-function modifier_custom_huskar_life_break_tracker:IsAura()
-	return self.ability.talents.has_r1 == 1
-end
-function modifier_custom_huskar_life_break_tracker:GetAuraDuration()
-	return 0.1
-end
-function modifier_custom_huskar_life_break_tracker:GetAuraRadius()
-	return self.ability.talents.r1_radius
-end
-function modifier_custom_huskar_life_break_tracker:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_ENEMY
-end
-function modifier_custom_huskar_life_break_tracker:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
-end
-function modifier_custom_huskar_life_break_tracker:GetModifierAura()
-	return "modifier_custom_huskar_life_break_aura_damage"
 end
 
 modifier_custom_huskar_life_break_aura_damage = class(mod_visible)
@@ -839,6 +824,11 @@ function modifier_custom_huskar_life_break_heal:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 	self.heal = self.ability.talents.h3_heal
+
+	if not IsServer() then
+		return
+	end
+	self.RemoveForDuel = true
 end
 
 function modifier_custom_huskar_life_break_heal:DeclareFunctions()

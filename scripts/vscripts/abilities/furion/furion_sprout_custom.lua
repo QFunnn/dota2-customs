@@ -83,12 +83,12 @@ function furion_sprout_custom:Precache(context)
 	PrecacheResource("particle", "particles/nature_prophet/sprout_treant_death.vpcf", context)
 	PrecacheResource("particle", "particles/nature_prophet/sprout_leash.vpcf", context)
 	PrecacheResource("particle", "particles/nature_prophet/sprout_hit.vpcf", context)
-	PrecacheResource("particle", "particles/units/heroes/hero_furion/furion_sprout_damage.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_natures_prophet_curse.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_enchantress_shard_debuff.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_sniper/sniper_headshot_slow.vpcf", context)
-	PrecacheResource("particle", "particles/units/heroes/hero_furion/furion_sprout_damage.vpcf", context)
 	PrecacheResource("particle", "particles/furion/sprout_delay.vpcf", context)
+	PrecacheResource("particle", "particles/nature_prophet/teleport_knock.vpcf", context)
+	PrecacheResource("particle", "particles/items2_fx/heavens_halberd.vpcf", context)
 	PrecacheResource("particle", "particles/nature_prophet/sprout_buff.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_hoodwink/hoodwink_scurry_aura.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_furion/furion_arboreal_might_buff.vpcf", context)
@@ -155,7 +155,7 @@ function furion_sprout_custom:UpdateTalents(name)
 
 	if caster:HasTalent("modifier_furion_sprout_4") then
 		self.talents.has_q4 = 1
-		if IsServer() and not self.q4_init then
+		if IsServer() and not self.q4_init and IsValid(self.tracker) then
 			self.q4_init = true
 			self.tracker:StartIntervalThink(0.5)
 		end
@@ -174,19 +174,11 @@ function furion_sprout_custom:GetIntrinsicModifierName()
 end
 
 function furion_sprout_custom:GetCooldown(iLevel)
-	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.q1_cd and self.talents.q1_cd or 0)
+	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.q1_cd or 0)
 end
 
 function furion_sprout_custom:GetAOERadius()
-	return self.radius and self.radius or 0
-end
-
-function furion_sprout_custom:GetDamage(target)
-	local k = 1
-	if target and target:IsCreep() then
-		k = k + self.creeps
-	end
-	return (self.sprout_damage + self.talents.q1_base + self.talents.q1_damage * self.caster:GetMaxHealth()) * k
+	return self.radius or 0
 end
 
 function furion_sprout_custom:OnSpellStart()
@@ -205,7 +197,7 @@ function furion_sprout_custom:OnSpellStart()
 		nil
 	)
 	ParticleManager:SetParticleControl(nFXIndex, 0, vTargetPosition)
-	ParticleManager:SetParticleControl(nFXIndex, 1, Vector(0.0, r, 0.0))
+	ParticleManager:SetParticleControl(nFXIndex, 1, Vector(0.0, self.radius, 0.0))
 	ParticleManager:ReleaseParticleIndex(nFXIndex)
 
 	for i = 1, self.tree_count do
@@ -239,12 +231,12 @@ function furion_sprout_custom:OnSpellStart()
 		false
 	)
 
-	if self.ability.talents.has_q3 == 1 then
+	if self.talents.has_q3 == 1 then
 		CreateModifierThinker(
 			self.caster,
 			self,
 			"modifier_furion_sprout_custom_delay",
-			{ duration = self.ability.talents.q3_delay },
+			{ duration = self.talents.q3_delay },
 			vTargetPosition,
 			self.caster:GetTeamNumber(),
 			false
@@ -252,7 +244,33 @@ function furion_sprout_custom:OnSpellStart()
 	end
 end
 
+function furion_sprout_custom:GetDamage(target)
+	local k = 1
+	if target and target:IsCreep() then
+		k = k + self.creeps
+	end
+	return (self.sprout_damage + self.talents.q1_base + self.talents.q1_damage * self.caster:GetMaxHealth()) * k
+end
+
 modifier_furion_sprout_custom = class(mod_hidden)
+function modifier_furion_sprout_custom:IsAura()
+	return true
+end
+function modifier_furion_sprout_custom:GetModifierAura()
+	return "modifier_furion_sprout_custom_aura"
+end
+function modifier_furion_sprout_custom:GetAuraRadius()
+	return self.radius
+end
+function modifier_furion_sprout_custom:GetAuraDuration()
+	return 0.1
+end
+function modifier_furion_sprout_custom:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_ENEMY
+end
+function modifier_furion_sprout_custom:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
+end
 function modifier_furion_sprout_custom:OnCreated(params)
 	if not IsServer() then
 		return
@@ -300,28 +318,12 @@ function modifier_furion_sprout_custom:OnDestroy()
 	self.ability:StartCd()
 end
 
-function modifier_furion_sprout_custom:IsAura()
-	return true
-end
-function modifier_furion_sprout_custom:GetModifierAura()
-	return "modifier_furion_sprout_custom_aura"
-end
-function modifier_furion_sprout_custom:GetAuraRadius()
-	return self.radius
-end
-function modifier_furion_sprout_custom:GetAuraDuration()
-	return 0.1
-end
-function modifier_furion_sprout_custom:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_ENEMY
-end
-function modifier_furion_sprout_custom:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
-end
-
 modifier_furion_sprout_custom_aura = class(mod_hidden)
 function modifier_furion_sprout_custom_aura:GetEffectName()
 	return "particles/units/heroes/hero_furion/furion_sprout_damage.vpcf"
+end
+function modifier_furion_sprout_custom_aura:StatusEffectPriority()
+	return MODIFIER_PRIORITY_HIGH
 end
 function modifier_furion_sprout_custom_aura:OnCreated()
 	self.parent = self:GetParent()
@@ -361,10 +363,6 @@ function modifier_furion_sprout_custom_aura:GetStatusEffectName()
 		return
 	end
 	return "particles/status_fx/status_effect_enchantress_shard_debuff.vpcf"
-end
-
-function modifier_furion_sprout_custom_aura:StatusEffectPriority()
-	return MODIFIER_PRIORITY_HIGH
 end
 
 function modifier_furion_sprout_custom_aura:DeclareFunctions()
@@ -444,6 +442,24 @@ end
 function modifier_furion_sprout_custom_tracker:GetTexture()
 	return "buffs/furion/sprout_4"
 end
+function modifier_furion_sprout_custom_tracker:IsAura()
+	return IsServer() and self.parent:IsAlive() and self.ability.talents.has_q3 == 1
+end
+function modifier_furion_sprout_custom_tracker:GetModifierAura()
+	return "modifier_furion_sprout_custom_resist"
+end
+function modifier_furion_sprout_custom_tracker:GetAuraRadius()
+	return self.ability.talents.q3_radius
+end
+function modifier_furion_sprout_custom_tracker:GetAuraDuration()
+	return 1
+end
+function modifier_furion_sprout_custom_tracker:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_ENEMY
+end
+function modifier_furion_sprout_custom_tracker:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
+end
 function modifier_furion_sprout_custom_tracker:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -485,17 +501,7 @@ function modifier_furion_sprout_custom_tracker:OnIntervalThink()
 
 	local count = #GridNav:GetAllTreesAroundPoint(self.parent:GetOrigin(), self.ability.talents.q4_radius, false)
 
-	self.treants = FindUnitsInRadius(
-		self.parent:GetTeamNumber(),
-		self.parent:GetAbsOrigin(),
-		nil,
-		self.ability.talents.q4_radius,
-		DOTA_UNIT_TARGET_TEAM_FRIENDLY,
-		DOTA_UNIT_TARGET_BASIC,
-		DOTA_UNIT_TARGET_FLAG_INVULNERABLE,
-		FIND_CLOSEST,
-		false
-	)
+	self.treants = self.parent:FindFriends(self.ability.talents.q4_radius, nil, nil, DOTA_UNIT_TARGET_FLAG_INVULNERABLE)
 	for _, treant in pairs(self.treants) do
 		if treant.is_treant and treant.owner and treant.owner == self.parent then
 			count = count + 1
@@ -523,25 +529,6 @@ function modifier_furion_sprout_custom_tracker:OnTooltip()
 		return
 	end
 	return self.ability.talents.q4_str * self:GetStackCount()
-end
-
-function modifier_furion_sprout_custom_tracker:IsAura()
-	return IsServer() and self.parent:IsAlive() and self.ability.talents.has_q3 == 1
-end
-function modifier_furion_sprout_custom_tracker:GetModifierAura()
-	return "modifier_furion_sprout_custom_resist"
-end
-function modifier_furion_sprout_custom_tracker:GetAuraRadius()
-	return self.ability.talents.q3_radius
-end
-function modifier_furion_sprout_custom_tracker:GetAuraDuration()
-	return 1
-end
-function modifier_furion_sprout_custom_tracker:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_ENEMY
-end
-function modifier_furion_sprout_custom_tracker:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
 end
 
 modifier_furion_sprout_custom_delay = class(mod_hidden)
@@ -678,11 +665,11 @@ function furion_sprout_custom_legendary:UpdateTalents(name)
 end
 
 function furion_sprout_custom_legendary:GetAOERadius()
-	return self.talents.q7_radius and self.talents.q7_radius or 0
+	return self.talents.q7_radius or 0
 end
 
 function furion_sprout_custom_legendary:GetCooldown()
-	return self.talents.q7_talent_cd and self.talents.q7_talent_cd or 0
+	return self.talents.q7_talent_cd or 0
 end
 
 function furion_sprout_custom_legendary:OnSpellStart()
@@ -712,6 +699,24 @@ function furion_sprout_custom_legendary:OnSpellStart()
 end
 
 modifier_furion_sprout_custom_legendary = class(mod_hidden)
+function modifier_furion_sprout_custom_legendary:IsAura()
+	return true
+end
+function modifier_furion_sprout_custom_legendary:GetModifierAura()
+	return "modifier_furion_sprout_custom_legendary_effect"
+end
+function modifier_furion_sprout_custom_legendary:GetAuraRadius()
+	return self.ability.talents.q7_radius
+end
+function modifier_furion_sprout_custom_legendary:GetAuraDuration()
+	return 1
+end
+function modifier_furion_sprout_custom_legendary:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_ENEMY
+end
+function modifier_furion_sprout_custom_legendary:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
+end
 function modifier_furion_sprout_custom_legendary:OnCreated(table)
 	if not IsServer() then
 		return
@@ -754,7 +759,7 @@ function modifier_furion_sprout_custom_legendary:OnCreated(table)
 		self.caster,
 		self.caster:GetTeamNumber()
 	)
-	self.treant:AddNewModifier(self.caster, self, "modifier_kill", { duration = self.time })
+	self.treant:AddNewModifier(self.caster, self.ability, "modifier_kill", { duration = self.time })
 	self.treant.owner = self.caster
 
 	self.treant:AddNewModifier(self.caster, self.ability, "modifier_furion_sprout_custom_legendary_treant", {})
@@ -767,10 +772,7 @@ function modifier_furion_sprout_custom_legendary:OnCreated(table)
 	self.treant:SetPhysicalArmorBaseValue(self.ability.talents.q7_armor)
 	self.treant:SetBaseMagicalResistanceValue(self.ability.talents.q7_magic)
 
-	local dir = Vector(0, -1, 0)
-
-	self.treant:FaceTowards(self.treant:GetAbsOrigin() + dir * 5)
-	self.treant:SetForwardVector(dir)
+	self.treant:FacePoint(self.treant:GetAbsOrigin() + Vector(0, -1, 0))
 
 	AddFOWViewer(self.caster:GetTeamNumber(), self.point, self.radius * 1.2, self.time + 2, false)
 
@@ -787,7 +789,7 @@ function modifier_furion_sprout_custom_legendary:OnCreated(table)
 	ParticleManager:SetParticleControl(self.border, 2, Vector(self.time, 0, 0))
 	self:AddParticle(self.border, false, false, -1, false, false)
 
-	self.tartgets = {}
+	self.targets = {}
 	self.interval = FrameTime() * 2
 	self.damage_interval = 0.5
 
@@ -818,11 +820,11 @@ function modifier_furion_sprout_custom_legendary:OnIntervalThink()
 		if do_damage and IsValid(self.sprout) then
 			self.damageTable.victim = target
 			self.damageTable.damage = self.sprout:GetDamage(target) * self.damage * self.damage_interval
-			DoDamage(self.damageTable)
+			DoDamage(self.damageTable, "modifier_furion_sprout_7")
 		end
 
-		if not self.tartgets[target] and has_treant then
-			self.tartgets[target] = true
+		if not self.targets[target] and has_treant then
+			self.targets[target] = true
 			target:AddNewModifier(
 				self.caster,
 				self.ability,
@@ -859,25 +861,6 @@ function modifier_furion_sprout_custom_legendary:OnDestroy()
 	self.parent:StopSound("Furion.legendary_loop2")
 
 	self.caster:UpdateUIshort({ hide = 1, hide_full = 1, style = "FurionSprout" })
-end
-
-function modifier_furion_sprout_custom_legendary:IsAura()
-	return true
-end
-function modifier_furion_sprout_custom_legendary:GetModifierAura()
-	return "modifier_furion_sprout_custom_legendary_effect"
-end
-function modifier_furion_sprout_custom_legendary:GetAuraRadius()
-	return self.ability.talents.q7_radius
-end
-function modifier_furion_sprout_custom_legendary:GetAuraDuration()
-	return 1
-end
-function modifier_furion_sprout_custom_legendary:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_ENEMY
-end
-function modifier_furion_sprout_custom_legendary:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
 end
 
 modifier_furion_sprout_custom_legendary_treant = class(mod_hidden)
@@ -1007,9 +990,6 @@ function modifier_furion_sprout_custom_legendary_leash:OnIntervalThink()
 
 	self.parent:EmitSound("Furion.Sprout_knock")
 
-	local vec = (self.parent:GetAbsOrigin() - self.point):Normalized()
-	local knock_point = self.point + vec * self.knock_dist
-
 	self.treant:RemoveGesture(ACT_DOTA_ATTACK)
 	self.treant:StartGestureWithPlaybackRate(ACT_DOTA_ATTACK, 1.4)
 
@@ -1042,17 +1022,16 @@ function modifier_furion_sprout_custom_legendary_leash:OnIntervalThink()
 	distance = math.max(100, distance)
 	point = self.parent:GetAbsOrigin() + dir * distance
 
-	local mod =
-		self.parent:AddNewModifier(self.caster, self.caster:BkbAbility(self.ability, true), "modifier_generic_arc", {
-			target_x = point.x,
-			target_y = point.y,
-			distance = distance,
-			duration = self.knockback_duration,
-			height = 0,
-			fix_end = false,
-			isStun = true,
-			activity = ACT_DOTA_FLAIL,
-		})
+	self.parent:AddNewModifier(self.caster, self.caster:BkbAbility(self.ability, true), "modifier_generic_arc", {
+		target_x = point.x,
+		target_y = point.y,
+		distance = distance,
+		duration = self.knockback_duration,
+		height = 0,
+		fix_end = false,
+		isStun = true,
+		activity = ACT_DOTA_FLAIL,
+	})
 end
 
 modifier_furion_sprout_custom_legendary_effect = class(mod_hidden)

@@ -76,10 +76,7 @@ LinkLuaModifier(
 
 tinker_march_of_the_machines_custom = class({})
 tinker_march_of_the_machines_custom.talents = {}
-
-function tinker_march_of_the_machines_custom:CreateTalent()
-	self:ToggleAutoCast()
-end
+tinker_march_of_the_machines_custom.visual_max = 5
 
 function tinker_march_of_the_machines_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
@@ -98,6 +95,14 @@ function tinker_march_of_the_machines_custom:Precache(context)
 		context
 	)
 	PrecacheResource("particle", "particles/hoodwink/bush_damage.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_tinker/tinker_shard_warp_start_b.vpcf", context)
+	PrecacheResource("particle", "particles/items_fx/blink_dagger_end.vpcf", context)
+	PrecacheResource(
+		"particle",
+		"particles/econ/items/zeus/zeus_immortal_2021/zeus_immortal_2021_static_field.vpcf",
+		context
+	)
+	PrecacheResource("particle", "particles/units/heroes/hero_terrorblade/terrorblade_reflection_slow.vpcf", context)
 end
 
 function tinker_march_of_the_machines_custom:UpdateTalents()
@@ -114,7 +119,6 @@ function tinker_march_of_the_machines_custom:UpdateTalents()
 			w1_talent_cd = caster:GetTalentValue("modifier_tinker_march_1", "talent_cd", true),
 			w1_duration = caster:GetTalentValue("modifier_tinker_march_1", "duration", true),
 
-			has_w2 = 0,
 			w2_speed = 0,
 
 			has_w3 = 0,
@@ -143,7 +147,6 @@ function tinker_march_of_the_machines_custom:UpdateTalents()
 			w7_stun = caster:GetTalentValue("modifier_tinker_march_7", "stun", true),
 			w7_speed = caster:GetTalentValue("modifier_tinker_march_7", "speed", true),
 			w7_armor = caster:GetTalentValue("modifier_tinker_march_7", "armor", true) / 100,
-			w7_visual_max = 5,
 
 			has_e2 = 0,
 			e2_slow = 0,
@@ -164,8 +167,7 @@ function tinker_march_of_the_machines_custom:UpdateTalents()
 	end
 
 	if caster:HasTalent("modifier_tinker_march_2") then
-		self.talents.has_w2 = 1
-		self.talents.w2_speed = caster:GetTalentValue("modifier_tinker_march_2", "speed")
+		self.talents.w2_speed = caster:GetTalentValue("modifier_tinker_march_2", "speed") / 100
 	end
 
 	if caster:HasTalent("modifier_tinker_march_3") then
@@ -198,6 +200,10 @@ function tinker_march_of_the_machines_custom:UpdateTalents()
 	end
 end
 
+function tinker_march_of_the_machines_custom:CreateTalent()
+	self:ToggleAutoCast()
+end
+
 function tinker_march_of_the_machines_custom:GetAbilityTextureName()
 	return wearables_system:GetAbilityIconReplacement(self.caster, "tinker_march_of_the_machines", self)
 end
@@ -225,13 +231,6 @@ function tinker_march_of_the_machines_custom:GetCastPoint(iLevel)
 	return self.BaseClass.GetCastPoint(self) + (self.talents.has_w4 == 1 and self.talents.w4_cast or 0)
 end
 
-function tinker_march_of_the_machines_custom:OnVectorCastStart(vStartLocation, vDirection)
-	if self.talents.has_w7 == 0 then
-		return
-	end
-	self:Cast(vStartLocation, vDirection)
-end
-
 function tinker_march_of_the_machines_custom:GetManaCost(level)
 	return self.BaseClass.GetManaCost(self, level) * (1 + (self.talents.has_w7 == 1 and self.talents.w7_mana or 0))
 end
@@ -247,113 +246,18 @@ function tinker_march_of_the_machines_custom:OnSpellStart()
 	self:Cast(self:GetCursorPosition())
 end
 
-function tinker_march_of_the_machines_custom:Cast(cast_point, dir)
-	local caster = self:GetCaster()
-	local point = caster:CastPosition(cast_point)
-
-	if
-		self.talents.has_w4 == 1
-		and self:GetAutoCastState()
-		and not self.caster:IsLeashed()
-		and not self.caster:IsRooted()
-	then
-		local old_point = self.caster:GetAbsOrigin()
-		local dir = self.caster:GetForwardVector() * -1
-		local point = self.caster:GetAbsOrigin() + dir * self.talents.w4_distance
-
-		local particle = ParticleManager:CreateParticle(
-			"particles/units/heroes/hero_tinker/tinker_shard_warp_start_b.vpcf",
-			PATTACH_WORLDORIGIN,
-			nil
-		)
-		ParticleManager:SetParticleControl(particle, 0, self.caster:GetAbsOrigin())
-		ParticleManager:SetParticleControlForward(particle, 0, dir)
-		ParticleManager:ReleaseParticleIndex(particle)
-
-		self.caster:Teleport(point, true, nil, "particles/items_fx/blink_dagger_end.vpcf", "Tinker.Matrix_blink")
-	end
-
-	local direction = (point - caster:GetOrigin()):Normalized()
-	if dir then
-		direction = dir
-	end
-	direction.z = 0
-
-	local duration = self.duration + self.talents.w3_duration
-
+function tinker_march_of_the_machines_custom:OnVectorCastStart(vStartLocation, vDirection)
 	if self.talents.has_w7 == 0 then
-		point = point - direction * self.distance / 2
-	else
-		self.radius = self.talents.w7_width
-		point = point - direction * 200
-		AddFOWViewer(caster:GetTeamNumber(), point, self.radius * 2, duration, false)
+		return
 	end
-
-	local particle_name = wearables_system:GetParticleReplacementAbility(
-		caster,
-		"particles/units/heroes/hero_tinker/tinker_motm.vpcf",
-		self
-	)
-	local sound_name = wearables_system:GetSoundReplacement(caster, "Hero_Tinker.March_of_the_Machines.Cast", self)
-	local sound_effect = wearables_system:GetSoundReplacement(caster, "Hero_Tinker.March_of_the_Machines", self)
-	if
-		particle_name == "particles/econ/items/tinker/tinker_cosmic/tinker_cosmic_mom.vpcf"
-		or sound_effect ~= "Hero_Tinker.March_of_the_Machines"
-	then
-		EmitSoundOnLocationForAllies(caster:GetOrigin(), "Hero_Tinker.March_of_the_Machines.Cosmic", caster)
-	end
-
-	local particle = ParticleManager:CreateParticle(particle_name, PATTACH_CUSTOMORIGIN, caster)
-	ParticleManager:SetParticleControlEnt(
-		particle,
-		0,
-		caster,
-		PATTACH_POINT_FOLLOW,
-		"attach_attack1",
-		caster:GetOrigin(),
-		true
-	)
-	ParticleManager:SetParticleControlEnt(particle, 1, caster, PATTACH_ABSORIGIN, nil, caster:GetOrigin(), true)
-	ParticleManager:ReleaseParticleIndex(particle)
-
-	EmitSoundOnLocationForAllies(caster:GetOrigin(), sound_name, caster)
-
-	local use_legendary = 0
-	local legendary_mod = caster:FindModifierByName("modifier_tinker_march_of_the_machines_custom_legendary_stack")
-	if legendary_mod and legendary_mod:GetStackCount() >= self.talents.w7_max then
-		caster:AddNewModifier(
-			caster,
-			self,
-			"modifier_tinker_march_of_the_machines_custom_legendary_cd",
-			{ duration = self.talents.w7_cd }
-		)
-		legendary_mod:Destroy()
-		use_legendary = 1
-	end
-
-	caster:AddNewModifier(
-		caster,
-		self,
-		"modifier_tinker_march_of_the_machines_custom_active",
-		{ duration = duration + 2 }
-	)
-	CreateModifierThinker(
-		caster,
-		self,
-		"modifier_tinker_march_of_the_machines_custom",
-		{ x = direction.x, y = direction.y, legendary = use_legendary, duration = duration },
-		GetGroundPosition(point, nil),
-		caster:GetTeamNumber(),
-		false
-	)
+	self:Cast(vStartLocation, vDirection)
 end
 
 function tinker_march_of_the_machines_custom:OnProjectileHit_ExtraData(target, location, extraData)
 	if not target then
 		return true
 	end
-	local caster = self:GetCaster()
-	if target:GetTeamNumber() == caster:GetTeamNumber() then
+	if target:GetTeamNumber() == self.caster:GetTeamNumber() then
 		return false
 	end
 
@@ -363,15 +267,10 @@ function tinker_march_of_the_machines_custom:OnProjectileHit_ExtraData(target, l
 
 	if extraData.is_legendary == 1 then
 		radius = self.talents.w7_damage_radius
-		self.caster:AddNewModifier(
-			self.caster,
-			self.ability,
-			"modifier_tinker_march_of_the_machines_custom_legendary_crit",
-			{}
-		)
+		self.caster:AddNewModifier(self.caster, self, "modifier_tinker_march_of_the_machines_custom_legendary_crit", {})
 
-		EmitSoundOnLocationWithCaster(location, "Tinker.March_legendary_explosion", caster)
-		EmitSoundOnLocationWithCaster(location, "Tinker.March_legendary_explosion2", caster)
+		EmitSoundOnLocationWithCaster(location, "Tinker.March_legendary_explosion", self.caster)
+		EmitSoundOnLocationWithCaster(location, "Tinker.March_legendary_explosion2", self.caster)
 
 		local nFXIndex = ParticleManager:CreateParticle(
 			"particles/units/heroes/hero_techies/techies_land_mine_explode.vpcf",
@@ -384,47 +283,44 @@ function tinker_march_of_the_machines_custom:OnProjectileHit_ExtraData(target, l
 		ParticleManager:ReleaseParticleIndex(nFXIndex)
 	end
 
-	if extraData.is_auto and extraData.is_auto == 1 then
+	if extraData.is_auto == 1 then
 		damage_ability = "modifier_tinker_march_1"
 	end
 
 	local damageTable = {
-		attacker = caster,
+		attacker = self.caster,
 		damage = damage,
 		damage_type = DAMAGE_TYPE_PHYSICAL,
 		damage_flags = DOTA_DAMAGE_FLAG_BYPASSES_PHYSICAL_BLOCK,
 		ability = self,
 	}
-	local enemies = caster:FindTargets(radius, location)
+	local enemies = self.caster:FindTargets(radius, location)
 	for _, enemy in ipairs(enemies) do
 		damageTable.victim = enemy
 		if enemy:IsRealHero() then
 			if
 				self.talents.has_w7 == 1
-				and not caster:HasModifier("modifier_tinker_march_of_the_machines_custom_legendary_cd")
+				and not self.caster:HasModifier("modifier_tinker_march_of_the_machines_custom_legendary_cd")
 			then
-				caster:AddNewModifier(
-					caster,
+				self.caster:AddNewModifier(
+					self.caster,
 					self,
 					"modifier_tinker_march_of_the_machines_custom_legendary_stack",
 					{ duration = self.talents.w7_duration }
 				)
 			end
-			if caster:GetQuest() == "Tinker.Quest_6" and not caster:QuestCompleted() then
-				caster:UpdateQuest(1)
+			if self.caster:GetQuest() == "Tinker.Quest_6" and not self.caster:QuestCompleted() then
+				self.caster:UpdateQuest(1)
 			end
 		end
 
 		if extraData.is_legendary == 1 then
 			enemy:AddNewModifier(
-				caster,
+				self.caster,
 				self,
 				"modifier_stunned",
 				{ duration = (1 - enemy:GetStatusResistance()) * self.talents.w7_stun }
 			)
-		end
-
-		if extraData.is_legendary == 1 then
 			if not enemy:IsCreep() then
 				enemy:AddNewModifier(
 					self.caster,
@@ -436,7 +332,7 @@ function tinker_march_of_the_machines_custom:OnProjectileHit_ExtraData(target, l
 			self.caster:PerformAttack(enemy, true, true, true, true, false, false, true)
 			enemy:RemoveModifierByName("modifier_tinker_march_of_the_machines_custom_legendary_armor")
 		else
-			self:ProcEffects(enemy, true)
+			self:ProcEffects(enemy)
 			DoDamage(damageTable, damage_ability)
 		end
 	end
@@ -445,7 +341,113 @@ function tinker_march_of_the_machines_custom:OnProjectileHit_ExtraData(target, l
 	return true
 end
 
-function tinker_march_of_the_machines_custom:ProcEffects(target, is_march)
+function tinker_march_of_the_machines_custom:Cast(cast_point, dir)
+	local point = self.caster:CastPosition(cast_point)
+
+	if
+		self.talents.has_w4 == 1
+		and self:GetAutoCastState()
+		and not self.caster:IsLeashed()
+		and not self.caster:IsRooted()
+	then
+		local blink_dir = self.caster:GetForwardVector() * -1
+		local blink_point = self.caster:GetAbsOrigin() + blink_dir * self.talents.w4_distance
+
+		local particle = ParticleManager:CreateParticle(
+			"particles/units/heroes/hero_tinker/tinker_shard_warp_start_b.vpcf",
+			PATTACH_WORLDORIGIN,
+			nil
+		)
+		ParticleManager:SetParticleControl(particle, 0, self.caster:GetAbsOrigin())
+		ParticleManager:SetParticleControlForward(particle, 0, blink_dir)
+		ParticleManager:ReleaseParticleIndex(particle)
+
+		self.caster:Teleport(blink_point, true, nil, "particles/items_fx/blink_dagger_end.vpcf", "Tinker.Matrix_blink")
+	end
+
+	local direction = (point - self.caster:GetOrigin()):Normalized()
+	if dir then
+		direction = dir
+	end
+	direction.z = 0
+
+	local duration = self.duration + self.talents.w3_duration
+
+	if self.talents.has_w7 == 0 then
+		point = point - direction * self.distance / 2
+	else
+		point = point - direction * 200
+		AddFOWViewer(self.caster:GetTeamNumber(), point, self.talents.w7_width * 2, duration, false)
+	end
+
+	local particle_name = wearables_system:GetParticleReplacementAbility(
+		self.caster,
+		"particles/units/heroes/hero_tinker/tinker_motm.vpcf",
+		self
+	)
+	local sound_name = wearables_system:GetSoundReplacement(self.caster, "Hero_Tinker.March_of_the_Machines.Cast", self)
+	local sound_effect = wearables_system:GetSoundReplacement(self.caster, "Hero_Tinker.March_of_the_Machines", self)
+	if
+		particle_name == "particles/econ/items/tinker/tinker_cosmic/tinker_cosmic_mom.vpcf"
+		or sound_effect ~= "Hero_Tinker.March_of_the_Machines"
+	then
+		EmitSoundOnLocationForAllies(self.caster:GetOrigin(), "Hero_Tinker.March_of_the_Machines.Cosmic", self.caster)
+	end
+
+	local particle = ParticleManager:CreateParticle(particle_name, PATTACH_CUSTOMORIGIN, self.caster)
+	ParticleManager:SetParticleControlEnt(
+		particle,
+		0,
+		self.caster,
+		PATTACH_POINT_FOLLOW,
+		"attach_attack1",
+		self.caster:GetOrigin(),
+		true
+	)
+	ParticleManager:SetParticleControlEnt(
+		particle,
+		1,
+		self.caster,
+		PATTACH_ABSORIGIN,
+		nil,
+		self.caster:GetOrigin(),
+		true
+	)
+	ParticleManager:ReleaseParticleIndex(particle)
+
+	EmitSoundOnLocationForAllies(self.caster:GetOrigin(), sound_name, self.caster)
+
+	local use_legendary = 0
+	local legendary_mod = self.caster:FindModifierByName("modifier_tinker_march_of_the_machines_custom_legendary_stack")
+	if legendary_mod and legendary_mod:GetStackCount() >= self.talents.w7_max then
+		self.caster:AddNewModifier(
+			self.caster,
+			self,
+			"modifier_tinker_march_of_the_machines_custom_legendary_cd",
+			{ duration = self.talents.w7_cd }
+		)
+		legendary_mod:Destroy()
+		use_legendary = 1
+	end
+
+	self.caster:AddNewModifier(
+		self.caster,
+		self,
+		"modifier_tinker_march_of_the_machines_custom_active",
+		{ duration = duration + 2 }
+	)
+	CreateModifierThinker(
+		self.caster,
+		self,
+		"modifier_tinker_march_of_the_machines_custom",
+		{ x = direction.x, y = direction.y, legendary = use_legendary, duration = duration },
+		GetGroundPosition(point, nil),
+		self.caster:GetTeamNumber(),
+		false
+	)
+end
+
+function tinker_march_of_the_machines_custom:ProcEffects(target)
 	if not IsServer() then
 		return
 	end
@@ -463,11 +465,11 @@ function tinker_march_of_the_machines_custom:ProcEffects(target, is_march)
 	end
 
 	if self.talents.has_e3 == 1 and target:IsRealHero() then
-		self.parent:AddNewModifier(
+		self.caster:AddNewModifier(
 			self.caster,
 			self,
 			"modifier_tinker_march_of_the_machines_custom_stats",
-			{ duration = self.ability.talents.e3_duration }
+			{ duration = self.talents.e3_duration }
 		)
 	end
 
@@ -476,67 +478,65 @@ function tinker_march_of_the_machines_custom:ProcEffects(target, is_march)
 			self.caster,
 			self,
 			"modifier_tinker_march_of_the_machines_custom_armor",
-			{ duration = self.ability.talents.w1_duration }
+			{ duration = self.talents.w1_duration }
 		)
 	end
 
-	if
-		self.ability.talents.has_w3 == 1
-		and not target:HasModifier("modifier_tinker_march_of_the_machines_custom_attack_cd")
-	then
-		if RollPseudoRandomPercentage(self.ability.talents.w3_chance, 7350, self.parent) then
-			self.parent:AddNewModifier(
-				self.parent,
-				self.ability,
-				"modifier_tinker_march_of_the_machines_custom_attack_damage",
-				{}
-			)
-			self.caster:PerformAttack(target, true, true, true, true, false, false, true)
-			self.parent:RemoveModifierByName("modifier_tinker_march_of_the_machines_custom_attack_damage")
-			target:AddNewModifier(
-				self.parent,
-				self.ability,
-				"modifier_tinker_march_of_the_machines_custom_attack_cd",
-				{ duration = self.ability.talents.w3_talent_cd }
-			)
-			target:GenericParticle("particles/econ/items/zeus/zeus_immortal_2021/zeus_immortal_2021_static_field.vpcf")
-			target:EmitSound("Tinker.Rearm_damage")
-		end
+	if self.talents.has_w3 == 0 then
+		return
 	end
+	if target:HasModifier("modifier_tinker_march_of_the_machines_custom_attack_cd") then
+		return
+	end
+	if not RollPseudoRandomPercentage(self.talents.w3_chance, 7350, self.caster) then
+		return
+	end
+
+	self.caster:AddNewModifier(self.caster, self, "modifier_tinker_march_of_the_machines_custom_attack_damage", {})
+	self.caster:PerformAttack(target, true, true, true, true, false, false, true)
+	self.caster:RemoveModifierByName("modifier_tinker_march_of_the_machines_custom_attack_damage")
+	target:AddNewModifier(
+		self.caster,
+		self,
+		"modifier_tinker_march_of_the_machines_custom_attack_cd",
+		{ duration = self.talents.w3_talent_cd }
+	)
+	target:GenericParticle("particles/econ/items/zeus/zeus_immortal_2021/zeus_immortal_2021_static_field.vpcf")
+	target:EmitSound("Tinker.Rearm_damage")
 end
 
 function tinker_march_of_the_machines_custom:ProcAuto(target, source)
 	if not IsServer() then
 		return
 	end
-	if self.ability.talents.has_w1 == 0 then
-		return
-	end
-	if self.parent:HasModifier("modifier_tinker_march_of_the_machines_custom_auto_cd") then
-		return
-	end
 	if not self:IsTrained() then
+		return
+	end
+	if self.talents.has_w1 == 0 then
+		return
+	end
+	if self.caster:HasModifier("modifier_tinker_march_of_the_machines_custom_auto_cd") then
 		return
 	end
 	if not target:IsUnit() then
 		return
 	end
 
-	self.parent:AddNewModifier(
-		self.parent,
-		self.ability,
+	self.caster:AddNewModifier(
+		self.caster,
+		self,
 		"modifier_tinker_march_of_the_machines_custom_auto_cd",
-		{ duration = self.ability.talents.w1_talent_cd }
+		{ duration = self.talents.w1_talent_cd }
 	)
 
 	local direction = (target:GetAbsOrigin() - source:GetAbsOrigin()):Normalized()
 	CreateModifierThinker(
-		self.parent,
-		self.ability,
+		self.caster,
+		self,
 		"modifier_tinker_march_of_the_machines_custom",
 		{ x = direction.x, y = direction.y, legendary = 0, is_auto = 1, duration = 1 },
 		source:GetAbsOrigin(),
-		self.parent:GetTeamNumber(),
+		self.caster:GetTeamNumber(),
 		false
 	)
 end
@@ -552,12 +552,12 @@ function modifier_tinker_march_of_the_machines_custom:OnCreated(table)
 	end
 
 	self.use_legendary = table.legendary
-	self.is_auto = (table.is_auto and table.is_auto == 1) and 1 or 0
+	self.is_auto = table.is_auto == 1 and 1 or 0
 	self.auto_count = 0
 
 	local interval = 1 / self.ability.machines_per_sec
 	self.collision_radius = self.ability.collision_radius
-	self.spawn_radius = self.ability.radius
+	self.spawn_radius = self.ability.talents.has_w7 == 1 and self.ability.talents.w7_width or self.ability.radius
 
 	if self.is_auto == 1 then
 		self.spawn_radius = 35
@@ -612,7 +612,7 @@ function modifier_tinker_march_of_the_machines_custom:OnIntervalThink()
 		EmitSoundOnLocationWithCaster(spawn, "Tinker.March_legendary_start", self.caster)
 	end
 
-	speed = speed * (1 + self.ability.talents.w2_speed / 100)
+	speed = speed * (1 + self.ability.talents.w2_speed)
 
 	if self.is_auto == 1 then
 		self.auto_count = self.auto_count + 1
@@ -699,7 +699,7 @@ function modifier_tinker_march_of_the_machines_custom_tracker:UpdateUI()
 	else
 		if not self.particle then
 			self.particle = self.parent:GenericParticle("particles/tinker/march_legendary_stack.vpcf", self, true)
-			for i = 1, self.ability.talents.w7_visual_max do
+			for i = 1, self.ability.visual_max do
 				ParticleManager:SetParticleControl(self.particle, i, Vector(0, 0, 0))
 			end
 		end
@@ -746,13 +746,39 @@ function modifier_tinker_march_of_the_machines_custom_legendary_stack:OnCreated(
 		return
 	end
 	self.RemoveForDuel = true
-	self.mod = self.parent:FindModifierByName("modifier_tinker_march_of_the_machines_custom_tracker")
+	self.mod = self.ability.tracker
 
-	self.visual_max = self.ability.talents.w7_visual_max
+	self.visual_max = self.ability.visual_max
 	self.particle = self.parent:GenericParticle("particles/tinker/march_legendary_stack.vpcf", self, true)
 
-	self:SetStackCount(1)
+	self:OnRefresh()
 	self:StartIntervalThink(0.3)
+end
+
+function modifier_tinker_march_of_the_machines_custom_legendary_stack:OnRefresh(params)
+	if not IsServer() then
+		return
+	end
+	if self:GetStackCount() >= self.max then
+		return
+	end
+	self:IncrementStackCount()
+
+	if self.mod then
+		self.mod:UpdateUI()
+	end
+
+	if not self.particle then
+		return
+	end
+
+	for i = 1, self.visual_max do
+		if i <= math.floor(self:GetStackCount() / (self.max / self.visual_max)) then
+			ParticleManager:SetParticleControl(self.particle, i, Vector(1, 0, 0))
+		else
+			ParticleManager:SetParticleControl(self.particle, i, Vector(0, 0, 0))
+		end
+	end
 end
 
 function modifier_tinker_march_of_the_machines_custom_legendary_stack:OnIntervalThink()
@@ -776,38 +802,6 @@ function modifier_tinker_march_of_the_machines_custom_legendary_stack:OnInterval
 	end
 end
 
-function modifier_tinker_march_of_the_machines_custom_legendary_stack:OnRefresh(params)
-	if not IsServer() then
-		return
-	end
-	if self:GetStackCount() >= self.max then
-		return
-	end
-	self:IncrementStackCount()
-end
-
-function modifier_tinker_march_of_the_machines_custom_legendary_stack:OnStackCountChanged()
-	if not IsServer() then
-		return
-	end
-
-	if self.mod then
-		self.mod:UpdateUI()
-	end
-
-	if not self.particle then
-		return
-	end
-
-	for i = 1, self.visual_max do
-		if i <= math.floor(self:GetStackCount() / (self.max / self.visual_max)) then
-			ParticleManager:SetParticleControl(self.particle, i, Vector(1, 0, 0))
-		else
-			ParticleManager:SetParticleControl(self.particle, i, Vector(0, 0, 0))
-		end
-	end
-end
-
 function modifier_tinker_march_of_the_machines_custom_legendary_stack:OnDestroy()
 	if not IsServer() then
 		return
@@ -825,6 +819,7 @@ end
 function modifier_tinker_march_of_the_machines_custom_slow:OnCreated()
 	self.ability = self:GetAbility()
 	self.parent = self:GetParent()
+	self.slow = self.ability.talents.e2_slow
 	if not IsServer() then
 		return
 	end
@@ -838,7 +833,7 @@ function modifier_tinker_march_of_the_machines_custom_slow:DeclareFunctions()
 end
 
 function modifier_tinker_march_of_the_machines_custom_slow:GetModifierMoveSpeedBonus_Percentage()
-	return self.ability.talents.e2_slow
+	return self.slow
 end
 
 modifier_tinker_march_of_the_machines_custom_active = class(mod_visible)

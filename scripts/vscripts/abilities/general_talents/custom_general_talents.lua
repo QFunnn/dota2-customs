@@ -8,48 +8,9 @@
 ]]
 
 
-LinkLuaModifier("modifier_up_venom_stack", "abilities/general_talents/custom_general_talents", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_up_debuff_max", "abilities/general_talents/custom_general_talents", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier(
-	"modifier_up_bigdamage_heal",
-	"abilities/general_talents/custom_general_talents",
-	LUA_MODIFIER_MOTION_NONE
-)
-LinkLuaModifier(
-	"modifier_up_bigdamage_heal_cd",
-	"abilities/general_talents/custom_general_talents",
-	LUA_MODIFIER_MOTION_NONE
-)
-LinkLuaModifier(
-	"modifier_up_damagestack_stack",
-	"abilities/general_talents/custom_general_talents",
-	LUA_MODIFIER_MOTION_NONE
-)
-LinkLuaModifier(
-	"modifier_up_ignore_armor_stack",
-	"abilities/general_talents/custom_general_talents",
-	LUA_MODIFIER_MOTION_NONE
-)
-LinkLuaModifier("modifier_up_root_debuff", "abilities/general_talents/custom_general_talents", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_up_root_cd", "abilities/general_talents/custom_general_talents", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_up_res_cd", "abilities/general_talents/custom_general_talents", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_up_res_nodmg", "abilities/general_talents/custom_general_talents", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_up_res_ready", "abilities/general_talents/custom_general_talents", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_up_slow_debuff", "abilities/general_talents/custom_general_talents", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier(
-	"modifier_up_teamfight_buff",
-	"abilities/general_talents/custom_general_talents",
-	LUA_MODIFIER_MOTION_NONE
-)
-LinkLuaModifier("modifier_shield_cd", "abilities/general_talents/custom_general_talents", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_attack_shield", "abilities/general_talents/custom_general_talents", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_magic_shield", "abilities/general_talents/custom_general_talents", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier(
-	"modifier_general_stats_illusion",
-	"abilities/general_talents/custom_general_talents",
-	LUA_MODIFIER_MOTION_NONE
-)
-LinkLuaModifier(
-	"modifier_general_javelin_proc",
+	"modifier_up_aoe_damage_effect",
 	"abilities/general_talents/custom_general_talents",
 	LUA_MODIFIER_MOTION_NONE
 )
@@ -60,22 +21,8 @@ custom_general_talents.talents = {}
 
 custom_general_talents.damage_out_mods = {
 	"modifier_up_lifesteal",
-	"modifier_up_spellsteal",
-	"modifier_up_venom",
-	"modifier_up_ignore_armor",
-}
-
-custom_general_talents.damage_inc_mods = {
-	"modifier_up_attackblock",
-	"modifier_up_bigdamage",
-	"modifier_up_magicblock",
-	"modifier_up_res",
-}
-
-custom_general_talents.attack_out_mods = {
-	"modifier_up_cleave",
-	"modifier_up_root",
-	"modifier_up_slow",
+	"modifier_up_damage",
+	"modifier_up_aoe_damage",
 }
 
 function custom_general_talents:UpdateTalents()
@@ -84,79 +31,175 @@ function custom_general_talents:UpdateTalents()
 	if not self.init then
 		self.init = true
 		self.talents = {
-			stats_bonus_int = caster:GetTalentValue("modifier_up_primaryupgrade", "int", true),
-			stats_bonus_agi = caster:GetTalentValue("modifier_up_primaryupgrade", "agi", true),
-			stats_bonus_str = caster:GetTalentValue("modifier_up_primaryupgrade", "str", true),
-			stats_bonus_all = caster:GetTalentValue("modifier_up_allupgrade", "all", true) / 100,
+			gray_health = 0,
+			gray_health_max = 0,
 
-			javelin_damage = caster:GetTalentValue("modifier_up_javelin", "damage", true),
-			gray_bonus = caster:GetTalentValue("modifier_up_graypoints", "bonus", true) / 100,
+			gray_mana = 0,
+			gray_mana_max = 0,
 
-			alchemist_bonus = caster:GetTalentValue("modifier_alchemist_rage_legendary", "bonus", true) / 100,
+			gray_damage = 0,
+			gray_damage_max = 0,
+			gray_damage_max_duration = caster:GetTalentValue("modifier_up_damage", "max_duration", true),
 
-			burn_radius = caster:GetTalentValue("modifier_up_aoe_damage", "radius", true),
-			armor_duration = caster:GetTalentValue("modifier_up_ignore_armor", "duration", true),
+			has_gray_debuff_max = 0,
 
-			slow_chance = caster:GetTalentValue("modifier_up_slow", "chance", true),
-			slow_duration = caster:GetTalentValue("modifier_up_slow", "duration", true),
+			gray_armor = 0,
+			gray_armor_max = 0,
 
-			block_cd = caster:GetTalentValue("modifier_up_magicblock", "cd", true),
+			gray_stats = 0,
+			gray_stats_max = 0,
 
-			root_cd = caster:GetTalentValue("modifier_up_root", "cd", true),
+			gray_spelldamage = 0,
+			gray_spelldamage_max = 0,
 
-			bigdamage_duration = caster:GetTalentValue("modifier_up_bigdamage", "duration", true),
-			bigdamage_cd = caster:GetTalentValue("modifier_up_bigdamage", "cd", true),
-			bigdamage_health = caster:GetTalentValue("modifier_up_bigdamage", "health", true),
+			gray_movespeed = 0,
+			gray_movespeed_max = 0,
 
-			venom_health = caster:GetTalentValue("modifier_up_venom", "health", true),
-			venom_duration = caster:GetTalentValue("modifier_up_venom", "duration", true),
+			has_gray_lifesteal = 0,
+			gray_lifesteal = 0,
+			gray_lifesteal_max = 0,
 
-			teamfight_radius = caster:GetTalentValue("modifier_up_teamfight", "radius", true),
+			gray_speed = 0,
+			gray_speed_max = 0,
+			gray_speed_max_range = 0,
 
-			res_radius = caster:GetTalentValue("modifier_up_res", "radius", true),
-			res_heal = caster:GetTalentValue("modifier_up_res", "heal", true) / 100,
-			res_cd = caster:GetTalentValue("modifier_up_res", "cd", true) * 60,
-			res_stun = caster:GetTalentValue("modifier_up_res", "stun", true),
-			res_invun = caster:GetTalentValue("modifier_up_res", "invun", true),
+			gray_magicresist = 0,
+			gray_magicresist_max = 0,
 
-			damagestack_duration = caster:GetTalentValue("modifier_up_damagestack", "duration", true),
+			has_gray_income = 0,
+			gray_income = 0,
+
+			has_gray_aoe_damage = 0,
+			gray_aoe_damage = 0,
+			gray_aoe_damage_max = 0,
+			gray_aoe_damage_radius = caster:GetTalentValue("modifier_up_aoe_damage", "radius", true),
+
+			has_gray_javelin = 0,
+			gray_javelin = 0,
+			gray_javelin_max = 0,
+			gray_javelin_chance = caster:GetTalentValue("modifier_up_javelin", "chance", true),
+			gray_javelin_radius = caster:GetTalentValue("modifier_up_javelin", "radius", true),
+
+			has_gray_control_shield = 0,
+			gray_control_shield = 0,
+			gray_control_shield_max = 0,
+			gray_control_shield_cd = caster:GetTalentValue("modifier_up_control_shield", "talent_cd", true),
+			gray_control_shield_duration = caster:GetTalentValue("modifier_up_control_shield", "duration", true),
+			gray_control_shield_max_health = caster:GetTalentValue("modifier_up_control_shield", "max_health", true),
+
+			has_gray_spell_proc = 0,
+			gray_spell_proc = 0,
+			gray_spell_proc_max = 0,
+			gray_spell_proc_cd = caster:GetTalentValue("modifier_up_spell_proc", "talent_cd", true),
+			gray_spell_proc_radius = caster:GetTalentValue("modifier_up_spell_proc", "radius", true),
 		}
 	end
 
-	self.talents.attack_speed_bonus = caster:GetTalentValue("modifier_up_speed", "general_bonus")
-	self.talents.armor_bonus = caster:GetTalentValue("modifier_up_armor", "general_bonus")
-	self.talents.damage_bonus = caster:GetTalentValue("modifier_up_damage", "general_bonus")
-	self.talents.health_bonus = caster:GetTalentValue("modifier_up_health", "general_bonus")
-	self.talents.magic_bonus = caster:GetTalentValue("modifier_up_magicresist", "general_bonus")
-	self.talents.mana_regen_bonus = caster:GetTalentValue("modifier_up_manaregen", "general_bonus")
-	self.talents.move_bonus = caster:GetTalentValue("modifier_up_movespeed", "general_bonus")
-	self.talents.primary_bonus = caster:GetTalentValue("modifier_up_primary", "general_bonus")
-	self.talents.secondary_bonus = caster:GetTalentValue("modifier_up_secondary", "general_bonus")
-	self.talents.all_bonus = caster:GetTalentValue("modifier_up_allstats", "general_bonus")
-	self.talents.spell_bonus = caster:GetTalentValue("modifier_up_spelldamage", "general_bonus")
-	self.talents.evasion_bonus = caster:GetTalentValue("modifier_up_evasion", "general_bonus")
-	self.talents.status_bonus = caster:GetTalentValue("modifier_up_statusresist", "general_bonus")
-	self.talents.creeps_bonus = caster:GetTalentValue("modifier_up_creeps", "general_bonus")
-	self.talents.javelin_bonus = caster:GetTalentValue("modifier_up_javelin", "general_bonus")
-	self.talents.aoe_damage_bonus = caster:GetTalentValue("modifier_up_aoe_damage", "general_bonus")
-	self.talents.cleave_bonus = caster:GetTalentValue("modifier_up_cleave", "general_bonus")
-	self.talents.lifesteal_bonus = caster:GetTalentValue("modifier_up_lifesteal", "general_bonus")
-	self.talents.spellsteal_bonus = caster:GetTalentValue("modifier_up_spellsteal", "general_bonus")
+	if caster:HasTalent("modifier_up_health") then
+		self.talents.gray_health = caster:GetTalentValue("modifier_up_health", "general_bonus")
+		self.talents.gray_health_max = caster:GetTalentValue("modifier_up_health", "max_bonus")
+	end
 
-	self.talents.stun_reduce = caster:GetTalentValue("modifier_up_stun", "damage_reduce")
-	self.talents.primary_gain_bonus = caster:GetTalentValue("modifier_up_gainprimary", "stats")
-	self.talents.all_gain_bonus = caster:GetTalentValue("modifier_up_gainall", "stats")
-	self.talents.secondary_gain_bonus = caster:GetTalentValue("modifier_up_gainsecondary", "stats")
-	self.talents.root_duration = caster:GetTalentValue("modifier_up_root", "duration")
-	self.talents.cdr_bonus = caster:GetTalentValue("modifier_up_cooldown", "cdr")
-	self.talents.cast_range_bonus = caster:GetTalentValue("modifier_up_range", "cast_range")
-	self.talents.attack_range_bonus = caster:GetTalentValue("modifier_up_range", "attack_range")
+	if caster:HasTalent("modifier_up_mana") then
+		self.talents.gray_mana = caster:GetTalentValue("modifier_up_mana", "general_bonus")
+		self.talents.gray_mana_max = caster:GetTalentValue("modifier_up_mana", "max_bonus")
+	end
+
+	if caster:HasTalent("modifier_up_damage") then
+		self.talents.gray_damage = caster:GetTalentValue("modifier_up_damage", "general_bonus")
+		self.talents.gray_damage_max = caster:GetTalentValue("modifier_up_damage", "max_bonus")
+	end
+
+	if caster:HasTalent("modifier_up_armor") then
+		self.talents.gray_armor = caster:GetTalentValue("modifier_up_armor", "general_bonus")
+		self.talents.gray_armor_max = caster:GetTalentValue("modifier_up_armor", "max_bonus")
+	end
+
+	if caster:HasTalent("modifier_up_stats") then
+		self.talents.gray_stats = caster:GetTalentValue("modifier_up_stats", "general_bonus")
+		self.talents.gray_stats_max = caster:GetTalentValue("modifier_up_stats", "max_bonus") / 100
+	end
+
+	if caster:HasTalent("modifier_up_spelldamage") then
+		self.talents.gray_spelldamage = caster:GetTalentValue("modifier_up_spelldamage", "general_bonus")
+		self.talents.gray_spelldamage_max = caster:GetTalentValue("modifier_up_spelldamage", "max_bonus")
+	end
+
+	if caster:HasTalent("modifier_up_movespeed") then
+		self.talents.gray_movespeed = caster:GetTalentValue("modifier_up_movespeed", "general_bonus")
+		self.talents.gray_movespeed_max = caster:GetTalentValue("modifier_up_movespeed", "max_bonus")
+	end
+
+	if caster:HasTalent("modifier_up_lifesteal") then
+		self.talents.has_gray_lifesteal = 1
+		self.talents.gray_lifesteal = caster:GetTalentValue("modifier_up_lifesteal", "general_bonus") / 100
+		self.talents.gray_lifesteal_max = caster:GetTalentValue("modifier_up_lifesteal", "max_bonus")
+	end
+
+	if caster:HasTalent("modifier_up_speed") then
+		self.talents.gray_speed = caster:GetTalentValue("modifier_up_speed", "general_bonus")
+		self.talents.gray_speed_max = caster:GetTalentValue("modifier_up_speed", "max_bonus")
+		self.talents.gray_speed_max_range = caster:GetTalentValue("modifier_up_speed", "max_bonus_range")
+	end
+
+	if caster:HasTalent("modifier_up_magicresist") then
+		self.talents.gray_magicresist = caster:GetTalentValue("modifier_up_magicresist", "general_bonus")
+		self.talents.gray_magicresist_max = caster:GetTalentValue("modifier_up_magicresist", "max_bonus")
+	end
+
+	if caster:HasTalent("modifier_up_income") then
+		self.talents.has_gray_income = 1
+		self.talents.gray_income = caster:GetTalentValue("modifier_up_income", "general_bonus")
+	end
+
+	if caster:HasTalent("modifier_up_aoe_damage") then
+		self.talents.has_gray_aoe_damage = 1
+		self.talents.gray_aoe_damage = caster:GetTalentValue("modifier_up_aoe_damage", "general_bonus")
+		self.talents.gray_aoe_damage_max = caster:GetTalentValue("modifier_up_aoe_damage", "max_bonus")
+	end
+
+	if caster:HasTalent("modifier_up_javelin") then
+		self.talents.has_gray_javelin = 1
+		self.talents.gray_javelin = caster:GetTalentValue("modifier_up_javelin", "general_bonus")
+		self.talents.gray_javelin_max = caster:GetTalentValue("modifier_up_javelin", "max_bonus")
+	end
+
+	if caster:HasTalent("modifier_up_control_shield") then
+		self.talents.has_gray_control_shield = 1
+		self.talents.gray_control_shield = caster:GetTalentValue("modifier_up_control_shield", "general_bonus")
+		self.talents.gray_control_shield_max = caster:GetTalentValue("modifier_up_control_shield", "max_bonus")
+	end
+
+	if caster:HasTalent("modifier_up_spell_proc") then
+		self.talents.has_gray_spell_proc = 1
+		self.talents.gray_spell_proc = caster:GetTalentValue("modifier_up_spell_proc", "general_bonus")
+		self.talents.gray_spell_proc_max = caster:GetTalentValue("modifier_up_spell_proc", "max_bonus")
+	end
+
+	if self.talents.gray_damage_max ~= 0 or self.talents.gray_aoe_damage_max ~= 0 then
+		self.talents.has_gray_debuff_max = 1
+	else
+		self.talents.has_gray_debuff_max = 0
+	end
 
 	if not IsServer() then
 		return
 	end
-	if not caster:IsRealHero() or caster:IsTempestDouble() then
+
+	if self.talents.gray_stats_max > 0 then
+		caster:AddPercentStat(
+			{ str = self.talents.gray_stats_max, agi = self.talents.gray_stats_max, int = self.talents.gray_stats_max },
+			self.tracker
+		)
+	end
+
+	if not caster:IsRealHero() then
 		return
+	end
+
+	if self.talents.has_gray_aoe_damage == 1 then
+		self.talents.aoe_damage_ability = caster:FindAbilityByName("generic_aoe_damage")
+			or caster:AddAbility("generic_aoe_damage")
 	end
 
 	for _, check_name in pairs(self.damage_out_mods) do
@@ -165,22 +208,19 @@ function custom_general_talents:UpdateTalents()
 		end
 	end
 
-	for _, check_name in pairs(self.damage_inc_mods) do
-		if caster:HasTalent(check_name) then
-			caster:AddDamageEvent_inc(self.tracker, true)
-		end
+	if self.talents.has_gray_javelin == 1 then
+		caster:AddAttackEvent_out(self.tracker, true)
 	end
 
-	for _, check_name in pairs(self.attack_out_mods) do
-		if caster:HasTalent(check_name) then
-			caster:AddAttackEvent_out(self.tracker, true)
-		end
+	if self.talents.has_gray_control_shield == 1 then
+		caster:AddStateEvent(self.tracker, true)
 	end
 
-	if caster:HasTalent("modifier_up_javelin") then
-		caster:AddRecordDestroyEvent(self.tracker, true)
-		caster:AddAttackStartEvent_out(self.tracker)
+	if self.talents.has_gray_spell_proc == 1 then
+		caster:AddSpellEvent(self.tracker, true)
 	end
+
+	caster:CalculateStatBonus(true)
 end
 
 modifier_general_stats = class(mod_hidden)
@@ -191,9 +231,7 @@ function modifier_general_stats:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 	self.ability.tracker = self
-	self.ability:UpdateTalents()
-
-	self.pirat_bonus = 0.2
+	self.parent.stats_tracker = self
 
 	self.duo_status = 0
 	self.duo_health = 0
@@ -202,44 +240,21 @@ function modifier_general_stats:OnCreated(table)
 		self.duo_health = 10
 	end
 
-	self.stack = self:UpdateStack()
+	self.ability:UpdateTalents()
 
 	if not IsServer() then
 		return
 	end
 
-	self.player_id = tostring(PlayerResource:GetSteamAccountID(self.parent:GetPlayerOwnerID()))
-	self.main_stat = self.parent:GetPrimaryAttribute()
-
-	self:SetHasCustomTransmitterData(true)
-	self:SendBuffRefreshToClients()
-
-	self.records = {}
-
+	self.is_illusion = (self.parent:IsIllusion() or self.parent:IsTempestDouble()) and 1 or 0
 	self.interval = 1
-
-	self.gain_all = 0
-	self.gain_primary = 0
-	self.gain_secondary = 0
+	self.gold_bank = 0
 
 	self:StartIntervalThink(self.interval)
 end
 
-function modifier_general_stats:UpdateStack()
-	local stack = 1
-	if
-		self.parent:HasModifier("modifier_alchemist_chemical_rage_custom_legendary")
-		and self.parent:HasTalent("modifier_alchemist_rage_legendary")
-	then
-		stack = stack + self.ability.talents.alchemist_bonus
-	end
-	if self.parent:HasTalent("modifier_up_graypoints") then
-		stack = stack + self.ability.talents.gray_bonus
-	end
-	if self.parent:HasModifier("modifier_item_pirate_hat_custom") then
-		stack = stack + self.pirat_bonus
-	end
-	return stack
+function modifier_general_stats:OnRefresh()
+	self:OnCreated()
 end
 
 function modifier_general_stats:OnIntervalThink()
@@ -247,200 +262,29 @@ function modifier_general_stats:OnIntervalThink()
 		return
 	end
 
-	local need_refresh = false
+	local show_reduce = self.ability.talents.gray_control_shield_max ~= 0
+		and self.parent:IsAlive()
+		and not self.parent:PassivesDisabled()
+		and self.parent:GetHealthPercent() <= self.ability.talents.gray_control_shield_max_health
 
-	local stack = self:UpdateStack()
-	if self.stack ~= stack then
-		self.stack = stack
-		need_refresh = true
+	if show_reduce and not self.damage_reduce_particle then
+		self.damage_reduce_particle = self.parent:GenericParticle("particles/generic/common_damage_reduce.vpcf", self)
+	elseif not show_reduce and self.damage_reduce_particle then
+		ParticleManager:DestroyParticle(self.damage_reduce_particle, false)
+		ParticleManager:ReleaseParticleIndex(self.damage_reduce_particle)
+		self.damage_reduce_particle = nil
 	end
 
-	if self.parent:GetPrimaryAttribute() ~= self.main_stat then
-		self.main_stat = self.parent:GetPrimaryAttribute()
-		need_refresh = true
-	end
-
-	if need_refresh then
-		self:SendBuffRefreshToClients()
-	end
-
-	if
-		self.gain_all ~= self.parent:TalentLevel("modifier_up_gainall")
-		or self.gain_primary ~= self.parent:TalentLevel("modifier_up_gainprimary")
-		or self.gain_secondary ~= self.parent:TalentLevel("modifier_up_gainsecondary")
-	then
-		self:NewStats()
-	end
-
-	if self.parent:HasTalent("modifier_up_res") and not self.parent:HasModifier("modifier_up_res_ready") then
-		self.parent:AddNewModifier(self.parent, nil, "modifier_up_res_ready", {})
-	end
-
-	if not self.parent:HasModifier("modifier_shield_cd") then
-		if self.parent:HasTalent("modifier_up_attackblock") then
-			local mod = self.parent:FindModifierByName("modifier_attack_shield")
-			if not mod or mod:GetStackCount() < mod.max_shield then
-				self.parent:AddNewModifier(self.parent, nil, "modifier_attack_shield", {})
-			end
-		end
-
-		if self.parent:HasTalent("modifier_up_magicblock") then
-			local mod = self.parent:FindModifierByName("modifier_magic_shield")
-			if not mod or mod:GetStackCount() < mod.max_shield then
-				self.parent:AddNewModifier(self.parent, nil, "modifier_magic_shield", {})
-			end
-		end
-	end
-
-	if not self.parent:IsAlive() then
+	if self.is_illusion == 1 then
 		return
 	end
 
-	if self.parent:HasTalent("modifier_up_aoe_damage") then
-		if not self.damage_ability then
-			self.damage_ability = self.parent:AddAbility("generic_aoe_damage")
-		end
-
-		local damage = self.ability.talents.aoe_damage_bonus * self.stack * self.interval
-		for _, unit in pairs(self.parent:FindTargets(self.ability.talents.burn_radius)) do
-			DoDamage(
-				{
-					victim = unit,
-					damage = damage,
-					attacker = self.parent,
-					ability = self.damage_ability,
-					damage_type = DAMAGE_TYPE_MAGICAL,
-				},
-				"modifier_up_aoe_damage"
-			)
-		end
-	end
-
-	if not self.parent:HasTalent("modifier_up_teamfight") and not self.parent:HasTalent("modifier_up_damagestack") then
-		return
-	end
-
-	local units = FindUnitsInRadius(
-		self.parent:GetTeamNumber(),
-		self.parent:GetAbsOrigin(),
-		nil,
-		self.ability.talents.teamfight_radius,
-		DOTA_UNIT_TARGET_TEAM_ENEMY,
-		DOTA_UNIT_TARGET_HERO,
-		DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO
-			+ DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS
-			+ DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
-			+ DOTA_UNIT_TARGET_FLAG_INVULNERABLE
-			+ DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD,
-		FIND_CLOSEST,
-		false
-	)
-
-	local count = 0
-
-	for _, unit in pairs(units) do
-		if
-			not unit:HasModifier("modifier_monkey_king_wukongs_command_custom_soldier") and not unit:IsTempestDouble()
-		then
-			count = count + 1
-		end
-	end
-
-	if self.parent:HasTalent("modifier_up_damagestack") and count > 0 then
-		self.parent:AddNewModifier(
-			self.parent,
-			nil,
-			"modifier_up_damagestack_stack",
-			{ duration = self.ability.talents.damagestack_duration }
-		)
-	end
-
-	if not self.parent:HasTalent("modifier_up_teamfight") then
-		return
-	end
-
-	if count < 2 and self.parent:HasModifier("modifier_up_teamfight_buff") then
-		self.parent:RemoveModifierByName("modifier_up_teamfight_buff")
-	end
-
-	if count >= 2 and not self.parent:HasModifier("modifier_up_teamfight_buff") then
-		self.parent:AddNewModifier(self.parent, nil, "modifier_up_teamfight_buff", {})
-	end
-end
-
-function modifier_general_stats:DamageEvent_inc(params)
-	if not IsServer() then
-		return
-	end
-	local unit = params.unit
-	local attacker = params.attacker
-	local damage = params.damage
-
-	if self.parent ~= unit then
-		return
-	end
-
-	if self.parent:HasTalent("modifier_up_attackblock") or self.parent:HasTalent("modifier_up_magicblock") then
-		self.parent:AddNewModifier(self.parent, nil, "modifier_shield_cd", { duration = self.ability.talents.block_cd })
-	end
-
-	if
-		self.parent:HasTalent("modifier_up_bigdamage")
-		and self.parent:GetHealthPercent() <= self.ability.talents.bigdamage_health
-		and not self.parent:HasModifier("modifier_death")
-		and not self.parent:HasModifier("modifier_up_bigdamage_heal_cd")
-	then
-		self.parent:AddNewModifier(
-			self.parent,
-			nil,
-			"modifier_up_bigdamage_heal",
-			{ duration = self.ability.talents.bigdamage_duration }
-		)
-		self.parent:AddNewModifier(
-			self.parent,
-			nil,
-			"modifier_up_bigdamage_heal_cd",
-			{ duration = self.ability.talents.bigdamage_cd }
-		)
-	end
-
-	if self.parent:HasTalent("modifier_up_res") and self.parent:GetHealth() <= 5 and self:CheckDeath() then
-		self.parent:GenericHeal(
-			self.parent:GetMaxHealth() * self.ability.talents.res_heal,
-			self.ability,
-			nil,
-			nil,
-			"modifier_up_res"
-		)
-		self.parent:Purge(false, true, false, true, true)
-
-		self.parent:AddNewModifier(self.parent, nil, "modifier_up_res_cd", { duration = self.ability.talents.res_cd })
-		self.parent:AddNewModifier(
-			self.parent,
-			nil,
-			"modifier_up_res_nodmg",
-			{ duration = self.ability.talents.res_invun }
-		)
-
-		self.parent:EmitSound("UI.Talent_phoenix")
-
-		local pfx = ParticleManager:CreateParticle(
-			"particles/units/heroes/hero_phoenix/phoenix_supernova_reborn.vpcf",
-			PATTACH_WORLDORIGIN,
-			nil
-		)
-		ParticleManager:SetParticleControl(pfx, 0, self.parent:GetAbsOrigin())
-		ParticleManager:SetParticleControl(pfx, 1, Vector(1.5, 1.5, 1.5))
-		ParticleManager:SetParticleControl(pfx, 3, self.parent:GetAbsOrigin())
-		ParticleManager:ReleaseParticleIndex(pfx)
-
-		for _, target in pairs(self.parent:FindTargets(self.ability.talents.res_radius)) do
-			target:AddNewModifier(
-				self.parent,
-				nil,
-				"modifier_stunned",
-				{ duration = self.ability.talents.res_stun * (1 - target:GetStatusResistance()) }
-			)
+	if self.ability.talents.has_gray_income == 1 then
+		self.gold_bank = self.gold_bank + self.ability.talents.gray_income * self.interval / 60
+		local gold = math.floor(self.gold_bank)
+		if gold > 0 then
+			self.gold_bank = self.gold_bank - gold
+			self.parent:GiveGold(gold, false, true, "modifier_up_income")
 		end
 	end
 end
@@ -457,40 +301,25 @@ function modifier_general_stats:DamageEvent_out(params)
 		return
 	end
 
-	if self.parent:HasTalent("modifier_up_lifesteal") and self.parent:CheckLifesteal(params, 2) then
-		local heal = self.ability.talents.lifesteal_bonus * self.stack
-		self.parent:GenericHeal(heal * damage / 100, self.ability, true, nil, "modifier_up_lifesteal")
-	end
-
-	if self.parent:HasTalent("modifier_up_spellsteal") then
-		local result = self.parent:CheckLifesteal(params, 1)
+	if self.ability.talents.has_gray_lifesteal == 1 then
+		local result = self.parent:CheckLifesteal(params)
 		if result then
-			local heal = self.ability.talents.spellsteal_bonus * self.stack * result
 			self.parent:GenericHeal(
-				heal * damage / 100,
+				self.ability.talents.gray_lifesteal * result * damage,
 				self.ability,
 				true,
-				"particles/items3_fx/octarine_core_lifesteal.vpcf",
-				"modifier_up_spellsteal"
+				"",
+				"modifier_up_lifesteal"
 			)
 		end
 	end
 
-	if self.parent:HasTalent("modifier_up_venom") and unit:GetHealthPercent() <= self.ability.talents.venom_health then
+	if self.ability.talents.has_gray_debuff_max == 1 and unit:CheckCd("up_debuff_max", 3) then
 		unit:AddNewModifier(
 			self.parent,
-			nil,
-			"modifier_up_venom_stack",
-			{ duration = self.ability.talents.venom_duration }
-		)
-	end
-
-	if self.parent:HasTalent("modifier_up_ignore_armor") then
-		unit:AddNewModifier(
-			self.parent,
-			nil,
-			"modifier_up_ignore_armor_stack",
-			{ stack = self.stack * 100, duration = self.ability.talents.armor_duration }
+			self.ability,
+			"modifier_up_debuff_max",
+			{ duration = self.ability.talents.gray_damage_max_duration }
 		)
 	end
 end
@@ -499,146 +328,301 @@ function modifier_general_stats:AttackEvent_out(params)
 	if not IsServer() then
 		return
 	end
-	local target = params.target
-	local attacker = params.attacker
-	local attack_damage = params.damage
-
-	if attacker == self.parent and target:IsUnit() then
-		if
-			attacker:HasTalent("modifier_up_cleave")
-			and not self.parent:HasModifier("modifier_no_cleave")
-			and not self.parent:HasModifier("modifier_tidehunter_anchor_smash_caster")
-			and not self.parent:IsRangedAttacker()
-			and not params.no_cleave_flag
-		then
-			local damage = self.ability.talents.cleave_bonus * self.stack
-			DoCleaveAttack(
-				self.parent,
-				target,
-				self.ability,
-				attack_damage * damage / 100,
-				150,
-				360,
-				650,
-				"particles/units/heroes/hero_magnataur/magnataur_empower_cleave_effect.vpcf"
-			)
-		end
-
-		if
-			attacker:HasTalent("modifier_up_root")
-			and not self.parent:HasModifier("modifier_up_root_cd")
-			and not target:IsDebuffImmune()
-		then
-			target:AddNewModifier(
-				self.parent,
-				nil,
-				"modifier_up_root_debuff",
-				{ duration = self.ability.talents.root_duration * (1 - target:GetStatusResistance()) }
-			)
-			self.parent:AddNewModifier(
-				self.parent,
-				nil,
-				"modifier_up_root_cd",
-				{ duration = self.ability.talents.root_cd }
-			)
-		end
-
-		if attacker:HasTalent("modifier_up_slow") then
-			if RollPseudoRandomPercentage(self.ability.talents.slow_chance, 1600, self.parent) then
-				target:AddNewModifier(
-					attacker,
-					nil,
-					"modifier_up_slow_debuff",
-					{ duration = self.ability.talents.slow_duration * (1 - target:GetStatusResistance()) }
-				)
-			end
-		end
+	if self.ability.talents.has_gray_javelin == 0 then
+		return
 	end
+	if self.parent ~= params.attacker then
+		return
+	end
+	if not params.target:IsUnit() or params.target:GetTeamNumber() == self.parent:GetTeamNumber() then
+		return
+	end
+	if not RollPseudoRandomPercentage(self.ability.talents.gray_javelin_chance, 9954, self.parent) then
+		return
+	end
+
+	for _, target in
+		pairs(self.parent:FindTargets(self.ability.talents.gray_javelin_radius, params.target:GetAbsOrigin()))
+	do
+		local damage = DoDamage(
+			{
+				victim = target,
+				damage = self.ability.talents.gray_javelin,
+				attacker = self.parent,
+				ability = self.ability,
+				damage_type = DAMAGE_TYPE_MAGICAL,
+			},
+			"modifier_up_javelin"
+		)
+		target:SendNumber(4, damage)
+	end
+
+	params.target:EmitSound("General.Talent_proc")
+	local mainParticle =
+		ParticleManager:CreateParticle("particles/generic/common_proc.vpcf", PATTACH_POINT_FOLLOW, params.target)
+	ParticleManager:SetParticleControlEnt(
+		mainParticle,
+		3,
+		params.target,
+		PATTACH_POINT_FOLLOW,
+		"attach_hitloc",
+		params.target:GetAbsOrigin(),
+		true
+	)
+	ParticleManager:ReleaseParticleIndex(mainParticle)
 end
 
-function modifier_general_stats:CheckDeath()
+function modifier_general_stats:SpellEvent(params)
+	if not IsServer() then
+		return
+	end
+	if self.ability.talents.has_gray_spell_proc == 0 then
+		return
+	end
+	if params.unit ~= self.parent then
+		return
+	end
+	if
+		not params.target
+		or not params.target:IsUnit()
+		or params.target:GetTeamNumber() == self.parent:GetTeamNumber()
+	then
+		return
+	end
+	if not self.parent:CheckCd("up_spell_proc", self.ability.talents.gray_spell_proc_cd) then
+		return
+	end
+
+	for _, target in
+		pairs(self.parent:FindTargets(self.ability.talents.gray_spell_proc_radius, params.target:GetAbsOrigin()))
+	do
+		local damage = DoDamage(
+			{
+				victim = target,
+				damage = self.ability.talents.gray_spell_proc,
+				attacker = self.parent,
+				ability = self.ability,
+				damage_type = DAMAGE_TYPE_MAGICAL,
+			},
+			"modifier_up_spell_proc"
+		)
+		target:SendNumber(4, damage)
+	end
+
+	params.target:EmitSound("General.Talent_proc_magic")
+	params.target:GenericParticle("particles/geneirc/talent_aoe_damage.vpcf")
+end
+
+function modifier_general_stats:CheckState()
+	if not self.ability then
+		return
+	end
+	if not self.ability.talents.gray_javelin_max or self.ability.talents.gray_javelin_max == 0 then
+		return
+	end
+	return {
+		[MODIFIER_STATE_CANNOT_MISS] = true,
+	}
+end
+
+function modifier_general_stats:IsAura()
+	return IsServer()
+		and self.ability.talents.has_gray_aoe_damage == 1
+		and self.parent:IsRealHero()
+		and self.parent:IsAlive()
+end
+function modifier_general_stats:GetModifierAura()
+	return "modifier_up_aoe_damage_effect"
+end
+function modifier_general_stats:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_ENEMY
+end
+function modifier_general_stats:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
+end
+function modifier_general_stats:GetAuraRadius()
+	return self.ability.talents.gray_aoe_damage_radius
+end
+
+function modifier_general_stats:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+		MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
+		MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
+		MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
+		MODIFIER_PROPERTY_STATUS_RESISTANCE_STACKING,
+		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
+		MODIFIER_PROPERTY_EVASION_CONSTANT,
+		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
+		MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE,
+		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
+		MODIFIER_PROPERTY_HEALTH_BONUS,
+		MODIFIER_PROPERTY_MANA_BONUS,
+		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
+		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
+		MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
+		MODIFIER_PROPERTY_EXTRA_HEALTH_PERCENTAGE,
+		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
+		MODIFIER_PROPERTY_CAST_RANGE_BONUS_STACKING,
+		MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE,
+	}
+end
+
+function modifier_general_stats:GetModifierIncomingDamage_Percentage(params)
+	local bonus = 0
+
+	if self.parent:PassivesDisabled() then
+		return bonus
+	end
+
+	if params and params.inflictor then
+		bonus = bonus + self.ability.talents.gray_magicresist_max
+	end
+
+	if
+		self.ability.talents.gray_control_shield_max ~= 0
+		and self.parent:GetHealthPercent() <= self.ability.talents.gray_control_shield_max_health
+	then
+		bonus = bonus + self.ability.talents.gray_control_shield_max
+	end
+
+	return bonus
+end
+
+function modifier_general_stats:GetModifierExtraHealthPercentage()
+	return self.duo_health + self.ability.talents.gray_health_max
+end
+
+function modifier_general_stats:GetModifierHPRegenAmplify_Percentage()
+	return self.ability.talents.gray_lifesteal_max
+end
+
+function modifier_general_stats:GetModifierHealChange()
+	return self.ability.talents.gray_lifesteal_max
+end
+
+function modifier_general_stats:GetModifierSpellAmplify_Percentage()
+	return self.ability.talents.gray_spelldamage
+end
+
+function modifier_general_stats:GetModifierStatusResistanceStacking()
+	return self.duo_status + self.ability.talents.gray_movespeed_max
+end
+
+function modifier_general_stats:GetModifierEvasion_Constant()
+	return self.ability.talents.gray_armor_max
+end
+
+function modifier_general_stats:GetModifierBonusStats_Agility()
+	return self.ability.talents.gray_stats
+end
+
+function modifier_general_stats:GetModifierBonusStats_Strength()
+	return self.ability.talents.gray_stats
+end
+
+function modifier_general_stats:GetModifierBonusStats_Intellect()
+	return self.ability.talents.gray_stats
+end
+
+function modifier_general_stats:GetModifierAttackRangeBonus()
+	local bonus = self.parent:IsRangedAttacker() and self.ability.talents.gray_speed_max_range
+		or self.ability.talents.gray_speed_max
+
+	if not self.parent:IsRangedAttacker() and self.parent:HasModifier("modifier_item_monkey_king_bar_custom") then
+		return bonus
+	end
+	if
+		self.parent:IsRangedAttacker()
+		and (
+			self.parent:HasModifier("modifier_item_dragon_lance")
+			or self.parent:HasModifier("modifier_item_hurricane_pike_custom")
+		)
+	then
+		return bonus
+	end
+
+	return bonus
+end
+
+function modifier_general_stats:GetModifierPercentageCooldown()
+	return self.ability.talents.gray_mana_max
+end
+
+function modifier_general_stats:GetModifierAttackSpeedBonus_Constant()
+	return self.ability.talents.gray_speed
+end
+
+function modifier_general_stats:GetModifierPhysicalArmorBonus()
+	return self.ability.talents.gray_armor
+end
+
+function modifier_general_stats:GetModifierPreAttack_BonusDamage()
+	return self.ability.talents.gray_damage
+end
+
+function modifier_general_stats:GetModifierHealthBonus()
+	return self.ability.talents.gray_health
+end
+
+function modifier_general_stats:GetModifierManaBonus()
+	return self.ability.talents.gray_mana
+end
+
+function modifier_general_stats:GetModifierMagicalResistanceBonus()
+	return self.ability.talents.gray_magicresist
+end
+
+function modifier_general_stats:GetModifierMoveSpeedBonus_Constant()
+	return self.ability.talents.gray_movespeed
+end
+
+function modifier_general_stats:GetModifierCastRangeBonusStacking()
+	return self.ability.talents.gray_spell_proc_max
+end
+
+function modifier_general_stats:StateEvent(params)
+	if not IsServer() then
+		return
+	end
+	if self.ability.talents.has_gray_control_shield == 0 then
+		return
+	end
 	if not self.parent:IsAlive() then
-		return
-	end
-	if self.parent:HasModifier("modifier_up_res_cd") then
-		return
-	end
-	if self.parent:LethalDisabled() then
 		return
 	end
 	if self.parent:IsInvulnerable() then
 		return
 	end
-	if self.parent:HasModifier("modifier_troll_warlord_battle_trance_custom") then
+	if not self.parent:IsStunned() and not self.parent:IsFeared() and not self.parent:GetForceAttackTarget() then
 		return
 	end
-	if self.parent:HasModifier("modifier_custom_juggernaut_healing_ward_reduction_aura") then
-		return
-	end
-	local ability = self.parent:FindAbilityByName("skeleton_king_reincarnation_custom")
-	if ability and ability:IsFullyCastable() then
+	if not self.parent:CheckCd("up_control_shield", self.ability.talents.gray_control_shield_cd) then
 		return
 	end
 
-	return true
+	local shield = self.parent:AddNewModifier(self.parent, self.ability, "modifier_generic_shield_multiple", {
+		duration = self.ability.talents.gray_control_shield_duration,
+		max_shield = self.ability.talents.gray_control_shield,
+		start_full = 1,
+		shield_talent = "modifier_up_control_shield",
+		is_hidden = 1,
+	})
+
+	if shield then
+		self.parent:EmitSound("General.Talent_shield")
+		self.parent:GenericParticle("particles/items7_fx/archimedes_satchel_speed.vpcf")
+		self.parent:GenericParticle("particles/generic/common_shield.vpcf", shield)
+	end
 end
 
-function modifier_general_stats:NewStats()
-	if not IsServer() then
-		return
+function modifier_general_stats:GetModifierTotalDamageOutgoing_Percentage(params)
+	if not params.inflictor or not params.inflictor:IsItem() then
+		return 0
 	end
 
-	local str = 0
-	local agi = 0
-	local int = 0
-
-	if self.parent:HasTalent("modifier_up_gainall") then
-		self.gain_all = self.parent:TalentLevel("modifier_up_gainall")
-		local stats = self.ability.talents.all_gain_bonus / 100
-
-		str = str + stats
-		agi = agi + stats
-		int = int + stats
-	end
-
-	if self.parent:HasTalent("modifier_up_gainprimary") then
-		self.gain_primary = self.parent:TalentLevel("modifier_up_gainprimary")
-		local stats = self.ability.talents.primary_gain_bonus / 100
-
-		if self.main_stat == 0 then
-			str = str + stats
-		end
-
-		if self.main_stat == 1 then
-			agi = agi + stats
-		end
-
-		if self.main_stat == 2 then
-			int = int + stats
-		end
-	end
-
-	if self.parent:HasTalent("modifier_up_gainsecondary") then
-		self.gain_secondary = self.parent:TalentLevel("modifier_up_gainsecondary")
-		local stats = self.ability.talents.secondary_gain_bonus / 100
-
-		if self.main_stat == 0 then
-			int = int + stats
-			agi = agi + stats
-		end
-
-		if self.main_stat == 1 then
-			int = int + stats
-			str = str + stats
-		end
-
-		if self.main_stat == 2 then
-			agi = agi + stats
-			str = str + stats
-		end
-	end
-
-	self.parent:AddPercentStat({ agi = agi, str = str, int = int }, self)
+	return self.ability.talents.gray_spelldamage_max
 end
 
 function modifier_general_stats:GiveItem(name)
@@ -665,17 +649,13 @@ function modifier_general_stats:GeneralTrigger(name)
 		return
 	end
 
-	if name == "modifier_up_random_gray" then
-		for i = 1, self.parent:GetTalentValue("modifier_up_random_gray", "count") do
-			upgrade:init_upgrade(self.parent, 1, nil, false, nil, true)
-		end
-		return
-	end
-
-	if name == "modifier_up_bluepoints" then
-		for i = 1, self.parent:GetTalentValue("modifier_up_bluepoints", "count") do
-			upgrade:init_upgrade(self.parent, 2, nil, false, nil, true)
-		end
+	if name == "modifier_up_gold" then
+		self.parent:GiveGold(
+			self.parent:GetTalentValue("modifier_up_gold", "gold", true),
+			true,
+			nil,
+			"modifier_up_gold"
+		)
 		return
 	end
 
@@ -744,6 +724,16 @@ function modifier_general_stats:GeneralTrigger(name)
 		return
 	end
 
+	if name == "modifier_patrol_reward_upgrade" then
+		dota1x6:CreateUpgradeOrb(self.parent, 1)
+		self.parent:AddPoints(
+			"blue",
+			self.parent:GetTalentValue("modifier_patrol_reward_upgrade", "blue"),
+			"modifier_patrol_reward_upgrade"
+		)
+		return
+	end
+
 	if name == "modifier_patrol_reward_fortifier" then
 		self.parent:AddNewModifier(self.parent, self.ability, "modifier_patrol_reward_2_fortifier", {})
 		return
@@ -805,1168 +795,77 @@ function modifier_general_stats:GeneralTrigger(name)
 	end
 end
 
-function modifier_general_stats:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
-		MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
-		MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
-		MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
-		MODIFIER_PROPERTY_STATUS_RESISTANCE_STACKING,
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
-		MODIFIER_PROPERTY_EVASION_CONSTANT,
-		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
-		MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE,
-		MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE,
-		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
-		MODIFIER_PROPERTY_HEALTH_BONUS,
-		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
-		MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
-		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
-		MODIFIER_PROPERTY_CAST_RANGE_BONUS_STACKING,
-		MODIFIER_PROPERTY_MIN_HEALTH,
-		MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
-		MODIFIER_PROPERTY_PROCATTACK_BONUS_DAMAGE_MAGICAL,
-		MODIFIER_PROPERTY_EXTRA_HEALTH_PERCENTAGE,
-	}
-end
-
-function modifier_general_stats:CheckState()
-	if not IsValid(self.parent) then
-		return
-	end
-	if not self.parent:HasModifier("modifier_general_javelin_proc") then
-		return
-	end
-	return {
-		[MODIFIER_STATE_CANNOT_MISS] = true,
-	}
-end
-
-function modifier_general_stats:AttackStartEvent_out(params)
-	if not IsServer() then
-		return
-	end
-	if not self.parent:HasTalent("modifier_up_javelin") then
-		return
-	end
-	if self.parent ~= params.attacker then
-		return
-	end
-	if not params.target:IsUnit() then
-		return
-	end
-
-	if self.parent:HasModifier("modifier_general_javelin_proc") then
-		self.records[params.record] = true
-	end
-
-	self.parent:RemoveModifierByName("modifier_general_javelin_proc")
-
-	self:RandomProcDamage()
-end
-
-function modifier_general_stats:GetModifierProcAttack_BonusDamage_Magical(params)
-	if not self.parent:HasTalent("modifier_up_javelin") then
-		return
-	end
-	if not params.target:IsUnit() then
-		return
-	end
-	if self.parent ~= params.attacker then
-		return
-	end
-	if not self.records[params.record] then
-		return
-	end
-
-	local damage = 0
-	if not self.parent:IsIllusion() then
-		damage = self.ability.talents.javelin_damage
-		SendOverheadEventMessage(params.target, 4, params.target, damage, nil)
-	end
-	return damage
-end
-
-function modifier_general_stats:RecordDestroyEvent(params)
-	if not self.parent:HasTalent("modifier_up_javelin") then
-		return
-	end
-	if not self.records[params.record] then
-		return
-	end
-	self.records[params.record] = nil
-end
-
-function modifier_general_stats:RandomProcDamage()
-	if not self.parent:HasTalent("modifier_up_javelin") then
-		return
-	end
-
-	local chance = self.ability.talents.javelin_bonus * self.stack
-
-	if RollPseudoRandomPercentage(chance, 1960, self.parent) then
-		self.parent:AddNewModifier(self.parent, nil, "modifier_general_javelin_proc", {})
-	end
-end
-
-function modifier_general_stats:GetMinHealth()
-	if not IsServer() then
-		return
-	end
-	if not self.parent:HasTalent("modifier_up_res") then
-		return
-	end
-	if not self:CheckDeath() then
-		return
-	end
-
-	return 1
-end
-
-function modifier_general_stats:GetModifierIncomingDamage_Percentage()
-	if not self.parent:HasTalent("modifier_up_stun") then
-		return
-	end
-
-	if self.parent:IsStunned() or self.parent:IsHexed() or self.parent:GetForceAttackTarget() ~= nil then
-		return self.ability.talents.stun_reduce
-	end
-
-	return 0
-end
-
-function modifier_general_stats:GetModifierExtraHealthPercentage()
-	return self.duo_health
-end
-
-function modifier_general_stats:GetModifierTotalDamageOutgoing_Percentage(params)
-	if params.attacker ~= self.parent then
-		return
-	end
-	if not params.target then
-		return
-	end
-
-	local bonus = 0
-	if params.target:IsCreep() then
-		bonus = bonus + self.ability.talents.creeps_bonus * self.stack
-	end
-	return bonus
-end
-
-function modifier_general_stats:GetModifierSpellAmplify_Percentage()
-	local bonus = 0
-	if self.main_stat == 3 and self.parent:HasTalent("modifier_up_allupgrade") then
-		bonus = bonus
-			+ self.ability.talents.stats_bonus_all
-				* self.parent:GetIntellect(false)
-				/ self.ability.talents.stats_bonus_int
-	elseif self.main_stat == 2 and self.parent:HasTalent("modifier_up_primaryupgrade") then
-		bonus = bonus + self.parent:GetIntellect(false) / self.ability.talents.stats_bonus_int
-	elseif (self.main_stat == 1 or self.main_stat == 0) and self.parent:HasTalent("modifier_up_secondaryupgrade") then
-		bonus = bonus + self.parent:GetIntellect(false) / self.ability.talents.stats_bonus_int
-	end
-	bonus = bonus + self.ability.talents.spell_bonus * self.stack
-	return bonus
-end
-
-function modifier_general_stats:GetModifierStatusResistanceStacking()
-	local bonus = self.duo_status
-	if self.main_stat == 3 and self.parent:HasTalent("modifier_up_allupgrade") then
-		bonus = bonus
-			+ self.ability.talents.stats_bonus_all
-				* self.parent:GetStrength()
-				/ self.ability.talents.stats_bonus_str
-	elseif self.main_stat == 0 and self.parent:HasTalent("modifier_up_primaryupgrade") then
-		bonus = bonus + self.parent:GetStrength() / self.ability.talents.stats_bonus_str
-	elseif (self.main_stat == 1 or self.main_stat == 2) and self.parent:HasTalent("modifier_up_secondaryupgrade") then
-		bonus = bonus + self.parent:GetStrength() / self.ability.talents.stats_bonus_str
-	end
-	bonus = bonus + self.ability.talents.status_bonus * self.stack
-	return bonus
-end
-
-function modifier_general_stats:GetModifierMoveSpeedBonus_Percentage()
-	local bonus = 0
-	if self.main_stat == 3 and self.parent:HasTalent("modifier_up_allupgrade") then
-		bonus = bonus
-			+ self.ability.talents.stats_bonus_all * self.parent:GetAgility() / self.ability.talents.stats_bonus_agi
-	elseif self.main_stat == 1 and self.parent:HasTalent("modifier_up_primaryupgrade") then
-		bonus = bonus + self.parent:GetAgility() / self.ability.talents.stats_bonus_agi
-	elseif (self.main_stat == 0 or self.main_stat == 2) and self.parent:HasTalent("modifier_up_secondaryupgrade") then
-		bonus = bonus + self.parent:GetAgility() / self.ability.talents.stats_bonus_agi
-	end
-	return bonus
-end
-
-function modifier_general_stats:GetModifierEvasion_Constant()
-	local bonus = 0
-	if self.main_stat == 3 and self.parent:HasTalent("modifier_up_allupgrade") then
-		bonus = bonus
-			+ self.ability.talents.stats_bonus_all * self.parent:GetAgility() / self.ability.talents.stats_bonus_agi
-	elseif self.main_stat == 1 and self.parent:HasTalent("modifier_up_primaryupgrade") then
-		bonus = bonus + self.parent:GetAgility() / self.ability.talents.stats_bonus_agi
-	elseif (self.main_stat == 0 or self.main_stat == 2) and self.parent:HasTalent("modifier_up_secondaryupgrade") then
-		bonus = bonus + self.parent:GetAgility() / self.ability.talents.stats_bonus_agi
-	end
-	bonus = bonus + self.ability.talents.evasion_bonus * self.stack
-	return bonus
-end
-
-function modifier_general_stats:GetModifierBonusStats_Agility()
-	local bonus = 0
-
-	if self.main_stat == 3 then
-		bonus = bonus + self.ability.talents.all_bonus * self.stack
-	end
-	if self.main_stat == 1 then
-		bonus = bonus + self.ability.talents.primary_bonus * self.stack
-	end
-	if self.main_stat == 2 or self.main_stat == 0 then
-		bonus = bonus + self.ability.talents.secondary_bonus * self.stack
-	end
-
-	return bonus
-end
-
-function modifier_general_stats:GetModifierBonusStats_Strength()
-	local bonus = 0
-
-	if self.main_stat == 3 then
-		bonus = bonus + self.ability.talents.all_bonus * self.stack
-	end
-	if self.main_stat == 0 then
-		bonus = bonus + self.ability.talents.primary_bonus * self.stack
-	end
-	if self.main_stat == 1 or self.main_stat == 2 then
-		bonus = bonus + self.ability.talents.secondary_bonus * self.stack
-	end
-
-	return bonus
-end
-
-function modifier_general_stats:GetModifierBonusStats_Intellect()
-	local bonus = 0
-
-	if self.main_stat == 3 then
-		bonus = bonus + self.ability.talents.all_bonus * self.stack
-	end
-	if self.main_stat == 2 then
-		bonus = bonus + self.ability.talents.primary_bonus * self.stack
-	end
-	if self.main_stat == 1 or self.main_stat == 0 then
-		bonus = bonus + self.ability.talents.secondary_bonus * self.stack
-	end
-
-	return bonus
-end
-
-function modifier_general_stats:GetModifierAttackRangeBonus()
-	if not self.parent:IsRangedAttacker() and self.parent:HasModifier("modifier_item_monkey_king_bar_custom") then
-		return
-	end
-	if
-		self.parent:IsRangedAttacker()
-		and (
-			self.parent:HasModifier("modifier_item_dragon_lance")
-			or self.parent:HasModifier("modifier_item_hurricane_pike_custom")
-		)
-	then
-		return
-	end
-	return self.ability.talents.attack_range_bonus
-end
-
-function modifier_general_stats:GetModifierCastRangeBonusStacking()
-	if
-		self.parent:HasModifier("modifier_item_aether_lens")
-		or self.parent:HasModifier("modifier_item_starforge_seal_custom_stats")
-	then
-		return
-	end
-	return self.ability.talents.cast_range_bonus
-end
-
-function modifier_general_stats:GetModifierPercentageCooldown()
-	return self.ability.talents.cdr_bonus
-end
-
-function modifier_general_stats:GetModifierAttackSpeedBonus_Constant()
-	return self.ability.talents.attack_speed_bonus * self.stack
-end
-
-function modifier_general_stats:GetModifierPhysicalArmorBonus()
-	return self.ability.talents.armor_bonus * self.stack
-end
-
-function modifier_general_stats:GetModifierPreAttack_BonusDamage()
-	return self.ability.talents.damage_bonus * self.stack
-end
-
-function modifier_general_stats:GetModifierHealthBonus()
-	return self.ability.talents.health_bonus * self.stack
-end
-
-function modifier_general_stats:GetModifierMagicalResistanceBonus()
-	return self.ability.talents.magic_bonus * self.stack
-end
-
-function modifier_general_stats:GetModifierConstantManaRegen()
-	return self.ability.talents.mana_regen_bonus * self.stack
-end
-
-function modifier_general_stats:GetModifierMoveSpeedBonus_Constant()
-	return self.ability.talents.move_bonus * self.stack
-end
-
-function modifier_general_stats:AddCustomTransmitterData()
-	return {
-		stack = self.stack,
-		main_stat = self.main_stat,
-	}
-end
-
-function modifier_general_stats:HandleCustomTransmitterData(data)
-	self.stack = data.stack
-	self.main_stat = data.main_stat
-end
-
-modifier_up_venom_stack = class({})
-function modifier_up_venom_stack:IsHidden()
-	return false
-end
-function modifier_up_venom_stack:IsPurgable()
-	return false
-end
-function modifier_up_venom_stack:GetTexture()
-	return "item_orb_of_venom"
-end
-function modifier_up_venom_stack:DeclareFunctions()
-	return {
-		--MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET,
-		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
-		--MODIFIER_PROPERTY_LIFESTEAL_AMPLIFY_PERCENTAGE,
-	}
-end
-
-function modifier_up_venom_stack:OnCreated()
-	self.heal_reduction = self:GetCaster():GetTalentValue("modifier_up_venom", "heal_reduce")
-end
-
-function modifier_up_venom_stack:GetModifierLifestealRegenAmplify_Percentage()
-	return self.heal_reduction
-end
-
-function modifier_up_venom_stack:GetModifierHealChange()
-	return self.heal_reduction
-end
-
-function modifier_up_venom_stack:GetModifierHPRegenAmplify_Percentage()
-	return self.heal_reduction
-end
-
-modifier_up_bigdamage_heal = class({})
-
-function modifier_up_bigdamage_heal:GetTexture()
-	return "tinker_defense_matrix"
-end
-function modifier_up_bigdamage_heal:IsPurgable()
-	return false
-end
-function modifier_up_bigdamage_heal:IsHidden()
-	return false
-end
-function modifier_up_bigdamage_heal:OnCreated(table)
+modifier_up_aoe_damage_effect = class(mod_hidden)
+function modifier_up_aoe_damage_effect:OnCreated()
 	self.parent = self:GetParent()
-
-	self.damage = self.parent:GetTalentValue("modifier_up_bigdamage", "damage_reduce")
-	self.heal = self.parent:GetTalentValue("modifier_up_bigdamage", "regen") / self:GetRemainingTime()
+	self.caster = self:GetCaster()
+	self.ability = self:GetAbility()
 
 	if not IsServer() then
 		return
 	end
 
-	self.parent:EmitSound("UI.Talent_matrix")
+	self.interval = 1
 
-	self.particle = ParticleManager:CreateParticle(
-		"particles/units/heroes/hero_tinker/tinker_defense_matrix.vpcf",
+	self.particle_index = ParticleManager:CreateParticle(
+		"particles/units/heroes/hero_brewmaster/brewmaster_fire_immolation_child.vpcf",
 		PATTACH_CUSTOMORIGIN_FOLLOW,
 		self.parent
 	)
 	ParticleManager:SetParticleControlEnt(
-		self.particle,
-		1,
+		self.particle_index,
+		0,
 		self.parent,
-		PATTACH_POINT_FOLLOW,
+		PATTACH_ABSORIGIN_FOLLOW,
 		"attach_hitloc",
 		self.parent:GetAbsOrigin(),
 		true
 	)
-	self:AddParticle(self.particle, false, false, -1, false, false)
-end
+	ParticleManager:SetParticleControlEnt(
+		self.particle_index,
+		1,
+		self.caster,
+		PATTACH_ABSORIGIN_FOLLOW,
+		"attach_hitloc",
+		self.caster:GetAbsOrigin(),
+		true
+	)
+	self:AddParticle(self.particle_index, false, false, -1, false, false)
 
-function modifier_up_bigdamage_heal:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE,
-		MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
+	self.damageTable = {
+		victim = self.parent,
+		attacker = self.caster,
+		ability = self.ability.talents.aoe_damage_ability,
+		damage_type = DAMAGE_TYPE_MAGICAL,
 	}
+
+	self:StartIntervalThink(self.interval)
 end
 
-function modifier_up_bigdamage_heal:GetModifierHealthRegenPercentage()
-	return self.heal
-end
-
-function modifier_up_bigdamage_heal:GetModifierIncomingDamage_Percentage()
-	return self.damage
-end
-
-modifier_up_bigdamage_heal_cd = class({})
-function modifier_up_bigdamage_heal_cd:IsHidden()
-	return false
-end
-function modifier_up_bigdamage_heal_cd:IsDebuff()
-	return true
-end
-function modifier_up_bigdamage_heal_cd:RemoveOnDeath()
-	return false
-end
-function modifier_up_bigdamage_heal_cd:GetTexture()
-	return "tinker_defense_matrix"
-end
-function modifier_up_bigdamage_heal_cd:IsPurgable()
-	return false
-end
-function modifier_up_bigdamage_heal_cd:OnCreated(table)
+function modifier_up_aoe_damage_effect:OnIntervalThink()
 	if not IsServer() then
 		return
 	end
-	self.RemoveForDuel = true
+	self.damageTable.damage = self.ability.talents.gray_aoe_damage * self.interval
+	DoDamage(self.damageTable, "modifier_up_aoe_damage")
 end
 
-modifier_up_damagestack_stack = class({})
-function modifier_up_damagestack_stack:IsHidden()
-	return false
-end
-function modifier_up_damagestack_stack:IsPurgable()
-	return false
-end
-function modifier_up_damagestack_stack:GetTexture()
-	return "item_timeless_relic"
-end
-function modifier_up_damagestack_stack:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE,
-		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
-		MODIFIER_PROPERTY_MODEL_SCALE,
-	}
+modifier_up_debuff_max = class(mod_hidden)
+function modifier_up_debuff_max:OnCreated()
+	self.ability = self:GetAbility()
 end
 
-function modifier_up_damagestack_stack:OnCreated(table)
-	self.parent = self:GetParent()
-	self.max = self.parent:GetTalentValue("modifier_up_damagestack", "max")
-	self.damage = self.parent:GetTalentValue("modifier_up_damagestack", "damage")
-
-	self:SetStackCount(1)
-end
-
-function modifier_up_damagestack_stack:GetModifierModelScale()
-	if self:GetStackCount() < self.max then
-		return
-	end
-	return 25
-end
-
-function modifier_up_damagestack_stack:OnRefresh()
-	if not IsServer() then
-		return
-	end
-	if self:GetStackCount() >= self.max then
-		return
-	end
-	self:IncrementStackCount()
-
-	if self:GetStackCount() >= self.max then
-		self.parent:EmitSound("UI.Talent_buff")
-
-		self.particle =
-			ParticleManager:CreateParticle("particles/jugg_damage.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
-		ParticleManager:SetParticleControl(self.particle, 0, self.parent:GetAbsOrigin())
-		ParticleManager:SetParticleControl(self.particle, 1, self.parent:GetAbsOrigin())
-		ParticleManager:SetParticleControl(self.particle, 2, self.parent:GetAbsOrigin())
-		self:AddParticle(self.particle, false, false, -1, false, false)
-	end
-end
-
-function modifier_up_damagestack_stack:GetModifierDamageOutgoing_Percentage()
-	return self:GetStackCount() * self.damage
-end
-
-function modifier_up_damagestack_stack:GetModifierSpellAmplify_Percentage()
-	return self:GetStackCount() * self.damage
-end
-
-modifier_up_ignore_armor_stack = class({})
-function modifier_up_ignore_armor_stack:IsHidden()
-	return true
-end
-function modifier_up_ignore_armor_stack:IsPurgable()
-	return false
-end
-
-function modifier_up_ignore_armor_stack:OnCreated(table)
-	self.caster = self:GetCaster()
-	self.armor = self.caster:GetTalentValue("modifier_up_ignore_armor", "general_bonus") * -1
-	if not IsServer() then
-		return
-	end
-	self:SetStackCount(table.stack)
-end
-
-function modifier_up_ignore_armor_stack:OnRefresh(table)
-	self:OnCreated(table)
-end
-
-function modifier_up_ignore_armor_stack:DeclareFunctions()
+function modifier_up_debuff_max:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
+		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
 	}
 end
 
-function modifier_up_ignore_armor_stack:GetModifierPhysicalArmorBonus()
-	return self.armor * self:GetStackCount() / 100
+function modifier_up_debuff_max:GetModifierPhysicalArmorBonus()
+	return self.ability.talents.gray_damage_max
 end
 
-modifier_up_root_debuff = class({})
-
-function modifier_up_root_debuff:GetEffectName()
-	return "particles/units/heroes/hero_troll_warlord/troll_warlord_bersekers_net.vpcf"
-end
-
-function modifier_up_root_debuff:CheckState()
-	return { [MODIFIER_STATE_ROOTED] = true }
-end
-
-function modifier_up_root_debuff:IsHidden()
-	return true
-end
-function modifier_up_root_debuff:IsPurgable()
-	return true
-end
-
-function modifier_up_root_debuff:OnCreated(table)
-	if not IsServer() then
-		return
-	end
-	self:GetParent():EmitSound("n_creep_TrollWarlord.Ensnare")
-end
-
-modifier_up_root_cd = class({})
-function modifier_up_root_cd:IsHidden()
-	return false
-end
-function modifier_up_root_cd:GetTexture()
-	return "meepo_earthbind"
-end
-function modifier_up_root_cd:IsPurgable()
-	return false
-end
-function modifier_up_root_cd:RemoveOnDeath()
-	return false
-end
-function modifier_up_root_cd:IsDebuff()
-	return true
-end
-function modifier_up_root_cd:OnCreated(table)
-	if not IsServer() then
-		return
-	end
-
-	self.RemoveForDuel = true
-end
-
-modifier_up_res_cd = class({})
-function modifier_up_res_cd:IsPurgable()
-	return false
-end
-function modifier_up_res_cd:IsHidden()
-	return false
-end
-function modifier_up_res_cd:IsDebuff()
-	return true
-end
-function modifier_up_res_cd:RemoveOnDeath()
-	return false
-end
-function modifier_up_res_cd:GetTexture()
-	return "item_phoenix_ash"
-end
-
-modifier_up_res_ready = class({})
-function modifier_up_res_ready:IsPurgable()
-	return false
-end
-function modifier_up_res_ready:IsHidden()
-	return self:GetParent():HasModifier("modifier_up_res_cd")
-end
-function modifier_up_res_ready:RemoveOnDeath()
-	return false
-end
-function modifier_up_res_ready:GetTexture()
-	return "item_phoenix_ash"
-end
-
-modifier_up_res_nodmg = class({})
-function modifier_up_res_nodmg:IsHidden()
-	return true
-end
-function modifier_up_res_nodmg:IsPurgable()
-	return false
-end
-function modifier_up_res_nodmg:CheckState()
-	return {
-		[MODIFIER_STATE_INVULNERABLE] = true,
-	}
-end
-
-modifier_up_slow_debuff = class({})
-
-function modifier_up_slow_debuff:IsPurgable()
-	return true
-end
-function modifier_up_slow_debuff:IsHidden()
-	return true
-end
-
-function modifier_up_slow_debuff:OnCreated(table)
-	self.caster = self:GetCaster()
-	self.attack_slow = self.caster:GetTalentValue("modifier_up_slow", "attack_slow")
-	self.move_slow = self.caster:GetTalentValue("modifier_up_slow", "move_slow")
-
-	if not IsServer() then
-		return
-	end
-	self:GetParent():EmitSound("DOTA_Item.Maim")
-end
-
-function modifier_up_slow_debuff:GetEffectName()
-	return "particles/items2_fx/sange_maim.vpcf"
-end
-
-function modifier_up_slow_debuff:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
-	}
-end
-
-function modifier_up_slow_debuff:GetModifierAttackSpeedBonus_Constant()
-	return self.attack_slow
-end
-
-function modifier_up_slow_debuff:GetModifierMoveSpeedBonus_Percentage()
-	return self.move_slow
-end
-
-modifier_up_teamfight_buff = class({})
-function modifier_up_teamfight_buff:IsHidden()
-	return false
-end
-function modifier_up_teamfight_buff:IsPurgable()
-	return false
-end
-function modifier_up_teamfight_buff:GetTexture()
-	return "buffs/Martyr"
-end
-function modifier_up_teamfight_buff:OnCreated(table)
-	self.parent = self:GetParent()
-
-	self.damage = self.parent:GetTalentValue("modifier_up_teamfight", "damage_bonus")
-	self.incoming = self.parent:GetTalentValue("modifier_up_teamfight", "damage_reduce")
-end
-
-function modifier_up_teamfight_buff:GetEffectName()
-	return "particles/units/heroes/hero_pudge/pudge_fleshheap_block_shield_model.vpcf"
-end
-
-function modifier_up_teamfight_buff:GetModifierIncomingDamage_Percentage()
-	return self.incoming
-end
-
-function modifier_up_teamfight_buff:GetModifierDamageOutgoing_Percentage()
-	return self.damage
-end
-
-function modifier_up_teamfight_buff:GetModifierSpellAmplify_Percentage()
-	return self.damage
-end
-
-function modifier_up_teamfight_buff:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
-		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
-		MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE,
-	}
-end
-
-modifier_attack_shield = class({})
-function modifier_attack_shield:IsHidden()
-	return false
-end
-function modifier_attack_shield:IsPurgable()
-	return false
-end
-function modifier_attack_shield:GetTexture()
-	return "item_crimson_guard"
-end
-
-function modifier_attack_shield:OnCreated(table)
-	self.parent = self:GetParent()
-	self.shield_talent = "modifier_up_attackblock"
-	self.max_shield = self.parent:GetTalentValue("modifier_up_attackblock", "block")
-
-	if not IsServer() then
-		return
-	end
-	self:SetStackCount(self.max_shield)
-	self.parent:EmitSound("Item.CrimsonGuard.Cast")
-end
-
-function modifier_attack_shield:OnRefresh(table)
-	self:OnCreated()
-end
-
-function modifier_attack_shield:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_INCOMING_PHYSICAL_DAMAGE_CONSTANT,
-		MODIFIER_PROPERTY_TOOLTIP,
-	}
-end
-function modifier_attack_shield:OnTooltip()
-	return self:GetStackCount()
-end
-
-function modifier_attack_shield:GetModifierIncomingPhysicalDamageConstant(params)
-	if IsClient() then
-		if params.report_max then
-			return self.max_shield
-		else
-			return self:GetStackCount()
-		end
-	end
-
-	if not IsServer() then
-		return
-	end
-	if self.parent == params.attacker then
-		return
-	end
-
-	local damage = math.min(params.damage, self:GetStackCount())
-	self.parent:AddShieldInfo({ shield_mod = self, healing = damage, healing_type = "shield" })
-
-	self:SetStackCount(self:GetStackCount() - damage)
-	if self:GetStackCount() <= 0 then
-		self:Destroy()
-	end
-
-	return -damage
-end
-
-modifier_magic_shield = class({})
-function modifier_magic_shield:IsHidden()
-	return false
-end
-function modifier_magic_shield:IsPurgable()
-	return false
-end
-
-function modifier_magic_shield:GetTexture()
-	return "item_hood_of_defiance"
-end
-
-function modifier_magic_shield:OnCreated(table)
-	self.parent = self:GetParent()
-	self.shield_talent = "modifier_up_magicblock"
-	self.max_shield = self.parent:GetTalentValue("modifier_up_magicblock", "block")
-
-	if not IsServer() then
-		return
-	end
-
-	self:SetStackCount(self.max_shield)
-	self.parent:EmitSound("DOTA_Item.Pipe.Activate")
-end
-
-function modifier_magic_shield:OnRefresh(table)
-	self:OnCreated()
-end
-
-function modifier_magic_shield:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_INCOMING_SPELL_DAMAGE_CONSTANT,
-		MODIFIER_PROPERTY_TOOLTIP,
-	}
-end
-
-function modifier_magic_shield:OnTooltip()
-	return self:GetStackCount()
-end
-
-function modifier_magic_shield:GetModifierIncomingSpellDamageConstant(params)
-	if IsClient() then
-		if params.report_max then
-			return self.max_shield
-		else
-			return self:GetStackCount()
-		end
-	end
-
-	if not IsServer() then
-		return
-	end
-
-	if self.parent == params.attacker then
-		return
-	end
-
-	local damage = math.min(params.damage, self:GetStackCount())
-	self.parent:AddShieldInfo({ shield_mod = self, healing = damage, healing_type = "shield" })
-
-	self:SetStackCount(self:GetStackCount() - damage)
-	if self:GetStackCount() <= 0 then
-		self:Destroy()
-	end
-
-	return -damage
-end
-
-modifier_shield_cd = class({})
-function modifier_shield_cd:IsHidden()
-	return true
-end
-function modifier_shield_cd:IsPurgable()
-	return false
-end
-
-modifier_general_stats_illusion = class(mod_hidden)
-function modifier_general_stats_illusion:RemoveOnDeath()
-	return false
-end
-function modifier_general_stats_illusion:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-	self.ability.tracker = self
-	self.ability:UpdateTalents()
-
-	self.records = {}
-
-	self.duo_status = 0
-	self.duo_health = 0
-	if not IsSoloMode() then
-		self.duo_status = 10
-		self.duo_health = 10
-	end
-
-	self.stack = 1
-	if self.parent:HasTalent("modifier_up_graypoints") then
-		self.stack = self.stack + self.ability.talents.gray_bonus / 100
-	end
-
-	if not IsServer() then
-		return
-	end
-	self.main_stat = self.parent:GetPrimaryAttribute()
-
-	if self.parent:HasModifier("modifier_item_pirate_hat_custom") then
-		local mod = self.parent:FindModifierByName("modifier_item_pirate_hat_custom")
-		if mod and mod.bonus then
-			self.stack = self.stack + mod.bonus / 100
-		end
-	end
-
-	if self.parent:HasTalent("modifier_up_javelin") and self.parent.owner then
-		self.parent:AddRecordDestroyEvent(self, true)
-		local owner = self.parent:IsTempestDouble() and self.parent or self.parent.owner
-		owner:AddAttackStartEvent_out(self)
-	end
-
-	self:NewStats()
-	self:SetHasCustomTransmitterData(true)
-	self:SendBuffRefreshToClients()
-end
-
-function modifier_general_stats_illusion:OnRefresh()
-	self:OnCreated()
-end
-
-function modifier_general_stats_illusion:AddCustomTransmitterData()
-	return {
-		main_stat = self.main_stat,
-		stack = self.stack,
-	}
-end
-
-function modifier_general_stats_illusion:HandleCustomTransmitterData(data)
-	self.main_stat = data.main_stat
-	self.stack = data.stack
-end
-
-function modifier_general_stats_illusion:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
-		MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
-		MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
-		MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
-		MODIFIER_PROPERTY_STATUS_RESISTANCE_STACKING,
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-		MODIFIER_PROPERTY_EVASION_CONSTANT,
-		MODIFIER_PROPERTY_HEALTH_BONUS,
-		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
-		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
-		MODIFIER_PROPERTY_EXTRA_HEALTH_PERCENTAGE,
-	}
-end
-
-function modifier_general_stats_illusion:GetModifierExtraHealthPercentage()
-	return self.duo_health
-end
-
-function modifier_general_stats_illusion:GetModifierAttackRangeBonus()
-	if not self.parent:IsRangedAttacker() and self.parent:HasModifier("modifier_item_monkey_king_bar_custom") then
-		return
-	end
-	if
-		self.parent:IsRangedAttacker()
-		and (
-			self.parent:HasModifier("modifier_item_dragon_lance")
-			or self.parent:HasModifier("modifier_item_hurricane_pike_custom")
-		)
-	then
-		return
-	end
-	return self.ability.talents.attack_range_bonus
-end
-
-function modifier_general_stats_illusion:GetModifierAttackSpeedBonus_Constant()
-	return self.ability.talents.attack_speed_bonus * self.stack
-end
-
-function modifier_general_stats_illusion:GetModifierHealthBonus()
-	return self.ability.talents.health_bonus * self.stack
-end
-
-function modifier_general_stats_illusion:GetModifierMoveSpeedBonus_Constant()
-	return self.ability.talents.move_bonus * self.stack
-end
-
-function modifier_general_stats_illusion:GetModifierPreAttack_BonusDamage()
-	return self.ability.talents.damage_bonus * self.stack
+function modifier_up_debuff_max:GetModifierMagicalResistanceBonus()
+	return self.ability.talents.gray_aoe_damage_max
 end
-
-function modifier_general_stats_illusion:GetModifierStatusResistanceStacking()
-	local bonus = self.duo_status
-	if self.main_stat == 3 and self.parent:HasTalent("modifier_up_allupgrade") then
-		bonus = bonus
-			+ self.ability.talents.stats_bonus_all
-				* self.parent:GetStrength()
-				/ self.ability.talents.stats_bonus_str
-	elseif self.main_stat == 0 and self.parent:HasTalent("modifier_up_primaryupgrade") then
-		bonus = bonus + self.parent:GetStrength() / self.ability.talents.stats_bonus_str
-	elseif (self.main_stat == 1 or self.main_stat == 2) and self.parent:HasTalent("modifier_up_secondaryupgrade") then
-		bonus = bonus + self.parent:GetStrength() / self.ability.talents.stats_bonus_str
-	end
-	bonus = bonus + self.ability.talents.status_bonus * self.stack
-	return bonus
-end
-
-function modifier_general_stats_illusion:GetModifierMoveSpeedBonus_Percentage()
-	local bonus = 0
-	if self.main_stat == 3 and self.parent:HasTalent("modifier_up_allupgrade") then
-		bonus = bonus
-			+ self.ability.talents.stats_bonus_all * self.parent:GetAgility() / self.ability.talents.stats_bonus_agi
-	elseif self.main_stat == 1 and self.parent:HasTalent("modifier_up_primaryupgrade") then
-		bonus = bonus + self.parent:GetAgility() / self.ability.talents.stats_bonus_agi
-	elseif (self.main_stat == 0 or self.main_stat == 2) and self.parent:HasTalent("modifier_up_secondaryupgrade") then
-		bonus = bonus + self.parent:GetAgility() / self.ability.talents.stats_bonus_agi
-	end
-	return bonus
-end
-
-function modifier_general_stats_illusion:GetModifierEvasion_Constant()
-	local bonus = 0
-	if self.main_stat == 3 and self.parent:HasTalent("modifier_up_allupgrade") then
-		bonus = bonus
-			+ self.ability.talents.stats_bonus_all * self.parent:GetAgility() / self.ability.talents.stats_bonus_agi
-	elseif self.main_stat == 1 and self.parent:HasTalent("modifier_up_primaryupgrade") then
-		bonus = bonus + self.parent:GetAgility() / self.ability.talents.stats_bonus_agi
-	elseif (self.main_stat == 0 or self.main_stat == 2) and self.parent:HasTalent("modifier_up_secondaryupgrade") then
-		bonus = bonus + self.parent:GetAgility() / self.ability.talents.stats_bonus_agi
-	end
-	bonus = bonus + self.ability.talents.evasion_bonus * self.stack
-	return bonus
-end
-
-function modifier_general_stats_illusion:GetModifierBonusStats_Agility()
-	local bonus = 0
-
-	if self.main_stat == 3 then
-		bonus = bonus + self.ability.talents.all_bonus * self.stack
-	end
-	if self.main_stat == 1 then
-		bonus = bonus + self.ability.talents.primary_bonus * self.stack
-	end
-	if self.main_stat == 2 or self.main_stat == 0 then
-		bonus = bonus + self.ability.talents.secondary_bonus * self.stack
-	end
-
-	return bonus
-end
-
-function modifier_general_stats_illusion:GetModifierBonusStats_Strength()
-	local bonus = 0
-
-	if self.main_stat == 3 then
-		bonus = bonus + self.ability.talents.all_bonus * self.stack
-	end
-	if self.main_stat == 0 then
-		bonus = bonus + self.ability.talents.primary_bonus * self.stack
-	end
-	if self.main_stat == 1 or self.main_stat == 2 then
-		bonus = bonus + self.ability.talents.secondary_bonus * self.stack
-	end
-
-	return bonus
-end
-
-function modifier_general_stats_illusion:GetModifierBonusStats_Intellect()
-	local bonus = 0
-
-	if self.main_stat == 3 then
-		bonus = bonus + self.ability.talents.all_bonus * self.stack
-	end
-	if self.main_stat == 2 then
-		bonus = bonus + self.ability.talents.primary_bonus * self.stack
-	end
-	if self.main_stat == 1 or self.main_stat == 0 then
-		bonus = bonus + self.ability.talents.secondary_bonus * self.stack
-	end
-
-	return bonus
-end
-
-function modifier_general_stats_illusion:NewStats()
-	if not IsServer() then
-		return
-	end
-
-	local str = 0
-	local agi = 0
-	local int = 0
-
-	if self.parent:HasTalent("modifier_up_gainall") then
-		local stats = self.ability.talents.all_gain_bonus / 100
-
-		str = str + stats
-		agi = agi + stats
-		int = int + stats
-	end
-
-	if self.parent:HasTalent("modifier_up_gainprimary") then
-		local stats = self.ability.talents.primary_gain_bonus / 100
-
-		if self.main_stat == 0 then
-			str = str + stats
-		end
-
-		if self.main_stat == 1 then
-			agi = agi + stats
-		end
-
-		if self.main_stat == 2 then
-			int = int + stats
-		end
-	end
-
-	if self.parent:HasTalent("modifier_up_gainsecondary") then
-		local stats = self.ability.talents.secondary_gain_bonus / 100
-
-		if self.main_stat == 0 then
-			int = int + stats
-			agi = agi + stats
-		end
-
-		if self.main_stat == 1 then
-			int = int + stats
-			str = str + stats
-		end
-
-		if self.main_stat == 2 then
-			agi = agi + stats
-			str = str + stats
-		end
-	end
-
-	self.parent:AddPercentStat({ agi = agi, str = str, int = int }, self)
-end
-
-function modifier_general_stats_illusion:CheckState()
-	if not IsValid(self.parent) then
-		return
-	end
-	if not self.parent:HasModifier("modifier_general_javelin_proc") then
-		return
-	end
-	return {
-		[MODIFIER_STATE_CANNOT_MISS] = true,
-	}
-end
-
-function modifier_general_stats_illusion:AttackStartEvent_out(params)
-	if not IsServer() then
-		return
-	end
-	if not self.parent:HasTalent("modifier_up_javelin") then
-		return
-	end
-	if self.parent ~= params.attacker then
-		return
-	end
-	if not params.target:IsUnit() then
-		return
-	end
-
-	if self.parent:HasModifier("modifier_general_javelin_proc") then
-		self.records[params.record] = true
-	end
-
-	self.parent:RemoveModifierByName("modifier_general_javelin_proc")
-
-	self:RandomProcDamage()
-end
-
-function modifier_general_stats_illusion:RecordDestroyEvent(params)
-	if not self.parent:HasTalent("modifier_up_javelin") then
-		return
-	end
-	if not self.records[params.record] then
-		return
-	end
-	self.records[params.record] = nil
-end
-
-function modifier_general_stats_illusion:RandomProcDamage()
-	if not self.parent:HasTalent("modifier_up_javelin") then
-		return
-	end
-
-	local chance = self.ability.talents.javelin_bonus * self.stack
-
-	if RollPseudoRandomPercentage(chance, 1960, self.parent) then
-		self.parent:AddNewModifier(self.parent, nil, "modifier_general_javelin_proc", {})
-	end
-end
-
-modifier_general_javelin_proc = class(mod_hidden)

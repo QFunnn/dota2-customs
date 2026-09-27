@@ -15,7 +15,6 @@ LinkLuaModifier(
 	"abilities/huskar/custom_huskar_innate",
 	LUA_MODIFIER_MOTION_NONE
 )
-LinkLuaModifier("modifier_custom_huskar_stun_cd", "abilities/huskar/custom_huskar_innate", LUA_MODIFIER_MOTION_NONE)
 
 custom_huskar_innate = class({})
 custom_huskar_innate.talents = {}
@@ -32,6 +31,7 @@ function custom_huskar_innate:Precache(context)
 		"amir4an/particles/heroes/huskar/amir4an_1x6/amir4an_1x6_huskar_ability_mana_heal_ambient.vpcf",
 		context
 	)
+	PrecacheResource("particle", "particles/huskar_grave.vpcf", context)
 
 	PrecacheResource("soundfile", "soundevents/npc_dota_hero_huskar.vsndevts", context)
 	dota1x6:PrecacheShopItems("npc_dota_hero_huskar", context)
@@ -68,6 +68,10 @@ function modifier_custom_huskar_innate:OnCreated(table)
 	self.ability.heal = self.ability:GetSpecialValueFor("heal") / 100
 	self.ability.cooldown = self.ability:GetSpecialValueFor("cooldown")
 	self.ability.scepter_duration = self.ability:GetSpecialValueFor("scepter_duration")
+
+	if not IsServer() then
+		return
+	end
 	self.parent:AddDamageEvent_inc(self)
 end
 
@@ -220,9 +224,4 @@ function modifier_custom_huskar_innate_scepter:GetDisableHealing()
 		return
 	end
 	return 1
-end
-
-modifier_custom_huskar_stun_cd = class(mod_cd)
-function modifier_custom_huskar_stun_cd:GetTexture()
-	return "buffs/huskar/hero_7"
 end

@@ -65,10 +65,8 @@ function leshrac_lightning_storm_custom:Precache(context)
 	PrecacheResource("particle", "particles/leshrac/storm_refresh.vpcf", context)
 	PrecacheResource("particle", "particles/leshrac_storm.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_leshrac/leshrac_lightning_bolt.vpcf", context)
-	PrecacheResource("particle", "particles/units/heroes/hero_leshrac/leshrac_lightning_bolt.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_leshrac/leshrac_lightning_slow.vpcf", context)
 	PrecacheResource("particle", "particles/lesh_charges.vpcf", context)
-	PrecacheResource("particle", "particles/units/heroes/hero_leshrac/leshrac_lightning_bolt.vpcf", context)
 	PrecacheResource("particle", "particles/leshrac/storm_max.vpcf", context)
 	PrecacheResource("particle", "particles/items3_fx/octarine_core_lifesteal.vpcf", context)
 	PrecacheResource("particle", "particles/leshrac_stack.vpcf", context)
@@ -138,7 +136,7 @@ function leshrac_lightning_storm_custom:UpdateTalents(name)
 		self.talents.has_e2 = 1
 		self.talents.e2_heal = caster:GetTalentValue("modifier_leshrac_storm_2", "heal") / 100
 		self.talents.e2_cd = caster:GetTalentValue("modifier_leshrac_storm_2", "cd")
-		self.caster:AddAttackStartEvent_out(self.tracker, true)
+		caster:AddAttackStartEvent_out(self.tracker, true)
 	end
 
 	if caster:HasTalent("modifier_leshrac_storm_3") then
@@ -157,7 +155,7 @@ function leshrac_lightning_storm_custom:UpdateTalents(name)
 		self.talents.has_e7 = 1
 		if IsServer() then
 			self.tracker:UpdateUI()
-			self.caster:AddAttackStartEvent_out(self.tracker, true)
+			caster:AddAttackStartEvent_out(self.tracker, true)
 		end
 	end
 
@@ -174,7 +172,7 @@ function leshrac_lightning_storm_custom:GetIntrinsicModifierName()
 end
 
 function leshrac_lightning_storm_custom:GetCooldown(iLevel)
-	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.e2_cd and self.talents.e2_cd or 0)
+	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.e2_cd or 0)
 end
 
 function leshrac_lightning_storm_custom:GetBehavior()
@@ -190,7 +188,8 @@ end
 
 function leshrac_lightning_storm_custom:GetAOERadius()
 	if self.talents.has_e7 == 1 then
-		return self.talents.e7_radius + (self.caster.leshrac_innate and self.caster.leshrac_innate:GetRange() or 0)
+		return self.talents.e7_radius
+			+ (IsValid(self.caster.leshrac_innate) and self.caster.leshrac_innate:GetRange() or 0)
 	end
 	return 0
 end
@@ -207,7 +206,7 @@ function leshrac_lightning_storm_custom:OnSpellStart()
 				self.caster,
 				self,
 				"modifier_leshrac_lightning_storm_custom_legendary_speed",
-				{ duration = self.ability.talents.e7_effect_duration, count = count }
+				{ duration = self.talents.e7_effect_duration, count = count }
 			)
 		end
 		CreateModifierThinker(
@@ -243,9 +242,9 @@ function leshrac_lightning_storm_custom:DealDamage(target, ability)
 		return
 	end
 
-	local damage = self.damage + self.ability.talents.e1_damage * self.caster:GetIntellect(false)
-	if self.ability.talents.has_q7 == 1 then
-		damage = self.damage + self.ability.talents.e1_damage_earth * self.caster:GetAverageTrueAttackDamage(nil)
+	local damage = self.damage + self.talents.e1_damage * self.caster:GetIntellect(false)
+	if self.talents.has_q7 == 1 then
+		damage = self.damage + self.talents.e1_damage_earth * self.caster:GetAverageTrueAttackDamage(nil)
 	end
 
 	local new_duration
@@ -256,7 +255,7 @@ function leshrac_lightning_storm_custom:DealDamage(target, ability)
 	end
 
 	if ability and ability == "modifier_leshrac_storm_7" then
-		damage = damage * (self.ability.talents.e7_damage / self.ability.talents.e7_max)
+		damage = damage * (self.talents.e7_damage / self.talents.e7_max)
 	else
 		self:ApplySlow(target, new_duration)
 	end
@@ -288,7 +287,7 @@ function leshrac_lightning_storm_custom:DealDamage(target, ability)
 		{
 			victim = target,
 			damage = damage,
-			damage_type = self.ability.talents.has_q7 == 1 and DAMAGE_TYPE_PHYSICAL or DAMAGE_TYPE_MAGICAL,
+			damage_type = self.talents.has_q7 == 1 and DAMAGE_TYPE_PHYSICAL or DAMAGE_TYPE_MAGICAL,
 			attacker = self.caster,
 			ability = self,
 		},
@@ -320,15 +319,15 @@ function leshrac_lightning_storm_custom:ProcSpeed()
 	if not self:IsTrained() then
 		return
 	end
-	if self.ability.talents.has_e3 == 0 then
+	if self.talents.has_e3 == 0 then
 		return
 	end
 
 	self.parent:AddNewModifier(
 		self.parent,
-		self.ability,
+		self,
 		"modifier_leshrac_lightning_storm_custom_speed",
-		{ duration = self.ability.talents.e3_duration }
+		{ duration = self.talents.e3_duration }
 	)
 end
 
@@ -363,8 +362,12 @@ function modifier_leshrac_lightning_storm_custom:OnCreated(params)
 	self:StartIntervalThink(self.jump_delay)
 end
 
-function modifier_leshrac_lightning_storm_custom:OnIntervalThink(first)
+function modifier_leshrac_lightning_storm_custom:OnIntervalThink()
 	if not IsServer() then
+		return
+	end
+	if not IsValid(self.current_unit) then
+		self:Destroy()
 		return
 	end
 
@@ -534,24 +537,6 @@ function modifier_leshrac_lightning_storm_custom_legendary_count:OnRefresh()
 		return
 	end
 	self:IncrementStackCount()
-end
-
-function modifier_leshrac_lightning_storm_custom_legendary_count:OnIntervalThink()
-	if not IsServer() then
-		return
-	end
-
-	if self:GetStackCount() > 0 then
-		self:DecrementStackCount()
-	end
-
-	self:StartIntervalThink(self.interval)
-end
-
-function modifier_leshrac_lightning_storm_custom_legendary_count:OnStackCountChanged(iStackCount)
-	if not IsServer() then
-		return
-	end
 
 	if self.ability.tracker then
 		self.ability.tracker:UpdateUI()
@@ -637,7 +622,6 @@ function modifier_leshrac_lightning_storm_custom_tracker:OnCreated()
 	self.ability.jump_delay = self.ability:GetSpecialValueFor("jump_delay")
 	self.ability.slow_movement_speed = self.ability:GetSpecialValueFor("slow_movement_speed")
 	self.ability.creeps = self.ability:GetSpecialValueFor("creeps") / 100
-	self.visual_max = 4
 end
 
 function modifier_leshrac_lightning_storm_custom_tracker:OnRefresh()
@@ -661,7 +645,7 @@ function modifier_leshrac_lightning_storm_custom_tracker:UpdateUI()
 
 	if mod then
 		stack = mod:GetStackCount()
-		if mod:GetStackCount() >= self.ability.talents.e7_max then
+		if mod:GetStackCount() >= max then
 			active = 1
 		end
 		if self.particle then
@@ -785,7 +769,7 @@ function modifier_leshrac_lightning_storm_custom_tracker:AttackEvent_out(params)
 		local distance = vec:Length2D()
 		vec = vec:Normalized()
 
-		local dist_k = math.min(1, (1 - distance / 800))
+		local dist_k = math.max(0, math.min(1, 1 - distance / 800))
 		distance = self.ability.talents.e4_distance_min
 			+ dist_k * (self.ability.talents.e4_distance_max - self.ability.talents.e4_distance_min)
 
@@ -902,12 +886,6 @@ modifier_leshrac_lightning_storm_custom_root = class(mod_hidden)
 function modifier_leshrac_lightning_storm_custom_root:IsPurgable()
 	return true
 end
-function modifier_leshrac_lightning_storm_custom_root:CheckState()
-	return {
-		[MODIFIER_STATE_ROOTED] = true,
-	}
-end
-
 function modifier_leshrac_lightning_storm_custom_root:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -916,4 +894,10 @@ function modifier_leshrac_lightning_storm_custom_root:OnCreated()
 		return
 	end
 	self.parent:GenericParticle("particles/ta_shield_roots.vpcf", self)
+end
+
+function modifier_leshrac_lightning_storm_custom_root:CheckState()
+	return {
+		[MODIFIER_STATE_ROOTED] = true,
+	}
 end

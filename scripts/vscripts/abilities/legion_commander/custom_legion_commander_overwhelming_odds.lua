@@ -56,10 +56,10 @@ function custom_legion_commander_overwhelming_odds:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
 	end
+
 	PrecacheResource("particle", "particles/units/heroes/hero_legion_commander/legion_weapon_blur.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_legion_commander/legion_weapon_blurb.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_legion_commander/legion_weapon_blurc.vpcf", context)
-
 	PrecacheResource(
 		"particle",
 		"particles/units/heroes/hero_legion_commander/legion_commander_odds_cast.vpcf",
@@ -76,7 +76,6 @@ function custom_legion_commander_overwhelming_odds:Precache(context)
 		"particles/units/heroes/hero_legion_commander/legion_commander_odds_buff.vpcf",
 		context
 	)
-
 	PrecacheResource("particle", "particles/lc_odd_proc_burst.vpcf", context)
 	PrecacheResource("particle", "particles/lina_timer.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_snapfire/hero_snapfire_shotgun_debuff.vpcf", context)
@@ -86,6 +85,12 @@ function custom_legion_commander_overwhelming_odds:Precache(context)
 	PrecacheResource("particle", "particles/items2_fx/vindicators_axe_armor.vpcf", context)
 	PrecacheResource("particle", "particles/legion_commander/odds_legendary_aoe.vpcf", context)
 	PrecacheResource("particle", "particles/bristleback/back_shield.vpcf", context)
+	PrecacheResource(
+		"particle",
+		"particles/units/heroes/hero_omniknight/omniknight_hammer_of_purity_detonation.vpcf",
+		context
+	)
+	PrecacheResource("particle", "particles/lc_press_heal.vpcf", context)
 
 	dota1x6:PrecacheShopItems("npc_dota_hero_legion_commander", context)
 end
@@ -179,30 +184,15 @@ function custom_legion_commander_overwhelming_odds:UpdateTalents(name)
 	end
 end
 
+function custom_legion_commander_overwhelming_odds:GetAbilityTextureName()
+	return wearables_system:GetAbilityIconReplacement(self.caster, "legion_commander_overwhelming_odds", self)
+end
+
 function custom_legion_commander_overwhelming_odds:GetIntrinsicModifierName()
 	if not self:GetCaster():IsRealHero() then
 		return
 	end
 	return "modifier_overwhelming_odds_custom_tracker"
-end
-
-function custom_legion_commander_overwhelming_odds:OnInventoryContentsChanged()
-	if not IsServer() then
-		return
-	end
-	if self.shard_init then
-		return
-	end
-	if not self.caster:HasShard() then
-		return
-	end
-
-	self.shard_init = true
-	self:ToggleAutoCast()
-end
-
-function custom_legion_commander_overwhelming_odds:GetAbilityTextureName()
-	return wearables_system:GetAbilityIconReplacement(self.caster, "legion_commander_overwhelming_odds", self)
 end
 
 function custom_legion_commander_overwhelming_odds:GetBehavior()
@@ -224,11 +214,11 @@ function custom_legion_commander_overwhelming_odds:GetCastAnimation()
 end
 
 function custom_legion_commander_overwhelming_odds:GetRadius()
-	local base = (self.ability.radius and self.ability.radius or 0)
+	local base = self.radius or 0
 	if self.talents.has_q7 == 1 then
 		base = self.talents.q7_aoe_radius
 	end
-	return base + (self.talents.has_q2 == 1 and self.ability.talents.q2_radius or 0)
+	return base + (self.talents.has_q2 == 1 and self.talents.q2_radius or 0)
 end
 
 function custom_legion_commander_overwhelming_odds:GetAOERadius()
@@ -236,7 +226,7 @@ function custom_legion_commander_overwhelming_odds:GetAOERadius()
 end
 
 function custom_legion_commander_overwhelming_odds:GetCastPoint(iLevel)
-	return self.BaseClass.GetCastPoint(self) + (self.caster:HasShard() and self.shard_cast or 0)
+	return self.BaseClass.GetCastPoint(self) + (self.caster:HasShard() and (self.shard_cast or 0) or 0)
 end
 
 function custom_legion_commander_overwhelming_odds:GetCooldown(iLevel)
@@ -245,7 +235,7 @@ end
 
 function custom_legion_commander_overwhelming_odds:GetCastRange(location, target)
 	if self.caster:HasShard() or self.talents.has_q7 == 1 then
-		return self.ability.shard_range
+		return self.shard_range or 0
 	end
 	return self:GetRadius() - self.caster:GetCastRangeBonus()
 end
@@ -286,18 +276,13 @@ end
 function custom_legion_commander_overwhelming_odds:OnSpellStart()
 	local point = self.caster:GetAbsOrigin()
 
-	if self.caster:HasShard() or self.ability.talents.has_q7 == 1 then
+	if self.caster:HasShard() or self.talents.has_q7 == 1 then
 		point = self:GetCursorPosition()
 		if point == self.caster:GetAbsOrigin() then
 			point = self.caster:GetAbsOrigin() + self.caster:GetForwardVector() * 10
 		end
 
-		local dir = (point - self.caster:GetAbsOrigin())
-		dir.z = 0
-
-		local vec = dir:Normalized()
-		self.caster:FaceTowards(point)
-		self.caster:SetForwardVector(vec)
+		self.caster:FacePoint(point)
 
 		if
 			self.caster:HasShard()
@@ -317,12 +302,12 @@ function custom_legion_commander_overwhelming_odds:OnSpellStart()
 
 	self:ProcOdds(point)
 
-	if self.ability.talents.has_q4 == 1 then
+	if self.talents.has_q4 == 1 then
 		self.caster:RemoveModifierByName("modifier_overwhelming_odds_custom_shield")
 		self.caster:AddNewModifier(self.caster, self, "modifier_overwhelming_odds_custom_shield", {})
 	end
 
-	if self.ability.talents.has_q7 == 1 then
+	if self.talents.has_q7 == 1 then
 		CreateModifierThinker(
 			self.caster,
 			self,
@@ -335,13 +320,27 @@ function custom_legion_commander_overwhelming_odds:OnSpellStart()
 	end
 end
 
+function custom_legion_commander_overwhelming_odds:OnInventoryContentsChanged()
+	if not IsServer() then
+		return
+	end
+	if self.shard_init then
+		return
+	end
+	if not self.caster:HasShard() then
+		return
+	end
+
+	self.shard_init = true
+	self:ToggleAutoCast()
+end
+
 function custom_legion_commander_overwhelming_odds:ProcOdds(point, source, buffed)
 	if not IsServer() then
 		return
 	end
 	local radius = self:GetRadius()
-	local damage = self.damage
-		+ self.ability.talents.q1_damage * (self.caster:GetStrength() + self.caster:GetIntellect(false))
+	local damage = self.damage + self.talents.q1_damage * (self.caster:GetStrength() + self.caster:GetIntellect(false))
 	local slow_duration = self.slow_duration + (self.talents.has_h4 == 1 and self.talents.h4_slow or 0)
 
 	local particle_cast = wearables_system:GetParticleReplacementAbility(
@@ -370,7 +369,7 @@ function custom_legion_commander_overwhelming_odds:ProcOdds(point, source, buffe
 
 	if source == "modifier_legion_odds_7" then
 		if buffed then
-			damage = damage * self.ability.talents.q7_damage_max
+			damage = damage * self.talents.q7_damage_max
 
 			EmitSoundOnLocationWithCaster(point, "Lc.Odds_Proc_Damage", self.caster)
 			local particle =
@@ -379,7 +378,7 @@ function custom_legion_commander_overwhelming_odds:ProcOdds(point, source, buffe
 			ParticleManager:SetParticleControl(particle, 1, Vector(radius, radius, radius))
 			ParticleManager:ReleaseParticleIndex(particle)
 		else
-			damage = damage * self.ability.talents.q7_damage
+			damage = damage * self.talents.q7_damage
 		end
 	end
 
@@ -484,7 +483,7 @@ function modifier_overwhelming_odds_custom_speed:OnCreated(table)
 		wearables_system:GetParticleReplacementAbility(
 			self.parent,
 			"particles/units/heroes/hero_legion_commander/legion_commander_odds_buff.vpcf",
-			self
+			self.ability
 		),
 		self
 	)
@@ -651,10 +650,10 @@ function modifier_overwhelming_odds_custom_legendary:OnIntervalThink(first)
 			self.proc_count = self.proc_count + 1
 
 			if
-				self.proc_count == (self.ability.talents.w4_odds_count - 1)
-				and self.ability.talents.has_w4 == 1
-				and IsValid(self.caster.press_ability)
+				self.ability.talents.has_w4 == 1
 				and self.ability.talents.has_w7 == 0
+				and self.proc_count == (self.ability.talents.w4_odds_count - 1)
+				and IsValid(self.caster.press_ability)
 			then
 				self.caster.press_ability:ProcRoot(nil, self.parent:GetAbsOrigin())
 			end
@@ -801,8 +800,7 @@ function modifier_overwhelming_odds_custom_proc_charge:OnDestroy()
 
 	local dir = self.parent:GetForwardVector()
 	dir.z = 0
-	self.parent:SetForwardVector(dir)
-	self.parent:FaceTowards(self.parent:GetAbsOrigin() + dir * 10)
+	self.parent:FacePoint(self.parent:GetAbsOrigin() + dir * 10)
 
 	ResolveNPCPositions(self.parent:GetAbsOrigin(), 128)
 end
@@ -824,6 +822,11 @@ function modifier_overwhelming_odds_custom_heal_reduce:OnCreated()
 	self.ability = self:GetAbility()
 
 	self.heal_reduce = self.ability.talents.q1_heal_reduce
+
+	if not IsServer() then
+		return
+	end
+	self.RemoveForDuel = true
 end
 
 function modifier_overwhelming_odds_custom_heal_reduce:DeclareFunctions()
@@ -856,23 +859,16 @@ function modifier_overwhelming_odds_custom_damage:OnCreated(table)
 		self.ability.damage_mod = self
 	end
 
-	self:AddStack(table.damage)
+	self:OnRefresh(table)
 end
 
 function modifier_overwhelming_odds_custom_damage:OnRefresh(table)
 	if not IsServer() then
 		return
 	end
-	self:AddStack(table.damage)
-end
-
-function modifier_overwhelming_odds_custom_damage:AddStack(damage)
-	if not IsServer() then
-		return
-	end
 	self.count = math.min(
 		self.parent:GetMaxHealth() * self.ability.talents.q3_damage_max,
-		math.floor(self.count + damage * self.ability.talents.q3_damage)
+		math.floor(self.count + table.damage * self.ability.talents.q3_damage)
 	)
 
 	if self.ability.damage_mod == self then
@@ -948,6 +944,9 @@ function modifier_overwhelming_odds_custom_shield:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
+	if not IsServer() then
+		return
+	end
 	self.interval = 0.1
 	self.count = 0
 	self.max_shield = self.parent:GetMaxHealth() * self.ability.talents.q4_shield_max

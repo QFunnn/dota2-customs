@@ -27,6 +27,7 @@ function item_sheepstick_custom:Precache(context)
 	end
 	PrecacheResource("model", "models/props_gameplay/pig.vmdl", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_lina/lina_supercharge_buff.vpcf", context)
+	PrecacheResource("particle", "particles/items_fx/item_sheepstick.vpcf", context)
 end
 
 function item_sheepstick_custom:Spawn()
@@ -37,6 +38,7 @@ function item_sheepstick_custom:Spawn()
 	self.sheep_damage_reduce = self:GetSpecialValueFor("sheep_damage_reduce")
 	self.sheep_movement_speed = self:GetSpecialValueFor("sheep_movement_speed")
 	self.sheep_movement_speed_self = self:GetSpecialValueFor("sheep_movement_speed_self")
+	self.cdr_bonus = self:GetSpecialValueFor("cdr_bonus")
 end
 
 function item_sheepstick_custom:CastFilterResultTarget(target)
@@ -79,20 +81,7 @@ function item_sheepstick_custom:OnSpellStart()
 	target:AddNewModifier(caster, self, "modifier_item_sheepstick_custom_debuff", { duration = duration })
 end
 
-modifier_item_sheepstick_custom = class({})
-function modifier_item_sheepstick_custom:IsHidden()
-	return true
-end
-function modifier_item_sheepstick_custom:IsPurgable()
-	return false
-end
-function modifier_item_sheepstick_custom:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
-		MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
-	}
-end
-
+modifier_item_sheepstick_custom = class(mod_hidden)
 function modifier_item_sheepstick_custom:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -100,7 +89,14 @@ function modifier_item_sheepstick_custom:OnCreated()
 	if not self.parent.cdr_items then
 		self.parent.cdr_items = {}
 	end
-	self.parent.cdr_items[self] = self.ability:GetSpecialValueFor("cdr_bonus")
+	self.parent.cdr_items[self] = self.ability.cdr_bonus
+end
+
+function modifier_item_sheepstick_custom:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
+		MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
+	}
 end
 
 function modifier_item_sheepstick_custom:GetModifierBonusStats_Intellect()
@@ -180,10 +176,14 @@ function modifier_item_sheepstick_custom_debuff:OnIntervalThink()
 		self.parent:StartGesture(ACT_DOTA_SPAWN)
 	end
 
-	if self.state == 1 and self.parent:IsDebuffImmune() then
-		self.state = 0
-		self.parent:EndNoDraw(self)
+	if self.state ~= 1 then
+		return
 	end
+	if not self.parent:IsDebuffImmune() then
+		return
+	end
+	self.state = 0
+	self.parent:EndNoDraw(self)
 end
 
 function modifier_item_sheepstick_custom_debuff:OnDestroy()

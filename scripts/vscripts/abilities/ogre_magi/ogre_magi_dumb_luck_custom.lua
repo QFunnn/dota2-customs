@@ -28,6 +28,7 @@ function ogre_magi_dumb_luck_custom:Precache(context)
 	end
 	PrecacheResource("soundfile", "soundevents/npc_dota_hero_ogre_magi.vsndevts", context)
 	PrecacheResource("soundfile", "soundevents/vo_custom/ogre_magi_vo_custom.vsndevts", context)
+	PrecacheResource("particle", "particles/lc_odd_proc_.vpcf", context)
 	dota1x6:PrecacheShopItems("npc_dota_hero_ogre_magi", context)
 end
 
@@ -43,7 +44,6 @@ function ogre_magi_dumb_luck_custom:UpdateTalents(name)
 			has_e2 = 0,
 			e2_duration = caster:GetTalentValue("modifier_ogremagi_bloodlust_2", "duration", true),
 
-			has_e7 = 0,
 			e7_heal_max = caster:GetTalentValue("modifier_ogremagi_bloodlust_7", "heal_max", true) / 100,
 
 			has_r2 = 0,
@@ -57,9 +57,6 @@ function ogre_magi_dumb_luck_custom:UpdateTalents(name)
 			r4_gold = caster:GetTalentValue("modifier_ogremagi_multi_4", "gold", true),
 			r4_cdr = caster:GetTalentValue("modifier_ogremagi_multi_4", "cdr", true),
 
-			has_r7 = 0,
-
-			has_h3 = 0,
 			h3_str = 0,
 			h3_mana = 0,
 		}
@@ -68,7 +65,7 @@ function ogre_magi_dumb_luck_custom:UpdateTalents(name)
 	if caster:HasTalent("modifier_ogremagi_ignite_2") then
 		self.talents.has_w2 = 1
 		self.talents.w2_heal = caster:GetTalentValue("modifier_ogremagi_ignite_2", "heal") / 100
-		self.caster:AddDamageEvent_out(self.tracker, true)
+		caster:AddDamageEvent_out(self.tracker, true)
 	end
 
 	if caster:HasTalent("modifier_ogremagi_bloodlust_2") then
@@ -76,14 +73,13 @@ function ogre_magi_dumb_luck_custom:UpdateTalents(name)
 	end
 
 	if caster:HasTalent("modifier_ogremagi_bloodlust_7") then
-		self.talents.has_e7 = 1
-		self.caster:AddDamageEvent_out(self.tracker, true)
+		caster:AddDamageEvent_out(self.tracker, true)
 	end
 
 	if caster:HasTalent("modifier_ogremagi_multi_2") then
 		self.talents.has_r2 = 1
 		self.talents.r2_heal = caster:GetTalentValue("modifier_ogremagi_multi_2", "heal") / 100
-		self.caster:AddDamageEvent_out(self.tracker, true)
+		caster:AddDamageEvent_out(self.tracker, true)
 	end
 
 	if caster:HasTalent("modifier_ogremagi_multi_3") then
@@ -94,15 +90,10 @@ function ogre_magi_dumb_luck_custom:UpdateTalents(name)
 		self.talents.has_r4 = 1
 	end
 
-	if caster:HasTalent("modifier_ogremagi_multi_7") then
-		self.talents.has_r7 = 1
-	end
-
 	if caster:HasTalent("modifier_ogremagi_hero_3") then
-		self.talents.has_h3 = 1
 		self.talents.h3_str = caster:GetTalentValue("modifier_ogremagi_hero_3", "str") / 100
 		self.talents.h3_mana = caster:GetTalentValue("modifier_ogremagi_hero_3", "mana")
-		self.caster:AddPercentStat({ str = self.talents.h3_str }, self.tracker)
+		caster:AddPercentStat({ str = self.talents.h3_str }, self.tracker)
 	end
 end
 
@@ -127,10 +118,10 @@ function ogre_magi_dumb_luck_custom:AbilityTarget(target, ability)
 	if not self:IsTrained() then
 		return
 	end
-	if target:GetTeamNumber() == self.caster:GetTeamNumber() then
+	if target:IsNull() or not target:IsBaseNPC() then
 		return
 	end
-	if target:IsNull() or not target:IsBaseNPC() then
+	if target:GetTeamNumber() == self.caster:GetTeamNumber() then
 		return
 	end
 
@@ -151,7 +142,7 @@ function ogre_magi_dumb_luck_custom:AbilityTarget(target, ability)
 		end
 	end
 
-	if IsValid(self.parent.multicast_ability) and self.talents.has_r3 == 1 then
+	if IsValid(self.caster.multicast_ability) and self.talents.has_r3 == 1 then
 		target:AddNewModifier(
 			self.caster,
 			self.caster.multicast_ability,
@@ -307,7 +298,7 @@ function modifier_ogre_magi_dumb_luck_custom_cdr:OnIntervalThink()
 	end
 
 	if self.save_gold > 0 then
-		self.parent:GiveGold(self.save_gold, true)
+		self.parent:GiveGold(self.save_gold, true, nil, "modifier_ogremagi_multi_4")
 		self.save_gold = 0
 	end
 
@@ -331,7 +322,7 @@ function modifier_ogre_magi_dumb_luck_custom_cdr:OnRefresh(table)
 	self:IncrementStackCount()
 
 	if self.ability.talents.has_r4 == 1 then
-		self.parent:GiveGold(self.gold)
+		self.parent:GiveGold(self.gold, nil, nil, "modifier_ogremagi_multi_4")
 	else
 		self.save_gold = self.save_gold + self.gold
 	end

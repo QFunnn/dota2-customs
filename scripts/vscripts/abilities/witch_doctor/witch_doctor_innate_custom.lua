@@ -20,7 +20,6 @@ LinkLuaModifier(
 )
 
 witch_doctor_innate_custom = class({})
-
 function witch_doctor_innate_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
@@ -54,7 +53,6 @@ function modifier_witch_doctor_innate_custom:OnCreated(table)
 end
 
 item_grisgris_custom = class({})
-
 function item_grisgris_custom:GetIntrinsicModifierName()
 	return "modifier_witch_doctor_innate_custom_grisgris"
 end
@@ -143,7 +141,7 @@ function modifier_witch_doctor_innate_custom_grisgris:ConsumeGold()
 	)
 	ParticleManager:ReleaseParticleIndex(Particle)
 
-	self.parent:GiveGold(gold, true)
+	self.parent:GiveGold(gold, true, nil, self.ability)
 
 	if GameRules:GetDOTATime(false, false) >= self.epic_min * 60 then
 		dota1x6:CreateUpgradeOrb(self.parent, 3)

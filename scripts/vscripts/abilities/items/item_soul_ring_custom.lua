@@ -29,40 +29,37 @@ function item_soul_ring_custom:GetIntrinsicModifierName()
 	return "modifier_item_soul_ring_custom"
 end
 
+function item_soul_ring_custom:Spawn()
+	self.duration = self:GetSpecialValueFor("duration")
+	self.bonus_strength = self:GetSpecialValueFor("bonus_strength")
+	self.bonus_armor = self:GetSpecialValueFor("bonus_armor")
+	self.heal = self:GetSpecialValueFor("heal")
+	self.mana_gain = self:GetSpecialValueFor("mana_gain")
+end
+
 function item_soul_ring_custom:OnSpellStart()
 	local caster = self:GetCaster()
 	caster:EmitSound("DOTA_Item.SoulRing.Activate")
-	caster:AddNewModifier(
-		caster,
-		self,
-		"modifier_item_soul_ring_custom_active",
-		{ duration = self:GetSpecialValueFor("duration") }
-	)
+	caster:AddNewModifier(caster, self, "modifier_item_soul_ring_custom_active", { duration = self.duration })
 end
 
-modifier_item_soul_ring_custom = class({})
-function modifier_item_soul_ring_custom:IsHidden()
-	return true
-end
-function modifier_item_soul_ring_custom:IsPurgable()
-	return false
-end
+modifier_item_soul_ring_custom = class(mod_hidden)
 function modifier_item_soul_ring_custom:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
+function modifier_item_soul_ring_custom:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.bonus_strength = self.ability.bonus_strength
+	self.bonus_armor = self.ability.bonus_armor
+end
+
 function modifier_item_soul_ring_custom:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
 		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
 	}
-end
-
-function modifier_item_soul_ring_custom:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.bonus_strength = self.ability:GetSpecialValueFor("bonus_strength")
-	self.bonus_armor = self.ability:GetSpecialValueFor("bonus_armor")
 end
 
 function modifier_item_soul_ring_custom:GetModifierBonusStats_Strength()
@@ -78,8 +75,8 @@ function modifier_item_soul_ring_custom_active:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.heal = self.ability:GetSpecialValueFor("heal")
-	self.mana_gain = self.ability:GetSpecialValueFor("mana_gain")
+	self.heal = self.ability.heal
+	self.mana_gain = self.ability.mana_gain
 	if not IsServer() then
 		return
 	end

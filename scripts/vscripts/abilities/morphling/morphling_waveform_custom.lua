@@ -172,8 +172,7 @@ function morphling_waveform_custom:UpdateTalents()
 end
 
 function morphling_waveform_custom:GetAbilityTextureName()
-	local caster = self:GetCaster()
-	if caster:HasModifier("modifier_morphling_morph_custom_legendary") then
+	if self.caster:HasModifier("modifier_morphling_morph_custom_legendary") then
 		return "kunkka_tidal_wave"
 	end
 	return wearables_system:GetAbilityIconReplacement(self.caster, "morphling_waveform", self)
@@ -195,7 +194,7 @@ function morphling_waveform_custom:GetCastRange(vLocation, hTarget)
 end
 
 function morphling_waveform_custom:GetRange()
-	return self.AbilityCastRange
+	return self.AbilityCastRange or 0
 end
 
 function morphling_waveform_custom:GetManaCost(level)
@@ -210,36 +209,15 @@ function morphling_waveform_custom:GetBehavior()
 	return DOTA_ABILITY_BEHAVIOR_POINT + DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING + DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES
 end
 
-function morphling_waveform_custom:ApplyResist(target)
-	if not IsServer() then
-		return
-	end
-	if not self:IsTrained() then
-		return
-	end
-	if self.talents.has_q3 == 0 then
-		return
-	end
-
-	local caster = self:GetCaster()
-	target:AddNewModifier(
-		caster,
-		self,
-		"modifier_morphling_waveform_custom_magic_reduce",
-		{ duration = self.talents.q3_duration }
-	)
-end
-
 function morphling_waveform_custom:OnSpellStart()
-	local caster = self:GetCaster()
 	local point = self:GetCursorPosition()
-	local origin = caster:GetAbsOrigin()
+	local origin = self.caster:GetAbsOrigin()
 
-	if caster == point then
-		point = origin + caster:GetForwardVector() * 10
+	if point == origin then
+		point = origin + self.caster:GetForwardVector() * 10
 	end
 
-	local range = self:GetRange() + caster:GetCastRangeBonus()
+	local range = self:GetRange() + self.caster:GetCastRangeBonus()
 	local vec = point - origin
 	local radius = self.width
 	local speed = self.speed
@@ -263,18 +241,18 @@ function morphling_waveform_custom:OnSpellStart()
 
 	local info = {
 		EffectName = wearables_system:GetParticleReplacementAbility(
-			caster,
+			self.caster,
 			"particles/units/heroes/hero_morphling/morphling_waveform.vpcf",
 			self
 		),
 		Ability = self,
-		vSpawnOrigin = caster:GetOrigin(),
+		vSpawnOrigin = self.caster:GetOrigin(),
 		fStartRadius = radius,
 		fEndRadius = radius,
 		vVelocity = direction * speed,
 		fDistance = distance,
-		Source = caster,
-		bDeleteOnHit = faceless_void_backtrack,
+		Source = self.caster,
+		bDeleteOnHit = false,
 		iUnitTargetTeam = DOTA_UNIT_TARGET_TEAM_ENEMY,
 		iUnitTargetType = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 		ExtraData = {
@@ -284,35 +262,32 @@ function morphling_waveform_custom:OnSpellStart()
 	}
 	ProjectileManager:CreateLinearProjectile(info)
 
-	caster:EmitSound("Hero_Morphling.Waveform")
-	ProjectileManager:ProjectileDodge(caster)
+	self.caster:EmitSound("Hero_Morphling.Waveform")
+	ProjectileManager:ProjectileDodge(self.caster)
 
-	caster:AddNewModifier(caster, self, "modifier_morphling_waveform_custom", { duration = 5 })
+	self.caster:AddNewModifier(self.caster, self, "modifier_morphling_waveform_custom", { duration = 5 })
 end
 
 function morphling_waveform_custom:OnProjectileThink(location)
 	if not IsServer() then
 		return
 	end
-	local caster = self:GetCaster()
-
-	if not caster:HasModifier("modifier_morphling_waveform_custom") then
+	if not self.caster:HasModifier("modifier_morphling_waveform_custom") then
 		return
 	end
-	caster:SetAbsOrigin(GetGroundPosition(location, nil))
+	self.caster:SetAbsOrigin(GetGroundPosition(location, nil))
 end
 
 function morphling_waveform_custom:OnProjectileHit_ExtraData(target, vLocation, table)
-	local caster = self:GetCaster()
-	local mod = caster:FindModifierByName("modifier_morphling_waveform_custom")
+	local mod = self.caster:FindModifierByName("modifier_morphling_waveform_custom")
 
 	if not target then
 		if mod then
 			mod:Destroy()
 		end
 		if self.talents.has_q4 == 1 then
-			caster:AddNewModifier(
-				caster,
+			self.caster:AddNewModifier(
+				self.caster,
 				self,
 				"modifier_morphling_waveform_custom_bonus",
 				{ duration = self.talents.q4_duration }
@@ -323,17 +298,9 @@ function morphling_waveform_custom:OnProjectileHit_ExtraData(target, vLocation, 
 	if mod then
 		mod.hit = true
 	end
-	self:DealDamage(target)
-end
 
-function morphling_waveform_custom:DealDamage(target)
-	if not IsServer() then
-		return
-	end
-	local caster = self:GetCaster()
-
-	if target:IsRealHero() and caster:GetQuest() == "Morphling.Quest_5" and not caster:QuestCompleted() then
-		caster:UpdateQuest(1)
+	if target:IsRealHero() and self.caster:GetQuest() == "Morphling.Quest_5" and not self.caster:QuestCompleted() then
+		self.caster:UpdateQuest(1)
 	end
 
 	target:EmitSound("Morph.Wave_legendary_attack")
@@ -341,7 +308,7 @@ function morphling_waveform_custom:DealDamage(target)
 
 	if self.talents.has_q7 == 1 and not target:HasModifier("modifier_morphling_waveform_custom_legendary_effect") then
 		target:AddNewModifier(
-			caster,
+			self.caster,
 			self,
 			"modifier_morphling_waveform_custom_legendary",
 			{ duration = self.talents.q7_duration }
@@ -351,7 +318,7 @@ function morphling_waveform_custom:DealDamage(target)
 	self:ApplyResist(target)
 
 	local pfx_dmg = wearables_system:GetParticleReplacementAbility(
-		caster,
+		self.caster,
 		"particles/units/heroes/hero_morphling/morphling_waveform_dmg.vpcf",
 		self
 	)
@@ -367,13 +334,13 @@ function morphling_waveform_custom:DealDamage(target)
 		and not target:IsDebuffImmune()
 	then
 		target:AddNewModifier(
-			caster,
+			self.caster,
 			self,
 			"modifier_morphling_waveform_custom_silence_cd",
 			{ duration = self.talents.h4_talent_cd }
 		)
 		target:AddNewModifier(
-			caster,
+			self.caster,
 			self,
 			"modifier_morphling_waveform_custom_silence",
 			{ duration = (1 - target:GetStatusResistance()) * self.talents.h4_silence }
@@ -383,15 +350,34 @@ function morphling_waveform_custom:DealDamage(target)
 
 	DoDamage({
 		victim = target,
-		attacker = caster,
+		attacker = self.caster,
 		damage = self.damage * (1 + self.talents.w1_damage),
 		ability = self,
 		damage_type = DAMAGE_TYPE_MAGICAL,
 	})
 
-	if IsValid(caster.adaptive_ability) then
-		caster.adaptive_ability:ProcAuto(target, true)
+	if IsValid(self.caster.adaptive_ability) then
+		self.caster.adaptive_ability:ProcAuto(target, true)
 	end
+end
+
+function morphling_waveform_custom:ApplyResist(target)
+	if not IsServer() then
+		return
+	end
+	if not self:IsTrained() then
+		return
+	end
+	if self.talents.has_q3 == 0 then
+		return
+	end
+
+	target:AddNewModifier(
+		self.caster,
+		self,
+		"modifier_morphling_waveform_custom_magic_reduce",
+		{ duration = self.talents.q3_duration }
+	)
 end
 
 modifier_morphling_waveform_custom = class(mod_hidden)
@@ -506,26 +492,6 @@ function modifier_morphling_waveform_custom_tracker:SpellEvent(params)
 	end
 end
 
-function modifier_morphling_waveform_custom_tracker:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
-		MODIFIER_PROPERTY_CAST_RANGE_BONUS_STACKING,
-		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
-	}
-end
-
-function modifier_morphling_waveform_custom_tracker:GetModifierSpellAmplify_Percentage()
-	return self.ability.talents.q3_spell
-end
-
-function modifier_morphling_waveform_custom_tracker:GetModifierMoveSpeedBonus_Constant()
-	return self.ability.talents.q2_move
-end
-
-function modifier_morphling_waveform_custom_tracker:GetModifierCastRangeBonusStacking()
-	return self.ability.talents.q2_range
-end
-
 function modifier_morphling_waveform_custom_tracker:OnIntervalThink()
 	if not IsServer() then
 		return
@@ -559,6 +525,26 @@ function modifier_morphling_waveform_custom_tracker:OnIntervalThink()
 	end
 end
 
+function modifier_morphling_waveform_custom_tracker:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
+		MODIFIER_PROPERTY_CAST_RANGE_BONUS_STACKING,
+		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
+	}
+end
+
+function modifier_morphling_waveform_custom_tracker:GetModifierSpellAmplify_Percentage()
+	return self.ability.talents.q3_spell
+end
+
+function modifier_morphling_waveform_custom_tracker:GetModifierMoveSpeedBonus_Constant()
+	return self.ability.talents.q2_move
+end
+
+function modifier_morphling_waveform_custom_tracker:GetModifierCastRangeBonusStacking()
+	return self.ability.talents.q2_range
+end
+
 modifier_morphling_waveform_custom_legendary = class(mod_hidden)
 function modifier_morphling_waveform_custom_legendary:OnCreated()
 	if not IsServer() then
@@ -572,7 +558,7 @@ function modifier_morphling_waveform_custom_legendary:OnCreated()
 
 	self.RemoveForDuel = true
 	self.effect = self.parent:GenericParticle("particles/morphling/wave_legendary_stack.vpcf", self, true)
-	self:SetStackCount(1)
+	self:OnRefresh()
 end
 
 function modifier_morphling_waveform_custom_legendary:OnRefresh(table)
@@ -580,6 +566,10 @@ function modifier_morphling_waveform_custom_legendary:OnRefresh(table)
 		return
 	end
 	self:IncrementStackCount()
+
+	if self.effect then
+		ParticleManager:SetParticleControl(self.effect, 1, Vector(0, self:GetStackCount(), 0))
+	end
 
 	if self:GetStackCount() >= self.max then
 		self.parent:AddNewModifier(
@@ -590,16 +580,6 @@ function modifier_morphling_waveform_custom_legendary:OnRefresh(table)
 		)
 		self:Destroy()
 	end
-end
-
-function modifier_morphling_waveform_custom_legendary:OnStackCountChanged(iStackCount)
-	if not IsServer() then
-		return
-	end
-	if not self.effect then
-		return
-	end
-	ParticleManager:SetParticleControl(self.effect, 1, Vector(0, self:GetStackCount(), 0))
 end
 
 modifier_morphling_waveform_custom_legendary_effect = class(mod_visible)
@@ -685,6 +665,10 @@ function modifier_morphling_waveform_custom_legendary_effect:OnDestroy()
 		return
 	end
 
+	if self.parent:IsRealHero() then
+		self.parent:CalculateStatBonus(true)
+	end
+
 	if IsValid(self.ability.legendary_mod) and self.ability.legendary_mod == self then
 		self.caster:UpdateUIshort({ hide = 1, hide_full = 1, style = "MorphWave" })
 		self.ability.legendary_mod = nil
@@ -752,7 +736,7 @@ function modifier_morphling_waveform_custom_trail_aura:OnCreated()
 	self.caster = self:GetCaster()
 	self.ability = self:GetAbility()
 
-	self.interval = 0.5
+	self.interval = self.ability.talents.q1_interval
 	self.damageTable = {
 		victim = self.parent,
 		attacker = self.caster,
@@ -787,7 +771,8 @@ function modifier_morphling_waveform_custom_magic_reduce:OnCreated()
 	if not IsServer() then
 		return
 	end
-	self:SetStackCount(1)
+	self.RemoveForDuel = true
+	self:OnRefresh()
 end
 
 function modifier_morphling_waveform_custom_magic_reduce:OnRefresh()
@@ -825,9 +810,6 @@ end
 function modifier_morphling_waveform_custom_bonus:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
-	if not IsServer() then
-		return
-	end
 end
 
 function modifier_morphling_waveform_custom_bonus:DeclareFunctions()
@@ -848,10 +830,7 @@ function modifier_morphling_waveform_custom_silence_cd:OnCreated()
 	self.RemoveForDuel = true
 end
 
-modifier_morphling_waveform_custom_silence = class({})
-function modifier_morphling_waveform_custom_silence:IsHidden()
-	return true
-end
+modifier_morphling_waveform_custom_silence = class(mod_hidden)
 function modifier_morphling_waveform_custom_silence:IsPurgable()
 	return true
 end

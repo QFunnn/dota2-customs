@@ -34,6 +34,20 @@ function item_patrol_razor:Precache(context)
 	PrecacheResource("particle", "particles/items2_fx/mjollnir_shield.vpcf", context)
 	PrecacheResource("particle", "particles/tower_dd.vpcf", context)
 	PrecacheResource("particle", "particles/glyph_damage.vpcf", context)
+	PrecacheResource("particle", "particles/status_fx/status_effect_mjollnir_shield.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_brewmaster/brewmaster_dispel_magic.vpcf", context)
+	PrecacheResource("particle", "particles/patrol/razor_friendly_shield.vpcf", context)
+end
+
+function item_patrol_razor:Spawn()
+	self.duration = self:GetSpecialValueFor("duration")
+	self.duration_friendly = self:GetSpecialValueFor("duration_friendly")
+	self.damage = self:GetSpecialValueFor("damage")
+	self.speed_bonus = self:GetSpecialValueFor("speed_bonus")
+	self.aoe_bonus = self:GetSpecialValueFor("aoe_bonus")
+	self.heal_duration = self:GetSpecialValueFor("heal_duration")
+	self.heal_tower = self:GetSpecialValueFor("heal_tower")
+	self.heal_shrine = self:GetSpecialValueFor("heal_shrine")
 end
 
 function item_patrol_razor:OnSpellStart()
@@ -109,11 +123,11 @@ function item_patrol_razor:OnSpellStart()
 	)
 
 	local name = "modifier_razor_tower_custom_aura"
-	local duration = dota1x6.current_wave * self:GetSpecialValueFor("duration")
+	local duration = dota1x6.current_wave * self.duration
 
 	if tower:GetTeamNumber() == caster:GetTeamNumber() then
 		name = "modifier_razor_tower_custom_friendly_aura"
-		duration = self:GetSpecialValueFor("duration_friendly")
+		duration = self.duration_friendly
 		tower:EmitSound("BB.Quill_cdr")
 
 		if tower:HasModifier("modifier_razor_tower_custom_aura") then
@@ -130,12 +144,7 @@ function item_patrol_razor:OnSpellStart()
 	end
 
 	if name then
-		tower:AddNewModifier(
-			caster,
-			self,
-			name,
-			{ duration = duration, damage_inc = self:GetSpecialValueFor("damage") }
-		)
+		tower:AddNewModifier(caster, self, name, { duration = duration, damage_inc = self.damage })
 	end
 
 	if caster.razor_count then
@@ -145,13 +154,7 @@ function item_patrol_razor:OnSpellStart()
 	self:SpendCharge(0)
 end
 
-modifier_razor_tower_custom_aura = class({})
-function modifier_razor_tower_custom_aura:IsHidden()
-	return true
-end
-function modifier_razor_tower_custom_aura:IsPurgable()
-	return false
-end
+modifier_razor_tower_custom_aura = class(mod_hidden)
 function modifier_razor_tower_custom_aura:IsAura()
 	return true
 end
@@ -184,12 +187,15 @@ function modifier_razor_tower_custom_aura:OnRefresh(table)
 	self.damage_inc = table.damage_inc
 end
 
-modifier_razor_tower_custom = class({})
-function modifier_razor_tower_custom:IsHidden()
-	return true
+modifier_razor_tower_custom = class(mod_hidden)
+function modifier_razor_tower_custom:GetStatusEffectName()
+	return "particles/status_fx/status_effect_mjollnir_shield.vpcf"
 end
-function modifier_razor_tower_custom:IsPurgable()
-	return false
+function modifier_razor_tower_custom:StatusEffectPriority()
+	return MODIFIER_PRIORITY_SUPER_ULTRA
+end
+function modifier_razor_tower_custom:GetEffectName()
+	return "particles/items2_fx/mjollnir_shield.vpcf"
 end
 function modifier_razor_tower_custom:OnCreated(table)
 	if not IsServer() then
@@ -219,18 +225,6 @@ function modifier_razor_tower_custom:OnDestroy()
 	self.parent:RemoveModifierByName("modifier_razor_tower_custom_timer")
 end
 
-function modifier_razor_tower_custom:GetStatusEffectName()
-	return "particles/status_fx/status_effect_mjollnir_shield.vpcf"
-end
-
-function modifier_razor_tower_custom:StatusEffectPriority()
-	return MODIFIER_PRIORITY_SUPER_ULTRA
-end
-
-function modifier_razor_tower_custom:GetEffectName()
-	return "particles/items2_fx/mjollnir_shield.vpcf"
-end
-
 function modifier_razor_tower_custom:CheckState()
 	return {
 		[MODIFIER_STATE_DISARMED] = true,
@@ -247,16 +241,14 @@ function modifier_razor_tower_custom:GetModifierIncomingDamage_Percentage()
 	return self.damage
 end
 
-modifier_razor_tower_custom_timer = class({})
-function modifier_razor_tower_custom_timer:IsHidden()
-	return false
-end
-function modifier_razor_tower_custom_timer:IsPurgable()
-	return false
-end
+modifier_razor_tower_custom_timer = class(mod_visible)
 function modifier_razor_tower_custom_timer:GetTexture()
 	return "item_ex_machina"
 end
+function modifier_razor_tower_custom_timer:OnCreated()
+	self.parent = self:GetParent()
+end
+
 function modifier_razor_tower_custom_timer:OnDestroy()
 	if not IsServer() then
 		return
@@ -265,16 +257,10 @@ function modifier_razor_tower_custom_timer:OnDestroy()
 		return
 	end
 
-	self:GetParent():GenericParticle("particles/units/heroes/hero_brewmaster/brewmaster_dispel_magic.vpcf")
+	self.parent:GenericParticle("particles/units/heroes/hero_brewmaster/brewmaster_dispel_magic.vpcf")
 end
 
-modifier_razor_tower_custom_friendly_aura = class({})
-function modifier_razor_tower_custom_friendly_aura:IsHidden()
-	return true
-end
-function modifier_razor_tower_custom_friendly_aura:IsPurgable()
-	return false
-end
+modifier_razor_tower_custom_friendly_aura = class(mod_hidden)
 function modifier_razor_tower_custom_friendly_aura:IsAura()
 	return true
 end
@@ -294,13 +280,7 @@ function modifier_razor_tower_custom_friendly_aura:GetModifierAura()
 	return "modifier_razor_tower_custom_friendly"
 end
 
-modifier_razor_tower_custom_friendly = class({})
-function modifier_razor_tower_custom_friendly:IsHidden()
-	return true
-end
-function modifier_razor_tower_custom_friendly:IsPurgable()
-	return false
-end
+modifier_razor_tower_custom_friendly = class(mod_hidden)
 function modifier_razor_tower_custom_friendly:OnCreated(table)
 	self.ability = self:GetAbility()
 	self.parent = self:GetParent()
@@ -310,11 +290,11 @@ function modifier_razor_tower_custom_friendly:OnCreated(table)
 		return
 	end
 
-	self.speed = self.ability:GetSpecialValueFor("speed_bonus")
-	self.aoe_bonus = self.ability:GetSpecialValueFor("aoe_bonus")
-	self.heal_duration = self.ability:GetSpecialValueFor("heal_duration")
-	self.tower_heal = self.ability:GetSpecialValueFor("heal_tower")
-	self.shrine_heal = self.ability:GetSpecialValueFor("heal_shrine")
+	self.speed = self.ability.speed_bonus
+	self.aoe_bonus = self.ability.aoe_bonus
+	self.heal_duration = self.ability.heal_duration
+	self.tower_heal = self.ability.heal_tower
+	self.shrine_heal = self.ability.heal_shrine
 
 	self.owner = self:GetAuraOwner()
 
@@ -396,15 +376,12 @@ function modifier_razor_tower_custom_friendly:GetModifierAttackSpeedBonus_Consta
 	return self.speed
 end
 
-modifier_razor_tower_custom_friendly_timer = class({})
-function modifier_razor_tower_custom_friendly_timer:IsHidden()
-	return false
-end
-function modifier_razor_tower_custom_friendly_timer:IsPurgable()
-	return false
-end
+modifier_razor_tower_custom_friendly_timer = class(mod_visible)
 function modifier_razor_tower_custom_friendly_timer:GetTexture()
 	return "item_ex_machina"
+end
+function modifier_razor_tower_custom_friendly_timer:OnCreated()
+	self.parent = self:GetParent()
 end
 
 function modifier_razor_tower_custom_friendly_timer:OnDestroy()
@@ -415,5 +392,5 @@ function modifier_razor_tower_custom_friendly_timer:OnDestroy()
 		return
 	end
 
-	self:GetParent():GenericParticle("particles/units/heroes/hero_brewmaster/brewmaster_dispel_magic.vpcf")
+	self.parent:GenericParticle("particles/units/heroes/hero_brewmaster/brewmaster_dispel_magic.vpcf")
 end

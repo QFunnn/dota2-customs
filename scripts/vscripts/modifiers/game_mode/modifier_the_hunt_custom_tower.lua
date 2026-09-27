@@ -13,11 +13,6 @@ LinkLuaModifier(
 	"modifiers/game_mode/modifier_the_hunt_custom_tower",
 	LUA_MODIFIER_MOTION_NONE
 )
-LinkLuaModifier(
-	"modifier_the_hunt_custom_dealt_damage",
-	"modifiers/game_mode/modifier_the_hunt_custom_tower",
-	LUA_MODIFIER_MOTION_NONE
-)
 
 modifier_the_hunt_custom_tower = class({})
 function modifier_the_hunt_custom_tower:IsHidden()
@@ -28,7 +23,6 @@ function modifier_the_hunt_custom_tower:IsPurgable()
 end
 function modifier_the_hunt_custom_tower:OnCreated()
 	self.parent = self:GetParent()
-	self.parent:AddDeathEvent(self)
 
 	self.team = self.parent:GetTeamNumber()
 	self.damage_inc = 15
@@ -42,7 +36,6 @@ function modifier_the_hunt_custom_tower:OnCreated()
 	self.vision_radius = 1000
 
 	self.alert_delay = 8
-	self.gold = 0.35
 	self.heroes = {}
 	self.heroes_names = {}
 
@@ -96,7 +89,7 @@ function modifier_the_hunt_custom_tower:OnIntervalThink()
 				hero,
 				nil,
 				"modifier_the_hunt_custom_hero",
-				{ duration = self:GetRemainingTime(), gold = self.gold }
+				{ duration = self:GetRemainingTime(), gold = Target_k }
 			)
 		end
 	end
@@ -111,11 +104,10 @@ function modifier_the_hunt_custom_tower:OnIntervalThink()
 			AddFOWViewer(team, hero:GetAbsOrigin(), self.vision_radius, self.interval + 0.1, false)
 		end
 
-		if net_target > net and ids then
-			bonus_gold = (((net_target - net) * self.gold) / #ids)
+		if ids and team ~= self.team then
+			bonus_gold = dota1x6:KillGoldTeam(net_target, net, #ids, Target_k)
 		end
 		local time = math.floor(self:GetRemainingTime())
-		bonus_gold = math.floor(bonus_gold)
 
 		if self:GetElapsedTime() >= self.alert_delay then
 			local is_target = team == self.team
@@ -138,12 +130,10 @@ function modifier_the_hunt_custom_tower:OnIntervalThink()
 	end
 end
 
-function modifier_the_hunt_custom_tower:DeathEvent(params)
+function modifier_the_hunt_custom_tower:TargetKilled(unit, attacker)
 	if not IsServer() then
 		return
 	end
-	local unit = params.unit
-	local attacker = params.attacker
 
 	if not self.heroes[unit] then
 		return
@@ -158,7 +148,6 @@ function modifier_the_hunt_custom_tower:DeathEvent(params)
 		return
 	end
 
-	local net_self = self:GetNet(self.team)
 	self.heroes[unit] = nil
 	--unit:RemoveModifierByName("modifier_the_hunt_custom_hero")
 
@@ -175,8 +164,6 @@ function modifier_the_hunt_custom_tower:DeathEvent(params)
 		return
 	end
 
-	local gold_table = {}
-
 	for id, player in pairs(players) do
 		local team = player:GetTeamNumber()
 
@@ -184,35 +171,17 @@ function modifier_the_hunt_custom_tower:DeathEvent(params)
 			if
 				(
 					(player:GetAbsOrigin() - unit:GetAbsOrigin()):Length2D() <= Target_radius
-					or player:HasModifier("modifier_the_hunt_custom_dealt_damage")
+					or player:HasCd("hunt_damage", Target_damage_cd)
 				) and (not attacker or id ~= attacker:GetId())
 			then
-				dota1x6:AddPurplePoints(player, 1)
+				player:AddPoints("purple", 1)
 			end
 
 			EmitSoundOnEntityForPlayer("Hunt.End", player, id)
-			local net_enemy = self:GetNet(team)
-			local ids = dota1x6:FindPlayers(team)
-
-			local bonus_gold = 0
-
-			if net_self > net_enemy and ids then
-				bonus_gold = ((net_self - net_enemy) * self.gold) / #ids
-			end
-
-			gold_table[player] = bonus_gold
 		end
 	end
 
-	for player, bonus_gold in pairs(gold_table) do
-		player:ModifyGoldFiltered(bonus_gold, true, DOTA_ModifyGold_HeroKill)
-		player:SendNumber(0, bonus_gold)
-	end
-
-	if ended then
-		self:Destroy()
-		return
-	end
+	self:Destroy()
 end
 
 function modifier_the_hunt_custom_tower:OnDestroy()
@@ -230,17 +199,6 @@ function modifier_the_hunt_custom_tower:OnDestroy()
 	dota1x6.TargetCurrentCd = Target_cd
 
 	CustomGameEventManager:Send_ServerToAllClients("TargetTimer_delete", {})
-end
-
-modifier_the_hunt_custom_dealt_damage = class({})
-function modifier_the_hunt_custom_dealt_damage:IsHidden()
-	return true
-end
-function modifier_the_hunt_custom_dealt_damage:IsPurgable()
-	return false
-end
-function modifier_the_hunt_custom_dealt_damage:RemoveOnDeath()
-	return false
 end
 
 modifier_the_hunt_custom_hero = class({})
@@ -267,7 +225,6 @@ function modifier_the_hunt_custom_hero:OnCreated(table)
 	self.parent = self:GetParent()
 
 	self.damage_inc = 15
-	self.damage_timer = 15
 	if not IsServer() then
 		return
 	end
@@ -311,7 +268,7 @@ function modifier_the_hunt_custom_hero:GetModifierIncomingDamage_Percentage(para
 	end
 
 	if (player:GetAbsOrigin() - self.parent:GetAbsOrigin()):Length2D() <= Target_radius then
-		player:AddNewModifier(player, nil, "modifier_the_hunt_custom_dealt_damage", { duration = self.damage_timer })
+		player:StartCd("hunt_damage", Target_damage_cd)
 	end
 
 	return self.damage_inc

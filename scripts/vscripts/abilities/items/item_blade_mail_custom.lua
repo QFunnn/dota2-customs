@@ -28,28 +28,40 @@ function item_blade_mail_custom:GetIntrinsicModifierName()
 	return "modifier_item_blade_mail_custom"
 end
 
+function item_blade_mail_custom:Spawn()
+	self.duration = self:GetSpecialValueFor("duration")
+	self.bonus_armor = self:GetSpecialValueFor("bonus_armor")
+	self.bonus_damage = self:GetSpecialValueFor("bonus_damage")
+	self.active_reflection = self:GetSpecialValueFor("active_reflection")
+	self.passive_reflection_constant = self:GetSpecialValueFor("passive_reflection_constant")
+end
+
 function item_blade_mail_custom:GetAbilityTextureName()
-	return wearables_system:GetAbilityIconReplacement(self.caster, "item_blade_mail", self)
+	return wearables_system:GetAbilityIconReplacement(self:GetCaster(), "item_blade_mail", self)
 end
 
 function item_blade_mail_custom:OnSpellStart()
 	local caster = self:GetCaster()
 	caster:EmitSound("DOTA_Item.BladeMail.Activate")
-	caster:AddNewModifier(
-		caster,
-		self,
-		"modifier_item_blade_mail_custom_reflect",
-		{ duration = self:GetSpecialValueFor("duration") }
-	)
+	caster:AddNewModifier(caster, self, "modifier_item_blade_mail_custom_reflect", { duration = self.duration })
 end
 
 modifier_item_blade_mail_custom = class(mod_hidden)
-function modifier_item_blade_mail_custom:IsHidden()
-	return true
+function modifier_item_blade_mail_custom:OnCreated(table)
+	self.ability = self:GetAbility()
+	self.parent = self:GetParent()
+
+	self.bonus_armor = self.ability.bonus_armor
+	self.bonus_damage = self.ability.bonus_damage
+
+	self.active_reflect = self.ability.active_reflection / 100
+	self.const_reflect = self.ability.passive_reflection_constant
+
+	if self.parent:IsRealHero() then
+		self.parent:AddDamageEvent_inc(self, true)
+	end
 end
-function modifier_item_blade_mail_custom:IsPurgable()
-	return false
-end
+
 function modifier_item_blade_mail_custom:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
@@ -63,21 +75,6 @@ end
 
 function modifier_item_blade_mail_custom:GetModifierPhysicalArmorBonus()
 	return self.bonus_armor
-end
-
-function modifier_item_blade_mail_custom:OnCreated(table)
-	self.ability = self:GetAbility()
-	self.parent = self:GetParent()
-
-	self.bonus_armor = self.ability:GetSpecialValueFor("bonus_armor")
-	self.bonus_damage = self.ability:GetSpecialValueFor("bonus_damage")
-
-	self.active_reflect = self.ability:GetSpecialValueFor("active_reflection") / 100
-	self.const_reflect = self.ability:GetSpecialValueFor("passive_reflection_constant")
-
-	if self.parent:IsRealHero() then
-		self.parent:AddDamageEvent_inc(self, true)
-	end
 end
 
 function modifier_item_blade_mail_custom:DamageEvent_inc(params)

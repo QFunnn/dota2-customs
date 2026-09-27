@@ -59,11 +59,10 @@ function antimage_mana_void_custom:Precache(context)
 	PrecacheResource("particle", "particles/am_cast.vpcf", context)
 	PrecacheResource("particle", "particles/am_mana_mark.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_silencer/silencer_last_word_status.vpcf", context)
-	PrecacheResource("particle", "particles/units/heroes/hero_antimage/antimage_manavoid.vpcf", context)
 	PrecacheResource("particle", "particles/items4_fx/nullifier_mute_debuff.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_nullifier.vpcf", context)
 	PrecacheResource("particle", "particles/anti-mage/void_silence.vpcf", context)
-
+	PrecacheResource("particle", "particles/enigma/summon_perma.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/econ/items/antimage/antimage_weapon_basher_ti5/antimage_manavoid_ti_5.vpcf",
@@ -148,12 +147,7 @@ function antimage_mana_void_custom:UpdateTalents(name)
 	end
 end
 
-function antimage_mana_void_custom:Init()
-	self.caster = self:GetCaster()
-end
-
 function antimage_mana_void_custom:GetAbilityTextureName()
-	local caster = self:GetCaster()
 	return wearables_system:GetAbilityIconReplacement(self.caster, "antimage_mana_void", self)
 end
 
@@ -162,11 +156,11 @@ function antimage_mana_void_custom:GetIntrinsicModifierName()
 end
 
 function antimage_mana_void_custom:GetAOERadius()
-	return self.mana_void_aoe_radius
+	return (self.mana_void_aoe_radius or 0)
 end
 
 function antimage_mana_void_custom:GetCooldown(iLevel)
-	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.r2_cd and self.talents.r2_cd or 0)
+	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.r2_cd or 0)
 end
 
 function antimage_mana_void_custom:OnAbilityPhaseStart(kv)
@@ -183,9 +177,9 @@ end
 function antimage_mana_void_custom:OnSpellStart()
 	local target = self:GetCursorTarget()
 
-	local legenday_mod = self.caster:FindModifierByName("modifier_antimage_mana_void_custom_illusion")
-	if legenday_mod then
-		legenday_mod.ready = false
+	local legendary_mod = self.caster:FindModifierByName("modifier_antimage_mana_void_custom_illusion")
+	if legendary_mod then
+		legendary_mod.ready = false
 	end
 
 	if target:TriggerSpellAbsorb(self) then
@@ -211,9 +205,9 @@ function antimage_mana_void_custom:OnSpellStart()
 	end
 
 	local mana_damage = (max_mana - min_mana) * self.mana_void_damage_per_mana
-	mana_damage = legenday_mod and legenday_mod.damage * mana_damage or mana_damage
+	mana_damage = legendary_mod and legendary_mod.damage * mana_damage or mana_damage
 
-	local damage_ability = legenday_mod and "modifier_antimage_void_7" or nil
+	local damage_ability = legendary_mod and "modifier_antimage_void_7" or nil
 
 	target:EmitSound("Hero_Antimage.ManaVoid")
 
@@ -235,7 +229,7 @@ function antimage_mana_void_custom:OnSpellStart()
 	ParticleManager:SetParticleControl(particle, 1, Vector(self.mana_void_aoe_radius, 0, 0))
 	ParticleManager:ReleaseParticleIndex(particle)
 
-	if not legenday_mod then
+	if not legendary_mod then
 		if self.talents.has_r4 == 1 then
 			self.caster:CdItems(self.talents.r4_cd_items * (1 - min_mana / max_mana))
 		end
@@ -252,7 +246,7 @@ function antimage_mana_void_custom:OnSpellStart()
 		end
 	end
 
-	local attacker = self.caster.owner and self.caster.owner or self.caster
+	local attacker = self.caster.owner or self.caster
 
 	for _, enemy in pairs(self.caster:FindTargets(self.mana_void_aoe_radius, target:GetAbsOrigin())) do
 		enemy:AddNewModifier(
@@ -286,7 +280,7 @@ function antimage_mana_void_custom:ApplyBurn(target)
 	if not self:IsTrained() then
 		return
 	end
-	if not self.talents.has_r1 == 1 then
+	if self.talents.has_r1 == 0 then
 		return
 	end
 
@@ -319,15 +313,6 @@ end
 function modifier_antimage_mana_void_custom_slow:StatusEffectPriority()
 	return MODIFIER_PRIORITY_SUPER_ULTRA
 end
-function modifier_antimage_mana_void_custom_slow:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-	}
-end
-function modifier_antimage_mana_void_custom_slow:GetModifierMoveSpeedBonus_Percentage()
-	return self.ability.talents.h4_slow
-end
-
 function modifier_antimage_mana_void_custom_slow:OnCreated(table)
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
@@ -339,10 +324,20 @@ function modifier_antimage_mana_void_custom_slow:OnCreated(table)
 	self.parent:EmitSound("Antimage.Void_break")
 end
 
+function modifier_antimage_mana_void_custom_slow:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+	}
+end
+
 function modifier_antimage_mana_void_custom_slow:CheckState()
 	return {
 		[MODIFIER_STATE_TETHERED] = true,
 	}
+end
+
+function modifier_antimage_mana_void_custom_slow:GetModifierMoveSpeedBonus_Percentage()
+	return self.ability.talents.h4_slow
 end
 
 modifier_antimage_mana_void_custom_tracker = class(mod_hidden)
@@ -398,6 +393,9 @@ function modifier_antimage_mana_void_custom_tracker:GetModifierPercentageCooldow
 end
 
 function modifier_antimage_mana_void_custom_tracker:SpellEvent(params)
+	if not IsServer() then
+		return
+	end
 	local unit = params.unit
 
 	if params.ability:IsItem() then
@@ -470,10 +468,9 @@ function modifier_antimage_mana_void_custom_int:OnCreated(table)
 	if not IsServer() then
 		return
 	end
-	self.effect_cast = self.parent:GenericParticle("particles/am_mana_stack.vpcf", self, true)
-
-	self:SetStackCount(1)
 	self.RemoveForDuel = true
+	self.effect_cast = self.parent:GenericParticle("particles/am_mana_stack.vpcf", self, true)
+	self:OnRefresh()
 end
 
 function modifier_antimage_mana_void_custom_int:OnRefresh()
@@ -485,6 +482,7 @@ function modifier_antimage_mana_void_custom_int:OnRefresh()
 	end
 
 	self:IncrementStackCount()
+	ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(0, self:GetStackCount(), 0))
 
 	if self.parent:IsRealHero() then
 		self.parent:CalculateStatBonus(true)
@@ -501,16 +499,6 @@ function modifier_antimage_mana_void_custom_int:GetModifierManaBonus()
 	return self:GetStackCount() * self.caster:GetMaxMana() * self.stack
 end
 
-function modifier_antimage_mana_void_custom_int:OnStackCountChanged(iStackCount)
-	if not IsServer() then
-		return
-	end
-	if not self.effect_cast then
-		return
-	end
-	ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(0, self:GetStackCount(), 0))
-end
-
 modifier_antimage_mana_void_custom_cast_cd = class(mod_hidden)
 function modifier_antimage_mana_void_custom_cast_cd:OnCreated(table)
 	self.RemoveForDuel = true
@@ -524,7 +512,7 @@ function modifier_antimage_mana_void_custom_perma:RemoveOnDeath()
 	return false
 end
 function modifier_antimage_mana_void_custom_perma:GetTexture()
-	return "buffs/antimage/hero_5"
+	return "buffs/antimage/hero_4"
 end
 function modifier_antimage_mana_void_custom_perma:OnCreated()
 	self.parent = self:GetParent()
@@ -535,7 +523,7 @@ function modifier_antimage_mana_void_custom_perma:OnCreated()
 	if not IsServer() then
 		return
 	end
-	self:SetStackCount(1)
+	self:IncrementStackCount()
 	self:StartIntervalThink(1)
 end
 
@@ -587,11 +575,47 @@ function modifier_antimage_mana_void_custom_perma:GetModifierDamageOutgoing_Perc
 	return self:GetStackCount() * self.damage
 end
 
+modifier_antimage_mana_void_custom_silence = class(mod_hidden)
+function modifier_antimage_mana_void_custom_silence:IsPurgable()
+	return true
+end
+function modifier_antimage_mana_void_custom_silence:OnCreated()
+	self.parent = self:GetParent()
+	self.caster = self:GetCaster()
+	self.ability = self:GetAbility()
+
+	if not IsServer() then
+		return
+	end
+	self.parent:EmitSound("Antimage.Void_silence")
+	self.parent:GenericParticle("particles/anti-mage/void_silence.vpcf", self, true)
+end
+
+function modifier_antimage_mana_void_custom_silence:CheckState()
+	return {
+		[MODIFIER_STATE_SILENCED] = true,
+	}
+end
+
+function modifier_antimage_mana_void_custom_silence:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+	}
+end
+
+function modifier_antimage_mana_void_custom_silence:GetModifierAttackSpeedBonus_Constant()
+	return self.ability.talents.h5_attack_slow
+end
+
 antimage_mana_overload_custom = class({})
 antimage_mana_overload_custom.talents = {}
 
-function antimage_mana_overload_custom:CreateTalent()
-	self:SetHidden(false)
+function antimage_mana_overload_custom:Precache(context)
+	if self:GetCaster() and self:GetCaster():IsIllusion() then
+		return
+	end
+	PrecacheResource("particle", "particles/units/heroes/hero_antimage/antimage_blink_start.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_antimage/antimage_blink_end.vpcf", context)
 end
 
 function antimage_mana_overload_custom:UpdateTalents(name)
@@ -612,34 +636,33 @@ function antimage_mana_overload_custom:UpdateTalents(name)
 end
 
 function antimage_mana_overload_custom:Init()
-	self.caster = self:GetCaster()
-	if not IsServer() then
+	if not self:GetCaster() then
 		return
 	end
-	self:SetLevel(1)
+	self.caster = self:GetCaster()
 
-	self.duration = self:GetSpecialValueFor("duration")
-	self.outgoing_damage = self:GetSpecialValueFor("outgoing_damage")
-	self.incoming_damage = self:GetSpecialValueFor("incoming_damage")
-	self.incoming = self:GetSpecialValueFor("incoming")
-	self.ulti_damage = self:GetSpecialValueFor("ulti_damage")
-	self.ulti_timer = self:GetSpecialValueFor("ulti_timer")
-	self.nomana_max = self:GetSpecialValueFor("nomana_max")
-	self.mana_burn = self:GetSpecialValueFor("mana_burn")
-	self.mana_burn_creeps = self:GetSpecialValueFor("mana_burn_creeps")
-	self.damage_reduce = self:GetSpecialValueFor("damage_reduce")
-end
+	self.duration = self:GetLevelSpecialValueFor("duration", 1)
+	self.outgoing_damage = self:GetLevelSpecialValueFor("outgoing_damage", 1)
+	self.incoming_damage = self:GetLevelSpecialValueFor("incoming_damage", 1)
+	self.incoming = self:GetLevelSpecialValueFor("incoming", 1)
+	self.ulti_damage = self:GetLevelSpecialValueFor("ulti_damage", 1)
+	self.ulti_timer = self:GetLevelSpecialValueFor("ulti_timer", 1)
+	self.nomana_max = self:GetLevelSpecialValueFor("nomana_max", 1)
+	self.mana_burn = self:GetLevelSpecialValueFor("mana_burn", 1)
+	self.mana_burn_creeps = self:GetLevelSpecialValueFor("mana_burn_creeps", 1)
+	self.damage_reduce = self:GetLevelSpecialValueFor("damage_reduce", 1)
 
-function antimage_mana_overload_custom:GetCooldown()
-	return self.talents.r7_talent_cd and self.talents.r7_talent_cd or 0
-end
-
-function antimage_mana_overload_custom:GetAbilityTargetFlags()
-	if self.talents.has_h6 == 1 then
-		return DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
-	else
-		return DOTA_UNIT_TARGET_FLAG_NONE
+	if IsServer() then
+		self:SetLevel(1)
 	end
+end
+
+function antimage_mana_overload_custom:CreateTalent()
+	self:SetHidden(false)
+end
+
+function antimage_mana_overload_custom:GetCooldown(iLevel)
+	return (self.talents.r7_talent_cd or 0)
 end
 
 function antimage_mana_overload_custom:OnSpellStart()
@@ -664,6 +687,13 @@ function antimage_mana_overload_custom:OnSpellStart()
 
 	for _, illusion in pairs(illusions) do
 		illusion.owner = self.caster
+
+		for _, mod in pairs(self.caster:FindAllModifiers()) do
+			if mod.StackOnIllusion == true then
+				illusion:UpgradeIllusion(mod:GetName(), mod:GetStackCount(), mod)
+			end
+		end
+
 		illusion:AddNewModifier(self.caster, self, "modifier_antimage_mana_void_custom_illusion", {})
 		illusion:SetHealth(illusion:GetMaxHealth())
 
@@ -671,11 +701,6 @@ function antimage_mana_overload_custom:OnSpellStart()
 		direction.z = 0
 		direction = direction:Normalized()
 
-		for _, mod in pairs(self.caster:FindAllModifiers()) do
-			if mod.StackOnIllusion ~= nil and mod.StackOnIllusion == true then
-				illusion:UpgradeIllusion(mod:GetName(), mod:GetStackCount())
-			end
-		end
 		local particle_start = ParticleManager:CreateParticle(
 			"particles/units/heroes/hero_antimage/antimage_blink_start.vpcf",
 			PATTACH_WORLDORIGIN,
@@ -760,7 +785,10 @@ function modifier_antimage_mana_void_custom_illusion:AttackStartEvent_out(params
 	if not IsValid(params.target) then
 		return
 	end
-	if not params.target:IsUnit() or not params.target:IsAlive() then
+	if not params.target:IsUnit() then
+		return
+	end
+	if not params.target:IsAlive() then
 		return
 	end
 
@@ -777,7 +805,7 @@ function modifier_antimage_mana_void_custom_illusion:ManaBurn(target)
 	self.damageTable.damage = mana
 	self.damageTable.victim = target
 
-	DoDamage(self.damageTable)
+	DoDamage(self.damageTable, "modifier_antimage_void_7")
 
 	local real_mana =
 		target:Script_ReduceMana(mana, self.caster:BkbAbility(self.ability, self.ability.talents.has_h6 == 1))
@@ -794,36 +822,4 @@ function modifier_antimage_mana_void_custom_illusion:OnDestroy()
 		return
 	end
 	self.caster.antimage_illusions[self.parent] = nil
-end
-
-modifier_antimage_mana_void_custom_silence = class(mod_hidden)
-function modifier_antimage_mana_void_custom_silence:IsPurgable()
-	return true
-end
-function modifier_antimage_mana_void_custom_silence:OnCreated()
-	self.parent = self:GetParent()
-	self.caster = self:GetCaster()
-	self.ability = self:GetAbility()
-
-	if not IsServer() then
-		return
-	end
-	self.parent:EmitSound("Antimage.Void_silence")
-	self.parent:GenericParticle("particles/anti-mage/void_silence.vpcf", self, true)
-end
-
-function modifier_antimage_mana_void_custom_silence:CheckState()
-	return {
-		[MODIFIER_STATE_SILENCED] = true,
-	}
-end
-
-function modifier_antimage_mana_void_custom_silence:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
-	}
-end
-
-function modifier_antimage_mana_void_custom_silence:GetModifierAttackSpeedBonus_Constant()
-	return self.ability.talents.h5_attack_slow
 end

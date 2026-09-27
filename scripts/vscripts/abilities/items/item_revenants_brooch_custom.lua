@@ -25,6 +25,18 @@ function item_revenants_brooch_custom:Precache(context)
 		return
 	end
 	PrecacheResource("particle", "particles/items_fx/revenant_brooch_projectile.vpcf", context)
+	PrecacheResource("particle", "particles/items_fx/revenant_brooch_projectile_explosion.vpcf", context)
+	PrecacheResource("particle", "particles/items3_fx/octarine_core_lifesteal.vpcf", context)
+end
+
+function item_revenants_brooch_custom:Spawn()
+	self.bonus_damage = self:GetSpecialValueFor("bonus_damage")
+	self.crit_chance = self:GetSpecialValueFor("crit_chance")
+	self.bonus_health = self:GetSpecialValueFor("bonus_health")
+	self.crit_base = self:GetSpecialValueFor("crit_base")
+	self.crit_damage = self:GetSpecialValueFor("crit_damage")
+	self.spell_lifesteal = self:GetSpecialValueFor("spell_lifesteal")
+	self.cooldown = self:GetSpecialValueFor("AbilityCooldown")
 end
 
 function item_revenants_brooch_custom:GetCooldown()
@@ -39,13 +51,12 @@ function modifier_item_revenants_brooch_custom:OnCreated()
 	self.ability = self:GetAbility()
 	self.parent = self:GetParent()
 
-	self.bonus_damage = self.ability:GetSpecialValueFor("bonus_damage")
-	self.crit_chance = self.ability:GetSpecialValueFor("crit_chance")
-	self.bonus_health = self.ability:GetSpecialValueFor("bonus_health")
-	self.crit_base = self.ability:GetSpecialValueFor("crit_base")
-	self.crit_damage = self.ability:GetSpecialValueFor("crit_damage") / 100
-	self.spell_lifesteal = self.ability:GetSpecialValueFor("spell_lifesteal") / 100
-	self.ability.cooldown = self.ability:GetSpecialValueFor("AbilityCooldown")
+	self.bonus_damage = self.ability.bonus_damage
+	self.crit_chance = self.ability.crit_chance
+	self.bonus_health = self.ability.bonus_health
+	self.crit_base = self.ability.crit_base
+	self.crit_damage = self.ability.crit_damage / 100
+	self.spell_lifesteal = self.ability.spell_lifesteal / 100
 
 	if not IsServer() then
 		return
@@ -72,6 +83,9 @@ end
 
 function modifier_item_revenants_brooch_custom:AttackEvent_out(params)
 	if not IsServer() then
+		return
+	end
+	if not IsValid(self.ability) then
 		return
 	end
 	if self.parent:HasModifier("modifier_item_hydras_breath_custom") then
@@ -115,6 +129,9 @@ end
 
 function modifier_item_revenants_brooch_custom:DamageEvent_out(params)
 	if not IsServer() then
+		return
+	end
+	if not IsValid(self.ability) then
 		return
 	end
 	local result = self.parent:CheckLifesteal(params, 1)

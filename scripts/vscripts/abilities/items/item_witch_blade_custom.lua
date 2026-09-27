@@ -31,12 +31,44 @@ function item_witch_blade_custom:Precache(context)
 	end
 	PrecacheResource("particle", "particles/items_fx/witch_blade/witch_blade_base.vpcf", context)
 	PrecacheResource("particle", "particles/items3_fx/witch_blade_debuff.vpcf", context)
+	PrecacheResource("particle", "particles/items3_fx/octarine_core_lifesteal.vpcf", context)
+end
+
+function item_witch_blade_custom:Spawn()
+	self.bonus_regen = self:GetSpecialValueFor("bonus_regen")
+	self.bonus_intellect = self:GetSpecialValueFor("bonus_intellect")
+	self.bonus_attack_speed = self:GetSpecialValueFor("bonus_attack_speed")
+	self.bonus_armor = self:GetSpecialValueFor("bonus_armor")
+	self.projectile_speed = self:GetSpecialValueFor("projectile_speed")
+	self.bonus_health = self:GetSpecialValueFor("bonus_health")
+	self.int_damage_multiplier = self:GetSpecialValueFor("int_damage_multiplier") / 100
+	self.slow = self:GetSpecialValueFor("slow")
+	self.slow_duration = self:GetSpecialValueFor("slow_duration")
+	self.int_heal = self:GetSpecialValueFor("int_heal") / 100
 end
 
 modifier_item_witch_blade_custom_passive = class(mod_hidden)
 function modifier_item_witch_blade_custom_passive:RemoveOnDeath()
 	return false
 end
+function modifier_item_witch_blade_custom_passive:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	if not IsServer() then
+		return
+	end
+	if not self.parent:IsRealHero() then
+		return
+	end
+
+	self.records = {}
+
+	self.parent:AddAttackStartEvent_out(self)
+	self.parent:AddAttackEvent_out(self, true)
+	self.parent:AddRecordDestroyEvent(self, true)
+end
+
 function modifier_item_witch_blade_custom_passive:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
@@ -96,36 +128,6 @@ function modifier_item_witch_blade_custom_passive:GetModifierHealthBonus()
 	return self.ability.bonus_health
 end
 
-function modifier_item_witch_blade_custom_passive:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.ability.bonus_regen = self.ability:GetSpecialValueFor("bonus_regen")
-	self.ability.bonus_intellect = self.ability:GetSpecialValueFor("bonus_intellect")
-	self.ability.bonus_attack_speed = self.ability:GetSpecialValueFor("bonus_attack_speed")
-	self.ability.bonus_armor = self.ability:GetSpecialValueFor("bonus_armor")
-	self.ability.projectile_speed = self.ability:GetSpecialValueFor("projectile_speed")
-	self.ability.bonus_health = self.ability:GetSpecialValueFor("bonus_health")
-
-	self.ability.int_damage_multiplier = self.ability:GetSpecialValueFor("int_damage_multiplier") / 100
-	self.ability.slow = self.ability:GetSpecialValueFor("slow")
-	self.ability.slow_duration = self.ability:GetSpecialValueFor("slow_duration")
-	self.ability.int_heal = self.ability:GetSpecialValueFor("int_heal") / 100
-
-	if not IsServer() then
-		return
-	end
-	if not self.parent:IsRealHero() then
-		return
-	end
-
-	self.records = {}
-
-	self.parent:AddAttackStartEvent_out(self)
-	self.parent:AddAttackEvent_out(self, true)
-	self.parent:AddRecordDestroyEvent(self, true)
-end
-
 function modifier_item_witch_blade_custom_passive:RecordDestroyEvent(params)
 	if not self.records[params.record] then
 		return
@@ -135,6 +137,9 @@ end
 
 function modifier_item_witch_blade_custom_passive:AttackStartEvent_out(params)
 	if not IsServer() then
+		return
+	end
+	if not IsValid(self.ability) then
 		return
 	end
 	if not self.ability:IsFullyCastable() then
@@ -153,6 +158,9 @@ end
 
 function modifier_item_witch_blade_custom_passive:AttackEvent_out(params)
 	if not IsServer() then
+		return
+	end
+	if not IsValid(self.ability) then
 		return
 	end
 	if not self.records[params.record] then

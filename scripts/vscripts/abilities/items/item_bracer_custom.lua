@@ -24,6 +24,17 @@ function item_bracer_custom:GetIntrinsicModifierName()
 	return "modifier_item_bracer_custom"
 end
 
+function item_bracer_custom:Spawn()
+	self.duration = self:GetSpecialValueFor("duration")
+	self.str = self:GetSpecialValueFor("str")
+	self.agi = self:GetSpecialValueFor("agi")
+	self.int = self:GetSpecialValueFor("int")
+	self.health = self:GetSpecialValueFor("health")
+	self.regen = self:GetSpecialValueFor("regen")
+	self.str_active = self:GetSpecialValueFor("str_active")
+	self.max_stack = self:GetSpecialValueFor("max_stack")
+end
+
 function item_bracer_custom:OnSpellStart()
 	local caster = self:GetCaster()
 
@@ -35,7 +46,7 @@ function item_bracer_custom:OnSpellStart()
 		end)
 	end
 
-	if false and test then
+	if test then
 		for team, tower in pairs(towers) do
 			if team ~= caster:GetTeamNumber() then
 				dota1x6:InitDuel(caster:GetTeamNumber(), team, 1, false)
@@ -45,25 +56,31 @@ function item_bracer_custom:OnSpellStart()
 	end
 
 	caster:EmitSound("Item.Bracer")
-	caster:AddNewModifier(
-		caster,
-		self,
-		"modifier_item_bracer_custom_heal",
-		{ duration = self:GetSpecialValueFor("duration") }
-	)
+	caster:AddNewModifier(caster, self, "modifier_item_bracer_custom_heal", { duration = self.duration })
 end
 
-modifier_item_bracer_custom = class({})
-
-function modifier_item_bracer_custom:IsHidden()
-	return true
-end
-function modifier_item_bracer_custom:IsPurgable()
-	return false
-end
+modifier_item_bracer_custom = class(mod_hidden)
 function modifier_item_bracer_custom:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
+function modifier_item_bracer_custom:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.str = self.ability.str
+	self.agi = self.ability.agi
+	self.int = self.ability.int
+	self.health = self.ability.health
+	self.regen = self.ability.regen
+	if not IsServer() then
+		return
+	end
+	if not self.parent:IsRealHero() or self.parent:IsTempestDouble() then
+		return
+	end
+	start_quest:CheckQuest({ quest_name = "Quest_1", id = self.parent:GetId(), item = self.ability:GetName() })
+end
+
 function modifier_item_bracer_custom:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
@@ -72,24 +89,6 @@ function modifier_item_bracer_custom:DeclareFunctions()
 		MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
 		MODIFIER_PROPERTY_HEALTH_BONUS,
 	}
-end
-
-function modifier_item_bracer_custom:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.str = self.ability:GetSpecialValueFor("str")
-	self.agi = self.ability:GetSpecialValueFor("agi")
-	self.int = self.ability:GetSpecialValueFor("int")
-	self.health = self.ability:GetSpecialValueFor("health")
-	self.regen = self.ability:GetSpecialValueFor("regen")
-	if not IsServer() then
-		return
-	end
-	if not self.parent:IsRealHero() or self.parent:IsTempestDouble() then
-		return
-	end
-	start_quest:CheckQuest({ quest_name = "Quest_1", id = self.parent:GetId(), item = self.ability:GetName() })
 end
 
 function modifier_item_bracer_custom:GetModifierBonusStats_Strength()
@@ -112,20 +111,16 @@ function modifier_item_bracer_custom:GetModifierConstantHealthRegen()
 	return self.regen
 end
 
-modifier_item_bracer_custom_heal = class({})
-function modifier_item_bracer_custom_heal:IsHidden()
-	return false
-end
+modifier_item_bracer_custom_heal = class(mod_visible)
 function modifier_item_bracer_custom_heal:IsPurgable()
 	return true
 end
-
 function modifier_item_bracer_custom_heal:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.str = self.ability:GetSpecialValueFor("str_active")
-	self.max_stack = self.ability:GetSpecialValueFor("max_stack")
+	self.str = self.ability.str_active
+	self.max_stack = self.ability.max_stack
 	if not IsServer() then
 		return
 	end

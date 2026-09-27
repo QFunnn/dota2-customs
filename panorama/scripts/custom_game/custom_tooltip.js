@@ -11,10 +11,12 @@
 
 var color_table =
 {
+    "gray" : ["#3a3a3a"],
     "blue" : ["#163e80"],
     "purple" : ["#571b87"],
     "legendary" : ["#c46610"],
     "chest" : ["#ada153"],
+    "hunt" : ["#48080c"],
 }
 
 
@@ -24,10 +26,12 @@ function UpdateTooltip()
     let skill_panel = $("#TooltipBlock2")
     $("#TooltipBlock").RemoveAndDeleteChildren()
 
+    main.RemoveClass("TooltipBlock_gray")
     main.RemoveClass("TooltipBlock_blue")
     main.RemoveClass("TooltipBlock_purple")
     main.RemoveClass("TooltipBlock_legendary")
     main.RemoveClass("TooltipBlock_chest")
+    main.RemoveClass("TooltipBlock_hunt")
     let rarity = $.GetContextPanel().GetAttributeString("rarity", "")
     let hero_name = $.GetContextPanel().GetAttributeString("hero_name", "")
     let skill_change = $.GetContextPanel().GetAttributeString("skill_change", "")
@@ -95,6 +99,64 @@ function UpdateTooltip()
         return
     }
 
+    let quest_info = $.GetContextPanel().GetAttributeString("quest_info", "")
+
+    if (quest_info != "" && quest_info != "undefined")
+    {
+        let quest_shards = $.GetContextPanel().GetAttributeString("quest_shards", "")
+        let quest_exp = $.GetContextPanel().GetAttributeString("quest_exp", "")
+        let quest_legendary = $.GetContextPanel().GetAttributeString("quest_legendary", "")
+
+        let place = ""
+        if (quest_legendary != "1")
+            place = '<br><br>' + $.Localize("#QuestDiscWin") + Game.GetWinPlace() + $.Localize("#QuestDiscWin2")
+
+        header_text.text = $.Localize("#QuestHeader")
+        info_text.text = $.Localize('#' + quest_info) + '<br><br>' + $.Localize('#QuestReward') + "<b><font color='#53ea48'>" + quest_shards + "</font></b>" + $.Localize('#QuestReward2') + "<b><font color='#53ea48'>" + quest_exp + "</font></b>" + $.Localize('#QuestReward3') + place
+        info_text.AddClass("info_text_chest")
+        header_text_level.text = $.GetContextPanel().GetAttributeString("quest_progress", "")
+        return
+    }
+
+    let bar_info = $.GetContextPanel().GetAttributeString("bar_info", "")
+
+    if (bar_info != "" && bar_info != "undefined")
+    {
+        let bar_value = $.GetContextPanel().GetAttributeString("bar_value", "")
+
+        header_text.text = $.Localize("#points_" + bar_info + "_header")
+        info_text.text = $.Localize("#points_" + bar_info + "_tooltip")
+        header_text_level.text = bar_value
+        return
+    }
+
+    let hunt_info = $.GetContextPanel().GetAttributeString("hunt_info", "")
+
+    if (hunt_info != "" && hunt_info != "undefined")
+    {
+        header_text.text = $.Localize("#Hunt_Tip_header")
+        info_text.text = $.Localize("#Hunt_Tip")
+        return
+    }
+
+    let priority_info = $.GetContextPanel().GetAttributeString("priority_info", "")
+
+    if (priority_info != "" && priority_info != "undefined")
+    {
+        header_text.text = $.Localize("#choise_priority_header")
+        info_text.text = $.Localize("#choise_priority_tooltip")
+        return
+    }
+
+    let skill_change_info = $.GetContextPanel().GetAttributeString("skill_change_info", "")
+
+    if (skill_change_info != "" && skill_change_info != "undefined")
+    {
+        header_text.text = $.Localize("#skill_change_header")
+        info_text.text = $.Localize("#" + hero_name + "_" + skill_change_info)
+        return
+    }
+
     let talent_text = $.GetContextPanel().GetAttributeString("talent_text", "")
     let name = $.GetContextPanel().GetAttributeString("name", "")
     let lvl = GetBoolean($.GetContextPanel().GetAttributeString("lvl", ""))
@@ -102,12 +164,25 @@ function UpdateTooltip()
     let max_level = $.GetContextPanel().GetAttributeString("max_level", "")
     let player_id = Number($.GetContextPanel().GetAttributeString("player_id", ""))
     let is_scepter = $.GetContextPanel().GetAttributeString("is_scepter", "")
+    let is_upgrade = $.GetContextPanel().GetAttributeString("is_upgrade", "")
 
     let legendary = rarity == "legendary"
 
-    let text = Game.ShowTalentValues(talent_text, name, lvl, all_levels, legendary)
+    let text = Game.ShowTalentValues(Game.GetTalentTextKey(talent_text, name, hero_name, player_id), name, lvl, all_levels, legendary, false, false, undefined, hero_name, player_id) + Game.ShowTalentMax(name, lvl, max_level, hero_name, player_id)
 
-    header_text.text = $.Localize("#tooltip_text_" + rarity)
+    let player_upgrades = CustomNetTables.GetTableValue("upgrades_player", String(player_id))
+
+    if (is_upgrade != undefined && is_upgrade != "undefined")
+    {
+        header_text.text = $.Localize("#tooltip_text_upgrade_" + rarity)
+    }else if (rarity == "gray" && player_upgrades && player_upgrades.priority == name)
+    {
+        header_text.text = $.Localize("#tooltip_text_gray_priority")
+    }else
+    {
+        header_text.text = $.Localize("#tooltip_text_" + rarity)
+    }
+
     info_text.text = text
 
     let text_lvl = lvl
@@ -116,7 +191,7 @@ function UpdateTooltip()
         text_lvl = 0
     }
 
-    header_text_level.text = text_lvl + "/" + max_level
+    header_text_level.text = Number(max_level) == 0 ? "" : text_lvl + "/" + max_level
 
     if (is_scepter && is_scepter == "true")
     {
@@ -158,7 +233,7 @@ function UpdateTooltip()
         let cd_timer = $.CreatePanel("Label", cd_panel, "")
         cd_timer.AddClass("cd_timer")
         cd_timer.html = true
-        cd_timer.text = Game.ShowTalentValues("*talent_cd*", name, lvl, all_levels, legendary)
+        cd_timer.text = Game.ShowTalentValues("*talent_cd*", name, lvl, all_levels, legendary, false, false, undefined, hero_name)
     }
 
     let alt_panel_child = $.CreatePanel("Panel", alt_panel, "")
@@ -200,7 +275,7 @@ function UpdateTooltip()
         {
             if (damage_type != undefined)
                 text = text + "<br><br>"
-            text = text + Game.ShowTalentValues(talent_text + "_info", name, lvl, all_levels, legendary, true)
+            text = text + Game.ShowTalentValues(talent_text + "_info", name, lvl, all_levels, legendary, true, false, undefined, hero_name)
         }
 
         let info_text_label = $.CreatePanel("Label", info_text_panel, "")

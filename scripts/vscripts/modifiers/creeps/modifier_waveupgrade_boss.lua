@@ -9,144 +9,128 @@
 
 
 modifier_waveupgrade_boss = class(mod_hidden)
+function modifier_waveupgrade_boss:OnCreated(table)
+	if not IsServer() then
+		return
+	end
+	self.parent = self:GetParent()
+	self.wave = table.wave
+	self.pure = 0
+	self.speed = 0
+
+	local health = 1800
+	local damage = 80
+	local gold = 250
+	local exp = 250
+	local magic = 35
+	local armor = 5
+
+	if self.wave ~= 1 then
+		health = 60000
+		damage = 450
+		gold = 1000
+		exp = 3000
+		magic = -90
+		armor = 12
+		self.pure = 65
+		self.speed = 130
+	end
+
+	if self.parent.host_team then
+		local ids = dota1x6:FindPlayers(self.parent.host_team)
+		if ids and #ids == 2 then
+			health = health * creeps_team_health
+			damage = damage * creeps_team_damage
+		end
+	end
+
+	health = math.floor(health)
+
+	self.parent:SetBaseMaxHealth(health)
+	self.parent:SetMaxHealth(health)
+	self.parent:SetHealth(health)
+	self.parent:SetBaseDamageMin(damage)
+	self.parent:SetBaseDamageMax(damage)
+	self.parent:SetMinimumGoldBounty(gold)
+	self.parent:SetMaximumGoldBounty(gold)
+	self.parent:SetDeathXP(exp)
+	self.parent:SetBaseMagicalResistanceValue(magic)
+	self.parent:SetPhysicalArmorBaseValue(armor)
+
+	self:SetStackCount(self.wave)
+	self:SetHasCustomTransmitterData(true)
+	self:SendBuffRefreshToClients()
+end
+
 function modifier_waveupgrade_boss:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE,
-		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
 		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
 		MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
 		MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL,
 		MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_MAGICAL,
 		MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PURE,
-		MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS,
 	}
 end
 
-function modifier_waveupgrade_boss:GetAbsoluteNoDamagePhysical(params)
+function modifier_waveupgrade_boss:GetModifierAttackSpeedBonus_Constant()
+	return self.speed
+end
+
+function modifier_waveupgrade_boss:NoDamage(attacker)
 	if not IsServer() then
 		return
 	end
-	if (params.attacker:GetAbsOrigin() - self.parent:GetAbsOrigin()):Length2D() > 2000 then
+	if not attacker then
+		return 0
+	end
+	if (attacker:GetAbsOrigin() - self.parent:GetAbsOrigin()):Length2D() > 2000 then
 		return 1
 	end
 	return 0
 end
 
-function modifier_waveupgrade_boss:GetAbsoluteNoDamagePure(params)
-	if not IsServer() then
-		return
-	end
-	if (params.attacker:GetAbsOrigin() - self.parent:GetAbsOrigin()):Length2D() > 2000 then
-		return 1
-	end
-	return 0
+function modifier_waveupgrade_boss:GetAbsoluteNoDamagePhysical(params)
+	return self:NoDamage(params.attacker)
 end
 
 function modifier_waveupgrade_boss:GetAbsoluteNoDamageMagical(params)
-	if not IsServer() then
-		return
-	end
-	if (params.attacker:GetAbsOrigin() - self.parent:GetAbsOrigin()):Length2D() > 2000 then
-		return 1
-	end
-	return 0
+	return self:NoDamage(params.attacker)
+end
+
+function modifier_waveupgrade_boss:GetAbsoluteNoDamagePure(params)
+	return self:NoDamage(params.attacker)
 end
 
 function modifier_waveupgrade_boss:GetModifierIncomingDamage_Percentage(params)
 	if params.attacker and params.attacker:IsBuilding() then
 		return -40
 	end
-
-	if params.damage_type == DAMAGE_TYPE_PURE then
-		return self.pure
+	if params.damage_type ~= DAMAGE_TYPE_PURE then
+		return
 	end
+	return self.pure
 end
 
 function modifier_waveupgrade_boss:GetModifierTotalDamageOutgoing_Percentage(params)
 	if params.attacker ~= self.parent then
 		return
 	end
-	if not params.target or not params.target:IsBuilding() then
+	if not params.target then
 		return
 	end
-
-	if self.wave == 1 then
-		return 150
-	else
-		return -20
-	end
-end
-
-function modifier_waveupgrade_boss:OnCreated(table)
-	self.parent = self:GetParent()
-	self.wave = table.wave
-
-	--self.wave = 2
-
-	self.amp = 0
-	self.magic = 35
-	self.armor = 5
-	self.speed = 0
-	self.pure = 0
-
-	self.health = 1800
-	self.damage = 80
-	self.gold = 250
-	self.exp = 250
-
-	if self.wave ~= 1 then
-		self.magic = -90
-		self.armor = 12
-		self.amp = 0 --150
-		self.pure = 65
-
-		self.health = 60000
-		self.damage = 450
-		self.gold = 1000
-		self.exp = 3000
-		self.speed = 130
-	end
-
-	if not IsServer() then
+	if not params.target:IsBuilding() then
 		return
 	end
-	self:SetStackCount(self.wave)
-
-	if self.parent.host_team then
-		local ids = dota1x6:FindPlayers(self.parent.host_team)
-		if ids then
-			if #ids == 2 then
-				self.health = self.health * creeps_team_health
-				self.damage = self.damage * creeps_team_damage
-			end
-		end
-	end
-
-	self.parent:SetBaseDamageMin(self.damage)
-	self.parent:SetBaseDamageMax(self.damage)
-
-	self.change_health = self.health - self.parent:GetBaseMaxHealth()
-
-	--self.parent:SetBaseMaxHealth(self.health)
-	--self.parent:SetHealth(self.health)
-
-	self.parent:SetMinimumGoldBounty(self.gold)
-	self.parent:SetMaximumGoldBounty(self.gold)
-
-	self.parent:SetBaseMagicalResistanceValue(self.magic)
-
-	self.parent:SetDeathXP(self.exp)
-	self.parent:SetPhysicalArmorBaseValue(self.armor)
+	return self.wave == 1 and 150 or -20
 end
 
-function modifier_waveupgrade_boss:GetModifierExtraHealthBonus()
-	return self.change_health
+function modifier_waveupgrade_boss:AddCustomTransmitterData()
+	return {
+		speed = self.speed,
+	}
 end
 
-function modifier_waveupgrade_boss:GetModifierSpellAmplify_Percentage()
-	return self.amp
-end
-
-function modifier_waveupgrade_boss:GetModifierAttackSpeedBonus_Constant()
-	return self.speed
+function modifier_waveupgrade_boss:HandleCustomTransmitterData(data)
+	self.speed = data.speed
 end

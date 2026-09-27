@@ -66,11 +66,6 @@ LinkLuaModifier(
 
 night_stalker_crippling_fear_custom = class({})
 night_stalker_crippling_fear_custom.talents = {}
-night_stalker_crippling_fear_custom.regen_mods = {}
-
-function night_stalker_crippling_fear_custom:GetAbilityTextureName()
-	return wearables_system:GetAbilityIconReplacement(self.caster, "night_stalker_crippling_fear", self)
-end
 
 function night_stalker_crippling_fear_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
@@ -91,7 +86,6 @@ function night_stalker_crippling_fear_custom:Precache(context)
 	PrecacheResource("particle", "particles/night_stalker/fear_health_steal.vpcf", context)
 	PrecacheResource("particle", "particles/night_stalker/fear_pull.vpcf", context)
 	PrecacheResource("particle", "particles/night_stalker/fear_pull_leash.vpcf", context)
-	PrecacheResource("particle", "particles/night_stalker/fear_border.vpcf", context)
 	PrecacheResource("particle", "particles/night_stalker/fear_slow.vpcf", context)
 	PrecacheResource("particle", "particles/night_stalker/fear_damage_reduce.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_lone_druid/lone_druid_savage_roar_debuff.vpcf", context)
@@ -134,6 +128,9 @@ function night_stalker_crippling_fear_custom:UpdateTalents(name)
 			w7_damage = caster:GetTalentValue("modifier_stalker_fear_7", "damage", true) / 100,
 			w7_duration = caster:GetTalentValue("modifier_stalker_fear_7", "duration", true),
 			w7_knock_distance = caster:GetTalentValue("modifier_stalker_fear_7", "knock_distance", true),
+
+			has_q3 = 0,
+			q3_duration = caster:GetTalentValue("modifier_stalker_void_3", "duration", true),
 
 			has_q4 = 0,
 			q4_cd_items_fear = caster:GetTalentValue("modifier_stalker_void_4", "cd_items_fear", true),
@@ -185,9 +182,17 @@ function night_stalker_crippling_fear_custom:UpdateTalents(name)
 		self.talents.h2_damage_reduce = caster:GetTalentValue("modifier_stalker_hero_2", "damage_reduce")
 	end
 
+	if caster:HasTalent("modifier_stalker_void_3") then
+		self.talents.has_q3 = 1
+	end
+
 	if caster:HasTalent("modifier_stalker_void_4") then
 		self.talents.has_q4 = 1
 	end
+end
+
+function night_stalker_crippling_fear_custom:GetAbilityTextureName()
+	return wearables_system:GetAbilityIconReplacement(self.caster, "night_stalker_crippling_fear", self)
 end
 
 function night_stalker_crippling_fear_custom:GetIntrinsicModifierName()
@@ -209,7 +214,7 @@ function night_stalker_crippling_fear_custom:GetAOERadius()
 end
 
 function night_stalker_crippling_fear_custom:GetCooldown(level)
-	return self.BaseClass.GetCooldown(self, level) + (self.talents.w2_cd and self.talents.w2_cd or 0)
+	return self.BaseClass.GetCooldown(self, level) + (self.talents.w2_cd or 0)
 end
 
 function night_stalker_crippling_fear_custom:GetManaCost(level)
@@ -220,7 +225,7 @@ function night_stalker_crippling_fear_custom:GetManaCost(level)
 end
 
 function night_stalker_crippling_fear_custom:GetRadius()
-	return (self.radius and self.radius or 0) + (self.talents.has_w1 == 1 and self.talents.w1_radius or 0)
+	return (self.radius or 0) + (self.talents.has_w1 == 1 and self.talents.w1_radius or 0)
 end
 
 function night_stalker_crippling_fear_custom:GetDamage()
@@ -314,6 +319,9 @@ function night_stalker_crippling_fear_custom:OnSpellStart()
 end
 
 function night_stalker_crippling_fear_custom:CheckRegen(mod, is_remove)
+	if not self:IsTrained() then
+		return
+	end
 	if self.talents.has_h1 == 0 then
 		return
 	end
@@ -345,6 +353,7 @@ modifier_night_stalker_crippling_fear_custom = class(mod_hidden)
 function modifier_night_stalker_crippling_fear_custom:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
+	self.ability.regen_mods = {}
 	self.ability.tracker = self
 	self.ability:UpdateTalents()
 
@@ -386,7 +395,7 @@ function modifier_night_stalker_crippling_fear_custom:CheckSilence(mod, is_remov
 		if IsValid(mod) then
 			active = true
 		else
-			self.silence_mods[mod] = true
+			self.silence_mods[mod] = nil
 		end
 	end
 
@@ -424,6 +433,24 @@ function modifier_night_stalker_crippling_fear_custom:GetModifierPercentageCoold
 end
 
 modifier_night_stalker_crippling_fear_custom_aura = class(mod_visible)
+function modifier_night_stalker_crippling_fear_custom_aura:IsAura()
+	return true
+end
+function modifier_night_stalker_crippling_fear_custom_aura:GetAuraDuration()
+	return 0.5
+end
+function modifier_night_stalker_crippling_fear_custom_aura:GetAuraRadius()
+	return self.radius
+end
+function modifier_night_stalker_crippling_fear_custom_aura:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_ENEMY
+end
+function modifier_night_stalker_crippling_fear_custom_aura:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
+end
+function modifier_night_stalker_crippling_fear_custom_aura:GetModifierAura()
+	return "modifier_night_stalker_crippling_fear_custom_silence"
+end
 function modifier_night_stalker_crippling_fear_custom_aura:OnCreated()
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
@@ -459,18 +486,6 @@ function modifier_night_stalker_crippling_fear_custom_aura:OnCreated()
 			"modifier_night_stalker_crippling_fear_custom_damage_reduce",
 			{ duration = self:GetRemainingTime() }
 		)
-	end
-
-	if false then
-		self.border = ParticleManager:CreateParticle(
-			"particles/night_stalker/fear_border.vpcf",
-			PATTACH_ABSORIGIN_FOLLOW,
-			self.parent
-		)
-		ParticleManager:SetParticleControl(self.border, 0, self.parent:GetAbsOrigin())
-		ParticleManager:SetParticleControl(self.border, 1, Vector(self.radius, self.ability.talents.h6_duration, 0))
-		self:AddParticle(self.border, false, false, -1, false, false)
-		self:StartIntervalThink(0.1)
 	end
 
 	local pfx = wearables_system:GetParticleReplacementAbility(
@@ -550,25 +565,6 @@ function modifier_night_stalker_crippling_fear_custom_aura:OnDestroy()
 	end
 end
 
-function modifier_night_stalker_crippling_fear_custom_aura:IsAura()
-	return true
-end
-function modifier_night_stalker_crippling_fear_custom_aura:GetAuraDuration()
-	return 0.5
-end
-function modifier_night_stalker_crippling_fear_custom_aura:GetAuraRadius()
-	return self.radius
-end
-function modifier_night_stalker_crippling_fear_custom_aura:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_ENEMY
-end
-function modifier_night_stalker_crippling_fear_custom_aura:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
-end
-function modifier_night_stalker_crippling_fear_custom_aura:GetModifierAura()
-	return "modifier_night_stalker_crippling_fear_custom_silence"
-end
-
 modifier_night_stalker_crippling_fear_custom_silence = class(mod_visible)
 function modifier_night_stalker_crippling_fear_custom_silence:OnCreated()
 	self.parent = self:GetParent()
@@ -620,10 +616,7 @@ function modifier_night_stalker_crippling_fear_custom_silence:OnCreated()
 	self.damageTable =
 		{ victim = self.parent, attacker = self.caster, ability = self.ability, damage_type = DAMAGE_TYPE_MAGICAL }
 
-	self.void_ability = nil
-	if IsValid(self.caster.void_ability) then
-		self.void_ability = self.caster.void_ability
-	end
+	self.void_ability = self.caster.void_ability
 
 	self.count = 0
 	self:StartIntervalThink(self.interval - 0.01)
@@ -703,12 +696,12 @@ function modifier_night_stalker_crippling_fear_custom_silence:OnIntervalThink()
 
 	self.damageTable.damage = damage
 
-	if self.void_ability and self.void_ability.talents.has_q3 == 1 then
+	if self.ability.talents.has_q3 == 1 and IsValid(self.void_ability) then
 		self.parent:AddNewModifier(
 			self.caster,
 			self.void_ability,
 			"modifier_night_stalker_void_custom_damage_stack",
-			{ duration = self.void_ability.talents.q3_duration, damage = damage }
+			{ duration = self.ability.talents.q3_duration, damage = damage }
 		)
 	end
 
@@ -792,6 +785,7 @@ function modifier_night_stalker_crippling_fear_custom_silence:CheckState()
 		[MODIFIER_STATE_SILENCED] = true,
 	}
 end
+
 function modifier_night_stalker_crippling_fear_custom_silence:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_TURN_RATE_PERCENTAGE,
@@ -811,6 +805,7 @@ function modifier_night_stalker_crippling_fear_custom_silence:GetModifierTurnRat
 	end
 	return self.caster.dark_ability.shard_slow_turn
 end
+
 function modifier_night_stalker_crippling_fear_custom_silence:GetModifierMoveSpeedBonus_Percentage()
 	if not self.caster:HasShard() then
 		return
@@ -844,24 +839,20 @@ function modifier_night_stalker_crippling_fear_custom_health_reduce:OnCreated(ta
 
 	self.duration = self:GetRemainingTime()
 
-	self:AddStack(table)
+	self:OnRefresh(table)
 end
 
 function modifier_night_stalker_crippling_fear_custom_health_reduce:OnRefresh(table)
 	if not IsServer() then
 		return
 	end
-	self:AddStack(table)
-end
-
-function modifier_night_stalker_crippling_fear_custom_health_reduce:AddStack(table)
-	if not IsServer() then
-		return
-	end
 
 	if self:GetStackCount() < self.max then
-		local stack = table.stack and table.stack or 1
+		local stack = table.stack or 1
 		self:SetStackCount(math.min(self.max, self:GetStackCount() + stack))
+		if self.parent:IsHero() then
+			self.parent:CalculateStatBonus(true)
+		end
 	end
 
 	self:SendHealth()
@@ -887,16 +878,6 @@ function modifier_night_stalker_crippling_fear_custom_health_reduce:SendHealth()
 	end
 end
 
-function modifier_night_stalker_crippling_fear_custom_health_reduce:OnStackCountChanged(iStackCount)
-	if not IsServer() then
-		return
-	end
-	if not self.parent:IsHero() then
-		return
-	end
-	self.parent:CalculateStatBonus(true)
-end
-
 function modifier_night_stalker_crippling_fear_custom_health_reduce:OnDestroy()
 	if not IsServer() then
 		return
@@ -905,7 +886,10 @@ function modifier_night_stalker_crippling_fear_custom_health_reduce:OnDestroy()
 		self.health_mod:Destroy()
 	end
 
-	self:OnStackCountChanged()
+	if not self.parent:IsHero() then
+		return
+	end
+	self.parent:CalculateStatBonus(true)
 end
 
 function modifier_night_stalker_crippling_fear_custom_health_reduce:DeclareFunctions()
@@ -963,7 +947,7 @@ function modifier_night_stalker_crippling_fear_custom_legendary_stack:OnCreated(
 	self.ability = self:GetAbility()
 
 	self.particle = self.parent:GenericParticle("particles/night_stalker/fear_stack.vpcf", self, true)
-	self:SetStackCount(1)
+	self:OnRefresh()
 end
 
 function modifier_night_stalker_crippling_fear_custom_legendary_stack:OnRefresh()
@@ -971,12 +955,7 @@ function modifier_night_stalker_crippling_fear_custom_legendary_stack:OnRefresh(
 		return
 	end
 	self:IncrementStackCount()
-end
 
-function modifier_night_stalker_crippling_fear_custom_legendary_stack:OnStackCountChanged()
-	if not IsServer() then
-		return
-	end
 	local number_1 = self:GetStackCount()
 	local double = math.floor(number_1 / 10)
 	local number_2 = number_1 - double * 10
@@ -1060,12 +1039,12 @@ function modifier_night_stalker_crippling_fear_custom_legendary_wave:OnIntervalT
 				self.damageTable.damage = damage
 				self.damageTable.victim = target
 
-				if IsValid(self.void_ability) and self.void_ability.talents.has_q3 == 1 then
+				if self.ability.talents.has_q3 == 1 and IsValid(self.void_ability) then
 					target:AddNewModifier(
 						self.caster,
 						self.void_ability,
 						"modifier_night_stalker_void_custom_damage_stack",
-						{ duration = self.void_ability.talents.q3_duration, damage = damage }
+						{ duration = self.ability.talents.q3_duration, damage = damage }
 					)
 				end
 

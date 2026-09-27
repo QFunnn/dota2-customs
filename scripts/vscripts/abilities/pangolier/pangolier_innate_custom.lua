@@ -33,7 +33,9 @@ function pangolier_innate_custom:Precache(context)
 	end
 
 	PrecacheResource("particle", "particles/pangolier/innate_proc.vpcf", context)
-	PrecacheResource("soundfile", "particles/pangolier/innate_attack.vpcf", context)
+	PrecacheResource("particle", "particles/pangolier/innate_attack.vpcf", context)
+	PrecacheResource("particle", "particles/pangolier/innate_shield.vpcf", context)
+	PrecacheResource("particle", "particles/jugg_parry.vpcf", context)
 	PrecacheResource("soundfile", "soundevents/npc_dota_hero_pangolier.vsndevts", context)
 	dota1x6:PrecacheShopItems("npc_dota_hero_pangolier", context)
 end
@@ -68,13 +70,13 @@ function pangolier_innate_custom:UpdateTalents(name)
 	if caster:HasTalent("modifier_pangolier_shield_3") then
 		self.talents.has_w3 = 1
 		self.talents.w3_heal = caster:GetTalentValue("modifier_pangolier_shield_3", "heal") / 100
-		self.caster:AddDamageEvent_out(self.tracker, true)
+		caster:AddDamageEvent_out(self.tracker, true)
 	end
 
 	if caster:HasTalent("modifier_pangolier_lucky_2") then
 		self.talents.has_e2 = 1
 		self.talents.e2_heal = caster:GetTalentValue("modifier_pangolier_lucky_2", "heal") / 100
-		self.caster:AddDamageEvent_out(self.tracker, true)
+		caster:AddDamageEvent_out(self.tracker, true)
 	end
 
 	if caster:HasTalent("modifier_pangolier_lucky_7") then
@@ -172,7 +174,10 @@ function modifier_pangolier_innate_custom:SpellEvent(params)
 	if self.parent:GetTeamNumber() == params.unit:GetTeamNumber() then
 		return
 	end
-	if not params.target or params.target ~= self.parent then
+	if not params.target then
+		return
+	end
+	if params.target ~= self.parent then
 		return
 	end
 
@@ -348,6 +353,7 @@ function modifier_pangolier_innate_custom_damage_reduce:DamageEvent_inc(params)
 			true
 		)
 		ParticleManager:SetParticleControl(particle, 1, self.parent:GetAbsOrigin())
+		ParticleManager:ReleaseParticleIndex(particle)
 	end
 end
 

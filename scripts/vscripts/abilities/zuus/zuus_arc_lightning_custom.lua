@@ -42,10 +42,6 @@ LinkLuaModifier(
 zuus_arc_lightning_custom = class({})
 zuus_arc_lightning_custom.talents = {}
 
-function zuus_arc_lightning_custom:GetAbilityTextureName()
-	return wearables_system:GetAbilityIconReplacement(self.caster, "zuus_arc_lightning", self)
-end
-
 function zuus_arc_lightning_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
@@ -70,6 +66,7 @@ function zuus_arc_lightning_custom:Precache(context)
 		context
 	)
 	PrecacheResource("particle", "particles/zeus/arc_legendary_stack.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_zuus/zuus_lightning_bolt.vpcf", context)
 end
 
 function zuus_arc_lightning_custom:UpdateTalents(name)
@@ -152,8 +149,8 @@ function zuus_arc_lightning_custom:UpdateTalents(name)
 	end
 end
 
-function zuus_arc_lightning_custom:Init()
-	self.caster = self:GetCaster()
+function zuus_arc_lightning_custom:GetAbilityTextureName()
+	return wearables_system:GetAbilityIconReplacement(self.caster, "zuus_arc_lightning", self)
 end
 
 function zuus_arc_lightning_custom:GetIntrinsicModifierName()
@@ -164,7 +161,7 @@ function zuus_arc_lightning_custom:GetIntrinsicModifierName()
 end
 
 function zuus_arc_lightning_custom:GetCooldown(iLevel)
-	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.q3_cd and self.talents.q3_cd or 0)
+	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.q3_cd or 0)
 end
 
 function zuus_arc_lightning_custom:GetManaCost(level)
@@ -181,19 +178,6 @@ function zuus_arc_lightning_custom:GetBehavior()
 		bonus = DOTA_ABILITY_BEHAVIOR_AUTOCAST
 	end
 	return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET + bonus
-end
-
-function zuus_arc_lightning_custom:CheckToggle()
-	local shield = self.caster:FindModifierByName("modifier_zuus_arc_lightning_custom_legendary")
-	if not shield or shield:GetStackCount() == 0 then
-		CustomGameEventManager:Send_ServerToPlayer(
-			PlayerResource:GetPlayer(self.caster:GetPlayerOwnerID()),
-			"CreateIngameErrorMessage",
-			{ message = "#dota_hud_error_no_charges" }
-		)
-		return false
-	end
-	return true
 end
 
 function zuus_arc_lightning_custom:OnSpellStart(new_target)
@@ -275,6 +259,19 @@ function zuus_arc_lightning_custom:OnSpellStart(new_target)
 	self.caster:AddNewModifier(self.caster, self, "modifier_zuus_arc_lightning_custom", { target = target:entindex() })
 end
 
+function zuus_arc_lightning_custom:CheckToggle()
+	local shield = self.caster:FindModifierByName("modifier_zuus_arc_lightning_custom_legendary")
+	if not shield or shield:GetStackCount() == 0 then
+		CustomGameEventManager:Send_ServerToPlayer(
+			PlayerResource:GetPlayer(self.caster:GetPlayerOwnerID()),
+			"CreateIngameErrorMessage",
+			{ message = "#dota_hud_error_no_charges" }
+		)
+		return false
+	end
+	return true
+end
+
 function zuus_arc_lightning_custom:DoDamage(target, damage_ability)
 	if self.caster.static_ability then
 		self.caster.static_ability:DealDamage(target)
@@ -308,7 +305,7 @@ function zuus_arc_lightning_custom:DoDamage(target, damage_ability)
 			self.caster,
 			self,
 			"modifier_zuus_arc_lightning_custom_slow",
-			{ duration = self.talents.q2_duration }
+			{ duration = self.talents.has_q2 == 1 and self.talents.q2_duration or self.talents.q4_duration }
 		)
 	end
 
@@ -379,20 +376,20 @@ function modifier_zuus_arc_lightning_custom:OnIntervalThink()
 	if not IsServer() then
 		return
 	end
+	if not IsValid(self.current_unit) then
+		self:Destroy()
+		return
+	end
+
 	self.zapped = false
 
 	for _, enemy in
 		pairs(
-			FindUnitsInRadius(
-				self.parent:GetTeamNumber(),
-				self.current_unit:GetAbsOrigin(),
-				nil,
+			self.parent:FindTargets(
 				self.radius,
-				DOTA_UNIT_TARGET_TEAM_ENEMY,
-				DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-				DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_NO_INVIS,
+				self.current_unit:GetAbsOrigin(),
 				FIND_CLOSEST,
-				false
+				DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE + DOTA_UNIT_TARGET_FLAG_NO_INVIS
 			)
 		)
 	do
@@ -567,7 +564,6 @@ function modifier_zuus_arc_lightning_custom_legendary:OnStackCountChanged()
 	if not IsServer() then
 		return
 	end
-
 	if not self.particle then
 		return
 	end
@@ -587,10 +583,6 @@ function modifier_zuus_arc_lightning_custom_legendary:OnIntervalThink()
 	end
 
 	if self.active then
-		max_time = self.max
-		time = self:GetStackCount()
-		active = 1
-
 		self.parent:EmitSound("Hero_Zuus.ArcLightning.Cast")
 		self.parent:GenericParticle("particles/econ/items/zeus/zeus_immortal_2021/zeus_immortal_2021_static_field.vpcf")
 
@@ -745,7 +737,7 @@ function modifier_zuus_arc_lightning_custom_legendary_cast:OnCreated()
 	if shield then
 		shield:Activate()
 		self.ability:EndCd(0)
-		self.ability:StartCooldown(self.parent:GetTalentValue("modifier_zuus_arc_7", "cd"))
+		self.ability:StartCooldown(self.ability.talents.q7_cd)
 	end
 
 	self.ability:ToggleAutoCast()
@@ -760,10 +752,11 @@ function modifier_zuus_arc_lightning_custom_slow:OnCreated()
 	self.ability = self:GetAbility()
 	self.parent = self:GetParent()
 
-	self.max = self.ability.talents.q2_max
+	self.max = self.ability.talents.has_q2 == 1 and self.ability.talents.q2_max or self.ability.talents.q4_max
 	if not IsServer() then
 		return
 	end
+	self.RemoveForDuel = true
 	self:OnRefresh()
 end
 

@@ -35,6 +35,13 @@ function item_idol_of_screeauk_custom:GetIntrinsicModifierName()
 	return "modifier_item_idol_of_screeauk_custom"
 end
 
+function item_idol_of_screeauk_custom:Spawn()
+	self.movespeed = self:GetSpecialValueFor("movespeed")
+	self.evasion = self:GetSpecialValueFor("evasion")
+	self.duration = self:GetSpecialValueFor("duration")
+	self.bonus = self:GetSpecialValueFor("bonus")
+end
+
 modifier_item_idol_of_screeauk_custom = class(mod_hidden)
 function modifier_item_idol_of_screeauk_custom:RemoveOnDeath()
 	return false
@@ -43,15 +50,18 @@ function modifier_item_idol_of_screeauk_custom:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.movespeed = self.ability:GetSpecialValueFor("movespeed")
-	self.evasion = self.ability:GetSpecialValueFor("evasion")
-	self.duration = self.ability:GetSpecialValueFor("duration")
-	self.bonus = self.ability:GetSpecialValueFor("bonus")
+	self.movespeed = self.ability.movespeed
+	self.evasion = self.ability.evasion
+	self.duration = self.ability.duration
+	self.bonus = self.ability.bonus
 	self.parent:AddAttackEvent_inc(self, true)
 end
 
 function modifier_item_idol_of_screeauk_custom:AttackEvent_inc(params)
 	if not IsServer() then
+		return
+	end
+	if not IsValid(self.ability) then
 		return
 	end
 	if self.parent ~= params.target then
@@ -64,7 +74,7 @@ function modifier_item_idol_of_screeauk_custom:AttackEvent_inc(params)
 		return
 	end
 
-	self.ability:UseResources(false, false, false, true)
+	self.ability:StartCd()
 	self.parent:AddNewModifier(
 		self.parent,
 		self.ability,

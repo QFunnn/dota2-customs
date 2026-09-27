@@ -16,7 +16,19 @@ function item_kaya_custom:GetIntrinsicModifierName()
 	return "modifier_item_kaya_custom"
 end
 
+function item_kaya_custom:Spawn()
+	self.bonus_intellect = self:GetSpecialValueFor("bonus_intellect")
+	self.spell_amp = self:GetSpecialValueFor("spell_amp")
+	self.mana_regen_multiplier = self:GetSpecialValueFor("mana_regen_multiplier")
+	self.health_bonus = self:GetSpecialValueFor("health_bonus") / 100
+end
+
 modifier_item_kaya_custom = class(mod_hidden)
+function modifier_item_kaya_custom:OnCreated(table)
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+end
+
 function modifier_item_kaya_custom:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
@@ -58,14 +70,4 @@ function modifier_item_kaya_custom:GetModifierHealthBonus()
 		return
 	end
 	return self.ability.health_bonus * self.parent:GetMaxMana()
-end
-
-function modifier_item_kaya_custom:OnCreated(table)
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.ability.bonus_intellect = self.ability:GetSpecialValueFor("bonus_intellect")
-	self.ability.spell_amp = self.ability:GetSpecialValueFor("spell_amp")
-	self.ability.mana_regen_multiplier = self.ability:GetSpecialValueFor("mana_regen_multiplier")
-	self.ability.health_bonus = self.ability:GetSpecialValueFor("health_bonus") / 100
 end

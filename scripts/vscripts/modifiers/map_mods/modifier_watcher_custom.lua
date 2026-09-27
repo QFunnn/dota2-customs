@@ -67,7 +67,10 @@ function modifier_watcher_custom:OnCreated(kv)
 	self.captured_team = -1
 
 	self.vision_range = 1200
-	self.interval = 0.03
+	self.interval_fast = 0.03
+	self.interval_slow = 0.5
+	self.interval = self.interval_slow
+	self.wake_radius = 600
 	self.cooldown = 0
 
 	self.max_cd = 120
@@ -78,6 +81,12 @@ function modifier_watcher_custom:OnCreated(kv)
 	self.capture_time = 1
 
 	self.vPosition = self:GetParent():GetAbsOrigin()
+
+	self.icon_id = "watcher_" .. self.parent:GetEntityIndex()
+	self.shown = {}
+	self.clock_state = {}
+	self.clock_progress = {}
+
 	self:StartIntervalThink(self.interval)
 end
 
@@ -93,6 +102,8 @@ function modifier_watcher_custom:CheckBaseParticle()
 				PATTACH_WORLDORIGIN,
 				self.parent
 			)
+			ParticleManager:SetParticleShouldCheckFoW(self.base_particle, true)
+			ParticleManager:SetParticleFoWProperties(self.base_particle, 0, 0, self.radius)
 			local pos = GetGroundPosition(self.parent:GetAbsOrigin(), nil)
 			ParticleManager:SetParticleControl(self.base_particle, 0, pos)
 			ParticleManager:SetParticleControl(self.base_particle, 3, Vector(150, 150, 150))
@@ -127,6 +138,8 @@ function modifier_watcher_custom:CheckBaseParticle()
 				self.parent,
 				team
 			)
+			ParticleManager:SetParticleShouldCheckFoW(self.clock_particle[team], true)
+			ParticleManager:SetParticleFoWProperties(self.clock_particle[team], 0, 0, self.radius)
 
 			ParticleManager:SetParticleControl(
 				self.clock_particle[team],
@@ -134,21 +147,30 @@ function modifier_watcher_custom:CheckBaseParticle()
 				Vector(self.parent:GetAbsOrigin().x, self.parent:GetAbsOrigin().y, self.parent:GetAbsOrigin().z + 75)
 			)
 			ParticleManager:SetParticleControl(self.clock_particle[team], 11, Vector(0, 0, 1))
+			self.clock_state[team] = nil
+			self.clock_progress[team] = nil
 		end
 
-		if self.captured_team == team then
-			ParticleManager:SetParticleControl(self.clock_particle[team], 3, Vector(0, 162, 255))
-			ParticleManager:SetParticleControl(self.clock_particle[team], 9, Vector(self.clock_radius, 0, 0))
-		else
-			if self.captured_team == -1 then
-				ParticleManager:SetParticleControl(self.clock_particle[team], 3, Vector(220, 220, 220))
-				ParticleManager:SetParticleControl(self.clock_particle[team], 9, Vector(self.radius, 0, 0))
-			else
-				ParticleManager:SetParticleControl(self.clock_particle[team], 3, Vector(255, 79, 22))
+		if self.clock_state[team] ~= self.captured_team then
+			self.clock_state[team] = self.captured_team
+			if self.captured_team == team then
+				ParticleManager:SetParticleControl(self.clock_particle[team], 3, Vector(0, 162, 255))
 				ParticleManager:SetParticleControl(self.clock_particle[team], 9, Vector(self.clock_radius, 0, 0))
+			else
+				if self.captured_team == -1 then
+					ParticleManager:SetParticleControl(self.clock_particle[team], 3, Vector(220, 220, 220))
+					ParticleManager:SetParticleControl(self.clock_particle[team], 9, Vector(self.radius, 0, 0))
+				else
+					ParticleManager:SetParticleControl(self.clock_particle[team], 3, Vector(255, 79, 22))
+					ParticleManager:SetParticleControl(self.clock_particle[team], 9, Vector(self.clock_radius, 0, 0))
+				end
 			end
 		end
-		ParticleManager:SetParticleControl(self.clock_particle[team], 17, Vector(self.progress, 0, 0))
+
+		if self.clock_progress[team] ~= self.progress then
+			self.clock_progress[team] = self.progress
+			ParticleManager:SetParticleControl(self.clock_particle[team], 17, Vector(self.progress, 0, 0))
+		end
 	end
 end
 
@@ -165,44 +187,58 @@ function modifier_watcher_custom:OnIntervalThink()
 
 		self.progress = (self.cooldown / self.max_cd)
 
-		AddFOWViewer(self.captured_team, self.parent:GetAbsOrigin(), self.vision_range, FrameTime(), false)
-
 		if self.cooldown <= 0 then
 			self:ResetObserver()
+			self:SetThinkInterval(self.interval_fast)
+			return
 		end
+
+		AddFOWViewer(
+			self.captured_team,
+			self.parent:GetAbsOrigin(),
+			self.vision_range,
+			self.interval_slow + FrameTime() * 2,
+			false
+		)
+		self:SetThinkInterval(self.interval_slow)
 		return
 	end
 
-	self.heroes_in_radius = FindUnitsInRadius(
-		DOTA_TEAM_NEUTRALS,
-		self.vPosition,
-		nil,
-		self.radius,
-		DOTA_UNIT_TARGET_TEAM_ENEMY,
-		DOTA_UNIT_TARGET_HERO,
-		DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO
-			+ DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
-			+ DOTA_UNIT_TARGET_FLAG_INVULNERABLE
-			+ DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS
-			+ DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD,
-		FIND_ANY_ORDER,
-		false
-	)
+	local hero_near = false
+	local capture_id = nil
+	local capture_team = nil
+	local contested = false
 
-	local heroes = {}
-	local team_register = {}
-
-	for _, hero in pairs(self.heroes_in_radius) do
-		if not hero:IsTempestDouble() then
-			local team = hero:GetTeamNumber()
-			if not team_register[team] then
-				team_register[team] = true
-				heroes[#heroes + 1] = hero
+	for id, hero in pairs(players) do
+		if hero:IsAlive() then
+			local distance = (hero:GetAbsOrigin() - self.vPosition):Length2D()
+			if distance <= self.wake_radius then
+				hero_near = true
+			end
+			if distance <= self.radius + hero:GetHullRadius() then
+				local team = hero:GetTeamNumber()
+				if not capture_team then
+					capture_team = team
+					capture_id = id
+				elseif capture_team ~= team then
+					contested = true
+				end
 			end
 		end
 	end
 
-	if #heroes == 1 then
+	if not hero_near and self.timer <= 0 then
+		self:ChangeAnimation("flail")
+		self:SetThinkInterval(self.interval_slow)
+		return
+	end
+
+	if self.interval == self.interval_slow then
+		self:SetThinkInterval(self.interval_fast)
+		return
+	end
+
+	if capture_team and not contested then
 		if self.progress < 1 then
 			self:ChangeAnimation("cast")
 		end
@@ -211,7 +247,7 @@ function modifier_watcher_custom:OnIntervalThink()
 		self.progress = self.timer / self.capture_time
 
 		if self.progress >= 1 then
-			self:CaptureObserver(heroes[1]:GetId())
+			self:CaptureObserver(capture_id)
 			self.progress = 1
 		end
 	else
@@ -222,6 +258,14 @@ function modifier_watcher_custom:OnIntervalThink()
 	if self.progress <= 0 then
 		self:ChangeAnimation("flail")
 	end
+end
+
+function modifier_watcher_custom:SetThinkInterval(interval)
+	if self.interval == interval then
+		return
+	end
+	self.interval = interval
+	self:StartIntervalThink(interval)
 end
 
 function modifier_watcher_custom:CaptureObserver(id)
@@ -238,11 +282,13 @@ function modifier_watcher_custom:CaptureObserver(id)
 	self.cooldown = self.max_cd
 	self.timer = 0
 
+	dota1x6:StartWatcherWatch()
+
 	if player then
 		local bonus_gold = 50
 		local team_players = dota1x6:FindPlayers(self.captured_team, false, true)
 		for _, team_player in pairs(team_players) do
-			team_player:GiveGold(bonus_gold / #team_players, true)
+			team_player:GiveGold(bonus_gold / #team_players, true, nil, "watcher")
 		end
 	end
 
@@ -256,6 +302,8 @@ function modifier_watcher_custom:CaptureObserver(id)
 		PATTACH_ABSORIGIN_FOLLOW,
 		self.parent
 	)
+	ParticleManager:SetParticleShouldCheckFoW(self.effect, true)
+	ParticleManager:SetParticleFoWProperties(self.effect, 0, 0, self.radius)
 
 	ParticleManager:SetParticleControl(self.effect, 11, Vector(self.vision_range, 0, 0))
 	ParticleManager:SetParticleControl(self.effect, 12, Vector(self.material - 1, 0, 0))
@@ -265,6 +313,8 @@ function modifier_watcher_custom:CaptureObserver(id)
 		PATTACH_OVERHEAD_FOLLOW,
 		self.parent
 	)
+	ParticleManager:SetParticleShouldCheckFoW(self.particle_hero_icon, true)
+	ParticleManager:SetParticleFoWProperties(self.particle_hero_icon, 0, 0, self.radius)
 	if player then
 		local name = dota1x6:GetHeroIcon(id)
 		if not name then
@@ -291,6 +341,10 @@ function modifier_watcher_custom:ResetObserver()
 	self.cooldown = 0
 	self.timer = 0
 
+	for team, _ in pairs(self.shown) do
+		self:SetTeamIcon(team)
+	end
+
 	if self.effect then
 		ParticleManager:DestroyParticle(self.effect, false)
 		ParticleManager:ReleaseParticleIndex(self.effect)
@@ -304,6 +358,56 @@ function modifier_watcher_custom:ResetObserver()
 
 	self.parent:EmitSound("Watcher.Reset")
 	self:ChangeAnimation("flail")
+end
+
+function modifier_watcher_custom:SetTeamIcon(team)
+	if not IsServer() then
+		return
+	end
+
+	self.shown[team] = self.captured_team
+
+	if self.captured_team == -1 then
+		dota1x6:RemoveMinimapIcon(team, self.icon_id)
+		return
+	end
+
+	dota1x6:SetMinimapIcon(
+		team,
+		self.icon_id,
+		self.vPosition,
+		{ color = self.captured_team == team and "#00CC44" or "#DD2222" }
+	)
+end
+
+function modifier_watcher_custom:RemoveTeamIcon(team)
+	if not IsServer() then
+		return
+	end
+
+	dota1x6:RemoveMinimapIcon(team, self.icon_id)
+
+	self.shown[team] = nil
+end
+
+function modifier_watcher_custom:UpdateIcons()
+	if not IsServer() then
+		return 0
+	end
+
+	local waiting = 0
+
+	for team, _ in pairs(towers) do
+		if (self.shown[team] or -1) ~= self.captured_team then
+			if IsLocationVisible(team, self.vPosition) then
+				self:SetTeamIcon(team)
+			else
+				waiting = waiting + 1
+			end
+		end
+	end
+
+	return waiting
 end
 
 function modifier_watcher_custom:IsCaptured(team_number)
@@ -336,6 +440,10 @@ function modifier_watcher_custom:ChangeAnimation(anim)
 	if not IsServer() then
 		return
 	end
+	if self.animation == anim then
+		return
+	end
+	self.animation = anim
 
 	if anim ~= "flail" then
 		self.parent:RemoveModifierByName("modifier_watcher_custom_animation_idle")

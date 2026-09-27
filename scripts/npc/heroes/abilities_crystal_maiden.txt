@@ -8,23 +8,18 @@
 ]]
 
 
-
 "DOTAAbilities"
 {
-
-"Version"		"1"
-
+"Version"                           "1"
 
 "crystal_maiden_crystal_nova_custom"
 {
-    // General
-    //-------------------------------------------------------------------------------------------------------------
     "BaseClass"                     "ability_lua"
-    "ScriptFile"                    "abilities/crystal_maiden/crystal_maiden_crystal_nova_custom" 
-    "AbilityTextureName"            "crystal_maiden_crystal_nova"                                                           // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+    "ScriptFile"                    "abilities/crystal_maiden/crystal_maiden_crystal_nova_custom"
+    "AbilityTextureName"            "crystal_maiden_crystal_nova"
     "AbilityType"                   "DOTA_ABILITY_TYPE_BASIC"
     "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
-    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
     "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
     "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
     "FightRecapLevel"               "1"
@@ -38,36 +33,29 @@
     "AbilityCooldown"               "11 10 9 8"
     "AbilityManaCost"               "115 135 155 175"
 
-    // Special
-    //-------------------------------------------------------------------------------------------------------------
     "AbilityValues"
     {
-        "movespeed_slow"                "-20 -30 -40 -50"
-        "attackspeed_slow"              "-30 -45 -60 -75"
-        "nova_damage"                   "110 160 210 260"
-        "radius"                        "425"
-        "duration"                      "4"
-        "vision_duration"               "6.0"
-        "creeps_damage"                 "50"
+        "movespeed_slow"            "-20 -30 -40 -50"
+        "attackspeed_slow"          "-30 -45 -60 -75"
+        "nova_damage"               "110 160 210 260"
+        "radius"                    "425"
+        "duration"                  "4"
+        "vision_duration"           "6.0"
+        "creeps_damage"             "50"
     }
-    "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_1"
-}   
+    "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_1"
+}
 
-//=================================================================================================================
-// Ability: Crystal Maiden's Frostbite
-//=================================================================================================================
 "crystal_maiden_frostbite_custom"
 {
-    // General
-    //-------------------------------------------------------------------------------------------------------------
     "BaseClass"                     "ability_lua"
-    "ScriptFile"                    "abilities/crystal_maiden/crystal_maiden_frostbite_custom" 
-    "AbilityTextureName"            "crystal_maiden_frostbite"                                                      // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+    "ScriptFile"                    "abilities/crystal_maiden/crystal_maiden_frostbite_custom"
+    "AbilityTextureName"            "crystal_maiden_frostbite"
     "AbilityType"                   "DOTA_ABILITY_TYPE_BASIC"
     "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
     "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
     "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
     "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
     "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
     "FightRecapLevel"               "1"
@@ -80,43 +68,35 @@
 
     "AbilityValues"
     {
-        "damage_per_second"             "100"
-        "duration"                      "1.5 2.0 2.5 3.0"
-        "creeps_damage"                 "4"
-        "tick_interval"                 "0.5"
+        "damage_per_second"         "100"
+        "duration"                  "1.5 2.0 2.5 3.0"
+        "creeps_damage"             "4"
+        "tick_interval"             "0.5"
     }
-    "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_2"
-}   
+    "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_2"
+}
 
-
-
-
-//=================================================================================================================
-// Ability: Crystal Maiden's Arcane Aura
-//=================================================================================================================
 "crystal_maiden_arcane_aura_custom"
 {
-    // General
-    //-------------------------------------------------------------------------------------------------------------
     "BaseClass"                     "ability_lua"
-    "ScriptFile"                    "abilities/crystal_maiden/crystal_maiden_arcane_aura_custom" 
-    "AbilityTextureName"            "crystal_maiden_brilliance_aura"                                                        // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+    "ScriptFile"                    "abilities/crystal_maiden/crystal_maiden_arcane_aura_custom"
+    "AbilityTextureName"            "crystal_maiden_brilliance_aura"
     "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
     "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
     "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
     "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
     "IsBreakable"                   "1"
     "HasShardUpgrade"               "1"
-    
+
     "AbilityValues"
     {
-        "count"         "2"
-        "attack_range"         "80 120 160 200"
-        "speed"         "60 90 120 150"
-        "damage"        "20 30 40 50"
-        "duration"      "6"
-        "proj_speed"    "500"
+        "count"                     "2"
+        "attack_range"              "80 120 160 200"
+        "speed"                     "60 90 120 150"
+        "damage"                    "20 30 40 50"
+        "duration"                  "6"
+        "proj_speed"                "500"
 
         "clone_health"              "150"
         "clone_duration"            "5"
@@ -126,67 +106,55 @@
         "cd"                        "10"
         "mana"                      "150"
         "range"                     "320"
-        "shard_duration"                  "0.3"
+        "shard_duration"            "0.3"
     }
-    "AbilityCastAnimation"      "ACT_DOTA_CAST_ABILITY_3"
+    "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_3"
 }
-//=================================================================================================================
-// Ability: Crystal Maiden's Freezing Field
-//=================================================================================================================
+
 "crystal_maiden_freezing_field_custom"
 {
-    // General
-    //-------------------------------------------------------------------------------------------------------------
     "BaseClass"                     "ability_lua"
-    "ScriptFile"                    "abilities/crystal_maiden/crystal_maiden_freezing_field_custom" 
-    "AbilityTextureName"            "crystal_maiden_freezing_field"                                                 // unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+    "ScriptFile"                    "abilities/crystal_maiden/crystal_maiden_freezing_field_custom"
+    "AbilityTextureName"            "crystal_maiden_freezing_field"
     "AbilityType"                   "ABILITY_TYPE_ULTIMATE"
     "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
-    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"   
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
     "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
     "FightRecapLevel"               "2"
     "AbilitySound"                  "hero_Crystal.freezingField.wind"
-    "HasScepterUpgrade"               "1"
+    "HasScepterUpgrade"             "1"
 
     "LinkedAbility"                 "crystal_maiden_freezing_field_legendary"
 
-    // Casting
     "AbilityCastPoint"              "0"
     "AbilityCooldown"               "25"
     "AbilityManaCost"               "200 300 400"
 
-    // Special
-    //-------------------------------------------------------------------------------------------------------------
     "AbilityValues"
     {
-        "duration"                      "5"
-        "radius"                        "810"
-        "explosion_radius"              "320"
-        "explosion_interval"            "0.1"
-        "movespeed_slow"                "-40"
-        "attack_slow"                   "-80 -120 -160"
-        "slow_duration"                 "1.0"
-        "explosion_min_dist"            "195"
-        "explosion_max_dist"            "785"
-        "damage"                        "60 90 120"
+        "duration"                  "5"
+        "radius"                    "810"
+        "explosion_radius"          "320"
+        "explosion_interval"        "0.1"
+        "movespeed_slow"            "-40"
+        "attack_slow"               "-80 -120 -160"
+        "slow_duration"             "1.0"
+        "explosion_min_dist"        "195"
+        "explosion_max_dist"        "785"
+        "damage"                    "60 90 120"
 
-        "scepter_slow"                      "-60"
+        "scepter_slow"              "-60"
     }
 }
 
-
 "crystal_maiden_freezing_field_legendary"
 {
-    // General
-    //-------------------------------------------------------------------------------------------------------------
     "BaseClass"                     "ability_lua"
-    "ScriptFile"                    "abilities/crystal_maiden/crystal_maiden_freezing_field_custom" 
-    "AbilityTextureName"            "flurry"           
+    "ScriptFile"                    "abilities/crystal_maiden/crystal_maiden_freezing_field_custom"
+    "AbilityTextureName"            "flurry"
     "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-    
+
     "MaxLevel"                      "1"
-    // Casting
-    //-------------------------------------------------------------------------------------------------------------
     "AbilityCastPoint"              "0.1"
     "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_2"
     "AbilityCastRange"              "1000"
@@ -197,24 +165,19 @@
         "count"                     "3"
         "radius"                    "250"
         "delay"                     "0.5"
-        "damage_interval"               "0.2"
-        "cd_inc"                        "3"
+        "damage_interval"           "0.2"
+        "cd_inc"                    "3"
     }
 }
 
-
 "crystal_maiden_crystal_nova_custom_legendary"
 {
-    // General
-    //-------------------------------------------------------------------------------------------------------------
     "BaseClass"                     "ability_lua"
-    "ScriptFile"                    "abilities/crystal_maiden/crystal_maiden_crystal_nova_custom" 
-    "AbilityTextureName"            "ice_rink"          
+    "ScriptFile"                    "abilities/crystal_maiden/crystal_maiden_crystal_nova_custom"
+    "AbilityTextureName"            "ice_rink"
     "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-    
+
     "MaxLevel"                      "1"
-    // Casting
-    //-------------------------------------------------------------------------------------------------------------
     "AbilityCastPoint"              "0.4"
     "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_1"
     "AbilityCastRange"              "500"
@@ -224,20 +187,14 @@
     {
         "radius"                    "800"
         "duration"                  "8"
-        "range"                 "1000"
+        "range"                     "1000"
     }
-
-
 }
-
-
-
-
 
 "crystal_maiden_innate_custom"
 {
     "BaseClass"                     "ability_lua"
-    "ScriptFile"                    "abilities/crystal_maiden/crystal_maiden_innate_custom"  
+    "ScriptFile"                    "abilities/crystal_maiden/crystal_maiden_innate_custom"
 
     "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
     "MaxLevel"                      "1"
@@ -245,14 +202,8 @@
 
     "AbilityValues"
     {
-        "mana"          "1"   
-        "int"           "12"   
+        "mana"                      "1"
+        "int"                       "12"
     }
 }
-
-
-
-
-
-
 }

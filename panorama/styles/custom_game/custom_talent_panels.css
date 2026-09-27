@@ -96,496 +96,168 @@
 	text-shadow: 1px 1px 2px 3 black;
 }
 
-.PA_Hunt_Panel
-{
-	width: 200px;
-	height: 50px;
-	align: left top;
-	margin-top: 20px;
-	margin-left: 60px;
-	z-index: 100;
-	flow-children: right;
-}
-
-.PA_Hunt_Panel_hidden
-{
-	width: 200px;
-	height: 50px;
-	align: left top;
-	margin-top: 20px;
-	margin-left: 50px;
-	z-index: 100;
-	flow-children: right;
-	visibility: collapse;
-}
-
-.PA_Hunt_Bar
-{
-	width: 40%;
-	height: 65%;
-	border: 1px solid #6b4b0c;
-	background-color: gradient( linear, 0% 0%, 0% 100%, from( #5b2020 ), to( #98734e ) );
-	vertical-align: center;
-	margin-left: 1%;
-	flow-children: right;
-}
-
-.PA_Hunt_Filler
-{
-	width: 95%;
-	height: 80%;
-	background-size: contain;
-	background-color: gradient( linear, 0% 0%, 100% 0%, from( #c0501a ), to( #f49327 ) );
-	margin-left: 2.5%;
-	align: left center;
-	transition-property: width;
-	transition-duration: 0.2s;
-}
-
-.PA_Hunt_Icon
-{
-	width: 70px;
-	height: 40px;
-	margin-left: 1%;
-	background-size: 100%;
-	background-size: contain;
-	vertical-align: center;
-	border: 1px solid #992020;
-}
-
-.PA_Hunt_gold_icon
-{
-	width: 18%;
-	height: 90%;
-	margin-left: 1%;
-	background-size: contain;
-	vertical-align: center;
-	background-image: url("s2r://panorama/images/custom_game/gold-logo_png.vtex");
-}
-
-.PA_Hunt_gold_number
-{
-	font-family: defaultFont;
-	font-weight: bold;
-	color: #e7e7e7;
-	text-shadow: 1px 1px 2px 3 black;
-	z-index: 8;
-	align: left center;
-	font-size: 17px;
-	margin-left: 2%;
-	text-align: center;
-}
-
-.PA_Hunt_gold_timer
-{
-	font-family: defaultFont;
-	font-weight: bold;
-	color: #e7e7e7;
-	text-shadow: 1px 1px 2px 3 black;
-	z-index: 8;
-	align: center center;
-	font-size: 21px;
-	text-align: center;
-}
-
-#Legion_Duel_Panel
-{
-	width: 400px;
-	height: 100px;
-	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
-	background-size: 100%;
-	border-radius: 4px;
-	align: center bottom;
-	margin-bottom: 230px;
-	flow-children: down;
-}
-
-.Legion_Duel_Panel_show
-{
-	animation-name: Legion_Duel_Show;
-	animation-duration: 0.3s;
-	animation-timing-function: ease-in-out;
-	animation-iteration-count: 1;
-}
-
-.Legion_Duel_Panel_hide
-{
-	animation-name: Legion_Duel_Hide;
-	animation-duration: 0.3s;
-	animation-timing-function: ease-in-out;
-	animation-iteration-count: 1;
-}
-
-.Legion_Duel_Panel_visible
-{
-	opacity: 1.3;
-	animation-name: LegionBarAnim;
-	animation-iteration-count: infinite;
-	animation-duration: 2s;
-	transition-property: opacity, transform;
-	transition-duration: .24s;
-}
-
-.Legion_Duel_Panel_hidden
-{
-	opacity: 0;
-}
-
-#Legion_Duel_top
-{
-	width: 100%;
-	height: 35%;
-}
-
-#Legion_Duel_bot
-{
-	width: 100%;
-	height: 65%;
-}
-
-#Legion_Duel_text
-{
-	font-family: defaultFont;
-	font-weight: bold;
-	color: #e7e7e7;
-	text-shadow: 1px 1px 2px 3 black;
-	z-index: 8;
-	align: center center;
-	font-size: 23px;
-	text-align: center;
-}
-
-#Legion_Duel_hero_1
-{
-	align: center center;
-	width: 19.96%;
-	height: 70%;
-	border: 1px solid #ccc;
-	margin-right: 32%;
-	box-shadow: fill black 0px 0px 20px -2px;
-}
-
-#Legion_Duel_hero_2
-{
-	align: center center;
-	width: 19.96%;
-	height: 70%;
-	border: 1px solid #ccc;
-	margin-left: 32%;
-	box-shadow: fill black 0px 0px 20px -2px;
-}
-
-#Legion_Duel_hero_1:hover
-{
-	brightness: 2;
-}
-
-#Legion_Duel_hero_2:hover
-{
-	brightness: 2;
-}
-
-@keyframes 'LegionBarAnim'
-{
-	0%
-	{
-		box-shadow: fill #ff9200 0px 0px 5px -2px;
-	}
-	
-	50%
-	{
-		box-shadow: fill #ff9200 0px 0px 12px -3px;
-	}
-	
-	100%
-	{
-		box-shadow: fill #ff9200 0px 0px 5px -2px;
-	}
-	
-}
-
-@keyframes 'Legion_Duel_Hide'
-{
-	0%
-	{
-		opacity: 1;
-	}
-	
-	100%
-	{
-		opacity: 0;
-	}
-	
-}
-
-@keyframes 'Legion_Duel_Show'
-{
-	0%
-	{
-		opacity: 0;
-	}
-	
-	100%
-	{
-		opacity: 1;
-	}
-	
-}
-
-#Pa_hunt_init_Panel
-{
-	width: 550px;
-	height: 110px;
-	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
-	background-size: 100%;
-	border-radius: 4px;
-	align: center bottom;
-	margin-bottom: 230px;
-	flow-children: down;
-}
-
-.Pa_hunt_init_Panel_show
-{
-	animation-name: Pa_hunt_init_Show;
-	animation-duration: 0.3s;
-	animation-timing-function: ease-in-out;
-	animation-iteration-count: 1;
-}
-
-.Pa_hunt_init_Panel_hide
-{
-	animation-name: Pa_hunt_init_Hide;
-	animation-duration: 0.3s;
-	animation-timing-function: ease-in-out;
-	animation-iteration-count: 1;
-}
-
-.Pa_hunt_init_Panel_visible
-{
-	opacity: 1.3;
-	animation-name: LegionBarAnim;
-	animation-iteration-count: infinite;
-	animation-duration: 2s;
-	transition-property: opacity, transform;
-	transition-duration: .24s;
-}
-
-.Pa_hunt_init_Panel_hidden
-{
-	opacity: 0;
-}
-
-#Pa_hunt_init_top
-{
-	width: 100%;
-	height: 35%;
-}
-
-#Pa_hunt_init_bot
-{
-	width: 100%;
-	height: 65%;
-	flow-children: right;
-}
-
-#Pa_hunt_init_text
-{
-	font-family: defaultFont;
-	font-weight: bold;
-	color: #e7e7e7;
-	text-shadow: 1px 1px 2px 3 black;
-	z-index: 8;
-	align: center center;
-	font-size: 23px;
-	text-align: center;
-}
-
-.Pa_hunt_init_hero
-{
-	width: 85px;
-	height: 48px;
-	margin-left: 20.8333px;
-	margin-top: 10px;
-	border: 1px solid #ccc;
-	box-shadow: fill black 0px 0px 20px -2px;
-	background-image: url("s2r://panorama/images/custom_game/no_hero_icon_png.vtex");
-	background-size: 100%;
-}
-
-.Pa_hunt_init_hero:hover
-{
-	brightness: 2;
-}
-
-.Pa_hunt_init_hero_killed
-{
-	wash-color: #ff0000;
-}
-
-.Pa_hunt_init_hero_killed:hover
-{
-	brightness: 1;
-}
-
-.Pa_hunt_init_hero_killed_overlay
-{
-	background-image: url("s2r://panorama/images/hero_selection/banned_overlay_psd.vtex");
-	background-size: 100% 100%;
-	background-position: 50% 50%;
-	background-repeat: no-repeat;
-	width: 80%;
-	align: center center;
-	height: 100%;
-	z-index: 100;
-	opacity: 0;
-}
-
-.Pa_hunt_init_hero_killed_overlay_show
-{
-	opacity: 1;
-}
-
-@keyframes 'Pa_hunt_init_Hide'
-{
-	0%
-	{
-		opacity: 1;
-	}
-	
-	100%
-	{
-		opacity: 0;
-	}
-	
-}
-
-@keyframes 'Pa_hunt_init_Show'
-{
-	0%
-	{
-		opacity: 0;
-	}
-	
-	100%
-	{
-		opacity: 1;
-	}
-	
-}
-
-#Tb_reflection_init_Panel
+#PickUI_Panel
 {
 	min-width: 300px;
-	height: 110px;
 	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
-	background-size: 100%;
-	border-radius: 4px;
+	background-size: 100% 100%;
 	align: center bottom;
 	margin-bottom: 250px;
+	padding: 8px 10px 15px 10px;
+	border-radius: 3px;
 	flow-children: down;
+	border-radius: 5px;
+	border: 1px solid #aaa;
 }
 
-.Tb_reflection_init_Panel_show
+.PickUI_Panel_show
 {
-	animation-name: Tb_reflection_init_Show;
-	animation-duration: 0.1s;
+	animation-name: PickUI_Show;
+	animation-duration: 0.3s;
 	animation-timing-function: ease-in-out;
 	animation-iteration-count: 1;
 }
 
-.Tb_reflection_init_Panel_hide
+.PickUI_Panel_hide
 {
-	animation-name: Tb_reflection_init_Hide;
-	animation-duration: 0.1s;
+	animation-name: PickUI_Hide;
+	animation-duration: 0.3s;
 	animation-timing-function: ease-in-out;
 	animation-iteration-count: 1;
 }
 
-.Tb_reflection_init_Panel_visible
+.PickUI_Panel_visible
 {
-	opacity: 1.3;
-	animation-name: LegionBarAnim;
-	animation-iteration-count: infinite;
-	animation-duration: 2s;
+	opacity: 1.2;
 	transition-property: opacity, transform;
 	transition-duration: .24s;
 }
 
-.Tb_reflection_init_Panel_hidden
+.PickUI_Panel_hidden
 {
 	opacity: 0;
 }
 
-#Tb_reflection_init_top
+#PickUI_top
 {
-	width: 100%;
-	height: 35%;
+	height: 30px;
+	horizontal-align: center;
 }
 
-#Tb_reflection_init_bot
+#PickUI_bot
 {
-	height: 65%;
+	margin-top: 6px;
 	flow-children: right;
 	horizontal-align: center;
 }
 
-#Tb_reflection_init_text
+#PickUI_text
 {
-	font-family: defaultFont;
+	font-family: Radiance;
 	font-weight: bold;
-	color: #e7e7e7;
-	text-shadow: 1px 1px 2px 3 black;
+	color: gradient( linear, 0% 100%, 0% 0%, from( #aaa ), to( #eee ) );
+	text-shadow: 1px 1px 2px 2 black;
 	z-index: 8;
 	align: center center;
 	font-size: 23px;
+	margin-bottom: 2px;
 	text-align: center;
 }
 
-.Tb_reflection_init_hero
+.PickUI_target
+{
+	width: 85px;
+	margin: 0px 10px;
+	flow-children: down;
+}
+
+.PickUI_target_icon
 {
 	width: 85px;
 	height: 48px;
-	margin: 10px;
-	border: 1px solid #ccc;
-	box-shadow: fill black 0px 0px 20px -2px;
+	border: 1px solid #999;
+	box-shadow: fill black 0px 0px 10px -2px;
 	background-image: url("s2r://panorama/images/custom_game/no_hero_icon_png.vtex");
 	background-size: 100%;
 }
 
-.Tb_reflection_init_hero:hover
+.PickUI_target_icon:hover
 {
 	brightness: 2;
 }
 
-.Tb_reflection_init_hero_killed
-{
-	wash-color: #ff0000;
-}
-
-.Tb_reflection_init_hero_killed:hover
-{
-	brightness: 1;
-}
-
-.Tb_reflection_init_hero_killed_overlay
+.PickUI_target_killed
 {
 	background-image: url("s2r://panorama/images/hero_selection/banned_overlay_psd.vtex");
 	background-size: 100% 100%;
 	background-position: 50% 50%;
 	background-repeat: no-repeat;
-	width: 80%;
+	width: 68px;
+	height: 48px;
 	align: center center;
-	height: 100%;
 	z-index: 100;
 	opacity: 0;
 }
 
-.Tb_reflection_init_hero_killed_overlay_show
+.PickUI_target_icon_killed
+{
+	wash-color: #ff0000;
+}
+
+.PickUI_target_icon_killed:hover
+{
+	brightness: 1;
+}
+
+.PickUI_target_killed_show
 {
 	opacity: 1;
 }
 
-@keyframes 'Tb_reflection_init_Hide'
+.PickUI_target_gold
+{
+	width: 85px;
+	height: 20px;
+	align: center bottom;
+	z-index: 101;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #00000000 ), to( #000000cc ) );
+}
+
+.PickUI_target_gold_row
+{
+	height: 20px;
+	align: right center;
+	margin-right: 4px;
+	flow-children: right;
+}
+
+.PickUI_target_gold_icon
+{
+	width: 14px;
+	height: 14px;
+	margin-left: 2px;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/hud/reborn/gold_small_psd.vtex");
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+
+.PickUI_target_gold_number
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #ffd558;
+	text-shadow: 1px 1px 2px 3 black;
+	font-size: 15px;
+	vertical-align: center;
+}
+
+.PickUI_target_gold_hidden
+{
+	visibility: collapse;
+}
+
+@keyframes 'PickUI_Hide'
 {
 	0%
 	{
@@ -599,7 +271,7 @@
 	
 }
 
-@keyframes 'Tb_reflection_init_Show'
+@keyframes 'PickUI_Show'
 {
 	0%
 	{
@@ -1479,6 +1151,49 @@
 	text-align: center;
 }
 
+.KunkkaShipDamage_Bar
+{
+	width: 70px;
+	height: 32px;
+	margin-left: 28px;
+	vertical-align: center;
+	border-top: 1px solid #3c86b5;
+	border-left: 1px solid #3c86b5;
+	border-bottom: 1px solid #3c86b5;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #01131b ), to( #04222c ) );
+	border-bottom-left-radius: 5px;
+	border-top-left-radius: 5px;
+	box-shadow: fill black 0px 0px 7px -2px;
+}
+
+.KunkkaShipDamage_Icon
+{
+	width: 40px;
+	height: 40px;
+	margin-left: 0px;
+	background-size: contain;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_kunkka/ship_png.vtex");
+	background-size: contain;
+	background-repeat: no-repeat;
+	box-shadow: fill black 0px 0px 7px -2px;
+	border: 1px solid #3c86b5;
+	border-radius: 4px;
+	z-index: 999;
+}
+
+.KunkkaShipDamage_Number
+{
+	font-family: defaultFont;
+	font-weight: bold;
+	color: #e7e7e7;
+	text-shadow: 1px 1px 2px 3 black;
+	z-index: 8;
+	align: center center;
+	font-size: 21px;
+	text-align: center;
+}
+
 .LegionOdds_Bar
 {
 	border: 1px solid #cfa80e;
@@ -1723,43 +1438,6 @@
 		box-shadow: fill #e3be35 0px 0px 6px -2px;
 	}
 	
-}
-
-.AlchemistPoints_Bar
-{
-	margin-top: 8px;
-	background-color: gradient( linear, 0% 0%, 0% 100%, from( #1d1d1def ), to( #111111ef ) );
-	border-left: 2px solid #dadada;
-	border-right: 2px solid #dadada;
-	border-radius: 4px;
-	height: 34px;
-	width: 160px;
-}
-
-.AlchemistPoints_Filler
-{
-	transition-duration: 0.15s;
-	background-color: gradient( linear, 0% 0%, 100% 0%, from( #717171 ), to( #959595 ) );
-	border-radius: 0px;
-	border: 1px solid #f3f3f3;
-	height: 76%;
-}
-
-.AlchemistPoints_Icon
-{
-	width: 0px;
-	height: 0px;
-}
-
-.AlchemistPoints_Number
-{
-	font-family: Radiance;
-	font-weight: bold;
-	color: gradient( linear, 0% 100%, 0% 0%, from( #cccccc ), to( #ffffff ) );
-	z-index: 8;
-	align: center center;
-	font-size: 21px;
-	text-align: center;
 }
 
 .AlchemistWeapon_Bar
@@ -7718,4 +7396,356 @@
 		box-shadow: fill #90a3e1 0px 0px 6px -2px;
 	}
 	
+}
+
+.KunkkaTide_Bar
+{
+	border: 1px solid #6fd0e8;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #041722 ), to( #01090f ) );
+}
+
+.KunkkaTide_Filler
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #7fdcf2 ), to( #1d4c5e ) );
+	transition-duration: 0.2s;
+}
+
+.KunkkaTide_Icon
+{
+	border: 1px solid #6fd0e8;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_kunkka/tidebringer_png.vtex");
+}
+
+.KunkkaTide_Max
+{
+	animation-name: KunkkaTideAnim;
+	animation-iteration-count: infinite;
+	animation-duration: 1s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.KunkkaTide_Max_Filler
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #c4f2ff ), to( #2f7d99 ) );
+}
+
+@keyframes 'KunkkaTideAnim'
+{
+	0%
+	{
+		box-shadow: fill #6fd0e8 0px 0px 5px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #6fd0e8 0px 0px 14px -3px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #6fd0e8 0px 0px 5px -2px;
+	}
+	
+}
+
+.KunkkaShip_Bar
+{
+	border: 1px solid #6fd0e8;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #041722 ), to( #01090f ) );
+}
+
+.KunkkaShip_Filler
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #7fdcf2 ), to( #1d4c5e ) );
+	transition-duration: 0.2s;
+}
+
+.KunkkaShip_Icon
+{
+	border: 1px solid #6fd0e8;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_kunkka/ship_png.vtex");
+}
+
+.KunkkaShip_Glow
+{
+	animation-name: KunkkaShipGlow;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+	wash-color: #fff;
+	saturation: 1;
+}
+
+.KunkkaShip_Glow_Active
+{
+	animation-name: KunkkaShipGlow;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+	wash-color: #fff;
+	saturation: 1;
+}
+
+@keyframes 'KunkkaShipGlow'
+{
+	0%
+	{
+		box-shadow: fill #6fd0e8 0px 0px 5px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #6fd0e8 0px 0px 12px -2px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #6fd0e8 0px 0px 5px -2px;
+	}
+	
+}
+
+.KunkkaWave_Bar
+{
+	border: 1px solid #6fd0e8;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #041722 ), to( #01090f ) );
+}
+
+.KunkkaWave_Filler
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #7fdcf2 ), to( #1d4c5e ) );
+	transition-duration: 0.2s;
+}
+
+.KunkkaWave_Icon
+{
+	border: 1px solid #6fd0e8;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_kunkka/wave_png.vtex");
+}
+
+.KunkkaMark_Bar
+{
+	border: 1px solid #e1522b;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #041722 ), to( #01090f ) );
+}
+
+.KunkkaMark_Filler
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #7fdcf2 ), to( #1d4c5e ) );
+	transition-duration: 0.2s;
+}
+
+.KunkkaMark_Icon
+{
+	border: 1px solid #e1522b;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_kunkka/xmark_png.vtex");
+}
+
+.PhantomDaggers_Bar
+{
+	border: 1px solid #b29090;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #170505 ), to( #250909 ) );
+}
+
+.PhantomDaggers_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #8c2f2f ), to( #dc5555 ) );
+	transition-duration: 0.2s;
+}
+
+.PhantomDaggers_Icon
+{
+	border: 1px solid #b29090;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_phantom_assassin/stifling_png.vtex");
+}
+
+.PhantomDaggers_Max
+{
+	animation-name: PhantomDaggersActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'PhantomDaggersActive'
+{
+	0%
+	{
+		box-shadow: fill #e26e6e 0px 0px 5px -2px;
+	}
+	
+	50%
+	{
+		box-shadow: fill #e26e6e 0px 0px 12px -2px;
+	}
+	
+	100%
+	{
+		box-shadow: fill #e26e6e 0px 0px 5px -2px;
+	}
+	
+}
+
+.PhantomVendetta_Bar
+{
+	border: 1px solid #d2a5a5;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #24060a ), to( #120104 ) );
+}
+
+.PhantomVendetta_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #6e1a20 ), to( #e0392b ) );
+	transition-duration: 0.15s;
+}
+
+.PhantomVendetta_Icon
+{
+	border: 1px solid #d2a5a5;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_phantom_assassin/grace_png.vtex");
+	wash-color: #787878;
+	saturation: 0.1;
+}
+
+.PhantomVendetta_Icon_Active
+{
+	wash-color: #fff;
+	saturation: 1;
+	animation-name: PhantomVendettaActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.PhantomVendetta_Bar_Active
+{
+	animation-name: PhantomVendettaActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'PhantomVendettaActive'
+{
+	0%
+	{
+		box-shadow: 0px 0px 3px 1px #b4483f;
+	}
+	
+	50%
+	{
+		box-shadow: 0px 0px 9px 3px #b4483f;
+	}
+	
+	100%
+	{
+		box-shadow: 0px 0px 3px 1px #b4483f;
+	}
+	
+}
+
+.PhantomBlur_Bar
+{
+	border: 1px solid #a5d2ce;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #052421 ), to( #021210 ) );
+}
+
+.PhantomBlur_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #2e5757 ), to( #5cd5d6 ) );
+	transition-duration: 0.12s;
+}
+
+.PhantomBlur_Icon
+{
+	border: 1px solid #a5d2ce;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_phantom_assassin/blur_png.vtex");
+	wash-color: #787878;
+	saturation: 0.1;
+}
+
+.PhantomBlur_Icon_Active
+{
+	wash-color: #fff;
+	saturation: 1;
+	animation-name: PhantomBlurActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+.PhantomBlur_Bar_Active
+{
+	animation-name: PhantomBlurActive;
+	animation-iteration-count: infinite;
+	animation-duration: 1.5s;
+	transition-property: opacity, transform;
+	transition-duration: .24s;
+}
+
+@keyframes 'PhantomBlurActive'
+{
+	0%
+	{
+		box-shadow: 0px 0px 3px 1px #72b3ac;
+	}
+	
+	50%
+	{
+		box-shadow: 0px 0px 8px 3px #72b3ac;
+	}
+	
+	100%
+	{
+		box-shadow: 0px 0px 3px 1px #72b3ac;
+	}
+	
+}
+
+.PhantomCrit_Bar
+{
+	width: 65px;
+	height: 32px;
+	margin-left: 25px;
+	vertical-align: center;
+	border-top: 1px solid #c07272;
+	border-left: 1px solid #c07272;
+	border-bottom: 1px solid #c07272;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #24060a ), to( #120104 ) );
+	border-bottom-left-radius: 5px;
+	border-top-left-radius: 5px;
+	box-shadow: fill black 0px 0px 10px -2px;
+}
+
+.PhantomCrit_Icon
+{
+	width: 40px;
+	height: 40px;
+	margin-left: 0px;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_phantom_assassin/grace_png.vtex");
+	background-size: contain;
+	background-repeat: no-repeat;
+	box-shadow: fill black 0px 0px 12px -2px;
+	border: 1px solid #c07272;
+	border-radius: 3px;
+	z-index: 999;
+}
+
+.PhantomCrit_Number
+{
+	font-family: Reaver;
+	font-weight: bold;
+	color: gradient( linear, 0% 100%, 0% 0%, from( #d49e9a ), to( #f5d9d6 ) );
+	text-shadow: 1px 1px 2px 3 black;
+	z-index: 8;
+	align: center center;
+	font-size: 21px;
+	text-align: center;
 }

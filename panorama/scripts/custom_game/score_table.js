@@ -21,6 +21,7 @@ const dataMapping = {
     death: "deathsColumn",
     epic: "epicsColumn",
     rare: "raresColumn",
+    gray: "graysColumn",
     tipActive: "tipActiveColumn",
     lost: "lostColumn"
 };
@@ -256,6 +257,7 @@ class ScoreTable {
             playerPanel.deathsColumn = GetColumn(playerPanel, "PlayerDeathsColumn");
             playerPanel.epicsColumn = GetColumn(playerPanel, "PlayerEpicSpheresColumn");
             playerPanel.raresColumn = GetColumn(playerPanel, "PlayerRareSpheresColumn");
+            playerPanel.graysColumn = GetColumn(playerPanel, "PlayerGraySpheresColumn");
             playerPanel.legendaryColumn = playerPanel.FindChildTraverse("LegendaryImage");
             playerPanel.heroColumn = playerPanel.FindChildTraverse("RealHeroImage");
             playerPanel.colorColumn = playerPanel.FindChildTraverse("PlayerColor");
@@ -290,6 +292,7 @@ class ScoreTable {
                 death: Players.GetDeaths(player_id).toString(),
                 epic: getNonNullValue(table.purple, -1).toString(),
                 rare: getNonNullValue(table.rare, -1).toString(),
+                gray: getNonNullValue(table.gray, -1).toString(),
                 legendary: getNonNullValue(table.legendary, -1),
                 hero: getNonNullValue(table.hero_name, ""),
                 color: colorData,

@@ -48,15 +48,6 @@ life_stealer_rage_custom = class({})
 life_stealer_rage_custom.active_mod = nil
 life_stealer_rage_custom.talents = {}
 
-function life_stealer_rage_custom:GetAbilityTextureName()
-	local caster = self:GetCaster()
-	return wearables_system:GetAbilityIconReplacement(self.caster, "life_stealer_rage", self)
-end
-
-function life_stealer_rage_custom:CreateTalent()
-	self:ToggleAutoCast()
-end
-
 function life_stealer_rage_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
@@ -67,6 +58,28 @@ function life_stealer_rage_custom:Precache(context)
 	PrecacheResource(
 		"particle",
 		"particles/econ/items/bloodseeker/bloodseeker_ti7/bloodseeker_ti7_thirst_owner.vpcf",
+		context
+	)
+	PrecacheResource("particle", "particles/lifestealer/heal_shield.vpcf", context)
+	PrecacheResource("particle", "particles/lifestealer/heal_shield_creeps.vpcf", context)
+	PrecacheResource(
+		"particle",
+		"particles/econ/items/lifestealer/lifestealer_immortal_backbone/lifestealer_immortal_backbone_rage_ambient.vpcf",
+		context
+	)
+	PrecacheResource(
+		"particle",
+		"particles/econ/items/lifestealer/lifestealer_immortal_backbone_gold/lifestealer_immortal_backbone_rage_ambient_gold.vpcf",
+		context
+	)
+	PrecacheResource(
+		"particle",
+		"particles/econ/items/lifestealer/lifestealer_immortal_backbone/lifestealer_immortal_backbone_ambient.vpcf",
+		context
+	)
+	PrecacheResource(
+		"particle",
+		"particles/econ/items/lifestealer/lifestealer_immortal_backbone_gold/lifestealer_immortal_backbone_gold_ambient.vpcf",
 		context
 	)
 end
@@ -81,7 +94,6 @@ function life_stealer_rage_custom:UpdateTalents(name)
 			q1_damage = 0,
 			q1_duration = caster:GetTalentValue("modifier_lifestealer_rage_1", "duration", true),
 
-			has_q2 = 0,
 			q2_duration = 0,
 			q2_cd = 0,
 
@@ -122,7 +134,6 @@ function life_stealer_rage_custom:UpdateTalents(name)
 	end
 
 	if caster:HasTalent("modifier_lifestealer_rage_2") then
-		self.talents.has_q2 = 1
 		self.talents.q2_duration = caster:GetTalentValue("modifier_lifestealer_rage_2", "duration")
 		self.talents.q2_cd = caster:GetTalentValue("modifier_lifestealer_rage_2", "cd")
 	end
@@ -179,6 +190,14 @@ function life_stealer_rage_custom:UpdateTalents(name)
 	caster.infest_creep:AddDamageEvent_inc(mod, true)
 end
 
+function life_stealer_rage_custom:GetAbilityTextureName()
+	return wearables_system:GetAbilityIconReplacement(self.caster, "life_stealer_rage", self)
+end
+
+function life_stealer_rage_custom:CreateTalent()
+	self:ToggleAutoCast()
+end
+
 function life_stealer_rage_custom:GetIntrinsicModifierName()
 	if not self:GetCaster():IsRealHero() or self:GetCaster():IsCreepHero() then
 		return
@@ -203,15 +222,12 @@ function life_stealer_rage_custom:GetHealthCost(level)
 	if self.talents.has_q7 == 1 then
 		return self.caster:GetHealth() * self.talents.q7_health
 	end
+	return 0
 end
 
 function life_stealer_rage_custom:GetCooldown(level)
-	local bonus = 0
-	local k = 1
-	if self.talents.has_q7 == 1 then
-		k = self.talents.q7_cd * -1
-	end
-	return (self.BaseClass.GetCooldown(self, level) + (self.talents.q2_cd and self.talents.q2_cd or 0)) * k
+	local k = self.talents.has_q7 == 1 and (1 + self.talents.q7_cd) or 1
+	return (self.BaseClass.GetCooldown(self, level) + (self.talents.q2_cd or 0)) * k
 end
 
 function life_stealer_rage_custom:OnSpellStart()
@@ -255,7 +271,7 @@ function life_stealer_rage_custom:ApplyShield(full)
 		return
 	end
 
-	local target = self.caster.infest_creep and self.caster.infest_creep or self.caster
+	local target = self.caster.infest_creep or self.caster
 	local max = self.talents.e4_shield * target:GetMaxHealth()
 
 	if not IsValid(target.frenzy_shield) then
@@ -304,6 +320,16 @@ function life_stealer_rage_custom:ApplyShield(full)
 end
 
 modifier_life_stealer_rage_custom = class(mod_visible)
+function modifier_life_stealer_rage_custom:GetStatusEffectName()
+	return wearables_system:GetParticleReplacementAbility(
+		self.caster,
+		"particles/status_fx/status_effect_life_stealer_rage.vpcf",
+		self
+	)
+end
+function modifier_life_stealer_rage_custom:StatusEffectPriority()
+	return MODIFIER_PRIORITY_SUPER_ULTRA
+end
 function modifier_life_stealer_rage_custom:OnCreated()
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
@@ -329,7 +355,7 @@ function modifier_life_stealer_rage_custom:OnCreated()
 	end
 
 	local pfx_name = wearables_system:GetParticleReplacementAbility(
-		self:GetCaster(),
+		self.caster,
 		"particles/units/heroes/hero_life_stealer/life_stealer_rage.vpcf",
 		self
 	)
@@ -490,7 +516,7 @@ function modifier_life_stealer_rage_custom:AttackEvent_out(params)
 
 	local target = params.target
 	local real_attacker = params.attacker
-	local attacker = (real_attacker.lifestealer_creep and real_attacker.owner) and real_attacker.owner or real_attacker
+	local attacker = real_attacker.lifestealer_creep and real_attacker.owner or real_attacker
 
 	if not target:IsUnit() then
 		return
@@ -513,18 +539,6 @@ function modifier_life_stealer_rage_custom:AttackEvent_out(params)
 		"modifier_life_stealer_rage_custom_armor",
 		{ duration = self.ability.talents.q1_duration }
 	)
-end
-
-function modifier_life_stealer_rage_custom:GetStatusEffectName()
-	return wearables_system:GetParticleReplacementAbility(
-		self:GetCaster(),
-		"particles/status_fx/status_effect_life_stealer_rage.vpcf",
-		self
-	)
-end
-
-function modifier_life_stealer_rage_custom:StatusEffectPriority()
-	return MODIFIER_PRIORITY_SUPER_ULTRA
 end
 
 function modifier_life_stealer_rage_custom:DeclareFunctions()
@@ -577,7 +591,7 @@ function modifier_life_stealer_rage_custom_tracker:OnCreated()
 	self.parent.infest_ability:UpdateLevels()
 end
 
-function modifier_life_stealer_rage_custom_tracker:OnRefresh(table)
+function modifier_life_stealer_rage_custom_tracker:OnRefresh()
 	self.ability.duration = self.ability:GetSpecialValueFor("duration")
 	self.ability.move_bonus = self.ability:GetSpecialValueFor("move_bonus")
 end
@@ -590,7 +604,7 @@ function modifier_life_stealer_rage_custom_tracker:OnIntervalThink()
 		return
 	end
 
-	local target = self.parent.infest_creep and self.parent.infest_creep or self.parent
+	local target = self.parent.infest_creep or self.parent
 
 	if not target:IsAlive() then
 		return
@@ -694,7 +708,7 @@ function modifier_life_stealer_rage_custom_tracker:GetModifierSlowResistance_Sta
 end
 
 modifier_life_stealer_rage_custom_charge = class(mod_hidden)
-function modifier_life_stealer_rage_custom_charge:OnCreated(kv)
+function modifier_life_stealer_rage_custom_charge:OnCreated()
 	if not IsServer() then
 		return
 	end
@@ -715,23 +729,6 @@ function modifier_life_stealer_rage_custom_charge:OnCreated(kv)
 	end
 end
 
-function modifier_life_stealer_rage_custom_charge:CheckState()
-	return {
-		[MODIFIER_STATE_INVULNERABLE] = true,
-		[MODIFIER_STATE_NO_HEALTH_BAR] = true,
-	}
-end
-
-function modifier_life_stealer_rage_custom_charge:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_DISABLE_TURNING,
-	}
-end
-
-function modifier_life_stealer_rage_custom_charge:GetModifierDisableTurning()
-	return 1
-end
-
 function modifier_life_stealer_rage_custom_charge:OnDestroy()
 	if not IsServer() then
 		return
@@ -740,8 +737,7 @@ function modifier_life_stealer_rage_custom_charge:OnDestroy()
 
 	local dir = self.parent:GetForwardVector()
 	dir.z = 0
-	self.parent:SetForwardVector(dir)
-	self.parent:FaceTowards(self.parent:GetAbsOrigin() + dir * 10)
+	self.parent:FacePoint(self.parent:GetAbsOrigin() + dir * 10)
 	ResolveNPCPositions(self.parent:GetAbsOrigin(), 128)
 end
 
@@ -761,9 +757,27 @@ function modifier_life_stealer_rage_custom_charge:OnHorizontalMotionInterrupted(
 	self:Destroy()
 end
 
+function modifier_life_stealer_rage_custom_charge:CheckState()
+	return {
+		[MODIFIER_STATE_INVULNERABLE] = true,
+		[MODIFIER_STATE_NO_HEALTH_BAR] = true,
+	}
+end
+
+function modifier_life_stealer_rage_custom_charge:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_DISABLE_TURNING,
+	}
+end
+
+function modifier_life_stealer_rage_custom_charge:GetModifierDisableTurning()
+	return 1
+end
+
 modifier_life_stealer_rage_custom_armor = class(mod_hidden)
 function modifier_life_stealer_rage_custom_armor:OnCreated()
-	self.ability = self:GetCaster().rage_ability
+	self.caster = self:GetCaster()
+	self.ability = self.caster.rage_ability
 	if not self.ability then
 		self:Destroy()
 		return
@@ -798,12 +812,14 @@ modifier_life_stealer_rage_custom_shield_cd = class(mod_cd)
 function modifier_life_stealer_rage_custom_shield_cd:GetTexture()
 	return "buffs/lifestealer/ghoul_4"
 end
+function modifier_life_stealer_rage_custom_shield_cd:OnCreated()
+	self.ability = self:GetAbility()
+end
+
 function modifier_life_stealer_rage_custom_shield_cd:OnDestroy()
 	if not IsServer() then
 		return
 	end
-	self.ability = self:GetAbility()
-
 	if self.ability.tracker then
 		self.ability.tracker:OnIntervalThink()
 	end

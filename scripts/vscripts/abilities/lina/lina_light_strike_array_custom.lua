@@ -48,11 +48,6 @@ LinkLuaModifier(
 	"abilities/lina/lina_light_strike_array_custom",
 	LUA_MODIFIER_MOTION_NONE
 )
-LinkLuaModifier(
-	"modifier_lina_light_strike_array_custom_slow",
-	"abilities/lina/lina_light_strike_array_custom",
-	LUA_MODIFIER_MOTION_NONE
-)
 
 lina_light_strike_array_custom = class({})
 lina_light_strike_array_custom.talents = {}
@@ -68,7 +63,6 @@ function lina_light_strike_array_custom:Precache(context)
 		"particles/units/heroes/hero_lina/lina_spell_light_strike_array_ray_team.vpcf",
 		context
 	)
-
 	PrecacheResource("particle", "particles/units/heroes/hero_terrorblade/ember_slow.vpcf", context)
 	PrecacheResource("particle", "particles/lina/array_fire.vpcf", context)
 	PrecacheResource("particle", "particles/general/generic_armor_reduction.vpcf", context)
@@ -91,6 +85,13 @@ function lina_light_strike_array_custom:Precache(context)
 	)
 	PrecacheResource("particle", "particles/beast_root.vpcf", context)
 	PrecacheResource("particle", "particles/lina/array_legendary_caster.vpcf", context)
+	PrecacheResource("particle", "particles/lc_odd_proc_.vpcf", context)
+	PrecacheResource("particle", "particles/lina/soul_attack.vpcf", context)
+	PrecacheResource(
+		"particle",
+		"particles/econ/items/huskar/huskar_2021_immortal/huskar_2021_immortal_burning_spear_debuff.vpcf",
+		context
+	)
 end
 
 function lina_light_strike_array_custom:UpdateTalents(name)
@@ -142,10 +143,10 @@ function lina_light_strike_array_custom:UpdateTalents(name)
 	if caster:HasTalent("modifier_lina_array_1") then
 		self.talents.has_w1 = 1
 		self.talents.w1_int = caster:GetTalentValue("modifier_lina_array_1", "int") / 100
-		self.talents.w1_damage = caster:GetTalentValue("modifier_lina_array_1", "damage", true) / 100
+		self.talents.w1_damage = caster:GetTalentValue("modifier_lina_array_1", "damage") / 100
 		if IsServer() then
-			self.caster:AddPercentStat({ int = self.talents.w1_int }, self.tracker)
-			self.caster:AddAttackEvent_out(self.tracker, true)
+			caster:AddPercentStat({ int = self.talents.w1_int }, self.tracker)
+			caster:AddAttackEvent_out(self.tracker, true)
 		end
 	end
 
@@ -153,7 +154,7 @@ function lina_light_strike_array_custom:UpdateTalents(name)
 		self.talents.has_w2 = 1
 		self.talents.w2_range = caster:GetTalentValue("modifier_lina_array_2", "range")
 		self.talents.w2_heal = caster:GetTalentValue("modifier_lina_array_2", "heal") / 100
-		self.caster:AddAttackEvent_out(self.tracker, true)
+		caster:AddAttackEvent_out(self.tracker, true)
 	end
 
 	if caster:HasTalent("modifier_lina_array_3") then
@@ -164,13 +165,13 @@ function lina_light_strike_array_custom:UpdateTalents(name)
 
 	if caster:HasTalent("modifier_lina_array_4") then
 		self.talents.has_w4 = 1
-		self.caster:AddAttackEvent_out(self.tracker, true)
+		caster:AddAttackEvent_out(self.tracker, true)
 	end
 
 	if caster:HasTalent("modifier_lina_array_7") then
 		self.talents.has_w7 = 1
 		self.tracker:UpdateUI()
-		self.caster:AddAttackStartEvent_out(self.tracker, true)
+		caster:AddAttackStartEvent_out(self.tracker, true)
 	end
 
 	if caster:HasTalent("modifier_lina_hero_6") then
@@ -189,16 +190,12 @@ function lina_light_strike_array_custom:GetIntrinsicModifierName()
 	return "modifier_lina_light_strike_array_custom_tracker"
 end
 
-function lina_light_strike_array_custom:GetCastPoint()
-	return self.BaseClass.GetCastPoint(self) + (self.talents.has_h6 == 1 and self.talents.h6_cast or 0)
-end
-
 function lina_light_strike_array_custom:GetCooldown(iLevel)
 	local k = 1
 	if self.caster:HasModifier("modifier_lina_light_strike_array_custom_legendary") then
 		k = 1 + self.talents.w7_cd_inc
 	end
-	return (self.BaseClass.GetCooldown(self, iLevel) + (self.talents.w3_cd and self.talents.w3_cd or 0)) * k
+	return (self.BaseClass.GetCooldown(self, iLevel) + (self.talents.w3_cd or 0)) * k
 end
 
 function lina_light_strike_array_custom:GetCastRange(vLocation, hTarget)
@@ -206,30 +203,12 @@ function lina_light_strike_array_custom:GetCastRange(vLocation, hTarget)
 		+ (self.caster:HasModifier("modifier_lina_light_strike_array_custom_legendary") and self.talents.w7_range or 0)
 end
 
-function lina_light_strike_array_custom:GetAOERadius()
-	return (self.light_strike_array_aoe and self.light_strike_array_aoe or 0)
-		+ (self.talents.has_h6 == 1 and self.talents.h6_radius or 0)
+function lina_light_strike_array_custom:GetCastPoint()
+	return self.BaseClass.GetCastPoint(self) + (self.talents.has_h6 == 1 and self.talents.h6_cast or 0)
 end
 
-function lina_light_strike_array_custom:PlayEffect(point, radius)
-	if not IsServer() then
-		return
-	end
-	local particle_name_stun = wearables_system:GetParticleReplacementAbility(
-		self.caster,
-		"particles/units/heroes/hero_lina/lina_spell_light_strike_array.vpcf",
-		self
-	)
-	local particle_end = ParticleManager:CreateParticle(particle_name_stun, PATTACH_WORLDORIGIN, nil)
-	ParticleManager:SetParticleControl(particle_end, 0, point)
-	ParticleManager:SetParticleControl(particle_end, 1, Vector(radius, 1, 1))
-	ParticleManager:ReleaseParticleIndex(particle_end)
-
-	EmitSoundOnLocationWithCaster(
-		point,
-		wearables_system:GetSoundReplacement(self.caster, "Ability.LightStrikeArray", self),
-		self.caster
-	)
+function lina_light_strike_array_custom:GetAOERadius()
+	return (self.light_strike_array_aoe or 0) + (self.talents.has_h6 == 1 and self.talents.h6_radius or 0)
 end
 
 function lina_light_strike_array_custom:GetCastAnimation()
@@ -275,10 +254,31 @@ function lina_light_strike_array_custom:OnProjectileHit(target, vLocation)
 		return
 	end
 
-	self.parent.lina_w3_attack = true
-	self.parent:PerformAttack(target, true, true, true, true, false, false, false, { damage = "lina_w3" })
-	self.parent.lina_w3_attack = false
+	self.caster.lina_w3_attack = true
+	self.caster:PerformAttack(target, true, true, true, true, false, false, false, { damage = "lina_w3" })
+	self.caster.lina_w3_attack = false
 	target:EmitSound("Lina.Soul_attack_end")
+end
+
+function lina_light_strike_array_custom:PlayEffect(point, radius)
+	if not IsServer() then
+		return
+	end
+	local particle_name_stun = wearables_system:GetParticleReplacementAbility(
+		self.caster,
+		"particles/units/heroes/hero_lina/lina_spell_light_strike_array.vpcf",
+		self
+	)
+	local particle_end = ParticleManager:CreateParticle(particle_name_stun, PATTACH_WORLDORIGIN, nil)
+	ParticleManager:SetParticleControl(particle_end, 0, point)
+	ParticleManager:SetParticleControl(particle_end, 1, Vector(radius, 1, 1))
+	ParticleManager:ReleaseParticleIndex(particle_end)
+
+	EmitSoundOnLocationWithCaster(
+		point,
+		wearables_system:GetSoundReplacement(self.caster, "Ability.LightStrikeArray", self),
+		self.caster
+	)
 end
 
 modifier_lina_light_strike_array_custom = class(mod_hidden)
@@ -297,7 +297,7 @@ function modifier_lina_light_strike_array_custom:OnCreated(kv)
 	local particlename = wearables_system:GetParticleReplacementAbility(
 		self.caster,
 		"particles/units/heroes/hero_lina/lina_spell_light_strike_array_ray_team.vpcf",
-		self
+		self.ability
 	)
 
 	local particle = ParticleManager:CreateParticleForTeam(
@@ -310,7 +310,7 @@ function modifier_lina_light_strike_array_custom:OnCreated(kv)
 	ParticleManager:SetParticleControl(particle, 1, Vector(self.radius, 1, 1))
 	ParticleManager:ReleaseParticleIndex(particle)
 
-	local cast_sound = wearables_system:GetSoundReplacement(self.caster, "Ability.PreLightStrikeArray", self)
+	local cast_sound = wearables_system:GetSoundReplacement(self.caster, "Ability.PreLightStrikeArray", self.ability)
 	EmitSoundOnLocationForAllies(self.point, cast_sound, self.caster)
 end
 
@@ -319,7 +319,7 @@ function modifier_lina_light_strike_array_custom:OnDestroy()
 		return
 	end
 
-	GridNav:DestroyTreesAroundPoint(self:GetParent():GetAbsOrigin(), self.radius, false)
+	GridNav:DestroyTreesAroundPoint(self.parent:GetAbsOrigin(), self.radius, false)
 
 	local enemies = self.caster:FindTargets(self.radius, self.point)
 	for _, enemy in pairs(enemies) do
@@ -609,13 +609,12 @@ function modifier_lina_light_strike_array_custom_cdr:OnCreated()
 	self.ability = self:GetAbility()
 
 	self.max = self.ability.talents.h6_max
-	self.cdr = self.ability.talents.h6_cdr / self.max
 
 	if not IsServer() then
 		return
 	end
 	self:StartIntervalThink(2)
-	self:SetStackCount(1)
+	self:IncrementStackCount()
 end
 
 function modifier_lina_light_strike_array_custom_cdr:OnRefresh()
@@ -654,7 +653,7 @@ function modifier_lina_light_strike_array_custom_cdr:GetModifierPercentageCooldo
 	if self.ability.talents.has_h6 == 0 then
 		return
 	end
-	return self.cdr * self:GetStackCount()
+	return (self.ability.talents.h6_cdr / self.max) * self:GetStackCount()
 end
 
 modifier_lina_light_strike_array_custom_root_cd = class(mod_cd)
@@ -671,11 +670,6 @@ function modifier_lina_light_strike_array_custom_root:GetEffectName()
 end
 function modifier_lina_light_strike_array_custom_root:GetEffectAttachType()
 	return PATTACH_ABSORIGIN_FOLLOW
-end
-function modifier_lina_light_strike_array_custom_root:CheckState()
-	return {
-		[MODIFIER_STATE_ROOTED] = true,
-	}
 end
 function modifier_lina_light_strike_array_custom_root:OnCreated()
 	self.parent = self:GetParent()
@@ -707,6 +701,12 @@ function modifier_lina_light_strike_array_custom_root:OnCreated()
 	self:StartIntervalThink(self.interval)
 end
 
+function modifier_lina_light_strike_array_custom_root:CheckState()
+	return {
+		[MODIFIER_STATE_ROOTED] = true,
+	}
+end
+
 function modifier_lina_light_strike_array_custom_root:OnIntervalThink()
 	if not IsServer() then
 		return
@@ -728,6 +728,7 @@ function modifier_lina_light_strike_array_custom_legendary_stack:OnCreated()
 	if not IsServer() then
 		return
 	end
+	self.RemoveForDuel = true
 	self:OnRefresh()
 end
 
@@ -749,13 +750,68 @@ function modifier_lina_light_strike_array_custom_legendary_stack:OnDestroy()
 	self.ability.tracker:UpdateUI()
 end
 
+modifier_lina_light_strike_array_custom_double = class(mod_visible)
+function modifier_lina_light_strike_array_custom_double:GetTexture()
+	return "buffs/lina/array_3"
+end
+function modifier_lina_light_strike_array_custom_double:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	if not IsServer() then
+		return
+	end
+	self.RemoveForDuel = true
+	self:SetStackCount(self.ability.talents.w3_max)
+	self.parent:AddAttackStartEvent_out(self, true)
+end
+
+function modifier_lina_light_strike_array_custom_double:AttackStartEvent_out(params)
+	if not IsServer() then
+		return
+	end
+	if self.parent ~= params.attacker then
+		return
+	end
+	if params.no_attack_cooldown then
+		return
+	end
+	local target = params.target
+
+	if not params.target:IsUnit() then
+		return
+	end
+
+	Timers:CreateTimer(0.15, function()
+		if IsValid(target) then
+			local info = {
+				EffectName = "particles/lina/soul_attack.vpcf",
+				Ability = self.ability,
+				iMoveSpeed = self.parent:GetProjectileSpeed(),
+				Source = self.parent,
+				Target = target,
+				bDodgeable = false,
+				bProvidesVision = false,
+				iSourceAttachment = RandomInt(1, 2) == 1 and DOTA_PROJECTILE_ATTACHMENT_ATTACK_1
+					or DOTA_PROJECTILE_ATTACHMENT_ATTACK_2,
+			}
+			self.parent:EmitSound("Lina.Soul_attack_start")
+			ProjectileManager:CreateTrackingProjectile(info)
+
+			if self.ability.tracker then
+				self.ability.tracker:AttackStartEvent_out({ attacker = self.parent, target = target })
+			end
+		end
+	end)
+
+	self:DecrementStackCount()
+	if self:GetStackCount() <= 0 then
+		self:Destroy()
+	end
+end
+
 lina_light_strike_array_custom_legendary = class({})
 lina_light_strike_array_custom_legendary.talents = {}
-
-function lina_light_strike_array_custom_legendary:CreateTalent()
-	self:SetHidden(false)
-	self:SetLevel(1)
-end
 
 function lina_light_strike_array_custom_legendary:UpdateTalents()
 	local caster = self:GetCaster()
@@ -767,20 +823,20 @@ function lina_light_strike_array_custom_legendary:UpdateTalents()
 			w7_max = caster:GetTalentValue("modifier_lina_array_7", "max", true),
 			w7_duration_k = caster:GetTalentValue("modifier_lina_array_7", "duration_k", true),
 			w7_heal = caster:GetTalentValue("modifier_lina_array_7", "heal", true) / 100,
+			w7_cd_inc = caster:GetTalentValue("modifier_lina_array_7", "cd_inc", true) / 100,
 		}
 	end
 end
 
 function lina_light_strike_array_custom_legendary:GetCooldown()
-	return self.talents.w7_talent_cd and self.talents.w7_talent_cd or 0
+	return (self.talents.w7_talent_cd or 0)
 end
 
 function lina_light_strike_array_custom_legendary:OnAbilityPhaseStart()
-	local caster = self:GetCaster()
-	local mod = caster:FindModifierByName("modifier_lina_light_strike_array_custom_legendary_stack")
+	local mod = self.caster:FindModifierByName("modifier_lina_light_strike_array_custom_legendary_stack")
 	if not mod or mod:GetStackCount() <= 0 then
 		CustomGameEventManager:Send_ServerToPlayer(
-			PlayerResource:GetPlayer(caster:GetPlayerOwnerID()),
+			PlayerResource:GetPlayer(self.caster:GetPlayerOwnerID()),
 			"CreateIngameErrorMessage",
 			{ message = "#dota_hud_error_no_charges" }
 		)
@@ -790,25 +846,33 @@ function lina_light_strike_array_custom_legendary:OnAbilityPhaseStart()
 end
 
 function lina_light_strike_array_custom_legendary:OnSpellStart()
-	local caster = self:GetCaster()
-
-	local mod = caster:FindModifierByName("modifier_lina_light_strike_array_custom_legendary_stack")
+	local mod = self.caster:FindModifierByName("modifier_lina_light_strike_array_custom_legendary_stack")
 	if not mod or mod:GetStackCount() <= 0 then
 		return
 	end
 
 	local duration = self.talents.w7_duration
 		* math.pow(mod:GetStackCount() / self.talents.w7_max, self.talents.w7_duration_k)
-	caster:GenericHeal(
-		caster:GetMaxHealth() * self.talents.w7_heal * mod:GetStackCount() / self.talents.w7_max,
+	self.caster:GenericHeal(
+		self.caster:GetMaxHealth() * self.talents.w7_heal * mod:GetStackCount() / self.talents.w7_max,
 		self,
 		false,
 		"",
 		"modifier_lina_array_7"
 	)
 
-	caster:AddNewModifier(caster, self, "modifier_lina_light_strike_array_custom_legendary", { duration = duration })
+	self.caster:AddNewModifier(
+		self.caster,
+		self,
+		"modifier_lina_light_strike_array_custom_legendary",
+		{ duration = duration }
+	)
 	mod:Destroy()
+end
+
+function lina_light_strike_array_custom_legendary:CreateTalent()
+	self:SetHidden(false)
+	self:SetLevel(1)
 end
 
 modifier_lina_light_strike_array_custom_legendary = class(mod_hidden)
@@ -836,7 +900,7 @@ function modifier_lina_light_strike_array_custom_legendary:OnCreated()
 	if self.array_ability then
 		local cd = self.array_ability:GetCooldownTimeRemaining()
 		if cd > 0 then
-			self.parent:CdAbility(self.array_ability, cd * self.array_ability.talents.w7_cd_inc)
+			self.parent:CdAbility(self.array_ability, cd * self.ability.talents.w7_cd_inc)
 		end
 	end
 
@@ -882,17 +946,18 @@ function modifier_lina_light_strike_array_custom_legendary:OnIntervalThink()
 		return
 	end
 
-	if self.array_ability.tracker then
+	if IsValid(self.array_ability) and self.array_ability.tracker then
 		self.array_ability.tracker:UpdateUI()
 	end
 end
+
 function modifier_lina_light_strike_array_custom_legendary:OnDestroy()
 	if not IsServer() then
 		return
 	end
 	self.ability:StartCd()
 
-	if self.array_ability.tracker then
+	if IsValid(self.array_ability) and self.array_ability.tracker then
 		self.array_ability.tracker:UpdateUI()
 	end
 	self.parent:StopSound("Lina.Array_legendary_loop")
@@ -911,63 +976,4 @@ end
 
 function modifier_lina_light_strike_array_custom_legendary:GetModifierModelScale()
 	return 25
-end
-
-modifier_lina_light_strike_array_custom_double = class(mod_visible)
-function modifier_lina_light_strike_array_custom_double:GetTexture()
-	return "buffs/lina/array_3"
-end
-function modifier_lina_light_strike_array_custom_double:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	if not IsServer() then
-		return
-	end
-	self:SetStackCount(self.ability.talents.w3_max)
-	self.parent:AddAttackStartEvent_out(self, true)
-end
-
-function modifier_lina_light_strike_array_custom_double:AttackStartEvent_out(params)
-	if not IsServer() then
-		return
-	end
-	if self.parent ~= params.attacker then
-		return
-	end
-	if params.no_attack_cooldown then
-		return
-	end
-	local target = params.target
-
-	if not params.target:IsUnit() then
-		return
-	end
-
-	Timers:CreateTimer(0.15, function()
-		if IsValid(target) then
-			local info = {
-				EffectName = "particles/lina/soul_attack.vpcf",
-				Ability = self.ability,
-				iMoveSpeed = self.parent:GetProjectileSpeed(),
-				Source = self.parent,
-				Target = target,
-				bDodgeable = false,
-				bProvidesVision = false,
-				iSourceAttachment = RandomInt(1, 2) == 1 and DOTA_PROJECTILE_ATTACHMENT_ATTACK_1
-					or DOTA_PROJECTILE_ATTACHMENT_ATTACK_2,
-			}
-			self.parent:EmitSound("Lina.Soul_attack_start")
-			ProjectileManager:CreateTrackingProjectile(info)
-		end
-
-		if self.ability.tracker then
-			self.ability.tracker:AttackStartEvent_out({ attacker = self.parent, target = target })
-		end
-	end)
-
-	self:DecrementStackCount()
-	if self:GetStackCount() <= 0 then
-		self:Destroy()
-	end
 end

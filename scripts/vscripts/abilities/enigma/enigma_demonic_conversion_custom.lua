@@ -75,8 +75,7 @@ enigma_demonic_conversion_custom.talents = {}
 
 function enigma_demonic_conversion_custom:CreateTalent()
 	self:ToggleAutoCast()
-	local caster = self:GetCaster()
-	caster:AddNewModifier(caster, self, "modifier_enigma_demonic_conversion_custom_teleport", {})
+	self.caster:AddNewModifier(self.caster, self, "modifier_enigma_demonic_conversion_custom_teleport", {})
 end
 
 function enigma_demonic_conversion_custom:Precache(context)
@@ -101,13 +100,8 @@ function enigma_demonic_conversion_custom:Precache(context)
 	PrecacheResource("particle", "particles/enigma/eidolon_legendary_effect.vpcf", context)
 	PrecacheResource("particle", "particles/enigma/scepter_effect.vpcf", context)
 	PrecacheResource("particle", "particles/void_astral_slow.vpcf", context)
-end
-
-function enigma_demonic_conversion_custom:GetAbilityTextureName()
-	if self:GetCaster():HasModifier("modifier_enigma_demonic_conversion_custom_teleport") then
-		return "enigma_scepter_ability"
-	end
-	return wearables_system:GetAbilityIconReplacement(self.caster, "enigma_demonic_conversion", self)
+	PrecacheResource("particle", "particles/enigma/black_hole_blink_start.vpcf", context)
+	PrecacheResource("particle", "particles/enigma/black_hole_blink_end.vpcf", context)
 end
 
 function enigma_demonic_conversion_custom:UpdateTalents()
@@ -200,7 +194,6 @@ function enigma_demonic_conversion_custom:UpdateTalents()
 	end
 
 	if caster:HasTalent("modifier_enigma_malefice_3") then
-		self.talents.has_q3 = 1
 		self.talents.q3_damage = caster:GetTalentValue("modifier_enigma_malefice_3", "damage")
 	end
 
@@ -223,6 +216,13 @@ function enigma_demonic_conversion_custom:UpdateTalents()
 	end
 end
 
+function enigma_demonic_conversion_custom:GetAbilityTextureName()
+	if self.caster:HasModifier("modifier_enigma_demonic_conversion_custom_teleport") then
+		return "enigma_scepter_ability"
+	end
+	return wearables_system:GetAbilityIconReplacement(self.caster, "enigma_demonic_conversion", self)
+end
+
 function enigma_demonic_conversion_custom:GetIntrinsicModifierName()
 	if not self:GetCaster():IsRealHero() then
 		return
@@ -236,7 +236,7 @@ function enigma_demonic_conversion_custom:GetBehavior()
 end
 
 function enigma_demonic_conversion_custom:GetCooldown(level)
-	return self.BaseClass.GetCooldown(self, level) + (self.talents.w2_cd and self.talents.w2_cd or 0)
+	return self.BaseClass.GetCooldown(self, level) + (self.talents.w2_cd or 0)
 end
 
 function enigma_demonic_conversion_custom:GetCastRange(vLocation, hTarget)
@@ -249,19 +249,17 @@ function enigma_demonic_conversion_custom:GetCastPoint(iLevel)
 end
 
 function enigma_demonic_conversion_custom:OnSpellStart()
-	local caster = self:GetCaster()
 	local point = self:GetCursorPosition()
 
 	if
 		self.talents.has_h6 == 1
-		and not caster:IsLeashed()
-		and not caster:IsRooted()
-		and caster:HasModifier("modifier_enigma_demonic_conversion_custom_teleport")
+		and self.caster:CanBlink()
+		and self.caster:HasModifier("modifier_enigma_demonic_conversion_custom_teleport")
 	then
 		local new_pos = point
-		local old_pos = caster:GetAbsOrigin()
+		local old_pos = self.caster:GetAbsOrigin()
 
-		caster:Teleport(
+		self.caster:Teleport(
 			new_pos,
 			true,
 			"particles/enigma/black_hole_blink_start.vpcf",
@@ -271,8 +269,8 @@ function enigma_demonic_conversion_custom:OnSpellStart()
 
 		EmitSoundOnLocationWithCaster(old_pos, "Enigma.Scepter_blink", self)
 
-		FindClearSpaceForUnit(caster, new_pos, false)
-		caster:EmitSound("Enigma.Scepter_blink2")
+		FindClearSpaceForUnit(self.caster, new_pos, false)
+		self.caster:EmitSound("Enigma.Scepter_blink2")
 
 		local effect = ParticleManager:CreateParticle("particles/enigma/scepter_effect.vpcf", PATTACH_WORLDORIGIN, nil)
 		ParticleManager:SetParticleControl(effect, 0, new_pos)
@@ -299,7 +297,7 @@ function enigma_demonic_conversion_custom:OnSpellStart()
 		)
 	end
 
-	EmitSoundOnLocationWithCaster(point, "Hero_Enigma.Demonic_Conversion", caster)
+	EmitSoundOnLocationWithCaster(point, "Hero_Enigma.Demonic_Conversion", self.caster)
 
 	for _, unit in pairs(self.spawned_units) do
 		if unit and not unit:IsNull() and unit:IsAlive() then
@@ -309,7 +307,7 @@ function enigma_demonic_conversion_custom:OnSpellStart()
 
 	self.spawned_units = {}
 
-	local new_point = point + caster:GetForwardVector() * self.spawn_offset
+	local new_point = point + self.caster:GetForwardVector() * self.spawn_offset
 
 	for i = 1, self.spawn_count do
 		new_point = RotatePosition(point, QAngle(0, 360 / self.spawn_count, 0), new_point)
@@ -321,10 +319,10 @@ function enigma_demonic_conversion_custom:SummonUnit(point, can_double, talent_n
 	if not IsServer() then
 		return
 	end
-	local caster = self:GetCaster()
 
 	local damage = self.eidelon_base_damage
-	local health = (self.eidelon_max_health + caster:GetMaxHealth() * self.health_pct) * (1 + self.talents.w1_health)
+	local health = (self.eidelon_max_health + self.caster:GetMaxHealth() * self.health_pct)
+		* (1 + self.talents.w1_health)
 	local duration = self.AbilityDuration
 	local magic_resist = self.eidolon_magic_resist
 	local move_speed = self.eidelon_base_movespeed + self.talents.h2_move
@@ -332,14 +330,14 @@ function enigma_demonic_conversion_custom:SummonUnit(point, can_double, talent_n
 	local name = "npc_dota_lesser_eidolon_custom"
 	local is_auto = 0
 
-	local mod = caster:FindModifierByName("modifier_enigma_demonic_conversion_custom_perma")
+	local mod = self.caster:FindModifierByName("modifier_enigma_demonic_conversion_custom_perma")
 	if mod and self.talents.has_w1 == 1 then
 		damage = damage + mod:GetStackCount() * self.talents.w1_damage
 	end
 
 	if self.talents.has_w2 == 1 then
-		caster:GenericHeal(
-			self.talents.w2_heal * caster:GetMaxHealth(),
+		self.caster:GenericHeal(
+			self.talents.w2_heal * self.caster:GetMaxHealth(),
 			self,
 			true,
 			"particles/enigma/summon_heal.vpcf",
@@ -361,10 +359,10 @@ function enigma_demonic_conversion_custom:SummonUnit(point, can_double, talent_n
 		duration = new_duration
 	end
 
-	local new_eidolon = CreateUnitByName(name, point, true, caster, caster, caster:GetTeamNumber())
-	new_eidolon:AddNewModifier(caster, self, "modifier_kill", { duration = duration })
+	local new_eidolon = CreateUnitByName(name, point, true, self.caster, self.caster, self.caster:GetTeamNumber())
+	new_eidolon:AddNewModifier(self.caster, self, "modifier_kill", { duration = duration })
 	new_eidolon:AddNewModifier(
-		caster,
+		self.caster,
 		self,
 		"modifier_enigma_demonic_conversion_custom",
 		{ can_double = can_double, is_auto = is_auto, duration = duration }
@@ -372,7 +370,7 @@ function enigma_demonic_conversion_custom:SummonUnit(point, can_double, talent_n
 
 	if self.talents.has_w4 == 1 and talent_name ~= "modifier_enigma_conversion_7" then
 		new_eidolon:AddNewModifier(
-			caster,
+			self.caster,
 			self,
 			"modifier_enigma_demonic_conversion_custom_invun",
 			{ duration = self.talents.w4_duration }
@@ -380,7 +378,7 @@ function enigma_demonic_conversion_custom:SummonUnit(point, can_double, talent_n
 	end
 
 	local eidolon_model_name = nil
-	local eidolon_model = wearables_system:GetUnitModelReplacement(caster, "npc_dota_eidolon")
+	local eidolon_model = wearables_system:GetUnitModelReplacement(self.caster, "npc_dota_eidolon")
 	if eidolon_model then
 		eidolon_model_name = eidolon_model
 	end
@@ -392,7 +390,7 @@ function enigma_demonic_conversion_custom:SummonUnit(point, can_double, talent_n
 
 	local effect = ParticleManager:CreateParticle(
 		wearables_system:GetParticleReplacementAbility(
-			caster,
+			self.caster,
 			"particles/units/heroes/hero_enigma/enigma_demonic_conversion.vpcf",
 			self
 		),
@@ -420,7 +418,7 @@ function enigma_demonic_conversion_custom:SummonUnit(point, can_double, talent_n
 	ParticleManager:ReleaseParticleIndex(effect)
 
 	local base_attack = wearables_system:GetParticleReplacementAbility(
-		caster,
+		self.caster,
 		"particles/units/heroes/hero_enigma/enigma_base_attack_eidolon.vpcf",
 		self
 	)
@@ -428,7 +426,7 @@ function enigma_demonic_conversion_custom:SummonUnit(point, can_double, talent_n
 		new_eidolon:SetRangedProjectileName(base_attack)
 	end
 
-	new_eidolon.owner = caster
+	new_eidolon.owner = self.caster
 
 	if talent_name ~= "modifier_enigma_conversion_7" then
 		new_eidolon:SetBaseMaxHealth(health)
@@ -441,12 +439,12 @@ function enigma_demonic_conversion_custom:SummonUnit(point, can_double, talent_n
 
 	new_eidolon:SetPhysicalArmorBaseValue(base_armor)
 	new_eidolon:SetBaseMoveSpeed(move_speed)
-	new_eidolon:SetControllableByPlayer(caster:GetPlayerID(), true)
+	new_eidolon:SetControllableByPlayer(self.caster:GetPlayerID(), true)
 
 	new_eidolon:SetBaseMagicalResistanceValue(magic_resist)
 	FindClearSpaceForUnit(new_eidolon, new_eidolon:GetOrigin(), false)
 	new_eidolon:SetAngles(0, 0, 0)
-	new_eidolon:SetForwardVector(caster:GetForwardVector())
+	new_eidolon:SetForwardVector(self.caster:GetForwardVector())
 
 	if can_double == 1 then
 		self.spawned_units[#self.spawned_units + 1] = new_eidolon
@@ -456,16 +454,27 @@ function enigma_demonic_conversion_custom:SummonUnit(point, can_double, talent_n
 end
 
 modifier_enigma_demonic_conversion_custom_tracker = class(mod_hidden)
-function modifier_enigma_demonic_conversion_custom_tracker:IsHidden()
-	local hide = true
-	if self.ability.talents.has_r3 == 0 then
-		hide = self.ability.talents.has_w3 == 0 or self.ability.talents.has_w7 == 1
-	else
-		hide = self.ability.talents.has_w3 == 0 and self.ability.talents.has_w7 == 0
-	end
-	return hide
+function modifier_enigma_demonic_conversion_custom_tracker:IsAura()
+	return self.ability.talents.has_w7 == 1 or self.ability.talents.has_w3 == 1
 end
-
+function modifier_enigma_demonic_conversion_custom_tracker:GetAuraDuration()
+	return 0.1
+end
+function modifier_enigma_demonic_conversion_custom_tracker:GetAuraRadius()
+	return self.ability.talents.w3_radius
+end
+function modifier_enigma_demonic_conversion_custom_tracker:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_FRIENDLY
+end
+function modifier_enigma_demonic_conversion_custom_tracker:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
+end
+function modifier_enigma_demonic_conversion_custom_tracker:GetAuraSearchFlags()
+	return DOTA_UNIT_TARGET_FLAG_INVULNERABLE
+end
+function modifier_enigma_demonic_conversion_custom_tracker:GetModifierAura()
+	return "modifier_enigma_demonic_conversion_custom_aura"
+end
 function modifier_enigma_demonic_conversion_custom_tracker:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -504,6 +513,13 @@ function modifier_enigma_demonic_conversion_custom_tracker:OnRefresh(table)
 	self.ability.eidelon_base_damage = self.ability:GetSpecialValueFor("eidelon_base_damage")
 	self.ability.eidolon_armor = self.ability:GetSpecialValueFor("eidolon_armor")
 	self.ability.health_pct = self.ability:GetSpecialValueFor("health_pct") / 100
+end
+
+function modifier_enigma_demonic_conversion_custom_tracker:IsHidden()
+	if self.ability.talents.has_r3 == 0 then
+		return self.ability.talents.has_w3 == 0 or self.ability.talents.has_w7 == 1
+	end
+	return self.ability.talents.has_w3 == 0 and self.ability.talents.has_w7 == 0
 end
 
 function modifier_enigma_demonic_conversion_custom_tracker:DeclareFunctions()
@@ -676,13 +692,6 @@ function modifier_enigma_demonic_conversion_custom_tracker:AttackStartEvent_out(
 	end
 end
 
-function modifier_enigma_demonic_conversion_custom_tracker:OnStackCountChanged(iStackCount)
-	if not IsServer() then
-		return
-	end
-	self:UpdateUI()
-end
-
 function modifier_enigma_demonic_conversion_custom_tracker:UpdateUI()
 	if not IsServer() then
 		return
@@ -697,27 +706,6 @@ function modifier_enigma_demonic_conversion_custom_tracker:UpdateUI()
 	self.parent:UpdateUIlong({ override_stack = self:GetStackCount(), no_min = 1, style = "EnigmaSummon" })
 end
 
-function modifier_enigma_demonic_conversion_custom_tracker:IsAura()
-	return self.ability.talents.has_w7 == 1 or self.ability.talents.has_w3 == 1
-end
-function modifier_enigma_demonic_conversion_custom_tracker:GetAuraDuration()
-	return 0.1
-end
-function modifier_enigma_demonic_conversion_custom_tracker:GetAuraRadius()
-	return self.ability.talents.w3_radius
-end
-function modifier_enigma_demonic_conversion_custom_tracker:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_FRIENDLY
-end
-function modifier_enigma_demonic_conversion_custom_tracker:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
-end
-function modifier_enigma_demonic_conversion_custom_tracker:GetAuraSearchFlags()
-	return DOTA_UNIT_TARGET_FLAG_INVULNERABLE
-end
-function modifier_enigma_demonic_conversion_custom_tracker:GetModifierAura()
-	return "modifier_enigma_demonic_conversion_custom_aura"
-end
 function modifier_enigma_demonic_conversion_custom_tracker:GetAuraEntityReject(hEntity)
 	return not hEntity.owner
 		or hEntity.owner ~= self.parent
@@ -739,6 +727,7 @@ function modifier_enigma_demonic_conversion_custom_aura:OnCreated()
 	then
 		self.ability.tracker.near_eidolons[self.parent] = true
 		self.ability.tracker:IncrementStackCount()
+		self.ability.tracker:UpdateUI()
 	end
 end
 
@@ -753,6 +742,7 @@ function modifier_enigma_demonic_conversion_custom_aura:OnDestroy()
 	then
 		self.ability.tracker.near_eidolons[self.parent] = nil
 		self.ability.tracker:DecrementStackCount()
+		self.ability.tracker:UpdateUI()
 	end
 end
 
@@ -840,6 +830,135 @@ function modifier_enigma_demonic_conversion_custom:GetModifierDamageOutgoing_Per
 	return self.ability.talents.q3_damage
 end
 
+modifier_enigma_demonic_conversion_custom_perma = class(mod_hidden)
+function modifier_enigma_demonic_conversion_custom_perma:IsHidden()
+	return self.ability.talents.has_w1 == 0 or self:GetStackCount() >= self.max
+end
+function modifier_enigma_demonic_conversion_custom_perma:RemoveOnDeath()
+	return false
+end
+function modifier_enigma_demonic_conversion_custom_perma:GetTexture()
+	return "buffs/enigma/conversion_1"
+end
+function modifier_enigma_demonic_conversion_custom_perma:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.max = self.ability.talents.w1_max
+
+	if not IsServer() then
+		return
+	end
+	self:StartIntervalThink(1)
+	self:IncrementStackCount()
+end
+
+function modifier_enigma_demonic_conversion_custom_perma:OnRefresh()
+	if not IsServer() then
+		return
+	end
+	if self:GetStackCount() >= self.max then
+		return
+	end
+	self:IncrementStackCount()
+end
+
+function modifier_enigma_demonic_conversion_custom_perma:OnIntervalThink()
+	if not IsServer() then
+		return
+	end
+	if self:GetStackCount() < self.max then
+		return
+	end
+	if self.ability.talents.has_w1 == 0 then
+		return
+	end
+
+	self.parent:GenericParticle("particles/enigma/summon_perma.vpcf")
+	self.parent:EmitSound("BS.Thirst_legendary_active")
+	self:StartIntervalThink(-1)
+end
+
+function modifier_enigma_demonic_conversion_custom_perma:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_TOOLTIP,
+	}
+end
+
+function modifier_enigma_demonic_conversion_custom_perma:OnTooltip()
+	return self:GetStackCount() * self.ability.talents.w1_damage
+end
+
+modifier_enigma_demonic_conversion_custom_stun_cd = class(mod_hidden)
+
+modifier_enigma_demonic_conversion_custom_teleport = class(mod_hidden)
+function modifier_enigma_demonic_conversion_custom_teleport:RemoveOnDeath()
+	return false
+end
+
+modifier_enigma_demonic_conversion_custom_invun = class(mod_hidden)
+function modifier_enigma_demonic_conversion_custom_invun:GetStatusEffectName()
+	return "particles/status_fx/status_effect_dark_seer_illusion.vpcf"
+end
+function modifier_enigma_demonic_conversion_custom_invun:StatusEffectPriority()
+	return MODIFIER_PRIORITY_HIGH
+end
+function modifier_enigma_demonic_conversion_custom_invun:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.speed = self.ability.talents.w4_move
+end
+
+function modifier_enigma_demonic_conversion_custom_invun:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+		MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS,
+	}
+end
+
+function modifier_enigma_demonic_conversion_custom_invun:GetModifierMoveSpeedBonus_Percentage()
+	return self.speed
+end
+
+function modifier_enigma_demonic_conversion_custom_invun:GetActivityTranslationModifiers()
+	return "haste"
+end
+
+function modifier_enigma_demonic_conversion_custom_invun:CheckState()
+	return {
+		[MODIFIER_STATE_INVULNERABLE] = true,
+		[MODIFIER_STATE_NO_HEALTH_BAR] = true,
+		[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
+	}
+end
+
+modifier_enigma_demonic_conversion_custom_slow = class(mod_hidden)
+function modifier_enigma_demonic_conversion_custom_slow:IsPurgable()
+	return true
+end
+function modifier_enigma_demonic_conversion_custom_slow:OnCreated()
+	self.parent = self:GetParent()
+	self.caster = self:GetCaster()
+	self.ability = self:GetAbility()
+
+	self.slow = self.ability.talents.q2_slow
+	if not IsServer() then
+		return
+	end
+	self.parent:GenericParticle("particles/void_astral_slow.vpcf", self)
+end
+
+function modifier_enigma_demonic_conversion_custom_slow:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+	}
+end
+
+function modifier_enigma_demonic_conversion_custom_slow:GetModifierMoveSpeedBonus_Percentage()
+	return self.slow
+end
+
 enigma_demonic_conversion_custom_legendary = class({})
 enigma_demonic_conversion_custom_legendary.talents = {}
 
@@ -849,29 +968,34 @@ end
 
 function enigma_demonic_conversion_custom_legendary:UpdateTalents()
 	local caster = self:GetCaster()
-	if not self.init and caster:HasTalent("modifier_enigma_conversion_7") then
+	if not self.init then
 		self.init = true
+		self.talents = {
+			w7_talent_cd = caster:GetTalentValue("modifier_enigma_conversion_7", "talent_cd", true),
+			w7_health = caster:GetTalentValue("modifier_enigma_conversion_7", "health", true) / 100,
+			w7_radius = caster:GetTalentValue("modifier_enigma_conversion_7", "radius", true),
+			w7_aura_radius = caster:GetTalentValue("modifier_enigma_conversion_7", "aura_radius", true),
+			w7_invun_duration = caster:GetTalentValue("modifier_enigma_conversion_7", "invun_duration", true),
+			w7_duration = caster:GetTalentValue("modifier_enigma_conversion_7", "duration", true),
+			w7_base_health = caster:GetTalentValue("modifier_enigma_conversion_7", "base_health", true),
+			w7_damage_type = caster:GetTalentValue("modifier_enigma_conversion_7", "damage_type", true),
+			w7_movespeed = caster:GetTalentValue("modifier_enigma_conversion_7", "movespeed", true),
+		}
+	end
+
+	if caster:HasTalent("modifier_enigma_conversion_7") then
 		if IsServer() and not self:IsTrained() then
 			self:SetLevel(1)
 		end
-		self.talents.cd = caster:GetTalentValue("modifier_enigma_conversion_7", "talent_cd")
-		self.talents.health = caster:GetTalentValue("modifier_enigma_conversion_7", "health") / 100
-		self.talents.radius = caster:GetTalentValue("modifier_enigma_conversion_7", "radius")
-		self.talents.aura_radius = caster:GetTalentValue("modifier_enigma_conversion_7", "aura_radius")
-		self.talents.invun_duration = caster:GetTalentValue("modifier_enigma_conversion_7", "invun_duration")
-		self.talents.duration = caster:GetTalentValue("modifier_enigma_conversion_7", "duration")
-		self.talents.base_health = caster:GetTalentValue("modifier_enigma_conversion_7", "base_health")
-		self.talents.damage_type = caster:GetTalentValue("modifier_enigma_conversion_7", "damage_type")
-		self.talents.movespeed = caster:GetTalentValue("modifier_enigma_conversion_7", "movespeed")
 	end
 end
 
 function enigma_demonic_conversion_custom_legendary:GetCooldown()
-	return self.talents.cd and self.talents.cd or 0
+	return self.talents.w7_talent_cd or 0
 end
 
 function enigma_demonic_conversion_custom_legendary:GetBehavior()
-	if self:GetCaster():HasModifier("modifier_enigma_demonic_conversion_custom_legendary_caster") then
+	if self.caster:HasModifier("modifier_enigma_demonic_conversion_custom_legendary_caster") then
 		return DOTA_ABILITY_BEHAVIOR_IMMEDIATE
 			+ DOTA_ABILITY_BEHAVIOR_NO_TARGET
 			+ DOTA_ABILITY_BEHAVIOR_IGNORE_SILENCE_CUSTOM
@@ -880,45 +1004,41 @@ function enigma_demonic_conversion_custom_legendary:GetBehavior()
 end
 
 function enigma_demonic_conversion_custom_legendary:OnAbilityPhaseStart()
-	return not self:GetCaster():HasModifier("modifier_custom_pudge_dismember_devour")
+	return not self.caster:HasModifier("modifier_custom_pudge_dismember_devour")
 end
 
 function enigma_demonic_conversion_custom_legendary:OnSpellStart()
-	local caster = self:GetCaster()
-
-	local mod = caster:FindModifierByName("modifier_enigma_demonic_conversion_custom_legendary_caster")
+	local mod = self.caster:FindModifierByName("modifier_enigma_demonic_conversion_custom_legendary_caster")
 	if mod then
 		mod:SetEnd()
 		return
 	end
 
-	local units = FindUnitsInRadius(
-		caster:GetTeamNumber(),
-		caster:GetAbsOrigin(),
-		nil,
-		self.talents.radius,
-		DOTA_UNIT_TARGET_TEAM_FRIENDLY,
-		DOTA_UNIT_TARGET_BASIC,
-		DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD,
-		FIND_ANY_ORDER,
-		false
-	)
 	local count = 0
 
-	for _, unit in pairs(units) do
+	for _, unit in
+		pairs(
+			self.caster:FindFriends(
+				self.talents.w7_radius,
+				nil,
+				FIND_ANY_ORDER,
+				DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD
+			)
+		)
+	do
 		if
 			not unit:IsNull()
 			and unit:IsAlive()
 			and unit:GetUnitName() == "npc_dota_lesser_eidolon_custom"
 			and unit.owner
-			and unit.owner == caster
+			and unit.owner == self.caster
 		then
 			count = count + 1
 
 			local effect_cast = ParticleManager:CreateParticle(
 				"particles/units/heroes/hero_void_spirit/pulse/void_spirit_pulse_absorb.vpcf",
 				PATTACH_ABSORIGIN_FOLLOW,
-				caster
+				self.caster
 			)
 			ParticleManager:SetParticleControlEnt(
 				effect_cast,
@@ -932,27 +1052,27 @@ function enigma_demonic_conversion_custom_legendary:OnSpellStart()
 			ParticleManager:SetParticleControlEnt(
 				effect_cast,
 				1,
-				caster,
+				self.caster,
 				PATTACH_POINT_FOLLOW,
 				"attach_hitloc",
-				caster:GetAbsOrigin(),
+				self.caster:GetAbsOrigin(),
 				true
 			)
 			ParticleManager:ReleaseParticleIndex(effect_cast)
 		end
 	end
 
-	ProjectileManager:ProjectileDodge(caster)
-	caster:Purge(false, true, false, true, true)
-	caster:Stop()
+	ProjectileManager:ProjectileDodge(self.caster)
+	self.caster:Purge(false, true, false, true, true)
+	self.caster:Stop()
 
-	caster:EmitSound("Enigma.Summon_legendary_start")
-	caster:EmitSound("Enigma.Summon_legendary_start2")
-	caster:AddNewModifier(
-		caster,
+	self.caster:EmitSound("Enigma.Summon_legendary_start")
+	self.caster:EmitSound("Enigma.Summon_legendary_start2")
+	self.caster:AddNewModifier(
+		self.caster,
 		self,
 		"modifier_enigma_demonic_conversion_custom_legendary_delay",
-		{ duration = self.talents.invun_duration + 0.2, count = count }
+		{ duration = self.talents.w7_invun_duration + 0.2, count = count }
 	)
 end
 
@@ -960,8 +1080,8 @@ modifier_enigma_demonic_conversion_custom_legendary_delay = class(mod_hidden)
 function modifier_enigma_demonic_conversion_custom_legendary_delay:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
-	self.main_ability = self.parent:FindAbilityByName("enigma_demonic_conversion_custom")
-	self.invun = self.ability.talents.invun_duration
+	self.main_ability = self.parent.summon_ability
+	self.invun = self.ability.talents.w7_invun_duration
 
 	if not IsServer() then
 		return
@@ -1021,14 +1141,37 @@ function modifier_enigma_demonic_conversion_custom_legendary_delay:OnCreated(tab
 	self:StartIntervalThink(self.invun)
 end
 
-function modifier_enigma_demonic_conversion_custom_legendary_delay:CheckState()
-	return {
-		[MODIFIER_STATE_INVULNERABLE] = true,
-		[MODIFIER_STATE_NO_HEALTH_BAR] = true,
-		[MODIFIER_STATE_STUNNED] = true,
-		[MODIFIER_STATE_OUT_OF_GAME] = true,
-		[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
-	}
+function modifier_enigma_demonic_conversion_custom_legendary_delay:OnIntervalThink()
+	if not IsServer() then
+		return
+	end
+	if not IsValid(self.main_ability) then
+		return
+	end
+	local center = self.parent:GetAbsOrigin()
+
+	local unit = self.main_ability:SummonUnit(center, 0, "modifier_enigma_conversion_7")
+	unit:SetAbsOrigin(center)
+
+	self.unit = unit
+
+	unit:AddNewModifier(unit, self.ability, "modifier_stunned", { duration = self:GetRemainingTime() })
+	unit:AddNewModifier(unit, self.ability, "modifier_invulnerable", { duration = self:GetRemainingTime() })
+	unit:AddNewModifier(self.parent, self.ability, "modifier_enigma_demonic_conversion_custom_legendary_creep", {})
+
+	local health = self.ability.talents.w7_base_health
+		+ self.parent:GetMaxHealth() * self.count * self.ability.talents.w7_health
+
+	unit:SetBaseMaxHealth(health)
+	unit:SetMaxHealth(health)
+	unit:SetHealth(health)
+
+	local ability = unit:FindAbilityByName("enigma_demonic_conversion_custom_legendary_stop")
+	if ability then
+		ability:SetLevel(1)
+	end
+
+	self:StartIntervalThink(-1)
 end
 
 function modifier_enigma_demonic_conversion_custom_legendary_delay:OnDestroy()
@@ -1046,40 +1189,38 @@ function modifier_enigma_demonic_conversion_custom_legendary_delay:OnDestroy()
 	)
 end
 
-function modifier_enigma_demonic_conversion_custom_legendary_delay:OnIntervalThink()
-	if not IsServer() then
-		return
-	end
-	if not self.main_ability then
-		return
-	end
-	local center = self.parent:GetAbsOrigin()
-
-	local unit = self.main_ability:SummonUnit(center, 0, "modifier_enigma_conversion_7")
-	unit:SetAbsOrigin(center)
-
-	self.unit = unit
-
-	unit:AddNewModifier(unit, self.ability, "modifier_stunned", { duration = self:GetRemainingTime() })
-	unit:AddNewModifier(unit, self.ability, "modifier_invulnerable", { duration = self:GetRemainingTime() })
-	unit:AddNewModifier(self.parent, self.ability, "modifier_enigma_demonic_conversion_custom_legendary_creep", {})
-
-	local health = self.ability.talents.base_health
-		+ self.parent:GetMaxHealth() * self.count * self.ability.talents.health
-
-	unit:SetBaseMaxHealth(health)
-	unit:SetMaxHealth(health)
-	unit:SetHealth(health)
-
-	local ability = unit:FindAbilityByName("enigma_demonic_conversion_custom_legendary_stop")
-	if ability then
-		ability:SetLevel(1)
-	end
-
-	self:StartIntervalThink(-1)
+function modifier_enigma_demonic_conversion_custom_legendary_delay:CheckState()
+	return {
+		[MODIFIER_STATE_INVULNERABLE] = true,
+		[MODIFIER_STATE_NO_HEALTH_BAR] = true,
+		[MODIFIER_STATE_STUNNED] = true,
+		[MODIFIER_STATE_OUT_OF_GAME] = true,
+		[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
+	}
 end
 
 modifier_enigma_demonic_conversion_custom_legendary_caster = class(mod_hidden)
+function modifier_enigma_demonic_conversion_custom_legendary_caster:IsAura()
+	return true
+end
+function modifier_enigma_demonic_conversion_custom_legendary_caster:GetAuraDuration()
+	return 0.1
+end
+function modifier_enigma_demonic_conversion_custom_legendary_caster:GetAuraRadius()
+	return self.ability.talents.w7_aura_radius
+end
+function modifier_enigma_demonic_conversion_custom_legendary_caster:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_FRIENDLY
+end
+function modifier_enigma_demonic_conversion_custom_legendary_caster:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
+end
+function modifier_enigma_demonic_conversion_custom_legendary_caster:GetAuraSearchFlags()
+	return DOTA_UNIT_TARGET_FLAG_INVULNERABLE
+end
+function modifier_enigma_demonic_conversion_custom_legendary_caster:GetModifierAura()
+	return "modifier_enigma_demonic_conversion_custom_legendary_aura"
+end
 function modifier_enigma_demonic_conversion_custom_legendary_caster:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -1112,41 +1253,30 @@ function modifier_enigma_demonic_conversion_custom_legendary_caster:OnIntervalTh
 	if IsValid(self.target) and self.target:IsAlive() then
 		local point = self.target:GetAbsOrigin()
 		self.parent:SetAbsOrigin(point)
-		self.parent:SetForwardVector(self.target:GetForwardVector())
-		self.parent:FaceTowards(point + self.target:GetForwardVector() * 10)
+		self.parent:FacePoint(point + self.target:GetForwardVector() * 10)
 	else
 		self:SetEnd()
 	end
 end
 
-function modifier_enigma_demonic_conversion_custom_legendary_caster:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_MODEL_CHANGE,
-		MODIFIER_PROPERTY_OVERRIDE_ATTACK_MAGICAL,
-	}
-end
+function modifier_enigma_demonic_conversion_custom_legendary_caster:OnDestroy()
+	if not IsServer() then
+		return
+	end
 
-function modifier_enigma_demonic_conversion_custom_legendary_caster:GetModifierModelChange()
-	return "models/development/invisiblebox.vmdl"
-end
+	self:SetEnd()
+	self.parent:Stop()
+	self.ability:StartCd()
 
-function modifier_enigma_demonic_conversion_custom_legendary_caster:GetOverrideAttackMagical()
-	return 1
-end
+	self.parent:StartGesture(ACT_DOTA_TELEPORT_END)
+	self.parent:EmitSound("Enigma.Summon_legendary_hero_end")
 
-function modifier_enigma_demonic_conversion_custom_legendary_caster:CheckState()
-	local result = {
-		[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
-		[MODIFIER_STATE_INVULNERABLE] = true,
-		[MODIFIER_STATE_OUT_OF_GAME] = true,
-		[MODIFIER_STATE_UNTARGETABLE] = true,
-		[MODIFIER_STATE_UNSELECTABLE] = true,
-		[MODIFIER_STATE_ROOTED] = true,
-		[MODIFIER_STATE_NO_HEALTH_BAR] = true,
-		[MODIFIER_STATE_DISARMED] = true,
-		[MODIFIER_STATE_SILENCED] = true,
-	}
-	return result
+	CustomGameEventManager:Send_ServerToPlayer(
+		PlayerResource:GetPlayer(self.parent:GetId()),
+		"select_unit_custom",
+		{ index = self.parent:entindex() }
+	)
+	FindClearSpaceForUnit(self.parent, self.parent:GetAbsOrigin(), false)
 end
 
 function modifier_enigma_demonic_conversion_custom_legendary_caster:SetEnd()
@@ -1171,47 +1301,35 @@ function modifier_enigma_demonic_conversion_custom_legendary_caster:SetEnd()
 	self:SetDuration(0.2, true)
 end
 
-function modifier_enigma_demonic_conversion_custom_legendary_caster:OnDestroy()
-	if not IsServer() then
-		return
-	end
-
-	self:SetEnd()
-	self.parent:Stop()
-	self.ability:StartCd()
-
-	self.parent:StartGesture(ACT_DOTA_TELEPORT_END)
-	self.parent:EmitSound("Enigma.Summon_legendary_hero_end")
-
-	CustomGameEventManager:Send_ServerToPlayer(
-		PlayerResource:GetPlayer(self.parent:GetId()),
-		"select_unit_custom",
-		{ index = self.parent:entindex() }
-	)
-	FindClearSpaceForUnit(self.parent, self.parent:GetAbsOrigin(), false)
+function modifier_enigma_demonic_conversion_custom_legendary_caster:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_MODEL_CHANGE,
+		MODIFIER_PROPERTY_OVERRIDE_ATTACK_MAGICAL,
+	}
 end
 
-function modifier_enigma_demonic_conversion_custom_legendary_caster:IsAura()
-	return true
+function modifier_enigma_demonic_conversion_custom_legendary_caster:GetModifierModelChange()
+	return "models/development/invisiblebox.vmdl"
 end
-function modifier_enigma_demonic_conversion_custom_legendary_caster:GetAuraDuration()
-	return 0.1
+
+function modifier_enigma_demonic_conversion_custom_legendary_caster:GetOverrideAttackMagical()
+	return 1
 end
-function modifier_enigma_demonic_conversion_custom_legendary_caster:GetAuraRadius()
-	return self.ability.talents.aura_radius
+
+function modifier_enigma_demonic_conversion_custom_legendary_caster:CheckState()
+	return {
+		[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
+		[MODIFIER_STATE_INVULNERABLE] = true,
+		[MODIFIER_STATE_OUT_OF_GAME] = true,
+		[MODIFIER_STATE_UNTARGETABLE] = true,
+		[MODIFIER_STATE_UNSELECTABLE] = true,
+		[MODIFIER_STATE_ROOTED] = true,
+		[MODIFIER_STATE_NO_HEALTH_BAR] = true,
+		[MODIFIER_STATE_DISARMED] = true,
+		[MODIFIER_STATE_SILENCED] = true,
+	}
 end
-function modifier_enigma_demonic_conversion_custom_legendary_caster:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_FRIENDLY
-end
-function modifier_enigma_demonic_conversion_custom_legendary_caster:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
-end
-function modifier_enigma_demonic_conversion_custom_legendary_caster:GetAuraSearchFlags()
-	return DOTA_UNIT_TARGET_FLAG_INVULNERABLE
-end
-function modifier_enigma_demonic_conversion_custom_legendary_caster:GetModifierAura()
-	return "modifier_enigma_demonic_conversion_custom_legendary_aura"
-end
+
 function modifier_enigma_demonic_conversion_custom_legendary_caster:GetAuraEntityReject(hEntity)
 	return not hEntity.owner
 		or hEntity.owner ~= self.parent
@@ -1249,7 +1367,7 @@ function modifier_enigma_demonic_conversion_custom_legendary_creep:OnCreated(tab
 		self.parent
 	)
 	ParticleManager:SetParticleControl(self.particle, 0, self.parent:GetAbsOrigin())
-	ParticleManager:SetParticleControl(self.particle, 1, Vector(self.ability.talents.aura_radius, 1, 1))
+	ParticleManager:SetParticleControl(self.particle, 1, Vector(self.ability.talents.w7_aura_radius, 1, 1))
 	self:AddParticle(self.particle, false, false, -1, false, false)
 
 	self:StartIntervalThink(0.2)
@@ -1280,8 +1398,8 @@ function modifier_enigma_demonic_conversion_custom_legendary_creep:DeathEffect()
 	self.ended = true
 
 	if self.particle then
-		ParticleManager:ReleaseParticleIndex(self.particle)
 		ParticleManager:DestroyParticle(self.particle, true)
+		ParticleManager:ReleaseParticleIndex(self.particle)
 		self.particle = nil
 	end
 
@@ -1302,22 +1420,10 @@ function modifier_enigma_demonic_conversion_custom_legendary_creep:DeathEffect()
 	self.parent:AddNoDraw()
 end
 
-enigma_demonic_conversion_custom_legendary_stop = class({})
-function enigma_demonic_conversion_custom_legendary_stop:OnSpellStart()
-	local caster = self:GetCaster()
-	local owner = caster.owner
-
-	if not owner then
-		return
-	end
-	local mod = owner:FindModifierByName("modifier_enigma_demonic_conversion_custom_legendary_caster")
-
-	if mod then
-		mod:SetEnd()
-	end
-end
-
 modifier_enigma_demonic_conversion_custom_legendary_aura = class(mod_hidden)
+function modifier_enigma_demonic_conversion_custom_legendary_aura:GetPriority()
+	return MODIFIER_PRIORITY_ULTRA
+end
 function modifier_enigma_demonic_conversion_custom_legendary_aura:OnCreated()
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
@@ -1328,7 +1434,7 @@ function modifier_enigma_demonic_conversion_custom_legendary_aura:OnCreated()
 	end
 	self.damageTable = {
 		attacker = self.parent,
-		damage_type = self.ability.talents.damage_type,
+		damage_type = self.ability.talents.w7_damage_type,
 		ability = self.ability,
 		damage_flags = DOTA_DAMAGE_FLAG_MAGIC_AUTO_ATTACK,
 	}
@@ -1370,11 +1476,10 @@ function modifier_enigma_demonic_conversion_custom_legendary_aura:DeclareFunctio
 end
 
 function modifier_enigma_demonic_conversion_custom_legendary_aura:GetModifierMoveSpeedBonus_Percentage()
-	return self.ability.talents.movespeed
+	return self.ability.talents.w7_movespeed
 end
 
 function modifier_enigma_demonic_conversion_custom_legendary_aura:GetModifierTotalDamageOutgoing_Percentage(params)
-	local parent = self.parent
 	if params.inflictor then
 		return 0
 	end
@@ -1391,14 +1496,10 @@ function modifier_enigma_demonic_conversion_custom_legendary_aura:GetModifierTot
 	self.damageTable.damage = params.original_damage
 	self.damageTable.victim = params.target
 
-	DoDamage(self.damageTable)
+	DoDamage(self.damageTable, "modifier_enigma_conversion_7")
 
 	params.target:EmitSound("Enigma.Summon_legendary_attack")
 	return -200
-end
-
-function modifier_enigma_demonic_conversion_custom_legendary_aura:GetPriority()
-	return MODIFIER_PRIORITY_ULTRA
 end
 
 function modifier_enigma_demonic_conversion_custom_legendary_aura:GetModifierProjectileName()
@@ -1419,136 +1520,16 @@ function modifier_enigma_demonic_conversion_custom_legendary_aura:CheckState()
 	}
 end
 
-modifier_enigma_demonic_conversion_custom_perma = class({})
-function modifier_enigma_demonic_conversion_custom_perma:IsHidden()
-	return self.ability.talents.has_w1 == 0 or self:GetStackCount() >= self.max
-end
-function modifier_enigma_demonic_conversion_custom_perma:IsPurgable()
-	return false
-end
-function modifier_enigma_demonic_conversion_custom_perma:RemoveOnDeath()
-	return false
-end
-function modifier_enigma_demonic_conversion_custom_perma:GetTexture()
-	return "buffs/enigma/conversion_1"
-end
-function modifier_enigma_demonic_conversion_custom_perma:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
+enigma_demonic_conversion_custom_legendary_stop = class({})
+function enigma_demonic_conversion_custom_legendary_stop:OnSpellStart()
+	local owner = self.caster.owner
 
-	self.max = self.ability.talents.w1_max
-
-	if not IsServer() then
+	if not owner then
 		return
 	end
-	self:SetStackCount(1)
-	self:StartIntervalThink(1)
-end
+	local mod = owner:FindModifierByName("modifier_enigma_demonic_conversion_custom_legendary_caster")
 
-function modifier_enigma_demonic_conversion_custom_perma:OnRefresh()
-	if not IsServer() then
-		return
+	if mod then
+		mod:SetEnd()
 	end
-	if self:GetStackCount() >= self.max then
-		return
-	end
-	self:IncrementStackCount()
-end
-
-function modifier_enigma_demonic_conversion_custom_perma:OnIntervalThink()
-	if not IsServer() then
-		return
-	end
-	if self:GetStackCount() < self.max then
-		return
-	end
-	if self.ability.talents.has_w1 == 0 then
-		return
-	end
-
-	self.parent:GenericParticle("particles/enigma/summon_perma.vpcf")
-	self.parent:EmitSound("BS.Thirst_legendary_active")
-	self:StartIntervalThink(-1)
-end
-
-function modifier_enigma_demonic_conversion_custom_perma:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_TOOLTIP,
-	}
-end
-
-function modifier_enigma_demonic_conversion_custom_perma:OnTooltip()
-	return self:GetStackCount() * self.ability.talents.w1_damage
-end
-
-modifier_enigma_demonic_conversion_custom_stun_cd = class(mod_hidden)
-
-modifier_enigma_demonic_conversion_custom_teleport = class(mod_hidden)
-function modifier_enigma_demonic_conversion_custom_teleport:RemoveOnDeath()
-	return false
-end
-
-modifier_enigma_demonic_conversion_custom_invun = class(mod_hidden)
-function modifier_enigma_demonic_conversion_custom_invun:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.speed = self.ability.talents.w4_move
-end
-
-function modifier_enigma_demonic_conversion_custom_invun:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-		MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS,
-	}
-end
-
-function modifier_enigma_demonic_conversion_custom_invun:GetModifierMoveSpeedBonus_Percentage()
-	return self.speed
-end
-
-function modifier_enigma_demonic_conversion_custom_invun:GetActivityTranslationModifiers()
-	return "haste"
-end
-
-function modifier_enigma_demonic_conversion_custom_invun:CheckState()
-	return {
-		[MODIFIER_STATE_INVULNERABLE] = true,
-		[MODIFIER_STATE_NO_HEALTH_BAR] = true,
-		[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
-	}
-end
-
-function modifier_enigma_demonic_conversion_custom_invun:GetStatusEffectName()
-	return "particles/status_fx/status_effect_dark_seer_illusion.vpcf"
-end
-
-function modifier_enigma_demonic_conversion_custom_invun:StatusEffectPriority()
-	return MODIFIER_PRIORITY_HIGH
-end
-
-modifier_enigma_demonic_conversion_custom_slow = class(mod_hidden)
-function modifier_enigma_demonic_conversion_custom_slow:IsPurgable()
-	return true
-end
-function modifier_enigma_demonic_conversion_custom_slow:OnCreated()
-	self.parent = self:GetParent()
-	self.caster = self:GetCaster()
-	self.ability = self:GetAbility()
-
-	self.slow = self.ability.talents.q2_slow
-	if not IsServer() then
-		return
-	end
-	self.parent:GenericParticle("particles/void_astral_slow.vpcf", self)
-end
-
-function modifier_enigma_demonic_conversion_custom_slow:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-	}
-end
-
-function modifier_enigma_demonic_conversion_custom_slow:GetModifierMoveSpeedBonus_Percentage()
-	return self.slow
 end

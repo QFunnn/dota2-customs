@@ -20,22 +20,41 @@ LinkLuaModifier(
 )
 
 antimage_spell_seal_custom = class({})
+function antimage_spell_seal_custom:Precache(context)
+	if self:GetCaster() and self:GetCaster():IsIllusion() then
+		return
+	end
+
+	PrecacheResource("particle", "particles/am_cast.vpcf", context)
+	PrecacheResource("particle", "particles/am_mana_mark.vpcf", context)
+	PrecacheResource(
+		"particle",
+		"particles/econ/items/antimage/antimage_weapon_basher_ti5/antimage_manavoid_ti_5.vpcf",
+		context
+	)
+	PrecacheResource("particle", "particles/units/heroes/hero_kez/status_effect_kez_afterimage_buff.vpcf", context)
+end
 
 function antimage_spell_seal_custom:Init()
+	if not self:GetCaster() then
+		return
+	end
 	self.caster = self:GetCaster()
+
+	self.duration = self:GetLevelSpecialValueFor("duration", 1)
+	self.damage = self:GetLevelSpecialValueFor("damage", 1) / 100
+	self.mana_loss = self:GetLevelSpecialValueFor("mana_loss", 1)
+
 	if IsServer() then
 		self:SetLevel(1)
 	end
-	self.duration = self:GetSpecialValueFor("duration")
-	self.damage = self:GetSpecialValueFor("damage") / 100
-	self.mana_loss = self:GetSpecialValueFor("mana_loss")
 end
 
 function antimage_spell_seal_custom:OnAbilityPhaseStart()
 	if not IsServer() then
 		return
 	end
-	self:GetCaster():AddNewModifier(self.caster, self, "modifier_antimage_mana_void_custom_anim", {})
+	self.caster:AddNewModifier(self.caster, self, "modifier_antimage_mana_void_custom_anim", {})
 	return true
 end
 
@@ -90,19 +109,25 @@ end
 function modifier_antimage_mana_void_custom_legendary:GetEffectAttachType()
 	return PATTACH_OVERHEAD_FOLLOW
 end
+function modifier_antimage_mana_void_custom_legendary:GetStatusEffectName()
+	return "particles/units/heroes/hero_kez/status_effect_kez_afterimage_buff.vpcf"
+end
+function modifier_antimage_mana_void_custom_legendary:StatusEffectPriority()
+	return MODIFIER_PRIORITY_ULTRA
+end
 function modifier_antimage_mana_void_custom_legendary:OnCreated(table)
 	self.ability = self:GetAbility()
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
 
-	self.parent:AddSpellEvent(self, true)
 	self.damage = self.ability.damage
-	self.mana_loss = self.ability:GetSpecialValueFor("mana_loss")
+	self.mana_loss = self.ability.mana_loss
 
 	if not IsServer() then
 		return
 	end
 	self.RemoveForDuel = true
+	self.parent:AddSpellEvent(self, true)
 	self.ability:EndCd()
 	self.parent:AddNewModifier(
 		self.parent,
@@ -114,13 +139,12 @@ function modifier_antimage_mana_void_custom_legendary:OnCreated(table)
 	self.damageTable =
 		{ victim = self.parent, ability = self.ability, attacker = self.caster, damage_type = DAMAGE_TYPE_MAGICAL }
 
-	self.particle = ParticleManager:CreateParticle(
+	self.parent:GenericParticle(
 		"particles/units/heroes/hero_silencer/silencer_last_word_status.vpcf",
-		PATTACH_ABSORIGIN_FOLLOW,
-		self:GetParent()
+		self,
+		false,
+		{ 1 }
 	)
-	ParticleManager:SetParticleControl(self.particle, 1, self:GetParent():GetAbsOrigin())
-	self:AddParticle(self.particle, false, false, -1, false, false)
 end
 
 function modifier_antimage_mana_void_custom_legendary:OnDestroy()
@@ -166,7 +190,7 @@ function modifier_antimage_mana_void_custom_legendary:SpellEvent(params)
 	local damage = self.parent:GetMaxHealth() * self.damage
 	self.damageTable.damage = damage
 	SendOverheadEventMessage(self.parent, 4, self.parent, damage, nil)
-	DoDamage(self.damageTable)
+	DoDamage(self.damageTable, "Scepter")
 end
 
 function modifier_antimage_mana_void_custom_legendary:DeclareFunctions()
@@ -177,14 +201,6 @@ end
 
 function modifier_antimage_mana_void_custom_legendary:GetModifierPercentageManacostStacking(params)
 	return self.mana_loss
-end
-
-function modifier_antimage_mana_void_custom_legendary:GetStatusEffectName()
-	return "particles/units/heroes/hero_kez/status_effect_kez_afterimage_buff.vpcf"
-end
-
-function modifier_antimage_mana_void_custom_legendary:StatusEffectPriority()
-	return MODIFIER_PRIORITY_ULTRA
 end
 
 modifier_antimage_mana_void_custom_anim = class(mod_hidden)

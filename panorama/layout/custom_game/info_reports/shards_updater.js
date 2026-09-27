@@ -10,17 +10,17 @@
 
 function OpenBuyCurrency()
 {
-    let data = PLAYER_SERVER_DATA
-    let lang = $.Localize("#lang")
+	let data = PLAYER_SERVER_DATA
+	let lang = $.Localize("#lang")
 	let active_sale = 0
-    if (lang != "rus")
-    {
-    	active_sale = 0
-    }
-    if (!data?.total_games || data.total_games < max_games && lang !== "rus") 
-    {
-        return;
-    }
+	if (lang != "rus")
+	{
+		active_sale = 0
+	}
+	if (!data?.total_games || data.total_games < max_games && lang !== "rus")
+	{
+		return;
+	}
 
 	let main = $.GetContextPanel().FindChildTraverse("window_shop")
 	Game.EmitSound("UI.Shop_Buy_start")
@@ -37,13 +37,13 @@ function OpenBuyCurrency()
 	let closebuy = $.CreatePanel("Panel", currency_panel_buying, "")
 	closebuy.AddClass("closebuy")
 
-	blur_panel.SetPanelEvent("onactivate", function() 
-	{	
+	blur_panel.SetPanelEvent("onactivate", function()
+	{
 		if (currency_panel_buying)
 		{
 			currency_panel_buying.RemoveClass("currency_panel_buying")
 			currency_panel_buying.AddClass("currency_panel_buying_hide")
-			$.Schedule( 0.35, function()
+			$.Schedule(0.35, function()
 			{
 				currency_panel_buying.DeleteAsync(0)
 			})
@@ -53,13 +53,13 @@ function OpenBuyCurrency()
 		}
 	});
 
-	closebuy.SetPanelEvent("onactivate", function() 
-	{	
+	closebuy.SetPanelEvent("onactivate", function()
+	{
 		if (currency_panel_buying)
 		{
 			currency_panel_buying.RemoveClass("currency_panel_buying")
 			currency_panel_buying.AddClass("currency_panel_buying_hide")
-			$.Schedule( 0.35, function()
+			$.Schedule(0.35, function()
 			{
 				currency_panel_buying.DeleteAsync(0)
 			})
@@ -104,15 +104,15 @@ function OpenBuyCurrency()
 	let BuyButtonSiteURL = $.CreatePanel("Panel", choose_1, "");
 	BuyButtonSiteURL.AddClass("BuyButtonSiteURL")
 
-	choose_1.SetPanelEvent("onactivate", function() 
-    {
-		GameEvents.SendCustomGameEventToServer_custom( "browser_subscribe", {item_name: "shards_2"});	
+	choose_1.SetPanelEvent("onactivate", function()
+	{
+		GameEvents.SendCustomGameEventToServer_custom("browser_subscribe", {item_name: "shards_2"});
 		blur_panel.AddClass("shop_window_blur_hidden")
 		blur_panel.RemoveClass("shop_window_blur")
 		Game.EmitSound("UI.Shop_Buy")
 		currency_panel_buying.RemoveClass("currency_panel_buying")
 		currency_panel_buying.AddClass("currency_panel_buying_hide")
-		$.Schedule( 0.35, function()
+		$.Schedule(0.35, function()
 		{
 			currency_panel_buying.DeleteAsync(0)
 		})
@@ -144,15 +144,15 @@ function OpenBuyCurrency()
 	let BuyButtonSiteURL_2 = $.CreatePanel("Panel", choose_2, "");
 	BuyButtonSiteURL_2.AddClass("BuyButtonSiteURL")
 
-	choose_2.SetPanelEvent("onactivate", function() 
-    {
-		GameEvents.SendCustomGameEventToServer_custom( "browser_subscribe", {item_name: "shards_10"});	
+	choose_2.SetPanelEvent("onactivate", function()
+	{
+		GameEvents.SendCustomGameEventToServer_custom("browser_subscribe", {item_name: "shards_10"});
 		blur_panel.AddClass("shop_window_blur_hidden")
 		blur_panel.RemoveClass("shop_window_blur")
 		Game.EmitSound("UI.Shop_Buy")
 		currency_panel_buying.RemoveClass("currency_panel_buying")
 		currency_panel_buying.AddClass("currency_panel_buying_hide")
-		$.Schedule( 0.35, function()
+		$.Schedule(0.35, function()
 		{
 			currency_panel_buying.DeleteAsync(0)
 		})
@@ -184,15 +184,15 @@ function OpenBuyCurrency()
 	let BuyButtonSiteURL_3 = $.CreatePanel("Panel", choose_3, "");
 	BuyButtonSiteURL_3.AddClass("BuyButtonSiteURL")
 
-	choose_3.SetPanelEvent("onactivate", function() 
-    {
-		GameEvents.SendCustomGameEventToServer_custom( "browser_subscribe", {item_name: "shards_35"});	
+	choose_3.SetPanelEvent("onactivate", function()
+	{
+		GameEvents.SendCustomGameEventToServer_custom("browser_subscribe", {item_name: "shards_35"});
 		blur_panel.AddClass("shop_window_blur_hidden")
 		blur_panel.RemoveClass("shop_window_blur")
 		Game.EmitSound("UI.Shop_Buy")
 		currency_panel_buying.RemoveClass("currency_panel_buying")
 		currency_panel_buying.AddClass("currency_panel_buying_hide")
-		$.Schedule( 0.35, function()
+		$.Schedule(0.35, function()
 		{
 			currency_panel_buying.DeleteAsync(0)
 		})
@@ -224,15 +224,15 @@ function OpenBuyCurrency()
 	let BuyButtonSiteURL_4 = $.CreatePanel("Panel", choose_4, "");
 	BuyButtonSiteURL_4.AddClass("BuyButtonSiteURL")
 
-	choose_4.SetPanelEvent("onactivate", function() 
-    {
-		GameEvents.SendCustomGameEventToServer_custom( "browser_subscribe", {item_name: "shards_100"});	
+	choose_4.SetPanelEvent("onactivate", function()
+	{
+		GameEvents.SendCustomGameEventToServer_custom("browser_subscribe", {item_name: "shards_100"});
 		blur_panel.AddClass("shop_window_blur_hidden")
 		blur_panel.RemoveClass("shop_window_blur")
 		Game.EmitSound("UI.Shop_Buy")
 		currency_panel_buying.RemoveClass("currency_panel_buying")
 		currency_panel_buying.AddClass("currency_panel_buying_hide")
-		$.Schedule( 0.35, function()
+		$.Schedule(0.35, function()
 		{
 			currency_panel_buying.DeleteAsync(0)
 		})
@@ -324,24 +324,25 @@ function UpdateShards()
 {
 	var player_data_local = player_table_shop;
 	let points_label = $.GetContextPanel().FindChildTraverse("CurrencyNumber")
-    if ($("#CrystalLabelSelection"))
-    {
-        points_label = $("#CrystalLabelSelection")
-    }
+	if ($("#CrystalLabelSelection"))
+	{
+		points_label = $("#CrystalLabelSelection")
+	}
 	if (points_label)
 	{
 		points_label.text = player_data_local["points"]
-        if (player_data_local.subscribed == 0 && player_data_local.points >= 500)
-        {
-            points_label.AddClass("CurrencyNumber_limit")
-            points_label.text =  player_data_local["points"] + '/500'
-        }
-        else
-        {
-            points_label.RemoveClass("CurrencyNumber_limit")
-        }
+		let points_max = CustomNetTables.GetTableValue("custom_pick", "sub_config").points_max
+		if (player_data_local.subscribed == 0 && player_data_local.points >= points_max)
+		{
+			points_label.AddClass("CurrencyNumber_limit")
+			points_label.text = player_data_local["points"] + '/' + points_max
+		}
+		else
+		{
+			points_label.RemoveClass("CurrencyNumber_limit")
+		}
 	}
-	UpdateBonusShards()	
+	UpdateBonusShards()
 }
 
 function UpdateBonusShards()
@@ -363,18 +364,18 @@ function UpdateBonusShards()
 			}
 			text = $.Localize("#bonus_shards_notactive") + String(cd) + $.Localize(s)
 		}
-        else
+		else
 		{
 			active = 1
 			text = $.Localize("#bonus_shards_active")
 		}
-		main.SetPanelEvent('onmouseover', function() 
+		main.SetPanelEvent('onmouseover', function()
 		{
-		   	$.DispatchEvent('DOTAShowTextTooltip', main, text) 
+			$.DispatchEvent('DOTAShowTextTooltip', main, text)
 		});
-		main.SetPanelEvent('onmouseout', function() 
+		main.SetPanelEvent('onmouseout', function()
 		{
-		   $.DispatchEvent('DOTAHideTextTooltip', main);
+			$.DispatchEvent('DOTAHideTextTooltip', main);
 		});
 		if (active == 0)
 		{
@@ -382,7 +383,7 @@ function UpdateBonusShards()
 			main.RemoveClass("BonusCurrencyButton_active")
 			main.SetPanelEvent("onactivate", function() {});
 		}
-        else
+		else
 		{
 			main.AddClass("BonusCurrencyButton_active")
 			main.RemoveClass("BonusCurrencyButton_notactive")
@@ -403,7 +404,7 @@ function OpenBonusShards()
 	let blur_panel = $.GetContextPanel().FindChildTraverse("shop_window_blur")
 	blur_panel.RemoveClass("shop_window_blur_hidden")
 	blur_panel.AddClass("shop_window_blur")
-	
+
 	let bonus_panel_top = $.CreatePanel("Panel", buy_panel, "")
 	bonus_panel_top.AddClass("bonus_panel_top")
 
@@ -430,21 +431,21 @@ function OpenBonusShards()
 	let bonus_panel_icon = $.CreatePanel("Panel", bonus_panel_mid, "")
 	bonus_panel_icon.AddClass("bonus_panel_icon")
 
-	GameEvents.SendCustomGameEventToServer_custom( "get_bonus_shards", {});
+	GameEvents.SendCustomGameEventToServer_custom("get_bonus_shards", {});
 
-	$.Schedule( 0.25, function()
+	$.Schedule(0.25, function()
 	{
 		UpdateBonusShards()
 	});
 
-	blur_panel.SetPanelEvent("onactivate", function() 
-	{ 
+	blur_panel.SetPanelEvent("onactivate", function()
+	{
 		blur_panel.AddClass("shop_window_blur_hidden")
 		blur_panel.RemoveClass("shop_window_blur")
 		buy_panel.AddClass("bonus_shards_panel_hide")
 		buy_panel.RemoveClass("bonus_shards_panel")
 		UpdateShards()
-		$.Schedule( 0.35, function()
+		$.Schedule(0.35, function()
 		{
 			buy_panel.DeleteAsync(0)
 		})
@@ -454,7 +455,6 @@ function OpenBonusShards()
 		}
 		if (sound != -1)
 		{
-		
 			Game.EmitSound("Sub.Points_end")
 		}
 		Game.EmitSound("UI.Shop_Category_Open")
@@ -466,7 +466,7 @@ function give_bonus_shards(kv)
 {
 	AddBonusShards(0, kv.count, kv.limit)
 	if (kv.count > 0)
-	{	
+	{
 		sound = Game.EmitSound("Sub.Points_inc")
 	}
 }
@@ -489,7 +489,7 @@ function AddBonusShards(current, max, limit)
 				AddBonusShards(text, max, limit)
 			})
 		}
-        else
+		else
 		{
 			if (limit == 1)
 			{
@@ -509,5 +509,5 @@ function AddBonusShards(current, max, limit)
 function OpenGiftWindow()
 {
 	Game.EmitSound("UI.Shop_Buy_start")
-	GameEvents.SendCustomGameEventToServer_custom( "browser_subscribe", {item_name: "gift"});	
+	GameEvents.SendCustomGameEventToServer_custom("browser_subscribe", {item_name: "gift"});
 }

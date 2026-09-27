@@ -16,16 +16,25 @@ function item_sange_custom:GetIntrinsicModifierName()
 	return "modifier_item_sange_custom"
 end
 
-modifier_item_sange_custom = class({})
-function modifier_item_sange_custom:IsHidden()
-	return true
+function item_sange_custom:Spawn()
+	self.bonus_str = self:GetSpecialValueFor("bonus_str")
+	self.heal_amp = self:GetSpecialValueFor("heal_amp")
+	self.slow_resistance = self:GetSpecialValueFor("slow_resistance")
 end
-function modifier_item_sange_custom:IsPurgable()
-	return false
-end
+
+modifier_item_sange_custom = class(mod_hidden)
 function modifier_item_sange_custom:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
+function modifier_item_sange_custom:OnCreated(table)
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.str = self.ability.bonus_str
+	self.heal_amp = self.ability.heal_amp
+	self.slow_resistance = self.ability.slow_resistance
+end
+
 function modifier_item_sange_custom:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
@@ -75,13 +84,4 @@ function modifier_item_sange_custom:GetModifierSlowResistance_Stacking()
 		return
 	end
 	return self.slow_resistance
-end
-
-function modifier_item_sange_custom:OnCreated(table)
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.str = self.ability:GetSpecialValueFor("bonus_str")
-	self.heal_amp = self.ability:GetSpecialValueFor("heal_amp")
-	self.slow_resistance = self.ability:GetSpecialValueFor("slow_resistance")
 end

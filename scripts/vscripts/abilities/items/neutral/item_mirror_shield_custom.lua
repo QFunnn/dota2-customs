@@ -21,6 +21,16 @@ LinkLuaModifier(
 
 item_mirror_shield_custom = class({})
 
+function item_mirror_shield_custom:Precache(context)
+	if self:GetCaster() and self:GetCaster():IsIllusion() then
+		return
+	end
+	PrecacheResource("particle", "particles/items_fx/immunity_sphere.vpcf", context)
+	PrecacheResource("particle", "particles/items3_fx/lotus_orb_reflect.vpcf", context)
+	PrecacheResource("particle", "particles/puck/orb_status.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_kez/status_effect_kez_afterimage_buff.vpcf", context)
+end
+
 function item_mirror_shield_custom:GetIntrinsicModifierName()
 	if not self:GetCaster():IsRealHero() then
 		return
@@ -28,21 +38,21 @@ function item_mirror_shield_custom:GetIntrinsicModifierName()
 	return "modifier_item_mirror_shield_custom"
 end
 
-modifier_item_mirror_shield_custom = class({})
-function modifier_item_mirror_shield_custom:IsHidden()
-	return true
+function item_mirror_shield_custom:Spawn()
+	self.duration = self:GetSpecialValueFor("duration")
+	self.cd = self:GetSpecialValueFor("cd")
+	self.status = self:GetSpecialValueFor("status")
 end
-function modifier_item_mirror_shield_custom:IsPurgable()
-	return false
-end
+
+modifier_item_mirror_shield_custom = class(mod_hidden)
 function modifier_item_mirror_shield_custom:RemoveOnDeath()
 	return false
 end
 function modifier_item_mirror_shield_custom:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
-	self.duration = self.ability:GetSpecialValueFor("duration")
-	self.cd = self.ability:GetSpecialValueFor("cd")
+	self.duration = self.ability.duration
+	self.cd = self.ability.cd
 end
 
 function modifier_item_mirror_shield_custom:DeclareFunctions()
@@ -126,8 +136,16 @@ modifier_item_mirror_shield_custom_status = class(mod_hidden)
 function modifier_item_mirror_shield_custom_status:GetEffectName()
 	return "particles/puck/orb_status.vpcf"
 end
+function modifier_item_mirror_shield_custom_status:GetStatusEffectName()
+	return "particles/units/heroes/hero_kez/status_effect_kez_afterimage_buff.vpcf"
+end
+function modifier_item_mirror_shield_custom_status:StatusEffectPriority()
+	return MODIFIER_PRIORITY_HIGH
+end
 function modifier_item_mirror_shield_custom_status:OnCreated()
-	self.status = self:GetAbility():GetSpecialValueFor("status")
+	self.ability = self:GetAbility()
+
+	self.status = self.ability.status
 end
 
 function modifier_item_mirror_shield_custom_status:DeclareFunctions()
@@ -138,12 +156,4 @@ end
 
 function modifier_item_mirror_shield_custom_status:GetModifierStatusResistanceStacking()
 	return self.status
-end
-
-function modifier_item_mirror_shield_custom_status:GetStatusEffectName()
-	return "particles/units/heroes/hero_kez/status_effect_kez_afterimage_buff.vpcf"
-end
-
-function modifier_item_mirror_shield_custom_status:StatusEffectPriority()
-	return MODIFIER_PRIORITY_HIGH
 end

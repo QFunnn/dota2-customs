@@ -26,7 +26,23 @@ function item_monkey_king_bar_custom:GetIntrinsicModifierName()
 	return "modifier_item_monkey_king_bar_custom"
 end
 
+function item_monkey_king_bar_custom:Spawn()
+	self.bonus_damage = self:GetSpecialValueFor("bonus_damage")
+	self.bonus_attack_speed = self:GetSpecialValueFor("bonus_attack_speed")
+	self.bonus_chance = self:GetSpecialValueFor("bonus_chance")
+	self.bonus_chance_damage = self:GetSpecialValueFor("bonus_chance_damage")
+	self.bonus_chance_damage_creeps = self:GetSpecialValueFor("bonus_chance_damage_creeps")
+	self.bonus_chance_damage_health = self:GetSpecialValueFor("bonus_chance_damage_health") / 100
+	self.melee_attack_range = self:GetSpecialValueFor("melee_attack_range")
+	self.bonus_health = self:GetSpecialValueFor("bonus_health")
+end
+
 modifier_item_monkey_king_bar_custom = class(mod_hidden)
+function modifier_item_monkey_king_bar_custom:OnCreated(table)
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+end
+
 function modifier_item_monkey_king_bar_custom:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
@@ -62,20 +78,6 @@ function modifier_item_monkey_king_bar_custom:CheckState()
 	}
 end
 
-function modifier_item_monkey_king_bar_custom:OnCreated(table)
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.ability.bonus_damage = self.ability:GetSpecialValueFor("bonus_damage")
-	self.ability.bonus_attack_speed = self.ability:GetSpecialValueFor("bonus_attack_speed")
-	self.ability.bonus_chance = self.ability:GetSpecialValueFor("bonus_chance")
-	self.ability.bonus_chance_damage = self.ability:GetSpecialValueFor("bonus_chance_damage")
-	self.ability.bonus_chance_damage_creeps = self.ability:GetSpecialValueFor("bonus_chance_damage_creeps")
-	self.ability.bonus_chance_damage_health = self.ability:GetSpecialValueFor("bonus_chance_damage_health") / 100
-	self.ability.melee_attack_range = self.ability:GetSpecialValueFor("melee_attack_range")
-	self.ability.bonus_health = self.ability:GetSpecialValueFor("bonus_health")
-end
-
 function modifier_item_monkey_king_bar_custom:GetModifierProcAttack_BonusDamage_Magical(params)
 	if not IsServer() then
 		return
@@ -87,6 +89,9 @@ function modifier_item_monkey_king_bar_custom:GetModifierProcAttack_BonusDamage_
 		return
 	end
 	if not self.parent:IsRealHero() then
+		return
+	end
+	if params.target:GetTeamNumber() == self.parent:GetTeamNumber() then
 		return
 	end
 	if not RollPseudoRandomPercentage(self.ability.bonus_chance, 4259, self.parent) then

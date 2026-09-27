@@ -30,6 +30,22 @@ function item_tpscroll_custom:Precache(context)
 	PrecacheResource("particle", "particles/items2_fx/smoke_of_deceit.vpcf", context)
 	PrecacheResource("particle", "particles/econ/items/tinker/boots_of_travel/teleport_start_bots.vpcf", context)
 	PrecacheResource("particle", "particles/tinker/teleport_end_bots.vpcf", context)
+	PrecacheResource(
+		"particle",
+		"particles/econ/events/compendium_2024/compendium_2024_teleport_lvl3_end.vpcf",
+		context
+	)
+	PrecacheResource(
+		"particle",
+		"particles/econ/events/compendium_2023/compendium_2023_teleport_lvl3_end.vpcf",
+		context
+	)
+end
+
+function item_tpscroll_custom:Spawn()
+	self.invun = self:GetSpecialValueFor("invun")
+	self.channel_time = self:GetSpecialValueFor("channel_time")
+	self.channel_time_bonus = self:GetSpecialValueFor("channel_time_bonus")
 end
 
 function item_tpscroll_custom:GlobalTeleport()
@@ -181,7 +197,6 @@ function item_tpscroll_custom:OnSpellStart()
 		true
 	)
 	ParticleManager:SetParticleControl(self.teleportToEffect, 2, color)
-	--ParticleManager:SetParticleControlEnt(self.teleportToEffect, 3, caster, PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", self.teleport_center:GetAbsOrigin(), true)
 	ParticleManager:SetParticleControl(self.teleportToEffect, 4, Vector(0.9, 0, 0))
 	ParticleManager:SetParticleControlEnt(
 		self.teleportToEffect,
@@ -194,9 +209,13 @@ function item_tpscroll_custom:OnSpellStart()
 	)
 
 	self.tinker_tp = false
-	if caster:HasScepter() and IsValid(caster.tinker_innate) then
-		self.tinker_tp = true
+	if not caster:HasScepter() then
+		return
 	end
+	if not IsValid(caster.tinker_innate) then
+		return
+	end
+	self.tinker_tp = true
 end
 
 function item_tpscroll_custom:OnChannelFinish(bInterrupted)
@@ -211,15 +230,8 @@ function item_tpscroll_custom:OnChannelFinish(bInterrupted)
 
 	caster:RemoveGesture(ACT_DOTA_TELEPORT)
 
-	if self.teleportFromEffect then
-		ParticleManager:DestroyParticle(self.teleportFromEffect, false)
-		ParticleManager:ReleaseParticleIndex(self.teleportFromEffect)
-	end
-
-	if self.teleportToEffect then
-		ParticleManager:DestroyParticle(self.teleportToEffect, false)
-		ParticleManager:ReleaseParticleIndex(self.teleportToEffect)
-	end
+	ParticleManager:Delete(self.teleportFromEffect, 1)
+	ParticleManager:Delete(self.teleportToEffect, 1)
 
 	if bInterrupted then
 		if self.tinker_tp then
@@ -230,8 +242,7 @@ function item_tpscroll_custom:OnChannelFinish(bInterrupted)
 
 	EmitSoundOnLocationWithCaster(self.point_start, "Portal.Hero_Disappear", caster)
 
-	caster:SetAbsOrigin(self.point)
-	FindClearSpaceForUnit(caster, self.point, true)
+	caster:Teleport(self.point)
 
 	caster:Stop()
 	caster:Interrupt()
@@ -253,7 +264,7 @@ function item_tpscroll_custom:OnChannelFinish(bInterrupted)
 			{ duration = caster:GetTalentValue("modifier_patrol_reward_portal", "push_duration", true) }
 		)
 	else
-		caster:AddNewModifier(caster, self, "modifier_invun", { duration = self:GetSpecialValueFor("invun") })
+		caster:AddNewModifier(caster, self, "modifier_invun", { duration = self.invun })
 	end
 end
 
@@ -269,8 +280,8 @@ function modifier_custom_ability_teleport_tracker:OnCreated()
 	self.ability = self:GetAbility()
 	self.parent = self:GetParent()
 
-	self.channel_time = self.ability:GetSpecialValueFor("channel_time")
-	self.channel_bonus = self.ability:GetSpecialValueFor("channel_time_bonus")
+	self.channel_time = self.ability.channel_time
+	self.channel_bonus = self.ability.channel_time_bonus
 
 	self.patrol_cast = self.parent:GetTalentValue("modifier_patrol_reward_portal", "cast", true)
 
@@ -321,15 +332,28 @@ function modifier_custom_ability_teleport_tracker:SpellEvent(params)
 	self:SetStackCount(cast * 100)
 end
 
-modifier_custom_ability_teleport = class({})
-function modifier_custom_ability_teleport:IsHidden()
-	return false
+modifier_custom_ability_teleport = class(mod_visible)
+function modifier_custom_ability_teleport:OnCreated(table)
+	self.parent = self:GetParent()
+	self.caster = self:GetCaster()
+
+	if not IsServer() then
+		return
+	end
+	self.center = EntIndexToHScript(table.center)
+
+	self.sound = "Portal.Loop_Appear"
+	local tinker_checkout =
+		wearables_system:GetParticleReplacementAbility(self.parent, "particles/items2_fx/teleport_start.vpcf", self)
+	if tinker_checkout == "particles/econ/items/tinker/boots_of_travel/teleport_start_bots.vpcf" then
+		self.sound = "Hero_Tinker.MechaBoots.Loop"
+	end
+
+	self:StartIntervalThink(0.2)
 end
-function modifier_custom_ability_teleport:IsPurgable()
-	return false
-end
+
 function modifier_custom_ability_teleport:GetTexture()
-	if self:GetCaster():HasModifier("modifier_patrol_reward_2_portal") then
+	if self.caster:HasModifier("modifier_patrol_reward_2_portal") then
 		return "buffs/warp_amulet"
 	end
 	return "item_tpscroll"
@@ -343,23 +367,6 @@ end
 
 function modifier_custom_ability_teleport:GetOverrideAnimation()
 	return ACT_DOTA_TELEPORT
-end
-
-function modifier_custom_ability_teleport:OnCreated(table)
-	if not IsServer() then
-		return
-	end
-	self.parent = self:GetParent()
-	self.center = EntIndexToHScript(table.center)
-
-	self.sound = "Portal.Loop_Appear"
-	local tinker_checkout =
-		wearables_system:GetParticleReplacementAbility(self.parent, "particles/items2_fx/teleport_start.vpcf", self)
-	if tinker_checkout == "particles/econ/items/tinker/boots_of_travel/teleport_start_bots.vpcf" then
-		self.sound = "Hero_Tinker.MechaBoots.Loop"
-	end
-
-	self:StartIntervalThink(0.2)
 end
 
 function modifier_custom_ability_teleport:OnIntervalThink()

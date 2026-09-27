@@ -89,6 +89,9 @@ function ember_spirit_sleight_of_fist_custom:Precache(context)
 	PrecacheResource("particle", "particles/ember_spirit/fist_shield.vpcf", context)
 	PrecacheResource("particle", "particles/ember_spirit/fist_resist.vpcf", context)
 	PrecacheResource("particle", "particles/bristleback/spray_double.vpcf", context)
+	PrecacheResource("particle", "particles/jugg_parry.vpcf", context)
+	PrecacheResource("particle", "particles/ember_spirit/guard_stack.vpcf", context)
+	PrecacheResource("particle", "particles/ember_spirit/guard_resist_max.vpcf", context)
 	PrecacheResource("model", "models/ember_spirit_fx.vmdl", context)
 end
 
@@ -97,7 +100,6 @@ function ember_spirit_sleight_of_fist_custom:UpdateTalents()
 	if not self.init then
 		self.init = true
 		self.talents = {
-			has_w1 = 0,
 			w1_cd = 0,
 
 			has_w3 = 0,
@@ -140,7 +142,6 @@ function ember_spirit_sleight_of_fist_custom:UpdateTalents()
 	end
 
 	if caster:HasTalent("modifier_ember_fist_1") then
-		self.talents.has_w1 = 1
 		self.talents.w1_cd = caster:GetTalentValue("modifier_ember_fist_1", "cd")
 	end
 
@@ -156,7 +157,7 @@ function ember_spirit_sleight_of_fist_custom:UpdateTalents()
 
 	if caster:HasTalent("modifier_ember_fist_7") then
 		self.talents.has_w7 = 1
-		if IsServer() then
+		if IsServer() and self.tracker then
 			self.tracker:InitLegendary()
 		end
 	end
@@ -182,23 +183,19 @@ end
 function ember_spirit_sleight_of_fist_custom:GetBehavior()
 	return DOTA_ABILITY_BEHAVIOR_POINT
 		+ DOTA_ABILITY_BEHAVIOR_AOE
-		+ (self.talents.has_h5 == 0 and DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES or 0)
-end
-
-function ember_spirit_sleight_of_fist_custom:GetManaCost(level)
-	return self.BaseClass.GetManaCost(self, level)
+		+ (self.talents.has_h5 == 1 and 0 or DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES)
 end
 
 function ember_spirit_sleight_of_fist_custom:GetCooldown(iLevel)
-	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.w1_cd and self.talents.w1_cd or 0)
+	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.w1_cd or 0)
 end
 
 function ember_spirit_sleight_of_fist_custom:GetAOERadius()
-	return (self.radius and self.radius or 0)
+	return self.radius or 0
 end
 
 function ember_spirit_sleight_of_fist_custom:OnAbilityPhaseStart()
-	return not self:GetCaster():HasModifier("modifier_ember_spirit_activate_fire_remnant_custom_caster")
+	return not self.caster:HasModifier("modifier_ember_spirit_activate_fire_remnant_custom_caster")
 end
 
 function ember_spirit_sleight_of_fist_custom:OnSpellStart()
@@ -224,39 +221,6 @@ function ember_spirit_sleight_of_fist_custom:OnSpellStart()
 	)
 end
 
-function ember_spirit_sleight_of_fist_custom:PlayEffect(target)
-	if not IsServer() then
-		return
-	end
-	local attack_sound =
-		wearables_system:GetSoundReplacement(self.caster, "Hero_EmberSpirit.SleightOfFist.Damage", self)
-	target:EmitSound(attack_sound)
-	local particle = ParticleManager:CreateParticle(
-		"particles/econ/items/juggernaut/jugg_arcana/juggernaut_arcana_v2_omni_slash_tgt.vpcf",
-		PATTACH_ABSORIGIN_FOLLOW,
-		target
-	)
-	ParticleManager:SetParticleControlEnt(
-		particle,
-		0,
-		target,
-		PATTACH_ABSORIGIN_FOLLOW,
-		"attach_hitloc",
-		target:GetAbsOrigin(),
-		true
-	)
-	ParticleManager:SetParticleControlEnt(
-		particle,
-		1,
-		target,
-		PATTACH_ABSORIGIN_FOLLOW,
-		"attach_hitloc",
-		target:GetAbsOrigin(),
-		true
-	)
-	ParticleManager:ReleaseParticleIndex(particle)
-end
-
 function ember_spirit_sleight_of_fist_custom:ProcCd()
 	if not IsServer() then
 		return
@@ -278,6 +242,9 @@ function ember_spirit_sleight_of_fist_custom:ProcCd()
 end
 
 function ember_spirit_sleight_of_fist_custom:ProcDamage(target)
+	if not IsServer() then
+		return
+	end
 	if not self:IsTrained() then
 		return
 	end
@@ -374,7 +341,7 @@ function modifier_ember_spirit_sleight_of_fist_custom_caster:OnCreated(params)
 		local effect_cast =
 			ParticleManager:CreateParticle("particles/bristleback/spray_double.vpcf", PATTACH_WORLDORIGIN, nil)
 		ParticleManager:SetParticleControl(effect_cast, 0, self.parent:GetAbsOrigin() + Vector(0, 0, 275))
-		ParticleManager:SetParticleControl(effect_cast, 1, Vector(self.count, nil, 0))
+		ParticleManager:SetParticleControl(effect_cast, 1, Vector(self.count, 0, 0))
 		ParticleManager:ReleaseParticleIndex(effect_cast)
 	end
 
@@ -392,7 +359,7 @@ function modifier_ember_spirit_sleight_of_fist_custom_caster:OnCreated(params)
 			for i = 1, self.count do
 				table.insert(self.sleight_targets, enemy:entindex())
 			end
-			enemy:AddNewModifier(self.parent, self, "modifier_ember_spirit_sleight_of_fist_custom_target", {})
+			enemy:AddNewModifier(self.parent, self.ability, "modifier_ember_spirit_sleight_of_fist_custom_target", {})
 		end
 	end
 
@@ -402,7 +369,6 @@ function modifier_ember_spirit_sleight_of_fist_custom_caster:OnCreated(params)
 		return
 	end
 
-	self.ended = false
 	self.RemoveForDuel = true
 
 	self.particle = ParticleManager:CreateParticle(
@@ -433,9 +399,6 @@ end
 
 function modifier_ember_spirit_sleight_of_fist_custom_caster:OnIntervalThink()
 	if not IsServer() then
-		return
-	end
-	if self.ending then
 		return
 	end
 
@@ -475,7 +438,34 @@ function modifier_ember_spirit_sleight_of_fist_custom_caster:OnIntervalThink()
 
 	if self.disarmed == 0 then
 		self.parent:PerformAttack(current_target, true, true, true, false, false, false, false)
-		self.ability:PlayEffect(current_target)
+
+		current_target:EmitSound(
+			wearables_system:GetSoundReplacement(self.parent, "Hero_EmberSpirit.SleightOfFist.Damage", self.ability)
+		)
+		local particle = ParticleManager:CreateParticle(
+			"particles/econ/items/juggernaut/jugg_arcana/juggernaut_arcana_v2_omni_slash_tgt.vpcf",
+			PATTACH_ABSORIGIN_FOLLOW,
+			current_target
+		)
+		ParticleManager:SetParticleControlEnt(
+			particle,
+			0,
+			current_target,
+			PATTACH_ABSORIGIN_FOLLOW,
+			"attach_hitloc",
+			current_target:GetAbsOrigin(),
+			true
+		)
+		ParticleManager:SetParticleControlEnt(
+			particle,
+			1,
+			current_target,
+			PATTACH_ABSORIGIN_FOLLOW,
+			"attach_hitloc",
+			current_target:GetAbsOrigin(),
+			true
+		)
+		ParticleManager:ReleaseParticleIndex(particle)
 
 		if not self.first and self.parent.remnant_activate_ability then
 			self.first = true
@@ -621,10 +611,14 @@ function modifier_ember_spirit_sleight_of_fist_custom_caster:GetModifierPreAttac
 	if not IsServer() then
 		return
 	end
-
-	if params.target and params.target:IsHero() then
-		return self.damage
+	if not params.target then
+		return
 	end
+	if not params.target:IsHero() then
+		return
+	end
+
+	return self.damage
 end
 
 function modifier_ember_spirit_sleight_of_fist_custom_caster:GetModifierTotalDamageOutgoing_Percentage(params)
@@ -742,15 +736,16 @@ end
 function modifier_ember_spirit_sleight_of_fist_custom_speed_bonus:GetEffectAttachType()
 	return PATTACH_ABSORIGIN_FOLLOW
 end
+function modifier_ember_spirit_sleight_of_fist_custom_speed_bonus:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+end
+
 function modifier_ember_spirit_sleight_of_fist_custom_speed_bonus:GetEffectName()
 	if self.ability.talents.has_w4 == 1 then
 		return
 	end
 	return "particles/units/heroes/hero_marci/marci_rebound_allymovespeed.vpcf"
-end
-
-function modifier_ember_spirit_sleight_of_fist_custom_speed_bonus:OnCreated()
-	self.ability = self:GetAbility()
 end
 
 modifier_ember_spirit_sleight_of_fist_custom_unslow = class(mod_hidden)
@@ -766,33 +761,32 @@ function modifier_ember_spirit_sleight_of_fist_custom_unslow:CheckState()
 	}
 end
 
-modifier_ember_spirit_sleight_of_fist_custom_slow = class({})
-function modifier_ember_spirit_sleight_of_fist_custom_slow:IsHidden()
-	return true
-end
+modifier_ember_spirit_sleight_of_fist_custom_slow = class(mod_hidden)
 function modifier_ember_spirit_sleight_of_fist_custom_slow:IsPurgable()
 	return true
 end
+function modifier_ember_spirit_sleight_of_fist_custom_slow:GetEffectName()
+	return "particles/units/heroes/hero_marci/marci_rebound_bounce_impact_debuff.vpcf"
+end
+function modifier_ember_spirit_sleight_of_fist_custom_slow:GetEffectAttachType()
+	return PATTACH_ABSORIGIN_FOLLOW
+end
+function modifier_ember_spirit_sleight_of_fist_custom_slow:OnCreated()
+	self.parent = self:GetParent()
+	self.caster = self:GetCaster()
+	self.ability = self:GetAbility()
+
+	self.slow = self.ability.talents.h1_slow
+end
+
 function modifier_ember_spirit_sleight_of_fist_custom_slow:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
 	}
 end
 
-function modifier_ember_spirit_sleight_of_fist_custom_slow:OnCreated()
-	self.slow = self:GetAbility().talents.h1_slow
-end
-
 function modifier_ember_spirit_sleight_of_fist_custom_slow:GetModifierMoveSpeedBonus_Percentage()
 	return self.slow
-end
-
-function modifier_ember_spirit_sleight_of_fist_custom_slow:GetEffectName()
-	return "particles/units/heroes/hero_marci/marci_rebound_bounce_impact_debuff.vpcf"
-end
-
-function modifier_ember_spirit_sleight_of_fist_custom_slow:GetEffectAttachType()
-	return PATTACH_ABSORIGIN_FOLLOW
 end
 
 modifier_ember_spirit_sleight_of_fist_custom_magic = class(mod_visible)
@@ -808,6 +802,7 @@ function modifier_ember_spirit_sleight_of_fist_custom_magic:OnCreated(table)
 	if not IsServer() then
 		return
 	end
+	self.RemoveForDuel = true
 	self:OnRefresh()
 end
 
@@ -853,7 +848,7 @@ function modifier_ember_spirit_sleight_of_fist_custom_legendary:OnCreated(table)
 	self:OnRefresh()
 end
 
-function modifier_ember_spirit_sleight_of_fist_custom_legendary:OnRefresh(table)
+function modifier_ember_spirit_sleight_of_fist_custom_legendary:OnRefresh()
 	if not IsServer() then
 		return
 	end
@@ -861,15 +856,12 @@ function modifier_ember_spirit_sleight_of_fist_custom_legendary:OnRefresh(table)
 		return
 	end
 	self:IncrementStackCount()
-end
 
-function modifier_ember_spirit_sleight_of_fist_custom_legendary:OnStackCountChanged(iStackCount)
-	if not self.effect_cast then
-		return
+	if self.effect_cast then
+		local number_1 = self:GetStackCount()
+		local double = math.floor(number_1 / 10)
+		local number_2 = number_1 - double * 10
+
+		ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(double, number_1, number_2))
 	end
-	local number_1 = self:GetStackCount()
-	local double = math.floor(number_1 / 10)
-	local number_2 = number_1 - double * 10
-
-	ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(double, number_1, number_2))
 end

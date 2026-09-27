@@ -19,11 +19,6 @@ LinkLuaModifier(
 	LUA_MODIFIER_MOTION_NONE
 )
 LinkLuaModifier(
-	"modifier_press_the_attack_custom_legendary_damage",
-	"abilities/legion_commander/custom_legion_commander_press_the_attack",
-	LUA_MODIFIER_MOTION_NONE
-)
-LinkLuaModifier(
 	"modifier_press_the_attack_custom_legendary",
 	"abilities/legion_commander/custom_legion_commander_press_the_attack",
 	LUA_MODIFIER_MOTION_NONE
@@ -60,6 +55,11 @@ function custom_legion_commander_press_the_attack:Precache(context)
 	PrecacheResource("particle", "particles/lc_wave.vpcf", context)
 	PrecacheResource("particle", "particles/econ/events/fall_2022/radiance/radiance_owner_fall2022.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_legion_commander/legion_commander_press.vpcf", context)
+	PrecacheResource(
+		"particle",
+		"particles/units/heroes/hero_legion_commander/legion_commander_press_owner.vpcf",
+		context
+	)
 	PrecacheResource("particle", "particles/lc_root.vpcf", context)
 	PrecacheResource("particle", "particles/legion_commander/press_legendary_buff.vpcf", context)
 	PrecacheResource("particle", "particles/lc_press_heal.vpcf", context)
@@ -81,11 +81,9 @@ function custom_legion_commander_press_the_attack:UpdateTalents(name)
 	if not self.init then
 		self.init = true
 		self.talents = {
-			has_w1 = 0,
 			w1_damage = 0,
 			w1_magic = 0,
 
-			has_w2 = 0,
 			w2_duration = 0,
 			w2_heal = 0,
 			w2_duration_legendary = 0,
@@ -108,7 +106,6 @@ function custom_legion_commander_press_the_attack:UpdateTalents(name)
 			w7_duration = caster:GetTalentValue("modifier_legion_press_7", "duration", true),
 			w7_linger_duration = caster:GetTalentValue("modifier_legion_press_7", "linger_duration", true),
 			w7_damage = caster:GetTalentValue("modifier_legion_press_7", "damage", true),
-			w7_heal_reduce = caster:GetTalentValue("modifier_legion_press_7", "heal_reduce", true) / 100,
 
 			has_h5 = 0,
 			h5_cd = caster:GetTalentValue("modifier_legion_hero_5", "cd", true),
@@ -126,13 +123,11 @@ function custom_legion_commander_press_the_attack:UpdateTalents(name)
 	end
 
 	if caster:HasTalent("modifier_legion_press_1") then
-		self.talents.has_w1 = 1
 		self.talents.w1_damage = caster:GetTalentValue("modifier_legion_press_1", "damage") / 100
 		self.talents.w1_magic = caster:GetTalentValue("modifier_legion_press_1", "magic")
 	end
 
 	if caster:HasTalent("modifier_legion_press_2") then
-		self.talents.has_w2 = 1
 		self.talents.w2_duration = caster:GetTalentValue("modifier_legion_press_2", "duration")
 		self.talents.w2_heal = caster:GetTalentValue("modifier_legion_press_2", "heal") / 100
 		self.talents.w2_duration_legendary = caster:GetTalentValue("modifier_legion_press_2", "duration_legendary")
@@ -214,7 +209,7 @@ function custom_legion_commander_press_the_attack:GetManaCost(level)
 end
 
 function custom_legion_commander_press_the_attack:GetRadius()
-	return (self.radius and self.radius or 0) + (self.talents.has_q2 == 1 and self.talents.q2_radius_press or 0)
+	return (self.radius or 0) + (self.talents.has_q2 == 1 and self.talents.q2_radius_press or 0)
 end
 
 function custom_legion_commander_press_the_attack:GetCastRange(vLocation, hTarget)
@@ -229,7 +224,7 @@ function custom_legion_commander_press_the_attack:GetDamage()
 	local damage = (self.damage + self.caster:GetMaxHealth() * self.talents.w1_damage)
 	local mod = self.caster:FindModifierByName("modifier_press_the_attack_custom_buff")
 	if mod and mod.active then
-		damage = damage * (1 + mod:GetStackCount() * self.ability.talents.w7_damage / 100)
+		damage = damage * (1 + mod:GetStackCount() * self.talents.w7_damage / 100)
 	end
 	return damage
 end
@@ -243,13 +238,13 @@ function custom_legion_commander_press_the_attack:OnSpellStart()
 	then
 		mod.active = true
 		mod:SetDuration(self.talents.w7_linger_duration + 0.1, true)
-		self.parent:AddNewModifier(
-			self.parent,
-			self.ability,
+		self.caster:AddNewModifier(
+			self.caster,
+			self,
 			"modifier_press_the_attack_custom_legendary",
 			{ duration = self.talents.w7_linger_duration + 0.1 }
 		)
-		self.ability:EndCd()
+		self:EndCd()
 		return
 	end
 
@@ -346,7 +341,7 @@ function custom_legion_commander_press_the_attack:ProcDamage(target)
 	if not self:IsTrained() then
 		return
 	end
-	if self.ability.talents.has_w3 == 0 then
+	if self.talents.has_w3 == 0 then
 		return
 	end
 	if not target:IsUnit() then
@@ -355,7 +350,7 @@ function custom_legion_commander_press_the_attack:ProcDamage(target)
 	if target:GetTeamNumber() == self.caster:GetTeamNumber() then
 		return
 	end
-	if not target:CheckCd("lc_burn", self.ability.talents.w3_talent_cd) then
+	if not target:CheckCd("lc_burn", self.talents.w3_talent_cd) then
 		return
 	end
 
@@ -375,17 +370,34 @@ function custom_legion_commander_press_the_attack:ProcDamage(target)
 	ParticleManager:SetParticleControl(hit_effect, 1, Vector(150, 0, 0))
 	ParticleManager:ReleaseParticleIndex(hit_effect)
 
-	target:AddNewModifier(self.parent, self.ability, "modifier_press_the_attack_custom_proc_damage", {})
+	target:AddNewModifier(self.caster, self, "modifier_press_the_attack_custom_proc_damage", {})
 end
 
 modifier_press_the_attack_custom_buff = class(mod_visible)
+function modifier_press_the_attack_custom_buff:IsAura()
+	return IsServer() and self.parent:IsAlive()
+end
+function modifier_press_the_attack_custom_buff:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_ENEMY
+end
+function modifier_press_the_attack_custom_buff:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
+end
+function modifier_press_the_attack_custom_buff:GetAuraRadius()
+	return self.radius
+end
+function modifier_press_the_attack_custom_buff:GetAuraDuration()
+	return 0
+end
+function modifier_press_the_attack_custom_buff:GetModifierAura()
+	return "modifier_press_the_attack_custom_burn_effect"
+end
 function modifier_press_the_attack_custom_buff:OnCreated(table)
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
 	self.ability = self:GetAbility()
 
 	self.radius = self.ability:GetRadius()
-	self.heal_k = 1 --self.ability.talents.has_w7 == 1 and (1 + self.ability.talents.w7_heal_reduce) or 1
 
 	if not IsServer() then
 		return
@@ -396,13 +408,13 @@ function modifier_press_the_attack_custom_buff:OnCreated(table)
 	local particle_name = wearables_system:GetParticleReplacementAbility(
 		self.caster,
 		"particles/units/heroes/hero_legion_commander/legion_commander_press.vpcf",
-		self
+		self.ability
 	)
 	if self.parent == self.caster then
 		particle_name = wearables_system:GetParticleReplacementAbility(
 			self.caster,
 			"particles/units/heroes/hero_legion_commander/legion_commander_press_owner.vpcf",
-			self
+			self.ability
 		)
 	end
 
@@ -490,11 +502,19 @@ function modifier_press_the_attack_custom_buff:ProcEffects()
 	if not IsServer() then
 		return
 	end
+	local legendary = self.ability.talents.has_w7 == 1
 
-	if self.ability.talents.has_w4 == 1 and (self.ability.talents.has_q7 == 0 or self.ability.talents.has_w7 == 1) then
+	if
+		self.ability.talents.has_w4 == 1
+		and (self.ability.talents.has_q7 == 0 or legendary)
+		and (not legendary or self.parent:CheckCd("lc_root", self.ability.talents.w4_root_cd))
+	then
 		self.ability:ProcRoot(self.parent)
 	end
-	if self.ability.talents.has_h5 == 1 then
+	if
+		self.ability.talents.has_h5 == 1
+		and (not legendary or self.parent:CheckCd("lc_bkb", self.ability.talents.h5_cd))
+	then
 		self.parent:AddNewModifier(
 			self.parent,
 			self.ability,
@@ -524,9 +544,7 @@ function modifier_press_the_attack_custom_buff:OnIntervalThink(first)
 		return
 	end
 
-	if self.parent:CheckCd("lc_bkb", self.ability.talents.w4_root_cd) then
-		self:ProcEffects()
-	end
+	self:ProcEffects()
 
 	local stack = self:GetStackCount()
 	local time = self:GetRemainingTime()
@@ -584,26 +602,7 @@ function modifier_press_the_attack_custom_buff:GetModifierMoveSpeedBonus_Percent
 end
 
 function modifier_press_the_attack_custom_buff:GetModifierConstantHealthRegen()
-	return (self.ability.hp_regen + self.parent:GetMaxHealth() * self.ability.talents.w2_heal) * self.heal_k
-end
-
-function modifier_press_the_attack_custom_buff:IsAura()
-	return IsServer() and self.parent:IsAlive()
-end
-function modifier_press_the_attack_custom_buff:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_ENEMY
-end
-function modifier_press_the_attack_custom_buff:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
-end
-function modifier_press_the_attack_custom_buff:GetAuraRadius()
-	return self.radius
-end
-function modifier_press_the_attack_custom_buff:GetAuraDuration()
-	return 0
-end
-function modifier_press_the_attack_custom_buff:GetModifierAura()
-	return "modifier_press_the_attack_custom_burn_effect"
+	return self.ability.hp_regen + self.parent:GetMaxHealth() * self.ability.talents.w2_heal
 end
 
 modifier_press_the_attack_custom_burn_effect = class(mod_visible)
@@ -737,24 +736,27 @@ function modifier_press_the_attack_custom_tracker:OnRefresh()
 	self.ability.damage = self.ability:GetSpecialValueFor("damage")
 end
 
-modifier_press_the_attack_custom_root = class({})
-function modifier_press_the_attack_custom_root:IsHidden()
-	return true
-end
+modifier_press_the_attack_custom_root = class(mod_hidden)
 function modifier_press_the_attack_custom_root:IsPurgable()
 	return true
-end
-function modifier_press_the_attack_custom_root:GetTexture()
-	return "buffs/press_root"
-end
-function modifier_press_the_attack_custom_root:CheckState()
-	return { [MODIFIER_STATE_ROOTED] = true }
 end
 function modifier_press_the_attack_custom_root:GetEffectName()
 	return "particles/lc_root.vpcf"
 end
 
+function modifier_press_the_attack_custom_root:CheckState()
+	return {
+		[MODIFIER_STATE_ROOTED] = true,
+	}
+end
+
 modifier_press_the_attack_custom_proc_damage = class(mod_hidden)
+function modifier_press_the_attack_custom_proc_damage:GetStatusEffectName()
+	return "particles/status_fx/status_effect_burn.vpcf"
+end
+function modifier_press_the_attack_custom_proc_damage:StatusEffectPriority()
+	return MODIFIER_PRIORITY_NORMAL
+end
 function modifier_press_the_attack_custom_proc_damage:OnCreated(table)
 	if not IsServer() then
 		return
@@ -779,18 +781,11 @@ function modifier_press_the_attack_custom_proc_damage:OnCreated(table)
 
 	self.parent:GenericParticle("particles/units/heroes/hero_invoker/invoker_chaos_meteor_burn_debuff.vpcf", self)
 
-	self:AddStack()
+	self:OnRefresh()
 	self:StartIntervalThink(self.interval)
 end
 
 function modifier_press_the_attack_custom_proc_damage:OnRefresh(table)
-	if not IsServer() then
-		return
-	end
-	self:AddStack()
-end
-
-function modifier_press_the_attack_custom_proc_damage:AddStack()
 	if not IsServer() then
 		return
 	end
@@ -815,12 +810,4 @@ function modifier_press_the_attack_custom_proc_damage:OnIntervalThink()
 		self:Destroy()
 		return
 	end
-end
-
-function modifier_press_the_attack_custom_proc_damage:GetStatusEffectName()
-	return "particles/status_fx/status_effect_burn.vpcf"
-end
-
-function modifier_press_the_attack_custom_proc_damage:StatusEffectPriority()
-	return MODIFIER_PRIORITY_NORMAL
 end

@@ -58,10 +58,6 @@ skeleton_king_mortal_strike_custom = class({})
 skeleton_king_mortal_strike_custom.talents = {}
 skeleton_king_mortal_strike_custom.current_target = nil
 
-function skeleton_king_mortal_strike_custom:GetAbilityTextureName()
-	return wearables_system:GetAbilityIconReplacement(self.caster, "skeleton_king_mortal_strike", self)
-end
-
 function skeleton_king_mortal_strike_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
@@ -90,6 +86,16 @@ function skeleton_king_mortal_strike_custom:Precache(context)
 	PrecacheResource("particle", "particles/wraith_king/crit_legendary.vpcf", context)
 	PrecacheResource("particle", "particles/bloodseeker/thirst_cleave.vpcf", context)
 	PrecacheResource("particle", "particles/wraith_king/crit_root.vpcf", context)
+	PrecacheResource(
+		"particle",
+		"particles/units/heroes/hero_skeletonking/skeleton_king_weapon_blur_critical.vpcf",
+		context
+	)
+	PrecacheResource(
+		"particle",
+		"particles/econ/items/ogre_magi/ogre_ti8_immortal_weapon/ogre_ti8_immortal_bloodlust_buff_hands_glow.vpcf",
+		context
+	)
 end
 
 function skeleton_king_mortal_strike_custom:UpdateTalents(name)
@@ -103,7 +109,6 @@ function skeleton_king_mortal_strike_custom:UpdateTalents(name)
 			e1_radius = caster:GetTalentValue("modifier_skeleton_strike_1", "radius", true),
 			e1_duration = caster:GetTalentValue("modifier_skeleton_strike_1", "duration", true),
 
-			has_e2 = 0,
 			e2_range = 0,
 
 			has_e3 = 0,
@@ -132,6 +137,9 @@ function skeleton_king_mortal_strike_custom:UpdateTalents(name)
 			h5_bkb = caster:GetTalentValue("modifier_skeleton_hero_5", "bkb", true),
 			h5_magic = caster:GetTalentValue("modifier_skeleton_hero_5", "magic", true),
 			h5_heal = caster:GetTalentValue("modifier_skeleton_hero_5", "heal", true) / 100,
+
+			has_w7 = 0,
+			w7_duration = caster:GetTalentValue("modifier_skeleton_vampiric_7", "duration", true),
 		}
 	end
 
@@ -141,7 +149,6 @@ function skeleton_king_mortal_strike_custom:UpdateTalents(name)
 	end
 
 	if caster:HasTalent("modifier_skeleton_strike_2") then
-		self.talents.has_e2 = 1
 		self.talents.e2_range = caster:GetTalentValue("modifier_skeleton_strike_2", "range")
 	end
 
@@ -166,6 +173,14 @@ function skeleton_king_mortal_strike_custom:UpdateTalents(name)
 	if caster:HasTalent("modifier_skeleton_hero_5") then
 		self.talents.has_h5 = 1
 	end
+
+	if caster:HasTalent("modifier_skeleton_vampiric_7") then
+		self.talents.has_w7 = 1
+	end
+end
+
+function skeleton_king_mortal_strike_custom:GetAbilityTextureName()
+	return wearables_system:GetAbilityIconReplacement(self.caster, "skeleton_king_mortal_strike", self)
 end
 
 function skeleton_king_mortal_strike_custom:GetIntrinsicModifierName()
@@ -173,10 +188,6 @@ function skeleton_king_mortal_strike_custom:GetIntrinsicModifierName()
 		return
 	end
 	return "modifier_skeleton_king_mortal_strike_custom"
-end
-
-function skeleton_king_mortal_strike_custom:Init()
-	self.caster = self:GetCaster()
 end
 
 function skeleton_king_mortal_strike_custom:GetBehavior()
@@ -190,7 +201,7 @@ function skeleton_king_mortal_strike_custom:GetCooldown(iLevel)
 	if self.talents.has_e7 == 1 then
 		return self.talents.e7_talent_cd
 	end
-	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.e3_cd and self.talents.e3_cd or 0)
+	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.e3_cd or 0)
 end
 
 function skeleton_king_mortal_strike_custom:OnAbilityPhaseStart()
@@ -254,14 +265,6 @@ function modifier_skeleton_king_mortal_strike_custom:RecordDestroyEvent(params)
 	self.records[params.record] = nil
 end
 
-function modifier_skeleton_king_mortal_strike_custom:GetCritDamage()
-	local crit = self.ability.crit_mult
-	if self.ability.talents.has_e7 == 1 then
-		crit = crit * (1 + self.ability.talents.e7_damage)
-	end
-	return crit
-end
-
 function modifier_skeleton_king_mortal_strike_custom:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE,
@@ -274,6 +277,9 @@ end
 
 function modifier_skeleton_king_mortal_strike_custom:CheckState()
 	if self.ability.talents.has_e4 == 0 then
+		return
+	end
+	if not IsValid(self.parent) then
 		return
 	end
 	if not self.parent:HasModifier("modifier_skeleton_king_mortal_strike_proc") then
@@ -358,7 +364,8 @@ function modifier_skeleton_king_mortal_strike_custom:GetModifierPreAttack_Critic
 	self.parent:RemoveGesture(ACT_DOTA_ATTACK_EVENT)
 	self.parent:StartGestureWithPlaybackRate(ACT_DOTA_ATTACK_EVENT, self.parent:GetAttackSpeed(true))
 
-	local damage = self:GetCritDamage()
+	local damage = self.ability.crit_mult
+		* (self.ability.talents.has_e7 == 1 and (1 + self.ability.talents.e7_damage) or 1)
 	if type == 2 and params.target:HasModifier("modifier_skeleton_king_mortal_strike_legendary_stack") then
 		local mod = params.target:FindModifierByName("modifier_skeleton_king_mortal_strike_legendary_stack")
 		damage = mod:GetStackCount() * self.ability.talents.e7_crit
@@ -401,16 +408,9 @@ function modifier_skeleton_king_mortal_strike_custom:GetModifierProcAttack_Feedb
 	end
 
 	if IsValid(self.parent.bone_ability) then
-		if self.parent.bone_ability.talents.has_w3 == 1 then
-			self.parent.bone_ability:ProcArmor(target, true)
-		end
-		if self.parent.bone_ability.talents.has_w7 == 1 then
-			self.parent.bone_ability:CreateSkeleton(
-				target:GetAbsOrigin(),
-				self.parent.bone_ability.talents.w7_duration,
-				true,
-				true
-			)
+		self.parent.bone_ability:ProcArmor(target, true)
+		if self.ability.talents.has_w7 == 1 then
+			self.parent.bone_ability:CreateSkeleton(target:GetAbsOrigin(), self.ability.talents.w7_duration, true, true)
 		end
 	end
 
@@ -508,13 +508,7 @@ function modifier_skeleton_king_mortal_strike_custom:GetModifierProcAttack_Feedb
 	self.parent:GenericParticle(part)
 end
 
-modifier_skeleton_king_mortal_strike_legendary = class({})
-function modifier_skeleton_king_mortal_strike_legendary:IsHidden()
-	return false
-end
-function modifier_skeleton_king_mortal_strike_legendary:IsPurgable()
-	return false
-end
+modifier_skeleton_king_mortal_strike_legendary = class(mod_visible)
 function modifier_skeleton_king_mortal_strike_legendary:GetEffectName()
 	return "particles/lc_attack_buf.vpcf"
 end
@@ -524,17 +518,6 @@ end
 function modifier_skeleton_king_mortal_strike_legendary:StatusEffectPriority()
 	return MODIFIER_PRIORITY_HIGH
 end
-
-function modifier_skeleton_king_mortal_strike_legendary:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_MODEL_SCALE,
-	}
-end
-
-function modifier_skeleton_king_mortal_strike_legendary:GetModifierModelScale()
-	return 20
-end
-
 function modifier_skeleton_king_mortal_strike_legendary:OnCreated(table)
 	if not IsServer() then
 		return
@@ -548,12 +531,17 @@ function modifier_skeleton_king_mortal_strike_legendary:OnCreated(table)
 	self.parent:EmitSound("WK.crit_buf")
 
 	self.parent:GenericParticle("particles/wraith_king/crit_legendary.vpcf", self, true)
+	self.parent:GenericParticle("particles/wk_crit_buf.vpcf", self, true, { 1 })
+end
 
-	self.effect_cast =
-		ParticleManager:CreateParticle("particles/wk_crit_buf.vpcf", PATTACH_OVERHEAD_FOLLOW, self.parent)
-	ParticleManager:SetParticleControl(self.effect_cast, 0, self.parent:GetAbsOrigin())
-	ParticleManager:SetParticleControl(self.effect_cast, 1, self.parent:GetAbsOrigin())
-	self:AddParticle(self.effect_cast, false, false, -1, false, false)
+function modifier_skeleton_king_mortal_strike_legendary:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_MODEL_SCALE,
+	}
+end
+
+function modifier_skeleton_king_mortal_strike_legendary:GetModifierModelScale()
+	return 20
 end
 
 function modifier_skeleton_king_mortal_strike_legendary:OnDestroy()
@@ -574,7 +562,7 @@ function modifier_skeleton_king_mortal_strike_legendary_stack:OnCreated(table)
 	end
 	self.RemoveForDuel = true
 	self.effect_cast = self.parent:GenericParticle("particles/wraith_king/crit_legendary_stack.vpcf", self, true)
-	self:SetStackCount(1)
+	self:OnRefresh()
 end
 
 function modifier_skeleton_king_mortal_strike_legendary_stack:OnRefresh(table)
@@ -582,12 +570,7 @@ function modifier_skeleton_king_mortal_strike_legendary_stack:OnRefresh(table)
 		return
 	end
 	self:IncrementStackCount()
-end
 
-function modifier_skeleton_king_mortal_strike_legendary_stack:OnStackCountChanged(iStackCount)
-	if not self.effect_cast then
-		return
-	end
 	self.ability.current_target = self.parent
 	self.ability:UpdateUI()
 
@@ -602,10 +585,17 @@ function modifier_skeleton_king_mortal_strike_legendary_stack:OnDestroy()
 	if not IsServer() then
 		return
 	end
-	if not self.ability or not self.ability.current_target or self.ability.current_target ~= self.parent then
+	if not self.ability then
+		return
+	end
+	if not self.ability.current_target then
+		return
+	end
+	if self.ability.current_target ~= self.parent then
 		return
 	end
 
+	self.ability.current_target = nil
 	self.ability:UpdateUI()
 end
 
@@ -633,7 +623,7 @@ function modifier_skeleton_king_mortal_strike_stack:OnDestroy()
 	self.parent:GenericParticle("particles/strike_wk_damage.vpcf")
 	self.parent:EmitSound("WK.Strike_damage")
 
-	local real = DoDamage(
+	DoDamage(
 		{
 			victim = self.parent,
 			attacker = self.caster,
@@ -656,6 +646,21 @@ modifier_skeleton_king_mortal_strike_speed = class(mod_visible)
 function modifier_skeleton_king_mortal_strike_speed:GetTexture()
 	return "buffs/wraith_king/strike_1"
 end
+function modifier_skeleton_king_mortal_strike_speed:IsAura()
+	return IsServer() and self.parent == self.caster
+end
+function modifier_skeleton_king_mortal_strike_speed:GetAuraRadius()
+	return self.radius
+end
+function modifier_skeleton_king_mortal_strike_speed:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_FRIENDLY
+end
+function modifier_skeleton_king_mortal_strike_speed:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_BASIC
+end
+function modifier_skeleton_king_mortal_strike_speed:GetModifierAura()
+	return "modifier_skeleton_king_mortal_strike_speed"
+end
 function modifier_skeleton_king_mortal_strike_speed:OnCreated()
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
@@ -669,6 +674,7 @@ function modifier_skeleton_king_mortal_strike_speed:OnCreated()
 	if not IsServer() then
 		return
 	end
+	self.RemoveForDuel = true
 
 	if not self.is_caster then
 		self:OnIntervalThink()
@@ -724,36 +730,13 @@ function modifier_skeleton_king_mortal_strike_speed:GetModifierAttackSpeedBonus_
 	return (self.is_caster and self:GetStackCount() or self.caster:GetUpgradeStack(self:GetName())) * self.speed
 end
 
-function modifier_skeleton_king_mortal_strike_speed:GetAuraRadius()
-	return self.radius
-end
-function modifier_skeleton_king_mortal_strike_speed:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_FRIENDLY
-end
-function modifier_skeleton_king_mortal_strike_speed:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_BASIC
-end
-function modifier_skeleton_king_mortal_strike_speed:GetModifierAura()
-	return "modifier_skeleton_king_mortal_strike_speed"
-end
-function modifier_skeleton_king_mortal_strike_speed:IsAura()
-	return IsServer() and self.parent == self.caster
-end
 function modifier_skeleton_king_mortal_strike_speed:GetAuraEntityReject(hEntity)
 	return not hEntity.is_wk_skelet
 end
 
-modifier_skeleton_king_mortal_strike_root = class({})
-function modifier_skeleton_king_mortal_strike_root:IsHidden()
-	return true
-end
+modifier_skeleton_king_mortal_strike_root = class(mod_hidden)
 function modifier_skeleton_king_mortal_strike_root:IsPurgable()
 	return true
-end
-function modifier_skeleton_king_mortal_strike_root:CheckState()
-	return {
-		[MODIFIER_STATE_ROOTED] = true,
-	}
 end
 function modifier_skeleton_king_mortal_strike_root:OnCreated()
 	self.parent = self:GetParent()
@@ -762,6 +745,12 @@ function modifier_skeleton_king_mortal_strike_root:OnCreated()
 	end
 	self.parent:EmitSound("WK.Crit_root")
 	self.parent:GenericParticle("particles/wraith_king/crit_root.vpcf", self)
+end
+
+function modifier_skeleton_king_mortal_strike_root:CheckState()
+	return {
+		[MODIFIER_STATE_ROOTED] = true,
+	}
 end
 
 modifier_skeleton_king_mortal_strike_root_cd = class(mod_hidden)

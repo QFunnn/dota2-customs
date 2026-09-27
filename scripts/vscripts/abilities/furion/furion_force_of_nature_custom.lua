@@ -50,8 +50,6 @@ LinkLuaModifier(
 )
 
 furion_force_of_nature_custom = class({})
-furion_force_of_nature_custom.treants = {}
-furion_force_of_nature_custom.all_treants = {}
 furion_force_of_nature_custom.talents = {}
 
 function furion_force_of_nature_custom:Precache(context)
@@ -71,6 +69,7 @@ function furion_force_of_nature_custom:Precache(context)
 	PrecacheResource("particle", "particles/general/patrol_refresh.vpcf", context)
 	PrecacheResource("particle", "particles/general/generic_armor_reduction.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_meepo/meepo_ransack.vpcf", context)
+	PrecacheResource("particle", "particles/nature_prophet/sprout_hit.vpcf", context)
 end
 
 function furion_force_of_nature_custom:UpdateTalents(name)
@@ -207,7 +206,7 @@ function furion_force_of_nature_custom:GetCastPoint()
 end
 
 function furion_force_of_nature_custom:GetAOERadius()
-	return self.area_of_effect and self.area_of_effect or 0
+	return self.area_of_effect or 0
 end
 
 function furion_force_of_nature_custom:GetCooldown(iLevel)
@@ -438,7 +437,13 @@ function modifier_furion_force_of_nature_custom:GetModifierPhysicalArmorBonus()
 end
 
 function modifier_furion_force_of_nature_custom:GetModifierTotalDamageOutgoing_Percentage(params)
-	if not params.target or not params.target:IsCreep() or params.inflictor then
+	if not params.target then
+		return
+	end
+	if not params.target:IsCreep() then
+		return
+	end
+	if params.inflictor then
 		return
 	end
 	return self.creeps
@@ -474,6 +479,9 @@ function modifier_furion_force_of_nature_custom_tracker:OnCreated()
 	self.ability = self:GetAbility()
 	self.ability.tracker = self
 	self.ability:UpdateTalents()
+
+	self.ability.treants = {}
+	self.ability.all_treants = {}
 
 	self.ability.max_treants = self.ability:GetSpecialValueFor("max_treants")
 	self.ability.treant_damage = self.ability:GetSpecialValueFor("treant_damage")
@@ -607,7 +615,7 @@ function modifier_furion_force_of_nature_custom_tracker:DeathEvent(params)
 		self.ability.talents.has_h3 == 1
 		and RollPseudoRandomPercentage(self.ability.talents.h3_chance, 5823, self.parent)
 	then
-		self.parent:GiveGold(self.ability.talents.h3_gold)
+		self.parent:GiveGold(self.ability.talents.h3_gold, nil, nil, "modifier_furion_hero_3")
 	end
 
 	self.parent:AddNewModifier(self.parent, self.ability, "modifier_furion_force_of_nature_custom_health", {})
@@ -988,18 +996,18 @@ function modifier_furion_force_of_nature_custom_treant_auto:OnIntervalThink()
 		self:SetTarget(self.target)
 		return
 	else
-		local enemies = FindUnitsInRadius(
-			self.parent:GetTeamNumber(),
-			self.parent:GetAbsOrigin(),
-			nil,
-			self.radius,
-			DOTA_UNIT_TARGET_TEAM_ENEMY,
-			DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-			DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_NO_INVIS + DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE,
-			FIND_CLOSEST,
-			false
-		)
-		for _, enemy in pairs(enemies) do
+		for _, enemy in
+			pairs(
+				self.parent:FindTargets(
+					self.radius,
+					nil,
+					nil,
+					DOTA_UNIT_TARGET_FLAG_INVULNERABLE
+						+ DOTA_UNIT_TARGET_FLAG_NO_INVIS
+						+ DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE
+				)
+			)
+		do
 			if self:IsValidTarget(enemy) then
 				self:SetTarget(enemy)
 				break

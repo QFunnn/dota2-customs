@@ -39,6 +39,18 @@ function item_orb_of_corrosion_custom:GetIntrinsicModifierName()
 	return "modifier_item_orb_of_corrosion_custom"
 end
 
+function item_orb_of_corrosion_custom:Spawn()
+	self.duration = self:GetSpecialValueFor("duration")
+	self.max_slow = self:GetSpecialValueFor("max_slow")
+	self.total_damage = self:GetSpecialValueFor("total_damage")
+	self.melee_slow = self:GetSpecialValueFor("melee_slow")
+	self.ranged_slow = self:GetSpecialValueFor("ranged_slow")
+	self.armor_reduce = self:GetSpecialValueFor("armor_reduce")
+	self.heal_reduction = self:GetSpecialValueFor("heal_reduction")
+	self.agi_bonus = self:GetSpecialValueFor("agi_bonus")
+	self.duration_passive = self:GetSpecialValueFor("duration_passive")
+end
+
 function item_orb_of_corrosion_custom:OnSpellStart()
 	if not IsServer() then
 		return
@@ -78,42 +90,39 @@ function item_orb_of_corrosion_custom:OnProjectileHit(hTarget, vLocation)
 		self:GetCaster(),
 		self,
 		"modifier_item_orb_of_corrosion_custom_active_slow",
-		{ duration = self:GetSpecialValueFor("duration") }
+		{ duration = self.duration }
 	)
 	hTarget:EmitSound("Item.Paintball.Target")
 	hTarget:EmitSound("Corrosion.Target")
 end
 
-modifier_item_orb_of_corrosion_custom_active_slow = class({})
-function modifier_item_orb_of_corrosion_custom_active_slow:IsHidden()
-	return false
-end
+modifier_item_orb_of_corrosion_custom_active_slow = class(mod_visible)
 function modifier_item_orb_of_corrosion_custom_active_slow:IsPurgable()
 	return true
 end
 function modifier_item_orb_of_corrosion_custom_active_slow:GetStatusEffectName()
 	return "particles/status_fx/status_effect_poison_dazzle.vpcf"
 end
-
 function modifier_item_orb_of_corrosion_custom_active_slow:GetEffectName()
 	return "particles/units/heroes/hero_dazzle/dazzle_poison_debuff.vpcf"
 end
-
 function modifier_item_orb_of_corrosion_custom_active_slow:StatusEffectPriority()
 	return MODIFIER_PRIORITY_NORMAL
 end
-
 function modifier_item_orb_of_corrosion_custom_active_slow:OnCreated(table)
-	self.max_slow = self:GetAbility():GetSpecialValueFor("max_slow")
+	self.parent = self:GetParent()
+	self.caster = self:GetCaster()
+	self.ability = self:GetAbility()
+
+	self.max_slow = self.ability.max_slow
 	self.tick = self.max_slow / self:GetRemainingTime()
-	self.damage = self:GetAbility():GetSpecialValueFor("total_damage")
-		/ (self:GetAbility():GetSpecialValueFor("duration") + 1)
+	self.damage = self.ability.total_damage / (self.ability.duration + 1)
 	self.damageTable = {
-		attacker = self:GetCaster(),
-		victim = self:GetParent(),
+		attacker = self.caster,
+		victim = self.parent,
 		damage = self.damage,
 		damage_type = DAMAGE_TYPE_PHYSICAL,
-		ability = self:GetAbility(),
+		ability = self.ability,
 	}
 
 	if not IsServer() then
@@ -125,7 +134,7 @@ end
 
 function modifier_item_orb_of_corrosion_custom_active_slow:OnIntervalThink()
 	DoDamage(self.damageTable)
-	SendOverheadEventMessage(self:GetParent(), 4, self:GetParent(), self.damage, nil)
+	self.parent:SendNumber(4, self.damage)
 	self:IncrementStackCount()
 end
 
@@ -139,29 +148,26 @@ function modifier_item_orb_of_corrosion_custom_active_slow:GetModifierMoveSpeedB
 	return self.tick * self:GetStackCount()
 end
 
-modifier_item_orb_of_corrosion_custom_passive_slow = class({})
-function modifier_item_orb_of_corrosion_custom_passive_slow:IsHidden()
-	return false
-end
+modifier_item_orb_of_corrosion_custom_passive_slow = class(mod_visible)
 function modifier_item_orb_of_corrosion_custom_passive_slow:IsPurgable()
 	return true
 end
 function modifier_item_orb_of_corrosion_custom_passive_slow:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
-	self.slow = self.ability:GetSpecialValueFor("melee_slow")
+	self.slow = self.ability.melee_slow
 	if self.parent:IsRangedAttacker() then
-		self.slow = self.ability:GetSpecialValueFor("ranged_slow")
+		self.slow = self.ability.ranged_slow
 	end
 
-	self.armor = self.ability:GetSpecialValueFor("armor_reduce")
-	self.heal_reduction = self.ability:GetSpecialValueFor("heal_reduction")
+	self.armor = self.ability.armor_reduce
+	self.heal_reduction = self.ability.heal_reduction
 end
 
 function modifier_item_orb_of_corrosion_custom_passive_slow:OnRefresh(table)
-	self.slow = self.ability:GetSpecialValueFor("melee_slow")
+	self.slow = self.ability.melee_slow
 	if self.parent:IsRangedAttacker() then
-		self.slow = self.ability:GetSpecialValueFor("ranged_slow")
+		self.slow = self.ability.ranged_slow
 	end
 end
 
@@ -169,9 +175,7 @@ function modifier_item_orb_of_corrosion_custom_passive_slow:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
 		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
-		--MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET,
 		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
-		--MODIFIER_PROPERTY_LIFESTEAL_AMPLIFY_PERCENTAGE,
 	}
 end
 
@@ -195,26 +199,20 @@ function modifier_item_orb_of_corrosion_custom_passive_slow:GetModifierHPRegenAm
 	return self.heal_reduction
 end
 
-modifier_item_orb_of_corrosion_custom = class({})
-function modifier_item_orb_of_corrosion_custom:IsHidden()
-	return true
-end
-function modifier_item_orb_of_corrosion_custom:IsPurgable()
-	return false
-end
-function modifier_item_orb_of_corrosion_custom:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
-	}
-end
-
+modifier_item_orb_of_corrosion_custom = class(mod_hidden)
 function modifier_item_orb_of_corrosion_custom:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
 	self.parent:AddAttackEvent_out(self, true)
-	self.agility = self.ability:GetSpecialValueFor("agi_bonus")
-	self.duration = self.ability:GetSpecialValueFor("duration_passive")
+	self.agility = self.ability.agi_bonus
+	self.duration = self.ability.duration_passive
+end
+
+function modifier_item_orb_of_corrosion_custom:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
+	}
 end
 
 function modifier_item_orb_of_corrosion_custom:GetModifierBonusStats_Agility()
@@ -223,6 +221,9 @@ end
 
 function modifier_item_orb_of_corrosion_custom:AttackEvent_out(params)
 	if not IsServer() then
+		return
+	end
+	if not IsValid(self.ability) then
 		return
 	end
 	if self.parent ~= params.attacker then

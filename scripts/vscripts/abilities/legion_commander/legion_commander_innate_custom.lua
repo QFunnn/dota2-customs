@@ -31,6 +31,7 @@ function legion_commander_innate_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
 	end
+
 	PrecacheResource("soundfile", "soundevents/npc_dota_hero_legion_commander.vsndevts", context)
 	PrecacheResource("soundfile", "soundevents/vo_custom/legion_commander_vo_custom.vsndevts", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_juggernaut/jugg_agility_boost.vpcf", context)
@@ -50,7 +51,6 @@ function legion_commander_innate_custom:UpdateTalents(name)
 			has_r2 = 0,
 			r2_heal = 0,
 
-			has_r3 = 0,
 			r3_str = 0,
 
 			has_h1 = 0,
@@ -58,7 +58,6 @@ function legion_commander_innate_custom:UpdateTalents(name)
 			h1_armor = 0,
 			h1_duration = caster:GetTalentValue("modifier_legion_hero_1", "duration", true),
 
-			has_h2 = 0,
 			h2_move = 0,
 			h2_slow_resist = 0,
 		}
@@ -81,7 +80,6 @@ function legion_commander_innate_custom:UpdateTalents(name)
 	end
 
 	if caster:HasTalent("modifier_legion_duel_3") then
-		self.talents.has_r3 = 1
 		self.talents.r3_str = caster:GetTalentValue("modifier_legion_duel_3", "str")
 	end
 
@@ -93,7 +91,6 @@ function legion_commander_innate_custom:UpdateTalents(name)
 	end
 
 	if caster:HasTalent("modifier_legion_hero_2") then
-		self.talents.has_h2 = 1
 		self.talents.h2_move = caster:GetTalentValue("modifier_legion_hero_2", "move")
 		self.talents.h2_slow_resist = caster:GetTalentValue("modifier_legion_hero_2", "slow_resist")
 	end
@@ -269,6 +266,10 @@ end
 modifier_legion_commander_innate_custom_armor = class(mod_hidden)
 function modifier_legion_commander_innate_custom_armor:OnCreated()
 	self.ability = self:GetAbility()
+	if not IsServer() then
+		return
+	end
+	self.RemoveForDuel = true
 end
 
 function modifier_legion_commander_innate_custom_armor:DeclareFunctions()

@@ -64,7 +64,6 @@ function custom_juggernaut_omnislash:Precache(context)
 
 	PrecacheResource("particle", "particles/units/heroes/hero_juggernaut/juggernaut_omni_slash_tgt.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_juggernaut/juggernaut_omni_slash_trail.vpcf", context)
-
 	PrecacheResource(
 		"particle",
 		"particles/units/heroes/hero_juggernaut/juggernaut_omni_slash_tgt_scepter.vpcf",
@@ -78,20 +77,19 @@ function custom_juggernaut_omnislash:Precache(context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_omnislash.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_swiftslash.vpcf", context)
 	PrecacheResource("particle", "particles/jugger_stack.vpcf", context)
-	PrecacheResource(
-		"particle",
-		"particles/units/heroes/hero_juggernaut/juggernaut_omni_slash_trail_scepter.vpcf",
-		context
-	)
 	PrecacheResource("particle", "particles/juggernaut/omni_root.vpcf", context)
 	PrecacheResource("particle", "particles/jugg_legendary_proc_.vpcf", context)
 	PrecacheResource("particle", "particles/items3_fx/iron_talon_active.vpcf", context)
 	PrecacheResource("particle", "particles/juggernaut/crit_speed.vpcf", context)
 	PrecacheResource("particle", "particles/bristleback/armor_buff.vpcf", context)
-	PrecacheResource("particle", "particles/jugg_parry.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_huskar/huskar_inner_fire_debuff.vpcf", context)
 	PrecacheResource("particle", "particles/juggernaut/omni_attacks.vpcf", context)
-	PrecacheResource("particle", "particles/juggernaut/shard_blink_end.vpcf", context)
+	PrecacheResource(
+		"particle",
+		"particles/econ/items/juggernaut/jugg_arcana/juggernaut_arcana_v2_omni_slash_tgt.vpcf",
+		context
+	)
+	PrecacheResource("particle", "particles/units/heroes/hero_juggernaut/juggernaut_omni_dash.vpcf", context)
 end
 
 function custom_juggernaut_omnislash:UpdateTalents()
@@ -99,7 +97,6 @@ function custom_juggernaut_omnislash:UpdateTalents()
 	if not self.init then
 		self.init = true
 		self.talents = {
-			has_r2 = 0,
 			r2_cd = 0,
 			r2_range = 0,
 
@@ -128,7 +125,6 @@ function custom_juggernaut_omnislash:UpdateTalents()
 	end
 
 	if caster:HasTalent("modifier_juggernaut_omnislash_2") then
-		self.talents.has_r2 = 1
 		self.talents.r2_cd = caster:GetTalentValue("modifier_juggernaut_omnislash_2", "cd")
 		self.talents.r2_range = caster:GetTalentValue("modifier_juggernaut_omnislash_2", "range")
 	end
@@ -171,59 +167,50 @@ function custom_juggernaut_omnislash:GetCastPoint()
 end
 
 function custom_juggernaut_omnislash:GetCooldown(iLevel)
-	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.r2_cd and self.talents.r2_cd or 0)
+	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.r2_cd or 0)
 end
 
 function custom_juggernaut_omnislash:IsArcana()
-	return self:GetCaster():GetModelName() == "models/heroes/juggernaut/juggernaut_arcana.vmdl"
-end
-
-function custom_juggernaut_omnislash:TgtParticle()
-	return wearables_system:GetParticleReplacementAbility(
-		self:GetCaster(),
-		"particles/units/heroes/hero_juggernaut/juggernaut_omni_slash_tgt.vpcf",
-		self
-	)
-end
-
-function custom_juggernaut_omnislash:TrailParticle()
-	return wearables_system:GetParticleReplacementAbility(
-		self:GetCaster(),
-		"particles/units/heroes/hero_juggernaut/juggernaut_omni_slash_trail.vpcf",
-		self
-	)
-end
-
-function custom_juggernaut_omnislash:UpdateEffects()
-	self.sound = wearables_system:GetSoundReplacement(self:GetCaster(), "Hero_Juggernaut.OmniSlash", self)
-	self.juggernaut_tgt_particle = self:TgtParticle()
-	self.juggernaut_trail_particle = self:TrailParticle()
+	return self.caster:GetModelName() == "models/heroes/juggernaut/juggernaut_arcana.vmdl"
 end
 
 function custom_juggernaut_omnislash:OnAbilityPhaseStart()
-	return not self:GetCaster():HasModifier("modifier_custom_juggernaut_blade_fury")
+	return not self.caster:HasModifier("modifier_custom_juggernaut_blade_fury")
 end
 
 function custom_juggernaut_omnislash:OnSpellStart()
 	local target = self:GetCursorTarget()
-	local caster = self:GetCaster()
 
-	self:UpdateEffects()
+	self.sound = wearables_system:GetSoundReplacement(self.caster, "Hero_Juggernaut.OmniSlash", self)
+	self.juggernaut_tgt_particle = wearables_system:GetParticleReplacementAbility(
+		self.caster,
+		"particles/units/heroes/hero_juggernaut/juggernaut_omni_slash_tgt.vpcf",
+		self
+	)
+	self.juggernaut_trail_particle = wearables_system:GetParticleReplacementAbility(
+		self.caster,
+		"particles/units/heroes/hero_juggernaut/juggernaut_omni_slash_trail.vpcf",
+		self
+	)
 
-	caster:EmitSound(wearables_system:GetSoundReplacement(caster, "Hero_Juggernaut.OmniSlash", self))
-	caster:RemoveModifierByName("modifier_custom_juggernaut_omnislash")
+	self.caster:EmitSound(self.sound)
+	self.caster:RemoveModifierByName("modifier_custom_juggernaut_omnislash")
 
-	caster:InterruptMotionControllers(false)
-	caster:Purge(false, true, false, false, false)
+	self.caster:InterruptMotionControllers(false)
+	self.caster:Purge(false, true, false, false, false)
 
-	caster:AddNewModifier(caster, self, "modifier_custom_juggernaut_omnislash", { target = target:entindex() })
+	self.caster:AddNewModifier(
+		self.caster,
+		self,
+		"modifier_custom_juggernaut_omnislash",
+		{ target = target:entindex() }
+	)
 end
 
 function custom_juggernaut_omnislash:DealAttack(target, is_auto)
 	if not IsServer() then
 		return
 	end
-	local caster = self:GetCaster()
 	local auto = 0
 	local effect = self.juggernaut_tgt_particle
 
@@ -233,12 +220,12 @@ function custom_juggernaut_omnislash:DealAttack(target, is_auto)
 	end
 
 	if self.talents.has_r3 == 1 then
-		target:AddNewModifier(caster, self, "modifier_custom_juggernaut_omnislash_armor", {})
+		target:AddNewModifier(self.caster, self, "modifier_custom_juggernaut_omnislash_armor", {})
 	end
 
-	caster:AddNewModifier(caster, self, "modifier_custom_juggernaut_omnislash_attack", { auto = auto })
-	caster:PerformAttack(target, true, true, true, false, false, false, auto == 1, { damage = "jugg_omnislash" })
-	caster:RemoveModifierByName("modifier_custom_juggernaut_omnislash_attack")
+	self.caster:AddNewModifier(self.caster, self, "modifier_custom_juggernaut_omnislash_attack", { auto = auto })
+	self.caster:PerformAttack(target, true, true, true, false, false, false, auto == 1, { damage = "jugg_omnislash" })
+	self.caster:RemoveModifierByName("modifier_custom_juggernaut_omnislash_attack")
 	target:RemoveModifierByName("modifier_custom_juggernaut_omnislash_armor")
 
 	if self.sound then
@@ -294,20 +281,19 @@ function custom_juggernaut_omnislash:ApplyMove()
 	if not IsServer() then
 		return
 	end
-	local caster = self:GetCaster()
 
-	if IsValid(caster.healing_ward_ability) and IsValid(caster.healing_ward_ability.ward) then
-		caster.healing_ward_ability.ward:AddNewModifier(
-			caster,
+	if IsValid(self.caster.healing_ward_ability) and IsValid(self.caster.healing_ward_ability.ward) then
+		self.caster.healing_ward_ability.ward:AddNewModifier(
+			self.caster,
 			self,
 			"modifier_custom_juggernaut_omnislash_move",
 			{ duration = self.talents.r4_duration }
 		)
 	end
 
-	caster:RemoveModifierByName("modifier_custom_juggernaut_omnislash_move")
-	caster:AddNewModifier(
-		caster,
+	self.caster:RemoveModifierByName("modifier_custom_juggernaut_omnislash_move")
+	self.caster:AddNewModifier(
+		self.caster,
 		self,
 		"modifier_custom_juggernaut_omnislash_move",
 		{ duration = self.talents.r4_duration }
@@ -315,11 +301,20 @@ function custom_juggernaut_omnislash:ApplyMove()
 end
 
 modifier_custom_juggernaut_omnislash = class(mod_visible)
+function modifier_custom_juggernaut_omnislash:StatusEffectPriority()
+	return MODIFIER_PRIORITY_SUPER_ULTRA
+end
+function modifier_custom_juggernaut_omnislash:GetStatusEffectName()
+	return wearables_system:GetParticleReplacementAbility(
+		self.parent,
+		"particles/status_fx/status_effect_omnislash.vpcf",
+		self
+	)
+end
 function modifier_custom_juggernaut_omnislash:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.damage = self.ability.damage
 	self.interval = self.ability.interval
 	self.attacks = self.ability.attacks
 	self.radius = self.ability.radius
@@ -335,38 +330,6 @@ function modifier_custom_juggernaut_omnislash:OnCreated(table)
 
 	self:OnIntervalThink()
 	self:StartIntervalThink(self.interval)
-end
-
-function modifier_custom_juggernaut_omnislash:CheckState()
-	return {
-		[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
-		[MODIFIER_STATE_INVULNERABLE] = true,
-		[MODIFIER_STATE_NO_HEALTH_BAR] = true,
-		[MODIFIER_STATE_DISARMED] = true,
-		[MODIFIER_STATE_ROOTED] = true,
-		[MODIFIER_STATE_SILENCED] = true,
-	}
-end
-
-function modifier_custom_juggernaut_omnislash:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_IGNORE_CAST_ANGLE,
-	}
-end
-
-function modifier_custom_juggernaut_omnislash:GetModifierIgnoreCastAngle()
-	return 1
-end
-
-function modifier_custom_juggernaut_omnislash:StatusEffectPriority()
-	return MODIFIER_PRIORITY_SUPER_ULTRA
-end
-function modifier_custom_juggernaut_omnislash:GetStatusEffectName()
-	return wearables_system:GetParticleReplacementAbility(
-		self.parent,
-		"particles/status_fx/status_effect_omnislash.vpcf",
-		self
-	)
 end
 
 function modifier_custom_juggernaut_omnislash:OnIntervalThink()
@@ -389,22 +352,12 @@ function modifier_custom_juggernaut_omnislash:OnIntervalThink()
 	end
 
 	if not enemy then
-		local targets = FindUnitsInRadius(
-			self.parent:GetTeamNumber(),
-			self.parent:GetAbsOrigin(),
-			nil,
+		enemy = self.parent:FindTargets(
 			self.radius,
-			DOTA_UNIT_TARGET_TEAM_ENEMY,
-			DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-			DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
-				+ DOTA_UNIT_TARGET_FLAG_NO_INVIS
-				+ DOTA_UNIT_TARGET_FLAG_INVULNERABLE,
+			nil,
 			FIND_ANY_ORDER,
-			false
-		)
-		if targets then
-			enemy = targets[1]
-		end
+			DOTA_UNIT_TARGET_FLAG_NO_INVIS + DOTA_UNIT_TARGET_FLAG_INVULNERABLE
+		)[1]
 	end
 
 	if not enemy then
@@ -420,7 +373,65 @@ function modifier_custom_juggernaut_omnislash:OnIntervalThink()
 
 	self.target = enemy
 	self.last_target = enemy
-	self:PlayEffect(enemy)
+
+	self.parent:RemoveGesture(ACT_DOTA_OVERRIDE_ABILITY_4)
+	self.parent:StartGesture(ACT_DOTA_OVERRIDE_ABILITY_4)
+
+	local position1 = self.parent:GetAbsOrigin()
+	local turn = (enemy:GetAbsOrigin() - position1):Normalized()
+	turn.z = 0
+
+	local line_pos = enemy:GetAbsOrigin() + turn * 120
+	local qangle = QAngle(0, -30 + 60 * RandomInt(0, 1), 0)
+	line_pos = RotatePosition(enemy:GetAbsOrigin(), qangle, line_pos)
+
+	self.parent:SetAbsOrigin(line_pos + Vector(0, 0, 20))
+	local position2 = self.parent:GetAbsOrigin()
+	self.parent:FacePoint(enemy:GetAbsOrigin())
+
+	local trail_pfx =
+		ParticleManager:CreateParticle(self.ability.juggernaut_trail_particle, PATTACH_ABSORIGIN, self.parent)
+	ParticleManager:SetParticleControl(trail_pfx, 0, position1)
+	ParticleManager:SetParticleControl(trail_pfx, 1, position2)
+	ParticleManager:ReleaseParticleIndex(trail_pfx)
+
+	if self.count == 1 then
+		local dash_arcana = wearables_system:GetParticleReplacementAbility(
+			self.parent,
+			"particles/units/heroes/hero_juggernaut/juggernaut_omni_dash.vpcf",
+			self
+		)
+		if
+			self.ability:IsArcana()
+			or dash_arcana ~= "particles/units/heroes/hero_juggernaut/juggernaut_omni_dash.vpcf"
+		then
+			local vDirection = position2 - position1
+			vDirection.z = 0
+
+			local iParticleID = ParticleManager:CreateParticle(dash_arcana, PATTACH_CUSTOMORIGIN, self.parent)
+			ParticleManager:SetParticleControl(iParticleID, 0, position1)
+			ParticleManager:SetParticleControlForward(iParticleID, 0, -vDirection:Normalized())
+			ParticleManager:SetParticleControlEnt(
+				iParticleID,
+				1,
+				enemy,
+				PATTACH_ABSORIGIN_FOLLOW,
+				nil,
+				enemy:GetAbsOrigin(),
+				true
+			)
+			ParticleManager:SetParticleControlEnt(
+				iParticleID,
+				2,
+				enemy,
+				PATTACH_ABSORIGIN_FOLLOW,
+				nil,
+				enemy:GetAbsOrigin(),
+				true
+			)
+			ParticleManager:ReleaseParticleIndex(iParticleID)
+		end
+	end
 
 	local linken = false
 	if self.count == 1 and self.parent:GetName() == "npc_dota_hero_juggernaut" then
@@ -456,73 +467,6 @@ function modifier_custom_juggernaut_omnislash:OnIntervalThink()
 	self:StartIntervalThink(self.interval)
 end
 
-function modifier_custom_juggernaut_omnislash:PlayEffect(enemy)
-	if not IsServer() then
-		return
-	end
-	self.parent:RemoveGesture(ACT_DOTA_OVERRIDE_ABILITY_4)
-	self.parent:StartGesture(ACT_DOTA_OVERRIDE_ABILITY_4)
-
-	local position1 = self.parent:GetAbsOrigin()
-	local turn = (enemy:GetAbsOrigin() - position1):Normalized()
-	turn.z = 0
-
-	local line_pos = enemy:GetAbsOrigin() + turn * 120
-	local qangle = QAngle(0, -30 + 60 * RandomInt(0, 1), 0)
-	line_pos = RotatePosition(enemy:GetAbsOrigin(), qangle, line_pos)
-
-	self.parent:SetAbsOrigin(line_pos + Vector(0, 0, 20))
-	local position2 = self.parent:GetAbsOrigin()
-
-	local angel = (enemy:GetAbsOrigin() - self.parent:GetAbsOrigin()):Normalized()
-	angel.z = 0
-	self.parent:SetForwardVector(angel)
-	self.parent:FaceTowards(enemy:GetAbsOrigin())
-
-	local trail_pfx =
-		ParticleManager:CreateParticle(self.ability.juggernaut_trail_particle, PATTACH_ABSORIGIN, self.parent)
-	ParticleManager:SetParticleControl(trail_pfx, 0, position1)
-	ParticleManager:SetParticleControl(trail_pfx, 1, position2)
-	ParticleManager:ReleaseParticleIndex(trail_pfx)
-
-	if self.count ~= 1 then
-		return
-	end
-
-	local dash_arcana = wearables_system:GetParticleReplacementAbility(
-		self.parent,
-		"particles/units/heroes/hero_juggernaut/juggernaut_omni_dash.vpcf",
-		self
-	)
-	if self.ability:IsArcana() or dash_arcana ~= "particles/units/heroes/hero_juggernaut/juggernaut_omni_dash.vpcf" then
-		local vDirection = position2 - position1
-		vDirection.z = 0
-
-		local iParticleID = ParticleManager:CreateParticle(dash_arcana, PATTACH_CUSTOMORIGIN, self.parent)
-		ParticleManager:SetParticleControl(iParticleID, 0, position1)
-		ParticleManager:SetParticleControlForward(iParticleID, 0, -vDirection:Normalized())
-		ParticleManager:SetParticleControlEnt(
-			iParticleID,
-			1,
-			enemy,
-			PATTACH_ABSORIGIN_FOLLOW,
-			nil,
-			enemy:GetAbsOrigin(),
-			true
-		)
-		ParticleManager:SetParticleControlEnt(
-			iParticleID,
-			2,
-			enemy,
-			PATTACH_ABSORIGIN_FOLLOW,
-			nil,
-			enemy:GetAbsOrigin(),
-			true
-		)
-		ParticleManager:ReleaseParticleIndex(iParticleID)
-	end
-end
-
 function modifier_custom_juggernaut_omnislash:OnDestroy()
 	if not IsServer() then
 		return
@@ -545,9 +489,29 @@ function modifier_custom_juggernaut_omnislash:OnDestroy()
 	local vec = self.parent:GetForwardVector()
 	vec.z = 0
 
-	self.parent:SetForwardVector(vec)
-	self.parent:FaceTowards(self.parent:GetAbsOrigin() + vec * 10)
+	self.parent:FacePoint(self.parent:GetAbsOrigin() + vec * 10)
 	self.parent:MoveToPositionAggressive(self.parent:GetAbsOrigin())
+end
+
+function modifier_custom_juggernaut_omnislash:CheckState()
+	return {
+		[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
+		[MODIFIER_STATE_INVULNERABLE] = true,
+		[MODIFIER_STATE_NO_HEALTH_BAR] = true,
+		[MODIFIER_STATE_DISARMED] = true,
+		[MODIFIER_STATE_ROOTED] = true,
+		[MODIFIER_STATE_SILENCED] = true,
+	}
+end
+
+function modifier_custom_juggernaut_omnislash:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_IGNORE_CAST_ANGLE,
+	}
+end
+
+function modifier_custom_juggernaut_omnislash:GetModifierIgnoreCastAngle()
+	return 1
 end
 
 modifier_custom_juggernaut_omnislash_attack = class(mod_hidden)
@@ -588,6 +552,7 @@ function modifier_custom_juggernaut_omnislash_tracker:OnCreated()
 
 	self.interval = 0.1
 	self.pos = self.parent:GetAbsOrigin()
+	self.distance = 0
 
 	self.ability:UpdateTalents()
 
@@ -743,23 +708,13 @@ modifier_custom_juggernaut_omnislash_root = class(mod_hidden)
 function modifier_custom_juggernaut_omnislash_root:IsPurgable()
 	return true
 end
+function modifier_custom_juggernaut_omnislash_root:GetEffectName()
+	return "particles/juggernaut/omni_root.vpcf"
+end
 function modifier_custom_juggernaut_omnislash_root:CheckState()
 	return {
 		[MODIFIER_STATE_ROOTED] = true,
 	}
-end
-
-function modifier_custom_juggernaut_omnislash_root:GetEffectName()
-	return "particles/juggernaut/omni_root.vpcf"
-end
-
-function modifier_custom_juggernaut_omnislash_root:OnDestroy()
-	if not IsServer() then
-		return
-	end
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-	self.caster = self:GetCaster()
 end
 
 modifier_custom_juggernaut_omnislash_legendary_mark = class(mod_visible)
@@ -772,7 +727,7 @@ function modifier_custom_juggernaut_omnislash_legendary_mark:OnCreated(table)
 		return
 	end
 	self.RemoveForDuel = true
-	self:AddStack(table.damage)
+	self:OnRefresh(table)
 	self:StartIntervalThink(0.1)
 end
 
@@ -780,14 +735,7 @@ function modifier_custom_juggernaut_omnislash_legendary_mark:OnRefresh(table)
 	if not IsServer() then
 		return
 	end
-	self:AddStack(table.damage)
-end
-
-function modifier_custom_juggernaut_omnislash_legendary_mark:AddStack(damage)
-	if not IsServer() then
-		return
-	end
-	local stack = damage * self.ability.talents.r7_damage
+	local stack = table.damage * self.ability.talents.r7_damage
 	self:SetStackCount(self:GetStackCount() + stack)
 
 	if not IsValid(self.ability.legendary_mod) then
@@ -848,7 +796,7 @@ function modifier_custom_juggernaut_omnislash_legendary_mark:CheckDamage()
 		ability = self.ability,
 		damage = self:GetStackCount() + 10,
 		damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION + DOTA_DAMAGE_FLAG_NO_DAMAGE_MULTIPLIERS,
-		damage_type = DAMAGE_TYPE_PURE,
+		damage_type = self.ability.talents.r7_damage_type,
 	}
 	local real_damage = DoDamage(damageTable, "modifier_juggernaut_omnislash_7")
 	self.parent:SendNumber(6, real_damage)
@@ -936,7 +884,7 @@ function modifier_custom_juggernaut_omnislash_more_attacks:OnCreated(table)
 
 	local effect_cast =
 		ParticleManager:CreateParticle("particles/juggernaut/omni_attacks.vpcf", PATTACH_OVERHEAD_FOLLOW, self.parent)
-	ParticleManager:SetParticleControl(effect_cast, 1, Vector(self.stack, nil, 0))
+	ParticleManager:SetParticleControl(effect_cast, 1, Vector(self.stack, 0, 0))
 	ParticleManager:ReleaseParticleIndex(effect_cast)
 
 	self.parent:EmitSound("Juggernaut.Omni_attacks")
@@ -961,22 +909,48 @@ function modifier_custom_juggernaut_omnislash_more_attacks:OnIntervalThink()
 end
 
 custom_juggernaut_swift_slash = class({})
+function custom_juggernaut_swift_slash:Precache(context)
+	if self:GetCaster() and self:GetCaster():IsIllusion() then
+		return
+	end
+
+	PrecacheResource(
+		"particle",
+		"particles/econ/items/juggernaut/jugg_arcana/juggernaut_arcana_v2_omni_slash_trail.vpcf",
+		context
+	)
+	PrecacheResource("particle", "particles/econ/events/ti10/blink_dagger_start_ti10_lvl2_sparkles.vpcf", context)
+	PrecacheResource(
+		"particle",
+		"particles/econ/items/juggernaut/jugg_arcana/juggernaut_arcana_v2_omni_dash.vpcf",
+		context
+	)
+	PrecacheResource("particle", "particles/juggernaut/shard_blink_end.vpcf", context)
+	PrecacheResource(
+		"particle",
+		"particles/econ/items/juggernaut/jugg_arcana/juggernaut_arcana_v2_omni_slash_tgt.vpcf",
+		context
+	)
+end
 
 function custom_juggernaut_swift_slash:Spawn()
+	if not self:GetCaster() then
+		return
+	end
 	self.caster = self:GetCaster()
 	self.caster.swift_ability = self
 	if IsServer() then
 		self:SetLevel(1)
 	end
-	self.range = self:GetSpecialValueFor("AbilityCastRange")
-	self.stun = self:GetSpecialValueFor("stun")
-	self.width = self:GetSpecialValueFor("width")
-	self.cd_inc = self:GetSpecialValueFor("cd_inc")
+	self.range = self:GetLevelSpecialValueFor("AbilityCastRange", 1)
+	self.stun = self:GetLevelSpecialValueFor("stun", 1)
+	self.width = self:GetLevelSpecialValueFor("width", 1)
+	self.cd_inc = self:GetLevelSpecialValueFor("cd_inc", 1)
 end
 
 function custom_juggernaut_swift_slash:GetCastRange(vector, hTarget)
 	if IsClient() then
-		return (self.range and self.range or 0)
+		return self.range or 0
 	end
 	return 999999
 end
@@ -1029,12 +1003,11 @@ function custom_juggernaut_swift_slash:OnSpellStart()
 
 	self.caster:EmitSound("Juggernaut.Stack")
 	self.caster:SetAbsOrigin(point)
-	self.caster:EmitSound(wearables_system:GetSoundReplacement(self:GetCaster(), "Hero_Juggernaut.OmniSlash", self))
+	self.caster:EmitSound(wearables_system:GetSoundReplacement(self.caster, "Hero_Juggernaut.OmniSlash", self))
 
 	FindClearSpaceForUnit(self.caster, point, false)
 	vec.z = 0
-	self.caster:SetForwardVector(vec)
-	self.caster:FaceTowards(point + vec * 10)
+	self.caster:FacePoint(point + vec * 10)
 
 	self.caster:GenericParticle("particles/juggernaut/shard_blink_end.vpcf")
 
@@ -1046,7 +1019,7 @@ function custom_juggernaut_swift_slash:OnSpellStart()
 		self.width,
 		DOTA_UNIT_TARGET_TEAM_ENEMY,
 		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-		0
+		DOTA_UNIT_TARGET_FLAG_NONE
 	)
 	for _, target in pairs(enemies) do
 		target:AddNewModifier(

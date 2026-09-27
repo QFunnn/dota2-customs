@@ -47,12 +47,12 @@ function modifier_rule_only_cone:OnCreated(table)
 	self.parent:SetBaseMagicalResistanceValue(25)
 	self.parent:SetBaseDamageMax(70)
 	self.parent:SetBaseDamageMin(70)
-	self.parent:SetMaximumGoldBounty(63 * 0.8)
-	self.parent:SetMinimumGoldBounty(63 * 0.8)
+	self.parent:SetMaximumGoldBounty(63 * GoldK)
+	self.parent:SetMinimumGoldBounty(63 * GoldK)
 	self.parent:SetBaseMoveSpeed(310)
-	self.parent:SetDeathXP(150 * 0.7)
+	self.parent:SetDeathXP(150 * ExpK)
 	self.parent:SetAttackCapability(DOTA_UNIT_CAP_MELEE_ATTACK)
-	BluePoints[self.parent:GetUnitName()] = 11
+	CreepsStats[self.parent:GetUnitName()].blue = 11
 end
 
 function modifier_rule_only_cone:DeclareFunctions()

@@ -9835,6 +9835,335 @@ var ITEM_CHANGED_INFORMATION =
     {
         "model" : 17973,
     },
+    9115 :
+    {
+        model : 9115,
+        styles : 0,
+        changed_icons :
+        [
+            ["kunkka_ghostship_custom", "kunkka_ghostship_immortal"],
+        ],
+        changed_effects :
+        [
+            ["kunkka_ghostship_custom", "kunkka_ghostship"],
+        ],
+    },
+    91151 :
+    {
+        model : 9115,
+        styles : 1,
+        changed_icons :
+        [
+            ["kunkka_ghostship_custom", "kunkka_ghostship_immortal"],
+        ],
+        changed_effects :
+        [
+            ["kunkka_ghostship_custom", "kunkka_ghostship"],
+        ],
+    },
+    14966 :
+    {
+        model : 14966,
+    },
+    122911 :
+    {
+        model : 12291,
+        styles : 1,
+        changed_icons :
+        [
+            ["kunkka_torrent_custom", "kunkka/ti8_immortal_weapon_retro/kunkka_torrent_immortal_retro"],
+        ],
+        changed_effects :
+        [
+            ["kunkka_torrent_custom", "kunkka_torrent"],
+        ],
+    },
+    5321 :
+    {
+        model : 5321,
+        changed_effects :
+        [
+            ["kunkka_tidebringer_custom", "kunkka_tidebringer"],
+        ],
+    },
+    6757 :
+    {
+        model : 6757,
+        changed_effects :
+        [
+            ["kunkka_tidebringer_custom", "kunkka_tidebringer"],
+        ],
+    },
+    5334 :
+    {
+        model : 5334,
+        changed_effects :
+        [
+            ["kunkka_torrent_custom", "kunkka_torrent"],
+        ],
+        changed_icons :
+        [
+            ["kunkka_torrent_custom", "kunkka/ti8_immortal_weapon_retro/kunkka_torrent_immortal_retro"],
+        ],
+    },
+    13198 :
+    {
+        model : 13198,
+    },
+    13197 :
+    {
+        model : 13197,
+    },
+    13196 :
+    {
+        model : 13196,
+    },
+    13195 :
+    {
+        model : 13195,
+    },
+    13194 :
+    {
+        model : 13194,
+    },
+    13193 :
+    {
+        model : 13193,
+    },
+    13192 :
+    {
+        model : 13192,
+    },
+    13191 :
+    {
+        model : 13191,
+    },
+    14448 :
+    {
+        model : 14448,
+    },
+    14447 :
+    {
+        model : 14447,
+    },
+    14446 :
+    {
+        model : 14446,
+    },
+    14445 :
+    {
+        model : 14445,
+    },
+    14444 :
+    {
+        model : 14444,
+    },
+    14442 :
+    {
+        model : 14442,
+    },
+    14443 :
+    {
+        model : 14443,
+    },
+    14441 :
+    {
+        model : 14441,
+    },
+    9339 :
+    {
+        model : 9339,
+    },
+    9343 :
+    {
+        model : 9343,
+    },
+    9344 :
+    {
+        model : 9344,
+    },
+    9346 :
+    {
+        model : 9346,
+    },
+    9342 :
+    {
+        model : 9342,
+    },
+    9340 :
+    {
+        model : 9340,
+    },
+    9345 :
+    {
+        model : 9345,
+    },
+    28561 :
+    {
+        model : 28561,
+    },
+    28560 :
+    {
+        model : 28560,
+    },
+    28559 :
+    {
+        model : 28559,
+    },
+    28558 :
+    {
+        model : 28558,
+    },
+    28557 :
+    {
+        model : 28557,
+    },
+    28556 :
+    {
+        model : 28556,
+    },
+    28555 :
+    {
+        model : 28555,
+    },
+    28554 :
+    {
+        model : 28554,
+    },
+    31219 :
+    {
+        model : 31219,
+    },
+    31220 :
+    {
+        model : 31220,
+    },
+    31221 :
+    {
+        model : 31221,
+    },
+    31222 :
+    {
+        model : 31222,
+    },
+    31223 :
+    {
+        model : 31223,
+    },
+    31224 :
+    {
+        model : 31224,
+    },
+    31340 :
+    {
+        model : 31340,
+    },
+    31339 :
+    {
+        model : 31339,
+    },
+    8412 :
+    {
+        model : 8412,
+    },
+    8413 :
+    {
+        model : 8413,
+    },
+    8415 :
+    {
+        model : 8415,
+    },
+    8417 :
+    {
+        model : 8417,
+    },
+    8419 :
+    {
+        model : 8419,
+    },
+    8421 :
+    {
+        model : 8421,
+    },
+    8423 :
+    {
+        model : 8423,
+    },
+    8426 :
+    {
+        model : 8426,
+    },
+    6782 :
+    {
+        model : 6782,
+    },
+    6781 :
+    {
+        model : 6781,
+        styles : 0,
+    },
+    67811 :
+    {
+        model : 6781,
+        styles : 1,
+    },
+    6780 :
+    {
+        model : 6780,
+        styles : 0,
+    },
+    67801 :
+    {
+        model : 6780,
+        styles : 1,
+    },
+    6779 :
+    {
+        model : 6779,
+    },
+    6778 :
+    {
+        model : 6778,
+        changed_icons :
+        [
+            ["kunkka_torrent_custom", "kunkka_divine_anchor_torrent"],
+            ["kunkka_tidebringer_custom", "kunkka_divine_anchor_tidebringer"],
+            ["kunkka_x_marks_the_spot_custom", "kunkka_divine_anchor_x_marks"],
+            ["kunkka_ghostship_custom", "kunkka_divine_anchor_ghostship"],
+        ],
+        changed_effects :
+        [
+            ["kunkka_torrent_custom", "kunkka_torrent"],
+            ["kunkka_tidebringer_custom", "kunkka_tidebringer"],
+            ["kunkka_x_marks_the_spot_custom", "kunkka_x_marks_the_spot"],
+        ],
+    },
+    6777 :
+    {
+        model : 6777,
+        styles : 0,
+    },
+    67771 :
+    {
+        model : 6777,
+        styles : 1,
+    },
+    6430 :
+    {
+        model : 6430,
+        styles : 0,
+    },
+    64301 :
+    {
+        model : 6430,
+        styles : 1,
+    },
+    6428 :
+    {
+        model : 6428,
+    },
+
 }
 
 
@@ -10354,6 +10683,15 @@ var SETS_TEXTURE_FULL_ICON =
     pitfall_crusader : "econ/sets/v2/pitfall_crusader",
     song_of_swiftguard : "econ/sets/v2/the_song_of_swiftguard",
     blifful_knave : "econ/sets/v2/blissful_knave",
+
+    // Kunkka
+    winds_of_conquest : "econ/sets/v2/winds_of_conquest",
+    vengeance_of_the_brine_lords : "econ/sets/v2/vengeance_of_the_brine_lords",
+    seaborne_reprisal : "econ/sets/v2/seaborne_reprisal",
+    sea_spirit : "econ/sets/v2/sea_spirit",
+    carronade_corsair : "econ/sets/v2/carronade_corsair",
+    kunkka_grand_witch_hunter_templar : "econ/sets/v2/kunkka_grand_witch_hunter_templar",
+    bestowments_divine_anchor : "econ/sets/v2/bestowments_divine_anchor",
 }
 
 var OTHER_BACKGROUND_HEROES =
@@ -10383,6 +10721,7 @@ var OTHER_BACKGROUND_HEROES =
     npc_dota_hero_muerta : "morphling",
     npc_dota_hero_furion : "zues",
     npc_dota_hero_pangolier : "witch_doctor",
+    npc_dota_hero_kunkka : "lycan",
 }
 
 var SETS_ARCANA_TYPE =
@@ -10926,6 +11265,17 @@ var SETS_PRIORITY =
         "foxtail_libertine",
         "blifful_knave",
     ],
+    npc_dota_hero_kunkka :
+    [
+        "rare",
+        "winds_of_conquest",
+        "bestowments_divine_anchor",
+        "kunkka_grand_witch_hunter_templar",
+        "sea_spirit",
+        "carronade_corsair",
+        "seaborne_reprisal",
+        "vengeance_of_the_brine_lords",
+    ],
 }
 
 
@@ -11407,6 +11757,14 @@ var ITEMS_EFFECTS_DATA =
         night_stalker_crippling_fear_custom : [13776, 13813, 32606],
         night_stalker_midnight_feast_custom : [],
         night_stalker_darkness_custom : [],
+    },
+
+    npc_dota_hero_kunkka :
+    {
+        kunkka_torrent_custom : [122911, 5334, 6778],
+        kunkka_tidebringer_custom : [5321, 6757, 5334, 6778],
+        kunkka_x_marks_the_spot_custom : [6778],
+        kunkka_ghostship_custom : [9115, 91151, 6778],
     },
 }
 

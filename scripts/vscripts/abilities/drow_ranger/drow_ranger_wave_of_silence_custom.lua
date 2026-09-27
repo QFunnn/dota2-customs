@@ -9,11 +9,6 @@
 
 
 LinkLuaModifier(
-	"modifier_drow_ranger_wave_of_silence_custom",
-	"abilities/drow_ranger/drow_ranger_wave_of_silence_custom",
-	LUA_MODIFIER_MOTION_NONE
-)
-LinkLuaModifier(
 	"modifier_drow_ranger_wave_of_silence_custom_silence",
 	"abilities/drow_ranger/drow_ranger_wave_of_silence_custom",
 	LUA_MODIFIER_MOTION_NONE
@@ -59,6 +54,7 @@ function drow_ranger_wave_of_silence_custom:Precache(context)
 		"particles/units/heroes/hero_crystalmaiden/maiden_crystal_clone_movement.vpcf",
 		context
 	)
+	PrecacheResource("particle", "particles/drow_ranger/frost_heal.vpcf", context)
 end
 
 function drow_ranger_wave_of_silence_custom:UpdateTalents()
@@ -67,19 +63,18 @@ function drow_ranger_wave_of_silence_custom:UpdateTalents()
 	if not self.init then
 		self.init = true
 		self.talents = {
-			has_damage = 0,
-			damage_inc = 0,
-			damage_spell = 0,
+			w1_damage = 0,
+			w1_spell = 0,
 
-			cd_inc = 0,
-			cast_inc = 0,
+			w2_cd = 0,
+			w2_cast = 0,
 
 			has_w3 = 0,
 			w3_damage = 0,
 			w3_base = 0,
 			w3_damage_creeps = 0,
 			w3_heal = caster:GetTalentValue("modifier_drow_gust_3", "heal", true) / 100,
-			w3_radius = caster:GetTalentValue("modifier_drow_gust_3", "aoe", true),
+			w3_aoe = caster:GetTalentValue("modifier_drow_gust_3", "aoe", true),
 			w3_damage_type = caster:GetTalentValue("modifier_drow_gust_3", "damage_type", true),
 			w3_duration = caster:GetTalentValue("modifier_drow_gust_3", "duration", true),
 			w3_max = caster:GetTalentValue("modifier_drow_gust_3", "max", true),
@@ -87,28 +82,27 @@ function drow_ranger_wave_of_silence_custom:UpdateTalents()
 			has_w7 = 0,
 			w7_mana = caster:GetTalentValue("modifier_drow_gust_7", "mana", true) / 100,
 
-			has_move = 0,
-			move_duration = caster:GetTalentValue("modifier_drow_hero_2", "duration", true),
+			has_h2 = 0,
+			h2_duration = caster:GetTalentValue("modifier_drow_hero_2", "duration", true),
 
-			has_stun = 0,
-			stun_knock = 0,
-			stun_silence = caster:GetTalentValue("modifier_drow_hero_5", "silence", true),
+			has_h5 = 0,
+			h5_duration = caster:GetTalentValue("modifier_drow_hero_5", "duration", true),
+			h5_silence = caster:GetTalentValue("modifier_drow_hero_5", "silence", true),
 		}
 	end
 
 	if caster:HasTalent("modifier_drow_gust_1") then
-		self.talents.has_damage = 1
-		self.talents.damage_inc = caster:GetTalentValue("modifier_drow_gust_1", "damage")
-		self.talents.damage_spell = caster:GetTalentValue("modifier_drow_gust_1", "spell")
+		self.talents.w1_damage = caster:GetTalentValue("modifier_drow_gust_1", "damage")
+		self.talents.w1_spell = caster:GetTalentValue("modifier_drow_gust_1", "spell")
 	end
 
 	if caster:HasTalent("modifier_drow_gust_2") then
-		self.talents.cd_inc = caster:GetTalentValue("modifier_drow_gust_2", "cd")
-		self.talents.cast_inc = caster:GetTalentValue("modifier_drow_gust_2", "cast")
+		self.talents.w2_cd = caster:GetTalentValue("modifier_drow_gust_2", "cd")
+		self.talents.w2_cast = caster:GetTalentValue("modifier_drow_gust_2", "cast")
 	end
 
 	if caster:HasTalent("modifier_drow_hero_2") then
-		self.talents.has_move = 1
+		self.talents.has_h2 = 1
 	end
 
 	if caster:HasTalent("modifier_drow_gust_3") then
@@ -120,8 +114,7 @@ function drow_ranger_wave_of_silence_custom:UpdateTalents()
 	end
 
 	if caster:HasTalent("modifier_drow_hero_5") then
-		self.talents.has_stun = 1
-		self.talents.stun_knock = caster:GetTalentValue("modifier_drow_hero_5", "duration")
+		self.talents.has_h5 = 1
 	end
 
 	if caster:HasTalent("modifier_drow_gust_7") then
@@ -130,7 +123,6 @@ function drow_ranger_wave_of_silence_custom:UpdateTalents()
 end
 
 function drow_ranger_wave_of_silence_custom:GetAbilityTextureName()
-	local caster = self:GetCaster()
 	return wearables_system:GetAbilityIconReplacement(self.caster, "drow_ranger_wave_of_silence", self)
 end
 
@@ -146,49 +138,45 @@ function drow_ranger_wave_of_silence_custom:GetManaCost(level)
 end
 
 function drow_ranger_wave_of_silence_custom:GetCooldown(level)
-	return self.BaseClass.GetCooldown(self, level) + (self.talents.cd_inc and self.talents.cd_inc or 0)
+	return self.BaseClass.GetCooldown(self, level) + (self.talents.w2_cd or 0)
 end
 
 function drow_ranger_wave_of_silence_custom:GetCastPoint()
-	return self.BaseClass.GetCastPoint(self) + (self.talents.cast_inc and self.talents.cast_inc or 0)
+	return self.BaseClass.GetCastPoint(self) + (self.talents.w2_cast or 0)
 end
 
 function drow_ranger_wave_of_silence_custom:OnSpellStart()
-	local caster = self:GetCaster()
 	local point = self:GetCursorPosition()
-	local illusion = 0
-	local visual_caster = caster
-
-	local origin = visual_caster:GetAbsOrigin()
+	local origin = self.caster:GetAbsOrigin()
 
 	self.can_legendary_cd = true
 
-	if self.talents.has_move == 1 then
-		caster:RemoveModifierByName("modifier_drow_ranger_wave_of_silence_custom_speed")
-		caster:AddNewModifier(
-			caster,
+	if self.talents.has_h2 == 1 then
+		self.caster:RemoveModifierByName("modifier_drow_ranger_wave_of_silence_custom_speed")
+		self.caster:AddNewModifier(
+			self.caster,
 			self,
 			"modifier_drow_ranger_wave_of_silence_custom_speed",
-			{ duration = self.talents.move_duration }
+			{ duration = self.talents.h2_duration }
 		)
 	end
 
 	if self.talents.has_w3 == 1 then
-		caster:RemoveModifierByName("modifier_drow_ranger_wave_of_silence_custom_attacks")
-		caster:AddNewModifier(
-			caster,
+		self.caster:RemoveModifierByName("modifier_drow_ranger_wave_of_silence_custom_attacks")
+		self.caster:AddNewModifier(
+			self.caster,
 			self,
 			"modifier_drow_ranger_wave_of_silence_custom_attacks",
 			{ duration = self.talents.w3_duration }
 		)
 	end
 
-	if self.tracker and self.tracker.blink_ability then
-		self.tracker.blink_ability:EndCd(0)
+	if IsValid(self.caster.gust_blink_ability) then
+		self.caster.gust_blink_ability:EndCd(0)
 	end
 
 	if point == origin then
-		point = origin + visual_caster:GetForwardVector() * 10
+		point = origin + self.caster:GetForwardVector() * 10
 	end
 
 	local speed = self.wave_speed
@@ -200,13 +188,13 @@ function drow_ranger_wave_of_silence_custom:OnSpellStart()
 	projectile_direction = projectile_direction:Normalized()
 
 	local proj_particle = wearables_system:GetParticleReplacementAbility(
-		caster,
+		self.caster,
 		"particles/units/heroes/hero_drow/drow_silence_wave.vpcf",
 		self
 	)
 
 	local info = {
-		Source = visual_caster,
+		Source = self.caster,
 		Ability = self,
 		vSpawnOrigin = origin,
 
@@ -225,11 +213,10 @@ function drow_ranger_wave_of_silence_custom:OnSpellStart()
 		ExtraData = {
 			x = origin.x,
 			y = origin.y,
-			source = source,
 		},
 	}
 	ProjectileManager:CreateLinearProjectile(info)
-	visual_caster:EmitSound("Hero_DrowRanger.Silence")
+	self.caster:EmitSound("Hero_DrowRanger.Silence")
 end
 
 function drow_ranger_wave_of_silence_custom:OnProjectileHit_ExtraData(target, location, data)
@@ -237,12 +224,9 @@ function drow_ranger_wave_of_silence_custom:OnProjectileHit_ExtraData(target, lo
 		return
 	end
 
-	local caster = self:GetCaster()
 	local silence = self.silence_duration
 	local max_dist = self.knockback_distance_max
-	local damage = self.damage + self.talents.damage_inc
-	local damage_ability = data.source
-	local stun = self.talents.has_stun == 1
+	local damage = self.damage + self.talents.w1_damage
 
 	silence = silence * (1 - target:GetStatusResistance())
 
@@ -251,7 +235,8 @@ function drow_ranger_wave_of_silence_custom:OnProjectileHit_ExtraData(target, lo
 	local distance = vec:Length2D()
 	local dist_k = (1 - distance / self:GetCastRange(Vector(0, 0, 0), nil))
 	distance = dist_k * max_dist
-	duration = (self.knockback_min + (self.knockback_duration - self.knockback_min) * dist_k) + self.talents.stun_knock
+	local duration = (self.knockback_min + (self.knockback_duration - self.knockback_min) * dist_k)
+		+ (self.talents.has_h5 == 1 and self.talents.h5_duration or 0)
 	duration = duration * (1 - target:GetStatusResistance())
 
 	if max_dist < 0 then
@@ -260,12 +245,12 @@ function drow_ranger_wave_of_silence_custom:OnProjectileHit_ExtraData(target, lo
 
 	vec = vec:Normalized()
 
-	if stun then
-		target:AddNewModifier(caster, self, "modifier_stunned", { duration = duration })
+	if self.talents.has_h5 == 1 then
+		target:AddNewModifier(self.caster, self, "modifier_stunned", { duration = duration })
 	end
 
 	if not target:IsDebuffImmune() then
-		local mod = target:AddNewModifier(caster, self, "modifier_generic_knockback", {
+		target:AddNewModifier(self.caster, self, "modifier_generic_knockback", {
 			direction_x = vec.x,
 			direction_y = vec.y,
 			distance = distance,
@@ -277,29 +262,28 @@ function drow_ranger_wave_of_silence_custom:OnProjectileHit_ExtraData(target, lo
 		})
 	end
 
-	self:PlayEffects(target)
+	target:GenericParticle(
+		wearables_system:GetParticleReplacementAbility(
+			self.caster,
+			"particles/units/heroes/hero_drow/drow_hero_silence.vpcf",
+			self
+		)
+	)
 
 	target:RemoveModifierByName("modifier_drow_ranger_wave_of_silence_custom_silence")
 	target:AddNewModifier(
-		caster,
+		self.caster,
 		self,
 		"modifier_drow_ranger_wave_of_silence_custom_silence",
 		{ main_cast = 1, duration = silence }
 	)
-	DoDamage(
-		{ victim = target, attacker = caster, ability = self, damage_type = DAMAGE_TYPE_MAGICAL, damage = damage },
-		damage_ability
-	)
-end
-
-function drow_ranger_wave_of_silence_custom:PlayEffects(target)
-	local caster = self:GetCaster()
-	local effect_silence = wearables_system:GetParticleReplacementAbility(
-		caster,
-		"particles/units/heroes/hero_drow/drow_hero_silence.vpcf",
-		self
-	)
-	target:GenericParticle(effect_silence)
+	DoDamage({
+		victim = target,
+		attacker = self.caster,
+		ability = self,
+		damage_type = DAMAGE_TYPE_MAGICAL,
+		damage = damage,
+	})
 end
 
 function drow_ranger_wave_of_silence_custom:ProcDamage(target, is_aoe)
@@ -313,20 +297,18 @@ function drow_ranger_wave_of_silence_custom:ProcDamage(target, is_aoe)
 		return
 	end
 
-	local caster = self:GetCaster()
-
-	local damageTable = { attacker = caster, ability = self, damage_type = self.talents.w3_damage_type }
+	local damageTable = { attacker = self.caster, ability = self, damage_type = self.talents.w3_damage_type }
 	local heal = 0
 
 	damageTable.damage = target:IsCreep() and self.talents.w3_damage_creeps
 		or (self.talents.w3_base + self.talents.w3_damage * target:GetMaxHealth())
 
-	for _, aoe_target in pairs(caster:FindTargets(self.talents.w3_radius, target:GetAbsOrigin())) do
+	for _, aoe_target in pairs(self.caster:FindTargets(self.talents.w3_aoe, target:GetAbsOrigin())) do
 		if is_aoe or aoe_target == target then
 			damageTable.victim = aoe_target
 			local real_damage = DoDamage(damageTable, "modifier_drow_gust_3")
 			if aoe_target == target then
-				local result = caster:CanLifesteal(aoe_target)
+				local result = self.caster:CanLifesteal(aoe_target)
 				if result then
 					heal = result * real_damage * self.talents.w3_heal
 				end
@@ -338,7 +320,7 @@ function drow_ranger_wave_of_silence_custom:ProcDamage(target, is_aoe)
 	end
 
 	if heal > 0 then
-		caster:GenericHeal(heal, self, true, "particles/drow_ranger/frost_heal.vpcf", "modifier_drow_gust_3")
+		self.caster:GenericHeal(heal, self, true, "particles/drow_ranger/frost_heal.vpcf", "modifier_drow_gust_3")
 	end
 end
 
@@ -350,12 +332,13 @@ function modifier_drow_ranger_wave_of_silence_custom_tracker:OnCreated()
 	self.ability:UpdateTalents()
 
 	self.parent.gust_ability = self.ability
+	self.parent.gust_blink_ability = self.parent:FindAbilityByName("drow_ranger_wave_of_silence_custom_blink")
 
-	self.blink_ability = self.parent:FindAbilityByName("drow_ranger_wave_of_silence_custom_blink")
-	self.frost_ability = self.parent:FindAbilityByName("drow_ranger_frost_arrows_custom")
-
-	if self.blink_ability then
-		self.blink_ability:UpdateTalents()
+	if IsValid(self.parent.gust_blink_ability) then
+		if IsServer() and not self.parent.gust_blink_ability:IsTrained() then
+			self.parent.gust_blink_ability:SetLevel(1)
+		end
+		self.parent.gust_blink_ability:UpdateTalents()
 	end
 
 	self.ability.wave_speed = self.ability:GetSpecialValueFor("wave_speed")
@@ -382,7 +365,7 @@ function modifier_drow_ranger_wave_of_silence_custom_tracker:DeclareFunctions()
 end
 
 function modifier_drow_ranger_wave_of_silence_custom_tracker:GetModifierSpellAmplify_Percentage()
-	return self.ability.talents.damage_spell
+	return self.ability.talents.w1_spell
 end
 
 function modifier_drow_ranger_wave_of_silence_custom_tracker:AttackEvent_out(params)
@@ -414,24 +397,95 @@ function modifier_drow_ranger_wave_of_silence_custom_tracker:AttackEvent_out(par
 	self.ability:ProcDamage(params.target, true)
 end
 
-drow_ranger_wave_of_silence_custom_blink = class({})
-
-function drow_ranger_wave_of_silence_custom_blink:CreateTalent()
-	self:SetHidden(false)
+modifier_drow_ranger_wave_of_silence_custom_speed = class(mod_visible)
+function modifier_drow_ranger_wave_of_silence_custom_speed:GetTexture()
+	return "buffs/drow_ranger/hero_2"
 end
+function modifier_drow_ranger_wave_of_silence_custom_speed:OnCreated()
+	self.parent = self:GetParent()
+
+	if not IsServer() then
+		return
+	end
+	self.parent:GenericParticle("particles/drow_ranger/silence_legendary_speed.vpcf", self)
+	self.parent:GenericParticle("particles/drow_ranger/silence_legendary_speed_start.vpcf")
+end
+
+modifier_drow_ranger_wave_of_silence_custom_silence = class(mod_visible)
+function modifier_drow_ranger_wave_of_silence_custom_silence:IsPurgable()
+	return true
+end
+function modifier_drow_ranger_wave_of_silence_custom_silence:OnCreated(params)
+	self.caster = self:GetCaster()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	if not IsServer() then
+		return
+	end
+	local particle = wearables_system:GetParticleReplacementAbility(
+		self.caster,
+		"particles/generic_gameplay/generic_silenced.vpcf",
+		self
+	)
+	self.main_cast = params.main_cast
+
+	self.particle = self.parent:GenericParticle(particle, self, true)
+end
+
+function modifier_drow_ranger_wave_of_silence_custom_silence:CheckState()
+	return {
+		[MODIFIER_STATE_SILENCED] = true,
+	}
+end
+
+function modifier_drow_ranger_wave_of_silence_custom_silence:OnDestroy()
+	if not IsServer() then
+		return
+	end
+	if self.main_cast ~= 1 then
+		return
+	end
+	if self.ability.talents.has_h5 == 0 then
+		return
+	end
+	self.parent:AddNewModifier(
+		self.caster,
+		self.ability,
+		self:GetName(),
+		{ duration = self.ability.talents.h5_silence * (1 - self.parent:GetStatusResistance()) }
+	)
+end
+
+modifier_drow_ranger_wave_of_silence_custom_attacks = class(mod_visible)
+function modifier_drow_ranger_wave_of_silence_custom_attacks:GetTexture()
+	return "buffs/drow_ranger/gust_3"
+end
+function modifier_drow_ranger_wave_of_silence_custom_attacks:OnCreated()
+	if not IsServer() then
+		return
+	end
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.RemoveForDuel = true
+	self:SetStackCount(self.ability.talents.w3_max)
+end
+
+drow_ranger_wave_of_silence_custom_blink = class({})
+drow_ranger_wave_of_silence_custom_blink.talents = {}
 
 function drow_ranger_wave_of_silence_custom_blink:UpdateTalents()
 	local caster = self:GetCaster()
 
-	if not self.init and caster:HasTalent("modifier_drow_gust_4") then
+	if not self.init then
 		self.init = true
-		if IsServer() and not self:IsTrained() then
-			self:SetLevel(1)
-		end
-		self.range = caster:GetTalentValue("modifier_drow_gust_4", "range", true)
-		self.cd = caster:GetTalentValue("modifier_drow_gust_4", "talent_cd", true)
-		self.duration = caster:GetTalentValue("modifier_drow_gust_4", "duration", true)
-		self.mana = caster:GetTalentValue("modifier_drow_gust_4", "mana", true)
+		self.talents = {
+			w4_range = caster:GetTalentValue("modifier_drow_gust_4", "range", true),
+			w4_talent_cd = caster:GetTalentValue("modifier_drow_gust_4", "talent_cd", true),
+			w4_duration = caster:GetTalentValue("modifier_drow_gust_4", "duration", true),
+			w4_mana = caster:GetTalentValue("modifier_drow_gust_4", "mana", true),
+		}
 	end
 end
 
@@ -439,40 +493,48 @@ function drow_ranger_wave_of_silence_custom_blink:GetCastRange(vLocation, hTarge
 	if IsServer() then
 		return 99999
 	end
-	return (self.range and self.range or 0) - self:GetCaster():GetCastRangeBonus()
+	return (self.talents.w4_range or 0) - self.caster:GetCastRangeBonus()
 end
 
 function drow_ranger_wave_of_silence_custom_blink:GetManaCost(iLevel)
-	return self.mana and self.mana or 0
+	return self.talents.w4_mana or 0
 end
 
 function drow_ranger_wave_of_silence_custom_blink:GetCooldown()
-	return self.cd and self.cd or 0
+	return self.talents.w4_talent_cd or 0
+end
+
+function drow_ranger_wave_of_silence_custom_blink:CreateTalent()
+	self:SetHidden(false)
 end
 
 function drow_ranger_wave_of_silence_custom_blink:OnSpellStart()
-	local caster = self:GetCaster()
-
 	local point = self:GetCursorPosition()
-	local dir = (point - caster:GetAbsOrigin()):Normalized()
-	if point == caster:GetAbsOrigin() then
-		dir = caster:GetForwardVector()
+	local dir = (point - self.caster:GetAbsOrigin()):Normalized()
+	if point == self.caster:GetAbsOrigin() then
+		dir = self.caster:GetForwardVector()
 	end
 	dir.z = 0
 
-	point = caster:GetAbsOrigin() + dir * self.range
+	point = self.caster:GetAbsOrigin() + dir * self.talents.w4_range
 
-	caster:EmitSound("Drow.Silence_blink")
-	caster:EmitSound("Drow.Silence_blink2")
-	caster:AddNewModifier(
-		caster,
+	self.caster:EmitSound("Drow.Silence_blink")
+	self.caster:EmitSound("Drow.Silence_blink2")
+	self.caster:AddNewModifier(
+		self.caster,
 		self,
 		"modifier_drow_ranger_wave_of_silence_custom_blink",
-		{ duration = self.duration, x = point.x, y = point.y }
+		{ duration = self.talents.w4_duration, x = point.x, y = point.y }
 	)
 end
 
 modifier_drow_ranger_wave_of_silence_custom_blink = class(mod_hidden)
+function modifier_drow_ranger_wave_of_silence_custom_blink:GetStatusEffectName()
+	return "particles/status_fx/status_effect_forcestaff.vpcf"
+end
+function modifier_drow_ranger_wave_of_silence_custom_blink:StatusEffectPriority()
+	return MODIFIER_PRIORITY_HIGH
+end
 function modifier_drow_ranger_wave_of_silence_custom_blink:OnCreated(params)
 	if not IsServer() then
 		return
@@ -505,22 +567,13 @@ end
 function modifier_drow_ranger_wave_of_silence_custom_blink:GetModifierDisableTurning()
 	return 1
 end
-function modifier_drow_ranger_wave_of_silence_custom_blink:GetStatusEffectName()
-	return "particles/status_fx/status_effect_forcestaff.vpcf"
-end
-function modifier_drow_ranger_wave_of_silence_custom_blink:StatusEffectPriority()
-	return MODIFIER_PRIORITY_HIGH
-end
 
 function modifier_drow_ranger_wave_of_silence_custom_blink:OnDestroy()
 	if not IsServer() then
 		return
 	end
 	self.parent:InterruptMotionControllers(true)
-	local dir = self.parent:GetForwardVector()
-	dir.z = 0
-	self.parent:SetForwardVector(dir)
-	self.parent:FaceTowards(self.parent:GetAbsOrigin() + dir * 10)
+	self.parent:FacePoint()
 
 	ResolveNPCPositions(self.parent:GetAbsOrigin(), 128)
 end
@@ -536,77 +589,4 @@ end
 
 function modifier_drow_ranger_wave_of_silence_custom_blink:OnHorizontalMotionInterrupted()
 	self:Destroy()
-end
-
-modifier_drow_ranger_wave_of_silence_custom_speed = class(mod_visible)
-function modifier_drow_ranger_wave_of_silence_custom_speed:GetTexture()
-	return "buffs/drow_ranger/hero_2"
-end
-function modifier_drow_ranger_wave_of_silence_custom_speed:OnCreated()
-	self.parent = self:GetParent()
-	self.parent:GenericParticle("particles/drow_ranger/silence_legendary_speed.vpcf", self)
-	self.parent:GenericParticle("particles/drow_ranger/silence_legendary_speed_start.vpcf")
-end
-
-modifier_drow_ranger_wave_of_silence_custom_silence = class({})
-function modifier_drow_ranger_wave_of_silence_custom_silence:IsHidden()
-	return false
-end
-function modifier_drow_ranger_wave_of_silence_custom_silence:IsPurgable()
-	return true
-end
-function modifier_drow_ranger_wave_of_silence_custom_silence:OnCreated(table)
-	self.caster = self:GetCaster()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	if not IsServer() then
-		return
-	end
-	local particle = wearables_system:GetParticleReplacementAbility(
-		self.caster,
-		"particles/generic_gameplay/generic_silenced.vpcf",
-		self
-	)
-	self.main_cast = table.main_cast
-
-	self.particle = self.parent:GenericParticle(particle, self, true)
-end
-
-function modifier_drow_ranger_wave_of_silence_custom_silence:CheckState()
-	return {
-		[MODIFIER_STATE_SILENCED] = true,
-	}
-end
-
-function modifier_drow_ranger_wave_of_silence_custom_silence:OnDestroy()
-	if not IsServer() then
-		return
-	end
-	if self.main_cast ~= 1 then
-		return
-	end
-	if self.ability.talents.has_stun == 0 then
-		return
-	end
-	self.parent:AddNewModifier(
-		self.caster,
-		self.ability,
-		self:GetName(),
-		{ duration = self.ability.talents.stun_silence * (1 - self.parent:GetStatusResistance()) }
-	)
-end
-
-modifier_drow_ranger_wave_of_silence_custom_attacks = class(mod_visible)
-function modifier_drow_ranger_wave_of_silence_custom_attacks:GetTexture()
-	return "buffs/drow_ranger/gust_3"
-end
-function modifier_drow_ranger_wave_of_silence_custom_attacks:OnCreated()
-	if not IsServer() then
-		return
-	end
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self:SetStackCount(self.ability.talents.w3_max)
 end

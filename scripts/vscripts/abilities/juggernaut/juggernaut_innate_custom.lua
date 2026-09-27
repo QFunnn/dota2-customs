@@ -36,14 +36,12 @@ function juggernaut_innate_custom:UpdateTalents()
 	if not self.init then
 		self.init = true
 		self.talents = {
-			has_h1 = 0,
 			h1_health = 0,
 			h1_stats = 0,
 		}
 	end
 
 	if caster:HasTalent("modifier_juggernaut_hero_1") then
-		self.talents.has_h1 = 1
 		self.talents.h1_health = caster:GetTalentValue("modifier_juggernaut_hero_1", "health")
 		self.talents.h1_stats = caster:GetTalentValue("modifier_juggernaut_hero_1", "stats")
 		if IsServer() then
@@ -63,9 +61,8 @@ function juggernaut_innate_custom:AddStack(target, is_spell)
 	if not IsServer() then
 		return
 	end
-	local caster = self:GetCaster()
 	local duration = target:IsCreep() and self.duration_creeps or self.duration
-	local mod = caster:FindModifierByName("modifier_juggernaut_innate_custom_stats")
+	local mod = self.caster:FindModifierByName("modifier_juggernaut_innate_custom_stats")
 	if mod then
 		duration = math.max(mod:GetRemainingTime(), duration)
 	end
@@ -75,8 +72,8 @@ function juggernaut_innate_custom:AddStack(target, is_spell)
 		spell = 1
 	end
 
-	caster:AddNewModifier(
-		caster,
+	self.caster:AddNewModifier(
+		self.caster,
 		self,
 		"modifier_juggernaut_innate_custom_stats",
 		{ spell = spell, duration = duration }
@@ -142,24 +139,11 @@ function modifier_juggernaut_innate_custom_stats:OnCreated(table)
 	if not IsServer() then
 		return
 	end
-	self:AddStack(table)
+	self.RemoveForDuel = true
+	self:OnRefresh(table)
 end
 
 function modifier_juggernaut_innate_custom_stats:OnRefresh(table)
-	if not IsServer() then
-		return
-	end
-	self:AddStack(table)
-end
-
-function modifier_juggernaut_innate_custom_stats:OnDestroy()
-	if not IsServer() then
-		return
-	end
-	self.parent:CalculateStatBonus(true)
-end
-
-function modifier_juggernaut_innate_custom_stats:AddStack(table)
 	if not IsServer() then
 		return
 	end
@@ -180,6 +164,13 @@ function modifier_juggernaut_innate_custom_stats:AddStack(table)
 	if self:GetStackCount() >= self.max then
 		self.parent:GenericParticle("particles/units/heroes/hero_juggernaut/jugg_agility_boost.vpcf", self)
 	end
+end
+
+function modifier_juggernaut_innate_custom_stats:OnDestroy()
+	if not IsServer() then
+		return
+	end
+	self.parent:CalculateStatBonus(true)
 end
 
 function modifier_juggernaut_innate_custom_stats:DeclareFunctions()

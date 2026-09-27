@@ -113,6 +113,30 @@ function shop:MarkItemSeen(data)
 	if data.PlayerID == nil then
 		return
 	end
+	if data.items ~= nil then
+		local player_table = CustomNetTables:GetTableValue("sub_data", tostring(data.PlayerID))
+		if not player_table or not player_table.new_items then
+			return
+		end
+		local seen = {}
+		for _, v in pairs(data.items) do
+			seen[tostring(v)] = true
+		end
+		local new_list = {}
+		local removed = false
+		for _, v in pairs(player_table.new_items) do
+			if seen[tostring(v)] then
+				removed = true
+			else
+				table.insert(new_list, v)
+			end
+		end
+		if removed then
+			player_table.new_items = new_list
+			CustomNetTables:SetTableValue("sub_data", tostring(data.PlayerID), player_table)
+		end
+		return
+	end
 	if data.item_id == nil then
 		return
 	end

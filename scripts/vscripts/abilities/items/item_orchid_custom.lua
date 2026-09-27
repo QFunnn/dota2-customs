@@ -53,10 +53,7 @@ function item_orchid_custom:OnSpellStart()
 	)
 end
 
-modifier_item_orchid_custom_debuff = class({})
-function modifier_item_orchid_custom_debuff:IsHidden()
-	return false
-end
+modifier_item_orchid_custom_debuff = class(mod_visible)
 function modifier_item_orchid_custom_debuff:IsPurgable()
 	return true
 end

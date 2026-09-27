@@ -49,11 +49,6 @@ LinkLuaModifier(
 	"abilities/axe/axe_counter_helix_custom",
 	LUA_MODIFIER_MOTION_NONE
 )
-LinkLuaModifier(
-	"modifier_axe_counter_helix_custom_scepter_cd",
-	"abilities/axe/axe_counter_helix_custom",
-	LUA_MODIFIER_MOTION_NONE
-)
 
 axe_counter_helix_custom = class({})
 axe_counter_helix_custom.talents = {}
@@ -63,7 +58,6 @@ function axe_counter_helix_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
 	end
-
 	PrecacheResource("particle", "particles/units/heroes/hero_axe/axe_counterhelix.vpcf", context)
 	PrecacheResource("particle", "particles/items4_fx/ascetic_cap.vpcf", context)
 	PrecacheResource("particle", "particles/axe_spin.vpcf", context)
@@ -73,7 +67,8 @@ function axe_counter_helix_custom:Precache(context)
 	PrecacheResource("particle", "particles/axe/helix_legendary_effect.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_primal_beast/primal_beast_onslaught_impact.vpcf", context)
 	PrecacheResource("particle", "particles/axe/helix_shield.vpcf", context)
-
+	PrecacheResource("particle", "particles/axe/calling_legendary_cast.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_bloodseeker/bloodseeker_thirst_owner.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/econ/items/axe/axe_weapon_bloodchaser/axe_attack_blur_counterhelix_bloodchaser.vpcf",
@@ -173,27 +168,6 @@ function axe_counter_helix_custom:GetAbilityTextureName()
 	return wearables_system:GetAbilityIconReplacement(self.caster, "axe_counter_helix", self)
 end
 
-function axe_counter_helix_custom:Init()
-	self.caster = self:GetCaster()
-end
-
-function axe_counter_helix_custom:OnInventoryContentsChanged()
-	if not IsServer() then
-		return
-	end
-	if not self.tracker then
-		return
-	end
-	if not self.caster:HasScepter() then
-		return
-	end
-	if self.scepter_init then
-		return
-	end
-
-	self.tracker:ScepterInit()
-end
-
 function axe_counter_helix_custom:GetIntrinsicModifierName()
 	if not self:GetCaster():IsRealHero() then
 		return
@@ -214,9 +188,7 @@ function axe_counter_helix_custom:GetBehavior()
 end
 
 function axe_counter_helix_custom:GetCastRange(vec, hTarget)
-	return self:GetSpecialValueFor("radius")
-		+ (self.talents.e2_radius and self.talents.e2_radius or 0)
-		- self.caster:GetCastRangeBonus()
+	return (self.radius or 0) + (self.talents.e2_radius or 0) - self.caster:GetCastRangeBonus()
 end
 
 function axe_counter_helix_custom:OnSpellStart()
@@ -226,6 +198,20 @@ function axe_counter_helix_custom:OnSpellStart()
 		"modifier_axe_counter_helix_custom_legendary",
 		{ duration = self.talents.e7_duration }
 	)
+end
+
+function axe_counter_helix_custom:OnInventoryContentsChanged()
+	if not IsServer() then
+		return
+	end
+	if not self.tracker then
+		return
+	end
+	if not self.caster:HasScepter() then
+		return
+	end
+
+	self.tracker:ScepterInit()
 end
 
 function axe_counter_helix_custom:Spin(use_cd, ability)
@@ -240,18 +226,11 @@ function axe_counter_helix_custom:Spin(use_cd, ability)
 
 	self.caster:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_3, anim_k)
 
-	local radius = self:GetSpecialValueFor("radius") + self.talents.e2_radius
-	local damage = self:GetSpecialValueFor("damage")
-		+ self.talents.e1_base
-		+ self.talents.e1_health * self.caster:GetMaxHealth()
+	local radius = self.radius + self.talents.e2_radius
+	local damage = self.damage + self.talents.e1_base + self.talents.e1_health * self.caster:GetMaxHealth()
 	local shield_cd = self.caster:FindModifierByName("modifier_axe_counter_helix_custom_shield_cd")
 	if shield_cd then
 		shield_cd:ReduceCd()
-	end
-
-	local damage_ability = nil
-	if ability then
-		damage_ability = ability
 	end
 
 	local targets = self.caster:FindTargets(radius)
@@ -310,7 +289,7 @@ function axe_counter_helix_custom:Spin(use_cd, ability)
 		end
 
 		damageTable.victim = enemy
-		DoDamage(damageTable, damage_ability)
+		DoDamage(damageTable, ability)
 
 		if hit_type == 0 then
 			hit_type = 1
@@ -369,10 +348,6 @@ function axe_counter_helix_custom:Spin(use_cd, ability)
 		"particles/units/heroes/hero_axe/axe_counterhelix.vpcf",
 		self
 	)
-	if proc_stun then
-		sound = "Hero_Axe.CounterHelix_Blood_Chaser"
-		particle_name = "particles/econ/items/axe/axe_weapon_bloodchaser/axe_attack_blur_counterhelix_bloodchaser.vpcf"
-	end
 	self.caster:GenericParticle(particle_name)
 	self.caster:EmitSound(sound)
 
@@ -382,7 +357,7 @@ function axe_counter_helix_custom:Spin(use_cd, ability)
 				self.caster,
 				self,
 				"modifier_axe_counter_helix_custom_cd",
-				{ duration = self:GetSpecialValueFor("cooldown") * self.caster:GetCooldownReduction() }
+				{ duration = self.cooldown * self.caster:GetCooldownReduction() }
 			)
 		else
 			self:UseResources(false, false, false, true)
@@ -396,6 +371,10 @@ function modifier_axe_counter_helix_custom:OnCreated()
 	self.ability = self:GetAbility()
 	self.ability.tracker = self
 	self.ability:UpdateTalents()
+
+	self.ability.radius = self.ability:GetSpecialValueFor("radius")
+	self.ability.damage = self.ability:GetSpecialValueFor("damage")
+	self.ability.cooldown = self.ability:GetSpecialValueFor("cooldown")
 
 	self.ability.scepter_radius = self.ability:GetSpecialValueFor("scepter_radius")
 	self.ability.scepter_interval = self.ability:GetSpecialValueFor("scepter_interval")
@@ -417,6 +396,8 @@ function modifier_axe_counter_helix_custom:OnCreated()
 end
 
 function modifier_axe_counter_helix_custom:OnRefresh()
+	self.ability.damage = self.ability:GetSpecialValueFor("damage")
+
 	if not IsServer() then
 		return
 	end
@@ -467,18 +448,11 @@ function modifier_axe_counter_helix_custom:OnIntervalThink()
 		return
 	end
 
-	local targets = FindUnitsInRadius(
-		self.parent:GetTeamNumber(),
-		self.parent:GetAbsOrigin(),
-		nil,
+	local targets = self.parent:FindTargets(
 		self.ability.scepter_radius,
-		DOTA_UNIT_TARGET_TEAM_ENEMY,
-		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-		DOTA_UNIT_TARGET_FLAG_INVULNERABLE
-			+ DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD
-			+ DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
-		FIND_CLOSEST,
-		false
+		nil,
+		nil,
+		DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD
 	)
 	local allow = false
 	for _, target in pairs(targets) do
@@ -581,6 +555,12 @@ function modifier_axe_counter_helix_custom:CheckStack()
 end
 
 modifier_axe_counter_helix_custom_legendary = class(mod_hidden)
+function modifier_axe_counter_helix_custom_legendary:GetStatusEffectName()
+	return "particles/status_fx/status_effect_beserkers_call.vpcf"
+end
+function modifier_axe_counter_helix_custom_legendary:StatusEffectPriority()
+	return MODIFIER_PRIORITY_ULTRA
+end
 function modifier_axe_counter_helix_custom_legendary:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -596,7 +576,7 @@ function modifier_axe_counter_helix_custom_legendary:OnCreated(table)
 	self.parent:EmitSound("Axe.Helix_legendary2")
 
 	self.count = 0
-	self.parent:AddDamageEvent_inc(self)
+	self.parent:AddDamageEvent_inc(self, true)
 	self.ability:EndCd()
 
 	self.RemoveForDuel = true
@@ -625,14 +605,6 @@ function modifier_axe_counter_helix_custom_legendary:OnIntervalThink()
 		stack = stack,
 		style = "AxeHelix",
 	})
-end
-
-function modifier_axe_counter_helix_custom_legendary:GetStatusEffectName()
-	return "particles/status_fx/status_effect_beserkers_call.vpcf"
-end
-
-function modifier_axe_counter_helix_custom_legendary:StatusEffectPriority()
-	return MODIFIER_PRIORITY_ULTRA
 end
 
 function modifier_axe_counter_helix_custom_legendary:OnDestroy()
@@ -668,6 +640,12 @@ function modifier_axe_counter_helix_custom_legendary:GetModifierModelScale()
 end
 
 modifier_axe_counter_helix_custom_legendary_active = class(mod_hidden)
+function modifier_axe_counter_helix_custom_legendary_active:GetStatusEffectName()
+	return "particles/status_fx/status_effect_beserkers_call.vpcf"
+end
+function modifier_axe_counter_helix_custom_legendary_active:StatusEffectPriority()
+	return MODIFIER_PRIORITY_ULTRA
+end
 function modifier_axe_counter_helix_custom_legendary_active:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -720,14 +698,6 @@ function modifier_axe_counter_helix_custom_legendary_active:CheckState()
 	}
 end
 
-function modifier_axe_counter_helix_custom_legendary_active:GetStatusEffectName()
-	return "particles/status_fx/status_effect_beserkers_call.vpcf"
-end
-
-function modifier_axe_counter_helix_custom_legendary_active:StatusEffectPriority()
-	return MODIFIER_PRIORITY_ULTRA
-end
-
 function modifier_axe_counter_helix_custom_legendary_active:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_MODEL_SCALE,
@@ -758,7 +728,8 @@ function modifier_axe_counter_helix_custom_armor:OnCreated(table)
 	if not IsServer() then
 		return
 	end
-	self:SetStackCount(1)
+	self.RemoveForDuel = true
+	self:OnRefresh()
 end
 
 function modifier_axe_counter_helix_custom_armor:OnRefresh(table)
@@ -821,9 +792,6 @@ function modifier_axe_counter_helix_custom_shield_cd:ReduceCd()
 end
 
 modifier_axe_counter_helix_custom_cd = class(mod_hidden)
-function modifier_axe_counter_helix_custom_cd:IsDebuff()
-	return true
-end
 
 modifier_axe_counter_helix_custom_health_change = class(mod_visible)
 function modifier_axe_counter_helix_custom_health_change:GetTexture()
@@ -841,6 +809,7 @@ function modifier_axe_counter_helix_custom_health_change:OnCreated()
 	if not IsServer() then
 		return
 	end
+	self.RemoveForDuel = true
 	self:OnRefresh()
 end
 
@@ -928,7 +897,7 @@ function modifier_axe_counter_helix_custom_scepter:OnIntervalThink()
 	end
 
 	if not self.parent:HasModifier("modifier_axe_counter_helix_custom_legendary_active") then
-		self.ability:Spin(0, "scepter")
+		self.ability:Spin(0, "Scepter")
 	end
 
 	if self:GetStackCount() < self.ability.scepter_max then

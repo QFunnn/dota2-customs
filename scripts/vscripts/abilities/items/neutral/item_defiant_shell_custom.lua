@@ -35,6 +35,11 @@ function item_defiant_shell_custom:Precache(context)
 	PrecacheResource("particle", "particles/items8_fx/foragers_kit_buff_mana.vpcf", context)
 end
 
+function item_defiant_shell_custom:Spawn()
+	self.armor = self:GetSpecialValueFor("armor")
+	self.counter_damage = self:GetSpecialValueFor("counter_damage")
+end
+
 modifier_item_defiant_shell_custom = class(mod_hidden)
 function modifier_item_defiant_shell_custom:RemoveOnDeath()
 	return false
@@ -43,8 +48,7 @@ function modifier_item_defiant_shell_custom:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.armor = self.ability:GetSpecialValueFor("armor")
-	self.ability.counter_damage = self.ability:GetSpecialValueFor("counter_damage")
+	self.armor = self.ability.armor
 	if not self.parent:IsRealHero() then
 		return
 	end
@@ -63,6 +67,9 @@ end
 
 function modifier_item_defiant_shell_custom:AttackStartEvent_inc(params)
 	if not IsServer() then
+		return
+	end
+	if not IsValid(self.ability) then
 		return
 	end
 	if not self.ability:IsFullyCastable() then
@@ -90,12 +97,14 @@ function modifier_item_defiant_shell_custom:AttackStartEvent_inc(params)
 	self.parent:PerformAttack(target, true, false, true, true, true, false, false)
 	self.parent:RemoveModifierByName("modifier_item_defiant_shell_custom_damage")
 
-	self.ability:UseResources(false, false, false, true)
+	self.ability:StartCd()
 end
 
 modifier_item_defiant_shell_custom_damage = class(mod_hidden)
 function modifier_item_defiant_shell_custom_damage:OnCreated()
-	self.damage = self:GetAbility().counter_damage - 100
+	self.ability = self:GetAbility()
+
+	self.damage = self.ability.counter_damage - 100
 end
 
 function modifier_item_defiant_shell_custom_damage:DeclareFunctions()

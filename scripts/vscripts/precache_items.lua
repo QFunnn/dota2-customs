@@ -105,4 +105,5 @@ return {
 	"item_spellslinger_custom",
 	"item_overwhelming_blink_custom",
 	"item_lotus_orb_custom",
+	"item_rapier_custom",
 }

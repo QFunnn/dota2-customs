@@ -57,7 +57,6 @@ function lina_laguna_blade_custom:Precache(context)
 		return
 	end
 	PrecacheResource("particle", "particles/units/heroes/hero_lina/lina_spell_laguna_blade.vpcf", context)
-
 	PrecacheResource("particle", "particles/units/heroes/hero_lina/lina_spell_laguna_blade_shard_scorch.vpcf", context)
 	PrecacheResource(
 		"particle",
@@ -84,6 +83,7 @@ function lina_laguna_blade_custom:Precache(context)
 	PrecacheResource("particle", "particles/lina/laguna_legendary_radius.vpcf", context)
 	PrecacheResource("particle", "particles/lina/laguna_legendary.vpcf", context)
 	PrecacheResource("particle", "particles/zeus/wrath_legendary_refresh.vpcf", context)
+	PrecacheResource("particle", "particles/lina/array_shield.vpcf", context)
 end
 
 function lina_laguna_blade_custom:UpdateTalents(name)
@@ -170,20 +170,20 @@ function lina_laguna_blade_custom:GetIntrinsicModifierName()
 	return "modifier_lina_laguna_blade_custom_tracker"
 end
 
+function lina_laguna_blade_custom:GetCooldown(iLevel)
+	return self.BaseClass.GetCooldown(self, iLevel) + (self.caster:HasShard() and (self.shard_cd or 0) or 0)
+end
+
 function lina_laguna_blade_custom:GetCastPoint()
 	return self.BaseClass.GetCastPoint(self) + (self.talents.has_r4 == 1 and self.talents.r4_cast or 0)
 end
 
-function lina_laguna_blade_custom:GetCooldown(iLevel)
-	return self.BaseClass.GetCooldown(self, iLevel) + (self.caster:HasShard() and self.shard_cd or 0)
+function lina_laguna_blade_custom:GetAOERadius()
+	return (self.aoe or 0)
 end
 
 function lina_laguna_blade_custom:GetDamage()
 	return self.damage + self.caster:GetMaxHealth() * self.talents.r1_damage
-end
-
-function lina_laguna_blade_custom:GetAOERadius()
-	return self.aoe and self.aoe or 0
 end
 
 function lina_laguna_blade_custom:OnSpellStart()
@@ -243,7 +243,7 @@ function lina_laguna_blade_custom:OnSpellStart()
 	end
 
 	if self.caster:HasShard() then
-		local vec = (target:GetAbsOrigin() - self.parent:GetAbsOrigin())
+		local vec = (target:GetAbsOrigin() - self.caster:GetAbsOrigin())
 		vec.z = 0
 
 		local distance = vec:Length2D()
@@ -252,7 +252,7 @@ function lina_laguna_blade_custom:OnSpellStart()
 		local dist_k = math.min(1, (1 - distance / 700))
 		distance = 50 + dist_k * (self.shard_knock - 50)
 
-		target:AddNewModifier(self.parent, self.ability, "modifier_generic_knockback", {
+		target:AddNewModifier(self.caster, self, "modifier_generic_knockback", {
 			direction_x = vec.x,
 			direction_y = vec.y,
 			distance = distance,
@@ -263,7 +263,7 @@ function lina_laguna_blade_custom:OnSpellStart()
 		})
 		self.caster:AddNewModifier(
 			self.caster,
-			self.ability,
+			self,
 			"modifier_generic_debuff_immune",
 			{ duration = self.shard_bkb, effect = 2, sound = 1 }
 		)
@@ -355,7 +355,7 @@ function modifier_lina_laguna_blade_custom:OnDestroy()
 		self.parent:AddNewModifier(
 			self.caster,
 			self.ability,
-			"modifier_lina_laguna_blade_custom_tracker_quest",
+			"modifier_lina_fiery_soul_custom_quest",
 			{ duration = self.caster.quest.number }
 		)
 	end
@@ -629,6 +629,9 @@ modifier_lina_laguna_blade_custom_slow = class(mod_hidden)
 function modifier_lina_laguna_blade_custom_slow:IsPurgable()
 	return true
 end
+function modifier_lina_laguna_blade_custom_slow:GetEffectName()
+	return "particles/units/heroes/hero_zuus/zuus_shard_slow.vpcf"
+end
 function modifier_lina_laguna_blade_custom_slow:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -643,10 +646,6 @@ end
 
 function modifier_lina_laguna_blade_custom_slow:GetModifierMoveSpeedBonus_Percentage()
 	return self.slow
-end
-
-function modifier_lina_laguna_blade_custom_slow:GetEffectName()
-	return "particles/units/heroes/hero_zuus/zuus_shard_slow.vpcf"
 end
 
 modifier_lina_laguna_blade_custom_damage = class(mod_visible)
@@ -775,6 +774,7 @@ function modifier_lina_laguna_blade_custom_legendary_stack:OnCreated()
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
 	self.ability = self:GetAbility()
+	self.RemoveForDuel = true
 
 	self.particle = self.parent:GenericParticle("particles/lina/laguna_legendary_stack.vpcf", self, true)
 	self:OnRefresh()
@@ -788,12 +788,7 @@ function modifier_lina_laguna_blade_custom_legendary_stack:OnRefresh()
 		return
 	end
 	self:IncrementStackCount()
-end
 
-function modifier_lina_laguna_blade_custom_legendary_stack:OnStackCountChanged()
-	if not IsServer() then
-		return
-	end
 	local number_1 = self:GetStackCount()
 	local double = math.floor(number_1 / 10)
 	local number_2 = number_1 - double * 10

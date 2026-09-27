@@ -23,6 +23,12 @@ function item_enhancement_hulking_custom:GetIntrinsicModifierName()
 	return "modifier_item_enhancement_hulking_custom"
 end
 
+function item_enhancement_hulking_custom:Spawn()
+	self.status = self:GetSpecialValueFor("status")
+	self.health = self:GetSpecialValueFor("health")
+	self.heal_bonus = self:GetSpecialValueFor("heal_bonus")
+end
+
 modifier_item_enhancement_hulking_custom = class(mod_hidden)
 function modifier_item_enhancement_hulking_custom:RemoveOnDeath()
 	return false
@@ -31,9 +37,9 @@ function modifier_item_enhancement_hulking_custom:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.status = self.ability:GetSpecialValueFor("status")
-	self.health = self.ability:GetSpecialValueFor("health")
-	self.heal_bonus = self.ability:GetSpecialValueFor("heal_bonus")
+	self.status = self.ability.status
+	self.health = self.ability.health
+	self.heal_bonus = self.ability.heal_bonus
 end
 
 function modifier_item_enhancement_hulking_custom:DeclareFunctions()

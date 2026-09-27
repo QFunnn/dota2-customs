@@ -37,10 +37,40 @@ function item_eternal_shroud_custom:GetIntrinsicModifierName()
 	return "modifier_item_eternal_shroud_custom"
 end
 
+function item_eternal_shroud_custom:Spawn()
+	self.bonus_health = self:GetSpecialValueFor("bonus_health")
+	self.bonus_stats = self:GetSpecialValueFor("bonus_stats")
+	self.bonus_spell_resist = self:GetSpecialValueFor("bonus_spell_resist")
+	self.spell_resist_increase = self:GetSpecialValueFor("spell_resist_increase")
+	self.spell_damage_thresh = self:GetSpecialValueFor("spell_damage_thresh")
+	self.spell_damage_duration = self:GetSpecialValueFor("spell_damage_duration")
+	self.spell_damage_increase = self:GetSpecialValueFor("spell_damage_increase")
+	self.spell_damage_max = self:GetSpecialValueFor("spell_damage_max")
+end
+
 modifier_item_eternal_shroud_custom = class(mod_hidden)
 function modifier_item_eternal_shroud_custom:RemoveOnDeath()
 	return false
 end
+function modifier_item_eternal_shroud_custom:OnCreated()
+	self.ability = self:GetAbility()
+	self.parent = self:GetParent()
+
+	if self.parent:IsRealHero() then
+		self.parent:AddDamageEvent_inc(self, true)
+	end
+
+	self.health = self.ability.bonus_health
+	self.stats = self.ability.bonus_stats
+	self.resist = self.ability.bonus_spell_resist
+	self.resist_bonus = self.ability.spell_resist_increase
+
+	self.damage_thresh = self.ability.spell_damage_thresh
+	self.duration = self.ability.spell_damage_duration
+
+	self.damage_count = 0
+end
+
 function modifier_item_eternal_shroud_custom:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_HEALTH_BONUS,
@@ -82,25 +112,6 @@ end
 
 function modifier_item_eternal_shroud_custom:GetModifierBonusStats_Intellect()
 	return self.stats
-end
-
-function modifier_item_eternal_shroud_custom:OnCreated()
-	self.ability = self:GetAbility()
-	self.parent = self:GetParent()
-
-	if self.parent:IsRealHero() then
-		self.parent:AddDamageEvent_inc(self, true)
-	end
-
-	self.health = self.ability:GetSpecialValueFor("bonus_health")
-	self.stats = self.ability:GetSpecialValueFor("bonus_stats")
-	self.resist = self.ability:GetSpecialValueFor("bonus_spell_resist")
-	self.resist_bonus = self.ability:GetSpecialValueFor("spell_resist_increase")
-
-	self.damage_thresh = self.ability:GetSpecialValueFor("spell_damage_thresh")
-	self.duration = self.ability:GetSpecialValueFor("spell_damage_duration")
-
-	self.damage_count = 0
 end
 
 function modifier_item_eternal_shroud_custom:DamageEvent_inc(params)
@@ -146,9 +157,9 @@ function modifier_item_eternal_shroud_custom_active:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.damage = self.ability:GetSpecialValueFor("spell_damage_increase")
-	self.resist = self.ability:GetSpecialValueFor("spell_resist_increase")
-	self.max = self.ability:GetSpecialValueFor("spell_damage_max")
+	self.damage = self.ability.spell_damage_increase
+	self.resist = self.ability.spell_resist_increase
+	self.max = self.ability.spell_damage_max
 	if not IsServer() then
 		return
 	end

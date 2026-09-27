@@ -48,6 +48,7 @@ _G.icon_hero_width = {
 	["npc_dota_hero_skeleton_king_alt1"] = { 0.95, 1 },
 	["npc_dota_hero_skeleton_king_alt2"] = { 1, 0.95 },
 	["npc_dota_hero_night_stalker"] = { 0.97, 1 },
+	["npc_dota_hero_kunkka"] = { 0.8, 1 },
 }
 
 _G.icon_hero_id = {
@@ -139,6 +140,7 @@ _G.icon_hero_id = {
 	["npc_dota_hero_broodmother"] = 8,
 	["npc_dota_hero_night_stalker"] = 34,
 	["npc_dota_hero_jakiro"] = 56,
+	["npc_dota_hero_kunkka"] = 24,
 }
 
 --particles/hero_capture_icon/hero_capture_icon.vpcf
@@ -316,6 +318,7 @@ _G.UnvalidAbilities = {
 	["custom_puck_ethereal_jaunt"] = true,
 	["monkey_king_tree_dance_custom"] = true,
 	["ogre_magi_multicast_custom"] = true,
+	["custom_phantom_assassin_coup_de_grace"] = true,
 }
 
 _G.Recast_mods = {
@@ -330,6 +333,9 @@ _G.Recast_mods = {
 	["furion_teleportation_custom"] = "modifier_furion_teleportation_custom_legendary",
 	["pangolier_gyroshell_custom"] = "modifier_pangolier_gyroshell_custom",
 	["pangolier_rollup_custom"] = "modifier_pangolier_rollup_custom",
+	["kunkka_x_marks_the_spot_custom"] = "modifier_kunkka_xmark_custom_caster",
+	["kunkka_ghostship_custom"] = "modifier_kunkka_ghostship_custom_legendary_sail",
+	["custom_phantom_assassin_coup_de_grace_legendary"] = "modifier_phantom_assassin_phantom_coup_de_grace_legendary",
 }
 
 _G.NoPushSpells = {
@@ -423,6 +429,7 @@ _G.new_talent_system = {
 	["npc_dota_hero_ogre_magi"] = 1,
 	["npc_dota_hero_pangolier"] = 1,
 	["npc_dota_hero_kunkka"] = 1,
+	["npc_dota_hero_phantom_assassin"] = 1,
 }
 
 _G.hero_changes = {
@@ -436,7 +443,18 @@ _G.hero_changes = {
 		"Omnislash",
 		"Scepter",
 	},
-	["npc_dota_hero_phantom_assassin"] = { "Phantom_Strike", "Phantom_Strike", "Blur", "Coup_de_Grace", "Scepter" },
+	["npc_dota_hero_phantom_assassin"] = {
+		"innate",
+		"stifling",
+		"stifling",
+		"phantom",
+		"phantom",
+		"blur",
+		"blur",
+		"grace",
+		"grace",
+		"scepter",
+	},
 	["npc_dota_hero_huskar"] = {
 		"innate",
 		"movespeed",
@@ -665,6 +683,17 @@ _G.hero_changes = {
 		"macropyre",
 		"scepter",
 	},
+	["npc_dota_hero_kunkka"] = {
+		"innate",
+		"innate",
+		"torrent",
+		"tidebringer",
+		"tidebringer",
+		"xmark",
+		"xmark",
+		"ship",
+		"Scepter",
+	},
 }
 
 _G.no_cleave_mods = {
@@ -679,8 +708,9 @@ _G.attack_mods = {
 		["item_manta_custom_illusion"] = "",
 	},
 	["npc_dota_hero_phantom_assassin"] = {
-		["modifier_custom_phantom_assassin_stifling_dagger_attack"] = "",
-		["modifier_phantom_assassin_phantom_strike_legendary_illusion"] = "modifier_phantom_assassin_blink_7",
+		["pa_q"] = "",
+		["pa_e3"] = "modifier_phantom_assassin_blur_3",
+		["modifier_phantom_assassin_phantom_blur_illusion"] = "modifier_phantom_assassin_blur_7",
 	},
 	["npc_dota_hero_ember_spirit"] = {
 		["modifier_ember_spirit_sleight_of_fist_custom_caster"] = "",
@@ -855,6 +885,11 @@ _G.attack_mods = {
 	["npc_dota_hero_ogre_magi"] = {
 		["ogre_scepter"] = "Scepter",
 	},
+	["npc_dota_hero_kunkka"] = {
+		["kunkka_s8"] = "modifier_kunkka_shop_8",
+		["kunkka_s9"] = "modifier_kunkka_shop_9",
+		["kunkka_w7"] = "modifier_kunkka_tidebringer_7",
+	},
 }
 
 _G.auto_cast_spells = {
@@ -1017,178 +1052,6 @@ function dota1x6:IsSphere(item)
 	return false
 end
 
-function dota1x6:GetHeroType(player)
-	if not IsServer() then
-		return
-	end
-
-	if player:GetUnitName() == "npc_dota_hero_juggernaut" then
-		return { "melle", "mage" }
-	end
-	if player:GetUnitName() == "npc_dota_hero_phantom_assassin" then
-		return { "melle" }
-	end
-	if player:GetUnitName() == "npc_dota_hero_terrorblade" then
-		return { "melle" }
-	end
-	if player:GetUnitName() == "npc_dota_hero_nevermore" then
-		return { "mage" }
-	end
-	if player:GetUnitName() == "npc_dota_hero_puck" then
-		return { "mage" }
-	end
-	if player:GetUnitName() == "npc_dota_hero_queenofpain" then
-		return { "mage" }
-	end
-	if player:GetUnitName() == "npc_dota_hero_huskar" then
-		return { "mage" }
-	end
-	if player:GetUnitName() == "npc_dota_hero_bristleback" then
-		return { "mage", "melle" }
-	end
-	if player:GetUnitName() == "npc_dota_hero_legion_commander" then
-		return { "mage", "melle" }
-	end
-	if player:GetUnitName() == "npc_dota_hero_void_spirit" then
-		return { "melle", "mage" }
-	end
-	if player:GetUnitName() == "npc_dota_hero_ember_spirit" then
-		return { "melle", "mage" }
-	end
-	if player:GetUnitName() == "npc_dota_hero_pudge" then
-		return { "melle", "mage" }
-	end
-	if player:GetUnitName() == "npc_dota_hero_hoodwink" then
-		return { "mage" }
-	end
-	if player:GetUnitName() == "npc_dota_hero_skeleton_king" then
-		return { "melle", "mage" }
-	end
-	if player:GetUnitName() == "npc_dota_hero_lina" then
-		return { "mage" }
-	end
-	if player:GetUnitName() == "npc_dota_hero_troll_warlord" then
-		return { "melle", "mage" }
-	end
-	if player:GetUnitName() == "npc_dota_hero_axe" then
-		return { "melle", "mage" }
-	end
-	if player:GetUnitName() == "npc_dota_hero_alchemist" then
-		return { "melle", "mage" }
-	end
-	if player:GetUnitName() == "npc_dota_hero_ogre_magi" then
-		return { "melle", "mage" }
-	end
-	if player:GetUnitName() == "npc_dota_hero_antimage" then
-		return { "melle", "mage" }
-	end
-	if player:GetUnitName() == "npc_dota_hero_primal_beast" then
-		return { "melle", "mage" }
-	end
-	if player:GetUnitName() == "npc_dota_hero_marci" then
-		return { "melle", "mage" }
-	end
-	if player:GetUnitName() == "npc_dota_hero_templar_assassin" then
-		return {}
-	end
-	if player:GetUnitName() == "npc_dota_hero_bloodseeker" then
-		return { "melle", "mage" }
-	end
-	if player:GetUnitName() == "npc_dota_hero_monkey_king" then
-		return { "melle", "mage" }
-	end
-	if player:GetUnitName() == "npc_dota_hero_mars" then
-		return { "melle", "mage" }
-	end
-	if player:GetUnitName() == "npc_dota_hero_zuus" then
-		return { "mage" }
-	end
-	if player:GetUnitName() == "npc_dota_hero_leshrac" then
-		return { "mage" }
-	end
-	if player:GetUnitName() == "npc_dota_hero_crystal_maiden" then
-		return { "mage" }
-	end
-	if player:GetUnitName() == "npc_dota_hero_snapfire" then
-		return { "mage" }
-	end
-	if player:GetUnitName() == "npc_dota_hero_sven" then
-		return { "melle" }
-	end
-	if player:GetUnitName() == "npc_dota_hero_sniper" then
-		return { "mage" }
-	end
-	if player:GetUnitName() == "npc_dota_hero_muerta" then
-		return { "mage" }
-	end
-	if player:GetUnitName() == "npc_dota_hero_pangolier" then
-		return { "melle", "mage" }
-	end
-	if player:GetUnitName() == "npc_dota_hero_arc_warden" then
-		return { "mage" }
-	end
-	if player:GetUnitName() == "npc_dota_hero_invoker" then
-		return { "mage" }
-	end
-	if player:GetUnitName() == "npc_dota_hero_razor" then
-		return { "mage" }
-	end
-	if player:GetUnitName() == "npc_dota_hero_sand_king" then
-		return { "melle", "mage" }
-	end
-	if player:GetUnitName() == "npc_dota_hero_furion" then
-		return { "mage" }
-	end
-	if player:GetUnitName() == "npc_dota_hero_abaddon" then
-		return { "melle", "mage" }
-	end
-	if player:GetUnitName() == "npc_dota_hero_drow_ranger" then
-		return { "mage" }
-	end
-	if player:GetUnitName() == "npc_dota_hero_skywrath_mage" then
-		return { "mage" }
-	end
-	if player:GetUnitName() == "npc_dota_hero_slark" then
-		return { "melle", "mage" }
-	end
-	if player:GetUnitName() == "npc_dota_hero_centaur" then
-		return { "melle", "mage" }
-	end
-	if player:GetUnitName() == "npc_dota_hero_enigma" then
-		return { "mage" }
-	end
-	if player:GetUnitName() == "npc_dota_hero_bane" then
-		return { "mage" }
-	end
-	if player:GetUnitName() == "npc_dota_hero_morphling" then
-		return { "mage" }
-	end
-	if player:GetUnitName() == "npc_dota_hero_life_stealer" then
-		return { "melle", "mage" }
-	end
-	if player:GetUnitName() == "npc_dota_hero_tinker" then
-		return { "mage" }
-	end
-	if player:GetUnitName() == "npc_dota_hero_witch_doctor" then
-		return { "mage" }
-	end
-	if player:GetUnitName() == "npc_dota_hero_nyx_assassin" then
-		return { "melle", "mage" }
-	end
-	if player:GetUnitName() == "npc_dota_hero_broodmother" then
-		return { "melle", "mage" }
-	end
-	if player:GetUnitName() == "npc_dota_hero_night_stalker" then
-		return { "melle", "mage" }
-	end
-	if player:GetUnitName() == "npc_dota_hero_jakiro" then
-		return { "mage" }
-	end
-	if player:GetUnitName() == "npc_dota_hero_kunkka" then
-		return { "melle", "mage" }
-	end
-end
-
 function dota1x6:IsPatrol(name)
 	if
 		name == "patrol_melee_good"
@@ -1202,140 +1065,138 @@ function dota1x6:IsPatrol(name)
 	return false
 end
 
-function dota1x6:IsAncientCreep(unit)
-	if not IsServer() then
-		return
-	end
-	name = unit:GetUnitName()
-	if
-		name == "npc_dota_neutral_black_dragon"
-		or name == "npc_dota_neutral_black_drake"
-		or name == "npc_dota_neutral_granite_golem"
-		or name == "npc_dota_neutral_rock_golem"
-		or name == "npc_dota_neutral_big_thunder_lizard"
-		or name == "npc_dota_neutral_small_thunder_lizard"
-	then
-		return true
-	end
-
-	return false
-end
-
 _G.RemoveForDuel = {
 	["modifier_smoke_of_deceit"] = true,
 	["modifier_item_revenants_brooch_counter"] = true,
 	["modifier_sven_gods_strength"] = true,
 }
 
-_G.BluePoints = {
-	["npc_dota_neutral_kobold"] = 2,
-	["npc_dota_neutral_kobold_tunneler"] = 2, --12
+_G.GoldK = 0.8
+_G.ExpK = 0.7
 
-	["npc_dota_neutral_kobold_taskmaster"] = 4, --12
+_G.CreepsUpgradeHealth = 10
+_G.CreepsUpgradeDamage = 10
 
-	["npc_dota_neutral_forest_troll_berserker"] = 4,
-	["npc_dota_neutral_forest_troll_high_priest"] = 4, --12
+_G.CreepsStats = {
+	["npc_dota_neutral_kobold"] = { damage = 10, health = 170, exp = 20, gold = 5, blue = 2 },
+	["npc_dota_neutral_kobold_tunneler"] = { damage = 11, health = 230, exp = 40, gold = 11, blue = 2 },
+	["npc_dota_neutral_kobold_taskmaster"] = { damage = 12, health = 325, exp = 80, gold = 21, blue = 4 },
 
-	["npc_dota_neutral_harpy_scout"] = 4,
-	["npc_dota_neutral_harpy_storm"] = 4, --12
+	["npc_dota_neutral_forest_troll_berserker"] = { damage = 23, health = 375, exp = 50, gold = 13, blue = 4 },
+	["npc_dota_neutral_forest_troll_high_priest"] = { damage = 7, health = 325, exp = 80, gold = 21, blue = 4 },
 
-	["npc_dota_neutral_gnoll_assassin"] = 4, --12
+	["npc_dota_neutral_harpy_scout"] = { damage = 14, health = 300, exp = 50, gold = 14, blue = 4 },
+	["npc_dota_neutral_harpy_storm"] = { damage = 17, health = 500, exp = 80, gold = 18, blue = 4 },
 
-	["npc_dota_neutral_ghost"] = 4, --12
-	["npc_dota_neutral_fel_beast"] = 4,
+	["npc_dota_neutral_gnoll_assassin"] = { damage = 20, health = 370, exp = 60, gold = 16, blue = 4 },
 
-	["npc_dota_neutral_centaur_outrunner"] = 7, --16
+	["npc_dota_neutral_ghost"] = { damage = 22, health = 400, exp = 80, gold = 17, blue = 4 },
+	["npc_dota_neutral_fel_beast"] = { damage = 14, health = 325, exp = 50, gold = 15, blue = 4 },
 
-	["npc_dota_neutral_alpha_wolf"] = 8, --16
-	["npc_dota_neutral_giant_wolf"] = 4,
+	["npc_dota_neutral_centaur_outrunner"] = { damage = 50, health = 1050, exp = 84, gold = 50, blue = 7 },
 
-	["npc_dota_neutral_satyr_soulstealer"] = 4, --16
-	["npc_dota_neutral_satyr_trickster"] = 4,
+	["npc_dota_neutral_alpha_wolf"] = { damage = 40, health = 750, exp = 100, gold = 42, blue = 8 },
+	["npc_dota_neutral_giant_wolf"] = { damage = 30, health = 500, exp = 65, gold = 25, blue = 4 },
 
-	["npc_dota_neutral_mud_golem"] = 4, --16
-	["npc_dota_neutral_mud_golem_split"] = 2,
+	["npc_dota_neutral_satyr_soulstealer"] = { damage = 25, health = 550, exp = 70, gold = 30, blue = 4 },
+	["npc_dota_neutral_satyr_trickster"] = { damage = 25, health = 450, exp = 45, gold = 14, blue = 4 },
 
-	["npc_dota_neutral_ogre_magi"] = 6, --16
-	["npc_dota_neutral_ogre_mauler"] = 5,
+	["npc_dota_neutral_mud_golem"] = { damage = 50, health = 500, exp = 60, gold = 21, blue = 4 },
+	["npc_dota_neutral_mud_golem_split"] = { damage = 25, health = 200, exp = 28, gold = 11, blue = 2 },
 
-	["npc_dota_neutral_polar_furbolg_ursa_warrior"] = 12, --22
-	["npc_dota_neutral_polar_furbolg_champion"] = 10,
+	["npc_dota_neutral_ogre_magi"] = { damage = 25, health = 700, exp = 90, gold = 43, blue = 6 },
+	["npc_dota_neutral_ogre_mauler"] = { damage = 50, health = 550, exp = 70, gold = 25, blue = 5 },
 
-	["npc_dota_neutral_satyr_hellcaller"] = 14, -- 22
+	["npc_dota_neutral_polar_furbolg_ursa_warrior"] = { damage = 80, health = 1400, exp = 174, gold = 68, blue = 12 },
+	["npc_dota_neutral_polar_furbolg_champion"] = { damage = 50, health = 1050, exp = 140, gold = 61, blue = 11 },
 
-	["npc_dota_neutral_centaur_khan"] = 9, -- 23
+	["npc_dota_neutral_satyr_hellcaller"] = { damage = 95, health = 1800, exp = 199, gold = 85, blue = 15 },
 
-	["npc_dota_neutral_wildkin"] = 4, --22
-	["npc_dota_neutral_enraged_wildkin"] = 14,
+	["npc_dota_neutral_centaur_khan"] = { damage = 40, health = 500, exp = 146, gold = 42, blue = 9 },
 
-	["npc_dota_neutral_dark_troll"] = 4,
-	["npc_dota_neutral_dark_troll_warlord"] = 14, --22
+	["npc_dota_neutral_wildkin"] = { damage = 40, health = 650, exp = 70, gold = 38, blue = 5 },
+	["npc_dota_neutral_enraged_wildkin"] = { damage = 60, health = 1300, exp = 174, gold = 51, blue = 13 },
 
-	["npc_dota_neutral_warpine_raider"] = 11, --22
+	["npc_dota_neutral_dark_troll"] = { damage = 50, health = 600, exp = 96, gold = 38, blue = 5 },
+	["npc_dota_neutral_dark_troll_warlord"] = { damage = 40, health = 1650, exp = 122, gold = 51, blue = 13 },
+	["npc_dota_dark_troll_warlord_skeleton_warrior"] = { damage = 15, health = 300, exp = 0, gold = 5, blue = 0 },
 
-	["npc_dota_neutral_black_dragon"] = 20, --46
-	["npc_dota_neutral_black_drake"] = 13,
+	["npc_dota_neutral_warpine_raider"] = { damage = 70, health = 1400, exp = 157, gold = 63, blue = 11.5 },
 
-	["npc_dota_neutral_granite_golem"] = 20,
-	["npc_dota_neutral_rock_golem"] = 13,
+	["npc_dota_neutral_black_dragon"] = { damage = 69, health = 2200, exp = 188, gold = 85, blue = 15 },
+	["npc_dota_neutral_black_drake"] = { damage = 60, health = 1700, exp = 131, gold = 64, blue = 10 },
 
-	["npc_dota_neutral_big_thunder_lizard"] = 20,
-	["npc_dota_neutral_small_thunder_lizard"] = 13,
+	["npc_dota_neutral_granite_golem"] = { damage = 134, health = 2200, exp = 225, gold = 85, blue = 15 },
+	["npc_dota_neutral_rock_golem"] = { damage = 89, health = 1700, exp = 112, gold = 64, blue = 10 },
 
-	["npc_dota_neutral_ice_shaman"] = 20,
-	["npc_dota_neutral_frostbitten_golem"] = 13,
+	["npc_dota_neutral_big_thunder_lizard"] = { damage = 32, health = 2200, exp = 188, gold = 85, blue = 15 },
+	["npc_dota_neutral_small_thunder_lizard"] = { damage = 134, health = 1700, exp = 131, gold = 64, blue = 10 },
 
-	["npc_dota_neutral_prowler_shaman"] = 20,
-	["npc_dota_neutral_prowler_acolyte"] = 13,
+	["npc_dota_neutral_ice_shaman"] = { damage = 26, health = 2200, exp = 188, gold = 85, blue = 15 },
+	["npc_dota_neutral_frostbitten_golem"] = { damage = 109, health = 1700, exp = 131, gold = 64, blue = 10 },
 
-	["npc_muerta_ursa"] = 50,
-	["npc_muerta_satyr"] = 50,
-	["npc_muerta_centaur"] = 50,
-	["npc_muerta_ogre"] = 50,
+	["npc_dota_neutral_prowler_shaman"] = { damage = 89, health = 2200, exp = 188, gold = 85, blue = 15 },
+	["npc_dota_neutral_prowler_acolyte"] = { damage = 89, health = 1700, exp = 131, gold = 64, blue = 10 },
+
+	["npc_dota_neutral_tadpole"] = { damage = 16, health = 320, exp = 60, gold = 16, blue = 4 },
+
+	["npc_dota_neutral_froglet"] = { damage = 35, health = 535, exp = 65, gold = 25, blue = 4, level = 1 },
+	["npc_dota_neutral_froglet_mage"] = { damage = 35, health = 535, exp = 100, gold = 40, blue = 8, level = 1 },
+
+	["npc_dota_neutral_grown_frog"] = { damage = 46, health = 800, exp = 96, gold = 38, blue = 5, level = 2 },
+	["npc_dota_neutral_grown_frog_mage"] = { damage = 46, health = 800, exp = 122, gold = 51, blue = 13, level = 2 },
+
+	["npc_dota_neutral_ancient_frog"] = { damage = 93, health = 1493, exp = 131, gold = 64, blue = 10, level = 3 },
+	["npc_dota_neutral_ancient_frog_mage"] = { damage = 93, health = 1493, exp = 188, gold = 85, blue = 15, level = 3 },
+
+	["npc_muerta_ursa"] = { damage = 30, health = 900, exp = 200, gold = 600, blue = 50 },
+	["npc_muerta_satyr"] = { damage = 38, health = 900, exp = 200, gold = 600, blue = 50 },
+	["npc_muerta_centaur"] = { damage = 55, health = 900, exp = 200, gold = 600, blue = 50 },
+	["npc_muerta_ogre"] = { damage = 55, health = 900, exp = 200, gold = 600, blue = 50 },
 }
 
 _G.Shared_Bounty = {
 
 	["npc_filler_dire_stun"] = {
 		blue = 40,
-		gold = 750,
+		gold = 400,
 	},
 	["npc_filler_dire_plasma"] = {
 		blue = 40,
-		gold = 750,
+		gold = 400,
 	},
 	["npc_filler_dire_resist"] = {
 		blue = 40,
-		gold = 750,
+		gold = 400,
 	},
 	["npc_filler_radiant_stun"] = {
 		blue = 40,
-		gold = 750,
+		gold = 400,
 	},
 	["npc_filler_radiant_plasma"] = {
 		blue = 40,
-		gold = 750,
+		gold = 400,
 	},
 	["npc_filler_radiant_resist"] = {
 		blue = 40,
-		gold = 750,
+		gold = 400,
 	},
 
 	["patrol_melee_good"] = {
-		blue = 4,
-		gold = 70,
+		blue = 6,
+		gold = 50,
 	},
 	["patrol_range_good"] = {
-		blue = 4,
-		gold = 70,
+		blue = 6,
+		gold = 50,
 	},
 	["patrol_melee_bad"] = {
-		blue = 4,
-		gold = 70,
+		blue = 6,
+		gold = 50,
 	},
 	["patrol_range_bad"] = {
-		blue = 4,
-		gold = 70,
+		blue = 6,
+		gold = 50,
 	},
 	["npc_dota_tormentor_custom"] = {
 		blue = 20,

@@ -48,6 +48,17 @@ function item_celestial_spear_custom:Precache(context)
 	PrecacheResource("particle", "particles/items/celestial_spear_leash.vpcf", context)
 end
 
+function item_celestial_spear_custom:Spawn()
+	self.projectile_speed = self:GetSpecialValueFor("projectile_speed")
+	self.leash_duration = self:GetSpecialValueFor("leash_duration")
+	self.armor_reduce = self:GetSpecialValueFor("corruption_armor")
+	self.corruption_duration = self:GetSpecialValueFor("corruption_duration")
+	self.bonus_speed = self:GetSpecialValueFor("bonus_speed")
+	self.bonus_damage = self:GetSpecialValueFor("bonus_damage")
+	self.bonus_health = self:GetSpecialValueFor("bonus_health")
+	self.break_radius = self:GetSpecialValueFor("break_radius")
+end
+
 function item_celestial_spear_custom:OnSpellStart()
 	if not IsServer() then
 		return
@@ -60,7 +71,7 @@ function item_celestial_spear_custom:OnSpellStart()
 		Source = self:GetCaster(),
 		Ability = self,
 		EffectName = "particles/items/celestial_spear_proj.vpcf",
-		iMoveSpeed = self:GetSpecialValueFor("projectile_speed"),
+		iMoveSpeed = self.projectile_speed,
 		vSourceLoc = self:GetCaster():GetAbsOrigin(),
 		bDodgeable = true,
 		bProvidesVision = false,
@@ -148,20 +159,28 @@ function item_celestial_spear_custom:OnProjectileHit(hTarget, vLocation)
 		self:GetCaster(),
 		self,
 		"modifier_item_celestial_spear_custom_leash",
-		{ duration = self:GetSpecialValueFor("leash_duration") * (1 - hTarget:GetStatusResistance()) }
+		{ duration = self.leash_duration * (1 - hTarget:GetStatusResistance()) }
 	)
 end
 
-modifier_item_celestial_spear_custom = class({})
-function modifier_item_celestial_spear_custom:IsHidden()
-	return true
-end
-function modifier_item_celestial_spear_custom:IsPurgable()
-	return false
-end
+modifier_item_celestial_spear_custom = class(mod_hidden)
 function modifier_item_celestial_spear_custom:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
+function modifier_item_celestial_spear_custom:GetPriority()
+	return MODIFIER_PRIORITY_NORMAL
+end
+function modifier_item_celestial_spear_custom:OnCreated()
+	self.caster = self:GetCaster()
+	self.ability = self:GetAbility()
+	self.caster:AddAttackEvent_out(self, true)
+
+	self.corruption_duration = self.ability.corruption_duration
+	self.speed = self.ability.bonus_speed
+	self.damage = self.ability.bonus_damage
+	self.bonus_health = self.ability.bonus_health
+end
+
 function modifier_item_celestial_spear_custom:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_PROJECTILE_NAME,
@@ -169,18 +188,6 @@ function modifier_item_celestial_spear_custom:DeclareFunctions()
 		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
 		MODIFIER_PROPERTY_HEALTH_BONUS,
 	}
-end
-
-function modifier_item_celestial_spear_custom:OnCreated()
-	self.caster = self:GetCaster()
-	self.ability = self:GetAbility()
-	self.caster:AddAttackEvent_out(self, true)
-
-	self.ability.armor_reduce = self.ability:GetSpecialValueFor("corruption_armor")
-	self.corruption_duration = self.ability:GetSpecialValueFor("corruption_duration")
-	self.speed = self.ability:GetSpecialValueFor("bonus_speed")
-	self.damage = self.ability:GetSpecialValueFor("bonus_damage")
-	self.bonus_health = self.ability:GetSpecialValueFor("bonus_health")
 end
 
 function modifier_item_celestial_spear_custom:GetModifierAttackSpeedBonus_Constant()
@@ -195,15 +202,14 @@ function modifier_item_celestial_spear_custom:GetModifierHealthBonus()
 	return self.bonus_health
 end
 
-function modifier_item_celestial_spear_custom:GetPriority()
-	return MODIFIER_PRIORITY_NORMAL
-end
-
 function modifier_item_celestial_spear_custom:GetModifierProjectileName()
 	return "particles/items_fx/desolator_projectile.vpcf"
 end
 
 function modifier_item_celestial_spear_custom:AttackEvent_out(params)
+	if not IsValid(self.ability) then
+		return
+	end
 	if params.attacker ~= self.caster then
 		return
 	end
@@ -222,11 +228,8 @@ function modifier_item_celestial_spear_custom:AttackEvent_out(params)
 	target:EmitSound("Item_Desolator.Target")
 end
 
-modifier_item_celestial_spear_custom_armor = class({})
+modifier_item_celestial_spear_custom_armor = class(mod_hidden)
 function modifier_item_celestial_spear_custom_armor:IsPurgable()
-	return true
-end
-function modifier_item_celestial_spear_custom_armor:IsHidden()
 	return true
 end
 function modifier_item_celestial_spear_custom_armor:GetTexture()
@@ -249,21 +252,15 @@ function modifier_item_celestial_spear_custom_armor:GetModifierPhysicalArmorBonu
 	return self:GetStackCount() * -1
 end
 
-modifier_item_celestial_spear_custom_leash = class({})
-
-function modifier_item_celestial_spear_custom_leash:IsHidden()
-	return true
-end
-function modifier_item_celestial_spear_custom_leash:IsPurgable()
-	return false
-end
+modifier_item_celestial_spear_custom_leash = class(mod_hidden)
 function modifier_item_celestial_spear_custom_leash:OnCreated(table)
-	if not IsServer() then
-		return
-	end
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
 	self.ability = self:GetAbility()
+
+	if not IsServer() then
+		return
+	end
 
 	self.RemoveForDuel = true
 	self.center = self.parent:GetAbsOrigin()
@@ -274,7 +271,7 @@ function modifier_item_celestial_spear_custom_leash:OnCreated(table)
 	ParticleManager:SetParticleControl(self.effect_cast, 0, self.center)
 	self:AddParticle(self.effect_cast, false, false, -1, false, false)
 
-	self.break_radius = self:GetAbility():GetSpecialValueFor("break_radius")
+	self.break_radius = self.ability.break_radius
 
 	local effect_cast_2 =
 		ParticleManager:CreateParticle("particles/items/celestial_spear_leash.vpcf", PATTACH_ABSORIGIN, self.parent)

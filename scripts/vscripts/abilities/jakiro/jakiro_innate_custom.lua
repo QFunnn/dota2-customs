@@ -92,6 +92,16 @@ function jakiro_innate_custom:Precache(context)
 	PrecacheResource("particle", "particles/jakiro/scepter_shield_fire_start.vpcf", context)
 	PrecacheResource("particle", "particles/jakiro/scepter_shield_fire_end.vpcf", context)
 	PrecacheResource("particle", "particles/jakiro/scepter_shield_fire_end_2.vpcf", context)
+	PrecacheResource("particle", "particles/jakiro/scepter_shield_fire_status.vpcf", context)
+	PrecacheResource(
+		"particle",
+		"particles/econ/items/drow/drow_arcana/drow_arcana_status_effect_frost_arrow.vpcf",
+		context
+	)
+	PrecacheResource("particle", "particles/units/heroes/hero_jakiro/jakiro_liquid_ice_projectile.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_jakiro/jakiro_base_attack_fire.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_jakiro/jakiro_base_attack.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_jakiro/jakiro_base_attack_dual.vpcf", context)
 	PrecacheResource("soundfile", "soundevents/npc_dota_hero_jakiro.vsndevts", context)
 	dota1x6:PrecacheShopItems("npc_dota_hero_jakiro", context)
 end
@@ -121,6 +131,7 @@ function jakiro_innate_custom:UpdateTalents(name)
 			w7_shield_duration = caster:GetTalentValue("modifier_jakiro_path_7", "shield_duration", true),
 			w7_shield_duration_creeps = caster:GetTalentValue("modifier_jakiro_path_7", "shield_duration_creeps", true),
 			w7_effect_duration = caster:GetTalentValue("modifier_jakiro_path_7", "effect_duration", true),
+			w7_shield = caster:GetTalentValue("modifier_jakiro_path_7", "shield", true) / 100,
 
 			has_e2 = 0,
 			e2_heal = 0,
@@ -131,6 +142,7 @@ function jakiro_innate_custom:UpdateTalents(name)
 
 			has_r3 = 0,
 			r3_damage = 0,
+			r3_heal = 0,
 			r3_talent_cd = caster:GetTalentValue("modifier_jakiro_macropyre_3", "talent_cd", true),
 			r3_chance = caster:GetTalentValue("modifier_jakiro_macropyre_3", "chance", true),
 			r3_slow_duration = caster:GetTalentValue("modifier_jakiro_macropyre_3", "slow_duration", true),
@@ -222,6 +234,13 @@ function jakiro_innate_custom:GetIntrinsicModifierName()
 	return "modifier_jakiro_innate_custom_tracker"
 end
 
+function jakiro_innate_custom:OnSpellStart()
+	if not IsValid(self.tracker) then
+		return
+	end
+	self.tracker:Switch()
+end
+
 function jakiro_innate_custom:OnInventoryContentsChanged()
 	if not IsServer() then
 		return
@@ -241,39 +260,39 @@ function jakiro_innate_custom:SpellCast(ability, type)
 		return
 	end
 
-	if self.ability.talents.has_h2 == 1 then
+	if self.talents.has_h2 == 1 then
 		self.parent:AddNewModifier(
 			self.parent,
-			self.ability,
+			self,
 			"modifier_jakiro_innate_custom_regen_mana",
-			{ duration = self.ability.talents.h2_duration }
+			{ duration = self.talents.h2_duration }
 		)
 		if type == 1 or self.parent:HasModifier("modifier_jakiro_liquid_fire_custom_legendary_acitve") then
 			self.parent:AddNewModifier(
 				self.parent,
-				self.ability,
+				self,
 				"modifier_jakiro_innate_custom_regen_heal",
-				{ duration = self.ability.talents.h2_duration }
+				{ duration = self.talents.h2_duration }
 			)
 		end
 	end
 
-	if self.ability.talents.has_h5 == 1 then
+	if self.talents.has_h5 == 1 then
 		if type == 0 then
 			self.parent:RemoveModifierByName("modifier_jakiro_innate_custom_move")
 			self.parent:AddNewModifier(
 				self.parent,
-				self.ability,
+				self,
 				"modifier_jakiro_innate_custom_move",
-				{ duration = self.ability.talents.h5_duration }
+				{ duration = self.talents.h5_duration }
 			)
 		end
 		if type == 1 or self.parent:HasModifier("modifier_jakiro_liquid_fire_custom_legendary_acitve") then
 			self.parent:AddNewModifier(
 				self.parent,
-				self.ability,
+				self,
 				"modifier_jakiro_innate_custom_armor",
-				{ duration = self.ability.talents.h5_duration }
+				{ duration = self.talents.h5_duration }
 			)
 		end
 	end
@@ -344,10 +363,10 @@ function jakiro_innate_custom:AbilityHit(target, ability, type)
 
 		if type == 1 then
 			table.insert(mods, "modifier_jakiro_dual_breath_custom_disarm")
-			alt_table = self.ability.fire_mods
+			alt_table = self.fire_mods
 		else
 			table.insert(mods, "modifier_generic_silence")
-			alt_table = self.ability.ice_mods
+			alt_table = self.ice_mods
 		end
 
 		for mod_name, _ in pairs(alt_table) do
@@ -368,17 +387,10 @@ function jakiro_innate_custom:AbilityHit(target, ability, type)
 				self.parent,
 				self.parent.dual_ability,
 				mod_name,
-				{ duration = (1 - target:GetStatusResistance()) * self.ability.talents.h4_silence, use_sound = 1 }
+				{ duration = (1 - target:GetStatusResistance()) * self.talents.h4_silence, use_sound = 1 }
 			)
 		end
 	end
-end
-
-function jakiro_innate_custom:OnSpellStart()
-	if not IsValid(self.tracker) then
-		return
-	end
-	self.tracker:Switch()
 end
 
 modifier_jakiro_innate_custom_tracker = class(mod_hidden)
@@ -889,7 +901,7 @@ function modifier_jakiro_innate_custom_tracker:DamageEvent_out(params)
 		self.parent.path_ability.tracker.legendary_records[params.record] == 1
 		or self.parent:HasModifier("modifier_jakiro_liquid_fire_custom_legendary_acitve")
 	then
-		local heal = params.damage * self.parent.path_ability.talents.w7_shield * result
+		local heal = params.damage * self.ability.talents.w7_shield * result
 		self.parent:GenericParticle("particles/drow_ranger/frost_heal.vpcf")
 
 		local duration = target:IsCreep() and self.ability.talents.w7_shield_duration_creeps
@@ -901,9 +913,9 @@ function modifier_jakiro_innate_custom_tracker:DamageEvent_out(params)
 					duration = duration,
 					shield_talent = "modifier_jakiro_path_7",
 				})
-			self.path_shield.shield_attack_max = 0
 
 			if self.path_shield then
+				self.path_shield.shield_attack_max = 0
 				self.parent:GenericParticle("particles/jakiro/scepter_shield_ice_start.vpcf", self.path_shield)
 				self.parent:GenericParticle("particles/maiden_arcane.vpcf")
 
@@ -944,7 +956,7 @@ function modifier_jakiro_innate_custom_tracker:DamageEvent_out(params)
 	for _, aoe_target in pairs(self.parent:FindTargets(self.ability.talents.w7_cleave_radius, target:GetAbsOrigin())) do
 		if target ~= aoe_target then
 			damageTable.victim = aoe_target
-			DoDamage(damageTable)
+			DoDamage(damageTable, "modifier_jakiro_path_7")
 		end
 	end
 end
@@ -1060,7 +1072,7 @@ function modifier_jakiro_innate_custom_active_frost:GetModifierIncomingDamage_Pe
 end
 
 function modifier_jakiro_innate_custom_active_frost:GetModifierStatusResistanceStacking()
-	return self.ability.talents.h3_status and self.ability.talents.h3_status or 0
+	return self.ability.talents.h3_status or 0
 end
 
 modifier_jakiro_innate_custom_active_fire = class(mod_hidden)
@@ -1105,7 +1117,7 @@ function modifier_jakiro_innate_custom_active_fire:DeclareFunctions()
 end
 
 function modifier_jakiro_innate_custom_active_fire:GetModifierMoveSpeedBonus_Constant()
-	return self.ability.fire_move + (self.ability.talents.h3_move and self.ability.talents.h3_move or 0)
+	return self.ability.fire_move + (self.ability.talents.h3_move or 0)
 end
 
 modifier_jakiro_innate_custom_active_last_spell = class(mod_hidden)

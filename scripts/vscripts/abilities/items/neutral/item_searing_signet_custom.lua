@@ -21,11 +21,25 @@ LinkLuaModifier(
 
 item_searing_signet_custom = class({})
 
+function item_searing_signet_custom:Precache(context)
+	if self:GetCaster() and self:GetCaster():IsIllusion() then
+		return
+	end
+	PrecacheResource("particle", "particles/items4_fx/searing_signet_fire_debuff.vpcf", context)
+end
+
 function item_searing_signet_custom:GetIntrinsicModifierName()
 	if not self:GetCaster():IsRealHero() then
 		return
 	end
 	return "modifier_item_searing_signet_custom"
+end
+
+function item_searing_signet_custom:Spawn()
+	self.damage_threshold = self:GetSpecialValueFor("damage_threshold")
+	self.burn_duration = self:GetSpecialValueFor("burn_duration")
+	self.burn_tickrate = self:GetSpecialValueFor("burn_tickrate")
+	self.burn_damage = self:GetSpecialValueFor("burn_damage")
 end
 
 modifier_item_searing_signet_custom = class(mod_hidden)
@@ -36,13 +50,16 @@ function modifier_item_searing_signet_custom:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.damage_threshold = self.ability:GetSpecialValueFor("damage_threshold")
-	self.burn_duration = self.ability:GetSpecialValueFor("burn_duration")
+	self.damage_threshold = self.ability.damage_threshold
+	self.burn_duration = self.ability.burn_duration
 	self.parent:AddDamageEvent_out(self, true)
 end
 
 function modifier_item_searing_signet_custom:DamageEvent_out(params)
 	if not IsServer() then
+		return
+	end
+	if not IsValid(self.ability) then
 		return
 	end
 	if self.parent ~= params.attacker then
@@ -78,9 +95,9 @@ function modifier_item_searing_signet_custom_burn:OnCreated()
 	self.caster = self:GetCaster()
 	self.parent = self:GetParent()
 
-	self.duration = self.ability:GetSpecialValueFor("burn_duration")
-	self.interval = self.ability:GetSpecialValueFor("burn_tickrate")
-	self.damage = (self.ability:GetSpecialValueFor("burn_damage") / self.duration) * self.interval
+	self.duration = self.ability.burn_duration
+	self.interval = self.ability.burn_tickrate
+	self.damage = (self.ability.burn_damage / self.duration) * self.interval
 
 	self.damageTable = {
 		victim = self.parent,

@@ -23,6 +23,11 @@ function item_whisper_of_the_dread_custom:GetIntrinsicModifierName()
 	return "modifier_item_whisper_of_the_dread_custom"
 end
 
+function item_whisper_of_the_dread_custom:Spawn()
+	self.mana_reduce = self:GetSpecialValueFor("mana_reduce")
+	self.bonus_spell_damage = self:GetSpecialValueFor("bonus_spell_damage")
+end
+
 modifier_item_whisper_of_the_dread_custom = class(mod_hidden)
 function modifier_item_whisper_of_the_dread_custom:RemoveOnDeath()
 	return false
@@ -31,8 +36,8 @@ function modifier_item_whisper_of_the_dread_custom:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.mana_reduce = self.ability:GetSpecialValueFor("mana_reduce")
-	self.bonus_spell_damage = self.ability:GetSpecialValueFor("bonus_spell_damage")
+	self.mana_reduce = self.ability.mana_reduce
+	self.bonus_spell_damage = self.ability.bonus_spell_damage
 end
 
 function modifier_item_whisper_of_the_dread_custom:DeclareFunctions()

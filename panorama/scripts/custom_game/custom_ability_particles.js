@@ -25,6 +25,7 @@ function Init()
 	GameEvents.Subscribe_custom('ability_lifestealer_unfettered', start_unfettered)
 	GameEvents.Subscribe_custom('ability_stalker_dark', ability_stalker_dark)
 	GameEvents.Subscribe_custom('ability_mars_spear', ability_mars_spear)
+	GameEvents.Subscribe_custom('ability_kunkka_ghostship_scepter', start_ghostship)
 }
 
 Init()
@@ -37,6 +38,7 @@ var init_pounce = false
 var init_razor = false
 var init_morphling = false
 var init_unfettered = false
+var init_ghostship = false
 var hoodwink_pfx = "particles/units/heroes/hero_hoodwink/hoodwink_sharpshooter_range_finder.vpcf"
 
 function start_scatter()
@@ -84,6 +86,14 @@ function start_pounce()
 
 	init_pounce = true
 	ability_slark_pounce_legendary()
+}
+
+function start_ghostship()
+{
+	if (init_ghostship == true) return
+
+	init_ghostship = true
+	ability_kunkka_ghostship_scepter()
 }
 
 function start_unfettered()
@@ -412,7 +422,7 @@ var lastAbility_muerta = -1;
 function ability_muerta_call()
 {
 
-	if (Game.HasTalent("npc_dota_hero_muerta", "modifier_muerta_calling_7"))
+	if (Game.HasTalent(Game.GetLocalPlayerID(), "modifier_muerta_calling_7"))
 	{
 		if (vectorTargetParticle_muerta) {
 			Particles.DestroyParticleEffect(vectorTargetParticle_muerta, true)
@@ -641,5 +651,46 @@ function ability_lifestealer_unfettered()
     $.Schedule(interval, ability_lifestealer_unfettered)
 }
 
+
+
+
+
+
+var vectorTargetParticle_ghostship;
+var lastAbility_ghostship = -1;
+var lastActive_ghostship = false;
+
+function ability_kunkka_ghostship_scepter()
+{
+	const hero = Players.GetLocalPlayerPortraitUnit();
+	const ability = Abilities.GetLocalPlayerActiveAbility();
+	const active = (ability != -1) && (Abilities.GetAbilityName(ability) == "kunkka_ghostship_custom") && (HasModifierCustom(hero, "modifier_kunkka_ghostship_custom_scepter") != false);
+
+	if (ability != lastAbility_ghostship || active != lastActive_ghostship)
+	{
+		lastAbility_ghostship = ability
+		lastActive_ghostship = active
+		if (vectorTargetParticle_ghostship) {
+			Particles.DestroyParticleEffect(vectorTargetParticle_ghostship, true)
+			Particles.ReleaseParticleIndex(vectorTargetParticle_ghostship)
+			vectorTargetParticle_ghostship = undefined;
+		}
+		if (active) {
+			vectorTargetParticle_ghostship = Particles.CreateParticle("particles/slark/pounce_legendary_ui.vpcf", ParticleAttachment_t.PATTACH_ABSORIGIN_FOLLOW, hero );
+		}
+	}
+
+	if (vectorTargetParticle_ghostship && active)
+	{
+		const worldPosition = Entities.GetAbsOrigin( hero )
+		let radius = Abilities.GetSpecialValueFor(ability, "scepter_range_min");
+
+		Particles.SetParticleControl(vectorTargetParticle_ghostship, 0, worldPosition );
+		Particles.SetParticleControl(vectorTargetParticle_ghostship, 1, worldPosition );
+		Particles.SetParticleControl(vectorTargetParticle_ghostship, 2, worldPosition );
+		Particles.SetParticleControl(vectorTargetParticle_ghostship, 3, [radius, radius, radius] );
+	}
+    $.Schedule(interval, ability_kunkka_ghostship_scepter)
+}
 
 

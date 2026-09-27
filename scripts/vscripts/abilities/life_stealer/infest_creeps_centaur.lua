@@ -20,16 +20,34 @@ LinkLuaModifier(
 )
 
 life_stealer_centaur_stun = class({})
+function life_stealer_centaur_stun:Precache(context)
+	if self:GetCaster() and self:GetCaster():IsIllusion() then
+		return
+	end
+end
+
+function life_stealer_centaur_stun:Init()
+	if not self:GetCaster() then
+		return
+	end
+	self.caster = self:GetCaster()
+
+	self.stun = self:GetLevelSpecialValueFor("stun", 1)
+	self.aoe = self:GetLevelSpecialValueFor("aoe", 1)
+end
 
 function life_stealer_centaur_stun:GetCastRange(vector, hTarget)
-	return self:GetSpecialValueFor("aoe")
+	return self.aoe or 0
+end
+
+function life_stealer_centaur_stun:GetCooldown(level)
+	return self.BaseClass.GetCooldown(self, level)
+		+ (self.caster.infest_ability and self.caster.infest_ability.talents.r1_cd_creep or 0)
 end
 
 function life_stealer_centaur_stun:OnAbilityPhaseStart()
-	local caster = self:GetCaster()
-
-	caster:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_1, 1.3)
-	caster:EmitSound("n_creep_Centaur.Stomp")
+	self.caster:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_1, 1.3)
+	self.caster:EmitSound("n_creep_Centaur.Stomp")
 	return true
 end
 
@@ -38,32 +56,21 @@ function life_stealer_centaur_stun:OnAbilityPhaseInterrupted()
 	self.caster:FadeGesture(ACT_DOTA_CAST_ABILITY_1)
 end
 
-function life_stealer_centaur_stun:GetCooldown(level)
-	local bonus = 0
-	if self.caster.infest_ability and self.caster.infest_ability.talents.r1_cd_creep then
-		bonus = self.caster.infest_ability.talents.r1_cd_creep
-	end
-	return self.BaseClass.GetCooldown(self, level) + bonus
-end
-
 function life_stealer_centaur_stun:OnSpellStart()
-	local caster = self:GetCaster()
-	local stun = self:GetSpecialValueFor("stun")
-	local radius = self:GetSpecialValueFor("aoe")
 	local damage = self:GetSpecialValueFor("damage_base")
-		+ self:GetSpecialValueFor("damage") * caster:GetMaxHealth() / 100
+		+ self:GetSpecialValueFor("damage") * self.caster:GetMaxHealth() / 100
 
 	local trail_pfx = ParticleManager:CreateParticle(
 		"particles/neutral_fx/neutral_centaur_khan_war_stomp.vpcf",
 		PATTACH_ABSORIGIN,
-		caster
+		self.caster
 	)
-	ParticleManager:SetParticleControl(trail_pfx, 1, Vector(radius, radius, radius))
+	ParticleManager:SetParticleControl(trail_pfx, 1, Vector(self.aoe, self.aoe, self.aoe))
 	ParticleManager:ReleaseParticleIndex(trail_pfx)
 
-	local damageTable = { attacker = caster, damage = damage, damage_type = DAMAGE_TYPE_MAGICAL, ability = self }
+	local damageTable = { attacker = self.caster, damage = damage, damage_type = DAMAGE_TYPE_MAGICAL, ability = self }
 
-	for _, target in pairs(caster:FindTargets(radius)) do
+	for _, target in pairs(self.caster:FindTargets(self.aoe)) do
 		damageTable.victim = target
 		local target_damage = damage
 
@@ -75,10 +82,10 @@ function life_stealer_centaur_stun:OnSpellStart()
 		damageTable.damage = target_damage
 		local real_damage = DoDamage(damageTable)
 		target:AddNewModifier(
-			caster,
+			self.caster,
 			self,
 			"modifier_stunned",
-			{ duration = stun * (1 - target:GetStatusResistance()) }
+			{ duration = self.stun * (1 - target:GetStatusResistance()) }
 		)
 		target:SendNumber(6, real_damage)
 
@@ -94,18 +101,26 @@ function life_stealer_centaur_stun:OnSpellStart()
 end
 
 life_stealer_centaur_retaliate = class({})
-
 function life_stealer_centaur_retaliate:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
 	end
 	PrecacheResource("particle", "particles/troll_warlord/rage_unslow.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_centaur/centaur_return.vpcf", context)
+	PrecacheResource("particle", "particles/items_fx/blademail.vpcf", context)
+end
+
+function life_stealer_centaur_retaliate:Init()
+	if not self:GetCaster() then
+		return
+	end
+	self.caster = self:GetCaster()
+
+	self.duration = self:GetLevelSpecialValueFor("duration", 1)
 end
 
 function life_stealer_centaur_retaliate:OnSpellStart()
-	local caster = self:GetCaster()
-	local duration = self:GetSpecialValueFor("duration")
+	local duration = self.duration
 
 	if self.caster.infest_ability and self.caster.infest_ability.talents.has_h6 == 1 then
 		duration = duration + self.caster.infest_ability.talents.h6_duration_creep
@@ -121,9 +136,9 @@ function life_stealer_centaur_retaliate:OnSpellStart()
 		)
 	end
 
-	caster:EmitSound("DOTA_Item.BladeMail.Activate")
-	caster:RemoveModifierByName("modifier_life_stealer_centaur_retaliate")
-	caster:AddNewModifier(caster, self, "modifier_life_stealer_centaur_retaliate", { duration = duration })
+	self.caster:EmitSound("DOTA_Item.BladeMail.Activate")
+	self.caster:RemoveModifierByName("modifier_life_stealer_centaur_retaliate")
+	self.caster:AddNewModifier(self.caster, self, "modifier_life_stealer_centaur_retaliate", { duration = duration })
 end
 
 modifier_life_stealer_centaur_retaliate = class(mod_visible)
@@ -154,6 +169,9 @@ function modifier_life_stealer_centaur_retaliate:GetModifierIncomingDamage_Perce
 end
 
 function modifier_life_stealer_centaur_retaliate:DamageEvent_inc(params)
+	if not IsServer() then
+		return
+	end
 	if params.unit ~= self.parent then
 		return
 	end
@@ -163,12 +181,11 @@ function modifier_life_stealer_centaur_retaliate:DamageEvent_inc(params)
 	if bit.band(params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) == DOTA_DAMAGE_FLAG_REFLECTION then
 		return
 	end
-
-	local target = params.attacker
 	if params.attacker:IsBuilding() then
 		return
 	end
 
+	local target = params.attacker
 	target:EmitSound("DOTA_Item.BladeMail.Damage")
 	local damage_return = self.damage_return * params.original_damage
 	DoDamage({
@@ -212,7 +229,7 @@ function life_stealer_centaur_bash:GetIntrinsicModifierName()
 end
 
 modifier_life_stealer_centaur_bash = class(mod_hidden)
-function modifier_life_stealer_centaur_bash:OnCreated(table)
+function modifier_life_stealer_centaur_bash:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
@@ -227,7 +244,7 @@ function modifier_life_stealer_centaur_bash:OnCreated(table)
 	self:StartIntervalThink(0.1)
 end
 
-function modifier_life_stealer_centaur_bash:OnRefresh(table)
+function modifier_life_stealer_centaur_bash:OnRefresh()
 	self.stun = self.ability:GetSpecialValueFor("stun")
 	self.base = self.ability:GetSpecialValueFor("damage_base")
 	self.damage = self.ability:GetSpecialValueFor("damage")
@@ -237,7 +254,7 @@ function modifier_life_stealer_centaur_bash:OnIntervalThink()
 	if not IsServer() then
 		return
 	end
-	if not self.parent.owner or self.parent.owner:IsNull() then
+	if not IsValid(self.parent.owner) then
 		return
 	end
 

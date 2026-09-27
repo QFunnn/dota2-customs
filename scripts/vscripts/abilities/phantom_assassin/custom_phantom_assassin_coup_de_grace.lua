@@ -14,7 +14,37 @@ LinkLuaModifier(
 	LUA_MODIFIER_MOTION_NONE
 )
 LinkLuaModifier(
+	"modifier_phantom_assassin_phantom_coup_de_grace_focus",
+	"abilities/phantom_assassin/custom_phantom_assassin_coup_de_grace",
+	LUA_MODIFIER_MOTION_NONE
+)
+LinkLuaModifier(
+	"modifier_phantom_assassin_phantom_coup_de_grace_bleed",
+	"abilities/phantom_assassin/custom_phantom_assassin_coup_de_grace",
+	LUA_MODIFIER_MOTION_NONE
+)
+LinkLuaModifier(
+	"modifier_phantom_assassin_phantom_coup_de_grace_reduce",
+	"abilities/phantom_assassin/custom_phantom_assassin_coup_de_grace",
+	LUA_MODIFIER_MOTION_NONE
+)
+LinkLuaModifier(
 	"modifier_phantom_assassin_phantom_coup_de_grace_legendary",
+	"abilities/phantom_assassin/custom_phantom_assassin_coup_de_grace",
+	LUA_MODIFIER_MOTION_NONE
+)
+LinkLuaModifier(
+	"modifier_phantom_assassin_phantom_coup_de_grace_legendary_clone",
+	"abilities/phantom_assassin/custom_phantom_assassin_coup_de_grace",
+	LUA_MODIFIER_MOTION_NONE
+)
+LinkLuaModifier(
+	"modifier_phantom_assassin_phantom_coup_de_grace_legendary_crit",
+	"abilities/phantom_assassin/custom_phantom_assassin_coup_de_grace",
+	LUA_MODIFIER_MOTION_NONE
+)
+LinkLuaModifier(
+	"modifier_phantom_assassin_phantom_coup_de_grace_rage",
 	"abilities/phantom_assassin/custom_phantom_assassin_coup_de_grace",
 	LUA_MODIFIER_MOTION_NONE
 )
@@ -24,70 +54,21 @@ LinkLuaModifier(
 	LUA_MODIFIER_MOTION_NONE
 )
 LinkLuaModifier(
-	"modifier_phantom_assassin_phantom_coup_de_grace_silence",
-	"abilities/phantom_assassin/custom_phantom_assassin_coup_de_grace",
-	LUA_MODIFIER_MOTION_NONE
-)
-LinkLuaModifier(
-	"modifier_phantom_assassin_phantom_coup_de_grace_damage",
-	"abilities/phantom_assassin/custom_phantom_assassin_coup_de_grace",
-	LUA_MODIFIER_MOTION_NONE
-)
-LinkLuaModifier(
-	"modifier_phantom_assassin_phantom_coup_de_grace_quest",
-	"abilities/phantom_assassin/custom_phantom_assassin_coup_de_grace",
-	LUA_MODIFIER_MOTION_NONE
-)
-LinkLuaModifier(
-	"modifier_phantom_assassin_phantom_coup_de_grace_focus",
-	"abilities/phantom_assassin/custom_phantom_assassin_coup_de_grace",
-	LUA_MODIFIER_MOTION_NONE
-)
-LinkLuaModifier(
-	"modifier_phantom_assassin_phantom_coup_de_grace_silence_cd",
-	"abilities/phantom_assassin/custom_phantom_assassin_coup_de_grace",
-	LUA_MODIFIER_MOTION_NONE
-)
-LinkLuaModifier(
-	"modifier_phantom_assassin_phantom_coup_de_grace_legendary_choosing",
-	"abilities/phantom_assassin/custom_phantom_assassin_coup_de_grace",
-	LUA_MODIFIER_MOTION_NONE
-)
-LinkLuaModifier(
-	"modifier_phantom_assassin_phantom_coup_de_grace_legendary_max",
-	"abilities/phantom_assassin/custom_phantom_assassin_coup_de_grace",
-	LUA_MODIFIER_MOTION_NONE
-)
-LinkLuaModifier(
-	"modifier_phantom_assassin_phantom_coup_de_grace_reduction",
-	"abilities/phantom_assassin/custom_phantom_assassin_coup_de_grace",
-	LUA_MODIFIER_MOTION_NONE
-)
-LinkLuaModifier(
-	"modifier_phantom_assassin_phantom_coup_de_grace_shield",
+	"modifier_phantom_assassin_phantom_coup_de_grace_haste",
 	"abilities/phantom_assassin/custom_phantom_assassin_coup_de_grace",
 	LUA_MODIFIER_MOTION_NONE
 )
 
 custom_phantom_assassin_coup_de_grace = class({})
-
-custom_phantom_assassin_coup_de_grace.all_targets = {}
-custom_phantom_assassin_coup_de_grace.current_targets = {}
-custom_phantom_assassin_coup_de_grace.last_target = nil
-
-function custom_phantom_assassin_coup_de_grace:GetAbilityTextureName()
-	return wearables_system:GetAbilityIconReplacement(self.caster, "phantom_assassin_coup_de_grace", self)
-end
+custom_phantom_assassin_coup_de_grace.talents = {}
+custom_phantom_assassin_coup_de_grace.current_target = nil
 
 function custom_phantom_assassin_coup_de_grace:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
 	end
 
-	PrecacheResource("particle", "particles/pa_cry.vpcf", context)
-	PrecacheResource("particle", "particles/lc_odd_charge_mark.vpcf", context)
-	PrecacheResource("particle", "particles/pa_vendetta.vpcf", context)
-	PrecacheResource("particle", "particles/pa_arc.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_bloodseeker/bloodseeker_thirst_owner.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/econ/items/sven/sven_ti7_sword/sven_ti7_sword_spell_great_cleave_gods_strength.vpcf",
@@ -98,21 +79,155 @@ function custom_phantom_assassin_coup_de_grace:Precache(context)
 		"particles/units/heroes/hero_phantom_assassin/phantom_assassin_crit_impact.vpcf",
 		context
 	)
-	PrecacheResource("particle", "particles/general/generic_armor_reduction.vpcf", context)
 	PrecacheResource("particle", "particles/lc_odd_proc_hands.vpcf", context)
-	PrecacheResource("particle", "particles/brist_lowhp_.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/units/heroes/hero_phantom_assassin/phantom_assassin_mark_overhead.vpcf",
 		context
 	)
-	PrecacheResource("particle", "particles/phantom_assassin/crit_shield.vpcf", context)
+	PrecacheResource("particle", "particles/phantom_assassin/magic_crit_mark.vpcf", context)
+	PrecacheResource("particle", "particles/phantom_assassin/crit_legendary_timer.vpcf", context)
+	PrecacheResource("particle", "particles/phantom_assassin/crit_legendary_stack.vpcf", context)
+	PrecacheResource("particle", "particles/phantom_assassin/blink_illusion_blur.vpcf", context)
+	PrecacheResource("particle", "particles/pa_cry.vpcf", context)
+	PrecacheResource(
+		"particle",
+		"particles/units/heroes/hero_phantom_assassin/phantom_assassin_active_blur.vpcf",
+		context
+	)
+	PrecacheResource(
+		"particle",
+		"particles/units/heroes/hero_phantom_assassin/phantom_assassin_active_start.vpcf",
+		context
+	)
+	PrecacheResource(
+		"particle",
+		"particles/units/heroes/hero_phantom_assassin/phantom_assassin_phantom_strike_start.vpcf",
+		context
+	)
+	PrecacheResource(
+		"particle",
+		"particles/units/heroes/hero_phantom_assassin/phantom_assassin_phantom_strike_end.vpcf",
+		context
+	)
+	PrecacheResource("particle", "particles/phantom_assassin/blink_effect.vpcf", context)
+	PrecacheResource("particle", "particles/phantom_assassin/blink_effect_red.vpcf", context)
+	PrecacheResource("particle", "particles/phantom_assassin/crit_bleed_proc.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_sven/sven_spell_great_cleave.vpcf", context)
+	PrecacheResource("particle", "particles/hoodwink/bush_damage.vpcf", context)
+	PrecacheResource("particle", "particles/phantom_assassin/crit_shield_effect.vpcf", context)
+	PrecacheResource("particle", "particles/bloodseeker/thirst_legendary.vpcf", context)
+	PrecacheResource("particle", "particles/generic_gameplay/generic_hit_blood.vpcf", context)
+	PrecacheResource(
+		"particle",
+		"particles/econ/items/phantom_assassin/pa_crimson_witness_2021/pa_crimson_witness_blur_start.vpcf",
+		context
+	)
 end
 
-function custom_phantom_assassin_coup_de_grace:GetCooldown()
-	if self:GetCaster():HasTalent("modifier_phantom_assassin_crit_7") then
-		return self:GetCaster():GetTalentValue("modifier_phantom_assassin_crit_7", "cd")
+function custom_phantom_assassin_coup_de_grace:UpdateTalents(name)
+	local caster = self:GetCaster()
+	if not self.init then
+		self.init = true
+		self.talents = {
+			has_q7 = 0,
+			has_w7 = 0,
+
+			has_h3 = 0,
+			h3_heal_reduce = 0,
+			h3_slow = 0,
+			h3_duration = caster:GetTalentValue("modifier_phantom_assassin_hero_3", "duration", true),
+
+			has_h6 = 0,
+			h6_cd = caster:GetTalentValue("modifier_phantom_assassin_hero_6", "cd", true),
+
+			has_r1 = 0,
+			r1_cleave = 0,
+			r1_damage = 0,
+			r1_max = caster:GetTalentValue("modifier_phantom_assassin_crit_1", "max", true),
+			r1_duration_hero = caster:GetTalentValue("modifier_phantom_assassin_crit_1", "duration_hero", true),
+			r1_duration_creeps = caster:GetTalentValue("modifier_phantom_assassin_crit_1", "duration_creeps", true),
+			r1_cleave_start = caster:GetTalentValue("modifier_phantom_assassin_crit_1", "cleave_start", true),
+			r1_cleave_end = caster:GetTalentValue("modifier_phantom_assassin_crit_1", "cleave_end", true),
+			r1_cleave_distance = caster:GetTalentValue("modifier_phantom_assassin_crit_1", "cleave_distance", true),
+
+			has_r2 = 0,
+			r2_range = 0,
+
+			has_r3 = 0,
+			r3_armor = 0,
+			r3_attack = 0,
+			r3_max = caster:GetTalentValue("modifier_phantom_assassin_crit_3", "max", true),
+			r3_procs = caster:GetTalentValue("modifier_phantom_assassin_crit_3", "procs", true),
+			r3_armor_duration = caster:GetTalentValue("modifier_phantom_assassin_crit_3", "armor_duration", true),
+			r3_duration = caster:GetTalentValue("modifier_phantom_assassin_crit_3", "duration", true),
+
+			has_r4 = 0,
+			r4_chance = caster:GetTalentValue("modifier_phantom_assassin_crit_4", "chance", true),
+			r4_shield = caster:GetTalentValue("modifier_phantom_assassin_crit_4", "shield", true),
+			r4_health = caster:GetTalentValue("modifier_phantom_assassin_crit_4", "health", true) / 100,
+			r4_move = caster:GetTalentValue("modifier_phantom_assassin_crit_4", "move", true),
+			r4_max = caster:GetTalentValue("modifier_phantom_assassin_crit_4", "max", true),
+			r4_duration = caster:GetTalentValue("modifier_phantom_assassin_crit_4", "duration", true),
+
+			has_r7 = 0,
+			r7_chance = caster:GetTalentValue("modifier_phantom_assassin_crit_7", "chance", true),
+			r7_crit = caster:GetTalentValue("modifier_phantom_assassin_crit_7", "crit", true),
+			r7_mark_duration = caster:GetTalentValue("modifier_phantom_assassin_crit_7", "mark_duration", true),
+		}
 	end
+
+	if caster:HasTalent("modifier_phantom_assassin_dagger_7") then
+		self.talents.has_q7 = 1
+	end
+
+	if caster:HasTalent("modifier_phantom_assassin_blink_7") then
+		self.talents.has_w7 = 1
+	end
+
+	if caster:HasTalent("modifier_phantom_assassin_hero_3") then
+		self.talents.has_h3 = 1
+		self.talents.h3_heal_reduce = caster:GetTalentValue("modifier_phantom_assassin_hero_3", "heal_reduce")
+		self.talents.h3_slow = caster:GetTalentValue("modifier_phantom_assassin_hero_3", "slow")
+	end
+
+	if caster:HasTalent("modifier_phantom_assassin_hero_6") then
+		self.talents.has_h6 = 1
+	end
+
+	if caster:HasTalent("modifier_phantom_assassin_crit_1") then
+		self.talents.has_r1 = 1
+		self.talents.r1_cleave = caster:GetTalentValue("modifier_phantom_assassin_crit_1", "cleave") / 100
+		self.talents.r1_damage = caster:GetTalentValue("modifier_phantom_assassin_crit_1", "damage")
+	end
+
+	if caster:HasTalent("modifier_phantom_assassin_crit_2") then
+		self.talents.has_r2 = 1
+		self.talents.r2_range = caster:GetTalentValue("modifier_phantom_assassin_crit_2", "range")
+	end
+
+	if caster:HasTalent("modifier_phantom_assassin_crit_3") then
+		self.talents.has_r3 = 1
+		self.talents.r3_armor = caster:GetTalentValue("modifier_phantom_assassin_crit_3", "armor")
+		self.talents.r3_attack = caster:GetTalentValue("modifier_phantom_assassin_crit_3", "attack")
+	end
+
+	if caster:HasTalent("modifier_phantom_assassin_crit_4") then
+		self.talents.has_r4 = 1
+	end
+
+	if caster:HasTalent("modifier_phantom_assassin_crit_7") then
+		self.talents.has_r7 = 1
+		self:UpdateUI()
+	end
+end
+
+function custom_phantom_assassin_coup_de_grace:GetAbilityTextureName()
+	return wearables_system:GetAbilityIconReplacement(
+		self.caster,
+		self:IsMagic() and "grace_magic" or "phantom_assassin_coup_de_grace",
+		self
+	)
 end
 
 function custom_phantom_assassin_coup_de_grace:GetIntrinsicModifierName()
@@ -122,409 +237,366 @@ function custom_phantom_assassin_coup_de_grace:GetIntrinsicModifierName()
 	return "modifier_phantom_assassin_phantom_coup_de_grace"
 end
 
-function custom_phantom_assassin_coup_de_grace:GetBehavior()
-	if self:GetCaster():HasTalent("modifier_phantom_assassin_crit_7") then
-		return DOTA_ABILITY_BEHAVIOR_NO_TARGET
+function custom_phantom_assassin_coup_de_grace:GetCooldown(iLevel)
+	if self.talents.has_h6 == 1 then
+		return self.talents.h6_cd
 	end
-	return DOTA_ABILITY_BEHAVIOR_PASSIVE
+	return self.BaseClass.GetCooldown(self, iLevel)
 end
 
-function custom_phantom_assassin_coup_de_grace:SetTarget(index)
-	local caster = self:GetCaster()
-
-	local hero = EntIndexToHScript(index)
-	if not hero or hero:IsNull() or not players[hero:GetId()] then
-		self:StartCd()
-		return
-	end
-
-	caster:AddNewModifier(
-		caster,
-		self,
-		"modifier_phantom_assassin_phantom_coup_de_grace_legendary",
-		{ target = index, duration = caster:GetTalentValue("modifier_phantom_assassin_crit_7", "duration") }
-	)
+function custom_phantom_assassin_coup_de_grace:IsMagic()
+	return self.talents.has_q7 == 1 or self.talents.has_w7 == 1
 end
 
 function custom_phantom_assassin_coup_de_grace:OnSpellStart()
-	local caster = self:GetCaster()
-	local all_targets = {}
-	local targets_alive = 0
+	if not self.caster.hunt_ability then
+		return
+	end
 
-	for _, target_table in pairs(self.all_targets) do
-		local target = EntIndexToHScript(target_table.target)
+	self.caster.hunt_ability:StartHunt()
+end
 
-		if target and not target:IsNull() then
-			local count = #all_targets + 1
-			all_targets[count] = {}
-			all_targets[count].target = target_table.target
+function custom_phantom_assassin_coup_de_grace:UpdateUI()
+	if not IsServer() then
+		return
+	end
+	if self.talents.has_r7 ~= 1 then
+		return
+	end
 
-			if target_table.killed == true or not players[target_table.id] then
-				all_targets[count].killed = true
-			else
-				all_targets[count].killed = false
-				targets_alive = targets_alive + 1
+	local stack = 0
+
+	if IsValid(self.current_target) then
+		local mark =
+			self.current_target:FindModifierByName("modifier_phantom_assassin_phantom_coup_de_grace_legendary_crit")
+
+		if mark then
+			stack = mark:GetStackCount()
+		end
+	end
+
+	self.caster:UpdateUIlong({ stack = stack, override_stack = stack, style = "PhantomCrit" })
+end
+
+function custom_phantom_assassin_coup_de_grace:GetCritBonus()
+	return self.crit_bonus + (self.caster.hunt_ability and self.caster.hunt_ability:GetContractDamage() or 0)
+end
+
+function custom_phantom_assassin_coup_de_grace:GetBleedDamage()
+	return self.damage_magic
+		+ (self.caster.hunt_ability and self.caster.hunt_ability:GetContractDamage(true) or 0) / 100
+end
+
+function custom_phantom_assassin_coup_de_grace:GetFocusDamage(target)
+	local crit = self:GetCritBonus()
+	local damage = crit
+	local stacks = 0
+
+	if self.talents.has_r7 == 1 and target then
+		local mark = target:FindModifierByName("modifier_phantom_assassin_phantom_coup_de_grace_legendary_crit")
+
+		if mark then
+			stacks = mark:GetStackCount()
+			damage = crit * (1 + stacks * self.talents.r7_crit / 100)
+		end
+	end
+
+	return damage
+end
+
+function custom_phantom_assassin_coup_de_grace:RollFocus(attacker, chance)
+	if not IsServer() then
+		return
+	end
+	if attacker:PassivesDisabled() then
+		return
+	end
+	if attacker:HasModifier("modifier_phantom_assassin_phantom_coup_de_grace_focus") then
+		return
+	end
+
+	chance = (chance or self.crit_chance) + (self.talents.has_r4 == 1 and self.talents.r4_chance or 0)
+
+	if self.caster == attacker and self.talents.has_r7 == 1 then
+		local legendary = self.caster:FindModifierByName("modifier_phantom_assassin_phantom_coup_de_grace_legendary")
+
+		if legendary then
+			if legendary:GetStackCount() <= 0 then
+				return
 			end
+
+			chance = chance * (1 + self.talents.r7_chance / 100)
 		end
 	end
 
-	self.current_targets = all_targets
+	local roll = RollPseudoRandomPercentage(chance, 1223, attacker)
 
-	if targets_alive > 0 then
-		caster:AddNewModifier(caster, self, "modifier_phantom_assassin_phantom_coup_de_grace_legendary_choosing", {})
+	if not roll then
 		return
 	end
 
-	local heroes = {}
-
-	for _, player in pairs(players) do
-		if player:GetTeamNumber() ~= caster:GetTeamNumber() then
-			heroes[#heroes + 1] = player
-		end
-	end
-
-	if #heroes == 0 then
-		return
-	end
-
-	local target = heroes[RandomInt(1, #heroes)]
-
-	if #heroes > 1 and self.last_target ~= nil then
-		repeat
-			target = heroes[RandomInt(1, #heroes)]
-		until self.last_target ~= target
-	end
-
-	caster:AddNewModifier(
-		caster,
+	attacker:AddNewModifier(
+		attacker,
 		self,
-		"modifier_phantom_assassin_phantom_coup_de_grace_legendary",
-		{ target = target:entindex(), duration = caster:GetTalentValue("modifier_phantom_assassin_crit_7", "duration") }
+		"modifier_phantom_assassin_phantom_coup_de_grace_focus",
+		{ duration = self.focus_duration }
 	)
 end
 
-modifier_phantom_assassin_phantom_coup_de_grace_legendary = class({})
-function modifier_phantom_assassin_phantom_coup_de_grace_legendary:IsPurgable()
-	return false
-end
-function modifier_phantom_assassin_phantom_coup_de_grace_legendary:IsHidden()
-	return false
-end
-function modifier_phantom_assassin_phantom_coup_de_grace_legendary:GetTexture()
-	return "buffs/odds_fow"
-end
-function modifier_phantom_assassin_phantom_coup_de_grace_legendary:RemoveOnDeath()
-	return false
-end
-function modifier_phantom_assassin_phantom_coup_de_grace_legendary:OnCreated(table)
-	if not IsServer() then
-		return
-	end
-	self.parent = self:GetParent()
-	self.parent:AddDeathEvent(self)
-
-	self.ability = self:GetAbility()
-	self.target = EntIndexToHScript(table.target)
-	self.ability.last_target = self.target
-	self.ability:EndCd()
-
-	self.target_id = self.target:GetId()
-
-	self.range = self.parent:GetTalentValue("modifier_phantom_assassin_crit_7", "range")
-	self.timer = self.parent:GetTalentValue("modifier_phantom_assassin_crit_7", "delay")
-
-	if test then
-		self.timer = 0
-	end
-
-	self.RemoveForDuel = true
-
-	self.particle_trail = ParticleManager:CreateParticleForTeam(
-		"particles/lc_odd_charge_mark.vpcf",
-		PATTACH_OVERHEAD_FOLLOW,
-		self.target,
-		self.parent:GetTeamNumber()
-	)
-	self:AddParticle(self.particle_trail, false, false, -1, false, false)
-
-	self.particle_trail_fx = ParticleManager:CreateParticleForTeam(
-		"particles/pa_vendetta.vpcf",
-		PATTACH_ABSORIGIN_FOLLOW,
-		self.target,
-		self.parent:GetTeamNumber()
-	)
-	self:AddParticle(self.particle_trail_fx, false, false, -1, false, false)
-
-	self.parent:EmitSound("Phantom_Assassin.SuperCrit")
-	self.parent:GenericParticle("particles/pa_cry.vpcf")
-
-	self.interval = 0.1
-	self.count = 0
-	self:SetStackCount(self.timer)
-	self:StartIntervalThink(self.interval)
-end
-
-function modifier_phantom_assassin_phantom_coup_de_grace_legendary:OnIntervalThink()
+function custom_phantom_assassin_coup_de_grace:TakeFocus(unit)
 	if not IsServer() then
 		return
 	end
 
-	if self:GetStackCount() > 0 then
-		self.count = self.count + self.interval
-		if self.count >= 1 then
-			self.count = 0
-			self:DecrementStackCount()
-		end
-	end
-
-	if not self.target or self.target:IsNull() or not players[self.target_id] then
-		self:Destroy()
+	local mod = (unit or self.caster):FindModifierByName("modifier_phantom_assassin_phantom_coup_de_grace_focus")
+	if not mod then
 		return
 	end
 
-	if self.target:IsAlive() then
-		AddFOWViewer(self.parent:GetTeamNumber(), self.target:GetAbsOrigin(), 10, self.interval * 2, true)
-	end
-
-	CustomGameEventManager:Send_ServerToPlayer(
-		PlayerResource:GetPlayer(self.parent:GetPlayerOwnerID()),
-		"pa_hunt_think",
-		{ hero = self.target:GetUnitName(), timer = math.floor(self:GetRemainingTime()), gold = 0 }
-	)
+	mod:Destroy()
+	return 1
 end
 
-function modifier_phantom_assassin_phantom_coup_de_grace_legendary:DeathEvent(params)
-	if not IsServer() then
-		return
-	end
-	if not self.parent:IsAlive() then
-		return
-	end
-	if self.target ~= params.unit then
-		return
-	end
-	if self.target:IsReincarnating() then
-		return
-	end
-	if self:GetStackCount() > 0 then
-		return
-	end
-
-	local attacker = params.attacker
-
-	if attacker and attacker.owner then
-		attacker = attacker.owner
-	end
-
-	if
-		self.parent ~= attacker
-		and (self.target:GetAbsOrigin() - self.parent:GetAbsOrigin()):Length2D() > self.range
-	then
-		return
-	end
-
-	self.kill_done = true
-	self:Destroy()
-end
-
-function modifier_phantom_assassin_phantom_coup_de_grace_legendary:OnDestroy()
+function custom_phantom_assassin_coup_de_grace:UseFocus(attacker, is_ability, target)
 	if not IsServer() then
 		return
 	end
 
-	CustomGameEventManager:Send_ServerToPlayer(
-		PlayerResource:GetPlayer(self.parent:GetPlayerOwnerID()),
-		"pa_hunt_end",
-		{}
+	local crit = self:IsMagic() and self:TakeFocus(attacker)
+
+	if crit then
+		self:ProcSelf(attacker, target)
+	else
+		self:RollFocus(attacker, is_ability and self.ability_crit_chance)
+	end
+
+	return crit
+end
+
+function custom_phantom_assassin_coup_de_grace:ProcFocus(attacker, target)
+	if not IsServer() then
+		return
+	end
+
+	local crit_effect = wearables_system:GetParticleReplacementAbility(
+		self.caster,
+		"particles/units/heroes/hero_phantom_assassin/phantom_assassin_crit_impact.vpcf",
+		self
 	)
+	local vec = (target:GetAbsOrigin() - attacker:GetAbsOrigin()):Normalized()
 
-	self.ability:StartCd()
+	local coup_pfx = ParticleManager:CreateParticle(crit_effect, PATTACH_ABSORIGIN_FOLLOW, target)
+	ParticleManager:SetParticleControlEnt(
+		coup_pfx,
+		0,
+		target,
+		PATTACH_POINT_FOLLOW,
+		"attach_hitloc",
+		target:GetOrigin(),
+		true
+	)
+	ParticleManager:SetParticleControl(coup_pfx, 1, target:GetOrigin())
+	ParticleManager:SetParticleControlForward(coup_pfx, 1, -vec)
+	ParticleManager:ReleaseParticleIndex(coup_pfx)
 
-	if self.kill_done then
-		local mod = self.parent:FindModifierByName("modifier_phantom_assassin_phantom_coup_de_grace")
-		if mod then
-			mod:AddStack()
+	target:EmitSound(wearables_system:GetSoundReplacement(self.caster, "Hero_PhantomAssassin.CoupDeGrace", self))
+
+	if self.talents.has_r3 == 1 then
+		attacker:AddNewModifier(
+			self.caster,
+			self,
+			"modifier_phantom_assassin_phantom_coup_de_grace_haste",
+			{ duration = self.talents.r3_duration }
+		)
+	end
+
+	if self.talents.has_h3 == 1 then
+		target:AddNewModifier(
+			self.caster,
+			self,
+			"modifier_phantom_assassin_phantom_coup_de_grace_reduce",
+			{ duration = self.talents.h3_duration * (1 - target:GetStatusResistance()) }
+		)
+	end
+
+	if self.caster ~= attacker then
+		return
+	end
+
+	if self.caster.blur_ability then
+		self.caster.blur_ability:ProcSplash(target)
+	end
+
+	if self.talents.has_r3 == 1 then
+		target:AddNewModifier(
+			self.caster,
+			self,
+			"modifier_phantom_assassin_phantom_coup_de_grace_armor",
+			{ stacks = self.talents.r3_procs, duration = self.talents.r3_armor_duration }
+		)
+	end
+
+	local legendary = self.talents.has_r7 == 1
+		and self.caster:FindModifierByName("modifier_phantom_assassin_phantom_coup_de_grace_legendary")
+
+	if legendary then
+		if legendary:GetStackCount() > 0 then
+			legendary:DecrementStackCount()
+			legendary:UpdateUI()
 		end
 
-		for _, data in pairs(self.ability.all_targets) do
-			if data.target == self.target:entindex() then
-				data.killed = true
+		target:AddNewModifier(
+			self.caster,
+			self,
+			"modifier_phantom_assassin_phantom_coup_de_grace_legendary_crit",
+			{ duration = self.talents.r7_mark_duration }
+		)
+	end
+end
+
+function custom_phantom_assassin_coup_de_grace:ProcSelf(attacker, target)
+	if not IsServer() then
+		return
+	end
+	if self.caster ~= attacker then
+		return
+	end
+
+	if self.talents.has_r1 == 1 then
+		local duration = target and target:IsRealHero() and self.talents.r1_duration_hero
+			or self.talents.r1_duration_creeps
+		self.caster:AddNewModifier(
+			self.caster,
+			self,
+			"modifier_phantom_assassin_phantom_coup_de_grace_rage",
+			{ duration = duration }
+		)
+	end
+
+	if self.talents.has_r4 == 1 then
+		local shield = self.talents.r4_shield + self.caster:GetMaxHealth() * self.talents.r4_health
+
+		if IsValid(self.shield_mod) then
+			self.shield_mod:SetDuration(self.talents.r4_duration, true)
+			self.shield_mod:AddShield(shield, shield * self.talents.r4_max)
+		else
+			self.shield_mod = self.caster:AddNewModifier(self.caster, self, "modifier_generic_shield", {
+				duration = self.talents.r4_duration,
+				max_shield = shield * self.talents.r4_max,
+				shield_talent = "modifier_phantom_assassin_crit_4",
+				move_speed = self.talents.r4_move,
+			})
+
+			if self.shield_mod then
+				self.shield_mod:AddShield(shield)
+
+				self.parent:GenericParticle(
+					"particles/units/heroes/hero_bloodseeker/bloodseeker_thirst_owner.vpcf",
+					self.shield_mod
+				)
+
+				local shield_pfx = ParticleManager:CreateParticle(
+					"particles/phantom_assassin/crit_shield_effect.vpcf",
+					PATTACH_CUSTOMORIGIN_FOLLOW,
+					self.caster
+				)
+				ParticleManager:SetParticleControlEnt(
+					shield_pfx,
+					0,
+					self.caster,
+					PATTACH_POINT_FOLLOW,
+					"attach_hitloc",
+					self.caster:GetAbsOrigin(),
+					true
+				)
+				self.shield_mod:AddParticle(shield_pfx, false, false, -1, false, false)
 			end
 		end
 	end
 end
 
-modifier_phantom_assassin_phantom_coup_de_grace = class({})
-function modifier_phantom_assassin_phantom_coup_de_grace:IsHidden()
-	return not self.parent:HasTalent("modifier_phantom_assassin_crit_7")
+function custom_phantom_assassin_coup_de_grace:ApplyBleed(attacker, target, damage)
+	if not IsServer() then
+		return
+	end
+	if not self:IsMagic() then
+		return
+	end
+
+	self:ProcFocus(attacker, target)
+
+	local coup_pfx = ParticleManager:CreateParticle(
+		"particles/generic_gameplay/generic_hit_blood.vpcf",
+		PATTACH_CUSTOMORIGIN_FOLLOW,
+		target
+	)
+	ParticleManager:SetParticleControlEnt(
+		coup_pfx,
+		0,
+		target,
+		PATTACH_POINT_FOLLOW,
+		"attach_hitloc",
+		target:GetOrigin(),
+		true
+	)
+	ParticleManager:SetParticleControl(coup_pfx, 1, Vector(3, 0, 0))
+	ParticleManager:ReleaseParticleIndex(coup_pfx)
+
+	target:AddNewModifier(
+		self.caster,
+		self,
+		"modifier_phantom_assassin_phantom_coup_de_grace_bleed",
+		{ damage = damage * self:GetBleedDamage() }
+	)
 end
-function modifier_phantom_assassin_phantom_coup_de_grace:IsPurgable()
-	return false
-end
+
+modifier_phantom_assassin_phantom_coup_de_grace = class(mod_hidden)
 function modifier_phantom_assassin_phantom_coup_de_grace:OnCreated()
 	self.parent = self:GetParent()
+	self.caster = self:GetCaster()
 	self.ability = self:GetAbility()
+	self.ability.tracker = self
+	self.records = {}
+	self.ability:UpdateTalents()
+
+	self.legendary_ability = self.parent:FindAbilityByName("custom_phantom_assassin_coup_de_grace_legendary")
+	if self.legendary_ability then
+		self.legendary_ability:UpdateTalents()
+	end
+
+	self.ability.crit_chance = self.ability:GetSpecialValueFor("crit_chance")
+	self.ability.ability_crit_chance = self.ability:GetSpecialValueFor("ability_crit_chance")
+	self.ability.focus_duration = self.ability:GetSpecialValueFor("focus_duration")
+	self.ability.crit_bonus = self.ability:GetSpecialValueFor("crit_bonus")
+	self.ability.bleed_duration = self.ability:GetSpecialValueFor("bleed_duration")
+	self.ability.bleed_interval = self.ability:GetSpecialValueFor("bleed_interval")
+	self.ability.damage_magic = self.ability:GetSpecialValueFor("damage_magic") / 100
+
+	self.parent.crit_ability = self.ability
 
 	if self.parent:IsRealHero() then
-		self.parent:AddDamageEvent_out(self)
-		self.parent:AddAttackEvent_out(self)
+		self.parent:AddAttackEvent_out(self, true)
+		self.parent:AddRecordDestroyEvent(self, true)
 	end
-	self.focus_duration = self.ability:GetSpecialValueFor("duration")
-
-	self.legendary_max = self.parent:GetTalentValue("modifier_phantom_assassin_crit_7", "max", true)
-	self.legendary_damage = self.parent:GetTalentValue("modifier_phantom_assassin_crit_7", "damage", true)
-	self.legendary_bva = self.parent:GetTalentValue("modifier_phantom_assassin_crit_7", "bva", true)
-
-	self.heal_creeps = self.parent:GetTalentValue("modifier_phantom_assassin_crit_2", "creeps", true)
-	self.heal_bonus = self.parent:GetTalentValue("modifier_phantom_assassin_crit_2", "bonus", true)
-
-	self.silence_duration = self.parent:GetTalentValue("modifier_phantom_assassin_crit_5", "silence", true)
-	self.silence_cd = self.parent:GetTalentValue("modifier_phantom_assassin_crit_5", "cd", true)
-
-	self.armor_duration = self.parent:GetTalentValue("modifier_phantom_assassin_crit_4", "duration", true)
-	self.armor_stack = self.parent:GetTalentValue("modifier_phantom_assassin_crit_4", "crit_stack", true)
-
-	self.damage_duration = self.parent:GetTalentValue("modifier_phantom_assassin_crit_3", "duration", true)
-
-	self.shield_duration = self.parent:GetTalentValue("modifier_phantom_assassin_crit_6", "duration", true)
-
-	if not IsServer() then
-		return
-	end
-	if self.ability:IsStolen() then
-		return
-	end
-
-	local all_ids = {}
-	for id, player in pairs(players) do
-		if player:GetTeamNumber() ~= self.parent:GetTeamNumber() then
-			table.insert(all_ids, id)
-		end
-	end
-
-	local max = 5
-	local final_ids = {}
-
-	if #all_ids == 0 then
-		return
-	end
-
-	if #all_ids > max then
-		local used = {}
-		local random = 0
-		for i = 1, max do
-			repeat
-				random = RandomInt(1, #all_ids)
-			until not dota1x6:check_used(used, random)
-			used[#used + 1] = random
-			final_ids[#final_ids + 1] = all_ids[random]
-		end
-	else
-		final_ids = all_ids
-	end
-
-	for _, id in pairs(final_ids) do
-		local player = players[id]
-		if player then
-			print(id, player:GetUnitName())
-			local count = #self.ability.all_targets + 1
-			self.ability.all_targets[count] = {}
-			self.ability.all_targets[count].target = player:entindex()
-			self.ability.all_targets[count].killed = false
-			self.ability.all_targets[count].id = id
-		end
-	end
-
-	self.proced = false
-	self:StartIntervalThink(1)
 end
 
-function modifier_phantom_assassin_phantom_coup_de_grace:OnIntervalThink()
-	if not IsServer() then
-		return
-	end
-	if not self.parent:HasTalent("modifier_phantom_assassin_crit_7") then
-		return
-	end
-	if self.parent:HasModifier("modifier_phantom_assassin_phantom_coup_de_grace_legendary_max") then
-		return
-	end
-
-	local alive = false
-	for _, data in pairs(self.ability.all_targets) do
-		local target = EntIndexToHScript(data.target)
-		if target and not target:IsNull() and data.killed == false and players[data.id] then
-			alive = true
-			break
-		end
-	end
-
-	if alive == true then
-		return
-	end
-
-	self.parent:AddNewModifier(
-		self.parent,
-		self.ability,
-		"modifier_phantom_assassin_phantom_coup_de_grace_legendary_max",
-		{}
-	)
-end
-
-function modifier_phantom_assassin_phantom_coup_de_grace:AddStack()
-	if not IsServer() then
-		return
-	end
-	if not self.parent:HasTalent("modifier_phantom_assassin_crit_7") then
-		return
-	end
-	if self:GetStackCount() >= self.legendary_max then
-		return
-	end
-
-	self:IncrementStackCount()
-
-	if self:GetStackCount() >= self.legendary_max then
-		local particle_peffect =
-			ParticleManager:CreateParticle("particles/brist_lowhp_.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
-		ParticleManager:SetParticleControl(particle_peffect, 0, self.parent:GetAbsOrigin())
-		ParticleManager:SetParticleControl(particle_peffect, 2, self.parent:GetAbsOrigin())
-		ParticleManager:ReleaseParticleIndex(particle_peffect)
-		self.parent:EmitSound("BS.Thirst_legendary_active")
-	else
-		self.particle = ParticleManager:CreateParticle("particles/pa_arc.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
-
-		self.parent:EmitSound("Phantom_Assassin.SuperCrit")
-		Timers:CreateTimer(1, function()
-			ParticleManager:DestroyParticle(self.particle, false)
-			ParticleManager:ReleaseParticleIndex(self.particle)
-		end)
-	end
+function modifier_phantom_assassin_phantom_coup_de_grace:OnRefresh()
+	self.ability.crit_bonus = self.ability:GetSpecialValueFor("crit_bonus")
+	self.ability.damage_magic = self.ability:GetSpecialValueFor("damage_magic") / 100
 end
 
 function modifier_phantom_assassin_phantom_coup_de_grace:DeclareFunctions()
 	return {
-		MODIFIER_PROPERTY_PROCATTACK_FEEDBACK,
-		MODIFIER_PROPERTY_TOOLTIP,
-		MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT,
+		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
 	}
 end
 
-function modifier_phantom_assassin_phantom_coup_de_grace:OnTooltip()
-	if not self.parent:HasTalent("modifier_phantom_assassin_crit_7") then
-		return
-	end
-	return self.legendary_damage * self:GetStackCount()
+function modifier_phantom_assassin_phantom_coup_de_grace:GetModifierAttackRangeBonus()
+	return self.ability.talents.r2_range or 0
 end
 
-function modifier_phantom_assassin_phantom_coup_de_grace:GetModifierBaseAttackTimeConstant()
-	if not self.parent:HasTalent("modifier_phantom_assassin_crit_7") then
-		return
-	end
-	if not self.parent:HasModifier("modifier_phantom_assassin_phantom_coup_de_grace_legendary_max") then
-		return
-	end
-	return self.legendary_bva
+function modifier_phantom_assassin_phantom_coup_de_grace:RecordDestroyEvent(params)
+	self.records[params.record] = nil
 end
 
 function modifier_phantom_assassin_phantom_coup_de_grace:AttackEvent_out(params)
@@ -544,340 +616,46 @@ function modifier_phantom_assassin_phantom_coup_de_grace:AttackEvent_out(params)
 	if self.parent ~= real_attacker then
 		return
 	end
-	if attacker:PassivesDisabled() then
+
+	if self.ability.talents.has_r1 == 1 then
+		DoCleaveAttack(
+			attacker,
+			params.target,
+			self.ability,
+			params.damage * self.ability.talents.r1_cleave,
+			self.ability.talents.r1_cleave_start,
+			self.ability.talents.r1_cleave_end,
+			self.ability.talents.r1_cleave_distance,
+			"particles/units/heroes/hero_sven/sven_spell_great_cleave.vpcf"
+		)
+	end
+
+	local focus = attacker:FindModifierByName("modifier_phantom_assassin_phantom_coup_de_grace_focus")
+
+	if focus and focus.records[params.record] then
+		self.ability:TakeFocus(attacker)
+		self.ability:ProcFocus(attacker, params.target)
+		self.ability:ProcSelf(attacker, params.target)
 		return
 	end
 
-	if attacker:HasTalent("modifier_phantom_assassin_crit_4") then
+	if self.ability.talents.has_r3 == 1 and self.parent == attacker then
 		params.target:AddNewModifier(
 			self.parent,
 			self.ability,
 			"modifier_phantom_assassin_phantom_coup_de_grace_armor",
-			{ duration = self.armor_duration }
-		)
-		attacker:AddNewModifier(
-			self.parent,
-			self.ability,
-			"modifier_phantom_assassin_phantom_coup_de_grace_armor",
-			{ duration = self.armor_duration }
+			{ duration = self.ability.talents.r3_armor_duration }
 		)
 	end
 
-	local mod = attacker:FindModifierByName("modifier_phantom_assassin_phantom_coup_de_grace_focus")
-
-	if mod and mod.record and mod.record == params.record then
-		if self.parent:GetQuest() == "Phantom.Quest_8" and params.target:IsRealHero() and self.parent == attacker then
-			params.target:AddNewModifier(
-				self.parent,
-				self.ability,
-				"modifier_phantom_assassin_phantom_coup_de_grace_quest",
-				{ duration = 3 }
-			)
-		end
-
-		if
-			attacker:HasTalent("modifier_phantom_assassin_crit_5")
-			and not params.target:HasModifier("modifier_phantom_assassin_phantom_coup_de_grace_silence_cd")
-		then
-			params.target:AddNewModifier(
-				self.parent,
-				self.ability,
-				"modifier_phantom_assassin_phantom_coup_de_grace_silence_cd",
-				{ duration = self.silence_cd }
-			)
-			params.target:AddNewModifier(
-				self.parent,
-				self.ability,
-				"modifier_phantom_assassin_phantom_coup_de_grace_silence",
-				{ duration = (1 - params.target:GetStatusResistance()) * self.silence_duration }
-			)
-		end
-
-		if attacker:HasTalent("modifier_phantom_assassin_crit_6") then
-			attacker:AddNewModifier(
-				self.parent,
-				self.ability,
-				"modifier_phantom_assassin_phantom_coup_de_grace_shield",
-				{ duration = self.shield_duration }
-			)
-		end
-
-		if attacker:HasTalent("modifier_phantom_assassin_crit_3") then
-			params.target:AddNewModifier(
-				self.parent,
-				self.ability,
-				"modifier_phantom_assassin_phantom_coup_de_grace_reduction",
-				{ duration = self.damage_duration }
-			)
-		end
-
-		if attacker:HasTalent("modifier_phantom_assassin_crit_4") then
-			local armor = params.target:FindModifierByName("modifier_phantom_assassin_phantom_coup_de_grace_armor")
-			for i = 1, (self.armor_stack - 1) do
-				params.target:AddNewModifier(
-					self.parent,
-					self.ability,
-					"modifier_phantom_assassin_phantom_coup_de_grace_armor",
-					{ duration = self.armor_duration }
-				)
-				attacker:AddNewModifier(
-					self.parent,
-					self.ability,
-					"modifier_phantom_assassin_phantom_coup_de_grace_armor",
-					{ duration = self.armor_duration }
-				)
-			end
-		end
-
-		self:PlayEffects(attacker, params.target)
+	if params.no_attack_cooldown and params.attack_flag ~= "pa_e3" then
 		return
 	end
 
-	local chance = self.ability:GetSpecialValueFor("crit_chance")
-	local dagger = attacker:FindModifierByName("modifier_custom_phantom_assassin_stifling_dagger_attack")
-
-	if dagger then
-		chance = self.ability:GetSpecialValueFor("dagger_crit_chance")
-	end
-
-	if attacker:HasTalent("modifier_phantom_assassin_crit_1") then
-		chance = chance + attacker:GetTalentValue("modifier_phantom_assassin_crit_1", "chance")
-	end
-
-	local random = RollPseudoRandomPercentage(chance, 1223, attacker)
-
-	if not random then
-		return
-	end
-	attacker:AddNewModifier(
-		attacker,
-		self.ability,
-		"modifier_phantom_assassin_phantom_coup_de_grace_focus",
-		{ duration = self.focus_duration }
-	)
+	self.ability:RollFocus(attacker)
 end
 
-function modifier_phantom_assassin_phantom_coup_de_grace:DamageEvent_out(params)
-	if not IsServer() then
-		return
-	end
-	if not params.unit:IsUnit() then
-		return
-	end
-
-	local attacker = params.attacker
-	local real_attacker = attacker
-
-	if real_attacker.owner and real_attacker:IsIllusion() then
-		real_attacker = attacker.owner
-	end
-
-	if self.parent ~= real_attacker then
-		return
-	end
-
-	local mod = attacker:FindModifierByName("modifier_phantom_assassin_phantom_coup_de_grace_focus")
-	local crit = false
-
-	if not params.inflictor and mod and mod.record and params.record and mod.record == params.record then
-		crit = true
-		mod:Destroy()
-	end
-
-	if attacker:HasTalent("modifier_phantom_assassin_crit_2") then
-		local heal = params.damage * attacker:GetTalentValue("modifier_phantom_assassin_crit_2", "heal") / 100
-
-		if crit == true then
-			heal = heal * self.heal_bonus
-		end
-		if params.unit:IsCreep() and params.inflictor then
-			heal = heal / self.heal_creeps
-		end
-
-		attacker:GenericHeal(heal, self.ability, not crit, nil, "modifier_phantom_assassin_crit_2")
-	end
-end
-
-function modifier_phantom_assassin_phantom_coup_de_grace:PlayEffects(attacker, target)
-	local crit_effect = wearables_system:GetParticleReplacementAbility(
-		self:GetCaster(),
-		"particles/units/heroes/hero_phantom_assassin/phantom_assassin_crit_impact.vpcf",
-		self
-	)
-
-	local vec = (target:GetAbsOrigin() - attacker:GetAbsOrigin()):Normalized()
-
-	local coup_pfx = ParticleManager:CreateParticle(crit_effect, PATTACH_ABSORIGIN_FOLLOW, target)
-	ParticleManager:SetParticleControlEnt(
-		coup_pfx,
-		0,
-		target,
-		PATTACH_POINT_FOLLOW,
-		"attach_hitloc",
-		target:GetOrigin(),
-		true
-	)
-	ParticleManager:SetParticleControl(coup_pfx, 1, target:GetOrigin())
-	ParticleManager:SetParticleControlForward(coup_pfx, 1, -vec)
-	ParticleManager:ReleaseParticleIndex(coup_pfx)
-
-	target:EmitSound(wearables_system:GetSoundReplacement(self:GetCaster(), "Hero_PhantomAssassin.CoupDeGrace", self))
-end
-
-modifier_phantom_assassin_phantom_coup_de_grace_armor = class({})
-function modifier_phantom_assassin_phantom_coup_de_grace_armor:IsHidden()
-	return false
-end
-function modifier_phantom_assassin_phantom_coup_de_grace_armor:IsPurgable()
-	return false
-end
-function modifier_phantom_assassin_phantom_coup_de_grace_armor:GetTexture()
-	return "buffs/back_shield"
-end
-function modifier_phantom_assassin_phantom_coup_de_grace_armor:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
-	}
-end
-
-function modifier_phantom_assassin_phantom_coup_de_grace_armor:OnCreated(table)
-	self.caster = self:GetCaster()
-	self.parent = self:GetParent()
-
-	self.armor = self.caster:GetTalentValue("modifier_phantom_assassin_crit_4", "armor")
-	self.max = self.caster:GetTalentValue("modifier_phantom_assassin_crit_4", "max")
-
-	if self.caster:GetTeamNumber() == self.parent:GetTeamNumber() then
-		self.armor = self.armor * -1
-	end
-
-	if not IsServer() then
-		return
-	end
-	self:SetStackCount(1)
-end
-
-function modifier_phantom_assassin_phantom_coup_de_grace_armor:GetModifierPhysicalArmorBonus()
-	return self.armor * self:GetStackCount()
-end
-
-function modifier_phantom_assassin_phantom_coup_de_grace_armor:OnRefresh()
-	if not IsServer() then
-		return
-	end
-	if self:GetStackCount() >= self.max then
-		return
-	end
-
-	self:IncrementStackCount()
-
-	if self:GetStackCount() >= self.max and self.parent:GetTeamNumber() ~= self.caster:GetTeamNumber() then
-		self.parent:EmitSound("Hoodwink.Acorn_armor")
-		self.parent:GenericParticle("particles/general/generic_armor_reduction.vpcf", self, true)
-	end
-end
-
-modifier_phantom_assassin_phantom_coup_de_grace_silence = class({})
-function modifier_phantom_assassin_phantom_coup_de_grace_silence:IsHidden()
-	return true
-end
-function modifier_phantom_assassin_phantom_coup_de_grace_silence:IsPurgable()
-	return true
-end
-function modifier_phantom_assassin_phantom_coup_de_grace_silence:GetTexture()
-	return "buffs/strike_stack"
-end
-function modifier_phantom_assassin_phantom_coup_de_grace_silence:CheckState()
-	return { [MODIFIER_STATE_SILENCED] = true }
-end
-function modifier_phantom_assassin_phantom_coup_de_grace_silence:GetEffectName()
-	return "particles/generic_gameplay/generic_silenced.vpcf"
-end
-function modifier_phantom_assassin_phantom_coup_de_grace_silence:GetEffectAttachType()
-	return PATTACH_OVERHEAD_FOLLOW
-end
-
-function modifier_phantom_assassin_phantom_coup_de_grace_silence:OnCreated()
-	self.slow = self:GetCaster():GetTalentValue("modifier_phantom_assassin_crit_5", "slow")
-	if not IsServer() then
-		return
-	end
-	self:GetParent():EmitSound("Sf.Raze_Silence")
-end
-
-function modifier_phantom_assassin_phantom_coup_de_grace_silence:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
-	}
-end
-
-function modifier_phantom_assassin_phantom_coup_de_grace_silence:GetModifierAttackSpeedBonus_Constant()
-	return self.slow
-end
-
-modifier_phantom_assassin_phantom_coup_de_grace_damage = class({})
-function modifier_phantom_assassin_phantom_coup_de_grace_damage:IsHidden()
-	return false
-end
-function modifier_phantom_assassin_phantom_coup_de_grace_damage:IsPurgable()
-	return false
-end
-function modifier_phantom_assassin_phantom_coup_de_grace_damage:GetTexture()
-	return "buffs/Blade_dance_stack"
-end
-function modifier_phantom_assassin_phantom_coup_de_grace_damage:OnCreated(table)
-	self.damage = self:GetCaster():GetTalentValue("modifier_phantom_assassin_crit_1", "damage")
-end
-
-function modifier_phantom_assassin_phantom_coup_de_grace_damage:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
-	}
-end
-
-function modifier_phantom_assassin_phantom_coup_de_grace_damage:GetModifierPreAttack_BonusDamage()
-	return self.damage
-end
-
-modifier_phantom_assassin_phantom_coup_de_grace_quest = class({})
-function modifier_phantom_assassin_phantom_coup_de_grace_quest:IsHidden()
-	return true
-end
-function modifier_phantom_assassin_phantom_coup_de_grace_quest:IsPurgable()
-	return false
-end
-function modifier_phantom_assassin_phantom_coup_de_grace_quest:OnCreated(table)
-	if not IsServer() then
-		return
-	end
-
-	self:SetStackCount(1)
-end
-
-function modifier_phantom_assassin_phantom_coup_de_grace_quest:OnRefresh(table)
-	if not IsServer() then
-		return
-	end
-	if not self:GetCaster():GetQuest() then
-		return
-	end
-
-	self:IncrementStackCount()
-
-	if self:GetStackCount() >= self:GetCaster().quest.number then
-		self:GetCaster():UpdateQuest(1)
-		self:Destroy()
-	end
-end
-
-modifier_phantom_assassin_phantom_coup_de_grace_focus = class({})
-function modifier_phantom_assassin_phantom_coup_de_grace_focus:IsHidden()
-	return false
-end
-function modifier_phantom_assassin_phantom_coup_de_grace_focus:IsPurgable()
-	return false
-end
-
+modifier_phantom_assassin_phantom_coup_de_grace_focus = class(mod_visible)
 function modifier_phantom_assassin_phantom_coup_de_grace_focus:OnCreated(kv)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -886,34 +664,18 @@ function modifier_phantom_assassin_phantom_coup_de_grace_focus:OnCreated(kv)
 		return
 	end
 
-	self.damage = self.ability:GetSpecialValueFor("crit_bonus")
+	local particle = "particles/units/heroes/hero_phantom_assassin/phantom_assassin_mark_overhead.vpcf"
 
-	local mod = self.parent:FindModifierByName("modifier_phantom_assassin_phantom_coup_de_grace")
-
-	if mod and self.parent:HasTalent("modifier_phantom_assassin_crit_7") then
-		self.damage = self.damage
-			+ mod:GetStackCount() * self.parent:GetTalentValue("modifier_phantom_assassin_crit_7", "damage")
+	if self.ability:IsMagic() then
+		particle = "particles/phantom_assassin/magic_crit_mark.vpcf"
 	end
 
-	if self.parent:HasTalent("modifier_phantom_assassin_crit_1") then
-		self.parent:AddNewModifier(
-			self.parent,
-			self.ability,
-			"modifier_phantom_assassin_phantom_coup_de_grace_damage",
-			{ duration = self.parent:GetTalentValue("modifier_phantom_assassin_crit_1", "duration") }
-		)
-	end
+	self.records = {}
 
-	self.record = nil
+	self.parent:CheckOwner():AddAttackStartEvent_out(self, false)
+
+	self.parent:GenericParticle(particle, self, true)
 	self:StartIntervalThink(0.2)
-end
-
-function modifier_phantom_assassin_phantom_coup_de_grace_focus:GetEffectName()
-	return "particles/units/heroes/hero_phantom_assassin/phantom_assassin_mark_overhead.vpcf"
-end
-
-function modifier_phantom_assassin_phantom_coup_de_grace_focus:GetEffectAttachType()
-	return PATTACH_OVERHEAD_FOLLOW
 end
 
 function modifier_phantom_assassin_phantom_coup_de_grace_focus:OnIntervalThink()
@@ -933,281 +695,637 @@ function modifier_phantom_assassin_phantom_coup_de_grace_focus:OnIntervalThink()
 	end
 end
 
+function modifier_phantom_assassin_phantom_coup_de_grace_focus:AttackStartEvent_out(params)
+	if not IsServer() then
+		return
+	end
+	if self.parent ~= params.attacker then
+		return
+	end
+	if self.used_record then
+		return
+	end
+	if self.proced ~= params.record then
+		return
+	end
+
+	self.used_record = params.record
+	self.records[params.record] = true
+
+	if self.parent == self.ability.caster then
+		self.ability.tracker.records[params.record] = true
+	end
+end
+
+function modifier_phantom_assassin_phantom_coup_de_grace_focus:GetCritDamage()
+	return self.ability:GetFocusDamage()
+end
+
 function modifier_phantom_assassin_phantom_coup_de_grace_focus:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE,
+		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
 	}
+end
+
+function modifier_phantom_assassin_phantom_coup_de_grace_focus:GetModifierAttackRangeBonus()
+	return self.ability.talents.r2_range or 0
 end
 
 function modifier_phantom_assassin_phantom_coup_de_grace_focus:GetModifierPreAttack_CriticalStrike(params)
 	if not IsServer() then
 		return
 	end
+	if self.ability:IsMagic() then
+		return
+	end
+	if self.used_record then
+		return
+	end
+	if self.parent.pa_q then
+		return
+	end
+	if self.parent.pa_e3 then
+		return
+	end
 	if not params.target:IsUnit() then
 		return
 	end
 
-	self.record = params.record
-	return self.damage
+	self.proced = params.record
+	return self.ability:GetFocusDamage(params.target)
 end
 
-function modifier_phantom_assassin_phantom_coup_de_grace_focus:GetCritDamage()
-	return self.damage
+modifier_phantom_assassin_phantom_coup_de_grace_armor = class(mod_visible)
+function modifier_phantom_assassin_phantom_coup_de_grace_armor:GetTexture()
+	return "buffs/phantom_assassin/grace_3"
 end
+function modifier_phantom_assassin_phantom_coup_de_grace_armor:OnCreated(table)
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
 
-modifier_phantom_assassin_phantom_coup_de_grace_silence_cd = class({})
-function modifier_phantom_assassin_phantom_coup_de_grace_silence_cd:IsHidden()
-	return true
-end
-function modifier_phantom_assassin_phantom_coup_de_grace_silence_cd:IsPurgable()
-	return false
-end
-function modifier_phantom_assassin_phantom_coup_de_grace_silence_cd:RemoveOnDeath()
-	return false
-end
-
-modifier_phantom_assassin_phantom_coup_de_grace_legendary_choosing = class({})
-function modifier_phantom_assassin_phantom_coup_de_grace_legendary_choosing:IsHidden()
-	return true
-end
-function modifier_phantom_assassin_phantom_coup_de_grace_legendary_choosing:IsPurgable()
-	return false
-end
-function modifier_phantom_assassin_phantom_coup_de_grace_legendary_choosing:RemoveOnDeath()
-	return false
-end
-function modifier_phantom_assassin_phantom_coup_de_grace_legendary_choosing:OnCreated(table)
 	if not IsServer() then
 		return
 	end
 
+	self.RemoveForDuel = true
+	self:OnRefresh(table)
+end
+
+function modifier_phantom_assassin_phantom_coup_de_grace_armor:OnRefresh(table)
+	if not IsServer() then
+		return
+	end
+	if self:GetStackCount() >= self.ability.talents.r3_max then
+		return
+	end
+
+	self:SetStackCount(math.min(self:GetStackCount() + (table.stacks or 1), self.ability.talents.r3_max))
+
+	if self:GetStackCount() < self.ability.talents.r3_max then
+		return
+	end
+
+	self.parent:GenericParticle("particles/hoodwink/bush_damage.vpcf", self)
+	self.parent:EmitSound("Pa.Strike_resist")
+end
+
+function modifier_phantom_assassin_phantom_coup_de_grace_armor:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
+	}
+end
+
+function modifier_phantom_assassin_phantom_coup_de_grace_armor:GetModifierPhysicalArmorBonus()
+	return (self.ability.talents.r3_armor / self.ability.talents.r3_max) * self:GetStackCount()
+end
+
+modifier_phantom_assassin_phantom_coup_de_grace_haste = class(mod_hidden)
+function modifier_phantom_assassin_phantom_coup_de_grace_haste:OnCreated()
+	self.ability = self:GetAbility()
+end
+
+function modifier_phantom_assassin_phantom_coup_de_grace_haste:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+	}
+end
+
+function modifier_phantom_assassin_phantom_coup_de_grace_haste:GetModifierAttackSpeedBonus_Constant()
+	return self.ability.talents.r3_attack
+end
+
+modifier_phantom_assassin_phantom_coup_de_grace_rage = class(mod_visible)
+function modifier_phantom_assassin_phantom_coup_de_grace_rage:GetTexture()
+	return "buffs/phantom_assassin/grace_1"
+end
+function modifier_phantom_assassin_phantom_coup_de_grace_rage:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.targets = {}
-	local alive = 0
-
-	for _, data in pairs(self.ability.current_targets) do
-		local count = #self.targets + 1
-		local target = EntIndexToHScript(data.target)
-		if target and not target:IsNull() then
-			self.targets[count] = {}
-			self.targets[count].target = target:GetUnitName()
-			self.targets[count].killed = data.killed
-			self.targets[count].index = data.target
-		end
-
-		if data.killed == false then
-			alive = alive + 1
-		end
+	if not IsServer() then
+		return
 	end
 
-	if #self.targets == 0 or alive == 0 then
+	self.RemoveForDuel = true
+	self:OnRefresh()
+end
+
+function modifier_phantom_assassin_phantom_coup_de_grace_rage:OnRefresh()
+	if not IsServer() then
+		return
+	end
+	if self:GetStackCount() >= self.ability.talents.r1_max then
+		return
+	end
+
+	self:IncrementStackCount()
+end
+
+function modifier_phantom_assassin_phantom_coup_de_grace_rage:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
+	}
+end
+
+function modifier_phantom_assassin_phantom_coup_de_grace_rage:GetModifierPreAttack_BonusDamage()
+	return self.ability.talents.r1_damage * self:GetStackCount()
+end
+
+modifier_phantom_assassin_phantom_coup_de_grace_reduce = class(mod_hidden)
+function modifier_phantom_assassin_phantom_coup_de_grace_reduce:OnCreated()
+	self.caster = self:GetCaster()
+	self.ability = self:GetAbility()
+	self.parent = self:GetParent()
+
+	if not IsServer() then
+		return
+	end
+	self.RemoveForDuel = true
+	self.parent:GenericParticle("particles/items2_fx/sange_maim.vpcf", self)
+end
+
+function modifier_phantom_assassin_phantom_coup_de_grace_reduce:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+	}
+end
+
+function modifier_phantom_assassin_phantom_coup_de_grace_reduce:GetModifierHPRegenAmplify_Percentage()
+	return self.ability.talents.h3_heal_reduce
+end
+
+function modifier_phantom_assassin_phantom_coup_de_grace_reduce:GetModifierHealChange()
+	return self.ability.talents.h3_heal_reduce
+end
+
+function modifier_phantom_assassin_phantom_coup_de_grace_reduce:GetModifierMoveSpeedBonus_Percentage()
+	return self.ability.talents.h3_slow
+end
+
+modifier_phantom_assassin_phantom_coup_de_grace_bleed = class(mod_visible)
+function modifier_phantom_assassin_phantom_coup_de_grace_bleed:GetTexture()
+	return "phantom_assassin_coup_de_grace"
+end
+function modifier_phantom_assassin_phantom_coup_de_grace_bleed:OnCreated(table)
+	if not IsServer() then
+		return
+	end
+	self.parent = self:GetParent()
+	self.caster = self:GetCaster()
+	self.ability = self:GetAbility()
+
+	self.ticks = math.floor(self.ability.bleed_duration / self.ability.bleed_interval)
+	self.count = 0
+	self.tick = 0
+	self.total_damage = 0
+
+	self.damageTable =
+		{ victim = self.parent, attacker = self.caster, ability = self.ability, damage_type = DAMAGE_TYPE_MAGICAL }
+
+	self.parent:GenericParticle("particles/items2_fx/sange_maim.vpcf", self)
+
+	self.RemoveForDuel = true
+	self:AddStack(table.damage)
+	self:SetStackCount(math.floor(self.total_damage))
+	self:StartIntervalThink(self.ability.bleed_interval)
+end
+
+function modifier_phantom_assassin_phantom_coup_de_grace_bleed:OnRefresh(table)
+	if not IsServer() then
+		return
+	end
+	self:AddStack(table.damage)
+end
+
+function modifier_phantom_assassin_phantom_coup_de_grace_bleed:AddStack(damage)
+	if not IsServer() then
+		return
+	end
+	self.parent:SendNumber(112, damage)
+
+	self.total_damage = self.total_damage + damage
+	self.tick = self.total_damage / self.ticks
+	self.count = self.ticks
+	self.damageTable.damage = self.tick
+end
+
+function modifier_phantom_assassin_phantom_coup_de_grace_bleed:OnIntervalThink()
+	if not IsServer() then
+		return
+	end
+
+	DoDamage(self.damageTable)
+
+	local effect = ParticleManager:CreateParticle(
+		"particles/phantom_assassin/crit_bleed_proc.vpcf",
+		PATTACH_CUSTOMORIGIN_FOLLOW,
+		self.parent
+	)
+	ParticleManager:SetParticleControlEnt(
+		effect,
+		0,
+		self.parent,
+		PATTACH_POINT_FOLLOW,
+		"attach_hitloc",
+		self.parent:GetOrigin(),
+		true
+	)
+	ParticleManager:ReleaseParticleIndex(effect)
+
+	self.total_damage = self.total_damage - self.tick
+	self.count = self.count - 1
+
+	if self.count <= 0 then
 		self:Destroy()
 		return
 	end
 
-	self.picked = false
-	self.ability:EndCd()
-	self:OnIntervalThink()
-	self:StartIntervalThink(0.5)
+	self:SetStackCount(math.floor(self.total_damage))
 end
 
-function modifier_phantom_assassin_phantom_coup_de_grace_legendary_choosing:OnIntervalThink()
+modifier_phantom_assassin_phantom_coup_de_grace_legendary_crit = class(mod_visible)
+function modifier_phantom_assassin_phantom_coup_de_grace_legendary_crit:GetTexture()
+	return "phantom_assassin_coup_de_grace"
+end
+function modifier_phantom_assassin_phantom_coup_de_grace_legendary_crit:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
 	if not IsServer() then
 		return
 	end
-	CustomGameEventManager:Send_ServerToPlayer(
-		PlayerResource:GetPlayer(self.parent:GetPlayerOwnerID()),
-		"pa_hunt_init",
-		self.targets
+
+	self.RemoveForDuel = true
+	self.effect_cast = self.parent:GenericParticle("particles/phantom_assassin/crit_legendary_stack.vpcf", self, true)
+	self:OnRefresh()
+end
+
+function modifier_phantom_assassin_phantom_coup_de_grace_legendary_crit:OnRefresh()
+	if not IsServer() then
+		return
+	end
+	self:IncrementStackCount()
+
+	self.ability.current_target = self.parent
+	self.ability:UpdateUI()
+
+	local number = self:GetStackCount()
+	local double = math.floor(number / 10)
+
+	ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(double, number, number - double * 10))
+end
+
+function modifier_phantom_assassin_phantom_coup_de_grace_legendary_crit:OnDestroy()
+	if not IsServer() then
+		return
+	end
+	if self.ability.current_target ~= self.parent then
+		return
+	end
+
+	self.ability.current_target = nil
+	self.ability:UpdateUI()
+end
+
+custom_phantom_assassin_coup_de_grace_legendary = class({})
+custom_phantom_assassin_coup_de_grace_legendary.talents = {}
+
+function custom_phantom_assassin_coup_de_grace_legendary:UpdateTalents(name)
+	local caster = self:GetCaster()
+	if not self.init then
+		self.init = true
+		self.talents = {
+			has_r7 = 0,
+			r7_duration = caster:GetTalentValue("modifier_phantom_assassin_crit_7", "duration", true),
+			r7_attack = caster:GetTalentValue("modifier_phantom_assassin_crit_7", "attack", true),
+			r7_procs = caster:GetTalentValue("modifier_phantom_assassin_crit_7", "procs", true),
+			r7_talent_cd = caster:GetTalentValue("modifier_phantom_assassin_crit_7", "talent_cd", true),
+		}
+	end
+
+	if caster:HasTalent("modifier_phantom_assassin_crit_7") then
+		self.talents.has_r7 = 1
+	end
+end
+
+function custom_phantom_assassin_coup_de_grace_legendary:GetAbilityTextureName()
+	if self.caster:HasModifier("modifier_phantom_assassin_phantom_coup_de_grace_legendary") then
+		return "stop_icons/phantom_assassin_immaterial"
+	end
+
+	return "grace_legendary"
+end
+
+function custom_phantom_assassin_coup_de_grace_legendary:GetBehavior()
+	if self.caster:HasModifier("modifier_phantom_assassin_phantom_coup_de_grace_legendary") then
+		return DOTA_ABILITY_BEHAVIOR_IMMEDIATE + DOTA_ABILITY_BEHAVIOR_NO_TARGET
+	end
+
+	return DOTA_ABILITY_BEHAVIOR_NO_TARGET
+end
+
+function custom_phantom_assassin_coup_de_grace_legendary:GetCastPoint()
+	if self.caster:HasModifier("modifier_phantom_assassin_phantom_coup_de_grace_legendary") then
+		return 0
+	end
+
+	return self.BaseClass.GetCastPoint(self)
+end
+
+function custom_phantom_assassin_coup_de_grace_legendary:GetCooldown()
+	return self.talents.has_r7 == 1 and self.talents.r7_talent_cd or 0
+end
+
+function custom_phantom_assassin_coup_de_grace_legendary:OnSpellStart()
+	if not IsServer() then
+		return
+	end
+
+	local mod = self.caster:FindModifierByName("modifier_phantom_assassin_phantom_coup_de_grace_legendary")
+
+	if mod then
+		mod:Destroy()
+		return
+	end
+
+	self.caster:AddNewModifier(
+		self.caster,
+		self,
+		"modifier_phantom_assassin_phantom_coup_de_grace_legendary",
+		{ duration = self.talents.r7_duration }
 	)
+	self:EndCd(0.3)
 end
 
-function modifier_phantom_assassin_phantom_coup_de_grace_legendary_choosing:EndPick(pick)
+function custom_phantom_assassin_coup_de_grace_legendary:CreateTalent()
+	local dagger = self.caster:FindAbilityByName("custom_phantom_assassin_stifling_dagger_legendary")
+
+	self.caster:SwapAbilities(
+		self:GetName(),
+		"custom_phantom_assassin_stifling_dagger_legendary",
+		true,
+		IsValid(dagger) and not dagger:IsHidden() or false
+	)
+	self:SetLevel(1)
+	self:UpdateTalents()
+end
+
+modifier_phantom_assassin_phantom_coup_de_grace_legendary = class(mod_hidden)
+function modifier_phantom_assassin_phantom_coup_de_grace_legendary:GetStatusEffectName()
+	return "particles/status_fx/status_effect_gods_strength.vpcf"
+end
+function modifier_phantom_assassin_phantom_coup_de_grace_legendary:StatusEffectPriority()
+	return MODIFIER_PRIORITY_ULTRA
+end
+function modifier_phantom_assassin_phantom_coup_de_grace_legendary:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
 	if not IsServer() then
 		return
 	end
+
+	self.RemoveForDuel = true
+	self.point = self.parent:GetAbsOrigin() - self.parent:GetForwardVector() * 100
+
+	self:SetStackCount(self.ability.talents.r7_procs)
+
+	local illusions = CreateIllusions(
+		self.parent,
+		self.parent,
+		{ outgoing_damage = -100, incoming_damage = -100, duration = self:GetDuration() + 1 },
+		1,
+		0,
+		false,
+		false
+	)
+
+	for _, illusion in pairs(illusions) do
+		illusion.owner = self.parent
+		illusion:SetOwner(nil)
+		illusion:AddNewModifier(
+			self.parent,
+			self.ability,
+			"modifier_phantom_assassin_phantom_coup_de_grace_legendary_clone",
+			{ duration = self:GetDuration() }
+		)
+		FindClearSpaceForUnit(illusion, self.point, true)
+
+		self.clone = illusion
+	end
+
+	self.parent:EmitSound("Phantom_Assassin.SuperCrit")
+	self.parent:GenericParticle("particles/pa_cry.vpcf")
+
+	self.parent:GenericParticle(
+		"particles/econ/items/phantom_assassin/pa_crimson_witness_2021/pa_crimson_witness_blur_start.vpcf"
+	)
+	self.legendary_particle =
+		ParticleManager:CreateParticle("particles/bloodseeker/thirst_legendary.vpcf", PATTACH_CUSTOMORIGIN, self.parent)
+	ParticleManager:SetParticleControlEnt(
+		self.legendary_particle,
+		0,
+		self.parent,
+		PATTACH_POINT_FOLLOW,
+		"attach_hitloc",
+		self.parent:GetAbsOrigin(),
+		true
+	)
+	ParticleManager:SetParticleControlEnt(
+		self.legendary_particle,
+		1,
+		self.parent,
+		PATTACH_POINT_FOLLOW,
+		"attach_attack1",
+		self.parent:GetAbsOrigin(),
+		true
+	)
+	ParticleManager:SetParticleControlEnt(
+		self.legendary_particle,
+		2,
+		self.parent,
+		PATTACH_POINT_FOLLOW,
+		"attach_attack2",
+		self.parent:GetAbsOrigin(),
+		true
+	)
+	self:AddParticle(self.legendary_particle, false, false, -1, false, false)
+
+	self:UpdateUI()
+	self:StartIntervalThink(0.1)
+end
+
+function modifier_phantom_assassin_phantom_coup_de_grace_legendary:UpdateUI()
+	if not IsServer() then
+		return
+	end
+
+	self.parent:UpdateUIshort({
+		max_time = self.ability.talents.r7_duration,
+		time = self:GetRemainingTime(),
+		stack = self:GetStackCount(),
+		active = self:GetStackCount() > 0 and 1 or 0,
+		priority = 3,
+		style = "PhantomVendetta",
+	})
+end
+
+function modifier_phantom_assassin_phantom_coup_de_grace_legendary:OnIntervalThink()
+	self:UpdateUI()
+end
+
+function modifier_phantom_assassin_phantom_coup_de_grace_legendary:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+		MODIFIER_PROPERTY_MODEL_SCALE,
+	}
+end
+
+function modifier_phantom_assassin_phantom_coup_de_grace_legendary:GetModifierAttackSpeedBonus_Constant()
+	return self.ability.talents.r7_attack or 0
+end
+
+function modifier_phantom_assassin_phantom_coup_de_grace_legendary:GetModifierModelScale()
+	return 15
+end
+
+function modifier_phantom_assassin_phantom_coup_de_grace_legendary:OnDestroy()
+	if not IsServer() then
+		return
+	end
+
+	self.parent:UpdateUIshort({ hide = 1, hide_full = 1, priority = 3, style = "PhantomVendetta" })
+	self.ability:StartCd()
+
+	if IsValid(self.clone) then
+		self.clone:ForceKill(false)
+	end
+
 	if not self.parent:IsAlive() then
 		return
 	end
 
-	if self.targets[pick] and self.targets[pick].index then
-		self.ability:SetTarget(self.targets[pick].index)
-		self.picked = true
-	end
-	self:Destroy()
-end
-
-function modifier_phantom_assassin_phantom_coup_de_grace_legendary_choosing:OnDestroy()
-	if not IsServer() then
-		return
-	end
-	if self.picked == false then
-		self.ability:StartCd()
-	end
-	EmitAnnouncerSoundForPlayer("Lc.Duel_target_end", self.parent:GetPlayerOwnerID())
-	CustomGameEventManager:Send_ServerToPlayer(
-		PlayerResource:GetPlayer(self.parent:GetPlayerOwnerID()),
-		"pa_hunt_init_end",
-		{}
+	local particle_end = wearables_system:GetParticleReplacementAbility(
+		self.parent,
+		"particles/units/heroes/hero_phantom_assassin/phantom_assassin_phantom_strike_end.vpcf",
+		self.ability
 	)
+	local start_abs = self.parent:GetAbsOrigin()
+
+	self.parent:Teleport(
+		self.point,
+		true,
+		"particles/econ/items/phantom_assassin/pa_crimson_witness_2021/pa_crimson_witness_blur_start.vpcf",
+		particle_end,
+		"Hero_PhantomAssassin.Strike.Start"
+	)
+
+	EmitSoundOnLocationWithCaster(start_abs, "Phantom_Assassin.SuperCrit_end", self.parent)
+	EmitSoundOnLocationWithCaster(start_abs, "Hero_PhantomAssassin.Strike.End", self.parent)
+
+	local trail =
+		ParticleManager:CreateParticle("particles/phantom_assassin/blink_effect_red.vpcf", PATTACH_WORLDORIGIN, nil)
+	ParticleManager:SetParticleControl(trail, 0, start_abs)
+	ParticleManager:SetParticleControl(trail, 1, self.point)
+	ParticleManager:ReleaseParticleIndex(trail)
 end
 
-modifier_phantom_assassin_phantom_coup_de_grace_legendary_max = class({})
-function modifier_phantom_assassin_phantom_coup_de_grace_legendary_max:IsHidden()
-	return true
+modifier_phantom_assassin_phantom_coup_de_grace_legendary_clone = class(mod_hidden)
+function modifier_phantom_assassin_phantom_coup_de_grace_legendary_clone:GetStatusEffectName()
+	return "particles/status_fx/status_effect_phantom_assassin_active_blur.vpcf"
 end
-function modifier_phantom_assassin_phantom_coup_de_grace_legendary_max:IsPurgable()
-	return false
+function modifier_phantom_assassin_phantom_coup_de_grace_legendary_clone:StatusEffectPriority()
+	return MODIFIER_PRIORITY_ILLUSION
 end
-function modifier_phantom_assassin_phantom_coup_de_grace_legendary_max:RemoveOnDeath()
-	return false
-end
-
-function modifier_phantom_assassin_phantom_coup_de_grace_legendary_max:OnCreated()
-	self.parent = self:GetParent()
-
+function modifier_phantom_assassin_phantom_coup_de_grace_legendary_clone:OnCreated()
 	if not IsServer() then
 		return
 	end
-	local particle_peffect =
-		ParticleManager:CreateParticle("particles/brist_lowhp_.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
-	ParticleManager:SetParticleControl(particle_peffect, 0, self.parent:GetAbsOrigin())
-	ParticleManager:SetParticleControl(particle_peffect, 2, self.parent:GetAbsOrigin())
-	ParticleManager:ReleaseParticleIndex(particle_peffect)
-	self.parent:EmitSound("BS.Thirst_legendary_active")
-end
 
-modifier_phantom_assassin_phantom_coup_de_grace_reduction = class({})
-function modifier_phantom_assassin_phantom_coup_de_grace_reduction:IsHidden()
-	return false
-end
-function modifier_phantom_assassin_phantom_coup_de_grace_reduction:IsPurgable()
-	return false
-end
-function modifier_phantom_assassin_phantom_coup_de_grace_reduction:GetTexture()
-	return "buffs/Bloodrage_blood"
-end
-function modifier_phantom_assassin_phantom_coup_de_grace_reduction:OnCreated()
+	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
-	self.heal_reduce = self.caster:GetTalentValue("modifier_phantom_assassin_crit_3", "heal_reduce")
-	self.damage_reduce = self.caster:GetTalentValue("modifier_phantom_assassin_crit_3", "damage_reduce")
+
+	self.parent:GenericParticle("particles/phantom_assassin/blink_illusion_blur.vpcf", self)
+	self.parent:StartGestureWithPlaybackRate(ACT_DOTA_ATTACK_EVENT, 1.4)
+
+	self:StartIntervalThink(0.1)
 end
 
-function modifier_phantom_assassin_phantom_coup_de_grace_reduction:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE,
-		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
-		--MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET,
-		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
-		--MODIFIER_PROPERTY_LIFESTEAL_AMPLIFY_PERCENTAGE,
-	}
-end
-
-function modifier_phantom_assassin_phantom_coup_de_grace_reduction:GetModifierLifestealRegenAmplify_Percentage()
-	return self.heal_reduce
-end
-
-function modifier_phantom_assassin_phantom_coup_de_grace_reduction:GetModifierHealChange()
-	return self.heal_reduce
-end
-
-function modifier_phantom_assassin_phantom_coup_de_grace_reduction:GetModifierHPRegenAmplify_Percentage()
-	return self.heal_reduce
-end
-
-function modifier_phantom_assassin_phantom_coup_de_grace_reduction:GetModifierSpellAmplify_Percentage()
-	return self.damage_reduce
-end
-
-function modifier_phantom_assassin_phantom_coup_de_grace_reduction:GetModifierDamageOutgoing_Percentage()
-	return self.damage_reduce
-end
-
-modifier_phantom_assassin_phantom_coup_de_grace_shield = class({})
-function modifier_phantom_assassin_phantom_coup_de_grace_shield:IsHidden()
-	return false
-end
-function modifier_phantom_assassin_phantom_coup_de_grace_shield:GetTexture()
-	return "buffs/Blade_dance_move"
-end
-function modifier_phantom_assassin_phantom_coup_de_grace_shield:IsPurgable()
-	return false
-end
-
-function modifier_phantom_assassin_phantom_coup_de_grace_shield:OnCreated(table)
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.shield_talent = "modifier_phantom_assassin_crit_6"
-	self.shield = self.parent:GetTalentValue("modifier_phantom_assassin_crit_6", "shield") / 100
-	self.max = self.parent:GetTalentValue("modifier_phantom_assassin_crit_6", "max")
-	self.status = self.parent:GetTalentValue("modifier_phantom_assassin_crit_6", "status")
-
-	self.add_shield = self.shield * self.parent:GetMaxHealth()
-	self.max_shield = self.add_shield * self.max
-
+function modifier_phantom_assassin_phantom_coup_de_grace_legendary_clone:OnIntervalThink()
 	if not IsServer() then
 		return
 	end
-	self.parent:GenericParticle("particles/phantom_assassin/crit_shield.vpcf", self)
 
-	self.parent:EmitSound("PA.Crit_shield")
-	self.RemoveForDuel = true
-	self:AddShield()
-end
+	local remaining = self:GetRemainingTime()
+	local seconds = math.ceil(remaining)
+	local isHalf = (seconds - remaining) >= 0.5
 
-function modifier_phantom_assassin_phantom_coup_de_grace_shield:OnRefresh()
-	self:AddShield()
-end
+	if isHalf then
+		seconds = seconds - 1
+	end
 
-function modifier_phantom_assassin_phantom_coup_de_grace_shield:AddShield()
-	if not IsServer() then
+	if self.half == isHalf then
 		return
 	end
-	self:SetStackCount(math.min(self.max_shield, self:GetStackCount() + self.add_shield))
-end
 
-function modifier_phantom_assassin_phantom_coup_de_grace_shield:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_INCOMING_DAMAGE_CONSTANT,
-		MODIFIER_PROPERTY_STATUS_RESISTANCE_STACKING,
-	}
-end
+	self.half = isHalf
+	local mid = 1
 
-function modifier_phantom_assassin_phantom_coup_de_grace_shield:GetModifierStatusResistanceStacking()
-	return self.status
-end
+	if isHalf then
+		mid = 8
+	end
 
-function modifier_phantom_assassin_phantom_coup_de_grace_shield:GetStatusEffectName()
-	return "particles/status_fx/status_effect_bloodrage.vpcf"
-end
+	local len = 2
 
-function modifier_phantom_assassin_phantom_coup_de_grace_shield:StatusEffectPriority()
-	return MODIFIER_PRIORITY_HIGH
-end
+	if seconds < 1 then
+		len = 1
 
-function modifier_phantom_assassin_phantom_coup_de_grace_shield:GetModifierIncomingDamageConstant(params)
-	if IsClient() then
-		if params.report_max then
-			return self.max_shield
-		else
-			return self:GetStackCount()
+		if not isHalf then
+			return
 		end
 	end
 
-	if not IsServer() then
-		return
-	end
+	local effect_cast = ParticleManager:CreateParticle(
+		"particles/phantom_assassin/crit_legendary_timer.vpcf",
+		PATTACH_OVERHEAD_FOLLOW,
+		self.parent
+	)
+	ParticleManager:SetParticleControl(effect_cast, 1, Vector(1, seconds, mid))
+	ParticleManager:SetParticleControl(effect_cast, 2, Vector(len, 0, 0))
+	ParticleManager:ReleaseParticleIndex(effect_cast)
+end
 
-	local damage = math.min(params.damage, self:GetStackCount())
-	self.parent:AddShieldInfo({ shield_mod = self, healing = damage, healing_type = "shield" })
-
-	self:SetStackCount(self:GetStackCount() - damage)
-	if self:GetStackCount() <= 0 then
-		self:Destroy()
-	end
-
-	return -damage
+function modifier_phantom_assassin_phantom_coup_de_grace_legendary_clone:CheckState()
+	return {
+		[MODIFIER_STATE_INVULNERABLE] = true,
+		[MODIFIER_STATE_UNTARGETABLE] = true,
+		[MODIFIER_STATE_UNSELECTABLE] = true,
+		[MODIFIER_STATE_COMMAND_RESTRICTED] = true,
+		[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
+		[MODIFIER_STATE_OUT_OF_GAME] = true,
+		[MODIFIER_STATE_STUNNED] = true,
+		[MODIFIER_STATE_NO_HEALTH_BAR] = true,
+	}
 end

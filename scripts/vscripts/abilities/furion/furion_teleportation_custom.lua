@@ -81,13 +81,15 @@ function furion_teleportation_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_hoodwink/hoodwink_sharpshooter_timer.vpcf", context)
 	PrecacheResource("particle", "particles/nature_prophet/teleport_damage.vpcf", context)
 	PrecacheResource("particle", "particles/nature_prophet/teleport_damage_aoe.vpcf", context)
-	PrecacheResource("particle", "particles/nature_prophet/furion_teleport_start_fast.vpcf", context)
 	PrecacheResource("particle", "particles/nature_prophet/teleport_resist.vpcf", context)
 	PrecacheResource("particle", "particles/nature_prophet/double_attack.vpcf", context)
 	PrecacheResource("particle", "particles/nature_prophet/teleport_armor.vpcf", context)
 	PrecacheResource("particle", "particles/hoodwink/scurry_shield.vpcf", context)
 	PrecacheResource("particle", "particles/furion/teleport_refresh.vpcf", context)
 	PrecacheResource("particle", "particles/furtion/teleport_proc_aoe.vpcf", context)
+	PrecacheResource("particle", "particles/nature_prophet/sprout_buff.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_furion/furion_sprout_damage.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_brewmaster/brewmaster_thunder_clap_debuff.vpcf", context)
 end
 
 function furion_teleportation_custom:UpdateTalents(name)
@@ -249,7 +251,7 @@ function furion_teleportation_custom:GetBehavior()
 end
 
 function furion_teleportation_custom:FastRange()
-	return (self.fast_range and self.fast_range or 0) + self.caster:GetCastRangeBonus()
+	return (self.fast_range or 0) + self.caster:GetCastRangeBonus()
 end
 
 function furion_teleportation_custom:CastFilterResultLocation(point)
@@ -316,7 +318,7 @@ function furion_teleportation_custom:OnSpellStart()
 		self.caster:AddNewModifier(self.caster, self, "modifier_can_not_push", { duration = self.tower_duration })
 	end
 
-	if self.ability.talents.has_w7 == 1 then
+	if self.talents.has_w7 == 1 then
 		local dist = (self.targetPoint - self.caster:GetAbsOrigin()):Length2D()
 		local duration = self.talents.w7_duration_min
 			+ (self.talents.w7_duration - self.talents.w7_duration_min) * (math.min(1, dist / self.talents.w7_range))
@@ -345,25 +347,14 @@ function furion_teleportation_custom:OnSpellStart()
 		)
 	end
 
-	if self.ability.talents.has_w4 == 1 then
+	if self.talents.has_w4 == 1 then
 		self.caster:AddNewModifier(
 			self.caster,
 			self,
 			"modifier_furion_teleportation_custom_status",
 			{ duration = self.buff_duration }
 		)
-		local treants = FindUnitsInRadius(
-			self.caster:GetTeamNumber(),
-			self.targetPoint,
-			nil,
-			2000,
-			DOTA_UNIT_TARGET_TEAM_FRIENDLY,
-			DOTA_UNIT_TARGET_BASIC,
-			0,
-			FIND_CLOSEST,
-			false
-		)
-		for _, treant in pairs(treants) do
+		for _, treant in pairs(self.caster:FindFriends(2000, self.targetPoint)) do
 			if treant:FindOwner() == self.caster and treant.is_treant then
 				self:AddShield(treant)
 			end
@@ -371,6 +362,21 @@ function furion_teleportation_custom:OnSpellStart()
 	end
 
 	self:AddShield(self.caster)
+end
+
+function furion_teleportation_custom:OnProjectileHit_ExtraData(target, Location, table)
+	if not IsServer() then
+		return
+	end
+	if not target then
+		return
+	end
+
+	target:EmitSound("Furion.Teleport_slow")
+
+	self.caster.furion_w3 = true
+	self.caster:PerformAttack(target, true, true, true, true, false, false, false, { damage = "furion_w3" })
+	self.caster.furion_w3 = false
 end
 
 function furion_teleportation_custom:AddShield(target)
@@ -409,25 +415,10 @@ function furion_teleportation_custom:AddShield(target)
 		target.furion_shield_mod:AddParticle(self.particle, false, false, -1, false, false)
 
 		target.furion_shield_mod:SetHitFunction(function(damage)
-			local mana = damage * self.ability.talents.h2_mana
+			local mana = damage * self.talents.h2_mana
 			self.parent:GiveMana(mana)
 		end)
 	end
-end
-
-function furion_teleportation_custom:OnProjectileHit_ExtraData(target, Location, table)
-	if not IsServer() then
-		return
-	end
-	if not target then
-		return
-	end
-
-	target:EmitSound("Furion.Teleport_slow")
-
-	self.caster.furion_w3 = true
-	self.caster:PerformAttack(target, true, true, true, true, false, false, false, { damage = "furion_w3" })
-	self.caster.furion_w3 = false
 end
 
 modifier_furion_teleportation_custom = class(mod_visible)
@@ -1042,7 +1033,7 @@ function modifier_furion_teleportation_custom_legendary_damage:OnCreated(table)
 	self:SetStackCount(table.stack)
 	self.parent:EmitSound(self.parent:IsCreep() and "Furion.Teleport_damage_creeps" or "Furion.Teleport_damage")
 
-	self.interval = 1
+	self.interval = self.ability.talents.w7_interval
 	self.count = (self.ability.talents.w7_effect_duration + 1) / self.interval
 	self.damage = self.ability.talents.w7_base + self.ability.talents.w7_damage * self.caster:GetAllStats()
 

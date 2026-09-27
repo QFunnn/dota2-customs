@@ -20,10 +20,22 @@ function item_oblivion_staff_custom:GetIntrinsicModifierName()
 	return "modifier_item_oblivion_staff_custom_passive"
 end
 
+function item_oblivion_staff_custom:Spawn()
+	self.bonus_regen = self:GetSpecialValueFor("bonus_regen")
+	self.bonus_intellect = self:GetSpecialValueFor("bonus_intellect")
+	self.bonus_attack_speed = self:GetSpecialValueFor("bonus_attack_speed")
+	self.bonus_health = self:GetSpecialValueFor("bonus_health")
+end
+
 modifier_item_oblivion_staff_custom_passive = class(mod_hidden)
 function modifier_item_oblivion_staff_custom_passive:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
+function modifier_item_oblivion_staff_custom_passive:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+end
+
 function modifier_item_oblivion_staff_custom_passive:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
@@ -47,13 +59,4 @@ end
 
 function modifier_item_oblivion_staff_custom_passive:GetModifierHealthBonus()
 	return self.ability.bonus_health
-end
-
-function modifier_item_oblivion_staff_custom_passive:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-	self.ability.bonus_regen = self.ability:GetSpecialValueFor("bonus_regen")
-	self.ability.bonus_intellect = self.ability:GetSpecialValueFor("bonus_intellect")
-	self.ability.bonus_attack_speed = self.ability:GetSpecialValueFor("bonus_attack_speed")
-	self.ability.bonus_health = self.ability:GetSpecialValueFor("bonus_health")
 end

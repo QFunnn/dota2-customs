@@ -65,6 +65,13 @@ function skeleton_king_vampiric_aura_custom:Precache(context)
 	end
 
 	PrecacheResource("particle", "particles/neutral_fx/skeleton_spawn.vpcf", context)
+	PrecacheResource("particle", "particles/wk_arc_minion_ambient.vpcf", context)
+	PrecacheResource("particle", "particles/econ/items/wraith_king/wraith_king_ti8/wk_ti8_creep_ambient.vpcf", context)
+	PrecacheResource(
+		"particle",
+		"particles/econ/items/wraith_king/wraith_king_ti8/wk_ti8_creep_crimson_ambient.vpcf",
+		context
+	)
 	PrecacheResource(
 		"particle",
 		"particles/units/heroes/hero_skeletonking/wraith_king_vampiric_aura_lifesteal.vpcf",
@@ -108,7 +115,6 @@ function skeleton_king_vampiric_aura_custom:UpdateTalents(name)
 			has_w3 = 0,
 			w3_armor = 0,
 			w3_duration = caster:GetTalentValue("modifier_skeleton_vampiric_3", "duration", true),
-			w3_duration_creeps = caster:GetTalentValue("modifier_skeleton_vampiric_3", "duration_creeps", true),
 			w3_max = caster:GetTalentValue("modifier_skeleton_vampiric_3", "max", true),
 			w3_crit = caster:GetTalentValue("modifier_skeleton_vampiric_3", "crit", true),
 
@@ -174,10 +180,6 @@ function skeleton_king_vampiric_aura_custom:UpdateTalents(name)
 	end
 end
 
-function skeleton_king_vampiric_aura_custom:Init()
-	self.caster = self:GetCaster()
-end
-
 function skeleton_king_vampiric_aura_custom:GetAbilityTextureName()
 	return wearables_system:GetAbilityIconReplacement(self.caster, "skeleton_king_bone_guard", self)
 end
@@ -190,7 +192,7 @@ function skeleton_king_vampiric_aura_custom:GetIntrinsicModifierName()
 end
 
 function skeleton_king_vampiric_aura_custom:GetCooldown(level)
-	return self.BaseClass.GetCooldown(self, level) + (self.talents.w1_cd and self.talents.w1_cd or 0)
+	return self.BaseClass.GetCooldown(self, level) + (self.talents.w1_cd or 0)
 end
 
 function skeleton_king_vampiric_aura_custom:OnSpellStart()
@@ -226,7 +228,7 @@ function skeleton_king_vampiric_aura_custom:OnSpellStart()
 
 	for i = 0, (self.max_skeleton_charges - 1) do
 		Timers:CreateTimer(self.skelet_interval * i, function()
-			local skelet = self:CreateSkeleton(self.caster:GetOrigin() + RandomVector(300), nil, true, nil, nil, true)
+			local skelet = self:CreateSkeleton(self.caster:GetOrigin() + RandomVector(300), nil, true, nil, nil)
 			if skelet then
 				self.active_skelets[skelet] = true
 			end
@@ -249,14 +251,12 @@ function skeleton_king_vampiric_aura_custom:CreateSkeleton(
 	end
 
 	local name = "npc_dota_wraith_king_skeleton_warrior_custom"
-	local is_ghost = false
 
 	if self.talents.has_w7 == 1 and not new_name then
 		self.skelet_count = self.skelet_count + 1
 
 		if self.skelet_count >= self.talents.w7_count then
 			self.skelet_count = 0
-			is_ghost = true
 			name = "npc_dota_wraith_king_skeleton_ghost_custom"
 
 			if legendary_spawn then
@@ -273,10 +273,7 @@ function skeleton_king_vampiric_aura_custom:CreateSkeleton(
 		name = new_name
 	end
 
-	local duration = self.skelet_duration
-	if duration_custom then
-		duration = duration_custom
-	end
+	local duration = duration_custom or self.skelet_duration
 
 	local spawn_particle = "particles/neutral_fx/skeleton_spawn.vpcf"
 	if
@@ -335,7 +332,7 @@ function skeleton_king_vampiric_aura_custom:CreateSkeleton(
 		if shield_mod then
 			shield_mod:SetReduceDamage(function(params)
 				if params.caster:HasModifier("modifier_skeleton_king_vampiric_aura_custom_totem_aura") then
-					return (1 - (self.talents.w4_damage_reduce * -1) / 100)
+					return 1 + self.talents.w4_damage_reduce / 100
 				end
 			end)
 		end
@@ -404,6 +401,7 @@ function modifier_skeleton_king_vampiric_aura_custom:OnRefresh()
 	self.ability.max_skeleton_charges = self.ability:GetSpecialValueFor("max_skeleton_charges")
 	self.ability.skelet_damage = self.ability:GetSpecialValueFor("damage")
 	self.ability.skelet_health = self.ability:GetSpecialValueFor("health")
+	self.ability.skelet_armor = self.ability:GetSpecialValueFor("armor")
 end
 
 function modifier_skeleton_king_vampiric_aura_custom:DeclareFunctions()
@@ -429,10 +427,10 @@ function modifier_skeleton_king_vampiric_aura_custom:AttackEvent_out(params)
 		return
 	end
 	local target = params.target
-
 	if not target:IsUnit() then
 		return
 	end
+
 	local attacker = params.attacker
 	if attacker.owner and attacker.is_wk_skelet then
 		attacker = attacker.owner
@@ -459,9 +457,6 @@ function modifier_skeleton_king_vampiric_aura_custom:AttackEvent_out(params)
 		)
 	end
 
-	if self.ability.talents.has_w3 == 0 then
-		return
-	end
 	self.ability:ProcArmor(target)
 end
 
@@ -469,60 +464,65 @@ function modifier_skeleton_king_vampiric_aura_custom:DeathEvent(params)
 	if not IsServer() then
 		return
 	end
-	local attacker = params.attacker
 	local unit = params.unit
+	if not unit.is_wk_skelet then
+		return
+	end
+	if unit.owner ~= self.parent then
+		return
+	end
 
-	if unit.is_wk_skelet and unit.owner and unit.owner == self.parent then
-		if self.ability.talents.has_w2 == 1 then
-			unit:EmitSound("WK.skelet_expolsion")
+	if self.ability.talents.has_w2 == 1 then
+		unit:EmitSound("WK.skelet_expolsion")
 
-			local effect_cast = ParticleManager:CreateParticle(
-				"particles/sand_king/sandking_caustic_finale_explode_custom.vpcf",
-				PATTACH_ABSORIGIN_FOLLOW,
-				unit
-			)
-			ParticleManager:SetParticleControlEnt(
-				effect_cast,
-				0,
-				unit,
-				PATTACH_POINT_FOLLOW,
-				"attach_hitloc",
-				unit:GetOrigin(),
-				true
-			)
-			ParticleManager:ReleaseParticleIndex(effect_cast)
+		local effect_cast = ParticleManager:CreateParticle(
+			"particles/sand_king/sandking_caustic_finale_explode_custom.vpcf",
+			PATTACH_ABSORIGIN_FOLLOW,
+			unit
+		)
+		ParticleManager:SetParticleControlEnt(
+			effect_cast,
+			0,
+			unit,
+			PATTACH_POINT_FOLLOW,
+			"attach_hitloc",
+			unit:GetOrigin(),
+			true
+		)
+		ParticleManager:ReleaseParticleIndex(effect_cast)
 
-			self.damageTable.damage = self.parent:GetAverageTrueAttackDamage(nil) * self.ability.talents.w2_damage
-			for _, target in pairs(self.parent:FindTargets(self.ability.talents.w2_radius, unit:GetAbsOrigin())) do
-				self.damageTable.victim = target
-				DoDamage(self.damageTable, "modifier_skeleton_vampiric_2")
-			end
-		end
-
-		if unit:HasModifier("modifier_skelet_reincarnation") then
-			local modifier_kill = unit:FindModifierByName("modifier_skelet_reincarnation")
-			local duration = modifier_kill:GetRemainingTime()
-			local name = unit:GetUnitName()
-			local point = unit:GetAbsOrigin()
-			local is_base = self.ability.active_skelets[unit] and 1 or 0
-
-			modifier_kill:SetDuration(self.ability.respawn_delay + 3, false)
-
-			Timers:CreateTimer(self.ability.respawn_delay, function()
-				if
-					IsValid(self.parent)
-					and players[self.parent:GetId()]
-					and unit:HasModifier("modifier_skelet_reincarnation")
-				then
-					unit:RemoveModifierByName("modifier_skelet_reincarnation")
-					local skelet = self.ability:CreateSkeleton(point, duration, false, false, name)
-					if skelet and is_base == 1 then
-						self.ability.active_skelets[skelet] = true
-					end
-				end
-			end)
+		self.damageTable.damage = self.parent:GetAverageTrueAttackDamage(nil) * self.ability.talents.w2_damage
+		for _, target in pairs(self.parent:FindTargets(self.ability.talents.w2_radius, unit:GetAbsOrigin())) do
+			self.damageTable.victim = target
+			DoDamage(self.damageTable, "modifier_skeleton_vampiric_2")
 		end
 	end
+
+	local modifier_kill = unit:FindModifierByName("modifier_skelet_reincarnation")
+	if not modifier_kill then
+		return
+	end
+
+	local duration = modifier_kill:GetRemainingTime()
+	local name = unit:GetUnitName()
+	local point = unit:GetAbsOrigin()
+	local is_base = self.ability.active_skelets[unit] and 1 or 0
+
+	modifier_kill:SetDuration(self.ability.respawn_delay + 3, false)
+
+	Timers:CreateTimer(self.ability.respawn_delay, function()
+		if
+			IsValid(self.parent, unit)
+			and players[self.parent:GetId()]
+			and unit:HasModifier("modifier_skelet_reincarnation")
+		then
+			unit:RemoveModifierByName("modifier_skelet_reincarnation")
+			local skelet = self.ability:CreateSkeleton(point, duration, false, false, name)
+			if skelet and is_base == 1 then
+				self.ability.active_skelets[skelet] = true
+			end
+		end
+	end)
 end
 
 modifier_skeleton_king_vampiric_aura_custom_skeleton_ai = class(mod_hidden)
@@ -641,7 +641,7 @@ function modifier_skeleton_king_vampiric_aura_custom_skeleton_ai:MoveToCaster()
 	local point = self.caster:GetAbsOrigin() + self.vec
 
 	if (point - self.parent:GetAbsOrigin()):Length2D() > 50 then
-		self.parent:MoveToPosition(self.caster:GetAbsOrigin() + self.vec)
+		self.parent:MoveToPosition(point)
 	end
 end
 
@@ -663,6 +663,11 @@ function modifier_skeleton_king_vampiric_aura_custom_skeleton_ai:OnIntervalThink
 		self.target = self.parent:GetAggroTarget()
 	end
 
+	if self:IsValidTarget(self.target) and self.target:IsHero() then
+		self:SetTarget(self.target)
+		return
+	end
+
 	local heroes = FindUnitsInRadius(
 		self.caster:GetTeamNumber(),
 		self.parent:GetAbsOrigin(),
@@ -670,10 +675,7 @@ function modifier_skeleton_king_vampiric_aura_custom_skeleton_ai:OnIntervalThink
 		self.radius,
 		DOTA_UNIT_TARGET_TEAM_ENEMY,
 		DOTA_UNIT_TARGET_HERO,
-		DOTA_UNIT_TARGET_FLAG_INVULNERABLE
-			+ DOTA_UNIT_TARGET_FLAG_NO_INVIS
-			+ DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE
-			+ DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
+		DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_NO_INVIS + DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE,
 		FIND_CLOSEST,
 		false
 	)
@@ -684,29 +686,19 @@ function modifier_skeleton_king_vampiric_aura_custom_skeleton_ai:OnIntervalThink
 		self.radius,
 		DOTA_UNIT_TARGET_TEAM_ENEMY,
 		DOTA_UNIT_TARGET_BASIC,
-		DOTA_UNIT_TARGET_FLAG_INVULNERABLE
-			+ DOTA_UNIT_TARGET_FLAG_NO_INVIS
-			+ DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE
-			+ DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
+		DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_NO_INVIS + DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE,
 		FIND_CLOSEST,
 		false
 	)
 
-	if self:IsValidTarget(self.target) and self.target:IsHero() then
-		self:SetTarget(self.target)
-		return
-	end
-
-	if (not self:IsValidTarget(self.target) or not self.target:IsHero()) and #heroes > 0 then
-		for _, hero in pairs(heroes) do
-			if self:IsValidTarget(hero) then
-				self:SetTarget(hero)
-				break
-			end
+	for _, hero in pairs(heroes) do
+		if self:IsValidTarget(hero) then
+			self:SetTarget(hero)
+			break
 		end
 	end
 
-	if not self:IsValidTarget(self.target) and #creeps > 0 then
+	if not self:IsValidTarget(self.target) then
 		for _, creep in pairs(creeps) do
 			if self:IsValidTarget(creep) then
 				self:SetTarget(creep)
@@ -749,15 +741,10 @@ function modifier_skeleton_king_vampiric_aura_custom_legendary:OnRefresh()
 		return
 	end
 	self:IncrementStackCount()
-end
-
-function modifier_skeleton_king_vampiric_aura_custom_legendary:OnStackCountChanged(iStackCount)
-	if not IsServer() then
-		return
-	end
 	if self:GetStackCount() < self.max then
 		return
 	end
+
 	self.parent:GenericParticle("particles/lc_odd_proc_.vpcf")
 	self.parent:EmitSound("BS.Thirst_legendary_active")
 end
@@ -780,6 +767,21 @@ function modifier_skeleton_king_vampiric_aura_custom_path:CheckState()
 end
 
 modifier_skeleton_king_vampiric_aura_custom_totem = class(mod_hidden)
+function modifier_skeleton_king_vampiric_aura_custom_totem:IsAura()
+	return true
+end
+function modifier_skeleton_king_vampiric_aura_custom_totem:GetAuraRadius()
+	return self.radius
+end
+function modifier_skeleton_king_vampiric_aura_custom_totem:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_FRIENDLY
+end
+function modifier_skeleton_king_vampiric_aura_custom_totem:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
+end
+function modifier_skeleton_king_vampiric_aura_custom_totem:GetModifierAura()
+	return "modifier_skeleton_king_vampiric_aura_custom_totem_aura"
+end
 function modifier_skeleton_king_vampiric_aura_custom_totem:OnCreated()
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
@@ -863,21 +865,6 @@ function modifier_skeleton_king_vampiric_aura_custom_totem:OnIntervalThink()
 	ParticleManager:ReleaseParticleIndex(effect_cast)
 end
 
-function modifier_skeleton_king_vampiric_aura_custom_totem:GetAuraRadius()
-	return self.radius
-end
-function modifier_skeleton_king_vampiric_aura_custom_totem:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_FRIENDLY
-end
-function modifier_skeleton_king_vampiric_aura_custom_totem:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
-end
-function modifier_skeleton_king_vampiric_aura_custom_totem:GetModifierAura()
-	return "modifier_skeleton_king_vampiric_aura_custom_totem_aura"
-end
-function modifier_skeleton_king_vampiric_aura_custom_totem:IsAura()
-	return true
-end
 function modifier_skeleton_king_vampiric_aura_custom_totem:GetAuraEntityReject(hEntity)
 	if hEntity == self.caster or (hEntity.owner and hEntity.owner == self.caster) then
 		return false
@@ -903,10 +890,16 @@ function modifier_skeleton_king_vampiric_aura_custom_totem_aura:DeclareFunctions
 end
 
 function modifier_skeleton_king_vampiric_aura_custom_totem_aura:GetModifierIncomingDamage_Percentage()
+	if self.ability.talents.has_w4 == 0 then
+		return
+	end
 	return self.ability.talents.w4_damage_reduce
 end
 
 function modifier_skeleton_king_vampiric_aura_custom_totem_aura:GetModifierMoveSpeedBonus_Percentage()
+	if self.ability.talents.has_w4 == 0 then
+		return
+	end
 	return self.ability.talents.w4_move
 end
 
@@ -933,24 +926,18 @@ function modifier_skeleton_king_vampiric_aura_custom_armor:OnCreated(table)
 	if not IsServer() then
 		return
 	end
-	self:AddStack(table.stack)
+	self.RemoveForDuel = true
+	self:OnRefresh(table)
 end
 
 function modifier_skeleton_king_vampiric_aura_custom_armor:OnRefresh(table)
 	if not IsServer() then
 		return
 	end
-	self:AddStack(table.stack)
-end
-
-function modifier_skeleton_king_vampiric_aura_custom_armor:AddStack(stack)
-	if not IsServer() then
-		return
-	end
 	if self:GetStackCount() >= self.max then
 		return
 	end
-	self:SetStackCount(math.min(self.max, self:GetStackCount() + stack))
+	self:SetStackCount(math.min(self.max, self:GetStackCount() + table.stack))
 
 	if self:GetStackCount() >= self.max and self.is_enemy then
 		self.parent:EmitSound("WK.skelet_armor")
@@ -968,27 +955,25 @@ function modifier_skeleton_king_vampiric_aura_custom_armor:GetModifierPhysicalAr
 	return self:GetStackCount() * self.armor
 end
 
-modifier_skeleton_king_vampiric_aura_custom_slow = class({})
-function modifier_skeleton_king_vampiric_aura_custom_slow:IsHidden()
-	return true
-end
+modifier_skeleton_king_vampiric_aura_custom_slow = class(mod_hidden)
 function modifier_skeleton_king_vampiric_aura_custom_slow:IsPurgable()
 	return true
 end
+function modifier_skeleton_king_vampiric_aura_custom_slow:GetEffectName()
+	return "particles/items2_fx/sange_maim.vpcf"
+end
+function modifier_skeleton_king_vampiric_aura_custom_slow:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+	self.slow = self.ability.talents.e2_slow
+end
+
 function modifier_skeleton_king_vampiric_aura_custom_slow:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
 	}
 end
 
-function modifier_skeleton_king_vampiric_aura_custom_slow:OnCreated()
-	self.slow = self:GetAbility().talents.e2_slow
-end
-
 function modifier_skeleton_king_vampiric_aura_custom_slow:GetModifierMoveSpeedBonus_Percentage()
 	return self.slow
-end
-
-function modifier_skeleton_king_vampiric_aura_custom_slow:GetEffectName()
-	return "particles/items2_fx/sange_maim.vpcf"
 end

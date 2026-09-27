@@ -79,7 +79,7 @@ function nyx_assassin_burrow_custom:GetCastRange(location, hTarget)
 		if IsServer() then
 			return 99999
 		end
-		return self.dash_range
+		return self.dash_range or 0
 	end
 	return 0
 end
@@ -192,8 +192,7 @@ function modifier_nyx_assassin_burrow_custom:SetTarget(cast_point)
 
 	vec = vec:Normalized()
 	vec.z = 0
-	self.parent:SetForwardVector(vec)
-	self.parent:FaceTowards(self.parent:GetAbsOrigin() + vec * 10)
+	self.parent:FacePoint(self.parent:GetAbsOrigin() + vec * 10)
 
 	self:SetDuration(duration + 0.1, true)
 	self.ability:EndCd()

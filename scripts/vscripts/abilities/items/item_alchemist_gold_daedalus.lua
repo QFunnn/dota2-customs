@@ -31,8 +31,39 @@ LinkLuaModifier(
 
 item_alchemist_gold_daedalus = class({})
 
+function item_alchemist_gold_daedalus:Precache(context)
+	if self:GetCaster() and self:GetCaster():IsIllusion() then
+		return
+	end
+	PrecacheResource("particle", "particles/items/celestial_spear_proj.vpcf", context)
+	PrecacheResource(
+		"particle",
+		"particles/econ/items/dragon_knight/dk_persona/dk_persona_dragon_tail_dragon_form_proj_impact.vpcf",
+		context
+	)
+	PrecacheResource("particle", "particles/units/heroes/hero_monkey_king/monkey_king_quad_tap_hit.vpcf", context)
+	PrecacheResource("particle", "particles/huskar_disarm_coil.vpcf", context)
+	PrecacheResource("particle", "particles/items/celestial_spear_leash.vpcf", context)
+end
+
 function item_alchemist_gold_daedalus:GetIntrinsicModifierName()
 	return "modifier_item_alchemist_gold_daedalus"
+end
+
+function item_alchemist_gold_daedalus:Spawn()
+	self.projectile_speed = self:GetSpecialValueFor("projectile_speed")
+	self.bonus_duration = self:GetSpecialValueFor("bonus_duration")
+	self.leash_duration = self:GetSpecialValueFor("leash_duration")
+	self.bonus_speed = self:GetSpecialValueFor("bonus_speed")
+	self.bonus_damage = self:GetSpecialValueFor("bonus_damage")
+	self.bonus_health = self:GetSpecialValueFor("bonus_health")
+	self.crit_chance = self:GetSpecialValueFor("crit_chance")
+	self.chance_bonus = self:GetSpecialValueFor("chance_bonus")
+	self.crit_multiplier = self:GetSpecialValueFor("crit_multiplier")
+	self.corruption_duration = self:GetSpecialValueFor("corruption_duration")
+	self.corruption_armor = self:GetSpecialValueFor("corruption_armor")
+	self.crit_armor = self:GetSpecialValueFor("crit_armor")
+	self.break_radius = self:GetSpecialValueFor("break_radius")
 end
 
 function item_alchemist_gold_daedalus:OnSpellStart()
@@ -44,7 +75,7 @@ function item_alchemist_gold_daedalus:OnSpellStart()
 		Source = caster,
 		Ability = self,
 		EffectName = "particles/items/celestial_spear_proj.vpcf",
-		iMoveSpeed = self:GetSpecialValueFor("projectile_speed"),
+		iMoveSpeed = self.projectile_speed,
 		vSourceLoc = caster:GetAbsOrigin(),
 		bDodgeable = true,
 		bProvidesVision = false,
@@ -54,7 +85,7 @@ function item_alchemist_gold_daedalus:OnSpellStart()
 		caster,
 		self,
 		"modifier_item_alchemist_gold_daedalus_bonus",
-		{ duration = self:GetSpecialValueFor("bonus_duration") }
+		{ duration = self.bonus_duration }
 	)
 
 	local hProjectile = ProjectileManager:CreateTrackingProjectile(projectile)
@@ -139,7 +170,7 @@ function item_alchemist_gold_daedalus:OnProjectileHit(hTarget, vLocation)
 		caster,
 		self,
 		"modifier_item_alchemist_gold_daedalus_leash",
-		{ duration = self:GetSpecialValueFor("leash_duration") * (1 - hTarget:GetStatusResistance()) }
+		{ duration = self.leash_duration * (1 - hTarget:GetStatusResistance()) }
 	)
 end
 
@@ -147,25 +178,24 @@ modifier_item_alchemist_gold_daedalus = class(mod_hidden)
 function modifier_item_alchemist_gold_daedalus:RemoveOnDeath()
 	return false
 end
-
+function modifier_item_alchemist_gold_daedalus:GetCritDamage()
+	return self.crit_multiplier
+end
 function modifier_item_alchemist_gold_daedalus:OnCreated()
 	self.ability = self:GetAbility()
 	self.parent = self:GetParent()
 
-	self.bonus_speed = self.ability:GetSpecialValueFor("bonus_speed")
-	self.bonus_damage = self:GetAbility():GetSpecialValueFor("bonus_damage")
-	self.bonus_health = self:GetAbility():GetSpecialValueFor("bonus_health")
+	self.bonus_speed = self.ability.bonus_speed
+	self.bonus_damage = self.ability.bonus_damage
+	self.bonus_health = self.ability.bonus_health
 
-	self.crit_chance = self.ability:GetSpecialValueFor("crit_chance")
-	self.bonus_chance = self.ability:GetSpecialValueFor("chance_bonus")
-	self.crit_multiplier = self.ability:GetSpecialValueFor("crit_multiplier")
-	self.corruption_duration = self.ability:GetSpecialValueFor("corruption_duration")
+	self.crit_chance = self.ability.crit_chance
+	self.bonus_chance = self.ability.chance_bonus
+	self.crit_multiplier = self.ability.crit_multiplier
+	self.corruption_duration = self.ability.corruption_duration
 	self.record = nil
 end
 
-function modifier_item_alchemist_gold_daedalus:GetCritDamage()
-	return self.crit_multiplier
-end
 function modifier_item_alchemist_gold_daedalus:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
@@ -216,10 +246,14 @@ function modifier_item_alchemist_gold_daedalus:GetModifierProcAttack_Feedback(pa
 	target:EmitSound("Item_Desolator.Target")
 
 	local mod = target:FindModifierByName("modifier_item_alchemist_gold_daedalus_debuff")
-	if mod and params.record == self.record then
-		target:EmitSound("DOTA_Item.Daedelus.Crit")
-		mod:IncrementStackCount()
+	if not mod then
+		return
 	end
+	if params.record ~= self.record then
+		return
+	end
+	target:EmitSound("DOTA_Item.Daedelus.Crit")
+	mod:IncrementStackCount()
 end
 
 function modifier_item_alchemist_gold_daedalus:GetModifierPreAttack_CriticalStrike(params)
@@ -245,17 +279,19 @@ function modifier_item_alchemist_gold_daedalus_debuff:GetTexture()
 	return "items/gold_crit"
 end
 function modifier_item_alchemist_gold_daedalus_debuff:OnCreated()
+	self.caster = self:GetCaster()
+
 	if not IsServer() then
 		return
 	end
 
-	self.ability = self:GetCaster():FindItemInInventory("item_alchemist_gold_daedalus")
+	self.ability = self.caster:FindItemInInventory("item_alchemist_gold_daedalus")
 	if not self.ability or self.ability:IsNull() then
 		return
 	end
 
-	self.corruption_armor = self.ability:GetSpecialValueFor("corruption_armor")
-	self.crit_armor = self.ability:GetSpecialValueFor("crit_armor")
+	self.corruption_armor = self.ability.corruption_armor
+	self.crit_armor = self.ability.crit_armor
 
 	self:SetHasCustomTransmitterData(true)
 	self:SendBuffRefreshToClients()
@@ -283,14 +319,7 @@ function modifier_item_alchemist_gold_daedalus_debuff:GetModifierPhysicalArmorBo
 	return (self.corruption_armor + self:GetStackCount() * self.crit_armor) * -1
 end
 
-modifier_item_alchemist_gold_daedalus_leash = class({})
-
-function modifier_item_alchemist_gold_daedalus_leash:IsHidden()
-	return true
-end
-function modifier_item_alchemist_gold_daedalus_leash:IsPurgable()
-	return false
-end
+modifier_item_alchemist_gold_daedalus_leash = class(mod_hidden)
 function modifier_item_alchemist_gold_daedalus_leash:OnCreated(table)
 	if not IsServer() then
 		return
@@ -309,7 +338,7 @@ function modifier_item_alchemist_gold_daedalus_leash:OnCreated(table)
 	ParticleManager:SetParticleControl(self.effect_cast, 0, self.center)
 	self:AddParticle(self.effect_cast, false, false, -1, false, false)
 
-	self.break_radius = self.ability:GetSpecialValueFor("break_radius")
+	self.break_radius = self.ability.break_radius
 
 	local effect_cast_2 =
 		ParticleManager:CreateParticle("particles/items/celestial_spear_leash.vpcf", PATTACH_ABSORIGIN, self.parent)

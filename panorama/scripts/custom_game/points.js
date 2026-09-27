@@ -11,16 +11,18 @@
 var parentHUDElements = $.GetContextPanel().GetParent().GetParent().GetParent().FindChild("HUDElements");
 $.GetContextPanel().SetParent(parentHUDElements);
 
-var local_unit = ""
+var local_unit = -1
 var legendary_info = []
 var current_legendary = ""
 
 GameEvents.Subscribe( "dota_player_update_selected_unit", UpdateSelectionUnit );
 GameEvents.Subscribe( "dota_player_update_query_unit", UpdateSelectionUnit );
 GameEvents.Subscribe( "m_event_dota_inventory_changed_query_unit", UpdateSelectionUnit );
+$.RegisterForUnhandledEvent( "StyleClassesChanged", OnHudStyleClassesChanged );
 
 Hack()
 SpectatorPanelUpdate()
+UpdateGlyphScanContainer()
 
 function UpdateSelectionUnit(...args)
 {
@@ -28,82 +30,63 @@ function UpdateSelectionUnit(...args)
 	SpectatorPanelUpdate()
 }
 
+function OnHudStyleClassesChanged(panel)
+{
+	if (panel == null)
+		return
+
+	if (panel.id == "stash" || panel.id == "quickbuy" || panel.id == "Row1")
+		$.Schedule(0, UpdatePosition)
+
+	if (panel.id == "Hud")
+		UpdateGlyphScanContainer()
+}
 
 
-function Hack()
+
+function UpdatePosition()
 {
 	var parentHUDElements = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("QuickBuyRows");
 	var stash = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("stash_bg");
 	var Row = parentHUDElements.FindChildTraverse("Row1")
 	var Info = $.GetContextPanel().FindChildTraverse("AllPointsAndInfo");
+	var Points = $.GetContextPanel().FindChildTraverse("AllPointsStack");
 
-	var minimap = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("HUDElements").GetParent()
+	Info.SetHasClass("AllPointsAndInfo_rows2", Row.visible)
+	Info.SetHasClass("AllPointsAndInfo_stash", stash.visible)
+	Points.SetHasClass("AllPointsStack_rows2", Row.visible)
+}
 
-	var Dota1x6 = $.GetContextPanel().FindChildTraverse("Dota1x6")
+function UpdateGlyphScanContainer()
+{
+	let hud = $.GetContextPanel().GetParent().GetParent()
+	let glyph = hud.FindChildTraverse("GlyphScanContainer")
+	if (glyph == null)
+		return
 
-	if ((Game.IsHUDFlipped()) && (Info.BHasClass("AllPointsAndInfo")))
-	{	
-		Info.RemoveClass("AllPointsAndInfo")
-		Info.AddClass("AllPointsAndInfo_left")
-	}
+	let margin = "244px"
+	if (hud.BHasClass("MinimapExtraLarge"))
+		margin = "280px"
+	if (hud.BHasClass("MinimapExtraExtraLarge"))
+		margin = "420px"
 
-	if (( !Game.IsHUDFlipped() ) && (Info.BHasClass("AllPointsAndInfo_left")))
+	glyph.style.backgroundImage = "url('file://{images}/custom_game/glyph_panel.png')"
+	glyph.style.backgroundSize = "cover"
+	glyph.style.width = "74px"
+	glyph.style.paddingRight = "0px"
+	glyph.style.marginLeft = margin
+}
+
+
+function Hack()
+{
+	UpdatePosition()
+
+	let unit = Players.GetLocalPlayerPortraitUnit()
+
+	if (unit != local_unit)
 	{
-		Info.RemoveClass("AllPointsAndInfo_left")
-		Info.AddClass("AllPointsAndInfo")
-	}
-
-	if (minimap.BHasClass("MinimapExtraLarge"))
-	{
-		Dota1x6.RemoveClass("Dota1x6_small")
-		Dota1x6.AddClass("Dota1x6_large")
-	}else 
-	{
-		Dota1x6.RemoveClass("Dota1x6_large")
-		Dota1x6.AddClass("Dota1x6_small")
-	}
-
-
-	if ((Game.IsHUDFlipped()) && (Dota1x6.BHasClass("Dota1x6")))
-	{	
-		Dota1x6.RemoveClass("Dota1x6")
-		Dota1x6.AddClass("Dota1x6_right")
-	}
-
-	if (( !Game.IsHUDFlipped() ) && (Dota1x6.BHasClass("Dota1x6_right")))
-	{
-		Dota1x6.RemoveClass("Dota1x6_right")
-		Dota1x6.AddClass("Dota1x6")
-	}
-
-	var bonus = 0
-	var margin = 0
-
-
-	if (Row.visible)
-	{	
-		margin = 62.3
-		bonus = 3
-	}
-	else
-	{
-		margin = 65.5
-		bonus = 0
-	}
-
-	if (stash.visible)
-	{	
-		margin = 49.3 - bonus
-	}
-
-	var text = String(margin) + '%'
-	Info.style.marginTop = text
-
-	let hero = Entities.GetUnitName(Players.GetLocalPlayerPortraitUnit())
-
-	if (hero != local_unit)
-	{
-		local_unit = hero
+		local_unit = unit
 		current_legendary = ""
 		UpdateInnatePanel()
 	}
@@ -142,15 +125,10 @@ function Hack()
 function UpdateInnatePanel(new_table)
 {
 
-	let hero = Entities.GetUnitName(Players.GetLocalPlayerPortraitUnit()) 
+	let portrait_unit = Players.GetLocalPlayerPortraitUnit()
+	let hero = Entities.GetUnitName(portrait_unit)
 
-    var players_heroes = CustomNetTables.GetTableValue("hero_portrait_levels", hero)
-    var player_id = Game.GetLocalPlayerID()
-
-    if (players_heroes)
-        player_id = players_heroes["id"]
-
-    player_id = Number(player_id)
+    var player_id = Entities.GetPlayerOwnerID(portrait_unit)
 
     let hero_index = Players.GetPlayerHeroEntityIndex(player_id)   
 
@@ -281,19 +259,32 @@ function init()
 
 	GameEvents.Subscribe_custom('grenade_count_change', grenade_count_change)
 
-	var Info = $.GetContextPanel().FindChildTraverse("ButtonInfo");
- 	var text = $.Localize('#talent_disc_upgrade_info')
-
-	Info.SetPanelEvent('onmouseover', function() {
-    $.DispatchEvent('DOTAShowTextTooltip', Info, text) });
-    
-Info.SetPanelEvent('onmouseout', function() {
-    $.DispatchEvent('DOTAHideTextTooltip', Info);
-});
+	SetBarTooltip("ShrinePoints", "shrine", "gray", "ShrineNumber")
+	SetBarTooltip("PurplePoints", "purple", "purple", "PurpleNumber")
+	SetBarTooltip("BluePoints", "blue", "blue", "BlueNumber")
 
 }
 
 init();
+
+
+function SetBarTooltip(id, key, rarity, number_id)
+{
+	var panel = $.GetContextPanel().FindChildTraverse(id);
+	if (!panel)
+		return
+
+	panel.SetPanelEvent('onmouseover', function() {
+	var number = $.GetContextPanel().FindChildTraverse(number_id)
+	var value = number ? number.text : ''
+
+	$.DispatchEvent("UIShowCustomLayoutParametersTooltip", panel, "skill_tooltip",
+		"file://{resources}/layout/custom_game/custom_tooltip.xml",
+		"bar_info=" + key + "&rarity=" + rarity + "&bar_value=" + value) });
+
+	panel.SetPanelEvent('onmouseout', function() {
+	$.DispatchEvent("UIHideCustomLayoutTooltip", panel, "skill_tooltip") });
+}
 
 
 
@@ -367,9 +358,6 @@ function OnKill( kv )
 
 
 
-	var Info = $.GetContextPanel().FindChildTraverse("ButtonInfo");
-
-
 	var text = ""
 	var number = 0
 	var prev = 0 
@@ -431,9 +419,11 @@ function OnKill( kv )
 
 	PurpleProgress.style.width = text
 
+	var ShrineProgress = $.GetContextPanel().FindChildTraverse("ShrineProgress");
+	var ShrineNumber = $.GetContextPanel().FindChildTraverse("ShrineNumber");
 
-
-		
+	ShrineNumber.text = String(kv.white) + '/' + String(kv.max_w)
+	ShrineProgress.style.width = String((kv.white/kv.max_w) * 95) + '%'
 }
 
 function SpectatorPanelUpdate()
@@ -450,6 +440,8 @@ function SpectatorPanelUpdate()
                 purple : spectator_points.purple,
                 max : spectator_points.max,
                 max_p : spectator_points.max_p,
+                white : spectator_points.white,
+                max_w : spectator_points.max_w,
             })
         }
     }
@@ -552,21 +544,14 @@ function hero_quest_init(kv)
 
 	text_panel.text = progress_text + '/' + goal_text
 
-
-	let place = ""
-	if (!kv.legendary)
-	{
-		place = '<br><br>' + $.Localize("#QuestDiscWin") + Game.GetWinPlace() + $.Localize("#QuestDiscWin2")
-	}
-
-	let text_info = $.Localize('#' + name) + '<br><br>' + $.Localize('#QuestReward') + "<b><font color='#53ea48'>" + String(shards) + "</font></b>" + $.Localize('#QuestReward2') + "<b><font color='#53ea48'>" + String(exp) + "</font></b>" + $.Localize('#QuestReward3') + place
-
-
+	main.hittest = true
 	main.SetPanelEvent('onmouseover', function() {
-    $.DispatchEvent('DOTAShowTextTooltip', main, text_info) });
-    
+	$.DispatchEvent("UIShowCustomLayoutParametersTooltip", main, "skill_tooltip",
+		"file://{resources}/layout/custom_game/custom_tooltip.xml",
+		"quest_info=" + name + "&rarity=chest&quest_shards=" + shards + "&quest_exp=" + exp + "&quest_legendary=" + (kv.legendary ? 1 : 0) + "&quest_progress=" + text_panel.text) });
+
 	main.SetPanelEvent('onmouseout', function() {
-    $.DispatchEvent('DOTAHideTextTooltip', main)});
+	$.DispatchEvent("UIHideCustomLayoutTooltip", main, "skill_tooltip") });
 }
 
 
@@ -589,7 +574,7 @@ function hero_quest_complete(kv)
 	let text_panel = $.GetContextPanel().FindChildTraverse("HeroQuest_text_panel")
 	text_panel.style.visibility = "collapse"
 
-	main.style.width = "22.5%";
+	main.style.width = "53px";
 
 
 }

@@ -52,10 +52,6 @@ LinkLuaModifier(
 abaddon_aphotic_shield_custom = class({})
 abaddon_aphotic_shield_custom.talents = {}
 
-function abaddon_aphotic_shield_custom:GetAbilityTextureName()
-	return wearables_system:GetAbilityIconReplacement(self.caster, "abaddon_aphotic_shield", self)
-end
-
 function abaddon_aphotic_shield_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
@@ -64,8 +60,6 @@ function abaddon_aphotic_shield_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_abaddon/abaddon_aphotic_shield.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_abaddon/abaddon_aphotic_shield_hit.vpcf", context)
 	PrecacheResource("particle", "particles/abaddon/shield_stun.vpcf", context)
-	PrecacheResource("particle", "particles/units/heroes/hero_abaddon/abaddon_aphotic_shield.vpcf", context)
-	PrecacheResource("particle", "particles/units/heroes/hero_abaddon/abaddon_aphotic_shield_hit.vpcf", context)
 	PrecacheResource("particle", "particles/abaddon/shield_legendary.vpcf", context)
 	PrecacheResource(
 		"particle",
@@ -82,6 +76,7 @@ function abaddon_aphotic_shield_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_abaddon/abaddon_burning_shield.vpcf", context)
 	PrecacheResource("particle", "particles/abaddon/shield_legendary_immune.vpcf", context)
 	PrecacheResource("particle", "particles/abaddon/shield_legendary_stack.vpcf", context)
+	PrecacheResource("particle", "particles/abaddon/ulti_burn.vpcf", context)
 end
 
 function abaddon_aphotic_shield_custom:UpdateTalents(name)
@@ -89,11 +84,9 @@ function abaddon_aphotic_shield_custom:UpdateTalents(name)
 	if not self.init then
 		self.init = true
 		self.talents = {
-			has_w1 = 0,
 			w1_base = 0,
 			w1_shield = 0,
 
-			has_w2 = 0,
 			w2_mana = 0,
 			w2_cd = 0,
 
@@ -125,7 +118,6 @@ function abaddon_aphotic_shield_custom:UpdateTalents(name)
 			w7_effect_duration = caster:GetTalentValue("modifier_abaddon_aphotic_7", "effect_duration", true),
 			w7_damage = caster:GetTalentValue("modifier_abaddon_aphotic_7", "damage", true) / 100,
 
-			has_h2 = 0,
 			h2_magic = 0,
 			h2_armor = 0,
 			h2_bonus = caster:GetTalentValue("modifier_abaddon_hero_2", "bonus", true),
@@ -137,13 +129,11 @@ function abaddon_aphotic_shield_custom:UpdateTalents(name)
 	end
 
 	if caster:HasTalent("modifier_abaddon_aphotic_1") then
-		self.talents.has_w1 = 1
 		self.talents.w1_base = caster:GetTalentValue("modifier_abaddon_aphotic_1", "base")
 		self.talents.w1_shield = caster:GetTalentValue("modifier_abaddon_aphotic_1", "shield") / 100
 	end
 
 	if caster:HasTalent("modifier_abaddon_aphotic_2") then
-		self.talents.has_w2 = 1
 		self.talents.w2_mana = caster:GetTalentValue("modifier_abaddon_aphotic_2", "mana")
 		self.talents.w2_cd = caster:GetTalentValue("modifier_abaddon_aphotic_2", "cd")
 	end
@@ -163,7 +153,6 @@ function abaddon_aphotic_shield_custom:UpdateTalents(name)
 	end
 
 	if caster:HasTalent("modifier_abaddon_hero_2") then
-		self.talents.has_h2 = 1
 		self.talents.h2_magic = caster:GetTalentValue("modifier_abaddon_hero_2", "magic")
 		self.talents.h2_armor = caster:GetTalentValue("modifier_abaddon_hero_2", "armor")
 	end
@@ -173,8 +162,8 @@ function abaddon_aphotic_shield_custom:UpdateTalents(name)
 	end
 end
 
-function abaddon_aphotic_shield_custom:Init()
-	self.caster = self:GetCaster()
+function abaddon_aphotic_shield_custom:GetAbilityTextureName()
+	return wearables_system:GetAbilityIconReplacement(self.caster, "abaddon_aphotic_shield", self)
 end
 
 function abaddon_aphotic_shield_custom:GetIntrinsicModifierName()
@@ -192,7 +181,7 @@ function abaddon_aphotic_shield_custom:GetCastRange()
 			return 999999
 		end
 	end
-	return (self.radius and self.radius or 0)
+	return self.radius or 0
 end
 
 function abaddon_aphotic_shield_custom:GetCastPoint()
@@ -219,11 +208,7 @@ function abaddon_aphotic_shield_custom:GetBehavior()
 end
 
 function abaddon_aphotic_shield_custom:GetCooldown(level)
-	return self.BaseClass.GetCooldown(self, level) + (self.talents.w2_cd and self.talents.w2_cd or 0)
-end
-
-function abaddon_aphotic_shield_custom:GetManaCost(level)
-	return self.BaseClass.GetManaCost(self, level)
+	return self.BaseClass.GetCooldown(self, level) + (self.talents.w2_cd or 0)
 end
 
 function abaddon_aphotic_shield_custom:OnSpellStart()
@@ -246,10 +231,7 @@ function abaddon_aphotic_shield_custom:OnSpellStart()
 				point = self.caster:GetAbsOrigin() + dir * range
 			end
 
-			dir.z = 0
-
-			self.caster:FaceTowards(point)
-			self.caster:SetForwardVector(dir)
+			self.caster:FacePoint(point)
 			EmitSoundOnLocationWithCaster(self.caster:GetAbsOrigin(), "Abaddon.Shield_blink_start", self.caster)
 			EmitSoundOnLocationWithCaster(self.caster:GetAbsOrigin(), "Abaddon.Shield_blink_start2", self.caster)
 			EmitSoundOnLocationWithCaster(point, "Abaddon.Shield_blink_end1", self.caster)
@@ -288,6 +270,24 @@ function abaddon_aphotic_shield_custom:AddBurn(target, is_shield)
 end
 
 modifier_abaddon_aphotic_shield_custom = class(mod_visible)
+function modifier_abaddon_aphotic_shield_custom:IsAura()
+	return IsServer() and self.is_caster and self.parent:IsAlive() and self.ability.talents.has_w7 == 1
+end
+function modifier_abaddon_aphotic_shield_custom:GetAuraDuration()
+	return 0.1
+end
+function modifier_abaddon_aphotic_shield_custom:GetAuraRadius()
+	return self.legendary_radius
+end
+function modifier_abaddon_aphotic_shield_custom:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_ENEMY
+end
+function modifier_abaddon_aphotic_shield_custom:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
+end
+function modifier_abaddon_aphotic_shield_custom:GetModifierAura()
+	return "modifier_abaddon_aphotic_shield_custom_legendary_effect"
+end
 function modifier_abaddon_aphotic_shield_custom:OnCreated(kv)
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
@@ -312,9 +312,10 @@ function modifier_abaddon_aphotic_shield_custom:OnCreated(kv)
 	self:SetHasCustomTransmitterData(true)
 	self.RemoveForDuel = true
 
-	if self.ability.talents.has_w7 == 1 and self.is_caster and not self.ability:IsHidden() then
-		self.parent:SwapAbilities(self.ability:GetName(), "abaddon_aphotic_shield_custom_legendary", false, true)
-		self.parent:FindAbilityByName("abaddon_aphotic_shield_custom_legendary"):StartCooldown(0.2)
+	local legendary = self.caster.aphotic_legendary_ability
+	if self.ability.talents.has_w7 == 1 and self.is_caster and IsValid(legendary) and not self.ability:IsHidden() then
+		self.parent:SwapAbilities(self.ability:GetName(), legendary:GetName(), false, true)
+		legendary:StartCooldown(0.2)
 	end
 
 	self.max_timer = self:GetRemainingTime()
@@ -345,8 +346,6 @@ function modifier_abaddon_aphotic_shield_custom:OnCreated(kv)
 	self.legendary_radius = self.ability.talents.w7_radius
 	self.legendary_damage = self.ability.talents.w7_damage
 	self.damage_interval = self.ability.talents.w7_interval
-
-	self.player = PlayerResource:GetPlayer(self.parent:GetPlayerOwnerID())
 
 	local effect_cast =
 		ParticleManager:CreateParticle("particles/abaddon/shield_legendary.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
@@ -415,7 +414,7 @@ function modifier_abaddon_aphotic_shield_custom:ScepterProc()
 	if not self.caster:HasScepter() then
 		return
 	end
-	if not self.caster.mist_ability then
+	if not IsValid(self.caster.mist_ability) then
 		return
 	end
 
@@ -481,15 +480,12 @@ function modifier_abaddon_aphotic_shield_custom:OnIntervalThink()
 				},
 				"modifier_abaddon_aphotic_7"
 			)
-
-			if not first then
-				target:AddNewModifier(
-					self.parent,
-					self.ability,
-					"modifier_abaddon_aphotic_shield_custom_legendary_magic",
-					{ duration = self.ability.talents.w7_effect_duration }
-				)
-			end
+			target:AddNewModifier(
+				self.parent,
+				self.ability,
+				"modifier_abaddon_aphotic_shield_custom_legendary_magic",
+				{ duration = self.ability.talents.w7_effect_duration }
+			)
 		end
 	end
 
@@ -510,7 +506,7 @@ function modifier_abaddon_aphotic_shield_custom:OnDestroy()
 
 	self:ScepterProc()
 
-	if self.caster.mist_ability then
+	if IsValid(self.caster.mist_ability) then
 		self.caster.mist_ability:ProcMove(true)
 	end
 
@@ -587,10 +583,6 @@ function modifier_abaddon_aphotic_shield_custom:GetModifierIncomingDamageConstan
 		end
 	end
 
-	if not IsServer() then
-		return
-	end
-
 	local attacker = params.attacker
 	local damage = params.damage
 
@@ -610,7 +602,8 @@ function modifier_abaddon_aphotic_shield_custom:GetModifierIncomingDamageConstan
 	if
 		self.caster:GetQuest() == "Abaddon.Quest_6"
 		and not self.caster:QuestCompleted()
-		and params.attacker:IsRealHero()
+		and attacker
+		and attacker:IsRealHero()
 	then
 		self.caster:UpdateQuest(blocked_damage)
 	end
@@ -624,9 +617,9 @@ end
 
 function modifier_abaddon_aphotic_shield_custom:PlayEffects()
 	local particle_name = wearables_system:GetParticleReplacementAbility(
-		self:GetCaster(),
+		self.caster,
 		"particles/units/heroes/hero_abaddon/abaddon_aphotic_shield.vpcf",
-		self
+		self.ability
 	)
 	self.effect_cast = ParticleManager:CreateParticle(particle_name, PATTACH_POINT_FOLLOW, self.parent)
 	ParticleManager:SetParticleControlEnt(
@@ -660,43 +653,6 @@ function modifier_abaddon_aphotic_shield_custom:PlayEffects2()
 	)
 	ParticleManager:SetParticleControl(effect_cast, 1, Vector(size, size, size))
 	ParticleManager:ReleaseParticleIndex(effect_cast)
-end
-
-function modifier_abaddon_aphotic_shield_custom:IsAura()
-	return IsServer() and self.is_caster and self.parent:IsAlive() and self.ability.talents.has_w7 == 1
-end
-function modifier_abaddon_aphotic_shield_custom:GetAuraDuration()
-	return 0.1
-end
-function modifier_abaddon_aphotic_shield_custom:GetAuraRadius()
-	return self.legendary_radius
-end
-function modifier_abaddon_aphotic_shield_custom:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_ENEMY
-end
-function modifier_abaddon_aphotic_shield_custom:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
-end
-function modifier_abaddon_aphotic_shield_custom:GetModifierAura()
-	return "modifier_abaddon_aphotic_shield_custom_legendary_effect"
-end
-
-abaddon_aphotic_shield_custom_legendary = class({})
-
-function abaddon_aphotic_shield_custom_legendary:OnSpellStart()
-	local caster = self:GetCaster()
-	if not caster.aphotic_ability then
-		return
-	end
-	if not self:IsHidden() then
-		caster:SwapAbilities(self:GetName(), "abaddon_aphotic_shield_custom", false, true)
-	end
-	caster:AddNewModifier(
-		caster,
-		caster.aphotic_ability,
-		"modifier_abaddon_aphotic_shield_custom_immune",
-		{ duration = caster.aphotic_ability.talents.w7_duration }
-	)
 end
 
 modifier_abaddon_aphotic_shield_custom_legendary_effect = class(mod_hidden)
@@ -799,6 +755,14 @@ function modifier_abaddon_aphotic_shield_custom_tracker:OnCreated()
 	self.ability:UpdateTalents()
 
 	self.parent.aphotic_ability = self.ability
+	self.parent.aphotic_legendary_ability = self.parent:FindAbilityByName("abaddon_aphotic_shield_custom_legendary")
+
+	if IsValid(self.parent.aphotic_legendary_ability) then
+		if IsServer() and not self.parent.aphotic_legendary_ability:IsTrained() then
+			self.parent.aphotic_legendary_ability:SetLevel(1)
+		end
+		self.parent.aphotic_legendary_ability:UpdateTalents()
+	end
 
 	self.ability.duration = self.ability:GetSpecialValueFor("duration")
 	self.ability.radius = self.ability:GetSpecialValueFor("radius")
@@ -824,16 +788,31 @@ function modifier_abaddon_aphotic_shield_custom_tracker:GetModifierPercentageMan
 end
 
 function modifier_abaddon_aphotic_shield_custom_tracker:GetModifierMagicalResistanceBonus()
+	if not IsValid(self.parent) then
+		return
+	end
 	return self.ability.talents.h2_magic
 		* (self.parent:HasModifier("modifier_abaddon_aphotic_shield_custom") and self.ability.talents.h2_bonus or 1)
 end
 
 function modifier_abaddon_aphotic_shield_custom_tracker:GetModifierPhysicalArmorBonus()
+	if not IsValid(self.parent) then
+		return
+	end
 	return self.ability.talents.h2_armor
 		* (self.parent:HasModifier("modifier_abaddon_aphotic_shield_custom") and self.ability.talents.h2_bonus or 1)
 end
 
 modifier_abaddon_aphotic_shield_custom_immune = class(mod_hidden)
+function modifier_abaddon_aphotic_shield_custom_immune:GetEffectName()
+	return "particles/abaddon/shield_immune.vpcf"
+end
+function modifier_abaddon_aphotic_shield_custom_immune:GetStatusEffectName()
+	return "particles/econ/items/drow/drow_ti9_immortal/status_effect_drow_ti9_frost_arrow.vpcf"
+end
+function modifier_abaddon_aphotic_shield_custom_immune:StatusEffectPriority()
+	return MODIFIER_PRIORITY_HIGH
+end
 function modifier_abaddon_aphotic_shield_custom_immune:OnCreated()
 	if not IsServer() then
 		return
@@ -862,17 +841,6 @@ function modifier_abaddon_aphotic_shield_custom_immune:OnCreated()
 	self.parent:EmitSound("Abaddon.Shield_immune")
 end
 
-function modifier_abaddon_aphotic_shield_custom_immune:GetEffectName()
-	return "particles/abaddon/shield_immune.vpcf"
-end
-function modifier_abaddon_aphotic_shield_custom_immune:GetStatusEffectName()
-	return "particles/econ/items/drow/drow_ti9_immortal/status_effect_drow_ti9_frost_arrow.vpcf"
-end
-
-function modifier_abaddon_aphotic_shield_custom_immune:StatusEffectPriority()
-	return MODIFIER_PRIORITY_HIGH
-end
-
 function modifier_abaddon_aphotic_shield_custom_immune:OnDestroy()
 	if not IsServer() then
 		return
@@ -899,6 +867,7 @@ function modifier_abaddon_aphotic_shield_custom_str_stack:OnCreated()
 	if not IsServer() then
 		return
 	end
+	self.RemoveForDuel = true
 	self:OnRefresh()
 end
 
@@ -941,7 +910,7 @@ function modifier_abaddon_aphotic_shield_custom_str_stack:GetModifierModelScale(
 end
 
 modifier_abaddon_aphotic_shield_custom_legendary_magic = class(mod_visible)
-function modifier_abaddon_aphotic_shield_custom_legendary_magic:OnCreated(table)
+function modifier_abaddon_aphotic_shield_custom_legendary_magic:OnCreated()
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
 	self.ability = self:GetAbility()
@@ -952,18 +921,12 @@ function modifier_abaddon_aphotic_shield_custom_legendary_magic:OnCreated(table)
 	if not IsServer() then
 		return
 	end
+	self.RemoveForDuel = true
 	self.particle = self.parent:GenericParticle("particles/abaddon/shield_legendary_stack.vpcf", self, true)
-	self:AddStack()
+	self:OnRefresh()
 end
 
 function modifier_abaddon_aphotic_shield_custom_legendary_magic:OnRefresh()
-	if not IsServer() then
-		return
-	end
-	self:AddStack()
-end
-
-function modifier_abaddon_aphotic_shield_custom_legendary_magic:AddStack()
 	if not IsServer() then
 		return
 	end
@@ -977,12 +940,7 @@ function modifier_abaddon_aphotic_shield_custom_legendary_magic:AddStack()
 	end
 	self.count = 0
 	self:IncrementStackCount()
-end
 
-function modifier_abaddon_aphotic_shield_custom_legendary_magic:OnStackCountChanged()
-	if not IsServer() then
-		return
-	end
 	local number_1 = self:GetStackCount()
 	local double = math.floor(number_1 / 10)
 	local number_2 = number_1 - double * 10
@@ -1022,6 +980,7 @@ function modifier_abaddon_aphotic_shield_custom_burn:OnCreated()
 	if not IsServer() then
 		return
 	end
+	self.RemoveForDuel = true
 
 	self.can_lifesteal = self.caster:CanLifesteal(self.parent)
 	self.parent:GenericParticle("particles/abaddon/ulti_burn.vpcf", self)
@@ -1064,4 +1023,32 @@ function modifier_abaddon_aphotic_shield_custom_burn:OnIntervalThink()
 		self:Destroy()
 		return
 	end
+end
+
+abaddon_aphotic_shield_custom_legendary = class({})
+abaddon_aphotic_shield_custom_legendary.talents = {}
+
+function abaddon_aphotic_shield_custom_legendary:UpdateTalents(name)
+	local caster = self:GetCaster()
+	if not self.init then
+		self.init = true
+		self.talents = {
+			w7_duration = caster:GetTalentValue("modifier_abaddon_aphotic_7", "duration", true),
+		}
+	end
+end
+
+function abaddon_aphotic_shield_custom_legendary:OnSpellStart()
+	if not IsValid(self.caster.aphotic_ability) then
+		return
+	end
+	if not self:IsHidden() then
+		self.caster:SwapAbilities(self:GetName(), "abaddon_aphotic_shield_custom", false, true)
+	end
+	self.caster:AddNewModifier(
+		self.caster,
+		self.caster.aphotic_ability,
+		"modifier_abaddon_aphotic_shield_custom_immune",
+		{ duration = self.talents.w7_duration }
+	)
 end

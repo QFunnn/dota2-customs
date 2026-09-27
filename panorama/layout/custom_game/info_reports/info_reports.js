@@ -17,7 +17,6 @@ if ($.GetContextPanel() && parentHUDElements)
     }
 }
 
-var PLAYER_VIEW_ITEMS_FOR_BUY = true
 var QUEST_BLUR = true
 var courier_selected = null;
 var active_sale = 0;
@@ -167,9 +166,6 @@ function init_shop()
         shop_window_blur.RemoveClass("shop_window_blur")
     }
 
-    InitHeroes()
-	InitItems()
-	InitSounds()
 	UpdateShards()
 }
 

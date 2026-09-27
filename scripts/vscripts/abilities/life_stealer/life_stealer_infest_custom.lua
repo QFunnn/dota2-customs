@@ -102,15 +102,11 @@ LinkLuaModifier(
 life_stealer_infest_custom = class({})
 life_stealer_infest_custom.talents = {}
 
-function life_stealer_infest_custom:GetAbilityTextureName()
-	local caster = self:GetCaster()
-	return wearables_system:GetAbilityIconReplacement(self.caster, "life_stealer_infest", self)
-end
-
 function life_stealer_infest_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
 	end
+
 	PrecacheResource("particle", "particles/units/heroes/hero_life_stealer/life_stealer_infest_cast.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_life_stealer/life_stealer_infested_unit.vpcf", context)
 	PrecacheResource(
@@ -118,6 +114,10 @@ function life_stealer_infest_custom:Precache(context)
 		"particles/units/heroes/hero_life_stealer/life_stealer_infest_emerge_bloody.vpcf",
 		context
 	)
+	PrecacheResource("particle", "particles/units/heroes/hero_bloodseeker/bloodseeker_vision.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_pudge/pudge_fleshheap_status_effect.vpcf", context)
+	PrecacheResource("particle", "particles/bloodseeker/bloodrage_stack_main.vpcf", context)
+	PrecacheResource("particle", "particles/queen_of_pain/blink_root.vpcf", context)
 end
 
 function life_stealer_infest_custom:UpdateTalents(name)
@@ -215,6 +215,10 @@ function life_stealer_infest_custom:UpdateTalents(name)
 	end
 end
 
+function life_stealer_infest_custom:GetAbilityTextureName()
+	return wearables_system:GetAbilityIconReplacement(self.caster, "life_stealer_infest", self)
+end
+
 function life_stealer_infest_custom:GetIntrinsicModifierName()
 	if not self:GetCaster():IsRealHero() then
 		return
@@ -223,12 +227,7 @@ function life_stealer_infest_custom:GetIntrinsicModifierName()
 end
 
 function life_stealer_infest_custom:GetCooldown(level)
-	return self.BaseClass.GetCooldown(self, level) + (self.talents.h1_cd and self.talents.h1_cd or 0)
-end
-
-function life_stealer_infest_custom:OnAbilityPhaseStart()
-	self.caster:StartGesture(ACT_DOTA_CAST_ABILITY_6)
-	return true
+	return self.BaseClass.GetCooldown(self, level) + (self.talents.h1_cd or 0)
 end
 
 function life_stealer_infest_custom:CastFilterResultTarget(target)
@@ -248,6 +247,11 @@ function life_stealer_infest_custom:CastFilterResultTarget(target)
 		0,
 		self.caster:GetTeamNumber()
 	)
+end
+
+function life_stealer_infest_custom:OnAbilityPhaseStart()
+	self.caster:StartGesture(ACT_DOTA_CAST_ABILITY_6)
+	return true
 end
 
 function life_stealer_infest_custom:OnSpellStart()
@@ -286,7 +290,7 @@ function life_stealer_infest_custom:OnSpellStart()
 		and not target.is_patrol_creep
 	local is_ally = target:GetTeamNumber() == self.caster:GetTeamNumber() and 1 or 0
 
-	local duration = nil
+	local duration
 	if not is_creep then
 		duration = self.infest_duration_enemy + (self.talents.has_h6 == 1 and self.talents.h6_duration or 0)
 	else
@@ -310,13 +314,19 @@ function life_stealer_infest_custom:OnSpellStart()
 			["neutral_ursa_clap"] = "neutral_ursa_clap_active",
 			["neutral_troll_raise"] = "neutral_troll_root_active",
 			["neutral_golem_stun"] = "neutral_golem_stun_active",
+			["neutral_frog_water_bubble"] = "neutral_frog_water_bubble_active",
+			["neutral_frog_water_bubble_2"] = "neutral_frog_water_bubble_2_active",
+			["neutral_frog_water_bubble_3"] = "neutral_frog_water_bubble_3_active",
+			["neutral_frog_tendrils"] = "neutral_frog_tendrils_active",
+			["neutral_frog_tendrils_2"] = "neutral_frog_tendrils_2_active",
+			["neutral_frog_tendrils_3"] = "neutral_frog_tendrils_3_active",
 		}
 
 		for name, new_name in pairs(abilities) do
 			local old_ability = target:FindAbilityByName(name)
 			if old_ability then
 				local new_ability = target:AddAbility(new_name)
-				new_ability:SetLevel(1)
+				new_ability:SetLevel(old_ability:GetLevel())
 				target:SwapAbilities(name, new_name, false, true)
 				target:RemoveAbility(name)
 			end
@@ -397,7 +407,6 @@ function modifier_life_stealer_infest_custom:OnCreated(table)
 	self.radius = self.ability.radius
 	self.damage = self.ability.damage
 	self.regen = self.ability.self_regen
-	self.duration = self:GetRemainingTime()
 
 	if not IsServer() then
 		return
@@ -409,7 +418,6 @@ function modifier_life_stealer_infest_custom:OnCreated(table)
 	self.parent:RemoveModifierByName("modifier_item_harpoon_custom_speed")
 
 	self.RemoveForDuel = true
-	--self.parent:AddNoDraw()
 	self.parent:NoDraw(self)
 
 	self.target = EntIndexToHScript(table.target)
@@ -462,7 +470,6 @@ function modifier_life_stealer_infest_custom:OnCreated(table)
 
 	self.interval = FrameTime()
 	self.attack_timer = 0
-	self.attack_count = 0
 	self.attack_interval = 1 - FrameTime()
 
 	self.ui_timer = 0.2
@@ -487,7 +494,7 @@ function modifier_life_stealer_infest_custom:OnIntervalThink()
 	self.parent:SetOrigin(self.target:GetAbsOrigin())
 
 	if self.is_legendary == 1 then
-		self.ui_count = self.ui_count + 1
+		self.ui_count = self.ui_count + self.interval
 		if self.ui_count >= self.ui_timer then
 			self.ui_count = 0
 			local data = {}
@@ -511,7 +518,6 @@ function modifier_life_stealer_infest_custom:OnIntervalThink()
 	end
 
 	self.attack_timer = 0
-	self.attack_count = self.attack_count + 1
 
 	self.parent:AddNewModifier(self.parent, self.ability, "modifier_life_stealer_infest_custom_attack_damage", {})
 	self.parent:PerformAttack(self.target, true, true, true, true, false, false, true)
@@ -566,7 +572,7 @@ function modifier_life_stealer_infest_custom:CheckState()
 	return result
 end
 
-function modifier_life_stealer_infest_custom:OnDestroy(table)
+function modifier_life_stealer_infest_custom:OnDestroy()
 	if not IsServer() then
 		return
 	end
@@ -680,31 +686,11 @@ function modifier_life_stealer_infest_custom:OnDestroy(table)
 		end
 		CustomGameEventManager:Send_ServerToPlayer(self.player, "lifestealer_infest", { hide = 1 })
 		CustomGameEventManager:Send_ServerToPlayer(
-			PlayerResource:GetPlayer(self.parent:GetId()),
+			self.player,
 			"select_unit_custom",
 			{ index = self.parent:entindex() }
 		)
 	end
-end
-
-life_stealer_consume_custom = class({})
-
-function life_stealer_consume_custom:GetAbilityTextureName()
-	local caster = self:GetCaster()
-	return wearables_system:GetAbilityIconReplacement(self.caster, "life_stealer_consume", self)
-end
-
-function life_stealer_consume_custom:OnSpellStart()
-	local caster = self:GetCaster()
-	if caster.owner then
-		caster = caster.owner
-	end
-
-	local mod = caster:FindModifierByName("modifier_life_stealer_infest_custom")
-	if not mod then
-		return
-	end
-	mod:Destroy()
 end
 
 modifier_life_stealer_infest_custom_bonus = class(mod_hidden)
@@ -763,55 +749,412 @@ function modifier_life_stealer_infest_custom_bonus:GetModifierMoveSpeedBonus_Per
 	return self.move_speed
 end
 
-life_stealer_infest_custom_legendary = class({})
-life_stealer_infest_custom_legendary.talents = {}
+modifier_life_stealer_infest_custom_tracker = class(mod_hidden)
+function modifier_life_stealer_infest_custom_tracker:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+	self.ability.tracker = self
+	self.ability:UpdateTalents()
 
-function life_stealer_infest_custom_legendary:CreateTalent()
-	local caster = self:GetCaster()
-	local ability = caster:FindAbilityByName("life_stealer_infest_custom")
-	if not ability then
+	self.parent.infest_ability = self.ability
+
+	self.legendary_ability = self.parent:FindAbilityByName("life_stealer_infest_custom_legendary")
+	if self.legendary_ability then
+		self.legendary_ability:UpdateTalents()
+	end
+
+	self.ability.radius = self.ability:GetSpecialValueFor("radius")
+	self.ability.damage = self.ability:GetSpecialValueFor("damage")
+	self.ability.bonus_movement_speed = self.ability:GetSpecialValueFor("bonus_movement_speed")
+	self.ability.bonus_health = self.ability:GetSpecialValueFor("bonus_health")
+	self.ability.creep_move = self.ability:GetSpecialValueFor("creep_move")
+	self.ability.self_regen = self.ability:GetSpecialValueFor("self_regen")
+	self.ability.infest_duration_enemy = self.ability:GetSpecialValueFor("infest_duration_enemy")
+	self.ability.attacks = self.ability:GetSpecialValueFor("attacks")
+	self.ability.attacks_damage = self.ability:GetSpecialValueFor("attacks_damage")
+
+	self.root_mods = {
+		"modifier_life_stealer_ursa_overpower",
+		"modifier_life_stealer_centaur_retaliate",
+		"modifier_life_stealer_dragon_flight",
+	}
+	self.ability:UpdateLevels()
+end
+
+function modifier_life_stealer_infest_custom_tracker:OnRefresh()
+	self.ability.damage = self.ability:GetSpecialValueFor("damage")
+	self.ability.self_regen = self.ability:GetSpecialValueFor("self_regen")
+	self.ability.attacks_damage = self.ability:GetSpecialValueFor("attacks_damage")
+	self.ability.bonus_health = self.ability:GetSpecialValueFor("bonus_health")
+	self.ability:UpdateLevels()
+end
+
+function modifier_life_stealer_infest_custom_tracker:SpellEvent(params)
+	if not IsServer() then
+		return
+	end
+	if params.ability:IsItem() then
+		return
+	end
+	if params.unit ~= self.parent and params.unit ~= self.parent.infest_creep then
 		return
 	end
 
-	caster:AddNewModifier(
-		caster,
-		self,
-		"modifier_life_stealer_infest_custom_legendary_saved",
-		{ name = "npc_lifestealer_infest_ursa" }
-	)
-	caster:SwapAbilities(self:GetName(), "life_stealer_infest_custom", not ability:IsHidden(), false)
+	if self.ability.talents.has_h1 == 1 then
+		local unit = self.parent.infest_creep or self.parent
+		unit:AddNewModifier(
+			self.parent,
+			self.ability,
+			"modifier_life_stealer_infest_custom_armor",
+			{ duration = self.ability.talents.h1_duration }
+		)
+	end
+
+	if self.ability.talents.has_h6 == 1 and self.ability.talents.has_r7 == 1 then
+		self.parent:CdItems(self.ability.talents.h6_cd_items)
+	end
 end
+
+function modifier_life_stealer_infest_custom_tracker:AttackEvent_out(params)
+	if not IsServer() then
+		return
+	end
+	if not params.target:IsUnit() then
+		return
+	end
+
+	local attacker = params.attacker
+
+	if attacker.owner ~= self.parent then
+		return
+	end
+	if not attacker:HasModifier("modifier_life_stealer_infest_custom_legendary_creep") then
+		return
+	end
+
+	for _, name in pairs(self.root_mods) do
+		local mod = attacker:FindModifierByName(name)
+		if mod and not mod.root_proc then
+			mod.root_proc = true
+			params.target:AddNewModifier(
+				attacker,
+				self.ability,
+				"modifier_life_stealer_infest_custom_root",
+				{ duration = (1 - params.target:GetStatusResistance()) * self.ability.talents.r4_root }
+			)
+			break
+		end
+	end
+end
+
+function modifier_life_stealer_infest_custom_tracker:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE,
+		MODIFIER_PROPERTY_MANACOST_PERCENTAGE_STACKING,
+		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
+	}
+end
+
+function modifier_life_stealer_infest_custom_tracker:GetModifierPercentageCooldown()
+	return self.ability.talents.r3_cdr
+end
+
+function modifier_life_stealer_infest_custom_tracker:GetModifierPercentageManacostStacking()
+	if self.ability.talents.has_h6 == 0 then
+		return
+	end
+	return self.ability.talents.h6_mana
+end
+
+function modifier_life_stealer_infest_custom_tracker:GetModifierHealChange()
+	if self.ability.talents.has_r4 == 0 then
+		return
+	end
+	return self.ability.talents.r4_heal_amp
+end
+
+function modifier_life_stealer_infest_custom_tracker:GetModifierHPRegenAmplify_Percentage()
+	if self.ability.talents.has_r4 == 0 then
+		return
+	end
+	return self.ability.talents.r4_heal_amp
+end
+
+modifier_life_stealer_infest_custom_attack_damage = class(mod_hidden)
+function modifier_life_stealer_infest_custom_attack_damage:OnCreated()
+	self.ability = self:GetAbility()
+	self.attacks_damage = self.ability.attacks_damage - 100
+end
+
+function modifier_life_stealer_infest_custom_attack_damage:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE,
+	}
+end
+
+function modifier_life_stealer_infest_custom_attack_damage:GetModifierDamageOutgoing_Percentage()
+	return self.attacks_damage
+end
+
+modifier_life_stealer_infest_custom_health_bonus = class(mod_visible)
+function modifier_life_stealer_infest_custom_health_bonus:GetTexture()
+	return "buffs/lifestealer/infest_2"
+end
+function modifier_life_stealer_infest_custom_health_bonus:OnCreated(table)
+	if not IsServer() then
+		return
+	end
+	self.RemoveForDuel = true
+	self.parent = self:GetParent()
+	self:SetStackCount(table.health)
+end
+
+function modifier_life_stealer_infest_custom_health_bonus:OnDestroy()
+	if not IsServer() then
+		return
+	end
+	self.parent:CalculateStatBonus(true)
+end
+
+function modifier_life_stealer_infest_custom_health_bonus:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_HEALTH_BONUS,
+	}
+end
+
+function modifier_life_stealer_infest_custom_health_bonus:GetModifierHealthBonus()
+	return self:GetStackCount()
+end
+
+modifier_life_stealer_infest_custom_magic_reduce = class(mod_visible)
+function modifier_life_stealer_infest_custom_magic_reduce:GetTexture()
+	return "buffs/lifestealer/infest_3"
+end
+function modifier_life_stealer_infest_custom_magic_reduce:OnCreated()
+	self.parent = self:GetParent()
+	self.caster = self:GetCaster()
+	self.ability = self:GetAbility()
+
+	self.max = self.ability.talents.r3_max
+	if not IsServer() then
+		return
+	end
+	self.RemoveForDuel = true
+	self:OnRefresh()
+end
+
+function modifier_life_stealer_infest_custom_magic_reduce:OnRefresh()
+	if not IsServer() then
+		return
+	end
+	if self:GetStackCount() >= self.max then
+		return
+	end
+	self:IncrementStackCount()
+
+	if not self.effect_cast then
+		self.effect_cast = self.parent:GenericParticle("particles/bloodseeker/bloodrage_stack_main.vpcf", self, true)
+	end
+	ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(0, self:GetStackCount(), 0))
+end
+
+function modifier_life_stealer_infest_custom_magic_reduce:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
+	}
+end
+
+function modifier_life_stealer_infest_custom_magic_reduce:GetModifierMagicalResistanceBonus()
+	return self.ability.talents.r3_magic * self:GetStackCount()
+end
+
+modifier_life_stealer_infest_custom_root = class(mod_hidden)
+function modifier_life_stealer_infest_custom_root:IsPurgable()
+	return true
+end
+function modifier_life_stealer_infest_custom_root:GetStatusEffectName()
+	return "particles/status_fx/status_effect_life_stealer_open_wounds.vpcf"
+end
+function modifier_life_stealer_infest_custom_root:StatusEffectPriority()
+	return MODIFIER_PRIORITY_HIGH
+end
+function modifier_life_stealer_infest_custom_root:OnCreated()
+	if not IsServer() then
+		return
+	end
+	self.parent = self:GetParent()
+	self.parent:GenericParticle("particles/items2_fx/sange_maim.vpcf", self)
+	self.parent:GenericParticle("particles/queen_of_pain/blink_root.vpcf", self)
+	self.parent:EmitSound("Lifestealer.Shard_target")
+end
+
+function modifier_life_stealer_infest_custom_root:CheckState()
+	return {
+		[MODIFIER_STATE_ROOTED] = true,
+	}
+end
+
+modifier_life_stealer_infest_custom_armor = class(mod_visible)
+function modifier_life_stealer_infest_custom_armor:GetTexture()
+	return "buffs/lifestealer/hero_1"
+end
+function modifier_life_stealer_infest_custom_armor:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.armor = self.ability.talents.h1_armor
+end
+
+function modifier_life_stealer_infest_custom_armor:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
+	}
+end
+
+function modifier_life_stealer_infest_custom_armor:GetModifierPhysicalArmorBonus()
+	return self.armor
+end
+
+modifier_life_stealer_infest_custom_regen = class(mod_hidden)
+function modifier_life_stealer_infest_custom_regen:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.regen = self.ability.self_regen + self.ability.talents.r2_heal
+end
+
+function modifier_life_stealer_infest_custom_regen:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE,
+	}
+end
+
+function modifier_life_stealer_infest_custom_regen:GetModifierHealthRegenPercentage()
+	return self.regen
+end
+
+modifier_life_stealer_infest_custom_health_reduce = class(mod_visible)
+function modifier_life_stealer_infest_custom_health_reduce:GetTexture()
+	return "buffs/lifestealer/infest_1"
+end
+function modifier_life_stealer_infest_custom_health_reduce:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+	if not IsServer() then
+		return
+	end
+	self.RemoveForDuel = true
+	if not self.parent:IsHero() then
+		return
+	end
+	self.parent:CalculateStatBonus(true)
+end
+
+function modifier_life_stealer_infest_custom_health_reduce:OnDestroy()
+	if not IsServer() then
+		return
+	end
+	if not self.parent:IsHero() then
+		return
+	end
+	self.parent:CalculateStatBonus(true)
+end
+
+function modifier_life_stealer_infest_custom_health_reduce:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_EXTRA_HEALTH_PERCENTAGE,
+	}
+end
+
+function modifier_life_stealer_infest_custom_health_reduce:GetModifierExtraHealthPercentage()
+	return self.ability.talents.r1_health_reduce
+end
+
+life_stealer_consume_custom = class({})
+function life_stealer_consume_custom:GetAbilityTextureName()
+	return wearables_system:GetAbilityIconReplacement(self.caster, "life_stealer_consume", self)
+end
+
+function life_stealer_consume_custom:OnSpellStart()
+	local caster = self.caster.owner or self.caster
+
+	local mod = caster:FindModifierByName("modifier_life_stealer_infest_custom")
+	if not mod then
+		return
+	end
+	mod:Destroy()
+end
+
+life_stealer_infest_custom_legendary = class({})
+life_stealer_infest_custom_legendary.talents = {}
 
 function life_stealer_infest_custom_legendary:UpdateTalents(name)
 	local caster = self:GetCaster()
 	if not self.init then
 		self.init = true
 		self.talents = {
+			r1_damage_creep = 0,
+
+			r2_health_creep = 0,
+			r2_heal_creep = 0,
+
+			r3_cdr = 0,
+
+			has_r4 = 0,
+			r4_heal_amp = caster:GetTalentValue("modifier_lifestealer_infest_4", "heal_amp", true),
+
 			has_h1 = 0,
 			h1_cd = 0,
+
+			has_h6 = 0,
+			h6_mana = caster:GetTalentValue("modifier_lifestealer_hero_6", "mana", true),
 		}
+	end
+
+	if caster:HasTalent("modifier_lifestealer_infest_1") then
+		self.talents.r1_damage_creep = caster:GetTalentValue("modifier_lifestealer_infest_1", "damage_creep")
+	end
+
+	if caster:HasTalent("modifier_lifestealer_infest_2") then
+		self.talents.r2_health_creep = caster:GetTalentValue("modifier_lifestealer_infest_2", "health_creep") / 100
+		self.talents.r2_heal_creep = caster:GetTalentValue("modifier_lifestealer_infest_2", "heal_creep")
+	end
+
+	if caster:HasTalent("modifier_lifestealer_infest_3") then
+		self.talents.r3_cdr = caster:GetTalentValue("modifier_lifestealer_infest_3", "cdr")
+	end
+
+	if caster:HasTalent("modifier_lifestealer_infest_4") then
+		self.talents.has_r4 = 1
 	end
 
 	if caster:HasTalent("modifier_lifestealer_hero_1") then
 		self.talents.has_h1 = 1
 		self.talents.h1_cd = caster:GetTalentValue("modifier_lifestealer_hero_1", "cd")
 	end
+
+	if caster:HasTalent("modifier_lifestealer_hero_6") then
+		self.talents.has_h6 = 1
+	end
 end
 
-function life_stealer_infest_custom_legendary:OnInventoryContentsChanged()
-	if not self.caster:HasShard() then
+function life_stealer_infest_custom_legendary:CreateTalent()
+	local ability = self.caster:FindAbilityByName("life_stealer_infest_custom")
+	if not ability then
 		return
 	end
 
-	local mod = self.caster:FindModifierByName("modifier_life_stealer_infest_custom")
-	if not mod or not mod.target or mod.is_legendary ~= 1 then
-		return
-	end
+	self.caster:AddNewModifier(
+		self.caster,
+		self,
+		"modifier_life_stealer_infest_custom_legendary_saved",
+		{ name = "npc_lifestealer_infest_ursa" }
+	)
+	self.caster:SwapAbilities(self:GetName(), "life_stealer_infest_custom", not ability:IsHidden(), false)
+end
 
-	local ability = mod.target:FindAbilityByName("life_stealer_unfettered_custom")
-	if ability and ability:IsHidden() then
-		ability:SetHidden(false)
-	end
+function life_stealer_infest_custom_legendary:GetCooldown(level)
+	return self.BaseClass.GetCooldown(self, level) + (self.talents.h1_cd or 0)
 end
 
 function life_stealer_infest_custom_legendary:CheckToggle()
@@ -826,17 +1169,13 @@ function life_stealer_infest_custom_legendary:CheckToggle()
 	return true
 end
 
-function life_stealer_infest_custom_legendary:GetCooldown(level)
-	return self.BaseClass.GetCooldown(self, level) + (self.talents.h1_cd and self.talents.h1_cd or 0)
-end
-
 function life_stealer_infest_custom_legendary:OnAbilityPhaseStart()
 	self.caster:StartGesture(ACT_DOTA_LIFESTEALER_EJECT)
 	return true
 end
 
 function life_stealer_infest_custom_legendary:OnSpellStart()
-	local ability = self.caster:FindAbilityByName("life_stealer_infest_custom")
+	local ability = self.caster.infest_ability
 
 	local mod = self.caster:FindModifierByName("modifier_life_stealer_infest_custom_legendary_saved")
 	if not mod or not mod.name then
@@ -877,8 +1216,7 @@ function life_stealer_infest_custom_legendary:OnSpellStart()
 	vec.z = 0
 
 	creep:SetAngles(0, 0, 0)
-	creep:SetForwardVector(vec)
-	creep:FaceTowards(creep:GetAbsOrigin() + vec * 10)
+	creep:FacePoint(creep:GetAbsOrigin() + vec * 10)
 
 	creep:SetControllableByPlayer(self.caster:GetPlayerID(), true)
 	creep:SetOwner(self.caster)
@@ -934,8 +1272,7 @@ function life_stealer_infest_custom_legendary:OnSpellStart()
 		local hero_ability = self.caster:FindAbilityByName(name)
 		if hero_ability and hero_ability:IsTrained() then
 			if hero_ability:GetIntrinsicModifierName() then
-				local new_mod =
-					creep:AddNewModifier(self.caster, hero_ability, hero_ability:GetIntrinsicModifierName(), {})
+				creep:AddNewModifier(self.caster, hero_ability, hero_ability:GetIntrinsicModifierName(), {})
 			end
 		end
 	end
@@ -975,6 +1312,22 @@ function life_stealer_infest_custom_legendary:OnSpellStart()
 	creep:StartGesture(ACT_DOTA_CAST_ABILITY_1)
 end
 
+function life_stealer_infest_custom_legendary:OnInventoryContentsChanged()
+	if not self.caster:HasShard() then
+		return
+	end
+
+	local mod = self.caster:FindModifierByName("modifier_life_stealer_infest_custom")
+	if not mod or not mod.target or mod.is_legendary ~= 1 then
+		return
+	end
+
+	local ability = mod.target:FindAbilityByName("life_stealer_unfettered_custom")
+	if ability and ability:IsHidden() then
+		ability:SetHidden(false)
+	end
+end
+
 modifier_life_stealer_infest_custom_legendary_creep_active = class(mod_hidden)
 function modifier_life_stealer_infest_custom_legendary_creep_active:OnCreated()
 	self.parent = self:GetParent()
@@ -993,6 +1346,9 @@ end
 modifier_life_stealer_infest_custom_legendary_creep = class(mod_hidden)
 function modifier_life_stealer_infest_custom_legendary_creep:RemoveOnDeath()
 	return false
+end
+function modifier_life_stealer_infest_custom_legendary_creep:GetEffectName()
+	return "particles/units/heroes/hero_bloodseeker/bloodseeker_vision.vpcf"
 end
 function modifier_life_stealer_infest_custom_legendary_creep:OnCreated()
 	self.parent = self:GetParent()
@@ -1020,12 +1376,6 @@ function modifier_life_stealer_infest_custom_legendary_creep:OnCreated()
 		self.bva = self.ability:GetSpecialValueFor("ursa_bva")
 	end
 
-	self.cd_abilities = {
-		["life_stealer_centaur_stun"] = true,
-		["life_stealer_ursa_clap"] = true,
-		["life_stealer_dragon_fireball"] = true,
-	}
-
 	self.infest_ability = self.caster.infest_ability
 	self.parent.infest_ability = self.infest_ability
 
@@ -1038,7 +1388,7 @@ function modifier_life_stealer_infest_custom_legendary_creep:OnCreated()
 		self.damage = self.damage * (1 + dragon_passive:GetSpecialValueFor("dragon_damage") / 100)
 	end
 
-	self.health_bonus = self.infest_ability.talents.r2_health_creep
+	self.health_bonus = self.ability.talents.r2_health_creep
 
 	self.parent:AddNewModifier(
 		self.parent,
@@ -1087,7 +1437,7 @@ function modifier_life_stealer_infest_custom_legendary_creep:OnIntervalThink()
 
 	local should_refresh = false
 
-	self.health_bonus = self.infest_ability.talents.r2_health_creep
+	self.health_bonus = self.ability.talents.r2_health_creep
 	self.spell_damage = self.caster:GetSpellAmplification(false) * 100
 
 	local caster_health = math.max(1, self.caster:GetMaxHealth() * (self.health + self.health_bonus))
@@ -1178,18 +1528,18 @@ function modifier_life_stealer_infest_custom_legendary_creep:DeclareFunctions()
 end
 
 function modifier_life_stealer_infest_custom_legendary_creep:GetModifierPercentageManacostStacking()
-	if self.infest_ability.talents.has_h6 == 0 then
+	if self.ability.talents.has_h6 == 0 then
 		return
 	end
-	return self.infest_ability.talents.h6_mana
+	return self.ability.talents.h6_mana
 end
 
 function modifier_life_stealer_infest_custom_legendary_creep:GetModifierDamageOutgoing_Percentage()
-	return self.infest_ability.talents.r1_damage_creep
+	return self.ability.talents.r1_damage_creep
 end
 
 function modifier_life_stealer_infest_custom_legendary_creep:GetModifierPercentageCooldown(params)
-	return self.infest_ability.talents.r3_cdr
+	return self.ability.talents.r3_cdr
 end
 
 function modifier_life_stealer_infest_custom_legendary_creep:GetModifierManaBonus()
@@ -1201,7 +1551,7 @@ function modifier_life_stealer_infest_custom_legendary_creep:GetModifierConstant
 end
 
 function modifier_life_stealer_infest_custom_legendary_creep:GetModifierHealthRegenPercentage()
-	return self.regen + self.infest_ability.talents.r2_heal_creep
+	return self.regen + self.ability.talents.r2_heal_creep
 end
 
 function modifier_life_stealer_infest_custom_legendary_creep:GetModifierAttackSpeedBonus_Constant()
@@ -1209,7 +1559,7 @@ function modifier_life_stealer_infest_custom_legendary_creep:GetModifierAttackSp
 end
 
 function modifier_life_stealer_infest_custom_legendary_creep:GetModifierSpellAmplify_Percentage()
-	return self.spell_damage + self.infest_ability.talents.r1_damage_creep
+	return self.spell_damage + self.ability.talents.r1_damage_creep
 end
 
 function modifier_life_stealer_infest_custom_legendary_creep:GetModifierBaseAttackTimeConstant()
@@ -1217,21 +1567,17 @@ function modifier_life_stealer_infest_custom_legendary_creep:GetModifierBaseAtta
 end
 
 function modifier_life_stealer_infest_custom_legendary_creep:GetModifierHealChange()
-	if self.infest_ability.talents.has_r4 == 0 then
+	if self.ability.talents.has_r4 == 0 then
 		return
 	end
-	return self.infest_ability.talents.r4_heal_amp
+	return self.ability.talents.r4_heal_amp
 end
 
 function modifier_life_stealer_infest_custom_legendary_creep:GetModifierHPRegenAmplify_Percentage()
-	if self.infest_ability.talents.has_r4 == 0 then
+	if self.ability.talents.has_r4 == 0 then
 		return
 	end
-	return self.infest_ability.talents.r4_heal_amp
-end
-
-function modifier_life_stealer_infest_custom_legendary_creep:GetEffectName()
-	return "particles/units/heroes/hero_bloodseeker/bloodseeker_vision.vpcf"
+	return self.ability.talents.r4_heal_amp
 end
 
 modifier_life_stealer_infest_custom_legendary_creep_status = class(mod_hidden)
@@ -1241,7 +1587,6 @@ end
 function modifier_life_stealer_infest_custom_legendary_creep_status:GetStatusEffectName()
 	return "particles/units/heroes/hero_pudge/pudge_fleshheap_status_effect.vpcf"
 end
-
 function modifier_life_stealer_infest_custom_legendary_creep_status:StatusEffectPriority()
 	return MODIFIER_PRIORITY_ILLUSION
 end
@@ -1300,11 +1645,16 @@ function modifier_life_stealer_infest_custom_legendary_pick:OnIntervalThink()
 	if not IsServer() then
 		return
 	end
-	CustomGameEventManager:Send_ServerToPlayer(
-		PlayerResource:GetPlayer(self.parent:GetPlayerOwnerID()),
-		"tb_reflection_init",
-		self.targets
-	)
+	local targets = {}
+
+	for i, name in pairs(self.targets) do
+		if type(i) == "number" then
+			targets[i] =
+				{ image = "file://{images}/custom_game/icons/mini/npc_dota_hero_life_stealer/" .. name .. ".png" }
+		end
+	end
+
+	self.parent:UpdateUIpick({ mod = self, text = "#pa_pick_hero", targets = targets })
 end
 
 function modifier_life_stealer_infest_custom_legendary_pick:EndPick(pick)
@@ -1334,11 +1684,7 @@ function modifier_life_stealer_infest_custom_legendary_pick:OnDestroy()
 		return
 	end
 
-	CustomGameEventManager:Send_ServerToPlayer(
-		PlayerResource:GetPlayer(self.parent:GetPlayerOwnerID()),
-		"tb_reflection_init_end",
-		{}
-	)
+	self.parent:UpdateUIpick({ hide = 1 })
 end
 
 modifier_life_stealer_infest_custom_legendary_saved = class(mod_visible)
@@ -1353,6 +1699,7 @@ function modifier_life_stealer_infest_custom_legendary_saved:GetTexture()
 end
 function modifier_life_stealer_infest_custom_legendary_saved:OnCreated(table)
 	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
 
 	if not IsServer() then
 		return
@@ -1404,345 +1751,9 @@ function modifier_life_stealer_infest_custom_legendary_bonus:OnRefresh(table)
 		return
 	end
 	self:IncrementStackCount()
-end
 
-function modifier_life_stealer_infest_custom_legendary_bonus:OnStackCountChanged(iStackCount)
-	if not IsServer() then
-		return
-	end
 	if not self.effect_cast then
 		self.effect_cast = self.parent:GenericParticle("particles/bloodseeker/bloodrage_stack_main.vpcf", self, true)
 	end
 	ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(0, self:GetStackCount(), 0))
-end
-
-modifier_life_stealer_infest_custom_tracker = class(mod_hidden)
-function modifier_life_stealer_infest_custom_tracker:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-	self.ability.tracker = self
-	self.ability:UpdateTalents()
-
-	self.parent.infest_ability = self.ability
-
-	self.legendary_ability = self.parent:FindAbilityByName("life_stealer_infest_custom_legendary")
-	if self.legendary_ability then
-		self.legendary_ability:UpdateTalents()
-	end
-
-	self.ability.radius = self.ability:GetSpecialValueFor("radius")
-	self.ability.damage = self.ability:GetSpecialValueFor("damage")
-	self.ability.bonus_movement_speed = self.ability:GetSpecialValueFor("bonus_movement_speed")
-	self.ability.bonus_health = self.ability:GetSpecialValueFor("bonus_health")
-	self.ability.creep_move = self.ability:GetSpecialValueFor("creep_move")
-	self.ability.self_regen = self.ability:GetSpecialValueFor("self_regen")
-	self.ability.infest_duration_enemy = self.ability:GetSpecialValueFor("infest_duration_enemy")
-	self.ability.attacks = self.ability:GetSpecialValueFor("attacks")
-	self.ability.attacks_damage = self.ability:GetSpecialValueFor("attacks_damage")
-
-	self.root_mods = {
-		"modifier_life_stealer_ursa_overpower",
-		"modifier_life_stealer_centaur_retaliate",
-		"modifier_life_stealer_dragon_flight",
-	}
-	self.ability:UpdateLevels()
-end
-
-function modifier_life_stealer_infest_custom_tracker:OnRefresh()
-	self.ability.damage = self.ability:GetSpecialValueFor("damage")
-	self.ability.self_regen = self.ability:GetSpecialValueFor("self_regen")
-	self.ability.attacks_damage = self.ability:GetSpecialValueFor("attacks_damage")
-	self.ability.bonus_health = self.ability:GetSpecialValueFor("bonus_health")
-	self.ability:UpdateLevels()
-end
-
-function modifier_life_stealer_infest_custom_tracker:SpellEvent(params)
-	if not IsServer() then
-		return
-	end
-	if params.ability:IsItem() then
-		return
-	end
-
-	if (self.parent.infest_creep and self.parent.infest_creep == params.unit) or self.parent == params.unit then
-		if self.ability.talents.has_h1 == 1 then
-			local unit = self.parent.infest_creep and self.parent.infest_creep or self.parent
-			unit:AddNewModifier(
-				self.parent,
-				self.ability,
-				"modifier_life_stealer_infest_custom_armor",
-				{ duration = self.ability.talents.h1_duration }
-			)
-		end
-		if self.ability.talents.has_h6 == 1 and self.ability.talents.has_r7 == 1 then
-			self.parent:CdItems(self.ability.talents.h6_cd_items)
-		end
-	end
-end
-
-function modifier_life_stealer_infest_custom_tracker:AttackEvent_out(params)
-	if not IsServer() then
-		return
-	end
-	if not params.target:IsUnit() then
-		return
-	end
-
-	local attacker = params.attacker
-
-	if
-		not attacker.owner
-		or attacker.owner ~= self.parent
-		or not attacker:HasModifier("modifier_life_stealer_infest_custom_legendary_creep")
-	then
-		return
-	end
-
-	for _, name in pairs(self.root_mods) do
-		local mod = attacker:FindModifierByName(name)
-		if mod and not mod.root_proc then
-			mod.root_proc = true
-			params.target:AddNewModifier(
-				attacker,
-				self.ability,
-				"modifier_life_stealer_infest_custom_root",
-				{ duration = (1 - params.target:GetStatusResistance()) * self.ability.talents.r4_root }
-			)
-			break
-		end
-	end
-end
-
-function modifier_life_stealer_infest_custom_tracker:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE,
-		MODIFIER_PROPERTY_MANACOST_PERCENTAGE_STACKING,
-		--MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET,
-		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
-		--MODIFIER_PROPERTY_LIFESTEAL_AMPLIFY_PERCENTAGE,
-	}
-end
-
-function modifier_life_stealer_infest_custom_tracker:GetModifierPercentageCooldown()
-	return self.ability.talents.r3_cdr
-end
-
-function modifier_life_stealer_infest_custom_tracker:GetModifierPercentageManacostStacking()
-	if self.ability.talents.has_h6 == 0 then
-		return
-	end
-	return self.ability.talents.h6_mana
-end
-
-function modifier_life_stealer_infest_custom_tracker:GetModifierLifestealRegenAmplify_Percentage()
-	if self.ability.talents.has_r4 == 0 then
-		return
-	end
-	return self.ability.talents.r4_heal_amp
-end
-
-function modifier_life_stealer_infest_custom_tracker:GetModifierHealChange()
-	if self.ability.talents.has_r4 == 0 then
-		return
-	end
-	return self.ability.talents.r4_heal_amp
-end
-
-function modifier_life_stealer_infest_custom_tracker:GetModifierHPRegenAmplify_Percentage()
-	if self.ability.talents.has_r4 == 0 then
-		return
-	end
-	return self.ability.talents.r4_heal_amp
-end
-
-modifier_life_stealer_infest_custom_attack_damage = class(mod_hidden)
-function modifier_life_stealer_infest_custom_attack_damage:OnCreated()
-	self.attacks_damage = self:GetAbility().attacks_damage - 100
-end
-
-function modifier_life_stealer_infest_custom_attack_damage:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE,
-	}
-end
-
-function modifier_life_stealer_infest_custom_attack_damage:GetModifierDamageOutgoing_Percentage()
-	return self.attacks_damage
-end
-
-modifier_life_stealer_infest_custom_health_bonus = class(mod_visible)
-function modifier_life_stealer_infest_custom_health_bonus:GetTexture()
-	return "buffs/lifestealer/infest_2"
-end
-function modifier_life_stealer_infest_custom_health_bonus:OnCreated(table)
-	if not IsServer() then
-		return
-	end
-	self.RemoveForDuel = true
-	self.parent = self:GetParent()
-	self:SetStackCount(table.health)
-end
-
-function modifier_life_stealer_infest_custom_health_bonus:OnDestroy()
-	if not IsServer() then
-		return
-	end
-	self.parent:CalculateStatBonus(true)
-end
-
-function modifier_life_stealer_infest_custom_health_bonus:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_HEALTH_BONUS,
-	}
-end
-
-function modifier_life_stealer_infest_custom_health_bonus:GetModifierHealthBonus()
-	return self:GetStackCount()
-end
-
-modifier_life_stealer_infest_custom_magic_reduce = class(mod_visible)
-function modifier_life_stealer_infest_custom_magic_reduce:GetTexture()
-	return "buffs/lifestealer/infest_3"
-end
-function modifier_life_stealer_infest_custom_magic_reduce:OnCreated()
-	self.parent = self:GetParent()
-	self.caster = self:GetCaster()
-	self.ability = self:GetAbility()
-
-	self.max = self.ability.talents.r3_max
-	if not IsServer() then
-		return
-	end
-	self.RemoveForDuel = true
-	self:OnRefresh()
-end
-
-function modifier_life_stealer_infest_custom_magic_reduce:OnRefresh()
-	if not IsServer() then
-		return
-	end
-	if self:GetStackCount() >= self.max then
-		return
-	end
-	self:IncrementStackCount()
-end
-
-function modifier_life_stealer_infest_custom_magic_reduce:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
-	}
-end
-
-function modifier_life_stealer_infest_custom_magic_reduce:GetModifierMagicalResistanceBonus()
-	return self.ability.talents.r3_magic * self:GetStackCount()
-end
-
-function modifier_life_stealer_infest_custom_magic_reduce:OnStackCountChanged(iStackCount)
-	if not IsServer() then
-		return
-	end
-	if not self.effect_cast then
-		self.effect_cast = self.parent:GenericParticle("particles/bloodseeker/bloodrage_stack_main.vpcf", self, true)
-	end
-	ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(0, self:GetStackCount(), 0))
-end
-
-modifier_life_stealer_infest_custom_root = class(mod_hidden)
-function modifier_life_stealer_infest_custom_root:IsPurgable()
-	return true
-end
-function modifier_life_stealer_infest_custom_root:OnCreated()
-	if not IsServer() then
-		return
-	end
-	self.parent = self:GetParent()
-	self.parent:GenericParticle("particles/items2_fx/sange_maim.vpcf", self)
-	self.parent:GenericParticle("particles/queen_of_pain/blink_root.vpcf", self)
-	self.parent:EmitSound("Lifestealer.Shard_target")
-end
-
-function modifier_life_stealer_infest_custom_root:CheckState()
-	return {
-		[MODIFIER_STATE_ROOTED] = true,
-	}
-end
-
-function modifier_life_stealer_infest_custom_root:GetStatusEffectName()
-	return "particles/status_fx/status_effect_life_stealer_open_wounds.vpcf"
-end
-
-function modifier_life_stealer_infest_custom_root:StatusEffectPriority()
-	return MODIFIER_PRIORITY_HIGH
-end
-
-modifier_life_stealer_infest_custom_armor = class(mod_visible)
-function modifier_life_stealer_infest_custom_armor:GetTexture()
-	return "buffs/lifestealer/hero_1"
-end
-function modifier_life_stealer_infest_custom_armor:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.armor = self.ability.talents.h1_armor
-end
-
-function modifier_life_stealer_infest_custom_armor:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
-	}
-end
-
-function modifier_life_stealer_infest_custom_armor:GetModifierPhysicalArmorBonus()
-	return self.armor
-end
-
-modifier_life_stealer_infest_custom_regen = class(mod_hidden)
-function modifier_life_stealer_infest_custom_regen:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.regen = self.ability.self_regen + self.ability.talents.r2_heal
-end
-
-function modifier_life_stealer_infest_custom_regen:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE,
-	}
-end
-
-function modifier_life_stealer_infest_custom_regen:GetModifierHealthRegenPercentage()
-	return self.regen
-end
-
-modifier_life_stealer_infest_custom_health_reduce = class(mod_visible)
-function modifier_life_stealer_infest_custom_health_reduce:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-	if not IsServer() then
-		return
-	end
-	if not self.parent:IsHero() then
-		return
-	end
-	self.parent:CalculateStatBonus(true)
-end
-
-function modifier_life_stealer_infest_custom_health_reduce:OnDestroy()
-	if not IsServer() then
-		return
-	end
-	if not self.parent:IsHero() then
-		return
-	end
-	self.parent:CalculateStatBonus(true)
-end
-
-function modifier_life_stealer_infest_custom_health_reduce:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_EXTRA_HEALTH_PERCENTAGE,
-	}
-end
-
-function modifier_life_stealer_infest_custom_health_reduce:GetModifierExtraHealthPercentage()
-	return self.ability.talents.r1_health_reduce
 end

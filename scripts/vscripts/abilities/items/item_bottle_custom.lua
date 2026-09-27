@@ -91,6 +91,24 @@ modifier_item_bottle_custom_regen = class(mod_visible)
 function modifier_item_bottle_custom_regen:GetTexture()
 	return "item_bottle"
 end
+function modifier_item_bottle_custom_regen:IsAura()
+	return IsServer() and self.parent:IsAlive() and self.is_aura
+end
+function modifier_item_bottle_custom_regen:GetModifierAura()
+	return "modifier_item_bottle_custom_effect"
+end
+function modifier_item_bottle_custom_regen:GetAuraRadius()
+	return self.radius
+end
+function modifier_item_bottle_custom_regen:GetAuraDuration()
+	return 0
+end
+function modifier_item_bottle_custom_regen:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_ENEMY
+end
+function modifier_item_bottle_custom_regen:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
+end
 function modifier_item_bottle_custom_regen:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -147,25 +165,6 @@ end
 
 function modifier_item_bottle_custom_regen:GetModifierConstantManaRegen()
 	return self.mana
-end
-
-function modifier_item_bottle_custom_regen:IsAura()
-	return IsServer() and self.parent:IsAlive() and self.is_aura
-end
-function modifier_item_bottle_custom_regen:GetModifierAura()
-	return "modifier_item_bottle_custom_effect"
-end
-function modifier_item_bottle_custom_regen:GetAuraRadius()
-	return self.radius
-end
-function modifier_item_bottle_custom_regen:GetAuraDuration()
-	return 0
-end
-function modifier_item_bottle_custom_regen:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_ENEMY
-end
-function modifier_item_bottle_custom_regen:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
 end
 
 modifier_item_bottle_custom_effect = class(mod_hidden)

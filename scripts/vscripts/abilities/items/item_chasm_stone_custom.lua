@@ -16,10 +16,8 @@ function item_chasm_stone_custom:GetIntrinsicModifierName()
 	return "modifier_item_chasm_stone_custom"
 end
 
-function item_chasm_stone_custom:Precache(context)
-	if self:GetCaster() and self:GetCaster():IsIllusion() then
-		return
-	end
+function item_chasm_stone_custom:Spawn()
+	self.cdr_bonus = self:GetSpecialValueFor("cdr_bonus")
 end
 
 modifier_item_chasm_stone_custom = class(mod_hidden)
@@ -30,7 +28,7 @@ function modifier_item_chasm_stone_custom:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.cdr_bonus = self.ability:GetSpecialValueFor("cdr_bonus")
+	self.cdr_bonus = self.ability.cdr_bonus
 end
 
 function modifier_item_chasm_stone_custom:DeclareFunctions()

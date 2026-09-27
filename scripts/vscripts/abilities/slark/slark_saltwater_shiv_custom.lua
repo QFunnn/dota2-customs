@@ -47,10 +47,6 @@ LinkLuaModifier(
 slark_saltwater_shiv_custom = class({})
 slark_saltwater_shiv_custom.talents = {}
 
-function slark_saltwater_shiv_custom:GetAbilityTextureName()
-	return wearables_system:GetAbilityIconReplacement(self.caster, "slark_saltwater_shiv", self)
-end
-
 function slark_saltwater_shiv_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
@@ -136,6 +132,10 @@ function slark_saltwater_shiv_custom:UpdateTalents()
 	end
 end
 
+function slark_saltwater_shiv_custom:GetAbilityTextureName()
+	return wearables_system:GetAbilityIconReplacement(self.caster, "slark_saltwater_shiv", self)
+end
+
 function slark_saltwater_shiv_custom:GetIntrinsicModifierName()
 	if not self:GetCaster():IsRealHero() then
 		return
@@ -144,22 +144,21 @@ function slark_saltwater_shiv_custom:GetIntrinsicModifierName()
 end
 
 function slark_saltwater_shiv_custom:GetCastRange(vLocation, hTarget)
-	if self.talents.has_e7 == 0 then
-		return
+	if self.talents.has_e7 ~= 1 then
+		return 0
 	end
 	return self.talents.e7_range
 end
 
 function slark_saltwater_shiv_custom:GetCooldown(level)
-	if self.talents.has_e7 == 0 then
-		return (self.AbilityCooldown and self.AbilityCooldown or 0)
-			+ (self:GetCaster():HasShard() and (self.shard_cd and self.shard_cd or 0) or 0)
+	if self.talents.has_e7 ~= 1 then
+		return (self.AbilityCooldown or 0) + (self.caster:HasShard() and (self.shard_cd or 0) or 0)
 	end
 	return self.talents.e7_talent_cd
 end
 
 function slark_saltwater_shiv_custom:GetCastAnimation()
-	if self.talents.has_e7 == 0 then
+	if self.talents.has_e7 ~= 1 then
 		return 0
 	end
 	return ACT_DOTA_CAST_ABILITY_4
@@ -186,16 +185,15 @@ function slark_saltwater_shiv_custom:CastFilterResultTarget(target)
 		self:GetAbilityTargetTeam(),
 		self:GetAbilityTargetType(),
 		self:GetAbilityTargetFlags(),
-		self:GetCaster():GetTeamNumber()
+		self.caster:GetTeamNumber()
 	)
 end
 
 function slark_saltwater_shiv_custom:OnSpellStart()
-	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 
 	target:AddNewModifier(
-		caster,
+		self.caster,
 		self,
 		"modifier_slark_saltwater_shiv_custom_legendary_target",
 		{ duration = self.talents.e7_duration }
@@ -206,14 +204,18 @@ function slark_saltwater_shiv_custom:SetCooldown()
 	if not IsServer() then
 		return
 	end
-	local caster = self:GetCaster()
 	local cd = self.AbilityCooldown
-	if caster:HasShard() then
+	if self.caster:HasShard() then
 		cd = cd + self.shard_cd
 	end
-	cd = cd * caster:GetCooldownReduction()
+	cd = cd * self.caster:GetCooldownReduction()
 	if self.talents.has_e7 == 1 then
-		caster:AddNewModifier(caster, self, "modifier_slark_saltwater_shiv_custom_legendary_cd", { duration = cd })
+		self.caster:AddNewModifier(
+			self.caster,
+			self,
+			"modifier_slark_saltwater_shiv_custom_legendary_cd",
+			{ duration = cd }
+		)
 		return
 	end
 
@@ -437,21 +439,23 @@ function modifier_slark_saltwater_shiv_custom_tracker:StealSpell(search_target)
 	end
 
 	self.current_spell = self.parent:AddAbility(new_ability)
-	if self.current_spell then
-		local level = self.current_spell:GetMaxLevel()
-		local target_ability = target:FindAbilityByName(new_ability)
-		if target_ability and target_ability:GetAbilityType() == 1 then
-			level = target_ability:GetLevel()
-		end
+	if not self.current_spell then
+		return
+	end
 
-		self.current_spell:SetRefCountsModifiers(true)
-		self.current_spell:SetStolen(true)
-		self.current_spell:SetLevel(level)
-		self.current_spell:EndCd(0)
+	local level = self.current_spell:GetMaxLevel()
+	local target_ability = target:FindAbilityByName(new_ability)
+	if target_ability and target_ability:GetAbilityType() == 1 then
+		level = target_ability:GetLevel()
+	end
 
-		if bit.band(self.current_spell:GetBehaviorInt(), DOTA_ABILITY_BEHAVIOR_AUTOCAST) ~= 0 then
-			self.current_spell:ToggleAutoCast()
-		end
+	self.current_spell:SetRefCountsModifiers(true)
+	self.current_spell:SetStolen(true)
+	self.current_spell:SetLevel(level)
+	self.current_spell:EndCd(0)
+
+	if bit.band(self.current_spell:GetBehaviorInt(), DOTA_ABILITY_BEHAVIOR_AUTOCAST) ~= 0 then
+		self.current_spell:ToggleAutoCast()
 	end
 
 	self.parent:SwapAbilities("slark_empty_custom", self.current_spell:GetName(), false, true)
@@ -657,9 +661,11 @@ function modifier_slark_saltwater_shiv_custom_tracker:SpellEvent(params)
 		)
 	end
 
-	local mod = self.parent:FindModifierByName("modifier_slark_innate_custom_double_cd")
-	if mod then
-		mod:ReduceCd(self.ability.talents.e3_cd_inc)
+	if self.ability.talents.has_e3 == 1 then
+		local mod = self.parent:FindModifierByName("modifier_slark_innate_custom_double_cd")
+		if mod then
+			mod:ReduceCd(self.ability.talents.e3_cd_inc)
+		end
 	end
 
 	if not self.current_spell or self.current_spell ~= params.ability then
@@ -693,7 +699,10 @@ function modifier_slark_saltwater_shiv_custom_tracker:GetModifierPercentageManac
 end
 
 function modifier_slark_saltwater_shiv_custom_tracker:GetModifierPercentageCasttime(params)
-	if not self.current_spell then
+	if not params.ability or not self.current_spell then
+		return
+	end
+	if params.ability ~= self.current_spell then
 		return
 	end
 	return self.ability.talents.e7_cast
@@ -953,7 +962,7 @@ function modifier_slark_saltwater_shiv_custom_legendary_target:OnDestroy()
 		end
 
 		self.parent:AddNewModifier(
-			self.parent,
+			self.caster,
 			self.ability,
 			"modifier_bashed",
 			{ duration = (1 - self.parent:GetStatusResistance()) * self.ability.talents.e7_stun }
@@ -1003,7 +1012,7 @@ function modifier_slark_saltwater_shiv_custom_effect:OnCreated()
 	end
 	self.RemoveForDuel = true
 	self.parent:GenericParticle(particle, self)
-	self:SetStackCount(1)
+	self:OnRefresh()
 end
 
 function modifier_slark_saltwater_shiv_custom_effect:OnRefresh()
@@ -1019,18 +1028,12 @@ end
 function modifier_slark_saltwater_shiv_custom_effect:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
-		--MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET,
 		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
-		--MODIFIER_PROPERTY_LIFESTEAL_AMPLIFY_PERCENTAGE,
 	}
 end
 
 function modifier_slark_saltwater_shiv_custom_effect:GetModifierMoveSpeedBonus_Constant()
 	return self.move * self:GetStackCount() * self.k
-end
-
-function modifier_slark_saltwater_shiv_custom_effect:GetModifierLifestealRegenAmplify_Percentage()
-	return self.heal_reduce * self:GetStackCount() * self.k
 end
 
 function modifier_slark_saltwater_shiv_custom_effect:GetModifierHealChange()
@@ -1042,8 +1045,6 @@ function modifier_slark_saltwater_shiv_custom_effect:GetModifierHPRegenAmplify_P
 end
 
 modifier_slark_saltwater_shiv_custom_legendary_cd = class(mod_cd)
-
-slark_empty_custom = class({})
 
 modifier_slark_saltwater_shiv_custom_speed = class(mod_visible)
 function modifier_slark_saltwater_shiv_custom_speed:GetTexture()
@@ -1065,3 +1066,5 @@ end
 function modifier_slark_saltwater_shiv_custom_speed:GetModifierAttackSpeedBonus_Constant()
 	return self.speed
 end
+
+slark_empty_custom = class({})

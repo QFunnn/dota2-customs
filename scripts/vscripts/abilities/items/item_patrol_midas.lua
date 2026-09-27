@@ -17,26 +17,32 @@ function item_patrol_midas:Precache(context)
 	PrecacheResource("particle", "particles/items2_fx/hand_of_midas.vpcf", context)
 end
 
+function item_patrol_midas:Spawn()
+	self.gold = self:GetSpecialValueFor("gold")
+	self.blue = self:GetSpecialValueFor("blue")
+end
+
 function item_patrol_midas:CastFilterResultTarget(target)
-	if IsServer() then
-		local caster = self:GetCaster()
-
-		if
-			target:HasModifier("modifier_waveupgrade_boss")
-			or target:GetUnitName() == "npc_roshan_custom"
-			or dota1x6:IsPatrol(target:GetUnitName())
-		then
-			return UF_FAIL_OTHER
-		end
-
-		return UnitFilter(
-			target,
-			self:GetAbilityTargetTeam(),
-			self:GetAbilityTargetType(),
-			self:GetAbilityTargetFlags(),
-			self:GetCaster():GetTeamNumber()
-		)
+	if not IsServer() then
+		return
 	end
+	local caster = self:GetCaster()
+
+	if
+		target:HasModifier("modifier_waveupgrade_boss")
+		or target:GetUnitName() == "npc_roshan_custom"
+		or dota1x6:IsPatrol(target:GetUnitName())
+	then
+		return UF_FAIL_OTHER
+	end
+
+	return UnitFilter(
+		target,
+		self:GetAbilityTargetTeam(),
+		self:GetAbilityTargetType(),
+		self:GetAbilityTargetFlags(),
+		self:GetCaster():GetTeamNumber()
+	)
 end
 
 function item_patrol_midas:OnSpellStart()
@@ -46,11 +52,11 @@ function item_patrol_midas:OnSpellStart()
 
 	self:GetCaster():EmitSound("DOTA_Item.Hand_Of_Midas")
 
-	local bonus_gold = self:GetSpecialValueFor("gold")
-	self:GetCaster():ModifyGoldFiltered(bonus_gold, true, DOTA_ModifyGold_CreepKill)
+	local bonus_gold = self.gold
+	self:GetCaster():GiveGold(bonus_gold, nil, true, self)
 	self:GetCaster():SendNumber(0, bonus_gold)
 
-	dota1x6:AddBluePoints(self:GetCaster(), self:GetSpecialValueFor("blue"))
+	self:GetCaster():AddPoints("blue", self.blue, self)
 
 	local item_effect = ParticleManager:CreateParticle(
 		"particles/items2_fx/hand_of_midas.vpcf",

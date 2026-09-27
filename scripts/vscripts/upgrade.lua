@@ -148,34 +148,6 @@ function ContainName(name, array)
 	return false
 end
 
-function upgrade:CheckType(player, data)
-	if not data["exception"] then
-		return true
-	end
-
-	local exceptions = data["exception"]
-	local hero = players[player:GetId()]
-	local hero_type = hero.HeroType
-
-	if ContainName("only_normal", exceptions) and hero:GetPrimaryAttribute() == DOTA_ATTRIBUTE_ALL then
-		return false
-	end
-
-	if ContainName("only_all", exceptions) and hero:GetPrimaryAttribute() ~= DOTA_ATTRIBUTE_ALL then
-		return false
-	end
-
-	if ContainName("mage", exceptions) and not ContainName("mage", hero_type) then
-		return false
-	end
-
-	if ContainName("melle", exceptions) and not ContainName("melle", hero_type) then
-		return false
-	end
-
-	return true
-end
-
 function upgrade:MainEpicAllowed(player, name)
 	local data = ingame_talents[player:GetUnitName()][name]
 	if not data then
@@ -213,7 +185,17 @@ function upgrade:GetMaxLevel(data)
 	local rarity = data["rarity"]
 	local max_level = 0
 
-	if rarity == "blue" then
+	if data["no_level"] == 1 then
+		return 999999
+	end
+
+	if data["max_level"] then
+		return data["max_level"]
+	end
+
+	if rarity == "gray" then
+		max_level = 5
+	elseif rarity == "blue" then
 		max_level = 3
 	elseif rarity == "purple" or rarity == "orange" then
 		max_level = 1
@@ -230,76 +212,37 @@ function upgrade:FindUpgrade(player, skill, rarity, banned_talents, banned_skill
 	local all_upgrades = ingame_talents[player:GetUnitName()]
 	local is_general = false
 
-	if rarity == 1 or skill == 0 then -- Белый или общий талант
-		is_general = true
-		all_upgrades = ingame_talents["general"]
-	end
-
 	local banned = {}
 	local possible_upgrades = {}
 	local rarity_name = upgrade:GetRarityName(rarity)
 
-	if new_talent_system[player:GetUnitName()] then
-		is_general = false
-		all_upgrades = ingame_talents[player:GetUnitName()]
-		if rarity == 1 then
-			is_general = true
-			all_upgrades = ingame_talents["general"]
+	if rarity == 1 then
+		is_general = true
+		all_upgrades = ingame_talents["general"]
+	end
+
+	for name, data in pairs(all_upgrades) do
+		local skill_number = data["skill_number"]
+		local data_rarity = data["rarity"]
+		local max_level = upgrade:GetMaxLevel(data)
+
+		if is_general then
+			skill_number = skill -- Если общий талант, номер скила всегда подходит
 		end
 
-		for name, data in pairs(all_upgrades) do
-			local skill_number = data["skill_number"]
-			local data_rarity = data["rarity"]
-			local max_level = upgrade:GetMaxLevel(data)
+		local has_talent = player:HasTalent(name)
 
-			if is_general then
-				skill_number = skill -- Если общий талант, номер скила всегда подходит
-			end
-
-			local has_talent = player:HasTalent(name)
-			if rarity == 1 then
-				has_talent = false -- Если белый талант, уровень не
-			end
-
-			if
-				data_rarity ~= rarity_name -- Не подходит тип 
-				or (has_talent and (player:TalentLevel(name) >= max_level or rarity == 4)) -- Улучшение уже есть с макс. уровнем
-				or (skill_number ~= skill and skill ~= -1) -- Не тот скил
-				or (rarity == 1 and not upgrade:CheckType(player, data)) -- Тип героя подходит под общий талант
-				or ContainName(name, banned_talents)
-				or (ContainName(data["skill_number"], banned_skills) and skill ~= 0)
-				or not upgrade:MainEpicAllowed(player, name)
-				or (player.banned_talents and player.banned_talents[name])
-			then
-				banned[name] = true
-			end
-		end
-	else
-		for name, data in pairs(all_upgrades) do
-			local skill_number = data["skill_number"]
-			local data_rarity = data["rarity"]
-			local max_level = upgrade:GetMaxLevel(data)
-
-			if is_general then
-				skill_number = skill -- Если общий талант, номер скила всегда подходит
-			end
-
-			local has_talent = player:HasTalent(name)
-			if rarity == 1 then
-				has_talent = false -- Если белый талант, уровень не
-			end
-
-			if
-				data_rarity ~= rarity_name -- Не подходит тип 
-				or (has_talent and (player:TalentLevel(name) >= max_level or rarity == 4)) -- Улучшение уже есть с макс. уровнем
-				or (skill_number ~= skill) -- Не тот скил
-				or ((skill == 0 or rarity == 1) and not upgrade:CheckType(player, data)) -- Тип героя подходит под общий талант
-				or (ContainName(name, banned_talents))
-				or (ContainName(data["skill_number"], banned_skills) and skill ~= 0)
-				or not upgrade:MainEpicAllowed(player, name)
-			then
-				banned[name] = true
-			end
+		if
+			data_rarity ~= rarity_name -- Не подходит тип 
+			or data["no_level"] == 1 -- Резервный талант, только когда выбора нет
+			or (has_talent and (player:TalentLevel(name) >= max_level or rarity == 4)) -- Улучшение уже есть с макс. уровнем
+			or (skill_number ~= skill and skill ~= -1) -- Не тот скил
+			or ContainName(name, banned_talents)
+			or (ContainName(data["skill_number"], banned_skills) and skill ~= 0 and skill ~= -1)
+			or not upgrade:MainEpicAllowed(player, name)
+			or (player.banned_talents and player.banned_talents[name])
+		then
+			banned[name] = true
 		end
 	end
 
@@ -431,8 +374,6 @@ function upgrade:init_upgrade(player, rarity, can_refresh, after_legen, prev_cho
 	elseif rarity == 14 or rarity == 15 then
 		player_table.choise = upgrade:GetBroodScepter(player, rarity)
 		global_rarity = rarity == 14 and "blue" or "purple"
-	elseif rarity == 10 then
-		player_table.choise = { "modifier_lownet_gold", "modifier_lownet_blue", "modifier_lownet_purple" }
 	elseif rarity == 4 then
 		upgrade:find_legendary(player)
 
@@ -445,12 +386,13 @@ function upgrade:init_upgrade(player, rarity, can_refresh, after_legen, prev_cho
 		local banned_upgrades = {}
 		local banned_skills = {}
 		local main_skill = nil
+		local priority = nil
 
 		if prev_choise then
 			for _, data in pairs(prev_choise) do
 				if data["name"] then
 					table.insert(banned_upgrades, data["name"])
-					if after_legen == false or after_legen == 0 then
+					if (after_legen == false or after_legen == 0) and new_talent_system[player:GetUnitName()] then
 						table.insert(banned_skills, tonumber(data["skill_number"]))
 					end
 				end
@@ -460,6 +402,18 @@ function upgrade:init_upgrade(player, rarity, can_refresh, after_legen, prev_cho
 		if player.chosen_skill ~= 0 and (after_legen == true or test == true) then
 			main_skill = player.chosen_skill
 		end
+
+		if rarity == 1 and player_table.priority_talent then
+			table.insert(banned_upgrades, player_table.priority_talent)
+			if
+				player:TalentLevel(player_table.priority_talent)
+					< upgrade:GetMaxLevel(ingame_talents["general"][player_table.priority_talent])
+				and RollPseudoRandomPercentage(50, 7154, player_table)
+			then
+				priority = player_table.priority_talent
+			end
+		end
+
 		for i = 1, 4 do
 			rarity_table[i] = {}
 		end
@@ -502,20 +456,29 @@ function upgrade:init_upgrade(player, rarity, can_refresh, after_legen, prev_cho
 			if count > 0 then
 				local skill_1_added = false
 
-				if not skill_1 then
-					local random = 0
-					repeat
-						random = rarity_table[index][RandomInt(1, count)]
-					until random ~= 0
+				local variants = {}
+				for _, skill_number in pairs(rarity_table[index]) do
+					if skill_number ~= 0 then
+						table.insert(variants, skill_number)
+					end
+				end
 
-					skill_1 = random
+				if not skill_1 and #variants > 0 then
+					skill_1 = variants[RandomInt(1, #variants)]
 					skill_1_added = true
 				end
 
 				if not skill_2 and (not skill_1_added or count > 2) then
-					repeat
-						skill_2 = rarity_table[index][RandomInt(1, count)]
-					until skill_2 ~= skill_1 and skill_2 ~= 0
+					local second = {}
+					for _, skill_number in pairs(variants) do
+						if skill_number ~= skill_1 then
+							table.insert(second, skill_number)
+						end
+					end
+
+					if #second > 0 then
+						skill_2 = second[RandomInt(1, #second)]
+					end
 				end
 			end
 			if skill_1 and skill_2 then
@@ -524,10 +487,6 @@ function upgrade:init_upgrade(player, rarity, can_refresh, after_legen, prev_cho
 		end
 
 		local final_table = { skills_upgrades[skill_1], skills_upgrades[skill_2], skills_upgrades[skill_3] }
-
-		if rarity == 1 and player:HasTalent("modifier_up_graypoints") then
-			table.insert(final_table, skills_upgrades[skill_3])
-		end
 
 		local result = {}
 		for _, data in pairs(final_table) do
@@ -547,6 +506,16 @@ function upgrade:init_upgrade(player, rarity, can_refresh, after_legen, prev_cho
 				end
 			end
 		end
+
+		if priority then
+			table.insert(result, 1, priority)
+			result[4] = nil
+		end
+
+		if #result == 0 then
+			result = { "modifier_up_gold" }
+		end
+
 		player_table.choise = result
 	end
 
@@ -600,7 +569,6 @@ function upgrade:init_upgrade(player, rarity, can_refresh, after_legen, prev_cho
 		CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(player:GetId()), "show_choise", {
 			choise = player_table.choise,
 			mods = mod_stacks,
-			hasup = player_table:HasTalent("modifier_up_graypoints"),
 			refresh = refresh,
 			after_legen = after_legen,
 			perma_info = perma_info,
@@ -612,7 +580,6 @@ function upgrade:init_upgrade(player, rarity, can_refresh, after_legen, prev_cho
 		player_table.choise_table = {}
 		player_table.choise_table.content = player_table.choise
 		player_table.choise_table.alert = false
-		player_table.choise_table.gray = player_table:HasTalent("modifier_up_graypoints")
 		player_table.choise_table.mod_stacks = mod_stacks
 		player_table.choise_table.refresh = refresh
 		player_table.choise_table.rarity = global_rarity
@@ -649,6 +616,24 @@ function upgrade:make_choise(kv)
 
 			if skill_name then
 				hero:InitTalent(skill_name)
+
+				local general_data = ingame_talents["general"][skill_name]
+				if
+					kv.priority == 1
+					and not player.priority_talent
+					and general_data
+					and general_data["rarity"] == "gray"
+					and general_data["no_level"] ~= 1
+					and hero:TalentLevel(skill_name) < upgrade:GetMaxLevel(general_data)
+				then
+					player.priority_talent = skill_name
+					hero:UpdateCommonBonus()
+					CustomGameEventManager:Send_ServerToPlayer(
+						PlayerResource:GetPlayer(id),
+						"generic_sound",
+						{ sound = "Lc.Duel_target_start" }
+					)
+				end
 
 				if kv.random and kv.random == 1 then
 					CustomGameEventManager:Send_ServerToPlayer(
@@ -698,16 +683,4 @@ function upgrade:refresh_sphere(kv)
 	player.can_refresh_choise = false
 	player.choise = {}
 	upgrade:init_upgrade(hero, 3, nil, after, kv.global_choise)
-end
-
-function upgrade:EndChoiseJs(kv)
-	if kv.PlayerID == nil then
-		return
-	end
-
-	local hero = GlobalHeroes[kv.PlayerID]
-
-	if hero then
-		--hero:RemoveModifierByName("modifier_end_choise")
-	end
 end

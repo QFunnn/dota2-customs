@@ -188,6 +188,185 @@ function init_leaderbord_ranked(mode)
 }
 
 
+function init_leaderbord_heroes()
+{
+	let leaderboard_window_season_panel = $("#leaderboard_window_season_panel")
+	if (leaderboard_window_season_panel)
+	{
+		leaderboard_window_season_panel.RemoveAndDeleteChildren()
+
+		leaderboard_window_season_panel.SetPanelEvent('onmouseover', function() {});
+		leaderboard_window_season_panel.SetPanelEvent('onmouseout', function() {});
+	}
+
+	let content_clearing = $.GetContextPanel().FindChildTraverse("leaderbord_window_content")
+	content_clearing.RemoveAndDeleteChildren()
+
+    let leaderboard_stat_info = $.CreatePanel("Panel",content_clearing,"leaderboard_stat_info")
+    leaderboard_stat_info.AddClass("leaderboard_stat_info")
+
+	let leaderboard_info_place = $.CreatePanel("Panel",leaderboard_stat_info,"leaderboard_info_place")
+	leaderboard_info_place.AddClass("leaderboard_stat_info_place")
+
+	let leaderboard_info_place_text = $.CreatePanel("Label",leaderboard_info_place,"leaderboard_info_place_text")
+	leaderboard_info_place_text.AddClass("leaderboard_stat_info_text")
+    leaderboard_info_place_text.text = "#"
+
+	let leaderboard_info_player = $.CreatePanel("Panel",leaderboard_stat_info,"leaderboard_info_player")
+	leaderboard_info_player.AddClass("leaderboard_stat_info_player_heroes")
+
+	let leaderboard_info_player_text = $.CreatePanel("Label",leaderboard_info_player,"leaderboard_info_player_text")
+	leaderboard_info_player_text.AddClass("leaderboard_stat_info_text")
+    leaderboard_info_player_text.text = $.Localize("#gamelist_player")
+
+	let leaderboard_info_heroes = $.CreatePanel("Panel",leaderboard_stat_info,"leaderboard_info_heroes")
+	leaderboard_info_heroes.AddClass("leaderboard_stat_info_heroes")
+
+	let leaderboard_info_heroes_content = $.CreatePanel("Panel",leaderboard_info_heroes,"leaderboard_info_heroes_content")
+	leaderboard_info_heroes_content.AddClass("leaderboard_stat_info_heroes_content")
+
+	let leaderboard_info_heroes_text = $.CreatePanel("Label",leaderboard_info_heroes_content,"leaderboard_info_heroes_text")
+	leaderboard_info_heroes_text.AddClass("leaderboard_stat_info_text")
+	leaderboard_info_heroes_text.AddClass("leaderboard_stat_info_heroes_text")
+    leaderboard_info_heroes_text.text = $.Localize("#gamelist_heroes")
+
+	let leaderboard_info_heroes_icon = $.CreatePanel("Panel",leaderboard_info_heroes_content,"leaderboard_info_heroes_icon")
+	leaderboard_info_heroes_icon.AddClass("leaderboard_stat_info_heroes_icon")
+
+	let heroes_text_mouse = $.Localize("#leaderbord_heroes_info")
+
+	leaderboard_info_heroes_content.SetPanelEvent('onmouseover', function() {
+    $.DispatchEvent('DOTAShowTextTooltip', leaderboard_info_heroes_content, heroes_text_mouse) });
+
+	leaderboard_info_heroes_content.SetPanelEvent('onmouseout', function() {
+    $.DispatchEvent('DOTAHideTextTooltip', leaderboard_info_heroes_content); });
+
+	let leaderboard_info_games = $.CreatePanel("Panel",leaderboard_stat_info,"leaderboard_info_games")
+	leaderboard_info_games.AddClass("leaderboard_stat_info_games_last")
+
+	let leaderboard_info_games_text = $.CreatePanel("Label",leaderboard_info_games,"leaderboard_info_games_text")
+	leaderboard_info_games_text.AddClass("leaderboard_stat_info_text")
+    leaderboard_info_games_text.text = $.Localize("#gamelist_games")
+
+	let leaderboard_label = $.CreatePanel("Panel",content_clearing,"leaderboard_label")
+	leaderboard_label.AddClass("leaderboard_label")
+
+	let leaderboard_data = CustomNetTables.GetTableValue("leaderboard", "leaderboard_heroes");
+
+	if (leaderboard_data == undefined) {return}
+
+	let players = []
+
+	for (let key in leaderboard_data)
+	{
+		let heroes = []
+		let total_matches = 0
+
+		for (let hero_key in leaderboard_data[key].heroes)
+		{
+			let hero = leaderboard_data[key].heroes[hero_key]
+			heroes.push(hero)
+			total_matches += hero.total_matches
+		}
+
+		heroes.sort(function(a, b) { return b.total_matches - a.total_matches })
+
+		players.push({
+			playerId: leaderboard_data[key].playerId,
+			heroes: heroes,
+			total_matches: total_matches
+		})
+	}
+
+	players.sort(function(a, b)
+	{
+		if (b.heroes.length != a.heroes.length)
+			return b.heroes.length - a.heroes.length
+
+		return b.total_matches - a.total_matches
+	})
+
+	let length = Math.min(players.length, 50)
+
+	for (let i = 1; i <= length; i++) 
+	{
+		let player = players[i - 1]
+
+		let leaderboard_player_label = $.CreatePanel("Panel",leaderboard_label,"leaderboard_heroes_player_label"+i)
+		leaderboard_player_label.AddClass("leaderboard_player_label")
+
+		let leaderboard_player_place = $.CreatePanel("Panel",leaderboard_player_label,"leaderboard_heroes_player_place"+i)
+		leaderboard_player_place.AddClass("leaderboard_player_place")
+		leaderboard_player_place.AddClass("leaderboard_player_place_heroes")
+
+		let leaderboard_player_place_text = $.CreatePanel("Label",leaderboard_player_place,"leaderboard_heroes_player_place_text"+i)
+		leaderboard_player_place_text.AddClass("leaderboard_number")
+		leaderboard_player_place_text.text = String(i)
+
+		let leaderboard_player_icon_panel = $.CreatePanel("Panel",leaderboard_player_label,"leaderboard_heroes_player_icon_panel"+i)
+		leaderboard_player_icon_panel.AddClass("leaderboard_player_icon_panel")
+
+		let leaderboard_player_icon = $.CreatePanel("DOTAAvatarImage",leaderboard_player_icon_panel,"leaderboard_heroes_player_icon"+i)
+		leaderboard_player_icon.style.width = "100%"
+    	leaderboard_player_icon.style.height = "100%"
+    	leaderboard_player_icon.accountid = player.playerId
+
+		let leaderboard_player_name = $.CreatePanel("Panel",leaderboard_player_label,"leaderboard_heroes_player_name"+i)
+		leaderboard_player_name.AddClass("leaderboard_player_name_heroes")
+
+		let leaderboard_player_name_text = $.CreatePanel("DOTAUserName",leaderboard_player_name,"leaderboard_heroes_player_name_text"+i)
+		leaderboard_player_name_text.AddClass("leaderboard_name_text")
+		leaderboard_player_name_text.accountid = player.playerId
+
+		let leaderboard_player_heroes_label = $.CreatePanel("Panel",leaderboard_player_label,"leaderboard_heroes_player_heroes_label"+i)
+		leaderboard_player_heroes_label.AddClass("leaderboard_player_heroes_label")
+
+		let leaderboard_player_heroes_row = $.CreatePanel("Panel",leaderboard_player_heroes_label,"leaderboard_heroes_player_heroes_row"+i)
+		leaderboard_player_heroes_row.AddClass("leaderboard_player_heroes_row")
+
+		let leaderboard_player_games = $.CreatePanel("Panel",leaderboard_player_label,"leaderboard_heroes_player_games"+i)
+		leaderboard_player_games.AddClass("leaderboard_player_games_last")
+
+		let leaderboard_player_games_text = $.CreatePanel("Label",leaderboard_player_games,"leaderboard_heroes_player_games_text"+i)
+		leaderboard_player_games_text.AddClass("leaderboard_number")
+		leaderboard_player_games_text.text = player.total_matches
+
+		if (i <= 10)
+		{
+			leaderboard_player_icon_panel.AddClass("leaderboard_player_icon_panel_gold")
+			leaderboard_player_name_text.AddClass("leaderboard_player_place_gold")
+			leaderboard_player_games_text.AddClass("leaderboard_player_place_gold")
+			leaderboard_player_place_text.AddClass("leaderboard_player_place_gold")
+		}
+
+		for (let j = 1; j <= player.heroes.length; j++)
+		{
+			let hero_slot = $.CreatePanel("Panel",leaderboard_player_heroes_row,"leaderboard_heroes_player_hero_slot"+i+"_"+j)
+			hero_slot.AddClass("leaderboard_player_hero_slot")
+
+			let leaderboard_player_hero = $.CreatePanel("Panel",hero_slot,"leaderboard_heroes_player_hero"+i+"_"+j)
+			leaderboard_player_hero.AddClass("leaderboard_player_hero")
+			leaderboard_player_hero.AddClass("leaderboard_player_hero_small")
+
+			let hero = player.heroes[j - 1].hero_name
+			if ((hero != null)&&(hero != ''))
+			{
+				leaderboard_player_hero.style.backgroundImage = "url('file://{images}/heroes/icons/" + hero + ".png')"
+			}
+			leaderboard_player_hero.style.backgroundSize = "contain";
+
+			let hero_text_mouse = $.Localize("#gamelist_games") + ": " + player.heroes[j - 1].total_matches
+
+			hero_slot.SetPanelEvent('onmouseover', function() {
+		    $.DispatchEvent('DOTAShowTextTooltip', hero_slot, hero_text_mouse) });
+
+			hero_slot.SetPanelEvent('onmouseout', function() {
+		    $.DispatchEvent('DOTAHideTextTooltip', hero_slot); });
+		}
+	}
+}
+
+
 function leaderbord_window_hide()
 {
 	if (cd == true)
@@ -277,9 +456,11 @@ function leaderbord_change_mode(mode, forced)
 
 	let button_solo = $("#leaderbord_button_solo")
 	let button_duo = $("#leaderbord_button_duo")
+	let button_heroes = $("#leaderbord_button_heroes")
 
 	button_solo.RemoveClass("leaderbord_header_mode_button_chosen")
 	button_duo.RemoveClass("leaderbord_header_mode_button_chosen")
+	button_heroes.RemoveClass("leaderbord_header_mode_button_chosen")
 
 	if (mode == 1)
 	{
@@ -291,5 +472,11 @@ function leaderbord_change_mode(mode, forced)
 	{
 		button_duo.AddClass("leaderbord_header_mode_button_chosen")
 		init_leaderbord_ranked(2)
+	}
+
+	if (mode == 3)
+	{
+		button_heroes.AddClass("leaderbord_header_mode_button_chosen")
+		init_leaderbord_heroes()
 	}
 }

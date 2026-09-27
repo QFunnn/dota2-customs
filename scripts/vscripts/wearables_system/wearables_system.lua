@@ -1291,6 +1291,9 @@ function wearables_system:SetupParticles(
 							)
 						end
 					end
+					if item_wearable.item_id_original == "14966" then
+						ParticleManager:SetParticleControl(particle, 1, Vector(1, 1, 0))
+					end
 					if item_wearable.item_id_original == "4560" then
 						ParticleManager:SetParticleControl(particle, 26, Vector(40, 0, 0))
 					end

@@ -491,7 +491,7 @@ function modifier_custom_puck_waning_rift_legendary_charge:OnCreated()
 	self.RemoveForDuel = true
 
 	self.slow = self.parent:GetTalentValue("modifier_puck_rift_7", "slow")
-	self.duration = self.parent:GetTalentValue("modifier_puck_rift_7", "duration")
+	self.duration = self.parent:GetTalentValue("modifier_puck_rift_7", "duration", true)
 
 	self.max = 100
 	self.interval = 0.05

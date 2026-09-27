@@ -85,12 +85,14 @@ function centaur_return_custom:Precache(context)
 	PrecacheResource("particle", "particles/centaur/return_purge.vpcf", context)
 	PrecacheResource("particle", "particles/lc_lowhp.vpcf", context)
 	PrecacheResource("particle", "particles/centaur/retaliate_attack.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_centaur/centaur_double_edge_body.vpcf", context)
 	PrecacheUnitByNameSync("npc_dota_centaur_banner", context, -1)
 end
 
 function centaur_return_custom:UpdateTalents()
 	local caster = self:GetCaster()
 	if not self.init then
+		self.init = true
 		self.talents = {
 			has_e1 = 0,
 			e1_armor = 0,
@@ -101,11 +103,11 @@ function centaur_return_custom:UpdateTalents()
 			e2_heal = 0,
 			e2_bonus = caster:GetTalentValue("modifier_centaur_retaliate_2", "bonus", true),
 
-			has_regen = 0,
-			regen_bonus = 0,
-			armor_bonus = 0,
-			regen_max = caster:GetTalentValue("modifier_centaur_hero_3", "max", true),
-			regen_duration = caster:GetTalentValue("modifier_centaur_hero_3", "duration", true),
+			has_h3 = 0,
+			h3_regen_stack = 0,
+			h3_armor_stack = 0,
+			h3_max = caster:GetTalentValue("modifier_centaur_hero_3", "max", true),
+			h3_duration = caster:GetTalentValue("modifier_centaur_hero_3", "duration", true),
 
 			has_e3 = 0,
 			e3_str = 0,
@@ -116,16 +118,13 @@ function centaur_return_custom:UpdateTalents()
 			e3_radius = caster:GetTalentValue("modifier_centaur_retaliate_3", "radius", true),
 
 			has_e4 = 0,
-			taunt_timer = caster:GetTalentValue("modifier_centaur_retaliate_4", "timer", true),
-			taunt_duration = caster:GetTalentValue("modifier_centaur_retaliate_4", "taunt", true),
-
-			has_e4 = 0,
 			e4_slow = caster:GetTalentValue("modifier_centaur_retaliate_4", "slow", true),
 			e4_duration = caster:GetTalentValue("modifier_centaur_retaliate_4", "duration", true),
 			e4_talent_cd = caster:GetTalentValue("modifier_centaur_retaliate_4", "talent_cd", true),
 			e4_timer = caster:GetTalentValue("modifier_centaur_retaliate_4", "timer", true),
 			e4_slow_duration = caster:GetTalentValue("modifier_centaur_retaliate_4", "slow_duration", true),
 			e4_taunt = caster:GetTalentValue("modifier_centaur_retaliate_4", "taunt", true),
+			e4_health = caster:GetTalentValue("modifier_centaur_retaliate_4", "health", true) / 100,
 
 			has_e7 = 0,
 			e7_talent_cd = caster:GetTalentValue("modifier_centaur_retaliate_7", "talent_cd", true),
@@ -163,9 +162,9 @@ function centaur_return_custom:UpdateTalents()
 	end
 
 	if caster:HasTalent("modifier_centaur_hero_3") then
-		self.talents.has_regen = 1
-		self.talents.regen_bonus = caster:GetTalentValue("modifier_centaur_hero_3", "regen") / self.talents.regen_max
-		self.talents.armor_bonus = caster:GetTalentValue("modifier_centaur_hero_3", "armor") / self.talents.regen_max
+		self.talents.has_h3 = 1
+		self.talents.h3_regen_stack = caster:GetTalentValue("modifier_centaur_hero_3", "regen") / self.talents.h3_max
+		self.talents.h3_armor_stack = caster:GetTalentValue("modifier_centaur_hero_3", "armor") / self.talents.h3_max
 	end
 
 	if caster:HasTalent("modifier_centaur_retaliate_3") then
@@ -190,6 +189,10 @@ function centaur_return_custom:UpdateTalents()
 	end
 end
 
+function centaur_return_custom:GetAbilityTextureName()
+	return wearables_system:GetAbilityIconReplacement(self.caster, "centaur_return", self)
+end
+
 function centaur_return_custom:GetIntrinsicModifierName()
 	if not self:GetCaster():IsRealHero() then
 		return
@@ -197,23 +200,7 @@ function centaur_return_custom:GetIntrinsicModifierName()
 	return "modifier_centaur_return_custom"
 end
 
-function centaur_return_custom:GetAbilityTextureName()
-	return wearables_system:GetAbilityIconReplacement(self.caster, "centaur_return", self)
-end
-
-function centaur_return_custom:OnInventoryContentsChanged()
-	if not IsServer() then
-		return
-	end
-	local mod = self:GetCaster():FindModifierByName("modifier_centaur_return_custom")
-	if not mod then
-		return
-	end
-	mod:InitShard()
-end
-
 function centaur_return_custom:HasActive()
-	local caster = self:GetCaster()
 	return self.talents.has_e7 == 1 or self.talents.has_e4 == 1
 end
 
@@ -226,23 +213,48 @@ end
 
 function centaur_return_custom:GetAOERadius()
 	if not self:HasActive() then
-		return
+		return 0
 	end
 	return self.talents.e7_radius
 end
 
 function centaur_return_custom:GetCastRange(vLocation, hTarget)
 	if not self:HasActive() then
-		return
+		return 0
 	end
 	return self.talents.e7_range
 end
 
 function centaur_return_custom:GetCooldown(level)
 	if not self:HasActive() then
+		return 0
+	end
+	return self.talents.has_e7 == 1 and self.talents.e7_talent_cd or self.talents.e4_talent_cd
+end
+
+function centaur_return_custom:OnSpellStart()
+	self.caster:RemoveModifierByName("modifier_centaur_return_custom_legendary_speed")
+
+	local duration = (self.talents.has_e7 == 1 and self.talents.e7_duration or self.talents.e4_duration) + 0.2
+	local point = self:GetCursorPosition()
+
+	self.caster:StartGesture(ACT_DOTA_CAST_ABILITY_3)
+
+	local banner =
+		CreateUnitByName("npc_dota_centaur_banner", point, true, self.caster, self.caster, self.caster:GetTeamNumber())
+	banner.owner = self.caster
+	banner:AddNewModifier(self.caster, self, "modifier_kill", { duration = duration })
+	banner:AddNewModifier(self.caster, self, "modifier_centaur_return_custom_legendary_banner", { duration = duration })
+end
+
+function centaur_return_custom:OnInventoryContentsChanged()
+	if not IsServer() then
 		return
 	end
-	return self.talents.e7_talent_cd
+	if not self.tracker then
+		return
+	end
+	self.tracker:InitShard()
 end
 
 function centaur_return_custom:ProcHeal(damage)
@@ -263,9 +275,7 @@ function centaur_return_custom:ProcHeal(damage)
 end
 
 function centaur_return_custom:DealDamage(target, is_attack)
-	local caster = self:GetCaster()
-
-	if caster:PassivesDisabled() then
+	if self.caster:PassivesDisabled() then
 		return
 	end
 	if not IsValid(target) or not target:IsAlive() then
@@ -274,26 +284,26 @@ function centaur_return_custom:DealDamage(target, is_attack)
 	if target:IsInvulnerable() then
 		return
 	end
-	if (target:GetAbsOrigin() - caster:GetAbsOrigin()):Length2D() >= 1200 then
+	if (target:GetAbsOrigin() - self.caster:GetAbsOrigin()):Length2D() >= 1200 then
 		return
 	end
 
 	local damage_base = self.return_damage
 	local damage_str = self.return_damage_str + self.talents.e1_damage
-	local damage = damage_base + damage_str * caster:GetStrength() / 100
+	local damage = damage_base + damage_str * self.caster:GetStrength() / 100
 	local shard_chance = self.shard_chance
 
-	if self.talents.has_regen == 1 then
-		caster:AddNewModifier(
-			caster,
+	if self.talents.has_h3 == 1 then
+		self.caster:AddNewModifier(
+			self.caster,
 			self,
 			"modifier_centaur_return_custom_regen",
-			{ duration = self.talents.regen_duration }
+			{ duration = self.talents.h3_duration }
 		)
 	end
 
 	local pfx_name = wearables_system:GetParticleReplacementAbility(
-		caster,
+		self.caster,
 		"particles/units/heroes/hero_centaur/centaur_return.vpcf",
 		self
 	)
@@ -301,7 +311,7 @@ function centaur_return_custom:DealDamage(target, is_attack)
 	local targets = {}
 	if is_attack then
 		damage = damage * self.talents.e3_damage
-		targets = caster:FindTargets(self.talents.e3_radius, target:GetAbsOrigin())
+		targets = self.caster:FindTargets(self.talents.e3_radius, target:GetAbsOrigin())
 		if target:IsHero() then
 			self.caster:AddNewModifier(
 				self.caster,
@@ -316,7 +326,7 @@ function centaur_return_custom:DealDamage(target, is_attack)
 	end
 
 	local damageTable = {
-		attacker = caster,
+		attacker = self.caster,
 		damage = damage,
 		ability = self,
 		damage_type = DAMAGE_TYPE_PHYSICAL,
@@ -324,20 +334,20 @@ function centaur_return_custom:DealDamage(target, is_attack)
 	}
 	for _, aoe_target in pairs(targets) do
 		if
-			caster:HasShard()
+			self.caster:HasShard()
 			and not aoe_target:HasModifier("modifier_centaur_return_custom_target_taunt")
 			and not is_attack
 			and not aoe_target:HasModifier("modifier_centaur_return_custom_shard_stun_cd")
 			and RollPseudoRandomPercentage(shard_chance, 1896, aoe_target)
 		then
 			aoe_target:AddNewModifier(
-				caster,
+				self.caster,
 				self,
 				"modifier_bashed",
 				{ duration = (1 - aoe_target:GetStatusResistance()) * self.shard_stun }
 			)
 			aoe_target:AddNewModifier(
-				caster,
+				self.caster,
 				self,
 				"modifier_centaur_return_custom_shard_stun_cd",
 				{ duration = self.shard_cd }
@@ -345,14 +355,18 @@ function centaur_return_custom:DealDamage(target, is_attack)
 			aoe_target:EmitSound("Centaur.Return_shard_bash")
 		end
 
-		if aoe_target:IsRealHero() and caster:GetQuest() == "Centaur.Quest_7" and not caster:QuestCompleted() then
-			caster:UpdateQuest(1)
+		if
+			aoe_target:IsRealHero()
+			and self.caster:GetQuest() == "Centaur.Quest_7"
+			and not self.caster:QuestCompleted()
+		then
+			self.caster:UpdateQuest(1)
 		end
 
 		damageTable.victim = aoe_target
 		local real_damage = DoDamage(damageTable, is_attack)
 		if self.talents.has_e2 == 1 then
-			local result = caster:CanLifesteal(aoe_target)
+			local result = self.caster:CanLifesteal(aoe_target)
 			if result then
 				self:ProcHeal(real_damage * result)
 			end
@@ -362,14 +376,14 @@ function centaur_return_custom:DealDamage(target, is_attack)
 			aoe_target:EmitSound("Hero_Centaur.Retaliate.Target")
 		end
 
-		local caster_pfx = ParticleManager:CreateParticle(pfx_name, PATTACH_CUSTOMORIGIN_FOLLOW, caster)
+		local caster_pfx = ParticleManager:CreateParticle(pfx_name, PATTACH_CUSTOMORIGIN_FOLLOW, self.caster)
 		ParticleManager:SetParticleControlEnt(
 			caster_pfx,
 			0,
-			caster,
+			self.caster,
 			PATTACH_POINT_FOLLOW,
 			"attach_hitloc",
-			caster:GetAbsOrigin(),
+			self.caster:GetAbsOrigin(),
 			true
 		)
 		ParticleManager:SetParticleControlEnt(
@@ -383,274 +397,6 @@ function centaur_return_custom:DealDamage(target, is_attack)
 		)
 		ParticleManager:ReleaseParticleIndex(caster_pfx)
 	end
-end
-
-function centaur_return_custom:OnSpellStart()
-	local caster = self:GetCaster()
-
-	caster:RemoveModifierByName("modifier_centaur_return_custom_legendary_speed")
-
-	local duration = self.talents.e7_duration + 0.2
-	local point = self:GetCursorPosition()
-
-	caster:StartGesture(ACT_DOTA_CAST_ABILITY_3)
-
-	local banner = CreateUnitByName("npc_dota_centaur_banner", point, true, caster, caster, caster:GetTeamNumber())
-	banner.owner = caster
-	banner:AddNewModifier(caster, self, "modifier_kill", { duration = duration })
-	banner:AddNewModifier(caster, self, "modifier_centaur_return_custom_legendary_banner", { duration = duration })
-end
-
-modifier_centaur_return_custom_legendary_banner = class(mod_hidden)
-function modifier_centaur_return_custom_legendary_banner:OnCreated()
-	self.caster = self:GetCaster()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.radius = self.ability.talents.e7_radius
-	self.knock_radius = self.ability.talents.e7_knock_radius
-	self.taunt = self.ability.talents.e4_taunt
-	self.taunt_timer = self.ability.talents.e4_timer
-	self.taunt_count = 0
-
-	if not IsServer() then
-		return
-	end
-	self.ability:EndCd()
-	self.parent:SetMaxHealth(self.ability.talents.e7_health * self.caster:GetMaxHealth())
-	self.parent:SetHealth(self.parent:GetMaxHealth())
-
-	self.parent:EmitSound("Centaur.Return_legendary_banner1")
-	self.parent:EmitSound("Centaur.Return_legendary_banner2")
-	self.parent:EmitSound("Centaur.Return_legendary_banner3")
-
-	self.targets = {}
-	if self.ability.talents.has_e7 == 1 then
-		for _, target in
-			pairs(
-				self.caster:FindTargets(
-					self.radius,
-					self.parent:GetAbsOrigin(),
-					nil,
-					DOTA_UNIT_TARGET_FLAG_INVULNERABLE
-				)
-			)
-		do
-			if not target:IsFieldInvun(self.caster) then
-				self.targets[target] = true
-				local effect_cast =
-					ParticleManager:CreateParticle("particles/centaur/return_leash.vpcf", PATTACH_ABSORIGIN, target)
-				ParticleManager:SetParticleControl(effect_cast, 0, self.parent:GetAbsOrigin())
-				ParticleManager:SetParticleControlEnt(
-					effect_cast,
-					1,
-					target,
-					PATTACH_POINT_FOLLOW,
-					"attach_hitloc",
-					target:GetOrigin(),
-					true
-				)
-				self:AddParticle(effect_cast, false, false, -1, false, false)
-
-				self.targets[target] = effect_cast
-			end
-		end
-	end
-
-	local pos = self.parent:GetAbsOrigin() + self.parent:GetForwardVector() * 10
-	local qangle = QAngle(0, -90, 0)
-	pos = RotatePosition(self.parent:GetAbsOrigin(), qangle, pos)
-
-	local dir = pos - self.parent:GetAbsOrigin()
-	self.parent:FaceTowards(pos)
-	self.parent:SetForwardVector(dir:Normalized())
-
-	self.interval = 0.1
-	self.count = 0
-	self.particle_count = 0.5
-	self.particle_number = -1
-	self.pulse_count = 1
-	self.stage = 0
-	self.ability.active_banner = self.parent
-
-	self.timer = self.taunt_timer * 2
-	self:OnIntervalThink()
-	self:StartIntervalThink(self.interval)
-end
-
-function modifier_centaur_return_custom_legendary_banner:CheckState()
-	return {
-		[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
-	}
-end
-
-function modifier_centaur_return_custom_legendary_banner:OnIntervalThink()
-	if not IsServer() then
-		return
-	end
-
-	if not self.parent:IsAlive() then
-		self:Destroy()
-		return
-	end
-
-	self.pulse_count = self.pulse_count + self.interval
-
-	local point = self.parent:GetAbsOrigin()
-
-	for _, target in pairs(self.caster:FindTargets(self.radius, point)) do
-		if target:IsRealHero() then
-			AddFOWViewer(target:GetTeamNumber(), point, 50, self.interval * 2, false)
-		end
-	end
-
-	if self.ability.talents.has_e7 == 1 then
-		for target, effect in pairs(self.targets) do
-			if IsValid(target) and target:IsAlive() and not target:IsFieldInvun(self.caster) then
-				if
-					(point - target:GetAbsOrigin()):Length2D() > self.knock_radius
-					and not target:IsInvulnerable()
-					and not target:IsOutOfGame()
-					and not target:HasModifier("modifier_generic_arc")
-				then
-					target:EmitSound("Centaur.Return_banner_knock")
-					self.parent:PullTarget(target, self.ability, self.ability.talents.e7_knock_duration)
-				end
-			else
-				if effect then
-					ParticleManager:DestroyParticle(effect, false)
-					ParticleManager:ReleaseParticleIndex(effect)
-					effect = nil
-				end
-				self.targets[target] = nil
-			end
-		end
-	end
-
-	if self.pulse_count >= 0.95 then
-		self.pulse_count = 0
-		self.parent:EmitSound("Centaur.Return_legendary_pulse")
-
-		local effect_cast = ParticleManager:CreateParticle(
-			"particles/centaur/return_legendary_pulses.vpcf",
-			PATTACH_CUSTOMORIGIN_FOLLOW,
-			self.parent
-		)
-		ParticleManager:SetParticleControlEnt(effect_cast, 0, self.parent, PATTACH_ABSORIGIN_FOLLOW, nil, point, true)
-		ParticleManager:SetParticleControl(effect_cast, 1, Vector(self.radius, self.radius, self.radius))
-		ParticleManager:SetParticleControlEnt(effect_cast, 2, self.parent, PATTACH_POINT_FOLLOW, "torch", point, true)
-		ParticleManager:ReleaseParticleIndex(effect_cast)
-	end
-
-	if self.ability.talents.has_e4 == 0 or self.taunt_count >= 2 then
-		return
-	end
-
-	local max = self.taunt_timer
-	if self.stage == 1 then
-		max = self.taunt
-	end
-
-	self.count = self.count + self.interval
-
-	if self.stage == 0 then
-		self.particle_count = self.particle_count + self.interval
-
-		if self.particle_count >= 0.5 then
-			self.particle_count = 0
-			self.particle_number = self.particle_number + 1
-
-			local number = (self.timer - self.particle_number) / 2
-			local int = number
-			if number % 1 ~= 0 then
-				int = number - 0.5
-			end
-
-			local digits = math.floor(math.log10(number)) + 2
-			local decimal = number % 1
-			if decimal == 0.5 then
-				decimal = 8
-			else
-				decimal = 1
-			end
-
-			local particle = ParticleManager:CreateParticle(
-				"particles/centaur/return_legendary_timer.vpcf",
-				PATTACH_OVERHEAD_FOLLOW,
-				self.parent
-			)
-			ParticleManager:SetParticleControl(particle, 0, point)
-			ParticleManager:SetParticleControl(particle, 1, Vector(0, int, decimal))
-			ParticleManager:SetParticleControl(particle, 2, Vector(digits, 0, 0))
-			ParticleManager:ReleaseParticleIndex(particle)
-		end
-	end
-
-	if self.count < max then
-		return
-	end
-
-	self.count = 0
-
-	if self.stage == 0 then
-		self.stage = 1
-		self.particle_count = 0.5
-		self.particle_number = -1
-		self.taunt_count = self.taunt_count + 1
-
-		self.parent:EmitSound("Centaur.Return_legendary_taunt")
-
-		local effect_cast = ParticleManager:CreateParticle(
-			"particles/econ/items/axe/axe_ti9_immortal/axe_ti9_call.vpcf",
-			PATTACH_ABSORIGIN_FOLLOW,
-			self.parent
-		)
-		ParticleManager:SetParticleControl(effect_cast, 0, self.parent:GetAbsOrigin())
-		ParticleManager:SetParticleControl(effect_cast, 2, Vector(self.radius, self.radius, self.radius))
-		ParticleManager:ReleaseParticleIndex(effect_cast)
-
-		local effect_cast2 = ParticleManager:CreateParticle(
-			"particles/units/heroes/hero_axe/axe_beserkers_call_owner.vpcf",
-			PATTACH_ABSORIGIN_FOLLOW,
-			self.parent
-		)
-		ParticleManager:SetParticleControlEnt(
-			effect_cast2,
-			1,
-			self.parent,
-			PATTACH_POINT_FOLLOW,
-			"torch",
-			self.parent:GetAbsOrigin(),
-			true
-		)
-		ParticleManager:ReleaseParticleIndex(effect_cast2)
-
-		if IsValid(self.caster) and self.caster:IsAlive() then
-			local targets = self.caster:FindTargets(self.radius, self.parent:GetAbsOrigin())
-			for _, target in pairs(targets) do
-				if target:IsHero() then
-					target:AddNewModifier(
-						self.caster,
-						self.ability,
-						"modifier_centaur_return_custom_target_taunt",
-						{ duration = self.taunt * (1 - target:GetStatusResistance()) }
-					)
-				end
-			end
-		end
-	else
-		self.stage = 0
-	end
-end
-
-function modifier_centaur_return_custom_legendary_banner:OnDestroy()
-	if not IsServer() then
-		return
-	end
-	self.ability:StartCd()
-	self.parent:Kill(nil, nil)
-
-	self.parent:EmitSound("Centaur.Return_legendary_banner_death")
 end
 
 modifier_centaur_return_custom = class(mod_hidden)
@@ -890,8 +636,264 @@ function modifier_centaur_return_custom:DamageEvent_inc(params)
 	self.ability:DealDamage(params.attacker)
 end
 
+modifier_centaur_return_custom_legendary_banner = class(mod_hidden)
+function modifier_centaur_return_custom_legendary_banner:OnCreated()
+	self.caster = self:GetCaster()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.radius = self.ability.talents.e7_radius
+	self.knock_radius = self.ability.talents.e7_knock_radius
+	self.taunt = self.ability.talents.e4_taunt
+	self.taunt_timer = self.ability.talents.e4_timer
+	self.taunt_count = 0
+
+	if not IsServer() then
+		return
+	end
+	self.ability:EndCd()
+	self.parent:SetMaxHealth(
+		(self.ability.talents.has_e7 == 1 and self.ability.talents.e7_health or self.ability.talents.e4_health)
+			* self.caster:GetMaxHealth()
+	)
+	self.parent:SetHealth(self.parent:GetMaxHealth())
+
+	self.parent:EmitSound("Centaur.Return_legendary_banner1")
+	self.parent:EmitSound("Centaur.Return_legendary_banner2")
+	self.parent:EmitSound("Centaur.Return_legendary_banner3")
+
+	self.targets = {}
+	if self.ability.talents.has_e7 == 1 then
+		for _, target in
+			pairs(
+				self.caster:FindTargets(
+					self.radius,
+					self.parent:GetAbsOrigin(),
+					nil,
+					DOTA_UNIT_TARGET_FLAG_INVULNERABLE
+				)
+			)
+		do
+			if not target:IsFieldInvun(self.caster) then
+				local effect_cast =
+					ParticleManager:CreateParticle("particles/centaur/return_leash.vpcf", PATTACH_ABSORIGIN, target)
+				ParticleManager:SetParticleControl(effect_cast, 0, self.parent:GetAbsOrigin())
+				ParticleManager:SetParticleControlEnt(
+					effect_cast,
+					1,
+					target,
+					PATTACH_POINT_FOLLOW,
+					"attach_hitloc",
+					target:GetOrigin(),
+					true
+				)
+				self:AddParticle(effect_cast, false, false, -1, false, false)
+
+				self.targets[target] = effect_cast
+			end
+		end
+	end
+
+	local pos = self.parent:GetAbsOrigin() + self.parent:GetForwardVector() * 10
+	local qangle = QAngle(0, -90, 0)
+	pos = RotatePosition(self.parent:GetAbsOrigin(), qangle, pos)
+	self.parent:FacePoint(pos)
+
+	self.interval = 0.1
+	self.count = 0
+	self.particle_count = 0.5
+	self.particle_number = -1
+	self.pulse_count = 1
+	self.stage = 0
+	self.ability.active_banner = self.parent
+
+	self.timer = self.taunt_timer * 2
+	self:OnIntervalThink()
+	self:StartIntervalThink(self.interval)
+end
+
+function modifier_centaur_return_custom_legendary_banner:CheckState()
+	return {
+		[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
+	}
+end
+
+function modifier_centaur_return_custom_legendary_banner:OnIntervalThink()
+	if not IsServer() then
+		return
+	end
+
+	if not self.parent:IsAlive() then
+		self:Destroy()
+		return
+	end
+
+	self.pulse_count = self.pulse_count + self.interval
+
+	local point = self.parent:GetAbsOrigin()
+
+	for _, target in pairs(self.caster:FindTargets(self.radius, point)) do
+		if target:IsRealHero() then
+			AddFOWViewer(target:GetTeamNumber(), point, 50, self.interval * 2, false)
+		end
+	end
+
+	if self.ability.talents.has_e7 == 1 then
+		for target, effect in pairs(self.targets) do
+			if IsValid(target) and target:IsAlive() and not target:IsFieldInvun(self.caster) then
+				if
+					(point - target:GetAbsOrigin()):Length2D() > self.knock_radius
+					and not target:IsInvulnerable()
+					and not target:IsOutOfGame()
+					and not target:HasModifier("modifier_generic_arc")
+				then
+					target:EmitSound("Centaur.Return_banner_knock")
+					self.parent:PullTarget(target, self.ability, self.ability.talents.e7_knock_duration)
+				end
+			else
+				if effect then
+					ParticleManager:DestroyParticle(effect, false)
+					ParticleManager:ReleaseParticleIndex(effect)
+				end
+				self.targets[target] = nil
+			end
+		end
+	end
+
+	if self.pulse_count >= 0.95 then
+		self.pulse_count = 0
+		self.parent:EmitSound("Centaur.Return_legendary_pulse")
+
+		local effect_cast = ParticleManager:CreateParticle(
+			"particles/centaur/return_legendary_pulses.vpcf",
+			PATTACH_CUSTOMORIGIN_FOLLOW,
+			self.parent
+		)
+		ParticleManager:SetParticleControlEnt(effect_cast, 0, self.parent, PATTACH_ABSORIGIN_FOLLOW, nil, point, true)
+		ParticleManager:SetParticleControl(effect_cast, 1, Vector(self.radius, self.radius, self.radius))
+		ParticleManager:SetParticleControlEnt(effect_cast, 2, self.parent, PATTACH_POINT_FOLLOW, "torch", point, true)
+		ParticleManager:ReleaseParticleIndex(effect_cast)
+	end
+
+	if self.ability.talents.has_e4 == 0 or self.taunt_count >= 2 then
+		return
+	end
+
+	local max = self.taunt_timer
+	if self.stage == 1 then
+		max = self.taunt
+	end
+
+	self.count = self.count + self.interval
+
+	if self.stage == 0 then
+		self.particle_count = self.particle_count + self.interval
+
+		if self.particle_count >= 0.5 then
+			self.particle_count = 0
+			self.particle_number = self.particle_number + 1
+
+			local number = (self.timer - self.particle_number) / 2
+			local int = number
+			if number % 1 ~= 0 then
+				int = number - 0.5
+			end
+
+			local digits = math.floor(math.log10(number)) + 2
+			local decimal = number % 1
+			if decimal == 0.5 then
+				decimal = 8
+			else
+				decimal = 1
+			end
+
+			local particle = ParticleManager:CreateParticle(
+				"particles/centaur/return_legendary_timer.vpcf",
+				PATTACH_OVERHEAD_FOLLOW,
+				self.parent
+			)
+			ParticleManager:SetParticleControl(particle, 0, point)
+			ParticleManager:SetParticleControl(particle, 1, Vector(0, int, decimal))
+			ParticleManager:SetParticleControl(particle, 2, Vector(digits, 0, 0))
+			ParticleManager:ReleaseParticleIndex(particle)
+		end
+	end
+
+	if self.count < max then
+		return
+	end
+
+	self.count = 0
+
+	if self.stage == 0 then
+		self.stage = 1
+		self.particle_count = 0.5
+		self.particle_number = -1
+		self.taunt_count = self.taunt_count + 1
+
+		self.parent:EmitSound("Centaur.Return_legendary_taunt")
+
+		local effect_cast = ParticleManager:CreateParticle(
+			"particles/econ/items/axe/axe_ti9_immortal/axe_ti9_call.vpcf",
+			PATTACH_ABSORIGIN_FOLLOW,
+			self.parent
+		)
+		ParticleManager:SetParticleControl(effect_cast, 0, self.parent:GetAbsOrigin())
+		ParticleManager:SetParticleControl(effect_cast, 2, Vector(self.radius, self.radius, self.radius))
+		ParticleManager:ReleaseParticleIndex(effect_cast)
+
+		local effect_cast2 = ParticleManager:CreateParticle(
+			"particles/units/heroes/hero_axe/axe_beserkers_call_owner.vpcf",
+			PATTACH_ABSORIGIN_FOLLOW,
+			self.parent
+		)
+		ParticleManager:SetParticleControlEnt(
+			effect_cast2,
+			1,
+			self.parent,
+			PATTACH_POINT_FOLLOW,
+			"torch",
+			self.parent:GetAbsOrigin(),
+			true
+		)
+		ParticleManager:ReleaseParticleIndex(effect_cast2)
+
+		if IsValid(self.caster) and self.caster:IsAlive() then
+			local targets = self.caster:FindTargets(self.radius, self.parent:GetAbsOrigin())
+			for _, target in pairs(targets) do
+				if target:IsHero() then
+					target:AddNewModifier(
+						self.caster,
+						self.ability,
+						"modifier_centaur_return_custom_target_taunt",
+						{ duration = self.taunt * (1 - target:GetStatusResistance()) }
+					)
+				end
+			end
+		end
+	else
+		self.stage = 0
+	end
+end
+
+function modifier_centaur_return_custom_legendary_banner:OnDestroy()
+	if not IsServer() then
+		return
+	end
+	self.ability:StartCd()
+	self.parent:Kill(nil, nil)
+
+	self.parent:EmitSound("Centaur.Return_legendary_banner_death")
+end
+
 modifier_centaur_return_custom_target_taunt = class(mod_hidden)
-function modifier_centaur_return_custom_target_taunt:OnCreated(kv)
+function modifier_centaur_return_custom_target_taunt:GetStatusEffectName()
+	return "particles/status_fx/status_effect_beserkers_call.vpcf"
+end
+function modifier_centaur_return_custom_target_taunt:StatusEffectPriority()
+	return MODIFIER_PRIORITY_ULTRA
+end
+function modifier_centaur_return_custom_target_taunt:OnCreated()
 	if not IsServer() then
 		return
 	end
@@ -901,8 +903,8 @@ function modifier_centaur_return_custom_target_taunt:OnCreated(kv)
 	self.parent:Stop()
 	self.parent:Interrupt()
 
-	self.parent:SetForceAttackTarget(self:GetCaster())
-	self.parent:MoveToTargetToAttack(self:GetCaster())
+	self.parent:SetForceAttackTarget(self.caster)
+	self.parent:MoveToTargetToAttack(self.caster)
 	self:StartIntervalThink(FrameTime())
 end
 
@@ -912,8 +914,7 @@ function modifier_centaur_return_custom_target_taunt:OnIntervalThink()
 	end
 
 	if
-		not self.caster
-		or self.caster:IsNull()
+		not IsValid(self.caster)
 		or not self.caster:IsAlive()
 		or (self.caster:GetAbsOrigin() - self.parent:GetAbsOrigin()):Length2D() >= 1200
 	then
@@ -936,16 +937,8 @@ function modifier_centaur_return_custom_target_taunt:CheckState()
 	}
 end
 
-function modifier_centaur_return_custom_target_taunt:GetStatusEffectName()
-	return "particles/status_fx/status_effect_beserkers_call.vpcf"
-end
-
-function modifier_centaur_return_custom_target_taunt:StatusEffectPriority()
-	return MODIFIER_PRIORITY_ULTRA
-end
-
 modifier_centaur_return_custom_legendary_speed = class(mod_visible)
-function modifier_centaur_return_custom_legendary_speed:OnCreated(kv)
+function modifier_centaur_return_custom_legendary_speed:OnCreated()
 	self.ability = self:GetAbility()
 	self.parent = self:GetParent()
 	self.speed = self.ability.talents.e7_speed
@@ -955,6 +948,7 @@ function modifier_centaur_return_custom_legendary_speed:OnCreated(kv)
 	if not IsServer() then
 		return
 	end
+	self.RemoveForDuel = true
 	self:OnRefresh()
 end
 
@@ -994,14 +988,15 @@ end
 function modifier_centaur_return_custom_regen:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
-	self.max = self.ability.talents.regen_max
-	self.regen = self.ability.talents.regen_bonus
-	self.armor = self.ability.talents.armor_bonus
+	self.max = self.ability.talents.h3_max
+	self.regen = self.ability.talents.h3_regen_stack
+	self.armor = self.ability.talents.h3_armor_stack
 
 	if not IsServer() then
 		return
 	end
-	self:SetStackCount(1)
+	self.RemoveForDuel = true
+	self:OnRefresh()
 end
 
 function modifier_centaur_return_custom_regen:OnRefresh()
@@ -1030,6 +1025,12 @@ function modifier_centaur_return_custom_regen:GetModifierPhysicalArmorBonus()
 end
 
 modifier_centaur_return_custom_status_bonus = class(mod_hidden)
+function modifier_centaur_return_custom_status_bonus:GetStatusEffectName()
+	return "particles/status_fx/status_effect_overpower.vpcf"
+end
+function modifier_centaur_return_custom_status_bonus:StatusEffectPriority()
+	return MODIFIER_PRIORITY_ULTRA
+end
 function modifier_centaur_return_custom_status_bonus:OnCreated()
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
@@ -1069,18 +1070,15 @@ function modifier_centaur_return_custom_status_bonus:GetModifierIncomingDamage_P
 	return self.ability.talents.h5_damage_reduce
 end
 
-function modifier_centaur_return_custom_status_bonus:GetStatusEffectName()
-	return "particles/status_fx/status_effect_overpower.vpcf"
-end
-
-function modifier_centaur_return_custom_status_bonus:StatusEffectPriority()
-	return MODIFIER_PRIORITY_ULTRA
-end
-
 modifier_centaur_return_custom_armor = class(mod_hidden)
 function modifier_centaur_return_custom_armor:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
+
+	if not IsServer() then
+		return
+	end
+	self.RemoveForDuel = true
 end
 
 function modifier_centaur_return_custom_armor:DeclareFunctions()
@@ -1138,7 +1136,8 @@ function modifier_centaur_return_custom_str:OnCreated()
 	if not IsServer() then
 		return
 	end
-	self:SetStackCount(1)
+	self.RemoveForDuel = true
+	self:OnRefresh()
 end
 
 function modifier_centaur_return_custom_str:OnRefresh()
@@ -1149,12 +1148,6 @@ function modifier_centaur_return_custom_str:OnRefresh()
 		return
 	end
 	self:IncrementStackCount()
-end
-
-function modifier_centaur_return_custom_str:OnStackCountChanged(iStackCount)
-	if not IsServer() then
-		return
-	end
 	self.parent:AddPercentStat({ str = self:GetStackCount() * self.str / 100 }, self)
 end
 

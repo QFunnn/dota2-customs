@@ -8,14 +8,7 @@
 ]]
 
 
-LinkLuaModifier(
-	"modifier_ogre_magi_shield_custom_buff",
-	"abilities/ogre_magi/ogre_magi_smash",
-	LUA_MODIFIER_MOTION_NONE
-)
-
 ogre_magi_shield_custom = class({})
-
 function ogre_magi_shield_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return

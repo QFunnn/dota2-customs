@@ -85,9 +85,11 @@ function night_stalker_midnight_feast_custom:Precache(context)
 	PrecacheResource("particle", "particles/night_stalker/hunter_charge_effect.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_night_stalker/nightstalker_night_buff.vpcf", context)
 	PrecacheResource("particle", "particles/night_stalker/hunter_double_attack.vpcf", context)
+	PrecacheResource("particle", "particles/night_stalker/fear_legendary_hit.vpcf", context)
+	PrecacheResource("particle", "particles/night_stalker/void_delay_damage.vpcf", context)
 end
 
-function night_stalker_midnight_feast_custom:UpdateTalents()
+function night_stalker_midnight_feast_custom:UpdateTalents(name)
 	local caster = self:GetCaster()
 	if not self.init then
 		self.init = true
@@ -111,15 +113,11 @@ function night_stalker_midnight_feast_custom:UpdateTalents()
 			e4_cd_inc = caster:GetTalentValue("modifier_stalker_hunter_4", "cd_inc", true),
 			e4_legendary_cd = caster:GetTalentValue("modifier_stalker_hunter_4", "legendary_cd", true),
 			e4_distance = caster:GetTalentValue("modifier_stalker_hunter_4", "distance", true),
-			e4_talent_cd = caster:GetTalentValue("modifier_stalker_hunter_4", "talent_cd", true),
 
 			has_e7 = 0,
 			e7_attacks = caster:GetTalentValue("modifier_stalker_hunter_7", "attacks", true),
 			e7_blind_duration = caster:GetTalentValue("modifier_stalker_hunter_7", "blind_duration", true),
-			e7_range = caster:GetTalentValue("modifier_stalker_hunter_7", "range", true),
-			e7_talent_cd = caster:GetTalentValue("modifier_stalker_hunter_7", "talent_cd", true),
 			e7_stun = caster:GetTalentValue("modifier_stalker_hunter_7", "stun", true),
-			e7_duration = caster:GetTalentValue("modifier_stalker_hunter_7", "duration", true),
 			e7_effect_duration = caster:GetTalentValue("modifier_stalker_hunter_7", "effect_duration", true),
 			e7_bva = caster:GetTalentValue("modifier_stalker_hunter_7", "bva", true),
 			e7_status = caster:GetTalentValue("modifier_stalker_hunter_7", "status", true),
@@ -165,10 +163,6 @@ function night_stalker_midnight_feast_custom:GetIntrinsicModifierName()
 	return "modifier_night_stalker_midnight_feast_custom"
 end
 
-function night_stalker_midnight_feast_custom:Init()
-	self.caster = self:GetCaster()
-end
-
 function night_stalker_midnight_feast_custom:CastFilterResultTarget(target)
 	if not IsServer() then
 		return
@@ -201,6 +195,9 @@ end
 
 function night_stalker_midnight_feast_custom:ProcCd(is_dash)
 	if not IsServer() then
+		return
+	end
+	if not self:IsTrained() then
 		return
 	end
 	if self.talents.has_e4 == 0 then
@@ -515,6 +512,27 @@ function modifier_night_stalker_midnight_feast_custom_active:OnDestroy()
 end
 
 modifier_night_stalker_midnight_feast_custom_legendary = class(mod_hidden)
+function modifier_night_stalker_midnight_feast_custom_legendary:IsAura()
+	return IsServer() and self.parent:IsAlive()
+end
+function modifier_night_stalker_midnight_feast_custom_legendary:GetAuraDuration()
+	return 0
+end
+function modifier_night_stalker_midnight_feast_custom_legendary:GetAuraRadius()
+	return FIND_UNITS_EVERYWHERE
+end
+function modifier_night_stalker_midnight_feast_custom_legendary:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_FRIENDLY
+end
+function modifier_night_stalker_midnight_feast_custom_legendary:GetAuraSearchFlags()
+	return DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD
+end
+function modifier_night_stalker_midnight_feast_custom_legendary:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_ALL
+end
+function modifier_night_stalker_midnight_feast_custom_legendary:GetModifierAura()
+	return "modifier_night_stalker_midnight_feast_custom_legendary_aura"
+end
 function modifier_night_stalker_midnight_feast_custom_legendary:OnCreated()
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
@@ -616,27 +634,6 @@ function modifier_night_stalker_midnight_feast_custom_legendary:GetModifierNoVis
 	return 1
 end
 
-function modifier_night_stalker_midnight_feast_custom_legendary:IsAura()
-	return IsServer() and self.parent:IsAlive()
-end
-function modifier_night_stalker_midnight_feast_custom_legendary:GetAuraDuration()
-	return 0
-end
-function modifier_night_stalker_midnight_feast_custom_legendary:GetAuraRadius()
-	return FIND_UNITS_EVERYWHERE
-end
-function modifier_night_stalker_midnight_feast_custom_legendary:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_FRIENDLY
-end
-function modifier_night_stalker_midnight_feast_custom_legendary:GetAuraSearchFlags()
-	return DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD
-end
-function modifier_night_stalker_midnight_feast_custom_legendary:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_ALL
-end
-function modifier_night_stalker_midnight_feast_custom_legendary:GetModifierAura()
-	return "modifier_night_stalker_midnight_feast_custom_legendary_aura"
-end
 function modifier_night_stalker_midnight_feast_custom_legendary:GetAuraEntityReject(hEntity)
 	if hEntity.owner and hEntity.owner == self.parent then
 		return false
@@ -689,6 +686,12 @@ function modifier_night_stalker_midnight_feast_custom_legendary_aura:GetModifier
 end
 
 modifier_night_stalker_midnight_feast_custom_legendary_caster = class(mod_hidden)
+function modifier_night_stalker_midnight_feast_custom_legendary_caster:GetStatusEffectName()
+	return "particles/status_fx/status_effect_phantom_assassin_active_blur.vpcf"
+end
+function modifier_night_stalker_midnight_feast_custom_legendary_caster:StatusEffectPriority()
+	return MODIFIER_PRIORITY_ULTRA
+end
 function modifier_night_stalker_midnight_feast_custom_legendary_caster:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -760,14 +763,6 @@ function modifier_night_stalker_midnight_feast_custom_legendary_caster:GetModifi
 	return self.status
 end
 
-function modifier_night_stalker_midnight_feast_custom_legendary_caster:GetStatusEffectName()
-	return "particles/status_fx/status_effect_phantom_assassin_active_blur.vpcf"
-end
-
-function modifier_night_stalker_midnight_feast_custom_legendary_caster:StatusEffectPriority()
-	return MODIFIER_PRIORITY_ULTRA
-end
-
 modifier_night_stalker_midnight_feast_custom_damage = class(mod_visible)
 function modifier_night_stalker_midnight_feast_custom_damage:GetTexture()
 	return "buffs/night_stalker/hunter_3"
@@ -814,178 +809,6 @@ end
 
 function modifier_night_stalker_midnight_feast_custom_damage:GetModifierDamageOutgoing_Percentage()
 	return (self.ability.talents.e3_damage / self.max) * self:GetStackCount()
-end
-
-night_stalker_midnight_feast_custom_charge = class({})
-night_stalker_midnight_feast_custom_charge.talents = {}
-
-function night_stalker_midnight_feast_custom_charge:UpdateTalents(name)
-	local caster = self:GetCaster()
-	if not self.init then
-		self.init = true
-		self.talents = {
-			e4_distance = caster:GetTalentValue("modifier_stalker_hunter_4", "distance", true),
-			e4_talent_cd = caster:GetTalentValue("modifier_stalker_hunter_4", "talent_cd", true),
-		}
-	end
-end
-
-function night_stalker_midnight_feast_custom_charge:Init()
-	self.caster = self:GetCaster()
-	if IsServer() then
-		self:SetLevel(1)
-	end
-end
-
-function night_stalker_midnight_feast_custom_charge:GetCooldown()
-	return (self.talents.e4_talent_cd and self.talents.e4_talent_cd or 0)
-end
-
-function night_stalker_midnight_feast_custom_charge:GetCastRange()
-	return IsClient() and (self.talents.e4_distance - self.caster:GetCastRangeBonus()) or 999999
-end
-
-function night_stalker_midnight_feast_custom_charge:OnSpellStart()
-	if not self.caster.midnight_ability then
-		return
-	end
-	local point = self:GetCursorPosition()
-	self.caster:AddNewModifier(
-		self.caster,
-		self.caster.midnight_ability,
-		"modifier_night_stalker_midnight_feast_custom_charge",
-		{ x = point.x, y = point.y }
-	)
-end
-
-modifier_night_stalker_midnight_feast_custom_charge = class(mod_hidden)
-function modifier_night_stalker_midnight_feast_custom_charge:OnCreated(table)
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	if not IsServer() then
-		return
-	end
-	self.parent:EmitSound("Stalker.Hunter_charge")
-	self.parent:EmitSound("Stalker.Hunter_charge2")
-
-	local offset = -10
-	if self.parent:HasModifier("modifier_night_stalker_innate_custom_active") then
-		offset = 50
-	end
-
-	self.particle = ParticleManager:CreateParticle(
-		"particles/night_stalker/hunter_charge.vpcf",
-		PATTACH_ABSORIGIN_FOLLOW,
-		self.parent
-	)
-	ParticleManager:SetParticleControl(self.particle, 0, self.parent:GetAbsOrigin())
-	ParticleManager:SetParticleControl(self.particle, 1, Vector(0, 0, offset))
-	self:AddParticle(self.particle, false, false, -1, false, false)
-
-	self.parent:GenericParticle("particles/night_stalker/hunter_charge_effect.vpcf")
-
-	ProjectileManager:ProjectileDodge(self.parent)
-
-	self.point = GetGroundPosition(Vector(table.x, table.y, 0), nil)
-	if self.point == self.parent:GetAbsOrigin() then
-		self.point = self.parent:GetAbsOrigin() + self.parent:GetForwardVector() * 10
-	end
-
-	self.dir = self.point - self.parent:GetAbsOrigin()
-	self.dir.z = 0
-
-	self.speed = self.ability.talents.e4_speed
-	self.distance = self.ability.talents.e4_distance
-	self.point = self.parent:GetAbsOrigin() + self.dir:Normalized() * self.distance
-
-	self.dir = self.point - self.parent:GetAbsOrigin()
-	self.pass = 0
-
-	self.parent:FaceTowards(self.point)
-	self.parent:SetForwardVector(self.dir:Normalized())
-
-	self:SetDuration(self.dir:Length2D() / self.speed, false)
-	self.parent:StartGesture(ACT_DOTA_RUN)
-
-	if not self:ApplyHorizontalMotionController() then
-		self:Destroy()
-		return
-	end
-end
-
-function modifier_night_stalker_midnight_feast_custom_charge:UpdateHorizontalMotion(me, dt)
-	if self.parent:IsStunned() or self.parent:IsHexed() or self.parent:IsRooted() or self.parent:IsLeashed() then
-		self:Destroy()
-		return
-	end
-
-	self.pass = self.pass + self.speed * dt
-
-	local nextpos = me:GetOrigin() + self.dir:Normalized() * self.speed * dt
-	local new_point = GetGroundPosition(nextpos, nil)
-	me:SetOrigin(new_point)
-
-	if self.pass >= self.distance then
-		self:Destroy()
-		return
-	end
-end
-
-function modifier_night_stalker_midnight_feast_custom_charge:OnHorizontalMotionInterrupted()
-	self:Destroy()
-end
-
-function modifier_night_stalker_midnight_feast_custom_charge:GetStatusEffectName()
-	if self.parent:HasModifier("modifier_night_stalker_midnight_feast_custom_legendary_caster") then
-		return
-	end
-	return "particles/status_fx/status_effect_phantom_assassin_active_blur.vpcf"
-end
-
-function modifier_night_stalker_midnight_feast_custom_charge:StatusEffectPriority()
-	return MODIFIER_PRIORITY_ULTRA
-end
-
-function modifier_night_stalker_midnight_feast_custom_charge:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS,
-		MODIFIER_PROPERTY_DISABLE_TURNING,
-	}
-end
-
-function modifier_night_stalker_midnight_feast_custom_charge:GetActivityTranslationModifiers()
-	local activity = "haste"
-	if self.parent:HasModifier("modifier_night_stalker_innate_custom_active") then
-		activity = "hunter_night"
-	end
-	return activity
-end
-
-function modifier_night_stalker_midnight_feast_custom_charge:GetModifierDisableTurning()
-	return 1
-end
-
-function modifier_night_stalker_midnight_feast_custom_charge:CheckState()
-	return {
-		[MODIFIER_STATE_SILENCED] = true,
-		[MODIFIER_STATE_MUTED] = true,
-	}
-end
-
-function modifier_night_stalker_midnight_feast_custom_charge:OnDestroy()
-	if not IsServer() then
-		return
-	end
-	self.parent:RemoveHorizontalMotionController(self)
-
-	self.vec = self.parent:GetForwardVector()
-	self.vec.z = 0
-	self.parent:SetForwardVector(self.vec)
-	self.parent:FaceTowards(self.parent:GetAbsOrigin() + self.vec * 10)
-	FindClearSpaceForUnit(self.parent, self.parent:GetAbsOrigin(), false)
-
-	self.parent:FadeGesture(ACT_DOTA_RUN)
 end
 
 modifier_night_stalker_midnight_feast_custom_double = class(mod_hidden)
@@ -1077,8 +900,10 @@ function modifier_night_stalker_midnight_feast_custom_double_damage:OnCreated(ta
 	if not IsServer() then
 		return
 	end
+	self.ability = self:GetAbility()
+
 	self.attack_damage = table.attack_damage
-	self.damage = self:GetAbility().talents.e3_double_damage - 100
+	self.damage = self.ability.talents.e3_double_damage - 100
 end
 
 function modifier_night_stalker_midnight_feast_custom_double_damage:DeclareFunctions()
@@ -1100,4 +925,174 @@ function modifier_night_stalker_midnight_feast_custom_double_damage:GetModifierT
 		return
 	end
 	return self.damage
+end
+
+night_stalker_midnight_feast_custom_charge = class({})
+night_stalker_midnight_feast_custom_charge.talents = {}
+
+function night_stalker_midnight_feast_custom_charge:UpdateTalents(name)
+	local caster = self:GetCaster()
+	if not self.init then
+		self.init = true
+		self.talents = {
+			e4_distance = caster:GetTalentValue("modifier_stalker_hunter_4", "distance", true),
+			e4_talent_cd = caster:GetTalentValue("modifier_stalker_hunter_4", "talent_cd", true),
+		}
+	end
+end
+
+function night_stalker_midnight_feast_custom_charge:Init()
+	if not self:GetCaster() then
+		return
+	end
+	self.caster = self:GetCaster()
+	if IsServer() then
+		self:SetLevel(1)
+	end
+end
+
+function night_stalker_midnight_feast_custom_charge:GetCooldown()
+	return self.talents.e4_talent_cd or 0
+end
+
+function night_stalker_midnight_feast_custom_charge:GetCastRange()
+	return IsClient() and ((self.talents.e4_distance or 0) - self.caster:GetCastRangeBonus()) or 999999
+end
+
+function night_stalker_midnight_feast_custom_charge:OnSpellStart()
+	if not self.caster.midnight_ability then
+		return
+	end
+	local point = self:GetCursorPosition()
+	self.caster:AddNewModifier(
+		self.caster,
+		self.caster.midnight_ability,
+		"modifier_night_stalker_midnight_feast_custom_charge",
+		{ x = point.x, y = point.y }
+	)
+end
+
+modifier_night_stalker_midnight_feast_custom_charge = class(mod_hidden)
+function modifier_night_stalker_midnight_feast_custom_charge:StatusEffectPriority()
+	return MODIFIER_PRIORITY_ULTRA
+end
+function modifier_night_stalker_midnight_feast_custom_charge:OnCreated(table)
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	if not IsServer() then
+		return
+	end
+	self.parent:EmitSound("Stalker.Hunter_charge")
+	self.parent:EmitSound("Stalker.Hunter_charge2")
+
+	local offset = -10
+	if self.parent:HasModifier("modifier_night_stalker_innate_custom_active") then
+		offset = 50
+	end
+
+	self.particle = ParticleManager:CreateParticle(
+		"particles/night_stalker/hunter_charge.vpcf",
+		PATTACH_ABSORIGIN_FOLLOW,
+		self.parent
+	)
+	ParticleManager:SetParticleControl(self.particle, 0, self.parent:GetAbsOrigin())
+	ParticleManager:SetParticleControl(self.particle, 1, Vector(0, 0, offset))
+	self:AddParticle(self.particle, false, false, -1, false, false)
+
+	self.parent:GenericParticle("particles/night_stalker/hunter_charge_effect.vpcf")
+
+	ProjectileManager:ProjectileDodge(self.parent)
+
+	self.point = GetGroundPosition(Vector(table.x, table.y, 0), nil)
+	if self.point == self.parent:GetAbsOrigin() then
+		self.point = self.parent:GetAbsOrigin() + self.parent:GetForwardVector() * 10
+	end
+
+	self.dir = self.point - self.parent:GetAbsOrigin()
+	self.dir.z = 0
+
+	self.speed = self.ability.talents.e4_speed
+	self.distance = self.ability.talents.e4_distance
+	self.point = self.parent:GetAbsOrigin() + self.dir:Normalized() * self.distance
+
+	self.dir = self.point - self.parent:GetAbsOrigin()
+	self.pass = 0
+
+	self.parent:FacePoint(self.point)
+
+	self:SetDuration(self.dir:Length2D() / self.speed, false)
+	self.parent:StartGesture(ACT_DOTA_RUN)
+
+	if not self:ApplyHorizontalMotionController() then
+		self:Destroy()
+		return
+	end
+end
+
+function modifier_night_stalker_midnight_feast_custom_charge:UpdateHorizontalMotion(me, dt)
+	if self.parent:IsStunned() or self.parent:IsHexed() or self.parent:IsRooted() or self.parent:IsLeashed() then
+		self:Destroy()
+		return
+	end
+
+	self.pass = self.pass + self.speed * dt
+
+	local nextpos = me:GetOrigin() + self.dir:Normalized() * self.speed * dt
+	local new_point = GetGroundPosition(nextpos, nil)
+	me:SetOrigin(new_point)
+
+	if self.pass >= self.distance then
+		self:Destroy()
+		return
+	end
+end
+
+function modifier_night_stalker_midnight_feast_custom_charge:OnHorizontalMotionInterrupted()
+	self:Destroy()
+end
+
+function modifier_night_stalker_midnight_feast_custom_charge:GetStatusEffectName()
+	if self.parent:HasModifier("modifier_night_stalker_midnight_feast_custom_legendary_caster") then
+		return
+	end
+	return "particles/status_fx/status_effect_phantom_assassin_active_blur.vpcf"
+end
+
+function modifier_night_stalker_midnight_feast_custom_charge:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS,
+		MODIFIER_PROPERTY_DISABLE_TURNING,
+	}
+end
+
+function modifier_night_stalker_midnight_feast_custom_charge:GetActivityTranslationModifiers()
+	local activity = "haste"
+	if self.parent:HasModifier("modifier_night_stalker_innate_custom_active") then
+		activity = "hunter_night"
+	end
+	return activity
+end
+
+function modifier_night_stalker_midnight_feast_custom_charge:GetModifierDisableTurning()
+	return 1
+end
+
+function modifier_night_stalker_midnight_feast_custom_charge:CheckState()
+	return {
+		[MODIFIER_STATE_SILENCED] = true,
+		[MODIFIER_STATE_MUTED] = true,
+	}
+end
+
+function modifier_night_stalker_midnight_feast_custom_charge:OnDestroy()
+	if not IsServer() then
+		return
+	end
+	self.parent:RemoveHorizontalMotionController(self)
+
+	self.parent:FacePoint()
+	FindClearSpaceForUnit(self.parent, self.parent:GetAbsOrigin(), false)
+
+	self.parent:FadeGesture(ACT_DOTA_RUN)
 end

@@ -30,11 +30,22 @@ function item_alchemist_gold_satanic:Precache(context)
 		return
 	end
 	PrecacheResource("particle", "particles/bristle_cdr.vpcf", context)
+	PrecacheResource("particle", "particles/items2_fx/mask_of_madness.vpcf", context)
+end
+
+function item_alchemist_gold_satanic:Spawn()
+	self.duration = self:GetSpecialValueFor("duration")
+	self.bonus_strength = self:GetSpecialValueFor("bonus_strength")
+	self.bonus_damage = self:GetSpecialValueFor("bonus_damage")
+	self.lifesteal = self:GetSpecialValueFor("lifesteal")
+	self.creeps = self:GetSpecialValueFor("creeps")
+	self.lifesteal_active = self:GetSpecialValueFor("lifesteal_active")
+	self.active_damage = self:GetSpecialValueFor("active_damage")
 end
 
 function item_alchemist_gold_satanic:OnSpellStart()
 	local caster = self:GetCaster()
-	local duration = self:GetSpecialValueFor("duration")
+	local duration = self.duration
 
 	caster:EmitSound("DOTA_Item.BlackKingBar.Activate")
 	caster:EmitSound("DOTA_Item.Satanic.Activate")
@@ -51,11 +62,11 @@ function modifier_item_alchemist_gold_satanic:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.bonus_str = self.ability:GetSpecialValueFor("bonus_strength")
-	self.bonus_damage = self.ability:GetSpecialValueFor("bonus_damage")
-	self.lifesteal = self.ability:GetSpecialValueFor("lifesteal") / 100
-	self.creeps = self.ability:GetSpecialValueFor("creeps")
-	self.active_lifesteal = self.ability:GetSpecialValueFor("lifesteal_active") / 100
+	self.bonus_str = self.ability.bonus_strength
+	self.bonus_damage = self.ability.bonus_damage
+	self.lifesteal = self.ability.lifesteal / 100
+	self.creeps = self.ability.creeps
+	self.active_lifesteal = self.ability.lifesteal_active / 100
 
 	if not IsServer() then
 		return
@@ -85,6 +96,9 @@ function modifier_item_alchemist_gold_satanic:DamageEvent_out(params)
 	if not IsServer() then
 		return
 	end
+	if not IsValid(self.ability) then
+		return
+	end
 	if not self.parent:CheckLifesteal(params, 2) then
 		return
 	end
@@ -106,7 +120,7 @@ function modifier_item_alchemist_gold_satanic_active:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.bonus_damage = (1 - self.parent:GetHealthPercent() / 100) * self.ability:GetSpecialValueFor("active_damage")
+	self.bonus_damage = (1 - self.parent:GetHealthPercent() / 100) * self.ability.active_damage
 	self:SetStackCount(self.bonus_damage)
 
 	if not IsServer() then

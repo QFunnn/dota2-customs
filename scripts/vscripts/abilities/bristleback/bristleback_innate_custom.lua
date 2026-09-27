@@ -42,13 +42,6 @@ LinkLuaModifier(
 bristleback_innate_custom = class({})
 bristleback_innate_custom.talents = {}
 
-function bristleback_innate_custom:GetIntrinsicModifierName()
-	if not self:GetCaster():IsRealHero() then
-		return
-	end
-	return "modifier_bristleback_innate_custom"
-end
-
 function bristleback_innate_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
@@ -56,6 +49,7 @@ function bristleback_innate_custom:Precache(context)
 	PrecacheResource("soundfile", "soundevents/vo_custom/bristleback_vo_custom.vsndevts", context)
 	PrecacheResource("soundfile", "soundevents/npc_dota_hero_bristleback.vsndevts", context)
 	PrecacheResource("particle", "particles/bristleback/back_shield.vpcf", context)
+	PrecacheResource("particle", "particles/bristleback/warpath_hit.vpcf", context)
 	dota1x6:PrecacheShopItems("npc_dota_hero_bristleback", context)
 end
 
@@ -77,11 +71,9 @@ function bristleback_innate_custom:UpdateTalents(name)
 			has_r3 = 0,
 			r3_heal = 0,
 
-			has_h1 = 0,
 			h1_slow_resist = 0,
 			h1_move = 0,
 
-			has_h2 = 0,
 			h2_str = 0,
 			h2_shield = 0,
 
@@ -94,13 +86,11 @@ function bristleback_innate_custom:UpdateTalents(name)
 	end
 
 	if caster:HasTalent("modifier_bristle_hero_1") then
-		self.talents.has_h1 = 1
 		self.talents.h1_move = caster:GetTalentValue("modifier_bristle_hero_1", "move")
 		self.talents.h1_slow_resist = caster:GetTalentValue("modifier_bristle_hero_1", "slow_resist")
 	end
 
 	if caster:HasTalent("modifier_bristle_hero_2") then
-		self.talents.has_h2 = 1
 		self.talents.h2_str = caster:GetTalentValue("modifier_bristle_hero_2", "str") / 100
 		self.talents.h2_shield = caster:GetTalentValue("modifier_bristle_hero_2", "shield") / 100
 		caster:AddPercentStat({ str = self.talents.h2_str }, self.tracker)
@@ -127,6 +117,13 @@ function bristleback_innate_custom:UpdateTalents(name)
 		self.talents.r3_heal = caster:GetTalentValue("modifier_bristle_warpath_3", "heal") / 100
 		caster:AddDamageEvent_out(self.tracker, true)
 	end
+end
+
+function bristleback_innate_custom:GetIntrinsicModifierName()
+	if not self:GetCaster():IsRealHero() then
+		return
+	end
+	return "modifier_bristleback_innate_custom"
 end
 
 function bristleback_innate_custom:ProcHit(target, is_passive)
@@ -205,8 +202,8 @@ function modifier_bristleback_innate_custom:OnCreated(table)
 
 	self.ability.shield = self.ability:GetSpecialValueFor("shield") / 100
 	self.ability.cd = self.ability:GetSpecialValueFor("cd")
-	self.back_angle = self.ability:GetSpecialValueFor("back_angle")
-	self.side_angle = self.ability:GetSpecialValueFor("side_angle")
+	self.ability.back_angle = self.ability:GetSpecialValueFor("back_angle")
+	self.ability.side_angle = self.ability:GetSpecialValueFor("side_angle")
 
 	self.parent:AddDamageEvent_inc(self, true)
 	self.interval = 0.3
@@ -313,9 +310,9 @@ function modifier_bristleback_innate_custom:GetFacing(attacker)
 		return 1
 	end
 
-	if (difference <= (self.back_angle / 1)) or (difference >= (360 - (self.back_angle / 1))) then
+	if difference <= self.ability.back_angle or difference >= (360 - self.ability.back_angle) then
 		return 1
-	elseif difference <= self.side_angle or difference >= (360 - self.side_angle) then
+	elseif difference <= self.ability.side_angle or difference >= (360 - self.ability.side_angle) then
 		return 2
 	else
 		return 3
@@ -352,12 +349,6 @@ function modifier_bristleback_innate_custom:OnDestroy()
 end
 
 modifier_bristleback_innate_custom_shield = class(mod_hidden)
-function modifier_bristleback_innate_custom_shield:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_INCOMING_DAMAGE_CONSTANT,
-	}
-end
-
 function modifier_bristleback_innate_custom_shield:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -395,6 +386,12 @@ function modifier_bristleback_innate_custom_shield:OnCreated(table)
 	self.max_shield = (self.ability.shield + self.ability.talents.h2_shield) * self.parent:GetMaxHealth()
 	self.shield = self.max_shield
 	self:SendBuffRefreshToClients()
+end
+
+function modifier_bristleback_innate_custom_shield:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_INCOMING_DAMAGE_CONSTANT,
+	}
 end
 
 function modifier_bristleback_innate_custom_shield:AddCustomTransmitterData()
@@ -463,13 +460,18 @@ function modifier_bristleback_innate_custom_shield:GetModifierIncomingDamageCons
 end
 
 modifier_bristleback_innate_custom_shield_timer = class(mod_cd)
-
-function modifier_bristleback_innate_custom_shield_timer:OnDestroy()
+function modifier_bristleback_innate_custom_shield_timer:OnCreated()
 	if not IsServer() then
 		return
 	end
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
+end
+
+function modifier_bristleback_innate_custom_shield_timer:OnDestroy()
+	if not IsServer() then
+		return
+	end
 	self.parent:RemoveModifierByName("modifier_bristleback_innate_custom_shield")
 	self.parent:AddNewModifier(self.parent, self.ability, "modifier_bristleback_innate_custom_shield", {})
 end
@@ -486,6 +488,7 @@ function modifier_bristleback_innate_custom_heal_reduce:OnCreated()
 	if not IsServer() then
 		return
 	end
+	self.RemoveForDuel = true
 	self:OnRefresh()
 end
 
@@ -524,7 +527,8 @@ end
 
 modifier_bristleback_innate_custom_proc_attack = class(mod_hidden)
 function modifier_bristleback_innate_custom_proc_attack:OnCreated()
-	self.damage = self:GetAbility().talents.h4_damage - 100
+	self.ability = self:GetAbility()
+	self.damage = self.ability.talents.h4_damage - 100
 end
 
 function modifier_bristleback_innate_custom_proc_attack:DeclareFunctions()

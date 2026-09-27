@@ -77,6 +77,11 @@ function custom_huskar_burning_spear:Precache(context)
 	PrecacheResource("particle", "particles/huskar_hands.vpcf", context)
 	PrecacheResource("particle", "particles/huskar/double_spear.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_marci/marci_unleash_stack.vpcf", context)
+	PrecacheResource(
+		"particle",
+		"particles/econ/items/huskar/huskar_2021_immortal/huskar_2021_immortal_burning_spear_debuff.vpcf",
+		context
+	)
 end
 
 function custom_huskar_burning_spear:UpdateTalents()
@@ -89,7 +94,6 @@ function custom_huskar_burning_spear:UpdateTalents()
 			w1_max = caster:GetTalentValue("modifier_huskar_spears_1", "max", true),
 			w1_duration = caster:GetTalentValue("modifier_huskar_spears_1", "duration", true),
 
-			has_w2 = 0,
 			w2_range = 0,
 			w2_move = 0,
 
@@ -108,17 +112,13 @@ function custom_huskar_burning_spear:UpdateTalents()
 			w4_talent_cd = caster:GetTalentValue("modifier_huskar_spears_4", "talent_cd", true),
 
 			has_w7 = 0,
-			w7_duration = caster:GetTalentValue("modifier_huskar_spears_7", "duration", true),
 			w7_damage_creeps = caster:GetTalentValue("modifier_huskar_spears_7", "damage_creeps", true),
 			w7_damage = caster:GetTalentValue("modifier_huskar_spears_7", "damage", true) / 100,
-			w7_talent_cd = caster:GetTalentValue("modifier_huskar_spears_7", "talent_cd", true),
-			w7_slow = caster:GetTalentValue("modifier_huskar_spears_7", "slow", true),
 
 			has_e1 = 0,
 			e1_damage = 0,
 			e1_bonus = caster:GetTalentValue("modifier_huskar_passive_1", "bonus", true),
 
-			has_h1 = 0,
 			h1_heal_inc = 0,
 			h1_heal_reduce = 0,
 			h1_max = caster:GetTalentValue("modifier_huskar_hero_1", "max", true),
@@ -131,7 +131,6 @@ function custom_huskar_burning_spear:UpdateTalents()
 	end
 
 	if caster:HasTalent("modifier_huskar_spears_2") then
-		self.talents.has_w2 = 1
 		self.talents.w2_range = caster:GetTalentValue("modifier_huskar_spears_2", "range")
 		self.talents.w2_move = caster:GetTalentValue("modifier_huskar_spears_2", "move")
 	end
@@ -155,7 +154,6 @@ function custom_huskar_burning_spear:UpdateTalents()
 	end
 
 	if caster:HasTalent("modifier_huskar_hero_1") then
-		self.talents.has_h1 = 1
 		self.talents.h1_heal_inc = caster:GetTalentValue("modifier_huskar_hero_1", "heal_inc")
 		self.talents.h1_heal_reduce = caster:GetTalentValue("modifier_huskar_hero_1", "heal_reduce")
 	end
@@ -166,7 +164,7 @@ function custom_huskar_burning_spear:GetAbilityTextureName()
 end
 
 function custom_huskar_burning_spear:GetCastRange(vLocation, hTarget)
-	return self:GetCaster():Script_GetAttackRange() + (self.bonus_range and self.bonus_range or 0)
+	return self.caster:Script_GetAttackRange() + (self.bonus_range or 0)
 end
 
 function custom_huskar_burning_spear:GetIntrinsicModifierName()
@@ -184,22 +182,20 @@ function custom_huskar_burning_spear:GetHealthCost()
 end
 
 function custom_huskar_burning_spear:GetCost()
-	return (self.health_cost and self.health_cost or 0) * self:GetCaster():GetHealth()
+	return (self.health_cost or 0) * self.caster:GetHealth()
 end
 
 function custom_huskar_burning_spear:GetAbilityTargetFlags()
 	if self.talents.has_w7 == 1 then
 		return DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
-	else
-		return DOTA_UNIT_TARGET_FLAG_NONE
 	end
+	return DOTA_UNIT_TARGET_FLAG_NONE
 end
 
 function custom_huskar_burning_spear:OnProjectileHit_ExtraData(target, location, table)
 	if not target then
 		return
 	end
-	local caster = self:GetCaster()
 
 	target:EmitSound("Huskar.Spear_double")
 
@@ -228,38 +224,38 @@ function custom_huskar_burning_spear:OnProjectileHit_ExtraData(target, location,
 	)
 	ParticleManager:ReleaseParticleIndex(hit_effect)
 
-	caster:AddNewModifier(
-		target,
+	self.caster:AddNewModifier(
+		self.caster,
 		self,
 		"modifier_custom_huskar_burning_spear_double_damage",
 		{ duration = FrameTime() }
 	)
-	caster:PerformAttack(target, true, true, true, true, false, false, true)
-	caster:RemoveModifierByName("modifier_custom_huskar_burning_spear_double_damage")
+	self.caster:PerformAttack(target, true, true, true, true, false, false, true)
+	self.caster:RemoveModifierByName("modifier_custom_huskar_burning_spear_double_damage")
 
 	if table.spear == 1 then
 		self:AddStack(target)
 	end
 
 	target:AddNewModifier(
-		caster,
+		self.caster,
 		self,
 		"modifier_custom_huskar_burning_spear_double_slow",
 		{ duration = self.talents.w3_duration }
 	)
 
 	if not target:IsCurrentlyHorizontalMotionControlled() and not target:IsCurrentlyVerticalMotionControlled() then
-		local dist = (target:GetAbsOrigin() - caster:GetAbsOrigin()):Length2D()
+		local dist = (target:GetAbsOrigin() - self.caster:GetAbsOrigin()):Length2D()
 		local knockback_dist = math.max(5, (1 - dist / 800) * self.talents.w3_knock_range)
-		target:AddNewModifier(caster, self, "modifier_knockback", {
+		target:AddNewModifier(self.caster, self, "modifier_knockback", {
 			should_stun = 0,
 			knockback_duration = 0.1,
 			duration = 0.1,
 			knockback_distance = knockback_dist,
 			knockback_height = 0,
-			center_x = caster:GetAbsOrigin().x,
-			center_y = caster:GetAbsOrigin().y,
-			center_z = caster:GetAbsOrigin().z,
+			center_x = self.caster:GetAbsOrigin().x,
+			center_y = self.caster:GetAbsOrigin().y,
+			center_z = self.caster:GetAbsOrigin().z,
 		})
 	end
 end
@@ -271,31 +267,30 @@ function custom_huskar_burning_spear:AddStack(target, double)
 	if not target:IsUnit() then
 		return
 	end
-	local caster = self:GetCaster()
 	local duration = self.duration
 	local count = 0
 
-	for _, aoe_target in pairs(caster:FindTargets(self.radius, target:GetAbsOrigin())) do
+	for _, aoe_target in pairs(self.caster:FindTargets(self.radius, target:GetAbsOrigin())) do
 		if aoe_target == target or count < self.aoe_max then
 			if aoe_target ~= target then
 				count = count + 1
 			end
 			aoe_target:AddNewModifier(
-				caster,
-				caster:BkbAbility(self, self.talents.has_w7 == 1),
+				self.caster,
+				self.caster:BkbAbility(self, self.talents.has_w7 == 1),
 				"modifier_custom_huskar_burning_spear_counter",
 				{ duration = duration + 0.2 }
 			)
 
-			if caster:HasModifier("modifier_custom_huskar_burning_spear_legendary_buff") then
+			if self.caster:HasModifier("modifier_custom_huskar_burning_spear_legendary_buff") then
 				aoe_target:AddNewModifier(
-					caster,
+					self.caster,
 					self,
 					"modifier_custom_huskar_burning_spear_legendary_debuff",
 					{ duration = duration + 0.2 }
 				)
 				if aoe_target:IsHero() then
-					aoe_target:AddNewModifier(caster, self, "modifier_generic_vision", { duration = duration })
+					aoe_target:AddNewModifier(self.caster, self, "modifier_generic_vision", { duration = duration })
 				end
 			end
 		end
@@ -306,10 +301,9 @@ function custom_huskar_burning_spear:MakeSpear()
 	if not IsServer() then
 		return
 	end
-	local caster = self:GetCaster()
 	local health_cost = self:GetCost()
-	caster:EmitSound("Hero_Huskar.Burning_Spear.Cast")
-	caster:SetHealth(math.max(caster:GetHealth() - health_cost, 1))
+	self.caster:EmitSound("Hero_Huskar.Burning_Spear.Cast")
+	self.caster:SetHealth(math.max(self.caster:GetHealth() - health_cost, 1))
 end
 
 modifier_custom_huskar_burning_spear_counter = class(mod_visible)
@@ -343,46 +337,11 @@ function modifier_custom_huskar_burning_spear_counter:OnCreated()
 	self.damageTable =
 		{ victim = self.parent, attacker = self.caster, ability = self.ability, damage_type = DAMAGE_TYPE_MAGICAL }
 
-	self:AddStack()
+	self:OnRefresh()
 	self:StartIntervalThink(self.ability.interval)
 end
 
 function modifier_custom_huskar_burning_spear_counter:OnRefresh()
-	if not IsServer() then
-		return
-	end
-	self:AddStack()
-end
-
-function modifier_custom_huskar_burning_spear_counter:OnIntervalThink()
-	if not IsServer() then
-		return
-	end
-	local bonus = 0
-	local mod = self.parent:FindModifierByName("modifier_custom_huskar_burning_spear_legendary_debuff")
-	if mod then
-		if self.parent:IsCreep() then
-			bonus = mod:GetStackCount() * self.ability.talents.w7_damage_creeps
-		else
-			bonus = mod:GetStackCount() * self.ability.talents.w7_damage * self.parent:GetMaxHealth()
-		end
-	end
-
-	local damage = self.damage * self:GetStackCount() + bonus
-	if self.ability.talents.has_e1 == 1 then
-		damage = damage
-			* (
-				1
-				+ self.ability.talents.e1_damage
-					* (self.caster:HasModifier("modifier_custom_huskar_berserkers_blood_bonus") and self.ability.talents.e1_bonus or 1)
-			)
-	end
-
-	self.damageTable.damage = damage * self.ability.interval
-	DoDamage(self.damageTable)
-end
-
-function modifier_custom_huskar_burning_spear_counter:AddStack()
 	if not IsServer() then
 		return
 	end
@@ -439,6 +398,34 @@ function modifier_custom_huskar_burning_spear_counter:AddStack()
 	end)
 end
 
+function modifier_custom_huskar_burning_spear_counter:OnIntervalThink()
+	if not IsServer() then
+		return
+	end
+	local bonus = 0
+	local mod = self.parent:FindModifierByName("modifier_custom_huskar_burning_spear_legendary_debuff")
+	if mod then
+		if self.parent:IsCreep() then
+			bonus = mod:GetStackCount() * self.ability.talents.w7_damage_creeps
+		else
+			bonus = mod:GetStackCount() * self.ability.talents.w7_damage * self.parent:GetMaxHealth()
+		end
+	end
+
+	local damage = self.damage * self:GetStackCount() + bonus
+	if self.ability.talents.has_e1 == 1 then
+		damage = damage
+			* (
+				1
+				+ self.ability.talents.e1_damage
+					* (self.caster:HasModifier("modifier_custom_huskar_berserkers_blood_bonus") and self.ability.talents.e1_bonus or 1)
+			)
+	end
+
+	self.damageTable.damage = damage * self.ability.interval
+	DoDamage(self.damageTable)
+end
+
 function modifier_custom_huskar_burning_spear_counter:OnDestroy()
 	if not IsServer() then
 		return
@@ -449,9 +436,7 @@ end
 function modifier_custom_huskar_burning_spear_counter:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-		--MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET,
 		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
-		--MODIFIER_PROPERTY_LIFESTEAL_AMPLIFY_PERCENTAGE
 	}
 end
 
@@ -460,10 +445,6 @@ function modifier_custom_huskar_burning_spear_counter:GetModifierMoveSpeedBonus_
 		return
 	end
 	return self.ability.talents.w4_slow * math.min(self.ability.talents.w4_max, self:GetStackCount())
-end
-
-function modifier_custom_huskar_burning_spear_counter:GetModifierLifestealRegenAmplify_Percentage()
-	return self.ability.talents.h1_heal_reduce * math.min(self.ability.talents.h1_max, self:GetStackCount())
 end
 
 function modifier_custom_huskar_burning_spear_counter:GetModifierHealChange()
@@ -483,9 +464,10 @@ function modifier_custom_huskar_burning_spear_tracker:OnCreated()
 
 	self.parent.burning_spears_ability = self.ability
 
-	self.legendary_ability = self.parent:FindAbilityByName("custom_huskar_burning_spear_legendary")
-	if self.legendary_ability then
-		self.legendary_ability:UpdateTalents()
+	self.parent.burning_spears_legendary_ability =
+		self.parent:FindAbilityByName("custom_huskar_burning_spear_legendary")
+	if IsValid(self.parent.burning_spears_legendary_ability) then
+		self.parent.burning_spears_legendary_ability:UpdateTalents()
 	end
 
 	self.ability.health_cost = self.ability:GetSpecialValueFor("health_cost") / 100
@@ -519,14 +501,8 @@ function modifier_custom_huskar_burning_spear_tracker:DeclareFunctions()
 		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
 		MODIFIER_PROPERTY_PROJECTILE_NAME,
-		--MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET,
 		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
-		--MODIFIER_PROPERTY_LIFESTEAL_AMPLIFY_PERCENTAGE
 	}
-end
-
-function modifier_custom_huskar_burning_spear_tracker:GetModifierLifestealRegenAmplify_Percentage()
-	return self.ability.talents.h1_heal_inc
 end
 
 function modifier_custom_huskar_burning_spear_tracker:GetModifierHealChange()
@@ -555,9 +531,21 @@ function modifier_custom_huskar_burning_spear_tracker:AttackRecordEvent_out(para
 
 	self.parent:RemoveModifierByName("modifier_custom_huskar_burning_spear_attack")
 
-	if not self:ShouldLaunch(params.target) then
+	if
+		self.parent:IsSilenced() and not self.parent:HasModifier("modifier_custom_huskar_burning_spear_legendary_buff")
+	then
 		return
 	end
+	if not self.ability:GetAutoCastState() and self.cast == false then
+		return
+	end
+	if not params.target:IsUnit() then
+		return
+	end
+	if params.target:GetTeamNumber() == self.parent:GetTeamNumber() then
+		return
+	end
+
 	self.parent:AddNewModifier(self.parent, self.ability, "modifier_custom_huskar_burning_spear_attack", {})
 end
 
@@ -656,21 +644,6 @@ function modifier_custom_huskar_burning_spear_tracker:OrderEvent(params)
 	self.cast = (params.ability and params.ability == self.ability) and true or false
 end
 
-function modifier_custom_huskar_burning_spear_tracker:ShouldLaunch(target)
-	if
-		self.parent:IsSilenced() and not self.parent:HasModifier("modifier_custom_huskar_burning_spear_legendary_buff")
-	then
-		return false
-	end
-	if not self.ability:GetAutoCastState() and self.cast == false then
-		return false
-	end
-	if not target:IsUnit() or target:GetTeamNumber() == self.parent:GetTeamNumber() then
-		return false
-	end
-	return true
-end
-
 modifier_custom_huskar_burning_spear_speed = class(mod_visible)
 function modifier_custom_huskar_burning_spear_speed:GetTexture()
 	return "buffs/huskar/burning_spears_1"
@@ -684,7 +657,8 @@ function modifier_custom_huskar_burning_spear_speed:OnCreated()
 	if not IsServer() then
 		return
 	end
-	self:SetStackCount(1)
+	self.RemoveForDuel = true
+	self:OnRefresh()
 end
 
 function modifier_custom_huskar_burning_spear_speed:OnRefresh()
@@ -720,6 +694,12 @@ modifier_custom_huskar_burning_spear_attack = class(mod_hidden)
 modifier_custom_huskar_burning_spear_double = class(mod_hidden)
 function modifier_custom_huskar_burning_spear_double:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
+end
+function modifier_custom_huskar_burning_spear_double:GetStatusEffectName()
+	return "particles/status_fx/status_effect_slark_shadow_dance.vpcf"
+end
+function modifier_custom_huskar_burning_spear_double:StatusEffectPriority()
+	return MODIFIER_PRIORITY_HIGH
 end
 function modifier_custom_huskar_burning_spear_double:OnCreated(table)
 	self.parent = self:GetParent()
@@ -760,6 +740,9 @@ function modifier_custom_huskar_burning_spear_double:OnDestroy()
 	if not self.parent:IsAlive() then
 		return
 	end
+	if not IsValid(self.target) then
+		return
+	end
 
 	if self.spear == 1 then
 		self.ability:MakeSpear()
@@ -783,19 +766,14 @@ function modifier_custom_huskar_burning_spear_double:OnDestroy()
 	ProjectileManager:CreateTrackingProjectile(self.info)
 end
 
-function modifier_custom_huskar_burning_spear_double:GetStatusEffectName()
-	return "particles/status_fx/status_effect_slark_shadow_dance.vpcf"
-end
-function modifier_custom_huskar_burning_spear_double:StatusEffectPriority()
-	return MODIFIER_PRIORITY_HIGH
-end
-
 modifier_custom_huskar_burning_spear_double_damage = class(mod_hidden)
 function modifier_custom_huskar_burning_spear_double_damage:OnCreated(table)
+	self.ability = self:GetAbility()
+
 	if not IsServer() then
 		return
 	end
-	self.damage = self:GetAbility().talents.w3_damage - 100
+	self.damage = self.ability.talents.w3_damage - 100
 end
 
 function modifier_custom_huskar_burning_spear_double_damage:DeclareFunctions()
@@ -812,73 +790,105 @@ modifier_custom_huskar_burning_spear_double_slow = class(mod_hidden)
 function modifier_custom_huskar_burning_spear_double_slow:IsPurgable()
 	return true
 end
+function modifier_custom_huskar_burning_spear_double_slow:OnCreated(table)
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.move = self.ability.talents.w3_slow
+	if not IsServer() then
+		return
+	end
+	self.parent:GenericParticle("particles/units/heroes/hero_sniper/sniper_headshot_slow.vpcf", self, true)
+end
+
 function modifier_custom_huskar_burning_spear_double_slow:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
 	}
 end
 
-function modifier_custom_huskar_burning_spear_double_slow:OnCreated(table)
-	self.move = self:GetAbility().talents.w3_slow
+function modifier_custom_huskar_burning_spear_double_slow:GetModifierMoveSpeedBonus_Percentage()
+	return self.move
+end
+
+modifier_custom_huskar_burning_spear_legendary_debuff = class(mod_hidden)
+function modifier_custom_huskar_burning_spear_legendary_debuff:OnCreated()
 	if not IsServer() then
 		return
 	end
-	self:GetParent():GenericParticle("particles/units/heroes/hero_sniper/sniper_headshot_slow.vpcf", self, true)
+	self.parent = self:GetParent()
+	self.caster = self:GetCaster()
+	self.ability = self:GetAbility()
+
+	self.RemoveForDuel = true
+	self.duration = self.ability.duration
+	self:OnRefresh()
 end
 
-function modifier_custom_huskar_burning_spear_double_slow:GetModifierMoveSpeedBonus_Percentage()
-	return self.move
+function modifier_custom_huskar_burning_spear_legendary_debuff:OnRefresh()
+	if not IsServer() then
+		return
+	end
+
+	self:IncrementStackCount()
+	self.parent:SendNumber(6, self:GetStackCount())
+
+	Timers:CreateTimer(self.duration, function()
+		if IsValid(self) then
+			self:DecrementStackCount()
+			if self:GetStackCount() <= 0 then
+				self:Destroy()
+			end
+		end
+	end)
 end
 
 custom_huskar_burning_spear_legendary = class({})
 custom_huskar_burning_spear_legendary.talents = {}
 
-function custom_huskar_burning_spear_legendary:CreateTalent()
-	self:SetLevel(1)
-	self:SetHidden(false)
-end
-
 function custom_huskar_burning_spear_legendary:UpdateTalents()
 	local caster = self:GetCaster()
 	if not self.init then
 		self.init = true
-		if self:IsTrained() and IsServer() then
-			self:SetLevel(1)
-		end
 		self.talents = {
+			has_w7 = 0,
 			w7_duration = caster:GetTalentValue("modifier_huskar_spears_7", "duration", true),
-			w7_damage = caster:GetTalentValue("modifier_huskar_spears_7", "damage", true),
 			w7_damage_inc = caster:GetTalentValue("modifier_huskar_spears_7", "damage_inc", true),
 			w7_talent_cd = caster:GetTalentValue("modifier_huskar_spears_7", "talent_cd", true),
-			w7_slow = caster:GetTalentValue("modifier_huskar_spears_7", "slow", true),
 		}
+	end
+
+	if caster:HasTalent("modifier_huskar_spears_7") then
+		self.talents.has_w7 = 1
 	end
 end
 
 function custom_huskar_burning_spear_legendary:GetCooldown()
-	return (self.talents.w7_talent_cd and self.talents.w7_talent_cd or 0)
+	return self.talents.has_w7 == 1 and self.talents.w7_talent_cd or 0
 end
 
 function custom_huskar_burning_spear_legendary:OnSpellStart()
-	local caster = self:GetCaster()
-
-	caster:GenericParticle()
-
-	local particle = ParticleManager:CreateParticle("particles/huskar_fast.vpcf", PATTACH_ABSORIGIN, caster)
-	ParticleManager:SetParticleControl(particle, 0, caster:GetAbsOrigin())
-	ParticleManager:SetParticleControl(particle, 1, caster:GetAbsOrigin())
+	local particle = ParticleManager:CreateParticle("particles/huskar_fast.vpcf", PATTACH_ABSORIGIN, self.caster)
+	ParticleManager:SetParticleControl(particle, 0, self.caster:GetAbsOrigin())
+	ParticleManager:SetParticleControl(particle, 1, self.caster:GetAbsOrigin())
 	ParticleManager:ReleaseParticleIndex(particle)
 
-	caster:EmitSound("Huskar.Spear_Cast")
-	caster:EmitSound("Huskar.Spear_Cast_vo")
-	caster:EmitSound("Huskar.Spear_Cast2")
+	self.caster:EmitSound("Huskar.Spear_Cast")
+	self.caster:EmitSound("Huskar.Spear_Cast_vo")
+	self.caster:EmitSound("Huskar.Spear_Cast2")
 
-	caster:AddNewModifier(
-		caster,
+	self.caster:AddNewModifier(
+		self.caster,
 		self,
 		"modifier_custom_huskar_burning_spear_legendary_buff",
 		{ duration = self.talents.w7_duration }
 	)
+end
+
+function custom_huskar_burning_spear_legendary:CreateTalent()
+	self:SetLevel(1)
+	self:SetHidden(false)
+	self:UpdateTalents()
 end
 
 modifier_custom_huskar_burning_spear_legendary_buff = class(mod_visible)
@@ -966,42 +976,4 @@ end
 
 function modifier_custom_huskar_burning_spear_legendary_buff:GetModifierIncomingDamage_Percentage()
 	return self.damage_inc
-end
-
-modifier_custom_huskar_burning_spear_legendary_debuff = class(mod_hidden)
-function modifier_custom_huskar_burning_spear_legendary_debuff:OnCreated()
-	if not IsServer() then
-		return
-	end
-	self.parent = self:GetParent()
-	self.caster = self:GetCaster()
-	self.ability = self:GetAbility()
-
-	self.duration = self.ability.duration
-	self:AddStack()
-end
-
-function modifier_custom_huskar_burning_spear_legendary_debuff:OnRefresh()
-	if not IsServer() then
-		return
-	end
-	self:AddStack()
-end
-
-function modifier_custom_huskar_burning_spear_legendary_debuff:AddStack()
-	if not IsServer() then
-		return
-	end
-
-	self:IncrementStackCount()
-	self.parent:SendNumber(6, self:GetStackCount())
-
-	Timers:CreateTimer(self.duration, function()
-		if IsValid(self) then
-			self:DecrementStackCount()
-			if self:GetStackCount() <= 0 then
-				self:Destroy()
-			end
-		end
-	end)
 end

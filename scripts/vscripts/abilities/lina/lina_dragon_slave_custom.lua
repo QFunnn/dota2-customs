@@ -56,6 +56,7 @@ function lina_dragon_slave_custom:Precache(context)
 		context
 	)
 	PrecacheResource("particle", "particles/ember_spirit/chains_bkb.vpcf", context)
+	PrecacheResource("particle", "particles/lina/soul_stack.vpcf", context)
 end
 
 function lina_dragon_slave_custom:UpdateTalents(name)
@@ -122,13 +123,13 @@ function lina_dragon_slave_custom:UpdateTalents(name)
 
 	if caster:HasTalent("modifier_lina_dragon_4") then
 		self.talents.has_q4 = 1
-		self.caster:AddSpellEvent(self.tracker, true)
+		caster:AddSpellEvent(self.tracker, true)
 	end
 
 	if caster:HasTalent("modifier_lina_dragon_7") then
 		self.talents.has_q7 = 1
-		if IsServer() and name == "modifier_lina_dragon_7" then
-			self.caster:AddSpellEvent(self.tracker, true)
+		caster:AddSpellEvent(self.tracker, true)
+		if IsServer() then
 			self.tracker:UpdateUI()
 		end
 	end
@@ -138,8 +139,8 @@ function lina_dragon_slave_custom:UpdateTalents(name)
 		self.talents.h3_mana = caster:GetTalentValue("modifier_lina_hero_3", "mana") / 100
 		self.talents.h3_health = caster:GetTalentValue("modifier_lina_hero_3", "health")
 		if IsServer() then
-			self.caster:AddSpellEvent(self.tracker, true)
-			self.caster:CalculateStatBonus(true)
+			caster:AddSpellEvent(self.tracker, true)
+			caster:CalculateStatBonus(true)
 		end
 	end
 
@@ -148,15 +149,15 @@ function lina_dragon_slave_custom:UpdateTalents(name)
 	end
 end
 
+function lina_dragon_slave_custom:GetAbilityTextureName()
+	return wearables_system:GetAbilityIconReplacement(self.caster, "lina_dragon_slave", self)
+end
+
 function lina_dragon_slave_custom:GetIntrinsicModifierName()
 	if not self:GetCaster():IsRealHero() then
 		return
 	end
 	return "modifier_lina_dragon_slave_custom_tracker"
-end
-
-function lina_dragon_slave_custom:GetAbilityTextureName()
-	return wearables_system:GetAbilityIconReplacement(self.caster, "lina_dragon_slave", self)
 end
 
 function lina_dragon_slave_custom:GetCastPoint()
@@ -177,7 +178,7 @@ function lina_dragon_slave_custom:GetCooldown(iLevel)
 	if self.caster:HasModifier("modifier_lina_dragon_slave_custom_legendary") then
 		k = 1 + self.talents.q7_cd
 	end
-	return (self.BaseClass.GetCooldown(self, iLevel) + (self.talents.q2_cd and self.talents.q2_cd or 0)) * k
+	return (self.BaseClass.GetCooldown(self, iLevel) + (self.talents.q2_cd or 0)) * k
 end
 
 function lina_dragon_slave_custom:OnSpellStart(new_target, damage_ability)
@@ -354,11 +355,13 @@ function modifier_lina_dragon_slave_custom_tracker:SpellEvent(params)
 	end
 
 	if self.ability.talents.has_h3 == 1 or self.ability.talents.has_q4 == 1 then
+		local duration = self.ability.talents.has_h3 == 1 and self.ability.talents.h3_duration
+			or self.ability.talents.q4_duration
 		self.parent:AddNewModifier(
 			self.parent,
 			self.ability,
 			"modifier_lina_dragon_slave_custom_proc",
-			{ duration = self.ability.talents.h3_duration, dragon = params.ability == self.ability }
+			{ duration = duration, dragon = params.ability == self.ability and 1 or 0 }
 		)
 	end
 
@@ -441,6 +444,39 @@ function modifier_lina_dragon_slave_custom_legendary_stack:OnCreated()
 	self:StartIntervalThink(0.5)
 end
 
+function modifier_lina_dragon_slave_custom_legendary_stack:OnRefresh()
+	if not IsServer() then
+		return
+	end
+	self:IncrementStackCount()
+
+	if self.ability.tracker then
+		self.ability.tracker:UpdateUI()
+	end
+
+	if self.particle then
+		for i = 1, self.visual_max do
+			if i <= math.floor(self:GetStackCount() / (self.max / self.visual_max)) then
+				ParticleManager:SetParticleControl(self.particle, i, Vector(1, 0, 0))
+			else
+				ParticleManager:SetParticleControl(self.particle, i, Vector(0, 0, 0))
+			end
+		end
+	end
+
+	if self:GetStackCount() < self.max then
+		return
+	end
+
+	self.parent:AddNewModifier(
+		self.parent,
+		self.ability,
+		"modifier_lina_dragon_slave_custom_legendary",
+		{ duration = self.ability.talents.q7_duration }
+	)
+	self:Destroy()
+end
+
 function modifier_lina_dragon_slave_custom_legendary_stack:OnIntervalThink()
 	if not IsServer() then
 		return
@@ -459,46 +495,6 @@ function modifier_lina_dragon_slave_custom_legendary_stack:OnIntervalThink()
 
 	if #targets > 0 then
 		self:SetDuration(self.duration, true)
-	end
-end
-
-function modifier_lina_dragon_slave_custom_legendary_stack:OnRefresh()
-	if not IsServer() then
-		return
-	end
-	self:IncrementStackCount()
-	if self:GetStackCount() < self.max then
-		return
-	end
-
-	self.parent:AddNewModifier(
-		self.parent,
-		self.ability,
-		"modifier_lina_dragon_slave_custom_legendary",
-		{ duration = self.ability.talents.q7_duration }
-	)
-	self:Destroy()
-end
-
-function modifier_lina_dragon_slave_custom_legendary_stack:OnStackCountChanged()
-	if not IsServer() then
-		return
-	end
-
-	if self.ability.tracker then
-		self.ability.tracker:UpdateUI()
-	end
-
-	if not self.particle then
-		return
-	end
-
-	for i = 1, self.visual_max do
-		if i <= math.floor(self:GetStackCount() / (self.max / self.visual_max)) then
-			ParticleManager:SetParticleControl(self.particle, i, Vector(1, 0, 0))
-		else
-			ParticleManager:SetParticleControl(self.particle, i, Vector(0, 0, 0))
-		end
 	end
 end
 
@@ -606,16 +602,16 @@ end
 function modifier_lina_dragon_slave_custom_slow:GetEffectName()
 	return "particles/lina_attack_slow.vpcf"
 end
-function modifier_lina_dragon_slave_custom_slow:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-	}
-end
-
 function modifier_lina_dragon_slave_custom_slow:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 	self.slow = self.ability.talents.q2_slow
+end
+
+function modifier_lina_dragon_slave_custom_slow:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+	}
 end
 
 function modifier_lina_dragon_slave_custom_slow:GetModifierMoveSpeedBonus_Percentage()
@@ -634,15 +630,14 @@ function modifier_lina_dragon_slave_custom_proc:OnCreated(table)
 	self.ability = self:GetAbility()
 
 	self.RemoveForDuel = true
-	self.max = self.ability.talents.h3_count
-	self:OnRefresh()
+	self.max = self.ability.talents.has_h3 == 1 and self.ability.talents.h3_count or self.ability.talents.q4_count
+	self:OnRefresh(table)
 end
 
 function modifier_lina_dragon_slave_custom_proc:OnRefresh(table)
 	if not IsServer() then
 		return
 	end
-
 	self:IncrementStackCount()
 
 	if self:GetStackCount() < self.max then

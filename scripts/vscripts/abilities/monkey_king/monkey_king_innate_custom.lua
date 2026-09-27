@@ -73,18 +73,18 @@ function monkey_king_innate_custom:UpdateTalents(name)
 	end
 end
 
-function monkey_king_innate_custom:GetIntrinsicModifierName()
-	if not self:GetCaster():IsRealHero() then
-		return
-	end
-	return "modifier_monkey_king_innate_custom_tracker"
-end
-
 function monkey_king_innate_custom:GetAbilityTextureName()
 	if self.caster:HasModifier("modifier_monkey_king_innate_custom") then
 		return "monkey_king_untransform"
 	end
 	return "monkey_king_transfiguration"
+end
+
+function monkey_king_innate_custom:GetIntrinsicModifierName()
+	if not self:GetCaster():IsRealHero() then
+		return
+	end
+	return "modifier_monkey_king_innate_custom_tracker"
 end
 
 function monkey_king_innate_custom:GetBehavior()
@@ -95,8 +95,7 @@ function monkey_king_innate_custom:GetBehavior()
 end
 
 function monkey_king_innate_custom:GetCastRange()
-	return IsServer() and 99999
-		or ((self.AbilityCastRange and self.AbilityCastRange or 0) - self.caster:GetCastRangeBonus())
+	return IsServer() and 99999 or ((self.AbilityCastRange or 0) - self.caster:GetCastRangeBonus())
 end
 
 function monkey_king_innate_custom:GetCooldown(iLevel)
@@ -123,6 +122,9 @@ function monkey_king_innate_custom:OnSpellStart()
 	end
 
 	local clone = self.caster.command_ability:SpawnSoldier(point, self.duration, 1)
+	if not IsValid(clone) then
+		return
+	end
 
 	local point_2 = point + RandomVector(self.radius)
 	self.caster.command_ability:SpawnSoldier(point_2, self.duration_clone, 1)
@@ -336,6 +338,7 @@ function modifier_monkey_king_innate_custom_tracker:OnCreated()
 end
 
 modifier_monkey_king_mischief_invun = class(mod_hidden)
+
 modifier_monkey_king_innate_custom_clone = class(mod_hidden)
 function modifier_monkey_king_innate_custom_clone:OnCreated()
 	if not IsServer() then

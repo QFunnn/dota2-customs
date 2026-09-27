@@ -46,7 +46,6 @@ LinkLuaModifier(
 
 furion_blooming_flare_custom = class({})
 furion_blooming_flare_custom.talents = {}
-furion_blooming_flare_custom.trees = {}
 
 function furion_blooming_flare_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
@@ -67,6 +66,14 @@ function furion_blooming_flare_custom:Precache(context)
 	PrecacheResource("particle", "particles/nature_prophet/wrath_stack_max.vpcf", context)
 	PrecacheResource("particle", "particles/hoodwink/bush_damage.vpcf", context)
 	PrecacheResource("particle", "particles/nature_prophet/blooming_proc_aoe.vpcf", context)
+	PrecacheResource("particle", "particles/furion/furion_wrath_of_nature_custom.vpcf", context)
+	PrecacheResource("particle", "particles/nature_prophet/call_root.vpcf", context)
+	PrecacheResource("particle", "particles/furion/teleport_refresh.vpcf", context)
+	PrecacheResource("particle", "particles/nature_prophet/teleport_damage.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_brewmaster/brewmaster_thunder_clap_debuff.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_furion/furion_sprout_damage.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_furion/furion_curse_of_forest_debuff.vpcf", context)
+	PrecacheResource("particle", "particles/nature_prophet/teleport_armor.vpcf", context)
 end
 
 function furion_blooming_flare_custom:UpdateTalents(name)
@@ -156,7 +163,7 @@ function furion_blooming_flare_custom:GetIntrinsicModifierName()
 end
 
 function furion_blooming_flare_custom:GetCooldown(level)
-	return self.BaseClass.GetCooldown(self, level) + (self.talents.r2_cd and self.talents.r2_cd or 0)
+	return self.BaseClass.GetCooldown(self, level) + (self.talents.r2_cd or 0)
 end
 
 function furion_blooming_flare_custom:GetManaCost(level)
@@ -338,21 +345,7 @@ function modifier_furion_blooming_flare_custom:FindNewTarget()
 			end
 		end
 		if new_tree == nil then
-			for _, treant in
-				pairs(
-					FindUnitsInRadius(
-						self.caster:GetTeamNumber(),
-						self.origin,
-						nil,
-						self.radius,
-						DOTA_UNIT_TARGET_TEAM_FRIENDLY,
-						DOTA_UNIT_TARGET_BASIC,
-						0,
-						FIND_CLOSEST,
-						false
-					)
-				)
-			do
+			for _, treant in pairs(self.caster:FindFriends(self.radius, self.origin)) do
 				if not self.hit_targets[treant:entindex()] and treant.is_treant then
 					new_tree = treant
 					break
@@ -566,12 +559,6 @@ modifier_furion_blooming_flare_custom_root = class(mod_hidden)
 function modifier_furion_blooming_flare_custom_root:IsPurgable()
 	return true
 end
-function modifier_furion_blooming_flare_custom_root:CheckState()
-	return {
-		[MODIFIER_STATE_ROOTED] = true,
-	}
-end
-
 function modifier_furion_blooming_flare_custom_root:OnCreated()
 	if not IsServer() then
 		return
@@ -613,6 +600,12 @@ function modifier_furion_blooming_flare_custom_root:OnCreated()
 	self:AddParticle(nfx, false, false, -1, false, false)
 end
 
+function modifier_furion_blooming_flare_custom_root:CheckState()
+	return {
+		[MODIFIER_STATE_ROOTED] = true,
+	}
+end
+
 function modifier_furion_blooming_flare_custom_root:OnDestroy()
 	if not IsServer() then
 		return
@@ -639,6 +632,7 @@ function modifier_furion_blooming_flare_custom_tracker:OnCreated()
 	self.ability:UpdateTalents()
 
 	self.parent.blooming_ability = self.ability
+	self.ability.trees = {}
 
 	self.ability.damage = self.ability:GetSpecialValueFor("damage")
 	self.ability.root = self.ability:GetSpecialValueFor("root")
@@ -718,6 +712,9 @@ function modifier_furion_blooming_flare_custom_tracker:SpellEvent(params)
 	local timer = params.ability == self.ability and 0.4 or 0
 
 	Timers:CreateTimer(timer, function()
+		if not IsValid(target) then
+			return
+		end
 		self.parent:EmitSound("Furion.Blooming_proc")
 		target:AddNewModifier(self.parent, self.ability, "modifier_furion_blooming_flare_custom_proc", {})
 
@@ -784,8 +781,8 @@ function modifier_furion_blooming_flare_custom_slow:StatusEffectPriority()
 end
 function modifier_furion_blooming_flare_custom_slow:OnCreated()
 	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-	self.ability = self:GetCaster().blooming_ability
+	self.caster = self:GetCaster()
+	self.ability = self.caster.blooming_ability
 	if not self.ability then
 		self:Destroy()
 		return
@@ -860,17 +857,8 @@ function modifier_furion_blooming_flare_custom_proc:OnIntervalThink()
 
 		local count = #GridNav:GetAllTreesAroundPoint(self.parent:GetOrigin(), self.radius, false)
 
-		self.treants = FindUnitsInRadius(
-			self.caster:GetTeamNumber(),
-			self.parent:GetAbsOrigin(),
-			nil,
-			self.radius,
-			DOTA_UNIT_TARGET_TEAM_FRIENDLY,
-			DOTA_UNIT_TARGET_BASIC,
-			DOTA_UNIT_TARGET_FLAG_INVULNERABLE,
-			FIND_CLOSEST,
-			false
-		)
+		self.treants =
+			self.caster:FindFriends(self.radius, self.parent:GetAbsOrigin(), nil, DOTA_UNIT_TARGET_FLAG_INVULNERABLE)
 		for _, treant in pairs(self.treants) do
 			if treant.is_treant and treant.owner and treant.owner == self.caster then
 				count = count + 1
@@ -946,7 +934,7 @@ function modifier_furion_blooming_flare_custom_legendary_tree:OnIntervalThink()
 		return
 	end
 
-	if (self.tree.IsStanding and not self.tree:IsStanding()) or self.tree:IsNull() then
+	if self.tree:IsNull() or (self.tree.IsStanding and not self.tree:IsStanding()) then
 		self:Destroy()
 		return
 	end

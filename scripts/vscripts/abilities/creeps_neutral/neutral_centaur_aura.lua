@@ -1,0 +1,71 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1a5b3bb 
+  ~ auto-generated — do not edit
+]]
+
+
+LinkLuaModifier("modifier_centaur_aura", "abilities/creeps_neutral/neutral_centaur_aura", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_centaur_aura_buff", "abilities/creeps_neutral/neutral_centaur_aura", LUA_MODIFIER_MOTION_NONE)
+
+neutral_centaur_aura = class({})
+
+function neutral_centaur_aura:GetIntrinsicModifierName()
+	return "modifier_centaur_aura"
+end
+
+modifier_centaur_aura = class(mod_hidden)
+function modifier_centaur_aura:IsAura()
+	return true
+end
+function modifier_centaur_aura:GetAuraDuration()
+	return 0.1
+end
+function modifier_centaur_aura:GetAuraRadius()
+	return 500
+end
+function modifier_centaur_aura:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_FRIENDLY
+end
+function modifier_centaur_aura:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
+end
+function modifier_centaur_aura:OnCreated()
+	self.ability = self:GetAbility()
+
+	self.ability.armor = self.ability:GetSpecialValueFor("armor")
+	self.ability.magic = self.ability:GetSpecialValueFor("magic")
+end
+
+function modifier_centaur_aura:GetModifierAura()
+	return "modifier_centaur_aura_buff"
+end
+
+modifier_centaur_aura_buff = class(mod_visible)
+function modifier_centaur_aura_buff:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
+end
+function modifier_centaur_aura_buff:OnCreated()
+	self.ability = self:GetAbility()
+
+	self.armor = self.ability.armor
+	self.magic = self.ability.magic
+end
+
+function modifier_centaur_aura_buff:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
+		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
+	}
+end
+
+function modifier_centaur_aura_buff:GetModifierPhysicalArmorBonus()
+	return self.armor
+end
+
+function modifier_centaur_aura_buff:GetModifierMagicalResistanceBonus()
+	return self.magic
+end

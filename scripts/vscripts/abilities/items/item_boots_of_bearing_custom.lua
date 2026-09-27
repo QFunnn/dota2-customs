@@ -42,20 +42,22 @@ function item_boots_of_bearing_custom:GetIntrinsicModifierName()
 	return "modifier_item_boots_of_bearing_custom"
 end
 
+function item_boots_of_bearing_custom:Spawn()
+	self.aura_movement_speed = self:GetSpecialValueFor("aura_movement_speed")
+	self.bonus_str = self:GetSpecialValueFor("bonus_str")
+	self.bonus_attack_speed_pct = self:GetSpecialValueFor("bonus_attack_speed_pct")
+	self.bonus_movement_speed_pct = self:GetSpecialValueFor("bonus_movement_speed_pct")
+	self.duration = self:GetSpecialValueFor("duration")
+	self.radius = self:GetSpecialValueFor("radius")
+	self.bonus_movement_speed = self:GetSpecialValueFor("bonus_movement_speed")
+	self.bonus_health_regen = self:GetSpecialValueFor("bonus_health_regen")
+	self.bonus_ms_duration = self:GetSpecialValueFor("bonus_ms_duration")
+end
+
 function item_boots_of_bearing_custom:OnSpellStart()
 	local caster = self:GetCaster()
 
-	local units = FindUnitsInRadius(
-		self:GetTeamNumber(),
-		caster:GetAbsOrigin(),
-		nil,
-		self.radius,
-		DOTA_UNIT_TARGET_TEAM_FRIENDLY,
-		DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO,
-		DOTA_UNIT_TARGET_FLAG_INVULNERABLE,
-		FIND_CLOSEST,
-		false
-	)
+	local units = caster:FindFriends(self.radius, nil, nil, DOTA_UNIT_TARGET_FLAG_INVULNERABLE)
 
 	for _, unit in pairs(units) do
 		unit:AddNewModifier(caster, self, "modifier_item_boots_of_bearing_custom_active", { duration = self.duration })
@@ -71,39 +73,6 @@ function item_boots_of_bearing_custom:OnSpellStart()
 end
 
 modifier_item_boots_of_bearing_custom = class(mod_hidden)
-function modifier_item_boots_of_bearing_custom:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
-		MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE,
-	}
-end
-
-function modifier_item_boots_of_bearing_custom:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.ability.aura_movement_speed = self.ability:GetSpecialValueFor("aura_movement_speed")
-	self.ability.bonus_str = self.ability:GetSpecialValueFor("bonus_str")
-	self.ability.bonus_attack_speed_pct = self.ability:GetSpecialValueFor("bonus_attack_speed_pct")
-	self.ability.bonus_movement_speed_pct = self.ability:GetSpecialValueFor("bonus_movement_speed_pct")
-	self.ability.duration = self.ability:GetSpecialValueFor("duration")
-	self.ability.radius = self.ability:GetSpecialValueFor("radius")
-	self.ability.bonus_movement_speed = self.ability:GetSpecialValueFor("bonus_movement_speed")
-	self.ability.bonus_health_regen = self.ability:GetSpecialValueFor("bonus_health_regen")
-	self.ability.bonus_ms_duration = self.ability:GetSpecialValueFor("bonus_ms_duration")
-
-	self.radius = self:GetAbility():GetSpecialValueFor("radius")
-end
-
-function modifier_item_boots_of_bearing_custom:GetModifierBonusStats_Strength()
-	return self.ability.bonus_str
-end
-
-function modifier_item_boots_of_bearing_custom:GetModifierMoveSpeedBonus_Special_Boots()
-	return self.ability.bonus_movement_speed
-end
-
 function modifier_item_boots_of_bearing_custom:IsAura()
 	return true
 end
@@ -119,11 +88,30 @@ end
 function modifier_item_boots_of_bearing_custom:GetAuraRadius()
 	return self.ability.radius
 end
+function modifier_item_boots_of_bearing_custom:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
 
-modifier_item_boots_of_bearing_custom_aura = class({})
-function modifier_item_boots_of_bearing_custom_aura:IsHidden()
-	return false
+	self.radius = self.ability.radius
 end
+
+function modifier_item_boots_of_bearing_custom:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
+		MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE,
+	}
+end
+
+function modifier_item_boots_of_bearing_custom:GetModifierBonusStats_Strength()
+	return self.ability.bonus_str
+end
+
+function modifier_item_boots_of_bearing_custom:GetModifierMoveSpeedBonus_Special_Boots()
+	return self.ability.bonus_movement_speed
+end
+
+modifier_item_boots_of_bearing_custom_aura = class(mod_visible)
 function modifier_item_boots_of_bearing_custom_aura:IsPurgable()
 	return true
 end
@@ -150,10 +138,7 @@ function modifier_item_boots_of_bearing_custom_aura:GetModifierConstantHealthReg
 	return self.regen
 end
 
-modifier_item_boots_of_bearing_custom_active = class({})
-function modifier_item_boots_of_bearing_custom_active:IsHidden()
-	return false
-end
+modifier_item_boots_of_bearing_custom_active = class(mod_visible)
 function modifier_item_boots_of_bearing_custom_active:IsPurgable()
 	return true
 end
@@ -199,13 +184,7 @@ function modifier_item_boots_of_bearing_custom_active:CheckState()
 	}
 end
 
-modifier_item_boots_of_bearing_custom_haste = class({})
-function modifier_item_boots_of_bearing_custom_haste:IsHidden()
-	return true
-end
-function modifier_item_boots_of_bearing_custom_haste:IsPurgable()
-	return false
-end
+modifier_item_boots_of_bearing_custom_haste = class(mod_hidden)
 function modifier_item_boots_of_bearing_custom_haste:CheckState()
 	return {
 		[MODIFIER_STATE_UNSLOWABLE] = true,

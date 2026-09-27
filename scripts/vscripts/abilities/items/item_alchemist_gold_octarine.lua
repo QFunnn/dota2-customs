@@ -35,11 +35,29 @@ function item_alchemist_gold_octarine:Precache(context)
 		return
 	end
 	PrecacheResource("particle", "particles/items_fx/bloodstone_heal.vpcf", context)
+	PrecacheResource("particle", "particles/items3_fx/octarine_core_lifesteal.vpcf", context)
+	PrecacheResource("particle", "particles/generic_gameplay/rune_arcane_owner.vpcf", context)
+	PrecacheResource("particle", "particles/items2_fx/veil_of_discord_debuff.vpcf", context)
+end
+
+function item_alchemist_gold_octarine:Spawn()
+	self.duration = self:GetSpecialValueFor("duration")
+	self.cdr_bonus = self:GetSpecialValueFor("cdr_bonus")
+	self.bonus_health = self:GetSpecialValueFor("bonus_health")
+	self.bonus_mana = self:GetSpecialValueFor("bonus_mana")
+	self.mana_regen = self:GetSpecialValueFor("mana_regen")
+	self.bonus_int = self:GetSpecialValueFor("bonus_int")
+	self.spell_amp = self:GetSpecialValueFor("spell_amp")
+	self.aura_radius = self:GetSpecialValueFor("aura_radius")
+	self.spell_lifesteal = self:GetSpecialValueFor("spell_lifesteal")
+	self.lifesteal_active = self:GetSpecialValueFor("lifesteal_active")
+	self.mana_cost_active = self:GetSpecialValueFor("mana_cost_active")
+	self.cd_inc = self:GetSpecialValueFor("cd_inc")
 end
 
 function item_alchemist_gold_octarine:OnSpellStart()
 	local caster = self:GetCaster()
-	local duration = self:GetSpecialValueFor("duration")
+	local duration = self.duration
 
 	caster:EmitSound("DOTA_Item.Bloodstone.Cast")
 	caster:AddNewModifier(caster, self, "modifier_item_alchemist_gold_octarine_active", { duration = duration })
@@ -49,7 +67,21 @@ modifier_item_alchemist_gold_octarine = class(mod_hidden)
 function modifier_item_alchemist_gold_octarine:RemoveOnDeath()
 	return false
 end
-
+function modifier_item_alchemist_gold_octarine:GetAuraRadius()
+	return self.ability.aura_radius
+end
+function modifier_item_alchemist_gold_octarine:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_ENEMY
+end
+function modifier_item_alchemist_gold_octarine:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
+end
+function modifier_item_alchemist_gold_octarine:GetModifierAura()
+	return "modifier_item_alchemist_gold_octarine_aura"
+end
+function modifier_item_alchemist_gold_octarine:IsAura()
+	return not self.parent:HasModifier("modifier_item_bloodstone_custom")
+end
 function modifier_item_alchemist_gold_octarine:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -57,17 +89,15 @@ function modifier_item_alchemist_gold_octarine:OnCreated()
 	if not self.parent.cdr_items then
 		self.parent.cdr_items = {}
 	end
-	self.parent.cdr_items[self] = self.ability:GetSpecialValueFor("cdr_bonus")
+	self.parent.cdr_items[self] = self.ability.cdr_bonus
 
-	self.bonus_health = self.ability:GetSpecialValueFor("bonus_health")
-	self.bonus_mana = self.ability:GetSpecialValueFor("bonus_mana")
-	self.bonus_mana_regen = self.ability:GetSpecialValueFor("mana_regen")
-	self.bonus_int = self.ability:GetSpecialValueFor("bonus_int")
-	self.ability.spell_amp = self.ability:GetSpecialValueFor("spell_amp")
-	self.ability.aura_radius = self.ability:GetSpecialValueFor("aura_radius")
+	self.bonus_health = self.ability.bonus_health
+	self.bonus_mana = self.ability.bonus_mana
+	self.bonus_mana_regen = self.ability.mana_regen
+	self.bonus_int = self.ability.bonus_int
 
-	self.lifesteal = self.ability:GetSpecialValueFor("spell_lifesteal") / 100
-	self.lifesteal_active = self.ability:GetSpecialValueFor("lifesteal_active") / 100
+	self.lifesteal = self.ability.spell_lifesteal / 100
+	self.lifesteal_active = self.ability.lifesteal_active / 100
 
 	if self.parent:IsRealHero() then
 		self.parent:AddDamageEvent_out(self, true)
@@ -76,6 +106,9 @@ end
 
 function modifier_item_alchemist_gold_octarine:DamageEvent_out(params)
 	if not IsServer() then
+		return
+	end
+	if not IsValid(self.ability) then
 		return
 	end
 	if (params.unit:GetAbsOrigin() - self.parent:GetAbsOrigin()):Length2D() > 2000 then
@@ -128,34 +161,18 @@ function modifier_item_alchemist_gold_octarine:GetModifierPercentageManacostStac
 	return self.mana_reduce
 end
 
-function modifier_item_alchemist_gold_octarine:GetAuraRadius()
-	return self.ability.aura_radius
-end
-function modifier_item_alchemist_gold_octarine:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_ENEMY
-end
-function modifier_item_alchemist_gold_octarine:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
-end
-function modifier_item_alchemist_gold_octarine:GetModifierAura()
-	return "modifier_item_alchemist_gold_octarine_aura"
-end
-function modifier_item_alchemist_gold_octarine:IsAura()
-	return not self.parent:HasModifier("modifier_item_bloodstone_custom")
-end
-
 modifier_item_alchemist_gold_octarine_active = class(mod_visible)
 function modifier_item_alchemist_gold_octarine_active:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.reduce = self.ability:GetSpecialValueFor("mana_cost_active")
+	self.reduce = self.ability.mana_cost_active
 
 	if not IsServer() then
 		return
 	end
 
-	local cd_inc = self.ability:GetSpecialValueFor("cd_inc")
+	local cd_inc = self.ability.cd_inc
 
 	for i = 0, 8 do
 		local current_item = self.parent:GetItemInSlot(i)

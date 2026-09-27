@@ -48,6 +48,21 @@ function item_shivas_guard_custom:Precache(context)
 	PrecacheResource("particle", "particles/generic_gameplay/generic_slowed_cold.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_frost.vpcf", context)
 	PrecacheResource("particle", "particles/items2_fx/veil_of_discord_debuff.vpcf", context)
+	PrecacheResource("particle", "particles/items2_fx/shivas_guard_impact.vpcf", context)
+end
+
+function item_shivas_guard_custom:Spawn()
+	self.bonus_armor = self:GetSpecialValueFor("bonus_armor")
+	self.aura_radius = self:GetSpecialValueFor("aura_radius")
+	self.bonus_damage = self:GetSpecialValueFor("bonus_damage")
+	self.aura_attack_speed = self:GetSpecialValueFor("aura_attack_speed")
+	self.blast_damage = self:GetSpecialValueFor("blast_damage")
+	self.blast_movement_speed = self:GetSpecialValueFor("blast_movement_speed")
+	self.blast_debuff_duration = self:GetSpecialValueFor("blast_debuff_duration")
+	self.blast_radius = self:GetSpecialValueFor("blast_radius")
+	self.blast_speed = self:GetSpecialValueFor("blast_speed")
+	self.slow_limit = self:GetSpecialValueFor("slow_limit")
+	self.slow_limit_duration = self:GetSpecialValueFor("slow_limit_duration")
 end
 
 function item_shivas_guard_custom:OnSpellStart()
@@ -66,21 +81,27 @@ modifier_item_shiva_custom_stats = class(mod_hidden)
 function modifier_item_shiva_custom_stats:RemoveOnDeath()
 	return false
 end
-function modifier_item_shiva_custom_stats:OnCreated(keys)
+function modifier_item_shiva_custom_stats:GetAuraRadius()
+	return self.ability.aura_radius
+end
+function modifier_item_shiva_custom_stats:GetAuraSearchFlags()
+	return DOTA_UNIT_TARGET_FLAG_NONE
+end
+function modifier_item_shiva_custom_stats:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_ENEMY
+end
+function modifier_item_shiva_custom_stats:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
+end
+function modifier_item_shiva_custom_stats:GetModifierAura()
+	return "modifier_item_shiva_custom_aura"
+end
+function modifier_item_shiva_custom_stats:IsAura()
+	return true
+end
+function modifier_item_shiva_custom_stats:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
-
-	self.ability.bonus_armor = self.ability:GetSpecialValueFor("bonus_armor")
-	self.ability.aura_radius = self.ability:GetSpecialValueFor("aura_radius")
-	self.ability.bonus_damage = self.ability:GetSpecialValueFor("bonus_damage")
-	self.ability.aura_attack_speed = self.ability:GetSpecialValueFor("aura_attack_speed")
-	self.ability.blast_damage = self.ability:GetSpecialValueFor("blast_damage")
-	self.ability.blast_movement_speed = self.ability:GetSpecialValueFor("blast_movement_speed")
-	self.ability.blast_debuff_duration = self.ability:GetSpecialValueFor("blast_debuff_duration")
-	self.ability.blast_radius = self.ability:GetSpecialValueFor("blast_radius")
-	self.ability.blast_speed = self.ability:GetSpecialValueFor("blast_speed")
-	self.ability.slow_limit = self.ability:GetSpecialValueFor("slow_limit")
-	self.ability.slow_limit_duration = self.ability:GetSpecialValueFor("slow_limit_duration")
 end
 
 function modifier_item_shiva_custom_stats:DeclareFunctions()
@@ -98,26 +119,14 @@ function modifier_item_shiva_custom_stats:GetModifierSpellAmplify_Percentage()
 	return self.ability.bonus_damage
 end
 
-function modifier_item_shiva_custom_stats:GetAuraRadius()
-	return self.ability.aura_radius
-end
-function modifier_item_shiva_custom_stats:GetAuraSearchFlags()
-	return DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
-end
-function modifier_item_shiva_custom_stats:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_ENEMY
-end
-function modifier_item_shiva_custom_stats:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
-end
-function modifier_item_shiva_custom_stats:GetModifierAura()
-	return "modifier_item_shiva_custom_aura"
-end
-function modifier_item_shiva_custom_stats:IsAura()
-	return true
+modifier_item_shiva_custom_aura = class(mod_visible)
+function modifier_item_shiva_custom_aura:OnCreated()
+	self.ability = self:GetAbility()
+	self.parent = self:GetParent()
+
+	self.attack_slow = self.ability.aura_attack_speed
 end
 
-modifier_item_shiva_custom_aura = class(mod_visible)
 function modifier_item_shiva_custom_aura:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_ATTACKSPEED_PERCENTAGE,
@@ -126,13 +135,6 @@ end
 
 function modifier_item_shiva_custom_aura:GetModifierAttackSpeedPercentage()
 	return self.attack_slow
-end
-
-function modifier_item_shiva_custom_aura:OnCreated()
-	self.ability = self:GetAbility()
-	self.parent = self:GetParent()
-
-	self.attack_slow = self.ability.aura_attack_speed
 end
 
 modifier_item_shiva_custom_active = class(mod_hidden)
@@ -148,11 +150,10 @@ function modifier_item_shiva_custom_active:OnCreated(table)
 
 	self.speed = self.ability.blast_speed
 	self.radius = self.ability.blast_radius
-	self.damage_duration = self.ability.resist_debuff_duration
 	self.slow_duration = self.ability.blast_debuff_duration
 	self.slow_limit_duration = self.ability.slow_limit_duration
 
-	self.interval = 0.1
+	self.interval = FrameTime()
 	self.max_time = self.radius / self.speed
 
 	if not IsServer() then
@@ -184,6 +185,7 @@ function modifier_item_shiva_custom_active:OnCreated(table)
 
 	self.targets = {}
 	self.current_radius = 10
+	AddFOWViewer(self.parent:GetTeamNumber(), self.parent:GetAbsOrigin(), self.radius, self.max_time + 0.5, false)
 
 	self:OnIntervalThink()
 	self:StartIntervalThink(self.interval)
@@ -220,17 +222,12 @@ function modifier_item_shiva_custom_active:OnIntervalThink()
 		end
 	end
 
-	AddFOWViewer(self.parent:GetTeamNumber(), self.parent:GetAbsOrigin(), self.current_radius, self.interval * 2, false)
-
 	if self.current_radius < self.radius then
 		self.current_radius = self.current_radius + self.speed * self.interval
 	end
 end
 
-modifier_item_shiva_custom_slow = class({})
-function modifier_item_shiva_custom_slow:IsHidden()
-	return true
-end
+modifier_item_shiva_custom_slow = class(mod_hidden)
 function modifier_item_shiva_custom_slow:IsPurgable()
 	return true
 end
@@ -263,7 +260,7 @@ end
 
 modifier_item_shiva_custom_slow_limit = class(mod_hidden)
 function modifier_item_shiva_custom_slow_limit:IsPurgable()
-	return true
+	return false
 end
 function modifier_item_shiva_custom_slow_limit:OnCreated()
 	self.ability = self:GetAbility()

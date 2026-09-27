@@ -20,6 +20,7 @@ function mars_innate_custom:Precache(context)
 		return
 	end
 	PrecacheResource("particle", "particles/mars/innate_effect.vpcf", context)
+	PrecacheResource("particle", "particles/wraith_king/reinc_shield.vpcf", context)
 	PrecacheResource("soundfile", "soundevents/npc_dota_hero_mars.vsndevts", context)
 	dota1x6:PrecacheShopItems("npc_dota_hero_mars", context)
 end
@@ -62,13 +63,13 @@ function mars_innate_custom:UpdateTalents(name)
 	if caster:HasTalent("modifier_mars_bulwark_2") then
 		self.talents.has_e2 = 1
 		self.talents.e2_heal = caster:GetTalentValue("modifier_mars_bulwark_2", "heal") / 100
-		self.caster:AddDamageEvent_out(self.tracker, true)
+		caster:AddDamageEvent_out(self.tracker, true)
 	end
 
 	if caster:HasTalent("modifier_mars_bulwark_3") then
 		self.talents.has_e3 = 1
 		self.talents.e3_heal = caster:GetTalentValue("modifier_mars_bulwark_3", "heal") / 100
-		self.caster:AddDamageEvent_out(self.tracker, true)
+		caster:AddDamageEvent_out(self.tracker, true)
 	end
 
 	if caster:HasTalent("modifier_mars_hero_1") then
@@ -94,7 +95,7 @@ function mars_innate_custom:UpdateTalents(name)
 
 	if caster:HasTalent("modifier_mars_arena_4") then
 		self.talents.has_r4 = 1
-		self.caster:AddDamageEvent_out(self.tracker, true)
+		caster:AddDamageEvent_out(self.tracker, true)
 	end
 end
 
@@ -216,10 +217,10 @@ function modifier_mars_innate_custom:DamageEvent_inc(params)
 	local result = self.ability:CheckAngle(attacker)
 
 	if result == 1 then
-		if self.ability.talents.has_h2 == 1 and self.parent:CheckCd("mars_h3", self.ability.talents.h2_cd) then
+		if self.ability.talents.has_h2 == 1 and self.parent:CheckCd("mars_h2", self.ability.talents.h2_cd) then
 			self.parent:AddNewModifier(
 				self.parent,
-				nil,
+				self.ability,
 				"modifier_mars_innate_custom_str",
 				{ duration = self.ability.talents.h2_duration }
 			)
@@ -275,11 +276,12 @@ function modifier_mars_innate_custom:DamageEvent_out(params)
 			local max_shield = self.parent:GetMaxHealth() * self.ability.talents.r4_shield
 
 			if not IsValid(self.shield_mod) then
-				self.shield_mod = self.parent:AddNewModifier(self.parent, self, "modifier_generic_shield_multiple", {
-					duration = self.ability.talents.r4_duration,
-					shield_talent = "modifier_mars_arena_4",
-					max_shield = max_shield,
-				})
+				self.shield_mod =
+					self.parent:AddNewModifier(self.parent, self.ability, "modifier_generic_shield_multiple", {
+						duration = self.ability.talents.r4_duration,
+						shield_talent = "modifier_mars_arena_4",
+						max_shield = max_shield,
+					})
 				if self.shield_mod then
 					self.particle = ParticleManager:CreateParticle(
 						"particles/wraith_king/reinc_shield.vpcf",
@@ -389,16 +391,13 @@ function modifier_mars_innate_custom_str:GetTexture()
 end
 function modifier_mars_innate_custom_str:OnCreated()
 	self.parent = self:GetParent()
-	self.ability = self.parent.mars_innate
-	if not self.ability then
-		self:Destroy()
-		return
-	end
+	self.ability = self:GetAbility()
 
 	self.max = self.ability.talents.h2_max
 	if not IsServer() then
 		return
 	end
+	self.RemoveForDuel = true
 	self:OnRefresh()
 end
 

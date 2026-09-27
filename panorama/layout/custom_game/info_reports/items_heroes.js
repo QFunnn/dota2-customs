@@ -299,6 +299,7 @@ function ShowNewItemsAlert(ids)
     icons.RemoveAndDeleteChildren()
     let shown = 0
     let used = {}
+    let seen_ids = []
     for (let k in ids)
     {
         //if (shown >= 6) { break }
@@ -310,6 +311,7 @@ function ShowNewItemsAlert(ids)
         let entry_key = entry.is_dup == 1 ? ("dup_" + (entry.which != null ? entry.which : entry.shards)) : ("item_" + entry.id)
         if (used[entry_key]) { continue }
         used[entry_key] = true
+        if (entry.is_dup != 1) { seen_ids.push(entry.id) }
 
 
         let item_info = entry.is_dup == 1 ? null : GetAlertItemInfoById(entry.id)
@@ -388,6 +390,10 @@ function ShowNewItemsAlert(ids)
     main.style.opacity = "1"
     main.RemoveClass("new_items_alert_hidden")
     main.AddClass("new_items_alert_show")
+    if (seen_ids.length > 0)
+    {
+        GameEvents.SendCustomGameEventToServer_custom("mark_item_seen", { items: seen_ids })
+    }
     $.Schedule(10, function()
     {
         main.RemoveClass("new_items_alert_show")
@@ -525,13 +531,6 @@ function CreateHeroPanelItems(panel, hero_name, stat)
 
     $.CreatePanel(`DOTAHeroImage`, BlockHero, "", {scaling: "stretch-to-cover-preserve-aspect", heroname : String(hero_name), tabindex : "auto", class: "HeroImage", heroimagestyle : "portrait"});
 
-    if (!SAVE_DATA_SETS_ITEMS[String(hero_name)])
-    {
-        SAVE_DATA_SETS_ITEMS[String(hero_name)] = CustomNetTables.GetTableValue("heroes_items_info", String(hero_name));
-    }
-
-    let items = SAVE_DATA_SETS_ITEMS[String(hero_name)]
-
     if (new_items[hero_name])
     {
     	let new_alert = $.CreatePanel("Panel", BlockHero, "")
@@ -539,25 +538,56 @@ function CreateHeroPanelItems(panel, hero_name, stat)
         BlockHero.AddClass("BlockHeroItems_new")
     }
 
-    if (items)
+    if (HERO_ITEMS_CHECKED[String(hero_name)])
     {
-        if (Object.keys(items).length <= 0)
+        SetHeroPanelItemsState(BlockHero, hero_name)
+        return
+    }
+    HERO_ITEMS_QUEUE.push([BlockHero, hero_name])
+    if (HERO_ITEMS_QUEUE.length == 1)
+    {
+        $.Schedule(0, CheckHeroItemsQueue)
+    }
+}
+
+var HERO_ITEMS_CHECKED = {}
+var HERO_ITEMS_QUEUE = []
+
+function CheckHeroItemsQueue()
+{
+    let start_time = Date.now()
+    while (HERO_ITEMS_QUEUE.length > 0 && Date.now() - start_time < 6)
+    {
+        let entry = HERO_ITEMS_QUEUE.shift()
+        if (entry[0].IsValid())
         {
-            BlockHero.AddClass("hero_no_items")
-        }
-        else
-        {
-            BlockHero.SetPanelEvent("onactivate", function() 
-            {	
-                current_shop_hero_choose = hero_name
-                OpenItemsForHero()
-            });
+            SetHeroPanelItemsState(entry[0], entry[1])
         }
     }
-    else
+    if (HERO_ITEMS_QUEUE.length > 0)
+    {
+        $.Schedule(0, CheckHeroItemsQueue)
+    }
+}
+
+function SetHeroPanelItemsState(BlockHero, hero_name)
+{
+    if (!SAVE_DATA_SETS_ITEMS[String(hero_name)])
+    {
+        SAVE_DATA_SETS_ITEMS[String(hero_name)] = CustomNetTables.GetTableValue("heroes_items_info", String(hero_name));
+    }
+    HERO_ITEMS_CHECKED[String(hero_name)] = true
+    let items = SAVE_DATA_SETS_ITEMS[String(hero_name)]
+    if (!items || Object.keys(items).length <= 0)
     {
         BlockHero.AddClass("hero_no_items")
+        return
     }
+    BlockHero.SetPanelEvent("onactivate", function()
+    {
+        current_shop_hero_choose = hero_name
+        OpenItemsForHero()
+    });
 }
 
 function OpenItemsForHero()
@@ -934,16 +964,6 @@ function CreateSlotTypeInfo(panel, name, is_persona)
             panels_sets_list.AddClass("panels_sets_list")
         }
 
-        let player_has_items_from_set = false
-        for (id in set_this_info[0])
-        {
-            let item_id = set_this_info[0][id]
-            if (HasItemInventory(item_id))
-            {
-                player_has_items_from_set = true
-            }
-        }
-
         let slot_panel = $.CreatePanel("Panel", panels_sets_list, "set_card_" + name);
         slot_panel.AddClass("slot_panel_new");
 
@@ -957,11 +977,6 @@ function CreateSlotTypeInfo(panel, name, is_persona)
             }
         }
         SetBlockNewBadge(slot_panel, set_has_new_item, "SlotPanelNewBadge")
-
-        if (!PLAYER_VIEW_ITEMS_FOR_BUY && !player_has_items_from_set)
-        {
-            slot_panel.style.visibility = "collapse"
-        }
 
         let slot_panel_sets = $.CreatePanel("Panel", slot_panel, "");
         slot_panel_sets.AddClass("slot_panel_sets");
@@ -1078,7 +1093,7 @@ function CreateSlotTypeInfo(panel, name, is_persona)
 function IsItemNewForPlayer(item_id)
 {
     if (!HasItemInventory(item_id)) { return false }
-    let sub = CustomNetTables.GetTableValue("sub_data", Players.GetLocalPlayer())
+    let sub = player_table_shop
     if (!sub || !sub.new_items) { return false }
     for (let k in sub.new_items)
     {
@@ -1141,7 +1156,7 @@ function SetBlockNewBadge(block, is_new, extra_class)
 
 function GetNewItemsSet()
 {
-    let sub = CustomNetTables.GetTableValue("sub_data", Players.GetLocalPlayer())
+    let sub = player_table_shop
     let new_ids = {}
     if (sub && sub.new_items)
     {
@@ -1499,10 +1514,6 @@ function CreateItemShopItemHero(panel, info, is_set, items_list, is_item_effect)
                         ButtonItemStyle.SetHasClass("ButtonItemStyle_active", true)
                     }
                 }
-            }
-            if (!PLAYER_VIEW_ITEMS_FOR_BUY)
-            {
-                BlockItem.style.visibility = "collapse"
             }
         }
 

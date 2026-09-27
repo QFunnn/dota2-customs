@@ -49,6 +49,8 @@ function marci_unleash_custom:Precache(context)
 	PrecacheResource("particle", "particles/marci/unleash_spell_caster.vpcf", context)
 	PrecacheResource("particle", "particles/marci/unleash_spell_start.vpcf", context)
 	PrecacheResource("particle", "particles/marci/unleash_stack_spell.vpcf", context)
+	PrecacheResource("particle", "particles/marci_wave.vpcf", context)
+	PrecacheResource("particle", "particles/marci_heal.vpcf", context)
 end
 
 function marci_unleash_custom:UpdateTalents(name)
@@ -62,7 +64,6 @@ function marci_unleash_custom:UpdateTalents(name)
 			r1_duration = caster:GetTalentValue("modifier_marci_unleash_1", "duration", true),
 			r1_duration_creeps = caster:GetTalentValue("modifier_marci_unleash_1", "duration_creeps", true),
 
-			has_r2 = 0,
 			r2_slow = 0,
 			r2_speed = 0,
 
@@ -86,7 +87,6 @@ function marci_unleash_custom:UpdateTalents(name)
 			r7_stack_max = caster:GetTalentValue("modifier_marci_unleash_7", "stack_max", true),
 			r7_cd_inc = caster:GetTalentValue("modifier_marci_unleash_7", "cd_inc", true),
 
-			has_h3 = 0,
 			h3_cd = 0,
 
 			has_h6 = 0,
@@ -111,7 +111,6 @@ function marci_unleash_custom:UpdateTalents(name)
 	end
 
 	if caster:HasTalent("modifier_marci_unleash_2") then
-		self.talents.has_r2 = 1
 		self.talents.r2_slow = caster:GetTalentValue("modifier_marci_unleash_2", "slow")
 		self.talents.r2_speed = caster:GetTalentValue("modifier_marci_unleash_2", "speed")
 	end
@@ -132,7 +131,6 @@ function marci_unleash_custom:UpdateTalents(name)
 	end
 
 	if caster:HasTalent("modifier_marci_hero_3") then
-		self.talents.has_h3 = 1
 		self.talents.h3_cd = caster:GetTalentValue("modifier_marci_hero_3", "cd")
 	end
 
@@ -168,7 +166,7 @@ function marci_unleash_custom:GetIntrinsicModifierName()
 end
 
 function marci_unleash_custom:GetCooldown(iLevel)
-	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.h3_cd and self.talents.h3_cd or 0)
+	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.h3_cd or 0)
 end
 
 function marci_unleash_custom:GetBehavior()
@@ -212,7 +210,6 @@ function marci_unleash_custom:Pulse(center, from_ability, ability)
 		end
 	end
 
-	local damage_ability = ability
 	local radius = self.pulse_radius
 	local damage_k = 1
 
@@ -227,19 +224,19 @@ function marci_unleash_custom:Pulse(center, from_ability, ability)
 		local damage = self.pulse_damage
 		local mod = enemy:FindModifierByName("modifier_marci_unleash_custom_stack")
 		if mod then
-			damage = damage + mod:GetStackCount() * self.ability.talents.r3_damage_inc
+			damage = damage + mod:GetStackCount() * self.talents.r3_damage_inc
 		end
 
 		damageTable.victim = enemy
 		damageTable.damage = damage * damage_k
-		DoDamage(damageTable, damage_ability)
+		DoDamage(damageTable, ability)
 
 		if ability == "modifier_marci_unleash_3" then
 			enemy:AddNewModifier(
 				self.parent,
 				self.ability,
 				"modifier_marci_unleash_custom_stack",
-				{ duration = self.ability.talents.r3_duration }
+				{ duration = self.talents.r3_duration }
 			)
 		end
 
@@ -248,7 +245,7 @@ function marci_unleash_custom:Pulse(center, from_ability, ability)
 				self.parent,
 				self.ability,
 				"modifier_marci_unleash_custom_debuff",
-				{ duration = self.ability.pulse_debuff_duration }
+				{ duration = self.pulse_debuff_duration }
 			)
 		end
 	end
@@ -414,25 +411,6 @@ function modifier_marci_unleash_custom:OnIntervalThink(init)
 	end
 end
 
-function modifier_marci_unleash_custom:SpellEvent(params)
-	if not IsServer() then
-		return
-	end
-	if self.parent ~= params.unit then
-		return
-	end
-	if params.ability:IsItem() or params.ability == self.ability then
-		return
-	end
-	if self.more_time >= self.ability.scepter_linger_max then
-		return
-	end
-
-	local inc = self.ability.scepter_linger
-	self.more_time = self.more_time + inc
-	self:SetDuration(self:GetRemainingTime() + inc, true)
-end
-
 function modifier_marci_unleash_custom:OnDestroy()
 	if not IsServer() then
 		return
@@ -445,18 +423,26 @@ function modifier_marci_unleash_custom:OnDestroy()
 	self.parent:RemoveModifierByName("modifier_marci_unleash_custom_recovery")
 end
 
-function modifier_marci_unleash_custom:LegendaryStack()
+function modifier_marci_unleash_custom:SpellEvent(params)
 	if not IsServer() then
 		return
 	end
-	if self.ability.talents.has_r7 == 0 then
+	if self.parent ~= params.unit then
 		return
 	end
-	if self.legendary_stack >= self.ability.talents.r7_stack_max then
+	if params.ability:IsItem() then
+		return
+	end
+	if params.ability == self.ability then
+		return
+	end
+	if self.more_time >= self.ability.scepter_linger_max then
 		return
 	end
 
-	self.legendary_stack = self.legendary_stack + 1
+	local inc = self.ability.scepter_linger
+	self.more_time = self.more_time + inc
+	self:SetDuration(self:GetRemainingTime() + inc, true)
 end
 
 function modifier_marci_unleash_custom:DamageEvent_inc(params)
@@ -508,32 +494,6 @@ function modifier_marci_unleash_custom:DamageEvent_inc(params)
 	)
 end
 
-function modifier_marci_unleash_custom:GetMinHealth()
-	if not IsServer() then
-		return
-	end
-	if not self.parent:HasScepter() then
-		return
-	end
-	if self.proced then
-		return
-	end
-	if self.parent:LethalDisabled() then
-		return
-	end
-	if not self.parent:IsAlive() then
-		return
-	end
-	if self.parent:PassivesDisabled() then
-		return
-	end
-	if self.parent:GetHealth() <= 0 then
-		return
-	end
-
-	return 1
-end
-
 function modifier_marci_unleash_custom:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
@@ -546,7 +506,10 @@ function modifier_marci_unleash_custom:DeclareFunctions()
 end
 
 function modifier_marci_unleash_custom:GetModifierPercentageCooldown(params)
-	if not params.ability or params.ability:IsItem() then
+	if not params.ability then
+		return
+	end
+	if params.ability:IsItem() then
 		return
 	end
 	if self.ability.talents.has_w7 == 0 and self.ability.talents.has_q7 == 0 then
@@ -581,6 +544,32 @@ end
 
 function modifier_marci_unleash_custom:GetActivityTranslationModifiers()
 	return "unleash"
+end
+
+function modifier_marci_unleash_custom:GetMinHealth()
+	if not IsServer() then
+		return
+	end
+	if not self.parent:HasScepter() then
+		return
+	end
+	if self.proced then
+		return
+	end
+	if self.parent:LethalDisabled() then
+		return
+	end
+	if not self.parent:IsAlive() then
+		return
+	end
+	if self.parent:PassivesDisabled() then
+		return
+	end
+	if self.parent:GetHealth() <= 0 then
+		return
+	end
+
+	return 1
 end
 
 modifier_marci_unleash_custom_recovery = class(mod_visible)
@@ -626,20 +615,19 @@ modifier_marci_unleash_custom_fury = class(mod_visible)
 function modifier_marci_unleash_custom_fury:GetTexture()
 	return "marci_unleash_flurry"
 end
-function modifier_marci_unleash_custom_fury:OnCreated(kv)
+function modifier_marci_unleash_custom_fury:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
-	self.parent:AddAttackStartEvent_out(self)
 
 	self.bonus_as = self.ability.flurry_bonus_attack_speed
 	self.recovery = self.ability.time_between_flurries
 	self.charges = self.ability.charges_per_flurry
 	self.timer = self.ability.max_time_window_per_hit
-	self.duration = self.ability.pulse_debuff_duration
 
 	if not IsServer() then
 		return
 	end
+	self.parent:AddAttackStartEvent_out(self)
 
 	local mod = self.parent:FindModifierByName("modifier_marci_unleash_custom")
 	if mod and self.ability.talents.has_r7 == 1 then
@@ -714,6 +702,13 @@ function modifier_marci_unleash_custom_fury:OnCreated(kv)
 	EmitSoundOnClient("Hero_Marci.Unleash.Charged.2D", self.parent:GetPlayerOwner())
 end
 
+function modifier_marci_unleash_custom_fury:OnIntervalThink()
+	if not IsServer() then
+		return
+	end
+	self:Destroy()
+end
+
 function modifier_marci_unleash_custom_fury:OnDestroy()
 	if not IsServer() then
 		return
@@ -729,9 +724,18 @@ function modifier_marci_unleash_custom_fury:OnDestroy()
 		self.parent.check_r7 = false
 	end
 
-	print(cd)
-
 	self.parent:AddNewModifier(self.parent, self.ability, "modifier_marci_unleash_custom_recovery", { duration = cd })
+end
+
+function modifier_marci_unleash_custom_fury:OnStackCountChanged()
+	if not IsServer() then
+		return
+	end
+	local number_1 = self:GetStackCount()
+	local double = math.floor(number_1 / 10)
+	local number_2 = number_1 - double * 10
+
+	ParticleManager:SetParticleControl(self.particle, 1, Vector(double, number_1, number_2))
 end
 
 function modifier_marci_unleash_custom_fury:AttackStartEvent_out(params)
@@ -746,7 +750,6 @@ function modifier_marci_unleash_custom_fury:AttackStartEvent_out(params)
 	if not target:IsUnit() then
 		return
 	end
-
 	if params.no_attack_cooldown then
 		return
 	end
@@ -806,8 +809,8 @@ function modifier_marci_unleash_custom_fury:AttackStartEvent_out(params)
 	end
 
 	local mod = self.parent:FindModifierByName("modifier_marci_unleash_custom")
-	if mod then
-		mod:LegendaryStack()
+	if mod and self.ability.talents.has_r7 == 1 and mod.legendary_stack < self.ability.talents.r7_stack_max then
+		mod.legendary_stack = mod.legendary_stack + 1
 	end
 
 	self.ability:Pulse(target:GetAbsOrigin())
@@ -836,10 +839,6 @@ function modifier_marci_unleash_custom_fury:GetModifierAttackSpeed_Limit()
 	return 1
 end
 
-function modifier_marci_unleash_custom_fury:OnIntervalThink()
-	self:Destroy()
-end
-
 function modifier_marci_unleash_custom_fury:GetActivityTranslationModifiers()
 	if self:GetStackCount() == 1 then
 		return "flurry_pulse_attack"
@@ -850,22 +849,17 @@ function modifier_marci_unleash_custom_fury:GetActivityTranslationModifiers()
 	return "flurry_attack_a"
 end
 
-function modifier_marci_unleash_custom_fury:OnStackCountChanged()
-	if not IsServer() then
-		return
-	end
-	local number_1 = self:GetStackCount()
-	local double = math.floor(number_1 / 10)
-	local number_2 = number_1 - double * 10
-
-	ParticleManager:SetParticleControl(self.particle, 1, Vector(double, number_1, number_2))
-end
-
 modifier_marci_unleash_custom_debuff = class(mod_visible)
 function modifier_marci_unleash_custom_debuff:IsPurgable()
 	return true
 end
-function modifier_marci_unleash_custom_debuff:OnCreated(kv)
+function modifier_marci_unleash_custom_debuff:GetStatusEffectName()
+	return "particles/status_fx/status_effect_snapfire_slow.vpcf"
+end
+function modifier_marci_unleash_custom_debuff:StatusEffectPriority()
+	return MODIFIER_PRIORITY_NORMAL
+end
+function modifier_marci_unleash_custom_debuff:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 	self.caster = self:GetCaster()
@@ -891,14 +885,6 @@ end
 
 function modifier_marci_unleash_custom_debuff:GetModifierMoveSpeedBonus_Percentage()
 	return self.ms_slow
-end
-
-function modifier_marci_unleash_custom_debuff:GetStatusEffectName()
-	return "particles/status_fx/status_effect_snapfire_slow.vpcf"
-end
-
-function modifier_marci_unleash_custom_debuff:StatusEffectPriority()
-	return MODIFIER_PRIORITY_NORMAL
 end
 
 modifier_marci_unleash_custom_tracker = class(mod_hidden)
@@ -1029,6 +1015,7 @@ function modifier_marci_unleash_custom_stats:OnCreated()
 	if not IsServer() then
 		return
 	end
+	self.RemoveForDuel = true
 	self:OnRefresh()
 end
 
@@ -1067,7 +1054,7 @@ modifier_marci_unleash_custom_stack = class(mod_visible)
 function modifier_marci_unleash_custom_stack:GetTexture()
 	return "buffs/marci/unleash_3"
 end
-function modifier_marci_unleash_custom_stack:OnCreated(table)
+function modifier_marci_unleash_custom_stack:OnCreated()
 	self.caster = self:GetCaster()
 	self.ability = self:GetAbility()
 	self.parent = self:GetParent()
@@ -1083,7 +1070,7 @@ function modifier_marci_unleash_custom_stack:OnCreated(table)
 	self:OnRefresh()
 end
 
-function modifier_marci_unleash_custom_stack:OnRefresh(table)
+function modifier_marci_unleash_custom_stack:OnRefresh()
 	if not IsServer() then
 		return
 	end

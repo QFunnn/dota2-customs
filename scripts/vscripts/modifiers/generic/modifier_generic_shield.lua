@@ -9,6 +9,9 @@
 
 
 modifier_generic_shield = class(mod_visible)
+function modifier_generic_shield:IsHidden()
+	return self.is_hidden == 1
+end
 function modifier_generic_shield:GetTexture()
 	return "buffs/generic/shield"
 end
@@ -40,9 +43,11 @@ function modifier_generic_shield:OnCreated(table)
 	self.dont_destroy = false
 	self.min_shield = 0
 	self.health_regen = 0
+	self.move_speed = 0
 	self.buff_mod = nil
 
 	self.status_effect = table.status_effect and table.status_effect or nil
+	self.is_hidden = table.is_hidden and table.is_hidden or false
 	self.disable_ability = false
 
 	self.killer = nil
@@ -62,6 +67,10 @@ function modifier_generic_shield:OnCreated(table)
 
 	if table.health_regen then
 		self.health_regen = table.health_regen
+	end
+
+	if table.move_speed then
+		self.move_speed = table.move_speed
 	end
 
 	if table.refresh_timer then
@@ -117,6 +126,8 @@ function modifier_generic_shield:AddCustomTransmitterData()
 		max_shield = self.max_shield,
 		status_effect = self.status_effect,
 		health_regen = self.health_regen,
+		move_speed = self.move_speed,
+		is_hidden = self.is_hidden,
 	}
 end
 
@@ -125,6 +136,8 @@ function modifier_generic_shield:HandleCustomTransmitterData(data)
 	self.max_shield = data.max_shield
 	self.status_effect = data.status_effect
 	self.health_regen = data.health_regen
+	self.move_speed = data.move_speed
+	self.is_hidden = data.is_hidden
 end
 
 function modifier_generic_shield:SetHitFunction(func)
@@ -177,11 +190,16 @@ function modifier_generic_shield:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_INCOMING_DAMAGE_CONSTANT,
 		MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE,
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
 	}
 end
 
 function modifier_generic_shield:GetModifierHealthRegenPercentage()
 	return self.health_regen
+end
+
+function modifier_generic_shield:GetModifierMoveSpeedBonus_Percentage()
+	return self.move_speed
 end
 
 function modifier_generic_shield:GetModifierIncomingDamageConstant(params)

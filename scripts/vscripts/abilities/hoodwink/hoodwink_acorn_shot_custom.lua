@@ -82,7 +82,7 @@ function hoodwink_acorn_shot_custom:UpdateTalents()
 		self.init = true
 		self.talents = {
 			has_q1 = 0,
-			q1_damag = 0,
+			q1_damage = 0,
 			q1_chance = caster:GetTalentValue("modifier_hoodwink_acorn_1", "chance", true),
 			q1_bonus = caster:GetTalentValue("modifier_hoodwink_acorn_1", "bonus", true),
 
@@ -93,7 +93,7 @@ function hoodwink_acorn_shot_custom:UpdateTalents()
 
 			has_q3 = 0,
 			q3_damage = 0,
-			q3_cd = 0,
+			q3_count = 0,
 			q3_cd = caster:GetTalentValue("modifier_hoodwink_acorn_3", "cd", true),
 			q3_range = caster:GetTalentValue("modifier_hoodwink_acorn_3", "range", true),
 
@@ -105,7 +105,7 @@ function hoodwink_acorn_shot_custom:UpdateTalents()
 			q4_stun = caster:GetTalentValue("modifier_hoodwink_acorn_4", "stun", true),
 
 			has_q7 = 0,
-			q7_cd = caster:GetTalentValue("modifier_hoodwink_acorn_7", "cd_inc", true) / 100,
+			q7_cd_inc = caster:GetTalentValue("modifier_hoodwink_acorn_7", "cd_inc", true) / 100,
 			q7_armor = caster:GetTalentValue("modifier_hoodwink_acorn_7", "armor", true),
 			q7_duration = caster:GetTalentValue("modifier_hoodwink_acorn_7", "duration", true),
 
@@ -162,23 +162,6 @@ function hoodwink_acorn_shot_custom:UpdateTalents()
 	end
 end
 
-function hoodwink_acorn_shot_custom:GetCooldown(level)
-	return self.BaseClass.GetCooldown(self, level) + (self.talents.q2_cd and self.talents.q2_cd or 0)
-end
-
-function hoodwink_acorn_shot_custom:GetCastPoint()
-	return self.BaseClass.GetCastPoint(self) + (self.talents.has_q4 == 1 and self.talents.q4_cast or 0)
-end
-
-function hoodwink_acorn_shot_custom:GetManaCost(level)
-	return self.BaseClass.GetManaCost(self, level)
-end
-
-function hoodwink_acorn_shot_custom:GetCastRange(vLocation, hTarget)
-	return self.BaseClass.GetCastRange(self, vLocation, hTarget)
-		+ (self.talents.has_e3 == 1 and self.talents.e3_range or 0)
-end
-
 function hoodwink_acorn_shot_custom:GetIntrinsicModifierName()
 	if not self:GetCaster():IsRealHero() then
 		return
@@ -190,8 +173,20 @@ function hoodwink_acorn_shot_custom:GetBehavior()
 	return DOTA_ABILITY_BEHAVIOR_POINT + DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING
 end
 
+function hoodwink_acorn_shot_custom:GetCooldown(level)
+	return self.BaseClass.GetCooldown(self, level) + (self.talents.q2_cd or 0)
+end
+
+function hoodwink_acorn_shot_custom:GetCastPoint()
+	return self.BaseClass.GetCastPoint(self) + (self.talents.has_q4 == 1 and self.talents.q4_cast or 0)
+end
+
+function hoodwink_acorn_shot_custom:GetCastRange(vLocation, hTarget)
+	return self.BaseClass.GetCastRange(self, vLocation, hTarget)
+		+ (self.talents.has_e3 == 1 and self.talents.e3_range or 0)
+end
+
 function hoodwink_acorn_shot_custom:OnSpellStart()
-	local caster = self:GetCaster()
 	local point = self:GetCursorPosition()
 
 	if IsValid(self.tracker) and self.talents.has_q7 == 1 then
@@ -199,30 +194,64 @@ function hoodwink_acorn_shot_custom:OnSpellStart()
 	end
 
 	CreateModifierThinker(
-		caster,
+		self.caster,
 		self,
 		"modifier_hoodwink_acorn_shot_custom_thinker",
 		{},
 		point,
-		caster:GetTeamNumber(),
+		self.caster:GetTeamNumber(),
 		false
 	)
+end
+
+function hoodwink_acorn_shot_custom:OnProjectileHit_ExtraData(target, location, ExtraData)
+	if not IsServer() then
+		return
+	end
+	local thinker = EntIndexToHScript(ExtraData.thinker)
+
+	if not thinker then
+		return
+	end
+	local mod = thinker:FindModifierByName("modifier_hoodwink_acorn_shot_custom_thinker")
+	if not IsValid(mod) then
+		return
+	end
+
+	local is_auto = mod.is_auto
+
+	if ExtraData.first == 1 and not is_auto then
+		local pos = GetGroundPosition(location, nil) + Vector(0, 0, 100)
+		local tree = self:SpawnTree(pos)
+		mod.last_tree = tree:entindex()
+	end
+
+	local first = false
+	if thinker.first_hit == true and ExtraData.first == 0 then
+		thinker.first_hit = false
+		first = true
+	end
+
+	thinker:SetAbsOrigin(location)
+	self:PerformHit(target, location, first, is_auto)
+	mod:Bounce()
 end
 
 function hoodwink_acorn_shot_custom:PerformHit(target, location, first, is_auto, is_scepter)
 	if not IsServer() then
 		return
 	end
-	local caster = self:GetCaster()
 	local duration = self.debuff_duration
 	local is_tree = not IsValid(target) or not target:IsUnit()
 
-	EmitSoundOnLocationWithCaster(location, "Hero_Hoodwink.AcornShot.Target", caster)
-	EmitSoundOnLocationWithCaster(location, "Hero_Hoodwink.AcornShot.Slow", caster)
+	EmitSoundOnLocationWithCaster(location, "Hero_Hoodwink.AcornShot.Target", self.caster)
+	EmitSoundOnLocationWithCaster(location, "Hero_Hoodwink.AcornShot.Slow", self.caster)
 
-	local tree_mod = target:FindModifierByName("modifier_hoodwink_acorn_shot_custom_thinker_tree_target")
-	if tree_mod then
-		tree_mod:Destroy()
+	if IsValid(target) then
+		local tree_mod = target:FindModifierByName("modifier_hoodwink_acorn_shot_custom_thinker_tree_target")
+		if tree_mod then
+			tree_mod:Destroy()
+		end
 	end
 
 	if is_tree then
@@ -258,14 +287,14 @@ function hoodwink_acorn_shot_custom:PerformHit(target, location, first, is_auto,
 		end
 	end
 
-	caster:AddNewModifier(
-		caster,
+	self.caster:AddNewModifier(
+		self.caster,
 		self,
 		"modifier_hoodwink_acorn_shot_custom",
 		{ target = target:entindex(), is_auto = is_auto and 1 or 0, is_scepter = is_scepter and 1 or 0 }
 	)
-	caster:PerformAttack(target, true, true, true, true, false, false, false)
-	caster:RemoveModifierByName("modifier_hoodwink_acorn_shot_custom")
+	self.caster:PerformAttack(target, true, true, true, true, false, false, false)
+	self.caster:RemoveModifierByName("modifier_hoodwink_acorn_shot_custom")
 
 	if
 		self.talents.has_q4 == 1
@@ -275,24 +304,24 @@ function hoodwink_acorn_shot_custom:PerformHit(target, location, first, is_auto,
 	then
 		target:EmitSound("Hoodwink.Acorn_stun")
 		target:AddNewModifier(
-			caster,
+			self.caster,
 			self.caster:BkbAbility(self, true),
 			"modifier_bashed",
 			{ duration = (1 - target:GetStatusResistance()) * self.talents.q4_stun }
 		)
 		target:AddNewModifier(
-			caster,
+			self.caster,
 			self,
 			"modifier_hoodwink_acorn_shot_custom_stun_cd",
 			{ duration = self.talents.q4_talent_cd }
 		)
 	end
 
-	target:AddNewModifier(caster, self, "modifier_hoodwink_acorn_shot_custom_debuff", { duration = duration })
+	target:AddNewModifier(self.caster, self, "modifier_hoodwink_acorn_shot_custom_debuff", { duration = duration })
 
 	if self.talents.has_q7 == 1 then
 		target:AddNewModifier(
-			caster,
+			self.caster,
 			self,
 			"modifier_hoodwink_acorn_shot_custom_armor_count",
 			{ duration = self.talents.q7_duration }
@@ -300,45 +329,10 @@ function hoodwink_acorn_shot_custom:PerformHit(target, location, first, is_auto,
 	end
 end
 
-function hoodwink_acorn_shot_custom:OnProjectileHit_ExtraData(target, location, ExtraData)
-	if not IsServer() then
-		return
-	end
-	local caster = self:GetCaster()
-	local thinker = EntIndexToHScript(ExtraData.thinker)
-
-	if not thinker then
-		return
-	end
-	local mod = thinker:FindModifierByName("modifier_hoodwink_acorn_shot_custom_thinker")
-	if not IsValid(mod) then
-		return
-	end
-
-	local is_auto = mod.is_auto
-
-	if ExtraData.first == 1 and not is_auto then
-		local pos = GetGroundPosition(location, nil) + Vector(0, 0, 100)
-		local tree = self:SpawnTree(pos)
-		mod.last_tree = tree:entindex()
-	end
-
-	local first = false
-	if thinker.first_hit == true and ExtraData.first == 0 then
-		thinker.first_hit = false
-		first = true
-	end
-
-	thinker:SetAbsOrigin(location)
-	self:PerformHit(target, location, first, is_auto)
-	mod:Bounce()
-end
-
 function hoodwink_acorn_shot_custom:SpawnTree(point)
 	if not IsServer() then
 		return
 	end
-	local caster = self:GetCaster()
 	local tree = CreateTempTreeWithModel(
 		GetGroundPosition(point, nil),
 		self.tree_duration,
@@ -348,12 +342,12 @@ function hoodwink_acorn_shot_custom:SpawnTree(point)
 	tree:SetSequence("hoodwink_tree_spawn")
 	tree:SetSequence("hoodwink_tree_idle")
 	CreateModifierThinker(
-		caster,
+		self.caster,
 		self,
 		"modifier_hoodwink_acorn_shot_custom_thinker_tree",
 		{ duration = self.tree_duration - FrameTime(), tree = tree:entindex() },
 		point,
-		caster:GetTeamNumber(),
+		self.caster:GetTeamNumber(),
 		false
 	)
 
@@ -449,8 +443,8 @@ function modifier_hoodwink_acorn_shot_custom_thinker:OnIntervalThink()
 				if min_tree then
 					local pos = GetGroundPosition(min_tree:GetAbsOrigin(), nil) + Vector(0, 0, 100)
 					next_target = CreateModifierThinker(
-						caster,
-						self,
+						self.caster,
+						self.ability,
 						"modifier_hoodwink_acorn_shot_custom_thinker_tree_target",
 						{ duration = 10 },
 						pos,
@@ -522,7 +516,7 @@ function modifier_hoodwink_acorn_shot_custom_thinker_tree:OnCreated(table)
 		100,
 		DOTA_UNIT_TARGET_TEAM_BOTH,
 		DOTA_UNIT_TARGET_ALL,
-		DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
+		DOTA_UNIT_TARGET_FLAG_NONE,
 		0,
 		false
 	)
@@ -571,11 +565,15 @@ function modifier_hoodwink_acorn_shot_custom_thinker_tree:OnDestroy()
 end
 
 modifier_hoodwink_acorn_shot_custom_thinker_tree_target = class(mod_hidden)
+function modifier_hoodwink_acorn_shot_custom_thinker_tree_target:OnCreated()
+	self.parent = self:GetParent()
+end
+
 function modifier_hoodwink_acorn_shot_custom_thinker_tree_target:OnDestroy()
 	if not IsServer() then
 		return
 	end
-	UTIL_Remove(self:GetParent())
+	UTIL_Remove(self.parent)
 end
 
 modifier_hoodwink_acorn_shot_custom_tracker = class(mod_hidden)
@@ -646,10 +644,10 @@ function modifier_hoodwink_acorn_shot_custom_tracker:DeclareFunctions()
 end
 
 function modifier_hoodwink_acorn_shot_custom_tracker:GetModifierAttackRangeBonus()
-	if self.parent:HasModifier("modifier_hoodwink_acorn_shot_custom_attack_cd") then
+	if self.ability.talents.has_q3 == 0 then
 		return
 	end
-	if self.ability.talents.has_q3 == 0 then
+	if self.parent:HasModifier("modifier_hoodwink_acorn_shot_custom_attack_cd") then
 		return
 	end
 	return self.ability.talents.q3_range
@@ -722,7 +720,7 @@ function modifier_hoodwink_acorn_shot_custom_tracker:GetModifierPreAttack_Critic
 		chance = chance * self.ability.talents.q1_bonus
 	end
 
-	if not RollPseudoRandomPercentage(chance, 5123, self.parent) then
+	if not RollPseudoRandomPercentage(chance, index, self.parent) then
 		return
 	end
 	self.records[params.record] = true
@@ -809,31 +807,35 @@ function modifier_hoodwink_acorn_shot_custom_tracker:SpellEvent(params)
 	if params.ability:IsItem() then
 		return
 	end
-
-	if
-		self.ability.talents.has_q7 == 1
-		and self.can_cd
-		and self.ability ~= params.ability
-		and self.ability:GetCooldownTimeRemaining() > 0
-	then
-		self.can_cd = false
-
-		local particle =
-			ParticleManager:CreateParticle("particles/hoodwink/acorn_refresh.vpcf", PATTACH_CUSTOMORIGIN, self.parent)
-		ParticleManager:SetParticleControlEnt(
-			particle,
-			0,
-			self.parent,
-			PATTACH_POINT_FOLLOW,
-			"attach_hitloc",
-			self.parent:GetOrigin(),
-			true
-		)
-		ParticleManager:ReleaseParticleIndex(particle)
-
-		local cd = self.ability:GetEffectiveCooldown(self.ability:GetLevel()) * self.ability.talents.q7_cd
-		self.parent:CdAbility(self.ability, cd)
+	if self.ability.talents.has_q7 == 0 then
+		return
 	end
+	if not self.can_cd then
+		return
+	end
+	if self.ability == params.ability then
+		return
+	end
+	if self.ability:GetCooldownTimeRemaining() <= 0 then
+		return
+	end
+
+	self.can_cd = false
+
+	local particle =
+		ParticleManager:CreateParticle("particles/hoodwink/acorn_refresh.vpcf", PATTACH_CUSTOMORIGIN, self.parent)
+	ParticleManager:SetParticleControlEnt(
+		particle,
+		0,
+		self.parent,
+		PATTACH_POINT_FOLLOW,
+		"attach_hitloc",
+		self.parent:GetOrigin(),
+		true
+	)
+	ParticleManager:ReleaseParticleIndex(particle)
+
+	self.parent:CdAbility(self.ability, nil, self.ability.talents.q7_cd_inc)
 end
 
 modifier_hoodwink_acorn_shot_custom = class(mod_hidden)
@@ -847,7 +849,6 @@ function modifier_hoodwink_acorn_shot_custom:OnCreated(table)
 	self.is_auto = table.is_auto
 	self.is_scepter = table.is_scepter
 
-	self.creeps_damage = 0
 	self.damage = (
 		self.ability.base_damage_pct * self.parent:GetAverageTrueAttackDamage(nil) + self.ability.acorn_shot_damage
 	) * (1 + self.ability.talents.q3_damage / 100)
@@ -872,23 +873,23 @@ function modifier_hoodwink_acorn_shot_custom:GetModifierOverrideAttackDamage()
 	return self.damage
 end
 
-modifier_hoodwink_acorn_shot_custom_debuff = class({})
-function modifier_hoodwink_acorn_shot_custom_debuff:IsHidden()
-	return false
-end
+modifier_hoodwink_acorn_shot_custom_debuff = class(mod_visible)
 function modifier_hoodwink_acorn_shot_custom_debuff:IsPurgable()
 	return true
 end
 function modifier_hoodwink_acorn_shot_custom_debuff:GetTexture()
 	return "hoodwink_acorn_shot"
 end
-function modifier_hoodwink_acorn_shot_custom_debuff:OnCreated(kv)
+function modifier_hoodwink_acorn_shot_custom_debuff:GetEffectName()
+	return "particles/units/heroes/hero_hoodwink/hoodwink_acorn_shot_slow.vpcf"
+end
+function modifier_hoodwink_acorn_shot_custom_debuff:GetEffectAttachType()
+	return PATTACH_ABSORIGIN_FOLLOW
+end
+function modifier_hoodwink_acorn_shot_custom_debuff:OnCreated()
 	self.parent = self:GetParent()
-	self.ability = self:GetCaster().acorn_ability
-	if not self.ability then
-		self:Destroy()
-		return
-	end
+	self.caster = self:GetCaster()
+	self.ability = self:GetAbility()
 
 	self.slow = self.ability.slow
 	if not IsServer() then
@@ -907,16 +908,8 @@ function modifier_hoodwink_acorn_shot_custom_debuff:GetModifierMoveSpeedBonus_Pe
 	return self.slow
 end
 
-function modifier_hoodwink_acorn_shot_custom_debuff:GetEffectName()
-	return "particles/units/heroes/hero_hoodwink/hoodwink_acorn_shot_slow.vpcf"
-end
-
-function modifier_hoodwink_acorn_shot_custom_debuff:GetEffectAttachType()
-	return PATTACH_ABSORIGIN_FOLLOW
-end
-
 modifier_hoodwink_acorn_shot_custom_armor_count = class(mod_visible)
-function modifier_hoodwink_acorn_shot_custom_armor_count:OnCreated(table)
+function modifier_hoodwink_acorn_shot_custom_armor_count:OnCreated()
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
 	self.ability = self:GetAbility()
@@ -927,13 +920,24 @@ function modifier_hoodwink_acorn_shot_custom_armor_count:OnCreated(table)
 	if not IsServer() then
 		return
 	end
-
-	self:SetStackCount(1)
 	self.RemoveForDuel = true
+	self:OnRefresh()
 
 	if self.parent:IsRealHero() and not self.parent:IsTempestDouble() then
 		self:OnIntervalThink()
 		self:StartIntervalThink(0.1)
+	end
+end
+
+function modifier_hoodwink_acorn_shot_custom_armor_count:OnRefresh()
+	if not IsServer() then
+		return
+	end
+	self:IncrementStackCount()
+
+	if self:GetStackCount() == self.max then
+		self.parent:EmitSound("Hoodwink.Acorn_armor")
+		self.parent:GenericParticle("particles/general/generic_armor_reduction.vpcf", self, true)
 	end
 end
 
@@ -953,18 +957,6 @@ function modifier_hoodwink_acorn_shot_custom_armor_count:OnIntervalThink()
 		return
 	end
 	self.ability.tracker:UpdateUI()
-end
-
-function modifier_hoodwink_acorn_shot_custom_armor_count:OnRefresh(table)
-	if not IsServer() then
-		return
-	end
-	self:IncrementStackCount()
-
-	if self:GetStackCount() == self.max then
-		self.parent:EmitSound("Hoodwink.Acorn_armor")
-		self.parent:GenericParticle("particles/general/generic_armor_reduction.vpcf", self, true)
-	end
 end
 
 function modifier_hoodwink_acorn_shot_custom_armor_count:OnDestroy()
@@ -995,16 +987,19 @@ modifier_hoodwink_acorn_shot_custom_attack_cd = class(mod_cd)
 function modifier_hoodwink_acorn_shot_custom_attack_cd:GetTexture()
 	return "buffs/hoodwink/acorn_3"
 end
+function modifier_hoodwink_acorn_shot_custom_attack_cd:OnCreated()
+	self.ability = self:GetAbility()
+	self.RemoveForDuel = true
+end
+
 function modifier_hoodwink_acorn_shot_custom_attack_cd:OnDestroy()
 	if not IsServer() then
 		return
 	end
-	local ability = self:GetAbility()
-
-	if not IsValid(ability.tracker) then
+	if not IsValid(self.ability.tracker) then
 		return
 	end
-	ability.tracker:OnIntervalThink()
+	self.ability.tracker:OnIntervalThink()
 end
 
 modifier_hoodwink_acorn_shot_custom_stun_cd = class(mod_hidden)

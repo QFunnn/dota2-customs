@@ -109,7 +109,7 @@ function InitEndScreen()
 
 	var TalentButton = $.GetContextPanel().FindChildTraverse("EndHeroesData_HeaderTalentsPanel")
 	if (TalentButton)
-		SetShowTalent(TalentButton, Players.GetPlayerSelectedHero(Game.GetLocalPlayerID()))
+		SetShowTalent(TalentButton, Game.GetLocalPlayerID())
 
 	TryLoadChestGrantedPopup()
 }

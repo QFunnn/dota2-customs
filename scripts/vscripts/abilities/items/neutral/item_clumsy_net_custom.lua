@@ -24,6 +24,11 @@ function item_clumsy_net_custom:Precache(context)
 	PrecacheResource("particle", "particles/neutral_fx/dark_troll_ensnare.vpcf", context)
 end
 
+function item_clumsy_net_custom:Spawn()
+	self.speed = self:GetSpecialValueFor("speed")
+	self.duration = self:GetSpecialValueFor("duration")
+end
+
 function item_clumsy_net_custom:OnSpellStart()
 	local caster = self:GetCaster()
 	caster:EmitSound("n_creep_TrollWarlord.Ensnare")
@@ -33,7 +38,7 @@ function item_clumsy_net_custom:OnSpellStart()
 		Source = caster,
 		Ability = self,
 		EffectName = "particles/items5_fx/clumsy_net_proj.vpcf",
-		iMoveSpeed = self:GetSpecialValueFor("speed"),
+		iMoveSpeed = self.speed,
 		bReplaceExisting = false,
 		bProvidesVision = true,
 		iVisionRadius = 30,
@@ -54,15 +59,12 @@ function item_clumsy_net_custom:OnProjectileHit(hTarget, vLocation)
 		self:GetCaster(),
 		self,
 		"modifier_item_clumsy_net_custom",
-		{ duration = self:GetSpecialValueFor("duration") * (1 - hTarget:GetStatusResistance()) }
+		{ duration = self.duration * (1 - hTarget:GetStatusResistance()) }
 	)
 	hTarget:EmitSound("Hero_Meepo.Earthbind.Target")
 end
 
-modifier_item_clumsy_net_custom = class({})
-function modifier_item_clumsy_net_custom:IsHidden()
-	return true
-end
+modifier_item_clumsy_net_custom = class(mod_hidden)
 function modifier_item_clumsy_net_custom:IsPurgable()
 	return true
 end

@@ -34,6 +34,15 @@ function item_falcon_blade_custom:GetIntrinsicModifierName()
 	return "modifier_item_falcon_blade_custom"
 end
 
+function item_falcon_blade_custom:Spawn()
+	self.range = self:GetSpecialValueFor("range")
+	self.duration = self:GetSpecialValueFor("duration")
+	self.bonus_health = self:GetSpecialValueFor("bonus_health")
+	self.bonus_mana_regen = self:GetSpecialValueFor("bonus_mana_regen")
+	self.bonus_damage = self:GetSpecialValueFor("bonus_damage")
+	self.damage_cd = self:GetSpecialValueFor("damage_cd")
+end
+
 function item_falcon_blade_custom:OnAbilityPhaseStart()
 	if self:GetCaster():IsStunned() then
 		return false
@@ -44,7 +53,7 @@ end
 
 function item_falcon_blade_custom:GetCastRange(vLocation, hTarget)
 	if IsClient() then
-		return self:GetSpecialValueFor("range")
+		return self.range
 	end
 	return 99999
 end
@@ -59,10 +68,7 @@ function item_falcon_blade_custom:OnSpellStart()
 		point = self:GetCaster():GetForwardVector() * 10 + self:GetCaster():GetAbsOrigin()
 	end
 
-	local dir = (point - self:GetCaster():GetAbsOrigin()):Normalized()
-
-	self:GetCaster():SetForwardVector(dir)
-	self:GetCaster():FaceTowards(point)
+	self:GetCaster():FacePoint(point)
 
 	ProjectileManager:ProjectileDodge(self:GetCaster())
 
@@ -71,38 +77,42 @@ function item_falcon_blade_custom:OnSpellStart()
 		self:GetCaster(),
 		self,
 		"modifier_item_falcon_blade_custom_active",
-		{ x = point.x, y = point.y, z = point.z, duration = self:GetSpecialValueFor("duration") }
+		{ x = point.x, y = point.y, z = point.z, duration = self.duration }
 	)
 end
 
-modifier_item_falcon_blade_custom_active = class({})
-
+modifier_item_falcon_blade_custom_active = class(mod_hidden)
 function modifier_item_falcon_blade_custom_active:IsDebuff()
 	return false
-end
-function modifier_item_falcon_blade_custom_active:IsHidden()
-	return true
 end
 function modifier_item_falcon_blade_custom_active:IsPurgable()
 	return true
 end
-
+function modifier_item_falcon_blade_custom_active:GetEffectName()
+	return "particles/falcon_blade_charge.vpcf"
+end
+function modifier_item_falcon_blade_custom_active:GetStatusEffectName()
+	return "particles/status_fx/status_effect_forcestaff.vpcf"
+end
+function modifier_item_falcon_blade_custom_active:StatusEffectPriority()
+	return MODIFIER_PRIORITY_NORMAL
+end
 function modifier_item_falcon_blade_custom_active:OnCreated(kv)
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
 	if not IsServer() then
 		return
 	end
-	self.pfx = ParticleManager:CreateParticle(
-		"particles/items_fx/force_staff.vpcf",
-		PATTACH_ABSORIGIN_FOLLOW,
-		self:GetParent()
-	)
-	self:GetParent():StartGesture(ACT_DOTA_RUN)
+	self.pfx =
+		ParticleManager:CreateParticle("particles/items_fx/force_staff.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
+	self.parent:StartGesture(ACT_DOTA_RUN)
 
 	self.point = Vector(kv.x, kv.y, kv.z)
 
-	self.angle = self:GetParent():GetForwardVector():Normalized() --(self.point - self:GetParent():GetAbsOrigin()):Normalized()
+	self.angle = self.parent:GetForwardVector():Normalized()
 
-	self.distance = self:GetAbility():GetSpecialValueFor("range") / (self:GetDuration() / FrameTime())
+	self.distance = self.ability.range / (self:GetDuration() / FrameTime())
 
 	self.targets = {}
 
@@ -126,81 +136,59 @@ function modifier_item_falcon_blade_custom_active:GetModifierDisableTurning()
 	return 1
 end
 
-function modifier_item_falcon_blade_custom_active:GetEffectName()
-	return "particles/falcon_blade_charge.vpcf"
-end
-function modifier_item_falcon_blade_custom_active:GetStatusEffectName()
-	return "particles/status_fx/status_effect_forcestaff.vpcf"
-end
-function modifier_item_falcon_blade_custom_active:StatusEffectPriority()
-	return MODIFIER_PRIORITY_NORMAL
-end
-
 function modifier_item_falcon_blade_custom_active:OnDestroy()
 	if not IsServer() then
 		return
 	end
-	self:GetParent():InterruptMotionControllers(true)
-	ParticleManager:DestroyParticle(self.pfx, false)
-	ParticleManager:ReleaseParticleIndex(self.pfx)
+	self.parent:InterruptMotionControllers(true)
+	ParticleManager:Delete(self.pfx, 1)
 
-	self:GetParent():FadeGesture(ACT_DOTA_RUN)
-	-- self:GetParent():StartGesture(ACT_DOTA_FORCESTAFF_END)
+	self.parent:FadeGesture(ACT_DOTA_RUN)
 
-	local dir = self:GetParent():GetForwardVector()
-	dir.z = 0
-	self:GetParent():SetForwardVector(dir)
-	self:GetParent():FaceTowards(self:GetParent():GetAbsOrigin() + dir * 10)
+	self.parent:FacePoint()
 
-	ResolveNPCPositions(self:GetParent():GetAbsOrigin(), 128)
+	ResolveNPCPositions(self.parent:GetAbsOrigin(), 128)
 end
 
 function modifier_item_falcon_blade_custom_active:UpdateHorizontalMotion(me, dt)
 	if not IsServer() then
 		return
 	end
-	local pos = self:GetParent():GetAbsOrigin()
+	local pos = self.parent:GetAbsOrigin()
 	GridNav:DestroyTreesAroundPoint(pos, 80, false)
 	local pos_p = self.angle * self.distance
-	local next_pos = GetGroundPosition(pos + pos_p, self:GetParent())
-	self:GetParent():SetAbsOrigin(next_pos)
+	local next_pos = GetGroundPosition(pos + pos_p, self.parent)
+	self.parent:SetAbsOrigin(next_pos)
 end
 
 function modifier_item_falcon_blade_custom_active:OnHorizontalMotionInterrupted()
 	self:Destroy()
 end
 
-modifier_item_falcon_blade_custom = class({})
-
-function modifier_item_falcon_blade_custom:IsHidden()
-	return true
-end
-function modifier_item_falcon_blade_custom:IsPurgable()
-	return false
-end
+modifier_item_falcon_blade_custom = class(mod_hidden)
 function modifier_item_falcon_blade_custom:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
+function modifier_item_falcon_blade_custom:OnCreated()
+	self.ability = self:GetAbility()
+	self.parent = self:GetParent()
+
+	self.bonus_health = self.ability.bonus_health
+	self.bonus_mana_regen = self.ability.bonus_mana_regen
+	self.bonus_damage = self.ability.bonus_damage
+	self.damage_cd = self.ability.damage_cd
+
+	if self.parent:IsRealHero() then
+		self.parent:AddDamageEvent_inc(self, true)
+	end
+end
+
 function modifier_item_falcon_blade_custom:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_HEALTH_BONUS,
 		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
 		MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
 	}
-end
-
-function modifier_item_falcon_blade_custom:OnCreated()
-	self.ability = self:GetAbility()
-	self.parent = self:GetParent()
-
-	self.bonus_health = self.ability:GetSpecialValueFor("bonus_health")
-	self.bonus_mana_regen = self.ability:GetSpecialValueFor("bonus_mana_regen")
-	self.bonus_damage = self.ability:GetSpecialValueFor("bonus_damage")
-	self.damage_cd = self.ability:GetSpecialValueFor("damage_cd")
-
-	if self.parent:IsRealHero() then
-		self.parent:AddDamageEvent_inc(self, true)
-	end
 end
 
 function modifier_item_falcon_blade_custom:GetModifierHealthBonus()
@@ -234,7 +222,7 @@ function modifier_item_falcon_blade_custom:DamageEvent_inc(params)
 	if params.damage < 5 then
 		return
 	end
-	if not self.ability or self.ability:IsNull() then
+	if not IsValid(self.ability) then
 		return
 	end
 	if self.ability:GetCooldownTime() > self.damage_cd then

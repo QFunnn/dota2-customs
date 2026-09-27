@@ -66,6 +66,12 @@ function jakiro_liquid_fire_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_dragon_knight/dragon_knight_transform_blue.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_dragon_knight/dragon_knight_transform_red.vpcf", context)
 	PrecacheResource("particle", "particles/jakiro/liquid_fire_legendary_timer.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_jakiro/jakiro_liquid_fire_debuff.vpcf", context)
+	PrecacheResource(
+		"particle",
+		"particles/units/heroes/hero_brewmaster/brewmaster_void_astral_pull_statuseffect.vpcf",
+		context
+	)
 end
 
 function jakiro_liquid_fire_custom:UpdateTalents(name)
@@ -165,25 +171,25 @@ function jakiro_liquid_fire_custom:GetManaCost(iLevel)
 end
 
 function jakiro_liquid_fire_custom:GetCost()
-	return (self.AbilityManaCost and self.AbilityManaCost or 0)
+	return self.AbilityManaCost or 0
 end
 
 function jakiro_liquid_fire_custom:GetCastRange(vLocation, hTarget)
 	return self.caster:Script_GetAttackRange()
-		+ (self.attack_range and self.attack_range or 0)
+		+ (self.attack_range or 0)
 		- self.caster:GetCastRangeBonus()
-		+ (self.talents.h1_range and self.talents.h1_range or 0)
+		+ (self.talents.h1_range or 0)
 end
 
 function jakiro_liquid_fire_custom:GetAOERadius()
 	if self.caster:HasModifier("modifier_jakiro_innate_custom_active_frost") then
 		return
 	end
-	return self.fire_radius and self.fire_radius or 0
+	return self.fire_radius or 0
 end
 
 function jakiro_liquid_fire_custom:GetDuration()
-	return (self.duration and self.duration or 0) + self.ability.talents.e2_duration
+	return (self.duration or 0) + (self.talents.e2_duration or 0)
 end
 
 modifier_jakiro_liquid_fire_custom_tracker = class(mod_hidden)
@@ -390,7 +396,7 @@ function modifier_jakiro_liquid_fire_custom_tracker:AttackEvent_out(params)
 			false
 		)
 		ParticleManager:SetParticleControl(effect, 1, Vector(radius, radius, radius))
-		self:AddParticle(effect, false, false, -1, false, false)
+		ParticleManager:ReleaseParticleIndex(effect)
 
 		for _, aoe_target in pairs(self.parent:FindTargets(radius, target:GetAbsOrigin())) do
 			aoe_target:AddNewModifier(
@@ -619,6 +625,12 @@ end
 function modifier_jakiro_liquid_fire_custom_ice_debuff:IsPurgable()
 	return true
 end
+function modifier_jakiro_liquid_fire_custom_ice_debuff:GetStatusEffectName()
+	return "particles/status_fx/status_effect_frost.vpcf"
+end
+function modifier_jakiro_liquid_fire_custom_ice_debuff:StatusEffectPriority()
+	return MODIFIER_PRIORITY_NORMAL
+end
 function modifier_jakiro_liquid_fire_custom_ice_debuff:OnCreated()
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
@@ -678,13 +690,6 @@ function modifier_jakiro_liquid_fire_custom_ice_debuff:DamageEvent_inc(params)
 		return
 	end
 
-	self:ApplyDamage()
-end
-
-function modifier_jakiro_liquid_fire_custom_ice_debuff:ApplyDamage()
-	if not IsServer() then
-		return
-	end
 	local damage = self.damage
 	if self.caster:HasModifier("modifier_jakiro_liquid_fire_custom_legendary_acitve") then
 		damage = damage * (1 + self.ability.talents.e7_damage_reduce)
@@ -708,14 +713,6 @@ end
 
 function modifier_jakiro_liquid_fire_custom_ice_debuff:GetModifierAttackSpeedBonus_Constant()
 	return self.attack_slow
-end
-
-function modifier_jakiro_liquid_fire_custom_ice_debuff:GetStatusEffectName()
-	return "particles/status_fx/status_effect_frost.vpcf"
-end
-
-function modifier_jakiro_liquid_fire_custom_ice_debuff:StatusEffectPriority()
-	return MODIFIER_PRIORITY_NORMAL
 end
 
 modifier_jakiro_liquid_fire_custom_speed = class(mod_visible)
@@ -801,12 +798,6 @@ function modifier_jakiro_liquid_fire_custom_legendary_stack:OnRefresh()
 		return
 	end
 	self:IncrementStackCount()
-end
-
-function modifier_jakiro_liquid_fire_custom_legendary_stack:OnStackCountChanged()
-	if not IsServer() then
-		return
-	end
 
 	if self.ability.tracker then
 		self.ability.tracker:UpdateUI()
@@ -825,10 +816,6 @@ end
 
 jakiro_liquid_fire_custom_legendary = class({})
 jakiro_liquid_fire_custom_legendary.talents = {}
-
-function jakiro_liquid_fire_custom_legendary:CreateTalent()
-	self:SetHidden(false)
-end
 
 function jakiro_liquid_fire_custom_legendary:UpdateTalents(name)
 	local caster = self:GetCaster()
@@ -851,7 +838,7 @@ function jakiro_liquid_fire_custom_legendary:UpdateTalents(name)
 end
 
 function jakiro_liquid_fire_custom_legendary:GetCooldown(level)
-	return self.talents.e7_talent_cd and self.talents.e7_talent_cd or 0
+	return self.talents.e7_talent_cd or 0
 end
 
 function jakiro_liquid_fire_custom_legendary:OnAbilityPhaseStart()
@@ -880,6 +867,10 @@ function jakiro_liquid_fire_custom_legendary:OnSpellStart()
 		"modifier_jakiro_liquid_fire_custom_legendary_acitve",
 		{ duration = self.talents.e7_duration }
 	)
+end
+
+function jakiro_liquid_fire_custom_legendary:CreateTalent()
+	self:SetHidden(false)
 end
 
 modifier_jakiro_liquid_fire_custom_legendary_acitve = class(mod_hidden)

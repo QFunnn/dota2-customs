@@ -30,35 +30,34 @@ function item_invis_sword_custom:GetIntrinsicModifierName()
 	return "item_invis_sword_custom_passive"
 end
 
+function item_invis_sword_custom:Spawn()
+	self.duration = self:GetSpecialValueFor("duration")
+	self.damage_reduce_duration = self:GetSpecialValueFor("damage_reduce_duration")
+	self.movement_speed = self:GetSpecialValueFor("movement_speed")
+	self.windwalk_bonus_damage = self:GetSpecialValueFor("windwalk_bonus_damage")
+	self.bonus_damage = self:GetSpecialValueFor("bonus_damage")
+	self.bonus_attack_speed = self:GetSpecialValueFor("bonus_attack_speed")
+	self.bonus_health = self:GetSpecialValueFor("bonus_health")
+	self.max_movement_speed = self:GetSpecialValueFor("max_movement_speed")
+end
+
 function item_invis_sword_custom:OnSpellStart()
 	local caster = self:GetCaster()
 	caster:EmitSound("DOTA_Item.InvisibilitySword.Activate")
-	caster:AddNewModifier(
-		caster,
-		self,
-		"item_invis_sword_custom_surge",
-		{ duration = self:GetSpecialValueFor("duration") }
-	)
+	caster:AddNewModifier(caster, self, "item_invis_sword_custom_surge", { duration = self.duration })
 end
 
-item_invis_sword_custom_surge = class({})
+item_invis_sword_custom_surge = class(mod_visible)
 function item_invis_sword_custom_surge:GetEffectName()
 	return "particles/silver_edge_speed_.vpcf"
 end
-function item_invis_sword_custom_surge:IsHidden()
-	return false
-end
-function item_invis_sword_custom_surge:IsPurgable()
-	return false
-end
-
 function item_invis_sword_custom_surge:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.duration = self.ability:GetSpecialValueFor("damage_reduce_duration")
-	self.speed = self.ability:GetSpecialValueFor("movement_speed")
-	self.damage = self.ability:GetSpecialValueFor("windwalk_bonus_damage")
+	self.duration = self.ability.damage_reduce_duration
+	self.speed = self.ability.movement_speed
+	self.damage = self.ability.windwalk_bonus_damage
 end
 
 function item_invis_sword_custom_surge:CheckState()
@@ -95,19 +94,20 @@ function item_invis_sword_custom_surge:GetModifierProcAttack_BonusDamage_Physica
 	return self.damage
 end
 
-item_invis_sword_custom_passive = class({})
-function item_invis_sword_custom_passive:IsHidden()
-	return true
-end
-function item_invis_sword_custom_passive:IsPurgable()
-	return false
-end
+item_invis_sword_custom_passive = class(mod_hidden)
 function item_invis_sword_custom_passive:RemoveOnDeath()
 	return false
 end
 function item_invis_sword_custom_passive:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
+function item_invis_sword_custom_passive:OnCreated()
+	self.ability = self:GetAbility()
+	self.damage = self.ability.bonus_damage
+	self.speed = self.ability.bonus_attack_speed
+	self.bonus_health = self.ability.bonus_health
+end
+
 function item_invis_sword_custom_passive:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
@@ -128,31 +128,20 @@ function item_invis_sword_custom_passive:GetModifierHealthBonus()
 	return self.bonus_health
 end
 
-function item_invis_sword_custom_passive:OnCreated()
-	self.ability = self:GetAbility()
-	self.damage = self.ability:GetSpecialValueFor("bonus_damage")
-	self.speed = self.ability:GetSpecialValueFor("bonus_attack_speed")
-	self.bonus_health = self.ability:GetSpecialValueFor("bonus_health")
-end
-
-item_invis_sword_custom_damage_reduce = class({})
-function item_invis_sword_custom_damage_reduce:IsHidden()
-	return false
-end
-function item_invis_sword_custom_damage_reduce:IsPurgable()
-	return false
-end
+item_invis_sword_custom_damage_reduce = class(mod_visible)
 function item_invis_sword_custom_damage_reduce:GetEffectName()
 	return "particles/items3_fx/silver_edge.vpcf"
 end
+function item_invis_sword_custom_damage_reduce:OnCreated(table)
+	self.ability = self:GetAbility()
+
+	self.max_movement_speed = self.ability.max_movement_speed
+end
+
 function item_invis_sword_custom_damage_reduce:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE_MAX,
 	}
-end
-
-function item_invis_sword_custom_damage_reduce:OnCreated(table)
-	self.max_movement_speed = self:GetAbility():GetSpecialValueFor("max_movement_speed")
 end
 
 function item_invis_sword_custom_damage_reduce:GetModifierMoveSpeed_AbsoluteMax()

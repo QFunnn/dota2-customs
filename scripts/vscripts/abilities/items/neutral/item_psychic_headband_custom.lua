@@ -24,11 +24,16 @@ function item_psychic_headband_custom:Precache(context)
 	PrecacheResource("particle", "particles/items_fx/harpoon_pull.vpcf", context)
 end
 
+function item_psychic_headband_custom:Spawn()
+	self.push_length = self:GetSpecialValueFor("push_length")
+	self.push_duration = self:GetSpecialValueFor("push_duration")
+end
+
 function item_psychic_headband_custom:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
-	local distance = self:GetSpecialValueFor("push_length")
-	local knockback_duration = self:GetSpecialValueFor("push_duration")
+	local distance = self.push_length
+	local knockback_duration = self.push_duration
 	local vec = target:GetForwardVector()
 
 	target:EmitSound("DOTA_Item.ForceStaff.Activate")

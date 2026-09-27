@@ -35,7 +35,7 @@ modifier_haste_zone_thinker = class(mod_hidden)
 function modifier_haste_zone_thinker:OnCreated(table)
 	self.parent = self:GetParent()
 	self.pos = self.parent:GetAbsOrigin()
-	self.radius = 300
+	self.radius = 250
 
 	if IsClient() then
 		local ring_fx = ParticleManager:CreateParticle("particles/shrine/haste_zone.vpcf", PATTACH_WORLDORIGIN, nil)
@@ -48,7 +48,7 @@ function modifier_haste_zone_thinker:OnCreated(table)
 	if not IsServer() then
 		return
 	end
-	self:StartIntervalThink(0.2)
+	self:StartIntervalThink(0.5)
 end
 
 function modifier_haste_zone_thinker:OnIntervalThink()

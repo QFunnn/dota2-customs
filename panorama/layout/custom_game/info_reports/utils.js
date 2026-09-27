@@ -8,13 +8,18 @@
 ]]
 
 
+var OWNED_ITEMS_SOURCE = null
+var OWNED_ITEMS = null
+
 function HasItemInventory(item_id)
 {
-    if (player_table_shop?.items_ids)
+    if (!player_table_shop?.items_ids) { return false }
+    if (OWNED_ITEMS_SOURCE !== player_table_shop)
     {
-        return Object.values(player_table_shop.items_ids).includes(Number(item_id));
+        OWNED_ITEMS_SOURCE = player_table_shop
+        OWNED_ITEMS = new Set(Object.values(player_table_shop.items_ids))
     }
-	return false
+    return OWNED_ITEMS.has(Number(item_id))
 }
 
 function IsChestOpened(chest_id)
@@ -420,60 +425,6 @@ function UpdateQuipHeroItem(id, activate, slot_type, sets, is_effect)
             }
         }
 	}
-}
-
-function UpdateOnlyCouriers()
-{
-    let CategoryPets = $.GetContextPanel().FindChildTraverse("CategoryPets")
-    if (CategoryPets)
-    {
-        CategoryPets.RemoveAndDeleteChildren()
-        let pets_info_table = ALL_PETS_TABLE
-        let new_table = []
-        if (pets_info_table)
-        {
-            for (var item = 1; item <= Object.keys(pets_info_table).length; item++)
-            {
-                new_table[item-1] = []
-                new_table[item-1].push(pets_info_table[item][1], pets_info_table[item][2], pets_info_table[item][3], pets_info_table[item][4], pets_info_table[item][5])
-            }
-            new_table.sort(function (a, b) {
-                return Number(a[3])-Number(b[3])
-            });
-            for (var i = 0; i < new_table.length; i++)
-            {
-                if (HasItemInventory(new_table[i][0]))
-                {
-                    let info = new_table[i]
-                    CreatePanelInStore({
-                        parent : CategoryPets,
-                        item_id : info[0],
-                        item_image : info[4],
-                        item_name : info[2],
-                        shard_cost : info[3],
-                        item_type : "pet",
-                        all_info : info,
-                    })
-                }
-            }
-            for (var i = 0; i < new_table.length; i++)
-            {
-                if (!HasItemInventory(new_table[i][0]))
-                {
-                    let info = new_table[i]
-                    CreatePanelInStore({
-                        parent : CategoryPets,
-                        item_id : info[0],
-                        item_image : info[4],
-                        item_name : info[2],
-                        shard_cost : info[3],
-                        item_type : "pet",
-                        all_info : info,
-                    })
-                }
-            }
-        }    
-    }  
 }
 
 function UpdateEquiupPet(id)

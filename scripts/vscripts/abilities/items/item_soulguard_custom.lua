@@ -30,20 +30,45 @@ function item_soulguard_custom:GetIntrinsicModifierName()
 	return "modifier_item_soulguard_custom"
 end
 
+function item_soulguard_custom:Spawn()
+	self.duration = self:GetSpecialValueFor("duration")
+	self.bonus_armor = self:GetSpecialValueFor("bonus_armor")
+	self.bonus_damage = self:GetSpecialValueFor("bonus_damage")
+	self.bonus_strength = self:GetSpecialValueFor("bonus_strength")
+	self.passive_reflection_pct = self:GetSpecialValueFor("passive_reflection_pct")
+	self.active_reflection = self:GetSpecialValueFor("active_reflection")
+	self.passive_reflection_constant = self:GetSpecialValueFor("passive_reflection_constant")
+	self.active_mana = self:GetSpecialValueFor("active_mana")
+	self.active_heal = self:GetSpecialValueFor("active_heal")
+	self.AbilityHealthCost = self:GetSpecialValueFor("AbilityHealthCost")
+end
+
 function item_soulguard_custom:OnSpellStart()
 	local caster = self:GetCaster()
 
 	caster:EmitSound("Item.Soulguard_active")
 	caster:EmitSound("Item.Soulguard_active2")
-	caster:AddNewModifier(
-		caster,
-		self,
-		"modifier_item_soulguard_custom_reflect",
-		{ duration = self:GetSpecialValueFor("duration") }
-	)
+	caster:AddNewModifier(caster, self, "modifier_item_soulguard_custom_reflect", { duration = self.duration })
 end
 
 modifier_item_soulguard_custom = class(mod_hidden)
+function modifier_item_soulguard_custom:OnCreated(table)
+	self.ability = self:GetAbility()
+	self.parent = self:GetParent()
+
+	self.bonus_armor = self.ability.bonus_armor
+	self.bonus_damage = self.ability.bonus_damage
+	self.bonus_strength = self.ability.bonus_strength
+
+	self.passive_reflect = self.ability.passive_reflection_pct / 100
+	self.active_reflect = self.ability.active_reflection / 100
+	self.const_reflect = self.ability.passive_reflection_constant
+
+	if self.parent:IsRealHero() then
+		self.parent:AddDamageEvent_inc(self, true)
+	end
+end
+
 function modifier_item_soulguard_custom:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
@@ -62,23 +87,6 @@ end
 
 function modifier_item_soulguard_custom:GetModifierPhysicalArmorBonus()
 	return self.bonus_armor
-end
-
-function modifier_item_soulguard_custom:OnCreated(table)
-	self.ability = self:GetAbility()
-	self.parent = self:GetParent()
-
-	self.bonus_armor = self.ability:GetSpecialValueFor("bonus_armor")
-	self.bonus_damage = self.ability:GetSpecialValueFor("bonus_damage")
-	self.bonus_strength = self.ability:GetSpecialValueFor("bonus_strength")
-
-	self.passive_reflect = self.ability:GetSpecialValueFor("passive_reflection_pct") / 100
-	self.active_reflect = self.ability:GetSpecialValueFor("active_reflection") / 100
-	self.const_reflect = self.ability:GetSpecialValueFor("passive_reflection_constant")
-
-	if self.parent:IsRealHero() then
-		self.parent:AddDamageEvent_inc(self, true)
-	end
 end
 
 function modifier_item_soulguard_custom:DamageEvent_inc(params)
@@ -175,15 +183,13 @@ function modifier_item_soulguard_custom_reflect:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.active_mana = self.ability:GetSpecialValueFor("active_mana") / 100
-	self.active_heal = self.ability:GetSpecialValueFor("active_heal") / 100
+	self.active_mana = self.ability.active_mana / 100
+	self.active_heal = self.ability.active_heal / 100
 
 	if not IsServer() then
 		return
 	end
-	self:SetStackCount(
-		self.ability:GetSpecialValueFor("AbilityHealthCost") * self.ability:GetSpecialValueFor("active_heal") / 100
-	)
+	self:SetStackCount(self.ability.AbilityHealthCost * self.ability.active_heal / 100)
 end
 
 function modifier_item_soulguard_custom_reflect:OnDestroy()

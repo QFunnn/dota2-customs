@@ -93,7 +93,10 @@ function modifier_antimage_innate_custom:AttackEvent_out(params)
 		attacker = attacker.owner
 	end
 
-	if self.parent ~= attacker or not attacker:HasAbility(self.ability:GetName()) then
+	if self.parent ~= attacker then
+		return
+	end
+	if not attacker:HasAbility(self.ability:GetName()) then
 		return
 	end
 	if not params.target:IsUnit() then

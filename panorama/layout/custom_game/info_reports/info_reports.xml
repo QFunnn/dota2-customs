@@ -29,6 +29,7 @@
 		<include src="s2r://panorama/layout/custom_game/info_reports/items_heroes.vjs_c" />
 		<include src="s2r://panorama/layout/custom_game/info_reports/items_cosmetics.vjs_c" />
 		<include src="s2r://panorama/layout/custom_game/info_reports/player_profile.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/info_reports/chest_roll.vjs_c" />
 		<include src="s2r://panorama/layout/custom_game/info_reports/items_chest.vjs_c" />
 		<include src="s2r://panorama/layout/custom_game/info_reports/buy_windows.vjs_c" />
 		<include src="s2r://panorama/layout/custom_game/info_reports/init.vjs_c" />
@@ -209,10 +210,6 @@
 				<Panel class="shop_window_content" id="shop_window_3">
 					<Panel class="shop_window_shop_inventory" id="shop_window_header_shop">
 						<Label class="heroes_list_top_text" text="#shop_button_items" />
-						<Panel class="buy_items_show_panel">
-							<Button class="buy_items_show_button_off" id="heroes_buy_button" />
-							<Label class="buy_items_show_button_text" text="#label_information" />
-						</Panel>
 						<Panel id="sale_info_top">
 							<Label class="sale_info_top_text" text="#active_giga_sale_inshop" html="true" />
 							<Label class="sale_info_top_text_bottom" text="#active_giga_sale_inshop_date" html="true" />
@@ -409,6 +406,9 @@
 							</Panel>
 							<Panel id="leaderbord_button_duo" class="leaderbord_header_mode_button" onactivate="leaderbord_change_mode(2);">
 								<Label class="leaderbord_button_text" text="#leaderbord_button_duo" />
+							</Panel>
+							<Panel id="leaderbord_button_heroes" class="leaderbord_header_mode_button" onactivate="leaderbord_change_mode(3);">
+								<Label class="leaderbord_button_text" text="#leaderbord_button_heroes" />
 							</Panel>
 						</Panel>
 					</Panel>

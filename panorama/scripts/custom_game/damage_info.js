@@ -13,9 +13,12 @@ $.GetContextPanel().SetParent(parentHUDElements);
 
 
 var is_active = false
+var damage_table_answered = false
+var damage_table_attempts = 0
 var toggle = false;
 var cooldown_update = false
 var show_total = false
+var show_points = false
 var current_sub_tab = "DamageAbilitiesIncome";
 
 var local_hero_ent
@@ -25,6 +28,7 @@ var player_table
 var damage_table_outgoing = {}
 var damage_table_incoming = {}
 var damage_table_healing = {}
+var damage_table_resource = {}
 var damage_table_temp = {}
 
 function init()
@@ -33,13 +37,28 @@ function init()
 	GameEvents.Subscribe_custom('send_damage_stats', send_damage_stats)
 	GameEvents.Subscribe_custom('send_damage_bar', send_damage_bar)
 	GameEvents.Subscribe_custom('damage_stats_endscreen', damage_stats_endscreen)
-    GameEvents.SendCustomGameEventToServer_custom("RequestItemBuild", {})
+    RequestDamageTable()
 }
 
 init()
 
+function RequestDamageTable()
+{
+	if (damage_table_answered)
+		return
+
+	if (damage_table_attempts >= 10)
+		return
+
+	damage_table_attempts = damage_table_attempts + 1
+	GameEvents.SendCustomGameEventToServer_custom("RequestItemBuild", {})
+	$.Schedule(1, RequestDamageTable)
+}
+
 function init_damage_table(kv)
 {
+	damage_table_answered = true
+
 	let main = $.GetContextPanel().FindChildTraverse("DamageBlockWithButton")
 	if (kv.subscribed == 1 || kv.free_build == 1)
 	{
@@ -123,49 +142,52 @@ function send_damage_bar(data)
 }
 
 
-function ChangeViewType()
+function ChangeViewType(total)
 {
+	if (show_total == total)
+		return
+
 	Game.EmitSound("UI.Click")
-	let checkbox = $.GetContextPanel().FindChildTraverse("BottomPanelCheckbox")
-	let header = $.GetContextPanel().FindChildTraverse("TempHeader")
+	show_total = total
 
-	let DamageAbilitiesHealing_Total = $.GetContextPanel().FindChildTraverse("DamageAbilitiesHealing_Total")
-	let DamageAbilitiesIncome_Total = $.GetContextPanel().FindChildTraverse("DamageAbilitiesIncome_Total")
-	let DamageAbilities_Total = $.GetContextPanel().FindChildTraverse("DamageAbilities_Total")
+	UpdateTopPanel()
 
-	let DamageAbilitiesHealing_Recent = $.GetContextPanel().FindChildTraverse("DamageAbilitiesHealing_Recent")
-	let DamageAbilitiesIncome_Recent = $.GetContextPanel().FindChildTraverse("DamageAbilitiesIncome_Recent")
-	let DamageAbilities_Recent = $.GetContextPanel().FindChildTraverse("DamageAbilities_Recent")
+	$.GetContextPanel().FindChildTraverse("DamageAbilitiesHealing_Recent").SetHasClass("panel_hidden", total)
+	$.GetContextPanel().FindChildTraverse("DamageAbilitiesIncome_Recent").SetHasClass("panel_hidden", total)
+	$.GetContextPanel().FindChildTraverse("DamageAbilities_Recent").SetHasClass("panel_hidden", total)
 
-	if (show_total)
+	$.GetContextPanel().FindChildTraverse("DamageAbilitiesHealing_Total").SetHasClass("panel_hidden", !total)
+	$.GetContextPanel().FindChildTraverse("DamageAbilitiesIncome_Total").SetHasClass("panel_hidden", !total)
+	$.GetContextPanel().FindChildTraverse("DamageAbilities_Total").SetHasClass("panel_hidden", !total)
+}
+
+function ChangeResourceType(points)
+{
+	if (show_points == points)
+		return
+
+	Game.EmitSound("UI.Click")
+	show_points = points
+
+	UpdateTopPanel()
+
+	$.GetContextPanel().FindChildTraverse("DamageAbilitiesResource_Gold").SetHasClass("panel_hidden", points)
+	$.GetContextPanel().FindChildTraverse("DamageAbilitiesResource_Points").SetHasClass("panel_hidden", !points)
+}
+
+function UpdateTopPanel()
+{
+	let recent = $.GetContextPanel().FindChildTraverse("TopPanelRecent")
+	let total = $.GetContextPanel().FindChildTraverse("TopPanelTotal")
+
+	for (let tab of ["DamageAbilitiesIncome", "DamageAbilities", "DamageAbilitiesHealing"])
 	{
-		DamageAbilitiesHealing_Recent.RemoveClass("panel_hidden")
-		DamageAbilitiesIncome_Recent.RemoveClass("panel_hidden")
-		DamageAbilities_Recent.RemoveClass("panel_hidden")
-
-		DamageAbilitiesHealing_Total.AddClass("panel_hidden")
-		DamageAbilitiesIncome_Total.AddClass("panel_hidden")
-		DamageAbilities_Total.AddClass("panel_hidden")
-
-		checkbox.RemoveClass("BottomPanelCheckbox_active")
-		checkbox.AddClass("BottomPanelCheckbox_inactive")
-		show_total = false
-		header.text = $.Localize("#CurrentStatRecent")
-	}else
-	{
-		DamageAbilitiesHealing_Recent.AddClass("panel_hidden")
-		DamageAbilitiesIncome_Recent.AddClass("panel_hidden")
-		DamageAbilities_Recent.AddClass("panel_hidden")
-
-		DamageAbilitiesHealing_Total.RemoveClass("panel_hidden")
-		DamageAbilitiesIncome_Total.RemoveClass("panel_hidden")
-		DamageAbilities_Total.RemoveClass("panel_hidden")
-
-		checkbox.AddClass("BottomPanelCheckbox_active")
-		checkbox.RemoveClass("BottomPanelCheckbox_inactive")
-		show_total = true
-		header.text = $.Localize("#CurrentStatTotal")
+		recent.SetHasClass(tab + "Button_select", tab == current_sub_tab && !show_total)
+		total.SetHasClass(tab + "Button_select", tab == current_sub_tab && show_total)
 	}
+
+	$.GetContextPanel().FindChildTraverse("TopPanelGold").SetHasClass("DamageAbilitiesResourceButton_select", !show_points)
+	$.GetContextPanel().FindChildTraverse("TopPanelPoints").SetHasClass("DamageAbilitiesResourceButton_select", show_points)
 }
 
 
@@ -201,7 +223,7 @@ Game.DamageToggle = function(override)
 
 		if (cooldown_update == false)
 		{
-			player_table = CustomNetTables.GetTableValue("upgrades_player", local_hero)
+			player_table = CustomNetTables.GetTableValue("upgrades_player", String(Game.GetLocalPlayerID()))
     		GameEvents.SendCustomGameEventToServer_custom("update_damage_stats", {})
 			cooldown_update = true
 
@@ -230,17 +252,23 @@ function DamageToggleButton(tab, button)
 	$("#DamageAbilities").style.visibility = "collapse";
 	$("#DamageAbilitiesIncome").style.visibility = "collapse";
 	$("#DamageAbilitiesHealing").style.visibility = "collapse";
+	$("#DamageAbilitiesResource").style.visibility = "collapse";
 	$("#" + tab).style.visibility = "visible";
 
 	$("#DamageAbilitiesIncomeButton").RemoveClass("DamageAbilitiesIncomeButton_select")
 	$("#DamageAbilitiesButton").RemoveClass("DamageAbilitiesButton_select")
 	$("#DamageAbilitiesHealingButton").RemoveClass("DamageAbilitiesHealingButton_select")
+	$("#DamageAbilitiesResourceButton").RemoveClass("DamageAbilitiesResourceButton_select")
+
+	$("#TopPanel").SetHasClass("panel_hidden", tab == "DamageAbilitiesResource")
+	$("#TopPanelResource").SetHasClass("panel_hidden", tab != "DamageAbilitiesResource")
 
 	Game.EmitSound("UI.Click")
 
 	current_sub_tab = tab;
 
 	$("#" + button).AddClass(button + "_select")
+	UpdateTopPanel()
 }
 
 function send_damage_stats(data)
@@ -262,6 +290,9 @@ function send_damage_stats(data)
 		if (name == "healing")
 			damage_table_healing = data[name]
 
+		if (name == "resource")
+			damage_table_resource = data[name]
+
 		if (name == "temp")
 			damage_table_temp = data[name]
 	}
@@ -269,6 +300,7 @@ function send_damage_stats(data)
 	UpdateAbilitiesHudHealing()
 	UpdateAbilitiesHudDamage()
 	UpdateAbilitiesHudDamageIncoming()
+	UpdateAbilitiesHudResource()
 }
 
 
@@ -464,7 +496,31 @@ function UpdateAbilitiesHudDamageIncoming()
 		text.AddClass("TempTextNoData")
 		text.text = $.Localize("#NoData_Incoming")
 	}
-} 
+}
+
+function UpdateAbilitiesHudResource()
+{
+	let blue_list = GetResourceList("blue_points")
+	let gray_list = GetResourceList("gray_points")
+
+	CreateList(GetResourceList("gold"), $("#DamageAbilitiesResource_Gold"), true, false, false)
+	CreateList(blue_list, $("#DamageAbilitiesResource_Blue"), true, false, false)
+	CreateList(gray_list, $("#DamageAbilitiesResource_Gray"), true, false, false)
+
+	$("#ResourceBlueSection").SetHasClass("panel_hidden", Object.keys(blue_list).length == 0)
+	$("#ResourceGraySection").SetHasClass("panel_hidden", Object.keys(gray_list).length == 0)
+}
+
+function GetResourceList(resource_type)
+{
+	let resource_table = {}
+	let data = damage_table_resource[resource_type] || {}
+
+	for (let name in data)
+		resource_table[name] = {new_icon: data[name].new_icon, color: data[name].color, type: data[name].type, damage_type: resource_type, damage: data[name].amount}
+
+	return resource_table
+}
 
 function compareFunc( a, b)
 {
@@ -531,6 +587,9 @@ function CreateNewAbility(table, general, is_healing, is_mini)
     	UnitPortrait.abilityname = "";
     	UnitPortrait.SetImage( "file://{images}/custom_game/icons/mini/" + new_icon + ".png" )
 
+    	if (new_icon.startsWith("patrol_icons/"))
+    		UnitPortrait.style.height = "22px"
+
     	let lvl = 0
     	if (player_table)
     		lvl = player_table.upgrades[name]
@@ -553,20 +612,7 @@ function CreateNewAbility(table, general, is_healing, is_mini)
 
         let max_level = Game.GetMaxLevel(talent_data)
 
-       	if (color == "gray")
-       	{
-            let gray_bonus = talent_data["general_bonus"]
-            var value = '+' + String(Math.trunc(lvl * gray_bonus)) + $.Localize('#talent_disc_' + name)
-
-            UnitPortrait.SetPanelEvent('onmouseover', function() {
-		        $.DispatchEvent('DOTAShowTextTooltip', UnitPortrait, value)
-		    });
-
-		    UnitPortrait.SetPanelEvent('onmouseout', function() {
-		        $.DispatchEvent('DOTAHideTextTooltip', UnitPortrait);
-		    });
-       	}else
-    		MouseOverTalent(UnitPortrait, "#upgrade_disc_" + name, name, lvl, true, color == "orange" ? "legendary" : color, max_level, Game.GetLocalPlayerID(), local_hero)
+        Game.MouseOverTalent(UnitPortrait, "#upgrade_disc_" + name, name, lvl, true, color == "orange" ? "legendary" : color, max_level, Game.GetLocalPlayerID(), local_hero)
       	
 
     	if ((color) && (color != ""))
@@ -574,8 +620,23 @@ function CreateNewAbility(table, general, is_healing, is_mini)
     		UnitPortrait.AddClass("DamageTalentColor_" + color)
     	}
 
+    } else if (type == "resource" )
+    {
+		var UnitPortrait = $.CreatePanel("DOTAAbilityImage", UnitDamagePanel, "UnitPortrait");
+	    UnitPortrait.AddClass(UnitPortraitClass)
+    	UnitPortrait.abilityname = "";
+    	UnitPortrait.SetImage( "file://{images}/custom_game/icons/mini/" + new_icon + ".png" )
+
+    	let text = $.Localize("#info_table_" + name)
+	    UnitPortrait.SetPanelEvent('onmouseover', function() {
+	        $.DispatchEvent('DOTAShowTextTooltip', UnitPortrait, text)
+	    });
+
+	    UnitPortrait.SetPanelEvent('onmouseout', function() {
+	        $.DispatchEvent('DOTAHideTextTooltip', UnitPortrait);
+	    });
     }
-    else 
+    else
     {
 		var UnitPortrait = $.CreatePanel("DOTAAbilityImage", UnitDamagePanel, "UnitPortrait");
 	    UnitPortrait.AddClass(UnitPortraitClass)
@@ -613,12 +674,24 @@ function CreateNewAbility(table, general, is_healing, is_mini)
 
 	if (is_healing)
 	{
-		if (damage_type == "healing")
+		if (damage_types)
 		{
-			DamageLine.AddClass("DamageLine_healing")
-		}else if (damage_type = "shield")
+			var SubDamageLineHealing = $.CreatePanel( "Panel", DamageLine, "SubDamageLine_healing" );
+			SubDamageLineHealing.AddClass("SubDamageLine")
+			SubDamageLineHealing.AddClass("DamageLine_healing")
+
+			var SubDamageLineShield = $.CreatePanel( "Panel", DamageLine, "SubDamageLine_shield" );
+			SubDamageLineShield.AddClass("SubDamageLine")
+			SubDamageLineShield.AddClass("DamageLine_shield")
+		}else
 		{
-			DamageLine.AddClass("DamageLine_shield")
+			if (damage_type == "healing")
+			{
+				DamageLine.AddClass("DamageLine_healing")
+			}else if (damage_type == "shield")
+			{
+				DamageLine.AddClass("DamageLine_shield")
+			}
 		}
 	}else
 	{
@@ -644,33 +717,13 @@ function CreateNewAbility(table, general, is_healing, is_mini)
 				DamageLine.AddClass("DamageLine_magical")
 			} else if (damage_type == 4 ) {
 				DamageLine.AddClass("DamageLine_pure")
+			} else if (damage_type == "gold" || damage_type == "blue_points" || damage_type == "gray_points") {
+				DamageLine.AddClass("DamageLine_" + damage_type)
 			}
 		}
 	}
 	return UnitDamagePanel
 }
-
-function MouseOverTalent(panel, talent_text, name, lvl, all_levels, rarity, max_level, player_id, hero, is_scepter, skill_change) 
-{
-    panel.SetPanelEvent("onmouseover", () => 
-    {
-        Game.CustomTooltipOpened = true
-
-        $.DispatchEvent(
-            "UIShowCustomLayoutParametersTooltip",
-            panel,
-            "skill_tooltip",
-            "file://{resources}/layout/custom_game/custom_tooltip.xml",
-            "talent_text=" + talent_text + "&name=" + name + "&lvl=" + lvl + "&all_levels=" + all_levels + "&rarity=" + rarity + "&max_level=" + max_level + "&player_id=" + player_id + "&hero_name=" + hero + "&is_scepter=" + is_scepter + "&skill_change=" + skill_change,
-        );
-    });
-    panel.SetPanelEvent("onmouseout", () => 
-    {
-        Game.CustomTooltipOpened = false
-        $.DispatchEvent("UIHideCustomLayoutTooltip", panel, "skill_tooltip");
-    });
-}
-
 
 function CreateNewHero(hero_name, general) 
 {

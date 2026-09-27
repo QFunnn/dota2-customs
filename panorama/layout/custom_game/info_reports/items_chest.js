@@ -38,8 +38,6 @@ var rarity_color = // Цвет рарности
     immortal : "#e4ae39", 
 } 
 var DELAY_SPAWN_ITEMS_ANIM = 0.01 // 0 - off
-var STARTING_SPEED = 5890
-var DROP_SLOT = 70
 var DROP_POS = [0,0] // Позиция дропнутого айтема
 var SOUND_TICK_WIDTH = 128
 var last_chest_info = null
@@ -274,6 +272,7 @@ function ClearOldChest()
     $C("ItemsInChestBlockRare").style.visibility = "collapse"
     $C("ItemsInChestName").text = $.Localize("#chest_items_normal_2")
     $C("RollItemsListMain").style.position = "0px 0px 0px"
+    $C("RollItemsListMain").style.transform = "translateX(0px)"
 
     let poor_line = $C("RollLineBack")
     if (poor_line) { poor_line.RemoveClass("RollLineGray") }
@@ -321,15 +320,15 @@ function ChestInitItemsInRoll(items)
     }
     if (copy_table.length > 0)
     {
-        for (let i = 0; i <= 100; i++)
+        let picks = ChestRollPicks(copy_table)
+        for (let i = 0; i < picks.length; i++)
         {
-            let randomIndex = Math.floor(Math.random() * copy_table.length);
-            let randomElement = copy_table[randomIndex];
-            CreateItemInfo($C("RollItemsListMain"), randomElement, 0, true, DROP_SLOT == i, i)
+            CreateItemInfo($C("RollItemsListMain"), picks[i], 0, true, ROLL_DROP_SLOT == i, i)
         }
     }
     $C("RollItemsListMain").style.position = "0px 0px 0px"
-}  
+    $C("RollItemsListMain").style.transform = "translateX(0px)"
+}
 
 function ChestInitItemsInChest(items, no_rare_split)
 {
@@ -517,7 +516,6 @@ function OpenChest(items, retry_drop, shard_counter, is_reroll)
     Game.EmitSound("UI.Chest_open")
     loop_sound = Game.EmitSound("UI.Chest_open2")
     GameUI.CustomUIConfig().chest_loop_sound = loop_sound
-    let current = 0
     // НУЖНО ПЕРЕДАТЬ ДРОП АЙДИ ШМОТКИ
     if (CURRENT_DROP_ID != null)
     {
@@ -554,54 +552,26 @@ function OpenChest(items, retry_drop, shard_counter, is_reroll)
                 }
             }
             SetDropSlotSoundName(slot_drop, drop_info)
+            SetDropSlotTooltip(slot_drop, drop_info)
         }
     }
 
-    let randomly_max_distance = Math.floor(Math.random() * (DROP_POS[1] - DROP_POS[0] + 1) + DROP_POS[0]);
-    ChestAnimate(current, randomly_max_distance, STARTING_SPEED, SOUND_TICK_WIDTH, items[CURRENT_DROP_ID], items, retry_drop, shard_counter, is_reroll)
-    $C("OpenChestButton").style.opacity = "0"
-}
-
-function ChestAnimate(current, drop_distance, speed, sound_tick, item_drop_info, items, retry_drop, shard_counter, is_reroll)
-{
-    if ($C("ChestHudMainPanel").BHasClass("ChestHudAnimClose"))
+    let item_drop_info = items[CURRENT_DROP_ID]
+    ChestRollAnimate($C("RollItemsListMain"), DROP_POS, SOUND_TICK_WIDTH, function()
     {
+        if (!$C("ChestHudMainPanel").BHasClass("ChestHudAnimClose")) { return false }
         CURRENT_DROP_ID = null
         CloseDropPanel()
         $.Schedule( 0.35, function()
         {
             RefreshShopListsAfterChest()
         })
-        return
-    }
-
-
-    if (current <= drop_distance)
+        return true
+    }, function()
     {
-        $.Schedule(0.1, function() 
-        {
-            GiveItemDrop(item_drop_info, items, retry_drop, shard_counter, is_reroll)
-        })
-        return
-    }
-    current = current - (speed * Game.GetGameFrameTime())
-    sound_tick = sound_tick - (speed * Game.GetGameFrameTime())
-    if (sound_tick <= 0)
-    {
-        sound_tick = SOUND_TICK_WIDTH
-        Game.EmitSound("random_wheel_lever")
-    }
-    if (current <= 0.37 * drop_distance)
-    {
-        speed = speed - (speed * Game.GetGameFrameTime())
-    }
-    speed = Math.max(30, speed);
-
-    $C("RollItemsListMain").style.position = current + "px 0px 0px"
-    $.Schedule(Game.GetGameFrameTime(), function() 
-    {
-		ChestAnimate(current, drop_distance, speed, sound_tick, item_drop_info, items, retry_drop, shard_counter, is_reroll)
-	})
+        GiveItemDrop(item_drop_info, items, retry_drop, shard_counter, is_reroll)
+    })
+    $C("OpenChestButton").style.opacity = "0"
 }
 
 function SetDropCategory(drop_type, shards)
@@ -675,6 +645,16 @@ function SetDropSlotSoundName(slot_drop, drop_info)
         item_sound_name.AddClass("item_sound_name")
         item_sound_name.text = $.Localize("#" + drop_info.item_name)
     }
+}
+
+function SetDropSlotTooltip(slot_drop, drop_info)
+{
+    if (!slot_drop || !drop_info) { return }
+    let name = GetChestItemDisplayName(drop_info)
+    slot_drop.SetPanelEvent('onmouseover', function()
+    {
+        $.DispatchEvent('DOTAShowTextTooltip', slot_drop, name)
+    })
 }
 
 function GiveItemDrop(item_drop_info, items, retry_drop, shard_counter, is_reroll)
@@ -774,6 +754,7 @@ function CloseDropPanel(is_reroll)
         GameEvents.SendCustomGameEventToServer_custom( "shop_dota1x6_close_chest_checked_reward", {} );
     }
     $C("RollItemsListMain").style.position = "0px 0px 0px"
+    $C("RollItemsListMain").style.transform = "translateX(0px)"
     $C("DropItemPanel").SetHasClass("DropItemPanelVisible", false)
 }
 
@@ -839,9 +820,8 @@ function IsChestOwned(kind, index)
 
 function IsChestAvailableToOpen(kind, index)
 {
-    let sub = CustomNetTables.GetTableValue("sub_data", Players.GetLocalPlayer())
     if (!IsChestOwned(kind, index)) { return false }
-    if (kind == "rich") { return sub && sub.subscribed == 1 }
+    if (kind == "rich") { return player_table_shop && player_table_shop.subscribed == 1 }
     return true
 }
 
@@ -1052,6 +1032,7 @@ function OpenSingleChestLine(drop_id, is_dup, shards)
             item_icon_terrorblade_color.style.washColor = ITEMS_TERRORBLADE_COLOR_GEM[drop_info.item_id]
         }
         SetDropSlotSoundName(slot_drop, drop_info)
+        SetDropSlotTooltip(slot_drop, drop_info)
     }
 
     Game.EmitSound("UI.Chest_open")
@@ -1060,8 +1041,7 @@ function OpenSingleChestLine(drop_id, is_dup, shards)
 
     ChestPairRecomputeDropPos(roll_panel)
 
-    let dist = Math.floor(Math.random() * (PAIR_DROP_POS[1] - PAIR_DROP_POS[0] + 1) + PAIR_DROP_POS[0])
-    ChestPairAnimate(roll_panel, 0, dist, STARTING_SPEED, PAIR_SOUND_TICK_WIDTH, "single", drop_info, is_dup, shards)
+    ChestPairAnimate(roll_panel, "single", drop_info, is_dup, shards)
     $C("OpenChestButton").style.opacity = "0"
 }
 
@@ -1153,14 +1133,14 @@ function ChestPairInitLine(roll_panel, items)
     }
     if (copy_table.length > 0)
     {
-        for (let i = 0; i <= 100; i++)
+        let picks = ChestRollPicks(copy_table)
+        for (let i = 0; i < picks.length; i++)
         {
-            let randomIndex = Math.floor(Math.random() * copy_table.length)
-            let randomElement = copy_table[randomIndex]
-            CreateItemInfo(roll_panel, randomElement, 0, true, DROP_SLOT == i, i)
+            CreateItemInfo(roll_panel, picks[i], 0, true, ROLL_DROP_SLOT == i, i)
         }
     }
     roll_panel.style.position = "0px 0px 0px"
+    roll_panel.style.transform = "translateX(0px)"
     $.Schedule(0.12, function()
     {
         PAIR_DROP_POS[0] = DROP_POS[0]
@@ -1397,6 +1377,7 @@ function OpenChestPairLine(which, drop_id, is_dup, shards)
             item_icon_terrorblade_color.style.washColor = ITEMS_TERRORBLADE_COLOR_GEM[drop_info.item_id]
         }
         SetDropSlotSoundName(slot_drop, drop_info)
+        SetDropSlotTooltip(slot_drop, drop_info)
     }
 
     Game.EmitSound("UI.Chest_open")
@@ -1405,42 +1386,20 @@ function OpenChestPairLine(which, drop_id, is_dup, shards)
 
     ChestPairRecomputeDropPos(roll_panel)
 
-    let randomly_max_distance = Math.floor(Math.random() * (PAIR_DROP_POS[1] - PAIR_DROP_POS[0] + 1) + PAIR_DROP_POS[0])
-    ChestPairAnimate(roll_panel, 0, randomly_max_distance, STARTING_SPEED, PAIR_SOUND_TICK_WIDTH, which, drop_info, is_dup, shards)
+    ChestPairAnimate(roll_panel, which, drop_info, is_dup, shards)
     $C("OpenChestButton").style.opacity = "0"
 }
 
-function ChestPairAnimate(roll_panel, current, drop_distance, speed, sound_tick, which, drop_info, is_dup, shards)
+function ChestPairAnimate(roll_panel, which, drop_info, is_dup, shards)
 {
-    if ($C("ChestHudMainPanel").BHasClass("ChestHudAnimClose"))
+    ChestRollAnimate(roll_panel, PAIR_DROP_POS, PAIR_SOUND_TICK_WIDTH, function()
     {
+        if (!$C("ChestHudMainPanel").BHasClass("ChestHudAnimClose")) { return false }
         PAIR_ANIM_RUNNING = false
-        return
-    }
-    if (current <= drop_distance)
+        return true
+    }, function()
     {
-        $.Schedule(0.1, function()
-        {
-            ChestPairGiveDrop(which, drop_info, is_dup, shards)
-        })
-        return
-    }
-    current = current - (speed * Game.GetGameFrameTime())
-    sound_tick = sound_tick - (speed * Game.GetGameFrameTime())
-    if (sound_tick <= 0)
-    {
-        sound_tick = PAIR_SOUND_TICK_WIDTH
-        Game.EmitSound("random_wheel_lever")
-    }
-    if (current <= 0.37 * drop_distance)
-    {
-        speed = speed - (speed * Game.GetGameFrameTime())
-    }
-    speed = Math.max(30, speed)
-    roll_panel.style.position = current + "px 0px 0px"
-    $.Schedule(Game.GetGameFrameTime(), function()
-    {
-        ChestPairAnimate(roll_panel, current, drop_distance, speed, sound_tick, which, drop_info, is_dup, shards)
+        ChestPairGiveDrop(which, drop_info, is_dup, shards)
     })
 }
 

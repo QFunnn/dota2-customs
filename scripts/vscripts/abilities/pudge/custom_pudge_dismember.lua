@@ -960,7 +960,7 @@ end
 
 function modifier_custom_pudge_dismember_blood_str_buff:OnCreated(table)
 	self.parent = self:GetParent()
-	self.max = self.parent:GetTalentValue("modifier_pudge_dismember_4", "max")
+	self.max = self.parent:GetTalentValue("modifier_pudge_dismember_4", "max", true)
 	self.str = self.parent:GetTalentValue("modifier_pudge_dismember_4", "str") / self.max
 
 	if not IsServer() then

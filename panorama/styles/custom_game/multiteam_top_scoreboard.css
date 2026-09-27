@@ -20,24 +20,39 @@
 	opacity: 1;
 }
 
-#AegisIndicator
+#HuntIndicator
 {
-	width: 35px;
-	height: 35px;
-	background-image: url("s2r://panorama/images/items/topbar/aegis_psd.vtex");
-	background-size: 100%;
-	align: right top;
+	width: 28px;
+	height: 28px;
+	background-image: url("s2r://panorama/images/hud/arcana/drow/drow_arcana_target_psd.vtex");
+	background-size: contain;
+	align: left top;
+	z-index: 934001;
 	visibility: collapse;
 }
 
-#BuybackIndicator
+#HuntIndicatorShadow
 {
-	width: 25px;
-	height: 25px;
-	background-image: url("s2r://panorama/images/custom_game/no_buyback_png.vtex");
-	background-size: 100%;
+	width: 31px;
+	height: 31px;
+	background-image: url("s2r://panorama/images/hud/arcana/drow/drow_arcana_target_shadow_psd.vtex");
+	background-size: contain;
+	align: left top;
+	z-index: 934000;
+	visibility: collapse;
+}
+
+#RespawnRewardIndicator
+{
+	width: 20px;
+	height: 20px;
+	margin-left: 3px;
+	margin-bottom: 4px;
+	border-radius: 3px;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/tooltip/respawn_png.vtex");
+	background-size: contain;
 	align: left bottom;
-	margin-top: 30%;
+	box-shadow: fill #cccb9d 0px 0px 3px 0px;
 	visibility: collapse;
 }
 
@@ -51,16 +66,6 @@
 	align: right bottom;
 	z-index: 933999;
 	margin-bottom: 0px;
-}
-
-#PurpleIndicator
-{
-	width: 25px;
-	height: 25px;
-	background-image: url("s2r://panorama/images/custom_game/no_purple_png.vtex");
-	background-size: 100%;
-	align: left top;
-	visibility: collapse;
 }
 
 #ParticleAegis
@@ -88,7 +93,7 @@
 
 .TopBarScoreboard
 {
-	margin-left: 180px;
+	margin-left: 150px;
 	margin-top: 0px;
 	horizontal-align: left;
 	vertical-align: top;
@@ -106,7 +111,7 @@
 
 .AspectRatio4x3 .TopBarScoreboard
 {
-	margin-left: 100px;
+	margin-left: 70px;
 }
 
 #ScoreboardContainer
@@ -129,8 +134,8 @@
 .ScoreboardTeamWrapper
 {
 	height: 100%;
-	border-left: 5px solid transparent;
-	border-right: 5px solid transparent;
+	border-left: 3px solid transparent;
+	border-right: 3px solid transparent;
 	transition-property: position;
 	transition-duration: ANIM_TIME;
 	margin-left: M_EXTRA_PADDING;
@@ -229,14 +234,19 @@
 {
 	vertical-align: bottom;
 	vertical-align: center;
-	font-size: 16px;
+	font-size: 15px;
 	font-weight: bold;
 	color: #ffc600;
-	font-family: defaultFont;
+	font-family: Radiance;
 	text-shadow: 2px 2px 2px black;
-	margin-top: 41px;
-	margin-left: 24px;
+	margin-top: 45px;
+	margin-left: 26px;
 	text-overflow: clip;
+}
+
+.player_lost #TeamScore
+{
+	color: #a6a6a6;
 }
 
 #TeamDarkenWash
@@ -262,14 +272,14 @@
 #TeamOverlayBar
 {
 	width: 100%;
-	height: 70px;
+	height: 73px;
 }
 
 #LocalTeamOverlay
 {
 	width: 100%;
 	margin-left: 5px;
-	height: 82px;
+	height: 70px;
 }
 
 .ScoreboardTeamWrapper.local_player_team #LocalTeamOverlay
@@ -307,15 +317,113 @@
 
 #HeroIcon
 {
-	width: 80px;
+	width: 85px;
 	border: 1px solid #000000;
 	height: 48px;
+}
+
+#TierFrame
+{
+	width: 100%;
+	height: 100%;
+	border-bottom: 1.5px solid transparent;
+	visibility: collapse;
+}
+
+.TierFrameSide
+{
+	width: 1.5px;
+	height: 100%;
+}
+
+.TierFrameSideRight
+{
+	horizontal-align: right;
+}
+
+.hero_tier_0 #TierFrame
+{
+	visibility: visible;
+	border-color: #a05c28;
+	background-color: gradient(linear, 0% 100%, 0% 35%, from(#a05c2860), to(#c8783a00));
+}
+
+.hero_tier_0 .TierFrameSide
+{
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#a05c28), to(#c8783a00));
+}
+
+.hero_tier_1 #TierFrame
+{
+	visibility: visible;
+	border-color: #90a1ac;
+	background-color: gradient(linear, 0% 100%, 0% 35%, from(#90a1ac30), to(#b4d2e600));
+}
+
+.hero_tier_1 .TierFrameSide
+{
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#90a1ac), to(#b4d2e600));
+}
+
+.hero_tier_2 #TierFrame
+{
+	visibility: visible;
+	border-color: #a88417;
+	background-color: gradient(linear, 0% 100%, 0% 35%, from(#a8841740), to(#f2c23000));
+}
+
+.hero_tier_2 .TierFrameSide
+{
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#a88417), to(#f2c23000));
+}
+
+.hero_tier_3 #TierFrame
+{
+	visibility: visible;
+	border-color: #4786d8;
+	background-color: gradient(linear, 0% 100%, 0% 35%, from(#2f75d150), to(#4c9aff00));
+}
+
+.hero_tier_3 .TierFrameSide
+{
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#4786d8), to(#4c9aff00));
+}
+
+.hero_tier_4 #TierFrame
+{
+	visibility: visible;
+	border-color: #8355c7;
+	background-color: gradient(linear, 0% 100%, 0% 35%, from(#7347b660), to(#a95ce000));
+}
+
+.hero_tier_4 .TierFrameSide
+{
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#8355c7), to(#a95ce000));
+}
+
+.hero_tier_5 #TierFrame
+{
+	visibility: visible;
+	border-color: #cc4934;
+	background-color: gradient(linear, 0% 100%, 0% 35%, from(#cb3e2860), to(#ff4a2e00));
+}
+
+.hero_tier_5 .TierFrameSide
+{
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#cc4934), to(#ff4a2e00));
 }
 
 .player_dead #HeroIcon
 {
 	wash-color: #CCCCCC;
 	saturation: 0;
+}
+
+.player_lost #HeroIcon
+{
+	wash-color: #CCCCCC;
+	saturation: 0;
+	brightness: 0.45;
 }
 
 .player_connection_abandoned #HeroIcon
@@ -344,7 +452,7 @@
 
 #RespawnIndicator
 {
-	margin-top: 63px;
+	margin-top: 66px;
 	width: 42px;
 	height: 49px;
 	background-size: 100%;
@@ -370,7 +478,30 @@
 	text-shadow: 2px 2px 2px black;
 }
 
+#LostSkull
+{
+	width: 18px;
+	height: 18px;
+	background-image: url("s2r://panorama/images/hud/skull_stroke_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	align: center center;
+	margin-top: 20px;
+	visibility: collapse;
+}
+
+#LostSkull.LostSkull_show
+{
+	visibility: visible;
+}
+
 .ScoreboardPlayerWrapper.player_dead #RespawnIndicator
+{
+	opacity: 1;
+	transform: translateY(0px);
+}
+
+.ScoreboardPlayerWrapper.player_lost #RespawnIndicator
 {
 	opacity: 1;
 	transform: translateY(0px);
@@ -420,74 +551,131 @@
 
 .BlackScreen
 {
-	margin-top: 45px;
-	background-color: black;
+	margin-top: 48px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#353206), color-stop(0.12, #1d1c09), color-stop(0.25, #11100b), color-stop(0.5, #0c0b0c), color-stop(0.72, #150a17), color-stop(0.85, #230a2b), to(#40075a));
 	width: 100%;
-	background-image: url("s2r://panorama/images/custom_game/blacklayer_png.vtex");
-	height: 40px;
+	height: 25px;
+}
+
+.no_buyback .BlackScreen,.player_lost .BlackScreen
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#353206), color-stop(0.12, #1d1c09), color-stop(0.25, #11100b), color-stop(0.4, #0c0b0c), color-stop(0.6, #1f0a0a), color-stop(0.8, #470d0d), to(#7e0f0f));
 }
 
 .GoldLogo
 {
 	background-image: url("s2r://panorama/images/custom_game/gold-logo_png.vtex");
 	background-size: contain;
-	width: 18px;
-	height: 18px;
+	width: 16px;
+	height: 16px;
 	align: left top;
-	margin-left: 2px;
-	margin-top: 3px;
+	margin-left: 5px;
+	margin-top: 4px;
 	z-index: 10;
+}
+
+.no_buyback .GoldLogo
+{
+	background-image: url("s2r://panorama/images/custom_game/no_buyback_bw_png.vtex");
+}
+
+.player_lost .GoldLogo
+{
+	background-image: url("s2r://panorama/images/custom_game/gold-logo_png.vtex");
+	saturation: 0;
+	brightness: 0.45;
+}
+
+.player_lost.no_buyback .GoldLogo
+{
+	background-image: url("s2r://panorama/images/custom_game/no_buyback_bw_png.vtex");
+	saturation: 1;
+	brightness: 1;
 }
 
 .PurpleLogo
 {
 	background-image: url("s2r://panorama/images/custom_game/purple-logo_png.vtex");
 	background-size: contain;
-	width: 21px;
-	height: 21px;
+	width: 20px;
+	height: 20px;
 	margin-top: 16px;
 	vertical-align: center;
-	margin-left: 2px;
+	margin-left: 3px;
 	z-index: 10;
+}
+
+#PurpleScoreBox
+{
+	flow-children: right;
+	padding: 0px 3px 0px 3px;
+	border-top: 1px solid transparent;
+	border-right: 1px solid transparent;
+	border-bottom: 1px solid transparent;
+	border-radius: 0px 3px 3px 0px;
+	box-shadow: fill black 0px 0px 3px 0px;
+	margin-bottom: 2px;
+	align: left bottom;
+	visibility: collapse;
 }
 
 .PurpleText
 {
-	vertical-align: bottom;
+	font-size: 13px;
+	font-weight: semi-bold;
+	font-family: Radiance;
+	text-shadow: 1px 1px 3px 3 black;
 	vertical-align: center;
-	font-size: 18px;
-	font-weight: bold;
-	font-family: defaultFont;
-	text-shadow: 4px 4px 4px black;
-	margin-top: 18px;
-	align: center center;
 	text-overflow: clip;
 }
 
-.RedText
+#PurpleScoreIcon
 {
-	color: red;
+	width: 13px;
+	height: 13px;
+	margin-left: 1px;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/custom_game/no_purple_png.vtex");
+	background-size: contain;
+	visibility: collapse;
 }
 
-.GreenText
+#PurpleScoreBox.RedText
 {
-	color: green;
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#480c0ce6), to(#7e1a1ae6));
+	border-color: #f03a3a;
+}
+
+.RedText .PurpleText
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#f03a3a), to(#ff7070));
+}
+
+#PurpleScoreBox.GreenText
+{
+	background-color: gradient(linear, 0% 100%, 0% 0%, from(#0c2e0ce6), to(#1a551ae6));
+	border-color: #3c9f3c;
+}
+
+.GreenText .PurpleText
+{
+	color: gradient(linear, 0% 100%, 0% 0%, from(#3c9f3c), to(#38db38));
 }
 
 .IsDuoMode .TopBarScoreboard
 {
-	margin-left: 150px;
+	margin-left: 130px;
 }
 
 .AspectRatio16x10 .IsDuoMode .TopBarScoreboard
 {
-	margin-left: 120px;
+	margin-left: 100px;
 	ui-scale: 90%;
 }
 
 .AspectRatio4x3 .IsDuoMode .TopBarScoreboard
 {
-	margin-left: 120px;
+	margin-left: 100px;
 	ui-scale: 75%;
 }
 
@@ -495,7 +683,7 @@
 {
 	width: 100%;
 	height: 18px;
-	margin-top: 47px;
+	margin-top: 50px;
 	background-color: rgb(0, 0, 0);
 	background-image: url("s2r://panorama/images/custom_game/blacklayer_png.vtex");
 	background-size: 100% 150%;
@@ -524,6 +712,25 @@
 	margin-top: 0px;
 }
 
+.TeamNetworthSummary_no_buyback .GoldIconTeamNetworth
+{
+	background-image: url("s2r://panorama/images/custom_game/no_buyback_bw_png.vtex");
+}
+
+.TeamNetworthSummary_lost .GoldIconTeamNetworth
+{
+	background-image: url("s2r://panorama/images/custom_game/gold-logo_png.vtex");
+	saturation: 0;
+	brightness: 0.45;
+}
+
+.TeamNetworthSummary_lost.TeamNetworthSummary_no_buyback .GoldIconTeamNetworth
+{
+	background-image: url("s2r://panorama/images/custom_game/no_buyback_bw_png.vtex");
+	saturation: 1;
+	brightness: 1;
+}
+
 .GoldTeamNetworth
 {
 	vertical-align: bottom;
@@ -537,6 +744,11 @@
 	text-overflow: clip;
 }
 
+.TeamNetworthSummary_lost .GoldTeamNetworth
+{
+	color: #a6a6a6;
+}
+
 .IsAltDown .TeamNetworthSummary
 {
 	opacity: 0;
@@ -545,4 +757,10 @@
 .TeamNetworthSummary_hidden
 {
 	opacity: 0;
+}
+
+.TeamNetworthSummary.TeamNetworthSummary_no_buyback
+{
+	background-image: url("s2r://panorama/images/custom_game/panelred25_png.vtex");
+	background-size: 100% 100%;
 }

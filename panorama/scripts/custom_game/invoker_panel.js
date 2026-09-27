@@ -178,7 +178,10 @@ function checkPortraitUnit() {
         panel.style.visibility = "visible";
     }
     else panel.style.visibility = "collapse";
-    $.Schedule(0.2, checkPortraitUnit)
+}
+
+function update_portrait_unit() {
+    $.Schedule(0, checkPortraitUnit)
 }
 
 function panelSetParent() {
@@ -199,7 +202,11 @@ function new_constructor()
 {
 
     if (!invokerpanel)
-        invokerpanel = new InvokerPanel() 
+    {
+        invokerpanel = new InvokerPanel()
+        GameEvents.Subscribe('dota_player_update_selected_unit', update_portrait_unit)
+        GameEvents.Subscribe('dota_player_update_query_unit', update_portrait_unit)
+    }
 }
 
 

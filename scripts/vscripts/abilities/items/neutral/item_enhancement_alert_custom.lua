@@ -20,6 +20,11 @@ function item_enhancement_alert_custom:GetIntrinsicModifierName()
 	return "modifier_item_enhancement_alert_custom"
 end
 
+function item_enhancement_alert_custom:Spawn()
+	self.bonus_attack_speed = self:GetSpecialValueFor("bonus_attack_speed")
+	self.evasion = self:GetSpecialValueFor("evasion")
+end
+
 modifier_item_enhancement_alert_custom = class(mod_hidden)
 function modifier_item_enhancement_alert_custom:RemoveOnDeath()
 	return false
@@ -28,8 +33,8 @@ function modifier_item_enhancement_alert_custom:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.speed_bonus = self.ability:GetSpecialValueFor("bonus_attack_speed")
-	self.evasion = self.ability:GetSpecialValueFor("evasion")
+	self.speed_bonus = self.ability.bonus_attack_speed
+	self.evasion = self.ability.evasion
 end
 
 function modifier_item_enhancement_alert_custom:DeclareFunctions()

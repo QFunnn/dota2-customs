@@ -41,42 +41,19 @@ function item_cloak_of_flames_custom:GetIntrinsicModifierName()
 	return "modifier_item_cloak_of_flames_custom_tracker"
 end
 
+function item_cloak_of_flames_custom:Spawn()
+	self.damage_reduce = self:GetSpecialValueFor("damage_reduce")
+	self.radius = self:GetSpecialValueFor("radius")
+	self.health = self:GetSpecialValueFor("health")
+	self.interval = self:GetSpecialValueFor("interval")
+	self.bonus = self:GetSpecialValueFor("bonus")
+	self.damage = self:GetSpecialValueFor("damage")
+end
+
 modifier_item_cloak_of_flames_custom_tracker = class(mod_hidden)
 function modifier_item_cloak_of_flames_custom_tracker:IsHidden()
 	return self.parent:GetHealthPercent() > self.health
 end
-function modifier_item_cloak_of_flames_custom_tracker:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.damage_reduce = self.ability:GetSpecialValueFor("damage_reduce")
-	self.radius = self.ability:GetSpecialValueFor("radius")
-	self.health = self.ability:GetSpecialValueFor("health")
-
-	if not IsServer() then
-		return
-	end
-	self:StartIntervalThink(0.5)
-end
-
-function modifier_item_cloak_of_flames_custom_tracker:OnIntervalThink()
-	if not IsServer() then
-		return
-	end
-
-	if self.parent:GetHealthPercent() <= self.health and self.parent:IsAlive() then
-		if not self.particle then
-			self.particle = self.parent:GenericParticle("particles/items/pyrrhic_cloak_custom.vpcf", self)
-		end
-	else
-		if self.particle then
-			ParticleManager:DestroyParticle(self.particle, false)
-			ParticleManager:ReleaseParticleIndex(self.particle)
-			self.particle = nil
-		end
-	end
-end
-
 function modifier_item_cloak_of_flames_custom_tracker:GetAuraDuration()
 	return 0.1
 end
@@ -98,6 +75,35 @@ end
 function modifier_item_cloak_of_flames_custom_tracker:IsAura()
 	return true
 end
+function modifier_item_cloak_of_flames_custom_tracker:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.damage_reduce = self.ability.damage_reduce
+	self.radius = self.ability.radius
+	self.health = self.ability.health
+
+	if not IsServer() then
+		return
+	end
+	self:StartIntervalThink(0.5)
+end
+
+function modifier_item_cloak_of_flames_custom_tracker:OnIntervalThink()
+	if not IsServer() then
+		return
+	end
+
+	if self.parent:GetHealthPercent() <= self.health and self.parent:IsAlive() then
+		if not self.particle then
+			self.particle = self.parent:GenericParticle("particles/items/pyrrhic_cloak_custom.vpcf", self)
+		end
+	else
+		ParticleManager:Delete(self.particle, 1)
+		self.particle = nil
+	end
+end
+
 function modifier_item_cloak_of_flames_custom_tracker:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
@@ -117,10 +123,10 @@ function modifier_item_cloak_of_flames_custom_aura:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.interval = self.ability:GetSpecialValueFor("interval")
-	self.health = self.ability:GetSpecialValueFor("health")
-	self.bonus = self.ability:GetSpecialValueFor("bonus")
-	self.damage = self.ability:GetSpecialValueFor("damage") * self.interval
+	self.interval = self.ability.interval
+	self.health = self.ability.health
+	self.bonus = self.ability.bonus
+	self.damage = self.ability.damage * self.interval
 
 	if not IsServer() then
 		return

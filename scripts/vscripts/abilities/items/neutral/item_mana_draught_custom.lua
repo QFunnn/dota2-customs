@@ -16,21 +16,26 @@ LinkLuaModifier(
 
 item_mana_draught_custom = class({})
 
+function item_mana_draught_custom:Precache(context)
+	if self:GetCaster() and self:GetCaster():IsIllusion() then
+		return
+	end
+	PrecacheResource("particle", "particles/items_fx/mana_draught.vpcf", context)
+end
+
+function item_mana_draught_custom:Spawn()
+	self.duration = self:GetSpecialValueFor("duration")
+	self.mana = self:GetSpecialValueFor("mana")
+	self.health = self:GetSpecialValueFor("health")
+end
+
 function item_mana_draught_custom:OnSpellStart()
 	local caster = self:GetCaster()
 	caster:EmitSound("Item.Draught_active")
-	caster:AddNewModifier(
-		caster,
-		self,
-		"modifier_item_mana_draught_custom",
-		{ duration = self:GetSpecialValueFor("duration") }
-	)
+	caster:AddNewModifier(caster, self, "modifier_item_mana_draught_custom", { duration = self.duration })
 end
 
-modifier_item_mana_draught_custom = class({})
-function modifier_item_mana_draught_custom:IsHidden()
-	return false
-end
+modifier_item_mana_draught_custom = class(mod_visible)
 function modifier_item_mana_draught_custom:IsPurgable()
 	return true
 end
@@ -38,8 +43,8 @@ function modifier_item_mana_draught_custom:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.mana = self.ability:GetSpecialValueFor("mana")
-	self.health = self.ability:GetSpecialValueFor("health")
+	self.mana = self.ability.mana
+	self.health = self.ability.health
 
 	if not IsServer() then
 		return

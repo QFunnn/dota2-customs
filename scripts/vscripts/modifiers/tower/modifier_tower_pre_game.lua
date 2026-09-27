@@ -70,7 +70,7 @@ function modifier_tower_pre_game:OnIntervalThink()
 		local abs = player:GetAbsOrigin()
 
 		if not self:CheckPos(abs) then
-			player:WallKnock(self.parent:GetAbsOrigin(), self.radius, self.height, true)
+			player:WallKnock(self.parent:GetAbsOrigin(), self.radius, self.height, true, nil, true)
 		end
 	end
 end

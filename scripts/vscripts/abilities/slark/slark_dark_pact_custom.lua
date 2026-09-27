@@ -43,10 +43,6 @@ LinkLuaModifier(
 slark_dark_pact_custom = class({})
 slark_dark_pact_custom.talents = {}
 
-function slark_dark_pact_custom:GetAbilityTextureName()
-	return wearables_system:GetAbilityIconReplacement(self.caster, "slark_dark_pact", self)
-end
-
 function slark_dark_pact_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
@@ -152,6 +148,10 @@ function slark_dark_pact_custom:UpdateTalents()
 	end
 end
 
+function slark_dark_pact_custom:GetAbilityTextureName()
+	return wearables_system:GetAbilityIconReplacement(self.caster, "slark_dark_pact", self)
+end
+
 function slark_dark_pact_custom:GetIntrinsicModifierName()
 	if not self:GetCaster():IsRealHero() then
 		return
@@ -172,30 +172,27 @@ function slark_dark_pact_custom:GetBehavior()
 end
 
 function slark_dark_pact_custom:GetRadius()
-	return (self.radius and self.radius or 0)
+	return (self.radius or 0)
 end
 
 function slark_dark_pact_custom:GetHealthCost(level)
 	if self.talents.has_q7 == 1 and IsClient() then
-		return self:GetCaster():GetMaxHealth() * self.talents.q7_cost
+		return self.caster:GetMaxHealth() * self.talents.q7_cost
 	end
 end
 
 function slark_dark_pact_custom:GetCooldown(iLevel)
-	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.w2_cd and self.talents.w2_cd or 0)
+	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.w2_cd or 0)
 end
 
 function slark_dark_pact_custom:OnSpellStart()
-	local caster = self:GetCaster()
-	local duration = self.delay
-
-	local legendary_mod = caster:FindModifierByName("modifier_slark_dark_pact_custom_legendary")
+	local legendary_mod = self.caster:FindModifierByName("modifier_slark_dark_pact_custom_legendary")
 	if legendary_mod then
 		legendary_mod.early = true
 		legendary_mod:Destroy()
 	end
 
-	caster:AddNewModifier(caster, self, "modifier_slark_dark_pact_custom_delay", { duration = duration })
+	self.caster:AddNewModifier(self.caster, self, "modifier_slark_dark_pact_custom_delay", { duration = self.delay })
 end
 
 function slark_dark_pact_custom:AddStack(hit_hero, is_legendary)
@@ -206,13 +203,13 @@ function slark_dark_pact_custom:AddStack(hit_hero, is_legendary)
 		return
 	end
 
-	if self.ability.talents.has_q4 == 1 then
-		local shield = self.ability.talents.q4_base + self.ability.talents.q4_shield * self.parent:GetMaxHealth()
-		local max = shield * self.ability.talents.q4_max
+	if self.talents.has_q4 == 1 then
+		local shield = self.talents.q4_base + self.talents.q4_shield * self.parent:GetMaxHealth()
+		local max = shield * self.talents.q4_max
 
 		if not IsValid(self.shield_mod) then
-			self.shield_mod = self.parent:AddNewModifier(self.parent, self.ability, "modifier_generic_shield", {
-				duration = self.ability.talents.q4_shield_duration,
+			self.shield_mod = self.parent:AddNewModifier(self.parent, self, "modifier_generic_shield", {
+				duration = self.talents.q4_shield_duration,
 				max_shield = max,
 				shield_talent = "modifier_slark_pact_4",
 			})
@@ -227,7 +224,7 @@ function slark_dark_pact_custom:AddStack(hit_hero, is_legendary)
 
 				self.shield_mod:SetReduceDamage(function(params)
 					if params.caster:HasModifier("modifier_slark_dark_pact_custom") then
-						return (1 - (self.ability.talents.q4_damage_reduce * -1) / 100)
+						return (1 - (self.talents.q4_damage_reduce * -1) / 100)
 					end
 				end)
 
@@ -261,18 +258,18 @@ function slark_dark_pact_custom:AddStack(hit_hero, is_legendary)
 
 		if self.shield_mod then
 			self.shield_mod:AddShield(shield, max)
-			self.shield_mod:SetDuration(self.ability.talents.q4_shield_duration, true)
+			self.shield_mod:SetDuration(self.talents.q4_shield_duration, true)
 		end
 	end
 
 	if self.talents.has_w4 == 1 then
-		local cd_items = is_legendary and self.ability.talents.w4_cd_items_legendary or self.ability.talents.w4_cd_items
+		local cd_items = is_legendary and self.talents.w4_cd_items_legendary or self.talents.w4_cd_items
 		self.parent:CdItems(cd_items)
 		self.parent:AddNewModifier(
 			self.parent,
-			self.ability,
+			self,
 			"modifier_slark_dark_pact_custom_speed",
-			{ duration = self.ability.talents.w4_duration }
+			{ duration = self.talents.w4_duration }
 		)
 	end
 
@@ -295,13 +292,11 @@ function slark_dark_pact_custom:GetDamage()
 	if not self:IsTrained() then
 		return
 	end
-	local damage = self.ability.total_damage
-		+ self.ability.talents.q1_base
-		+ self.ability.talents.q1_damage * self.parent:GetMaxHealth()
+	local damage = self.total_damage + self.talents.q1_base + self.talents.q1_damage * self.parent:GetMaxHealth()
 	if self.talents.has_w7 == 1 then
 		local mod = self.parent:FindModifierByName("modifier_slark_innate_custom_caster")
 		if mod then
-			damage = damage * (1 + mod:GetStackCount() * self.ability.talents.w7_pact)
+			damage = damage * (1 + mod:GetStackCount() * self.talents.w7_pact)
 		end
 	end
 	return damage
@@ -739,7 +734,7 @@ function modifier_slark_dark_pact_custom_legendary_stack:OnCreated()
 		return
 	end
 	self.particle = self.parent:GenericParticle("particles/slark/pact_legendary_stack.vpcf", self, true)
-	self:SetStackCount(1)
+	self:OnRefresh()
 end
 
 function modifier_slark_dark_pact_custom_legendary_stack:OnRefresh()
@@ -750,12 +745,6 @@ function modifier_slark_dark_pact_custom_legendary_stack:OnRefresh()
 		return
 	end
 	self:IncrementStackCount()
-end
-
-function modifier_slark_dark_pact_custom_legendary_stack:OnStackCountChanged(iStackCount)
-	if not IsServer() then
-		return
-	end
 
 	if self.ability.tracker then
 		self.ability.tracker:UpdateJs()
@@ -789,7 +778,7 @@ function modifier_slark_dark_pact_custom_health_bonus:OnCreated()
 	if not IsServer() then
 		return
 	end
-	self:SetStackCount(1)
+	self:OnRefresh()
 end
 
 function modifier_slark_dark_pact_custom_health_bonus:OnRefresh()
@@ -800,12 +789,6 @@ function modifier_slark_dark_pact_custom_health_bonus:OnRefresh()
 		return
 	end
 	self:IncrementStackCount()
-end
-
-function modifier_slark_dark_pact_custom_health_bonus:OnStackCountChanged()
-	if not IsServer() then
-		return
-	end
 	self.parent:CalculateStatBonus(true)
 end
 

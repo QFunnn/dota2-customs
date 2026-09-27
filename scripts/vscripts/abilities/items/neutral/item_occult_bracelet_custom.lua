@@ -28,6 +28,13 @@ function item_occult_bracelet_custom:GetIntrinsicModifierName()
 	return "modifier_item_occult_bracelet_custom"
 end
 
+function item_occult_bracelet_custom:Spawn()
+	self.stack_duration = self:GetSpecialValueFor("stack_duration")
+	self.health_regen = self:GetSpecialValueFor("health_regen")
+	self.mana_regen = self:GetSpecialValueFor("mana_regen")
+	self.stack_limit = self:GetSpecialValueFor("stack_limit")
+end
+
 modifier_item_occult_bracelet_custom = class(mod_hidden)
 function modifier_item_occult_bracelet_custom:RemoveOnDeath()
 	return false
@@ -36,12 +43,15 @@ function modifier_item_occult_bracelet_custom:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.duration = self.ability:GetSpecialValueFor("stack_duration")
+	self.duration = self.ability.stack_duration
 	self.parent:AddAttackEvent_inc(self, true)
 end
 
 function modifier_item_occult_bracelet_custom:AttackEvent_inc(params)
 	if not IsServer() then
+		return
+	end
+	if not IsValid(self.ability) then
 		return
 	end
 	if self.parent ~= params.target then
@@ -65,9 +75,9 @@ function modifier_item_occult_bracelet_custom_regen:OnCreated()
 	self.caster = self:GetCaster()
 	self.ability = self:GetAbility()
 
-	self.health = self.ability:GetSpecialValueFor("health_regen")
-	self.mana = self.ability:GetSpecialValueFor("mana_regen")
-	self.max = self.ability:GetSpecialValueFor("stack_limit")
+	self.health = self.ability.health_regen
+	self.mana = self.ability.mana_regen
+	self.max = self.ability.stack_limit
 	if not IsServer() then
 		return
 	end

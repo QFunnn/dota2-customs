@@ -48,16 +48,15 @@ DUO_BANNED = {
 --
 
 NO_BANNED_HEROES = {
-	"npc_dota_hero_jakiro",
 	"npc_dota_hero_kunkka",
+	"npc_dota_hero_phantom_assassin",
 }
 
 DONATE_HEROES = {
-	["npc_dota_hero_jakiro"] = true,
 	["npc_dota_hero_kunkka"] = true,
 }
 NEW_SYSTEM_HEROES = {
-	[""] = true,
+	["npc_dota_hero_phantom_assassin"] = true,
 }
 
 --[[PRO_MOD_ALLOWED =
@@ -122,48 +121,127 @@ function hero_select:RandomBase()
 	return base
 end
 
-function hero_select:PickBase(id, number)
-	if SelectedBases[id] ~= nil then
+hero_select.ensure_hero = {}
+
+function hero_select:EnsureBase(id)
+	if not IsSoloMode() then
+		local player_info = LOBBY_PLAYERS[id]
+		if player_info then
+			for _, pid in pairs(hero_select:GetPlayersInTeam(player_info.player_team)) do
+				if SelectedBases[pid] then
+					return SelectedBases[pid]
+				end
+			end
+		end
+	end
+
+	local free = {}
+	for number = 1, #BASE_FOR_PICK do
+		if not dota1x6:check_used(PICKED_BASES, number) then
+			table.insert(free, number)
+		end
+	end
+
+	if #free > 0 then
+		return free[RandomInt(1, #free)]
+	end
+
+	return RandomInt(1, #BASE_FOR_PICK)
+end
+
+function hero_select:EnsureHero(id)
+	if not ValidId(id) then
+		return
+	end
+	if GlobalHeroes[id] then
+		return
+	end
+	if PlayerResource:GetSelectedHeroName(id) ~= "" then
 		return
 	end
 
-	local player_info = LOBBY_PLAYERS[id]
+	if not SelectedHeroes[id] or not SelectedHeroes[id].hero then
+		if not LOBBY_PLAYERS[id] then
+			return
+		end
+		hero_select:PickHero(id, hero_select:RandomHero(id), 1)
+	end
 
-	player_info.select_base = number
+	if not SelectedHeroes[id] or not SelectedHeroes[id].hero then
+		return
+	end
 
-	PLAYERS_PRE_SELECT_BASE[id] = number
+	if SelectedBases[id] == nil and LOBBY_PLAYERS[id] and PICK_STATE == PICK_STATE_PICK_END then
+		hero_select:PickBase(LOBBY_PLAYERS[id].player_team, hero_select:EnsureBase(id))
+		return
+	end
 
-	HTTP.playersData[id].base = number
+	local player = PlayerResource:GetPlayer(id)
+	if player then
+		player:SetSelectedHero(SelectedHeroes[id].hero)
+		return
+	end
 
-	table.insert(PICKED_BASES, number)
+	if hero_select.ensure_hero[id] then
+		return
+	end
+
+	hero_select.ensure_hero[id] = true
+
+	Timers:CreateTimer("hero_select_ensure_" .. id, {
+		useGameTime = false,
+		endTime = 0.5,
+		callback = function()
+			hero_select.ensure_hero[id] = nil
+			hero_select:EnsureHero(id)
+		end,
+	})
+end
+
+function hero_select:PickBase(team, number)
+	local picked = {}
+
+	for _, id in pairs(hero_select:GetPlayersInTeam(team)) do
+		if SelectedBases[id] == nil then
+			local player_info = LOBBY_PLAYERS[id]
+
+			player_info.select_base = number
+			PLAYERS_PRE_SELECT_BASE[id] = number
+			SelectedBases[id] = number
+
+			if HTTP.playersData[id] then
+				HTTP.playersData[id].base = number
+			end
+
+			CustomGameEventManager:Send_ServerToAllClients(
+				"pick_select_base",
+				{ number = number, hero = player_info.picked_hero, id = id }
+			)
+
+			table.insert(picked, id)
+		end
+	end
+
+	if #picked == 0 then
+		return
+	end
+
+	if not dota1x6:check_used(PICKED_BASES, number) then
+		table.insert(PICKED_BASES, number)
+	end
 
 	CustomNetTables:SetTableValue("custom_pick", "base_list", {
 		picked_bases = PICKED_BASES,
 		picked_bases_length = #PICKED_BASES,
 	})
 
-	CustomGameEventManager:Send_ServerToAllClients(
-		"pick_select_base",
-		{ number = number, hero = player_info.picked_hero, id = id }
-	)
-
-	SelectedBases[id] = number
-
-	if
-		ValidId(id)
-		and SelectedHeroes[id]
-		and SelectedHeroes[id].hero
-		and PlayerResource:GetSelectedHeroName(id) == ""
-		and PlayerResource:GetPlayer(id)
-	then
-		PlayerResource:GetPlayer(id):SetSelectedHero(SelectedHeroes[id].hero)
-	else
-		if
-			PlayerResource:GetSelectedHeroName(id) ~= ""
-			and GlobalHeroes[id]
-			and towers[GlobalHeroes[id]:GetTeamNumber()] == nil
-		then
-			dota1x6:PlaceHero(id)
+	for _, id in pairs(picked) do
+		if PlayerResource:GetSelectedHeroName(id) ~= "" then
+			if GlobalHeroes[id] and towers[GlobalHeroes[id]:GetTeamNumber()] == nil then
+				dota1x6:PlaceHero(id)
+			end
+		else
+			hero_select:EnsureHero(id)
 		end
 	end
 
@@ -180,22 +258,30 @@ function hero_select:ChoseBase(params)
 	if not params.number then
 		return
 	end
+	params.number = math.floor(tonumber(params.number) or 0)
+	if params.number < 1 or params.number > #BASE_FOR_PICK then
+		return
+	end
 	if PICK_STATE ~= PICK_STATE_SELECT_BASE then
 		return
 	end
 	local player_info = LOBBY_PLAYERS[params.PlayerID]
+	if player_info == nil then
+		return
+	end
 	if player_info.select_base ~= nil or hero_select:check_picked_base_number(params.number) then
 		return
 	end
-	if IsSoloMode() then
-		hero_select:PickBase(params.PlayerID, params.number)
-	else
-		hero_select:PickBaseDuo(params.PlayerID, params.number)
-		-- hero_select:PickBaseDuo(1, 3)
+
+	local team_info = LOBBY_TEAMS_INFO[player_info.player_team]
+	if not team_info or team_info.pick_order ~= PICK_ORDER then
+		return
 	end
+
+	hero_select:PickBaseForTeam(params.PlayerID, params.number)
 end
 
-function hero_select:PickBaseDuo(PlayerID, number)
+function hero_select:PickBaseForTeam(PlayerID, number)
 	PLAYERS_PRE_SELECT_BASE[PlayerID] = number
 	local current_team = LOBBY_PLAYERS[PlayerID].player_team
 	local players_in_team = hero_select:GetPlayersInTeam(current_team)
@@ -209,16 +295,11 @@ function hero_select:PickBaseDuo(PlayerID, number)
 	end
 	-- if IsInToolsMode() and PlayerID == 0 then
 	--     Timers:CreateTimer(2, function()
-	--         hero_select:PickBaseDuo(1, number)
+	--         hero_select:PickBaseForTeam(1, number)
 	--     end)
 	-- end
 	if next_stage then
-		for _, pid in pairs(players_in_team) do
-			hero_select:PickBase(pid, number)
-		end
-		Timers:CreateTimer(3, function()
-			DeepPrintTable(LOBBY_PLAYERS)
-		end)
+		hero_select:PickBase(current_team, number)
 	end
 end
 
@@ -304,6 +385,11 @@ function hero_select:ChoseHero(params)
 
 	local player_info = LOBBY_PLAYERS[params.PlayerID]
 
+	local team_info = LOBBY_TEAMS_INFO[player_info.player_team]
+	if not team_info or team_info.pick_order ~= PICK_ORDER then
+		return
+	end
+
 	if params.random then
 		local random_hero = hero_select:RandomHero(params.PlayerID)
 
@@ -325,6 +411,10 @@ function hero_select:ChoseHero(params)
 end
 
 function hero_select:EndPickHeroes()
+	if PICK_STATE ~= PICK_STATE_SELECT_HERO then
+		return
+	end
+
 	CustomNetTables:SetTableValue("custom_pick", "player_lobby", {
 		lobby_players = LOBBY_PLAYERS,
 		lobby_players_length = LOBBY_PLAYERS_MAX,
@@ -336,15 +426,11 @@ function hero_select:EndPickHeroes()
 
 	HTTP.GetTalentsBuild()
 
-	Timers:CreateTimer("", {
+	Timers:CreateTimer("hero_select_start_base_order", {
 		useGameTime = false,
 		endTime = 1,
 		callback = function()
-			if IsSoloMode() then
-				hero_select:StartOrderPickBase()
-			else
-				hero_select:StartOrderPickBaseDuo()
-			end
+			hero_select:StartOrderPickBase()
 		end,
 	})
 end
@@ -358,20 +444,7 @@ function hero_select:OnDisconnect(params)
 	end
 	local id = params.PlayerID
 
-	if PlayerResource:GetSelectedHeroName(id) ~= "" then
-		return
-	end
-	if GlobalHeroes[id] then
-		return
-	end
-
-	if LOBBY_PLAYERS[id].picked_hero == nil or SelectedHeroes[id] == nil or SelectedHeroes[id].hero == nil then
-		hero_select:PickHero(id, hero_select:RandomHero(id), 1)
-	end
-
-	if SelectedHeroes[id] and SelectedHeroes[id].hero then
-		PlayerResource:GetPlayer(params.PlayerID):SetSelectedHero(SelectedHeroes[id].hero)
-	end
+	hero_select:EnsureHero(id)
 end
 
 function hero_select:EndPick(source)
@@ -380,8 +453,14 @@ function hero_select:EndPick(source)
 	end
 
 	for id = 0, 24 do
-		if ValidId(id) and SelectedHeroes[id] and SelectedHeroes[id].hero and SelectedBases[id] == nil then
-			hero_select:PickBase(id, hero_select:RandomBase())
+		if
+			ValidId(id)
+			and SelectedHeroes[id]
+			and SelectedHeroes[id].hero
+			and SelectedBases[id] == nil
+			and LOBBY_PLAYERS[id]
+		then
+			hero_select:PickBase(LOBBY_PLAYERS[id].player_team, hero_select:EnsureBase(id))
 		end
 	end
 
@@ -479,48 +558,41 @@ function hero_select:UpdatePlayersTeams()
 		end
 	end
 
-	if IsInToolsMode() and test_pick_stage then
-		LOBBY_TEAMS_INFO[3] = {}
-		LOBBY_TEAMS_INFO[6] = {}
-		LOBBY_TEAMS_INFO[7] = {}
-
-		local teams = {
-			[1] = { 1, 2 },
-			[2] = { 0, 3 },
-			[3] = { 0, 6 },
-			[4] = { 0, 7 },
-		}
-
+	if IsInToolsMode() and test_pick_stage and LOBBY_PLAYERS_MAX <= 1 then
+		local team_list = { 2, 3, 6, 7 }
 		if max_teams == 6 then
-			LOBBY_TEAMS_INFO[12] = {}
-			LOBBY_TEAMS_INFO[9] = {}
-			teams[5] = { 0, 12 }
-			teams[6] = { 0, 9 }
+			team_list = { 2, 3, 6, 7, 12, 9 }
 		end
 
-		local team_count = 1
-		LOBBY_TEAMS_COUNTER = max_teams
+		local id = 0
 
-		for i = 1, (players_in_team * max_teams - 1) do
-			if teams[team_count][1] >= players_in_team then
-				team_count = team_count + 1
+		for _, team in pairs(team_list) do
+			local count = #hero_select:GetPlayersInTeam(team)
+
+			if LOBBY_TEAMS_INFO[team] == nil then
+				LOBBY_TEAMS_INFO[team] = {}
+				LOBBY_TEAMS_COUNTER = LOBBY_TEAMS_COUNTER + 1
 			end
 
-			LOBBY_PLAYERS_MAX = LOBBY_PLAYERS_MAX + 1
-			teams[team_count][1] = teams[team_count][1] + 1
+			while count < players_in_team do
+				while LOBBY_PLAYERS[id] do
+					id = id + 1
+				end
 
-			print(i, teams[team_count][2])
+				LOBBY_PLAYERS[id] = {
+					bRegistred = false,
+					bLoaded = false,
+					steamid = PlayerResource:GetSteamAccountID(0),
+					picked_hero = nil,
+					select_base = nil,
+					pick_order = nil,
+					ban_hero = nil,
+					player_team = team,
+				}
 
-			LOBBY_PLAYERS[i] = {
-				bRegistred = false,
-				bLoaded = false,
-				steamid = PlayerResource:GetSteamAccountID(0),
-				picked_hero = nil,
-				select_base = nil,
-				pick_order = nil,
-				ban_hero = nil,
-				player_team = teams[team_count][2],
-			}
+				LOBBY_PLAYERS_MAX = LOBBY_PLAYERS_MAX + 1
+				count = count + 1
+			end
 		end
 	end
 end
@@ -571,7 +643,7 @@ function hero_select:CheckReadyPlayers(attempt)
 		if attempt > TIME_OF_STATE[1] then
 			hero_select:Start()
 		else
-			Timers:CreateTimer("", {
+			Timers:CreateTimer("hero_select_check_ready", {
 				useGameTime = false,
 				endTime = check_interval,
 				callback = function()
@@ -644,6 +716,7 @@ function hero_select:PlayerLoaded(player, pid)
 						order = PICK_ORDER,
 						max = LOBBY_PLAYERS_MAX,
 						id = current,
+						current_team = pinfo.player_team,
 						time = -1,
 						picked_bases = PICKED_BASES,
 						picked_bases_length = #PICKED_BASES,
@@ -667,28 +740,17 @@ function hero_select:Start()
 	local r = 0
 	local used_numbers = {}
 
-	if IsSoloMode() then
-		for i, player in pairs(LOBBY_PLAYERS) do
-			repeat
-				r = RandomInt(0, LOBBY_PLAYERS_MAX - 1)
-			until not dota1x6:check_used(used_numbers, r)
-			used_numbers[#used_numbers + 1] = r
-			player.pick_order = r
-		end
-	else
-		for team_id, team_inf in pairs(LOBBY_TEAMS_INFO) do
-			repeat
-				r = RandomInt(0, LOBBY_TEAMS_COUNTER - 1)
-			until not dota1x6:check_used(used_numbers, r)
-			used_numbers[#used_numbers + 1] = r
-			team_inf.pick_order = r
-		end
+	for team_id, team_inf in pairs(LOBBY_TEAMS_INFO) do
+		repeat
+			r = RandomInt(0, LOBBY_TEAMS_COUNTER - 1)
+		until not dota1x6:check_used(used_numbers, r)
+		used_numbers[#used_numbers + 1] = r
+		team_inf.pick_order = r
 	end
 	if IsSoloMode() then
 		local place_admin = 0
 		local place_normal = 1
 		local first_pick_id = {
-			--   ['216015457'] = true, -- мяу
 
 			-- ['244395427'] = true, -- паша фп
 			["232290025"] = not test,
@@ -697,6 +759,8 @@ function hero_select:Start()
 			--['418896247'] = true,-- колян мейн
 			["1727917408"] = true, -- колян
 			["149889029"] = true,
+			["143696994"] = true, -- амели
+			["216015457"] = true, -- мяу
 			--  ['1046015320'] = true, -- ашаф
 
 			--  ['122413750'] = true,
@@ -707,32 +771,31 @@ function hero_select:Start()
 			--['883703644'] = true,
 			--362469930--
 		}
-		if LOBBY_PLAYERS_MAX > 1 then
-			for i, player in pairs(LOBBY_PLAYERS) do
-				if LOBBY_PLAYERS[i].pick_order == 0 then
-					place_normal = i
+		if LOBBY_TEAMS_COUNTER > 1 then
+			for team_id, team_inf in pairs(LOBBY_TEAMS_INFO) do
+				if team_inf.pick_order == 0 then
+					place_normal = team_id
 				end
 			end
 			for i, player in pairs(LOBBY_PLAYERS) do
-				if first_pick_id[tostring(LOBBY_PLAYERS[i].steamid)] == true then
-					place_admin = LOBBY_PLAYERS[i].pick_order
+				local team_inf = LOBBY_TEAMS_INFO[player.player_team]
+				if first_pick_id[tostring(player.steamid)] == true and team_inf then
+					place_admin = team_inf.pick_order
 
-					LOBBY_PLAYERS[i].pick_order = 0
-					LOBBY_PLAYERS[place_normal].pick_order = place_admin
+					team_inf.pick_order = 0
+					LOBBY_TEAMS_INFO[place_normal].pick_order = place_admin
 					break
 				end
 			end
 		end
-		for id, player in pairs(LOBBY_PLAYERS) do
-			print("QWESAEDAS", HTTP.playersData[id], id, player.pickOrder)
-			HTTP.playersData[id].pickOrder = player.pick_order
-		end
-	else
-		for id, player in pairs(LOBBY_PLAYERS) do
-			if
-				LOBBY_TEAMS_INFO[PlayerResource:GetTeam(id)] and LOBBY_TEAMS_INFO[PlayerResource:GetTeam(id)].pick_order
-			then
-				HTTP.playersData[id].pickOrder = LOBBY_TEAMS_INFO[PlayerResource:GetTeam(id)].pick_order
+	end
+
+	for id, player in pairs(LOBBY_PLAYERS) do
+		local team_inf = LOBBY_TEAMS_INFO[player.player_team]
+		if team_inf and team_inf.pick_order then
+			player.pick_order = team_inf.pick_order
+			if HTTP.playersData[id] then
+				HTTP.playersData[id].pickOrder = team_inf.pick_order
 			end
 		end
 	end
@@ -749,6 +812,12 @@ function hero_select:Start()
 		if pinfo.bLoaded then
 			hero_select:DrawPickScreenForPlayer(pid)
 		end
+	end
+
+	if hero_test then
+		hero_select:PickHero(0, hero_test_name, 0)
+		hero_select:PickBase(LOBBY_PLAYERS[0].player_team, hero_test_base)
+		return
 	end
 
 	if LOBBY_PLAYERS_MAX <= 2 and (pro_mod == false or PRO_MOD_ALLOWED) then
@@ -768,10 +837,14 @@ function hero_select:StartBanStage()
 	)
 
 	CustomNetTables:SetTableValue("custom_pick", "ban_stage_check", { state = true })
-	Timers:CreateTimer("", {
+	Timers:CreateTimer("hero_select_ban_stage", {
 		useGameTime = false,
 		endTime = 1,
 		callback = function()
+			if PICK_STATE ~= PICK_STATE_PICK_BANNED then
+				return
+			end
+
 			time_ban_stage = time_ban_stage - 1
 			CustomGameEventManager:Send_ServerToAllClients(
 				"TimeBanStage",
@@ -901,88 +974,33 @@ function hero_select:StartSelectionStage(new_timer)
 		timer = new_timer
 	end
 	CustomGameEventManager:Send_ServerToAllClients("EndBanStage", { no_ban_hero = NO_BANNED_HEROES })
-	Timers:CreateTimer("", {
+	Timers:CreateTimer("hero_select_selection_stage", {
 		useGameTime = false,
-		endTime = new_timer,
+		endTime = timer,
 		callback = function()
-			if IsSoloMode() then
-				hero_select:StartOrderPick()
-				if hero_test then
-					hero_select:PickHero(0, hero_select:RandomHero(id), 1)
-					local get_base_counter = hero_select:RandomBase()
-					hero_select:PickBase(0, get_base_counter)
-				end
-			else
-				hero_select:StartOrderPickDuo()
-			end
+			hero_select:StartOrderPick()
 		end,
 	})
 end
 
 function hero_select:StartOrderPick()
 	local time = Time_to_pick_Hero
-	local id = 0
-	for pid, pinfo in pairs(LOBBY_PLAYERS) do
-		if pinfo.pick_order == PICK_ORDER then
-			CustomGameEventManager:Send_ServerToAllClients("pick_start_time", { id = pid, time = time })
-			CustomNetTables:SetTableValue("custom_pick", "active_player", { id = pid })
-			id = pid
-			break
-		end
-	end
-	Timers:CreateTimer("", {
-		useGameTime = false,
-		endTime = 1,
-		callback = function()
-			local timer_disable = LOBBY_PLAYERS_MAX == 1 or SafeToLeave
-
-			if not timer_disable then
-				time = time - 1
-			end
-
-			if time == 20 then
-				--hero_select:OnDisconnect({PlayerID = id})
-			end
-			CustomGameEventManager:Send_ServerToAllClients("change_time", { time = time, id = id })
-			local server_player = HTTP.GetPlayerData(id)
-			print("PWPEAS", server_player, id)
-
-			if server_player and server_player.lowPriorityRemaining > 0 and not SafeToLeave then
-				hero_select:PickHero(id, hero_select:RandomHero(id), 1)
-			end
-			if time <= 0 or (LOBBY_PLAYERS[id].picked_hero ~= nil) then
-				if LOBBY_PLAYERS[id].picked_hero == nil then
-					hero_select:PickHero(id, hero_select:RandomHero(id), 1)
-				end
-				if PICK_STATE ~= PICK_STATE_SELECT_HERO then
-					return
-				end
-				PICK_ORDER = PICK_ORDER + 1
-				if PICK_ORDER < LOBBY_PLAYERS_MAX + 1 then
-					hero_select:StartOrderPick()
-				end
-				return
-			end
-			return 1
-		end,
-	})
-end
-
-function hero_select:StartOrderPickDuo()
-	local time = Time_to_pick_Hero
 	local current_team = 2
+	local id = 0
 	for team_id, team_info in pairs(LOBBY_TEAMS_INFO) do
 		if team_info.pick_order == PICK_ORDER then
 			current_team = team_id
+			id = hero_select:GetPlayersInTeam(current_team)[1] or 0
 			CustomGameEventManager:Send_ServerToAllClients(
 				"pick_start_time",
-				{ current_team = current_team, time = time }
+				{ id = id, current_team = current_team, time = time }
 			)
-			CustomNetTables:SetTableValue("custom_pick", "active_player", { current_team = current_team })
+			CustomNetTables:SetTableValue("custom_pick", "active_player", { id = id, current_team = current_team })
 			break
 		end
 	end
-	Timers:CreateTimer("", {
+
+	Timers:CreateTimer("hero_select_order_pick", {
 		useGameTime = false,
 		endTime = 1,
 		callback = function()
@@ -992,7 +1010,10 @@ function hero_select:StartOrderPickDuo()
 			if time == 20 then
 				--hero_select:OnDisconnect({PlayerID = id})
 			end
-			CustomGameEventManager:Send_ServerToAllClients("change_time", { time = time, current_team = current_team })
+			CustomGameEventManager:Send_ServerToAllClients(
+				"change_time",
+				{ time = time, id = id, current_team = current_team }
+			)
 			local players_in_team = hero_select:GetPlayersInTeam(current_team)
 			local next_stage = true
 			for _, pid in pairs(players_in_team) do
@@ -1019,7 +1040,7 @@ function hero_select:StartOrderPickDuo()
 				end
 				PICK_ORDER = PICK_ORDER + 1
 				if PICK_ORDER < LOBBY_TEAMS_COUNTER + 1 then
-					hero_select:StartOrderPickDuo()
+					hero_select:StartOrderPick()
 				end
 				return
 			end
@@ -1028,21 +1049,25 @@ function hero_select:StartOrderPickDuo()
 	})
 end
 
-function hero_select:StartOrderPickBaseDuo()
+function hero_select:StartOrderPickBase()
 	if PICK_STATE == PICK_STATE_PICK_END then
 		return
 	end
 	local time = Time_to_pick_Base
 	local current_team = 2
+	local id = 0
 	for team_id, team_info in pairs(LOBBY_TEAMS_INFO) do
 		if team_info.pick_order == PICK_ORDER then
 			current_team = team_id
+			id = hero_select:GetPlayersInTeam(current_team)[1] or 0
 			CustomNetTables:SetTableValue("custom_pick", "active_player", {
+				id = id,
 				current_team = current_team,
 			})
 			CustomGameEventManager:Send_ServerToAllClients("pick_start_time_base", {
 				order = PICK_ORDER,
 				max = LOBBY_PLAYERS_MAX,
+				id = id,
 				current_team = current_team,
 				time = time,
 				picked_bases = PICKED_BASES,
@@ -1050,7 +1075,8 @@ function hero_select:StartOrderPickBaseDuo()
 			})
 		end
 	end
-	Timers:CreateTimer("", {
+
+	Timers:CreateTimer("hero_select_order_pick_base", {
 		useGameTime = false,
 		endTime = 1,
 		callback = function()
@@ -1059,7 +1085,7 @@ function hero_select:StartOrderPickBaseDuo()
 			end
 			CustomGameEventManager:Send_ServerToAllClients(
 				"change_time_base",
-				{ time = time, current_team = current_team }
+				{ time = time, id = id, current_team = current_team }
 			)
 			local next_stage = true
 			local players_in_team = hero_select:GetPlayersInTeam(current_team)
@@ -1095,14 +1121,10 @@ function hero_select:StartOrderPickBaseDuo()
 					else
 						get_base_counter = hero_select:RandomBase()
 					end
-					for _, pid in pairs(players_in_team) do
-						if LOBBY_PLAYERS[pid].select_base == nil then
-							hero_select:PickBase(pid, get_base_counter)
-						end
-					end
+					hero_select:PickBase(current_team, get_base_counter)
 				end
 				if PICK_ORDER < LOBBY_TEAMS_COUNTER + 1 then
-					hero_select:StartOrderPickBaseDuo()
+					hero_select:StartOrderPickBase()
 				end
 				return
 			end
@@ -1119,72 +1141,6 @@ function hero_select:GetPlayersInTeam(team_id)
 		end
 	end
 	return players
-end
-
-function hero_select:StartOrderPickBase()
-	if PICK_STATE == PICK_STATE_PICK_END then
-		return
-	end
-
-	local time = Time_to_pick_Base
-	local id = 0
-
-	for pid, pinfo in pairs(LOBBY_PLAYERS) do
-		if pinfo.pick_order == PICK_ORDER then
-			CustomNetTables:SetTableValue("custom_pick", "active_player", {
-				id = pid,
-			})
-
-			CustomGameEventManager:Send_ServerToAllClients("pick_start_time_base", {
-				order = PICK_ORDER,
-				max = LOBBY_PLAYERS_MAX,
-				id = pid,
-				time = time,
-				picked_bases = PICKED_BASES,
-				picked_bases_length = #PICKED_BASES,
-			})
-
-			id = pid
-
-			break
-		end
-	end
-
-	Timers:CreateTimer("", {
-		useGameTime = false,
-		endTime = 1,
-		callback = function()
-			if LOBBY_PLAYERS_MAX ~= 1 then
-				time = time - 1
-			end
-
-			if PICK_ORDER + 1 == LOBBY_PLAYERS_MAX and LOBBY_PLAYERS[id].select_base == nil then
-
-				--  PICK_ORDER = PICK_ORDER + 1
-				--  hero_select:PickBase(id, hero_select:RandomBase())
-				--    return
-			end
-
-			CustomGameEventManager:Send_ServerToAllClients("change_time_base", { time = time, id = id })
-
-			if time <= 0 or (LOBBY_PLAYERS[id].select_base ~= nil) then
-				PICK_ORDER = PICK_ORDER + 1
-
-				if LOBBY_PLAYERS[id].select_base == nil or PICK_ORDER >= LOBBY_PLAYERS_MAX + 1 then
-					hero_select:PickBase(id, hero_select:RandomBase())
-					if PICK_ORDER == LOBBY_PLAYERS_MAX then
-						return
-					end
-				end
-
-				if PICK_ORDER < LOBBY_PLAYERS_MAX + 1 then
-					hero_select:StartOrderPickBase()
-				end
-				return
-			end
-			return 1
-		end,
-	})
 end
 
 function hero_select:DrawPickScreenForPlayer(pid)
@@ -1270,8 +1226,14 @@ function hero_select:RegisterHeroes()
 
 	--
 
+	local adapted = {}
+
+	for _, name in pairs(all_heroes) do
+		adapted[name] = true
+	end
+
 	for k, v in pairs(heroes) do
-		if v == 1 then
+		if v == 1 and adapted[k] then
 			local allow = true
 			if pro_mod then
 				if PRO_MOD_ALLOWED and not PRO_MOD_ALLOWED[k] then
@@ -1327,7 +1289,27 @@ function hero_select:RegisterHeroes()
 		end
 	end
 
+	local hero_list_extra = {}
+	local base_heroes = LoadKeyValues("scripts/npc/npc_heroes.txt")
+
+	for k, v in pairs(heroes) do
+		if v == 1 and not adapted[k] and k ~= "npc_dota_hero_target_dummy" then
+			local attribute = base_heroes and base_heroes[k] and base_heroes[k].AttributePrimary
+
+			if attribute == "DOTA_ATTRIBUTE_STRENGTH" then
+				hero_list_extra[k] = 0
+			elseif attribute == "DOTA_ATTRIBUTE_AGILITY" then
+				hero_list_extra[k] = 1
+			elseif attribute == "DOTA_ATTRIBUTE_INTELLECT" then
+				hero_list_extra[k] = 2
+			else
+				hero_list_extra[k] = 3
+			end
+		end
+	end
+
 	CustomNetTables:SetTableValue("custom_pick", "hero_list", hero_list)
+	CustomNetTables:SetTableValue("custom_pick", "hero_list_extra", hero_list_extra)
 	CustomNetTables:SetTableValue("custom_pick", "hero_changes", hero_changes)
 	CustomNetTables:SetTableValue("custom_pick", "donate_heroes", DONATE_HEROES)
 	CustomNetTables:SetTableValue("custom_pick", "new_system_heroes", NEW_SYSTEM_HEROES)

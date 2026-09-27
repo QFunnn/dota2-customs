@@ -33,16 +33,21 @@ function item_crimson_guard_custom:GetIntrinsicModifierName()
 	return "modifier_item_crimson_guard_custom"
 end
 
+function item_crimson_guard_custom:Spawn()
+	self.duration = self:GetSpecialValueFor("duration")
+	self.bonus_health = self:GetSpecialValueFor("bonus_health")
+	self.bonus_armor = self:GetSpecialValueFor("bonus_armor")
+	self.bonus_health_regen = self:GetSpecialValueFor("bonus_health_regen")
+	self.block_chance = self:GetSpecialValueFor("block_chance")
+	self.block_damage_melee = self:GetSpecialValueFor("block_damage_melee")
+	self.active_reduce = self:GetSpecialValueFor("active_reduce")
+end
+
 function item_crimson_guard_custom:OnSpellStart()
 	local caster = self:GetCaster()
 
 	caster:EmitSound("Item.CrimsonGuard.Cast")
-	caster:AddNewModifier(
-		caster,
-		self,
-		"modifier_item_crimson_guard_custom_active",
-		{ duration = self:GetSpecialValueFor("duration") }
-	)
+	caster:AddNewModifier(caster, self, "modifier_item_crimson_guard_custom_active", { duration = self.duration })
 end
 
 modifier_item_crimson_guard_custom = class(mod_hidden)
@@ -55,11 +60,11 @@ end
 function modifier_item_crimson_guard_custom:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
-	self.health = self.ability:GetSpecialValueFor("bonus_health")
-	self.armor = self.ability:GetSpecialValueFor("bonus_armor")
-	self.regen = self.ability:GetSpecialValueFor("bonus_health_regen")
-	self.chance = self.ability:GetSpecialValueFor("block_chance")
-	self.block = self.ability:GetSpecialValueFor("block_damage_melee")
+	self.health = self.ability.bonus_health
+	self.armor = self.ability.bonus_armor
+	self.regen = self.ability.bonus_health_regen
+	self.chance = self.ability.block_chance
+	self.block = self.ability.block_damage_melee
 end
 
 function modifier_item_crimson_guard_custom:DeclareFunctions()
@@ -127,7 +132,7 @@ function modifier_item_crimson_guard_custom_active:OnCreated(params)
 		self:AddParticle(pfx, false, false, 15, false, false)
 	end
 
-	self.reduce = self:GetAbility():GetSpecialValueFor("active_reduce")
+	self.reduce = self.ability.active_reduce
 end
 
 function modifier_item_crimson_guard_custom_active:DeclareFunctions()

@@ -71,6 +71,7 @@ function muerta_gunslinger_custom:Precache(context)
 	)
 	PrecacheResource("particle", "particles/units/heroes/hero_muerta/muerta_ultimate_projectile.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_muerta/muerta_base_attack_alt.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_muerta/muerta_base_attack.vpcf", context)
 	PrecacheResource("particle", "particles/muerta_dig_ground.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_wraithking_ghosts.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_muerta/muerta_ultimate_form_ethereal.vpcf", context)
@@ -80,12 +81,9 @@ function muerta_gunslinger_custom:Precache(context)
 	PrecacheResource("particle", "particles/muerta/muerta_attack_slow.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_sniper/sniper_headshot_slow.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_muerta_parting_shot.vpcf", context)
-	PrecacheResource("particle", "particles/units/heroes/hero_muerta/muerta_ultimate_form_ethereal.vpcf", context)
 	PrecacheResource("particle", "particles/blur_absorb.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_muerta/muerta_parting_shot_tether.vpcf", context)
-	PrecacheResource("particle", "particles/blur_absorb.vpcf", context)
 	PrecacheResource("particle", "particles/muerta/gun_evasion.vpcf", context)
-
 	PrecacheResource("particle", "particles/econ/events/ti9/shovel_dig.vpcf", context)
 	PrecacheResource("particle", "particles/econ/events/ti9/shovel_smoke_cloud.vpcf", context)
 	PrecacheResource("particle", "particles/heroes/muerta/muerta_quest_kill.vpcf", context)
@@ -94,16 +92,9 @@ function muerta_gunslinger_custom:Precache(context)
 	PrecacheResource("particle", "particles/muerta/muerta_quest_item.vpcf", context)
 	PrecacheResource("particle", "particles/econ/events/ti9/shovel_revealed_nothing.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_alchemist/alchemist_lasthit_coins.vpcf", context)
-
 	PrecacheResource(
 		"particle",
 		"particles/units/heroes/hero_skeletonking/wraith_king_vampiric_aura_lifesteal.vpcf",
-		context
-	)
-
-	PrecacheResource(
-		"particle",
-		"particles/units/heroes/hero_muerta/muerta_ultimate_projectile_alternate.vpcf",
 		context
 	)
 	PrecacheResource("particle", "particles/muerta_item_active.vpcf", context)
@@ -175,7 +166,7 @@ function muerta_gunslinger_custom:UpdateTalents(name)
 
 	if caster:HasTalent("modifier_muerta_gun_4") then
 		self.talents.has_e4 = 1
-		self.caster:AddDamageEvent_inc(self.tracker, true)
+		caster:AddDamageEvent_inc(self.tracker, true)
 	end
 
 	if caster:HasTalent("modifier_muerta_gun_7") then
@@ -202,7 +193,7 @@ function muerta_gunslinger_custom:GetCooldown(iLevel)
 	if self.talents.has_e7 == 1 then
 		return self.talents.e7_talent_cd
 	end
-	return
+	return 0
 end
 
 function muerta_gunslinger_custom:GetBehavior()
@@ -214,20 +205,16 @@ end
 
 function muerta_gunslinger_custom:GetCastRange(vLocation, hTarget)
 	if self.talents.has_e7 == 1 then
-		return IsServer() and 999999 or (self.ability.talents.e7_range - self.caster:GetCastRangeBonus())
+		return IsServer() and 999999 or (self.talents.e7_range - self.caster:GetCastRangeBonus())
 	end
-	return
+	return 0
 end
 
 function muerta_gunslinger_custom:OnSpellStart()
 	self.caster:RemoveGesture(ACT_DOTA_CAST_ABILITY_3)
 
 	local point = self.caster:CastPosition(self:GetCursorPosition())
-	local dir = (point - self.caster:GetAbsOrigin()):Normalized()
-	dir.z = 0
-
-	self.caster:SetForwardVector(dir)
-	self.caster:FaceTowards(point)
+	self.caster:FacePoint(point)
 
 	self.caster:EmitSound("Muerta.Gun_active")
 	self.caster:EmitSound("Muerta.Gun_active2")
@@ -254,12 +241,12 @@ function muerta_gunslinger_custom:OnProjectileHit_ExtraData(target, Location, ta
 	self.caster:PerformAttack(target, true, true, true, true, false, false, false, { damage = "muerta_e" })
 	self.caster.muerta_e = false
 
-	if self.ability.talents.has_e1 == 1 or self.ability.talents.has_e3 == 1 then
-		self.parent:AddNewModifier(
-			self.parent,
-			self.ability,
+	if self.talents.has_e1 == 1 or self.talents.has_e3 == 1 then
+		self.caster:AddNewModifier(
+			self.caster,
+			self,
 			"modifier_muerta_gunslinger_custom_speed",
-			{ duration = self.ability.talents.e1_duration }
+			{ duration = self.talents.has_e1 == 1 and self.talents.e1_duration or self.talents.e3_duration }
 		)
 	end
 end
@@ -271,22 +258,22 @@ function muerta_gunslinger_custom:LegendaryStack(target)
 	if not self:IsTrained() then
 		return
 	end
-	if self.ability.talents.has_e7 == 0 then
+	if self.talents.has_e7 == 0 then
 		return
 	end
 
-	local duration = self.ability.talents.e7_duration
+	local duration = self.talents.e7_duration
 	if target:IsCreep() then
-		duration = self.ability.talents.e7_duration_creeps
+		duration = self.talents.e7_duration_creeps
 	end
 	local stack_duration = duration
-	local mod = self.parent:FindModifierByName("modifier_muerta_gunslinger_custom_legendary_stack")
+	local mod = self.caster:FindModifierByName("modifier_muerta_gunslinger_custom_legendary_stack")
 	if mod then
 		duration = math.max(duration, mod:GetRemainingTime())
 	end
-	self.parent:AddNewModifier(
-		self.parent,
-		self.ability,
+	self.caster:AddNewModifier(
+		self.caster,
+		self,
 		"modifier_muerta_gunslinger_custom_legendary_stack",
 		{ duration = duration, stack_duration = stack_duration }
 	)
@@ -322,6 +309,10 @@ function modifier_muerta_gunslinger_custom:OnCreated()
 	self.double_attack = false
 end
 
+function modifier_muerta_gunslinger_custom:OnRefresh()
+	self.ability.double_shot_chance = self.ability:GetSpecialValueFor("double_shot_chance")
+end
+
 function modifier_muerta_gunslinger_custom:AttackRecordEvent_out(params)
 	if not IsServer() then
 		return
@@ -330,16 +321,16 @@ function modifier_muerta_gunslinger_custom:AttackRecordEvent_out(params)
 		return
 	end
 
+	self.double_attack = false
+
 	local target = params.target
 	if not target:IsUnit() then
 		return
 	end
-
 	if self.parent:PassivesDisabled() then
 		return
 	end
 
-	self.double_attack = false
 	self.parent:FadeGesture(ACT_DOTA_CAST_ABILITY_3)
 
 	if self.parent:HasModifier("modifier_muerta_gunslinger_custom_legendary_attack") then
@@ -442,10 +433,6 @@ function modifier_muerta_gunslinger_custom:AttackStartEvent_out(params)
 	end
 
 	self.parent:EmitSound("Hero_Muerta.Attack.DoubleShot")
-end
-
-function modifier_muerta_gunslinger_custom:OnRefresh()
-	self.ability.double_shot_chance = self.ability:GetSpecialValueFor("double_shot_chance")
 end
 
 function modifier_muerta_gunslinger_custom:DeclareFunctions()
@@ -562,7 +549,7 @@ function modifier_muerta_gunslinger_custom_speed:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.max = self.ability.talents.e1_max
+	self.max = self.ability.talents.has_e1 == 1 and self.ability.talents.e1_max or self.ability.talents.e3_max
 	if not IsServer() then
 		return
 	end
@@ -614,6 +601,15 @@ function modifier_muerta_gunslinger_custom_speed:GetModifierBonusStats_Intellect
 end
 
 modifier_muerta_gunslinger_custom_active = class(mod_hidden)
+function modifier_muerta_gunslinger_custom_active:GetEffectName()
+	return "particles/muerta/muerta_gun_active.vpcf"
+end
+function modifier_muerta_gunslinger_custom_active:GetStatusEffectName()
+	return "particles/status_fx/status_effect_forcestaff.vpcf"
+end
+function modifier_muerta_gunslinger_custom_active:StatusEffectPriority()
+	return MODIFIER_PRIORITY_NORMAL
+end
 function modifier_muerta_gunslinger_custom_active:OnCreated(kv)
 	if not IsServer() then
 		return
@@ -646,17 +642,9 @@ end
 function modifier_muerta_gunslinger_custom_active:GetActivityTranslationModifiers()
 	return "forcestaff_friendly"
 end
+
 function modifier_muerta_gunslinger_custom_active:GetModifierDisableTurning()
 	return 1
-end
-function modifier_muerta_gunslinger_custom_active:GetEffectName()
-	return "particles/muerta/muerta_gun_active.vpcf"
-end
-function modifier_muerta_gunslinger_custom_active:GetStatusEffectName()
-	return "particles/status_fx/status_effect_forcestaff.vpcf"
-end
-function modifier_muerta_gunslinger_custom_active:StatusEffectPriority()
-	return MODIFIER_PRIORITY_NORMAL
 end
 
 function modifier_muerta_gunslinger_custom_active:UpdateHorizontalMotion(me, dt)

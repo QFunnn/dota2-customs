@@ -17,6 +17,12 @@ function item_javelin_custom:GetIntrinsicModifierName()
 	return "modifier_item_javelin_custom"
 end
 
+function item_javelin_custom:Spawn()
+	self.bonus_chance = self:GetSpecialValueFor("bonus_chance")
+	self.health_bonus = self:GetSpecialValueFor("health_bonus")
+	self.bonus_chance_damage = self:GetSpecialValueFor("bonus_chance_damage")
+end
+
 modifier_item_javelin_custom = class(mod_hidden)
 function modifier_item_javelin_custom:RemoveOnDeath()
 	return false
@@ -25,10 +31,6 @@ function modifier_item_javelin_custom:OnCreated()
 	self.ability = self:GetAbility()
 	self.parent = self:GetParent()
 	self.records = {}
-
-	self.ability.bonus_chance = self.ability:GetSpecialValueFor("bonus_chance")
-	self.ability.health_bonus = self.ability:GetSpecialValueFor("health_bonus")
-	self.ability.bonus_chance_damage = self.ability:GetSpecialValueFor("bonus_chance_damage")
 
 	if not IsServer() then
 		return
@@ -40,7 +42,6 @@ function modifier_item_javelin_custom:OnCreated()
 
 	self.parent:AddRecordDestroyEvent(self, true)
 	self.parent:AddAttackStartEvent_out(self)
-	self.parent:AddAttackEvent_out(self, true)
 end
 
 function modifier_item_javelin_custom:DeclareFunctions()
@@ -85,6 +86,9 @@ end
 
 function modifier_item_javelin_custom:AttackStartEvent_out(params)
 	if not IsServer() then
+		return
+	end
+	if not IsValid(self.ability) then
 		return
 	end
 	if not params.target:IsUnit() then

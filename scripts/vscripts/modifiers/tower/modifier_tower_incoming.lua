@@ -651,6 +651,11 @@ function modifier_tower_incoming:AttackEvent_inc(params)
 		return
 	end
 
+	local xmark = attacker:FindModifierByName("modifier_kunkka_xmark_custom_target")
+	if xmark and not xmark.is_enemy then
+		return
+	end
+
 	attacker:AddNewModifier(attacker, nil, "modifier_tower_incoming_damage", {})
 
 	local damage = self.parent:GetMaxHealth() * self.shrine_damage / 100
@@ -1242,6 +1247,7 @@ function modifier_backdoor_knock_aura:OnCreated(table)
 	self.parent:EmitSound("UI.Tower_wall")
 
 	self.target_team = table.target_team
+	self.fixed = table.fixed
 
 	self.center = self.parent:GetAbsOrigin()
 	self.heroes = dota1x6:FindPlayers(self.target_team, false, true)
@@ -1311,40 +1317,42 @@ function modifier_backdoor_knock_aura:OnIntervalThink()
 		return
 	end
 
-	local all_dead = true
-	local allow = false
+	if not self.fixed then
+		local all_dead = true
+		local allow = false
 
-	for _, hero in pairs(self.heroes) do
-		if hero and not hero:IsNull() and not hero:HasModifier("modifier_the_hunt_custom_hero") then
-			local dist = (hero:GetAbsOrigin() - self.parent:GetAbsOrigin()):Length2D()
+		for _, hero in pairs(self.heroes) do
+			if hero and not hero:IsNull() and not hero:HasModifier("modifier_the_hunt_custom_hero") then
+				local dist = (hero:GetAbsOrigin() - self.parent:GetAbsOrigin()):Length2D()
 
-			if hero:IsAlive() or hero:IsReincarnating() then
-				all_dead = false
-				if dist <= self.radius then
-					allow = true
+				if hero:IsAlive() or hero:IsReincarnating() then
+					all_dead = false
+					if dist <= self.radius then
+						allow = true
+					end
 				end
 			end
 		end
-	end
 
-	if all_dead then
-		if not self.death_ending then
-			self.ending = true
-			self.death_ending = true
-			self:SetDuration(15, true)
+		if all_dead then
+			if not self.death_ending then
+				self.ending = true
+				self.death_ending = true
+				self:SetDuration(15, true)
+			end
+		else
+			self.death_ending = false
 		end
-	else
-		self.death_ending = false
-	end
 
-	if not allow then
-		if self.ending == false then
-			self.ending = true
-			self:SetDuration(3, true)
+		if not allow then
+			if self.ending == false then
+				self.ending = true
+				self:SetDuration(3, true)
+			end
+		else
+			self.ending = false
+			self:SetDuration(-1, true)
 		end
-	else
-		self.ending = false
-		self:SetDuration(-1, true)
 	end
 
 	local enemies = FindUnitsInRadius(

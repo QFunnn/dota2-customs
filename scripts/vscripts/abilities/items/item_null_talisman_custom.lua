@@ -32,10 +32,20 @@ function item_null_talisman_custom:GetIntrinsicModifierName()
 	return "modifier_item_null_talisman_custom"
 end
 
+function item_null_talisman_custom:Spawn()
+	self.duration = self:GetSpecialValueFor("duration")
+	self.agi = self:GetSpecialValueFor("agi")
+	self.str = self:GetSpecialValueFor("str")
+	self.int = self:GetSpecialValueFor("int")
+	self.regen = self:GetSpecialValueFor("regen")
+	self.max_mana = self:GetSpecialValueFor("max_mana")
+	self.damage = self:GetSpecialValueFor("damage")
+	self.max_stack = self:GetSpecialValueFor("max_stack")
+end
+
 function item_null_talisman_custom:OnSpellStart()
 	self.parent = self:GetParent()
 
-	-- HTTP.GetItemBuild("npc_dota_hero_muerta", PlayerResource:GetPlayer(self:GetCaster():GetPlayerOwnerID()))
 	if test and towers[self:GetCaster():GetTeamNumber()] then
 		towers[self:GetCaster():GetTeamNumber()]:Kill(nil, nil)
 	end
@@ -45,40 +55,23 @@ function item_null_talisman_custom:OnSpellStart()
 		self.parent,
 		self,
 		"modifier_item_null_talisman_custom_mana",
-		{ duration = self:GetSpecialValueFor("duration") }
+		{ duration = self.duration }
 	)
 end
 
-modifier_item_null_talisman_custom = class({})
-
-function modifier_item_null_talisman_custom:IsHidden()
-	return true
-end
-function modifier_item_null_talisman_custom:IsPurgable()
-	return false
-end
+modifier_item_null_talisman_custom = class(mod_hidden)
 function modifier_item_null_talisman_custom:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
-function modifier_item_null_talisman_custom:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
-		MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
-		MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
-		MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
-		MODIFIER_PROPERTY_EXTRA_MANA_PERCENTAGE,
-	}
-end
-
 function modifier_item_null_talisman_custom:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.agi = self.ability:GetSpecialValueFor("agi")
-	self.str = self.ability:GetSpecialValueFor("str")
-	self.int = self.ability:GetSpecialValueFor("int")
-	self.regen = self.ability:GetSpecialValueFor("regen")
-	self.max_mana = self.ability:GetSpecialValueFor("max_mana")
+	self.agi = self.ability.agi
+	self.str = self.ability.str
+	self.int = self.ability.int
+	self.regen = self.ability.regen
+	self.max_mana = self.ability.max_mana
 
 	if not IsServer() then
 		return
@@ -87,6 +80,16 @@ function modifier_item_null_talisman_custom:OnCreated()
 		return
 	end
 	start_quest:CheckQuest({ quest_name = "Quest_1", id = self.parent:GetId(), item = self.ability:GetName() })
+end
+
+function modifier_item_null_talisman_custom:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
+		MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
+		MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
+		MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
+		MODIFIER_PROPERTY_EXTRA_MANA_PERCENTAGE,
+	}
 end
 
 function modifier_item_null_talisman_custom:GetModifierBonusStats_Strength()
@@ -109,22 +112,18 @@ function modifier_item_null_talisman_custom:GetModifierConstantManaRegen()
 	return self.regen
 end
 
-modifier_item_null_talisman_custom_mana = class({})
-function modifier_item_null_talisman_custom_mana:IsHidden()
-	return false
-end
+modifier_item_null_talisman_custom_mana = class(mod_visible)
 function modifier_item_null_talisman_custom_mana:IsPurgable()
 	return true
 end
 function modifier_item_null_talisman_custom_mana:GetEffectName()
 	return "particles/items/null_talisman_active.vpcf"
 end
-
 function modifier_item_null_talisman_custom_mana:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
-	self.damage = self.ability:GetSpecialValueFor("damage")
-	self.max_stack = self.ability:GetSpecialValueFor("max_stack")
+	self.damage = self.ability.damage
+	self.max_stack = self.ability.max_stack
 	if not IsServer() then
 		return
 	end

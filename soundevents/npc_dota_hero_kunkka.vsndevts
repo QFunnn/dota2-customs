@@ -508,17 +508,6 @@
 		distance_max = 1600
 		pitch = 1
 	}
-	Hero_Kunkka.Attack = 
-	{
-		type = "dota_update_default"
-		volume = 0
-		vsnd_files = 
-		[
-			"sounds/sound.vsnd",
-			"sounds/sound.vsnd",
-		]
-		vsnd_duration = 0.754649
-	}
 	Ability.Ghostship.Cannon.Target = 
 	{
 		type = "dota_src1_3d"
@@ -564,6 +553,28 @@
 		soundevent_layer2_on = 1.0
 		soundevent_layer3 = "Hero_Kunkka.Attack.Ring"
 		soundevent_layer3_on = 1.0
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/kunkka/attack01.vsnd",
+			"sounds/weapons/hero/kunkka/attack02.vsnd",
+		]
+		vsnd_duration = 0.508163
+	}
+	Hero_Kunkka.Attack = 
+	{
+		type = "dota_update_default"
+		volume = 0
+		pitch_rand_min = -0.05
+		pitch_rand_max = 0.05
+		pitch = 1.0
+		soundlevel = 78.0
+		mixgroup = "BaseAttacks"
+		spread_radius = 150.0
+		distance_max = 2500.0
+		soundevent_layer2 = "Hero_Kunkka.Attack.Rip"
+		soundevent_layer2_on = 0
+		soundevent_layer3 = "Hero_Kunkka.Attack.Ring"
+		soundevent_layer3_on = 0
 		vsnd_files = 
 		[
 			"sounds/weapons/hero/kunkka/attack01.vsnd",

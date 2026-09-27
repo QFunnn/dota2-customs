@@ -67,14 +67,6 @@ LinkLuaModifier(
 leshrac_split_earth_custom = class({})
 leshrac_split_earth_custom.talents = {}
 
-function leshrac_split_earth_custom:CreateTalent()
-	self:ToggleAutoCast()
-end
-
-function leshrac_split_earth_custom:GetAbilityTextureName()
-	return wearables_system:GetAbilityIconReplacement(self.caster, "leshrac_split_earth", self)
-end
-
 function leshrac_split_earth_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
@@ -100,6 +92,7 @@ function leshrac_split_earth_custom:Precache(context)
 	PrecacheResource("particle", "particles/lina_attack_slow.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_enchantress_shard_debuff.vpcf", context)
 	PrecacheResource("particle", "particles/lina/stun_stack.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_leshrac/leshrac_base_attack.vpcf", context)
 end
 
 function leshrac_split_earth_custom:UpdateTalents(name)
@@ -215,18 +208,17 @@ function leshrac_split_earth_custom:GetIntrinsicModifierName()
 	return "modifier_leshrac_split_earth_custom_tracker"
 end
 
+function leshrac_split_earth_custom:GetAbilityTextureName()
+	return wearables_system:GetAbilityIconReplacement(self.caster, "leshrac_split_earth", self)
+end
+
 function leshrac_split_earth_custom:GetCooldown(iLevel)
-	return (self.BaseClass.GetCooldown(self, iLevel) + (self.talents.q2_cd and self.talents.q2_cd or 0))
+	return (self.BaseClass.GetCooldown(self, iLevel) + (self.talents.q2_cd or 0))
 		* (1 + (self.talents.has_q7 == 1 and self.talents.q7_cd or 0))
 end
 
 function leshrac_split_earth_custom:GetAOERadius()
-	return (self.radius and self.radius or 0)
-		+ (IsValid(self.caster.leshrac_innate) and self.caster.leshrac_innate:GetRange() or 0)
-end
-
-function leshrac_split_earth_custom:GetManaCost(iLevel)
-	return self.BaseClass.GetManaCost(self, iLevel)
+	return (self.radius or 0) + (IsValid(self.caster.leshrac_innate) and self.caster.leshrac_innate:GetRange() or 0)
 end
 
 function leshrac_split_earth_custom:GetBehavior()
@@ -242,11 +234,19 @@ function leshrac_split_earth_custom:GetCastAnimation()
 	return ACT_DOTA_CAST_ABILITY_1
 end
 
+function leshrac_split_earth_custom:GetCastPoint()
+	return self.BaseClass.GetCastPoint(self) + (self.talents.has_h4 == 1 and self.talents.h4_cast or 0)
+end
+
+function leshrac_split_earth_custom:CreateTalent()
+	self:ToggleAutoCast()
+end
+
 function leshrac_split_earth_custom:OnAbilityPhaseStart()
 	if self.talents.has_h4 == 1 then
 		self.caster:StartGestureWithPlaybackRate(
 			ACT_DOTA_CAST_ABILITY_1,
-			self.AbilityCastPoint / (self.AbilityCastPoint + self.ability.talents.h4_cast) * 0.9
+			self.AbilityCastPoint / (self.AbilityCastPoint + self.talents.h4_cast) * 0.9
 		)
 	end
 	return true
@@ -257,10 +257,6 @@ function leshrac_split_earth_custom:OnAbilityPhaseInterrupted()
 		return
 	end
 	self.caster:FadeGesture(ACT_DOTA_CAST_ABILITY_1)
-end
-
-function leshrac_split_earth_custom:GetCastPoint()
-	return self.BaseClass.GetCastPoint(self) + (self.ability.talents.has_h4 == 1 and self.ability.talents.h4_cast or 0)
 end
 
 function leshrac_split_earth_custom:OnSpellStart()
@@ -282,7 +278,7 @@ function leshrac_split_earth_custom:OnSpellStart()
 		local distance = (point - self.caster:GetAbsOrigin()):Length2D()
 		self.caster:EmitSound("Leshrac.Earth_run_start")
 
-		local mod = self.caster:AddNewModifier(self.caster, self, "modifier_leshrac_split_earth_custom_charge", {})
+		self.caster:AddNewModifier(self.caster, self, "modifier_leshrac_split_earth_custom_charge", {})
 		local arc = self.caster:AddNewModifier(self.caster, self, "modifier_generic_arc", {
 			target_x = point.x,
 			target_y = point.y,
@@ -312,43 +308,6 @@ function leshrac_split_earth_custom:OnSpellStart()
 	)
 end
 
-function leshrac_split_earth_custom:ProcAttack(target)
-	if not IsServer() then
-		return
-	end
-	if not self:IsTrained() then
-		return
-	end
-	if self.talents.has_q7 == 0 then
-		return
-	end
-
-	local chance = self.talents.q7_chance
-	local mod = target:FindModifierByName("modifier_leshrac_split_earth_custom_legendary")
-	local index = 10430
-	if mod then
-		chance = chance + mod:GetStackCount() * self.talents.q7_chance_inc
-		index = index + mod:GetStackCount()
-	end
-
-	if not RollPseudoRandomPercentage(chance, index, self.parent) then
-		return
-	end
-
-	local info = {
-		EffectName = "particles/units/heroes/hero_leshrac/leshrac_base_attack.vpcf",
-		Ability = self.ability,
-		iMoveSpeed = self.parent:GetProjectileSpeed(),
-		Source = self.caster,
-		Target = target,
-		bDodgeable = false,
-		bProvidesVision = false,
-		iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_HITLOCATION,
-	}
-	self.parent:EmitSound("Leshrac.Earth_legendary_attack")
-	ProjectileManager:CreateTrackingProjectile(info)
-end
-
 function leshrac_split_earth_custom:OnProjectileHit(target, vLocation)
 	if not IsServer() then
 		return
@@ -357,7 +316,7 @@ function leshrac_split_earth_custom:OnProjectileHit(target, vLocation)
 		return
 	end
 
-	self.parent:PerformAttack(target, true, true, true, true, false, false, false, { damage = "leshrac_q7" })
+	self.caster:PerformAttack(target, true, true, true, true, false, false, false, { damage = "leshrac_q7" })
 	target:EmitSound("Leshrac.Earth_legendary_attack_end")
 end
 
@@ -365,15 +324,15 @@ function leshrac_split_earth_custom:ProcStun(target, is_auto, is_shard)
 	if not IsServer() then
 		return
 	end
-	local stun = self.ability.stun + (self.ability.talents.has_q4 == 1 and self.ability.talents.q4_stun_inc or 0)
-	local damage = self.ability.damage
+	local stun = self.stun + (self.talents.has_q4 == 1 and self.talents.q4_stun_inc or 0)
+	local damage = self.damage
 	if is_shard == 1 then
-		damage = damage * self.ability.shard_damage
-		stun = self.ability.shard_stun
+		damage = damage * self.shard_damage
+		stun = self.shard_stun
 	end
 
 	if is_auto == 1 then
-		stun = self.ability.talents.q4_stun
+		stun = self.talents.q4_stun
 	else
 		if self.talents.has_q7 == 1 then
 			stun = stun * (1 + self.talents.q7_stun)
@@ -383,8 +342,8 @@ function leshrac_split_earth_custom:ProcStun(target, is_auto, is_shard)
 		end
 		DoDamage({
 			attacker = self.caster,
-			ability = self.ability,
-			damage_type = self.ability.talents.has_q7 == 1 and DAMAGE_TYPE_PHYSICAL or DAMAGE_TYPE_MAGICAL,
+			ability = self,
+			damage_type = self.talents.has_q7 == 1 and DAMAGE_TYPE_PHYSICAL or DAMAGE_TYPE_MAGICAL,
 			damage = damage,
 			victim = target,
 		})
@@ -393,7 +352,7 @@ function leshrac_split_earth_custom:ProcStun(target, is_auto, is_shard)
 	local stun_duration = stun * (1 - target:GetStatusResistance())
 	target:AddNewModifier(
 		self.caster,
-		self.caster:BkbAbility(self.ability, is_auto == 1),
+		is_auto == 1 and self.caster:BkbAbility(self, true) or self,
 		"modifier_stunned",
 		{ duration = stun_duration }
 	)
@@ -403,42 +362,42 @@ function leshrac_split_earth_custom:ProcStun(target, is_auto, is_shard)
 	end
 
 	if self.caster:HasShard() then
-		local leash = self.ability.shard_leash
+		local leash = self.shard_leash
 		if self.talents.has_q7 == 1 then
 			leash = leash * (1 + self.talents.q7_stun)
 		end
 		target:AddNewModifier(
 			self.caster,
-			self.ability,
+			self,
 			"modifier_leshrac_split_earth_custom_leash",
 			{ duration = stun_duration + leash * (1 - target:GetStatusResistance()) }
 		)
 	end
 
-	if self.ability.talents.has_q1 == 1 then
+	if self.talents.has_q1 == 1 then
 		target:AddNewModifier(
 			self.caster,
-			self.ability,
+			self,
 			"modifier_leshrac_split_earth_custom_armor",
-			{ duration = self.ability.talents.q1_armor_duration }
+			{ duration = self.talents.q1_armor_duration }
 		)
 	end
 
-	if self.ability.talents.has_q7 == 1 then
+	if self.talents.has_q7 == 1 then
 		target:AddNewModifier(
 			self.caster,
-			self.ability,
+			self,
 			"modifier_leshrac_split_earth_custom_legendary",
-			{ duration = self.ability.talents.q7_duration }
+			{ duration = self.talents.q7_duration }
 		)
 	end
 
-	if self.ability.talents.has_q3 == 1 then
+	if self.talents.has_q3 == 1 then
 		target:AddNewModifier(
 			self.caster,
-			self.ability,
+			self,
 			"modifier_leshrac_split_earth_custom_damage_inc",
-			{ duration = self.ability.talents.q3_duration }
+			{ duration = self.talents.q3_duration }
 		)
 	end
 end
@@ -742,7 +701,7 @@ function modifier_leshrac_split_earth_custom_tracker:DamageEvent_out(params)
 	if
 		self.ability.talents.has_e3 == 1
 		and IsValid(self.parent.storm_ability)
-		and self.parent:CheckCd("leshrac_e7", self.ability.talents.e3_cd)
+		and self.parent:CheckCd("leshrac_e3", self.ability.talents.e3_cd)
 	then
 		self.parent.storm_ability:ProcSpeed()
 	end
@@ -762,7 +721,34 @@ function modifier_leshrac_split_earth_custom_tracker:DamageEvent_out(params)
 		target.edict_count = 0
 	end
 
-	self.ability:ProcAttack(target)
+	if not self.ability:IsTrained() then
+		return
+	end
+
+	local chance = self.ability.talents.q7_chance
+	local mod = target:FindModifierByName("modifier_leshrac_split_earth_custom_legendary")
+	local index = 10430
+	if mod then
+		chance = chance + mod:GetStackCount() * self.ability.talents.q7_chance_inc
+		index = index + mod:GetStackCount()
+	end
+
+	if not RollPseudoRandomPercentage(chance, index, self.parent) then
+		return
+	end
+
+	local info = {
+		EffectName = "particles/units/heroes/hero_leshrac/leshrac_base_attack.vpcf",
+		Ability = self.ability,
+		iMoveSpeed = self.parent:GetProjectileSpeed(),
+		Source = self.parent,
+		Target = target,
+		bDodgeable = false,
+		bProvidesVision = false,
+		iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_HITLOCATION,
+	}
+	self.parent:EmitSound("Leshrac.Earth_legendary_attack")
+	ProjectileManager:CreateTrackingProjectile(info)
 end
 
 function modifier_leshrac_split_earth_custom_tracker:DeclareFunctions()
@@ -814,6 +800,13 @@ end
 function modifier_leshrac_split_earth_custom_slow:GetEffectName()
 	return "particles/lina_attack_slow.vpcf"
 end
+function modifier_leshrac_split_earth_custom_slow:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.slow = self.ability.talents.q2_slow
+end
+
 function modifier_leshrac_split_earth_custom_slow:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
@@ -822,13 +815,6 @@ end
 
 function modifier_leshrac_split_earth_custom_slow:GetModifierMoveSpeedBonus_Percentage()
 	return self.slow
-end
-
-function modifier_leshrac_split_earth_custom_slow:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.slow = self.ability.talents.q2_slow
 end
 
 modifier_leshrac_split_earth_custom_leash = class(mod_hidden)
@@ -842,17 +828,17 @@ function modifier_leshrac_split_earth_custom_leash:CheckState()
 end
 
 modifier_leshrac_split_earth_custom_armor = class(mod_hidden)
-function modifier_leshrac_split_earth_custom_armor:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
-	}
-end
-
 function modifier_leshrac_split_earth_custom_armor:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
 	self.armor = self.ability.talents.q1_armor
+end
+
+function modifier_leshrac_split_earth_custom_armor:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
+	}
 end
 
 function modifier_leshrac_split_earth_custom_armor:GetModifierPhysicalArmorBonus()
@@ -909,12 +895,7 @@ function modifier_leshrac_split_earth_custom_legendary:OnRefresh()
 		return
 	end
 	self:IncrementStackCount()
-end
 
-function modifier_leshrac_split_earth_custom_legendary:OnStackCountChanged(iStackCount)
-	if not IsServer() then
-		return
-	end
 	if not self.effect then
 		self.effect = self.parent:GenericParticle("particles/lina/stun_stack.vpcf", self, true)
 	end

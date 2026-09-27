@@ -39,6 +39,7 @@ function item_nullifier_custom:Spawn()
 	self.mute_duration = self:GetSpecialValueFor("mute_duration")
 	self.projectile_speed = self:GetSpecialValueFor("projectile_speed")
 	self.slow_move = self:GetSpecialValueFor("slow_move")
+	self.cdr_bonus = self:GetSpecialValueFor("cdr_bonus")
 end
 
 function item_nullifier_custom:OnSpellStart()
@@ -93,11 +94,9 @@ modifier_item_nullifier_custom_active_slow = class(mod_hidden)
 function modifier_item_nullifier_custom_active_slow:GetStatusEffectName()
 	return "particles/status_fx/status_effect_nullifier.vpcf"
 end
-
 function modifier_item_nullifier_custom_active_slow:StatusEffectPriority()
 	return MODIFIER_PRIORITY_NORMAL
 end
-
 function modifier_item_nullifier_custom_active_slow:OnCreated(table)
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
@@ -115,13 +114,6 @@ function modifier_item_nullifier_custom_active_slow:GetModifierMoveSpeedBonus_Pe
 end
 
 modifier_item_nullifier_custom = class(mod_hidden)
-function modifier_item_nullifier_custom:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
-		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
-	}
-end
-
 function modifier_item_nullifier_custom:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -129,7 +121,14 @@ function modifier_item_nullifier_custom:OnCreated()
 	if not self.parent.cdr_items then
 		self.parent.cdr_items = {}
 	end
-	self.parent.cdr_items[self] = self.ability:GetSpecialValueFor("cdr_bonus")
+	self.parent.cdr_items[self] = self.ability.cdr_bonus
+end
+
+function modifier_item_nullifier_custom:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
+		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
+	}
 end
 
 function modifier_item_nullifier_custom:GetModifierPhysicalArmorBonus()

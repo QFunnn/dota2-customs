@@ -25,13 +25,13 @@ function item_enhancement_audacious_custom:GetIntrinsicModifierName()
 	return "modifier_item_enhancement_audacious_custom"
 end
 
-modifier_item_enhancement_audacious_custom = class({})
-function modifier_item_enhancement_audacious_custom:IsHidden()
-	return true
+function item_enhancement_audacious_custom:Spawn()
+	self.attack_speed = self:GetSpecialValueFor("attack_speed")
+	self.damage_reduce = self:GetSpecialValueFor("damage_reduce")
+	self.chance = self:GetSpecialValueFor("chance")
 end
-function modifier_item_enhancement_audacious_custom:IsPurgable()
-	return false
-end
+
+modifier_item_enhancement_audacious_custom = class(mod_hidden)
 function modifier_item_enhancement_audacious_custom:RemoveOnDeath()
 	return false
 end
@@ -39,9 +39,9 @@ function modifier_item_enhancement_audacious_custom:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.attack_speed = self.ability:GetSpecialValueFor("attack_speed")
-	self.damage_reduce = self.ability:GetSpecialValueFor("damage_reduce")
-	self.chance = self.ability:GetSpecialValueFor("chance")
+	self.attack_speed = self.ability.attack_speed
+	self.damage_reduce = self.ability.damage_reduce
+	self.chance = self.ability.chance
 
 	if not IsServer() then
 		return
@@ -59,6 +59,9 @@ end
 
 function modifier_item_enhancement_audacious_custom:AttackStartEvent_out(params)
 	if not IsServer() then
+		return
+	end
+	if not IsValid(self.ability) then
 		return
 	end
 	if not IsValid(params.target) then
@@ -108,13 +111,7 @@ function modifier_item_enhancement_audacious_custom:GetModifierDamageOutgoing_Pe
 	return self.damage_reduce
 end
 
-modifier_item_enhancement_audacious_custom_double = class({})
-function modifier_item_enhancement_audacious_custom_double:IsHidden()
-	return true
-end
-function modifier_item_enhancement_audacious_custom_double:IsPurgable()
-	return false
-end
+modifier_item_enhancement_audacious_custom_double = class(mod_hidden)
 function modifier_item_enhancement_audacious_custom_double:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
 end

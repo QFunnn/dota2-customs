@@ -27,6 +27,7 @@ function nyx_assassin_innate_custom:Precache(context)
 		return
 	end
 
+	PrecacheResource("particle", "particles/lc_odd_proc_.vpcf", context)
 	PrecacheResource("soundfile", "soundevents/npc_dota_hero_nyx_assassin.vsndevts", context)
 	dota1x6:PrecacheShopItems("npc_dota_hero_nyx_assassin", context)
 end
@@ -36,12 +37,11 @@ function nyx_assassin_innate_custom:UpdateTalents()
 	if not self.init then
 		self.init = true
 		self.talents = {
-			has_gold = 0,
-			gold_inc = 0,
-			move_inc = 0,
+			has_h3 = 0,
+			h3_gold = 0,
+			h3_move = 0,
 
 			has_h4 = 0,
-			h4_radius = caster:GetTalentValue("modifier_nyx_hero_4", "radius", true),
 			h4_cdr = caster:GetTalentValue("modifier_nyx_hero_4", "cdr", true),
 			h4_max = caster:GetTalentValue("modifier_nyx_hero_4", "max", true),
 			h4_damage = caster:GetTalentValue("modifier_nyx_hero_4", "damage", true),
@@ -49,9 +49,9 @@ function nyx_assassin_innate_custom:UpdateTalents()
 	end
 
 	if caster:HasTalent("modifier_nyx_hero_3") then
-		self.talents.has_gold = 1
-		self.talents.move_inc = caster:GetTalentValue("modifier_nyx_hero_3", "move")
-		self.talents.gold_inc = caster:GetTalentValue("modifier_nyx_hero_3", "gold")
+		self.talents.has_h3 = 1
+		self.talents.h3_move = caster:GetTalentValue("modifier_nyx_hero_3", "move")
+		self.talents.h3_gold = caster:GetTalentValue("modifier_nyx_hero_3", "gold")
 	end
 
 	if caster:HasTalent("modifier_nyx_hero_4") then
@@ -67,31 +67,6 @@ function nyx_assassin_innate_custom:GetIntrinsicModifierName()
 end
 
 modifier_nyx_assassin_innate_custom = class(mod_hidden)
-function modifier_nyx_assassin_innate_custom:OnCreated(table)
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-	self.ability.tracker = self
-	self.ability:UpdateTalents()
-
-	self.radius = self.ability:GetSpecialValueFor("radius")
-	self.blue = self.ability:GetSpecialValueFor("blue")
-	self.kill_radius = self.ability:GetSpecialValueFor("kill_radius")
-
-	self.shard_blue = self.ability:GetSpecialValueFor("shard_blue")
-
-	self.parent:AddDeathEvent(self, true)
-end
-
-function modifier_nyx_assassin_innate_custom:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
-	}
-end
-
-function modifier_nyx_assassin_innate_custom:GetModifierMoveSpeedBonus_Constant()
-	return self.ability.talents.move_inc
-end
-
 function modifier_nyx_assassin_innate_custom:IsAura()
 	return true
 end
@@ -113,6 +88,30 @@ end
 function modifier_nyx_assassin_innate_custom:GetModifierAura()
 	return "modifier_generic_vision"
 end
+function modifier_nyx_assassin_innate_custom:OnCreated(table)
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+	self.ability.tracker = self
+	self.ability:UpdateTalents()
+
+	self.radius = self.ability:GetSpecialValueFor("radius")
+	self.blue = self.ability:GetSpecialValueFor("blue")
+	self.kill_radius = self.ability:GetSpecialValueFor("kill_radius")
+	self.shard_blue = self.ability:GetSpecialValueFor("shard_blue")
+
+	self.parent:AddDeathEvent(self, true)
+end
+
+function modifier_nyx_assassin_innate_custom:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
+	}
+end
+
+function modifier_nyx_assassin_innate_custom:GetModifierMoveSpeedBonus_Constant()
+	return self.ability.talents.h3_move
+end
+
 function modifier_nyx_assassin_innate_custom:GetAuraEntityReject(hEntity)
 	return not players[hEntity:GetId()] or players[hEntity:GetId()] ~= hEntity
 end
@@ -139,10 +138,10 @@ function modifier_nyx_assassin_innate_custom:DeathEvent(params)
 	end
 
 	local blue = self.parent:HasShard() and (self.blue + self.shard_blue) or self.blue
-	dota1x6:AddBluePoints(self.parent, blue)
+	self.parent:AddPoints("blue", blue, self.ability)
 
-	if self.ability.talents.has_gold == 1 then
-		self.parent:GiveGold(self.ability.talents.gold_inc, true)
+	if self.ability.talents.has_h3 == 1 then
+		self.parent:GiveGold(self.ability.talents.h3_gold, true, nil, "modifier_nyx_hero_3")
 	end
 
 	self.parent:AddNewModifier(self.parent, self.ability, "modifier_nyx_assassin_innate_custom_perma", {})
@@ -163,14 +162,12 @@ function modifier_nyx_assassin_innate_custom_perma:OnCreated()
 	self.ability = self:GetAbility()
 
 	self.max = self.ability.talents.h4_max
-	self.cdr = self.ability.talents.h4_cdr / self.max
-	self.damage = self.ability.talents.h4_damage / self.max
 
 	if not IsServer() then
 		return
 	end
 	self:StartIntervalThink(2)
-	self:SetStackCount(1)
+	self:IncrementStackCount()
 end
 
 function modifier_nyx_assassin_innate_custom_perma:OnRefresh()
@@ -211,19 +208,19 @@ function modifier_nyx_assassin_innate_custom_perma:GetModifierPercentageCooldown
 	if self.ability.talents.has_h4 == 0 then
 		return
 	end
-	return self.cdr * self:GetStackCount()
+	return (self.ability.talents.h4_cdr / self.max) * self:GetStackCount()
 end
 
 function modifier_nyx_assassin_innate_custom_perma:GetModifierSpellAmplify_Percentage()
 	if self.ability.talents.has_h4 == 0 then
 		return
 	end
-	return self.damage * self:GetStackCount()
+	return (self.ability.talents.h4_damage / self.max) * self:GetStackCount()
 end
 
 function modifier_nyx_assassin_innate_custom_perma:GetModifierDamageOutgoing_Percentage()
 	if self.ability.talents.has_h4 == 0 then
 		return
 	end
-	return self.damage * self:GetStackCount()
+	return (self.ability.talents.h4_damage / self.max) * self:GetStackCount()
 end

@@ -37,9 +37,21 @@
 			</Panel>
 			<Panel id="DamageRoundHistory" class="DamageRoundHistory">
 				<Panel class="DamageRoundBackground" />
-				<Panel id="TopPanel" class="TopPanel" hittest="true" onactivate="ChangeViewType(&apos;DamageAbilitiesHealing&apos;, &apos;DamageAbilitiesHealingButton&apos;);">
-					<Panel id="BottomPanelCheckbox" class="BottomPanelCheckbox_inactive" />
-					<Label id="TempHeader" class="TempHeader" text="#CurrentStatRecent" />
+				<Panel id="TopPanel" class="TopPanel">
+					<Panel class="MenuButton" id="TopPanelRecent" onactivate="ChangeViewType(false);">
+						<Label class="MenuButtonLabel" text="#CurrentStatRecent" />
+					</Panel>
+					<Panel class="MenuButton" id="TopPanelTotal" onactivate="ChangeViewType(true);">
+						<Label class="MenuButtonLabel" text="#CurrentStatTotal" />
+					</Panel>
+				</Panel>
+				<Panel id="TopPanelResource" class="TopPanel panel_hidden">
+					<Panel class="MenuButton" id="TopPanelGold" onactivate="ChangeResourceType(false);">
+						<Label class="MenuButtonLabel" text="#ResourceGold" />
+					</Panel>
+					<Panel class="MenuButton" id="TopPanelPoints" onactivate="ChangeResourceType(true);">
+						<Label class="MenuButtonLabel" text="#ResourceTalentPoints" />
+					</Panel>
 				</Panel>
 				<Panel class="DamageStatsParent" id="DamageAbilities">
 					<Panel class="DamageStatsConent panel_hidden" id="DamageAbilities_Total" />
@@ -53,6 +65,25 @@
 					<Panel class="DamageStatsConent panel_hidden" id="DamageAbilitiesHealing_Total" />
 					<Panel class="DamageStatsConent" id="DamageAbilitiesHealing_Recent" />
 				</Panel>
+				<Panel class="DamageStatsParent" id="DamageAbilitiesResource">
+					<Panel class="DamageStatsConent" id="DamageAbilitiesResource_Gold" />
+					<Panel class="DamageStatsConent panel_hidden" id="DamageAbilitiesResource_Points">
+						<Panel class="ResourcePointsSection panel_hidden" id="ResourceBlueSection">
+							<Panel class="ResourcePointsHeader">
+								<DOTAItemImage class="ResourcePointsIcon" itemname="item_blue_upgrade" hittest="false" />
+								<Label class="ResourcePointsTitle ResourcePointsTitle_blue" text="#ResourceBluePoints" />
+							</Panel>
+							<Panel class="ResourcePointsList" id="DamageAbilitiesResource_Blue" />
+						</Panel>
+						<Panel class="ResourcePointsSection panel_hidden" id="ResourceGraySection">
+							<Panel class="ResourcePointsHeader">
+								<DOTAItemImage class="ResourcePointsIcon" itemname="item_gray_upgrade" hittest="false" />
+								<Label class="ResourcePointsTitle ResourcePointsTitle_gray" text="#ResourceGrayPoints" />
+							</Panel>
+							<Panel class="ResourcePointsList" id="DamageAbilitiesResource_Gray" />
+						</Panel>
+					</Panel>
+				</Panel>
 				<Panel id="Damage_MenuButtons" class="Damage_MenuButtons">
 					<Panel class="MenuButton button_select" id="DamageAbilitiesIncomeButton" onactivate="DamageToggleButton(&apos;DamageAbilitiesIncome&apos;, &apos;DamageAbilitiesIncomeButton&apos;);">
 						<Label class="MenuButtonLabel" text="#DamageAbilitiesIncome" />
@@ -62,6 +93,9 @@
 					</Panel>
 					<Panel class="MenuButton" id="DamageAbilitiesHealingButton" onactivate="DamageToggleButton(&apos;DamageAbilitiesHealing&apos;, &apos;DamageAbilitiesHealingButton&apos;);">
 						<Label class="MenuButtonLabel" text="#DamageAbilitiesHealing" />
+					</Panel>
+					<Panel class="MenuButton" id="DamageAbilitiesResourceButton" onactivate="DamageToggleButton(&apos;DamageAbilitiesResource&apos;, &apos;DamageAbilitiesResourceButton&apos;);">
+						<Label class="MenuButtonLabel" text="#DamageAbilitiesResource" />
 					</Panel>
 				</Panel>
 			</Panel>

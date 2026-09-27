@@ -31,9 +31,7 @@ function C_DOTA_BaseNPC:IsUnit()
 	return not self:IsNull()
 		and (self:IsHero() or self:IsCreep() or self.is_crystal)
 		and self:GetUnitName() ~= "npc_teleport"
-		and not self.is_hero_icon
 		and self:GetUnitName() ~= "npc_dota_donate_item_illusion"
-		and not self:HasModifier("modifier_bounty_map")
 end
 
 function C_DOTA_BaseNPC:IsTempest()
@@ -42,11 +40,7 @@ function C_DOTA_BaseNPC:IsTempest()
 end
 
 function C_DOTA_BaseNPC:TalentLevel(talent)
-	local player_id = self:GetUnitName() -- self:GetPlayerOwnerID()
-
-	if self:HasModifier(talent) then
-		return self:GetModifierStackCount(talent, self)
-	end
+	local player_id = self:GetId()
 
 	if not active_talents[player_id] then
 		return 0
@@ -63,11 +57,8 @@ function C_DOTA_BaseNPC:HasTalent(talent)
 		return false
 	end
 
-	local player_id = self:GetUnitName() -- self:GetPlayerOwnerID()
+	local player_id = self:GetId()
 
-	if self:HasModifier(talent) then
-		return true
-	end
 	if not active_talents[player_id] then
 		return false
 	end
@@ -90,7 +81,7 @@ end
 
 function C_DOTA_BaseNPC:AddTalent(talent, new_level)
 	if self:IsRealHero() and not self:IsTempest() then
-		local player_id = self:GetUnitName() -- self:GetPlayerOwnerID()
+		local player_id = self:GetId()
 
 		if not active_talents[player_id] then
 			active_talents[player_id] = {}
@@ -112,30 +103,88 @@ function C_DOTA_BaseNPC:AddTalent(talent, new_level)
 		end
 	end
 
-	local update_mod = self:GetTalentValue(talent, "update_mod")
+	local is_talent_upgrade = self:GetTalentValue(talent, "is_talent_upgrade", true)
+	if is_talent_upgrade and is_talent_upgrade == 1 then
+		local func = self:GetTalentValue(talent, "talent_upgrade_func", true)
+		if func then
+			self:AddTalentIncreaseFunction(talent, func)
+		end
+	end
 
-	if update_mod and update_mod == "modifier_general_stats" then
-		local ability = self:FindAbilityByName("custom_general_talents")
-		if ability and ability.UpdateTalents then
+	self:RefreshTalentValues(talent)
+end
+
+function C_DOTA_BaseNPC:RemoveTalent(talent)
+	local player_id = self:GetId()
+
+	if active_talents[player_id] then
+		active_talents[player_id][talent] = nil
+	end
+
+	if talent_increase_functions[player_id] then
+		talent_increase_functions[player_id][talent] = nil
+	end
+
+	self:ResetTalentValues(talent)
+	self:RefreshTalentIncrease()
+end
+
+function C_DOTA_BaseNPC:RefreshTalentValues(talent)
+	if not self.base_abilities then
+		return
+	end
+
+	for _, name in pairs(self.base_abilities) do
+		local ability = self:FindAbilityByName(name)
+		if ability and ability.UpdateTalents and ability:IsTrained() then
 			ability:UpdateTalents(talent)
 		end
-	else
-		if self.base_abilities then
-			for _, name in pairs(self.base_abilities) do
-				local ability = self:FindAbilityByName(name)
-				if ability and ability.UpdateTalents and ability:IsTrained() then
-					ability:UpdateTalents(talent)
-				end
+	end
+end
+
+function C_DOTA_BaseNPC:ResetTalentValues(talent)
+	if not self.base_abilities then
+		return
+	end
+
+	for _, name in pairs(self.base_abilities) do
+		local ability = self:FindAbilityByName(name)
+		if ability and ability.UpdateTalents then
+			ability.init = nil
+			if ability:IsTrained() then
+				ability:UpdateTalents(talent)
 			end
 		end
 	end
 end
 
+function C_DOTA_BaseNPC:AddTalentIncreaseFunction(name, func)
+	local player_id = self:GetId()
+
+	if not talent_increase_functions[player_id] then
+		talent_increase_functions[player_id] = {}
+	end
+	if talent_increase_functions[player_id][name] then
+		return
+	end
+	talent_increase_functions[player_id][name] = func
+end
+
+function C_DOTA_BaseNPC:RefreshTalentIncrease()
+	if IsValid(self.stats_tracker) then
+		self.stats_tracker.ability:UpdateTalents()
+	end
+end
+
 function C_DOTA_BaseNPC:GetTalentValue(name, property, ignore_level)
+	if not self.unit_name then
+		self.unit_name = self:GetUnitName()
+	end
+
 	local hero_table = nil
 
-	if ingame_talents[self:GetUnitName()] and ingame_talents[self:GetUnitName()][name] then
-		hero_table = ingame_talents[self:GetUnitName()]
+	if ingame_talents[self.unit_name] and ingame_talents[self.unit_name][name] then
+		hero_table = ingame_talents[self.unit_name]
 	elseif ingame_talents["general"][name] then
 		hero_table = ingame_talents["general"]
 	elseif ingame_talents["broodmother_spiders"] and ingame_talents["broodmother_spiders"][name] then
@@ -182,7 +231,14 @@ function C_DOTA_BaseNPC:GetTalentValue(name, property, ignore_level)
 	end
 
 	if type(value) == "table" then
-		return value[level]
+		local k = 1
+		if talent_increase_functions[self:GetId()] then
+			for func_name, func in pairs(talent_increase_functions[self:GetId()]) do
+				local result = func(talent_table, self)
+				k = k + (result or 0)
+			end
+		end
+		return value[level] * k
 	else
 		if property == "general_bonus" then
 			return value * level
@@ -304,6 +360,7 @@ function C_DOTA_BaseNPC:AddSpellStartEvent(mod) end
 function C_DOTA_BaseNPC:AddSpellEvent(mod) end
 function C_DOTA_BaseNPC:AddDeathEvent(mod) end
 function C_DOTA_BaseNPC:AddRespawnEvent(mod) end
+function C_DOTA_BaseNPC:AddStateEvent(mod) end
 function C_DOTA_BaseNPC:AddOrderEvent(mod) end
 
 function C_DOTA_BaseNPC:AddPercentStat(stat, amount, mod) end

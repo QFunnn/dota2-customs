@@ -97,7 +97,6 @@ function custom_juggernaut_blade_fury:UpdateTalents(name)
 			q1_heal = 0,
 			q1_damage = 0,
 
-			has_q2 = 0,
 			q2_cd = 0,
 			q2_radius = 0,
 
@@ -110,6 +109,7 @@ function custom_juggernaut_blade_fury:UpdateTalents(name)
 			has_q4 = 0,
 			q4_slow = caster:GetTalentValue("modifier_juggernaut_bladefury_4", "slow", true),
 
+			has_q7 = 0,
 			q7_stack_init = caster:GetTalentValue("modifier_juggernaut_bladefury_7", "stack_init", true),
 			q7_timer = caster:GetTalentValue("modifier_juggernaut_bladefury_7", "timer", true),
 			q7_damage = caster:GetTalentValue("modifier_juggernaut_bladefury_7", "damage", true) / 100,
@@ -131,7 +131,6 @@ function custom_juggernaut_blade_fury:UpdateTalents(name)
 	end
 
 	if caster:HasTalent("modifier_juggernaut_bladefury_2") then
-		self.talents.has_q2 = 1
 		self.talents.q2_cd = caster:GetTalentValue("modifier_juggernaut_bladefury_2", "cd")
 		self.talents.q2_radius = caster:GetTalentValue("modifier_juggernaut_bladefury_2", "radius")
 	end
@@ -170,6 +169,10 @@ function custom_juggernaut_blade_fury:UpdateTalents(name)
 	end
 end
 
+function custom_juggernaut_blade_fury:GetAbilityTextureName()
+	return wearables_system:GetAbilityIconReplacement(self.caster, "juggernaut_blade_fury", self)
+end
+
 function custom_juggernaut_blade_fury:GetIntrinsicModifierName()
 	if not self:GetCaster():IsRealHero() then
 		return
@@ -177,45 +180,38 @@ function custom_juggernaut_blade_fury:GetIntrinsicModifierName()
 	return "modifier_custom_juggernaut_blade_fury_tracker"
 end
 
-function custom_juggernaut_blade_fury:GetAbilityTextureName()
-	return wearables_system:GetAbilityIconReplacement(self.caster, "juggernaut_blade_fury", self)
+function custom_juggernaut_blade_fury:GetRadius()
+	return (self.blade_fury_radius or 0) + (self.talents.q2_radius or 0)
 end
 
-function custom_juggernaut_blade_fury:GetRadius()
-	return (self.blade_fury_radius and self.blade_fury_radius or 0)
-		+ (self.talents.q2_radius and self.talents.q2_radius or 0)
+function custom_juggernaut_blade_fury:GetEffectDuration()
+	return (self.duration or 0) + (self.talents.has_h4 == 1 and self.talents.h4_duration or 0)
 end
 
 function custom_juggernaut_blade_fury:GetManaCost(level)
-	if self:GetCaster():HasModifier("modifier_custom_juggernaut_blade_fury") and self.talents.has_h4 == 1 then
+	if self.talents.has_h4 == 1 and self.caster:HasModifier("modifier_custom_juggernaut_blade_fury") then
 		return 0
 	end
 	return self.BaseClass.GetManaCost(self, level)
 end
 
 function custom_juggernaut_blade_fury:GetCastRange(vLocation, hTarget)
-	return self:GetRadius() - self:GetCaster():GetCastRangeBonus()
+	return self:GetRadius() - self.caster:GetCastRangeBonus()
 end
 
 function custom_juggernaut_blade_fury:GetCooldown(iLevel)
-	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.q2_cd and self.talents.q2_cd or 0)
-end
-
-function custom_juggernaut_blade_fury:GetEffectDuration()
-	return (self.duration and self.duration or 0) + (self.talents.has_h4 == 1 and self.talents.h4_duration or 0)
+	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.q2_cd or 0)
 end
 
 function custom_juggernaut_blade_fury:OnSpellStart()
-	local caster = self:GetCaster()
-
-	if self.talents.has_h4 == 1 and caster:HasModifier("modifier_custom_juggernaut_blade_fury") then
-		caster:RemoveModifierByName("modifier_custom_juggernaut_blade_fury")
+	if self.talents.has_h4 == 1 and self.caster:HasModifier("modifier_custom_juggernaut_blade_fury") then
+		self.caster:RemoveModifierByName("modifier_custom_juggernaut_blade_fury")
 		return
 	end
 
-	caster:RemoveModifierByName("modifier_custom_juggernaut_blade_fury")
-	caster:AddNewModifier(
-		caster,
+	self.caster:RemoveModifierByName("modifier_custom_juggernaut_blade_fury")
+	self.caster:AddNewModifier(
+		self.caster,
 		self,
 		"modifier_custom_juggernaut_blade_fury",
 		{ duration = self:GetEffectDuration() + 0.1, anim = 1 }
@@ -223,27 +219,24 @@ function custom_juggernaut_blade_fury:OnSpellStart()
 end
 
 modifier_custom_juggernaut_blade_fury = class(mod_visible)
-function modifier_custom_juggernaut_blade_fury:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_PROCATTACK_BONUS_DAMAGE_PHYSICAL,
-		MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
-	}
+function modifier_custom_juggernaut_blade_fury:IsAura()
+	return IsServer() and not self.is_thinker and self.caster:IsAlive()
 end
-
-function modifier_custom_juggernaut_blade_fury:GetModifierIncomingDamage_Percentage()
-	if self.ability.talents.has_h4 == 0 then
-		return
-	end
-	return self.ability.talents.h4_damage_reduce
+function modifier_custom_juggernaut_blade_fury:GetModifierAura()
+	return "modifier_custom_juggernaut_blade_fury_aura"
 end
-
-function modifier_custom_juggernaut_blade_fury:GetModifierProcAttack_BonusDamage_Physical(params)
-	if params.no_attack_cooldown then
-		return
-	end
-	return -params.damage
+function modifier_custom_juggernaut_blade_fury:GetAuraRadius()
+	return self.radius
 end
-
+function modifier_custom_juggernaut_blade_fury:GetAuraDuration()
+	return 0
+end
+function modifier_custom_juggernaut_blade_fury:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_ENEMY
+end
+function modifier_custom_juggernaut_blade_fury:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
+end
 function modifier_custom_juggernaut_blade_fury:OnCreated(table)
 	self.caster = self:GetCaster()
 	self.parent = self:GetParent()
@@ -315,7 +308,7 @@ function modifier_custom_juggernaut_blade_fury:OnCreated(table)
 		self
 	)
 
-	if self.parent:HasModifier("modifier_custom_juggernaut_blade_fury_legendary_thinker") then
+	if self.is_thinker then
 		local effect_cast =
 			ParticleManager:CreateParticle("particles/jugg_small_fury.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
 		ParticleManager:SetParticleControl(effect_cast, 5, Vector(self.radius / 1.6, 0, 0))
@@ -385,7 +378,7 @@ function modifier_custom_juggernaut_blade_fury:OnIntervalThink()
 			self.damageTable.victim = target
 			DoDamage(self.damageTable, self.damage_ability)
 
-			if self.caster.healing_ward_ability then
+			if IsValid(self.caster.healing_ward_ability) then
 				self.caster.healing_ward_ability:ProcDamage(target, true)
 			end
 
@@ -477,27 +470,29 @@ function modifier_custom_juggernaut_blade_fury:OnDestroy(kv)
 		return
 	end
 
-	StopSoundOn("Hero_Juggernaut.BladeFuryStart", self.parent)
-	self.parent:EmitSound(wearables_system:GetSoundReplacement(self.parent, "Hero_Juggernaut.BladeFuryStop", self))
+	StopSoundOn(self.sound_lp, self.parent)
+	self.parent:EmitSound(wearables_system:GetSoundReplacement(self.caster, "Hero_Juggernaut.BladeFuryStop", self))
 end
 
-function modifier_custom_juggernaut_blade_fury:IsAura()
-	return IsServer() and not self.is_thinker and self.caster:IsAlive()
+function modifier_custom_juggernaut_blade_fury:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_PROCATTACK_BONUS_DAMAGE_PHYSICAL,
+		MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
+	}
 end
-function modifier_custom_juggernaut_blade_fury:GetModifierAura()
-	return "modifier_custom_juggernaut_blade_fury_aura"
+
+function modifier_custom_juggernaut_blade_fury:GetModifierIncomingDamage_Percentage()
+	if self.ability.talents.has_h4 == 0 then
+		return
+	end
+	return self.ability.talents.h4_damage_reduce
 end
-function modifier_custom_juggernaut_blade_fury:GetAuraRadius()
-	return self.radius
-end
-function modifier_custom_juggernaut_blade_fury:GetAuraDuration()
-	return 0
-end
-function modifier_custom_juggernaut_blade_fury:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_ENEMY
-end
-function modifier_custom_juggernaut_blade_fury:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
+
+function modifier_custom_juggernaut_blade_fury:GetModifierProcAttack_BonusDamage_Physical(params)
+	if params.no_attack_cooldown then
+		return
+	end
+	return -params.damage
 end
 
 modifier_custom_juggernaut_blade_fury_slow = class(mod_hidden)
@@ -555,17 +550,18 @@ function modifier_custom_juggernaut_blade_fury_tracker:DamageEvent_out(params)
 	if not IsServer() then
 		return
 	end
+	if self.ability.talents.has_q1 == 0 then
+		return
+	end
+	if not params.inflictor then
+		return
+	end
+
 	local result = self.parent:CheckLifesteal(params)
 	if not result then
 		return
 	end
 
-	if not params.inflictor then
-		return
-	end
-	if self.ability.talents.has_q1 == 0 then
-		return
-	end
 	self.parent:GenericHeal(
 		result * params.damage * self.ability.talents.q1_heal,
 		self.ability,
@@ -595,22 +591,166 @@ function modifier_custom_juggernaut_blade_fury_tracker:UpdateUI()
 	self.parent:UpdateUIlong({ stack = 0, max = 1, override_stack = stack, no_min = 1, style = "JuggernautFury" })
 end
 
+modifier_custom_juggernaut_blade_fury_aura = class(mod_hidden)
+
+modifier_custom_juggernaut_blade_fury_resist = class(mod_visible)
+function modifier_custom_juggernaut_blade_fury_resist:GetTexture()
+	return "buffs/juggernaut/blade_fury_3"
+end
+function modifier_custom_juggernaut_blade_fury_resist:OnCreated(table)
+	self.parent = self:GetParent()
+	self.caster = self:GetCaster()
+	self.ability = self:GetAbility()
+
+	self.max = self.ability.talents.q3_max
+	self.magic = self.ability.talents.q3_magic / self.max
+	self.heal_reduce = self.ability.talents.q3_heal_reduce / self.max
+
+	if not IsServer() then
+		return
+	end
+	self.RemoveForDuel = true
+	self.stack_count = 0
+	self.active_count = 0.5
+	self.interval = 0.2
+	self:StartIntervalThink(self.interval)
+end
+
+function modifier_custom_juggernaut_blade_fury_resist:OnRefresh(table)
+	if not IsServer() then
+		return
+	end
+	self.active_count = 0.5
+end
+
+function modifier_custom_juggernaut_blade_fury_resist:OnIntervalThink()
+	if not IsServer() then
+		return
+	end
+	if self.active_count <= 0 then
+		return
+	end
+
+	self.active_count = self.active_count - self.interval
+	self.stack_count = self.stack_count + self.interval
+	if self.stack_count < (1 - FrameTime()) then
+		return
+	end
+
+	self.stack_count = 0
+	if self:GetStackCount() >= self.max then
+		return
+	end
+
+	if not self.effect_cast then
+		self.effect_cast = self.parent:GenericParticle("particles/juggernaut/bladefury_stack.vpcf", self, true)
+	end
+
+	self:IncrementStackCount()
+
+	if self:GetStackCount() >= self.max then
+		self.parent:EmitSound("Juggernaut.BladeFury_heal_reduce")
+		self.parent:AddNewModifier(self.caster, self.ability, "modifier_custom_juggernaut_blade_fury_resist_status", {})
+		self.parent:GenericParticle("particles/hoodwink/bush_damage.vpcf", self)
+		self:StartIntervalThink(-1)
+	end
+
+	ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(0, self:GetStackCount(), 0))
+end
+
+function modifier_custom_juggernaut_blade_fury_resist:OnDestroy()
+	if not IsServer() then
+		return
+	end
+	self.parent:RemoveModifierByName("modifier_custom_juggernaut_blade_fury_resist_status")
+end
+
+function modifier_custom_juggernaut_blade_fury_resist:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
+		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
+	}
+end
+
+function modifier_custom_juggernaut_blade_fury_resist:GetModifierMagicalResistanceBonus()
+	return self.magic * self:GetStackCount()
+end
+
+function modifier_custom_juggernaut_blade_fury_resist:GetModifierHealChange()
+	return self.heal_reduce * self:GetStackCount()
+end
+
+function modifier_custom_juggernaut_blade_fury_resist:GetModifierHPRegenAmplify_Percentage()
+	return self.heal_reduce * self:GetStackCount()
+end
+
+modifier_custom_juggernaut_blade_fury_resist_status = class(mod_hidden)
+function modifier_custom_juggernaut_blade_fury_resist_status:GetStatusEffectName()
+	return "particles/status_fx/status_effect_rupture.vpcf"
+end
+function modifier_custom_juggernaut_blade_fury_resist_status:StatusEffectPriority()
+	return MODIFIER_PRIORITY_HIGH
+end
+
+modifier_custom_juggernaut_blade_fury_legendary_damage = class(mod_visible)
+function modifier_custom_juggernaut_blade_fury_legendary_damage:IsHidden()
+	return self.ability.talents.has_r7 == 0
+end
+function modifier_custom_juggernaut_blade_fury_legendary_damage:RemoveOnDeath()
+	return false
+end
+function modifier_custom_juggernaut_blade_fury_legendary_damage:OnCreated(table)
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.max = self.ability.talents.q7_max
+	self.damage = self.ability.talents.q7_damage
+
+	if not IsServer() then
+		return
+	end
+	self:OnRefresh(table)
+end
+
+function modifier_custom_juggernaut_blade_fury_legendary_damage:OnRefresh(table)
+	if not IsServer() then
+		return
+	end
+	if self:GetStackCount() >= self.max then
+		return
+	end
+
+	if table.stack then
+		self:SetStackCount(math.min(self.max, table.stack))
+	else
+		self:IncrementStackCount()
+	end
+
+	self.ability.tracker:UpdateUI()
+	self.parent:GenericParticle("particles/juggernaut/fury_legendary_stack.vpcf")
+	self.parent:GenericParticle("particles/jugg_omni_proc.vpcf")
+	self.parent:EmitSound("Juggernaut.BladeFury_legendary_stack")
+end
+
+function modifier_custom_juggernaut_blade_fury_legendary_damage:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_TOOLTIP,
+	}
+end
+
+function modifier_custom_juggernaut_blade_fury_legendary_damage:OnTooltip()
+	return self.damage * self:GetStackCount() * 100
+end
+
 custom_juggernaut_whirling_blade_custom = class({})
 custom_juggernaut_whirling_blade_custom.talents = {}
 custom_juggernaut_whirling_blade_custom.active_thinker = {}
-
-function custom_juggernaut_whirling_blade_custom:CreateTalent()
-	self:SetHidden(false)
-	self:SetLevel(1)
-end
 
 function custom_juggernaut_whirling_blade_custom:UpdateTalents(name)
 	local caster = self:GetCaster()
 	if not self.init then
 		self.init = true
 		self.talents = {
-			has_q7 = 0,
-			q7_max = caster:GetTalentValue("modifier_juggernaut_bladefury_7", "max", true),
 			q7_speed = caster:GetTalentValue("modifier_juggernaut_bladefury_7", "speed", true),
 			q7_talent_cd = caster:GetTalentValue("modifier_juggernaut_bladefury_7", "talent_cd", true),
 			q7_cd_inc = caster:GetTalentValue("modifier_juggernaut_bladefury_7", "cd_inc", true) / 100,
@@ -621,37 +761,42 @@ end
 
 function custom_juggernaut_whirling_blade_custom:GetCooldown(iLevel)
 	local k = 1
-	local caster = self:GetCaster()
-	if caster:HasModifier("modifier_custom_juggernaut_blade_fury_legendary_damage") then
+	if self.caster:HasModifier("modifier_custom_juggernaut_blade_fury_legendary_damage") then
 		k = 1
-			+ self.talents.q7_cd_inc
-				* caster:GetUpgradeStack("modifier_custom_juggernaut_blade_fury_legendary_damage")
+			+ (self.talents.q7_cd_inc or 0)
+				* self.caster:GetUpgradeStack("modifier_custom_juggernaut_blade_fury_legendary_damage")
 	end
-	return (self.talents.q7_talent_cd and self.talents.q7_talent_cd or 0) * k
+	return (self.talents.q7_talent_cd or 0) * k
 end
 
 function custom_juggernaut_whirling_blade_custom:GetAOERadius()
-	local caster = self:GetCaster()
-	if not caster or not caster.fury_ability then
-		return
+	if not self.caster or not self.caster.fury_ability then
+		return 0
 	end
-	return caster.fury_ability:GetRadius()
+	return self.caster.fury_ability:GetRadius()
+end
+
+function custom_juggernaut_whirling_blade_custom:CreateTalent()
+	self:SetHidden(false)
+	self:SetLevel(1)
 end
 
 function custom_juggernaut_whirling_blade_custom:OnAbilityPhaseStart()
-	local caster = self:GetCaster()
-	if not caster:HasModifier("modifier_custom_juggernaut_blade_fury") then
-		caster:AddNewModifier(caster, self, "modifier_custom_juggernaut_blade_fury_anim", {})
-		caster:StartGesture(ACT_DOTA_ATTACK_EVENT)
+	if not self.caster:HasModifier("modifier_custom_juggernaut_blade_fury") then
+		self.caster:AddNewModifier(self.caster, self, "modifier_custom_juggernaut_blade_fury_anim", {})
+		self.caster:StartGesture(ACT_DOTA_ATTACK_EVENT)
 	end
 	return true
 end
 
-function custom_juggernaut_whirling_blade_custom:OnSpellStart()
-	local caster = self:GetCaster()
+function custom_juggernaut_whirling_blade_custom:OnAbilityPhaseInterrupted()
+	self.caster:FadeGesture(ACT_DOTA_ATTACK_EVENT)
+	self.caster:RemoveModifierByName("modifier_custom_juggernaut_blade_fury_anim")
+end
 
-	caster:RemoveModifierByName("modifier_custom_juggernaut_blade_fury_anim")
-	if not caster.fury_ability then
+function custom_juggernaut_whirling_blade_custom:OnSpellStart()
+	self.caster:RemoveModifierByName("modifier_custom_juggernaut_blade_fury_anim")
+	if not self.caster.fury_ability then
 		return
 	end
 
@@ -659,25 +804,25 @@ function custom_juggernaut_whirling_blade_custom:OnSpellStart()
 		self.active_thinker:RemoveModifierByName("modifier_custom_juggernaut_blade_fury_legendary_thinker")
 	end
 
-	caster:EmitSound("Juggernaut.Whirling_start")
+	self.caster:EmitSound("Juggernaut.Whirling_start")
 
 	local point = self:GetCursorPosition()
 	local thinker = CreateModifierThinker(
-		caster,
+		self.caster,
 		self,
 		"modifier_custom_juggernaut_blade_fury_legendary_thinker",
 		{},
-		caster:GetAbsOrigin(),
-		caster:GetTeamNumber(),
+		self.caster:GetAbsOrigin(),
+		self.caster:GetTeamNumber(),
 		false
 	)
 	thinker:AddNewModifier(
-		caster,
+		self.caster,
 		self,
 		"modifier_custom_juggernaut_blade_fury_legendary_fly",
 		{ is_back = 0, x = point.x, y = point.y }
 	)
-	thinker:AddNewModifier(caster, caster.fury_ability, "modifier_custom_juggernaut_blade_fury", {})
+	thinker:AddNewModifier(self.caster, self.caster.fury_ability, "modifier_custom_juggernaut_blade_fury", {})
 end
 
 modifier_custom_juggernaut_blade_fury_legendary_thinker = class(mod_hidden)
@@ -766,14 +911,19 @@ function modifier_custom_juggernaut_blade_fury_legendary_fly:OnDestroy()
 end
 
 modifier_custom_juggernaut_blade_fury_legendary_pause = class(mod_hidden)
-function modifier_custom_juggernaut_blade_fury_legendary_pause:OnDestroy()
+function modifier_custom_juggernaut_blade_fury_legendary_pause:OnCreated()
 	if not IsServer() then
 		return
 	end
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
 	self.ability = self:GetAbility()
+end
 
+function modifier_custom_juggernaut_blade_fury_legendary_pause:OnDestroy()
+	if not IsServer() then
+		return
+	end
 	self.parent:AddNewModifier(
 		self.caster,
 		self.ability,
@@ -791,171 +941,4 @@ end
 
 function modifier_custom_juggernaut_blade_fury_anim:GetActivityTranslationModifiers()
 	return "ti8"
-end
-
-modifier_custom_juggernaut_blade_fury_aura = class(mod_hidden)
-
-modifier_custom_juggernaut_blade_fury_resist = class(mod_visible)
-function modifier_custom_juggernaut_blade_fury_resist:GetTexture()
-	return "buffs/juggernaut/blade_fury_3"
-end
-function modifier_custom_juggernaut_blade_fury_resist:OnCreated(table)
-	self.parent = self:GetParent()
-	self.caster = self:GetCaster()
-	self.ability = self:GetAbility()
-
-	self.max = self.ability.talents.q3_max
-	self.magic = self.ability.talents.q3_magic / self.max
-	self.heal_reduce = self.ability.talents.q3_heal_reduce / self.max
-
-	if not IsServer() then
-		return
-	end
-	self.stack_count = 0
-	self.active_count = 0.5
-	self.interval = 0.2
-	self:StartIntervalThink(self.interval)
-end
-
-function modifier_custom_juggernaut_blade_fury_resist:OnRefresh(table)
-	if not IsServer() then
-		return
-	end
-	self.active_count = 0.5
-end
-
-function modifier_custom_juggernaut_blade_fury_resist:OnIntervalThink()
-	if not IsServer() then
-		return
-	end
-	if self.active_count <= 0 then
-		return
-	end
-
-	self.active_count = self.active_count - self.interval
-	self.stack_count = self.stack_count + self.interval
-	if self.stack_count >= (1 - FrameTime()) then
-		self:AddStack()
-		self.stack_count = 0
-	end
-end
-
-function modifier_custom_juggernaut_blade_fury_resist:AddStack()
-	if not IsServer() then
-		return
-	end
-	if self:GetStackCount() >= self.max then
-		return
-	end
-
-	if not self.effect_cast then
-		self.effect_cast = self.parent:GenericParticle("particles/juggernaut/bladefury_stack.vpcf", self, true)
-	end
-
-	self:IncrementStackCount()
-
-	if self:GetStackCount() >= self.max then
-		self.parent:EmitSound("Juggernaut.BladeFury_heal_reduce")
-		self.parent:AddNewModifier(self.caster, self.ability, "modifier_custom_juggernaut_blade_fury_resist_status", {})
-		self.parent:GenericParticle("particles/hoodwink/bush_damage.vpcf", self)
-		self:StartIntervalThink(-1)
-	end
-
-	ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(0, self:GetStackCount(), 0))
-end
-
-function modifier_custom_juggernaut_blade_fury_resist:OnDestroy()
-	if not IsServer() then
-		return
-	end
-	self.parent:RemoveModifierByName("modifier_custom_juggernaut_blade_fury_resist_status")
-end
-
-function modifier_custom_juggernaut_blade_fury_resist:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
-		--MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET,
-		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
-		--MODIFIER_PROPERTY_LIFESTEAL_AMPLIFY_PERCENTAGE
-	}
-end
-
-function modifier_custom_juggernaut_blade_fury_resist:GetModifierMagicalResistanceBonus()
-	return self.magic * self:GetStackCount()
-end
-
-function modifier_custom_juggernaut_blade_fury_resist:GetModifierLifestealRegenAmplify_Percentage()
-	return self.heal_reduce * self:GetStackCount()
-end
-
-function modifier_custom_juggernaut_blade_fury_resist:GetModifierHealChange()
-	return self.heal_reduce * self:GetStackCount()
-end
-
-function modifier_custom_juggernaut_blade_fury_resist:GetModifierHPRegenAmplify_Percentage()
-	return self.heal_reduce * self:GetStackCount()
-end
-
-modifier_custom_juggernaut_blade_fury_resist_status = class(mod_hidden)
-function modifier_custom_juggernaut_blade_fury_resist_status:GetStatusEffectName()
-	return "particles/status_fx/status_effect_rupture.vpcf"
-end
-function modifier_custom_juggernaut_blade_fury_resist_status:StatusEffectPriority()
-	return MODIFIER_PRIORITY_HIGH
-end
-
-modifier_custom_juggernaut_blade_fury_legendary_damage = class(mod_visible)
-function modifier_custom_juggernaut_blade_fury_legendary_damage:IsHidden()
-	return self.ability.talents.has_r7 == 0
-end
-function modifier_custom_juggernaut_blade_fury_legendary_damage:RemoveOnDeath()
-	return false
-end
-function modifier_custom_juggernaut_blade_fury_legendary_damage:OnCreated(table)
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.max = self.ability.talents.q7_max
-	self.damage = self.ability.talents.q7_damage
-	if not IsServer() then
-		return
-	end
-	self:AddStack(table)
-end
-
-function modifier_custom_juggernaut_blade_fury_legendary_damage:OnRefresh(table)
-	if not IsServer() then
-		return
-	end
-	self:AddStack(table)
-end
-
-function modifier_custom_juggernaut_blade_fury_legendary_damage:AddStack(table)
-	if not IsServer() then
-		return
-	end
-	if self:GetStackCount() >= self.max then
-		return
-	end
-
-	if table.stack then
-		self:SetStackCount(math.min(self.max, table.stack))
-	else
-		self:IncrementStackCount()
-	end
-
-	self.ability.tracker:UpdateUI()
-	self.parent:GenericParticle("particles/juggernaut/fury_legendary_stack.vpcf")
-	self.parent:GenericParticle("particles/jugg_omni_proc.vpcf")
-	self.parent:EmitSound("Juggernaut.BladeFury_legendary_stack")
-end
-
-function modifier_custom_juggernaut_blade_fury_legendary_damage:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_TOOLTIP,
-	}
-end
-
-function modifier_custom_juggernaut_blade_fury_legendary_damage:OnTooltip()
-	return self.damage * self:GetStackCount()
 end

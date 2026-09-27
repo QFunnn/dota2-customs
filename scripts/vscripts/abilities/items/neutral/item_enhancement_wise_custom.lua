@@ -23,6 +23,11 @@ function item_enhancement_wise_custom:GetIntrinsicModifierName()
 	return "modifier_item_enhancement_wise_custom"
 end
 
+function item_enhancement_wise_custom:Spawn()
+	self.cooldown_reduction = self:GetSpecialValueFor("cooldown_reduction")
+	self.mana_burn_reduce = self:GetSpecialValueFor("mana_burn_reduce")
+end
+
 modifier_item_enhancement_wise_custom = class(mod_hidden)
 function modifier_item_enhancement_wise_custom:RemoveOnDeath()
 	return false
@@ -31,8 +36,8 @@ function modifier_item_enhancement_wise_custom:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.cooldown_reduction = self.ability:GetSpecialValueFor("cooldown_reduction")
-	self.mana_burn_reduce = self.ability:GetSpecialValueFor("mana_burn_reduce")
+	self.cooldown_reduction = self.ability.cooldown_reduction
+	self.mana_burn_reduce = self.ability.mana_burn_reduce
 end
 
 function modifier_item_enhancement_wise_custom:DeclareFunctions()

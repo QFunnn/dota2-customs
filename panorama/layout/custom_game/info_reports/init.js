@@ -79,41 +79,6 @@ function init()
         });
     }
 
-    // Check Items
-    var heroes_buy_button = $.GetContextPanel().FindChildTraverse("heroes_buy_button")
-    if (heroes_buy_button)
-    {
-        let text = $.Localize("#info_bought")
-        heroes_buy_button.SetPanelEvent('onmouseover', function() 
-        {
-            $.DispatchEvent('DOTAShowTextTooltip', heroes_buy_button, text) 
-        });    
-        heroes_buy_button.SetPanelEvent('onmouseout', function() 
-        {
-            $.DispatchEvent('DOTAHideTextTooltip', heroes_buy_button);
-        });
-
-        heroes_buy_button.SetPanelEvent('onactivate', function() 
-        {
-            Game.EmitSound("UI.Click")
-            if (PLAYER_VIEW_ITEMS_FOR_BUY)
-            {
-                PLAYER_VIEW_ITEMS_FOR_BUY = false
-                heroes_buy_button.RemoveClass("buy_items_show_button_off")
-                heroes_buy_button.AddClass("buy_items_show_button_on")
-            }
-            else
-            {
-                PLAYER_VIEW_ITEMS_FOR_BUY = true
-                heroes_buy_button.RemoveClass("buy_items_show_button_on")
-                heroes_buy_button.AddClass("buy_items_show_button_off")
-            }
-            InitShopItemsForHero(ItemsList)
-            UpdateOnlyCouriers()
-            InitItems()
-        });  
-    }
-
     CheckShards()
 
     if (IsSpectator())

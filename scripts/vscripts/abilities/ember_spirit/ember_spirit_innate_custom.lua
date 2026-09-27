@@ -37,6 +37,7 @@ function ember_spirit_innate_custom:Precache(context)
 		"particles/econ/items/huskar/huskar_2021_immortal/huskar_2021_immortal_burning_spear_debuff.vpcf",
 		context
 	)
+	PrecacheResource("particle", "particles/items_fx/battlefury_cleave.vpcf", context)
 	PrecacheResource("soundfile", "soundevents/npc_dota_hero_ember_spirit.vsndevts", context)
 	dota1x6:PrecacheShopItems("npc_dota_hero_ember_spirit", context)
 end
@@ -49,7 +50,6 @@ function ember_spirit_innate_custom:UpdateTalents()
 			has_q1 = 0,
 			q1_cleave = 0,
 
-			has_w1 = 0,
 			w1_damage = 0,
 
 			has_w2 = 0,
@@ -67,7 +67,6 @@ function ember_spirit_innate_custom:UpdateTalents()
 	end
 
 	if caster:HasTalent("modifier_ember_fist_1") then
-		self.talents.has_w1 = 1
 		self.talents.w1_damage = caster:GetTalentValue("modifier_ember_fist_1", "damage") / 100
 	end
 
@@ -106,13 +105,14 @@ function modifier_ember_spirit_innate_custom:OnCreated(table)
 	self.ability.interval = self.ability:GetSpecialValueFor("interval")
 	self.ability.damage = self.ability:GetSpecialValueFor("damage")
 
-	self.chain_ability = self.parent:FindAbilityByName("ember_spirit_searing_chains_custom")
-
 	self.parent:AddAttackEvent_out(self, true)
 end
 
 function modifier_ember_spirit_innate_custom:DamageEvent_out(params)
 	if not IsServer() then
+		return
+	end
+	if self.ability.talents.has_w2 == 0 then
 		return
 	end
 
@@ -121,9 +121,6 @@ function modifier_ember_spirit_innate_custom:DamageEvent_out(params)
 		return
 	end
 
-	if self.ability.talents.has_w2 == 0 then
-		return
-	end
 	self.parent:GenericHeal(
 		result * params.damage * self.ability.talents.w2_heal,
 		self.ability,
@@ -167,6 +164,12 @@ end
 modifier_ember_spirit_innate_custom_burn = class(mod_visible)
 function modifier_ember_spirit_innate_custom_burn:IsPurgable()
 	return true
+end
+function modifier_ember_spirit_innate_custom_burn:GetStatusEffectName()
+	return "particles/status_fx/status_effect_burn.vpcf"
+end
+function modifier_ember_spirit_innate_custom_burn:StatusEffectPriority()
+	return MODIFIER_PRIORITY_NORMAL
 end
 function modifier_ember_spirit_innate_custom_burn:OnCreated()
 	self.caster = self:GetCaster()
@@ -232,14 +235,8 @@ end
 
 function modifier_ember_spirit_innate_custom_burn:DeclareFunctions()
 	return {
-		--MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET,
 		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
-		--MODIFIER_PROPERTY_LIFESTEAL_AMPLIFY_PERCENTAGE,
 	}
-end
-
-function modifier_ember_spirit_innate_custom_burn:GetModifierLifestealRegenAmplify_Percentage()
-	return self.ability.talents.w2_heal_reduce
 end
 
 function modifier_ember_spirit_innate_custom_burn:GetModifierHealChange()
@@ -281,18 +278,10 @@ function modifier_ember_spirit_innate_custom_burn:OnIntervalThink()
 	end
 
 	self.damageTable.damage = damage * self.interval
-	local real_damage = DoDamage(self.damageTable)
+	DoDamage(self.damageTable)
 
 	if self.count >= self.max then
 		self:Destroy()
 		return
 	end
-end
-
-function modifier_ember_spirit_innate_custom_burn:GetStatusEffectName()
-	return "particles/status_fx/status_effect_burn.vpcf"
-end
-
-function modifier_ember_spirit_innate_custom_burn:StatusEffectPriority()
-	return MODIFIER_PRIORITY_NORMAL
 end

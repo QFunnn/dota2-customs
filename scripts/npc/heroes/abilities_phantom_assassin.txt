@@ -8,291 +8,240 @@
 ]]
 
 
-
 "DOTAAbilities"
 {
-
-"Version"		"1"
-
-
-
-
+"Version"                           "1"
 
 "custom_phantom_assassin_stifling_dagger"
 {
-	// General
-	//-------------------------------------------------------------------------------------------------------------
-	"BaseClass"             		"ability_lua"
-	"ScriptFile"					"abilities/phantom_assassin/custom_phantom_assassin_stifling_dagger"													
-	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
-	"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
-	"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
-	"AbilitySound"					"Hero_PhantomAssassin.Dagger.Cast"
-	"AbilityTextureName"			"phantom_assassin_stifling_dagger"
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/phantom_assassin/custom_phantom_assassin_stifling_dagger"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+    "AbilitySound"                  "Hero_PhantomAssassin.Dagger.Cast"
+    "AbilityTextureName"            "phantom_assassin_stifling_dagger"
 
-	"LinkedAbility"					"custom_phantom_assassin_stifling_dagger_legendary"
+    "LinkedAbility"                 "custom_phantom_assassin_stifling_dagger_legendary"
 
-	// Casting
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityCastRange"				"700 850 1000 1150"
-	"AbilityCastPoint"				"0.3"
-	
-	// Time		
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityCooldown"				"6"
+    "AbilityCastRange"              "750 800 850 900"
+    "AbilityCastPoint"              "0.3"
 
-	// Cost
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityManaCost"				"30"
+    "AbilityCooldown"               "5"
 
-	// Special	
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityValues"
-	{
-		"move_slow"					"-50"
-		"speed"			"1200"
-		"duration"				"2.2 2.8 3.4 4"
-		"base_damage"			"65 70 75 80"
-		"attack_factor"			"-70 -55 -40 -25"
-		"attack_factor_tooltip"	"30 45 60 75"
-		"radius"				"700 850 1000 1150"
-	}
-	"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
+    "AbilityManaCost"               "30"
+
+    "AbilityValues"
+    {
+        "targets"                   "3"
+        "move_slow"                 "-40"
+        "duration"                  "2.5 3 3.5 4"
+        "base_damage"               "60 80 100 120"
+        "damage_attack"             "20 25 30 35"
+        "radius"                    "250"
+        "speed"                     "1200"
+        "creeps_damage"             "30"
+    }
+    "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_1"
 }
-
-
 
 "custom_phantom_assassin_stifling_dagger_legendary"
 {
-	// General
-	//-------------------------------------------------------------------------------------------------------------
-	"BaseClass"             		"ability_lua"
-	"ScriptFile"					"abilities/phantom_assassin/custom_phantom_assassin_stifling_dagger"													
-	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
-	"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-	"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
-	"AbilitySound"					"Hero_PhantomAssassin.Dagger.Cast"
-	"AbilityTextureName"			"dagger_legendary"
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/phantom_assassin/custom_phantom_assassin_stifling_dagger"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+    "AbilitySound"                  "Hero_PhantomAssassin.Dagger.Cast"
+    "AbilityTextureName"            "dagger_legendary"
 
-	"MaxLevel"						"1"
+    "MaxLevel"                      "1"
 
-	"AbilityCastRange"				"1150"
-	"AbilityCooldown"				"1"
-	"AbilityManaCost"				"0"
+    "AbilityCastRange"              "1150"
+    "AbilityCooldown"               "1"
+    "AbilityManaCost"               "0"
 
-	// Special	
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityValues"
-	{
-		"width"			"120"
-		"random_dist"	"180"
-		"stack_max"		"5"
-		"max"			"8"
-		"cast"			"2.8"
-		"cast_inc"		"0.4"
-		"speed"			"30"
-	}
-	"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
+    "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_1"
 }
-
-
-
 
 "custom_phantom_assassin_phantom_strike"
 {
-	// General
-	//-------------------------------------------------------------------------------------------------------------
-	"BaseClass"             		"ability_lua"
-	"ScriptFile"					"abilities/phantom_assassin/custom_phantom_assassin_phantom_strike"														
-	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
-	
-	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_CUSTOM"
-	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_CUSTOM"
-	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-	"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-	"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
-	"AbilitySound"					"Hero_PhantomAssassin.Strike.Start"
-	"AbilityTextureName"			"phantom_assassin_phantom_strike"
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/phantom_assassin/custom_phantom_assassin_phantom_strike"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 
-	// Casting
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityCastRange"				"650 750 850 950"
-	"AbilityCastPoint"				"0.25"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_CUSTOM"
+    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_CUSTOM"
+    "AbilityUnitDamageType"         "DAMAGE_TYPE_MAGICAL"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+    "AbilityUnitTargetFlags"        "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
+    "AbilitySound"                  "Hero_PhantomAssassin.Strike.Start"
+    "AbilityTextureName"            "phantom_assassin_phantom_strike"
 
-	// Time		
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityCooldown"				"9 8 7 6"
-	
-	// Cost
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityManaCost"				"35 40 45 50"
-	
-	// Special
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityValues"
-	{
-		"speed"					"80 100 120 140"
-		"duration"				"2.5"
-		"blink_range"			"1000"				
-		"cleave_damage"			"30"
-	}
+    "AbilityCastRange"              "550 600 650 700"
+    "AbilityCastPoint"              "0.25"
+
+    "AbilityCooldown"               "11 10 9 8"
+
+    "AbilityManaCost"               "35 40 45 50"
+
+    "AbilityValues"
+    {
+        "damage"                    "90 120 150 180"
+        "width"                     "200"
+        "speed"                     "60 80 100 120"
+        "duration"                  "2.5"
+        "range_target"              "250"
+        "creeps_damage"             "30"
+    }
+    "AbilityCastAnimation"          "ACT_DOTA_ATTACK_EVENT"
 }
-
-
-
-
 
 "custom_phantom_assassin_blur"
 {
-	// General
-	//-------------------------------------------------------------------------------------------------------------
-	"BaseClass"             		"ability_lua"
-	"ScriptFile"					"abilities/phantom_assassin/custom_phantom_assassin_blur"															// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.		
-	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-	"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
-	"AbilityTextureName"			"phantom_assassin_blur"
-	"HasShardUpgrade"			"1"
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/phantom_assassin/custom_phantom_assassin_blur"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
+    "AbilityTextureName"            "phantom_assassin_blur"
+    "IsBreakable"                   "1"
+    "HasShardUpgrade"               "1"
 
-	// Time		
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityCooldown"				"30 26 22 18"
+    "AbilityCooldown"               "16"
 
-	// Casting
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityCastRange"				"625 550 475 400"
+    "AbilityCastPoint"              "0.3"
 
-	// Casting
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityCastPoint"				"0.3"
-	
-	// Cost
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityManaCost"				"50"
+    "AbilityManaCost"               "50"
 
-	// Special
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityValues"
-	{
-		"duration"				"30"
-		"radius"				"625 550 475 400"
-		"delay"					"0.4 0.6 0.8 1.0"
-		"active_movespeed_bonus"				"6 9 12 15"
-		"shard_damage"			"-40"
-	}
-	"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
+    "AbilityValues"
+    {
+        "evasion"                   "20 30 40 50"
+        "duration"                  "1.8 2.2 2.6 3"
+        "active_movespeed_bonus"    "8 12 16 20"
+        "shard_cast"                "-0.2"
+        "shard_invul"               "0.5"
+    }
+    "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_3"
 }
-
-
-
-
 
 "custom_phantom_assassin_coup_de_grace"
 {
-	// General
-	//-------------------------------------------------------------------------------------------------------------
-	"BaseClass"             		"ability_lua"
-	"ScriptFile"					"abilities/phantom_assassin/custom_phantom_assassin_coup_de_grace"																
-	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-	"AbilityType"					"ABILITY_TYPE_ULTIMATE"
-	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-	"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
-	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-	"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-	"AbilitySound"					"Hero_PhantomAssassin.CoupDeGrace"
-	"AbilityTextureName"			"phantom_assassin_coup_de_grace"
-	"IsBreakable"					"1"
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/phantom_assassin/custom_phantom_assassin_coup_de_grace"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+    "AbilityType"                   "ABILITY_TYPE_ULTIMATE"
+    "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_ENEMY"
+    "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_HERO"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_YES"
+    "AbilityUnitTargetFlags"        "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+    "AbilitySound"                  "Hero_PhantomAssassin.CoupDeGrace"
+    "AbilityTextureName"            "phantom_assassin_coup_de_grace"
+    "IsBreakable"                   "1"
+    "MaxLevel"                      "4"
+    "RequiredLevel"                 "0"
+    "LevelsBetweenUpgrades"         "6"
+    "HasScepterUpgrade"             "0"
+    "AbilityCooldown"               "40"
 
+    "AbilityCastPoint"              "0.3"
+    "LinkedAbility"                 "custom_phantom_assassin_fan_of_knives"
 
-	"AbilityCastPoint"				"0.4"
-	"LinkedAbility"				"custom_phantom_assassin_fan_of_knives"
+    "AbilityValues"
+    {
+        "crit_chance"               "20"
+        "ability_crit_chance"       "25"
+        "focus_duration"            "6"
+        "crit_bonus"
+        {
+            "value"                 "140 180 250 320"
+            "DamageTypeTooltip"     "DAMAGE_TYPE_PHYSICAL"
+        }
+        "damage_magic"
+        {
+            "value"                 "40 80 120 160"
+            "DamageTypeTooltip"     "DAMAGE_TYPE_MAGICAL"
+        }
+        "bleed_duration"            "5"
+        "bleed_interval"            "1"
+    }
 
-
-	// Special
-	//-------------------------------------------------------------------------------------------------------------
-
-	"AbilityValues"
-	{
-		"crit_chance"			"17"
-		"dagger_crit_chance" 	"34"
-		"crit_bonus"				"200 290 380"
-		"duration"				"6"
-	}
-
-	"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
+    "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_3"
 }
 
+"custom_phantom_assassin_coup_de_grace_legendary"
+{
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/phantom_assassin/custom_phantom_assassin_coup_de_grace"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
+    "AbilitySound"                  "Hero_PhantomAssassin.Blur"
+    "AbilityTextureName"            "grace_legendary"
 
+    "MaxLevel"                      "1"
 
+    "AbilityCastPoint"              "0.3"
+    "AbilityCooldown"               "1"
+    "AbilityManaCost"               "0"
+
+    "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_3"
+}
 
 "custom_phantom_assassin_fan_of_knives"
 {
-	// General
-	//-------------------------------------------------------------------------------------------------------------
-	"BaseClass"             		"ability_lua"
-	"ScriptFile"					"abilities/phantom_assassin/custom_phantom_assassin_fan_of_knives"	
-	"AbilityTextureName"			"phantom_assassin_fan_of_knives"												// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
-	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES"
-	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
-	"MaxLevel"						"1"
-	"FightRecapLevel"				"1"
-	"RequiresScepter"			"1"
-	"AbilitySound"					"Ability.Torrent"
+    "BaseClass"                     "ability_lua"
+    "ScriptFile"                    "abilities/phantom_assassin/custom_phantom_assassin_fan_of_knives"
+    "AbilityTextureName"            "phantom_assassin_fan_of_knives"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_SHOW_IN_GUIDES"
+    "SpellImmunityType"             "SPELL_IMMUNITY_ENEMIES_NO"
+    "MaxLevel"                      "1"
+    "FightRecapLevel"               "1"
+    "RequiresScepter"               "1"
+    "IsGrantedByScepter"            "1"
 
-	// Casting
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityCastPoint"				"0.15"
-	"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_4"
-	
-	// Time		
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityCooldown"				"15"
-	"IsGrantedByScepter"			"1"
-	// Cost
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityManaCost"				"50"
-	
-	// Special
-	//-------------------------------------------------------------------------------------------------------------
-	"AbilityValues"
-	{
+    "AbilityCastPoint"              "0.15"
+    "AbilityCastAnimation"          "ACT_DOTA_CAST_ABILITY_4"
+    "AbilityCooldown"               "20"
+    "AbilityManaCost"               "50"
 
-		"duration"		"3"
-		"radius"			"550"
-		"projectile_speed"			"1000"
-		"damage"				"28"
-		"damage_creeps"			"3"
-		
-	}
+    "AbilityValues"
+    {
+        "duration"                  "3"
+        "stun"                      "0.5"
+        "radius"                    "650"
+        "projectile_speed"          "1100"
+    }
 }
-
-
-
-
 
 "phantom_assassin_innate_custom"
 {
     "BaseClass"                     "ability_lua"
-    "ScriptFile"                    "abilities/phantom_assassin/phantom_assassin_innate_custom"  
-
-    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+    "ScriptFile"                    "abilities/phantom_assassin/phantom_assassin_innate_custom"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE | DOTA_ABILITY_BEHAVIOR_SKIP_FOR_KEYBINDS"
+    "AbilityTextureName"            "dagger_legendary2"
+    "MaxLevel"                      "1"
     "Innate"                        "1"
-	"IsBreakable"					"1"
 
     "AbilityValues"
     {
-    	"chance"		"20"
-    	"chance_inc"	"2"
-    	"chance_max"	"60"
+        "max"                       "5"
+        "duration"                  "70"
+        "delay"                     "10"
+        "range"                     "900"
+        "gold"                      "200"
+        "gold_worth"                "2"
+
+        "damage_crit"
+        {
+            "value"                 "16"
+            "DamageTypeTooltip"     "DAMAGE_TYPE_PHYSICAL"
+        }
+        "damage_spell"
+        {
+            "value"                 "8"
+            "DamageTypeTooltip"     "DAMAGE_TYPE_MAGICAL"
+        }
     }
 }
-
-
-
-
-
-
-
 }

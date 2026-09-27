@@ -149,7 +149,7 @@
 
 .TipsColumn
 {
-	margin-left: 21px;
+	margin-left: 15px;
 	margin-right: 21px;
 	visibility: collapse;
 }
@@ -167,7 +167,7 @@
 
 .ChatColumn
 {
-	margin-left: 64px;
+	margin-left: 58px;
 	visibility: visible;
 }
 
@@ -359,6 +359,13 @@
 	text-shadow: 0px 0px 6px 1.5 #5aa0e2ab;
 }
 
+.GrayLabel
+{
+	font-weight: bold;
+	color: #ddd;
+	text-shadow: 0px 0px 6px 1 #c8d2d877;
+}
+
 .PlayerEpicSpheresColumn
 {
 	margin-left: 10px;
@@ -371,6 +378,13 @@
 .PlayerRareSpheresColumn
 {
 	background-color: gradient( linear, 0% 0%, 0% 100%, from( #30333530 ), to( #5299c725 ) );
+	box-shadow: #000000f5 0px 0px 8px 0px;
+	border-right: 1px solid #222;
+}
+
+.PlayerGraySpheresColumn
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #30333530 ), to( #b9c2c825 ) );
 	box-shadow: #000000f5 0px 0px 8px 0px;
 	border-right: 1px solid #222;
 }
@@ -497,26 +511,19 @@
 	wash-color: #aaa;
 }
 
-#EpicOrbsColumn
+.TalentsColumn
 {
-	width: 23px;
-	height: 23px;
-	align: center center;
-	margin-left: 17px;
-	margin-top: 5px;
-	background-size: contain;
-	background-image: url("s2r://panorama/images/custom_game/purple-logo_png.vtex");
-}
-
-#RareOrbsColumn
-{
-	width: 24px;
-	height: 24px;
-	align: center center;
+	width: 105px;
 	margin-left: 10px;
-	margin-top: 5px;
-	background-size: contain;
-	background-image: url("s2r://panorama/images/custom_game/blue-logo_png.vtex");
+	margin-bottom: 2px;
+	vertical-align: bottom;
+	text-align: center;
+	font-size: 15px;
+	font-weight: bold;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	color: gradient( linear, 0% 0%, 0% 100%, from( #5a82b5 ), to( #bfd6f4 ) );
+	text-shadow: 0px 0px 6px 1 #689fd377;
 }
 
 .panel_hidden

@@ -55,12 +55,8 @@ LinkLuaModifier(
 )
 
 custom_terrorblade_reflection = class({})
-
+custom_terrorblade_reflection.talents = {}
 custom_terrorblade_reflection.targets_ids = {}
-
-function custom_terrorblade_reflection:GetAbilityTextureName()
-	return wearables_system:GetAbilityIconReplacement(self.caster, "terrorblade_reflection", self)
-end
 
 function custom_terrorblade_reflection:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
@@ -75,14 +71,6 @@ function custom_terrorblade_reflection:Precache(context)
 	)
 	PrecacheResource("particle", "particles/units/heroes/hero_terrorblade/terrorblade_mirror_image.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_terrorblade/terrorblade_reflection_cast.vpcf", context)
-
-	PrecacheResource("particle", "particles/units/heroes/hero_terrorblade/terrorblade_weapon_blur.vpcf", context)
-	PrecacheResource("particle", "particles/units/heroes/hero_terrorblade/terrorblade_weapon_blur_both.vpcf", context)
-	PrecacheResource(
-		"particle",
-		"particles/units/heroes/hero_terrorblade/terrorblade_weapon_blur_reverse.vpcf",
-		context
-	)
 	PrecacheResource("particle", "particles/units/heroes/hero_void_spirit/pulse/void_spirit_agi.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_void_spirit/pulse/void_spirit_str.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_void_spirit/pulse/void_spirit_int.vpcf", context)
@@ -98,6 +86,85 @@ function custom_terrorblade_reflection:Precache(context)
 	dota1x6:PrecacheShopItems("npc_dota_hero_terrorblade", context)
 end
 
+function custom_terrorblade_reflection:UpdateTalents(name)
+	local caster = self:GetCaster()
+	if not self.init then
+		self.init = true
+		self.talents = {
+			q1_cd = 0,
+			q1_duration = 0,
+
+			q2_damage = 0,
+			q2_armor = 0,
+
+			q3_damage_reduce = 0,
+			q3_slow = 0,
+
+			has_q4 = 0,
+			q4_speed = 0,
+			q4_damage = 0,
+			q4_duration = caster:GetTalentValue("modifier_terror_reflection_4", "duration", true),
+			q4_max = caster:GetTalentValue("modifier_terror_reflection_4", "max", true),
+
+			has_q5 = 0,
+			q5_cast = caster:GetTalentValue("modifier_terror_reflection_5", "cast", true) / 100,
+			q5_delay = caster:GetTalentValue("modifier_terror_reflection_5", "delay", true),
+			q5_range = caster:GetTalentValue("modifier_terror_reflection_5", "range", true),
+			q5_stun = caster:GetTalentValue("modifier_terror_reflection_5", "stun", true),
+
+			has_q6 = 0,
+			q6_heal = caster:GetTalentValue("modifier_terror_reflection_6", "heal", true) / 100,
+			q6_max = caster:GetTalentValue("modifier_terror_reflection_6", "max", true),
+			q6_cd_items = caster:GetTalentValue("modifier_terror_reflection_6", "cd_items", true),
+			q6_cdr = caster:GetTalentValue("modifier_terror_reflection_6", "cdr", true),
+
+			has_q7 = 0,
+			q7_damage = caster:GetTalentValue("modifier_terror_reflection_7", "damage", true),
+		}
+	end
+
+	if caster:HasTalent("modifier_terror_reflection_1") then
+		self.talents.q1_cd = caster:GetTalentValue("modifier_terror_reflection_1", "cd")
+		self.talents.q1_duration = caster:GetTalentValue("modifier_terror_reflection_1", "duration")
+	end
+
+	if caster:HasTalent("modifier_terror_reflection_2") then
+		self.talents.q2_damage = caster:GetTalentValue("modifier_terror_reflection_2", "damage")
+		self.talents.q2_armor = caster:GetTalentValue("modifier_terror_reflection_2", "armor")
+	end
+
+	if caster:HasTalent("modifier_terror_reflection_3") then
+		self.talents.q3_damage_reduce = caster:GetTalentValue("modifier_terror_reflection_3", "damage_reduce")
+		self.talents.q3_slow = caster:GetTalentValue("modifier_terror_reflection_3", "slow")
+	end
+
+	if caster:HasTalent("modifier_terror_reflection_4") then
+		self.talents.has_q4 = 1
+		self.talents.q4_speed = caster:GetTalentValue("modifier_terror_reflection_4", "speed")
+		self.talents.q4_damage = caster:GetTalentValue("modifier_terror_reflection_4", "damage")
+		caster:AddAttackEvent_out(self.tracker, true)
+	end
+
+	if caster:HasTalent("modifier_terror_reflection_5") then
+		self.talents.has_q5 = 1
+	end
+
+	if caster:HasTalent("modifier_terror_reflection_6") then
+		self.talents.has_q6 = 1
+		caster:AddAttackEvent_out(self.tracker, true)
+	end
+
+	if caster:HasTalent("modifier_terror_reflection_7") then
+		self.talents.has_q7 = 1
+		caster:AddSpellEvent(self.tracker, true)
+		caster:AddSpellStartEvent(self.tracker, true)
+	end
+end
+
+function custom_terrorblade_reflection:GetAbilityTextureName()
+	return wearables_system:GetAbilityIconReplacement(self.caster, "terrorblade_reflection", self)
+end
+
 function custom_terrorblade_reflection:GetIntrinsicModifierName()
 	if not self:GetCaster():IsRealHero() then
 		return
@@ -106,19 +173,12 @@ function custom_terrorblade_reflection:GetIntrinsicModifierName()
 end
 
 function custom_terrorblade_reflection:GetCastPoint(iLevel)
-	local bonus = 1
-	if self:GetCaster():HasTalent("modifier_terror_reflection_5") then
-		bonus = 1 + self:GetCaster():GetTalentValue("modifier_terror_reflection_5", "cast") / 100
-	end
-	return self.BaseClass.GetCastPoint(self) * bonus
+	return self.BaseClass.GetCastPoint(self) * (1 + (self.talents.has_q5 == 1 and self.talents.q5_cast or 0))
 end
 
 function custom_terrorblade_reflection:GetCastRange(vLocation, hTarget)
-	local bonus = 0
-	if self:GetCaster():HasTalent("modifier_terror_reflection_5") then
-		bonus = self:GetCaster():GetTalentValue("modifier_terror_reflection_5", "range")
-	end
-	return self.BaseClass.GetCastRange(self, vLocation, hTarget) + bonus
+	return self.BaseClass.GetCastRange(self, vLocation, hTarget)
+		+ (self.talents.has_q5 == 1 and self.talents.q5_range or 0)
 end
 
 function custom_terrorblade_reflection:GetManaCost(level)
@@ -126,66 +186,47 @@ function custom_terrorblade_reflection:GetManaCost(level)
 end
 
 function custom_terrorblade_reflection:GetCooldown(iLevel)
-	local upgrade_cooldown = 0
-	if self:GetCaster():HasTalent("modifier_terror_reflection_1") then
-		upgrade_cooldown = self:GetCaster():GetTalentValue("modifier_terror_reflection_1", "cd")
-	end
-	return self.BaseClass.GetCooldown(self, iLevel) + upgrade_cooldown
+	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.q1_cd or 0)
 end
 
 function custom_terrorblade_reflection:GetBehavior()
-	local caster = self:GetCaster()
-	if caster:HasTalent("modifier_terror_reflection_7") then
+	if self.talents.has_q7 == 1 then
 		return DOTA_ABILITY_BEHAVIOR_POINT + DOTA_ABILITY_BEHAVIOR_AOE + DOTA_ABILITY_BEHAVIOR_AUTOCAST
 	end
 	return DOTA_ABILITY_BEHAVIOR_POINT + DOTA_ABILITY_BEHAVIOR_AOE
 end
 
-function custom_terrorblade_reflection:CheckToggle()
-	local caster = self:GetCaster()
-	if caster:HasModifier("modifier_custom_terrorblade_reflection_legendary_cd") then
-		CustomGameEventManager:Send_ServerToPlayer(
-			PlayerResource:GetPlayer(caster:GetId()),
-			"CreateIngameErrorMessage",
-			{ message = "#midteleport_cd" }
-		)
-		return false
-	end
-	return true
-end
-
 function custom_terrorblade_reflection:GetAOERadius()
-	return self:GetSpecialValueFor("range")
+	return self.range or 0
 end
 
 function custom_terrorblade_reflection:OnAbilityPhaseStart()
-	local caster = self:GetCaster()
 	self.effect = ParticleManager:CreateParticle(
 		"particles/units/heroes/hero_terrorblade/terrorblade_reflection_cast.vpcf",
 		PATTACH_CUSTOMORIGIN_FOLLOW,
-		caster
+		self.caster
 	)
 	ParticleManager:SetParticleControlEnt(
 		self.effect,
 		0,
-		caster,
+		self.caster,
 		PATTACH_POINT_FOLLOW,
 		"attach_attack1",
-		caster:GetOrigin(),
+		self.caster:GetOrigin(),
 		true
 	)
 	ParticleManager:SetParticleControlEnt(
 		self.effect,
 		1,
-		caster,
+		self.caster,
 		PATTACH_POINT_FOLLOW,
 		"attach_attack2",
-		caster:GetOrigin(),
+		self.caster:GetOrigin(),
 		true
 	)
 
-	if caster.current_model == "models/heroes/terrorblade/terrorblade_arcana.vmdl" then
-		local color = caster:GetTerrorbladeColor()
+	if self.caster.current_model == "models/heroes/terrorblade/terrorblade_arcana.vmdl" then
+		local color = self.caster:GetTerrorbladeColor()
 		ParticleManager:SetParticleControl(self.effect, 15, color)
 		ParticleManager:SetParticleControl(self.effect, 16, Vector(1, 0, 0))
 	end
@@ -194,13 +235,11 @@ function custom_terrorblade_reflection:OnAbilityPhaseStart()
 end
 
 function custom_terrorblade_reflection:OnSpellStart()
-	local caster = self:GetCaster()
-
-	local radius = self:GetSpecialValueFor("range")
+	local radius = self.range
 	local point = self:GetCursorPosition()
 
 	local heroes = FindUnitsInRadius(
-		caster:GetTeamNumber(),
+		self.caster:GetTeamNumber(),
 		point,
 		nil,
 		radius,
@@ -211,7 +250,7 @@ function custom_terrorblade_reflection:OnSpellStart()
 		false
 	)
 	local creeps = FindUnitsInRadius(
-		caster:GetTeamNumber(),
+		self.caster:GetTeamNumber(),
 		point,
 		nil,
 		radius,
@@ -237,31 +276,40 @@ function custom_terrorblade_reflection:OnSpellStart()
 	self:LaunchIllusion(target, 0)
 end
 
+function custom_terrorblade_reflection:CheckToggle()
+	if self.caster:HasModifier("modifier_custom_terrorblade_reflection_legendary_cd") then
+		CustomGameEventManager:Send_ServerToPlayer(
+			PlayerResource:GetPlayer(self.caster:GetId()),
+			"CreateIngameErrorMessage",
+			{ message = "#midteleport_cd" }
+		)
+		return false
+	end
+	return true
+end
+
 function custom_terrorblade_reflection:LaunchIllusion(enemy, double)
-	local caster = self:GetCaster()
-	local duration = self:GetSpecialValueFor("illusion_duration")
-		+ caster:GetTalentValue("modifier_terror_reflection_1", "duration")
-	local damage = self:GetSpecialValueFor("illusion_outgoing_damage")
-		+ caster:GetTalentValue("modifier_terror_reflection_2", "damage")
+	local duration = self.illusion_duration + self.talents.q1_duration
+	local damage = self.illusion_outgoing_damage + self.talents.q2_damage
 	local spawn_range = 108
 
-	if not caster:HasShard() then
+	if not self.caster:HasShard() then
 		duration = duration * (1 - enemy:GetStatusResistance())
 	end
 
 	if double == 1 then
-		damage = caster:GetTalentValue("modifier_terror_reflection_4", "damage") - 100
-		duration = caster:GetTalentValue("modifier_terror_reflection_4", "duration", true)
+		damage = self.talents.q4_damage - 100
+		duration = self.talents.q4_duration
 	end
 
 	enemy:EmitSound("Hero_Terrorblade.Reflection")
 
 	local copy_unit = enemy
 	if enemy:IsCreep() or enemy:IsCreepHero() then
-		copy_unit = self:GetCaster()
+		copy_unit = self.caster
 	end
 
-	local mod = caster:FindModifierByName("modifier_custom_terrorblade_reflection_legendary_saved")
+	local mod = self.caster:FindModifierByName("modifier_custom_terrorblade_reflection_legendary_saved")
 	if mod and mod.index then
 		local unit = EntIndexToHScript(mod.index)
 		if unit and not unit:IsNull() then
@@ -269,7 +317,7 @@ function custom_terrorblade_reflection:LaunchIllusion(enemy, double)
 		end
 	end
 
-	local illusions = CreateIllusions(caster, copy_unit, {
+	local illusions = CreateIllusions(self.caster, copy_unit, {
 		outgoing_damage = damage,
 		bounty_base = 0,
 		bounty_growth = nil,
@@ -306,70 +354,84 @@ function custom_terrorblade_reflection:LaunchIllusion(enemy, double)
 
 		illusion:SetHealth(illusion:GetMaxHealth())
 		illusion:AddNewModifier(
-			caster,
+			self.caster,
 			self,
 			"modifier_custom_terrorblade_reflection_unit",
 			{ double = double, duration = duration + 0.1, enemy_entindex = enemy:entindex() }
 		)
 		illusion:AddAbility("terrorblade_innate_custom")
 
-		illusion.owner = caster
+		illusion.owner = self.caster
 		illusion.is_reflection = true
 	end
 
-	enemy:AddNewModifier(caster, nil, "modifier_terrorblade_arcana_kill_effect", {})
+	enemy:AddNewModifier(self.caster, nil, "modifier_terrorblade_arcana_kill_effect", {})
 
 	if double == 1 then
 		return
 	end
 
-	if caster:HasShard() then
+	if self.caster:HasShard() then
 		enemy:AddNewModifier(
-			caster,
+			self.caster,
 			self,
 			"modifier_generic_leash",
-			{ duration = (1 - enemy:GetStatusResistance()) * self:GetSpecialValueFor("shard_leash"), no_dispel = 1 }
+			{ duration = (1 - enemy:GetStatusResistance()) * self.shard_leash, no_dispel = 1 }
 		)
 	end
 
-	if caster:HasTalent("modifier_terror_reflection_5") then
+	if self.talents.has_q5 == 1 then
 		enemy:AddNewModifier(
-			caster,
+			self.caster,
 			self,
 			"modifier_custom_terrorblade_reflection_stun_delay",
-			{
-				duration = caster:GetTalentValue("modifier_terror_reflection_5", "delay"),
-				illusion = new_illusion:entindex(),
-			}
+			{ duration = self.talents.q5_delay, illusion = new_illusion:entindex() }
 		)
 	end
 
 	enemy:AddNewModifier(
-		caster,
+		self.caster,
 		self,
 		"modifier_custom_terrorblade_reflection_slow",
 		{ duration = duration, illusion = new_illusion:entindex() }
 	)
 end
 
-modifier_custom_terrorblade_reflection_unit = class({})
-function modifier_custom_terrorblade_reflection_unit:IsPurgable()
-	return false
-end
+modifier_custom_terrorblade_reflection_unit = class(mod_visible)
 function modifier_custom_terrorblade_reflection_unit:GetStatusEffectName()
 	return "particles/status_fx/status_effect_terrorblade_reflection.vpcf"
 end
 function modifier_custom_terrorblade_reflection_unit:StatusEffectPriority()
 	return MODIFIER_PRIORITY_ILLUSION
 end
-
+function modifier_custom_terrorblade_reflection_unit:IsAura()
+	return self.ability.talents.has_q4 == 1
+end
+function modifier_custom_terrorblade_reflection_unit:GetAuraDuration()
+	return 0.1
+end
+function modifier_custom_terrorblade_reflection_unit:GetAuraRadius()
+	return 2000
+end
+function modifier_custom_terrorblade_reflection_unit:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_FRIENDLY
+end
+function modifier_custom_terrorblade_reflection_unit:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_HERO
+end
+function modifier_custom_terrorblade_reflection_unit:GetAuraSearchFlags()
+	return DOTA_UNIT_TARGET_FLAG_INVULNERABLE
+end
+function modifier_custom_terrorblade_reflection_unit:GetModifierAura()
+	return "modifier_custom_terrorblade_reflection_unit_aura"
+end
 function modifier_custom_terrorblade_reflection_unit:OnCreated(params)
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
 	self.ability = self:GetAbility()
 
 	self.attack_count = 0
-	self.attack_max = self.caster:GetTalentValue("modifier_terror_reflection_6", "max", true)
+	self.attack_max = self.ability.talents.q6_max
 
 	self.move_speed = 550
 
@@ -383,7 +445,7 @@ function modifier_custom_terrorblade_reflection_unit:OnCreated(params)
 	self.max_timer = self:GetRemainingTime()
 
 	if self.double == 0 then
-		if self.caster:HasTalent("modifier_terror_reflection_7") and not self.self_illusion then
+		if self.ability.talents.has_q7 == 1 and not self.self_illusion then
 			self.mod = self.caster:FindModifierByName("modifier_custom_terrorblade_reflection_tracker")
 			if self.mod then
 				self.mod:StealSpell(self.parent)
@@ -405,7 +467,7 @@ function modifier_custom_terrorblade_reflection_unit:OnIntervalThink()
 		return
 	end
 
-	if self.caster:HasTalent("modifier_terror_reflection_7") and not self.self_illusion and self.double == 0 then
+	if self.ability.talents.has_q7 == 1 and not self.self_illusion and self.double == 0 then
 		local spell_name = nil
 		if self.mod and not self.mod:IsNull() then
 			spell_name = self.mod.current_spell:GetName()
@@ -487,44 +549,17 @@ function modifier_custom_terrorblade_reflection_unit:GetModifierMoveSpeed_Absolu
 	return self.move_speed
 end
 
-function modifier_custom_terrorblade_reflection_unit:IsAura()
-	return self.caster:HasTalent("modifier_terror_reflection_4")
-end
-function modifier_custom_terrorblade_reflection_unit:GetAuraDuration()
-	return 0.1
-end
-function modifier_custom_terrorblade_reflection_unit:GetAuraRadius()
-	return 2000
-end
-function modifier_custom_terrorblade_reflection_unit:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_FRIENDLY
-end
-function modifier_custom_terrorblade_reflection_unit:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_HERO
-end
-function modifier_custom_terrorblade_reflection_unit:GetAuraSearchFlags()
-	return DOTA_UNIT_TARGET_FLAG_INVULNERABLE
-end
-function modifier_custom_terrorblade_reflection_unit:GetModifierAura()
-	return "modifier_custom_terrorblade_reflection_unit_aura"
-end
-
-modifier_custom_terrorblade_reflection_unit_aura = class({})
-function modifier_custom_terrorblade_reflection_unit_aura:IsHidden()
-	return false
-end
-function modifier_custom_terrorblade_reflection_unit_aura:IsPurgable()
-	return false
-end
+modifier_custom_terrorblade_reflection_unit_aura = class(mod_visible)
 function modifier_custom_terrorblade_reflection_unit_aura:OnCreated()
 	self.caster = self:GetCaster()
 	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
 
 	if not self.caster then
 		return
 	end
 
-	self.speed = self.caster:GetTalentValue("modifier_terror_reflection_4", "speed")
+	self.speed = self.ability.talents.q4_speed
 end
 
 function modifier_custom_terrorblade_reflection_unit_aura:DeclareFunctions()
@@ -537,12 +572,9 @@ function modifier_custom_terrorblade_reflection_unit_aura:GetModifierAttackSpeed
 	return self.speed
 end
 
-modifier_custom_terrorblade_reflection_slow = class({})
-function modifier_custom_terrorblade_reflection_slow:IsHidden()
-	return false
-end
+modifier_custom_terrorblade_reflection_slow = class(mod_visible)
 function modifier_custom_terrorblade_reflection_slow:IsPurgable()
-	return not self:GetCaster():HasShard()
+	return not (IsValid(self.caster) and self.caster:HasShard())
 end
 function modifier_custom_terrorblade_reflection_slow:GetEffectName()
 	return "particles/units/heroes/hero_terrorblade/terrorblade_reflection_slow.vpcf"
@@ -552,15 +584,14 @@ function modifier_custom_terrorblade_reflection_slow:OnCreated(table)
 	self.caster = self:GetCaster()
 	self.ability = self:GetAbility()
 
-	self.move_slow = self.ability:GetSpecialValueFor("move_slow") * -1
-		+ self.caster:GetTalentValue("modifier_terror_reflection_3", "slow")
-	self.attack_slow = self.ability:GetSpecialValueFor("attack_slow") * -1
+	self.move_slow = self.ability.move_slow * -1 + self.ability.talents.q3_slow
+	self.attack_slow = self.ability.attack_slow * -1
 
 	self.attack_count = 0
-	self.attack_max = self.caster:GetTalentValue("modifier_terror_reflection_4", "max", true)
+	self.attack_max = self.ability.talents.q4_max
 
-	self.armor = self.caster:GetTalentValue("modifier_terror_reflection_2", "armor")
-	self.damage_reduce = self.caster:GetTalentValue("modifier_terror_reflection_3", "damage_reduce")
+	self.armor = self.ability.talents.q2_armor
+	self.damage_reduce = self.ability.talents.q3_damage_reduce
 
 	if not IsServer() then
 		return
@@ -580,10 +611,17 @@ function modifier_custom_terrorblade_reflection_slow:OnDestroy()
 	if not IsServer() then
 		return
 	end
-
-	if self.illusion and not self.illusion:IsNull() and self.parent:IsAlive() then
-		self.illusion:RemoveModifierByName("modifier_custom_terrorblade_reflection_unit")
+	if not self.illusion then
+		return
 	end
+	if self.illusion:IsNull() then
+		return
+	end
+	if not self.parent:IsAlive() then
+		return
+	end
+
+	self.illusion:RemoveModifierByName("modifier_custom_terrorblade_reflection_unit")
 end
 
 function modifier_custom_terrorblade_reflection_slow:OnIntervalThink()
@@ -612,40 +650,24 @@ function modifier_custom_terrorblade_reflection_slow:GetModifierMoveSpeedBonus_P
 end
 
 function modifier_custom_terrorblade_reflection_slow:GetModifierPhysicalArmorBonus()
-	if not self.caster:HasTalent("modifier_terror_reflection_2") then
-		return
-	end
 	return self.armor
 end
 
 function modifier_custom_terrorblade_reflection_slow:GetModifierDamageOutgoing_Percentage()
-	if not self.caster:HasTalent("modifier_terror_reflection_3") then
-		return
-	end
 	return self.damage_reduce
 end
 
 function modifier_custom_terrorblade_reflection_slow:GetModifierSpellAmplify_Percentage()
-	if not self.caster:HasTalent("modifier_terror_reflection_3") then
-		return
-	end
 	return self.damage_reduce
 end
 
-modifier_custom_terrorblade_reflection_legendary_saved = class({})
-function modifier_custom_terrorblade_reflection_legendary_saved:IsHidden()
-	return false
-end
-function modifier_custom_terrorblade_reflection_legendary_saved:IsPurgable()
-	return false
-end
+modifier_custom_terrorblade_reflection_legendary_saved = class(mod_visible)
 function modifier_custom_terrorblade_reflection_legendary_saved:RemoveOnDeath()
 	return false
 end
 function modifier_custom_terrorblade_reflection_legendary_saved:GetTexture()
 	return self.name
 end
-
 function modifier_custom_terrorblade_reflection_legendary_saved:OnCreated(table)
 	if not IsServer() then
 		return
@@ -673,13 +695,7 @@ function modifier_custom_terrorblade_reflection_legendary_saved:HandleCustomTran
 	self.name = data.name
 end
 
-modifier_custom_terrorblade_reflection_legendary_pick = class({})
-function modifier_custom_terrorblade_reflection_legendary_pick:IsHidden()
-	return true
-end
-function modifier_custom_terrorblade_reflection_legendary_pick:IsPurgable()
-	return false
-end
+modifier_custom_terrorblade_reflection_legendary_pick = class(mod_hidden)
 function modifier_custom_terrorblade_reflection_legendary_pick:OnCreated(table)
 	if not IsServer() then
 		return
@@ -705,7 +721,6 @@ function modifier_custom_terrorblade_reflection_legendary_pick:OnCreated(table)
 		return
 	end
 
-	print(self.parent:GetPlayerOwnerID(), self.parent:GetId())
 	EmitAnnouncerSoundForPlayer("TB.Reflection_pick_start", self.parent:GetPlayerOwnerID())
 
 	self:OnIntervalThink()
@@ -716,11 +731,13 @@ function modifier_custom_terrorblade_reflection_legendary_pick:OnIntervalThink()
 	if not IsServer() then
 		return
 	end
-	CustomGameEventManager:Send_ServerToPlayer(
-		PlayerResource:GetPlayer(self.parent:GetPlayerOwnerID()),
-		"tb_reflection_init",
-		self.targets
-	)
+	local targets = {}
+
+	for i, data in pairs(self.targets) do
+		targets[i] = { hero = data.target }
+	end
+
+	self.parent:UpdateUIpick({ mod = self, text = "#pa_pick_hero", targets = targets })
 end
 
 function modifier_custom_terrorblade_reflection_legendary_pick:EndPick(pick)
@@ -750,29 +767,22 @@ function modifier_custom_terrorblade_reflection_legendary_pick:OnDestroy()
 	end
 
 	EmitAnnouncerSoundForPlayer("Lc.Duel_target_end", self.parent:GetPlayerOwnerID())
-	CustomGameEventManager:Send_ServerToPlayer(
-		PlayerResource:GetPlayer(self.parent:GetPlayerOwnerID()),
-		"tb_reflection_init_end",
-		{}
-	)
+	self.parent:UpdateUIpick({ hide = 1 })
 end
 
-modifier_custom_terrorblade_reflection_tracker = class({})
-function modifier_custom_terrorblade_reflection_tracker:IsHidden()
-	return true
-end
-function modifier_custom_terrorblade_reflection_tracker:IsPurgable()
-	return false
-end
+modifier_custom_terrorblade_reflection_tracker = class(mod_hidden)
 function modifier_custom_terrorblade_reflection_tracker:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
+	self.ability.tracker = self
+	self.ability:UpdateTalents()
 
-	self.legendary_damage = self.parent:GetTalentValue("modifier_terror_reflection_7", "damage", true)
-
-	self.cdr_bonus = self.parent:GetTalentValue("modifier_terror_reflection_6", "cdr", true)
-	self.cd_items = self.parent:GetTalentValue("modifier_terror_reflection_6", "cd_items", true)
-	self.cd_heal = self.parent:GetTalentValue("modifier_terror_reflection_6", "heal", true) / 100
+	self.ability.illusion_duration = self.ability:GetSpecialValueFor("illusion_duration")
+	self.ability.illusion_outgoing_damage = self.ability:GetSpecialValueFor("illusion_outgoing_damage")
+	self.ability.move_slow = self.ability:GetSpecialValueFor("move_slow")
+	self.ability.range = self.ability:GetSpecialValueFor("range")
+	self.ability.attack_slow = self.ability:GetSpecialValueFor("attack_slow")
+	self.ability.shard_leash = self.ability:GetSpecialValueFor("shard_leash")
 
 	if not IsServer() then
 		return
@@ -784,10 +794,6 @@ function modifier_custom_terrorblade_reflection_tracker:OnCreated()
 			self.ability.targets_ids[id] = player:entindex()
 		end
 	end
-
-	self.parent:AddSpellEvent(self)
-	self.parent:AddSpellStartEvent(self)
-	self.parent:AddAttackEvent_out(self)
 
 	self.spells = {
 		["invoker_cold_snap_custom"] = true,
@@ -803,6 +809,12 @@ function modifier_custom_terrorblade_reflection_tracker:OnCreated()
 	self:StartIntervalThink(self.interval)
 end
 
+function modifier_custom_terrorblade_reflection_tracker:OnRefresh()
+	self.ability.illusion_outgoing_damage = self.ability:GetSpecialValueFor("illusion_outgoing_damage")
+	self.ability.move_slow = self.ability:GetSpecialValueFor("move_slow")
+	self.ability.attack_slow = self.ability:GetSpecialValueFor("attack_slow")
+end
+
 function modifier_custom_terrorblade_reflection_tracker:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE,
@@ -812,7 +824,7 @@ function modifier_custom_terrorblade_reflection_tracker:DeclareFunctions()
 end
 
 function modifier_custom_terrorblade_reflection_tracker:GetModifierSpellAmplify_Percentage(params)
-	if not self.parent:HasTalent("modifier_terror_reflection_7") then
+	if self.ability.talents.has_q7 == 0 then
 		return
 	end
 	if params.inflictor == nil then
@@ -827,11 +839,11 @@ function modifier_custom_terrorblade_reflection_tracker:GetModifierSpellAmplify_
 	if not spell or spell ~= params.inflictor then
 		return
 	end
-	return self.legendary_damage
+	return self.ability.talents.q7_damage
 end
 
 function modifier_custom_terrorblade_reflection_tracker:GetModifierPercentageManacostStacking(params)
-	if not self.parent:HasTalent("modifier_terror_reflection_7") then
+	if self.ability.talents.has_q7 == 0 then
 		return
 	end
 	if params.ability == nil then
@@ -844,10 +856,10 @@ function modifier_custom_terrorblade_reflection_tracker:GetModifierPercentageMan
 end
 
 function modifier_custom_terrorblade_reflection_tracker:GetModifierPercentageCooldown()
-	if not self.parent:HasTalent("modifier_terror_reflection_6") then
+	if self.ability.talents.has_q6 == 0 then
 		return
 	end
-	return self.cdr_bonus
+	return self.ability.talents.q6_cdr
 end
 
 function modifier_custom_terrorblade_reflection_tracker:ForceDelete(spell)
@@ -886,7 +898,7 @@ function modifier_custom_terrorblade_reflection_tracker:OnIntervalThink()
 		self.ability:StartCd()
 	end
 
-	if not self.parent:HasTalent("modifier_terror_reflection_7") then
+	if self.ability.talents.has_q7 == 0 then
 		return
 	end
 	if not self.hidden_spell then
@@ -1074,7 +1086,7 @@ function modifier_custom_terrorblade_reflection_tracker:AttackEvent_out(params)
 		return
 	end
 
-	if self.parent:HasTalent("modifier_terror_reflection_4") and self.parent == params.attacker then
+	if self.ability.talents.has_q4 == 1 and self.parent == params.attacker then
 		local slow_mod = params.target:FindModifierByName("modifier_custom_terrorblade_reflection_slow")
 		if slow_mod and slow_mod.attack_max and slow_mod.attack_count < slow_mod.attack_max then
 			slow_mod.attack_count = slow_mod.attack_count + 1
@@ -1084,7 +1096,7 @@ function modifier_custom_terrorblade_reflection_tracker:AttackEvent_out(params)
 		end
 	end
 
-	if not self.parent:HasTalent("modifier_terror_reflection_6") then
+	if self.ability.talents.has_q6 == 0 then
 		return
 	end
 
@@ -1105,9 +1117,9 @@ function modifier_custom_terrorblade_reflection_tracker:AttackEvent_out(params)
 
 	mod.attack_count = mod.attack_count + 1
 
-	self.parent:CdItems(self.cd_items)
+	self.parent:CdItems(self.ability.talents.q6_cd_items)
 	self.parent:GenericHeal(
-		self.cd_heal * self.parent:GetMaxHealth(),
+		self.ability.talents.q6_heal * self.parent:GetMaxHealth(),
 		self.ability,
 		true,
 		"",
@@ -1115,13 +1127,7 @@ function modifier_custom_terrorblade_reflection_tracker:AttackEvent_out(params)
 	)
 end
 
-modifier_custom_terrorblade_reflection_stun_delay = class({})
-function modifier_custom_terrorblade_reflection_stun_delay:IsHidden()
-	return true
-end
-function modifier_custom_terrorblade_reflection_stun_delay:IsPurgable()
-	return false
-end
+modifier_custom_terrorblade_reflection_stun_delay = class(mod_hidden)
 function modifier_custom_terrorblade_reflection_stun_delay:OnCreated(table)
 	if not IsServer() then
 		return
@@ -1133,7 +1139,7 @@ function modifier_custom_terrorblade_reflection_stun_delay:OnCreated(table)
 	self.illusion = EntIndexToHScript(table.illusion)
 
 	self.t = -1
-	self.timer = self.caster:GetTalentValue("modifier_terror_reflection_5", "delay") * 2
+	self.timer = self.ability.talents.q5_delay * 2
 	self:StartIntervalThink(0.5)
 	self:OnIntervalThink()
 end
@@ -1209,10 +1215,7 @@ function modifier_custom_terrorblade_reflection_stun_delay:OnDestroy()
 		self.caster,
 		self.ability,
 		"modifier_bashed",
-		{
-			duration = (1 - self.parent:GetStatusResistance())
-				* self.caster:GetTalentValue("modifier_terror_reflection_5", "stun"),
-		}
+		{ duration = (1 - self.parent:GetStatusResistance()) * self.ability.talents.q5_stun }
 	)
 end
 

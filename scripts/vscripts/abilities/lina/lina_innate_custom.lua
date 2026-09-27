@@ -20,6 +20,8 @@ function lina_innate_custom:Precache(context)
 		return
 	end
 	PrecacheResource("particle", "particles/units/heroes/hero_lina/lina_overheat_explosion.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_phoenix/phoenix_fire_spirit_burn.vpcf", context)
+	PrecacheResource("particle", "particles/ember_spirit/guard_resist_max.vpcf", context)
 	PrecacheResource("soundfile", "soundevents/npc_dota_hero_lina.vsndevts", context)
 	dota1x6:PrecacheShopItems("npc_dota_hero_lina", context)
 end
@@ -58,18 +60,18 @@ function lina_innate_custom:UpdateTalents(name)
 	if caster:HasTalent("modifier_lina_dragon_3") then
 		self.talents.has_q3 = 1
 		self.talents.q3_heal = caster:GetTalentValue("modifier_lina_dragon_3", "heal") / 100
-		self.caster:AddDamageEvent_out(self.tracker, true)
+		caster:AddDamageEvent_out(self.tracker, true)
 	end
 
 	if caster:HasTalent("modifier_lina_soul_4") then
 		self.talents.has_e4 = 1
-		self.caster:AddDamageEvent_out(self.tracker, true)
+		caster:AddDamageEvent_out(self.tracker, true)
 	end
 
 	if caster:HasTalent("modifier_lina_laguna_2") then
 		self.talents.has_r2 = 1
 		self.talents.r2_heal = caster:GetTalentValue("modifier_lina_laguna_2", "heal") / 100
-		self.caster:AddDamageEvent_out(self.tracker, true)
+		caster:AddDamageEvent_out(self.tracker, true)
 	end
 
 	if caster:HasTalent("modifier_lina_laguna_3") then
@@ -122,19 +124,13 @@ function lina_innate_custom:ApplyBurn(target, damage, more_damage, is_attack)
 
 	target:AddNewModifier(
 		self.caster,
-		self.ability,
+		self,
 		"modifier_lina_innate_custom_burn",
 		{ damage = real_damage, duration = self.duration + 0.3 }
 	)
 end
 
-modifier_lina_innate_custom = class({})
-function modifier_lina_innate_custom:IsHidden()
-	return true
-end
-function modifier_lina_innate_custom:IsPurgable()
-	return false
-end
+modifier_lina_innate_custom = class(mod_hidden)
 function modifier_lina_innate_custom:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -255,6 +251,12 @@ function modifier_lina_innate_custom:GetModifierMoveSpeedBonus_Constant()
 end
 
 modifier_lina_innate_custom_burn = class(mod_visible)
+function modifier_lina_innate_custom_burn:GetStatusEffectName()
+	return "particles/status_fx/status_effect_burn.vpcf"
+end
+function modifier_lina_innate_custom_burn:StatusEffectPriority()
+	return MODIFIER_PRIORITY_NORMAL
+end
 function modifier_lina_innate_custom_burn:OnCreated(table)
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
@@ -307,7 +309,7 @@ function modifier_lina_innate_custom_burn:OnIntervalThink()
 	if not IsServer() then
 		return
 	end
-	local real_damage = DoDamage(self.damageTable)
+	DoDamage(self.damageTable)
 
 	if self.ability.talents.has_r3 == 1 and IsValid(self.caster.laguna_ability) then
 		self.parent:AddNewModifier(
@@ -325,14 +327,6 @@ function modifier_lina_innate_custom_burn:OnIntervalThink()
 		self:Destroy()
 		return
 	end
-end
-
-function modifier_lina_innate_custom_burn:GetStatusEffectName()
-	return "particles/status_fx/status_effect_burn.vpcf"
-end
-
-function modifier_lina_innate_custom_burn:StatusEffectPriority()
-	return MODIFIER_PRIORITY_NORMAL
 end
 
 modifier_lina_innate_custom_magic = class(mod_visible)
@@ -353,6 +347,7 @@ function modifier_lina_innate_custom_magic:OnCreated(table)
 	if not IsServer() then
 		return
 	end
+	self.RemoveForDuel = true
 	self:OnRefresh()
 end
 

@@ -21,11 +21,28 @@ LinkLuaModifier(
 
 item_stormcrafter_custom = class({})
 
+function item_stormcrafter_custom:Precache(context)
+	if self:GetCaster() and self:GetCaster():IsIllusion() then
+		return
+	end
+	PrecacheResource("particle", "particles/items_fx/chain_lightning.vpcf", context)
+	PrecacheResource("particle", "particles/items3_fx/octarine_core_lifesteal.vpcf", context)
+end
+
 function item_stormcrafter_custom:GetIntrinsicModifierName()
 	if not self:GetCaster():IsRealHero() then
 		return
 	end
 	return "modifier_item_stormcrafter_custom"
+end
+
+function item_stormcrafter_custom:Spawn()
+	self.damage = self:GetSpecialValueFor("damage")
+	self.slow = self:GetSpecialValueFor("slow")
+	self.slow_duration = self:GetSpecialValueFor("slow_duration")
+	self.max = self:GetSpecialValueFor("max")
+	self.radius = self:GetSpecialValueFor("radius")
+	self.heal = self:GetSpecialValueFor("heal")
 end
 
 modifier_item_stormcrafter_custom = class(mod_hidden)
@@ -36,12 +53,11 @@ function modifier_item_stormcrafter_custom:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.damage = self.ability:GetSpecialValueFor("damage")
-	self.ability.slow = self.ability:GetSpecialValueFor("slow")
-	self.slow_duration = self.ability:GetSpecialValueFor("slow_duration")
-	self.max = self.ability:GetSpecialValueFor("max")
-	self.radius = self.ability:GetSpecialValueFor("radius")
-	self.heal = self.ability:GetSpecialValueFor("heal")
+	self.damage = self.ability.damage
+	self.slow_duration = self.ability.slow_duration
+	self.max = self.ability.max
+	self.radius = self.ability.radius
+	self.heal = self.ability.heal
 
 	self.damageTable =
 		{ attacker = self.parent, ability = self.ability, damage = self.damage, damage_type = DAMAGE_TYPE_MAGICAL }
@@ -116,7 +132,7 @@ function modifier_item_stormcrafter_custom:OnIntervalThink()
 		if heal > 0 then
 			self.parent:GenericHeal(heal, self.ability, true, "particles/items3_fx/octarine_core_lifesteal.vpcf")
 		end
-		self.ability:UseResources(false, false, false, true)
+		self.ability:StartCd()
 		self:StartIntervalThink(self.ability:GetCooldownTimeRemaining())
 	else
 		self:StartIntervalThink(0.2)
@@ -129,15 +145,14 @@ function modifier_item_stormcrafter_custom:DealDamage(target)
 	end
 end
 
-modifier_item_stormcrafter_custom_slow = class({})
-function modifier_item_stormcrafter_custom_slow:IsHidden()
-	return true
-end
+modifier_item_stormcrafter_custom_slow = class(mod_hidden)
 function modifier_item_stormcrafter_custom_slow:IsPurgable()
 	return true
 end
 function modifier_item_stormcrafter_custom_slow:OnCreated()
-	self.slow = self:GetAbility().slow
+	self.ability = self:GetAbility()
+
+	self.slow = self.ability.slow
 end
 
 function modifier_item_stormcrafter_custom_slow:DeclareFunctions()

@@ -24,11 +24,6 @@ LinkLuaModifier(
 	LUA_MODIFIER_MOTION_NONE
 )
 LinkLuaModifier(
-	"modifier_broodmother_insatiable_hunger_custom_damage",
-	"abilities/broodmother/broodmother_insatiable_hunger_custom",
-	LUA_MODIFIER_MOTION_NONE
-)
-LinkLuaModifier(
 	"modifier_broodmother_insatiable_hunger_custom_buff",
 	"abilities/broodmother/broodmother_insatiable_hunger_custom",
 	LUA_MODIFIER_MOTION_NONE
@@ -80,7 +75,6 @@ function broodmother_insatiable_hunger_custom:UpdateTalents()
 			q1_damage_aura = 0,
 			q1_radius = caster:GetTalentValue("modifier_broodmother_insatiable_1", "radius", true),
 
-			has_q2 = 0,
 			q2_duration_legendary = 0,
 			q2_duration = 0,
 			q2_cd = 0,
@@ -90,6 +84,7 @@ function broodmother_insatiable_hunger_custom:UpdateTalents()
 			q3_bva = 0,
 			q3_cd = caster:GetTalentValue("modifier_broodmother_insatiable_3", "cd", true),
 			q3_duration = caster:GetTalentValue("modifier_broodmother_insatiable_3", "duration", true),
+			q3_radius = caster:GetTalentValue("modifier_broodmother_insatiable_3", "radius", true),
 
 			has_q4 = 0,
 			q4_status = caster:GetTalentValue("modifier_broodmother_insatiable_4", "status", true),
@@ -132,7 +127,6 @@ function broodmother_insatiable_hunger_custom:UpdateTalents()
 	end
 
 	if caster:HasTalent("modifier_broodmother_insatiable_2") then
-		self.talents.has_q2 = 1
 		self.talents.q2_duration_legendary =
 			caster:GetTalentValue("modifier_broodmother_insatiable_2", "duration_legendary")
 		self.talents.q2_duration = caster:GetTalentValue("modifier_broodmother_insatiable_2", "duration")
@@ -166,7 +160,6 @@ function broodmother_insatiable_hunger_custom:UpdateTalents()
 	if caster:HasTalent("modifier_broodmother_web_2") then
 		self.talents.has_w2 = 1
 		self.talents.w2_heal = caster:GetTalentValue("modifier_broodmother_web_2", "heal") / 100
-		caster:AddHealEvent_inc(self.tracker, true)
 	end
 end
 
@@ -182,19 +175,23 @@ function broodmother_insatiable_hunger_custom:GetBehavior()
 end
 
 function broodmother_insatiable_hunger_custom:GetCooldown(level)
-	return self.BaseClass.GetCooldown(self, level) + (self.talents.q2_cd and self.talents.q2_cd or 0)
+	return self.BaseClass.GetCooldown(self, level) + (self.talents.q2_cd or 0)
 end
 
 function broodmother_insatiable_hunger_custom:OnSpellStart()
-	local caster = self:GetCaster()
 	local duration = self.duration + self.talents.q2_duration
 	if self.talents.has_q7 == 1 then
 		duration = self.talents.q7_duration + self.talents.q2_duration_legendary
 	end
 	if self.talents.has_q4 == 1 then
-		caster:Purge(false, true, false, true, true)
+		self.caster:Purge(false, true, false, true, true)
 	end
-	caster:AddNewModifier(caster, self, "modifier_broodmother_insatiable_hunger_custom", { duration = duration })
+	self.caster:AddNewModifier(
+		self.caster,
+		self,
+		"modifier_broodmother_insatiable_hunger_custom",
+		{ duration = duration }
+	)
 end
 
 modifier_broodmother_insatiable_hunger_custom_tracker = class(mod_hidden)
@@ -310,6 +307,27 @@ function modifier_broodmother_insatiable_hunger_custom_tracker:HealEvent_inc(par
 end
 
 modifier_broodmother_insatiable_hunger_custom = class(mod_visible)
+function modifier_broodmother_insatiable_hunger_custom:IsAura()
+	return IsServer()
+		and self.parent:IsAlive()
+		and ((self.ability.talents.has_s7 == 1 and self.parent:HasScepter()) or self.ability.talents.has_q1 == 1)
+end
+function modifier_broodmother_insatiable_hunger_custom:GetAuraDuration()
+	return 0
+end
+function modifier_broodmother_insatiable_hunger_custom:GetAuraRadius()
+	return (self.ability.talents.has_s7 == 1 and self.parent:HasScepter()) and self.ability.talents.s7_radius
+		or self.ability.talents.q1_radius
+end
+function modifier_broodmother_insatiable_hunger_custom:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_FRIENDLY
+end
+function modifier_broodmother_insatiable_hunger_custom:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_BASIC
+end
+function modifier_broodmother_insatiable_hunger_custom:GetModifierAura()
+	return "modifier_broodmother_insatiable_hunger_custom_scepter"
+end
 function modifier_broodmother_insatiable_hunger_custom:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -361,9 +379,6 @@ function modifier_broodmother_insatiable_hunger_custom:OnCreated(table)
 	if self.ability.talents.has_q7 == 1 then
 		self.parent:AddAttackStartEvent_out(self, true)
 		self.parent:AddAttackEvent_out(self, true)
-	end
-
-	if self.ability.talents.has_q7 == 1 then
 		self.interval = 0.05
 		self:OnIntervalThink()
 		self:StartIntervalThink(self.interval)
@@ -384,7 +399,7 @@ function modifier_broodmother_insatiable_hunger_custom:OnIntervalThink()
 	if range and not self.parent:GetAttackTarget() and range <= max_range then
 		if
 			range > self.ability.talents.q7_min_range
-			and self.parent:CheckCd("broom_q7", self.ability.talents.q7_talent_cd)
+			and self.parent:CheckCd("brood_q7", self.ability.talents.q7_talent_cd)
 		then
 			self.parent:EmitSound("Brood.Hunger_rush")
 			self.parent:AddNewModifier(
@@ -535,26 +550,6 @@ function modifier_broodmother_insatiable_hunger_custom:OnTooltip()
 	return self.ability.lifesteal_pct
 end
 
-function modifier_broodmother_insatiable_hunger_custom:IsAura()
-	return IsServer()
-		and self.parent:IsAlive()
-		and ((self.ability.talents.has_s7 == 1 and self.parent:HasScepter()) or self.ability.talents.has_q1 == 1)
-end
-function modifier_broodmother_insatiable_hunger_custom:GetAuraDuration()
-	return 0
-end
-function modifier_broodmother_insatiable_hunger_custom:GetAuraRadius()
-	return self.ability.talents.s7_radius
-end
-function modifier_broodmother_insatiable_hunger_custom:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_FRIENDLY
-end
-function modifier_broodmother_insatiable_hunger_custom:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_BASIC
-end
-function modifier_broodmother_insatiable_hunger_custom:GetModifierAura()
-	return "modifier_broodmother_insatiable_hunger_custom_scepter"
-end
 function modifier_broodmother_insatiable_hunger_custom:GetAuraEntityReject(hEntity)
 	return not hEntity.owner
 		or self.parent ~= hEntity.owner
@@ -607,6 +602,30 @@ function modifier_broodmother_insatiable_hunger_custom_scepter:GetModifierDamage
 end
 
 modifier_broodmother_insatiable_hunger_custom_buff = class(mod_hidden)
+function modifier_broodmother_insatiable_hunger_custom_buff:GetStatusEffectName()
+	return "particles/status_fx/status_effect_life_stealer_rage.vpcf"
+end
+function modifier_broodmother_insatiable_hunger_custom_buff:StatusEffectPriority()
+	return MODIFIER_PRIORITY_HIGH
+end
+function modifier_broodmother_insatiable_hunger_custom_buff:IsAura()
+	return self.parent:IsRealHero()
+end
+function modifier_broodmother_insatiable_hunger_custom_buff:GetAuraDuration()
+	return 0
+end
+function modifier_broodmother_insatiable_hunger_custom_buff:GetAuraRadius()
+	return self.ability.talents.q3_radius
+end
+function modifier_broodmother_insatiable_hunger_custom_buff:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_FRIENDLY
+end
+function modifier_broodmother_insatiable_hunger_custom_buff:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_BASIC
+end
+function modifier_broodmother_insatiable_hunger_custom_buff:GetModifierAura()
+	return "modifier_broodmother_insatiable_hunger_custom_buff"
+end
 function modifier_broodmother_insatiable_hunger_custom_buff:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -660,6 +679,21 @@ function modifier_broodmother_insatiable_hunger_custom_buff:OnCreated()
 	self:AddParticle(self.legendary_particle, false, false, -1, false, false)
 end
 
+function modifier_broodmother_insatiable_hunger_custom_buff:OnDestroy()
+	if not IsServer() then
+		return
+	end
+	if not self.parent:IsRealHero() then
+		return
+	end
+	self.parent:AddNewModifier(
+		self.parent,
+		self.ability,
+		"modifier_broodmother_insatiable_hunger_custom_buff_cd",
+		{ duration = self.ability.talents.q3_cd }
+	)
+end
+
 function modifier_broodmother_insatiable_hunger_custom_buff:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT,
@@ -678,47 +712,6 @@ function modifier_broodmother_insatiable_hunger_custom_buff:GetModifierModelScal
 	return 25
 end
 
-function modifier_broodmother_insatiable_hunger_custom_buff:GetStatusEffectName()
-	return "particles/status_fx/status_effect_life_stealer_rage.vpcf"
-end
-
-function modifier_broodmother_insatiable_hunger_custom_buff:StatusEffectPriority()
-	return MODIFIER_PRIORITY_HIGH
-end
-
-function modifier_broodmother_insatiable_hunger_custom_buff:OnDestroy()
-	if not IsServer() then
-		return
-	end
-	if not self.parent:IsRealHero() then
-		return
-	end
-	self.parent:AddNewModifier(
-		self.parent,
-		self.ability,
-		"modifier_broodmother_insatiable_hunger_custom_buff_cd",
-		{ duration = self.ability.talents.q3_cd }
-	)
-end
-
-function modifier_broodmother_insatiable_hunger_custom_buff:IsAura()
-	return self.parent:IsRealHero()
-end
-function modifier_broodmother_insatiable_hunger_custom_buff:GetAuraDuration()
-	return 0
-end
-function modifier_broodmother_insatiable_hunger_custom_buff:GetAuraRadius()
-	return self.ability.talents.s7_radius
-end
-function modifier_broodmother_insatiable_hunger_custom_buff:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_FRIENDLY
-end
-function modifier_broodmother_insatiable_hunger_custom_buff:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_BASIC
-end
-function modifier_broodmother_insatiable_hunger_custom_buff:GetModifierAura()
-	return "modifier_broodmother_insatiable_hunger_custom_buff"
-end
 function modifier_broodmother_insatiable_hunger_custom_buff:GetAuraEntityReject(hEntity)
 	return not hEntity.owner
 		or self.parent ~= hEntity.owner
@@ -729,21 +722,25 @@ modifier_broodmother_insatiable_hunger_custom_buff_cd = class(mod_cd)
 function modifier_broodmother_insatiable_hunger_custom_buff_cd:GetTexture()
 	return "buffs/broodmother/insatiable_3"
 end
+function modifier_broodmother_insatiable_hunger_custom_buff_cd:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+	self.RemoveForDuel = true
+end
+
 function modifier_broodmother_insatiable_hunger_custom_buff_cd:OnDestroy()
 	if not IsServer() then
 		return
 	end
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	if self.parent:HasModifier("modifier_broodmother_insatiable_hunger_custom") then
-		self.parent:AddNewModifier(
-			self.parent,
-			self.ability,
-			"modifier_broodmother_insatiable_hunger_custom_buff",
-			{ duration = self.ability.talents.q3_duration }
-		)
+	if not self.parent:HasModifier("modifier_broodmother_insatiable_hunger_custom") then
+		return
 	end
+	self.parent:AddNewModifier(
+		self.parent,
+		self.ability,
+		"modifier_broodmother_insatiable_hunger_custom_buff",
+		{ duration = self.ability.talents.q3_duration }
+	)
 end
 
 modifier_broodmother_insatiable_hunger_custom_bkb_cd = class(mod_cd)

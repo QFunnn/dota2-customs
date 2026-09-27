@@ -24,10 +24,17 @@ function item_mekansm_custom:GetIntrinsicModifierName()
 	return "modifier_item_mekansm_custom"
 end
 
+function item_mekansm_custom:Spawn()
+	self.heal_amount = self:GetSpecialValueFor("heal_amount")
+	self.radius = self:GetSpecialValueFor("radius")
+	self.bonus_armor = self:GetSpecialValueFor("bonus_armor")
+	self.health_regen = self:GetSpecialValueFor("health_regen")
+end
+
 function item_mekansm_custom:OnSpellStart()
 	local caster = self:GetCaster()
-	local heal = self:GetSpecialValueFor("heal_amount") / 100
-	local radius = self:GetSpecialValueFor("radius")
+	local heal = self.heal_amount / 100
+	local radius = self.radius
 	caster:EmitSound("DOTA_Item.Mekansm.Activate")
 
 	local player_id = caster:GetPlayerOwnerID()
@@ -39,20 +46,9 @@ function item_mekansm_custom:OnSpellStart()
 		default_effect_recipient = custom_effect_data[2]
 	end
 
-	local particle_1 = ParticleManager:CreateParticle(default_effect, PATTACH_ABSORIGIN_FOLLOW, caster)
-	ParticleManager:ReleaseParticleIndex(particle_1)
+	caster:GenericParticle(default_effect)
 
-	local friends = FindUnitsInRadius(
-		caster:GetTeamNumber(),
-		caster:GetAbsOrigin(),
-		nil,
-		radius,
-		DOTA_UNIT_TARGET_TEAM_FRIENDLY,
-		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-		DOTA_UNIT_TARGET_FLAG_INVULNERABLE,
-		FIND_CLOSEST,
-		false
-	)
+	local friends = caster:FindFriends(radius, nil, nil, DOTA_UNIT_TARGET_FLAG_INVULNERABLE)
 
 	for _, friend in pairs(friends) do
 		local heal_amount = heal * friend:GetMaxHealth()
@@ -75,34 +71,28 @@ function item_mekansm_custom:OnSpellStart()
 	end
 end
 
-modifier_item_mekansm_custom = class({})
-
-function modifier_item_mekansm_custom:IsHidden()
-	return true
-end
-function modifier_item_mekansm_custom:IsPurgable()
-	return false
-end
+modifier_item_mekansm_custom = class(mod_hidden)
 function modifier_item_mekansm_custom:RemoveOnDeath()
 	return false
 end
 function modifier_item_mekansm_custom:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
+function modifier_item_mekansm_custom:OnCreated()
+	self.ability = self:GetAbility()
+end
 
 function modifier_item_mekansm_custom:DeclareFunctions()
-	local funcs = {
-
+	return {
 		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
 		MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
 	}
-	return funcs
 end
 
 function modifier_item_mekansm_custom:GetModifierPhysicalArmorBonus()
-	return self:GetAbility():GetSpecialValueFor("bonus_armor")
+	return self.ability.bonus_armor
 end
 
 function modifier_item_mekansm_custom:GetModifierConstantHealthRegen()
-	return self:GetAbility():GetSpecialValueFor("health_regen")
+	return self.ability.health_regen
 end

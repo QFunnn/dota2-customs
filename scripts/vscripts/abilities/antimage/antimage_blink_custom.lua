@@ -53,11 +53,6 @@ antimage_blink_custom = class({})
 antimage_blink_custom.talents = {}
 antimage_blink_custom.legendary_count = 0
 
-function antimage_blink_custom:CreateTalent()
-	local caster = self:GetCaster()
-	caster:UpdateUIlong({ max = 1, stack = 0, active = 0, style = "AntimageBlink" })
-end
-
 function antimage_blink_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
@@ -75,6 +70,8 @@ function antimage_blink_custom:Precache(context)
 	PrecacheResource("particle", "particles/am_blink_refresh.vpcf", context)
 	PrecacheResource("particle", "particles/antimage/blink_field.vpcf", context)
 	PrecacheResource("particle", "particles/anti-mage/blink_damage.vpcf", context)
+	PrecacheResource("particle", "particles/anti-mage/nomana_haste.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_kez/status_effect_kez_afterimage_buff.vpcf", context)
 end
 
 function antimage_blink_custom:UpdateTalents(name)
@@ -145,8 +142,8 @@ function antimage_blink_custom:UpdateTalents(name)
 	end
 end
 
-function antimage_blink_custom:Init()
-	self.caster = self:GetCaster()
+function antimage_blink_custom:CreateTalent()
+	self.caster:UpdateUIlong({ max = 1, stack = 0, active = 0, style = "AntimageBlink" })
 end
 
 function antimage_blink_custom:GetIntrinsicModifierName()
@@ -179,7 +176,7 @@ function antimage_blink_custom:GetBehavior()
 end
 
 function antimage_blink_custom:GetCastRange(vLocation, hTarget)
-	local max_dist = self.blink_range and self.blink_range or 0
+	local max_dist = (self.blink_range or 0)
 	if self.talents.has_w7 == 1 then
 		max_dist = self.talents.w7_distance - self.caster:GetCastRangeBonus()
 	end
@@ -207,8 +204,74 @@ function antimage_blink_custom:GetManaCost(level)
 	return self.BaseClass.GetManaCost(self, level)
 end
 
+function antimage_blink_custom:OnSpellStart()
+	if test then
+		local mod = dota1x6.event_thinker:FindModifierByName("modifier_event_thinker")
+		if mod then
+			mod:PrintStats()
+		end
+	end
+
+	local origin = self.caster:GetOrigin()
+	local point = self:GetCursorPosition()
+	if point == origin then
+		point = self.caster:GetAbsOrigin() + self.caster:GetForwardVector() * 10
+	end
+
+	local blink_range = self.talents.has_w7 == 1 and self.talents.w7_distance
+		or (self.blink_range + self.caster:GetCastRangeBonus())
+
+	local direction = (point - origin)
+	direction.z = 0
+	if direction:Length2D() > blink_range then
+		direction = direction:Normalized() * blink_range
+	elseif self.talents.has_w7 == 1 and direction:Length2D() < self.talents.w7_min_distance then
+		direction = direction:Normalized() * self.talents.w7_min_distance
+	end
+	ProjectileManager:ProjectileDodge(self.caster)
+
+	local particle_start_name = wearables_system:GetParticleReplacementAbility(
+		self.caster,
+		"particles/units/heroes/hero_antimage/antimage_blink_start.vpcf",
+		self
+	)
+	local particle_start = ParticleManager:CreateParticle(particle_start_name, PATTACH_WORLDORIGIN, nil)
+	ParticleManager:SetParticleControl(particle_start, 0, origin)
+	ParticleManager:SetParticleControlForward(particle_start, 0, direction:Normalized())
+	ParticleManager:ReleaseParticleIndex(particle_start)
+
+	if self.caster:GetQuest() == "Anti.Quest_6" and not self.caster:QuestCompleted() then
+		self.caster:AddNewModifier(
+			self.caster,
+			self,
+			"modifier_antimage_blink_custom_quest",
+			{ duration = self.caster.quest.number }
+		)
+	end
+
+	if self.talents.has_w7 == 1 then
+		self.caster:EmitSound("Antimage.Blink_legen")
+		local point = origin + direction
+		self.caster:AddNewModifier(
+			self.caster,
+			self,
+			"modifier_antimage_blink_custom_active",
+			{ x = point.x, y = point.y }
+		)
+	else
+		EmitSoundOnLocationWithCaster(origin, "Hero_Antimage.Blink_out", self.caster)
+		FindClearSpaceForUnit(self.caster, origin + direction, true)
+		self:ProceedProc(origin)
+		local sound_in = wearables_system:GetSoundReplacement(self.caster, "Hero_Antimage.Blink_in", self)
+		EmitSoundOnLocationWithCaster(self.caster:GetOrigin(), sound_in, self.caster)
+	end
+end
+
 function antimage_blink_custom:DealDamage(origin, point)
 	if not IsServer() then
+		return
+	end
+	if not self:IsTrained() then
 		return
 	end
 	if self.talents.has_w7 == 0 and self.talents.has_r1 == 0 then
@@ -368,8 +431,8 @@ function antimage_blink_custom:ProceedProc(origin)
 		for k, illusion in pairs(illusions) do
 			illusion.owner = self.caster
 			for _, mod in pairs(self.caster:FindAllModifiers()) do
-				if mod.StackOnIllusion ~= nil and mod.StackOnIllusion == true then
-					illusion:UpgradeIllusion(mod:GetName(), mod:GetStackCount())
+				if mod.StackOnIllusion == true then
+					illusion:UpgradeIllusion(mod:GetName(), mod:GetStackCount(), mod)
 				end
 			end
 			illusion:AddNewModifier(self.caster, self, "modifier_antimage_blink_custom_illusion", {})
@@ -380,70 +443,16 @@ function antimage_blink_custom:ProceedProc(origin)
 	end
 end
 
-function antimage_blink_custom:OnSpellStart()
-	if test then
-		local mod = dota1x6.event_thinker:FindModifierByName("modifier_event_thinker")
-		if mod then
-			mod:PrintStats()
-		end
-	end
-
-	local origin = self.caster:GetOrigin()
-	local point = self:GetCursorPosition()
-	if point == origin then
-		point = self.caster:GetAbsOrigin() + self.caster:GetForwardVector() * 10
-	end
-
-	local blink_range = self.talents.has_w7 == 1 and self.talents.w7_distance
-		or (self.blink_range + self.caster:GetCastRangeBonus())
-
-	local direction = (point - origin)
-	direction.z = 0
-	if direction:Length2D() > blink_range then
-		direction = direction:Normalized() * blink_range
-	elseif self.talents.has_w7 == 1 and direction:Length2D() < self.talents.w7_min_distance then
-		direction = direction:Normalized() * self.talents.w7_min_distance
-	end
-	ProjectileManager:ProjectileDodge(self.caster)
-
-	local particle_start_name = wearables_system:GetParticleReplacementAbility(
-		self.caster,
-		"particles/units/heroes/hero_antimage/antimage_blink_start.vpcf",
-		self
-	)
-	local particle_start = ParticleManager:CreateParticle(particle_start_name, PATTACH_WORLDORIGIN, nil)
-	ParticleManager:SetParticleControl(particle_start, 0, origin)
-	ParticleManager:SetParticleControlForward(particle_start, 0, direction:Normalized())
-	ParticleManager:ReleaseParticleIndex(particle_start)
-
-	if self.caster:GetQuest() == "Anti.Quest_6" and not self.caster:QuestCompleted() then
-		self.caster:AddNewModifier(
-			self.caster,
-			self,
-			"modifier_antimage_blink_custom_quest",
-			{ duration = self.caster.quest.number }
-		)
-	end
-
-	if self.talents.has_w7 == 1 then
-		self.caster:EmitSound("Antimage.Blink_legen")
-		local point = origin + direction
-		self.caster:AddNewModifier(
-			self.caster,
-			self,
-			"modifier_antimage_blink_custom_active",
-			{ x = point.x, y = point.y }
-		)
-	else
-		EmitSoundOnLocationWithCaster(origin, "Hero_Antimage.Blink_out", self.caster)
-		FindClearSpaceForUnit(self.caster, origin + direction, true)
-		self:ProceedProc(origin)
-		local sound_in = wearables_system:GetSoundReplacement(self.caster, "Hero_Antimage.Blink_in", self)
-		EmitSoundOnLocationWithCaster(self.caster:GetOrigin(), sound_in, self.caster)
-	end
-end
-
 modifier_antimage_blink_custom_active = class(mod_hidden)
+function modifier_antimage_blink_custom_active:GetEffectName()
+	return "particles/antimage_charge.vpcf"
+end
+function modifier_antimage_blink_custom_active:GetStatusEffectName()
+	return "particles/units/heroes/hero_kez/status_effect_kez_afterimage_buff.vpcf"
+end
+function modifier_antimage_blink_custom_active:StatusEffectPriority()
+	return MODIFIER_PRIORITY_HIGH
+end
 function modifier_antimage_blink_custom_active:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -467,8 +476,7 @@ function modifier_antimage_blink_custom_active:OnCreated(table)
 
 	self.point = GetGroundPosition(Vector(table.x, table.y, 0), nil)
 	self.angle = (self.point - self.parent:GetAbsOrigin()):Normalized()
-	self.parent:SetForwardVector(self.angle)
-	self.parent:FaceTowards(self.point)
+	self.parent:FacePoint(self.point)
 	self.distance = (self.point - self.parent:GetAbsOrigin()):Length2D()
 	self.speed = self.ability.talents.w7_speed
 
@@ -493,17 +501,9 @@ end
 function modifier_antimage_blink_custom_active:GetActivityTranslationModifiers()
 	return self:GetStackCount() == 1 and "chase" or "haste"
 end
+
 function modifier_antimage_blink_custom_active:GetModifierDisableTurning()
 	return 1
-end
-function modifier_antimage_blink_custom_active:GetEffectName()
-	return "particles/antimage_charge.vpcf"
-end
-function modifier_antimage_blink_custom_active:GetStatusEffectName()
-	return "particles/units/heroes/hero_kez/status_effect_kez_afterimage_buff.vpcf"
-end
-function modifier_antimage_blink_custom_active:StatusEffectPriority()
-	return MODIFIER_PRIORITY_HIGH
 end
 
 function modifier_antimage_blink_custom_active:OnDestroy()
@@ -517,8 +517,7 @@ function modifier_antimage_blink_custom_active:OnDestroy()
 
 	local dir = self.parent:GetForwardVector()
 	dir.z = 0
-	self.parent:SetForwardVector(dir)
-	self.parent:FaceTowards(self.parent:GetAbsOrigin() + dir * 10)
+	self.parent:FacePoint(self.parent:GetAbsOrigin() + dir * 10)
 
 	ResolveNPCPositions(self.parent:GetAbsOrigin(), 128)
 	self.ability:ProceedProc(self.origin)
@@ -570,6 +569,7 @@ function modifier_antimage_blink_custom_turn:DeclareFunctions()
 		MODIFIER_PROPERTY_TURN_RATE_PERCENTAGE,
 	}
 end
+
 function modifier_antimage_blink_custom_turn:GetModifierTurnRate_Percentage()
 	return 100
 end
@@ -592,6 +592,7 @@ function modifier_antimage_blink_custom_legendary_agility:OnCreated(table)
 	self.max = self.ability.talents.w7_max
 	self.agi = self.ability.talents.w7_agi / self.max
 	self.StackOnIllusion = true
+	self.RemoveForDuel = true
 
 	self.max_time = self:GetRemainingTime()
 	self:SetStackCount(1)
@@ -668,24 +669,9 @@ function modifier_antimage_blink_custom_tracker:OnRefresh()
 	self.ability.blink_range = self.ability:GetSpecialValueFor("blink_range")
 end
 
---[[
-function modifier_antimage_blink_custom_tracker:CheckState()
-if not test then return end
-return
-{
-	[MODIFIER_STATE_NO_HEALTH_BAR] = true
-}
-end
-
-function modifier_antimage_blink_custom_tracker:GetModifierModelChange()
-if not test then return end
-return "models/development/invisiblebox.vmdl"
-end]]
-
 function modifier_antimage_blink_custom_tracker:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE,
-		--MODIFIER_PROPERTY_MODEL_CHANGE
 	}
 end
 
@@ -769,21 +755,6 @@ function modifier_antimage_blink_custom_tracker:AttackEvent_out(params)
 end
 
 modifier_antimage_blink_custom_move = class(mod_hidden)
-function modifier_antimage_blink_custom_move:OnCreated()
-	self.parent = self:GetParent()
-	self.caster = self:GetCaster()
-	self.ability = self:GetAbility()
-
-	self.radius = 1000
-	if not IsServer() then
-		return
-	end
-	if self.parent:HasModifier("modifier_antimage_mana_break_custom_haste") then
-		return
-	end
-	self.parent:GenericParticle("particles/anti-mage/nomana_haste.vpcf", self)
-end
-
 function modifier_antimage_blink_custom_move:IsAura()
 	return self.parent:IsRealHero() and self.parent == self.caster
 end
@@ -805,6 +776,21 @@ end
 function modifier_antimage_blink_custom_move:GetModifierAura()
 	return "modifier_antimage_blink_custom_move"
 end
+function modifier_antimage_blink_custom_move:OnCreated()
+	self.parent = self:GetParent()
+	self.caster = self:GetCaster()
+	self.ability = self:GetAbility()
+
+	self.radius = 1000
+	if not IsServer() then
+		return
+	end
+	if self.parent:HasModifier("modifier_antimage_mana_break_custom_haste") then
+		return
+	end
+	self.parent:GenericParticle("particles/anti-mage/nomana_haste.vpcf", self)
+end
+
 function modifier_antimage_blink_custom_move:GetAuraEntityReject(hEntity)
 	return not hEntity.owner or not hEntity:IsIllusion() or hEntity.owner ~= self.caster
 end

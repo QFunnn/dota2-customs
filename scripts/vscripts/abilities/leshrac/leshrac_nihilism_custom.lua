@@ -20,17 +20,21 @@ LinkLuaModifier(
 )
 
 leshrac_nihilism_custom = class({})
-
 function leshrac_nihilism_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
 	end
 
 	PrecacheResource("particle", "particles/leshrac/nihilism_caster.vpcf", context)
+	PrecacheResource("particle", "particles/items3_fx/witch_blade_debuff.vpcf", context)
 end
 
 function leshrac_nihilism_custom:Init()
+	if not self:GetCaster() then
+		return
+	end
 	self.caster = self:GetCaster()
+
 	self.duration = self:GetLevelSpecialValueFor("duration", 1)
 	self.damage_inc = self:GetLevelSpecialValueFor("damage_inc", 1)
 	self.movespeed = self:GetLevelSpecialValueFor("movespeed", 1)
@@ -38,11 +42,8 @@ function leshrac_nihilism_custom:Init()
 	self.radius = self:GetLevelSpecialValueFor("radius", 1)
 end
 
-function leshrac_nihilism_custom:Spawn() end
-
 function leshrac_nihilism_custom:GetRadius()
-	return (self.radius and self.radius or 0)
-		+ (self.caster.leshrac_innate and self.caster.leshrac_innate:GetRange() or 0)
+	return (self.radius or 0) + (IsValid(self.caster.leshrac_innate) and self.caster.leshrac_innate:GetRange() or 0)
 end
 
 function leshrac_nihilism_custom:GetCastRange(vLocation, hTarget)
@@ -56,6 +57,24 @@ end
 modifier_leshrac_nihilism_custom = class(mod_hidden)
 function modifier_leshrac_nihilism_custom:IsPurgable()
 	return true
+end
+function modifier_leshrac_nihilism_custom:IsAura()
+	return true
+end
+function modifier_leshrac_nihilism_custom:GetAuraDuration()
+	return 0.1
+end
+function modifier_leshrac_nihilism_custom:GetAuraRadius()
+	return self.radius
+end
+function modifier_leshrac_nihilism_custom:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_ENEMY
+end
+function modifier_leshrac_nihilism_custom:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
+end
+function modifier_leshrac_nihilism_custom:GetModifierAura()
+	return "modifier_leshrac_nihilism_custom_aura"
 end
 function modifier_leshrac_nihilism_custom:OnCreated(table)
 	self.parent = self:GetParent()
@@ -111,25 +130,6 @@ end
 
 function modifier_leshrac_nihilism_custom:GetModifierMoveSpeedBonus_Percentage()
 	return self.movespeed
-end
-
-function modifier_leshrac_nihilism_custom:IsAura()
-	return true
-end
-function modifier_leshrac_nihilism_custom:GetAuraDuration()
-	return 0.1
-end
-function modifier_leshrac_nihilism_custom:GetAuraRadius()
-	return self.radius
-end
-function modifier_leshrac_nihilism_custom:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_ENEMY
-end
-function modifier_leshrac_nihilism_custom:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
-end
-function modifier_leshrac_nihilism_custom:GetModifierAura()
-	return "modifier_leshrac_nihilism_custom_aura"
 end
 
 modifier_leshrac_nihilism_custom_aura = class(mod_hidden)

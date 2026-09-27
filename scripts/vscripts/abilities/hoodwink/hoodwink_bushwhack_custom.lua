@@ -73,6 +73,11 @@ LinkLuaModifier(
 	"abilities/hoodwink/hoodwink_bushwhack_custom",
 	LUA_MODIFIER_MOTION_NONE
 )
+LinkLuaModifier(
+	"modifier_hoodwink_bushwhack_custom_trap_icon",
+	"abilities/hoodwink/hoodwink_bushwhack_custom",
+	LUA_MODIFIER_MOTION_NONE
+)
 
 hoodwink_bushwhack_custom = class({})
 hoodwink_bushwhack_custom.talents = {}
@@ -89,7 +94,6 @@ function hoodwink_bushwhack_custom:Precache(context)
 	PrecacheResource("particle", "particles/tree_fx/tree_simple_explosion.vpcf", context)
 	PrecacheResource("particle", "particles/hoodwink/scepter_trap.vpcf", context)
 	PrecacheResource("particle", "particles/items2_fx/refresher.vpcf", context)
-	PrecacheResource("particle", "particles/units/heroes/hero_hoodwink/hoodwink_bushwhack.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_marci/marci_rebound_bounce_impact_debuff.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_snapfire_slow.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_venomancer/venomancer_poison_debuff.vpcf", context)
@@ -101,6 +105,7 @@ function hoodwink_bushwhack_custom:Precache(context)
 	PrecacheResource("particle", "particles/hoodwink_bush_damage.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_bloodseeker/bloodseeker_thirst_owner.vpcf", context)
 	PrecacheResource("particle", "particles/hoodwink/scepter_stun.vpcf", context)
+	PrecacheResource("particle", "particles/hoodwink/acorn_refresh.vpcf", context)
 end
 
 function hoodwink_bushwhack_custom:UpdateTalents()
@@ -206,7 +211,7 @@ function hoodwink_bushwhack_custom:GetIntrinsicModifierName()
 end
 
 function hoodwink_bushwhack_custom:GetAOERadius()
-	return self.trap_radius and self.trap_radius or 0
+	return (self.trap_radius or 0)
 end
 
 function hoodwink_bushwhack_custom:GetCastPoint()
@@ -217,32 +222,27 @@ function hoodwink_bushwhack_custom:GetCastPoint()
 end
 
 function hoodwink_bushwhack_custom:GetCooldown(iLevel)
-	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.w2_cd and self.talents.w2_cd or 0)
-end
-
-function hoodwink_bushwhack_custom:GetManaCost(level)
-	return self.BaseClass.GetManaCost(self, level)
+	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.w2_cd or 0)
 end
 
 function hoodwink_bushwhack_custom:OnSpellStart(new_point, new_source, talent_name)
 	if not IsServer() then
 		return
 	end
-	local caster = self:GetCaster()
-	local point = new_point and new_point or self:GetCursorPosition()
-	local source = new_source and new_source or caster
+	local point = new_point or self:GetCursorPosition()
+	local source = new_source or self.caster
 	local origin = source:GetAbsOrigin()
 
 	local projectile_speed = self.projectile_speed
 	local delay = (point - origin):Length2D() / projectile_speed
 
 	CreateModifierThinker(
-		caster,
+		self.caster,
 		self,
 		"modifier_hoodwink_bushwhack_custom_thinker",
 		{ source = source:entindex(), duration = delay, talent_name = talent_name },
 		point,
-		caster:GetTeamNumber(),
+		self.caster:GetTeamNumber(),
 		false
 	)
 end
@@ -262,14 +262,11 @@ function hoodwink_bushwhack_custom:AddPoison(target, stack)
 		self.caster,
 		self,
 		"modifier_hoodwink_bushwhack_custom_damage",
-		{ duration = self.talents.w3_duration, stack = stack and stack or 1 }
+		{ duration = self.talents.w3_duration, stack = stack or 1 }
 	)
 end
 
-modifier_hoodwink_bushwhack_custom_thinker = class({})
-function modifier_hoodwink_bushwhack_custom_thinker:IsHidden()
-	return false
-end
+modifier_hoodwink_bushwhack_custom_thinker = class(mod_visible)
 function modifier_hoodwink_bushwhack_custom_thinker:IsPurgable()
 	return true
 end
@@ -322,15 +319,15 @@ function modifier_hoodwink_bushwhack_custom_thinker:OnDestroy()
 
 	if #enemies <= 0 or #trees <= 0 then
 		if self.caster:HasScepter() and not self.talent_name then
-			local trap = CreateUnitByName(
-				"npc_dota_treant_eyes_custom",
+			CreateModifierThinker(
+				self.caster,
+				self.ability,
+				"modifier_hoodwink_bushwhack_custom_trap",
+				{},
 				self.parent:GetAbsOrigin(),
-				false,
-				self.caster,
-				self.caster,
-				self.caster:GetTeamNumber()
+				self.caster:GetTeamNumber(),
+				false
 			)
-			trap:AddNewModifier(self.caster, self.ability, "modifier_hoodwink_bushwhack_custom_trap", {})
 		end
 
 		local particle = ParticleManager:CreateParticle(
@@ -523,7 +520,7 @@ function modifier_hoodwink_bushwhack_custom_debuff:OnIntervalThink()
 	end
 	self.count = self.count + 1
 
-	DoDamage(self.damageTable, self.talent_name)
+	DoDamage(self.damageTable)
 end
 
 function modifier_hoodwink_bushwhack_custom_debuff:OnDestroy()
@@ -622,7 +619,10 @@ function modifier_hoodwink_bushwhack_custom_tracker:OnCreated()
 	self.ability:UpdateTalents()
 
 	self.legendary_ability = self.parent:FindAbilityByName("hoodwink_decoy_custom")
-	if self.legendary_ability then
+	if IsValid(self.legendary_ability) then
+		if IsServer() and not self.legendary_ability:IsTrained() then
+			self.legendary_ability:SetLevel(1)
+		end
 		self.legendary_ability:UpdateTalents()
 	end
 
@@ -653,8 +653,8 @@ function modifier_hoodwink_bushwhack_custom_tracker:OnDestroy()
 		return
 	end
 
-	for i = 1, #self.ability.tracker.active_traps do
-		local index = self.ability.tracker.active_traps[1]
+	for i = 1, #self.active_traps do
+		local index = self.active_traps[1]
 		if index then
 			local unit = EntIndexToHScript(index)
 			if IsValid(unit) then
@@ -678,16 +678,15 @@ function modifier_hoodwink_bushwhack_custom_tracker:AttackEvent_out(params)
 	if not IsServer() then
 		return
 	end
+	if self.ability.talents.has_w3 == 0 then
+		return
+	end
 	if self.parent ~= params.attacker then
 		return
 	end
 	local target = params.target
 
 	if not target:IsUnit() then
-		return
-	end
-
-	if self.ability.talents.has_w3 == 0 then
 		return
 	end
 
@@ -705,27 +704,13 @@ function modifier_hoodwink_bushwhack_custom_tracker:GetModifierBonusStats_Streng
 	return self.ability.talents.h2_str
 end
 
-modifier_hoodwink_bushwhack_custom_slow = class({})
-function modifier_hoodwink_bushwhack_custom_slow:IsHidden()
-	return true
-end
+modifier_hoodwink_bushwhack_custom_slow = class(mod_hidden)
 function modifier_hoodwink_bushwhack_custom_slow:IsPurgable()
 	return true
 end
-function modifier_hoodwink_bushwhack_custom_slow:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-	}
-end
-
-function modifier_hoodwink_bushwhack_custom_slow:GetModifierMoveSpeedBonus_Percentage()
-	return self.slow
-end
-
 function modifier_hoodwink_bushwhack_custom_slow:GetEffectName()
 	return "particles/units/heroes/hero_marci/marci_rebound_bounce_impact_debuff.vpcf"
 end
-
 function modifier_hoodwink_bushwhack_custom_slow:OnCreated()
 	self.ability = self:GetAbility()
 	self.parent = self:GetParent()
@@ -735,6 +720,16 @@ function modifier_hoodwink_bushwhack_custom_slow:OnCreated()
 		return
 	end
 	self.parent:GenericParticle("particles/generic_gameplay/generic_silenced.vpcf", self, true)
+end
+
+function modifier_hoodwink_bushwhack_custom_slow:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+	}
+end
+
+function modifier_hoodwink_bushwhack_custom_slow:GetModifierMoveSpeedBonus_Percentage()
+	return self.slow
 end
 
 function modifier_hoodwink_bushwhack_custom_slow:CheckState()
@@ -769,7 +764,7 @@ function modifier_hoodwink_bushwhack_custom_damage:OnCreated(table)
 		self.parent:GenericParticle("particles/units/heroes/hero_venomancer/venomancer_poison_debuff.vpcf", self)
 	end
 
-	self:AddStack(table.stack)
+	self:OnRefresh(table)
 	self:StartIntervalThink(self.interval)
 end
 
@@ -777,18 +772,11 @@ function modifier_hoodwink_bushwhack_custom_damage:OnRefresh(table)
 	if not IsServer() then
 		return
 	end
-	self:AddStack(table.stack)
-end
-
-function modifier_hoodwink_bushwhack_custom_damage:AddStack(stack)
-	if not IsServer() then
-		return
-	end
 	if self:GetStackCount() >= self.max then
 		return
 	end
 
-	self:SetStackCount(math.min(self.max, self:GetStackCount() + stack))
+	self:SetStackCount(math.min(self.max, self:GetStackCount() + table.stack))
 	self.parent:EmitSound("Hoodwink.Poison")
 
 	if self:GetStackCount() == self.max then
@@ -832,7 +820,6 @@ modifier_hoodwink_bushwhack_custom_damage_status = class(mod_hidden)
 function modifier_hoodwink_bushwhack_custom_damage_status:GetStatusEffectName()
 	return "particles/status_fx/status_effect_poison_venomancer.vpcf"
 end
-
 function modifier_hoodwink_bushwhack_custom_damage_status:StatusEffectPriority()
 	return MODIFIER_PRIORITY_HIGH
 end
@@ -873,16 +860,10 @@ end
 
 function modifier_hoodwink_bushwhack_custom_vision:DeclareFunctions()
 	return {
-		--MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET,
 		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
-		--MODIFIER_PROPERTY_LIFESTEAL_AMPLIFY_PERCENTAGE,
 		MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE,
 		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
 	}
-end
-
-function modifier_hoodwink_bushwhack_custom_vision:GetModifierLifestealRegenAmplify_Percentage()
-	return self.heal_reduce * (self.parent:GetHealthPercent() <= self.health and self.bonus or 1)
 end
 
 function modifier_hoodwink_bushwhack_custom_vision:GetModifierHealChange()
@@ -908,6 +889,10 @@ end
 function modifier_hoodwink_bushwhack_custom_heal:GetEffectName()
 	return "particles/units/heroes/hero_oracle/oracle_purifyingflames.vpcf"
 end
+function modifier_hoodwink_bushwhack_custom_heal:OnCreated()
+	self.ability = self:GetAbility()
+end
+
 function modifier_hoodwink_bushwhack_custom_heal:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE,
@@ -916,10 +901,6 @@ end
 
 function modifier_hoodwink_bushwhack_custom_heal:GetModifierHealthRegenPercentage()
 	return self.ability.talents.h2_heal
-end
-
-function modifier_hoodwink_bushwhack_custom_heal:OnCreated()
-	self.ability = self:GetAbility()
 end
 
 modifier_hoodwink_bushwhack_custom_legendary_stack = class(mod_visible)
@@ -940,7 +921,7 @@ function modifier_hoodwink_bushwhack_custom_legendary_stack:OnCreated()
 		self.particle = self.parent:GenericParticle("particles/hoodwink_bush_damage.vpcf", self, true)
 	end
 
-	self:SetStackCount(1)
+	self:OnRefresh()
 end
 
 function modifier_hoodwink_bushwhack_custom_legendary_stack:OnRefresh()
@@ -949,27 +930,23 @@ function modifier_hoodwink_bushwhack_custom_legendary_stack:OnRefresh()
 	end
 	self:IncrementStackCount()
 
-	if self:GetStackCount() >= self.max then
-		self.parent:EmitSound("Hoodwink.Bushwak_legendary_start")
-		self.parent:EmitSound("Hoodwink.Bushwak_legendary_start2")
-		self.parent:AddNewModifier(
-			self.caster,
-			self.ability,
-			"modifier_hoodwink_bushwhack_custom_legendary_damage",
-			{ duration = self.ability.talents.w7_effect_duration }
-		)
-		self:Destroy()
+	if self.particle then
+		ParticleManager:SetParticleControl(self.particle, 1, Vector(0, self:GetStackCount(), 0))
 	end
-end
 
-function modifier_hoodwink_bushwhack_custom_legendary_stack:OnStackCountChanged(iStackCount)
-	if not IsServer() then
+	if self:GetStackCount() < self.max then
 		return
 	end
-	if not self.particle then
-		return
-	end
-	ParticleManager:SetParticleControl(self.particle, 1, Vector(0, self:GetStackCount(), 0))
+
+	self.parent:EmitSound("Hoodwink.Bushwak_legendary_start")
+	self.parent:EmitSound("Hoodwink.Bushwak_legendary_start2")
+	self.parent:AddNewModifier(
+		self.caster,
+		self.ability,
+		"modifier_hoodwink_bushwhack_custom_legendary_damage",
+		{ duration = self.ability.talents.w7_effect_duration }
+	)
+	self:Destroy()
 end
 
 modifier_hoodwink_bushwhack_custom_legendary_damage = class(mod_visible)
@@ -1059,262 +1036,6 @@ function modifier_hoodwink_bushwhack_custom_legendary_damage:GetModifierMagicalR
 	return self.magic
 end
 
-hoodwink_decoy_custom = class({})
-hoodwink_decoy_custom.talents = {}
-
-function hoodwink_decoy_custom:CreateTalent()
-	self:SetHidden(false)
-end
-
-function hoodwink_decoy_custom:UpdateTalents()
-	local caster = self:GetCaster()
-	if not self.init and caster:HasTalent("modifier_hoodwink_bush_7") then
-		self.init = true
-		if IsServer() and not self:IsTrained() then
-			self:SetLevel(1)
-		end
-		self.talents.cd = caster:GetTalentValue("modifier_hoodwink_bush_7", "talent_cd", true)
-		self.talents.duration = caster:GetTalentValue("modifier_hoodwink_bush_7", "duration", true)
-		self.talents.incoming = caster:GetTalentValue("modifier_hoodwink_bush_7", "incoming", true)
-		self.talents.move = caster:GetTalentValue("modifier_hoodwink_bush_7", "move", true)
-		self.talents.range = caster:GetTalentValue("modifier_hoodwink_bush_7", "range", true)
-	end
-end
-
-function hoodwink_decoy_custom:GetCooldown()
-	return (self.talents.cd and self.talents.cd or 0)
-end
-
-function hoodwink_decoy_custom:GetCastRange(location, hTarget)
-	return (self.talents.range and self.talents.range or 0)
-end
-
-function hoodwink_decoy_custom:OnSpellStart()
-	local caster = self:GetCaster()
-	local cast_point = self:GetCursorPosition()
-	local vec = cast_point - caster:GetAbsOrigin()
-	if vec:Length2D() > self.talents.range then
-		cast_point = caster:GetAbsOrigin() + vec:Normalized() * self.talents.range
-	end
-
-	local duration = self.talents.duration
-	local damage_out = -100
-	local damage_in = self.talents.incoming - 100
-
-	caster:AddNewModifier(caster, self, "modifier_hoodwink_bushwhack_custom_legendary_invis", { duration = duration })
-
-	local point = caster:GetAbsOrigin()
-
-	local illusions = CreateIllusions(
-		caster,
-		caster,
-		{ duration = duration, outgoing_damage = damage_out, incoming_damage = damage_in },
-		1,
-		0,
-		false,
-		false
-	)
-	local scurry_ability = caster:FindAbilityByName("hoodwink_scurry_custom")
-
-	for _, illusion in pairs(illusions) do
-		illusion:AddNewModifier(caster, scurry_ability, "modifier_hoodwink_scurry_custom_buff", { duration = duration })
-		illusion:SetAbsOrigin(point)
-		illusion:SetForwardVector(caster:GetForwardVector())
-		illusion:FaceTowards(point + caster:GetForwardVector() * 10)
-		illusion.owner = caster
-
-		illusion:AddNewModifier(
-			caster,
-			self,
-			"modifier_hoodwink_bushwhack_custom_legendary_illusion",
-			{ x = cast_point.x, y = cast_point.y }
-		)
-		for _, mod in pairs(caster:FindAllModifiers()) do
-			if mod.StackOnIllusion ~= nil and mod.StackOnIllusion == true then
-				illusion:UpgradeIllusion(mod:GetName(), mod:GetStackCount())
-			end
-		end
-	end
-end
-
-modifier_hoodwink_bushwhack_custom_legendary_invis = class(mod_visible)
-function modifier_hoodwink_bushwhack_custom_legendary_invis:OnCreated(table)
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-	self.move = self.ability.talents.move
-
-	self.parent:AddAttackStartEvent_out(self, true)
-	self.parent:AddSpellEvent(self, true)
-	if not IsServer() then
-		return
-	end
-	self.RemoveForDuel = true
-end
-
-function modifier_hoodwink_bushwhack_custom_legendary_invis:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_INVISIBILITY_LEVEL,
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-	}
-end
-
-function modifier_hoodwink_bushwhack_custom_legendary_invis:SpellEvent(params)
-	if not IsServer() then
-		return
-	end
-	if not params.ability then
-		return
-	end
-	if not params.unit then
-		return
-	end
-	if params.unit ~= self.parent then
-		return
-	end
-	self:Destroy()
-end
-
-function modifier_hoodwink_bushwhack_custom_legendary_invis:AttackStartEvent_out(params)
-	if not IsServer() then
-		return
-	end
-	if not params.attacker then
-		return
-	end
-	if params.attacker ~= self.parent then
-		return
-	end
-	self:Destroy()
-end
-
-function modifier_hoodwink_bushwhack_custom_legendary_invis:GetModifierMoveSpeedBonus_Percentage()
-	return self.move
-end
-
-function modifier_hoodwink_bushwhack_custom_legendary_invis:GetModifierInvisibilityLevel()
-	return 1
-end
-
-function modifier_hoodwink_bushwhack_custom_legendary_invis:CheckState()
-	return {
-		[MODIFIER_STATE_INVISIBLE] = true,
-		[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
-	}
-end
-
-function modifier_hoodwink_bushwhack_custom_legendary_invis:GetEffectName()
-	return "particles/items3_fx/blink_swift_buff.vpcf"
-end
-
-modifier_hoodwink_bushwhack_custom_legendary_illusion = class(mod_hidden)
-function modifier_hoodwink_bushwhack_custom_legendary_illusion:OnCreated(table)
-	if not IsServer() then
-		return
-	end
-	self.ability = self:GetAbility()
-	self.caster = self:GetCaster()
-	self.parent = self:GetParent()
-
-	self.attack_range = -1 * self.parent:Script_GetAttackRange()
-	self.point = GetGroundPosition(Vector(table.x, table.y, 0), nil)
-
-	self.parent:AddAttackStartEvent_inc(self, true)
-	self.caster:AddSpellEvent(self, true)
-
-	self:StartIntervalThink(FrameTime())
-end
-
-function modifier_hoodwink_bushwhack_custom_legendary_illusion:OnIntervalThink()
-	if not IsServer() then
-		return
-	end
-
-	self.parent:MoveToPosition(self.point)
-	self:StartIntervalThink(-1)
-end
-
-function modifier_hoodwink_bushwhack_custom_legendary_illusion:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
-	}
-end
-
-function modifier_hoodwink_bushwhack_custom_legendary_illusion:GetModifierAttackRangeBonus()
-	return self.attack_range
-end
-
-function modifier_hoodwink_bushwhack_custom_legendary_illusion:AttackStartEvent_inc(params)
-	if not IsServer() then
-		return
-	end
-	if self.parent ~= params.target then
-		return
-	end
-	local attacker = params.attacker
-
-	if not attacker:IsHero() then
-		return
-	end
-	self:UseBush(attacker:GetAbsOrigin() + RandomVector(80))
-	self:Destroy()
-end
-
-function modifier_hoodwink_bushwhack_custom_legendary_illusion:SpellEvent(params)
-	if not IsServer() then
-		return
-	end
-	local attacker = params.unit
-	if not params.target then
-		return
-	end
-
-	if self.parent:GetTeamNumber() == attacker:GetTeamNumber() then
-		return
-	end
-	if self.parent ~= params.target then
-		return
-	end
-	if not attacker:IsHero() then
-		return
-	end
-
-	self:UseBush(attacker:GetAbsOrigin() + RandomVector(80))
-	self:Destroy()
-end
-
-function modifier_hoodwink_bushwhack_custom_legendary_illusion:UseBush(point)
-	if not IsServer() then
-		return
-	end
-	if self.stun_proc then
-		return
-	end
-	if not IsValid(self.caster.acorn_ability) or not IsValid(self.caster.bush_ability) then
-		return
-	end
-	if not self.caster.acorn_ability:IsTrained() or not IsValid(self.caster.bush_ability) then
-		return
-	end
-
-	self.stun_proc = true
-	self.caster.acorn_ability:SpawnTree(point)
-	self.caster.bush_ability:OnSpellStart(point, self.parent, "modifier_hoodwink_bush_7")
-end
-
-function modifier_hoodwink_bushwhack_custom_legendary_illusion:OnDestroy()
-	if not IsServer() then
-		return
-	end
-	self:UseBush(self.parent:GetAbsOrigin())
-	self.parent:Kill(nil, self.parent)
-end
-
-function modifier_hoodwink_bushwhack_custom_legendary_illusion:CheckState()
-	return {
-		[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
-	}
-end
-
 modifier_hoodwink_bushwhack_custom_trap = class(mod_hidden)
 function modifier_hoodwink_bushwhack_custom_trap:OnCreated(params)
 	if not IsServer() then
@@ -1326,23 +1047,33 @@ function modifier_hoodwink_bushwhack_custom_trap:OnCreated(params)
 
 	self.radius = self.ability.trap_radius
 
-	if IsValid(self.ability.tracker) then
-		table.insert(self.ability.tracker.active_traps, self.parent:entindex())
-
-		if #self.ability.tracker.active_traps > self.ability.scepter_max then
-			local entindex = self.ability.tracker.active_traps[1]
-			local unit = EntIndexToHScript(entindex)
-			if unit then
-				unit:RemoveModifierByName("modifier_hoodwink_bushwhack_custom_trap")
-				if IsValid(unit) then
-					unit:RemoveSelf()
-				end
-			end
-		end
-	else
+	if not IsValid(self.ability.tracker) then
 		self:Destroy()
 		return
 	end
+
+	table.insert(self.ability.tracker.active_traps, self.parent:entindex())
+
+	if #self.ability.tracker.active_traps > self.ability.scepter_max then
+		local entindex = self.ability.tracker.active_traps[1]
+		local unit = EntIndexToHScript(entindex)
+		if unit then
+			unit:RemoveModifierByName("modifier_hoodwink_bushwhack_custom_trap")
+			if IsValid(unit) then
+				unit:RemoveSelf()
+			end
+		end
+	end
+
+	self.icon = CreateUnitByName(
+		"npc_dota_treant_eyes_custom",
+		self.parent:GetAbsOrigin(),
+		false,
+		self.caster,
+		self.caster,
+		self.caster:GetTeamNumber()
+	)
+	self.icon:AddNewModifier(self.caster, self.ability, "modifier_hoodwink_bushwhack_custom_trap_icon", {})
 
 	self.particle = ParticleManager:CreateParticle("particles/hoodwink/scepter_trap.vpcf", PATTACH_WORLDORIGIN, nil)
 	ParticleManager:SetParticleControl(self.particle, 0, GetGroundPosition(self.parent:GetAbsOrigin(), nil))
@@ -1436,7 +1167,7 @@ function modifier_hoodwink_bushwhack_custom_trap:OnDestroy()
 		return
 	end
 
-	if self.ability.tracker then
+	if IsValid(self.ability.tracker) then
 		for index, entindex in pairs(self.ability.tracker.active_traps) do
 			if entindex == self.parent:entindex() then
 				table.remove(self.ability.tracker.active_traps, index)
@@ -1445,15 +1176,287 @@ function modifier_hoodwink_bushwhack_custom_trap:OnDestroy()
 		end
 	end
 
+	if IsValid(self.icon) then
+		self.icon:RemoveSelf()
+	end
+
 	self.parent:RemoveSelf()
 end
 
-function modifier_hoodwink_bushwhack_custom_trap:CheckState()
+modifier_hoodwink_bushwhack_custom_trap_icon = class(mod_hidden)
+function modifier_hoodwink_bushwhack_custom_trap_icon:CheckState()
 	return {
 		[MODIFIER_STATE_INVISIBLE] = true,
 		[MODIFIER_STATE_INVULNERABLE] = true,
 		[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
 		[MODIFIER_STATE_NO_HEALTH_BAR] = true,
 		[MODIFIER_STATE_UNSELECTABLE] = true,
+	}
+end
+
+hoodwink_decoy_custom = class({})
+hoodwink_decoy_custom.talents = {}
+
+function hoodwink_decoy_custom:UpdateTalents()
+	local caster = self:GetCaster()
+	if not self.init then
+		self.init = true
+		self.talents = {
+			w7_talent_cd = caster:GetTalentValue("modifier_hoodwink_bush_7", "talent_cd", true),
+			w7_duration = caster:GetTalentValue("modifier_hoodwink_bush_7", "duration", true),
+			w7_incoming = caster:GetTalentValue("modifier_hoodwink_bush_7", "incoming", true),
+			w7_move = caster:GetTalentValue("modifier_hoodwink_bush_7", "move", true),
+			w7_range = caster:GetTalentValue("modifier_hoodwink_bush_7", "range", true),
+		}
+	end
+end
+
+function hoodwink_decoy_custom:CreateTalent()
+	self:SetHidden(false)
+end
+
+function hoodwink_decoy_custom:GetCooldown(iLevel)
+	return self.talents.w7_talent_cd or 0
+end
+
+function hoodwink_decoy_custom:GetCastRange(vLocation, hTarget)
+	return self.talents.w7_range or 0
+end
+
+function hoodwink_decoy_custom:OnSpellStart()
+	local cast_point = self:GetCursorPosition()
+	local vec = cast_point - self.caster:GetAbsOrigin()
+	if vec:Length2D() > self.talents.w7_range then
+		cast_point = self.caster:GetAbsOrigin() + vec:Normalized() * self.talents.w7_range
+	end
+
+	local duration = self.talents.w7_duration
+	local damage_out = -100
+	local damage_in = self.talents.w7_incoming - 100
+
+	self.caster:AddNewModifier(
+		self.caster,
+		self,
+		"modifier_hoodwink_bushwhack_custom_legendary_invis",
+		{ duration = duration }
+	)
+
+	local point = self.caster:GetAbsOrigin()
+
+	local illusions = CreateIllusions(
+		self.caster,
+		self.caster,
+		{ duration = duration, outgoing_damage = damage_out, incoming_damage = damage_in },
+		1,
+		0,
+		false,
+		false
+	)
+
+	for _, illusion in pairs(illusions) do
+		for _, mod in pairs(self.caster:FindAllModifiers()) do
+			if mod.StackOnIllusion ~= nil and mod.StackOnIllusion == true then
+				illusion:UpgradeIllusion(mod:GetName(), mod:GetStackCount(), mod)
+			end
+		end
+
+		illusion:SetAbsOrigin(point)
+		illusion:FacePoint(point + self.caster:GetForwardVector() * 10)
+		illusion.owner = self.caster
+
+		if IsValid(self.caster.scurry_ability) then
+			illusion:AddNewModifier(
+				self.caster,
+				self.caster.scurry_ability,
+				"modifier_hoodwink_scurry_custom_buff",
+				{ duration = duration }
+			)
+		end
+		illusion:AddNewModifier(
+			self.caster,
+			self,
+			"modifier_hoodwink_bushwhack_custom_legendary_illusion",
+			{ x = cast_point.x, y = cast_point.y }
+		)
+	end
+end
+
+modifier_hoodwink_bushwhack_custom_legendary_invis = class(mod_visible)
+function modifier_hoodwink_bushwhack_custom_legendary_invis:GetEffectName()
+	return "particles/items3_fx/blink_swift_buff.vpcf"
+end
+function modifier_hoodwink_bushwhack_custom_legendary_invis:OnCreated(table)
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+	self.move = self.ability.talents.w7_move
+
+	if not IsServer() then
+		return
+	end
+	self.RemoveForDuel = true
+	self.parent:AddAttackStartEvent_out(self, true)
+	self.parent:AddSpellEvent(self, true)
+end
+
+function modifier_hoodwink_bushwhack_custom_legendary_invis:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_INVISIBILITY_LEVEL,
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+	}
+end
+
+function modifier_hoodwink_bushwhack_custom_legendary_invis:SpellEvent(params)
+	if not IsServer() then
+		return
+	end
+	if not params.ability then
+		return
+	end
+	if not params.unit then
+		return
+	end
+	if params.unit ~= self.parent then
+		return
+	end
+	self:Destroy()
+end
+
+function modifier_hoodwink_bushwhack_custom_legendary_invis:AttackStartEvent_out(params)
+	if not IsServer() then
+		return
+	end
+	if not params.attacker then
+		return
+	end
+	if params.attacker ~= self.parent then
+		return
+	end
+	self:Destroy()
+end
+
+function modifier_hoodwink_bushwhack_custom_legendary_invis:GetModifierMoveSpeedBonus_Percentage()
+	return self.move
+end
+
+function modifier_hoodwink_bushwhack_custom_legendary_invis:GetModifierInvisibilityLevel()
+	return 1
+end
+
+function modifier_hoodwink_bushwhack_custom_legendary_invis:CheckState()
+	return {
+		[MODIFIER_STATE_INVISIBLE] = true,
+		[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
+	}
+end
+
+modifier_hoodwink_bushwhack_custom_legendary_illusion = class(mod_hidden)
+function modifier_hoodwink_bushwhack_custom_legendary_illusion:OnCreated(table)
+	if not IsServer() then
+		return
+	end
+	self.ability = self:GetAbility()
+	self.caster = self:GetCaster()
+	self.parent = self:GetParent()
+
+	self.attack_range = -1 * self.parent:Script_GetAttackRange()
+	self.point = GetGroundPosition(Vector(table.x, table.y, 0), nil)
+
+	self.parent:AddAttackStartEvent_inc(self, true)
+	self.caster:AddSpellEvent(self, true)
+
+	self:StartIntervalThink(FrameTime())
+end
+
+function modifier_hoodwink_bushwhack_custom_legendary_illusion:OnIntervalThink()
+	if not IsServer() then
+		return
+	end
+
+	self.parent:MoveToPosition(self.point)
+	self:StartIntervalThink(-1)
+end
+
+function modifier_hoodwink_bushwhack_custom_legendary_illusion:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
+	}
+end
+
+function modifier_hoodwink_bushwhack_custom_legendary_illusion:GetModifierAttackRangeBonus()
+	return self.attack_range
+end
+
+function modifier_hoodwink_bushwhack_custom_legendary_illusion:AttackStartEvent_inc(params)
+	if not IsServer() then
+		return
+	end
+	if self.parent ~= params.target then
+		return
+	end
+	local attacker = params.attacker
+
+	if not attacker:IsHero() then
+		return
+	end
+	self:UseBush(attacker:GetAbsOrigin() + RandomVector(80))
+	self:Destroy()
+end
+
+function modifier_hoodwink_bushwhack_custom_legendary_illusion:SpellEvent(params)
+	if not IsServer() then
+		return
+	end
+	local attacker = params.unit
+	if not params.target then
+		return
+	end
+
+	if self.parent:GetTeamNumber() == attacker:GetTeamNumber() then
+		return
+	end
+	if self.parent ~= params.target then
+		return
+	end
+	if not attacker:IsHero() then
+		return
+	end
+
+	self:UseBush(attacker:GetAbsOrigin() + RandomVector(80))
+	self:Destroy()
+end
+
+function modifier_hoodwink_bushwhack_custom_legendary_illusion:UseBush(point)
+	if not IsServer() then
+		return
+	end
+	if self.stun_proc then
+		return
+	end
+	if not IsValid(self.caster.acorn_ability) then
+		return
+	end
+	if not IsValid(self.caster.bush_ability) then
+		return
+	end
+	if not self.caster.acorn_ability:IsTrained() then
+		return
+	end
+
+	self.stun_proc = true
+	self.caster.acorn_ability:SpawnTree(point)
+	self.caster.bush_ability:OnSpellStart(point, self.parent, "modifier_hoodwink_bush_7")
+end
+
+function modifier_hoodwink_bushwhack_custom_legendary_illusion:OnDestroy()
+	if not IsServer() then
+		return
+	end
+	self:UseBush(self.parent:GetAbsOrigin())
+	self.parent:Kill(nil, self.parent)
+end
+
+function modifier_hoodwink_bushwhack_custom_legendary_illusion:CheckState()
+	return {
+		[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
 	}
 end

@@ -18,37 +18,50 @@
 
 .AllPointsAndInfo
 {
-	width: 276.15px;
+	width: 236px;
 	height: 180px;
-	align: right center;
-	margin-top: 72.3%;
+	align: right top;
+	margin-right: 5px;
+	margin-top: 804px;
 	visibility: visible;
 	z-index: 5;
 	flow-children: right;
+	overflow: noclip noclip;
+}
+
+.AllPointsAndInfo.AllPointsAndInfo_rows2
+{
+	margin-top: 786px;
+}
+
+.AllPointsAndInfo.AllPointsAndInfo_stash
+{
+	margin-top: 696px;
+}
+
+.AllPointsAndInfo.AllPointsAndInfo_rows2.AllPointsAndInfo_stash
+{
+	margin-top: 710px;
 }
 
 .Dota1x6
 {
 	align: left bottom;
+	width: 240px;
+	height: 40px;
+	margin-bottom: 241px;
 }
 
-.Dota1x6_right
+.HUDFlipped .Dota1x6
 {
 	align: right bottom;
 }
 
-.Dota1x6_large
+.MinimapExtraLarge .Dota1x6
 {
 	width: 270px;
 	height: 40px;
 	margin-bottom: 277px;
-}
-
-.Dota1x6_small
-{
-	width: 240px;
-	height: 40px;
-	margin-bottom: 241px;
 }
 
 .Dota1x6_text
@@ -65,65 +78,41 @@
 	color: gradient( linear, 0% 100%, 0% 0%, from( #999999 ), to( #ffffff ) );
 }
 
-.AllPointsAndInfo_left
+.HUDFlipped .AllPointsAndInfo
 {
-	width: 276.15px;
-	height:150px;
-	align: left center;
-	margin-top: 72.3%;
-	visibility: visible;
-	z-index: 5;
+	align: left top;
 	flow-children: left;
-}
-
-.PointInfo
-{
-	height: 96.87px;
-	width: 39.98px;
-}
-
-.ButtonInfo
-{
-	margin-top: 65px;
-	margin-right: 1px;
-	width: 24px;
-	height: 24px;
-	align: right center;
-	background-color: #212121;
-	z-index: 2;
-	border-radius: 50%;
-	box-shadow: fill #f7942b 0px 0px 3px -1px;
-	border: 1px solid #666;
-}
-
-.ButtonInfo_text
-{
-	text-shadow: 0px 0px 4px 3 #000000;
-	color: #ccc;
-	horizontal-align: center;
-	vertical-align: center;
-	font-family: Reaver;
-	font-size: 17.5px;
-	margin-left: 3.5px;
-	margin-top: 1px;
-	overflow: noclip noclip;
 }
 
 .AllPoints
 {
-	width: 85.49%;
-	height: 100%;
+	width: 236px;
+	height: 240px;
+	margin-top: -60px;
 	visibility: visible;
 	z-index: 5;
+}
+
+.AllPointsStack
+{
+	width: 236px;
+	height: fit-children;
+	vertical-align: bottom;
+	margin-bottom: 14px;
 	flow-children: down;
+}
+
+.AllPointsStack_rows2
+{
+	margin-bottom: 30px;
 }
 
 .Points
 {
-	width: 90%;
-	height: 19.4%;
+	width: 212px;
+	height: 35px;
 	margin-top: 5px;
-	margin-left: 4%;
+	horizontal-align: right;
 	visibility: visible;
 	background-color: gray;
 	z-index: 5;
@@ -133,29 +122,39 @@
 	border-radius: 5px;
 }
 
+.Points:hover
+{
+	brightness: 1.35;
+}
+
 .PurplePoints
 {
 	background-color: gradient( linear, 0% 0%, 0% 100%, from( #282330ef ), to( #111111ef ) );
 	border-left: 3px solid #a56ef0;
 	border-right: 3px solid #a56ef0;
 	border-radius: 5px;
-	width: 90%;
-	height: 19.4%;
+	width: 212px;
+	height: 35px;
 	margin-top: 5px;
-	margin-left: 4%;
+	horizontal-align: right;
 	visibility: visible;
 	z-index: 5;
+}
+
+.PurplePoints:hover
+{
+	brightness: 1.35;
 }
 
 .Progress
 {
 	transition-property: width;
 	transition-duration: 0.3s;
-	background-color: gradient( linear, 0% 0%, 100% 0%, from( #336ac5 ), to( #6798f0 ) );
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #264f94 ), to( #4d72b4 ) );
 	border-radius: 3px;
 	border: 1.5px solid #78c8de;
 	width: 95%;
-	height: 75%;
+	height: 26px;
 	margin-left: 3px;
 	vertical-align: center;
 	visibility: visible;
@@ -166,11 +165,50 @@
 {
 	transition-property: width;
 	transition-duration: 0.3s;
-	background-color: gradient( linear, 0% 0%, 100% 0%, from( #56168c ), to( #8435c8 ) );
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #401069 ), to( #632896 ) );
 	border-radius: 3px;
 	border: 1.5px solid #b575ec;
 	width: 95%;
-	height: 75%;
+	height: 26px;
+	margin-left: 3px;
+	vertical-align: center;
+	visibility: visible;
+	z-index: 5;
+}
+
+.ShrinePoints
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #2c2f31ef ), to( #111111ef ) );
+	border-left: 3px solid #cdd6d9;
+	border-right: 3px solid #cdd6d9;
+	border-radius: 5px;
+	width: 165px;
+	height: 35px;
+	margin-top: 5px;
+	horizontal-align: right;
+	visibility: visible;
+	z-index: 5;
+}
+
+#ShrineNumber
+{
+	text-shadow: 0px 0px 2px 3 #000000bb;
+}
+
+.ShrinePoints:hover
+{
+	brightness: 1.35;
+}
+
+.ShrineProgress
+{
+	transition-property: width;
+	transition-duration: 0.3s;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #525b60 ), to( #acb4b6 ) );
+	border-radius: 3px;
+	border: 1.5px solid #b4bcc0;
+	width: 0%;
+	height: 26px;
 	margin-left: 3px;
 	vertical-align: center;
 	visibility: visible;
@@ -180,7 +218,7 @@
 .ProgressFull
 {
 	width: 95%;
-	height: 75%;
+	height: 26px;
 	margin-left: 3px;
 	vertical-align: center;
 	visibility: visible;
@@ -262,8 +300,7 @@
 
 .HeroQuest
 {
-	width: 70%;
-	margin-right: 7%;
+	width: 165px;
 	margin-top: 15px;
 	height: 44px;
 	background-color: rgba(10, 10, 10, 0.9);
@@ -305,8 +342,8 @@
 
 .HeroQuest_text_panel
 {
-	width: 66%;
-	height: 100%;
+	width: 109px;
+	height: 44px;
 }
 
 .HeroQuest_text

@@ -31,6 +31,17 @@ function item_octarine_core_custom:Precache(context)
 	end
 
 	PrecacheResource("particle", "particles/leshrac/storm_refresh.vpcf", context)
+	PrecacheResource("particle", "particles/bristle_cdr.vpcf", context)
+	PrecacheResource("particle", "particles/generic_gameplay/rune_arcane_owner.vpcf", context)
+end
+
+function item_octarine_core_custom:Spawn()
+	self.cdr_bonus = self:GetSpecialValueFor("cdr_bonus")
+	self.bonus_health = self:GetSpecialValueFor("bonus_health")
+	self.bonus_mana = self:GetSpecialValueFor("bonus_mana")
+	self.mana_reduce = self:GetSpecialValueFor("mana_reduce")
+	self.active_cdr = self:GetSpecialValueFor("active_cdr") / 100
+	self.duration = self:GetSpecialValueFor("duration")
 end
 
 function item_octarine_core_custom:GetCooldown(level)
@@ -54,13 +65,11 @@ function modifier_item_octarine_core_custom:OnCreated()
 	if not self.parent.cdr_items then
 		self.parent.cdr_items = {}
 	end
-	self.parent.cdr_items[self] = self.ability:GetSpecialValueFor("cdr_bonus")
+	self.parent.cdr_items[self] = self.ability.cdr_bonus
 
-	self.bonus_health = self.ability:GetSpecialValueFor("bonus_health")
-	self.bonus_mana = self.ability:GetSpecialValueFor("bonus_mana")
-	self.mana_reduce = self.ability:GetSpecialValueFor("mana_reduce")
-	self.ability.active_cdr = self.ability:GetSpecialValueFor("active_cdr") / 100
-	self.ability.duration = self.ability:GetSpecialValueFor("duration")
+	self.bonus_health = self.ability.bonus_health
+	self.bonus_mana = self.ability.bonus_mana
+	self.mana_reduce = self.ability.mana_reduce
 end
 
 function modifier_item_octarine_core_custom:DeclareFunctions()
@@ -131,6 +140,9 @@ end
 
 function modifier_item_octarine_core_custom_active:SpellEvent(params)
 	if not IsServer() then
+		return
+	end
+	if not IsValid(self.ability) then
 		return
 	end
 	if self.used then

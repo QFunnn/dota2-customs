@@ -56,9 +56,6 @@ function pangolier_shield_crash_custom:Precache(context)
 	PrecacheResource("particle", "particles/jugg_parry.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_snapfire/hero_snapfire_shotgun_debuff.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_snapfire_slow.vpcf", context)
-	PrecacheResource("particle", "particles/units/heroes/hero_pangolier/pangolier_tailthump_cast.vpcf", context)
-	PrecacheResource("particle", "particles/units/heroes/hero_pangolier/pangolier_tailthump.vpcf", context)
-	PrecacheResource("particle", "particles/items3_fx/blink_overwhelming_burst.vpcf", context)
 	PrecacheResource("particle", "particles/items3_fx/blink_overwhelming_burst.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_pangolier/pangolier_swashbuckler.vpcf", context)
 	PrecacheResource("particle", "particles/mars_revenge_proc_hands.vpcf", context)
@@ -66,6 +63,8 @@ function pangolier_shield_crash_custom:Precache(context)
 	PrecacheResource("particle", "particles/lc_lowhp.vpcf", context)
 	PrecacheResource("particle", "particles/pangolier/shield_delay.vpcf", context)
 	PrecacheResource("particle", "particles/pangolier/shield_legendary.vpcf", context)
+	PrecacheResource("particle", "particles/pangolier/buckle_refresh.vpcf", context)
+	PrecacheResource("particle", "particles/pangolier/rolling_stack.vpcf", context)
 end
 
 function pangolier_shield_crash_custom:UpdateTalents(name)
@@ -138,7 +137,7 @@ function pangolier_shield_crash_custom:UpdateTalents(name)
 		self.talents.h1_shield = caster:GetTalentValue("modifier_pangolier_hero_1", "shield") / 100
 		self.talents.h1_stats = caster:GetTalentValue("modifier_pangolier_hero_1", "stats")
 		if IsServer() then
-			self.caster:CalculateStatBonus(true)
+			caster:CalculateStatBonus(true)
 		end
 	end
 
@@ -169,7 +168,7 @@ function pangolier_shield_crash_custom:GetCooldown(iLevel)
 	if self.caster:HasModifier("modifier_pangolier_shield_crash_custom_legendary") then
 		return self.talents.w7_cd
 	end
-	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.w2_cd and self.talents.w2_cd or 0)
+	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.w2_cd or 0)
 end
 
 function pangolier_shield_crash_custom:GetBehavior()
@@ -207,8 +206,7 @@ function pangolier_shield_crash_custom:GetRadius()
 end
 
 function pangolier_shield_crash_custom:GetRange()
-	return (self.jump_horizontal_distance and self.jump_horizontal_distance or 0)
-		+ ((self.caster:HasScepter() and self.scepter_range) and self.scepter_range or 0)
+	return (self.jump_horizontal_distance or 0) + (self.caster:HasScepter() and self.scepter_range or 0)
 end
 
 function pangolier_shield_crash_custom:GetAOERadius()
@@ -243,8 +241,7 @@ function pangolier_shield_crash_custom:OnSpellStart(is_legendary)
 
 		dir.z = 0
 
-		self.caster:SetForwardVector(dir:Normalized())
-		self.caster:FaceTowards(self.caster:GetAbsOrigin() + dir:Normalized() * 10)
+		self.caster:FacePoint(self.caster:GetAbsOrigin() + dir:Normalized() * 10)
 		distance = (point - self.caster:GetAbsOrigin()):Length2D()
 	end
 
@@ -312,7 +309,7 @@ function pangolier_shield_crash_custom:OnSpellStart(is_legendary)
 	end
 
 	local damageTable = { attacker = self.caster, ability = self, damage_type = DAMAGE_TYPE_MAGICAL }
-	local legnedary_max = false
+	local legendary_max = false
 	local particle = wearables_system:GetParticleReplacementAbility(
 		self.caster,
 		"particles/units/heroes/hero_pangolier/pangolier_tailthump_hero.vpcf",
@@ -320,8 +317,8 @@ function pangolier_shield_crash_custom:OnSpellStart(is_legendary)
 	)
 
 	if legendary_mod then
-		legnedary_max = legendary_mod:GetStackCount() >= (self.talents.w7_max - 1)
-		if not legnedary_max then
+		legendary_max = legendary_mod:GetStackCount() >= (self.talents.w7_max - 1)
+		if not legendary_max then
 			particle = "particles/pangolier/shield_legendary.vpcf"
 		end
 
@@ -363,7 +360,7 @@ function pangolier_shield_crash_custom:OnSpellStart(is_legendary)
 				and (self.talents.has_w7 == 1 or self.talents.has_r7 == 1)
 				and IsValid(self.caster.rolling_ability)
 			then
-				self.caster.rolling_ability:DealDamage(enemy, self.ability.scepter_damage)
+				self.caster.rolling_ability:DealDamage(enemy, self.scepter_damage)
 			end
 
 			enemy:AddNewModifier(
@@ -382,14 +379,14 @@ function pangolier_shield_crash_custom:OnSpellStart(is_legendary)
 			local damage_ability = nil
 
 			if legendary_mod then
-				damage = damage * (legnedary_max and self.talents.w7_damage_max or self.talents.w7_damage)
+				damage = damage * (legendary_max and self.talents.w7_damage_max or self.talents.w7_damage)
 				damage_ability = "modifier_pangolier_shield_7"
 			end
 
 			damageTable.damage = damage
 			damageTable.victim = enemy
 			local real_damage = DoDamage(damageTable, damage_ability)
-			if legnedary_max then
+			if legendary_max then
 				enemy:SendNumber(106, real_damage)
 			end
 		end
@@ -405,7 +402,7 @@ function pangolier_shield_crash_custom:OnSpellStart(is_legendary)
 		ParticleManager:ReleaseParticleIndex(smash)
 		EmitSoundOnLocationWithCaster(self.caster:GetAbsOrigin(), "Hero_Pangolier.TailThump", self.caster)
 
-		if legnedary_max then
+		if legendary_max then
 			EmitSoundOnLocationWithCaster(self.caster:GetAbsOrigin(), "Pango.Shield_legendary", self.caster)
 			EmitSoundOnLocationWithCaster(self.caster:GetAbsOrigin(), "Pango.Shield_legendary2", self.caster)
 
@@ -439,7 +436,7 @@ function pangolier_shield_crash_custom:OnSpellStart(is_legendary)
 					{ duration = self.talents.w7_duration }
 				)
 			elseif IsValid(legendary_mod) then
-				if legnedary_max then
+				if legendary_max then
 					legendary_mod.full = true
 					legendary_mod:Destroy()
 				elseif #enemies > 0 then
@@ -539,7 +536,7 @@ function pangolier_shield_crash_custom:ApplyMagic(target)
 	if not self:IsTrained() then
 		return
 	end
-	if self.ability.talents.has_w3 == 0 then
+	if self.talents.has_w3 == 0 then
 		return
 	end
 
@@ -547,7 +544,7 @@ function pangolier_shield_crash_custom:ApplyMagic(target)
 		self.caster,
 		self,
 		"modifier_pangolier_shield_crash_custom_magic",
-		{ duration = self.ability.talents.w3_duration }
+		{ duration = self.talents.w3_duration }
 	)
 end
 

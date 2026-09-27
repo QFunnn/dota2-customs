@@ -85,38 +85,35 @@ function bane_fiends_grip_custom:Precache(context)
 	PrecacheResource("particle", "particles/bane/grip_legendary_spells.vpcf", context)
 	PrecacheResource("particle", "particles/bane/grip_move.vpcf", context)
 	PrecacheResource("particle", "particles/bane/grip_move_trail.vpcf", context)
+	PrecacheResource("particle", "particles/bane/enfeeble_damage.vpcf", context)
 end
 
 function bane_fiends_grip_custom:UpdateTalents()
 	local caster = self:GetCaster()
 	if not self.init then
 		self.init = true
-
 		self.talents = {
-			scepter_range = self:GetSpecialValueFor("scepter_range"),
-			scepter_duration = self:GetSpecialValueFor("scepter_duration"),
+			r1_cd = 0,
+			r1_duration = 0,
 
-			cd_inc = 0,
-			duration_inc = 0,
-
-			has_damage = 0,
-			end_damage = 0,
-			end_damage_type = 0,
+			has_r2 = 0,
+			r2_damage = 0,
 			r2_base = 0,
+			r2_damage_type = caster:GetTalentValue("modifier_bane_grip_2", "damage_type", true),
 
-			has_stack = 0,
-			cdr_bonus = 0,
-			damage_inc = 0,
-			damage_duration = caster:GetTalentValue("modifier_bane_grip_3", "duration", true),
-			damage_max = caster:GetTalentValue("modifier_bane_grip_3", "max", true),
+			has_r3 = 0,
+			r3_cdr = 0,
+			r3_damage = 0,
+			r3_duration = caster:GetTalentValue("modifier_bane_grip_3", "duration", true),
+			r3_max = caster:GetTalentValue("modifier_bane_grip_3", "max", true),
 
-			has_move = 0,
-			spells_max = caster:GetTalentValue("modifier_bane_grip_4", "max", true),
-			speed_duration = caster:GetTalentValue("modifier_bane_grip_4", "duration", true),
-			spells_speed = caster:GetTalentValue("modifier_bane_grip_4", "move", true),
-			cd_items = caster:GetTalentValue("modifier_bane_grip_4", "cd_items", true),
+			has_r4 = 0,
+			r4_max = caster:GetTalentValue("modifier_bane_grip_4", "max", true),
+			r4_duration = caster:GetTalentValue("modifier_bane_grip_4", "duration", true),
+			r4_move = caster:GetTalentValue("modifier_bane_grip_4", "move", true),
+			r4_cd_items = caster:GetTalentValue("modifier_bane_grip_4", "cd_items", true),
 			r4_slow_resist = caster:GetTalentValue("modifier_bane_grip_4", "slow_resist", true),
-			spells_duration = caster:GetTalentValue("modifier_bane_grip_4", "effect_duration", true),
+			r4_effect_duration = caster:GetTalentValue("modifier_bane_grip_4", "effect_duration", true),
 
 			has_h6 = 0,
 			h6_cd = caster:GetTalentValue("modifier_bane_hero_6", "cd", true),
@@ -124,47 +121,46 @@ function bane_fiends_grip_custom:UpdateTalents()
 			h6_duration = caster:GetTalentValue("modifier_bane_hero_6", "duration", true),
 			h6_thresh = caster:GetTalentValue("modifier_bane_hero_6", "thresh", true),
 
-			has_legendary = 0,
-			legendary_duration = caster:GetTalentValue("modifier_bane_grip_7", "effect_duration", true),
-			legendary_max = caster:GetTalentValue("modifier_bane_grip_7", "max", true),
-			legendary_radius = caster:GetTalentValue("modifier_bane_grip_7", "radius", true),
-			legendary_incoming = caster:GetTalentValue("modifier_bane_grip_7", "incoming", true),
-			legendary_outgoing = caster:GetTalentValue("modifier_bane_grip_7", "outgoing", true),
-			legendary_illusion_duration = caster:GetTalentValue("modifier_bane_grip_7", "duration", true),
-			legendary_delay = caster:GetTalentValue("modifier_bane_grip_7", "delay", true),
-			legendary_cast_range = caster:GetTalentValue("modifier_bane_grip_7", "cast_range", true),
-			legendary_stun = caster:GetTalentValue("modifier_bane_grip_7", "stun", true),
-			legendary_damage = caster:GetTalentValue("modifier_bane_grip_7", "damage", true) / 100,
-			legendary_creeps = caster:GetTalentValue("modifier_bane_grip_7", "creeps", true),
-			legendary_heal = caster:GetTalentValue("modifier_bane_grip_7", "heal", true) / 100,
+			has_r7 = 0,
+			r7_effect_duration = caster:GetTalentValue("modifier_bane_grip_7", "effect_duration", true),
+			r7_max = caster:GetTalentValue("modifier_bane_grip_7", "max", true),
+			r7_radius = caster:GetTalentValue("modifier_bane_grip_7", "radius", true),
+			r7_incoming = caster:GetTalentValue("modifier_bane_grip_7", "incoming", true),
+			r7_outgoing = caster:GetTalentValue("modifier_bane_grip_7", "outgoing", true),
+			r7_duration = caster:GetTalentValue("modifier_bane_grip_7", "duration", true),
+			r7_delay = caster:GetTalentValue("modifier_bane_grip_7", "delay", true),
+			r7_cast_range = caster:GetTalentValue("modifier_bane_grip_7", "cast_range", true),
+			r7_stun = caster:GetTalentValue("modifier_bane_grip_7", "stun", true),
+			r7_damage = caster:GetTalentValue("modifier_bane_grip_7", "damage", true) / 100,
+			r7_creeps = caster:GetTalentValue("modifier_bane_grip_7", "creeps", true),
+			r7_heal = caster:GetTalentValue("modifier_bane_grip_7", "heal", true) / 100,
 			r7_talent_cd = caster:GetTalentValue("modifier_bane_grip_7", "talent_cd", true),
 		}
 	end
 
 	if caster:HasTalent("modifier_bane_grip_1") then
-		self.talents.cd_inc = caster:GetTalentValue("modifier_bane_grip_1", "cd")
-		self.talents.duration_inc = caster:GetTalentValue("modifier_bane_grip_1", "duration")
+		self.talents.r1_cd = caster:GetTalentValue("modifier_bane_grip_1", "cd")
+		self.talents.r1_duration = caster:GetTalentValue("modifier_bane_grip_1", "duration")
 	end
 
 	if caster:HasTalent("modifier_bane_grip_2") then
-		self.talents.has_damage = 1
-		self.talents.end_damage = caster:GetTalentValue("modifier_bane_grip_2", "damage") / 100
+		self.talents.has_r2 = 1
+		self.talents.r2_damage = caster:GetTalentValue("modifier_bane_grip_2", "damage") / 100
 		self.talents.r2_base = caster:GetTalentValue("modifier_bane_grip_2", "base")
-		self.talents.end_damage_type = caster:GetTalentValue("modifier_bane_grip_2", "damage_type")
 	end
 
 	if caster:HasTalent("modifier_bane_grip_3") then
-		self.talents.has_stack = 1
-		self.talents.cdr_bonus = caster:GetTalentValue("modifier_bane_grip_3", "cdr")
-		self.talents.damage_inc = caster:GetTalentValue("modifier_bane_grip_3", "damage")
+		self.talents.has_r3 = 1
+		self.talents.r3_cdr = caster:GetTalentValue("modifier_bane_grip_3", "cdr")
+		self.talents.r3_damage = caster:GetTalentValue("modifier_bane_grip_3", "damage")
 	end
 
 	if caster:HasTalent("modifier_bane_grip_4") then
-		self.talents.has_move = 1
+		self.talents.has_r4 = 1
 	end
 
 	if caster:HasTalent("modifier_bane_grip_7") then
-		self.talents.has_legendary = 1
+		self.talents.has_r7 = 1
 		self.tracker:StartIntervalThink(self.tracker.interval)
 		self.tracker:UpdateUI()
 	end
@@ -176,6 +172,10 @@ function bane_fiends_grip_custom:UpdateTalents()
 	end
 end
 
+function bane_fiends_grip_custom:GetAbilityTextureName()
+	return wearables_system:GetAbilityIconReplacement(self.caster, "bane_fiends_grip", self)
+end
+
 function bane_fiends_grip_custom:GetIntrinsicModifierName()
 	if not self:GetCaster():IsRealHero() then
 		return
@@ -183,51 +183,42 @@ function bane_fiends_grip_custom:GetIntrinsicModifierName()
 	return "modifier_bane_fiends_grip_custom_tracker"
 end
 
-function bane_fiends_grip_custom:GetAbilityTextureName()
-	return wearables_system:GetAbilityIconReplacement(self.caster, "bane_fiends_grip", self)
+function bane_fiends_grip_custom:GetBehavior()
+	return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET + DOTA_ABILITY_BEHAVIOR_CHANNELLED
 end
 
 function bane_fiends_grip_custom:GetCooldown(level)
-	return self.BaseClass.GetCooldown(self, level) + (self.talents.cd_inc and self.talents.cd_inc or 0)
-end
-
-function bane_fiends_grip_custom:GetCastRange(vLocation, hTarget)
-	local bonus = 0
-	if self:GetCaster():HasScepter() then
-		bonus = self.talents.scepter_range
-	end
-	return self.BaseClass.GetCastRange(self, vLocation, hTarget) + bonus
-end
-
-function bane_fiends_grip_custom:GetChannelTime()
-	local caster = self:GetCaster()
-	if caster:HasScepter() then
-		return self.talents.scepter_duration
-	end
-	if not caster:HasModifier("modifier_bane_fiends_grip_custom_tracker") then
-		return self:GetFullDuration()
-	end
-	return (caster:GetUpgradeStack("modifier_bane_fiends_grip_custom_tracker") * self:GetFullDuration() / 100)
-end
-
-function bane_fiends_grip_custom:GetFullDuration()
-	return self:GetSpecialValueFor("AbilityChannelTime") + self.talents.duration_inc
-end
-
-function bane_fiends_grip_custom:GetBehavior()
-	return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET + DOTA_ABILITY_BEHAVIOR_CHANNELLED
+	return self.BaseClass.GetCooldown(self, level) + (self.talents.r1_cd or 0)
 end
 
 function bane_fiends_grip_custom:GetManaCost(level)
 	return self.BaseClass.GetManaCost(self, level)
 end
 
+function bane_fiends_grip_custom:GetCastRange(vLocation, hTarget)
+	return self.BaseClass.GetCastRange(self, vLocation, hTarget)
+		+ (self.caster:HasScepter() and (self.scepter_range or 0) or 0)
+end
+
 function bane_fiends_grip_custom:GetCastPoint(iLevel)
 	return self.BaseClass.GetCastPoint(self)
 end
 
+function bane_fiends_grip_custom:GetChannelTime()
+	if self.caster:HasScepter() then
+		return self.scepter_duration or 0
+	end
+	if not self.caster:HasModifier("modifier_bane_fiends_grip_custom_tracker") then
+		return self:GetFullDuration()
+	end
+	return (self.caster:GetUpgradeStack("modifier_bane_fiends_grip_custom_tracker") * self:GetFullDuration() / 100)
+end
+
+function bane_fiends_grip_custom:GetFullDuration()
+	return (self.channel_time or 0) + (self.talents.r1_duration or 0)
+end
+
 function bane_fiends_grip_custom:OnSpellStart()
-	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 
 	if target:TriggerSpellAbsorb(self) then
@@ -235,33 +226,32 @@ function bane_fiends_grip_custom:OnSpellStart()
 	end
 
 	local duration = self:GetChannelTime()
-	if caster:HasScepter() then
+	if self.caster:HasScepter() then
 		local full = self:GetFullDuration()
 		duration = math.max(full, full * (1 - target:GetStatusResistance()))
 	end
 	self.current_target = target
 	target:RemoveModifierByName("modifier_bane_nightmare_custom")
-	self.active_mod = target:AddNewModifier(caster, self, "modifier_bane_fiends_grip_custom", { duration = duration })
+	self.active_mod =
+		target:AddNewModifier(self.caster, self, "modifier_bane_fiends_grip_custom", { duration = duration })
 end
 
 function bane_fiends_grip_custom:OnChannelThink(flInterval)
-	local caster = self:GetCaster()
 	local target = self.current_target
 
-	if not target or target:IsNull() or not target:HasModifier("modifier_bane_fiends_grip_custom") then
-		caster:Interrupt()
+	if IsValid(target) and target:HasModifier("modifier_bane_fiends_grip_custom") then
 		return
 	end
+	self.caster:Interrupt()
 end
 
 function bane_fiends_grip_custom:OnChannelFinish(bInterrupted)
-	local caster = self:GetCaster()
 	local target = self.current_target
 
 	self.current_target = nil
 	self.active_mod = nil
 
-	if not target or target:IsNull() then
+	if not IsValid(target) then
 		return
 	end
 
@@ -269,20 +259,14 @@ function bane_fiends_grip_custom:OnChannelFinish(bInterrupted)
 	if not mod then
 		return
 	end
-	if caster:HasScepter() and mod:GetElapsedTime() >= self.talents.scepter_duration - 0.03 then
+	if self.caster:HasScepter() and mod:GetElapsedTime() >= (self.scepter_duration or 0) - 0.03 then
 		return
 	end
 
 	mod:Destroy()
 end
 
-modifier_bane_fiends_grip_custom = class({})
-function modifier_bane_fiends_grip_custom:IsHidden()
-	return false
-end
-function modifier_bane_fiends_grip_custom:IsPurgable()
-	return false
-end
+modifier_bane_fiends_grip_custom = class(mod_visible)
 function modifier_bane_fiends_grip_custom:IsStunDebuff()
 	return true
 end
@@ -292,6 +276,12 @@ end
 function modifier_bane_fiends_grip_custom:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
+function modifier_bane_fiends_grip_custom:GetStatusEffectName()
+	return "particles/status_fx/status_effect_fiendsgrip.vpcf"
+end
+function modifier_bane_fiends_grip_custom:StatusEffectPriority()
+	return MODIFIER_PRIORITY_ULTRA
+end
 function modifier_bane_fiends_grip_custom:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -300,10 +290,12 @@ function modifier_bane_fiends_grip_custom:OnCreated(table)
 	if not IsServer() then
 		return
 	end
-	self.ticks = self.ability:GetSpecialValueFor("fiend_grip_ticks")
+	self.ticks = self.ability.fiend_grip_ticks
 
 	if
-		self.parent:IsRealHero() and IsValid(self.caster.bane_innate_ability, self.caster.bane_innate_ability.tracker)
+		self.parent:IsRealHero()
+		and IsValid(self.caster.bane_innate_ability)
+		and IsValid(self.caster.bane_innate_ability.tracker)
 	then
 		self.caster.bane_innate_ability.tracker:UpdateMod(self)
 	end
@@ -325,17 +317,15 @@ function modifier_bane_fiends_grip_custom:OnCreated(table)
 		self.ticks = 3
 		self.interval = self.max_time / self.ticks
 
-		local damage = self.parent:GetMaxHealth() * self.ability.talents.legendary_damage
+		local damage = self.parent:GetMaxHealth() * self.ability.talents.r7_damage
 		if self.parent:IsCreep() then
-			damage = self.ability.talents.legendary_creeps
+			damage = self.ability.talents.r7_creeps
 		end
 		self.damage = damage / self.ticks
 	else
 		self.interval = self.max_time / (self.ticks - 1)
-		self.damage = (
-			(self.ability:GetSpecialValueFor("fiend_grip_damage") + self.ability.talents.r2_base)
-			* self:GetRemainingTime()
-		) / self.ticks
+		self.damage = ((self.ability.fiend_grip_damage + self.ability.talents.r2_base) * self:GetRemainingTime())
+			/ self.ticks
 		self.caster_sound = self.caster:AddNewModifier(
 			self.caster,
 			self.ability,
@@ -344,7 +334,7 @@ function modifier_bane_fiends_grip_custom:OnCreated(table)
 		)
 	end
 
-	self.mana = (self.ability:GetSpecialValueFor("fiend_grip_mana_drain") * self:GetRemainingTime() / 100) / self.ticks
+	self.mana = self.ability.fiend_grip_mana_drain * self:GetRemainingTime() / self.ticks
 
 	self.damageTable = {
 		attacker = self.caster,
@@ -391,7 +381,7 @@ function modifier_bane_fiends_grip_custom:OnIntervalThink()
 		self.caster:GiveMana(mana)
 	elseif self.caster:IsAlive() then
 		self.caster:GenericHeal(
-			real_damage * self.ability.talents.legendary_heal,
+			real_damage * self.ability.talents.r7_heal,
 			self.ability,
 			true,
 			"particles/items3_fx/octarine_core_lifesteal.vpcf",
@@ -411,20 +401,22 @@ function modifier_bane_fiends_grip_custom:OnDestroy()
 	end
 
 	if
-		self.parent:IsRealHero() and IsValid(self.caster.bane_innate_ability, self.caster.bane_innate_ability.tracker)
+		self.parent:IsRealHero()
+		and IsValid(self.caster.bane_innate_ability)
+		and IsValid(self.caster.bane_innate_ability.tracker)
 	then
 		self.caster.bane_innate_ability.tracker:UpdateMod(self, true)
 	end
 
-	if self.ability.talents.has_damage == 1 and self.parent:IsAlive() and not self.illusion then
-		local damage = (self.parent:GetMaxHealth() - self.parent:GetHealth()) * self.ability.talents.end_damage
+	if self.ability.talents.has_r2 == 1 and self.parent:IsAlive() and not self.illusion then
+		local damage = (self.parent:GetMaxHealth() - self.parent:GetHealth()) * self.ability.talents.r2_damage
 		local real_damage = DoDamage(
 			{
 				damage = damage,
 				ability = self.ability,
 				attacker = self.caster,
 				victim = self.parent,
-				damage_type = self.ability.talents.end_damage_type,
+				damage_type = self.ability.talents.r2_damage_type,
 			},
 			"modifier_bane_grip_2"
 		)
@@ -449,18 +441,9 @@ function modifier_bane_fiends_grip_custom:OnDestroy()
 end
 
 function modifier_bane_fiends_grip_custom:CheckState()
-	local state = {
+	return {
 		[MODIFIER_STATE_STUNNED] = true,
 	}
-	return state
-end
-
-function modifier_bane_fiends_grip_custom:GetStatusEffectName()
-	return "particles/status_fx/status_effect_fiendsgrip.vpcf"
-end
-
-function modifier_bane_fiends_grip_custom:StatusEffectPriority()
-	return MODIFIER_PRIORITY_ULTRA
 end
 
 modifier_bane_fiends_grip_custom_tracker = class(mod_hidden)
@@ -470,28 +453,43 @@ function modifier_bane_fiends_grip_custom_tracker:OnCreated(table)
 	self.ability.tracker = self
 	self.interval = 0.2
 
+	self.ability.fiend_grip_ticks = self.ability:GetSpecialValueFor("fiend_grip_ticks")
+	self.ability.fiend_grip_damage = self.ability:GetSpecialValueFor("fiend_grip_damage")
+	self.ability.fiend_grip_mana_drain = self.ability:GetSpecialValueFor("fiend_grip_mana_drain") / 100
+	self.ability.channel_time = self.ability:GetSpecialValueFor("AbilityChannelTime")
+	self.ability.scepter_range = self.ability:GetSpecialValueFor("scepter_range")
+	self.ability.scepter_duration = self.ability:GetSpecialValueFor("scepter_duration")
+
 	self.ability:UpdateTalents()
 
-	if self.parent:IsRealHero() then
-		self.parent:AddSpellEvent(self)
-	end
+	self.parent:AddSpellEvent(self)
 
 	self:SetStackCount(100)
+end
+
+function modifier_bane_fiends_grip_custom_tracker:OnRefresh(table)
+	self.ability.fiend_grip_damage = self.ability:GetSpecialValueFor("fiend_grip_damage")
+	self.ability.fiend_grip_mana_drain = self.ability:GetSpecialValueFor("fiend_grip_mana_drain") / 100
 end
 
 function modifier_bane_fiends_grip_custom_tracker:OnIntervalThink()
 	if not IsServer() then
 		return
 	end
-
-	if
-		self.ability.talents.has_h6 == 1
-		and not self.parent:HasModifier("modifier_bane_fiends_grip_custom_absorb")
-		and not self.parent:HasModifier("modifier_bane_fiends_grip_custom_absorb_cd")
-		and self.parent:IsAlive()
-	then
-		self.parent:AddNewModifier(self.parent, self.ability, "modifier_bane_fiends_grip_custom_absorb", {})
+	if self.ability.talents.has_h6 == 0 then
+		return
 	end
+	if not self.parent:IsAlive() then
+		return
+	end
+	if self.parent:HasModifier("modifier_bane_fiends_grip_custom_absorb") then
+		return
+	end
+	if self.parent:HasModifier("modifier_bane_fiends_grip_custom_absorb_cd") then
+		return
+	end
+
+	self.parent:AddNewModifier(self.parent, self.ability, "modifier_bane_fiends_grip_custom_absorb", {})
 end
 
 function modifier_bane_fiends_grip_custom_tracker:DeclareFunctions()
@@ -501,7 +499,7 @@ function modifier_bane_fiends_grip_custom_tracker:DeclareFunctions()
 end
 
 function modifier_bane_fiends_grip_custom_tracker:GetModifierPercentageCooldown()
-	return self.ability.talents.cdr_bonus
+	return self.ability.talents.r3_cdr
 end
 
 function modifier_bane_fiends_grip_custom_tracker:DamageEvent_inc(params)
@@ -559,7 +557,7 @@ function modifier_bane_fiends_grip_custom_tracker:SpellEvent(params)
 	end
 
 	if
-		self.ability.talents.has_stack == 1
+		self.ability.talents.has_r3 == 1
 		and target
 		and target:IsUnit()
 		and target:GetTeamNumber() ~= self.parent:GetTeamNumber()
@@ -568,20 +566,20 @@ function modifier_bane_fiends_grip_custom_tracker:SpellEvent(params)
 			self.parent,
 			self.ability,
 			"modifier_bane_fiends_grip_custom_spell_damage",
-			{ duration = self.ability.talents.damage_duration }
+			{ duration = self.ability.talents.r3_duration }
 		)
 	end
 
-	if self.ability.talents.has_move == 1 and not self.parent:HasModifier("modifier_bane_fiends_grip_custom_move") then
+	if self.ability.talents.has_r4 == 1 and not self.parent:HasModifier("modifier_bane_fiends_grip_custom_move") then
 		self.parent:AddNewModifier(
 			self.parent,
 			self.ability,
 			"modifier_bane_fiends_grip_custom_move_stack",
-			{ duration = self.ability.talents.spells_duration }
+			{ duration = self.ability.talents.r4_effect_duration }
 		)
 	end
 
-	if self.ability.talents.has_legendary == 0 then
+	if self.ability.talents.has_r7 == 0 then
 		return
 	end
 	if IsValid(self.ability.legendary_illusion) then
@@ -600,7 +598,7 @@ function modifier_bane_fiends_grip_custom_tracker:SpellEvent(params)
 		self.parent,
 		self.ability,
 		"modifier_bane_fiends_grip_custom_legendary_stack",
-		{ target = index, duration = self.ability.talents.legendary_duration }
+		{ target = index, duration = self.ability.talents.r7_effect_duration }
 	)
 end
 
@@ -612,7 +610,7 @@ function modifier_bane_fiends_grip_custom_tracker:UpdateUI()
 	local stack = 0
 	local zero = nil
 	local active = 0
-	local max = self.ability.talents.legendary_max
+	local max = self.ability.talents.r7_max
 
 	local mod = self.parent:FindModifierByName("modifier_bane_fiends_grip_custom_legendary_stack")
 
@@ -639,14 +637,13 @@ function modifier_bane_fiends_grip_custom_tracker:UpdateUI()
 			active = 1
 			zero = 1
 			stack = mod:GetRemainingTime()
-			max = self.ability.talents.legendary_illusion_duration
+			max = self.ability.talents.r7_duration
 		end
 	end
 
 	self.parent:UpdateUIlong({
 		stack = stack,
 		max = max,
-		override_stack = override,
 		use_zero = zero,
 		active = active,
 		priority = 1,
@@ -708,20 +705,20 @@ modifier_bane_fiends_grip_custom_legendary_stack = class(mod_hidden)
 function modifier_bane_fiends_grip_custom_legendary_stack:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
-	self.max = self.ability.talents.legendary_max
-	self.radius = self.ability.talents.legendary_radius
-	self.duration = self.ability.talents.legendary_duration
+	self.max = self.ability.talents.r7_max
+	self.radius = self.ability.talents.r7_radius
+	self.duration = self.ability.talents.r7_effect_duration
 
 	if not IsServer() then
 		return
 	end
 	self.RemoveForDuel = true
-	self.mod = self.parent:FindModifierByName("modifier_bane_fiends_grip_custom_tracker")
+	self.mod = self.ability.tracker
 
 	self.visual_max = self.max
 	self.particle = self.parent:GenericParticle("particles/bane/grip_legendary_spells.vpcf", self, true)
 
-	self:SetStackCount(1)
+	self:OnRefresh(table)
 	self:StartIntervalThink(0.2)
 end
 
@@ -755,32 +752,71 @@ function modifier_bane_fiends_grip_custom_legendary_stack:OnRefresh(params)
 	end
 	self:IncrementStackCount()
 
-	if self:GetStackCount() >= self.max then
-		self:SpawnIllusion(params.target)
-		self:Destroy()
-	end
-end
-
-function modifier_bane_fiends_grip_custom_legendary_stack:OnStackCountChanged()
-	if not IsServer() then
-		return
-	end
-
 	if self.mod then
 		self.mod:UpdateUI()
 	end
 
-	if not self.particle then
+	if self.particle then
+		for i = 1, self.visual_max do
+			if i <= math.floor(self:GetStackCount() / (self.max / self.visual_max)) then
+				ParticleManager:SetParticleControl(self.particle, i, Vector(1, 0, 0))
+			else
+				ParticleManager:SetParticleControl(self.particle, i, Vector(0, 0, 0))
+			end
+		end
+	end
+
+	if self:GetStackCount() < self.max then
 		return
 	end
 
-	for i = 1, self.visual_max do
-		if i <= math.floor(self:GetStackCount() / (self.max / self.visual_max)) then
-			ParticleManager:SetParticleControl(self.particle, i, Vector(1, 0, 0))
-		else
-			ParticleManager:SetParticleControl(self.particle, i, Vector(0, 0, 0))
-		end
+	local point = self.parent:GetAbsOrigin()
+	local target = params.target and EntIndexToHScript(params.target)
+	if IsValid(target) then
+		point = target:GetAbsOrigin()
 	end
+
+	point = point + RandomVector(300)
+
+	local duration = self.ability.talents.r7_duration
+	local incoming = self.ability.talents.r7_incoming - 100
+	local damage = self.ability.talents.r7_outgoing - 100
+
+	local illusions = CreateIllusions(
+		self.parent,
+		self.parent,
+		{ duration = duration, outgoing_damage = damage, incoming_damage = incoming },
+		1,
+		1,
+		false,
+		true
+	)
+	for _, illusion in pairs(illusions) do
+		illusion:Stop()
+		illusion.owner = self.parent
+
+		for _, mod in pairs(self.parent:FindAllModifiers()) do
+			if mod.StackOnIllusion == true then
+				illusion:UpgradeIllusion(mod:GetName(), mod:GetStackCount(), mod)
+			end
+		end
+
+		illusion:EmitSound("Bane.Grip_legendary")
+		illusion:EmitSound("Bane.Grip_legendary2")
+		illusion:AddNewModifier(self.parent, nil, "modifier_chaos_knight_phantasm_illusion", {})
+		illusion:AddNewModifier(
+			self.parent,
+			self.ability,
+			"modifier_bane_fiends_grip_custom_legendary_illusion",
+			{ duration = duration, target = params.target }
+		)
+
+		illusion:SetAbsOrigin(point)
+		FindClearSpaceForUnit(illusion, point, true)
+		illusion:SetHealth(illusion:GetMaxHealth())
+	end
+
+	self:Destroy()
 end
 
 function modifier_bane_fiends_grip_custom_legendary_stack:OnDestroy()
@@ -793,77 +829,26 @@ function modifier_bane_fiends_grip_custom_legendary_stack:OnDestroy()
 	self.mod:UpdateUI()
 end
 
-function modifier_bane_fiends_grip_custom_legendary_stack:SpawnIllusion(target)
-	if not IsServer() then
-		return
-	end
-
-	local caster = self.parent
-
-	local illusion_target = nil
-	local point = caster:GetAbsOrigin()
-	if target then
-		illusion_target = target
-		point = EntIndexToHScript(target):GetAbsOrigin()
-	end
-
-	point = point + RandomVector(300)
-
-	local duration = self.ability.talents.legendary_illusion_duration
-	local incoming = self.ability.talents.legendary_incoming - 100
-	local damage = self.ability.talents.legendary_outgoing - 100
-
-	local illusions = CreateIllusions(
-		caster,
-		caster,
-		{ duration = duration, outgoing_damage = damage, incoming_damage = incoming },
-		1,
-		1,
-		false,
-		true
-	)
-	for _, illusion in pairs(illusions) do
-		illusion:Stop()
-		illusion:EmitSound("Bane.Grip_legendary")
-		illusion:EmitSound("Bane.Grip_legendary2")
-		illusion:AddNewModifier(caster, nil, "modifier_chaos_knight_phantasm_illusion", {})
-		illusion:AddNewModifier(
-			caster,
-			self.ability,
-			"modifier_bane_fiends_grip_custom_legendary_illusion",
-			{ duration = duration, target = illusion_target }
-		)
-
-		illusion:SetAbsOrigin(point)
-		FindClearSpaceForUnit(illusion, point, true)
-		illusion:SetHealth(illusion:GetMaxHealth())
-
-		illusion.owner = caster
-
-		for _, mod in pairs(caster:FindAllModifiers()) do
-			if mod.StackOnIllusion ~= nil and mod.StackOnIllusion == true then
-				illusion:UpgradeIllusion(mod:GetName(), mod:GetStackCount())
-			end
-		end
-	end
-
-	self:Destroy()
-end
-
 modifier_bane_fiends_grip_custom_legendary_illusion = class(mod_hidden)
+function modifier_bane_fiends_grip_custom_legendary_illusion:GetStatusEffectName()
+	return "particles/bane/grip_legendary_status.vpcf"
+end
+function modifier_bane_fiends_grip_custom_legendary_illusion:StatusEffectPriority()
+	return MODIFIER_PRIORITY_ILLUSION
+end
 function modifier_bane_fiends_grip_custom_legendary_illusion:OnCreated(table)
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
 	self.ability = self:GetAbility()
 
-	self.cast_range = self.ability.talents.legendary_cast_range
-	self.cast_duration = self.ability.talents.legendary_stun
-	self.first_delay = self.ability.talents.legendary_delay
+	self.cast_range = self.ability.talents.r7_cast_range
+	self.cast_duration = self.ability.talents.r7_stun
+	self.first_delay = self.ability.talents.r7_delay
 
 	if not IsServer() then
 		return
 	end
-	self.mod = self.caster:FindModifierByName("modifier_bane_fiends_grip_custom_tracker")
+	self.mod = self.ability.tracker
 	self.ability.legendary_illusion = self.parent
 
 	self.parent:GenericParticle("particles/bane/grip_legendary.vpcf", self)
@@ -913,14 +898,6 @@ end
 
 function modifier_bane_fiends_grip_custom_legendary_illusion:GetModifierMoveSpeed_Absolute()
 	return 550
-end
-
-function modifier_bane_fiends_grip_custom_legendary_illusion:GetStatusEffectName()
-	return "particles/bane/grip_legendary_status.vpcf"
-end
-
-function modifier_bane_fiends_grip_custom_legendary_illusion:StatusEffectPriority()
-	return MODIFIER_PRIORITY_ILLUSION
 end
 
 function modifier_bane_fiends_grip_custom_legendary_illusion:OnIntervalThink()
@@ -999,7 +976,7 @@ function modifier_bane_fiends_grip_custom_legendary_cast:OnCreated(table)
 	self.parent:StartGesture(ACT_DOTA_CAST_ABILITY_4)
 	self.target = EntIndexToHScript(table.target)
 
-	if not self.target or self.target:IsNull() then
+	if not IsValid(self.target) then
 		return
 	end
 
@@ -1010,11 +987,7 @@ function modifier_bane_fiends_grip_custom_legendary_cast:OnCreated(table)
 		{ illusion = self.parent:entindex(), duration = self:GetRemainingTime() }
 	)
 
-	self.parent:FaceTowards(self.target:GetAbsOrigin())
-	local vec = (self.target:GetAbsOrigin() - self.parent:GetAbsOrigin()):Normalized()
-	vec.z = 0
-
-	self.parent:SetForwardVector(vec)
+	self.parent:FacePoint(self.target:GetAbsOrigin())
 
 	self:StartIntervalThink(0.1)
 end
@@ -1046,7 +1019,7 @@ function modifier_bane_fiends_grip_custom_legendary_cast:OnDestroy()
 	if not IsServer() then
 		return
 	end
-	if not self.parent or self.parent:IsNull() then
+	if not IsValid(self.parent) then
 		return
 	end
 
@@ -1062,6 +1035,12 @@ end
 modifier_bane_fiends_grip_custom_absorb = class(mod_visible)
 function modifier_bane_fiends_grip_custom_absorb:GetTexture()
 	return "buffs/bane/hero_8"
+end
+function modifier_bane_fiends_grip_custom_absorb:GetStatusEffectName()
+	return "particles/status_fx/status_effect_phase_shift.vpcf"
+end
+function modifier_bane_fiends_grip_custom_absorb:StatusEffectPriority()
+	return MODIFIER_PRIORITY_HIGH
 end
 function modifier_bane_fiends_grip_custom_absorb:OnCreated()
 	self.ability = self:GetAbility()
@@ -1090,14 +1069,6 @@ function modifier_bane_fiends_grip_custom_absorb:OnDestroy()
 		"modifier_bane_fiends_grip_custom_absorb_cd",
 		{ duration = self.damage_cd }
 	)
-end
-
-function modifier_bane_fiends_grip_custom_absorb:GetStatusEffectName()
-	return "particles/status_fx/status_effect_phase_shift.vpcf"
-end
-
-function modifier_bane_fiends_grip_custom_absorb:StatusEffectPriority()
-	return MODIFIER_PRIORITY_HIGH
 end
 
 function modifier_bane_fiends_grip_custom_absorb:DeclareFunctions()
@@ -1137,14 +1108,14 @@ function modifier_bane_fiends_grip_custom_spell_damage:OnCreated(table)
 	self.ability = self:GetAbility()
 	self.caster = self:GetCaster()
 
-	self.max = self.ability.talents.damage_max
-	self.damage = self.ability.talents.damage_inc
+	self.max = self.ability.talents.r3_max
+	self.damage = self.ability.talents.r3_damage
 
 	if not IsServer() then
 		return
 	end
 	self.RemoveForDuel = true
-	self:SetStackCount(1)
+	self:OnRefresh()
 end
 
 function modifier_bane_fiends_grip_custom_spell_damage:OnRefresh(table)
@@ -1155,12 +1126,6 @@ function modifier_bane_fiends_grip_custom_spell_damage:OnRefresh(table)
 		return
 	end
 	self:IncrementStackCount()
-end
-
-function modifier_bane_fiends_grip_custom_spell_damage:OnStackCountChanged()
-	if not IsServer() then
-		return
-	end
 
 	if not self.particle then
 		self.particle = self.parent:GenericParticle("particles/bane/grip_legendary_stack.vpcf", self, true)
@@ -1178,6 +1143,7 @@ function modifier_bane_fiends_grip_custom_spell_damage:DeclareFunctions()
 		MODIFIER_PROPERTY_TOOLTIP,
 	}
 end
+
 function modifier_bane_fiends_grip_custom_spell_damage:GetModifierIncomingDamage_Percentage(params)
 	if IsServer() and (not params.attacker or params.attacker:FindOwner() ~= self.caster) then
 		return
@@ -1206,11 +1172,11 @@ end
 function modifier_bane_fiends_grip_custom_move_stack:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
-	self.max = self.ability.talents.spells_max
+	self.max = self.ability.talents.r4_max
 	if not IsServer() then
 		return
 	end
-	self:SetStackCount(1)
+	self:OnRefresh()
 end
 
 function modifier_bane_fiends_grip_custom_move_stack:OnRefresh()
@@ -1220,12 +1186,12 @@ function modifier_bane_fiends_grip_custom_move_stack:OnRefresh()
 	self:IncrementStackCount()
 
 	if self:GetStackCount() >= self.max then
-		self.parent:CdItems(self.ability.talents.cd_items)
+		self.parent:CdItems(self.ability.talents.r4_cd_items)
 		self.parent:AddNewModifier(
 			self.parent,
 			self.ability,
 			"modifier_bane_fiends_grip_custom_move",
-			{ duration = self.ability.talents.speed_duration }
+			{ duration = self.ability.talents.r4_duration }
 		)
 		self:Destroy()
 	end
@@ -1238,7 +1204,7 @@ end
 function modifier_bane_fiends_grip_custom_move:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
-	self.move = self.ability.talents.spells_speed
+	self.move = self.ability.talents.r4_move
 	self.resist = self.ability.talents.r4_slow_resist
 
 	if not IsServer() then

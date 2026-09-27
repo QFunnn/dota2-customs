@@ -20,7 +20,6 @@ LinkLuaModifier(
 )
 
 npc_muerta_ogre_hit = class({})
-
 function npc_muerta_ogre_hit:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
@@ -30,9 +29,7 @@ function npc_muerta_ogre_hit:Precache(context)
 	PrecacheResource("particle", "particles/act_2/ogre_seal_suprise.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_snapfire/hero_snapfire_shotgun_debuff.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_snapfire_slow.vpcf", context)
-	PrecacheResource("particle", "particles/generic_gameplay/generic_has_quest.vpcf", context)
 	PrecacheResource("particle", "particles/red_zone.vpcf", context)
-	PrecacheResource("particle", "particles/act_2/ogre_seal_suprise.vpcf", context)
 end
 
 function npc_muerta_ogre_hit:Spawn()
@@ -152,7 +149,6 @@ function modifier_npc_muerta_ogre_hit_slow:GetModifierHPRegenAmplify_Percentage(
 end
 
 npc_muerta_ogre_jump = class({})
-
 function npc_muerta_ogre_jump:Spawn()
 	if not self:GetCaster() then
 		return
@@ -245,7 +241,6 @@ function npc_muerta_ogre_jump:OnSpellStart()
 end
 
 npc_muerta_ogre_passive = class({})
-
 function npc_muerta_ogre_passive:GetIntrinsicModifierName()
 	return "modifier_npc_muerta_ogre_passive"
 end

@@ -116,6 +116,9 @@ function arc_warden_spark_wraith_custom:UpdateTalents(name)
 			h3_str = 0,
 			h3_max = caster:GetTalentValue("modifier_arc_warden_hero_3", "max", true),
 			h3_duration = caster:GetTalentValue("modifier_arc_warden_hero_3", "duration", true),
+
+			has_q3 = 0,
+			q3_stack = caster:GetTalentValue("modifier_arc_warden_flux_3", "stack", true),
 		}
 	end
 
@@ -154,10 +157,10 @@ function arc_warden_spark_wraith_custom:UpdateTalents(name)
 		self.talents.h3_str = caster:GetTalentValue("modifier_arc_warden_hero_3", "str")
 		caster:AddSpellEvent(self.tracker, true)
 	end
-end
 
-function arc_warden_spark_wraith_custom:Init()
-	self.caster = self:GetCaster()
+	if caster:HasTalent("modifier_arc_warden_flux_3") then
+		self.talents.has_q3 = 1
+	end
 end
 
 function arc_warden_spark_wraith_custom:GetIntrinsicModifierName()
@@ -168,26 +171,26 @@ function arc_warden_spark_wraith_custom:GetIntrinsicModifierName()
 end
 
 function arc_warden_spark_wraith_custom:GetAOERadius()
-	return self:GetSpecialValueFor("radius")
+	return self.radius or 0
 end
 
 function arc_warden_spark_wraith_custom:GetCastPoint(iLevel)
-	return self.BaseClass.GetCastPoint(self) + (self.talents.e2_cast and self.talents.e2_cast or 0)
+	return self.BaseClass.GetCastPoint(self) + (self.talents.e2_cast or 0)
 end
 
 function arc_warden_spark_wraith_custom:GetCooldown(level)
-	return self.BaseClass.GetCooldown(self, level) + (self.talents.e2_cd and self.talents.e2_cd or 0)
+	return self.BaseClass.GetCooldown(self, level) + (self.talents.e2_cd or 0)
 end
 
 function arc_warden_spark_wraith_custom:GetAbilityTextureName()
-	if self:GetCaster():HasModifier("modifier_arc_warden_tempest_double") then
+	if self.caster:HasModifier("modifier_arc_warden_tempest_double") then
 		return wearables_system:GetAbilityIconReplacement(self.caster, "arc_warden_spark_wraith_tempest", self)
 	end
 	return wearables_system:GetAbilityIconReplacement(self.caster, "arc_warden_spark_wraith", self)
 end
 
 function arc_warden_spark_wraith_custom:GetDamage()
-	return self:GetSpecialValueFor("spark_damage_base") + self.talents.e1_damage * self.caster:GetIntellect(false)
+	return (self.spark_damage_base or 0) + (self.talents.e1_damage or 0) * self.caster:GetIntellect(false)
 end
 
 function arc_warden_spark_wraith_custom:OnAbilityPhaseStart()
@@ -218,12 +221,11 @@ function arc_warden_spark_wraith_custom:OnSpellStart()
 
 	EmitSoundOnLocationWithCaster(cast_point, "Hero_ArcWarden.SparkWraith.Appear", self.caster)
 
-	local duration = self:GetSpecialValueFor("duration")
-	local tower_radius = self:GetSpecialValueFor("tower_radius")
+	local duration = self.duration
 
 	for _, tower in pairs(towers) do
-		if (tower:GetAbsOrigin() - cast_point):Length2D() <= tower_radius then
-			duration = self:GetSpecialValueFor("tower_duration")
+		if (tower:GetAbsOrigin() - cast_point):Length2D() <= self.tower_radius then
+			duration = self.tower_duration
 		end
 	end
 
@@ -243,11 +245,11 @@ function arc_warden_spark_wraith_custom:DealDamage(target, not_main, damage_abil
 		return
 	end
 	local damage = self:GetDamage()
-	local slow_duration = self:GetSpecialValueFor("ministun_duration")
+	local slow_duration = self.ministun_duration
 
 	local k = 1
 	if not_main then
-		k = self:GetSpecialValueFor("damage_near") / 100
+		k = self.damage_near
 	end
 
 	local hero = self.caster
@@ -267,13 +269,13 @@ function arc_warden_spark_wraith_custom:DealDamage(target, not_main, damage_abil
 
 	target:EmitSound("Hero_ArcWarden.SparkWraith.Damage")
 
-	local real_damage = DoDamage(
+	DoDamage(
 		{ victim = target, damage = damage * k, damage_type = DAMAGE_TYPE_MAGICAL, attacker = self.caster, ability = self },
 		damage_ability
 	)
 
-	if self.caster.flux_ability then
-		self.caster.flux_ability:ApplyResist(target, self.caster.flux_ability.talents.q3_stack)
+	if self.talents.has_q3 == 1 and IsValid(self.caster.flux_ability) then
+		self.caster.flux_ability:ApplyResist(target, self.talents.q3_stack)
 	end
 
 	target:AddNewModifier(
@@ -288,8 +290,8 @@ function arc_warden_spark_wraith_custom:LaunchSpark(target, source, damage_abili
 	if not IsServer() then
 		return
 	end
-	local speed = self:GetSpecialValueFor("wraith_speed_base")
-	local wraith_vision_radius = self:GetSpecialValueFor("wraith_vision_radius")
+	local speed = self.wraith_speed_base
+	local wraith_vision_radius = self.wraith_vision_radius
 	local origin = source:GetAbsOrigin()
 
 	if not damage_ability then
@@ -329,7 +331,6 @@ function arc_warden_spark_wraith_custom:LaunchSpark(target, source, damage_abili
 		iVisionTeamNumber = self.caster:GetTeamNumber(),
 		ExtraData = {
 			damage_ability = damage_ability,
-			root = root,
 		},
 	})
 end
@@ -339,15 +340,9 @@ function arc_warden_spark_wraith_custom:OnProjectileHit_ExtraData(target, locati
 		return
 	end
 	local damage_ability = ExtraData.damage_ability
-	local damage_radius = self:GetSpecialValueFor("damage_radius")
+	local damage_radius = self.damage_radius
 
-	AddFOWViewer(
-		self.caster:GetTeamNumber(),
-		location,
-		self:GetSpecialValueFor("wraith_vision_radius"),
-		self:GetSpecialValueFor("wraith_vision_duration"),
-		true
-	)
+	AddFOWViewer(self.caster:GetTeamNumber(), location, self.wraith_vision_radius, self.wraith_vision_duration, true)
 
 	if self.talents.has_e7 == 1 and target:IsRealHero() then
 		local mod_owner = self.caster.owner and self.caster.owner or self.caster
@@ -415,11 +410,10 @@ function modifier_arc_warden_spark_wraith_custom_thinker:OnCreated(table)
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
 
-	self.radius = self.ability:GetSpecialValueFor("radius")
-	self.activation_delay = self.ability:GetSpecialValueFor("base_activation_delay")
-		* (1 + self.ability.talents.e1_delay)
-	self.think_interval = self.ability:GetSpecialValueFor("think_interval")
-	self.wraith_vision_radius = self.ability:GetSpecialValueFor("wraith_vision_radius")
+	self.radius = self.ability.radius
+	self.activation_delay = self.ability.base_activation_delay * (1 + self.ability.talents.e1_delay)
+	self.think_interval = self.ability.think_interval
+	self.wraith_vision_radius = self.ability.wraith_vision_radius
 
 	if not IsServer() then
 		return
@@ -427,8 +421,11 @@ function modifier_arc_warden_spark_wraith_custom_thinker:OnCreated(table)
 
 	self.parent:EmitSound("Hero_ArcWarden.SparkWraith.Loop")
 
-	local particle_name =
-		wearables_system:GetParticleReplacementAbility(self.caster, "particles/arc_warden/spark_hero.vpcf", self)
+	local particle_name = wearables_system:GetParticleReplacementAbility(
+		self.caster,
+		"particles/arc_warden/spark_hero.vpcf",
+		self.ability
+	)
 
 	self.wraith_particle = ParticleManager:CreateParticle(particle_name, PATTACH_ABSORIGIN_FOLLOW, self.parent)
 	ParticleManager:SetParticleControl(self.wraith_particle, 1, Vector(self.radius, 1, 1))
@@ -463,9 +460,13 @@ function modifier_arc_warden_spark_wraith_custom_thinker:OnDestroy()
 	self.parent:StopSound("Hero_ArcWarden.SparkWraith.Loop")
 end
 
-modifier_arc_warden_spark_wraith_custom_slow = class({})
+modifier_arc_warden_spark_wraith_custom_slow = class(mod_visible)
+function modifier_arc_warden_spark_wraith_custom_slow:IsPurgable()
+	return true
+end
 function modifier_arc_warden_spark_wraith_custom_slow:OnCreated()
-	self.move_speed_slow_pct = self:GetAbility():GetSpecialValueFor("move_speed_slow_pct")
+	self.ability = self:GetAbility()
+	self.move_speed_slow_pct = self.ability.move_speed_slow_pct
 end
 
 function modifier_arc_warden_spark_wraith_custom_slow:DeclareFunctions()
@@ -514,7 +515,21 @@ function modifier_arc_warden_spark_wraith_custom_tracker:OnCreated(table)
 
 	self.parent.spark_ability = self.ability
 
+	self.ability.radius = self.ability:GetSpecialValueFor("radius")
+	self.ability.spark_damage_base = self.ability:GetSpecialValueFor("spark_damage_base")
+	self.ability.base_activation_delay = self.ability:GetSpecialValueFor("base_activation_delay")
+	self.ability.wraith_speed_base = self.ability:GetSpecialValueFor("wraith_speed_base")
+	self.ability.duration = self.ability:GetSpecialValueFor("duration")
+	self.ability.think_interval = self.ability:GetSpecialValueFor("think_interval")
+	self.ability.wraith_vision_radius = self.ability:GetSpecialValueFor("wraith_vision_radius")
+	self.ability.wraith_vision_duration = self.ability:GetSpecialValueFor("wraith_vision_duration")
+	self.ability.ministun_duration = self.ability:GetSpecialValueFor("ministun_duration")
+	self.ability.move_speed_slow_pct = self.ability:GetSpecialValueFor("move_speed_slow_pct")
 	self.ability.creeps = self.ability:GetSpecialValueFor("creeps") / 100
+	self.ability.damage_near = self.ability:GetSpecialValueFor("damage_near") / 100
+	self.ability.tower_duration = self.ability:GetSpecialValueFor("tower_duration")
+	self.ability.tower_radius = self.ability:GetSpecialValueFor("tower_radius")
+	self.ability.damage_radius = self.ability:GetSpecialValueFor("damage_radius")
 
 	self.legendary_ability = self.parent:FindAbilityByName("arc_warden_spark_wraith_custom_legendary")
 	if self.legendary_ability then
@@ -522,6 +537,11 @@ function modifier_arc_warden_spark_wraith_custom_tracker:OnCreated(table)
 	end
 
 	self.visual_max = 6
+end
+
+function modifier_arc_warden_spark_wraith_custom_tracker:OnRefresh(table)
+	self.ability.spark_damage_base = self.ability:GetSpecialValueFor("spark_damage_base")
+	self.ability.ministun_duration = self.ability:GetSpecialValueFor("ministun_duration")
 end
 
 function modifier_arc_warden_spark_wraith_custom_tracker:DeclareFunctions()
@@ -556,10 +576,7 @@ function modifier_arc_warden_spark_wraith_custom_tracker:SpellEvent(params)
 			target = self.parent:RandomTarget(self.ability.talents.e3_radius)
 		end
 		if target then
-			local ability = self.parent:FindAbilityByName(self.ability:GetName())
-			if ability then
-				ability:LaunchSpark(target, self.parent, "modifier_arc_warden_spark_3")
-			end
+			self.ability:LaunchSpark(target, self.parent, "modifier_arc_warden_spark_3")
 		end
 	end
 
@@ -640,6 +657,156 @@ function modifier_arc_warden_spark_wraith_custom_tracker:OnIntervalThink()
 	self:UpdateUI()
 end
 
+modifier_arc_warden_spark_wraith_custom_str = class(mod_visible)
+function modifier_arc_warden_spark_wraith_custom_str:GetTexture()
+	return "buffs/arc_warden/hero_3"
+end
+function modifier_arc_warden_spark_wraith_custom_str:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.str = self.ability.talents.h3_str
+	self.max = self.ability.talents.h3_max
+	if not IsServer() then
+		return
+	end
+	self.StackOnIllusion = true
+	self:OnRefresh()
+end
+
+function modifier_arc_warden_spark_wraith_custom_str:OnRefresh()
+	if not IsServer() then
+		return
+	end
+	if self:GetStackCount() >= self.max then
+		return
+	end
+	self:IncrementStackCount()
+	self.parent:CalculateStatBonus(true)
+end
+
+function modifier_arc_warden_spark_wraith_custom_str:OnDestroy()
+	if not IsServer() then
+		return
+	end
+	self.parent:CalculateStatBonus(true)
+end
+
+function modifier_arc_warden_spark_wraith_custom_str:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
+	}
+end
+
+function modifier_arc_warden_spark_wraith_custom_str:GetModifierBonusStats_Strength()
+	return self.str * self:GetStackCount()
+end
+
+modifier_arc_warden_spark_wraith_custom_legendary_stack = class(mod_hidden)
+function modifier_arc_warden_spark_wraith_custom_legendary_stack:RemoveOnDeath()
+	return false
+end
+function modifier_arc_warden_spark_wraith_custom_legendary_stack:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.max = self.ability.talents.e7_max
+	self.radius = self.ability.talents.e7_radius
+	self.duration = self.ability.talents.e7_duration
+	if not IsServer() then
+		return
+	end
+	self.mod = self.parent:FindModifierByName("modifier_arc_warden_spark_wraith_custom_tracker")
+
+	self.visual_max = 6
+	self.particle = self.parent:GenericParticle("particles/arc_warden/spark_stacks.vpcf", self, true)
+
+	self:OnRefresh()
+	self:StartIntervalThink(0.2)
+end
+
+function modifier_arc_warden_spark_wraith_custom_legendary_stack:OnIntervalThink()
+	if not IsServer() then
+		return
+	end
+	local targets = FindUnitsInRadius(
+		self.parent:GetTeamNumber(),
+		self.parent:GetAbsOrigin(),
+		nil,
+		self.radius,
+		DOTA_UNIT_TARGET_TEAM_ENEMY,
+		DOTA_UNIT_TARGET_HERO,
+		DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE,
+		FIND_CLOSEST,
+		false
+	)
+
+	if #targets > 0 then
+		self:SetDuration(self.duration, true)
+	end
+end
+
+function modifier_arc_warden_spark_wraith_custom_legendary_stack:OnRefresh()
+	if not IsServer() then
+		return
+	end
+	if self:GetStackCount() >= self.max then
+		return
+	end
+	self:IncrementStackCount()
+
+	if self.mod then
+		self.mod:UpdateUI()
+	end
+
+	if not self.particle then
+		return
+	end
+
+	for i = 1, self.visual_max do
+		if i <= math.floor(self:GetStackCount() / (self.max / self.visual_max)) then
+			ParticleManager:SetParticleControl(self.particle, i, Vector(1, 0, 0))
+		else
+			ParticleManager:SetParticleControl(self.particle, i, Vector(0, 0, 0))
+		end
+	end
+end
+
+function modifier_arc_warden_spark_wraith_custom_legendary_stack:OnDestroy()
+	if not IsServer() then
+		return
+	end
+	if not self.mod then
+		return
+	end
+	self.mod:UpdateUI()
+end
+
+modifier_arc_warden_spark_wraith_custom_unslow = class(mod_hidden)
+function modifier_arc_warden_spark_wraith_custom_unslow:GetEffectName()
+	return "particles/econ/events/fall_2021/phase_boots_fall_2021_lvl2.vpcf"
+end
+function modifier_arc_warden_spark_wraith_custom_unslow:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	if not IsServer() then
+		return
+	end
+	self.parent:GenericParticle("particles/zuus_speed.vpcf", self)
+	self.parent:EmitSound("Arc.Spark_haste")
+end
+
+function modifier_arc_warden_spark_wraith_custom_unslow:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_SLOW_RESISTANCE_STACKING,
+	}
+end
+
+function modifier_arc_warden_spark_wraith_custom_unslow:GetModifierSlowResistance_Stacking()
+	return self.ability.talents.e4_slow_resist
+end
+
 arc_warden_spark_wraith_custom_legendary = class({})
 arc_warden_spark_wraith_custom_legendary.talents = {}
 function arc_warden_spark_wraith_custom_legendary:CreateTalent()
@@ -670,19 +837,25 @@ function arc_warden_spark_wraith_custom_legendary:UpdateTalents(name)
 end
 
 function arc_warden_spark_wraith_custom_legendary:Init()
+	if not self:GetCaster() then
+		return
+	end
 	self.caster = self:GetCaster()
+
+	self.aoe_radius = self:GetLevelSpecialValueFor("aoe_radius", 1)
+	self.ticks = self:GetLevelSpecialValueFor("ticks", 1)
 end
 
 function arc_warden_spark_wraith_custom_legendary:GetChannelTime()
-	return self.talents.e7_cast and self.talents.e7_cast or 0
+	return self.talents.e7_cast or 0
 end
 
 function arc_warden_spark_wraith_custom_legendary:GetAOERadius()
-	return self:GetSpecialValueFor("aoe_radius")
+	return self.aoe_radius or 0
 end
 
 function arc_warden_spark_wraith_custom_legendary:GetCooldown(iLevel)
-	return self.talents.e7_talent_cd and self.talents.e7_talent_cd or 0
+	return self.talents.e7_talent_cd or 0
 end
 
 function arc_warden_spark_wraith_custom_legendary:OnAbilityPhaseStart()
@@ -702,7 +875,7 @@ function arc_warden_spark_wraith_custom_legendary:OnAbilityPhaseStart()
 end
 
 function arc_warden_spark_wraith_custom_legendary:OnAbilityPhaseInterrupted()
-	self:GetCaster():FadeGesture(ACT_DOTA_CAST_ABILITY_3)
+	self.caster:FadeGesture(ACT_DOTA_CAST_ABILITY_3)
 end
 
 function arc_warden_spark_wraith_custom_legendary:OnSpellStart()
@@ -732,7 +905,7 @@ function arc_warden_spark_wraith_custom_legendary:OnSpellStart()
 end
 
 function arc_warden_spark_wraith_custom_legendary:OnChannelFinish(bInterrupted)
-	self:GetCaster():RemoveModifierByName("modifier_arc_warden_spark_wraith_custom_legendary")
+	self.caster:RemoveModifierByName("modifier_arc_warden_spark_wraith_custom_legendary")
 end
 
 modifier_arc_warden_spark_wraith_custom_legendary = class(mod_hidden)
@@ -750,7 +923,7 @@ function modifier_arc_warden_spark_wraith_custom_legendary:OnCreated(table)
 	ParticleManager:SetParticleControl(self.particle_ally_fx, 0, self.parent:GetAbsOrigin())
 	self:AddParticle(self.particle_ally_fx, false, false, -1, false, false)
 
-	self.main_ability = self.parent:FindAbilityByName("arc_warden_spark_wraith_custom")
+	self.main_ability = self.parent.spark_ability
 
 	if not self.main_ability then
 		self:Destroy()
@@ -768,7 +941,7 @@ function modifier_arc_warden_spark_wraith_custom_legendary:OnCreated(table)
 		)
 	end
 
-	self.ticks = self.ability:GetSpecialValueFor("ticks")
+	self.ticks = self.ability.ticks
 	self.damage_k = self.ability.talents.e7_damage * math.pow(table.stack / self.max, self.ability.talents.e7_damage_k)
 
 	self.damage = self.main_ability:GetDamage() * self.damage_k / self.ticks
@@ -788,7 +961,7 @@ function modifier_arc_warden_spark_wraith_custom_legendary:OnCreated(table)
 	self.visual_timer = 0.2
 	self.visual_count = 0
 
-	self.radius = self.ability:GetSpecialValueFor("aoe_radius")
+	self.radius = self.ability.aoe_radius
 	self.effect_cast = ParticleManager:CreateParticle("particles/blue_zone.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.target)
 	ParticleManager:SetParticleControl(self.effect_cast, 0, self.target:GetOrigin())
 	ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(self.radius, 0, 0))
@@ -833,7 +1006,7 @@ function modifier_arc_warden_spark_wraith_custom_legendary:OnIntervalThink()
 
 		for _, target in pairs(self.parent:FindTargets(self.radius, self.target:GetAbsOrigin())) do
 			self.damage_table.victim = target
-			local real_damage = DoDamage(self.damage_table)
+			DoDamage(self.damage_table, "modifier_arc_warden_spark_7")
 		end
 
 		for i = 1, 3 do
@@ -940,52 +1113,6 @@ function modifier_arc_warden_spark_wraith_custom_legendary:OnDestroy()
 	self.parent:Stop()
 end
 
-modifier_arc_warden_spark_wraith_custom_str = class(mod_visible)
-function modifier_arc_warden_spark_wraith_custom_str:GetTexture()
-	return "buffs/arc_warden/hero_3"
-end
-function modifier_arc_warden_spark_wraith_custom_str:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.str = self.ability.talents.h3_str
-	self.max = self.ability.talents.h3_max
-	if not IsServer() then
-		return
-	end
-	self.StackOnIllusion = true
-	self:SetStackCount(1)
-	self.parent:CalculateStatBonus(true)
-end
-
-function modifier_arc_warden_spark_wraith_custom_str:OnRefresh()
-	if not IsServer() then
-		return
-	end
-	if self:GetStackCount() >= self.max then
-		return
-	end
-	self:IncrementStackCount()
-	self.parent:CalculateStatBonus(true)
-end
-
-function modifier_arc_warden_spark_wraith_custom_str:OnDestroy()
-	if not IsServer() then
-		return
-	end
-	self.parent:CalculateStatBonus(true)
-end
-
-function modifier_arc_warden_spark_wraith_custom_str:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
-	}
-end
-
-function modifier_arc_warden_spark_wraith_custom_str:GetModifierBonusStats_Strength()
-	return self.str * self:GetStackCount()
-end
-
 modifier_arc_warden_spark_wraith_custom_legendary_thinker = class(mod_hidden)
 function modifier_arc_warden_spark_wraith_custom_legendary_thinker:OnCreated(table)
 	if not IsServer() then
@@ -994,10 +1121,11 @@ function modifier_arc_warden_spark_wraith_custom_legendary_thinker:OnCreated(tab
 	self.target = EntIndexToHScript(table.target)
 	self.ability = self:GetAbility()
 	self.parent = self:GetParent()
+	self.caster = self:GetCaster()
 	local proj_pfx = wearables_system:GetParticleReplacementAbility(
-		self:GetCaster(),
+		self.caster,
 		"particles/units/heroes/hero_arc_warden/arc_warden_wraith_prj.vpcf",
-		self
+		self.ability
 	)
 	ProjectileManager:CreateTrackingProjectile({
 		EffectName = proj_pfx,
@@ -1010,116 +1138,5 @@ function modifier_arc_warden_spark_wraith_custom_legendary_thinker:OnCreated(tab
 		bProvidesVision = false,
 	})
 
-	EmitSoundOnLocationWithCaster(self.parent:GetAbsOrigin(), "Hero_ArcWarden.SparkWraith.Activate", self:GetCaster())
-end
-
-modifier_arc_warden_spark_wraith_custom_legendary_stack = class(mod_hidden)
-function modifier_arc_warden_spark_wraith_custom_legendary_stack:RemoveOnDeath()
-	return false
-end
-function modifier_arc_warden_spark_wraith_custom_legendary_stack:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.max = self.ability.talents.e7_max
-	self.radius = self.ability.talents.e7_radius
-	self.duration = self.ability.talents.e7_duration
-	if not IsServer() then
-		return
-	end
-	self.mod = self.parent:FindModifierByName("modifier_arc_warden_spark_wraith_custom_tracker")
-
-	self.visual_max = 6
-	self.particle = self.parent:GenericParticle("particles/arc_warden/spark_stacks.vpcf", self, true)
-
-	self:SetStackCount(1)
-	self:StartIntervalThink(0.2)
-end
-
-function modifier_arc_warden_spark_wraith_custom_legendary_stack:OnIntervalThink()
-	if not IsServer() then
-		return
-	end
-	local targets = FindUnitsInRadius(
-		self.parent:GetTeamNumber(),
-		self.parent:GetAbsOrigin(),
-		nil,
-		self.radius,
-		DOTA_UNIT_TARGET_TEAM_ENEMY,
-		DOTA_UNIT_TARGET_HERO,
-		DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE,
-		FIND_CLOSEST,
-		false
-	)
-
-	if #targets > 0 then
-		self:SetDuration(self.duration, true)
-	end
-end
-
-function modifier_arc_warden_spark_wraith_custom_legendary_stack:OnRefresh()
-	if not IsServer() then
-		return
-	end
-	if self:GetStackCount() >= self.max then
-		return
-	end
-	self:IncrementStackCount()
-end
-
-function modifier_arc_warden_spark_wraith_custom_legendary_stack:OnStackCountChanged()
-	if not IsServer() then
-		return
-	end
-
-	if self.mod then
-		self.mod:UpdateUI()
-	end
-
-	if not self.particle then
-		return
-	end
-
-	for i = 1, self.visual_max do
-		if i <= math.floor(self:GetStackCount() / (self.max / self.visual_max)) then
-			ParticleManager:SetParticleControl(self.particle, i, Vector(1, 0, 0))
-		else
-			ParticleManager:SetParticleControl(self.particle, i, Vector(0, 0, 0))
-		end
-	end
-end
-
-function modifier_arc_warden_spark_wraith_custom_legendary_stack:OnDestroy()
-	if not IsServer() then
-		return
-	end
-	if not self.mod then
-		return
-	end
-	self.mod:UpdateUI()
-end
-
-modifier_arc_warden_spark_wraith_custom_unslow = class(mod_hidden)
-function modifier_arc_warden_spark_wraith_custom_unslow:GetEffectName()
-	return "particles/econ/events/fall_2021/phase_boots_fall_2021_lvl2.vpcf"
-end
-function modifier_arc_warden_spark_wraith_custom_unslow:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	if not IsServer() then
-		return
-	end
-	self.parent:GenericParticle("particles/zuus_speed.vpcf", self)
-	self.parent:EmitSound("Arc.Spark_haste")
-end
-
-function modifier_arc_warden_spark_wraith_custom_unslow:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_SLOW_RESISTANCE_STACKING,
-	}
-end
-
-function modifier_arc_warden_spark_wraith_custom_unslow:GetModifierSlowResistance_Stacking()
-	return self.ability.talents.e4_slow_resist
+	EmitSoundOnLocationWithCaster(self.parent:GetAbsOrigin(), "Hero_ArcWarden.SparkWraith.Activate", self.caster)
 end

@@ -59,10 +59,16 @@ function ClearMuteState()
 	g_Applied = false
 }
 
+function OnVoiceRadiusChanged(table, key, data)
+{
+	if (table !== "voice_radius") return
+	if (key !== "config" && key !== String(Game.GetLocalPlayerID())) return
+
+	MuteThink()
+}
+
 function MuteThink()
 {
-	$.Schedule(0.25, MuteThink)
-
 	if (!IsEnabled())
 	{
 		ClearMuteState()
@@ -91,5 +97,7 @@ function MuteThink()
 		SetMuteState(pid, audible[pid] === undefined)
 	}
 }
+
+CustomNetTables.SubscribeNetTableListener("voice_radius", OnVoiceRadiusChanged)
 
 MuteThink()

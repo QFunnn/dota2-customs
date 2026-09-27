@@ -74,10 +74,8 @@ function broodmother_incapacitating_bite_custom:UpdateTalents()
 	if not self.init then
 		self.init = true
 		self.talents = {
-			has_e1 = 0,
 			e1_speed = 0,
 
-			has_e2 = 0,
 			e2_range = 0,
 			e2_damage_reduce = 0,
 
@@ -88,12 +86,6 @@ function broodmother_incapacitating_bite_custom:UpdateTalents()
 			e3_duration = caster:GetTalentValue("modifier_broodmother_bite_3", "duration", true),
 			e3_max = caster:GetTalentValue("modifier_broodmother_bite_3", "max", true),
 
-			has_e4 = 0,
-			e4_stun = caster:GetTalentValue("modifier_broodmother_bite_4", "stun", true),
-			e4_chance = caster:GetTalentValue("modifier_broodmother_bite_4", "chance", true),
-			e4_chance_hero = caster:GetTalentValue("modifier_broodmother_bite_4", "chance_hero", true),
-			e4_talent_cd = caster:GetTalentValue("modifier_broodmother_bite_4", "talent_cd", true),
-
 			has_e7 = 0,
 			e7_stun = caster:GetTalentValue("modifier_broodmother_bite_7", "stun", true),
 			e7_duration = caster:GetTalentValue("modifier_broodmother_bite_7", "duration", true),
@@ -103,7 +95,6 @@ function broodmother_incapacitating_bite_custom:UpdateTalents()
 			e7_linger = caster:GetTalentValue("modifier_broodmother_bite_7", "linger", true),
 			e7_talent_cd = caster:GetTalentValue("modifier_broodmother_bite_7", "talent_cd", true),
 
-			has_h2 = 0,
 			h2_magic = 0,
 			h2_armor = 0,
 			h2_health = caster:GetTalentValue("modifier_broodmother_hero_2", "health", true),
@@ -112,12 +103,10 @@ function broodmother_incapacitating_bite_custom:UpdateTalents()
 	end
 
 	if caster:HasTalent("modifier_broodmother_bite_1") then
-		self.talents.has_e1 = 1
 		self.talents.e1_speed = caster:GetTalentValue("modifier_broodmother_bite_1", "speed")
 	end
 
 	if caster:HasTalent("modifier_broodmother_bite_2") then
-		self.talents.has_e2 = 1
 		self.talents.e2_range = caster:GetTalentValue("modifier_broodmother_bite_2", "range")
 		self.talents.e2_damage_reduce = caster:GetTalentValue("modifier_broodmother_bite_2", "damage_reduce")
 	end
@@ -128,10 +117,6 @@ function broodmother_incapacitating_bite_custom:UpdateTalents()
 		self.talents.e3_armor = caster:GetTalentValue("modifier_broodmother_bite_3", "armor")
 	end
 
-	if caster:HasTalent("modifier_broodmother_bite_4") then
-		self.talents.has_e4 = 1
-	end
-
 	if caster:HasTalent("modifier_broodmother_bite_7") then
 		self.talents.has_e7 = 1
 		if IsServer() then
@@ -140,14 +125,13 @@ function broodmother_incapacitating_bite_custom:UpdateTalents()
 	end
 
 	if caster:HasTalent("modifier_broodmother_hero_2") then
-		self.talents.has_h2 = 1
 		self.talents.h2_magic = caster:GetTalentValue("modifier_broodmother_hero_2", "magic")
 		self.talents.h2_armor = caster:GetTalentValue("modifier_broodmother_hero_2", "armor")
 	end
 end
 
 function broodmother_incapacitating_bite_custom:GetCooldown(level)
-	return ((self.talents.e7_talent_cd and self.talents.has_e7 == 1) and self.talents.e7_talent_cd or 0)
+	return self.talents.has_e7 == 1 and self.talents.e7_talent_cd or 0
 end
 
 function broodmother_incapacitating_bite_custom:GetBehavior()
@@ -176,7 +160,7 @@ function broodmother_incapacitating_bite_custom:OnAbilityPhaseStart()
 	end
 
 	CustomGameEventManager:Send_ServerToPlayer(
-		PlayerResource:GetPlayer(self:GetCaster():GetPlayerOwnerID()),
+		PlayerResource:GetPlayer(self.caster:GetPlayerOwnerID()),
 		"CreateIngameErrorMessage",
 		{ message = "#brood_bite_error" }
 	)
@@ -184,7 +168,6 @@ function broodmother_incapacitating_bite_custom:OnAbilityPhaseStart()
 end
 
 function broodmother_incapacitating_bite_custom:OnSpellStart()
-	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 	local mod = target:FindModifierByName("modifier_broodmother_incapacitating_bite_custom_legendary_stack")
 
@@ -193,8 +176,8 @@ function broodmother_incapacitating_bite_custom:OnSpellStart()
 	end
 	mod:Destroy()
 
-	caster:EmitSound("Brood.Bite_legendary_caster_vo")
-	caster:EmitSound("Brood.Bite_legendary_caster")
+	self.caster:EmitSound("Brood.Bite_legendary_caster_vo")
+	self.caster:EmitSound("Brood.Bite_legendary_caster")
 	target:EmitSound("Brood.Bite_legendary_active")
 	target:EmitSound("Brood.Bite_legendary_active2")
 
@@ -204,22 +187,22 @@ function broodmother_incapacitating_bite_custom:OnSpellStart()
 		target
 	)
 	ParticleManager:SetParticleControl(particle, 0, target:GetAbsOrigin())
-	ParticleManager:SetParticleControl(particle, 1, caster:GetAbsOrigin())
+	ParticleManager:SetParticleControl(particle, 1, self.caster:GetAbsOrigin())
 	ParticleManager:Delete(particle, 1)
 
 	for i = 1, 2 do
 		local particle2 = ParticleManager:CreateParticle(
 			"particles/broodmother/bite_legendary_hit.vpcf",
 			PATTACH_CUSTOMORIGIN,
-			caster
+			self.caster
 		)
 		ParticleManager:SetParticleControlEnt(
 			particle2,
 			0,
-			caster,
+			self.caster,
 			PATTACH_POINT_FOLLOW,
 			"attach_thorax",
-			caster:GetAbsOrigin(),
+			self.caster:GetAbsOrigin(),
 			true
 		)
 		ParticleManager:SetParticleControlEnt(
@@ -235,14 +218,14 @@ function broodmother_incapacitating_bite_custom:OnSpellStart()
 	end
 
 	target:AddNewModifier(
-		caster,
-		caster:BkbAbility(self, true),
+		self.caster,
+		self.caster:BkbAbility(self, true),
 		"modifier_stunned",
 		{ duration = self.talents.e7_stun * (1 - target:GetStatusResistance()) }
 	)
 	target:AddNewModifier(
-		caster,
-		caster:BkbAbility(self, true),
+		self.caster,
+		self.caster:BkbAbility(self, true),
 		"modifier_broodmother_incapacitating_bite_custom_legendary_active",
 		{ duration = self.talents.e7_duration }
 	)
@@ -269,6 +252,7 @@ function modifier_broodmother_incapacitating_bite_custom_tracker:OnRefresh()
 	self.ability.bonus_movespeed = self.ability:GetSpecialValueFor("bonus_movespeed")
 	self.ability.attack_damage = self.ability:GetSpecialValueFor("attack_damage")
 	self.ability.creeps = self.ability:GetSpecialValueFor("creeps")
+	self.ability.duration = self.ability:GetSpecialValueFor("duration")
 end
 
 function modifier_broodmother_incapacitating_bite_custom_tracker:UpdateUI()
@@ -472,17 +456,10 @@ function modifier_broodmother_incapacitating_bite_custom_armor:OnCreated(table)
 	end
 	self.count = -1
 	self.max_timer = 1 / table.interval
-	self:AddStack()
+	self:OnRefresh()
 end
 
 function modifier_broodmother_incapacitating_bite_custom_armor:OnRefresh(table)
-	if not IsServer() then
-		return
-	end
-	self:AddStack()
-end
-
-function modifier_broodmother_incapacitating_bite_custom_armor:AddStack()
 	if not IsServer() then
 		return
 	end
@@ -553,17 +530,10 @@ function modifier_broodmother_incapacitating_bite_custom_legendary_stack:OnCreat
 	self.effect_cast = self.parent:GenericParticle("particles/broodmother/bite_stack.vpcf", self, true)
 	self.max_timer = 1 / table.interval
 	self.count = -1
-	self:AddStack()
+	self:OnRefresh()
 end
 
 function modifier_broodmother_incapacitating_bite_custom_legendary_stack:OnRefresh(table)
-	if not IsServer() then
-		return
-	end
-	self:AddStack()
-end
-
-function modifier_broodmother_incapacitating_bite_custom_legendary_stack:AddStack()
 	if not IsServer() then
 		return
 	end
@@ -577,6 +547,13 @@ function modifier_broodmother_incapacitating_bite_custom_legendary_stack:AddStac
 	self.count = 0
 	self:IncrementStackCount()
 
+	if self.effect_cast then
+		ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(0, self:GetStackCount(), 0))
+		if IsValid(self.ability.tracker) and self.ability.legendary_stack == self then
+			self.ability.tracker:UpdateUI()
+		end
+	end
+
 	if self:GetStackCount() >= self.max then
 		self.parent:GenericParticle("particles/lc_odd_charge_mark.vpcf", self, true)
 		if self.effect_cast then
@@ -584,17 +561,6 @@ function modifier_broodmother_incapacitating_bite_custom_legendary_stack:AddStac
 			ParticleManager:ReleaseParticleIndex(self.effect_cast)
 			self.effect_cast = nil
 		end
-	end
-end
-
-function modifier_broodmother_incapacitating_bite_custom_legendary_stack:OnStackCountChanged(iStackCount)
-	if not self.effect_cast then
-		return
-	end
-	ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(0, self:GetStackCount(), 0))
-
-	if IsValid(self.ability.tracker) and self.ability.legendary_stack == self then
-		self.ability.tracker:UpdateUI()
 	end
 end
 
@@ -612,6 +578,12 @@ function modifier_broodmother_incapacitating_bite_custom_legendary_stack:OnDestr
 end
 
 modifier_broodmother_incapacitating_bite_custom_legendary_active = class(mod_hidden)
+function modifier_broodmother_incapacitating_bite_custom_legendary_active:GetStatusEffectName()
+	return "particles/status_fx/status_effect_rupture.vpcf"
+end
+function modifier_broodmother_incapacitating_bite_custom_legendary_active:StatusEffectPriority()
+	return MODIFIER_PRIORITY_ULTRA
+end
 function modifier_broodmother_incapacitating_bite_custom_legendary_active:OnCreated()
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
@@ -636,6 +608,9 @@ function modifier_broodmother_incapacitating_bite_custom_legendary_active:OnInte
 	if not IsServer() then
 		return
 	end
+	if not IsValid(self.ability) then
+		return
+	end
 	if not IsValid(self.ability.tracker) then
 		return
 	end
@@ -644,6 +619,9 @@ end
 
 function modifier_broodmother_incapacitating_bite_custom_legendary_active:OnDestroy()
 	if not IsServer() then
+		return
+	end
+	if not IsValid(self.ability) then
 		return
 	end
 	self.ability.legendary_active = nil
@@ -665,11 +643,4 @@ function modifier_broodmother_incapacitating_bite_custom_legendary_active:GetMod
 		return
 	end
 	return self.caster == params.attacker and self.ability.talents.e7_damage or self.ability.talents.e7_spider
-end
-
-function modifier_broodmother_incapacitating_bite_custom_legendary_active:GetStatusEffectName()
-	return "particles/status_fx/status_effect_rupture.vpcf"
-end
-function modifier_broodmother_incapacitating_bite_custom_legendary_active:StatusEffectPriority()
-	return MODIFIER_PRIORITY_ULTRA
 end

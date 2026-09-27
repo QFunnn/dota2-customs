@@ -14,11 +14,9 @@ $.GetContextPanel().SetParent(parentHUDElements);
 
 
 CustomNetTables.SubscribeNetTableListener( "sub_data", update_sub_data );
-CustomNetTables.SubscribeNetTableListener( "upgrades_player", update_upgrades_player );
 
 var full_talents = 0
 var show_mode = 0
-var common_bonus = 0
 var ChoiseOpened = false
 var use_short_table = {1: 0, 2: 0, 3: 0, 4: 0}
 var current_small
@@ -76,16 +74,6 @@ function update_sub_data(table, key, data)
     full_talents = data.full_talents
 }
 
-function update_upgrades_player(table, key, data)
-{
-    if (table != "upgrades_player") return
-
-    const hero = Entities.GetUnitName(Players.GetPlayerHeroEntityIndex(Game.GetLocalPlayerID()))
-
-    if (key != hero) return
-    common_bonus = data.common_bonus/100
-}
-
 
 function init() 
 {
@@ -93,7 +81,6 @@ function init()
     GameEvents.Subscribe_custom('end_choise', EndChoise)
     GameEvents.Subscribe_custom('ReturnViewTalent', ReturnViewTalent)
 
-    const hero = Entities.GetUnitName(Players.GetPlayerHeroEntityIndex(Game.GetLocalPlayerID()))
     var sub_data = CustomNetTables.GetTableValue("sub_data", String(Game.GetLocalPlayerID()));
 
     if (sub_data) 
@@ -104,13 +91,6 @@ function init()
         if (sub_data.small_talents) 
             show_mode = sub_data.small_talents
     }
-
-    var player_table = CustomNetTables.GetTableValue("upgrades_player", hero)
-
-    if (player_table && player_table.common_bonus)
-    {
-        common_bonus = player_table.common_bonus/100
-    }
 }
 
 
@@ -119,6 +99,7 @@ init();
 var global_choise = []
 var max = 0
 var can_refresh = 0
+var priority_checkbox = null
 
 var styles_table = styles_normal
 if (show_mode == 1)
@@ -132,7 +113,6 @@ function OnShow(kv, change_view)
     last_data = kv
 
     var table = kv.choise
-    var hasup = kv.hasup
     var stack = kv.mods
     var alert = kv.alert
     var after_legen = kv.after_legen
@@ -153,6 +133,8 @@ function OnShow(kv, change_view)
     styles_table = (show_mode == 1) ? styles_small : styles_normal
 
     can_refresh = kv.refresh
+
+    priority_checkbox = null
 
     $.DispatchEvent("DropInputFocus")
 
@@ -235,12 +217,11 @@ function OnShow(kv, change_view)
         let rarity = talent_data["rarity"]
         let skill_number = talent_data["skill_number"]
         let max_level = Game.GetMaxLevel(talent_data)
-        if (talent_data["max_level"])
-            max_level = talent_data["max_level"]
 
         let panel = rarity + "_skill"
         let icon_name = "skills/" + talent_data["skill_icon"]
         let complexity = talent_data["complexity"]
+        let build_type = talent_data["build_type"]
         let skill_change = talent_data["skill_change"]
 
         let skill_name = null 
@@ -386,11 +367,24 @@ function OnShow(kv, change_view)
             let complexity_block = $.CreatePanel("Panel", card, "complexity_block" + i)
             complexity_block.AddClass("complexity_block")
 
-            let complexity_text = $.CreatePanel("Label", complexity_block, "")
+            if (build_type)
+            {
+                complexity_block.AddClass("complexity_block_build")
+                complexity_block.AddClass("complexity_block_build_" + build_type)
+
+                let build_text = $.CreatePanel("Label", complexity_block, "")
+                build_text.AddClass("build_type_text")
+                build_text.text = $.Localize("#talent_build_type_" + build_type)
+            }
+
+            let complexity_row = $.CreatePanel("Panel", complexity_block, "")
+            complexity_row.AddClass("complexity_row")
+
+            let complexity_text = $.CreatePanel("Label", complexity_row, "")
             complexity_text.AddClass("complexity_block_text")
             complexity_text.text = $.Localize("#talent_complexity")
 
-            let complexity_levels = $.CreatePanel("Panel", complexity_block, "complexity_levels" + i)
+            let complexity_levels = $.CreatePanel("Panel", complexity_row, "complexity_levels" + i)
             complexity_levels.AddClass("complexity_levels")
 
             for (var j = 1; j <= 3; j++)
@@ -410,13 +404,13 @@ function OnShow(kv, change_view)
             skill_change_icon.style.backgroundImage = 'url("file://{images}/custom_game/icons/mini/' + hero + '/' + skill_change + '.png")';
             skill_change_icon.style.backgroundSize = 'contain';
 
-            let change_text = $.Localize("#" + hero + "_" + skill_change)
+            let tooltip_rarity = rarity == "orange" ? "legendary" : rarity
 
             skill_change_icon.SetPanelEvent('onmouseover', function() {
-            $.DispatchEvent('DOTAShowTextTooltip', skill_change_icon, change_text) });
-            
+            $.DispatchEvent("UIShowCustomLayoutParametersTooltip", skill_change_icon, "skill_tooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "rarity=" + tooltip_rarity + "&hero_name=" + hero + "&skill_change_info=" + skill_change) });
+
             skill_change_icon.SetPanelEvent('onmouseout', function() {
-            $.DispatchEvent('DOTAHideTextTooltip', skill_change_icon); });
+            $.DispatchEvent("UIHideCustomLayoutTooltip", skill_change_icon, "skill_tooltip") });
 
             skill_change_icon.RemoveClass("talent_effects_icon_hidden")
         }
@@ -475,12 +469,13 @@ function OnShow(kv, change_view)
 
 		if (rarity == "gray") 
         {
-            let general_value = talent_data["general_bonus"]
+            let will_max = Number(max_level) != 0 && stack[i] + 1 >= Number(max_level)
+            let max_text = Game.ShowTalentMax(name, stack[i], max_level, hero, Game.GetLocalPlayerID(), will_max)
 
-            let number = general_value * (1 + common_bonus)
-            if (number !== Math.floor(number))
-                number = (general_value * (1 + common_bonus)).toFixed(1)
-            text.text = "<b><font color=#53ea48>" + '+' + String(number) + "</font></b>" + $.Localize('#talent_disc_' + name)
+            if (max_text != "" && show_mode == 0)
+                max_text = "<br>" + max_text
+
+            text.text = Game.ShowTalentValues(Game.GetTalentTextKey("#upgrade_disc_" + name, name, hero, Game.GetLocalPlayerID()), name, stack[i] + 1, false, false) + max_text
         }
 
         if (rarity == "orange")
@@ -498,15 +493,16 @@ function OnShow(kv, change_view)
         text.style.fontSize = GetFontSize(name, rarity)
 
         if (max_level !== 0)
-            SetLevelInfo(stacks, rarity == "blue", stack[i], max_level)
+            SetLevelInfo(stacks, rarity, stack[i], max_level)
 
         SetAltDown(i)
 
         let card_number = i
         card_body.SetPanelEvent("onactivate", function() 
-        {   
+        {
+            let priority = priority_checkbox && priority_checkbox.BHasClass("PriorityCheckbox_active") ? 1 : 0
             DeleteAll()
-            GameEvents.SendCustomGameEventToServer_custom("activate_choise", { chosen: card_number })
+            GameEvents.SendCustomGameEventToServer_custom("activate_choise", { chosen: card_number, priority: priority })
         })
     }
 
@@ -583,7 +579,40 @@ function OnShow(kv, change_view)
         {
             refresh_choise(after_legen)
         })
-    }   
+    }
+
+    let player_upgrades = CustomNetTables.GetTableValue("upgrades_player", String(Game.GetLocalPlayerID()))
+
+    if (global_rarity == "gray" && !(player_upgrades && player_upgrades.priority))
+    {
+        let parent = show_mode == 1 ? ClosePanelSmall : ClosePanel
+
+        let priority = $.CreatePanel("Panel", parent, "priority")
+        priority.AddClass("ButtonStyle")
+        priority.AddClass("ButtonStyle_priority")
+        priority.AddClass("SmallRefreshBlur")
+
+        let label = $.CreatePanel("Label", priority, "")
+        label.AddClass("ButtonText")
+        label.AddClass("ButtonText_priority")
+        label.text = $.Localize("#choise_priority")
+
+        let checkbox = $.CreatePanel("Panel", priority, "")
+        checkbox.AddClass("PriorityCheckbox")
+        priority_checkbox = checkbox
+
+        priority.SetPanelEvent('onmouseover', function() {
+        $.DispatchEvent("UIShowCustomLayoutParametersTooltip", priority, "priority_tooltip", "file://{resources}/layout/custom_game/custom_tooltip.xml", "rarity=gray&priority_info=1") });
+
+        priority.SetPanelEvent('onmouseout', function() {
+        $.DispatchEvent("UIHideCustomLayoutTooltip", priority, "priority_tooltip") });
+
+        priority.SetPanelEvent("onactivate", function()
+        {
+            checkbox.ToggleClass("PriorityCheckbox_active")
+            Game.EmitSound("UI.Click")
+        })
+    }
 
     var CloseButton = $.CreatePanel("Panel", show_mode == 1 ? ClosePanelSmall : ClosePanel, "close")
     CloseButton.AddClass("ButtonStyle")
@@ -846,10 +875,14 @@ function DeleteAll()
     }
 
     let refresh = $("#refresh")
+    let priority = $("#priority")
     let close = $("#close")
 
     if (refresh)
         DeleteChoise(refresh)
+
+    if (priority)
+        DeleteChoise(priority)
 
     if (close)
         DeleteChoise(close)
@@ -874,7 +907,7 @@ function GetFontSize(name, rarity)
     {
         if (rarity == "gray")
         {
-            font_size = "21px"    
+            font_size = "19px"    
         }
         if (rarity == "blue")
         {
@@ -921,19 +954,14 @@ function SetPermaInfo(panel, stack, max)
 }
 
 
-function SetLevelInfo(panel, is_blue, level, max_level) 
+function SetLevelInfo(panel, rarity, level, max_level) 
 {
     panel.RemoveClass("text_hidden")
 
     panel.html = true
     panel.text = String(level) + "/" + String(max_level)
-    if (is_blue == true) 
-    {
-        panel.style.color = '#a5cdff'
-    } else 
-    {
-        panel.style.color = '#cfb0f7'
-    }
+
+    panel.AddClass("stack_text_" + rarity)
 }
 
 function DeleteChoise(card) {

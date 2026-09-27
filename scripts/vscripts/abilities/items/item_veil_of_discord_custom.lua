@@ -27,6 +27,16 @@ function item_veil_of_discord_custom:Precache(context)
 	end
 	PrecacheResource("particle", "particles/items2_fx/veil_of_discord.vpcf", context)
 	PrecacheResource("particle", "particles/items2_fx/veil_of_discord_debuff.vpcf", context)
+	PrecacheResource("particle", "particles/items3_fx/octarine_core_lifesteal.vpcf", context)
+end
+
+function item_veil_of_discord_custom:Spawn()
+	self.bonus_health = self:GetSpecialValueFor("bonus_health")
+	self.bonus_intellect = self:GetSpecialValueFor("bonus_intellect")
+	self.spell_lifesteal = self:GetSpecialValueFor("spell_lifesteal") / 100
+	self.spell_amp = self:GetSpecialValueFor("spell_amp")
+	self.debuff_radius = self:GetSpecialValueFor("debuff_radius")
+	self.resist_debuff_duration = self:GetSpecialValueFor("resist_debuff_duration")
 end
 
 function item_veil_of_discord_custom:OnSpellStart()
@@ -53,13 +63,16 @@ function item_veil_of_discord_custom:GetIntrinsicModifierName()
 	return "modifier_item_veil_of_discord_custom"
 end
 
-modifier_item_veil_of_discord_custom = class({})
-function modifier_item_veil_of_discord_custom:IsHidden()
-	return true
+modifier_item_veil_of_discord_custom = class(mod_hidden)
+function modifier_item_veil_of_discord_custom:OnCreated(table)
+	self.ability = self:GetAbility()
+	self.parent = self:GetParent()
+
+	if self.parent:IsRealHero() then
+		self.parent:AddDamageEvent_out(self, true)
+	end
 end
-function modifier_item_veil_of_discord_custom:IsPurgable()
-	return false
-end
+
 function modifier_item_veil_of_discord_custom:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_HEALTH_BONUS,
@@ -75,24 +88,11 @@ function modifier_item_veil_of_discord_custom:GetModifierBonusStats_Intellect()
 	return self.ability.bonus_intellect
 end
 
-function modifier_item_veil_of_discord_custom:OnCreated(table)
-	self.ability = self:GetAbility()
-	self.parent = self:GetParent()
-
-	if self.parent:IsRealHero() then
-		self.parent:AddDamageEvent_out(self, true)
-	end
-
-	self.ability.bonus_health = self.ability:GetSpecialValueFor("bonus_health")
-	self.ability.bonus_intellect = self.ability:GetSpecialValueFor("bonus_intellect")
-	self.ability.spell_lifesteal = self.ability:GetSpecialValueFor("spell_lifesteal") / 100
-	self.ability.spell_amp = self.ability:GetSpecialValueFor("spell_amp")
-	self.ability.debuff_radius = self.ability:GetSpecialValueFor("debuff_radius")
-	self.ability.resist_debuff_duration = self.ability:GetSpecialValueFor("resist_debuff_duration")
-end
-
 function modifier_item_veil_of_discord_custom:DamageEvent_out(params)
 	if not IsServer() then
+		return
+	end
+	if not IsValid(self.ability) then
 		return
 	end
 	local result = self.parent:CheckLifesteal(params, 1)

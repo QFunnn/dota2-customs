@@ -43,10 +43,30 @@ function item_alchemist_gold_shiva:Precache(context)
 	PrecacheResource("particle", "particles/econ/events/ti10/shivas_guard_ti10_impact.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_crystalmaiden/maiden_frostbite_buff.vpcf", context)
 	PrecacheResource("particle", "particles/veil_of_corr_debuff.vpcf", context)
+	PrecacheResource("particle", "particles/status_fx/status_effect_frost_lich.vpcf", context)
+end
+
+function item_alchemist_gold_shiva:Spawn()
+	self.blast_radius = self:GetSpecialValueFor("blast_radius")
+	self.wave_duration = self:GetSpecialValueFor("wave_duration")
+	self.bonus_armor = self:GetSpecialValueFor("bonus_armor")
+	self.bonus_hp = self:GetSpecialValueFor("bonus_hp")
+	self.bonus_mana = self:GetSpecialValueFor("bonus_mana")
+	self.bonus_intellect = self:GetSpecialValueFor("bonus_intellect")
+	self.bonus_damage = self:GetSpecialValueFor("bonus_damage")
+	self.aura_radius = self:GetSpecialValueFor("aura_radius")
+	self.cdr_bonus = self:GetSpecialValueFor("cdr_bonus")
+	self.aura_slow = self:GetSpecialValueFor("aura_slow")
+	self.aura_attack_speed = self:GetSpecialValueFor("aura_attack_speed")
+	self.blast_speed = self:GetSpecialValueFor("blast_speed")
+	self.root_duration = self:GetSpecialValueFor("root_duration")
+	self.movespeed = self:GetSpecialValueFor("movespeed")
+	self.ticks = self:GetSpecialValueFor("ticks")
+	self.damage = self:GetSpecialValueFor("damage")
 end
 
 function item_alchemist_gold_shiva:GetCastRange(vector, hTarget)
-	return self:GetSpecialValueFor("blast_radius")
+	return self.blast_radius
 end
 
 function item_alchemist_gold_shiva:OnSpellStart()
@@ -57,7 +77,7 @@ function item_alchemist_gold_shiva:OnSpellStart()
 		caster,
 		self,
 		"modifier_alchemist_gold_shiva_custom_active",
-		{ duration = self:GetSpecialValueFor("wave_duration") }
+		{ duration = self.wave_duration }
 	)
 end
 
@@ -65,21 +85,39 @@ modifier_alchemist_gold_shiva_custom_stats = class(mod_hidden)
 function modifier_alchemist_gold_shiva_custom_stats:RemoveOnDeath()
 	return false
 end
-function modifier_alchemist_gold_shiva_custom_stats:OnCreated(keys)
+function modifier_alchemist_gold_shiva_custom_stats:GetAuraRadius()
+	return self.radius
+end
+function modifier_alchemist_gold_shiva_custom_stats:GetAuraSearchFlags()
+	return DOTA_UNIT_TARGET_FLAG_NONE
+end
+function modifier_alchemist_gold_shiva_custom_stats:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_ENEMY
+end
+function modifier_alchemist_gold_shiva_custom_stats:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
+end
+function modifier_alchemist_gold_shiva_custom_stats:GetModifierAura()
+	return "modifier_alchemist_gold_shiva_custom_aura"
+end
+function modifier_alchemist_gold_shiva_custom_stats:IsAura()
+	return not self.parent:HasModifier("modifier_item_shiva_custom_stats")
+end
+function modifier_alchemist_gold_shiva_custom_stats:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.armor = self.ability:GetSpecialValueFor("bonus_armor")
-	self.health = self.ability:GetSpecialValueFor("bonus_hp")
-	self.mana = self.ability:GetSpecialValueFor("bonus_mana")
-	self.int = self.ability:GetSpecialValueFor("bonus_intellect")
-	self.spell = self.ability:GetSpecialValueFor("bonus_damage")
-	self.radius = self.ability:GetSpecialValueFor("aura_radius")
+	self.armor = self.ability.bonus_armor
+	self.health = self.ability.bonus_hp
+	self.mana = self.ability.bonus_mana
+	self.int = self.ability.bonus_intellect
+	self.spell = self.ability.bonus_damage
+	self.radius = self.ability.aura_radius
 
 	if not self.parent.cdr_items then
 		self.parent.cdr_items = {}
 	end
-	self.parent.cdr_items[self] = self.ability:GetSpecialValueFor("cdr_bonus")
+	self.parent.cdr_items[self] = self.ability.cdr_bonus
 end
 
 function modifier_alchemist_gold_shiva_custom_stats:DeclareFunctions()
@@ -112,26 +150,21 @@ function modifier_alchemist_gold_shiva_custom_stats:GetModifierBonusStats_Intell
 	return self.int
 end
 
-function modifier_alchemist_gold_shiva_custom_stats:GetAuraRadius()
-	return self.radius
+modifier_alchemist_gold_shiva_custom_aura = class(mod_visible)
+function modifier_alchemist_gold_shiva_custom_aura:GetStatusEffectName()
+	return "particles/status_fx/status_effect_frost_lich.vpcf"
 end
-function modifier_alchemist_gold_shiva_custom_stats:GetAuraSearchFlags()
-	return DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
+function modifier_alchemist_gold_shiva_custom_aura:StatusEffectPriority()
+	return MODIFIER_PRIORITY_NORMAL
 end
-function modifier_alchemist_gold_shiva_custom_stats:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_ENEMY
-end
-function modifier_alchemist_gold_shiva_custom_stats:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
-end
-function modifier_alchemist_gold_shiva_custom_stats:GetModifierAura()
-	return "modifier_alchemist_gold_shiva_custom_aura"
-end
-function modifier_alchemist_gold_shiva_custom_stats:IsAura()
-	return not self.parent:HasModifier("modifier_item_shiva_custom_stats")
+function modifier_alchemist_gold_shiva_custom_aura:OnCreated()
+	self.ability = self:GetAbility()
+	self.parent = self:GetParent()
+
+	self.move_slow = self.ability.aura_slow
+	self.attack_slow = self.ability.aura_attack_speed
 end
 
-modifier_alchemist_gold_shiva_custom_aura = class(mod_visible)
 function modifier_alchemist_gold_shiva_custom_aura:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
@@ -147,22 +180,6 @@ function modifier_alchemist_gold_shiva_custom_aura:GetModifierMoveSpeedBonus_Per
 	return self.move_slow
 end
 
-function modifier_alchemist_gold_shiva_custom_aura:GetStatusEffectName()
-	return "particles/status_fx/status_effect_frost_lich.vpcf"
-end
-
-function modifier_alchemist_gold_shiva_custom_aura:StatusEffectPriority()
-	return MODIFIER_PRIORITY_NORMAL
-end
-
-function modifier_alchemist_gold_shiva_custom_aura:OnCreated()
-	self.ability = self:GetAbility()
-	self.parent = self:GetParent()
-
-	self.move_slow = self.ability:GetSpecialValueFor("aura_slow")
-	self.attack_slow = self.ability:GetSpecialValueFor("aura_attack_speed")
-end
-
 modifier_alchemist_gold_shiva_custom_active = class(mod_hidden)
 function modifier_alchemist_gold_shiva_custom_active:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
@@ -171,11 +188,11 @@ function modifier_alchemist_gold_shiva_custom_active:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.speed = self.ability:GetSpecialValueFor("blast_speed")
-	self.radius = self.ability:GetSpecialValueFor("blast_radius")
+	self.speed = self.ability.blast_speed
+	self.radius = self.ability.blast_radius
 
-	self.root_duration = self.ability:GetSpecialValueFor("root_duration")
-	self.movespeed = self.ability:GetSpecialValueFor("movespeed")
+	self.root_duration = self.ability.root_duration
+	self.movespeed = self.ability.movespeed
 
 	self.interval = 0.1
 	self.max_time = self.radius / self.speed
@@ -213,14 +230,7 @@ function modifier_alchemist_gold_shiva_custom_active:OnIntervalThink()
 				{ duration = self.root_duration }
 			)
 
-			local hit_pfx = ParticleManager:CreateParticle(
-				"particles/econ/events/ti10/shivas_guard_ti10_impact.vpcf",
-				PATTACH_ABSORIGIN_FOLLOW,
-				enemy
-			)
-			ParticleManager:SetParticleControl(hit_pfx, 0, enemy:GetAbsOrigin())
-			ParticleManager:SetParticleControl(hit_pfx, 1, enemy:GetAbsOrigin())
-			ParticleManager:ReleaseParticleIndex(hit_pfx)
+			enemy:GenericParticle("particles/econ/events/ti10/shivas_guard_ti10_impact.vpcf", nil, nil, { 1 })
 		end
 	end
 
@@ -235,17 +245,9 @@ function modifier_alchemist_gold_shiva_custom_active:OnIntervalThink()
 	end
 end
 
-modifier_alchemist_gold_shiva_custom_root = class({})
-function modifier_alchemist_gold_shiva_custom_root:IsHidden()
-	return true
-end
+modifier_alchemist_gold_shiva_custom_root = class(mod_hidden)
 function modifier_alchemist_gold_shiva_custom_root:IsPurgable()
 	return true
-end
-function modifier_alchemist_gold_shiva_custom_root:CheckState()
-	return {
-		[MODIFIER_STATE_ROOTED] = true,
-	}
 end
 function modifier_alchemist_gold_shiva_custom_root:GetEffectName()
 	return "particles/units/heroes/hero_crystalmaiden/maiden_frostbite_buff.vpcf"
@@ -255,13 +257,13 @@ function modifier_alchemist_gold_shiva_custom_root:OnCreated()
 	self.ability = self:GetAbility()
 	self.caster = self:GetCaster()
 
-	self.ticks = self.ability:GetSpecialValueFor("ticks")
+	self.ticks = self.ability.ticks
 
 	if not IsServer() then
 		return
 	end
 
-	local damage = self.ability:GetSpecialValueFor("damage")
+	local damage = self.ability.damage
 	self.damageTable = {
 		victim = self.parent,
 		attacker = self.caster,
@@ -275,6 +277,12 @@ function modifier_alchemist_gold_shiva_custom_root:OnCreated()
 
 	self:OnIntervalThink()
 	self:StartIntervalThink(self.interval)
+end
+
+function modifier_alchemist_gold_shiva_custom_root:CheckState()
+	return {
+		[MODIFIER_STATE_ROOTED] = true,
+	}
 end
 
 function modifier_alchemist_gold_shiva_custom_root:OnRefresh(table)

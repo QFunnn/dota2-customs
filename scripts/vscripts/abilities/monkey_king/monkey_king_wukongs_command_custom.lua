@@ -49,11 +49,6 @@ LinkLuaModifier(
 	LUA_MODIFIER_MOTION_NONE
 )
 LinkLuaModifier(
-	"modifier_monkey_king_wukongs_command_custom_rapier",
-	"abilities/monkey_king/monkey_king_wukongs_command_custom",
-	LUA_MODIFIER_MOTION_NONE
-)
-LinkLuaModifier(
 	"modifier_monkey_king_wukongs_command_custom_inactive",
 	"abilities/monkey_king/monkey_king_wukongs_command_custom",
 	LUA_MODIFIER_MOTION_NONE
@@ -99,12 +94,10 @@ function monkey_king_wukongs_command_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_monkey_king/monkey_king_quad_tap_hit.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_monkey_king/monkey_king_fur_army_positions.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_monkey_king/monkey_king_fur_army_attack.vpcf", context)
-	PrecacheResource("particle", "particles/units/heroes/hero_monkey_king/monkey_king_fur_army_positions.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_monkey_king/monkey_king_furarmy_ring.vpcf", context)
 	PrecacheResource("particle", "particles/huskar_disarm_coil.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_monkey_king_fur_army.vpcf", context)
 	PrecacheResource("particle", "particles/items/celestial_spear_leash.vpcf", context)
-	PrecacheResource("particle", "particles/units/heroes/hero_monkey_king/monkey_king_quad_tap_hit.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_sniper/sniper_headshot_slow.vpcf", context)
 	PrecacheResource("particle", "particles/monkey_king/command_buff.vpcf", context)
 	PrecacheResource(
@@ -112,6 +105,15 @@ function monkey_king_wukongs_command_custom:Precache(context)
 		"particles/units/heroes/hero_brewmaster/brewmaster_fire_immolation_child.vpcf",
 		context
 	)
+	PrecacheResource(
+		"particle",
+		"particles/econ/items/monkey_king/mk_ti9_immortal/status_effect_mk_ti9_immortal_army.vpcf",
+		context
+	)
+	PrecacheResource("particle", "particles/units/heroes/hero_monkey_king/monkey_king_quad_tap_overhead.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_monkey_king/monkey_king_quad_tap_start.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_monkey_king/monkey_king_tap_buff.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_brewmaster/brewmaster_thunder_clap_debuff.vpcf", context)
 end
 
 function monkey_king_wukongs_command_custom:UpdateTalents(name)
@@ -223,7 +225,7 @@ end
 
 function monkey_king_wukongs_command_custom:GetCooldown(iLevel)
 	return self.BaseClass.GetCooldown(self, iLevel)
-		+ (self.talents.r2_cd and self.talents.r2_cd or 0)
+		+ (self.talents.r2_cd or 0)
 		+ (self.talents.has_r7 == 1 and self.talents.r7_cd or 0)
 end
 
@@ -236,7 +238,7 @@ function monkey_king_wukongs_command_custom:GetCastAnimation()
 end
 
 function monkey_king_wukongs_command_custom:GetAOERadius()
-	return self.second_radius and self.second_radius or 0
+	return self.second_radius or 0
 end
 
 function monkey_king_wukongs_command_custom:OnAbilityPhaseStart()
@@ -324,6 +326,7 @@ function monkey_king_wukongs_command_custom:GetFreeSoldier()
 end
 
 function monkey_king_wukongs_command_custom:CreateSoldiers()
+	self.soldiers = {}
 	self.caster.command_ability = self
 
 	self.damage = self:GetLevelSpecialValueFor("damage", 1)
@@ -494,13 +497,15 @@ function modifier_monkey_king_wukongs_command_custom_thinker:OnIntervalThink()
 			vTargetPosition = self.center
 		end
 
-		soldier:RemoveModifierByName("modifier_monkey_king_wukongs_command_custom_soldier_active")
-		soldier:AddNewModifier(
-			self.caster,
-			self.ability,
-			"modifier_monkey_king_wukongs_command_custom_soldier_active",
-			{ origin_x = vTargetPosition.x, origin_y = vTargetPosition.y, run = 1, ultimate = 1 }
-		)
+		if IsValid(soldier) then
+			soldier:RemoveModifierByName("modifier_monkey_king_wukongs_command_custom_soldier_active")
+			soldier:AddNewModifier(
+				self.caster,
+				self.ability,
+				"modifier_monkey_king_wukongs_command_custom_soldier_active",
+				{ origin_x = vTargetPosition.x, origin_y = vTargetPosition.y, run = 1, ultimate = 1 }
+			)
+		end
 
 		if self.soldier_count >= self.max then
 			self.soldier_count = 0
@@ -578,6 +583,21 @@ function modifier_monkey_king_wukongs_command_custom_thinker:OnDestroy()
 end
 
 modifier_monkey_king_wukongs_command_custom_tracker = class(mod_hidden)
+function modifier_monkey_king_wukongs_command_custom_tracker:IsAura()
+	return IsServer() and self.parent:IsAlive() and self.ability.talents.has_r1 == 1
+end
+function modifier_monkey_king_wukongs_command_custom_tracker:GetAuraRadius()
+	return self.ability.talents.r1_radius
+end
+function modifier_monkey_king_wukongs_command_custom_tracker:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_ENEMY
+end
+function modifier_monkey_king_wukongs_command_custom_tracker:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
+end
+function modifier_monkey_king_wukongs_command_custom_tracker:GetModifierAura()
+	return "modifier_monkey_king_wukongs_command_custom_burn"
+end
 function modifier_monkey_king_wukongs_command_custom_tracker:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -622,35 +642,35 @@ function modifier_monkey_king_wukongs_command_custom_tracker:GetModifierAttackRa
 	return self.ability.shard_range
 end
 
-function modifier_monkey_king_wukongs_command_custom_tracker:GetAuraRadius()
-	return self.ability.talents.r1_radius
-end
-function modifier_monkey_king_wukongs_command_custom_tracker:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_ENEMY
-end
-function modifier_monkey_king_wukongs_command_custom_tracker:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
-end
-function modifier_monkey_king_wukongs_command_custom_tracker:GetModifierAura()
-	return "modifier_monkey_king_wukongs_command_custom_burn"
-end
-function modifier_monkey_king_wukongs_command_custom_tracker:IsAura()
+modifier_monkey_king_wukongs_command_custom_soldier_active = class(mod_hidden)
+function modifier_monkey_king_wukongs_command_custom_soldier_active:IsAura()
 	return IsServer() and self.parent:IsAlive() and self.ability.talents.has_r1 == 1
 end
-
-modifier_monkey_king_wukongs_command_custom_soldier_active = class(mod_hidden)
+function modifier_monkey_king_wukongs_command_custom_soldier_active:GetAuraRadius()
+	return self.ability.talents.r1_radius
+end
+function modifier_monkey_king_wukongs_command_custom_soldier_active:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_ENEMY
+end
+function modifier_monkey_king_wukongs_command_custom_soldier_active:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
+end
+function modifier_monkey_king_wukongs_command_custom_soldier_active:GetModifierAura()
+	return "modifier_monkey_king_wukongs_command_custom_burn"
+end
 function modifier_monkey_king_wukongs_command_custom_soldier_active:OnCreated(params)
-	if not IsServer() then
-		return
-	end
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 	self.caster = self:GetCaster()
 
 	self.attack_speed = self.ability.attack_speed
-	self.attack_range = self.parent:Script_GetAttackRange()
 	self.move_speed = self.ability.move_speed
+
+	if not IsServer() then
+		return
+	end
 	self.damage = self.ability.damage - 100
+	self.attack_range = self.parent:Script_GetAttackRange()
 
 	self.parent:RemoveModifierByName("modifier_monkey_king_wukongs_command_custom_inactive")
 
@@ -661,14 +681,6 @@ function modifier_monkey_king_wukongs_command_custom_soldier_active:OnCreated(pa
 			if IsValid(new_item) then
 				local soldier_item = self.parent:AddItem(new_item)
 
-				if soldier_item:GetName() == "item_rapier" then
-					self.parent:AddNewModifier(
-						self.parent,
-						nil,
-						"modifier_monkey_king_wukongs_command_custom_rapier",
-						{}
-					)
-				end
 				soldier_item:SetPurchaser(nil)
 
 				if item and item:GetCurrentCharges() > 0 then
@@ -699,9 +711,8 @@ function modifier_monkey_king_wukongs_command_custom_soldier_active:OnCreated(pa
 		end
 	end
 
-	local talent_mod = self.parent:FindModifierByName("modifier_general_stats_illusion")
-	if talent_mod then
-		self.parent:AddNewModifier(self.parent, talent_mod:GetAbility(), "modifier_general_stats_illusion", {})
+	if IsValid(self.parent.stats_tracker) then
+		self.parent:AddNewModifier(self.parent, self.parent.stats_tracker.ability, "modifier_general_stats", {})
 	end
 
 	self.search_radius = self.attack_range + self.parent:GetHullRadius()
@@ -899,6 +910,7 @@ function modifier_monkey_king_wukongs_command_custom_soldier_active:OnIntervalTh
 					local point = data.point
 					local target = data.target
 
+					local self_ability
 					if ability:IsItem() then
 						self_ability = self.parent:FindItemInInventory(ability:GetName())
 					else
@@ -962,17 +974,7 @@ function modifier_monkey_king_wukongs_command_custom_soldier_active:FindTarget()
 		return
 	end
 
-	local targets = FindUnitsInRadius(
-		self.caster:GetTeamNumber(),
-		self.parent:GetAbsOrigin(),
-		nil,
-		self.search_radius,
-		DOTA_UNIT_TARGET_TEAM_ENEMY,
-		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-		self.flags,
-		FIND_CLOSEST,
-		false
-	)
+	local targets = self.parent:FindTargets(self.search_radius, self.parent:GetAbsOrigin(), FIND_CLOSEST, self.flags)
 
 	local target = targets[1]
 	if IsValid(target) and target:IsUnit() then
@@ -1068,7 +1070,7 @@ function modifier_monkey_king_wukongs_command_custom_soldier_active:GetModifierT
 			* (1 + self.ability.talents.r4_damage)
 		self.damageTable.victim = target
 
-		DoDamage(self.damageTable)
+		DoDamage(self.damageTable, "modifier_monkey_king_command_4")
 		return -200
 	end
 
@@ -1091,22 +1093,6 @@ end
 
 function modifier_monkey_king_wukongs_command_custom_soldier_active:GetActivityTranslationModifiers()
 	return "run_fast"
-end
-
-function modifier_monkey_king_wukongs_command_custom_soldier_active:GetAuraRadius()
-	return self.ability.talents.r1_radius
-end
-function modifier_monkey_king_wukongs_command_custom_soldier_active:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_ENEMY
-end
-function modifier_monkey_king_wukongs_command_custom_soldier_active:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
-end
-function modifier_monkey_king_wukongs_command_custom_soldier_active:GetModifierAura()
-	return "modifier_monkey_king_wukongs_command_custom_burn"
-end
-function modifier_monkey_king_wukongs_command_custom_soldier_active:IsAura()
-	return IsServer() and self.parent:IsAlive() and self.ability.talents.has_r1 == 1
 end
 
 modifier_monkey_king_wukongs_command_custom_soldier = class(mod_hidden)
@@ -1311,12 +1297,6 @@ function modifier_monkey_king_wukongs_command_custom_soldier_legendary:GetModifi
 end
 
 modifier_monkey_king_wukongs_command_custom_inactive = class(mod_hidden)
-function modifier_monkey_king_wukongs_command_custom_inactive:CheckState()
-	return {
-		[MODIFIER_STATE_STUNNED] = true,
-	}
-end
-
 function modifier_monkey_king_wukongs_command_custom_inactive:OnCreated()
 	if not IsServer() then
 		return
@@ -1329,10 +1309,6 @@ function modifier_monkey_king_wukongs_command_custom_inactive:OnCreated()
 		if item then
 			item:Destroy()
 		end
-	end
-
-	for _, mod in pairs(self.parent:FindAllModifiersByName("modifier_monkey_king_wukongs_command_custom_rapier")) do
-		mod:Destroy()
 	end
 
 	ProjectileManager:ProjectileDodge(self.parent)
@@ -1358,6 +1334,12 @@ function modifier_monkey_king_wukongs_command_custom_inactive:OnDestroy()
 	end
 end
 
+function modifier_monkey_king_wukongs_command_custom_inactive:CheckState()
+	return {
+		[MODIFIER_STATE_STUNNED] = true,
+	}
+end
+
 modifier_monkey_king_wukongs_command_custom_nodraw = class(mod_hidden)
 function modifier_monkey_king_wukongs_command_custom_nodraw:OnCreated()
 	if not IsServer() then
@@ -1380,13 +1362,6 @@ modifier_monkey_king_wukongs_command_custom_buff = class(mod_visible)
 function modifier_monkey_king_wukongs_command_custom_buff:RemoveOnDeath()
 	return false
 end
-function modifier_monkey_king_wukongs_command_custom_buff:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
-		MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE,
-	}
-end
-
 function modifier_monkey_king_wukongs_command_custom_buff:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -1410,6 +1385,13 @@ function modifier_monkey_king_wukongs_command_custom_buff:OnIntervalThink()
 	self.parent:CdItems(self.ability.talents.r4_cd_items * self.interval)
 end
 
+function modifier_monkey_king_wukongs_command_custom_buff:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
+		MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE,
+	}
+end
+
 function modifier_monkey_king_wukongs_command_custom_buff:GetModifierPhysicalArmorBonus()
 	return self.armor
 end
@@ -1425,10 +1407,6 @@ function modifier_monkey_king_wukongs_command_custom_buff:GetModifierPercentageC
 end
 
 modifier_monkey_king_wukongs_command_custom_effect = class(mod_hidden)
-function modifier_monkey_king_wukongs_command_custom_effect:OnCreated()
-	self.caster = self:GetCaster()
-end
-
 function modifier_monkey_king_wukongs_command_custom_effect:GetStatusEffectName()
 	return wearables_system:GetParticleReplacementAbility(
 		self.caster,
@@ -1436,9 +1414,11 @@ function modifier_monkey_king_wukongs_command_custom_effect:GetStatusEffectName(
 		self
 	)
 end
-
 function modifier_monkey_king_wukongs_command_custom_effect:StatusEffectPriority()
 	return MODIFIER_PRIORITY_ILLUSION
+end
+function modifier_monkey_king_wukongs_command_custom_effect:OnCreated()
+	self.caster = self:GetCaster()
 end
 
 modifier_monkey_king_wukongs_command_custom_leash = class(mod_hidden)
@@ -1547,19 +1527,6 @@ end
 
 function modifier_monkey_king_wukongs_command_custom_slow:GetModifierMoveSpeedBonus_Percentage()
 	return self.slow
-end
-
-modifier_monkey_king_wukongs_command_custom_rapier = class(mod_hidden)
-function modifier_monkey_king_wukongs_command_custom_rapier:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
-end
-function modifier_monkey_king_wukongs_command_custom_rapier:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
-	}
-end
-function modifier_monkey_king_wukongs_command_custom_rapier:GetModifierPreAttack_BonusDamage()
-	return 275
 end
 
 modifier_monkey_king_wukongs_command_custom_burn = class(mod_hidden)

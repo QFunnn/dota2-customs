@@ -25,6 +25,20 @@ function item_holy_locket_custom:Precache(context)
 	PrecacheResource("particle", "particles/items/holy_locket_caster.vpcf", context)
 end
 
+function item_holy_locket_custom:Spawn()
+	self.max_charges = self:GetSpecialValueFor("max_charges")
+	self.restore_mana = self:GetSpecialValueFor("restore_mana")
+	self.restore_base = self:GetSpecialValueFor("restore_base")
+	self.restore_health = self:GetSpecialValueFor("restore_health")
+	self.damage_radius = self:GetSpecialValueFor("damage_radius")
+	self.damage = self:GetSpecialValueFor("damage")
+	self.charge_radius = self:GetSpecialValueFor("charge_radius")
+	self.passive_cooldown = self:GetSpecialValueFor("passive_cooldown")
+	self.bonus_all_stats = self:GetSpecialValueFor("bonus_all_stats")
+	self.bonus_health = self:GetSpecialValueFor("bonus_health")
+	self.heal_increase = self:GetSpecialValueFor("heal_increase")
+end
+
 function item_holy_locket_custom:GetBehavior()
 	if not IsSoloMode() then
 		return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET
@@ -41,13 +55,10 @@ function item_holy_locket_custom:OnSpellStart()
 		target = self:GetCursorTarget()
 	end
 
-	local max = self:GetSpecialValueFor("max_charges")
-	local mana = (self:GetSpecialValueFor("restore_mana") / max) * self:GetCurrentCharges()
+	local max = self.max_charges
+	local mana = (self.restore_mana / max) * self:GetCurrentCharges()
 	local heal = (self:GetCurrentCharges() / max)
-		* (
-			self:GetSpecialValueFor("restore_base")
-			+ self:GetSpecialValueFor("restore_health") * target:GetMaxHealth() / 100
-		)
+		* (self.restore_base + self.restore_health * target:GetMaxHealth() / 100)
 
 	local real_heal = target:GenericHeal(heal, self, false, "")
 	target:GiveMana(mana)
@@ -55,8 +66,7 @@ function item_holy_locket_custom:OnSpellStart()
 	local particle =
 		ParticleManager:CreateParticle("particles/items2_fx/magic_stick.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
 	ParticleManager:SetParticleControl(particle, 1, Vector(self:GetCurrentCharges() / 10, 0, 0))
-	ParticleManager:DestroyParticle(particle, false)
-	ParticleManager:ReleaseParticleIndex(particle)
+	ParticleManager:Delete(particle, 1)
 
 	self:SetCurrentCharges(0)
 
@@ -73,7 +83,7 @@ function item_holy_locket_custom:OnSpellStart()
 		end
 	end)
 
-	local radius = self:GetSpecialValueFor("damage_radius")
+	local radius = self.damage_radius
 
 	local effect_target =
 		ParticleManager:CreateParticle("particles/items/holy_locket_caster.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
@@ -82,7 +92,7 @@ function item_holy_locket_custom:OnSpellStart()
 
 	local damageTable = {
 		attacker = caster,
-		damage = real_heal * self:GetSpecialValueFor("damage") / 100,
+		damage = real_heal * self.damage / 100,
 		ability = self,
 		damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION,
 		damage_type = DAMAGE_TYPE_PURE,
@@ -116,27 +126,20 @@ function item_holy_locket_custom:OnSpellStart()
 	end
 end
 
-modifier_item_holy_locket_custom = class({})
-
-function modifier_item_holy_locket_custom:IsHidden()
-	return true
-end
-function modifier_item_holy_locket_custom:IsPurgable()
-	return false
-end
+modifier_item_holy_locket_custom = class(mod_hidden)
 function modifier_item_holy_locket_custom:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.radius = self.ability:GetSpecialValueFor("charge_radius")
-	self.cooldown = self.ability:GetSpecialValueFor("passive_cooldown")
-	self.max = self.ability:GetSpecialValueFor("max_charges")
+	self.radius = self.ability.charge_radius
+	self.cooldown = self.ability.passive_cooldown
+	self.max = self.ability.max_charges
 
-	self.agi = self.ability:GetSpecialValueFor("bonus_all_stats")
-	self.str = self.ability:GetSpecialValueFor("bonus_all_stats")
-	self.int = self.ability:GetSpecialValueFor("bonus_all_stats")
-	self.health = self.ability:GetSpecialValueFor("bonus_health")
-	self.heal_inc = self.ability:GetSpecialValueFor("heal_increase")
+	self.agi = self.ability.bonus_all_stats
+	self.str = self.ability.bonus_all_stats
+	self.int = self.ability.bonus_all_stats
+	self.health = self.ability.bonus_health
+	self.heal_inc = self.ability.heal_increase
 
 	if not IsServer() then
 		return
@@ -161,6 +164,9 @@ end
 
 function modifier_item_holy_locket_custom:SpellEvent(params)
 	if not IsServer() then
+		return
+	end
+	if not IsValid(self.ability) then
 		return
 	end
 	if not self.parent:IsAlive() then
@@ -191,9 +197,7 @@ function modifier_item_holy_locket_custom:DeclareFunctions()
 		MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
 		MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
 		MODIFIER_PROPERTY_HEALTH_BONUS,
-		--MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET,
 		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
-		--MODIFIER_PROPERTY_LIFESTEAL_AMPLIFY_PERCENTAGE
 	}
 end
 

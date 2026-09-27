@@ -55,9 +55,8 @@ function tinker_rearm_custom:Precache(context)
 		return
 	end
 	PrecacheResource("particle", "particles/units/heroes/hero_tinker/tinker_rearm.vpcf", context)
-	PrecacheResource("particle", "particles/units/heroes/hero_tinker/tinker_missile.vpcf", context)
-	PrecacheResource("particle", "particles/units/heroes/hero_tinker/tinker_missile_dud.vpcf", context)
-	PrecacheResource("particle", "particles/units/heroes/hero_tinker/tinker_missle_explosion.vpcf", context)
+	PrecacheResource("particle", "particles/tinker/laser_proc_damage.vpcf", context)
+	PrecacheResource("particle", "particles/tinker/scepter_proc.vpcf", context)
 end
 
 function tinker_rearm_custom:UpdateTalents()
@@ -90,6 +89,7 @@ function tinker_rearm_custom:UpdateTalents()
 			has_h1 = 0,
 			h1_regen = 0,
 
+			has_h4 = 0,
 			h4_cd_inc = caster:GetTalentValue("modifier_tinker_hero_4", "cd_inc", true) / 100,
 			h4_talent_cd = caster:GetTalentValue("modifier_tinker_hero_4", "talent_cd", true),
 
@@ -123,13 +123,13 @@ function tinker_rearm_custom:UpdateTalents()
 		self.talents.has_r4 = 1
 	end
 
-	if caster:HasTalent("modifier_tinker_rearm_7") then
-		self.talents.has_r7 = 1
-	end
-
 	if caster:HasTalent("modifier_tinker_hero_1") then
 		self.talents.has_h1 = 1
 		self.talents.h1_regen = caster:GetTalentValue("modifier_tinker_hero_1", "regen") / 100
+	end
+
+	if caster:HasTalent("modifier_tinker_hero_4") then
+		self.talents.has_h4 = 1
 	end
 
 	if caster:HasTalent("modifier_tinker_hero_6") then
@@ -152,7 +152,7 @@ function tinker_rearm_custom:GetAbilityTextureName()
 end
 
 function tinker_rearm_custom:GetChannelTime()
-	return self.channel_time * (1 + self.talents.r2_cast)
+	return (self.channel_time or 0) * (1 + (self.talents.r2_cast or 0))
 end
 
 function tinker_rearm_custom:GetBehavior()
@@ -163,29 +163,8 @@ function tinker_rearm_custom:GetBehavior()
 	return DOTA_ABILITY_BEHAVIOR_NO_TARGET + DOTA_ABILITY_BEHAVIOR_CHANNELLED + bonus
 end
 
-function tinker_rearm_custom:GetCooldown(iLevel)
-	return self.BaseClass.GetCooldown(self, iLevel)
-end
-
 function tinker_rearm_custom:GetManaCost(level)
-	if not self.mana_cost then
-		return
-	end
-	return self.mana_cost * self.caster:GetMaxMana()
-end
-
-function tinker_rearm_custom:CheckToggle()
-	if
-		self.caster:HasModifier("modifier_tinker_rearm_custom_invun_cd")
-		or self.caster:GetForceAttackTarget()
-		or self.caster:IsSilenced()
-		or self.caster:IsStunned()
-		or self.caster:IsFeared()
-		or self.caster:IsHexed()
-	then
-		return false
-	end
-	return true
+	return (self.mana_cost or 0) * self.caster:GetMaxMana()
 end
 
 function tinker_rearm_custom:OnSpellStart()
@@ -251,9 +230,11 @@ function tinker_rearm_custom:OnChannelFinish(interrupted)
 		end
 	end
 
-	local mod = self.caster:FindModifierByName("modifier_tinker_laser_custom_stun_cd")
-	if mod then
-		mod:SetDuration(mod:GetRemainingTime() + self.talents.h4_talent_cd * self.talents.h4_cd_inc, true)
+	if self.talents.has_h4 == 1 then
+		local mod = self.caster:FindModifierByName("modifier_tinker_laser_custom_stun_cd")
+		if mod then
+			mod:SetDuration(mod:GetRemainingTime() + self.talents.h4_talent_cd * self.talents.h4_cd_inc, true)
+		end
 	end
 
 	local tp_scroll = self.caster:FindItemInInventory("item_tpscroll_custom")
@@ -263,7 +244,7 @@ function tinker_rearm_custom:OnChannelFinish(interrupted)
 
 	self.caster:RemoveModifierByName("modifier_tinker_innate_custom_shield")
 	self.caster:RemoveModifierByName("modifier_tinker_innate_custom_shield_cd")
-	if IsValid(self.caster.tinker_innate, self.caster.tinker_innate.tracker) then
+	if IsValid(self.caster.tinker_innate) and IsValid(self.caster.tinker_innate.tracker) then
 		self.caster.tinker_innate.tracker:OnIntervalThink()
 	end
 
@@ -275,7 +256,7 @@ function tinker_rearm_custom:OnChannelFinish(interrupted)
 
 	if self.talents.has_r2 == 1 then
 		self.caster:GenericHeal(
-			self.caster:GetIntellect(false) * count * self.ability.talents.r2_heal,
+			self.caster:GetIntellect(false) * count * self.talents.r2_heal,
 			self,
 			false,
 			"particles/items3_fx/octarine_core_lifesteal.vpcf",
@@ -308,6 +289,20 @@ function tinker_rearm_custom:OnChannelFinish(interrupted)
 
 	self.caster:RemoveModifierByName("modifier_tinker_rearm_custom_damage_cd")
 	self.caster:RemoveModifierByName("modifier_tinker_rearm_custom_damage_cd_creeps")
+end
+
+function tinker_rearm_custom:CheckToggle()
+	if
+		self.caster:HasModifier("modifier_tinker_rearm_custom_invun_cd")
+		or self.caster:GetForceAttackTarget()
+		or self.caster:IsSilenced()
+		or self.caster:IsStunned()
+		or self.caster:IsFeared()
+		or self.caster:IsHexed()
+	then
+		return false
+	end
+	return true
 end
 
 modifier_tinker_rearm_custom = class(mod_hidden)
@@ -344,6 +339,18 @@ function modifier_tinker_rearm_custom:OnCreated(table)
 	end
 end
 
+function modifier_tinker_rearm_custom:OnDestroy()
+	if not IsServer() then
+		return
+	end
+	self.parent:FadeGesture(self.anim)
+
+	if not IsValid(self.mod) then
+		return
+	end
+	self.mod:SetDuration(self.ability.talents.h6_duration, true)
+end
+
 function modifier_tinker_rearm_custom:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
@@ -355,18 +362,6 @@ function modifier_tinker_rearm_custom:GetModifierIncomingDamage_Percentage()
 		return
 	end
 	return self.ability.talents.h6_damage_reduce
-end
-
-function modifier_tinker_rearm_custom:OnDestroy()
-	if not IsServer() then
-		return
-	end
-	self.parent:FadeGesture(self.anim)
-
-	if not IsValid(self.mod) then
-		return
-	end
-	self.mod:SetDuration(self.ability.talents.h6_duration, true)
 end
 
 modifier_tinker_rearm_custom_tracker = class(mod_hidden)
@@ -383,7 +378,11 @@ function modifier_tinker_rearm_custom_tracker:OnCreated()
 	self.max_cdr = self.ability:GetSpecialValueFor("max_cdr")
 
 	self.legendary_ability = self.parent:FindAbilityByName("tinker_heat_seeking_missile_custom")
-	if self.legendary_ability then
+
+	if IsValid(self.legendary_ability) then
+		if IsServer() and not self.legendary_ability:IsTrained() then
+			self.legendary_ability:SetLevel(1)
+		end
 		self.legendary_ability:UpdateTalents()
 	end
 end
@@ -400,7 +399,13 @@ function modifier_tinker_rearm_custom_tracker:DeclareFunctions()
 end
 
 function modifier_tinker_rearm_custom_tracker:GetModifierPercentageCooldown(params)
-	if not params.ability or not params.ability:IsItem() or NoCdItems[params.ability:GetName()] then
+	if not params.ability then
+		return
+	end
+	if not params.ability:IsItem() then
+		return
+	end
+	if NoCdItems[params.ability:GetName()] then
 		return
 	end
 	return math.min(self.parent:GetIntellect(false) / self.int_per_cdr, self.max_cdr)
@@ -473,176 +478,8 @@ function modifier_tinker_rearm_custom_tracker:DamageEvent_out(params)
 	self.parent:AddNewModifier(self.parent, self.ability, mod_name, { duration = self.ability.talents.r1_talent_cd })
 end
 
-tinker_heat_seeking_missile_custom = class({})
-tinker_heat_seeking_missile_custom.talents = {}
-
-function tinker_heat_seeking_missile_custom:CreateTalent()
-	self:SetHidden(false)
-	self:SetLevel(1)
-end
-
-function tinker_heat_seeking_missile_custom:UpdateTalents(name)
-	local caster = self:GetCaster()
-	if not self.init then
-		self.init = true
-		self.talents = {
-			has_r7 = 0,
-			r7_range = caster:GetTalentValue("modifier_tinker_rearm_7", "range", true),
-			r7_damage_inc = caster:GetTalentValue("modifier_tinker_rearm_7", "damage_inc", true) / 100,
-			r7_damage_base = caster:GetTalentValue("modifier_tinker_rearm_7", "damage_base", true),
-			r7_talent_cd = caster:GetTalentValue("modifier_tinker_rearm_7", "talent_cd", true),
-			r7_stack = caster:GetTalentValue("modifier_tinker_rearm_7", "stack", true),
-			r7_stun = caster:GetTalentValue("modifier_tinker_rearm_7", "stun", true),
-			r7_damage_type = caster:GetTalentValue("modifier_tinker_rearm_7", "damage_type", true),
-			r7_damage = caster:GetTalentValue("modifier_tinker_rearm_7", "damage", true) / 100,
-		}
-		if IsServer() then
-			self:SetLevel(1)
-		end
-		self.targets = self.ability:GetSpecialValueFor("targets")
-		self.speed = self.ability:GetSpecialValueFor("speed")
-	end
-end
-
-function tinker_heat_seeking_missile_custom:GetCooldown()
-	return self.talents.r7_talent_cd and self.talents.r7_talent_cd or 0
-end
-
-function tinker_heat_seeking_missile_custom:OnSpellStart()
-	local caster = self:GetCaster()
-	local radius = self.talents.r7_range + caster:GetCastRangeBonus()
-	local speed = self.speed
-
-	local heroes = FindUnitsInRadius(
-		caster:GetTeamNumber(),
-		caster:GetAbsOrigin(),
-		nil,
-		radius,
-		DOTA_UNIT_TARGET_TEAM_ENEMY,
-		DOTA_UNIT_TARGET_HERO,
-		DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE,
-		FIND_CLOSEST,
-		false
-	)
-	local targets = self.targets
-
-	local result = {}
-	for _, hero in pairs(heroes) do
-		if #result < targets then
-			table.insert(result, hero)
-		end
-	end
-
-	if #result < targets then
-		local creeps = FindUnitsInRadius(
-			caster:GetTeamNumber(),
-			caster:GetAbsOrigin(),
-			nil,
-			radius,
-			DOTA_UNIT_TARGET_TEAM_ENEMY,
-			DOTA_UNIT_TARGET_BASIC,
-			DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE,
-			FIND_CLOSEST,
-			false
-		)
-		for _, creep in pairs(creeps) do
-			if #result < targets then
-				table.insert(result, creep)
-			end
-		end
-	end
-
-	if #result <= 0 then
-		caster:EmitSound("Hero_Tinker.Heat-Seeking_Missile_Dud")
-
-		local attach = caster:ScriptLookupAttachment("attach_attack3") ~= 0 and "attach_attack3" or "attach_attack1"
-		local point = caster:GetAttachmentOrigin(caster:ScriptLookupAttachment(attach))
-
-		local effect_cast = ParticleManager:CreateParticle(
-			"particles/units/heroes/hero_tinker/tinker_missile_dud.vpcf",
-			PATTACH_WORLDORIGIN,
-			caster
-		)
-		ParticleManager:SetParticleControl(effect_cast, 0, point)
-		ParticleManager:SetParticleControlForward(effect_cast, 0, caster:GetForwardVector())
-		ParticleManager:ReleaseParticleIndex(effect_cast)
-		return
-	end
-
-	caster:EmitSound("Hero_Tinker.Heat-Seeking_Missile")
-
-	local count = 0
-	for i = 0, 6 do
-		local current_ability = caster:GetAbilityByIndex(i)
-		if current_ability and current_ability ~= self and current_ability:GetCooldownTimeRemaining() > 0 then
-			count = count + 1
-		end
-	end
-
-	local info = {
-		EffectName = "particles/units/heroes/hero_tinker/tinker_missile.vpcf",
-		Ability = self,
-		iMoveSpeed = speed,
-		Source = caster,
-		bDodgeable = true,
-		iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_3,
-		ExtraData = { count = count },
-	}
-
-	for _, target in pairs(result) do
-		info.Target = target
-		ProjectileManager:CreateTrackingProjectile(info)
-	end
-end
-
-function tinker_heat_seeking_missile_custom:OnProjectileHit_ExtraData(target, vLocation, table)
-	if not target then
-		return
-	end
-	local caster = self:GetCaster()
-	local count = table.count
-	local damage = self.talents.r7_damage_base + caster:GetIntellect(false) * self.talents.r7_damage
-	damage = damage * (1 + count * self.talents.r7_damage_inc)
-
-	local damage_table = {
-		victim = target,
-		damage = damage,
-		attacker = caster,
-		ability = self,
-		damage_type = self.talents.r7_damage_type,
-	}
-	local real_damage = DoDamage(damage_table)
-
-	if count >= self.talents.r7_stack then
-		target:AddNewModifier(
-			caster,
-			self,
-			"modifier_stunned",
-			{ duration = (1 - target:GetStatusResistance()) * self.talents.r7_stun }
-		)
-	end
-
-	local particle = ParticleManager:CreateParticle(
-		"particles/units/heroes/hero_tinker/tinker_missle_explosion.vpcf",
-		PATTACH_POINT_FOLLOW,
-		target
-	)
-	ParticleManager:SetParticleControlEnt(
-		particle,
-		0,
-		target,
-		PATTACH_POINT_FOLLOW,
-		"attach_hitloc",
-		target:GetAbsOrigin(),
-		true
-	)
-	ParticleManager:ReleaseParticleIndex(particle)
-
-	target:EmitSound("Hero_Tinker.Heat-Seeking_Missile.Impact")
-end
-
 modifier_tinker_rearm_custom_damage_cd = class(mod_hidden)
-modifier_tinker_rearm_custom_damage_cd_creeps = mod_hidden
+modifier_tinker_rearm_custom_damage_cd_creeps = class(mod_hidden)
 
 modifier_tinker_rearm_custom_mana_bonus = class(mod_visible)
 function modifier_tinker_rearm_custom_mana_bonus:GetTexture()
@@ -653,7 +490,12 @@ function modifier_tinker_rearm_custom_mana_bonus:OnCreated()
 	self.parent = self:GetParent()
 
 	self.mana_bonus = self.ability.talents.r4_mana
-	self.parent:AddSpellEvent(self)
+
+	if not IsServer() then
+		return
+	end
+	self.RemoveForDuel = true
+	self.parent:AddSpellEvent(self, true)
 end
 
 function modifier_tinker_rearm_custom_mana_bonus:SpellEvent(params)
@@ -676,7 +518,10 @@ function modifier_tinker_rearm_custom_mana_bonus:DeclareFunctions()
 end
 
 function modifier_tinker_rearm_custom_mana_bonus:GetModifierPercentageManacostStacking(params)
-	if not params.ability or params.ability == self.ability then
+	if not params.ability then
+		return
+	end
+	if params.ability == self.ability then
 		return
 	end
 	return self.mana_bonus
@@ -686,8 +531,6 @@ modifier_tinker_rearm_custom_auto_cast = class(mod_hidden)
 function modifier_tinker_rearm_custom_auto_cast:RemoveOnDeath()
 	return false
 end
-
-modifier_tinker_rearm_custom_auto_cast = class(mod_hidden)
 function modifier_tinker_rearm_custom_auto_cast:OnCreated()
 	if not IsServer() then
 		return
@@ -718,6 +561,7 @@ function modifier_tinker_rearm_custom_spell_damage:OnCreated(table)
 	if not IsServer() then
 		return
 	end
+	self.RemoveForDuel = true
 	self:AddStack(table.stack)
 end
 
@@ -737,6 +581,7 @@ function modifier_tinker_rearm_custom_spell_damage:AddStack(stack)
 		Timers:CreateTimer(self.duration, function()
 			if IsValid(self) then
 				self:DecrementStackCount()
+				self.parent:CalculateStatBonus(true)
 				if self:GetStackCount() <= 0 then
 					self:Destroy()
 				end
@@ -744,12 +589,7 @@ function modifier_tinker_rearm_custom_spell_damage:AddStack(stack)
 		end)
 		self:IncrementStackCount()
 	end
-end
 
-function modifier_tinker_rearm_custom_spell_damage:OnStackCountChanged(iStackCount)
-	if not IsServer() then
-		return
-	end
 	self.parent:CalculateStatBonus(true)
 end
 
@@ -783,4 +623,182 @@ function modifier_tinker_rearm_custom_invun:CheckState()
 		[MODIFIER_STATE_INVULNERABLE] = true,
 		[MODIFIER_STATE_NO_HEALTH_BAR] = true,
 	}
+end
+
+tinker_heat_seeking_missile_custom = class({})
+tinker_heat_seeking_missile_custom.talents = {}
+
+function tinker_heat_seeking_missile_custom:Precache(context)
+	if self:GetCaster() and self:GetCaster():IsIllusion() then
+		return
+	end
+	PrecacheResource("particle", "particles/units/heroes/hero_tinker/tinker_missile.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_tinker/tinker_missile_dud.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_tinker/tinker_missle_explosion.vpcf", context)
+end
+
+function tinker_heat_seeking_missile_custom:Init()
+	if not self:GetCaster() then
+		return
+	end
+	self.caster = self:GetCaster()
+
+	self.targets = self:GetLevelSpecialValueFor("targets", 1)
+	self.speed = self:GetLevelSpecialValueFor("speed", 1)
+end
+
+function tinker_heat_seeking_missile_custom:UpdateTalents(name)
+	local caster = self:GetCaster()
+	if not self.init then
+		self.init = true
+		self.talents = {
+			r7_range = caster:GetTalentValue("modifier_tinker_rearm_7", "range", true),
+			r7_damage_inc = caster:GetTalentValue("modifier_tinker_rearm_7", "damage_inc", true) / 100,
+			r7_damage_base = caster:GetTalentValue("modifier_tinker_rearm_7", "damage_base", true),
+			r7_talent_cd = caster:GetTalentValue("modifier_tinker_rearm_7", "talent_cd", true),
+			r7_stack = caster:GetTalentValue("modifier_tinker_rearm_7", "stack", true),
+			r7_stun = caster:GetTalentValue("modifier_tinker_rearm_7", "stun", true),
+			r7_damage_type = caster:GetTalentValue("modifier_tinker_rearm_7", "damage_type", true),
+			r7_damage = caster:GetTalentValue("modifier_tinker_rearm_7", "damage", true) / 100,
+		}
+	end
+end
+
+function tinker_heat_seeking_missile_custom:CreateTalent()
+	self:SetHidden(false)
+	self:SetLevel(1)
+end
+
+function tinker_heat_seeking_missile_custom:GetCooldown()
+	return self.talents.r7_talent_cd or 0
+end
+
+function tinker_heat_seeking_missile_custom:OnSpellStart()
+	local radius = self.talents.r7_range + self.caster:GetCastRangeBonus()
+
+	local heroes = FindUnitsInRadius(
+		self.caster:GetTeamNumber(),
+		self.caster:GetAbsOrigin(),
+		nil,
+		radius,
+		DOTA_UNIT_TARGET_TEAM_ENEMY,
+		DOTA_UNIT_TARGET_HERO,
+		DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE,
+		FIND_CLOSEST,
+		false
+	)
+
+	local result = {}
+	for _, hero in pairs(heroes) do
+		if #result < self.targets then
+			table.insert(result, hero)
+		end
+	end
+
+	if #result < self.targets then
+		local creeps = FindUnitsInRadius(
+			self.caster:GetTeamNumber(),
+			self.caster:GetAbsOrigin(),
+			nil,
+			radius,
+			DOTA_UNIT_TARGET_TEAM_ENEMY,
+			DOTA_UNIT_TARGET_BASIC,
+			DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE,
+			FIND_CLOSEST,
+			false
+		)
+		for _, creep in pairs(creeps) do
+			if #result < self.targets then
+				table.insert(result, creep)
+			end
+		end
+	end
+
+	if #result <= 0 then
+		self.caster:EmitSound("Hero_Tinker.Heat-Seeking_Missile_Dud")
+
+		local attach = self.caster:ScriptLookupAttachment("attach_attack3") ~= 0 and "attach_attack3"
+			or "attach_attack1"
+		local point = self.caster:GetAttachmentOrigin(self.caster:ScriptLookupAttachment(attach))
+
+		local effect_cast = ParticleManager:CreateParticle(
+			"particles/units/heroes/hero_tinker/tinker_missile_dud.vpcf",
+			PATTACH_WORLDORIGIN,
+			self.caster
+		)
+		ParticleManager:SetParticleControl(effect_cast, 0, point)
+		ParticleManager:SetParticleControlForward(effect_cast, 0, self.caster:GetForwardVector())
+		ParticleManager:ReleaseParticleIndex(effect_cast)
+		return
+	end
+
+	self.caster:EmitSound("Hero_Tinker.Heat-Seeking_Missile")
+
+	local count = 0
+	for i = 0, 6 do
+		local current_ability = self.caster:GetAbilityByIndex(i)
+		if current_ability and current_ability ~= self and current_ability:GetCooldownTimeRemaining() > 0 then
+			count = count + 1
+		end
+	end
+
+	local info = {
+		EffectName = "particles/units/heroes/hero_tinker/tinker_missile.vpcf",
+		Ability = self,
+		iMoveSpeed = self.speed,
+		Source = self.caster,
+		bDodgeable = true,
+		iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_3,
+		ExtraData = { count = count },
+	}
+
+	for _, target in pairs(result) do
+		info.Target = target
+		ProjectileManager:CreateTrackingProjectile(info)
+	end
+end
+
+function tinker_heat_seeking_missile_custom:OnProjectileHit_ExtraData(target, vLocation, table)
+	if not target then
+		return
+	end
+	local count = table.count
+	local damage = self.talents.r7_damage_base + self.caster:GetIntellect(false) * self.talents.r7_damage
+	damage = damage * (1 + count * self.talents.r7_damage_inc)
+
+	local damage_table = {
+		victim = target,
+		damage = damage,
+		attacker = self.caster,
+		ability = self,
+		damage_type = self.talents.r7_damage_type,
+	}
+	DoDamage(damage_table, "modifier_tinker_rearm_7")
+
+	if count >= self.talents.r7_stack then
+		target:AddNewModifier(
+			self.caster,
+			self,
+			"modifier_stunned",
+			{ duration = (1 - target:GetStatusResistance()) * self.talents.r7_stun }
+		)
+	end
+
+	local particle = ParticleManager:CreateParticle(
+		"particles/units/heroes/hero_tinker/tinker_missle_explosion.vpcf",
+		PATTACH_POINT_FOLLOW,
+		target
+	)
+	ParticleManager:SetParticleControlEnt(
+		particle,
+		0,
+		target,
+		PATTACH_POINT_FOLLOW,
+		"attach_hitloc",
+		target:GetAbsOrigin(),
+		true
+	)
+	ParticleManager:ReleaseParticleIndex(particle)
+
+	target:EmitSound("Hero_Tinker.Heat-Seeking_Missile.Impact")
 end

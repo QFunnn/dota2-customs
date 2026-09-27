@@ -129,8 +129,7 @@ function morphling_adaptive_strike_custom:UpdateTalents()
 end
 
 function morphling_adaptive_strike_custom:GetAbilityTextureName()
-	local caster = self:GetCaster()
-	if caster:HasModifier("modifier_morphling_morph_custom_legendary") then
+	if self.caster:HasModifier("modifier_morphling_morph_custom_legendary") then
 		return wearables_system:GetAbilityIconReplacement(self.caster, "morphling_adaptive_strike_str", self)
 	end
 	return wearables_system:GetAbilityIconReplacement(self.caster, "morphling_adaptive_strike_agi", self)
@@ -148,17 +147,16 @@ function morphling_adaptive_strike_custom:GetBehavior()
 end
 
 function morphling_adaptive_strike_custom:GetAOERadius()
-	return self.talents.has_w7 == 1 and self.talents.w7_radius or (self.radius and self.radius or 0)
+	return self.talents.has_w7 == 1 and self.talents.w7_radius or (self.radius or 0)
 end
 
 function morphling_adaptive_strike_custom:GetCooldown(level)
-	local caster = self:GetCaster()
 	local k = (
-		(caster:HasModifier("modifier_morphling_morph_custom_legendary") and caster.attribute_legendary)
-			and (1 + caster.attribute_legendary.strike_cd)
+		(self.caster:HasModifier("modifier_morphling_morph_custom_legendary") and self.caster.attribute_legendary)
+			and (1 + (self.caster.attribute_legendary.strike_cd or 0))
 		or 1
 	)
-	return (self.BaseClass.GetCooldown(self, level) + (self.talents.w2_cd and self.talents.w2_cd or 0)) * k
+	return (self.BaseClass.GetCooldown(self, level) + (self.talents.w2_cd or 0)) * k
 end
 
 function morphling_adaptive_strike_custom:GetCastPoint(iLevel)
@@ -166,97 +164,17 @@ function morphling_adaptive_strike_custom:GetCastPoint(iLevel)
 end
 
 function morphling_adaptive_strike_custom:GetCastRange(vLocation, hTarget)
-	local bonus = 0
-	if self.talents.has_w7 == 1 then
-		bonus = self.talents.w7_range
-	end
-	return self.BaseClass.GetCastRange(self, vLocation, hTarget) + bonus
+	return self.BaseClass.GetCastRange(self, vLocation, hTarget)
+		+ (self.talents.has_w7 == 1 and self.talents.w7_range or 0)
 end
 
 function morphling_adaptive_strike_custom:GetManaCost(level)
 	return self.BaseClass.GetManaCost(self, level)
 end
 
-function morphling_adaptive_strike_custom:ProcAuto(target, wave)
-	if not IsServer() then
-		return
-	end
-	local caster = self:GetCaster()
-
-	if not self:IsTrained() then
-		return
-	end
-	if self.talents.has_w3 == 0 then
-		return
-	end
-	if not RollPseudoRandomPercentage(self.talents.w3_chance, 1450, caster) then
-		return
-	end
-
-	local duration = wave and self.talents.w3_delay_wave or self.talents.w3_delay
-	target:AddNewModifier(caster, self, "modifier_morphling_adaptive_strike_custom_auto_delay", { duration = duration })
-end
-
-function morphling_adaptive_strike_custom:AbilityHit()
-	if not IsServer() then
-		return
-	end
-	if not self:IsTrained() then
-		return
-	end
-	if self.talents.has_w4 == 0 then
-		return
-	end
-	if IsValid(self.shield_mod) then
-		return
-	end
-
-	self.caster:AddNewModifier(
-		self.caster,
-		self,
-		"modifier_morphling_adaptive_strike_custom_shield_stack",
-		{ duration = self.talents.w4_duration }
-	)
-end
-
-function morphling_adaptive_strike_custom:GetDamage()
-	if not IsServer() then
-		return 0
-	end
-	local caster = self:GetCaster()
-	local agility = caster:GetAgility()
-	local strength = caster:GetStrength()
-	local ratio = agility / strength
-	local base_damage = self.damage_base
-
-	local min_damage = self.damage_min
-	local max_damage = self.damage_max
-
-	local min_ratio = 0.5
-	local max_ratio = 1.5
-
-	local clamped = math.min(math.max(ratio, min_ratio), max_ratio)
-	local t = (clamped - min_ratio) / (max_ratio - min_ratio)
-	local multiplier = min_damage + (max_damage - min_damage) * t
-
-	if caster:HasModifier("modifier_morphling_morph_custom_legendary") then
-		multiplier = max_damage
-	end
-	local damage = base_damage + agility * multiplier
-
-	if self.talents.has_w7 == 1 then
-		damage = self.talents.w7_base
-			+ (caster:GetStrength() + caster:GetAgility() + caster:GetIntellect(false)) * self.talents.w7_damage
-	end
-	damage = damage * (1 + self.talents.w1_damage)
-
-	return damage
-end
-
 function morphling_adaptive_strike_custom:OnSpellStart()
-	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
-	local attribute_legendary = caster:HasModifier("modifier_morphling_morph_custom_legendary")
+	local attribute_legendary = self.caster:HasModifier("modifier_morphling_morph_custom_legendary")
 	local sound = attribute_legendary and "Hero_Morphling.AdaptiveStrikeStr.Cast"
 		or "Hero_Morphling.AdaptiveStrikeAgi.Cast"
 
@@ -267,21 +185,21 @@ function morphling_adaptive_strike_custom:OnSpellStart()
 
 	if self.talents.has_w7 == 1 then
 		local point = self:GetCursorPosition()
-		local origin = caster:GetAbsOrigin()
+		local origin = self.caster:GetAbsOrigin()
 		if origin == point then
-			point = origin + caster:GetForwardVector() * 10
+			point = origin + self.caster:GetForwardVector() * 10
 		end
 
 		local dir = (point - origin)
 
 		speed = self.talents.w7_speed
 		target = CreateModifierThinker(
-			caster,
+			self.caster,
 			self,
 			"modifier_morphling_adaptive_strike_custom_legendary_aoe",
 			{ duration = dir:Length2D() / speed },
 			GetGroundPosition(point, nil),
-			caster:GetTeamNumber(),
+			self.caster:GetTeamNumber(),
 			false
 		)
 	end
@@ -292,61 +210,31 @@ function morphling_adaptive_strike_custom:OnSpellStart()
 			or "particles/units/heroes/hero_morphling/morphling_adaptive_strike_agi_proj.vpcf",
 		Ability = self,
 		iMoveSpeed = speed,
-		Source = caster,
+		Source = self.caster,
 		Target = target,
 		bDodgeable = true,
 		bProvidesVision = true,
-		iVisionTeamNumber = caster:GetTeamNumber(),
+		iVisionTeamNumber = self.caster:GetTeamNumber(),
 		iVisionRadius = 100,
 		ExtraData = extra_data,
 	}
 	ProjectileManager:CreateTrackingProjectile(info)
 
-	if attribute_legendary then
-		if caster.attribute_legendary then
-			caster:AddNewModifier(
-				caster,
-				caster.attribute_legendary,
-				"modifier_morphling_morph_custom_legendary_attack",
-				{ duration = caster.attribute_legendary.strike_duration }
-			)
-		end
-	end
-
-	caster:EmitSound(sound)
-end
-
-function morphling_adaptive_strike_custom:DealDamage(target, damage, stun_duration)
-	local caster = self:GetCaster()
-
-	if IsValid(caster.wave_ability) then
-		caster.wave_ability:ApplyResist(target)
-	end
-
-	DoDamage({
-		victim = target,
-		attacker = caster,
-		ability = self,
-		damage = damage * (1 + (target:IsCreep() and self.creeps or 0)),
-		damage_type = DAMAGE_TYPE_MAGICAL,
-	})
-
-	if stun_duration then
-		target:AddNewModifier(
-			caster,
-			self,
-			"modifier_stunned",
-			{ duration = (1 - target:GetStatusResistance()) * stun_duration }
+	if attribute_legendary and self.caster.attribute_legendary then
+		self.caster:AddNewModifier(
+			self.caster,
+			self.caster.attribute_legendary,
+			"modifier_morphling_morph_custom_legendary_attack",
+			{ duration = self.caster.attribute_legendary.strike_duration }
 		)
 	end
 
-	self:ProcAuto(target)
+	self.caster:EmitSound(sound)
 end
 
 function morphling_adaptive_strike_custom:OnProjectileHit_ExtraData(target, location, table)
-	local caster = self:GetCaster()
-	local agility = caster:GetAgility()
-	local strength = caster:GetStrength()
+	local agility = self.caster:GetAgility()
+	local strength = self.caster:GetStrength()
 	local point = GetGroundPosition(location, nil)
 
 	local ratio = agility / strength
@@ -383,8 +271,8 @@ function morphling_adaptive_strike_custom:OnProjectileHit_ExtraData(target, loca
 	if self.talents.has_w7 == 1 then
 		stun_duration = self.talents.w7_stun
 	end
-	if IsValid(caster.attribute_legendary) and table.is_attribute_legendary == 1 then
-		stun_duration = caster.attribute_legendary.strike_stun
+	if IsValid(self.caster.attribute_legendary) and table.is_attribute_legendary == 1 then
+		stun_duration = self.caster.attribute_legendary.strike_stun
 	end
 
 	stun_duration = stun_duration + self.talents.w2_stun
@@ -396,18 +284,18 @@ function morphling_adaptive_strike_custom:OnProjectileHit_ExtraData(target, loca
 		sound = "Hero_Morphling.AdaptiveStrikeAgi.Target"
 		local inner_radius = self.talents.w7_inner_radius
 		local aoe_effect =
-			wearables_system:GetParticleReplacementAbility(caster, "particles/morphling/adaptive_aoe.vpcf", self)
+			wearables_system:GetParticleReplacementAbility(self.caster, "particles/morphling/adaptive_aoe.vpcf", self)
 
 		local effect2 = ParticleManager:CreateParticle(aoe_effect, PATTACH_WORLDORIGIN, nil)
 		ParticleManager:SetParticleControl(effect2, 0, point)
 		ParticleManager:SetParticleControl(effect2, 1, point)
 		ParticleManager:SetParticleControl(effect2, 2, Vector(radius, radius, radius))
-		ParticleManager:SetParticleControl(effect2, 7, caster:GetAbsOrigin())
+		ParticleManager:SetParticleControl(effect2, 7, self.caster:GetAbsOrigin())
 		ParticleManager:ReleaseParticleIndex(effect2)
 
 		local near_hit = false
 
-		for _, unit in pairs(caster:FindTargets(radius, point)) do
+		for _, unit in pairs(self.caster:FindTargets(radius, point)) do
 			local vec = (unit:GetAbsOrigin() - point)
 			local stun = nil
 			if vec:Length2D() <= inner_radius then
@@ -420,33 +308,33 @@ function morphling_adaptive_strike_custom:OnProjectileHit_ExtraData(target, loca
 		end
 
 		if near_hit then
-			caster:CdAbility(self, self:GetCooldownTimeRemaining() * self.talents.w7_cd_inc / 100)
+			self.caster:CdAbility(self, self:GetCooldownTimeRemaining() * self.talents.w7_cd_inc / 100)
 
 			local effect = ParticleManager:CreateParticle(
 				"particles/morphling/adaptive_refresh.vpcf",
 				PATTACH_CUSTOMORIGIN,
-				caster
+				self.caster
 			)
 			ParticleManager:SetParticleControlEnt(
 				effect,
 				0,
-				caster,
+				self.caster,
 				PATTACH_POINT_FOLLOW,
 				"attach_hitloc",
-				caster:GetOrigin(),
+				self.caster:GetOrigin(),
 				true
 			)
 			ParticleManager:ReleaseParticleIndex(effect)
 
-			caster:EmitSound("Morph.Adaptive_refresh")
+			self.caster:EmitSound("Morph.Adaptive_refresh")
 		end
 	else
 		if target:TriggerSpellAbsorb(self) then
 			return
 		end
 
-		for _, unit in pairs(caster:FindTargets(radius, point)) do
-			local knock_center = caster:GetAbsOrigin()
+		for _, unit in pairs(self.caster:FindTargets(radius, point)) do
+			local knock_center = self.caster:GetAbsOrigin()
 			if table.is_attribute_legendary == 1 then
 				local vec = (unit:GetAbsOrigin() - knock_center)
 
@@ -464,7 +352,7 @@ function morphling_adaptive_strike_custom:OnProjectileHit_ExtraData(target, loca
 				knockback_height = 0,
 				should_stun = 0,
 			}
-			unit:AddNewModifier(caster, self, "modifier_knockback", knockbackProperties)
+			unit:AddNewModifier(self.caster, self, "modifier_knockback", knockbackProperties)
 
 			hit = true
 			self:DealDamage(unit, damage, stun_duration)
@@ -473,7 +361,7 @@ function morphling_adaptive_strike_custom:OnProjectileHit_ExtraData(target, loca
 		if table.is_attribute_legendary == 0 then
 			local effect_point = point
 			local adaptiva_fx_name = wearables_system:GetParticleReplacementAbility(
-				caster,
+				self.caster,
 				"particles/units/heroes/hero_morphling/morphling_adaptive_strike.vpcf",
 				self
 			)
@@ -481,7 +369,7 @@ function morphling_adaptive_strike_custom:OnProjectileHit_ExtraData(target, loca
 				adaptiva_fx_name
 				== "particles/econ/items/morphling/morphling_ethereal/morphling_adaptive_strike_ethereal.vpcf"
 			then
-				effect_point = caster:GetAbsOrigin()
+				effect_point = self.caster:GetAbsOrigin()
 			end
 			local particle = agility >= strength and adaptiva_fx_name
 				or "particles/units/heroes/hero_morphling/morphling_adaptive_strike_str.vpcf"
@@ -497,7 +385,111 @@ function morphling_adaptive_strike_custom:OnProjectileHit_ExtraData(target, loca
 		self:AbilityHit()
 	end
 
-	EmitSoundOnLocationWithCaster(point, sound, caster)
+	EmitSoundOnLocationWithCaster(point, sound, self.caster)
+end
+
+function morphling_adaptive_strike_custom:GetDamage()
+	if not IsServer() then
+		return 0
+	end
+	local agility = self.caster:GetAgility()
+	local strength = self.caster:GetStrength()
+	local ratio = agility / strength
+	local base_damage = self.damage_base
+
+	local min_damage = self.damage_min
+	local max_damage = self.damage_max
+
+	local min_ratio = 0.5
+	local max_ratio = 1.5
+
+	local clamped = math.min(math.max(ratio, min_ratio), max_ratio)
+	local t = (clamped - min_ratio) / (max_ratio - min_ratio)
+	local multiplier = min_damage + (max_damage - min_damage) * t
+
+	if self.caster:HasModifier("modifier_morphling_morph_custom_legendary") then
+		multiplier = max_damage
+	end
+	local damage = base_damage + agility * multiplier
+
+	if self.talents.has_w7 == 1 then
+		damage = self.talents.w7_base
+			+ (self.caster:GetStrength() + self.caster:GetAgility() + self.caster:GetIntellect(false))
+				* self.talents.w7_damage
+	end
+	damage = damage * (1 + self.talents.w1_damage)
+
+	return damage
+end
+
+function morphling_adaptive_strike_custom:DealDamage(target, damage, stun_duration)
+	if IsValid(self.caster.wave_ability) then
+		self.caster.wave_ability:ApplyResist(target)
+	end
+
+	DoDamage({
+		victim = target,
+		attacker = self.caster,
+		ability = self,
+		damage = damage * (1 + (target:IsCreep() and self.creeps or 0)),
+		damage_type = DAMAGE_TYPE_MAGICAL,
+	})
+
+	if stun_duration then
+		target:AddNewModifier(
+			self.caster,
+			self,
+			"modifier_stunned",
+			{ duration = (1 - target:GetStatusResistance()) * stun_duration }
+		)
+	end
+
+	self:ProcAuto(target)
+end
+
+function morphling_adaptive_strike_custom:ProcAuto(target, wave)
+	if not IsServer() then
+		return
+	end
+	if not self:IsTrained() then
+		return
+	end
+	if self.talents.has_w3 == 0 then
+		return
+	end
+	if not RollPseudoRandomPercentage(self.talents.w3_chance, 1450, self.caster) then
+		return
+	end
+
+	local duration = wave and self.talents.w3_delay_wave or self.talents.w3_delay
+	target:AddNewModifier(
+		self.caster,
+		self,
+		"modifier_morphling_adaptive_strike_custom_auto_delay",
+		{ duration = duration }
+	)
+end
+
+function morphling_adaptive_strike_custom:AbilityHit()
+	if not IsServer() then
+		return
+	end
+	if not self:IsTrained() then
+		return
+	end
+	if self.talents.has_w4 == 0 then
+		return
+	end
+	if IsValid(self.shield_mod) then
+		return
+	end
+
+	self.caster:AddNewModifier(
+		self.caster,
+		self,
+		"modifier_morphling_adaptive_strike_custom_shield_stack",
+		{ duration = self.talents.w4_duration }
+	)
 end
 
 modifier_morphling_adaptive_strike_custom_tracker = class(mod_hidden)
@@ -624,6 +616,7 @@ function modifier_morphling_adaptive_strike_custom_shield_stack:OnCreated()
 	if not IsServer() then
 		return
 	end
+	self.RemoveForDuel = true
 	self:OnRefresh()
 end
 

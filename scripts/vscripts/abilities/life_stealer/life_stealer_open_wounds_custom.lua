@@ -33,21 +33,17 @@ life_stealer_open_wounds_custom = class({})
 life_stealer_open_wounds_custom.active_mod = nil
 life_stealer_open_wounds_custom.talents = {}
 
-function life_stealer_open_wounds_custom:GetAbilityTextureName()
-	local caster = self:GetCaster()
-	return wearables_system:GetAbilityIconReplacement(self.caster, "life_stealer_open_wounds", self)
-end
-
-function life_stealer_open_wounds_custom:CreateTalent()
-	self:ToggleAutoCast()
-end
-
 function life_stealer_open_wounds_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
 	end
 
 	PrecacheResource("particle", "particles/units/heroes/hero_life_stealer/life_stealer_open_wounds.vpcf", context)
+	PrecacheResource(
+		"particle",
+		"particles/units/heroes/hero_life_stealer/life_stealer_open_wounds_impact.vpcf",
+		context
+	)
 	PrecacheResource("particle", "particles/lifestealer/wounds_legendary_aoe.vpcf", context)
 	PrecacheResource("particle", "particles/lifestealer/wounds_legendary_aoe_init.vpcf", context)
 	PrecacheResource("particle", "particles/lifestealer/wounds_chains.vpcf", context)
@@ -118,10 +114,6 @@ function life_stealer_open_wounds_custom:UpdateTalents()
 		self.talents.has_w4 = 1
 	end
 
-	if caster:HasTalent("modifier_lifestealer_wounds_7") then
-		self.talents.has_w7 = 1
-	end
-
 	if caster:HasTalent("modifier_lifestealer_hero_5") then
 		self.talents.has_h5 = 1
 	end
@@ -129,6 +121,14 @@ function life_stealer_open_wounds_custom:UpdateTalents()
 	if caster:HasTalent("modifier_lifestealer_infest_3") then
 		self.talents.has_r3 = 1
 	end
+end
+
+function life_stealer_open_wounds_custom:GetAbilityTextureName()
+	return wearables_system:GetAbilityIconReplacement(self.caster, "life_stealer_open_wounds", self)
+end
+
+function life_stealer_open_wounds_custom:CreateTalent()
+	self:ToggleAutoCast()
 end
 
 function life_stealer_open_wounds_custom:GetIntrinsicModifierName()
@@ -144,7 +144,27 @@ function life_stealer_open_wounds_custom:GetBehavior()
 end
 
 function life_stealer_open_wounds_custom:GetCooldown(level)
-	return self.BaseClass.GetCooldown(self, level) + (self.talents.w2_cd and self.talents.w2_cd or 0)
+	return self.BaseClass.GetCooldown(self, level) + (self.talents.w2_cd or 0)
+end
+
+function life_stealer_open_wounds_custom:OnSpellStart()
+	local target = self:GetCursorTarget()
+	self.caster:EmitSound("Hero_LifeStealer.OpenWounds.Cast")
+
+	if target:TriggerSpellAbsorb(self) then
+		return
+	end
+
+	if self.talents.has_h5 == 1 and self:GetAutoCastState() then
+		self:PullTarget(target, self.talents.h5_min_distance)
+	end
+
+	local duration = self.duration * (1 - target:GetStatusResistance())
+	if self.talents.has_w4 == 1 then
+		duration = self.duration + self.talents.w4_duration
+	end
+
+	target:AddNewModifier(self.caster, self, "modifier_life_stealer_open_wounds_custom", { duration = duration })
 end
 
 function life_stealer_open_wounds_custom:PullTarget(target, min_distance)
@@ -175,7 +195,7 @@ function life_stealer_open_wounds_custom:PullTarget(target, min_distance)
 
 	target:EmitSound("Lifestealer.Wounds_chains")
 
-	local dir = (caster_loc - target:GetAbsOrigin())
+	local dir = caster_loc - target:GetAbsOrigin()
 	local point = caster_loc - dir:Normalized() * min_distance
 
 	local distance = (point - target:GetAbsOrigin()):Length2D()
@@ -187,7 +207,7 @@ function life_stealer_open_wounds_custom:PullTarget(target, min_distance)
 
 	point = target:GetAbsOrigin() + dir:Normalized() * distance
 
-	local arc = target:AddNewModifier(self.caster, self, "modifier_generic_arc", {
+	target:AddNewModifier(self.caster, self, "modifier_generic_arc", {
 		target_x = point.x,
 		target_y = point.y,
 		distance = distance,
@@ -199,36 +219,25 @@ function life_stealer_open_wounds_custom:PullTarget(target, min_distance)
 	})
 end
 
-function life_stealer_open_wounds_custom:OnSpellStart()
-	local target = self:GetCursorTarget()
-	self.caster:EmitSound("Hero_LifeStealer.OpenWounds.Cast")
-
-	if target:TriggerSpellAbsorb(self) then
-		return
-	end
-
-	if self.talents.has_h5 == 1 and self:GetAutoCastState() then
-		self:PullTarget(target, self.talents.h5_min_distance)
-	end
-
-	local duration = self.duration * (1 - target:GetStatusResistance())
-	if self.talents.has_w4 == 1 then
-		duration = self.duration + self.talents.w4_duration
-	end
-
-	target:AddNewModifier(self.caster, self, "modifier_life_stealer_open_wounds_custom", { duration = duration })
-end
-
 modifier_life_stealer_open_wounds_custom = class(mod_visible)
 function modifier_life_stealer_open_wounds_custom:IsPurgable()
 	return self.ability.talents.has_w4 == 0
+end
+function modifier_life_stealer_open_wounds_custom:GetStatusEffectName()
+	return wearables_system:GetParticleReplacementAbility(
+		self.caster,
+		"particles/status_fx/status_effect_life_stealer_open_wounds.vpcf",
+		self
+	)
+end
+function modifier_life_stealer_open_wounds_custom:StatusEffectPriority()
+	return MODIFIER_PRIORITY_HIGH
 end
 function modifier_life_stealer_open_wounds_custom:OnCreated()
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
 	self.ability = self:GetAbility()
 
-	self.duration = self.ability.duration
 	self.slow = self.ability.slow + (self.ability.talents.has_w4 == 1 and self.ability.talents.w4_slow or 0)
 
 	self.max_slow = self.slow
@@ -251,12 +260,7 @@ function modifier_life_stealer_open_wounds_custom:OnCreated()
 		"particles/units/heroes/hero_life_stealer/life_stealer_open_wounds.vpcf",
 		self
 	)
-	local sound_name = wearables_system:GetSoundReplacement(self.caster, "Hero_LifeStealer.OpenWounds", self)
-	local impact_particle = nil
-	self.sound_name = sound_name
-
-	local vec = (self.parent:GetAbsOrigin() - self.caster:GetAbsOrigin()):Normalized()
-	vec.z = 0
+	self.sound_name = wearables_system:GetSoundReplacement(self.caster, "Hero_LifeStealer.OpenWounds", self)
 
 	self.parent:GenericParticle(
 		wearables_system:GetParticleReplacementAbility(
@@ -265,13 +269,7 @@ function modifier_life_stealer_open_wounds_custom:OnCreated()
 			self
 		)
 	)
-	if impact_particle then
-		ParticleManager:SetParticleControl(impact_particle, 0, self.parent:GetAbsOrigin())
-		ParticleManager:SetParticleControlForward(impact_particle, 1, vec)
-		ParticleManager:ReleaseParticleIndex(impact_particle)
-	end
-
-	self.parent:EmitSound(sound_name)
+	self.parent:EmitSound(self.sound_name)
 	self.parent:GenericParticle(pfx_name, self)
 
 	self:SetHasCustomTransmitterData(true)
@@ -342,10 +340,7 @@ function modifier_life_stealer_open_wounds_custom:DamageEvent_inc(params)
 		return
 	end
 
-	local caster_attacker = self.caster
-	if caster_attacker.infest_creep then
-		caster_attacker = caster_attacker.infest_creep
-	end
+	local caster_attacker = self.caster.infest_creep or self.caster
 
 	if not params.inflictor and caster_attacker == attacker then
 		if self.ability.talents.has_w3 == 1 then
@@ -415,42 +410,178 @@ function modifier_life_stealer_open_wounds_custom:DamageEvent_inc(params)
 	end
 
 	local heal = params.damage * self.ability.heal_percent * result
-
-	local heal_target = attacker
-	if heal_target.infest_creep then
-		heal_target = heal_target.infest_creep
-	end
-
+	local heal_target = attacker.infest_creep or attacker
 	local quest_heal = heal_target:GenericHeal(heal, self.ability, true)
 
-	if
-		self.parent:IsRealHero()
-		and self.caster:GetQuest() == "Lifestealer.Quest_6"
-		and not self.caster:QuestCompleted()
-		and (self.caster == heal_target or (heal_target.lifestealer_creep and heal_target.owner == self.caster))
-	then
-		self.caster:UpdateQuest(quest_heal)
+	if not self.parent:IsRealHero() then
+		return
 	end
+	if self.caster:GetQuest() ~= "Lifestealer.Quest_6" then
+		return
+	end
+	if self.caster:QuestCompleted() then
+		return
+	end
+	if self.caster ~= heal_target and not (heal_target.lifestealer_creep and heal_target.owner == self.caster) then
+		return
+	end
+
+	self.caster:UpdateQuest(quest_heal)
 end
 
-function modifier_life_stealer_open_wounds_custom:GetStatusEffectName()
-	return wearables_system:GetParticleReplacementAbility(
-		self.caster,
-		"particles/status_fx/status_effect_life_stealer_open_wounds.vpcf",
-		self
+modifier_life_stealer_open_wounds_custom_tracker = class(mod_hidden)
+function modifier_life_stealer_open_wounds_custom_tracker:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	if not self.ability.tracker then
+		self.ability.tracker = self
+	end
+
+	self.ability:UpdateTalents()
+
+	self.parent.wounds_ability = self.ability
+
+	self.ability.duration = self.ability:GetSpecialValueFor("duration")
+	self.ability.heal_percent = self.ability:GetSpecialValueFor("heal_percent") / 100
+	self.ability.slow = self.ability:GetSpecialValueFor("slow")
+	self.ability.radius = self.ability:GetSpecialValueFor("radius")
+	self.ability.attacks = self.ability:GetSpecialValueFor("attacks")
+	self.ability.damage = self.ability:GetSpecialValueFor("damage")
+	self.ability.creeps = self.ability:GetSpecialValueFor("creeps") / 100
+end
+
+function modifier_life_stealer_open_wounds_custom_tracker:OnRefresh(table)
+	self.ability.heal_percent = self.ability:GetSpecialValueFor("heal_percent") / 100
+	self.ability.slow = self.ability:GetSpecialValueFor("slow")
+	self.ability.damage = self.ability:GetSpecialValueFor("damage")
+end
+
+function modifier_life_stealer_open_wounds_custom_tracker:DamageEvent_out(params)
+	if not IsServer() then
+		return
+	end
+	if self.ability.talents.has_w2 == 0 then
+		return
+	end
+
+	local real_attacker = params.attacker
+	local attacker = real_attacker.lifestealer_creep and real_attacker.owner or real_attacker
+
+	if attacker ~= self.parent then
+		return
+	end
+
+	local result = real_attacker:CheckLifesteal(params, 1)
+	if not result then
+		return
+	end
+	real_attacker:GenericHeal(
+		params.damage * self.ability.talents.w2_heal * result,
+		self.ability,
+		true,
+		"particles/items3_fx/octarine_core_lifesteal.vpcf",
+		"modifier_lifestealer_wounds_2"
 	)
 end
 
-function modifier_life_stealer_open_wounds_custom:StatusEffectPriority()
-	return MODIFIER_PRIORITY_HIGH
+function modifier_life_stealer_open_wounds_custom_tracker:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
+		MODIFIER_PROPERTY_CAST_RANGE_BONUS_STACKING,
+	}
+end
+
+function modifier_life_stealer_open_wounds_custom_tracker:GetModifierSpellAmplify_Percentage()
+	return self.ability.talents.w1_spell
+end
+
+function modifier_life_stealer_open_wounds_custom_tracker:GetModifierCastRangeBonusStacking()
+	if self.ability.talents.has_h5 == 0 then
+		return
+	end
+	return self.ability.talents.h5_range
+end
+
+modifier_life_stealer_open_wounds_custom_burn = class(mod_visible)
+function modifier_life_stealer_open_wounds_custom_burn:GetTexture()
+	return "buffs/lifestealer/wounds_3"
+end
+function modifier_life_stealer_open_wounds_custom_burn:GetEffectName()
+	return "particles/items2_fx/sange_maim.vpcf"
+end
+function modifier_life_stealer_open_wounds_custom_burn:OnCreated()
+	if not IsServer() then
+		return
+	end
+	self.parent = self:GetParent()
+	self.caster = self:GetCaster()
+	self.ability = self:GetAbility()
+	self.RemoveForDuel = true
+
+	self.max = self.ability.talents.w3_max
+	self.interval = self.ability.talents.w3_interval
+
+	self.damageTable = {
+		attacker = self.caster,
+		ability = self.ability,
+		victim = self.parent,
+		damage_type = self.ability.talents.w3_damage_type,
+	}
+	self:OnRefresh()
+	self:StartIntervalThink(self.interval)
+end
+
+function modifier_life_stealer_open_wounds_custom_burn:OnRefresh()
+	if not IsServer() then
+		return
+	end
+	if self:GetStackCount() >= self.max then
+		return
+	end
+	self:IncrementStackCount()
+	self.parent:EmitSound("DOTA_Item.Maim")
+
+	if self.ability.talents.has_r3 == 1 then
+		return
+	end
+
+	if not self.effect_cast then
+		self.effect_cast = self.parent:GenericParticle("particles/bloodseeker/bloodrage_stack_main.vpcf", self, true)
+	end
+	ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(0, self:GetStackCount(), 0))
+end
+
+function modifier_life_stealer_open_wounds_custom_burn:OnIntervalThink()
+	if not IsServer() then
+		return
+	end
+	local damage = self.ability.talents.w3_base + self.ability.talents.w3_damage * self.caster:GetMaxHealth()
+	self.damageTable.damage = (damage / self.max) * self:GetStackCount() * self.interval
+	local real_damage = DoDamage(self.damageTable, "modifier_lifestealer_wounds_3")
+	local result = self.caster:CanLifesteal(self.parent)
+	if not result then
+		return
+	end
+
+	self.caster:GenericHeal(
+		real_damage * self.ability.talents.w3_heal * result,
+		self.ability,
+		true,
+		"",
+		"modifier_lifestealer_wounds_3"
+	)
 end
 
 life_stealer_open_wounds_custom_legendary = class({})
 life_stealer_open_wounds_custom_legendary.talents = {}
 
-function life_stealer_open_wounds_custom_legendary:CreateTalent()
-	self:SetHidden(false)
-	self:SetLevel(1)
+function life_stealer_open_wounds_custom_legendary:Init()
+	if not self:GetCaster() then
+		return
+	end
+	self.caster = self:GetCaster()
+	self:UpdateTalents()
 end
 
 function life_stealer_open_wounds_custom_legendary:UpdateTalents(name)
@@ -458,7 +589,6 @@ function life_stealer_open_wounds_custom_legendary:UpdateTalents(name)
 	if not self.init then
 		self.init = true
 		self.talents = {
-			has_w7 = 0,
 			w7_damage_type = caster:GetTalentValue("modifier_lifestealer_wounds_7", "damage_type", true),
 			w7_damage = caster:GetTalentValue("modifier_lifestealer_wounds_7", "damage", true) / 100,
 			w7_talent_cd = caster:GetTalentValue("modifier_lifestealer_wounds_7", "talent_cd", true),
@@ -469,12 +599,9 @@ function life_stealer_open_wounds_custom_legendary:UpdateTalents(name)
 	end
 end
 
-function life_stealer_open_wounds_custom_legendary:Init()
-	if not self:GetCaster() then
-		return
-	end
-	self.caster = self:GetCaster()
-	self:UpdateTalents()
+function life_stealer_open_wounds_custom_legendary:CreateTalent()
+	self:SetHidden(false)
+	self:SetLevel(1)
 end
 
 function life_stealer_open_wounds_custom_legendary:GetAbilityTextureName()
@@ -492,11 +619,11 @@ function life_stealer_open_wounds_custom_legendary:GetBehavior()
 end
 
 function life_stealer_open_wounds_custom_legendary:GetCooldown()
-	return self.talents.w7_talent_cd and self.talents.w7_talent_cd or 0
+	return self.talents.w7_talent_cd or 0
 end
 
 function life_stealer_open_wounds_custom_legendary:GetCastRange(vector, hTarget)
-	return (self.talents.w7_radius and self.talents.w7_radius) - self.caster:GetCastRangeBonus()
+	return (self.talents.w7_radius or 0) - self.caster:GetCastRangeBonus()
 end
 
 function life_stealer_open_wounds_custom_legendary:OnSpellStart()
@@ -523,6 +650,12 @@ function life_stealer_open_wounds_custom_legendary:OnSpellStart()
 end
 
 modifier_life_stealer_open_wounds_custom_legendary = class(mod_hidden)
+function modifier_life_stealer_open_wounds_custom_legendary:GetStatusEffectName()
+	return "particles/status_fx/status_effect_life_stealer_open_wounds.vpcf"
+end
+function modifier_life_stealer_open_wounds_custom_legendary:StatusEffectPriority()
+	return MODIFIER_PRIORITY_ULTRA
+end
 function modifier_life_stealer_open_wounds_custom_legendary:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -654,7 +787,7 @@ function modifier_life_stealer_open_wounds_custom_legendary:OnDestroy()
 
 	for _, target in pairs(self.parent:FindTargets(self.radius)) do
 		damageTable.victim = target
-		local real_damage = DoDamage(damageTable)
+		local real_damage = DoDamage(damageTable, "modifier_lifestealer_wounds_7")
 		target:SendNumber(6, real_damage)
 
 		local effect_cast = ParticleManager:CreateParticle(
@@ -675,161 +808,4 @@ function modifier_life_stealer_open_wounds_custom_legendary:OnDestroy()
 
 		target:AddNewModifier(self.parent, self.ability, "modifier_stunned", { duration = self.stun })
 	end
-end
-
-function modifier_life_stealer_open_wounds_custom_legendary:GetStatusEffectName()
-	return "particles/status_fx/status_effect_life_stealer_open_wounds.vpcf"
-end
-
-function modifier_life_stealer_open_wounds_custom_legendary:StatusEffectPriority()
-	return MODIFIER_PRIORITY_ULTRA
-end
-
-modifier_life_stealer_open_wounds_custom_tracker = class(mod_hidden)
-function modifier_life_stealer_open_wounds_custom_tracker:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	if not self.ability.tracker then
-		self.ability.tracker = self
-	end
-
-	self.ability:UpdateTalents()
-
-	self.parent.wounds_ability = self.ability
-
-	self.ability.duration = self.ability:GetSpecialValueFor("duration")
-	self.ability.heal_percent = self.ability:GetSpecialValueFor("heal_percent") / 100
-	self.ability.slow = self.ability:GetSpecialValueFor("slow")
-	self.ability.radius = self.ability:GetSpecialValueFor("radius")
-	self.ability.attacks = self.ability:GetSpecialValueFor("attacks")
-	self.ability.damage = self.ability:GetSpecialValueFor("damage")
-	self.ability.creeps = self.ability:GetSpecialValueFor("creeps") / 100
-end
-
-function modifier_life_stealer_open_wounds_custom_tracker:OnRefresh(table)
-	self.ability.heal_percent = self.ability:GetSpecialValueFor("heal_percent") / 100
-	self.ability.slow = self.ability:GetSpecialValueFor("slow")
-	self.ability.damage = self.ability:GetSpecialValueFor("damage")
-end
-
-function modifier_life_stealer_open_wounds_custom_tracker:DamageEvent_out(params)
-	if not IsServer() then
-		return
-	end
-	if self.ability.talents.has_w2 == 0 then
-		return
-	end
-
-	local real_attacker = params.attacker
-	local attacker = (real_attacker.lifestealer_creep and real_attacker.owner) and real_attacker.owner or real_attacker
-
-	if attacker ~= self.parent then
-		return
-	end
-
-	local result = real_attacker:CheckLifesteal(params, 1)
-	if not result then
-		return
-	end
-	real_attacker:GenericHeal(
-		params.damage * self.ability.talents.w2_heal * result,
-		self.ability,
-		true,
-		"particles/items3_fx/octarine_core_lifesteal.vpcf",
-		"modifier_lifestealer_wounds_2"
-	)
-end
-
-function modifier_life_stealer_open_wounds_custom_tracker:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
-		MODIFIER_PROPERTY_CAST_RANGE_BONUS_STACKING,
-	}
-end
-
-function modifier_life_stealer_open_wounds_custom_tracker:GetModifierSpellAmplify_Percentage()
-	return self.ability.talents.w1_spell
-end
-
-function modifier_life_stealer_open_wounds_custom_tracker:GetModifierCastRangeBonusStacking()
-	if self.ability.talents.has_h5 == 0 then
-		return
-	end
-	return self.ability.talents.h5_range
-end
-
-modifier_life_stealer_open_wounds_custom_burn = class(mod_visible)
-function modifier_life_stealer_open_wounds_custom_burn:GetTexture()
-	return "buffs/lifestealer/wounds_3"
-end
-function modifier_life_stealer_open_wounds_custom_burn:GetEffectName()
-	return "particles/items2_fx/sange_maim.vpcf"
-end
-function modifier_life_stealer_open_wounds_custom_burn:OnCreated()
-	if not IsServer() then
-		return
-	end
-	self.parent = self:GetParent()
-	self.caster = self:GetCaster()
-	self.ability = self:GetAbility()
-
-	self.max = self.ability.talents.w3_max
-	self.interval = self.ability.talents.w3_interval
-
-	self.damgaeTable = {
-		attacker = self.caster,
-		ability = self.ability,
-		victim = self.parent,
-		damage_type = self.ability.talents.w3_damage_type,
-	}
-	self:OnRefresh()
-	self:StartIntervalThink(self.interval)
-end
-
-function modifier_life_stealer_open_wounds_custom_burn:OnRefresh()
-	if not IsServer() then
-		return
-	end
-	if self:GetStackCount() >= self.max then
-		return
-	end
-	self:IncrementStackCount()
-	self.parent:EmitSound("DOTA_Item.Maim")
-end
-
-function modifier_life_stealer_open_wounds_custom_burn:OnIntervalThink()
-	if not IsServer() then
-		return
-	end
-	local damage = (self.ability.talents.w3_base + self.ability.talents.w3_damage * self.caster:GetMaxHealth())
-	self.damgaeTable.damage = ((damage / self.max) * self:GetStackCount()) * self.interval
-	local real_damage = DoDamage(self.damgaeTable, "modifier_lifestealer_wounds_3")
-	local result = self.caster:CanLifesteal(self.parent)
-	if result then
-		self.caster:GenericHeal(
-			real_damage * self.ability.talents.w3_heal * result,
-			self.ability,
-			true,
-			"",
-			"modifier_lifestealer_wounds_3"
-		)
-	end
-end
-
-function modifier_life_stealer_open_wounds_custom_burn:OnStackCountChanged(iStackCount)
-	if not IsServer() then
-		return
-	end
-	if self:GetStackCount() <= 0 then
-		return
-	end
-	if self.ability.talents.has_r3 == 1 then
-		return
-	end
-
-	if not self.effect_cast then
-		self.effect_cast = self.parent:GenericParticle("particles/bloodseeker/bloodrage_stack_main.vpcf", self, true)
-	end
-	ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(0, self:GetStackCount(), 0))
 end

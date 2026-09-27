@@ -23,6 +23,16 @@ function item_sphere_custom:Precache(context)
 	end
 	PrecacheResource("particle", "particles/items_fx/immunity_sphere.vpcf", context)
 	PrecacheResource("particle", "particles/puck/orb_status.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_kez/status_effect_kez_afterimage_buff.vpcf", context)
+end
+
+function item_sphere_custom:Spawn()
+	self.bonus_all_stats = self:GetSpecialValueFor("bonus_all_stats")
+	self.bonus_health_regen = self:GetSpecialValueFor("bonus_health_regen")
+	self.bonus_mana_regen = self:GetSpecialValueFor("bonus_mana_regen")
+	self.block_cooldown = self:GetSpecialValueFor("block_cooldown")
+	self.status_duration = self:GetSpecialValueFor("status_duration")
+	self.status_bonus = self:GetSpecialValueFor("status_bonus")
 end
 
 function item_sphere_custom:GetCooldown(level)
@@ -36,6 +46,17 @@ end
 function item_sphere_custom_passive:RemoveOnDeath()
 	return false
 end
+function item_sphere_custom_passive:OnCreated(table)
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.bonus_all_stats = self.ability.bonus_all_stats
+	self.bonus_health_regen = self.ability.bonus_health_regen
+	self.bonus_mana_regen = self.ability.bonus_mana_regen
+	self.block_cooldown = self.ability.block_cooldown
+	self.status_duration = self.ability.status_duration
+end
+
 function item_sphere_custom_passive:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
@@ -46,19 +67,6 @@ function item_sphere_custom_passive:DeclareFunctions()
 
 		MODIFIER_PROPERTY_ABSORB_SPELL,
 	}
-end
-
-function item_sphere_custom_passive:OnCreated(table)
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.bonus_all_stats = self.ability:GetSpecialValueFor("bonus_all_stats")
-	self.bonus_health_regen = self.ability:GetSpecialValueFor("bonus_health_regen")
-	self.bonus_mana_regen = self.ability:GetSpecialValueFor("bonus_mana_regen")
-	self.block_cooldown = self.ability:GetSpecialValueFor("block_cooldown")
-	self.status_duration = self.ability:GetSpecialValueFor("status_duration")
-
-	self.ability.status_bonus = self.ability:GetSpecialValueFor("status_bonus")
 end
 
 function item_sphere_custom_passive:GetModifierBonusStats_Agility()
@@ -140,8 +148,16 @@ item_sphere_custom_status = class(mod_visible)
 function item_sphere_custom_status:GetEffectName()
 	return "particles/puck/orb_status.vpcf"
 end
+function item_sphere_custom_status:GetStatusEffectName()
+	return "particles/units/heroes/hero_kez/status_effect_kez_afterimage_buff.vpcf"
+end
+function item_sphere_custom_status:StatusEffectPriority()
+	return MODIFIER_PRIORITY_HIGH
+end
 function item_sphere_custom_status:OnCreated()
-	self.status = self:GetAbility().status_bonus
+	self.ability = self:GetAbility()
+
+	self.status = self.ability.status_bonus
 end
 
 function item_sphere_custom_status:DeclareFunctions()
@@ -152,12 +168,4 @@ end
 
 function item_sphere_custom_status:GetModifierStatusResistanceStacking()
 	return self.status
-end
-
-function item_sphere_custom_status:GetStatusEffectName()
-	return "particles/units/heroes/hero_kez/status_effect_kez_afterimage_buff.vpcf"
-end
-
-function item_sphere_custom_status:StatusEffectPriority()
-	return MODIFIER_PRIORITY_HIGH
 end

@@ -15,13 +15,7 @@ LinkLuaModifier(
 )
 
 bloodseeker_innate_custom = class({})
-
-function bloodseeker_innate_custom:GetIntrinsicModifierName()
-	if not self:GetCaster():IsRealHero() then
-		return
-	end
-	return "modifier_bloodseeker_sanguivore_custom"
-end
+bloodseeker_innate_custom.talents = {}
 
 function bloodseeker_innate_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
@@ -61,12 +55,18 @@ function bloodseeker_innate_custom:UpdateTalents()
 	end
 end
 
+function bloodseeker_innate_custom:GetIntrinsicModifierName()
+	if not self:GetCaster():IsRealHero() then
+		return
+	end
+	return "modifier_bloodseeker_sanguivore_custom"
+end
+
 function bloodseeker_innate_custom:OnInventoryContentsChanged()
 	if not IsServer() then
 		return
 	end
-
-	if self.tracker then
+	if IsValid(self.tracker) then
 		self.tracker:InitScepter()
 	end
 end
@@ -78,16 +78,17 @@ end
 function modifier_bloodseeker_sanguivore_custom:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
+
+	self.ability.scepter_shield = self.ability:GetSpecialValueFor("scepter_shield") / 100
+	self.ability.shield_max = self.ability:GetSpecialValueFor("shield_max") / 100
+	self.ability.heal_pct = self.ability:GetSpecialValueFor("heal_pct") / 100
+
 	self.ability.tracker = self
 	self.ability:UpdateTalents()
 
 	self.parent.sanguivore_ability = self.ability
 
 	self.parent:AddDeathEvent(self, true)
-
-	self.scepter_shield = self.ability:GetSpecialValueFor("scepter_shield") / 100
-	self.shield_max = self.ability:GetSpecialValueFor("shield_max") / 100
-	self.heal_pct = self.ability:GetSpecialValueFor("heal_pct") / 100
 	self:InitScepter()
 end
 
@@ -135,7 +136,7 @@ function modifier_bloodseeker_sanguivore_custom:DamageEvent_out(params)
 	end
 
 	if self.parent:HasScepter() and target:HasModifier("modifier_bloodseeker_rupture_custom") then
-		local shield = params.damage * self.scepter_shield * result
+		local shield = params.damage * self.ability.scepter_shield * result
 		self:AddShield(shield)
 	end
 end
@@ -166,9 +167,7 @@ function modifier_bloodseeker_sanguivore_custom:DeathEvent(params)
 		self,
 		"bloodseeker_bloodrage_custom"
 	)
-	local pfx = "particles/units/heroes/hero_bloodseeker/bloodseeker_bloodbath.vpcf"
 	if effect == "particles/econ/items/bloodseeker/bloodseeker_eztzhok_weapon/bloodseeker_bloodbath_eztzhok.vpcf" then
-		pfx = ""
 		local particle = ParticleManager:CreateParticle(effect, PATTACH_CUSTOMORIGIN_FOLLOW, self.parent)
 		ParticleManager:SetParticleControlEnt(
 			particle,
@@ -191,14 +190,14 @@ function modifier_bloodseeker_sanguivore_custom:DeathEvent(params)
 		ParticleManager:ReleaseParticleIndex(particle)
 	end
 
-	self:AddShield(params.unit:GetMaxHealth() * self.heal_pct)
+	self:AddShield(params.unit:GetMaxHealth() * self.ability.heal_pct)
 end
 
 function modifier_bloodseeker_sanguivore_custom:AddShield(add_shield, is_bath)
 	if not IsServer() then
 		return
 	end
-	local max_shield = (self.parent:GetMaxHealth() * self.shield_max) * (1 + self.ability.talents.h2_shield_max)
+	local max_shield = (self.parent:GetMaxHealth() * self.ability.shield_max) * (1 + self.ability.talents.h2_shield_max)
 	local shield = add_shield
 	if is_bath then
 		shield = max_shield * self.ability.talents.h2_shield

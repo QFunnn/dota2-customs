@@ -123,10 +123,7 @@ function modifier_quest_logic:StartQuest()
 
 	if name == "Phantom.Quest_7" then
 		self.quest_attack_logic = function(params)
-			if
-				self.parent:HasModifier("modifier_phantom_assassin_phantom_quest")
-				and not self.parent:HasModifier("modifier_custom_phantom_assassin_stifling_dagger_attack")
-			then
+			if self.parent:HasCd("phantom_quest_7", self.parent.quest.number) then
 				self.parent:UpdateQuest(1)
 			end
 		end
@@ -823,7 +820,10 @@ function modifier_quest_logic:StartQuest()
 
 	if name == "Phantom.Quest_6" then
 		self.quest_damage_logic = function(params)
-			if self.parent:HasModifier("modifier_phantom_assassin_phantom_strike_buff") then
+			if
+				params.damage_type == DAMAGE_TYPE_MAGICAL
+				and self.parent:HasCd("phantom_quest_6", self.parent.quest.number)
+			then
 				self.parent:UpdateQuest(math.floor(params.damage))
 			end
 		end
@@ -1021,6 +1021,24 @@ function modifier_quest_logic:StartQuest()
 					or params.inflictor:GetName() == "jakiro_liquid_frost_custom"
 				)
 			then
+				self.parent:UpdateQuest(math.floor(params.damage))
+			end
+		end
+		return
+	end
+
+	if name == "Kunkka.Quest_7" then
+		self.quest_damage_logic = function(params)
+			if self.parent:HasModifier("modifier_kunkka_xmark_custom_target") then
+				self.parent:UpdateQuest(math.floor(params.damage))
+			end
+		end
+		return
+	end
+
+	if name == "Kunkka.Quest_8" then
+		self.quest_damage_logic = function(params)
+			if params.unit:HasCd("kunkka_quest_8", self.parent.quest.number) then
 				self.parent:UpdateQuest(math.floor(params.damage))
 			end
 		end

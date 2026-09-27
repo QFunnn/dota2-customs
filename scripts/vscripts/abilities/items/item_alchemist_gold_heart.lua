@@ -41,36 +41,63 @@ function item_alchemist_gold_heart:Precache(context)
 	end
 	PrecacheResource("particle", "particles/huskar_lowhp.vpcf", context)
 	PrecacheResource("particle", "particles/econ/events/fall_2022/radiance_target_fall2022.vpcf", context)
+	PrecacheResource("particle", "particles/items2_fx/radiance_owner.vpcf", context)
+	PrecacheResource("particle", "particles/items2_fx/radiance.vpcf", context)
+	PrecacheResource("particle", "particles/status_fx/status_effect_burn.vpcf", context)
+end
+
+function item_alchemist_gold_heart:Spawn()
+	self.duration = self:GetSpecialValueFor("duration")
+	self.bonus_damage = self:GetSpecialValueFor("bonus_damage")
+	self.bonus_strength = self:GetSpecialValueFor("bonus_strength")
+	self.bonus_health = self:GetSpecialValueFor("bonus_health")
+	self.health_regen_pct = self:GetSpecialValueFor("health_regen_pct")
+	self.active_regen = self:GetSpecialValueFor("active_regen")
+	self.evasion = self:GetSpecialValueFor("evasion")
+	self.aura_radius = self:GetSpecialValueFor("aura_radius")
+	self.aura_damage = self:GetSpecialValueFor("aura_damage")
+	self.active_bonus = self:GetSpecialValueFor("active_bonus")
+	self.blind_pct = self:GetSpecialValueFor("blind_pct")
+	self.think_interval = self:GetSpecialValueFor("think_interval")
 end
 
 function item_alchemist_gold_heart:OnSpellStart()
 	local caster = self:GetCaster()
 
-	caster:AddNewModifier(
-		caster,
-		self,
-		"modifier_item_alchemist_gold_heart_buff",
-		{ duration = self:GetSpecialValueFor("duration") }
-	)
+	caster:AddNewModifier(caster, self, "modifier_item_alchemist_gold_heart_buff", { duration = self.duration })
 end
 
 modifier_item_alchemist_gold_heart = class(mod_hidden)
 function modifier_item_alchemist_gold_heart:RemoveOnDeath()
 	return false
 end
-
+function modifier_item_alchemist_gold_heart:IsAura()
+	return IsValid(self.parent) and not self.parent:HasModifier("modifier_radiance_custom_stats")
+end
+function modifier_item_alchemist_gold_heart:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_ENEMY
+end
+function modifier_item_alchemist_gold_heart:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
+end
+function modifier_item_alchemist_gold_heart:GetModifierAura()
+	return "modifier_item_alchemist_gold_heart_burn"
+end
+function modifier_item_alchemist_gold_heart:GetAuraRadius()
+	return self.aura_radius
+end
 function modifier_item_alchemist_gold_heart:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.bonus_damage = self.ability:GetSpecialValueFor("bonus_damage")
-	self.bonus_strength = self.ability:GetSpecialValueFor("bonus_strength")
-	self.bonus_health = self.ability:GetSpecialValueFor("bonus_health")
-	self.health_regen_pct = self.ability:GetSpecialValueFor("health_regen_pct")
-	self.active_regen = self.ability:GetSpecialValueFor("active_regen")
-	self.evasion = self.ability:GetSpecialValueFor("evasion")
+	self.bonus_damage = self.ability.bonus_damage
+	self.bonus_strength = self.ability.bonus_strength
+	self.bonus_health = self.ability.bonus_health
+	self.health_regen_pct = self.ability.health_regen_pct
+	self.active_regen = self.ability.active_regen
+	self.evasion = self.ability.evasion
 
-	self.aura_radius = self.ability:GetSpecialValueFor("aura_radius")
+	self.aura_radius = self.ability.aura_radius
 	if not IsServer() then
 		return
 	end
@@ -115,45 +142,7 @@ function modifier_item_alchemist_gold_heart:GetModifierHealthRegenPercentage()
 		or self.health_regen_pct
 end
 
-function modifier_item_alchemist_gold_heart:IsAura()
-	return IsValid(self.parent) and not self.parent:HasModifier("modifier_radiance_custom_stats")
-end
-function modifier_item_alchemist_gold_heart:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_ENEMY
-end
-function modifier_item_alchemist_gold_heart:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
-end
-function modifier_item_alchemist_gold_heart:GetModifierAura()
-	return "modifier_item_alchemist_gold_heart_burn"
-end
-function modifier_item_alchemist_gold_heart:GetAuraRadius()
-	return self.aura_radius
-end
-
 modifier_item_alchemist_gold_heart_buff = class(mod_visible)
-function modifier_item_alchemist_gold_heart_buff:OnCreated()
-	if not IsServer() then
-		return
-	end
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.parent:EmitSound("Alchemist.Heart_active")
-	self.parent:GenericParticle("particles/huskar_lowhp.vpcf", self)
-	self.aura_radius = self.ability:GetSpecialValueFor("aura_radius")
-end
-
-function modifier_item_alchemist_gold_heart_buff:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_MODEL_SCALE,
-	}
-end
-
-function modifier_item_alchemist_gold_heart_buff:GetModifierModelScale()
-	return 20
-end
-
 function modifier_item_alchemist_gold_heart_buff:IsAura()
 	return true
 end
@@ -169,24 +158,40 @@ end
 function modifier_item_alchemist_gold_heart_buff:GetAuraRadius()
 	return self.aura_radius
 end
+function modifier_item_alchemist_gold_heart_buff:OnCreated()
+	if not IsServer() then
+		return
+	end
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
 
-modifier_item_alchemist_gold_heart_burn = class(mod_visible)
-function modifier_item_alchemist_gold_heart_burn:DeclareFunctions()
+	self.parent:EmitSound("Alchemist.Heart_active")
+	self.parent:GenericParticle("particles/huskar_lowhp.vpcf", self)
+	self.aura_radius = self.ability.aura_radius
+end
+
+function modifier_item_alchemist_gold_heart_buff:DeclareFunctions()
 	return {
-		MODIFIER_PROPERTY_TOOLTIP,
+		MODIFIER_PROPERTY_MODEL_SCALE,
 	}
 end
+
+function modifier_item_alchemist_gold_heart_buff:GetModifierModelScale()
+	return 20
+end
+
+modifier_item_alchemist_gold_heart_burn = class(mod_visible)
 function modifier_item_alchemist_gold_heart_burn:OnCreated()
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
 	self.ability = self:GetAbility()
 
-	self.burn_damage = self.ability:GetSpecialValueFor("aura_damage") / 100
-	self.active_bonus = self.ability:GetSpecialValueFor("active_bonus")
+	self.burn_damage = self.ability.aura_damage / 100
+	self.active_bonus = self.ability.active_bonus
 
-	self.miss_pers = self.ability:GetSpecialValueFor("blind_pct")
+	self.miss_pers = self.ability.blind_pct
 
-	self.interval = self.ability:GetSpecialValueFor("think_interval")
+	self.interval = self.ability.think_interval
 
 	self.damageTable =
 		{ victim = self.parent, attacker = self.caster, ability = self.ability, damage_type = DAMAGE_TYPE_MAGICAL }
@@ -209,6 +214,12 @@ function modifier_item_alchemist_gold_heart_burn:OnCreated()
 	self:StartIntervalThink(self.interval)
 
 	EmitSoundOnEntityForPlayer("DOTA_Item.Radiance.Target.Loop", self.parent, self.parent:GetPlayerOwnerID())
+end
+
+function modifier_item_alchemist_gold_heart_burn:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_TOOLTIP,
+	}
 end
 
 function modifier_item_alchemist_gold_heart_burn:OnDestroy()
@@ -235,6 +246,12 @@ function modifier_item_alchemist_gold_heart_burn:OnTooltip()
 end
 
 modifier_item_alchemist_gold_heart_buff_effect = class(mod_hidden)
+function modifier_item_alchemist_gold_heart_buff_effect:GetStatusEffectName()
+	return "particles/status_fx/status_effect_burn.vpcf"
+end
+function modifier_item_alchemist_gold_heart_buff_effect:StatusEffectPriority()
+	return MODIFIER_PRIORITY_NORMAL
+end
 function modifier_item_alchemist_gold_heart_buff_effect:OnCreated()
 	if not IsServer() then
 		return
@@ -253,12 +270,4 @@ function modifier_item_alchemist_gold_heart_buff_effect:OnCreated()
 		self.caster:GetOrigin(),
 		true
 	)
-end
-
-function modifier_item_alchemist_gold_heart_buff_effect:GetStatusEffectName()
-	return "particles/status_fx/status_effect_burn.vpcf"
-end
-
-function modifier_item_alchemist_gold_heart_buff_effect:StatusEffectPriority()
-	return MODIFIER_PRIORITY_NORMAL
 end

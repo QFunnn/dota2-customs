@@ -19,17 +19,7 @@ LinkLuaModifier(
 	LUA_MODIFIER_MOTION_NONE
 )
 LinkLuaModifier(
-	"modifier_custom_juggernaut_healing_ward_buff",
-	"abilities/juggernaut/custom_juggernaut_healing_ward.lua",
-	LUA_MODIFIER_MOTION_NONE
-)
-LinkLuaModifier(
 	"modifier_custom_juggernaut_healing_ward_invun",
-	"abilities/juggernaut/custom_juggernaut_healing_ward.lua",
-	LUA_MODIFIER_MOTION_NONE
-)
-LinkLuaModifier(
-	"modifier_custom_juggernaut_healing_ward_damage_aura",
 	"abilities/juggernaut/custom_juggernaut_healing_ward.lua",
 	LUA_MODIFIER_MOTION_NONE
 )
@@ -66,8 +56,6 @@ function custom_juggernaut_healing_ward:Precache(context)
 	PrecacheResource("particle", "particles/juggernaut/ward_immune.vpcf", context)
 	PrecacheResource("particle", "particles/juggernaut/ward_burn.vpcf", context)
 	PrecacheResource("particle", "particles/jugger_ward_legend.vpcf", context)
-	PrecacheResource("particle", "particles/jugg_ward_buff.vpcf", context)
-	PrecacheResource("particle", "particles/status_fx/status_effect_mjollnir_shield.vpcf", context)
 	PrecacheResource("particle", "particles/juggernaut/ward_invun.vpcf", context)
 	PrecacheResource("particle", "particles/juggernaut/ward_bolt_damage.vpcf", context)
 	PrecacheResource("particle", "particles/juggernaut/ward_leash.vpcf", context)
@@ -79,11 +67,9 @@ function custom_juggernaut_healing_ward:UpdateTalents()
 	if not self.init then
 		self.init = true
 		self.talents = {
-			has_w1 = 0,
 			w1_spell = 0,
 			w1_damage = 0,
 
-			has_w2 = 0,
 			w2_cd = 0,
 			w2_duration = 0,
 			w2_duration_legendary = 0,
@@ -105,6 +91,9 @@ function custom_juggernaut_healing_ward:UpdateTalents()
 			w7_duration = caster:GetTalentValue("modifier_juggernaut_healingward_7", "duration", true),
 			w7_damage_type = caster:GetTalentValue("modifier_juggernaut_healingward_7", "damage_type", true),
 
+			has_q3 = 0,
+			q3_duration = caster:GetTalentValue("modifier_juggernaut_bladefury_3", "duration", true),
+
 			has_h2 = 0,
 			h2_magic = 0,
 			h2_status = 0,
@@ -120,13 +109,11 @@ function custom_juggernaut_healing_ward:UpdateTalents()
 	end
 
 	if caster:HasTalent("modifier_juggernaut_healingward_1") then
-		self.talents.has_w1 = 1
 		self.talents.w1_damage = caster:GetTalentValue("modifier_juggernaut_healingward_1", "damage") / 100
 		self.talents.w1_spell = caster:GetTalentValue("modifier_juggernaut_healingward_1", "spell")
 	end
 
 	if caster:HasTalent("modifier_juggernaut_healingward_2") then
-		self.talents.has_w2 = 1
 		self.talents.w2_cd = caster:GetTalentValue("modifier_juggernaut_healingward_2", "cd")
 		self.talents.w2_duration = caster:GetTalentValue("modifier_juggernaut_healingward_2", "duration")
 		self.talents.w2_duration_legendary =
@@ -144,6 +131,10 @@ function custom_juggernaut_healing_ward:UpdateTalents()
 
 	if caster:HasTalent("modifier_juggernaut_healingward_7") then
 		self.talents.has_w7 = 1
+	end
+
+	if caster:HasTalent("modifier_juggernaut_bladefury_3") then
+		self.talents.has_q3 = 1
 	end
 
 	if caster:HasTalent("modifier_juggernaut_hero_2") then
@@ -169,24 +160,19 @@ function custom_juggernaut_healing_ward:GetIntrinsicModifierName()
 end
 
 function custom_juggernaut_healing_ward:GetAOERadius()
-	return (self.radius and self.radius or 0)
-end
-
-function custom_juggernaut_healing_ward:GetManaCost(level)
-	return self.BaseClass.GetManaCost(self, level)
-end
-
-function custom_juggernaut_healing_ward:GetCastPoint()
-	return self.BaseClass.GetCastPoint(self)
+	return self.radius or 0
 end
 
 function custom_juggernaut_healing_ward:GetCooldown(iLevel)
 	local k = self.talents.has_w7 == 1 and (1 + self.talents.w7_cd_inc) or 1
-	return (self.BaseClass.GetCooldown(self, iLevel) + (self.talents.w2_cd and self.talents.w2_cd or 0)) * k
+	return (self.BaseClass.GetCooldown(self, iLevel) + (self.talents.w2_cd or 0)) * k
+end
+
+function custom_juggernaut_healing_ward:GetDamage()
+	return self.damage + self.caster:GetMaxHealth() * self.talents.w1_damage
 end
 
 function custom_juggernaut_healing_ward:OnSpellStart()
-	local caster = self:GetCaster()
 	local duration = self.duration + self.talents.w2_duration
 	local point = self:GetCursorPosition()
 
@@ -194,22 +180,19 @@ function custom_juggernaut_healing_ward:OnSpellStart()
 		duration = self.talents.w7_duration + self.talents.w2_duration_legendary
 	end
 
-	self.ward = CreateUnitByName("juggernaut_healing_ward", point, true, caster, caster, caster:GetTeamNumber())
-	self.ward:AddNewModifier(caster, self, "modifier_kill", { duration = duration })
-	self.ward.owner = caster
+	self.ward =
+		CreateUnitByName("juggernaut_healing_ward", point, true, self.caster, self.caster, self.caster:GetTeamNumber())
+	self.ward:AddNewModifier(self.caster, self, "modifier_kill", { duration = duration })
+	self.ward.owner = self.caster
 
 	if self.talents.has_w7 == 0 then
-		self.ward:SetControllableByPlayer(caster:GetPlayerOwnerID(), true)
+		self.ward:SetControllableByPlayer(self.caster:GetPlayerOwnerID(), true)
 		Timers:CreateTimer(0.05, function()
-			self.ward:MoveToNPC(caster)
+			self.ward:MoveToNPC(self.caster)
 		end)
 	end
 
-	self.ward:AddNewModifier(caster, self, "modifier_custom_juggernaut_healing_ward", { duration = duration })
-end
-
-function custom_juggernaut_healing_ward:GetDamage()
-	return self.damage + self.caster:GetMaxHealth() * self.talents.w1_damage
+	self.ward:AddNewModifier(self.caster, self, "modifier_custom_juggernaut_healing_ward", { duration = duration })
 end
 
 function custom_juggernaut_healing_ward:ProcDamage(target, is_fury, is_proc)
@@ -262,6 +245,24 @@ function custom_juggernaut_healing_ward:ProcDamage(target, is_fury, is_proc)
 end
 
 modifier_custom_juggernaut_healing_ward = class(mod_hidden)
+function modifier_custom_juggernaut_healing_ward:IsAura()
+	return IsServer() and self.parent:IsAlive()
+end
+function modifier_custom_juggernaut_healing_ward:GetAuraDuration()
+	return self.aura_duration
+end
+function modifier_custom_juggernaut_healing_ward:GetAuraRadius()
+	return self.radius
+end
+function modifier_custom_juggernaut_healing_ward:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_BOTH
+end
+function modifier_custom_juggernaut_healing_ward:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
+end
+function modifier_custom_juggernaut_healing_ward:GetModifierAura()
+	return "modifier_custom_juggernaut_healing_ward_aura"
+end
 function modifier_custom_juggernaut_healing_ward:OnCreated(table)
 	self.caster = self:GetCaster()
 	self.parent = self:GetParent()
@@ -314,8 +315,7 @@ function modifier_custom_juggernaut_healing_ward:OnCreated(table)
 			self.parent:SetMaterialGroup("1")
 		end
 		local vector = Vector(0, -1, 0)
-		self.parent:SetForwardVector(vector)
-		self.parent:FaceTowards(self.parent:GetAbsOrigin() + vector * 10)
+		self.parent:FacePoint(self.parent:GetAbsOrigin() + vector * 10)
 	end
 	if model_name and model_name == "models/items/juggernaut/ward/miyamoto_musash_ward/miyamoto_musash_ward.vmdl" then
 		self.parent:SetMaterialGroup("1")
@@ -326,7 +326,7 @@ function modifier_custom_juggernaut_healing_ward:OnCreated(table)
 
 	self.ward_particle = ParticleManager:CreateParticle(particle_fx, PATTACH_ABSORIGIN_FOLLOW, self.parent)
 	ParticleManager:SetParticleControl(self.ward_particle, 0, self.parent:GetAbsOrigin())
-	ParticleManager:SetParticleControl(self.ward_particle, 1, Vector(self.ability.radius, 1, 1))
+	ParticleManager:SetParticleControl(self.ward_particle, 1, Vector(self.radius, 1, 1))
 	ParticleManager:SetParticleControlEnt(
 		self.ward_particle,
 		2,
@@ -426,12 +426,12 @@ function modifier_custom_juggernaut_healing_ward:OnIntervalThink()
 
 			self.ability:ProcDamage(target)
 
-			if IsValid(self.caster.fury_ability) and self.caster.fury_ability.talents.has_q3 == 1 then
+			if self.ability.talents.has_q3 == 1 and IsValid(self.caster.fury_ability) then
 				target:AddNewModifier(
 					self.caster,
 					self.caster.fury_ability,
 					"modifier_custom_juggernaut_blade_fury_resist",
-					{ duration = self.caster.fury_ability.talents.q3_duration }
+					{ duration = self.ability.talents.q3_duration }
 				)
 			end
 		end
@@ -447,7 +447,19 @@ function modifier_custom_juggernaut_healing_ward:OnIntervalThink()
 
 	for target, _ in pairs(self.inside_targets) do
 		if IsValid(target) and target:IsAlive() then
-			self:CheckPos(target)
+			local radius = self.radius * 0.9
+			local dir = (target:GetAbsOrigin() - self.parent:GetAbsOrigin())
+
+			if not target:IsInvulnerable() and dir:Length2D() > radius then
+				target:InterruptMotionControllers(false)
+				local point = self.parent:GetAbsOrigin() + dir:Normalized() * (radius * 0.8)
+				if dir:Length2D() > radius * 1.4 then
+					FindClearSpaceForUnit(target, point, true)
+				else
+					self:ChangePos(target, point)
+				end
+			end
+
 			if target:IsRealHero() then
 				AddFOWViewer(target:GetTeamNumber(), self.parent:GetAbsOrigin(), 50, self.interval * 2, false)
 			end
@@ -483,28 +495,6 @@ function modifier_custom_juggernaut_healing_ward:OnIntervalThink()
 	})
 end
 
-function modifier_custom_juggernaut_healing_ward:CheckPos(target)
-	if not IsServer() then
-		return
-	end
-	if target:IsInvulnerable() then
-		return
-	end
-
-	local radius = self.radius * 0.9
-	local dir = (target:GetAbsOrigin() - self.parent:GetAbsOrigin())
-
-	if dir:Length2D() > radius then
-		target:InterruptMotionControllers(false)
-		local point = self.parent:GetAbsOrigin() + dir:Normalized() * (radius * 0.8)
-		if dir:Length2D() > radius * 1.4 then
-			FindClearSpaceForUnit(target, point, true)
-		else
-			self:ChangePos(target, point)
-		end
-	end
-end
-
 function modifier_custom_juggernaut_healing_ward:ChangePos(target, point)
 	if not IsServer() then
 		return
@@ -524,143 +514,6 @@ function modifier_custom_juggernaut_healing_ward:ChangePos(target, point)
 		activity = ACT_DOTA_FLAIL,
 	}
 	target:AddNewModifier(self.caster, self.caster:BkbAbility(nil, true), "modifier_generic_arc", knockbackProperties)
-end
-
-function modifier_custom_juggernaut_healing_ward:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_MAGICAL,
-		MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL,
-		MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PURE,
-		MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE,
-		MODIFIER_PROPERTY_DISABLE_TURNING,
-		MODIFIER_PROPERTY_HEALTHBAR_PIPS,
-	}
-end
-
-function modifier_custom_juggernaut_healing_ward:GetModifierDisableTurning()
-	if self.ability.talents.has_w7 == 0 then
-		return
-	end
-	return 1
-end
-
-function modifier_custom_juggernaut_healing_ward:GetModifierMoveSpeed_Absolute()
-	return self.base_move
-end
-
-function modifier_custom_juggernaut_healing_ward:GetModifierHealthBarPips()
-	return self.health
-end
-
-function modifier_custom_juggernaut_healing_ward:GetAbsoluteNoDamageMagical()
-	return 1
-end
-function modifier_custom_juggernaut_healing_ward:GetAbsoluteNoDamagePhysical()
-	return 1
-end
-function modifier_custom_juggernaut_healing_ward:GetAbsoluteNoDamagePure()
-	return 1
-end
-
-function modifier_custom_juggernaut_healing_ward:DamageEvent_out(params)
-	if not IsServer() then
-		return
-	end
-	if self.caster ~= params.attacker then
-		return
-	end
-	if not params.unit:IsUnit() then
-		return
-	end
-	if not params.inflictor then
-		return
-	end
-	if (self.caster:GetAbsOrigin() - self.parent:GetAbsOrigin()):Length2D() > self.radius then
-		return
-	end
-
-	local result = self.parent:CanLifesteal(params.unit)
-	if not result then
-		return
-	end
-
-	self.damage_stack = self.damage_stack + result * params.original_damage * self.ability.talents.w7_damage
-end
-
-function modifier_custom_juggernaut_healing_ward:AttackEvent_inc(params)
-	if not IsServer() then
-		return
-	end
-	if self.parent ~= params.target then
-		return
-	end
-
-	local attacker = params.attacker
-	if attacker:IsIllusion() then
-		return
-	end
-	if attacker:IsCreep() and attacker.owner and attacker:GetTeamNumber() ~= DOTA_TEAM_CUSTOM_5 then
-		return
-	end
-
-	if self.caster:HasScepter() and (attacker:GetAbsOrigin() - self.parent:GetAbsOrigin()):Length2D() > self.radius then
-		self.parent:EmitSound("Juggernaut.Ward_immune")
-		self.effect_cast = ParticleManager:CreateParticle(
-			"particles/juggernaut/ward_immune.vpcf",
-			PATTACH_ABSORIGIN_FOLLOW,
-			self.parent
-		)
-		ParticleManager:SetParticleControl(self.effect_cast, 0, self.parent:GetOrigin())
-		ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(100, 0, 0))
-		ParticleManager:ReleaseParticleIndex(self.effect_cast)
-		return
-	end
-
-	self.health = self.health - 1
-
-	if self.ability.talents.has_w3 == 1 then
-		local targets = self.caster:FindTargets(self.radius, self.parent:GetAbsOrigin())
-		local targets_hit = {}
-		table.insert(targets, attacker)
-
-		for _, target in pairs(targets) do
-			if not targets_hit[target] then
-				targets_hit[target] = true
-				local item_effect = ParticleManager:CreateParticle(
-					"particles/juggernaut/ward_bolt.vpcf",
-					PATTACH_ABSORIGIN_FOLLOW,
-					self.parent
-				)
-				ParticleManager:SetParticleControlEnt(
-					item_effect,
-					0,
-					self.parent,
-					PATTACH_POINT_FOLLOW,
-					"attach_hitloc",
-					self.parent:GetOrigin(),
-					true
-				)
-				ParticleManager:SetParticleControlEnt(
-					item_effect,
-					1,
-					target,
-					PATTACH_POINT_FOLLOW,
-					"attach_hitloc",
-					target:GetOrigin(),
-					true
-				)
-				ParticleManager:ReleaseParticleIndex(item_effect)
-				self.ability:ProcDamage(target, nil, true)
-			end
-		end
-	end
-
-	if self.health <= 0 then
-		self.killer = attacker
-		self.parent:Kill(nil, attacker)
-	else
-		self.parent:SetHealth(self.health)
-	end
 end
 
 function modifier_custom_juggernaut_healing_ward:OnDestroy()
@@ -737,41 +590,226 @@ function modifier_custom_juggernaut_healing_ward:OnDestroy()
 	end
 end
 
-function modifier_custom_juggernaut_healing_ward:IsAura()
-	return IsServer() and self.parent:IsAlive()
-end
-function modifier_custom_juggernaut_healing_ward:GetAuraDuration()
-	return self.aura_duration
-end
-function modifier_custom_juggernaut_healing_ward:GetAuraRadius()
-	return self.radius
-end
-function modifier_custom_juggernaut_healing_ward:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_BOTH
-end
-function modifier_custom_juggernaut_healing_ward:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
-end
-function modifier_custom_juggernaut_healing_ward:GetModifierAura()
-	return "modifier_custom_juggernaut_healing_ward_aura"
-end
-function modifier_custom_juggernaut_healing_ward:CheckState()
-	local result = {
-		[MODIFIER_STATE_LOW_ATTACK_PRIORITY] = true,
-	}
-
-	if self.ability.talents.has_w7 == 1 then
-		result[MODIFIER_STATE_STUNNED] = true
-		result[MODIFIER_STATE_COMMAND_RESTRICTED] = true
-		result[MODIFIER_STATE_ROOTED] = true
-	else
-		result[MODIFIER_STATE_NO_UNIT_COLLISION] = true
+function modifier_custom_juggernaut_healing_ward:DamageEvent_out(params)
+	if not IsServer() then
+		return
+	end
+	if self.caster ~= params.attacker then
+		return
+	end
+	if not params.unit:IsUnit() then
+		return
+	end
+	if not params.inflictor then
+		return
+	end
+	if (self.caster:GetAbsOrigin() - self.parent:GetAbsOrigin()):Length2D() > self.radius then
+		return
 	end
 
-	return result
+	local result = self.parent:CanLifesteal(params.unit)
+	if not result then
+		return
+	end
+
+	self.damage_stack = self.damage_stack + result * params.original_damage * self.ability.talents.w7_damage
+end
+
+function modifier_custom_juggernaut_healing_ward:AttackEvent_inc(params)
+	if not IsServer() then
+		return
+	end
+	if self.parent ~= params.target then
+		return
+	end
+
+	local attacker = params.attacker
+	if attacker:IsIllusion() then
+		return
+	end
+	if attacker:IsCreep() and attacker.owner and attacker:GetTeamNumber() ~= DOTA_TEAM_CUSTOM_5 then
+		return
+	end
+
+	if self.caster:HasScepter() and (attacker:GetAbsOrigin() - self.parent:GetAbsOrigin()):Length2D() > self.radius then
+		self.parent:EmitSound("Juggernaut.Ward_immune")
+		local effect_cast = ParticleManager:CreateParticle(
+			"particles/juggernaut/ward_immune.vpcf",
+			PATTACH_ABSORIGIN_FOLLOW,
+			self.parent
+		)
+		ParticleManager:SetParticleControl(effect_cast, 0, self.parent:GetOrigin())
+		ParticleManager:SetParticleControl(effect_cast, 1, Vector(100, 0, 0))
+		ParticleManager:ReleaseParticleIndex(effect_cast)
+		return
+	end
+
+	self.health = self.health - 1
+
+	if self.ability.talents.has_w3 == 1 then
+		local targets = self.caster:FindTargets(self.radius, self.parent:GetAbsOrigin())
+		local targets_hit = {}
+		table.insert(targets, attacker)
+
+		for _, target in pairs(targets) do
+			if not targets_hit[target] then
+				targets_hit[target] = true
+				local item_effect = ParticleManager:CreateParticle(
+					"particles/juggernaut/ward_bolt.vpcf",
+					PATTACH_ABSORIGIN_FOLLOW,
+					self.parent
+				)
+				ParticleManager:SetParticleControlEnt(
+					item_effect,
+					0,
+					self.parent,
+					PATTACH_POINT_FOLLOW,
+					"attach_hitloc",
+					self.parent:GetOrigin(),
+					true
+				)
+				ParticleManager:SetParticleControlEnt(
+					item_effect,
+					1,
+					target,
+					PATTACH_POINT_FOLLOW,
+					"attach_hitloc",
+					target:GetOrigin(),
+					true
+				)
+				ParticleManager:ReleaseParticleIndex(item_effect)
+				self.ability:ProcDamage(target, nil, true)
+			end
+		end
+	end
+
+	if self.health <= 0 then
+		self.parent:Kill(nil, attacker)
+	else
+		self.parent:SetHealth(self.health)
+	end
+end
+
+function modifier_custom_juggernaut_healing_ward:CheckState()
+	if self.ability.talents.has_w7 == 1 then
+		return {
+			[MODIFIER_STATE_LOW_ATTACK_PRIORITY] = true,
+			[MODIFIER_STATE_STUNNED] = true,
+			[MODIFIER_STATE_COMMAND_RESTRICTED] = true,
+			[MODIFIER_STATE_ROOTED] = true,
+		}
+	end
+
+	return {
+		[MODIFIER_STATE_LOW_ATTACK_PRIORITY] = true,
+		[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
+	}
+end
+
+function modifier_custom_juggernaut_healing_ward:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_MAGICAL,
+		MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL,
+		MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PURE,
+		MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE,
+		MODIFIER_PROPERTY_DISABLE_TURNING,
+		MODIFIER_PROPERTY_HEALTHBAR_PIPS,
+	}
+end
+
+function modifier_custom_juggernaut_healing_ward:GetAbsoluteNoDamageMagical()
+	return 1
+end
+
+function modifier_custom_juggernaut_healing_ward:GetAbsoluteNoDamagePhysical()
+	return 1
+end
+
+function modifier_custom_juggernaut_healing_ward:GetAbsoluteNoDamagePure()
+	return 1
+end
+
+function modifier_custom_juggernaut_healing_ward:GetModifierDisableTurning()
+	if self.ability.talents.has_w7 == 0 then
+		return
+	end
+	return 1
+end
+
+function modifier_custom_juggernaut_healing_ward:GetModifierMoveSpeed_Absolute()
+	return self.base_move
+end
+
+function modifier_custom_juggernaut_healing_ward:GetModifierHealthBarPips()
+	return self.health
 end
 
 modifier_custom_juggernaut_healing_ward_aura = class(mod_visible)
+function modifier_custom_juggernaut_healing_ward_aura:OnCreated(table)
+	self.parent = self:GetParent()
+	self.caster = self:GetCaster()
+	self.ability = self:GetAbility()
+
+	self.has_scepter = self.caster:HasScepter()
+	self.scepter_speed = self.ability.scepter_speed
+	self.is_enemy = self.parent:GetTeamNumber() ~= self.caster:GetTeamNumber()
+	self.health_regen = self.ability.health_regen
+		+ (self.ability.talents.has_h5 == 1 and self.ability.talents.h5_heal or 0)
+
+	if not IsServer() then
+		return
+	end
+	if self.is_enemy then
+		self.parent:GenericParticle("particles/juggernaut/ward_burn.vpcf", self)
+	elseif self.parent == self.caster then
+		if self.has_scepter then
+			self.parent:GenericParticle("particles/jugger_ward_legend.vpcf", self)
+		end
+		if self.ability.talents.has_w4 == 1 then
+			self.interval = 0.5
+			self:StartIntervalThink(self.interval)
+		end
+	end
+end
+
+function modifier_custom_juggernaut_healing_ward_aura:OnIntervalThink()
+	if not IsServer() then
+		return
+	end
+	self.parent:CdItems(self.interval * self.ability.talents.w4_cd_items)
+end
+
+function modifier_custom_juggernaut_healing_ward_aura:OnDestroy()
+	if not IsServer() then
+		return
+	end
+	if self.is_enemy then
+		return
+	end
+	if self.ability.talents.has_h2 == 0 then
+		return
+	end
+
+	self.parent:AddNewModifier(
+		self.parent,
+		self.ability,
+		"modifier_custom_juggernaut_healing_ward_bonus",
+		{ duration = self.ability.talents.h2_duration }
+	)
+end
+
+function modifier_custom_juggernaut_healing_ward_aura:CheckState()
+	if self.ability.talents.has_w7 == 0 then
+		return
+	end
+	if not self.is_enemy then
+		return
+	end
+	return {
+		[MODIFIER_STATE_TETHERED] = true,
+	}
+end
+
 function modifier_custom_juggernaut_healing_ward_aura:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_MIN_HEALTH,
@@ -826,121 +864,6 @@ function modifier_custom_juggernaut_healing_ward_aura:GetModifierTotalPercentage
 		return
 	end
 	return self.ability.talents.w4_mana
-end
-
-function modifier_custom_juggernaut_healing_ward_aura:OnCreated(table)
-	self.parent = self:GetParent()
-	self.caster = self:GetCaster()
-	self.ability = self:GetAbility()
-
-	self.has_scepter = self.caster:HasScepter()
-	self.scepter_speed = self.ability.scepter_speed
-	self.is_enemy = self.parent:GetTeamNumber() ~= self.caster:GetTeamNumber()
-	self.health_regen = self.ability.health_regen
-		+ (self.ability.talents.has_h5 == 1 and self.ability.talents.h5_heal or 0)
-
-	if not IsServer() then
-		return
-	end
-	if self.is_enemy then
-		self.parent:GenericParticle("particles/juggernaut/ward_burn.vpcf", self)
-	elseif self.parent == self.ability:GetCaster() then
-		if self.caster:HasScepter() then
-			self.parent:GenericParticle("particles/jugger_ward_legend.vpcf", self)
-		end
-		if self.ability.talents.has_w4 == 1 then
-			self.interval = 0.5
-			self:StartIntervalThink(self.interval)
-		end
-	end
-end
-
-function modifier_custom_juggernaut_healing_ward_aura:OnIntervalThink()
-	if not IsServer() then
-		return
-	end
-	self.parent:CdItems(self.interval * self.ability.talents.w4_cd_items)
-end
-
-function modifier_custom_juggernaut_healing_ward_aura:OnDestroy()
-	if not IsServer() then
-		return
-	end
-	if self.is_enemy then
-		return
-	end
-	if self.ability.talents.has_h2 == 0 then
-		return
-	end
-
-	self.parent:AddNewModifier(
-		self.parent,
-		self.ability,
-		"modifier_custom_juggernaut_healing_ward_bonus",
-		{ duration = self.ability.talents.h2_duration }
-	)
-end
-
-function modifier_custom_juggernaut_healing_ward_aura:CheckState()
-	if self.ability.talents.has_w7 == 0 then
-		return
-	end
-	if not self.is_enemy then
-		return
-	end
-	return {
-		[MODIFIER_STATE_TETHERED] = true,
-	}
-end
-
-modifier_custom_juggernaut_healing_ward_buff = class({})
-function modifier_custom_juggernaut_healing_ward_buff:IsHidden()
-	return false
-end
-function modifier_custom_juggernaut_healing_ward_buff:IsPurgable()
-	return false
-end
-
-function modifier_custom_juggernaut_healing_ward_buff:GetEffectName()
-	return "particles/jugg_ward_buff.vpcf"
-end
-
-function modifier_custom_juggernaut_healing_ward_buff:GetTexture()
-	return "buffs/Healing_ward_buff"
-end
-
-function modifier_custom_juggernaut_healing_ward_buff:OnCreated(table)
-	self.speed = self:GetCaster():GetTalentValue("modifier_juggernaut_healingward_4", "speed")
-	self.spell = self:GetCaster():GetTalentValue("modifier_juggernaut_healingward_4", "spell")
-
-	if not IsServer() then
-		return
-	end
-
-	self:GetParent():EmitSound("Juggernaut.Ward_buff")
-end
-
-function modifier_custom_juggernaut_healing_ward_buff:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
-		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
-	}
-end
-
-function modifier_custom_juggernaut_healing_ward_buff:GetModifierAttackSpeedBonus_Constant()
-	return self.speed
-end
-
-function modifier_custom_juggernaut_healing_ward_buff:GetModifierSpellAmplify_Percentage()
-	return self.spell
-end
-
-function modifier_custom_juggernaut_healing_ward_buff:GetStatusEffectName()
-	return "particles/status_fx/status_effect_mjollnir_shield.vpcf"
-end
-
-function modifier_custom_juggernaut_healing_ward_buff:StatusEffectPriority()
-	return MODIFIER_PRIORITY_HIGH
 end
 
 modifier_custom_juggernaut_healing_ward_invun = class(mod_hidden)

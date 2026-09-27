@@ -9,25 +9,32 @@
 
 
 LinkLuaModifier("modifier_item_travel_boots_custom", "abilities/items/item_travel_boots", LUA_MODIFIER_MOTION_NONE)
+
 item_travel_boots_custom = class({})
 
 function item_travel_boots_custom:GetIntrinsicModifierName()
 	return "modifier_item_travel_boots_custom"
 end
 
+function item_travel_boots_custom:Spawn()
+	self.bonus_movement_speed = self:GetSpecialValueFor("bonus_movement_speed")
+	self.bounty_bonus = self:GetSpecialValueFor("bounty_bonus")
+end
+
 function item_travel_boots_custom:GetAbilityTextureName()
 	if not self or not self:GetCaster() then
 		return
 	end
-	return wearables_system:GetAbilityIconReplacement(self.caster, "item_travel_boots", self)
+	return wearables_system:GetAbilityIconReplacement(self:GetCaster(), "item_travel_boots", self)
 end
 
-modifier_item_travel_boots_custom = class({})
-function modifier_item_travel_boots_custom:IsHidden()
-	return true
-end
-function modifier_item_travel_boots_custom:IsPurgable()
-	return false
+modifier_item_travel_boots_custom = class(mod_hidden)
+function modifier_item_travel_boots_custom:OnCreated(table)
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.speed = self.ability.bonus_movement_speed
+	self.bounty_bonus = self.ability.bounty_bonus / 100
 end
 
 function modifier_item_travel_boots_custom:DeclareFunctions()
@@ -40,16 +47,6 @@ function modifier_item_travel_boots_custom:GetModifierMoveSpeedBonus_Special_Boo
 	return self.speed
 end
 
-function modifier_item_travel_boots_custom:OnCreated(table)
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.speed = self.ability:GetSpecialValueFor("bonus_movement_speed")
-	self.bounty_bonus = self.ability:GetSpecialValueFor("bounty_bonus") / 100
-end
-
----------------------------------------------------------------------------------------------------------------------------------------------
-
 LinkLuaModifier("modifier_item_travel_boots_2_custom", "abilities/items/item_travel_boots", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_item_travel_boots_2_perma", "abilities/items/item_travel_boots", LUA_MODIFIER_MOTION_NONE)
 
@@ -59,16 +56,18 @@ function item_travel_boots_2_custom:GetIntrinsicModifierName()
 	return "modifier_item_travel_boots_2_custom"
 end
 
+function item_travel_boots_2_custom:Spawn()
+	self.bonus_movement_speed = self:GetSpecialValueFor("bonus_movement_speed")
+	self.bounty_bonus = self:GetSpecialValueFor("bounty_bonus")
+	self.perma_bonus = self:GetSpecialValueFor("perma_bonus")
+end
+
 function item_travel_boots_2_custom:OnAbilityPhaseStart()
 	if not IsServer() then
 		return
 	end
 	if self:GetCaster():HasModifier("modifier_item_travel_boots_2_perma") then
-		CustomGameEventManager:Send_ServerToPlayer(
-			PlayerResource:GetPlayer(self:GetCaster():GetPlayerOwnerID()),
-			"CreateIngameErrorMessage",
-			{ message = "#essence_speed" }
-		)
+		self:GetCaster():SendError("#essence_speed")
 		return false
 	end
 	return true
@@ -86,12 +85,13 @@ function item_travel_boots_2_custom:OnSpellStart()
 	self:Destroy()
 end
 
-modifier_item_travel_boots_2_custom = class({})
-function modifier_item_travel_boots_2_custom:IsHidden()
-	return true
-end
-function modifier_item_travel_boots_2_custom:IsPurgable()
-	return false
+modifier_item_travel_boots_2_custom = class(mod_hidden)
+function modifier_item_travel_boots_2_custom:OnCreated(table)
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.speed = self.ability.bonus_movement_speed
+	self.bounty_bonus = self.ability.bounty_bonus / 100
 end
 
 function modifier_item_travel_boots_2_custom:DeclareFunctions()
@@ -104,21 +104,7 @@ function modifier_item_travel_boots_2_custom:GetModifierMoveSpeedBonus_Special_B
 	return self.speed
 end
 
-function modifier_item_travel_boots_2_custom:OnCreated(table)
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.speed = self.ability:GetSpecialValueFor("bonus_movement_speed")
-	self.bounty_bonus = self.ability:GetSpecialValueFor("bounty_bonus") / 100
-end
-
-modifier_item_travel_boots_2_perma = class({})
-function modifier_item_travel_boots_2_perma:IsHidden()
-	return false
-end
-function modifier_item_travel_boots_2_perma:IsPurgable()
-	return false
-end
+modifier_item_travel_boots_2_perma = class(mod_visible)
 function modifier_item_travel_boots_2_perma:GetTexture()
 	return "item_travel_boots_2"
 end
@@ -133,8 +119,8 @@ function modifier_item_travel_boots_2_perma:OnCreated(table)
 	if not self.ability then
 		self.speed = 50
 	else
-		self.speed = self.ability:GetSpecialValueFor("perma_bonus")
-		self.bounty_bonus = self.ability:GetSpecialValueFor("bounty_bonus") / 100
+		self.speed = self.ability.perma_bonus
+		self.bounty_bonus = self.ability.bounty_bonus / 100
 	end
 end
 

@@ -20,7 +20,32 @@ function item_kaya_and_sange_custom:GetIntrinsicModifierName()
 	return "modifier_item_kaya_and_sange_custom"
 end
 
+function item_kaya_and_sange_custom:Spawn()
+	self.bonus_str = self:GetSpecialValueFor("bonus_str")
+	self.bonus_int = self:GetSpecialValueFor("bonus_int")
+	self.spell_damage = self:GetSpecialValueFor("spell_damage")
+	self.health_bonus = self:GetSpecialValueFor("health_bonus")
+	self.regen_amp = self:GetSpecialValueFor("regen_amp")
+	self.heal_amp = self:GetSpecialValueFor("heal_amp")
+	self.status_bonus = self:GetSpecialValueFor("status_bonus")
+	self.slow_resistance = self:GetSpecialValueFor("slow_resistance")
+end
+
 modifier_item_kaya_and_sange_custom = class(mod_hidden)
+function modifier_item_kaya_and_sange_custom:OnCreated(table)
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.str = self.ability.bonus_str
+	self.int = self.ability.bonus_int
+	self.spell_damage = self.ability.spell_damage
+	self.health_bonus = self.ability.health_bonus / 100
+	self.regen_amp = self.ability.regen_amp
+	self.heal_amp = self.ability.heal_amp
+	self.status_bonus = self.ability.status_bonus
+	self.slow_resistance = self.ability.slow_resistance
+end
+
 function modifier_item_kaya_and_sange_custom:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
@@ -89,18 +114,4 @@ function modifier_item_kaya_and_sange_custom:GetModifierSlowResistance_Stacking(
 		return
 	end
 	return self.slow_resistance
-end
-
-function modifier_item_kaya_and_sange_custom:OnCreated(table)
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.str = self.ability:GetSpecialValueFor("bonus_str")
-	self.int = self.ability:GetSpecialValueFor("bonus_int")
-	self.spell_damage = self.ability:GetSpecialValueFor("spell_damage")
-	self.health_bonus = self.ability:GetSpecialValueFor("health_bonus") / 100
-	self.regen_amp = self.ability:GetSpecialValueFor("regen_amp")
-	self.heal_amp = self.ability:GetSpecialValueFor("heal_amp")
-	self.status_bonus = self.ability:GetSpecialValueFor("status_bonus")
-	self.slow_resistance = self.ability:GetSpecialValueFor("slow_resistance")
 end

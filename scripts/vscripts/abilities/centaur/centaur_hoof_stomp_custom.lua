@@ -63,23 +63,14 @@ function centaur_hoof_stomp_custom:Precache(context)
 	end
 	PrecacheResource("particle", "particles/units/heroes/hero_centaur/centaur_warstomp.vpcf", context)
 	PrecacheResource("particle", "particles/centaur/stomp_charge.vpcf", context)
-	PrecacheResource("particle", "particles/centaur/stomp_attack.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/units/heroes/hero_centaur/centaur_shard_buff_strength_counter_stack.vpcf",
 		context
 	)
-	PrecacheResource("particle", "particles/units/heroes/hero_bloodseeker/bloodseeker_bloodbath.vpcf", context)
 	PrecacheResource(
 		"particle",
-		"particles/units/heroes/hero_phantom_assassin/phantom_assassin_crit_impact.vpcf",
-		context
-	)
-	PrecacheResource("particle", "particles/centaur/stomp_crit.vpcf", context)
-	PrecacheResource("particle", "particles/centaur/stomp_crit_hit.vpcf", context)
-	PrecacheResource(
-		"particle",
-		"particles/econ/items/sven/sven_ti7_sword/sven_ti7_sword_spell_great_cleave_gods_strength.vpcf",
+		"particles/units/heroes/hero_primal_beast/primal_beast_onslaught_charge_active.vpcf",
 		context
 	)
 end
@@ -88,18 +79,19 @@ function centaur_hoof_stomp_custom:UpdateTalents()
 	local caster = self:GetCaster()
 
 	if not self.init then
+		self.init = true
 		self.talents = {
 			q1_damage = 0,
 			q1_spell = 0,
 
-			cast_inc = 0,
-			cd_inc = 0,
+			q2_cast = 0,
+			q2_cd = 0,
 
-			has_reduce = 0,
-			reduce_duration = caster:GetTalentValue("modifier_centaur_hero_1", "duration", true),
+			has_h1 = 0,
+			h1_duration = caster:GetTalentValue("modifier_centaur_hero_1", "duration", true),
 			h1_max = caster:GetTalentValue("modifier_centaur_hero_1", "max", true),
-			damage_reduce = 0,
-			heal_reduce = 0,
+			h1_damage_reduce = 0,
+			h1_heal_reduce = 0,
 
 			has_q3 = 0,
 			q3_damage = 0,
@@ -135,14 +127,14 @@ function centaur_hoof_stomp_custom:UpdateTalents()
 	end
 
 	if caster:HasTalent("modifier_centaur_stomp_2") then
-		self.talents.cd_inc = caster:GetTalentValue("modifier_centaur_stomp_2", "cd")
-		self.talents.cast_inc = caster:GetTalentValue("modifier_centaur_stomp_2", "cast")
+		self.talents.q2_cd = caster:GetTalentValue("modifier_centaur_stomp_2", "cd")
+		self.talents.q2_cast = caster:GetTalentValue("modifier_centaur_stomp_2", "cast")
 	end
 
 	if caster:HasTalent("modifier_centaur_hero_1") then
-		self.talents.has_reduce = 1
-		self.talents.damage_reduce = caster:GetTalentValue("modifier_centaur_hero_1", "damage_reduce")
-		self.talents.heal_reduce = caster:GetTalentValue("modifier_centaur_hero_1", "heal_reduce")
+		self.talents.has_h1 = 1
+		self.talents.h1_damage_reduce = caster:GetTalentValue("modifier_centaur_hero_1", "damage_reduce")
+		self.talents.h1_heal_reduce = caster:GetTalentValue("modifier_centaur_hero_1", "heal_reduce")
 	end
 
 	if caster:HasTalent("modifier_centaur_stomp_3") then
@@ -162,7 +154,6 @@ function centaur_hoof_stomp_custom:UpdateTalents()
 end
 
 function centaur_hoof_stomp_custom:GetAbilityTextureName()
-	local caster = self:GetCaster()
 	return wearables_system:GetAbilityIconReplacement(self.caster, "centaur_hoof_stomp", self)
 end
 
@@ -180,16 +171,11 @@ function centaur_hoof_stomp_custom:GetBehavior()
 	return DOTA_ABILITY_BEHAVIOR_NO_TARGET + DOTA_ABILITY_BEHAVIOR_IMMEDIATE
 end
 
-function centaur_hoof_stomp_custom:GetManaCost(level)
-	return self.BaseClass.GetManaCost(self, level)
-end
-
 function centaur_hoof_stomp_custom:GetCooldown(level)
-	return self.BaseClass.GetCooldown(self, level) + (self.talents.cd_inc and self.talents.cd_inc or 0)
+	return self.BaseClass.GetCooldown(self, level) + (self.talents.q2_cd or 0)
 end
 
 function centaur_hoof_stomp_custom:GetCastRange(vLocation, hTarget)
-	local caster = self:GetCaster()
 	if self.talents.has_q7 == 1 then
 		if IsClient() then
 			return self.talents.q7_range
@@ -197,15 +183,143 @@ function centaur_hoof_stomp_custom:GetCastRange(vLocation, hTarget)
 			return 999999
 		end
 	end
-	return self:GetRadius() - caster:GetCastRangeBonus()
+	return self:GetRadius() - self.caster:GetCastRangeBonus()
+end
+
+function centaur_hoof_stomp_custom:GetRadius()
+	return self.radius or 0
 end
 
 function centaur_hoof_stomp_custom:GetAOERadius()
 	return self:GetRadius()
 end
 
-function centaur_hoof_stomp_custom:GetRadius()
-	return self.radius and self.radius or 0
+function centaur_hoof_stomp_custom:GetDamage(target)
+	if not IsServer() then
+		return
+	end
+	local result = self.stomp_damage + self.talents.q1_damage
+	local mod = target:FindModifierByName("modifier_centaur_hoof_stomp_custom_legendary_damage")
+	if mod then
+		result = result * (1 + self.talents.q7_damage * mod:GetStackCount())
+	end
+	return result
+end
+
+function centaur_hoof_stomp_custom:OnSpellStart()
+	local target = self:GetCursorTarget()
+	local duration = self.windup_time + self.talents.q2_cast
+	self:RefundManaCost()
+
+	local distance = 0
+	if self.talents.has_q7 == 1 and (not target or target ~= self.caster) then
+		local point = self:GetCursorPosition()
+		local vec = point - self.caster:GetAbsOrigin()
+		local max = self.talents.q7_range + self.caster:GetCastRangeBonus()
+
+		if point == self.caster:GetAbsOrigin() then
+			point = self.caster:GetAbsOrigin() + self.caster:GetForwardVector() * 10
+		end
+
+		if vec:Length2D() > max then
+			point = self.caster:GetAbsOrigin() + vec:Normalized() * max
+		end
+
+		distance = (point - self.caster:GetAbsOrigin()):Length2D()
+		self.caster:FacePoint(point)
+	end
+	self.caster:AddNewModifier(
+		self.caster,
+		self,
+		"modifier_centaur_hoof_stomp_custom_prepair",
+		{ distance = distance, duration = duration }
+	)
+end
+
+function centaur_hoof_stomp_custom:Stomp()
+	local radius = self:GetRadius()
+	local hit_hero = false
+	local point = self.caster:GetAbsOrigin()
+
+	local pfx_name = wearables_system:GetParticleReplacementAbility(
+		self.caster,
+		"particles/units/heroes/hero_centaur/centaur_warstomp.vpcf",
+		self
+	)
+	local particle_stomp_fx = ParticleManager:CreateParticle(pfx_name, PATTACH_ABSORIGIN, self.caster)
+	ParticleManager:SetParticleControl(particle_stomp_fx, 0, point)
+	ParticleManager:SetParticleControl(particle_stomp_fx, 1, Vector(radius, radius, radius))
+	ParticleManager:SetParticleControl(particle_stomp_fx, 2, point)
+	ParticleManager:SetParticleControl(particle_stomp_fx, 3, point)
+	ParticleManager:ReleaseParticleIndex(particle_stomp_fx)
+
+	self.caster:EmitSound("Hero_Centaur.HoofStomp")
+
+	if self.talents.has_q3 == 1 then
+		self.caster:AddNewModifier(
+			self.caster,
+			self,
+			"modifier_centaur_hoof_stomp_custom_move",
+			{ duration = self.talents.q3_effect_duration }
+		)
+	end
+
+	local targets = self.caster:FindTargets(radius, point)
+	local damageTable = { attacker = self.caster, ability = self, damage_type = DAMAGE_TYPE_MAGICAL }
+
+	for _, target in pairs(targets) do
+		damageTable.victim = target
+		damageTable.damage = self:GetDamage(target)
+
+		if target:IsRealHero() then
+			hit_hero = true
+			if self.caster:GetQuest() == "Centaur.Quest_5" and not self.caster:QuestCompleted() then
+				self.caster:UpdateQuest(1)
+			end
+		end
+
+		DoDamage(damageTable)
+
+		if self.talents.has_q7 == 1 then
+			target:AddNewModifier(
+				self.caster,
+				self,
+				"modifier_centaur_hoof_stomp_custom_legendary_damage",
+				{ duration = self.talents.q7_effect_duration }
+			)
+		end
+
+		if IsValid(self.caster.double_edge_ability) then
+			self.caster.double_edge_ability:ProcDouble(target, true)
+		end
+
+		self:ApplyReduce(target)
+		target:AddNewModifier(
+			self.caster,
+			self,
+			"modifier_generic_stun",
+			{ duration = self.stun_duration * (1 - target:GetStatusResistance()) }
+		)
+	end
+
+	if #targets > 0 then
+		self:ProcCd()
+	end
+
+	if dota1x6.event_thinker then
+		local mod = dota1x6.event_thinker:FindModifierByName("modifier_event_thinker")
+		if mod then
+			local data = {
+				unit = self.caster,
+				ability = self,
+				new_pos = Vector(0, 0, 0),
+				ignore_unvalid = true,
+			}
+			mod:OnAbilityExecuted(data)
+		end
+	end
+
+	return hit_hero
 end
 
 function centaur_hoof_stomp_custom:ApplyReduce(target)
@@ -225,14 +339,14 @@ function centaur_hoof_stomp_custom:ApplyReduce(target)
 		)
 	end
 
-	if self.talents.has_reduce == 0 then
+	if self.talents.has_h1 == 0 then
 		return
 	end
 	target:AddNewModifier(
-		self:GetCaster(),
+		self.caster,
 		self,
 		"modifier_centaur_hoof_stomp_custom_damage_reduce",
-		{ duration = self.talents.reduce_duration }
+		{ duration = self.talents.h1_duration }
 	)
 end
 
@@ -249,142 +363,11 @@ function centaur_hoof_stomp_custom:ProcCd()
 	self.caster:CdItems(self.talents.q4_cd_items)
 end
 
-function centaur_hoof_stomp_custom:OnSpellStart()
-	local caster = self:GetCaster()
-	local target = self:GetCursorTarget()
-	local duration = self.windup_time + self.talents.cast_inc
-	self:RefundManaCost()
-
-	local distance = 0
-	if self.talents.has_q7 == 1 and (not target or target ~= caster) then
-		local point = self:GetCursorPosition()
-		local vec = point - caster:GetAbsOrigin()
-		local max = self.talents.q7_range + caster:GetCastRangeBonus()
-
-		if point == caster:GetAbsOrigin() then
-			point = caster:GetAbsOrigin() + caster:GetForwardVector() * 10
-		end
-
-		if vec:Length2D() > max then
-			point = caster:GetAbsOrigin() + vec:Normalized() * max
-		end
-
-		distance = (point - caster:GetAbsOrigin()):Length2D()
-		vec.z = 0
-		caster:FaceTowards(point)
-		caster:SetForwardVector(vec:Normalized())
-	end
-	caster:AddNewModifier(
-		caster,
-		self,
-		"modifier_centaur_hoof_stomp_custom_prepair",
-		{ distance = distance, duration = duration }
-	)
-end
-
-function centaur_hoof_stomp_custom:Stomp()
-	local caster = self:GetCaster()
-	local radius = self:GetRadius()
-	local hit_hero = false
-	local point = caster:GetAbsOrigin()
-
-	local pfx_name = wearables_system:GetParticleReplacementAbility(
-		caster,
-		"particles/units/heroes/hero_centaur/centaur_warstomp.vpcf",
-		self
-	)
-	local particle_stomp_fx = ParticleManager:CreateParticle(pfx_name, PATTACH_ABSORIGIN, caster)
-	ParticleManager:SetParticleControl(particle_stomp_fx, 0, point)
-	ParticleManager:SetParticleControl(particle_stomp_fx, 1, Vector(radius, radius, radius))
-	ParticleManager:SetParticleControl(particle_stomp_fx, 2, point)
-	ParticleManager:SetParticleControl(particle_stomp_fx, 3, point)
-	ParticleManager:ReleaseParticleIndex(particle_stomp_fx)
-
-	caster:EmitSound("Hero_Centaur.HoofStomp")
-
-	if self.talents.has_q3 == 1 then
-		caster:AddNewModifier(
-			caster,
-			self,
-			"modifier_centaur_hoof_stomp_custom_move",
-			{ duration = self.talents.q3_effect_duration }
-		)
-	end
-
-	local targets = caster:FindTargets(radius, point)
-	local damageTable = { attacker = caster, ability = self, damage_type = DAMAGE_TYPE_MAGICAL }
-
-	for _, target in pairs(targets) do
-		damageTable.victim = target
-		damageTable.damage = self:GetDamage(target)
-
-		if target:IsRealHero() then
-			hit_hero = true
-			if caster:GetQuest() == "Centaur.Quest_5" and not caster:QuestCompleted() then
-				caster:UpdateQuest(1)
-			end
-		end
-
-		DoDamage(damageTable)
-
-		if self.talents.has_q7 == 1 then
-			target:AddNewModifier(
-				caster,
-				self,
-				"modifier_centaur_hoof_stomp_custom_legendary_damage",
-				{ duration = self.talents.q7_effect_duration }
-			)
-		end
-
-		if self.caster.double_edge_ability then
-			self.caster.double_edge_ability:ProcDouble(target, true)
-		end
-
-		self:ApplyReduce(target)
-		target:AddNewModifier(
-			caster,
-			self,
-			"modifier_generic_stun",
-			{ duration = self.stun_duration * (1 - target:GetStatusResistance()) }
-		)
-	end
-
-	if #targets > 0 then
-		self:ProcCd()
-	end
-
-	if dota1x6.event_thinker then
-		local mod = dota1x6.event_thinker:FindModifierByName("modifier_event_thinker")
-		if mod then
-			local data = {
-				unit = caster,
-				ability = self,
-				new_pos = Vector(0, 0, 0),
-				ignore_unvalid = true,
-			}
-			mod:OnAbilityExecuted(data)
-		end
-	end
-
-	return hit_hero
-end
-
-function centaur_hoof_stomp_custom:GetDamage(target)
-	if not IsServer() then
-		return
-	end
-	local result = self.stomp_damage + self.talents.q1_damage
-	local mod = target:FindModifierByName("modifier_centaur_hoof_stomp_custom_legendary_damage")
-	if mod then
-		result = result * (1 + self.talents.q7_damage * mod:GetStackCount())
-	end
-	return result
-end
-
 modifier_centaur_hoof_stomp_custom_prepair = class(mod_visible)
 function modifier_centaur_hoof_stomp_custom_prepair:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
+	self.distance = 0
 
 	if not IsServer() then
 		return
@@ -428,7 +411,7 @@ end
 
 function modifier_centaur_hoof_stomp_custom_prepair:OrderEvent(params)
 	if params.ability and params.ability == self.ability then
-		return false
+		return
 	end
 
 	if
@@ -522,7 +505,7 @@ function modifier_centaur_hoof_stomp_custom_tracker:InitLegendary()
 	self.init_legendary = true
 	self.interval = 0.2
 	self.pos = self.parent:GetAbsOrigin()
-	self.pass = 0
+	self.distance = 0
 	self:StartIntervalThink(self.interval)
 end
 
@@ -582,6 +565,12 @@ function modifier_centaur_hoof_stomp_custom_tracker:GetModifierSlowResistance_St
 end
 
 modifier_centaur_hoof_stomp_custom_charge = class(mod_hidden)
+function modifier_centaur_hoof_stomp_custom_charge:GetStatusEffectName()
+	return "particles/econ/items/invoker/invoker_ti7/status_effect_alacrity_ti7.vpcf"
+end
+function modifier_centaur_hoof_stomp_custom_charge:StatusEffectPriority()
+	return MODIFIER_PRIORITY_HIGH
+end
 function modifier_centaur_hoof_stomp_custom_charge:OnCreated(params)
 	if not IsServer() then
 		return
@@ -666,7 +655,7 @@ function modifier_centaur_hoof_stomp_custom_charge:OnDestroy()
 	self.ability:StartCd()
 	self.parent:RemoveHorizontalMotionController(self)
 
-	if self.bkb_mod and not self.bkb_mod:IsNull() then
+	if IsValid(self.bkb_mod) then
 		self.bkb_mod:Destroy()
 	end
 
@@ -727,21 +716,7 @@ function modifier_centaur_hoof_stomp_custom_charge:OrderEvent(params)
 	end
 end
 
-function modifier_centaur_hoof_stomp_custom_charge:GetStatusEffectName()
-	return "particles/econ/items/invoker/invoker_ti7/status_effect_alacrity_ti7.vpcf"
-end
-
-function modifier_centaur_hoof_stomp_custom_charge:StatusEffectPriority()
-	return MODIFIER_PRIORITY_HIGH
-end
-
-modifier_centaur_hoof_stomp_custom_charge_target = class({})
-function modifier_centaur_hoof_stomp_custom_charge_target:IsHidden()
-	return true
-end
-function modifier_centaur_hoof_stomp_custom_charge_target:IsPurgable()
-	return false
-end
+modifier_centaur_hoof_stomp_custom_charge_target = class(mod_hidden)
 function modifier_centaur_hoof_stomp_custom_charge_target:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_OVERRIDE_ANIMATION,
@@ -863,6 +838,7 @@ function modifier_centaur_hoof_stomp_custom_legendary_damage:OnCreated()
 	if not IsServer() then
 		return
 	end
+	self.RemoveForDuel = true
 	self.particle = ParticleManager:CreateParticle(
 		"particles/units/heroes/hero_centaur/centaur_shard_buff_strength_counter_stack.vpcf",
 		PATTACH_OVERHEAD_FOLLOW,
@@ -879,7 +855,7 @@ function modifier_centaur_hoof_stomp_custom_legendary_damage:OnCreated()
 	)
 	self:AddParticle(self.particle, false, false, -1, false, false)
 
-	self:SetStackCount(1)
+	self:OnRefresh()
 end
 
 function modifier_centaur_hoof_stomp_custom_legendary_damage:OnRefresh()
@@ -890,15 +866,6 @@ function modifier_centaur_hoof_stomp_custom_legendary_damage:OnRefresh()
 		return
 	end
 	self:IncrementStackCount()
-end
-
-function modifier_centaur_hoof_stomp_custom_legendary_damage:OnStackCountChanged()
-	if not IsServer() then
-		return
-	end
-	if not self.particle then
-		return
-	end
 	ParticleManager:SetParticleControl(self.particle, 2, Vector(self:GetStackCount(), 0, 0))
 end
 
@@ -912,14 +879,15 @@ function modifier_centaur_hoof_stomp_custom_damage_reduce:OnCreated()
 	self.caster = self:GetCaster()
 
 	self.max = self.ability.talents.h1_max
-	self.damage_reduce = self.ability.talents.damage_reduce
-	self.heal_reduce = self.ability.talents.heal_reduce
+	self.damage_reduce = self.ability.talents.h1_damage_reduce
+	self.heal_reduce = self.ability.talents.h1_heal_reduce
 
 	if not IsServer() then
 		return
 	end
-	self:SetStackCount(1)
+	self.RemoveForDuel = true
 	self.parent:GenericParticle("particles/items2_fx/sange_maim.vpcf", self)
+	self:OnRefresh()
 end
 
 function modifier_centaur_hoof_stomp_custom_damage_reduce:OnRefresh()
@@ -936,9 +904,7 @@ function modifier_centaur_hoof_stomp_custom_damage_reduce:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE,
 		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
-		--MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET,
 		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
-		--MODIFIER_PROPERTY_LIFESTEAL_AMPLIFY_PERCENTAGE,
 	}
 end
 
@@ -948,10 +914,6 @@ end
 
 function modifier_centaur_hoof_stomp_custom_damage_reduce:GetModifierSpellAmplify_Percentage()
 	return self.damage_reduce * self:GetStackCount()
-end
-
-function modifier_centaur_hoof_stomp_custom_damage_reduce:GetModifierLifestealRegenAmplify_Percentage()
-	return self.heal_reduce * self:GetStackCount()
 end
 
 function modifier_centaur_hoof_stomp_custom_damage_reduce:GetModifierHealChange()
@@ -972,9 +934,11 @@ function modifier_centaur_hoof_stomp_custom_magic_reduce:OnCreated()
 
 	self.max = self.ability.talents.q3_max
 	self.magic = self.ability.talents.q3_magic
+
 	if not IsServer() then
 		return
 	end
+	self.RemoveForDuel = true
 	self:OnRefresh()
 end
 

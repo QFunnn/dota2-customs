@@ -20,6 +20,11 @@ function item_enhancement_tough_custom:GetIntrinsicModifierName()
 	return "modifier_item_enhancement_tough_custom"
 end
 
+function item_enhancement_tough_custom:Spawn()
+	self.bonus_damage = self:GetSpecialValueFor("bonus_damage")
+	self.armor = self:GetSpecialValueFor("armor")
+end
+
 modifier_item_enhancement_tough_custom = class(mod_hidden)
 function modifier_item_enhancement_tough_custom:RemoveOnDeath()
 	return false
@@ -28,8 +33,8 @@ function modifier_item_enhancement_tough_custom:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.bonus_damage = self.ability:GetSpecialValueFor("bonus_damage")
-	self.armor = self.ability:GetSpecialValueFor("armor")
+	self.bonus_damage = self.ability.bonus_damage
+	self.armor = self.ability.armor
 end
 
 function modifier_item_enhancement_tough_custom:DeclareFunctions()

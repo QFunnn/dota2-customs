@@ -88,6 +88,11 @@ function night_stalker_darkness_custom:Precache(context)
 	PrecacheResource("particle", "particles/night_stalker/dark_armor.vpcf", context)
 	PrecacheResource("particle", "particles/night_stalker/flight_blind.vpcf", context)
 	PrecacheResource("particle", "particles/night_stalker/dark_shield.vpcf", context)
+	PrecacheResource("particle", "particles/night_stalker/hunter_charge_effect.vpcf", context)
+	PrecacheResource("particle", "particles/night_stalker/hunter_legendary_caster.vpcf", context)
+	PrecacheResource("particle", "particles/night_stalker/hunter_legendary_hit.vpcf", context)
+	PrecacheResource("particle", "particles/night_stalker/hunter_legendary_hit_2.vpcf", context)
+	PrecacheResource("particle", "particles/night_stalker/void_magic.vpcf", context)
 end
 
 function night_stalker_darkness_custom:UpdateTalents(name)
@@ -167,7 +172,7 @@ function night_stalker_darkness_custom:UpdateTalents(name)
 
 	if caster:HasTalent("modifier_stalker_hero_5") then
 		self.talents.has_h5 = 1
-		caster:AddDamageEvent_inc(self.tracker)
+		caster:AddDamageEvent_inc(self.tracker, true)
 	end
 
 	if caster:HasTalent("modifier_stalker_hero_6") then
@@ -182,12 +187,8 @@ function night_stalker_darkness_custom:GetIntrinsicModifierName()
 	return "modifier_night_stalker_darkness_custom"
 end
 
-function night_stalker_darkness_custom:Init()
-	self.caster = self:GetCaster()
-end
-
 function night_stalker_darkness_custom:GetCooldown(level)
-	return self.BaseClass.GetCooldown(self, level) + (self.talents.r2_cd and self.talents.r2_cd or 0)
+	return self.BaseClass.GetCooldown(self, level) + (self.talents.r2_cd or 0)
 end
 
 function night_stalker_darkness_custom:OnSpellStart()
@@ -201,6 +202,9 @@ function night_stalker_darkness_custom:OnSpellStart()
 end
 
 function night_stalker_darkness_custom:ProcBkb()
+	if not self:IsTrained() then
+		return
+	end
 	if self.talents.has_r4 == 0 then
 		return
 	end
@@ -384,6 +388,24 @@ function modifier_night_stalker_darkness_custom:GetModifierMagicalResistanceBonu
 end
 
 modifier_night_stalker_darkness_custom_active = class(mod_visible)
+function modifier_night_stalker_darkness_custom_active:IsAura()
+	return IsServer() and self.parent:IsAlive()
+end
+function modifier_night_stalker_darkness_custom_active:GetAuraDuration()
+	return 0
+end
+function modifier_night_stalker_darkness_custom_active:GetAuraRadius()
+	return self.radius
+end
+function modifier_night_stalker_darkness_custom_active:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_ENEMY
+end
+function modifier_night_stalker_darkness_custom_active:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_ALL
+end
+function modifier_night_stalker_darkness_custom_active:GetModifierAura()
+	return "modifier_night_stalker_darkness_custom_vision"
+end
 function modifier_night_stalker_darkness_custom_active:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -570,24 +592,6 @@ function modifier_night_stalker_darkness_custom_active:GetActivityTranslationMod
 	return "hunter_night"
 end
 
-function modifier_night_stalker_darkness_custom_active:IsAura()
-	return IsServer() and self.parent:IsAlive()
-end
-function modifier_night_stalker_darkness_custom_active:GetAuraDuration()
-	return 0
-end
-function modifier_night_stalker_darkness_custom_active:GetAuraRadius()
-	return self.radius
-end
-function modifier_night_stalker_darkness_custom_active:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_ENEMY
-end
-function modifier_night_stalker_darkness_custom_active:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_ALL
-end
-function modifier_night_stalker_darkness_custom_active:GetModifierAura()
-	return "modifier_night_stalker_darkness_custom_vision"
-end
 function modifier_night_stalker_darkness_custom_active:GetAuraEntityReject(hEntity)
 	if hEntity:IsFieldInvun(self.parent) then
 		return true
@@ -676,468 +680,6 @@ end
 
 function modifier_night_stalker_darkness_custom_vision:GetFixedDayVision()
 	return self.vision
-end
-
-night_stalker_darkness_custom_legendary = class({})
-night_stalker_darkness_custom_legendary.talents = {}
-
-function night_stalker_darkness_custom_legendary:UpdateTalents(name)
-	local caster = self:GetCaster()
-	if not self.init then
-		self.init = true
-		self.talents = {
-			r7_cd_inc = caster:GetTalentValue("modifier_stalker_dark_7", "cd_inc", true),
-			r7_charge = caster:GetTalentValue("modifier_stalker_dark_7", "charge", true),
-			r7_talent_cd = caster:GetTalentValue("modifier_stalker_dark_7", "talent_cd", true),
-			r7_speed = caster:GetTalentValue("modifier_stalker_dark_7", "speed", true),
-			r7_width = caster:GetTalentValue("modifier_stalker_dark_7", "width", true),
-			r7_damage = caster:GetTalentValue("modifier_stalker_dark_7", "damage", true),
-			r7_range = caster:GetTalentValue("modifier_stalker_dark_7", "range", true),
-			r7_stun = caster:GetTalentValue("modifier_stalker_dark_7", "stun", true),
-		}
-	end
-end
-
-function night_stalker_darkness_custom_legendary:Init()
-	self.caster = self:GetCaster()
-	if IsServer() then
-		self:SetLevel(1)
-	end
-end
-
-function night_stalker_darkness_custom_legendary:GetCastRange(vector, hTarget)
-	return IsClient() and ((self.talents.r7_range and self.talents.r7_range or 0) - self.caster:GetCastRangeBonus())
-		or 99999
-end
-
-function night_stalker_darkness_custom_legendary:GetCooldown()
-	return self.caster:HasModifier("modifier_night_stalker_darkness_custom_active")
-			and (self.talents.r7_cd_inc and self.talents.r7_cd_inc or 0)
-		or (self.talents.r7_talent_cd and self.talents.r7_talent_cd or 0)
-end
-
-function night_stalker_darkness_custom_legendary:OnSpellStart()
-	local point = self:GetCursorPosition()
-	if point == self.caster:GetAbsOrigin() then
-		point = self.caster:GetAbsOrigin() + self.caster:GetForwardVector() * 10
-	end
-	local dir = (point - self.caster:GetAbsOrigin()):Normalized()
-	dir.z = 0
-
-	self.caster:FaceTowards(point)
-	self.caster:SetForwardVector(dir)
-	self.caster:AddNewModifier(
-		self.caster,
-		self,
-		"modifier_night_stalker_darkness_custom_legendary_prep",
-		{ duration = self.talents.r7_charge }
-	)
-end
-
-modifier_night_stalker_darkness_custom_legendary_prep = class(mod_visible)
-function modifier_night_stalker_darkness_custom_legendary_prep:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.anim = ACT_DOTA_TELEPORT
-	if self.parent:HasModifier("modifier_night_stalker_innate_custom_active") then
-		self.anim = ACT_DOTA_VICTORY
-	end
-
-	if not IsServer() then
-		return
-	end
-	self.ability:EndCd()
-
-	if self.parent.dark_ability then
-		self.parent.dark_ability:ProcBkb()
-	end
-
-	CustomGameEventManager:Send_ServerToPlayer(
-		PlayerResource:GetPlayer(self.parent:GetPlayerOwnerID()),
-		"ability_stalker_dark",
-		{ state = 1 }
-	)
-
-	local particle =
-		ParticleManager:CreateParticle("particles/night_stalker/dark_legendary_prep.vpcf", PATTACH_WORLDORIGIN, nil)
-	ParticleManager:SetParticleControl(particle, 0, GetGroundPosition(self.parent:GetAbsOrigin(), nil))
-	self:AddParticle(particle, false, false, -1, false, false)
-
-	EmitSoundOn("Stalker.Dark_legendary_prep", self.parent)
-	EmitSoundOn("Stalker.Dark_legendary_prep2", self.parent)
-
-	self.turn_speed = 150
-	self.range = self.ability.talents.r7_range
-
-	self.parent:AddOrderEvent(self)
-
-	self.target_angle = self.parent:GetAnglesAsVector().y
-	self.current_angle = self.target_angle
-	self.face_target = true
-
-	self.interval = 0.03
-	self:OnIntervalThink(true)
-	self:StartIntervalThink(self.interval)
-end
-
-function modifier_night_stalker_darkness_custom_legendary_prep:OnDestroy()
-	if not IsServer() then
-		return
-	end
-
-	CustomGameEventManager:Send_ServerToPlayer(
-		PlayerResource:GetPlayer(self.parent:GetPlayerOwnerID()),
-		"ability_stalker_dark",
-		{ state = 2 }
-	)
-
-	self.ability:StartCd()
-	self.parent:FadeGesture(ACT_DOTA_TELEPORT)
-	self.parent:FadeGesture(ACT_DOTA_VICTORY)
-	StopSoundOn("Stalker.Dark_legendary_prep", self.parent)
-	StopSoundOn("Stalker.Dark_legendary_prep2", self.parent)
-
-	if self:GetRemainingTime() > 0.1 then
-		self.ability:EndCd(0.3)
-		return
-	end
-	self.parent:AddNewModifier(self.parent, self.ability, "modifier_night_stalker_darkness_custom_legendary_dash", {})
-end
-
-function modifier_night_stalker_darkness_custom_legendary_prep:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_MOVESPEED_LIMIT,
-		MODIFIER_PROPERTY_OVERRIDE_ANIMATION,
-		MODIFIER_PROPERTY_OVERRIDE_ANIMATION_RATE,
-		MODIFIER_PROPERTY_DISABLE_TURNING,
-	}
-end
-
-function modifier_night_stalker_darkness_custom_legendary_prep:GetOverrideAnimationRate()
-	return 1.3
-end
-
-function modifier_night_stalker_darkness_custom_legendary_prep:GetOverrideAnimation()
-	return self.anim
-end
-
-function modifier_night_stalker_darkness_custom_legendary_prep:GetModifierDisableTurning()
-	return 1
-end
-
-function modifier_night_stalker_darkness_custom_legendary_prep:OrderEvent(params)
-	if
-		params.order_type == DOTA_UNIT_ORDER_MOVE_TO_POSITION
-		or params.order_type == DOTA_UNIT_ORDER_MOVE_TO_DIRECTION
-	then
-		self:SetDirection(params.pos)
-	elseif
-		(params.order_type == DOTA_UNIT_ORDER_MOVE_TO_TARGET or params.order_type == DOTA_UNIT_ORDER_ATTACK_TARGET)
-		and params.target
-	then
-		self:SetDirection(params.target:GetOrigin())
-	elseif params.order_type == DOTA_UNIT_ORDER_STOP or params.order_type == DOTA_UNIT_ORDER_HOLD_POSITION then
-		self:Destroy()
-	end
-end
-
-function modifier_night_stalker_darkness_custom_legendary_prep:SetDirection(location)
-	local dir = ((location - self.parent:GetOrigin()) * Vector(1, 1, 0)):Normalized()
-	self.target_angle = VectorToAngles(dir).y
-	self.face_target = false
-end
-
-function modifier_night_stalker_darkness_custom_legendary_prep:GetModifierMoveSpeed_Limit()
-	return 0.1
-end
-
-function modifier_night_stalker_darkness_custom_legendary_prep:CheckState()
-	return {
-		[MODIFIER_STATE_DISARMED] = true,
-		[MODIFIER_STATE_ROOTED] = true,
-		[MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY] = true,
-	}
-end
-
-function modifier_night_stalker_darkness_custom_legendary_prep:OnIntervalThink(first)
-	if not IsServer() then
-		return
-	end
-
-	if
-		self.parent:IsStunned()
-		or self.parent:IsFeared()
-		or self.parent:IsSilenced()
-		or self.parent:GetForceAttackTarget()
-		or self.parent:IsHexed()
-	then
-		self:Destroy()
-	end
-
-	AddFOWViewer(self.parent:GetTeamNumber(), self.parent:GetAbsOrigin(), self.range, self.interval * 3, false)
-
-	if self.face_target then
-		return
-	end
-
-	local angle_diff = AngleDiff(self.current_angle, self.target_angle)
-	local turn_speed = self.turn_speed * self.interval
-
-	local sign = -1
-	if angle_diff < 0 then
-		sign = 1
-	end
-
-	if math.abs(angle_diff) < 1.1 * turn_speed then
-		self.current_angle = self.target_angle
-		self.face_target = true
-	else
-		self.current_angle = self.current_angle + sign * turn_speed
-	end
-
-	local angles = self.parent:GetAnglesAsVector()
-	self.parent:SetLocalAngles(angles.x, self.current_angle, angles.z)
-end
-
-modifier_night_stalker_darkness_custom_legendary_dash = class(mod_hidden)
-function modifier_night_stalker_darkness_custom_legendary_dash:OnCreated(table)
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.damage = self.ability.talents.r7_damage - 100
-	if not IsServer() then
-		return
-	end
-	EmitSoundOn("Stalker.Dark_legendary_charge", self.parent)
-	EmitSoundOn("Stalker.Dark_legendary_charge2", self.parent)
-
-	self.parent:GenericParticle("particles/night_stalker/dark_legendary_charge_2.vpcf", self)
-
-	local offset = -10
-	if self.parent:HasModifier("modifier_night_stalker_innate_custom_active") then
-		offset = 50
-	end
-
-	self.parent:GenericParticle("particles/night_stalker/hunter_charge_effect.vpcf")
-
-	self.particle = ParticleManager:CreateParticle(
-		"particles/night_stalker/dark_legendary_charge.vpcf",
-		PATTACH_ABSORIGIN_FOLLOW,
-		self.parent
-	)
-	ParticleManager:SetParticleControl(self.particle, 0, self.parent:GetAbsOrigin())
-	ParticleManager:SetParticleControl(self.particle, 1, Vector(0, 0, offset))
-	self:AddParticle(self.particle, false, false, -1, false, false)
-
-	self.legendary_particle = ParticleManager:CreateParticle(
-		"particles/night_stalker/hunter_legendary_caster.vpcf",
-		PATTACH_CUSTOMORIGIN,
-		self.parent
-	)
-	ParticleManager:SetParticleControlEnt(
-		self.legendary_particle,
-		0,
-		self.parent,
-		PATTACH_POINT_FOLLOW,
-		"attach_hitloc",
-		self.parent:GetAbsOrigin(),
-		true
-	)
-	ParticleManager:SetParticleControlEnt(
-		self.legendary_particle,
-		1,
-		self.parent,
-		PATTACH_POINT_FOLLOW,
-		"attach_attack1",
-		self.parent:GetAbsOrigin(),
-		true
-	)
-	ParticleManager:SetParticleControlEnt(
-		self.legendary_particle,
-		2,
-		self.parent,
-		PATTACH_POINT_FOLLOW,
-		"attach_attack2",
-		self.parent:GetAbsOrigin(),
-		true
-	)
-	self:AddParticle(self.legendary_particle, false, false, -1, false, false)
-
-	ProjectileManager:ProjectileDodge(self.parent)
-
-	self.width = self.ability.talents.r7_width
-	self.speed = self.ability.talents.r7_speed
-	self.distance = self.ability.talents.r7_range
-	self.pass = 0
-
-	self.targets = {}
-	self.point = self.parent:GetAbsOrigin() + self.parent:GetForwardVector() * self.distance
-	self.dir = self.point - self.parent:GetAbsOrigin()
-	self.dir.z = 0
-
-	self.midnight_ability = self.parent.midnight_ability
-
-	self.parent:FaceTowards(self.point)
-	self.parent:SetForwardVector(self.dir:Normalized())
-
-	self:SetDuration(self.dir:Length2D() / self.speed, false)
-	self.parent:StartGesture(ACT_DOTA_RUN)
-
-	if not self:ApplyHorizontalMotionController() then
-		self:Destroy()
-		return
-	end
-end
-
-function modifier_night_stalker_darkness_custom_legendary_dash:UpdateHorizontalMotion(me, dt)
-	if self.parent:IsStunned() or self.parent:IsHexed() or self.parent:IsRooted() or self.parent:IsLeashed() then
-		self:Destroy()
-		return
-	end
-
-	self.pass = self.pass + self.speed * dt
-
-	local nextpos = me:GetOrigin() + self.dir:Normalized() * self.speed * dt
-	local new_point = GetGroundPosition(nextpos, nil)
-	me:SetOrigin(new_point)
-
-	for _, target in pairs(self.parent:FindTargets(self.width)) do
-		if not self.targets[target] then
-			self.targets[target] = true
-			self.parent:PerformAttack(target, true, true, true, true, false, false, true)
-			target:AddNewModifier(
-				self.parent,
-				self.ability,
-				"modifier_bashed",
-				{ duration = (1 - target:GetStatusResistance()) * self.ability.talents.r7_stun }
-			)
-
-			local name = RandomInt(1, 2) == 1 and "particles/night_stalker/hunter_legendary_hit_2.vpcf"
-				or "particles/night_stalker/hunter_legendary_hit.vpcf"
-			local vec = (target:GetAbsOrigin() - self.parent:GetAbsOrigin()):Normalized()
-			vec.z = 0
-
-			local particle = ParticleManager:CreateParticle(name, PATTACH_ABSORIGIN_FOLLOW, target)
-			ParticleManager:SetParticleControl(particle, 0, target:GetAbsOrigin())
-			ParticleManager:SetParticleControlForward(particle, 1, vec)
-			ParticleManager:SetParticleShouldCheckFoW(particle, false)
-			ParticleManager:ReleaseParticleIndex(particle)
-
-			target:EmitSound("Stalker.Dark_legendary_hit")
-
-			local mod = target:FindModifierByName("modifier_night_stalker_midnight_feast_custom_active")
-			if mod then
-				mod:ProcDamage(true)
-			end
-
-			if
-				self.midnight_ability.talents.has_e3 == 1
-				and RollPseudoRandomPercentage(self.midnight_ability.talents.e3_chance, 1324, self.parent)
-			then
-				target:AddNewModifier(
-					self.parent,
-					self.midnight_ability,
-					"modifier_night_stalker_midnight_feast_custom_double",
-					{ attack_damage = self.damage, duration = 0.2 }
-				)
-			end
-
-			if not self.proc_cd and self.midnight_ability then
-				self.proc_cd = true
-				self.midnight_ability:ProcCd(true)
-			end
-
-			if target:IsRealHero() then
-				if IsValid(self.midnight_ability) and self.midnight_ability.talents.has_e3 == 1 then
-					self.parent:AddNewModifier(
-						self.parent,
-						self.midnight_ability,
-						"modifier_night_stalker_midnight_feast_custom_damage",
-						{}
-					)
-				end
-				local mod = self.parent:FindModifierByName("modifier_night_stalker_darkness_custom_active")
-				if mod then
-					mod:ExtendDuration()
-				end
-			end
-		end
-	end
-
-	if self.pass >= self.distance then
-		self:Destroy()
-		return
-	end
-end
-
-function modifier_night_stalker_darkness_custom_legendary_dash:OnHorizontalMotionInterrupted()
-	self:Destroy()
-end
-
-function modifier_night_stalker_darkness_custom_legendary_dash:GetStatusEffectName()
-	return "particles/status_fx/status_effect_phantom_assassin_active_blur.vpcf"
-end
-
-function modifier_night_stalker_darkness_custom_legendary_dash:StatusEffectPriority()
-	return MODIFIER_PRIORITY_ULTRA
-end
-
-function modifier_night_stalker_darkness_custom_legendary_dash:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE,
-		MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS,
-		MODIFIER_PROPERTY_DISABLE_TURNING,
-		MODIFIER_PROPERTY_MODEL_SCALE,
-	}
-end
-
-function modifier_night_stalker_darkness_custom_legendary_dash:GetModifierModelScale()
-	return 15
-end
-
-function modifier_night_stalker_darkness_custom_legendary_dash:GetModifierDamageOutgoing_Percentage()
-	if self.parent:HasModifier("modifier_night_stalker_midnight_feast_custom_double_damage") then
-		return
-	end
-	return self.damage
-end
-
-function modifier_night_stalker_darkness_custom_legendary_dash:GetActivityTranslationModifiers()
-	local activity = "haste"
-	if self.parent:HasModifier("modifier_night_stalker_innate_custom_active") then
-		activity = "hunter_night"
-	end
-	return activity
-end
-
-function modifier_night_stalker_darkness_custom_legendary_dash:GetModifierDisableTurning()
-	return 1
-end
-
-function modifier_night_stalker_darkness_custom_legendary_dash:CheckState()
-	return {
-		[MODIFIER_STATE_SILENCED] = true,
-		[MODIFIER_STATE_MUTED] = true,
-		[MODIFIER_STATE_DISARMED] = true,
-		[MODIFIER_STATE_NO_HEALTH_BAR] = true,
-		[MODIFIER_STATE_INVULNERABLE] = true,
-	}
-end
-
-function modifier_night_stalker_darkness_custom_legendary_dash:OnDestroy()
-	if not IsServer() then
-		return
-	end
-	self.parent:RemoveHorizontalMotionController(self)
-
-	self.vec = self.parent:GetForwardVector()
-	self.vec.z = 0
-	self.parent:SetForwardVector(self.vec)
-	self.parent:FaceTowards(self.parent:GetAbsOrigin() + self.vec * 10)
-	FindClearSpaceForUnit(self.parent, self.parent:GetAbsOrigin(), false)
-
-	self.parent:FadeGesture(ACT_DOTA_RUN)
 end
 
 modifier_night_stalker_darkness_custom_burn = class(mod_hidden)
@@ -1266,12 +808,8 @@ function modifier_night_stalker_darkness_custom_armor:OnCreated()
 		return
 	end
 	self.RemoveForDuel = true
-	self:SetStackCount(1)
-
-	self.base_armor = self.parent:GetArmor(self)
-
-	self:SendBuffRefreshToClients()
 	self:SetHasCustomTransmitterData(true)
+	self:OnRefresh()
 end
 
 function modifier_night_stalker_darkness_custom_armor:OnRefresh()
@@ -1457,4 +995,468 @@ function modifier_night_stalker_darkness_custom_blind_status:GetStatusEffectName
 end
 function modifier_night_stalker_darkness_custom_blind_status:StatusEffectPriority()
 	return MODIFIER_PRIORITY_HIGH
+end
+
+night_stalker_darkness_custom_legendary = class({})
+night_stalker_darkness_custom_legendary.talents = {}
+
+function night_stalker_darkness_custom_legendary:UpdateTalents(name)
+	local caster = self:GetCaster()
+	if not self.init then
+		self.init = true
+		self.talents = {
+			r7_cd_inc = caster:GetTalentValue("modifier_stalker_dark_7", "cd_inc", true),
+			r7_charge = caster:GetTalentValue("modifier_stalker_dark_7", "charge", true),
+			r7_talent_cd = caster:GetTalentValue("modifier_stalker_dark_7", "talent_cd", true),
+			r7_speed = caster:GetTalentValue("modifier_stalker_dark_7", "speed", true),
+			r7_width = caster:GetTalentValue("modifier_stalker_dark_7", "width", true),
+			r7_damage = caster:GetTalentValue("modifier_stalker_dark_7", "damage", true),
+			r7_range = caster:GetTalentValue("modifier_stalker_dark_7", "range", true),
+			r7_stun = caster:GetTalentValue("modifier_stalker_dark_7", "stun", true),
+
+			has_e3 = 0,
+			e3_chance = 0,
+		}
+	end
+
+	if caster:HasTalent("modifier_stalker_hunter_3") then
+		self.talents.has_e3 = 1
+		self.talents.e3_chance = caster:GetTalentValue("modifier_stalker_hunter_3", "chance")
+	end
+end
+
+function night_stalker_darkness_custom_legendary:Init()
+	if not self:GetCaster() then
+		return
+	end
+	self.caster = self:GetCaster()
+	if IsServer() then
+		self:SetLevel(1)
+	end
+end
+
+function night_stalker_darkness_custom_legendary:GetCastRange(vector, hTarget)
+	return IsClient() and ((self.talents.r7_range or 0) - self.caster:GetCastRangeBonus()) or 99999
+end
+
+function night_stalker_darkness_custom_legendary:GetCooldown()
+	return self.caster:HasModifier("modifier_night_stalker_darkness_custom_active") and (self.talents.r7_cd_inc or 0)
+		or (self.talents.r7_talent_cd or 0)
+end
+
+function night_stalker_darkness_custom_legendary:OnSpellStart()
+	local point = self:GetCursorPosition()
+	if point == self.caster:GetAbsOrigin() then
+		point = self.caster:GetAbsOrigin() + self.caster:GetForwardVector() * 10
+	end
+
+	self.caster:FacePoint(point)
+	self.caster:AddNewModifier(
+		self.caster,
+		self,
+		"modifier_night_stalker_darkness_custom_legendary_prep",
+		{ duration = self.talents.r7_charge }
+	)
+end
+
+modifier_night_stalker_darkness_custom_legendary_prep = class(mod_visible)
+function modifier_night_stalker_darkness_custom_legendary_prep:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.anim = ACT_DOTA_TELEPORT
+	if self.parent:HasModifier("modifier_night_stalker_innate_custom_active") then
+		self.anim = ACT_DOTA_VICTORY
+	end
+
+	if not IsServer() then
+		return
+	end
+	self.ability:EndCd()
+
+	if self.parent.dark_ability then
+		self.parent.dark_ability:ProcBkb()
+	end
+
+	CustomGameEventManager:Send_ServerToPlayer(
+		PlayerResource:GetPlayer(self.parent:GetPlayerOwnerID()),
+		"ability_stalker_dark",
+		{ state = 1 }
+	)
+
+	local particle =
+		ParticleManager:CreateParticle("particles/night_stalker/dark_legendary_prep.vpcf", PATTACH_WORLDORIGIN, nil)
+	ParticleManager:SetParticleControl(particle, 0, GetGroundPosition(self.parent:GetAbsOrigin(), nil))
+	self:AddParticle(particle, false, false, -1, false, false)
+
+	EmitSoundOn("Stalker.Dark_legendary_prep", self.parent)
+	EmitSoundOn("Stalker.Dark_legendary_prep2", self.parent)
+
+	self.turn_speed = 150
+	self.range = self.ability.talents.r7_range
+
+	self.parent:AddOrderEvent(self)
+
+	self.target_angle = self.parent:GetAnglesAsVector().y
+	self.current_angle = self.target_angle
+	self.face_target = true
+
+	self.interval = 0.03
+	self:OnIntervalThink(true)
+	self:StartIntervalThink(self.interval)
+end
+
+function modifier_night_stalker_darkness_custom_legendary_prep:OnDestroy()
+	if not IsServer() then
+		return
+	end
+
+	CustomGameEventManager:Send_ServerToPlayer(
+		PlayerResource:GetPlayer(self.parent:GetPlayerOwnerID()),
+		"ability_stalker_dark",
+		{ state = 2 }
+	)
+
+	self.ability:StartCd()
+	self.parent:FadeGesture(ACT_DOTA_TELEPORT)
+	self.parent:FadeGesture(ACT_DOTA_VICTORY)
+	StopSoundOn("Stalker.Dark_legendary_prep", self.parent)
+	StopSoundOn("Stalker.Dark_legendary_prep2", self.parent)
+
+	if self:GetRemainingTime() > 0.1 then
+		self.ability:EndCd(0.3)
+		return
+	end
+	self.parent:AddNewModifier(self.parent, self.ability, "modifier_night_stalker_darkness_custom_legendary_dash", {})
+end
+
+function modifier_night_stalker_darkness_custom_legendary_prep:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_MOVESPEED_LIMIT,
+		MODIFIER_PROPERTY_OVERRIDE_ANIMATION,
+		MODIFIER_PROPERTY_OVERRIDE_ANIMATION_RATE,
+		MODIFIER_PROPERTY_DISABLE_TURNING,
+	}
+end
+
+function modifier_night_stalker_darkness_custom_legendary_prep:GetOverrideAnimationRate()
+	return 1.3
+end
+
+function modifier_night_stalker_darkness_custom_legendary_prep:GetOverrideAnimation()
+	return self.anim
+end
+
+function modifier_night_stalker_darkness_custom_legendary_prep:GetModifierDisableTurning()
+	return 1
+end
+
+function modifier_night_stalker_darkness_custom_legendary_prep:OrderEvent(params)
+	if
+		params.order_type == DOTA_UNIT_ORDER_MOVE_TO_POSITION
+		or params.order_type == DOTA_UNIT_ORDER_MOVE_TO_DIRECTION
+	then
+		self:SetDirection(params.pos)
+	elseif
+		(params.order_type == DOTA_UNIT_ORDER_MOVE_TO_TARGET or params.order_type == DOTA_UNIT_ORDER_ATTACK_TARGET)
+		and params.target
+	then
+		self:SetDirection(params.target:GetOrigin())
+	elseif params.order_type == DOTA_UNIT_ORDER_STOP or params.order_type == DOTA_UNIT_ORDER_HOLD_POSITION then
+		self:Destroy()
+	end
+end
+
+function modifier_night_stalker_darkness_custom_legendary_prep:SetDirection(location)
+	local dir = ((location - self.parent:GetOrigin()) * Vector(1, 1, 0)):Normalized()
+	self.target_angle = VectorToAngles(dir).y
+	self.face_target = false
+end
+
+function modifier_night_stalker_darkness_custom_legendary_prep:GetModifierMoveSpeed_Limit()
+	return 0.1
+end
+
+function modifier_night_stalker_darkness_custom_legendary_prep:CheckState()
+	return {
+		[MODIFIER_STATE_DISARMED] = true,
+		[MODIFIER_STATE_ROOTED] = true,
+		[MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY] = true,
+	}
+end
+
+function modifier_night_stalker_darkness_custom_legendary_prep:OnIntervalThink(first)
+	if not IsServer() then
+		return
+	end
+
+	if
+		self.parent:IsStunned()
+		or self.parent:IsFeared()
+		or self.parent:IsSilenced()
+		or self.parent:GetForceAttackTarget()
+		or self.parent:IsHexed()
+	then
+		self:Destroy()
+		return
+	end
+
+	AddFOWViewer(self.parent:GetTeamNumber(), self.parent:GetAbsOrigin(), self.range, self.interval * 3, false)
+
+	if self.face_target then
+		return
+	end
+
+	local angle_diff = AngleDiff(self.current_angle, self.target_angle)
+	local turn_speed = self.turn_speed * self.interval
+
+	local sign = -1
+	if angle_diff < 0 then
+		sign = 1
+	end
+
+	if math.abs(angle_diff) < 1.1 * turn_speed then
+		self.current_angle = self.target_angle
+		self.face_target = true
+	else
+		self.current_angle = self.current_angle + sign * turn_speed
+	end
+
+	local angles = self.parent:GetAnglesAsVector()
+	self.parent:SetLocalAngles(angles.x, self.current_angle, angles.z)
+end
+
+modifier_night_stalker_darkness_custom_legendary_dash = class(mod_hidden)
+function modifier_night_stalker_darkness_custom_legendary_dash:GetStatusEffectName()
+	return "particles/status_fx/status_effect_phantom_assassin_active_blur.vpcf"
+end
+function modifier_night_stalker_darkness_custom_legendary_dash:StatusEffectPriority()
+	return MODIFIER_PRIORITY_ULTRA
+end
+function modifier_night_stalker_darkness_custom_legendary_dash:OnCreated(table)
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.damage = self.ability.talents.r7_damage - 100
+	if not IsServer() then
+		return
+	end
+	EmitSoundOn("Stalker.Dark_legendary_charge", self.parent)
+	EmitSoundOn("Stalker.Dark_legendary_charge2", self.parent)
+
+	self.parent:GenericParticle("particles/night_stalker/dark_legendary_charge_2.vpcf", self)
+
+	local offset = -10
+	if self.parent:HasModifier("modifier_night_stalker_innate_custom_active") then
+		offset = 50
+	end
+
+	self.parent:GenericParticle("particles/night_stalker/hunter_charge_effect.vpcf")
+
+	self.particle = ParticleManager:CreateParticle(
+		"particles/night_stalker/dark_legendary_charge.vpcf",
+		PATTACH_ABSORIGIN_FOLLOW,
+		self.parent
+	)
+	ParticleManager:SetParticleControl(self.particle, 0, self.parent:GetAbsOrigin())
+	ParticleManager:SetParticleControl(self.particle, 1, Vector(0, 0, offset))
+	self:AddParticle(self.particle, false, false, -1, false, false)
+
+	self.legendary_particle = ParticleManager:CreateParticle(
+		"particles/night_stalker/hunter_legendary_caster.vpcf",
+		PATTACH_CUSTOMORIGIN,
+		self.parent
+	)
+	ParticleManager:SetParticleControlEnt(
+		self.legendary_particle,
+		0,
+		self.parent,
+		PATTACH_POINT_FOLLOW,
+		"attach_hitloc",
+		self.parent:GetAbsOrigin(),
+		true
+	)
+	ParticleManager:SetParticleControlEnt(
+		self.legendary_particle,
+		1,
+		self.parent,
+		PATTACH_POINT_FOLLOW,
+		"attach_attack1",
+		self.parent:GetAbsOrigin(),
+		true
+	)
+	ParticleManager:SetParticleControlEnt(
+		self.legendary_particle,
+		2,
+		self.parent,
+		PATTACH_POINT_FOLLOW,
+		"attach_attack2",
+		self.parent:GetAbsOrigin(),
+		true
+	)
+	self:AddParticle(self.legendary_particle, false, false, -1, false, false)
+
+	ProjectileManager:ProjectileDodge(self.parent)
+
+	self.width = self.ability.talents.r7_width
+	self.speed = self.ability.talents.r7_speed
+	self.distance = self.ability.talents.r7_range
+	self.pass = 0
+
+	self.targets = {}
+	self.point = self.parent:GetAbsOrigin() + self.parent:GetForwardVector() * self.distance
+	self.dir = self.point - self.parent:GetAbsOrigin()
+	self.dir.z = 0
+
+	self.midnight_ability = self.parent.midnight_ability
+
+	self.parent:FacePoint(self.point)
+
+	self:SetDuration(self.dir:Length2D() / self.speed, false)
+	self.parent:StartGesture(ACT_DOTA_RUN)
+
+	if not self:ApplyHorizontalMotionController() then
+		self:Destroy()
+		return
+	end
+end
+
+function modifier_night_stalker_darkness_custom_legendary_dash:UpdateHorizontalMotion(me, dt)
+	if self.parent:IsStunned() or self.parent:IsHexed() or self.parent:IsRooted() or self.parent:IsLeashed() then
+		self:Destroy()
+		return
+	end
+
+	self.pass = self.pass + self.speed * dt
+
+	local nextpos = me:GetOrigin() + self.dir:Normalized() * self.speed * dt
+	local new_point = GetGroundPosition(nextpos, nil)
+	me:SetOrigin(new_point)
+
+	for _, target in pairs(self.parent:FindTargets(self.width)) do
+		if not self.targets[target] then
+			self.targets[target] = true
+			self.parent:PerformAttack(target, true, true, true, true, false, false, true)
+			target:AddNewModifier(
+				self.parent,
+				self.ability,
+				"modifier_bashed",
+				{ duration = (1 - target:GetStatusResistance()) * self.ability.talents.r7_stun }
+			)
+
+			local name = RandomInt(1, 2) == 1 and "particles/night_stalker/hunter_legendary_hit_2.vpcf"
+				or "particles/night_stalker/hunter_legendary_hit.vpcf"
+			local vec = (target:GetAbsOrigin() - self.parent:GetAbsOrigin()):Normalized()
+			vec.z = 0
+
+			local particle = ParticleManager:CreateParticle(name, PATTACH_ABSORIGIN_FOLLOW, target)
+			ParticleManager:SetParticleControl(particle, 0, target:GetAbsOrigin())
+			ParticleManager:SetParticleControlForward(particle, 1, vec)
+			ParticleManager:SetParticleShouldCheckFoW(particle, false)
+			ParticleManager:ReleaseParticleIndex(particle)
+
+			target:EmitSound("Stalker.Dark_legendary_hit")
+
+			local mod = target:FindModifierByName("modifier_night_stalker_midnight_feast_custom_active")
+			if mod then
+				mod:ProcDamage(true)
+			end
+
+			if
+				self.ability.talents.has_e3 == 1
+				and IsValid(self.midnight_ability)
+				and RollPseudoRandomPercentage(self.ability.talents.e3_chance, 1324, self.parent)
+			then
+				target:AddNewModifier(
+					self.parent,
+					self.midnight_ability,
+					"modifier_night_stalker_midnight_feast_custom_double",
+					{ attack_damage = self.damage, duration = 0.2 }
+				)
+			end
+
+			if not self.proc_cd and IsValid(self.midnight_ability) then
+				self.proc_cd = true
+				self.midnight_ability:ProcCd(true)
+			end
+
+			if target:IsRealHero() then
+				if self.ability.talents.has_e3 == 1 and IsValid(self.midnight_ability) then
+					self.parent:AddNewModifier(
+						self.parent,
+						self.midnight_ability,
+						"modifier_night_stalker_midnight_feast_custom_damage",
+						{}
+					)
+				end
+				local mod = self.parent:FindModifierByName("modifier_night_stalker_darkness_custom_active")
+				if mod then
+					mod:ExtendDuration()
+				end
+			end
+		end
+	end
+
+	if self.pass >= self.distance then
+		self:Destroy()
+		return
+	end
+end
+
+function modifier_night_stalker_darkness_custom_legendary_dash:OnHorizontalMotionInterrupted()
+	self:Destroy()
+end
+
+function modifier_night_stalker_darkness_custom_legendary_dash:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE,
+		MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS,
+		MODIFIER_PROPERTY_DISABLE_TURNING,
+		MODIFIER_PROPERTY_MODEL_SCALE,
+	}
+end
+
+function modifier_night_stalker_darkness_custom_legendary_dash:GetModifierModelScale()
+	return 15
+end
+
+function modifier_night_stalker_darkness_custom_legendary_dash:GetModifierDamageOutgoing_Percentage()
+	if self.parent:HasModifier("modifier_night_stalker_midnight_feast_custom_double_damage") then
+		return
+	end
+	return self.damage
+end
+
+function modifier_night_stalker_darkness_custom_legendary_dash:GetActivityTranslationModifiers()
+	local activity = "haste"
+	if self.parent:HasModifier("modifier_night_stalker_innate_custom_active") then
+		activity = "hunter_night"
+	end
+	return activity
+end
+
+function modifier_night_stalker_darkness_custom_legendary_dash:GetModifierDisableTurning()
+	return 1
+end
+
+function modifier_night_stalker_darkness_custom_legendary_dash:CheckState()
+	return {
+		[MODIFIER_STATE_SILENCED] = true,
+		[MODIFIER_STATE_MUTED] = true,
+		[MODIFIER_STATE_DISARMED] = true,
+		[MODIFIER_STATE_NO_HEALTH_BAR] = true,
+		[MODIFIER_STATE_INVULNERABLE] = true,
+	}
+end
+
+function modifier_night_stalker_darkness_custom_legendary_dash:OnDestroy()
+	if not IsServer() then
+		return
+	end
+	self.parent:RemoveHorizontalMotionController(self)
+
+	self.parent:FacePoint()
+	FindClearSpaceForUnit(self.parent, self.parent:GetAbsOrigin(), false)
+
+	self.parent:FadeGesture(ACT_DOTA_RUN)
 end

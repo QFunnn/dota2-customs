@@ -32,6 +32,8 @@ function item_disperser_custom:Precache(context)
 	end
 	PrecacheResource("particle", "particles/generic_gameplay/generic_manaburn.vpcf", context)
 	PrecacheResource("particle", "particles/items_fx/diffusal_slow.vpcf", context)
+	PrecacheResource("particle", "particles/items_fx/disperser_buff.vpcf", context)
+	PrecacheResource("particle", "particles/items_fx/disperser_buff_feet.vpcf", context)
 end
 
 function item_disperser_custom:Spawn()
@@ -81,10 +83,7 @@ function item_disperser_custom:OnSpellStart()
 	target:AddNewModifier(caster, self, name, { duration = duration })
 end
 
-modifier_item_disperser_custom_debuff_active_buff = class({})
-function modifier_item_disperser_custom_debuff_active_buff:IsHidden()
-	return false
-end
+modifier_item_disperser_custom_debuff_active_buff = class(mod_visible)
 function modifier_item_disperser_custom_debuff_active_buff:IsPurgable()
 	return true
 end
@@ -126,10 +125,7 @@ function modifier_item_disperser_custom_debuff_active_buff:GetModifierMoveSpeedB
 	return self.move
 end
 
-modifier_item_disperser_custom_debuff_active = class({})
-function modifier_item_disperser_custom_debuff_active:IsHidden()
-	return false
-end
+modifier_item_disperser_custom_debuff_active = class(mod_visible)
 function modifier_item_disperser_custom_debuff_active:IsPurgable()
 	return true
 end

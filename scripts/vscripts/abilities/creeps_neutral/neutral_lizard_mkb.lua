@@ -1,0 +1,57 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1a5b3bb 
+  ~ auto-generated — do not edit
+]]
+
+
+LinkLuaModifier("modifier_lizard_mkb", "abilities/creeps_neutral/neutral_lizard_mkb", LUA_MODIFIER_MOTION_NONE)
+
+neutral_lizard_mkb = class({})
+
+function neutral_lizard_mkb:GetIntrinsicModifierName()
+	return "modifier_lizard_mkb"
+end
+
+modifier_lizard_mkb = class(mod_hidden)
+function modifier_lizard_mkb:OnCreated()
+	if not IsServer() then
+		return
+	end
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.ability.chance = self.ability:GetSpecialValueFor("chance")
+	self.ability.break_duration = self.ability:GetSpecialValueFor("break_duration")
+
+	self.parent:AddAttackEvent_out(self, true)
+end
+
+function modifier_lizard_mkb:CheckState()
+	return {
+		[MODIFIER_STATE_CANNOT_MISS] = true,
+	}
+end
+
+function modifier_lizard_mkb:AttackEvent_out(params)
+	if not IsServer() then
+		return
+	end
+	if self.parent ~= params.attacker then
+		return
+	end
+	if not RollPseudoRandomPercentage(self.ability.chance, 179, self.parent) then
+		return
+	end
+
+	params.target:EmitSound("Lizard.Break")
+	params.target:AddNewModifier(
+		self.parent,
+		self.ability,
+		"modifier_generic_break",
+		{ duration = self.ability.break_duration * (1 - params.target:GetStatusResistance()) }
+	)
+end

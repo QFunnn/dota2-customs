@@ -24,6 +24,15 @@ function item_pavise_custom:GetIntrinsicModifierName()
 	return "modifier_item_pavise_custom"
 end
 
+function item_pavise_custom:Spawn()
+	self.bonus_armor = self:GetSpecialValueFor("bonus_armor")
+	self.bonus_mana = self:GetSpecialValueFor("bonus_mana")
+	self.bonus_health = self:GetSpecialValueFor("bonus_health")
+	self.duration = self:GetSpecialValueFor("duration")
+	self.absorb_amount = self:GetSpecialValueFor("absorb_amount")
+	self.damage_block = self:GetSpecialValueFor("damage_block") / 100
+end
+
 function item_pavise_custom:GetBehavior()
 	if not IsSoloMode() then
 		return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET + DOTA_ABILITY_BEHAVIOR_IMMEDIATE
@@ -42,18 +51,15 @@ function item_pavise_custom:OnSpellStart()
 	target:AddNewModifier(caster, self, "modifier_item_pavise_custom_active", { duration = self.duration })
 end
 
-modifier_item_pavise_custom = class({})
-function modifier_item_pavise_custom:IsHidden()
-	return true
-end
-function modifier_item_pavise_custom:IsPurgable()
-	return false
-end
+modifier_item_pavise_custom = class(mod_hidden)
 function modifier_item_pavise_custom:RemoveOnDeath()
 	return false
 end
 function modifier_item_pavise_custom:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
+end
+function modifier_item_pavise_custom:OnCreated()
+	self.ability = self:GetAbility()
 end
 
 function modifier_item_pavise_custom:DeclareFunctions()
@@ -62,17 +68,6 @@ function modifier_item_pavise_custom:DeclareFunctions()
 		MODIFIER_PROPERTY_HEALTH_BONUS,
 		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
 	}
-end
-
-function modifier_item_pavise_custom:OnCreated()
-	self.ability = self:GetAbility()
-
-	self.ability.bonus_armor = self.ability:GetSpecialValueFor("bonus_armor")
-	self.ability.bonus_mana = self.ability:GetSpecialValueFor("bonus_mana")
-	self.ability.bonus_health = self.ability:GetSpecialValueFor("bonus_health")
-	self.ability.duration = self.ability:GetSpecialValueFor("duration")
-	self.ability.absorb_amount = self.ability:GetSpecialValueFor("absorb_amount")
-	self.ability.damage_block = self.ability:GetSpecialValueFor("damage_block") / 100
 end
 
 function modifier_item_pavise_custom:GetModifierPhysicalArmorBonus()
@@ -87,13 +82,7 @@ function modifier_item_pavise_custom:GetModifierHealthBonus()
 	return self.ability.bonus_health
 end
 
-modifier_item_pavise_custom_active = class({})
-function modifier_item_pavise_custom_active:IsHidden()
-	return false
-end
-function modifier_item_pavise_custom_active:IsPurgable()
-	return false
-end
+modifier_item_pavise_custom_active = class(mod_visible)
 function modifier_item_pavise_custom_active:OnCreated(params)
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()

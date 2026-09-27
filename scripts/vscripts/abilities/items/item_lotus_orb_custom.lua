@@ -24,6 +24,7 @@ function item_lotus_orb_custom:Precache(context)
 	PrecacheResource("particle", "particles/items3_fx/lotus_orb_shield.vpcf", context)
 	PrecacheResource("particle", "particles/items3_fx/lotus_orb_reflect.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_vengeful/vengeful_magic_missle_end.vpcf", context)
+	PrecacheResource("particle", "particles/items_fx/generic_item_spell_caster.vpcf", context)
 end
 
 function item_lotus_orb_custom:GetIntrinsicModifierName()
@@ -209,6 +210,9 @@ function modifier_item_lotus_orb_custom_reflect:SpellEvent(params)
 	if not IsServer() then
 		return
 	end
+	if not IsValid(self.ability) then
+		return
+	end
 	if not params.target or params.target ~= self.parent then
 		return
 	end
@@ -223,6 +227,9 @@ end
 
 function modifier_item_lotus_orb_custom_reflect:AttackEvent_inc(params)
 	if not IsServer() then
+		return
+	end
+	if not IsValid(self.ability) then
 		return
 	end
 	if params.target ~= self.parent then

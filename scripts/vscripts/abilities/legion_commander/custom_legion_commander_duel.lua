@@ -121,7 +121,6 @@ function custom_legion_commander_duel:UpdateTalents(name)
 			has_r2 = 0,
 			r2_damage_reduce = 0,
 
-			has_r3 = 0,
 			r3_damage = 0,
 			r3_duration = caster:GetTalentValue("modifier_legion_duel_3", "duration", true),
 			r3_max = caster:GetTalentValue("modifier_legion_duel_3", "max", true),
@@ -170,10 +169,8 @@ function custom_legion_commander_duel:UpdateTalents(name)
 	end
 
 	if caster:HasTalent("modifier_legion_duel_3") then
-		self.talents.has_r3 = 1
 		self.talents.r3_damage = caster:GetTalentValue("modifier_legion_duel_3", "damage")
-		if name == "modifier_legion_duel_3" and IsServer() then
-			self.tracker.interval = 0.5
+		if IsServer() then
 			self.tracker:StartIntervalThink(self.tracker.interval)
 		end
 	end
@@ -257,12 +254,10 @@ end
 
 function custom_legion_commander_duel:OnSpellStart()
 	local target = self:GetCursorTarget()
-	if self.talents.has_r7 == 1 then
-		target = target:FindOwner()
-	end
 	self.caster:EmitSound(wearables_system:GetSoundReplacement(self.caster, "Hero_LegionCommander.Duel.Cast", self))
 
-	if self.ability.talents.has_r7 == 1 then
+	if self.talents.has_r7 == 1 then
+		target = target:FindOwner()
 		local dir = target:GetAbsOrigin() - self.caster:GetAbsOrigin()
 		local point = self.caster:GetAbsOrigin() + dir:Normalized() * (dir:Length2D() / 2)
 
@@ -348,15 +343,18 @@ function custom_legion_commander_duel:ApplyArmor(target)
 	if self.talents.has_r1 == 0 then
 		return
 	end
-	if target:IsAttackImmune() or target:IsInvulnerable() then
+	if target:IsAttackImmune() then
+		return
+	end
+	if target:IsInvulnerable() then
 		return
 	end
 
 	target:AddNewModifier(
-		self.parent,
-		self.ability,
+		self.caster,
+		self,
 		"modifier_legion_commander_duel_custom_armor",
-		{ duration = self.ability.talents.r1_duration }
+		{ duration = self.talents.r1_duration }
 	)
 end
 
@@ -370,21 +368,6 @@ end
 function modifier_legion_commander_duel_custom_buff:StatusEffectPriority()
 	return MODIFIER_PRIORITY_ULTRA
 end
-function modifier_legion_commander_duel_custom_buff:DeathEvent(params)
-	if not IsServer() then
-		return
-	end
-	if self.ended then
-		return
-	end
-
-	if self.ability:CheckDuel(params.unit, self.target) then
-		self.ended = true
-		self:Destroy()
-		return
-	end
-end
-
 function modifier_legion_commander_duel_custom_buff:OnCreated(table)
 	self.caster = self:GetCaster()
 	self.parent = self:GetParent()
@@ -403,7 +386,7 @@ function modifier_legion_commander_duel_custom_buff:OnCreated(table)
 		self.parent:EmitSound("Hero_LegionCommander.Duel")
 
 		local particle_name =
-			wearables_system:GetParticleReplacementAbility(self.caster, "particles/legion_duel_ring.vpcf", self)
+			wearables_system:GetParticleReplacementAbility(self.caster, "particles/legion_duel_ring.vpcf", self.ability)
 		local dir = (self.caster:GetAbsOrigin() - self.target:GetAbsOrigin())
 		local center_point = self.target:GetAbsOrigin() + dir:Normalized() * 80
 
@@ -428,6 +411,21 @@ function modifier_legion_commander_duel_custom_buff:OnCreated(table)
 	self.interval = FrameTime() * 2
 	self:OnIntervalThink(true)
 	self:StartIntervalThink(self.interval)
+end
+
+function modifier_legion_commander_duel_custom_buff:DeathEvent(params)
+	if not IsServer() then
+		return
+	end
+	if self.ended then
+		return
+	end
+
+	if self.ability:CheckDuel(params.unit, self.target) then
+		self.ended = true
+		self:Destroy()
+		return
+	end
 end
 
 function modifier_legion_commander_duel_custom_buff:OnIntervalThink(first)
@@ -785,8 +783,10 @@ end
 
 modifier_legion_commander_duel_custom_legendary_attack = class(mod_hidden)
 function modifier_legion_commander_duel_custom_legendary_attack:OnCreated()
-	self.damage = self:GetAbility().talents.r7_damage - 100
+	self.ability = self:GetAbility()
+	self.damage = self.ability.talents.r7_damage - 100
 end
+
 function modifier_legion_commander_duel_custom_legendary_attack:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE,
@@ -876,6 +876,9 @@ function modifier_legion_commander_duel_custom_linger:OnCreated(table)
 	self.ability = self:GetAbility()
 
 	self.slow = self.ability.linger_slow
+	if not IsServer() then
+		return
+	end
 	self.parent:AddDeathEvent(self)
 end
 
@@ -920,17 +923,10 @@ function modifier_legion_commander_duel_custom_damage:OnCreated()
 	self:SetHasCustomTransmitterData(true)
 	self.spell = 0
 	self.damage = 0
-	self:AddDamage()
+	self:OnRefresh()
 end
 
 function modifier_legion_commander_duel_custom_damage:OnRefresh()
-	if not IsServer() then
-		return
-	end
-	self:AddDamage()
-end
-
-function modifier_legion_commander_duel_custom_damage:AddDamage()
 	if not IsServer() then
 		return
 	end
@@ -1008,6 +1004,7 @@ modifier_legion_commander_duel_custom_tracker = class(mod_hidden)
 function modifier_legion_commander_duel_custom_tracker:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
+	self.interval = 0.5
 	self.ability.tracker = self
 	self.ability:UpdateTalents()
 
@@ -1214,6 +1211,7 @@ function modifier_legion_commander_duel_custom_damage_stack:OnCreated(table)
 	if not IsServer() then
 		return
 	end
+	self.RemoveForDuel = true
 	self:OnRefresh(table)
 end
 
@@ -1259,6 +1257,11 @@ function modifier_legion_commander_duel_custom_armor:OnCreated(table)
 	self.armor = self.ability.talents.has_r7 == 1 and self.ability.talents.r1_armor_legendary
 		or self.ability.talents.r1_armor
 	self.max = self.ability.talents.has_r7 == 1 and self.ability.talents.r1_max_legendary or self.ability.talents.r1_max
+
+	if not IsServer() then
+		return
+	end
+	self.RemoveForDuel = true
 	self:OnRefresh()
 end
 
@@ -1293,6 +1296,7 @@ function modifier_legion_commander_duel_custom_heal_cd:GetTexture()
 end
 
 custom_legion_commander_duel_scepter = class({})
+custom_legion_commander_duel_scepter.talents = {}
 
 function custom_legion_commander_duel_scepter:Init()
 	if not self:GetCaster() then
@@ -1304,8 +1308,31 @@ function custom_legion_commander_duel_scepter:Init()
 		self:SetLevel(1)
 	end
 
-	self.gold = self:GetSpecialValueFor("gold")
-	self.delay = self:GetSpecialValueFor("delay")
+	self.gold = self:GetLevelSpecialValueFor("gold", 1)
+	self.delay = self:GetLevelSpecialValueFor("delay", 1)
+	self.max = self:GetLevelSpecialValueFor("max", 1)
+	self.damage = self:GetLevelSpecialValueFor("damage", 1)
+	self.spell = self:GetLevelSpecialValueFor("spell", 1)
+	self:UpdateTalents()
+end
+
+function custom_legion_commander_duel_scepter:UpdateTalents(name)
+	local caster = self:GetCaster()
+	if not self.init then
+		self.init = true
+		self.talents = {
+			has_q7 = 0,
+			has_w7 = 0,
+		}
+	end
+
+	if caster:HasTalent("modifier_legion_odds_7") then
+		self.talents.has_q7 = 1
+	end
+
+	if caster:HasTalent("modifier_legion_press_7") then
+		self.talents.has_w7 = 1
+	end
 end
 
 function custom_legion_commander_duel_scepter:OnAbilityPhaseStart()
@@ -1313,7 +1340,6 @@ function custom_legion_commander_duel_scepter:OnAbilityPhaseStart()
 end
 
 function custom_legion_commander_duel_scepter:OnSpellStart()
-	local target = nil
 	local possible_heroes = {}
 
 	local total_count = 0
@@ -1397,11 +1423,13 @@ function modifier_legion_commander_duel_custom_scepter_choosing:OnIntervalThink(
 	if not IsServer() then
 		return
 	end
-	CustomGameEventManager:Send_ServerToPlayer(
-		PlayerResource:GetPlayer(self.parent:GetPlayerOwnerID()),
-		"legion_duel_init",
-		{ hero_1 = self.heroes[1]:GetUnitName(), hero_2 = self.heroes[2]:GetUnitName() }
-	)
+	local targets = {}
+
+	for i, hero in pairs(self.heroes) do
+		targets[i] = { hero = hero:GetUnitName() }
+	end
+
+	self.parent:UpdateUIpick({ mod = self, text = "#legion_pick_hero", targets = targets })
 end
 
 function modifier_legion_commander_duel_custom_scepter_choosing:EndPick(pick)
@@ -1419,11 +1447,7 @@ function modifier_legion_commander_duel_custom_scepter_choosing:OnDestroy()
 	self.ability:StartCd()
 
 	EmitAnnouncerSoundForPlayer("Lc.Duel_target_end", self.parent:GetPlayerOwnerID())
-	CustomGameEventManager:Send_ServerToPlayer(
-		PlayerResource:GetPlayer(self.parent:GetPlayerOwnerID()),
-		"legion_duel_end",
-		{}
-	)
+	self.parent:UpdateUIpick({ hide = 1 })
 
 	if not self.picked then
 		return
@@ -1561,7 +1585,7 @@ function modifier_legion_commander_duel_custom_scepter_effect:OnDestroy()
 			)
 			self.parent:EmitSound("Hero_LegionCommander.Duel.Victory")
 			self.parent:EmitSound("Lc.Duel_double")
-			self.parent:GiveGold(self.ability.gold, true)
+			self.parent:GiveGold(self.ability.gold, true, nil, self.ability)
 		end
 	end)
 
@@ -1576,10 +1600,9 @@ function modifier_legion_commander_duel_custom_scepter_win:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.max = self.ability:GetSpecialValueFor("max")
-	self.damage = self.ability:GetSpecialValueFor("damage")
-	self.spell = self.ability:GetSpecialValueFor("spell")
-	self.duel_ability = self.parent.duel_ability
+	self.max = self.ability.max
+	self.damage = self.ability.damage
+	self.spell = self.ability.spell
 
 	if not IsServer() then
 		return
@@ -1606,10 +1629,10 @@ function modifier_legion_commander_duel_custom_scepter_win:DeclareFunctions()
 end
 
 function modifier_legion_commander_duel_custom_scepter_win:GetModifierPreAttack_BonusDamage()
-	if not IsValid(self.duel_ability) or not self.parent:HasScepter() then
+	if not self.parent:HasScepter() then
 		return
 	end
-	if self.duel_ability.talents.has_w7 == 1 or self.duel_ability.talents.has_q7 == 1 then
+	if self.ability.talents.has_w7 == 1 or self.ability.talents.has_q7 == 1 then
 		return
 	end
 	return self.damage * self:GetStackCount()
@@ -1626,10 +1649,10 @@ function modifier_legion_commander_duel_custom_scepter_win:GetModifierSpellAmpli
 end
 
 function modifier_legion_commander_duel_custom_scepter_win:OnTooltip()
-	if not IsValid(self.duel_ability) or not self.parent:HasScepter() then
+	if not self.parent:HasScepter() then
 		return
 	end
-	if self.duel_ability.talents.has_w7 == 0 and self.duel_ability.talents.has_q7 == 0 then
+	if self.ability.talents.has_w7 == 0 and self.ability.talents.has_q7 == 0 then
 		return
 	end
 	return self.spell * self:GetStackCount()

@@ -9,8 +9,6 @@
 
 
 var POPUP_RARITY = { common:"#b0c3d9", uncommon:"#5e98d9", rare:"#4b69ff", mythical:"#8847ff", legendary:"#d32ce6", immortal:"#e4ae39" }
-var POPUP_DROP_SLOT = 70
-var POPUP_START_SPEED = 5890
 var POPUP_INFO = null
 var POPUP_ANIM = false
 var POPUP_DROP_POS = [0, 0]
@@ -245,12 +243,13 @@ function PopupFillLine(rollPanel, items)
     let arr = []
     for (let k in items) { if (items[k]) { arr.push(items[k]) } }
     if (arr.length == 0) { return }
-    for (let i = 0; i <= 100; i++)
+    let picks = ChestRollPicks(arr)
+    for (let i = 0; i < picks.length; i++)
     {
-        let it = arr[Math.floor(Math.random() * arr.length)]
-        PopupCreateItem(rollPanel, it, POPUP_DROP_SLOT == i)
+        PopupCreateItem(rollPanel, picks[i], ROLL_DROP_SLOT == i)
     }
     rollPanel.style.position = "0px 0px 0px"
+    rollPanel.style.transform = "translateX(0px)"
 }
 
 function PopupInitPair(info)
@@ -497,33 +496,25 @@ function PopupOpenLine(which, drop_id, is_dup, shards)
             sound_name.AddClass("item_sound_name")
             sound_name.text = $.Localize("#" + drop_info.item_name)
         }
+        let tooltip_name = PopupGetItemDisplayName(drop_info)
+        dropped.SetPanelEvent('onmouseover', function()
+        {
+            $.DispatchEvent('DOTAShowTextTooltip', dropped, tooltip_name)
+        })
     }
 
     Game.EmitSound("UI.Chest_open")
     popup_loop_sound = Game.EmitSound("UI.Chest_open2")
     PopupComputeDropPos(rollPanel)
-    let dist = Math.floor(Math.random() * (POPUP_DROP_POS[1] - POPUP_DROP_POS[0] + 1) + POPUP_DROP_POS[0])
-    PopupAnimate(rollPanel, 0, dist, POPUP_START_SPEED, POPUP_SOUND_TICK, which, drop_info, is_dup, shards)
-}
-
-function PopupAnimate(rollPanel, current, dist, speed, sound_tick, which, drop_info, is_dup, shards)
-{
-    let root = ChestGrantedGetRoot()
-    if (!root || root.BHasClass("ChestGrantedHidden")) { POPUP_ANIM = false; return }
-    if (current <= dist)
+    ChestRollAnimate(rollPanel, POPUP_DROP_POS, POPUP_SOUND_TICK, function()
     {
-        $.Schedule(0.1, function() { PopupGiveDrop(which, drop_info, is_dup, shards) })
-        return
-    }
-    current = current - (speed * Game.GetGameFrameTime())
-    sound_tick = sound_tick - (speed * Game.GetGameFrameTime())
-    if (sound_tick <= 0) { sound_tick = POPUP_SOUND_TICK; Game.EmitSound("random_wheel_lever") }
-    if (current <= 0.37 * dist) { speed = speed - (speed * Game.GetGameFrameTime()) }
-    speed = Math.max(30, speed)
-    rollPanel.style.position = current + "px 0px 0px"
-    $.Schedule(Game.GetGameFrameTime(), function()
+        let root = ChestGrantedGetRoot()
+        if (root && !root.BHasClass("ChestGrantedHidden")) { return false }
+        POPUP_ANIM = false
+        return true
+    }, function()
     {
-        PopupAnimate(rollPanel, current, dist, speed, sound_tick, which, drop_info, is_dup, shards)
+        PopupGiveDrop(which, drop_info, is_dup, shards)
     })
 }
 

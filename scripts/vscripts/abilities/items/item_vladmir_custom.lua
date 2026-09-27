@@ -24,23 +24,20 @@ function item_vladmir_custom:Precache(context)
 	PrecacheResource("particle", "particles/bristleback/armor_buff.vpcf", context)
 end
 
+function item_vladmir_custom:Spawn()
+	self.armor = self:GetSpecialValueFor("armor")
+	self.mana_regen = self:GetSpecialValueFor("mana_regen")
+	self.armor_aura = self:GetSpecialValueFor("armor_aura")
+	self.mana_regen_aura = self:GetSpecialValueFor("mana_regen_aura")
+	self.lifesteal_aura = self:GetSpecialValueFor("lifesteal_aura") / 100
+	self.damage_aura = self:GetSpecialValueFor("damage_aura")
+	self.aura_radius = self:GetSpecialValueFor("aura_radius")
+end
+
 modifier_item_vladmir_custom = class(mod_hidden)
 function modifier_item_vladmir_custom:RemoveOnDeath()
 	return false
 end
-function modifier_item_vladmir_custom:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.ability.armor = self.ability:GetSpecialValueFor("armor")
-	self.ability.mana_regen = self.ability:GetSpecialValueFor("mana_regen")
-	self.ability.armor_aura = self.ability:GetSpecialValueFor("armor_aura")
-	self.ability.mana_regen_aura = self.ability:GetSpecialValueFor("mana_regen_aura")
-	self.ability.lifesteal_aura = self.ability:GetSpecialValueFor("lifesteal_aura") / 100
-	self.ability.damage_aura = self.ability:GetSpecialValueFor("damage_aura")
-	self.ability.aura_radius = self.ability:GetSpecialValueFor("aura_radius")
-end
-
 function modifier_item_vladmir_custom:GetAuraRadius()
 	return self.ability.aura_radius
 end
@@ -58,6 +55,10 @@ function modifier_item_vladmir_custom:GetModifierAura()
 end
 function modifier_item_vladmir_custom:IsAura()
 	return not self.parent:HasModifier("modifier_item_wraith_aura_custom")
+end
+function modifier_item_vladmir_custom:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
 end
 
 function modifier_item_vladmir_custom:DeclareFunctions()
@@ -114,6 +115,9 @@ end
 
 function modifier_item_vladmir_custom_aura:DamageEvent_out(params)
 	if not IsServer() then
+		return
+	end
+	if not IsValid(self.ability) then
 		return
 	end
 	if not params.unit:IsUnit() then

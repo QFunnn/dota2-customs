@@ -20,9 +20,15 @@ function item_greater_crit_custom:GetIntrinsicModifierName()
 	return "modifier_item_greater_crit_custom"
 end
 
+function item_greater_crit_custom:Spawn()
+	self.bonus_damage = self:GetSpecialValueFor("bonus_damage")
+	self.bonus_health = self:GetSpecialValueFor("bonus_health")
+	self.crit_chance = self:GetSpecialValueFor("crit_chance")
+	self.crit_multiplier = self:GetSpecialValueFor("crit_multiplier")
+end
+
 function item_greater_crit_custom:GetAbilityTextureName()
-	local caster = self:GetCaster()
-	return wearables_system:GetAbilityIconReplacement(self.caster, "item_greater_crit", self)
+	return wearables_system:GetAbilityIconReplacement(self:GetCaster(), "item_greater_crit", self)
 end
 
 modifier_item_greater_crit_custom = class(mod_hidden)
@@ -32,22 +38,22 @@ end
 function modifier_item_greater_crit_custom:RemoveOnDeath()
 	return false
 end
+function modifier_item_greater_crit_custom:GetCritDamage()
+	return self.crit_multiplier
+end
 function modifier_item_greater_crit_custom:OnCreated()
 	self.ability = self:GetAbility()
 	self.parent = self:GetParent()
 
-	self.bonus_damage = self.ability:GetSpecialValueFor("bonus_damage")
-	self.bonus_health = self.ability:GetSpecialValueFor("bonus_health")
-	self.crit_chance = self.ability:GetSpecialValueFor("crit_chance")
-	self.crit_multiplier = self.ability:GetSpecialValueFor("crit_multiplier")
+	self.bonus_damage = self.ability.bonus_damage
+	self.bonus_health = self.ability.bonus_health
+	self.crit_chance = self.ability.crit_chance
+	self.crit_multiplier = self.ability.crit_multiplier
 	self.records = {}
 
 	self.parent:AddRecordDestroyEvent(self, true)
 end
 
-function modifier_item_greater_crit_custom:GetCritDamage()
-	return self.crit_multiplier
-end
 function modifier_item_greater_crit_custom:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
@@ -82,6 +88,9 @@ end
 
 function modifier_item_greater_crit_custom:GetModifierPreAttack_CriticalStrike(params)
 	if not IsServer() then
+		return
+	end
+	if self.parent.fake_attack then
 		return
 	end
 	if not params.target:IsUnit() then

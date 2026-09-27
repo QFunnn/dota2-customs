@@ -71,7 +71,6 @@ function zuus_heavenly_jump_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
 	end
-
 	PrecacheResource("particle", "particles/units/heroes/hero_zuus/zuus_shard.vpcf", context)
 	PrecacheResource("particle", "particles/zuus_glow.vpcf", context)
 	PrecacheResource("particle", "particles/zuus_speed.vpcf", context)
@@ -81,8 +80,16 @@ function zuus_heavenly_jump_custom:Precache(context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_mjollnir_shield.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_stormspirit/stormspirit_static_remnant.vpcf", context)
 	PrecacheResource("particle", "particles/huskar_timer.vpcf", context)
-	PrecacheResource("particle", "particles/status_fx/status_effect_mjollnir_shield.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_techies/techies_stasis_trap_explode.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_zuus/zuus_shard_head.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_zuus/zuus_shard_slow.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_zuus/zuus_base_attack.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_zuus/zuus_lightning_bolt_aoe.vpcf", context)
+	PrecacheResource(
+		"particle",
+		"particles/econ/items/zeus/zeus_immortal_2021/zeus_immortal_2021_static_field.vpcf",
+		context
+	)
 end
 
 function zuus_heavenly_jump_custom:UpdateTalents(name)
@@ -98,7 +105,6 @@ function zuus_heavenly_jump_custom:UpdateTalents(name)
 			has_e2 = 0,
 			e2_heal = 0,
 			e2_cd = 0,
-			e2_duration = caster:GetTalentValue("modifier_zuus_jump_2", "duration", true),
 
 			has_e3 = 0,
 			e3_stats = 0,
@@ -122,7 +128,6 @@ function zuus_heavenly_jump_custom:UpdateTalents(name)
 			e7_max = caster:GetTalentValue("modifier_zuus_jump_7", "max", true),
 			e7_duration_creeps = caster:GetTalentValue("modifier_zuus_jump_7", "duration_creeps", true),
 
-			has_h1 = 0,
 			h1_slow = 0,
 
 			has_h4 = 0,
@@ -162,17 +167,12 @@ function zuus_heavenly_jump_custom:UpdateTalents(name)
 	end
 
 	if caster:HasTalent("modifier_zuus_hero_1") then
-		self.talents.has_h1 = 1
 		self.talents.h1_slow = caster:GetTalentValue("modifier_zuus_hero_1", "slow")
 	end
 
 	if caster:HasTalent("modifier_zuus_hero_4") then
 		self.talents.has_h4 = 1
 	end
-end
-
-function zuus_heavenly_jump_custom:Init()
-	self.caster = self:GetCaster()
 end
 
 function zuus_heavenly_jump_custom:GetIntrinsicModifierName()
@@ -197,11 +197,11 @@ function zuus_heavenly_jump_custom:GetCastRange(vLocation, hTarget)
 end
 
 function zuus_heavenly_jump_custom:GetRange()
-	return (self.hop_distance and self.hop_distance or 0) + (self.talents.has_h4 == 1 and self.talents.h4_range or 0)
+	return (self.hop_distance or 0) + (self.talents.has_h4 == 1 and self.talents.h4_range or 0)
 end
 
 function zuus_heavenly_jump_custom:GetCooldown(iLevel)
-	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.e2_cd and self.talents.e2_cd or 0)
+	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.e2_cd or 0)
 end
 
 function zuus_heavenly_jump_custom:OnSpellStart()
@@ -220,8 +220,7 @@ function zuus_heavenly_jump_custom:OnSpellStart()
 		local vec = point - self.caster:GetAbsOrigin()
 		local dir = vec:Normalized()
 		dir.z = 0
-		self.caster:FaceTowards(self.caster:GetAbsOrigin() + dir * 10)
-		self.caster:SetForwardVector(dir)
+		self.caster:FacePoint(self.caster:GetAbsOrigin() + dir * 10)
 		if vec:Length2D() >= distance then
 			point = self.caster:GetAbsOrigin() + dir * distance
 		end
@@ -322,6 +321,22 @@ function zuus_heavenly_jump_custom:OnSpellStart()
 	self:LegendaryStack(hit_hero)
 end
 
+function zuus_heavenly_jump_custom:OnProjectileHit(target, location)
+	if not target then
+		return
+	end
+	target:EmitSound("Hero_Zuus.ProjectileImpact")
+	target:EmitSound("Hero_Zuus.ArcLightning.Target")
+
+	self.caster:AddNewModifier(self.caster, self, "modifier_zuus_heavenly_jump_custom_attacks_caster", {})
+	self.caster:PerformAttack(target, true, true, true, true, false, false, true)
+	self.caster:RemoveModifierByName("modifier_zuus_heavenly_jump_custom_attacks_caster")
+
+	if self.caster.arc_ability then
+		self.caster.arc_ability:ProcAttack(target)
+	end
+end
+
 function zuus_heavenly_jump_custom:DealDamage(target)
 	if not IsServer() then
 		return
@@ -403,22 +418,6 @@ function zuus_heavenly_jump_custom:DealDamage(target)
 	ParticleManager:ReleaseParticleIndex(self_particle)
 end
 
-function zuus_heavenly_jump_custom:OnProjectileHit(target, location)
-	if not target then
-		return
-	end
-	target:EmitSound("Hero_Zuus.ProjectileImpact")
-	target:EmitSound("Hero_Zuus.ArcLightning.Target")
-
-	self.caster:AddNewModifier(self.caster, self, "modifier_zuus_heavenly_jump_custom_attacks_caster", {})
-	self.caster:PerformAttack(target, true, true, true, true, false, false, true)
-	self.caster:RemoveModifierByName("modifier_zuus_heavenly_jump_custom_attacks_caster")
-
-	if self.caster.arc_ability then
-		self.caster.arc_ability:ProcAttack(target)
-	end
-end
-
 function zuus_heavenly_jump_custom:LegendaryStack(hit_hero)
 	if not IsServer() then
 		return
@@ -452,7 +451,7 @@ function zuus_heavenly_jump_custom:ProcEffects(target)
 	end
 
 	if self.talents.has_e7 == 1 then
-		self.caster:CdAbility(self, self:GetEffectiveCooldown(self:GetLevel()) * self.talents.e7_cd_inc)
+		self.caster:CdAbility(self, nil, self.talents.e7_cd_inc)
 	end
 
 	if self.talents.has_e4 == 1 and not IsValid(self.jump_mod) then
@@ -482,19 +481,6 @@ function zuus_heavenly_jump_custom:ProcEffects(target)
 end
 
 modifier_zuus_heavenly_jump_custom_passive = class(mod_hidden)
-function modifier_zuus_heavenly_jump_custom_passive:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
-	}
-end
-
-function modifier_zuus_heavenly_jump_custom_passive:GetModifierAttackRangeBonus()
-	if self.ability.talents.has_e7 == 0 then
-		return
-	end
-	return self.ability.talents.e7_range
-end
-
 function modifier_zuus_heavenly_jump_custom_passive:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -542,7 +528,20 @@ function modifier_zuus_heavenly_jump_custom_passive:AttackEvent_out(params)
 	self.ability:ProcEffects(target)
 end
 
-modifier_zuus_heavenly_jump_custom_debuff = class({})
+function modifier_zuus_heavenly_jump_custom_passive:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
+	}
+end
+
+function modifier_zuus_heavenly_jump_custom_passive:GetModifierAttackRangeBonus()
+	if self.ability.talents.has_e7 == 0 then
+		return
+	end
+	return self.ability.talents.e7_range
+end
+
+modifier_zuus_heavenly_jump_custom_debuff = class(mod_visible)
 function modifier_zuus_heavenly_jump_custom_debuff:IsPurgable()
 	return true
 end
@@ -583,7 +582,6 @@ function modifier_zuus_heavenly_jump_custom_debuff:GetModifierAttackSpeedBonus_C
 end
 
 modifier_zuus_heavenly_jump_custom_legendary = class(mod_hidden)
-
 function modifier_zuus_heavenly_jump_custom_legendary:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -682,18 +680,12 @@ function modifier_zuus_heavenly_jump_custom_attack_speed_effect:GetModifierModel
 end
 
 modifier_zuus_heavenly_jump_custom_illusion = class(mod_hidden)
-function modifier_zuus_heavenly_jump_custom_illusion:CheckState()
-	return {
-		[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
-		[MODIFIER_STATE_NO_HEALTH_BAR] = true,
-		[MODIFIER_STATE_STUNNED] = true,
-		[MODIFIER_STATE_INVULNERABLE] = true,
-		[MODIFIER_STATE_UNTARGETABLE] = true,
-		[MODIFIER_STATE_UNSELECTABLE] = true,
-		[MODIFIER_STATE_OUT_OF_GAME] = true,
-	}
+function modifier_zuus_heavenly_jump_custom_illusion:GetStatusEffectName()
+	return "particles/status_fx/status_effect_mjollnir_shield.vpcf"
 end
-
+function modifier_zuus_heavenly_jump_custom_illusion:StatusEffectPriority()
+	return MODIFIER_PRIORITY_ILLUSION
+end
 function modifier_zuus_heavenly_jump_custom_illusion:OnCreated(table)
 	if not IsServer() then
 		return
@@ -744,20 +736,6 @@ function modifier_zuus_heavenly_jump_custom_illusion:OnIntervalThink()
 	ParticleManager:ReleaseParticleIndex(particle)
 end
 
-function modifier_zuus_heavenly_jump_custom_illusion:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_OVERRIDE_ANIMATION,
-	}
-end
-function modifier_zuus_heavenly_jump_custom_illusion:GetOverrideAnimation()
-	return ACT_DOTA_GENERIC_CHANNEL_1
-end
-function modifier_zuus_heavenly_jump_custom_illusion:GetStatusEffectName()
-	return "particles/status_fx/status_effect_mjollnir_shield.vpcf"
-end
-function modifier_zuus_heavenly_jump_custom_illusion:StatusEffectPriority()
-	return MODIFIER_PRIORITY_ILLUSION
-end
 function modifier_zuus_heavenly_jump_custom_illusion:OnDestroy()
 	if not IsServer() then
 		return
@@ -794,6 +772,28 @@ function modifier_zuus_heavenly_jump_custom_illusion:OnDestroy()
 			{ duration = (1 - unit:GetStatusResistance()) * self.stun }
 		)
 	end
+end
+
+function modifier_zuus_heavenly_jump_custom_illusion:CheckState()
+	return {
+		[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
+		[MODIFIER_STATE_NO_HEALTH_BAR] = true,
+		[MODIFIER_STATE_STUNNED] = true,
+		[MODIFIER_STATE_INVULNERABLE] = true,
+		[MODIFIER_STATE_UNTARGETABLE] = true,
+		[MODIFIER_STATE_UNSELECTABLE] = true,
+		[MODIFIER_STATE_OUT_OF_GAME] = true,
+	}
+end
+
+function modifier_zuus_heavenly_jump_custom_illusion:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_OVERRIDE_ANIMATION,
+	}
+end
+
+function modifier_zuus_heavenly_jump_custom_illusion:GetOverrideAnimation()
+	return ACT_DOTA_GENERIC_CHANNEL_1
 end
 
 modifier_zuus_heavenly_jump_custom_invun = class(mod_hidden)
@@ -848,7 +848,8 @@ end
 
 modifier_zuus_heavenly_jump_custom_attacks_caster = class(mod_hidden)
 function modifier_zuus_heavenly_jump_custom_attacks_caster:OnCreated()
-	self.damage = self:GetAbility().talents.e1_damage - 100
+	self.ability = self:GetAbility()
+	self.damage = self.ability.talents.e1_damage - 100
 end
 
 function modifier_zuus_heavenly_jump_custom_attacks_caster:DeclareFunctions()
@@ -915,6 +916,7 @@ function modifier_zuus_heavenly_jump_custom_stats:OnCreated()
 	if not IsServer() then
 		return
 	end
+	self.RemoveForDuel = true
 	self:OnRefresh()
 end
 

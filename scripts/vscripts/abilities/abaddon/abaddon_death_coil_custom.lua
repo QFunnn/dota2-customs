@@ -19,11 +19,6 @@ LinkLuaModifier(
 	LUA_MODIFIER_MOTION_NONE
 )
 LinkLuaModifier(
-	"modifier_abaddon_death_coil_custom_buff",
-	"abilities/abaddon/abaddon_death_coil_custom",
-	LUA_MODIFIER_MOTION_NONE
-)
-LinkLuaModifier(
 	"modifier_abaddon_death_coil_custom_tracker",
 	"abilities/abaddon/abaddon_death_coil_custom",
 	LUA_MODIFIER_MOTION_NONE
@@ -60,16 +55,7 @@ LinkLuaModifier(
 )
 
 abaddon_death_coil_custom = class({})
-abaddon_death_coil_custom.thinkers = {}
 abaddon_death_coil_custom.talents = {}
-
-function abaddon_death_coil_custom:GetAbilityTextureName()
-	return wearables_system:GetAbilityIconReplacement(self.caster, "abaddon_death_coil", self)
-end
-
-function abaddon_death_coil_custom:CreateTalent(name)
-	self:ToggleAutoCast()
-end
 
 function abaddon_death_coil_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
@@ -97,11 +83,9 @@ function abaddon_death_coil_custom:UpdateTalents(name)
 	if not self.init then
 		self.init = true
 		self.talents = {
-			has_q1 = 0,
 			q1_damage = 0,
 			q1_spell = 0,
 
-			has_q2 = 0,
 			q2_cd = 0,
 
 			has_q3 = 0,
@@ -130,17 +114,16 @@ function abaddon_death_coil_custom:UpdateTalents(name)
 			h4_talent_cd = caster:GetTalentValue("modifier_abaddon_hero_4", "talent_cd", true),
 			h4_leash = caster:GetTalentValue("modifier_abaddon_hero_4", "leash", true),
 		}
+
+		self.thinkers = {}
 	end
 
 	if caster:HasTalent("modifier_abaddon_mist_1") then
-		self.talents.has_q1 = 1
 		self.talents.q1_damage = caster:GetTalentValue("modifier_abaddon_mist_1", "damage") / 100
 		self.talents.q1_spell = caster:GetTalentValue("modifier_abaddon_mist_1", "spell")
 	end
 
 	if caster:HasTalent("modifier_abaddon_mist_2") then
-		self.talents.has_q2 = 1
-		self.talents.q2_heal = caster:GetTalentValue("modifier_abaddon_mist_2", "heal")
 		self.talents.q2_cd = caster:GetTalentValue("modifier_abaddon_mist_2", "cd")
 	end
 
@@ -162,8 +145,12 @@ function abaddon_death_coil_custom:UpdateTalents(name)
 	end
 end
 
-function abaddon_death_coil_custom:Init()
-	self.caster = self:GetCaster()
+function abaddon_death_coil_custom:CreateTalent(name)
+	self:ToggleAutoCast()
+end
+
+function abaddon_death_coil_custom:GetAbilityTextureName()
+	return wearables_system:GetAbilityIconReplacement(self.caster, "abaddon_death_coil", self)
 end
 
 function abaddon_death_coil_custom:GetIntrinsicModifierName()
@@ -206,23 +193,16 @@ function abaddon_death_coil_custom:GetCastPoint(iLevel)
 	return self.BaseClass.GetCastPoint(self) * (1 + (self.caster:HasScepter() and self.scepter_cast or 0))
 end
 
-function abaddon_death_coil_custom:GetManaCost(level)
-	return self.BaseClass.GetManaCost(self, level)
-end
-
 function abaddon_death_coil_custom:GetCooldown(level)
-	return self.BaseClass.GetCooldown(self, level) + (self.talents.q2_cd and self.talents.q2_cd or 0)
+	return self.BaseClass.GetCooldown(self, level) + (self.talents.q2_cd or 0)
 end
 
 function abaddon_death_coil_custom:GetAOERadius()
-	return self.effect_radius
+	return self.effect_radius or 0
 end
 
 function abaddon_death_coil_custom:GetSelfDamage()
-	if not self.target_damage then
-		return
-	end
-	return self.target_damage * self.self_damage / 100
+	return (self.target_damage or 0) * (self.self_damage or 0)
 end
 
 function abaddon_death_coil_custom:GetHealthCost(level)
@@ -300,7 +280,6 @@ function abaddon_death_coil_custom:OnSpellStart(new_target, damage_ability)
 		Ability = self,
 		EffectName = self:GetProjectile(),
 		iMoveSpeed = self.missile_speed,
-		bDodgeable = true,
 		Target = target,
 		bDodgeable = pull == 0,
 		ExtraData = { double = double, heal = 0, pull = pull, is_scepter = is_scepter },
@@ -375,7 +354,7 @@ function abaddon_death_coil_custom:OnProjectileHit_ExtraData(target, location, t
 				ParticleManager:DestroyParticle(effect_cast, false)
 				ParticleManager:ReleaseParticleIndex(effect_cast)
 
-				if self.caster.aphotic_ability then
+				if IsValid(self.caster.aphotic_ability) then
 					self.caster.aphotic_ability:AddBurn(aoe_target)
 				end
 			end
@@ -495,7 +474,7 @@ function abaddon_death_coil_custom:CheckPos(point)
 
 	for _, index in pairs(self.thinkers) do
 		local unit = EntIndexToHScript(index)
-		if unit and not unit:IsNull() then
+		if IsValid(unit) then
 			if (unit:GetAbsOrigin() - point):Length2D() <= radius then
 				return false
 			end
@@ -534,18 +513,6 @@ function abaddon_death_coil_custom:ProcMove(unslow)
 end
 
 modifier_abaddon_death_coil_custom_legendary_unit = class(mod_hidden)
-function modifier_abaddon_death_coil_custom_legendary_unit:CheckState()
-	return {
-		[MODIFIER_STATE_INVULNERABLE] = true,
-		[MODIFIER_STATE_OUT_OF_GAME] = true,
-		[MODIFIER_STATE_STUNNED] = true,
-		[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
-		[MODIFIER_STATE_NO_HEALTH_BAR] = true,
-		[MODIFIER_STATE_UNSELECTABLE] = true,
-		[MODIFIER_STATE_UNTARGETABLE] = true,
-	}
-end
-
 function modifier_abaddon_death_coil_custom_legendary_unit:OnCreated(params)
 	if not IsServer() then
 		return
@@ -575,6 +542,18 @@ function modifier_abaddon_death_coil_custom_legendary_unit:OnCreated(params)
 
 	self.interval = 0.1
 	self:StartIntervalThink(time)
+end
+
+function modifier_abaddon_death_coil_custom_legendary_unit:CheckState()
+	return {
+		[MODIFIER_STATE_INVULNERABLE] = true,
+		[MODIFIER_STATE_OUT_OF_GAME] = true,
+		[MODIFIER_STATE_STUNNED] = true,
+		[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
+		[MODIFIER_STATE_NO_HEALTH_BAR] = true,
+		[MODIFIER_STATE_UNSELECTABLE] = true,
+		[MODIFIER_STATE_UNTARGETABLE] = true,
+	}
 end
 
 function modifier_abaddon_death_coil_custom_legendary_unit:OnIntervalThink()
@@ -627,7 +606,7 @@ function modifier_abaddon_death_coil_custom_legendary_unit:OnDestroy()
 	ParticleManager:SetParticleControl(ground, 0, self.point)
 	ParticleManager:ReleaseParticleIndex(ground)
 
-	if self.launch == true and self.target and not self.target:IsNull() and self.target:IsAlive() then
+	if self.launch == true and IsValid(self.target) and self.target:IsAlive() then
 		local projectile_speed = self.ability.missile_speed
 
 		local particle = ParticleManager:CreateParticle("particles/abaddon/coil_proje.vpcf", PATTACH_WORLDORIGIN, nil)
@@ -660,67 +639,7 @@ function modifier_abaddon_death_coil_custom_legendary_unit:OnDestroy()
 		end
 	end
 
-	UTIL_Remove(self:GetParent())
-end
-
-abaddon_death_coil_custom_legendary = class({})
-abaddon_death_coil_custom_legendary.talents = {}
-
-function abaddon_death_coil_custom_legendary:CreateTalent(name)
-	self:SetHidden(false)
-end
-
-function abaddon_death_coil_custom_legendary:UpdateTalents(name)
-	local caster = self:GetCaster()
-	if not self.init then
-		self.init = true
-		self.talents = {
-			q7_talent_cd = caster:GetTalentValue("modifier_abaddon_mist_7", "talent_cd", true),
-		}
-	end
-end
-
-function abaddon_death_coil_custom_legendary:GetCooldown()
-	return self.talents.q7_talent_cd and self.talents.q7_talent_cd or 0
-end
-
-function abaddon_death_coil_custom_legendary:OnSpellStart()
-	local caster = self:GetCaster()
-	local main_ability = caster:FindAbilityByName("abaddon_death_coil_custom")
-
-	if not main_ability then
-		return
-	end
-
-	caster:EmitSound("Abaddon.Mist_legendary")
-	caster:EmitSound("Abaddon.Mist_legendary2")
-
-	local particle =
-		ParticleManager:CreateParticle("particles/abaddon/coil_legendary_cast.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
-	ParticleManager:SetParticleControl(particle, 0, caster:GetAbsOrigin())
-	ParticleManager:ReleaseParticleIndex(particle)
-
-	local units = {}
-
-	for _, index in pairs(main_ability.thinkers) do
-		local unit = EntIndexToHScript(index)
-		if unit then
-			units[#units + 1] = unit
-		end
-	end
-
-	if #units == 0 then
-		return
-	end
-
-	for i = 1, #units do
-		local mod = units[i]:FindModifierByName("modifier_abaddon_death_coil_custom_legendary_unit")
-
-		if mod then
-			mod.launch = true
-			mod:Destroy()
-		end
-	end
+	UTIL_Remove(self.parent)
 end
 
 modifier_abaddon_death_coil_custom_tracker = class(mod_hidden)
@@ -730,14 +649,17 @@ function modifier_abaddon_death_coil_custom_tracker:OnCreated()
 	self.ability.tracker = self
 	self.ability:UpdateTalents()
 
-	self.legendary_ability = self.parent:FindAbilityByName("abaddon_death_coil_custom_legendary")
-	if self.legendary_ability then
-		self.legendary_ability:UpdateTalents()
+	self.parent.mist_ability = self.ability
+	self.parent.mist_legendary_ability = self.parent:FindAbilityByName("abaddon_death_coil_custom_legendary")
+
+	if IsValid(self.parent.mist_legendary_ability) then
+		if IsServer() and not self.parent.mist_legendary_ability:IsTrained() then
+			self.parent.mist_legendary_ability:SetLevel(1)
+		end
+		self.parent.mist_legendary_ability:UpdateTalents()
 	end
 
-	self.parent.mist_ability = self.ability
-
-	self.ability.self_damage = self.ability:GetSpecialValueFor("self_damage")
+	self.ability.self_damage = self.ability:GetSpecialValueFor("self_damage") / 100
 	self.ability.missile_speed = self.ability:GetSpecialValueFor("missile_speed")
 	self.ability.target_damage = self.ability:GetSpecialValueFor("target_damage")
 	self.ability.heal_amount = self.ability:GetSpecialValueFor("heal_amount")
@@ -773,13 +695,13 @@ modifier_abaddon_death_coil_custom_leash = class(mod_hidden)
 function modifier_abaddon_death_coil_custom_leash:IsPurgable()
 	return true
 end
+function modifier_abaddon_death_coil_custom_leash:GetEffectName()
+	return "particles/abaddon/coil_leash.vpcf"
+end
 function modifier_abaddon_death_coil_custom_leash:CheckState()
 	return {
 		[MODIFIER_STATE_TETHERED] = true,
 	}
-end
-function modifier_abaddon_death_coil_custom_leash:GetEffectName()
-	return "particles/abaddon/coil_leash.vpcf"
 end
 
 modifier_abaddon_death_coil_custom_move = class(mod_visible)
@@ -829,7 +751,8 @@ function modifier_abaddon_death_coil_custom_scepter_proc:OnCreated(table)
 	if not IsServer() then
 		return
 	end
-	self.damage = self:GetAbility().scepter_damage - 100
+	self.ability = self:GetAbility()
+	self.damage = self.ability.scepter_damage - 100
 end
 
 function modifier_abaddon_death_coil_custom_scepter_proc:DeclareFunctions()
@@ -888,4 +811,65 @@ end
 
 function modifier_abaddon_death_coil_custom_slow:GetModifierMoveSpeedBonus_Percentage()
 	return self.slow
+end
+
+abaddon_death_coil_custom_legendary = class({})
+abaddon_death_coil_custom_legendary.talents = {}
+
+function abaddon_death_coil_custom_legendary:UpdateTalents(name)
+	local caster = self:GetCaster()
+	if not self.init then
+		self.init = true
+		self.talents = {
+			q7_talent_cd = caster:GetTalentValue("modifier_abaddon_mist_7", "talent_cd", true),
+		}
+	end
+end
+
+function abaddon_death_coil_custom_legendary:CreateTalent(name)
+	self:SetHidden(false)
+end
+
+function abaddon_death_coil_custom_legendary:GetCooldown()
+	return self.talents.q7_talent_cd or 0
+end
+
+function abaddon_death_coil_custom_legendary:OnSpellStart()
+	local main_ability = self.caster.mist_ability
+	if not IsValid(main_ability) then
+		return
+	end
+
+	self.caster:EmitSound("Abaddon.Mist_legendary")
+	self.caster:EmitSound("Abaddon.Mist_legendary2")
+
+	local particle = ParticleManager:CreateParticle(
+		"particles/abaddon/coil_legendary_cast.vpcf",
+		PATTACH_ABSORIGIN_FOLLOW,
+		self.caster
+	)
+	ParticleManager:SetParticleControl(particle, 0, self.caster:GetAbsOrigin())
+	ParticleManager:ReleaseParticleIndex(particle)
+
+	local units = {}
+
+	for _, index in pairs(main_ability.thinkers) do
+		local unit = EntIndexToHScript(index)
+		if IsValid(unit) then
+			units[#units + 1] = unit
+		end
+	end
+
+	if #units == 0 then
+		return
+	end
+
+	for i = 1, #units do
+		local mod = units[i]:FindModifierByName("modifier_abaddon_death_coil_custom_legendary_unit")
+
+		if mod then
+			mod.launch = true
+			mod:Destroy()
+		end
+	end
 end

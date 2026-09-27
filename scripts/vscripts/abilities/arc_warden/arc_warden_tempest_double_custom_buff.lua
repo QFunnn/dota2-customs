@@ -15,21 +15,43 @@ LinkLuaModifier(
 )
 
 arc_warden_tempest_double_custom_buff = class({})
-function arc_warden_tempest_double_custom_buff:OnSpellStart()
-	local caster = self:GetCaster()
-	local tempest = caster:GetTempest()
+function arc_warden_tempest_double_custom_buff:Precache(context)
+	PrecacheResource("particle", "particles/brist_lowhp_.vpcf", context)
+	PrecacheResource("particle", "particles/generic_gameplay/rune_arcane_owner.vpcf", context)
+end
 
-	caster:EmitSound("Arc.Tempest_rune")
-	local base = dota1x6:GetBase(caster:GetTeamNumber())
+function arc_warden_tempest_double_custom_buff:Init()
+	if not self:GetCaster() then
+		return
+	end
+	self.caster = self:GetCaster()
+
+	self.duration = self:GetLevelSpecialValueFor("duration", 1)
+end
+
+function arc_warden_tempest_double_custom_buff:OnSpellStart()
+	local tempest = self.caster:GetTempest()
+
+	self.caster:EmitSound("Arc.Tempest_rune")
+	local base = dota1x6:GetBase(self.caster:GetTeamNumber())
 	local effect = IsRadiant(tostring(base)) and "particles/rare_orb_patrol.vpcf" or "particles/brist_lowhp_.vpcf"
 
-	local duration = self:GetSpecialValueFor("duration")
-	caster:AddNewModifier(caster, self, "modifier_arc_warden_tempest_double_custom_buff", { duration = duration })
-	caster:GenericParticle(effect)
+	self.caster:AddNewModifier(
+		self.caster,
+		self,
+		"modifier_arc_warden_tempest_double_custom_buff",
+		{ duration = self.duration }
+	)
+	self.caster:GenericParticle(effect)
 
 	if IsValid(tempest) and tempest:IsAlive() then
 		tempest:GenericParticle(effect)
-		tempest:AddNewModifier(tempest, self, "modifier_arc_warden_tempest_double_custom_buff", { duration = duration })
+		tempest:AddNewModifier(
+			tempest,
+			self,
+			"modifier_arc_warden_tempest_double_custom_buff",
+			{ duration = self.duration }
+		)
 	end
 end
 

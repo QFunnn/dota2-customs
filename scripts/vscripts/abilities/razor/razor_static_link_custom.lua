@@ -1078,7 +1078,7 @@ function modifier_razor_static_link_custom_spell:OnCreated()
 
 	self.slow = self.caster:GetTalentValue("modifier_razor_link_3", "slow")
 	self.spell = self.caster:GetTalentValue("modifier_razor_link_3", "spell")
-	self.slow_k = self.slow / self.spell
+	self.slow_k = self.spell > 0 and self.slow / self.spell or 0
 end
 
 function modifier_razor_static_link_custom_spell:GetModifierSpellAmplify_Percentage()

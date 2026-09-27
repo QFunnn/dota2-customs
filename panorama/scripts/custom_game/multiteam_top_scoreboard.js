@@ -134,10 +134,26 @@ function PreGameEnd()
 	}
 }
 
+var alt_down = null
+
+function UpdateFast()
+{
+	let down = GameUI.IsAltDown()
+	if (down !== alt_down)
+	{
+		alt_down = down
+		$.GetContextPanel().SetHasClass("IsAltDown", down)
+	}
+
+	ScoreboardUpdater_UpdateRespawnTimers()
+
+	$.Schedule(0.3, UpdateFast );
+}
+
 function UpdateScoreboard()
 {
 	ScoreboardUpdater_SetScoreboardActive( g_ScoreboardHandle, true );
-	$.Schedule(0.5, UpdateScoreboard );
+	$.Schedule(1, UpdateScoreboard );
 }
 
 (function()
@@ -159,4 +175,5 @@ function UpdateScoreboard()
 	};
 	g_ScoreboardHandle = ScoreboardUpdater_InitializeScoreboard( scoreboardConfig, $( "#MultiteamScoreboard" ) );
 	UpdateScoreboard();
+	UpdateFast();
 })();

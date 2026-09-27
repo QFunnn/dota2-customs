@@ -20,6 +20,11 @@ function item_gem_custom:Precache(context)
 	PrecacheResource("particle", "particles/items/gem_activate.vpcf", context)
 end
 
+function item_gem_custom:Spawn()
+	self.radius = self:GetSpecialValueFor("radius")
+	self.cd = self:GetSpecialValueFor("cd")
+end
+
 function item_gem_custom:OnAbilityPhaseStart()
 	if not IsServer() then
 		return
@@ -36,11 +41,7 @@ function item_gem_custom:OnAbilityPhaseStart()
 	end
 
 	if error then
-		CustomGameEventManager:Send_ServerToPlayer(
-			PlayerResource:GetPlayer(caster:GetPlayerOwnerID()),
-			"CreateIngameErrorMessage",
-			{ message = error }
-		)
+		caster:SendError(error)
 		return false
 	end
 	return true
@@ -67,11 +68,29 @@ modifier_item_gem_custom = class(mod_visible)
 function modifier_item_gem_custom:GetTexture()
 	return "item_gem"
 end
+function modifier_item_gem_custom:GetAuraRadius()
+	return self.radius
+end
+function modifier_item_gem_custom:GetAuraSearchFlags()
+	return DOTA_UNIT_TARGET_FLAG_INVULNERABLE
+end
+function modifier_item_gem_custom:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_ENEMY
+end
+function modifier_item_gem_custom:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_ALL
+end
+function modifier_item_gem_custom:GetModifierAura()
+	return "modifier_truesight"
+end
+function modifier_item_gem_custom:IsAura()
+	return true
+end
 function modifier_item_gem_custom:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.radius = self.ability:GetSpecialValueFor("radius")
+	self.radius = self.ability.radius
 
 	self.parent:AddDeathEvent(self, true)
 	if not IsServer() then
@@ -107,25 +126,6 @@ function modifier_item_gem_custom:OnDestroy()
 	end
 end
 
-function modifier_item_gem_custom:GetAuraRadius()
-	return self.radius
-end
-function modifier_item_gem_custom:GetAuraSearchFlags()
-	return DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_INVULNERABLE
-end
-function modifier_item_gem_custom:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_ENEMY
-end
-function modifier_item_gem_custom:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_ALL
-end
-function modifier_item_gem_custom:GetModifierAura()
-	return "modifier_truesight"
-end
-function modifier_item_gem_custom:IsAura()
-	return true
-end
-
 modifier_item_gem_custom_cd = class(mod_visible)
 function modifier_item_gem_custom_cd:IsHidden()
 	return self:GetStackCount() == 1
@@ -143,7 +143,7 @@ function modifier_item_gem_custom_cd:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.cd = self.ability:GetSpecialValueFor("cd") * 60
+	self.cd = self.ability.cd * 60
 	if not IsServer() then
 		return
 	end

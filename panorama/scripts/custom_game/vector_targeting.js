@@ -458,4 +458,3 @@ function Vector_raiseZ(vec, inc)
 {
 	return [vec[0], vec[1], vec[2] + inc];
 }
-

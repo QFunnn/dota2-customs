@@ -40,27 +40,105 @@ LinkLuaModifier(
 )
 
 ogre_magi_fireblast_custom_class = class({})
+function ogre_magi_fireblast_custom_class:UpdateTalents(name)
+	local caster = self:GetCaster()
+	if not self.init then
+		self.init = true
+		self.talents = {
+			q1_spell = 0,
+			q1_damage = 0,
 
-function ogre_magi_fireblast_custom_class:GetCastPoint(iLevel)
-	return self.BaseClass.GetCastPoint(self) + (self.talents.has_q4 == 1 and self.talents.q4_cast or 0)
-end
+			q2_range = 0,
+			q2_cd = 0,
 
-function ogre_magi_fireblast_custom_class:GetCastRange(vLocation, hTarget)
-	if self.talents.has_q7 == 1 then
-		return IsClient() and self.caster.fireblast_ability.talents.q7_range or 99999
+			has_q3 = 0,
+			q3_magic = 0,
+			q3_damage = 0,
+			q3_duration = caster:GetTalentValue("modifier_ogremagi_blast_3", "duration", true),
+			q3_effect_duration = caster:GetTalentValue("modifier_ogremagi_blast_3", "effect_duration", true),
+			q3_max = caster:GetTalentValue("modifier_ogremagi_blast_3", "max", true),
+
+			has_q4 = 0,
+			q4_duration = caster:GetTalentValue("modifier_ogremagi_blast_4", "duration", true),
+			q4_cd_items = caster:GetTalentValue("modifier_ogremagi_blast_4", "cd_items", true),
+			q4_cast = caster:GetTalentValue("modifier_ogremagi_blast_4", "cast", true),
+			q4_move = caster:GetTalentValue("modifier_ogremagi_blast_4", "move", true),
+			q4_cd_items_inc = caster:GetTalentValue("modifier_ogremagi_blast_4", "cd_items_inc", true),
+
+			has_q7 = 0,
+			q7_speed = caster:GetTalentValue("modifier_ogremagi_blast_7", "speed", true),
+			q7_distance = caster:GetTalentValue("modifier_ogremagi_blast_7", "distance", true),
+			q7_duration = caster:GetTalentValue("modifier_ogremagi_blast_7", "duration", true),
+			q7_width = caster:GetTalentValue("modifier_ogremagi_blast_7", "width", true),
+			q7_range = caster:GetTalentValue("modifier_ogremagi_blast_7", "range", true),
+			q7_cd = caster:GetTalentValue("modifier_ogremagi_blast_7", "cd", true) / 100,
+			q7_cd_base = caster:GetTalentValue("modifier_ogremagi_blast_7", "cd_base", true),
+			q7_max = caster:GetTalentValue("modifier_ogremagi_blast_7", "max", true),
+			q7_mana = caster:GetTalentValue("modifier_ogremagi_blast_7", "mana", true) / 100,
+			q7_damage = caster:GetTalentValue("modifier_ogremagi_blast_7", "damage", true) / 100,
+			q7_interval = caster:GetTalentValue("modifier_ogremagi_blast_7", "interval", true),
+
+			has_h1 = 0,
+			h1_stun = 0,
+			h1_slow = 0,
+			h1_duration = caster:GetTalentValue("modifier_ogremagi_hero_1", "duration", true),
+
+			has_w7 = 0,
+
+			has_e7 = 0,
+		}
 	end
-	return self.BaseClass.GetCastRange(self, vLocation, hTarget)
-end
 
-function ogre_magi_fireblast_custom_class:GetBehavior()
-	if self.talents.has_q7 == 1 then
-		return DOTA_ABILITY_BEHAVIOR_POINT
+	if caster:HasTalent("modifier_ogremagi_blast_1") then
+		self.talents.q1_spell = caster:GetTalentValue("modifier_ogremagi_blast_1", "spell")
+		self.talents.q1_damage = caster:GetTalentValue("modifier_ogremagi_blast_1", "damage") / 100
 	end
-	return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET + DOTA_ABILITY_BEHAVIOR_AOE
-end
 
-function ogre_magi_fireblast_custom_class:GetAOERadius()
-	return self.cleave_radius and self.cleave_radius or 0
+	if caster:HasTalent("modifier_ogremagi_blast_2") then
+		self.talents.q2_range = caster:GetTalentValue("modifier_ogremagi_blast_2", "range")
+		self.talents.q2_cd = caster:GetTalentValue("modifier_ogremagi_blast_2", "cd")
+	end
+
+	if caster:HasTalent("modifier_ogremagi_blast_3") then
+		self.talents.has_q3 = 1
+		self.talents.q3_magic = caster:GetTalentValue("modifier_ogremagi_blast_3", "magic")
+		self.talents.q3_damage = caster:GetTalentValue("modifier_ogremagi_blast_3", "damage") / 100
+		if self.tracker then
+			caster:AddSpellEvent(self.tracker, true)
+			self.tracker:UpdateUI()
+		end
+	end
+
+	if caster:HasTalent("modifier_ogremagi_blast_4") then
+		self.talents.has_q4 = 1
+	end
+
+	if caster:HasTalent("modifier_ogremagi_blast_7") then
+		self.talents.has_q7 = 1
+		self:CheckInterval()
+	end
+
+	if caster:HasTalent("modifier_ogremagi_hero_1") then
+		self.talents.has_h1 = 1
+		self.talents.h1_stun = caster:GetTalentValue("modifier_ogremagi_hero_1", "stun")
+		self.talents.h1_slow = caster:GetTalentValue("modifier_ogremagi_hero_1", "slow")
+	end
+
+	if caster:HasTalent("modifier_ogremagi_ignite_7") then
+		self.talents.has_w7 = 1
+	end
+
+	if caster:HasTalent("modifier_ogremagi_bloodlust_7") then
+		self.talents.has_e7 = 1
+		if self.tracker then
+			self.tracker:UpdateUI()
+		end
+	end
+
+	if not self.is_scepter and IsValid(caster.fireblast_scepter_ability) then
+		caster.fireblast_scepter_ability.init = nil
+		caster.fireblast_scepter_ability:UpdateTalents(name)
+	end
 end
 
 function ogre_magi_fireblast_custom_class:GetAbilityTextureName()
@@ -73,6 +151,28 @@ function ogre_magi_fireblast_custom_class:GetAbilityTextureName()
 		)
 	end
 	return wearables_system:GetAbilityIconReplacement(self.caster, "ogre_magi_fireblast", self)
+end
+
+function ogre_magi_fireblast_custom_class:GetBehavior()
+	if self.talents.has_q7 == 1 then
+		return DOTA_ABILITY_BEHAVIOR_POINT
+	end
+	return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET + DOTA_ABILITY_BEHAVIOR_AOE
+end
+
+function ogre_magi_fireblast_custom_class:GetCastRange(vLocation, hTarget)
+	if self.talents.has_q7 == 1 then
+		return IsClient() and self.talents.q7_range or 99999
+	end
+	return self.BaseClass.GetCastRange(self, vLocation, hTarget)
+end
+
+function ogre_magi_fireblast_custom_class:GetCastPoint(iLevel)
+	return self.BaseClass.GetCastPoint(self) + (self.talents.has_q4 == 1 and self.talents.q4_cast or 0)
+end
+
+function ogre_magi_fireblast_custom_class:GetAOERadius()
+	return self.cleave_radius or 0
 end
 
 function ogre_magi_fireblast_custom_class:GetParticle(type)
@@ -222,6 +322,38 @@ function ogre_magi_fireblast_custom_class:OnSpellStart()
 	self:Impact(target, proc, damage_k, stun_k)
 end
 
+function ogre_magi_fireblast_custom_class:OnProjectileHit_ExtraData(target, location, data)
+	if not target then
+		if self.talents.has_q7 == 1 then
+			local point = GetGroundPosition(location, nil) + Vector(0, 0, 70)
+			local particle = ParticleManager:CreateParticle(self:GetParticle(1), PATTACH_WORLDORIGIN, nil)
+			ParticleManager:SetParticleControl(particle, 0, point)
+			ParticleManager:SetParticleControl(particle, 1, point)
+			ParticleManager:ReleaseParticleIndex(particle)
+			EmitSoundOnLocationWithCaster(location, "Hero_OgreMagi.Fireblast.Target", self.caster)
+		end
+		return
+	end
+
+	self:Impact(target, data.proc, data.damage_k, data.stun_k)
+
+	local dist = (target:GetAbsOrigin() - GetGroundPosition(Vector(data.x, data.y, 0), nil)):Length2D()
+
+	if dist < self.talents.q7_distance then
+		return
+	end
+	if self.can_cd then
+		self.can_cd = false
+		self.caster:CdAbility(self, nil, self.talents.q7_cd)
+	end
+	target:AddNewModifier(
+		self.caster,
+		self,
+		"modifier_ogre_magi_fireblast_custom_legendary_damage",
+		{ duration = self.talents.q7_duration }
+	)
+end
+
 function ogre_magi_fireblast_custom_class:Impact(target, proc, damage_k, stun_k)
 	if not IsServer() then
 		return
@@ -333,47 +465,15 @@ function ogre_magi_fireblast_custom_class:Impact(target, proc, damage_k, stun_k)
 	end
 end
 
-function ogre_magi_fireblast_custom_class:OnProjectileHit_ExtraData(target, location, data)
-	if not target then
-		if self.talents.has_q7 == 1 then
-			local point = GetGroundPosition(location, nil) + Vector(0, 0, 70)
-			local particle = ParticleManager:CreateParticle(self:GetParticle(1), PATTACH_WORLDORIGIN, nil)
-			ParticleManager:SetParticleControl(particle, 0, point)
-			ParticleManager:SetParticleControl(particle, 1, point)
-			ParticleManager:ReleaseParticleIndex(particle)
-			EmitSoundOnLocationWithCaster(location, "Hero_OgreMagi.Fireblast.Target", self.caster)
-		end
-		return
-	end
-
-	self:Impact(target, data.proc, data.damage_k, data.stun_k)
-
-	local dist = (target:GetAbsOrigin() - GetGroundPosition(Vector(data.x, data.y, 0), nil)):Length2D()
-
-	if dist < self.talents.q7_distance then
-		return
-	end
-	if self.can_cd then
-		self.can_cd = false
-		self.caster:CdAbility(self, nil, self.talents.q7_cd)
-	end
-	target:AddNewModifier(
-		self.caster,
-		self,
-		"modifier_ogre_magi_fireblast_custom_legendary_damage",
-		{ duration = self.talents.q7_duration }
-	)
-end
-
 function ogre_magi_fireblast_custom_class:CheckInterval()
 	if not IsServer() then
 		return
 	end
-	if self.ability.talents.has_q7 == 0 then
+	if self.talents.has_q7 == 0 then
 		return
 	end
 
-	self.multicast_delay = self.ability.talents.q7_interval
+	self.multicast_delay = self.talents.q7_interval
 end
 
 ogre_magi_fireblast_custom = class(ogre_magi_fireblast_custom_class)
@@ -396,107 +496,8 @@ function ogre_magi_fireblast_custom:Precache(context)
 	PrecacheResource("particle", "particles/ogre_magi/fireblast_stack.vpcf", context)
 	PrecacheResource("particle", "particles/lina_attack_slow.vpcf", context)
 	PrecacheResource("particle", "particles/ogre-magi/fireblast_proc.vpcf", context)
-end
-
-function ogre_magi_fireblast_custom:UpdateTalents(name)
-	local caster = self:GetCaster()
-	if not self.init then
-		self.init = true
-		self.talents = {
-			has_q1 = 0,
-			q1_spell = 0,
-			q1_damage = 0,
-
-			has_q2 = 0,
-			q2_range = 0,
-			q2_cd = 0,
-
-			has_q3 = 0,
-			q3_magic = 0,
-			q3_damage = 0,
-			q3_duration = caster:GetTalentValue("modifier_ogremagi_blast_3", "duration", true),
-			q3_effect_duration = caster:GetTalentValue("modifier_ogremagi_blast_3", "effect_duration", true),
-			q3_max = caster:GetTalentValue("modifier_ogremagi_blast_3", "max", true),
-
-			has_q4 = 0,
-			q4_duration = caster:GetTalentValue("modifier_ogremagi_blast_4", "duration", true),
-			q4_cd_items = caster:GetTalentValue("modifier_ogremagi_blast_4", "cd_items", true),
-			q4_cast = caster:GetTalentValue("modifier_ogremagi_blast_4", "cast", true),
-			q4_move = caster:GetTalentValue("modifier_ogremagi_blast_4", "move", true),
-			q4_cd_items_inc = caster:GetTalentValue("modifier_ogremagi_blast_4", "cd_items_inc", true),
-
-			has_q7 = 0,
-			q7_speed = caster:GetTalentValue("modifier_ogremagi_blast_7", "speed", true),
-			q7_distance = caster:GetTalentValue("modifier_ogremagi_blast_7", "distance", true),
-			q7_duration = caster:GetTalentValue("modifier_ogremagi_blast_7", "duration", true),
-			q7_width = caster:GetTalentValue("modifier_ogremagi_blast_7", "width", true),
-			q7_range = caster:GetTalentValue("modifier_ogremagi_blast_7", "range", true),
-			q7_cd = caster:GetTalentValue("modifier_ogremagi_blast_7", "cd", true) / 100,
-			q7_cd_base = caster:GetTalentValue("modifier_ogremagi_blast_7", "cd_base", true),
-			q7_max = caster:GetTalentValue("modifier_ogremagi_blast_7", "max", true),
-			q7_mana = caster:GetTalentValue("modifier_ogremagi_blast_7", "mana", true) / 100,
-			q7_damage = caster:GetTalentValue("modifier_ogremagi_blast_7", "damage", true) / 100,
-			q7_interval = caster:GetTalentValue("modifier_ogremagi_blast_7", "interval", true),
-
-			has_h1 = 0,
-			h1_stun = 0,
-			h1_slow = 0,
-			h1_duration = caster:GetTalentValue("modifier_ogremagi_hero_1", "duration", true),
-
-			has_w7 = 0,
-
-			has_e7 = 0,
-		}
-	end
-
-	if caster:HasTalent("modifier_ogremagi_blast_1") then
-		self.talents.has_q1 = 1
-		self.talents.q1_spell = caster:GetTalentValue("modifier_ogremagi_blast_1", "spell")
-		self.talents.q1_damage = caster:GetTalentValue("modifier_ogremagi_blast_1", "damage") / 100
-	end
-
-	if caster:HasTalent("modifier_ogremagi_blast_2") then
-		self.talents.has_q2 = 1
-		self.talents.q2_range = caster:GetTalentValue("modifier_ogremagi_blast_2", "range")
-		self.talents.q2_cd = caster:GetTalentValue("modifier_ogremagi_blast_2", "cd")
-	end
-
-	if caster:HasTalent("modifier_ogremagi_blast_3") then
-		self.talents.has_q3 = 1
-		self.talents.q3_magic = caster:GetTalentValue("modifier_ogremagi_blast_3", "magic")
-		self.talents.q3_damage = caster:GetTalentValue("modifier_ogremagi_blast_3", "damage") / 100
-		self.caster:AddSpellEvent(self.tracker, true)
-		self.tracker:UpdateUI()
-	end
-
-	if caster:HasTalent("modifier_ogremagi_blast_4") then
-		self.talents.has_q4 = 1
-	end
-
-	if caster:HasTalent("modifier_ogremagi_blast_7") then
-		self.talents.has_q7 = 1
-		if IsServer() then
-			self:CheckInterval()
-			if self.caster.fireblast_scepter_ability then
-				self.caster.fireblast_scepter_ability:CheckInterval()
-			end
-		end
-	end
-
-	if caster:HasTalent("modifier_ogremagi_hero_1") then
-		self.talents.has_h1 = 1
-		self.talents.h1_stun = caster:GetTalentValue("modifier_ogremagi_hero_1", "stun")
-		self.talents.h1_slow = caster:GetTalentValue("modifier_ogremagi_hero_1", "slow")
-	end
-
-	if caster:HasTalent("modifier_ogremagi_ignite_7") then
-		self.talents.has_w7 = 1
-	end
-
-	if caster:HasTalent("modifier_ogremagi_bloodlust_7") then
-		self.talents.has_e7 = 1
-		self.tracker:UpdateUI()
-	end
+	PrecacheResource("particle", "particles/ember_spirit/guard_resist_max.vpcf", context)
+	PrecacheResource("particle", "particles/ogre_head.vpcf", context)
 end
 
 function ogre_magi_fireblast_custom:GetIntrinsicModifierName()
@@ -507,7 +508,7 @@ function ogre_magi_fireblast_custom:GetIntrinsicModifierName()
 end
 
 function ogre_magi_fireblast_custom:GetCooldown(iLevel)
-	local result = self.BaseClass.GetCooldown(self, iLevel) + (self.talents.q2_cd and self.talents.q2_cd or 0)
+	local result = self.BaseClass.GetCooldown(self, iLevel) + (self.talents.q2_cd or 0)
 	if
 		self.talents.has_q7 == 1
 		and not self.caster:HasScepter()
@@ -546,7 +547,7 @@ end
 
 function ogre_magi_unrefined_fireblast_custom:GetManaCost(level)
 	if not self.scepter_mana then
-		return
+		return 0
 	end
 	return math.floor(self.caster:GetMana() * self.scepter_mana)
 end
@@ -561,8 +562,8 @@ function modifier_ogre_magi_fireblast_custom_tracker:OnCreated()
 	self.parent.fireblast_ability = self.ability
 
 	self.parent.fireblast_scepter_ability = self.parent:FindAbilityByName("ogre_magi_unrefined_fireblast_custom")
-	if self.parent.fireblast_scepter_ability then
-		self.parent.fireblast_scepter_ability.talents = self.ability.talents
+	if IsValid(self.parent.fireblast_scepter_ability) then
+		self.parent.fireblast_scepter_ability:UpdateTalents()
 	end
 
 	self.ability.stun_duration = self.ability:GetSpecialValueFor("stun_duration")
@@ -722,12 +723,7 @@ function modifier_ogre_magi_fireblast_custom_legendary_damage:OnRefresh()
 		return
 	end
 	self:IncrementStackCount()
-end
 
-function modifier_ogre_magi_fireblast_custom_legendary_damage:OnStackCountChanged(iStackCount)
-	if not IsServer() then
-		return
-	end
 	local number_1 = self:GetStackCount()
 	local double = math.floor(number_1 / 10)
 	local number_2 = number_1 - double * 10

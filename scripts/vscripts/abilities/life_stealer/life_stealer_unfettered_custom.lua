@@ -14,18 +14,12 @@ LinkLuaModifier(
 	LUA_MODIFIER_MOTION_NONE
 )
 LinkLuaModifier(
-	"modifier_life_stealer_unfettered_custom_rooted",
-	"abilities/life_stealer/life_stealer_unfettered_custom",
-	LUA_MODIFIER_MOTION_NONE
-)
-LinkLuaModifier(
 	"modifier_life_stealer_unfettered_custom_tracker",
 	"abilities/life_stealer/life_stealer_unfettered_custom",
 	LUA_MODIFIER_MOTION_NONE
 )
 
 life_stealer_unfettered_custom = class({})
-
 function life_stealer_unfettered_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
@@ -33,6 +27,26 @@ function life_stealer_unfettered_custom:Precache(context)
 
 	PrecacheResource("particle", "particles/queen_of_pain/blink_root.vpcf", context)
 	PrecacheResource("particle", "particles/slark/pounce_legendary_ui.vpcf", context)
+	PrecacheResource(
+		"particle",
+		"particles/econ/items/bloodseeker/bloodseeker_ti7/bloodseeker_ti7_thirst_owner.vpcf",
+		context
+	)
+	PrecacheResource("particle", "particles/econ/items/invoker/invoker_ti7/status_effect_alacrity_ti7.vpcf", context)
+	PrecacheResource(
+		"particle",
+		"particles/econ/items/troll_warlord/troll_warlord_ti7_axe/troll_ti7_axe_bash_explosion.vpcf",
+		context
+	)
+end
+
+function life_stealer_unfettered_custom:Init()
+	if not self:GetCaster() then
+		return
+	end
+	self.caster = self:GetCaster()
+
+	self.min_dist = self:GetLevelSpecialValueFor("min_dist", 1)
 end
 
 function life_stealer_unfettered_custom:GetIntrinsicModifierName()
@@ -43,12 +57,10 @@ function life_stealer_unfettered_custom:GetIntrinsicModifierName()
 end
 
 function life_stealer_unfettered_custom:OnAbilityPhaseStart()
-	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
-	local min_dist = self:GetSpecialValueFor("min_dist")
-	if (caster:GetAbsOrigin() - target:GetAbsOrigin()):Length2D() <= min_dist then
+	if (self.caster:GetAbsOrigin() - target:GetAbsOrigin()):Length2D() <= self.min_dist then
 		CustomGameEventManager:Send_ServerToPlayer(
-			PlayerResource:GetPlayer(caster:GetId()),
+			PlayerResource:GetPlayer(self.caster:GetId()),
 			"CreateIngameErrorMessage",
 			{ message = "#close_dist" }
 		)
@@ -58,19 +70,29 @@ function life_stealer_unfettered_custom:OnAbilityPhaseStart()
 end
 
 function life_stealer_unfettered_custom:OnSpellStart()
-	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 
 	if target:TriggerSpellAbsorb(self) then
 		return
 	end
 
-	caster:EmitSound("Lifestealer.Shard_cast")
-	caster:EmitSound("Lifestealer.Shard_cast2")
-	caster:AddNewModifier(caster, self, "modifier_life_stealer_unfettered_custom", { target = target:entindex() })
+	self.caster:EmitSound("Lifestealer.Shard_cast")
+	self.caster:EmitSound("Lifestealer.Shard_cast2")
+	self.caster:AddNewModifier(
+		self.caster,
+		self,
+		"modifier_life_stealer_unfettered_custom",
+		{ target = target:entindex() }
+	)
 end
 
 modifier_life_stealer_unfettered_custom = class(mod_hidden)
+function modifier_life_stealer_unfettered_custom:GetStatusEffectName()
+	return "particles/econ/items/invoker/invoker_ti7/status_effect_alacrity_ti7.vpcf"
+end
+function modifier_life_stealer_unfettered_custom:StatusEffectPriority()
+	return MODIFIER_PRIORITY_HIGH
+end
 function modifier_life_stealer_unfettered_custom:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -95,20 +117,12 @@ function modifier_life_stealer_unfettered_custom:OnCreated(table)
 	self:StartIntervalThink(0.1)
 end
 
-function modifier_life_stealer_unfettered_custom:GetStatusEffectName()
-	return "particles/econ/items/invoker/invoker_ti7/status_effect_alacrity_ti7.vpcf"
-end
-
-function modifier_life_stealer_unfettered_custom:StatusEffectPriority()
-	return MODIFIER_PRIORITY_HIGH
-end
-
 function modifier_life_stealer_unfettered_custom:OnIntervalThink()
 	if not IsServer() then
 		return
 	end
 
-	if not self.target or self.target:IsNull() or not self.target:IsAlive() then
+	if not IsValid(self.target) or not self.target:IsAlive() then
 		self:Destroy()
 		return
 	end
@@ -185,7 +199,7 @@ function modifier_life_stealer_unfettered_custom:OnDestroy()
 	end
 	self.parent:RemoveGesture(ACT_DOTA_RUN)
 
-	if not self.target or self.target:IsNull() or not self.target:IsAlive() then
+	if not IsValid(self.target) or not self.target:IsAlive() then
 		return
 	end
 	if not self.proc_root then

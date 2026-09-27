@@ -128,47 +128,145 @@
 	border-bottom-right-radius: 15px;
 	border-top-right-radius: 15px;
 	flow-children: down;
+	padding-bottom: 10px;
 }
 
-#TalentsList_block
+.TestMode_block
 {
-	width: 100%;
-	height: 50px;
-	margin-top: 5px;
-}
-
-#TalentsList
-{
-	margin-top: 0%;
 	width: 90%;
 	horizontal-align: center;
-	height: 40px;
+	height: fit-children;
+	margin-top: 6px;
+	flow-children: right;
+}
+
+.TestMode_btn
+{
+	width: fill-parent-flow( 1.0 );
+	height: 35px;
+	margin-top: 2px;
 	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
 	background-size: 100%;
 	border: 1px solid #999999;
 	border-radius: 3px;
 }
 
-#TalentsList:hover
+.TestMode_btn:hover
 {
 	brightness: 2;
 }
 
-#TalentsList_text
+.TestMode_btn_small
+{
+	height: 32px;
+	margin-right: 4px;
+}
+
+.TestMode_btn_value
+{
+	width: fill-parent-flow( 1.0 );
+	height: 32px;
+	margin-right: 4px;
+}
+
+.TestMode_btn_type
+{
+	width: 40px;
+	margin-left: 4px;
+}
+
+.TestMode_wave_window
+{
+	align: left bottom;
+	width: fit-children;
+	height: fit-children;
+	margin-left: 520px;
+	margin-bottom: 200px;
+	padding: 8px;
+	background-color: gradient( linear, 0% 0%, 100% 100%, from( #010101 ), to( #1c1c1c ) );
+	opacity: 0.99;
+	border: 2.5px solid #807851;
+	border-radius: 10px;
+}
+
+.TestMode_wave_list
+{
+	max-width: 390px;
+	flow-children: right-wrap;
+}
+
+.TestMode_wave
+{
+	width: 40px;
+	height: 40px;
+	margin: 2px;
+	border: 1px solid #999999;
+	border-radius: 3px;
+}
+
+.TestMode_wave:hover
+{
+	brightness: 2;
+}
+
+.TestMode_check
+{
+	width: 32px;
+	height: 32px;
+	vertical-align: center;
+	margin-left: 4px;
+	background-image: url("s2r://panorama/images/control_icons/check_png.vtex");
+	background-size: 70%;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	border: 1px solid #999999;
+	border-radius: 3px;
+	wash-color: #555555;
+	saturation: 0.1;
+}
+
+.TestMode_check:hover
+{
+	brightness: 2;
+}
+
+.TestMode_check_on
+{
+	wash-color: #ffffff;
+	saturation: 1;
+}
+
+.TestMode_btn_text
 {
 	font-family: defaultFont;
 	font-weight: bold;
 	color: #e7e7e7;
 	text-shadow: 2px 2px 2px black;
-	font-size: 18px;
+	font-size: 17px;
 	align: center center;
 	text-align: center;
+}
+
+#Gold_text
+{
+	margin-right: 25px;
 }
 
 .TestMode_botton_pressed
 {
 	wash-color: #777;
 	saturation: 0.1;
+}
+
+.TestMode_btn_disabled
+{
+	wash-color: #777;
+	saturation: 0.1;
+}
+
+.TestMode_btn_disabled:hover
+{
+	brightness: 1;
 }
 
 .TestMode_Content_Talents
@@ -395,111 +493,6 @@
 	text-align: center;
 }
 
-#LevelsBlock
-{
-	height: 50px;
-	width: 100%;
-	flow-children: right;
-}
-
-#OneLevel
-{
-	width: 44%;
-	vertical-align: center;
-	margin-left: 5%;
-	height: 40px;
-	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
-	background-size: 100%;
-	border: 1px solid #999999;
-	border-radius: 3px;
-}
-
-#OneLevel:hover
-{
-	brightness: 2;
-}
-
-#MaxLevel
-{
-	width: 44%;
-	vertical-align: center;
-	margin-left: 2%;
-	height: 40px;
-	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
-	background-size: 100%;
-	border: 1px solid #999999;
-	border-radius: 3px;
-}
-
-#MaxLevel:hover
-{
-	brightness: 2;
-}
-
-#Level_text
-{
-	font-family: defaultFont;
-	font-weight: bold;
-	color: #e7e7e7;
-	text-shadow: 2px 2px 2px black;
-	font-size: 18px;
-	align: center center;
-	text-align: center;
-}
-
-#GoldBlock
-{
-	height: 50px;
-	width: 100%;
-	flow-children: right;
-}
-
-#OneGold
-{
-	width: 44%;
-	vertical-align: center;
-	margin-left: 5%;
-	height: 40px;
-	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
-	background-size: 100%;
-	border: 1px solid #999999;
-	border-radius: 3px;
-}
-
-#OneGold:hover
-{
-	brightness: 2;
-}
-
-#MaxGold
-{
-	width: 44%;
-	vertical-align: center;
-	margin-left: 2%;
-	height: 40px;
-	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
-	background-size: 100%;
-	border: 1px solid #999999;
-	border-radius: 3px;
-}
-
-#MaxGold:hover
-{
-	brightness: 2;
-}
-
-#Gold_text
-{
-	font-family: defaultFont;
-	font-weight: bold;
-	color: #e7e7e7;
-	text-shadow: 2px 2px 2px black;
-	font-size: 18px;
-	align: center center;
-	text-align: center;
-	margin-right: 25px;
-}
-
 #Gold_icon
 {
 	width: 20px;
@@ -511,74 +504,25 @@
 	background-size: contain;
 }
 
-#CreateBotBlock
+.TestMode_Content_Buttons
 {
-	height: 50px;
-	width: 100%;
-	flow-children: right;
-	margin-top: 40px;
+	align: left bottom;
+	width: 250px;
+	height: fit-children;
+	margin-left: 260px;
+	margin-bottom: 200px;
+	background-color: gradient( linear, 0% 0%, 100% 100%, from( #010101 ), to( #1c1c1c ) );
+	opacity: 0.99;
+	border: 2.5px solid #807851;
+	border-radius: 10px;
+	padding-bottom: 10px;
 }
 
-#CreateBot:hover
-{
-	brightness: 2;
-}
-
-#CreateBot
-{
-	width: 90%;
-	horizontal-align: center;
-	height: 40px;
-	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
-	background-size: 100%;
-	border: 1px solid #999999;
-	border-radius: 3px;
-}
-
-#CreateBot_text
-{
-	font-family: defaultFont;
-	font-weight: bold;
-	color: #e7e7e7;
-	text-shadow: 2px 2px 2px black;
-	font-size: 18px;
-	align: center center;
-	text-align: center;
-}
-
-#GiveItem_block
+.TestMode_window_list
 {
 	width: 100%;
-	height: 50px;
-	margin-top: 10px;
-}
-
-#GiveItem
-{
-	margin-top: 0%;
-	width: 90%;
-	horizontal-align: center;
-	height: 40px;
-	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
-	background-size: 100%;
-	border: 1px solid #999999;
-	border-radius: 3px;
-}
-
-#GiveItem:hover
-{
-	brightness: 2;
-}
-
-#GiveItem_text
-{
-	font-family: defaultFont;
-	font-weight: bold;
-	color: #e7e7e7;
-	text-shadow: 2px 2px 2px black;
-	font-size: 18px;
-	align: center center;
-	text-align: center;
+	height: fit-children;
+	flow-children: down;
 }
 
 .TestMode_Content_Items
@@ -631,8 +575,8 @@
 .TestMode_Content_Heroes
 {
 	align: left center;
-	width: 800px;
-	height: 910px;
+	width: 970px;
+	height: 780px;
 	margin-bottom: 0px;
 	margin-left: 320px;
 	background-color: gradient( linear, 0% 0%, 100% 100%, from( #010101 ), to( #1c1c1c ) );
@@ -645,9 +589,9 @@
 {
 	flow-children: down;
 	overflow: squish scroll;
-	padding-left: 40px;
-	padding-right: 40px;
-	padding-bottom: 40px;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-bottom: 20px;
 }
 
 .team_selector_panel
@@ -718,8 +662,8 @@
 {
 	flow-children: right;
 	width: 100%;
-	height: 55px;
-	margin-top: 10px;
+	height: 40px;
+	margin-top: 5px;
 }
 
 .hero_icon_str
@@ -781,12 +725,25 @@
 
 .HeroImage
 {
-	width: 88.42px;
-	margin-left: 10px;
-	margin-top: 10px;
-	height: 50px;
+	width: 70.6px;
+	margin-left: 5px;
+	margin-top: 5px;
+	height: 40px;
+}
+
+.HeroImage_icon
+{
+	width: 100%;
+	height: 100%;
 	border: 1px solid #ccc;
 	border-radius: 3px;
+}
+
+.HeroImage_extra
+{
+	wash-color: #666;
+	saturation: 0.1;
+	border: 0px solid #ccc;
 }
 
 .HeroImage:hover
@@ -794,87 +751,40 @@
 	brightness: 2;
 }
 
-#LevelBotsBlock
-{
-	height: 50px;
-	width: 100%;
-	flow-children: right;
-}
-
-#OneLevelBots
-{
-	width: 44%;
-	vertical-align: center;
-	margin-left: 5%;
-	height: 40px;
-	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
-	background-size: 100%;
-	border: 1px solid #999999;
-	border-radius: 3px;
-}
-
-#OneLevelBots:hover
-{
-	brightness: 2;
-}
-
-#MaxLevelBots
-{
-	width: 44%;
-	vertical-align: center;
-	margin-left: 2%;
-	height: 40px;
-	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
-	background-size: 100%;
-	border: 1px solid #999999;
-	border-radius: 3px;
-}
-
-#MaxLevelBots:hover
-{
-	brightness: 2;
-}
-
-#GiveBotItem_block
+.HeroImage_shade
 {
 	width: 100%;
-	height: 50px;
-	margin-top: 10px;
-}
-
-#GiveBotItem
-{
-	margin-top: 0%;
-	width: 90%;
-	horizontal-align: center;
-	height: 40px;
-	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
-	background-size: 100%;
-	border: 1px solid #999999;
+	height: 100%;
+	border: 1px solid #ffb24066;
 	border-radius: 3px;
 }
 
-#GiveBotItem:hover
+.HeroImage_mark_bg
 {
-	brightness: 2;
+	width: 18px;
+	height: 18px;
+	align: right top;
+	margin-right: 3px;
+	margin-top: 3px;
+	border-radius: 50%;
+	border: 1px solid #ffb24077;
+	background-color: #1c1c1c;
 }
 
-#GiveBotItem_text
+.HeroImage_mark
 {
-	font-family: defaultFont;
-	font-weight: bold;
-	color: #e7e7e7;
-	text-shadow: 2px 2px 2px black;
-	font-size: 18px;
 	align: center center;
-	text-align: center;
+	color: #ffb240aa;
+	font-size: 14px;
+	font-weight: bold;
+	font-family: Radiance;
 }
 
 .TestMode_Content_BotItems
 {
 	align: left center;
-	width: 700px;
-	height: 615px;
+	width: 780px;
+	height: 720px;
 	margin-bottom: 0px;
 	margin-left: 320px;
 	background-color: gradient( linear, 0% 0%, 100% 100%, from( #010101 ), to( #1c1c1c ) );
@@ -885,19 +795,94 @@
 
 .ItemsList
 {
-	flow-children: down;
+	flow-children: right;
 	overflow: squish scroll;
-	padding-left: 40px;
-	padding-right: 40px;
-	padding-bottom: 40px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.ItemColumns
+{
+	width: 520px;
+	flow-children: right-wrap;
+}
+
+.ItemSide
+{
+	width: 260px;
+	flow-children: down;
+}
+
+.NeutralRow
+{
+	margin-top: 15px;
+	width: 100%;
+	height: fit-children;
+	flow-children: right-wrap;
+}
+
+.NeutralTierSwitch
+{
+	margin-left: 5px;
+	height: 34px;
+	flow-children: right;
+}
+
+.NeutralTierButton
+{
+	width: 34px;
+	height: 28px;
+	vertical-align: center;
+	background-color: #2a2a2a;
+	border: 1px solid #807851;
+	border-radius: 3px;
+}
+
+.NeutralTierButton:hover
+{
+	background-color: #3f3a28;
+}
+
+.NeutralTierButton Label
+{
+	align: center center;
+	color: #ccc;
+	font-size: 18px;
+	font-weight: bold;
+	font-family: Radiance;
+}
+
+.NeutralTierLabel
+{
+	width: 120px;
+	vertical-align: center;
+	text-align: center;
+	color: #808fa6;
+	font-size: 16px;
+	font-weight: semi-bold;
+	text-transform: uppercase;
+	font-family: Radiance;
+}
+
+.ItemCategory
+{
+	width: 250px;
+	flow-children: down;
+	margin-right: 10px;
+}
+
+.ItemRow
+{
+	width: 100%;
+	flow-children: right-wrap;
 }
 
 .ItemImage
 {
-	width: 64.2px;
-	margin-left: 10px;
-	margin-top: 10px;
-	height: 50px;
+	width: 45px;
+	margin-left: 5px;
+	margin-top: 5px;
+	height: 35px;
 	border: 1px solid #ccc;
 	border-radius: 3px;
 }
@@ -905,41 +890,6 @@
 .ItemImage:hover
 {
 	brightness: 2;
-}
-
-#GiveBotTalent_block
-{
-	width: 100%;
-	height: 50px;
-	flow-children: right;
-}
-
-#GiveBotTalent
-{
-	width: 90%;
-	vertical-align: center;
-	height: 40px;
-	margin-left: 5%;
-	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
-	background-size: 100%;
-	border: 1px solid #999999;
-	border-radius: 3px;
-}
-
-#GiveBotTalent:hover
-{
-	brightness: 2;
-}
-
-#GiveBotTalent_text
-{
-	font-family: defaultFont;
-	font-weight: bold;
-	color: #e7e7e7;
-	text-shadow: 2px 2px 2px black;
-	font-size: 18px;
-	align: center center;
-	text-align: center;
 }
 
 .TestMode_Content_BotTalents
@@ -972,6 +922,7 @@
 {
 	width: 100%;
 	height: 50px;
+	margin-top: 10px;
 }
 
 #TextBlockSelf
@@ -1021,144 +972,9 @@
 	height: 50px;
 }
 
-#StopTimer_block
+#CreateBotBlock
 {
-	width: 100%;
-	margin-top: 0px;
-	height: 50px;
-}
-
-#StopTimer
-{
-	width: 90%;
-	vertical-align: center;
-	height: 40px;
-	margin-left: 5%;
-	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
-	background-size: 100%;
-	border: 1px solid #999999;
-	border-radius: 3px;
-}
-
-#StopTimer:hover
-{
-	brightness: 2;
-}
-
-#StopTimer_text
-{
-	font-family: defaultFont;
-	font-weight: bold;
-	color: #e7e7e7;
-	text-shadow: 2px 2px 2px black;
-	font-size: 18px;
-	align: center center;
-	text-align: center;
-}
-
-#RefreshButton_block
-{
-	width: 100%;
-	margin-top: 0px;
-	height: 50px;
-}
-
-#RefreshButton
-{
-	width: 90%;
-	vertical-align: center;
-	height: 40px;
-	margin-left: 5%;
-	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
-	background-size: 100%;
-	border: 1px solid #999999;
-	border-radius: 3px;
-}
-
-#RefreshButton:hover
-{
-	brightness: 2;
-}
-
-#RefreshButton_text
-{
-	font-family: defaultFont;
-	font-weight: bold;
-	color: #e7e7e7;
-	text-shadow: 2px 2px 2px black;
-	font-size: 18px;
-	align: center center;
-	text-align: center;
-}
-
-#WtfMode_block
-{
-	width: 100%;
-	margin-top: 0px;
-	height: 50px;
-}
-
-#WtfMode
-{
-	width: 90%;
-	vertical-align: center;
-	height: 40px;
-	margin-left: 5%;
-	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
-	background-size: 100%;
-	border: 1px solid #999999;
-	border-radius: 3px;
-}
-
-#WtfMode:hover
-{
-	brightness: 2;
-}
-
-#WtfMode_text
-{
-	font-family: defaultFont;
-	font-weight: bold;
-	color: #e7e7e7;
-	text-shadow: 2px 2px 2px black;
-	font-size: 18px;
-	align: center center;
-	text-align: center;
-}
-
-#HudButton_block
-{
-	width: 100%;
-	margin-top: 0px;
-	height: 50px;
-}
-
-#HudButton
-{
-	width: 90%;
-	vertical-align: center;
-	height: 40px;
-	margin-left: 5%;
-	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
-	background-size: 100%;
-	border: 1px solid #999999;
-	border-radius: 3px;
-}
-
-#HudButton:hover
-{
-	brightness: 2;
-}
-
-#HudButton_text
-{
-	font-family: defaultFont;
-	font-weight: bold;
-	color: #e7e7e7;
-	text-shadow: 2px 2px 2px black;
-	font-size: 18px;
-	align: center center;
-	text-align: center;
+	margin-top: 40px;
 }
 
 .Hero_talents_hero
@@ -1181,31 +997,6 @@
 	flow-children: right;
 	margin-left: 18px;
 	align: left top;
-}
-
-#PortraitButton_block
-{
-	width: 100%;
-	margin-top: 0px;
-	height: 50px;
-	visibility: collapse;
-}
-
-#PortraitButton
-{
-	width: 90%;
-	vertical-align: center;
-	height: 40px;
-	margin-left: 5%;
-	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
-	background-size: 100%;
-	border: 1px solid #999999;
-	border-radius: 3px;
-}
-
-#PortraitButton:hover
-{
-	brightness: 2;
 }
 
 .PortraitSettings

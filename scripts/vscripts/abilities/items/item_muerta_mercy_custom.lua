@@ -31,6 +31,18 @@ LinkLuaModifier(
 
 item_muerta_quest_item = class({})
 
+function item_muerta_quest_item:Precache(context)
+	if self:GetCaster() and self:GetCaster():IsIllusion() then
+		return
+	end
+	PrecacheResource("particle", "particles/units/heroes/hero_muerta/muerta_parting_shot_projectile.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_muerta/muerta_parting_shot_tether.vpcf", context)
+	PrecacheResource("particle", "particles/muerta/dead_legendary_stun.vpcf", context)
+	PrecacheResource("particle", "particles/muerta/dead_refresh.vpcf", context)
+	PrecacheResource("particle", "particles/status_fx/status_effect_muerta_parting_shot.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_muerta/muerta_parting_shot_soul.vpcf", context)
+end
+
 function item_muerta_quest_item:GetIntrinsicModifierName()
 	return "modifier_item_muerta_quest_item_stats"
 end
@@ -63,7 +75,6 @@ end
 
 function item_muerta_quest_item:OnSpellStart()
 	local caster = self:GetCaster()
-	--caster:FadeGesture(ACT_DOTA_CAST_ABILITY_5)
 
 	local target = self:GetCursorTarget()
 
@@ -291,9 +302,13 @@ function modifier_item_muerta_quest_item_stats:SendStack(reset)
 	end
 	self:SetStackCount(reset and 0 or self.ability.innate_bonus)
 
-	if IsValid(self.parent.muerta_innate) and self.parent.muerta_innate.tracker then
-		self.parent.muerta_innate.tracker:ChangeStack()
+	if not IsValid(self.parent.muerta_innate) then
+		return
 	end
+	if not self.parent.muerta_innate.tracker then
+		return
+	end
+	self.parent.muerta_innate.tracker:ChangeStack()
 end
 
 function modifier_item_muerta_quest_item_stats:OnDestroy()

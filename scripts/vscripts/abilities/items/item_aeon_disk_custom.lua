@@ -25,19 +25,44 @@ function item_aeon_disk_custom:Precache(context)
 	PrecacheResource("particle", "particles/items4_fx/combo_breaker_buff.vpcf", context)
 end
 
+function item_aeon_disk_custom:Spawn()
+	self.bonus_mana = self:GetSpecialValueFor("bonus_mana")
+	self.bonus_health = self:GetSpecialValueFor("bonus_health")
+	self.move_bonus = self:GetSpecialValueFor("move_bonus")
+	self.cd = self:GetSpecialValueFor("cd")
+	self.health_threshold_pct = self:GetSpecialValueFor("health_threshold_pct")
+	self.duration = self:GetSpecialValueFor("duration")
+	self.heal = self:GetSpecialValueFor("heal")
+	self.status_resistance = self:GetSpecialValueFor("status_resistance")
+end
+
 item_aeon_disk_custom_passive = class(mod_hidden)
-function item_aeon_disk_custom_passive:IsHidden()
-	return true
-end
-function item_aeon_disk_custom_passive:IsPurgable()
-	return false
-end
 function item_aeon_disk_custom_passive:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
 function item_aeon_disk_custom_passive:RemoveOnDeath()
 	return false
 end
+function item_aeon_disk_custom_passive:OnCreated(table)
+	self.ability = self:GetAbility()
+	self.parent = self:GetParent()
+	self.mana = self.ability.bonus_mana
+	self.bonus_health = self.ability.bonus_health
+	self.move = self.ability.move_bonus
+
+	self.cd = self.ability.cd
+	self.health_pct = self.ability.health_threshold_pct
+	self.duration = self.ability.duration
+	self.heal = self.ability.heal / 100
+
+	if not IsServer() then
+		return
+	end
+	if self.parent:IsRealHero() then
+		self.parent:AddDamageEvent_inc(self, true)
+	end
+end
+
 function item_aeon_disk_custom_passive:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_HEALTH_BONUS,
@@ -58,31 +83,11 @@ function item_aeon_disk_custom_passive:GetModifierMoveSpeedBonus_Constant()
 	return self.move
 end
 
-function item_aeon_disk_custom_passive:OnCreated(table)
-	self.ability = self:GetAbility()
-	self.parent = self:GetParent()
-	self.mana = self.ability:GetSpecialValueFor("bonus_mana")
-	self.bonus_health = self.ability:GetSpecialValueFor("bonus_health")
-	self.move = self.ability:GetSpecialValueFor("move_bonus")
-
-	self.cd = self.ability:GetSpecialValueFor("cd")
-	self.health_pct = self.ability:GetSpecialValueFor("health_threshold_pct")
-	self.duration = self.ability:GetSpecialValueFor("duration")
-	self.heal = self.ability:GetSpecialValueFor("heal") / 100
-
-	if not IsServer() then
-		return
-	end
-	if self.parent:IsRealHero() then
-		self.parent:AddDamageEvent_inc(self, true)
-	end
-end
-
 function item_aeon_disk_custom_passive:DamageEvent_inc(params)
 	if not IsServer() then
 		return
 	end
-	if not self.ability or self.ability:IsNull() then
+	if not IsValid(self.ability) then
 		return
 	end
 	if not self.ability:IsFullyCastable() then
@@ -128,31 +133,30 @@ end
 
 item_aeon_disk_custom_cd = class(mod_cd)
 
-item_aeon_disk_custom_proc = class({})
-function item_aeon_disk_custom_proc:IsHidden()
-	return false
-end
+item_aeon_disk_custom_proc = class(mod_visible)
 function item_aeon_disk_custom_proc:IsPurgable()
 	return true
 end
-
 function item_aeon_disk_custom_proc:OnCreated(table)
-	self.status = self:GetAbility():GetSpecialValueFor("status_resistance")
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.status = self.ability.status_resistance
 	if not IsServer() then
 		return
 	end
 	local combo_breaker_particle = ParticleManager:CreateParticle(
 		"particles/items4_fx/combo_breaker_buff.vpcf",
 		PATTACH_ABSORIGIN_FOLLOW,
-		self:GetParent()
+		self.parent
 	)
 	ParticleManager:SetParticleControlEnt(
 		combo_breaker_particle,
 		1,
-		self:GetParent(),
+		self.parent,
 		PATTACH_POINT_FOLLOW,
 		"attach_hitloc",
-		self:GetParent():GetAbsOrigin(),
+		self.parent:GetAbsOrigin(),
 		true
 	)
 	self:AddParticle(combo_breaker_particle, false, false, -1, true, false)

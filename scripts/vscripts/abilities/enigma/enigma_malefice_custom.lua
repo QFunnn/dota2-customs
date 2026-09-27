@@ -60,6 +60,8 @@ function enigma_malefice_custom:Precache(context)
 	PrecacheResource("particle", "particles/void_astral_slow.vpcf", context)
 	PrecacheResource("particle", "particles/enigma/malefice_shield.vpcf", context)
 	PrecacheResource("particle", "particles/enigma/malefice_aoe.vpcf", context)
+	PrecacheResource("particle", "particles/items4_fx/soul_keeper.vpcf", context)
+	PrecacheResource("particle", "particles/enigma/summon_heal.vpcf", context)
 end
 
 function enigma_malefice_custom:UpdateTalents()
@@ -152,7 +154,7 @@ function enigma_malefice_custom:GetIntrinsicModifierName()
 end
 
 function enigma_malefice_custom:GetCooldown(level)
-	return self.BaseClass.GetCooldown(self, level) + (self.talents.q1_cd and self.talents.q1_cd or 0)
+	return self.BaseClass.GetCooldown(self, level) + (self.talents.q1_cd or 0)
 end
 
 function enigma_malefice_custom:GetCastRange(vLocation, hTarget)
@@ -160,50 +162,45 @@ function enigma_malefice_custom:GetCastRange(vLocation, hTarget)
 end
 
 function enigma_malefice_custom:GetBehavior()
-	local caster = self:GetCaster()
-	if caster:HasModifier("modifier_enigma_malefice_custom_legendary") then
+	if self.caster:HasModifier("modifier_enigma_malefice_custom_legendary") then
 		return DOTA_ABILITY_BEHAVIOR_NO_TARGET
 	end
 	return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET + DOTA_ABILITY_BEHAVIOR_AOE
 end
 
 function enigma_malefice_custom:GetManaCost(level)
-	local caster = self:GetCaster()
-	if caster:HasModifier("modifier_enigma_malefice_custom_legendary") then
+	if self.caster:HasModifier("modifier_enigma_malefice_custom_legendary") then
 		return 0
 	end
 	return self.BaseClass.GetManaCost(self, level)
 end
 
 function enigma_malefice_custom:GetCastAnimation()
-	local caster = self:GetCaster()
-	if caster:HasModifier("modifier_enigma_malefice_custom_legendary") then
+	if self.caster:HasModifier("modifier_enigma_malefice_custom_legendary") then
 		return ACT_DOTA_MIDNIGHT_PULSE
 	end
 	return ACT_DOTA_CAST_ABILITY_1
 end
 
 function enigma_malefice_custom:GetAOERadius()
-	return self.radius and self.radius or 0
+	return self.radius or 0
 end
 
 function enigma_malefice_custom:GetCastPoint(iLevel)
-	local caster = self:GetCaster()
-	if caster:HasModifier("modifier_enigma_malefice_custom_legendary") then
+	if self.caster:HasModifier("modifier_enigma_malefice_custom_legendary") then
 		return 0.1
 	end
 	return self.BaseClass.GetCastPoint(self)
 end
 
 function enigma_malefice_custom:OnSpellStart(new_target)
-	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 
 	if new_target then
 		target = new_target
 	end
 
-	local mod = caster:FindModifierByName("modifier_enigma_malefice_custom_legendary")
+	local mod = self.caster:FindModifierByName("modifier_enigma_malefice_custom_legendary")
 	if mod then
 		mod:Destroy()
 		if IsValid(self.active_mod) then
@@ -215,7 +212,6 @@ function enigma_malefice_custom:OnSpellStart(new_target)
 	if not target or target:IsNull() then
 		return
 	end
-
 	if target:TriggerSpellAbsorb(self) then
 		return
 	end
@@ -228,14 +224,14 @@ function enigma_malefice_custom:OnSpellStart(new_target)
 	end
 
 	if self.talents.has_q7 == 1 then
-		caster:AddNewModifier(caster, self, "modifier_enigma_malefice_custom_legendary", {})
+		self.caster:AddNewModifier(self.caster, self, "modifier_enigma_malefice_custom_legendary", {})
 		self:EndCd(0.5)
 	else
 		self:EndCd()
 	end
 
 	self.active_mod = target:AddNewModifier(
-		caster,
+		self.caster,
 		self,
 		"modifier_enigma_malefice_custom",
 		{ max = max, interval = interval, duration = (max - 1) * self.tick_rate + 0.1 }
@@ -243,9 +239,8 @@ function enigma_malefice_custom:OnSpellStart(new_target)
 	target:EmitSound("Hero_Enigma.Malefice")
 end
 
-function enigma_malefice_custom:GetDamage(target, ignore_legendary)
-	local caster = self:GetCaster()
-	local damage = self.damage + caster:GetAverageTrueAttackDamage(nil) * self.talents.q1_damage
+function enigma_malefice_custom:GetDamage(target)
+	local damage = self.damage + self.caster:GetAverageTrueAttackDamage(nil) * self.talents.q1_damage
 	if target:IsCreep() then
 		damage = damage * (1 + self.creeps)
 	end
@@ -253,10 +248,10 @@ function enigma_malefice_custom:GetDamage(target, ignore_legendary)
 end
 
 function enigma_malefice_custom:ProcStun(target, sound, talent)
-	local caster = self:GetCaster()
-	local damage = self:GetDamage(target, talent)
+	if not self:IsTrained() then
+		return
+	end
 	local stun = self.stun_duration + (self.talents.has_q4 == 1 and self.talents.q4_stun or 0)
-	local damage_ability = talent
 
 	if self.talents.has_q7 == 1 then
 		stun = stun * (1 + self.talents.q7_stun_reduce)
@@ -266,39 +261,172 @@ function enigma_malefice_custom:ProcStun(target, sound, talent)
 		target:EmitSound("Hero_Enigma.MaleficeTick")
 	end
 
-	if target:IsRealHero() and caster:GetQuest() == "Enigma.Quest_5" and not caster:QuestCompleted() then
-		caster:UpdateQuest(1)
+	if target:IsRealHero() and self.caster:GetQuest() == "Enigma.Quest_5" and not self.caster:QuestCompleted() then
+		self.caster:UpdateQuest(1)
 	end
 
 	local effect = ParticleManager:CreateParticle("particles/enigma/malefice_aoe.vpcf", PATTACH_WORLDORIGIN, nil)
 	ParticleManager:SetParticleControl(effect, 0, target:GetAbsOrigin())
 	ParticleManager:ReleaseParticleIndex(effect)
 
-	local damageTable = { attacker = caster, damage = damage, ability = self, damage_type = DAMAGE_TYPE_MAGICAL }
+	local damageTable = { attacker = self.caster, ability = self, damage_type = DAMAGE_TYPE_MAGICAL }
 
-	local targets = caster:FindTargets(self.radius, target:GetAbsOrigin())
-	for _, aoe_target in pairs(targets) do
+	for _, aoe_target in pairs(self.caster:FindTargets(self.radius, target:GetAbsOrigin())) do
 		aoe_target:AddNewModifier(
-			caster,
+			self.caster,
 			self,
 			"modifier_stunned",
-			{ duration = (1 - target:GetStatusResistance()) * stun }
+			{ duration = (1 - aoe_target:GetStatusResistance()) * stun }
 		)
 		damageTable.victim = aoe_target
-		DoDamage(damageTable, damage_ability)
-		aoe_target:SendNumber(4, damage)
+		damageTable.damage = self:GetDamage(aoe_target)
+		DoDamage(damageTable, talent)
+		aoe_target:SendNumber(4, damageTable.damage)
 	end
 end
 
-modifier_enigma_malefice_custom = class({})
-function modifier_enigma_malefice_custom:IsHidden()
-	return false
+modifier_enigma_malefice_custom_tracker = class(mod_hidden)
+function modifier_enigma_malefice_custom_tracker:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+	self.ability.tracker = self
+	self.ability:UpdateTalents()
+
+	self.parent.malefice_ability = self.ability
+
+	self.ability.tick_rate = self.ability:GetSpecialValueFor("tick_rate")
+	self.ability.stun_duration = self.ability:GetSpecialValueFor("stun_duration")
+	self.ability.damage = self.ability:GetSpecialValueFor("damage")
+	self.ability.radius = self.ability:GetSpecialValueFor("radius")
+	self.ability.creeps = self.ability:GetSpecialValueFor("creeps") / 100
+	self.ability.stun_instances = self.ability:GetSpecialValueFor("stun_instances")
+
+	self.ability.shard_cd = self.ability:GetSpecialValueFor("shard_cd")
+	self.ability.shard_duration = self.ability:GetSpecialValueFor("shard_duration")
+	self.ability.shard_interval = self.ability:GetSpecialValueFor("shard_interval")
+	self.ability.shard_base = self.ability:GetSpecialValueFor("shard_base")
+	self.ability.shard_shield = self.ability:GetSpecialValueFor("shard_shield") / 100
+
+	if not IsServer() then
+		return
+	end
+	self:StartIntervalThink(2)
+end
+
+function modifier_enigma_malefice_custom_tracker:OnRefresh()
+	self.ability.stun_duration = self.ability:GetSpecialValueFor("stun_duration")
+	self.ability.damage = self.ability:GetSpecialValueFor("damage")
+end
+
+function modifier_enigma_malefice_custom_tracker:OnIntervalThink()
+	if not IsServer() then
+		return
+	end
+
+	if not self.ability:IsActivated() and (not self.ability.active_mod or self.ability.active_mod:IsNull()) then
+		self.ability.active_mod = nil
+		self.ability:StartCd()
+	end
+end
+
+function modifier_enigma_malefice_custom_tracker:AttackEvent_out(params)
+	if not IsServer() then
+		return
+	end
+	if not params.target:IsUnit() then
+		return
+	end
+
+	local attacker = params.attacker
+	local target = params.target
+	local is_eidolon = attacker:HasModifier("modifier_enigma_demonic_conversion_custom")
+
+	if attacker ~= self.parent and (not attacker.owner or attacker.owner ~= self.parent or not is_eidolon) then
+		return
+	end
+
+	if self.ability.talents.has_q3 == 1 then
+		target:AddNewModifier(
+			self.parent,
+			self.ability,
+			"modifier_enigma_malefice_custom_health",
+			{ attacker = attacker:entindex(), duration = self.ability.talents.q3_duration }
+		)
+	end
+
+	if self.ability.talents.has_q7 == 0 then
+		return
+	end
+
+	local mod = target:FindModifierByName("modifier_enigma_malefice_custom")
+	if not mod then
+		return
+	end
+
+	if params.attacker == self.parent then
+		mod:AddStack()
+	end
+
+	mod:SetDuration(mod.max_duration, true)
+end
+
+function modifier_enigma_malefice_custom_tracker:DamageEvent_out(params)
+	if not IsServer() then
+		return
+	end
+	local talent_1 = self.ability.talents.has_h1 == 1
+	local talent_4 = self.ability.talents.has_r4 == 1
+		and params.unit:HasModifier("modifier_enigma_black_hole_custom_debuff")
+		and params.inflictor
+
+	if not talent_1 and not talent_4 then
+		return
+	end
+
+	local attacker = params.attacker
+	if attacker.owner then
+		attacker = attacker.owner
+	end
+	if attacker ~= self.parent then
+		return
+	end
+	local result = self.parent:CheckLifesteal(params, nil, true)
+	if not result then
+		return
+	end
+
+	if talent_1 then
+		local heal = result * self.ability.talents.h1_heal * params.damage
+		self.parent:GenericHeal(heal, self.ability, true, "", "modifier_enigma_hero_1")
+	end
+
+	if talent_4 then
+		local heal = result * self.ability.talents.r4_heal * params.damage
+		self.parent:GenericHeal(
+			heal,
+			self.ability,
+			true,
+			"particles/enigma/summon_heal.vpcf",
+			"modifier_enigma_blackhole_4"
+		)
+	end
+end
+
+modifier_enigma_malefice_custom = class(mod_visible)
+function modifier_enigma_malefice_custom:IsPurgable()
+	return not self.caster:HasShard() and self.ability.talents.has_q7 == 0
 end
 function modifier_enigma_malefice_custom:GetTexture()
 	return "enigma_malefice"
 end
-function modifier_enigma_malefice_custom:IsPurgable()
-	return not self.caster:HasShard() and self.ability.talents.has_q7 == 0
+function modifier_enigma_malefice_custom:GetEffectName()
+	return "particles/units/heroes/hero_enigma/enigma_malefice.vpcf"
+end
+function modifier_enigma_malefice_custom:GetStatusEffectName()
+	return "particles/status_fx/status_effect_enigma_malefice.vpcf"
+end
+function modifier_enigma_malefice_custom:StatusEffectPriority()
+	return MODIFIER_PRIORITY_HIGH
 end
 function modifier_enigma_malefice_custom:OnCreated(table)
 	self.parent = self:GetParent()
@@ -360,6 +488,25 @@ function modifier_enigma_malefice_custom:OnIntervalThink()
 	if self.ability.talents.has_q7 == 0 and self.count >= self.max then
 		self:Destroy()
 	end
+end
+
+function modifier_enigma_malefice_custom:OnDestroy()
+	if not IsServer() then
+		return
+	end
+
+	if self.ability.talents.has_q7 == 1 then
+		self.ended = true
+		self.caster:UpdateUIshort({ hide = 1, hide_full = 1, priority = 1, style = "EnigmaMalefice" })
+	end
+
+	if IsValid(self.aura_mod) then
+		self.aura_mod:Destroy()
+	end
+
+	self.caster:RemoveModifierByName("modifier_enigma_malefice_custom_legendary")
+	self.ability.active_mod = nil
+	self.ability:StartCd()
 end
 
 function modifier_enigma_malefice_custom:LegendaryProc()
@@ -517,44 +664,7 @@ function modifier_enigma_malefice_custom:AddShield()
 	end
 end
 
-function modifier_enigma_malefice_custom:GetStatusEffectName()
-	return "particles/status_fx/status_effect_enigma_malefice.vpcf"
-end
-
-function modifier_enigma_malefice_custom:GetEffectName()
-	return "particles/units/heroes/hero_enigma/enigma_malefice.vpcf"
-end
-
-function modifier_enigma_malefice_custom:StatusEffectPriority()
-	return MODIFIER_PRIORITY_HIGH
-end
-
-function modifier_enigma_malefice_custom:OnDestroy()
-	if not IsServer() then
-		return
-	end
-
-	if self.ability.talents.has_q7 == 1 then
-		self.ended = true
-		self.caster:UpdateUIshort({ hide = 1, hide_full = 1, priority = 1, style = "EnigmaMalefice" })
-	end
-
-	if IsValid(self.aura_mod) then
-		self.aura_mod:Destroy()
-	end
-
-	self.caster:RemoveModifierByName("modifier_enigma_malefice_custom_legendary")
-	self.ability.active_mod = nil
-	self.ability:StartCd()
-end
-
 modifier_enigma_malefice_custom_aura = class(mod_hidden)
-function modifier_enigma_malefice_custom_aura:OnCreated()
-	self.parent = self:GetParent()
-	self.caster = self:GetCaster()
-	self.ability = self:GetAbility()
-end
-
 function modifier_enigma_malefice_custom_aura:IsAura()
 	return self.parent:HasModifier("modifier_enigma_malefice_custom")
 end
@@ -573,135 +683,14 @@ end
 function modifier_enigma_malefice_custom_aura:GetModifierAura()
 	return "modifier_enigma_black_hole_custom_spell_active"
 end
+function modifier_enigma_malefice_custom_aura:OnCreated()
+	self.parent = self:GetParent()
+	self.caster = self:GetCaster()
+	self.ability = self:GetAbility()
+end
+
 function modifier_enigma_malefice_custom_aura:GetAuraEntityReject(hEntity)
 	return self.caster ~= hEntity
-end
-
-modifier_enigma_malefice_custom_tracker = class(mod_hidden)
-function modifier_enigma_malefice_custom_tracker:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-	self.ability.tracker = self
-	self.ability:UpdateTalents()
-
-	self.parent.malefice_ability = self.ability
-
-	self.ability.tick_rate = self.ability:GetSpecialValueFor("tick_rate")
-	self.ability.stun_duration = self.ability:GetSpecialValueFor("stun_duration")
-	self.ability.damage = self.ability:GetSpecialValueFor("damage")
-	self.ability.radius = self.ability:GetSpecialValueFor("radius")
-	self.ability.creeps = self.ability:GetSpecialValueFor("creeps") / 100
-	self.ability.stun_instances = self.ability:GetSpecialValueFor("stun_instances")
-
-	self.ability.shard_cd = self.ability:GetSpecialValueFor("shard_cd")
-	self.ability.shard_duration = self.ability:GetSpecialValueFor("shard_duration")
-	self.ability.shard_interval = self.ability:GetSpecialValueFor("shard_interval")
-	self.ability.shard_base = self.ability:GetSpecialValueFor("shard_base")
-	self.ability.shard_shield = self.ability:GetSpecialValueFor("shard_shield") / 100
-
-	if not IsServer() then
-		return
-	end
-	self:StartIntervalThink(2)
-end
-
-function modifier_enigma_malefice_custom_tracker:OnRefresh()
-	self.ability.stun_duration = self.ability:GetSpecialValueFor("stun_duration")
-	self.ability.damage = self.ability:GetSpecialValueFor("damage")
-end
-
-function modifier_enigma_malefice_custom_tracker:OnIntervalThink()
-	if not IsServer() then
-		return
-	end
-
-	if not self.ability:IsActivated() and (not self.ability.active_mod or self.ability.active_mod:IsNull()) then
-		self.ability.active_mod = nil
-		self.ability:StartCd()
-	end
-end
-
-function modifier_enigma_malefice_custom_tracker:AttackEvent_out(params)
-	if not IsServer() then
-		return
-	end
-	if not params.target:IsUnit() then
-		return
-	end
-
-	local attacker = params.attacker
-	local target = params.target
-	local is_eidolon = attacker:HasModifier("modifier_enigma_demonic_conversion_custom")
-
-	if attacker ~= self.parent and (not attacker.owner or attacker.owner ~= self.parent or not is_eidolon) then
-		return
-	end
-
-	if self.ability.talents.has_q3 == 1 then
-		target:AddNewModifier(
-			self.parent,
-			self.ability,
-			"modifier_enigma_malefice_custom_health",
-			{ attacker = attacker:entindex(), duration = self.ability.talents.q3_duration }
-		)
-	end
-
-	if self.ability.talents.has_q7 == 0 then
-		return
-	end
-
-	local mod = target:FindModifierByName("modifier_enigma_malefice_custom")
-	if not mod then
-		return
-	end
-
-	if params.attacker == self.parent then
-		mod:AddStack()
-	end
-
-	mod:SetDuration(mod.max_duration, true)
-end
-
-function modifier_enigma_malefice_custom_tracker:DamageEvent_out(params)
-	if not IsServer() then
-		return
-	end
-	local talent_1 = self.ability.talents.has_h1 == 1
-	local talent_4 = self.ability.talents.has_r4 == 1
-		and params.unit:HasModifier("modifier_enigma_black_hole_custom_debuff")
-		and params.inflictor
-
-	if not talent_1 and not talent_4 then
-		return
-	end
-
-	local attacker = params.attacker
-	if attacker.owner then
-		attacker = attacker.owner
-	end
-	if attacker ~= self.parent then
-		return
-	end
-	local result = self.parent:CheckLifesteal(params, nil, true)
-	if not result then
-		return
-	end
-
-	if talent_1 then
-		local heal = result * self.ability.talents.h1_heal * params.damage
-		self.parent:GenericHeal(heal, self.ability, true, "", "modifier_enigma_hero_1")
-	end
-
-	if talent_4 then
-		local heal = result * self.ability.talents.r4_heal * params.damage
-		self.parent:GenericHeal(
-			heal,
-			self.ability,
-			true,
-			"particles/enigma/summon_heal.vpcf",
-			"modifier_enigma_blackhole_4"
-		)
-	end
 end
 
 modifier_enigma_malefice_custom_legendary = class(mod_hidden)
@@ -716,16 +705,11 @@ end
 function modifier_enigma_malefice_custom_legendary_stun:IsPurgeException()
 	return true
 end
-function modifier_enigma_malefice_custom_legendary_stun:StatusEffectPriority()
-	return MODIFIER_PRIORITY_ULTRA
-end
 function modifier_enigma_malefice_custom_legendary_stun:GetStatusEffectName()
 	return "particles/status_fx/status_effect_enigma_blackhole_tgt.vpcf"
 end
-function modifier_enigma_malefice_custom_legendary_stun:CheckState()
-	return {
-		[MODIFIER_STATE_STUNNED] = true,
-	}
+function modifier_enigma_malefice_custom_legendary_stun:StatusEffectPriority()
+	return MODIFIER_PRIORITY_ULTRA
 end
 function modifier_enigma_malefice_custom_legendary_stun:OnCreated(table)
 	if not IsServer() then
@@ -740,6 +724,12 @@ function modifier_enigma_malefice_custom_legendary_stun:OnDestroy()
 		return
 	end
 	self.parent:FadeGesture(ACT_DOTA_FLAIL)
+end
+
+function modifier_enigma_malefice_custom_legendary_stun:CheckState()
+	return {
+		[MODIFIER_STATE_STUNNED] = true,
+	}
 end
 
 function modifier_enigma_malefice_custom_legendary_stun:DeclareFunctions()
@@ -802,17 +792,11 @@ function modifier_enigma_malefice_custom_health:OnCreated(table)
 	if not IsServer() then
 		return
 	end
-	self:IncStack(table.attacker)
+	self.RemoveForDuel = true
+	self:OnRefresh(table)
 end
 
 function modifier_enigma_malefice_custom_health:OnRefresh(table)
-	if not IsServer() then
-		return
-	end
-	self:IncStack(table.attacker)
-end
-
-function modifier_enigma_malefice_custom_health:IncStack(index)
 	if not IsServer() then
 		return
 	end
@@ -820,7 +804,7 @@ function modifier_enigma_malefice_custom_health:IncStack(index)
 		return
 	end
 
-	local attacker = EntIndexToHScript(index)
+	local attacker = EntIndexToHScript(table.attacker)
 	if not IsValid(attacker) then
 		return
 	end
@@ -846,7 +830,16 @@ function modifier_enigma_malefice_custom_health:IncStack(index)
 		self.parent:GenericParticle("particles/items4_fx/soul_keeper.vpcf", self)
 	end
 
-	if self.parent:IsRealHero() then
+	if self.parent:IsHero() then
+		self.parent:CalculateStatBonus(true)
+	end
+end
+
+function modifier_enigma_malefice_custom_health:OnDestroy()
+	if not IsServer() then
+		return
+	end
+	if self.parent:IsHero() then
 		self.parent:CalculateStatBonus(true)
 	end
 end

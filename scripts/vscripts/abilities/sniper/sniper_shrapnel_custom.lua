@@ -448,7 +448,7 @@ end
 
 function modifier_sniper_shrapnel_custom:GetModifierMoveSpeedBonus_Percentage()
 	local k = 1
-	if self.parent:HasTalent("modifier_sniper_shrapnel_custom_silence") then
+	if self.parent:HasModifier("modifier_sniper_shrapnel_custom_silence") then
 		k = self.silence_slow
 	end
 	return self.ms_slow * k

@@ -90,14 +90,12 @@ function skeleton_king_hellfire_blast_custom:Precache(context)
 	PrecacheResource("particle", "particles/wraith_king/blast_delay_damage_2.vpcf", context)
 	PrecacheResource("particle", "particles/nature_prophet/sprout_treant_death.vpcf", context)
 	PrecacheResource("particle", "particles/wraith_king/blast_delay_damage_arcana.vpcf", context)
+	PrecacheResource("particle", "particles/muerta/muerta_attack_slow.vpcf", context)
+	PrecacheResource("particle", "particles/wk_burn.vpcf", context)
 
 	PrecacheResource("particle", "particles/wraith_king_custom/wraith_king_ambient_custom.vpcf", context)
 
 	dota1x6:PrecacheShopItems("npc_dota_hero_skeleton_king", context)
-end
-
-function skeleton_king_hellfire_blast_custom:CreateTalent()
-	self:ToggleAutoCast()
 end
 
 function skeleton_king_hellfire_blast_custom:UpdateTalents(name)
@@ -105,11 +103,9 @@ function skeleton_king_hellfire_blast_custom:UpdateTalents(name)
 	if not self.init then
 		self.init = true
 		self.talents = {
-			has_q1 = 0,
 			q1_damage = 0,
 			q1_spell = 0,
 
-			has_q2 = 0,
 			q2_cd = 0,
 			q2_cast = 0,
 
@@ -127,24 +123,25 @@ function skeleton_king_hellfire_blast_custom:UpdateTalents(name)
 			q4_duration = caster:GetTalentValue("modifier_skeleton_blast_4", "duration", true),
 			q4_silence = caster:GetTalentValue("modifier_skeleton_blast_4", "silence", true),
 
-			has_h1 = 0,
 			h1_range = 0,
 			h1_stun = 0,
 
 			has_h4 = 0,
 			h4_heal_reduce = caster:GetTalentValue("modifier_skeleton_hero_4", "heal_reduce", true),
 			h4_damage_reduce = caster:GetTalentValue("modifier_skeleton_hero_4", "damage_reduce", true),
+
+			has_r3 = 0,
+			r3_duration = caster:GetTalentValue("modifier_skeleton_reincarnation_3", "duration", true),
+			r3_stun = caster:GetTalentValue("modifier_skeleton_reincarnation_3", "stun", true),
 		}
 	end
 
 	if caster:HasTalent("modifier_skeleton_blast_1") then
-		self.talents.has_q1 = 1
 		self.talents.q1_damage = caster:GetTalentValue("modifier_skeleton_blast_1", "damage")
 		self.talents.q1_spell = caster:GetTalentValue("modifier_skeleton_blast_1", "spell")
 	end
 
 	if caster:HasTalent("modifier_skeleton_blast_2") then
-		self.talents.has_q2 = 1
 		self.talents.q2_cd = caster:GetTalentValue("modifier_skeleton_blast_2", "cd")
 		self.talents.q2_cast = caster:GetTalentValue("modifier_skeleton_blast_2", "cast")
 	end
@@ -159,7 +156,6 @@ function skeleton_king_hellfire_blast_custom:UpdateTalents(name)
 	end
 
 	if caster:HasTalent("modifier_skeleton_hero_1") then
-		self.talents.has_h1 = 1
 		self.talents.h1_range = caster:GetTalentValue("modifier_skeleton_hero_1", "range")
 		self.talents.h1_stun = caster:GetTalentValue("modifier_skeleton_hero_1", "stun")
 	end
@@ -168,6 +164,14 @@ function skeleton_king_hellfire_blast_custom:UpdateTalents(name)
 		self.talents.has_h4 = 1
 		caster:AddAttackEvent_out(self.tracker, true)
 	end
+
+	if caster:HasTalent("modifier_skeleton_reincarnation_3") then
+		self.talents.has_r3 = 1
+	end
+end
+
+function skeleton_king_hellfire_blast_custom:CreateTalent()
+	self:ToggleAutoCast()
 end
 
 function skeleton_king_hellfire_blast_custom:GetAbilityTextureName()
@@ -181,10 +185,6 @@ function skeleton_king_hellfire_blast_custom:GetIntrinsicModifierName()
 	return "modifier_skeleton_king_hellfire_blast_custom_tracker"
 end
 
-function skeleton_king_hellfire_blast_custom:Init()
-	self.caster = self:GetCaster()
-end
-
 function skeleton_king_hellfire_blast_custom:GetBehavior()
 	local bonus = 0
 	if self.talents.has_q4 == 1 then
@@ -193,16 +193,16 @@ function skeleton_king_hellfire_blast_custom:GetBehavior()
 	return DOTA_ABILITY_BEHAVIOR_UNIT_TARGET + DOTA_ABILITY_BEHAVIOR_AOE + bonus
 end
 
-function skeleton_king_hellfire_blast_custom:GetAOERadius()
-	return self.radius and self.radius or 0
+function skeleton_king_hellfire_blast_custom:GetCooldown(level)
+	return self.BaseClass.GetCooldown(self, level) + (self.talents.q2_cd or 0)
 end
 
 function skeleton_king_hellfire_blast_custom:GetCastPoint(iLevel)
-	return self.BaseClass.GetCastPoint(self) + (self.talents.q2_cast and self.talents.q2_cast or 0)
+	return self.BaseClass.GetCastPoint(self) + (self.talents.q2_cast or 0)
 end
 
-function skeleton_king_hellfire_blast_custom:GetCooldown(level)
-	return self.BaseClass.GetCooldown(self, level) + (self.talents.q2_cd and self.talents.q2_cd or 0)
+function skeleton_king_hellfire_blast_custom:GetAOERadius()
+	return self.radius or 0
 end
 
 function skeleton_king_hellfire_blast_custom:OnAbilityPhaseStart()
@@ -326,20 +326,20 @@ function skeleton_king_hellfire_blast_custom:OnProjectileHit_ExtraData(target, v
 		)
 	end
 
-	if IsValid(self.caster.reincarnate_ability) and self.caster.reincarnate_ability.talents.has_r3 == 1 then
+	if self.talents.has_r3 == 1 and IsValid(self.caster.reincarnate_ability) then
 		local ability = self.caster.reincarnate_ability
 		target:AddNewModifier(
 			self.caster,
 			ability,
 			"modifier_skeleton_king_reincarnation_custom_magic",
-			{ duration = ability.talents.r3_duration, stack = ability.talents.r3_stun }
+			{ duration = self.talents.r3_duration, stack = self.talents.r3_stun }
 		)
 		if target:IsRealHero() then
 			self.caster:AddNewModifier(
 				self.caster,
 				ability,
 				"modifier_skeleton_king_reincarnation_custom_aura_str",
-				{ duration = ability.talents.r3_duration, stack = ability.talents.r3_stun }
+				{ duration = self.talents.r3_duration, stack = self.talents.r3_stun }
 			)
 		end
 	end
@@ -372,13 +372,7 @@ function skeleton_king_hellfire_blast_custom:OnProjectileHit_ExtraData(target, v
 	end
 end
 
-modifier_skeleton_king_hellfire_blast_custom_damage = class({})
-function modifier_skeleton_king_hellfire_blast_custom_damage:IsHidden()
-	return true
-end
-function modifier_skeleton_king_hellfire_blast_custom_damage:IsPurgable()
-	return false
-end
+modifier_skeleton_king_hellfire_blast_custom_damage = class(mod_hidden)
 function modifier_skeleton_king_hellfire_blast_custom_damage:OnCreated()
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
@@ -388,12 +382,12 @@ function modifier_skeleton_king_hellfire_blast_custom_damage:OnCreated()
 	self.max_time = self.ability.talents.q3_duration
 	self.max = self.ability.talents.q3_max
 
-	self.parent:AddDamageEvent_inc(self, true)
-	self.stack = 0
-
 	if not IsServer() then
 		return
 	end
+	self.parent:AddDamageEvent_inc(self, true)
+	self.stack = 0
+
 	self:OnIntervalThink()
 	self:StartIntervalThink(0.1)
 end
@@ -466,6 +460,8 @@ function modifier_skeleton_king_hellfire_blast_custom_damage_burn:OnCreated(tabl
 	if not IsServer() then
 		return
 	end
+	self.RemoveForDuel = true
+
 	self.parent:GenericParticle("particles/wraith_king/blast_delay_damage_2.vpcf")
 	self.parent:EmitSound("WK.Stun_blast")
 	self.parent:EmitSound("WK.Stun_blast2")
@@ -512,28 +508,273 @@ function modifier_skeleton_king_hellfire_blast_custom_damage_burn:OnIntervalThin
 	end
 end
 
+modifier_skeleton_king_hellfire_blast_custom_stun = class(mod_hidden)
+function modifier_skeleton_king_hellfire_blast_custom_stun:IsStunDebuff()
+	return true
+end
+function modifier_skeleton_king_hellfire_blast_custom_stun:IsPurgeException()
+	return true
+end
+function modifier_skeleton_king_hellfire_blast_custom_stun:GetEffectName()
+	return "particles/generic_gameplay/generic_stunned.vpcf"
+end
+function modifier_skeleton_king_hellfire_blast_custom_stun:GetEffectAttachType()
+	return PATTACH_OVERHEAD_FOLLOW
+end
+function modifier_skeleton_king_hellfire_blast_custom_stun:OnCreated()
+	self.caster = self:GetCaster()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.slow_duration = self.ability.slow_duration
+end
+
+function modifier_skeleton_king_hellfire_blast_custom_stun:OnDestroy()
+	if not IsServer() then
+		return
+	end
+	self.parent:AddNewModifier(
+		self.caster,
+		self.ability,
+		"modifier_skeleton_king_hellfire_blast_custom_debuff",
+		{ duration = self.slow_duration }
+	)
+
+	if self.ability.talents.has_q4 == 1 then
+		self.parent:EmitSound("SF.Raze_silence")
+		self.parent:AddNewModifier(
+			self.caster,
+			self.ability,
+			"modifier_generic_silence",
+			{ duration = self.ability.talents.q4_silence * (1 - self.parent:GetStatusResistance()) }
+		)
+	end
+end
+
+function modifier_skeleton_king_hellfire_blast_custom_stun:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_OVERRIDE_ANIMATION,
+	}
+end
+
+function modifier_skeleton_king_hellfire_blast_custom_stun:GetOverrideAnimation()
+	return ACT_DOTA_DISABLED
+end
+
+function modifier_skeleton_king_hellfire_blast_custom_stun:CheckState()
+	return {
+		[MODIFIER_STATE_STUNNED] = true,
+	}
+end
+
+modifier_skeleton_king_hellfire_blast_custom_debuff = class(mod_visible)
+function modifier_skeleton_king_hellfire_blast_custom_debuff:IsPurgable()
+	return true
+end
+function modifier_skeleton_king_hellfire_blast_custom_debuff:OnCreated()
+	self.caster = self:GetCaster()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.per_damage = self.ability.dot_damage
+	self.move_slow = self.ability.dot_slow
+	self.count = self.ability.slow_duration
+
+	if not IsServer() then
+		return
+	end
+	if self.parent:IsCreep() then
+		self.per_damage = self.per_damage * (1 + self.ability.creeps_damage)
+	end
+	self.damageTable = {
+		victim = self.parent,
+		attacker = self.caster,
+		ability = self.ability,
+		damage = self.per_damage,
+		damage_type = DAMAGE_TYPE_MAGICAL,
+	}
+
+	local particle_name_debuff = wearables_system:GetParticleReplacementAbility(
+		self.caster,
+		"particles/units/heroes/hero_skeletonking/skeletonking_hellfireblast_debuff.vpcf",
+		self
+	)
+	self.parent:GenericParticle(particle_name_debuff, self)
+
+	self.interval = 1
+	self:OnIntervalThink()
+	self:StartIntervalThink(self.interval)
+end
+
+function modifier_skeleton_king_hellfire_blast_custom_debuff:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+		MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE,
+		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
+		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
+	}
+end
+
+function modifier_skeleton_king_hellfire_blast_custom_debuff:GetModifierHealChange()
+	if self.ability.talents.has_h4 == 0 then
+		return
+	end
+	return self.ability.talents.h4_heal_reduce
+end
+
+function modifier_skeleton_king_hellfire_blast_custom_debuff:GetModifierHPRegenAmplify_Percentage()
+	if self.ability.talents.has_h4 == 0 then
+		return
+	end
+	return self.ability.talents.h4_heal_reduce
+end
+
+function modifier_skeleton_king_hellfire_blast_custom_debuff:GetModifierDamageOutgoing_Percentage()
+	if self.ability.talents.has_h4 == 0 then
+		return
+	end
+	return self.ability.talents.h4_damage_reduce
+end
+
+function modifier_skeleton_king_hellfire_blast_custom_debuff:GetModifierSpellAmplify_Percentage()
+	if self.ability.talents.has_h4 == 0 then
+		return
+	end
+	return self.ability.talents.h4_damage_reduce
+end
+
+function modifier_skeleton_king_hellfire_blast_custom_debuff:GetModifierMoveSpeedBonus_Percentage()
+	return self.move_slow
+end
+
+function modifier_skeleton_king_hellfire_blast_custom_debuff:OnIntervalThink()
+	if not IsServer() then
+		return
+	end
+	if self.count < 1 and self.ability.talents.has_h4 == 0 then
+		return
+	end
+
+	self.count = self.count - 1
+	DoDamage(self.damageTable)
+end
+
+modifier_skeleton_king_hellfire_blast_custom_tracker = class(mod_hidden)
+function modifier_skeleton_king_hellfire_blast_custom_tracker:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+	self.ability.tracker = self
+	self.ability:UpdateTalents()
+
+	self.legendary_ability = self.parent:FindAbilityByName("skeleton_king_hellfire_blast_custom_legendary")
+	if IsValid(self.legendary_ability) then
+		if IsServer() and not self.legendary_ability:IsTrained() then
+			self.legendary_ability:SetLevel(1)
+		end
+		self.legendary_ability:UpdateTalents()
+	end
+
+	self.ability.stun_duration = self.ability:GetSpecialValueFor("blast_stun_duration")
+	self.ability.base_damage = self.ability:GetSpecialValueFor("blast_damage")
+	self.ability.proj_speed = self.ability:GetSpecialValueFor("blast_speed")
+	self.ability.radius = self.ability:GetSpecialValueFor("radius")
+	self.ability.creeps_damage = self.ability:GetSpecialValueFor("creeps_damage") / 100
+
+	self.ability.dot_damage = self.ability:GetSpecialValueFor("blast_dot_damage")
+	self.ability.dot_slow = self.ability:GetSpecialValueFor("blast_slow")
+	self.ability.slow_duration = self.ability:GetSpecialValueFor("blast_dot_duration")
+end
+
+function modifier_skeleton_king_hellfire_blast_custom_tracker:OnRefresh()
+	self.ability.base_damage = self.ability:GetSpecialValueFor("blast_damage")
+	self.ability.stun_duration = self.ability:GetSpecialValueFor("blast_stun_duration")
+	self.ability.dot_damage = self.ability:GetSpecialValueFor("blast_dot_damage")
+end
+
+function modifier_skeleton_king_hellfire_blast_custom_tracker:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_CAST_RANGE_BONUS_STACKING,
+		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
+	}
+end
+
+function modifier_skeleton_king_hellfire_blast_custom_tracker:GetModifierCastRangeBonusStacking()
+	return self.ability.talents.h1_range
+end
+
+function modifier_skeleton_king_hellfire_blast_custom_tracker:GetModifierSpellAmplify_Percentage()
+	return self.ability.talents.q1_spell
+end
+
+function modifier_skeleton_king_hellfire_blast_custom_tracker:AttackEvent_out(params)
+	if not IsServer() then
+		return
+	end
+	if not params.target:IsUnit() then
+		return
+	end
+
+	local attacker = params.attacker
+
+	if
+		attacker ~= self.parent
+		and (
+			not attacker.owner
+			or attacker.owner ~= self.parent
+			or not attacker:HasModifier("modifier_skeleton_king_vampiric_aura_custom_skeleton_ai")
+		)
+	then
+		return
+	end
+
+	params.target:AddNewModifier(
+		self.parent,
+		self.ability,
+		"modifier_skeleton_king_hellfire_blast_custom_debuff",
+		{ duration = self.ability.slow_duration }
+	)
+
+	local mod = params.target:FindModifierByName("modifier_skeleton_king_hellfire_blast_custom_illusion")
+	if not mod or not mod.target or mod.target:IsNull() or not mod.target:IsAlive() then
+		return
+	end
+
+	mod.target:AddNewModifier(
+		self.parent,
+		self.ability,
+		"modifier_skeleton_king_hellfire_blast_custom_debuff",
+		{ duration = self.ability.slow_duration }
+	)
+end
+
+modifier_skeleton_king_hellfire_blast_custom_quest = class(mod_visible)
+
 skeleton_king_hellfire_blast_custom_legendary = class({})
 skeleton_king_hellfire_blast_custom_legendary.talents = {}
+
+function skeleton_king_hellfire_blast_custom_legendary:UpdateTalents(name)
+	local caster = self:GetCaster()
+	if not self.init then
+		self.init = true
+		self.talents = {
+			has_q7 = 0,
+			q7_talent_cd = caster:GetTalentValue("modifier_skeleton_blast_7", "talent_cd", true),
+			q7_duration = caster:GetTalentValue("modifier_skeleton_blast_7", "duration", true),
+			q7_damage = caster:GetTalentValue("modifier_skeleton_blast_7", "damage", true) / 100,
+		}
+	end
+
+	if caster:HasTalent("modifier_skeleton_blast_7") then
+		self.talents.has_q7 = 1
+	end
+end
 
 function skeleton_king_hellfire_blast_custom_legendary:CreateTalent()
 	self:SetHidden(false)
 end
 
-function skeleton_king_hellfire_blast_custom_legendary:UpdateTalents()
-	local caster = self:GetCaster()
-	if not self.init and caster:HasTalent("modifier_skeleton_blast_7") then
-		self.init = true
-		if IsServer() and not self:IsTrained() then
-			self:SetLevel(1)
-		end
-		self.talents.cd = caster:GetTalentValue("modifier_skeleton_blast_7", "talent_cd", true)
-		self.talents.duration = caster:GetTalentValue("modifier_skeleton_blast_7", "duration", true)
-		self.talents.damage = caster:GetTalentValue("modifier_skeleton_blast_7", "damage", true) / 100
-	end
-end
-
 function skeleton_king_hellfire_blast_custom_legendary:GetCooldown()
-	return self.talents.cd
+	return self.talents.has_q7 == 1 and self.talents.q7_talent_cd or 0
 end
 
 function skeleton_king_hellfire_blast_custom_legendary:CastFilterResultTarget(target)
@@ -550,43 +791,40 @@ function skeleton_king_hellfire_blast_custom_legendary:CastFilterResultTarget(ta
 		self:GetAbilityTargetTeam(),
 		self:GetAbilityTargetType(),
 		self:GetAbilityTargetFlags(),
-		self:GetCaster():GetTeamNumber()
+		self.caster:GetTeamNumber()
 	)
 end
 
 function skeleton_king_hellfire_blast_custom_legendary:OnAbilityPhaseStart()
-	local caster = self:GetCaster()
-
 	local particle = ParticleManager:CreateParticle(
 		"particles/units/heroes/hero_skeletonking/skeletonking_hellfireblast_warmup.vpcf",
 		PATTACH_CUSTOMORIGIN_FOLLOW,
-		caster
+		self.caster
 	)
 	ParticleManager:SetParticleControlEnt(
 		particle,
 		0,
-		caster,
+		self.caster,
 		PATTACH_POINT_FOLLOW,
 		"attach_attack2",
-		caster:GetAbsOrigin(),
+		self.caster:GetAbsOrigin(),
 		true
 	)
 	ParticleManager:ReleaseParticleIndex(particle)
 	return true
 end
 
-function skeleton_king_hellfire_blast_custom_legendary:OnSpellStart(new_target)
-	local caster = self:GetCaster()
+function skeleton_king_hellfire_blast_custom_legendary:OnSpellStart()
 	local target = self:GetCursorTarget()
 
 	if not target:IsHero() then
 		return
 	end
 
-	caster:EmitSound("WK.Stun_legendary")
-	caster:EmitSound("WK.Stun_legendary2")
+	self.caster:EmitSound("WK.Stun_legendary")
+	self.caster:EmitSound("WK.Stun_legendary2")
 
-	local duration = self.talents.duration
+	local duration = self.talents.q7_duration
 	local illusion_target = target
 	if illusion_target.lifestealer_creep and illusion_target.owner then
 		illusion_target = illusion_target.owner
@@ -606,10 +844,10 @@ function skeleton_king_hellfire_blast_custom_legendary:OnSpellStart(new_target)
 			illusion,
 			self,
 			"modifier_skeleton_king_hellfire_blast_custom_illusion",
-			{ duration = duration, caster = caster:entindex(), target = target:entindex() }
+			{ duration = duration, caster = self.caster:entindex(), target = target:entindex() }
 		)
 		illusion:AddNewModifier(illusion, self, "modifier_chaos_knight_phantasm_illusion", {})
-		FindClearSpaceForUnit(illusion, caster:GetAbsOrigin() + caster:GetForwardVector() * 200, false)
+		FindClearSpaceForUnit(illusion, self.caster:GetAbsOrigin() + self.caster:GetForwardVector() * 200, false)
 
 		local particle =
 			ParticleManager:CreateParticle("particles/wk_stun_legen.vpcf", PATTACH_CUSTOMORIGIN_FOLLOW, target)
@@ -642,14 +880,6 @@ end
 function modifier_skeleton_king_hellfire_blast_custom_illusion:StatusEffectPriority()
 	return MODIFIER_PRIORITY_ILLUSION
 end
-function modifier_skeleton_king_hellfire_blast_custom_illusion:CheckState()
-	return {
-		[MODIFIER_STATE_STUNNED] = true,
-		[MODIFIER_STATE_COMMAND_RESTRICTED] = true,
-		[MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY] = true,
-	}
-end
-
 function modifier_skeleton_king_hellfire_blast_custom_illusion:OnCreated(table)
 	if not IsServer() then
 		return
@@ -662,7 +892,7 @@ function modifier_skeleton_king_hellfire_blast_custom_illusion:OnCreated(table)
 
 	self.ability:EndCd()
 
-	self.damage = self.ability.talents.damage
+	self.damage = self.ability.talents.q7_damage
 
 	self.parent:AddDamageEvent_inc(self, true)
 	self.caster:AddSpellEvent(self)
@@ -675,6 +905,14 @@ function modifier_skeleton_king_hellfire_blast_custom_illusion:OnCreated(table)
 	self.interval = 0.2
 	self:OnIntervalThink()
 	self:StartIntervalThink(self.interval)
+end
+
+function modifier_skeleton_king_hellfire_blast_custom_illusion:CheckState()
+	return {
+		[MODIFIER_STATE_STUNNED] = true,
+		[MODIFIER_STATE_COMMAND_RESTRICTED] = true,
+		[MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY] = true,
+	}
 end
 
 function modifier_skeleton_king_hellfire_blast_custom_illusion:OnIntervalThink()
@@ -812,7 +1050,7 @@ function modifier_skeleton_king_hellfire_blast_custom_illusion:DamageEvent_inc(p
 	self:PlayEffect()
 
 	self.damageTable.damage = params.original_damage * self.damage
-	DoDamage(self.damageTable)
+	DoDamage(self.damageTable, "modifier_skeleton_blast_7")
 end
 
 function modifier_skeleton_king_hellfire_blast_custom_illusion:OnDestroy()
@@ -825,259 +1063,4 @@ function modifier_skeleton_king_hellfire_blast_custom_illusion:OnDestroy()
 		ParticleManager:CreateParticle("particles/nature_prophet/sprout_treant_death.vpcf", PATTACH_WORLDORIGIN, nil)
 	ParticleManager:SetParticleControl(particle, 0, self.parent:GetAbsOrigin() + Vector(0, 0, 40))
 	ParticleManager:ReleaseParticleIndex(particle)
-
-	self.parent:GenericParticle()
 end
-
-modifier_skeleton_king_hellfire_blast_custom_stun = class({})
-function modifier_skeleton_king_hellfire_blast_custom_stun:IsHidden()
-	return true
-end
-function modifier_skeleton_king_hellfire_blast_custom_stun:IsStunDebuff()
-	return true
-end
-function modifier_skeleton_king_hellfire_blast_custom_stun:IsPurgeException()
-	return true
-end
-function modifier_skeleton_king_hellfire_blast_custom_stun:GetEffectName()
-	return "particles/generic_gameplay/generic_stunned.vpcf"
-end
-function modifier_skeleton_king_hellfire_blast_custom_stun:GetEffectAttachType()
-	return PATTACH_OVERHEAD_FOLLOW
-end
-function modifier_skeleton_king_hellfire_blast_custom_stun:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_OVERRIDE_ANIMATION,
-	}
-end
-
-function modifier_skeleton_king_hellfire_blast_custom_stun:GetOverrideAnimation()
-	return ACT_DOTA_DISABLED
-end
-
-function modifier_skeleton_king_hellfire_blast_custom_stun:CheckState()
-	return {
-		[MODIFIER_STATE_STUNNED] = true,
-	}
-end
-
-function modifier_skeleton_king_hellfire_blast_custom_stun:OnCreated(table)
-	self.caster = self:GetCaster()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.slow_duration = self.ability.slow_duration
-end
-
-function modifier_skeleton_king_hellfire_blast_custom_stun:OnDestroy()
-	if not IsServer() then
-		return
-	end
-	self.parent:AddNewModifier(
-		self.caster,
-		self.ability,
-		"modifier_skeleton_king_hellfire_blast_custom_debuff",
-		{ duration = self.slow_duration }
-	)
-
-	if self.ability.talents.has_q4 == 1 then
-		self.parent:EmitSound("SF.Raze_silence")
-		self.parent:AddNewModifier(
-			self.caster,
-			self.ability,
-			"modifier_generic_silence",
-			{ duration = self.ability.talents.q4_silence * (1 - self.parent:GetStatusResistance()) }
-		)
-	end
-end
-
-modifier_skeleton_king_hellfire_blast_custom_debuff = class({})
-function modifier_skeleton_king_hellfire_blast_custom_debuff:IsPurgable()
-	return true
-end
-function modifier_skeleton_king_hellfire_blast_custom_debuff:IsHidden()
-	return false
-end
-function modifier_skeleton_king_hellfire_blast_custom_debuff:OnCreated(kv)
-	self.caster = self:GetCaster()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.per_damage = self.ability.dot_damage
-	self.move_slow = self.ability.dot_slow
-	self.count = self.ability.slow_duration
-
-	if not IsServer() then
-		return
-	end
-	if self.parent:IsCreep() then
-		self.per_damage = self.per_damage * (1 + self.ability.creeps_damage)
-	end
-	self.damageTable = {
-		victim = self.parent,
-		attacker = self.caster,
-		ability = self.ability,
-		damage = self.per_damage,
-		damage_type = DAMAGE_TYPE_MAGICAL,
-	}
-
-	local particle_name_debuff = wearables_system:GetParticleReplacementAbility(
-		self.caster,
-		"particles/units/heroes/hero_skeletonking/skeletonking_hellfireblast_debuff.vpcf",
-		self
-	)
-	self.parent:GenericParticle(particle_name_debuff, self)
-
-	self.interval = 1
-	self:OnIntervalThink()
-	self:StartIntervalThink(self.interval)
-end
-
-function modifier_skeleton_king_hellfire_blast_custom_debuff:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-		MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE,
-		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
-		--MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET,
-		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
-		--MODIFIER_PROPERTY_LIFESTEAL_AMPLIFY_PERCENTAGE,
-	}
-end
-
-function modifier_skeleton_king_hellfire_blast_custom_debuff:GetModifierLifestealRegenAmplify_Percentage()
-	if self.ability.talents.has_h4 == 0 then
-		return
-	end
-	return self.ability.talents.h4_heal_reduce
-end
-
-function modifier_skeleton_king_hellfire_blast_custom_debuff:GetModifierHealChange()
-	if self.ability.talents.has_h4 == 0 then
-		return
-	end
-	return self.ability.talents.h4_heal_reduce
-end
-
-function modifier_skeleton_king_hellfire_blast_custom_debuff:GetModifierHPRegenAmplify_Percentage()
-	if self.ability.talents.has_h4 == 0 then
-		return
-	end
-	return self.ability.talents.h4_heal_reduce
-end
-
-function modifier_skeleton_king_hellfire_blast_custom_debuff:GetModifierDamageOutgoing_Percentage()
-	if self.ability.talents.has_h4 == 0 then
-		return
-	end
-	return self.ability.talents.h4_damage_reduce
-end
-
-function modifier_skeleton_king_hellfire_blast_custom_debuff:GetModifierSpellAmplify_Percentage()
-	if self.ability.talents.has_h4 == 0 then
-		return
-	end
-	return self.ability.talents.h4_damage_reduce
-end
-
-function modifier_skeleton_king_hellfire_blast_custom_debuff:GetModifierMoveSpeedBonus_Percentage()
-	return self.move_slow
-end
-
-function modifier_skeleton_king_hellfire_blast_custom_debuff:OnIntervalThink()
-	if not IsServer() then
-		return
-	end
-	if self.count < 1 and self.ability.talents.has_h4 == 0 then
-		return
-	end
-
-	self.count = self.count - 1
-	DoDamage(self.damageTable)
-end
-
-modifier_skeleton_king_hellfire_blast_custom_tracker = class(mod_hidden)
-function modifier_skeleton_king_hellfire_blast_custom_tracker:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-	self.ability.tracker = self
-	self.ability:UpdateTalents()
-
-	self.legendary_ability = self.parent:FindAbilityByName("skeleton_king_hellfire_blast_custom_legendary")
-	if self.legendary_ability then
-		self.legendary_ability:UpdateTalents()
-	end
-
-	self.ability.stun_duration = self.ability:GetSpecialValueFor("blast_stun_duration")
-	self.ability.base_damage = self.ability:GetSpecialValueFor("blast_damage")
-	self.ability.proj_speed = self.ability:GetSpecialValueFor("blast_speed")
-	self.ability.radius = self.ability:GetSpecialValueFor("radius")
-	self.ability.creeps_damage = self.ability:GetSpecialValueFor("creeps_damage") / 100
-
-	self.ability.dot_damage = self.ability:GetSpecialValueFor("blast_dot_damage")
-	self.ability.dot_slow = self.ability:GetSpecialValueFor("blast_slow")
-	self.ability.slow_duration = self.ability:GetSpecialValueFor("blast_dot_duration")
-end
-
-function modifier_skeleton_king_hellfire_blast_custom_tracker:OnRefresh(table)
-	self.ability.base_damage = self.ability:GetSpecialValueFor("blast_damage")
-	self.ability.stun_duration = self.ability:GetSpecialValueFor("blast_stun_duration")
-	self.ability.dot_damage = self.ability:GetSpecialValueFor("blast_dot_damage")
-end
-
-function modifier_skeleton_king_hellfire_blast_custom_tracker:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_CAST_RANGE_BONUS_STACKING,
-		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
-	}
-end
-
-function modifier_skeleton_king_hellfire_blast_custom_tracker:GetModifierCastRangeBonusStacking()
-	return self.ability.talents.h1_range
-end
-
-function modifier_skeleton_king_hellfire_blast_custom_tracker:GetModifierSpellAmplify_Percentage()
-	return self.ability.talents.q1_spell
-end
-
-function modifier_skeleton_king_hellfire_blast_custom_tracker:AttackEvent_out(params)
-	if not IsServer() then
-		return
-	end
-	if not params.target:IsUnit() then
-		return
-	end
-
-	local attacker = params.attacker
-
-	if
-		attacker ~= self.parent
-		and (
-			not attacker.owner
-			or attacker.owner ~= self.parent
-			or not attacker:HasModifier("modifier_skeleton_king_vampiric_aura_custom_skeleton_ai")
-		)
-	then
-		return
-	end
-
-	params.target:AddNewModifier(
-		self.parent,
-		self.ability,
-		"modifier_skeleton_king_hellfire_blast_custom_debuff",
-		{ duration = self.ability.slow_duration }
-	)
-
-	local mod = params.target:FindModifierByName("modifier_skeleton_king_hellfire_blast_custom_illusion")
-	if not mod or not mod.target or mod.target:IsNull() or not mod.target:IsAlive() then
-		return
-	end
-
-	mod.target:AddNewModifier(
-		self.parent,
-		self.ability,
-		"modifier_skeleton_king_hellfire_blast_custom_debuff",
-		{ duration = self.ability.slow_duration }
-	)
-end
-
-modifier_skeleton_king_hellfire_blast_custom_quest = class(mod_visible)

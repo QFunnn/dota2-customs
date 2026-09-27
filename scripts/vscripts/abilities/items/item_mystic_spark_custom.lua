@@ -20,10 +20,8 @@ function item_mystic_spark_custom:GetIntrinsicModifierName()
 	return "modifier_item_mystic_spark_custom"
 end
 
-function item_mystic_spark_custom:Precache(context)
-	if self:GetCaster() and self:GetCaster():IsIllusion() then
-		return
-	end
+function item_mystic_spark_custom:Spawn()
+	self.spell_damage = self:GetSpecialValueFor("spell_damage")
 end
 
 modifier_item_mystic_spark_custom = class(mod_hidden)
@@ -34,7 +32,7 @@ function modifier_item_mystic_spark_custom:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.spell_damage = self.ability:GetSpecialValueFor("spell_damage")
+	self.spell_damage = self.ability.spell_damage
 end
 
 function modifier_item_mystic_spark_custom:DeclareFunctions()

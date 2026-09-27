@@ -61,10 +61,7 @@ function item_diffusal_blade_custom:OnSpellStart()
 	)
 end
 
-modifier_item_diffusal_blade_custom_debuff_active = class({})
-function modifier_item_diffusal_blade_custom_debuff_active:IsHidden()
-	return false
-end
+modifier_item_diffusal_blade_custom_debuff_active = class(mod_visible)
 function modifier_item_diffusal_blade_custom_debuff_active:IsPurgable()
 	return true
 end

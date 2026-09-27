@@ -61,15 +61,12 @@ LinkLuaModifier(
 
 leshrac_diabolic_edict_custom = class({})
 leshrac_diabolic_edict_custom.talents = {}
-leshrac_diabolic_edict_custom.active_mods = {}
-leshrac_diabolic_edict_custom.count = 0
 
 function leshrac_diabolic_edict_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
 	end
 
-	PrecacheResource("particle", "particles/units/heroes/hero_leshrac/leshrac_diabolic_edict.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_leshrac/leshrac_diabolic_edict.vpcf", context)
 	PrecacheResource("particle", "particles/leshrac_diabolic_legendary_damage.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_monkey_king/monkey_king_quad_tap_hit.vpcf", context)
@@ -82,6 +79,8 @@ function leshrac_diabolic_edict_custom:Precache(context)
 	PrecacheResource("particle", "particles/cleance_blade.vpcf", context)
 	PrecacheResource("particle", "particles/leshrac/edict_shield.vpcf", context)
 	PrecacheResource("particle", "particles/juggernaut/omni_root.vpcf", context)
+	PrecacheResource("particle", "particles/leshrac_speed.vpcf", context)
+	PrecacheResource("particle", "particles/lina_attack_slow.vpcf", context)
 end
 
 function leshrac_diabolic_edict_custom:UpdateTalents(name)
@@ -128,6 +127,9 @@ function leshrac_diabolic_edict_custom:UpdateTalents(name)
 
 			has_q7 = 0,
 		}
+
+		self.active_mods = self.active_mods or {}
+		self.count = self.count or 0
 	end
 
 	if caster:HasTalent("modifier_leshrac_edict_1") then
@@ -179,15 +181,14 @@ function leshrac_diabolic_edict_custom:GetIntrinsicModifierName()
 end
 
 function leshrac_diabolic_edict_custom:GetAbilityTextureName()
-	if self.parent:HasModifier("modifier_leshrac_diabolic_edict_custom") and self.ability.talents.has_w7 == 1 then
+	if self.parent:HasModifier("modifier_leshrac_diabolic_edict_custom") and self.talents.has_w7 == 1 then
 		return "stop_icons/leshrac_diabolic_edict"
 	end
 	return wearables_system:GetAbilityIconReplacement(self.caster, "leshrac_diabolic_edict", self)
 end
 
 function leshrac_diabolic_edict_custom:GetRadius()
-	return (self.radius and self.radius or 0)
-		+ (self.caster.leshrac_innate and self.caster.leshrac_innate:GetRange() or 0)
+	return (self.radius or 0) + (IsValid(self.caster.leshrac_innate) and self.caster.leshrac_innate:GetRange() or 0)
 end
 
 function leshrac_diabolic_edict_custom:GetCastRange(vLocation, hTarget)
@@ -195,13 +196,13 @@ function leshrac_diabolic_edict_custom:GetCastRange(vLocation, hTarget)
 end
 
 function leshrac_diabolic_edict_custom:GetCooldown(iLevel)
-	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.w2_cd and self.talents.w2_cd or 0)
+	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.w2_cd or 0)
 end
 
 function leshrac_diabolic_edict_custom:GetBehavior()
 	if
-		self.ability.talents.has_h5 == 1
-		or (self.parent:HasModifier("modifier_leshrac_diabolic_edict_custom") and self.ability.talents.has_w7 == 1)
+		self.talents.has_h5 == 1
+		or (self.parent:HasModifier("modifier_leshrac_diabolic_edict_custom") and self.talents.has_w7 == 1)
 	then
 		return DOTA_ABILITY_BEHAVIOR_NO_TARGET + DOTA_ABILITY_BEHAVIOR_IMMEDIATE
 	end
@@ -209,7 +210,7 @@ function leshrac_diabolic_edict_custom:GetBehavior()
 end
 
 function leshrac_diabolic_edict_custom:GetManaCost(iLevel)
-	if self.parent:HasModifier("modifier_leshrac_diabolic_edict_custom") and self.ability.talents.has_w7 == 1 then
+	if self.parent:HasModifier("modifier_leshrac_diabolic_edict_custom") and self.talents.has_w7 == 1 then
 		return 0
 	end
 	return self.BaseClass.GetManaCost(self, iLevel)
@@ -217,12 +218,12 @@ end
 
 function leshrac_diabolic_edict_custom:OnSpellStart()
 	local mod = self.caster:FindModifierByName("modifier_leshrac_diabolic_edict_custom")
-	if mod and self.ability.talents.has_w7 == 1 then
+	if mod and self.talents.has_w7 == 1 then
 		mod:Destroy()
 		return
 	end
 
-	if self.ability.talents.has_h5 == 1 then
+	if self.talents.has_h5 == 1 then
 		self.caster:StartGesture(ACT_DOTA_CAST_ABILITY_4)
 	end
 
@@ -232,7 +233,7 @@ function leshrac_diabolic_edict_custom:OnSpellStart()
 		end
 	end
 
-	if self.ability.talents.has_w7 == 1 then
+	if self.talents.has_w7 == 1 then
 		local enemies = self.caster:FindTargets(self:GetRadius())
 		for _, enemy in pairs(enemies) do
 			enemy:AddNewModifier(
@@ -257,16 +258,15 @@ end
 
 function leshrac_diabolic_edict_custom:DealDamage(proc)
 	local enemies = self.caster:FindTargets(self:GetRadius(), nil, FIND_ANY_ORDER)
-	local damage = self.ability.damage + self.ability.talents.w1_damage
-	local max = self.ability.targets
+	local damage = self.damage + self.talents.w1_damage
+	local max = self.targets
 	local count = 0
 
-	local legendary_effect = nil
 	local damage_ability = nil
 	local damageTable = {
 		attacker = self.caster,
 		damage = damage,
-		damage_type = self.ability.talents.has_q7 == 1 and DAMAGE_TYPE_PHYSICAL or DAMAGE_TYPE_MAGICAL,
+		damage_type = self.talents.has_q7 == 1 and DAMAGE_TYPE_PHYSICAL or DAMAGE_TYPE_MAGICAL,
 		ability = self,
 	}
 
@@ -275,19 +275,20 @@ function leshrac_diabolic_edict_custom:DealDamage(proc)
 		max = 1
 	end
 
-	if self.ability.talents.has_w4 == 1 and #enemies > 0 then
+	if self.talents.has_w4 == 1 and #enemies > 0 then
 		self.count = self.count + 1
-		if self.count >= self.ability.talents.w4_count then
+		if self.count >= self.talents.w4_count then
 			self.count = 0
-			self.caster:CdItems(self.ability.talents.w4_cd_items)
+			self.caster:CdItems(self.talents.w4_cd_items)
 		end
 	end
 
 	for _, enemy in pairs(enemies) do
+		local legendary_effect = nil
 		local mod = enemy:FindModifierByName("modifier_leshrac_diabolic_edict_custom_legendary_damage")
 		if mod and mod.active and self.caster:HasModifier("modifier_leshrac_diabolic_edict_custom") then
 			mod:IncrementStackCount()
-			mod:SetDuration(self.ability.talents.w7_effect_duration, true)
+			mod:SetDuration(self.talents.w7_effect_duration, true)
 			legendary_effect = true
 		end
 		damageTable.victim = enemy
@@ -297,19 +298,14 @@ function leshrac_diabolic_edict_custom:DealDamage(proc)
 		if self.talents.has_w1 == 1 then
 			enemy:AddNewModifier(
 				self.caster,
-				self.ability,
+				self,
 				"modifier_leshrac_diabolic_edict_custom_slow",
-				{ duration = self.ability.talents.w1_duration }
+				{ duration = self.talents.w1_duration }
 			)
 		end
 
 		if enemy:IsRealHero() then
-			self.caster:AddNewModifier(
-				self.caster,
-				self.ability,
-				"modifier_leshrac_diabolic_edict_custom_damage_stack",
-				{}
-			)
+			self.caster:AddNewModifier(self.caster, self, "modifier_leshrac_diabolic_edict_custom_damage_stack", {})
 		end
 
 		count = count + 1
@@ -327,7 +323,7 @@ function leshrac_diabolic_edict_custom:PlayEffects(unit, legendary_effect)
 	local particle_cast = wearables_system:GetParticleReplacementAbility(
 		self.caster,
 		"particles/units/heroes/hero_leshrac/leshrac_diabolic_edict.vpcf",
-		self.ability,
+		self,
 		"leshrac_diabolic_edict_custom"
 	)
 	local sound_cast = "Hero_Leshrac.Diabolic_Edict"
@@ -643,12 +639,6 @@ end
 function modifier_leshrac_diabolic_edict_custom_legendary_damage:GetEffectAttachType()
 	return PATTACH_OVERHEAD_FOLLOW
 end
-function modifier_leshrac_diabolic_edict_custom_legendary_damage:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
-	}
-end
-
 function modifier_leshrac_diabolic_edict_custom_legendary_damage:OnCreated()
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
@@ -694,6 +684,12 @@ function modifier_leshrac_diabolic_edict_custom_legendary_damage:OnDestroy()
 		return
 	end
 	self.caster:UpdateUIshort({ hide = 1, hide_full = 1, style = "LeshracEdict" })
+end
+
+function modifier_leshrac_diabolic_edict_custom_legendary_damage:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
+	}
 end
 
 function modifier_leshrac_diabolic_edict_custom_legendary_damage:GetModifierMagicalResistanceBonus()
@@ -860,7 +856,7 @@ function modifier_leshrac_diabolic_edict_custom_damage_stack:OnIntervalThink()
 		return
 	end
 
-	self:GetParent():EmitSound("BS.Thirst_legendary_active")
+	self.parent:EmitSound("BS.Thirst_legendary_active")
 	self.parent:GenericParticle("particles/leshrac/edict_proc.vpcf")
 	self:StartIntervalThink(-1)
 end

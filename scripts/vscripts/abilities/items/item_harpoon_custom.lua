@@ -34,6 +34,21 @@ function item_harpoon_custom:GetIntrinsicModifierName()
 	return "modifier_item_harpoon_custom"
 end
 
+function item_harpoon_custom:Spawn()
+	self.projectile_speed = self:GetSpecialValueFor("projectile_speed")
+	self.min_distance = self:GetSpecialValueFor("min_distance")
+	self.pull_duration = self:GetSpecialValueFor("pull_duration")
+	self.damage = self:GetSpecialValueFor("damage")
+	self.slow_duration = self:GetSpecialValueFor("slow_duration")
+	self.bonus_intellect = self:GetSpecialValueFor("bonus_intellect")
+	self.bonus_agility = self:GetSpecialValueFor("bonus_agility")
+	self.bonus_mana_regen = self:GetSpecialValueFor("bonus_mana_regen")
+	self.bonus_damage = self:GetSpecialValueFor("bonus_damage")
+	self.bonus_strength = self:GetSpecialValueFor("bonus_strength")
+	self.passive_cooldown = self:GetSpecialValueFor("passive_cooldown")
+	self.speed = self:GetSpecialValueFor("speed")
+end
+
 function item_harpoon_custom:OnAbilityPhaseStart()
 	local target = self:GetCursorTarget()
 	if not target.IsTree and not IsTree(target) then
@@ -75,7 +90,7 @@ function item_harpoon_custom:OnSpellStart()
 		Source = caster,
 		Ability = self,
 		EffectName = "particles/items_fx/harpoon_projectile.vpcf",
-		iMoveSpeed = self:GetSpecialValueFor("projectile_speed"),
+		iMoveSpeed = self.projectile_speed,
 		vSourceLoc = caster:GetAbsOrigin(),
 		bDodgeable = false,
 		bProvidesVision = false,
@@ -89,8 +104,8 @@ function item_harpoon_custom:OnProjectileHit(target, vLocation)
 	end
 	local caster = self:GetCaster()
 	local is_tree = target:HasModifier("modifier_item_harpoon_custom_thinker")
-	local min_dist = self:GetSpecialValueFor("min_distance")
-	local duration = self:GetSpecialValueFor("pull_duration")
+	local min_dist = self.min_distance
+	local duration = self.pull_duration
 
 	if not is_tree then
 		DoDamage({
@@ -98,7 +113,7 @@ function item_harpoon_custom:OnProjectileHit(target, vLocation)
 			attacker = caster,
 			ability = self,
 			damage_type = DAMAGE_TYPE_PURE,
-			damage = self:GetSpecialValueFor("damage"),
+			damage = self.damage,
 		})
 	else
 		min_dist = min_dist * 2
@@ -118,7 +133,7 @@ function item_harpoon_custom:OnProjectileHit(target, vLocation)
 			caster,
 			self,
 			"modifier_item_harpoon_custom_slow",
-			{ duration = (1 - target:GetStatusResistance()) * self:GetSpecialValueFor("slow_duration") }
+			{ duration = (1 - target:GetStatusResistance()) * self.slow_duration }
 		)
 		target:AddNewModifier(
 			caster,
@@ -135,8 +150,6 @@ function item_harpoon_custom:OnProjectileHit(target, vLocation)
 		{ duration = duration, target = target:entindex(), is_tree = is_tree, min_dist = min_dist }
 	)
 end
-
---///////////////////
 
 modifier_item_harpoon_custom_pull = class(mod_hidden)
 function modifier_item_harpoon_custom_pull:GetStatusEffectName()
@@ -198,9 +211,7 @@ function modifier_item_harpoon_custom_pull:OnDestroy()
 	if IsValid(self.target) then
 		dir = (self.target:GetAbsOrigin() - self.parent:GetAbsOrigin()):Normalized()
 	end
-	dir.z = 0
-	self.parent:SetForwardVector(dir)
-	self.parent:FaceTowards(self.parent:GetAbsOrigin() + dir * 50)
+	self.parent:FacePoint(self.parent:GetAbsOrigin() + dir)
 
 	self.parent:FadeGesture(ACT_DOTA_FLAIL)
 	ResolveNPCPositions(self.parent:GetAbsOrigin(), 128)
@@ -242,18 +253,9 @@ function modifier_item_harpoon_custom_pull:OnHorizontalMotionInterrupted()
 end
 
 modifier_item_harpoon_custom = class(mod_hidden)
-function modifier_item_harpoon_custom:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
-		MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
-		MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
-		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
-		MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
-	}
-end
-
 function modifier_item_harpoon_custom:OnCreated()
 	self.parent = self:GetParent()
+	self.caster = self:GetCaster()
 	self.ability = self:GetAbility()
 
 	if
@@ -262,12 +264,22 @@ function modifier_item_harpoon_custom:OnCreated()
 		self.parent:AddAttackStartEvent_out(self)
 	end
 
-	self.int = self.ability:GetSpecialValueFor("bonus_intellect")
-	self.agi = self.ability:GetSpecialValueFor("bonus_agility")
-	self.regen = self.ability:GetSpecialValueFor("bonus_mana_regen")
-	self.damage = self.ability:GetSpecialValueFor("bonus_damage")
-	self.str = self.ability:GetSpecialValueFor("bonus_strength")
-	self.slow_duration = self.ability:GetSpecialValueFor("slow_duration")
+	self.int = self.ability.bonus_intellect
+	self.agi = self.ability.bonus_agility
+	self.regen = self.ability.bonus_mana_regen
+	self.damage = self.ability.bonus_damage
+	self.str = self.ability.bonus_strength
+	self.slow_duration = self.ability.slow_duration
+end
+
+function modifier_item_harpoon_custom:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
+		MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
+		MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
+		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
+		MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
+	}
 end
 
 function modifier_item_harpoon_custom:StartSpeed(target, slow)
@@ -285,22 +297,32 @@ function modifier_item_harpoon_custom:StartSpeed(target, slow)
 		self.parent,
 		self.ability,
 		"modifier_item_harpoon_custom_cd",
-		{ duration = self.ability:GetSpecialValueFor("passive_cooldown") * self.parent:GetCooldownReduction() }
+		{ duration = self.ability.passive_cooldown * self.parent:GetCooldownReduction() }
 	)
 	self.parent:AddNewModifier(self.parent, self.ability, "modifier_item_harpoon_custom_speed", {})
 
-	if self.ability and target:IsUnit() and slow then
-		target:AddNewModifier(
-			self:GetCaster(),
-			self.ability,
-			"modifier_item_harpoon_custom_slow",
-			{ duration = (1 - target:GetStatusResistance()) * self.slow_duration }
-		)
+	if not self.ability then
+		return
 	end
+	if not target:IsUnit() then
+		return
+	end
+	if not slow then
+		return
+	end
+	target:AddNewModifier(
+		self.caster,
+		self.ability,
+		"modifier_item_harpoon_custom_slow",
+		{ duration = (1 - target:GetStatusResistance()) * self.slow_duration }
+	)
 end
 
 function modifier_item_harpoon_custom:AttackStartEvent_out(params)
 	if not IsServer() then
+		return
+	end
+	if not IsValid(self.ability) then
 		return
 	end
 	if self.parent ~= params.attacker then
@@ -351,13 +373,7 @@ function modifier_item_harpoon_custom:GetModifierBonusStats_Strength()
 	return self.str
 end
 
-modifier_item_harpoon_custom_cd = class({})
-function modifier_item_harpoon_custom_cd:IsHidden()
-	return false
-end
-function modifier_item_harpoon_custom_cd:IsPurgable()
-	return false
-end
+modifier_item_harpoon_custom_cd = class(mod_visible)
 function modifier_item_harpoon_custom_cd:RemoveOnDeath()
 	return false
 end
@@ -365,13 +381,19 @@ function modifier_item_harpoon_custom_cd:IsDebuff()
 	return true
 end
 
-modifier_item_harpoon_custom_speed = class({})
-function modifier_item_harpoon_custom_speed:IsHidden()
-	return true
+modifier_item_harpoon_custom_speed = class(mod_hidden)
+function modifier_item_harpoon_custom_speed:OnCreated(table)
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+	self.name = self.ability:GetName()
+	self.speed = self.ability.speed
+
+	if not IsServer() then
+		return
+	end
+	self:StartIntervalThink(0.2)
 end
-function modifier_item_harpoon_custom_speed:IsPurgable()
-	return false
-end
+
 function modifier_item_harpoon_custom_speed:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
@@ -383,18 +405,6 @@ function modifier_item_harpoon_custom_speed:GetModifierAttackSpeedBonus_Constant
 		return
 	end
 	return self.speed
-end
-
-function modifier_item_harpoon_custom_speed:OnCreated(table)
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-	self.name = self.ability:GetName()
-	self.speed = self.ability:GetSpecialValueFor("speed")
-
-	if not IsServer() then
-		return
-	end
-	self:StartIntervalThink(0.2)
 end
 
 function modifier_item_harpoon_custom_speed:OnIntervalThink()
@@ -409,10 +419,7 @@ function modifier_item_harpoon_custom_speed:OnIntervalThink()
 	end
 end
 
-modifier_item_harpoon_custom_slow = class({})
-function modifier_item_harpoon_custom_slow:IsHidden()
-	return false
-end
+modifier_item_harpoon_custom_slow = class(mod_visible)
 function modifier_item_harpoon_custom_slow:IsPurgable()
 	return true
 end
@@ -427,6 +434,10 @@ function modifier_item_harpoon_custom_slow:GetModifierMoveSpeedBonus_Percentage(
 end
 
 modifier_item_harpoon_custom_thinker = class(mod_hidden)
+function modifier_item_harpoon_custom_thinker:OnCreated()
+	self.parent = self:GetParent()
+end
+
 function modifier_item_harpoon_custom_thinker:CheckState()
 	return {
 		[MODIFIER_STATE_NO_HEALTH_BAR] = true,
@@ -444,5 +455,5 @@ function modifier_item_harpoon_custom_thinker:OnDestroy()
 	if not IsServer() then
 		return
 	end
-	self:GetParent():RemoveSelf()
+	self.parent:RemoveSelf()
 end

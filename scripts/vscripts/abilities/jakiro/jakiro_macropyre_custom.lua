@@ -67,6 +67,9 @@ function jakiro_macropyre_custom:Precache(context)
 	PrecacheResource("particle", "particles/jakiro/ring_macropyre/jakiro_macropyre.vpcf", context)
 	PrecacheResource("particle", "particles/jakiro/ring_ice_macropyre/ice_macropyre.vpcf", context)
 	PrecacheResource("particle", "particles/jakiro/macropyre_custom_both.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_jakiro/jakiro_liquid_fire_debuff.vpcf", context)
+	PrecacheResource("particle", "particles/jakiro/path_legendary_caster_fire.vpcf", context)
+	PrecacheResource("particle", "particles/jakiro/liquid_fire_legendary_timer.vpcf", context)
 end
 
 function jakiro_macropyre_custom:UpdateTalents(name)
@@ -124,7 +127,7 @@ function jakiro_macropyre_custom:UpdateTalents(name)
 		self.talents.r2_health = caster:GetTalentValue("modifier_jakiro_macropyre_2", "health")
 		self.talents.r2_cd = caster:GetTalentValue("modifier_jakiro_macropyre_2", "cd")
 		if IsServer() then
-			self.caster:CalculateStatBonus(true)
+			caster:CalculateStatBonus(true)
 		end
 	end
 
@@ -167,11 +170,11 @@ function jakiro_macropyre_custom:GetAbilityTextureName()
 end
 
 function jakiro_macropyre_custom:GetCd()
-	local base = (self.AbilityChargeRestoreTime and self.AbilityChargeRestoreTime or 0)
+	local base = self.AbilityChargeRestoreTime or 0
 	if self.talents.has_r7 == 1 then
 		base = base + self.talents.r7_cd
 	end
-	return base + (self.talents.r2_cd and self.talents.r2_cd or 0)
+	return base + (self.talents.r2_cd or 0)
 end
 
 function jakiro_macropyre_custom:GetAbilityChargeRestoreTime(iLevel)
@@ -197,8 +200,8 @@ function jakiro_macropyre_custom:GetManaCost(level)
 end
 
 function jakiro_macropyre_custom:GetCastRange(vLocation, hTarget)
-	if self.ability.talents.has_r7 == 1 then
-		return self.ability.talents.r7_range
+	if self.talents.has_r7 == 1 then
+		return self.talents.r7_range
 	end
 	return self.BaseClass.GetCastRange(self, vLocation, hTarget)
 end
@@ -212,7 +215,7 @@ function jakiro_macropyre_custom:GetAOERadius()
 end
 
 function jakiro_macropyre_custom:GetRadius()
-	return (self.ability.talents.r7_radius and self.talents.r7_radius or 0)
+	return (self.talents.has_r7 == 1 and self.talents.r7_radius or 0)
 		+ (self.talents.has_r4 == 1 and self.talents.r4_radius_legendary or 0)
 end
 
@@ -222,7 +225,7 @@ function jakiro_macropyre_custom:OnSpellStart()
 	local final_point
 	local duration = self.duration + (self.talents.has_r4 == 1 and self.talents.r4_duration or 0)
 
-	if self.ability.talents.has_r7 == 0 then
+	if self.talents.has_r7 == 0 then
 		local vec = point - self.caster:GetAbsOrigin()
 		vec.z = 0
 		vec = vec:Normalized()
@@ -290,23 +293,29 @@ function modifier_jakiro_macropyre_custom_tracker:DeclareFunctions()
 end
 
 function modifier_jakiro_macropyre_custom_tracker:GetModifierOverrideAbilitySpecial(data)
-	if
-		data.ability == self.ability
-		and data.ability_special_value == "AbilityCharges"
-		and self.ability.talents.has_r7 == 1
-	then
-		return 1
+	if data.ability ~= self.ability then
+		return
 	end
+	if data.ability_special_value ~= "AbilityCharges" then
+		return
+	end
+	if self.ability.talents.has_r7 ~= 1 then
+		return
+	end
+	return 1
 end
 
 function modifier_jakiro_macropyre_custom_tracker:GetModifierOverrideAbilitySpecialValue(data)
-	if
-		data.ability == self.ability
-		and data.ability_special_value == "AbilityCharges"
-		and self.ability.talents.has_r7 == 1
-	then
-		return self.ability.talents.r7_charge
+	if data.ability ~= self.ability then
+		return
 	end
+	if data.ability_special_value ~= "AbilityCharges" then
+		return
+	end
+	if self.ability.talents.has_r7 ~= 1 then
+		return
+	end
+	return self.ability.talents.r7_charge
 end
 
 function modifier_jakiro_macropyre_custom_tracker:GetModifierHealthBonus()
@@ -325,6 +334,24 @@ function modifier_jakiro_macropyre_custom_tracker:GetModifierPercentageCasttime(
 end
 
 modifier_jakiro_macropyre_custom_thinker = class(mod_hidden)
+function modifier_jakiro_macropyre_custom_thinker:IsAura()
+	return self.ability.talents.has_r7 == 1
+end
+function modifier_jakiro_macropyre_custom_thinker:GetAuraDuration()
+	return 0
+end
+function modifier_jakiro_macropyre_custom_thinker:GetAuraRadius()
+	return self.width
+end
+function modifier_jakiro_macropyre_custom_thinker:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_ENEMY
+end
+function modifier_jakiro_macropyre_custom_thinker:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
+end
+function modifier_jakiro_macropyre_custom_thinker:GetModifierAura()
+	return "modifier_jakiro_macropyre_custom_legendary_count"
+end
 function modifier_jakiro_macropyre_custom_thinker:OnCreated(table)
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
@@ -416,7 +443,6 @@ function modifier_jakiro_macropyre_custom_thinker:PlayEffect(name)
 	direction.z = 0
 	direction = direction:Normalized()
 	ParticleManager:SetParticleControlForward(effect_cast, 0, direction)
-	--ParticleManager:SetParticleControlOrientation(effect_cast, 0, (self.final_point- self.origin ):Normalized(), Vector(0,1,0), Vector(1,0,0))
 	ParticleManager:SetParticleControl(effect_cast, 1, self.final_point)
 	ParticleManager:SetParticleControl(effect_cast, 2, Vector(self.duration, 0, 0))
 	ParticleManager:SetParticleControl(effect_cast, 4, Vector(self.visual_width, self.visual_width, self.visual_width))
@@ -491,25 +517,6 @@ function modifier_jakiro_macropyre_custom_thinker:OnDestroy()
 	self.parent:StopSound(self.loop_sound)
 end
 
-function modifier_jakiro_macropyre_custom_thinker:IsAura()
-	return self.ability.talents.has_r7 == 1
-end
-function modifier_jakiro_macropyre_custom_thinker:GetAuraDuration()
-	return 0
-end
-function modifier_jakiro_macropyre_custom_thinker:GetAuraRadius()
-	return self.width
-end
-function modifier_jakiro_macropyre_custom_thinker:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_ENEMY
-end
-function modifier_jakiro_macropyre_custom_thinker:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
-end
-function modifier_jakiro_macropyre_custom_thinker:GetModifierAura()
-	return "modifier_jakiro_macropyre_custom_legendary_count"
-end
-
 modifier_jakiro_macropyre_custom_fire = class(mod_visible)
 function modifier_jakiro_macropyre_custom_fire:GetTexture()
 	return "jakiro_macropyre"
@@ -564,6 +571,12 @@ end
 modifier_jakiro_macropyre_custom_frost = class(mod_visible)
 function modifier_jakiro_macropyre_custom_frost:GetTexture()
 	return "jakiro_macropyre_ice"
+end
+function modifier_jakiro_macropyre_custom_frost:GetStatusEffectName()
+	return "particles/status_fx/status_effect_frost.vpcf"
+end
+function modifier_jakiro_macropyre_custom_frost:StatusEffectPriority()
+	return MODIFIER_PRIORITY_NORMAL
 end
 function modifier_jakiro_macropyre_custom_frost:OnCreated(table)
 	self.parent = self:GetParent()
@@ -622,29 +635,20 @@ function modifier_jakiro_macropyre_custom_frost:GetModifierMoveSpeedBonus_Percen
 	return self.slow
 end
 
-function modifier_jakiro_macropyre_custom_frost:GetStatusEffectName()
-	return "particles/status_fx/status_effect_frost.vpcf"
-end
-
-function modifier_jakiro_macropyre_custom_frost:StatusEffectPriority()
-	return MODIFIER_PRIORITY_NORMAL
-end
-
 modifier_jakiro_macropyre_custom_root = class(mod_hidden)
 function modifier_jakiro_macropyre_custom_root:IsPurgable()
 	return true
 end
-function modifier_jakiro_macropyre_custom_root:CheckState()
-	return {
-		[MODIFIER_STATE_ROOTED] = true,
-	}
-end
-
 function modifier_jakiro_macropyre_custom_root:GetEffectName()
 	return "particles/units/heroes/hero_crystalmaiden/maiden_frostbite_buff.vpcf"
 end
 function modifier_jakiro_macropyre_custom_root:GetEffectAttachType()
 	return PATTACH_ABSORIGIN_FOLLOW
+end
+function modifier_jakiro_macropyre_custom_root:CheckState()
+	return {
+		[MODIFIER_STATE_ROOTED] = true,
+	}
 end
 
 modifier_jakiro_macropyre_custom_cdr = class(mod_hidden)
@@ -668,7 +672,7 @@ function modifier_jakiro_macropyre_custom_cdr:OnCreated()
 		return
 	end
 	self:StartIntervalThink(2)
-	self:SetStackCount(1)
+	self:IncrementStackCount()
 end
 
 function modifier_jakiro_macropyre_custom_cdr:OnRefresh()

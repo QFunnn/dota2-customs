@@ -62,10 +62,6 @@ LinkLuaModifier(
 abaddon_borrowed_time_custom = class({})
 abaddon_borrowed_time_custom.talents = {}
 
-function abaddon_borrowed_time_custom:GetAbilityTextureName()
-	return wearables_system:GetAbilityIconReplacement(self.caster, "abaddon_borrowed_time", self)
-end
-
 function abaddon_borrowed_time_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
@@ -74,12 +70,11 @@ function abaddon_borrowed_time_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_abaddon/abaddon_borrowed_time.vpcf", context)
 	PrecacheResource("particle", "particles/abaddon/coil_speed.vpcf", context)
 	PrecacheResource("particle", "particles/abaddon/curse_proc.vpcf", context)
-	PrecacheResource("particle", "particles/units/heroes/hero_abaddon/abaddon_borrowed_time_heal.vpcf", context)
-	PrecacheResource("particle", "particles/units/heroes/hero_abaddon/abaddon_borrowed_time.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_abaddon_borrowed_time.vpcf", context)
 	PrecacheResource("particle", "particles/abaddon/ulti_attack.vpcf", context)
 	PrecacheResource("particle", "particles/abaddon/ulti_attacka1.vpcf", context)
 	PrecacheResource("particle", "particles/abaddon/coil_legendary_heal.vpcf", context)
+	PrecacheResource("particle", "particles/abaddon/coil_legendary_cast.vpcf", context)
 	PrecacheResource("particle", "particles/abaddon/ulti_legendary_cast.vpcf", context)
 	PrecacheResource("particle", "particles/abaddon/ulti_legendary_link.vpcf", context)
 	PrecacheResource("particle", "particles/abaddon/ulti_legendary.vpcf", context)
@@ -107,8 +102,6 @@ function abaddon_borrowed_time_custom:UpdateTalents(name)
 			r1_duration = caster:GetTalentValue("modifier_abaddon_borrowed_1", "duration", true),
 			r1_max = caster:GetTalentValue("modifier_abaddon_borrowed_1", "max", true),
 
-			has_r2 = 0,
-			r2_heal = 0,
 			r2_heal_inc = 0,
 
 			has_r3 = 0,
@@ -141,8 +134,6 @@ function abaddon_borrowed_time_custom:UpdateTalents(name)
 	end
 
 	if caster:HasTalent("modifier_abaddon_borrowed_2") then
-		self.talents.has_r2 = 1
-		self.talents.r2_heal = caster:GetTalentValue("modifier_abaddon_borrowed_2", "heal")
 		self.talents.r2_heal_inc = caster:GetTalentValue("modifier_abaddon_borrowed_2", "heal_inc")
 	end
 
@@ -168,8 +159,8 @@ function abaddon_borrowed_time_custom:UpdateTalents(name)
 	end
 end
 
-function abaddon_borrowed_time_custom:Init()
-	self.caster = self:GetCaster()
+function abaddon_borrowed_time_custom:GetAbilityTextureName()
+	return wearables_system:GetAbilityIconReplacement(self.caster, "abaddon_borrowed_time", self)
 end
 
 function abaddon_borrowed_time_custom:GetIntrinsicModifierName()
@@ -177,10 +168,6 @@ function abaddon_borrowed_time_custom:GetIntrinsicModifierName()
 		return
 	end
 	return "modifier_abaddon_borrowed_time_custom_tracker"
-end
-
-function abaddon_borrowed_time_custom:GetCooldown(level)
-	return self.BaseClass.GetCooldown(self, level)
 end
 
 function abaddon_borrowed_time_custom:OnSpellStart()
@@ -194,7 +181,19 @@ function abaddon_borrowed_time_custom:OnSpellStart()
 end
 
 modifier_abaddon_borrowed_time_custom = class(mod_visible)
-function modifier_abaddon_borrowed_time_custom:OnCreated(kv)
+function modifier_abaddon_borrowed_time_custom:GetEffectName()
+	return "particles/units/heroes/hero_abaddon/abaddon_borrowed_time.vpcf"
+end
+function modifier_abaddon_borrowed_time_custom:GetEffectAttachType()
+	return PATTACH_ABSORIGIN_FOLLOW
+end
+function modifier_abaddon_borrowed_time_custom:GetStatusEffectName()
+	return "particles/status_fx/status_effect_abaddon_borrowed_time.vpcf"
+end
+function modifier_abaddon_borrowed_time_custom:StatusEffectPriority()
+	return MODIFIER_PRIORITY_SUPER_ULTRA
+end
+function modifier_abaddon_borrowed_time_custom:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
@@ -311,19 +310,6 @@ function modifier_abaddon_borrowed_time_custom:GetAbsoluteNoDamagePure(params)
 	return self:DamageLogic(params)
 end
 
-function modifier_abaddon_borrowed_time_custom:GetEffectName()
-	return "particles/units/heroes/hero_abaddon/abaddon_borrowed_time.vpcf"
-end
-function modifier_abaddon_borrowed_time_custom:GetEffectAttachType()
-	return PATTACH_ABSORIGIN_FOLLOW
-end
-function modifier_abaddon_borrowed_time_custom:GetStatusEffectName()
-	return "particles/status_fx/status_effect_abaddon_borrowed_time.vpcf"
-end
-function modifier_abaddon_borrowed_time_custom:StatusEffectPriority()
-	return MODIFIER_PRIORITY_SUPER_ULTRA
-end
-
 function modifier_abaddon_borrowed_time_custom:OnDestroy()
 	if not IsServer() then
 		return
@@ -342,33 +328,9 @@ function modifier_abaddon_borrowed_time_custom:OnDestroy()
 end
 
 modifier_abaddon_borrowed_time_custom_tracker = class(mod_hidden)
-function modifier_abaddon_borrowed_time_custom_tracker:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-	self.ability.tracker = self
-	self.ability:UpdateTalents()
-
-	self.parent.borrowed_time = self.ability
-
-	self.ability.hp_threshold = self.ability:GetSpecialValueFor("hp_threshold")
-	self.ability.duration = self.ability:GetSpecialValueFor("duration")
-
-	self.ability.shard_heal = self.ability:GetSpecialValueFor("shard_heal")
-	self.ability.shard_duration = self.ability:GetSpecialValueFor("shard_duration")
-
-	self.legendary_ability = self.parent:FindAbilityByName("abaddon_borrowed_time_custom_legendary")
-	if self.legendary_ability then
-		self.legendary_ability:UpdateTalents()
-	end
-
-	self.record = nil
-	self.parent:AddDamageEvent_inc(self, true)
+function modifier_abaddon_borrowed_time_custom_tracker:IsAura()
+	return IsServer() and self.parent:IsAlive() and self.ability.talents.has_r1 == 1
 end
-
-function modifier_abaddon_borrowed_time_custom_tracker:OnRefresh(table)
-	self.ability.duration = self.ability:GetSpecialValueFor("duration")
-end
-
 function modifier_abaddon_borrowed_time_custom_tracker:GetAuraRadius()
 	return self.ability.talents.r1_radius
 end
@@ -381,8 +343,33 @@ end
 function modifier_abaddon_borrowed_time_custom_tracker:GetModifierAura()
 	return "modifier_abaddon_borrowed_time_custom_aura"
 end
-function modifier_abaddon_borrowed_time_custom_tracker:IsAura()
-	return IsServer() and self.parent:IsAlive() and self.ability.talents.has_r1 == 1
+function modifier_abaddon_borrowed_time_custom_tracker:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+	self.ability.tracker = self
+	self.ability:UpdateTalents()
+
+	self.parent.borrowed_time = self.ability
+	self.parent.borrowed_legendary_ability = self.parent:FindAbilityByName("abaddon_borrowed_time_custom_legendary")
+
+	if IsValid(self.parent.borrowed_legendary_ability) then
+		if IsServer() and not self.parent.borrowed_legendary_ability:IsTrained() then
+			self.parent.borrowed_legendary_ability:SetLevel(1)
+		end
+		self.parent.borrowed_legendary_ability:UpdateTalents()
+	end
+
+	self.ability.hp_threshold = self.ability:GetSpecialValueFor("hp_threshold")
+	self.ability.duration = self.ability:GetSpecialValueFor("duration")
+	self.ability.shard_heal = self.ability:GetSpecialValueFor("shard_heal")
+	self.ability.shard_duration = self.ability:GetSpecialValueFor("shard_duration")
+
+	self.record = nil
+	self.parent:AddDamageEvent_inc(self, true)
+end
+
+function modifier_abaddon_borrowed_time_custom_tracker:OnRefresh()
+	self.ability.duration = self.ability:GetSpecialValueFor("duration")
 end
 
 function modifier_abaddon_borrowed_time_custom_tracker:DeclareFunctions()
@@ -406,6 +393,9 @@ function modifier_abaddon_borrowed_time_custom_tracker:GetModifierStatusResistan
 end
 
 function modifier_abaddon_borrowed_time_custom_tracker:GetModifierDamageOutgoing_Percentage()
+	if not IsValid(self.parent) then
+		return
+	end
 	if not self.parent:HasModifier("modifier_abaddon_borrowed_time_custom_proc") then
 		return
 	end
@@ -413,6 +403,9 @@ function modifier_abaddon_borrowed_time_custom_tracker:GetModifierDamageOutgoing
 end
 
 function modifier_abaddon_borrowed_time_custom_tracker:CheckState()
+	if not IsValid(self.parent) then
+		return
+	end
 	if self.ability.talents.has_r3 == 0 then
 		return
 	end
@@ -474,7 +467,7 @@ function modifier_abaddon_borrowed_time_custom_tracker:AttackEvent_out(params)
 		if self.ability:IsActivated() then
 			local cd = self.ability.talents.has_r7 == 1 and self.ability.talents.r4_cd_inc_legendary
 				or self.ability.talents.r4_cd_inc
-			self.parent:CdAbility(self.ability, self.ability:GetEffectiveCooldown(self.ability:GetLevel()) * cd)
+			self.parent:CdAbility(self.ability, nil, cd)
 		end
 	end
 
@@ -594,12 +587,155 @@ function modifier_abaddon_borrowed_time_custom_tracker:DamageEvent_inc(params)
 	self.ability:UseResources(false, false, false, true)
 end
 
+modifier_abaddon_borrowed_time_custom_aura = class(mod_hidden)
+function modifier_abaddon_borrowed_time_custom_aura:OnCreated()
+	if not IsServer() then
+		return
+	end
+	self.parent = self:GetParent()
+	self.caster = self:GetCaster()
+	self.ability = self:GetAbility()
+
+	self:StartIntervalThink(1)
+end
+
+function modifier_abaddon_borrowed_time_custom_aura:OnIntervalThink()
+	if not IsServer() then
+		return
+	end
+	self.parent:AddNewModifier(
+		self.caster,
+		self.ability,
+		"modifier_abaddon_borrowed_time_custom_aura_armor",
+		{ duration = self.ability.talents.r1_duration }
+	)
+end
+
+modifier_abaddon_borrowed_time_custom_aura_armor = class(mod_visible)
+function modifier_abaddon_borrowed_time_custom_aura_armor:GetTexture()
+	return "buffs/abaddon/borrowed_1"
+end
+function modifier_abaddon_borrowed_time_custom_aura_armor:OnCreated()
+	self.parent = self:GetParent()
+	self.caster = self:GetCaster()
+	self.ability = self:GetAbility()
+
+	self.max = self.ability.talents.r1_max
+	if not IsServer() then
+		return
+	end
+	self.RemoveForDuel = true
+	self:OnRefresh()
+end
+
+function modifier_abaddon_borrowed_time_custom_aura_armor:OnRefresh()
+	if not IsServer() then
+		return
+	end
+	if self:GetStackCount() >= self.max then
+		return
+	end
+	self:IncrementStackCount()
+
+	if self:GetStackCount() >= self.max then
+		self.parent:GenericParticle("particles/general/generic_armor_reduction.vpcf", self, true)
+	end
+end
+
+function modifier_abaddon_borrowed_time_custom_aura_armor:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
+	}
+end
+
+function modifier_abaddon_borrowed_time_custom_aura_armor:GetModifierPhysicalArmorBonus()
+	return self:GetStackCount() * self.ability.talents.r1_armor / self.max
+end
+
+modifier_abaddon_borrowed_time_custom_heal = class(mod_hidden)
+function modifier_abaddon_borrowed_time_custom_heal:GetEffectName()
+	return "particles/abaddon/ulti_heal.vpcf"
+end
+function modifier_abaddon_borrowed_time_custom_heal:GetStatusEffectName()
+	return "particles/econ/items/drow/drow_ti9_immortal/status_effect_drow_ti9_frost_arrow.vpcf"
+end
+function modifier_abaddon_borrowed_time_custom_heal:StatusEffectPriority()
+	return MODIFIER_PRIORITY_LOW
+end
+function modifier_abaddon_borrowed_time_custom_heal:OnCreated()
+	self.ability = self:GetAbility()
+	self.parent = self:GetParent()
+
+	self.heal = self.ability.shard_heal
+	self.duration = self.ability.shard_duration
+	self.regen = self.heal / self.duration
+
+	if not IsServer() then
+		return
+	end
+	self.parent:EmitSound("Abaddon.Borrowed_heal")
+end
+
+function modifier_abaddon_borrowed_time_custom_heal:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE,
+	}
+end
+
+function modifier_abaddon_borrowed_time_custom_heal:GetModifierHealthRegenPercentage()
+	return self.regen
+end
+
+modifier_abaddon_borrowed_time_custom_proc = class(mod_visible)
+function modifier_abaddon_borrowed_time_custom_proc:GetTexture()
+	return "buffs/abaddon/borrowed_3"
+end
+function modifier_abaddon_borrowed_time_custom_proc:OnCreated()
+	if not IsServer() then
+		return
+	end
+	self.RemoveForDuel = true
+end
+
+modifier_abaddon_borrowed_time_custom_proc_count = class(mod_visible)
+function modifier_abaddon_borrowed_time_custom_proc_count:GetTexture()
+	return "buffs/abaddon/borrowed_3"
+end
+function modifier_abaddon_borrowed_time_custom_proc_count:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.max = self.ability.talents.r3_max
+	self.max_inc = self.ability.talents.r3_max_inc
+	if not IsServer() then
+		return
+	end
+	self.RemoveForDuel = true
+	self:OnRefresh()
+end
+
+function modifier_abaddon_borrowed_time_custom_proc_count:OnRefresh()
+	if not IsServer() then
+		return
+	end
+	self:IncrementStackCount()
+
+	local max = self.ability:GetCooldownTimeRemaining() > 0 and self.max_inc or self.max
+	if self:GetStackCount() < (max - 1) then
+		return
+	end
+
+	self.parent:AddNewModifier(
+		self.parent,
+		self.ability,
+		"modifier_abaddon_borrowed_time_custom_proc",
+		{ duration = self.ability.talents.r3_duration }
+	)
+	self:Destroy()
+end
+
 abaddon_borrowed_time_custom_legendary = class({})
 abaddon_borrowed_time_custom_legendary.talents = {}
-
-function abaddon_borrowed_time_custom_legendary:CreateTalent()
-	self:SetHidden(false)
-end
 
 function abaddon_borrowed_time_custom_legendary:UpdateTalents()
 	local caster = self:GetCaster()
@@ -622,8 +758,8 @@ function abaddon_borrowed_time_custom_legendary:UpdateTalents()
 	end
 end
 
-function abaddon_borrowed_time_custom_legendary:Init()
-	self.caster = self:GetCaster()
+function abaddon_borrowed_time_custom_legendary:GetCooldown(iLevel)
+	return self.talents.r7_talent_cd or 0
 end
 
 function abaddon_borrowed_time_custom_legendary:CastFilterResultTarget(target)
@@ -638,16 +774,16 @@ function abaddon_borrowed_time_custom_legendary:CastFilterResultTarget(target)
 		self:GetAbilityTargetTeam(),
 		self:GetAbilityTargetType(),
 		self:GetAbilityTargetFlags(),
-		self:GetCaster():GetTeamNumber()
+		self.caster:GetTeamNumber()
 	)
 end
 
-function abaddon_borrowed_time_custom_legendary:GetCooldown(iLevel)
-	return self.talents.r7_talent_cd and self.talents.r7_talent_cd or 0
+function abaddon_borrowed_time_custom_legendary:CreateTalent()
+	self:SetHidden(false)
 end
 
 function abaddon_borrowed_time_custom_legendary:OnSpellStart()
-	if not self.caster:HasTalent("modifier_abaddon_borrowed_7") then
+	if self.talents.has_r7 == 0 then
 		return
 	end
 	local target = self:GetCursorTarget()
@@ -697,6 +833,12 @@ function abaddon_borrowed_time_custom_legendary:OnSpellStart()
 end
 
 modifier_abaddon_borrowed_time_custom_legendary = class(mod_visible)
+function modifier_abaddon_borrowed_time_custom_legendary:GetEffectName()
+	return "particles/abaddon/ulti_legendary_head.vpcf"
+end
+function modifier_abaddon_borrowed_time_custom_legendary:GetEffectAttachType()
+	return PATTACH_OVERHEAD_FOLLOW
+end
 function modifier_abaddon_borrowed_time_custom_legendary:OnCreated()
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
@@ -791,14 +933,6 @@ function modifier_abaddon_borrowed_time_custom_legendary:OnIntervalThink()
 	)
 end
 
-function modifier_abaddon_borrowed_time_custom_legendary:GetEffectName()
-	return "particles/abaddon/ulti_legendary_head.vpcf"
-end
-
-function modifier_abaddon_borrowed_time_custom_legendary:GetEffectAttachType()
-	return PATTACH_OVERHEAD_FOLLOW
-end
-
 function modifier_abaddon_borrowed_time_custom_legendary:OnDestroy()
 	if not IsServer() then
 		return
@@ -864,7 +998,7 @@ function modifier_abaddon_borrowed_time_custom_legendary_knock:OnDestroy()
 end
 
 modifier_abaddon_borrowed_time_custom_legendary_caster = class(mod_visible)
-function modifier_abaddon_borrowed_time_custom_legendary_caster:OnCreated(table)
+function modifier_abaddon_borrowed_time_custom_legendary_caster:OnCreated(kv)
 	if not IsServer() then
 		return
 	end
@@ -876,7 +1010,7 @@ function modifier_abaddon_borrowed_time_custom_legendary_caster:OnCreated(table)
 
 	self.caster:AddHealEvent_inc(self, true)
 
-	self.target = EntIndexToHScript(table.target)
+	self.target = EntIndexToHScript(kv.target)
 	self.ability:EndCd()
 	self:StartIntervalThink(0.1)
 end
@@ -940,154 +1074,15 @@ function modifier_abaddon_borrowed_time_custom_legendary_caster:HealEvent_inc(pa
 		ParticleManager:ReleaseParticleIndex(pfx)
 	end
 
-	DoDamage({
-		victim = self.target,
-		attacker = self.caster,
-		ability = self.ability,
-		damage = damage,
-		damage_type = self.ability.talents.r7_damage_type,
-		damage_flags = DOTA_DAMAGE_FLAG_REFLECTION,
-	})
-end
-
-modifier_abaddon_borrowed_time_custom_aura = class(mod_hidden)
-function modifier_abaddon_borrowed_time_custom_aura:OnCreated(table)
-	if not IsServer() then
-		return
-	end
-	self.parent = self:GetParent()
-	self.caster = self:GetCaster()
-	self.ability = self:GetAbility()
-
-	self:StartIntervalThink(1)
-end
-
-function modifier_abaddon_borrowed_time_custom_aura:OnIntervalThink()
-	if not IsServer() then
-		return
-	end
-	self.parent:AddNewModifier(
-		self.caster,
-		self.ability,
-		"modifier_abaddon_borrowed_time_custom_aura_armor",
-		{ duration = self.ability.talents.r1_duration }
+	DoDamage(
+		{
+			victim = self.target,
+			attacker = self.caster,
+			ability = self.ability,
+			damage = damage,
+			damage_type = self.ability.talents.r7_damage_type,
+			damage_flags = DOTA_DAMAGE_FLAG_REFLECTION,
+		},
+		"modifier_abaddon_borrowed_7"
 	)
-end
-
-modifier_abaddon_borrowed_time_custom_aura_armor = class(mod_visible)
-function modifier_abaddon_borrowed_time_custom_aura_armor:GetTexture()
-	return "buffs/abaddon/borrowed_1"
-end
-function modifier_abaddon_borrowed_time_custom_aura_armor:OnCreated(table)
-	self.parent = self:GetParent()
-	self.caster = self:GetCaster()
-	self.ability = self:GetAbility()
-
-	self.max = self.ability.talents.r1_max
-	if not IsServer() then
-		return
-	end
-	self:OnRefresh()
-end
-
-function modifier_abaddon_borrowed_time_custom_aura_armor:OnRefresh(stack)
-	if not IsServer() then
-		return
-	end
-	if self:GetStackCount() >= self.max then
-		return
-	end
-	self:IncrementStackCount()
-
-	if self:GetStackCount() >= self.max then
-		self.parent:GenericParticle("particles/general/generic_armor_reduction.vpcf", self, true)
-	end
-end
-
-function modifier_abaddon_borrowed_time_custom_aura_armor:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
-	}
-end
-
-function modifier_abaddon_borrowed_time_custom_aura_armor:GetModifierPhysicalArmorBonus()
-	return self:GetStackCount() * self.ability.talents.r1_armor / self.max
-end
-
-modifier_abaddon_borrowed_time_custom_heal = class(mod_hidden)
-function modifier_abaddon_borrowed_time_custom_heal:OnCreated()
-	self.ability = self:GetAbility()
-	self.parent = self:GetParent()
-
-	self.heal = self.ability.shard_heal
-	self.duration = self.ability.shard_duration
-	self.regen = self.heal / self.duration
-
-	if not IsServer() then
-		return
-	end
-	self.parent:EmitSound("Abaddon.Borrowed_heal")
-end
-
-function modifier_abaddon_borrowed_time_custom_heal:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE,
-	}
-end
-
-function modifier_abaddon_borrowed_time_custom_heal:GetModifierHealthRegenPercentage()
-	return self.regen
-end
-
-function modifier_abaddon_borrowed_time_custom_heal:GetEffectName()
-	return "particles/abaddon/ulti_heal.vpcf"
-end
-
-function modifier_abaddon_borrowed_time_custom_heal:GetStatusEffectName()
-	return "particles/econ/items/drow/drow_ti9_immortal/status_effect_drow_ti9_frost_arrow.vpcf"
-end
-
-function modifier_abaddon_borrowed_time_custom_heal:StatusEffectPriority()
-	return MODIFIER_PRIORITY_LOW
-end
-
-modifier_abaddon_borrowed_time_custom_proc = class(mod_visible)
-function modifier_abaddon_borrowed_time_custom_proc:GetTexture()
-	return "buffs/abaddon/borrowed_3"
-end
-
-modifier_abaddon_borrowed_time_custom_proc_count = class(mod_visible)
-function modifier_abaddon_borrowed_time_custom_proc_count:GetTexture()
-	return "buffs/abaddon/borrowed_3"
-end
-function modifier_abaddon_borrowed_time_custom_proc_count:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.max = self.ability.talents.r3_max
-	self.max_inc = self.ability.talents.r3_max_inc
-	if not IsServer() then
-		return
-	end
-	self:OnRefresh()
-end
-
-function modifier_abaddon_borrowed_time_custom_proc_count:OnRefresh()
-	if not IsServer() then
-		return
-	end
-	self:IncrementStackCount()
-
-	local max = self.ability:GetCooldownTimeRemaining() > 0 and self.max_inc or self.max
-	if self:GetStackCount() < (max - 1) then
-		return
-	end
-
-	self.parent:AddNewModifier(
-		self.parent,
-		self.ability,
-		"modifier_abaddon_borrowed_time_custom_proc",
-		{ duration = self.ability.talents.r3_duration }
-	)
-	self:Destroy()
 end

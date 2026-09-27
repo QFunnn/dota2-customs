@@ -16,6 +16,8 @@ var TEMPEST_ARC_WARDEN_ID = null
 InitSelectedAnimation()
 
 GameEvents.Subscribe_custom('update_tempest_entindex_js', update_tempest_entindex_js)
+GameEvents.Subscribe('dota_player_update_selected_unit', update_selected_warden)
+GameEvents.Subscribe('dota_player_update_query_unit', update_selected_warden)
 
 function SelectWarden(unit)
 {
@@ -53,11 +55,16 @@ function InitSelectedAnimation()
         $("#ArcWardenOriginal").SetHasClass("ArcWardenSelected", false)
         $("#ArcWardenTempest").SetHasClass("ArcWardenSelected", false)
     }
-    $.Schedule(0.1 , InitSelectedAnimation);
+}
+
+function update_selected_warden()
+{
+    $.Schedule(0, InitSelectedAnimation)
 }
 
 function update_tempest_entindex_js(data)
 {
     TEMPEST_ARC_WARDEN_ID = data.entindex
     $("#ArcWardenUnits").style.opacity = "1"
+    InitSelectedAnimation()
 }

@@ -62,11 +62,10 @@ LinkLuaModifier("modifier_unranked_penalty_2", "modifiers/utils/modifier_unranke
 LinkLuaModifier("modifier_unranked_penalty_3", "modifiers/utils/modifier_unranked_penalty", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_blink_break_custom", "modifiers/utils/modifier_blink_break_custom", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_rule_only_cone", "modifiers/utils/modifier_rule_only_cone", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_neutral_creep", "abilities/creeps_neutral/modifier_neutral_creep", LUA_MODIFIER_MOTION_NONE)
 
-LinkLuaModifier("modifier_bounty_map", "modifiers/map_mods/modifier_bounty_map", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_orb_icon", "modifiers/map_mods/modifier_orb_icon", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_teleport_cast", "modifiers/map_mods/modifier_teleport_cast", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_hero_icon", "modifiers/map_mods/modifier_hero_icon", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_watcher_custom", "modifiers/map_mods/modifier_watcher_custom", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier(
 	"modifier_haste_zone_thinker",
@@ -163,19 +162,15 @@ LinkLuaModifier("modifier_creeps_movespeed", "modifiers/creeps/modifier_creeps_t
 LinkLuaModifier("modifier_neutral_cast", "modifiers/creeps/modifier_neutral_cast", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_neutral_cast_cd", "modifiers/creeps/modifier_neutral_cast", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_patrol_death", "modifiers/creeps/modifier_patrol_start", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_patrolupgrade", "modifiers/creeps/modifier_patrolupgrade", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_return_to_path", "modifiers/creeps/modifier_return_to_path", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_patrol_start", "modifiers/creeps/modifier_patrol_start", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_patrol_gospawn", "modifiers/creeps/modifier_patrol_start", LUA_MODIFIER_MOTION_NONE)
 
 LinkLuaModifier("modifier_endgame_winner", "modifiers/game_mode/modifier_endgame_winner", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier(
-	"modifier_duel_damage_final",
-	"modifiers/game_mode/modifier_duel_damage_final",
-	LUA_MODIFIER_MOTION_NONE
-)
 LinkLuaModifier("modifier_duel_field_thinker", "modifiers/game_mode/modifier_duel_logic", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_duel_hero_thinker", "modifiers/game_mode/modifier_duel_logic", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_duel_hero_return", "modifiers/game_mode/modifier_duel_logic", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_duel_tower_return", "modifiers/game_mode/modifier_duel_logic", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_duel_hero_teleport", "modifiers/game_mode/modifier_duel_logic", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier(
 	"modifier_the_hunt_custom_tower",
@@ -234,6 +229,7 @@ _G.ARCANA_ICONS = {
 }
 
 _G.added_shop_heroes = {
+	["npc_dota_hero_kunkka"] = true,
 	["npc_dota_hero_juggernaut"] = true,
 	["npc_dota_hero_troll_warlord"] = true,
 	["npc_dota_hero_void_spirit"] = true,
@@ -314,6 +310,7 @@ _G.BaseAbilities = {
 	["muerta_dead_shot_custom_proc"] = true,
 	["pangolier_heartpiercer_custom"] = true,
 	["pangolier_gyroshell_custom_legendary"] = true,
+	["custom_phantom_assassin_coup_de_grace_legendary"] = true,
 }
 
 -- Init client wearables system
@@ -355,7 +352,11 @@ if IsClient() then
 
 		local unit = EntIndexToHScript(ent_index)
 		if unit and not unit:IsNull() then
-			unit:AddTalent(talent, level)
+			if level == 0 then
+				unit:RemoveTalent(talent)
+			else
+				unit:AddTalent(talent, level)
+			end
 		end
 	end, nil)
 end
@@ -387,6 +388,8 @@ ListenToGameEvent("save_abilities", function(event)
 				table.insert(unit.base_abilities, name)
 			end
 		end
+
+		table.insert(unit.base_abilities, "custom_general_talents")
 	end
 end, nil)
 
@@ -464,6 +467,7 @@ _G.MAX_REPORTS = 4
 _G.RANKED_GAME_COUNT = 0 --доступ к ранкеду 25 игр в анранкеде
 _G.RANKED_GAME_COUNT_TOTAL = 0 --доступ к ранкеду 75 игр на аккаунте
 _G.RANKED_DAMAGE_BONUS = 15
+_G.LOW_PRIORITY_IMMUNITY = 10
 _G.MAX_FREE_BUILDS = 15
 _G.FREE_BUILDS_MAX_GAMES = 25
 

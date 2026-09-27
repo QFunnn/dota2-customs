@@ -16,29 +16,30 @@ function item_heart_custom:GetIntrinsicModifierName()
 	return "modifier_item_heart_custom"
 end
 
-modifier_item_heart_custom = class({})
-function modifier_item_heart_custom:IsHidden()
-	return true
+function item_heart_custom:Spawn()
+	self.bonus_strength = self:GetSpecialValueFor("bonus_strength")
+	self.health_regen_pct = self:GetSpecialValueFor("health_regen_pct")
+	self.health_regen_missing = self:GetSpecialValueFor("health_regen_missing")
+	self.health = self:GetSpecialValueFor("health")
 end
-function modifier_item_heart_custom:IsPurgable()
-	return false
-end
+
+modifier_item_heart_custom = class(mod_hidden)
 function modifier_item_heart_custom:RemoveOnDeath()
 	return false
 end
+function modifier_item_heart_custom:OnCreated(table)
+	self.ability = self:GetAbility()
+	self.parent = self:GetParent()
+	self.bonus_strength = self.ability.bonus_strength
+	self.health_regen_pct = self.ability.health_regen_pct
+	self.health_regen_missing = self.ability.health_regen_missing
+	self.health = self.ability.health
+end
+
 function modifier_item_heart_custom:GetAttributes()
 	if test then
 		return MODIFIER_ATTRIBUTE_MULTIPLE
 	end
-end
-
-function modifier_item_heart_custom:OnCreated(table)
-	self.ability = self:GetAbility()
-	self.parent = self:GetParent()
-	self.bonus_strength = self.ability:GetSpecialValueFor("bonus_strength")
-	self.health_regen_pct = self.ability:GetSpecialValueFor("health_regen_pct")
-	self.health_regen_missing = self.ability:GetSpecialValueFor("health_regen_missing")
-	self.health = self.ability:GetSpecialValueFor("health")
 end
 
 function modifier_item_heart_custom:DeclareFunctions()

@@ -100,7 +100,6 @@ function leshrac_pulse_nova_custom:UpdateTalents(name)
 			h6_health = caster:GetTalentValue("modifier_leshrac_hero_6", "health", true),
 			h6_talent_cd = caster:GetTalentValue("modifier_leshrac_hero_6", "talent_cd", true),
 
-			has_h1 = 0,
 			h1_mana_loss = 0,
 
 			has_q7 = 0,
@@ -143,12 +142,20 @@ function leshrac_pulse_nova_custom:UpdateTalents(name)
 	end
 
 	if caster:HasTalent("modifier_leshrac_hero_1") then
-		self.talents.has_h1 = 1
 		self.talents.h1_mana_loss = caster:GetTalentValue("modifier_leshrac_hero_1", "mana_loss") / 100
 	end
 
 	if caster:HasTalent("modifier_leshrac_earth_7") then
 		self.talents.has_q7 = 1
+	end
+
+	if not IsServer() then
+		return
+	end
+
+	local mod = caster:FindModifierByName("modifier_leshrac_pulse_nova_custom")
+	if mod then
+		mod:UpdateEvents()
 	end
 end
 
@@ -160,8 +167,7 @@ function leshrac_pulse_nova_custom:GetIntrinsicModifierName()
 end
 
 function leshrac_pulse_nova_custom:GetRadius()
-	return (self.radius and self.radius or 0)
-		+ (self.caster.leshrac_innate and self.caster.leshrac_innate:GetRange() or 0)
+	return (self.radius or 0) + (IsValid(self.caster.leshrac_innate) and self.caster.leshrac_innate:GetRange() or 0)
 end
 
 function leshrac_pulse_nova_custom:GetCastRange(vLocation, hTarget)
@@ -169,11 +175,7 @@ function leshrac_pulse_nova_custom:GetCastRange(vLocation, hTarget)
 end
 
 function leshrac_pulse_nova_custom:GetMana()
-	local mana_cost = self.mana_cost_per_second + self.mana_cost_max * self.caster:GetMaxMana()
-	if self.talents.has_h1 == 1 then
-		mana_cost = mana_cost * (1 - self.talents.h1_mana_loss)
-	end
-	return mana_cost
+	return (self.mana_cost_per_second + self.mana_cost_max * self.caster:GetMaxMana()) * (1 - self.talents.h1_mana_loss)
 end
 
 function leshrac_pulse_nova_custom:GetDamage()
@@ -215,9 +217,7 @@ function modifier_leshrac_pulse_nova_custom:OnCreated(kv)
 	self.parent:EmitSound("Hero_Leshrac.Pulse_Nova")
 	self.parent:GenericParticle("particles/units/heroes/hero_leshrac/leshrac_pulse_nova_ambient.vpcf", self)
 
-	if self.ability.talents.has_h6 == 1 then
-		self.parent:AddDamageEvent_inc(self, true)
-	end
+	self:UpdateEvents()
 
 	self.radius_visual = ParticleManager:CreateParticleForPlayer(
 		"particles/leshrac/nova_legendary_radius.vpcf",
@@ -230,6 +230,17 @@ function modifier_leshrac_pulse_nova_custom:OnCreated(kv)
 	self:AddParticle(self.radius_visual, false, false, -1, false, false)
 
 	self:OnIntervalThink(true)
+end
+
+function modifier_leshrac_pulse_nova_custom:UpdateEvents()
+	if not IsServer() then
+		return
+	end
+	if self.ability.talents.has_h6 == 0 then
+		return
+	end
+
+	self.parent:AddDamageEvent_inc(self, true)
 end
 
 function modifier_leshrac_pulse_nova_custom:OnIntervalThink(first)
@@ -253,15 +264,6 @@ function modifier_leshrac_pulse_nova_custom:OnIntervalThink(first)
 		ParticleManager:DestroyParticle(self.shield_effect, false)
 		ParticleManager:ReleaseParticleIndex(self.shield_effect)
 		self.shield_effect = nil
-	end
-
-	self:Burn()
-	self:StartIntervalThink(self:GetInterval())
-end
-
-function modifier_leshrac_pulse_nova_custom:Burn()
-	if not IsServer() then
-		return
 	end
 
 	local enemies = self.parent:FindTargets(self.radius)
@@ -325,6 +327,10 @@ function modifier_leshrac_pulse_nova_custom:Burn()
 	if total > 0 and self.parent.edict_ability and IsValid(self.parent.edict_ability.shield_mod) then
 		self.parent.edict_ability.shield_mod:AddShield(total * self.ability.talents.r4_heal)
 	end
+
+	self:StartIntervalThink(
+		self.interval + self:GetStackCount() / self.ability.talents.r3_max * self.ability.talents.r3_interval
+	)
 end
 
 function modifier_leshrac_pulse_nova_custom:DamageEvent_inc(params)
@@ -403,14 +409,6 @@ function modifier_leshrac_pulse_nova_custom:GetModifierIncomingDamage_Percentage
 	return bonus * self.ability.talents.h6_damage_reduce
 end
 
-function modifier_leshrac_pulse_nova_custom:GetInterval()
-	local interval = self.interval
-	if self.ability.talents.has_r3 == 1 then
-		interval = interval + (self:GetStackCount() / self.ability.talents.r3_max) * self.ability.talents.r3_interval
-	end
-	return interval
-end
-
 function modifier_leshrac_pulse_nova_custom:OnDestroy()
 	if not IsServer() then
 		return
@@ -443,7 +441,6 @@ function modifier_leshrac_pulse_nova_custom_health_reduce:GetTexture()
 	return "buffs/leshrac/nova_3"
 end
 function modifier_leshrac_pulse_nova_custom_health_reduce:OnCreated(table)
-	self.caster = self:GetCaster()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
@@ -471,6 +468,15 @@ function modifier_leshrac_pulse_nova_custom_health_reduce:OnRefresh(table)
 	end
 end
 
+function modifier_leshrac_pulse_nova_custom_health_reduce:OnDestroy()
+	if not IsServer() then
+		return
+	end
+	if self.parent:IsHero() then
+		self.parent:CalculateStatBonus(true)
+	end
+end
+
 function modifier_leshrac_pulse_nova_custom_health_reduce:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_EXTRA_HEALTH_PERCENTAGE,
@@ -479,127 +485,6 @@ end
 
 function modifier_leshrac_pulse_nova_custom_health_reduce:GetModifierExtraHealthPercentage()
 	return self.health * self:GetStackCount()
-end
-
-leshrac_pulse_nova_custom_legendary = class({})
-leshrac_pulse_nova_custom_legendary.talents = {}
-
-function leshrac_pulse_nova_custom_legendary:CreateTalent()
-	self:SetHidden(false)
-	self:SetLevel(1)
-end
-
-function leshrac_pulse_nova_custom_legendary:UpdateTalents(name)
-	local caster = self:GetCaster()
-	if not self.init then
-		self.init = true
-		self.talents = {
-			has_r7 = 0,
-			r7_damage = caster:GetTalentValue("modifier_leshrac_nova_7", "damage", true) / 100,
-			r7_mana = caster:GetTalentValue("modifier_leshrac_nova_7", "mana", true) / 100,
-			r7_cast = caster:GetTalentValue("modifier_leshrac_nova_7", "cast", true),
-			r7_heal = caster:GetTalentValue("modifier_leshrac_nova_7", "heal", true) / 100,
-			r7_radius = caster:GetTalentValue("modifier_leshrac_nova_7", "radius", true),
-			r7_talent_cd = caster:GetTalentValue("modifier_leshrac_nova_7", "talent_cd", true),
-		}
-	end
-end
-
-function leshrac_pulse_nova_custom_legendary:GetCastPoint()
-	return self.talents.r7_cast and self.talents.r7_cast or 0
-end
-
-function leshrac_pulse_nova_custom_legendary:GetCooldown(iLevel)
-	return self.talents.r7_talent_cd and self.talents.r7_talent_cd or 0
-end
-
-function leshrac_pulse_nova_custom_legendary:GetRadius()
-	return (self.talents.r7_radius and self.talents.r7_radius or 0)
-		+ (self.caster.leshrac_innate and self.caster.leshrac_innate:GetRange() or 0)
-end
-
-function leshrac_pulse_nova_custom_legendary:GetCastRange()
-	return self:GetRadius() - self.caster:GetCastRangeBonus()
-end
-
-function leshrac_pulse_nova_custom_legendary:OnAbilityPhaseStart()
-	self.caster:AddNewModifier(self.caster, self.ability, "modifier_leshrac_pulse_nova_custom_legendary", {})
-	return true
-end
-
-function leshrac_pulse_nova_custom_legendary:OnAbilityPhaseInterrupted()
-	self.caster:RemoveModifierByName("modifier_leshrac_pulse_nova_custom_legendary")
-end
-
-function leshrac_pulse_nova_custom_legendary:OnSpellStart()
-	self.caster:RemoveModifierByName("modifier_leshrac_pulse_nova_custom_legendary")
-
-	local radius = self:GetRadius()
-	self.caster:EmitSound("Leshrac.Nova_legendary_blast")
-	self.caster:EmitSound("Leshrac.Nova_legendary_blast2")
-
-	local nUnburrowFX =
-		ParticleManager:CreateParticle("particles/heroes/leshrak_chakra_end.vpcf", PATTACH_CUSTOMORIGIN, nil)
-	ParticleManager:SetParticleControl(nUnburrowFX, 0, self.caster:GetAbsOrigin())
-	ParticleManager:SetParticleControl(nUnburrowFX, 1, Vector(radius, 0, 0))
-	ParticleManager:ReleaseParticleIndex(nUnburrowFX)
-
-	local nFXIndex = ParticleManager:CreateParticle("particles/heroes/leshrak_burst.vpcf", PATTACH_WORLDORIGIN, nil)
-	ParticleManager:SetParticleControl(nFXIndex, 0, Vector(radius, 0, 0))
-	ParticleManager:SetParticleControl(nFXIndex, 1, self.caster:GetAbsOrigin())
-	ParticleManager:SetParticleControl(nFXIndex, 3, self.caster:GetAbsOrigin())
-	ParticleManager:ReleaseParticleIndex(nFXIndex)
-
-	local mana = (self.caster:GetMaxMana() - self.caster:GetMana()) * self.ability.talents.r7_mana
-	self.caster:SetMana(math.min(self.caster:GetMaxMana(), self.caster:GetMana() + mana))
-
-	local damage = mana * self.talents.r7_damage
-	local heal = mana * self.talents.r7_heal
-
-	local enemies = self.caster:FindTargets(radius)
-	local damageTable = { attacker = self.caster, ability = self, damage_type = DAMAGE_TYPE_MAGICAL, damage = damage }
-
-	for _, enemy in pairs(enemies) do
-		damageTable.victim = enemy
-		DoDamage(damageTable)
-		enemy:SendNumber(104, damage)
-		enemy:EmitSound("particles/econ/items/outworld_devourer/od_shards_exile/od_shards_exile_prison_end.vpcf")
-	end
-
-	if #enemies > 0 then
-		self.parent:EmitSound("Leshrac.Nova_legendary_impact")
-	end
-
-	self.parent:GenericHeal(heal, self.ability, false, "")
-end
-
-modifier_leshrac_pulse_nova_custom_legendary = class(mod_hidden)
-function modifier_leshrac_pulse_nova_custom_legendary:OnCreated(table)
-	if not IsServer() then
-		return
-	end
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	local speed = 2.5 / (self.ability.talents.r7_cast * self.ability:GetCastPointModifier())
-	self.parent:StartGestureWithPlaybackRate(ACT_DOTA_VICTORY, speed)
-
-	self.parent:EmitSound("Leshrac.Nova_legendary_cast")
-	self.parent:EmitSound("Leshrac.Nova_legendary_cast_start")
-
-	self.nChannelFX =
-		ParticleManager:CreateParticle("particles/heroes/leshrak_chakra.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
-	ParticleManager:SetParticleControl(self.nChannelFX, 1, Vector(0, 0, 0))
-	ParticleManager:SetParticleControl(self.nChannelFX, 4, Vector(0, 0, 0))
-	self:AddParticle(self.nChannelFX, false, false, -1, false, false)
-end
-
-function modifier_leshrac_pulse_nova_custom_legendary:OnDestroy()
-	if not IsServer() then
-		return
-	end
-	self.parent:StopSound("Leshrac.Nova_legendary_cast")
-	self.parent:FadeGesture(ACT_DOTA_VICTORY)
 end
 
 modifier_leshrac_pulse_nova_custom_tracker = class(mod_hidden)
@@ -611,7 +496,10 @@ function modifier_leshrac_pulse_nova_custom_tracker:OnCreated()
 
 	self.parent.pulse_ability = self.ability
 	self.parent.pulse_ability_legendary = self.parent:FindAbilityByName("leshrac_pulse_nova_custom_legendary")
-	if self.parent.pulse_ability_legendary then
+	if IsValid(self.parent.pulse_ability_legendary) then
+		if IsServer() and not self.parent.pulse_ability_legendary:IsTrained() then
+			self.parent.pulse_ability_legendary:SetLevel(1)
+		end
 		self.parent.pulse_ability_legendary:UpdateTalents()
 	end
 
@@ -655,4 +543,124 @@ end
 modifier_leshrac_pulse_nova_custom_bkb_cd = class(mod_cd)
 function modifier_leshrac_pulse_nova_custom_bkb_cd:GetTexture()
 	return "buffs/leshrac/hero_6"
+end
+
+leshrac_pulse_nova_custom_legendary = class({})
+leshrac_pulse_nova_custom_legendary.talents = {}
+
+function leshrac_pulse_nova_custom_legendary:UpdateTalents(name)
+	local caster = self:GetCaster()
+	if not self.init then
+		self.init = true
+		self.talents = {
+			r7_damage = caster:GetTalentValue("modifier_leshrac_nova_7", "damage", true) / 100,
+			r7_mana = caster:GetTalentValue("modifier_leshrac_nova_7", "mana", true) / 100,
+			r7_cast = caster:GetTalentValue("modifier_leshrac_nova_7", "cast", true),
+			r7_heal = caster:GetTalentValue("modifier_leshrac_nova_7", "heal", true) / 100,
+			r7_radius = caster:GetTalentValue("modifier_leshrac_nova_7", "radius", true),
+			r7_talent_cd = caster:GetTalentValue("modifier_leshrac_nova_7", "talent_cd", true),
+		}
+	end
+end
+
+function leshrac_pulse_nova_custom_legendary:CreateTalent()
+	self:SetHidden(false)
+	self:SetLevel(1)
+end
+
+function leshrac_pulse_nova_custom_legendary:GetCastPoint()
+	return self.talents.r7_cast or 0
+end
+
+function leshrac_pulse_nova_custom_legendary:GetCooldown(iLevel)
+	return self.talents.r7_talent_cd or 0
+end
+
+function leshrac_pulse_nova_custom_legendary:GetRadius()
+	return (self.talents.r7_radius or 0)
+		+ (IsValid(self.caster.leshrac_innate) and self.caster.leshrac_innate:GetRange() or 0)
+end
+
+function leshrac_pulse_nova_custom_legendary:GetCastRange()
+	return self:GetRadius() - self.caster:GetCastRangeBonus()
+end
+
+function leshrac_pulse_nova_custom_legendary:OnAbilityPhaseStart()
+	self.caster:AddNewModifier(self.caster, self, "modifier_leshrac_pulse_nova_custom_legendary", {})
+	return true
+end
+
+function leshrac_pulse_nova_custom_legendary:OnAbilityPhaseInterrupted()
+	self.caster:RemoveModifierByName("modifier_leshrac_pulse_nova_custom_legendary")
+end
+
+function leshrac_pulse_nova_custom_legendary:OnSpellStart()
+	self.caster:RemoveModifierByName("modifier_leshrac_pulse_nova_custom_legendary")
+
+	local radius = self:GetRadius()
+	self.caster:EmitSound("Leshrac.Nova_legendary_blast")
+	self.caster:EmitSound("Leshrac.Nova_legendary_blast2")
+
+	local nUnburrowFX =
+		ParticleManager:CreateParticle("particles/heroes/leshrak_chakra_end.vpcf", PATTACH_CUSTOMORIGIN, nil)
+	ParticleManager:SetParticleControl(nUnburrowFX, 0, self.caster:GetAbsOrigin())
+	ParticleManager:SetParticleControl(nUnburrowFX, 1, Vector(radius, 0, 0))
+	ParticleManager:ReleaseParticleIndex(nUnburrowFX)
+
+	local nFXIndex = ParticleManager:CreateParticle("particles/heroes/leshrak_burst.vpcf", PATTACH_WORLDORIGIN, nil)
+	ParticleManager:SetParticleControl(nFXIndex, 0, Vector(radius, 0, 0))
+	ParticleManager:SetParticleControl(nFXIndex, 1, self.caster:GetAbsOrigin())
+	ParticleManager:SetParticleControl(nFXIndex, 3, self.caster:GetAbsOrigin())
+	ParticleManager:ReleaseParticleIndex(nFXIndex)
+
+	local mana = (self.caster:GetMaxMana() - self.caster:GetMana()) * self.talents.r7_mana
+	self.caster:SetMana(math.min(self.caster:GetMaxMana(), self.caster:GetMana() + mana))
+
+	local damage = mana * self.talents.r7_damage
+	local heal = mana * self.talents.r7_heal
+
+	local enemies = self.caster:FindTargets(radius)
+	local damageTable = { attacker = self.caster, ability = self, damage_type = DAMAGE_TYPE_MAGICAL, damage = damage }
+
+	for _, enemy in pairs(enemies) do
+		damageTable.victim = enemy
+		DoDamage(damageTable, "modifier_leshrac_nova_7")
+		enemy:SendNumber(104, damage)
+		enemy:GenericParticle("particles/econ/items/outworld_devourer/od_shards_exile/od_shards_exile_prison_end.vpcf")
+	end
+
+	if #enemies > 0 then
+		self.caster:EmitSound("Leshrac.Nova_legendary_impact")
+	end
+
+	self.caster:GenericHeal(heal, self, false, "", "modifier_leshrac_nova_7")
+end
+
+modifier_leshrac_pulse_nova_custom_legendary = class(mod_hidden)
+function modifier_leshrac_pulse_nova_custom_legendary:OnCreated(table)
+	if not IsServer() then
+		return
+	end
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	local speed = 2.5 / (self.ability.talents.r7_cast * self.ability:GetCastPointModifier())
+	self.parent:StartGestureWithPlaybackRate(ACT_DOTA_VICTORY, speed)
+
+	self.parent:EmitSound("Leshrac.Nova_legendary_cast")
+	self.parent:EmitSound("Leshrac.Nova_legendary_cast_start")
+
+	self.nChannelFX =
+		ParticleManager:CreateParticle("particles/heroes/leshrak_chakra.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
+	ParticleManager:SetParticleControl(self.nChannelFX, 1, Vector(0, 0, 0))
+	ParticleManager:SetParticleControl(self.nChannelFX, 4, Vector(0, 0, 0))
+	self:AddParticle(self.nChannelFX, false, false, -1, false, false)
+end
+
+function modifier_leshrac_pulse_nova_custom_legendary:OnDestroy()
+	if not IsServer() then
+		return
+	end
+	self.parent:StopSound("Leshrac.Nova_legendary_cast")
+	self.parent:FadeGesture(ACT_DOTA_VICTORY)
 end

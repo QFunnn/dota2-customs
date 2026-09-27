@@ -97,12 +97,25 @@ resources.Couriers = {
 }
 
 resources.Particles = {
+	"particles/geneirc/talent_aoe_damage.vpcf",
+
+	"particles/generic/red_zone.vpcf",
+	"particles/generic/common_proc.vpcf",
+	"particles/generic/common_shield.vpcf",
+	"particles/generic/common_damage_reduce.vpcf",
+	"particles/generica/common_talent_max.vpcf",
+	"particles/base_static/experience_shrine_ambient.vpcf",
+	"particles/base_static/experience_shrine_active.vpcf",
+	"particles/base_static/experience_shrine_ambient_endcap.vpcf",
 	"particles/pangolier/swashbuckle_bleed_number.vpcf",
+	"particles/kunkka/xmark_bleed_number.vpcf",
 	"particles/ogre-magi/fireblast_number.vpcf",
 	"particles/muerta/shot_legendary_damage.vpcf",
 	"particles/furion/teleport_legendary_number.vpcf",
 	"particles/generic/generic_shields.vpcf",
 
+	"particles/phantom_assassin/crit_bleed.vpcf",
+	"particles/phantom_assassin/phantom_proc_number.vpcf",
 	"particles/mars/spear_delay_number.vpcf",
 	"particles/lina/lina_laguna_number.vpcf",
 	"particles/leshrac/nova_legendary_number.vpcf",
@@ -185,6 +198,7 @@ resources.Particles = {
 	"particles/econ/events/ti9/shovel_smoke_cloud.vpcf",
 	"particles/units/heroes/hero_legion_commander/legion_commander_duel_victory.vpcf",
 	"particles/units/heroes/hero_brewmaster/brewmaster_dispel_magic.vpcf",
+	"particles/units/heroes/hero_brewmaster/brewmaster_fire_immolation_child.vpcf",
 	"particles/units/heroes/hero_alchemist/alchemist_lasthit_coins.vpcf",
 	"particles/neutral_fx/neutral_item_drop.vpcf",
 	"particles/neutral_fx/neutral_item_drop_lvl2.vpcf",

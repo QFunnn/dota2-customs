@@ -67,9 +67,12 @@ function bristleback_viscous_nasal_goo_custom:Precache(context)
 	PrecacheResource("particle", "particles/alch_root.vpcf", context)
 	PrecacheResource("particle", "particles/bristleback/goo_legendary_active.vpcf", context)
 	PrecacheResource("particle", "particles/bristleback/goo_legendary_screen.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_ogre_magi/ogre_magi_bloodlust_buff.vpcf", context)
+	PrecacheResource("particle", "particles/brist_proc.vpcf", context)
+	PrecacheResource("particle", "particles/bloodseeker/thirst_legendary.vpcf", context)
 end
 
-function bristleback_viscous_nasal_goo_custom:UpdateTalents()
+function bristleback_viscous_nasal_goo_custom:UpdateTalents(name)
 	local caster = self:GetCaster()
 	if not self.init then
 		self.init = true
@@ -80,7 +83,6 @@ function bristleback_viscous_nasal_goo_custom:UpdateTalents()
 			q1_interval = caster:GetTalentValue("modifier_bristle_goo_1", "interval", true),
 			q1_damage_type = caster:GetTalentValue("modifier_bristle_goo_1", "damage_type", true),
 
-			has_q2 = 0,
 			q2_cd = 0,
 			q2_range = 0,
 
@@ -118,7 +120,6 @@ function bristleback_viscous_nasal_goo_custom:UpdateTalents()
 	end
 
 	if caster:HasTalent("modifier_bristle_goo_2") then
-		self.talents.has_q2 = 1
 		self.talents.q2_cd = caster:GetTalentValue("modifier_bristle_goo_2", "cd")
 		self.talents.q2_range = caster:GetTalentValue("modifier_bristle_goo_2", "range")
 	end
@@ -159,23 +160,20 @@ function bristleback_viscous_nasal_goo_custom:GetBehavior()
 		+ DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING
 end
 
-function bristleback_viscous_nasal_goo_custom:GetCastRange(Vector, hTarget)
-	if not self.cast_range then
-		return
-	end
-	local result = self.cast_range
+function bristleback_viscous_nasal_goo_custom:GetCastRange(vLocation, hTarget)
+	local result = self.cast_range or 0
 	if self.caster:HasScepter() then
-		result = result - self.caster:GetCastRangeBonus() + self.talents.q2_range
+		result = result - self.caster:GetCastRangeBonus() + (self.talents.q2_range or 0)
 	end
 	return result
 end
 
 function bristleback_viscous_nasal_goo_custom:GetCastPoint(iLevel)
-	return self.BaseClass.GetCastPoint(self) + (self.caster:HasScepter() and self.scepter_cast or 0)
+	return self.BaseClass.GetCastPoint(self) + (self.caster:HasScepter() and (self.scepter_cast or 0) or 0)
 end
 
 function bristleback_viscous_nasal_goo_custom:GetCooldown(level)
-	return self.BaseClass.GetCooldown(self, level) + (self.talents.q2_cd and self.talents.q2_cd or 0)
+	return self.BaseClass.GetCooldown(self, level) + (self.talents.q2_cd or 0)
 end
 
 function bristleback_viscous_nasal_goo_custom:OnSpellStart()
@@ -337,14 +335,10 @@ function modifier_bristleback_viscous_nasal_goo_custom:OnCreated()
 	else
 		self.parent:GenericParticle(pfx_name, self)
 	end
-	self:Init()
+	self:OnRefresh()
 end
 
-function modifier_bristleback_viscous_nasal_goo_custom:OnRefresh(table)
-	self:Init()
-end
-
-function modifier_bristleback_viscous_nasal_goo_custom:Init()
+function modifier_bristleback_viscous_nasal_goo_custom:OnRefresh()
 	if not IsServer() then
 		return
 	end
@@ -530,6 +524,7 @@ function modifier_bristleback_viscous_nasal_goo_armor:OnCreated()
 	if not IsServer() then
 		return
 	end
+	self.RemoveForDuel = true
 	self:OnRefresh()
 end
 

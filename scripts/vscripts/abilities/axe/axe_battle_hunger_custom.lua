@@ -131,10 +131,6 @@ function axe_battle_hunger_custom:UpdateTalents()
 	end
 end
 
-function axe_battle_hunger_custom:Init()
-	self.caster = self:GetCaster()
-end
-
 function axe_battle_hunger_custom:GetIntrinsicModifierName()
 	if not self:GetCaster():IsRealHero() then
 		return
@@ -147,7 +143,7 @@ function axe_battle_hunger_custom:GetAbilityTextureName()
 end
 
 function axe_battle_hunger_custom:GetAOERadius()
-	return self:GetSpecialValueFor("aoe_radius")
+	return self.aoe_radius or 0
 end
 
 function axe_battle_hunger_custom:OnSpellStart()
@@ -157,28 +153,22 @@ function axe_battle_hunger_custom:OnSpellStart()
 		return
 	end
 
-	local duration = self.talents.has_w7 == 1 and self.talents.w7_duration
-		or (self:GetSpecialValueFor("duration") + 0.1)
+	local duration = self.talents.has_w7 == 1 and self.talents.w7_duration or (self.duration + 0.1)
 
 	self.active_mod =
 		target:AddNewModifier(self.caster, self, "modifier_axe_battle_hunger_custom_debuff", { duration = duration })
 	target:EmitSound("Hero_Axe.Battle_Hunger")
 end
 
-modifier_axe_battle_hunger_custom_debuff = class({})
-function modifier_axe_battle_hunger_custom_debuff:IsPurgable()
-	return false
-end
+modifier_axe_battle_hunger_custom_debuff = class(mod_visible)
 function modifier_axe_battle_hunger_custom_debuff:OnCreated(kv)
 	self.parent = self:GetParent()
-	self.parent:AddDeathEvent(self, true)
-
 	self.caster = self:GetCaster()
 	self.ability = self:GetAbility()
 
-	self.slow = self.ability:GetSpecialValueFor("slow") + self.ability.talents.w2_slow
-	self.damage = self.ability:GetSpecialValueFor("damage_per_second") + self.ability.talents.w1_damage
-	self.aoe_radius = self.ability:GetSpecialValueFor("aoe_radius")
+	self.slow = self.ability.slow + self.ability.talents.w2_slow
+	self.damage = self.ability.damage_per_second + self.ability.talents.w1_damage
+	self.aoe_radius = self.ability.aoe_radius
 
 	self.stone_angle = 85
 	self.silence_count = self.ability.talents.w4_cd
@@ -189,6 +179,7 @@ function modifier_axe_battle_hunger_custom_debuff:OnCreated(kv)
 		return
 	end
 	self.RemoveForDuel = true
+	self.parent:AddDeathEvent(self, true)
 	self.caster:AddNewModifier(self.caster, self.ability, "modifier_axe_battle_hunger_custom_buff", {})
 
 	self.ability:EndCd()
@@ -198,7 +189,7 @@ function modifier_axe_battle_hunger_custom_debuff:OnCreated(kv)
 	local particle = wearables_system:GetParticleReplacementAbility(
 		self.caster,
 		"particles/units/heroes/hero_axe/axe_battle_hunger.vpcf",
-		self
+		self.ability
 	)
 	self.parent:GenericParticle(particle, self, true)
 
@@ -252,10 +243,16 @@ function modifier_axe_battle_hunger_custom_debuff:GetModifierIncomingDamage_Perc
 	if IsClient() then
 		return self.ability.talents.w7_damage * self:GetStackCount()
 	end
-
-	if not params.inflictor or (not params.attacker or params.attacker:FindOwner() ~= self.caster) then
+	if not params.inflictor then
 		return
 	end
+	if not params.attacker then
+		return
+	end
+	if params.attacker:FindOwner() ~= self.caster then
+		return
+	end
+
 	return self.ability.talents.w7_damage * self:GetStackCount()
 end
 
@@ -415,7 +412,6 @@ end
 function modifier_axe_battle_hunger_custom_buff:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
-	self.legendary_radius = self.ability.talents.w7_radius
 
 	if not IsServer() then
 		return
@@ -433,7 +429,7 @@ function modifier_axe_battle_hunger_custom_buff:OnCreated()
 			self.parent:GetPlayerOwner()
 		)
 		ParticleManager:SetParticleControl(self.radius_visual, 0, self.parent:GetAbsOrigin())
-		ParticleManager:SetParticleControl(self.radius_visual, 1, Vector(self.legendary_radius, 0, 0))
+		ParticleManager:SetParticleControl(self.radius_visual, 1, Vector(self.ability.talents.w7_radius, 0, 0))
 		self:AddParticle(self.radius_visual, false, false, -1, false, false)
 	end
 end
@@ -455,11 +451,20 @@ function modifier_axe_battle_hunger_custom_tracker:OnCreated(table)
 	self.ability.tracker = self
 	self.ability:UpdateTalents()
 
+	self.ability.duration = self.ability:GetSpecialValueFor("duration")
+	self.ability.slow = self.ability:GetSpecialValueFor("slow")
+	self.ability.damage_per_second = self.ability:GetSpecialValueFor("damage_per_second")
+	self.ability.aoe_radius = self.ability:GetSpecialValueFor("aoe_radius")
+
 	if not IsServer() then
 		return
 	end
-
 	self:StartIntervalThink(2)
+end
+
+function modifier_axe_battle_hunger_custom_tracker:OnRefresh(table)
+	self.ability.slow = self.ability:GetSpecialValueFor("slow")
+	self.ability.damage_per_second = self.ability:GetSpecialValueFor("damage_per_second")
 end
 
 function modifier_axe_battle_hunger_custom_tracker:OnIntervalThink()
@@ -489,32 +494,35 @@ function modifier_axe_battle_hunger_custom_tracker:DamageEvent_out(params)
 	if ReflectedDamage(params) then
 		return
 	end
-
-	if
-		self.ability.talents.has_w3 == 1
-		and not unit:HasModifier("modifier_axe_battle_hunger_custom_damage_cd")
-		and RollPseudoRandomPercentage(self.ability.talents.w3_chance, 6123, self.parent)
-	then
-		unit:AddNewModifier(
-			self.parent,
-			self.ability,
-			"modifier_axe_battle_hunger_custom_damage_cd",
-			{ duration = self.ability.talents.w3_talent_cd }
-		)
-		unit:GenericParticle("particles/units/heroes/hero_doom_bringer/doom_infernal_blade_impact.vpcf")
-		unit:EmitSound("Axe.Hunger_damage")
-
-		local damage = self.ability.talents.w3_base + self.ability.talents.w3_damage * self.parent:GetMaxHealth()
-		local damageTable = {
-			attacker = self.parent,
-			ability = self.ability,
-			victim = unit,
-			damage = damage,
-			damage_type = self.ability.talents.w3_damage_type,
-		}
-		local real_damage = DoDamage(damageTable, "modifier_axe_hunger_3")
-		unit:SendNumber(6, real_damage)
+	if self.ability.talents.has_w3 == 0 then
+		return
 	end
+	if unit:HasModifier("modifier_axe_battle_hunger_custom_damage_cd") then
+		return
+	end
+	if not RollPseudoRandomPercentage(self.ability.talents.w3_chance, 6123, self.parent) then
+		return
+	end
+
+	unit:AddNewModifier(
+		self.parent,
+		self.ability,
+		"modifier_axe_battle_hunger_custom_damage_cd",
+		{ duration = self.ability.talents.w3_talent_cd }
+	)
+	unit:GenericParticle("particles/units/heroes/hero_doom_bringer/doom_infernal_blade_impact.vpcf")
+	unit:EmitSound("Axe.Hunger_damage")
+
+	local damage = self.ability.talents.w3_base + self.ability.talents.w3_damage * self.parent:GetMaxHealth()
+	local damageTable = {
+		attacker = self.parent,
+		ability = self.ability,
+		victim = unit,
+		damage = damage,
+		damage_type = self.ability.talents.w3_damage_type,
+	}
+	local real_damage = DoDamage(damageTable, "modifier_axe_hunger_3")
+	unit:SendNumber(6, real_damage)
 end
 
 function modifier_axe_battle_hunger_custom_tracker:DeclareFunctions()

@@ -27,6 +27,71 @@ function padNumber(num) {
     return str
 }
 
+function IsMyTurn(data)
+{
+    if (!data)
+        return false
+    if (wrong_rating_status == 1)
+        return false
+    return data.current_team == Players.GetTeam(Game.GetLocalPlayerID())
+}
+
+function RemovePickTimer()
+{
+    if (IS_DUO_MODE)
+        return
+
+    let timer = $.GetContextPanel().FindChildTraverse("pick_timer")
+    if (timer)
+        timer.DeleteAsync(0)
+}
+
+var RANK_TIER_RATING = [0, 150, 300, 500, 750, 1000, 1300, 9999999]
+
+function UpdateLobbyRating()
+{
+    let avg_rating = CustomNetTables.GetTableValue("custom_pick", "avg_rating")
+    if (!avg_rating)
+        return
+
+    let lobby_rating = $.GetContextPanel().FindChildTraverse("lobby_rating_text")
+    if (!lobby_rating)
+        return
+
+    let value = Number(avg_rating.avg_rating)
+    lobby_rating.text = $.Localize("#avg_rating") + avg_rating.avg_rating
+
+    let tier = 0
+    for (let i = 0; i < RANK_TIER_RATING.length; i++)
+    {
+        if (value < RANK_TIER_RATING[i])
+        {
+            tier = i
+            break
+        }
+    }
+
+    let n = 1
+    if (tier >= 6)
+        n = 3
+    else if (tier >= 4)
+        n = 2
+
+    for (let i = 1; i <= 3; i++)
+        lobby_rating.RemoveClass("lobby_rating_text_" + i)
+    lobby_rating.AddClass("lobby_rating_text_" + n)
+
+    let icon = $.GetContextPanel().FindChildTraverse("lobby_rating_icon")
+    if (!icon)
+        return
+
+    for (let i = 0; i <= 7; i++)
+        icon.RemoveClass("lobby_rating_icon_" + i)
+
+    icon.AddClass("lobby_rating_icon_" + tier)
+    icon.AddClass("lobby_rating_icon_visible")
+}
+
 function init()
 {
     let game_mode_table = CustomNetTables.GetTableValue("custom_pick", "game_mode")
@@ -43,6 +108,7 @@ function init()
         IS_DUO_MODE = true
     }else
     {
+        $.GetContextPanel().AddClass("IsSoloMode")
         minimap.AddClass("minimap_solo")
     }
 
@@ -91,23 +157,8 @@ function pick_start()
 {
 	if (pick_started) { return }
 	StealButtons()
-	let avg_rating = CustomNetTables.GetTableValue("custom_pick", "avg_rating");
-	if (avg_rating) 
-    {
-		let lobby_rating = $.GetContextPanel().FindChildTraverse("lobby_rating_text")
-        if (lobby_rating)
-        {
-            lobby_rating.text = $.Localize("#avg_rating") + avg_rating.avg_rating
-        }
-	}
-    if (IS_DUO_MODE)
-    {
-        CreatePlayersDuo()
-    }
-    else
-    {
-        CreatePlayersSolo()
-    }
+	UpdateLobbyRating()
+    CreatePlayers()
 
 	update_lobby_rating()
 	$.Schedule(0.2, function() 
@@ -120,49 +171,43 @@ function pick_start()
 	})
 }
 
-function CreatePlayersSolo()
+function GetSortedTeams()
 {
-    let lobby_heroes = $.GetContextPanel().FindChildTraverse("lobby_players_list")
-    let player_list = CustomNetTables.GetTableValue("custom_pick", "player_lobby");
-	if (player_list) 
-	{
-		const players = Object.entries(player_list.lobby_players).map(([pid, data]) => [pid, data.pick_order]).sort((a, b) => a[1] - b[1])
-		for (const [pid, i] of players) 
-		{
-			pick_started = true
-			CreatePlayerPanel(pid, lobby_heroes)
-		}
-	}
+    let teams_list = CustomNetTables.GetTableValue("custom_pick", "teams_lobby")
+    if (!teams_list || !teams_list.lobby_teams)
+        return []
+    return Object.entries(teams_list.lobby_teams).map(([team_id, data]) => [team_id, data.pick_order]).sort((a, b) => a[1] - b[1])
 }
 
-function CreatePlayersDuo()
+function GetSortedPlayers()
+{
+    let player_list = CustomNetTables.GetTableValue("custom_pick", "player_lobby")
+    if (!player_list || !player_list.lobby_players)
+        return []
+    return Object.entries(player_list.lobby_players).map(([pid, data]) => [pid, data.pick_order, data.player_team]).sort((a, b) => a[1] - b[1])
+}
+
+function CreatePlayers()
 {
     let lobby_heroes = $.GetContextPanel().FindChildTraverse("lobby_players_list")
-    let player_list = CustomNetTables.GetTableValue("custom_pick", "player_lobby");
-    let teams_list = CustomNetTables.GetTableValue("custom_pick", "teams_lobby");
-	if (player_list) 
-	{
-		const players = Object.entries(player_list.lobby_players).map(([pid, data]) => [pid, data.pick_order, data.player_team]).sort((a, b) => a[1] - b[1])
-        const teams = Object.entries(teams_list.lobby_teams).map(([team_id, data]) => [team_id, data.pick_order]).sort((a, b) => a[1] - b[1])
-        for (const [team_id, i] of teams)
-        {
-            pick_started = true
-            let lobby_team_panel = CreateTeamPanel(team_id, lobby_heroes)
-            let DuoPlayersPanel = $.CreatePanel("Panel", lobby_team_panel, "")
-            DuoPlayersPanel.AddClass("DuoPlayersPanel")
+    const players = GetSortedPlayers()
 
-            if (lobby_team_panel)
-            {
-                for (const [pid, i, player_team] of players) 
-                {
-                    if (player_team == team_id)
-                    {
-                        CreatePlayerPanel(pid, DuoPlayersPanel)
-                    }
-                }
-            }
+    for (const [team_id, order] of GetSortedTeams())
+    {
+        pick_started = true
+        let lobby_team_panel = CreateTeamPanel(team_id, lobby_heroes)
+        if (!lobby_team_panel)
+            continue
+
+        let DuoPlayersPanel = $.CreatePanel("Panel", lobby_team_panel, "")
+        DuoPlayersPanel.AddClass("DuoPlayersPanel")
+
+        for (const [pid, order, player_team] of players)
+        {
+            if (player_team == team_id)
+                CreatePlayerPanel(pid, DuoPlayersPanel)
         }
-	}
+    }
 }
 
 function CreateTeamPanel(team_id, parent)
@@ -181,23 +226,10 @@ function CreatePlayerPanel(pid, parent)
 {
 	let server_data = CustomNetTables.GetTableValue("server_data", String(pid));
 
-    let player_and_timer = parent
+    if (pid == Game.GetLocalPlayerID())
+        parent.GetParent().AddClass("player_and_timer_local")
 
-    if (!IS_DUO_MODE)
-    { 
-        player_and_timer = $.CreatePanel("Panel", parent, "player_and_timer" + pid);
-        player_and_timer.AddClass("player_and_timer")
-
-        if (pid == Game.GetLocalPlayerID()) 
-            player_and_timer.AddClass("player_and_timer_local")
-        
-    }else
-    {
-        if (pid == Game.GetLocalPlayerID()) 
-            parent.GetParent().AddClass("player_and_timer_local")
-    }
-
-    let player_portrait_background = $.CreatePanel("Panel", player_and_timer, "");
+    let player_portrait_background = $.CreatePanel("Panel", parent, "");
     player_portrait_background.AddClass("player_portrait_background")
 
 	let player_portrait = $.CreatePanel("Panel", player_portrait_background, "player" + pid);
@@ -266,46 +298,27 @@ function start_base_pick()
 		minimap.AddClass("pick_base_mimimap_visible")
 		var minimap_text = $.GetContextPanel().FindChildTraverse("minimap_text_text")
 		minimap_text.text = $.Localize("#minimap_text")
-		var player_list = CustomNetTables.GetTableValue("custom_pick", "player_lobby");
-        let teams_list = CustomNetTables.GetTableValue("custom_pick", "teams_lobby");
-
 		var player_pick = $.GetContextPanel().FindChildTraverse("pick_base_players")
 		player_pick.RemoveClass("pick_base_players_hidden")
 		player_pick.AddClass("pick_base_players_show")
 		
 		var player_heroes = $.GetContextPanel().FindChildTraverse("pick_base_heroes")
         
-		if (player_list) 
+		const players_inv = GetSortedPlayers()
+		for (const [team_id, order] of GetSortedTeams())
 		{
-			const players_inv = Object.entries(player_list.lobby_players).map(([pid, data]) => [pid, data.pick_order, data.player_team]).sort((a, b) => a[1] - b[1])
-            if (IS_DUO_MODE)
-            {
-                const teams = Object.entries(teams_list.lobby_teams).map(([team_id, data]) => [team_id, data.pick_order]).sort((a, b) => a[1] - b[1])
-                for (const [team_id, i] of teams)
-                {
-                    let lobby_team_panel = CreateTeamPanelBase(team_id, player_heroes)
-                    if (lobby_team_panel)
-                    {
-                        let DuoPlayersPanel = $.CreatePanel("Panel", lobby_team_panel, "")
-                        DuoPlayersPanel.AddClass("DuoPlayersPanel")
+			let lobby_team_panel = CreateTeamPanelBase(team_id, player_heroes)
+			if (!lobby_team_panel)
+				continue
 
-                        for (const [pid, i, player_team] of players_inv) 
-                        {
-                            if (player_team == team_id)
-                            {
-                                CreatePlayerPanelBase(pid, DuoPlayersPanel)
-                            }
-                        }
-                    }
-                }
-            }
-            else
-            {
-                for (const [pid, i, player_team] of players_inv) 
-                {
-                    CreatePlayerPanelBase(pid, player_heroes)
-                }
-            }
+			let DuoPlayersPanel = $.CreatePanel("Panel", lobby_team_panel, "")
+			DuoPlayersPanel.AddClass("DuoPlayersPanel")
+
+			for (const [pid, order, player_team] of players_inv)
+			{
+				if (player_team == team_id)
+					CreatePlayerPanelBase(pid, DuoPlayersPanel)
+			}
 		}
 		update_lobby_rating()
 	})
@@ -329,24 +342,10 @@ function CreatePlayerPanelBase(pid, parent)
     var player_list = CustomNetTables.GetTableValue("custom_pick", "player_lobby");
     var player_pick = $.GetContextPanel().FindChildTraverse("pick_base_players")
 
-    let player_and_timer = parent
+    if (pid == Game.GetLocalPlayerID())
+        parent.GetParent().AddClass("player_and_timer_local")
 
-    if (!IS_DUO_MODE)
-    { 
-        player_and_timer = $.CreatePanel("Panel", parent, "player_and_timer_base_pick" + pid);
-        player_and_timer.AddClass("player_and_timer_base_pick")
-
-        if (pid == Game.GetLocalPlayerID()) 
-            player_and_timer.AddClass("player_and_timer_local")
-        
-    }else
-    {
-        if (pid == Game.GetLocalPlayerID()) 
-            parent.GetParent().AddClass("player_and_timer_local")
-    }
-
-
-    let player_portrait_background = $.CreatePanel("Panel", player_and_timer, "");
+    let player_portrait_background = $.CreatePanel("Panel", parent, "");
     player_portrait_background.AddClass("player_portrait_background_base")
 
     let player_portraits = $.CreatePanel("Panel", player_portrait_background, "player_base" + pid);
@@ -428,14 +427,14 @@ function pick_start_time_base(kv)
     {
         RemoveMouse(base_team)
     }
-	if (Game.GetLocalPlayerID() == kv.id) 
+	if (IsMyTurn(kv))
     {
 		Game.EmitSound("UI.Your_turn")
 	}
 }
 
 
-function change_time_base(kv) 
+function change_time_base(kv)
 {
     var timer = $.GetContextPanel().FindChildTraverse("pick_timer_base")
 
@@ -449,16 +448,11 @@ function change_time_base(kv)
         timer.GetChild(0).text = String(kv.time)
     }
 
-    let allow_sound = Game.GetLocalPlayerID() == kv.id
-
-    if (IS_DUO_MODE)
-    {
-        allow_sound = Players.GetTeam(Game.GetLocalPlayerID()) == kv.current_team
-    }
+    let allow_sound = IsMyTurn(kv)
 
     if (allow_sound)
     {
-        if (kv.time == 5) 
+        if (kv.time == 5)
         {
             Game.EmitSound("UI.Pick_5_sec")
         }
@@ -472,7 +466,7 @@ function change_time_base(kv)
     let bases_counter = 6
     if (IS_DUO_MODE)
     {
-        bases_counter = 5
+        bases_counter = 4
     }
 	for (var i = 1; i <= bases_counter; i++) 
 	{
@@ -488,7 +482,7 @@ function change_time_base(kv)
 
 	var flag = true
 	var active_player = CustomNetTables.GetTableValue("custom_pick", "active_player");
-	if (active_player.id == Game.GetLocalPlayerID() || active_player.current_team == Players.GetTeam( Players.GetLocalPlayer() )) 
+	if (IsMyTurn(active_player))
 	{
 		for (var i = 1; i <= bases_counter; i++) 
 		{
@@ -536,473 +530,246 @@ function get_custom_pick_url(kv)
 	$.DispatchEvent("ExternalBrowserGoToURL", kv.url);
 }
 
-function show_badmap(reason, data)
+const PICK_BLOCKS =
 {
-    let id_1 = data.id_1
-    let id_2 = data.id_2
+    local_server:
+    {
+        local:
+        [
+            {type: "title", text: "#LocalServer_top"},
+            {type: "text",  text: "#LocalServer_mid"},
+            {type: "image", text: "#LocalServer_image", css: "pick_block_image_local_server"},
+        ],
+    },
 
-	var server_data = CustomNetTables.GetTableValue("server_data", String(id_1));
-	if (!server_data)
-			return
+    player_banned:
+    {
+        local:
+        [
+            {type: "title", text: "#PlayerBannedLocal_top"},
+            {type: "text",  text: "#PlayerBannedLocal_bot"},
+            {type: "link",  text: "Telegram", url: "https://t.me/Dota1x6"},
+            {type: "link",  text: "Discord",  url: "https://discord.gg/H3kf5YhGwZ"},
+        ],
+        remote:
+        [
+            {type: "title",  text: "#PlayerBannedNotLocal_top"},
+            {type: "player", id: (d) => d.id},
+        ],
+    },
 
-    let is_local = Game.GetLocalPlayerID() == id_1
+    leave_banned:
+    {
+        local:
+        [
+            {type: "title", text: (d) => $.Localize("#LeaveBanLocal_top") + d.max_leave + $.Localize("#LeaveBanLocal_top2")},
+            {type: "text",  text: "#LeaveBanNotLocal_mid"},
+            {type: "list",  items: (d) => LeaveDates(d.leave_data)},
+            {type: "text",  text: (d) => UnbanText(d.leave_data)},
+        ],
+        remote:
+        [
+            {type: "title",  text: "#LeaveBanNotLocal_top"},
+            {type: "player", id: (d) => d.id},
+            {type: "text",   text: (d) => UnbanText(d.leave_data)},
+        ],
+    },
 
-    let kv = []
-    kv.mmr = server_data.rating
-    kv.max = server_data.map_rating.max
-    kv.min = server_data.map_rating.min
+    reports:
+    {
+        local:
+        [
+            {type: "title",  text: "#ReportsAlertLocal_top"},
+            {type: "player", id: (d) => d.teammate},
+            {type: "text",   text: "#ReportsAlertLocal_bot"},
+        ],
+        remote:
+        [
+            {type: "title",  text: "#ReportsAlertNotLocal_top"},
+            {type: "player", id: (d) => d.id},
+            {type: "text",   text: () => "+"},
+            {type: "player", id: (d) => d.teammate},
+        ],
+    },
 
-    var hero_pick = $.GetContextPanel().FindChildTraverse("hero_pick")
+    low_games:
+    {
+        local:
+        [
+            {type: "title", text: (d) => $.Localize("#LowGamesLocal_top") + " (" + Red(d.games) + "/" + d.max_games + ")"},
+            {type: "text",  text: "#LowGamesNotLocal_mid"},
+            {type: "image", text: "#badmap_image", css: "pick_block_image_map"},
+        ],
+        remote:
+        [
+            {type: "title",  text: "#LowGamesNotLocal_top"},
+            {type: "player", id: (d) => d.id},
+            {type: "text",   text: (d) => $.Localize("#LowGamesNotLocal_bot") + Red(d.games) + "/" + d.max_games},
+        ],
+    },
+
+    wrong_map:
+    {
+        local:
+        [
+            {type: "title", text: "#badmap_top"},
+            {type: "text",  text: (d) => $.Localize("#badmap_your_mmr") + d.rating},
+            {type: "text",  text: (d) => $.Localize("#badmap_map_mmr") + (d.max > 10000 ? d.min + "+" : d.min + "-" + d.max)},
+            {type: "text",  text: "#badmap_pick_stage"},
+            {type: "image", text: "#badmap_image", css: "pick_block_image_map"},
+        ],
+        remote:
+        [
+            {type: "title",  text: "#badmapnotlocal_top"},
+            {type: "player", id: (d) => d.id},
+            {type: "text",   text: (d) => $.Localize("#badmapnotlocal_mmr") + d.rating},
+        ],
+    },
+}
+
+function Red(value)
+{
+    return "<b><font color='#ff4d30'>" + String(value) + "</font></b>"
+}
+
+function UnbanText(leave_data)
+{
+    let unban_time = -1
+
+    for (const index in leave_data)
+    {
+        let time = Number(leave_data[index].createdAt)
+        if (time && (time <= unban_time || unban_time == -1))
+            unban_time = time
+    }
+
+    if (unban_time == -1)
+        return ""
+
+    let delta = ((unban_time + 14*24*60*60*1000) - Date.now())/(1000*60*60)
+    let days = Math.floor(delta/24)
+    let hours = Math.floor(delta - days*24)
+
+    return $.Localize("#LeaveBanLocal_bot") + days + $.Localize("#pass_active_sub_days") + " " + hours + $.Localize("#pass_active_sub_hours")
+}
+
+function LeaveDates(leave_data)
+{
+    let dates = []
+    let offset = new Date().getTimezoneOffset()
+
+    for (const index in leave_data)
+    {
+        if (dates.length >= 3)
+            break
+
+        let time = Number(leave_data[index].createdAt)
+        if (!time)
+            continue
+
+        let date = new Date(time - offset*60*1000)
+        let month = $.Localize("#month_" + padNumber(date.getUTCMonth()))
+        dates.push(Number(index) + ")  " + padNumber(date.getUTCHours()) + ":" + padNumber(date.getUTCMinutes()) + " " + padNumber(date.getUTCDate()) + " " + month)
+    }
+
+    return dates
+}
+
+function CreateBlockLabel(parent, text)
+{
+    let label = $.CreatePanel("Label", parent, "")
+    label.AddClass("pick_block_label")
+    label.html = true
+    label.text = text
+
+    return label
+}
+
+function BuildBlock(rows, parent, d)
+{
+    for (const row of rows)
+    {
+        if (row.type == "image")
+        {
+            let image = $.CreatePanel("Panel", parent, "")
+            image.AddClass("pick_block_image")
+            image.AddClass(row.css)
+            image.style.backgroundImage = "url('file://{images}/custom_game/" + String($.Localize(row.text)) + ".png')"
+            image.style.backgroundSize = "100%"
+            continue
+        }
+
+        if (row.type == "player")
+        {
+            let id = row.id(d)
+            let player_panel = $.CreatePanel("Panel", parent, "")
+            player_panel.AddClass("pick_block_player")
+
+            let icon = $.CreatePanel("Panel", player_panel, "")
+            icon.AddClass("pick_block_avatar")
+
+            let avatar = $.CreatePanel("DOTAAvatarImage", icon, "")
+            avatar.style.width = "100%"
+            avatar.style.height = "100%"
+            avatar.steamid = Game.GetPlayerInfo(id).player_steamid
+
+            CreateBlockLabel(player_panel, Players.GetPlayerName(id))
+            continue
+        }
+
+        if (row.type == "list")
+        {
+            let list_panel = $.CreatePanel("Panel", parent, "")
+            list_panel.AddClass("pick_block_list")
+
+            for (const item of row.items(d))
+                CreateBlockLabel(list_panel, item)
+
+            continue
+        }
+
+        let panel = $.CreatePanel("Panel", parent, "")
+        panel.AddClass("pick_block_" + row.type)
+
+        let label = CreateBlockLabel(panel, typeof row.text == "function" ? row.text(d) : $.Localize(row.text))
+
+        if (row.url)
+            label.SetPanelEvent("onactivate", function() { $.DispatchEvent("ExternalBrowserGoToURL", row.url) })
+    }
+}
+
+function show_pick_block(data)
+{
+    let block = PICK_BLOCKS[data.block.name]
+    if (!block)
+        return
+
+
+    let is_local = Game.GetLocalPlayerID() == data.id_1
+    let rows = (!is_local && block.remote) ? block.remote : block.local
+
+    let hero_pick = $.GetContextPanel().FindChildTraverse("hero_pick")
     let main = hero_pick.FindChildTraverse("UnvalidGameMain")
     main.RemoveClass("BadMap_hidden")
     main.RemoveAndDeleteChildren()
 
-    let event
-
-    if (reason == 7)
-    {
-        event = $.CreatePanel("Panel", main, "")
-        event.AddClass("PlayerBanned")
-
-        if (!is_local)
-        {
-            event.AddClass("PlayerBannedNotLocal")
-
-            let PlayerBannedNotLocal_top = $.CreatePanel("Panel", event, "PlayerBannedNotLocal_top")
-            let PlayerBannedNotLocal_top_text = $.CreatePanel("Label", PlayerBannedNotLocal_top, "")
-            PlayerBannedNotLocal_top_text.AddClass("BadMap_text")
-            PlayerBannedNotLocal_top_text.html = true
-            PlayerBannedNotLocal_top_text.text = $.Localize("#PlayerBannedNotLocal_top")
-
-            let PlayerBannedNotLocal_mid = $.CreatePanel("Panel", event, "PlayerBannedNotLocal_mid")
-            let PlayerBannedNotLocal_mid_top = $.CreatePanel("Panel", PlayerBannedNotLocal_mid, "PlayerBannedNotLocal_mid_top")
-
-            let PlayerBannedNotLocal_mid_icon = $.CreatePanel("Panel", PlayerBannedNotLocal_mid_top, "")
-            PlayerBannedNotLocal_mid_icon.AddClass("BadMapNotLocal_mid_icon")
-
-            let PlayerBannedNotLocal_mid_avatar = $.CreatePanel("DOTAAvatarImage", PlayerBannedNotLocal_mid_icon, "")
-            PlayerBannedNotLocal_mid_avatar.style.width = "100%"
-            PlayerBannedNotLocal_mid_avatar.style.height = "100%"
-            PlayerBannedNotLocal_mid_avatar.steamid = Game.GetPlayerInfo(id_1).player_steamid
-
-            let PlayerBannedNotLocal_mid_name = $.CreatePanel("Label", PlayerBannedNotLocal_mid_top, "")
-            PlayerBannedNotLocal_mid_name.AddClass("BadMap_text")
-            PlayerBannedNotLocal_mid_name.html = true
-            PlayerBannedNotLocal_mid_name.text = Players.GetPlayerName(id_1)
-        }else
-        {
-            event.AddClass("PlayerBannedLocal")
-
-            let PlayerBannedLocal_top = $.CreatePanel("Panel", event, "PlayerBannedLocal_top")
-            let PlayerBannedLocal_top_text = $.CreatePanel("Label", PlayerBannedLocal_top, "")
-            PlayerBannedLocal_top_text.AddClass("BadMap_text")
-            PlayerBannedLocal_top_text.html = true
-            PlayerBannedLocal_top_text.text = $.Localize("#PlayerBannedLocal_top")
-
-            let PlayerBannedLocal_mid = $.CreatePanel("Panel", event, "PlayerBannedLocal_mid")
-
-            let PlayerBannedLocal_mid_info = $.CreatePanel("Label", PlayerBannedLocal_mid, "")
-            PlayerBannedLocal_mid_info.AddClass("BadMap_text")
-            PlayerBannedLocal_mid_info.html = true
-            PlayerBannedLocal_mid_info.text = $.Localize("#PlayerBannedLocal_bot")
-
-            let PlayerBannedLocal_mid_info2 = $.CreatePanel("Label", PlayerBannedLocal_mid, "")
-            PlayerBannedLocal_mid_info2.AddClass("PlayerBannedLocal_mid_bot_text")
-            PlayerBannedLocal_mid_info2.html = true
-            PlayerBannedLocal_mid_info2.text = "Telegram"
-
-            PlayerBannedLocal_mid_info2.SetPanelEvent("onactivate", function() {
-                $.DispatchEvent("ExternalBrowserGoToURL", 'https://t.me/Dota1x6');
-            });
-
-            let PlayerBannedLocal_mid_info3 = $.CreatePanel("Label", PlayerBannedLocal_mid, "")
-            PlayerBannedLocal_mid_info3.AddClass("PlayerBannedLocal_mid_bot_text")
-            PlayerBannedLocal_mid_info3.html = true
-            PlayerBannedLocal_mid_info3.text = "Discord"
-
-            PlayerBannedLocal_mid_info3.SetPanelEvent("onactivate", function() {
-                $.DispatchEvent("ExternalBrowserGoToURL", 'https://discord.gg/H3kf5YhGwZ');
-            });
-        }
-    }
-
-    if (reason == 6)
-    {        
-        event = $.CreatePanel("Panel", main, "")
-        event.AddClass("LeaveBan")
-
-        let unban_time = -1
-        let unban_text = ""
-        for (index in server_data.leave_data)
-        {   
-            let data = server_data.leave_data[index]
-            let offset = new Date().getTimezoneOffset()
-            let time = Number(data.createdAt)
-            if (time && (time <= unban_time || unban_time == -1))
-            {
-                unban_time = time
-            }
-        }
-
-        if (unban_time != -1)
-        {
-            let delta = (unban_time + 14*24*60*60*1000) - Date.now()
-            delta = delta/(1000*60*60)
-            let days = Math.floor(delta/24)
-            let hours = Math.floor(delta - days*24)
-            unban_text = $.Localize("#LeaveBanLocal_bot") + days + $.Localize("#pass_active_sub_days") + " " + hours + $.Localize("#pass_active_sub_hours")
-        }
-
-        if (!is_local)
-        {
-            event.AddClass("LeaveBanNotLocal")
-
-            let LeaveBanNotLocal_top = $.CreatePanel("Panel", event, "LeaveBanNotLocal_top")
-            let LeaveBanNotLocal_top_text = $.CreatePanel("Label", LeaveBanNotLocal_top, "")
-            LeaveBanNotLocal_top_text.AddClass("BadMap_text")
-            LeaveBanNotLocal_top_text.html = true
-            LeaveBanNotLocal_top_text.text = $.Localize("#LeaveBanNotLocal_top")
-
-            let LeaveBanNotLocal_mid = $.CreatePanel("Panel", event, "LeaveBanNotLocal_mid")
-            let LeaveBanNotLocal_mid_top = $.CreatePanel("Panel", LeaveBanNotLocal_mid, "LeaveBanNotLocal_mid_top")
-            let LeaveBanNotLocal_bot = $.CreatePanel("Panel", event, "LeaveBanNotLocal_bot")
-
-            let LeaveBanNotLocal_mid_icon = $.CreatePanel("Panel", LeaveBanNotLocal_mid_top, "")
-            LeaveBanNotLocal_mid_icon.AddClass("BadMapNotLocal_mid_icon")
-
-            let LeaveBanNotLocal_mid_avatar = $.CreatePanel("DOTAAvatarImage", LeaveBanNotLocal_mid_icon, "")
-            LeaveBanNotLocal_mid_avatar.style.width = "100%"
-            LeaveBanNotLocal_mid_avatar.style.height = "100%"
-            LeaveBanNotLocal_mid_avatar.steamid = Game.GetPlayerInfo(id_1).player_steamid
-
-            let LeaveBanNotLocal_mid_name = $.CreatePanel("Label", LeaveBanNotLocal_mid_top, "")
-            LeaveBanNotLocal_mid_name.AddClass("BadMap_text")
-            LeaveBanNotLocal_mid_name.html = true
-            LeaveBanNotLocal_mid_name.text = Players.GetPlayerName(id_1)
-
-            let LeaveBanLocal_mid_bot_text = $.CreatePanel("Label", LeaveBanNotLocal_bot, "")
-            LeaveBanLocal_mid_bot_text.AddClass("BadMap_text")
-            LeaveBanLocal_mid_bot_text.html = true
-            LeaveBanLocal_mid_bot_text.text = unban_text
-
-        }else
-        {
-            event.AddClass("LeaveBanLocal")
-
-            let LeaveBanLocal_top = $.CreatePanel("Panel", event, "LeaveBanLocal_top")
-            let LeaveBanLocal_top_text = $.CreatePanel("Label", LeaveBanLocal_top, "")
-            LeaveBanLocal_top_text.AddClass("BadMap_text")
-            LeaveBanLocal_top_text.html = true
-            LeaveBanLocal_top_text.text = $.Localize("#LeaveBanLocal_top") + server_data.max_leave + $.Localize("#LeaveBanLocal_top2")
-
-            let LeaveBanLocal_mid = $.CreatePanel("Panel", event, "LeaveBanLocal_mid")
-            let LeaveBanLocal_mid_top = $.CreatePanel("Panel", LeaveBanLocal_mid, "LeaveBanLocal_mid_top")
-            let LeaveBanLocal_mid_center = $.CreatePanel("Panel", LeaveBanLocal_mid, "LeaveBanLocal_mid_center")
-            let LeaveBanLocal_mid_bot = $.CreatePanel("Panel", LeaveBanLocal_mid, "LeaveBanLocal_mid_bot")
-            LeaveBanLocal_mid_bot.AddClass('LeaveBanLocal_mid_bot')
-
-            let LeaveBanLocal_mid_games = $.CreatePanel("Label", LeaveBanLocal_mid_top, "")
-            LeaveBanLocal_mid_games.AddClass("BadMap_text")
-            LeaveBanLocal_mid_games.html = true
-            LeaveBanLocal_mid_games.text = $.Localize("#LeaveBanNotLocal_mid") 
-
-            let LeaveBanLocal_mid_info = $.CreatePanel("Label", LeaveBanLocal_mid_bot, "")
-            LeaveBanLocal_mid_info.AddClass("BadMap_text")
-            LeaveBanLocal_mid_info.html = true
-
-            let count = 0
-            for (index in server_data.leave_data)
-            {   
-                let data = server_data.leave_data[index]
-                let offset = new Date().getTimezoneOffset()
-                let time = Number(data.createdAt)
-                if (time)
-                {
-                    time = time - offset*60*1000
-                    let date = new Date(time)
-                    if (count < 3)
-                    {   
-                        count = count + 1
-                        let LeaveBanLocal_mid_game = $.CreatePanel("Label", LeaveBanLocal_mid_center, "")
-                        LeaveBanLocal_mid_game.AddClass("LeaveBanLocal_mid_center_text")
-                        var month = $.Localize("#month_" + padNumber(date.getUTCMonth()))
-                        LeaveBanLocal_mid_game.text = Number(index) + ")  " + padNumber(date.getUTCHours()) + ":" + padNumber(date.getUTCMinutes()) + " " + padNumber(date.getUTCDate()) + " " + month
-                    }
-                }
-            }
-            LeaveBanLocal_mid_info.text = unban_text
-        }
-    }
-
-    if (reason == 5)
-    {
-        event = $.CreatePanel("Panel", main, "")
-        event.AddClass("LowGames")
-
-        if (!is_local)
-        {
-            event.AddClass("LowGamesNotLocal")
-
-            let LowGamesNotLocal_top = $.CreatePanel("Panel", event, "LowGamesNotLocal_top")
-            let LowGamesNotLocal_top_text = $.CreatePanel("Label", LowGamesNotLocal_top, "")
-            LowGamesNotLocal_top_text.AddClass("BadMap_text")
-            LowGamesNotLocal_top_text.html = true
-            LowGamesNotLocal_top_text.text = $.Localize("#LowGamesNotLocal_top")
-
-            let LowGamesNotLocal_mid = $.CreatePanel("Panel", event, "LowGamesNotLocal_mid")
-            let LowGamesNotLocal_mid_top = $.CreatePanel("Panel", LowGamesNotLocal_mid, "LowGamesNotLocal_mid_top")
-            let LowGamesNotLocal_mid_bot = $.CreatePanel("Panel", LowGamesNotLocal_mid, "LowGamesNotLocal_mid_bot")
-
-            let LowGamesNotLocal_mid_icon = $.CreatePanel("Panel", LowGamesNotLocal_mid_top, "")
-            LowGamesNotLocal_mid_icon.AddClass("BadMapNotLocal_mid_icon")
-
-            let LowGamesNotLocal_mid_avatar = $.CreatePanel("DOTAAvatarImage", LowGamesNotLocal_mid_icon, "")
-            LowGamesNotLocal_mid_avatar.style.width = "100%"
-            LowGamesNotLocal_mid_avatar.style.height = "100%"
-            LowGamesNotLocal_mid_avatar.steamid = Game.GetPlayerInfo(id_1).player_steamid
-
-            let LowGamesNotLocal_mid_name = $.CreatePanel("Label", LowGamesNotLocal_mid_top, "")
-            LowGamesNotLocal_mid_name.AddClass("BadMap_text")
-            LowGamesNotLocal_mid_name.html = true
-            LowGamesNotLocal_mid_name.text = Players.GetPlayerName(id_1)
-
-
-            let LowGamesNotLocal_mid_games = $.CreatePanel("Label", LowGamesNotLocal_mid_bot, "")
-            LowGamesNotLocal_mid_games.AddClass("BadMap_text")
-            LowGamesNotLocal_mid_games.html = true
-            LowGamesNotLocal_mid_games.text = $.Localize("#LowGamesNotLocal_bot") + "<b><font color='#ff4d30'>" + String(server_data.ranked_game_count) + "</font></b>/" + String(data.max_games)
-        }else
-        {
-            event.AddClass("LowGamesLocal")
-
-            let LowGamesLocal_top = $.CreatePanel("Panel", event, "LowGamesLocal_top")
-            let LowGamesLocal_top_text = $.CreatePanel("Label", LowGamesLocal_top, "")
-            LowGamesLocal_top_text.AddClass("BadMap_text")
-            LowGamesLocal_top_text.html = true
-            LowGamesLocal_top_text.text = $.Localize("#LowGamesLocal_top") + " (<b><font color='#ff4d30'>" + String(server_data.ranked_game_count) + "</font></b>/" + String(data.max_games) + ")"
-
-            let LowGamesLocal_mid = $.CreatePanel("Panel", event, "LowGamesLocal_mid")
-            let LowGamesLocal_mid_top = $.CreatePanel("Panel", LowGamesLocal_mid, "LowGamesLocal_mid_top")
-            let LowGamesLocal_mid_center = $.CreatePanel("Panel", LowGamesLocal_mid, "LowGamesLocal_mid_center")
-            let LowGamesLocal_mid_bot = $.CreatePanel("Panel", LowGamesLocal_mid, "LowGamesLocal_mid_bot")
-            LowGamesLocal_mid_bot.AddClass('LowGamesLocal_mid_bot')
-
-            let LowGamesLocal_mid_games = $.CreatePanel("Label", LowGamesLocal_mid_top, "")
-            LowGamesLocal_mid_games.AddClass("BadMap_text")
-            LowGamesLocal_mid_games.html = true
-            LowGamesLocal_mid_games.text = $.Localize("#LowGamesNotLocal_mid") 
-
-            let LowGamesLocal_image = $.CreatePanel("Panel", LowGamesLocal_mid_center, "BadMap_image")
-            LowGamesLocal_image.AddClass("BadMap_image")
-            LowGamesLocal_image.style.backgroundImage = "url('file://{images}/custom_game/" + String($.Localize("#badmap_image")) + ".png')"
-            LowGamesLocal_image.style.backgroundSize = 'contain';
-
-           //let LowGamesLocal_mid_info = $.CreatePanel("Label", LowGamesLocal_mid_bot, "")
-           //LowGamesLocal_mid_info.AddClass("BadMap_text")
-           //LowGamesLocal_mid_info.html = true
-           //LowGamesLocal_mid_info.text = $.Localize("#LowGamesLocal_bot")
-
-            //let LowGamesLocal_mid_info2 = $.CreatePanel("Label", LowGamesLocal_mid_bot, "")
-            //LowGamesLocal_mid_info2.AddClass("LowGamesLocal_mid_bot_text")
-            //LowGamesLocal_mid_info2.html = true
-            //LowGamesLocal_mid_info2.text = "Dota 1x6"
-//
-            //LowGamesLocal_mid_bot.SetPanelEvent("onactivate", function() {
-            //     GameEvents.SendCustomGameEventToServer_custom( "browser_subscribe", {item_name: "profile", player_id: id_1});  
-            //});
-        }
-    }
-
-    if (reason == 2)
-    {
-        event = $.CreatePanel("Panel", main, "")
-        event.AddClass("BadMap")
-
-        if (!is_local)
-        {
-            event.AddClass("BadMapNotLocal")
-            let BadMapNotLocal_top = $.CreatePanel("Panel", event, "BadMapNotLocal_top")
-            let BadMapNotLocal_top_text = $.CreatePanel("Label", BadMapNotLocal_top, "")
-            BadMapNotLocal_top_text.AddClass("BadMap_text")
-            BadMapNotLocal_top_text.html = true
-            BadMapNotLocal_top_text.text = $.Localize("#badmapnotlocal_top")
-
-            let BadMapNotLocal_mid = $.CreatePanel("Panel", event, "BadMapNotLocal_mid")
-            let BadMapNotLocal_mid_top = $.CreatePanel("Panel", BadMapNotLocal_mid, "BadMapNotLocal_mid_top")
-            let BadMapNotLocal_mid_bot = $.CreatePanel("Panel", BadMapNotLocal_mid, "BadMapNotLocal_mid_bot")
-
-            let BadMapNotLocal_mid_icon = $.CreatePanel("Panel", BadMapNotLocal_mid_top, "")
-            BadMapNotLocal_mid_icon.AddClass("BadMapNotLocal_mid_icon")
-
-            let BadMapNotLocal_mid_avatar = $.CreatePanel("DOTAAvatarImage", BadMapNotLocal_mid_icon, "")
-            BadMapNotLocal_mid_avatar.style.width = "100%"
-            BadMapNotLocal_mid_avatar.style.height = "100%"
-            BadMapNotLocal_mid_avatar.steamid = Game.GetPlayerInfo(id_1).player_steamid
-
-            let BadMapNotLocal_mid_name = $.CreatePanel("Label", BadMapNotLocal_mid_top, "")
-            BadMapNotLocal_mid_name.AddClass("BadMap_text")
-            BadMapNotLocal_mid_name.html = true
-            BadMapNotLocal_mid_name.text = Players.GetPlayerName(id_1)
-
-            let BadMapNotLocal_mid_rating = $.CreatePanel("Label", BadMapNotLocal_mid_bot, "")
-            BadMapNotLocal_mid_rating.AddClass("BadMap_text")
-            BadMapNotLocal_mid_rating.html = true
-            BadMapNotLocal_mid_rating.text = $.Localize("#badmapnotlocal_mmr") + String(kv.mmr)
-        }else
-        {
-            event.AddClass("BadMapLocal")
-
-            let BadMap_top = $.CreatePanel("Panel", event, "BadMap_top")
-            BadMap_top.AddClass("BadMap_top")
-
-            let BadMap_top_text = $.CreatePanel("Label", BadMap_top, "")
-            BadMap_top_text.AddClass("BadMap_text")
-            BadMap_top_text.html = true
-            BadMap_top_text.text = $.Localize("#badmap_top")
-
-            let BadMap_your_mmr = $.CreatePanel("Panel", event, "BadMap_your_mmr")
-            BadMap_your_mmr.AddClass("BadMap_your_mmr")
-
-            let BadMap_your_mmr_text = $.CreatePanel("Label", BadMap_your_mmr, "")
-            BadMap_your_mmr_text.AddClass("BadMap_text")
-            BadMap_your_mmr_text.html = true
-            BadMap_your_mmr_text.text = $.Localize("#badmap_your_mmr") + String(kv.mmr)
-
-            let BadMap_map_mmr = $.CreatePanel("Panel", event, "BadMap_map_mmr")
-            BadMap_map_mmr.AddClass("BadMap_map_mmr")
-
-            let BadMap_map_mmr_text = $.CreatePanel("Label", BadMap_map_mmr, "")
-            BadMap_map_mmr_text.AddClass("BadMap_text")
-            BadMap_map_mmr_text.html = true
-
-            var max = kv.max 
-            if (max > 10000)
-            {
-                BadMap_map_mmr_text.text = $.Localize("#badmap_map_mmr") + String(kv.min) + "+"
-            }
-            else 
-                BadMap_map_mmr_text.text = $.Localize("#badmap_map_mmr") + String(kv.min) + "-" + String(kv.max)
-            
-            let BadMap_bottom = $.CreatePanel("Panel", event, "BadMap_bottom")
-            BadMap_bottom.AddClass("BadMap_bottom")
-
-            let BadMap_bottom_text = $.CreatePanel("Label", BadMap_bottom, "")
-            BadMap_bottom_text.AddClass("BadMap_text")
-            BadMap_bottom_text.html = true
-            BadMap_bottom_text.text = $.Localize("#badmap_pick_stage")
-
-            let BadMap_image = $.CreatePanel("Panel", event, "BadMap_image")
-            BadMap_image.AddClass("BadMap_image")
-            BadMap_image.style.backgroundImage = "url('file://{images}/custom_game/" + String($.Localize("#badmap_image")) + ".png')"
-            BadMap_image.style.backgroundSize = 'contain';
-        }
-    }
-
-    if (reason == 4)
-    {
-        event = $.CreatePanel("Panel", main, "")
-        event.AddClass("ReportsAlert")
-
-        if (!is_local)
-        {
-            event.AddClass("ReportsAlertNotLocal")
-
-            let ReportsAlertNotLocal_top = $.CreatePanel("Panel", event, "ReportsAlertNotLocal_top")
-            let ReportsAlertNotLocal_top_text = $.CreatePanel("Label", ReportsAlertNotLocal_top, "")
-            ReportsAlertNotLocal_top_text.AddClass("BadMap_text")
-            ReportsAlertNotLocal_top_text.html = true
-            ReportsAlertNotLocal_top_text.text = $.Localize("#ReportsAlertNotLocal_top")
-
-            let ReportsAlertNotLocal_mid = $.CreatePanel("Panel", event, "ReportsAlertNotLocal_mid")
-            let ReportsAlertNotLocal_mid_top = $.CreatePanel("Panel", ReportsAlertNotLocal_mid, "ReportsAlertNotLocal_mid_top")
-            let ReportsAlertNotLocal_mid_plus = $.CreatePanel("Label", ReportsAlertNotLocal_mid, "ReportsAlertNotLocal_mid_plus")
-            let ReportsAlertNotLocal_mid_bot = $.CreatePanel("Panel", ReportsAlertNotLocal_mid, "ReportsAlertNotLocal_mid_bot")
-
-            let ReportsAlertNotLocal_mid_icon = $.CreatePanel("Panel", ReportsAlertNotLocal_mid_top, "")
-            ReportsAlertNotLocal_mid_icon.AddClass("BadMapNotLocal_mid_icon")
-
-            let ReportsAlertNotLocal_mid_avatar = $.CreatePanel("DOTAAvatarImage", ReportsAlertNotLocal_mid_icon, "")
-            ReportsAlertNotLocal_mid_avatar.style.width = "100%"
-            ReportsAlertNotLocal_mid_avatar.style.height = "100%"
-            ReportsAlertNotLocal_mid_avatar.steamid = Game.GetPlayerInfo(id_1).player_steamid
-
-            let ReportsAlertNotLocal_mid_name = $.CreatePanel("Label", ReportsAlertNotLocal_mid_top, "")
-            ReportsAlertNotLocal_mid_name.AddClass("BadMap_text")
-            ReportsAlertNotLocal_mid_name.html = true
-            ReportsAlertNotLocal_mid_name.text = Players.GetPlayerName(id_1)
-
-            ReportsAlertNotLocal_mid_plus.text = "+"
-
-            let ReportsAlertNotLocal_mid_icon2 = $.CreatePanel("Panel", ReportsAlertNotLocal_mid_bot, "")
-            ReportsAlertNotLocal_mid_icon2.AddClass("BadMapNotLocal_mid_icon")
-
-            let ReportsAlertNotLocal_mid_avatar2 = $.CreatePanel("DOTAAvatarImage", ReportsAlertNotLocal_mid_icon2, "")
-            ReportsAlertNotLocal_mid_avatar2.style.width = "100%"
-            ReportsAlertNotLocal_mid_avatar2.style.height = "100%"
-            ReportsAlertNotLocal_mid_avatar2.steamid = Game.GetPlayerInfo(id_2).player_steamid
-
-            let ReportsAlertNotLocal_mid_name2 = $.CreatePanel("Label", ReportsAlertNotLocal_mid_bot, "")
-            ReportsAlertNotLocal_mid_name2.AddClass("BadMap_text")
-            ReportsAlertNotLocal_mid_name2.html = true
-            ReportsAlertNotLocal_mid_name2.text = Players.GetPlayerName(id_2)
-
-        }else
-        {
-            event.AddClass("ReportsAlertLocal")
-
-            let ReportsAlertLocal_top = $.CreatePanel("Panel", event, "ReportsAlertLocal_top")
-            let ReportsAlertLocal_top_text = $.CreatePanel("Label", ReportsAlertLocal_top, "")
-            ReportsAlertLocal_top_text.AddClass("BadMap_text")
-            ReportsAlertLocal_top_text.html = true
-            ReportsAlertLocal_top_text.text = $.Localize("#ReportsAlertLocal_top")
-
-            let ReportsAlertLocal_mid = $.CreatePanel("Panel", event, "ReportsAlertLocal_mid")
-            let ReportsAlertLocal_mid_top = $.CreatePanel("Panel", ReportsAlertLocal_mid, "ReportsAlertLocal_mid_top")
-            let ReportsAlertLocal_mid_bot = $.CreatePanel("Panel", ReportsAlertLocal_mid, "ReportsAlertLocal_mid_bot")
-
-            let ReportsAlertLocal_mid_icon = $.CreatePanel("Panel", ReportsAlertLocal_mid_top, "")
-            ReportsAlertLocal_mid_icon.AddClass("BadMapNotLocal_mid_icon")
-
-            let ReportsAlertLocal_mid_avatar = $.CreatePanel("DOTAAvatarImage", ReportsAlertLocal_mid_icon, "")
-            ReportsAlertLocal_mid_avatar.style.width = "100%"
-            ReportsAlertLocal_mid_avatar.style.height = "100%"
-            ReportsAlertLocal_mid_avatar.steamid = Game.GetPlayerInfo(id_2).player_steamid
-
-            let ReportsAlertLocal_mid_name = $.CreatePanel("Label", ReportsAlertLocal_mid_top, "")
-            ReportsAlertLocal_mid_name.AddClass("BadMap_text")
-            ReportsAlertLocal_mid_name.html = true
-            ReportsAlertLocal_mid_name.text = Players.GetPlayerName(id_2)
-
-            let ReportsAlertLocal_mid_bot_text = $.CreatePanel("Label", ReportsAlertLocal_mid_bot, "")
-            ReportsAlertLocal_mid_bot_text.AddClass("BadMap_text")
-            ReportsAlertLocal_mid_bot_text.html = true
-            ReportsAlertLocal_mid_bot_text.text = $.Localize("#ReportsAlertLocal_bot")
-
-        }
-    }
-
-    if (event)
-    {
-        event.RemoveClass("BadMap_hidden")
-
-        let BadMap_leave_panel = $.CreatePanel("Panel", event, "BadMap_leave_panel")
-        let BadMap_leave_text = $.CreatePanel("Panel", BadMap_leave_panel, "")
-        BadMap_leave_text.AddClass("BadMap_leave_text")
-
-        let BadMap_leave_button = $.CreatePanel("Panel", BadMap_leave_panel, "")
-        BadMap_leave_button.AddClass("BadMap_leave_button")
-        BadMap_leave_button.SetPanelEvent("onactivate", function() {Game.Disconnect();});
-
-        let BadMap_leave_text_label = $.CreatePanel("Label", BadMap_leave_text, "")
-        BadMap_leave_text_label.AddClass("BadMap_text")
-        BadMap_leave_text_label.html = true
-        BadMap_leave_text_label.text = $.Localize("#badmap_pick_stage_leave")
-
-        let BadMap_leave_button_text = $.CreatePanel("Label", BadMap_leave_button, "")
-        BadMap_leave_button_text.AddClass("BadMap_text")
-        BadMap_leave_button_text.html = true
-        BadMap_leave_button_text.text = $.Localize("#badmap_pick_stage_leave_button")
-    }
+    let event = $.CreatePanel("Panel", main, "")
+    event.AddClass("pick_block")
+
+    let d = data.block.data || {}
+    d.id = data.id_1
+    BuildBlock(rows, event, d)
+
+    let leave_panel = $.CreatePanel("Panel", event, "BadMap_leave_panel")
+    let leave_text = $.CreatePanel("Panel", leave_panel, "")
+    leave_text.AddClass("BadMap_leave_text")
+
+    let leave_button = $.CreatePanel("Panel", leave_panel, "")
+    leave_button.AddClass("BadMap_leave_button")
+    leave_button.SetPanelEvent("onactivate", function() {Game.Disconnect();});
+
+    CreateBlockLabel(leave_text, $.Localize("#badmap_pick_stage_leave"))
+    CreateBlockLabel(leave_button, $.Localize("#badmap_pick_stage_leave_button"))
 }
 
 function show_safe_leave(reason, data)
@@ -1020,7 +787,7 @@ function show_safe_leave(reason, data)
 		{
 			text.text = $.Localize("#Savetoleave")
 		}
-		if (reason == 2 || reason == 4 || reason == 5 || reason == 6 || reason == 7)
+		if (reason == 8)
 		{
 			wrong_rating_status = 1
 			var hero_pick = $.GetContextPanel().FindChildTraverse("hero_pick")
@@ -1030,7 +797,7 @@ function show_safe_leave(reason, data)
                 Game.EmitSound("UI.Safe_to_Leave")
 				hide_chosen_hero()
 				hero_pick_contet.DeleteAsync(0)
-				show_badmap(reason, data)
+				show_pick_block(data)
 			}
 		}
 		if (reason == 3)
@@ -1051,14 +818,7 @@ function RandomHero()
 		random: true,
 		hero: "npc_dota_hero_wisp"
 	});
-    if (!IS_DUO_MODE)
-    {
-        var timer = $.GetContextPanel().FindChildTraverse("pick_timer")
-        if (timer) 
-        {
-            timer.DeleteAsync(0)
-        }
-    }
+    RemovePickTimer()
 }
 
 function Player_Loaded() 
@@ -1126,24 +886,9 @@ function check_player_status(id)
             }
         }
 
-        if (server_data.is_banned != 0)
+        if (server_data.block)
         {
-            show_safe_leave(7, {id_1: id})
-        }if (server_data.leave_banned != 0)
-        {
-            show_safe_leave(6, {id_1: id})
-        }else
-        if (server_data.reports_teammate != -1)
-        {
-            show_safe_leave(4, {id_1: id, id_2: server_data.reports_teammate})
-        }else
-        if (server_data.ranked_low_games != 0)
-        {
-            show_safe_leave(5, {id_1: id, max_games : server_data.ranked_low_games})
-        }else
-        if (server_data && server_data.wrong_map_status == 2)
-        {   
-            show_safe_leave(2, {id_1: id})
+            show_safe_leave(8, {id_1: id, block: server_data.block})
         }
     }
     
@@ -1184,24 +929,14 @@ function check_connection()
 
 function CreateTimer(kv, is_base_pick)
 {
-    let timer_name = "pick_timer"
-    let timer_parent_panel = $.GetContextPanel().FindChildTraverse("player_and_timer" + kv.id)
-    if (is_base_pick)
-    {
-        timer_name = "pick_timer_base"
-        timer_parent_panel = $.GetContextPanel().FindChildTraverse("player_and_timer_base_pick" + kv.id)
-    }
+    let timer_name = is_base_pick ? "pick_timer_base" : "pick_timer"
+    let panel_name = is_base_pick ? "lobby_team_panel_base_" : "lobby_team_panel_"
+    let list = is_base_pick ? $("#pick_base_heroes") : $("#lobby_players_list")
+    if (!list)
+        return
 
-    if (IS_DUO_MODE)
-    {
-        if (is_base_pick)
-        {
-            timer_parent_panel = $("#pick_base_heroes").FindChildTraverse("lobby_team_panel_base_"+kv.current_team)
-        }else
-        {
-            timer_parent_panel = $("#lobby_players_list").FindChildTraverse("lobby_team_panel_"+kv.current_team)
-        }
-    }
+    let timer_parent_panel = list.FindChildTraverse(panel_name + kv.current_team)
+
     if (timer_parent_panel)
     {
         let timer = $.CreatePanel("Panel", timer_parent_panel, timer_name)
@@ -1225,12 +960,7 @@ function pick_start_time(kv)
         timer.DeleteAsync(0)
     }
 
-    let allow_sound = Game.GetLocalPlayerID() == kv.id
-
-    if (IS_DUO_MODE)
-    {
-        allow_sound = kv.current_team == Players.GetTeam(Game.GetLocalPlayerID())
-    }
+    let allow_sound = IsMyTurn(kv)
 
     CreateTimer(kv)
 
@@ -1293,7 +1023,7 @@ function Refresh_Random_Button(low_priority)
     if (!RandomHero_panel || !RandomHero_button)
     	return
 
-	if ((active_player && (active_player.id !== Game.GetLocalPlayerID() && active_player.current_team !== Players.GetTeam( Players.GetLocalPlayer() ))) || (low_priority > 0) || (player_list.lobby_players[Game.GetLocalPlayerID()] && player_list.lobby_players[Game.GetLocalPlayerID()].picked_hero != null ) )
+	if (!IsMyTurn(active_player) || (low_priority > 0) || (player_list && player_list.lobby_players[Game.GetLocalPlayerID()] && player_list.lobby_players[Game.GetLocalPlayerID()].picked_hero != null ) )
 	{	
 		RandomHero_button.SetPanelEvent("onactivate", function() {});
 		RandomHero_panel.RemoveClass("SelectRandomHero_panel")
@@ -1331,22 +1061,12 @@ function change_time(kv)
         }
 	}
 	Refresh_Random_Button(lp_games)
-	var avg_rating = CustomNetTables.GetTableValue("custom_pick", "avg_rating");
-	if (avg_rating) 
-	{
-		var lobby_rating = $.GetContextPanel().FindChildTraverse("lobby_rating_text")
-		lobby_rating.text = $.Localize("#avg_rating") + avg_rating.avg_rating
-	}
+	UpdateLobbyRating()
 
-    let allow_sound = Game.GetLocalPlayerID() == kv.id
+    let allow_sound = IsMyTurn(kv)
     let timer = $.GetContextPanel().FindChildTraverse("pick_timer")
 
-    if (IS_DUO_MODE)
-    {
-        allow_sound = Players.GetTeam(Game.GetLocalPlayerID()) == kv.current_team
-    }
-      
-    if (allow_sound) 
+    if (allow_sound)
     {
         if (kv.time == 10) 
         {
@@ -1376,9 +1096,7 @@ function change_time(kv)
 function update_lobby_rating()
 {
 	var player_list = CustomNetTables.GetTableValue("custom_pick", "player_lobby");
-	var leaderboard = CustomNetTables.GetTableValue("leaderboard", "leaderboard");
-    if (IS_DUO_MODE)
-        leaderboard = CustomNetTables.GetTableValue("leaderboard", "leaderboard_duo");
+	var leaderboard = CustomNetTables.GetTableValue("leaderboard", IS_DUO_MODE ? "leaderboard_duo" : "leaderboard")
 
 	var pick_state = CustomNetTables.GetTableValue("custom_pick", "pick_state")
 	if (pick_state == undefined || pick_state == 0)
@@ -1419,12 +1137,15 @@ function update_lobby_rating()
 			var server_data = CustomNetTables.GetTableValue("server_data", String(pid));
 			let rating = 0
             let ranked_tier = -1
-            let unranked_penalty = server_data.unranked_penalty
-            let unranked_penalty_reason = server_data.unranked_penalty_reason
+            let unranked_penalty = 0
+            let unranked_penalty_reason = 0
 			let n = 1
 			let rank = 0
 			if (server_data)
             {
+                unranked_penalty = server_data.unranked_penalty
+                unranked_penalty_reason = server_data.unranked_penalty_reason
+
                 if (server_data.rating)
                     rating = String(server_data.rating)
 
@@ -1582,52 +1303,57 @@ function update_lobby_rating()
 	}
 }
 
-function StealButtons() 
+var buttons_restored = false
+
+function StealButtons()
 {
 	if ($.GetContextPanel().BHasClass('Deletion')) return;
-	var buttons = dotahud.FindChildTraverse('DashboardButton');
-	if (buttons) 
-    {
-		buttons.SetParent($.GetContextPanel());
-	}
-	buttons = dotahud.FindChildTraverse('SettingsButton');
-	if (buttons) 
-    {
-		buttons.SetParent($.GetContextPanel());
-	}
+	if (buttons_restored) return;
+	var dashboard = dotahud.FindChildTraverse('DashboardButton');
+	var settings = dotahud.FindChildTraverse('SettingsButton');
+	if (dashboard)
+		dashboard.SetParent($.GetContextPanel());
+	if (settings)
+		settings.SetParent($.GetContextPanel());
+	if (!dashboard || !settings)
+		$.Schedule(1, StealButtons)
 }
 
-function RestoreButtons() 
+function RestoreButtons()
 {
-	var HudElements = dotahud.FindChildTraverse("MenuButtons").FindChildTraverse('ButtonBar');
-	if (HudElements == undefined)
+	buttons_restored = true
+	var menu = dotahud.FindChildTraverse("MenuButtons")
+	if (!menu) return;
+	var bar = menu.FindChildTraverse('ButtonBar');
+	if (!bar) return;
+	var scoreboard = bar.FindChildTraverse("ToggleScoreboardButton")
+	for (let name of ['DashboardButton', 'SettingsButton'])
 	{
-		$.Schedule(0.5, function() 
-        {
-			RestoreButtons()
-        });
-	}
-	var buttons = dotahud.FindChildTraverse('DashboardButton');
-	if (buttons) 
-    {
-		buttons.SetParent(HudElements);
-		HudElements.MoveChildBefore(buttons, HudElements.FindChildTraverse("ToggleScoreboardButton"))
-	}
-	buttons = dotahud.FindChildTraverse('SettingsButton');
-	if (buttons) 
-    {
-		buttons.SetParent(HudElements);
-		HudElements.MoveChildBefore(buttons, HudElements.FindChildTraverse("ToggleScoreboardButton"))
+		let button = dotahud.FindChildTraverse(name);
+		if (!button) continue;
+		button.SetParent(bar);
+		if (scoreboard)
+			bar.MoveChildBefore(button, scoreboard)
 	}
 }
 
-function end_pick() 
+function end_pick()
 {
+	RestoreButtons()
 	$.GetContextPanel().DeleteAsync(0)
 }
 
-function pick_base_end() 
+var pick_base_ended = false
+var loading_max_time = 30
+
+function pick_base_end()
 {
+	if (pick_base_ended)
+	{
+		return
+	}
+	pick_base_ended = true
+
 	let loading = $.CreatePanel('Panel', $.GetContextPanel(), "pick_loading")
 	loading.AddClass("loading")
 	loading.style.opacity = "0";
@@ -1649,6 +1375,13 @@ function pick_base_end()
 	loading_content_text.text =  $.Localize("#pick_loading")
 
 	loading.SetParent($.GetContextPanel().GetParent().GetParent().GetParent())
+
+	loading.DeleteAsync(loading_max_time)
+
+	if (GameUI.CustomUIConfig().loading_ended)
+	{
+		loading.DeleteAsync(0)
+	}
 
 	var player_pick = $.GetContextPanel().FindChildTraverse("pick_base_players")
 
@@ -1894,12 +1627,12 @@ function pick_load_heroes()
 
 	$.Schedule(1, function() 
 	{
-		if (hero_pick_content)
+		if (hero_pick_content && hero_pick_content.IsValid())
 		{
 			hero_pick_content.RemoveClass("hero_pick_content_hidden")
 			hero_pick_content.AddClass("hero_pick_content_show")
 		}
-    	if (lobby_players_list)
+    	if (lobby_players_list && lobby_players_list.IsValid())
     	{
     		lobby_players_list.RemoveClass("hero_pick_content_hidden")
     		lobby_players_list.AddClass("lobby_players_list_show")
@@ -2191,8 +1924,8 @@ function Refresh_Button()
 		return
 	}
 
-	if (active_player.id !== Game.GetLocalPlayerID() && active_player.current_team !== Players.GetTeam( Players.GetLocalPlayer() )) 
-    {   
+	if (!IsMyTurn(active_player))
+    {
 		return
 	}
 
@@ -2221,14 +1954,7 @@ function Refresh_Button()
 		ChoseHero.SetPanelEvent("onactivate", function() 
         {
 			GameEvents.SendCustomGameEventToServer_custom("chose_hero", {hero: hero_selected});
-            if (!IS_DUO_MODE)
-            {
-                var timer = $.GetContextPanel().FindChildTraverse("pick_timer")
-                if (timer) 
-                {
-                    timer.DeleteAsync(0)
-                }
-            }
+            RemovePickTimer()
 		});
 	}
 }
@@ -2763,7 +2489,7 @@ function ShowVideo(name, hero)
     video_right_level.style.backgroundSize = "100%";
     video_right_level.style.backgroundRepeat = "no-repeat";
 
-    MouseOverTalent(right_panel, '#upgrade_disc_' + name, name, max_level, rarity != "legendary", icon_rarity, max_level, Game.GetLocalPlayerID(), hero)
+    Game.MouseOverTalent(right_panel, '#upgrade_disc_' + name, name, max_level, rarity != "legendary", icon_rarity, max_level, Game.GetLocalPlayerID(), hero)
 }
 
 function ChangeHeroInfo(hero_name, attribute) 
@@ -2828,7 +2554,7 @@ function ChangeHeroInfo(hero_name, attribute)
         LayerGeneral = main_panel.FindChildTraverse("LayerGeneral")
     }
 
-    Game.init_talent_panel(LayerGeneral, hero_name, true)
+    Game.init_talent_panel(LayerGeneral, null, hero_name)
 	Game.EmitSound("UI.Click_Hero")
 
 	if ((current_tab == 1) || (current_tab == 0)) 
@@ -3019,26 +2745,6 @@ function MouseOver(panel, text)
 }
 
 
-function MouseOverTalent(panel, talent_text, name, lvl, all_levels, rarity, max_level, player_id, hero) 
-{
-    panel.SetPanelEvent("onmouseover", () => 
-    {
-        Game.CustomTooltipOpened = true
-
-        $.DispatchEvent(
-            "UIShowCustomLayoutParametersTooltip",
-            panel,
-            "skill_tooltip",
-            "file://{resources}/layout/custom_game/custom_tooltip.xml",
-            "talent_text=" + talent_text + "&name=" + name + "&lvl=" + lvl + "&all_levels=" + all_levels + "&rarity=" + rarity + "&max_level=" + max_level + "&player_id=" + player_id + "&hero_name=" + hero,
-        );
-    });
-    panel.SetPanelEvent("onmouseout", () => 
-    {
-        Game.CustomTooltipOpened = false
-        $.DispatchEvent("UIHideCustomLayoutTooltip", panel, "skill_tooltip");
-    });
-}
 
 
 
@@ -3111,6 +2817,8 @@ function ban_hero(data)
 
 function StartBanStage(data) {
 	var BanStagePanel = $.GetContextPanel().FindChildTraverse("BanStagePanel")
+	if (!BanStagePanel) return
+
 	BanStagePanel.RemoveClass("BanStagePanel_hidden")
 	BanStagePanel.AddClass("BanStagePanel_visible")
 
@@ -3137,16 +2845,10 @@ function StartBanStage(data) {
 
 function TimeBanStage(data) {
 	var BanStagePanel_timer = $.GetContextPanel().FindChildTraverse("BanStagePanel_timer")
-	BanStagePanel_timer.text = data.time
+	if (BanStagePanel_timer)
+		BanStagePanel_timer.text = data.time
 
-	var avg_rating = CustomNetTables.GetTableValue("custom_pick", "avg_rating");
-
-
-	if (avg_rating) {
-		var lobby_rating = $.GetContextPanel().FindChildTraverse("lobby_rating_text")
-		lobby_rating.text = $.Localize("#avg_rating") + avg_rating.avg_rating
-	}
-
+	UpdateLobbyRating()
 
 	let no_ban_hero = data.no_ban_hero
 	if (no_ban_hero) {
@@ -3163,6 +2865,8 @@ function TimeBanStage(data) {
 function EndBanStage(data) 
 {
 	var BanStagePanel = $.GetContextPanel().FindChildTraverse("BanStagePanel")
+	if (!BanStagePanel) return
+
 	BanStagePanel.RemoveClass("BanStagePanel_visible")
 	BanStagePanel.AddClass("BanStagePanel_hidden")
 

@@ -778,6 +778,18 @@ _G.Sound_list = {
 		{ 4, "Voice.Jakiro.5_1" },
 		{ 5, "Voice.Jakiro.6_1" },
 	},
+
+	["npc_dota_hero_kunkka"] = {
+		{ 0, "Voice.Kunkka.1_1" },
+		{ 0, "Voice.Kunkka.1_2" },
+		{ 1, "Voice.Kunkka.2_1" },
+		{ 1, "Voice.Kunkka.2_2" },
+		{ 2, "Voice.Kunkka.3_1" },
+		{ 2, "Voice.Kunkka.3_2" },
+		{ 3, "Voice.Kunkka.4_1" },
+		{ 4, "Voice.Kunkka.5_1" },
+		{ 5, "Voice.Kunkka.6_1" },
+	},
 }
 
 CustomNetTables:SetTableValue("custom_sounds", "sounds", Sound_list)

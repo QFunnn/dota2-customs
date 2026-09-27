@@ -131,10 +131,6 @@ function CreatePanelInStore(data)
                 })
             }
         }
-        if (!PLAYER_VIEW_ITEMS_FOR_BUY)
-        {
-            BlockItem.style.visibility = "collapse"
-        }
     }
 
     if (typeof SetBlockNewBadge == "function")

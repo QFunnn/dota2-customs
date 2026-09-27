@@ -19,17 +19,7 @@ LinkLuaModifier(
 	LUA_MODIFIER_MOTION_NONE
 )
 LinkLuaModifier(
-	"modifier_morphling_innate_custom_immune_effect",
-	"abilities/morphling/morphling_innate_custom",
-	LUA_MODIFIER_MOTION_NONE
-)
-LinkLuaModifier(
 	"modifier_morphling_innate_custom_slow",
-	"abilities/morphling/morphling_innate_custom",
-	LUA_MODIFIER_MOTION_NONE
-)
-LinkLuaModifier(
-	"modifier_morphling_innate_custom_shield_stack",
 	"abilities/morphling/morphling_innate_custom",
 	LUA_MODIFIER_MOTION_NONE
 )
@@ -42,7 +32,6 @@ function morphling_innate_custom:Precache(context)
 		return
 	end
 
-	PrecacheResource("particle", "particles/morphling/lowhp_health.vpcf", context)
 	PrecacheResource("soundfile", "soundevents/vo_custom/morphling_vo_custom.vsndevts", context)
 	PrecacheResource("soundfile", "soundevents/npc_dota_hero_morphling.vsndevts", context)
 end
@@ -54,9 +43,6 @@ function morphling_innate_custom:UpdateTalents()
 		self.talents = {
 			has_w4 = 0,
 			w4_heal = caster:GetTalentValue("modifier_morphling_adaptive_4", "heal", true) / 100,
-
-			has_r3 = 0,
-			r3_heal = 0,
 
 			has_h1 = 0,
 			h1_slow = 0,
@@ -70,14 +56,12 @@ function morphling_innate_custom:UpdateTalents()
 			has_h5 = 0,
 			h5_str = caster:GetTalentValue("modifier_morphling_hero_5", "str", true),
 			h5_int = caster:GetTalentValue("modifier_morphling_hero_5", "int", true),
+			h5_max = caster:GetTalentValue("modifier_morphling_hero_5", "max", true),
 
 			has_h6 = 0,
-			h6_status = caster:GetTalentValue("modifier_morphling_hero_6", "status", true),
-			h6_move = caster:GetTalentValue("modifier_morphling_hero_6", "move", true),
 			h6_agi = caster:GetTalentValue("modifier_morphling_hero_6", "agi", true),
 			h6_max_move_real = caster:GetTalentValue("modifier_morphling_hero_6", "max_move_real", true),
 			h6_str = caster:GetTalentValue("modifier_morphling_hero_6", "str", true),
-			h6_max_move = caster:GetTalentValue("modifier_morphling_hero_6", "max_move", true),
 
 			has_r2 = 0,
 			r2_heal = 0,
@@ -87,12 +71,6 @@ function morphling_innate_custom:UpdateTalents()
 
 	if caster:HasTalent("modifier_morphling_adaptive_4") then
 		self.talents.has_w4 = 1
-		caster:AddDamageEvent_out(self.tracker, true)
-	end
-
-	if caster:HasTalent("modifier_morphling_morph_3") then
-		self.talents.has_r3 = 1
-		self.talents.r3_heal = caster:GetTalentValue("modifier_morphling_morph_3", "heal") / 100
 		caster:AddDamageEvent_out(self.tracker, true)
 	end
 
@@ -304,7 +282,7 @@ function modifier_morphling_innate_custom_buff:OnCreated()
 	if not IsServer() then
 		return
 	end
-	self:SetStackCount(1)
+	self:OnRefresh()
 end
 
 function modifier_morphling_innate_custom_buff:OnRefresh(table)
@@ -312,10 +290,8 @@ function modifier_morphling_innate_custom_buff:OnRefresh(table)
 		return
 	end
 	self:IncrementStackCount()
-end
 
-function modifier_morphling_innate_custom_buff:OnStackCountChanged(iStackCount)
-	if not IsServer() then
+	if self.parent:IsIllusion() then
 		return
 	end
 
@@ -340,14 +316,14 @@ function modifier_morphling_innate_custom_buff:GetModifierBonusStats_Strength()
 	if self.ability.talents.has_h5 == 0 then
 		return
 	end
-	return self:GetStackCount() * self.ability.talents.h5_str
+	return math.min(self:GetStackCount(), self.ability.talents.h5_max) * self.ability.talents.h5_str
 end
 
 function modifier_morphling_innate_custom_buff:GetModifierBonusStats_Intellect()
 	if self.ability.talents.has_h5 == 0 then
 		return
 	end
-	return self:GetStackCount() * self.ability.talents.h5_int
+	return math.min(self:GetStackCount(), self.ability.talents.h5_max) * self.ability.talents.h5_int
 end
 
 function modifier_morphling_innate_custom_buff:OnTooltip()
@@ -362,22 +338,23 @@ modifier_morphling_innate_custom_slow = class(mod_hidden)
 function modifier_morphling_innate_custom_slow:IsPurgable()
 	return true
 end
+function modifier_morphling_innate_custom_slow:GetStatusEffectName()
+	return "particles/status_fx/status_effect_frost.vpcf"
+end
+function modifier_morphling_innate_custom_slow:StatusEffectPriority()
+	return MODIFIER_PRIORITY_NORMAL
+end
 function modifier_morphling_innate_custom_slow:OnCreated()
 	self.ability = self:GetAbility()
 	self.slow = self.ability.talents.h1_slow
 	self.heal_reduce = self.ability.talents.h1_heal_reduce
 end
+
 function modifier_morphling_innate_custom_slow:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-		--MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET,
 		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
-		--MODIFIER_PROPERTY_LIFESTEAL_AMPLIFY_PERCENTAGE,
 	}
-end
-
-function modifier_morphling_innate_custom_slow:GetModifierLifestealRegenAmplify_Percentage()
-	return self.heal_reduce
 end
 
 function modifier_morphling_innate_custom_slow:GetModifierHealChange()
@@ -390,12 +367,4 @@ end
 
 function modifier_morphling_innate_custom_slow:GetModifierMoveSpeedBonus_Percentage()
 	return self.slow
-end
-
-function modifier_morphling_innate_custom_slow:GetStatusEffectName()
-	return "particles/status_fx/status_effect_frost.vpcf"
-end
-
-function modifier_morphling_innate_custom_slow:StatusEffectPriority()
-	return MODIFIER_PRIORITY_NORMAL
 end

@@ -28,30 +28,32 @@ function item_silver_edge_custom:GetIntrinsicModifierName()
 	return "item_silver_edge_custom_passive"
 end
 
+function item_silver_edge_custom:Spawn()
+	self.duration = self:GetSpecialValueFor("duration")
+	self.movement_speed = self:GetSpecialValueFor("movement_speed")
+	self.bonus_damage = self:GetSpecialValueFor("bonus_damage")
+	self.bonus_attack_speed = self:GetSpecialValueFor("bonus_attack_speed")
+	self.bonus_health = self:GetSpecialValueFor("bonus_health")
+	self.backstab_duration = self:GetSpecialValueFor("backstab_duration")
+	self.windwalk_bonus_damage = self:GetSpecialValueFor("windwalk_bonus_damage")
+	self.max_movement_speed = self:GetSpecialValueFor("max_movement_speed")
+end
+
 function item_silver_edge_custom:OnSpellStart()
 	local caster = self:GetCaster()
 	caster:EmitSound("DOTA_Item.InvisibilitySword.Activate")
-	caster:AddNewModifier(
-		caster,
-		self,
-		"item_silver_edge_custom_surge",
-		{ duration = self:GetSpecialValueFor("duration") }
-	)
+	caster:AddNewModifier(caster, self, "item_silver_edge_custom_surge", { duration = self.duration })
 end
 
-item_silver_edge_custom_surge = class({})
-function item_silver_edge_custom_surge:IsHidden()
-	return false
-end
-function item_silver_edge_custom_surge:IsPurgable()
-	return false
-end
+item_silver_edge_custom_surge = class(mod_visible)
 function item_silver_edge_custom_surge:GetEffectName()
 	return "particles/silver_edge_speed_.vpcf"
 end
 function item_silver_edge_custom_surge:OnCreated(table)
 	self.parent = self:GetParent()
-	self.speed = self:GetAbility():GetSpecialValueFor("movement_speed")
+	self.ability = self:GetAbility()
+
+	self.speed = self.ability.movement_speed
 
 	if not IsServer() then
 		return
@@ -77,16 +79,32 @@ function item_silver_edge_custom_surge:GetModifierMoveSpeedBonus_Percentage()
 	return self.speed
 end
 
-item_silver_edge_custom_passive = class({})
-function item_silver_edge_custom_passive:IsHidden()
-	return true
-end
-function item_silver_edge_custom_passive:IsPurgable()
-	return false
-end
+item_silver_edge_custom_passive = class(mod_hidden)
 function item_silver_edge_custom_passive:RemoveOnDeath()
 	return false
 end
+function item_silver_edge_custom_passive:OnCreated()
+	self.ability = self:GetAbility()
+	self.parent = self:GetParent()
+	self.damage = self.ability.bonus_damage
+	self.speed = self.ability.bonus_attack_speed
+	self.bonus_health = self.ability.bonus_health
+
+	self.break_duration = self.ability.backstab_duration
+	self.break_damage = self.ability.windwalk_bonus_damage
+
+	if not IsServer() then
+		return
+	end
+
+	self.records = {}
+
+	if self.parent:IsRealHero() then
+		self.parent:AddRecordDestroyEvent(self, true)
+		self.parent:AddAttackStartEvent_out(self)
+	end
+end
+
 function item_silver_edge_custom_passive:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
@@ -106,28 +124,6 @@ end
 
 function item_silver_edge_custom_passive:GetModifierHealthBonus()
 	return self.bonus_health
-end
-
-function item_silver_edge_custom_passive:OnCreated()
-	self.ability = self:GetAbility()
-	self.parent = self:GetParent()
-	self.damage = self.ability:GetSpecialValueFor("bonus_damage")
-	self.speed = self.ability:GetSpecialValueFor("bonus_attack_speed")
-	self.bonus_health = self.ability:GetSpecialValueFor("bonus_health")
-
-	self.break_duration = self.ability:GetSpecialValueFor("backstab_duration")
-	self.break_damage = self.ability:GetSpecialValueFor("windwalk_bonus_damage")
-
-	if not IsServer() then
-		return
-	end
-
-	self.records = {}
-
-	if self.parent:IsRealHero() then
-		self.parent:AddRecordDestroyEvent(self, true)
-		self.parent:AddAttackStartEvent_out(self)
-	end
 end
 
 function item_silver_edge_custom_passive:AttackStartEvent_out(params)
@@ -179,31 +175,31 @@ function item_silver_edge_custom_passive:GetModifierProcAttack_BonusDamage_Physi
 	return self.break_damage
 end
 
-item_silver_edge_custom_break = class({})
-function item_silver_edge_custom_break:IsHidden()
-	return false
-end
-function item_silver_edge_custom_break:IsPurgable()
-	return false
-end
-function item_silver_edge_custom_break:CheckState()
-	return { [MODIFIER_STATE_PASSIVES_DISABLED] = true }
-end
+item_silver_edge_custom_break = class(mod_visible)
 function item_silver_edge_custom_break:GetEffectName()
 	return "particles/items3_fx/silver_edge.vpcf"
 end
+function item_silver_edge_custom_break:OnCreated(table)
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.max_movement_speed = self.ability.max_movement_speed
+	if not IsServer() then
+		return
+	end
+	self.parent:GenericParticle("particles/generic_gameplay/generic_break.vpcf", self, true)
+end
+
+function item_silver_edge_custom_break:CheckState()
+	return {
+		[MODIFIER_STATE_PASSIVES_DISABLED] = true,
+	}
+end
+
 function item_silver_edge_custom_break:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE_MAX,
 	}
-end
-
-function item_silver_edge_custom_break:OnCreated(table)
-	self.max_movement_speed = self:GetAbility():GetSpecialValueFor("max_movement_speed")
-	if not IsServer() then
-		return
-	end
-	self:GetParent():GenericParticle("particles/generic_gameplay/generic_break.vpcf", self, true)
 end
 
 function item_silver_edge_custom_break:GetModifierMoveSpeed_AbsoluteMax()

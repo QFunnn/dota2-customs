@@ -25,6 +25,13 @@ function item_enhancement_quickened_custom:GetIntrinsicModifierName()
 	return "modifier_item_enhancement_quickened_custom"
 end
 
+function item_enhancement_quickened_custom:Spawn()
+	self.movement_speed = self:GetSpecialValueFor("movement_speed")
+	self.duration = self:GetSpecialValueFor("duration")
+	self.range = self:GetSpecialValueFor("range")
+	self.slow = self:GetSpecialValueFor("slow")
+end
+
 modifier_item_enhancement_quickened_custom = class(mod_hidden)
 function modifier_item_enhancement_quickened_custom:RemoveOnDeath()
 	return false
@@ -33,9 +40,9 @@ function modifier_item_enhancement_quickened_custom:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.movement_speed = self.ability:GetSpecialValueFor("movement_speed")
-	self.duration = self.ability:GetSpecialValueFor("duration")
-	self.range = self.ability:GetSpecialValueFor("range")
+	self.movement_speed = self.ability.movement_speed
+	self.duration = self.ability.duration
+	self.range = self.ability.range
 
 	if not self.parent:IsRealHero() then
 		return
@@ -55,6 +62,9 @@ end
 
 function modifier_item_enhancement_quickened_custom:DamageEvent_out(params)
 	if not IsServer() then
+		return
+	end
+	if not IsValid(self.ability) then
 		return
 	end
 	if self.parent ~= params.attacker then
@@ -80,7 +90,9 @@ function modifier_item_enhancement_quickened_custom_slow:IsPurgable()
 	return true
 end
 function modifier_item_enhancement_quickened_custom_slow:OnCreated()
-	self.slow = self:GetAbility():GetSpecialValueFor("slow")
+	self.ability = self:GetAbility()
+
+	self.slow = self.ability.slow
 end
 
 function modifier_item_enhancement_quickened_custom_slow:DeclareFunctions()

@@ -96,7 +96,7 @@ function furion_innate_custom:GetBehavior()
 end
 
 function furion_innate_custom:GetAOERadius()
-	return self.vision_radius and self.vision_radius or 0
+	return self.vision_radius or 0
 end
 
 function furion_innate_custom:OnSpellStart()
@@ -127,6 +127,24 @@ function furion_innate_custom:GetBonus()
 end
 
 modifier_furion_innate_custom_tree = class(mod_hidden)
+function modifier_furion_innate_custom_tree:IsAura()
+	return true
+end
+function modifier_furion_innate_custom_tree:GetModifierAura()
+	return "modifier_furion_innate_custom_damage"
+end
+function modifier_furion_innate_custom_tree:GetAuraRadius()
+	return self.buff_radius
+end
+function modifier_furion_innate_custom_tree:GetAuraDuration()
+	return 0
+end
+function modifier_furion_innate_custom_tree:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_FRIENDLY
+end
+function modifier_furion_innate_custom_tree:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_HERO
+end
 function modifier_furion_innate_custom_tree:OnCreated(params)
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
@@ -182,7 +200,7 @@ function modifier_furion_innate_custom_tree:OnIntervalThink()
 		return
 	end
 
-	if (self.tree.IsStanding and not self.tree:IsStanding()) or self.tree:IsNull() then
+	if self.tree:IsNull() or (self.tree.IsStanding and not self.tree:IsStanding()) then
 		self:Destroy()
 		return
 	end
@@ -226,24 +244,6 @@ function modifier_furion_innate_custom_tree:OnDestroy()
 	self.parent:RemoveSelf()
 end
 
-function modifier_furion_innate_custom_tree:IsAura()
-	return true
-end
-function modifier_furion_innate_custom_tree:GetModifierAura()
-	return "modifier_furion_innate_custom_damage"
-end
-function modifier_furion_innate_custom_tree:GetAuraRadius()
-	return self.buff_radius
-end
-function modifier_furion_innate_custom_tree:GetAuraDuration()
-	return 0
-end
-function modifier_furion_innate_custom_tree:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_FRIENDLY
-end
-function modifier_furion_innate_custom_tree:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_HERO
-end
 function modifier_furion_innate_custom_tree:GetAuraEntityReject(hEntity)
 	return hEntity ~= self.caster
 end
@@ -277,7 +277,7 @@ function modifier_furion_innate_custom:DamageEvent_out(params)
 		return
 	end
 
-	if self.ability.talents.has_q2 == 1 and params.inflictor and self.parent == parent.attacker then
+	if self.ability.talents.has_q2 == 1 and params.inflictor and self.parent == params.attacker then
 		local heal = params.damage * result * self.ability.talents.q2_heal
 		if self.parent:HasModifier("modifier_furion_sprout_custom_caster") then
 			heal = heal * self.ability.talents.q2_bonus
@@ -374,7 +374,6 @@ function modifier_furion_innate_custom_toggle:OnCreated()
 end
 
 furion_wrath_of_nature_custom = class({})
-
 function furion_wrath_of_nature_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
@@ -535,6 +534,7 @@ function modifier_furion_wrath_of_nature_custom:FindNewTarget()
 		if self.stage == 1 then
 			self.stage = 2
 			self.max_targets = 9999
+			self.new_target = nil
 			self:FindNewTarget()
 		else
 			self:StartIntervalThink(-1)
@@ -553,6 +553,9 @@ function modifier_furion_wrath_of_nature_custom:OnIntervalThink()
 	end
 
 	local enemy = self.new_target
+	if not IsValid(enemy) then
+		return
+	end
 
 	self.hit_enemies[enemy:entindex()] = true
 	self.position = enemy:GetAbsOrigin()

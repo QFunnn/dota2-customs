@@ -31,19 +31,48 @@ function item_assault_custom:Precache(context)
 	PrecacheResource("particle", "particles/bristleback/armor_buff.vpcf", context)
 end
 
+function item_assault_custom:Spawn()
+	self.bonus_attack_speed = self:GetSpecialValueFor("bonus_attack_speed")
+	self.bonus_armor = self:GetSpecialValueFor("bonus_armor")
+	self.AbilityCastRange = self:GetSpecialValueFor("AbilityCastRange")
+	self.timer = self:GetSpecialValueFor("timer")
+	self.aura_positive_armor = self:GetSpecialValueFor("aura_positive_armor")
+	self.aura_attack_speed = self:GetSpecialValueFor("aura_attack_speed")
+	self.bonus_aura_armor = self:GetSpecialValueFor("bonus_aura_armor")
+	self.bonus_aura_speed = self:GetSpecialValueFor("bonus_aura_speed")
+	self.aura_heal_reduce = self:GetSpecialValueFor("aura_heal_reduce")
+	self.aura_negative_armor = self:GetSpecialValueFor("aura_negative_armor")
+	self.bonus_max = self:GetSpecialValueFor("bonus_max")
+end
+
 modifier_item_assault_custom = class(mod_hidden)
 function modifier_item_assault_custom:RemoveOnDeath()
 	return false
+end
+function modifier_item_assault_custom:GetAuraRadius()
+	return self.radius
+end
+function modifier_item_assault_custom:GetAuraSearchFlags()
+	return DOTA_UNIT_TARGET_FLAG_INVULNERABLE
+end
+function modifier_item_assault_custom:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_FRIENDLY
+end
+function modifier_item_assault_custom:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
+end
+function modifier_item_assault_custom:GetModifierAura()
+	return "modifier_item_assault_custom_aura"
 end
 function modifier_item_assault_custom:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 	self.ability.tracker = self
 
-	self.bonus_attack_speed = self.ability:GetSpecialValueFor("bonus_attack_speed")
-	self.bonus_armor = self.ability:GetSpecialValueFor("bonus_armor")
-	self.radius = self.ability:GetSpecialValueFor("AbilityCastRange")
-	self.timer = self.ability:GetSpecialValueFor("timer")
+	self.bonus_attack_speed = self.ability.bonus_attack_speed
+	self.bonus_armor = self.ability.bonus_armor
+	self.radius = self.ability.AbilityCastRange
+	self.timer = self.ability.timer
 
 	if not IsServer() then
 		return
@@ -108,21 +137,6 @@ function modifier_item_assault_custom:GetModifierPhysicalArmorBonus()
 	return self.bonus_armor
 end
 
-function modifier_item_assault_custom:GetAuraRadius()
-	return self.radius
-end
-function modifier_item_assault_custom:GetAuraSearchFlags()
-	return DOTA_UNIT_TARGET_FLAG_INVULNERABLE
-end
-function modifier_item_assault_custom:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_FRIENDLY
-end
-function modifier_item_assault_custom:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
-end
-function modifier_item_assault_custom:GetModifierAura()
-	return "modifier_item_assault_custom_aura"
-end
 function modifier_item_assault_custom:IsAura()
 	if not IsServer() then
 		return
@@ -141,13 +155,6 @@ modifier_item_assault_custom_debuff = class(mod_hidden)
 function modifier_item_assault_custom_debuff:RemoveOnDeath()
 	return false
 end
-function modifier_item_assault_custom_debuff:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.radius = self.ability:GetSpecialValueFor("AbilityCastRange")
-end
-
 function modifier_item_assault_custom_debuff:GetAuraRadius()
 	return self.radius
 end
@@ -163,6 +170,13 @@ end
 function modifier_item_assault_custom_debuff:GetModifierAura()
 	return "modifier_item_assault_custom_debuff_aura"
 end
+function modifier_item_assault_custom_debuff:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.radius = self.ability.AbilityCastRange
+end
+
 function modifier_item_assault_custom_debuff:IsAura()
 	if not IsServer() then
 		return
@@ -176,11 +190,11 @@ function modifier_item_assault_custom_aura:OnCreated()
 	self.ability = self:GetAbility()
 	self.parent = self:GetParent()
 
-	self.aura_positive_armor = self.ability:GetSpecialValueFor("aura_positive_armor")
-	self.aura_attack_speed = self.ability:GetSpecialValueFor("aura_attack_speed")
+	self.aura_positive_armor = self.ability.aura_positive_armor
+	self.aura_attack_speed = self.ability.aura_attack_speed
 
-	self.bonus_aura_armor = self.ability:GetSpecialValueFor("bonus_aura_armor")
-	self.bonus_aura_speed = self.ability:GetSpecialValueFor("bonus_aura_speed")
+	self.bonus_aura_armor = self.ability.bonus_aura_armor
+	self.bonus_aura_speed = self.ability.bonus_aura_speed
 end
 
 function modifier_item_assault_custom_aura:DeclareFunctions()
@@ -206,8 +220,8 @@ function modifier_item_assault_custom_debuff_aura:OnCreated()
 	self.ability = self:GetAbility()
 	self.parent = self:GetParent()
 
-	self.heal_reduce = self.ability:GetSpecialValueFor("aura_heal_reduce")
-	self.aura_negative_armor = self.ability:GetSpecialValueFor("aura_negative_armor")
+	self.heal_reduce = self.ability.aura_heal_reduce
+	self.aura_negative_armor = self.ability.aura_negative_armor
 end
 
 function modifier_item_assault_custom_debuff_aura:DeclareFunctions()
@@ -234,7 +248,7 @@ function modifier_item_assault_custom_buff:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.bonus_max = self.ability:GetSpecialValueFor("bonus_max")
+	self.bonus_max = self.ability.bonus_max
 	if not IsServer() then
 		return
 	end
@@ -250,10 +264,14 @@ function modifier_item_assault_custom_buff:OnRefresh(table)
 	end
 	self:IncrementStackCount()
 
-	if self:GetStackCount() >= self.bonus_max and not self.particle then
-		self.parent:EmitSound("BB.Back_shield")
-		self.particle = self.parent:GenericParticle("particles/bristleback/armor_buff.vpcf", self)
+	if self:GetStackCount() < self.bonus_max then
+		return
 	end
+	if self.particle then
+		return
+	end
+	self.parent:EmitSound("BB.Back_shield")
+	self.particle = self.parent:GenericParticle("particles/bristleback/armor_buff.vpcf", self)
 end
 
 function modifier_item_assault_custom_buff:OnStackCountChanged(iStackCount)

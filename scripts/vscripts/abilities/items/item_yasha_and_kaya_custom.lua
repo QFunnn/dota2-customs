@@ -20,13 +20,32 @@ function item_yasha_and_kaya_custom:GetIntrinsicModifierName()
 	return "modifier_item_yasha_and_kaya_custom"
 end
 
+function item_yasha_and_kaya_custom:Spawn()
+	self.bonus_agility = self:GetSpecialValueFor("bonus_agility")
+	self.bonus_intellect = self:GetSpecialValueFor("bonus_intellect")
+	self.spell_amp = self:GetSpecialValueFor("spell_amp")
+	self.movement_speed_percent_bonus = self:GetSpecialValueFor("movement_speed_percent_bonus")
+	self.mana_regen_multiplier = self:GetSpecialValueFor("mana_regen_multiplier")
+	self.bonus_attack_speed = self:GetSpecialValueFor("bonus_attack_speed")
+	self.magic_damage = self:GetSpecialValueFor("magic_damage")
+	self.health_bonus = self:GetSpecialValueFor("health_bonus")
+end
+
 modifier_item_yasha_and_kaya_custom = class(mod_hidden)
-function modifier_item_yasha_and_kaya_custom:IsHidden()
-	return true
+function modifier_item_yasha_and_kaya_custom:OnCreated(table)
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.agi = self.ability.bonus_agility
+	self.int = self.ability.bonus_intellect
+	self.spell_damage = self.ability.spell_amp
+	self.move_bonus = self.ability.movement_speed_percent_bonus
+	self.regen_amp = self.ability.mana_regen_multiplier
+	self.bonus_attack_speed = self.ability.bonus_attack_speed
+	self.magic_damage = self.ability.magic_damage
+	self.health_bonus = self.ability.health_bonus / 100
 end
-function modifier_item_yasha_and_kaya_custom:IsPurgable()
-	return false
-end
+
 function modifier_item_yasha_and_kaya_custom:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
@@ -94,18 +113,4 @@ function modifier_item_yasha_and_kaya_custom:GetModifierProcAttack_BonusDamage_M
 		return
 	end
 	return self.magic_damage
-end
-
-function modifier_item_yasha_and_kaya_custom:OnCreated(table)
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.agi = self.ability:GetSpecialValueFor("bonus_agility")
-	self.int = self.ability:GetSpecialValueFor("bonus_intellect")
-	self.spell_damage = self.ability:GetSpecialValueFor("spell_amp")
-	self.move_bonus = self.ability:GetSpecialValueFor("movement_speed_percent_bonus")
-	self.regen_amp = self.ability:GetSpecialValueFor("mana_regen_multiplier")
-	self.bonus_attack_speed = self.ability:GetSpecialValueFor("bonus_attack_speed")
-	self.magic_damage = self.ability:GetSpecialValueFor("magic_damage")
-	self.health_bonus = self.ability:GetSpecialValueFor("health_bonus") / 100
 end

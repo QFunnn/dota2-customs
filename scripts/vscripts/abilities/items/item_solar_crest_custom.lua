@@ -29,6 +29,21 @@ function item_solar_crest_custom:Precache(context)
 	PrecacheResource("particle", "particles/items2_fx/pavise_friend.vpcf", context)
 	PrecacheResource("particle", "particles/general/generic_armor_reduction.vpcf", context)
 	PrecacheResource("particle", "particles/items/pavise_shield.vpcf", context)
+	PrecacheResource("particle", "particles/general/generic_shield.vpcf", context)
+end
+
+function item_solar_crest_custom:Spawn()
+	self.bonus_armor = self:GetSpecialValueFor("bonus_armor")
+	self.self_movement_speed = self:GetSpecialValueFor("self_movement_speed")
+	self.bonus_mana = self:GetSpecialValueFor("bonus_mana")
+	self.bonus_health = self:GetSpecialValueFor("bonus_health")
+	self.target_movement_speed = self:GetSpecialValueFor("target_movement_speed")
+	self.target_attack_speed = self:GetSpecialValueFor("target_attack_speed")
+	self.duration = self:GetSpecialValueFor("duration")
+	self.absorb_amount = self:GetSpecialValueFor("absorb_amount")
+	self.bonus_attack = self:GetSpecialValueFor("bonus_attack")
+	self.bonus_move = self:GetSpecialValueFor("bonus_move")
+	self.damage_block = self:GetSpecialValueFor("damage_block") / 100
 end
 
 function item_solar_crest_custom:GetBehavior()
@@ -54,6 +69,10 @@ modifier_item_solar_crest_custom = class(mod_hidden)
 function modifier_item_solar_crest_custom:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
+function modifier_item_solar_crest_custom:OnCreated()
+	self.ability = self:GetAbility()
+end
+
 function modifier_item_solar_crest_custom:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_MANA_BONUS,
@@ -61,22 +80,6 @@ function modifier_item_solar_crest_custom:DeclareFunctions()
 		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
 	}
-end
-
-function modifier_item_solar_crest_custom:OnCreated()
-	self.ability = self:GetAbility()
-
-	self.ability.bonus_armor = self.ability:GetSpecialValueFor("bonus_armor")
-	self.ability.self_movement_speed = self.ability:GetSpecialValueFor("self_movement_speed")
-	self.ability.bonus_mana = self.ability:GetSpecialValueFor("bonus_mana")
-	self.ability.bonus_health = self.ability:GetSpecialValueFor("bonus_health")
-	self.ability.target_movement_speed = self.ability:GetSpecialValueFor("target_movement_speed")
-	self.ability.target_attack_speed = self.ability:GetSpecialValueFor("target_attack_speed")
-	self.ability.duration = self.ability:GetSpecialValueFor("duration")
-	self.ability.absorb_amount = self.ability:GetSpecialValueFor("absorb_amount")
-	self.ability.bonus_attack = self.ability:GetSpecialValueFor("bonus_attack")
-	self.ability.bonus_move = self.ability:GetSpecialValueFor("bonus_move")
-	self.ability.damage_block = self.ability:GetSpecialValueFor("damage_block") / 100
 end
 
 function modifier_item_solar_crest_custom:GetModifierPhysicalArmorBonus()
@@ -95,13 +98,7 @@ function modifier_item_solar_crest_custom:GetModifierMoveSpeedBonus_Constant()
 	return self.ability.self_movement_speed
 end
 
-modifier_item_solar_crest_custom_speed = class({})
-function modifier_item_solar_crest_custom_speed:IsHidden()
-	return false
-end
-function modifier_item_solar_crest_custom_speed:IsPurgable()
-	return false
-end
+modifier_item_solar_crest_custom_speed = class(mod_visible)
 function modifier_item_solar_crest_custom_speed:OnCreated(params)
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
@@ -190,11 +187,8 @@ function modifier_item_solar_crest_custom_speed:GetModifierIncomingDamageConstan
 	self:SendBuffRefreshToClients()
 
 	if self.shield <= 0 and self.nFXIndex then
-		ParticleManager:DestroyParticle(self.nFXIndex, true)
-		ParticleManager:ReleaseParticleIndex(self.nFXIndex)
-
-		ParticleManager:DestroyParticle(self.particle, false)
-		ParticleManager:ReleaseParticleIndex(self.particle)
+		ParticleManager:Delete(self.nFXIndex, 2)
+		ParticleManager:Delete(self.particle, 1)
 
 		self.parent:GenericParticle("particles/general/generic_armor_reduction.vpcf", self, true)
 		self.parent:EmitSound("Item.Star_emblem_break")

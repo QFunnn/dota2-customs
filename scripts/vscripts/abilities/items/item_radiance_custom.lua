@@ -22,11 +22,22 @@ function item_radiance_custom:Precache(context)
 	PrecacheResource("particle", "particles/items2_fx/radiance.vpcf", context)
 end
 
+function item_radiance_custom:Spawn()
+	self.damage_base = self:GetSpecialValueFor("damage_base")
+	self.damage_health = self:GetSpecialValueFor("damage_health") / 100
+	self.interval = self:GetSpecialValueFor("think_interval")
+	self.magic_resist = self:GetSpecialValueFor("magic_resist")
+	self.bonus_damage = self:GetSpecialValueFor("bonus_damage")
+	self.bonus_health = self:GetSpecialValueFor("bonus_health")
+	self.evasion = self:GetSpecialValueFor("evasion")
+	self.aura_radius = self:GetSpecialValueFor("aura_radius")
+end
+
 function item_radiance_custom:GetAbilityTextureName()
 	if self and self:GetCaster() and self:GetCaster():HasModifier("modifier_radiance_custom_toggle") then
 		return "item_radiance"
 	end
-	return wearables_system:GetAbilityIconReplacement(self.caster, "item_radiance_inactive", self)
+	return wearables_system:GetAbilityIconReplacement(self:GetCaster(), "item_radiance_inactive", self)
 end
 
 function item_radiance_custom:GetIntrinsicModifierName()
@@ -50,18 +61,13 @@ end
 function modifier_radiance_custom_stats:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
-function modifier_radiance_custom_stats:OnCreated(keys)
+function modifier_radiance_custom_stats:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.ability.damage_base = self.ability:GetSpecialValueFor("damage_base")
-	self.ability.damage_health = self.ability:GetSpecialValueFor("damage_health") / 100
-	self.ability.interval = self.ability:GetSpecialValueFor("think_interval")
-	self.ability.magic_resist = self.ability:GetSpecialValueFor("magic_resist")
-
-	self.damage = self.ability:GetSpecialValueFor("bonus_damage")
-	self.bonus_health = self.ability:GetSpecialValueFor("bonus_health")
-	self.evasion = self.ability:GetSpecialValueFor("evasion")
+	self.damage = self.ability.bonus_damage
+	self.bonus_health = self.ability.bonus_health
+	self.evasion = self.ability.evasion
 	if not IsServer() then
 		return
 	end
@@ -102,21 +108,6 @@ modifier_radiance_custom_burn = class(mod_visible)
 function modifier_radiance_custom_burn:GetTexture()
 	return "item_radiance"
 end
-function modifier_radiance_custom_burn:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
-		MODIFIER_PROPERTY_TOOLTIP,
-	}
-end
-
-function modifier_radiance_custom_burn:OnTooltip()
-	return self:GetDamage()
-end
-
-function modifier_radiance_custom_burn:GetModifierMagicalResistanceBonus()
-	return self.magic
-end
-
 function modifier_radiance_custom_burn:OnCreated()
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
@@ -143,6 +134,21 @@ function modifier_radiance_custom_burn:OnCreated()
 
 	EmitSoundOnEntityForPlayer("DOTA_Item.Radiance.Target.Loop", self.parent, self.parent:GetPlayerOwnerID())
 	self:StartIntervalThink(self.ability.interval)
+end
+
+function modifier_radiance_custom_burn:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
+		MODIFIER_PROPERTY_TOOLTIP,
+	}
+end
+
+function modifier_radiance_custom_burn:OnTooltip()
+	return self:GetDamage()
+end
+
+function modifier_radiance_custom_burn:GetModifierMagicalResistanceBonus()
+	return self.magic
 end
 
 function modifier_radiance_custom_burn:GetDamage()
@@ -177,23 +183,6 @@ modifier_radiance_custom_toggle = class(mod_hidden)
 function modifier_radiance_custom_toggle:RemoveOnDeath()
 	return false
 end
-function modifier_radiance_custom_toggle:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.radius = self.ability:GetSpecialValueFor("aura_radius")
-	if not IsServer() then
-		return
-	end
-	local player_id = self.parent:GetPlayerOwnerID()
-	local custom_effect_data = shop:GetCurrentEffectData(player_id, "effect_radiance")
-	local default_effect = "particles/items2_fx/radiance_owner.vpcf"
-	if custom_effect_data then
-		default_effect = custom_effect_data[1]
-	end
-	self.parent:GenericParticle(default_effect, self)
-end
-
 function modifier_radiance_custom_toggle:IsAura()
 	return true
 end
@@ -208,4 +197,20 @@ function modifier_radiance_custom_toggle:GetModifierAura()
 end
 function modifier_radiance_custom_toggle:GetAuraRadius()
 	return self.radius
+end
+function modifier_radiance_custom_toggle:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.radius = self.ability.aura_radius
+	if not IsServer() then
+		return
+	end
+	local player_id = self.parent:GetPlayerOwnerID()
+	local custom_effect_data = shop:GetCurrentEffectData(player_id, "effect_radiance")
+	local default_effect = "particles/items2_fx/radiance_owner.vpcf"
+	if custom_effect_data then
+		default_effect = custom_effect_data[1]
+	end
+	self.parent:GenericParticle(default_effect, self)
 end

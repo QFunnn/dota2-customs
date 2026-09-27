@@ -13,41 +13,43 @@ var unique_panel_heroes =
     "npc_dota_hero_broodmother" : true,
     "npc_dota_hero_muerta" : true,
     "npc_dota_hero_invoker" : true,
+    "npc_dota_hero_kunkka" : true,
 }
 
 
-Game.init_talent_panel = (panel, hero_alt, pick_stage) =>
+Game.init_talent_panel = (panel, player_id, pick_hero) =>
 {
 
     var LayerGeneral = panel
     LayerGeneral.style.backgroundSize = "contain";
 
-    hero_alt = String(hero_alt)
-    if (hero_alt == "undefined") 
+    let pick_stage = pick_hero !== undefined
+
+    if (player_id === undefined || player_id === null)
     {
-        var hero_ent = Players.GetLocalPlayerPortraitUnit();
-        var hero = Entities.GetUnitName(hero_ent)
-    } else 
-    {
-        var hero = hero_alt
+        if (pick_stage)
+            player_id = Game.GetLocalPlayerID()
+        else
+            player_id = Entities.GetPlayerOwnerID(Players.GetLocalPlayerPortraitUnit())
     }
+
+    player_id = Number(player_id)
+
+    var hero = pick_stage ? String(pick_hero) : Game.GetPlayerHero(player_id)
+
+    if (!hero || !Game.talents_values[hero])
+        return
+
+    if (Game.IsNoTalentsHero(hero))
+        return
 
     let use_new_system = false
     if (Game.new_talent_system[hero])
         use_new_system = true
 
-    let entindex = 0
-    var players_heroes = CustomNetTables.GetTableValue("hero_portrait_levels", hero)
-    var player_id = Game.GetLocalPlayerID()
+    let entindex = Players.GetPlayerHeroEntityIndex(player_id)
 
-    if (players_heroes)
-    {
-        player_id = players_heroes["id"]
-        entindex = players_heroes["entindex"]
-    }
-    player_id = Number(player_id)
-
-    var UniqueTalents_Panel = $("#UniqueTalents_Panel")
+    var UniqueTalents_Panel = LayerGeneral.FindChildTraverse("UniqueTalents_Panel")
     var LayerGray_Left = LayerGeneral.FindChildTraverse("LayerGray_left")
     var LayerPlayer_Skills = LayerGeneral.FindChildTraverse("LayerPlayer_Skills")
     var LayerGray_Right = LayerGeneral.FindChildTraverse("LayerGray_Right")
@@ -62,18 +64,24 @@ Game.init_talent_panel = (panel, hero_alt, pick_stage) =>
     var UniqueTalents_Content = UniqueTalents_Panel.FindChildTraverse("UniqueTalents_Content")
     if (UniqueTalents_Content)
     {
+        UniqueTalents_Content.RemoveAndDeleteChildren()
         UniqueTalents_Content.DeleteAsync(0)
     }
 
-    if (pick_stage == undefined && unique_panel_heroes[hero] == true)
+    if (!pick_stage && unique_panel_heroes[hero] == true)
     {
-        UniqueTalents_Panel.RemoveClass("talents_panel_hidden")
-        UniqueTalents_Panel.AddClass("unique_talents_start")
-        $.Schedule( 0.2, function(){ 
-            UniqueTalents_Panel.AddClass("UniqueTalents_Panel_open")
-            UniqueTalents_Panel.RemoveClass("unique_talents_start")
-        })
-        CreateUniquePanel(hero, player_id, entindex)
+        if (hero == "npc_dota_hero_kunkka" && !Game.HasTalent(player_id, "modifier_kunkka_xmark_7"))
+        {
+        }else
+        {
+            UniqueTalents_Panel.RemoveClass("talents_panel_hidden")
+            UniqueTalents_Panel.AddClass("unique_talents_start")
+            $.Schedule( 0.2, function(){ 
+                UniqueTalents_Panel.AddClass("UniqueTalents_Panel_open")
+                UniqueTalents_Panel.RemoveClass("unique_talents_start")
+            })
+            CreateUniquePanel(UniqueTalents_Panel, hero, player_id, entindex)
+        }
     }
     var LayerPurple_skill = []
     var LayerBlue_skill = []
@@ -84,10 +92,11 @@ Game.init_talent_panel = (panel, hero_alt, pick_stage) =>
         LayerBlue_skill[i] = LayerGeneral.FindChildTraverse("LayerBlue_skill_" + String(i))
     }
 
+    LayerGray_Right.AddClass("talents_panel_hidden")
+
     if (use_new_system == true)
     {
         LayerHeroTalents.RemoveClass("talents_panel_hidden")
-        LayerGray_Right.AddClass("talents_panel_hidden") 
         LayerPlayer_Skills.AddClass("talents_panel_hidden")
 
         if (pick_stage == true)
@@ -105,13 +114,11 @@ Game.init_talent_panel = (panel, hero_alt, pick_stage) =>
         if (pick_stage == true)
         {
            LayerGray_Left.AddClass("talents_panel_hidden") 
-           LayerGray_Right.AddClass("talents_panel_hidden") 
            LayerPlayer_Skills.RemoveClass("LayerPlayer_Skills_Normal")
            LayerPlayer_Skills.AddClass("LayerPlayer_Skills_PickStage")
         }else
         {
            LayerGray_Left.RemoveClass("talents_panel_hidden") 
-           LayerGray_Right.RemoveClass("talents_panel_hidden")
            LayerPlayer_Skills.AddClass("LayerPlayer_Skills_Normal")
            LayerPlayer_Skills.RemoveClass("LayerPlayer_Skills_PickStage")
         }
@@ -120,16 +127,11 @@ Game.init_talent_panel = (panel, hero_alt, pick_stage) =>
 
     let hero_index = Players.GetPlayerHeroEntityIndex(player_id)
 
-    var player_table = CustomNetTables.GetTableValue("upgrades_player", hero)
-    let common_bonus = 0
-    if (player_table && player_table.common_bonus)
-    {
-        common_bonus = player_table.common_bonus/100
-    }
+    var player_table = CustomNetTables.GetTableValue("upgrades_player", String(player_id))
 
     if (use_new_system)
     {
-        let icon = $.GetContextPanel().FindChildTraverse("hero_talent_hero")
+        let icon = LayerGeneral.FindChildTraverse("hero_talent_hero")
         icon.style.backgroundImage = 'url( "file://{images}/heroes/' + Game.GetHeroImage(player_id, hero) + '.png" );'
         icon.style.backgroundSize = 'contain';
         icon.style.backgroundRepeat = 'no-repeat'
@@ -145,9 +147,9 @@ Game.init_talent_panel = (panel, hero_alt, pick_stage) =>
     let talent_table = Game.talents_values[hero]
 
     let max = Object.keys(talent_table).length
-    let purple = $.GetContextPanel().FindChildTraverse("talent_purple_card_4")
-    let blue = $.GetContextPanel().FindChildTraverse("talent_blue_card_4")
-    let LayerHeroTalents_Hero = $.GetContextPanel().FindChildTraverse("LayerHeroTalents_Skill_0")
+    let purple = LayerGeneral.FindChildTraverse("talent_purple_card_4")
+    let blue = LayerGeneral.FindChildTraverse("talent_blue_card_4")
+    let LayerHeroTalents_Hero = LayerGeneral.FindChildTraverse("LayerHeroTalents_Skill_0")
 
     if (max == 26)
     {
@@ -212,7 +214,7 @@ Game.init_talent_panel = (panel, hero_alt, pick_stage) =>
             if (player_table !== undefined)
                 lvl = player_table.upgrades[name]
 
-            let skill_panel = $.GetContextPanel().FindChildTraverse("LayerHeroTalents_Skill_" + skill_number)
+            let skill_panel = LayerGeneral.FindChildTraverse("LayerHeroTalents_Skill_" + skill_number)
 
 
             if (rarity == "orange") 
@@ -228,6 +230,20 @@ Game.init_talent_panel = (panel, hero_alt, pick_stage) =>
                     orange_content = skill_panel.FindChildTraverse("talent_orange_card")
                     orange_icon = skill_panel.FindChildTraverse("talent_orange_icon")
                     orange_lvl = skill_panel.FindChildTraverse("talent_orange_lvl")
+
+                    let build_type = data["build_type"]
+                    let build_label = skill_panel.FindChildTraverse("talent_orange_build")
+                    let show_build = (lvl !== undefined || pick_stage) && build_type !== undefined
+
+                    orange_lvl.SetHasClass("talents_panel_hidden", show_build)
+                    orange_content.SetHasClass("talent_orange_card_build_1", show_build && build_type == 1)
+                    orange_content.SetHasClass("talent_orange_card_build_2", show_build && build_type == 2)
+                    build_label.SetHasClass("talents_panel_hidden", !show_build)
+                    build_label.SetHasClass("talent_orange_build_1", build_type == 1)
+                    build_label.SetHasClass("talent_orange_build_2", build_type == 2)
+
+                    if (build_type)
+                        build_label.text = $.Localize("#talent_build_type_" + build_type)
                 }
         
                 orange_content.RemoveClass("orange_content_anim");
@@ -262,7 +278,7 @@ Game.init_talent_panel = (panel, hero_alt, pick_stage) =>
                 orange_lvl.style.backgroundSize = "100%";
                 orange_lvl.style.backgroundRepeat = "no-repeat";
 
-                MouseOverTalent(orange_content, '#upgrade_disc_' + name, name, lvl, false, "legendary", max_level, player_id, hero, false, skill_change)
+                Game.MouseOverTalent(orange_content, '#upgrade_disc_' + name, name, lvl, false, "legendary", max_level, player_id, hero, false, skill_change)
 
             }
             //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -325,7 +341,7 @@ Game.init_talent_panel = (panel, hero_alt, pick_stage) =>
                     purple_icon.style.saturation = "0.1";
                 }
 
-                MouseOverTalent(purple_content, "#upgrade_disc_" + name, name, lvl, true, "purple", max_level, player_id, hero, false, skill_change)
+                Game.MouseOverTalent(purple_content, "#upgrade_disc_" + name, name, lvl, true, "purple", max_level, player_id, hero, false, skill_change)
 
                 purple_fill.style.width = level_width + "%"
             }
@@ -393,7 +409,7 @@ Game.init_talent_panel = (panel, hero_alt, pick_stage) =>
                     blue_icon.style.saturation = "0.1";
                 }
 
-                MouseOverTalent(blue_content, "#upgrade_disc_" + name, name, lvl, true, "blue", max_level, player_id, hero, false, skill_change)
+                Game.MouseOverTalent(blue_content, "#upgrade_disc_" + name, name, lvl, true, "blue", max_level, player_id, hero, false, skill_change)
                 
                 blue_fill.style.width = level_width + "%"
             }
@@ -407,26 +423,21 @@ Game.init_talent_panel = (panel, hero_alt, pick_stage) =>
         return
 
     var LayerGray_skill = []
-    for (var i = 1; i <= 4; i++)
+    for (var i = 1; i <= 2; i++)
     {
-        let panel = $.GetContextPanel().FindChildTraverse("LayerGray_skill_" + i)
+        let panel = LayerGeneral.FindChildTraverse("LayerGray_skill_" + i)
         if (panel) panel.DeleteAsync(0)
     
         let parent = LayerGray_Left
-        if (i >= 3) parent = LayerGray_Right
         
         LayerGray_skill[i] = $.CreatePanel("Panel", parent, "LayerGray_skill_" + i)
         LayerGray_skill[i].AddClass("Gray_Skill")
     }
 
 
-    var purple_amount = 0
-    var blue_amount = 0
     var gray_amount = 0
 
     var gray_general_count = 0
-    var purple_general_count = 0
-    var blue_general_count = 0
 
     var number = 0
     var text = ''
@@ -436,11 +447,6 @@ Game.init_talent_panel = (panel, hero_alt, pick_stage) =>
     var general_gray_border = $.CreatePanel("Panel", LayerGray_skill[1], "general_gray_border")
     general_gray_border.AddClass("general_border")
     var general_gray_border = $.CreatePanel("Panel", LayerGray_skill[2], "general_gray_border")
-    general_gray_border.AddClass("general_border")
-
-    var general_gray_border = $.CreatePanel("Panel", LayerGray_skill[3], "general_gray_border")
-    general_gray_border.AddClass("general_border")
-    var general_gray_border = $.CreatePanel("Panel", LayerGray_skill[4], "general_gray_border")
     general_gray_border.AddClass("general_border")
 
     if (!player_table)
@@ -465,8 +471,10 @@ Game.init_talent_panel = (panel, hero_alt, pick_stage) =>
     if (gray_amount > 12)
         gray_max = Math.ceil(gray_amount / 2)
 
+    let general_order = Object.keys(Game.talents_values["general"])
+    let general_names = general_order.slice().sort((a, b) => ((player_table.upgrades[b] || 0) - (player_table.upgrades[a] || 0)) || (general_order.indexOf(a) - general_order.indexOf(b)))
 
-    for (const name in Game.talents_values["general"]) 
+    for (const name of general_names)
     {
         let data = Game.talents_values["general"][name]
         let rarity = data["rarity"]
@@ -477,112 +485,8 @@ Game.init_talent_panel = (panel, hero_alt, pick_stage) =>
         if (lvl === undefined)
             continue
 
-        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-        if (use_new_system == false)
-        {
-            if (rarity == "purple") 
-            {
-                purple_general_count = purple_general_count + 1
-
-                let general_purple_card = $.CreatePanel("Panel", LayerGray_skill[4], "general_purple_card" + purple_general_count)
-                general_purple_card.AddClass("general_card")
-
-                let general_purple_shadow = $.CreatePanel("Panel", general_purple_card, "general_purple_shadow" + purple_general_count)
-                general_purple_shadow.AddClass("general_shadow")
-
-                let general_purple_image = $.CreatePanel("Panel", general_purple_shadow, "general_purple_image" + purple_general_count)
-                general_purple_image.AddClass("general_image_purple")
-                general_purple_image.style.backgroundImage = 'url("file://{images}/custom_game/icons/mini/general/' + icon + '.png")';
-                general_purple_image.style.backgroundSize = "contain";
-                general_purple_image.style.backgroundRepeat = "no-repeat";
-
-                let general_purple_color = $.CreatePanel("Panel", general_purple_shadow, "general_purple_color" + purple_general_count)
-                general_purple_color.AddClass("general_color")
-                general_purple_color.style.washColor = "#a619ff";
-
-                let general_purple_stack = $.CreatePanel("Label", general_purple_shadow, "general_purple_stack" + purple_general_count)
-                general_purple_stack.AddClass("general_stack")
-
-                MouseOverTalent(general_purple_card, "#upgrade_disc_" + name, name, lvl, true, "purple", max_level, player_id, hero, false, undefined)
-
-                if (lvl > 1)
-                    general_purple_stack.text = String(lvl)
-
-                if (purple_amount > 6) 
-                {
-                    number = 0
-                    number = (96 / purple_amount)
-
-                    text = String(number) + '%'
-                    general_purple_card.style.height = text
-
-                    number = number * 5.1468
-                    text = String(number) + '%'
-                    general_purple_card.style.width = text
-
-                    number = (100 - number) / 2
-                    text = String(number) + '%'
-                    general_purple_card.style.marginLeft = text
-                    general_purple_stack.style.fontSize = '22px'
-                }
-            }
-
-            if (rarity == "blue")
-            {
-                blue_general_count = blue_general_count + 1
-
-                let general_blue_card = $.CreatePanel("Panel", LayerGray_skill[3], "general_blue_card" + blue_general_count)
-                general_blue_card.AddClass("general_card")
-
-                let general_blue_shadow = $.CreatePanel("Panel", general_blue_card, "general_blue_shadow" + blue_general_count)
-                general_blue_shadow.AddClass("general_shadow")
-
-                let general_blue_image = $.CreatePanel("Panel", general_blue_shadow, "general_blue_image" + blue_general_count)
-                general_blue_image.AddClass("general_image_blue")
-                general_blue_image.style.backgroundImage = 'url("file://{images}/custom_game/icons/mini/general/' + icon + '.png")';
-                general_blue_image.style.backgroundSize = "contain";
-                general_blue_image.style.backgroundRepeat = "no-repeat";
-
-                let general_blue_color = $.CreatePanel("Panel", general_blue_shadow, "general_blue_color" + blue_general_count)
-                general_blue_color.AddClass("general_color")
-                general_blue_color.style.washColor = "#1a99e8";
-
-                let general_blue_stack = $.CreatePanel("Label", general_blue_shadow, "general_blue_stack" + blue_general_count)
-                general_blue_stack.AddClass("general_stack")
-
-                MouseOverTalent(general_blue_card, "#upgrade_disc_" + name, name, lvl, true, "blue", max_level, player_id, hero, false, undefined)
-
-                if (lvl > 1) {
-                    general_blue_stack.text = String(lvl)
-                }
-
-                if (blue_amount > 6) 
-                {
-                    number = 0
-                    number = (96 / blue_amount)
-
-                    text = String(number) + '%'
-                    general_blue_card.style.height = text
-
-                    number = number * 5.1468
-                    text = String(number) + '%'
-                    general_blue_card.style.width = text
-
-                    number = (100 - number) / 2
-                    text = String(number) + '%'
-                    general_blue_card.style.marginLeft = text
-
-                    general_blue_stack.style.fontSize = '22px'
-                }
-            }
-
-        }
-
-
         if (rarity == "gray")
         {
-            let gray_bonus = data["general_bonus"]
             gray_general_count = gray_general_count + 1
 
             let parent = LayerGray_skill[2]
@@ -595,14 +499,14 @@ Game.init_talent_panel = (panel, hero_alt, pick_stage) =>
             let general_gray_card = $.CreatePanel("Panel", parent, "general_gray_card" + gray_general_count)
             general_gray_card.AddClass("general_card")
 
-            var value = '+' + String(Math.trunc(lvl * gray_bonus * (1 + common_bonus))) + $.Localize('#talent_disc_' + name)
-            MouseOver(general_gray_card, value)
+            Game.MouseOverTalent(general_gray_card, "#upgrade_disc_" + name, name, lvl, true, "gray", max_level, player_id, hero, false, undefined)
 
             let general_gray_shadow = $.CreatePanel("Panel", general_gray_card, "general_gray_shadow" + gray_general_count)
             general_gray_shadow.AddClass("general_shadow")
 
             let general_gray_image = $.CreatePanel("Panel", general_gray_shadow, "general_gray_image" + gray_general_count)
             general_gray_image.AddClass("general_image_gray")
+            general_gray_image.SetHasClass("general_image_priority", player_table.priority == name)
             general_gray_image.style.backgroundImage = 'url("file://{images}/custom_game/icons/mini/general/' + icon + '.png")';
             general_gray_image.style.backgroundSize = "contain";
             general_gray_image.style.backgroundRepeat = "no-repeat";
@@ -655,32 +559,8 @@ function MouseOver(panel, text) {
     });
 }
 
-function MouseOverTalent(panel, talent_text, name, lvl, all_levels, rarity, max_level, player_id, hero, is_scepter, skill_change) 
+function CreateUniquePanel(main, hero_name, player_id, entindex)
 {
-    panel.SetPanelEvent("onmouseover", () => 
-    {
-        Game.CustomTooltipOpened = true
-
-        $.DispatchEvent(
-            "UIShowCustomLayoutParametersTooltip",
-            panel,
-            "skill_tooltip",
-            "file://{resources}/layout/custom_game/custom_tooltip.xml",
-            "talent_text=" + talent_text + "&name=" + name + "&lvl=" + lvl + "&all_levels=" + all_levels + "&rarity=" + rarity + "&max_level=" + max_level + "&player_id=" + player_id + "&hero_name=" + hero + "&is_scepter=" + is_scepter + "&skill_change=" + skill_change,
-        );
-    });
-    panel.SetPanelEvent("onmouseout", () => 
-    {
-        Game.CustomTooltipOpened = false
-        $.DispatchEvent("UIHideCustomLayoutTooltip", panel, "skill_tooltip");
-    });
-
-}
-
-
-function CreateUniquePanel(hero_name, player_id, entindex)
-{
-    var main = $("#UniqueTalents_Panel")
     var content = $.CreatePanel("Panel", main, "UniqueTalents_Content")
     content.AddClass("UniqueTalents_Content")
 
@@ -692,13 +572,11 @@ function CreateUniquePanel(hero_name, player_id, entindex)
         "npc_dota_hero_muerta": true,
     }
 
-    var right_panel_main
+    var right_panel_main = $.CreatePanel("Panel", content, "")
+    right_panel_main.AddClass("UniqueTalents_Scepter_Main")
 
     if (scepter_table[hero_name])
     {
-        right_panel_main = $.CreatePanel("Panel", content, "")
-        right_panel_main.AddClass("UniqueTalents_Scepter_Main")
-
         var scepter_panel = $.CreatePanel("Panel", right_panel_main, "UniqueTalents_ScepterPanel")
         var scepter_texture = $.CreatePanel("Panel", scepter_panel, "UniqueTalents_ScepterTexture")
         var scepter_icon = $.CreatePanel("Panel", scepter_panel, "UniqueTalents_ScepterIcon")
@@ -714,6 +592,81 @@ function CreateUniquePanel(hero_name, player_id, entindex)
         }
     }
 
+    if (hero_name == "npc_dota_hero_kunkka")
+    {
+        var header_panel = $.CreatePanel("Panel", right_panel_main, "UniqueTalents_Kunkka_Header")
+        var header_texture = $.CreatePanel("Panel", header_panel, "UniqueTalents_Kunkka_HeaderTexture")
+        var header_inner = $.CreatePanel("Panel", header_panel, "UniqueTalents_Kunkka_HeaderInner")
+        var icon = $.CreatePanel("Panel", header_inner, "UniqueTalents_Kunkka_HeaderIcon")
+        var text = $.CreatePanel("Label", header_inner, "UniqueTalents_Kunkka_HeaderText")
+        text.text = $.Localize("#KunkkaHeaderText")
+
+        var kunkka_panel = $.CreatePanel("Panel", right_panel_main, "UniqueTalents_Kunkka_Content")
+
+        var legendary_row = $.CreatePanel("Panel", kunkka_panel, "KunkkaRow_legendary")
+        legendary_row.AddClass("UniqueTalents_Kunkka_Row")
+
+        var purple_row = $.CreatePanel("Panel", kunkka_panel, "KunkkaRow_purple")
+        purple_row.AddClass("UniqueTalents_Kunkka_Row")
+
+        var blue_row = $.CreatePanel("Panel", kunkka_panel, "KunkkaRow_blue")
+        blue_row.AddClass("UniqueTalents_Kunkka_Row")
+
+        let talent_table = Object.entries(Game.talents_values["kunkka_shop"])
+        var player_table = CustomNetTables.GetTableValue("upgrades_player", String(player_id))
+
+        talent_table.sort(([a], [b]) => {
+            const numA = Number(a.split("_").pop())
+            const numB = Number(b.split("_").pop())
+
+            return numA - numB
+        })
+        talent_table = talent_table.map(([key, data]) => {
+            data.name = key
+            return data
+        })
+
+        for (const data of talent_table)
+        {
+            let rarity = data["rarity"]
+            let mini_icon = data["mini_icon"]
+            let name = data["name"]
+            let max_lvl = data["max_level"]
+            let lvl = (player_table == undefined || !player_table.upgrades[name]) ? 0 : player_table.upgrades[name]
+
+            let row_content = kunkka_panel.FindChildTraverse("KunkkaRow_content_" + rarity)
+            if (!row_content || row_content == undefined || row_content == null)
+            {
+                let row = kunkka_panel.FindChildTraverse("KunkkaRow_" + rarity)
+                row_content = $.CreatePanel("Panel", row, "KunkkaRow_content_" + rarity)
+                row_content.AddClass("KunkkaRow_items_content")
+            }
+
+            let item_back = $.CreatePanel("Panel", row_content, name)
+            item_back.AddClass("UniqueTalents_Kunkka_item_back")
+            item_back.SetHasClass("UniqueTalents_Kunkka_item_back_active", lvl > 0)
+            item_back.SetHasClass("UniqueTalents_Kunkka_item_back_max", lvl >= max_lvl)
+            
+            let item_icon = $.CreatePanel("Panel", item_back, name + "_icon")
+            item_icon.AddClass("UniqueTalents_Kunkka_item_icon")
+            item_icon.SetHasClass("UniqueTalents_Kunkka_item_icon_not_active", lvl <= 0)
+
+            item_icon.style.backgroundImage = 'url("file://{images}/custom_game/icons/mini/npc_dota_hero_kunkka/' + mini_icon + '.png")';
+            item_icon.style.backgroundSize = "contain";
+            item_icon.style.backgroundRepeat = "no-repeat";
+
+            var item_level_back = $.CreatePanel("Panel", item_back, "")
+            item_level_back.AddClass("UniqueTalents_Kunkka_item_level")
+
+            var item_level_fill = $.CreatePanel("Panel", item_level_back, name + "_level")
+            item_level_fill.AddClass("UniqueTalents_Kunkka_level_fill")
+            item_level_fill.SetHasClass("UniqueTalents_Kunkka_level_fill_max", lvl >= max_lvl)
+            item_level_fill.style.width = (lvl/max_lvl)*27 + "px"
+
+            Game.MouseOverTalent(item_back, '#upgrade_disc_' + name, name, lvl, true, rarity, max_lvl, player_id, hero_name, undefined, undefined, true)
+        }
+    }
+
     if (hero_name == "npc_dota_hero_invoker")
     {
         var invoker_panel = $.CreatePanel("Panel", right_panel_main, "UniqueTalents_Invoker_Container")
@@ -724,7 +677,7 @@ function CreateUniquePanel(hero_name, player_id, entindex)
         talent_table = Object.values(talent_table)
         talent_table.sort((a, b) => (a["name_number"] - b["name_number"]))
 
-        var player_table = CustomNetTables.GetTableValue("upgrades_player", hero_name)
+        var player_table = CustomNetTables.GetTableValue("upgrades_player", String(player_id))
 
         for (const data of talent_table)
         {           
@@ -775,7 +728,7 @@ function CreateUniquePanel(hero_name, player_id, entindex)
 
             percent_number.text = percent + "%"
             progress_filler.style.width = percent + "%"
-            MouseOverTalent(talent_container, '#upgrade_disc_' + name, name, stack, true, rarity, max, player_id, hero_name, true)
+            Game.MouseOverTalent(talent_container, '#upgrade_disc_' + name, name, stack, true, rarity, max, player_id, hero_name, true)
         }
     }
 
@@ -789,7 +742,7 @@ function CreateUniquePanel(hero_name, player_id, entindex)
         talent_table = Object.values(talent_table)
         talent_table.sort((a, b) => (a["name_number"] - b["name_number"]))
 
-        var player_table = CustomNetTables.GetTableValue("upgrades_player", hero_name)
+        var player_table = CustomNetTables.GetTableValue("upgrades_player", String(player_id))
         var last_complete = has_scepter
 
         for (const data of talent_table)
@@ -856,7 +809,7 @@ function CreateUniquePanel(hero_name, player_id, entindex)
         talent_table = Object.values(talent_table)
         talent_table.sort((a, b) => (a["name_number"] - b["name_number"]))
 
-        var player_table = CustomNetTables.GetTableValue("upgrades_player", hero_name)
+        var player_table = CustomNetTables.GetTableValue("upgrades_player", String(player_id))
 
         for (const data of talent_table)
         {
@@ -923,7 +876,7 @@ function CreateUniquePanel(hero_name, player_id, entindex)
                 talent_icon.style.saturation = "0.1";
             }
 
-            MouseOverTalent(talent_panel, '#upgrade_disc_' + name, name, lvl, true, rarity, max_lvl, player_id, hero_name)
+            Game.MouseOverTalent(talent_panel, '#upgrade_disc_' + name, name, lvl, true, rarity, max_lvl, player_id, hero_name)
         }
     }
-}
+}

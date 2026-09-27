@@ -34,6 +34,9 @@ function tinker_innate_custom:Precache(context)
 		return
 	end
 
+	PrecacheResource("particle", "particles/units/heroes/hero_tinker/tinker_defense_matrix_cast.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_tinker/tinker_defense_matrix_pulse.vpcf", context)
+	PrecacheResource("particle", "particles/tinker/scepter_proc.vpcf", context)
 	PrecacheResource("soundfile", "soundevents/npc_dota_hero_tinker.vsndevts", context)
 	dota1x6:PrecacheShopItems("npc_dota_hero_tinker", context)
 end
@@ -132,17 +135,17 @@ function tinker_innate_custom:ProcTeleport()
 	if not IsServer() then
 		return
 	end
-	if not self.caster:HasScepter() then
+	if not self:IsTrained() then
 		return
 	end
-	if not self:IsTrained() then
+	if not self.caster:HasScepter() then
 		return
 	end
 
 	self.caster:RemoveModifierByName("modifier_tinker_innate_custom_move")
 	self.caster:AddNewModifier(
 		self.caster,
-		self.ability,
+		self,
 		"modifier_tinker_innate_custom_move",
 		{ duration = self.scepter_duration }
 	)
@@ -188,6 +191,13 @@ function modifier_tinker_innate_custom:OnIntervalThink()
 	end
 
 	self.parent:AddNewModifier(self.parent, self.ability, "modifier_tinker_innate_custom_shield", { auto = 0 })
+end
+
+function modifier_tinker_innate_custom:OnDestroy()
+	if not IsServer() then
+		return
+	end
+	self.parent:RemoveModifierByName("modifier_tinker_innate_custom_shield")
 end
 
 function modifier_tinker_innate_custom:DamageEvent_out(params)
@@ -298,17 +308,7 @@ function modifier_tinker_innate_custom:GetModifierHealthBonus()
 	return self.parent:GetIntellect(false) * self.ability.talents.h3_health
 end
 
-function modifier_tinker_innate_custom:OnDestroy()
-	if not IsServer() then
-		return
-	end
-	self.parent:RemoveModifierByName("modifier_tinker_innate_custom_shield")
-end
-
-modifier_tinker_innate_custom_shield = class({})
-function modifier_tinker_innate_custom_shield:IsHidden()
-	return false
-end
+modifier_tinker_innate_custom_shield = class(mod_visible)
 function modifier_tinker_innate_custom_shield:IsPurgable()
 	return self.ability.talents.has_h5 == 0
 end
@@ -395,11 +395,6 @@ function modifier_tinker_innate_custom_shield:OnCreated(params)
 	self:StartIntervalThink(self.interval)
 end
 
-function modifier_tinker_innate_custom_shield:AddShield(add)
-	self.shield = math.min(self.max_shield, self.shield + add)
-	self:SendBuffRefreshToClients()
-end
-
 function modifier_tinker_innate_custom_shield:OnIntervalThink(first)
 	if not IsServer() then
 		return
@@ -407,7 +402,8 @@ function modifier_tinker_innate_custom_shield:OnIntervalThink(first)
 
 	if self.shield_start == true and not first then
 		self.shield_count = self.shield_count + self.shield_add
-		self:AddShield(self.shield_add)
+		self.shield = math.min(self.max_shield, self.shield + self.shield_add)
+		self:SendBuffRefreshToClients()
 	end
 
 	if self.shield_count >= self.max_shield then
@@ -500,7 +496,8 @@ function modifier_tinker_innate_custom_shield:GetModifierIncomingDamageConstant(
 
 	self.parent:AddShieldInfo({ shield_mod = self, healing = damage, healing_type = "shield" })
 	if
-		players[params.attacker:GetId()]
+		params.attacker
+		and players[params.attacker:GetId()]
 		and self.parent:GetQuest() == "Tinker.Quest_7"
 		and not self.parent:QuestCompleted()
 	then
@@ -532,12 +529,16 @@ function modifier_tinker_innate_custom_move:GetModifierMoveSpeed_Absolute()
 end
 
 modifier_tinker_innate_custom_shield_cd = class(mod_cd)
+function modifier_tinker_innate_custom_shield_cd:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+	self.RemoveForDuel = true
+end
+
 function modifier_tinker_innate_custom_shield_cd:OnDestroy()
 	if not IsServer() then
 		return
 	end
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
 	if not IsValid(self.ability, self.ability.tracker) then
 		return
 	end

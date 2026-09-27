@@ -20,6 +20,9 @@ function marci_innate_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
 	end
+
+	PrecacheResource("particle", "particles/units/heroes/hero_marci/marci_unleash_pulse.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_marci/marci_rebound_bounce_impact.vpcf", context)
 	PrecacheResource("soundfile", "soundevents/npc_dota_hero_marci.vsndevts", context)
 	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_marci.vsndevts", context)
 	dota1x6:PrecacheShopItems("npc_dota_hero_marci", context)
@@ -30,7 +33,6 @@ function marci_innate_custom:UpdateTalents(name)
 	if not self.init then
 		self.init = true
 		self.talents = {
-			has_w1 = 0,
 			w1_damage = 0,
 
 			has_w4 = 0,
@@ -38,7 +40,6 @@ function marci_innate_custom:UpdateTalents(name)
 			w4_range = caster:GetTalentValue("modifier_marci_rebound_4", "range", true),
 			w4_mana = caster:GetTalentValue("modifier_marci_rebound_4", "mana", true) / 100,
 
-			has_h1 = 0,
 			h1_move = 0,
 			h1_cd = 0,
 
@@ -50,7 +51,6 @@ function marci_innate_custom:UpdateTalents(name)
 	end
 
 	if caster:HasTalent("modifier_marci_rebound_1") then
-		self.talents.has_w1 = 1
 		self.talents.w1_damage = caster:GetTalentValue("modifier_marci_rebound_1", "damage")
 	end
 
@@ -59,7 +59,6 @@ function marci_innate_custom:UpdateTalents(name)
 	end
 
 	if caster:HasTalent("modifier_marci_hero_1") then
-		self.talents.has_h1 = 1
 		self.talents.h1_move = caster:GetTalentValue("modifier_marci_hero_1", "move")
 		self.talents.h1_cd = caster:GetTalentValue("modifier_marci_hero_1", "cd")
 	end
@@ -78,7 +77,7 @@ function marci_innate_custom:GetIntrinsicModifierName()
 end
 
 function marci_innate_custom:GetRange()
-	return (self.range and self.range or 0) + (self.talents.has_w4 == 1 and self.talents.w4_range or 0)
+	return (self.range or 0) + (self.talents.has_w4 == 1 and self.talents.w4_range or 0)
 end
 
 function marci_innate_custom:GetBehavior()
@@ -96,11 +95,11 @@ function marci_innate_custom:GetCastRange(vLocation, hTarget)
 end
 
 function marci_innate_custom:GetAOERadius()
-	return self.radius and self.radius or 0
+	return self.radius or 0
 end
 
 function marci_innate_custom:GetCooldown(iLevel)
-	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.h1_cd and self.talents.h1_cd or 0)
+	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.h1_cd or 0)
 end
 
 function marci_innate_custom:OnSpellStart()
@@ -124,8 +123,7 @@ function marci_innate_custom:OnSpellStart()
 	end
 
 	dir = dir:Normalized()
-	self.caster:FaceTowards(point)
-	self.caster:SetForwardVector(dir)
+	self.caster:FacePoint(point)
 	self.caster:RemoveGesture(ACT_DOTA_CAST_ABILITY_3)
 	self.caster:RemoveGesture(ACT_DOTA_ATTACK)
 
@@ -176,7 +174,7 @@ function marci_innate_custom:OnSpellStart()
 		local damageTable = {
 			attacker = self.caster,
 			ability = self,
-			damage = self.damage + self.ability.talents.w1_damage,
+			damage = self.damage + self.talents.w1_damage,
 			damage_type = DAMAGE_TYPE_MAGICAL,
 		}
 		for _, target in pairs(self.caster:FindTargets(self.radius, point)) do
@@ -323,6 +321,7 @@ function modifier_marci_innate_custom_regen:OnCreated()
 	if not IsServer() then
 		return
 	end
+	self.RemoveForDuel = true
 	self:OnRefresh()
 end
 

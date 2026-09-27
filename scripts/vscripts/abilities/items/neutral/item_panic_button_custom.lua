@@ -21,11 +21,26 @@ LinkLuaModifier(
 
 item_panic_button_custom = class({})
 
+function item_panic_button_custom:Precache(context)
+	if self:GetCaster() and self:GetCaster():IsIllusion() then
+		return
+	end
+	PrecacheResource("particle", "particles/items5_fx/magic_lamp.vpcf", context)
+	PrecacheResource("particle", "particles/items2_fx/vindicators_axe_armor.vpcf", context)
+end
+
 function item_panic_button_custom:GetIntrinsicModifierName()
 	if not self:GetCaster():IsRealHero() then
 		return
 	end
 	return "modifier_item_panic_button_custom"
+end
+
+function item_panic_button_custom:Spawn()
+	self.health_threshold = self:GetSpecialValueFor("health_threshold")
+	self.heal = self:GetSpecialValueFor("heal")
+	self.duration = self:GetSpecialValueFor("duration")
+	self.damage_reduce = self:GetSpecialValueFor("damage_reduce")
 end
 
 modifier_item_panic_button_custom = class(mod_hidden)
@@ -36,9 +51,9 @@ function modifier_item_panic_button_custom:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.health_threshold = self.ability:GetSpecialValueFor("health_threshold")
-	self.heal = self.ability:GetSpecialValueFor("heal")
-	self.duration = self.ability:GetSpecialValueFor("duration")
+	self.health_threshold = self.ability.health_threshold
+	self.heal = self.ability.heal
+	self.duration = self.ability.duration
 
 	self.parent:AddDamageEvent_inc(self, true)
 end
@@ -116,16 +131,19 @@ function modifier_item_panic_button_custom:DamageEvent_inc(params)
 	)
 
 	self.parent:Purge(false, true, false, true, true)
-	self.ability:UseResources(false, false, false, true)
+	self.ability:StartCd()
 end
 
 modifier_item_panic_button_custom_reduce = class(mod_hidden)
 function modifier_item_panic_button_custom_reduce:OnCreated()
-	self.damage_reduce = self:GetAbility():GetSpecialValueFor("damage_reduce")
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.damage_reduce = self.ability.damage_reduce
 	if not IsServer() then
 		return
 	end
-	self:GetParent():GenericParticle("particles/items2_fx/vindicators_axe_armor.vpcf", self)
+	self.parent:GenericParticle("particles/items2_fx/vindicators_axe_armor.vpcf", self)
 end
 
 function modifier_item_panic_button_custom_reduce:DeclareFunctions()

@@ -32,41 +32,39 @@ function item_giants_ring_custom:GetIntrinsicModifierName()
 	return "modifier_item_giants_ring_custom"
 end
 
+function item_giants_ring_custom:Spawn()
+	self.duration = self:GetSpecialValueFor("duration")
+	self.radius = self:GetSpecialValueFor("radius")
+	self.str_damage = self:GetSpecialValueFor("str_damage")
+	self.max_damage = self:GetSpecialValueFor("max_damage")
+	self.str_bonus = self:GetSpecialValueFor("str_bonus")
+	self.model_scale = self:GetSpecialValueFor("model_scale")
+	self.active_scale = self:GetSpecialValueFor("active_scale")
+end
+
 function item_giants_ring_custom:OnSpellStart()
 	local caster = self:GetCaster()
 
 	caster:EmitSound("Giant.Ring")
-	caster:AddNewModifier(
-		caster,
-		self,
-		"modifier_giants_ring_custom",
-		{ duration = self:GetSpecialValueFor("duration") }
-	)
+	caster:AddNewModifier(caster, self, "modifier_giants_ring_custom", { duration = self.duration })
 end
 
-modifier_item_giants_ring_custom = class({})
-function modifier_item_giants_ring_custom:IsHidden()
-	return true
-end
-function modifier_item_giants_ring_custom:IsPurgable()
-	return false
-end
+modifier_item_giants_ring_custom = class(mod_hidden)
 function modifier_item_giants_ring_custom:RemoveOnDeath()
 	return false
 end
-
 function modifier_item_giants_ring_custom:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.radius = self.ability:GetSpecialValueFor("radius")
-	self.str_damage = self.ability:GetSpecialValueFor("str_damage") / 100
-	self.max_damage = self.ability:GetSpecialValueFor("max_damage")
+	self.radius = self.ability.radius
+	self.str_damage = self.ability.str_damage / 100
+	self.max_damage = self.ability.max_damage
 	self.interval = 0.5
 
-	self.str_bonus = self.ability:GetSpecialValueFor("str_bonus")
-	self.model_scale = self.ability:GetSpecialValueFor("model_scale")
-	self.model_scale_bonus = self.ability:GetSpecialValueFor("active_scale")
+	self.str_bonus = self.ability.str_bonus
+	self.model_scale = self.ability.model_scale
+	self.model_scale_bonus = self.ability.active_scale
 
 	self.damageTable = { attacker = self.parent, damage_type = DAMAGE_TYPE_MAGICAL, ability = self.ability }
 
@@ -131,20 +129,7 @@ function modifier_item_giants_ring_custom:GetModifierModelScale()
 	return bonus
 end
 
-modifier_giants_ring_custom = class({})
-function modifier_giants_ring_custom:IsHidden()
-	return false
-end
-function modifier_giants_ring_custom:IsPurgable()
-	return false
-end
-function modifier_giants_ring_custom:CheckState()
-	return {
-		[MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY] = true,
-		[MODIFIER_STATE_UNSLOWABLE] = true,
-	}
-end
-
+modifier_giants_ring_custom = class(mod_visible)
 function modifier_giants_ring_custom:OnCreated()
 	self.parent = self:GetParent()
 	if not IsServer() then
@@ -152,6 +137,13 @@ function modifier_giants_ring_custom:OnCreated()
 	end
 	self:StartIntervalThink(0.2)
 	self:OnIntervalThink()
+end
+
+function modifier_giants_ring_custom:CheckState()
+	return {
+		[MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY] = true,
+		[MODIFIER_STATE_UNSLOWABLE] = true,
+	}
 end
 
 function modifier_giants_ring_custom:OnIntervalThink()

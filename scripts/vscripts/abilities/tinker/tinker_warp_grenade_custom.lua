@@ -15,7 +15,6 @@ LinkLuaModifier(
 )
 
 tinker_warp_grenade_custom = class({})
-
 function tinker_warp_grenade_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
@@ -23,14 +22,6 @@ function tinker_warp_grenade_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_tinker/tinker_shard_warp_flare.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_tinker/tinker_shard_warp_start_b.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_tinker/tinker_shard_warp_debuff.vpcf", context)
-end
-
-function tinker_warp_grenade_custom:UpdateTalents(name)
-	local caster = self:GetCaster()
-	if not self.init then
-		self.init = true
-		self.talents = {}
-	end
 end
 
 function tinker_warp_grenade_custom:Init()
@@ -43,30 +34,27 @@ function tinker_warp_grenade_custom:Init()
 		self:SetLevel(1)
 	end
 
-	self.damage = self:GetSpecialValueFor("damage")
-	self.silence = self:GetSpecialValueFor("silence")
+	self.damage = self:GetLevelSpecialValueFor("damage", 1)
+	self.silence = self:GetLevelSpecialValueFor("silence", 1)
 	self.slow = self:GetLevelSpecialValueFor("slow", 1)
-	self.speed = self:GetSpecialValueFor("speed")
-	self.max_range = self:GetSpecialValueFor("max_range")
-	self.knock_range = self:GetSpecialValueFor("knock_range")
-	self.rearm_cd = self:GetSpecialValueFor("rearm_cd") / 100
-	self.range = self:GetSpecialValueFor("AbilityCastRange")
-	self:UpdateTalents()
+	self.speed = self:GetLevelSpecialValueFor("speed", 1)
+	self.max_range = self:GetLevelSpecialValueFor("max_range", 1)
+	self.knock_range = self:GetLevelSpecialValueFor("knock_range", 1)
+	self.rearm_cd = self:GetLevelSpecialValueFor("rearm_cd", 1) / 100
 end
 
 function tinker_warp_grenade_custom:OnSpellStart()
-	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
 	local info = {
 		EffectName = "particles/units/heroes/hero_tinker/tinker_shard_warp_flare.vpcf",
 		Ability = self,
 		iMoveSpeed = self.speed,
-		Source = caster,
+		Source = self.caster,
 		bDodgeable = true,
 		Target = target,
 		iSourceAttachment = DOTA_PROJECTILE_ATTACHMENT_ATTACK_1,
 	}
-	caster:EmitSound("Hero_Tinker.Warp.Cast")
+	self.caster:EmitSound("Hero_Tinker.Warp.Cast")
 	ProjectileManager:CreateTrackingProjectile(info)
 end
 
@@ -83,9 +71,7 @@ function tinker_warp_grenade_custom:OnProjectileHit(target, vLocation)
 
 	target:EmitSound("Hero_Tinker.Warp.Target")
 
-	local max_range = self.max_range
 	local dir = target:GetAbsOrigin() - self.caster:GetAbsOrigin()
-
 	if dir:Length2D() > self.max_range then
 		dir = self.caster:GetAbsOrigin() - target:GetAbsOrigin()
 	end
@@ -108,7 +94,6 @@ function tinker_warp_grenade_custom:OnProjectileHit(target, vLocation)
 		damage_type = DAMAGE_TYPE_MAGICAL,
 	})
 
-	local dist_k = math.max(0, math.min(1, (1 - dir:Length2D() / self.range)))
 	local point = target:GetAbsOrigin() + dir:Normalized() * self.knock_range
 	if not target:IsDebuffImmune() then
 		FindClearSpaceForUnit(target, point, true)
@@ -125,6 +110,15 @@ end
 modifier_tinker_warp_grenade_custom_silence = class(mod_hidden)
 function modifier_tinker_warp_grenade_custom_silence:IsPurgable()
 	return true
+end
+function modifier_tinker_warp_grenade_custom_silence:GetEffectName()
+	return "particles/generic_gameplay/generic_silenced.vpcf"
+end
+function modifier_tinker_warp_grenade_custom_silence:ShouldUseOverheadOffset()
+	return true
+end
+function modifier_tinker_warp_grenade_custom_silence:GetEffectAttachType()
+	return PATTACH_OVERHEAD_FOLLOW
 end
 function modifier_tinker_warp_grenade_custom_silence:OnCreated(table)
 	self.parent = self:GetParent()
@@ -150,14 +144,4 @@ function modifier_tinker_warp_grenade_custom_silence:CheckState()
 	return {
 		[MODIFIER_STATE_SILENCED] = true,
 	}
-end
-
-function modifier_tinker_warp_grenade_custom_silence:GetEffectName()
-	return "particles/generic_gameplay/generic_silenced.vpcf"
-end
-function modifier_tinker_warp_grenade_custom_silence:ShouldUseOverheadOffset()
-	return true
-end
-function modifier_tinker_warp_grenade_custom_silence:GetEffectAttachType()
-	return PATTACH_OVERHEAD_FOLLOW
 end

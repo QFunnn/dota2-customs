@@ -59,7 +59,6 @@ function bristleback_warpath_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_dawnbreaker/dawnbreaker_fire_wreath_smash.vpcf", context)
 	PrecacheResource("particle", "particles/brist_lowhp_.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_bristleback/bristleback_warpath_dust.vpcf", context)
-	PrecacheResource("particle", "particles/units/heroes/hero_bristleback/bristleback_warpath_dust.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_bristleback/bristleback_warpath.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_legion_commander_duel.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_ogre_magi/ogre_magi_bloodlust_buff.vpcf", context)
@@ -71,18 +70,15 @@ function bristleback_warpath_custom:Precache(context)
 	PrecacheResource("particle", "particles/centaur/edge_stack.vpcf", context)
 end
 
-function bristleback_warpath_custom:UpdateTalents()
+function bristleback_warpath_custom:UpdateTalents(name)
 	local caster = self:GetCaster()
 	if not self.init then
 		self.init = true
-
 		self.talents = {
-			has_r1 = 0,
 			r1_radius = 0,
 			r1_damage = 0,
 			r1_range = 0,
 
-			has_r2 = 0,
 			r2_status = 0,
 			r2_max = 0,
 
@@ -110,7 +106,6 @@ function bristleback_warpath_custom:UpdateTalents()
 			r7_damage_max = caster:GetTalentValue("modifier_bristle_warpath_7", "damage_max", true),
 			r7_radius = caster:GetTalentValue("modifier_bristle_warpath_7", "radius", true),
 
-			has_h3 = 0,
 			h3_armor = 0,
 			h3_regen = 0,
 
@@ -123,14 +118,12 @@ function bristleback_warpath_custom:UpdateTalents()
 	end
 
 	if caster:HasTalent("modifier_bristle_warpath_1") then
-		self.talents.has_r1 = 1
 		self.talents.r1_radius = caster:GetTalentValue("modifier_bristle_warpath_1", "radius")
 		self.talents.r1_damage = caster:GetTalentValue("modifier_bristle_warpath_1", "damage")
 		self.talents.r1_range = caster:GetTalentValue("modifier_bristle_warpath_1", "range")
 	end
 
 	if caster:HasTalent("modifier_bristle_warpath_2") then
-		self.talents.has_r2 = 1
 		self.talents.r2_status = caster:GetTalentValue("modifier_bristle_warpath_2", "status")
 		self.talents.r2_max = caster:GetTalentValue("modifier_bristle_warpath_2", "max")
 	end
@@ -146,17 +139,27 @@ function bristleback_warpath_custom:UpdateTalents()
 
 	if caster:HasTalent("modifier_bristle_warpath_7") then
 		self.talents.has_r7 = 1
-		self.tracker:UpdateUI()
+		if self.tracker then
+			self.tracker:UpdateUI()
+		end
 	end
 
 	if caster:HasTalent("modifier_bristle_hero_3") then
-		self.talents.has_h3 = 1
 		self.talents.h3_armor = caster:GetTalentValue("modifier_bristle_hero_3", "armor")
 		self.talents.h3_regen = caster:GetTalentValue("modifier_bristle_hero_3", "regen")
 	end
 
 	if caster:HasTalent("modifier_bristle_hero_6") then
 		self.talents.has_h6 = 1
+	end
+
+	if not IsServer() then
+		return
+	end
+
+	local buff = caster:FindModifierByName("modifier_custom_bristleback_warpath_buff")
+	if buff then
+		buff:UpdateEvents()
 	end
 end
 
@@ -199,14 +202,14 @@ function bristleback_warpath_custom:GetCastRange(vector, hTarget)
 	if self.talents.has_r7 == 0 then
 		return
 	end
-	return (self.talents.r7_range and self.talents.r7_range or 0)
+	return self.talents.r7_range or 0
 end
 
 function bristleback_warpath_custom:GetAOERadius()
 	if self.talents.has_r7 == 0 then
 		return
 	end
-	return self.talents.r7_radius + (self.talents.r1_radius and self.talents.r1_radius or 0)
+	return (self.talents.r7_radius or 0) + (self.talents.r1_radius or 0)
 end
 
 function bristleback_warpath_custom:GetBehavior()
@@ -343,7 +346,7 @@ function bristleback_warpath_custom:OnProjectileHit(target, location)
 	end
 
 	self.caster:RemoveModifierByName("modifier_custom_bristleback_warpath_legendary_crit")
-	self.caster:RemoveModifierByName("modifier_custom_bristleback_warpath_legendary_unit")
+	target:RemoveModifierByName("modifier_custom_bristleback_warpath_legendary_unit")
 end
 
 modifier_custom_bristleback_warpath = class(mod_hidden)
@@ -377,6 +380,9 @@ function modifier_custom_bristleback_warpath:DeclareFunctions()
 end
 
 function modifier_custom_bristleback_warpath:GetModifierAttackRangeBonus()
+	if self.ability.talents.has_r7 == 1 then
+		return
+	end
 	return self.ability.talents.r1_range
 end
 
@@ -435,7 +441,7 @@ function modifier_custom_bristleback_warpath:UpdateUI()
 	if not IsServer() then
 		return
 	end
-	if not self.ability.talents.has_r7 == 0 then
+	if self.ability.talents.has_r7 == 0 then
 		return
 	end
 
@@ -482,12 +488,12 @@ function modifier_custom_bristleback_warpath_buff:OnCreated()
 		return
 	end
 	self.RemoveForDuel = true
+	self:UpdateEvents()
 
 	local stack = 1
 
 	if self.ability.talents.has_r4 == 1 then
 		stack = self.ability.talents.r4_stack
-		self.parent:AddDamageEvent_inc(self, true)
 	end
 
 	for i = 1, stack do
@@ -501,6 +507,17 @@ function modifier_custom_bristleback_warpath_buff:OnRefresh()
 		return
 	end
 	self:AddStack()
+end
+
+function modifier_custom_bristleback_warpath_buff:UpdateEvents()
+	if not IsServer() then
+		return
+	end
+	if self.ability.talents.has_r4 == 0 then
+		return
+	end
+
+	self.parent:AddDamageEvent_inc(self, true)
 end
 
 function modifier_custom_bristleback_warpath_buff:AddStack()
@@ -604,7 +621,10 @@ function modifier_custom_bristleback_warpath_buff:DamageEvent_inc(params)
 	end
 	local attacker = params.attacker:FindOwner()
 
-	if not attacker:IsUnit() or not attacker:IsRealHero() then
+	if not attacker:IsUnit() then
+		return
+	end
+	if not attacker:IsRealHero() then
 		return
 	end
 	if self.parent:PassivesDisabled() then
@@ -680,7 +700,8 @@ function modifier_custom_bristleback_warpath_legendary_cast:OnCreated()
 	if not IsServer() then
 		return
 	end
-	self.mod = self.parent:FindModifierByName("modifier_custom_bristleback_warpath")
+	self.RemoveForDuel = true
+	self.mod = self.ability.tracker
 	self:AddStack()
 end
 
@@ -717,6 +738,15 @@ function modifier_custom_bristleback_warpath_legendary_cast:OnDestroy()
 end
 
 modifier_custom_bristleback_warpath_legendary_crit = class(mod_hidden)
+function modifier_custom_bristleback_warpath_legendary_crit:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.base = self.ability.talents.r7_damage
+	self.inc = self.ability.talents.r7_damage_inc
+	self.max = self.ability.talents.r7_damage_max
+end
+
 function modifier_custom_bristleback_warpath_legendary_crit:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE,
@@ -739,21 +769,19 @@ function modifier_custom_bristleback_warpath_legendary_crit:GetModifierPreAttack
 	return crit
 end
 
-function modifier_custom_bristleback_warpath_legendary_crit:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.base = self.ability.talents.r7_damage
-	self.inc = self.ability.talents.r7_damage_inc
-	self.max = self.ability.talents.r7_damage_max
-end
-
 modifier_custom_bristleback_warpath_bkb_cd = class(mod_cd)
 function modifier_custom_bristleback_warpath_bkb_cd:GetTexture()
 	return "buffs/bristleback/warpath_4"
 end
 
 modifier_custom_bristleback_warpath_legendary_unit = class(mod_hidden)
+function modifier_custom_bristleback_warpath_legendary_unit:OnCreated()
+	if not IsServer() then
+		return
+	end
+	self.parent = self:GetParent()
+end
+
 function modifier_custom_bristleback_warpath_legendary_unit:CheckState()
 	return {
 		[MODIFIER_STATE_INVULNERABLE] = true,
@@ -770,7 +798,7 @@ function modifier_custom_bristleback_warpath_legendary_unit:OnDestroy()
 	if not IsServer() then
 		return
 	end
-	self:GetParent():RemoveSelf()
+	self.parent:RemoveSelf()
 end
 
 modifier_custom_bristleback_warpath_legendary_stack = class(mod_hidden)
@@ -784,6 +812,7 @@ function modifier_custom_bristleback_warpath_legendary_stack:OnCreated()
 	if not IsServer() then
 		return
 	end
+	self.RemoveForDuel = true
 	self.particle = self.parent:GenericParticle("particles/centaur/edge_stack.vpcf", self, true)
 	self:OnRefresh()
 end

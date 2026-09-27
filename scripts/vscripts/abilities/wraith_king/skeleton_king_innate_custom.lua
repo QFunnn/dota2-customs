@@ -44,6 +44,7 @@ function skeleton_king_innate_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_skeletonking/wraith_king_curse_overhead.vpcf", context)
 	PrecacheResource("particle", "particles/wraith_king_custom/wraith_king_ambient_custom.vpcf", context)
 	PrecacheResource("particle", "particles/wraith_king/scepter_skelet.vpcf", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_skeletonking/wraith_king_ghosts_ambient.vpcf", context)
 
 	PrecacheResource("soundfile", "soundevents/vo_custom/skeleton_king_vo_custom.vsndevts", context)
 	PrecacheResource("soundfile", "soundevents/npc_dota_hero_skeleton_king.vsndevts", context)
@@ -54,21 +55,15 @@ function skeleton_king_innate_custom:UpdateTalents(name)
 	if not self.init then
 		self.init = true
 		self.talents = {
-			has_h2 = 0,
 			h2_heal = 0,
 			h2_heal_amp = 0,
 		}
 	end
 
 	if caster:HasTalent("modifier_skeleton_hero_2") then
-		self.talents.has_h2 = 1
 		self.talents.h2_heal = caster:GetTalentValue("modifier_skeleton_hero_2", "heal") / 100
 		self.talents.h2_heal_amp = caster:GetTalentValue("modifier_skeleton_hero_2", "heal_amp")
 	end
-end
-
-function skeleton_king_innate_custom:Init()
-	self.caster = self:GetCaster()
 end
 
 function skeleton_king_innate_custom:GetIntrinsicModifierName()
@@ -108,34 +103,44 @@ function modifier_skeleton_king_innate_custom:DamageEvent_inc(params)
 	if not IsServer() then
 		return
 	end
+	if self.parent ~= params.unit then
+		return
+	end
+	if self.parent:HasModifier("modifier_death") then
+		return
+	end
+	if not params.lethal_damage then
+		return
+	end
+	if not self.parent:IsAlive() then
+		return
+	end
+	if self.parent:HasModifier("modifier_skeleton_king_innate_custom_ghost") then
+		return
+	end
+	if self.parent:HasModifier("modifier_skeleton_king_innate_custom_cd") then
+		return
+	end
+	if not IsValid(params.attacker) then
+		return
+	end
 
-	if
-		self.parent == params.unit
-		and not self.parent:HasModifier("modifier_death")
-		and params.lethal_damage
-		and self.parent:IsAlive()
-		and not self.parent:HasModifier("modifier_skeleton_king_innate_custom_ghost")
-		and not self.parent:HasModifier("modifier_skeleton_king_innate_custom_cd")
-		and params.attacker
-		and not params.attacker:IsNull()
-	then
-		local duration = self.ability.duration
-		if self.parent:HasScepter() then
-			duration = duration + self.ability.scepter_duration
-			self.parent:AddNewModifier(
-				self.parent,
-				self.ability,
-				"modifier_generic_debuff_immune",
-				{ effect = 2, duration = duration, magic_damage = 0 }
-			)
-		end
+	local duration = self.ability.duration
+	if self.parent:HasScepter() then
+		duration = duration + self.ability.scepter_duration
 		self.parent:AddNewModifier(
 			self.parent,
 			self.ability,
-			"modifier_skeleton_king_innate_custom_ghost",
-			{ duration = duration, attacker = params.attacker:entindex() }
+			"modifier_generic_debuff_immune",
+			{ effect = 2, duration = duration, magic_damage = 0 }
 		)
 	end
+	self.parent:AddNewModifier(
+		self.parent,
+		self.ability,
+		"modifier_skeleton_king_innate_custom_ghost",
+		{ duration = duration, attacker = params.attacker:entindex() }
+	)
 end
 
 function modifier_skeleton_king_innate_custom:DamageEvent_out(params)
@@ -213,14 +218,8 @@ end
 function modifier_skeleton_king_innate_custom:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_MIN_HEALTH,
-		--MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET,
 		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
-		--MODIFIER_PROPERTY_LIFESTEAL_AMPLIFY_PERCENTAGE,
 	}
-end
-
-function modifier_skeleton_king_innate_custom:GetModifierLifestealRegenAmplify_Percentage()
-	return self.ability.talents.h2_heal_amp
 end
 
 function modifier_skeleton_king_innate_custom:GetModifierHealChange()
@@ -244,12 +243,27 @@ function modifier_skeleton_king_innate_custom:GetMinHealth()
 	return 1
 end
 
-modifier_skeleton_king_innate_custom_ghost = class({})
-function modifier_skeleton_king_innate_custom_ghost:IsHidden()
-	return false
+modifier_skeleton_king_innate_custom_ghost = class(mod_visible)
+function modifier_skeleton_king_innate_custom_ghost:GetStatusEffectName()
+	return "particles/status_fx/status_effect_wraithking_ghosts.vpcf"
 end
-function modifier_skeleton_king_innate_custom_ghost:IsPurgable()
-	return false
+function modifier_skeleton_king_innate_custom_ghost:StatusEffectPriority()
+	return MODIFIER_PRIORITY_SUPER_ULTRA
+end
+function modifier_skeleton_king_innate_custom_ghost:GetAuraRadius()
+	return self.radius
+end
+function modifier_skeleton_king_innate_custom_ghost:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_FRIENDLY
+end
+function modifier_skeleton_king_innate_custom_ghost:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_BASIC
+end
+function modifier_skeleton_king_innate_custom_ghost:GetModifierAura()
+	return "modifier_skeleton_king_innate_custom_aura"
+end
+function modifier_skeleton_king_innate_custom_ghost:IsAura()
+	return IsServer() and self.parent:IsAlive() and self.parent:HasScepter()
 end
 function modifier_skeleton_king_innate_custom_ghost:OnCreated(table)
 	self.parent = self:GetParent()
@@ -364,35 +378,12 @@ function modifier_skeleton_king_innate_custom_ghost:GetDisableHealing()
 	return 1
 end
 
-function modifier_skeleton_king_innate_custom_ghost:GetStatusEffectName()
-	return "particles/status_fx/status_effect_wraithking_ghosts.vpcf"
-end
-
-function modifier_skeleton_king_innate_custom_ghost:StatusEffectPriority()
-	return MODIFIER_PRIORITY_SUPER_ULTRA
-end
-
 function modifier_skeleton_king_innate_custom_ghost:CheckState()
 	return {
 		[MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY] = true,
 	}
 end
 
-function modifier_skeleton_king_innate_custom_ghost:GetAuraRadius()
-	return self.radius
-end
-function modifier_skeleton_king_innate_custom_ghost:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_FRIENDLY
-end
-function modifier_skeleton_king_innate_custom_ghost:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_BASIC
-end
-function modifier_skeleton_king_innate_custom_ghost:GetModifierAura()
-	return "modifier_skeleton_king_innate_custom_aura"
-end
-function modifier_skeleton_king_innate_custom_ghost:IsAura()
-	return IsServer() and self.parent:IsAlive() and self.parent:HasScepter()
-end
 function modifier_skeleton_king_innate_custom_ghost:GetAuraEntityReject(hEntity)
 	if hEntity == self.parent or (hEntity.owner and hEntity.owner == self.parent) then
 		return false
@@ -403,6 +394,12 @@ end
 modifier_skeleton_king_innate_custom_cd = class(mod_cd)
 
 modifier_skeleton_king_innate_custom_aura = class(mod_hidden)
+function modifier_skeleton_king_innate_custom_aura:GetStatusEffectName()
+	return "particles/status_fx/status_effect_wraithking_ghosts.vpcf"
+end
+function modifier_skeleton_king_innate_custom_aura:StatusEffectPriority()
+	return MODIFIER_PRIORITY_SUPER_ULTRA
+end
 function modifier_skeleton_king_innate_custom_aura:OnCreated()
 	self.parent = self:GetParent()
 	self.caster = self:GetCaster()
@@ -452,14 +449,6 @@ end
 
 function modifier_skeleton_king_innate_custom_aura:GetModifierAttackSpeedBonus_Constant()
 	return self.speed
-end
-
-function modifier_skeleton_king_innate_custom_aura:GetStatusEffectName()
-	return "particles/status_fx/status_effect_wraithking_ghosts.vpcf"
-end
-
-function modifier_skeleton_king_innate_custom_aura:StatusEffectPriority()
-	return MODIFIER_PRIORITY_SUPER_ULTRA
 end
 
 function modifier_skeleton_king_innate_custom_aura:CheckState()

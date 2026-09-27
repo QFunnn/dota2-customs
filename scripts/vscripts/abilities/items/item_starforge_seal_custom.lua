@@ -52,7 +52,7 @@ function item_starforge_seal_custom:GetIntrinsicModifierName()
 end
 
 function item_starforge_seal_custom:GetAOERadius()
-	return self:GetSpecialValueFor("impact_radius")
+	return self.impact_radius
 end
 
 function item_starforge_seal_custom:Spawn()
@@ -314,6 +314,11 @@ function modifier_item_starforge_seal_custom_stun:OnDestroy()
 end
 
 modifier_item_starforge_seal_custom_stats = class(mod_hidden)
+function modifier_item_starforge_seal_custom_stats:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+end
+
 function modifier_item_starforge_seal_custom_stats:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
@@ -325,11 +330,6 @@ function modifier_item_starforge_seal_custom_stats:DeclareFunctions()
 		MODIFIER_PROPERTY_MP_REGEN_AMPLIFY_PERCENTAGE,
 		MODIFIER_PROPERTY_HEALTH_BONUS,
 	}
-end
-
-function modifier_item_starforge_seal_custom_stats:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
 end
 
 function modifier_item_starforge_seal_custom_stats:GetModifierBonusStats_Agility()
