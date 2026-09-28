@@ -781,4 +781,4 @@ function FillChatWheelBasedContent(
 
 	const frame = GameEvents.NewProtectedFrame($.GetContextPanel());
 	frame.SubscribeProtected("WebTreasure:roll_result", StartTreaureOpening);
-})();
+})();

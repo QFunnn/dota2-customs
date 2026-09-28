@@ -45,4 +45,4 @@ GameUI.CloseTopBanner = CloseTopBanner;
 	CloseTopBanner("NewMail");
 	CloseTopBanner("ChatWheelNewPromo");
 	HideDefaultButtons();
-})();
+})();

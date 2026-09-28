@@ -214,6 +214,10 @@ function UpdateSearch() {
 	HUD.CONTEXT.SetHasClass("BSearchActive", search_text != "");
 }
 
+function ClosePerksLocalLobby() {
+	HUD.CONTEXT.RemoveClass("BLocalLobbyPerksInformation");
+}
+
 (function () {
 	HUD.CONTEXT.SwitchClass("map_name", MAP_NAME);
 	ResetSettingButton();
@@ -236,4 +240,6 @@ function UpdateSearch() {
 		CACHED_DATA.supp_level = new_supp_level;
 		InitPerks(CACHED_DATA);
 	});
-})();
+
+	if (B_LOCAL_LOBBY) HUD.CONTEXT.AddClass("BLocalLobbyPerksInformation");
+})();

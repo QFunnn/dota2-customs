@@ -13,7 +13,7 @@
 .MegaDotaRoot
 {
 	background-color: black;
-	background-image: url("s2r://panorama/images/custom_game/12v12_background_v2_png.vtex");
+	background-image: url("s2r://panorama/images/custom_game/12v12_background_v3_png.vtex");
 	background-size: 100%;
 }
 
@@ -89,7 +89,7 @@
 	width: 600px;
 	height: 100px;
 	horizontal-align: center;
-	margin-top: 510px;
+	margin-top: 500px;
 	flow-children: right;
 	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(33, 43, 45, 0.15)), to(rgba(15, 17, 17, 0.38)));
 }
@@ -307,7 +307,7 @@ Button.SocialLink:active .SocialImage
 	max-width: 1510px;
 	min-height: 135px;
 	horizontal-align: center;
-	margin-top: 300px;
+	margin-top: 290px;
 	visibility: collapse;
 }
 
@@ -916,4 +916,111 @@ Button.SocialLink:active .SocialImage
 	text-align: center;
 	color: white;
 	text-shadow: black 0 1px 0px 2;
+}
+
+.Banner_DediServers
+{
+	align: center top;
+	margin-top: 290px;
+	width: 600px;
+	max-height: 200px;
+	border-top: 2px solid white;
+	border-bottom: 2px solid white;
+	border-brush: #38394a;
+	flow-children: down;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(rgba(33, 43, 45, 0.15)), to(rgba(15, 17, 17, 0.38)));
+}
+
+.BLoadingState .Banner_DediServers
+{
+	margin-top: 605px;
+}
+
+.Banner_DediServers > Panel
+{
+	vertical-align: center;
+	width: 100%;
+	padding: 10px;
+}
+
+.Banner_DediServers > Panel > Panel
+{
+	flow-children: down;
+	width: 100%;
+}
+
+.Banner_DediServers Image
+{
+	width: 32px;
+	height: 32px;
+	margin-top: 2px;
+	img-shadow: 0px 1px 0 2 black;
+}
+
+.Banner_DediServers Label
+{
+	font-size: 24px;
+}
+
+.Banner_DediServers_HeaderContainer
+{
+	flow-children: right;
+	horizontal-align: center;
+}
+
+.Banner_DediServers_HeaderContainer Label
+{
+	font-family: titleFont;
+	font-weight: semi-bold;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	color: white;
+	margin-left: 10px;
+	text-shadow: 0px 1px 0 2 black;
+}
+
+.Banner_DediServers_Details
+{
+	horizontal-align: center;
+	text-align: center;
+	color: #ececec;
+	font-weight: lighter;
+	text-shadow: 0px 1px 0 2 black;
+}
+
+.Banner_DediServers_Info .Banner_DediServers_HeaderContainer
+{
+	wash-color: #ffc375;
+}
+
+.Banner_DediServers_LocalLobbyWarning .Banner_DediServers_HeaderContainer
+{
+	wash-color: #ee3e2f;
+}
+
+.Banner_DediServers_LocalLobbyWarning
+{
+	background-color: rgba(255, 45, 56, 0.1);
+	visibility: collapse;
+}
+
+.BLobby_Local .Banner_DediServers_LocalLobbyWarning,.BLobby_Dedicated .Banner_DediServers_DediLobbyConfirmed
+{
+	visibility: visible;
+}
+
+.BlueText
+{
+	color: #4da7ff;
+}
+
+.Banner_DediServers_DediLobbyConfirmed .Banner_DediServers_HeaderContainer
+{
+	wash-color: #6fee6f;
+}
+
+.Banner_DediServers_DediLobbyConfirmed
+{
+	background-color: rgba(173, 255, 160, 0.05);
+	visibility: collapse;
 }

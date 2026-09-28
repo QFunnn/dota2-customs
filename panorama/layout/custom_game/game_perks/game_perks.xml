@@ -59,29 +59,41 @@
 		<Panel id="Perks_MapButton">
 			<Image id="Perks_MapButton_Image" src="s2r://" onmouseout="DOTAHideTextTooltip()" />
 		</Panel>
-		<Panel id="Perks_Menu">
-			<Panel class="PM_Header">
-				<Label class="PM_HeaderText" text="#patreons_perk_hide_choose" />
-				<Button id="PM_Close" onactivate="HideGamePerks()" onmouseover="DOTAShowTextTooltip(#close_patreons_game_perks_menu)" onmouseout="DOTAHideTextTooltip()" />
-			</Panel>
-			<Panel class="Perks_Search" onactivate="FocusSearchInput()">
-				<TextButton class="Perks_Search_Clear" text="#perk_clear" onactivate="DropSearchInput()" />
-				<TextEntry id="Perks_Search_TextEntry" placeholder=" " ontextentrychange="UpdateSearch()" onblur="OnSearchBlur()" oninputsubmit="DropInputFocus()" />
-				<Button class="Perks_Search_Placeholder">
-					<Label text="#perk_search" />
-				</Button>
-			</Panel>
-			<Panel id="PM_ListWrap">
-				<Panel id="PM_List" />
-				<Panel class="Perks_OverlayBottom" hittest="false" />
-			</Panel>
-			<Panel class="PM_ServerStateContainer">
-				<Panel class="PM_SS_Indicator">
-					<Panel class="Perks_OverlayTopIndicator" hittest="false" />
+		<Panel class="Perks_Menu_Container">
+			<Panel id="Perks_Menu">
+				<Panel class="PM_Header">
+					<Label class="PM_HeaderText" text="#patreons_perk_hide_choose" />
+					<Button id="PM_Close" onactivate="HideGamePerks()" onmouseover="DOTAShowTextTooltip(#close_patreons_game_perks_menu)" onmouseout="DOTAHideTextTooltip()" />
 				</Panel>
-				<Panel class="PM_SS_Content">
-					<Label class="PM_SS_Header" text="{s:server_loading_state_header}" html="true" />
-					<Label class="PM_SS_Description" text="{s:server_loading_state_desc}" html="true" />
+				<Panel class="Perks_Search" onactivate="FocusSearchInput()">
+					<TextButton class="Perks_Search_Clear" text="#perk_clear" onactivate="DropSearchInput()" />
+					<TextEntry id="Perks_Search_TextEntry" placeholder=" " ontextentrychange="UpdateSearch()" onblur="OnSearchBlur()" oninputsubmit="DropInputFocus()" />
+					<Button class="Perks_Search_Placeholder">
+						<Label text="#perk_search" />
+					</Button>
+				</Panel>
+				<Panel id="PM_ListWrap">
+					<Panel id="PM_List" />
+					<Panel class="Perks_OverlayBottom" hittest="false" />
+				</Panel>
+				<Panel class="PM_ServerStateContainer">
+					<Panel class="PM_SS_Indicator">
+						<Panel class="Perks_OverlayTopIndicator" hittest="false" />
+					</Panel>
+					<Panel class="PM_SS_Content">
+						<Label class="PM_SS_Header" text="{s:server_loading_state_header}" html="true" />
+						<Label class="PM_SS_Description" text="{s:server_loading_state_desc}" html="true" />
+					</Panel>
+				</Panel>
+			</Panel>
+			<Panel class="Perks_LocalLobbyInformaion" hittest="true" onactivate="">
+				<Panel>
+					<Panel class="Perks_LocalLobbyInformaion_Header">
+						<Image src="s2r://panorama/images/custom_game/loading_screen/server_icon_png.vtex" />
+						<Label text="#ls_local_lobby_hint" />
+					</Panel>
+					<Label class="Perks_LocalLobbyInformaion_Description" text="#ls_local_lobby_hint_details" />
+					<TextButton class="Perks_LocalLobbyInformaion_Close" text="#perks_local_lobby_close" onactivate="ClosePerksLocalLobby()" />
 				</Panel>
 			</Panel>
 		</Panel>

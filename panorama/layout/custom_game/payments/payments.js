@@ -321,4 +321,4 @@ function UpdatePlayerData(player_data) {
 
 	SetHTMLViewerStatus("closed");
 	GameUI.Player.RegisterForPlayerDataChanges(UpdatePlayerData);
-})();
+})();

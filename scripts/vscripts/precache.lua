@@ -41,6 +41,9 @@ PrecacheManager.particles = {
 	"particles/econ/events/ti10/high_five/high_five_travel.vpcf",
 	"particles/cosmetic/high_five/high_five_default.vpcf",
 	"particles/econ/events/diretide_2020/high_five/high_five_impact.vpcf",
+
+	"particles/econ/taunts/omniknight/omniknight_ti8_taunt/omniknight_ti8_taunt_godrays.vpcf",
+	"particles/ui/ui_godrays_soft_glow.vpcf",
 }
 
 PrecacheManager.soundevents = {

@@ -592,15 +592,12 @@ function _EndScreenPhase3(data) {
 
 		const hero_container = mvp.FindChildTraverse("MVP_Hero_Container");
 
-		const ray_particle_name =
-			mvp_idx == 1
-				? "particles/world_environmental_fx/artifact_table_godray.vpcf"
-				: "particles/vr/player_light_godray.vpcf";
 		$.CreatePanel("DOTAParticleScenePanel", hero_container, "rays", {
-			particleName: ray_particle_name,
+			particleName: "particles/world_environmental_fx/artifact_table_godray.vpcf",
 			particleonly: "true",
 			class: "MVP_Rays",
 		});
+
 		$.CreatePanel("DOTAScenePanel", hero_container, "", {
 			unit: player_info.player_selected_hero,
 			class: "MVP_Hero_Model",
@@ -1039,4 +1036,4 @@ function MoveChat(b_to_custom_root) {
 
 	StartEndScreen();
 	MoveChat(true);
-})();
+})();

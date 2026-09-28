@@ -443,4 +443,4 @@ function UpdateSettings(event) {
 
 	GameEvents.SendToServerEnsured("DPS_Counter:get_settings", {});
 	$.RegisterForUnhandledEvent("Cancelled", CloseDPS);
-})();
+})();

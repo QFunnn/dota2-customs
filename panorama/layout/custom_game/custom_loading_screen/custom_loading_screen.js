@@ -113,7 +113,7 @@ function UpdatePlayersLoadState() {
 	HUD.CONTEXT.SetDialogVariableInt("players_loaded", player_loaded_count);
 	HUD.CONTEXT.SetHasClass("BLoadingState", true);
 
-	$.Schedule(0.1, () => {
+	$.Schedule(0, () => {
 		if (player_loaded_count < players_in_lobby) UpdatePlayersLoadState();
 		else HUD.CONTEXT.SetHasClass("BLoadingState", false);
 	});
@@ -172,11 +172,23 @@ GameUI.GetOption = (option_name) => {
 	return table ? table[option_name] || false : false;
 };
 
+function CheckLocalLobbyStateLS() {
+	if (Game.GameStateIsAfter(DOTA_GameState.DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP)) return;
+
+	let dedicated_state = CustomNetTables.GetTableValue("game_options", "dedicated")?.state;
+	if (dedicated_state != undefined)
+		HUD.CONTEXT.SwitchClass("local-lobby-state", `BLobby_${dedicated_state === 0 ? "Local" : "Dedicated"}`);
+
+	$.Schedule(0, CheckLocalLobbyStateLS);
+}
+
 (() => {
 	InitLoadingScreenByLoadingState();
+	CheckLocalLobbyStateLS();
+
 	$.Schedule(0.2, () => {
 		SetHint(current_tip_idx);
 	});
 
 	FindDotaHudElementInLS("SidebarAndBattleCupLayoutContainer").visible = false;
-})();
+})();

@@ -69,10 +69,18 @@ function EventDriver:CancelListener(event_name, listener_id)
 end
 
 function EventDriver:ReportCreatedListener(callback, id, event_name)
-	-- if not callback then print("[Event Driver] No callback in creating listener!\n", debug.traceback()) return end
-	-- local callback_info = debug.getinfo(callback)
-	-- local traceback_line = callback_info.short_src .. ":" .. callback_info.linedefined
-	-- print("[Event Driver] Created listener of", event_name, "with id", id, "from:\n\t", traceback_line)
+	if not debug or not debug.getinfo or not debug.traceback then
+		print("[Event Driver] Created listener of", event_name, "with id", id, "(traceback/info unavailable)")
+		return
+	end
+
+	if not callback then
+		print("[Event Driver] No callback in creating listener!\n", debug.traceback())
+		return
+	end
+	local callback_info = debug.getinfo(callback)
+	local traceback_line = callback_info.short_src .. ":" .. callback_info.linedefined
+	print("[Event Driver] Created listener of", event_name, "with id", id, "from:\n\t", traceback_line)
 end
 
 EventDriver:Init()

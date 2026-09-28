@@ -3749,4 +3749,4 @@ const ITEM_DATA = {
 			treasure: "treasure_collection_1",
 		},
 	},
-};
+};

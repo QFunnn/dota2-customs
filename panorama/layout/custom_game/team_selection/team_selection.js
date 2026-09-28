@@ -253,4 +253,4 @@ function AllowTeamSelection() {
 
 	// HUD.CONTEXT.SetHasClass("InstaLoading", MAP_NAME == "dota");
 	HUD.CONTEXT.SetHasClass("InstaLoading", false);
-})();
+})();

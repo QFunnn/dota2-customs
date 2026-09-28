@@ -369,4 +369,4 @@ function CheckProPlayer() {
 
 	GameUI.Player.RegisterForPlayerDataChanges(UpdatePlayerData);
 	CheckProPlayer();
-})();
+})();

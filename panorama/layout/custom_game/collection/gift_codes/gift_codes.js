@@ -285,4 +285,4 @@ GameUI.GetGiftCodes = () => {
 	FillBasicUnwrapProducts();
 	GameUI.Collection.AddAdditionalPanel(GC_PLAYERS_ROOT);
 	GameUI.Collection.AddAdditionalPanel(GC_PLAYERS_ARROW);
-})();
+})();

@@ -76,4 +76,4 @@ GameUI.ToggleFeedback = () => {
 	frame.SubscribeProtected("WebFeedback:update_cooldown", UpdateCooldown);
 
 	GameEvents.SendToServerEnsured("WebFeedback:get_cooldown", {});
-})();
+})();

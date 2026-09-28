@@ -818,4 +818,4 @@ function TimeLeftParse(ms) {
 	if (s >= 60) return [Math.floor(s / 60), "min"];
 
 	return [s, "sec"];
-}
+}

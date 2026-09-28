@@ -148,4 +148,4 @@ function UpdateVisibleState() {
 	});
 
 	InjectChatWheelKeybind();
-})();
+})();

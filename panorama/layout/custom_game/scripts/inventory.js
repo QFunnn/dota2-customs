@@ -324,4 +324,4 @@ GameUI.Inventory.GetRarityName = function (rarity_enum) {
 		GameEvents.SendToServerEnsured("WebInventory:get_items", {});
 		GameEvents.SendToServerEnsured("WebInventory:get_equipped_items", {});
 	});
-})();
+})();

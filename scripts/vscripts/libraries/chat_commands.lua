@@ -649,3 +649,11 @@ function ChatCommands:fill_cw(arguments, event)
 
 	WebInventory:UpdateClient(event.player_id)
 end
+
+function ChatCommands:test(arguments, event)
+	if not GameMode:IsDeveloper(event.player_id) then
+		return
+	end
+
+	print(nonexitent[4][15])
+end

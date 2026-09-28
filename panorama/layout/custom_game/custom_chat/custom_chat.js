@@ -404,4 +404,4 @@ function CalcNameLength(player_id) {
 
 	GameUI.CreateCustomMessage = CreateCustomMessage;
 	InitCustomChatOverrideArea();
-})();
+})();
