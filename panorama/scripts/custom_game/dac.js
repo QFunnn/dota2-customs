@@ -1367,19 +1367,19 @@ function ShowAllPlayerInfo(data) {
 
 
         if (badge) {
-            if (badge.indexOf('bet_') > -1) {
-                var bet_team_index = parseInt(badge.split('_')[1]);
-                var bet_team = TI9_TEAM_LIST[bet_team_index];
-                $('#panel_badge_' + data.info[i].player_id).style['background-image'] = "url('" + bet_team.pic + "')";
-                $('#panel_badge_' + data.info[i].player_id).style['width'] = "90px";
-                $('#panel_badge_' + data.info[i].player_id).style['height'] = "90px";
-                $('#panel_badge_' + data.info[i].player_id).style['margin-top'] = "10px";
-                $('#panel_badge_' + data.info[i].player_id).style['margin-left'] = "5px";
-                if (badge != 'donnot_show_badge') {
-                    SetPanelMouseOverTitleText('#panel_badge_' + data.info[i].player_id, $.Localize('#' + "team_badge") + bet_team.name, $.Localize('#' + 'team_badge_text'));
-                }
-            }
-            else {
+            // if (badge.indexOf('bet_') > -1) {
+            //     var bet_team_index = parseInt(badge.split('_')[1]);
+            //     var bet_team = TI9_TEAM_LIST[bet_team_index];
+            //     $('#panel_badge_' + data.info[i].player_id).style['background-image'] = "url('" + bet_team.pic + "')";
+            //     $('#panel_badge_' + data.info[i].player_id).style['width'] = "90px";
+            //     $('#panel_badge_' + data.info[i].player_id).style['height'] = "90px";
+            //     $('#panel_badge_' + data.info[i].player_id).style['margin-top'] = "10px";
+            //     $('#panel_badge_' + data.info[i].player_id).style['margin-left'] = "5px";
+            //     if (badge != 'donnot_show_badge') {
+            //         SetPanelMouseOverTitleText('#panel_badge_' + data.info[i].player_id, $.Localize('#' + "team_badge") + bet_team.name, $.Localize('#' + 'team_badge_text'));
+            //     }
+            // }
+            // else {
                 if ($('#panel_badge_' + data.info[i].player_id)) {
                     $('#panel_badge_' + data.info[i].player_id).style['background-image'] = "url('file://{images}/custom_game/badges/" + badge + ".png')";
                 }
@@ -1387,7 +1387,7 @@ function ShowAllPlayerInfo(data) {
                 if (badge != 'donnot_show_badge') {
                     SetPanelMouseOverTitleText('#panel_badge_' + data.info[i].player_id, $.Localize('#' + 'badge_title_' + badge), $.Localize('#' + 'badge_text_' + badge));
                 }
-            }
+            // }
 
         }
         if (player_id == 0) {
@@ -10910,7 +10910,6 @@ function showPanelHost(){
 
 // 天梯模式不显示主机提示
 var data = CustomNetTables.GetTableValue("game_info", "game_host_type");
-$.Msg(data);
 if (data && data.game_host_type == 'server'){
     var host_panel_list = ["panel_host","panel_host_0","panel_host_1","panel_host_2","panel_host_3","panel_host_4","panel_host_5","panel_host_6","panel_host_7"]
     for (var i=0;i<host_panel_list.length;i++){

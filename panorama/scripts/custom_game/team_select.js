@@ -296,20 +296,28 @@ function UpdateTimer() {
 // 	$('#ShuffleTeamAssignmentButton').style.visibility = 'collapse';
 // }
 
-if (GetPlayerCount() == 1 && Game.GetMapInfo().map_display_name != 'casual_1x8_ob') {
-	$('#select-block-difficulty').SetHasClass('invisible', true);
-	// 单人模式
-	$("#GameModeNameLabel").SetHasClass('invisible', true);
-	$("#MapInfoLabel").SetHasClass('invisible', true);
-	// $("#GameModeNameLabel").text = $.Localize('#'+'dac_' + Game.GetMapInfo().map_display_name);
-	// $("#MapInfoLabel").text = $.Localize('#'+'dac_' + Game.GetMapInfo().map_display_name + '_desc').replaceAll('<br>','\n').replaceAll('<p1>','0').replaceAll('<p2>',GetPlayerCount());
-}
-else {
-	$('#select-block-difficulty').SetHasClass('invisible', true);
-	$("#GameModeNameLabel").SetHasClass('invisible', true);
-	$("#MapInfoLabel").SetHasClass('invisible', true);
-	// $("#GameModeNameLabel").text = $.Localize('#'+'dac_' + Game.GetMapInfo().map_display_name);
-	// $("#MapInfoLabel").text = $.Localize('#'+'dac_' + Game.GetMapInfo().map_display_name + '_desc').replaceAll('<br>','\n').replaceAll('<p1>','0').replaceAll('<p2>',GetPlayerCount());
+// if (GetPlayerCount() == 1 && Game.GetMapInfo().map_display_name != 'casual_1x8_ob') {
+// 	$('#select-block-difficulty').SetHasClass('invisible', true);
+// 	// 单人模式
+// 	$("#GameModeNameLabel").SetHasClass('invisible', true);
+// 	$("#MapInfoLabel").SetHasClass('invisible', true);
+// 	// $("#GameModeNameLabel").text = $.Localize('#'+'dac_' + Game.GetMapInfo().map_display_name);
+// 	// $("#MapInfoLabel").text = $.Localize('#'+'dac_' + Game.GetMapInfo().map_display_name + '_desc').replaceAll('<br>','\n').replaceAll('<p1>','0').replaceAll('<p2>',GetPlayerCount());
+// }
+// else {
+// 	$('#select-block-difficulty').SetHasClass('invisible', true);
+// 	$("#GameModeNameLabel").SetHasClass('invisible', true);
+// 	$("#MapInfoLabel").SetHasClass('invisible', true);
+// 	// $("#GameModeNameLabel").text = $.Localize('#'+'dac_' + Game.GetMapInfo().map_display_name);
+// 	// $("#MapInfoLabel").text = $.Localize('#'+'dac_' + Game.GetMapInfo().map_display_name + '_desc').replaceAll('<br>','\n').replaceAll('<p1>','0').replaceAll('<p2>',GetPlayerCount());
+// }
+
+$("#GameModeNameLabel").SetHasClass('invisible', true);
+$("#MapInfoLabel").SetHasClass('invisible', true);
+
+if (Game.GetMapInfo().map_display_name == 'casual_1x8' && GetPlayerCount() == 1){
+	// 单人休闲图，显示云玩家难度选择
+	$('#select-block-difficulty').SetHasClass('invisible', false);
 }
 
 
@@ -1222,7 +1230,6 @@ function ServerLockWait(keys){
 		$("#MapInfoLabel").text = $.Localize('#'+'dac_' + keys.map_name + '_desc').replaceAll('<br>','\n').replaceAll('<p1>',keys.curr_player_count).replaceAll('<p2>',keys.max_player_count);
 		$("#GameModeNameLabel").SetHasClass('invisible', false);
 		$("#MapInfoLabel").SetHasClass('invisible', false);
-		$('#select-block-difficulty').SetHasClass('invisible', true);
 
 		if (keys.map_name == 'casual_1x8' || keys.map_name == 'casual_1x8_ob'){
 			// 休闲局
@@ -1240,6 +1247,9 @@ function ServerLockWait(keys){
 			$('#LockAndStartButton').SetHasClass('opacity0',true);
 			$('#CancelAndUnlockButton').SetHasClass('opacity0',true);
 			$('#CancelAndUnlockButton').SetHasClass('invisible',true);
+			if (keys.is_autochess_server){
+				$('#select-block-difficulty').SetHasClass('invisible', true);
+			}
 
 			if ($('#UnassignedPlayersButton')){
 				$('#UnassignedPlayersButton').SetPanelEvent("onmouseover",

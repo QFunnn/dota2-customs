@@ -2840,6 +2840,8 @@ function InitHeros()
 				combat('LOAD CLOUD LINEUP OK!')
 				_G.cloudlineup = t.data
 			end
+		end,function()
+			combat('FAIL LOADING ENEMIES')
 		end)
 	end
 
@@ -3510,15 +3512,15 @@ function InitHeros()
 	end, function()
 		--连接服务器失败了，用默认信使玩
 		prt('CONNECT SERVER ERROR')
-		if GetDedicatedServerKeyV2('hehe') == 'Invalid_NotOnDedicatedServer' then
-			prt('对不起，连接服务器失败，游戏无法开始。')
-			_G.is_game_ended = true
-			prt('GAME OVER')
-			Timers:CreateTimer(0.1, function()
-				GameRules:SetGameWinner(DOTA_TEAM_BADGUYS)
-			end)
-			return
-		end
+		-- if GetDedicatedServerKeyV2('hehe') == 'Invalid_NotOnDedicatedServer' then
+		-- 	prt('对不起，连接服务器失败，游戏无法开始。')
+		-- 	_G.is_game_ended = true
+		-- 	prt('GAME OVER')
+		-- 	Timers:CreateTimer(0.1, function()
+		-- 		GameRules:SetGameWinner(DOTA_TEAM_BADGUYS)
+		-- 	end)
+		-- 	return
+		-- end
 
 		local user_info_table = {}
 		is_game_can_start = true
@@ -4783,7 +4785,7 @@ function PostOneToServer(hero, steamid, rank, mode)
 							PostGame()
 						end)
 						if _G.aws_key == '' then
-							print('Game Finished')
+							prt('Game Finished...')
 						end
 						if ready_2_post == true and ready_1_post == true and _G.aws_key ~= '' then
 							prt('Send Amazon Data')
@@ -13366,20 +13368,29 @@ function SendHTTP(url, callback, fail_callback)
 		end
 	end
 	local req = CreateHTTPRequestScriptVM('GET', url)
-	req:SetHTTPRequestAbsoluteTimeoutMS(20000)
-	req:Send(function(res)
-		if res.StatusCode ~= 200 or not res.Body then
-			if fail_callback ~= nil then
-				fail_callback(obj)
-			end
-			return
-		end
-
-		local obj = json.decode(res.Body)
-		if callback ~= nil then
+	if req == nil then
+		if fail_callback then
+			fail_callback(obj)
+		else 
 			callback(obj)
 		end
-	end)
+	else
+		req:SetHTTPRequestAbsoluteTimeoutMS(20000)
+		req:Send(function(res)
+			if res.StatusCode ~= 200 or not res.Body then
+				if fail_callback ~= nil then
+					fail_callback(obj)
+				end
+				return
+			end
+
+			local obj = json.decode(res.Body)
+			if callback ~= nil then
+				callback(obj)
+			end
+		end)
+	end
+	
 end
 
 function StatChess()
@@ -34513,6 +34524,9 @@ function DAC:OnTesterBoxShowGrid(keys)
 end
 
 function DAC:OnTesterCourierNoDamage(keys)
+	if _G.playing_player_count >= 8 or _G.is_tester_mode ~= true or _G.myself ~= true then
+		return
+	end
 	local team_id = _G.playerid2team[keys.PlayerID]
 	local is_courier_no_damage = keys.is_courier_no_damage
 	if is_courier_no_damage == 1 then
@@ -42464,6 +42478,7 @@ function DAC:OnPlayerConnectFull(keys)
 	_G.connect_full_player_count = player_count
 	--判断是不是官方服务器/自建服务器/玩家主机
 	local config = LoadKeyValues("dac_config.txt")
+	print(config.IsAutochessServer)
 
 	if config.IsAutochessServer == 1 and _G.is_server_game_started == false then
 		print('[AUTOCHESS SERVER] waiting for players '.._G.connect_full_player_count..'/'..config.MaxPlayer)
@@ -42504,6 +42519,7 @@ function DAC:OnPlayerConnectFull(keys)
 					max_player_count = config.MaxPlayer,
 					curr_player_count = _G.connect_full_player_count,
 					map_name = GetCurrMapInfo().map_name,
+					is_autochess_server = true,
 				})
 				if _G.is_game_started == true then
 					return
@@ -42513,6 +42529,7 @@ function DAC:OnPlayerConnectFull(keys)
 		end	
 	end
 	
+
 	if config.IsAutochessServer == 0 and _G.is_server_game_started == false then
 		local count = 0
 		Timers:CreateTimer(1,function()
@@ -42523,6 +42540,7 @@ function DAC:OnPlayerConnectFull(keys)
 				curr_player_count = _G.connect_full_player_count,
 				map_name = GetCurrMapInfo().map_name,
 				count = count,
+				is_autochess_server = false,
 			})
 			if _G.is_game_started == true then
 				return
