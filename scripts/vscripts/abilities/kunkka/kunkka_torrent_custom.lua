@@ -585,6 +585,11 @@ function modifier_kunkka_torrent_custom_water:OnIntervalThink()
 		return
 	end
 
+	local wet = self.parent:FindModifierByName("modifier_kunkka_torrent_custom_wet")
+	if wet then
+		wet:StartIntervalThink(wet.decay)
+	end
+
 	self.time = self.time + self.interval
 	if self.time < 1 then
 		return

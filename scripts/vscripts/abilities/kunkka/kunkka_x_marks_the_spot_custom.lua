@@ -124,6 +124,7 @@ function kunkka_x_marks_the_spot_custom:UpdateTalents(name)
 			e7_max_chest = caster:GetTalentValue("modifier_kunkka_xmark_7", "max_chest", true),
 			e7_chest_gold = caster:GetTalentValue("modifier_kunkka_xmark_7", "chest_gold", true),
 			e7_chest_blue = caster:GetTalentValue("modifier_kunkka_xmark_7", "chest_blue", true),
+			e7_chest_exp = caster:GetTalentValue("modifier_kunkka_xmark_7", "chest_exp", true),
 			e7_tower_radius = caster:GetTalentValue("modifier_kunkka_xmark_7", "tower_radius", true),
 
 			has_s1 = 0,
@@ -1603,6 +1604,7 @@ function modifier_kunkka_xmark_custom_treasure:GiveReward()
 	local coins = RandomInt(self.ability.talents.e7_min_gold, max)
 	self.caster:GiveGold(coins * gold, false, true, "modifier_kunkka_xmark_7")
 	self.caster:AddPoints("blue", coins * self.ability.talents.e7_chest_blue, "modifier_kunkka_xmark_7")
+	self.caster:AddExperience(self.ability.talents.e7_chest_exp, DOTA_ModifyXP_Unspecified, false, false)
 
 	self.ability.tracker:ShopGold(coins)
 

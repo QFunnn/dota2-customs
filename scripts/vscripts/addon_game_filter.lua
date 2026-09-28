@@ -94,6 +94,16 @@ function dota1x6:ExecuteOrderFilterCustom(ord)
 		ability = EntIndexToHScript(ord.entindex_ability)
 	end
 
+	if
+		order == DOTA_UNIT_ORDER_MOVE_TO_TARGET
+		and target
+		and target.is_kunkka_target
+		and target.kunkka_caster == unit
+	then
+		ord.order_type = DOTA_UNIT_ORDER_ATTACK_TARGET
+		order = DOTA_UNIT_ORDER_ATTACK_TARGET
+	end
+
 	local teleport_mod = unit:FindModifierByName("modifier_teleport_cast")
 	if teleport_mod and not teleport_mod.ords[order] then
 		teleport_mod:Destroy()
@@ -676,12 +686,6 @@ function dota1x6:OnRuneActivated(params)
 	end
 
 	local heroes = dota1x6:FindPlayers(team, false, true)
-	local white = 0
-	local tower = towers[team]
-	if tower then
-		white = bounty_white_init + tower.bounty_runes * bounty_white_rune
-		tower.bounty_runes = tower.bounty_runes + 1
-	end
 
 	start_quest:CheckQuest({ id = id, quest_name = "Quest_8" })
 
@@ -721,6 +725,7 @@ function dota1x6:OnRuneActivated(params)
 	local minute = math.floor(GameRules:GetDOTATime(false, false) / 60)
 	local gold = ((bounty_gold_init + minute * bounty_gold_per_minute) / #heroes) * net_k
 	local exp = ((bounty_exp_init + minute * bounty_exp_per_minute) / #heroes) * net_k
+	local white = bounty_white_init + minute * bounty_white_per_minute
 
 	local names = {}
 	for _, hero in pairs(heroes) do

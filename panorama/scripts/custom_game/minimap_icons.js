@@ -22,6 +22,17 @@ GameEvents.OnLoaded(function()
 	GameEvents.SendCustomGameEventToServer_custom("request_minimap_icons", {})
 })
 
+$.RegisterForUnhandledEvent("StyleClassesChanged", function(panel)
+{
+	if (!panel || panel.id != "Hud")
+		return
+
+	if (!root)
+		return
+
+	update_root()
+})
+
 
 function update_minimap_icons(data)
 {
@@ -46,24 +57,7 @@ function update_minimap_icons(data)
 		root.hittestchildren = false
 	}
 
-	let block = root.GetParent()
-	let map = block.FindChildTraverse("minimap")
-
-	if (map && block.actuallayoutwidth > 0 && map.actuallayoutwidth > 0)
-	{
-		let scale_x = map.actuallayoutwidth / block.actuallayoutwidth
-		let scale_y = map.actuallayoutheight / block.actuallayoutheight
-
-		root.style.width = (scale_x * 100) + "%"
-		root.style.height = (scale_y * 100) + "%"
-		root.style.position = ((1 - scale_x) / 2 * 100) + "% " + ((1 - scale_y) / 2 * 100) + "% 0px"
-	}
-	else
-	{
-		root.style.width = "100%"
-		root.style.height = "100%"
-		root.style.position = "0% 0% 0px"
-	}
+	update_root()
 
 	for (let i = 0; i < root.GetChildCount(); i++)
 	{
@@ -112,4 +106,29 @@ function update_minimap_icons(data)
 		panel.style.border = info.color ? "1px solid #000000" : "0px solid #00000000"
 		panel.style.position = ((Number(info.x) - min_x) / size * 100) + "% " + ((max_y - Number(info.y)) / size * 100) + "% 0px"
 	}
-}
+}
+
+
+function update_root()
+{
+	let block = root.GetParent()
+	let map = block.FindChildTraverse("minimap")
+
+	if (map && block.actuallayoutwidth > 0 && map.actuallayoutwidth > 0)
+	{
+		let scale_x = map.actuallayoutwidth / block.actuallayoutwidth
+		let scale_y = map.actuallayoutheight / block.actuallayoutheight
+
+		root.style.width = (scale_x * 100) + "%"
+		root.style.height = (scale_y * 100) + "%"
+		root.style.position = ((1 - scale_x) / 2 * 100) + "% " + ((1 - scale_y) / 2 * 100) + "% 0px"
+	}
+	else
+	{
+		root.style.width = "100%"
+		root.style.height = "100%"
+		root.style.position = "0% 0% 0px"
+	}
+
+	root.style.transform = dotaHud.BHasClass("HUDFlipped") ? "scaleX(-1)" : "scaleX(1)"
+}

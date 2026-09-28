@@ -122,7 +122,6 @@ function custom_phantom_assassin_stifling_dagger:UpdateTalents(name)
 			has_q7 = 0,
 			q7_stack_max = caster:GetTalentValue("modifier_phantom_assassin_dagger_7", "stack_max", true),
 			q7_timer = caster:GetTalentValue("modifier_phantom_assassin_dagger_7", "timer", true),
-			q7_damage = caster:GetTalentValue("modifier_phantom_assassin_dagger_7", "damage", true) / 100,
 			q7_stun = caster:GetTalentValue("modifier_phantom_assassin_dagger_7", "stun", true),
 		}
 	end
@@ -279,7 +278,7 @@ function custom_phantom_assassin_stifling_dagger:OnProjectileHit_ExtraData(hTarg
 	self.caster.pa_focus = table.crit
 	self.caster.pa_source = table.source
 	self.caster.pa_distance = distance
-	self.caster.pa_bonus = table.bonus
+	self.caster.pa_damage = table.damage
 
 	self.caster:PerformAttack(hTarget, true, true, true, false, false, false, true, { damage = "pa_q" })
 
@@ -287,7 +286,7 @@ function custom_phantom_assassin_stifling_dagger:OnProjectileHit_ExtraData(hTarg
 	self.caster.pa_focus = nil
 	self.caster.pa_source = nil
 	self.caster.pa_distance = nil
-	self.caster.pa_bonus = nil
+	self.caster.pa_damage = nil
 
 	if table.main and not table.source and self.caster.blur_ability then
 		self.caster.blur_ability:ProcDouble(hTarget)
@@ -511,8 +510,8 @@ function modifier_custom_phantom_assassin_stifling_dagger_tracker:GetModifierTot
 		self.damageTable.damage = self.damageTable.damage * self.ability.talents.q4_damage
 	end
 
-	if self.parent.pa_bonus then
-		self.damageTable.damage = self.damageTable.damage * (1 + self.ability.talents.q7_damage)
+	if self.parent.pa_damage then
+		self.damageTable.damage = self.damageTable.damage * self.parent.pa_damage
 	end
 
 	DoDamage(self.damageTable, self.parent.pa_source)
@@ -771,6 +770,8 @@ function custom_phantom_assassin_stifling_dagger_legendary:UpdateTalents(name)
 			q7_width = caster:GetTalentValue("modifier_phantom_assassin_dagger_7", "width", true),
 			q7_random_dist = caster:GetTalentValue("modifier_phantom_assassin_dagger_7", "random_dist", true),
 			q7_speed = caster:GetTalentValue("modifier_phantom_assassin_dagger_7", "speed", true) / 100,
+			q7_damage = caster:GetTalentValue("modifier_phantom_assassin_dagger_7", "damage", true) / 100,
+			q7_damage_inc = caster:GetTalentValue("modifier_phantom_assassin_dagger_7", "damage_inc", true) / 100,
 		}
 	end
 
@@ -859,10 +860,10 @@ function modifier_custom_phantom_assassin_stifling_legendary_cast:OnCreated()
 
 	self.max = self.ability.talents.q7_max
 	self.max_duration = self.ability:GetDuration()
-	self.bonus = self.parent:GetUpgradeStack("modifier_custom_phantom_assassin_stifling_dagger_stack")
-				>= self.ability.talents.q7_stack_max
-			and 1
-		or nil
+
+	local stack = self.parent:GetUpgradeStack("modifier_custom_phantom_assassin_stifling_dagger_stack")
+	self.bonus = stack >= self.ability.talents.q7_stack_max and 1 or nil
+	self.damage = self.ability.talents.q7_damage + self.ability.talents.q7_damage_inc * stack
 
 	self.interval = self.max_duration / self.max
 	self.anim_rate = math.min(0.35 / self.interval, 1.4)
@@ -922,6 +923,7 @@ function modifier_custom_phantom_assassin_stifling_legendary_cast:OnIntervalThin
 			legendary_index = index,
 			crit = crit,
 			bonus = self.bonus,
+			damage = self.damage,
 			source = "modifier_phantom_assassin_dagger_7",
 		},
 	}

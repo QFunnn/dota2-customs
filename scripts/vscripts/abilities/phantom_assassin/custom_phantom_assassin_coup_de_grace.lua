@@ -673,6 +673,7 @@ function modifier_phantom_assassin_phantom_coup_de_grace_focus:OnCreated(kv)
 	self.records = {}
 
 	self.parent:CheckOwner():AddAttackStartEvent_out(self, false)
+	self.parent:AddAttackFailEvent_out(self, true)
 
 	self.parent:GenericParticle(particle, self, true)
 	self:StartIntervalThink(0.2)
@@ -715,6 +716,22 @@ function modifier_phantom_assassin_phantom_coup_de_grace_focus:AttackStartEvent_
 	if self.parent == self.ability.caster then
 		self.ability.tracker.records[params.record] = true
 	end
+end
+
+function modifier_phantom_assassin_phantom_coup_de_grace_focus:AttackFailEvent_out(params)
+	if not IsServer() then
+		return
+	end
+	if self.parent ~= params.attacker then
+		return
+	end
+	if self.used_record ~= params.record then
+		return
+	end
+
+	self.records[params.record] = nil
+	self.used_record = nil
+	self.proced = nil
 end
 
 function modifier_phantom_assassin_phantom_coup_de_grace_focus:GetCritDamage()

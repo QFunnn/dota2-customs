@@ -29,6 +29,11 @@ LinkLuaModifier(
 	LUA_MODIFIER_MOTION_NONE
 )
 LinkLuaModifier(
+	"modifier_kunkka_tidebringer_custom_target_attack",
+	"abilities/kunkka/kunkka_tidebringer_custom",
+	LUA_MODIFIER_MOTION_NONE
+)
+LinkLuaModifier(
 	"modifier_kunkka_tidebringer_custom_armor",
 	"abilities/kunkka/kunkka_tidebringer_custom",
 	LUA_MODIFIER_MOTION_NONE
@@ -183,6 +188,7 @@ function kunkka_tidebringer_custom:OnSpellStart()
 		CreateUnitByName("npc_kunkka_tidebringer_target_custom", point, true, nil, nil, self.caster:GetTeamNumber())
 	target.player_unit = true
 	target.is_kunkka_target = true
+	target.kunkka_caster = self.caster
 
 	target:AddNewModifier(self.caster, self, "modifier_kunkka_tidebringer_custom_target", {})
 	target:AddNewModifier(target, self, "modifier_kill", { duration = self.target_duration })
@@ -257,6 +263,7 @@ function modifier_kunkka_tidebringer_custom_tracker:OnCreated(table)
 	self.ability.cleave_damage = self.ability:GetSpecialValueFor("cleave_damage") / 100
 	self.ability.target_duration = self.ability:GetSpecialValueFor("target_duration")
 	self.ability.target_hits = self.ability:GetSpecialValueFor("target_hits")
+	self.ability.target_radius = self.ability:GetSpecialValueFor("target_radius")
 
 	self:CheckEffect()
 
@@ -347,6 +354,13 @@ function modifier_kunkka_tidebringer_custom_tracker:AttackRecordEvent_out(params
 	if not target then
 		return
 	end
+
+	if target.is_kunkka_target then
+		self.parent:AddNewModifier(self.parent, self.ability, "modifier_kunkka_tidebringer_custom_target_attack", {})
+	else
+		self.parent:RemoveModifierByName("modifier_kunkka_tidebringer_custom_target_attack")
+	end
+
 	if self.parent:HasModifier("modifier_kunkka_tidebringer_custom_cd") and not target.is_kunkka_target then
 		return
 	end
@@ -387,6 +401,12 @@ function modifier_kunkka_tidebringer_custom_tracker:AttackEvent_out(params)
 	local hero_target = target:IsRealHero() and target or nil
 
 	local damage = params.damage * cleave
+	local effect = wearables_system:GetParticleReplacementAbility(
+		self.parent,
+		"particles/units/heroes/hero_kunkka/kunkka_spell_tidebringer.vpcf",
+		self.ability
+	)
+	local more_targets = target.is_kunkka_target and self.parent:FindTargets(self.ability.target_radius) or nil
 	local targets = DoCleaveAttack(
 		self.parent,
 		target,
@@ -395,12 +415,24 @@ function modifier_kunkka_tidebringer_custom_tracker:AttackEvent_out(params)
 		self.ability.cleave_starting_width,
 		self.ability.cleave_ending_width,
 		self.ability.cleave_distance + (self.ability.talents.has_w4 == 1 and self.ability.talents.w4_distance or 0),
-		wearables_system:GetParticleReplacementAbility(
-			self.parent,
-			"particles/units/heroes/hero_kunkka/kunkka_spell_tidebringer.vpcf",
-			self.ability
-		)
+		nil,
+		more_targets
 	)
+
+	if targets and #targets > 0 then
+		local count = math.min(#targets, 16)
+		local direction = self.parent:GetAbsOrigin() - target:GetAbsOrigin()
+		direction.z = 0
+
+		local particle = ParticleManager:CreateParticle(effect, PATTACH_WORLDORIGIN, nil)
+		ParticleManager:SetParticleControl(particle, 0, self.parent:GetAbsOrigin())
+		ParticleManager:SetParticleControlForward(particle, 0, direction:Normalized())
+		ParticleManager:SetParticleControl(particle, 1, Vector(0, 0, count))
+		for i = 1, count do
+			ParticleManager:SetParticleControl(particle, i + 1, targets[i]:GetAbsOrigin() + Vector(0, 0, 80))
+		end
+		ParticleManager:ReleaseParticleIndex(particle)
+	end
 
 	for _, cleave_target in pairs(targets) do
 		cleave_target:EmitSound(
@@ -423,7 +455,10 @@ function modifier_kunkka_tidebringer_custom_tracker:AttackEvent_out(params)
 		self.ability:ProcArmor(cleave_target)
 
 		if self.ability.talents.has_w4 == 1 then
-			if cleave_target:CheckCd("kunkka_w4_root", self.ability.talents.w4_talent_cd) then
+			if
+				not cleave_target:IsDebuffImmune()
+				and cleave_target:CheckCd("kunkka_w4_root", self.ability.talents.w4_talent_cd)
+			then
 				cleave_target:AddNewModifier(
 					self.parent,
 					self.ability,
@@ -669,6 +704,13 @@ function modifier_kunkka_tidebringer_custom_target:AttackEvent_inc(params)
 	end
 end
 
+modifier_kunkka_tidebringer_custom_target_attack = class(mod_hidden)
+function modifier_kunkka_tidebringer_custom_target_attack:CheckState()
+	return {
+		[MODIFIER_STATE_CANNOT_MISS] = true,
+	}
+end
+
 modifier_kunkka_tidebringer_custom_armor = class(mod_visible)
 function modifier_kunkka_tidebringer_custom_armor:GetTexture()
 	return "buffs/kunkka/tidebringer_3"
@@ -716,11 +758,11 @@ function modifier_kunkka_tidebringer_custom_root:IsPurgable()
 	return true
 end
 function modifier_kunkka_tidebringer_custom_root:OnCreated()
+	self.parent = self:GetParent()
+
 	if not IsServer() then
 		return
 	end
-	self.parent = self:GetParent()
-
 	self.parent:EmitSound("Kunkka.Tidebringer_root_target")
 
 	self.particle = ParticleManager:CreateParticle(
@@ -761,6 +803,9 @@ function modifier_kunkka_tidebringer_custom_root:DeclareFunctions()
 end
 
 function modifier_kunkka_tidebringer_custom_root:GetModifierDisableTurning()
+	if self.parent:IsDebuffImmune() then
+		return
+	end
 	return 1
 end
 

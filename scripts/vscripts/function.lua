@@ -2897,7 +2897,7 @@ function CDOTA_BaseNPC:EndNoDraw(mod)
 end
 
 DoCleaveAttack_old = DoCleaveAttack
-function DoCleaveAttack(attacker, target, ability, damage, start_width, end_width, cleave_radius, effect)
+function DoCleaveAttack(attacker, target, ability, damage, start_width, end_width, cleave_radius, effect, more_targets)
 	local caster_pos = attacker:GetAbsOrigin()
 	local target_pos = target:GetAbsOrigin()
 
@@ -2917,6 +2917,7 @@ function DoCleaveAttack(attacker, target, ability, damage, start_width, end_widt
 		damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION,
 	}
 	local targets = {}
+	local hit = {}
 
 	for _, unit in pairs(attacker:FindTargets(cleave_radius)) do
 		if unit ~= target then
@@ -2935,8 +2936,20 @@ function DoCleaveAttack(attacker, target, ability, damage, start_width, end_widt
 				if ortho_dist <= current_max_width then
 					damageTable.victim = unit
 					DoDamage(damageTable)
+					hit[unit] = true
 					table.insert(targets, unit)
 				end
+			end
+		end
+	end
+
+	if more_targets then
+		for _, unit in pairs(more_targets) do
+			if unit ~= target and not hit[unit] then
+				damageTable.victim = unit
+				DoDamage(damageTable)
+				hit[unit] = true
+				table.insert(targets, unit)
 			end
 		end
 	end

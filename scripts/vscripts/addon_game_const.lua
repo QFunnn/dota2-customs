@@ -1149,10 +1149,10 @@ _G.CreepsStats = {
 	["npc_dota_neutral_ancient_frog"] = { damage = 93, health = 1493, exp = 131, gold = 64, blue = 10, level = 3 },
 	["npc_dota_neutral_ancient_frog_mage"] = { damage = 93, health = 1493, exp = 188, gold = 85, blue = 15, level = 3 },
 
-	["npc_muerta_ursa"] = { damage = 30, health = 900, exp = 200, gold = 600, blue = 50 },
-	["npc_muerta_satyr"] = { damage = 38, health = 900, exp = 200, gold = 600, blue = 50 },
-	["npc_muerta_centaur"] = { damage = 55, health = 900, exp = 200, gold = 600, blue = 50 },
-	["npc_muerta_ogre"] = { damage = 55, health = 900, exp = 200, gold = 600, blue = 50 },
+	["npc_muerta_ursa"] = { damage = 30, health = 900, exp = 200, gold = 600, blue = 50, no_upgrade = 1 },
+	["npc_muerta_satyr"] = { damage = 38, health = 900, exp = 200, gold = 600, blue = 50, no_upgrade = 1 },
+	["npc_muerta_centaur"] = { damage = 55, health = 900, exp = 200, gold = 600, blue = 50, no_upgrade = 1 },
+	["npc_muerta_ogre"] = { damage = 55, health = 900, exp = 200, gold = 600, blue = 50, no_upgrade = 1 },
 }
 
 _G.Shared_Bounty = {

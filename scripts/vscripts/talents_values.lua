@@ -202,10 +202,10 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 			["modifier_up_income"] = {
 				skill_icon = "gray_gpm",
 				rarity = "gray",
-				max_level = 3,
+				max_level = 4,
 
 				damage_info = 1,
-				general_bonus = { 40, 80, 120 },
+				general_bonus = { 30, 60, 90, 120 },
 				max_bonus = 20,
 
 				is_talent_upgrade = 1,
@@ -537,9 +537,9 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				skill_number = 5,
 
 				cost = 50,
-				max = 4,
+				max = 3,
 				gold = 50,
-				move = 20,
+				move = 15,
 				shield = 20,
 				duration = 45,
 				damage_info = 1,
@@ -1037,7 +1037,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				speed = 35,
 				vision = 10,
 				range = 350,
-				root = 2.5,
+				root = 2,
 				talent_cd = 10,
 				is_purgable_self = 1,
 			},
@@ -1064,7 +1064,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				cd = 10,
 				health = 300,
-				gold = 400,
+				gold = 300,
 				cdr = 3,
 			},
 
@@ -1096,7 +1096,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				has_video = 1,
 
 				heal = { 20, 35 },
-				damage = { 35, 60 },
+				damage = { 40, 70 },
 				range = 350,
 				duration = 8,
 				damage_type = DAMAGE_TYPE_MAGICAL,
@@ -1130,7 +1130,8 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				cast = 2.8,
 				cast_min = 0.7,
 				stack_max = 7,
-				damage = 30,
+				damage = 50,
+				damage_inc = 10,
 				stun = 0.1,
 				timer = 14,
 				talent_cd = 16,
@@ -1186,7 +1187,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				has_video = 1,
 
 				move = 30,
-				heal = 5,
+				heal = 4,
 				duration = 2,
 				chance = 35,
 				talent_cd = 5,
@@ -1200,8 +1201,8 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				complexity = 2,
 				build_type = 2,
 
-				cd_reduce = 50,
-				damage = 50,
+				cd_reduce = 40,
+				damage = 40,
 				damage_taken = 190,
 				radius = 200,
 				delay = 0.25,
@@ -1220,7 +1221,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "blue",
 				has_video = 1,
 
-				damage = { 50, 75, 100 },
+				damage = { 40, 60, 80 },
 				agi = { 20, 30, 40 },
 				radius = 250,
 				chance = 25,
@@ -1279,12 +1280,12 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				complexity = 1,
 				build_type = 1,
 
-				damage = -70,
-				agi = 6,
+				damage = -80,
+				agi = 5,
 				duration = 10,
 				illusions = 2,
 				illusion_incoming = 160,
-				illusion_outgoing = 60,
+				illusion_outgoing = 50,
 				illusion_move = 25,
 
 				skill_name = "custom_phantom_assassin_blur",
@@ -18843,7 +18844,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				radius = 60,
 				cast = 40,
 				silence = 1.5,
-				torrent_cd = 8,
+				torrent_cd = 10,
 			},
 			["modifier_kunkka_hero_5"] = {
 				skill_number = 0,
@@ -18896,9 +18897,9 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				main_epic = 1,
 				has_video = 1,
 
-				cd_inc = { 25, 40 },
-				damage = { 20, 35 },
-				duration = 12,
+				cd_inc = { 20, 35 },
+				damage = { 18, 30 },
+				duration = 8,
 				alt_talent = "modifier_kunkka_torrent_7",
 			},
 			["modifier_kunkka_torrent_4"] = {
@@ -18907,7 +18908,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				skill_icon = "torrent",
 				rarity = "purple",
 
-				delay = -0.6,
+				delay = -0.4,
 				slow = -20,
 				slow_legendary = -15,
 				cd_items = 2,
@@ -18925,12 +18926,12 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				step = 280,
 				delay_step = 12,
-				radius = 250,
-				duration = 12,
+				radius = 220,
+				duration = 8,
 				max = 6,
-				decay = 2,
+				decay = 1,
 				crash = 150,
-				damage = 350,
+				damage = 320,
 				damage_duration = 1.2,
 				damage_ticks = 5,
 				slow = -25,
@@ -19002,7 +19003,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				is_through_bkb = 1,
 				cd = -6,
 				hits = -1,
-				max = 6,
+				max = 5,
 				duration = 12,
 
 				waves = 3,
@@ -19036,7 +19037,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				skill_icon = "xmark",
 				rarity = "blue",
 
-				lifesteal = { 10, 15, 20 },
+				lifesteal = { 12, 18, 24 },
 				cd = { -2, -3, -4 },
 				bonus = 2,
 			},
@@ -19080,7 +19081,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				vision_radius = 800,
 				pick_radius = 120,
 				min_gold = 2,
-				max_gold = 8,
+				max_gold = 6,
 				kill_gold = 3,
 				bounty_gold = 2,
 				start_gold = 30,
@@ -19089,6 +19090,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				max_chest = 3,
 				chest_gold = 30,
 				chest_blue = 4,
+				chest_exp = 250,
 				skill_name = "kunkka_x_marks_the_spot_custom",
 			},
 

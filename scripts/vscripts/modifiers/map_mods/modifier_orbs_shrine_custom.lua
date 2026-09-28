@@ -411,7 +411,7 @@ function modifier_orbs_shrine_custom_animation_captured:OnIntervalThink()
 
 	if self.timer % 1 == 0 then
 		for _, hero in pairs(dota1x6:FindPlayers(self.team_captured, false, true)) do
-			hero:AddPoints("white", 1, "sanctuary")
+			hero:AddPoints("white", ShrineWhite / self.max_time, "sanctuary")
 		end
 	end
 

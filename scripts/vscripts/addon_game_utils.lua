@@ -1088,7 +1088,7 @@ function dota1x6:CreateUpgradeOrb(hero, rarity, new_point)
 
 	if
 		hero:IsAlive()
-		and not hero:HasModifier("modifier_duel_hero_end")
+		and not hero:HasModifier("modifier_duel_hero_return")
 		and not hero:HasModifier("modifier_duel_hero_thinker")
 	then
 		point = hero:GetAbsOrigin() + RandomVector(150)

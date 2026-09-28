@@ -412,8 +412,10 @@ function modifier_kunkka_innate_custom_effect:OnCreated(table)
 		return
 	end
 
+	self.RemoveForDuel = true
 	self.is_caster = self.parent == self.caster
 	self.blocked_damage = table.start_damage or 0
+	self.shield_damage = self.blocked_damage
 	self:SetHasCustomTransmitterData(true)
 
 	if self.is_caster then
@@ -430,6 +432,7 @@ function modifier_kunkka_innate_custom_effect:OnRefresh(table)
 		return
 	end
 	self:SetParams(table)
+	self:ApplyShield()
 end
 
 function modifier_kunkka_innate_custom_effect:SetParams(params)
@@ -475,6 +478,9 @@ function modifier_kunkka_innate_custom_effect:OnDestroy()
 		end
 	end
 
+	if self:GetRemainingTime() > 0.1 then
+		return
+	end
 	if self.blocked_damage <= 0 then
 		return
 	end
@@ -487,7 +493,20 @@ function modifier_kunkka_innate_custom_effect:OnDestroy()
 		{ effect_duration = self.ability.buff_duration, blocked_damage = self.blocked_damage }
 	)
 
+	self:ApplyShield()
+end
+
+function modifier_kunkka_innate_custom_effect:ApplyShield()
+	if not IsServer() then
+		return
+	end
+	if not self.is_caster then
+		return
+	end
 	if self.ability.talents.has_h5 == 0 then
+		return
+	end
+	if self.shield_damage <= 0 then
 		return
 	end
 
@@ -499,9 +518,11 @@ function modifier_kunkka_innate_custom_effect:OnDestroy()
 		self.parent:AddNewModifier(self.parent, self.ability, "modifier_generic_shield_multiple", {
 			duration = self.duration,
 			start_full = 1,
-			max_shield = self.blocked_damage * self.ability.talents.h5_shield,
+			max_shield = self.shield_damage * self.ability.talents.h5_shield,
 			shield_talent = "modifier_kunkka_hero_5",
 		})
+
+	self.shield_damage = 0
 
 	if not self.ability.shield_mod then
 		return
@@ -567,6 +588,7 @@ function modifier_kunkka_innate_custom_effect:GetModifierTotal_ConstantBlock(par
 
 	local reduce = percent * damage
 	self.blocked_damage = self.blocked_damage + reduce
+	self.shield_damage = self.shield_damage + reduce
 
 	return reduce
 end

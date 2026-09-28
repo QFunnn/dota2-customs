@@ -720,6 +720,8 @@ function modifier_kunkka_ghostship_custom_scepter:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
+	self.RemoveForDuel = true
+
 	CustomGameEventManager:Send_ServerToPlayer(
 		PlayerResource:GetPlayer(self.parent:GetPlayerOwnerID()),
 		"ability_kunkka_ghostship_scepter",
@@ -985,7 +987,6 @@ function modifier_kunkka_ghostship_custom_legendary_sail:OnCreated(table)
 
 	self.ability:EndCd(self.ability.talents.r7_pickup)
 
-	self.base_scale = self.parent:GetModelScale()
 	self.parent:Stop()
 
 	local dir = Vector(table.x, table.y, 0) - self.parent:GetAbsOrigin()
@@ -1020,8 +1021,7 @@ function modifier_kunkka_ghostship_custom_legendary_sail:OnIntervalThink()
 		return
 	end
 
-	if self.shipped then
-		self.parent:SetModelScale(self.base_scale * 0.5)
+	if self:GetStackCount() == 1 then
 		local left = self:GetRemainingTime()
 		self.parent:UpdateUIshort({
 			time = left,
@@ -1044,7 +1044,7 @@ function modifier_kunkka_ghostship_custom_legendary_sail:OnIntervalThink()
 	self.parent:SetParent(self.ship, "center")
 	self.parent:SetLocalOrigin(Vector(0, 0, 0))
 	self.parent:SetLocalAngles(0, 0, 0)
-	self.shipped = true
+	self:SetStackCount(1)
 
 	self.parent:StartGesture(ACT_DOTA_CAST_ABILITY_1)
 	self.ability:ApplyRum(self.parent)
@@ -1090,7 +1090,6 @@ function modifier_kunkka_ghostship_custom_legendary_sail:OnDestroy()
 	end
 
 	self.parent.flDesiredYaw = self.parent:GetAnglesAsVector().y
-	self.parent:SetModelScale(self.base_scale)
 
 	if not IsValid(mod) then
 		return
@@ -1131,7 +1130,15 @@ function modifier_kunkka_ghostship_custom_legendary_sail:DeclareFunctions()
 		MODIFIER_PROPERTY_DISABLE_TURNING,
 		MODIFIER_PROPERTY_IGNORE_CAST_ANGLE,
 		MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE,
+		MODIFIER_PROPERTY_MODEL_SCALE,
 	}
+end
+
+function modifier_kunkka_ghostship_custom_legendary_sail:GetModifierModelScale()
+	if self:GetStackCount() == 0 then
+		return
+	end
+	return -50
 end
 
 function modifier_kunkka_ghostship_custom_legendary_sail:GetModifierDisableTurning()

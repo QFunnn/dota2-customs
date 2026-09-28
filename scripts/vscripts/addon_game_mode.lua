@@ -49,8 +49,8 @@ _G.custom_rules_data = {
 }
 
 _G.test = true and IsInToolsMode()
-_G.hero_test = false and IsInToolsMode()
-_G.hero_test_name = "npc_dota_hero_kunkka"
+_G.hero_test = true and IsInToolsMode()
+_G.hero_test_name = "npc_dota_hero_phantom_assassin"
 _G.hero_test_base = 2
 _G.twitch_alert = false
 _G.sale_alert = false
@@ -183,8 +183,9 @@ _G.PlusBlue = 15
 _G.StartWhite = 30
 _G.PlusWhite = 10
 _G.ShrineTicks = 10
-_G.ShrineGold = 60
-_G.ShrineGoldWave = 20
+_G.ShrineGold = 70
+_G.ShrineGoldWave = 30
+_G.ShrineWhite = 70
 
 _G.Necro_Timer = 20
 
@@ -228,8 +229,8 @@ _G.bounty_gold_init = 90
 _G.bounty_gold_per_minute = 3
 _G.bounty_exp_init = 120
 _G.bounty_exp_per_minute = 5
-_G.bounty_white_init = 10
-_G.bounty_white_rune = 1
+_G.bounty_white_init = 8
+_G.bounty_white_per_minute = 0.5
 _G.bounty_net_min = 1
 _G.bounty_net_max = 2
 
@@ -965,7 +966,7 @@ function dota1x6:OnNPCSpawned(event)
 		if stats then
 			dota1x6:SetCreepStats(unit)
 			unit:AddNewModifier(unit, nil, "modifier_neutral_creep", {})
-			if not dota1x6:IsCustomRules("only_cone") then
+			if not dota1x6:IsCustomRules("only_cone") and not stats.no_upgrade then
 				NeutralCreeps[unit] = true
 			end
 		end
@@ -1020,8 +1021,9 @@ function dota1x6:SetCreepStats(unit)
 	unit.creeps_upgrade = CreepsUpgradeCount
 
 	local stats = CreepsStats[unit:GetUnitName()]
-	local damage = math.floor(stats.damage * (1 + CreepsUpgradeCount * CreepsUpgradeDamage / 100))
-	local health = math.floor(stats.health * (1 + CreepsUpgradeCount * CreepsUpgradeHealth / 100))
+	local upgrade = stats.no_upgrade and 0 or CreepsUpgradeCount
+	local damage = math.floor(stats.damage * (1 + upgrade * CreepsUpgradeDamage / 100))
+	local health = math.floor(stats.health * (1 + upgrade * CreepsUpgradeHealth / 100))
 	local health_k = unit:GetHealth() / unit:GetMaxHealth()
 
 	unit:SetBaseDamageMin(damage)
@@ -1370,7 +1372,6 @@ function dota1x6:SetTower(unit, new_point)
 				towers[team].can_use_trap = false
 				towers[team].ids = dota1x6:FindPlayers(team)
 				towers[team].active_patrol = {}
-				towers[team].bounty_runes = 0
 
 				towers[team]:AddNewModifier(building, nil, "modifier_tower_level", {})
 
@@ -2836,9 +2837,10 @@ function dota1x6:spawn_timer()
 					(HTTP.serverData.isStatsMatch == true or test)
 					and SafeToLeave == false
 					and current_time <= LowPriorityTime
-					and data.total_games > LOW_PRIORITY_IMMUNITY
 				then
-					lp_games = lp_games + 1
+					if data.total_games > LOW_PRIORITY_IMMUNITY then
+						lp_games = lp_games + 1
+					end
 
 					_G.SafeToLeave = true
 					switch_safetoleave = true
@@ -2883,7 +2885,7 @@ function dota1x6:spawn_timer()
 					player.left_game = true
 					CustomGameEventManager:Send_ServerToAllClients(
 						"hero_lost",
-						{ ban = 0, abbandon = 1, hero2 = {}, hero = { player:GetUnitName() } }
+						{ ban = 0, abbandon = 1, hero2 = {}, hero = { player:GetUnitName() }, id2 = {}, id = { id } }
 					)
 					alert = true
 				end
@@ -2891,7 +2893,7 @@ function dota1x6:spawn_timer()
 				if player.banned == true and alert == false then
 					CustomGameEventManager:Send_ServerToAllClients(
 						"hero_lost",
-						{ ban = 1, abbandon = 0, hero2 = {}, hero = { player:GetUnitName() } }
+						{ ban = 1, abbandon = 0, hero2 = {}, hero = { player:GetUnitName() }, id2 = {}, id = { id } }
 					)
 
 					if player.teammate then
@@ -3354,12 +3356,15 @@ function dota1x6:CheckTowerDeath(tower)
 	if not tower:IsAlive() then
 		local heroes = {}
 		local heroes2 = {}
+		local heroes_id = {}
+		local heroes2_id = {}
 		local killer = tower.killer
 		local ids = dota1x6:FindPlayers(team)
 
 		if ids then
 			for _, id in pairs(ids) do
 				heroes[#heroes + 1] = players[id]:GetUnitName()
+				heroes_id[#heroes_id + 1] = id
 			end
 		end
 
@@ -3368,13 +3373,14 @@ function dota1x6:CheckTowerDeath(tower)
 			if ids then
 				for _, id in pairs(ids) do
 					heroes2[#heroes2 + 1] = players[id]:GetUnitName()
+					heroes2_id[#heroes2_id + 1] = id
 				end
 			end
 		end
 		Timers:CreateTimer(0.5, function()
 			CustomGameEventManager:Send_ServerToAllClients(
 				"hero_lost",
-				{ ban = 0, abbandon = 0, hero2 = heroes2, hero = heroes }
+				{ ban = 0, abbandon = 0, hero2 = heroes2, hero = heroes, id2 = heroes2_id, id = heroes_id }
 			)
 		end)
 

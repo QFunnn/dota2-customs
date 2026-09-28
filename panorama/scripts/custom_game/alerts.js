@@ -1047,7 +1047,7 @@ function hero_lost(kv)
 		{
 			alert_icon1.AddClass("Alert_icon_left")
 		}
-		alert_icon1.style.backgroundImage = 'url( "file://{images}/heroes/icons/' + kv.hero[i] + '.png" );'
+		alert_icon1.style.backgroundImage = 'url( "file://{images}/heroes/icons/' + Game.GetHeroImage(kv.id[i], kv.hero[i]) + '.png" );'
 		alert_icon1.style.backgroundSize = '100%'
 		alert_icon1.style.backgroundRepeat = 'no-repeat'
 	}
@@ -1075,7 +1075,7 @@ function hero_lost(kv)
 			{
 				alert_icon2.AddClass("Alert_icon_right")
 			}
-			alert_icon2.style.backgroundImage = 'url( "file://{images}/heroes/icons/' + kv.hero2[i] + '.png" );'
+			alert_icon2.style.backgroundImage = 'url( "file://{images}/heroes/icons/' + Game.GetHeroImage(kv.id2[i], kv.hero2[i]) + '.png" );'
 			alert_icon2.style.backgroundSize = '100%'
 			alert_icon2.style.backgroundRepeat = 'no-repeat'
 		}
