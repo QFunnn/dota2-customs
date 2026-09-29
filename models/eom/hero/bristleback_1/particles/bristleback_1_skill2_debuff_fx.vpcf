@@ -15,47 +15,30 @@
 	m_nMaxParticles = 32
 	m_ConstantColor = [ 255, 255, 255, 25 ]
 	m_bShouldSort = false
-	m_Renderers = 
+	m_nBehaviorVersion = 12
+	m_controlPointConfigurations = 
 	[
 		{
-			_class = "C_OP_RenderSprites"
-			m_bBlendFramesSeq0 = false
-			m_vecTexturesInput = 
+			m_name = "preview"
+			m_drivers = 
 			[
 				{
-					m_hTexture = resource:"materials/particle/smoke1/smoke1.vtex"
+					m_iAttachType = "PATTACH_POINT_FOLLOW"
+					m_attachmentName = "attach_back"
+					m_entityName = "self"
 				},
 			]
 		},
 	]
-	m_Operators = 
+	m_Emitters = 
 	[
 		{
-			_class = "C_OP_BasicMovement"
-			m_Gravity = [ 0.0, 0.0, 10.0 ]
-			m_fDrag = 0.05
-		},
-		{
-			_class = "C_OP_InterpolateRadius"
-			m_flBias = 0.75
-			m_flEndScale = 6.0
-		},
-		{
-			_class = "C_OP_Decay"
-		},
-		{
-			_class = "C_OP_FadeOutSimple"
-			m_flFadeOutTime = 0.75
-		},
-		{
-			_class = "C_OP_FadeInSimple"
-		},
-		{
-			_class = "C_OP_LockToBone"
-			m_flLifeTimeFadeEnd = 1.0
-		},
-		{
-			_class = "C_OP_SpinUpdate"
+			_class = "C_OP_ContinuousEmitter"
+			m_flEmitRate = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 20.0
+			}
 		},
 	]
 	m_Initializers = 
@@ -83,8 +66,8 @@
 		},
 		{
 			_class = "C_INIT_RandomColor"
-			m_ColorMax = [ 177, 229, 104, 255 ]
-			m_ColorMin = [ 159, 222, 70, 255 ]
+			m_ColorMax = [ 237, 227, 95 ]
+			m_ColorMin = [ 228, 168, 48 ]
 		},
 		{
 			_class = "C_INIT_InitFloat"
@@ -130,15 +113,47 @@
 			m_nOutputField = 5
 		},
 	]
-	m_Emitters = 
+	m_Operators = 
 	[
 		{
-			_class = "C_OP_ContinuousEmitter"
-			m_flEmitRate = 
-			{
-				m_nType = "PF_TYPE_LITERAL"
-				m_flLiteralValue = 20.0
-			}
+			_class = "C_OP_BasicMovement"
+			m_Gravity = [ 0.0, 0.0, 10.0 ]
+			m_fDrag = 0.05
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flBias = 0.75
+			m_flEndScale = 6.0
+		},
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_FadeOutSimple"
+			m_flFadeOutTime = 0.75
+		},
+		{
+			_class = "C_OP_FadeInSimple"
+		},
+		{
+			_class = "C_OP_LockToBone"
+			m_flLifeTimeFadeEnd = 1.0
+		},
+		{
+			_class = "C_OP_SpinUpdate"
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderSprites"
+			m_bBlendFramesSeq0 = false
+			m_vecTexturesInput = 
+			[
+				{
+					m_hTexture = resource:"materials/particle/smoke1/smoke1.vtex"
+				},
+			]
 		},
 	]
 	m_Children = 
@@ -153,5 +168,4 @@
 			m_ChildRef = resource:"models/eom/hero/bristleback_1/particles/bristleback_1_skill2_debuff_fxb.vpcf"
 		},
 	]
-	m_nBehaviorVersion = 5
 }

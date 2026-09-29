@@ -42,176 +42,175 @@ f(
 		["31"] = 13,
 		["32"] = 21,
 		["34"] = 21,
-		["35"] = 44,
-		["36"] = 45,
-		["37"] = 13,
-		["38"] = 46,
-		["39"] = 47,
-		["40"] = 46,
-		["41"] = 49,
-		["42"] = 50,
-		["43"] = 51,
-		["44"] = 52,
-		["45"] = 53,
-		["46"] = 54,
-		["47"] = 55,
-		["48"] = 57,
-		["49"] = 59,
-		["50"] = 61,
+		["35"] = 37,
+		["36"] = 38,
+		["37"] = 50,
+		["38"] = 51,
+		["39"] = 13,
+		["40"] = 52,
+		["41"] = 53,
+		["42"] = 52,
+		["43"] = 55,
+		["44"] = 56,
+		["45"] = 57,
+		["46"] = 58,
+		["47"] = 59,
+		["48"] = 60,
+		["49"] = 61,
+		["50"] = 62,
 		["51"] = 63,
 		["52"] = 65,
-		["53"] = 66,
-		["54"] = 67,
-		["55"] = 68,
-		["56"] = 69,
-		["57"] = 49,
-		["58"] = 71,
-		["59"] = 72,
-		["60"] = 73,
-		["61"] = 74,
-		["62"] = 75,
-		["64"] = 71,
-		["65"] = 78,
-		["66"] = 79,
-		["67"] = 80,
-		["68"] = 81,
-		["69"] = 82,
-		["70"] = 83,
-		["73"] = 86,
-		["74"] = 78,
-		["75"] = 88,
-		["76"] = 89,
-		["77"] = 89,
-		["78"] = 89,
-		["79"] = 92,
-		["80"] = 92,
-		["81"] = 92,
-		["82"] = 89,
+		["53"] = 67,
+		["54"] = 69,
+		["55"] = 71,
+		["56"] = 72,
+		["57"] = 73,
+		["58"] = 74,
+		["59"] = 75,
+		["60"] = 76,
+		["61"] = 77,
+		["62"] = 55,
+		["63"] = 79,
+		["64"] = 80,
+		["65"] = 81,
+		["66"] = 82,
+		["67"] = 83,
+		["68"] = 85,
+		["69"] = 85,
+		["70"] = 85,
+		["71"] = 86,
+		["72"] = 86,
+		["74"] = 85,
+		["75"] = 85,
+		["77"] = 79,
+		["78"] = 90,
+		["79"] = 91,
+		["80"] = 91,
+		["82"] = 90,
 		["83"] = 93,
-		["84"] = 93,
-		["85"] = 93,
-		["86"] = 89,
-		["87"] = 89,
-		["88"] = 88,
-		["89"] = 96,
-		["90"] = 97,
-		["91"] = 98,
-		["92"] = 98,
-		["93"] = 98,
-		["95"] = 98,
-		["96"] = 99,
-		["97"] = 100,
-		["98"] = 101,
-		["99"] = 102,
+		["84"] = 94,
+		["85"] = 95,
+		["86"] = 96,
+		["87"] = 97,
+		["88"] = 98,
+		["91"] = 101,
+		["92"] = 93,
+		["93"] = 103,
+		["94"] = 104,
+		["95"] = 104,
+		["96"] = 104,
+		["97"] = 107,
+		["98"] = 107,
+		["99"] = 107,
 		["100"] = 104,
-		["101"] = 104,
-		["102"] = 104,
-		["103"] = 104,
+		["101"] = 108,
+		["102"] = 108,
+		["103"] = 108,
 		["104"] = 104,
 		["105"] = 104,
-		["106"] = 107,
-		["107"] = 96,
-		["108"] = 109,
-		["109"] = 110,
-		["110"] = 112,
+		["106"] = 103,
+		["107"] = 111,
+		["108"] = 112,
+		["109"] = 113,
+		["110"] = 113,
 		["111"] = 113,
-		["113"] = 116,
-		["114"] = 117,
-		["116"] = 109,
-		["117"] = 120,
-		["118"] = 121,
-		["119"] = 122,
-		["121"] = 124,
-		["122"] = 125,
-		["124"] = 127,
-		["125"] = 128,
-		["128"] = 131,
-		["131"] = 134,
-		["132"] = 135,
-		["133"] = 137,
-		["134"] = 138,
-		["136"] = 141,
-		["137"] = 142,
-		["138"] = 143,
-		["139"] = 144,
-		["140"] = 145,
-		["141"] = 145,
-		["142"] = 145,
-		["143"] = 146,
-		["144"] = 145,
+		["113"] = 113,
+		["114"] = 114,
+		["115"] = 115,
+		["116"] = 116,
+		["117"] = 117,
+		["118"] = 118,
+		["119"] = 119,
+		["120"] = 120,
+		["121"] = 122,
+		["122"] = 123,
+		["123"] = 123,
+		["124"] = 123,
+		["125"] = 123,
+		["126"] = 123,
+		["127"] = 123,
+		["129"] = 127,
+		["131"] = 129,
+		["132"] = 111,
+		["133"] = 131,
+		["134"] = 132,
+		["135"] = 133,
+		["136"] = 135,
+		["137"] = 136,
+		["139"] = 139,
+		["140"] = 140,
+		["142"] = 131,
+		["143"] = 143,
+		["144"] = 144,
 		["145"] = 145,
-		["148"] = 150,
-		["149"] = 120,
-		["150"] = 152,
-		["151"] = 153,
-		["152"] = 154,
-		["155"] = 157,
-		["156"] = 158,
-		["157"] = 159,
-		["158"] = 160,
-		["159"] = 161,
-		["160"] = 162,
-		["161"] = 162,
-		["162"] = 162,
-		["163"] = 162,
-		["164"] = 162,
-		["165"] = 162,
-		["166"] = 162,
-		["167"] = 162,
-		["171"] = 152,
-		["172"] = 167,
-		["173"] = 168,
-		["174"] = 169,
-		["177"] = 172,
-		["178"] = 173,
-		["179"] = 174,
-		["180"] = 175,
-		["182"] = 177,
-		["183"] = 178,
-		["184"] = 179,
-		["185"] = 180,
-		["186"] = 181,
-		["187"] = 182,
-		["188"] = 183,
-		["189"] = 183,
-		["190"] = 183,
-		["191"] = 183,
-		["192"] = 183,
-		["193"] = 183,
-		["194"] = 183,
-		["198"] = 167,
-		["199"] = 189,
-		["200"] = 190,
-		["201"] = 191,
-		["202"] = 192,
-		["205"] = 195,
-		["206"] = 196,
-		["207"] = 196,
-		["208"] = 196,
-		["209"] = 196,
-		["210"] = 196,
-		["211"] = 197,
-		["212"] = 197,
-		["213"] = 197,
-		["214"] = 197,
-		["215"] = 197,
-		["216"] = 198,
-		["217"] = 198,
-		["218"] = 198,
-		["219"] = 199,
-		["220"] = 200,
-		["221"] = 198,
-		["222"] = 198,
-		["223"] = 202,
-		["224"] = 203,
-		["225"] = 203,
-		["226"] = 203,
-		["227"] = 203,
-		["228"] = 203,
+		["146"] = 146,
+		["147"] = 147,
+		["148"] = 148,
+		["150"] = 150,
+		["151"] = 151,
+		["153"] = 153,
+		["154"] = 154,
+		["157"] = 157,
+		["160"] = 160,
+		["161"] = 161,
+		["162"] = 163,
+		["163"] = 164,
+		["165"] = 167,
+		["166"] = 168,
+		["167"] = 169,
+		["168"] = 170,
+		["169"] = 171,
+		["170"] = 171,
+		["171"] = 171,
+		["172"] = 172,
+		["173"] = 171,
+		["174"] = 171,
+		["177"] = 176,
+		["178"] = 143,
+		["179"] = 179,
+		["180"] = 180,
+		["181"] = 181,
+		["182"] = 182,
+		["185"] = 183,
+		["188"] = 184,
+		["189"] = 184,
+		["190"] = 184,
+		["191"] = 184,
+		["192"] = 185,
+		["193"] = 186,
+		["194"] = 186,
+		["195"] = 186,
+		["196"] = 186,
+		["197"] = 186,
+		["198"] = 186,
+		["199"] = 186,
+		["200"] = 186,
+		["202"] = 179,
+		["203"] = 189,
+		["204"] = 190,
+		["205"] = 191,
+		["206"] = 192,
+		["207"] = 192,
+		["208"] = 192,
+		["209"] = 192,
+		["210"] = 192,
+		["211"] = 192,
+		["212"] = 192,
+		["213"] = 193,
+		["216"] = 194,
+		["217"] = 195,
+		["218"] = 196,
+		["219"] = 197,
+		["220"] = 199,
+		["221"] = 200,
+		["222"] = 200,
+		["223"] = 200,
+		["224"] = 200,
+		["225"] = 200,
+		["226"] = 200,
 		["229"] = 203,
-		["230"] = 203,
-		["231"] = 189,
-		["232"] = 206,
+		["230"] = 204,
+		["232"] = 189,
 		["233"] = 207,
 		["234"] = 208,
 		["235"] = 209,
@@ -219,398 +218,523 @@ f(
 		["239"] = 213,
 		["240"] = 214,
 		["241"] = 215,
-		["242"] = 217,
-		["243"] = 218,
-		["244"] = 219,
-		["245"] = 219,
-		["246"] = 219,
-		["247"] = 219,
-		["248"] = 219,
-		["249"] = 219,
-		["250"] = 219,
-		["251"] = 219,
-		["252"] = 219,
-		["253"] = 219,
-		["254"] = 219,
-		["255"] = 219,
-		["256"] = 229,
-		["257"] = 230,
-		["258"] = 230,
-		["259"] = 230,
-		["260"] = 230,
-		["261"] = 230,
-		["262"] = 230,
+		["242"] = 216,
+		["243"] = 217,
+		["244"] = 217,
+		["245"] = 217,
+		["246"] = 217,
+		["247"] = 217,
+		["248"] = 217,
+		["249"] = 217,
+		["250"] = 217,
+		["254"] = 207,
+		["255"] = 222,
+		["256"] = 223,
+		["257"] = 224,
+		["260"] = 227,
+		["261"] = 228,
+		["262"] = 229,
 		["263"] = 230,
-		["264"] = 230,
-		["265"] = 230,
-		["266"] = 231,
-		["267"] = 231,
-		["268"] = 231,
-		["269"] = 231,
-		["270"] = 231,
-		["271"] = 232,
-		["272"] = 232,
-		["273"] = 232,
-		["274"] = 232,
-		["275"] = 232,
-		["276"] = 232,
-		["277"] = 232,
-		["278"] = 232,
-		["279"] = 232,
-		["280"] = 206,
-		["281"] = 234,
-		["282"] = 235,
-		["283"] = 236,
-		["284"] = 237,
-		["286"] = 239,
-		["287"] = 234,
-		["288"] = 241,
-		["289"] = 242,
-		["290"] = 241,
-		["291"] = 246,
-		["292"] = 247,
-		["293"] = 246,
-		["294"] = 21,
-		["295"] = 13,
-		["296"] = 13,
-		["297"] = 13,
-		["298"] = 13,
-		["299"] = 13,
-		["300"] = 13,
-		["301"] = 13,
-		["302"] = 13,
-		["303"] = 21,
-		["305"] = 21,
-		["306"] = 251,
-		["307"] = 259,
-		["308"] = 251,
-		["309"] = 259,
-		["310"] = 262,
-		["311"] = 263,
-		["312"] = 265,
-		["313"] = 262,
-		["314"] = 267,
-		["315"] = 268,
-		["316"] = 269,
-		["318"] = 267,
-		["319"] = 272,
-		["320"] = 273,
-		["321"] = 272,
-		["322"] = 277,
-		["323"] = 278,
-		["324"] = 279,
-		["325"] = 280,
-		["327"] = 282,
-		["328"] = 277,
-		["329"] = 285,
-		["330"] = 286,
-		["331"] = 285,
-		["332"] = 259,
-		["333"] = 251,
-		["334"] = 251,
-		["335"] = 251,
-		["336"] = 251,
-		["337"] = 251,
-		["338"] = 251,
-		["339"] = 251,
-		["340"] = 251,
-		["341"] = 259,
-		["343"] = 259,
-		["344"] = 291,
-		["345"] = 292,
-		["346"] = 291,
-		["347"] = 292,
-		["348"] = 295,
-		["349"] = 296,
-		["350"] = 297,
-		["352"] = 299,
-		["353"] = 300,
-		["354"] = 301,
-		["357"] = 304,
-		["358"] = 305,
-		["359"] = 306,
-		["360"] = 306,
-		["361"] = 306,
-		["362"] = 306,
-		["363"] = 306,
-		["364"] = 306,
-		["365"] = 306,
-		["366"] = 306,
-		["367"] = 306,
-		["368"] = 307,
-		["369"] = 307,
-		["370"] = 308,
-		["371"] = 309,
-		["372"] = 312,
-		["373"] = 313,
-		["374"] = 314,
-		["376"] = 317,
-		["377"] = 317,
-		["378"] = 317,
-		["379"] = 318,
-		["380"] = 319,
-		["381"] = 320,
-		["383"] = 322,
-		["384"] = 317,
-		["385"] = 317,
-		["386"] = 295,
-		["387"] = 325,
-		["388"] = 326,
-		["389"] = 327,
-		["390"] = 328,
-		["393"] = 331,
-		["394"] = 332,
-		["395"] = 332,
-		["396"] = 332,
-		["397"] = 332,
-		["398"] = 332,
-		["399"] = 332,
-		["400"] = 332,
-		["401"] = 332,
-		["402"] = 332,
-		["403"] = 333,
-		["404"] = 333,
-		["405"] = 333,
-		["406"] = 333,
-		["407"] = 333,
-		["408"] = 333,
-		["409"] = 333,
-		["410"] = 333,
-		["411"] = 333,
-		["412"] = 334,
-		["413"] = 336,
-		["414"] = 337,
-		["415"] = 337,
-		["416"] = 337,
-		["417"] = 337,
-		["418"] = 337,
-		["419"] = 338,
-		["420"] = 339,
-		["421"] = 341,
-		["422"] = 342,
-		["423"] = 344,
-		["424"] = 345,
-		["425"] = 346,
-		["427"] = 349,
-		["428"] = 350,
-		["429"] = 351,
-		["430"] = 352,
-		["432"] = 354,
-		["433"] = 355,
+		["265"] = 232,
+		["266"] = 233,
+		["267"] = 234,
+		["268"] = 235,
+		["269"] = 236,
+		["270"] = 237,
+		["271"] = 238,
+		["272"] = 238,
+		["273"] = 238,
+		["274"] = 238,
+		["275"] = 238,
+		["276"] = 238,
+		["277"] = 238,
+		["281"] = 222,
+		["282"] = 244,
+		["283"] = 245,
+		["284"] = 246,
+		["285"] = 247,
+		["288"] = 250,
+		["289"] = 251,
+		["290"] = 251,
+		["291"] = 251,
+		["292"] = 251,
+		["293"] = 251,
+		["294"] = 252,
+		["295"] = 252,
+		["296"] = 252,
+		["297"] = 252,
+		["298"] = 252,
+		["299"] = 253,
+		["300"] = 253,
+		["301"] = 253,
+		["302"] = 254,
+		["303"] = 255,
+		["304"] = 253,
+		["305"] = 253,
+		["306"] = 257,
+		["307"] = 258,
+		["308"] = 258,
+		["309"] = 258,
+		["310"] = 258,
+		["311"] = 258,
+		["312"] = 258,
+		["313"] = 258,
+		["314"] = 244,
+		["315"] = 261,
+		["316"] = 262,
+		["317"] = 263,
+		["318"] = 264,
+		["321"] = 267,
+		["322"] = 268,
+		["323"] = 269,
+		["324"] = 270,
+		["325"] = 272,
+		["326"] = 273,
+		["327"] = 274,
+		["328"] = 274,
+		["329"] = 274,
+		["330"] = 274,
+		["331"] = 274,
+		["332"] = 274,
+		["333"] = 274,
+		["334"] = 274,
+		["335"] = 274,
+		["336"] = 274,
+		["337"] = 274,
+		["338"] = 274,
+		["339"] = 284,
+		["340"] = 285,
+		["341"] = 285,
+		["342"] = 285,
+		["343"] = 285,
+		["344"] = 285,
+		["345"] = 285,
+		["346"] = 285,
+		["347"] = 285,
+		["348"] = 285,
+		["349"] = 286,
+		["350"] = 286,
+		["351"] = 286,
+		["352"] = 286,
+		["353"] = 286,
+		["354"] = 287,
+		["355"] = 287,
+		["356"] = 287,
+		["357"] = 287,
+		["358"] = 287,
+		["359"] = 287,
+		["360"] = 287,
+		["361"] = 287,
+		["362"] = 287,
+		["363"] = 261,
+		["364"] = 289,
+		["365"] = 290,
+		["366"] = 291,
+		["367"] = 292,
+		["369"] = 294,
+		["370"] = 289,
+		["371"] = 296,
+		["372"] = 297,
+		["373"] = 296,
+		["374"] = 301,
+		["375"] = 302,
+		["376"] = 301,
+		["377"] = 21,
+		["378"] = 13,
+		["379"] = 13,
+		["380"] = 13,
+		["381"] = 13,
+		["382"] = 13,
+		["383"] = 13,
+		["384"] = 13,
+		["385"] = 13,
+		["386"] = 21,
+		["388"] = 21,
+		["389"] = 306,
+		["390"] = 314,
+		["391"] = 306,
+		["392"] = 314,
+		["393"] = 317,
+		["394"] = 318,
+		["395"] = 320,
+		["396"] = 317,
+		["397"] = 322,
+		["398"] = 323,
+		["399"] = 324,
+		["401"] = 322,
+		["402"] = 327,
+		["403"] = 328,
+		["404"] = 327,
+		["405"] = 330,
+		["406"] = 331,
+		["407"] = 330,
+		["408"] = 335,
+		["409"] = 336,
+		["410"] = 337,
+		["411"] = 338,
+		["413"] = 340,
+		["414"] = 335,
+		["415"] = 343,
+		["416"] = 344,
+		["417"] = 343,
+		["418"] = 314,
+		["419"] = 306,
+		["420"] = 306,
+		["421"] = 306,
+		["422"] = 306,
+		["423"] = 306,
+		["424"] = 306,
+		["425"] = 306,
+		["426"] = 306,
+		["427"] = 314,
+		["429"] = 314,
+		["431"] = 349,
+		["432"] = 356,
+		["433"] = 349,
 		["434"] = 356,
-		["436"] = 359,
-		["437"] = 360,
-		["438"] = 361,
-		["439"] = 362,
-		["440"] = 362,
-		["441"] = 362,
-		["442"] = 362,
-		["443"] = 362,
-		["444"] = 362,
-		["445"] = 362,
-		["447"] = 364,
-		["448"] = 364,
-		["449"] = 364,
-		["450"] = 364,
-		["451"] = 364,
-		["452"] = 364,
-		["453"] = 364,
-		["454"] = 364,
-		["455"] = 364,
-		["456"] = 373,
-		["457"] = 373,
-		["458"] = 373,
-		["459"] = 373,
-		["460"] = 373,
-		["461"] = 373,
-		["462"] = 373,
-		["463"] = 325,
-		["464"] = 375,
-		["465"] = 376,
-		["466"] = 375,
-		["467"] = 292,
-		["468"] = 291,
-		["469"] = 292,
-		["471"] = 292,
-		["472"] = 381,
-		["473"] = 389,
-		["474"] = 381,
-		["475"] = 389,
-		["477"] = 389,
-		["478"] = 396,
-		["479"] = 381,
-		["480"] = 397,
-		["481"] = 398,
-		["482"] = 397,
-		["483"] = 400,
-		["484"] = 401,
-		["485"] = 402,
-		["487"] = 400,
-		["488"] = 405,
-		["489"] = 406,
-		["492"] = 407,
-		["493"] = 408,
-		["496"] = 411,
-		["497"] = 412,
-		["498"] = 412,
-		["499"] = 412,
-		["500"] = 412,
-		["501"] = 412,
-		["502"] = 412,
-		["503"] = 412,
-		["504"] = 412,
-		["505"] = 412,
-		["506"] = 413,
-		["507"] = 413,
-		["508"] = 413,
-		["509"] = 413,
-		["510"] = 413,
-		["511"] = 414,
-		["512"] = 414,
-		["513"] = 414,
-		["514"] = 414,
-		["515"] = 414,
-		["516"] = 415,
-		["517"] = 415,
-		["518"] = 415,
-		["519"] = 415,
-		["520"] = 415,
-		["521"] = 416,
+		["435"] = 359,
+		["436"] = 360,
+		["437"] = 361,
+		["438"] = 362,
+		["439"] = 363,
+		["440"] = 363,
+		["441"] = 363,
+		["442"] = 363,
+		["443"] = 363,
+		["444"] = 363,
+		["445"] = 363,
+		["446"] = 363,
+		["447"] = 363,
+		["448"] = 365,
+		["449"] = 365,
+		["450"] = 365,
+		["451"] = 365,
+		["452"] = 365,
+		["453"] = 365,
+		["454"] = 365,
+		["455"] = 365,
+		["457"] = 359,
+		["458"] = 368,
+		["459"] = 369,
+		["460"] = 368,
+		["461"] = 371,
+		["462"] = 372,
+		["463"] = 372,
+		["464"] = 372,
+		["465"] = 372,
+		["466"] = 371,
+		["467"] = 374,
+		["468"] = 375,
+		["469"] = 376,
+		["470"] = 374,
+		["471"] = 378,
+		["472"] = 379,
+		["473"] = 378,
+		["474"] = 356,
+		["475"] = 349,
+		["476"] = 349,
+		["477"] = 349,
+		["478"] = 349,
+		["479"] = 349,
+		["480"] = 349,
+		["481"] = 349,
+		["482"] = 356,
+		["484"] = 356,
+		["485"] = 387,
+		["486"] = 388,
+		["487"] = 387,
+		["488"] = 388,
+		["489"] = 391,
+		["490"] = 392,
+		["491"] = 393,
+		["493"] = 395,
+		["494"] = 396,
+		["495"] = 397,
+		["498"] = 400,
+		["499"] = 401,
+		["500"] = 402,
+		["501"] = 402,
+		["502"] = 402,
+		["503"] = 402,
+		["504"] = 402,
+		["505"] = 402,
+		["506"] = 402,
+		["507"] = 402,
+		["508"] = 402,
+		["509"] = 403,
+		["510"] = 403,
+		["511"] = 404,
+		["512"] = 405,
+		["513"] = 408,
+		["514"] = 409,
+		["515"] = 410,
+		["517"] = 413,
+		["518"] = 413,
+		["519"] = 413,
+		["520"] = 414,
+		["521"] = 415,
 		["522"] = 416,
-		["523"] = 416,
-		["524"] = 416,
-		["525"] = 416,
-		["526"] = 418,
-		["527"] = 419,
-		["528"] = 419,
-		["529"] = 419,
-		["530"] = 419,
-		["531"] = 419,
-		["532"] = 419,
-		["533"] = 419,
-		["534"] = 419,
-		["535"] = 419,
-		["536"] = 420,
-		["537"] = 420,
-		["538"] = 420,
-		["539"] = 420,
-		["540"] = 420,
-		["541"] = 421,
-		["542"] = 421,
-		["543"] = 421,
-		["544"] = 421,
-		["545"] = 421,
-		["546"] = 422,
-		["547"] = 422,
-		["548"] = 422,
-		["549"] = 422,
-		["550"] = 422,
-		["551"] = 423,
-		["552"] = 423,
-		["553"] = 423,
-		["554"] = 423,
-		["555"] = 423,
-		["556"] = 424,
-		["557"] = 424,
-		["558"] = 429,
-		["559"] = 405,
-		["560"] = 431,
-		["561"] = 432,
-		["562"] = 433,
-		["564"] = 434,
-		["565"] = 434,
-		["566"] = 435,
-		["567"] = 436,
-		["568"] = 437,
-		["569"] = 437,
-		["570"] = 437,
-		["571"] = 437,
-		["572"] = 437,
-		["573"] = 437,
-		["574"] = 437,
-		["575"] = 437,
-		["576"] = 437,
-		["577"] = 438,
-		["578"] = 439,
-		["579"] = 440,
-		["580"] = 441,
-		["582"] = 443,
-		["583"] = 444,
-		["584"] = 445,
-		["586"] = 434,
-		["590"] = 449,
-		["593"] = 431,
-		["594"] = 453,
-		["595"] = 454,
-		["596"] = 455,
-		["597"] = 455,
-		["598"] = 454,
-		["599"] = 453,
-		["600"] = 458,
-		["601"] = 459,
-		["602"] = 460,
-		["603"] = 461,
-		["604"] = 462,
-		["605"] = 463,
-		["606"] = 464,
-		["608"] = 466,
-		["611"] = 469,
-		["613"] = 470,
-		["614"] = 470,
-		["615"] = 471,
-		["616"] = 472,
-		["617"] = 473,
-		["618"] = 474,
-		["619"] = 470,
-		["622"] = 476,
-		["624"] = 458,
-		["625"] = 389,
-		["626"] = 381,
-		["627"] = 381,
-		["628"] = 381,
-		["629"] = 381,
-		["630"] = 381,
-		["631"] = 381,
-		["632"] = 381,
-		["633"] = 381,
-		["634"] = 389,
-		["636"] = 389,
-		["638"] = 482,
-		["639"] = 490,
-		["640"] = 482,
-		["641"] = 490,
-		["642"] = 491,
-		["643"] = 492,
-		["644"] = 493,
-		["645"] = 494,
-		["647"] = 491,
-		["648"] = 498,
-		["649"] = 499,
-		["650"] = 500,
-		["651"] = 501,
-		["653"] = 498,
-		["654"] = 504,
-		["655"] = 505,
-		["656"] = 506,
-		["657"] = 507,
-		["659"] = 504,
-		["660"] = 510,
+		["524"] = 418,
+		["525"] = 413,
+		["526"] = 413,
+		["527"] = 391,
+		["528"] = 421,
+		["529"] = 422,
+		["530"] = 423,
+		["531"] = 424,
+		["534"] = 427,
+		["535"] = 428,
+		["536"] = 428,
+		["537"] = 428,
+		["538"] = 428,
+		["539"] = 428,
+		["540"] = 428,
+		["541"] = 428,
+		["542"] = 428,
+		["543"] = 428,
+		["544"] = 429,
+		["545"] = 429,
+		["546"] = 429,
+		["547"] = 429,
+		["548"] = 429,
+		["549"] = 429,
+		["550"] = 429,
+		["551"] = 429,
+		["552"] = 429,
+		["553"] = 430,
+		["554"] = 432,
+		["555"] = 433,
+		["556"] = 433,
+		["557"] = 433,
+		["558"] = 433,
+		["559"] = 433,
+		["560"] = 434,
+		["561"] = 435,
+		["562"] = 437,
+		["563"] = 438,
+		["564"] = 440,
+		["565"] = 441,
+		["566"] = 442,
+		["568"] = 445,
+		["569"] = 446,
+		["570"] = 447,
+		["571"] = 448,
+		["573"] = 450,
+		["574"] = 451,
+		["575"] = 452,
+		["577"] = 455,
+		["578"] = 456,
+		["579"] = 457,
+		["580"] = 458,
+		["581"] = 458,
+		["582"] = 458,
+		["583"] = 458,
+		["584"] = 458,
+		["585"] = 458,
+		["586"] = 458,
+		["588"] = 460,
+		["589"] = 460,
+		["590"] = 460,
+		["591"] = 460,
+		["592"] = 460,
+		["593"] = 460,
+		["594"] = 460,
+		["595"] = 460,
+		["596"] = 460,
+		["597"] = 469,
+		["598"] = 469,
+		["599"] = 469,
+		["600"] = 469,
+		["601"] = 469,
+		["602"] = 469,
+		["603"] = 469,
+		["604"] = 421,
+		["605"] = 471,
+		["606"] = 472,
+		["607"] = 471,
+		["608"] = 388,
+		["609"] = 387,
+		["610"] = 388,
+		["612"] = 388,
+		["613"] = 477,
+		["614"] = 485,
+		["615"] = 477,
+		["616"] = 485,
+		["618"] = 485,
+		["619"] = 492,
+		["620"] = 477,
+		["621"] = 493,
+		["622"] = 494,
+		["623"] = 493,
+		["624"] = 496,
+		["625"] = 497,
+		["626"] = 498,
+		["628"] = 496,
+		["629"] = 501,
+		["630"] = 502,
+		["633"] = 503,
+		["634"] = 504,
+		["637"] = 507,
+		["638"] = 508,
+		["639"] = 508,
+		["640"] = 508,
+		["641"] = 508,
+		["642"] = 508,
+		["643"] = 508,
+		["644"] = 508,
+		["645"] = 508,
+		["646"] = 508,
+		["647"] = 509,
+		["648"] = 509,
+		["649"] = 509,
+		["650"] = 509,
+		["651"] = 509,
+		["652"] = 510,
+		["653"] = 510,
+		["654"] = 510,
+		["655"] = 510,
+		["656"] = 510,
+		["657"] = 511,
+		["658"] = 511,
+		["659"] = 511,
+		["660"] = 511,
 		["661"] = 511,
-		["662"] = 510,
-		["663"] = 513,
-		["664"] = 514,
-		["665"] = 513,
-		["666"] = 490,
-		["667"] = 482,
-		["668"] = 482,
-		["669"] = 482,
-		["670"] = 482,
-		["671"] = 482,
-		["672"] = 482,
-		["673"] = 482,
-		["674"] = 482,
-		["675"] = 490,
-		["677"] = 490,
+		["662"] = 512,
+		["663"] = 512,
+		["664"] = 512,
+		["665"] = 512,
+		["666"] = 512,
+		["667"] = 514,
+		["668"] = 515,
+		["669"] = 515,
+		["670"] = 515,
+		["671"] = 515,
+		["672"] = 515,
+		["673"] = 515,
+		["674"] = 515,
+		["675"] = 515,
+		["676"] = 515,
+		["677"] = 516,
+		["678"] = 516,
+		["679"] = 516,
+		["680"] = 516,
+		["681"] = 516,
+		["682"] = 517,
+		["683"] = 517,
+		["684"] = 517,
+		["685"] = 517,
+		["686"] = 517,
+		["687"] = 518,
+		["688"] = 518,
+		["689"] = 518,
+		["690"] = 518,
+		["691"] = 518,
+		["692"] = 519,
+		["693"] = 519,
+		["694"] = 519,
+		["695"] = 519,
+		["696"] = 519,
+		["697"] = 520,
+		["698"] = 520,
+		["699"] = 525,
+		["700"] = 501,
+		["701"] = 527,
+		["702"] = 528,
+		["703"] = 529,
+		["705"] = 530,
+		["706"] = 530,
+		["707"] = 531,
+		["708"] = 532,
+		["709"] = 533,
+		["710"] = 533,
+		["711"] = 533,
+		["712"] = 533,
+		["713"] = 533,
+		["714"] = 533,
+		["715"] = 533,
+		["716"] = 533,
+		["717"] = 533,
+		["718"] = 534,
+		["719"] = 535,
+		["720"] = 536,
+		["721"] = 537,
+		["723"] = 539,
+		["724"] = 540,
+		["725"] = 541,
+		["727"] = 530,
+		["731"] = 545,
+		["734"] = 527,
+		["735"] = 549,
+		["736"] = 550,
+		["737"] = 551,
+		["738"] = 551,
+		["739"] = 550,
+		["740"] = 549,
+		["741"] = 554,
+		["742"] = 555,
+		["743"] = 556,
+		["744"] = 557,
+		["745"] = 558,
+		["746"] = 559,
+		["747"] = 560,
+		["749"] = 562,
+		["752"] = 565,
+		["754"] = 566,
+		["755"] = 566,
+		["756"] = 567,
+		["757"] = 568,
+		["758"] = 569,
+		["759"] = 570,
+		["760"] = 566,
+		["763"] = 572,
+		["765"] = 554,
+		["766"] = 485,
+		["767"] = 477,
+		["768"] = 477,
+		["769"] = 477,
+		["770"] = 477,
+		["771"] = 477,
+		["772"] = 477,
+		["773"] = 477,
+		["774"] = 477,
+		["775"] = 485,
+		["777"] = 485,
+		["779"] = 578,
+		["780"] = 586,
+		["781"] = 578,
+		["782"] = 586,
+		["783"] = 587,
+		["784"] = 588,
+		["785"] = 589,
+		["786"] = 590,
+		["788"] = 587,
+		["789"] = 594,
+		["790"] = 595,
+		["791"] = 596,
+		["792"] = 597,
+		["794"] = 594,
+		["795"] = 600,
+		["796"] = 601,
+		["797"] = 602,
+		["798"] = 603,
+		["800"] = 600,
+		["801"] = 606,
+		["802"] = 607,
+		["803"] = 606,
+		["804"] = 609,
+		["805"] = 610,
+		["806"] = 609,
+		["807"] = 586,
+		["808"] = 578,
+		["809"] = 578,
+		["810"] = 578,
+		["811"] = 578,
+		["812"] = 578,
+		["813"] = 578,
+		["814"] = 578,
+		["815"] = 578,
+		["816"] = 586,
+		["818"] = 586,
 	}
 )
 local g = {}
@@ -638,6 +762,8 @@ r.name = "modifier_ringmaster_talent"
 d(r, l)
 function r.prototype.____constructor(self, ...)
 	l.prototype.____constructor(self, ...)
+	self.lost_health_pct = 0
+	self.battling = false
 	self.g_delta = 0
 	self.tick = 0.1
 end
@@ -651,11 +777,14 @@ function r.prototype.GetAbilitySpecialValue(self)
 	self.ring_tick = self:GetAbilitySpecialValueFor("ring_tick")
 	self.ring_tick2 = self:GetAbilitySpecialValueFor("ring_tick2")
 	self.ring_poison = self:GetAbilitySpecialValueFor("ring_poison")
+	self.car_chance = self:GetAbilitySpecialValueFor("car_chance")
+	self.poison_reduce = self:GetAbilitySpecialValueFor("poison_reduce")
 	self.tl1_level_factor = self:GetAbilityTalentValue("ringmaster_talent_1", "level_factor")
 	self.tl2_count = self:GetAbilityTalentValue("ringmaster_talent_2", "count")
 	self.tl3_bonus_pct = self:GetAbilityTalentValue("ringmaster_talent_3", "bonus_pct")
 	self.tl5_chance = self:GetAbilityTalentValue("ringmaster_talent_5", "chance")
-	self.s_count = self:GetAbilityTalentValue("ringmaster_shard", "count")
+	self.s_base = self:GetAbilityTalentValue("ringmaster_shard", "base")
+	self.s_duration = self:GetAbilityTalentValue("ringmaster_shard", "duration")
 	local s = IsServer() and PlayerData:getTraitAbility(self:GetParent():GetPlayerOwnerID()) or nil
 	self.g_stack_add = (s and s:GetAbilityName()) == "trait_197" and s:GetSpecialValueFor("stack_add") or 0
 	self.g_stack_lose = (s and s:GetAbilityName()) == "trait_197" and s:GetSpecialValueFor("stack_lose") or 0
@@ -666,17 +795,27 @@ function r.prototype.OnCreated(self, t)
 		self.wheel_record = 0
 		self.wheel_sec_record = 0
 		self:SetStackCount(self:LoadStack())
+		self.damage_hook = self:hook(EOMModifierEvents.MODIFIER_EVENT_ON_TAKEDAMAGE, function(u, v, w, x)
+			if x == self:GetParent() then
+				self:OnCustomTakeDamage(v)
+			end
+		end)
+	end
+end
+function r.prototype.OnDestroy(self)
+	if IsServer() and self.damage_hook ~= nil then
+		self:unhook(self.damage_hook)
 	end
 end
 function r.prototype.LoadStack(self)
-	local u = Rounds:getCurrentRound() * self.round_count
+	local y = Rounds:getCurrentRound() * self.round_count
 	if self.tl1_level_factor > 0 then
-		local v = PlayerData:getHero(self:GetParent():GetPlayerOwnerID())
-		if v then
-			u = u + math.floor(self.tl1_level_factor * v:getLevel())
+		local z = PlayerData:getHero(self:GetParent():GetPlayerOwnerID())
+		if z then
+			y = y + math.floor(self.tl1_level_factor * z:getLevel())
 		end
 	end
-	return math.max(u + self.tl2_count + self.s_count + self.g_delta, 0)
+	return math.max(y + self.tl2_count + self.g_delta, 0)
 end
 function r.prototype.EDeclareEvents(self)
 	return {
@@ -687,35 +826,45 @@ function r.prototype.EDeclareEvents(self)
 	}
 end
 function r.prototype.OnBattleStartBefore(self, t)
-	local w = self:GetParent():GetPlayerOwnerID()
-	local x = PlayerData:loadData(w, "ringmaster_g_delta")
-	if x == nil then
-		x = 0
+	local A = self:GetParent():GetPlayerOwnerID()
+	local B = PlayerData:loadData(A, "ringmaster_g_delta")
+	if B == nil then
+		B = 0
 	end
-	self.g_delta = x
-	local y = self:LoadStack()
+	self.g_delta = B
+	local C = self:LoadStack()
 	self.wheel_record = 0
 	self.wheel_sec_record = 0
-	self:SetStackCount(y)
-	self:GetParent()
-		:AddNewModifier(
+	self:SetStackCount(C)
+	self.lost_health_pct = 0
+	self.battling = false
+	self:GetParent():RemoveModifierByName("modifier_ringmaster_shard_buff")
+	if C >= self.threshold then
+		self:GetParent():AddNewModifier(
 			self:GetParent(),
 			self:GetAbility(),
 			"modifier_ringmaster_talent_souvenir",
-			{ souvenirCount = y }
+			{ souvenirCount = C }
 		)
+	else
+		self:GetParent():RemoveModifierByName("modifier_ringmaster_talent_souvenir")
+	end
 	self:GetParent():SetHealth(self:GetParent():GetMaxHealth())
 end
 function r.prototype.OnBattleStart(self, t)
-	local y = self:GetStackCount()
-	if y >= self.threshold then
+	self.battling = true
+	local C = self:GetStackCount()
+	if C >= self.threshold * 2 then
 		self:WhoopeeCushion()
 	end
-	if y >= self.threshold * 2 then
+	if C >= self.threshold * 3 then
 		self:WonderWheel()
 	end
 end
 function r.prototype.OnBattleEnd(self, t)
+	self.battling = false
+	self.lost_health_pct = 0
+	self:GetParent():RemoveModifierByName("modifier_ringmaster_shard_buff")
 	if self.wheel_particle ~= nil then
 		ParticleManager:DestroyParticle(self.wheel_particle, false)
 	end
@@ -729,35 +878,68 @@ function r.prototype.OnBattleEnd(self, t)
 	if self.parent:IsCustomIllusion() then
 		return
 	end
-	local w = self:GetParent():GetPlayerOwnerID()
-	if t.winPlayerID == w then
+	local A = self:GetParent():GetPlayerOwnerID()
+	if t.winPlayerID == A then
 		self.g_delta = self.g_delta + self.g_stack_add
-		PlayerData:saveData(w, "ringmaster_g_delta", self.g_delta)
+		PlayerData:saveData(A, "ringmaster_g_delta", self.g_delta)
 	else
-		local u = self:GetStackCount()
-		if u >= self.g_stack_lose then
+		local y = self:GetStackCount()
+		if y >= self.g_stack_lose then
 			self.g_delta = self.g_delta - self.g_stack_lose
-			PlayerData:saveData(w, "ringmaster_g_delta", self.g_delta)
+			PlayerData:saveData(A, "ringmaster_g_delta", self.g_delta)
 			GameTimer(0, function()
-				PlayerData:modifyHealth(w, self.g_health_add, false, true)
+				PlayerData:modifyHealth(A, self.g_health_add, false, true)
 			end)
 		end
 	end
 	self:SetStackCount(self:LoadStack())
+end
+function r.prototype.TransferPoison(self)
+	local D = self:GetParent()
+	local E = D:GetEnemy()
+	if self:GetStackCount() < self.threshold * 4 or not IsInjurable(D, E) then
+		return
+	end
+	if not self:PRD(self.car_chance, "car_chance") then
+		return
+	end
+	local C = ReducePoison(D, GetPoison(D) * self.poison_reduce * 0.01)
+	if C > 0 then
+		AddPoison(D, E, C, "ringmaster_talent", "Ability", PoisonFlags.POISON_FLAG_IGNORE_ADJUST)
+	end
+end
+function r.prototype.OnCustomTakeDamage(self, v)
+	local D = self:GetParent()
+	local C = self:GetStackCount()
+	local F = math.max(0, math.min(v.damage, v.original_health - D:GetHealth()))
+	if not self.battling or D:PassivesDisabled() or F <= 0 or not IsInjurable(D) then
+		return
+	end
+	if self.s_base > 0 and C > 0 then
+		self.lost_health_pct = self.lost_health_pct + F / D:GetMaxHealth() * 100
+		local G = self.s_base / C
+		if self.lost_health_pct >= G then
+			self.lost_health_pct = self.lost_health_pct % G
+			D:AddNewModifier(D, self:GetAbility(), "modifier_ringmaster_shard_buff", { duration = self.s_duration })
+		end
+	end
+	if v.damage_type == EOM_DAMAGE_TYPES.DAMAGE_TYPE_POISON then
+		self:TransferPoison()
+	end
 end
 function r.prototype.OnPoisonGained(self, t)
 	if self.tl5_chance > 0 then
 		if t.flag and bit.band(t.flag, PoisonFlags.POISON_FLAG_NO_EXTRA) == PoisonFlags.POISON_FLAG_NO_EXTRA then
 			return
 		end
-		local z = self:GetStackCount() * self.tl5_chance
-		if self:PRD(z, "tl5_chance") then
-			local A = self:GetParent()
-			local B = A:GetEnemy()
-			if IsInjurable(A, B) then
+		local H = self:GetStackCount() * self.tl5_chance
+		if self:PRD(H, "tl5_chance") then
+			local D = self:GetParent()
+			local E = D:GetEnemy()
+			if IsInjurable(D, E) then
 				AddPoison(
-					A,
-					B,
+					D,
+					E,
 					t.iStackCount,
 					"ringmaster_talent_5",
 					"Ability",
@@ -780,63 +962,63 @@ function r.prototype.OnIntervalThink(self)
 		self.wheel_sec_record = self.wheel_sec_record + self.tick
 		if self.wheel_sec_record >= self.ring_tick2 then
 			self.wheel_sec_record = 0
-			local A = self:GetParent()
-			local B = A:GetEnemy()
-			if IsInjurable(A, B) then
-				AddPoison(A, B, self:GetStackCountBonusValue(self.ring_poison), "ringmaster_talent_wheel", "Ability")
+			local D = self:GetParent()
+			local E = D:GetEnemy()
+			if IsInjurable(D, E) then
+				AddPoison(D, E, self:GetStackCountBonusValue(self.ring_poison), "ringmaster_talent_wheel", "Ability")
 			end
 		end
 	end
 end
 function r.prototype.WhoopeeCushion(self)
-	local A = self:GetParent()
-	local B = A:GetEnemy()
-	if not IsInjurable(A, B) then
+	local D = self:GetParent()
+	local E = D:GetEnemy()
+	if not IsInjurable(D, E) then
 		return
 	end
-	local C = ParticleManager:CreateParticle(
+	local I = ParticleManager:CreateParticle(
 		"particles/units/heroes/hero_ringmaster/ringmaster_innate_whoopee_cushion.vpcf",
 		PATTACH_CUSTOMORIGIN,
-		A
+		D
 	)
-	ParticleManager:SetParticleControl(C, 0, B:GetAbsOrigin())
-	ParticleManager:SetParticleControl(C, 1, Vector(200, 0, 0))
+	ParticleManager:SetParticleControl(I, 0, E:GetAbsOrigin())
+	ParticleManager:SetParticleControl(I, 1, Vector(200, 0, 0))
 	GameTimer(1, function()
-		ParticleManager:DestroyParticle(C, false)
-		ParticleManager:ReleaseParticleIndex(C)
+		ParticleManager:DestroyParticle(I, false)
+		ParticleManager:ReleaseParticleIndex(I)
 	end)
-	B:EmitSound("Hero_Ringmaster.WhoopeeCushion.Cast")
-	AddPoison(A, B, self:GetStackCountBonusValue(self.seat_poison), "ringmaster_talent_cushion", "Ability")
+	E:EmitSound("Hero_Ringmaster.WhoopeeCushion.Cast")
+	AddPoison(D, E, self:GetStackCountBonusValue(self.seat_poison), "ringmaster_talent_cushion", "Ability")
 end
 function r.prototype.WonderWheel(self)
-	local A = self:GetParent()
-	local B = A:GetEnemy()
-	if not IsInjurable(A, B) then
+	local D = self:GetParent()
+	local E = D:GetEnemy()
+	if not IsInjurable(D, E) then
 		return
 	end
 	self:StartIntervalThink(self.tick)
-	local D = A:GetAbsOrigin() - B:GetAbsOrigin()
-	D.z = 0
-	D = D:Normalized()
-	local E = B:GetAbsOrigin() + D * -200
-	B:EmitSound("Hero_Ringmaster.FunhouseMirror.Cast")
+	local J = D:GetAbsOrigin() - E:GetAbsOrigin()
+	J.z = 0
+	J = J:Normalized()
+	local K = E:GetAbsOrigin() + J * -200
+	E:EmitSound("Hero_Ringmaster.FunhouseMirror.Cast")
 	self.wheel_dummy = SpawnEntityFromTableSynchronous(
 		"prop_dynamic",
 		{
-			origin = E,
-			model = Wearable:getReplaceUnitModel(A, "models/heroes/ringmaster/ringmaster_wheel_decoy.vmdl"),
+			origin = K,
+			model = Wearable:getReplaceUnitModel(D, "models/heroes/ringmaster/ringmaster_wheel_decoy.vmdl"),
 			StartingAnim = "ACT_DOTA_SPAWN",
 			StartingAnimationLoopMode = "ANIM_LOOP_MODE_USE_SEQUENCE_SETTINGS",
 			IdleAnim = "ACT_DOTA_IDLE",
 			scale = "1",
-			angles = VectorToAngles(D),
+			angles = VectorToAngles(J),
 		}
 	)
 	self.wheel_particle = ParticleManager:CreateParticle(
 		"particles/units/heroes/hero_ringmaster/ringmaster_ult_trap.vpcf",
 		PATTACH_CUSTOMORIGIN,
 		nil,
-		A
+		D
 	)
 	ParticleManager:SetParticleControlEnt(
 		self.wheel_particle,
@@ -858,12 +1040,12 @@ function r.prototype.WonderWheel(self)
 		true
 	)
 end
-function r.prototype.GetStackCountBonusValue(self, F)
-	local y = self:GetStackCount()
+function r.prototype.GetStackCountBonusValue(self, L)
+	local C = self:GetStackCount()
 	if self.tl3_bonus_pct > 0 then
-		y = y * (1 + self.tl3_bonus_pct * 0.01)
+		C = C * (1 + self.tl3_bonus_pct * 0.01)
 	end
-	return F * y
+	return L * C
 end
 function r.prototype.DeclareFunctions(self)
 	return { MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS }
@@ -889,32 +1071,35 @@ r = e(
 )
 g.modifier_ringmaster_talent = r
 g.modifier_ringmaster_talent_souvenir = c()
-local G = g.modifier_ringmaster_talent_souvenir
-G.name = "modifier_ringmaster_talent_souvenir"
-d(G, l)
-function G.prototype.GetAbilitySpecialValue(self)
+local M = g.modifier_ringmaster_talent_souvenir
+M.name = "modifier_ringmaster_talent_souvenir"
+d(M, l)
+function M.prototype.GetAbilitySpecialValue(self)
 	self.water_health = self:GetAbilitySpecialValueFor("water_health")
 	self.tl3_bonus_pct = self:GetAbilityTalentValue("ringmaster_talent_3", "bonus_pct")
 end
-function G.prototype.OnCreated(self, t)
+function M.prototype.OnCreated(self, t)
 	if IsServer() then
 		self:SetStackCount(t and t.souvenirCount or 0)
 	end
 end
-function G.prototype.EDeclareFunctions(self)
+function M.prototype.OnRefresh(self, t)
+	self:OnCreated(t)
+end
+function M.prototype.EDeclareFunctions(self)
 	return { EOMModifierFunction.EOM_MODIFIER_PROPERTY_HEALTH_BONUS }
 end
-function G.prototype.GetStackCountBonusValue(self, F)
-	local y = self:GetStackCount()
+function M.prototype.GetStackCountBonusValue(self, L)
+	local C = self:GetStackCount()
 	if self.tl3_bonus_pct > 0 then
-		y = y * (1 + self.tl3_bonus_pct * 0.01)
+		C = C * (1 + self.tl3_bonus_pct * 0.01)
 	end
-	return F * y
+	return L * C
 end
-function G.prototype.EOM_GetModifierHealthBonus(self, t)
+function M.prototype.EOM_GetModifierHealthBonus(self, t)
 	return self:GetStackCountBonusValue(self.water_health)
 end
-G = e(
+M = e(
 	{
 		m(
 			a,
@@ -928,179 +1113,219 @@ G = e(
 			}
 		),
 	},
-	G
+	M
 )
-g.modifier_ringmaster_talent_souvenir = G
+g.modifier_ringmaster_talent_souvenir = M
+g.modifier_ringmaster_shard_buff = c()
+local N = g.modifier_ringmaster_shard_buff
+N.name = "modifier_ringmaster_shard_buff"
+d(N, l)
+function N.prototype.OnCreated(self)
+	if IsServer() then
+		local D = self:GetParent()
+		local O = ParticleManager:CreateParticle(
+			"particles/units/heroes/hero_ringmaster/ringmaster_escape_act_target.vpcf",
+			PATTACH_ABSORIGIN_FOLLOW,
+			D
+		)
+		ParticleManager:SetParticleControlEnt(O, 0, D, PATTACH_ABSORIGIN_FOLLOW, nil, D:GetAbsOrigin(), true)
+		self:AddParticle(O, false, false, -1, false, false)
+	end
+end
+function N.prototype.DeclareFunctions(self)
+	return { MODIFIER_PROPERTY_MODEL_CHANGE }
+end
+function N.prototype.GetModifierModelChange(self)
+	return Wearable:getReplaceUnitModel(self:GetParent(), "models/heroes/ringmaster/ringmaster_box.vmdl")
+end
+function N.prototype.GetAbilitySpecialValue(self)
+	self.damage_reduce = self:GetAbilityTalentValue("ringmaster_shard", "damage_reduce")
+	self.damage_pct = self:GetAbilityTalentValue("ringmaster_shard", "damage_pct")
+end
+function N.prototype.EFunctionValues(self)
+	return {
+		[EOMModifierFunction.EOM_MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE] = -self.damage_reduce,
+		[EOMModifierFunction.EOM_MODIFIER_PROPERTY_OUTGOING_DAMAGE_PERCENTAGE] = self.damage_pct,
+	}
+end
+N = e(
+	{ m(
+		a,
+		{ IsHidden = false, IsDebuff = false, IsPurgable = false, IsPurgeException = false, AllowIllusionDuplicate = false }
+	) },
+	N
+)
+g.modifier_ringmaster_shard_buff = N
 g.ringmaster_ult = c()
-local H = g.ringmaster_ult
-H.name = "ringmaster_ult"
-d(H, o)
-function H.prototype.OnSpellStart(self)
+local P = g.ringmaster_ult
+P.name = "ringmaster_ult"
+d(P, o)
+function P.prototype.OnSpellStart(self)
 	if self.castingParticleList == nil then
 		self.castingParticleList = {}
 	end
-	local I = self:GetCaster()
-	local B = I:GetEnemy()
-	if not IsInjurable(I, B) then
+	local Q = self:GetCaster()
+	local E = Q:GetEnemy()
+	if not IsInjurable(Q, E) then
 		return
 	end
-	local J = self:GetSpecialValueFor("delay")
-	local C = ParticleManager:CreateParticle(
+	local R = self:GetSpecialValueFor("delay")
+	local I = ParticleManager:CreateParticle(
 		"particles/units/heroes/hero_ringmaster/ringmaster_whip_twirl.vpcf",
 		PATTACH_CUSTOMORIGIN,
-		I
+		Q
 	)
-	ParticleManager:SetParticleControlEnt(C, 0, I, PATTACH_ABSORIGIN_FOLLOW, nil, I:GetAbsOrigin(), true)
-	local K = self.castingParticleList
-	K[#K + 1] = C
-	I:EmitSound("Hero_Ringmaster.Whip.Cast")
-	I:AddNewModifier(I, self, "modifier_ringmaster_ult_cast", { duration = J })
-	local L = I:FindModifierByName("modifier_ringmaster_ult")
-	if IsValid(L) then
-		L:OnCastWhip(B)
+	ParticleManager:SetParticleControlEnt(I, 0, Q, PATTACH_ABSORIGIN_FOLLOW, nil, Q:GetAbsOrigin(), true)
+	local S = self.castingParticleList
+	S[#S + 1] = I
+	Q:EmitSound("Hero_Ringmaster.Whip.Cast")
+	Q:AddNewModifier(Q, self, "modifier_ringmaster_ult_cast", { duration = R })
+	local T = Q:FindModifierByName("modifier_ringmaster_ult")
+	if IsValid(T) then
+		T:OnCastWhip(E)
 	end
-	self:GameTimer(J, function()
-		if ArrayRemove(self.castingParticleList, C) then
-			ParticleManager:DestroyParticle(C, false)
-			ParticleManager:ReleaseParticleIndex(C)
+	self:GameTimer(R, function()
+		if ArrayRemove(self.castingParticleList, I) then
+			ParticleManager:DestroyParticle(I, false)
+			ParticleManager:ReleaseParticleIndex(I)
 		end
 		self:Whip()
 	end)
 end
-function H.prototype.Whip(self)
-	local I = self:GetCaster()
-	local B = I:GetEnemy()
-	if not IsInjurable(I, B) then
+function P.prototype.Whip(self)
+	local Q = self:GetCaster()
+	local E = Q:GetEnemy()
+	if not IsInjurable(Q, E) then
 		return
 	end
-	local C = ParticleManager:CreateParticle(
+	local I = ParticleManager:CreateParticle(
 		"particles/units/heroes/hero_ringmaster/ringmaster_whip.vpcf",
 		PATTACH_CUSTOMORIGIN,
-		I
+		Q
 	)
-	ParticleManager:SetParticleControlEnt(C, 0, I, PATTACH_ABSORIGIN_FOLLOW, nil, I:GetAbsOrigin(), true)
-	ParticleManager:SetParticleControlEnt(C, 1, B, PATTACH_POINT_FOLLOW, "attach_hitloc", B:GetAbsOrigin(), true)
-	ParticleManager:ReleaseParticleIndex(C)
-	local M = ParticleManager:CreateParticle(
+	ParticleManager:SetParticleControlEnt(I, 0, Q, PATTACH_ABSORIGIN_FOLLOW, nil, Q:GetAbsOrigin(), true)
+	ParticleManager:SetParticleControlEnt(I, 1, E, PATTACH_POINT_FOLLOW, "attach_hitloc", E:GetAbsOrigin(), true)
+	ParticleManager:ReleaseParticleIndex(I)
+	local U = ParticleManager:CreateParticle(
 		"particles/units/heroes/hero_ringmaster/ringmaster_whip_crack_impact.vpcf",
 		PATTACH_ABSORIGIN,
-		B,
-		I
+		E,
+		Q
 	)
-	ParticleManager:SetParticleControl(M, 1, Vector(100, 0, 0))
-	ParticleManager:ReleaseParticleIndex(M)
-	I:EmitSound("Hero_Ringmaster.Whip.Target")
-	local N = self:GetSpecialValueFor("damage")
-	local O = self:GetSpecialValueFor("poison_count")
-	local P = self:GetTalentValue("ringmaster_talent_4", "poison_pct")
-	if P > 0 then
-		N = N + GetPoison(B) * P * 0.01
+	ParticleManager:SetParticleControl(U, 1, Vector(100, 0, 0))
+	ParticleManager:ReleaseParticleIndex(U)
+	Q:EmitSound("Hero_Ringmaster.Whip.Target")
+	local V = self:GetSpecialValueFor("damage")
+	local W = self:GetSpecialValueFor("poison_count")
+	local X = self:GetTalentValue("ringmaster_talent_4", "poison_pct")
+	if X > 0 then
+		V = V + GetPoison(E) * X * 0.01
 	end
-	local Q = self:GetTalentValue("ringmaster_talent_6", "stack_value")
-	if Q > 0 then
+	local Y = self:GetTalentValue("ringmaster_talent_6", "stack_value")
+	if Y > 0 then
 		if self.stackCount == nil then
 			self.stackCount = 1
 		end
-		local y = I:GetModifierStackCount("modifier_ringmaster_talent", I) or 0
-		O = O + y * Q * self.stackCount
+		local C = Q:GetModifierStackCount("modifier_ringmaster_talent", Q) or 0
+		W = W + C * Y * self.stackCount
 		self.stackCount = self.stackCount + 1
 	end
-	local R = self:GetTalentValue("ringmaster_talent_7", "duration")
-	if R > 0 then
-		local S = self:GetTalentValue("ringmaster_talent_7", "stack")
-		AddPoisonDeepen(I, B, self, S, R)
+	local Z = self:GetTalentValue("ringmaster_talent_7", "duration")
+	if Z > 0 then
+		local _ = self:GetTalentValue("ringmaster_talent_7", "stack")
+		AddPoisonDeepen(Q, E, self, _, Z)
 	end
 	DamageSystem:dealDamage({
-		attacker = I,
-		target = B,
+		attacker = Q,
+		target = E,
 		ability = self,
-		damage = N,
+		damage = V,
 		damage_type = EOM_DAMAGE_TYPES.DAMAGE_TYPE_MAGICAL,
 		damage_category = DOTA_DAMAGE_CATEGORY_SPELL,
 		damage_flags = DamageFlags.DAMAGE_FLAG_NONE,
 	})
-	AddPoison(I, B, O, "ringmaster_ult", "Ability")
+	AddPoison(Q, E, W, "ringmaster_ult", "Ability")
 end
-function H.prototype.GetIntrinsicModifierName(self)
+function P.prototype.GetIntrinsicModifierName(self)
 	return "modifier_ringmaster_ult"
 end
-H = e({ p(nil) }, H)
-g.ringmaster_ult = H
+P = e({ p(nil) }, P)
+g.ringmaster_ult = P
 g.modifier_ringmaster_ult = c()
-local T = g.modifier_ringmaster_ult
-T.name = "modifier_ringmaster_ult"
-d(T, l)
-function T.prototype.____constructor(self, ...)
+local a0 = g.modifier_ringmaster_ult
+a0.name = "modifier_ringmaster_ult"
+d(a0, l)
+function a0.prototype.____constructor(self, ...)
 	l.prototype.____constructor(self, ...)
 	self.cast_delay = 0.2
 end
-function T.prototype.GetAbilitySpecialValue(self)
+function a0.prototype.GetAbilitySpecialValue(self)
 	self.delay = self:GetAbilitySpecialValueFor("delay")
 end
-function T.prototype.OnCreated(self, t)
+function a0.prototype.OnCreated(self, t)
 	if IsServer() then
 		self.castIDList = {}
 	end
 end
-function T.prototype.OnCastWhip(self, B)
+function a0.prototype.OnCastWhip(self, E)
 	if IsClient() then
 		return
 	end
-	local I = self:GetCaster()
-	if not IsInjurable(I, B) then
+	local Q = self:GetCaster()
+	if not IsInjurable(Q, E) then
 		return
 	end
+	local a1 = ParticleManager:CreateParticle(
+		"particles/ui_mouseactions/range_finder_generic_aoe.vpcf",
+		PATTACH_CUSTOMORIGIN,
+		Q
+	)
+	ParticleManager:SetParticleControlEnt(a1, 0, Q, PATTACH_ABSORIGIN_FOLLOW, nil, Q:GetAbsOrigin(), true)
+	ParticleManager:SetParticleControl(a1, 1, E:GetAbsOrigin())
+	ParticleManager:SetParticleControl(a1, 2, E:GetAbsOrigin())
+	ParticleManager:SetParticleControl(a1, 3, Vector(300, 0, 0))
+	ParticleManager:SetParticleControl(a1, 4, Vector(255, 255, 255))
 	local U = ParticleManager:CreateParticle(
 		"particles/ui_mouseactions/range_finder_generic_aoe.vpcf",
 		PATTACH_CUSTOMORIGIN,
-		I
+		Q
 	)
-	ParticleManager:SetParticleControlEnt(U, 0, I, PATTACH_ABSORIGIN_FOLLOW, nil, I:GetAbsOrigin(), true)
-	ParticleManager:SetParticleControl(U, 1, B:GetAbsOrigin())
-	ParticleManager:SetParticleControl(U, 2, B:GetAbsOrigin())
-	ParticleManager:SetParticleControl(U, 3, Vector(300, 0, 0))
+	ParticleManager:SetParticleControlEnt(U, 0, Q, PATTACH_ABSORIGIN_FOLLOW, nil, Q:GetAbsOrigin(), true)
+	ParticleManager:SetParticleControl(U, 1, E:GetAbsOrigin())
+	ParticleManager:SetParticleControl(U, 2, E:GetAbsOrigin())
+	ParticleManager:SetParticleControl(U, 3, Vector(150, 0, 0))
 	ParticleManager:SetParticleControl(U, 4, Vector(255, 255, 255))
-	local M = ParticleManager:CreateParticle(
-		"particles/ui_mouseactions/range_finder_generic_aoe.vpcf",
-		PATTACH_CUSTOMORIGIN,
-		I
-	)
-	ParticleManager:SetParticleControlEnt(M, 0, I, PATTACH_ABSORIGIN_FOLLOW, nil, I:GetAbsOrigin(), true)
-	ParticleManager:SetParticleControl(M, 1, B:GetAbsOrigin())
-	ParticleManager:SetParticleControl(M, 2, B:GetAbsOrigin())
-	ParticleManager:SetParticleControl(M, 3, Vector(150, 0, 0))
-	ParticleManager:SetParticleControl(M, 4, Vector(255, 255, 255))
-	local V = self.castIDList
-	V[#V + 1] = { id1 = U, id2 = M, time = self.delay + self.cast_delay }
+	local a2 = self.castIDList
+	a2[#a2 + 1] = { id1 = a1, id2 = U, time = self.delay + self.cast_delay }
 	self:StartIntervalThink(FRAME_TIME)
 end
-function T.prototype.OnIntervalThink(self)
+function a0.prototype.OnIntervalThink(self)
 	if IsServer() then
 		if #self.castIDList > 0 then
 			do
-				local W = #self.castIDList - 1
-				while W >= 0 do
-					self.castIDList[W + 1].time = self.castIDList[W + 1].time - FRAME_TIME
-					if self.castIDList[W + 1].time > self.cast_delay then
+				local a3 = #self.castIDList - 1
+				while a3 >= 0 do
+					self.castIDList[a3 + 1].time = self.castIDList[a3 + 1].time - FRAME_TIME
+					if self.castIDList[a3 + 1].time > self.cast_delay then
 						ParticleManager:SetParticleControl(
-							self.castIDList[W + 1].id1,
+							self.castIDList[a3 + 1].id1,
 							3,
 							Vector(
-								Clamp((self.castIDList[W + 1].time - self.cast_delay) * 100, 0, 100) * 150 * 0.01 + 150,
+								Clamp((self.castIDList[a3 + 1].time - self.cast_delay) * 100, 0, 100) * 150 * 0.01 + 150,
 								0,
 								0
 							)
 						)
-					elseif self.castIDList[W + 1].time >= 0 then
-						ParticleManager:DestroyParticle(self.castIDList[W + 1].id1, false)
-						ParticleManager:ReleaseParticleIndex(self.castIDList[W + 1].id1)
-						self.castIDList[W + 1].id1 = -1
+					elseif self.castIDList[a3 + 1].time >= 0 then
+						ParticleManager:DestroyParticle(self.castIDList[a3 + 1].id1, false)
+						ParticleManager:ReleaseParticleIndex(self.castIDList[a3 + 1].id1)
+						self.castIDList[a3 + 1].id1 = -1
 					else
-						ParticleManager:DestroyParticle(self.castIDList[W + 1].id2, false)
-						ParticleManager:ReleaseParticleIndex(self.castIDList[W + 1].id2)
-						table.remove(self.castIDList, W + 1)
+						ParticleManager:DestroyParticle(self.castIDList[a3 + 1].id2, false)
+						ParticleManager:ReleaseParticleIndex(self.castIDList[a3 + 1].id2)
+						table.remove(self.castIDList, a3 + 1)
 					end
-					W = W - 1
+					a3 = a3 - 1
 				end
 			end
 		else
@@ -1108,35 +1333,35 @@ function T.prototype.OnIntervalThink(self)
 		end
 	end
 end
-function T.prototype.EDeclareEvents(self)
+function a0.prototype.EDeclareEvents(self)
 	return { [EOMModifierEvents.MODIFIER_EVENT_ON_BATTLE_END] = { self:GetParent(), self:GetParent() } }
 end
-function T.prototype.OnBattleEnd(self, t)
-	local X = self:GetAbility()
-	if IsValid(X) then
-		if X.castingParticleList then
-			for Y, C in ipairs(X.castingParticleList) do
-				ParticleManager:DestroyParticle(C, false)
-				ParticleManager:ReleaseParticleIndex(C)
+function a0.prototype.OnBattleEnd(self, t)
+	local a4 = self:GetAbility()
+	if IsValid(a4) then
+		if a4.castingParticleList then
+			for a5, I in ipairs(a4.castingParticleList) do
+				ParticleManager:DestroyParticle(I, false)
+				ParticleManager:ReleaseParticleIndex(I)
 			end
-			X.castingParticleList = {}
+			a4.castingParticleList = {}
 		end
 	end
 	if #self.castIDList > 0 then
 		do
-			local W = 0
-			while W < #self.castIDList do
-				ParticleManager:DestroyParticle(self.castIDList[W + 1].id1, false)
-				ParticleManager:ReleaseParticleIndex(self.castIDList[W + 1].id1)
-				ParticleManager:DestroyParticle(self.castIDList[W + 1].id2, false)
-				ParticleManager:ReleaseParticleIndex(self.castIDList[W + 1].id2)
-				W = W + 1
+			local a3 = 0
+			while a3 < #self.castIDList do
+				ParticleManager:DestroyParticle(self.castIDList[a3 + 1].id1, false)
+				ParticleManager:ReleaseParticleIndex(self.castIDList[a3 + 1].id1)
+				ParticleManager:DestroyParticle(self.castIDList[a3 + 1].id2, false)
+				ParticleManager:ReleaseParticleIndex(self.castIDList[a3 + 1].id2)
+				a3 = a3 + 1
 			end
 		end
 		self.castIDList = {}
 	end
 end
-T = e(
+a0 = e(
 	{
 		m(
 			a,
@@ -1150,38 +1375,38 @@ T = e(
 			}
 		),
 	},
-	T
+	a0
 )
-g.modifier_ringmaster_ult = T
+g.modifier_ringmaster_ult = a0
 g.modifier_ringmaster_ult_cast = c()
-local Z = g.modifier_ringmaster_ult_cast
-Z.name = "modifier_ringmaster_ult_cast"
-d(Z, l)
-function Z.prototype.OnCreated(self, t)
+local a6 = g.modifier_ringmaster_ult_cast
+a6.name = "modifier_ringmaster_ult_cast"
+d(a6, l)
+function a6.prototype.OnCreated(self, t)
 	if IsServer() then
 		self:GetParent():StartGesture(ACT_DOTA_CAST_ABILITY_1)
 		self:GetParent():EmitSound("Hero_Ringmaster.Whip.Channel")
 	end
 end
-function Z.prototype.OnRefresh(self, t)
+function a6.prototype.OnRefresh(self, t)
 	if IsServer() then
 		self:GetParent():StartGesture(ACT_DOTA_CAST_ABILITY_1)
 		self:GetParent():EmitSound("Hero_Ringmaster.Whip.Channel")
 	end
 end
-function Z.prototype.OnDestroy(self)
+function a6.prototype.OnDestroy(self)
 	if IsServer() then
 		self:GetParent():StartGesture(ACT_DOTA_CAST_ABILITY_1_END)
 		self:GetParent():StopSound("Hero_Ringmaster.Whip.Channel")
 	end
 end
-function Z.prototype.DeclareFunctions(self)
+function a6.prototype.DeclareFunctions(self)
 	return { MODIFIER_PROPERTY_OVERRIDE_ANIMATION }
 end
-function Z.prototype.GetOverrideAnimation(self)
+function a6.prototype.GetOverrideAnimation(self)
 	return ACT_DOTA_CHANNEL_ABILITY_1
 end
-Z = e(
+a6 = e(
 	{
 		m(
 			a,
@@ -1195,7 +1420,7 @@ Z = e(
 			}
 		),
 	},
-	Z
+	a6
 )
-g.modifier_ringmaster_ult_cast = Z
+g.modifier_ringmaster_ult_cast = a6
 return g

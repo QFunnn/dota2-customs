@@ -105,18 +105,17 @@ g(
 		["100"] = 79,
 		["101"] = 79,
 		["102"] = 81,
-		["104"] = 83,
-		["105"] = 78,
-		["106"] = 38,
+		["104"] = 78,
+		["105"] = 38,
+		["106"] = 31,
 		["107"] = 31,
 		["108"] = 31,
 		["109"] = 31,
 		["110"] = 31,
 		["111"] = 31,
 		["112"] = 31,
-		["113"] = 31,
-		["114"] = 38,
-		["116"] = 38,
+		["113"] = 38,
+		["115"] = 38,
 	}
 )
 local h = {}
@@ -196,9 +195,8 @@ function r.prototype.EDeclareFunctions(self)
 end
 function r.prototype.EOM_GetModifierOutgoingDamagePercentage(self, q)
 	if q and q.ability ~= nil and f(self.regenAbilityList, q.ability:GetAbilityName()) ~= -1 then
-		return self.heal_damage_pct - self.damage_reduce_pct
+		return self.heal_damage_pct
 	end
-	return -self.damage_reduce_pct
 end
 r = e(
 	{ n(

@@ -84,27 +84,29 @@ f(
 		["78"] = 61,
 		["79"] = 72,
 		["80"] = 73,
-		["81"] = 74,
-		["82"] = 75,
-		["83"] = 76,
-		["85"] = 78,
-		["87"] = 80,
-		["88"] = 72,
-		["89"] = 82,
-		["90"] = 83,
-		["91"] = 85,
-		["93"] = 82,
-		["94"] = 19,
-		["95"] = 11,
-		["96"] = 11,
-		["97"] = 11,
+		["81"] = 75,
+		["82"] = 76,
+		["84"] = 78,
+		["85"] = 79,
+		["86"] = 80,
+		["88"] = 82,
+		["90"] = 84,
+		["91"] = 72,
+		["92"] = 86,
+		["93"] = 87,
+		["94"] = 89,
+		["96"] = 86,
+		["97"] = 19,
 		["98"] = 11,
 		["99"] = 11,
 		["100"] = 11,
 		["101"] = 11,
 		["102"] = 11,
-		["103"] = 19,
-		["105"] = 19,
+		["103"] = 11,
+		["104"] = 11,
+		["105"] = 11,
+		["106"] = 19,
+		["108"] = 19,
 	}
 )
 local g = {}
@@ -178,6 +180,9 @@ function o.prototype.OnIntervalThink(self)
 end
 function o.prototype.OnBattleEndStateEnd(self, p)
 	self:StartIntervalThink(-1)
+	if self.state == nil then
+		self.state = PlayerData:getGold(self:GetParent():GetPlayerOwnerID()) <= self.threshold
+	end
 	if self.state and RollPercentage(self.chance) then
 		self.saved_gold = self.gold
 		self:SetStackCount(0)

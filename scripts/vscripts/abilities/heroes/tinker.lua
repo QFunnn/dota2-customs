@@ -45,466 +45,433 @@ j(
 		["34"] = 20,
 		["35"] = 12,
 		["36"] = 20,
-		["38"] = 20,
-		["39"] = 26,
-		["40"] = 12,
-		["41"] = 27,
-		["42"] = 28,
+		["37"] = 25,
+		["38"] = 26,
+		["39"] = 29,
+		["40"] = 25,
+		["41"] = 31,
+		["42"] = 32,
 		["43"] = 31,
-		["44"] = 32,
-		["45"] = 33,
-		["46"] = 27,
-		["47"] = 35,
-		["48"] = 36,
-		["49"] = 35,
+		["44"] = 36,
+		["45"] = 37,
+		["46"] = 37,
+		["47"] = 37,
+		["48"] = 40,
+		["49"] = 40,
 		["50"] = 40,
-		["51"] = 41,
-		["52"] = 41,
-		["53"] = 41,
-		["54"] = 41,
+		["51"] = 37,
+		["52"] = 37,
+		["53"] = 36,
+		["54"] = 44,
 		["55"] = 45,
-		["56"] = 45,
-		["57"] = 45,
-		["58"] = 41,
-		["59"] = 41,
-		["60"] = 40,
-		["61"] = 49,
-		["62"] = 50,
-		["63"] = 51,
-		["64"] = 52,
-		["65"] = 53,
-		["66"] = 55,
-		["67"] = 56,
-		["68"] = 58,
-		["69"] = 59,
-		["70"] = 59,
-		["71"] = 59,
+		["56"] = 46,
+		["57"] = 47,
+		["58"] = 48,
+		["59"] = 50,
+		["60"] = 51,
+		["61"] = 53,
+		["62"] = 54,
+		["63"] = 54,
+		["64"] = 54,
+		["65"] = 55,
+		["66"] = 56,
+		["67"] = 57,
+		["69"] = 54,
+		["70"] = 54,
+		["71"] = 60,
 		["72"] = 60,
-		["73"] = 61,
-		["74"] = 62,
-		["76"] = 59,
-		["77"] = 59,
-		["78"] = 65,
-		["79"] = 65,
-		["80"] = 65,
-		["81"] = 66,
-		["82"] = 67,
-		["83"] = 68,
-		["85"] = 65,
-		["86"] = 65,
-		["87"] = 71,
-		["89"] = 73,
-		["90"] = 74,
-		["91"] = 49,
-		["92"] = 87,
-		["93"] = 88,
-		["94"] = 89,
-		["95"] = 90,
-		["96"] = 91,
-		["97"] = 92,
-		["98"] = 93,
+		["73"] = 60,
+		["74"] = 61,
+		["75"] = 62,
+		["76"] = 63,
+		["78"] = 60,
+		["79"] = 60,
+		["80"] = 66,
+		["82"] = 68,
+		["83"] = 69,
+		["84"] = 44,
+		["85"] = 82,
+		["86"] = 83,
+		["87"] = 84,
+		["88"] = 85,
+		["89"] = 85,
+		["90"] = 85,
+		["91"] = 86,
+		["92"] = 85,
+		["93"] = 85,
+		["95"] = 82,
+		["96"] = 90,
+		["97"] = 91,
+		["98"] = 92,
 		["99"] = 93,
-		["100"] = 93,
-		["101"] = 94,
-		["102"] = 95,
-		["103"] = 96,
-		["105"] = 93,
-		["106"] = 93,
-		["107"] = 99,
-		["108"] = 99,
-		["109"] = 99,
-		["110"] = 100,
-		["111"] = 101,
-		["112"] = 102,
-		["114"] = 99,
-		["115"] = 99,
-		["116"] = 105,
-		["117"] = 87,
-		["118"] = 107,
-		["119"] = 108,
-		["120"] = 109,
-		["121"] = 110,
-		["122"] = 110,
-		["123"] = 110,
-		["124"] = 111,
-		["125"] = 110,
-		["126"] = 110,
-		["128"] = 107,
-		["129"] = 115,
-		["130"] = 116,
-		["131"] = 117,
-		["132"] = 118,
-		["133"] = 119,
-		["136"] = 122,
-		["137"] = 123,
-		["139"] = 125,
-		["140"] = 115,
-		["141"] = 20,
-		["142"] = 12,
-		["143"] = 12,
-		["144"] = 12,
-		["145"] = 12,
-		["146"] = 12,
-		["147"] = 12,
-		["148"] = 12,
-		["149"] = 12,
-		["150"] = 20,
-		["152"] = 20,
-		["154"] = 130,
-		["155"] = 131,
-		["156"] = 130,
-		["157"] = 131,
-		["158"] = 133,
-		["159"] = 134,
-		["160"] = 135,
-		["161"] = 136,
-		["162"] = 137,
-		["163"] = 138,
-		["164"] = 139,
-		["165"] = 140,
-		["166"] = 141,
-		["167"] = 142,
-		["168"] = 143,
-		["169"] = 143,
-		["170"] = 143,
-		["171"] = 144,
-		["172"] = 145,
-		["173"] = 146,
-		["174"] = 147,
-		["176"] = 143,
-		["177"] = 143,
-		["178"] = 133,
-		["179"] = 151,
-		["180"] = 152,
-		["181"] = 153,
-		["182"] = 154,
-		["183"] = 155,
-		["184"] = 156,
-		["185"] = 157,
+		["101"] = 95,
+		["102"] = 90,
+		["103"] = 20,
+		["104"] = 12,
+		["105"] = 12,
+		["106"] = 12,
+		["107"] = 12,
+		["108"] = 12,
+		["109"] = 12,
+		["110"] = 12,
+		["111"] = 12,
+		["112"] = 20,
+		["114"] = 20,
+		["116"] = 100,
+		["117"] = 101,
+		["118"] = 100,
+		["119"] = 101,
+		["120"] = 103,
+		["121"] = 104,
+		["122"] = 105,
+		["123"] = 106,
+		["124"] = 107,
+		["125"] = 108,
+		["126"] = 109,
+		["127"] = 110,
+		["128"] = 111,
+		["129"] = 112,
+		["130"] = 113,
+		["131"] = 113,
+		["132"] = 113,
+		["133"] = 114,
+		["134"] = 115,
+		["135"] = 116,
+		["136"] = 117,
+		["138"] = 113,
+		["139"] = 113,
+		["140"] = 103,
+		["141"] = 121,
+		["142"] = 122,
+		["143"] = 123,
+		["144"] = 124,
+		["145"] = 125,
+		["146"] = 126,
+		["147"] = 127,
+		["148"] = 128,
+		["149"] = 130,
+		["150"] = 131,
+		["151"] = 132,
+		["152"] = 134,
+		["153"] = 135,
+		["154"] = 136,
+		["155"] = 137,
+		["156"] = 139,
+		["157"] = 140,
+		["158"] = 141,
+		["159"] = 141,
+		["160"] = 141,
+		["161"] = 141,
+		["162"] = 141,
+		["163"] = 146,
+		["164"] = 146,
+		["165"] = 146,
+		["166"] = 146,
+		["167"] = 141,
+		["168"] = 147,
+		["169"] = 148,
+		["170"] = 149,
+		["171"] = 150,
+		["172"] = 150,
+		["173"] = 150,
+		["174"] = 150,
+		["175"] = 150,
+		["176"] = 150,
+		["177"] = 150,
+		["178"] = 151,
+		["179"] = 153,
+		["180"] = 154,
+		["182"] = 157,
+		["183"] = 158,
+		["184"] = 158,
+		["185"] = 158,
 		["186"] = 158,
-		["187"] = 160,
-		["188"] = 161,
-		["189"] = 162,
-		["190"] = 164,
-		["191"] = 165,
-		["192"] = 166,
-		["193"] = 167,
-		["194"] = 169,
-		["195"] = 170,
-		["196"] = 171,
-		["197"] = 171,
-		["198"] = 171,
-		["199"] = 171,
-		["200"] = 171,
-		["201"] = 176,
-		["202"] = 176,
-		["203"] = 176,
-		["204"] = 176,
-		["205"] = 171,
-		["206"] = 177,
-		["207"] = 178,
-		["208"] = 179,
-		["209"] = 180,
-		["210"] = 180,
-		["211"] = 180,
-		["212"] = 180,
-		["213"] = 180,
-		["214"] = 180,
-		["215"] = 180,
-		["216"] = 181,
-		["217"] = 183,
-		["218"] = 184,
-		["220"] = 187,
-		["221"] = 188,
-		["222"] = 188,
-		["223"] = 188,
-		["224"] = 188,
-		["225"] = 188,
-		["226"] = 188,
-		["227"] = 188,
-		["229"] = 191,
-		["230"] = 192,
-		["231"] = 192,
-		["232"] = 192,
-		["233"] = 192,
-		["234"] = 192,
-		["235"] = 192,
-		["236"] = 192,
-		["238"] = 194,
-		["239"] = 171,
-		["240"] = 171,
-		["241"] = 197,
-		["242"] = 151,
-		["243"] = 131,
-		["244"] = 130,
-		["245"] = 131,
-		["247"] = 131,
-		["249"] = 206,
-		["250"] = 207,
-		["251"] = 206,
-		["252"] = 207,
-		["253"] = 208,
-		["254"] = 209,
-		["255"] = 208,
-		["256"] = 207,
-		["257"] = 206,
-		["258"] = 207,
-		["260"] = 207,
-		["261"] = 212,
-		["262"] = 220,
-		["263"] = 212,
-		["264"] = 220,
-		["265"] = 224,
-		["266"] = 225,
-		["267"] = 226,
-		["268"] = 227,
-		["269"] = 224,
-		["270"] = 229,
-		["271"] = 230,
-		["272"] = 231,
-		["273"] = 231,
-		["274"] = 230,
-		["275"] = 229,
-		["276"] = 234,
-		["277"] = 235,
-		["278"] = 236,
-		["279"] = 237,
-		["280"] = 238,
-		["281"] = 239,
-		["282"] = 239,
-		["284"] = 240,
-		["285"] = 241,
-		["286"] = 242,
-		["287"] = 243,
-		["288"] = 244,
-		["289"] = 244,
-		["290"] = 244,
-		["291"] = 244,
-		["292"] = 244,
-		["293"] = 244,
-		["294"] = 244,
-		["295"] = 244,
-		["296"] = 244,
-		["297"] = 245,
-		["298"] = 245,
-		["299"] = 245,
-		["300"] = 245,
-		["301"] = 245,
-		["302"] = 245,
-		["303"] = 245,
-		["304"] = 245,
-		["305"] = 245,
-		["306"] = 246,
-		["307"] = 247,
-		["308"] = 248,
-		["309"] = 249,
-		["310"] = 250,
-		["311"] = 250,
-		["312"] = 250,
-		["313"] = 250,
-		["314"] = 251,
-		["315"] = 251,
-		["318"] = 234,
-		["319"] = 259,
-		["320"] = 260,
-		["321"] = 261,
-		["322"] = 262,
-		["323"] = 263,
-		["324"] = 264,
-		["325"] = 265,
-		["326"] = 265,
-		["327"] = 265,
-		["328"] = 265,
-		["329"] = 265,
-		["330"] = 265,
-		["331"] = 266,
-		["334"] = 269,
+		["187"] = 158,
+		["188"] = 158,
+		["189"] = 158,
+		["191"] = 161,
+		["192"] = 162,
+		["193"] = 162,
+		["194"] = 162,
+		["195"] = 162,
+		["196"] = 162,
+		["197"] = 162,
+		["198"] = 162,
+		["200"] = 164,
+		["201"] = 141,
+		["202"] = 141,
+		["203"] = 167,
+		["204"] = 121,
+		["205"] = 101,
+		["206"] = 100,
+		["207"] = 101,
+		["209"] = 101,
+		["211"] = 176,
+		["212"] = 177,
+		["213"] = 176,
+		["214"] = 177,
+		["215"] = 178,
+		["216"] = 179,
+		["217"] = 178,
+		["218"] = 177,
+		["219"] = 176,
+		["220"] = 177,
+		["222"] = 177,
+		["223"] = 182,
+		["224"] = 190,
+		["225"] = 182,
+		["226"] = 190,
+		["227"] = 194,
+		["228"] = 195,
+		["229"] = 196,
+		["230"] = 197,
+		["231"] = 194,
+		["232"] = 199,
+		["233"] = 200,
+		["234"] = 201,
+		["235"] = 201,
+		["236"] = 200,
+		["237"] = 199,
+		["238"] = 204,
+		["239"] = 205,
+		["240"] = 206,
+		["241"] = 207,
+		["242"] = 208,
+		["243"] = 209,
+		["244"] = 209,
+		["246"] = 210,
+		["247"] = 211,
+		["248"] = 212,
+		["249"] = 213,
+		["250"] = 214,
+		["251"] = 214,
+		["252"] = 214,
+		["253"] = 214,
+		["254"] = 214,
+		["255"] = 214,
+		["256"] = 214,
+		["257"] = 214,
+		["258"] = 214,
+		["259"] = 215,
+		["260"] = 215,
+		["261"] = 215,
+		["262"] = 215,
+		["263"] = 215,
+		["264"] = 215,
+		["265"] = 215,
+		["266"] = 215,
+		["267"] = 215,
+		["268"] = 216,
+		["269"] = 217,
+		["270"] = 218,
+		["271"] = 219,
+		["272"] = 220,
+		["273"] = 220,
+		["274"] = 220,
+		["275"] = 220,
+		["276"] = 221,
+		["277"] = 221,
+		["280"] = 204,
+		["281"] = 229,
+		["282"] = 230,
+		["283"] = 231,
+		["284"] = 232,
+		["285"] = 233,
+		["286"] = 234,
+		["287"] = 235,
+		["288"] = 235,
+		["289"] = 235,
+		["290"] = 235,
+		["291"] = 235,
+		["292"] = 235,
+		["293"] = 236,
+		["296"] = 239,
+		["297"] = 240,
+		["299"] = 229,
+		["300"] = 190,
+		["301"] = 182,
+		["302"] = 182,
+		["303"] = 182,
+		["304"] = 182,
+		["305"] = 182,
+		["306"] = 182,
+		["307"] = 182,
+		["308"] = 182,
+		["309"] = 190,
+		["311"] = 190,
+		["313"] = 246,
+		["314"] = 247,
+		["315"] = 246,
+		["316"] = 247,
+		["317"] = 248,
+		["318"] = 249,
+		["319"] = 248,
+		["320"] = 247,
+		["321"] = 246,
+		["322"] = 247,
+		["324"] = 247,
+		["325"] = 252,
+		["326"] = 260,
+		["327"] = 252,
+		["328"] = 260,
+		["329"] = 262,
+		["330"] = 263,
+		["331"] = 262,
+		["332"] = 265,
+		["333"] = 266,
+		["334"] = 265,
 		["335"] = 270,
-		["337"] = 259,
-		["338"] = 220,
-		["339"] = 212,
-		["340"] = 212,
-		["341"] = 212,
-		["342"] = 212,
-		["343"] = 212,
-		["344"] = 212,
-		["345"] = 212,
-		["346"] = 212,
-		["347"] = 220,
-		["349"] = 220,
-		["351"] = 276,
-		["352"] = 277,
-		["353"] = 276,
-		["354"] = 277,
-		["355"] = 278,
-		["356"] = 279,
-		["357"] = 278,
-		["358"] = 277,
-		["359"] = 276,
-		["360"] = 277,
-		["362"] = 277,
-		["363"] = 282,
-		["364"] = 290,
-		["365"] = 282,
-		["366"] = 290,
-		["367"] = 292,
-		["368"] = 293,
-		["369"] = 292,
-		["370"] = 295,
-		["371"] = 296,
-		["372"] = 295,
-		["373"] = 300,
-		["374"] = 301,
-		["375"] = 300,
-		["376"] = 305,
-		["377"] = 307,
-		["378"] = 308,
-		["379"] = 309,
-		["380"] = 310,
-		["381"] = 312,
-		["382"] = 313,
-		["383"] = 313,
-		["384"] = 313,
-		["385"] = 314,
-		["386"] = 315,
-		["387"] = 316,
-		["389"] = 313,
-		["390"] = 313,
-		["391"] = 319,
-		["392"] = 319,
+		["336"] = 271,
+		["337"] = 270,
+		["338"] = 275,
+		["339"] = 277,
+		["340"] = 278,
+		["341"] = 279,
+		["342"] = 280,
+		["343"] = 282,
+		["344"] = 283,
+		["345"] = 283,
+		["346"] = 283,
+		["347"] = 284,
+		["348"] = 285,
+		["349"] = 286,
+		["351"] = 283,
+		["352"] = 283,
+		["353"] = 289,
+		["354"] = 289,
+		["355"] = 289,
+		["356"] = 290,
+		["357"] = 291,
+		["358"] = 292,
+		["360"] = 289,
+		["361"] = 289,
+		["362"] = 296,
+		["363"] = 275,
+		["364"] = 298,
+		["365"] = 299,
+		["366"] = 298,
+		["367"] = 260,
+		["368"] = 252,
+		["369"] = 252,
+		["370"] = 252,
+		["371"] = 252,
+		["372"] = 252,
+		["373"] = 252,
+		["374"] = 252,
+		["375"] = 252,
+		["376"] = 260,
+		["378"] = 260,
+		["380"] = 305,
+		["381"] = 306,
+		["382"] = 305,
+		["383"] = 306,
+		["384"] = 307,
+		["385"] = 308,
+		["386"] = 307,
+		["387"] = 306,
+		["388"] = 305,
+		["389"] = 306,
+		["391"] = 306,
+		["392"] = 311,
 		["393"] = 319,
-		["394"] = 320,
-		["395"] = 321,
-		["396"] = 322,
-		["398"] = 319,
-		["399"] = 319,
-		["400"] = 326,
-		["401"] = 305,
-		["402"] = 328,
-		["403"] = 329,
-		["404"] = 328,
-		["405"] = 290,
-		["406"] = 282,
-		["407"] = 282,
-		["408"] = 282,
-		["409"] = 282,
-		["410"] = 282,
-		["411"] = 282,
-		["412"] = 282,
-		["413"] = 282,
-		["414"] = 290,
-		["416"] = 290,
-		["418"] = 335,
-		["419"] = 336,
-		["420"] = 335,
-		["421"] = 336,
-		["422"] = 337,
-		["423"] = 338,
-		["424"] = 337,
-		["425"] = 336,
-		["426"] = 335,
-		["427"] = 336,
-		["429"] = 336,
-		["430"] = 341,
-		["431"] = 349,
-		["432"] = 341,
-		["433"] = 349,
-		["434"] = 351,
-		["435"] = 352,
-		["436"] = 351,
-		["437"] = 354,
-		["438"] = 355,
-		["439"] = 356,
-		["440"] = 356,
-		["441"] = 355,
-		["442"] = 354,
-		["443"] = 359,
-		["444"] = 360,
-		["445"] = 361,
-		["447"] = 361,
-		["450"] = 359,
-		["451"] = 349,
-		["452"] = 341,
-		["453"] = 341,
-		["454"] = 341,
-		["455"] = 341,
-		["456"] = 341,
-		["457"] = 341,
-		["458"] = 341,
-		["459"] = 341,
-		["460"] = 349,
-		["462"] = 349,
-		["464"] = 367,
-		["465"] = 368,
-		["466"] = 367,
-		["467"] = 368,
-		["468"] = 369,
-		["469"] = 370,
-		["470"] = 369,
-		["471"] = 368,
-		["472"] = 367,
-		["473"] = 368,
-		["475"] = 368,
-		["476"] = 373,
-		["477"] = 381,
-		["478"] = 373,
-		["479"] = 381,
-		["480"] = 385,
-		["481"] = 386,
-		["482"] = 387,
-		["483"] = 385,
-		["484"] = 389,
-		["485"] = 390,
-		["486"] = 389,
-		["487"] = 394,
-		["488"] = 395,
-		["489"] = 394,
+		["394"] = 311,
+		["395"] = 319,
+		["396"] = 321,
+		["397"] = 322,
+		["398"] = 321,
+		["399"] = 324,
+		["400"] = 325,
+		["401"] = 326,
+		["402"] = 326,
+		["403"] = 325,
+		["404"] = 324,
+		["405"] = 329,
+		["406"] = 330,
+		["407"] = 331,
+		["409"] = 331,
+		["412"] = 329,
+		["413"] = 319,
+		["414"] = 311,
+		["415"] = 311,
+		["416"] = 311,
+		["417"] = 311,
+		["418"] = 311,
+		["419"] = 311,
+		["420"] = 311,
+		["421"] = 311,
+		["422"] = 319,
+		["424"] = 319,
+		["426"] = 337,
+		["427"] = 338,
+		["428"] = 337,
+		["429"] = 338,
+		["430"] = 339,
+		["431"] = 340,
+		["432"] = 339,
+		["433"] = 338,
+		["434"] = 337,
+		["435"] = 338,
+		["437"] = 338,
+		["438"] = 343,
+		["439"] = 351,
+		["440"] = 343,
+		["441"] = 351,
+		["442"] = 355,
+		["443"] = 356,
+		["444"] = 357,
+		["445"] = 355,
+		["446"] = 359,
+		["447"] = 360,
+		["448"] = 359,
+		["449"] = 364,
+		["450"] = 365,
+		["451"] = 364,
+		["452"] = 368,
+		["453"] = 369,
+		["454"] = 370,
+		["455"] = 371,
+		["456"] = 372,
+		["457"] = 373,
+		["458"] = 374,
+		["459"] = 376,
+		["460"] = 376,
+		["461"] = 376,
+		["462"] = 376,
+		["463"] = 377,
+		["464"] = 378,
+		["465"] = 379,
+		["466"] = 380,
+		["469"] = 383,
+		["471"] = 384,
+		["472"] = 384,
+		["473"] = 385,
+		["474"] = 384,
+		["477"] = 387,
+		["480"] = 390,
+		["481"] = 368,
+		["482"] = 392,
+		["483"] = 393,
+		["484"] = 394,
+		["485"] = 395,
+		["487"] = 392,
+		["488"] = 398,
+		["489"] = 399,
 		["490"] = 398,
-		["491"] = 399,
-		["492"] = 400,
-		["493"] = 401,
-		["494"] = 402,
+		["491"] = 403,
+		["492"] = 404,
+		["493"] = 405,
 		["495"] = 403,
-		["496"] = 404,
-		["497"] = 406,
-		["498"] = 406,
-		["499"] = 406,
-		["500"] = 406,
-		["501"] = 407,
-		["502"] = 408,
-		["503"] = 409,
-		["504"] = 410,
-		["507"] = 413,
-		["509"] = 414,
-		["510"] = 414,
-		["511"] = 415,
-		["512"] = 414,
-		["515"] = 417,
-		["518"] = 420,
-		["519"] = 398,
-		["520"] = 422,
-		["521"] = 423,
-		["522"] = 424,
-		["523"] = 425,
-		["525"] = 422,
-		["526"] = 428,
-		["527"] = 429,
-		["528"] = 428,
-		["529"] = 433,
-		["530"] = 434,
-		["531"] = 435,
-		["533"] = 433,
-		["534"] = 381,
-		["535"] = 373,
-		["536"] = 373,
-		["537"] = 373,
-		["538"] = 373,
-		["539"] = 373,
-		["540"] = 373,
-		["541"] = 373,
-		["542"] = 373,
-		["543"] = 381,
-		["545"] = 381,
+		["496"] = 351,
+		["497"] = 343,
+		["498"] = 343,
+		["499"] = 343,
+		["500"] = 343,
+		["501"] = 343,
+		["502"] = 343,
+		["503"] = 343,
+		["504"] = 343,
+		["505"] = 351,
+		["507"] = 351,
 	}
 )
 local k = {}
@@ -530,16 +497,9 @@ k.modifier_tinker_talent = c()
 local v = k.modifier_tinker_talent
 v.name = "modifier_tinker_talent"
 d(v, p)
-function v.prototype.____constructor(self, ...)
-	p.prototype.____constructor(self, ...)
-	self.g_n_card_count = 0
-end
 function v.prototype.GetAbilitySpecialValue(self)
 	self.factor = self:GetAbilitySpecialValueFor("factor") + self:GetAbilityTalentValue("tinker_talent_1", "factor")
 	self.s_bonus = self:GetAbilityTalentValue("tinker_shard", "bonus")
-	local w = IsServer() and PlayerData:getTraitAbility(self:GetParent():GetPlayerOwnerID()) or nil
-	self.g_skill_damage_bonus = (w and w:GetAbilityName()) == "trait_199" and w:GetSpecialValueFor("skill_damage_bonus")
-		or 0
 end
 function v.prototype.EDeclareFunctions(self)
 	return { EOMModifierFunction.EOM_MODIFIER_PROPERTY_OUTGOING_DAMAGE_CONSTANT }
@@ -547,75 +507,49 @@ end
 function v.prototype.EDeclareEvents(self)
 	return {
 		[EOMModifierEvents.MODIFIER_EVENT_ON_BATTLE_START_BEFORE] = { -1, -1 },
-		[EOMModifierEvents.MODIFIER_EVENT_ON_BATTLE_START] = { -1, -1 },
 		[EOMModifierEvents.MODIFIER_EVENT_ON_TALENT_LEARN] = { -1, -1 },
 		[EOMModifierEvents.MODIFIER_EVENT_ON_ATTACK_LANDED] = { self:GetParent(), -1 },
 	}
 end
-function v.prototype.OnBattleStartBefore(self, x)
-	local y = 0
-	local z = self:GetParent():GetHeroBase()
-	local A = z:getAbilityUpgradeData(true)
+function v.prototype.OnBattleStartBefore(self, w)
+	local x = 0
+	local y = self:GetParent():GetHeroBase()
+	local z = y:getAbilityUpgradeData(true)
 	if self.s_bonus > 0 then
-		local B = z:getTempAbilityUpgrade()
-		local C = KeyValues.AbilityUpgradesKvs
-		local D = {}
-		h(g(A), function(E, F)
-			local G = C[F] or {}
-			if G.rarity == "sr" and not f(D, F) then
-				D[#D + 1] = F
+		local A = y:getTempAbilityUpgrade()
+		local B = KeyValues.AbilityUpgradesKvs
+		local C = {}
+		h(g(z), function(D, E)
+			local F = B[E] or {}
+			if F.rarity == "sr" and not f(C, E) then
+				C[#C + 1] = E
 			end
 		end)
-		h(g(B), function(E, F)
-			local G = C[F] or {}
-			if G.rarity == "sr" and not f(D, F) then
-				D[#D + 1] = F
+		h(g(A), function(D, E)
+			local F = B[E] or {}
+			if F.rarity == "sr" and not f(C, E) then
+				C[#C + 1] = E
 			end
 		end)
-		y = #D * self.s_bonus
+		x = #C * self.s_bonus
 	end
-	y = y + #g(z:getAbilityUpgradeData(true, true)) * self.factor
-	self:SetStackCount(y)
+	x = x + #g(y:getAbilityUpgradeData(true, true)) * self.factor
+	self:SetStackCount(x)
 end
-function v.prototype.OnBattleStart(self, x)
-	local z = self:GetParent():GetHeroBase()
-	local A = z:getAbilityUpgradeData(true)
-	local B = z:getTempAbilityUpgrade()
-	local C = KeyValues.AbilityUpgradesKvs
-	local H = {}
-	h(g(A), function(E, F)
-		local G = C[F] or {}
-		if G.rarity == "n" and not f(H, F) then
-			H[#H + 1] = F
-		end
-	end)
-	h(g(B), function(E, F)
-		local G = C[F] or {}
-		if G.rarity == "n" and not f(H, F) then
-			H[#H + 1] = F
-		end
-	end)
-	self.g_n_card_count = #H
-end
-function v.prototype.OnTalentLearn(self, x)
-	if x.talentName == "tinker_talent_8" then
-		local I = self:GetParent():GetHeroBase()
-		h(AbilityShop.pickList, function(E, J)
-			I:addSectExp(J, 0)
+function v.prototype.OnTalentLearn(self, w)
+	if w.talentName == "tinker_talent_8" then
+		local G = self:GetParent():GetHeroBase()
+		h(AbilityShop.pickList, function(D, H)
+			G:addSectExp(H, 0)
 		end)
 	end
 end
-function v.prototype.EOM_GetModifierOutgoingDamageConstant(self, x)
-	local K = 0
-	if self.g_skill_damage_bonus > 0 then
-		if x.ability_upgrade and KeyValues.AbilityUpgradesKvs[x.ability_upgrade].rarity == "sr" then
-			K = K + self.g_skill_damage_bonus * self.g_n_card_count
-		end
+function v.prototype.EOM_GetModifierOutgoingDamageConstant(self, w)
+	local I = 0
+	if w.damage_type == EOM_DAMAGE_TYPES.DAMAGE_TYPE_MAGICAL then
+		I = I + self:GetStackCount()
 	end
-	if x.damage_type == EOM_DAMAGE_TYPES.DAMAGE_TYPE_MAGICAL then
-		K = K + self:GetStackCount()
-	end
-	return K
+	return I
 end
 v = e(
 	{
@@ -635,155 +569,155 @@ v = e(
 )
 k.modifier_tinker_talent = v
 k.tinker_ult = c()
-local L = k.tinker_ult
-L.name = "tinker_ult"
-d(L, s)
-function L.prototype.OnSpellStart(self)
-	local M = self:GetCaster()
-	local N = M:GetEnemy()
-	local O = self:GetSpecialValueFor("damage")
-	local P = self:GetSpecialValueFor("count") + self:GetTalentValue("tinker_talent_3", "missile_count")
-	local Q = self:GetSpecialValueFor("interval")
-	M:AddActivityModifier("activity_ult")
-	M:StartGestureWithPlaybackRate(ACT_DOTA_TELEPORT_END, 0.4)
-	M:RemoveActivityModifier("activity_ult")
-	local R = 0
+local J = k.tinker_ult
+J.name = "tinker_ult"
+d(J, s)
+function J.prototype.OnSpellStart(self)
+	local K = self:GetCaster()
+	local L = K:GetEnemy()
+	local M = self:GetSpecialValueFor("damage")
+	local N = self:GetSpecialValueFor("count") + self:GetTalentValue("tinker_talent_3", "missile_count")
+	local O = self:GetSpecialValueFor("interval")
+	K:AddActivityModifier("activity_ult")
+	K:StartGestureWithPlaybackRate(ACT_DOTA_TELEPORT_END, 0.4)
+	K:RemoveActivityModifier("activity_ult")
+	local P = 0
 	self:GameTimer(0, function()
-		if R < P then
-			R = R + 1
-			self:Launch(N)
-			return Q
+		if P < N then
+			P = P + 1
+			self:Launch(L)
+			return O
 		end
 	end)
 end
-function L.prototype.Launch(self, N)
-	local M = self:GetCaster()
-	local S = M:GetAttachmentPosition("attach_ambient")
-	local O = self:GetSpecialValueFor("damage")
-	local T = self:GetSpecialValueFor("level_factor")
-	local U = self:GetTalentValue("tinker_talent_2", "chance")
-	local V = self:GetTalentValue("tinker_talent_2", "mana_regen")
-	local W = self:GetTalentValue("tinker_talent_7", "missile_damage")
-	local X = self:GetTalentValue("tinker_talent_9", "damage_per_stack")
-	local Y = self:GetTalentValue("tinker_talent_9", "max_stack")
+function J.prototype.Launch(self, L)
+	local K = self:GetCaster()
+	local Q = K:GetAttachmentPosition("attach_ambient")
+	local M = self:GetSpecialValueFor("damage")
+	local R = self:GetSpecialValueFor("level_factor")
+	local S = self:GetTalentValue("tinker_talent_2", "chance")
+	local T = self:GetTalentValue("tinker_talent_2", "mana_regen")
+	local U = self:GetTalentValue("tinker_talent_7", "missile_damage")
+	local V = self:GetTalentValue("tinker_talent_9", "damage_per_stack")
+	local W = self:GetTalentValue("tinker_talent_9", "max_stack")
 	self.tinker_talent_9_record = self.tinker_talent_9_record or 0
-	local Z = self:GetTalentValue("tinker_talent_11", "chance")
-	local _ = self:GetTalentValue("tinker_talent_11", "injury")
-	local a0 = self:GetTalentValue("tinker_talent_12", "chance")
-	local a1 = self:GetTalentValue("tinker_talent_12", "damage_pct")
-	local a2 = PlayerData:getHero(M:GetPlayerOwnerID())
-	local a3 = a2 ~= nil and a2:getLevel() or 1
+	local X = self:GetTalentValue("tinker_talent_11", "chance")
+	local Y = self:GetTalentValue("tinker_talent_11", "injury")
+	local Z = self:GetTalentValue("tinker_talent_12", "chance")
+	local _ = self:GetTalentValue("tinker_talent_12", "damage_pct")
+	local a0 = PlayerData:getHero(K:GetPlayerOwnerID())
+	local a1 = a0 ~= nil and a0:getLevel() or 1
 	Projectile:CreateTrackingProjectile({
 		EffectName = "particles/units/heroes/hero_tinker/tinker_missile.vpcf",
-		hCaster = M,
-		hTarget = N,
+		hCaster = K,
+		hTarget = L,
 		iMoveSpeed = 600,
-		vSpawnOrigin = S + Vector(RandomInt(-150, 150), RandomInt(-150, 150), 0),
-		OnProjectileHit = function(N, a4, a5)
-			local a6 = O + a3 * T + W + math.min(Y, self.tinker_talent_9_record) * X
-			local a7 = self:HasTalent("tinker_talent_10") and DamageFlags.DAMAGE_FLAG_NO_EVASION
+		vSpawnOrigin = Q + Vector(RandomInt(-150, 150), RandomInt(-150, 150), 0),
+		OnProjectileHit = function(L, a2, a3)
+			local a4 = M + a1 * R + U + math.min(W, self.tinker_talent_9_record) * V
+			local a5 = self:HasTalent("tinker_talent_10") and DamageFlags.DAMAGE_FLAG_NO_EVASION
 				or DamageFlags.DAMAGE_FLAG_NONE
-			M:DealDamage(N, self, a6, EOM_DAMAGE_TYPES.DAMAGE_TYPE_PHYSICAL, a7)
-			EmitSoundOnLocationWithCaster(a4, "Hero_Tinker.Heat-Seeking_Missile.Impact", M)
-			if U > 0 and self:PRD(U, "talent_2_chance") then
-				Restore(M, V, true)
+			K:DealDamage(L, self, a4, EOM_DAMAGE_TYPES.DAMAGE_TYPE_PHYSICAL, a5)
+			EmitSoundOnLocationWithCaster(a2, "Hero_Tinker.Heat-Seeking_Missile.Impact", K)
+			if S > 0 and self:PRD(S, "talent_2_chance") then
+				Restore(K, T, true)
 			end
-			if Z > 0 and self:PRD(Z, "talent_11_chance") then
-				AddInjury(M, N, _, "tinker_talent_11", "Ability")
+			if X > 0 and self:PRD(X, "talent_11_chance") then
+				AddInjury(K, L, Y, "tinker_talent_11", "Ability")
 			end
-			if a0 > 0 and self:PRD(a0, "talent_12_chance") then
-				M:DealDamage(N, self, a6 * a1 * 0.01, EOM_DAMAGE_TYPES.DAMAGE_TYPE_MAGICAL, a7)
+			if Z > 0 and self:PRD(Z, "talent_12_chance") then
+				K:DealDamage(L, self, a4 * _ * 0.01, EOM_DAMAGE_TYPES.DAMAGE_TYPE_MAGICAL, a5)
 			end
 			self.tinker_talent_9_record = self.tinker_talent_9_record + 1
 		end,
 	})
-	M:EmitSound("Hero_Tinker.Heat-Seeking_Missile")
+	K:EmitSound("Hero_Tinker.Heat-Seeking_Missile")
 end
-L = e({ t(nil) }, L)
-k.tinker_ult = L
+J = e({ t(nil) }, J)
+k.tinker_ult = J
 k.tinker_talent_4 = c()
-local a8 = k.tinker_talent_4
-a8.name = "tinker_talent_4"
-d(a8, m)
-function a8.prototype.GetIntrinsicModifierName(self)
+local a6 = k.tinker_talent_4
+a6.name = "tinker_talent_4"
+d(a6, m)
+function a6.prototype.GetIntrinsicModifierName(self)
 	return "modifier_tinker_talent_4"
 end
-a8 = e({ n(nil) }, a8)
-k.tinker_talent_4 = a8
+a6 = e({ n(nil) }, a6)
+k.tinker_talent_4 = a6
 k.modifier_tinker_talent_4 = c()
-local a9 = k.modifier_tinker_talent_4
-a9.name = "modifier_tinker_talent_4"
-d(a9, p)
-function a9.prototype.GetAbilitySpecialValue(self)
+local a7 = k.modifier_tinker_talent_4
+a7.name = "modifier_tinker_talent_4"
+d(a7, p)
+function a7.prototype.GetAbilitySpecialValue(self)
 	self.stack = self:GetAbilitySpecialValueFor("stack")
 	self.damage = self:GetAbilitySpecialValueFor("damage")
 	self.timer = {}
 end
-function a9.prototype.EDeclareEvents(self)
+function a7.prototype.EDeclareEvents(self)
 	return { [EOMModifierEvents.MODIFIER_EVENT_ON_TAKEDAMAGE] = { self:GetParent(), -1 } }
 end
-function a9.prototype.OnCustomTakeDamage(self, aa)
-	if self.stack > 0 and aa.damage_type == EOM_DAMAGE_TYPES.DAMAGE_TYPE_PHYSICAL then
+function a7.prototype.OnCustomTakeDamage(self, a8)
+	if self.stack > 0 and a8.damage_type == EOM_DAMAGE_TYPES.DAMAGE_TYPE_PHYSICAL then
 		self:IncrementStackCount()
 		if self:GetStackCount() >= self.stack then
 			self:SetStackCount(0)
 			if #self.timer == 0 then
 				self:StartIntervalThink(0)
 			end
-			local ab = self:GetParent()
-			local ac = GameRules:GetGameTime()
-			local ad = 0.15
-			local ae = ParticleManager:CreateParticle(
+			local a9 = self:GetParent()
+			local aa = GameRules:GetGameTime()
+			local ab = 0.15
+			local ac = ParticleManager:CreateParticle(
 				"particles/units/heroes/hero_tinker/tinker_laser.vpcf",
 				PATTACH_CUSTOMORIGIN,
-				ab
+				a9
 			)
 			ParticleManager:SetParticleControlEnt(
-				ae,
+				ac,
 				9,
-				ab,
+				a9,
 				PATTACH_POINT_FOLLOW,
 				"attach_attack2",
 				vec3_invalid,
 				false
 			)
 			ParticleManager:SetParticleControlEnt(
-				ae,
+				ac,
 				1,
-				aa.target,
+				a8.target,
 				PATTACH_POINT_FOLLOW,
 				"attach_hitloc",
 				vec3_invalid,
 				false
 			)
-			ParticleManager:ReleaseParticleIndex(ae)
-			EmitSoundOn("Hero_Tinker.Laser", ab)
-			EmitSoundOn("Hero_Tinker.LaserImpact", aa.target)
-			ab:ForcePlayActivityOnce(ACT_DOTA_CAST_ABILITY_1)
-			ab:StartGestureWithPlaybackRate(
+			ParticleManager:ReleaseParticleIndex(ac)
+			EmitSoundOn("Hero_Tinker.Laser", a9)
+			EmitSoundOn("Hero_Tinker.LaserImpact", a8.target)
+			a9:ForcePlayActivityOnce(ACT_DOTA_CAST_ABILITY_1)
+			a9:StartGestureWithPlaybackRate(
 				ACT_DOTA_CAST_ABILITY_1,
-				ab:GetAttackSpeed(false) * ab:GetBaseAttackTime(false) * 1.25
+				a9:GetAttackSpeed(false) * a9:GetBaseAttackTime(false) * 1.25
 			)
-			local af = self.timer
-			af[#af + 1] = { flExpireTime = ac + ad, hTarget = aa.target, flDamage = self.damage }
+			local ad = self.timer
+			ad[#ad + 1] = { flExpireTime = aa + ab, hTarget = a8.target, flDamage = self.damage }
 		end
 	end
 end
-function a9.prototype.OnIntervalThink(self)
-	local ab = self:GetParent()
-	local ac = GameRules:GetGameTime()
-	for ag = #self.timer, 1, -1 do
-		local ah = self.timer[ag]
-		if ac >= ah.flExpireTime then
-			ab:DealDamage(ah.hTarget, self:GetAbility(), ah.flDamage, EOM_DAMAGE_TYPES.DAMAGE_TYPE_MAGICAL)
-			table.remove(self.timer, ag)
+function a7.prototype.OnIntervalThink(self)
+	local a9 = self:GetParent()
+	local aa = GameRules:GetGameTime()
+	for ae = #self.timer, 1, -1 do
+		local af = self.timer[ae]
+		if aa >= af.flExpireTime then
+			a9:DealDamage(af.hTarget, self:GetAbility(), af.flDamage, EOM_DAMAGE_TYPES.DAMAGE_TYPE_MAGICAL)
+			table.remove(self.timer, ae)
 		end
 	end
 	if #self.timer == 0 then
 		self:StartIntervalThink(-1)
 	end
 end
-a9 = e(
+a7 = e(
 	{
 		q(
 			a,
@@ -797,53 +731,97 @@ a9 = e(
 			}
 		),
 	},
-	a9
+	a7
 )
-k.modifier_tinker_talent_4 = a9
+k.modifier_tinker_talent_4 = a7
 k.tinker_talent_5 = c()
-local ai = k.tinker_talent_5
-ai.name = "tinker_talent_5"
-d(ai, m)
-function ai.prototype.GetIntrinsicModifierName(self)
+local ag = k.tinker_talent_5
+ag.name = "tinker_talent_5"
+d(ag, m)
+function ag.prototype.GetIntrinsicModifierName(self)
 	return "modifier_tinker_talent_5"
 end
-ai = e({ n(nil) }, ai)
-k.tinker_talent_5 = ai
+ag = e({ n(nil) }, ag)
+k.tinker_talent_5 = ag
 k.modifier_tinker_talent_5 = c()
-local aj = k.modifier_tinker_talent_5
-aj.name = "modifier_tinker_talent_5"
-d(aj, p)
-function aj.prototype.GetAbilitySpecialValue(self)
+local ah = k.modifier_tinker_talent_5
+ah.name = "modifier_tinker_talent_5"
+d(ah, p)
+function ah.prototype.GetAbilitySpecialValue(self)
 	self.damage_bonus = self:GetAbilitySpecialValueFor("damage_bonus")
 end
-function aj.prototype.EDeclareFunctions(self)
+function ah.prototype.EDeclareFunctions(self)
 	return { EOMModifierFunction.EOM_MODIFIER_PROPERTY_OUTGOING_DAMAGE_PERCENTAGE }
 end
-function aj.prototype.EDeclareEvents(self)
+function ah.prototype.EDeclareEvents(self)
 	return { [EOMModifierEvents.MODIFIER_EVENT_ON_BATTLE_START_BEFORE] = { -1, -1 } }
 end
-function aj.prototype.OnBattleStartBefore(self, x)
-	local z = self:GetParent():GetHeroBase()
-	local A = z:getAbilityUpgradeData(true)
-	local B = z:getTempAbilityUpgrade()
-	local C = KeyValues.AbilityUpgradesKvs
-	local D = {}
-	h(g(A), function(E, F)
-		local G = C[F] or {}
-		if G.rarity == "sr" and not f(D, F) then
-			D[#D + 1] = F
+function ah.prototype.OnBattleStartBefore(self, w)
+	local y = self:GetParent():GetHeroBase()
+	local z = y:getAbilityUpgradeData(true)
+	local A = y:getTempAbilityUpgrade()
+	local B = KeyValues.AbilityUpgradesKvs
+	local C = {}
+	h(g(z), function(D, E)
+		local F = B[E] or {}
+		if F.rarity == "sr" and not f(C, E) then
+			C[#C + 1] = E
 		end
 	end)
-	h(g(B), function(E, F)
-		local G = C[F] or {}
-		if G.rarity == "sr" and not f(D, F) then
-			D[#D + 1] = F
+	h(g(A), function(D, E)
+		local F = B[E] or {}
+		if F.rarity == "sr" and not f(C, E) then
+			C[#C + 1] = E
 		end
 	end)
-	self:SetStackCount(#D)
+	self:SetStackCount(#C)
 end
-function aj.prototype.EOM_GetModifierOutgoingDamagePercentage(self)
+function ah.prototype.EOM_GetModifierOutgoingDamagePercentage(self)
 	return self.damage_bonus * self:GetStackCount()
+end
+ah = e(
+	{
+		q(
+			a,
+			{
+				IsHidden = true,
+				IsDebuff = false,
+				IsPurgable = false,
+				IsPurgeException = false,
+				AllowIllusionDuplicate = false,
+				GetPriority = MODIFIER_PRIORITY_LOW,
+			}
+		),
+	},
+	ah
+)
+k.modifier_tinker_talent_5 = ah
+k.tinker_talent_6 = c()
+local ai = k.tinker_talent_6
+ai.name = "tinker_talent_6"
+d(ai, m)
+function ai.prototype.GetIntrinsicModifierName(self)
+	return "modifier_tinker_talent_6"
+end
+ai = e({ n(nil) }, ai)
+k.tinker_talent_6 = ai
+k.modifier_tinker_talent_6 = c()
+local aj = k.modifier_tinker_talent_6
+aj.name = "modifier_tinker_talent_6"
+d(aj, p)
+function aj.prototype.GetAbilitySpecialValue(self)
+	self.chance = self:GetAbilitySpecialValueFor("chance")
+end
+function aj.prototype.EDeclareEvents(self)
+	return { [EOMModifierEvents.MODIFIER_EVENT_ON_TAKEDAMAGE] = { self:GetParent(), -1 } }
+end
+function aj.prototype.OnCustomTakeDamage(self, a8)
+	if self.chance > 0 and a8.damage_type == EOM_DAMAGE_TYPES.DAMAGE_TYPE_PHYSICAL and self:PRD(self.chance) then
+		local ak = self:GetParent():FindAbilityByName("tinker_ult")
+		if ak ~= nil then
+			ak:Launch(a8.target)
+		end
+	end
 end
 aj = e(
 	{
@@ -861,118 +839,74 @@ aj = e(
 	},
 	aj
 )
-k.modifier_tinker_talent_5 = aj
-k.tinker_talent_6 = c()
-local ak = k.tinker_talent_6
-ak.name = "tinker_talent_6"
-d(ak, m)
-function ak.prototype.GetIntrinsicModifierName(self)
-	return "modifier_tinker_talent_6"
-end
-ak = e({ n(nil) }, ak)
-k.tinker_talent_6 = ak
-k.modifier_tinker_talent_6 = c()
-local al = k.modifier_tinker_talent_6
-al.name = "modifier_tinker_talent_6"
-d(al, p)
-function al.prototype.GetAbilitySpecialValue(self)
-	self.chance = self:GetAbilitySpecialValueFor("chance")
-end
-function al.prototype.EDeclareEvents(self)
-	return { [EOMModifierEvents.MODIFIER_EVENT_ON_TAKEDAMAGE] = { self:GetParent(), -1 } }
-end
-function al.prototype.OnCustomTakeDamage(self, aa)
-	if self.chance > 0 and aa.damage_type == EOM_DAMAGE_TYPES.DAMAGE_TYPE_PHYSICAL and self:PRD(self.chance) then
-		local am = self:GetParent():FindAbilityByName("tinker_ult")
-		if am ~= nil then
-			am:Launch(aa.target)
-		end
-	end
-end
-al = e(
-	{
-		q(
-			a,
-			{
-				IsHidden = true,
-				IsDebuff = false,
-				IsPurgable = false,
-				IsPurgeException = false,
-				AllowIllusionDuplicate = false,
-				GetPriority = MODIFIER_PRIORITY_LOW,
-			}
-		),
-	},
-	al
-)
-k.modifier_tinker_talent_6 = al
+k.modifier_tinker_talent_6 = aj
 k.tinker_talent_8 = c()
-local an = k.tinker_talent_8
-an.name = "tinker_talent_8"
-d(an, m)
-function an.prototype.GetIntrinsicModifierName(self)
+local al = k.tinker_talent_8
+al.name = "tinker_talent_8"
+d(al, m)
+function al.prototype.GetIntrinsicModifierName(self)
 	return "modifier_tinker_talent_8"
 end
-an = e({ n(nil) }, an)
-k.tinker_talent_8 = an
+al = e({ n(nil) }, al)
+k.tinker_talent_8 = al
 k.modifier_tinker_talent_8 = c()
-local ao = k.modifier_tinker_talent_8
-ao.name = "modifier_tinker_talent_8"
-d(ao, p)
-function ao.prototype.GetAbilitySpecialValue(self)
+local am = k.modifier_tinker_talent_8
+am.name = "modifier_tinker_talent_8"
+d(am, p)
+function am.prototype.GetAbilitySpecialValue(self)
 	self.exp_reduce = self:GetAbilitySpecialValueFor("exp_reduce")
 	self.count = self:GetAbilitySpecialValueFor("count")
 end
-function ao.prototype.AddCustomTransmitterData(self)
+function am.prototype.AddCustomTransmitterData(self)
 	return { tl8_list = self.tl8_list }
 end
-function ao.prototype.HandleCustomTransmitterData(self, ap)
-	self.tl8_list = ap.tl8_list
+function am.prototype.HandleCustomTransmitterData(self, an)
+	self.tl8_list = an.tl8_list
 end
-function ao.prototype.loadDataTl8(self)
-	local aq = self:GetParent():GetPlayerOwnerID()
-	local ar = PlayerData:loadData(aq, "tinker_talent_8")
-	local as = PlayerData:getplayerData(aq)
-	if as then
-		if ar == nil then
-			local at = {}
-			local au = as.bannedSect and i(AbilityShop.pickList, function(E, av)
-				return av ~= as.bannedSect
+function am.prototype.loadDataTl8(self)
+	local ao = self:GetParent():GetPlayerOwnerID()
+	local ap = PlayerData:loadData(ao, "tinker_talent_8")
+	local aq = PlayerData:getplayerData(ao)
+	if aq then
+		if ap == nil then
+			local ar = {}
+			local as = aq.bannedSect and i(AbilityShop.pickList, function(D, at)
+				return at ~= aq.bannedSect
 			end) or AbilityShop.pickList
-			while #at < self.count do
-				local aw = au[RandomInt(0, #au - 1) + 1]
-				if not f(at, aw) then
-					at[#at + 1] = aw
+			while #ar < self.count do
+				local au = as[RandomInt(0, #as - 1) + 1]
+				if not f(ar, au) then
+					ar[#ar + 1] = au
 				end
 			end
-			ar = {}
+			ap = {}
 			do
-				local ag = 0
-				while ag < #at do
-					ar[at[ag + 1]] = true
-					ag = ag + 1
+				local ae = 0
+				while ae < #ar do
+					ap[ar[ae + 1]] = true
+					ae = ae + 1
 				end
 			end
-			PlayerData:saveData(aq, "tinker_talent_8", ar)
+			PlayerData:saveData(ao, "tinker_talent_8", ap)
 		end
 	end
-	self.tl8_list = ar
+	self.tl8_list = ap
 end
-function ao.prototype.OnCreated(self, x)
+function am.prototype.OnCreated(self, w)
 	if IsServer() then
 		self:loadDataTl8()
 		self:SetHasCustomTransmitterData(true)
 	end
 end
-function ao.prototype.EDeclareFunctions(self)
+function am.prototype.EDeclareFunctions(self)
 	return { EOMModifierFunction.EOM_MODIFIER_PROPERTY_SECT_EXP_REDUCE }
 end
-function ao.prototype.EOM_GetModifierSectExpReduce(self, x)
-	if x and x.sect and self.tl8_list ~= nil and self.tl8_list[x.sect] then
+function am.prototype.EOM_GetModifierSectExpReduce(self, w)
+	if w and w.sect and self.tl8_list ~= nil and self.tl8_list[w.sect] then
 		return self.exp_reduce
 	end
 end
-ao = e(
+am = e(
 	{
 		q(
 			a,
@@ -986,7 +920,7 @@ ao = e(
 			}
 		),
 	},
-	ao
+	am
 )
-k.modifier_tinker_talent_8 = ao
+k.modifier_tinker_talent_8 = am
 return k

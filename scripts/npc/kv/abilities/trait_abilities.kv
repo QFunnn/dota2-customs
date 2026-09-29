@@ -107,9 +107,8 @@
 		"AppearCondition"						"command_sect,sect_regen"
 		"AbilityValues"
 		{
-			"heal_pct"							"15"
-			"heal_damage_pct"					"120"
-			"damage_reduce_pct"					"40"
+			"heal_pct"							"20"
+			"heal_damage_pct"					"30"
 		}
 	}
 	"trait_17"
@@ -185,6 +184,7 @@
 		"AbilityTextureName"					"rune_reward"
 		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"Round"									"1"
+		"CustomGainGold"						"100"
 		"AppearCondition"						"no_city,city_1"
 		"Type"									"1"
 		"AbilityValues"
@@ -361,7 +361,7 @@
 		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"repeatKey"								"trait_74"
 		"Round"									"11"
-		"CustomRefresh"							"5"
+		"CustomRefresh"							"10"
 		"AppearCondition"						"sect_lv,2"
 		"Type"									"2"
 		"AbilityValues"
@@ -380,7 +380,7 @@
 		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"repeatKey"								"trait_78"
 		"Round"									"11"
-		"CustomRefresh"							"10"
+		"CustomRefresh"							"5"
 		"AppearCondition"						"sect_lv,2"
 		"Type"									"2"
 		"AbilityValues"
@@ -444,6 +444,7 @@
 		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"Round"									"1"
 		"CustomGainGold"						"200"
+		"CustomRefresh"							"5"
 		"AbilityValues"
 		{
 			"mana"								"4"
@@ -478,6 +479,7 @@
 			"count"								"6"
 			"count2"							"1"
 			"sect_none_add_cnt"					"1"
+			"limit"								"15"
 		}
 	}
 	"trait_96"
@@ -505,7 +507,6 @@
 		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"Round"									"1"
 		"CustomGainGold"						"100"
-		"CustomRefresh"							"5"
 		"Type"									"3"
 		"AbilityValues"
 		{
@@ -541,6 +542,7 @@
 		"AbilityValues"
 		{
 			"count"								"1"
+			"round"								"1"
 		}
 	}
 	"trait_106"
@@ -552,6 +554,7 @@
 		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"repeatKey"								"expedition"
 		"Round"									"1"
+		"CustomRefresh"							"5"
 		"Type"									"1"
 		"AbilityValues"
 		{
@@ -628,7 +631,7 @@
 		"Type"									"1"
 		"AbilityValues"
 		{
-			"count"								"150 200 400 800 1600"
+			"count"								"200 300 600 1200 2400"
 			"gold"								"50 100 150 200 300"
 		}
 	}
@@ -662,6 +665,20 @@
 		"AbilityValues"
 		{
 			"gold"								"200"
+		}
+	}
+	"trait_123"
+	{
+		"Note"									"风暴之力"
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/trait/trait_123"
+		"AbilityTextureName"					"rune_reward"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Round"									"1"
+		"Type"									"1"
+		"AbilityValues"
+		{
+			"count"								"5"
 		}
 	}
 	"trait_130"
@@ -716,6 +733,7 @@
 		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"Round"									"11"
 		"CustomGainGold"						"100"
+		"CustomRefresh"							"5"
 		"AppearCondition"						"trait,158"
 		"Type"									"3"
 		"AbilityValues"
@@ -925,6 +943,7 @@
 		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"Round"									"11"
 		"CustomGainGold"						"100"
+		"CustomRefresh"							"5"
 		"AppearCondition"						"trait,158"
 		"Type"									"3"
 		"AbilityValues"
@@ -1040,6 +1059,7 @@
 		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"Round"									"11"
 		"CustomGainGold"						"100"
+		"CustomRefresh"							"5"
 		"AppearCondition"						"trait,158"
 		"Type"									"3"
 		"AbilityValues"
@@ -1102,7 +1122,7 @@
 		"Type"									"4"
 		"AbilityValues"
 		{
-			"attack_speed"						"30"
+			"attack_speed"						"45"
 			"chance"							"25"
 			"damage"							"100"
 			"extra_gold"						"30"
@@ -1137,7 +1157,7 @@
 		{
 			"sect_count"						"8"
 			"max_reward_level"					"3"
-			"gold"								"400"
+			"gold"								"300"
 			"health"							"4"
 			"ability_count"						"4"
 		}
@@ -1166,7 +1186,7 @@
 		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"Round"									"1"
 		"CustomGainGold"						"100"
-		"CustomRefresh"							"5"
+		"CustomRefresh"							"10"
 		"Type"									"3"
 		"AbilityValues"
 		{
@@ -1182,7 +1202,7 @@
 		"Sect"									"sect_health"
 		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"Round"									"11"
-		"CustomRefresh"							"5"
+		"CustomRefresh"							"10"
 		"AppearCondition"						"command_sect,sect_health"
 		"Type"									"2"
 		"AbilityValues"
@@ -1289,6 +1309,7 @@
 		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"Round"									"1"
 		"CustomGainGold"						"100"
+		"CustomRefresh"							"10"
 		"Type"									"2"
 		"AbilityValues"
 		{
@@ -1417,7 +1438,7 @@
 		"Type"									"2"
 		"AbilityValues"
 		{
-			"stack"								"30"
+			"stack"								"20"
 			"count"								"3"
 			"r_count"							"1"
 		}
@@ -1449,6 +1470,7 @@
 		"Sect"									"sect_chaos"
 		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"Round"									"1"
+		"CustomRefresh"							"5"
 		"AppearCondition"						"command_sect,sect_chaos"
 		"Type"									"2"
 		"AbilityValues"
@@ -1549,13 +1571,12 @@
 		"Sect"									"sect_crit"
 		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"Round"									"11"
-		"CustomGainGold"						"100"
-		"CustomRefresh"							"5"
+		"CustomRefresh"							"10"
 		"Type"									"2"
 		"AbilityValues"
 		{
 			"chance"							"40"
-			"damage_bonus_pct"					"80"
+			"damage_bonus_pct"					"100"
 		}
 	}
 	"trait_188"
@@ -1633,6 +1654,7 @@
 		"AbilityTextureName"					"rune_reward"
 		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"Round"									"11"
+		"CustomGainGold"						"100"
 		"CustomRefresh"							"5"
 		"AppearCondition"						"hero,broodmother"
 		"Type"									"2"
@@ -1668,6 +1690,7 @@
 		"AbilityTextureName"					"rune_reward"
 		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"Round"									"1"
+		"CustomRefresh"							"5"
 		"AppearCondition"						"hero,ancient_apparition"
 		"Type"									"2"
 		"AbilityValues"
@@ -1682,14 +1705,14 @@
 		"ScriptFile"							"abilities/trait/trait_199"
 		"AbilityTextureName"					"rune_reward"
 		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"Round"									"11"
+		"Round"									"1"
 		"CustomGainGold"						"200"
 		"CustomRefresh"							"5"
 		"AppearCondition"						"hero,tinker"
 		"Type"									"2"
 		"AbilityValues"
 		{
-			"skill_damage_bonus"				"5"
+			"count"								"1"
 		}
 	}
 	"trait_200"

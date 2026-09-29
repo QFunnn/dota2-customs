@@ -39,43 +39,56 @@ f(
 		["27"] = 17,
 		["28"] = 18,
 		["29"] = 19,
-		["31"] = 21,
+		["31"] = 22,
 		["32"] = 23,
 		["33"] = 24,
 		["34"] = 25,
-		["35"] = 26,
-		["36"] = 27,
-		["39"] = 30,
-		["40"] = 31,
-		["42"] = 10,
-		["43"] = 38,
-		["44"] = 39,
-		["45"] = 40,
+		["35"] = 31,
+		["36"] = 32,
+		["39"] = 10,
+		["40"] = 37,
+		["41"] = 37,
+		["42"] = 37,
+		["44"] = 38,
+		["45"] = 39,
 		["46"] = 40,
-		["48"] = 41,
-		["49"] = 42,
-		["50"] = 43,
-		["51"] = 44,
+		["49"] = 43,
+		["50"] = 44,
+		["53"] = 47,
 		["54"] = 47,
-		["55"] = 38,
-		["56"] = 6,
-		["57"] = 5,
-		["58"] = 6,
-		["60"] = 6,
-		["61"] = 51,
-		["62"] = 58,
-		["63"] = 51,
-		["64"] = 58,
-		["65"] = 58,
-		["66"] = 51,
-		["67"] = 51,
-		["68"] = 51,
-		["69"] = 51,
-		["70"] = 51,
-		["71"] = 51,
+		["55"] = 47,
+		["56"] = 48,
+		["57"] = 47,
+		["58"] = 47,
+		["59"] = 37,
+		["60"] = 51,
+		["61"] = 52,
+		["62"] = 53,
+		["63"] = 53,
+		["65"] = 54,
+		["66"] = 55,
+		["67"] = 56,
+		["68"] = 57,
+		["71"] = 60,
 		["72"] = 51,
-		["73"] = 58,
-		["75"] = 58,
+		["73"] = 6,
+		["74"] = 5,
+		["75"] = 6,
+		["77"] = 6,
+		["78"] = 64,
+		["79"] = 71,
+		["80"] = 64,
+		["81"] = 71,
+		["82"] = 71,
+		["83"] = 64,
+		["84"] = 64,
+		["85"] = 64,
+		["86"] = 64,
+		["87"] = 64,
+		["88"] = 64,
+		["89"] = 64,
+		["90"] = 71,
+		["92"] = 71,
 	}
 )
 local g = {}
@@ -102,47 +115,61 @@ function n.prototype.Spawn(self)
 			local s = r.artifacts[1]
 			PlayerData:removeArtifact(p, s, false)
 		end
-		o:AddItemByName(q)
 		local t = self:GetPreviousNeutralWinCount(p)
-		if t > 0 then
-			local u = o:FindModifierByName("modifier_item_artifact_146")
-			if u then
-				u:SetStackCount(u:GetStackCount() + t)
-			end
-		end
+		o:AddItemByName(q)
 		PlayerData:addArtifact(p, q, false)
 		FireModifierEvent(
 			EOMModifierEvents.MODIFIER_EVENT_ON_SELECT_ARTIFACT,
 			{ playerID = p, artifact = q, gift = true },
 			o
 		)
-	end
-end
-function n.prototype.GetPreviousNeutralWinCount(self, p)
-	local v = CombatLog.roundMatchInfo[p]
-	if not v then
-		return 0
-	end
-	local w = 0
-	for x, y in pairs(v) do
-		if (string.find(y.enemy, "N_", nil, true) or 0) - 1 == 0 and y.isWinner == true then
-			w = w + 1
+		if t > 0 then
+			self:GrantPreviousNeutralWinCount(o, t)
 		end
 	end
-	return w
+end
+function n.prototype.GrantPreviousNeutralWinCount(self, o, u, v)
+	if v == nil then
+		v = 10
+	end
+	local w = IsValid(o) and o:FindModifierByName("modifier_item_artifact_146") or nil
+	if w then
+		w:SetStackCount(w:GetStackCount() + u)
+		return
+	end
+	if v <= 0 then
+		print(("<!><E> trait_188: modifier_item_artifact_146 not found, lost " .. tostring(u)) .. " neutral win points")
+		return
+	end
+	GameTimer(0, function()
+		self:GrantPreviousNeutralWinCount(o, u, v - 1)
+	end)
+end
+function n.prototype.GetPreviousNeutralWinCount(self, p)
+	local x = CombatLog.roundMatchInfo[p]
+	if not x then
+		return 0
+	end
+	local u = 0
+	for y, z in pairs(x) do
+		if (string.find(z.enemy, "N_", nil, true) or 0) - 1 == 0 and z.isWinner == true then
+			u = u + 1
+		end
+	end
+	return u
 end
 n = e({ j(nil) }, n)
 g.trait_188 = n
 g.modifier_trait_188 = c()
-local z = g.modifier_trait_188
-z.name = "modifier_trait_188"
-d(z, l)
-z = e(
+local A = g.modifier_trait_188
+A.name = "modifier_trait_188"
+d(A, l)
+A = e(
 	{ m(
 		a,
 		{ IsHidden = true, IsDebuff = false, IsPurgable = false, IsPurgeException = false, AllowIllusionDuplicate = false }
 	) },
-	z
+	A
 )
-g.modifier_trait_188 = z
+g.modifier_trait_188 = A
 return g

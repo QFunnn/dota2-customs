@@ -34,7 +34,7 @@
 			{
 				m_nType = "PF_TYPE_LITERAL"
 				m_nMapType = "PF_MAP_TYPE_DIRECT"
-				m_flLiteralValue = 3.0
+				m_flLiteralValue = 15.0
 				m_NamedValue = ""
 				m_nControlPoint = 0
 				m_nScalarAttribute = 3
@@ -272,7 +272,7 @@
 			{
 				m_nType = "PF_TYPE_LITERAL"
 				m_nMapType = "PF_MAP_TYPE_DIRECT"
-				m_flLiteralValue = 3500.0
+				m_flLiteralValue = 5555.0
 				m_NamedValue = ""
 				m_nControlPoint = 0
 				m_nScalarAttribute = 3
@@ -1121,32 +1121,32 @@
 						{
 							x = 0.0
 							y = 0.0
-							m_flSlopeIncoming = 6.227027
-							m_flSlopeOutgoing = 6.227027
+							m_flSlopeIncoming = 1.556757
+							m_flSlopeOutgoing = 1.556757
 						},
 						{
 							x = 0.025951
-							y = 0.1616
-							m_flSlopeIncoming = 11.52
-							m_flSlopeOutgoing = 11.52
+							y = 0.0404
+							m_flSlopeIncoming = 2.88
+							m_flSlopeOutgoing = 2.88
 						},
 						{
 							x = 0.096792
-							y = 1.0
+							y = 0.25
 							m_flSlopeIncoming = 0.0
 							m_flSlopeOutgoing = 0.0
 						},
 						{
 							x = 0.187972
-							y = 0.202
-							m_flSlopeIncoming = -3.2
-							m_flSlopeOutgoing = -3.2
+							y = 0.0505
+							m_flSlopeIncoming = -0.8
+							m_flSlopeOutgoing = -0.8
 						},
 						{
 							x = 0.3
 							y = 0.0
-							m_flSlopeIncoming = -0.454234
-							m_flSlopeOutgoing = -0.454234
+							m_flSlopeIncoming = -0.113559
+							m_flSlopeOutgoing = -0.113559
 						},
 					]
 					m_tangents = 
@@ -1173,10 +1173,116 @@
 						},
 					]
 					m_vDomainMins = [ 0.0, 0.0 ]
-					m_vDomainMaxs = [ 0.3, 1.0 ]
+					m_vDomainMaxs = [ 0.3, 0.25 ]
 				}
 			}
 			m_nSetMethod = "PARTICLE_SET_SCALE_INITIAL_VALUE"
+		},
+		{
+			_class = "C_OP_SetFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_PARTICLE_AGE"
+				m_nMapType = "PF_MAP_TYPE_CURVE"
+				m_flLiteralValue = 0.0
+				m_NamedValue = ""
+				m_nControlPoint = 0
+				m_nScalarAttribute = 3
+				m_nVectorAttribute = 6
+				m_nVectorComponent = 0
+				m_bReverseOrder = false
+				m_flRandomMin = 0.0
+				m_flRandomMax = 1.0
+				m_bHasRandomSignFlip = false
+				m_nRandomSeed = -1
+				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+				m_strSnapshotSubset = ""
+				m_flLOD0 = 0.0
+				m_flLOD1 = 0.0
+				m_flLOD2 = 0.0
+				m_flLOD3 = 0.0
+				m_nNoiseInputVectorAttribute = 0
+				m_flNoiseOutputMin = 0.0
+				m_flNoiseOutputMax = 1.0
+				m_flNoiseScale = 0.1
+				m_vecNoiseOffsetRate = [ 0.0, 0.0, 0.0 ]
+				m_flNoiseOffset = 0.0
+				m_nNoiseOctaves = 1
+				m_nNoiseTurbulence = "PF_NOISE_TURB_NONE"
+				m_nNoiseType = "PF_NOISE_TYPE_PERLIN"
+				m_nNoiseModifier = "PF_NOISE_MODIFIER_NONE"
+				m_flNoiseTurbulenceScale = 1.0
+				m_flNoiseTurbulenceMix = 0.5
+				m_flNoiseImgPreviewScale = 1.0
+				m_bNoiseImgPreviewLive = true
+				m_flNoCameraFallback = 0.0
+				m_bUseBoundsCenter = false
+				m_nInputMode = "PF_INPUT_MODE_CLAMPED"
+				m_flMultFactor = 1.0
+				m_flInput0 = 0.0
+				m_flInput1 = 1.0
+				m_flOutput0 = 0.0
+				m_flOutput1 = 1.0
+				m_flNotchedRangeMin = 0.0
+				m_flNotchedRangeMax = 1.0
+				m_flNotchedOutputOutside = 0.0
+				m_flNotchedOutputInside = 1.0
+				m_nRoundType = "PF_ROUND_TYPE_NEAREST"
+				m_nBiasType = "PF_BIAS_TYPE_STANDARD"
+				m_flBiasParameter = 0.0
+				m_Curve = 
+				{
+					m_spline = 
+					[
+						{
+							x = 0.0
+							y = 0.0
+							m_flSlopeIncoming = 14.023698
+							m_flSlopeOutgoing = 14.023698
+						},
+						{
+							x = 0.071308
+							y = 1.0
+							m_flSlopeIncoming = 0.0
+							m_flSlopeOutgoing = 0.0
+						},
+						{
+							x = 0.139109
+							y = 0.30704
+							m_flSlopeIncoming = -2.732651
+							m_flSlopeOutgoing = -2.732651
+						},
+						{
+							x = 0.5
+							y = 0.0
+							m_flSlopeIncoming = -0.13627
+							m_flSlopeOutgoing = -0.13627
+						},
+					]
+					m_tangents = 
+					[
+						{
+							m_nIncomingTangent = "CURVE_TANGENT_SPLINE"
+							m_nOutgoingTangent = "CURVE_TANGENT_SPLINE"
+						},
+						{
+							m_nIncomingTangent = "CURVE_TANGENT_FREE"
+							m_nOutgoingTangent = "CURVE_TANGENT_MIRROR"
+						},
+						{
+							m_nIncomingTangent = "CURVE_TANGENT_FREE"
+							m_nOutgoingTangent = "CURVE_TANGENT_MIRROR"
+						},
+						{
+							m_nIncomingTangent = "CURVE_TANGENT_FREE"
+							m_nOutgoingTangent = "CURVE_TANGENT_MIRROR"
+						},
+					]
+					m_vDomainMins = [ 0.0, 0.0 ]
+					m_vDomainMaxs = [ 0.5, 1.0 ]
+				}
+			}
+			m_nOutputField = 7
 		},
 	]
 	m_ForceGenerators = [  ]
@@ -1733,13 +1839,13 @@
 				}
 			}
 			m_bOnlyRenderInEffectsBloomPass = true
-			m_flMaxLength = 888.0
-			m_flMinLength = 168.0
+			m_flMaxLength = 444.0
+			m_flMinLength = 88.0
 			m_flLengthFadeInTime = 1.0
 		},
 		{
 			_class = "C_OP_RenderTrails"
-			m_flMaxLength = 888.0
+			m_flMaxLength = 444.0
 			m_flLengthFadeInTime = 1.0
 			m_flRadiusScale = 
 			{
@@ -2289,7 +2395,7 @@
 					m_vDomainMaxs = [ 0.0, 0.0 ]
 				}
 			}
-			m_flMinLength = 168.0
+			m_flMinLength = 88.0
 		},
 	]
 }

@@ -936,9 +936,9 @@ function K.prototype.OnPrepare(self, s)
 	PlayerData:saveData(L, "undying_talent_4", N + 1)
 end
 function K.prototype.EDeclareFunctions(self)
-	return { EOMModifierFunction.EOM_MODIFIER_PROPERTY_HEALTH_BONUS }
+	return { EOMModifierFunction.EOM_MODIFIER_PROPERTY_HEALTH_BASE }
 end
-function K.prototype.EOM_GetModifierHealthBonus(self, s)
+function K.prototype.EOM_GetModifierHealthBase(self, s)
 	return self.bonus_hp * self:GetStackCount()
 end
 K = e(

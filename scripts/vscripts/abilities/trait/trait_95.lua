@@ -41,82 +41,90 @@ i(
 		["30"] = 20,
 		["31"] = 13,
 		["32"] = 20,
-		["33"] = 25,
-		["34"] = 26,
-		["35"] = 27,
-		["36"] = 28,
-		["37"] = 29,
-		["38"] = 30,
-		["40"] = 25,
-		["41"] = 33,
-		["42"] = 34,
-		["43"] = 35,
-		["44"] = 35,
-		["45"] = 34,
-		["46"] = 33,
+		["33"] = 27,
+		["34"] = 28,
+		["35"] = 29,
+		["36"] = 30,
+		["37"] = 31,
+		["38"] = 32,
+		["39"] = 33,
+		["40"] = 34,
+		["42"] = 27,
+		["43"] = 37,
+		["44"] = 38,
+		["45"] = 39,
+		["46"] = 39,
 		["47"] = 38,
-		["48"] = 39,
-		["51"] = 42,
-		["52"] = 43,
-		["53"] = 44,
-		["54"] = 44,
-		["55"] = 45,
-		["56"] = 46,
-		["57"] = 47,
-		["58"] = 48,
-		["59"] = 49,
-		["60"] = 50,
-		["61"] = 51,
-		["62"] = 51,
-		["63"] = 51,
-		["64"] = 51,
-		["66"] = 53,
-		["67"] = 54,
-		["69"] = 56,
-		["70"] = 57,
-		["71"] = 58,
-		["72"] = 59,
-		["73"] = 60,
-		["74"] = 61,
-		["75"] = 62,
-		["76"] = 63,
-		["77"] = 64,
-		["78"] = 68,
+		["48"] = 37,
+		["49"] = 42,
+		["50"] = 43,
+		["53"] = 46,
+		["54"] = 47,
+		["55"] = 48,
+		["56"] = 48,
+		["57"] = 49,
+		["58"] = 50,
+		["59"] = 51,
+		["60"] = 52,
+		["61"] = 53,
+		["62"] = 54,
+		["63"] = 55,
+		["64"] = 55,
+		["65"] = 55,
+		["66"] = 55,
+		["68"] = 57,
+		["69"] = 58,
+		["71"] = 60,
+		["72"] = 61,
+		["73"] = 62,
+		["74"] = 63,
+		["75"] = 64,
+		["76"] = 65,
+		["77"] = 66,
+		["78"] = 67,
 		["79"] = 68,
 		["80"] = 68,
 		["81"] = 68,
 		["82"] = 68,
-		["83"] = 69,
-		["84"] = 69,
-		["85"] = 69,
-		["86"] = 69,
-		["87"] = 69,
-		["88"] = 69,
-		["89"] = 69,
-		["90"] = 70,
-		["91"] = 70,
-		["92"] = 70,
-		["93"] = 70,
-		["94"] = 70,
-		["95"] = 70,
-		["96"] = 70,
-		["97"] = 70,
+		["83"] = 68,
+		["84"] = 72,
+		["85"] = 72,
+		["86"] = 72,
+		["87"] = 72,
+		["88"] = 72,
+		["89"] = 73,
+		["92"] = 74,
+		["93"] = 75,
+		["94"] = 75,
+		["95"] = 75,
+		["96"] = 75,
+		["97"] = 75,
 		["98"] = 75,
 		["99"] = 75,
-		["100"] = 75,
-		["101"] = 75,
-		["102"] = 75,
-		["107"] = 38,
-		["108"] = 20,
-		["109"] = 13,
-		["110"] = 13,
-		["111"] = 13,
-		["112"] = 13,
-		["113"] = 13,
-		["114"] = 13,
-		["115"] = 13,
-		["116"] = 20,
+		["100"] = 76,
+		["101"] = 76,
+		["102"] = 76,
+		["103"] = 76,
+		["104"] = 76,
+		["105"] = 76,
+		["106"] = 76,
+		["107"] = 76,
+		["108"] = 81,
+		["109"] = 81,
+		["110"] = 81,
+		["111"] = 81,
+		["112"] = 81,
+		["117"] = 42,
 		["118"] = 20,
+		["119"] = 13,
+		["120"] = 13,
+		["121"] = 13,
+		["122"] = 13,
+		["123"] = 13,
+		["124"] = 13,
+		["125"] = 13,
+		["126"] = 20,
+		["128"] = 20,
 	}
 )
 local j = {}
@@ -143,15 +151,17 @@ function r.prototype.GetAbilitySpecialValue(self)
 	self.count = self:GetAbilitySpecialValueFor("count")
 	self.count2 = self:GetAbilitySpecialValueFor("count2")
 	self.sect_none_add_cnt = self:GetAbilitySpecialValueFor("sect_none_add_cnt")
+	self.limit = self:GetAbilitySpecialValueFor("limit")
 	if IsServer() then
-		self.record = 0
+		self.record = self.record or 0
+		self.reward_count = self.reward_count or 0
 	end
 end
 function r.prototype.EDeclareEvents(self)
 	return { [EOMModifierEvents.MODIFIER_EVENT_ON_ABILITY_LEARN] = { self:GetParent(), -1 } }
 end
 function r.prototype.OnAbilityLearn(self, s)
-	if s.ignoreKey == "trait_95" then
+	if s.ignoreKey == "trait_95" or self.reward_count >= self.limit then
 		return
 	end
 	local t = self:GetParent():GetPlayerOwnerID()
@@ -179,12 +189,20 @@ function r.prototype.OnAbilityLearn(self, s)
 			local D = PlayerData:getplayerData(t)
 			local E = D.hero
 			if E then
-				local F = AbilityShop:getRandomAbility(t, self.count2, { specifySect = A, isAbilityShop = false })
+				local F = AbilityShop:getRandomAbility(
+					t,
+					math.min(self.count2, self.limit - self.reward_count),
+					{ specifySect = A, isAbilityShop = false }
+				)
 				for G, H in ipairs(F) do
 					local I
 					local J
 					J = H.aid
 					I = H.rarity
+					if self.reward_count >= self.limit then
+						break
+					end
+					self.reward_count = self.reward_count + 1
 					E:learnAbility(J, true, nil, nil, "trait_95")
 					Notification:combatToPlayer(
 						t,

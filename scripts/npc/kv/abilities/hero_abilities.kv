@@ -363,6 +363,7 @@
 				"chaos_knight_talent_9"			"bonus_chance"
 			}
 			"heal_pct"							"150"
+			"attack_speed"						"40"
 		}
 	}
 	"chaos_knight_ult"
@@ -1043,7 +1044,7 @@
 		{
 			"interval"
 			{
-				"value"							"0.5"
+				"value"							"0.4"
 				"legion_commander_talent_3"		"-cooldown_reduce"
 			}
 			"shield"
@@ -1051,7 +1052,7 @@
 				"value"							"6"
 				"_ulti"							"1"
 			}
-			"duration"							"4"
+			"duration"							"3.2"
 		}
 	}
 	"keeper_of_light_talent"
@@ -1532,9 +1533,20 @@
 				"value"							"0.8"
 				"lich_talent_5"					"-tick_reduce"
 			}
-			"damage"							"30"
+			"damage"
+			{
+				"value"							"30"
+				"_ulti"							"1"
+			}
 			"duration"							"2.4"
 			"ice"								"180"
+			"limit_stack"						"5"
+			"reduce_damage"						"2"
+			"damage_add"
+			{
+				"value"							"10"
+				"_ulti"							"1"
+			}
 		}
 	}
 	"lich_ult"
@@ -2789,13 +2801,15 @@
 		"AbilityValues"
 		{
 			"round_count"						"1"
-			"threshold"							"9"
+			"threshold"							"5"
 			"water_health"						"20"
 			"seat_poison"						"10"
 			"ring_poison"						"4"
 			"ring_tick"							"6"
 			"ring_count"						"1"
 			"ring_tick2"						"1.5"
+			"car_chance"						"18"
+			"poison_reduce"						"20"
 		}
 	}
 	"ringmaster_ult"
@@ -5108,16 +5122,16 @@
 		"Note"									"八九玄功"
 		"BaseClass"								"ability_lua"
 		"ScriptFile"							"abilities/heroes/yang_jian"
-		"AbilityTextureName"					"warlock_rain_of_chaos"
+		"AbilityTextureName"					"yang_jian_talent"
 		"AbilityType"							"ABILITY_TYPE_BASIC"
 		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityValues"
 		{
-			"base_mana"							"5"
+			"base_mana"							"10"
 			"health_base"						"1000"
-			"base_mana_add"						"1"
+			"base_mana_add"						"2"
 			"health_loss"						"800"
-			"mana_add_once"						"10"
+			"mana_add_once"						"20"
 			"health_pct"						"33"
 			"damage_health_pct"					"10"
 		}
@@ -5127,18 +5141,30 @@
 		"Note"									"三尖两刃刀"
 		"BaseClass"								"ability_lua"
 		"ScriptFile"							"abilities/heroes/yang_jian"
-		"AbilityTextureName"					"warlock_shadow_word"
+		"AbilityTextureName"					"yang_jian_ult"
 		"AbilityType"							"ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET|DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityManaCost"						"50"
 		"AbilityValues"
 		{
-			"pi_damage"							"75"
+			"pi_damage"
+			{
+				"value"							"70"
+				"_ulti"							"1"
+			}
 			"pi_point"							"1"
-			"ci_damge_base"						"50"
+			"ci_damge_base"
+			{
+				"value"							"50"
+				"_ulti"							"1"
+			}
 			"ci_damage_pct"						"2"
 			"ci_point"							"1"
-			"sao_damage_base"					"50"
+			"sao_damage_base"
+			{
+				"value"							"50"
+				"_ulti"							"1"
+			}
 			"sao_damage_pct"					"2"
 			"sao_point"							"2"
 			"point_hit_rate"					"2"
@@ -5151,7 +5177,7 @@
 		"Note"									"交换技"
 		"BaseClass"								"ability_lua"
 		"ScriptFile"							"abilities/heroes/yang_jian"
-		"AbilityTextureName"					"antimage/golden_basher_blades/antimage_mana_void"
+		"AbilityTextureName"					"yang_jian_fantasy"
 		"CustomAbilityType"						"ABILITY_TYPE_UI_HIDDEN"
 		"AbilityType"							"ABILITY_TYPE_INTERACT"
 		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_IMMEDIATE|DOTA_ABILITY_BEHAVIOR_HIDDEN"
@@ -5159,10 +5185,15 @@
 		{
 			"fa_point_stack"					"8"
 			"fa_max_health_pct"					"20"
-			"fa_attack_speed"					"30"
-			"fa_duration"						"6"
+			"fa_shield"							"30"
+			"fa_damage_shield"					"50"
+			"fa_duration"						"9"
 			"tian_reply_health_pct"				"100"
-			"talent_damge_bonus"				"200"
+			"talent_damge_bonus"
+			{
+				"value"							"200"
+				"_ulti"							"1"
+			}
 		}
 	}
 }

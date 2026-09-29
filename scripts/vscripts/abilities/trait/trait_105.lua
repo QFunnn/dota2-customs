@@ -43,63 +43,87 @@ k(
 		["32"] = 19,
 		["33"] = 12,
 		["34"] = 19,
-		["35"] = 21,
-		["36"] = 22,
-		["37"] = 21,
-		["38"] = 24,
-		["39"] = 25,
-		["40"] = 26,
-		["41"] = 27,
-		["42"] = 27,
-		["43"] = 27,
-		["44"] = 30,
-		["45"] = 31,
-		["46"] = 32,
-		["47"] = 33,
-		["48"] = 34,
-		["49"] = 35,
+		["35"] = 23,
+		["36"] = 24,
+		["37"] = 23,
+		["38"] = 26,
+		["39"] = 27,
+		["40"] = 28,
+		["41"] = 29,
+		["42"] = 29,
+		["43"] = 29,
+		["44"] = 32,
+		["45"] = 33,
+		["46"] = 34,
+		["47"] = 35,
+		["48"] = 36,
+		["49"] = 36,
 		["50"] = 36,
-		["51"] = 37,
-		["52"] = 38,
-		["53"] = 39,
-		["54"] = 39,
-		["55"] = 39,
-		["56"] = 39,
-		["57"] = 40,
-		["61"] = 44,
-		["62"] = 44,
-		["63"] = 44,
-		["64"] = 45,
-		["65"] = 45,
-		["66"] = 45,
-		["67"] = 45,
-		["68"] = 45,
-		["69"] = 45,
-		["70"] = 45,
-		["71"] = 45,
-		["72"] = 50,
+		["51"] = 36,
+		["52"] = 36,
+		["54"] = 29,
+		["55"] = 29,
+		["56"] = 29,
+		["57"] = 29,
+		["59"] = 26,
+		["60"] = 41,
+		["61"] = 42,
+		["62"] = 41,
+		["63"] = 46,
+		["64"] = 47,
+		["67"] = 48,
+		["68"] = 49,
+		["69"] = 50,
+		["70"] = 51,
+		["71"] = 51,
+		["72"] = 51,
 		["73"] = 51,
 		["74"] = 51,
-		["75"] = 51,
-		["76"] = 51,
-		["77"] = 51,
-		["78"] = 44,
-		["79"] = 44,
-		["81"] = 27,
-		["82"] = 27,
-		["83"] = 27,
-		["84"] = 27,
-		["86"] = 24,
-		["87"] = 19,
-		["88"] = 12,
-		["89"] = 12,
-		["90"] = 12,
-		["91"] = 12,
-		["92"] = 12,
-		["93"] = 12,
-		["94"] = 12,
-		["95"] = 19,
-		["97"] = 19,
+		["75"] = 52,
+		["78"] = 54,
+		["79"] = 55,
+		["80"] = 56,
+		["81"] = 57,
+		["82"] = 58,
+		["83"] = 59,
+		["84"] = 60,
+		["85"] = 60,
+		["86"] = 60,
+		["87"] = 60,
+		["88"] = 61,
+		["92"] = 65,
+		["93"] = 65,
+		["94"] = 65,
+		["96"] = 66,
+		["97"] = 66,
+		["98"] = 67,
+		["99"] = 67,
+		["100"] = 67,
+		["101"] = 67,
+		["102"] = 67,
+		["103"] = 67,
+		["104"] = 67,
+		["105"] = 67,
+		["106"] = 72,
+		["107"] = 73,
+		["108"] = 73,
+		["109"] = 73,
+		["110"] = 73,
+		["111"] = 73,
+		["112"] = 66,
+		["115"] = 65,
+		["116"] = 65,
+		["117"] = 46,
+		["118"] = 19,
+		["119"] = 12,
+		["120"] = 12,
+		["121"] = 12,
+		["122"] = 12,
+		["123"] = 12,
+		["124"] = 12,
+		["125"] = 12,
+		["126"] = 19,
+		["128"] = 19,
 	}
 )
 local l = {}
@@ -133,40 +157,69 @@ function t.prototype.OnCreated(self, u)
 			{ sects = AbilityShop.pickList, ability_name = "trait_105" },
 			function(w, x, y)
 				if IsValid(self) and IsValid(self:GetCaster()) then
-					local z = PlayerData:getplayerData(x)
-					local A = z.hero
-					local B = {}
-					local C = AbilityShop.banList
-					for D, E in pairs(KeyValues.AbilityUpgradesKvs) do
-						if E.rarity == "n" and f(E.sect, y) then
-							local F = g(E.sect, "|")
-							if not i(F, function(w, E)
-								return h(C, E)
-							end) then
-								B[#B + 1] = D
-							end
-						end
-					end
-					j(B, function(w, G, H)
-						Notification:combatToPlayer(
-							x,
-							{
-								message = "notify_artifact_ability_"
-									.. tostring(KeyValues.AbilityUpgradesKvs[G].rarity),
-								string_itemname_artifact = "DOTA_Tooltip_ability_" .. self:GetAbility()
-									:GetAbilityName(),
-								string_ability_name = "DOTA_Tooltip_ability_mechanics_" .. G,
-							}
-						)
-						A:learnAbility(G, true)
-						PlayerData:getplayerData(x):addArtifactAbilities(self:GetAbility():entindex(), G, H == #B - 1)
-					end)
+					self.selectedSect = y
+					self.round = self:GetAbilitySpecialValueFor("round")
+					PlayerData:getplayerData(x):modifyArtifactExtraStringData(
+						self:GetAbility():entindex(),
+						"DOTA_Tooltip_ability_trait_102_effect",
+						tostring(self.round)
+					)
 				end
 			end,
 			"trait_105",
 			true
 		)
 	end
+end
+function t.prototype.EDeclareEvents(self)
+	return { [EOMModifierEvents.MODIFIER_EVENT_ON_ROUND_CHANGE] = { -1, -1 } }
+end
+function t.prototype.OnRoundChange(self, u)
+	if self.round == nil or self.round <= 0 then
+		return
+	end
+	self.round = self.round - 1
+	local x = self:GetCaster():GetPlayerOwnerID()
+	local z = PlayerData:getplayerData(x)
+	z:modifyArtifactExtraStringData(
+		self:GetAbility():entindex(),
+		"DOTA_Tooltip_ability_trait_102_effect",
+		tostring(self.round)
+	)
+	if self.round ~= 0 or not z.hero then
+		return
+	end
+	local A = z.hero
+	local B = {}
+	local C = AbilityShop.banList
+	for D, E in pairs(KeyValues.AbilityUpgradesKvs) do
+		if E.rarity == "n" and f(E.sect, self.selectedSect) then
+			local F = g(E.sect, "|")
+			if not i(F, function(w, E)
+				return h(C, E)
+			end) then
+				B[#B + 1] = D
+			end
+		end
+	end
+	j(B, function(w, G, H)
+		do
+			local I = 0
+			while I < self.count do
+				Notification:combatToPlayer(
+					x,
+					{
+						message = "notify_artifact_ability_" .. tostring(KeyValues.AbilityUpgradesKvs[G].rarity),
+						string_itemname_artifact = "DOTA_Tooltip_ability_" .. self:GetAbility():GetAbilityName(),
+						string_ability_name = "DOTA_Tooltip_ability_mechanics_" .. G,
+					}
+				)
+				A:learnAbility(G, true)
+				z:addArtifactAbilities(self:GetAbility():entindex(), G, H == #B - 1 and I == self.count - 1)
+				I = I + 1
+			end
+		end
+	end)
 end
 t = e(
 	{ r(

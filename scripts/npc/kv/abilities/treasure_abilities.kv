@@ -76,20 +76,6 @@
 		"AbilityTextureName"					"treasure_ability"
 		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 	}
-	"treasure_6"
-	{
-		"AppearStage"							"0"
-		"TreasureType"							"1"
-		"AbilityValues"
-		{
-			"cost"								"2"
-			"count"								"4"
-		}
-		"BaseClass"								"ability_lua"
-		"ScriptFile"							"abilities/treasures/treasure_6"
-		"AbilityTextureName"					"treasure_ability"
-		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-	}
 	"treasure_7"
 	{
 		"AppearStage"							"0"
@@ -161,7 +147,7 @@
 	"treasure_12"
 	{
 		"AppearStage"							"0"
-		"TreasureType"							"2"
+		"TreasureType"							"1"
 		"AbilityValues"
 		{
 			"health_bonus"						"500"
@@ -315,10 +301,10 @@
 	"treasure_24"
 	{
 		"AppearStage"							"0"
-		"TreasureType"							"1"
+		"TreasureType"							"2"
 		"AbilityValues"
 		{
-			"gold"								"60"
+			"gold"								"70"
 		}
 		"BaseClass"								"ability_lua"
 		"ScriptFile"							"abilities/treasures/treasure_24"
@@ -509,7 +495,7 @@
 	}
 	"treasure_38"
 	{
-		"AppearStage"							"0"
+		"AppearStage"							"1"
 		"TreasureType"							"2"
 		"AbilityValues"
 		{
@@ -524,7 +510,7 @@
 	{
 		"PoolTag"								"1"
 		"AppearStage"							"0"
-		"TreasureType"							"2"
+		"TreasureType"							"1"
 		"AbilityValues"
 		{
 			"damage_pct"						"20"
@@ -551,7 +537,7 @@
 	"treasure_41"
 	{
 		"AppearStage"							"0"
-		"TreasureType"							"1"
+		"TreasureType"							"2"
 		"AbilityValues"
 		{
 			"health"							"0"
@@ -736,7 +722,7 @@
 	{
 		"PoolTag"								"1"
 		"AppearStage"							"0"
-		"TreasureType"							"2"
+		"TreasureType"							"1"
 		"AbilityValues"
 		{
 			"second"							"10"
@@ -744,6 +730,35 @@
 		}
 		"BaseClass"								"ability_lua"
 		"ScriptFile"							"abilities/treasures/treasure_53"
+		"AbilityTextureName"					"treasure_ability"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"treasure_54"
+	{
+		"AppearCondition"						"HealthBelow|30"
+		"AppearStage"							"2"
+		"TreasureType"							"1"
+		"AbilityValues"
+		{
+			"health"							"2"
+			"gold"								"30"
+			"limit"								"600"
+		}
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/treasures/treasure_54"
+		"AbilityTextureName"					"treasure_ability"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
+	"treasure_55"
+	{
+		"AppearStage"							"2"
+		"TreasureType"							"1"
+		"AbilityValues"
+		{
+			"gold"								"60"
+		}
+		"BaseClass"								"ability_lua"
+		"ScriptFile"							"abilities/treasures/treasure_55"
 		"AbilityTextureName"					"treasure_ability"
 		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 	}

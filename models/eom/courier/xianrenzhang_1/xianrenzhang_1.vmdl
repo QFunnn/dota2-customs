@@ -44,6 +44,60 @@
 						relative_angles = [ -0.0, 0.0, 0.0 ]
 						weight = 1.0
 					},
+					{
+						_class = "Attachment"
+						name = "attach_box"
+						ignore_rotation = false
+						parent_bone = "Bone004_mirrored_"
+						relative_origin = [ 6.2, 0.0, 0.0 ]
+						relative_angles = [ -0.0, 0.0, 0.0 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "attach_box1"
+						ignore_rotation = false
+						parent_bone = "Bone004"
+						relative_origin = [ 6.2, 0.0, 0.0 ]
+						relative_angles = [ -0.0, 0.0, 0.0 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "attach_flower"
+						ignore_rotation = false
+						parent_bone = "Bip001_Spine2"
+						relative_origin = [ 37.400002, 0.0, 0.0 ]
+						relative_angles = [ -0.0, 0.0, 0.0 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "attach_xian"
+						ignore_rotation = false
+						parent_bone = "Bip001_Spine2"
+						relative_origin = [ 0.0, 0.0, 0.0 ]
+						relative_angles = [ -0.0, 0.0, 0.0 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "attach_mu"
+						ignore_rotation = false
+						parent_bone = "Bone017"
+						relative_origin = [ 0.0, 0.0, 0.0 ]
+						relative_angles = [ -0.0, 0.0, 38.666698 ]
+						weight = 1.0
+					},
+					{
+						_class = "Attachment"
+						name = "attach_mu1"
+						ignore_rotation = false
+						parent_bone = "Bone017"
+						relative_origin = [ 0.0, 0.0, 0.0 ]
+						relative_angles = [ -0.0, 0.0, 38.666698 ]
+						weight = 1.0
+					},
 				]
 			},
 			{
@@ -75,6 +129,43 @@
 						hidden = false
 						activity_name = "ACT_DOTA_IDLE"
 						activity_weight = 1
+						children = 
+						[
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_CREATE_PARTICLE_EFFECT_CFG"
+								event_frame = 112
+								event_keys = 
+								{
+									name = resource:"models/eom/courier/xianrenzhang_1/particles/xianrenzhang_1_boom_fx.vpcf"
+									detach_from_owner = false
+									always_run = false
+									aggregate = false
+									stop_on_seq_change = false
+									stop_immediately = false
+									use_layer_sequence = false
+									tags = null
+									config = "preview"
+								}
+							},
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_CREATE_PARTICLE_EFFECT_CFG"
+								event_frame = 156
+								event_keys = 
+								{
+									name = resource:"models/eom/courier/xianrenzhang_1/particles/xianrenzhang_1_boom_fx2.vpcf"
+									detach_from_owner = false
+									always_run = false
+									aggregate = false
+									stop_on_seq_change = false
+									stop_immediately = false
+									use_layer_sequence = false
+									tags = null
+									config = "preview"
+								}
+							},
+						]
 					},
 					{
 						_class = "AnimFile"
@@ -112,6 +203,22 @@
 						hidden = false
 						activity_name = "ACT_DOTA_VICTORY"
 						activity_weight = 1
+					},
+				]
+			},
+			{
+				_class = "GameDataList"
+				children = 
+				[
+					{
+						_class = "GenericGameData"
+						name = "xianrenzhang_1_fx"
+						game_class = "particle_cfg"
+						game_keys = 
+						{
+							name = resource:"models/eom/courier/xianrenzhang_1/particles/xianrenzhang_1_fx.vpcf"
+							config = "preview"
+						}
 					},
 				]
 			},
@@ -336,6 +443,13 @@
 											},
 											{
 												_class = "Bone"
+												name = "Bone004_mirrored_"
+												origin = [ -33.561016, -0.077414, -43.995121 ]
+												angles = [ 18.960516, 179.556793, -90.364578 ]
+												do_not_discard = true
+											},
+											{
+												_class = "Bone"
 												name = "Bone003"
 												origin = [ -16.731499, -0.721378, 40.250286 ]
 												angles = [ -12.535722, 177.809296, 90.595566 ]
@@ -353,13 +467,6 @@
 												name = "Bone001"
 												origin = [ 11.63958, -1.680687, 22.280933 ]
 												angles = [ -45.465096, 178.300644, 91.034111 ]
-												do_not_discard = true
-											},
-											{
-												_class = "Bone"
-												name = "Bone004_mirrored_"
-												origin = [ -33.561016, -0.077414, -43.995121 ]
-												angles = [ 18.960516, 179.556793, -90.364578 ]
 												do_not_discard = true
 											},
 											{

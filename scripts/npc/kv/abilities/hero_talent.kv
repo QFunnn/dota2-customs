@@ -2104,7 +2104,7 @@
 		"UIDirection"							"right"
 		"AbilityValues"
 		{
-			"mana"								"60"
+			"mana"								"80"
 		}
 	}
 	"chaos_knight_talent_5"
@@ -2121,38 +2121,6 @@
 		"AbilityValues"
 		{
 			"chance"							"30"
-		}
-	}
-	"chaos_knight_talent_7"
-	{
-		"Hero"									"chaos_knight"
-		"Note"									"怒意+%attackspeed%攻速，不可叠加"
-		"BaseClass"								"ability_datadriven"
-		"ScriptFile"							"abilities/heroes/chaos_knight"
-		"CustomAbilityType"						"ABILITY_TYPE_TALENT"
-		"AbilityType"							"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"RequiredLevel"							"5"
-		"UIDirection"							"left"
-		"AbilityValues"
-		{
-			"attackspeed"						"40"
-		}
-	}
-	"chaos_knight_talent_8"
-	{
-		"Hero"									"chaos_knight"
-		"Note"									"修罗一击+%attack_pct%%攻击力伤害系数"
-		"BaseClass"								"ability_datadriven"
-		"ScriptFile"							"abilities/heroes/chaos_knight"
-		"CustomAbilityType"						"ABILITY_TYPE_TALENT"
-		"AbilityType"							"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"RequiredLevel"							"10"
-		"UIDirection"							"left"
-		"AbilityValues"
-		{
-			"attack_pct"						"100"
 		}
 	}
 	"chaos_knight_talent_9"
@@ -2186,6 +2154,35 @@
 		{
 			"heal_pct"							"50"
 		}
+	}
+	"chaos_knight_talent_11"
+	{
+		"Hero"									"chaos_knight"
+		"Note"									"怒意状态+10%命中率和30%暴击伤害"
+		"BaseClass"								"ability_datadriven"
+		"ScriptFile"							"abilities/heroes/chaos_knight"
+		"CustomAbilityType"						"ABILITY_TYPE_TALENT"
+		"AbilityType"							"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"RequiredLevel"							"5"
+		"UIDirection"							"left"
+		"AbilityValues"
+		{
+			"hit_rate"							"10"
+			"crit_damage"						"30"
+		}
+	}
+	"chaos_knight_talent_12"
+	{
+		"Hero"									"chaos_knight"
+		"Note"									"横扫千军附带1次普攻"
+		"BaseClass"								"ability_datadriven"
+		"ScriptFile"							"abilities/heroes/chaos_knight"
+		"CustomAbilityType"						"ABILITY_TYPE_TALENT"
+		"AbilityType"							"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"RequiredLevel"							"10"
+		"UIDirection"							"left"
 	}
 	"razor_talent_1"
 	{
@@ -2390,25 +2387,6 @@
 			"maxhealth_bonus_pct"				"80"
 		}
 	}
-	"legion_commander_talent_1"
-	{
-		"Eid"									"101"
-		"Hero"									"legion_commander"
-		"Note"									"每触发%count%次【压倒性优势】获得%damage_pct%%全伤害加成，持续%duration%秒"
-		"BaseClass"								"ability_lua"
-		"ScriptFile"							"abilities/heroes/legion_commander"
-		"CustomAbilityType"						"ABILITY_TYPE_TALENT"
-		"AbilityType"							"ABILITY_TYPE_ATTRIBUTES"
-		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"RequiredLevel"							"10"
-		"UIDirection"							"left"
-		"AbilityValues"
-		{
-			"count"								"6"
-			"damage_pct"						"12"
-			"duration"							"3"
-		}
-	}
 	"legion_commander_talent_2"
 	{
 		"Eid"									"102"
@@ -2440,7 +2418,7 @@
 		"UIDirection"							"left"
 		"AbilityValues"
 		{
-			"cooldown_reduce"					"0.25"
+			"cooldown_reduce"					"0.2"
 			"bonus_pct"							"25"
 		}
 	}
@@ -2491,6 +2469,23 @@
 		"AbilityValues"
 		{
 			"bonus_chance"						"12"
+		}
+	}
+	"legion_commander_talent_9"
+	{
+		"Hero"									"legion_commander"
+		"Note"									"强攻立即回复80点生命值，并减少20%负面状态"
+		"BaseClass"								"ability_datadriven"
+		"ScriptFile"							"abilities/heroes/legion_commander"
+		"CustomAbilityType"						"ABILITY_TYPE_TALENT"
+		"AbilityType"							"ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"						"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"RequiredLevel"							"10"
+		"UIDirection"							"left"
+		"AbilityValues"
+		{
+			"reply"								"80"
+			"buff_reduce"						"20"
 		}
 	}
 	"faceless_void_talent_1"
@@ -4959,10 +4954,18 @@
 		"UIDirection"							"right"
 		"AbilityValues"
 		{
-			"damage"							"130"
+			"damage"
+			{
+				"value"							"160"
+				"_ulti"							"1"
+			}
 			"duration"							"1.2"
 			"attackspeed_down"					"60"
-			"damage_bonus"						"40"
+			"damage_bonus"
+			{
+				"value"							"60"
+				"_ulti"							"1"
+			}
 		}
 	}
 	"templar_assassin_talent_1"
@@ -8311,7 +8314,7 @@
 		"UIDirection"							"right"
 		"AbilityValues"
 		{
-			"bonus"								"50"
+			"bonus"								"80"
 		}
 	}
 	"largo_talent_5"
@@ -9084,6 +9087,7 @@
 		"AbilityValues"
 		{
 			"shield_count"						"100"
+			"first_reduce"						"4"
 		}
 	}
 	"yang_jian_talent_4"

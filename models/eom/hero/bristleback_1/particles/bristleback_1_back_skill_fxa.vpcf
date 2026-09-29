@@ -11,6 +11,7 @@
 <!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf66:version{dd571be4-586e-4f41-8b2d-5bbc969e1c53} -->
 {
 	_class = "CParticleSystemDefinition"
+	m_nBehaviorVersion = 12
 	m_controlPointConfigurations = 
 	[
 		{
@@ -24,23 +25,6 @@
 			]
 		},
 	]
-	m_Operators = 
-	[
-		{
-			_class = "C_OP_Decay"
-		},
-		{
-			_class = "C_OP_RemapVisibilityScalar"
-			m_nFieldOutput = 16
-			m_flInputMax = 0.1
-		},
-	]
-	m_Initializers = 
-	[
-		{
-			_class = "C_INIT_CreateWithinSphereTransform"
-		},
-	]
 	m_Emitters = 
 	[
 		{
@@ -50,6 +34,23 @@
 				m_nType = "PF_TYPE_LITERAL"
 				m_flLiteralValue = 1.0
 			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_CreateWithinSphereTransform"
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_Decay"
+		},
+		{
+			_class = "C_OP_RemapVisibilityScalar"
+			m_nFieldOutput = 16
+			m_flInputMax = 0.1
 		},
 	]
 	m_Children = 
@@ -66,6 +67,11 @@
 		{
 			m_ChildRef = resource:"models/eom/hero/bristleback_1/particles/bristleback_1_back_skill_fxa2.vpcf"
 		},
+		{
+			m_ChildRef = resource:"models/eom/hero/bristleback_1/particles/bristleback_1_back_skill_fx1.vpcf"
+		},
+		{
+			m_ChildRef = resource:"models/eom/hero/bristleback_1/particles/bristleback_1_back_skill_fx2.vpcf"
+		},
 	]
-	m_nBehaviorVersion = 5
 }

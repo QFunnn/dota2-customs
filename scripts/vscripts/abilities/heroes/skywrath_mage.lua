@@ -526,7 +526,7 @@ function r.prototype.ArcaneBolt(self)
 			hCaster = u,
 			vSpawnOrigin = u:GetAttachmentPosition("attach_attack1"),
 			hTarget = v,
-			iMoveSpeed = 1000,
+			iMoveSpeed = 1300,
 			OnProjectileHit = function(B, C, D)
 				if not IsValid(self) then
 					return

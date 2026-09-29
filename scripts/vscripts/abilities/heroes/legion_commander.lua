@@ -41,507 +41,467 @@ f(
 		["30"] = 21,
 		["31"] = 13,
 		["32"] = 21,
-		["33"] = 32,
-		["34"] = 34,
-		["35"] = 35,
-		["36"] = 36,
-		["37"] = 37,
-		["38"] = 39,
-		["39"] = 40,
-		["40"] = 42,
-		["41"] = 43,
-		["42"] = 44,
-		["43"] = 45,
-		["45"] = 32,
-		["46"] = 48,
-		["47"] = 49,
-		["48"] = 48,
-		["49"] = 51,
-		["50"] = 52,
-		["51"] = 53,
-		["53"] = 51,
-		["54"] = 56,
-		["55"] = 57,
-		["56"] = 56,
-		["57"] = 59,
-		["58"] = 60,
-		["59"] = 61,
-		["61"] = 59,
-		["62"] = 64,
-		["63"] = 65,
-		["64"] = 65,
-		["65"] = 65,
-		["66"] = 65,
-		["67"] = 69,
-		["68"] = 69,
-		["69"] = 69,
-		["70"] = 65,
-		["71"] = 65,
-		["72"] = 64,
-		["73"] = 72,
-		["74"] = 73,
-		["77"] = 74,
-		["78"] = 75,
-		["80"] = 72,
-		["81"] = 78,
-		["82"] = 79,
-		["83"] = 80,
-		["84"] = 80,
-		["85"] = 80,
-		["86"] = 80,
-		["87"] = 81,
-		["88"] = 82,
-		["90"] = 80,
+		["33"] = 29,
+		["34"] = 31,
+		["35"] = 32,
+		["36"] = 33,
+		["37"] = 34,
+		["38"] = 36,
+		["39"] = 37,
+		["40"] = 29,
+		["41"] = 39,
+		["42"] = 40,
+		["43"] = 41,
+		["45"] = 39,
+		["46"] = 44,
+		["47"] = 45,
+		["48"] = 44,
+		["49"] = 47,
+		["50"] = 48,
+		["51"] = 49,
+		["53"] = 47,
+		["54"] = 52,
+		["55"] = 53,
+		["56"] = 53,
+		["57"] = 53,
+		["58"] = 56,
+		["59"] = 56,
+		["60"] = 56,
+		["61"] = 53,
+		["62"] = 53,
+		["63"] = 52,
+		["64"] = 59,
+		["65"] = 60,
+		["68"] = 61,
+		["69"] = 62,
+		["71"] = 59,
+		["72"] = 65,
+		["73"] = 66,
+		["74"] = 67,
+		["75"] = 67,
+		["76"] = 67,
+		["77"] = 67,
+		["78"] = 68,
+		["79"] = 69,
+		["81"] = 67,
+		["82"] = 67,
+		["84"] = 73,
+		["86"] = 65,
+		["87"] = 76,
+		["88"] = 77,
+		["89"] = 78,
+		["90"] = 79,
 		["91"] = 80,
-		["93"] = 86,
-		["95"] = 78,
-		["96"] = 89,
-		["97"] = 90,
-		["98"] = 91,
-		["99"] = 92,
-		["100"] = 93,
-		["101"] = 94,
-		["102"] = 94,
-		["103"] = 94,
-		["104"] = 94,
-		["105"] = 94,
-		["106"] = 95,
-		["107"] = 95,
-		["108"] = 95,
-		["109"] = 95,
-		["110"] = 95,
-		["111"] = 96,
-		["112"] = 97,
-		["113"] = 97,
-		["114"] = 97,
-		["115"] = 97,
-		["116"] = 97,
-		["117"] = 97,
-		["118"] = 98,
-		["119"] = 99,
-		["120"] = 99,
-		["121"] = 99,
-		["122"] = 99,
-		["123"] = 99,
-		["124"] = 100,
-		["125"] = 101,
-		["126"] = 102,
-		["127"] = 103,
-		["128"] = 104,
-		["129"] = 104,
-		["130"] = 104,
-		["131"] = 104,
-		["132"] = 104,
-		["133"] = 104,
-		["137"] = 89,
-		["138"] = 21,
-		["139"] = 13,
-		["140"] = 13,
-		["141"] = 13,
-		["142"] = 13,
-		["143"] = 13,
-		["144"] = 13,
-		["145"] = 13,
-		["146"] = 13,
-		["147"] = 21,
-		["149"] = 21,
-		["151"] = 113,
-		["152"] = 122,
-		["153"] = 113,
-		["154"] = 122,
-		["155"] = 124,
-		["156"] = 126,
-		["157"] = 124,
-		["158"] = 128,
-		["159"] = 129,
-		["160"] = 130,
-		["162"] = 128,
-		["163"] = 133,
-		["164"] = 134,
-		["165"] = 135,
-		["167"] = 133,
-		["168"] = 138,
-		["169"] = 139,
-		["170"] = 138,
-		["171"] = 143,
-		["172"] = 144,
-		["173"] = 143,
-		["174"] = 122,
-		["175"] = 113,
-		["176"] = 113,
-		["177"] = 113,
-		["178"] = 113,
-		["179"] = 113,
-		["180"] = 113,
-		["181"] = 113,
-		["182"] = 113,
-		["183"] = 113,
-		["184"] = 122,
-		["186"] = 122,
-		["187"] = 148,
-		["188"] = 149,
-		["189"] = 148,
-		["190"] = 149,
-		["191"] = 150,
-		["192"] = 151,
-		["193"] = 152,
-		["194"] = 153,
-		["197"] = 156,
-		["198"] = 159,
-		["199"] = 160,
-		["200"] = 161,
-		["201"] = 162,
-		["202"] = 164,
-		["203"] = 165,
-		["205"] = 150,
-		["206"] = 149,
-		["207"] = 148,
-		["208"] = 149,
-		["210"] = 149,
-		["211"] = 171,
-		["212"] = 178,
-		["213"] = 171,
-		["214"] = 178,
-		["215"] = 179,
-		["216"] = 180,
-		["217"] = 181,
-		["218"] = 183,
-		["219"] = 184,
-		["220"] = 184,
-		["221"] = 184,
-		["222"] = 184,
-		["223"] = 184,
-		["224"] = 185,
-		["225"] = 185,
-		["226"] = 185,
-		["227"] = 185,
-		["228"] = 185,
-		["229"] = 185,
-		["230"] = 185,
-		["231"] = 185,
-		["233"] = 179,
-		["234"] = 178,
-		["235"] = 171,
-		["236"] = 171,
-		["237"] = 171,
-		["238"] = 171,
-		["239"] = 171,
-		["240"] = 171,
-		["241"] = 171,
-		["242"] = 178,
-		["244"] = 178,
-		["245"] = 197,
-		["246"] = 205,
-		["247"] = 197,
-		["248"] = 205,
-		["249"] = 208,
-		["250"] = 209,
-		["251"] = 210,
-		["252"] = 208,
-		["253"] = 212,
-		["254"] = 213,
-		["255"] = 214,
-		["257"] = 216,
-		["258"] = 216,
-		["259"] = 216,
-		["260"] = 216,
-		["261"] = 216,
-		["262"] = 217,
-		["263"] = 217,
-		["264"] = 217,
-		["265"] = 217,
-		["266"] = 217,
-		["267"] = 217,
-		["268"] = 217,
-		["269"] = 217,
-		["270"] = 217,
-		["271"] = 218,
-		["272"] = 218,
-		["273"] = 218,
-		["274"] = 218,
-		["275"] = 218,
-		["276"] = 218,
-		["277"] = 218,
-		["278"] = 218,
-		["280"] = 212,
-		["281"] = 221,
-		["282"] = 222,
-		["283"] = 223,
-		["284"] = 223,
-		["285"] = 223,
-		["286"] = 223,
-		["287"] = 223,
-		["288"] = 223,
-		["289"] = 223,
-		["290"] = 223,
-		["291"] = 223,
-		["292"] = 221,
-		["293"] = 205,
-		["294"] = 197,
-		["295"] = 197,
-		["296"] = 197,
-		["297"] = 197,
-		["298"] = 197,
-		["299"] = 197,
-		["300"] = 197,
-		["301"] = 197,
-		["302"] = 205,
-		["304"] = 205,
-		["305"] = 228,
-		["306"] = 236,
-		["307"] = 228,
-		["308"] = 236,
-		["309"] = 238,
-		["310"] = 240,
-		["311"] = 238,
-		["312"] = 242,
-		["313"] = 243,
-		["314"] = 242,
-		["315"] = 236,
-		["316"] = 228,
-		["317"] = 228,
-		["318"] = 228,
-		["319"] = 228,
-		["320"] = 228,
-		["321"] = 228,
-		["322"] = 228,
-		["323"] = 228,
-		["324"] = 236,
-		["326"] = 236,
-		["328"] = 254,
-		["329"] = 255,
-		["330"] = 254,
-		["331"] = 255,
-		["332"] = 256,
-		["333"] = 257,
-		["334"] = 256,
-		["335"] = 255,
-		["336"] = 254,
-		["337"] = 255,
-		["339"] = 255,
-		["340"] = 260,
-		["341"] = 267,
-		["342"] = 260,
-		["343"] = 267,
-		["344"] = 269,
-		["345"] = 270,
-		["346"] = 269,
-		["347"] = 272,
-		["348"] = 273,
-		["349"] = 272,
-		["350"] = 267,
-		["351"] = 260,
-		["352"] = 260,
-		["353"] = 260,
-		["354"] = 260,
-		["355"] = 260,
-		["356"] = 260,
-		["357"] = 260,
-		["358"] = 267,
-		["360"] = 267,
-		["361"] = 280,
-		["362"] = 281,
-		["363"] = 280,
-		["364"] = 281,
-		["365"] = 282,
-		["366"] = 283,
-		["367"] = 282,
-		["368"] = 281,
-		["369"] = 280,
-		["370"] = 281,
-		["372"] = 281,
-		["373"] = 286,
-		["374"] = 293,
-		["375"] = 286,
-		["376"] = 293,
-		["377"] = 295,
-		["378"] = 296,
-		["379"] = 295,
-		["380"] = 298,
-		["381"] = 299,
-		["382"] = 298,
-		["383"] = 301,
-		["384"] = 302,
-		["385"] = 302,
-		["386"] = 304,
-		["387"] = 304,
-		["388"] = 304,
-		["389"] = 302,
-		["390"] = 302,
-		["391"] = 301,
-		["392"] = 307,
-		["393"] = 308,
-		["394"] = 309,
-		["395"] = 309,
-		["396"] = 309,
-		["397"] = 309,
-		["398"] = 309,
-		["399"] = 307,
-		["400"] = 311,
-		["401"] = 312,
-		["402"] = 312,
-		["403"] = 312,
-		["404"] = 312,
-		["405"] = 312,
-		["406"] = 312,
-		["408"] = 312,
-		["409"] = 311,
-		["410"] = 314,
-		["411"] = 315,
-		["412"] = 314,
-		["413"] = 317,
-		["414"] = 318,
-		["415"] = 319,
-		["418"] = 320,
-		["421"] = 323,
-		["422"] = 324,
-		["425"] = 327,
-		["426"] = 328,
-		["427"] = 329,
-		["430"] = 317,
-		["431"] = 333,
-		["432"] = 334,
-		["433"] = 333,
-		["434"] = 342,
-		["435"] = 343,
-		["436"] = 342,
-		["437"] = 293,
-		["438"] = 286,
-		["439"] = 286,
-		["440"] = 286,
-		["441"] = 286,
-		["442"] = 286,
-		["443"] = 286,
-		["444"] = 286,
-		["445"] = 293,
-		["447"] = 293,
-		["448"] = 349,
-		["449"] = 350,
-		["450"] = 349,
-		["451"] = 350,
-		["452"] = 351,
-		["453"] = 352,
-		["454"] = 351,
-		["455"] = 350,
-		["456"] = 349,
-		["457"] = 350,
-		["459"] = 350,
-		["460"] = 355,
-		["461"] = 362,
-		["462"] = 355,
-		["463"] = 362,
-		["465"] = 362,
-		["466"] = 366,
-		["467"] = 355,
-		["468"] = 367,
-		["469"] = 368,
-		["470"] = 369,
-		["471"] = 370,
-		["472"] = 371,
-		["474"] = 367,
-		["475"] = 374,
-		["476"] = 375,
-		["477"] = 376,
-		["479"] = 374,
-		["480"] = 379,
-		["481"] = 380,
-		["482"] = 381,
-		["483"] = 382,
-		["485"] = 379,
-		["486"] = 385,
-		["487"] = 386,
-		["488"] = 385,
-		["489"] = 388,
-		["490"] = 389,
-		["491"] = 390,
-		["492"] = 390,
-		["493"] = 390,
-		["494"] = 389,
-		["495"] = 389,
-		["496"] = 392,
-		["497"] = 392,
-		["498"] = 392,
-		["499"] = 389,
-		["500"] = 389,
-		["501"] = 388,
-		["502"] = 396,
-		["503"] = 397,
-		["506"] = 398,
-		["507"] = 399,
-		["508"] = 400,
-		["509"] = 401,
-		["510"] = 403,
-		["511"] = 404,
-		["512"] = 404,
-		["513"] = 404,
-		["514"] = 404,
-		["515"] = 404,
-		["516"] = 409,
-		["517"] = 410,
-		["518"] = 411,
-		["519"] = 411,
-		["520"] = 411,
-		["521"] = 411,
-		["522"] = 411,
-		["523"] = 411,
-		["524"] = 411,
-		["525"] = 411,
-		["527"] = 404,
-		["528"] = 404,
-		["530"] = 419,
-		["531"] = 419,
-		["532"] = 419,
-		["533"] = 419,
-		["534"] = 419,
-		["535"] = 419,
-		["536"] = 419,
-		["537"] = 419,
-		["539"] = 424,
-		["540"] = 425,
-		["541"] = 425,
-		["542"] = 425,
-		["543"] = 425,
-		["544"] = 425,
-		["545"] = 425,
-		["546"] = 425,
-		["547"] = 425,
-		["548"] = 425,
-		["549"] = 426,
-		["550"] = 426,
-		["551"] = 426,
-		["552"] = 426,
-		["553"] = 426,
-		["554"] = 427,
-		["555"] = 396,
-		["556"] = 429,
-		["557"] = 430,
-		["558"] = 431,
-		["559"] = 429,
-		["560"] = 433,
-		["561"] = 434,
-		["562"] = 435,
-		["564"] = 433,
-		["565"] = 438,
-		["566"] = 439,
-		["567"] = 440,
-		["568"] = 441,
-		["569"] = 442,
-		["570"] = 443,
-		["571"] = 444,
-		["572"] = 445,
-		["574"] = 447,
-		["575"] = 448,
-		["578"] = 438,
-		["579"] = 362,
-		["580"] = 355,
-		["581"] = 355,
-		["582"] = 355,
-		["583"] = 355,
-		["584"] = 355,
-		["585"] = 355,
-		["586"] = 355,
-		["587"] = 362,
-		["589"] = 362,
+		["92"] = 81,
+		["93"] = 81,
+		["94"] = 81,
+		["95"] = 81,
+		["96"] = 81,
+		["97"] = 82,
+		["98"] = 82,
+		["99"] = 82,
+		["100"] = 82,
+		["101"] = 82,
+		["102"] = 83,
+		["103"] = 84,
+		["104"] = 84,
+		["105"] = 84,
+		["106"] = 84,
+		["107"] = 84,
+		["108"] = 84,
+		["109"] = 85,
+		["110"] = 86,
+		["111"] = 86,
+		["112"] = 86,
+		["113"] = 86,
+		["114"] = 86,
+		["116"] = 76,
+		["117"] = 21,
+		["118"] = 13,
+		["119"] = 13,
+		["120"] = 13,
+		["121"] = 13,
+		["122"] = 13,
+		["123"] = 13,
+		["124"] = 13,
+		["125"] = 13,
+		["126"] = 21,
+		["128"] = 21,
+		["129"] = 91,
+		["130"] = 92,
+		["131"] = 91,
+		["132"] = 92,
+		["133"] = 93,
+		["134"] = 94,
+		["135"] = 95,
+		["136"] = 96,
+		["139"] = 99,
+		["140"] = 102,
+		["141"] = 103,
+		["142"] = 104,
+		["143"] = 106,
+		["144"] = 107,
+		["145"] = 108,
+		["146"] = 109,
+		["147"] = 109,
+		["148"] = 109,
+		["149"] = 109,
+		["150"] = 109,
+		["151"] = 109,
+		["153"] = 111,
+		["154"] = 112,
+		["156"] = 114,
+		["157"] = 116,
+		["158"] = 117,
+		["160"] = 93,
+		["161"] = 92,
+		["162"] = 91,
+		["163"] = 92,
+		["165"] = 92,
+		["166"] = 123,
+		["167"] = 130,
+		["168"] = 123,
+		["169"] = 130,
+		["170"] = 131,
+		["171"] = 132,
+		["172"] = 133,
+		["173"] = 135,
+		["174"] = 136,
+		["175"] = 136,
+		["176"] = 136,
+		["177"] = 136,
+		["178"] = 136,
+		["179"] = 137,
+		["180"] = 137,
+		["181"] = 137,
+		["182"] = 137,
+		["183"] = 137,
+		["184"] = 137,
+		["185"] = 137,
+		["186"] = 137,
+		["188"] = 131,
+		["189"] = 130,
+		["190"] = 123,
+		["191"] = 123,
+		["192"] = 123,
+		["193"] = 123,
+		["194"] = 123,
+		["195"] = 123,
+		["196"] = 123,
+		["197"] = 130,
+		["199"] = 130,
+		["200"] = 149,
+		["201"] = 157,
+		["202"] = 149,
+		["203"] = 157,
+		["204"] = 160,
+		["205"] = 161,
+		["206"] = 162,
+		["207"] = 160,
+		["208"] = 164,
+		["209"] = 165,
+		["210"] = 166,
+		["212"] = 168,
+		["213"] = 168,
+		["214"] = 168,
+		["215"] = 168,
+		["216"] = 168,
+		["217"] = 169,
+		["218"] = 169,
+		["219"] = 169,
+		["220"] = 169,
+		["221"] = 169,
+		["222"] = 169,
+		["223"] = 169,
+		["224"] = 169,
+		["225"] = 169,
+		["226"] = 170,
+		["227"] = 170,
+		["228"] = 170,
+		["229"] = 170,
+		["230"] = 170,
+		["231"] = 170,
+		["232"] = 170,
+		["233"] = 170,
+		["235"] = 164,
+		["236"] = 173,
+		["237"] = 174,
+		["238"] = 175,
+		["239"] = 175,
+		["240"] = 175,
+		["241"] = 175,
+		["242"] = 175,
+		["243"] = 175,
+		["244"] = 175,
+		["245"] = 175,
+		["246"] = 175,
+		["247"] = 173,
+		["248"] = 157,
+		["249"] = 149,
+		["250"] = 149,
+		["251"] = 149,
+		["252"] = 149,
+		["253"] = 149,
+		["254"] = 149,
+		["255"] = 149,
+		["256"] = 149,
+		["257"] = 157,
+		["259"] = 157,
+		["260"] = 180,
+		["261"] = 188,
+		["262"] = 180,
+		["263"] = 188,
+		["264"] = 190,
+		["265"] = 192,
+		["266"] = 190,
+		["267"] = 194,
+		["268"] = 195,
+		["269"] = 194,
+		["270"] = 188,
+		["271"] = 180,
+		["272"] = 180,
+		["273"] = 180,
+		["274"] = 180,
+		["275"] = 180,
+		["276"] = 180,
+		["277"] = 180,
+		["278"] = 180,
+		["279"] = 188,
+		["281"] = 188,
+		["283"] = 206,
+		["284"] = 207,
+		["285"] = 206,
+		["286"] = 207,
+		["287"] = 208,
+		["288"] = 209,
+		["289"] = 208,
+		["290"] = 207,
+		["291"] = 206,
+		["292"] = 207,
+		["294"] = 207,
+		["295"] = 212,
+		["296"] = 219,
+		["297"] = 212,
+		["298"] = 219,
+		["299"] = 221,
+		["300"] = 222,
+		["301"] = 221,
+		["302"] = 224,
+		["303"] = 225,
+		["304"] = 224,
+		["305"] = 219,
+		["306"] = 212,
+		["307"] = 212,
+		["308"] = 212,
+		["309"] = 212,
+		["310"] = 212,
+		["311"] = 212,
+		["312"] = 212,
+		["313"] = 219,
+		["315"] = 219,
+		["316"] = 232,
+		["317"] = 233,
+		["318"] = 232,
+		["319"] = 233,
+		["320"] = 234,
+		["321"] = 235,
+		["322"] = 234,
+		["323"] = 233,
+		["324"] = 232,
+		["325"] = 233,
+		["327"] = 233,
+		["328"] = 238,
+		["329"] = 245,
+		["330"] = 238,
+		["331"] = 245,
+		["332"] = 247,
+		["333"] = 248,
+		["334"] = 247,
+		["335"] = 250,
+		["336"] = 251,
+		["337"] = 250,
+		["338"] = 253,
+		["339"] = 254,
+		["340"] = 254,
+		["341"] = 256,
+		["342"] = 256,
+		["343"] = 256,
+		["344"] = 254,
+		["345"] = 254,
+		["346"] = 253,
+		["347"] = 259,
+		["348"] = 260,
+		["349"] = 261,
+		["350"] = 261,
+		["351"] = 261,
+		["352"] = 261,
+		["353"] = 261,
+		["354"] = 259,
+		["355"] = 263,
+		["356"] = 264,
+		["357"] = 264,
+		["358"] = 264,
+		["359"] = 264,
+		["360"] = 264,
+		["361"] = 264,
+		["363"] = 264,
+		["364"] = 263,
+		["365"] = 266,
+		["366"] = 267,
+		["367"] = 266,
+		["368"] = 269,
+		["369"] = 270,
+		["370"] = 271,
+		["373"] = 272,
+		["376"] = 275,
+		["377"] = 276,
+		["380"] = 279,
+		["381"] = 280,
+		["382"] = 281,
+		["385"] = 269,
+		["386"] = 285,
+		["387"] = 286,
+		["388"] = 285,
+		["389"] = 294,
+		["390"] = 295,
+		["391"] = 294,
+		["392"] = 245,
+		["393"] = 238,
+		["394"] = 238,
+		["395"] = 238,
+		["396"] = 238,
+		["397"] = 238,
+		["398"] = 238,
+		["399"] = 238,
+		["400"] = 245,
+		["402"] = 245,
+		["403"] = 301,
+		["404"] = 302,
+		["405"] = 301,
+		["406"] = 302,
+		["407"] = 303,
+		["408"] = 304,
+		["409"] = 303,
+		["410"] = 302,
+		["411"] = 301,
+		["412"] = 302,
+		["414"] = 302,
+		["415"] = 307,
+		["416"] = 314,
+		["417"] = 307,
+		["418"] = 314,
+		["420"] = 314,
+		["421"] = 318,
+		["422"] = 307,
+		["423"] = 319,
+		["424"] = 320,
+		["425"] = 321,
+		["426"] = 322,
+		["427"] = 323,
+		["429"] = 319,
+		["430"] = 326,
+		["431"] = 327,
+		["432"] = 328,
+		["434"] = 326,
+		["435"] = 331,
+		["436"] = 332,
+		["437"] = 333,
+		["438"] = 334,
+		["440"] = 331,
+		["441"] = 337,
+		["442"] = 338,
+		["443"] = 337,
+		["444"] = 340,
+		["445"] = 341,
+		["446"] = 342,
+		["447"] = 342,
+		["448"] = 342,
+		["449"] = 341,
+		["450"] = 341,
+		["451"] = 344,
+		["452"] = 344,
+		["453"] = 344,
+		["454"] = 341,
+		["455"] = 341,
+		["456"] = 340,
+		["457"] = 348,
+		["458"] = 349,
+		["461"] = 350,
+		["462"] = 351,
+		["463"] = 352,
+		["464"] = 353,
+		["465"] = 355,
+		["466"] = 356,
+		["467"] = 356,
+		["468"] = 356,
+		["469"] = 356,
+		["470"] = 356,
+		["471"] = 361,
+		["472"] = 362,
+		["473"] = 363,
+		["474"] = 363,
+		["475"] = 363,
+		["476"] = 363,
+		["477"] = 363,
+		["478"] = 363,
+		["479"] = 363,
+		["480"] = 363,
+		["482"] = 356,
+		["483"] = 356,
+		["485"] = 371,
+		["486"] = 371,
+		["487"] = 371,
+		["488"] = 371,
+		["489"] = 371,
+		["490"] = 371,
+		["491"] = 371,
+		["492"] = 371,
+		["494"] = 376,
+		["495"] = 377,
+		["496"] = 377,
+		["497"] = 377,
+		["498"] = 377,
+		["499"] = 377,
+		["500"] = 377,
+		["501"] = 377,
+		["502"] = 377,
+		["503"] = 377,
+		["504"] = 378,
+		["505"] = 378,
+		["506"] = 378,
+		["507"] = 378,
+		["508"] = 378,
+		["509"] = 379,
+		["510"] = 348,
+		["511"] = 381,
+		["512"] = 382,
+		["513"] = 383,
+		["514"] = 381,
+		["515"] = 385,
+		["516"] = 386,
+		["517"] = 387,
+		["519"] = 385,
+		["520"] = 390,
+		["521"] = 391,
+		["522"] = 392,
+		["523"] = 393,
+		["524"] = 394,
+		["525"] = 395,
+		["526"] = 396,
+		["527"] = 397,
+		["529"] = 399,
+		["530"] = 400,
+		["533"] = 390,
+		["534"] = 314,
+		["535"] = 307,
+		["536"] = 307,
+		["537"] = 307,
+		["538"] = 307,
+		["539"] = 307,
+		["540"] = 307,
+		["541"] = 307,
+		["542"] = 314,
+		["544"] = 314,
 	}
 )
 local g = {}
@@ -573,16 +533,8 @@ function r.prototype.GetAbilitySpecialValue(self)
 	self.damage = self:GetAbilitySpecialValueFor("damage")
 	self.factor = self:GetAbilitySpecialValueFor("factor")
 	self.talent_6_interval = self:GetAbilityTalentValue("legion_commander_talent_6", "interval")
-	self.tl1_count = self:GetAbilityTalentValue("legion_commander_talent_1", "count")
-	self.tl1_duration = self:GetAbilityTalentValue("legion_commander_talent_1", "duration")
 	self.tl4_chance = self:GetAbilityTalentValue("legion_commander_talent_4", "chance")
 	self.tl4_count = self:GetAbilityTalentValue("legion_commander_talent_4", "count")
-	if IsServer() then
-		self.tl1_counter = 0
-	end
-end
-function r.prototype.OnBattleStartBefore(self, s)
-	self.tl1_counter = 0
 end
 function r.prototype.OnBattleStart(self)
 	if self.talent_6_interval > 0 then
@@ -600,7 +552,6 @@ end
 function r.prototype.EDeclareEvents(self)
 	return {
 		[EOMModifierEvents.MODIFIER_EVENT_ON_SHIELD_GAINED] = { self:GetParent() },
-		[EOMModifierEvents.MODIFIER_EVENT_ON_BATTLE_START_BEFORE] = { -1, -1 },
 		[EOMModifierEvents.MODIFIER_EVENT_ON_BATTLE_START] = { -1, -1 },
 		[EOMModifierEvents.MODIFIER_EVENT_ON_BATTLE_END] = { self:GetParent(), self:GetParent() },
 	}
@@ -639,18 +590,6 @@ function r.prototype._OverWhelming(self)
 		t:DealDamage(u, self:GetAbility(), w, EOM_DAMAGE_TYPES.DAMAGE_TYPE_PHYSICAL)
 		t:EmitSound("Hero_LegionCommander.Overwhelming.Cast")
 		EmitSoundOnLocationWithCaster(u:GetAbsOrigin(), "Hero_LegionCommander.Overwhelming.Location", t)
-		if self.tl1_count > 0 then
-			self.tl1_counter = self.tl1_counter + 1
-			if self.tl1_counter >= self.tl1_count then
-				self.tl1_counter = 0
-				t:AddNewModifier(
-					t,
-					self:GetAbility(),
-					"modifier_legion_commander_talent_1",
-					{ duration = self.tl1_duration }
-				)
-			end
-		end
 	end
 end
 r = e(
@@ -670,73 +609,40 @@ r = e(
 	r
 )
 g.modifier_legion_commander_talent = r
-g.modifier_legion_commander_talent_1 = c()
-local x = g.modifier_legion_commander_talent_1
-x.name = "modifier_legion_commander_talent_1"
-d(x, l)
-function x.prototype.GetAbilitySpecialValue(self)
-	self.tl1_damage_pct = self:GetAbilityTalentValue("legion_commander_talent_1", "damage_pct")
-end
-function x.prototype.OnCreated(self, s)
-	if IsServer() then
-		self:IncrementStackCount()
-	end
-end
-function x.prototype.OnRefresh(self, s)
-	if IsServer() then
-		self:IncrementStackCount()
-	end
-end
-function x.prototype.EDeclareFunctions(self)
-	return { EOMModifierFunction.EOM_MODIFIER_PROPERTY_OUTGOING_DAMAGE_PERCENTAGE }
-end
-function x.prototype.EOM_GetModifierOutgoingDamagePercentage(self, s)
-	return self.tl1_damage_pct * self:GetStackCount()
-end
-x = e(
-	{
-		m(
-			a,
-			{
-				IsHidden = true,
-				IsDebuff = false,
-				IsPurgable = false,
-				IsPurgeException = false,
-				AllowIllusionDuplicate = false,
-				GetPriority = MODIFIER_PRIORITY_LOW,
-				IsIndependent = true,
-			}
-		),
-	},
-	x
-)
-g.modifier_legion_commander_talent_1 = x
 g.legion_commander_ult = c()
-local y = g.legion_commander_ult
-y.name = "legion_commander_ult"
-d(y, o)
-function y.prototype.OnSpellStart(self)
-	local z = self:GetCaster()
-	local A = z:GetEnemy()
-	if not IsInjurable(A, z) then
+local x = g.legion_commander_ult
+x.name = "legion_commander_ult"
+d(x, o)
+function x.prototype.OnSpellStart(self)
+	local y = self:GetCaster()
+	local z = y:GetEnemy()
+	if not IsInjurable(z, y) then
 		return
 	end
-	local B = self:GetSpecialValueFor("duration") + self:GetTalentValue("legion_commander_talent_3", "duration")
-	local C = self:GetTalentValue("legion_commander_talent_5", "bonus_pct")
-	z:StartGesture(ACT_DOTA_CAST_ABILITY_2)
-	z:EmitSound("Hero_LegionCommander.PressTheAttack")
-	z:AddNewModifier(z, self, "modifier_legion_commander_ult", { duration = B })
+	local A = self:GetSpecialValueFor("duration") + self:GetTalentValue("legion_commander_talent_3", "duration")
+	local B = self:GetTalentValue("legion_commander_talent_5", "bonus_pct")
+	y:StartGesture(ACT_DOTA_CAST_ABILITY_2)
+	y:EmitSound("Hero_LegionCommander.PressTheAttack")
+	local C = self:GetTalentValue("legion_commander_talent_9", "reply")
+	local D = self:GetTalentValue("legion_commander_talent_9", "buff_reduce")
 	if C > 0 then
-		z:AddNewModifier(z, self, "modifier_legion_commander_talent_3", { duration = B })
+		Heal(y, C, self:GetAbilityName(), "Ability")
+	end
+	if D > 0 then
+		ReduceDebuff(y, 0, D)
+	end
+	y:AddNewModifier(y, self, "modifier_legion_commander_ult", { duration = A })
+	if B > 0 then
+		y:AddNewModifier(y, self, "modifier_legion_commander_talent_3", { duration = A })
 	end
 end
-y = e({ p(nil) }, y)
-g.legion_commander_ult = y
+x = e({ p(nil) }, x)
+g.legion_commander_ult = x
 g.modifier_legion_commander_vs = c()
-local D = g.modifier_legion_commander_vs
-D.name = "modifier_legion_commander_vs"
-d(D, l)
-function D.prototype.OnCreated(self, s)
+local E = g.modifier_legion_commander_vs
+E.name = "modifier_legion_commander_vs"
+d(E, l)
+function E.prototype.OnCreated(self, s)
 	if IsClient() then
 		local t = self:GetParent()
 		local v = ParticleManager:CreateParticle(
@@ -748,34 +654,34 @@ function D.prototype.OnCreated(self, s)
 		self:AddParticle(v, false, false, -1, false, false)
 	end
 end
-D = e(
+E = e(
 	{ m(
 		a,
 		{ IsHidden = true, IsDebuff = true, IsPurgable = false, IsPurgeException = true, AllowIllusionDuplicate = false }
 	) },
-	D
+	E
 )
-g.modifier_legion_commander_vs = D
+g.modifier_legion_commander_vs = E
 g.modifier_legion_commander_ult = c()
-local E = g.modifier_legion_commander_ult
-E.name = "modifier_legion_commander_ult"
-d(E, l)
-function E.prototype.GetAbilitySpecialValue(self)
+local F = g.modifier_legion_commander_ult
+F.name = "modifier_legion_commander_ult"
+d(F, l)
+function F.prototype.GetAbilitySpecialValue(self)
 	self.interval = self:GetAbilitySpecialValueFor("interval")
 		- self:GetAbilityTalentValue("legion_commander_talent_5", "cooldown_reduce")
 	self.shield = self:GetAbilitySpecialValueFor("shield")
 end
-function E.prototype.OnCreated(self, s)
+function F.prototype.OnCreated(self, s)
 	if IsServer() then
 		self:StartIntervalThink(math.max(0, self.interval))
 	else
-		local F = ParticleManager:CreateParticle(
+		local G = ParticleManager:CreateParticle(
 			"particles/units/heroes/hero_legion_commander/legion_commander_press_owner.vpcf",
 			PATTACH_ABSORIGIN_FOLLOW,
 			self:GetParent()
 		)
 		ParticleManager:SetParticleControlEnt(
-			F,
+			G,
 			2,
 			self:GetParent(),
 			PATTACH_POINT_FOLLOW,
@@ -783,17 +689,17 @@ function E.prototype.OnCreated(self, s)
 			self:GetParent():GetAbsOrigin(),
 			false
 		)
-		self:AddParticle(F, false, false, -1, false, false)
+		self:AddParticle(G, false, false, -1, false, false)
 	end
 end
-function E.prototype.OnIntervalThink(self)
+function F.prototype.OnIntervalThink(self)
 	local t = self:GetParent()
-	local G = AddShield
-	local H = self.shield
-	local I = self:GetAbility()
-	G(t, H, I and I:GetAbilityName(), "Ability")
+	local H = AddShield
+	local I = self.shield
+	local J = self:GetAbility()
+	H(t, I, J and J:GetAbilityName(), "Ability")
 end
-E = e(
+F = e(
 	{
 		m(
 			a,
@@ -807,20 +713,20 @@ E = e(
 			}
 		),
 	},
-	E
+	F
 )
-g.modifier_legion_commander_ult = E
+g.modifier_legion_commander_ult = F
 g.modifier_legion_commander_talent_3 = c()
-local J = g.modifier_legion_commander_talent_3
-J.name = "modifier_legion_commander_talent_3"
-d(J, l)
-function J.prototype.GetAbilitySpecialValue(self)
+local K = g.modifier_legion_commander_talent_3
+K.name = "modifier_legion_commander_talent_3"
+d(K, l)
+function K.prototype.GetAbilitySpecialValue(self)
 	self.tl5_bonus_pct = self:GetAbilityTalentValue("legion_commander_talent_5", "bonus_pct")
 end
-function J.prototype.EFunctionValues(self)
+function K.prototype.EFunctionValues(self)
 	return { [EOMModifierFunction.EOM_MODIFIER_PROPERTY_SHIELD_STACK_BONUS_PERCENTAGE] = self.tl5_bonus_pct }
 end
-J = e(
+K = e(
 	{
 		m(
 			a,
@@ -834,76 +740,76 @@ J = e(
 			}
 		),
 	},
-	J
+	K
 )
-g.modifier_legion_commander_talent_3 = J
+g.modifier_legion_commander_talent_3 = K
 g.legion_commander_talent_2 = c()
-local K = g.legion_commander_talent_2
-K.name = "legion_commander_talent_2"
-d(K, i)
-function K.prototype.GetIntrinsicModifierName(self)
+local L = g.legion_commander_talent_2
+L.name = "legion_commander_talent_2"
+d(L, i)
+function L.prototype.GetIntrinsicModifierName(self)
 	return "modifier_legion_commander_talent_2"
 end
-K = e({ j(nil) }, K)
-g.legion_commander_talent_2 = K
+L = e({ j(nil) }, L)
+g.legion_commander_talent_2 = L
 g.modifier_legion_commander_talent_2 = c()
-local L = g.modifier_legion_commander_talent_2
-L.name = "modifier_legion_commander_talent_2"
-d(L, l)
-function L.prototype.GetAbilitySpecialValue(self)
+local M = g.modifier_legion_commander_talent_2
+M.name = "modifier_legion_commander_talent_2"
+d(M, l)
+function M.prototype.GetAbilitySpecialValue(self)
 	self.crit_chance = self:GetAbilitySpecialValueFor("crit_chance")
 end
-function L.prototype.EFunctionValues(self)
+function M.prototype.EFunctionValues(self)
 	return { [EOMModifierFunction.EOM_MODIFIER_PROPERTY_PHYSICAL_CRITICALSTRIKE_CHANCE_BONUS] = self.crit_chance }
 end
-L = e(
+M = e(
 	{ m(
 		a,
 		{ IsHidden = true, IsDebuff = false, IsPurgable = false, IsPurgeException = false, AllowIllusionDuplicate = false }
 	) },
-	L
+	M
 )
-g.modifier_legion_commander_talent_2 = L
+g.modifier_legion_commander_talent_2 = M
 g.legion_commander_talent_7 = c()
-local M = g.legion_commander_talent_7
-M.name = "legion_commander_talent_7"
-d(M, i)
-function M.prototype.GetIntrinsicModifierName(self)
+local N = g.legion_commander_talent_7
+N.name = "legion_commander_talent_7"
+d(N, i)
+function N.prototype.GetIntrinsicModifierName(self)
 	return "modifier_legion_commander_talent_7"
 end
-M = e({ j(nil) }, M)
-g.legion_commander_talent_7 = M
+N = e({ j(nil) }, N)
+g.legion_commander_talent_7 = N
 g.modifier_legion_commander_talent_7 = c()
-local N = g.modifier_legion_commander_talent_7
-N.name = "modifier_legion_commander_talent_7"
-d(N, l)
-function N.prototype.GetTexture(self)
+local O = g.modifier_legion_commander_talent_7
+O.name = "modifier_legion_commander_talent_7"
+d(O, l)
+function O.prototype.GetTexture(self)
 	return "legion_commander_press_the_attack"
 end
-function N.prototype.GetAbilitySpecialValue(self)
+function O.prototype.GetAbilitySpecialValue(self)
 	self.add_value = self:GetAbilitySpecialValueFor("add_value")
 end
-function N.prototype.EDeclareEvents(self)
+function O.prototype.EDeclareEvents(self)
 	return {
 		[EOMModifierEvents.MODIFIER_EVENT_ON_BATTLE_START] = {},
 		[EOMModifierEvents.MODIFIER_EVENT_ON_BATTLE_END] = { self:GetParent(), self:GetParent() },
 	}
 end
-function N.prototype.SaveStack(self, O)
-	local P = self:LoadStack()
-	PlayerData:saveData(self:GetParent():GetPlayerOwnerID(), "legion_commander_talent_7", P + O)
+function O.prototype.SaveStack(self, P)
+	local Q = self:LoadStack()
+	PlayerData:saveData(self:GetParent():GetPlayerOwnerID(), "legion_commander_talent_7", Q + P)
 end
-function N.prototype.LoadStack(self)
-	local Q = PlayerData:loadData(self:GetParent():GetPlayerOwnerID(), "legion_commander_talent_7")
-	if Q == nil then
-		Q = 0
+function O.prototype.LoadStack(self)
+	local R = PlayerData:loadData(self:GetParent():GetPlayerOwnerID(), "legion_commander_talent_7")
+	if R == nil then
+		R = 0
 	end
-	return Q
+	return R
 end
-function N.prototype.OnBattleStart(self)
+function O.prototype.OnBattleStart(self)
 	self:SetStackCount(self:LoadStack())
 end
-function N.prototype.OnBattleEnd(self, s)
+function O.prototype.OnBattleEnd(self, s)
 	if IsServer() then
 		if self.add_value == 0 then
 			return
@@ -911,69 +817,69 @@ function N.prototype.OnBattleEnd(self, s)
 		if s.isNeutral ~= nil then
 			return
 		end
-		local R = self:GetParent():GetPlayerOwnerID()
-		if s.illusionPlayerID == R then
+		local S = self:GetParent():GetPlayerOwnerID()
+		if s.illusionPlayerID == S then
 			return
 		end
-		if s.winPlayerID == R then
+		if s.winPlayerID == S then
 			self:SaveStack(self.add_value)
 			self:SetStackCount(self:LoadStack())
 		end
 	end
 end
-function N.prototype.EDeclareFunctions(self)
+function O.prototype.EDeclareFunctions(self)
 	return { EOMModifierFunction.EOM_MODIFIER_PROPERTY_SHIELD_STACK_BONUS }
 end
-function N.prototype.EOM_GetModifierShieldStackBonus(self, s)
+function O.prototype.EOM_GetModifierShieldStackBonus(self, s)
 	return self:GetStackCount()
 end
-N = e(
+O = e(
 	{ m(
 		a,
 		{ IsHidden = false, IsDebuff = false, IsPurgable = false, IsPurgeException = false, AllowIllusionDuplicate = false }
 	) },
-	N
+	O
 )
-g.modifier_legion_commander_talent_7 = N
+g.modifier_legion_commander_talent_7 = O
 g.legion_commander_shard = c()
-local S = g.legion_commander_shard
-S.name = "legion_commander_shard"
-d(S, i)
-function S.prototype.GetIntrinsicModifierName(self)
+local T = g.legion_commander_shard
+T.name = "legion_commander_shard"
+d(T, i)
+function T.prototype.GetIntrinsicModifierName(self)
 	return "modifier_legion_commander_shard"
 end
-S = e({ j(nil) }, S)
-g.legion_commander_shard = S
+T = e({ j(nil) }, T)
+g.legion_commander_shard = T
 g.modifier_legion_commander_shard = c()
-local T = g.modifier_legion_commander_shard
-T.name = "modifier_legion_commander_shard"
-d(T, l)
-function T.prototype.____constructor(self, ...)
+local U = g.modifier_legion_commander_shard
+U.name = "modifier_legion_commander_shard"
+d(U, l)
+function U.prototype.____constructor(self, ...)
 	l.prototype.____constructor(self, ...)
 	self.sect = "16"
 end
-function T.prototype.GetAbilitySpecialValue(self)
+function U.prototype.GetAbilitySpecialValue(self)
 	self.base_duration = self:GetAbilitySpecialValueFor("base_duration")
 	self.shield = self:GetAbilitySpecialValueFor("shield")
 	if IsServer() then
 		self.ready = true
 	end
 end
-function T.prototype.OnCreated(self, s)
+function U.prototype.OnCreated(self, s)
 	if IsServer() then
 		self:FixAbilityLevel()
 	end
 end
-function T.prototype.OnIntervalThink(self)
+function U.prototype.OnIntervalThink(self)
 	if IsServer() then
 		self:StartIntervalThink(-1)
 		self.ready = true
 	end
 end
-function T.prototype.OnStackCountChanged(self, U)
+function U.prototype.OnStackCountChanged(self, V)
 	self.base_duration = self:GetAbilitySpecialValueFor("base_duration")
 end
-function T.prototype.EDeclareEvents(self)
+function U.prototype.EDeclareEvents(self)
 	return {
 		[EOMModifierEvents.MODIFIER_EVENT_ON_ATTACK_LANDED] = { -1, self:GetParent() },
 		[EOMModifierEvents.MODIFIER_EVENT_ON_BATTLE_START_BEFORE] = { -1, -1 },
@@ -983,67 +889,67 @@ function T.prototype.EDeclareEvents(self)
 		},
 	}
 end
-function T.prototype.OnCustomAttackLanded(self, V)
+function U.prototype.OnCustomAttackLanded(self, W)
 	if not self.ready then
 		return
 	end
 	self.ready = false
 	self:StartIntervalThink(self.base_duration)
-	local W = self:GetParent()
-	local w = GetAttackDamage(W) + self.shield * GetShield(W) * 0.01
-	if W:IsRangedAttacker() then
+	local X = self:GetParent()
+	local w = GetAttackDamage(X) + self.shield * GetShield(X) * 0.01
+	if X:IsRangedAttacker() then
 		Projectile:CreateTrackingProjectile({
-			EffectName = W:GetRangedProjectileName(),
-			hCaster = W,
-			hTarget = V.attacker,
-			iMoveSpeed = W:GetProjectileSpeed(),
-			OnProjectileHit = function(u, X, Y)
+			EffectName = X:GetRangedProjectileName(),
+			hCaster = X,
+			hTarget = W.attacker,
+			iMoveSpeed = X:GetProjectileSpeed(),
+			OnProjectileHit = function(u, Y, Z)
 				if IsValid(self) and IsInjurable(u) then
-					DamageSystem:performAttack(W, u, { ability = self:GetAbility(), damage = w })
+					DamageSystem:performAttack(X, u, { ability = self:GetAbility(), damage = w })
 				end
 			end,
 		})
 	else
-		DamageSystem:performAttack(W, V.attacker, { damage = w, ability = self:GetAbility() })
+		DamageSystem:performAttack(X, W.attacker, { damage = w, ability = self:GetAbility() })
 	end
 	local v = ParticleManager:CreateParticle(
 		"particles/units/heroes/hero_legion_commander/legion_commander_courage_hit.vpcf",
 		PATTACH_ABSORIGIN_FOLLOW,
-		W
+		X
 	)
-	ParticleManager:SetParticleControlEnt(v, 1, W, PATTACH_ABSORIGIN_FOLLOW, nil, vec3_zero, false)
+	ParticleManager:SetParticleControlEnt(v, 1, X, PATTACH_ABSORIGIN_FOLLOW, nil, vec3_zero, false)
 	ParticleManager:SetParticleControl(v, 2, Vector(0, 1, 0))
-	W:EmitSound("Hero_LegionCommander.Courage")
+	X:EmitSound("Hero_LegionCommander.Courage")
 end
-function T.prototype.OnBattleStartBefore(self, s)
+function U.prototype.OnBattleStartBefore(self, s)
 	self:FixAbilityLevel()
 	self.ready = true
 end
-function T.prototype.OnAbilityLearn(self, s)
+function U.prototype.OnAbilityLearn(self, s)
 	if s.abilityname == self.sect then
 		self:FixAbilityLevel()
 	end
 end
-function T.prototype.FixAbilityLevel(self)
+function U.prototype.FixAbilityLevel(self)
 	if IsServer() then
-		local Z = PlayerData:getHero(self:GetParent():GetPlayerOwnerID())
-		if Z then
-			local _ = Z:getAbilityUpgradeData()
-			local a0 = 1
-			if _[self.sect] then
-				a0 = _[self.sect].level
+		local _ = PlayerData:getHero(self:GetParent():GetPlayerOwnerID())
+		if _ then
+			local a0 = _:getAbilityUpgradeData()
+			local a1 = 1
+			if a0[self.sect] then
+				a1 = a0[self.sect].level
 			end
-			self:GetAbility():SetLevel(Clamp(a0, 1, 3))
+			self:GetAbility():SetLevel(Clamp(a1, 1, 3))
 			self:IncrementStackCount()
 		end
 	end
 end
-T = e(
+U = e(
 	{ m(
 		a,
 		{ IsHidden = true, IsDebuff = false, IsPurgable = false, IsPurgeException = false, AllowIllusionDuplicate = false }
 	) },
-	T
+	U
 )
-g.modifier_legion_commander_shard = T
+g.modifier_legion_commander_shard = U
 return g

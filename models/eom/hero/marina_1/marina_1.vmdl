@@ -166,7 +166,7 @@
 						delta = false
 						worldSpace = false
 						hidden = false
-						activity_name = "ACT_DOTA_IDLE_RARE"
+						activity_name = "ACT_DOTA_IDLE"
 						activity_weight = 1
 					},
 					{
@@ -268,6 +268,8 @@
 						delta = false
 						worldSpace = false
 						hidden = false
+						activity_name = "ACT_DOTA_CAST_ABILITY_2"
+						activity_weight = 1
 						children = 
 						[
 							{
@@ -299,6 +301,8 @@
 						delta = false
 						worldSpace = false
 						hidden = false
+						activity_name = "ACT_DOTA_CAST_ABILITY_3"
+						activity_weight = 1
 						children = 
 						[
 							{
@@ -308,6 +312,39 @@
 								event_keys = 
 								{
 									name = resource:"models/eom/hero/marina_1/particles/marina_1_skill_02_fx.vpcf"
+									detach_from_owner = false
+									always_run = false
+									aggregate = false
+									stop_on_seq_change = false
+									stop_immediately = false
+									use_layer_sequence = false
+									tags = null
+									config = "preview"
+								}
+							},
+						]
+					},
+					{
+						_class = "AnimFile"
+						name = "marina_1_attack_1_copy"
+						source_filename = "models/eom/hero/marina_1/marina_1_marina_1_attack_1_copy.dmx"
+						fade_in_time = 0.2
+						fade_out_time = 0.2
+						looping = false
+						delta = false
+						worldSpace = false
+						hidden = false
+						activity_name = "ACT_DOTA_CAST_ABILITY_1"
+						activity_weight = 1
+						children = 
+						[
+							{
+								_class = "AnimEvent"
+								event_class = "AE_CL_CREATE_PARTICLE_EFFECT_CFG"
+								event_frame = 8
+								event_keys = 
+								{
+									name = resource:"models/eom/hero/marina_1/particles/marina_1_attack_01_fx.vpcf"
 									detach_from_owner = false
 									always_run = false
 									aggregate = false

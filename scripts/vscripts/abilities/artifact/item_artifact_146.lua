@@ -13,192 +13,207 @@ local b = require("lualib_bundle")
 local c = b.__TS__Class
 local d = b.__TS__ClassExtends
 local e = b.__TS__DecorateLegacy
-local f = b.__TS__Delete
-local g = b.__TS__StringSplit
+local f = b.Set
+local g = b.__TS__New
 local h = b.__TS__ArrayForEach
-local i = b.__TS__SourceMapTraceBack
-i(
+local i = b.__TS__Delete
+local j = b.__TS__StringSplit
+local k = b.__TS__SourceMapTraceBack
+k(
 	debug.getinfo(1).short_src,
 	{
-		["11"] = 2,
-		["12"] = 2,
 		["13"] = 2,
-		["14"] = 3,
-		["15"] = 3,
+		["14"] = 2,
+		["15"] = 2,
 		["16"] = 3,
-		["17"] = 5,
-		["18"] = 6,
+		["17"] = 3,
+		["18"] = 3,
 		["19"] = 5,
 		["20"] = 6,
-		["21"] = 7,
-		["22"] = 8,
+		["21"] = 5,
+		["22"] = 6,
 		["23"] = 7,
-		["24"] = 10,
-		["25"] = 11,
-		["26"] = 12,
-		["27"] = 13,
-		["28"] = 14,
-		["29"] = 15,
-		["30"] = 16,
-		["31"] = 17,
-		["32"] = 18,
-		["33"] = 19,
-		["35"] = 21,
-		["38"] = 22,
-		["40"] = 10,
-		["41"] = 6,
-		["42"] = 5,
+		["24"] = 8,
+		["25"] = 7,
+		["26"] = 10,
+		["27"] = 11,
+		["28"] = 12,
+		["29"] = 13,
+		["30"] = 14,
+		["31"] = 15,
+		["32"] = 16,
+		["33"] = 17,
+		["34"] = 18,
+		["35"] = 19,
+		["37"] = 21,
+		["40"] = 22,
+		["42"] = 10,
 		["43"] = 6,
+		["44"] = 5,
 		["45"] = 6,
-		["46"] = 30,
-		["47"] = 39,
+		["47"] = 6,
 		["48"] = 30,
 		["49"] = 39,
-		["50"] = 42,
-		["51"] = 43,
+		["50"] = 30,
+		["51"] = 39,
 		["52"] = 42,
-		["53"] = 45,
-		["54"] = 46,
-		["55"] = 47,
-		["56"] = 47,
+		["53"] = 43,
+		["54"] = 42,
+		["55"] = 45,
+		["56"] = 46,
 		["57"] = 47,
-		["58"] = 46,
-		["59"] = 46,
+		["58"] = 47,
+		["59"] = 47,
 		["60"] = 46,
-		["61"] = 45,
-		["62"] = 51,
-		["63"] = 52,
-		["64"] = 53,
-		["65"] = 55,
-		["66"] = 56,
-		["69"] = 51,
-		["70"] = 60,
-		["71"] = 61,
-		["72"] = 62,
-		["73"] = 63,
-		["74"] = 64,
-		["75"] = 66,
-		["76"] = 67,
-		["77"] = 68,
-		["80"] = 71,
-		["81"] = 72,
-		["84"] = 66,
-		["85"] = 76,
-		["86"] = 78,
-		["87"] = 79,
-		["89"] = 81,
-		["90"] = 82,
-		["91"] = 83,
-		["92"] = 85,
-		["93"] = 86,
-		["94"] = 86,
-		["95"] = 86,
-		["96"] = 86,
-		["98"] = 60,
-		["99"] = 89,
-		["100"] = 91,
-		["103"] = 92,
-		["104"] = 95,
-		["107"] = 97,
-		["108"] = 98,
-		["109"] = 100,
-		["110"] = 101,
-		["112"] = 89,
-		["113"] = 104,
-		["114"] = 105,
-		["115"] = 106,
-		["116"] = 108,
-		["117"] = 109,
-		["118"] = 110,
-		["119"] = 112,
-		["121"] = 113,
-		["122"] = 113,
-		["123"] = 114,
-		["124"] = 117,
-		["125"] = 117,
-		["126"] = 117,
-		["127"] = 118,
-		["128"] = 119,
-		["129"] = 120,
-		["130"] = 125,
-		["131"] = 125,
-		["132"] = 125,
-		["133"] = 125,
-		["134"] = 125,
-		["135"] = 117,
-		["136"] = 117,
-		["137"] = 113,
-		["140"] = 129,
-		["141"] = 130,
-		["142"] = 132,
-		["145"] = 104,
-		["146"] = 136,
-		["147"] = 137,
-		["148"] = 136,
-		["149"] = 39,
-		["150"] = 30,
-		["151"] = 30,
-		["152"] = 30,
-		["153"] = 30,
-		["154"] = 30,
-		["155"] = 30,
-		["156"] = 30,
-		["157"] = 30,
-		["158"] = 30,
-		["159"] = 39,
-		["161"] = 39,
+		["61"] = 46,
+		["62"] = 46,
+		["63"] = 45,
+		["64"] = 51,
+		["65"] = 52,
+		["66"] = 53,
+		["67"] = 55,
+		["68"] = 56,
+		["71"] = 51,
+		["72"] = 60,
+		["73"] = 61,
+		["74"] = 62,
+		["75"] = 63,
+		["76"] = 64,
+		["77"] = 65,
+		["78"] = 66,
+		["80"] = 66,
+		["81"] = 66,
+		["82"] = 66,
+		["83"] = 67,
+		["84"] = 68,
+		["85"] = 68,
+		["87"] = 66,
+		["88"] = 66,
+		["90"] = 70,
+		["91"] = 72,
+		["92"] = 73,
+		["93"] = 74,
+		["96"] = 77,
+		["97"] = 78,
+		["100"] = 81,
+		["101"] = 82,
+		["104"] = 72,
+		["105"] = 86,
+		["106"] = 88,
+		["107"] = 89,
+		["109"] = 91,
+		["110"] = 92,
+		["111"] = 93,
+		["112"] = 95,
+		["113"] = 96,
+		["114"] = 96,
+		["115"] = 96,
+		["116"] = 96,
+		["118"] = 60,
+		["119"] = 99,
+		["120"] = 101,
+		["123"] = 102,
+		["124"] = 105,
+		["127"] = 107,
+		["128"] = 108,
+		["129"] = 110,
+		["130"] = 111,
+		["132"] = 99,
+		["133"] = 114,
+		["134"] = 115,
+		["135"] = 116,
+		["136"] = 118,
+		["137"] = 119,
+		["138"] = 120,
+		["139"] = 122,
+		["141"] = 123,
+		["142"] = 123,
+		["143"] = 124,
+		["144"] = 127,
+		["145"] = 127,
+		["146"] = 127,
+		["147"] = 128,
+		["148"] = 129,
+		["149"] = 130,
+		["150"] = 135,
+		["151"] = 135,
+		["152"] = 135,
+		["153"] = 135,
+		["154"] = 135,
+		["155"] = 127,
+		["156"] = 127,
+		["157"] = 123,
+		["160"] = 139,
+		["161"] = 140,
+		["162"] = 142,
+		["165"] = 114,
+		["166"] = 146,
+		["167"] = 147,
+		["168"] = 146,
+		["169"] = 39,
+		["170"] = 30,
+		["171"] = 30,
+		["172"] = 30,
+		["173"] = 30,
+		["174"] = 30,
+		["175"] = 30,
+		["176"] = 30,
+		["177"] = 30,
+		["178"] = 30,
+		["179"] = 39,
+		["181"] = 39,
 	}
 )
-local j = {}
-local k = require("lib.dota_ts_adapter")
-local l = k.BaseItem
-local m = k.registerAbility
-local n = require("modifiers.eom_modifier")
-local o = n.EOMModifier
-local p = n.registerEOMModifier
-j.item_artifact_146 = c()
-local q = j.item_artifact_146
-q.name = "item_artifact_146"
-d(q, l)
-function q.prototype.GetIntrinsicModifierName(self)
+local l = {}
+local m = require("lib.dota_ts_adapter")
+local n = m.BaseItem
+local o = m.registerAbility
+local p = require("modifiers.eom_modifier")
+local q = p.EOMModifier
+local r = p.registerEOMModifier
+l.item_artifact_146 = c()
+local s = l.item_artifact_146
+s.name = "item_artifact_146"
+d(s, n)
+function s.prototype.GetIntrinsicModifierName(self)
 	return "modifier_item_artifact_146"
 end
-function q.prototype.OnSpellStart(self)
-	local r = self:GetCaster()
-	local s = r:FindModifierByName(self:GetIntrinsicModifierName())
-	if s and s:GetStackCount() > 0 then
-		local t = r:GetPlayerOwnerID()
-		local u = s
-		local v = u:GetSecretKey()
-		if not v then
-			u:RandomizeSecretKey()
-			v = u:GetSecretKey()
+function s.prototype.OnSpellStart(self)
+	local t = self:GetCaster()
+	local u = t:FindModifierByName(self:GetIntrinsicModifierName())
+	if u and u:GetStackCount() > 0 then
+		local v = t:GetPlayerOwnerID()
+		local w = u
+		local x = w:GetSecretKey()
+		if not x then
+			w:RandomizeSecretKey()
+			x = w:GetSecretKey()
 		end
-		if not v then
+		if not x then
 			return
 		end
 		Notification:combatToPlayer(
-			t,
-			{ message = "notify_artifact_9_ability", string_ability_name = "DOTA_Tooltip_ability_mechanics_" .. v }
+			v,
+			{ message = "notify_artifact_9_ability", string_ability_name = "DOTA_Tooltip_ability_mechanics_" .. x }
 		)
 	end
 end
-q = e({ m(nil) }, q)
-j.item_artifact_146 = q
-j.modifier_item_artifact_146 = c()
-local w = j.modifier_item_artifact_146
-w.name = "modifier_item_artifact_146"
-d(w, o)
-function w.prototype.GetAbilitySpecialValue(self)
+s = e({ o(nil) }, s)
+l.item_artifact_146 = s
+l.modifier_item_artifact_146 = c()
+local y = l.modifier_item_artifact_146
+y.name = "modifier_item_artifact_146"
+d(y, q)
+function y.prototype.GetAbilitySpecialValue(self)
 	self.ability_count = self:GetAbilitySpecialValueFor("ability_count")
 end
-function w.prototype.EDeclareEvents(self)
+function y.prototype.EDeclareEvents(self)
 	return {
 		[EOMModifierEvents.MODIFIER_EVENT_ON_ABILITY_LEARN] = { self:GetParent(), -1 },
 		[EOMModifierEvents.MODIFIER_EVENT_ON_BATTLE_END] = { -1, -1 },
 	}
 end
-function w.prototype.OnCreated(self, x)
+function y.prototype.OnCreated(self, z)
 	if IsServer() then
 		self:RandomizeSecretKey()
 		if self.secret_key then
@@ -206,89 +221,104 @@ function w.prototype.OnCreated(self, x)
 		end
 	end
 end
-function w.prototype.RandomizeSecretKey(self)
-	local t = self:GetParent():GetPlayerOwnerID()
-	local y = PlayerData:getplayerData(t)
-	local z = y.hero
-	local A = AbilityShop:getAbilityPoolNew("n")
-	A:each(function(B, C)
-		if
-			y.bannedSect
-			and KeyValues.AbilityUpgradesKvs[C]
-			and (string.find(KeyValues.AbilityUpgradesKvs[C].sect, y.bannedSect, nil, true) or 0) - 1 ~= -1
-		then
-			f(A.tList, C)
+function y.prototype.RandomizeSecretKey(self)
+	local v = self:GetParent():GetPlayerOwnerID()
+	local A = PlayerData:getplayerData(v)
+	local B = A.hero
+	local C = self:GetParent():FindAllModifiersByName("modifier_item_artifact_9")
+	local D = g(f)
+	local E = C
+	if E ~= nil then
+		h(C, function(F, w)
+			local G = w:GetSecretKey()
+			if G then
+				D:add(G)
+			end
+		end)
+	end
+	local H = AbilityShop:getAbilityPoolNew("n")
+	H:each(function(F, I)
+		if D:has(I) then
+			i(H.tList, I)
 			return
 		end
-		if z:getAbilityUpgradeLevel(C) >= SECT_ABILITY_LEVEL.n then
-			f(A.tList, C)
+		if
+			A.bannedSect
+			and KeyValues.AbilityUpgradesKvs[I]
+			and (string.find(KeyValues.AbilityUpgradesKvs[I].sect, A.bannedSect, nil, true) or 0) - 1 ~= -1
+		then
+			i(H.tList, I)
+			return
+		end
+		if B:getAbilityUpgradeLevel(I) >= SECT_ABILITY_LEVEL.n then
+			i(H.tList, I)
 			return
 		end
 	end)
-	A:update()
+	H:update()
 	if self.secret_key then
-		PlayerData:getHero(t):removeSectModifiers(self:GetAbility():GetName())
+		PlayerData:getHero(v):removeSectModifiers(self:GetAbility():GetName())
 	end
-	self.secret_key = A:random()
+	self.secret_key = H:random()
 	if self.secret_key then
-		local D = g(KeyValues.AbilityUpgradesKvs[self.secret_key].sect, "|")
-		local E = D[RandomInt(0, #D - 1) + 1]
-		PlayerData:getHero(self:GetParent():GetPlayerOwnerID()):addSectModifier(E, self:GetAbility():GetName())
+		local J = j(KeyValues.AbilityUpgradesKvs[self.secret_key].sect, "|")
+		local K = J[RandomInt(0, #J - 1) + 1]
+		PlayerData:getHero(self:GetParent():GetPlayerOwnerID()):addSectModifier(K, self:GetAbility():GetName())
 	end
 end
-function w.prototype.OnBattleEnd(self, x)
-	if not x.isNeutral then
+function y.prototype.OnBattleEnd(self, z)
+	if not z.isNeutral then
 		return
 	end
-	local t = self:GetParent():GetPlayerOwnerID()
-	if x.neutralWin ~= true or x.winPlayerID ~= t then
+	local v = self:GetParent():GetPlayerOwnerID()
+	if z.neutralWin ~= true or z.winPlayerID ~= v then
 		return
 	end
-	local F = self:GetStackCount() > 0
+	local L = self:GetStackCount() > 0
 	self:SetStackCount(self:GetStackCount() + 1)
-	if not F then
+	if not L then
 		self:RandomizeSecretKey()
 	end
 end
-function w.prototype.OnAbilityLearn(self, x)
-	local t = self:GetParent():GetPlayerOwnerID()
-	if self:GetStackCount() > 0 and x.abilityname == self.secret_key then
+function y.prototype.OnAbilityLearn(self, z)
+	local v = self:GetParent():GetPlayerOwnerID()
+	if self:GetStackCount() > 0 and z.abilityname == self.secret_key then
 		self:SetStackCount(self:GetStackCount() - 1)
-		PlayerData:getHero(t):removeSectModifiers(self:GetAbility():GetName())
+		PlayerData:getHero(v):removeSectModifiers(self:GetAbility():GetName())
 		self.secret_key = nil
-		local y = PlayerData:getplayerData(t)
+		local A = PlayerData:getplayerData(v)
 		do
-			local G = 0
-			while G < self.ability_count do
-				local H = AbilityShop:getRandomAbility(t, 1, { isAbilityShop = false })
-				h(H, function(B, I)
-					local v = I.aid
-					x.heroclass:learnAbility(v, true)
+			local M = 0
+			while M < self.ability_count do
+				local N = AbilityShop:getRandomAbility(v, 1, { isAbilityShop = false })
+				h(N, function(F, O)
+					local x = O.aid
+					z.heroclass:learnAbility(x, true)
 					Notification:combatToPlayer(
-						t,
+						v,
 						{
-							message = "notify_artifact_ability_" .. I.rarity,
+							message = "notify_artifact_ability_" .. O.rarity,
 							string_itemname_artifact = "DOTA_Tooltip_ability_item_artifact_146",
-							string_ability_name = "DOTA_Tooltip_ability_mechanics_" .. v,
+							string_ability_name = "DOTA_Tooltip_ability_mechanics_" .. x,
 						}
 					)
-					y:addArtifactAbilities(self:GetAbility():entindex(), v, false)
+					A:addArtifactAbilities(self:GetAbility():entindex(), x, false)
 				end)
-				G = G + 1
+				M = M + 1
 			end
 		end
-		y:upDateArtifactAbilities()
+		A:upDateArtifactAbilities()
 		if self:GetStackCount() > 0 then
 			self:RandomizeSecretKey()
 		end
 	end
 end
-function w.prototype.GetSecretKey(self)
+function y.prototype.GetSecretKey(self)
 	return self.secret_key
 end
-w = e(
+y = e(
 	{
-		p(
+		r(
 			a,
 			{
 				IsHidden = true,
@@ -301,7 +331,7 @@ w = e(
 			}
 		),
 	},
-	w
+	y
 )
-j.modifier_item_artifact_146 = w
-return j
+l.modifier_item_artifact_146 = y
+return l

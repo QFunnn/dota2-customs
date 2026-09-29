@@ -48,48 +48,51 @@ f(
 		["38"] = 28,
 		["39"] = 29,
 		["40"] = 30,
-		["41"] = 31,
-		["42"] = 32,
+		["42"] = 28,
 		["43"] = 33,
 		["44"] = 34,
-		["47"] = 28,
-		["48"] = 38,
-		["49"] = 39,
-		["50"] = 38,
-		["51"] = 43,
-		["52"] = 44,
-		["53"] = 45,
-		["56"] = 46,
-		["59"] = 49,
-		["60"] = 50,
-		["61"] = 51,
-		["62"] = 52,
-		["63"] = 52,
-		["64"] = 52,
-		["65"] = 52,
-		["66"] = 52,
-		["67"] = 52,
-		["68"] = 52,
-		["69"] = 52,
-		["70"] = 57,
-		["71"] = 57,
-		["72"] = 57,
-		["73"] = 57,
-		["74"] = 57,
-		["75"] = 58,
-		["77"] = 43,
-		["78"] = 20,
-		["79"] = 11,
-		["80"] = 11,
-		["81"] = 11,
+		["45"] = 33,
+		["46"] = 38,
+		["47"] = 39,
+		["50"] = 40,
+		["51"] = 38,
+		["52"] = 43,
+		["53"] = 44,
+		["56"] = 45,
+		["57"] = 46,
+		["58"] = 47,
+		["59"] = 47,
+		["60"] = 47,
+		["61"] = 47,
+		["62"] = 48,
+		["65"] = 49,
+		["66"] = 50,
+		["67"] = 51,
+		["68"] = 51,
+		["69"] = 51,
+		["70"] = 51,
+		["71"] = 51,
+		["72"] = 51,
+		["73"] = 51,
+		["74"] = 51,
+		["75"] = 56,
+		["76"] = 56,
+		["77"] = 56,
+		["78"] = 56,
+		["79"] = 56,
+		["80"] = 43,
+		["81"] = 20,
 		["82"] = 11,
 		["83"] = 11,
 		["84"] = 11,
 		["85"] = 11,
 		["86"] = 11,
 		["87"] = 11,
-		["88"] = 20,
-		["90"] = 20,
+		["88"] = 11,
+		["89"] = 11,
+		["90"] = 11,
+		["91"] = 20,
+		["93"] = 20,
 	}
 )
 local g = {}
@@ -122,39 +125,39 @@ function o.prototype.GetAbilitySpecialValue(self)
 end
 function o.prototype.OnCreated(self, p)
 	if IsServer() then
-		local q = self:GetParent():GetPlayerOwnerID()
-		local r = PlayerData:getHero(q)
-		if r:getLevel() >= self.level then
-			PlayerData:modifyGold(q, self.gold)
-			self.used = true
-		end
+		self:tryGrantGold()
 	end
 end
 function o.prototype.EDeclareEvents(self)
 	return { [EOMModifierEvents.MODIFIER_EVENT_ON_HERO_LEVEL_UP] = { -1, -1 } }
 end
 function o.prototype.OnHeroLevelUp(self, p)
-	local s = self:GetParent()
-	if p.player_id ~= s:GetPlayerOwnerID() then
+	if p.player_id ~= self:GetParent():GetPlayerOwnerID() then
 		return
 	end
+	self:tryGrantGold(p.lvl)
+end
+function o.prototype.tryGrantGold(self, q)
 	if self.used then
 		return
 	end
-	local q = self:GetParent():GetPlayerOwnerID()
-	if p.lvl >= self.level then
-		PlayerData:modifyGold(q, self.gold)
-		Notification:combatToPlayer(
-			q,
-			{
-				message = "notify_bonus_gold",
-				string_itemname_artifact = "DOTA_Tooltip_ability_" .. self:GetAbility():GetAbilityName(),
-				int_gold = self.gold,
-			}
-		)
-		PlayerData:getplayerData(q):modifyArtifactExtraData(self:GetAbility():entindex(), "bonus_gold", self.gold)
-		self.used = true
+	local r = self:GetParent():GetPlayerOwnerID()
+	local s = PlayerData:getHero(r)
+	local t = math.max(q or 0, s and s:getLevel() or 0)
+	if t < self.level then
+		return
 	end
+	self.used = true
+	PlayerData:modifyGold(r, self.gold)
+	Notification:combatToPlayer(
+		r,
+		{
+			message = "notify_bonus_gold",
+			string_itemname_artifact = "DOTA_Tooltip_ability_" .. self:GetAbility():GetAbilityName(),
+			int_gold = self.gold,
+		}
+	)
+	PlayerData:getplayerData(r):modifyArtifactExtraData(self:GetAbility():entindex(), "bonus_gold", self.gold)
 end
 o = e(
 	{

@@ -13,71 +13,71 @@ local b = require("lualib_bundle")
 local c = b.__TS__Class
 local d = b.__TS__ClassExtends
 local e = b.__TS__DecorateLegacy
-local f = b.__TS__SourceMapTraceBack
-f(
+local f = b.__TS__Number
+local g = b.__TS__SourceMapTraceBack
+g(
 	debug.getinfo(1).short_src,
 	{
-		["8"] = 1,
 		["9"] = 1,
 		["10"] = 1,
-		["11"] = 2,
+		["11"] = 1,
 		["12"] = 2,
 		["13"] = 2,
-		["14"] = 3,
+		["14"] = 2,
 		["15"] = 3,
 		["16"] = 3,
-		["17"] = 5,
-		["18"] = 6,
-		["19"] = 5,
-		["20"] = 6,
-		["21"] = 7,
-		["22"] = 8,
-		["23"] = 7,
-		["24"] = 6,
-		["25"] = 5,
-		["26"] = 6,
-		["28"] = 6,
-		["29"] = 12,
-		["30"] = 20,
-		["31"] = 12,
-		["32"] = 20,
-		["33"] = 49,
-		["34"] = 50,
-		["35"] = 49,
-		["36"] = 52,
-		["37"] = 54,
-		["38"] = 55,
-		["39"] = 56,
-		["40"] = 57,
-		["41"] = 58,
-		["42"] = 59,
-		["43"] = 60,
-		["44"] = 61,
-		["45"] = 63,
-		["46"] = 65,
-		["47"] = 67,
-		["48"] = 74,
-		["49"] = 75,
-		["50"] = 76,
-		["51"] = 78,
-		["52"] = 79,
-		["53"] = 80,
-		["54"] = 81,
-		["55"] = 82,
-		["56"] = 83,
-		["57"] = 52,
-		["58"] = 85,
-		["59"] = 86,
+		["17"] = 3,
+		["18"] = 5,
+		["19"] = 6,
+		["20"] = 5,
+		["21"] = 6,
+		["22"] = 7,
+		["23"] = 8,
+		["24"] = 7,
+		["25"] = 6,
+		["26"] = 5,
+		["27"] = 6,
+		["29"] = 6,
+		["30"] = 12,
+		["31"] = 20,
+		["32"] = 12,
+		["33"] = 20,
+		["34"] = 49,
+		["35"] = 50,
+		["36"] = 49,
+		["37"] = 52,
+		["38"] = 54,
+		["39"] = 55,
+		["40"] = 56,
+		["41"] = 57,
+		["42"] = 58,
+		["43"] = 59,
+		["44"] = 60,
+		["45"] = 61,
+		["46"] = 63,
+		["47"] = 65,
+		["48"] = 67,
+		["49"] = 74,
+		["50"] = 75,
+		["51"] = 76,
+		["52"] = 78,
+		["53"] = 79,
+		["54"] = 80,
+		["55"] = 81,
+		["56"] = 82,
+		["57"] = 83,
+		["58"] = 52,
+		["59"] = 85,
 		["60"] = 86,
 		["61"] = 86,
-		["62"] = 89,
+		["62"] = 86,
 		["63"] = 89,
 		["64"] = 89,
-		["65"] = 86,
+		["65"] = 89,
 		["66"] = 86,
-		["67"] = 85,
-		["68"] = 92,
-		["69"] = 93,
+		["67"] = 86,
+		["68"] = 85,
+		["69"] = 92,
 		["70"] = 93,
 		["71"] = 93,
 		["72"] = 93,
@@ -85,81 +85,81 @@ f(
 		["74"] = 93,
 		["75"] = 93,
 		["76"] = 93,
-		["77"] = 92,
-		["78"] = 102,
-		["79"] = 103,
-		["80"] = 104,
-		["82"] = 102,
-		["83"] = 107,
-		["84"] = 108,
-		["85"] = 109,
-		["87"] = 111,
-		["88"] = 107,
-		["89"] = 113,
-		["90"] = 114,
-		["91"] = 115,
-		["93"] = 113,
-		["94"] = 118,
-		["95"] = 119,
-		["96"] = 120,
-		["98"] = 118,
-		["99"] = 123,
-		["100"] = 124,
-		["101"] = 125,
-		["102"] = 126,
-		["103"] = 127,
-		["104"] = 128,
-		["105"] = 129,
+		["77"] = 93,
+		["78"] = 92,
+		["79"] = 102,
+		["80"] = 103,
+		["81"] = 104,
+		["83"] = 102,
+		["84"] = 107,
+		["85"] = 108,
+		["86"] = 109,
+		["88"] = 111,
+		["89"] = 107,
+		["90"] = 113,
+		["91"] = 114,
+		["92"] = 115,
+		["94"] = 113,
+		["95"] = 118,
+		["96"] = 119,
+		["97"] = 120,
+		["99"] = 118,
+		["100"] = 123,
+		["101"] = 124,
+		["102"] = 125,
+		["103"] = 126,
+		["104"] = 127,
+		["105"] = 128,
 		["106"] = 129,
 		["107"] = 129,
 		["108"] = 129,
 		["109"] = 129,
-		["110"] = 130,
+		["110"] = 129,
 		["111"] = 130,
 		["112"] = 130,
 		["113"] = 130,
 		["114"] = 130,
-		["115"] = 131,
+		["115"] = 130,
 		["116"] = 131,
 		["117"] = 131,
-		["118"] = 132,
+		["118"] = 131,
 		["119"] = 132,
 		["120"] = 132,
 		["121"] = 132,
 		["122"] = 132,
-		["123"] = 133,
-		["124"] = 134,
+		["123"] = 132,
+		["124"] = 133,
 		["125"] = 134,
 		["126"] = 134,
-		["127"] = 135,
-		["128"] = 134,
+		["127"] = 134,
+		["128"] = 135,
 		["129"] = 134,
-		["130"] = 131,
+		["130"] = 134,
 		["131"] = 131,
-		["134"] = 123,
-		["135"] = 141,
-		["136"] = 142,
-		["137"] = 143,
-		["138"] = 144,
-		["139"] = 145,
+		["132"] = 131,
+		["135"] = 123,
+		["136"] = 141,
+		["137"] = 142,
+		["138"] = 143,
+		["139"] = 144,
 		["140"] = 145,
 		["141"] = 145,
 		["142"] = 145,
 		["143"] = 145,
 		["144"] = 145,
-		["146"] = 141,
-		["147"] = 148,
-		["148"] = 149,
-		["149"] = 150,
-		["152"] = 151,
-		["153"] = 152,
-		["154"] = 154,
-		["156"] = 154,
+		["145"] = 145,
+		["147"] = 141,
+		["148"] = 148,
+		["149"] = 149,
+		["150"] = 150,
+		["153"] = 151,
+		["154"] = 152,
+		["155"] = 154,
 		["157"] = 154,
-		["159"] = 154,
-		["160"] = 155,
-		["161"] = 156,
-		["162"] = 157,
+		["158"] = 154,
+		["160"] = 154,
+		["161"] = 155,
+		["162"] = 156,
 		["163"] = 157,
 		["164"] = 157,
 		["165"] = 157,
@@ -168,7 +168,7 @@ f(
 		["168"] = 157,
 		["169"] = 157,
 		["170"] = 157,
-		["171"] = 158,
+		["171"] = 157,
 		["172"] = 158,
 		["173"] = 158,
 		["174"] = 158,
@@ -177,13 +177,13 @@ f(
 		["177"] = 158,
 		["178"] = 158,
 		["179"] = 158,
-		["180"] = 159,
+		["180"] = 158,
 		["181"] = 159,
 		["182"] = 159,
 		["183"] = 159,
-		["184"] = 165,
-		["185"] = 166,
-		["186"] = 167,
+		["184"] = 159,
+		["185"] = 165,
+		["186"] = 166,
 		["187"] = 167,
 		["188"] = 167,
 		["189"] = 167,
@@ -193,10 +193,10 @@ f(
 		["193"] = 167,
 		["194"] = 167,
 		["195"] = 167,
-		["196"] = 177,
-		["197"] = 178,
-		["199"] = 181,
-		["200"] = 182,
+		["196"] = 167,
+		["197"] = 177,
+		["198"] = 178,
+		["200"] = 181,
 		["201"] = 182,
 		["202"] = 182,
 		["203"] = 182,
@@ -205,35 +205,35 @@ f(
 		["206"] = 182,
 		["207"] = 182,
 		["208"] = 182,
-		["210"] = 193,
-		["211"] = 194,
-		["212"] = 195,
-		["213"] = 199,
-		["214"] = 200,
+		["209"] = 182,
+		["211"] = 193,
+		["212"] = 194,
+		["213"] = 195,
+		["214"] = 199,
 		["215"] = 200,
 		["216"] = 200,
-		["217"] = 201,
-		["218"] = 202,
-		["219"] = 203,
-		["220"] = 204,
-		["221"] = 205,
-		["223"] = 205,
-		["227"] = 200,
+		["217"] = 200,
+		["218"] = 201,
+		["219"] = 202,
+		["220"] = 203,
+		["221"] = 204,
+		["222"] = 205,
+		["224"] = 205,
 		["228"] = 200,
-		["231"] = 211,
-		["232"] = 212,
-		["234"] = 215,
-		["235"] = 216,
-		["238"] = 159,
+		["229"] = 200,
+		["232"] = 211,
+		["233"] = 212,
+		["235"] = 215,
+		["236"] = 216,
 		["239"] = 159,
-		["240"] = 238,
-		["241"] = 239,
+		["240"] = 159,
+		["241"] = 238,
 		["242"] = 239,
 		["243"] = 239,
 		["244"] = 239,
-		["247"] = 148,
-		["248"] = 20,
-		["249"] = 12,
+		["245"] = 239,
+		["248"] = 148,
+		["249"] = 20,
 		["250"] = 12,
 		["251"] = 12,
 		["252"] = 12,
@@ -241,32 +241,32 @@ f(
 		["254"] = 12,
 		["255"] = 12,
 		["256"] = 12,
-		["257"] = 20,
-		["259"] = 20,
-		["260"] = 246,
-		["261"] = 254,
-		["262"] = 246,
-		["263"] = 254,
-		["264"] = 255,
-		["265"] = 256,
-		["266"] = 257,
-		["267"] = 258,
-		["268"] = 259,
-		["271"] = 255,
-		["272"] = 263,
-		["273"] = 264,
-		["274"] = 265,
-		["275"] = 266,
-		["276"] = 267,
-		["279"] = 263,
-		["280"] = 271,
-		["281"] = 272,
-		["282"] = 271,
-		["283"] = 276,
-		["284"] = 277,
-		["285"] = 276,
-		["286"] = 254,
-		["287"] = 246,
+		["257"] = 12,
+		["258"] = 20,
+		["260"] = 20,
+		["261"] = 246,
+		["262"] = 254,
+		["263"] = 246,
+		["264"] = 254,
+		["265"] = 255,
+		["266"] = 256,
+		["267"] = 257,
+		["268"] = 258,
+		["269"] = 259,
+		["272"] = 255,
+		["273"] = 263,
+		["274"] = 264,
+		["275"] = 265,
+		["276"] = 266,
+		["277"] = 267,
+		["280"] = 263,
+		["281"] = 271,
+		["282"] = 272,
+		["283"] = 271,
+		["284"] = 276,
+		["285"] = 277,
+		["286"] = 276,
+		["287"] = 254,
 		["288"] = 246,
 		["289"] = 246,
 		["290"] = 246,
@@ -274,32 +274,32 @@ f(
 		["292"] = 246,
 		["293"] = 246,
 		["294"] = 246,
-		["295"] = 254,
-		["297"] = 254,
-		["298"] = 281,
-		["299"] = 289,
-		["300"] = 281,
-		["301"] = 289,
-		["302"] = 290,
-		["303"] = 291,
-		["304"] = 292,
-		["305"] = 293,
-		["306"] = 294,
-		["309"] = 290,
-		["310"] = 298,
-		["311"] = 299,
-		["312"] = 300,
-		["313"] = 301,
-		["314"] = 302,
-		["317"] = 298,
-		["318"] = 306,
-		["319"] = 307,
-		["320"] = 306,
-		["321"] = 311,
-		["322"] = 312,
-		["323"] = 311,
-		["324"] = 289,
-		["325"] = 281,
+		["295"] = 246,
+		["296"] = 254,
+		["298"] = 254,
+		["299"] = 281,
+		["300"] = 289,
+		["301"] = 281,
+		["302"] = 289,
+		["303"] = 290,
+		["304"] = 291,
+		["305"] = 292,
+		["306"] = 293,
+		["307"] = 294,
+		["310"] = 290,
+		["311"] = 298,
+		["312"] = 299,
+		["313"] = 300,
+		["314"] = 301,
+		["315"] = 302,
+		["318"] = 298,
+		["319"] = 306,
+		["320"] = 307,
+		["321"] = 306,
+		["322"] = 311,
+		["323"] = 312,
+		["324"] = 311,
+		["325"] = 289,
 		["326"] = 281,
 		["327"] = 281,
 		["328"] = 281,
@@ -307,38 +307,38 @@ f(
 		["330"] = 281,
 		["331"] = 281,
 		["332"] = 281,
-		["333"] = 289,
-		["335"] = 289,
-		["336"] = 317,
-		["337"] = 325,
-		["338"] = 317,
-		["339"] = 325,
-		["340"] = 328,
-		["341"] = 329,
-		["342"] = 330,
-		["343"] = 328,
-		["344"] = 332,
-		["345"] = 333,
-		["346"] = 334,
+		["333"] = 281,
+		["334"] = 289,
+		["336"] = 289,
+		["337"] = 317,
+		["338"] = 325,
+		["339"] = 317,
+		["340"] = 325,
+		["341"] = 328,
+		["342"] = 329,
+		["343"] = 330,
+		["344"] = 328,
+		["345"] = 332,
+		["346"] = 333,
 		["347"] = 334,
 		["348"] = 334,
 		["349"] = 334,
-		["351"] = 332,
-		["352"] = 337,
-		["353"] = 338,
-		["354"] = 339,
+		["350"] = 334,
+		["352"] = 332,
+		["353"] = 337,
+		["354"] = 338,
 		["355"] = 339,
 		["356"] = 339,
 		["357"] = 339,
-		["359"] = 337,
-		["360"] = 342,
-		["361"] = 343,
-		["362"] = 342,
-		["363"] = 347,
-		["364"] = 348,
-		["365"] = 347,
-		["366"] = 325,
-		["367"] = 317,
+		["358"] = 339,
+		["360"] = 337,
+		["361"] = 342,
+		["362"] = 343,
+		["363"] = 342,
+		["364"] = 347,
+		["365"] = 348,
+		["366"] = 347,
+		["367"] = 325,
 		["368"] = 317,
 		["369"] = 317,
 		["370"] = 317,
@@ -346,41 +346,41 @@ f(
 		["372"] = 317,
 		["373"] = 317,
 		["374"] = 317,
-		["375"] = 325,
-		["377"] = 325,
-		["378"] = 353,
-		["379"] = 354,
-		["380"] = 353,
-		["381"] = 354,
-		["382"] = 355,
-		["383"] = 356,
-		["384"] = 357,
-		["385"] = 358,
-		["386"] = 359,
-		["387"] = 355,
-		["388"] = 354,
-		["389"] = 353,
-		["390"] = 354,
-		["392"] = 354,
-		["393"] = 363,
-		["394"] = 372,
-		["395"] = 363,
-		["396"] = 372,
-		["397"] = 376,
-		["398"] = 377,
-		["399"] = 378,
-		["400"] = 379,
-		["401"] = 376,
-		["402"] = 381,
-		["403"] = 382,
-		["404"] = 383,
-		["405"] = 384,
-		["406"] = 385,
-		["407"] = 386,
-		["410"] = 389,
-		["411"] = 390,
-		["413"] = 392,
-		["414"] = 393,
+		["375"] = 317,
+		["376"] = 325,
+		["378"] = 325,
+		["379"] = 353,
+		["380"] = 354,
+		["381"] = 353,
+		["382"] = 354,
+		["383"] = 355,
+		["384"] = 356,
+		["385"] = 357,
+		["386"] = 358,
+		["387"] = 359,
+		["388"] = 355,
+		["389"] = 354,
+		["390"] = 353,
+		["391"] = 354,
+		["393"] = 354,
+		["394"] = 363,
+		["395"] = 372,
+		["396"] = 363,
+		["397"] = 372,
+		["398"] = 376,
+		["399"] = 377,
+		["400"] = 378,
+		["401"] = 379,
+		["402"] = 376,
+		["403"] = 381,
+		["404"] = 382,
+		["405"] = 383,
+		["406"] = 384,
+		["407"] = 385,
+		["408"] = 386,
+		["411"] = 389,
+		["412"] = 390,
+		["414"] = 392,
 		["415"] = 393,
 		["416"] = 393,
 		["417"] = 393,
@@ -388,23 +388,23 @@ f(
 		["419"] = 393,
 		["420"] = 393,
 		["421"] = 393,
-		["423"] = 381,
-		["424"] = 396,
-		["425"] = 397,
-		["426"] = 398,
-		["427"] = 399,
-		["429"] = 396,
-		["430"] = 402,
-		["431"] = 403,
-		["432"] = 404,
-		["433"] = 405,
-		["434"] = 406,
+		["422"] = 393,
+		["424"] = 381,
+		["425"] = 396,
+		["426"] = 397,
+		["427"] = 398,
+		["428"] = 399,
+		["430"] = 396,
+		["431"] = 402,
+		["432"] = 403,
+		["433"] = 404,
+		["434"] = 405,
 		["435"] = 406,
 		["436"] = 406,
 		["437"] = 406,
 		["438"] = 406,
 		["439"] = 406,
-		["440"] = 407,
+		["440"] = 406,
 		["441"] = 407,
 		["442"] = 407,
 		["443"] = 407,
@@ -414,14 +414,14 @@ f(
 		["447"] = 407,
 		["448"] = 407,
 		["449"] = 407,
-		["450"] = 408,
-		["451"] = 409,
-		["452"] = 410,
+		["450"] = 407,
+		["451"] = 408,
+		["452"] = 409,
 		["453"] = 410,
 		["454"] = 410,
 		["455"] = 410,
 		["456"] = 410,
-		["457"] = 411,
+		["457"] = 410,
 		["458"] = 411,
 		["459"] = 411,
 		["460"] = 411,
@@ -430,9 +430,9 @@ f(
 		["463"] = 411,
 		["464"] = 411,
 		["465"] = 411,
-		["467"] = 402,
-		["468"] = 372,
-		["469"] = 363,
+		["466"] = 411,
+		["468"] = 402,
+		["469"] = 372,
 		["470"] = 363,
 		["471"] = 363,
 		["472"] = 363,
@@ -441,31 +441,31 @@ f(
 		["475"] = 363,
 		["476"] = 363,
 		["477"] = 363,
-		["478"] = 372,
-		["480"] = 372,
-		["482"] = 421,
-		["483"] = 422,
-		["484"] = 421,
-		["485"] = 422,
-		["486"] = 423,
-		["487"] = 424,
-		["488"] = 423,
-		["489"] = 422,
-		["490"] = 421,
-		["491"] = 422,
-		["493"] = 422,
-		["494"] = 427,
-		["495"] = 436,
-		["496"] = 427,
-		["497"] = 436,
-		["498"] = 438,
-		["499"] = 439,
-		["500"] = 438,
-		["501"] = 441,
-		["502"] = 442,
-		["503"] = 441,
-		["504"] = 436,
-		["505"] = 427,
+		["478"] = 363,
+		["479"] = 372,
+		["481"] = 372,
+		["483"] = 421,
+		["484"] = 422,
+		["485"] = 421,
+		["486"] = 422,
+		["487"] = 423,
+		["488"] = 424,
+		["489"] = 423,
+		["490"] = 422,
+		["491"] = 421,
+		["492"] = 422,
+		["494"] = 422,
+		["495"] = 427,
+		["496"] = 436,
+		["497"] = 427,
+		["498"] = 436,
+		["499"] = 438,
+		["500"] = 439,
+		["501"] = 438,
+		["502"] = 441,
+		["503"] = 442,
+		["504"] = 441,
+		["505"] = 436,
 		["506"] = 427,
 		["507"] = 427,
 		["508"] = 427,
@@ -474,37 +474,37 @@ f(
 		["511"] = 427,
 		["512"] = 427,
 		["513"] = 427,
-		["514"] = 436,
-		["516"] = 436,
-		["517"] = 448,
-		["518"] = 456,
-		["519"] = 448,
-		["520"] = 456,
-		["522"] = 456,
-		["523"] = 457,
-		["524"] = 458,
-		["525"] = 448,
-		["526"] = 459,
-		["527"] = 460,
-		["528"] = 461,
-		["529"] = 459,
-		["530"] = 463,
-		["531"] = 464,
-		["532"] = 463,
-		["533"] = 466,
-		["534"] = 467,
-		["535"] = 466,
-		["536"] = 469,
-		["537"] = 470,
-		["538"] = 469,
-		["539"] = 475,
-		["540"] = 476,
-		["541"] = 475,
-		["542"] = 478,
-		["543"] = 479,
-		["544"] = 478,
-		["545"] = 456,
-		["546"] = 448,
+		["514"] = 427,
+		["515"] = 436,
+		["517"] = 436,
+		["518"] = 448,
+		["519"] = 456,
+		["520"] = 448,
+		["521"] = 456,
+		["523"] = 456,
+		["524"] = 457,
+		["525"] = 458,
+		["526"] = 448,
+		["527"] = 459,
+		["528"] = 460,
+		["529"] = 461,
+		["530"] = 459,
+		["531"] = 463,
+		["532"] = 464,
+		["533"] = 463,
+		["534"] = 466,
+		["535"] = 467,
+		["536"] = 466,
+		["537"] = 469,
+		["538"] = 470,
+		["539"] = 469,
+		["540"] = 475,
+		["541"] = 476,
+		["542"] = 475,
+		["543"] = 478,
+		["544"] = 479,
+		["545"] = 478,
+		["546"] = 456,
 		["547"] = 448,
 		["548"] = 448,
 		["549"] = 448,
@@ -512,55 +512,62 @@ f(
 		["551"] = 448,
 		["552"] = 448,
 		["553"] = 448,
-		["554"] = 456,
-		["556"] = 456,
-		["557"] = 483,
-		["558"] = 491,
-		["559"] = 483,
-		["560"] = 491,
-		["561"] = 492,
-		["562"] = 493,
-		["563"] = 492,
-		["564"] = 491,
-		["565"] = 483,
-		["566"] = 483,
-		["567"] = 483,
-		["568"] = 483,
-		["569"] = 483,
-		["570"] = 483,
-		["571"] = 483,
-		["572"] = 483,
-		["573"] = 491,
-		["575"] = 491,
+		["554"] = 448,
+		["555"] = 456,
+		["557"] = 456,
+		["558"] = 483,
+		["559"] = 491,
+		["560"] = 483,
+		["561"] = 491,
+		["562"] = 492,
+		["563"] = 493,
+		["565"] = 493,
+		["567"] = 493,
+		["568"] = 493,
+		["569"] = 493,
+		["571"] = 493,
+		["572"] = 494,
+		["573"] = 492,
+		["574"] = 491,
+		["575"] = 483,
+		["576"] = 483,
+		["577"] = 483,
+		["578"] = 483,
+		["579"] = 483,
+		["580"] = 483,
+		["581"] = 483,
+		["582"] = 483,
+		["583"] = 491,
+		["585"] = 491,
 	}
 )
-local g = {}
-local h = require("lib.dota_ts_adapter")
-local i = h.BaseAbility
-local j = h.registerAbility
-local k = require("modifiers.eom_modifier")
-local l = k.EOMModifier
-local m = k.registerEOMModifier
-local n = require("abilities.ability_ai")
-local o = n.BaseAbilityAI
-local p = n.registerAbilityAI
-g.razor_talent = c()
-local q = g.razor_talent
-q.name = "razor_talent"
-d(q, i)
-function q.prototype.GetIntrinsicModifierName(self)
+local h = {}
+local i = require("lib.dota_ts_adapter")
+local j = i.BaseAbility
+local k = i.registerAbility
+local l = require("modifiers.eom_modifier")
+local m = l.EOMModifier
+local n = l.registerEOMModifier
+local o = require("abilities.ability_ai")
+local p = o.BaseAbilityAI
+local q = o.registerAbilityAI
+h.razor_talent = c()
+local r = h.razor_talent
+r.name = "razor_talent"
+d(r, j)
+function r.prototype.GetIntrinsicModifierName(self)
 	return "modifier_razor_talent"
 end
-q = e({ j(nil) }, q)
-g.razor_talent = q
-g.modifier_razor_talent = c()
-local r = g.modifier_razor_talent
-r.name = "modifier_razor_talent"
-d(r, l)
-function r.prototype.GetTexture(self)
+r = e({ k(nil) }, r)
+h.razor_talent = r
+h.modifier_razor_talent = c()
+local s = h.modifier_razor_talent
+s.name = "modifier_razor_talent"
+d(s, m)
+function s.prototype.GetTexture(self)
 	return "modifier_razor_talent"
 end
-function r.prototype.GetAbilitySpecialValue(self)
+function s.prototype.GetAbilitySpecialValue(self)
 	self.base_damage = self:GetAbilitySpecialValueFor("base_damage")
 	self.damage_pct = self:GetAbilitySpecialValueFor("damage_pct")
 	self.chance = self:GetAbilitySpecialValueFor("chance")
@@ -575,24 +582,24 @@ function r.prototype.GetAbilitySpecialValue(self)
 	self.s_ability_chance = self:GetAbilityTalentValue("razor_shard", "ability_chance")
 	self.s_magic_damage = self:GetAbilityTalentValue("razor_shard", "magic_damage")
 	self.s_steal_health_pct = self:GetAbilityTalentValue("razor_shard", "steal_health_pct")
-	local s = IsServer() and PlayerData:getTraitAbility(self:GetParent():GetPlayerOwnerID()) or nil
-	self.g_talent_damage_bonus = (s and s:GetAbilityName()) == "trait_194"
-			and s:GetSpecialValueFor("talent_damage_bonus")
+	local t = IsServer() and PlayerData:getTraitAbility(self:GetParent():GetPlayerOwnerID()) or nil
+	self.g_talent_damage_bonus = (t and t:GetAbilityName()) == "trait_194"
+			and t:GetSpecialValueFor("talent_damage_bonus")
 		or 0
-	self.g_steal_damage = (s and s:GetAbilityName()) == "trait_194" and s:GetSpecialValueFor("steal_damage") or 0
-	self.g_steal_attackspeed = (s and s:GetAbilityName()) == "trait_194" and s:GetSpecialValueFor("steal_attackspeed")
+	self.g_steal_damage = (t and t:GetAbilityName()) == "trait_194" and t:GetSpecialValueFor("steal_damage") or 0
+	self.g_steal_attackspeed = (t and t:GetAbilityName()) == "trait_194" and t:GetSpecialValueFor("steal_attackspeed")
 		or 0
-	self.g_max_stack = (s and s:GetAbilityName()) == "trait_194" and s:GetSpecialValueFor("max_stack") or 0
-	self.g_max_duration = (s and s:GetAbilityName()) == "trait_194" and s:GetSpecialValueFor("max_duration") or 0
+	self.g_max_stack = (t and t:GetAbilityName()) == "trait_194" and t:GetSpecialValueFor("max_stack") or 0
+	self.g_max_duration = (t and t:GetAbilityName()) == "trait_194" and t:GetSpecialValueFor("max_duration") or 0
 end
-function r.prototype.EDeclareEvents(self)
+function s.prototype.EDeclareEvents(self)
 	return {
 		[EOMModifierEvents.MODIFIER_EVENT_ON_BATTLE_START_BEFORE] = { -1, -1 },
 		[EOMModifierEvents.MODIFIER_EVENT_ON_INJURY_GAINED] = { self:GetParent() },
 		[EOMModifierEvents.MODIFIER_EVENT_ON_TAKEDAMAGE] = { -1, self:GetParent() },
 	}
 end
-function r.prototype.EDeclareFunctions(self)
+function s.prototype.EDeclareFunctions(self)
 	return {
 		EOMModifierFunction.EOM_MODIFIER_PROPERTY_OUTGOING_PHYSICAL_DAMAGE_PERCENTAGE,
 		EOMModifierFunction.EOM_MODIFIER_PROPERTY_PHYSICAL_CRITICALSTRIKE_CHANCE_BONUS,
@@ -602,102 +609,102 @@ function r.prototype.EDeclareFunctions(self)
 		EOMModifierFunction.EOM_MODIFIER_PROPERTY_ATTACKSPEED_BONUS,
 	}
 end
-function r.prototype.EOM_GetModifierInjuryAttenuationPercent(self, t)
-	if self.tl7_injury_reduce > 0 and t.ability == self:GetAbility() then
+function s.prototype.EOM_GetModifierInjuryAttenuationPercent(self, u)
+	if self.tl7_injury_reduce > 0 and u.ability == self:GetAbility() then
 		return -self.tl7_injury_reduce
 	end
 end
-function r.prototype.EOM_GetModifierAbilityLifesteal(self, t)
-	if self.s_steal_health_pct > 0 and t.ability == self.s_ability then
+function s.prototype.EOM_GetModifierAbilityLifesteal(self, u)
+	if self.s_steal_health_pct > 0 and u.ability == self.s_ability then
 		return self.s_steal_health_pct
 	end
 	return 0
 end
-function r.prototype.EOM_GetModifierAttackDamageBonusSteal(self, u)
+function s.prototype.EOM_GetModifierAttackDamageBonusSteal(self, v)
 	if self.g_steal_damage > 0 then
 		return self:GetStackCount() * self.g_steal_damage
 	end
 end
-function r.prototype.EOM_GetModifierAttackSpeedBonus(self, u)
+function s.prototype.EOM_GetModifierAttackSpeedBonus(self, v)
 	if self.g_steal_attackspeed > 0 then
 		return self:GetStackCount() * self.g_steal_attackspeed
 	end
 end
-function r.prototype.OnCustomTakeDamage(self, v)
-	if self:HasTalent("razor_shard") and v.target == self:GetParent() then
+function s.prototype.OnCustomTakeDamage(self, w)
+	if self:HasTalent("razor_shard") and w.target == self:GetParent() then
 		if self:PRD(self.s_ability_chance, "razor_shard") then
-			local w = self:GetParent()
-			local x = v.attacker
-			local y = ParticleManager:CreateParticle(
+			local x = self:GetParent()
+			local y = w.attacker
+			local z = ParticleManager:CreateParticle(
 				"particles/units/heroes/hero_razor/razor_plasmafield.vpcf",
 				PATTACH_ABSORIGIN_FOLLOW,
-				w
+				x
 			)
-			ParticleManager:SetParticleControl(y, 0, w:GetAbsOrigin())
-			ParticleManager:SetParticleControl(y, 1, Vector(550, 550, 550))
+			ParticleManager:SetParticleControl(z, 0, x:GetAbsOrigin())
+			ParticleManager:SetParticleControl(z, 1, Vector(550, 550, 550))
 			GameTimer(1.1, function()
-				ParticleManager:SetParticleControl(y, 1, Vector(550, 0, 550))
-				w:DealDamage(x, self.s_ability, self.s_magic_damage, EOM_DAMAGE_TYPES.DAMAGE_TYPE_MAGICAL)
+				ParticleManager:SetParticleControl(z, 1, Vector(550, 0, 550))
+				x:DealDamage(y, self.s_ability, self.s_magic_damage, EOM_DAMAGE_TYPES.DAMAGE_TYPE_MAGICAL)
 				GameTimer(1.1, function()
-					ParticleManager:DestroyParticle(y, true)
+					ParticleManager:DestroyParticle(z, true)
 				end)
 			end)
 		end
 	end
 end
-function r.prototype.OnBattleStartBefore(self, t)
+function s.prototype.OnBattleStartBefore(self, u)
 	self.s_ability = self.parent:FindAbilityByName("razor_plasma_field")
 	self:SetStackCount(0)
 	if self.g_max_duration > 0 then
 		self.parent:AddNewModifier(self.parent, self:GetAbility(), "modifier_razor_greevil_mana_loss", {})
 	end
 end
-function r.prototype.OnInjuryGained(self)
-	local w = self:GetParent()
-	if w:PassivesDisabled() then
+function s.prototype.OnInjuryGained(self)
+	local x = self:GetParent()
+	if x:PassivesDisabled() then
 		return
 	end
-	local z = w:GetEnemy()
-	local A = self:GetAbility()
-	local B = IsInjurable(z)
-	if B then
-		local C = self:GetAbility()
-		B = C and C:IsCooldownReady()
+	local A = x:GetEnemy()
+	local B = self:GetAbility()
+	local C = IsInjurable(A)
+	if C then
+		local D = self:GetAbility()
+		C = D and D:IsCooldownReady()
 	end
-	if B and self:PRD(self.chance + self.talent_1_bonus_chance, "razor_talent_1") then
+	if C and self:PRD(self.chance + self.talent_1_bonus_chance, "razor_talent_1") then
 		self:GetParent():StartGestureWithPlaybackRate(ACT_DOTA_ATTACK, 200)
-		local D = ParticleManager:CreateParticle(
+		local E = ParticleManager:CreateParticle(
 			"particles/units/heroes/hero_razor/razor_injury_effect.vpcf",
 			PATTACH_CUSTOMORIGIN,
-			w
+			x
 		)
-		ParticleManager:SetParticleControlEnt(D, 0, w, PATTACH_POINT_FOLLOW, "attach_static", w:GetAbsOrigin(), false)
-		ParticleManager:SetParticleControlEnt(D, 1, z, PATTACH_POINT_FOLLOW, "attach_hitloc", z:GetAbsOrigin(), false)
+		ParticleManager:SetParticleControlEnt(E, 0, x, PATTACH_POINT_FOLLOW, "attach_static", x:GetAbsOrigin(), false)
+		ParticleManager:SetParticleControlEnt(E, 1, A, PATTACH_POINT_FOLLOW, "attach_hitloc", A:GetAbsOrigin(), false)
 		Projectile:CreateTrackingProjectile({
-			hCaster = w,
-			hTarget = z,
-			iMoveSpeed = w:GetProjectileSpeed(),
-			OnProjectileHit = function(E, F, G)
-				if IsInjurable(w, z) then
+			hCaster = x,
+			hTarget = A,
+			iMoveSpeed = x:GetProjectileSpeed(),
+			OnProjectileHit = function(F, G, H)
+				if IsInjurable(x, A) then
 					DamageSystem:dealDamage({
-						attacker = w,
-						target = z,
-						ability = A,
-						damage = self.base_damage + GetInjury(z) * (self.damage_pct + self.talent_3_damage_pct) * 0.01,
+						attacker = x,
+						target = A,
+						ability = B,
+						damage = self.base_damage + GetInjury(A) * (self.damage_pct + self.talent_3_damage_pct) * 0.01,
 						damage_type = EOM_DAMAGE_TYPES.DAMAGE_TYPE_PHYSICAL,
 						damage_category = DOTA_DAMAGE_CATEGORY_SPELL,
 						damage_flags = DamageFlags.DAMAGE_FLAG_NONE,
 						is_crit = self:PRD(self.talent_5_crit_chance),
 					})
 					if self.tl8_injury_count > 0 then
-						z:AddNewModifier(w, A, "modifier_razor_talent_8_buff", nil)
+						A:AddNewModifier(x, B, "modifier_razor_talent_8_buff", nil)
 					end
 					if self.g_talent_damage_bonus > 0 then
 						DamageSystem:dealDamage({
-							attacker = w,
-							target = z,
-							ability = A,
-							damage = GetAttackDamage(w) * self.g_talent_damage_bonus * 0.01,
+							attacker = x,
+							target = A,
+							ability = B,
+							damage = GetAttackDamage(x) * self.g_talent_damage_bonus * 0.01,
 							damage_type = EOM_DAMAGE_TYPES.DAMAGE_TYPE_PHYSICAL,
 							damage_category = DOTA_DAMAGE_CATEGORY_SPELL,
 							damage_flags = DamageFlags.DAMAGE_FLAG_NONE,
@@ -705,9 +712,9 @@ function r.prototype.OnInjuryGained(self)
 					end
 					if self.g_steal_damage > 0 and self:GetStackCount() < self.g_max_stack then
 						self:SetStackCount(self:GetStackCount() + 1)
-						z:AddNewModifier(
-							w,
-							A,
+						A:AddNewModifier(
+							x,
+							B,
 							"modifier_razor_greevil_debuff",
 							{ steal_damage = self.g_steal_damage, steal_attackspeed = self.g_steal_attackspeed }
 						)
@@ -715,11 +722,11 @@ function r.prototype.OnInjuryGained(self)
 							GameTimer(self.g_max_duration, function()
 								if IsValid(self) then
 									self:SetStackCount(0)
-									local H = w:GetEnemy()
-									if IsValid(H) then
-										local I = H:FindModifierByName("modifier_razor_greevil_debuff")
-										if I ~= nil then
-											I:Destroy()
+									local I = x:GetEnemy()
+									if IsValid(I) then
+										local J = I:FindModifierByName("modifier_razor_greevil_debuff")
+										if J ~= nil then
+											J:Destroy()
 										end
 									end
 								end
@@ -727,22 +734,22 @@ function r.prototype.OnInjuryGained(self)
 						end
 					end
 					if self.tl10_mana > 0 then
-						Restore(w, self.tl10_mana)
+						Restore(x, self.tl10_mana)
 					end
 					if self:HasTalent("razor_talent_9") then
-						DamageSystem:performAttack(w, z)
+						DamageSystem:performAttack(x, A)
 					end
 				end
 			end,
 		})
 		if self.talent_6_mana_regen_pct > 0 then
-			Restore(w, w:GetMaxMana() * self.talent_6_mana_regen_pct * 0.01)
+			Restore(x, x:GetMaxMana() * self.talent_6_mana_regen_pct * 0.01)
 		end
 	end
 end
-r = e(
+s = e(
 	{
-		m(
+		n(
 			a,
 			{
 				IsHidden = false,
@@ -754,38 +761,38 @@ r = e(
 			}
 		),
 	},
-	r
+	s
 )
-g.modifier_razor_talent = r
-g.modifier_razor_shard_as = c()
-local J = g.modifier_razor_shard_as
-J.name = "modifier_razor_shard_as"
-d(J, l)
-function J.prototype.OnCreated(self, t)
+h.modifier_razor_talent = s
+h.modifier_razor_shard_as = c()
+local K = h.modifier_razor_shard_as
+K.name = "modifier_razor_shard_as"
+d(K, m)
+function K.prototype.OnCreated(self, u)
 	if IsServer() then
-		local K = t and t.iAttackSpeed or 0
-		if K > 0 then
-			self:IncrementStackCount(K)
+		local L = u and u.iAttackSpeed or 0
+		if L > 0 then
+			self:IncrementStackCount(L)
 		end
 	end
 end
-function J.prototype.OnRefresh(self, t)
+function K.prototype.OnRefresh(self, u)
 	if IsServer() then
-		local K = t and t.iAttackSpeed or 0
-		if K > 0 then
-			self:IncrementStackCount(K)
+		local L = u and u.iAttackSpeed or 0
+		if L > 0 then
+			self:IncrementStackCount(L)
 		end
 	end
 end
-function J.prototype.EDeclareFunctions(self)
+function K.prototype.EDeclareFunctions(self)
 	return { EOMModifierFunction.EOM_MODIFIER_PROPERTY_ATTACKSPEED_BONUS }
 end
-function J.prototype.EOM_GetModifierAttackSpeedBonus(self, t)
+function K.prototype.EOM_GetModifierAttackSpeedBonus(self, u)
 	return self:GetStackCount()
 end
-J = e(
+K = e(
 	{
-		m(
+		n(
 			a,
 			{
 				IsHidden = true,
@@ -797,79 +804,38 @@ J = e(
 			}
 		),
 	},
-	J
+	K
 )
-g.modifier_razor_shard_as = J
-g.modifier_razor_shard_ad = c()
-local L = g.modifier_razor_shard_ad
-L.name = "modifier_razor_shard_ad"
-d(L, l)
-function L.prototype.OnCreated(self, t)
+h.modifier_razor_shard_as = K
+h.modifier_razor_shard_ad = c()
+local M = h.modifier_razor_shard_ad
+M.name = "modifier_razor_shard_ad"
+d(M, m)
+function M.prototype.OnCreated(self, u)
 	if IsServer() then
-		local K = t and t.iAttackDamage or 0
-		if K > 0 then
-			self:IncrementStackCount(K)
+		local L = u and u.iAttackDamage or 0
+		if L > 0 then
+			self:IncrementStackCount(L)
 		end
 	end
 end
-function L.prototype.OnRefresh(self, t)
+function M.prototype.OnRefresh(self, u)
 	if IsServer() then
-		local K = t and t.iAttackDamage or 0
-		if K > 0 then
-			self:IncrementStackCount(K)
+		local L = u and u.iAttackDamage or 0
+		if L > 0 then
+			self:IncrementStackCount(L)
 		end
-	end
-end
-function L.prototype.EDeclareFunctions(self)
-	return { EOMModifierFunction.EOM_MODIFIER_PROPERTY_ATTACKSPEED_BONUS }
-end
-function L.prototype.EOM_GetModifierAttackSpeedBonus(self, t)
-	return self:GetStackCount()
-end
-L = e(
-	{
-		m(
-			a,
-			{
-				IsHidden = true,
-				IsDebuff = true,
-				IsPurgable = false,
-				IsPurgeException = true,
-				AllowIllusionDuplicate = false,
-				GetPriority = MODIFIER_PRIORITY_LOW,
-			}
-		),
-	},
-	L
-)
-g.modifier_razor_shard_ad = L
-g.modifier_razor_talent_8_buff = c()
-local M = g.modifier_razor_talent_8_buff
-M.name = "modifier_razor_talent_8_buff"
-d(M, l)
-function M.prototype.GetAbilitySpecialValue(self)
-	self.injury_count = self:GetAbilityTalentValue("razor_talent_8", "injury_count")
-	self.max_count = self:GetAbilityTalentValue("razor_talent_8", "max_count")
-end
-function M.prototype.OnCreated(self, t)
-	if IsServer() then
-		self:SetStackCount(math.min(self:GetStackCount() + self.injury_count, self.max_count))
-	end
-end
-function M.prototype.OnRefresh(self, t)
-	if IsServer() then
-		self:SetStackCount(math.min(self:GetStackCount() + self.injury_count, self.max_count))
 	end
 end
 function M.prototype.EDeclareFunctions(self)
-	return { EOMModifierFunction.EOM_MODIFIER_PROPERTY_INJURY_PERMANENT }
+	return { EOMModifierFunction.EOM_MODIFIER_PROPERTY_ATTACKSPEED_BONUS }
 end
-function M.prototype.EOM_GetModifierInjuryPermanent(self, t)
+function M.prototype.EOM_GetModifierAttackSpeedBonus(self, u)
 	return self:GetStackCount()
 end
 M = e(
 	{
-		m(
+		n(
 			a,
 			{
 				IsHidden = true,
@@ -883,186 +849,203 @@ M = e(
 	},
 	M
 )
-g.modifier_razor_talent_8_buff = M
-g.razor_ult = c()
-local N = g.razor_ult
-N.name = "razor_ult"
-d(N, o)
-function N.prototype.OnSpellStart(self)
-	local O = self:GetCaster()
-	local P = self:GetSpecialValueFor("duration") + self:GetTalentValue("razor_talent_2", "duration")
-	O:AddNewModifier(O, self, "modifier_razor_ult", { duration = P })
-	O:EmitSound("Hero_Razor.Storm.Cast")
+h.modifier_razor_shard_ad = M
+h.modifier_razor_talent_8_buff = c()
+local N = h.modifier_razor_talent_8_buff
+N.name = "modifier_razor_talent_8_buff"
+d(N, m)
+function N.prototype.GetAbilitySpecialValue(self)
+	self.injury_count = self:GetAbilityTalentValue("razor_talent_8", "injury_count")
+	self.max_count = self:GetAbilityTalentValue("razor_talent_8", "max_count")
 end
-N = e({ p(nil) }, N)
-g.razor_ult = N
-g.modifier_razor_ult = c()
-local Q = g.modifier_razor_ult
-Q.name = "modifier_razor_ult"
-d(Q, l)
-function Q.prototype.GetAbilitySpecialValue(self)
-	self.interval = self:GetAbilitySpecialValueFor("interval")
-		- self:GetAbilityTalentValue("razor_talent_4", "interval_reduce")
-	self.damage = self:GetAbilitySpecialValueFor("damage")
-	self.injury = self:GetAbilitySpecialValueFor("injury")
-end
-function Q.prototype.OnCreated(self, t)
-	local R = self:GetParent()
+function N.prototype.OnCreated(self, u)
 	if IsServer() then
-		if t.is_single then
-			self:OnIntervalThink()
-			self:Destroy()
-			return
-		end
-		self:StartIntervalThink(self.interval)
-		R:EmitSound("Hero_Razor.Storm.Loop")
-	else
-		local S = ParticleManager:CreateParticle(
-			"particles/units/heroes/hero_razor/razor_rain_storm.vpcf",
-			PATTACH_ABSORIGIN_FOLLOW,
-			R
-		)
-		self:AddParticle(S, false, false, -1, false, false)
+		self:SetStackCount(math.min(self:GetStackCount() + self.injury_count, self.max_count))
 	end
 end
-function Q.prototype.OnDestroy(self)
-	if IsServer() and IsInjurable(self:GetParent()) then
-		self:GetParent():StopSound("Hero_Razor.Storm.Loop")
-		self:GetParent():EmitSound("Hero_Razor.StormEnd")
+function N.prototype.OnRefresh(self, u)
+	if IsServer() then
+		self:SetStackCount(math.min(self:GetStackCount() + self.injury_count, self.max_count))
 	end
 end
-function Q.prototype.OnIntervalThink(self)
-	local R = self:GetParent()
-	local T = R:GetEnemy()
-	if IsValid(T) then
-		R:DealDamage(T, self:GetAbility(), self.damage, EOM_DAMAGE_TYPES.DAMAGE_TYPE_PHYSICAL)
-		local U = AddInjury
-		local V = self.injury
-		local W = self:GetAbility()
-		U(R, T, V, W and W:GetAbilityName(), "Ability")
-		R:EmitSound("Hero_razor.lightning")
-		local S = ParticleManager:CreateParticle(
-			"particles/units/heroes/hero_razor/razor_storm_lightning_strike.vpcf",
-			PATTACH_CUSTOMORIGIN,
-			R
-		)
-		ParticleManager:SetParticleControl(S, 0, R:GetAbsOrigin() + Vector(0, 0, 500))
-		ParticleManager:SetParticleControlEnt(S, 1, T, PATTACH_POINT_FOLLOW, "attach_hitloc", T:GetAbsOrigin(), true)
-	end
+function N.prototype.EDeclareFunctions(self)
+	return { EOMModifierFunction.EOM_MODIFIER_PROPERTY_INJURY_PERMANENT }
 end
-Q = e(
+function N.prototype.EOM_GetModifierInjuryPermanent(self, u)
+	return self:GetStackCount()
+end
+N = e(
 	{
-		m(
-			a,
-			{
-				IsHidden = true,
-				IsDebuff = false,
-				IsPurgable = false,
-				IsPurgeException = true,
-				AllowIllusionDuplicate = false,
-				GetPriority = MODIFIER_PRIORITY_LOW,
-				GetAttributes = MODIFIER_ATTRIBUTE_MULTIPLE,
-			}
-		),
-	},
-	Q
-)
-g.modifier_razor_ult = Q
-g.razor_talent_1 = c()
-local X = g.razor_talent_1
-X.name = "razor_talent_1"
-d(X, i)
-function X.prototype.GetIntrinsicModifierName(self)
-	return "modifier_razor_talent_1"
-end
-X = e({ j(nil) }, X)
-g.razor_talent_1 = X
-g.modifier_razor_talent_1 = c()
-local Y = g.modifier_razor_talent_1
-Y.name = "modifier_razor_talent_1"
-d(Y, l)
-function Y.prototype.GetAbilitySpecialValue(self)
-	self.attack_damage_bonus = self:GetAbilitySpecialValueFor("attack_damage_bonus")
-end
-function Y.prototype.EFunctionValues(self)
-	return { [EOMModifierFunction.EOM_MODIFIER_PROPERTY_ATTACK_DAMAGE_BONUS] = self.attack_damage_bonus }
-end
-Y = e(
-	{
-		m(
-			a,
-			{
-				IsHidden = true,
-				IsDebuff = false,
-				IsPurgable = false,
-				IsPurgeException = true,
-				AllowIllusionDuplicate = false,
-				GetPriority = MODIFIER_PRIORITY_LOW,
-				GetAttributes = MODIFIER_ATTRIBUTE_MULTIPLE,
-			}
-		),
-	},
-	Y
-)
-g.modifier_razor_talent_1 = Y
-g.modifier_razor_greevil_debuff = c()
-local Z = g.modifier_razor_greevil_debuff
-Z.name = "modifier_razor_greevil_debuff"
-d(Z, l)
-function Z.prototype.____constructor(self, ...)
-	l.prototype.____constructor(self, ...)
-	self.steal_damage = 0
-	self.steal_attackspeed = 0
-end
-function Z.prototype.GetAbilitySpecialValue(self)
-	self.steal_damage = self:GetAbilityTalentValue("trait_194", "steal_damage") or 0
-	self.steal_attackspeed = self:GetAbilityTalentValue("trait_194", "steal_attackspeed") or 0
-end
-function Z.prototype.OnCreated(self, t)
-	self:SetStackCount(self:GetStackCount() + 1)
-end
-function Z.prototype.OnRefresh(self, t)
-	self:SetStackCount(self:GetStackCount() + 1)
-end
-function Z.prototype.EDeclareFunctions(self)
-	return {
-		EOMModifierFunction.EOM_MODIFIER_PROPERTY_ATTACK_DAMAGE_BONUS,
-		EOMModifierFunction.EOM_MODIFIER_PROPERTY_ATTACKSPEED_BONUS,
-	}
-end
-function Z.prototype.EOM_GetModifierAttackDamageBonus(self, u)
-	return -self:GetStackCount() * self.steal_damage
-end
-function Z.prototype.EOM_GetModifierAttackSpeedBonus(self, u)
-	return -self:GetStackCount() * self.steal_attackspeed
-end
-Z = e(
-	{
-		m(
+		n(
 			a,
 			{
 				IsHidden = true,
 				IsDebuff = true,
 				IsPurgable = false,
-				IsPurgeException = false,
+				IsPurgeException = true,
 				AllowIllusionDuplicate = false,
 				GetPriority = MODIFIER_PRIORITY_LOW,
 			}
 		),
 	},
+	N
+)
+h.modifier_razor_talent_8_buff = N
+h.razor_ult = c()
+local O = h.razor_ult
+O.name = "razor_ult"
+d(O, p)
+function O.prototype.OnSpellStart(self)
+	local P = self:GetCaster()
+	local Q = self:GetSpecialValueFor("duration") + self:GetTalentValue("razor_talent_2", "duration")
+	P:AddNewModifier(P, self, "modifier_razor_ult", { duration = Q })
+	P:EmitSound("Hero_Razor.Storm.Cast")
+end
+O = e({ q(nil) }, O)
+h.razor_ult = O
+h.modifier_razor_ult = c()
+local R = h.modifier_razor_ult
+R.name = "modifier_razor_ult"
+d(R, m)
+function R.prototype.GetAbilitySpecialValue(self)
+	self.interval = self:GetAbilitySpecialValueFor("interval")
+		- self:GetAbilityTalentValue("razor_talent_4", "interval_reduce")
+	self.damage = self:GetAbilitySpecialValueFor("damage")
+	self.injury = self:GetAbilitySpecialValueFor("injury")
+end
+function R.prototype.OnCreated(self, u)
+	local S = self:GetParent()
+	if IsServer() then
+		if u.is_single then
+			self:OnIntervalThink()
+			self:Destroy()
+			return
+		end
+		self:StartIntervalThink(self.interval)
+		S:EmitSound("Hero_Razor.Storm.Loop")
+	else
+		local T = ParticleManager:CreateParticle(
+			"particles/units/heroes/hero_razor/razor_rain_storm.vpcf",
+			PATTACH_ABSORIGIN_FOLLOW,
+			S
+		)
+		self:AddParticle(T, false, false, -1, false, false)
+	end
+end
+function R.prototype.OnDestroy(self)
+	if IsServer() and IsInjurable(self:GetParent()) then
+		self:GetParent():StopSound("Hero_Razor.Storm.Loop")
+		self:GetParent():EmitSound("Hero_Razor.StormEnd")
+	end
+end
+function R.prototype.OnIntervalThink(self)
+	local S = self:GetParent()
+	local U = S:GetEnemy()
+	if IsValid(U) then
+		S:DealDamage(U, self:GetAbility(), self.damage, EOM_DAMAGE_TYPES.DAMAGE_TYPE_PHYSICAL)
+		local V = AddInjury
+		local W = self.injury
+		local X = self:GetAbility()
+		V(S, U, W, X and X:GetAbilityName(), "Ability")
+		S:EmitSound("Hero_razor.lightning")
+		local T = ParticleManager:CreateParticle(
+			"particles/units/heroes/hero_razor/razor_storm_lightning_strike.vpcf",
+			PATTACH_CUSTOMORIGIN,
+			S
+		)
+		ParticleManager:SetParticleControl(T, 0, S:GetAbsOrigin() + Vector(0, 0, 500))
+		ParticleManager:SetParticleControlEnt(T, 1, U, PATTACH_POINT_FOLLOW, "attach_hitloc", U:GetAbsOrigin(), true)
+	end
+end
+R = e(
+	{
+		n(
+			a,
+			{
+				IsHidden = true,
+				IsDebuff = false,
+				IsPurgable = false,
+				IsPurgeException = true,
+				AllowIllusionDuplicate = false,
+				GetPriority = MODIFIER_PRIORITY_LOW,
+				GetAttributes = MODIFIER_ATTRIBUTE_MULTIPLE,
+			}
+		),
+	},
+	R
+)
+h.modifier_razor_ult = R
+h.razor_talent_1 = c()
+local Y = h.razor_talent_1
+Y.name = "razor_talent_1"
+d(Y, j)
+function Y.prototype.GetIntrinsicModifierName(self)
+	return "modifier_razor_talent_1"
+end
+Y = e({ k(nil) }, Y)
+h.razor_talent_1 = Y
+h.modifier_razor_talent_1 = c()
+local Z = h.modifier_razor_talent_1
+Z.name = "modifier_razor_talent_1"
+d(Z, m)
+function Z.prototype.GetAbilitySpecialValue(self)
+	self.attack_damage_bonus = self:GetAbilitySpecialValueFor("attack_damage_bonus")
+end
+function Z.prototype.EFunctionValues(self)
+	return { [EOMModifierFunction.EOM_MODIFIER_PROPERTY_ATTACK_DAMAGE_BONUS] = self.attack_damage_bonus }
+end
+Z = e(
+	{
+		n(
+			a,
+			{
+				IsHidden = true,
+				IsDebuff = false,
+				IsPurgable = false,
+				IsPurgeException = true,
+				AllowIllusionDuplicate = false,
+				GetPriority = MODIFIER_PRIORITY_LOW,
+				GetAttributes = MODIFIER_ATTRIBUTE_MULTIPLE,
+			}
+		),
+	},
 	Z
 )
-g.modifier_razor_greevil_debuff = Z
-g.modifier_razor_greevil_mana_loss = c()
-local _ = g.modifier_razor_greevil_mana_loss
-_.name = "modifier_razor_greevil_mana_loss"
-d(_, l)
-function _.prototype.EFunctionValues(self)
-	return { [EOMModifierFunction.EOM_MODIFIER_PROPERTY_MANA_LOSS_PERCENTAGE] = 999 }
+h.modifier_razor_talent_1 = Z
+h.modifier_razor_greevil_debuff = c()
+local _ = h.modifier_razor_greevil_debuff
+_.name = "modifier_razor_greevil_debuff"
+d(_, m)
+function _.prototype.____constructor(self, ...)
+	m.prototype.____constructor(self, ...)
+	self.steal_damage = 0
+	self.steal_attackspeed = 0
+end
+function _.prototype.GetAbilitySpecialValue(self)
+	self.steal_damage = self:GetAbilityTalentValue("trait_194", "steal_damage") or 0
+	self.steal_attackspeed = self:GetAbilityTalentValue("trait_194", "steal_attackspeed") or 0
+end
+function _.prototype.OnCreated(self, u)
+	self:SetStackCount(self:GetStackCount() + 1)
+end
+function _.prototype.OnRefresh(self, u)
+	self:SetStackCount(self:GetStackCount() + 1)
+end
+function _.prototype.EDeclareFunctions(self)
+	return {
+		EOMModifierFunction.EOM_MODIFIER_PROPERTY_ATTACK_DAMAGE_BONUS,
+		EOMModifierFunction.EOM_MODIFIER_PROPERTY_ATTACKSPEED_BONUS,
+	}
+end
+function _.prototype.EOM_GetModifierAttackDamageBonus(self, v)
+	return -self:GetStackCount() * self.steal_damage
+end
+function _.prototype.EOM_GetModifierAttackSpeedBonus(self, v)
+	return -self:GetStackCount() * self.steal_attackspeed
 end
 _ = e(
 	{
-		m(
+		n(
 			a,
 			{
 				IsHidden = true,
@@ -1076,5 +1059,38 @@ _ = e(
 	},
 	_
 )
-g.modifier_razor_greevil_mana_loss = _
-return g
+h.modifier_razor_greevil_debuff = _
+h.modifier_razor_greevil_mana_loss = c()
+local a0 = h.modifier_razor_greevil_mana_loss
+a0.name = "modifier_razor_greevil_mana_loss"
+d(a0, m)
+function a0.prototype.EFunctionValues(self)
+	local a1 = KeyValues.UnitsKv[self:GetParent():GetUnitName()]
+	if a1 ~= nil then
+		a1 = a1.ManaRegen
+	end
+	local a2 = a1
+	if a2 == nil then
+		a2 = 0
+	end
+	local a3 = a2
+	return { [EOMModifierFunction.EOM_MODIFIER_PROPERTY_MANA_REGEN_BASE] = f(-a3) }
+end
+a0 = e(
+	{
+		n(
+			a,
+			{
+				IsHidden = true,
+				IsDebuff = true,
+				IsPurgable = false,
+				IsPurgeException = false,
+				AllowIllusionDuplicate = false,
+				GetPriority = MODIFIER_PRIORITY_LOW,
+			}
+		),
+	},
+	a0
+)
+h.modifier_razor_greevil_mana_loss = a0
+return h

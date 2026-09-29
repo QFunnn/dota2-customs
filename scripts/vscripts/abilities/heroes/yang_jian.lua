@@ -23,630 +23,806 @@ f(
 		["11"] = 2,
 		["12"] = 2,
 		["13"] = 2,
-		["14"] = 3,
-		["15"] = 3,
-		["16"] = 3,
-		["17"] = 4,
-		["18"] = 4,
-		["19"] = 4,
-		["20"] = 7,
-		["21"] = 8,
-		["22"] = 9,
-		["23"] = 10,
-		["25"] = 13,
-		["26"] = 14,
-		["27"] = 13,
-		["28"] = 14,
-		["29"] = 15,
-		["30"] = 15,
-		["31"] = 15,
-		["32"] = 18,
-		["33"] = 18,
-		["34"] = 18,
-		["36"] = 18,
-		["37"] = 18,
-		["39"] = 19,
-		["40"] = 20,
-		["41"] = 21,
-		["44"] = 22,
-		["45"] = 23,
-		["46"] = 24,
-		["47"] = 25,
-		["48"] = 26,
-		["49"] = 26,
-		["52"] = 28,
-		["53"] = 29,
-		["54"] = 29,
-		["55"] = 29,
-		["56"] = 29,
-		["57"] = 29,
-		["58"] = 29,
-		["59"] = 29,
-		["60"] = 29,
-		["61"] = 29,
-		["62"] = 30,
-		["63"] = 30,
-		["64"] = 30,
-		["65"] = 30,
-		["66"] = 30,
-		["67"] = 30,
-		["68"] = 30,
-		["69"] = 30,
-		["70"] = 30,
-		["71"] = 31,
-		["72"] = 32,
-		["73"] = 33,
-		["74"] = 34,
-		["75"] = 36,
-		["76"] = 18,
-		["77"] = 14,
-		["78"] = 13,
-		["79"] = 14,
-		["81"] = 14,
-		["82"] = 40,
-		["83"] = 41,
-		["84"] = 40,
-		["85"] = 41,
-		["87"] = 41,
-		["88"] = 42,
-		["89"] = 43,
-		["90"] = 44,
-		["91"] = 46,
-		["92"] = 40,
-		["93"] = 47,
-		["94"] = 48,
-		["95"] = 48,
-		["96"] = 48,
-		["97"] = 51,
-		["98"] = 51,
-		["99"] = 51,
-		["100"] = 48,
-		["101"] = 48,
-		["102"] = 47,
-		["103"] = 54,
+		["14"] = 4,
+		["15"] = 4,
+		["16"] = 4,
+		["17"] = 5,
+		["18"] = 5,
+		["19"] = 5,
+		["20"] = 8,
+		["21"] = 9,
+		["22"] = 10,
+		["23"] = 11,
+		["24"] = 13,
+		["26"] = 20,
+		["27"] = 21,
+		["28"] = 20,
+		["29"] = 21,
+		["30"] = 22,
+		["31"] = 22,
+		["32"] = 22,
+		["33"] = 25,
+		["34"] = 25,
+		["35"] = 25,
+		["37"] = 25,
+		["38"] = 25,
+		["40"] = 26,
+		["41"] = 27,
+		["42"] = 28,
+		["45"] = 29,
+		["46"] = 30,
+		["47"] = 31,
+		["48"] = 32,
+		["49"] = 33,
+		["50"] = 33,
+		["53"] = 35,
+		["54"] = 36,
+		["55"] = 36,
+		["56"] = 36,
+		["57"] = 36,
+		["58"] = 36,
+		["59"] = 36,
+		["60"] = 36,
+		["61"] = 36,
+		["62"] = 36,
+		["63"] = 37,
+		["64"] = 37,
+		["65"] = 37,
+		["66"] = 37,
+		["67"] = 37,
+		["68"] = 37,
+		["69"] = 37,
+		["70"] = 37,
+		["71"] = 37,
+		["72"] = 38,
+		["73"] = 39,
+		["74"] = 40,
+		["75"] = 41,
+		["76"] = 43,
+		["77"] = 25,
+		["78"] = 21,
+		["79"] = 20,
+		["80"] = 21,
+		["82"] = 21,
+		["83"] = 47,
+		["84"] = 48,
+		["85"] = 47,
+		["86"] = 48,
+		["88"] = 48,
+		["89"] = 49,
+		["90"] = 50,
+		["91"] = 51,
+		["92"] = 52,
+		["93"] = 54,
+		["94"] = 47,
+		["95"] = 55,
+		["96"] = 56,
+		["97"] = 56,
+		["98"] = 56,
+		["99"] = 59,
+		["100"] = 59,
+		["101"] = 59,
+		["102"] = 56,
+		["103"] = 56,
 		["104"] = 55,
-		["105"] = 56,
-		["106"] = 57,
-		["107"] = 58,
-		["108"] = 59,
-		["109"] = 60,
-		["110"] = 61,
-		["111"] = 62,
-		["112"] = 63,
-		["113"] = 64,
-		["114"] = 65,
-		["115"] = 66,
-		["117"] = 54,
-		["118"] = 69,
-		["119"] = 70,
-		["120"] = 71,
-		["121"] = 72,
-		["122"] = 74,
-		["123"] = 74,
-		["124"] = 74,
-		["125"] = 75,
-		["126"] = 75,
-		["128"] = 76,
-		["129"] = 77,
-		["130"] = 78,
-		["131"] = 79,
-		["132"] = 79,
-		["133"] = 79,
-		["134"] = 79,
-		["135"] = 79,
-		["136"] = 79,
-		["139"] = 74,
-		["140"] = 74,
-		["141"] = 69,
-		["142"] = 84,
-		["143"] = 85,
-		["144"] = 86,
-		["145"] = 87,
-		["147"] = 84,
-		["148"] = 90,
-		["149"] = 90,
-		["150"] = 90,
-		["152"] = 90,
-		["153"] = 91,
-		["154"] = 92,
-		["155"] = 93,
-		["156"] = 94,
-		["157"] = 95,
-		["158"] = 96,
-		["159"] = 97,
-		["160"] = 98,
-		["161"] = 98,
-		["163"] = 91,
-		["164"] = 100,
-		["165"] = 101,
-		["166"] = 102,
-		["169"] = 103,
-		["170"] = 104,
-		["171"] = 105,
-		["172"] = 106,
-		["173"] = 107,
-		["174"] = 107,
-		["175"] = 107,
-		["176"] = 107,
-		["177"] = 107,
-		["178"] = 107,
-		["179"] = 107,
-		["182"] = 110,
-		["185"] = 111,
-		["186"] = 100,
-		["187"] = 113,
-		["188"] = 114,
-		["189"] = 115,
-		["192"] = 116,
-		["193"] = 116,
-		["194"] = 116,
-		["195"] = 116,
-		["196"] = 116,
-		["197"] = 116,
-		["198"] = 116,
-		["199"] = 117,
-		["200"] = 118,
-		["201"] = 119,
-		["202"] = 120,
-		["203"] = 121,
-		["204"] = 121,
-		["205"] = 121,
-		["206"] = 121,
-		["208"] = 123,
-		["209"] = 113,
-		["210"] = 125,
-		["211"] = 125,
-		["212"] = 125,
-		["213"] = 126,
-		["214"] = 127,
-		["215"] = 128,
-		["216"] = 128,
-		["218"] = 130,
-		["219"] = 131,
-		["220"] = 131,
-		["222"] = 133,
-		["223"] = 133,
-		["225"] = 134,
-		["226"] = 126,
-		["227"] = 136,
-		["228"] = 137,
-		["229"] = 138,
-		["230"] = 139,
-		["231"] = 139,
-		["232"] = 139,
-		["233"] = 139,
-		["236"] = 140,
-		["239"] = 141,
-		["240"] = 142,
-		["241"] = 136,
-		["242"] = 41,
-		["243"] = 40,
-		["244"] = 41,
-		["246"] = 41,
-		["248"] = 147,
-		["249"] = 148,
-		["250"] = 147,
-		["251"] = 148,
-		["253"] = 148,
-		["254"] = 149,
-		["255"] = 147,
-		["256"] = 150,
-		["257"] = 150,
-		["258"] = 150,
-		["259"] = 151,
-		["260"] = 152,
-		["261"] = 153,
-		["264"] = 154,
-		["265"] = 155,
-		["266"] = 156,
-		["267"] = 157,
-		["268"] = 158,
-		["269"] = 159,
-		["270"] = 161,
-		["271"] = 162,
-		["272"] = 163,
-		["273"] = 164,
+		["105"] = 62,
+		["106"] = 63,
+		["107"] = 64,
+		["108"] = 65,
+		["109"] = 66,
+		["110"] = 67,
+		["111"] = 68,
+		["112"] = 69,
+		["113"] = 70,
+		["114"] = 71,
+		["115"] = 72,
+		["116"] = 73,
+		["117"] = 74,
+		["118"] = 75,
+		["119"] = 76,
+		["121"] = 62,
+		["122"] = 79,
+		["123"] = 80,
+		["124"] = 81,
+		["125"] = 82,
+		["126"] = 84,
+		["127"] = 84,
+		["128"] = 84,
+		["129"] = 85,
+		["130"] = 85,
+		["132"] = 86,
+		["133"] = 87,
+		["134"] = 88,
+		["135"] = 89,
+		["136"] = 89,
+		["137"] = 89,
+		["138"] = 89,
+		["139"] = 89,
+		["140"] = 89,
+		["143"] = 84,
+		["144"] = 84,
+		["145"] = 79,
+		["146"] = 94,
+		["147"] = 95,
+		["148"] = 96,
+		["149"] = 97,
+		["151"] = 94,
+		["152"] = 100,
+		["153"] = 100,
+		["154"] = 100,
+		["156"] = 100,
+		["157"] = 101,
+		["158"] = 102,
+		["159"] = 103,
+		["160"] = 104,
+		["161"] = 105,
+		["162"] = 106,
+		["163"] = 107,
+		["164"] = 108,
+		["165"] = 109,
+		["166"] = 109,
+		["168"] = 101,
+		["169"] = 111,
+		["170"] = 112,
+		["171"] = 113,
+		["174"] = 114,
+		["175"] = 115,
+		["176"] = 116,
+		["177"] = 117,
+		["178"] = 118,
+		["179"] = 118,
+		["180"] = 118,
+		["181"] = 118,
+		["182"] = 118,
+		["183"] = 118,
+		["184"] = 118,
+		["187"] = 121,
+		["190"] = 122,
+		["191"] = 111,
+		["192"] = 124,
+		["193"] = 125,
+		["194"] = 126,
+		["197"] = 127,
+		["198"] = 127,
+		["199"] = 127,
+		["200"] = 127,
+		["201"] = 127,
+		["202"] = 127,
+		["203"] = 127,
+		["204"] = 128,
+		["205"] = 129,
+		["206"] = 130,
+		["207"] = 131,
+		["208"] = 132,
+		["209"] = 132,
+		["210"] = 132,
+		["211"] = 132,
+		["213"] = 134,
+		["214"] = 124,
+		["215"] = 136,
+		["216"] = 136,
+		["217"] = 136,
+		["218"] = 137,
+		["219"] = 138,
+		["220"] = 139,
+		["221"] = 139,
+		["223"] = 141,
+		["224"] = 142,
+		["225"] = 142,
+		["227"] = 144,
+		["228"] = 144,
+		["230"] = 145,
+		["231"] = 137,
+		["232"] = 147,
+		["233"] = 148,
+		["234"] = 149,
+		["235"] = 150,
+		["236"] = 150,
+		["237"] = 150,
+		["238"] = 150,
+		["241"] = 151,
+		["244"] = 152,
+		["245"] = 153,
+		["246"] = 147,
+		["247"] = 48,
+		["248"] = 47,
+		["249"] = 48,
+		["251"] = 48,
+		["253"] = 158,
+		["254"] = 159,
+		["255"] = 158,
+		["256"] = 159,
+		["258"] = 159,
+		["259"] = 160,
+		["260"] = 158,
+		["261"] = 162,
+		["262"] = 162,
+		["263"] = 162,
+		["264"] = 163,
+		["265"] = 163,
+		["266"] = 163,
+		["267"] = 164,
+		["268"] = 164,
+		["269"] = 164,
+		["271"] = 164,
+		["272"] = 164,
 		["274"] = 165,
 		["275"] = 166,
-		["277"] = 168,
-		["278"] = 169,
-		["279"] = 170,
-		["280"] = 170,
-		["282"] = 171,
-		["283"] = 172,
-		["284"] = 173,
-		["285"] = 174,
-		["286"] = 175,
-		["289"] = 176,
-		["290"] = 177,
-		["291"] = 151,
-		["292"] = 148,
-		["293"] = 147,
-		["294"] = 148,
-		["296"] = 148,
-		["297"] = 181,
-		["298"] = 182,
-		["299"] = 181,
-		["300"] = 182,
-		["301"] = 183,
-		["302"] = 184,
-		["303"] = 184,
-		["304"] = 184,
-		["305"] = 184,
-		["306"] = 185,
-		["307"] = 186,
-		["308"] = 186,
-		["309"] = 186,
-		["310"] = 186,
-		["311"] = 187,
-		["312"] = 188,
-		["313"] = 188,
-		["314"] = 188,
-		["315"] = 188,
-		["316"] = 189,
-		["317"] = 189,
-		["318"] = 189,
-		["319"] = 189,
-		["320"] = 189,
-		["321"] = 189,
-		["323"] = 191,
-		["324"] = 192,
-		["325"] = 194,
-		["326"] = 194,
-		["329"] = 196,
-		["330"] = 183,
-		["331"] = 198,
-		["332"] = 199,
-		["333"] = 200,
-		["334"] = 201,
-		["337"] = 202,
-		["338"] = 203,
-		["339"] = 203,
-		["340"] = 203,
-		["341"] = 203,
-		["342"] = 203,
-		["343"] = 203,
-		["345"] = 198,
-		["346"] = 206,
-		["347"] = 207,
-		["348"] = 206,
-		["349"] = 209,
-		["350"] = 209,
-		["351"] = 209,
-		["352"] = 210,
-		["353"] = 210,
-		["354"] = 210,
-		["355"] = 182,
-		["356"] = 181,
-		["357"] = 182,
-		["359"] = 182,
-		["361"] = 214,
-		["362"] = 215,
-		["363"] = 214,
-		["364"] = 215,
-		["365"] = 216,
-		["366"] = 217,
-		["367"] = 219,
-		["368"] = 219,
-		["369"] = 220,
-		["370"] = 220,
-		["372"] = 221,
-		["373"] = 221,
-		["374"] = 221,
-		["375"] = 221,
-		["376"] = 221,
-		["378"] = 219,
-		["379"] = 222,
-		["380"] = 222,
-		["381"] = 222,
-		["383"] = 222,
-		["385"] = 222,
-		["386"] = 223,
-		["387"] = 216,
-		["388"] = 225,
-		["389"] = 225,
-		["390"] = 225,
-		["391"] = 226,
-		["392"] = 226,
-		["393"] = 226,
-		["394"] = 227,
-		["395"] = 215,
-		["396"] = 227,
-		["397"] = 228,
-		["398"] = 228,
-		["399"] = 228,
-		["400"] = 229,
-		["401"] = 230,
-		["404"] = 233,
-		["405"] = 234,
-		["406"] = 234,
-		["408"] = 229,
-		["409"] = 215,
-		["410"] = 214,
-		["411"] = 215,
-		["413"] = 215,
-		["414"] = 238,
-		["415"] = 239,
-		["416"] = 238,
-		["417"] = 239,
-		["418"] = 240,
-		["419"] = 241,
-		["422"] = 242,
-		["423"] = 243,
-		["424"] = 240,
-		["425"] = 245,
-		["426"] = 246,
-		["427"] = 247,
-		["430"] = 248,
-		["431"] = 249,
-		["432"] = 249,
-		["434"] = 251,
-		["435"] = 245,
-		["436"] = 239,
-		["437"] = 238,
-		["438"] = 239,
-		["440"] = 239,
-		["441"] = 255,
-		["442"] = 256,
-		["443"] = 255,
-		["444"] = 256,
-		["445"] = 258,
-		["446"] = 259,
-		["449"] = 260,
-		["450"] = 261,
-		["451"] = 262,
-		["452"] = 263,
-		["453"] = 263,
-		["454"] = 263,
-		["455"] = 263,
-		["456"] = 263,
-		["457"] = 263,
-		["459"] = 258,
-		["460"] = 266,
-		["461"] = 267,
-		["462"] = 268,
-		["463"] = 266,
-		["464"] = 270,
-		["465"] = 271,
-		["468"] = 272,
-		["469"] = 273,
-		["470"] = 276,
-		["471"] = 276,
-		["472"] = 276,
-		["473"] = 276,
-		["474"] = 276,
-		["475"] = 276,
-		["476"] = 276,
-		["477"] = 276,
-		["478"] = 276,
-		["479"] = 276,
-		["480"] = 276,
-		["481"] = 276,
-		["482"] = 276,
-		["483"] = 276,
-		["484"] = 276,
-		["485"] = 288,
-		["488"] = 289,
-		["489"] = 289,
-		["491"] = 290,
-		["492"] = 270,
-		["493"] = 292,
-		["494"] = 293,
-		["495"] = 292,
-		["496"] = 295,
-		["497"] = 296,
-		["500"] = 297,
-		["501"] = 298,
-		["502"] = 295,
-		["503"] = 300,
-		["504"] = 301,
-		["505"] = 302,
-		["508"] = 305,
-		["509"] = 300,
-		["510"] = 307,
-		["511"] = 308,
+		["278"] = 167,
+		["279"] = 168,
+		["280"] = 168,
+		["282"] = 169,
+		["283"] = 170,
+		["284"] = 171,
+		["285"] = 172,
+		["286"] = 174,
+		["287"] = 175,
+		["288"] = 176,
+		["289"] = 177,
+		["290"] = 178,
+		["291"] = 179,
+		["293"] = 182,
+		["294"] = 183,
+		["295"] = 184,
+		["296"] = 184,
+		["298"] = 185,
+		["301"] = 187,
+		["302"] = 188,
+		["303"] = 189,
+		["304"] = 190,
+		["305"] = 191,
+		["308"] = 192,
+		["309"] = 193,
+		["310"] = 164,
+		["311"] = 159,
+		["312"] = 158,
+		["313"] = 159,
+		["315"] = 159,
+		["317"] = 198,
+		["318"] = 199,
+		["319"] = 198,
+		["320"] = 199,
+		["322"] = 199,
+		["323"] = 200,
+		["324"] = 201,
+		["325"] = 198,
+		["326"] = 202,
+		["327"] = 203,
+		["330"] = 204,
+		["331"] = 205,
+		["332"] = 202,
+		["333"] = 207,
+		["334"] = 207,
+		["335"] = 207,
+		["336"] = 207,
+		["337"] = 208,
+		["338"] = 209,
+		["339"] = 210,
+		["340"] = 211,
+		["341"] = 212,
+		["342"] = 213,
+		["343"] = 214,
+		["344"] = 215,
+		["345"] = 217,
+		["346"] = 208,
+		["347"] = 219,
+		["348"] = 220,
+		["349"] = 221,
+		["350"] = 222,
+		["351"] = 223,
+		["352"] = 219,
+		["353"] = 225,
+		["354"] = 226,
+		["355"] = 227,
+		["358"] = 231,
+		["359"] = 232,
+		["362"] = 235,
+		["363"] = 225,
+		["364"] = 237,
+		["365"] = 238,
+		["366"] = 239,
+		["367"] = 239,
+		["369"] = 240,
+		["371"] = 237,
+		["372"] = 242,
+		["373"] = 243,
+		["374"] = 243,
+		["375"] = 243,
+		["376"] = 243,
+		["377"] = 242,
+		["378"] = 245,
+		["379"] = 246,
+		["380"] = 246,
+		["382"] = 247,
+		["384"] = 245,
+		["385"] = 249,
+		["386"] = 249,
+		["387"] = 249,
+		["388"] = 249,
+		["389"] = 249,
+		["390"] = 249,
+		["391"] = 250,
+		["392"] = 251,
+		["395"] = 252,
+		["396"] = 253,
+		["397"] = 254,
+		["398"] = 254,
+		["400"] = 250,
+		["401"] = 199,
+		["402"] = 198,
+		["403"] = 198,
+		["404"] = 198,
+		["405"] = 198,
+		["406"] = 198,
+		["407"] = 198,
+		["408"] = 198,
+		["409"] = 199,
+		["411"] = 199,
+		["412"] = 258,
+		["413"] = 259,
+		["414"] = 258,
+		["415"] = 259,
+		["416"] = 260,
+		["417"] = 261,
+		["418"] = 260,
+		["419"] = 263,
+		["420"] = 264,
+		["421"] = 264,
+		["422"] = 264,
+		["423"] = 264,
+		["424"] = 265,
+		["425"] = 266,
+		["426"] = 266,
+		["427"] = 266,
+		["428"] = 266,
+		["429"] = 267,
+		["430"] = 268,
+		["431"] = 268,
+		["432"] = 268,
+		["433"] = 268,
+		["434"] = 269,
+		["435"] = 269,
+		["436"] = 269,
+		["437"] = 269,
+		["438"] = 269,
+		["439"] = 269,
+		["441"] = 271,
+		["442"] = 272,
+		["443"] = 274,
+		["444"] = 274,
+		["447"] = 276,
+		["448"] = 263,
+		["449"] = 278,
+		["450"] = 279,
+		["451"] = 280,
+		["452"] = 281,
+		["455"] = 282,
+		["456"] = 283,
+		["457"] = 285,
+		["458"] = 285,
+		["459"] = 285,
+		["460"] = 285,
+		["461"] = 286,
+		["462"] = 286,
+		["464"] = 287,
+		["465"] = 287,
+		["466"] = 287,
+		["467"] = 287,
+		["468"] = 287,
+		["469"] = 287,
+		["470"] = 289,
+		["471"] = 289,
+		["474"] = 278,
+		["475"] = 292,
+		["476"] = 293,
+		["477"] = 292,
+		["478"] = 295,
+		["479"] = 295,
+		["480"] = 295,
+		["481"] = 296,
+		["482"] = 296,
+		["483"] = 296,
+		["484"] = 259,
+		["485"] = 258,
+		["486"] = 259,
+		["488"] = 259,
+		["490"] = 300,
+		["491"] = 301,
+		["492"] = 300,
+		["493"] = 301,
+		["494"] = 302,
+		["495"] = 303,
+		["496"] = 305,
+		["497"] = 305,
+		["498"] = 306,
+		["499"] = 306,
+		["501"] = 307,
+		["502"] = 307,
+		["503"] = 307,
+		["504"] = 307,
+		["505"] = 307,
+		["507"] = 305,
+		["508"] = 308,
+		["509"] = 308,
+		["510"] = 308,
 		["512"] = 308,
-		["513"] = 308,
 		["514"] = 308,
-		["515"] = 307,
-		["516"] = 313,
-		["517"] = 313,
-		["518"] = 313,
-		["519"] = 314,
-		["520"] = 314,
-		["521"] = 314,
-		["522"] = 315,
-		["523"] = 315,
-		["524"] = 315,
-		["525"] = 316,
-		["526"] = 317,
-		["527"] = 317,
-		["529"] = 318,
-		["530"] = 318,
-		["531"] = 318,
-		["532"] = 318,
-		["533"] = 318,
-		["534"] = 318,
-		["535"] = 318,
-		["536"] = 318,
-		["537"] = 318,
-		["538"] = 318,
-		["539"] = 318,
-		["540"] = 316,
-		["541"] = 330,
-		["542"] = 331,
-		["543"] = 331,
-		["544"] = 331,
-		["545"] = 331,
-		["546"] = 330,
-		["547"] = 333,
-		["548"] = 334,
-		["549"] = 335,
-		["550"] = 335,
-		["552"] = 333,
-		["553"] = 337,
-		["554"] = 338,
-		["557"] = 339,
-		["558"] = 340,
-		["559"] = 340,
-		["561"] = 341,
-		["562"] = 342,
-		["565"] = 343,
-		["566"] = 344,
-		["567"] = 344,
-		["569"] = 337,
-		["570"] = 256,
-		["571"] = 255,
-		["572"] = 255,
-		["573"] = 255,
-		["574"] = 255,
-		["575"] = 255,
-		["576"] = 255,
-		["577"] = 255,
-		["578"] = 256,
-		["580"] = 256,
-		["582"] = 349,
+		["515"] = 309,
+		["516"] = 302,
+		["517"] = 311,
+		["518"] = 311,
+		["519"] = 311,
+		["520"] = 312,
+		["521"] = 312,
+		["522"] = 312,
+		["523"] = 313,
+		["524"] = 301,
+		["525"] = 313,
+		["526"] = 314,
+		["527"] = 314,
+		["528"] = 314,
+		["529"] = 315,
+		["530"] = 316,
+		["533"] = 319,
+		["534"] = 320,
+		["535"] = 320,
+		["537"] = 315,
+		["538"] = 301,
+		["539"] = 300,
+		["540"] = 301,
+		["542"] = 301,
+		["543"] = 324,
+		["544"] = 325,
+		["545"] = 324,
+		["546"] = 325,
+		["547"] = 326,
+		["548"] = 327,
+		["551"] = 328,
+		["552"] = 329,
+		["553"] = 326,
+		["554"] = 331,
+		["555"] = 332,
+		["556"] = 333,
+		["559"] = 334,
+		["560"] = 335,
+		["561"] = 335,
+		["563"] = 337,
+		["564"] = 331,
+		["565"] = 325,
+		["566"] = 324,
+		["567"] = 325,
+		["569"] = 325,
+		["570"] = 341,
+		["571"] = 342,
+		["572"] = 341,
+		["573"] = 342,
+		["575"] = 342,
+		["576"] = 344,
+		["577"] = 345,
+		["578"] = 346,
+		["579"] = 347,
+		["580"] = 348,
+		["581"] = 349,
+		["582"] = 341,
 		["583"] = 350,
-		["584"] = 349,
-		["585"] = 350,
-		["586"] = 351,
-		["587"] = 351,
-		["588"] = 351,
-		["589"] = 350,
-		["590"] = 349,
-		["591"] = 350,
-		["593"] = 350,
-		["595"] = 355,
-		["596"] = 356,
-		["597"] = 355,
-		["598"] = 356,
-		["599"] = 357,
-		["600"] = 357,
-		["601"] = 357,
-		["602"] = 356,
-		["603"] = 355,
-		["604"] = 356,
-		["606"] = 356,
-		["607"] = 360,
-		["608"] = 361,
-		["609"] = 360,
-		["610"] = 361,
-		["611"] = 362,
-		["612"] = 363,
-		["613"] = 363,
-		["614"] = 363,
-		["615"] = 363,
-		["616"] = 362,
-		["617"] = 365,
-		["618"] = 366,
-		["621"] = 367,
+		["584"] = 351,
+		["587"] = 352,
+		["588"] = 353,
+		["589"] = 354,
+		["590"] = 354,
+		["591"] = 354,
+		["592"] = 354,
+		["593"] = 356,
+		["594"] = 357,
+		["595"] = 357,
+		["596"] = 357,
+		["597"] = 357,
+		["598"] = 357,
+		["600"] = 358,
+		["601"] = 360,
+		["602"] = 360,
+		["603"] = 360,
+		["604"] = 361,
+		["605"] = 362,
+		["606"] = 363,
+		["607"] = 363,
+		["608"] = 363,
+		["609"] = 363,
+		["610"] = 363,
+		["611"] = 363,
+		["613"] = 360,
+		["614"] = 360,
+		["615"] = 366,
+		["616"] = 367,
+		["617"] = 368,
+		["618"] = 368,
+		["619"] = 368,
+		["620"] = 368,
+		["621"] = 368,
 		["622"] = 368,
-		["625"] = 369,
-		["626"] = 370,
-		["627"] = 370,
-		["628"] = 370,
-		["629"] = 370,
-		["632"] = 371,
-		["633"] = 372,
-		["634"] = 365,
-		["635"] = 361,
-		["636"] = 360,
-		["637"] = 361,
-		["639"] = 361,
-		["641"] = 377,
-		["642"] = 378,
-		["643"] = 377,
-		["644"] = 378,
-		["645"] = 379,
-		["646"] = 379,
-		["647"] = 379,
-		["648"] = 378,
-		["649"] = 377,
-		["650"] = 378,
-		["652"] = 378,
-		["653"] = 382,
-		["654"] = 383,
-		["655"] = 382,
-		["656"] = 383,
-		["658"] = 383,
-		["659"] = 384,
-		["660"] = 385,
-		["661"] = 386,
-		["662"] = 382,
-		["663"] = 387,
-		["664"] = 388,
-		["665"] = 388,
-		["666"] = 390,
-		["667"] = 390,
-		["668"] = 390,
-		["669"] = 388,
-		["670"] = 388,
-		["671"] = 387,
-		["672"] = 393,
-		["673"] = 393,
-		["674"] = 393,
-		["675"] = 393,
-		["676"] = 393,
-		["677"] = 394,
-		["678"] = 394,
-		["679"] = 394,
-		["680"] = 394,
-		["681"] = 395,
-		["682"] = 395,
-		["683"] = 395,
-		["684"] = 396,
-		["685"] = 398,
-		["686"] = 398,
-		["687"] = 398,
-		["688"] = 398,
-		["689"] = 396,
-		["690"] = 400,
-		["691"] = 401,
-		["692"] = 402,
-		["693"] = 402,
-		["695"] = 403,
-		["696"] = 403,
-		["698"] = 404,
-		["699"] = 406,
-		["700"] = 406,
-		["702"] = 407,
-		["703"] = 408,
-		["704"] = 408,
-		["705"] = 408,
-		["706"] = 408,
-		["707"] = 408,
-		["708"] = 408,
-		["709"] = 409,
-		["710"] = 410,
-		["711"] = 412,
-		["713"] = 414,
-		["714"] = 415,
-		["715"] = 415,
-		["717"] = 416,
-		["718"] = 417,
-		["719"] = 418,
-		["720"] = 419,
-		["721"] = 420,
-		["722"] = 421,
-		["723"] = 422,
-		["724"] = 422,
-		["725"] = 422,
-		["726"] = 423,
-		["727"] = 423,
-		["728"] = 423,
-		["729"] = 423,
-		["732"] = 424,
-		["733"] = 425,
-		["734"] = 426,
-		["735"] = 426,
-		["737"] = 422,
-		["738"] = 422,
-		["740"] = 429,
-		["741"] = 400,
-		["742"] = 383,
-		["743"] = 382,
-		["744"] = 383,
-		["746"] = 383,
+		["624"] = 350,
+		["625"] = 371,
+		["626"] = 372,
+		["627"] = 373,
+		["628"] = 371,
+		["629"] = 375,
+		["630"] = 376,
+		["633"] = 377,
+		["634"] = 378,
+		["635"] = 380,
+		["636"] = 380,
+		["637"] = 380,
+		["638"] = 380,
+		["639"] = 380,
+		["640"] = 380,
+		["641"] = 380,
+		["642"] = 380,
+		["643"] = 380,
+		["644"] = 380,
+		["645"] = 380,
+		["646"] = 380,
+		["647"] = 380,
+		["648"] = 380,
+		["649"] = 380,
+		["650"] = 392,
+		["653"] = 393,
+		["654"] = 393,
+		["656"] = 394,
+		["657"] = 375,
+		["658"] = 396,
+		["659"] = 397,
+		["662"] = 399,
+		["663"] = 399,
+		["664"] = 399,
+		["665"] = 399,
+		["666"] = 399,
+		["667"] = 399,
+		["668"] = 399,
+		["669"] = 399,
+		["670"] = 400,
+		["671"] = 400,
+		["672"] = 400,
+		["673"] = 400,
+		["674"] = 400,
+		["675"] = 400,
+		["676"] = 400,
+		["677"] = 400,
+		["678"] = 396,
+		["679"] = 402,
+		["680"] = 403,
+		["683"] = 404,
+		["684"] = 405,
+		["685"] = 402,
+		["686"] = 407,
+		["687"] = 408,
+		["688"] = 409,
+		["689"] = 411,
+		["690"] = 411,
+		["691"] = 411,
+		["692"] = 411,
+		["693"] = 411,
+		["694"] = 411,
+		["695"] = 411,
+		["697"] = 413,
+		["698"] = 413,
+		["700"] = 407,
+		["701"] = 415,
+		["702"] = 416,
+		["703"] = 417,
+		["706"] = 420,
+		["707"] = 421,
+		["708"] = 424,
+		["709"] = 426,
+		["712"] = 427,
+		["713"] = 428,
+		["714"] = 429,
+		["715"] = 430,
+		["716"] = 431,
+		["717"] = 432,
+		["718"] = 433,
+		["719"] = 434,
+		["720"] = 435,
+		["721"] = 436,
+		["722"] = 437,
+		["723"] = 438,
+		["724"] = 439,
+		["725"] = 439,
+		["726"] = 439,
+		["727"] = 439,
+		["728"] = 439,
+		["729"] = 440,
+		["732"] = 415,
+		["733"] = 444,
+		["734"] = 445,
+		["735"] = 445,
+		["736"] = 445,
+		["737"] = 445,
+		["738"] = 444,
+		["739"] = 450,
+		["740"] = 450,
+		["741"] = 450,
+		["742"] = 451,
+		["743"] = 451,
+		["744"] = 451,
+		["745"] = 452,
+		["746"] = 453,
+		["747"] = 453,
+		["749"] = 454,
+		["750"] = 454,
+		["751"] = 454,
+		["752"] = 454,
+		["753"] = 454,
+		["754"] = 454,
+		["755"] = 454,
+		["756"] = 454,
+		["757"] = 454,
+		["758"] = 454,
+		["759"] = 454,
+		["760"] = 452,
+		["761"] = 466,
+		["762"] = 467,
+		["765"] = 468,
+		["766"] = 469,
+		["767"] = 470,
+		["768"] = 470,
+		["770"] = 471,
+		["771"] = 472,
+		["774"] = 473,
+		["775"] = 474,
+		["776"] = 474,
+		["778"] = 466,
+		["779"] = 342,
+		["780"] = 341,
+		["781"] = 341,
+		["782"] = 341,
+		["783"] = 341,
+		["784"] = 341,
+		["785"] = 341,
+		["786"] = 341,
+		["787"] = 342,
+		["789"] = 342,
+		["791"] = 479,
+		["792"] = 480,
+		["793"] = 479,
+		["794"] = 480,
+		["795"] = 481,
+		["796"] = 481,
+		["797"] = 481,
+		["798"] = 480,
+		["799"] = 479,
+		["800"] = 480,
+		["802"] = 480,
+		["804"] = 485,
+		["805"] = 486,
+		["806"] = 485,
+		["807"] = 486,
+		["808"] = 487,
+		["809"] = 487,
+		["810"] = 487,
+		["811"] = 486,
+		["812"] = 485,
+		["813"] = 486,
+		["815"] = 486,
+		["816"] = 490,
+		["817"] = 491,
+		["818"] = 490,
+		["819"] = 491,
+		["820"] = 492,
+		["821"] = 493,
+		["822"] = 493,
+		["823"] = 493,
+		["824"] = 493,
+		["825"] = 492,
+		["826"] = 495,
+		["827"] = 496,
+		["830"] = 497,
+		["831"] = 498,
+		["834"] = 499,
+		["835"] = 500,
+		["836"] = 500,
+		["837"] = 500,
+		["838"] = 500,
+		["841"] = 501,
+		["842"] = 502,
+		["843"] = 495,
+		["844"] = 491,
+		["845"] = 490,
+		["846"] = 491,
+		["848"] = 491,
+		["850"] = 507,
+		["851"] = 508,
+		["852"] = 507,
+		["853"] = 508,
+		["854"] = 509,
+		["855"] = 509,
+		["856"] = 509,
+		["857"] = 508,
+		["858"] = 507,
+		["859"] = 508,
+		["861"] = 508,
+		["862"] = 512,
+		["863"] = 513,
+		["864"] = 512,
+		["865"] = 513,
+		["867"] = 513,
+		["868"] = 514,
+		["869"] = 515,
+		["870"] = 516,
+		["871"] = 512,
+		["872"] = 517,
+		["873"] = 518,
+		["874"] = 518,
+		["875"] = 520,
+		["876"] = 520,
+		["877"] = 520,
+		["878"] = 518,
+		["879"] = 518,
+		["880"] = 517,
+		["881"] = 523,
+		["882"] = 523,
+		["883"] = 523,
+		["884"] = 523,
+		["885"] = 523,
+		["886"] = 524,
+		["887"] = 524,
+		["888"] = 524,
+		["889"] = 524,
+		["890"] = 525,
+		["891"] = 525,
+		["892"] = 525,
+		["893"] = 526,
+		["894"] = 528,
+		["895"] = 528,
+		["896"] = 528,
+		["897"] = 528,
+		["898"] = 526,
+		["899"] = 530,
+		["900"] = 531,
+		["901"] = 532,
+		["902"] = 532,
+		["904"] = 533,
+		["905"] = 533,
+		["907"] = 534,
+		["908"] = 536,
+		["909"] = 536,
+		["911"] = 537,
+		["912"] = 538,
+		["913"] = 538,
+		["914"] = 538,
+		["915"] = 538,
+		["916"] = 538,
+		["917"] = 538,
+		["918"] = 539,
+		["919"] = 540,
+		["920"] = 542,
+		["922"] = 544,
+		["923"] = 545,
+		["924"] = 545,
+		["926"] = 546,
+		["927"] = 547,
+		["928"] = 548,
+		["929"] = 549,
+		["930"] = 550,
+		["931"] = 551,
+		["932"] = 552,
+		["933"] = 552,
+		["934"] = 552,
+		["935"] = 553,
+		["936"] = 553,
+		["937"] = 553,
+		["938"] = 553,
+		["941"] = 554,
+		["942"] = 555,
+		["943"] = 556,
+		["944"] = 556,
+		["946"] = 552,
+		["947"] = 552,
+		["949"] = 559,
+		["950"] = 530,
+		["951"] = 513,
+		["952"] = 512,
+		["953"] = 513,
+		["955"] = 513,
 	}
 )
 local g = {}
@@ -666,95 +842,103 @@ local t = "models/eom/hero/marina_1/marina_1_morph.vmdl"
 local u = 1
 local v = 60
 local w = 80
+local x = {
+	{ activity = ACT_DOTA_CAST_ABILITY_1, name = "ACT_DOTA_CAST_ABILITY_1", sequence = "marina_1_attack_1_copy" },
+	{ activity = ACT_DOTA_CAST_ABILITY_2, name = "ACT_DOTA_CAST_ABILITY_2", sequence = "marina_1_skill_1" },
+	{ activity = ACT_DOTA_CAST_ABILITY_3, name = "ACT_DOTA_CAST_ABILITY_3", sequence = "marina_1_skill_2" },
+}
 g.yang_jian_talent = c()
-local x = g.yang_jian_talent
-x.name = "yang_jian_talent"
-d(x, i)
-function x.prototype.GetIntrinsicModifierName(self)
+local y = g.yang_jian_talent
+y.name = "yang_jian_talent"
+d(y, i)
+function y.prototype.GetIntrinsicModifierName(self)
 	return "modifier_yang_jian_talent"
 end
-function x.prototype.HeavenlyEye(self, y, z)
-	if y == nil then
-		y = 1
-	end
+function y.prototype.HeavenlyEye(self, z, A)
 	if z == nil then
-		z = false
+		z = 1
 	end
-	local A = self:GetCaster()
-	local B = A:GetEnemy()
-	if not IsInjurable(A, B) then
+	if A == nil then
+		A = false
+	end
+	local B = self:GetCaster()
+	local C = B:GetEnemy()
+	if not IsInjurable(B, C) then
 		return
 	end
-	local C = A:FindAbilityByName("yang_jian_interact")
-	local D = IsValid(C) and C:IsUnlocked() and C:GetToggleState()
-	if z and D then
-		local E = A:FindModifierByName("modifier_yang_jian_insight")
-		if IsValid(E) then
-			E:SetStackCount(0)
+	local D = B:FindAbilityByName("yang_jian_interact")
+	local E = IsValid(D) and D:IsUnlocked() and D:GetToggleState()
+	if A and E then
+		local F = B:FindModifierByName("modifier_yang_jian_insight")
+		if IsValid(F) then
+			F:SetStackCount(0)
 		end
 	end
-	local F = ParticleManager:CreateParticle(
+	local G = ParticleManager:CreateParticle(
 		"particles/units/heroes/hero_lina/lina_spell_laguna_blade.vpcf",
 		PATTACH_ABSORIGIN_FOLLOW,
-		A
+		B
 	)
-	ParticleManager:SetParticleControlEnt(F, 0, A, PATTACH_POINT_FOLLOW, "attach_hitloc", A:GetAbsOrigin(), true)
-	ParticleManager:SetParticleControlEnt(F, 1, B, PATTACH_POINT_FOLLOW, "attach_hitloc", B:GetAbsOrigin(), true)
-	ParticleManager:ReleaseParticleIndex(F)
-	A:EmitSound("Hero_Lina.LagunaBladeImpact")
-	local G = D and C:GetSpecialValueFor("talent_damge_bonus") or 0
-	local H = (A:GetMaxHealth() * self:GetSpecialValueFor("damage_health_pct") * 0.01 + G) * y
-	A:DealDamage(B, self, H, EOM_DAMAGE_TYPES.DAMAGE_TYPE_PURE)
+	ParticleManager:SetParticleControlEnt(G, 0, B, PATTACH_POINT_FOLLOW, "attach_hitloc", B:GetAbsOrigin(), true)
+	ParticleManager:SetParticleControlEnt(G, 1, C, PATTACH_POINT_FOLLOW, "attach_hitloc", C:GetAbsOrigin(), true)
+	ParticleManager:ReleaseParticleIndex(G)
+	B:EmitSound("Hero_Lina.LagunaBladeImpact")
+	local H = E and D:GetSpecialValueFor("talent_damge_bonus") or 0
+	local I = (B:GetMaxHealth() * self:GetSpecialValueFor("damage_health_pct") * 0.01 + H) * z
+	B:DealDamage(C, self, I, EOM_DAMAGE_TYPES.DAMAGE_TYPE_PURE)
 end
-x = e({ j(nil) }, x)
-g.yang_jian_talent = x
+y = e({ j(nil) }, y)
+g.yang_jian_talent = y
 g.modifier_yang_jian_talent = c()
-local I = g.modifier_yang_jian_talent
-I.name = "modifier_yang_jian_talent"
-d(I, l)
-function I.prototype.____constructor(self, ...)
+local J = g.modifier_yang_jian_talent
+J.name = "modifier_yang_jian_talent"
+d(J, l)
+function J.prototype.____constructor(self, ...)
 	l.prototype.____constructor(self, ...)
 	self.lostHealth = 0
 	self.eyeUsed = false
+	self.transformationUsed = false
 	self.battling = false
 	self.manaTick = 0
 end
-function I.prototype.EDeclareEvents(self)
+function J.prototype.EDeclareEvents(self)
 	return {
 		[EOMModifierEvents.MODIFIER_EVENT_ON_BATTLE_START_BEFORE] = { -1, -1 },
 		[EOMModifierEvents.MODIFIER_EVENT_ON_BATTLE_START] = { -1, -1 },
 		[EOMModifierEvents.MODIFIER_EVENT_ON_BATTLE_END] = { self:GetParent(), self:GetParent() },
 	}
 end
-function I.prototype.OnBattleStartBefore(self)
+function J.prototype.OnBattleStartBefore(self)
 	self:StopDamageHook()
 	self.battling = false
 	self.lostHealth = 0
 	self.eyeUsed = false
+	self.transformationUsed = false
 	self.manaTick = 0
-	local J = self:GetParent()
-	J:RemoveModifierByName("modifier_yang_jian_transformation")
-	J:RemoveModifierByName("modifier_yang_jian_invulnerable")
-	local K = J:FindAbilityByName("yang_jian_ult")
-	if IsValid(K) then
-		K.combo = 0
-		J:AddNewModifier(J, K, "modifier_yang_jian_insight", {}):SetStackCount(0)
+	local K = self:GetParent()
+	K:RemoveModifierByName("modifier_yang_jian_strike_animation")
+	K:RemoveModifierByName("modifier_yang_jian_transformation")
+	K:RemoveModifierByName("modifier_yang_jian_invulnerable")
+	local L = K:FindAbilityByName("yang_jian_ult")
+	if IsValid(L) then
+		L.combo = 0
+		K:AddNewModifier(K, L, "modifier_yang_jian_insight", {}):SetStackCount(0)
 	end
 end
-function I.prototype.OnBattleStart(self)
+function J.prototype.OnBattleStart(self)
 	self.battling = true
 	self:StartIntervalThink(0.1)
 	self:StopDamageHook()
-	self.hookID = self:hook(EOMModifierEvents.MODIFIER_EVENT_ON_TAKEDAMAGE, function(L, M, N, B)
-		if B == self:GetParent() then
-			self:OnCustomTakeDamage(M)
+	self.hookID = self:hook(EOMModifierEvents.MODIFIER_EVENT_ON_TAKEDAMAGE, function(M, N, O, C)
+		if C == self:GetParent() then
+			self:OnCustomTakeDamage(N)
 		end
-		if N == self:GetParent() and M.ability == self:GetAbility() then
-			local C = N:FindAbilityByName("yang_jian_interact")
-			if IsInjurable(N) and IsValid(C) and C:IsUnlocked() and C:GetToggleState() then
+		if O == self:GetParent() and N.ability == self:GetAbility() then
+			local D = O:FindAbilityByName("yang_jian_interact")
+			if IsInjurable(O) and IsValid(D) and D:IsUnlocked() and D:GetToggleState() then
 				Heal(
-					N,
-					M.damage * C:GetSpecialValueFor("tian_reply_health_pct") * 0.01,
+					O,
+					N.damage * D:GetSpecialValueFor("tian_reply_health_pct") * 0.01,
 					self:GetAbility():GetAbilityName(),
 					"Ability"
 				)
@@ -762,287 +946,443 @@ function I.prototype.OnBattleStart(self)
 		end
 	end)
 end
-function I.prototype.StopDamageHook(self)
+function J.prototype.StopDamageHook(self)
 	if self.hookID ~= nil then
 		self:unhook(self.hookID)
 		self.hookID = nil
 	end
 end
-function I.prototype.OnDestroy(self)
+function J.prototype.OnDestroy(self)
 	if IsServer() then
 		self:StopDamageHook()
 	end
 end
-function I.prototype.OnBattleEnd(self)
+function J.prototype.OnBattleEnd(self)
 	self.battling = false
 	self:StopDamageHook()
 	self:StartIntervalThink(-1)
+	self:GetParent():RemoveModifierByName("modifier_yang_jian_strike_animation")
 	self:GetParent():RemoveModifierByName("modifier_yang_jian_transformation")
 	self:GetParent():RemoveModifierByName("modifier_yang_jian_invulnerable")
-	local E = self:GetParent():FindModifierByName("modifier_yang_jian_insight")
-	if IsValid(E) then
-		E:SetStackCount(0)
+	local F = self:GetParent():FindModifierByName("modifier_yang_jian_insight")
+	if IsValid(F) then
+		F:SetStackCount(0)
 	end
 end
-function I.prototype.OnIntervalThink(self)
-	local J = self:GetParent()
-	if not self.battling or not IsInjurable(J) then
+function J.prototype.OnIntervalThink(self)
+	local K = self:GetParent()
+	if not self.battling or not IsInjurable(K) then
 		return
 	end
 	self.manaTick = self.manaTick + 1
 	if self.manaTick >= 10 then
 		self.manaTick = 0
-		if not J:PassivesDisabled() then
+		if not K:PassivesDisabled() then
 			RestoreCustomMana(
-				J,
+				K,
 				self:GetAbilitySpecialValueFor("base_mana")
-					+ math.floor(J:GetMaxHealth() / math.max(1, self:GetAbilitySpecialValueFor("health_base")))
+					+ math.floor(K:GetMaxHealth() / math.max(1, self:GetAbilitySpecialValueFor("health_base")))
 						* self:GetAbilitySpecialValueFor("base_mana_add")
 			)
 		end
 	end
-	if J:PassivesDisabled() then
+	if K:PassivesDisabled() then
 		return
 	end
-	self:TryHeavenlyEye(J:GetHealth())
+	self:TryHeavenlyEye(K:GetHealth())
 end
-function I.prototype.OnCustomTakeDamage(self, M)
-	local J = self:GetParent()
-	if not self.battling or not IsInjurable(J) or J:PassivesDisabled() then
+function J.prototype.OnCustomTakeDamage(self, N)
+	local K = self:GetParent()
+	if not self.battling or not IsInjurable(K) or K:PassivesDisabled() then
 		return
 	end
-	self.lostHealth = self.lostHealth + math.max(0, math.min(M.damage, M.original_health - J:GetHealth()))
-	local O = self:GetAbilitySpecialValueFor("health_loss")
-	if O > 0 and self.lostHealth >= O then
-		local P = math.floor(self.lostHealth / O)
-		self.lostHealth = self.lostHealth - P * O
-		RestoreCustomMana(J, P * self:GetAbilitySpecialValueFor("mana_add_once"))
+	self.lostHealth = self.lostHealth + math.max(0, math.min(N.damage, N.original_health - K:GetHealth()))
+	local P = self:GetAbilitySpecialValueFor("health_loss")
+	if P > 0 and self.lostHealth >= P then
+		local Q = math.floor(self.lostHealth / P)
+		self.lostHealth = self.lostHealth - Q * P
+		RestoreCustomMana(K, Q * self:GetAbilitySpecialValueFor("mana_add_once"))
 	end
-	self:TryHeavenlyEye(J:GetHealth())
+	self:TryHeavenlyEye(K:GetHealth())
 end
-function I.prototype.EDeclareFunctionsWithPriority(self)
+function J.prototype.EDeclareFunctionsWithPriority(self)
 	return { EOMModifierFunction.EOM_MODIFIER_PROPERTY_AVOID_DAMAGE }
 end
-function I.prototype.EOM_GetModifierAvoidDamage(self, Q)
-	local J = self:GetParent()
-	if not self.battling or J:PassivesDisabled() then
+function J.prototype.EOM_GetModifierAvoidDamage(self, R)
+	local K = self:GetParent()
+	if not self.battling or K:PassivesDisabled() then
 		return 0
 	end
-	local R = J:FindModifierByName("modifier_yang_jian_talent_5")
-	if IsValid(R) and R:TryProtect(Q) then
+	local S = K:FindModifierByName("modifier_yang_jian_talent_5")
+	if IsValid(S) and S:TryProtect(R) then
 		return 1
 	end
-	if Q.damage >= J:GetHealth() then
-		self:TryHeavenlyEye(J:GetHealth() - Q.damage)
+	if R.damage >= K:GetHealth() then
+		self:TryHeavenlyEye(K:GetHealth() - R.damage)
 	end
 	return 0
 end
-function I.prototype.TryHeavenlyEye(self, S)
-	local J = self:GetParent()
-	local T = J:FindModifierByName("modifier_sect_health")
+function J.prototype.TryHeavenlyEye(self, T)
+	local K = self:GetParent()
+	local U = K:FindModifierByName("modifier_sect_health")
 	if
 		not self.battling
 		or self.eyeUsed
-		or J:PassivesDisabled()
-		or not IsInjurable(J, J:GetEnemy())
-		or IsValid(T) and T.sr_respawn_enable
+		or K:PassivesDisabled()
+		or not IsInjurable(K, K:GetEnemy())
+		or IsValid(U) and U.sr_respawn_enable
 	then
 		return
 	end
-	if S >= J:GetMaxHealth() * self:GetAbilitySpecialValueFor("health_pct") * 0.01 then
+	if T >= K:GetMaxHealth() * self:GetAbilitySpecialValueFor("health_pct") * 0.01 then
 		return
 	end
 	self.eyeUsed = true
 	self:GetAbility():HeavenlyEye(1, true)
 end
-I = e({ m(a, { IsHidden = true, IsPurgable = false, IsPurgeException = false, AllowIllusionDuplicate = false }) }, I)
-g.modifier_yang_jian_talent = I
+J = e({ m(a, { IsHidden = true, IsPurgable = false, IsPurgeException = false, AllowIllusionDuplicate = false }) }, J)
+g.modifier_yang_jian_talent = J
 g.yang_jian_ult = c()
-local U = g.yang_jian_ult
-U.name = "yang_jian_ult"
-d(U, o)
-function U.prototype.____constructor(self, ...)
+local V = g.yang_jian_ult
+V.name = "yang_jian_ult"
+d(V, o)
+function V.prototype.____constructor(self, ...)
 	o.prototype.____constructor(self, ...)
 	self.combo = 0
 end
-function U.prototype.OnSpellStart(self)
+function V.prototype.GetCastAnimation(self)
+	return -1
+end
+function V.prototype.OnSpellStart(self)
 	self:Strike(self:GetCaster():GetEnemy())
 end
-function U.prototype.Strike(self, B)
-	local A = self:GetCaster()
-	if not IsInjurable(A, B) then
+function V.prototype.Strike(self, C, W, X)
+	if W == nil then
+		W = false
+	end
+	if X == nil then
+		X = 0
+	end
+	local B = self:GetCaster()
+	if not IsInjurable(B, C) then
 		return
 	end
-	local V = self.combo
-	self.combo = (V + 1) % 3
-	local H = self:GetSpecialValueFor("pi_damage")
-	local W = self:GetSpecialValueFor("pi_point")
-	local X = EOM_DAMAGE_TYPES.DAMAGE_TYPE_MAGICAL
-	if V == 1 then
-		H = self:GetSpecialValueFor("ci_damge_base") + B:GetHealth() * self:GetSpecialValueFor("ci_damage_pct") * 0.01
-		W = self:GetSpecialValueFor("ci_point")
-	elseif V == 2 then
-		H = self:GetSpecialValueFor("sao_damage_base")
-			+ A:GetMaxHealth() * self:GetSpecialValueFor("sao_damage_pct") * 0.01
-		W = self:GetSpecialValueFor("sao_point")
-		X = EOM_DAMAGE_TYPES.DAMAGE_TYPE_PURE
+	local Y = W and X or self.combo
+	if not W then
+		self.combo = (Y + 1) % 3
 	end
-	A:ForcePlayActivityOnce(ACT_DOTA_ATTACK)
-	local Y = A:FindModifierByName("modifier_yang_jian_transformation")
-	if IsValid(Y) then
-		Y:PlayAvatarAttack()
+	local I = self:GetSpecialValueFor("pi_damage")
+	local Z = self:GetSpecialValueFor("pi_point")
+	local _ = EOM_DAMAGE_TYPES.DAMAGE_TYPE_MAGICAL
+	if Y == 1 then
+		I = self:GetSpecialValueFor("ci_damge_base") + C:GetHealth() * self:GetSpecialValueFor("ci_damage_pct") * 0.01
+		Z = self:GetSpecialValueFor("ci_point")
+	elseif Y == 2 then
+		I = self:GetSpecialValueFor("sao_damage_base")
+			+ B:GetMaxHealth() * self:GetSpecialValueFor("sao_damage_pct") * 0.01
+		Z = self:GetSpecialValueFor("sao_point")
+		_ = EOM_DAMAGE_TYPES.DAMAGE_TYPE_PURE
 	end
-	local F = ParticleManager:CreateParticle(
+	if not W then
+		local a0 = B:FindModifierByName("modifier_yang_jian_strike_animation")
+		if IsValid(a0) then
+			a0:QueueStrike(Y)
+		else
+			B:AddNewModifier(B, self, "modifier_yang_jian_strike_animation", { step = Y })
+		end
+	end
+	local G = ParticleManager:CreateParticle(
 		"particles/units/heroes/hero_monkey_king/monkey_king_strike_hit.vpcf",
 		PATTACH_ABSORIGIN_FOLLOW,
-		B
+		C
 	)
-	ParticleManager:ReleaseParticleIndex(F)
-	A:EmitSound("Hero_MonkeyKing.Strike.Impact")
-	A:DealDamage(B, self, H, X)
-	if not IsInjurable(A) then
+	ParticleManager:ReleaseParticleIndex(G)
+	B:EmitSound("Hero_MonkeyKing.Strike.Impact")
+	B:DealDamage(C, self, I, _)
+	if not IsInjurable(B) then
 		return
 	end
-	local E = A:AddNewModifier(A, self, "modifier_yang_jian_insight", {})
-	E:AddInsight(W)
+	local F = B:AddNewModifier(B, self, "modifier_yang_jian_insight", {})
+	F:AddInsight(Z)
 end
-U = e({ p(nil) }, U)
-g.yang_jian_ult = U
+V = e({ p(nil) }, V)
+g.yang_jian_ult = V
+g.modifier_yang_jian_strike_animation = c()
+local a1 = g.modifier_yang_jian_strike_animation
+a1.name = "modifier_yang_jian_strike_animation"
+d(a1, l)
+function a1.prototype.____constructor(self, ...)
+	l.prototype.____constructor(self, ...)
+	self.pendingSteps = {}
+	self.animationEndTime = 0
+end
+function a1.prototype.OnCreated(self, R)
+	if not IsServer() then
+		return
+	end
+	self:PlayStrike(R.step)
+	self:StartIntervalThink(FrameTime())
+end
+function a1.prototype.QueueStrike(self, Y)
+	local a2 = self.pendingSteps
+	a2[#a2 + 1] = Y
+end
+function a1.prototype.PlayStrike(self, Y)
+	local K = self:GetParent()
+	local a0 = x[Y + 1]
+	self:SetStackCount(Y + 1)
+	local a3 = K:SequenceDuration(a0.sequence)
+	local a4 = a3 > 0 and a3 or 1
+	self.animationEndTime = GameRules:GetGameTime() + a4
+	self:RemoveAttackGestures()
+	K:StartGestureWithPlaybackRate(a0.activity, 1)
+end
+function a1.prototype.RemoveAttackGestures(self)
+	local K = self:GetParent()
+	K:RemoveGesture(ACT_DOTA_ATTACK)
+	K:RemoveGesture(ACT_DOTA_ATTACK2)
+	K:RemoveGesture(ACT_DOTA_ATTACK_EVENT)
+end
+function a1.prototype.OnIntervalThink(self)
+	if not IsInjurable(self:GetParent()) then
+		self:Destroy()
+		return
+	end
+	if GameRules:GetGameTime() >= self.animationEndTime then
+		self:FinishStrike()
+		return
+	end
+	self:RemoveAttackGestures()
+end
+function a1.prototype.FinishStrike(self)
+	self:GetParent():RemoveGesture(self:GetStrikeActivity())
+	if #self.pendingSteps > 0 then
+		self:PlayStrike(table.remove(self.pendingSteps, 1))
+	else
+		self:Destroy()
+	end
+end
+function a1.prototype.EDeclareEvents(self)
+	return { [MODIFIER_EVENT_ON_ATTACK_START] = { self:GetParent(), -1 } }
+end
+function a1.prototype.OnAttackStart(self)
+	if GameRules:GetGameTime() >= self.animationEndTime then
+		self:FinishStrike()
+	else
+		self:RemoveAttackGestures()
+	end
+end
+function a1.prototype.GetStrikeActivity(self)
+	return x[math.max(0, self:GetStackCount() - 1) + 1].activity
+end
+function a1.prototype.OnDestroy(self)
+	if not IsServer() then
+		return
+	end
+	self:StartIntervalThink(-1)
+	self.pendingSteps = {}
+	if IsValid(self:GetParent()) then
+		self:GetParent():RemoveGesture(self:GetStrikeActivity())
+	end
+end
+a1 = e(
+	{
+		m(
+			a,
+			{
+				IsHidden = true,
+				IsPurgable = false,
+				IsPurgeException = false,
+				AllowIllusionDuplicate = false,
+				GetPriority = MODIFIER_PRIORITY_SUPER_ULTRA,
+			}
+		),
+	},
+	a1
+)
+g.modifier_yang_jian_strike_animation = a1
 g.modifier_yang_jian_insight = c()
-local Z = g.modifier_yang_jian_insight
-Z.name = "modifier_yang_jian_insight"
-d(Z, l)
-function Z.prototype.AddInsight(self, P)
-	self:SetStackCount(math.min(self:GetAbilitySpecialValueFor("point_limit"), self:GetStackCount() + P))
-	local J = self:GetParent()
+local a5 = g.modifier_yang_jian_insight
+a5.name = "modifier_yang_jian_insight"
+d(a5, l)
+function a5.prototype.GetTexture(self)
+	return "yang_jian_eyes"
+end
+function a5.prototype.AddInsight(self, Q)
+	self:SetStackCount(math.min(self:GetAbilitySpecialValueFor("point_limit"), self:GetStackCount() + Q))
+	local K = self:GetParent()
 	if
 		self:HasTalent("yang_jian_talent_4")
 		and self:PRD(self:GetAbilityTalentValue("yang_jian_talent_4", "chance"), "yang_jian_talent_4")
 	then
-		local _ = J:FindModifierByName("modifier_yang_jian_invulnerable")
-		local a0 = math.max(
+		local a6 = K:FindModifierByName("modifier_yang_jian_invulnerable")
+		local a4 = math.max(
 			self:GetAbilityTalentValue("yang_jian_talent_4", "invincible_duration"),
-			IsValid(_) and _:GetRemainingTime() or 0
+			IsValid(a6) and a6:GetRemainingTime() or 0
 		)
-		J:AddNewModifier(J, self:GetAbility(), "modifier_yang_jian_invulnerable", { duration = a0 })
+		K:AddNewModifier(K, self:GetAbility(), "modifier_yang_jian_invulnerable", { duration = a4 })
 	end
 	if self:HasTalent("yang_jian_talent_6") then
-		local z = J:FindAbilityByName("yang_jian_talent")
-		if IsValid(z) then
-			z:HeavenlyEye(self:GetAbilityTalentValue("yang_jian_talent_6", "chance") * 0.01)
+		local A = K:FindAbilityByName("yang_jian_talent")
+		if IsValid(A) then
+			A:HeavenlyEye(self:GetAbilityTalentValue("yang_jian_talent_6", "chance") * 0.01)
 		end
 	end
 	self:TryTransform()
 end
-function Z.prototype.TryTransform(self)
-	local J = self:GetParent()
-	local C = J:FindAbilityByName("yang_jian_interact")
+function a5.prototype.TryTransform(self)
+	local K = self:GetParent()
+	local D = K:FindAbilityByName("yang_jian_interact")
 	if
-		not IsValid(C)
-		or not C:IsUnlocked()
-		or C:GetToggleState()
-		or J:HasModifier("modifier_yang_jian_transformation")
+		not IsValid(D)
+		or not D:IsUnlocked()
+		or D:GetToggleState()
+		or K:HasModifier("modifier_yang_jian_transformation")
 	then
 		return
 	end
-	if self:GetStackCount() >= C:GetSpecialValueFor("fa_point_stack") then
-		J:AddNewModifier(J, C, "modifier_yang_jian_transformation", { duration = C:GetSpecialValueFor("fa_duration") })
+	local A = K:FindModifierByName("modifier_yang_jian_talent")
+	local a7 = IsValid(A)
+			and not A.transformationUsed
+			and self:HasTalent("yang_jian_talent_3")
+			and self:GetAbilityTalentValue("yang_jian_talent_3", "first_reduce")
+		or 0
+	if self:GetStackCount() >= math.max(0, D:GetSpecialValueFor("fa_point_stack") - a7) then
+		if IsValid(A) then
+			A.transformationUsed = true
+		end
+		local a8 = K:AddNewModifier(
+			K,
+			D,
+			"modifier_yang_jian_transformation",
+			{ duration = D:GetSpecialValueFor("fa_duration") }
+		)
+		if IsValid(a8) then
+			a8:OnIntervalThink()
+		end
 	end
 end
-function Z.prototype.EDeclareFunctions(self)
+function a5.prototype.EDeclareFunctions(self)
 	return {
 		EOMModifierFunction.EOM_MODIFIER_PROPERTY_SUREHIT_CHANCE,
 		EOMModifierFunction.EOM_MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
 	}
 end
-function Z.prototype.EOM_GetModifierSurehitChance(self)
+function a5.prototype.EOM_GetModifierSurehitChance(self)
 	return self:GetStackCount() * self:GetAbilitySpecialValueFor("point_hit_rate")
 end
-function Z.prototype.EOM_GetModifierIncomingDamagePercentage(self)
+function a5.prototype.EOM_GetModifierIncomingDamagePercentage(self)
 	return -self:GetStackCount() * self:GetAbilitySpecialValueFor("point_damage_reduce_pct")
 end
-Z = e({ m(a, { IsHidden = false, IsPurgable = false, IsPurgeException = false, AllowIllusionDuplicate = false }) }, Z)
-g.modifier_yang_jian_insight = Z
+a5 = e({ m(a, { IsHidden = false, IsPurgable = false, IsPurgeException = false, AllowIllusionDuplicate = false }) }, a5)
+g.modifier_yang_jian_insight = a5
 g.yang_jian_interact = c()
-local a1 = g.yang_jian_interact
-a1.name = "yang_jian_interact"
-d(a1, r)
-function a1.prototype.GetAbilityTextureName(self)
-	local a2 = self:GetCaster():GetPlayerOwnerID()
-	local a3
+local a9 = g.yang_jian_interact
+a9.name = "yang_jian_interact"
+d(a9, r)
+function a9.prototype.GetAbilityTextureName(self)
+	local aa = self:GetCaster():GetPlayerOwnerID()
+	local ab
 	if IsServer() then
-		local a4 = PlayerData:getplayerData(a2)
-		a3 = a4 and a4:GetInteractiveAbilityState()
+		local ac = PlayerData:getplayerData(aa)
+		ab = ac and ac:GetInteractiveAbilityState()
 	else
-		local a5 = CustomNetTables:GetTableValue("player_data", tostring(a2))
-		a3 = a5 and a5.interAbilityState
+		local ad = CustomNetTables:GetTableValue("player_data", tostring(aa))
+		ab = ad and ad.interAbilityState
 	end
-	local a6 = a3
-	local a7
-	if a6 == nil then
-		a7 = self:GetToggleState()
+	local ae = ab
+	local af
+	if ae == nil then
+		af = self:GetToggleState()
 	else
-		a7 = a6 == true or a6 == 1
+		af = ae == true or ae == 1
 	end
-	local a8 = a7
-	return a8 and "lina_laguna_blade" or "monkey_king_wukongs_command"
+	local ag = af
+	return ag and "yang_jian_eyes" or "yang_jian_fantasy"
 end
-function a1.prototype.GetIntrinsicModifierName(self)
+function a9.prototype.GetIntrinsicModifierName(self)
 	return "modifier_yang_jian_interact"
 end
-function a1.prototype.IsUnlocked(self)
+function a9.prototype.IsUnlocked(self)
 	return self:HasTalent("yang_jian_talent_1") or self:HasTalent("yang_jian_talent_2")
 end
-function a1.prototype.CustomToggleEnable(self)
+function a9.prototype.CustomToggleEnable(self)
 	return self:IsUnlocked() and r.prototype.CustomToggleEnable(self)
 end
-function a1.prototype.OnSpellStart(self)
+function a9.prototype.OnSpellStart(self)
 	self:RestoreToggleState()
 end
-function a1.prototype.RestoreToggleState(self)
+function a9.prototype.RestoreToggleState(self)
 	if not IsServer() or not self:IsUnlocked() then
 		return
 	end
-	local a9 = PlayerData:getplayerData(self:GetCaster():GetPlayerOwnerID())
-	if a9 and self:GetToggleState() ~= a9:GetInteractiveAbilityState() then
+	local ah = PlayerData:getplayerData(self:GetCaster():GetPlayerOwnerID())
+	if ah and self:GetToggleState() ~= ah:GetInteractiveAbilityState() then
 		self:ToggleAbility()
 	end
 end
-a1 = e({ s(nil, { InactiveTextureName = "monkey_king_wukongs_command", ActiveTextureName = "lina_laguna_blade" }) }, a1)
-g.yang_jian_interact = a1
+a9 = e({ s(nil, { InactiveTextureName = "yang_jian_fantasy", ActiveTextureName = "yang_jian_eyes" }) }, a9)
+g.yang_jian_interact = a9
 g.modifier_yang_jian_interact = c()
-local aa = g.modifier_yang_jian_interact
-aa.name = "modifier_yang_jian_interact"
-d(aa, l)
-function aa.prototype.OnCreated(self)
+local ai = g.modifier_yang_jian_interact
+ai.name = "modifier_yang_jian_interact"
+d(ai, l)
+function ai.prototype.OnCreated(self)
 	if not IsServer() then
 		return
 	end
 	self:OnIntervalThink()
 	self:StartIntervalThink(0.1)
 end
-function aa.prototype.OnIntervalThink(self)
-	local ab = self:GetAbility()
-	if not IsValid(ab) then
+function ai.prototype.OnIntervalThink(self)
+	local aj = self:GetAbility()
+	if not IsValid(aj) then
 		return
 	end
-	local ac = ab:IsUnlocked()
-	if ab:IsActivated() ~= ac then
-		ab:SetActivated(ac)
+	local ak = aj:IsUnlocked()
+	if aj:IsActivated() ~= ak then
+		aj:SetActivated(ak)
 	end
-	ab:RestoreToggleState()
+	aj:RestoreToggleState()
 end
-aa = e({ m(a, { IsHidden = true, IsPurgable = false, IsPurgeException = false, AllowIllusionDuplicate = false }) }, aa)
-g.modifier_yang_jian_interact = aa
+ai = e({ m(a, { IsHidden = true, IsPurgable = false, IsPurgeException = false, AllowIllusionDuplicate = false }) }, ai)
+g.modifier_yang_jian_interact = ai
 g.modifier_yang_jian_transformation = c()
-local ad = g.modifier_yang_jian_transformation
-ad.name = "modifier_yang_jian_transformation"
-d(ad, l)
-function ad.prototype.OnCreated(self)
+local al = g.modifier_yang_jian_transformation
+al.name = "modifier_yang_jian_transformation"
+d(al, l)
+function al.prototype.____constructor(self, ...)
+	l.prototype.____constructor(self, ...)
+	self.nextStrikeTime = 0
+	self.remainingStrikes = 0
+	self.automaticCombo = 0
+	self.avatarPlaybackRate = 1
+	self.avatarAnimationEndTime = 0
+	self.autoStriking = false
+end
+function al.prototype.OnCreated(self)
 	if not IsServer() then
 		return
 	end
-	self:CreateAvatar("ACT_DOTA_IDLE_RARE")
+	self:CreateAvatar("marina_1_idle")
+	self.nextStrikeTime = GameRules:GetGameTime()
+	self.remainingStrikes = math.max(0, math.ceil(self:GetAbilitySpecialValueFor("fa_duration")))
+	local am = 0.85
+	for an, ao in ipairs(x) do
+		am = math.max(am, self:GetParent():SequenceDuration(ao.sequence))
+	end
+	self.avatarPlaybackRate = am / 0.85
+	self:hook(EOMModifierEvents.MODIFIER_EVENT_ON_TAKEDAMAGE, function(M, N, O)
+		local K = self:GetParent()
+		if self.autoStriking and O == K and N.ability == K:FindAbilityByName("yang_jian_ult") and IsInjurable(K) then
+			AddShield(
+				K,
+				N.damage * self:GetAbilitySpecialValueFor("fa_damage_shield") * 0.01,
+				self:GetAbility():GetAbilityName(),
+				"Ability"
+			)
+		end
+	end)
 	self:StartIntervalThink(FrameTime())
 	if self:HasTalent("yang_jian_talent_3") then
 		AddShield(
@@ -1053,76 +1393,106 @@ function ad.prototype.OnCreated(self)
 		)
 	end
 end
-function ad.prototype.GetAvatarPosition(self)
-	local J = self:GetParent()
-	return J:GetAbsOrigin() + J:GetForwardVector() * -v + Vector(0, 0, w)
+function al.prototype.GetAvatarPosition(self)
+	local K = self:GetParent()
+	return K:GetAbsOrigin() + K:GetForwardVector() * -v + Vector(0, 0, w)
 end
-function ad.prototype.CreateAvatar(self, ae)
+function al.prototype.CreateAvatar(self, a0)
 	if not IsServer() then
 		return
 	end
-	local J = self:GetParent()
-	local y = J:GetModelScale() * u
-	local af = SpawnEntityFromTableSynchronous(
+	local K = self:GetParent()
+	local z = K:GetModelScale() * u
+	local ap = SpawnEntityFromTableSynchronous(
 		"prop_dynamic",
 		{
 			model = t,
 			origin = self:GetAvatarPosition(),
-			angles = VectorToAngles(J:GetForwardVector()),
-			scales = (((tostring(y) .. " ") .. tostring(y)) .. " ") .. tostring(y),
-			StartingAnim = ae,
+			angles = VectorToAngles(K:GetForwardVector()),
+			scales = (((tostring(z) .. " ") .. tostring(z)) .. " ") .. tostring(z),
+			StartingAnim = a0,
 			StartingAnimationLoopMode = "ANIM_LOOP_MODE_USE_SEQUENCE_SETTINGS",
-			DefaultAnim = "ACT_DOTA_IDLE_RARE",
+			IdleAnim = "marina_1_idle",
 			AnimationLoopMode = "ANIM_LOOP_MODE_LOOPING",
-			use_animgraph = "1",
+			use_animgraph = "0",
 			solid = "0",
 		}
 	)
-	if not IsValid(af) then
+	if not IsValid(ap) then
 		return
 	end
 	if IsValid(self.avatar) then
 		UTIL_Remove(self.avatar)
 	end
-	self.avatar = af
+	self.avatar = ap
 end
-function ad.prototype.PlayAvatarAttack(self)
-	self:CreateAvatar("ACT_DOTA_ATTACK")
+function al.prototype.PlayAvatarAttack(self, a0, aq)
+	if not IsValid(self.avatar) then
+		return
+	end
+	DoEntFireByInstanceHandle(self.avatar, "SetAnimationNotLooping", a0, 0, self:GetParent(), self:GetParent())
+	DoEntFireByInstanceHandle(self.avatar, "SetPlaybackRate", tostring(aq), 0, self:GetParent(), self:GetParent())
 end
-function ad.prototype.SyncAvatar(self)
+function al.prototype.SyncAvatar(self)
 	if not IsServer() or not IsValid(self.avatar) then
 		return
 	end
 	self.avatar:SetAbsOrigin(self:GetAvatarPosition())
 	self.avatar:SetForwardVector(self:GetParent():GetForwardVector())
 end
-function ad.prototype.OnIntervalThink(self)
+function al.prototype.EnsurePermanentShield(self)
+	local K = self:GetParent()
+	local ar = K:FindModifierByName("modifier_shield_permanent")
+	if not IsValid(ar) then
+		ar = K:AddNewModifier(K, self:GetAbility(), "modifier_shield_permanent", {})
+	end
+	if IsValid(ar) then
+		ar:OnIntervalThink()
+	end
+end
+function al.prototype.OnIntervalThink(self)
 	if not IsValid(self:GetParent()) or not self:GetParent():IsAlive() then
 		self:Destroy()
 		return
 	end
 	self:SyncAvatar()
+	self:EnsurePermanentShield()
+	if self.remainingStrikes > 0 and GameRules:GetGameTime() >= self.nextStrikeTime then
+		if GameRules:GetGameTime() < self.avatarAnimationEndTime then
+			return
+		end
+		self.nextStrikeTime = self.nextStrikeTime + 1
+		self.remainingStrikes = self.remainingStrikes - 1
+		local K = self:GetParent()
+		local L = K:FindAbilityByName("yang_jian_ult")
+		if IsValid(L) then
+			local Y = self.automaticCombo
+			self.automaticCombo = (Y + 1) % 3
+			local a0 = x[Y + 1]
+			local a4 = K:SequenceDuration(a0.sequence)
+			self.avatarAnimationEndTime = GameRules:GetGameTime() + (a4 > 0 and a4 or 1) / self.avatarPlaybackRate
+			self:PlayAvatarAttack(a0.sequence, self.avatarPlaybackRate)
+			self.autoStriking = true
+			L:Strike(K:GetEnemy(), true, Y)
+			self.autoStriking = false
+		end
+	end
 end
-function ad.prototype.EFunctionValues(self)
+function al.prototype.EFunctionValues(self)
 	return {
 		[EOMModifierFunction.EOM_MODIFIER_PROPERTY_HEALTH_BONUS_PERCENTAGE] = self:GetAbilitySpecialValueFor(
 			"fa_max_health_pct"
 		),
-		[EOMModifierFunction.EOM_MODIFIER_PROPERTY_ATTACKSPEED_BONUS] = self:GetAbilitySpecialValueFor(
-			"fa_attack_speed"
-		),
+		[EOMModifierFunction.EOM_MODIFIER_PROPERTY_SHIELD_PERMANENT] = self:GetAbilitySpecialValueFor("fa_shield"),
 	}
 end
-function ad.prototype.DeclareFunctions(self)
+function al.prototype.DeclareFunctions(self)
 	return { MODIFIER_PROPERTY_MODEL_SCALE }
 end
-function ad.prototype.GetModifierModelScale(self)
+function al.prototype.GetModifierModelScale(self)
 	return 30
 end
-function ad.prototype.ECheckState(self)
-	return { [EOMModifierStates.MODIFIER_STATE_FAKE_ATTACK] = true }
-end
-function ad.prototype.CheckState(self)
+function al.prototype.CheckState(self)
 	if not self:HasTalent("yang_jian_talent_3") then
 		return {}
 	end
@@ -1138,20 +1508,12 @@ function ad.prototype.CheckState(self)
 		[MODIFIER_STATE_MUTED] = false,
 	}
 end
-function ad.prototype.EDeclareEvents(self)
-	return { [EOMModifierEvents.MODIFIER_EVENT_ON_FAKE_ATTACK] = { self:GetParent(), -1 } }
-end
-function ad.prototype.OnFakeAttack(self, M)
-	local K = self:GetParent():FindAbilityByName("yang_jian_ult")
-	if IsValid(K) then
-		K:Strike(self:GetParent():GetEnemy())
-	end
-end
-function ad.prototype.OnDestroy(self)
+function al.prototype.OnDestroy(self)
 	if not IsServer() then
 		return
 	end
 	self:StartIntervalThink(-1)
+	self.remainingStrikes = 0
 	if IsValid(self.avatar) then
 		UTIL_Remove(self.avatar)
 	end
@@ -1159,12 +1521,12 @@ function ad.prototype.OnDestroy(self)
 	if not IsValid(self:GetParent()) then
 		return
 	end
-	local E = self:GetParent():FindModifierByName("modifier_yang_jian_insight")
-	if IsValid(E) then
-		E:SetStackCount(0)
+	local F = self:GetParent():FindModifierByName("modifier_yang_jian_insight")
+	if IsValid(F) then
+		F:SetStackCount(0)
 	end
 end
-ad = e(
+al = e(
 	{
 		m(
 			a,
@@ -1177,143 +1539,143 @@ ad = e(
 			}
 		),
 	},
-	ad
+	al
 )
-g.modifier_yang_jian_transformation = ad
+g.modifier_yang_jian_transformation = al
 g.modifier_yang_jian_invulnerable = c()
-local ag = g.modifier_yang_jian_invulnerable
-ag.name = "modifier_yang_jian_invulnerable"
-d(ag, l)
-function ag.prototype.CheckState(self)
+local as = g.modifier_yang_jian_invulnerable
+as.name = "modifier_yang_jian_invulnerable"
+d(as, l)
+function as.prototype.CheckState(self)
 	return { [MODIFIER_STATE_INVULNERABLE] = true }
 end
-ag = e({ m(a, { IsHidden = false, IsPurgable = false, IsPurgeException = false, AllowIllusionDuplicate = false }) }, ag)
-g.modifier_yang_jian_invulnerable = ag
+as = e({ m(a, { IsHidden = false, IsPurgable = false, IsPurgeException = false, AllowIllusionDuplicate = false }) }, as)
+g.modifier_yang_jian_invulnerable = as
 g.yang_jian_shard = c()
-local ah = g.yang_jian_shard
-ah.name = "yang_jian_shard"
-d(ah, i)
-function ah.prototype.GetIntrinsicModifierName(self)
+local at = g.yang_jian_shard
+at.name = "yang_jian_shard"
+d(at, i)
+function at.prototype.GetIntrinsicModifierName(self)
 	return "modifier_yang_jian_shard"
 end
-ah = e({ j(nil) }, ah)
-g.yang_jian_shard = ah
+at = e({ j(nil) }, at)
+g.yang_jian_shard = at
 g.modifier_yang_jian_shard = c()
-local ai = g.modifier_yang_jian_shard
-ai.name = "modifier_yang_jian_shard"
-d(ai, l)
-function ai.prototype.EDeclareEvents(self)
+local au = g.modifier_yang_jian_shard
+au.name = "modifier_yang_jian_shard"
+d(au, l)
+function au.prototype.EDeclareEvents(self)
 	return { [EOMModifierEvents.MODIFIER_EVENT_ON_EVASION] = { self:GetParent(), -1 } }
 end
-function ai.prototype.OnEvasion(self)
+function au.prototype.OnEvasion(self)
 	if not IsServer() then
 		return
 	end
-	local J = self:GetParent()
-	if not IsInjurable(J) or J:PassivesDisabled() then
+	local K = self:GetParent()
+	if not IsInjurable(K) or K:PassivesDisabled() then
 		return
 	end
-	local K = J:FindAbilityByName("yang_jian_ult")
-	if not IsValid(K) or not self:PRD(self:GetAbilitySpecialValueFor("chance"), "yang_jian_shard") then
+	local L = K:FindAbilityByName("yang_jian_ult")
+	if not IsValid(L) or not self:PRD(self:GetAbilitySpecialValueFor("chance"), "yang_jian_shard") then
 		return
 	end
-	local E = J:AddNewModifier(J, K, "modifier_yang_jian_insight", {})
-	E:AddInsight(self:GetAbilitySpecialValueFor("count"))
+	local F = K:AddNewModifier(K, L, "modifier_yang_jian_insight", {})
+	F:AddInsight(self:GetAbilitySpecialValueFor("count"))
 end
-ai = e({ m(a, { IsHidden = true, IsPurgable = false, IsPurgeException = false, AllowIllusionDuplicate = false }) }, ai)
-g.modifier_yang_jian_shard = ai
+au = e({ m(a, { IsHidden = true, IsPurgable = false, IsPurgeException = false, AllowIllusionDuplicate = false }) }, au)
+g.modifier_yang_jian_shard = au
 g.yang_jian_talent_5 = c()
-local aj = g.yang_jian_talent_5
-aj.name = "yang_jian_talent_5"
-d(aj, i)
-function aj.prototype.GetIntrinsicModifierName(self)
+local av = g.yang_jian_talent_5
+av.name = "yang_jian_talent_5"
+d(av, i)
+function av.prototype.GetIntrinsicModifierName(self)
 	return "modifier_yang_jian_talent_5"
 end
-aj = e({ j(nil) }, aj)
-g.yang_jian_talent_5 = aj
+av = e({ j(nil) }, av)
+g.yang_jian_talent_5 = av
 g.modifier_yang_jian_talent_5 = c()
-local ak = g.modifier_yang_jian_talent_5
-ak.name = "modifier_yang_jian_talent_5"
-d(ak, l)
-function ak.prototype.____constructor(self, ...)
+local aw = g.modifier_yang_jian_talent_5
+aw.name = "modifier_yang_jian_talent_5"
+d(aw, l)
+function aw.prototype.____constructor(self, ...)
 	l.prototype.____constructor(self, ...)
 	self.used = false
 	self.battling = false
 	self.battleId = 0
 end
-function ak.prototype.EDeclareEvents(self)
+function aw.prototype.EDeclareEvents(self)
 	return {
 		[EOMModifierEvents.MODIFIER_EVENT_ON_BATTLE_START_BEFORE] = { -1, -1 },
 		[EOMModifierEvents.MODIFIER_EVENT_ON_BATTLE_END] = { self:GetParent(), self:GetParent() },
 	}
 end
-function ak.prototype.OnBattleStartBefore(self)
+function aw.prototype.OnBattleStartBefore(self)
 	self.used = false
 	self.battling = true
 	self.battleId = self.battleId + 1
 end
-function ak.prototype.OnBattleEnd(self)
+function aw.prototype.OnBattleEnd(self)
 	self.battling = false
 	self.battleId = self.battleId + 1
 end
-function ak.prototype.EDeclareFunctions(self)
+function aw.prototype.EDeclareFunctions(self)
 	return { EOMModifierFunction.EOM_MODIFIER_PROPERTY_OUTGOING_DAMAGE_CONSTANT }
 end
-function ak.prototype.EOM_GetModifierOutgoingDamageConstant(self)
+function aw.prototype.EOM_GetModifierOutgoingDamageConstant(self)
 	return GetSectHealthModifiedValue(self:GetParent(), self:GetSectSpecialValueFor("197", "sr_197_health"))
 end
-function ak.prototype.TryProtect(self, Q)
-	local J = self:GetParent()
-	if not self.battling or self.used or J:PassivesDisabled() or Q.damage < J:GetHealth() then
+function aw.prototype.TryProtect(self, R)
+	local K = self:GetParent()
+	if not self.battling or self.used or K:PassivesDisabled() or R.damage < K:GetHealth() then
 		return false
 	end
-	if bit.band(Q.damage_flags, DamageFlags.DAMAGE_FLAG_NO_LETHAL) ~= 0 or J:HasModifier("modifier_sect_regen_143") then
+	if bit.band(R.damage_flags, DamageFlags.DAMAGE_FLAG_NO_LETHAL) ~= 0 or K:HasModifier("modifier_sect_regen_143") then
 		return false
 	end
-	local S = J:FindModifierByName("modifier_sect_health")
-	if IsValid(S) and S.sr_respawn_enable then
+	local T = K:FindModifierByName("modifier_sect_health")
+	if IsValid(T) and T.sr_respawn_enable then
 		return false
 	end
 	self.used = true
-	J:AddNewModifier(
-		J,
+	K:AddNewModifier(
+		K,
 		self:GetAbility(),
 		"modifier_yang_jian_invulnerable",
 		{ duration = self:GetAbilitySpecialValueFor("invincible_duration") }
 	)
-	J:SetHealth(1)
-	if IsValid(S) and S.sr_58_health_pct > 0 then
-		S.sr_respawn_enable = true
+	K:SetHealth(1)
+	if IsValid(T) and T.sr_58_health_pct > 0 then
+		T.sr_respawn_enable = true
 	end
-	local z = J:FindModifierByName("modifier_yang_jian_talent")
-	if IsValid(z) then
-		z:TryHeavenlyEye(J:GetHealth())
+	local A = K:FindModifierByName("modifier_yang_jian_talent")
+	if IsValid(A) then
+		A:TryHeavenlyEye(K:GetHealth())
 	end
-	local al = J:FindAbilityByName("sect_health")
-	if IsValid(al) and self:GetSectSpecialValueFor("153", "sr_153_interval") > 0 then
-		local P = self:GetAbilitySpecialValueFor("gu_damage_count")
-		local am = self:GetAbilitySpecialValueFor("gu_duration") / math.max(1, P)
-		local an = self.battleId
-		local ao = P
-		J:GameTimer(am, function()
+	local ax = K:FindAbilityByName("sect_health")
+	if IsValid(ax) and self:GetSectSpecialValueFor("153", "sr_153_interval") > 0 then
+		local Q = self:GetAbilitySpecialValueFor("gu_damage_count")
+		local ay = self:GetAbilitySpecialValueFor("gu_duration") / math.max(1, Q)
+		local az = self.battleId
+		local aA = Q
+		K:GameTimer(ay, function()
 			if
 				not IsValid(self)
 				or not self.battling
-				or self.battleId ~= an
-				or not IsValid(al)
-				or not IsInjurable(J, J:GetEnemy())
+				or self.battleId ~= az
+				or not IsValid(ax)
+				or not IsInjurable(K, K:GetEnemy())
 			then
 				return
 			end
-			al:TriggerByName("153")
-			ao = ao - 1
-			if ao > 0 then
-				return am
+			ax:TriggerByName("153")
+			aA = aA - 1
+			if aA > 0 then
+				return ay
 			end
 		end)
 	end
 	return true
 end
-ak = e({ m(a, { IsHidden = true, IsPurgable = false, IsPurgeException = false, AllowIllusionDuplicate = false }) }, ak)
-g.modifier_yang_jian_talent_5 = ak
+aw = e({ m(a, { IsHidden = true, IsPurgable = false, IsPurgeException = false, AllowIllusionDuplicate = false }) }, aw)
+g.modifier_yang_jian_talent_5 = aw
 return g
