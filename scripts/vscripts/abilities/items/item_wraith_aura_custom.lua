@@ -26,7 +26,6 @@ LinkLuaModifier(
 )
 
 item_wraith_aura_custom = class({})
-
 function item_wraith_aura_custom:GetIntrinsicModifierName()
 	return "modifier_item_wraith_aura_custom"
 end
@@ -196,7 +195,11 @@ function modifier_item_wraith_aura_custom:GetModifierAura()
 	return "modifier_item_wraith_aura_custom_aura"
 end
 function modifier_item_wraith_aura_custom:IsAura()
-	return IsServer() and self.parent:IsAlive() and self.parent:IsRealHero() and not self.parent:IsTempestDouble()
+	return IsServer()
+		and IsValid(self.parent)
+		and self.parent:IsAlive()
+		and self.parent:IsRealHero()
+		and not self.parent:IsTempestDouble()
 end
 function modifier_item_wraith_aura_custom:OnCreated()
 	self.parent = self:GetParent()
@@ -239,6 +242,9 @@ function modifier_item_wraith_aura_custom_aura:OnCreated()
 		return
 	end
 	self.event_owner = self.parent:IsTempestDouble() and self.parent or self.parent:FindOwner()
+	if self.parent ~= self.event_owner then
+		return
+	end
 	self.event_owner:AddDamageEvent_out(self, true)
 end
 
@@ -274,9 +280,6 @@ function modifier_item_wraith_aura_custom_aura:DamageEvent_out(params)
 	end
 	local attacker = params.attacker
 	if not attacker:HasModifier(self:GetName()) then
-		return
-	end
-	if self.parent ~= self.event_owner then
 		return
 	end
 	local lifesteal = attacker:CheckLifesteal(params, 2)

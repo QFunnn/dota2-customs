@@ -9,27 +9,19 @@
 
 
 LinkLuaModifier("modifier_item_mjollnir_custom", "abilities/items/item_mjollnir_custom", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_item_mjollnir_custom_proc", "abilities/items/item_mjollnir_custom", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier(
 	"modifier_item_mjollnir_custom_passive",
 	"abilities/items/item_mjollnir_custom",
 	LUA_MODIFIER_MOTION_NONE
 )
-LinkLuaModifier("modifier_item_mjollnir_custom_cd", "abilities/items/item_mjollnir_custom", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier(
 	"modifier_item_mjollnir_custom_active",
 	"abilities/items/item_mjollnir_custom",
 	LUA_MODIFIER_MOTION_NONE
 )
 LinkLuaModifier("modifier_item_mjollnir_custom_slow", "abilities/items/item_mjollnir_custom", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier(
-	"modifier_item_mjollnir_custom_active_cd",
-	"abilities/items/item_mjollnir_custom",
-	LUA_MODIFIER_MOTION_NONE
-)
 
 item_mjollnir_custom = class({})
-
 function item_mjollnir_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
@@ -198,7 +190,7 @@ function modifier_item_mjollnir_custom_active:DamageEvent_inc(params)
 	if not IsValid(self.ability) then
 		return
 	end
-	if self.parent:HasModifier("modifier_item_mjollnir_custom_active_cd") then
+	if self.parent:HasCd("mjollnir_static", self.cd) then
 		return
 	end
 	if self.parent ~= params.unit then
@@ -218,12 +210,7 @@ function modifier_item_mjollnir_custom_active:DamageEvent_inc(params)
 	end
 
 	self:DealDamage()
-	self.parent:AddNewModifier(
-		self.parent,
-		self.ability,
-		"modifier_item_mjollnir_custom_active_cd",
-		{ duration = self.cd }
-	)
+	self.parent:StartCd("mjollnir_static")
 end
 
 function modifier_item_mjollnir_custom_active:OnDestroy()
@@ -281,7 +268,13 @@ function modifier_item_mjollnir_custom:GetModifierHealthBonus()
 end
 
 function modifier_item_mjollnir_custom:CheckState()
-	if not self.parent:HasModifier("modifier_item_mjollnir_custom_proc") then
+	if not IsServer() then
+		return
+	end
+	if not IsValid(self.parent) then
+		return
+	end
+	if not self.parent:HasCd("mjollnir_proc", 3) then
 		return
 	end
 	return {
@@ -300,14 +293,14 @@ function modifier_item_mjollnir_custom:RollProc()
 	if not IsServer() then
 		return
 	end
-	if self.parent:HasModifier("modifier_item_mjollnir_custom_cd") then
+	if self.parent:HasCd("mjollnir_cd", self.cd) then
 		return
 	end
 	if not RollPseudoRandomPercentage(self.chance, 4259, self.parent) then
 		return
 	end
 
-	self.parent:AddNewModifier(self.parent, self.ability, "modifier_item_mjollnir_custom_proc", { duration = 3 })
+	self.parent:StartCd("mjollnir_proc")
 end
 
 function modifier_item_mjollnir_custom:AttackStartEvent_out(params)
@@ -327,18 +320,12 @@ function modifier_item_mjollnir_custom:AttackStartEvent_out(params)
 		return
 	end
 
-	if self.parent:HasModifier("modifier_item_mjollnir_custom_proc") then
+	if self.parent:HasCd("mjollnir_proc", 3) then
 		self.records[params.record] = true
-		self.parent:AddNewModifier(
-			self.parent,
-			self.ability,
-			"modifier_item_mjollnir_custom_cd",
-			{ duration = self.cd }
-		)
+		self.parent:StartCd("mjollnir_cd")
 	end
 
-	self.parent:RemoveModifierByName("modifier_item_mjollnir_custom_proc")
-
+	self.parent:RemoveCd("mjollnir_proc")
 	self:RollProc()
 end
 
@@ -487,9 +474,3 @@ end
 function modifier_item_mjollnir_custom_slow:GetModifierMoveSpeedBonus_Percentage()
 	return self.slow
 end
-
-modifier_item_mjollnir_custom_proc = class(mod_hidden)
-
-modifier_item_mjollnir_custom_cd = class(mod_hidden)
-
-modifier_item_mjollnir_custom_active_cd = class(mod_hidden)

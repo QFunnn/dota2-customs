@@ -454,10 +454,29 @@ function C_DOTA_BaseNPC:HasAbility(name)
 	end
 end
 
+C_DOTA_BaseNPC_Hero.GetStrength_old = C_DOTA_BaseNPC_Hero.GetStrength
+function C_DOTA_BaseNPC_Hero:GetStrength(real)
+	if not real and self.stats_cache then
+		return self.stats_cache.str
+	end
+	return self:GetStrength_old()
+end
+
+C_DOTA_BaseNPC_Hero.GetAgility_old = C_DOTA_BaseNPC_Hero.GetAgility
+function C_DOTA_BaseNPC_Hero:GetAgility(real)
+	if not real and self.stats_cache then
+		return self.stats_cache.agi
+	end
+	return self:GetAgility_old()
+end
+
 C_DOTA_BaseNPC_Hero.GetIntellect_old = C_DOTA_BaseNPC_Hero.GetIntellect
-function C_DOTA_BaseNPC_Hero:GetIntellect(arg, is_ogre)
+function C_DOTA_BaseNPC_Hero:GetIntellect(arg, is_ogre, real)
 	if IsValid(self.ogre_innate) and not is_ogre then
-		return self:GetStrength()
+		return self:GetStrength(real)
+	end
+	if not real and not is_ogre and self.stats_cache then
+		return self.stats_cache.int
 	end
 	return self:GetIntellect_old(arg)
 end

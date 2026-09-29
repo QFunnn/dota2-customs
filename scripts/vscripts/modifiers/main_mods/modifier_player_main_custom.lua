@@ -66,6 +66,7 @@ function modifier_player_main_custom:OnCreated(table)
 		self.parent:AddNewModifier(self.parent, ability, "modifier_general_stats", {})
 	end
 
+	self:SetHasCustomTransmitterData(true)
 	self:StartIntervalThink(0.1)
 	self:UpdateProjectileAttack()
 end
@@ -224,22 +225,45 @@ function modifier_player_main_custom:OnIntervalThink()
 			end
 		end
 
-		self.agi = 0
-		self.str = 0
+		local prev_int = self.int
+		local prev_str = self.str
+		local prev_agi = self.agi
+
 		self.int = 0
+		self.str = 0
+		self.agi = 0
 
-		self.int = self.parent:GetIntellect(false) * int_k
-		self.str = self.parent:GetStrength() * str_k
-		self.agi = self.parent:GetAgility() * agi_k
+		self.int = self.parent:GetIntellect(false, nil, true) * int_k
+		self.str = self.parent:GetStrength(true) * str_k
+		self.agi = self.parent:GetAgility(true) * agi_k
 
-		if self.int ~= 0 or self.str ~= 0 or self.agi ~= 0 or self.NeedRefresh then
-			self.NeedRefresh = false
-			self.parent:CalculateStatBonus(true)
+		if self.int ~= prev_int or self.str ~= prev_str or self.agi ~= prev_agi then
+			self.NeedRefresh = true
 		end
 
 		if empty then
 			self.parent.stat_mods = nil
 		end
+	end
+
+	local cache = self.parent.stats_cache
+	local stats = {
+		str = math.floor(self.parent:GetStrength(true)),
+		agi = math.floor(self.parent:GetAgility(true)),
+		int = math.floor(self.parent:GetIntellect(false, nil, true)),
+	}
+	self.parent.stats_cache = stats
+
+	if not cache or cache.str ~= stats.str or cache.agi ~= stats.agi or cache.int ~= stats.int then
+		if cache then
+			self.NeedRefresh = true
+		end
+		self:SendBuffRefreshToClients()
+	end
+
+	if self.NeedRefresh then
+		self.NeedRefresh = false
+		self.parent:CalculateStatBonus(true)
 	end
 
 	self:StartIntervalThink(self.interval)
@@ -250,6 +274,20 @@ function modifier_player_main_custom:SendRefresh()
 		return
 	end
 	self.NeedRefresh = true
+end
+
+function modifier_player_main_custom:AddCustomTransmitterData()
+	return self.parent.stats_cache
+end
+
+function modifier_player_main_custom:HandleCustomTransmitterData(data)
+	if not data then
+		return
+	end
+	if not data.str then
+		return
+	end
+	self.parent.stats_cache = { str = data.str, agi = data.agi, int = data.int }
 end
 
 function modifier_player_main_custom:GetModifierBonusStats_Agility()

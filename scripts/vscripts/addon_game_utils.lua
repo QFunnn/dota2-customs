@@ -1207,6 +1207,12 @@ function dota1x6:ActivatePushReduce(team, enemy_id, unit_killed, killer)
 		end
 	end
 
+	local push_mod = tower:FindModifierByName("modifier_tower_incoming_push_reduce")
+	if push_mod and not unit_killed then
+		push_mod:SetDuration(PushReduce_duration, true)
+		return
+	end
+
 	tower:AddNewModifier(
 		tower,
 		nil,

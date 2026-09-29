@@ -11,29 +11,15 @@
 LinkLuaModifier("modifier_event_thinker_test", "modifiers/main_mods/modifier_event_thinker", LUA_MODIFIER_MOTION_NONE)
 
 modifier_event_thinker = class({})
-
 function modifier_event_thinker:IsHidden()
 	return false
 end
 function modifier_event_thinker:IsPurgable()
 	return false
 end
-
-function modifier_event_thinker:CheckState()
-	return {
-		[MODIFIER_STATE_UNSELECTABLE] = true,
-		[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
-		[MODIFIER_STATE_OUT_OF_GAME] = true,
-		[MODIFIER_STATE_INVULNERABLE] = true,
-		[MODIFIER_STATE_NO_HEALTH_BAR] = true,
-		[MODIFIER_STATE_NOT_ON_MINIMAP_FOR_ENEMIES] = true,
-	}
-end
-
 function modifier_event_thinker:RemoveOnDeath()
 	return false
 end
-
 function modifier_event_thinker:OnCreated(table)
 	if not IsServer() then
 		return
@@ -82,24 +68,32 @@ function modifier_event_thinker:OnCreated(table)
 
 	self.max_per_tick = 20
 	self.event_table = {}
-
-	self.max_delay = 0
-	self.current_active = 0
-	self.done_count = 0
-	self.max_active = 0
+	self.event_head = 1
+	self.event_tail = 0
 
 	self.events_per_sec = 0
 	self.events_out_per_sec = 0
-	self.max_mod = ""
-	self.max_mod_count = 0
-	self.max_mod_parent = ""
-	self.mods_table = {}
-
-	self.caster_table = {}
-	self.count = 0
+	self.sec_queue = 0
+	self.sec_delay = 0
+	self.sec_async = 0
+	self.stats = {}
+	self.clock = rawget(_G, "Plat_FloatTime") or (rawget(_G, "os") and os.clock)
 
 	if self.test then
 		self.parent:AddNewModifier(self.parent, nil, "modifier_event_thinker_test", {})
+	end
+
+	if self.test and self.clock then
+		self:TestWrap(_G, "CreateIllusions", "call CreateIllusions")
+		self:TestWrap(wearables_system, "InitHero", "call wearables_system:InitHero")
+		self:TestWrap(dota1x6, "OnNPCSpawned", "call dota1x6:OnNPCSpawned")
+		self:TestWrap(wearables_system, "InitHeroItems", "call wearables_system:InitHeroItems")
+		self:TestWrap(wearables_system, "AddItemForPlayer", "call wearables_system:AddItemForPlayer")
+		self:TestWrap(wearables_system, "CreateWearable", "call wearables_system:CreateWearable")
+		self:TestWrap(rawget(_G, "CBaseEntity"), "EmitSound", "call EmitSound")
+		self:TestWrap(CDOTA_BaseNPC, "AddNewModifier", "call AddNewModifier", 4)
+		self:TestWrap(CDOTA_BaseNPC, "RemoveModifierByName", "call RemoveModifierByName", 2)
+		self:TestWrapClass(self)
 	end
 
 	self.active = false
@@ -107,56 +101,51 @@ function modifier_event_thinker:OnCreated(table)
 	self.interval = test and FrameTime() or FrameTime()
 end
 
+function modifier_event_thinker:CheckState()
+	return {
+		[MODIFIER_STATE_UNSELECTABLE] = true,
+		[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
+		[MODIFIER_STATE_OUT_OF_GAME] = true,
+		[MODIFIER_STATE_INVULNERABLE] = true,
+		[MODIFIER_STATE_NO_HEALTH_BAR] = true,
+		[MODIFIER_STATE_NOT_ON_MINIMAP_FOR_ENEMIES] = true,
+	}
+end
+
 function modifier_event_thinker:OnIntervalThink()
 	if not IsServer() then
 		return
 	end
 
-	local limit = 0
-	local ended = false
-	local all_done = false
-
-	--print('event thinks')
-
 	dota1x6:pcall(function()
-		while ended == false do
-			local callback = self.event_table[1]
-
-			if not callback then
-				all_done = true
-				ended = true
-			else
-				table.remove(self.event_table, 1)
-
-				if self.test then
-					callback.callback()
-					local delta = GameRules:GetDOTATime(false, false) - callback.time
-					self.max_delay = delta >= self.max_delay and delta or self.max_delay
-					self.current_active = self.current_active - 1
-					self.events_out_per_sec = self.events_out_per_sec + 1
-				else
-					callback()
-				end
-			end
-
+		local limit = 0
+		while limit < self.max_per_tick and self.event_head <= self.event_tail do
+			local callback = self.event_table[self.event_head]
+			self.event_table[self.event_head] = nil
+			self.event_head = self.event_head + 1
 			limit = limit + 1
-			if limit >= self.max_per_tick then
-				ended = true
+
+			if self.test then
+				self:TestCallback(callback)
+			else
+				callback()
 			end
 		end
 	end)
 
-	if all_done then
-		self.done_count = self.done_count + 1
-		self.active = false
-		if self.thinking then
-			self.thinking = false
-			self:StartIntervalThink(-1)
-		end
-		--print('done!!')
+	if self.event_head <= self.event_tail then
+		return
 	end
 
-	--print('----')
+	self.event_head = 1
+	self.event_tail = 0
+	self.active = false
+
+	if not self.thinking then
+		return
+	end
+	self.thinking = false
+	self:StartIntervalThink(-1)
 end
 
 function modifier_event_thinker:StartThink(callback, mod, event_type)
@@ -164,53 +153,8 @@ function modifier_event_thinker:StartThink(callback, mod, event_type)
 		return
 	end
 
-	local callback_table = self.test and { callback = callback, time = GameRules:GetDOTATime(false, false) } or callback
-	table.insert(self.event_table, callback_table)
-
-	if self.test then
-		self.current_active = self.current_active + 1
-		self.max_active = self.current_active >= self.max_active and self.current_active or self.max_active
-
-		self.events_per_sec = self.events_per_sec + 1
-
-		local caster = mod:GetCaster()
-		local mod_name = mod:GetName()
-
-		if not self.mods_table[mod_name] then
-			self.mods_table[mod_name] = 0
-		end
-
-		self.mods_table[mod_name] = self.mods_table[mod_name] + 1
-		if self.mods_table[mod_name] > self.max_mod_count then
-			self.max_mod_count = self.mods_table[mod_name]
-			self.max_mod = mod_name
-			self.max_mod_parent = caster:GetUnitName()
-		end
-	end
-
-	--[[
-if not self.caster_table[caster:GetUnitName()] then
-	self.caster_table[caster:GetUnitName()] = {}
-	self.caster_table[caster:GetUnitName()].count = 0
-	self.caster_table[caster:GetUnitName()].events = {}
-	self.caster_table[caster:GetUnitName()].mods = {}
-end
-
-
-if not self.caster_table[caster:GetUnitName()].mods[mod_name] then
-	self.caster_table[caster:GetUnitName()].mods[mod_name] = {}
-	self.caster_table[caster:GetUnitName()].mods[mod_name].count = 0
-	self.caster_table[caster:GetUnitName()].mods[mod_name].events = {}
-end
-
-if not self.caster_table[caster:GetUnitName()].mods[mod_name].events[event_type] then
-	self.caster_table[caster:GetUnitName()].mods[mod_name].events[event_type] = 0
-end
-
-self.caster_table[caster:GetUnitName()].mods[mod_name].count = self.caster_table[caster:GetUnitName()].mods[mod_name].count + 1
-self.caster_table[caster:GetUnitName()].mods[mod_name].events[event_type] = self.caster_table[caster:GetUnitName()].mods[mod_name].events[event_type] + 1
-self.caster_table[caster:GetUnitName()].count = self.caster_table[caster:GetUnitName()].count + 1
-]]
+	self.event_tail = self.event_tail + 1
+	self.event_table[self.event_tail] = self.test and self:TestEntry(callback, mod, event_type) or callback
 
 	if not self.active then
 		self.active = true
@@ -224,35 +168,94 @@ self.caster_table[caster:GetUnitName()].count = self.caster_table[caster:GetUnit
 	end
 end
 
-function modifier_event_thinker:PrintStats()
-	if not IsServer() then
+function modifier_event_thinker:TestEntry(callback, mod, event_type)
+	local key = event_type .. " " .. (IsValid(mod) and mod:GetName() or "nil")
+	local parent = IsValid(mod) and mod:GetParent()
+	if IsValid(parent) then
+		key = key .. " (" .. parent:GetUnitName() .. ")"
+	end
+
+	local queue = self.event_tail - self.event_head + 1
+	self.sec_queue = math.max(self.sec_queue, queue)
+	self.events_per_sec = self.events_per_sec + 1
+
+	return { callback = callback, key = key, time = GameRules:GetDOTATime(false, false) }
+end
+
+function modifier_event_thinker:TestCallback(entry)
+	local start = self.clock and self.clock()
+	entry.callback()
+
+	local time = start and self.clock() - start or 0
+	self:TestAdd(entry.key, time)
+	self.sec_async = self.sec_async + time
+
+	local delay = GameRules:GetDOTATime(false, false) - entry.time
+	self.sec_delay = math.max(self.sec_delay, delay)
+	self.events_out_per_sec = self.events_out_per_sec + 1
+end
+
+function modifier_event_thinker:TestAdd(key, time)
+	local stat = self.stats[key]
+	if not stat then
+		stat = { count = 0, time = 0, max = 0 }
+		self.stats[key] = stat
+	end
+	stat.count = stat.count + 1
+	stat.time = stat.time + time
+	stat.max = math.max(stat.max, time)
+end
+
+function modifier_event_thinker:TestWrapClass(mod)
+	local name = mod:GetName()
+	local class = rawget(_G, name)
+	if type(class) ~= "table" then
+		local meta = getmetatable(mod)
+		class = type(meta) == "table" and meta.__index
+	end
+	if type(class) ~= "table" then
+		return
+	end
+	if rawget(class, "test_wrapped") then
+		return
+	end
+	rawset(class, "test_wrapped", true)
+
+	local methods = {}
+	for method, func in pairs(class) do
+		if
+			type(method) == "string"
+			and type(func) == "function"
+			and (method:find("^On") or method:find("^GetModifier") or method:find("Event") or method == "CheckState")
+		then
+			table.insert(methods, method)
+		end
+	end
+
+	for _, method in pairs(methods) do
+		self:TestWrap(class, method, "call " .. method .. " " .. name)
+	end
+end
+
+function modifier_event_thinker:TestWrap(owner, method, key, name_arg)
+	if type(owner) ~= "table" then
+		return
+	end
+	local func = owner[method]
+	if type(func) ~= "function" then
 		return
 	end
 
-	print("event test | -----")
-	print(
-		"event test | current active: "
-			.. self.current_active
-			.. "; max active: "
-			.. self.max_active
-			.. "; max delay: "
-			.. self.max_delay
-			.. "; done count: "
-			.. self.done_count
-			.. ";"
-	)
-	--[[
-for hero,data in pairs(self.caster_table) do
-	print('event test | ######')
-	print("event test | hero: "..hero.."; total: "..data.count..";")
-	print("event test | 	mods:")
-	for mod_name, mod_data in pairs(data.mods) do
-		print("event test | 		"..mod_name.." : "..mod_data.count..";")
-		for event_name, event_count in pairs(mod_data.events) do
-			print("event test | 			"..event_name.." : "..event_count..";")
-		end
+	owner[method] = function(...)
+		local call_key = name_arg and key .. " " .. tostring(select(name_arg, ...)) or key
+		local start = self.clock()
+		return self:TestFinish(call_key, start, func(...))
 	end
-end]]
+end
+
+function modifier_event_thinker:TestFinish(key, start, ...)
+	self:TestAdd(key, self.clock() - start)
+	return ...
 end
 
 function modifier_event_thinker:DeclareFunctions()
@@ -288,6 +291,10 @@ function modifier_event_thinker:OnModifierAdded(params)
 	end
 	if not unit then
 		return
+	end
+
+	if self.test and self.clock then
+		self:TestWrapClass(mod)
 	end
 
 	if mod.GetModifierHealChange and unit:IsRealHero() then
@@ -1471,9 +1478,13 @@ function modifier_event_thinker_test:OnCreated()
 	if not IsServer() then
 		return
 	end
-	self.parent = self:GetParent()
-	self.mod = self.parent:FindModifierByName("modifier_event_thinker")
+	self.mod = dota1x6.event_thinker_mod
 
+	self.print_ms = 5
+	self.print_events = 300
+	self.top = 25
+
+	print("event test | clock: " .. (self.mod.clock and "on, calls wrapped" or "off, sorted by count"))
 	self:StartIntervalThink(1)
 end
 
@@ -1481,23 +1492,52 @@ function modifier_event_thinker_test:OnIntervalThink()
 	if not IsServer() then
 		return
 	end
+	local mod = self.mod
+	local list = {}
 
-	print(
-		"event test | speed: "
-			.. self.mod.events_per_sec
-			.. " / "
-			.. self.mod.events_out_per_sec
-			.. " | max: "
-			.. self.mod.max_mod_parent
-			.. " : "
-			.. self.mod.max_mod
-			.. " : "
-			.. self.mod.max_mod_count
-	)
-	self.mod.events_per_sec = 0
-	self.mod.max_mod = ""
-	self.mod.max_mod_parent = ""
-	self.mod.max_mod_count = 0
-	self.mod.events_out_per_sec = 0
-	self.mod.mods_table = {}
+	for key, stat in pairs(mod.stats) do
+		table.insert(list, { key = key, count = stat.count, time = stat.time, max = stat.max })
+	end
+
+	table.sort(list, function(a, b)
+		if a.time ~= b.time then
+			return a.time > b.time
+		end
+		return a.count > b.count
+	end)
+
+	local heavy = list[1] and list[1].time * 1000 >= self.print_ms
+	if heavy or mod.events_per_sec >= self.print_events or mod.sec_queue > mod.max_per_tick then
+		print(
+			string.format(
+				"event test | in %d, out %d, queue %d (max %d), delay %.2f, async %.1f ms",
+				mod.events_per_sec,
+				mod.events_out_per_sec,
+				mod.event_tail - mod.event_head + 1,
+				mod.sec_queue,
+				mod.sec_delay,
+				mod.sec_async * 1000
+			)
+		)
+
+		for i = 1, math.min(self.top, #list) do
+			local data = list[i]
+			print(
+				string.format(
+					"event test |   %6d %8.2f ms  max %6.2f  %s",
+					data.count,
+					data.time * 1000,
+					data.max * 1000,
+					data.key
+				)
+			)
+		end
+	end
+
+	mod.stats = {}
+	mod.events_per_sec = 0
+	mod.events_out_per_sec = 0
+	mod.sec_queue = 0
+	mod.sec_delay = 0
+	mod.sec_async = 0
 end

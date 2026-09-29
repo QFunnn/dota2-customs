@@ -155,6 +155,7 @@ function modifier_tower_incoming:OnCreated(table)
 		"modifier_life_stealer_rage_custom",
 		"modifier_life_stealer_infest_custom_legendary_creep",
 		"modifier_tinker_march_of_the_machines_custom_active",
+		"modifier_phantom_assassin_phantom_smoke",
 	}
 
 	self.creep_names = {

@@ -16,6 +16,7 @@ var max_games = 5
 var pick_started = false
 var IS_DUO_MODE = false
 var IS_RANKED_MODE = false
+var IS_SAME_HEROES = false
 var wrong_rating_status = 0
 var hero_selected = ''
 var current_tab = 0
@@ -99,6 +100,9 @@ function init()
 
     if (game_mode_table && game_mode_table.is_ranked == 1)
         IS_RANKED_MODE = true
+
+    if (game_mode_table && game_mode_table.same_heroes == 1)
+        IS_SAME_HEROES = true
 
     if (game_mode_table && game_mode_table.team_size >= 2)
     {
@@ -1755,7 +1759,7 @@ function reload_pick_heroes(data)
 	for (var i = 0; i <= Object.keys(data.lobby_players).length - 1; i++) 
     {
 		var icon = $.GetContextPanel().FindChildTraverse(String(data.lobby_players[i].picked_hero))
-		if (icon) 
+		if (icon && !IS_SAME_HEROES)
         {
 			icon.AddClass("hero_picked")
 		}
@@ -1772,7 +1776,7 @@ function reload_pick_heroes(data)
 function pick_select_hero(data) 
 {
 	var icon = $.GetContextPanel().FindChildTraverse(String(data.hero))
-	if (icon)
+	if (icon && !IS_SAME_HEROES)
 	{
 		icon.AddClass("hero_picked")
 	}
@@ -1937,7 +1941,7 @@ function Refresh_Button()
 
     ChoseHero.RemoveClass("ChoseHero_hidden")
 
-	if (hero_list) 
+	if (hero_list && !IS_SAME_HEROES)
 	{
 		for (var i = 1; i <= hero_list.picked_heroes_length; i++) {
 			if (hero_list.picked_heroes[i] == hero_selected) 

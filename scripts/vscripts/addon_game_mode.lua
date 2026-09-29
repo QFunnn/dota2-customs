@@ -26,7 +26,9 @@ _G.pro_mod_data = {
 	new_system = false,
 	disable_vision = false,
 	show_random = true,
+	same_heroes = false,
 	double_legendary = false,
+	long_hook = true,
 	custom_rules = false,
 	enable_voice_radius = true,
 	voice_radius = 1200,
@@ -49,7 +51,7 @@ _G.custom_rules_data = {
 }
 
 _G.test = true and IsInToolsMode()
-_G.hero_test = true and IsInToolsMode()
+_G.hero_test = false and IsInToolsMode()
 _G.hero_test_name = "npc_dota_hero_phantom_assassin"
 _G.hero_test_base = 2
 _G.twitch_alert = false
@@ -689,6 +691,7 @@ r:Send( function( res ) end)
 ]]
 
 	local custom_rules = pro_mod and pro_mod_data.custom_rules
+	local same_heroes = pro_mod and pro_mod_data.same_heroes
 	local team_size = players_in_team
 	local setup_delay = 0
 
@@ -725,7 +728,13 @@ r:Send( function( res ) end)
 	CustomNetTables:SetTableValue(
 		"custom_pick",
 		"game_mode",
-		{ team_size = team_size, max_teams = max_teams, win_place = win_place, is_ranked = not IsUnrankedMap() }
+		{
+			team_size = team_size,
+			max_teams = max_teams,
+			win_place = win_place,
+			is_ranked = not IsUnrankedMap(),
+			same_heroes = same_heroes,
+		}
 	)
 	CustomNetTables:SetTableValue(
 		"custom_pick",
@@ -755,6 +764,7 @@ r:Send( function( res ) end)
 	GameRules:GetGameModeEntity():SetPlayerHeroAvailabilityFiltered(true)
 	GameRules:SetHeroSelectionTime(9999999)
 	GameRules:SetHeroSelectPenaltyTime(0)
+	GameRules:SetSameHeroSelectionEnabled(same_heroes)
 	GameRules:SetStrategyTime(2)
 	GameRules:SetShowcaseTime(0)
 	GameRules:SetStartingGold(0)
@@ -892,7 +902,13 @@ r:Send( function( res ) end)
 	CustomNetTables:SetTableValue(
 		"custom_pick",
 		"game_mode",
-		{ team_size = team_size, max_teams = max_teams, win_place = win_place, is_ranked = not IsUnrankedMap() }
+		{
+			team_size = team_size,
+			max_teams = max_teams,
+			win_place = win_place,
+			is_ranked = not IsUnrankedMap(),
+			same_heroes = same_heroes,
+		}
 	)
 
 	if test then

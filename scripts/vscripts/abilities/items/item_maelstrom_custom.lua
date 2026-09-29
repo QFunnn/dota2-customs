@@ -10,19 +10,12 @@
 
 LinkLuaModifier("modifier_item_maelstrom_custom", "abilities/items/item_maelstrom_custom", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier(
-	"modifier_item_maelstrom_custom_proc",
-	"abilities/items/item_maelstrom_custom",
-	LUA_MODIFIER_MOTION_NONE
-)
-LinkLuaModifier(
 	"modifier_item_maelstrom_custom_passive",
 	"abilities/items/item_maelstrom_custom",
 	LUA_MODIFIER_MOTION_NONE
 )
-LinkLuaModifier("modifier_item_maelstrom_custom_cd", "abilities/items/item_maelstrom_custom", LUA_MODIFIER_MOTION_NONE)
 
 item_maelstrom_custom = class({})
-
 function item_maelstrom_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
@@ -88,10 +81,13 @@ function modifier_item_maelstrom_custom:GetModifierHealthBonus()
 end
 
 function modifier_item_maelstrom_custom:CheckState()
+	if not IsServer() then
+		return
+	end
 	if not IsValid(self.parent) then
 		return
 	end
-	if not self.parent:HasModifier("modifier_item_maelstrom_custom_proc") then
+	if not self.parent:HasCd("maelstrom_proc", 3) then
 		return
 	end
 	return {
@@ -113,14 +109,14 @@ function modifier_item_maelstrom_custom:RollProc()
 	if self.parent:HasModifier("modifier_item_mjollnir_custom") then
 		return
 	end
-	if self.parent:HasModifier("modifier_item_maelstrom_custom_cd") then
+	if self.parent:HasCd("maelstrom_cd", self.ability.chain_cooldown) then
 		return
 	end
 	if not RollPseudoRandomPercentage(self.ability.chain_chance, 4259, self.parent) then
 		return
 	end
 
-	self.parent:AddNewModifier(self.parent, self.ability, "modifier_item_maelstrom_custom_proc", { duration = 3 })
+	self.parent:StartCd("maelstrom_proc")
 end
 
 function modifier_item_maelstrom_custom:AttackStartEvent_out(params)
@@ -140,17 +136,12 @@ function modifier_item_maelstrom_custom:AttackStartEvent_out(params)
 		return
 	end
 
-	if self.parent:HasModifier("modifier_item_maelstrom_custom_proc") then
+	if self.parent:HasCd("maelstrom_proc", 3) then
 		self.records[params.record] = true
-		self.parent:AddNewModifier(
-			self.parent,
-			self.ability,
-			"modifier_item_maelstrom_custom_cd",
-			{ duration = self.ability.chain_cooldown }
-		)
+		self.parent:StartCd("maelstrom_cd")
 	end
 
-	self.parent:RemoveModifierByName("modifier_item_maelstrom_custom_proc")
+	self.parent:RemoveCd("maelstrom_proc")
 	self:RollProc()
 end
 
@@ -288,6 +279,3 @@ function modifier_item_maelstrom_custom_passive:OnIntervalThink()
 
 	self.last_target = new_unit
 end
-
-modifier_item_maelstrom_custom_proc = class(mod_hidden)
-modifier_item_maelstrom_custom_cd = class(mod_hidden)

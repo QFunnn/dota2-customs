@@ -135,6 +135,9 @@ function custom_pudge_meat_hook:GetCastRange(location, target)
 end
 
 function custom_pudge_meat_hook:GetRange()
+	if pro_mod and pro_mod_data.long_hook then
+		return 15000
+	end
 	return self:GetSpecialValueFor("hook_distance")
 		* (1 + self:GetCaster():GetTalentValue("modifier_pudge_hook_2", "range") / 100)
 end

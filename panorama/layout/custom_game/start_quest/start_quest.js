@@ -880,4 +880,3 @@ function InitTips()
     }
     tips_array = array.sort(() => Math.random() - 0.5);
 }
-

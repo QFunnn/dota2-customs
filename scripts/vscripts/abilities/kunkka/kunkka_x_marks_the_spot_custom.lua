@@ -682,6 +682,7 @@ function modifier_kunkka_xmark_custom_target:OnCreated()
 	if not IsServer() then
 		return
 	end
+	self.RemoveForDuel = true
 	self.parent:EmitSound("Ability.XMarksTheSpot.Target")
 	self.parent:EmitSound("Ability.XMark.Target_Movement")
 	local pfx = wearables_system:GetParticleReplacementAbility(
@@ -779,6 +780,7 @@ function modifier_kunkka_xmark_custom_target:OnDestroy()
 		end
 
 		self.parent:Stop()
+		self.parent:InterruptMotionControllers(false)
 
 		local sail = self.parent:FindModifierByName("modifier_kunkka_ghostship_custom_legendary_sail")
 		if sail then

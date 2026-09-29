@@ -205,13 +205,6 @@ function antimage_blink_custom:GetManaCost(level)
 end
 
 function antimage_blink_custom:OnSpellStart()
-	if test then
-		local mod = dota1x6.event_thinker:FindModifierByName("modifier_event_thinker")
-		if mod then
-			mod:PrintStats()
-		end
-	end
-
 	local origin = self.caster:GetOrigin()
 	local point = self:GetCursorPosition()
 	if point == origin then

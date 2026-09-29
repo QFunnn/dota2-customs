@@ -19,14 +19,8 @@ LinkLuaModifier(
 	"abilities/items/item_bloodthorn_custom",
 	LUA_MODIFIER_MOTION_NONE
 )
-LinkLuaModifier(
-	"modifier_item_bloodthorn_custom_proc",
-	"abilities/items/item_bloodthorn_custom",
-	LUA_MODIFIER_MOTION_NONE
-)
 
 item_bloodthorn_custom = class({})
-
 function item_bloodthorn_custom:GetIntrinsicModifierName()
 	return "modifier_item_bloodthorn_custom"
 end
@@ -134,6 +128,11 @@ function modifier_item_bloodthorn_custom_debuff:AttackRecordEvent_inc(params)
 		return
 	end
 
+	local unmiss = params.attacker:FindModifierByName("modifier_item_bloodthorn_custom_unmiss")
+	if unmiss and unmiss:GetRemainingTime() >= self:GetRemainingTime() - 0.1 then
+		return
+	end
+
 	params.attacker:AddNewModifier(
 		self.caster,
 		self.ability,
@@ -234,10 +233,13 @@ function modifier_item_bloodthorn_custom:OnCreated()
 end
 
 function modifier_item_bloodthorn_custom:CheckState()
+	if not IsServer() then
+		return
+	end
 	if not IsValid(self.parent) then
 		return
 	end
-	if not self.parent:HasModifier("modifier_item_bloodthorn_custom_proc") then
+	if not self.parent:HasCd("bloodthorn_proc", 3) then
 		return
 	end
 	return {
@@ -260,7 +262,7 @@ function modifier_item_bloodthorn_custom:RollProc()
 		return
 	end
 
-	self.parent:AddNewModifier(self.parent, self.ability, "modifier_item_bloodthorn_custom_proc", { duration = 3 })
+	self.parent:StartCd("bloodthorn_proc")
 end
 
 function modifier_item_bloodthorn_custom:AttackStartEvent_out(params)
@@ -277,11 +279,11 @@ function modifier_item_bloodthorn_custom:AttackStartEvent_out(params)
 		return
 	end
 
-	if self.parent:HasModifier("modifier_item_bloodthorn_custom_proc") then
+	if self.parent:HasCd("bloodthorn_proc", 3) then
 		self.records[params.record] = true
 	end
 
-	self.parent:RemoveModifierByName("modifier_item_bloodthorn_custom_proc")
+	self.parent:RemoveCd("bloodthorn_proc")
 	self:RollProc()
 end
 
@@ -333,8 +335,6 @@ end
 function modifier_item_bloodthorn_custom:GetModifierHealthBonus()
 	return self.ability.bonus_health
 end
-
-modifier_item_bloodthorn_custom_proc = class(mod_hidden)
 
 modifier_item_bloodthorn_custom_unmiss = class(mod_hidden)
 function modifier_item_bloodthorn_custom_unmiss:CheckState()

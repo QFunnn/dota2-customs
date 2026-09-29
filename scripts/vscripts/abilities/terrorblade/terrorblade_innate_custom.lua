@@ -184,6 +184,8 @@ function modifier_terrorblade_innate_custom:OnCreated(table)
 	self.damage_inc = self.ability:GetSpecialValueFor("damage_inc") + self.ability.talents.w4_damage
 	self.damage_reduce = self.ability:GetSpecialValueFor("damage_reduce")
 
+	self.is_illusion = self.parent:IsIllusion()
+
 	if not IsServer() then
 		return
 	end
@@ -319,8 +321,8 @@ end
 
 function modifier_terrorblade_innate_custom:GetModifierBonusStats_Agility()
 	local stack = self:GetStackCount()
-	if self.parent:IsIllusion() and self.caster:HasModifier(self:GetName()) then
-		stack = self.caster:GetUpgradeStack(self:GetName())
+	if self.is_illusion and IsValid(self.caster) then
+		stack = self.caster:GetModifierStackCount("modifier_terrorblade_innate_custom", self.caster)
 	end
 	stack = math.min(stack, self.ability.talents.w4_max)
 	return self.ability.talents.w4_agility * stack
@@ -413,6 +415,9 @@ end
 
 function modifier_terrorblade_innate_custom_aura_damage:OnDestroy()
 	if not IsServer() then
+		return
+	end
+	if not IsValid(self.parent) then
 		return
 	end
 	local mod = self.parent:FindModifierByName("modifier_terrorblade_innate_custom_aura_damage_count")

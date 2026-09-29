@@ -469,7 +469,7 @@ function modifier_custom_terrorblade_reflection_unit:OnIntervalThink()
 
 	if self.ability.talents.has_q7 == 1 and not self.self_illusion and self.double == 0 then
 		local spell_name = nil
-		if self.mod and not self.mod:IsNull() then
+		if IsValid(self.mod) and IsValid(self.mod.current_spell) then
 			spell_name = self.mod.current_spell:GetName()
 		end
 
@@ -493,6 +493,7 @@ function modifier_custom_terrorblade_reflection_unit:OnIntervalThink()
 
 	if not target then
 		self:Destroy()
+		return
 	end
 
 	self.target = target
@@ -866,6 +867,9 @@ function modifier_custom_terrorblade_reflection_tracker:ForceDelete(spell)
 	if not IsServer() then
 		return
 	end
+	if self:CheckMods(spell) <= 0 then
+		return
+	end
 
 	local units = FindUnitsInRadius(
 		DOTA_TEAM_NOTEAM,
@@ -875,7 +879,7 @@ function modifier_custom_terrorblade_reflection_tracker:ForceDelete(spell)
 		DOTA_UNIT_TARGET_TEAM_BOTH,
 		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
 		DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD,
-		FIND_CLOSEST,
+		FIND_ANY_ORDER,
 		false
 	)
 	for _, unit in pairs(units) do

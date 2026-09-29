@@ -518,6 +518,10 @@ function hero_select:check_picked(hero)
 		end
 	end
 
+	if pro_mod and pro_mod_data.same_heroes then
+		return false
+	end
+
 	for _, i in pairs(PICKED_HEROES) do
 		if i == hero then
 			return true

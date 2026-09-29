@@ -658,11 +658,37 @@ function wearables_system:InitHeroItems(entity)
 	local original_entity = PlayerResource:GetSelectedHeroEntity(player_id)
 	local update_data = false
 	if entity:IsIllusion() then
+		local items = {}
 		if original_entity and original_entity.items_list_ids then
 			for slot_name, item_id in pairs(original_entity.items_list_ids) do
-				wearables_system:AddItemForPlayer(entity, tonumber(item_id))
+				table.insert(items, tonumber(item_id))
 			end
 		end
+		local index = 0
+		Timers:CreateTimer(0, function()
+			if not IsValid(entity) then
+				return
+			end
+			local modifier_hero_wearables_system = entity:FindModifierByName("modifier_hero_wearables_system")
+			index = index + 1
+			if items[index] then
+				wearables_system:AddItemForPlayer(entity, items[index])
+				if
+					modifier_hero_wearables_system
+					and (modifier_hero_wearables_system.hide_state or modifier_hero_wearables_system.model_changed)
+				then
+					modifier_hero_wearables_system:HideItems()
+				end
+				return FrameTime()
+			end
+			if not modifier_hero_wearables_system then
+				return
+			end
+			for _, mod in pairs(entity:FindAllModifiers()) do
+				modifier_hero_wearables_system:UpdateEffectsList(mod)
+			end
+		end)
+		return
 	else
 		if wearables_system.DEFAULT_ITEMS_IDS[hero_name] then
 			local inited_slots = {}
@@ -683,15 +709,6 @@ function wearables_system:InitHeroItems(entity)
 				end
 			end
 		end
-	end
-	if entity:IsIllusion() then
-		local modifier_hero_wearables_system = entity:FindModifierByName("modifier_hero_wearables_system")
-		if modifier_hero_wearables_system then
-			for _, mod in pairs(entity:FindAllModifiers()) do
-				modifier_hero_wearables_system:UpdateEffectsList(mod)
-			end
-		end
-		return
 	end
 
 	if entity:IsRealHero() then

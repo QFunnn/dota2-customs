@@ -2395,9 +2395,6 @@ function CDOTA_BaseNPC:AddOrderEvent(new_mod, sync)
 			end
 		end
 	end
-	if test then
-		--print('added order!', self:GetUnitName(), new_mod:GetName())
-	end
 	self.order_mods[new_mod] = sync and 2 or 1
 end
 
@@ -2414,9 +2411,6 @@ function CDOTA_BaseNPC:AddSpellStartEvent(new_mod, sync)
 			return
 		end
 	end
-	if test then
-		--print('added spell start!', new_mod:GetName())
-	end
 	spell_start_mods[new_mod] = sync and 2 or 1
 end
 
@@ -2432,9 +2426,6 @@ function CDOTA_BaseNPC:AddSpellEvent(new_mod, sync)
 		if mod and not mod:IsNull() and mod == new_mod then
 			return
 		end
-	end
-	if test then
-		--print('added spell!', new_mod:GetName())
 	end
 	spell_cast_mods[new_mod] = sync and 2 or 1
 end
@@ -2456,9 +2447,6 @@ function CDOTA_BaseNPC:AddRespawnEvent(new_mod, sync)
 			end
 		end
 	end
-	if test then
-		--print('added respawn!', self:GetUnitName(), new_mod:GetName())
-	end
 	self.respawn_event_mods[new_mod] = sync and 2 or 1
 end
 
@@ -2479,9 +2467,6 @@ function CDOTA_BaseNPC:AddStateEvent(new_mod, sync)
 			end
 		end
 	end
-	if test then
-		--print('added state!', self:GetUnitName(), new_mod:GetName())
-	end
 	self.state_event_mods[new_mod] = sync and 2 or 1
 end
 
@@ -2497,9 +2482,6 @@ function CDOTA_BaseNPC:AddDeathEvent(new_mod, sync)
 		if mod and not mod:IsNull() and mod == new_mod then
 			return
 		end
-	end
-	if test then
-		--print('added death!', new_mod:GetName())
 	end
 	death_mods[new_mod] = sync and 2 or 1
 end
@@ -2520,9 +2502,6 @@ function CDOTA_BaseNPC:AddAttackEvent_out(new_mod, sync)
 			end
 		end
 	end
-	if test then
-		--print('added attack out!', self:GetUnitName(), new_mod:GetName())
-	end
 	self.attack_landed_mods_out[new_mod] = sync and 2 or 1
 end
 
@@ -2540,9 +2519,6 @@ function CDOTA_BaseNPC:AddAttackEvent_inc(new_mod, sync)
 			end
 		end
 	end
-	if test then
-		--print('added attack inc!', self:GetUnitName(), new_mod:GetName())
-	end
 	self.attack_landed_mods_inc[new_mod] = sync and 2 or 1
 end
 
@@ -2558,9 +2534,6 @@ function CDOTA_BaseNPC:AddAttackRecordEvent_out(new_mod, sync)
 				return
 			end
 		end
-	end
-	if test then
-		--print('added attack record out!', self:GetUnitName(), new_mod:GetName())
 	end
 	self.attack_record_mods_out[new_mod] = sync and 2 or 1
 end
@@ -2578,9 +2551,6 @@ function CDOTA_BaseNPC:AddAttackFailEvent_out(new_mod, sync)
 			end
 		end
 	end
-	if test then
-		--print('added attack fail out!', self:GetUnitName(), new_mod:GetName())
-	end
 	self.attack_fail_mods_out[new_mod] = sync and 2 or 1
 end
 
@@ -2596,9 +2566,6 @@ function CDOTA_BaseNPC:AddAttackFailEvent_inc(new_mod, sync)
 				return
 			end
 		end
-	end
-	if test then
-		--print('added attack fail inc!', self:GetUnitName(), new_mod:GetName())
 	end
 	self.attack_fail_mods_inc[new_mod] = sync and 2 or 1
 end
@@ -2616,9 +2583,6 @@ function CDOTA_BaseNPC:AddAttackRecordEvent_inc(new_mod, sync)
 			end
 		end
 	end
-	if test then
-		--print('added attack record inc!', self:GetUnitName(), new_mod:GetName())
-	end
 	self.attack_record_mods_inc[new_mod] = sync and 2 or 1
 end
 
@@ -2635,9 +2599,6 @@ function CDOTA_BaseNPC:AddAttackCreateEvent(new_mod, sync)
 			end
 		end
 	end
-	if test then
-		--print('added record create!', self:GetUnitName(), new_mod:GetName())
-	end
 	self.attack_create_mods[new_mod] = sync and 2 or 1
 end
 
@@ -2653,9 +2614,6 @@ function CDOTA_BaseNPC:AddRecordDestroyEvent(new_mod, sync)
 				return
 			end
 		end
-	end
-	if test then
-		--print('added record destroy!', self:GetUnitName(), new_mod:GetName())
 	end
 	self.record_destroy_mods[new_mod] = sync and 2 or 1
 end
@@ -2676,9 +2634,6 @@ function CDOTA_BaseNPC:AddAttackStartEvent_out(new_mod, sync)
 			end
 		end
 	end
-	if test then
-		--print('added attack start out!', self:GetUnitName(), new_mod:GetName())
-	end
 	self.attack_start_mods_out[new_mod] = sync and 2 or 1
 end
 
@@ -2694,9 +2649,6 @@ function CDOTA_BaseNPC:AddAttackStartEvent_inc(new_mod, sync)
 				return
 			end
 		end
-	end
-	if test then
-		--print('added attack start inc!', self:GetUnitName(), new_mod:GetName())
 	end
 	self.attack_start_mods_inc[new_mod] = sync and 2 or 1
 end
@@ -2717,9 +2669,6 @@ function CDOTA_BaseNPC:AddDamageEvent_out(new_mod, sync)
 			end
 		end
 	end
-	if test then
-		--print('added damage out!', self:GetUnitName(), new_mod:GetName())
-	end
 	self.take_damage_mods_out[new_mod] = sync and 2 or 1
 end
 
@@ -2736,9 +2685,6 @@ function CDOTA_BaseNPC:AddDamageEvent_inc(new_mod, sync)
 			end
 		end
 	end
-	if test then
-		--print('added damage inc!', self:GetUnitName(), new_mod:GetName())
-	end
 	self.take_damage_mods_inc[new_mod] = sync and 2 or 1
 end
 
@@ -2754,9 +2700,6 @@ function CDOTA_BaseNPC:AddHealEvent_inc(new_mod, sync)
 				return
 			end
 		end
-	end
-	if test then
-		--print('added heal inc!', self:GetUnitName(), new_mod:GetName())
 	end
 	self.heal_mods_inc[new_mod] = sync and 2 or 1
 end
@@ -2957,10 +2900,29 @@ function DoCleaveAttack(attacker, target, ability, damage, start_width, end_widt
 	return targets
 end
 
+CDOTA_BaseNPC_Hero.GetStrength_old = CDOTA_BaseNPC_Hero.GetStrength
+function CDOTA_BaseNPC_Hero:GetStrength(real)
+	if not real and self.stats_cache then
+		return self.stats_cache.str
+	end
+	return self:GetStrength_old()
+end
+
+CDOTA_BaseNPC_Hero.GetAgility_old = CDOTA_BaseNPC_Hero.GetAgility
+function CDOTA_BaseNPC_Hero:GetAgility(real)
+	if not real and self.stats_cache then
+		return self.stats_cache.agi
+	end
+	return self:GetAgility_old()
+end
+
 CDOTA_BaseNPC_Hero.GetIntellect_old = CDOTA_BaseNPC_Hero.GetIntellect
-function CDOTA_BaseNPC_Hero:GetIntellect(arg, is_ogre)
+function CDOTA_BaseNPC_Hero:GetIntellect(arg, is_ogre, real)
 	if IsValid(self.ogre_innate) and not is_ogre then
-		return self:GetStrength()
+		return self:GetStrength(real)
+	end
+	if not real and not is_ogre and self.stats_cache then
+		return self.stats_cache.int
 	end
 	return self:GetIntellect_old(arg)
 end

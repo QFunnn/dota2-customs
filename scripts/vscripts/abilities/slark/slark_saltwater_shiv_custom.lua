@@ -296,6 +296,7 @@ function modifier_slark_saltwater_shiv_custom_tracker:OnCreated(table)
 		["broodmother_insatiable_hunger_custom"] = true,
 		["night_stalker_crippling_fear_custom"] = true,
 		["jakiro_ice_path_custom"] = true,
+		["kunkka_tidebringer_custom"] = true,
 	}
 
 	self.current_spell = nil

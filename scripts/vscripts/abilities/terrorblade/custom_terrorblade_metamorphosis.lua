@@ -59,11 +59,6 @@ LinkLuaModifier(
 	LUA_MODIFIER_MOTION_NONE
 )
 LinkLuaModifier(
-	"modifier_custom_terrorblade_metamorphosis_crit_attack",
-	"abilities/terrorblade/custom_terrorblade_metamorphosis",
-	LUA_MODIFIER_MOTION_NONE
-)
-LinkLuaModifier(
 	"modifier_custom_terrorblade_metamorphosis_perma",
 	"abilities/terrorblade/custom_terrorblade_metamorphosis",
 	LUA_MODIFIER_MOTION_NONE
@@ -379,6 +374,10 @@ function modifier_custom_terrorblade_metamorphosis:OnCreated(table)
 	self.records = {}
 	self.parent.meta_records = self.records
 
+	if self.ability.talents.has_e1 == 1 then
+		self.crit_next = RollPseudoRandomPercentage(self.ability.talents.e1_chance, 1608, self.parent)
+	end
+
 	if self.parent:IsRealHero() and self.ability.talents.has_e7 == 0 then
 		self.ability:EndCd()
 	end
@@ -472,25 +471,10 @@ function modifier_custom_terrorblade_metamorphosis:AttackRecordEvent_out(params)
 	end
 
 	self.parent:EmitSound("Hero_Terrorblade_Morphed.preAttack")
-
-	if self.ability.talents.has_e1 == 0 then
-		return
-	end
-	if not params.target:IsUnit() then
-		return
-	end
-
-	self.parent:RemoveModifierByName("modifier_custom_terrorblade_metamorphosis_crit_attack")
-
-	if not RollPseudoRandomPercentage(self.ability.talents.e1_chance, 1608, self.parent) then
-		return
-	end
-
-	self.parent:AddNewModifier(self.parent, self.ability, "modifier_custom_terrorblade_metamorphosis_crit_attack", {})
 end
 
 function modifier_custom_terrorblade_metamorphosis:CheckState()
-	if not self.parent:HasModifier("modifier_custom_terrorblade_metamorphosis_crit_attack") then
+	if not self.crit_next then
 		return
 	end
 	return {
@@ -558,19 +542,30 @@ function modifier_custom_terrorblade_metamorphosis:GetModifierMoveSpeedBonus_Per
 end
 
 function modifier_custom_terrorblade_metamorphosis:GetCritDamage()
-	if not self.parent:HasModifier("modifier_custom_terrorblade_metamorphosis_crit_attack") then
+	if not self.crit_next then
 		return
 	end
 	return self.crit_damage
 end
 
 function modifier_custom_terrorblade_metamorphosis:GetModifierPreAttack_CriticalStrike(params)
-	if not self.parent:HasModifier("modifier_custom_terrorblade_metamorphosis_crit_attack") then
+	if not IsServer() then
+		return
+	end
+	if self.ability.talents.has_e1 == 0 then
+		return
+	end
+	if not params.target:IsUnit() then
+		return
+	end
+
+	local crit = self.crit_next
+	self.crit_next = RollPseudoRandomPercentage(self.ability.talents.e1_chance, 1608, self.parent)
+	if not crit then
 		return
 	end
 
 	self.records[params.record] = true
-	self.parent:RemoveModifierByName("modifier_custom_terrorblade_metamorphosis_crit_attack")
 	return self.crit_damage
 end
 
@@ -1166,8 +1161,6 @@ function modifier_custom_terrorblade_metamorphosis_legendary_stack:OnStackCountC
 	ability:SetActivated(self:GetStackCount() > 0)
 end
 
-modifier_custom_terrorblade_metamorphosis_crit_attack = class(mod_hidden)
-
 modifier_custom_terrorblade_metamorphosis_portrait = class(mod_hidden)
 function modifier_custom_terrorblade_metamorphosis_portrait:GetEffectName()
 	return "particles/ogre_dd.vpcf"
@@ -1325,7 +1318,6 @@ function modifier_terrorblade_demon_zeal_custom_buff:GetModifierModelScale()
 end
 
 custom_terrorblade_terror_wave = class({})
-
 function custom_terrorblade_terror_wave:Init()
 	if not self:GetCaster() then
 		return
