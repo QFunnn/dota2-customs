@@ -8,7 +8,7 @@
 ]]
 
 
-<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf65:version{48e806a9-c210-4cd8-811a-38b5ef63b195} -->
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf66:version{dd571be4-586e-4f41-8b2d-5bbc969e1c53} -->
 {
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
@@ -196,27 +196,27 @@
 					[
 						{
 							x = 0.0
-							y = 0.27068
-							m_flSlopeIncoming = 0.696716
-							m_flSlopeOutgoing = 0.696716
+							y = 0.389779
+							m_flSlopeIncoming = 1.003271
+							m_flSlopeOutgoing = 1.003271
 						},
 						{
 							x = 0.173959
-							y = 0.39188
-							m_flSlopeIncoming = -0.086444
-							m_flSlopeOutgoing = -0.086444
+							y = 0.564307
+							m_flSlopeIncoming = -0.12448
+							m_flSlopeOutgoing = -0.12448
 						},
 						{
 							x = 0.701028
-							y = 0.21008
-							m_flSlopeIncoming = -0.474407
-							m_flSlopeOutgoing = -0.474407
+							y = 0.302515
+							m_flSlopeIncoming = -0.683147
+							m_flSlopeOutgoing = -0.683147
 						},
 						{
 							x = 1.0
 							y = 0.0
-							m_flSlopeIncoming = -0.702675
-							m_flSlopeOutgoing = -0.702675
+							m_flSlopeIncoming = -1.011852
+							m_flSlopeOutgoing = -1.011852
 						},
 					]
 					m_tangents = 
@@ -239,7 +239,7 @@
 						},
 					]
 					m_vDomainMins = [ 0.0, 0.0 ]
-					m_vDomainMaxs = [ 1.0, 0.5 ]
+					m_vDomainMaxs = [ 1.0, 0.72 ]
 				}
 			}
 			m_nSetMethod = "PARTICLE_SET_SCALE_INITIAL_VALUE"
@@ -502,19 +502,19 @@
 					[
 						{
 							m_flPosition = 0.0
-							m_Color = [ 210, 242, 255 ]
+							m_Color = [ 210, 245, 255 ]
 						},
 						{
 							m_flPosition = 0.248062
-							m_Color = [ 183, 222, 253 ]
+							m_Color = [ 70, 147, 198 ]
 						},
 						{
-							m_flPosition = 0.555556
-							m_Color = [ 89, 171, 234 ]
+							m_flPosition = 0.72093
+							m_Color = [ 24, 95, 188 ]
 						},
 						{
 							m_flPosition = 1.0
-							m_Color = [ 84, 121, 180 ]
+							m_Color = [ 11, 21, 113 ]
 						},
 					]
 				}
@@ -858,17 +858,23 @@
 				m_nType = "PF_TYPE_LITERAL"
 				m_nMapType = "PF_MAP_TYPE_DIRECT"
 				m_flLiteralValue = 2.0
+				m_NamedValue = ""
 				m_nControlPoint = 0
 				m_nScalarAttribute = 3
 				m_nVectorAttribute = 6
 				m_nVectorComponent = 0
+				m_bReverseOrder = false
 				m_flRandomMin = 0.0
 				m_flRandomMax = 1.0
+				m_bHasRandomSignFlip = false
+				m_nRandomSeed = -1
 				m_nRandomMode = "PF_RANDOM_MODE_CONSTANT"
+				m_strSnapshotSubset = ""
 				m_flLOD0 = 0.0
 				m_flLOD1 = 0.0
 				m_flLOD2 = 0.0
 				m_flLOD3 = 0.0
+				m_nNoiseInputVectorAttribute = 0
 				m_flNoiseOutputMin = 0.0
 				m_flNoiseOutputMax = 1.0
 				m_flNoiseScale = 0.1
@@ -882,12 +888,19 @@
 				m_flNoiseTurbulenceMix = 0.5
 				m_flNoiseImgPreviewScale = 1.0
 				m_bNoiseImgPreviewLive = true
+				m_flNoCameraFallback = 0.0
+				m_bUseBoundsCenter = false
 				m_nInputMode = "PF_INPUT_MODE_CLAMPED"
 				m_flMultFactor = 1.0
 				m_flInput0 = 0.0
 				m_flInput1 = 1.0
 				m_flOutput0 = 0.0
 				m_flOutput1 = 1.0
+				m_flNotchedRangeMin = 0.0
+				m_flNotchedRangeMax = 1.0
+				m_flNotchedOutputOutside = 0.0
+				m_flNotchedOutputInside = 1.0
+				m_nRoundType = "PF_ROUND_TYPE_NEAREST"
 				m_nBiasType = "PF_BIAS_TYPE_STANDARD"
 				m_flBiasParameter = 0.0
 				m_Curve = 
@@ -905,6 +918,7 @@
 				},
 			]
 			m_bSaturateColorPreAlphaBlend = false
+			m_nOutputBlendMode = "PARTICLE_OUTPUT_BLEND_MODE_ADD"
 		},
 	]
 }

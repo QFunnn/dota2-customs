@@ -131,23 +131,14 @@ const HuntBossHealth = () => {
   });
 };
 
-const HUNT_BOSS_PREVIEW_LEVEL_REWARDS = [{
-  itemID: 110013,
-  amounts: 2
-}, {
-  itemID: 110014,
-  amounts: 5
-}];
-const HUNT_BOSS_PREVIEW_ACCUMULATED_REWARDS = [{
-  itemID: 110023,
-  amounts: 1
-}, {
-  itemID: 110024,
-  amounts: 3
-}];
 const HuntBossProgress = () => {
   const playerID = Players.GetLocalPlayer();
   const state = solid_utils.createNetDataSignal("hunt_boss", "state");
+  const huntMatchRecords = solid_utils.createServiceNetData("player_hunt_match_records", {});
+  const currentMatchRecord = libs.createMemo(() => Object.values(huntMatchRecords()).sort((a, b) => b.match_id - a.match_id)[0]);
+  const rewardData = libs.createMemo(() => JSON.parseSafe(currentMatchRecord()?.reward_data ?? ""));
+  const levelRewards = libs.createMemo(() => rewardData()?.rewards.filter(reward => reward.layer === state()?.level) ?? []);
+  const accumulatedRewards = libs.createMemo(() => rewardData()?.rewards ?? []);
   const [now, setNow] = libs.createSignal(Game.GetGameTime());
   const timer = setInterval(() => setNow(Game.GetGameTime()), 1000);
   const isIntermission = libs.createMemo(() => state()?.phase === "intermission");
@@ -160,11 +151,10 @@ const HuntBossProgress = () => {
     level: state()?.level ?? 0
   }));
   const continueText = libs.createMemo(() => isReady() ? GetLocalization("#HuntBossIntermission_Ready") : GetLocalization("#HuntBossIntermission_Continue"));
-  const accumulatedRewards = libs.createMemo(() => [...HUNT_BOSS_PREVIEW_ACCUMULATED_REWARDS, ...HUNT_BOSS_PREVIEW_LEVEL_REWARDS]);
   const [isRewardExpanded, setIsRewardExpanded] = libs.createSignal(true);
   libs.createEffect(() => {
     const current = state();
-    console.log(`[HuntBossProgress] state phase=${current?.phase ?? "undefined"} level=${current?.level ?? 0} localPlayer=${playerID} participant=${isParticipant()}`);
+    console.log(`[HuntBossProgress] state phase=${current?.phase ?? "undefined"} level=${current?.level ?? 0} localPlayer=${playerID} participant=${isParticipant()} matchRecord=${JSON.stringify(currentMatchRecord())}`);
   });
   const ready = () => {
     if (!isIntermission() || !isParticipant() || isReady()) return;
@@ -215,15 +205,15 @@ const HuntBossProgress = () => {
                 id: "HuntBossLevelRewardList"
               }, _el$2);
             libs.insert(_el$4, libs.createComponent(libs.For, {
-              each: HUNT_BOSS_PREVIEW_LEVEL_REWARDS,
+              get each() {
+                return levelRewards();
+              },
               children: reward => libs.createComponent(StoreItem.StoreItemBlock, {
                 "class": "HuntBossLevelReward",
                 get item_id() {
-                  return reward.itemID;
+                  return reward.huntloot_item_id;
                 },
-                get amounts() {
-                  return reward.amounts;
-                }
+                amounts: 1
               })
             }));
             libs.effect(_$p => libs.setProp(_el$3, "text", GetLocalization("#HuntBossIntermission_LevelRewards"), _$p));
@@ -271,11 +261,9 @@ const HuntBossProgress = () => {
                   children: reward => libs.createComponent(StoreItem.StoreItemBlock, {
                     "class": "HuntBossCumulativeReward",
                     get item_id() {
-                      return reward.itemID;
+                      return reward.huntloot_item_id;
                     },
-                    get amounts() {
-                      return reward.amounts;
-                    }
+                    amounts: 1
                   })
                 }));
                 return _el$1;
@@ -475,4 +463,4 @@ const HuntBossHud = () => {
     return _el$;
   })();
 };
-libs.render(() => libs.createComponent(HuntBossHud, {}), $.GetContextPanel());
+libs.render(() => libs.createComponent(HuntBossHud, {}), $.GetContextPanel());

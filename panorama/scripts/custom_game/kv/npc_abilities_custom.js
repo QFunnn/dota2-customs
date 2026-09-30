@@ -3294,7 +3294,7 @@ GameUI.CustomUIConfig().npc_abilities_custom = {
 	},
 	"courier_600024": {
 		"Name": "纯金贪魔",
-		"Description": "每拥有1件遗物魔法伤害倍增%attribute_pct%%%[x]，最多累加10次。",
+		"Description": "每拥有1件遗物使魔法伤害提高%attribute_pct%%%[x]，最多累加10次。",
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/courier/courier_600024",
 		"AbilityTextureName": "omni_knight/omni_fall20_immortal_ability_icon/omni_fall20_immortal_degen_aura",
@@ -3307,7 +3307,7 @@ GameUI.CustomUIConfig().npc_abilities_custom = {
 	},
 	"courier_600025": {
 		"Name": "咬人箱",
-		"Description": "每拥有1件遗物物理伤害倍增%attribute_pct%%%[x]，最多累加10次。",
+		"Description": "每拥有1件遗物使物理伤害提高%attribute_pct%%%[x]，最多累加10次。",
 		"BaseClass": "ability_lua",
 		"ScriptFile": "abilities/courier/courier_600025",
 		"AbilityTextureName": "omni_knight/omni_fall20_immortal_ability_icon/omni_fall20_immortal_crimson_degen_aura",
@@ -3316,6 +3316,18 @@ GameUI.CustomUIConfig().npc_abilities_custom = {
 		"AbilityValues": {
 			"attribute_pct": "1 2 3 4 5 6",
 			"stack_max": 10
+		}
+	},
+	"courier_600026": {
+		"Name": "大聪明",
+		"Description": "攻击/技能暴击率提升%crit_chance_pct%%",
+		"BaseClass": "ability_lua",
+		"ScriptFile": "abilities/courier/courier_600026",
+		"AbilityTextureName": "lycan_summon_wolves_critical_strike",
+		"MaxLevel": 6,
+		"AbilityBehavior": "DOTA_ABILITY_BEHAVIOR_PASSIVE",
+		"AbilityValues": {
+			"crit_chance_pct": "2.5 5 7.5 10 12.5 15"
 		}
 	},
 	"client_ability": {

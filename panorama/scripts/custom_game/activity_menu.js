@@ -13,7 +13,6 @@
 var dig_veins_logic = require('./dig_veins_logic.js');
 
 const ACTIVITY_LOGIN_ID = 101;
-const ACTIVITY_MENU_GRACE_SECONDS = 7 * 24 * 60 * 60;
 function isLoginActivityCompleted(context) {
   const rewardCount = Object.keys(KeyValues.activity_login[ACTIVITY_LOGIN_ID] ?? {}).length;
   const loginActivity = context.loginActivities[ACTIVITY_LOGIN_ID];
@@ -21,9 +20,6 @@ function isLoginActivityCompleted(context) {
 }
 function isBeforeEndTime(now, endTime) {
   return endTime == 0 || now < endTime;
-}
-function isBeforeActivityMenuGraceEnd(now, endTime) {
-  return endTime == 0 || now < endTime + ACTIVITY_MENU_GRACE_SECONDS;
 }
 function isActivityInTimeRange(now, startTime, endTime) {
   return (startTime == 0 || startTime <= now) && (endTime == 0 || now <= endTime);
@@ -55,30 +51,20 @@ function shouldShowPrimaryMenu(menu, config, context) {
     return isBeforeEndTime(context.now, dataEndTime);
   }
   if (menu == "mining") {
-    return false;
+    const activity = KeyValues.activity_data[dig_veins_logic.ACTIVITY_MINING_ID];
+    const startTime = activity?.start_time ?? 0;
+    const dataEndTime = activity?.data_end_time ?? 0;
+    return (startTime == 0 || startTime <= context.now) && isBeforeEndTime(context.now, dataEndTime);
   }
   return true;
 }
 function shouldShowSecondaryMenu(secondMenu, context) {
   const diceEndTime = KeyValues.activity_data[dig_veins_logic.ACTIVITY_DICE_ID]?.end_time ?? 0;
-  const miningEndTime = KeyValues.activity_data[dig_veins_logic.ACTIVITY_MINING_ID]?.end_time ?? 0;
   if (secondMenu == "dice_gift") {
     return isBeforeEndTime(context.now, diceEndTime);
   }
   if (secondMenu == "dice_store") {
     return false;
-  }
-  if (secondMenu == "veins_gift") {
-    return isBeforeEndTime(context.now, miningEndTime);
-  }
-  if (secondMenu == "veins_game") {
-    if (isBeforeEndTime(context.now, miningEndTime)) {
-      return true;
-    }
-    if (!isBeforeActivityMenuGraceEnd(context.now, miningEndTime)) {
-      return false;
-    }
-    return dig_veins_logic.hasClaimableDigVeinsTaskForMenu(context.tasks);
   }
   return true;
 }

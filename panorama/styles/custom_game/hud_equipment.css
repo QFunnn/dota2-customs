@@ -415,6 +415,24 @@
 	brightness: 0.5;
 }
 
+#HuntlootSlotList
+{
+	horizontal-align: center;
+	vertical-align: bottom;
+	margin-bottom: 188px;
+	flow-children: right;
+}
+
+#HuntlootSlotList .HuntlootSlot
+{
+	margin: 0px 4px;
+}
+
+#HuntlootSlotList .HuntlootSlot .SlotIcon .Huntloot
+{
+	align: center center;
+}
+
 #ItemsRoot
 {
 	z-index: 1;
@@ -445,7 +463,7 @@
 #ItemsRoot #ItemList
 {
 	padding-left: 8px;
-	margin-top: 60px;
+	margin-top: 72px;
 	width: 100%;
 	height: fill-parent-flow(1);
 	opacity-mask: url("s2r://panorama/images/masks/softedge_vertical_vscroll_wide_psd.vtex");
@@ -615,7 +633,7 @@
 	width: 100%;
 	height: 100%;
 	flow-children: down;
-	padding: 26px 22px;
+	padding: 26px 0px 22px 22px;
 	animation-name: OpacityShow, SlideInBottomSlow;
 	animation-duration: 0.4s;
 	animation-timing-function: ease-out;
@@ -685,8 +703,14 @@
 {
 	width: 100%;
 	height: 100%;
+	padding-right: 22px;
 	flow-children: down;
 	overflow: squish scroll;
+}
+
+#FilterWindow #EquipmentFilterContent VerticalScrollBar
+{
+	margin-right: -5px;
 }
 
 #FilterWindow #EquipmentSubEntryFilterList
@@ -780,7 +804,61 @@
 {
 	width: 100%;
 	height: 100%;
+	padding-right: 22px;
 	flow-children: down;
+	overflow: squish scroll;
+}
+
+#FilterWindow #GemFilterContent VerticalScrollBar
+{
+	margin-right: -5px;
+}
+
+#FilterWindow #GemChaosEntryFilterList
+{
+	width: 100%;
+	flow-children: down;
+}
+
+#FilterWindow .GemChaosFilterHint,#FilterWindow .GemChaosFilterError
+{
+	width: 100%;
+	font-size: 16px;
+	color: #C9BFA8;
+	margin-bottom: 6px;
+}
+
+#FilterWindow .GemChaosFilterError
+{
+	color: #DD7770;
+}
+
+#FilterWindow .GemChaosEntryFilterRow
+{
+	width: 100%;
+	height: 36px;
+	flow-children: right;
+}
+
+#FilterWindow .GemChaosEntryFilterRow .GemChaosEntryName
+{
+	width: fill-parent-flow(1);
+	vertical-align: center;
+}
+
+#FilterWindow .GemChaosEntryFilterRow .GemChaosValue
+{
+	width: 85px;
+	height: 32px;
+	font-size: 16px;
+	padding: 3px 5px;
+}
+
+#FilterWindow .GemChaosEntryFilterRow .GemChaosRangeSeparator
+{
+	margin: 0px 4px;
+	vertical-align: center;
+	color: #C9BFA8;
 }
 
 #FilterWindow #GemSubEntryFilterTitle
@@ -809,7 +887,7 @@
 #FilterWindow #GemSubEntryFilterList
 {
 	width: 100%;
-	height: fill-parent-flow(1);
+	height: fit-children;
 	margin-top: 6px;
 	flow-children: down;
 	overflow: squish scroll;
@@ -1248,6 +1326,18 @@
 	margin-top: 255px;
 }
 
+#EquipForge #LeftArea #SkipForgeAnimation
+{
+	align: center bottom;
+	x: 180px;
+	margin-bottom: 98px;
+}
+
+#EquipForge #LeftArea #SkipForgeAnimation .CheckLabel
+{
+	color: #E7D5A5;
+}
+
 #EquipForge #LeftArea #EmptyState
 {
 	margin-top: 56px;
@@ -1595,6 +1685,11 @@
 #EquipForge #LeftArea #NewBtnListContainer .OperateBtn.Fusion #BtnImg
 {
 	background-image: url("s2r://panorama/images/custom_game/e1_eqp_up/e1_entrance_create_png.vtex");
+}
+
+#EquipForge #LeftArea #NewBtnListContainer .OperateBtn.Devour #BtnImg
+{
+	background-image: url("s2r://panorama/images/custom_game/e1_eqp_up/e1_entrance_recast_png.vtex");
 }
 
 #EquipForge #LeftArea #NewBtnListContainer .OperateBtn:disabled
@@ -5220,6 +5315,136 @@
 	color: #E1E1E1;
 }
 
+.Huntloot
+{
+	width: 88px;
+	height: 88px;
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_null_png.vtex");
+	background-size: 100%;
+	padding: 4px;
+}
+
+.Huntloot #HuntlootIcon
+{
+	align: center center;
+	width: 79%;
+	height: 79%;
+}
+
+.Huntloot #LevelLabel
+{
+	margin-left: 5px;
+	margin-top: 2px;
+	font-size: 18px;
+	color: #E7D9B1;
+	text-shadow: 0px 0px 2px 3 black;
+}
+
+.Huntloot #Lock
+{
+	vertical-align: bottom;
+	margin-bottom: 2px;
+	margin-left: 2px;
+	width: 30px;
+	height: 38px;
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/tag_lock_png.vtex");
+	ui-scale: 60%;
+}
+
+.Huntloot #EquipedTag
+{
+	width: 24px;
+	height: 24px;
+	horizontal-align: right;
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/conv_tag_equipped_png.vtex");
+	background-size: 100%;
+}
+
+.Huntloot.Rarity1
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_gray_png.vtex");
+}
+
+.Huntloot.Rarity2
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_green_png.vtex");
+}
+
+.Huntloot.Rarity3
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_blue_png.vtex");
+}
+
+.Huntloot.Rarity4
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_purple_png.vtex");
+}
+
+.Huntloot.Rarity5
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_yellow_png.vtex");
+}
+
+.Huntloot.Rarity6
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_red_png.vtex");
+}
+
+.Huntloot.Rarity7
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_blackgold_png.vtex");
+}
+
+.HuntlootIcon
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_null_png.vtex");
+	background-size: 100%;
+}
+
+.HuntlootIcon Image
+{
+	align: center center;
+	width: 79%;
+	height: 79%;
+}
+
+.HuntlootIcon.Rarity1
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_gray_png.vtex");
+}
+
+.HuntlootIcon.Rarity2
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_green_png.vtex");
+}
+
+.HuntlootIcon.Rarity3
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_blue_png.vtex");
+}
+
+.HuntlootIcon.Rarity4
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_purple_png.vtex");
+}
+
+.HuntlootIcon.Rarity5
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_yellow_png.vtex");
+}
+
+.HuntlootIcon.Rarity6
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_red_png.vtex");
+}
+
+.HuntlootIcon.Rarity7
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_blackgold_png.vtex");
+}
+
 .EOM_Switch
 {
 	width: 56px;
@@ -6359,7 +6584,7 @@
 
 .MenuTabButton
 {
-	width: 238px;
+	width: fill-parent-flow(1);
 	height: 42px;
 	background-image: url("s2r://panorama/images/custom_game/e1_equipment/e1_btn_table_0_png.vtex");
 	margin: 0px 2px;
@@ -6398,6 +6623,12 @@
 	wash-color: #686868;
 }
 
+.MenuTabButton .MenuTabButtonIcon
+{
+	width: 64px;
+	height: 64px;
+}
+
 .MenuTabButton #MenuTabButtonLabel
 {
 	margin-top: 1px;
@@ -6429,6 +6660,35 @@
 	background-repeat: no-repeat;
 	background-position: center center;
 	wash-color: white;
+}
+
+.MenuTabButton.TwoLine
+{
+	height: 54px;
+}
+
+.MenuTabButton.TwoLine .MenuTabButtonContent
+{
+	width: 100%;
+	padding: 0px 8px;
+}
+
+.MenuTabButton.TwoLine .MenuTabButtonTop
+{
+	horizontal-align: center;
+}
+
+.MenuTabButton.TwoLine #MenuTabButtonLabel
+{
+	font-size: 20px;
+}
+
+.MenuTabButton.TwoLine .MenuTabButtonNum
+{
+	margin-left: 0px;
+	margin-top: 0px;
+	font-size: 14px;
+	horizontal-align: center;
 }
 
 .EquipmentCommonBtn
@@ -7014,7 +7274,7 @@
 	sound: "ui_generic_button_click";
 }
 
-#EquipBreakRoot #SelectedBreakItemsContainer #SelectedBreakItemList .SelectedBreakItem .Equipment,#EquipBreakRoot #SelectedBreakItemsContainer #SelectedBreakItemList .SelectedBreakItem .Gem
+#EquipBreakRoot #SelectedBreakItemsContainer #SelectedBreakItemList .SelectedBreakItem .Equipment,#EquipBreakRoot #SelectedBreakItemsContainer #SelectedBreakItemList .SelectedBreakItem .Gem,#EquipBreakRoot #SelectedBreakItemsContainer #SelectedBreakItemList .SelectedBreakItem .Huntloot
 {
 	align: center center;
 	width: 88px;
@@ -7088,14 +7348,7 @@
 	brightness: 0.5;
 }
 
-#EquipBreakRoot #BreakSlots .Equipment
-{
-	width: 79.8px;
-	height: 79.8px;
-	align: center center;
-}
-
-#EquipBreakRoot #BreakSlots .Gem
+#EquipBreakRoot #BreakSlots .Equipment,#EquipBreakRoot #BreakSlots .Gem,#EquipBreakRoot #BreakSlots .Huntloot
 {
 	width: 79.8px;
 	height: 79.8px;
@@ -8700,6 +8953,59 @@
 #EquipForge .GemFusionOperationBtns #ConsumeBtn
 {
 	margin-left: 165px;
+}
+
+#EquipForge #LeftArea #SelectEquipContainer.GemFusionLockMode
+{
+	height: 420px;
+}
+
+#EquipForge #LeftArea #SelectEquipContainer.GemFusionLockMode .FusionSelection.HasFusionLockOptions
+{
+	height: 420px;
+}
+
+#EquipForge #LeftArea #SelectEquipContainer.GemFusionLockMode .FusionSelection.HasFusionLockOptions #FusionArrow
+{
+	vertical-align: top;
+	margin-top: 128px;
+}
+
+#EquipForge #LeftArea #SelectEquipContainer.GemFusionLockMode .FusionSelection.HasFusionLockOptions #SelectedEquipmentArea
+{
+	height: 420px;
+}
+
+#EquipForge #LeftArea #SelectEquipContainer.GemFusionLockMode .FusionSelection.HasFusionLockOptions #FusionMaterialArea .GemFusionLockChoices
+{
+	margin-top: 65px;
+}
+
+#EquipForge #LeftArea #SelectEquipContainer.GemFusionLockMode .GemFusionLockChoices
+{
+	horizontal-align: center;
+	width: 230px;
+	max-height: 145px;
+	margin-top: 8px;
+	padding: 6px 8px;
+	flow-children: down;
+	overflow: squish scroll;
+	background-color: #160F0DD9;
+	border: 1px solid #6B5137;
+}
+
+#EquipForge #LeftArea #SelectEquipContainer.GemFusionLockMode .GemFusionLockChoices .EOM_CheckBox2
+{
+	width: 100%;
+	height: 28px;
+}
+
+#EquipForge #LeftArea #SelectEquipContainer.GemFusionLockMode .GemFusionLockChoices .EOM_CheckBox2 .CheckLabel
+{
+	width: fill-parent-flow(1);
+	font-size: 17px;
+	color: #DAB36C;
+	text-overflow: shrink;
 }
 
 #InlayPanel,.GemSwapLeftContent
@@ -10722,8 +11028,21 @@
 {
 	font-size: 20px;
 	color: #E8D9B0;
-	width: 100%;
+	width: fill-parent-flow(1);
 	text-align: center;
+}
+
+#RecastPanel #RecastV2ConfirmPanel .RecastV2OptionBtn .RecastV2OptionLoadingIcon
+{
+	width: 24px;
+	height: 24px;
+	background-image: url("s2r://panorama/images/control_icons/party_finder_icon_03_png.vtex");
+	background-size: 100%;
+	animation-name: SpinnerRotate;
+	animation-duration: 1s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-direction: reverse;
 }
 
 .RecastV2HintText
@@ -10995,4 +11314,398 @@
 {
 	margin-top: 50px;
 	margin-bottom: 15px;
+}
+
+#HuntlootDevourRoot
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+	vertical-align: center;
+}
+
+#HuntlootDevourRoot #HuntlootDevourMainContent
+{
+	flow-children: right;
+	horizontal-align: center;
+}
+
+#HuntlootDevourRoot #HuntlootDevourArrow
+{
+	width: 32px;
+	height: 68px;
+	margin: 0px 24px;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/custom_game/s3_skill_runes/s3_arrow_png.vtex");
+}
+
+#HuntlootDevourRoot #HuntlootDevourOperation
+{
+	height: 140px;
+	margin-top: 12px;
+	flow-children: right;
+	horizontal-align: center;
+}
+
+#HuntlootDevourRoot #HuntlootDevourOperation #HuntlootDevourBackButton
+{
+	vertical-align: bottom;
+	margin-right: 24px;
+}
+
+#HuntlootDevourRoot #HuntlootDevourOperation #HuntlootDevourStartButtons
+{
+	flow-children: down;
+	horizontal-align: center;
+	vertical-align: bottom;
+}
+
+#HuntlootDevourRoot #HuntlootDevourOperation #HuntlootDevourStartButtons #UpgradeCost
+{
+	horizontal-align: center;
+	width: 263px;
+	height: 30px;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#00000000), color-stop(0.5, #000000d9), to(#00000000));
+}
+
+#HuntlootDevourRoot #HuntlootDevourOperation #HuntlootDevourStartButtons #UpgradeCost #UpgradeCostContent
+{
+	align: center center;
+	flow-children: right;
+}
+
+#HuntlootDevourRoot #HuntlootDevourOperation #HuntlootDevourStartButtons #UpgradeCost .HuntlootDevourCostItem
+{
+	flow-children: right;
+	margin: 0px 6px;
+}
+
+#HuntlootDevourRoot #HuntlootDevourOperation #HuntlootDevourStartButtons #UpgradeCostIcon
+{
+	width: 28px;
+	height: 28px;
+	vertical-align: center;
+}
+
+#HuntlootDevourRoot #HuntlootDevourOperation #HuntlootDevourStartButtons #UpgradeCostLabel
+{
+	margin-left: 6px;
+	vertical-align: center;
+	font-size: 18px;
+	color: #FDEFC8;
+	text-shadow: 0px 0px 3px 2 #000000;
+}
+
+#HuntlootDevourRoot #HuntlootDevourOperation #HuntlootDevourStartButtons #UpgradeCostLabel.Insufficient
+{
+	color: #ec5b51;
+}
+
+#HuntlootDevourRoot #HuntlootDevourOperation #HuntlootDevourStartButtons #HuntlootDevourStartConfirmButton
+{
+	horizontal-align: center;
+	margin-top: 16px;
+}
+
+#HuntlootDevourRoot #HuntlootDevourOperation #HuntlootDevourCheckConfirmButton
+{
+	vertical-align: bottom;
+	margin-right: 16px;
+}
+
+#HuntlootDevourRoot #HuntlootDevourOperation #HuntlootDevourResetButton
+{
+	vertical-align: bottom;
+}
+
+.HuntlootDetailCard
+{
+	width: 430px;
+	height: 560px;
+	background-image: url("s2r://panorama/images/custom_game/e1_eqp_up/e1_panel_png.vtex");
+	background-size: 100%;
+	overflow: noclip;
+}
+
+.HuntlootDetailCard .HuntlootDetailCardContent
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+	padding-bottom: 18px;
+}
+
+.HuntlootDetailCard .EmptyMask
+{
+	align: center center;
+	width: 80%;
+	flow-children: down;
+}
+
+.HuntlootDetailCard .EmptyMask Label
+{
+	width: 100%;
+	text-align: center;
+	color: #9f9382;
+	text-overflow: shrink;
+}
+
+.HuntlootDetailCard .HuntlootDevourCardIcon
+{
+	width: 88px;
+	height: 88px;
+	horizontal-align: center;
+	margin-top: 14px;
+	margin-bottom: 8px;
+}
+
+.HuntlootDetailCard .HuntlootDevourCardIcon .HuntlootDevourCardIconPlus
+{
+	align: center center;
+	width: 50px;
+	height: 50px;
+	background-image: url("s2r://panorama/images/custom_game/conv/common/conv_add_02_png.vtex");
+	background-size: 100%;
+}
+
+.HuntlootDetailCard .HuntlootDevourCardIcon .Huntloot
+{
+	align: center center;
+}
+
+.HuntlootDetailCard .HuntlootDevourCardIcon .EOM_CloseButton
+{
+	ui-scale: 75%;
+	horizontal-align: right;
+	z-index: 2;
+	margin-top: -10px;
+	margin-right: -16px;
+}
+
+.HuntlootDetailCard .HuntlootDevourCardName
+{
+	width: 100%;
+	margin-bottom: 12px;
+}
+
+.HuntlootDetailCard .HuntlootDevourCardName #HuntlootDevourCardNameBG
+{
+	align: center center;
+	width: 267px;
+	height: 34px;
+	background-image: url("s2r://panorama/images/custom_game/conv/common/conv_mask_text_png.vtex");
+	background-size: 100% 100%;
+	wash-color: #000000;
+}
+
+.HuntlootDetailCard .HuntlootDevourCardName .HuntlootDevourCardNameText
+{
+	width: 100%;
+	text-align: center;
+	text-overflow: shrink;
+	vertical-align: center;
+	font-size: 22px;
+}
+
+.HuntlootDetailCard .HuntlootDevourCardName .HuntlootDevourCardNameText.Rarity1
+{
+	color: #9d9d9d;
+}
+
+.HuntlootDetailCard .HuntlootDevourCardName .HuntlootDevourCardNameText.Rarity2
+{
+	color: #69944A;
+}
+
+.HuntlootDetailCard .HuntlootDevourCardName .HuntlootDevourCardNameText.Rarity3
+{
+	color: #4472CE;
+}
+
+.HuntlootDetailCard .HuntlootDevourCardName .HuntlootDevourCardNameText.Rarity4
+{
+	color: #875DD4;
+}
+
+.HuntlootDetailCard .HuntlootDevourCardName .HuntlootDevourCardNameText.Rarity5
+{
+	color: #CEAD3C;
+}
+
+.HuntlootDetailCard .HuntlootDevourCardName .HuntlootDevourCardNameText.Rarity6
+{
+	color: #E55043;
+}
+
+.HuntlootDetailCard .HuntlootDevourCardName .HuntlootDevourCardNameText.Rarity7
+{
+	color: gradient(linear, 0% 0%, 0% 100%, from(#917E4B), to(#F1D999));
+}
+
+.HuntlootDetailCard .HuntlootDetailCardEntryList
+{
+	width: 100%;
+	padding: 0px 16px;
+	flow-children: down;
+}
+
+.HuntlootDetailCard .HuntlootDetailCardSeparator
+{
+	width: 100%;
+	height: 2px;
+	margin: 8px 0px;
+	background-image: url("s2r://panorama/images/custom_game/conv/tooltip/line_divider2_png.vtex");
+}
+
+.HuntlootDetailCard .HuntlootDetailCardEntryRow
+{
+	width: 100%;
+	min-height: 34px;
+	margin-bottom: 6px;
+}
+
+.HuntlootDetailCard .HuntlootDetailCardEntryRow .HuntlootDetailCardEntryRowContent
+{
+	width: fill-parent-flow(1);
+	flow-children: right;
+	vertical-align: center;
+	overflow: noclip;
+}
+
+.HuntlootDetailCard .HuntlootDetailCardEntryRow .HuntlootSelectionBox
+{
+	width: 20px;
+	height: 20px;
+	margin-top: 2px;
+	margin-right: 6px;
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/conv_checkbox_off_png.vtex");
+	background-size: 100%;
+}
+
+.HuntlootDetailCard .HuntlootDetailCardEntryRow .HuntlootSelectionBox .HuntlootSelectionBoxTick
+{
+	align: center center;
+	width: 20px;
+	height: 13px;
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/conv_checkbox_on_png.vtex");
+	background-size: 100%;
+	opacity: 0;
+}
+
+.HuntlootDetailCard .HuntlootDetailCardEntryRow .HuntlootSelectionBox.Selected .HuntlootSelectionBoxTick
+{
+	opacity: 1;
+}
+
+.HuntlootDetailCard .HuntlootDetailCardEntryRow .HuntlootDetailCardAttrRow
+{
+	width: fill-parent-flow(1);
+	min-height: 0px;
+	margin: 0px;
+	flow-children: right;
+	vertical-align: center;
+	overflow: noclip;
+}
+
+.HuntlootDetailCard .HuntlootDetailCardEntryRow .HuntlootDetailCardAttrRow #Point
+{
+	width: 8px;
+	height: 8px;
+	margin-right: 8px;
+	border-radius: 50%;
+	background-color: #7C918E;
+	vertical-align: center;
+}
+
+.HuntlootDetailCard .HuntlootDetailCardEntryRow .HuntlootDetailCardAttrRow #AttrValue
+{
+	color: #FFFFFF;
+	font-size: 20px;
+	margin-right: 6px;
+}
+
+.HuntlootDetailCard .HuntlootDetailCardEntryRow .HuntlootDetailCardAttrRow #AttrName
+{
+	color: #BFAA82;
+	font-size: 20px;
+}
+
+.HuntlootDetailCard .HuntlootDetailCardEntryRow .HuntlootDetailCardAttrRow.gray #Point
+{
+	background-color: #7C918E;
+}
+
+.HuntlootDetailCard .HuntlootDetailCardEntryRow .HuntlootDetailCardAttrRow.green #Point
+{
+	background-color: #69944A;
+}
+
+.HuntlootDetailCard .HuntlootDetailCardEntryRow .HuntlootDetailCardAttrRow.blue #Point
+{
+	background-color: #4472CE;
+}
+
+.HuntlootDetailCard .HuntlootDetailCardEntryRow .HuntlootDetailCardAttrRow.purple #Point
+{
+	background-color: #875DD4;
+}
+
+.HuntlootDetailCard .HuntlootDetailCardEntryRow .HuntlootDetailCardAttrRow.yellow #Point
+{
+	background-color: #CEAD3C;
+}
+
+.HuntlootDetailCard .HuntlootDetailCardEntryRow .HuntlootDetailCardAttrRow.red #Point
+{
+	background-color: #E55043;
+}
+
+.HuntlootDetailCard .HuntlootDetailCardEntryRow .HuntlootDetailCardAttrRow.pink #Point
+{
+	background-color: #DD92E8;
+}
+
+.HuntlootDetailCard .HuntlootDetailCardEntryRow.gray .HuntlootDetailCardAttrRow #AttrName
+{
+	color: #7C918E;
+}
+
+.HuntlootDetailCard .HuntlootDetailCardEntryRow.green .HuntlootDetailCardAttrRow #AttrName
+{
+	color: #69944A;
+}
+
+.HuntlootDetailCard .HuntlootDetailCardEntryRow.blue .HuntlootDetailCardAttrRow #AttrName
+{
+	color: #4472CE;
+}
+
+.HuntlootDetailCard .HuntlootDetailCardEntryRow.purple .HuntlootDetailCardAttrRow #AttrName
+{
+	color: #875DD4;
+}
+
+.HuntlootDetailCard .HuntlootDetailCardEntryRow.yellow .HuntlootDetailCardAttrRow #AttrName
+{
+	color: #CEAD3C;
+}
+
+.HuntlootDetailCard .HuntlootDetailCardEntryRow.red .HuntlootDetailCardAttrRow #AttrName
+{
+	color: #E55043;
+}
+
+.HuntlootDetailCard .HuntlootDetailCardEntryRow.pink .HuntlootDetailCardAttrRow #AttrName
+{
+	color: #DD92E8;
+}
+
+.HuntlootDetailCard .HuntlootDetailCardEntryHighlightFrame
+{
+	width: 100%;
+	height: 100%;
+	border-image-source: url("s2r://panorama/images/custom_game/e1_equipment/e1_select_png.vtex");
+	border-width: 4px 4px 4px 4px;
+	border-image-slice: 10px 10px 10px 10px;
+	border-image-repeat: stretch;
 }

@@ -1075,4 +1075,4 @@ const HUDAbyss = () => {
     return _el$;
   })();
 };
-libs.render(() => libs.createComponent(HUDAbyss, {}), $.GetContextPanel());
+libs.render(() => libs.createComponent(HUDAbyss, {}), $.GetContextPanel());

@@ -2643,7 +2643,7 @@ const open_store = solid_utils.createServiceNetData("open_shop", {
 });
 const [targetPrivilegeItem, setTargetPrivilegeItem] = libs.createSignal();
 let targetPrivilegeItemKey = 0;
-const separatedStoreTags = new Set(["Fish", "Explore", "Flowers", "StarStone", "BoardSlotGift", "BoardSlot", "MiningGift", "Mining", "pvp_shop"]);
+const separatedStoreTags = new Set(["Fish", "Explore", "Flowers", "StarStone", "BoardSlotGift", "BoardSlot", "MiningGift", "Mining", "pvp_shop", "MoonDraw"]);
 const staticStoreMenus = ["collection_vip", "collection_treasure"];
 const seaMysteryPoolID = "3001";
 const hasSeaMysteryPool = () => KeyValues.drawcards[seaMysteryPoolID] != undefined;

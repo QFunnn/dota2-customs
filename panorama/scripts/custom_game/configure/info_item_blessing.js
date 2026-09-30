@@ -546,5 +546,16 @@ GameUI.CustomUIConfig().info_item_blessing = {
 		},
 		blessing_effect: "privilege_bless_029",
 		hide: 0
+	},
+	"541": {
+		id: 541,
+		name: "风之圣契",
+		attribute: {
+			damage_intensity: 50,
+			defense_intensity: 50,
+			hero_damage_boost: 5
+		},
+		blessing_effect: "privilege_bless_030",
+		hide: 0
 	}
 };

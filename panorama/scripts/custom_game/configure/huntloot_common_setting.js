@@ -19,6 +19,10 @@ GameUI.CustomUIConfig().huntloot_common_setting = {
 	},
 	huntloot_devour: {
 		key: "huntloot_devour",
-		value: "200001:90"
+		value: "120008:90"
+	},
+	fail_pct: {
+		key: "fail_pct",
+		value: "10"
 	}
 };

@@ -30,7 +30,9 @@ const STATIC_MENU_LIST = {
     growth_fund: ["growth_fund_301"],
     starsea: [],
     seven_days: [],
-    boardslot: ["dice_game", "dice_gift"]
+    boardslot: ["dice_game", "dice_gift"],
+    activity_moonstone: [],
+    mining: ["veins_game"]
   },
   hero: {
     Hero_Menu: [],
@@ -69,7 +71,7 @@ const STATIC_MENU_LIST = {
     Guide3: []
   }
 };
-const separatedStoreTags = new Set(["Fish", "Explore", "Flowers", "StarStone", "BoardSlotGift", "BoardSlot", "MiningGift", "Mining", "pvp_shop"]);
+const separatedStoreTags = new Set(["Fish", "Explore", "Flowers", "StarStone", "BoardSlotGift", "BoardSlot", "MiningGift", "Mining", "pvp_shop", "MoonDraw"]);
 const staticStoreMenus = ["collection_vip", "collection_treasure"];
 const storeMenuOrder = ["Privilege", "Hot", "Gift", "Resource", "collection_vip", "collection_treasure", "Moon", "Universe"];
 const open_store = solid_utils.createServiceNetData("open_shop", {

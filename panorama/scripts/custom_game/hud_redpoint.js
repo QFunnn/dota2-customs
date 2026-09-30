@@ -11,9 +11,9 @@
 'use strict'; const require = GameUI.__require;
 
 var libs = require('./libs.js');
-var solid_utils = require('./solid_utils.js');
+var mining_activity_redpoints = require('./mining_activity_redpoints.js');
 var dig_veins_logic = require('./dig_veins_logic.js');
-var dice_logic = require('./dice_logic.js');
+var solid_utils = require('./solid_utils.js');
 var equipment_utils = require('./equipment_utils.js');
 var service_netdata_helper = require('./service_netdata_helper.js');
 var StoreTagPage = require('./StoreTagPage.js');
@@ -25,27 +25,6 @@ require('./EOM_Countdown.js');
 require('./EOM_ImageNumber.js');
 require('./Player.js');
 require('./EOM_TextEntry.js');
-
-function defineRedPointRule(name, setup) {
-  CustomUIConfig.__redPointRuleRegistry ??= {};
-  if (CustomUIConfig.__redPointRuleRegistry[name] === true) {
-    return;
-  }
-  CustomUIConfig.__redPointRuleRegistry[name] = true;
-  setup();
-}
-function setRedPoint(path, value) {
-  const [rootKey, ...keys] = path;
-  CustomUIConfig.SetRedPoint(value, rootKey, ...keys.map(String));
-}
-function setRedPointBatch(updates) {
-  for (const update of updates) {
-    setRedPoint(update.path, update.value);
-  }
-}
-function createRedPointServiceData(key, defaultVar) {
-  return defaultVar == undefined ? solid_utils.createServiceNetData(key) : solid_utils.createServiceNetData(key, defaultVar);
-}
 
 const [savingPotRedPointViewed, setSavingPotRedPointViewed] = libs.createSignal(false);
 const [footballRedPointViewed, setFootballRedPointViewed] = libs.createSignal(false);
@@ -60,9 +39,12 @@ CustomUIConfig.__activityRedPointState = {
   markSavingPotRedPointViewed: () => setSavingPotRedPointViewed(true)
 };
 function useActivityRedPoints() {
-  defineRedPointRule("activity", () => {
-    const playerCounters = createRedPointServiceData("player_counters", {});
-    const footballActivityData = createRedPointServiceData("player_dragonboat_activity_data", {});
+  mining_activity_redpoints.defineRedPointRule("activity", () => {
+    const playerCounters = mining_activity_redpoints.createRedPointServiceData("player_counters", {});
+    const footballActivityData = mining_activity_redpoints.createRedPointServiceData("player_dragonboat_activity_data", {});
+    const paymentActivityData = mining_activity_redpoints.createRedPointServiceData("player_payment_activity_data", {});
+    const playerTokens = mining_activity_redpoints.createRedPointServiceData("player_tokens", {});
+    const shopProductLimits = mining_activity_redpoints.createRedPointServiceData("player_shop_product_limits", {});
     libs.createEffect(() => {
       if ((playerCounters()["daily_login_count"]?.count ?? 0) != 1) {
         setSavingPotRedPointViewed(false);
@@ -70,28 +52,45 @@ function useActivityRedPoints() {
     });
     libs.createEffect(() => {
       const dailyLoginCount = playerCounters()["daily_login_count"]?.count ?? 0;
-      setRedPoint(["activity", "saving_pot"], !savingPotRedPointViewed() && dailyLoginCount == 1);
+      mining_activity_redpoints.setRedPoint(["activity", "saving_pot"], !savingPotRedPointViewed() && dailyLoginCount == 1);
     });
     libs.createEffect(() => {
       const activityData = footballActivityData()[getFootballActivityID()];
       const status = activityData?.status ?? 0;
       const canJoin = activityData != undefined && status == 0 && (playerCounters()["dragonboat_daily_join"]?.count ?? 0) < 1;
-      setRedPoint(["activity", "football"], !footballRedPointViewed() && (status == 3 || canJoin));
+      mining_activity_redpoints.setRedPoint(["activity", "football"], !footballRedPointViewed() && (status == 3 || canJoin));
+    });
+    libs.createEffect(() => {
+      const drawCount = Number(paymentActivityData()["1101"]?.step ?? 0);
+      const drawTotal = Object.keys(KeyValues.activity_moonstone["902"] ?? {}).length;
+      const ticketCount = Number(playerTokens()["190007"]?.amounts ?? 0);
+      mining_activity_redpoints.setRedPoint(["activity", "activity_moonstone", "draw"], ticketCount >= 1 && drawCount < drawTotal);
+    });
+    libs.createEffect(() => {
+      const now = CustomUIConfig.GetServerTimeStamp();
+      const hasUnclaimedDailyFreebie = Object.values(KeyValues.info_shop_product).some(product => {
+        const isMoonDrawDailyFreebie = product.tag.split("|").includes("MoonDraw") && product.hide === 0 && product.real_price === 0;
+        const isActive = (product.start_time === 0 || product.start_time < now) && (product.end_time === 0 || product.end_time > now);
+        const purchaseCount = shopProductLimits()[product.id] ?? 0;
+        const hasReachedLimit = product.limit_type > 0 && purchaseCount >= product.limit_count;
+        return isMoonDrawDailyFreebie && isActive && !hasReachedLimit;
+      });
+      mining_activity_redpoints.setRedPoint(["activity", "activity_moonstone", "exchange_daily"], hasUnclaimedDailyFreebie);
     });
   });
 }
 
 function useDiceActivityRedPoints() {
-  defineRedPointRule("activity_dice", () => {
-    const activities = createRedPointServiceData("player_boardslot_activity_data", {});
-    const tasks = createRedPointServiceData("player_activity_tasks", {});
-    const tokens = createRedPointServiceData("player_tokens", {});
+  mining_activity_redpoints.defineRedPointRule("activity_dice", () => {
+    const activities = mining_activity_redpoints.createRedPointServiceData("player_boardslot_activity_data", {});
+    const tasks = mining_activity_redpoints.createRedPointServiceData("player_activity_tasks", {});
+    const tokens = mining_activity_redpoints.createRedPointServiceData("player_tokens", {});
     const [serverTime, setServerTime] = libs.createSignal(Math.floor(CustomUIConfig.GetServerTimeStamp()));
     const interval = setInterval(() => setServerTime(Math.floor(CustomUIConfig.GetServerTimeStamp())), 1000);
     libs.onCleanup(() => clearInterval(interval));
     libs.createEffect(() => {
-      const claimable = dice_logic.hasClaimableDiceTask(tasks(), serverTime()) || dice_logic.hasClaimableDiceMilestone(activities()[dig_veins_logic.ACTIVITY_DICE_ID], tokens());
-      setRedPoint(["activity", "boardslot", "dice_game"], claimable);
+      const claimable = mining_activity_redpoints.hasClaimableDiceTask(tasks(), serverTime()) || mining_activity_redpoints.hasClaimableDiceMilestone(activities()[dig_veins_logic.ACTIVITY_DICE_ID], tokens());
+      mining_activity_redpoints.setRedPoint(["activity", "boardslot", "dice_game"], claimable);
     });
   });
 }
@@ -103,16 +102,16 @@ function getCosmeticMenuByType(type) {
   return type == COSMETIC_TYPE.BORDER || type == COSMETIC_TYPE.TITLE ? "Cosmetic_Player" : "Cosmetic_Hero";
 }
 function useCosmeticRedPoints() {
-  defineRedPointRule("cosmetic", () => {
-    const playerProps = createRedPointServiceData("player_props", {});
+  mining_activity_redpoints.defineRedPointRule("cosmetic", () => {
+    const playerProps = mining_activity_redpoints.createRedPointServiceData("player_props", {});
     const propUnreadIds = solid_utils.createPlayerUnreadIds("prop");
-    const playerCosmetics = createRedPointServiceData("player_cosmetics", {});
+    const playerCosmetics = mining_activity_redpoints.createRedPointServiceData("player_cosmetics", {});
     const cosmeticUnreadIds = solid_utils.createPlayerUnreadIds("cosmetic");
     libs.createEffect(() => {
       const props = playerProps();
       const unreads = propUnreadIds.unreadIds();
       const hasUnread = Object.keys(unreads).some(id => props[id]?.amounts > 0 && propUnreadIds.isUnread(id));
-      setRedPoint(["cosmetic", "Props_Menu"], hasUnread);
+      mining_activity_redpoints.setRedPoint(["cosmetic", "Props_Menu"], hasUnread);
     });
     libs.createEffect(() => {
       const cosmetics = playerCosmetics();
@@ -124,7 +123,7 @@ function useCosmeticRedPoints() {
         if (cosmeticInfo == undefined) continue;
         hasUnreadByType[cosmeticInfo.type] = true;
       }
-      setRedPointBatch(cosmeticRedPointTypes.map(type => ({
+      mining_activity_redpoints.setRedPointBatch(cosmeticRedPointTypes.map(type => ({
         path: ["cosmetic", getCosmeticMenuByType(type), type],
         value: !!hasUnreadByType[type]
       })));
@@ -153,13 +152,13 @@ CustomUIConfig.__equipmentRedPointState = {
   markEquipmentUnreadViewed
 };
 function useEquipmentRedPoints() {
-  defineRedPointRule("equipment", () => {
-    const newItems = createRedPointServiceData("player_unread_ids", {});
+  mining_activity_redpoints.defineRedPointRule("equipment", () => {
+    const newItems = mining_activity_redpoints.createRedPointServiceData("player_unread_ids", {});
     const newEquips = libs.createMemo(() => newItems()["equipment"] ?? {});
     const playerEquipments = equipment_utils.GetSimplifyEquipment();
-    const playerKeys = createRedPointServiceData("player_keys", {});
+    const playerKeys = mining_activity_redpoints.createRedPointServiceData("player_keys", {});
     const keyUnreadIds = solid_utils.createPlayerUnreadIds("key");
-    const playerDrawings = createRedPointServiceData("player_drawings", {});
+    const playerDrawings = mining_activity_redpoints.createRedPointServiceData("player_drawings", {});
     const drawingUnreadIds = solid_utils.createPlayerUnreadIds("drawing");
     libs.createEffect(() => {
       const unreads = newEquips();
@@ -181,19 +180,19 @@ function useEquipmentRedPoints() {
       const dismissed = dismissedEquipmentUnreadIDs();
       const playerEquips = playerEquipments();
       const hasUnread = Object.keys(unreads).some(id => playerEquips[id] != undefined && unreads[id] === true && dismissed[id] !== true);
-      setRedPoint(["equipment", "EquipmentTab_equip"], hasUnread);
+      mining_activity_redpoints.setRedPoint(["equipment", "EquipmentTab_equip"], hasUnread);
     });
     libs.createEffect(() => {
       const unreads = keyUnreadIds.unreadIds();
       const keys = playerKeys();
       const hasUnread = Object.keys(unreads).some(id => keys[id] != undefined && keyUnreadIds.isUnread(id));
-      setRedPoint(["equipment", "EquipmentTab_key"], hasUnread);
+      mining_activity_redpoints.setRedPoint(["equipment", "EquipmentTab_key"], hasUnread);
     });
     libs.createEffect(() => {
       const unreads = drawingUnreadIds.unreadIds();
       const drawings = playerDrawings();
       const hasUnread = Object.keys(unreads).some(id => drawings[id] != undefined && drawingUnreadIds.isUnread(id));
-      setRedPoint(["equipment", "EquipmentTab_drawing"], hasUnread);
+      mining_activity_redpoints.setRedPoint(["equipment", "EquipmentTab_drawing"], hasUnread);
     });
   });
 }
@@ -214,7 +213,7 @@ Object.entries(KeyValues.collection).forEach(([, data]) => {
   collectionTypeList[data.type][rarity] ??= [];
   collectionTypeList[data.type][rarity].push(data);
 });
-const fishGameData = createRedPointServiceData("player_idle_game_fish_data", {
+const fishGameData = mining_activity_redpoints.createRedPointServiceData("player_idle_game_fish_data", {
   equipment_level: 0,
   rod_level: 0,
   fish_bait: 0,
@@ -224,9 +223,9 @@ const fishGameData = createRedPointServiceData("player_idle_game_fish_data", {
   auto_switch_tools: false,
   aquarium_level: 0
 });
-const tokenData = createRedPointServiceData("player_tokens", {});
-const playerCouriers = createRedPointServiceData("player_couriers", {});
-const playerUnreadIDs = createRedPointServiceData("player_unread_ids", {});
+const tokenData = mining_activity_redpoints.createRedPointServiceData("player_tokens", {});
+const playerCouriers = mining_activity_redpoints.createRedPointServiceData("player_couriers", {});
+const playerUnreadIDs = mining_activity_redpoints.createRedPointServiceData("player_unread_ids", {});
 const playerPropertySystem = solid_utils.createPlayerPropertyData(() => Players.GetLocalPlayer());
 const [viewedFishingNoticeKeys, setViewedFishingNoticeKeys] = libs.createSignal({});
 const getFishingSlotUnlockNoticeKey = (type, index) => `slot_unlock_${type}_${index}`;
@@ -396,7 +395,7 @@ const hasFishingItemEntryRedPoint = () => {
   return canRodLevelUp() || hasOneTimeFishingToolNotice() || hasNewFishingToolNotice() || hasNewFishingCourierNotice() || hasEquipableFishingCourierNotice();
 };
 const refreshFishingItemEntryRedPoint = () => {
-  setRedPoint(["fishingitem", "FishingItem"], hasFishingItemEntryRedPoint());
+  mining_activity_redpoints.setRedPoint(["fishingitem", "FishingItem"], hasFishingItemEntryRedPoint());
 };
 const fishingRedPointState = {
   getFishingSlotUnlockNoticeKey,
@@ -430,13 +429,13 @@ function canAnyFishCollectionLevelUp(playerCollections) {
   return false;
 }
 function useFishingItemRedPoints() {
-  defineRedPointRule("fishingitem", () => {
-    const playerCollections = createRedPointServiceData("player_collections", {});
+  mining_activity_redpoints.defineRedPointRule("fishingitem", () => {
+    const playerCollections = mining_activity_redpoints.createRedPointServiceData("player_collections", {});
     libs.createEffect(libs.on([canRodLevelUp, hasOneTimeFishingToolNotice, hasNewFishingToolNotice, hasNewFishingCourierNotice, hasEquipableFishingCourierNotice], () => {
       refreshFishingItemEntryRedPoint();
     }));
     libs.createEffect(() => {
-      setRedPoint(["fishingitem", "Collection_Menu_fish"], canAnyFishCollectionLevelUp(playerCollections()));
+      mining_activity_redpoints.setRedPoint(["fishingitem", "Collection_Menu_fish"], canAnyFishCollectionLevelUp(playerCollections()));
     });
   });
 }
@@ -499,7 +498,7 @@ const clearHeroTalentRedPoints = () => {
   setViewedTalentSignatures(nextViewed);
   Players.SetPlayerSetting(HERO_TALENT_RED_POINT_VIEWED_SETTING_KEY, JSON.stringify(nextViewed));
   setTalentRedPoints({});
-  setRedPointBatch(Object.values(KeyValues.heroes).map(hero => ({
+  mining_activity_redpoints.setRedPointBatch(Object.values(KeyValues.heroes).map(hero => ({
     path: ["hero", "Hero_Menu", String(hero.HeroID), "Talent"],
     value: false
   })));
@@ -513,11 +512,11 @@ CustomUIConfig.__heroRedPointState = {
   clearHeroTalentRedPoints
 };
 function useHeroRedPoints() {
-  defineRedPointRule("hero", () => {
-    const playerHeroes = createRedPointServiceData("player_heroes", {});
-    const playerTokens = createRedPointServiceData("player_tokens", {});
-    const playerKeyValues = createRedPointServiceData("player_key_values", {});
-    const playerHeroStarRewardsReceiveRecords = createRedPointServiceData("player_hero_star_rewards_receive_records", {});
+  mining_activity_redpoints.defineRedPointRule("hero", () => {
+    const playerHeroes = mining_activity_redpoints.createRedPointServiceData("player_heroes", {});
+    const playerTokens = mining_activity_redpoints.createRedPointServiceData("player_tokens", {});
+    const playerKeyValues = mining_activity_redpoints.createRedPointServiceData("player_key_values", {});
+    const playerHeroStarRewardsReceiveRecords = mining_activity_redpoints.createRedPointServiceData("player_hero_star_rewards_receive_records", {});
     const playerAccountLevel = service_netdata_helper.usePlayerAccountLevel("hero_level");
     const heroLevel = () => playerAccountLevel().level ?? 0;
     soulRedPoints = libs.createMemo(() => {
@@ -623,7 +622,7 @@ function useHeroRedPoints() {
     libs.createEffect(() => {
       setTalentRedPoints(visibleTalentRedPoints());
     });
-    const playerWeapons = createRedPointServiceData("player_weapons", {});
+    const playerWeapons = mining_activity_redpoints.createRedPointServiceData("player_weapons", {});
     weaponRedPoints = libs.createMemo(() => {
       const weapons = playerWeapons();
       const result = {};
@@ -637,7 +636,7 @@ function useHeroRedPoints() {
       }
       return result;
     });
-    const playerCouriers = createRedPointServiceData("player_couriers", {});
+    const playerCouriers = mining_activity_redpoints.createRedPointServiceData("player_couriers", {});
     courierRedPoints = libs.createMemo(() => {
       const couriers = playerCouriers();
       const result = {};
@@ -683,7 +682,7 @@ function useHeroRedPoints() {
           value: !!courierRed[courierID]
         });
       }
-      setRedPointBatch(updates);
+      mining_activity_redpoints.setRedPointBatch(updates);
     }));
   });
 }
@@ -708,9 +707,9 @@ CustomUIConfig.__rankRedPointState = {
   }
 };
 function useRankRedPoints() {
-  defineRedPointRule("rank", () => {
-    const playerWeeklyPvpTasks = createRedPointServiceData("player_weekly_pvp_tasks", {});
-    const playerKeyValues = createRedPointServiceData("player_key_values", {});
+  mining_activity_redpoints.defineRedPointRule("rank", () => {
+    const playerWeeklyPvpTasks = mining_activity_redpoints.createRedPointServiceData("player_weekly_pvp_tasks", {});
+    const playerKeyValues = mining_activity_redpoints.createRedPointServiceData("player_key_values", {});
     const [serverTime, setServerTime] = libs.createSignal(Math.floor(CustomUIConfig.GetServerTimeStamp()));
     const serverTimeInterval = setInterval(() => {
       setServerTime(Math.floor(CustomUIConfig.GetServerTimeStamp()));
@@ -725,7 +724,7 @@ function useRankRedPoints() {
         if (task === undefined || weeklyTask.extra_id > task.extra_id) task = weeklyTask;
       }
       if (task === undefined) {
-        setRedPoint(["rank", "Ladder", "ladder_lobby", "LadderLobbyButtonStore"], false);
+        mining_activity_redpoints.setRedPoint(["rank", "Ladder", "ladder_lobby", "LadderLobbyButtonStore"], false);
         return;
       }
       const today = getBeijingDayStart(currentTime);
@@ -733,38 +732,28 @@ function useRankRedPoints() {
       const viewedToday = locallyViewedDay() === today || savedViewedDay === today;
       const canReceive = task.receive_progress != 1 && task.progress >= task.target;
       const needsGuide = task.receive_progress != 1 && task.progress < task.target && !viewedToday;
-      setRedPoint(["rank", "Ladder", "ladder_lobby", "LadderLobbyButtonStore"], canReceive || needsGuide);
-    });
-  });
-}
-
-function useMiningActivityRedPoints() {
-  defineRedPointRule("activity_mining", () => {
-    const playerActivityTasks = createRedPointServiceData("player_activity_tasks", {});
-    libs.createEffect(() => {
-      const hasClaimableReward = dig_veins_logic.hasClaimableDigVeinsTask(playerActivityTasks());
-      setRedPoint(["activity", "mining", "veins_game"], hasClaimableReward);
+      mining_activity_redpoints.setRedPoint(["rank", "Ladder", "ladder_lobby", "LadderLobbyButtonStore"], canReceive || needsGuide);
     });
   });
 }
 
 function useRuneRedPoints() {
-  defineRedPointRule("rune", () => {
-    const playerRunes = createRedPointServiceData("player_runes", {});
-    const playerEngravings = createRedPointServiceData("player_engravings", {});
+  mining_activity_redpoints.defineRedPointRule("rune", () => {
+    const playerRunes = mining_activity_redpoints.createRedPointServiceData("player_runes", {});
+    const playerEngravings = mining_activity_redpoints.createRedPointServiceData("player_engravings", {});
     const runeUnreadIds = solid_utils.createPlayerUnreadIds("rune");
     const engravingUnreadIds = solid_utils.createPlayerUnreadIds("engraving");
     libs.createEffect(() => {
       const unreads = runeUnreadIds.unreadIds();
       const runes = playerRunes();
       const hasUnread = Object.keys(unreads).some(id => runes[id] != undefined && runeUnreadIds.isUnread(id));
-      setRedPoint(["rune", "RuneEmbed_Menu"], hasUnread);
+      mining_activity_redpoints.setRedPoint(["rune", "RuneEmbed_Menu"], hasUnread);
     });
     libs.createEffect(() => {
       const unreads = engravingUnreadIds.unreadIds();
       const engravings = playerEngravings();
       const hasUnread = Object.keys(unreads).some(id => engravings[id] != undefined && engravingUnreadIds.isUnread(id));
-      setRedPoint(["rune", "RuneInlay_Menu"], hasUnread);
+      mining_activity_redpoints.setRedPoint(["rune", "RuneInlay_Menu"], hasUnread);
     });
   });
 }
@@ -826,14 +815,14 @@ function hasClaimableVipReward(playerAccountLevels, rewardReceiveRecordsRaw) {
   });
 }
 function useStoreRedPoints() {
-  defineRedPointRule("store", () => {
-    const infoProducts = createRedPointServiceData("info_products", {});
+  mining_activity_redpoints.defineRedPointRule("store", () => {
+    const infoProducts = mining_activity_redpoints.createRedPointServiceData("info_products", {});
     const playerPrivileges = solid_utils.createPlayerNetDataSignal("common", "player_privileges", {});
-    const purchasedProduct = createRedPointServiceData("player_shop_product_limits", {});
-    const playerCollectionTreasures = createRedPointServiceData("player_collection_treasures", {});
-    const playerAccountLevels = createRedPointServiceData("player_account_levels", {});
-    const rewardReceiveRecordsRaw = createRedPointServiceData("player_account_level_rewards_receive_records", {});
-    const playerMoonstoneActivityData = createRedPointServiceData("player_moonstone_activity_data", {});
+    const purchasedProduct = mining_activity_redpoints.createRedPointServiceData("player_shop_product_limits", {});
+    const playerCollectionTreasures = mining_activity_redpoints.createRedPointServiceData("player_collection_treasures", {});
+    const playerAccountLevels = mining_activity_redpoints.createRedPointServiceData("player_account_levels", {});
+    const rewardReceiveRecordsRaw = mining_activity_redpoints.createRedPointServiceData("player_account_level_rewards_receive_records", {});
+    const playerMoonstoneActivityData = mining_activity_redpoints.createRedPointServiceData("player_moonstone_activity_data", {});
     const storeItemData = libs.createMemo(() => buildStoreItemData(infoProducts()));
     const menuKeys = libs.createMemo(() => Array.from(new Set([...Object.keys(storeItemData()).filter(tag => !separatedStoreTags.has(tag)), ...staticStoreMenus])).sort((a, b) => getStoreMenuOrder(a) - getStoreMenuOrder(b)));
     libs.createEffect(libs.on([storeItemData, purchasedProduct, playerPrivileges], () => {
@@ -847,13 +836,13 @@ function useStoreRedPoints() {
           value: StoreTagPage.hasFreeStoreTagItem(dataList, purchased, playerPrivileges())
         });
       }
-      setRedPointBatch(updates);
+      mining_activity_redpoints.setRedPointBatch(updates);
     }));
     libs.createEffect(() => {
-      setRedPoint(["store", "collection_treasure"], canAnyTreasureLevelUp(playerCollectionTreasures()));
+      mining_activity_redpoints.setRedPoint(["store", "collection_treasure"], canAnyTreasureLevelUp(playerCollectionTreasures()));
     });
     libs.createEffect(() => {
-      setRedPoint(["store", "collection_vip"], hasClaimableVipReward(playerAccountLevels(), rewardReceiveRecordsRaw()));
+      mining_activity_redpoints.setRedPoint(["store", "collection_vip"], hasClaimableVipReward(playerAccountLevels(), rewardReceiveRecordsRaw()));
     });
     libs.createEffect(() => {
       const activityID = "901";
@@ -863,7 +852,7 @@ function useStoreRedPoints() {
       const receivedRewardIDs = Array.isArray(received) ? received.map(Number) : String(received ?? "").split(",").filter(Boolean).map(Number);
       const progress = Number(activityData?.extra_num ?? 0);
       const hasClaimableReward = KeyValues.drawcards["3001"] != undefined && rewards.some(reward => !receivedRewardIDs.includes(reward.reward_id) && progress >= reward.num);
-      setRedPoint(["store", "Universe", "SeaMysteryTask"], hasClaimableReward);
+      mining_activity_redpoints.setRedPoint(["store", "Universe", "SeaMysteryTask"], hasClaimableReward);
     });
   });
 }
@@ -876,7 +865,7 @@ function RedPointCenter() {
   useFishingItemRedPoints();
   useHeroRedPoints();
   useRankRedPoints();
-  useMiningActivityRedPoints();
+  mining_activity_redpoints.useMiningActivityRedPoints();
   useRuneRedPoints();
   useStoreRedPoints();
   return libs.createElement("Panel", {

@@ -92,6 +92,9 @@ end
 function F.prototype.IsRunning(self, I)
 	return self.state == "running" and e(self.participantPlayerIds, I)
 end
+function F.prototype.IsActiveEnemy(self, J)
+	return self.state == "running" and e(self.enemies, J)
+end
 function F.prototype.HandleAllPlayersDead(self)
 	if self.state ~= "running" then
 		return false
@@ -99,34 +102,34 @@ function F.prototype.HandleAllPlayersDead(self)
 	self:FinishBattle("failed", "AllPlayersDead")
 	return true
 end
-function F.prototype.Start(self, H, J, K)
+function F.prototype.Start(self, H, K, L)
 	self:Stop("Restart", { unloadScene = true })
-	local L, M = self, "runId"
-	local N = L[M] + 1
-	L[M] = N
-	local O = N
+	local M, N = self, "runId"
+	local O = M[N] + 1
+	M[N] = O
+	local P = O
 	self.state = "loading"
 	self.difficulty = H
-	self.participantPlayerIds = f(J)
+	self.participantPlayerIds = f(K)
 	self:ResetBattleProgressState()
 	self:ResetSettlementRuntime()
 	do
-		local P = 0
-		while P < #self.participantPlayerIds do
-			self:ClearPlayerSettlementPreview(self.participantPlayerIds[P + 1])
-			P = P + 1
+		local Q = 0
+		while Q < #self.participantPlayerIds do
+			self:ClearPlayerSettlementPreview(self.participantPlayerIds[Q + 1])
+			Q = Q + 1
 		end
 	end
 	self:CalculateDifficultyModifiers()
-	local Q = self.difficultyConfigByNumber[self.difficulty]
-	if Q == nil then
+	local R = self.difficultyConfigByNumber[self.difficulty]
+	if R == nil then
 		self:error(
 			(self.logPrefix .. " start failed: difficulty config missing difficulty=") .. tostring(self.difficulty)
 		)
 		self:Stop("DifficultyMissing", { unloadScene = true })
 		return
 	end
-	self.maxLevel = Q.maxLevel
+	self.maxLevel = R.maxLevel
 	self.currentLevel = 1
 	self:SyncState()
 	self:print(
@@ -134,18 +137,18 @@ function F.prototype.Start(self, H, J, K)
 			(
 				(
 					(
-						((((self.logPrefix .. " start run=") .. tostring(O)) .. " difficulty=") .. tostring(H))
+						((((self.logPrefix .. " start run=") .. tostring(P)) .. " difficulty=") .. tostring(H))
 						.. " maxLevel="
 					) .. tostring(self.maxLevel)
 				) .. " players=["
 			) .. table.concat(self.participantPlayerIds, ",")
 		) .. "]"
 	)
-	self.battleCenter = Vector(K.x, K.y, K.z)
-	local R = self:GetBattlePrefabName()
+	self.battleCenter = Vector(L.x, L.y, L.z)
+	local S = self:GetBattlePrefabName()
 	DungeonManager:ShowLoadingScreen()
-	self.spawnGroup = DOTA_SpawnMapAtPosition(R, K, true, function(S)
-		if not self:IsActiveRun(O) then
+	self.spawnGroup = DOTA_SpawnMapAtPosition(S, L, true, function(T)
+		if not self:IsActiveRun(P) then
 			return
 		end
 		self:print(
@@ -153,75 +156,75 @@ function F.prototype.Start(self, H, J, K)
 				(
 					(
 						(
-							((((self.logPrefix .. " ready to spawn prefab=") .. R) .. " loadPoint=(") .. tostring(K.x))
+							((((self.logPrefix .. " ready to spawn prefab=") .. S) .. " loadPoint=(") .. tostring(L.x))
 							.. ","
-						) .. tostring(K.y)
+						) .. tostring(L.y)
 					) .. ","
-				) .. tostring(K.z)
+				) .. tostring(L.z)
 			) .. ")"
 		)
-		ManuallyTriggerSpawnGroupCompletion(S)
+		ManuallyTriggerSpawnGroupCompletion(T)
 	end, function()
-		if not self:IsActiveRun(O) then
+		if not self:IsActiveRun(P) then
 			return
 		end
-		self:OnMapLoaded(O)
+		self:OnMapLoaded(P)
 		DungeonManager:HideLoadingScreen()
 	end, nil)
 end
-function F.prototype.Stop(self, T, U)
-	if T == nil then
-		T = "Manual"
+function F.prototype.Stop(self, U, V)
+	if U == nil then
+		U = "Manual"
 	end
-	local V = (U and U.unloadScene) ~= false
-	local W = self:StopGameplay(T)
-	local X = V and self:UnloadScene(T)
-	if W or X then
-		self:print((((self.logPrefix .. " stopped reason=") .. T) .. " unloadScene=") .. tostring(V))
+	local W = (V and V.unloadScene) ~= false
+	local X = self:StopGameplay(U)
+	local Y = W and self:UnloadScene(U)
+	if X or Y then
+		self:print((((self.logPrefix .. " stopped reason=") .. U) .. " unloadScene=") .. tostring(W))
 	end
-	if (W or X) and T ~= "ReceiveRewardsCompleted" and T ~= "AllPlayersReturned" and T ~= "Restart" then
+	if (X or Y) and U ~= "ReceiveRewardsCompleted" and U ~= "AllPlayersReturned" and U ~= "Restart" then
 		DungeonAdventure:CancelBattle("gem")
 	end
 end
-function F.prototype.StopGameplay(self, T)
-	if T == nil then
-		T = "Manual"
+function F.prototype.StopGameplay(self, U)
+	if U == nil then
+		U = "Manual"
 	end
-	local W = self.state == "loading" or self.state == "running"
+	local X = self.state == "loading" or self.state == "running"
 	self.runId = self.runId + 1
 	self.state = "finished"
 	self:ClearRuntimeState()
-	if W then
-		self:print((self.logPrefix .. " gameplay stopped reason=") .. T)
+	if X then
+		self:print((self.logPrefix .. " gameplay stopped reason=") .. U)
 	end
-	return W
+	return X
 end
-function F.prototype.UnloadScene(self, T)
-	if T == nil then
-		T = "Manual"
+function F.prototype.UnloadScene(self, U)
+	if U == nil then
+		U = "Manual"
 	end
 	if self.spawnGroup == nil then
 		return false
 	end
 	UnloadSpawnGroupByHandle(self.spawnGroup)
 	self.spawnGroup = nil
-	self:print((self.logPrefix .. " scene unloaded reason=") .. T)
+	self:print((self.logPrefix .. " scene unloaded reason=") .. U)
 	return true
 end
-function F.prototype.OnMapLoaded(self, O)
-	local R = self:GetBattlePrefabName()
-	self:print((self.logPrefix .. " prefab loaded prefab=") .. R)
-	local Y = t(nil, self.spawnGroup, w)
-	if Y == nil then
+function F.prototype.OnMapLoaded(self, P)
+	local S = self:GetBattlePrefabName()
+	self:print((self.logPrefix .. " prefab loaded prefab=") .. S)
+	local Z = t(nil, self.spawnGroup, w)
+	if Z == nil then
 		self:error(((self.logPrefix .. " start failed: enter point '") .. w) .. "' not found in gem spawn group")
 		self:Stop("EnterPointMissing", { unloadScene = true })
 		return
 	end
-	self.enterPosition = Y.position
-	self.entrancePrefix = Y.prefix
-	local Z = t(nil, self.spawnGroup, x)
-	self.exitPosition = Z and Z.position or self.enterPosition
-	self.exitPrefix = Z and Z.prefix
+	self.enterPosition = Z.position
+	self.entrancePrefix = Z.prefix
+	local _ = t(nil, self.spawnGroup, x)
+	self.exitPosition = _ and _.position or self.enterPosition
+	self.exitPrefix = _ and _.prefix
 	self:AnalyzeGrid()
 	self:TeleportPlayers(self.enterPosition)
 	self.state = "running"
@@ -238,7 +241,7 @@ function F.prototype.OnMapLoaded(self, O)
 								(
 									(
 										(
-											(((self.logPrefix .. " running run=") .. tostring(O)) .. " level=")
+											(((self.logPrefix .. " running run=") .. tostring(P)) .. " level=")
 											.. tostring(self.currentLevel)
 										) .. " maxLevel="
 									) .. tostring(self.maxLevel)
@@ -251,33 +254,33 @@ function F.prototype.OnMapLoaded(self, O)
 		) .. ")"
 	)
 end
-function F.prototype.TeleportPlayers(self, _)
-	local a0 = self:GetParticipantHeroes()
+function F.prototype.TeleportPlayers(self, a0)
+	local a1 = self:GetParticipantHeroes()
 	do
-		local P = 0
-		while P < #a0 do
+		local Q = 0
+		while Q < #a1 do
 			do
-				local a1 = a0[P + 1]
-				if not IsValid(a1) then
-					goto a2
+				local a2 = a1[Q + 1]
+				if not IsValid(a2) then
+					goto a3
 				end
-				local a3 = _
-				if #a0 > 1 then
-					local a4 = (P - (#a0 - 1) / 2) * y
-					a3 = Vector(_.x + a4, _.y, _.z)
+				local a4 = a0
+				if #a1 > 1 then
+					local a5 = (Q - (#a1 - 1) / 2) * y
+					a4 = Vector(a0.x + a5, a0.y, a0.z)
 				end
-				FindClearSpaceForUnit(a1, a3, true)
-				a1:SetForwardVector(vec3_top)
-				a1:StartGesture(ACT_DOTA_TELEPORT_END)
-				local a5 = PlayerResource:GetPlayer(a1:GetPlayerOwnerID())
-				if a5 ~= nil then
+				FindClearSpaceForUnit(a2, a4, true)
+				a2:SetForwardVector(vec3_top)
+				a2:StartGesture(ACT_DOTA_TELEPORT_END)
+				local a6 = PlayerResource:GetPlayer(a2:GetPlayerOwnerID())
+				if a6 ~= nil then
 					CustomGameEventManager:Send_ServerToPlayer(
-						a5,
+						a6,
 						"camera_follow_hero",
-						{ transitionDuration = 0.2, x = a3.x, y = a3.y, z = a3.z }
+						{ transitionDuration = 0.2, x = a4.x, y = a4.y, z = a4.z }
 					)
 				end
-				local a6 = a1:GetAbsOrigin()
+				local a7 = a2:GetAbsOrigin()
 				self:print(
 					(
 						(
@@ -295,99 +298,99 @@ function F.prototype.TeleportPlayers(self, _)
 																		(
 																			(
 																				(self.logPrefix .. " teleport hero=")
-																				.. a1:GetUnitName()
+																				.. a2:GetUnitName()
 																			) .. " player="
 																		)
-																		.. tostring(a1:GetPlayerOwnerID())
+																		.. tostring(a2:GetPlayerOwnerID())
 																	) .. " targetPosition=("
-																) .. tostring(a3.x)
+																) .. tostring(a4.x)
 															) .. ","
-														) .. tostring(a3.y)
+														) .. tostring(a4.y)
 													) .. ","
-												) .. tostring(a3.z)
+												) .. tostring(a4.z)
 											) .. ") position=("
-										) .. tostring(a6.x)
+										) .. tostring(a7.x)
 									) .. ","
-								) .. tostring(a6.y)
+								) .. tostring(a7.y)
 							) .. ","
-						) .. tostring(a6.z)
+						) .. tostring(a7.z)
 					) .. ")"
 				)
 			end
-			::a2::
-			P = P + 1
+			::a3::
+			Q = Q + 1
 		end
 	end
 end
 function F.prototype.GetParticipantHeroes(self)
-	local a0 = {}
+	local a1 = {}
 	do
-		local P = 0
-		while P < #self.participantPlayerIds do
-			local a1 = PlayerResource:GetSelectedHeroEntity(self.participantPlayerIds[P + 1])
-			if IsValid(a1) and a1:IsRealHero() and a1:GetTeamNumber() == DOTA_TEAM_GOODGUYS then
-				a0[#a0 + 1] = a1
+		local Q = 0
+		while Q < #self.participantPlayerIds do
+			local a2 = PlayerResource:GetSelectedHeroEntity(self.participantPlayerIds[Q + 1])
+			if IsValid(a2) and a2:IsRealHero() and a2:GetTeamNumber() == DOTA_TEAM_GOODGUYS then
+				a1[#a1 + 1] = a2
 			end
-			P = P + 1
+			Q = Q + 1
 		end
 	end
-	return a0
+	return a1
 end
 function F.prototype.StartCurrentLevel(self)
-	local a7 = self.levelConfigByNumber[self.currentLevel]
-	if a7 == nil then
+	local a8 = self.levelConfigByNumber[self.currentLevel]
+	if a8 == nil then
 		self:error((self.logPrefix .. " level config missing level=") .. tostring(self.currentLevel))
 		self:FinishBattle("failed", "LevelConfigMissing")
 		return
 	end
 	self:StopAttackTimer()
-	local a8, a9 = self, "levelSpawnId"
-	local aa = a8[a9] + 1
-	a8[a9] = aa
-	local ab = aa
+	local a9, aa = self, "levelSpawnId"
+	local ab = a9[aa] + 1
+	a9[aa] = ab
+	local ac = ab
 	self.currentWave = 0
 	self.pendingEnemySpawnCount = 0
 	self:ClearEnemies()
 	self.levelTotalEnemyCount = 0
 	do
-		local P = 0
-		while P < #a7.waves do
-			local ac, ad = self, "levelTotalEnemyCount"
-			local ae = a7.waves[P + 1]
-			ac[ad] = ac[ad] + (ae and ae.enemyCount or 0)
-			P = P + 1
+		local Q = 0
+		while Q < #a8.waves do
+			local ad, ae = self, "levelTotalEnemyCount"
+			local af = a8.waves[Q + 1]
+			ad[ae] = ad[ae] + (af and af.enemyCount or 0)
+			Q = Q + 1
 		end
 	end
 	self.attackEndTime = nil
 	self:SyncState()
-	self:StartNextWave(a7, ab)
+	self:StartNextWave(a8, ac)
 	self:print(
 		(
 			(
 				(
 					(
 						(((self.logPrefix .. " level started level=") .. tostring(self.currentLevel)) .. " waves=")
-						.. tostring(#a7.waves)
+						.. tostring(#a8.waves)
 					) .. " healthFactor="
-				) .. tostring(a7.healthFactor)
+				) .. tostring(a8.healthFactor)
 			) .. " damageFactor="
-		) .. tostring(a7.damageFactor)
+		) .. tostring(a8.damageFactor)
 	)
 end
-function F.prototype.StartNextWave(self, a7, ab)
-	if self.state ~= "running" or self.levelSpawnId ~= ab then
+function F.prototype.StartNextWave(self, a8, ac)
+	if self.state ~= "running" or self.levelSpawnId ~= ac then
 		return
 	end
 	self.currentWave = self.currentWave + 1
 	self.pendingEnemySpawnCount = 0
 	self.currentWaveSuccessfulSpawnCount = 0
-	local af = a7.waves[self.currentWave]
-	if af == nil then
+	local ag = a8.waves[self.currentWave]
+	if ag == nil then
 		self:OnLevelCleared()
 		return
 	end
-	local ag = g(v, af.enemyList)
-	if ag.ValidCount <= 0 then
+	local ah = g(v, ag.enemyList)
+	if ah.ValidCount <= 0 then
 		self:error(
 			(
 				(
@@ -400,26 +403,26 @@ function F.prototype.StartNextWave(self, a7, ab)
 								) .. " wave="
 							) .. tostring(self.currentWave)
 						) .. "/"
-					) .. tostring(#a7.waves)
+					) .. tostring(#a8.waves)
 				) .. " pool="
-			) .. af.poolName
+			) .. ag.poolName
 		)
 		self:FinishBattle("failed", "EnemyPoolEmpty")
 		return
 	end
-	local ah = af.enemyCount
-	local ai = {}
+	local ai = ag.enemyCount
+	local aj = {}
 	do
-		local P = 0
-		while P < #self.validGridPositions do
-			local a6 = self.validGridPositions[P + 1]
-			if a6 ~= nil and self:IsValidSpawnPosition(a6) then
-				ai[#ai + 1] = a6
+		local Q = 0
+		while Q < #self.validGridPositions do
+			local a7 = self.validGridPositions[Q + 1]
+			if a7 ~= nil and self:IsValidSpawnPosition(a7) then
+				aj[#aj + 1] = a7
 			end
-			P = P + 1
+			Q = Q + 1
 		end
 	end
-	if #ai <= 0 then
+	if #aj <= 0 then
 		self:error(
 			(
 				(
@@ -432,41 +435,41 @@ function F.prototype.StartNextWave(self, a7, ab)
 								) .. " wave="
 							) .. tostring(self.currentWave)
 						) .. "/"
-					) .. tostring(#a7.waves)
+					) .. tostring(#a8.waves)
 				) .. " pool="
-			) .. af.poolName
+			) .. ag.poolName
 		)
 		self:FinishBattle("failed", "NoValidSpawnPosition")
 		return
 	end
-	local aj = {}
+	local ak = {}
 	do
-		local P = 0
-		while P < ah do
+		local Q = 0
+		while Q < ai do
 			do
-				local ak = ag:Random()
-				if ak == nil then
+				local al = ah:Random()
+				if al == nil then
 					break
 				end
-				local al = ai[P % #ai + 1]
-				if al == nil then
+				local am = aj[Q % #aj + 1]
+				if am == nil then
 					self:print(
 						(
 							(
 								(self.logPrefix .. " spawn skipped: no valid position level=")
 								.. tostring(self.currentLevel)
 							) .. " unit="
-						) .. ak
+						) .. al
 					)
-					goto am
+					goto an
 				end
-				aj[#aj + 1] = { unitName = tostring(ak), spawnPos = al }
+				ak[#ak + 1] = { unitName = tostring(al), spawnPos = am }
 			end
-			::am::
-			P = P + 1
+			::an::
+			Q = Q + 1
 		end
 	end
-	if #aj ~= ah then
+	if #ak ~= ai then
 		self:error(
 			(
 				(
@@ -485,25 +488,25 @@ function F.prototype.StartNextWave(self, a7, ab)
 												) .. " wave="
 											) .. tostring(self.currentWave)
 										) .. "/"
-									) .. tostring(#a7.waves)
+									) .. tostring(#a8.waves)
 								) .. " pool="
-							) .. af.poolName
+							) .. ag.poolName
 						) .. " planned="
-					) .. tostring(ah)
+					) .. tostring(ai)
 				) .. " actual="
-			) .. tostring(#aj)
+			) .. tostring(#ak)
 		)
 		self:FinishBattle("failed", "SpawnRequestIncomplete")
 		return
 	end
-	self.pendingEnemySpawnCount = #aj
+	self.pendingEnemySpawnCount = #ak
 	self:SyncState()
 	do
-		local P = 0
-		while P < #aj do
-			local an = aj[P + 1]
-			self:SpawnEnemy(an.unitName, an.spawnPos, a7, af, ab)
-			P = P + 1
+		local Q = 0
+		while Q < #ak do
+			local ao = ak[Q + 1]
+			self:SpawnEnemy(ao.unitName, ao.spawnPos, a8, ag, ac)
+			Q = Q + 1
 		end
 	end
 	self:print(
@@ -520,26 +523,26 @@ function F.prototype.StartNextWave(self, a7, ab)
 											.. " wave="
 										) .. tostring(self.currentWave)
 									) .. "/"
-								) .. tostring(#a7.waves)
+								) .. tostring(#a8.waves)
 							) .. " pool="
-						) .. af.poolName
+						) .. ag.poolName
 					) .. " spawnRequests="
-				) .. tostring(#aj)
+				) .. tostring(#ak)
 			) .. " healthFactor="
-		) .. tostring(af.healthFactor)
+		) .. tostring(ag.healthFactor)
 	)
 end
-function F.prototype.SpawnEnemy(self, ak, al, a7, af, ab)
-	CreateUnitByNameAsync(ak, al, true, nil, nil, DOTA_TEAM_BADGUYS, function(ao)
-		if self.state ~= "running" or self.levelSpawnId ~= ab then
-			if IsValid(ao) then
-				self:RemoveUnit(ao)
+function F.prototype.SpawnEnemy(self, al, am, a8, ag, ac)
+	CreateUnitByNameAsync(al, am, true, nil, nil, DOTA_TEAM_BADGUYS, function(ap)
+		if self.state ~= "running" or self.levelSpawnId ~= ac then
+			if IsValid(ap) then
+				self:RemoveUnit(ap)
 			end
 			return
 		end
 		self.pendingEnemySpawnCount = math.max(0, self.pendingEnemySpawnCount - 1)
-		if not IsValid(ao) then
-			self:error((((self.logPrefix .. " spawn failed unit=") .. ak) .. " level=") .. tostring(self.currentLevel))
+		if not IsValid(ap) then
+			self:error((((self.logPrefix .. " spawn failed unit=") .. al) .. " level=") .. tostring(self.currentLevel))
 			if self.pendingEnemySpawnCount <= 0 and self.currentWaveSuccessfulSpawnCount <= 0 then
 				self:FinishBattle("failed", "EnemyWaveSpawnFailed")
 				return
@@ -548,11 +551,11 @@ function F.prototype.SpawnEnemy(self, ak, al, a7, af, ab)
 			return
 		end
 		self.currentWaveSuccessfulSpawnCount = self.currentWaveSuccessfulSpawnCount + 1
-		FindClearSpaceForUnit(ao, al, true)
-		ao:SetForwardVector(RandomVector(1))
-		self:ApplyLevelModifiers(ao, a7, af)
-		local ap = self.enemies
-		ap[#ap + 1] = ao
+		FindClearSpaceForUnit(ap, am, true)
+		ap:SetForwardVector(RandomVector(1))
+		self:ApplyLevelModifiers(ap, a8, ag)
+		local aq = self.enemies
+		aq[#aq + 1] = ap
 		if self.attackEndTime == nil then
 			self:StartAttackTimer()
 		end
@@ -564,31 +567,31 @@ function F.prototype.TryCompleteCurrentWave(self)
 	if self.state ~= "running" or self.pendingEnemySpawnCount > 0 or #self.enemies > 0 then
 		return
 	end
-	local a7 = self.levelConfigByNumber[self.currentLevel]
-	if a7 ~= nil and self.currentWave < #a7.waves then
-		self:StartNextWave(a7, self.levelSpawnId)
+	local a8 = self.levelConfigByNumber[self.currentLevel]
+	if a8 ~= nil and self.currentWave < #a8.waves then
+		self:StartNextWave(a8, self.levelSpawnId)
 		return
 	end
 	self:OnLevelCleared()
 end
-function F.prototype.ApplyLevelModifiers(self, ao, a7, af)
-	local aq = DungeonManager:GetDifficultyKeyHealthFactor()
-	local ar = DungeonManager:GetDifficultyKeyDamageFactor()
-	local as = (1 + self.difficultyHealthAmplify / 100) * a7.healthFactor * af.healthFactor * aq
-	local at = (1 + self.difficultyDamageAmplify / 100) * a7.damageFactor * ar
-	local au = (as - 1) * 100
+function F.prototype.ApplyLevelModifiers(self, ap, a8, ag)
+	local ar = DungeonManager:GetDifficultyKeyHealthFactor()
+	local as = DungeonManager:GetDifficultyKeyDamageFactor()
+	local at = (1 + self.difficultyHealthAmplify / 100) * a8.healthFactor * ag.healthFactor * ar
+	local au = (1 + self.difficultyDamageAmplify / 100) * a8.damageFactor * as
 	local av = (at - 1) * 100
-	if au ~= 0 then
-		ao:AddProperty(PropertyFunction.HEALTH_AMPLIFY, au)
-	end
+	local aw = (au - 1) * 100
 	if av ~= 0 then
-		ao:AddProperty(PropertyFunction.ATTACK_AMPLIFY, av)
+		ap:AddProperty(PropertyFunction.HEALTH_AMPLIFY, av)
 	end
-	DungeonManager:ApplyDifficultyKeyDebuffs(ao)
+	if aw ~= 0 then
+		ap:AddProperty(PropertyFunction.ATTACK_AMPLIFY, aw)
+	end
+	DungeonManager:ApplyDifficultyKeyDebuffs(ap)
 end
 function F.prototype.CalculateDifficultyModifiers(self)
-	local aw = KeyValues.difficulty[tostring(self.difficulty)]
-	if aw == nil then
+	local ax = KeyValues.difficulty[tostring(self.difficulty)]
+	if ax == nil then
 		self.difficultyHealthAmplify = 0
 		self.difficultyDamageAmplify = 0
 		self:error(
@@ -597,10 +600,10 @@ function F.prototype.CalculateDifficultyModifiers(self)
 		)
 		return
 	end
-	local ax = toFiniteNumber(aw.HealthFactor, 1)
-	local ay = toFiniteNumber(aw.DamageFactor, 1)
-	self.difficultyHealthAmplify = (ax - 1) * 100
-	self.difficultyDamageAmplify = (ay - 1) * 100
+	local ay = toFiniteNumber(ax.HealthFactor, 1)
+	local az = toFiniteNumber(ax.DamageFactor, 1)
+	self.difficultyHealthAmplify = (ay - 1) * 100
+	self.difficultyDamageAmplify = (az - 1) * 100
 end
 function F.prototype.StartAttackTimer(self)
 	self:StopAttackTimer()
@@ -632,28 +635,28 @@ function F.prototype.RegisterKillListener(self)
 		return self:OnEntityKilled(...)
 	end, self)
 end
-function F.prototype.OnEntityKilled(self, az)
+function F.prototype.OnEntityKilled(self, aA)
 	if self.state ~= "running" then
 		return
 	end
-	local aA = EntIndexToHScript(az.entindex_killed)
-	if not IsValid(aA) then
+	local aB = EntIndexToHScript(aA.entindex_killed)
+	if not IsValid(aB) then
 		return
 	end
 	do
-		local P = 0
-		while P < #self.enemies do
+		local Q = 0
+		while Q < #self.enemies do
 			do
-				if self.enemies[P + 1] ~= aA then
-					goto aB
+				if self.enemies[Q + 1] ~= aB then
+					goto aC
 				end
-				table.remove(self.enemies, P + 1)
+				table.remove(self.enemies, Q + 1)
 				self:SyncState()
 				self:TryCompleteCurrentWave()
 				return
 			end
-			::aB::
-			P = P + 1
+			::aC::
+			Q = Q + 1
 		end
 	end
 end
@@ -673,34 +676,34 @@ function F.prototype.OnLevelCleared(self)
 	self:print((self.logPrefix .. " level cleared nextLevel=") .. tostring(self.currentLevel))
 	self:StartCurrentLevel()
 end
-function F.prototype.FinishBattle(self, aC, T)
+function F.prototype.FinishBattle(self, aD, U)
 	if self.state == "finished" then
 		return
 	end
 	self.state = "finished"
-	self.result = aC
+	self.result = aD
 	self.levelSpawnId = self.levelSpawnId + 1
 	self.pendingEnemySpawnCount = 0
 	self:StopAttackTimer()
 	self.attackEndTime = nil
 	self:ClearEnemies()
 	self.levelTotalEnemyCount = 0
-	local aD = self.battleCenter or self.exitPosition or self.enterPosition
-	self:StartSettlementReviveCheck(aD)
-	self:CreateSettlementChests(aD)
+	local aE = self.battleCenter or self.exitPosition or self.enterPosition
+	self:StartSettlementReviveCheck(aE)
+	self:CreateSettlementChests(aE)
 	self:SyncState()
 	self:print(
 		(
 			(
-				(((((self.logPrefix .. " battle finished result=") .. aC) .. " reason=") .. T) .. " level=")
+				(((((self.logPrefix .. " battle finished result=") .. aD) .. " reason=") .. U) .. " level=")
 				.. tostring(self.currentLevel)
 			) .. " maxLevel="
 		) .. tostring(self.maxLevel)
 	)
 end
-function F.prototype.StartSettlementReviveCheck(self, a6)
+function F.prototype.StartSettlementReviveCheck(self, a7)
 	self:StopSettlementReviveTimer()
-	if a6 == nil then
+	if a7 == nil then
 		self:error(self.logPrefix .. " settlement failed: reward position is undefined")
 		return
 	end
@@ -709,43 +712,43 @@ function F.prototype.StartSettlementReviveCheck(self, a6)
 		if self.state ~= "finished" then
 			return
 		end
-		self:ReviveDeadParticipantsForSettlement(a6)
+		self:ReviveDeadParticipantsForSettlement(a7)
 	end)
 end
-function F.prototype.ReviveDeadParticipantsForSettlement(self, a6)
+function F.prototype.ReviveDeadParticipantsForSettlement(self, a7)
 	do
-		local P = 0
-		while P < #self.participantPlayerIds do
+		local Q = 0
+		while Q < #self.participantPlayerIds do
 			do
-				local I = self.participantPlayerIds[P + 1]
-				local a1 = PlayerResource:GetSelectedHeroEntity(I)
-				if not IsValid(a1) or not a1:IsRealHero() then
-					goto aE
+				local I = self.participantPlayerIds[Q + 1]
+				local a2 = PlayerResource:GetSelectedHeroEntity(I)
+				if not IsValid(a2) or not a2:IsRealHero() then
+					goto aF
 				end
-				if a1:IsAlive() then
-					goto aE
+				if a2:IsAlive() then
+					goto aF
 				end
-				local a3 =
-					GetGroundPosition(Vector(a6.x + (P - (#self.participantPlayerIds - 1) / 2) * y, a6.y, a6.z), nil)
-				a1:SetRespawnPosition(a3)
-				a1:AddNewModifier(a1, nil, "modifier_respawn", { duration = 3 }, AddModifierFlag.IGNORE_DEATH)
-				a1:RespawnHero(false, false)
-				a1:SetHealth(a1:GetMaxHealth())
-				FindClearSpaceForUnit(a1, a3, true)
-				a1:SetForwardVector(vec3_top)
-				a1:StartGesture(ACT_DOTA_TELEPORT_END)
-				local a5 = PlayerResource:GetPlayer(I)
-				if a5 ~= nil then
+				local a4 =
+					GetGroundPosition(Vector(a7.x + (Q - (#self.participantPlayerIds - 1) / 2) * y, a7.y, a7.z), nil)
+				a2:SetRespawnPosition(a4)
+				a2:AddNewModifier(a2, nil, "modifier_respawn", { duration = 3 }, AddModifierFlag.IGNORE_DEATH)
+				a2:RespawnHero(false, false)
+				a2:SetHealth(a2:GetMaxHealth())
+				FindClearSpaceForUnit(a2, a4, true)
+				a2:SetForwardVector(vec3_top)
+				a2:StartGesture(ACT_DOTA_TELEPORT_END)
+				local a6 = PlayerResource:GetPlayer(I)
+				if a6 ~= nil then
 					CustomGameEventManager:Send_ServerToPlayer(
-						a5,
+						a6,
 						"camera_follow_hero",
-						{ transitionDuration = 0.2, x = a3.x, y = a3.y, z = a3.z }
+						{ transitionDuration = 0.2, x = a4.x, y = a4.y, z = a4.z }
 					)
 				end
 				self:print((self.logPrefix .. " revived participant for settlement player=") .. tostring(I))
 			end
-			::aE::
-			P = P + 1
+			::aF::
+			Q = Q + 1
 		end
 	end
 end
@@ -755,35 +758,35 @@ function F.prototype.StopSettlementReviveTimer(self)
 		self.settlementReviveTimerId = nil
 	end
 end
-function F.prototype.CreateSettlementChests(self, a6)
-	if a6 == nil then
+function F.prototype.CreateSettlementChests(self, a7)
+	if a7 == nil then
 		return
 	end
 	self:ClearSettlementChests()
-	local aF = GetGroundPosition(a6, nil)
+	local aG = GetGroundPosition(a7, nil)
 	do
-		local P = 0
-		while P < #self.participantPlayerIds do
-			local I = self.participantPlayerIds[P + 1]
-			local aG = g(q, I, "9900000", aF, { 0, 0 })
-			EmitSoundOnLocationForPlayer("Drop.Gem", aF, I)
-			local aH = self.settlementRuntime.clientItems
-			aH[#aH + 1] = aG
-			local aI = Interaction:RegisterInteract(aG.entity, InteractType.BossChest, 200, function()
-				if not aG:IsLanded() then
+		local Q = 0
+		while Q < #self.participantPlayerIds do
+			local I = self.participantPlayerIds[Q + 1]
+			local aH = g(q, I, "9900000", aG, { 0, 0 })
+			EmitSoundOnLocationForPlayer("Drop.Gem", aG, I)
+			local aI = self.settlementRuntime.clientItems
+			aI[#aI + 1] = aH
+			local aJ = Interaction:RegisterInteract(aH.entity, InteractType.BossChest, 200, function()
+				if not aH:IsLanded() then
 					return false
 				end
-				return self:OpenSettlementChest(I, aG, aG:GetLandedPosition())
+				return self:OpenSettlementChest(I, aH, aH:GetLandedPosition())
 			end, nil, I)
-			if aI ~= -1 then
-				local aJ = self.settlementRuntime.registeredInteracts
-				aJ[#aJ + 1] = aI
+			if aJ ~= -1 then
+				local aK = self.settlementRuntime.registeredInteracts
+				aK[#aK + 1] = aJ
 			end
-			P = P + 1
+			Q = Q + 1
 		end
 	end
 end
-function F.prototype.OpenSettlementChest(self, I, aG, aF)
+function F.prototype.OpenSettlementChest(self, I, aH, aG)
 	if self.state ~= "finished" then
 		return false
 	end
@@ -799,69 +802,69 @@ function F.prototype.OpenSettlementChest(self, I, aG, aF)
 		return false
 	end
 	self.settlementRuntime.rewardPreviewRequestingPlayers[I] = true
-	EmitSoundOnLocationForPlayer("Chess.Open", aF, I)
-	local aK = { match_id = Match:GetMatchID(), layer = self.currentLevel }
-	CommonService:CallAction("/v1/settle/preview_tower_rewards", I, aK, function(aL, aM, aN)
+	EmitSoundOnLocationForPlayer("Chess.Open", aG, I)
+	local aL = { match_id = Match:GetMatchID(), layer = self.currentLevel }
+	CommonService:CallAction("/v1/settle/preview_tower_rewards", I, aL, function(aM, aN, aO)
 		self.settlementRuntime.rewardPreviewRequestingPlayers[I] = false
-		if aN.code ~= 0 and aN.code ~= 200 then
+		if aO.code ~= 0 and aO.code ~= 200 then
 			return
 		end
-		EmitSoundOnLocationForPlayer("Chess.Finish", aF, I)
-		CommonService:CommonCallback(I, aN)
+		EmitSoundOnLocationForPlayer("Chess.Finish", aG, I)
+		CommonService:CommonCallback(I, aO)
 		self.settlementRuntime.rewardPreviewOpenedPlayers[I] = true
-		self:UnregisterSettlementChest(aG)
-		h(aG.particleIDs, function(aL, aO)
-			ParticleManager:DestroyParticle(aO, false)
+		self:UnregisterSettlementChest(aH)
+		h(aH.particleIDs, function(aM, aP)
+			ParticleManager:DestroyParticle(aP, false)
 		end)
-		local a5 = PlayerResource:GetPlayer(I)
-		if a5 ~= nil then
-			local aP = ParticleManager:CreateParticleForPlayer(
+		local a6 = PlayerResource:GetPlayer(I)
+		if a6 ~= nil then
+			local aQ = ParticleManager:CreateParticleForPlayer(
 				"particles/generic_gameplay/boss_chest_open.vpcf",
 				PATTACH_CUSTOMORIGIN,
 				nil,
-				a5
+				a6
 			)
-			ParticleManager:SetParticleControl(aP, 0, aG.entity:GetAbsOrigin())
-			local aQ = aG.particleIDs
-			aQ[#aQ + 1] = aP
+			ParticleManager:SetParticleControl(aQ, 0, aH.entity:GetAbsOrigin())
+			local aR = aH.particleIDs
+			aR[#aR + 1] = aQ
 		end
 	end, false)
 	return true
 end
-function F.prototype.UnregisterSettlementChest(self, aG)
-	local aR = aG:GetEntityIndex()
-	local aS = {}
+function F.prototype.UnregisterSettlementChest(self, aH)
+	local aS = aH:GetEntityIndex()
+	local aT = {}
 	do
-		local P = 0
-		while P < #self.settlementRuntime.registeredInteracts do
+		local Q = 0
+		while Q < #self.settlementRuntime.registeredInteracts do
 			do
-				local aT = self.settlementRuntime.registeredInteracts[P + 1]
-				if aT == aR then
-					Interaction:UnregisterInteractable(aT)
-					goto aU
+				local aU = self.settlementRuntime.registeredInteracts[Q + 1]
+				if aU == aS then
+					Interaction:UnregisterInteractable(aU)
+					goto aV
 				end
-				aS[#aS + 1] = aT
+				aT[#aT + 1] = aU
 			end
-			::aU::
-			P = P + 1
+			::aV::
+			Q = Q + 1
 		end
 	end
-	self.settlementRuntime.registeredInteracts = aS
+	self.settlementRuntime.registeredInteracts = aT
 end
 function F.prototype.ClearSettlementChests(self)
 	do
-		local P = 0
-		while P < #self.settlementRuntime.registeredInteracts do
-			Interaction:UnregisterInteractable(self.settlementRuntime.registeredInteracts[P + 1])
-			P = P + 1
+		local Q = 0
+		while Q < #self.settlementRuntime.registeredInteracts do
+			Interaction:UnregisterInteractable(self.settlementRuntime.registeredInteracts[Q + 1])
+			Q = Q + 1
 		end
 	end
 	self.settlementRuntime.registeredInteracts = {}
 	do
-		local P = 0
-		while P < #self.settlementRuntime.clientItems do
-			self.settlementRuntime.clientItems[P + 1]:dispose()
-			P = P + 1
+		local Q = 0
+		while Q < #self.settlementRuntime.clientItems do
+			self.settlementRuntime.clientItems[Q + 1]:dispose()
+			Q = Q + 1
 		end
 	end
 	self.settlementRuntime.clientItems = {}
@@ -873,21 +876,21 @@ function F.prototype.OpenReturnGates(self)
 		)
 		return
 	end
-	local aV = GetGroundPosition(self.exitPosition, nil)
-	local aW = CreateUnitByName("npc_crystal_gate", aV, false, nil, nil, DOTA_TEAM_GOODGUYS)
-	if not IsValid(aW) then
+	local aW = GetGroundPosition(self.exitPosition, nil)
+	local aX = CreateUnitByName("npc_crystal_gate", aW, false, nil, nil, DOTA_TEAM_GOODGUYS)
+	if not IsValid(aX) then
 		return
 	end
-	aW:AddNewModifier(aW, nil, "modifier_no_health_bar", {})
-	aW:SetForwardVector(vec3_bottom)
-	local aI = Interaction:RegisterInteract(aW, InteractType.NPC, 200, function(aL, aX, I)
+	aX:AddNewModifier(aX, nil, "modifier_no_health_bar", {})
+	aX:SetForwardVector(vec3_bottom)
+	local aJ = Interaction:RegisterInteract(aX, InteractType.NPC, 200, function(aM, aY, I)
 		self:ClearReturnGateIndicator(I)
 		DungeonAdventure:ExitBattle("gem", I)
 	end, 99999999)
-	if aI ~= -1 then
-		self.settlementRuntime.returnInteractId = aI
+	if aJ ~= -1 then
+		self.settlementRuntime.returnInteractId = aJ
 	end
-	self.settlementRuntime.returnNpc = aW
+	self.settlementRuntime.returnNpc = aX
 end
 function F.prototype.ClearReturnGate(self)
 	self:ClearReturnGateIndicators()
@@ -901,25 +904,25 @@ function F.prototype.ClearReturnGate(self)
 	end
 end
 function F.prototype.ShowReturnGateIndicator(self, I)
-	local a1 = PlayerResource:GetSelectedHeroEntity(I)
-	local aY = self.settlementRuntime.returnNpc
-	if not IsValid(a1) or not IsValid(aY) then
+	local a2 = PlayerResource:GetSelectedHeroEntity(I)
+	local J = self.settlementRuntime.returnNpc
+	if not IsValid(a2) or not IsValid(J) then
 		return
 	end
-	a1:AddNewModifier(a1, nil, "modifier_arrow_target", { targetEntIndex = aY:entindex() })
+	a2:AddNewModifier(a2, nil, "modifier_arrow_target", { targetEntIndex = J:entindex() })
 end
 function F.prototype.ClearReturnGateIndicator(self, I)
-	local a1 = PlayerResource:GetSelectedHeroEntity(I)
-	if IsValid(a1) then
-		a1:RemoveModifierByName("modifier_arrow_target")
+	local a2 = PlayerResource:GetSelectedHeroEntity(I)
+	if IsValid(a2) then
+		a2:RemoveModifierByName("modifier_arrow_target")
 	end
 end
 function F.prototype.ClearReturnGateIndicators(self)
 	do
-		local P = 0
-		while P < #self.participantPlayerIds do
-			self:ClearReturnGateIndicator(self.participantPlayerIds[P + 1])
-			P = P + 1
+		local Q = 0
+		while Q < #self.participantPlayerIds do
+			self:ClearReturnGateIndicator(self.participantPlayerIds[Q + 1])
+			Q = Q + 1
 		end
 	end
 end
@@ -934,29 +937,29 @@ function F.prototype.AnalyzeGrid(self)
 	self.validGridPositions = s(nil, { center = self.battleCenter, rings = A, gridSize = B })
 	self:print((self.logPrefix .. " grid analyzed count=") .. tostring(#self.validGridPositions))
 end
-function F.prototype.IsValidSpawnPosition(self, a6)
-	local a0 = self:GetParticipantHeroes()
+function F.prototype.IsValidSpawnPosition(self, a7)
+	local a1 = self:GetParticipantHeroes()
 	do
-		local P = 0
-		while P < #a0 do
-			local a1 = a0[P + 1]
-			if IsValid(a1) and CalcDistance(a6, a1:GetAbsOrigin()) < C then
+		local Q = 0
+		while Q < #a1 do
+			local a2 = a1[Q + 1]
+			if IsValid(a2) and CalcDistance(a7, a2:GetAbsOrigin()) < C then
 				return false
 			end
-			P = P + 1
+			Q = Q + 1
 		end
 	end
 	return true
 end
 function F.prototype.ClearEnemies(self)
 	do
-		local P = 0
-		while P < #self.enemies do
-			local ao = self.enemies[P + 1]
-			if ao ~= nil then
-				self:RemoveUnit(ao)
+		local Q = 0
+		while Q < #self.enemies do
+			local ap = self.enemies[Q + 1]
+			if ap ~= nil then
+				self:RemoveUnit(ap)
 			end
-			P = P + 1
+			Q = Q + 1
 		end
 	end
 	self.enemies = {}
@@ -995,16 +998,16 @@ function F.prototype.ResetSettlementRuntime(self)
 	self:ClearReturnGate()
 	self.settlementRuntime = self:CreateSettlementRuntime()
 end
-function F.prototype.RemoveUnit(self, aW)
-	if not IsValid(aW) then
+function F.prototype.RemoveUnit(self, aX)
+	if not IsValid(aX) then
 		return
 	end
-	aW:RemoveAllModifiers(0, false, true, false)
-	aW:ForceKill(false)
-	aW:MakeIllusion()
-	aW:AddNoDraw()
-	aW:CallAbilityDestroy()
-	UTIL_Remove(aW)
+	aX:RemoveAllModifiers(0, false, true, false)
+	aX:ForceKill(false)
+	aX:MakeIllusion()
+	aX:AddNoDraw()
+	aX:CallAbilityDestroy()
+	UTIL_Remove(aX)
 end
 function F.prototype.LoadLevelConfig(self)
 	self.levelConfigByNumber = {}
@@ -1018,10 +1021,10 @@ function F.prototype.LoadLevelConfig(self)
 	if b4 ~= nil then
 		for b5, b6 in pairs(b4) do
 			local b7 = {}
-			for ak, b8 in pairs(b6) do
+			for al, b8 in pairs(b6) do
 				local b9 = math.max(0, math.floor(toFiniteNumber(b8, 0)))
 				if b9 > 0 then
-					b7[tostring(ak)] = b9
+					b7[tostring(al)] = b9
 				end
 			end
 			b3[tostring(b5)] = b7
@@ -1069,10 +1072,10 @@ function F.prototype.LoadLevelConfig(self)
 			if #bg <= 0 then
 				local b7 = {}
 				if bf.EnemyList ~= nil then
-					for ak, b8 in pairs(bf.EnemyList) do
+					for al, b8 in pairs(bf.EnemyList) do
 						local b9 = math.max(0, math.floor(toFiniteNumber(b8, 0)))
 						if b9 > 0 then
-							b7[tostring(ak)] = b9
+							b7[tostring(al)] = b9
 						end
 					end
 				end
@@ -1157,10 +1160,10 @@ function F.prototype.SyncState(self)
 			totalEnemyCount = self.levelTotalEnemyCount,
 			bossEntIndex = self:GetCurrentBossEntIndex(),
 			participantPlayerIds = f(self.participantPlayerIds),
-			actionPurchasingPlayerIds = k(self.participantPlayerIds, function(aL, I)
+			actionPurchasingPlayerIds = k(self.participantPlayerIds, function(aM, I)
 				return self.settlementRuntime.actionPurchasingPlayers[I] == true
 			end),
-			actionPurchasedPlayerIds = k(self.participantPlayerIds, function(aL, I)
+			actionPurchasedPlayerIds = k(self.participantPlayerIds, function(aM, I)
 				return self.settlementRuntime.actionPurchasedPlayers[I] == true
 			end),
 		}
@@ -1168,13 +1171,13 @@ function F.prototype.SyncState(self)
 end
 function F.prototype.GetCurrentBossEntIndex(self)
 	do
-		local P = 0
-		while P < #self.enemies do
-			local ao = self.enemies[P + 1]
-			if IsValid(ao) and i(ao:GetUnitLabel(), "boss") then
-				return ao:entindex()
+		local Q = 0
+		while Q < #self.enemies do
+			local ap = self.enemies[Q + 1]
+			if IsValid(ap) and i(ap:GetUnitLabel(), "boss") then
+				return ap:entindex()
 			end
-			P = P + 1
+			Q = Q + 1
 		end
 	end
 	return nil
@@ -1208,11 +1211,11 @@ function F.prototype.ClearRuntimeState(self)
 	self.state = "idle"
 	self:SyncState()
 end
-function F.prototype.IsActiveRun(self, O)
-	return self.runId == O
+function F.prototype.IsActiveRun(self, P)
+	return self.runId == P
 end
-function F.prototype.OnBuyActions(self, az)
-	local I = az.PlayerID
+function F.prototype.OnBuyActions(self, aA)
+	local I = aA.PlayerID
 	if self.state ~= "finished" then
 		return
 	end
@@ -1234,44 +1237,44 @@ function F.prototype.OnBuyActions(self, az)
 	then
 		return
 	end
-	local O = self.runId
+	local P = self.runId
 	self.settlementRuntime.actionPurchasingPlayers[I] = true
 	self:SyncState()
-	if az.buy_product == 1 then
-		self:BuyActionProduct(I, O)
+	if aA.buy_product == 1 then
+		self:BuyActionProduct(I, P)
 		return
 	end
-	self:RequestBuyActions(I, O)
+	self:RequestBuyActions(I, P)
 end
-function F.prototype.BuyActionProduct(self, I, O)
-	CommonService:CallAction("/v1/shop/buy", I, { amounts = 1, product_id = D }, function(aL, aM, aN)
-		local bB = aN.code == 0 or aN.code == 200
+function F.prototype.BuyActionProduct(self, I, P)
+	CommonService:CallAction("/v1/shop/buy", I, { amounts = 1, product_id = D }, function(aM, aN, aO)
+		local bB = aO.code == 0 or aO.code == 200
 		if bB then
-			CommonService:CommonCallback(I, aN)
+			CommonService:CommonCallback(I, aO)
 		end
-		if not self:IsActionPurchaseRequestActive(I, O) then
+		if not self:IsActionPurchaseRequestActive(I, P) then
 			return
 		end
 		if not bB then
-			self:FinishBuyActions(I, false, aN.message)
+			self:FinishBuyActions(I, false, aO.message)
 			return
 		end
-		self:RequestBuyActions(I, O)
+		self:RequestBuyActions(I, P)
 	end, false)
 end
-function F.prototype.RequestBuyActions(self, I, O)
-	local aK = { match_id = Match:GetMatchID() }
-	CommonService:CallAction("/v1/settle/buy_tower_actions", I, aK, function(aL, aM, aN)
-		if not self:IsActionPurchaseRequestActive(I, O) then
+function F.prototype.RequestBuyActions(self, I, P)
+	local aL = { match_id = Match:GetMatchID() }
+	CommonService:CallAction("/v1/settle/buy_tower_actions", I, aL, function(aM, aN, aO)
+		if not self:IsActionPurchaseRequestActive(I, P) then
 			return
 		end
-		CommonService:CommonCallback(I, aN)
-		local bB = aN.code == 0 or aN.code == 200
-		self:FinishBuyActions(I, bB, aN.message)
+		CommonService:CommonCallback(I, aO)
+		local bB = aO.code == 0 or aO.code == 200
+		self:FinishBuyActions(I, bB, aO.message)
 	end, false)
 end
-function F.prototype.IsActionPurchaseRequestActive(self, I, O)
-	return self:IsActiveRun(O)
+function F.prototype.IsActionPurchaseRequestActive(self, I, P)
+	return self:IsActiveRun(P)
 		and self.state == "finished"
 		and self.settlementRuntime.actionPurchasingPlayers[I] == true
 end
@@ -1284,55 +1287,55 @@ function F.prototype.FinishBuyActions(self, I, bB, bC)
 	end
 	self:SyncState()
 end
-function F.prototype.OnReceiveRewards(self, az)
+function F.prototype.OnReceiveRewards(self, aA)
 	if self.state ~= "finished" then
 		return
 	end
-	if TableFindKey(self.participantPlayerIds, az.PlayerID) == nil then
+	if TableFindKey(self.participantPlayerIds, aA.PlayerID) == nil then
 		return
 	end
 	if
-		self.settlementRuntime.rewardReceivedPlayers[az.PlayerID] == true
-		or self.settlementRuntime.rewardReceivingPlayers[az.PlayerID] == true
+		self.settlementRuntime.rewardReceivedPlayers[aA.PlayerID] == true
+		or self.settlementRuntime.rewardReceivingPlayers[aA.PlayerID] == true
 	then
 		return
 	end
-	if self.settlementRuntime.actionPurchasingPlayers[az.PlayerID] == true then
+	if self.settlementRuntime.actionPurchasingPlayers[aA.PlayerID] == true then
 		return
 	end
-	if self.settlementRuntime.rewardPreviewOpenedPlayers[az.PlayerID] ~= true then
+	if self.settlementRuntime.rewardPreviewOpenedPlayers[aA.PlayerID] ~= true then
 		return
 	end
 	local bD = {}
-	if az.actions ~= nil and az.actions ~= "" then
+	if aA.actions ~= nil and aA.actions ~= "" then
 		local bE, bF = pcall(function()
-			return json.decode(az.actions)
+			return json.decode(aA.actions)
 		end)
 		if bE ~= true or bF == nil then
 			self:error(
 				(
 					(
 						(self.logPrefix .. " receive rewards failed: invalid actions payload player=")
-						.. tostring(az.PlayerID)
+						.. tostring(aA.PlayerID)
 					) .. " raw="
-				) .. az.actions
+				) .. aA.actions
 			)
 			return
 		end
 		bD = bF
 	end
-	local aK = { match_id = Match:GetMatchID(), actions = bD }
-	self.settlementRuntime.rewardReceivingPlayers[az.PlayerID] = true
-	CommonService:CallAction("/v1/settle/receive_tower_rewards", az.PlayerID, aK, function(aL, aM, aN)
-		self.settlementRuntime.rewardReceivingPlayers[az.PlayerID] = false
-		CommonService:CommonCallback(az.PlayerID, aN)
-		if aN.code ~= 0 and aN.code ~= 200 then
+	local aL = { match_id = Match:GetMatchID(), actions = bD }
+	self.settlementRuntime.rewardReceivingPlayers[aA.PlayerID] = true
+	CommonService:CallAction("/v1/settle/receive_tower_rewards", aA.PlayerID, aL, function(aM, aN, aO)
+		self.settlementRuntime.rewardReceivingPlayers[aA.PlayerID] = false
+		CommonService:CommonCallback(aA.PlayerID, aO)
+		if aO.code ~= 0 and aO.code ~= 200 then
 			return
 		end
-		self.settlementRuntime.rewardReceivedPlayers[az.PlayerID] = true
-		self:ClearPlayerSettlementPreview(az.PlayerID)
+		self.settlementRuntime.rewardReceivedPlayers[aA.PlayerID] = true
+		self:ClearPlayerSettlementPreview(aA.PlayerID)
 		self:OpenReturnGates()
-		self:ShowReturnGateIndicator(az.PlayerID)
+		self:ShowReturnGateIndicator(aA.PlayerID)
 		if not self:AreAllParticipantsRewardsReceived() then
 			return
 		end
@@ -1341,12 +1344,12 @@ function F.prototype.OnReceiveRewards(self, az)
 end
 function F.prototype.AreAllParticipantsRewardsReceived(self)
 	do
-		local P = 0
-		while P < #self.participantPlayerIds do
-			if self.settlementRuntime.rewardReceivedPlayers[self.participantPlayerIds[P + 1]] ~= true then
+		local Q = 0
+		while Q < #self.participantPlayerIds do
+			if self.settlementRuntime.rewardReceivedPlayers[self.participantPlayerIds[Q + 1]] ~= true then
 				return false
 			end
-			P = P + 1
+			Q = Q + 1
 		end
 	end
 	return true

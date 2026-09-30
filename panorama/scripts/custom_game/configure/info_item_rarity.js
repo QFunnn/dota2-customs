@@ -234,6 +234,11 @@ GameUI.CustomUIConfig().info_item_rarity = {
 		item_id: 540,
 		rarity: 5
 	},
+	"541": {
+		id: 2073,
+		item_id: 541,
+		rarity: 5
+	},
 	"110001": {
 		id: 1,
 		item_id: 110001,
@@ -756,6 +761,11 @@ GameUI.CustomUIConfig().info_item_rarity = {
 	"310540": {
 		id: 1938,
 		item_id: 310540,
+		rarity: 5
+	},
+	"310541": {
+		id: 2074,
+		item_id: 310541,
 		rarity: 5
 	},
 	"340101": {
@@ -1598,6 +1608,11 @@ GameUI.CustomUIConfig().info_item_rarity = {
 		item_id: 800153,
 		rarity: 4
 	},
+	"800154": {
+		id: 2076,
+		item_id: 800154,
+		rarity: 4
+	},
 	"801001": {
 		id: 997,
 		item_id: 801001,
@@ -2113,6 +2128,56 @@ GameUI.CustomUIConfig().info_item_rarity = {
 		item_id: 806001,
 		rarity: 4
 	},
+	"807001": {
+		id: 2084,
+		item_id: 807001,
+		rarity: 5
+	},
+	"807002": {
+		id: 2085,
+		item_id: 807002,
+		rarity: 5
+	},
+	"807003": {
+		id: 2086,
+		item_id: 807003,
+		rarity: 5
+	},
+	"807004": {
+		id: 2087,
+		item_id: 807004,
+		rarity: 5
+	},
+	"807005": {
+		id: 2088,
+		item_id: 807005,
+		rarity: 5
+	},
+	"807006": {
+		id: 2089,
+		item_id: 807006,
+		rarity: 5
+	},
+	"807007": {
+		id: 2090,
+		item_id: 807007,
+		rarity: 5
+	},
+	"807008": {
+		id: 2091,
+		item_id: 807008,
+		rarity: 5
+	},
+	"807009": {
+		id: 2092,
+		item_id: 807009,
+		rarity: 5
+	},
+	"807010": {
+		id: 2093,
+		item_id: 807010,
+		rarity: 5
+	},
 	"808001": {
 		id: 1024,
 		item_id: 808001,
@@ -2171,6 +2236,11 @@ GameUI.CustomUIConfig().info_item_rarity = {
 	"810003": {
 		id: 1537,
 		item_id: 810003,
+		rarity: 5
+	},
+	"810004": {
+		id: 2077,
+		item_id: 810004,
 		rarity: 5
 	},
 	"811001": {
@@ -2316,6 +2386,31 @@ GameUI.CustomUIConfig().info_item_rarity = {
 	"880115": {
 		id: 1547,
 		item_id: 880115,
+		rarity: 4
+	},
+	"880116": {
+		id: 2079,
+		item_id: 880116,
+		rarity: 4
+	},
+	"880117": {
+		id: 2080,
+		item_id: 880117,
+		rarity: 4
+	},
+	"880118": {
+		id: 2081,
+		item_id: 880118,
+		rarity: 4
+	},
+	"880119": {
+		id: 2082,
+		item_id: 880119,
+		rarity: 4
+	},
+	"880120": {
+		id: 2083,
+		item_id: 880120,
 		rarity: 4
 	},
 	"890001": {
@@ -7309,6 +7404,11 @@ GameUI.CustomUIConfig().info_item_rarity = {
 		item_id: 1200003,
 		rarity: 5
 	},
+	"1200004": {
+		id: 2078,
+		item_id: 1200004,
+		rarity: 5
+	},
 	"1300001": {
 		id: 1079,
 		item_id: 1300001,
@@ -7322,6 +7422,11 @@ GameUI.CustomUIConfig().info_item_rarity = {
 	"1300003": {
 		id: 1717,
 		item_id: 1300003,
+		rarity: 2
+	},
+	"1300004": {
+		id: 2075,
+		item_id: 1300004,
 		rarity: 2
 	},
 	"1400001": {
@@ -8192,6 +8297,11 @@ GameUI.CustomUIConfig().info_item_rarity = {
 	"1710008": {
 		id: 1493,
 		item_id: 1710008,
+		rarity: 4
+	},
+	"1710010": {
+		id: 2094,
+		item_id: 1710010,
 		rarity: 4
 	},
 	"1711001": {

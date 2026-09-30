@@ -161,8 +161,12 @@ function s.prototype.ThrowSuriken(self, W)
 	local y = X.direction
 	local Y = X.isCircle
 	local Z = X.isPrimary
-	local _ = X.startPosition
-	local a0 = X.returnTarget
+	local _ = X.isDoubleCast
+	if _ == nil then
+		_ = false
+	end
+	local a0 = X.startPosition
+	local a1 = X.returnTarget
 	local z = X.bonusDamage
 	if z == nil then
 		z = 0
@@ -175,153 +179,155 @@ function s.prototype.ThrowSuriken(self, W)
 	if B == nil then
 		B = 1
 	end
-	local a1 = X.delay
-	if a1 == nil then
-		a1 = 0
-	end
-	local a2 = X.widthScale
+	local a2 = X.delay
 	if a2 == nil then
-		a2 = 1
+		a2 = 0
 	end
-	local a3 = X.useGiantParticle
+	local a3 = X.widthScale
 	if a3 == nil then
-		a3 = false
+		a3 = 1
 	end
-	local a4 = X.uniqueID
+	local a4 = X.useGiantParticle
+	if a4 == nil then
+		a4 = false
+	end
+	local a5 = X.uniqueID
 	local D = X.sourceAbility
 	local t = self:GetCaster()
-	local a5 = self:config()
-	local a6 = a5.distance
-	local a7 = a5.width
-	local a8 = a5.outDuration
-	local a9 = a5.bounce
-	local aa = a5.damagePerDistance
-	local ab = a7 * a2
-	local ac = a6 / a8
-	local ad = _ or t:GetAttachmentPosition("attach_hitloc")
-	local ae = a0 or t
-	local af = a3 and "particles/units/heroes/hero_phantom_assassin/phantom_assassin_suriken_toss_giant_linear.vpcf"
+	local a6 = self:config()
+	local a7 = a6.distance
+	local a8 = a6.width
+	local a9 = a6.outDuration
+	local aa = a6.bounce
+	local ab = a6.damagePerDistance
+	local ac = a8 * a3
+	local ad = a7 / a9
+	local ae = a0 or t:GetAttachmentPosition("attach_hitloc")
+	local af = a1 or t
+	local ag = a4 and "particles/units/heroes/hero_phantom_assassin/phantom_assassin_suriken_toss_giant_linear.vpcf"
 		or "particles/units/heroes/hero_phantom_assassin/phantom_assassin_suriken_toss_linear.vpcf"
 	Bullet:CreateLinearBullet({
 		ability = self,
 		caster = t,
-		spawnOrigin = ad,
+		spawnOrigin = ae,
 		direction = y,
-		moveSpeed = ac,
-		distance = a6,
-		radius = ab,
-		bounce = a9,
+		moveSpeed = ad,
+		distance = a7,
+		radius = ac,
+		bounce = aa,
 		destroyOnBounce = false,
 		teamFilter = DOTA_UNIT_TARGET_TEAM_ENEMY,
 		typeFilter = UNIT_AND_BUILDING,
-		OnBulletHit = function(w, x, ag)
-			local ah = CalcDistance(ad, x) * aa
+		OnBulletHit = function(w, x, ah)
+			local ai = CalcDistance(ae, x) * ab
 			self:CreateHitEffect({
 				target = w,
 				location = x,
-				direction = ag.__velocity,
+				direction = ah.__velocity,
 				bonusDamage = z,
-				damagePct = A + ah,
+				damagePct = A + ai,
 				damageMultiplier = B,
 				damageFlags = W.damageFlags,
 				sourceAbility = D,
 			})
 		end,
-		OnBulletBounceEnd = function(ai)
-			ParticleManager:SetParticleControl(ai.__particleID, 1, ai.__velocity)
+		OnBulletBounceEnd = function(aj)
+			ParticleManager:SetParticleControl(aj.__particleID, 1, aj.__velocity)
 		end,
-		ParticleCreator = function(ai)
-			local T = ParticleManager:CreateParticle(af, PATTACH_CUSTOMORIGIN, t)
-			ParticleManager:SetParticleControlTransformForward(T, 0, ad, ai.__velocity:Normalized())
-			ParticleManager:SetParticleControl(T, 1, ai.__velocity)
+		ParticleCreator = function(aj)
+			local T = ParticleManager:CreateParticle(ag, PATTACH_CUSTOMORIGIN, t)
+			ParticleManager:SetParticleControlTransformForward(T, 0, ae, aj.__velocity:Normalized())
+			ParticleManager:SetParticleControl(T, 1, aj.__velocity)
 			ParticleManager:SetParticleControlEnt(T, 7, t.__weapon, PATTACH_ABSORIGIN, nil, vec3_zero, true)
 			ParticleManager:SetParticleControl(T, 60, Weapon:GetWeaponColor(t, Vector(99, 75, 255)))
-			ParticleManager:SetParticleControl(T, 10, Vector(ab * self.bullet_particle_width, 0, 0))
+			ParticleManager:SetParticleControl(T, 10, Vector(ac * self.bullet_particle_width, 0, 0))
 			return T
 		end,
-		OnBulletDestroy = function(ag)
+		OnBulletDestroy = function(ah)
 			self:CreateReturningSuriken(
-				ag.__position,
+				ah.__position,
 				{
 					isPrimary = Z,
+					isDoubleCast = _,
 					isCircle = Y,
 					bonusDamage = z,
 					damagePct = A,
 					damageMultiplier = B,
-					delay = a1,
-					start = ad,
-					speed = ac,
+					delay = a2,
+					start = ae,
+					speed = ad,
 					damageFlags = W.damageFlags or EOM_DAMAGE_FLAGS.NONE,
-					widthScale = a2,
-					useGiantParticle = a3,
-					uniqueID = a4,
+					widthScale = a3,
+					useGiantParticle = a4,
+					uniqueID = a5,
 					sourceAbility = D,
-					returnTarget = ae,
+					returnTarget = af,
 				}
 			)
 		end,
 	})
 end
-function s.prototype.CreateReturningSuriken(self, aj, ak)
-	local al = ak
-	local Z = al.isPrimary
-	local Y = al.isCircle
-	local z = al.bonusDamage
-	local A = al.damagePct
-	local B = al.damageMultiplier
-	local a1 = al.delay
-	local ad = al.start
-	local ac = al.speed
-	local C = al.damageFlags
-	local a2 = al.widthScale
-	local a3 = al.useGiantParticle
-	local a4 = al.uniqueID
-	local a0 = al.returnTarget
-	local D = al.sourceAbility
+function s.prototype.CreateReturningSuriken(self, ak, al)
+	local am = al
+	local Z = am.isPrimary
+	local _ = am.isDoubleCast
+	local Y = am.isCircle
+	local z = am.bonusDamage
+	local A = am.damagePct
+	local B = am.damageMultiplier
+	local a2 = am.delay
+	local ae = am.start
+	local ad = am.speed
+	local C = am.damageFlags
+	local a3 = am.widthScale
+	local a4 = am.useGiantParticle
+	local a5 = am.uniqueID
+	local a1 = am.returnTarget
+	local D = am.sourceAbility
 	local t = self:GetCaster()
-	local am = self:config()
-	local a7 = am.width
-	local an = am.returnDuration
-	local aa = am.damagePerDistance
-	local ab = a7 * a2
-	local ao = a3 and "particles/units/heroes/hero_phantom_assassin/phantom_assassin_suriken_toss_giant_static.vpcf"
+	local an = self:config()
+	local a8 = an.width
+	local ao = an.returnDuration
+	local ab = an.damagePerDistance
+	local ac = a8 * a3
+	local ap = a4 and "particles/units/heroes/hero_phantom_assassin/phantom_assassin_suriken_toss_giant_static.vpcf"
 		or "particles/units/heroes/hero_phantom_assassin/phantom_assassin_suriken_toss_static.vpcf"
-	local ap = a3 and "particles/units/heroes/hero_phantom_assassin/phantom_assassin_suriken_toss_giant_track.vpcf"
+	local aq = a4 and "particles/units/heroes/hero_phantom_assassin/phantom_assassin_suriken_toss_giant_track.vpcf"
 		or "particles/units/heroes/hero_phantom_assassin/phantom_assassin_suriken_toss_track.vpcf"
-	local T = ParticleManager:CreateParticle(ao, PATTACH_CUSTOMORIGIN, t)
-	ParticleManager:SetParticleControl(T, 0, aj)
-	ParticleManager:SetParticleControl(T, 1, Vector(a1, 0, 0))
+	local T = ParticleManager:CreateParticle(ap, PATTACH_CUSTOMORIGIN, t)
+	ParticleManager:SetParticleControl(T, 0, ak)
+	ParticleManager:SetParticleControl(T, 1, Vector(a2, 0, 0))
 	ParticleManager:SetParticleControlEnt(T, 7, t.__weapon, PATTACH_ABSORIGIN, nil, vec3_zero, true)
 	ParticleManager:SetParticleControl(T, 60, Weapon:GetWeaponColor(t, Vector(99, 75, 255)))
-	ParticleManager:SetParticleControl(T, 10, Vector(ab * self.bullet_particle_width, 0, 0))
+	ParticleManager:SetParticleControl(T, 10, Vector(ac * self.bullet_particle_width, 0, 0))
 	if AbilityUpgrade:HasAbilityUpgrade(t, "vespera_upgrade_13") and Y then
-		local aq, ar = self.surikenHoverData, a4
-		if aq[ar] == nil then
-			aq[ar] = {}
+		local ar, as = self.surikenHoverData, a5
+		if ar[as] == nil then
+			ar[as] = {}
 		end
-		local as = self.surikenHoverData[a4]
-		as[#as + 1] = { position = aj, radius = CalcDistance(aj, ad), angle = VectorAngles(CalcDirection2D(aj, ad)).y }
+		local at = self.surikenHoverData[a5]
+		at[#at + 1] = { position = ak, radius = CalcDistance(ak, ae), angle = VectorAngles(CalcDirection2D(ak, ae)).y }
 	end
-	if t:HasAbilityUpgrade("vespera_upgrade_11_2") then
-		local at = t:GetAbilityByTag(AbilityTag.Attack)
-		at:CuttingStorm(aj, self:GetSpecialValueFor("aoe_static_factor"))
+	if not _ and t:HasAbilityUpgrade("vespera_upgrade_11_2") then
+		local au = t:GetAbilityByTag(AbilityTag.Attack)
+		au:CuttingStorm(ak, self:GetSpecialValueFor("aoe_static_factor"))
 	end
 	if AbilityUpgrade:HasAbilityUpgrade(t, "vespera_upgrade_18") and Y and IsValid(D) then
-		local au = D:GetSpecialValueFor("static_damage_interval")
-		local av = D:GetSpecialValueFor("static_damage_pct")
+		local av = D:GetSpecialValueFor("static_damage_interval")
+		local aw = D:GetSpecialValueFor("static_damage_pct")
 		Bullet:CreateCustomBullet({
-			spawnOrigin = aj,
-			lifeTime = a1,
-			interval = au,
-			OnIntervalThink = function(ai)
-				local aw = FindEnemiesInRadius(t, aj, ab)
-				for ax, w in ipairs(aw) do
-					local ah = CalcDistance(ad, aj) * aa
+			spawnOrigin = ak,
+			lifeTime = a2,
+			interval = av,
+			OnIntervalThink = function(aj)
+				local ax = FindEnemiesInRadius(t, ak, ac)
+				for ay, w in ipairs(ax) do
+					local ai = CalcDistance(ae, ak) * ab
 					self:CreateHitEffect({
 						target = w,
-						location = aj,
+						location = ak,
 						bonusDamage = z,
-						damagePct = (A + ah) * av * 0.01,
+						damagePct = (A + ai) * aw * 0.01,
 						damageMultiplier = B,
 						damageFlags = C,
 						sourceAbility = D,
@@ -333,67 +339,67 @@ function s.prototype.CreateReturningSuriken(self, aj, ak)
 	if AbilityUpgrade:HasAbilityUpgrade(t, "vespera_upgrade_13") and Y then
 		return
 	end
-	self:StartThink(a1, nil, function()
+	self:StartThink(a2, nil, function()
 		Bullet:CreateTrackingBullet({
 			ability = self,
 			caster = t,
-			spawnOrigin = aj,
+			spawnOrigin = ak,
 			debug = true,
-			effectName = ap,
-			target = a0,
+			effectName = aq,
+			target = a1,
 			ignoreBlock = true,
-			moveSpeed = math.max(ac, CalcDistance(aj, a0:GetAbsOrigin()) / an),
-			radius = ab,
+			moveSpeed = math.max(ad, CalcDistance(ak, a1:GetAbsOrigin()) / ao),
+			radius = ac,
 			teamFilter = DOTA_UNIT_TARGET_TEAM_ENEMY,
 			typeFilter = UNIT_AND_BUILDING,
-			FuncUnitFinder = function(ay, aj, az, aA, ai)
+			FuncUnitFinder = function(az, ak, aA, aB, aj)
 				return Bullet:FindUnitInLine(
-					ai.__teamNumber,
-					ay,
-					ai.__position,
+					aj.__teamNumber,
 					az,
+					aj.__position,
 					aA,
-					ai.teamFilter,
-					ai.typeFilter,
-					ai.flagFilter
+					aB,
+					aj.teamFilter,
+					aj.typeFilter,
+					aj.flagFilter
 				)
 			end,
-			ParticleCreator = function(ai)
-				local T = ParticleManager:CreateParticle(ap, PATTACH_CUSTOMORIGIN, t)
-				ParticleManager:SetParticleControlTransformForward(T, 0, aj, ai.__velocity:Normalized())
+			ParticleCreator = function(aj)
+				local T = ParticleManager:CreateParticle(aq, PATTACH_CUSTOMORIGIN, t)
+				ParticleManager:SetParticleControlTransformForward(T, 0, ak, aj.__velocity:Normalized())
 				ParticleManager:SetParticleControlEnt(
 					T,
 					1,
-					ai.target,
+					aj.target,
 					PATTACH_POINT_FOLLOW,
 					"attach_hitloc",
-					ai.target:GetAbsOrigin(),
+					aj.target:GetAbsOrigin(),
 					false
 				)
-				ParticleManager:SetParticleControl(T, 2, Vector(ai.moveSpeed, 0, 0))
+				ParticleManager:SetParticleControl(T, 2, Vector(aj.moveSpeed, 0, 0))
 				ParticleManager:SetParticleControlEnt(T, 7, t.__weapon, PATTACH_ABSORIGIN, nil, vec3_zero, true)
-				ParticleManager:SetParticleControl(T, 10, Vector(ab * self.bullet_particle_width, 0, 0))
+				ParticleManager:SetParticleControl(T, 10, Vector(ac * self.bullet_particle_width, 0, 0))
 				ParticleManager:SetParticleControl(T, 60, Weapon:GetWeaponColor(t, Vector(99, 75, 255)))
 				return T
 			end,
-			OnBulletHit = function(w, x, ag)
-				if w == a0 then
-					if Z and not Y and AbilityUpgrade:HasAbilityUpgrade(t, "vespera_upgrade_14") then
+			OnBulletHit = function(w, x, ah)
+				if w == a1 then
+					if Z and not Y and not _ and AbilityUpgrade:HasAbilityUpgrade(t, "vespera_upgrade_14") then
 						self:ReduceCooldown(self:GetSpecialValueFor("reduce_cd"))
 					end
-					if Z and not Y and t:HasAbilityUpgrade("vespera_upgrade_11_4") then
-						local at = t:GetAbilityByTag(AbilityTag.Attack)
-						at:CuttingStorm(t, self:GetSpecialValueFor("aoe_return_factor"))
+					if Z and not Y and not _ and t:HasAbilityUpgrade("vespera_upgrade_11_4") then
+						local au = t:GetAbilityByTag(AbilityTag.Attack)
+						au:CuttingStorm(t, self:GetSpecialValueFor("aoe_return_factor"))
 					end
 					return
 				end
-				local ah = CalcDistance(ad, x) * aa
+				local ai = CalcDistance(ae, x) * ab
 				self:CreateHitEffect({
 					target = w,
 					location = x,
-					direction = ag.__velocity,
+					direction = ah.__velocity,
 					bonusDamage = z,
-					damagePct = A + ah,
+					damagePct = A + ai,
 					damageMultiplier = B,
 					damageFlags = C,
 					sourceAbility = D,
@@ -403,12 +409,12 @@ function s.prototype.CreateReturningSuriken(self, aj, ak)
 		return -1
 	end)
 end
-function s.prototype.SurikenToss(self, aB, aC)
-	if aC == nil then
-		aC = false
+function s.prototype.SurikenToss(self, aC, _)
+	if _ == nil then
+		_ = false
 	end
 	local t = self:GetCaster()
-	local aj = aB and aB.castPosition or self:GetCursorPosition()
+	local ak = aC and aC.castPosition or self:GetCursorPosition()
 	local aD = self:GetSpecialValueFor("suriken_count")
 	local aE = t:HasAbilityUpgrade("vespera_upgrade_1_2_1")
 	local aF = math.max(aD - 1, 0)
@@ -417,10 +423,10 @@ function s.prototype.SurikenToss(self, aB, aC)
 	local aI = aE and 1 or aD
 	local aJ = self:GetSpecialValueFor("angle_per_suriken")
 	local aK = self:GetSpecialValueFor("damage_reduce")
-	local a1 = self:GetSpecialValueFor("delay")
-	local _ = aB and aB.startPosition or t:GetAttachmentPosition("attach_hitloc")
-	local a0 = aB and aB.returnTarget or t
-	local aL = CalcDirection2D(aj, _)
+	local a2 = self:GetSpecialValueFor("delay")
+	local a0 = aC and aC.startPosition or t:GetAttachmentPosition("attach_hitloc")
+	local a1 = aC and aC.returnTarget or t
+	local aL = CalcDirection2D(ak, a0)
 	if AbilityUpgrade:HasAbilityUpgrade(t, "vespera_1_upgrade_6") then
 		aK = 0
 	end
@@ -432,27 +438,28 @@ function s.prototype.SurikenToss(self, aB, aC)
 			direction = y,
 			isCircle = false,
 			isPrimary = Z,
-			startPosition = _,
-			returnTarget = a0,
-			delay = a1,
+			isDoubleCast = _,
+			startPosition = a0,
+			returnTarget = a1,
+			delay = a2,
 			damagePct = Z and 100 or 100 - aK,
 			damageMultiplier = aH,
 			damageFlags = aD > 1 and EOM_DAMAGE_FLAGS.SPLIT_DAMAGE or EOM_DAMAGE_FLAGS.NONE,
 			widthScale = aG,
 			useGiantParticle = aE,
 			uniqueID = DoUniqueString("surikenHoverData"),
-			sourceAbility = aB and aB.sourceAbility,
+			sourceAbility = aC and aC.sourceAbility,
 		})
 		aN = aN + 1
 	end)
 	t:EmitSound("Hero_BountyHunter.Shuriken")
-	if not aC and ((aB and aB.sourceAbility) == nil or aB.sourceAbility == self) then
+	if not _ and ((aC and aC.sourceAbility) == nil or aC.sourceAbility == self) then
 		local aP = self:GetSpecialValueFor("double_cast_prob")
 		if aP > 0 and self:PRD(aP, "vespera_1_upgrade_wp42") then
-			local aQ = aB ~= nil and e({}, aB) or {}
-			aQ.castPosition = aQ and aQ.castPosition or aj
-			aQ.returnTarget = aQ and aQ.returnTarget or a0
-			aQ.startPosition = aQ and aQ.startPosition or _
+			local aQ = aC ~= nil and e({}, aC) or {}
+			aQ.castPosition = aQ and aQ.castPosition or ak
+			aQ.returnTarget = aQ and aQ.returnTarget or a1
+			aQ.startPosition = aQ and aQ.startPosition or a0
 			self:StartThink(0.3, nil, function()
 				if IsValid(self) and IsValid(t) then
 					self:SurikenToss(aQ, true)
@@ -469,7 +476,7 @@ function s.prototype.CircleSurikenToss(self, aD, aR, z, A, aS)
 	local t = self:GetCaster()
 	local aJ = 360 / aD
 	local aL = t:GetForwardVector()
-	local a4 = DoUniqueString("surikenHoverData")
+	local a5 = DoUniqueString("surikenHoverData")
 	local D = t:GetAbilityByTag(AbilityTag.Ultimate)
 	Bullet:SplitAction(aL, aD, aJ, function(aO, y)
 		self:ThrowSuriken({
@@ -480,39 +487,39 @@ function s.prototype.CircleSurikenToss(self, aD, aR, z, A, aS)
 			bonusDamage = z,
 			delay = aS,
 			damageFlags = EOM_DAMAGE_FLAGS.SPLIT_DAMAGE,
-			uniqueID = a4,
+			uniqueID = a5,
 			sourceAbility = D,
 		})
 	end)
 	if AbilityUpgrade:HasAbilityUpgrade(t, "vespera_upgrade_13") then
-		self:CreateShrinkingSurroundBullets(aD, aR, z, aS, a4, D)
+		self:CreateShrinkingSurroundBullets(aD, aR, z, aS, a5, D)
 	end
 	t:EmitSound("Hero_BountyHunter.Shuriken")
 end
-function s.prototype.CreateShrinkingSurroundBullets(self, aT, aR, z, aS, a4, D)
+function s.prototype.CreateShrinkingSurroundBullets(self, aT, aR, z, aS, a5, D)
 	local t = self:GetCaster()
 	local aU = self:config()
-	local a6 = aU.distance
-	local a7 = aU.width
-	local a8 = aU.outDuration
-	local aa = aU.damagePerDistance
-	local ad = t:GetAbsOrigin()
-	self:StartThink(aS + a8, nil, function()
-		local aV = shallowcopy(self.surikenHoverData[a4])
-		f(self.surikenHoverData, a4)
+	local a7 = aU.distance
+	local a8 = aU.width
+	local a9 = aU.outDuration
+	local ab = aU.damagePerDistance
+	local ae = t:GetAbsOrigin()
+	self:StartThink(aS + a9, nil, function()
+		local aV = shallowcopy(self.surikenHoverData[a5])
+		f(self.surikenHoverData, a5)
 		local aW = 0
 		local aX = GameRules:GetGameTime()
 		local aY = Bullet:CreateTrackingBullet({
-			spawnOrigin = ad,
-			moveSpeed = CalcDistance(ad, t:GetAbsOrigin()) / aS,
+			spawnOrigin = ae,
+			moveSpeed = CalcDistance(ae, t:GetAbsOrigin()) / aS,
 			target = t,
 			thinker = true,
-			OnBulletThink = function(aj, ai)
+			OnBulletThink = function(ak, aj)
 				if IsValid(t) then
 					local aZ = GameRules:GetGameTime() - aX
 					local a_ = aS - aZ
 					if a_ > 0 then
-						ai.moveSpeed = CalcDistance(aj, t:GetAbsOrigin()) / a_
+						aj.moveSpeed = CalcDistance(ak, t:GetAbsOrigin()) / a_
 					end
 				end
 			end,
@@ -532,28 +539,28 @@ function s.prototype.CreateShrinkingSurroundBullets(self, aT, aR, z, aS, a4, D)
 			followEntity = b4,
 			ability = self,
 			group = DoUniqueString("vespera_upgrade_13"),
-			circleRadius = a6,
+			circleRadius = a7,
 			angularVelocity = aR,
 			offset = 128,
 			track = false,
 			lifeTime = aS,
-			radius = a7,
+			radius = a8,
 			teamFilter = DOTA_UNIT_TARGET_TEAM_ENEMY,
 			typeFilter = UNIT_AND_BUILDING,
-			OnBulletCreated = function(ai)
+			OnBulletCreated = function(aj)
 				local b5 = aV[aW + 1]
 				if b5 ~= nil then
-					ai.__position = b5.position
-					ai.circleRadius = b5.radius
-					ai.angle = b5.angle
-					Bullet:SaveData(ai.__projIndex, "InitRadius", b5.radius)
+					aj.__position = b5.position
+					aj.circleRadius = b5.radius
+					aj.angle = b5.angle
+					Bullet:SaveData(aj.__projIndex, "InitRadius", b5.radius)
 				end
 				aW = aW + 1
 			end,
-			OnBulletThink = function(aj, ai)
-				ai.circleRadius = ai.circleRadius - Bullet:GetData(ai.__projIndex, "InitRadius", a6) / aS * FrameTime()
+			OnBulletThink = function(ak, aj)
+				aj.circleRadius = aj.circleRadius - Bullet:GetData(aj.__projIndex, "InitRadius", a7) / aS * FrameTime()
 			end,
-			ParticleCreator = function(ai)
+			ParticleCreator = function(aj)
 				local T = ParticleManager:CreateParticle(
 					"particles/units/heroes/hero_phantom_assassin/phantom_assassin_suriken_toss_linear.vpcf",
 					PATTACH_CUSTOMORIGIN,
@@ -562,28 +569,28 @@ function s.prototype.CreateShrinkingSurroundBullets(self, aT, aR, z, aS, a4, D)
 				ParticleManager:SetParticleControlEnt(
 					T,
 					0,
-					ai.__thinker,
+					aj.__thinker,
 					PATTACH_ABSORIGIN_FOLLOW,
 					nil,
-					ai.__thinker:GetAbsOrigin(),
+					aj.__thinker:GetAbsOrigin(),
 					true
 				)
 				ParticleManager:SetParticleControlEnt(T, 7, t.__weapon, PATTACH_ABSORIGIN, nil, vec3_zero, true)
 				ParticleManager:SetParticleControl(T, 60, Weapon:GetWeaponColor(t, Vector(99, 75, 255)))
-				ParticleManager:SetParticleControl(T, 10, Vector(a7, 0, 0))
+				ParticleManager:SetParticleControl(T, 10, Vector(a8, 0, 0))
 				return T
 			end,
-			OnBulletHit = function(w, x, ag)
+			OnBulletHit = function(w, x, ah)
 				if w == t then
 					return
 				end
-				local ad = t:GetAttachmentPosition("attach_hitloc")
-				local ah = CalcDistance(ad, x) * aa
+				local ae = t:GetAttachmentPosition("attach_hitloc")
+				local ai = CalcDistance(ae, x) * ab
 				self:CreateHitEffect({
 					target = w,
 					location = x,
 					bonusDamage = z,
-					damagePct = 100 + ah,
+					damagePct = 100 + ai,
 					damageFlags = EOM_DAMAGE_FLAGS.RING_DAMAGE,
 					sourceAbility = D,
 				})
@@ -596,8 +603,8 @@ s = g(
 	{
 		r(nil, {
 			searchBehavior = AI_SEARCH_BEHAVIOR.AI_SEARCH_BEHAVIOR_MOST_LINE_TARGET,
-			funcCondition = function(aO, at)
-				return at:GetAutoCastState()
+			funcCondition = function(aO, au)
+				return au:GetAutoCastState()
 			end,
 		}),
 	},
@@ -606,7 +613,7 @@ s = g(
 local b6 = c()
 b6.name = "modifier_vespera_1_debuff"
 d(b6, m)
-function b6.prototype.OnCreated(self, ak)
+function b6.prototype.OnCreated(self, al)
 	if IsServer() then
 	else
 		local b7 = ParticleManager:CreateParticle(
@@ -646,7 +653,7 @@ function b8.prototype.____constructor(self, ...)
 	m.prototype.____constructor(self, ...)
 	self.vulnerabilityData = {}
 end
-function b8.prototype.OnCreated(self, ak)
+function b8.prototype.OnCreated(self, al)
 	if IsServer() then
 		self:StartIntervalThink(0.2)
 	end
@@ -700,12 +707,12 @@ function b8.prototype.RemoveExpiredStacks(self, b9, bb)
 		return
 	end
 	do
-		local ax = #be.expireTimes - 1
-		while ax >= 0 do
-			if be.expireTimes[ax + 1] <= bb then
-				i(be.expireTimes, ax, 1)
+		local ay = #be.expireTimes - 1
+		while ay >= 0 do
+			if be.expireTimes[ay + 1] <= bb then
+				i(be.expireTimes, ay, 1)
 			end
-			ax = ax - 1
+			ay = ay - 1
 		end
 	end
 	if #be.expireTimes <= 0 then

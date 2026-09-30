@@ -27,14 +27,14 @@ function l.prototype.OnCreated(self)
 	if not IsValid(m) then
 		return
 	end
-	AbilityUpgrade:AddAbilityUpgrade(m, "solthra_3_upgrade_wp44", self.level, "privilege_weapon_044")
+	AbilityUpgrade:AddAbilityUpgrade(m, "solthra_1_upgrade_wp44", self.level, "privilege_weapon_044")
 end
 function l.prototype.OnDestroy(self)
 	local m = self:GetCaster()
 	if not IsValid(m) then
 		return
 	end
-	AbilityUpgrade:RemoveAbilityUpgrade(m, "solthra_3_upgrade_wp44", "privilege_weapon_044")
+	AbilityUpgrade:RemoveAbilityUpgrade(m, "solthra_1_upgrade_wp44", "privilege_weapon_044")
 end
 l = e({ h, k(nil) }, l)
 return f

@@ -22,11 +22,12 @@ var ExchangeStore = require('./ExchangeStore.js');
 var RecycleView = require('./RecycleView.js');
 var StoreItem = require('./StoreItem.js');
 var dig_veins_logic = require('./dig_veins_logic.js');
-var dice_logic = require('./dice_logic.js');
+var mining_activity_redpoints = require('./mining_activity_redpoints.js');
 var EOM_Popup = require('./EOM_Popup.js');
+var EOMChildren = require('./EOMChildren.js');
 var EOM_ProgressBar = require('./EOM_ProgressBar.js');
+var EOM_RedMark = require('./EOM_RedMark.js');
 require('./service_netdata_helper.js');
-require('./EOM_RedMark.js');
 require('./EOM_TextEntry.js');
 require('./EOM_ImageNumber.js');
 require('./equipment_utils.js');
@@ -2361,7 +2362,7 @@ const cloneDiceNetDataRecord = data => {
   }, {});
 };
 const getDiceTaskSortWeight = task => {
-  switch (dice_logic.getDiceTaskState(task)) {
+  switch (mining_activity_redpoints.getDiceTaskState(task)) {
     case "Claimable":
       return 0;
     case "InProgress":
@@ -2371,7 +2372,7 @@ const getDiceTaskSortWeight = task => {
   }
 };
 const getDiceTaskKey = task => `${task.task_id}_${task.extra_id}`;
-const shouldShowDiceTaskGroup = tasks => tasks.some(task => dice_logic.getDiceTaskState(task) != "Received");
+const shouldShowDiceTaskGroup = tasks => tasks.some(task => mining_activity_redpoints.getDiceTaskState(task) != "Received");
 const player_activity_tasks$1 = solid_utils.createServiceNetData("player_activity_tasks", {});
 const [diceTaskServerTime, setDiceTaskServerTime] = libs.createSignal(Math.floor(CustomUIConfig.GetServerTimeStamp()));
 setInterval(() => {
@@ -2385,9 +2386,9 @@ const diceTasksByType = libs.createMemo(() => {
   };
   Object.values(player_activity_tasks$1()).forEach(task => {
     const taskConfig = KeyValues.task[task.task_id];
-    if (!dice_logic.isDiceTask(task)) return;
+    if (!mining_activity_redpoints.isDiceTask(task)) return;
     if (taskConfig.type != 6 && taskConfig.type != 7) return;
-    if (!dice_logic.isDiceTaskActive(task, timestamp)) return;
+    if (!mining_activity_redpoints.isDiceTaskActive(task, timestamp)) return;
     taskGroups[taskConfig.type].push(task);
   });
   taskGroups[6].sort((a, b) => getDiceTaskSortWeight(a) - getDiceTaskSortWeight(b) || a.index - b.index || a.task_id - b.task_id);
@@ -2692,7 +2693,7 @@ function DiceRoundRewardsWindow(props) {
 function DiceTaskItem(props) {
   const taskConfig = libs.createMemo(() => KeyValues.task[props.task.task_id]);
   const reward = libs.createMemo(() => Object.entries(taskConfig().rewards ?? {})[0]);
-  const taskState = libs.createMemo(() => dice_logic.getDiceTaskState(props.task));
+  const taskState = libs.createMemo(() => mining_activity_redpoints.getDiceTaskState(props.task));
   return (() => {
     const _el$30 = libs.createElement("Panel", {
         get ["class"]() {
@@ -2740,7 +2741,7 @@ function DiceTaskItem(props) {
         "class": "DiceTaskItemBottomLine"
       }, _el$30);
     libs.setProp(_el$30, "onactivate", () => {
-      if (!dice_logic.isDiceTaskClaimable(props.task) || props.claiming) {
+      if (!mining_activity_redpoints.isDiceTaskClaimable(props.task) || props.claiming) {
         return;
       }
       props.onClaim(props.task);
@@ -3022,10 +3023,11 @@ function Dice() {
     autoPlay: false
   });
   const activityData = libs.createMemo(() => KeyValues.activity_data[dig_veins_logic.ACTIVITY_DICE_ID]);
+  const isActivityEnded = Date.now() / 1000 >= activityData().end_time;
   const [claimingTaskKey, setClaimingTaskKey] = libs.createSignal();
   const receiveDiceTaskReward = task => {
     const timestamp = Math.floor(CustomUIConfig.GetServerTimeStamp());
-    if (!dice_logic.isDiceTaskActive(task, timestamp) || !dice_logic.isDiceTaskClaimable(task) || claimingTaskKey() != undefined) {
+    if (!mining_activity_redpoints.isDiceTaskActive(task, timestamp) || !mining_activity_redpoints.isDiceTaskClaimable(task) || claimingTaskKey() != undefined) {
       return;
     }
     setClaimingTaskKey(getDiceTaskKey(task));
@@ -3042,9 +3044,9 @@ function Dice() {
   const diceGameData = solid_utils.createServiceNetData("player_boardslot_activity_data", {});
   const playerTokens = solid_utils.createServiceNetData("player_tokens", {});
   const playerProps = solid_utils.createServiceNetData("player_props", {});
-  const milestoneNodes = dice_logic.getDiceMilestoneNodes();
-  const milestoneProgress = libs.createMemo(() => dice_logic.getDiceMilestoneProgress(playerTokens()));
-  const receivedMilestones = libs.createMemo(() => dice_logic.getDiceReceivedMilestones(getActivityGameData(diceGameData())));
+  const milestoneNodes = mining_activity_redpoints.getDiceMilestoneNodes();
+  const milestoneProgress = libs.createMemo(() => mining_activity_redpoints.getDiceMilestoneProgress(playerTokens()));
+  const receivedMilestones = libs.createMemo(() => mining_activity_redpoints.getDiceReceivedMilestones(getActivityGameData(diceGameData())));
   const [confirmedMilestones, setConfirmedMilestones] = libs.createSignal([]);
   const [claimingMilestone, setClaimingMilestone] = libs.createSignal();
   libs.createEffect(() => {
@@ -3055,7 +3057,7 @@ function Dice() {
     if (receivedMilestones().has(node.coin_num) || confirmedMilestones().includes(node.coin_num)) {
       return "Received";
     }
-    return dice_logic.isDiceMilestoneClaimable(node, milestoneProgress(), receivedMilestones()) ? "Claimable" : "InProgress";
+    return mining_activity_redpoints.isDiceMilestoneClaimable(node, milestoneProgress(), receivedMilestones()) ? "Claimable" : "InProgress";
   };
   const hasClaimableMilestone = libs.createMemo(() => {
     return milestoneNodes.some(node => getMilestoneState(node) == "Claimable");
@@ -3952,6 +3954,10 @@ function Dice() {
     executor(parsedResult, done, runID);
   };
   const requestRollDice = playTimes => {
+    if (Date.now() / 1000 >= activityData().end_time) {
+      ErrorMessage(GetLocalization("#Activity_TimeEnd"));
+      return;
+    }
     if (isRollRequesting() || isExecutingDiceEvents() || diceEventQueue().length > 0) {
       return;
     }
@@ -4145,63 +4151,63 @@ function Dice() {
           _el$74 = libs.createElement("Panel", {
             "class": "ContentCooldown"
           }, _el$70),
-          _el$75 = libs.createElement("Panel", {
+          _el$76 = libs.createElement("Panel", {
             "class": "DiceRoundRewardContent"
           }, _el$67),
-          _el$76 = libs.createElement("Panel", {
+          _el$77 = libs.createElement("Panel", {
             "class": "DiceRoundRewardRound"
-          }, _el$75);
+          }, _el$76);
           libs.createElement("Image", {
             "class": "DiceRoundRewardRoundBG"
-          }, _el$76);
-          const _el$78 = libs.createElement("Panel", {
+          }, _el$77);
+          const _el$79 = libs.createElement("Panel", {
             "class": "DiceRoundRewardRoundContent"
-          }, _el$76),
-          _el$79 = libs.createElement("Label", {
+          }, _el$77),
+          _el$80 = libs.createElement("Label", {
             "class": "DiceRoundRewardRoundText",
             get text() {
               return GetLocalization("#ActivityDice_CPMini_RoundText");
             }
-          }, _el$78),
-          _el$80 = libs.createElement("Panel", {
+          }, _el$79),
+          _el$81 = libs.createElement("Panel", {
             "class": "DiceRoundRewardRoundValueContent"
-          }, _el$78),
-          _el$81 = libs.createElement("Label", {
+          }, _el$79),
+          _el$82 = libs.createElement("Label", {
             "class": "DiceRoundRewardRoundValue",
             get text() {
               return `${milestoneProgress()}`;
             }
-          }, _el$80),
-          _el$82 = libs.createElement("Label", {
+          }, _el$81),
+          _el$83 = libs.createElement("Label", {
             "class": "DiceRoundRewardRoundValueMAX",
             get text() {
               return `/${progressMilestone()?.coin_num ?? 0}`;
             }
-          }, _el$80),
-          _el$83 = libs.createElement("Panel", {
+          }, _el$81),
+          _el$84 = libs.createElement("Panel", {
             "class": "DiceRoundRewardBar"
-          }, _el$75);
+          }, _el$76);
           libs.createElement("Image", {
             "class": "DiceRoundRewardBarBG"
-          }, _el$83);
-          const _el$85 = libs.createElement("Panel", {
+          }, _el$84);
+          const _el$86 = libs.createElement("Panel", {
             "class": "DiceRoundRewardBarFill",
             get style() {
               return {
                 width: milestoneProgressPercent() + "%"
               };
             }
-          }, _el$83);
+          }, _el$84);
           libs.createElement("Image", {
             "class": "DiceRoundRewardBarFillImage"
-          }, _el$85);
-          const _el$87 = libs.createElement("Label", {
+          }, _el$86);
+          const _el$88 = libs.createElement("Label", {
             "class": "DiceRoundRewardRoundValue",
             get text() {
               return `${milestoneProgress()}/${progressMilestone()?.coin_num ?? 0}`;
             }
-          }, _el$83),
-          _el$88 = libs.createElement("Panel", {
+          }, _el$84),
+          _el$89 = libs.createElement("Panel", {
             "class": "DiceRoundRewardBarValueFill",
             hittest: false,
             hittestchildren: false,
@@ -4210,37 +4216,54 @@ function Dice() {
                 clip: `rect(0%, ${milestoneProgressPercent()}%, 100%, 0%)`
               };
             }
-          }, _el$83),
-          _el$89 = libs.createElement("Label", {
+          }, _el$84),
+          _el$90 = libs.createElement("Label", {
             "class": "DiceRoundRewardRoundValue",
             get text() {
               return `${milestoneProgress()}/${progressMilestone()?.coin_num ?? 0}`;
             }
-          }, _el$88),
-          _el$90 = libs.createElement("Button", {
+          }, _el$89),
+          _el$91 = libs.createElement("Button", {
             "class": "DiceRoundRewardItem"
-          }, _el$75),
-          _el$91 = libs.createElement("DOTAParticleScenePanel", {
+          }, _el$76),
+          _el$92 = libs.createElement("DOTAParticleScenePanel", {
             "class": "DiceRoundRewardClaimableBorder",
             particleName: "particles/ui/game/ui_game_general_special_effects_03_fx.vpcf",
             cameraOrigin: "0 0 90",
             fov: 45,
             lookAt: "0 0 0",
             hittest: false
-          }, _el$90);
+          }, _el$91);
           libs.createElement("Image", {
             "class": "DiceRoundRewardItemBG",
             hittest: false
-          }, _el$90);
-          const _el$93 = libs.createElement("Image", {
+          }, _el$91);
+          const _el$94 = libs.createElement("Image", {
             "class": "DiceRoundRewardItemRedPoint",
             hittest: false
-          }, _el$90);
-        libs.insert(_el$62, libs.createComponent(EOM_Countdown.EOM_Countdown, {
-          icon: true,
-          text: "#ActivityDice_TimeLimit",
-          get endTime() {
-            return activityData().end_time;
+          }, _el$91);
+        libs.insert(_el$62, libs.createComponent(libs.Show, {
+          when: !isActivityEnded,
+          get fallback() {
+            return (() => {
+              const _el$157 = libs.createElement("Label", {
+                "class": "DiceActivityEndText",
+                get text() {
+                  return GetLocalization("#ActivityDice_EndTimeLimit");
+                }
+              }, null);
+              libs.effect(_$p => libs.setProp(_el$157, "text", GetLocalization("#ActivityDice_EndTimeLimit"), _$p));
+              return _el$157;
+            })();
+          },
+          get children() {
+            return libs.createComponent(EOM_Countdown.EOM_Countdown, {
+              icon: true,
+              text: "#ActivityDice_TimeLimit",
+              get endTime() {
+                return activityData().end_time;
+              }
+            });
           }
         }), null);
         libs.setProp(_el$66, "scroll", "y");
@@ -4278,8 +4301,21 @@ function Dice() {
             return activityData().data_end_time;
           }
         }));
-        libs.setProp(_el$90, "onactivate", () => setRoundRewardsOpen(true));
-        libs.insert(_el$90, libs.createComponent(libs.Show, {
+        libs.insert(_el$70, libs.createComponent(libs.Show, {
+          when: isActivityEnded,
+          get children() {
+            const _el$75 = libs.createElement("Label", {
+              "class": "DiceRoundRewardEndText",
+              get text() {
+                return GetLocalization("#ActivityDice_CPMini_EndTitle");
+              }
+            }, null);
+            libs.effect(_$p => libs.setProp(_el$75, "text", GetLocalization("#ActivityDice_CPMini_EndTitle"), _$p));
+            return _el$75;
+          }
+        }), null);
+        libs.setProp(_el$91, "onactivate", () => setRoundRewardsOpen(true));
+        libs.insert(_el$91, libs.createComponent(libs.Show, {
           get when() {
             return milestonePreviewReward();
           },
@@ -4288,17 +4324,17 @@ function Dice() {
               return Number(reward()[0]);
             }
           }), (() => {
-            const _el$156 = libs.createElement("Label", {
+            const _el$158 = libs.createElement("Label", {
               "class": "DiceRoundRewardItemAmount",
               get text() {
                 return reward()[1];
               },
               hittest: false
             }, null);
-            libs.effect(_$p => libs.setProp(_el$156, "text", reward()[1], _$p));
-            return _el$156;
+            libs.effect(_$p => libs.setProp(_el$158, "text", reward()[1], _$p));
+            return _el$158;
           })()]
-        }), _el$93);
+        }), _el$94);
         libs.effect(_p$ => {
           const _v$14 = logoLang(),
             _v$15 = logoLang(),
@@ -4323,15 +4359,15 @@ function Dice() {
           _v$16 !== _p$._v$16 && (_p$._v$16 = libs.setProp(_el$61, "customTooltip", _v$16, _p$._v$16));
           _v$17 !== _p$._v$17 && (_p$._v$17 = libs.setProp(_el$72, "text", _v$17, _p$._v$17));
           _v$18 !== _p$._v$18 && (_p$._v$18 = libs.setProp(_el$73, "tooltip_text", _v$18, _p$._v$18));
-          _v$19 !== _p$._v$19 && (_p$._v$19 = libs.setProp(_el$79, "text", _v$19, _p$._v$19));
-          _v$20 !== _p$._v$20 && (_p$._v$20 = libs.setProp(_el$81, "text", _v$20, _p$._v$20));
-          _v$21 !== _p$._v$21 && (_p$._v$21 = libs.setProp(_el$82, "text", _v$21, _p$._v$21));
-          _v$22 !== _p$._v$22 && (_p$._v$22 = libs.setProp(_el$85, "style", _v$22, _p$._v$22));
-          _v$23 !== _p$._v$23 && (_p$._v$23 = libs.setProp(_el$87, "text", _v$23, _p$._v$23));
-          _v$24 !== _p$._v$24 && (_p$._v$24 = libs.setProp(_el$88, "style", _v$24, _p$._v$24));
-          _v$25 !== _p$._v$25 && (_p$._v$25 = libs.setProp(_el$89, "text", _v$25, _p$._v$25));
-          _v$26 !== _p$._v$26 && (_p$._v$26 = libs.setProp(_el$91, "visible", _v$26, _p$._v$26));
-          _v$27 !== _p$._v$27 && (_p$._v$27 = libs.setProp(_el$93, "visible", _v$27, _p$._v$27));
+          _v$19 !== _p$._v$19 && (_p$._v$19 = libs.setProp(_el$80, "text", _v$19, _p$._v$19));
+          _v$20 !== _p$._v$20 && (_p$._v$20 = libs.setProp(_el$82, "text", _v$20, _p$._v$20));
+          _v$21 !== _p$._v$21 && (_p$._v$21 = libs.setProp(_el$83, "text", _v$21, _p$._v$21));
+          _v$22 !== _p$._v$22 && (_p$._v$22 = libs.setProp(_el$86, "style", _v$22, _p$._v$22));
+          _v$23 !== _p$._v$23 && (_p$._v$23 = libs.setProp(_el$88, "text", _v$23, _p$._v$23));
+          _v$24 !== _p$._v$24 && (_p$._v$24 = libs.setProp(_el$89, "style", _v$24, _p$._v$24));
+          _v$25 !== _p$._v$25 && (_p$._v$25 = libs.setProp(_el$90, "text", _v$25, _p$._v$25));
+          _v$26 !== _p$._v$26 && (_p$._v$26 = libs.setProp(_el$92, "visible", _v$26, _p$._v$26));
+          _v$27 !== _p$._v$27 && (_p$._v$27 = libs.setProp(_el$94, "visible", _v$27, _p$._v$27));
           return _p$;
         }, {
           _v$14: undefined,
@@ -4351,27 +4387,27 @@ function Dice() {
         });
         return _el$58;
       })(), (() => {
-        const _el$94 = libs.createElement("Panel", {
+        const _el$95 = libs.createElement("Panel", {
             id: "DiceGameContainer"
           }, null),
-          _el$95 = libs.createElement("Panel", {
+          _el$96 = libs.createElement("Panel", {
             id: "DiceGameBoardLocation"
-          }, _el$94);
+          }, _el$95);
           libs.createElement("Image", {
             id: "DiceGameBoardBG"
-          }, _el$95);
-          const _el$97 = libs.createElement("Panel", {
+          }, _el$96);
+          const _el$98 = libs.createElement("Panel", {
             id: "DiceGamePieceLayerRotated"
-          }, _el$95),
-          _el$98 = libs.createElement("Panel", {
-            id: "DiceGamePieceGrid"
-          }, _el$97),
+          }, _el$96),
           _el$99 = libs.createElement("Panel", {
+            id: "DiceGamePieceGrid"
+          }, _el$98),
+          _el$100 = libs.createElement("Panel", {
             id: "DiceGamePlayerLayer",
             hittest: false,
             hittestchildren: false
-          }, _el$97),
-          _el$100 = libs.createElement("Panel", {
+          }, _el$98),
+          _el$101 = libs.createElement("Panel", {
             id: "DiceEventLayer",
             "class": "DiceLayer",
             get style() {
@@ -4381,14 +4417,14 @@ function Dice() {
             },
             hittest: false,
             hittestchildren: false
-          }, _el$95);
+          }, _el$96);
           libs.createElement("Panel", {
             "class": "DiceLayerBG"
-          }, _el$100);
+          }, _el$101);
           libs.createElement("Panel", {
             "class": "DiceLayerBorder"
-          }, _el$100);
-          const _el$103 = libs.createElement("Image", {
+          }, _el$101);
+          const _el$104 = libs.createElement("Image", {
             id: "DiceEventHeadIcon",
             get ["class"]() {
               return libs.classNames({
@@ -4396,145 +4432,145 @@ function Dice() {
                 DiceEventBadEvent: diceEventLayerType() == "bad"
               });
             }
-          }, _el$100),
-          _el$104 = libs.createElement("Panel", {
-            "class": "DiceLayerContent"
-          }, _el$100),
+          }, _el$101),
           _el$105 = libs.createElement("Panel", {
+            "class": "DiceLayerContent"
+          }, _el$101),
+          _el$106 = libs.createElement("Panel", {
             "class": "DiceLayerTitleContent"
-          }, _el$104),
-          _el$106 = libs.createElement("Label", {
+          }, _el$105),
+          _el$107 = libs.createElement("Label", {
             "class": "DiceLayerTitleContentText",
             get text() {
               return diceEventLayerTitle();
             }
-          }, _el$105),
-          _el$107 = libs.createElement("Panel", {
+          }, _el$106),
+          _el$108 = libs.createElement("Panel", {
             "class": "DiceLayerBodyContent"
-          }, _el$104),
-          _el$108 = libs.createElement("Label", {
+          }, _el$105),
+          _el$109 = libs.createElement("Label", {
             "class": "DiceLayerContentDesc",
             get text() {
               return diceEventLayerDescription();
             }
-          }, _el$107),
-          _el$109 = libs.createElement("Panel", {
+          }, _el$108),
+          _el$110 = libs.createElement("Panel", {
             id: "DiceMultiRollPointLayer",
             "class": "DiceLayer",
             hittest: false,
             hittestchildren: false
-          }, _el$95);
+          }, _el$96);
           libs.createElement("Panel", {
             "class": "DiceLayerBG"
-          }, _el$109);
+          }, _el$110);
           libs.createElement("Panel", {
             "class": "DiceLayerBorder"
-          }, _el$109);
-          const _el$112 = libs.createElement("Panel", {
+          }, _el$110);
+          const _el$113 = libs.createElement("Panel", {
             "class": "DiceLayerContent"
-          }, _el$109),
-          _el$113 = libs.createElement("Panel", {
+          }, _el$110),
+          _el$114 = libs.createElement("Panel", {
             "class": "DiceLayerTitleContent"
-          }, _el$112),
-          _el$114 = libs.createElement("Label", {
+          }, _el$113),
+          _el$115 = libs.createElement("Label", {
             "class": "DiceLayerTitleContentText",
             get text() {
               return GetLocalization("#ActivityDice_MultiRollPointTitle");
             }
-          }, _el$113),
-          _el$115 = libs.createElement("Panel", {
+          }, _el$114),
+          _el$116 = libs.createElement("Panel", {
             "class": "DiceLayerBodyContent"
-          }, _el$112),
-          _el$116 = libs.createElement("Label", {
+          }, _el$113),
+          _el$117 = libs.createElement("Label", {
             id: "DiceMultiRollPointValue",
             "class": "DiceLayerContentDesc",
             get text() {
               return `${multiRollPointValue()}`;
             }
-          }, _el$115),
-          _el$117 = libs.createElement("Label", {
+          }, _el$116),
+          _el$118 = libs.createElement("Label", {
             id: "DiceMultiRollPointProgress",
             "class": "DiceLayerContentDesc",
             get text() {
               return `${multiRollCurrentIndex()}/${multiRollTotalCount()}`;
             }
-          }, _el$115),
-          _el$118 = libs.createElement("Panel", {
+          }, _el$116),
+          _el$119 = libs.createElement("Panel", {
             id: "DiceMultiBoxPreviewLayer",
             "class": "DiceLayer",
             hittest: false,
             hittestchildren: true
-          }, _el$95);
+          }, _el$96);
           libs.createElement("Panel", {
             "class": "DiceLayerBG"
-          }, _el$118);
+          }, _el$119);
           libs.createElement("Panel", {
             "class": "DiceLayerBorder"
-          }, _el$118);
-          const _el$121 = libs.createElement("Panel", {
+          }, _el$119);
+          const _el$122 = libs.createElement("Panel", {
             "class": "DiceLayerContent"
-          }, _el$118),
-          _el$122 = libs.createElement("Panel", {
+          }, _el$119),
+          _el$123 = libs.createElement("Panel", {
             "class": "DiceLayerTitleContent"
-          }, _el$121),
-          _el$123 = libs.createElement("Label", {
+          }, _el$122),
+          _el$124 = libs.createElement("Label", {
             "class": "DiceLayerTitleContentText",
             get text() {
               return GetLocalization("#ActivityDice_BoxRewardPreviewTitle");
             }
-          }, _el$122),
-          _el$124 = libs.createElement("Panel", {
+          }, _el$123),
+          _el$125 = libs.createElement("Panel", {
             "class": "DiceLayerBodyContent"
-          }, _el$121),
-          _el$125 = libs.createElement("Label", {
+          }, _el$122),
+          _el$126 = libs.createElement("Label", {
             "class": "DiceLayerContentDesc",
             get text() {
               return GetLocalization("#ActivityDice_BoxRewardPreviewContent");
             }
-          }, _el$124),
-          _el$126 = libs.createElement("Panel", {
+          }, _el$125),
+          _el$127 = libs.createElement("Panel", {
             "class": "DiceTaskReward"
-          }, _el$124);
+          }, _el$125);
           libs.createElement("Image", {
             "class": "DiceTaskRewardBG"
-          }, _el$126);
-          const _el$128 = libs.createElement("Label", {
+          }, _el$127);
+          const _el$129 = libs.createElement("Label", {
             "class": "DiceTaskRewardValue",
             get text() {
               return boxPreviewReward()?.amounts ?? 0;
             }
-          }, _el$126),
-          _el$129 = libs.createElement("Panel", {
+          }, _el$127),
+          _el$130 = libs.createElement("Panel", {
             id: "DiceMultiRollSummaryLayer",
             "class": "DiceLayer",
             hittest: true,
             hittestchildren: true
-          }, _el$95);
+          }, _el$96);
           libs.createElement("Panel", {
             "class": "DiceLayerBG"
-          }, _el$129);
+          }, _el$130);
           libs.createElement("Panel", {
             "class": "DiceLayerBorder"
-          }, _el$129);
-          const _el$132 = libs.createElement("Panel", {
+          }, _el$130);
+          const _el$133 = libs.createElement("Panel", {
             "class": "DiceLayerContent"
-          }, _el$129),
-          _el$133 = libs.createElement("Panel", {
+          }, _el$130),
+          _el$134 = libs.createElement("Panel", {
             "class": "DiceLayerTitleContent"
-          }, _el$132),
-          _el$134 = libs.createElement("Label", {
+          }, _el$133),
+          _el$135 = libs.createElement("Label", {
             "class": "DiceLayerTitleContentText",
             get text() {
               return GetLocalization("#ActivityDice_MultiRollSummaryTitle");
             }
-          }, _el$133),
-          _el$135 = libs.createElement("Panel", {
-            "class": "DiceLayerBodyContent"
-          }, _el$132),
+          }, _el$134),
           _el$136 = libs.createElement("Panel", {
-            id: "DiceGameOperation"
-          }, _el$94),
+            "class": "DiceLayerBodyContent"
+          }, _el$133),
           _el$137 = libs.createElement("Panel", {
+            id: "DiceGameOperation"
+          }, _el$95),
+          _el$138 = libs.createElement("Panel", {
             id: "DiceGamePlayerEventContainer",
             get hittest() {
               return hasPlayerEvent();
@@ -4542,64 +4578,64 @@ function Dice() {
             get hittestchildren() {
               return hasPlayerEvent();
             }
-          }, _el$136),
-          _el$138 = libs.createElement("Label", {
+          }, _el$137),
+          _el$139 = libs.createElement("Label", {
             id: "DiceGamePlayerEventTitle",
             get text() {
               return GetLocalization("#ActivityDice_PlayerEventTitle");
             }
-          }, _el$137),
-          _el$139 = libs.createElement("Panel", {
-            id: "DiceGamePlayerEventContent"
-          }, _el$137),
+          }, _el$138),
           _el$140 = libs.createElement("Panel", {
+            id: "DiceGamePlayerEventContent"
+          }, _el$138),
+          _el$141 = libs.createElement("Panel", {
             "class": "DiceGamePlayerEventItem"
-          }, _el$139);
+          }, _el$140);
           libs.createElement("Image", {
             id: "DiceGamePlayerEventBG"
-          }, _el$140);
-          const _el$142 = libs.createElement("Panel", {
+          }, _el$141);
+          const _el$143 = libs.createElement("Panel", {
             "class": "DiceGamePlayerEventItemContent"
-          }, _el$140),
-          _el$143 = libs.createElement("Label", {
+          }, _el$141),
+          _el$144 = libs.createElement("Label", {
             "class": "DiceGamePlayerEventDesc",
             get text() {
               return GetLocalization("#ActivityDice_PlayerEvent_RewardNextSlot");
             }
-          }, _el$142),
-          _el$145 = libs.createElement("Panel", {
-            id: "DiceGameRollButtonContainer"
-          }, _el$136),
+          }, _el$143),
           _el$146 = libs.createElement("Panel", {
+            id: "DiceGameRollButtonContainer"
+          }, _el$137),
+          _el$147 = libs.createElement("Panel", {
             id: "DiceGameCostInfo"
-          }, _el$145);
+          }, _el$146);
           libs.createElement("Image", {
             id: "DiceGameCostInfoBG"
-          }, _el$146);
-          const _el$148 = libs.createElement("Panel", {
+          }, _el$147);
+          const _el$149 = libs.createElement("Panel", {
             id: "DiceGameCostInfoContent"
-          }, _el$146),
-          _el$149 = libs.createElement("Label", {
+          }, _el$147),
+          _el$150 = libs.createElement("Label", {
             id: "DiceGameCostValue",
             text: `x${DICE_ROLL_ONCE_TIMES}`
-          }, _el$148);
-        libs.insert(_el$98, libs.createComponent(libs.For, {
+          }, _el$149);
+        libs.insert(_el$99, libs.createComponent(libs.For, {
           each: DICE_BOARD_LAYOUT_ROWS,
           children: (row, index) => (() => {
-            const _el$157 = libs.createElement("Panel", {
+            const _el$159 = libs.createElement("Panel", {
               get ["class"]() {
                 return `DiceGamePieceRow DiceGamePieceRow_${index()}`;
               }
             }, null);
-            libs.insert(_el$157, libs.createComponent(libs.For, {
+            libs.insert(_el$159, libs.createComponent(libs.For, {
               each: row,
               children: piece => {
                 const tileConfig = () => piece.shouldRenderPiece ? tileConfigMap()[piece.slotID] ?? DEFAULT_TILE_CONFIG : DEFAULT_TILE_CONFIG;
                 return (() => {
-                  const _el$158 = libs.createElement("Panel", {
+                  const _el$160 = libs.createElement("Panel", {
                     "class": "DiceGamePieceCell"
                   }, null);
-                  libs.insert(_el$158, (() => {
+                  libs.insert(_el$160, (() => {
                     const _c$ = libs.memo(() => !!piece.shouldRenderPiece);
                     return () => _c$() ? libs.createComponent(DiceGamePiece, {
                       get id() {
@@ -4631,7 +4667,7 @@ function Dice() {
                       }
                     }) : libs.createComponent(DiceGamePiecePlaceholder, {});
                   })());
-                  libs.effect(_$p => libs.setProp(_el$158, "customTooltip", piece.shouldRenderPiece ? (() => {
+                  libs.effect(_$p => libs.setProp(_el$160, "customTooltip", piece.shouldRenderPiece ? (() => {
                     const tooltipData = getDiceSlotTooltipData(dig_veins_logic.ACTIVITY_DICE_ID, piece.slotID, activitySlotData()[piece.slotID]);
                     if (tooltipData == undefined) {
                       return undefined;
@@ -4652,15 +4688,15 @@ function Dice() {
                       ...definedTooltipParams
                     };
                   })() : undefined, _$p));
-                  return _el$158;
+                  return _el$160;
                 })();
               }
             }));
-            libs.effect(_$p => libs.setProp(_el$157, "class", `DiceGamePieceRow DiceGamePieceRow_${index()}`, _$p));
-            return _el$157;
+            libs.effect(_$p => libs.setProp(_el$159, "class", `DiceGamePieceRow DiceGamePieceRow_${index()}`, _$p));
+            return _el$159;
           })()
         }));
-        libs.insert(_el$99, libs.createComponent(DiceGamePlayerPiece, {
+        libs.insert(_el$100, libs.createComponent(DiceGamePlayerPiece, {
           get position() {
             return playerPiecePosition();
           },
@@ -4683,58 +4719,58 @@ function Dice() {
             return playerJump.SequenceFrame;
           }
         }));
-        libs.insert(_el$95, libs.createComponent(DiceGameDiceCube, {
+        libs.insert(_el$96, libs.createComponent(DiceGameDiceCube, {
           get visible() {
             return isDiceVisible();
           },
           get SequenceFrame() {
             return diceSequence.SequenceFrame;
           }
-        }), _el$100);
-        libs.insert(_el$126, libs.createComponent(StoreItem.StoreItemImage, {
+        }), _el$101);
+        libs.insert(_el$127, libs.createComponent(StoreItem.StoreItemImage, {
           "class": "DiceTaskRewardIcon",
           get itemid() {
             return boxPreviewReward()?.item_id ?? 1800008;
           }
-        }), _el$128);
-        libs.insert(_el$135, libs.createComponent(libs.For, {
+        }), _el$129);
+        libs.insert(_el$136, libs.createComponent(libs.For, {
           get each() {
             return multiRollSummaryItems();
           },
           children: summaryText => (() => {
-            const _el$159 = libs.createElement("Label", {
+            const _el$161 = libs.createElement("Label", {
               "class": "DiceLayerContentDesc",
               text: summaryText
             }, null);
-            libs.setProp(_el$159, "text", summaryText);
-            return _el$159;
+            libs.setProp(_el$161, "text", summaryText);
+            return _el$161;
           })()
         }));
-        libs.insert(_el$142, libs.createComponent(libs.Show, {
+        libs.insert(_el$143, libs.createComponent(libs.Show, {
           get when() {
             return nextSlotExtraExp() > 1;
           },
           get children() {
-            const _el$144 = libs.createElement("Label", {
+            const _el$145 = libs.createElement("Label", {
               "class": "DiceGamePlayerEventValue",
               get text() {
                 return `x${nextSlotExtraExp()}`;
               }
             }, null);
-            libs.effect(_$p => libs.setProp(_el$144, "text", `x${nextSlotExtraExp()}`, _$p));
-            return _el$144;
+            libs.effect(_$p => libs.setProp(_el$145, "text", `x${nextSlotExtraExp()}`, _$p));
+            return _el$145;
           }
         }), null);
-        libs.insert(_el$148, libs.createComponent(StoreItem.StoreItemImage, {
+        libs.insert(_el$149, libs.createComponent(StoreItem.StoreItemImage, {
           get itemid() {
             return diceTicketID();
           },
           get src() {
             return STOREITEMIMAGE_SRCPATH[diceTicketID()];
           }
-        }), _el$149);
-        libs.setProp(_el$149, "text", `x${DICE_ROLL_ONCE_TIMES}`);
-        libs.insert(_el$145, libs.createComponent(EOM_Button.EOM_BaseButton, {
+        }), _el$150);
+        libs.setProp(_el$150, "text", `x${DICE_ROLL_ONCE_TIMES}`);
+        libs.insert(_el$146, libs.createComponent(EOM_Button.EOM_BaseButton, {
           id: "DiceGameRollButton",
           "class": "DiceGameActionButton",
           get enabled() {
@@ -4750,7 +4786,7 @@ function Dice() {
             }, null)];
           }
         }), null);
-        libs.insert(_el$136, libs.createComponent(EOM_Button.EOM_BaseButton, {
+        libs.insert(_el$137, libs.createComponent(EOM_Button.EOM_BaseButton, {
           "class": "DiceGameRollMiniButton",
           get enabled() {
             return !isRollBusy();
@@ -4760,18 +4796,18 @@ function Dice() {
             return [libs.createElement("Image", {
               "class": "DiceGameRollMiniButtonBG"
             }, null), (() => {
-              const _el$153 = libs.createElement("Label", {
+              const _el$154 = libs.createElement("Label", {
                 "class": "DiceGameRollMiniButtonText",
                 get text() {
                   return `x${diceRoll10ButtonTimes()}`;
                 }
               }, null);
-              libs.effect(_$p => libs.setProp(_el$153, "text", `x${diceRoll10ButtonTimes()}`, _$p));
-              return _el$153;
+              libs.effect(_$p => libs.setProp(_el$154, "text", `x${diceRoll10ButtonTimes()}`, _$p));
+              return _el$154;
             })()];
           }
         }), null);
-        libs.insert(_el$136, libs.createComponent(libs.Show, {
+        libs.insert(_el$137, libs.createComponent(libs.Show, {
           get when() {
             return isExecutingDiceEvents();
           },
@@ -4823,27 +4859,27 @@ function Dice() {
             _v$48 = {
               NotEnough: !hasEnoughDiceTicket(DICE_ROLL_ONCE_TIMES)
             };
-          _v$28 !== _p$._v$28 && (_p$._v$28 = libs.setProp(_el$100, "visible", _v$28, _p$._v$28));
-          _v$29 !== _p$._v$29 && (_p$._v$29 = libs.setProp(_el$100, "style", _v$29, _p$._v$29));
-          _v$30 !== _p$._v$30 && (_p$._v$30 = libs.setProp(_el$103, "class", _v$30, _p$._v$30));
-          _v$31 !== _p$._v$31 && (_p$._v$31 = libs.setProp(_el$106, "text", _v$31, _p$._v$31));
-          _v$32 !== _p$._v$32 && (_p$._v$32 = libs.setProp(_el$108, "text", _v$32, _p$._v$32));
-          _v$33 !== _p$._v$33 && (_p$._v$33 = libs.setProp(_el$109, "visible", _v$33, _p$._v$33));
-          _v$34 !== _p$._v$34 && (_p$._v$34 = libs.setProp(_el$114, "text", _v$34, _p$._v$34));
-          _v$35 !== _p$._v$35 && (_p$._v$35 = libs.setProp(_el$116, "text", _v$35, _p$._v$35));
-          _v$36 !== _p$._v$36 && (_p$._v$36 = libs.setProp(_el$117, "text", _v$36, _p$._v$36));
-          _v$37 !== _p$._v$37 && (_p$._v$37 = libs.setProp(_el$118, "visible", _v$37, _p$._v$37));
-          _v$38 !== _p$._v$38 && (_p$._v$38 = libs.setProp(_el$123, "text", _v$38, _p$._v$38));
-          _v$39 !== _p$._v$39 && (_p$._v$39 = libs.setProp(_el$125, "text", _v$39, _p$._v$39));
-          _v$40 !== _p$._v$40 && (_p$._v$40 = libs.setProp(_el$128, "text", _v$40, _p$._v$40));
-          _v$41 !== _p$._v$41 && (_p$._v$41 = libs.setProp(_el$129, "visible", _v$41, _p$._v$41));
-          _v$42 !== _p$._v$42 && (_p$._v$42 = libs.setProp(_el$134, "text", _v$42, _p$._v$42));
-          _v$43 !== _p$._v$43 && (_p$._v$43 = libs.setProp(_el$137, "classList", _v$43, _p$._v$43));
-          _v$44 !== _p$._v$44 && (_p$._v$44 = libs.setProp(_el$137, "hittest", _v$44, _p$._v$44));
-          _v$45 !== _p$._v$45 && (_p$._v$45 = libs.setProp(_el$137, "hittestchildren", _v$45, _p$._v$45));
-          _v$46 !== _p$._v$46 && (_p$._v$46 = libs.setProp(_el$138, "text", _v$46, _p$._v$46));
-          _v$47 !== _p$._v$47 && (_p$._v$47 = libs.setProp(_el$143, "text", _v$47, _p$._v$47));
-          _v$48 !== _p$._v$48 && (_p$._v$48 = libs.setProp(_el$149, "classList", _v$48, _p$._v$48));
+          _v$28 !== _p$._v$28 && (_p$._v$28 = libs.setProp(_el$101, "visible", _v$28, _p$._v$28));
+          _v$29 !== _p$._v$29 && (_p$._v$29 = libs.setProp(_el$101, "style", _v$29, _p$._v$29));
+          _v$30 !== _p$._v$30 && (_p$._v$30 = libs.setProp(_el$104, "class", _v$30, _p$._v$30));
+          _v$31 !== _p$._v$31 && (_p$._v$31 = libs.setProp(_el$107, "text", _v$31, _p$._v$31));
+          _v$32 !== _p$._v$32 && (_p$._v$32 = libs.setProp(_el$109, "text", _v$32, _p$._v$32));
+          _v$33 !== _p$._v$33 && (_p$._v$33 = libs.setProp(_el$110, "visible", _v$33, _p$._v$33));
+          _v$34 !== _p$._v$34 && (_p$._v$34 = libs.setProp(_el$115, "text", _v$34, _p$._v$34));
+          _v$35 !== _p$._v$35 && (_p$._v$35 = libs.setProp(_el$117, "text", _v$35, _p$._v$35));
+          _v$36 !== _p$._v$36 && (_p$._v$36 = libs.setProp(_el$118, "text", _v$36, _p$._v$36));
+          _v$37 !== _p$._v$37 && (_p$._v$37 = libs.setProp(_el$119, "visible", _v$37, _p$._v$37));
+          _v$38 !== _p$._v$38 && (_p$._v$38 = libs.setProp(_el$124, "text", _v$38, _p$._v$38));
+          _v$39 !== _p$._v$39 && (_p$._v$39 = libs.setProp(_el$126, "text", _v$39, _p$._v$39));
+          _v$40 !== _p$._v$40 && (_p$._v$40 = libs.setProp(_el$129, "text", _v$40, _p$._v$40));
+          _v$41 !== _p$._v$41 && (_p$._v$41 = libs.setProp(_el$130, "visible", _v$41, _p$._v$41));
+          _v$42 !== _p$._v$42 && (_p$._v$42 = libs.setProp(_el$135, "text", _v$42, _p$._v$42));
+          _v$43 !== _p$._v$43 && (_p$._v$43 = libs.setProp(_el$138, "classList", _v$43, _p$._v$43));
+          _v$44 !== _p$._v$44 && (_p$._v$44 = libs.setProp(_el$138, "hittest", _v$44, _p$._v$44));
+          _v$45 !== _p$._v$45 && (_p$._v$45 = libs.setProp(_el$138, "hittestchildren", _v$45, _p$._v$45));
+          _v$46 !== _p$._v$46 && (_p$._v$46 = libs.setProp(_el$139, "text", _v$46, _p$._v$46));
+          _v$47 !== _p$._v$47 && (_p$._v$47 = libs.setProp(_el$144, "text", _v$47, _p$._v$47));
+          _v$48 !== _p$._v$48 && (_p$._v$48 = libs.setProp(_el$150, "classList", _v$48, _p$._v$48));
           return _p$;
         }, {
           _v$28: undefined,
@@ -4868,7 +4904,7 @@ function Dice() {
           _v$47: undefined,
           _v$48: undefined
         });
-        return _el$94;
+        return _el$95;
       })(), libs.createComponent(libs.Show, {
         get when() {
           return roundRewardsOpen();
@@ -4969,6 +5005,2818 @@ function DiceGift() {
         }));
         return _el$5;
       })()];
+    }
+  });
+}
+
+const MINE_GRID_COLUMNS = 8;
+const MINE_GRID_VISIBLE_ROWS = 7;
+const MINE_GRID_CELL_MARGIN = 3;
+const MINE_GRID_CELL_SIZE = 94;
+const MINE_GRID_COLUMN_STRIDE = MINE_GRID_CELL_SIZE + MINE_GRID_CELL_MARGIN * 2;
+const MINE_GRID_ROW_STRIDE = 102;
+const MINE_GRID_CELL_CENTER = MINE_GRID_CELL_MARGIN + MINE_GRID_CELL_SIZE * 0.5;
+const MINE_GRID_SCROLL_ANIMATION_DURATION = 0.2;
+const MINE_GRID_CELL_REMOVE_STAGE_DURATION = 0.8;
+const MINE_GRID_TIMELINE_TICK_INTERVAL = 0.05;
+const MINE_GRID_TIMELINE_RENDER_BARRIER_DURATION = 0.05;
+const MINE_GRID_DRILL_CELL_INTERVAL = 0.2;
+const MINE_GRID_DRILL_EFFECT_TO_HIDE_DELAY = 0.2;
+const MINE_GRID_DRILL_CELL_FADE_DURATION = 0.2;
+const MINE_GRID_DRILL_FINISH_HOLD_DURATION = 0.4;
+const DIG_VEINS_PICKAXE_PRESENTATION_DELAY = 0.32;
+const DIG_VEINS_BOMB_PRESENTATION_DELAY = 0.4;
+const DIG_VEINS_DRILL_PRESENTATION_DELAY = 0.08;
+const DIG_VEINS_PICKAXE_FLOW_WAIT_DURATION = 0.4;
+const DIG_VEINS_BOMB_FLOW_WAIT_DURATION = 0.4;
+const DIG_VEINS_PICKAXE_EFFECT_DURATION = 1.2;
+const DIG_VEINS_BOMB_EFFECT_DURATION = 1.2;
+const DIG_VEINS_PICKAXE_SECOND_SOUND_DELAY = 0.88;
+const DIG_VEINS_SOUND_EVENT_PICKAXE_FIRST = "UI.Wakuang.TieGao1";
+const DIG_VEINS_SOUND_EVENT_PICKAXE_SECOND = "UI.Wakuang.TieGao2";
+const DIG_VEINS_SOUND_EVENT_BOMB = "UI.Wakuang.ZhaDan1";
+const DIG_VEINS_SOUND_EVENT_DRILL = "UI.Wakuang.DianZuan1";
+const TOOL_CURSOR_ICON_SIZE = 64;
+const DIG_VEINS_PICKAXE_PRODUCT_ID = 802307;
+const DIG_VEINS_DRILL_PRODUCT_ID = 802308;
+const DIG_VEINS_REWARD_TIP_VISIBLE_DURATION = 2;
+const DIG_VEINS_REWARD_ITEM_IDS = ["190003", "190002", "190001"];
+const openVeinsGift = () => {
+  JumpToMenu({
+    window_name: "activity",
+    menu: "mining",
+    menu2: "veins_gift",
+    force: true
+  });
+};
+const purchaseVeinsTool = productID => {
+  ClientSideEvent("directly_purchase", {
+    itemid: productID,
+    source: "veins_game_tool_bar"
+  });
+};
+const PICKAXE_SEQ_FRAMES = [getSrcPath("m4_mining/seq_pickaxe/01.png"), getSrcPath("m4_mining/seq_pickaxe/02.png"), getSrcPath("m4_mining/seq_pickaxe/03.png"), getSrcPath("m4_mining/seq_pickaxe/04.png"), getSrcPath("m4_mining/seq_pickaxe/05.png"), getSrcPath("m4_mining/seq_pickaxe/06.png"), getSrcPath("m4_mining/seq_pickaxe/07.png"), getSrcPath("m4_mining/seq_pickaxe/01.png"), getSrcPath("m4_mining/seq_pickaxe/02.png"), getSrcPath("m4_mining/seq_pickaxe/03.png"), getSrcPath("m4_mining/seq_pickaxe/04.png"), getSrcPath("m4_mining/seq_pickaxe/05.png"), getSrcPath("m4_mining/seq_pickaxe/06.png"), getSrcPath("m4_mining/seq_pickaxe/07.png"), getSrcPath("m4_mining/seq_pickaxe/08.png")];
+const DRILL_SEQ_FRAMES = [getSrcPath("m4_mining/seq_drill/01.png"), getSrcPath("m4_mining/seq_drill/02.png"), getSrcPath("m4_mining/seq_drill/03.png"), getSrcPath("m4_mining/seq_drill/04.png"), getSrcPath("m4_mining/seq_drill/02.png"), getSrcPath("m4_mining/seq_drill/03.png"), getSrcPath("m4_mining/seq_drill/04.png"), getSrcPath("m4_mining/seq_drill/02.png"), getSrcPath("m4_mining/seq_drill/03.png"), getSrcPath("m4_mining/seq_drill/04.png"), getSrcPath("m4_mining/seq_drill/02.png"), getSrcPath("m4_mining/seq_drill/03.png"), getSrcPath("m4_mining/seq_drill/04.png"), getSrcPath("m4_mining/seq_drill/02.png"), getSrcPath("m4_mining/seq_drill/03.png"), getSrcPath("m4_mining/seq_drill/04.png"), getSrcPath("m4_mining/seq_drill/05.png"), getSrcPath("m4_mining/seq_drill/06.png"), getSrcPath("m4_mining/seq_drill/07.png"), getSrcPath("m4_mining/seq_drill/08.png")];
+const BOMB_SEQ_FRAMES = [getSrcPath("m4_mining/seq_bomb/01.png"), getSrcPath("m4_mining/seq_bomb/02.png"), getSrcPath("m4_mining/seq_bomb/03.png"), getSrcPath("m4_mining/seq_bomb/04.png"), getSrcPath("m4_mining/seq_bomb/05.png"), getSrcPath("m4_mining/seq_bomb/06.png"), getSrcPath("m4_mining/seq_bomb/07.png"), getSrcPath("m4_mining/seq_bomb/08.png")];
+const DIG_VEINS_SLOT_IMAGE = {
+  "0": getSrcPath("m4_mining/m4_img_block_0.png"),
+  "1": getSrcPath("m4_mining/m4_img_block_soil.png"),
+  "2": getSrcPath("m4_mining/m4_img_block_blackstone.png"),
+  "120001": getSrcPath("m4_mining/m4_img_block_iron.png"),
+  "120002": getSrcPath("m4_mining/m4_img_block_copper.png"),
+  "120003": getSrcPath("m4_mining/m4_img_block_silver.png"),
+  "1800013": getSrcPath("m4_mining/m4_img_block_chest2.png"),
+  "1800014": getSrcPath("m4_mining/m4_img_block_chest3.png"),
+  "190001": getSrcPath("m4_mining/m4_img_block_chest6.png"),
+  "190002": getSrcPath("m4_mining/m4_img_block_chest4.png"),
+  "190003": getSrcPath("m4_mining/m4_img_block_chest5.png"),
+  "default": getSrcPath("m4_mining/m4_img_block_soil2.png")
+};
+const DONOT_SHOW_TOOLTIP = {
+  "0": true,
+  "1": true,
+  "2": true,
+  "3": true
+};
+const SPECIAL_REWARDS = {
+  "190001": true,
+  "190002": true,
+  "190003": true
+};
+const collectDigVeinsSpecialRewards = items => {
+  const rewards = new Map();
+  for (const item of items) {
+    const itemID = String(item.item_id);
+    if (SPECIAL_REWARDS[itemID] !== true) {
+      continue;
+    }
+    const reward = rewards.get(itemID);
+    if (reward != undefined) {
+      reward.amounts += item.amounts;
+    } else {
+      rewards.set(itemID, {
+        item_id: itemID,
+        amounts: item.amounts
+      });
+    }
+  }
+  return Array.from(rewards.values()).filter(reward => reward.amounts > 0);
+};
+const DIG_VEINS_TOOL_OPERATE_TYPE = {
+  Pickaxe: 1,
+  Bomb: 2,
+  Drill: 3
+};
+const getDigVeinsVisibleStartRow = depth => depth - MINE_GRID_VISIBLE_ROWS + 1;
+const createEmptyDigVeinsMapRow = () => Array.from({
+  length: MINE_GRID_COLUMNS
+}, () => undefined);
+const parseDigVeinsMap = (mapValue, startRow, endRow) => {
+  const rows = {};
+  for (let row = startRow; row <= endRow; row++) {
+    rows[row] = createEmptyDigVeinsMapRow();
+  }
+  if (typeof mapValue != "string" || mapValue.length == 0) {
+    return rows;
+  }
+  for (const rawRow of mapValue.split(";")) {
+    const separatorIndex = rawRow.indexOf(":");
+    if (separatorIndex < 0) {
+      continue;
+    }
+    const depth = Number(rawRow.slice(0, separatorIndex));
+    if (!Number.isInteger(depth) || depth < 0 || depth < startRow || depth > endRow) {
+      continue;
+    }
+    const layout = rawRow.slice(separatorIndex + 1).split("|");
+    rows[depth] = Array.from({
+      length: MINE_GRID_COLUMNS
+    }, (_, column) => {
+      const [type, displayValue] = (layout[column] ?? "").split(":");
+      return type == "" ? undefined : {
+        type,
+        displayValue
+      };
+    });
+  }
+  return rows;
+};
+const cloneDigVeinsMapRows = rows => {
+  const clonedRows = {};
+  for (const key of Object.keys(rows)) {
+    const row = Number(key);
+    const slots = rows[row];
+    if (slots != undefined) {
+      clonedRows[row] = slots.slice();
+    }
+  }
+  return clonedRows;
+};
+const parseDigVeinsSnapshot = (data, startRow) => {
+  if (data == undefined || !Number.isFinite(data.activity_id) || !Number.isInteger(data.depth) || data.depth < 0 || typeof data.map != "string") {
+    return undefined;
+  }
+  const snapshotStartRow = startRow ?? getDigVeinsVisibleStartRow(data.depth);
+  return {
+    activityID: data.activity_id,
+    depth: data.depth,
+    rows: parseDigVeinsMap(data.map, snapshotStartRow, data.depth)
+  };
+};
+const cloneDigVeinsSnapshot = snapshot => ({
+  activityID: snapshot.activityID,
+  depth: snapshot.depth,
+  rows: cloneDigVeinsMapRows(snapshot.rows)
+});
+const getDigVeinsSnapshotWindow = (snapshot, startRow, endRow) => {
+  const rows = {};
+  for (let row = startRow; row <= endRow; row++) {
+    rows[row] = snapshot.rows[row]?.slice() ?? createEmptyDigVeinsMapRow();
+  }
+  return {
+    activityID: snapshot.activityID,
+    depth: snapshot.depth,
+    rows
+  };
+};
+const getDigVeinsSnapshotDiff = (previous, next) => {
+  const removedTiles = [];
+  const addedTiles = [];
+  const removedRows = [];
+  const addedRows = [];
+  const rowKeys = {};
+  for (const key of Object.keys(previous.rows)) {
+    rowKeys[Number(key)] = true;
+  }
+  for (const key of Object.keys(next.rows)) {
+    rowKeys[Number(key)] = true;
+  }
+  const rows = Object.keys(rowKeys).map(Number).sort((a, b) => a - b);
+  for (const row of rows) {
+    const previousRow = previous.rows[row];
+    const nextRow = next.rows[row];
+    if (previousRow != undefined && nextRow == undefined) {
+      removedRows.push(row);
+    } else if (previousRow == undefined && nextRow != undefined) {
+      addedRows.push(row);
+    }
+    for (let column = 0; column < MINE_GRID_COLUMNS; column++) {
+      const previousType = previousRow?.[column];
+      const nextType = nextRow?.[column];
+      if (previousType?.type === nextType?.type) {
+        continue;
+      }
+      const index = row * MINE_GRID_COLUMNS + column;
+      if (previousType != undefined && previousType.type != "0") {
+        removedTiles.push({
+          index,
+          ...previousType
+        });
+      }
+      if (nextType != undefined) {
+        addedTiles.push({
+          index,
+          ...nextType
+        });
+      }
+    }
+  }
+  return {
+    removedTiles,
+    addedTiles,
+    removedRows,
+    addedRows
+  };
+};
+const buildDigVeinsPickaxeTimeline = (context, previousSnapshot, targetSnapshot, diff) => {
+  const events = [];
+  let nextOrder = 0;
+  let elapsed = DIG_VEINS_PICKAXE_PRESENTATION_DELAY;
+  const push = (at, command) => {
+    events.push({
+      at,
+      order: nextOrder++,
+      command
+    });
+  };
+  push(0, {
+    type: "startToolSequenceFrame",
+    state: {
+      actionID: context.id,
+      tool: context.tool,
+      row: context.row,
+      column: context.column
+    }
+  });
+  push(elapsed, {
+    type: "playSound",
+    soundEvent: DIG_VEINS_SOUND_EVENT_PICKAXE_FIRST
+  });
+  push(elapsed, {
+    type: "showToolEffect",
+    effect: {
+      id: `${context.id}|main`,
+      actionID: context.id,
+      tool: context.tool,
+      row: context.row,
+      column: context.column
+    }
+  });
+  push(DIG_VEINS_PICKAXE_SECOND_SOUND_DELAY, {
+    type: "playSound",
+    soundEvent: DIG_VEINS_SOUND_EVENT_PICKAXE_SECOND
+  });
+  elapsed += DIG_VEINS_PICKAXE_FLOW_WAIT_DURATION;
+  const hasRemovedTiles = diff.removedTiles.length > 0 || diff.removedRows.length > 0;
+  const hasAddedTiles = diff.addedTiles.length > 0 || diff.addedRows.length > 0;
+  if (hasRemovedTiles) {
+    push(elapsed, {
+      type: "startRemove",
+      tiles: diff.removedTiles
+    });
+    elapsed += MINE_GRID_CELL_REMOVE_STAGE_DURATION;
+    push(elapsed, {
+      type: "commitRemove",
+      tiles: diff.removedTiles,
+      rows: diff.removedRows
+    });
+  }
+  if (hasAddedTiles) {
+    push(elapsed, {
+      type: "applyAdd",
+      tiles: diff.addedTiles,
+      rows: diff.addedRows
+    });
+  }
+  if (previousSnapshot.depth !== targetSnapshot.depth) {
+    if (hasRemovedTiles || hasAddedTiles) {
+      elapsed += MINE_GRID_TIMELINE_RENDER_BARRIER_DURATION;
+      push(elapsed, {
+        type: "enableTransition"
+      });
+    }
+    push(elapsed, {
+      type: "startScroll",
+      fromDepth: previousSnapshot.depth,
+      toDepth: targetSnapshot.depth
+    });
+    elapsed += MINE_GRID_SCROLL_ANIMATION_DURATION;
+    push(elapsed, {
+      type: "finishScroll"
+    });
+  }
+  push(elapsed, {
+    type: "calibrate"
+  });
+  elapsed += MINE_GRID_TIMELINE_RENDER_BARRIER_DURATION;
+  push(elapsed, {
+    type: "enableTransition"
+  });
+  push(elapsed, {
+    type: "finishFlow"
+  });
+  const toolEffectEndTime = DIG_VEINS_PICKAXE_PRESENTATION_DELAY + DIG_VEINS_PICKAXE_EFFECT_DURATION;
+  push(toolEffectEndTime, {
+    type: "hideToolEffects",
+    actionID: context.id
+  });
+  events.sort((a, b) => a.at - b.at || a.order - b.order);
+  return {
+    context,
+    events,
+    duration: Math.max(elapsed, toolEffectEndTime),
+    targetSnapshot: cloneDigVeinsSnapshot(targetSnapshot),
+    stableTargetSnapshot: getDigVeinsSnapshotWindow(targetSnapshot, getDigVeinsVisibleStartRow(targetSnapshot.depth), targetSnapshot.depth)
+  };
+};
+const buildDigVeinsBombTimeline = (context, previousSnapshot, targetSnapshot, diff) => {
+  const events = [];
+  let nextOrder = 0;
+  let elapsed = DIG_VEINS_BOMB_PRESENTATION_DELAY;
+  const push = (at, command) => {
+    events.push({
+      at,
+      order: nextOrder++,
+      command
+    });
+  };
+  push(0, {
+    type: "startToolSequenceFrame",
+    state: {
+      actionID: context.id,
+      tool: context.tool,
+      row: context.row,
+      column: context.column
+    }
+  });
+  push(elapsed, {
+    type: "playSound",
+    soundEvent: DIG_VEINS_SOUND_EVENT_BOMB
+  });
+  push(elapsed, {
+    type: "showToolEffect",
+    effect: {
+      id: `${context.id}|main`,
+      actionID: context.id,
+      tool: context.tool,
+      row: context.row,
+      column: context.column
+    }
+  });
+  elapsed += DIG_VEINS_BOMB_FLOW_WAIT_DURATION;
+  const hasRemovedTiles = diff.removedTiles.length > 0 || diff.removedRows.length > 0;
+  const hasAddedTiles = diff.addedTiles.length > 0 || diff.addedRows.length > 0;
+  if (hasRemovedTiles) {
+    push(elapsed, {
+      type: "startRemove",
+      tiles: diff.removedTiles
+    });
+    elapsed += MINE_GRID_CELL_REMOVE_STAGE_DURATION;
+    push(elapsed, {
+      type: "commitRemove",
+      tiles: diff.removedTiles,
+      rows: diff.removedRows
+    });
+  }
+  if (hasAddedTiles) {
+    push(elapsed, {
+      type: "applyAdd",
+      tiles: diff.addedTiles,
+      rows: diff.addedRows
+    });
+  }
+  if (previousSnapshot.depth !== targetSnapshot.depth) {
+    if (hasRemovedTiles || hasAddedTiles) {
+      elapsed += MINE_GRID_TIMELINE_RENDER_BARRIER_DURATION;
+      push(elapsed, {
+        type: "enableTransition"
+      });
+    }
+    push(elapsed, {
+      type: "startScroll",
+      fromDepth: previousSnapshot.depth,
+      toDepth: targetSnapshot.depth
+    });
+    elapsed += MINE_GRID_SCROLL_ANIMATION_DURATION;
+    push(elapsed, {
+      type: "finishScroll"
+    });
+  }
+  push(elapsed, {
+    type: "calibrate"
+  });
+  elapsed += MINE_GRID_TIMELINE_RENDER_BARRIER_DURATION;
+  push(elapsed, {
+    type: "enableTransition"
+  });
+  push(elapsed, {
+    type: "finishFlow"
+  });
+  const toolEffectEndTime = DIG_VEINS_BOMB_PRESENTATION_DELAY + DIG_VEINS_BOMB_EFFECT_DURATION;
+  push(toolEffectEndTime, {
+    type: "hideToolEffects",
+    actionID: context.id
+  });
+  events.sort((a, b) => a.at - b.at || a.order - b.order);
+  return {
+    context,
+    events,
+    duration: Math.max(elapsed, toolEffectEndTime),
+    targetSnapshot: cloneDigVeinsSnapshot(targetSnapshot),
+    stableTargetSnapshot: getDigVeinsSnapshotWindow(targetSnapshot, getDigVeinsVisibleStartRow(targetSnapshot.depth), targetSnapshot.depth)
+  };
+};
+const buildDigVeinsDrillTimeline = (context, previousSnapshot, targetSnapshot, diff) => {
+  const events = [];
+  let nextOrder = 0;
+  let elapsed = 0;
+  const push = (at, command) => {
+    events.push({
+      at,
+      order: nextOrder++,
+      command
+    });
+  };
+  const visibleStartRow = previousSnapshot.depth - MINE_GRID_VISIBLE_ROWS + 1;
+  push(0, {
+    type: "startToolSequenceFrame",
+    state: {
+      actionID: context.id,
+      tool: context.tool,
+      row: visibleStartRow,
+      column: context.column
+    }
+  });
+  push(0, {
+    type: "playSound",
+    soundEvent: DIG_VEINS_SOUND_EVENT_DRILL
+  });
+  const drillTiles = diff.removedTiles.filter(tile => {
+    const row = Math.floor(tile.index / MINE_GRID_COLUMNS);
+    const column = tile.index % MINE_GRID_COLUMNS;
+    return column === context.column && row >= visibleStartRow && row <= previousSnapshot.depth;
+  }).sort((a, b) => a.index - b.index);
+  const drillTileIndexes = {};
+  for (const tile of drillTiles) {
+    drillTileIndexes[tile.index] = true;
+  }
+  const otherRemovedTiles = diff.removedTiles.filter(tile => drillTileIndexes[tile.index] !== true);
+  const hasRemovedTiles = diff.removedTiles.length > 0 || diff.removedRows.length > 0;
+  const hasAddedTiles = diff.addedTiles.length > 0 || diff.addedRows.length > 0;
+  if (drillTiles.length > 0) {
+    const firstRow = Math.floor(drillTiles[0].index / MINE_GRID_COLUMNS);
+    let lastHideAt = DIG_VEINS_DRILL_PRESENTATION_DELAY;
+    for (const tile of drillTiles) {
+      const row = Math.floor(tile.index / MINE_GRID_COLUMNS);
+      const effectAt = DIG_VEINS_DRILL_PRESENTATION_DELAY + (row - firstRow) * MINE_GRID_DRILL_CELL_INTERVAL;
+      const hideAt = effectAt + MINE_GRID_DRILL_EFFECT_TO_HIDE_DELAY;
+      push(effectAt, {
+        type: "moveToolSequenceFrame",
+        actionID: context.id,
+        row,
+        column: context.column
+      });
+      push(effectAt, {
+        type: "showToolEffect",
+        effect: {
+          id: `${context.id}|drill|${tile.index}`,
+          actionID: context.id,
+          tool: context.tool,
+          row,
+          column: context.column
+        }
+      });
+      push(hideAt, {
+        type: "startRemove",
+        tiles: [tile]
+      });
+      lastHideAt = hideAt;
+    }
+    if (otherRemovedTiles.length > 0) {
+      push(DIG_VEINS_DRILL_PRESENTATION_DELAY + MINE_GRID_DRILL_EFFECT_TO_HIDE_DELAY, {
+        type: "startRemove",
+        tiles: otherRemovedTiles
+      });
+    }
+    elapsed = lastHideAt + MINE_GRID_DRILL_CELL_FADE_DURATION + MINE_GRID_DRILL_FINISH_HOLD_DURATION;
+  } else if (hasRemovedTiles) {
+    if (otherRemovedTiles.length > 0) {
+      push(DIG_VEINS_DRILL_PRESENTATION_DELAY, {
+        type: "startRemove",
+        tiles: otherRemovedTiles
+      });
+    }
+    elapsed = DIG_VEINS_DRILL_PRESENTATION_DELAY + MINE_GRID_DRILL_CELL_FADE_DURATION;
+  } else {
+    elapsed = DIG_VEINS_DRILL_PRESENTATION_DELAY;
+  }
+  if (hasRemovedTiles) {
+    push(elapsed, {
+      type: "hideToolEffects",
+      actionID: context.id
+    });
+    push(elapsed, {
+      type: "commitRemove",
+      tiles: diff.removedTiles,
+      rows: diff.removedRows
+    });
+  }
+  if (hasAddedTiles) {
+    push(elapsed, {
+      type: "applyAdd",
+      tiles: diff.addedTiles,
+      rows: diff.addedRows
+    });
+  }
+  if (previousSnapshot.depth !== targetSnapshot.depth) {
+    if (hasRemovedTiles || hasAddedTiles) {
+      elapsed += MINE_GRID_TIMELINE_RENDER_BARRIER_DURATION;
+      push(elapsed, {
+        type: "enableTransition"
+      });
+    }
+    push(elapsed, {
+      type: "startScroll",
+      fromDepth: previousSnapshot.depth,
+      toDepth: targetSnapshot.depth
+    });
+    elapsed += MINE_GRID_SCROLL_ANIMATION_DURATION;
+    push(elapsed, {
+      type: "finishScroll"
+    });
+  }
+  push(elapsed, {
+    type: "calibrate"
+  });
+  elapsed += MINE_GRID_TIMELINE_RENDER_BARRIER_DURATION;
+  push(elapsed, {
+    type: "enableTransition"
+  });
+  push(elapsed, {
+    type: "finishFlow"
+  });
+  events.sort((a, b) => a.at - b.at || a.order - b.order);
+  return {
+    context,
+    events,
+    duration: elapsed,
+    targetSnapshot: cloneDigVeinsSnapshot(targetSnapshot),
+    stableTargetSnapshot: getDigVeinsSnapshotWindow(targetSnapshot, getDigVeinsVisibleStartRow(targetSnapshot.depth), targetSnapshot.depth)
+  };
+};
+const DIG_VEINS_TOOL_TIMELINE_BUILDERS = {
+  Pickaxe: buildDigVeinsPickaxeTimeline,
+  Bomb: buildDigVeinsBombTimeline,
+  Drill: buildDigVeinsDrillTimeline
+};
+const insertDigVeinsRewardTipTimelineEvent = (plan, rewards) => {
+  if (rewards.length == 0) {
+    return;
+  }
+  let insertIndex = plan.events.findIndex(event => event.command.type == "startScroll");
+  if (insertIndex < 0) {
+    insertIndex = plan.events.findIndex(event => event.command.type == "calibrate");
+  }
+  if (insertIndex < 0) {
+    insertIndex = plan.events.findIndex(event => event.command.type == "finishFlow");
+  }
+  const at = insertIndex < 0 ? plan.duration : plan.events[insertIndex].at;
+  if (insertIndex < 0) {
+    insertIndex = plan.events.length;
+  }
+  plan.events.splice(insertIndex, 0, {
+    at,
+    order: 0,
+    command: {
+      type: "showRewardTip",
+      rewards
+    }
+  });
+  plan.events.forEach((event, index) => event.order = index);
+};
+const buildDigVeinsMineGridLayout = (rows, depth) => {
+  const backendRows = Object.keys(rows).map(Number).filter(Number.isInteger).sort((a, b) => a - b);
+  const visibleStartRow = depth - MINE_GRID_VISIBLE_ROWS + 1;
+  const startRow = Math.min(visibleStartRow, backendRows[0] ?? depth);
+  const endRow = Math.max(depth, backendRows[backendRows.length - 1] ?? depth);
+  const slots = [];
+  const layoutRows = [];
+  for (let row = startRow; row <= endRow; row++) {
+    const cells = [];
+    for (let column = 0; column < MINE_GRID_COLUMNS; column++) {
+      const slot = {
+        index: row * MINE_GRID_COLUMNS + column,
+        ...rows[row]?.[column]
+      };
+      slots.push(slot);
+      cells.push(slot);
+    }
+    layoutRows.push({
+      row,
+      cells
+    });
+  }
+  return {
+    startRow,
+    endRow,
+    rows: layoutRows,
+    slots
+  };
+};
+function DigVeinsMineGridCell(prop) {
+  const isDisabled = () => prop.disabled === true;
+  const slotType = () => prop.type ?? "0";
+  const slotImage = () => DIG_VEINS_SLOT_IMAGE[slotType()];
+  const tooltip = () => {
+    if (DONOT_SHOW_TOOLTIP[slotType()] || prop.displayValue == undefined || prop.displayValue == "") {
+      return undefined;
+    }
+    return {
+      name: "activity_veins",
+      item_id: slotType(),
+      displayValue: prop.displayValue
+    };
+  };
+  return (() => {
+    const _el$ = libs.createElement("Panel", {
+        get ["class"]() {
+          return libs.classNames("DigVeinsMineGridCellContainer", prop.class);
+        }
+      }, null);
+      libs.createElement("Image", {
+        "class": "DigVeinsSlotBG"
+      }, _el$);
+    libs.insert(_el$, libs.createComponent(libs.Show, {
+      get when() {
+        return SPECIAL_REWARDS[slotType()] === true;
+      },
+      get children() {
+        const _el$3 = libs.createElement("DOTAParticleScenePanel", {
+          "class": "DigVeinsSpecialRewardBorder",
+          particleName: "particles/ui/game/ui_game_general_special_effects_03_fx.vpcf",
+          cameraOrigin: "0 0 90",
+          fov: 45,
+          lookAt: "0 0 0",
+          hittest: false
+        }, null);
+        libs.effect(_$p => libs.setProp(_el$3, "classList", {
+          FadingOut: prop.fadingOut === true
+        }, _$p));
+        return _el$3;
+      }
+    }), null);
+    libs.insert(_el$, libs.createComponent(EOM_Button.EOM_BaseButton, {
+      get ["class"]() {
+        return libs.classNames("DigVeinsMineGridCell", prop.class, {
+          Disabled: isDisabled(),
+          FadingOut: prop.fadingOut === true
+        });
+      },
+      get enabled() {
+        return !isDisabled();
+      },
+      onmouseover: () => {
+        if (isDisabled()) {
+          return;
+        }
+        prop.oncellmouseover?.(prop.index);
+      },
+      onmouseout: () => {
+        if (isDisabled()) {
+          return;
+        }
+        prop.oncellmouseout?.(prop.index);
+      },
+      onactivate: () => {
+        if (isDisabled()) {
+          return;
+        }
+        const tool = prop.tool;
+        if (tool == undefined) {
+          return;
+        }
+        prop.oncellactivate?.(prop.index, tool);
+      },
+      get children() {
+        return [(() => {
+          const _el$4 = libs.createElement("Image", {
+            "class": "DigVeinsSlotDisplay",
+            get src() {
+              return slotImage() ?? DIG_VEINS_SLOT_IMAGE.default;
+            },
+            hittest: false
+          }, null);
+          libs.effect(_$p => libs.setProp(_el$4, "src", slotImage() ?? DIG_VEINS_SLOT_IMAGE.default, _$p));
+          return _el$4;
+        })(), libs.createComponent(libs.Show, {
+          get when() {
+            return slotImage() == undefined;
+          },
+          get children() {
+            return libs.createComponent(StoreItem.StoreItemImage, {
+              get itemid() {
+                return slotType();
+              },
+              hideTips: true,
+              hittest: false
+            });
+          }
+        }), libs.createElement("Panel", {
+          "class": "DigVeinsMineGridCellHover",
+          hittest: false
+        }, null), libs.createElement("Panel", {
+          "class": "DigVeinsMineGridCellSelected",
+          hittest: false
+        }, null), libs.createElement("Panel", {
+          "class": "DigVeinsMineGridCellDisabled",
+          hittest: false
+        }, null)];
+      }
+    }), null);
+    libs.effect(_p$ => {
+      const _v$ = libs.classNames("DigVeinsMineGridCellContainer", prop.class),
+        _v$2 = tooltip();
+      _v$ !== _p$._v$ && (_p$._v$ = libs.setProp(_el$, "class", _v$, _p$._v$));
+      _v$2 !== _p$._v$2 && (_p$._v$2 = libs.setProp(_el$, "customTooltip", _v$2, _p$._v$2));
+      return _p$;
+    }, {
+      _v$: undefined,
+      _v$2: undefined
+    });
+    return _el$;
+  })();
+}
+function DigVeinsToolRangePreview(prop) {
+  const visible = () => prop.tool != undefined && prop.tool !== "Pickaxe" && prop.cellIndex != undefined;
+  const previewX = libs.createMemo(() => {
+    const cellIndex = prop.cellIndex;
+    if (cellIndex == undefined) {
+      return 0;
+    }
+    return cellIndex % MINE_GRID_COLUMNS * MINE_GRID_COLUMN_STRIDE + MINE_GRID_CELL_MARGIN;
+  });
+  const previewY = libs.createMemo(() => {
+    const cellIndex = prop.cellIndex;
+    if (cellIndex == undefined) {
+      return 0;
+    }
+    if (prop.tool === "Drill") {
+      return MINE_GRID_CELL_MARGIN;
+    }
+    const row = Math.floor(cellIndex / MINE_GRID_COLUMNS);
+    return (row - prop.visibleStartRow) * MINE_GRID_ROW_STRIDE + MINE_GRID_CELL_MARGIN;
+  });
+  return libs.createComponent(libs.Show, {
+    get when() {
+      return visible();
+    },
+    get children() {
+      const _el$8 = libs.createElement("Panel", {
+          id: "DigVeinsToolRangePreviewLayer",
+          hittest: false,
+          hittestchildren: false
+        }, null),
+        _el$9 = libs.createElement("Panel", {
+          get ["class"]() {
+            return libs.classNames("DigVeinsToolRangePreview", prop.tool);
+          },
+          get style() {
+            return {
+              x: `${previewX()}px`,
+              y: `${previewY()}px`
+            };
+          },
+          hittest: false,
+          hittestchildren: false
+        }, _el$8),
+        _el$0 = libs.createElement("Panel", {
+          "class": "DigVeinsToolRangePreviewContent",
+          hittest: false,
+          hittestchildren: false
+        }, _el$9);
+        libs.createElement("Image", {
+          "class": "DigVeinsToolRangeMask",
+          hittest: false
+        }, _el$0);
+      libs.insert(_el$0, libs.createComponent(libs.Show, {
+        get when() {
+          return prop.tool === "Bomb";
+        },
+        get children() {
+          return [libs.createElement("Image", {
+            "class": "DigVeinsToolRangeArrow TopLeft",
+            hittest: false
+          }, null), libs.createElement("Image", {
+            "class": "DigVeinsToolRangeArrow Top",
+            hittest: false
+          }, null), libs.createElement("Image", {
+            "class": "DigVeinsToolRangeArrow TopRight",
+            hittest: false
+          }, null), libs.createElement("Image", {
+            "class": "DigVeinsToolRangeArrow Left",
+            hittest: false
+          }, null), libs.createElement("Image", {
+            "class": "DigVeinsToolRangeArrow Right",
+            hittest: false
+          }, null), libs.createElement("Image", {
+            "class": "DigVeinsToolRangeArrow BottomLeft",
+            hittest: false
+          }, null), libs.createElement("Image", {
+            "class": "DigVeinsToolRangeArrow Bottom",
+            hittest: false
+          }, null), libs.createElement("Image", {
+            "class": "DigVeinsToolRangeArrow BottomRight",
+            hittest: false
+          }, null)];
+        }
+      }), null);
+      libs.effect(_p$ => {
+        const _v$3 = libs.classNames("DigVeinsToolRangePreview", prop.tool),
+          _v$4 = {
+            x: `${previewX()}px`,
+            y: `${previewY()}px`
+          };
+        _v$3 !== _p$._v$3 && (_p$._v$3 = libs.setProp(_el$9, "class", _v$3, _p$._v$3));
+        _v$4 !== _p$._v$4 && (_p$._v$4 = libs.setProp(_el$9, "style", _v$4, _p$._v$4));
+        return _p$;
+      }, {
+        _v$3: undefined,
+        _v$4: undefined
+      });
+      return _el$8;
+    }
+  });
+}
+const getDigVeinsTaskSortWeight = task => {
+  switch (dig_veins_logic.getDigVeinsTaskState(task)) {
+    case "Claimable":
+      return 0;
+    case "InProgress":
+      return 1;
+    case "Received":
+      return 2;
+  }
+};
+const getDigVeinsTaskKey = task => `${task.task_id}_${task.extra_id}`;
+function DigVeinsTaskItem(props) {
+  const taskConfig = libs.createMemo(() => KeyValues.task[props.task.task_id]);
+  const rewards = libs.createMemo(() => Object.entries(taskConfig()?.rewards ?? {}).slice(0, 2));
+  const taskState = libs.createMemo(() => dig_veins_logic.getDigVeinsTaskState(props.task));
+  const taskDescription = libs.createMemo(() => {
+    const config = taskConfig();
+    if (config == undefined) {
+      return "";
+    }
+    return LocalizeWithVars(`#Task_Desc_${props.task.task_id}`, {
+      target: GetLocalization(String(config.target)),
+      v1: GetLocalization(String(config.param_1)),
+      v2: GetLocalization(String(config.param_2)),
+      v3: GetLocalization(String(config.param_3))
+    });
+  });
+  return (() => {
+    const _el$18 = libs.createElement("Panel", {
+        get ["class"]() {
+          return libs.classNames("DigVeinsTaskTaskItem", taskState(), {
+            Claiming: props.claiming
+          });
+        }
+      }, null),
+      _el$19 = libs.createElement("Panel", {
+        "class": "DigVeinsTaskItemMain"
+      }, _el$18),
+      _el$20 = libs.createElement("Panel", {
+        "class": "DigVeinsTaskItemContent"
+      }, _el$19),
+      _el$21 = libs.createElement("Panel", {
+        "class": "DigVeinsTaskTitle"
+      }, _el$20),
+      _el$22 = libs.createElement("Label", {
+        "class": "DigVeinsTaskTitleText",
+        get text() {
+          return GetLocalization(`#Task_Name_${props.task.task_id}`);
+        }
+      }, _el$21),
+      _el$23 = libs.createElement("Label", {
+        "class": "DigVeinsTaskTitleValue",
+        get text() {
+          return `(${Math.min(props.task.progress, props.task.target)}/${props.task.target})`;
+        }
+      }, _el$21),
+      _el$24 = libs.createElement("Label", {
+        "class": "DigVeinsTaskItemDescription",
+        get text() {
+          return taskDescription();
+        }
+      }, _el$20),
+      _el$25 = libs.createElement("Panel", {
+        "class": "DigVeinsTaskItemRewardList"
+      }, _el$19);
+      libs.createElement("Image", {
+        "class": "DigVeinsTaskItemBottomLine"
+      }, _el$18);
+    libs.setProp(_el$18, "onactivate", () => {
+      if (!dig_veins_logic.isDigVeinsTaskClaimable(props.task) || props.claiming) {
+        return;
+      }
+      props.onClaim(props.task);
+    });
+    libs.insert(_el$25, libs.createComponent(libs.For, {
+      get each() {
+        return rewards();
+      },
+      children: reward => (() => {
+        const _el$28 = libs.createElement("Panel", {
+          "class": "DigVeinsTaskItemReward"
+        }, null);
+        libs.insert(_el$28, libs.createComponent(StoreItem.StoreItemBlock, {
+          get item_id() {
+            return reward[0];
+          },
+          get amounts() {
+            return reward[1];
+          }
+        }), null);
+        libs.insert(_el$28, libs.createComponent(libs.Show, {
+          get when() {
+            return taskState() == "Received";
+          },
+          get children() {
+            return libs.createElement("Image", {
+              "class": "DigVeinsTaskItemRewardReceivedIcon"
+            }, null);
+          }
+        }), null);
+        return _el$28;
+      })()
+    }));
+    libs.insert(_el$18, libs.createComponent(libs.Show, {
+      get when() {
+        return taskState() == "Claimable";
+      },
+      get children() {
+        return libs.createElement("Image", {
+          "class": "DigVeinsTaskDoneBorder",
+          hittest: false
+        }, null);
+      }
+    }), null);
+    libs.effect(_p$ => {
+      const _v$5 = libs.classNames("DigVeinsTaskTaskItem", taskState(), {
+          Claiming: props.claiming
+        }),
+        _v$6 = GetLocalization(`#Task_Name_${props.task.task_id}`),
+        _v$7 = `(${Math.min(props.task.progress, props.task.target)}/${props.task.target})`,
+        _v$8 = taskDescription();
+      _v$5 !== _p$._v$5 && (_p$._v$5 = libs.setProp(_el$18, "class", _v$5, _p$._v$5));
+      _v$6 !== _p$._v$6 && (_p$._v$6 = libs.setProp(_el$22, "text", _v$6, _p$._v$6));
+      _v$7 !== _p$._v$7 && (_p$._v$7 = libs.setProp(_el$23, "text", _v$7, _p$._v$7));
+      _v$8 !== _p$._v$8 && (_p$._v$8 = libs.setProp(_el$24, "text", _v$8, _p$._v$8));
+      return _p$;
+    }, {
+      _v$5: undefined,
+      _v$6: undefined,
+      _v$7: undefined,
+      _v$8: undefined
+    });
+    return _el$18;
+  })();
+}
+function DigVeins() {
+  const playerMiningActivityData = solid_utils.createServiceNetData("player_mining_activity_data", {});
+  const playerActivityTasks = solid_utils.createServiceNetData("player_activity_tasks", {});
+  const playerCounters = solid_utils.createServiceNetData("player_counters", {});
+  const getRewardCount = itemID => {
+    return playerCounters()[`mining_box_count_${dig_veins_logic.ACTIVITY_MINING_ID}_${itemID}`]?.count ?? 0;
+  };
+  const totalRewardCount = libs.createMemo(() => {
+    return DIG_VEINS_REWARD_ITEM_IDS.reduce((total, itemID) => total + getRewardCount(itemID), 0);
+  });
+  const maxRewardCount = libs.createMemo(() => {
+    const config = Object.values(KeyValues.activity_mining).find(entry => entry.activity_id == dig_veins_logic.ACTIVITY_MINING_ID);
+    return Number(config?.box_max_num.split("|")[0] ?? 0);
+  });
+  const [selectedTaskType, setSelectedTaskType] = libs.createSignal(7);
+  let taskScrollPanel;
+  const selectTaskType = taskType => {
+    if (selectedTaskType() == taskType) {
+      return;
+    }
+    setSelectedTaskType(taskType);
+    taskScrollPanel?.ScrollToTop();
+    console.log("[DigVeins] Task tab switched");
+  };
+  const miningActivityData = libs.createMemo(() => playerMiningActivityData()?.[dig_veins_logic.ACTIVITY_MINING_ID]);
+  const [taskRefreshRevision, setTaskRefreshRevision] = libs.createSignal(0);
+  const taskSnapshot = libs.createMemo(() => {
+    taskRefreshRevision();
+    return {
+      tasks: playerActivityTasks(),
+      timestamp: Math.floor(CustomUIConfig.GetServerTimeStamp())
+    };
+  });
+  libs.createEffect(() => {
+    const snapshot = taskSnapshot();
+    mining_activity_redpoints.refreshMiningActivityRedPoint(snapshot.tasks, snapshot.timestamp);
+    console.log("[DigVeins] Task list and red point refreshed");
+  });
+  const digVeinsTasksByType = libs.createMemo(() => {
+    const snapshot = taskSnapshot();
+    const taskGroups = {
+      6: [],
+      7: []
+    };
+    Object.values(snapshot.tasks).forEach(task => {
+      if (!dig_veins_logic.isDigVeinsTask(task) || !dig_veins_logic.isDigVeinsTaskActive(task, snapshot.timestamp)) {
+        return;
+      }
+      const taskType = KeyValues.task[task.task_id].type;
+      taskGroups[taskType].push(task);
+    });
+    taskGroups[6].sort((a, b) => getDigVeinsTaskSortWeight(a) - getDigVeinsTaskSortWeight(b) || a.index - b.index || a.task_id - b.task_id);
+    taskGroups[7].sort((a, b) => getDigVeinsTaskSortWeight(a) - getDigVeinsTaskSortWeight(b) || a.index - b.index || a.task_id - b.task_id);
+    return taskGroups;
+  });
+  const activityData = libs.createMemo(() => KeyValues.activity_data[dig_veins_logic.ACTIVITY_MINING_ID]);
+  const playerTokens = solid_utils.createServiceNetData("player_tokens", {});
+  const [claimingTaskKey, setClaimingTaskKey] = libs.createSignal();
+  const receiveTaskReward = task => {
+    const timestamp = Math.floor(CustomUIConfig.GetServerTimeStamp());
+    if (!dig_veins_logic.isDigVeinsTaskActive(task, timestamp)) {
+      setTaskRefreshRevision(revision => revision + 1);
+      console.log("[DigVeins] Expired task claim skipped; task snapshot refreshed");
+      return;
+    }
+    if (!dig_veins_logic.isDigVeinsTaskClaimable(task) || claimingTaskKey() != undefined) {
+      return;
+    }
+    setClaimingTaskKey(getDigVeinsTaskKey(task));
+    console.log("[DigVeins] Task reward requested");
+    CallActionRequest("/v1/task/receive_rewards", {
+      task_id: task.task_id,
+      extra_id: task.extra_id
+    }, () => {
+      setClaimingTaskKey(undefined);
+    }, () => {
+      setClaimingTaskKey(undefined);
+    });
+  };
+  const miningConfig = libs.createMemo(() => {
+    const activityID = miningActivityData()?.activity_id;
+    if (!Number.isFinite(activityID)) {
+      return undefined;
+    }
+    return Object.values(KeyValues.activity_mining ?? {}).find(config => config.activity_id == activityID);
+  });
+  const getToolItemName = itemID => {
+    return itemID == undefined ? "" : GetLocalization(`#${itemID}`);
+  };
+  const getPlayerTokenAmount = itemID => {
+    if (itemID == undefined || itemID <= 0) {
+      return 0;
+    }
+    return playerTokens()[String(itemID)]?.amounts ?? 0;
+  };
+  const bombAmount = libs.createMemo(() => getPlayerTokenAmount(miningConfig()?.explosive_id));
+  const pickaxeAmount = libs.createMemo(() => getPlayerTokenAmount(miningConfig()?.pickaxe_id));
+  const drillAmount = libs.createMemo(() => getPlayerTokenAmount(miningConfig()?.bit_id));
+  const getToolAmount = tool => {
+    switch (tool) {
+      case "Bomb":
+        return bombAmount();
+      case "Pickaxe":
+        return pickaxeAmount();
+      case "Drill":
+        return drillAmount();
+    }
+  };
+  const logoLang = libs.createMemo(() => {
+    const lang = Language();
+    if (lang == "schinese") {
+      return "Language_schinese";
+    } else if (lang == "russian") {
+      return "Language_russian";
+    } else {
+      return "Language_english";
+    }
+  });
+  const ruleTooltip = libs.createMemo(() => ({
+    name: Language() == "schinese" ? "text" : "activity_veins_rule",
+    text: "#ActivityVeins_RuleTooltip"
+  }));
+  const pickaxeSequence = createSequenceFrame({
+    frames: PICKAXE_SEQ_FRAMES,
+    interval: 60,
+    isLoop: false,
+    autoPlay: false
+  });
+  const bombSequence = createSequenceFrame({
+    frames: BOMB_SEQ_FRAMES,
+    interval: 80,
+    isLoop: false,
+    autoPlay: false
+  });
+  const drillSequence = createSequenceFrame({
+    frames: DRILL_SEQ_FRAMES,
+    interval: 80,
+    isLoop: false,
+    autoPlay: false
+  });
+  const PickaxeSequenceFrame = pickaxeSequence.SequenceFrame;
+  const BombSequenceFrame = bombSequence.SequenceFrame;
+  const DrillSequenceFrame = drillSequence.SequenceFrame;
+  const [equippedTool, setEquippedTool] = libs.createSignal("Pickaxe");
+  const [hoveredCellIndex, setHoveredCellIndex] = libs.createSignal();
+  const [mineGridBottomRow, setMineGridBottomRow] = libs.createSignal(0);
+  const displayDepth = libs.createMemo(() => dig_veins_logic.getDigVeinsDisplayDepth(mineGridBottomRow()));
+  const depthPartToken = libs.createMemo(() => {
+    if (displayDepth() < 360) {
+      return "#ActivityVeins_DepthTitle_Part1";
+    }
+    if (displayDepth() < 720) {
+      return "#ActivityVeins_DepthTitle_Part2";
+    }
+    return "#ActivityVeins_DepthTitle_Part3";
+  });
+  const [mineGridRowKeys, setMineGridRowKeys] = libs.createSignal([]);
+  const [mineGridRowCellKeys, setMineGridRowCellKeys] = libs.createStore({});
+  const [mineGridScrollOffset, setMineGridScrollOffset] = libs.createSignal(0);
+  const [mineGridTransitionDisabled, setMineGridTransitionDisabled] = libs.createSignal(true);
+  const [isMiningRequesting, setIsMiningRequesting] = libs.createSignal(false);
+  const [isMineGridAnimating, setIsMineGridAnimating] = libs.createSignal(false);
+  const [isMineGridScrolling, setIsMineGridScrolling] = libs.createSignal(false);
+  const [isRewardTipVisible, setIsRewardTipVisible] = libs.createSignal(false);
+  const [isRewardFinishVisible, setIsRewardFinishVisible] = libs.createSignal(false);
+  const [rewardFinishAction, setRewardFinishAction] = libs.createSignal();
+  const [isRewardFinishPending, setIsRewardFinishPending] = libs.createSignal(false);
+  let hasShownRewardFinish = false;
+  const [rewardTipRewards, setRewardTipRewards] = libs.createSignal([]);
+  const [activeMineGridToolEffects, setActiveMineGridToolEffects] = libs.createSignal([]);
+  const [activeMineGridToolSequenceFrame, setActiveMineGridToolSequenceFrame] = libs.createSignal({
+    actionID: 0,
+    tool: "Pickaxe",
+    row: 0,
+    column: 0
+  });
+  const [isMineGridToolSequenceFrameVisible, setIsMineGridToolSequenceFrameVisible] = libs.createSignal(false);
+  const [isMineGridToolSequenceFrameMoving, setIsMineGridToolSequenceFrameMoving] = libs.createSignal(false);
+  const [mineGridSlots, setMineGridSlots] = libs.createStore({});
+  const [fadingOutCells, setFadingOutCells] = libs.createStore({});
+  let cursorPanel;
+  let mineGridViewportPanel;
+  let mineGridTransitionResetScheduleId;
+  let mineGridTimelineRuntime;
+  let rewardTipShowScheduleID;
+  let rewardTipHideScheduleID;
+  let parsedMineGridSnapshot;
+  let displayMineGridSnapshot;
+  let lastCalibratedMineGridNetData;
+  let nextMiningActionID = 0;
+  let isDisposed = false;
+  const mineGridSlotGenerations = {};
+  const canActivateToolButton = tool => !isMiningRequesting() && !isRewardFinishVisible() && (tool == "Pickaxe" || getToolAmount(tool) > 0);
+  const isMineGridInteractionLocked = () => isMiningRequesting() || isMineGridScrolling() || isRewardFinishVisible();
+  const canShowToolRangePreview = () => !isMineGridInteractionLocked() && equippedTool() !== "Pickaxe" && hoveredCellIndex() != undefined;
+  const cancelRewardTipSchedule = scheduleID => {
+    if (scheduleID == undefined) {
+      return;
+    }
+    try {
+      $.CancelScheduled(scheduleID);
+    } catch (error) {}
+  };
+  const hideRewardTip = () => {
+    cancelRewardTipSchedule(rewardTipShowScheduleID);
+    cancelRewardTipSchedule(rewardTipHideScheduleID);
+    rewardTipShowScheduleID = undefined;
+    rewardTipHideScheduleID = undefined;
+    setIsRewardTipVisible(false);
+  };
+  const showRewardTip = rewards => {
+    hideRewardTip();
+    rewardTipShowScheduleID = $.Schedule(0, () => {
+      rewardTipShowScheduleID = undefined;
+      if (isDisposed) {
+        return;
+      }
+      libs.batch(() => {
+        setRewardTipRewards(rewards);
+        setIsRewardTipVisible(true);
+      });
+      rewardTipHideScheduleID = $.Schedule(DIG_VEINS_REWARD_TIP_VISIBLE_DURATION, () => {
+        rewardTipHideScheduleID = undefined;
+        hideRewardTip();
+      });
+    });
+  };
+  const getMineGridSlot = index => mineGridSlots[index];
+  const isMineGridCellFadingOut = index => fadingOutCells[index] === true;
+  const replaceMineGridSlots = slots => {
+    setMineGridSlots(libs.produce(record => {
+      const retainedIndexes = {};
+      for (const slot of slots) {
+        retainedIndexes[slot.index] = true;
+        const currentSlot = record[slot.index];
+        if (currentSlot == undefined) {
+          record[slot.index] = {
+            ...slot
+          };
+        } else {
+          currentSlot.type = slot.type;
+          currentSlot.displayValue = slot.displayValue;
+        }
+      }
+      for (const key of Object.keys(record)) {
+        const index = Number(key);
+        if (retainedIndexes[index] !== true) {
+          delete record[index];
+        }
+      }
+    }));
+  };
+  const clearMineGridSlots = () => {
+    setMineGridSlots(libs.produce(record => {
+      for (const key of Object.keys(record)) {
+        delete record[Number(key)];
+      }
+    }));
+    setMineGridRowCellKeys(libs.produce(record => {
+      for (const key of Object.keys(record)) {
+        delete record[Number(key)];
+      }
+    }));
+    setMineGridRowKeys([]);
+  };
+  const clearFadingOutCells = () => {
+    setFadingOutCells(libs.produce(record => {
+      for (const key of Object.keys(record)) {
+        delete record[Number(key)];
+      }
+    }));
+  };
+  const getMineGridCellClass = index => {
+    const type = getMineGridSlot(index)?.type;
+    return libs.classNames({
+      Empty: type == undefined || type == "0"
+    });
+  };
+  const getLatestMineGridSnapshot = () => parsedMineGridSnapshot ?? parseDigVeinsSnapshot(miningActivityData()) ?? displayMineGridSnapshot;
+  const getLogicalMineGridSlotType = index => {
+    const snapshot = getLatestMineGridSnapshot();
+    if (snapshot == undefined) {
+      return undefined;
+    }
+    const row = Math.floor(index / MINE_GRID_COLUMNS);
+    const column = index % MINE_GRID_COLUMNS;
+    const visibleStartRow = getDigVeinsVisibleStartRow(snapshot.depth);
+    if (row < visibleStartRow || row > snapshot.depth) {
+      return undefined;
+    }
+    return snapshot.rows[row]?.[column]?.type;
+  };
+  const isLogicalMineGridSlotClickable = index => {
+    const type = getLogicalMineGridSlotType(index);
+    return type != undefined && type != "0";
+  };
+  const getVisibleStartRow = getDigVeinsVisibleStartRow;
+  const getMineGridToolEffectAnchorStyle = effect => {
+    const visibleStartRow = getVisibleStartRow(mineGridBottomRow());
+    return {
+      x: `${effect.column * MINE_GRID_COLUMN_STRIDE + MINE_GRID_CELL_CENTER}px`,
+      y: `${(effect.row - visibleStartRow) * MINE_GRID_ROW_STRIDE + MINE_GRID_CELL_CENTER}px`
+    };
+  };
+  const getMineGridToolSequenceFrameAnchorStyle = () => {
+    const state = activeMineGridToolSequenceFrame();
+    const visibleStartRow = getVisibleStartRow(mineGridBottomRow());
+    return {
+      x: `${state.column * MINE_GRID_COLUMN_STRIDE + MINE_GRID_CELL_CENTER}px`,
+      y: `${(state.row - visibleStartRow) * MINE_GRID_ROW_STRIDE + MINE_GRID_CELL_CENTER}px`
+    };
+  };
+  const isKnownEmptyLogicalMineGridSlot = (snapshot, row, column, visibleStartRow, visibleEndRow) => {
+    if (row < visibleStartRow || row > visibleEndRow) {
+      return false;
+    }
+    if (row < 0) {
+      return true;
+    }
+    const slots = snapshot.rows[row];
+    return slots != undefined && (slots[column] == undefined || slots[column]?.type == "0");
+  };
+  const hasAdjacentEmptyLogicalMineGridSlot = index => {
+    const snapshot = getLatestMineGridSnapshot();
+    if (snapshot == undefined) {
+      return false;
+    }
+    const row = Math.floor(index / MINE_GRID_COLUMNS);
+    const column = index % MINE_GRID_COLUMNS;
+    const visibleEndRow = snapshot.depth;
+    const visibleStartRow = getVisibleStartRow(visibleEndRow);
+    if (row < visibleStartRow || row > visibleEndRow) {
+      return false;
+    }
+    if (isKnownEmptyLogicalMineGridSlot(snapshot, row - 1, column, visibleStartRow, visibleEndRow) || isKnownEmptyLogicalMineGridSlot(snapshot, row + 1, column, visibleStartRow, visibleEndRow)) {
+      return true;
+    }
+    if (column > 0 && isKnownEmptyLogicalMineGridSlot(snapshot, row, column - 1, visibleStartRow, visibleEndRow)) {
+      return true;
+    }
+    if (column < MINE_GRID_COLUMNS - 1 && isKnownEmptyLogicalMineGridSlot(snapshot, row, column + 1, visibleStartRow, visibleEndRow)) {
+      return true;
+    }
+    return false;
+  };
+  const getMineGridCellIndexFromKey = key => Number(key.slice(0, key.lastIndexOf("|")));
+  const bumpMineGridSlotGeneration = index => {
+    mineGridSlotGenerations[index] = (mineGridSlotGenerations[index] ?? 0) + 1;
+  };
+  const syncMineGridLayout = snapshot => {
+    const layout = buildDigVeinsMineGridLayout(snapshot.rows, snapshot.depth);
+    const retainedIndexes = {};
+    for (const slot of layout.slots) {
+      retainedIndexes[slot.index] = true;
+      const currentSlot = mineGridSlots[slot.index];
+      if (currentSlot != undefined && currentSlot.type !== slot.type) {
+        bumpMineGridSlotGeneration(slot.index);
+      }
+    }
+    for (const key of Object.keys(mineGridSlotGenerations)) {
+      const index = Number(key);
+      if (retainedIndexes[index] !== true) {
+        delete mineGridSlotGenerations[index];
+      }
+    }
+    replaceMineGridSlots(layout.slots);
+    setMineGridRowCellKeys(libs.produce(record => {
+      const retainedRows = {};
+      for (const layoutRow of layout.rows) {
+        retainedRows[layoutRow.row] = true;
+        record[layoutRow.row] = layoutRow.cells.map(slot => `${slot.index}|${mineGridSlotGenerations[slot.index] ?? 0}`);
+      }
+      for (const key of Object.keys(record)) {
+        const row = Number(key);
+        if (retainedRows[row] !== true) {
+          delete record[row];
+        }
+      }
+    }));
+    setMineGridRowKeys(layout.rows.map(layoutRow => layoutRow.row));
+    setMineGridScrollOffset(0);
+  };
+  const cancelMineGridTransitionReset = () => {
+    if (mineGridTransitionResetScheduleId != undefined) {
+      try {
+        $.CancelScheduled(mineGridTransitionResetScheduleId);
+      } catch (error) {}
+      mineGridTransitionResetScheduleId = undefined;
+    }
+  };
+  const clearMineGridToolEffects = actionID => {
+    if (actionID == undefined) {
+      setActiveMineGridToolEffects([]);
+      return;
+    }
+    setActiveMineGridToolEffects(effects => effects.filter(effect => effect.actionID !== actionID));
+  };
+  const getMineGridToolSequenceFrame = tool => {
+    switch (tool) {
+      case "Pickaxe":
+        return pickaxeSequence;
+      case "Bomb":
+        return bombSequence;
+      case "Drill":
+        return drillSequence;
+    }
+  };
+  const startMineGridToolSequenceFrame = state => {
+    const currentState = activeMineGridToolSequenceFrame();
+    if (currentState.actionID !== state.actionID) {
+      getMineGridToolSequenceFrame(currentState.tool).stop();
+    }
+    getMineGridToolSequenceFrame(state.tool).replay();
+    libs.batch(() => {
+      setIsMineGridToolSequenceFrameMoving(false);
+      setActiveMineGridToolSequenceFrame({
+        ...state
+      });
+      setIsMineGridToolSequenceFrameVisible(true);
+    });
+  };
+  const moveMineGridToolSequenceFrame = (actionID, row, column) => {
+    const state = activeMineGridToolSequenceFrame();
+    if (!isMineGridToolSequenceFrameVisible() || state.actionID !== actionID || state.tool !== "Drill" || drillSequence.isFinished()) {
+      return;
+    }
+    libs.batch(() => {
+      setIsMineGridToolSequenceFrameMoving(true);
+      setActiveMineGridToolSequenceFrame({
+        ...state,
+        row,
+        column
+      });
+    });
+  };
+  const stopMineGridToolSequenceFrame = actionID => {
+    const state = activeMineGridToolSequenceFrame();
+    if (actionID != undefined && state.actionID !== actionID) {
+      return;
+    }
+    getMineGridToolSequenceFrame(state.tool).stop();
+    libs.batch(() => {
+      setIsMineGridToolSequenceFrameMoving(false);
+      setIsMineGridToolSequenceFrameVisible(false);
+    });
+  };
+  libs.createEffect(() => {
+    const state = activeMineGridToolSequenceFrame();
+    if (!isMineGridToolSequenceFrameVisible() || !getMineGridToolSequenceFrame(state.tool).isFinished()) {
+      return;
+    }
+    if (activeMineGridToolSequenceFrame().actionID === state.actionID) {
+      libs.batch(() => {
+        setIsMineGridToolSequenceFrameVisible(false);
+        setIsMineGridToolSequenceFrameMoving(false);
+      });
+    }
+  });
+  const cancelMineGridTimeline = () => {
+    const runtime = mineGridTimelineRuntime;
+    stopMineGridToolSequenceFrame(runtime?.plan.context.id);
+    if (runtime == undefined) {
+      return;
+    }
+    if (runtime.scheduleID != undefined) {
+      try {
+        $.CancelScheduled(runtime.scheduleID);
+      } catch (error) {}
+    }
+    clearMineGridToolEffects(runtime.plan.context.id);
+    mineGridTimelineRuntime = undefined;
+  };
+  const setDisplayMineGridSnapshot = (snapshot, resetTransitionNextFrame = true) => {
+    const displaySnapshot = cloneDigVeinsSnapshot(snapshot);
+    displayMineGridSnapshot = displaySnapshot;
+    cancelMineGridTransitionReset();
+    libs.batch(() => {
+      clearFadingOutCells();
+      setMineGridTransitionDisabled(true);
+      setMineGridBottomRow(displaySnapshot.depth);
+      syncMineGridLayout(displaySnapshot);
+      setHoveredCellIndex(undefined);
+    });
+    if (!resetTransitionNextFrame) {
+      return;
+    }
+    mineGridTransitionResetScheduleId = $.Schedule(0, () => {
+      mineGridTransitionResetScheduleId = undefined;
+      if (isDisposed) {
+        return;
+      }
+      setMineGridTransitionDisabled(false);
+      if (!isMineGridInteractionLocked()) {
+        refreshHoveredCellFromCursor();
+      }
+    });
+  };
+  const calibrateMineGridFromNetTable = (resetTransitionNextFrame = true) => {
+    const netTableData = miningActivityData();
+    const netTableSnapshot = parseDigVeinsSnapshot(netTableData);
+    if (netTableSnapshot != undefined) {
+      lastCalibratedMineGridNetData = netTableData;
+      parsedMineGridSnapshot = cloneDigVeinsSnapshot(netTableSnapshot);
+      setDisplayMineGridSnapshot(netTableSnapshot, resetTransitionNextFrame);
+    } else if (parsedMineGridSnapshot != undefined) {
+      setDisplayMineGridSnapshot(parsedMineGridSnapshot, resetTransitionNextFrame);
+    }
+  };
+  const destroyCursorPanel = () => {
+    if (cursorPanel != undefined && cursorPanel.IsValid()) {
+      cursorPanel.DeleteAsync(-1);
+    }
+    cursorPanel = undefined;
+  };
+  const createCursorPanel = tool => {
+    destroyCursorPanel();
+    const panel = $.CreatePanel("Panel", $.GetContextPanel(), "DigVeinsEquippedToolCursor");
+    panel.hittest = false;
+    panel.AddClass(tool);
+    cursorPanel = panel;
+    libs.render(() => {
+      return libs.createElement("Panel", {
+        "class": "DigVeinsEquippedToolCursorIcon",
+        hittest: false
+      }, null);
+    }, panel);
+  };
+  const updateCursorPosition = () => {
+    if (cursorPanel == undefined || !cursorPanel.IsValid()) {
+      return;
+    }
+    cursorPanel.visible = !isRewardFinishVisible();
+    const cursor = GameUI.GetCursorPosition();
+    const parent = cursorPanel.GetParent();
+    const parentPosition = parent?.GetPositionWithinWindow();
+    const scaleX = parent?.actualuiscale_x ?? cursorPanel.actualuiscale_x ?? 1;
+    const scaleY = parent?.actualuiscale_y ?? cursorPanel.actualuiscale_y ?? 1;
+    const parentX = parentPosition?.x ?? 0;
+    const parentY = parentPosition?.y ?? 0;
+    cursorPanel.SetPositionInPixels((cursor[0] - parentX - TOOL_CURSOR_ICON_SIZE * 0.5) / scaleX, (cursor[1] - parentY - TOOL_CURSOR_ICON_SIZE * 0.5) / scaleY, 0);
+  };
+  const refreshHoveredCellFromCursor = () => {
+    if (isRewardFinishVisible()) {
+      setHoveredCellIndex(undefined);
+      return;
+    }
+    const viewport = mineGridViewportPanel;
+    if (viewport == undefined || !viewport.IsValid()) {
+      setHoveredCellIndex(undefined);
+      return;
+    }
+    const cursor = GameUI.GetCursorPosition();
+    const viewportPosition = viewport.GetPositionWithinWindow();
+    const scaleX = viewport.actualuiscale_x || 1;
+    const scaleY = viewport.actualuiscale_y || 1;
+    const localX = (cursor[0] - viewportPosition.x) / scaleX;
+    const localY = (cursor[1] - viewportPosition.y) / scaleY;
+    const column = Math.floor(localX / MINE_GRID_COLUMN_STRIDE);
+    const visibleRow = Math.floor(localY / MINE_GRID_ROW_STRIDE);
+    if (localX < 0 || localY < 0 || column < 0 || column >= MINE_GRID_COLUMNS || visibleRow < 0 || visibleRow >= MINE_GRID_VISIBLE_ROWS) {
+      setHoveredCellIndex(undefined);
+      return;
+    }
+    const row = getVisibleStartRow(mineGridBottomRow()) + visibleRow;
+    const index = row * MINE_GRID_COLUMNS + column;
+    setHoveredCellIndex(isLogicalMineGridSlotClickable(index) ? index : undefined);
+  };
+  const equipTool = tool => {
+    libs.batch(() => {
+      setHoveredCellIndex(undefined);
+      setEquippedTool(tool);
+    });
+    createCursorPanel(tool);
+    $.Schedule(0, updateCursorPosition);
+  };
+  const handleCellMouseOver = index => {
+    setHoveredCellIndex(index);
+  };
+  const handleCellMouseOut = index => {
+    if (hoveredCellIndex() === index) {
+      setHoveredCellIndex(undefined);
+    }
+  };
+  const validateMiningAction = (index, tool) => {
+    if (isMineGridInteractionLocked() || equippedTool() !== tool || !isLogicalMineGridSlotClickable(index)) {
+      return false;
+    }
+    if (tool == "Pickaxe") {
+      if (pickaxeAmount() < 1) {
+        ErrorMessage(GetLocalization("#ActivityVeins_ResourceNotEnough"));
+        return false;
+      }
+      if (!hasAdjacentEmptyLogicalMineGridSlot(index)) {
+        ErrorMessage(GetLocalization("#ActivityVeins_PickaxeNotAllow"));
+        return false;
+      }
+    } else if (getToolAmount(tool) <= 0) {
+      ErrorMessage(GetLocalization("#ActivityVeins_ResourceNotEnough"));
+      return false;
+    }
+    return true;
+  };
+  const submitMiningAction = context => {
+    const rewardCountBefore = totalRewardCount();
+    libs.batch(() => {
+      setHoveredCellIndex(undefined);
+      setIsMiningRequesting(true);
+    });
+    CallActionRequest("/v1/activity/play_mining", {
+      activity_id: dig_veins_logic.ACTIVITY_MINING_ID,
+      row: context.column,
+      line: context.row,
+      operate_type: context.operateType
+    }, result => {
+      if (isDisposed) {
+        return;
+      }
+      if (result.code != 0 && result.code != 200) {
+        setIsMiningRequesting(false);
+        if (result.message != undefined) {
+          ErrorMessage(result.message);
+        }
+        return;
+      }
+      if (context.tool != "Pickaxe" && getToolAmount(context.tool) <= 0) {
+        equipTool("Pickaxe");
+      }
+      const responseData = result.data?.player_mining_activity_data;
+      const activityData = Array.isArray(responseData) ? responseData.find(data => data?.activity_id == dig_veins_logic.ACTIVITY_MINING_ID) : undefined;
+      const responseStartRow = getVisibleStartRow(parsedMineGridSnapshot?.depth ?? mineGridBottomRow());
+      const responseSnapshot = parseDigVeinsSnapshot(activityData, responseStartRow);
+      if (responseSnapshot == undefined) {
+        console.log("[DigVeins] mining request returned no valid activity snapshot");
+        setIsMiningRequesting(false);
+        return;
+      }
+      const specialRewards = collectDigVeinsSpecialRewards(result.data?.add_items?.common ?? []);
+      libs.batch(() => {
+        startMineGridPresentation(context, responseSnapshot, specialRewards);
+        if (!hasShownRewardFinish && specialRewards.length > 0 && rewardCountBefore < maxRewardCount()) {
+          setRewardFinishAction({
+            actionID: context.id,
+            countBefore: rewardCountBefore
+          });
+        }
+        setIsMiningRequesting(false);
+      });
+    }, () => {
+      setIsMiningRequesting(false);
+    });
+  };
+  const handleCellActivate = (index, tool) => {
+    if (Date.now() / 1000 >= activityData().end_time) {
+      ErrorMessage(GetLocalization("#Activity_TimeEnd"));
+      return;
+    }
+    const runtime = mineGridTimelineRuntime;
+    const activeIndex = runtime == undefined ? undefined : runtime.plan.context.row * MINE_GRID_COLUMNS + runtime.plan.context.column;
+    if (activeIndex === index || !validateMiningAction(index, tool)) {
+      return;
+    }
+    if (mineGridTimelineRuntime != undefined && interruptMineGridPresentation()) {
+      return;
+    }
+    if (isRewardFinishPending() || isRewardFinishVisible()) {
+      return;
+    }
+    const row = Math.floor(index / MINE_GRID_COLUMNS);
+    const column = index % MINE_GRID_COLUMNS;
+    const context = {
+      id: ++nextMiningActionID,
+      tool,
+      row,
+      column,
+      operateType: DIG_VEINS_TOOL_OPERATE_TYPE[tool]
+    };
+    submitMiningAction(context);
+  };
+  const executeMineGridTimelineCommand = command => {
+    switch (command.type) {
+      case "startToolSequenceFrame":
+        startMineGridToolSequenceFrame(command.state);
+        return;
+      case "moveToolSequenceFrame":
+        moveMineGridToolSequenceFrame(command.actionID, command.row, command.column);
+        return;
+      case "playSound":
+        Game.EmitSound(command.soundEvent);
+        return;
+      case "showToolEffect":
+        setActiveMineGridToolEffects(effects => [...effects.filter(effect => effect.id !== command.effect.id), command.effect]);
+        return;
+      case "hideToolEffects":
+        clearMineGridToolEffects(command.actionID);
+        return;
+      case "startRemove":
+        setFadingOutCells(libs.produce(record => {
+          for (const tile of command.tiles) {
+            record[tile.index] = true;
+          }
+        }));
+        return;
+      case "commitRemove":
+        libs.batch(() => {
+          setMineGridTransitionDisabled(true);
+          const displaySnapshot = displayMineGridSnapshot;
+          if (displaySnapshot != undefined) {
+            const removedRowSet = {};
+            for (const row of command.rows) {
+              removedRowSet[row] = true;
+            }
+            for (const tile of command.tiles) {
+              const row = Math.floor(tile.index / MINE_GRID_COLUMNS);
+              const column = tile.index % MINE_GRID_COLUMNS;
+              const slots = displaySnapshot.rows[row];
+              if (slots != undefined && removedRowSet[row] !== true) {
+                slots[column] = undefined;
+              }
+            }
+            for (const row of command.rows) {
+              delete displaySnapshot.rows[row];
+            }
+            syncMineGridLayout(displaySnapshot);
+          }
+          setFadingOutCells(libs.produce(record => {
+            for (const tile of command.tiles) {
+              delete record[tile.index];
+            }
+          }));
+        });
+        return;
+      case "applyAdd":
+        {
+          setMineGridTransitionDisabled(true);
+          const displaySnapshot = displayMineGridSnapshot;
+          if (displaySnapshot != undefined) {
+            for (const row of command.rows) {
+              displaySnapshot.rows[row] = Array.from({
+                length: MINE_GRID_COLUMNS
+              }, () => undefined);
+            }
+            for (const tile of command.tiles) {
+              const row = Math.floor(tile.index / MINE_GRID_COLUMNS);
+              const column = tile.index % MINE_GRID_COLUMNS;
+              displaySnapshot.rows[row] ??= Array.from({
+                length: MINE_GRID_COLUMNS
+              }, () => undefined);
+              displaySnapshot.rows[row][column] = {
+                type: tile.type,
+                displayValue: tile.displayValue
+              };
+            }
+            syncMineGridLayout(displaySnapshot);
+          }
+          return;
+        }
+      case "enableTransition":
+        setMineGridTransitionDisabled(false);
+        return;
+      case "showRewardTip":
+        showRewardTip(command.rewards);
+        return;
+      case "startScroll":
+        {
+          setIsMineGridScrolling(true);
+          const nextBottomRow = command.toDepth;
+          if (displayMineGridSnapshot != undefined) {
+            displayMineGridSnapshot.depth = nextBottomRow;
+          }
+          libs.batch(() => {
+            setMineGridBottomRow(nextBottomRow);
+            setMineGridScrollOffset(Math.max(0, (command.toDepth - command.fromDepth) * MINE_GRID_ROW_STRIDE));
+          });
+          return;
+        }
+      case "finishScroll":
+        if (mineGridTimelineRuntime != undefined) {
+          mineGridTimelineRuntime.scrollFinished = true;
+        }
+        libs.batch(() => {
+          setMineGridTransitionDisabled(true);
+          if (displayMineGridSnapshot != undefined) {
+            const targetDepth = displayMineGridSnapshot.depth;
+            const stableSnapshot = getDigVeinsSnapshotWindow(displayMineGridSnapshot, getVisibleStartRow(targetDepth), targetDepth);
+            displayMineGridSnapshot = stableSnapshot;
+            syncMineGridLayout(stableSnapshot);
+          }
+        });
+        return;
+      case "calibrate":
+        calibrateMineGridFromNetTable(false);
+        return;
+      case "finishFlow":
+        libs.batch(() => {
+          setIsMineGridAnimating(false);
+          setIsMineGridScrolling(false);
+        });
+        if (!isMiningRequesting()) {
+          refreshHoveredCellFromCursor();
+        }
+        return;
+    }
+  };
+  const tickMineGridTimeline = runtime => {
+    if (isDisposed || mineGridTimelineRuntime !== runtime) {
+      return;
+    }
+    const elapsed = Math.max(runtime.lastElapsed, Date.now() / 1000 - runtime.startedAt);
+    runtime.lastElapsed = elapsed;
+    while (runtime.nextEventIndex < runtime.plan.events.length) {
+      const event = runtime.plan.events[runtime.nextEventIndex];
+      if (event.at > elapsed) {
+        break;
+      }
+      runtime.nextEventIndex++;
+      executeMineGridTimelineCommand(event.command);
+    }
+    if (runtime.nextEventIndex >= runtime.plan.events.length && elapsed >= runtime.plan.duration) {
+      runtime.scheduleID = undefined;
+      mineGridTimelineRuntime = undefined;
+      return;
+    }
+    runtime.scheduleID = $.Schedule(MINE_GRID_TIMELINE_TICK_INTERVAL, () => tickMineGridTimeline(runtime));
+  };
+  const playMineGridTimeline = (plan, scrolling = false) => {
+    cancelMineGridTimeline();
+    const runtime = {
+      plan,
+      startedAt: Date.now() / 1000,
+      lastElapsed: 0,
+      nextEventIndex: 0,
+      scrollFinished: false
+    };
+    mineGridTimelineRuntime = runtime;
+    libs.batch(() => {
+      setIsMineGridAnimating(true);
+      setIsMineGridScrolling(scrolling);
+    });
+    tickMineGridTimeline(runtime);
+  };
+  const interruptMineGridPresentation = () => {
+    const runtime = mineGridTimelineRuntime;
+    if (runtime == undefined) {
+      libs.batch(() => {
+        setIsMineGridAnimating(false);
+        setIsMineGridScrolling(false);
+      });
+      return false;
+    }
+    const scrollEvent = runtime.plan.events.find(event => event.command.type == "startScroll");
+    const rewardTipEventIndex = runtime.plan.events.findIndex(event => event.command.type == "showRewardTip");
+    const pendingRewardTipCommand = rewardTipEventIndex >= runtime.nextEventIndex && runtime.plan.events[rewardTipEventIndex]?.command.type == "showRewardTip" ? runtime.plan.events[rewardTipEventIndex].command : undefined;
+    cancelMineGridTimeline();
+    clearFadingOutCells();
+    if (scrollEvent?.command.type != "startScroll" || runtime.scrollFinished) {
+      if (pendingRewardTipCommand != undefined) {
+        showRewardTip(pendingRewardTipCommand.rewards);
+      }
+      setDisplayMineGridSnapshot(runtime.plan.stableTargetSnapshot);
+      libs.batch(() => {
+        setIsMineGridAnimating(false);
+        setIsMineGridScrolling(false);
+      });
+      return false;
+    }
+    const preparedScrollSnapshot = cloneDigVeinsSnapshot(runtime.plan.targetSnapshot);
+    preparedScrollSnapshot.depth = scrollEvent.command.fromDepth;
+    setDisplayMineGridSnapshot(preparedScrollSnapshot, false);
+    const scrollStartAt = MINE_GRID_TIMELINE_RENDER_BARRIER_DURATION;
+    const scrollFinishAt = scrollStartAt + MINE_GRID_SCROLL_ANIMATION_DURATION;
+    const finishFlowAt = scrollFinishAt + MINE_GRID_TIMELINE_RENDER_BARRIER_DURATION;
+    const scrollOnlyEvents = [];
+    let nextOrder = 0;
+    if (pendingRewardTipCommand != undefined) {
+      scrollOnlyEvents.push({
+        at: 0,
+        order: nextOrder++,
+        command: pendingRewardTipCommand
+      });
+    }
+    scrollOnlyEvents.push({
+      at: scrollStartAt,
+      order: nextOrder++,
+      command: {
+        type: "enableTransition"
+      }
+    }, {
+      at: scrollStartAt,
+      order: nextOrder++,
+      command: scrollEvent.command
+    }, {
+      at: scrollFinishAt,
+      order: nextOrder++,
+      command: {
+        type: "finishScroll"
+      }
+    }, {
+      at: finishFlowAt,
+      order: nextOrder++,
+      command: {
+        type: "enableTransition"
+      }
+    }, {
+      at: finishFlowAt,
+      order: nextOrder++,
+      command: {
+        type: "finishFlow"
+      }
+    });
+    const scrollOnlyPlan = {
+      context: runtime.plan.context,
+      targetSnapshot: cloneDigVeinsSnapshot(runtime.plan.targetSnapshot),
+      stableTargetSnapshot: cloneDigVeinsSnapshot(runtime.plan.stableTargetSnapshot),
+      duration: finishFlowAt,
+      events: scrollOnlyEvents
+    };
+    playMineGridTimeline(scrollOnlyPlan, true);
+    return true;
+  };
+  const startMineGridPresentation = (context, responseSnapshot, specialRewards) => {
+    const currentParsedSnapshot = parsedMineGridSnapshot ?? parseDigVeinsSnapshot(miningActivityData()) ?? cloneDigVeinsSnapshot(responseSnapshot);
+    if (parsedMineGridSnapshot == undefined) {
+      parsedMineGridSnapshot = cloneDigVeinsSnapshot(currentParsedSnapshot);
+    }
+    if (displayMineGridSnapshot == undefined) {
+      setDisplayMineGridSnapshot(currentParsedSnapshot);
+    }
+    const targetSnapshot = cloneDigVeinsSnapshot(responseSnapshot);
+    const stableTargetSnapshot = getDigVeinsSnapshotWindow(targetSnapshot, getVisibleStartRow(targetSnapshot.depth), targetSnapshot.depth);
+    const diff = getDigVeinsSnapshotDiff(currentParsedSnapshot, targetSnapshot);
+    const timeline = DIG_VEINS_TOOL_TIMELINE_BUILDERS[context.tool](context, currentParsedSnapshot, targetSnapshot, diff);
+    if (displayMineGridSnapshot != undefined) {
+      for (const rowKey of Object.keys(targetSnapshot.rows)) {
+        const row = Number(rowKey);
+        const displayedRow = displayMineGridSnapshot.rows[row];
+        targetSnapshot.rows[row]?.forEach((cell, column) => {
+          if (cell != undefined && displayedRow?.[column]?.type == cell.type) {
+            displayedRow[column] = cell;
+          }
+        });
+      }
+      syncMineGridLayout(displayMineGridSnapshot);
+    }
+    insertDigVeinsRewardTipTimelineEvent(timeline, specialRewards);
+    parsedMineGridSnapshot = stableTargetSnapshot;
+    playMineGridTimeline(timeline);
+  };
+  const hideRewardFinish = () => {
+    setIsRewardFinishVisible(false);
+    updateCursorPosition();
+    console.log("[DigVeins] Reward completion popup closed");
+  };
+  libs.createEffect(() => {
+    const action = rewardFinishAction();
+    const limit = maxRewardCount();
+    if (action != undefined && !hasShownRewardFinish && limit > 0 && action.countBefore < limit && totalRewardCount() >= limit) {
+      libs.batch(() => {
+        setRewardFinishAction(undefined);
+        setIsRewardFinishPending(true);
+      });
+      console.log("[DigVeins] Special reward collection completed");
+    }
+  });
+  libs.createEffect(() => {
+    if (!isRewardFinishPending() || isDisposed || isMiningRequesting() || isMineGridAnimating() || isRewardTipVisible() || rewardTipShowScheduleID != undefined) {
+      return;
+    }
+    hasShownRewardFinish = true;
+    libs.batch(() => {
+      setIsRewardFinishPending(false);
+      setHoveredCellIndex(undefined);
+      setIsRewardFinishVisible(true);
+    });
+    updateCursorPosition();
+    console.log("[DigVeins] Reward completion popup shown");
+  });
+  libs.createEffect(() => {
+    const netTableData = miningActivityData();
+    if (!isMiningRequesting() && !isMineGridAnimating() && netTableData !== lastCalibratedMineGridNetData) {
+      calibrateMineGridFromNetTable();
+    }
+  });
+  libs.onMount(() => {
+    console.log("[DigVeins] Mining page mounted");
+    equipTool("Pickaxe");
+    const cursorTimer = setInterval(() => {
+      updateCursorPosition();
+    }, 10);
+    libs.onCleanup(() => {
+      isDisposed = true;
+      setRewardFinishAction(undefined);
+      setIsRewardFinishPending(false);
+      setIsRewardFinishVisible(false);
+      clearInterval(cursorTimer);
+      cancelMineGridTimeline();
+      cancelMineGridTransitionReset();
+      hideRewardTip();
+      clearMineGridToolEffects();
+      destroyCursorPanel();
+      clearFadingOutCells();
+      clearMineGridSlots();
+    });
+  });
+  return libs.createComponent(EOM_MenuLayout.EOM_MenuLayout_Content, {
+    id: "DigVeinsRoot",
+    get children() {
+      return [(() => {
+        const _el$31 = libs.createElement("Panel", {
+            id: "DigVeinsContainer",
+            hittest: true
+          }, null),
+          _el$32 = libs.createElement("Panel", {
+            id: "DigVeinsLeftPage"
+          }, _el$31),
+          _el$33 = libs.createElement("Panel", {
+            id: "DigVeinsToolBar"
+          }, _el$32),
+          _el$34 = libs.createElement("Panel", {
+            "class": "DigVeinsToolItem Bomb"
+          }, _el$33);
+          libs.createElement("Image", {
+            "class": "DigVeinsToolItemBG"
+          }, _el$34);
+          const _el$41 = libs.createElement("Panel", {
+            "class": "DigVeinsToolItem Pickaxe"
+          }, _el$33);
+          libs.createElement("Image", {
+            "class": "DigVeinsToolItemBG"
+          }, _el$41);
+          const _el$48 = libs.createElement("Panel", {
+            "class": "DigVeinsToolItem Drill"
+          }, _el$33);
+          libs.createElement("Image", {
+            "class": "DigVeinsToolItemBG"
+          }, _el$48);
+          const _el$55 = libs.createElement("Panel", {
+            id: "DigVeinsMainPage"
+          }, _el$31),
+          _el$56 = libs.createElement("Panel", {
+            "class": "DigVeinsMainHeaderContainer"
+          }, _el$55);
+          libs.createElement("Image", {
+            "class": "DigVeinsMainHeaderBG",
+            hittest: false
+          }, _el$56);
+          const _el$58 = libs.createElement("Panel", {
+            "class": "DigVeinsDepthContent"
+          }, _el$56),
+          _el$59 = libs.createElement("Panel", {
+            "class": "DigVeinsDepthTitle"
+          }, _el$58),
+          _el$60 = libs.createElement("Label", {
+            "class": "DigVeinsDepthTitleLabel",
+            get text() {
+              return GetLocalization("#ActivityVeins_DepthTitle");
+            }
+          }, _el$59),
+          _el$61 = libs.createElement("Panel", {
+            "class": "DigVeinsDepthDescription"
+          }, _el$58),
+          _el$62 = libs.createElement("Label", {
+            "class": "DigVeinsDepthPartDesc",
+            get text() {
+              return GetLocalization(depthPartToken());
+            }
+          }, _el$61),
+          _el$63 = libs.createElement("Label", {
+            "class": "DigVeinsDepthPartValue",
+            get text() {
+              return `${displayDepth()}M`;
+            }
+          }, _el$61),
+          _el$64 = libs.createElement("Panel", {
+            id: "DigVeinsCoreContainer"
+          }, _el$55);
+          libs.createElement("Image", {
+            id: "DigVeinsCoreBG"
+          }, _el$64);
+          const _el$66 = libs.createElement("Panel", {
+            id: "DigVeinsMineGridViewport"
+          }, _el$64),
+          _el$67 = libs.createElement("Panel", {
+            id: "DigVeinsMineGridCellContainer",
+            get style() {
+              return {
+                transform: `translateY(${-mineGridScrollOffset()}px)`
+              };
+            }
+          }, _el$66),
+          _el$68 = libs.createElement("Panel", {
+            id: "DigVeinsToolEffectLayer",
+            hittest: false,
+            hittestchildren: false
+          }, _el$64),
+          _el$69 = libs.createElement("Panel", {
+            id: "DigVeinsToolSequenceFrameLayer",
+            hittest: false,
+            hittestchildren: false
+          }, _el$64),
+          _el$70 = libs.createElement("Panel", {
+            id: "DigVeinsToolSequenceFrameAnchor",
+            get style() {
+              return getMineGridToolSequenceFrameAnchorStyle();
+            },
+            hittest: false,
+            hittestchildren: false
+          }, _el$69),
+          _el$71 = libs.createElement("Panel", {
+            id: "DigDepthLine"
+          }, _el$64),
+          _el$72 = libs.createElement("Label", {
+            id: "DigDepthLineLabel",
+            get text() {
+              return LocalizeWithVars("#ActivityVeins_DepthLineValue", {
+                depth: displayDepth()
+              });
+            }
+          }, _el$71);
+          libs.createElement("Image", {
+            id: "DigDepthLineIcon"
+          }, _el$71);
+          const _el$79 = libs.createElement("Panel", {
+            id: "DigVeinsRightPage"
+          }, _el$31),
+          _el$80 = libs.createElement("Panel", {
+            id: "DigVeinsHeader"
+          }, _el$79),
+          _el$81 = libs.createElement("Image", {
+            id: "DigVeinsTitleImage",
+            get ["class"]() {
+              return logoLang();
+            }
+          }, _el$80),
+          _el$82 = libs.createElement("Image", {
+            get ["class"]() {
+              return libs.classNames("DigVeinsHeaderButtonIcon", logoLang());
+            }
+          }, _el$80),
+          _el$83 = libs.createElement("Panel", {
+            id: "DigVeinsHeaderTime"
+          }, _el$79);
+          libs.createElement("Panel", {
+            id: "DigVeinsHeaderTimeBG"
+          }, _el$83);
+          const _el$85 = libs.createElement("Panel", {
+            id: "DigVeinsTaskPanel"
+          }, _el$79);
+          libs.createElement("Image", {
+            id: "DigVeinsTaskPanelBG",
+            hittest: false
+          }, _el$85);
+          const _el$87 = libs.createElement("Panel", {
+            "class": "DigVeinsTaskContainer"
+          }, _el$85),
+          _el$88 = libs.createElement("Panel", {
+            "class": "DigVeinsTaskTabList"
+          }, _el$87),
+          _el$89 = libs.createElement("Panel", {
+            "class": "DigVeinsTaskTab First"
+          }, _el$88);
+          libs.createElement("Image", {
+            "class": "DigVeinsTaskTabBG"
+          }, _el$89);
+          const _el$91 = libs.createElement("Panel", {
+            "class": "DigVeinsTaskTabContent"
+          }, _el$89),
+          _el$92 = libs.createElement("Label", {
+            "class": "DigVeinsTaskTabLabel",
+            get text() {
+              return GetLocalization("ActivityVeins_TaskTitleType_7");
+            }
+          }, _el$91),
+          _el$93 = libs.createElement("Panel", {
+            "class": "DigVeinsTaskTab Last"
+          }, _el$88);
+          libs.createElement("Image", {
+            "class": "DigVeinsTaskTabBG"
+          }, _el$93);
+          const _el$95 = libs.createElement("Panel", {
+            "class": "DigVeinsTaskTabContent"
+          }, _el$93),
+          _el$96 = libs.createElement("Label", {
+            "class": "DigVeinsTaskTabLabel",
+            get text() {
+              return GetLocalization("ActivityVeins_TaskTitleType_6");
+            }
+          }, _el$95),
+          _el$97 = libs.createElement("Panel", {
+            id: "DigVeinsTaskScrollContent",
+            scroll: "y"
+          }, _el$87),
+          _el$98 = libs.createElement("Panel", {
+            "class": "DigVeinsTaskItemsContent"
+          }, _el$97),
+          _el$99 = libs.createElement("Panel", {
+            id: "DigVeinsRewardContainer"
+          }, _el$79);
+          libs.createElement("Image", {
+            "class": "DigVeinsRewardsContainerBG",
+            hittest: false
+          }, _el$99);
+          const _el$101 = libs.createElement("Panel", {
+            "class": "DigVeinsRewardsContent"
+          }, _el$99),
+          _el$102 = libs.createElement("Panel", {
+            "class": "DigVeinsRewardsHeader"
+          }, _el$101);
+          libs.createElement("Image", {
+            "class": "RewardsHeaderBG"
+          }, _el$102);
+          const _el$104 = libs.createElement("Panel", {
+            "class": "RewardsHeaderDescription"
+          }, _el$102),
+          _el$105 = libs.createElement("Label", {
+            "class": "RewardsHeaderTitle",
+            get text() {
+              return GetLocalization("#ActivityVeins_Rewards_HeaderTitle");
+            }
+          }, _el$104),
+          _el$106 = libs.createElement("Label", {
+            "class": "RewardsHeaderValue",
+            get text() {
+              return `${totalRewardCount()}/${maxRewardCount()}`;
+            }
+          }, _el$104),
+          _el$107 = libs.createElement("Panel", {
+            "class": "DigVeinsRewardsList"
+          }, _el$101);
+        libs.insert(_el$34, libs.createComponent(EOM_Button.EOM_BaseButton, {
+          get ["class"]() {
+            return libs.classNames("DigVeinsToolButton", "Bomb", {
+              Selected: equippedTool() === "Bomb"
+            });
+          },
+          get enabled() {
+            return canActivateToolButton("Bomb");
+          },
+          onactivate: () => equipTool("Bomb"),
+          get children() {
+            return [libs.createElement("Image", {
+              "class": "DigVeinsToolButtonIcon",
+              hittest: false
+            }, null), (() => {
+              const _el$37 = libs.createElement("Label", {
+                "class": "DigVeinsToolItemName",
+                get text() {
+                  return getToolItemName(miningConfig()?.explosive_id);
+                },
+                hittest: false
+              }, null);
+              libs.effect(_$p => libs.setProp(_el$37, "text", getToolItemName(miningConfig()?.explosive_id), _$p));
+              return _el$37;
+            })(), (() => {
+              const _el$38 = libs.createElement("Panel", {
+                  "class": "DigVeinsToolItemAmount"
+                }, null),
+                _el$39 = libs.createElement("Label", {
+                  "class": "DigVeinsToolItemAmountValue",
+                  get text() {
+                    return bombAmount();
+                  }
+                }, _el$38);
+              libs.effect(_$p => libs.setProp(_el$39, "text", bombAmount(), _$p));
+              return _el$38;
+            })()];
+          }
+        }), null);
+        libs.insert(_el$34, libs.createComponent(EOM_Button.EOM_BaseButton, {
+          "class": "DigVeinsToolOption DigVeinsToolOptionAdd",
+          onactivate: openVeinsGift,
+          get children() {
+            return libs.createElement("Image", {
+              "class": "DigVeinsToolOptionIcon",
+              hittest: false
+            }, null);
+          }
+        }), null);
+        libs.insert(_el$41, libs.createComponent(EOM_Button.EOM_BaseButton, {
+          get ["class"]() {
+            return libs.classNames("DigVeinsToolButton", "Pickaxe", {
+              Selected: equippedTool() === "Pickaxe"
+            });
+          },
+          get enabled() {
+            return canActivateToolButton("Pickaxe");
+          },
+          onactivate: () => equipTool("Pickaxe"),
+          get children() {
+            return [libs.createElement("Image", {
+              "class": "DigVeinsToolButtonIcon",
+              hittest: false
+            }, null), (() => {
+              const _el$44 = libs.createElement("Label", {
+                "class": "DigVeinsToolItemName",
+                get text() {
+                  return getToolItemName(miningConfig()?.pickaxe_id);
+                },
+                hittest: false
+              }, null);
+              libs.effect(_$p => libs.setProp(_el$44, "text", getToolItemName(miningConfig()?.pickaxe_id), _$p));
+              return _el$44;
+            })(), (() => {
+              const _el$45 = libs.createElement("Panel", {
+                  "class": "DigVeinsToolItemAmount"
+                }, null),
+                _el$46 = libs.createElement("Label", {
+                  "class": "DigVeinsToolItemAmountValue",
+                  get text() {
+                    return pickaxeAmount();
+                  }
+                }, _el$45);
+              libs.effect(_$p => libs.setProp(_el$46, "text", pickaxeAmount(), _$p));
+              return _el$45;
+            })()];
+          }
+        }), null);
+        libs.insert(_el$41, libs.createComponent(EOM_Button.EOM_BaseButton, {
+          "class": "DigVeinsToolOption DigVeinsToolOptionAdd",
+          onactivate: () => purchaseVeinsTool(DIG_VEINS_PICKAXE_PRODUCT_ID),
+          get children() {
+            return libs.createElement("Image", {
+              "class": "DigVeinsToolOptionIcon",
+              hittest: false
+            }, null);
+          }
+        }), null);
+        libs.insert(_el$48, libs.createComponent(EOM_Button.EOM_BaseButton, {
+          get ["class"]() {
+            return libs.classNames("DigVeinsToolButton", "Drill", {
+              Selected: equippedTool() === "Drill"
+            });
+          },
+          get enabled() {
+            return canActivateToolButton("Drill");
+          },
+          onactivate: () => equipTool("Drill"),
+          get children() {
+            return [libs.createElement("Image", {
+              "class": "DigVeinsToolButtonIcon",
+              hittest: false
+            }, null), (() => {
+              const _el$51 = libs.createElement("Label", {
+                "class": "DigVeinsToolItemName",
+                get text() {
+                  return getToolItemName(miningConfig()?.bit_id);
+                },
+                hittest: false
+              }, null);
+              libs.effect(_$p => libs.setProp(_el$51, "text", getToolItemName(miningConfig()?.bit_id), _$p));
+              return _el$51;
+            })(), (() => {
+              const _el$52 = libs.createElement("Panel", {
+                  "class": "DigVeinsToolItemAmount"
+                }, null),
+                _el$53 = libs.createElement("Label", {
+                  "class": "DigVeinsToolItemAmountValue",
+                  get text() {
+                    return drillAmount();
+                  }
+                }, _el$52);
+              libs.effect(_$p => libs.setProp(_el$53, "text", drillAmount(), _$p));
+              return _el$52;
+            })()];
+          }
+        }), null);
+        libs.insert(_el$48, libs.createComponent(EOM_Button.EOM_BaseButton, {
+          "class": "DigVeinsToolOption DigVeinsToolOptionAdd",
+          onactivate: () => purchaseVeinsTool(DIG_VEINS_DRILL_PRODUCT_ID),
+          get children() {
+            return libs.createElement("Image", {
+              "class": "DigVeinsToolOptionIcon",
+              hittest: false
+            }, null);
+          }
+        }), null);
+        libs.use(panel => mineGridViewportPanel = panel, _el$66);
+        libs.insert(_el$67, libs.createComponent(libs.For, {
+          get each() {
+            return mineGridRowKeys();
+          },
+          children: row => (() => {
+            const _el$120 = libs.createElement("Panel", {
+              "class": "DigVeinsMineGridRow"
+            }, null);
+            libs.insert(_el$120, libs.createComponent(libs.For, {
+              get each() {
+                return mineGridRowCellKeys[row] ?? [];
+              },
+              children: key => {
+                const index = getMineGridCellIndexFromKey(key);
+                return libs.createComponent(DigVeinsMineGridCell, {
+                  index: index,
+                  get type() {
+                    return getMineGridSlot(index)?.type;
+                  },
+                  get displayValue() {
+                    return getMineGridSlot(index)?.displayValue;
+                  },
+                  get ["class"]() {
+                    return getMineGridCellClass(index);
+                  },
+                  get fadingOut() {
+                    return isMineGridCellFadingOut(index);
+                  },
+                  get disabled() {
+                    return isMineGridInteractionLocked() || !isLogicalMineGridSlotClickable(index);
+                  },
+                  get tool() {
+                    return equippedTool();
+                  },
+                  oncellmouseover: handleCellMouseOver,
+                  oncellmouseout: handleCellMouseOut,
+                  oncellactivate: handleCellActivate
+                });
+              }
+            }));
+            return _el$120;
+          })()
+        }));
+        libs.insert(_el$66, libs.createComponent(libs.Show, {
+          get when() {
+            return canShowToolRangePreview();
+          },
+          get children() {
+            return libs.createComponent(DigVeinsToolRangePreview, {
+              get tool() {
+                return equippedTool();
+              },
+              get cellIndex() {
+                return hoveredCellIndex();
+              },
+              get visibleStartRow() {
+                return getVisibleStartRow(mineGridBottomRow());
+              }
+            });
+          }
+        }), null);
+        libs.insert(_el$68, libs.createComponent(libs.For, {
+          get each() {
+            return activeMineGridToolEffects();
+          },
+          children: effect => [libs.createComponent(libs.Show, {
+            get when() {
+              return effect.tool == "Pickaxe";
+            },
+            get children() {
+              const _el$121 = libs.createElement("Panel", {
+                  "class": "DigVeinsToolEffectAnchor Pickaxe",
+                  get style() {
+                    return getMineGridToolEffectAnchorStyle(effect);
+                  },
+                  hittest: false,
+                  hittestchildren: false
+                }, null);
+                libs.createElement("DOTAParticleScenePanel", {
+                  "class": "DigVeinsToolEffectParticle Pickaxe",
+                  particleName: "particles/ui/game/ui_game_m4_broken_fx.vpcf",
+                  cameraOrigin: "0 0 320",
+                  lookAt: "0 0 0",
+                  fov: 90,
+                  hittest: false,
+                  squarePixels: true
+                }, _el$121);
+              libs.effect(_$p => libs.setProp(_el$121, "style", getMineGridToolEffectAnchorStyle(effect), _$p));
+              return _el$121;
+            }
+          }), libs.createComponent(libs.Show, {
+            get when() {
+              return effect.tool == "Drill";
+            },
+            get children() {
+              const _el$123 = libs.createElement("Panel", {
+                  "class": "DigVeinsToolEffectAnchor Drill",
+                  get style() {
+                    return getMineGridToolEffectAnchorStyle(effect);
+                  },
+                  hittest: false,
+                  hittestchildren: false
+                }, null);
+                libs.createElement("DOTAParticleScenePanel", {
+                  "class": "DigVeinsToolEffectParticle Drill",
+                  particleName: "particles/ui/game/ui_game_m4_drill_fx.vpcf",
+                  cameraOrigin: "0 0 320",
+                  lookAt: "0 0 0",
+                  fov: 90,
+                  hittest: false,
+                  squarePixels: true
+                }, _el$123);
+              libs.effect(_$p => libs.setProp(_el$123, "style", getMineGridToolEffectAnchorStyle(effect), _$p));
+              return _el$123;
+            }
+          }), libs.createComponent(libs.Show, {
+            get when() {
+              return effect.tool == "Bomb";
+            },
+            get children() {
+              const _el$125 = libs.createElement("Panel", {
+                  "class": "DigVeinsToolEffectAnchor Bomb",
+                  get style() {
+                    return getMineGridToolEffectAnchorStyle(effect);
+                  },
+                  hittest: false,
+                  hittestchildren: false
+                }, null);
+                libs.createElement("DOTAParticleScenePanel", {
+                  "class": "DigVeinsToolEffectParticle Bomb",
+                  particleName: "particles/ui/game/ui_game_m4_bomb_fx.vpcf",
+                  cameraOrigin: "0 0 320",
+                  lookAt: "0 0 0",
+                  fov: 90,
+                  hittest: false,
+                  squarePixels: true
+                }, _el$125);
+              libs.effect(_$p => libs.setProp(_el$125, "style", getMineGridToolEffectAnchorStyle(effect), _$p));
+              return _el$125;
+            }
+          })]
+        }));
+        libs.insert(_el$70, libs.createComponent(PickaxeSequenceFrame, {
+          "class": "DigVeinsToolSequenceFrame PickaxeFrame",
+          get visible() {
+            return libs.memo(() => !!(isMineGridToolSequenceFrameVisible() && activeMineGridToolSequenceFrame().tool == "Pickaxe"))() && !pickaxeSequence.isFinished();
+          }
+        }), null);
+        libs.insert(_el$70, libs.createComponent(BombSequenceFrame, {
+          "class": "DigVeinsToolSequenceFrame BombFrame",
+          get visible() {
+            return libs.memo(() => !!(isMineGridToolSequenceFrameVisible() && activeMineGridToolSequenceFrame().tool == "Bomb"))() && !bombSequence.isFinished();
+          }
+        }), null);
+        libs.insert(_el$70, libs.createComponent(DrillSequenceFrame, {
+          "class": "DigVeinsToolSequenceFrame DrillFrame",
+          get visible() {
+            return libs.memo(() => !!(isMineGridToolSequenceFrameVisible() && activeMineGridToolSequenceFrame().tool == "Drill"))() && !drillSequence.isFinished();
+          }
+        }), null);
+        libs.insert(_el$64, libs.createComponent(libs.Show, {
+          get when() {
+            return isRewardTipVisible();
+          },
+          get children() {
+            const _el$74 = libs.createElement("Panel", {
+                id: "DigRewardTipWindow",
+                hittest: true,
+                hittestchildren: false
+              }, null),
+              _el$75 = libs.createElement("Panel", {
+                id: "DigRewardTipContent",
+                "class": "TooltipContent",
+                hittest: false,
+                hittestchildren: false
+              }, _el$74),
+              _el$76 = libs.createElement("Label", {
+                id: "DigRewardTipTitle",
+                get text() {
+                  return GetLocalization("#ActivityVeins_SpecialRewardTitle");
+                }
+              }, _el$75),
+              _el$77 = libs.createElement("Panel", {
+                id: "DigRewardTipRewardList"
+              }, _el$75),
+              _el$78 = libs.createElement("Label", {
+                id: "DigRewardTipSkipTips",
+                get text() {
+                  return GetLocalization("#ActivityVeins_SpecialRewardSkipTips");
+                }
+              }, _el$75);
+            libs.setProp(_el$74, "onactivate", hideRewardTip);
+            libs.insert(_el$77, libs.createComponent(libs.For, {
+              get each() {
+                return rewardTipRewards();
+              },
+              children: reward => (() => {
+                const _el$127 = libs.createElement("Panel", {
+                    "class": "DigRewardTipReward"
+                  }, null),
+                  _el$129 = libs.createElement("Label", {
+                    "class": "DigRewardTipItemName",
+                    get text() {
+                      return GetLocalization(`#${reward.item_id}`);
+                    }
+                  }, _el$127);
+                libs.insert(_el$127, libs.createComponent(StoreItem.StoreItemBlock, {
+                  get item_id() {
+                    return reward.item_id;
+                  },
+                  get amounts() {
+                    return reward.amounts;
+                  },
+                  hideTips: true,
+                  get children() {
+                    return libs.createComponent(libs.Show, {
+                      get when() {
+                        return reward.amounts == 1;
+                      },
+                      get children() {
+                        return libs.createElement("Label", {
+                          id: "ItemCount",
+                          hittest: false,
+                          text: "×1"
+                        }, null);
+                      }
+                    });
+                  }
+                }), _el$129);
+                libs.effect(_$p => libs.setProp(_el$129, "text", GetLocalization(`#${reward.item_id}`), _$p));
+                return _el$127;
+              })()
+            }));
+            libs.effect(_p$ => {
+              const _v$9 = GetLocalization("#ActivityVeins_SpecialRewardTitle"),
+                _v$0 = GetLocalization("#ActivityVeins_SpecialRewardSkipTips");
+              _v$9 !== _p$._v$9 && (_p$._v$9 = libs.setProp(_el$76, "text", _v$9, _p$._v$9));
+              _v$0 !== _p$._v$0 && (_p$._v$0 = libs.setProp(_el$78, "text", _v$0, _p$._v$0));
+              return _p$;
+            }, {
+              _v$9: undefined,
+              _v$0: undefined
+            });
+            return _el$74;
+          }
+        }), null);
+        libs.insert(_el$83, libs.createComponent(EOM_Countdown.EOM_Countdown, {
+          icon: true,
+          text: "#ActivityDice_TimeLimit",
+          get endTime() {
+            return activityData().end_time;
+          }
+        }), null);
+        libs.setProp(_el$89, "onactivate", () => selectTaskType(7));
+        libs.setProp(_el$93, "onactivate", () => selectTaskType(6));
+        libs.use(panel => taskScrollPanel = panel, _el$97);
+        libs.setProp(_el$97, "scroll", "y");
+        libs.insert(_el$98, libs.createComponent(libs.For, {
+          get each() {
+            return digVeinsTasksByType()[selectedTaskType()];
+          },
+          children: task => libs.createComponent(DigVeinsTaskItem, {
+            task: task,
+            get claiming() {
+              return claimingTaskKey() == getDigVeinsTaskKey(task);
+            },
+            onClaim: receiveTaskReward
+          })
+        }));
+        libs.insert(_el$107, libs.createComponent(libs.For, {
+          each: DIG_VEINS_REWARD_ITEM_IDS,
+          children: item => {
+            return (() => {
+              const _el$130 = libs.createElement("Panel", {
+                  "class": `DigVeinsRewardsBoxContent BoxType-${item}`
+                }, null),
+                _el$131 = libs.createElement("Panel", {
+                  "class": "RewardBoxHeader"
+                }, _el$130),
+                _el$132 = libs.createElement("Label", {
+                  "class": "RewardBoxName",
+                  get text() {
+                    return GetLocalization(`#ActivityVeins_Rewards_BoxType_${item}`);
+                  }
+                }, _el$131);
+                libs.createElement("Image", {
+                  "class": "RewardBoxImage"
+                }, _el$130);
+                const _el$134 = libs.createElement("Panel", {
+                  "class": "RewardBoxValueContent"
+                }, _el$130);
+                libs.createElement("Image", {
+                  "class": "RewardBoxValueBG"
+                }, _el$134);
+                const _el$136 = libs.createElement("Label", {
+                  "class": "RewardBoxValueText",
+                  get text() {
+                    return getRewardCount(item);
+                  }
+                }, _el$134);
+              libs.setProp(_el$130, "class", `DigVeinsRewardsBoxContent BoxType-${item}`);
+              libs.effect(_p$ => {
+                const _v$29 = GetLocalization(`#ActivityVeins_Rewards_BoxType_${item}`),
+                  _v$30 = getRewardCount(item);
+                _v$29 !== _p$._v$29 && (_p$._v$29 = libs.setProp(_el$132, "text", _v$29, _p$._v$29));
+                _v$30 !== _p$._v$30 && (_p$._v$30 = libs.setProp(_el$136, "text", _v$30, _p$._v$30));
+                return _p$;
+              }, {
+                _v$29: undefined,
+                _v$30: undefined
+              });
+              return _el$130;
+            })();
+          }
+        }));
+        libs.effect(_p$ => {
+          const _v$1 = GetLocalization("#ActivityVeins_DepthTitle"),
+            _v$10 = GetLocalization(depthPartToken()),
+            _v$11 = `${displayDepth()}M`,
+            _v$12 = {
+              NoTransition: mineGridTransitionDisabled()
+            },
+            _v$13 = {
+              transform: `translateY(${-mineGridScrollOffset()}px)`
+            },
+            _v$14 = {
+              Moving: isMineGridToolSequenceFrameMoving()
+            },
+            _v$15 = isMineGridToolSequenceFrameVisible(),
+            _v$16 = getMineGridToolSequenceFrameAnchorStyle(),
+            _v$17 = LocalizeWithVars("#ActivityVeins_DepthLineValue", {
+              depth: displayDepth()
+            }),
+            _v$18 = logoLang(),
+            _v$19 = libs.classNames("DigVeinsHeaderButtonIcon", logoLang()),
+            _v$20 = ruleTooltip(),
+            _v$21 = {
+              Selected: selectedTaskType() == 7
+            },
+            _v$22 = GetLocalization("ActivityVeins_TaskTitleType_7"),
+            _v$23 = {
+              Selected: selectedTaskType() == 6
+            },
+            _v$24 = GetLocalization("ActivityVeins_TaskTitleType_6"),
+            _v$25 = GetLocalization("#ActivityVeins_Rewards_HeaderTitle"),
+            _v$26 = `${totalRewardCount()}/${maxRewardCount()}`;
+          _v$1 !== _p$._v$1 && (_p$._v$1 = libs.setProp(_el$60, "text", _v$1, _p$._v$1));
+          _v$10 !== _p$._v$10 && (_p$._v$10 = libs.setProp(_el$62, "text", _v$10, _p$._v$10));
+          _v$11 !== _p$._v$11 && (_p$._v$11 = libs.setProp(_el$63, "text", _v$11, _p$._v$11));
+          _v$12 !== _p$._v$12 && (_p$._v$12 = libs.setProp(_el$67, "classList", _v$12, _p$._v$12));
+          _v$13 !== _p$._v$13 && (_p$._v$13 = libs.setProp(_el$67, "style", _v$13, _p$._v$13));
+          _v$14 !== _p$._v$14 && (_p$._v$14 = libs.setProp(_el$70, "classList", _v$14, _p$._v$14));
+          _v$15 !== _p$._v$15 && (_p$._v$15 = libs.setProp(_el$70, "visible", _v$15, _p$._v$15));
+          _v$16 !== _p$._v$16 && (_p$._v$16 = libs.setProp(_el$70, "style", _v$16, _p$._v$16));
+          _v$17 !== _p$._v$17 && (_p$._v$17 = libs.setProp(_el$72, "text", _v$17, _p$._v$17));
+          _v$18 !== _p$._v$18 && (_p$._v$18 = libs.setProp(_el$81, "class", _v$18, _p$._v$18));
+          _v$19 !== _p$._v$19 && (_p$._v$19 = libs.setProp(_el$82, "class", _v$19, _p$._v$19));
+          _v$20 !== _p$._v$20 && (_p$._v$20 = libs.setProp(_el$82, "customTooltip", _v$20, _p$._v$20));
+          _v$21 !== _p$._v$21 && (_p$._v$21 = libs.setProp(_el$89, "classList", _v$21, _p$._v$21));
+          _v$22 !== _p$._v$22 && (_p$._v$22 = libs.setProp(_el$92, "text", _v$22, _p$._v$22));
+          _v$23 !== _p$._v$23 && (_p$._v$23 = libs.setProp(_el$93, "classList", _v$23, _p$._v$23));
+          _v$24 !== _p$._v$24 && (_p$._v$24 = libs.setProp(_el$96, "text", _v$24, _p$._v$24));
+          _v$25 !== _p$._v$25 && (_p$._v$25 = libs.setProp(_el$105, "text", _v$25, _p$._v$25));
+          _v$26 !== _p$._v$26 && (_p$._v$26 = libs.setProp(_el$106, "text", _v$26, _p$._v$26));
+          return _p$;
+        }, {
+          _v$1: undefined,
+          _v$10: undefined,
+          _v$11: undefined,
+          _v$12: undefined,
+          _v$13: undefined,
+          _v$14: undefined,
+          _v$15: undefined,
+          _v$16: undefined,
+          _v$17: undefined,
+          _v$18: undefined,
+          _v$19: undefined,
+          _v$20: undefined,
+          _v$21: undefined,
+          _v$22: undefined,
+          _v$23: undefined,
+          _v$24: undefined,
+          _v$25: undefined,
+          _v$26: undefined
+        });
+        return _el$31;
+      })(), libs.createComponent(EOMChildren.Portal, {
+        get mount() {
+          return $.GetContextPanel();
+        },
+        get children() {
+          return libs.createComponent(libs.Show, {
+            get when() {
+              return isRewardFinishVisible();
+            },
+            get children() {
+              const _el$108 = libs.createElement("Panel", {
+                  "class": "DigVeinsRewardFinishOverlay",
+                  hittest: true,
+                  hittestchildren: false
+                }, null),
+                _el$109 = libs.createElement("Panel", {
+                  "class": "RewardBoxFinishPopWindow",
+                  hittest: false,
+                  hittestchildren: false
+                }, _el$108);
+                libs.createElement("Image", {
+                  "class": "PopWindowBG"
+                }, _el$109);
+                const _el$111 = libs.createElement("Panel", {
+                  "class": "PopWindowContainer"
+                }, _el$109),
+                _el$112 = libs.createElement("Panel", {
+                  "class": "PopWindowTitle"
+                }, _el$111);
+                libs.createElement("Image", {
+                  "class": "PopWindowTitleBG"
+                }, _el$112);
+                const _el$114 = libs.createElement("Panel", {
+                  "class": "PopWindowTitleContent"
+                }, _el$112);
+                libs.createElement("Image", {
+                  "class": "PopWindowTitleDivider Left"
+                }, _el$114);
+                const _el$116 = libs.createElement("Label", {
+                  "class": "PopWindowTitleLabel",
+                  get text() {
+                    return GetLocalization("#ActivityVeins_Popup_BoxFinishedTitle");
+                  }
+                }, _el$114);
+                libs.createElement("Image", {
+                  "class": "PopWindowTitleDivider Right"
+                }, _el$114);
+                const _el$118 = libs.createElement("Panel", {
+                  "class": "PopWindowMainContent"
+                }, _el$111),
+                _el$119 = libs.createElement("Label", {
+                  "class": "PopWindowMainContentLabel",
+                  html: true,
+                  get text() {
+                    return GetLocalization("#ActivityVeins_Popup_BoxFinishedDesc");
+                  }
+                }, _el$118);
+              libs.setProp(_el$108, "onactivate", hideRewardFinish);
+              libs.effect(_p$ => {
+                const _v$27 = GetLocalization("#ActivityVeins_Popup_BoxFinishedTitle"),
+                  _v$28 = GetLocalization("#ActivityVeins_Popup_BoxFinishedDesc");
+                _v$27 !== _p$._v$27 && (_p$._v$27 = libs.setProp(_el$116, "text", _v$27, _p$._v$27));
+                _v$28 !== _p$._v$28 && (_p$._v$28 = libs.setProp(_el$119, "text", _v$28, _p$._v$28));
+                return _p$;
+              }, {
+                _v$27: undefined,
+                _v$28: undefined
+              });
+              return _el$108;
+            }
+          });
+        }
+      })];
     }
   });
 }
@@ -5569,6 +8417,757 @@ function GrowthFund(params) {
     return _el$;
   })();
 }
+
+function parseReceiveDetails(rawDetails) {
+  if (typeof rawDetails !== "string" || rawDetails === "") return [];
+  try {
+    const details = JSON.parse(rawDetails);
+    if (!Array.isArray(details)) return [];
+    return details.map(rewards => Array.isArray(rewards) ? rewards.filter(reward => typeof reward?.item_id === "number" && typeof reward?.amounts === "number") : []);
+  } catch {
+    return [];
+  }
+}
+const ASSET_ROOT = "file://{images}/custom_game/m5_moonstore-wish";
+const DISPLAY_ACTIVITY_ID = 902;
+const DEFAULT_PAYMENT_ACTIVITY_ID = 1101;
+const DRAW_REWARD_ITEM_ID = 110026;
+const MOONSTONE_TICKET_ID = 190007;
+const DRAW_ROLL_COUNT = 8;
+const DRAW_ROLL_INTERVAL = 0.09;
+const moonstonePaymentActivityData = solid_utils.createServiceNetData("player_payment_activity_data", {});
+const moonstonePlayerTokens = solid_utils.createServiceNetData("player_tokens", {});
+const moonstoneShopProductLimits = solid_utils.createServiceNetData("player_shop_product_limits", {});
+const canDrawMoonstoneWish = libs.createMemo(() => {
+  const drawCount = Number(moonstonePaymentActivityData()[String(DEFAULT_PAYMENT_ACTIVITY_ID)]?.step ?? 0);
+  const drawTotal = Object.values(KeyValues.activity_moonstone[String(DISPLAY_ACTIVITY_ID)] ?? {}).filter(tier => tier.num < 99999999).length;
+  const ticketCount = Number(moonstonePlayerTokens()[String(MOONSTONE_TICKET_ID)]?.amounts ?? 0);
+  return ticketCount >= 1 && drawCount < drawTotal;
+});
+const canClaimMoonstoneExchangeDaily = libs.createMemo(() => {
+  const now = CustomUIConfig.GetServerTimeStamp();
+  return Object.values(KeyValues.info_shop_product).some(product => {
+    const isMoonDrawDailyFreebie = String(product.tag ?? "").split("|").includes("MoonDraw") && product.hide === 0 && product.real_price === 0;
+    const isActive = (product.start_time === 0 || product.start_time < now) && (product.end_time === 0 || product.end_time > now);
+    const purchaseCount = moonstoneShopProductLimits()[product.id] ?? 0;
+    const hasReachedLimit = product.limit_type > 0 && purchaseCount >= product.limit_count;
+    return isMoonDrawDailyFreebie && isActive && !hasReachedLimit;
+  });
+});
+const DEFAULT_ACTIVITY_DATA = {
+  received: "",
+  extra_num: 0,
+  total_num: 0,
+  round: 0
+};
+const ActivityMoonstone = props => {
+  const activityID = () => props.activityID ?? DISPLAY_ACTIVITY_ID;
+  const paymentActivityID = () => props.paymentActivityID ?? DEFAULT_PAYMENT_ACTIVITY_ID;
+  const activityData = libs.createMemo(() => KeyValues.activity_data[activityID()]);
+  const drawTotal = libs.createMemo(() => Object.values(KeyValues.activity_moonstone[String(activityID())] ?? {}).filter(tier => tier.num < 99999999).length);
+  const rechargeProducts = libs.createMemo(() => Object.values(KeyValues.info_shop_product).filter(product => String(product.tag ?? "").split("|").includes("Resource") && product.pay_type === 0 && product.hide === 0).sort((left, right) => left.real_price - right.real_price));
+  const playerMoonstoneActivityData = solid_utils.createServiceNetData("player_moonstone_activity_data", {});
+  const [claimingRewardID, setClaimingRewardID] = libs.createSignal();
+  const [drawingRewardID, setDrawingRewardID] = libs.createSignal();
+  const [lastDrawResult, setLastDrawResult] = libs.createSignal();
+  const [rollingDigits, setRollingDigits] = libs.createSignal();
+  const [drawResultReveal, setDrawResultReveal] = libs.createSignal(false);
+  const [immediateReceiveDetails, setImmediateReceiveDetails] = libs.createSignal();
+  const [immediatePaymentStep, setImmediatePaymentStep] = libs.createSignal();
+  const [confirmedRewardIDs, setConfirmedRewardIDs] = libs.createSignal([]);
+  let drawRollSchedule;
+  let initialRewardTrackSchedule;
+  let hasPositionedInitialRewardTrack = false;
+  let rewardTrackLoaded = false;
+  const rewardTierPanels = [];
+  const tiers = libs.createMemo(() => {
+    const configured = Object.values(KeyValues.activity_moonstone[String(activityID())] ?? {});
+    return configured.filter(tier => tier.num < 99999999).sort((a, b) => a.num - b.num);
+  });
+  const playerActivityData = libs.createMemo(() => playerMoonstoneActivityData()[String(activityID())] ?? DEFAULT_ACTIVITY_DATA);
+  const paymentActivityData = libs.createMemo(() => moonstonePaymentActivityData()[String(paymentActivityID())]);
+  const currentDrawCount = libs.createMemo(() => immediatePaymentStep() ?? Number(paymentActivityData()?.step ?? 0));
+  const nextDrawRewardID = libs.createMemo(() => currentDrawCount() + 1);
+  const previewRewardID = libs.createMemo(() => drawingRewardID() ?? nextDrawRewardID());
+  const drawRewardPreview = libs.createMemo(() => {
+    if (previewRewardID() > drawTotal()) return undefined;
+    const row = KeyValues.activity_payment_rewards[String(paymentActivityID())]?.[String(previewRewardID())];
+    if (row?.activity_id !== paymentActivityID() || row.reward_num !== previewRewardID() || typeof row.rewards !== "string") return undefined;
+    const rewards = row.rewards.split("-").map(entry => entry.split(";").map(Number));
+    if (rewards.some(entry => entry.length !== 3 || entry[0] !== DRAW_REWARD_ITEM_ID || !Number.isSafeInteger(entry[1]) || entry[1] <= 0 || !Number.isFinite(entry[2]) || entry[2] < 0)) return undefined;
+    const possibleRewards = rewards.filter(entry => entry[2] > 0);
+    const totalWeight = possibleRewards.reduce((sum, entry) => sum + entry[2], 0);
+    if (!Number.isFinite(totalWeight) || totalWeight <= 0) return undefined;
+    return {
+      min: Math.min(...possibleRewards.map(entry => entry[1])),
+      max: Math.max(...possibleRewards.map(entry => entry[1])),
+      tooltip: possibleRewards.map(entry => LocalizeWithVars("#MoonstoneWish_DrawDetail", {
+        amount: entry[1],
+        chance: (entry[2] / totalWeight * 100).toFixed(2)
+      })).concat(GetLocalization("#MoonstoneWish_DrawProbabilityNote")).join("<br>")
+    };
+  });
+  const receiveDetails = libs.createMemo(() => immediateReceiveDetails() ?? parseReceiveDetails(paymentActivityData()?.receive_details));
+  const ticketCount = libs.createMemo(() => Number(moonstonePlayerTokens()[String(MOONSTONE_TICKET_ID)]?.amounts ?? 0));
+  const canReceiveDrawReward = libs.createMemo(() => drawingRewardID() === undefined && nextDrawRewardID() <= drawTotal() && ticketCount() >= 1);
+  const rechargeProgress = () => Number(playerActivityData().extra_num ?? 0);
+  const rechargeTip = product => {
+    const language = Language();
+    const price = language === "english" ? product.overseas_realprice : language === "russian" ? product.russia_realprice : product.real_price;
+    const currency = language === "english" ? "$" : language === "russian" ? "₽" : "¥";
+    return LocalizeWithVars("#MoonstoneWish_RechargeTip", {
+      currency,
+      price,
+      points: product.real_price
+    });
+  };
+  const rechargeTooltipText = libs.createMemo(() => rechargeProducts().map(rechargeTip).join("<br>"));
+  const receivedRewardIDs = libs.createMemo(() => {
+    const received = playerActivityData().received;
+    return Array.isArray(received) ? received.map(Number) : String(received ?? "").split(",").filter(Boolean).map(Number);
+  });
+  const finalTier = libs.createMemo(() => tiers()[tiers().length - 1]);
+  const nextTier = libs.createMemo(() => tiers().find(tier => tier.num > rechargeProgress()));
+  const poolConfig = libs.createMemo(() => {
+    const [item, amount] = Object.entries(nextTier()?.rewards ?? {})[0] ?? ["0", 0];
+    return {
+      item: Number(item),
+      amount
+    };
+  });
+  const tierState = tier => {
+    if (receivedRewardIDs().includes(tier.reward_id) || confirmedRewardIDs().includes(tier.reward_id)) return "Received";
+    return rechargeProgress() >= tier.num ? "Claimable" : "Locked";
+  };
+  const getInitialRewardTrackIndex = () => {
+    const tierList = tiers();
+    const claimableIndex = tierList.findIndex(tier => tierState(tier) === "Claimable");
+    if (claimableIndex !== -1) return claimableIndex;
+    let lastReceivedIndex = -1;
+    tierList.forEach((tier, index) => {
+      if (tierState(tier) === "Received") lastReceivedIndex = index;
+    });
+    return Math.min(lastReceivedIndex + 1, tierList.length - 1);
+  };
+  const scheduleInitialRewardTrackPosition = () => {
+    if (!rewardTrackLoaded || hasPositionedInitialRewardTrack || initialRewardTrackSchedule !== undefined) return;
+    initialRewardTrackSchedule = $.Schedule(0, () => {
+      initialRewardTrackSchedule = undefined;
+      if (hasPositionedInitialRewardTrack) return;
+      const targetPanel = rewardTierPanels[getInitialRewardTrackIndex()];
+      if (!targetPanel?.IsValid()) return;
+      targetPanel.ScrollParentToMakePanelFit(3, true);
+      hasPositionedInitialRewardTrack = true;
+    });
+  };
+  libs.createEffect(() => {
+    tiers();
+    receivedRewardIDs();
+    rechargeProgress();
+    scheduleInitialRewardTrackPosition();
+  });
+  const receiveTierReward = tier => {
+    if (tierState(tier) !== "Claimable" || claimingRewardID() !== undefined) return;
+    setClaimingRewardID(tier.reward_id);
+    CallActionRequest("/v1/activity/receive_rewards", {
+      activity_id: activityID(),
+      reward_id: tier.reward_id
+    }, result => {
+      if ((result?.code === 0 || result?.code === 200) && !receivedRewardIDs().includes(tier.reward_id)) {
+        setConfirmedRewardIDs(ids => [...ids, tier.reward_id]);
+      }
+      setClaimingRewardID(undefined);
+    }, () => setClaimingRewardID(undefined));
+  };
+  const clearDrawRollSchedule = () => {
+    if (drawRollSchedule === undefined) return;
+    $.CancelScheduled(drawRollSchedule);
+    drawRollSchedule = undefined;
+  };
+  const formatDrawDigits = amount => String(Math.max(0, Math.floor(amount))).padStart(5, "0").split("");
+  const playDrawResult = amount => {
+    clearDrawRollSchedule();
+    setDrawResultReveal(false);
+    let rollIndex = 0;
+    const roll = () => {
+      if (rollIndex < DRAW_ROLL_COUNT) {
+        setRollingDigits(Array.from({
+          length: 5
+        }, (_, index) => String((amount + rollIndex * (3 + index) + index * 3) % 10)));
+        rollIndex += 1;
+        drawRollSchedule = $.Schedule(DRAW_ROLL_INTERVAL, roll);
+        return;
+      }
+      setRollingDigits(undefined);
+      setLastDrawResult(amount);
+      setDrawResultReveal(true);
+      drawRollSchedule = $.Schedule(0.3, () => {
+        drawRollSchedule = undefined;
+        setDrawResultReveal(false);
+        setDrawingRewardID(undefined);
+      });
+    };
+    roll();
+  };
+  const receiveDrawReward = () => {
+    const rewardID = nextDrawRewardID();
+    if (drawingRewardID() !== undefined || rewardID > drawTotal()) return;
+    setDrawingRewardID(rewardID);
+    CallActionRequest("/v1/activity/receive_rewards", {
+      activity_id: paymentActivityID(),
+      reward_id: rewardID
+    }, result => {
+      const responseData = result.data;
+      const paymentActivity = responseData.player_payment_activity_data?.find(data => data.activity_id === paymentActivityID());
+      if (paymentActivity?.receive_details != undefined) {
+        setImmediateReceiveDetails(parseReceiveDetails(paymentActivity.receive_details));
+      }
+      if (paymentActivity?.step != undefined) {
+        setImmediatePaymentStep(paymentActivity.step);
+      }
+      const commonItems = result?.data?.add_items?.common;
+      const moonstoneReward = Array.isArray(commonItems) ? commonItems.find(item => item.item_id === DRAW_REWARD_ITEM_ID && Number.isFinite(item.amounts)) : undefined;
+      if (moonstoneReward?.amounts === undefined) {
+        setDrawingRewardID(undefined);
+        return;
+      }
+      playDrawResult(moonstoneReward.amounts);
+    }, () => {
+      setDrawingRewardID(undefined);
+    });
+  };
+  const segmentProgress = index => {
+    const end = tiers()[index]?.num ?? 0;
+    const start = index === 0 ? 0 : tiers()[index - 1]?.num ?? 0;
+    if (end <= start) return rechargeProgress() >= end ? 100 : 0;
+    return Math.max(0, Math.min(100, (rechargeProgress() - start) / (end - start) * 100));
+  };
+  const displayDigits = libs.createMemo(() => rollingDigits() ?? formatDrawDigits(lastDrawResult() ?? 0));
+  libs.onCleanup(() => {
+    clearDrawRollSchedule();
+    if (initialRewardTrackSchedule !== undefined) $.CancelScheduled(initialRewardTrackSchedule);
+  });
+  return (() => {
+    const _el$ = libs.createElement("Panel", {
+      id: "ActivityMoonstoneRoot",
+      "class": "RootContainer"
+    }, null);
+    libs.insert(_el$, libs.createComponent(EOM_MenuLayout.EOM_MenuLayout_Content, {
+      get children() {
+        const _el$2 = libs.createElement("Panel", {
+            id: "MoonstoneWishContent",
+            flowChildren: "down"
+          }, null),
+          _el$3 = libs.createElement("Panel", {
+            id: "MoonstoneWishTop"
+          }, _el$2),
+          _el$4 = libs.createElement("Panel", {
+            id: "MoonstoneWishTitleArea"
+          }, _el$3);
+          libs.createElement("Image", {
+            id: "MoonstoneWishTitle"
+          }, _el$4);
+          const _el$6 = libs.createElement("Panel", {
+            id: "MoonstoneWishTitleTime"
+          }, _el$4);
+          libs.createElement("Image", {
+            id: "MoonstoneWishTitleTimeBG",
+            hittest: false
+          }, _el$6);
+          const _el$8 = libs.createElement("Panel", {
+            id: "MoonstoneWishTitleTimeContent",
+            flowChildren: "right"
+          }, _el$6),
+          _el$9 = libs.createElement("Image", {
+            id: "MoonstoneWishRulesIcon",
+            hittest: true
+          }, _el$8),
+          _el$1 = libs.createElement("Panel", {
+            id: "MoonstoneWishHistory"
+          }, _el$3),
+          _el$10 = libs.createElement("Panel", {
+            id: "MoonstoneWishHistoryTitle"
+          }, _el$1);
+          libs.createElement("Image", {
+            "class": "MoonstoneWishTitleLine"
+          }, _el$10);
+          const _el$12 = libs.createElement("Label", {
+            get text() {
+              return GetLocalization("#MoonstoneWish_History");
+            }
+          }, _el$10);
+          libs.createElement("Image", {
+            "class": "MoonstoneWishTitleLine Right"
+          }, _el$10);
+          const _el$14 = libs.createElement("Panel", {
+            id: "MoonstoneWishRecords",
+            flowChildren: "down",
+            scroll: "y"
+          }, _el$1),
+          _el$15 = libs.createElement("Panel", {
+            id: "MoonstoneWishMiddle"
+          }, _el$2),
+          _el$16 = libs.createElement("Panel", {
+            id: "MoonstoneWishBoard"
+          }, _el$15),
+          _el$17 = libs.createElement("Panel", {
+            id: "MoonstoneWishDrawInfo"
+          }, _el$16),
+          _el$18 = libs.createElement("Label", {
+            id: "MoonstoneWishDrawCount",
+            get text() {
+              return LocalizeWithVars("#MoonstoneWish_DrawCount", {
+                current: currentDrawCount(),
+                total: drawTotal()
+              });
+            }
+          }, _el$17);
+          libs.createElement("Image", {
+            id: "MoonstoneWishDivider"
+          }, _el$17);
+          const _el$20 = libs.createElement("Panel", {
+            id: "MoonstoneWishRange"
+          }, _el$16);
+          libs.createElement("Image", {
+            hittest: false
+          }, _el$20);
+          const _el$23 = libs.createElement("Panel", {
+            id: "MoonstoneWishDigits",
+            flowChildren: "right",
+            get ["class"]() {
+              return `MoonstoneWishDigits ${rollingDigits() !== undefined ? "Rolling" : ""} ${drawResultReveal() ? "Reveal" : ""}`;
+            }
+          }, _el$16),
+          _el$26 = libs.createElement("Panel", {
+            id: "MoonstoneWishBottom"
+          }, _el$2),
+          _el$27 = libs.createElement("Panel", {
+            id: "MoonstoneWishRechargeProgress"
+          }, _el$26),
+          _el$28 = libs.createElement("Panel", {
+            id: "MoonstoneWishRewardTrack",
+            flowChildren: "right",
+            scroll: "x"
+          }, _el$27),
+          _el$29 = libs.createElement("Panel", {
+            id: "MoonstoneWishRechargeInfo",
+            flowChildren: "down"
+          }, _el$27),
+          _el$30 = libs.createElement("Panel", {
+            id: "MoonstoneWishRechargeTitle"
+          }, _el$29);
+          libs.createElement("Image", {}, _el$30);
+          const _el$32 = libs.createElement("Label", {
+            get text() {
+              return GetLocalization("#MoonstoneWish_Recharge");
+            }
+          }, _el$30),
+          _el$33 = libs.createElement("Label", {
+            id: "MoonstoneWishRechargeValue",
+            get text() {
+              return LocalizeWithVars("#MoonstoneWish_RechargeValue", {
+                current: rechargeProgress(),
+                total: finalTier()?.num ?? 0
+              });
+            }
+          }, _el$29),
+          _el$34 = libs.createElement("Panel", {
+            id: "MoonstoneWishRechargeHint"
+          }, _el$26),
+          _el$35 = libs.createElement("Label", {
+            id: "MoonstoneWishRechargeHintText",
+            get text() {
+              return LocalizeWithVars("#MoonstoneWish_RechargeHint", {
+                value: Math.max(0, (nextTier()?.num ?? rechargeProgress()) - rechargeProgress())
+              });
+            }
+          }, _el$34),
+          _el$36 = libs.createElement("Panel", {
+            id: "MoonstoneWishRechargeReward",
+            flowChildren: "right"
+          }, _el$34);
+        libs.setProp(_el$2, "flowChildren", "down");
+        libs.setProp(_el$8, "flowChildren", "right");
+        libs.insert(_el$8, libs.createComponent(EOM_Countdown.EOM_Countdown, {
+          icon: true,
+          text: "#MoonstoneWish_TimeLimit",
+          get endTime() {
+            return activityData()?.end_time ?? 0;
+          }
+        }), _el$9);
+        libs.insert(_el$3, libs.createComponent(EOM_Button.EOM_BaseButton, {
+          id: "MoonstoneWishExchange",
+          get classList() {
+            return {
+              MoonstoneWishExchangeClaimable: canClaimMoonstoneExchangeDaily()
+            };
+          },
+          onactivate: () => props.setShowExchangeStore(true),
+          get children() {
+            return [(() => {
+              const _el$0 = libs.createElement("Label", {
+                get text() {
+                  return GetLocalization("#MoonstoneWish_Exchange");
+                },
+                hittest: false
+              }, null);
+              libs.effect(_$p => libs.setProp(_el$0, "text", GetLocalization("#MoonstoneWish_Exchange"), _$p));
+              return _el$0;
+            })(), libs.createComponent(libs.Show, {
+              get when() {
+                return canClaimMoonstoneExchangeDaily();
+              },
+              get children() {
+                return libs.createComponent(EOM_RedMark.EOM_RedMark, {
+                  "class": "MoonstoneWishButtonRedMark",
+                  size: "large",
+                  breathe: true
+                });
+              }
+            })];
+          }
+        }), _el$1);
+        libs.setProp(_el$14, "flowChildren", "down");
+        libs.setProp(_el$14, "scroll", "y");
+        libs.insert(_el$14, libs.createComponent(libs.For, {
+          get each() {
+            return [...receiveDetails()].reverse();
+          },
+          children: (rewards, index) => (() => {
+            const _el$39 = libs.createElement("Panel", {
+                "class": "MoonstoneWishRecord",
+                flowChildren: "right"
+              }, null),
+              _el$40 = libs.createElement("Label", {
+                "class": "MoonstoneWishRecordRound",
+                get text() {
+                  return LocalizeWithVars("#MoonstoneWish_RecordRound", {
+                    value: receiveDetails().length - index()
+                  });
+                }
+              }, _el$39);
+            libs.setProp(_el$39, "flowChildren", "right");
+            libs.insert(_el$39, libs.createComponent(libs.For, {
+              each: rewards,
+              children: reward => [libs.createComponent(StoreItem.StoreItemImage, {
+                get itemid() {
+                  return reward.item_id;
+                }
+              }), (() => {
+                const _el$41 = libs.createElement("Label", {
+                  get text() {
+                    return `×${reward.amounts}`;
+                  }
+                }, null);
+                libs.effect(_$p => libs.setProp(_el$41, "text", `×${reward.amounts}`, _$p));
+                return _el$41;
+              })()]
+            }), null);
+            libs.effect(_$p => libs.setProp(_el$40, "text", LocalizeWithVars("#MoonstoneWish_RecordRound", {
+              value: receiveDetails().length - index()
+            }), _$p));
+            return _el$39;
+          })()
+        }));
+        libs.insert(_el$20, libs.createComponent(libs.Show, {
+          get when() {
+            return drawRewardPreview();
+          },
+          keyed: true,
+          get fallback() {
+            return (() => {
+              const _el$42 = libs.createElement("Label", {
+                hittest: false,
+                get text() {
+                  return GetLocalization(previewRewardID() > drawTotal() ? "#MoonstoneWish_DrawComplete" : "#MoonstoneWish_DrawUnavailable");
+                }
+              }, null);
+              libs.effect(_$p => libs.setProp(_el$42, "text", GetLocalization(previewRewardID() > drawTotal() ? "#MoonstoneWish_DrawComplete" : "#MoonstoneWish_DrawUnavailable"), _$p));
+              return _el$42;
+            })();
+          },
+          get children() {
+            const _el$22 = libs.createElement("Label", {
+              get text() {
+                return LocalizeWithVars("#MoonstoneWish_DrawRange", {
+                  min: drawRewardPreview().min,
+                  max: drawRewardPreview().max
+                });
+              }
+            }, null);
+            libs.effect(_p$ => {
+              const _v$ = LocalizeWithVars("#MoonstoneWish_DrawRange", {
+                  min: drawRewardPreview().min,
+                  max: drawRewardPreview().max
+                }),
+                _v$2 = {
+                  name: "text",
+                  text: drawRewardPreview().tooltip
+                };
+              _v$ !== _p$._v$ && (_p$._v$ = libs.setProp(_el$22, "text", _v$, _p$._v$));
+              _v$2 !== _p$._v$2 && (_p$._v$2 = libs.setProp(_el$22, "customTooltip", _v$2, _p$._v$2));
+              return _p$;
+            }, {
+              _v$: undefined,
+              _v$2: undefined
+            });
+            return _el$22;
+          }
+        }), null);
+        libs.setProp(_el$23, "flowChildren", "right");
+        libs.insert(_el$23, libs.createComponent(libs.For, {
+          get each() {
+            return displayDigits();
+          },
+          children: digit => (() => {
+            const _el$43 = libs.createElement("Panel", {
+                "class": "MoonstoneWishDigitCard"
+              }, null),
+              _el$44 = libs.createElement("Image", {
+                "class": "MoonstoneWishDigit",
+                width: "76px",
+                height: "120px",
+                src: `${ASSET_ROOT}/m5_nub_${digit}.png`
+              }, _el$43);
+            libs.setProp(_el$44, "width", "76px");
+            libs.setProp(_el$44, "height", "120px");
+            libs.setProp(_el$44, "src", `${ASSET_ROOT}/m5_nub_${digit}.png`);
+            return _el$43;
+          })()
+        }));
+        libs.insert(_el$15, libs.createComponent(EOM_Button.EOM_BaseButton, {
+          id: "MoonstoneWishDrawButton",
+          get classList() {
+            return {
+              MoonstoneWishDrawButtonClaimable: canReceiveDrawReward()
+            };
+          },
+          get enabled() {
+            return canReceiveDrawReward();
+          },
+          onactivate: receiveDrawReward,
+          get children() {
+            return [(() => {
+              const _el$24 = libs.createElement("Label", {
+                id: "MoonstoneWishDrawText",
+                get text() {
+                  return GetLocalization("#MoonstoneWish_DrawOnce");
+                },
+                html: true
+              }, null);
+              libs.effect(_$p => libs.setProp(_el$24, "text", GetLocalization("#MoonstoneWish_DrawOnce"), _$p));
+              return _el$24;
+            })(), libs.createComponent(Player.CurrencyIcon, {
+              id: "MoonstoneWishTicketCoin",
+              tokenID: MOONSTONE_TICKET_ID
+            }), libs.createElement("Label", {
+              id: "MoonstoneWishTicketCount",
+              text: "1"
+            }, null), libs.createComponent(libs.Show, {
+              get when() {
+                return canDrawMoonstoneWish();
+              },
+              get children() {
+                return libs.createComponent(EOM_RedMark.EOM_RedMark, {
+                  "class": "MoonstoneWishButtonRedMark",
+                  size: "large",
+                  breathe: true
+                });
+              }
+            })];
+          }
+        }), null);
+        libs.setProp(_el$28, "flowChildren", "right");
+        libs.setProp(_el$28, "scroll", "x");
+        libs.setProp(_el$28, "onload", () => {
+          rewardTrackLoaded = true;
+          scheduleInitialRewardTrackPosition();
+        });
+        libs.insert(_el$28, libs.createComponent(libs.For, {
+          get each() {
+            return tiers();
+          },
+          children: (tier, index) => {
+            const state = () => tierState(tier);
+            const [rewardID, rewardAmount] = Object.entries(tier.rewards)[0] ?? ["0", 0];
+            return (() => {
+              const _el$45 = libs.createElement("Panel", {}, null),
+                _el$46 = libs.createElement("Panel", {
+                  "class": "MoonstoneWishSegment",
+                  hittest: false,
+                  hittestchildren: false
+                }, _el$45),
+                _el$50 = libs.createElement("Label", {
+                  "class": "MoonstoneWishMilestoneValue",
+                  get text() {
+                    return LocalizeWithVars("#MoonstoneWish_Number", {
+                      value: tier.num
+                    });
+                  },
+                  hittest: false
+                }, _el$45);
+              libs.use(panel => {
+                rewardTierPanels[index()] = panel;
+              }, _el$45);
+              libs.insert(_el$46, libs.createComponent(EOM_ProgressBar.EOM_ProgressBar, {
+                "class": "EOM_ProgressBar MoonstoneWishSegmentProgress",
+                get value() {
+                  return segmentProgress(index());
+                }
+              }));
+              libs.insert(_el$45, libs.createComponent(EOM_Button.EOM_BaseButton, {
+                "class": "MoonstoneWishMilestoneRing",
+                onactivate: () => receiveTierReward(tier),
+                get children() {
+                  return [libs.createComponent(StoreItem.StoreItemImage, {
+                    "class": "MoonstoneWishRewardIcon",
+                    get itemid() {
+                      return Number(rewardID);
+                    },
+                    hittest: false
+                  }), (() => {
+                    const _el$47 = libs.createElement("Label", {
+                      "class": "MoonstoneWishRewardAmount",
+                      get text() {
+                        return String(rewardAmount);
+                      },
+                      hittest: false
+                    }, null);
+                    libs.effect(_$p => libs.setProp(_el$47, "text", String(rewardAmount), _$p));
+                    return _el$47;
+                  })(), libs.createElement("Image", {
+                    "class": "MoonstoneWishRewardReceivedIcon",
+                    hittest: false
+                  }, null), (() => {
+                    const _el$49 = libs.createElement("Image", {
+                      "class": "MoonstoneWishClaimableGlow",
+                      hittest: false
+                    }, null);
+                    libs.effect(_$p => libs.setProp(_el$49, "visible", state() === "Claimable", _$p));
+                    return _el$49;
+                  })()];
+                }
+              }), _el$50);
+              libs.effect(_p$ => {
+                const _v$1 = {
+                    MoonstoneWishMilestone: true,
+                    Received: state() === "Received",
+                    Claimable: state() === "Claimable",
+                    Claiming: claimingRewardID() === tier.reward_id,
+                    Locked: state() === "Locked"
+                  },
+                  _v$10 = LocalizeWithVars("#MoonstoneWish_Number", {
+                    value: tier.num
+                  });
+                _v$1 !== _p$._v$1 && (_p$._v$1 = libs.setProp(_el$45, "classList", _v$1, _p$._v$1));
+                _v$10 !== _p$._v$10 && (_p$._v$10 = libs.setProp(_el$50, "text", _v$10, _p$._v$10));
+                return _p$;
+              }, {
+                _v$1: undefined,
+                _v$10: undefined
+              });
+              return _el$45;
+            })();
+          }
+        }));
+        libs.setProp(_el$29, "flowChildren", "down");
+        libs.setProp(_el$36, "flowChildren", "right");
+        libs.insert(_el$36, libs.createComponent(libs.Show, {
+          get when() {
+            return poolConfig().item > 0;
+          },
+          get children() {
+            return [libs.createComponent(Player.CurrencyIcon, {
+              get tokenID() {
+                return poolConfig().item;
+              }
+            }), (() => {
+              const _el$37 = libs.createElement("Label", {
+                get text() {
+                  return LocalizeWithVars("#MoonstoneWish_Number", {
+                    value: poolConfig().amount
+                  });
+                }
+              }, null);
+              libs.effect(_$p => libs.setProp(_el$37, "text", LocalizeWithVars("#MoonstoneWish_Number", {
+                value: poolConfig().amount
+              }), _$p));
+              return _el$37;
+            })()];
+          }
+        }));
+        libs.insert(_el$34, libs.createComponent(EOM_Button.EOM_BaseButton, {
+          id: "MoonstoneWishRechargeButton",
+          onactivate: () => JumpToMenu({
+            window_name: "store",
+            menu: "Resource",
+            force: true
+          }),
+          get children() {
+            const _el$38 = libs.createElement("Label", {
+              get text() {
+                return GetLocalization("#MoonstoneWish_TopUp");
+              }
+            }, null);
+            libs.effect(_$p => libs.setProp(_el$38, "text", GetLocalization("#MoonstoneWish_TopUp"), _$p));
+            return _el$38;
+          }
+        }), null);
+        libs.effect(_p$ => {
+          const _v$3 = {
+              name: "text",
+              text: GetLocalization("#MoonstoneWish_Rules")
+            },
+            _v$4 = GetLocalization("#MoonstoneWish_History"),
+            _v$5 = LocalizeWithVars("#MoonstoneWish_DrawCount", {
+              current: currentDrawCount(),
+              total: drawTotal()
+            }),
+            _v$6 = `MoonstoneWishDigits ${rollingDigits() !== undefined ? "Rolling" : ""} ${drawResultReveal() ? "Reveal" : ""}`,
+            _v$7 = {
+              name: "text",
+              text: rechargeTooltipText()
+            },
+            _v$8 = GetLocalization("#MoonstoneWish_Recharge"),
+            _v$9 = LocalizeWithVars("#MoonstoneWish_RechargeValue", {
+              current: rechargeProgress(),
+              total: finalTier()?.num ?? 0
+            }),
+            _v$0 = LocalizeWithVars("#MoonstoneWish_RechargeHint", {
+              value: Math.max(0, (nextTier()?.num ?? rechargeProgress()) - rechargeProgress())
+            });
+          _v$3 !== _p$._v$3 && (_p$._v$3 = libs.setProp(_el$9, "customTooltip", _v$3, _p$._v$3));
+          _v$4 !== _p$._v$4 && (_p$._v$4 = libs.setProp(_el$12, "text", _v$4, _p$._v$4));
+          _v$5 !== _p$._v$5 && (_p$._v$5 = libs.setProp(_el$18, "text", _v$5, _p$._v$5));
+          _v$6 !== _p$._v$6 && (_p$._v$6 = libs.setProp(_el$23, "class", _v$6, _p$._v$6));
+          _v$7 !== _p$._v$7 && (_p$._v$7 = libs.setProp(_el$29, "customTooltip", _v$7, _p$._v$7));
+          _v$8 !== _p$._v$8 && (_p$._v$8 = libs.setProp(_el$32, "text", _v$8, _p$._v$8));
+          _v$9 !== _p$._v$9 && (_p$._v$9 = libs.setProp(_el$33, "text", _v$9, _p$._v$9));
+          _v$0 !== _p$._v$0 && (_p$._v$0 = libs.setProp(_el$35, "text", _v$0, _p$._v$0));
+          return _p$;
+        }, {
+          _v$3: undefined,
+          _v$4: undefined,
+          _v$5: undefined,
+          _v$6: undefined,
+          _v$7: undefined,
+          _v$8: undefined,
+          _v$9: undefined,
+          _v$0: undefined
+        });
+        return _el$2;
+      }
+    }), null);
+    libs.insert(_el$, libs.createComponent(ExchangeStore.ExchangeStore, {
+      tag: "MoonDraw",
+      get show() {
+        return props.showExchangeStore;
+      },
+      onclose: () => props.setShowExchangeStore(false)
+    }), null);
+    return _el$;
+  })();
+};
 
 const ID = 101;
 const rewards = Object.entries(KeyValues.activity_login[ID]).map(([day, reward]) => {
@@ -6517,8 +10116,10 @@ const MENU_LIST = {
   battlepass: ["battlepass", "daily_task", "week_task"],
   growth_fund: ["growth_fund_301"],
   starsea: [],
+  activity_moonstone: [],
   seven_days: [],
-  boardslot: ["dice_game", "dice_gift"]
+  boardslot: ["dice_game", "dice_gift"],
+  mining: ["veins_game"]
 };
 const player_activity_tasks = solid_utils.createServiceNetData("player_activity_tasks", {});
 const player_login_activity_data = solid_utils.createServiceNetData("player_login_activity_data", {});
@@ -6583,6 +10184,7 @@ libs.createEffect(() => {
   }
 });
 function ActivityRoot() {
+  const [showMoonstoneExchange, setShowMoonstoneExchange] = libs.createSignal(false);
   const activityData = libs.createMemo(() => {
     if (menuName() == "boardslot") {
       return KeyValues.activity_data[dig_veins_logic.ACTIVITY_DICE_ID];
@@ -6590,6 +10192,9 @@ function ActivityRoot() {
     if (menuName() == "starsea") {
       const activityID = displayStarseaActivityID();
       return activityID == undefined ? undefined : KeyValues.activity_data[activityID];
+    }
+    if (menuName() == "activity_moonstone") {
+      return KeyValues.activity_data[902];
     }
     return activityDataMap[menuName()];
   });
@@ -6606,6 +10211,16 @@ function ActivityRoot() {
     renderOnShow: true,
     get show() {
       return show();
+    },
+    close: () => {
+      if (showMoonstoneExchange()) {
+        setShowMoonstoneExchange(false);
+        return;
+      }
+      ClientSideEvent("custom_ui_toggle_windows", {
+        windowName: "MenuButton_activity",
+        state: 0
+      });
     },
     get children() {
       return [libs.createComponent(LayoutMenu, {}), libs.createComponent(Player.CurrencyGroup, {
@@ -6673,6 +10288,20 @@ function ActivityRoot() {
             }
           }), libs.createComponent(libs.Match, {
             get when() {
+              return menuName() == "activity_moonstone";
+            },
+            get children() {
+              return libs.createComponent(ActivityMoonstone, {
+                activityID: 902,
+                paymentActivityID: 1101,
+                get showExchangeStore() {
+                  return showMoonstoneExchange();
+                },
+                setShowExchangeStore: setShowMoonstoneExchange
+              });
+            }
+          }), libs.createComponent(libs.Match, {
+            get when() {
               return menuName() == "seven_days";
             },
             get children() {
@@ -6691,6 +10320,13 @@ function ActivityRoot() {
             },
             get children() {
               return libs.createComponent(DiceGift, {});
+            }
+          }), libs.createComponent(libs.Match, {
+            get when() {
+              return secondTabName() == "veins_game";
+            },
+            get children() {
+              return libs.createComponent(DigVeins, {});
             }
           })];
         }

@@ -27,6 +27,7 @@ d(n, k)
 function n.prototype.____constructor(self, ...)
 	k.prototype.____constructor(self, ...)
 	self.autoShotDistance = 0
+	self.autoShotNextTime = 0
 end
 function n.prototype.OnCreated(self)
 	self:StartThink(0, "Weapon043AutoShot", function()
@@ -50,7 +51,8 @@ function n.prototype.OnCreated(self)
 			end
 		end
 		self.autoShotLastOrigin = q
-		if self.autoShotDistance >= p then
+		if self.autoShotDistance >= p and GameRules:GetGameTime() >= self.autoShotNextTime then
+			self.autoShotNextTime = GameRules:GetGameTime() + 0.2
 			self.autoShotDistance = 0
 			local s = FindEnemiesInRadius(o, q, self:GetSpecialValueFor("distance"), FIND_CLOSEST)
 			local t = IsValid(s[1]) and CalcDirection2D(s[1], o) or o:GetForwardVector()

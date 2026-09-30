@@ -39,94 +39,113 @@ function q.prototype.init(self, r)
 	self.kv = LoadKeyValues("scripts/npc/abilities/ability_upgrades.kv")
 	self.service_kv = LoadKeyValues("scripts/npc/abilities/ability_upgrades_service.kv")
 end
-function q.prototype.AddAbilityUpgrade(self, s, t, u, v)
+function q.prototype.CanAddAbilityUpgrade(self, s, t, u)
 	if u == nil then
-		u = 1
-	end
-	if v == nil then
-		v = ""
+		u = ""
 	end
 	if not IsValid(s) then
-		return
+		return false
 	end
-	local w = self.kv[t]
+	local v = self.kv[t]
+	if v == nil then
+		v = self.service_kv[t]
+	end
+	local w = v
 	if w == nil then
-		w = self.service_kv[t]
+		return false
 	end
-	local x = w
-	if x == nil then
-		return
+	local x = s:GetEntityIndex()
+	local y = self.unitUpgrades[x]
+	if y ~= nil then
+		local z = self.unitUpgrades[x]
+		y = e(z and z.upgrades, function(A, B)
+			return B.name == t
+		end)
 	end
-	local y = s:GetEntityIndex()
-	if self.unitUpgrades[y] == nil then
-		self.unitUpgrades[y] = { upgrades = {} }
+	local C = y
+	if C == nil then
+		return true
 	end
-	local z = self.unitUpgrades[y]
-	local A = e(z.upgrades, function(B, C)
-		return C.name == t
+	local D = tonumber(w.max)
+	return (D == nil or C.level < D) and self:isUpgradeFromSource(x, t, u)
+end
+function q.prototype.AddAbilityUpgrade(self, s, t, E, u)
+	if E == nil then
+		E = 1
+	end
+	if u == nil then
+		u = ""
+	end
+	if not self:CanAddAbilityUpgrade(s, t, u) then
+		return false
+	end
+	local x = s:GetEntityIndex()
+	if self.unitUpgrades[x] == nil then
+		self.unitUpgrades[x] = { upgrades = {} }
+	end
+	local F = self.unitUpgrades[x]
+	local C = e(F.upgrades, function(A, B)
+		return B.name == t
 	end)
-	if A then
-		local D = tonumber(x.max)
-		if D ~= nil and A.level >= D then
-			return
+	local G = false
+	if C then
+		if E < C.level then
+			return false
 		end
-		if not self:isUpgradeFromSource(y, t, v) then
-			return
-		end
-		if u < A.level then
-			return
-		end
-		A.level = u
+		G = E > C.level
+		C.level = E
 	else
-		local E = z.upgrades
-		E[#E + 1] = { name = t, level = u }
-		if self.upgradeSource[v] == nil then
-			self.upgradeSource[v] = {}
+		local H = F.upgrades
+		H[#H + 1] = { name = t, level = E }
+		G = true
+		if self.upgradeSource[u] == nil then
+			self.upgradeSource[u] = {}
 		end
-		if self.upgradeSource[v][y] == nil then
-			self.upgradeSource[v][y] = {}
+		if self.upgradeSource[u][x] == nil then
+			self.upgradeSource[u][x] = {}
 		end
-		local F = self.upgradeSource[v][y]
-		F[#F + 1] = t
-		Event:Fire("ability_upgrade_added", { unit = s, upgradeName = t, level = u })
+		local I = self.upgradeSource[u][x]
+		I[#I + 1] = t
+		Event:Fire("ability_upgrade_added", { unit = s, upgradeName = t, level = E })
 	end
 	self:RefreshAbilityProperty(s, t)
 	self:SyncToClient(s)
+	return G
 end
-function q.prototype.RemoveAbilityUpgrade(self, s, t, v)
+function q.prototype.RemoveAbilityUpgrade(self, s, t, u)
 	if not IsValid(s) then
 		print("[AbilityUpgrade] 无效的单位")
 		return false
 	end
-	local y = s:GetEntityIndex()
-	local z = self.unitUpgrades[y]
-	if z == nil or #z.upgrades == 0 then
-		print(("[AbilityUpgrade] 单位 " .. tostring(y)) .. " 没有任何技能升级")
+	local x = s:GetEntityIndex()
+	local F = self.unitUpgrades[x]
+	if F == nil or #F.upgrades == 0 then
+		print(("[AbilityUpgrade] 单位 " .. tostring(x)) .. " 没有任何技能升级")
 		return false
 	end
-	if v ~= nil and not self:isUpgradeFromSource(y, t, v) then
-		print((("[AbilityUpgrade] 升级 " .. t) .. " 不属于来源 ") .. v)
+	if u ~= nil and not self:isUpgradeFromSource(x, t, u) then
+		print((("[AbilityUpgrade] 升级 " .. t) .. " 不属于来源 ") .. u)
 		return false
 	end
 	do
-		local G = 0
-		while G < #z.upgrades do
-			if z.upgrades[G + 1].name == t then
-				local H = v or ""
-				local I = self.upgradeSource[H]
-				if I and I[y] then
-					local J = f(self.upgradeSource[H][y], t)
-					if J ~= -1 then
-						g(self.upgradeSource[H][y], J, 1)
+		local J = 0
+		while J < #F.upgrades do
+			if F.upgrades[J + 1].name == t then
+				local K = u or ""
+				local L = self.upgradeSource[K]
+				if L and L[x] then
+					local M = f(self.upgradeSource[K][x], t)
+					if M ~= -1 then
+						g(self.upgradeSource[K][x], M, 1)
 					end
 				end
-				g(z.upgrades, G, 1)
+				g(F.upgrades, J, 1)
 				print(
 					(
 						(
-							((("[AbilityUpgrade] 单位 " .. tostring(y)) .. " 移除技能升级: ") .. t)
+							((("[AbilityUpgrade] 单位 " .. tostring(x)) .. " 移除技能升级: ") .. t)
 							.. " (来源: "
-						) .. (v or "无")
+						) .. (u or "无")
 					) .. ")"
 				)
 				self:RefreshAbilityProperty(s, t)
@@ -134,62 +153,62 @@ function q.prototype.RemoveAbilityUpgrade(self, s, t, v)
 				Event:Fire("ability_upgrade_removed", { unit = s, upgradeName = t })
 				return true
 			end
-			G = G + 1
+			J = J + 1
 		end
 	end
-	print((("[AbilityUpgrade] 单位 " .. tostring(y)) .. " 没有技能升级: ") .. t)
+	print((("[AbilityUpgrade] 单位 " .. tostring(x)) .. " 没有技能升级: ") .. t)
 	return false
 end
-function q.prototype.RemoveAbilityUpgradeBySource(self, s, v)
+function q.prototype.RemoveAbilityUpgradeBySource(self, s, u)
 	if not IsValid(s) then
 		return 0
 	end
-	local y = s:GetEntityIndex()
-	local z = self.unitUpgrades[y]
-	if z == nil or #z.upgrades == 0 or self.upgradeSource[v] == nil or self.upgradeSource[v][y] == nil then
+	local x = s:GetEntityIndex()
+	local F = self.unitUpgrades[x]
+	if F == nil or #F.upgrades == 0 or self.upgradeSource[u] == nil or self.upgradeSource[u][x] == nil then
 		return 0
 	end
-	local K = self.upgradeSource[v][y]
-	if not K or #K == 0 then
+	local N = self.upgradeSource[u][x]
+	if not N or #N == 0 then
 		return 0
 	end
-	local L = 0
-	local M = {}
-	for B, N in ipairs(K) do
-		local O = h(z.upgrades, function(B, C)
-			return C.name == N
+	local O = 0
+	local P = {}
+	for A, Q in ipairs(N) do
+		local R = h(F.upgrades, function(A, B)
+			return B.name == Q
 		end)
-		if O ~= -1 then
-			g(z.upgrades, O, 1)
-			M[#M + 1] = N
-			L = L + 1
-			self:RefreshAbilityProperty(s, N)
-			Event:Fire("ability_upgrade_removed", { unit = s, upgradeName = N })
+		if R ~= -1 then
+			g(F.upgrades, R, 1)
+			P[#P + 1] = Q
+			O = O + 1
+			self:RefreshAbilityProperty(s, Q)
+			Event:Fire("ability_upgrade_removed", { unit = s, upgradeName = Q })
 		end
 	end
-	i(self.upgradeSource[v], y)
-	if L > 0 then
+	i(self.upgradeSource[u], x)
+	if O > 0 then
 		self:SyncToClient(s)
 	end
-	return L
+	return O
 end
 function q.prototype.GetAbilityUpgrades(self, s)
 	if not IsValid(s) then
 		return {}
 	end
-	local y = s:GetEntityIndex()
-	local z = IsServer() and self.unitUpgrades[y] or CustomNetTables:GetNetData("ability_upgrade", tostring(y))
-	return z ~= nil and z.upgrades or {}
+	local x = s:GetEntityIndex()
+	local F = IsServer() and self.unitUpgrades[x] or CustomNetTables:GetNetData("ability_upgrade", tostring(x))
+	return F ~= nil and F.upgrades or {}
 end
 function q.prototype.HasAbilityUpgrade(self, s, t)
-	local P = self:GetAbilityUpgrades(s)
+	local S = self:GetAbilityUpgrades(s)
 	do
-		local G = 0
-		while G < #P do
-			if P[G + 1].name == t then
+		local J = 0
+		while J < #S do
+			if S[J + 1].name == t then
 				return true
 			end
-			G = G + 1
+			J = J + 1
 		end
 	end
 	return false
@@ -198,78 +217,78 @@ function q.prototype.GetAbilityUpgradeCount(self, s, t)
 	if not IsValid(s) then
 		return 0
 	end
-	local y = s:GetEntityIndex()
-	local z = self.unitUpgrades[y]
-	if z == nil or #z.upgrades == 0 then
+	local x = s:GetEntityIndex()
+	local F = self.unitUpgrades[x]
+	if F == nil or #F.upgrades == 0 then
 		return 0
 	end
-	return j(z.upgrades, function(B, C)
-		return C.name == t
+	return j(F.upgrades, function(A, B)
+		return B.name == t
 	end) and 1 or 0
 end
-function q.prototype.GetUpgradeLevelSumByAbilityName(self, s, Q)
+function q.prototype.GetUpgradeLevelSumByAbilityName(self, s, T)
 	if not IsValid(s) then
 		return 0
 	end
-	local P = self:GetAbilityUpgrades(s)
-	if #P == 0 then
+	local S = self:GetAbilityUpgrades(s)
+	if #S == 0 then
 		return 0
 	end
-	local R = 0
+	local U = 0
 	do
-		local G = 0
-		while G < #P do
-			local S = self.kv[P[G + 1].name]
-			if S ~= nil and S.ability_name == Q then
-				R = R + P[G + 1].level
+		local J = 0
+		while J < #S do
+			local V = self.kv[S[J + 1].name]
+			if V ~= nil and V.ability_name == T then
+				U = U + S[J + 1].level
 			end
-			G = G + 1
+			J = J + 1
 		end
 	end
-	return R
+	return U
 end
-function q.prototype.GetUpgradedValue(self, s, Q, T, U, V)
+function q.prototype.GetUpgradedValue(self, s, T, W, X, Y)
 	if not IsValid(s) then
-		return V
+		return Y
 	end
-	local y = s:GetEntityIndex()
-	local z = IsServer() and self.unitUpgrades[y] or CustomNetTables:GetNetData("ability_upgrade", tostring(y))
-	if z == nil or #z.upgrades == 0 then
-		return V
+	local x = s:GetEntityIndex()
+	local F = IsServer() and self.unitUpgrades[x] or CustomNetTables:GetNetData("ability_upgrade", tostring(x))
+	if F == nil or #F.upgrades == 0 then
+		return Y
 	end
-	local W = V
-	local X = 0
-	for B, Y in ipairs(z.upgrades) do
-		local Z = self.kv[Y.name]
-		if Z == nil then
-			Z = self.service_kv[Y.name]
+	local Z = Y
+	local _ = 0
+	for A, a0 in ipairs(F.upgrades) do
+		local a1 = self.kv[a0.name]
+		if a1 == nil then
+			a1 = self.service_kv[a0.name]
 		end
-		local x = Z
-		if x ~= nil and x.ability_name == Q and x.AbilityValues ~= nil then
-			local _ = x.AbilityValues[U]
-			W = W + GetAbilityValues(_, Y.level, s)
-			local a0 = x.AbilityValueMultipliers
-			if a0 ~= nil then
-				a0 = a0[U]
+		local w = a1
+		if w ~= nil and w.ability_name == T and w.AbilityValues ~= nil then
+			local a2 = w.AbilityValues[X]
+			Z = Z + GetAbilityValues(a2, a0.level, s)
+			local a3 = w.AbilityValueMultipliers
+			if a3 ~= nil then
+				a3 = a3[X]
 			end
-			local a1 = a0
-			if a1 ~= nil then
-				X = X + GetAbilityValues(x.AbilityValues[a1], Y.level, s)
+			local a4 = a3
+			if a4 ~= nil then
+				_ = _ + GetAbilityValues(w.AbilityValues[a4], a0.level, s)
 			end
 		end
 	end
-	return W * (1 + X * 0.01)
+	return Z * (1 + _ * 0.01)
 end
 function q.prototype.ClearAbilityUpgrades(self, s)
 	if not IsValid(s) then
 		return
 	end
-	local y = s:GetEntityIndex()
-	for v in pairs(self.upgradeSource) do
-		i(self.upgradeSource[v], y)
+	local x = s:GetEntityIndex()
+	for u in pairs(self.upgradeSource) do
+		i(self.upgradeSource[u], x)
 	end
-	i(self.unitUpgrades, y)
-	CustomNetTables:SetNetData("ability_upgrade", tostring(y), nil)
+	i(self.unitUpgrades, x)
+	CustomNetTables:SetNetData("ability_upgrade", tostring(x), nil)
 	Event:Fire("ability_upgrades_cleared", { unit = s })
 end
 function q.prototype.IsServiceUpgrade(self, t)
@@ -279,42 +298,42 @@ function q.prototype.CanApplyAbilityUpgrade(self, s, t)
 	if not IsValid(s) then
 		return false
 	end
-	local a2 = self.kv[t]
-	if a2 == nil then
-		a2 = self.service_kv[t]
+	local a5 = self.kv[t]
+	if a5 == nil then
+		a5 = self.service_kv[t]
 	end
-	local S = a2
-	if S == nil or S.ability_name == nil then
+	local V = a5
+	if V == nil or V.ability_name == nil then
 		return false
 	end
-	return IsValid(s:FindAbilityByName(S.ability_name))
+	return IsValid(s:FindAbilityByName(V.ability_name))
 end
-function q.prototype.isUpgradeFromSource(self, y, t, v)
-	local a3 = self.upgradeSource[v]
-	local K = a3 and a3[y]
-	return K ~= nil and k(K, t)
+function q.prototype.isUpgradeFromSource(self, x, t, u)
+	local a6 = self.upgradeSource[u]
+	local N = a6 and a6[x]
+	return N ~= nil and k(N, t)
 end
 function q.prototype.RefreshAbilityProperty(self, s, t)
-	local a4 = self.kv[t]
-	if a4 == nil then
-		a4 = self.service_kv[t]
+	local a7 = self.kv[t]
+	if a7 == nil then
+		a7 = self.service_kv[t]
 	end
-	local x = a4
-	if x ~= nil and x.ability_name ~= nil then
-		local a5 = s:FindAbilityByName(x.ability_name)
-		if a5 ~= nil then
-			a5:RefreshStaticProperty()
-			if x.AbilityValues ~= nil and x.AbilityValues.abilitycharges ~= nil then
-				a5:RefreshCharges()
+	local w = a7
+	if w ~= nil and w.ability_name ~= nil then
+		local a8 = s:FindAbilityByName(w.ability_name)
+		if a8 ~= nil then
+			a8:RefreshStaticProperty()
+			if w.AbilityValues ~= nil and w.AbilityValues.abilitycharges ~= nil then
+				a8:RefreshCharges()
 			end
 		end
 	end
 end
 function q.prototype.SyncToClient(self, s)
-	local y = s:GetEntityIndex()
-	local z = self.unitUpgrades[y]
-	if z ~= nil then
-		CustomNetTables:SetNetData("ability_upgrade", tostring(y), { upgrades = z.upgrades })
+	local x = s:GetEntityIndex()
+	local F = self.unitUpgrades[x]
+	if F ~= nil then
+		CustomNetTables:SetNetData("ability_upgrade", tostring(x), { upgrades = F.upgrades })
 	end
 end
 function q.prototype.reset(self)

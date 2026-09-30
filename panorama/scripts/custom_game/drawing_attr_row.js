@@ -43,7 +43,7 @@ function getDrawingEquipAttributeDisplay(attrData) {
   const kv = KeyValues.equip_entry[id];
   const info = attribute_formatter.formatAttributeDisplay(displayData, {
     config: {
-      ratio: kv?.ratio ?? CustomUIConfig.EntryRatio[id] ?? 1,
+      ratio: kv?.ratio ?? CustomUIConfig.EntryRatio?.[id] ?? 1,
       value_min: kv?.value_min,
       value_max: kv?.value_max
     },

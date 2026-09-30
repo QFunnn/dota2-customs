@@ -1274,19 +1274,24 @@ function ReceiveCellReward(preview, row, column, rate, totalActions, result, gem
       return;
     case "gem_rarity_7":
       gemCounts[7] = (gemCounts[7] ?? 0) + 2 * rate;
+      result.resources.essence += 100 * rate;
       return;
     case "gem_per_cell_3":
       gemCounts[7] = (gemCounts[7] ?? 0) + Math.floor(totalActions / 8) * rate;
+      result.resources.essence += 100 * rate;
       return;
     case "gem_rarity_up_2":
       result.gemRarityUp2Triggers += rate;
+      result.resources.essence += 100 * rate;
       return;
     case "item_120016_1":
       result.resources.chaosMaterial += 1 * rate;
+      result.resources.essence += 100 * rate;
       return;
     case "cost_action":
       result.remainingActionChance -= 2 * rate;
       gemCounts[7] = (gemCounts[7] ?? 0) + 2 * rate;
+      result.resources.essence += 100 * rate;
       return;
     default:
       return;

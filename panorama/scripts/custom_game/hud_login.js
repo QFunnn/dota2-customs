@@ -559,4 +559,4 @@ function Root() {
 (() => {
   $.GetContextPanel().SetPanelEvent("onactivate", () => {});
   libs.render(() => libs.createComponent(Root, {}), $.GetContextPanel());
-})();
+})();

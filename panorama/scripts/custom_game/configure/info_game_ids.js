@@ -254,6 +254,11 @@ GameUI.CustomUIConfig().info_game_ids = {
 		type: "bless",
 		name: "月羽圣契"
 	},
+	"541": {
+		item_id: 541,
+		type: "item",
+		name: "风之圣契"
+	},
 	"2001": {
 		item_id: 2001,
 		type: "pools",
@@ -813,6 +818,11 @@ GameUI.CustomUIConfig().info_game_ids = {
 		item_id: 310540,
 		type: "item",
 		name: "月羽圣契"
+	},
+	"310541": {
+		item_id: 310541,
+		type: "item",
+		name: "风之圣契"
 	},
 	"340101": {
 		item_id: 340101,
@@ -1654,6 +1664,11 @@ GameUI.CustomUIConfig().info_game_ids = {
 		type: "products",
 		name: "S3通行证经验"
 	},
+	"800154": {
+		item_id: 800154,
+		type: "products",
+		name: "S4通行证经验"
+	},
 	"801001": {
 		item_id: 801001,
 		type: "products",
@@ -2174,6 +2189,56 @@ GameUI.CustomUIConfig().info_game_ids = {
 		type: "products",
 		name: "渊瞳密契"
 	},
+	"807001": {
+		item_id: 807001,
+		type: "products",
+		name: "祈愿福利"
+	},
+	"807002": {
+		item_id: 807002,
+		type: "products",
+		name: "月石"
+	},
+	"807003": {
+		item_id: 807003,
+		type: "products",
+		name: "月石"
+	},
+	"807004": {
+		item_id: 807004,
+		type: "products",
+		name: "渊瞳密契"
+	},
+	"807005": {
+		item_id: 807005,
+		type: "products",
+		name: "欢度佳节"
+	},
+	"807006": {
+		item_id: 807006,
+		type: "products",
+		name: "混沌宝珠"
+	},
+	"807007": {
+		item_id: 807007,
+		type: "products",
+		name: "发条兔"
+	},
+	"807008": {
+		item_id: 807008,
+		type: "products",
+		name: "太美坤冠"
+	},
+	"807009": {
+		item_id: 807009,
+		type: "products",
+		name: "千劫屠神"
+	},
+	"807010": {
+		item_id: 807010,
+		type: "products",
+		name: "月石"
+	},
 	"808001": {
 		item_id: 808001,
 		type: "products",
@@ -2233,6 +2298,11 @@ GameUI.CustomUIConfig().info_game_ids = {
 		item_id: 810003,
 		type: "products",
 		name: "S3赛季高级通行证"
+	},
+	"810004": {
+		item_id: 810004,
+		type: "products",
+		name: "S4赛季高级通行证"
 	},
 	"811001": {
 		item_id: 811001,
@@ -2376,6 +2446,31 @@ GameUI.CustomUIConfig().info_game_ids = {
 	},
 	"880115": {
 		item_id: 880115,
+		type: "products",
+		name: "獭龙奥斯基"
+	},
+	"880116": {
+		item_id: 880116,
+		type: "products",
+		name: "英雄号角"
+	},
+	"880117": {
+		item_id: 880117,
+		type: "products",
+		name: "珍武通契"
+	},
+	"880118": {
+		item_id: 880118,
+		type: "products",
+		name: "珍武通契"
+	},
+	"880119": {
+		item_id: 880119,
+		type: "products",
+		name: "珍武通契"
+	},
+	"880120": {
+		item_id: 880120,
 		type: "products",
 		name: "獭龙奥斯基"
 	},
@@ -7389,6 +7484,11 @@ GameUI.CustomUIConfig().info_game_ids = {
 		type: "item",
 		name: "通行证经验"
 	},
+	"1300004": {
+		item_id: 1300004,
+		type: "item",
+		name: "通行证经验"
+	},
 	"1400001": {
 		item_id: 1400001,
 		type: "item",
@@ -8203,6 +8303,11 @@ GameUI.CustomUIConfig().info_game_ids = {
 		item_id: 1710008,
 		type: "item",
 		name: "头像框-天使之剑"
+	},
+	"1710010": {
+		item_id: 1710010,
+		type: "item",
+		name: "姬霓太美头像框"
 	},
 	"1711001": {
 		item_id: 1711001,

@@ -13,6 +13,61 @@
 var g_TeamPanels = [];
 var g_PlayerPanels = [];
 var g_TEAM_SPECATOR = 1;
+var LAUNCH_ASSISTANT_URL = "https://vgbattle.eomgames.net/";
+function OnLaunchAssistantLinkPressed() {
+  $.DispatchEvent("ExternalBrowserGoToURL", LAUNCH_ASSISTANT_URL);
+}
+function OnCopyLaunchAssistantLink() {
+  $.DispatchEvent("CopyStringToClipboard", LAUNCH_ASSISTANT_URL, null);
+}
+function FindOrCreateLaunchAssistantPanel(type, parent, id) {
+  return $("#" + id) || $.CreatePanel(type, parent, id);
+}
+function InitLaunchAssistantTip() {
+  if (Game.IsInToolsMode()) {
+    var existingTip = $("#LaunchAssistantTip");
+    var existingColumn = $("#LaunchAssistantColumn");
+    if (existingTip) existingTip.visible = false;
+    if (existingColumn) existingColumn.visible = false;
+    return;
+  }
+  var container = $("#TeamSelectContainer");
+  var playerColumn = $("#GameAndPlayersRoot");
+  if (!container || !playerColumn) return;
+  var tipColumn = $("#LaunchAssistantColumn");
+  if (!tipColumn) {
+    tipColumn = $.CreatePanel("Panel", container, "LaunchAssistantColumn");
+    container.MoveChildBefore(tipColumn, playerColumn);
+  }
+  tipColumn.visible = true;
+  var tip = $("#LaunchAssistantTip");
+  if (!tip) {
+    tip = $.CreatePanel("Panel", tipColumn, "LaunchAssistantTip");
+  } else if (tip.GetParent() !== tipColumn) {
+    tip.SetParent(tipColumn);
+  }
+  tip.visible = true;
+  var title = FindOrCreateLaunchAssistantPanel("Label", tip, "LaunchAssistantTitle");
+  var stepOne = FindOrCreateLaunchAssistantPanel("Panel", tip, "LaunchAssistantStepOne");
+  var stepNumber = FindOrCreateLaunchAssistantPanel("Label", stepOne, "LaunchAssistantStepNumber");
+  var link = FindOrCreateLaunchAssistantPanel("Button", stepOne, "LaunchAssistantLink");
+  var linkLabel = FindOrCreateLaunchAssistantPanel("Label", link, "LaunchAssistantLinkLabel");
+  var url = FindOrCreateLaunchAssistantPanel("Label", tip, "LaunchAssistantURL");
+  var copyButton = FindOrCreateLaunchAssistantPanel("Button", tip, "CopyLaunchAssistantLink");
+  var copyLabel = FindOrCreateLaunchAssistantPanel("Label", copyButton, "CopyLaunchAssistantLinkLabel");
+  var notice = FindOrCreateLaunchAssistantPanel("Label", tip, "LaunchAssistantNotice");
+  var stepTwo = FindOrCreateLaunchAssistantPanel("Label", tip, "LaunchAssistantStepTwo");
+  link.SetPanelEvent("onactivate", OnLaunchAssistantLinkPressed);
+  link.SetPanelEvent("oncontextmenu", OnCopyLaunchAssistantLink);
+  copyButton.SetPanelEvent("onactivate", OnCopyLaunchAssistantLink);
+  title.text = GetLocalization("#TeamSelect_LaunchAssistantTitle", "目前使用【VG游廊启动助手】可正常游玩：");
+  stepNumber.text = GetLocalization("#TeamSelect_LaunchAssistantStepOne", "1. 下载启动助手：");
+  linkLabel.text = GetLocalization("#TeamSelect_LaunchAssistantLink", "点击此处下载启动助手");
+  url.text = LAUNCH_ASSISTANT_URL;
+  copyLabel.text = GetLocalization("#TeamSelect_CopyLaunchAssistantLink", "复制下载链接");
+  notice.text = GetLocalization("#TeamSelect_LaunchAssistantNotice", "请注意：Dota2浏览器不支持下载及网页端使用，需复制链接到外部浏览器打开！");
+  stepTwo.text = GetLocalization("#TeamSelect_LaunchAssistantStepTwo", "2. 打开助手，绑定Steam，创建房间，开始游戏！");
+}
 function OnLeaveTeamPressed() {
   $.Msg("OnLeaveTeamPressed");
   Game.PlayerJoinTeam(DOTATeam_t.DOTA_TEAM_NOTEAM);
@@ -161,6 +216,7 @@ teamSelectGlobal.OnAddBot = OnAddBot;
     }
   }
   $("#TeamSelectContainer").SetAcceptsFocus(true);
+  InitLaunchAssistantTip();
   var teamsListRootNode = $("#TeamsListRoot");
   var allTeamIDs = Game.GetAllTeamIDs();
   if (bShowSpectatorTeam) {

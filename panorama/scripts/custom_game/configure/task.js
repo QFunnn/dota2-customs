@@ -13470,7 +13470,7 @@ GameUI.CustomUIConfig().task = {
 		task_description: 1,
 		description: "挖矿2期-单次-累积登录3天",
 		rewards: {
-			"110026": 1
+			"110028": 1
 		},
 		vip_blessing: 0,
 		achievement_group: 0,
@@ -13491,7 +13491,7 @@ GameUI.CustomUIConfig().task = {
 		task_description: 1,
 		description: "挖矿2期-单次-累积登录7天",
 		rewards: {
-			"110026": 2
+			"110028": 2
 		},
 		vip_blessing: 0,
 		achievement_group: 0,
@@ -13512,7 +13512,7 @@ GameUI.CustomUIConfig().task = {
 		task_description: 1,
 		description: "挖矿2期-单次-累积登录15天",
 		rewards: {
-			"110027": 2
+			"110029": 2
 		},
 		vip_blessing: 0,
 		achievement_group: 0,
@@ -13533,7 +13533,7 @@ GameUI.CustomUIConfig().task = {
 		task_description: 1,
 		description: "挖矿2期-单次-击杀迷宫敌人-10000",
 		rewards: {
-			"110025": 10
+			"110027": 10
 		},
 		vip_blessing: 0,
 		achievement_group: 0,
@@ -13554,7 +13554,7 @@ GameUI.CustomUIConfig().task = {
 		task_description: 1,
 		description: "挖矿2期-单次-击杀深渊敌人-8000",
 		rewards: {
-			"110025": 10
+			"110027": 10
 		},
 		vip_blessing: 0,
 		achievement_group: 0,
@@ -13575,7 +13575,7 @@ GameUI.CustomUIConfig().task = {
 		task_description: 1,
 		description: "挖矿2期-单次-完成15次信使远征",
 		rewards: {
-			"110025": 10
+			"110027": 10
 		},
 		vip_blessing: 0,
 		achievement_group: 0,
@@ -13596,7 +13596,7 @@ GameUI.CustomUIConfig().task = {
 		task_description: 1,
 		description: "挖矿2期-单次-通关任意难度地牢8次",
 		rewards: {
-			"110025": 5
+			"110027": 5
 		},
 		vip_blessing: 0,
 		achievement_group: 0,
@@ -15125,7 +15125,7 @@ GameUI.CustomUIConfig().task = {
 		task_description: 1,
 		description: "挖矿2期-每日-登录游戏",
 		rewards: {
-			"110025": 1
+			"110027": 1
 		},
 		vip_blessing: 0,
 		achievement_group: 0,
@@ -15139,14 +15139,14 @@ GameUI.CustomUIConfig().task = {
 		blessing_condition: 0,
 		event_id: 19,
 		target: 2,
-		param_1: 110025,
+		param_1: 110027,
 		param_2: 0,
 		param_3: 0,
 		param_4: 0,
 		task_description: 1,
 		description: "挖矿2期-每日-使用2次矿镐",
 		rewards: {
-			"110025": 1
+			"110027": 1
 		},
 		vip_blessing: 0,
 		achievement_group: 0,
@@ -15167,7 +15167,7 @@ GameUI.CustomUIConfig().task = {
 		task_description: 1,
 		description: "挖矿2期-每日-通关任意难度地牢一次",
 		rewards: {
-			"110025": 2
+			"110027": 2
 		},
 		vip_blessing: 0,
 		achievement_group: 0,
@@ -15188,7 +15188,7 @@ GameUI.CustomUIConfig().task = {
 		task_description: 1,
 		description: "挖矿2期-每日-完成2个每日悬赏",
 		rewards: {
-			"110025": 2
+			"110027": 2
 		},
 		vip_blessing: 0,
 		achievement_group: 0,

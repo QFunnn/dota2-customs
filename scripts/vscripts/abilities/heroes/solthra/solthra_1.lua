@@ -166,11 +166,14 @@ function r.prototype.CreateAttack(self, V, B, S, G, H)
 end
 function r.prototype.CreateGuidedBullet(self, B, V, S, G, H)
 	local t = self:GetCaster()
+	local Z = t:FindModifierByName("modifier_solthra_1_ball_boost")
+	local _ = IsValid(Z) and 1 + Z:GetBoostPct() * 0.01 or 1
 	local C = self:GetSpecialValueFor("distance")
-	local Z = self:GetSpecialValueFor("speed")
-	local _ = self:GetSpecialValueFor("width")
-	local a0 = self:GetSpecialValueFor("angular_velocity")
-	local a1 = 0
+	local a0 = self:GetSpecialValueFor("speed") * _
+	local a1 = G * _
+	local a2 = self:GetSpecialValueFor("width")
+	local a3 = self:GetSpecialValueFor("angular_velocity")
+	local a4 = 0
 	local U = {
 		caster = t,
 		direction = B,
@@ -178,40 +181,40 @@ function r.prototype.CreateGuidedBullet(self, B, V, S, G, H)
 		ability = self,
 		effectName = "particles/units/heroes/hero_solthra/fire_ball_guide.vpcf",
 		spawnOrigin = V,
-		moveSpeed = Z,
-		radius = _,
-		lifeTime = C / Z,
-		angularVelocity = a0,
+		moveSpeed = a0,
+		radius = a2,
+		lifeTime = C / a0,
+		angularVelocity = a3,
 		teamFilter = DOTA_UNIT_TARGET_TEAM_ENEMY,
 		typeFilter = UNIT_AND_BUILDING,
 		flagFilter = DOTA_UNIT_TARGET_FLAG_NONE,
-		OnBulletThink = function(a2, Q)
+		OnBulletThink = function(a5, Q)
 			if IsValid(Q.target) and Q.target:IsAlive() then
 				return
 			end
 			Q.target = nil
-			local a3 = GameRules:GetGameTime()
-			if a3 < a1 then
+			local a6 = GameRules:GetGameTime()
+			if a6 < a4 then
 				return
 			end
-			local a4 = FindEnemiesInRadius(t, a2, 300, FIND_CLOSEST)
-			if IsValid(a4[1]) and a4[1]:IsAlive() then
-				Q.target = a4[1]
-				a1 = 0
+			local a7 = FindEnemiesInRadius(t, a5, 300, FIND_CLOSEST)
+			if IsValid(a7[1]) and a7[1]:IsAlive() then
+				Q.target = a7[1]
+				a4 = 0
 			else
-				a1 = a3 + q
+				a4 = a6 + q
 			end
 		end,
-		OnBulletHit = function(a5, a2, Q)
-			local a6 = self:GetSpecialValueFor("combo_damage_pct")
-			local a7 = a5:FindModifierByName("modifier_solthra_2_upgrade_5")
-			local a8 = G
-			if IsValid(a7) then
-				a8 = G * (1 + a6 * a7:GetSpellCastCount(H) / 100)
+		OnBulletHit = function(a8, a5, Q)
+			local a9 = self:GetSpecialValueFor("combo_damage_pct")
+			local aa = a8:FindModifierByName("modifier_solthra_2_upgrade_5")
+			local ab = a1
+			if IsValid(aa) then
+				ab = a1 * (1 + a9 * aa:GetSpellCastCount(H) / 100)
 			end
-			t:DealDamage(a5, self, a8, nil, EOM_DAMAGE_FLAGS.SPLIT_DAMAGE)
+			t:DealDamage(a8, self, ab, nil, EOM_DAMAGE_FLAGS.SPLIT_DAMAGE)
 			if t:HasAbilityUpgrade("solthra_upgrade_5") then
-				a5:AddNewModifier(t, self, "modifier_solthra_2_upgrade_5", { duration = 5, spellID = H })
+				a8:AddNewModifier(t, self, "modifier_solthra_2_upgrade_5", { duration = 5, spellID = H })
 			end
 			return true
 		end,
@@ -220,17 +223,35 @@ function r.prototype.CreateGuidedBullet(self, B, V, S, G, H)
 end
 function r.prototype.EventListener(self)
 	return {
-		property_changed = function(x, a9)
+		ability_cast_complete = function(x, ac)
+			local t = self:GetCaster()
+			if ac.caster ~= t or ac.abilityTag ~= AbilityTag.Ultimate then
+				return
+			end
+			if not t:HasAbilityUpgrade("solthra_1_upgrade_wp44") then
+				return
+			end
+			t:AddNewModifier(
+				t,
+				self,
+				"modifier_solthra_1_ball_boost",
+				{
+					duration = self:GetSpecialValueFor("ball_boost_duration"),
+					boost_pct = self:GetSpecialValueFor("ball_speed_and_damage"),
+				}
+			)
+		end,
+		property_changed = function(x, ac)
 			if not IsValid(self) or not IsValid(self:GetCaster()) then
 				return
 			end
-			if a9.key ~= self:GetCaster():entindex() then
+			if ac.key ~= self:GetCaster():entindex() then
 				return
 			end
-			if a9.propertyId == "ring_speed_amplify" then
-				local aa = Bullet.surroundGroup["solthra_ring" .. tostring(self:GetCaster():entindex())]
-				if aa ~= nil then
-					aa.angularVelocity = self:GetSpecialValueFor("ring_speed")
+			if ac.propertyId == "ring_speed_amplify" then
+				local ad = Bullet.surroundGroup["solthra_ring" .. tostring(self:GetCaster():entindex())]
+				if ad ~= nil then
+					ad.angularVelocity = self:GetSpecialValueFor("ring_speed")
 				end
 			end
 		end,
@@ -239,8 +260,8 @@ end
 r = g(
 	{
 		o(nil, {
-			funcCondition = function(x, ab)
-				return ab:GetAutoCastState()
+			funcCondition = function(x, ae)
+				return ae:GetAutoCastState()
 			end,
 			searchBehavior = AI_SEARCH_BEHAVIOR.AI_SEARCH_BEHAVIOR_NONE,
 			orderType = FIND_CLOSEST,
@@ -248,27 +269,68 @@ r = g(
 	},
 	r
 )
-local ac = c()
-ac.name = "modifier_solthra_2_upgrade_5"
-d(ac, j)
-function ac.prototype.____constructor(self, ...)
+local af = c()
+af.name = "modifier_solthra_1_ball_boost"
+d(af, j)
+function af.prototype.____constructor(self, ...)
+	j.prototype.____constructor(self, ...)
+	self.boostPct = 0
+end
+function af.prototype.OnCreated(self, ag)
+	if not IsServer() then
+		return
+	end
+	self.boostPct = ag.boost_pct
+	print(string.format("[Solthra] Fireball boost created: %.1f%%", self.boostPct))
+end
+function af.prototype.OnRefresh(self, ag)
+	if not IsServer() then
+		return
+	end
+	self.boostPct = ag.boost_pct
+	print(string.format("[Solthra] Fireball boost refreshed: %.1f%%", self.boostPct))
+end
+function af.prototype.GetBoostPct(self)
+	return self.boostPct
+end
+af = g(
+	{
+		k(
+			a,
+			{
+				IsHidden = true,
+				IsDebuff = false,
+				IsPurgable = false,
+				IsPurgeException = false,
+				IsStunDebuff = false,
+				AllowIllusionDuplicate = false,
+				RemoveOnDeath = true,
+			}
+		),
+	},
+	af
+)
+local ah = c()
+ah.name = "modifier_solthra_2_upgrade_5"
+d(ah, j)
+function ah.prototype.____constructor(self, ...)
 	j.prototype.____constructor(self, ...)
 	self.spellRecord = {}
 end
-function ac.prototype.OnCreated(self, ad)
+function ah.prototype.OnCreated(self, ag)
 	if IsServer() then
-		self.spellRecord[ad.spellID] = (self.spellRecord[ad.spellID] or 0) + 1
+		self.spellRecord[ag.spellID] = (self.spellRecord[ag.spellID] or 0) + 1
 	end
 end
-function ac.prototype.OnRefresh(self, ad)
+function ah.prototype.OnRefresh(self, ag)
 	if IsServer() then
-		self.spellRecord[ad.spellID] = (self.spellRecord[ad.spellID] or 0) + 1
+		self.spellRecord[ag.spellID] = (self.spellRecord[ag.spellID] or 0) + 1
 	end
 end
-function ac.prototype.GetSpellCastCount(self, ae)
-	return self.spellRecord[ae] or 0
+function ah.prototype.GetSpellCastCount(self, ai)
+	return self.spellRecord[ai] or 0
 end
-ac = g(
+ah = g(
 	{
 		k(
 			a,
@@ -282,6 +344,6 @@ ac = g(
 			}
 		),
 	},
-	ac
+	ah
 )
 return h

@@ -525,7 +525,7 @@ function ax.prototype.OnCreated(self, at)
 end
 function ax.prototype.OnRefresh(self, at)
 	if IsServer() then
-		self.hurt_damage_pct = at.hurt_damage_pct
+		self.hurt_damage_pct = math.max(self.hurt_damage_pct, at.hurt_damage_pct)
 	end
 end
 function ax.prototype.StaticProperty(self)

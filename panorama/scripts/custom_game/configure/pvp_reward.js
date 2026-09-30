@@ -50,5 +50,47 @@ GameUI.CustomUIConfig().pvp_reward = {
 			rewards: "110022:360",
 			txt: "rank_reward_500"
 		}
+	},
+	"2": {
+		"1": {
+			rewards: "1790004:1|110022:1800|190004:10",
+			txt: "rank_reward_1"
+		},
+		"2": {
+			rewards: "1790005:1|110022:1500|190004:5",
+			txt: "rank_reward_2"
+		},
+		"3": {
+			rewards: "1790006:1|110022:1200|190004:3",
+			txt: "rank_reward_3"
+		},
+		"10": {
+			rewards: "110022:1200|190004:3",
+			txt: "rank_reward_10"
+		},
+		"20": {
+			rewards: "110022:1200",
+			txt: "rank_reward_20"
+		},
+		"50": {
+			rewards: "110022:960",
+			txt: "rank_reward_50"
+		},
+		"100": {
+			rewards: "110022:720",
+			txt: "rank_reward_100"
+		},
+		"200": {
+			rewards: "110022:600",
+			txt: "rank_reward_200"
+		},
+		"300": {
+			rewards: "110022:480",
+			txt: "rank_reward_300"
+		},
+		"500": {
+			rewards: "110022:360",
+			txt: "rank_reward_500"
+		}
 	}
 };

@@ -4755,4 +4755,4 @@ function ReportPing() {
     pHud.SetHasClass("ShowStoreContent", open_store().value);
   });
 })();
-libs.render(HudMain, $.GetContextPanel());
+libs.render(HudMain, $.GetContextPanel());

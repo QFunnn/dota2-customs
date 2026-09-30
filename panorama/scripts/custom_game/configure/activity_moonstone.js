@@ -196,25 +196,9 @@ GameUI.CustomUIConfig().activity_moonstone = {
 				"190007": 1
 			}
 		},
-		"14096": {
-			activity_id: 902,
-			reward_id: 20,
-			num: 14096,
-			rewards: {
-				"190007": 1
-			}
-		},
-		"16096": {
-			activity_id: 902,
-			reward_id: 21,
-			num: 16096,
-			rewards: {
-				"190007": 1
-			}
-		},
 		"99999999": {
 			activity_id: 902,
-			reward_id: 22,
+			reward_id: 20,
 			num: 99999999,
 			rewards: {
 				"190007": 1

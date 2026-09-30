@@ -554,6 +554,13 @@ function Cosmetic(props) {
   const upgradeAttributeText = libs.createMemo(() => {
     if (isHeroWeaponTab()) return "";
     const parts = [];
+    if (cosmeticData().type == COSMETIC_TYPE.MEDAL) {
+      String(cosmeticData().attribute_equip ?? "").split("|").filter(Boolean).forEach(entry => {
+        const [attribute, value] = entry.split(":");
+        parts.push("<panel class='PropPoint'/>" + (value == undefined ? GetPrivilegeDesc(attribute) : GetPropertyLocalization(attribute, Number(value))));
+      });
+      return parts.join("<br>");
+    }
     if (cosmeticData().attribute) {
       Object.entries(cosmeticData().attribute).forEach(([attribute, value]) => {
         parts.push("<panel class='PropPoint'/>" + GetPropertyLocalization(attribute, Number(value)));
@@ -822,32 +829,32 @@ function Cosmetic(props) {
             scroll: "y",
             "class": "VerticalScrollStyle"
           }, _el$0),
-          _el$16 = libs.createElement("Label", {
+          _el$17 = libs.createElement("Label", {
             id: "BlessingEffect",
             html: true,
             get text() {
               return libs.memo(() => !!isHeroWeaponTab())() ? weaponSkillDesc() : upgradeAttributeText();
             }
           }, _el$15),
-          _el$18 = libs.createElement("Panel", {
+          _el$19 = libs.createElement("Panel", {
             height: "fill-parent-flow(1)"
           }, _el$0),
-          _el$19 = libs.createElement("Panel", {
+          _el$20 = libs.createElement("Panel", {
             id: "AccessDivider"
           }, _el$0);
           libs.createElement("Image", {
             id: "LineLeft"
-          }, _el$19);
-          const _el$21 = libs.createElement("Label", {
+          }, _el$20);
+          const _el$22 = libs.createElement("Label", {
             id: "AccessTitle",
             get text() {
               return accessTitle();
             }
-          }, _el$19);
+          }, _el$20);
           libs.createElement("Image", {
             id: "LineRight"
-          }, _el$19);
-          const _el$23 = libs.createElement("Panel", {
+          }, _el$20);
+          const _el$24 = libs.createElement("Panel", {
             id: "AccessContent"
           }, _el$0);
         libs.insert(_el$10, libs.createComponent(libs.Show, {
@@ -902,33 +909,48 @@ function Cosmetic(props) {
           }
         }));
         libs.setProp(_el$15, "scroll", "y");
+        libs.insert(_el$15, libs.createComponent(libs.Show, {
+          get when() {
+            return libs.memo(() => !!!isHeroWeaponTab())() && cosmeticData().type == COSMETIC_TYPE.MEDAL;
+          },
+          get children() {
+            const _el$16 = libs.createElement("Label", {
+              id: "MedalEquipEffectOnly",
+              get text() {
+                return GetLocalization("#Cosmetic_EquipEffectOnly");
+              }
+            }, null);
+            libs.effect(_$p => libs.setProp(_el$16, "text", GetLocalization("#Cosmetic_EquipEffectOnly"), _$p));
+            return _el$16;
+          }
+        }), _el$17);
         libs.insert(_el$0, libs.createComponent(libs.Show, {
           get when() {
             return accessDisplayMode() === "signature";
           },
           get children() {
-            const _el$17 = libs.createElement("Label", {
+            const _el$18 = libs.createElement("Label", {
               id: "Signature",
               get text() {
                 return GetLocalization(`#${cosmeticID()}_Signature`);
               }
             }, null);
-            libs.effect(_$p => libs.setProp(_el$17, "text", GetLocalization(`#${cosmeticID()}_Signature`), _$p));
-            return _el$17;
+            libs.effect(_$p => libs.setProp(_el$18, "text", GetLocalization(`#${cosmeticID()}_Signature`), _$p));
+            return _el$18;
           }
-        }), _el$18);
-        libs.setProp(_el$18, "height", "fill-parent-flow(1)");
-        libs.insert(_el$23, libs.createComponent(libs.Switch, {
+        }), _el$19);
+        libs.setProp(_el$19, "height", "fill-parent-flow(1)");
+        libs.insert(_el$24, libs.createComponent(libs.Switch, {
           get fallback() {
             return (() => {
-              const _el$30 = libs.createElement("Label", {
+              const _el$31 = libs.createElement("Label", {
                 id: "AccessDesc",
                 get text() {
                   return GetLocalization(`#${cosmeticID()}_Access`);
                 }
               }, null);
-              libs.effect(_$p => libs.setProp(_el$30, "text", GetLocalization(`#${cosmeticID()}_Access`), _$p));
-              return _el$30;
+              libs.effect(_$p => libs.setProp(_el$31, "text", GetLocalization(`#${cosmeticID()}_Access`), _$p));
+              return _el$31;
             })();
           },
           get children() {
@@ -937,7 +959,7 @@ function Cosmetic(props) {
                 return accessDisplayMode() === "signature";
               },
               get children() {
-                const _el$24 = libs.createElement("Panel", {
+                const _el$25 = libs.createElement("Panel", {
                     id: "AccessOwnerName"
                   }, null);
                   libs.createElement("DOTAParticleScenePanel", {
@@ -949,28 +971,28 @@ function Cosmetic(props) {
                     hittest: false,
                     squarePixels: true,
                     particleonly: true
-                  }, _el$24);
-                  const _el$26 = libs.createElement("Label", {
+                  }, _el$25);
+                  const _el$27 = libs.createElement("Label", {
                     id: "AccessSignature",
                     get text() {
                       return `${GetLocalization(`#${cosmeticID()}`)}——${Game.GetLocalPlayerInfo()?.player_name ?? ""}`;
                     }
-                  }, _el$24);
-                libs.effect(_$p => libs.setProp(_el$26, "text", `${GetLocalization(`#${cosmeticID()}`)}——${Game.GetLocalPlayerInfo()?.player_name ?? ""}`, _$p));
-                return _el$24;
+                  }, _el$25);
+                libs.effect(_$p => libs.setProp(_el$27, "text", `${GetLocalization(`#${cosmeticID()}`)}——${Game.GetLocalPlayerInfo()?.player_name ?? ""}`, _$p));
+                return _el$25;
               }
             }), libs.createComponent(libs.Match, {
               get when() {
                 return accessDisplayMode() === "weapon";
               },
               get children() {
-                const _el$27 = libs.createElement("Panel", {
+                const _el$28 = libs.createElement("Panel", {
                     id: "WeaponDetailAttributeViewport"
                   }, null),
-                  _el$28 = libs.createElement("Panel", {
+                  _el$29 = libs.createElement("Panel", {
                     id: "WeaponDetailAttributeList"
-                  }, _el$27);
-                libs.insert(_el$28, libs.createComponent(libs.For, {
+                  }, _el$28);
+                libs.insert(_el$29, libs.createComponent(libs.For, {
                   get each() {
                     return weaponSoulRows();
                   },
@@ -978,43 +1000,43 @@ function Cosmetic(props) {
                     const active = libs.createMemo(() => (weaponServiceData().star ?? 0) >= row.star);
                     const currentWeaponStar = () => weaponServiceData().star ?? 0;
                     return (() => {
-                      const _el$31 = libs.createElement("Panel", {
+                      const _el$32 = libs.createElement("Panel", {
                           "class": "AttributeRow"
                         }, null),
-                        _el$32 = libs.createElement("Panel", {
-                          "class": "AttributeRowHeader"
-                        }, _el$31),
                         _el$33 = libs.createElement("Panel", {
-                          "class": "AttributeRowStars"
+                          "class": "AttributeRowHeader"
                         }, _el$32),
-                        _el$34 = libs.createElement("Label", {
+                        _el$34 = libs.createElement("Panel", {
+                          "class": "AttributeRowStars"
+                        }, _el$33),
+                        _el$35 = libs.createElement("Label", {
                           "class": "AttributeRowTitle",
                           get text() {
                             return libs.memo(() => currentWeaponStar() >= row.star)() ? `${row.star}${GetLocalization("#ShowRoom_StarSuffix")}` : `${row.star}${GetLocalization("#ShowRoom_StarNoActivated")}`;
                           }
-                        }, _el$32),
-                        _el$35 = libs.createElement("Label", {
+                        }, _el$33),
+                        _el$36 = libs.createElement("Label", {
                           "class": "AttributeRowDesc",
                           html: true,
                           get text() {
                             return row.desc;
                           }
-                        }, _el$31);
-                      libs.insert(_el$33, libs.createComponent(libs.For, {
+                        }, _el$32);
+                      libs.insert(_el$34, libs.createComponent(libs.For, {
                         get each() {
                           return Array.from({
                             length: row.star
                           });
                         },
                         children: (_, starIndex) => (() => {
-                          const _el$36 = libs.createElement("Panel", {
+                          const _el$37 = libs.createElement("Panel", {
                             "class": "AttributeRowIcon"
                           }, null);
-                          libs.effect(_$p => libs.setProp(_el$36, "classList", {
+                          libs.effect(_$p => libs.setProp(_el$37, "classList", {
                             RowActivated: active(),
                             PartialActivated: !active() && starIndex() < currentWeaponStar()
                           }, _$p));
-                          return _el$36;
+                          return _el$37;
                         })()
                       }));
                       libs.effect(_p$ => {
@@ -1023,20 +1045,20 @@ function Cosmetic(props) {
                           },
                           _v$8 = libs.memo(() => currentWeaponStar() >= row.star)() ? `${row.star}${GetLocalization("#ShowRoom_StarSuffix")}` : `${row.star}${GetLocalization("#ShowRoom_StarNoActivated")}`,
                           _v$9 = row.desc;
-                        _v$7 !== _p$._v$7 && (_p$._v$7 = libs.setProp(_el$31, "classList", _v$7, _p$._v$7));
-                        _v$8 !== _p$._v$8 && (_p$._v$8 = libs.setProp(_el$34, "text", _v$8, _p$._v$8));
-                        _v$9 !== _p$._v$9 && (_p$._v$9 = libs.setProp(_el$35, "text", _v$9, _p$._v$9));
+                        _v$7 !== _p$._v$7 && (_p$._v$7 = libs.setProp(_el$32, "classList", _v$7, _p$._v$7));
+                        _v$8 !== _p$._v$8 && (_p$._v$8 = libs.setProp(_el$35, "text", _v$8, _p$._v$8));
+                        _v$9 !== _p$._v$9 && (_p$._v$9 = libs.setProp(_el$36, "text", _v$9, _p$._v$9));
                         return _p$;
                       }, {
                         _v$7: undefined,
                         _v$8: undefined,
                         _v$9: undefined
                       });
-                      return _el$31;
+                      return _el$32;
                     })();
                   }
                 }));
-                return _el$27;
+                return _el$28;
               }
             })];
           }
@@ -1117,8 +1139,8 @@ function Cosmetic(props) {
           _v$2 !== _p$._v$2 && (_p$._v$2 = libs.setProp(_el$1, "text", _v$2, _p$._v$2));
           _v$3 !== _p$._v$3 && (_p$._v$3 = libs.setProp(_el$10, "class", _v$3, _p$._v$3));
           _v$4 !== _p$._v$4 && (_p$._v$4 = libs.setProp(_el$13, "text", _v$4, _p$._v$4));
-          _v$5 !== _p$._v$5 && (_p$._v$5 = libs.setProp(_el$16, "text", _v$5, _p$._v$5));
-          _v$6 !== _p$._v$6 && (_p$._v$6 = libs.setProp(_el$21, "text", _v$6, _p$._v$6));
+          _v$5 !== _p$._v$5 && (_p$._v$5 = libs.setProp(_el$17, "text", _v$5, _p$._v$5));
+          _v$6 !== _p$._v$6 && (_p$._v$6 = libs.setProp(_el$22, "text", _v$6, _p$._v$6));
           return _p$;
         }, {
           _v$: undefined,
@@ -1171,54 +1193,54 @@ function CosmeticItem(props) {
       return selected();
     },
     get children() {
-      const _el$37 = libs.createElement("Panel", {
+      const _el$38 = libs.createElement("Panel", {
           "class": "CosmeticItem"
         }, null);
         libs.createElement("Image", {
           id: "CosmeticItemBG"
-        }, _el$37);
-        const _el$39 = libs.createElement("Label", {
+        }, _el$38);
+        const _el$40 = libs.createElement("Label", {
           id: "CosmeticItemName",
           get text() {
             return "#" + props.id;
           }
-        }, _el$37);
-      libs.insert(_el$37, libs.createComponent(libs.Show, {
+        }, _el$38);
+      libs.insert(_el$38, libs.createComponent(libs.Show, {
         get when() {
           return useSpecialEffectsImage();
         },
         get fallback() {
           return (() => {
-            const _el$45 = libs.createElement("Image", {
+            const _el$46 = libs.createElement("Image", {
               id: "CosmeticItemImage",
               get src() {
                 return icon();
               },
               scaling: "stretch-to-cover-preserve-aspect"
             }, null);
-            libs.effect(_$p => libs.setProp(_el$45, "src", icon(), _$p));
-            return _el$45;
+            libs.effect(_$p => libs.setProp(_el$46, "src", icon(), _$p));
+            return _el$46;
           })();
         },
         get children() {
-          const _el$40 = libs.createElement("Panel", {
+          const _el$41 = libs.createElement("Panel", {
               id: "SpecialEffectsImagePanel"
             }, null);
             libs.createElement("Image", {
               id: "SpecialEffectsFrame"
-            }, _el$40);
-            const _el$42 = libs.createElement("Image", {
+            }, _el$41);
+            const _el$43 = libs.createElement("Image", {
               id: "CosmeticItemImage",
               get src() {
                 return icon();
               },
               scaling: "stretch-to-cover-preserve-aspect"
-            }, _el$40);
-          libs.effect(_$p => libs.setProp(_el$42, "src", icon(), _$p));
-          return _el$40;
+            }, _el$41);
+          libs.effect(_$p => libs.setProp(_el$43, "src", icon(), _$p));
+          return _el$41;
         }
       }), null);
-      libs.insert(_el$37, libs.createComponent(libs.Switch, {
+      libs.insert(_el$38, libs.createComponent(libs.Switch, {
         get fallback() {
           return libs.createElement("Image", {
             id: "CosmeticLock"
@@ -1244,7 +1266,7 @@ function CosmeticItem(props) {
           });
         }
       }), null);
-      libs.insert(_el$37, libs.createComponent(libs.Show, {
+      libs.insert(_el$38, libs.createComponent(libs.Show, {
         get when() {
           return props.hide == 1;
         },
@@ -1255,7 +1277,7 @@ function CosmeticItem(props) {
           }, null);
         }
       }), null);
-      libs.insert(_el$37, libs.createComponent(libs.Show, {
+      libs.insert(_el$38, libs.createComponent(libs.Show, {
         get when() {
           return isNew();
         },
@@ -1266,8 +1288,8 @@ function CosmeticItem(props) {
           });
         }
       }), null);
-      libs.effect(_$p => libs.setProp(_el$39, "text", "#" + props.id, _$p));
-      return _el$37;
+      libs.effect(_$p => libs.setProp(_el$40, "text", "#" + props.id, _$p));
+      return _el$38;
     }
   });
 }
@@ -1288,25 +1310,25 @@ function WeaponCosmeticItem(props) {
       return selected();
     },
     get children() {
-      const _el$47 = libs.createElement("Panel", {
+      const _el$48 = libs.createElement("Panel", {
           "class": "CosmeticItem"
         }, null);
         libs.createElement("Image", {
           id: "CosmeticItemBG"
-        }, _el$47);
-        const _el$49 = libs.createElement("Label", {
+        }, _el$48);
+        const _el$50 = libs.createElement("Label", {
           id: "CosmeticItemName",
           get text() {
             return "#" + props.weaponID;
           }
-        }, _el$47);
-      libs.insert(_el$47, libs.createComponent(StoreItem.StoreItemImage, {
+        }, _el$48);
+      libs.insert(_el$48, libs.createComponent(StoreItem.StoreItemImage, {
         id: "CosmeticItemImage",
         get itemid() {
           return props.weaponID;
         }
       }), null);
-      libs.insert(_el$47, libs.createComponent(libs.Switch, {
+      libs.insert(_el$48, libs.createComponent(libs.Switch, {
         get fallback() {
           return libs.createElement("Image", {
             id: "CosmeticLock"
@@ -1332,7 +1354,7 @@ function WeaponCosmeticItem(props) {
           });
         }
       }), null);
-      libs.insert(_el$47, libs.createComponent(libs.Show, {
+      libs.insert(_el$48, libs.createComponent(libs.Show, {
         get when() {
           return weapon().in_tool == 1;
         },
@@ -1343,8 +1365,8 @@ function WeaponCosmeticItem(props) {
           }, null);
         }
       }), null);
-      libs.effect(_$p => libs.setProp(_el$49, "text", "#" + props.weaponID, _$p));
-      return _el$47;
+      libs.effect(_$p => libs.setProp(_el$50, "text", "#" + props.weaponID, _$p));
+      return _el$48;
     }
   });
 }

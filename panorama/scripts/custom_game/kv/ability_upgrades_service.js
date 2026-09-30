@@ -137,7 +137,7 @@ GameUI.CustomUIConfig().ability_upgrades_service = {
 		"Note": "武器效果 投掷飞镖有%double_cast_prob%%概率触发双重施法",
 		"ability_name": "vespera_1",
 		"AbilityValues": {
-			"double_cast_prob": "10 20 30 40 50 60"
+			"double_cast_prob": "12 24 36 48 60 72"
 		}
 	},
 	"vespera_2_upgrade_a": {
@@ -426,7 +426,7 @@ GameUI.CustomUIConfig().ability_upgrades_service = {
 		"Note": "武器效果 每移动%auto_cast1_move_dist%距离，自动朝前方释放一次特技，造成%auto_damage_pct%%伤害",
 		"ability_name": "vexis_1",
 		"AbilityValues": {
-			"auto_cast1_move_dist": 800,
+			"auto_cast1_move_dist": 1600,
 			"auto_damage_pct": "20 40 60 80 100 120"
 		}
 	},
@@ -747,6 +747,14 @@ GameUI.CustomUIConfig().ability_upgrades_service = {
 			"fire_ball_damage_boost": "10 15 20 25 30 35"
 		}
 	},
+	"solthra_1_upgrade_wp44": {
+		"Note": "武器效果 释放绝招后5秒内使火球术飞行速度和伤害提高",
+		"ability_name": "solthra_1",
+		"AbilityValues": {
+			"ball_speed_and_damage": "10 20 30 40 50 60",
+			"ball_boost_duration": 5
+		}
+	},
 	"solthra_2_upgrade_1": {
 		"Note": "火焰冲刺伤害",
 		"ability_name": "solthra_2",
@@ -1058,11 +1066,11 @@ GameUI.CustomUIConfig().ability_upgrades_service = {
 		}
 	},
 	"seraphon_1_upgrade_wp45": {
-		"Note": "武器效果 天槌圣槌坠地时将%pull_radius%范围内所有敌人吸附到圣槌附近并施加孱弱，使敌人受到的所有伤害提高%hurt_damage_pct%",
+		"Note": "武器效果 天槌圣槌坠地时将%tug_range%范围内所有敌人吸附到圣槌附件并施加孱弱，使敌人受到的所有伤害提高%hurt_damage_pct%",
 		"ability_name": "seraphon_1",
 		"AbilityValues": {
-			"pull_radius": 900,
-			"hurt_damage_pct": "8 15 22 30 40 50",
+			"pull_radius": 800,
+			"hurt_damage_pct": "8 16 24 32 40 48",
 			"weakness_duration": 4
 		}
 	},

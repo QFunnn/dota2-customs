@@ -158,11 +158,12 @@ GameUI.CustomUIConfig().activity_data = {
 	"902": {
 		activity_id: 902,
 		type: 9,
-		start_time: 1790524800,
-		end_time: 1791734400,
-		data_end_time: 1,
+		start_time: 1790578685,
+		end_time: 1792393200,
+		data_end_time: 1792393200,
 		combine_tag: "23",
-		template: "国庆累充"
+		template: "国庆累充",
+		tokens: "190007|110026"
 	},
 	"1001": {
 		activity_id: 1001,
@@ -180,9 +181,9 @@ GameUI.CustomUIConfig().activity_data = {
 	"1002": {
 		activity_id: 1002,
 		type: 10,
-		start_time: 0,
-		end_time: 1784476800,
-		data_end_time: 1784476800,
+		start_time: 1790611200,
+		end_time: 1793289600,
+		data_end_time: 1793289600,
 		sort: 24,
 		name: "mining",
 		template: "mining",
@@ -191,9 +192,9 @@ GameUI.CustomUIConfig().activity_data = {
 	"1101": {
 		activity_id: 1101,
 		type: 11,
-		start_time: 1790524800,
-		end_time: 1791734400,
-		data_end_time: 1,
+		start_time: 1790578685,
+		end_time: 1792393200,
+		data_end_time: 1792393200,
 		combine_tag: "25",
 		in_tool: NaN,
 		name: "moonstone_draw",

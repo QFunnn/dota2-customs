@@ -80,7 +80,7 @@ function GetSimplifyGems(playerID = Game.GetLocalPlayerID()) {
   });
 }
 function EquipAttributeRound(id, value) {
-  const ratio = CustomUIConfig.EntryRatio[id];
+  const ratio = CustomUIConfig.EntryRatio?.[id];
   return Round(value, ratio ?? 1);
 }
 function ParseEquipment(serialized, copyData) {
@@ -230,9 +230,9 @@ function GemHasStates(gem, showTips) {
 function GetChaosRowInfo(data) {
   const id = data.id;
   const kv = KeyValues.equip_entry[id];
-  const attribute = Localize("#property_" + id);
+  const attribute = GetLocalization("#property_" + id);
   const isPercent = attribute.startsWith("%");
-  const decimal = kv?.ratio ?? CustomUIConfig.EntryRatio[id] ?? 1;
+  const decimal = kv?.ratio ?? CustomUIConfig.EntryRatio?.[id] ?? 1;
   let attrName = attribute.replace("%", "");
   let valueText = Round(data.value, decimal).toString();
   if (isPercent) {

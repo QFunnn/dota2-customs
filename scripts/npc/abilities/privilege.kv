@@ -1866,6 +1866,7 @@
 	"privilege_weapon_041"
 	{
 		"Note"									"每局游戏前%count%次获得属性书额外提升%skill_damage%%特技伤害"
+		"CombatPowerFactor"						"0.006"
 		"IsNoScript"							""
 		"IsGlobal"								"0"
 		"IsStackable"							"0"
@@ -1877,7 +1878,8 @@
 	}
 	"privilege_weapon_042"
 	{
-		"Note"									"任何途径触发的投掷飞镖有%double_cast_prob%%概率触发双重施法，连续释放2次投掷飞镖"
+		"Note"									"任何途径触发的投掷飞镖有%double_cast_prob%%概率额外投掷一次，两轮投掷只视为1次施法"
+		"CombatPowerFactor"						"0.006"
 		"IsNoScript"							""
 		"IsGlobal"								"0"
 		"IsStackable"							"0"
@@ -1888,7 +1890,8 @@
 	}
 	"privilege_weapon_043"
 	{
-		"Note"									"每移动%auto_cast1_move_dist%距离，自动朝前方释放一次特技，造成%auto_damage_pct%%伤害"
+		"Note"									"每移动%auto_cast1_move_dist%距离，自动释放一次%auto_damage_pct%%伤害的特技"
+		"CombatPowerFactor"						"0.006"
 		"IsNoScript"							""
 		"IsGlobal"								"0"
 		"IsStackable"							"0"
@@ -1899,18 +1902,20 @@
 	}
 	"privilege_weapon_044"
 	{
-		"Note"									"烈火罩期间造成的魔法伤害倍增%attr_magic_damage_pct%%"
+		"Note"									"释放绝招后5秒内使火球术飞行速度和伤害提高%ball_speed_and_damage%%"
+		"CombatPowerFactor"						"0.006"
 		"IsNoScript"							""
 		"IsGlobal"								"0"
 		"IsStackable"							"0"
 		"AbilityValues"
 		{
-			"desc_key"							"solthra_3_upgrade_wp44"
+			"desc_key"							"solthra_1_upgrade_wp44"
 		}
 	}
 	"privilege_weapon_045"
 	{
-		"Note"									"天槌圣槌坠地时将%pull_radius%范围内所有敌人吸附到圣槌附件并施加孱弱，使敌人受到的所有伤害提高%hurt_damage_pct%"
+		"Note"									"天槌投掷将%pull_radius%范围内敌人吸附到一起并施加孱弱，使其受到的所有伤害提高%hurt_damage_pct%%"
+		"CombatPowerFactor"						"0.006"
 		"IsNoScript"							""
 		"IsGlobal"								"0"
 		"IsStackable"							"0"
@@ -1922,6 +1927,7 @@
 	"privilege_weapon_046"
 	{
 		"Note"									"每经过一个非遭遇战房间，提升%ability_damage_pct%%技能伤害，每局游戏最多触发%trig_count_max%次"
+		"CombatPowerFactor"						"0.003"
 		"IsNoScript"							""
 		"IsGlobal"								"0"
 		"IsStackable"							"0"
@@ -1933,19 +1939,21 @@
 	}
 	"privilege_weapon_047"
 	{
-		"Note"									"每经过一个非遭遇战房间，提升%attack_damage_pct%%特技伤害，每局游戏最多触发%trig_count_max%次"
+		"Note"									"每经过一个非遭遇战房间，提升%skill_damage_amplify%%特技伤害，每局游戏最多触发%trig_count_max%次"
+		"CombatPowerFactor"						"0.003"
 		"IsNoScript"							""
 		"IsGlobal"								"0"
 		"IsStackable"							"0"
 		"AbilityValues"
 		{
-			"attack_damage_pct"					"10"
+			"skill_damage_amplify"				"10"
 			"trig_count_max"					"6"
 		}
 	}
 	"privilege_weapon_048"
 	{
 		"Note"									"每经过一个非遭遇战房间，获得%extra_gold%金币，每局游戏最多触发%trig_count_max%次"
+		"CombatPowerFactor"						"0.003"
 		"IsNoScript"							""
 		"IsGlobal"								"0"
 		"IsStackable"							"0"
@@ -1958,6 +1966,7 @@
 	"privilege_weapon_049"
 	{
 		"Note"									"每经过一个非遭遇战房间，提升%hp_pct%%最大生命，每局游戏最多触发%trig_count_max%次"
+		"CombatPowerFactor"						"0.003"
 		"IsNoScript"							""
 		"IsGlobal"								"0"
 		"IsStackable"							"0"
@@ -2271,12 +2280,65 @@
 	"privilege_bless_029"
 	{
 		"Note"									"每局游戏前%count%次属性书获得双倍效果（包括额外属性）"
+		"CombatPowerFactor"						"0.003"
 		"IsNoScript"							""
 		"IsGlobal"								"0"
 		"IsStackable"							"0"
 		"AbilityValues"
 		{
 			"count"								"6"
+		}
+	}
+	"privilege_bless_030"
+	{
+		"Note"									"每拥有一个【御风】祝福+%damage_per_bless%%物理伤害和魔法伤害"
+		"CombatPowerFactor"						"0.003"
+		"IsNoScript"							""
+		"IsGlobal"								"0"
+		"IsStackable"							"0"
+		"AbilityValues"
+		{
+			"damage_per_bless"					"2"
+		}
+	}
+	"privilege_bless_031"
+	{
+		"Note"									"选择可升级的技能天赋时，直接获得其满级效果"
+		"CombatPowerFactor"						"0.003"
+		"IsNoScript"							""
+		"IsGlobal"								"0"
+		"IsStackable"							"0"
+	}
+	"privilege_bless_032"
+	{
+		"Note"									"对宝石遗迹副本怪物造成伤害提升%damage_pct%%[x]"
+		"CombatPowerFactor"						"0.003"
+		"IsNoScript"							""
+		"IsGlobal"								"0"
+		"IsStackable"							"0"
+		"AbilityValues"
+		{
+			"damage_pct"						"15"
+		}
+	}
+	"privilege_bless_033"
+	{
+		"Note"									"存档宝石合成时可选择锁定一个混沌词条，使其必定保留"
+		"CombatPowerFactor"						"0.003"
+		"IsNoScript"							"1"
+		"IsGlobal"								"0"
+		"IsStackable"							"0"
+	}
+	"privilege_bless_034"
+	{
+		"Note"									"进入地牢时当前每有1点钥匙强度，则使自身造成的所有伤害+%damage_per_intensity%%[x]"
+		"CombatPowerFactor"						"0.003"
+		"IsNoScript"							""
+		"IsGlobal"								"0"
+		"IsStackable"							"0"
+		"AbilityValues"
+		{
+			"damage_per_intensity"				"0.5"
 		}
 	}
 	"privilege_treasure_001"

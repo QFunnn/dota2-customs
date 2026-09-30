@@ -20,14 +20,15 @@ const MenuTabButton = props => {
   const merged = libs.mergeProps(props, {
     class: "MenuTabButton"
   });
-  const [local, others] = libs.splitProps(merged, ['name', 'selected', 'locked', 'clickCallback', "icon", "num"]);
+  const [local, others] = libs.splitProps(merged, ['name', 'selected', 'locked', 'clickCallback', "icon", "num", "twoLine"]);
   return libs.createComponent(EOM_Button.EOM_BaseButton, libs.mergeProps$1({
     get id() {
       return local.name;
     },
     get classList() {
       return {
-        Selected: local.selected
+        Selected: local.selected,
+        TwoLine: local.twoLine === true
       };
     },
     get onactivate() {
@@ -37,44 +38,51 @@ const MenuTabButton = props => {
     get children() {
       const _el$ = libs.createElement("Panel", {
           align: "center center",
-          flowChildren: "right",
+          get flowChildren() {
+            return local.twoLine === true ? "down" : "right";
+          },
           "class": "MenuTabButtonContent"
         }, null),
-        _el$3 = libs.createElement("Label", {
+        _el$2 = libs.createElement("Panel", {
+          "class": "MenuTabButtonTop",
+          flowChildren: "right"
+        }, _el$),
+        _el$4 = libs.createElement("Label", {
           id: "MenuTabButtonLabel",
           get text() {
-            return "#MenuTabButton_" + local.name;
+            return GetLocalization("#MenuTabButton_" + local.name);
           }
-        }, _el$);
+        }, _el$2);
       libs.setProp(_el$, "align", "center center");
-      libs.setProp(_el$, "flowChildren", "right");
-      libs.insert(_el$, libs.createComponent(libs.Show, {
+      libs.setProp(_el$2, "flowChildren", "right");
+      libs.insert(_el$2, libs.createComponent(libs.Show, {
         get when() {
           return local.icon;
         },
         get children() {
-          const _el$2 = libs.createElement("Image", {
+          const _el$3 = libs.createElement("Image", {
+            "class": "MenuTabButtonIcon",
             get src() {
               return getSrcPath("conv/icon/" + local.icon + ".png");
             }
           }, null);
-          libs.effect(_$p => libs.setProp(_el$2, "src", getSrcPath("conv/icon/" + local.icon + ".png"), _$p));
-          return _el$2;
+          libs.effect(_$p => libs.setProp(_el$3, "src", getSrcPath("conv/icon/" + local.icon + ".png"), _$p));
+          return _el$3;
         }
-      }), _el$3);
+      }), _el$4);
       libs.insert(_el$, libs.createComponent(libs.Show, {
         get when() {
-          return (local.num ?? 0) > 0;
+          return local.num != undefined;
         },
         get children() {
-          const _el$4 = libs.createElement("Label", {
+          const _el$5 = libs.createElement("Label", {
             "class": "MenuTabButtonNum",
             get text() {
               return `${String(local.num)}/${EQUIP_MAX_COUNT}`;
             }
           }, null);
-          libs.effect(_$p => libs.setProp(_el$4, "text", `${String(local.num)}/${EQUIP_MAX_COUNT}`, _$p));
-          return _el$4;
+          libs.effect(_$p => libs.setProp(_el$5, "text", `${String(local.num)}/${EQUIP_MAX_COUNT}`, _$p));
+          return _el$5;
         }
       }), null);
       libs.insert(_el$, libs.createComponent(libs.Show, {
@@ -87,7 +95,16 @@ const MenuTabButton = props => {
           }, null);
         }
       }), null);
-      libs.effect(_$p => libs.setProp(_el$3, "text", "#MenuTabButton_" + local.name, _$p));
+      libs.effect(_p$ => {
+        const _v$ = local.twoLine === true ? "down" : "right",
+          _v$2 = GetLocalization("#MenuTabButton_" + local.name);
+        _v$ !== _p$._v$ && (_p$._v$ = libs.setProp(_el$, "flowChildren", _v$, _p$._v$));
+        _v$2 !== _p$._v$2 && (_p$._v$2 = libs.setProp(_el$4, "text", _v$2, _p$._v$2));
+        return _p$;
+      }, {
+        _v$: undefined,
+        _v$2: undefined
+      });
       return _el$;
     }
   }));
@@ -95,24 +112,24 @@ const MenuTabButton = props => {
 const EquipmentCommonBtn = props => {
   const [local, others] = libs.splitProps(props, ["children", "class"]);
   return (() => {
-    const _el$6 = libs.createElement("TextButton", libs.mergeProps$1(others, {
+    const _el$7 = libs.createElement("TextButton", libs.mergeProps$1(others, {
       get ["class"]() {
         return libs.classNames("EquipmentCommonBtn SecondaryButtonStates", local.class);
       }
     }), null);
-    libs.spread(_el$6, libs.mergeProps$1(others, {
+    libs.spread(_el$7, libs.mergeProps$1(others, {
       get ["class"]() {
         return libs.classNames("EquipmentCommonBtn SecondaryButtonStates", local.class);
       }
     }), true);
-    libs.insert(_el$6, () => local.children);
-    return _el$6;
+    libs.insert(_el$7, () => local.children);
+    return _el$7;
   })();
 };
 const EquipSeparator = props => {
   const [local, other] = libs.splitProps(props, ["text", "class"]);
   return (() => {
-    const _el$7 = libs.createElement("Panel", libs.mergeProps$1(other, {
+    const _el$8 = libs.createElement("Panel", libs.mergeProps$1(other, {
         get ["class"]() {
           return libs.classNames("EquipSeparator", local.class);
         }
@@ -120,36 +137,36 @@ const EquipSeparator = props => {
       libs.createElement("Panel", {
         id: "Line1",
         "class": "Line"
-      }, _el$7);
-      const _el$9 = libs.createElement("Label", {
+      }, _el$8);
+      const _el$0 = libs.createElement("Label", {
         get text() {
           return props.text;
         }
-      }, _el$7);
+      }, _el$8);
       libs.createElement("Panel", {
         id: "Line2",
         "class": "Line"
-      }, _el$7);
-    libs.spread(_el$7, libs.mergeProps$1(other, {
+      }, _el$8);
+    libs.spread(_el$8, libs.mergeProps$1(other, {
       get ["class"]() {
         return libs.classNames("EquipSeparator", local.class);
       }
     }), true);
-    libs.effect(_$p => libs.setProp(_el$9, "text", props.text, _$p));
-    return _el$7;
+    libs.effect(_$p => libs.setProp(_el$0, "text", props.text, _$p));
+    return _el$8;
   })();
 };
 const AttrContainer = props => {
   return (() => {
-    const _el$15 = libs.createElement("Panel", {
+    const _el$16 = libs.createElement("Panel", {
         "class": "AttrBox VerticalScrollStyle"
       }, null),
-      _el$16 = libs.createElement("Panel", {
+      _el$17 = libs.createElement("Panel", {
         "class": "AttrContainer",
         hittest: false
-      }, _el$15);
-    libs.insert(_el$16, () => libs.untrack(() => props.children));
-    return _el$15;
+      }, _el$16);
+    libs.insert(_el$17, () => libs.untrack(() => props.children));
+    return _el$16;
   })();
 };
 function AttrItem(props) {
@@ -167,7 +184,7 @@ function AttrItem(props) {
     return typeof local.changeValue == "string" ? local.changeValue : `${equipment_utils.EquipAttributeRound(local.attrData.id, local.changeValue)}${isPercent() ? "%" : ""}`;
   };
   return (() => {
-    const _el$17 = libs.createElement("Panel", {
+    const _el$18 = libs.createElement("Panel", {
         get ["class"]() {
           return libs.classNames({
             ValueIsChange: valueISChange(),
@@ -177,33 +194,33 @@ function AttrItem(props) {
       }, null);
       libs.createElement("Panel", {
         "class": "NewBorder"
-      }, _el$17);
-      const _el$19 = libs.createElement("Panel", {
+      }, _el$18);
+      const _el$20 = libs.createElement("Panel", {
         verticalAlign: "center",
         flowChildren: "right"
-      }, _el$17),
-      _el$20 = libs.createElement("Panel", {
+      }, _el$18),
+      _el$21 = libs.createElement("Panel", {
         id: "Point"
-      }, _el$19),
-      _el$21 = libs.createElement("Label", {
+      }, _el$20),
+      _el$22 = libs.createElement("Label", {
         id: "AttributeName",
         get text() {
           return displayName();
         },
         html: true
-      }, _el$19);
+      }, _el$20);
       libs.createElement("Panel", {
         "class": "NewTag"
-      }, _el$19);
-    libs.setProp(_el$17, "onactivate", () => {
+      }, _el$20);
+    libs.setProp(_el$18, "onactivate", () => {
       local?.onAttrbuteClick?.(local.type, local.index);
     });
-    libs.setProp(_el$19, "verticalAlign", "center");
-    libs.setProp(_el$19, "style", {
+    libs.setProp(_el$20, "verticalAlign", "center");
+    libs.setProp(_el$20, "style", {
       overflow: "noclip"
     });
-    libs.setProp(_el$19, "flowChildren", "right");
-    libs.insert(_el$19, libs.createComponent(libs.Show, {
+    libs.setProp(_el$20, "flowChildren", "right");
+    libs.insert(_el$20, libs.createComponent(libs.Show, {
       get when() {
         return local.onAttrbuteClick;
       },
@@ -214,24 +231,24 @@ function AttrItem(props) {
           }
         });
       }
-    }), _el$20);
-    libs.insert(_el$19, () => libs.untrack(() => local.children), null);
-    libs.insert(_el$17, libs.createComponent(libs.Show, {
+    }), _el$21);
+    libs.insert(_el$20, () => libs.untrack(() => local.children), null);
+    libs.insert(_el$18, libs.createComponent(libs.Show, {
       get when() {
         return !isPrivilege();
       },
       get children() {
-        const _el$23 = libs.createElement("Label", {
+        const _el$24 = libs.createElement("Label", {
           id: "AttributeValue",
           get text() {
             return equipment_utils.EquipAttributeRound(local.attrData.id, local.attrData.value) + (isPercent() ? "%" : "");
           }
         }, null);
-        libs.effect(_$p => libs.setProp(_el$23, "text", equipment_utils.EquipAttributeRound(local.attrData.id, local.attrData.value) + (isPercent() ? "%" : ""), _$p));
-        return _el$23;
+        libs.effect(_$p => libs.setProp(_el$24, "text", equipment_utils.EquipAttributeRound(local.attrData.id, local.attrData.value) + (isPercent() ? "%" : ""), _$p));
+        return _el$24;
       }
     }), null);
-    libs.insert(_el$17, libs.createComponent(libs.Show, {
+    libs.insert(_el$18, libs.createComponent(libs.Show, {
       get when() {
         return valueISChange();
       },
@@ -240,32 +257,32 @@ function AttrItem(props) {
           id: "ValueChangeArrow",
           "class": "EquipArrow"
         }, null), (() => {
-          const _el$25 = libs.createElement("Label", {
+          const _el$26 = libs.createElement("Label", {
             id: "Next",
             "class": "Green",
             get text() {
               return ShowNext();
             }
           }, null);
-          libs.effect(_$p => libs.setProp(_el$25, "text", ShowNext(), _$p));
-          return _el$25;
+          libs.effect(_$p => libs.setProp(_el$26, "text", ShowNext(), _$p));
+          return _el$26;
         })()];
       }
     }), null);
     libs.effect(_p$ => {
-      const _v$3 = libs.classNames({
+      const _v$5 = libs.classNames({
           ValueIsChange: valueISChange(),
           New: local.isNew
         }, "AttrItem " + local.type),
-        _v$4 = displayName();
-      _v$3 !== _p$._v$3 && (_p$._v$3 = libs.setProp(_el$17, "class", _v$3, _p$._v$3));
-      _v$4 !== _p$._v$4 && (_p$._v$4 = libs.setProp(_el$21, "text", _v$4, _p$._v$4));
+        _v$6 = displayName();
+      _v$5 !== _p$._v$5 && (_p$._v$5 = libs.setProp(_el$18, "class", _v$5, _p$._v$5));
+      _v$6 !== _p$._v$6 && (_p$._v$6 = libs.setProp(_el$22, "text", _v$6, _p$._v$6));
       return _p$;
     }, {
-      _v$3: undefined,
-      _v$4: undefined
+      _v$5: undefined,
+      _v$6: undefined
     });
-    return _el$17;
+    return _el$18;
   })();
 }
 const AttributeSelectBtn = props => {
@@ -274,18 +291,18 @@ const AttributeSelectBtn = props => {
   }, props);
   const [local, others] = libs.splitProps(merged, ["selected", "class"]);
   return (() => {
-    const _el$26 = libs.createElement("Panel", others, null);
+    const _el$27 = libs.createElement("Panel", others, null);
       libs.createElement("Panel", {
         id: "mid"
-      }, _el$26);
-    libs.spread(_el$26, libs.mergeProps$1(others, {
+      }, _el$27);
+    libs.spread(_el$27, libs.mergeProps$1(others, {
       get className() {
         return libs.classNames("AttributeSelectBtn", {
           Selected: local.selected
         }, local.class);
       }
     }), true);
-    return _el$26;
+    return _el$27;
   })();
 };
 function createEquipDetailSignal(id_signal) {

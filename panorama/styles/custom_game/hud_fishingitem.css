@@ -4846,7 +4846,7 @@
 
 .MenuTabButton
 {
-	width: 238px;
+	width: fill-parent-flow(1);
 	height: 42px;
 	background-image: url("s2r://panorama/images/custom_game/e1_equipment/e1_btn_table_0_png.vtex");
 	margin: 0px 2px;
@@ -4885,6 +4885,12 @@
 	wash-color: #686868;
 }
 
+.MenuTabButton .MenuTabButtonIcon
+{
+	width: 64px;
+	height: 64px;
+}
+
 .MenuTabButton #MenuTabButtonLabel
 {
 	margin-top: 1px;
@@ -4916,6 +4922,35 @@
 	background-repeat: no-repeat;
 	background-position: center center;
 	wash-color: white;
+}
+
+.MenuTabButton.TwoLine
+{
+	height: 54px;
+}
+
+.MenuTabButton.TwoLine .MenuTabButtonContent
+{
+	width: 100%;
+	padding: 0px 8px;
+}
+
+.MenuTabButton.TwoLine .MenuTabButtonTop
+{
+	horizontal-align: center;
+}
+
+.MenuTabButton.TwoLine #MenuTabButtonLabel
+{
+	font-size: 20px;
+}
+
+.MenuTabButton.TwoLine .MenuTabButtonNum
+{
+	margin-left: 0px;
+	margin-top: 0px;
+	font-size: 14px;
+	horizontal-align: center;
 }
 
 .EquipmentCommonBtn

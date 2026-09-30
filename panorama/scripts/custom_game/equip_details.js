@@ -993,7 +993,7 @@ function GetAttrRowInfo(data, attributNameColor = "#BFAA82", showAttributeRange 
   const kv = KeyValues.equip_entry[id];
   const info = attribute_formatter.formatAttributeDisplay(data, {
     config: {
-      ratio: kv?.ratio ?? CustomUIConfig.EntryRatio[id] ?? 1,
+      ratio: kv?.ratio ?? CustomUIConfig.EntryRatio?.[id] ?? 1,
       value_min: kv?.value_min,
       value_max: kv?.value_max
     },

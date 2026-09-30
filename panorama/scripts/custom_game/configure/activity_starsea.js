@@ -1287,7 +1287,7 @@ GameUI.CustomUIConfig().activity_starsea = {
 			reward_id: 11,
 			product_id: 0,
 			rewards: {
-				"1710008": 1
+				"1710010": 1
 			},
 			rarity: 4,
 			show: 1
@@ -1441,7 +1441,7 @@ GameUI.CustomUIConfig().activity_starsea = {
 			reward_id: 25,
 			product_id: 0,
 			rewards: {
-				"310539": 1
+				"310541": 1
 			},
 			rarity: 5,
 			show: 1
