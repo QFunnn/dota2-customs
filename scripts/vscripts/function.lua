@@ -2839,18 +2839,40 @@ function CDOTA_BaseNPC:EndNoDraw(mod)
 	end
 end
 
-DoCleaveAttack_old = DoCleaveAttack
-function DoCleaveAttack(attacker, target, ability, damage, start_width, end_width, cleave_radius, effect, more_targets)
+function DoCleaveAttack(
+	attacker,
+	target,
+	ability,
+	damage,
+	start_width,
+	end_width,
+	cleave_radius,
+	effect,
+	sound,
+	more_targets
+)
 	local caster_pos = attacker:GetAbsOrigin()
-	local target_pos = target:GetAbsOrigin()
-
-	local direction = (target_pos - caster_pos)
+	local direction = target:GetAbsOrigin() - caster_pos
 	direction.z = 0
 
-	local length = direction:Length2D()
+	if direction:Length2D() == 0 then
+		direction = attacker:GetForwardVector()
+		direction.z = 0
+	end
+
 	direction = direction:Normalized()
 
-	DoCleaveAttack_old(attacker, target, ability, 0, start_width, end_width, cleave_radius - length, effect)
+	local particle = nil
+
+	if effect and effect ~= "" then
+		particle = ParticleManager:CreateParticle(effect, PATTACH_WORLDORIGIN, nil)
+		ParticleManager:SetParticleControl(particle, 0, caster_pos)
+		ParticleManager:SetParticleControlForward(particle, 0, direction)
+	end
+
+	if sound then
+		target:EmitSound(sound)
+	end
 
 	local damageTable = {
 		damage_type = DAMAGE_TYPE_PHYSICAL,
@@ -2860,41 +2882,43 @@ function DoCleaveAttack(attacker, target, ability, damage, start_width, end_widt
 		damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION,
 	}
 	local targets = {}
-	local hit = {}
+	local hit = { [target] = true }
+	local forced = {}
+	local units = attacker:FindTargets(cleave_radius)
 
-	for _, unit in pairs(attacker:FindTargets(cleave_radius)) do
-		if unit ~= target then
-			local unit_pos = unit:GetAbsOrigin()
-			local v_to_unit = unit_pos - caster_pos
-			v_to_unit.z = 0
+	for _, unit in pairs(more_targets or {}) do
+		forced[unit] = true
+		table.insert(units, unit)
+	end
 
-			local dist_along_cone = v_to_unit:Dot(direction)
+	for _, unit in pairs(units) do
+		local v_to_unit = unit:GetAbsOrigin() - caster_pos
+		v_to_unit.z = 0
 
-			if dist_along_cone > 0 and dist_along_cone <= cleave_radius then
-				local progress = dist_along_cone / cleave_radius
-				local current_max_width = (start_width + (end_width - start_width) * progress)
+		local dist_along_cone = v_to_unit:Dot(direction)
+		local width = start_width + (end_width - start_width) * dist_along_cone / cleave_radius
+		local in_cone = dist_along_cone > 0
+			and dist_along_cone <= cleave_radius
+			and (v_to_unit - direction * dist_along_cone):Length2D() <= width
 
-				local ortho_dist = (v_to_unit - direction * dist_along_cone):Length2D()
+		if not hit[unit] and (forced[unit] or in_cone) then
+			hit[unit] = true
+			damageTable.victim = unit
+			DoDamage(damageTable)
+			table.insert(targets, unit)
 
-				if ortho_dist <= current_max_width then
-					damageTable.victim = unit
-					DoDamage(damageTable)
-					hit[unit] = true
-					table.insert(targets, unit)
-				end
+			if sound then
+				unit:EmitSound(sound)
+			end
+			if particle and #targets <= 16 then
+				ParticleManager:SetParticleControl(particle, #targets + 1, unit:GetAbsOrigin() + Vector(0, 0, 80))
 			end
 		end
 	end
 
-	if more_targets then
-		for _, unit in pairs(more_targets) do
-			if unit ~= target and not hit[unit] then
-				damageTable.victim = unit
-				DoDamage(damageTable)
-				hit[unit] = true
-				table.insert(targets, unit)
-			end
-		end
+	if particle then
+		ParticleManager:SetParticleControl(particle, 1, Vector(0, 0, math.min(#targets, 16)))
+		ParticleManager:ReleaseParticleIndex(particle)
 	end
 
 	return targets

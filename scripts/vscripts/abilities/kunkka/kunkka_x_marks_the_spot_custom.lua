@@ -44,6 +44,11 @@ LinkLuaModifier(
 	LUA_MODIFIER_MOTION_NONE
 )
 LinkLuaModifier(
+	"modifier_kunkka_xmark_custom_spell_attack",
+	"abilities/kunkka/kunkka_x_marks_the_spot_custom",
+	LUA_MODIFIER_MOTION_NONE
+)
+LinkLuaModifier(
 	"modifier_kunkka_xmark_custom_chest_move",
 	"abilities/kunkka/kunkka_x_marks_the_spot_custom",
 	LUA_MODIFIER_MOTION_NONE
@@ -164,10 +169,12 @@ function kunkka_x_marks_the_spot_custom:UpdateTalents(name)
 
 			has_s9 = 0,
 			s9_damage = caster:GetTalentValue("modifier_kunkka_shop_9", "damage", true),
+			s9_attacks = caster:GetTalentValue("modifier_kunkka_shop_9", "attacks", true),
+			s9_interval = caster:GetTalentValue("modifier_kunkka_shop_9", "interval", true),
 			s9_delay = caster:GetTalentValue("modifier_kunkka_shop_9", "delay", true) / 100,
 
 			has_s10 = 0,
-			s10_max = caster:GetTalentValue("modifier_kunkka_shop_10", "max", true),
+			s10_chest = caster:GetTalentValue("modifier_kunkka_shop_10", "chest", true),
 			s10_gold = caster:GetTalentValue("modifier_kunkka_shop_10", "gold", true) / 100,
 			s10_move = caster:GetTalentValue("modifier_kunkka_shop_10", "move", true),
 			s10_shield = caster:GetTalentValue("modifier_kunkka_shop_10", "shield", true) / 100,
@@ -548,24 +555,7 @@ function kunkka_x_marks_the_spot_custom:SpellAttack(target)
 		return
 	end
 
-	local effect =
-		ParticleManager:CreateParticle("particles/kunkka/xmark_proc.vpcf", PATTACH_CUSTOMORIGIN_FOLLOW, target)
-	ParticleManager:SetParticleControlEnt(
-		effect,
-		0,
-		target,
-		PATTACH_POINT_FOLLOW,
-		"attach_hitloc",
-		target:GetOrigin(),
-		true
-	)
-	ParticleManager:ReleaseParticleIndex(effect)
-
-	self.caster.kunkka_s9 = true
-	self.caster:PerformAttack(target, true, true, true, true, false, false, true, { damage = "kunkka_s9" })
-	self.caster.kunkka_s9 = false
-
-	self:ProcEffects(target, false, false)
+	target:AddNewModifier(self.caster, self, "modifier_kunkka_xmark_custom_spell_attack", {})
 end
 
 function kunkka_x_marks_the_spot_custom:ApplyShield()
@@ -1045,7 +1035,6 @@ function modifier_kunkka_xmark_custom_tracker:LegendaryInit()
 
 	self.legendary_init = true
 	self.player_id = self.parent:GetId()
-	self.max_treasure = self.ability.talents.e7_max_chest
 	self.chest_timer = self.ability.talents.e7_chest_timer
 
 	self.parent:AddDeathEvent(self, true)
@@ -1162,7 +1151,7 @@ function modifier_kunkka_xmark_custom_tracker:ShopBuy(name)
 	self:ShopGold(-cost)
 end
 
-function modifier_kunkka_xmark_custom_tracker:UpdateTreasure(check_chest)
+function modifier_kunkka_xmark_custom_tracker:UpdateTreasure()
 	if not IsServer() then
 		return
 	end
@@ -1172,7 +1161,6 @@ function modifier_kunkka_xmark_custom_tracker:UpdateTreasure(check_chest)
 	end
 
 	local count = 0
-	local spawn_count = 0
 
 	for treasure, _ in pairs(self.current_treasure) do
 		if IsValid(treasure) then
@@ -1180,23 +1168,20 @@ function modifier_kunkka_xmark_custom_tracker:UpdateTreasure(check_chest)
 		end
 	end
 
-	if check_chest then
-		if count > 0 then
-			return
-		end
-		spawn_count = 1
-	else
-		if count >= self.max_treasure then
-			return
-		end
-		spawn_count = self.max_treasure - count
-	end
+	local max = self.ability.talents.e7_max_chest
+		+ (self.ability.talents.has_s10 == 1 and self.ability.talents.s10_chest or 0)
 
-	for i = 1, spawn_count do
+	for i = 1, max - count do
 		local point
+		local attempts = 0
 		repeat
 			point = Vector(RandomInt(-6600, 6600), RandomInt(-6600, 6600), 215)
-		until self:IsValidPoint(point)
+			attempts = attempts + 1
+		until self:IsValidPoint(point) or attempts >= 100
+
+		if not self:IsValidPoint(point) then
+			return
+		end
 
 		local unit = CreateUnitByName("npc_kunkka_bounty_custom", point, true, nil, nil, DOTA_TEAM_NEUTRALS)
 		FindClearSpaceForUnit(unit, point, false)
@@ -1280,6 +1265,13 @@ function modifier_kunkka_xmark_custom_tracker:UpdateUI()
 	end
 
 	if not closest_treasure then
+		local timer = self.chest_timer
+			- (GameRules:GetDOTATime(false, false) - self.parent.cd_manager["kunkka_chest_timer"])
+		CustomGameEventManager:Send_ServerToPlayer(
+			PlayerResource:GetPlayer(self.player_id),
+			"UpdateKunkkaPanel",
+			{ empty = 1, timer = math.max(0, timer) }
+		)
 		return
 	end
 
@@ -1584,7 +1576,6 @@ function modifier_kunkka_xmark_custom_treasure:OnDestroy()
 	ParticleManager:ReleaseParticleIndex(part)
 
 	self.ability.tracker.current_treasure[self.parent] = nil
-	self.ability.tracker:UpdateTreasure(true)
 
 	UTIL_Remove(self.parent)
 end
@@ -1594,16 +1585,13 @@ function modifier_kunkka_xmark_custom_treasure:GiveReward()
 		return
 	end
 	local gold = self.ability.talents.e7_chest_gold
-	local max = self.ability.talents.e7_max_gold
 
 	if self.ability.talents.has_s10 == 1 then
-		max = max + self.ability.talents.s10_max
 		gold = gold * (1 + self.ability.talents.s10_gold)
-
 		self.ability:ApplyShield()
 	end
 
-	local coins = RandomInt(self.ability.talents.e7_min_gold, max)
+	local coins = RandomInt(self.ability.talents.e7_min_gold, self.ability.talents.e7_max_gold)
 	self.caster:GiveGold(coins * gold, false, true, "modifier_kunkka_xmark_7")
 	self.caster:AddPoints("blue", coins * self.ability.talents.e7_chest_blue, "modifier_kunkka_xmark_7")
 	self.caster:AddExperience(self.ability.talents.e7_chest_exp, DOTA_ModifyXP_Unspecified, false, false)
@@ -1730,6 +1718,58 @@ function modifier_kunkka_xmark_custom_double:OnDestroy()
 	self.caster.kunkka_s8 = false
 
 	self.ability:ProcDamage(self.parent, self.ability.talents.s8_damage / 100)
+end
+
+modifier_kunkka_xmark_custom_spell_attack = class(mod_hidden)
+function modifier_kunkka_xmark_custom_spell_attack:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
+end
+function modifier_kunkka_xmark_custom_spell_attack:OnCreated()
+	if not IsServer() then
+		return
+	end
+	self.parent = self:GetParent()
+	self.caster = self:GetCaster()
+	self.ability = self:GetAbility()
+
+	self.attacks = self.ability.talents.s9_attacks
+	self:StartIntervalThink(self.ability.talents.s9_interval)
+	self:OnIntervalThink()
+end
+
+function modifier_kunkka_xmark_custom_spell_attack:OnIntervalThink()
+	if not IsServer() then
+		return
+	end
+
+	if not self.parent:IsAlive() or not self.caster:IsAlive() then
+		self:Destroy()
+		return
+	end
+
+	local effect =
+		ParticleManager:CreateParticle("particles/kunkka/xmark_proc.vpcf", PATTACH_CUSTOMORIGIN_FOLLOW, self.parent)
+	ParticleManager:SetParticleControlEnt(
+		effect,
+		0,
+		self.parent,
+		PATTACH_POINT_FOLLOW,
+		"attach_hitloc",
+		self.parent:GetOrigin(),
+		true
+	)
+	ParticleManager:ReleaseParticleIndex(effect)
+
+	self.caster.kunkka_s9 = true
+	self.caster:PerformAttack(self.parent, true, true, true, true, false, false, true, { damage = "kunkka_s9" })
+	self.caster.kunkka_s9 = false
+
+	self.ability:ProcEffects(self.parent, false, false)
+
+	self.attacks = self.attacks - 1
+	if self.attacks <= 0 then
+		self:Destroy()
+	end
 end
 
 modifier_kunkka_xmark_custom_chest_move = class(mod_visible)

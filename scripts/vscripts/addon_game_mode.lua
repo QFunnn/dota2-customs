@@ -815,7 +815,7 @@ r:Send( function( res ) end)
 			count = count + 1
 		end
 
-		if count < max_teams * players_in_team then
+		if count < players_in_team * max_teams then
 			return
 		end
 
@@ -2861,6 +2861,10 @@ function dota1x6:spawn_timer()
 					_G.SafeToLeave = true
 					switch_safetoleave = true
 					SafeToLeave_reason = 1
+
+					if PICK_STATE ~= PICK_STATE_SELECT_BASE and PICK_STATE ~= PICK_STATE_PICK_END then
+						data.block = { name = "player_left" }
+					end
 				end
 
 				data.lp_games_remaining = lp_games

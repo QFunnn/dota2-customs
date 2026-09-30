@@ -21,6 +21,7 @@ var on_cd = false
 var close_cd = 0.4
 var is_active = false
 var current_gold = 0
+var compass_empty = false
 
 
 function Init()
@@ -191,12 +192,26 @@ function formatDistance(distance) {
 
 function UpdateKunkkaPanel(data)
 {
-    let angle = data.angle
-
     let text = $("#KunkkaPanel_distance_text")
-    text.text = formatDistance(data.distance)
+    let empty = data.empty == 1
+    let angle = 180
 
-    angle = (270 - angle) % 360
+    $("#KunkkaPanel_compass").SetHasClass("KunkkaPanel_compass_empty", empty)
+
+    if (compass_empty && !empty)
+        Game.EmitSound("Kunkka.UI_compass_active")
+
+    compass_empty = empty
+
+    if (empty)
+    {
+        let seconds = Math.ceil(data.timer)
+        text.text = Math.floor(seconds / 60) + ":" + ("0" + (seconds % 60)).slice(-2)
+    }else
+    {
+        text.text = formatDistance(data.distance)
+        angle = (270 - data.angle) % 360
+    }
 
     if (target_angle != angle)
     {

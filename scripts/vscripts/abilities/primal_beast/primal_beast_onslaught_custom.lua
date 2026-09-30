@@ -90,7 +90,7 @@ function primal_beast_onslaught_custom:Precache(context)
 		context
 	)
 
-	PrecacheResource("particle", "particles/items_fx/battlefury_cleave.vpcf", context)
+	PrecacheResource("particle", "particles/items_fx/battlefury_cleave_custom.vpcf", context)
 	PrecacheResource("particle", "particles/primal_knockback.vpcf", context)
 	PrecacheResource("particle", "particles/pangolier/buckle_refresh.vpcf", context)
 	PrecacheResource("particle", "particles/beast_charge.vpcf", context)

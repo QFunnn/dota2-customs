@@ -132,6 +132,7 @@ function jakiro_ice_path_custom:UpdateTalents(name)
 			w7_damage = caster:GetTalentValue("modifier_jakiro_path_7", "damage", true),
 			w7_range = caster:GetTalentValue("modifier_jakiro_path_7", "range", true),
 			w7_armor = caster:GetTalentValue("modifier_jakiro_path_7", "armor", true) / 100,
+			w7_armor_base = caster:GetTalentValue("modifier_jakiro_path_7", "armor_base", true),
 			w7_speed = caster:GetTalentValue("modifier_jakiro_path_7", "speed", true),
 			w7_stun = caster:GetTalentValue("modifier_jakiro_path_7", "stun", true),
 			w7_max = caster:GetTalentValue("modifier_jakiro_path_7", "max", true),
@@ -1244,5 +1245,5 @@ function modifier_jakiro_ice_path_custom_legendary_armor:GetModifierPhysicalArmo
 	if not self.armor then
 		return
 	end
-	return self.armor * self.ability.talents.w7_armor
+	return math.max(-self.armor, self.armor * self.ability.talents.w7_armor + self.ability.talents.w7_armor_base)
 end

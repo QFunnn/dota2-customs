@@ -2475,6 +2475,7 @@ _G.tips_item_list = {
 	{ 44022, 21, "tip_21", 1500, "file://{images}/custom_game/tips/tip_21.png", nil },
 	{ 44023, 22, "tip_22", 1500, "file://{images}/custom_game/tips/tip_22.png", nil },
 	{ 44024, 23, "tip_23", 1500, "file://{images}/custom_game/tips/tip_23.png", nil },
+	{ 44025, 24, "tip_24", 1500, "file://{images}/custom_game/tips/tip_24.png", nil },
 }
 
 _G.high_five_item_list = {

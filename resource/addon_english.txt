@@ -275,6 +275,8 @@
 "PlayerBannedLocal_top" "You have been permanently <b><font color='#ff4d30'>banned</font></b>"
 "PlayerBannedLocal_bot" "Contact us on Discord or Telegram"
 
+"PlayerLeftNotLocal_top" "Player has <b><font color='#ff4d30'>left</font></b> the game"
+
 "LowGamesNotLocal_top" "The player does not have enough <b><font color='#ff4d30'>matches</font></b> to participate in Ranked Mode"
 "LowGamesNotLocal_mid" "Select a different mode on the game page"
 "LowGamesNotLocal_bot" "Number of matches: "
@@ -889,6 +891,7 @@
 "tip_21" "Sova"
 "tip_22" "Cortisol"
 "tip_23" "67"
+"tip_24" "MOGGED"
 
 "button_high_five" "High Five activation button: "
 "button_high_five_info" "(in settings - control group 4)"
@@ -4577,11 +4580,11 @@
 "epic_disc_modifier_phantom_assassin_dagger_4" "Stifling Dagger cooldowns items<br><br>Abilities can throw Stifling Dagger at the nearest target"
 
 "upgrade_disc_modifier_phantom_assassin_dagger_7" "New ability: Launches *!max* daggers at a point over *cast* sec. The daggers deal *!damage%* damage<br><br>Ability hits increase the damage by *!damage_inc%* and reduce the cast time down to *!cast_min* sec<br><br>At *stack_max* charges the daggers stun targets"
-"upgrade_disc_modifier_phantom_assassin_dagger_7_info" "Charges are granted for Stifling Dagger and Phantom Strike hits on heroes"
+"upgrade_disc_modifier_phantom_assassin_dagger_7_info" "Charges are granted for Stifling Dagger and Phantom Strike hits on heroes<br><br>Charges are not granted while Final Verdict is on cooldown"
 "mini_disc_modifier_phantom_assassin_dagger_7" "New ability: Fires several Stifling Daggers"
 
 "DOTA_Tooltip_ability_custom_phantom_assassin_stifling_dagger_legendary" "Final Verdict"
-"DOTA_Tooltip_ability_custom_phantom_assassin_stifling_dagger_legendary_Description" "CHANNELED — releases several Stifling Daggers in the specified direction. Daggers hit the first opponent on the way.<br><br>Stifling Dagger and Phantom Strike hits on heroes grant charges that increase the daggers damage and reduce the cast time. At maximum charges the daggers stun."
+"DOTA_Tooltip_ability_custom_phantom_assassin_stifling_dagger_legendary_Description" "CHANNELED — releases several Stifling Daggers in the specified direction. Daggers hit the first opponent on the way.<br><br>Stifling Dagger and Phantom Strike hits on heroes grant charges that increase the daggers damage and reduce the cast time. At maximum charges the daggers stun.<br><br>Charges are not granted while the ability is on cooldown."
 "DOTA_Tooltip_ability_custom_phantom_assassin_stifling_dagger_legendary_Lore" "The first skill learned by the Sisters of the Veil often signals an incoming hit."
 
 "DOTA_Tooltip_ability_custom_phantom_assassin_phantom_strike"							"Phantom Strike"
@@ -4595,7 +4598,7 @@
 "dota_tooltip_modifier_phantom_assassin_phantom_strike_buff" "Phantom Strike"
 "dota_tooltip_modifier_phantom_assassin_phantom_strike_buff_description" "Attack speed increased by <b><font color='#53ea48'>%dMODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT%</font></b>."
 
-"upgrade_disc_modifier_phantom_assassin_blink_1" "*!+spell%* spell amplification<br><br>Phantom Strike damage increased by *!damage* + *!health%* of your max health"
+"upgrade_disc_modifier_phantom_assassin_blink_1" "*!+spell%* spell amplification<br><br>*!+health%* your max. health to Phantom Strike damage"
 
 "upgrade_disc_modifier_phantom_assassin_blink_2" "*!-cast%* Stifling Dagger and Phantom Strike cast time<br><br>*!-cd* sec Phantom Strike cooldown"
 
@@ -4696,12 +4699,12 @@
 "mini_disc_modifier_phantom_assassin_crit_4" "Coup de Grace grants a shield and movement speed"
 "epic_disc_modifier_phantom_assassin_crit_4" "*+chance%* Coup de Grace chance<br><br>Coup de Grace grants a stacking shield with movement speed"
 
-"upgrade_disc_modifier_phantom_assassin_crit_7" "New ability: For *duration* sec grants *!+attack* attack speed<br><br>Coup de Grace gains *!+chance%* chance, but triggers only *procs* times. The critical damage grows by *!crit%* with each trigger<br><br>At the end you return to the starting point"
-"upgrade_disc_modifier_phantom_assassin_crit_7_info" "The ability can be interrupted early<br><br>Charges last *mark_duration* sec and have no limit<br><br>Increases the Coup de Grace attack damage against the target by a percentage"
+"upgrade_disc_modifier_phantom_assassin_crit_7" "New ability: For *duration* sec grants *!+attack* attack speed and *!+status%* status resistance<br><br>Coup de Grace gains x*!chance* chance, but triggers only *procs* times. The critical damage grows by *!crit%* with each trigger<br><br>At the end you return to the starting point"
+"upgrade_disc_modifier_phantom_assassin_crit_7_info" "Reduces Coup de Grace critical damage by *crit_reduce%*<br><br>The ability can be interrupted early<br><br>Charges last *mark_duration* sec and have no limit<br><br>Increases the Coup de Grace attack damage against the target by a percentage"
 "mini_disc_modifier_phantom_assassin_crit_7" "New ability: A window of empowered Coup de Grace with a return"
 
 "DOTA_Tooltip_ability_custom_phantom_assassin_coup_de_grace_legendary" "Shadow Step"
-"DOTA_Tooltip_ability_custom_phantom_assassin_coup_de_grace_legendary_Description" "Leaves your double behind and briefly grants attack speed, while Coup de Grace gains increased trigger chance and growing damage against the target.<br><br>Recast returns you to the double and ends the effect.<br><br>The number of remaining Coup de Grace triggers is shown on the counter."
+"DOTA_Tooltip_ability_custom_phantom_assassin_coup_de_grace_legendary_Description" "Leaves your double behind and briefly grants attack speed and status resistance, while Coup de Grace gains increased trigger chance and growing damage against the target.<br><br>Recast returns you to the double and ends the effect.<br><br>The number of remaining Coup de Grace triggers is shown on the counter."
 "DOTA_Tooltip_ability_custom_phantom_assassin_coup_de_grace_legendary_Lore" "A Sister of the Veil leaves only a shadow behind, so that there is somewhere to return to."
 
 "DOTA_Tooltip_modifier_phantom_assassin_phantom_coup_de_grace_legendary_crit" "Coup de Grace"
@@ -16782,7 +16785,7 @@
 "mini_disc_modifier_jakiro_path_4" "Ice Path casts faster and cooldowns per attack"
 "epic_disc_modifier_jakiro_path_4" "Increases the effects of Ice Path<br><br>Attacks cooldown the ability"
 
-"upgrade_disc_modifier_jakiro_path_7" "Abilities stack an effect. Ice Path removes the effect and grants *!+damage%* damage for 1 attack per stack<br><br>Fire: Attacks ignore *!armor%* of targets armor<br><br>Ice: Attacks grant a shield for *!shield%* of damage and stun for *!stun* sec"
+"upgrade_disc_modifier_jakiro_path_7" "Abilities stack an effect. Ice Path removes the effect and grants *!+damage%* damage for 1 attack per stack<br><br>Fire: Attacks ignore *!armor_base* + *!armor%* of targets armor<br><br>Ice: Attacks grant a shield for *!shield%* of damage and stun for *!stun* sec"
 "upgrade_disc_modifier_jakiro_path_7_info" "Maximum charges - *max*. Empowered attacks gain *speed* speed, *range* range, deal *cleave%* cleave damage and cannot miss<br><br>Ice Path can also grant a charge<br><br>Stun from attacks extends the stun from Ice Path"
 "mini_disc_modifier_jakiro_path_7" "Ice Path greatly empowers subsequent attacks"
 
@@ -16988,7 +16991,7 @@
 "DOTA_Tooltip_modifier_kunkka_torrent_custom_wet_Description" "At max charges, an empowered Torrent triggers on the target"
 
 "DOTA_Tooltip_ability_kunkka_tidebringer_custom"                                       "Tidebringer"
-"DOTA_Tooltip_ability_kunkka_tidebringer_custom_Description"                           "<b><font color='#ddd'>Passive:</font></b> Increases attack damage and grants cleave damage. The effect has a cooldown.<br><br><b><font color='#ddd'>Active:</font></b> Places a <b><font color='#53ea48'>Dummy</font></b> that can be attacked %target_hits% times. Each attack triggers the passive effect. Cleave damage also triggers in a %target_radius% radius around you."
+"DOTA_Tooltip_ability_kunkka_tidebringer_custom_Description"                           "<b><font color='#ddd'>Passive:</font></b> Increases attack damage and grants cleave damage. The effect has a cooldown.<br><br><b><font color='#ddd'>Active:</font></b> Places a <b><font color='#53ea48'>Dummy</font></b> that can be attacked %target_hits% times. Each attack triggers the passive effect. Attacks on the Dummy gain +%target_attack_speed% attack speed. Cleave damage also triggers in a %target_radius% radius around you."
 "DOTA_Tooltip_ability_kunkka_tidebringer_custom_Lore"                                  "A lost Claddish soul inhabits Kunkka's trusty Tidebringer, empowering it to destroy demons of the Cataract."
 "DOTA_Tooltip_ability_kunkka_tidebringer_custom_attack_cd"                              "ATTACK COOLDOWN:"
 "DOTA_Tooltip_ability_kunkka_tidebringer_custom_damage_bonus"                          "DAMAGE BONUS:"
@@ -17084,10 +17087,10 @@
 "upgrade_disc_modifier_kunkka_shop_8"       "While under X Mark, attacks gain *!+range* range and summon a ghost<br><br>The ghost performs an attack for *!damage%* damage, and triggers modifiers"
 "upgrade_disc_modifier_kunkka_shop_8_info"       "Also triggers on the Tidebringer targets"
 
-"upgrade_disc_modifier_kunkka_shop_9"       "Torrent and Ghostship trigger *!delay%* faster<br><br>You perform an attack on the enemies hit for *!damage%* damage"
-"upgrade_disc_modifier_kunkka_shop_9_info"       "The attack cannot miss"
+"upgrade_disc_modifier_kunkka_shop_9"       "Torrent and Ghostship trigger *!delay%* faster<br><br>You perform *attacks* attacks on the enemies hit for *!damage%* damage"
+"upgrade_disc_modifier_kunkka_shop_9_info"       "The attacks cannot miss"
 
-"upgrade_disc_modifier_kunkka_shop_10"      "*!+max* max Doubloons in a chest and *!+gold%* gold per Doubloon<br><br>A chest also grants you a shield for *!shield%* health and *!move%* movement speed for *duration* sec"
+"upgrade_disc_modifier_kunkka_shop_10"      "*!+chest* max chest on the map and *!+gold%* gold per Doubloon<br><br>A chest also grants you a shield for *!shield%* health and *!move%* movement speed for *duration* sec"
 "upgrade_disc_modifier_kunkka_shop_10_info"       "The effect triggers at the start of the final duel"
 
 "DOTA_Tooltip_modifier_kunkka_xmark_custom_chest_move"                 "X Marks the Spot"

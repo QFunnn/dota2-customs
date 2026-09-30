@@ -263,6 +263,7 @@ function modifier_kunkka_tidebringer_custom_tracker:OnCreated(table)
 	self.ability.cleave_damage = self.ability:GetSpecialValueFor("cleave_damage") / 100
 	self.ability.target_duration = self.ability:GetSpecialValueFor("target_duration")
 	self.ability.target_hits = self.ability:GetSpecialValueFor("target_hits")
+	self.ability.target_attack_speed = self.ability:GetSpecialValueFor("target_attack_speed")
 	self.ability.target_radius = self.ability:GetSpecialValueFor("target_radius")
 
 	self:CheckEffect()
@@ -401,6 +402,7 @@ function modifier_kunkka_tidebringer_custom_tracker:AttackEvent_out(params)
 	local hero_target = target:IsRealHero() and target or nil
 
 	local damage = params.damage * cleave
+	local sound = wearables_system:GetSoundReplacement(self.parent, "Hero_Kunkka.TidebringerDamage", self.ability)
 	local effect = wearables_system:GetParticleReplacementAbility(
 		self.parent,
 		"particles/units/heroes/hero_kunkka/kunkka_spell_tidebringer.vpcf",
@@ -415,30 +417,12 @@ function modifier_kunkka_tidebringer_custom_tracker:AttackEvent_out(params)
 		self.ability.cleave_starting_width,
 		self.ability.cleave_ending_width,
 		self.ability.cleave_distance + (self.ability.talents.has_w4 == 1 and self.ability.talents.w4_distance or 0),
-		nil,
+		effect,
+		sound,
 		more_targets
 	)
 
-	if targets and #targets > 0 then
-		local count = math.min(#targets, 16)
-		local direction = self.parent:GetAbsOrigin() - target:GetAbsOrigin()
-		direction.z = 0
-
-		local particle = ParticleManager:CreateParticle(effect, PATTACH_WORLDORIGIN, nil)
-		ParticleManager:SetParticleControl(particle, 0, self.parent:GetAbsOrigin())
-		ParticleManager:SetParticleControlForward(particle, 0, direction:Normalized())
-		ParticleManager:SetParticleControl(particle, 1, Vector(0, 0, count))
-		for i = 1, count do
-			ParticleManager:SetParticleControl(particle, i + 1, targets[i]:GetAbsOrigin() + Vector(0, 0, 80))
-		end
-		ParticleManager:ReleaseParticleIndex(particle)
-	end
-
 	for _, cleave_target in pairs(targets) do
-		cleave_target:EmitSound(
-			wearables_system:GetSoundReplacement(self.parent, "Hero_Kunkka.TidebringerDamage", self.ability)
-		)
-
 		if
 			cleave_target:IsRealHero()
 			and self.parent:GetQuest() == "Kunkka.Quest_6"
@@ -705,10 +689,24 @@ function modifier_kunkka_tidebringer_custom_target:AttackEvent_inc(params)
 end
 
 modifier_kunkka_tidebringer_custom_target_attack = class(mod_hidden)
+function modifier_kunkka_tidebringer_custom_target_attack:OnCreated()
+	self.ability = self:GetAbility()
+end
+
+function modifier_kunkka_tidebringer_custom_target_attack:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+	}
+end
+
 function modifier_kunkka_tidebringer_custom_target_attack:CheckState()
 	return {
 		[MODIFIER_STATE_CANNOT_MISS] = true,
 	}
+end
+
+function modifier_kunkka_tidebringer_custom_target_attack:GetModifierAttackSpeedBonus_Constant()
+	return self.ability.target_attack_speed or 0
 end
 
 modifier_kunkka_tidebringer_custom_armor = class(mod_visible)

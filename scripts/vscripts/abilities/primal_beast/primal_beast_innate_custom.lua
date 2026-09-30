@@ -105,6 +105,6 @@ function modifier_primal_beast_innate_custom:AttackEvent_out(params)
 		150,
 		360,
 		500,
-		"particles/items_fx/battlefury_cleave.vpcf"
+		"particles/items_fx/battlefury_cleave_custom.vpcf"
 	)
 end

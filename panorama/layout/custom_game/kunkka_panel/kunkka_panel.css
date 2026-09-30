@@ -243,9 +243,17 @@
 	width: 175px;
 	height: 175px;
 	horizontal-align: center;
+}
+
+#KunkkaPanel_compass_image
+{
+	width: 100%;
+	height: 100%;
 	background-repeat: no-repeat;
 	background-size: contain;
 	background-image: url("s2r://panorama/images/ui_elements/kunkka/compass_circle_png.vtex");
+	transition-property: brightness, saturation;
+	transition-duration: 0.3s;
 }
 
 #KunkkaPanel_arrow
@@ -256,6 +264,14 @@
 	background-repeat: no-repeat;
 	background-size: contain;
 	background-image: url("s2r://panorama/images/ui_elements/kunkka/compass_arrow_png.vtex");
+	transition-property: brightness, saturation;
+	transition-duration: 0.3s;
+}
+
+.KunkkaPanel_compass_empty #KunkkaPanel_compass_image,.KunkkaPanel_compass_empty #KunkkaPanel_arrow
+{
+	brightness: 0.3;
+	saturation: 0;
 }
 
 #KunkkaPanel_distance_panel

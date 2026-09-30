@@ -16,7 +16,7 @@ function item_bfury_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
 	end
-	PrecacheResource("particle", "particles/items_fx/battlefury_cleave.vpcf", context)
+	PrecacheResource("particle", "particles/items_fx/battlefury_cleave_custom.vpcf", context)
 end
 
 function item_bfury_custom:GetIntrinsicModifierName()
@@ -154,7 +154,6 @@ function modifier_item_bfury_custom:AttackEvent_out(params)
 		k = self.ability.cleave_damage_percent_creep
 	end
 
-	params.target:EmitSound("Hero_Sven.GreatCleave")
 	DoCleaveAttack(
 		self.parent,
 		params.target,
@@ -163,6 +162,7 @@ function modifier_item_bfury_custom:AttackEvent_out(params)
 		self.start_width,
 		self.end_width,
 		self.cleave_distance,
-		"particles/items_fx/battlefury_cleave.vpcf"
+		"particles/items_fx/battlefury_cleave_custom.vpcf",
+		"DOTA_Item.BattleFury"
 	)
 end

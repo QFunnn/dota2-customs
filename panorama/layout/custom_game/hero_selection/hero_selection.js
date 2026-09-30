@@ -562,6 +562,15 @@ const PICK_BLOCKS =
         ],
     },
 
+    player_left:
+    {
+        remote:
+        [
+            {type: "title",  text: "#PlayerLeftNotLocal_top"},
+            {type: "player", id: (d) => d.id},
+        ],
+    },
+
     leave_banned:
     {
         local:
@@ -748,9 +757,8 @@ function show_pick_block(data)
     if (!block)
         return
 
-
     let is_local = Game.GetLocalPlayerID() == data.id_1
-    let rows = (!is_local && block.remote) ? block.remote : block.local
+    let rows = (!is_local && block.remote) ? block.remote : (block.local || block.remote)
 
     let hero_pick = $.GetContextPanel().FindChildTraverse("hero_pick")
     let main = hero_pick.FindChildTraverse("UnvalidGameMain")
@@ -787,10 +795,6 @@ function show_safe_leave(reason, data)
 		panel.AddClass("SafeToLeave")
 		var text = $.GetContextPanel().FindChildTraverse("SafeToLeave_text")
 		text.html = true
-		if (reason == 1)
-		{
-			text.text = $.Localize("#Savetoleave")
-		}
 		if (reason == 8)
 		{
 			wrong_rating_status = 1
@@ -879,12 +883,8 @@ function check_player_status(id)
             {
                 connect.DeleteAsync(0)
             }
-            if (playerInfo.player_connection_state == DOTAConnectionState_t.DOTA_CONNECTION_STATE_ABANDONED) 
+            if (playerInfo.player_connection_state == DOTAConnectionState_t.DOTA_CONNECTION_STATE_ABANDONED)
             {
-                if (server_data && server_data.wrong_map_status !== 2)
-                {
-                    show_safe_leave(1)
-                }
                 icon.RemoveClass("hero_icon_search")
                 icon.AddClass("hero_abandon")
             }

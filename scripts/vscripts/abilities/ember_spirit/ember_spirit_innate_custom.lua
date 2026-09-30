@@ -37,7 +37,7 @@ function ember_spirit_innate_custom:Precache(context)
 		"particles/econ/items/huskar/huskar_2021_immortal/huskar_2021_immortal_burning_spear_debuff.vpcf",
 		context
 	)
-	PrecacheResource("particle", "particles/items_fx/battlefury_cleave.vpcf", context)
+	PrecacheResource("particle", "particles/items_fx/battlefury_cleave_custom.vpcf", context)
 	PrecacheResource("soundfile", "soundevents/npc_dota_hero_ember_spirit.vsndevts", context)
 	dota1x6:PrecacheShopItems("npc_dota_hero_ember_spirit", context)
 end
@@ -154,7 +154,7 @@ function modifier_ember_spirit_innate_custom:AttackEvent_out(params)
 			150,
 			360,
 			650,
-			"particles/items_fx/battlefury_cleave.vpcf"
+			"particles/items_fx/battlefury_cleave_custom.vpcf"
 		)
 	end
 

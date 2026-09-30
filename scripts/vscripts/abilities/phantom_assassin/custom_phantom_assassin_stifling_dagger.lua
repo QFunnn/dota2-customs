@@ -340,6 +340,9 @@ function custom_phantom_assassin_stifling_dagger:AddCharge()
 	if self.talents.has_q7 ~= 1 then
 		return
 	end
+	if self.caster.dagger_legendary_ability and not self.caster.dagger_legendary_ability:IsCooldownReady() then
+		return
+	end
 
 	self.caster:AddNewModifier(self.caster, self, "modifier_custom_phantom_assassin_stifling_dagger_stack", {})
 end

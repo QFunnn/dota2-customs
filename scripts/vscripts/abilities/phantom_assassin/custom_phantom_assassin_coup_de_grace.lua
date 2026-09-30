@@ -173,6 +173,7 @@ function custom_phantom_assassin_coup_de_grace:UpdateTalents(name)
 			has_r7 = 0,
 			r7_chance = caster:GetTalentValue("modifier_phantom_assassin_crit_7", "chance", true),
 			r7_crit = caster:GetTalentValue("modifier_phantom_assassin_crit_7", "crit", true),
+			r7_crit_reduce = caster:GetTalentValue("modifier_phantom_assassin_crit_7", "crit_reduce", true) / 100,
 			r7_mark_duration = caster:GetTalentValue("modifier_phantom_assassin_crit_7", "mark_duration", true),
 		}
 	end
@@ -279,7 +280,9 @@ function custom_phantom_assassin_coup_de_grace:UpdateUI()
 end
 
 function custom_phantom_assassin_coup_de_grace:GetCritBonus()
-	return self.crit_bonus + (self.caster.hunt_ability and self.caster.hunt_ability:GetContractDamage() or 0)
+	local reduce = self.talents.has_r7 == 1 and self.talents.r7_crit_reduce or 0
+	return (self.crit_bonus + (self.caster.hunt_ability and self.caster.hunt_ability:GetContractDamage() or 0))
+		* (1 + reduce)
 end
 
 function custom_phantom_assassin_coup_de_grace:GetBleedDamage()
@@ -316,6 +319,7 @@ function custom_phantom_assassin_coup_de_grace:RollFocus(attacker, chance)
 	end
 
 	chance = (chance or self.crit_chance) + (self.talents.has_r4 == 1 and self.talents.r4_chance or 0)
+	local index = 1223
 
 	if self.caster == attacker and self.talents.has_r7 == 1 then
 		local legendary = self.caster:FindModifierByName("modifier_phantom_assassin_phantom_coup_de_grace_legendary")
@@ -325,11 +329,12 @@ function custom_phantom_assassin_coup_de_grace:RollFocus(attacker, chance)
 				return
 			end
 
-			chance = chance * (1 + self.talents.r7_chance / 100)
+			chance = chance * self.talents.r7_chance
+			index = 1225
 		end
 	end
 
-	local roll = RollPseudoRandomPercentage(chance, 1223, attacker)
+	local roll = RollPseudoRandomPercentage(chance, index, attacker)
 
 	if not roll then
 		return
@@ -1037,6 +1042,7 @@ function custom_phantom_assassin_coup_de_grace_legendary:UpdateTalents(name)
 			has_r7 = 0,
 			r7_duration = caster:GetTalentValue("modifier_phantom_assassin_crit_7", "duration", true),
 			r7_attack = caster:GetTalentValue("modifier_phantom_assassin_crit_7", "attack", true),
+			r7_status = caster:GetTalentValue("modifier_phantom_assassin_crit_7", "status", true),
 			r7_procs = caster:GetTalentValue("modifier_phantom_assassin_crit_7", "procs", true),
 			r7_talent_cd = caster:GetTalentValue("modifier_phantom_assassin_crit_7", "talent_cd", true),
 		}
@@ -1216,12 +1222,17 @@ end
 function modifier_phantom_assassin_phantom_coup_de_grace_legendary:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+		MODIFIER_PROPERTY_STATUS_RESISTANCE_STACKING,
 		MODIFIER_PROPERTY_MODEL_SCALE,
 	}
 end
 
 function modifier_phantom_assassin_phantom_coup_de_grace_legendary:GetModifierAttackSpeedBonus_Constant()
 	return self.ability.talents.r7_attack or 0
+end
+
+function modifier_phantom_assassin_phantom_coup_de_grace_legendary:GetModifierStatusResistanceStacking()
+	return self.ability.talents.r7_status or 0
 end
 
 function modifier_phantom_assassin_phantom_coup_de_grace_legendary:GetModifierModelScale()

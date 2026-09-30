@@ -91,7 +91,6 @@ function custom_phantom_assassin_phantom_strike:UpdateTalents(name)
 		self.init = true
 		self.talents = {
 			w1_spell = 0,
-			w1_damage = 0,
 			w1_health = 0,
 
 			w2_cd = 0,
@@ -129,7 +128,6 @@ function custom_phantom_assassin_phantom_strike:UpdateTalents(name)
 
 	if caster:HasTalent("modifier_phantom_assassin_blink_1") then
 		self.talents.w1_spell = caster:GetTalentValue("modifier_phantom_assassin_blink_1", "spell")
-		self.talents.w1_damage = caster:GetTalentValue("modifier_phantom_assassin_blink_1", "damage")
 		self.talents.w1_health = caster:GetTalentValue("modifier_phantom_assassin_blink_1", "health") / 100
 	end
 
@@ -521,7 +519,7 @@ function custom_phantom_assassin_phantom_strike:IsArcana()
 end
 
 function custom_phantom_assassin_phantom_strike:GetDamage(target)
-	local damage = self.damage + self.talents.w1_damage + self.caster:GetMaxHealth() * self.talents.w1_health
+	local damage = self.damage + self.caster:GetMaxHealth() * self.talents.w1_health
 
 	return damage * ((target and target:IsCreep()) and (1 + (self.creeps_damage or 0)) or 1)
 end
