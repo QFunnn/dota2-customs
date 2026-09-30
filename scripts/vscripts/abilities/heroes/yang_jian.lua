@@ -752,77 +752,94 @@ f(
 		["872"] = 517,
 		["873"] = 518,
 		["874"] = 518,
-		["875"] = 520,
-		["876"] = 520,
-		["877"] = 520,
-		["878"] = 518,
+		["875"] = 518,
+		["876"] = 521,
+		["877"] = 521,
+		["878"] = 521,
 		["879"] = 518,
-		["880"] = 517,
-		["881"] = 523,
-		["882"] = 523,
-		["883"] = 523,
-		["884"] = 523,
-		["885"] = 523,
+		["880"] = 518,
+		["881"] = 517,
+		["882"] = 524,
+		["883"] = 524,
+		["884"] = 524,
+		["885"] = 524,
 		["886"] = 524,
-		["887"] = 524,
-		["888"] = 524,
-		["889"] = 524,
-		["890"] = 525,
-		["891"] = 525,
-		["892"] = 525,
-		["893"] = 526,
+		["887"] = 525,
+		["888"] = 526,
+		["889"] = 527,
+		["892"] = 528,
+		["893"] = 528,
 		["894"] = 528,
 		["895"] = 528,
 		["896"] = 528,
 		["897"] = 528,
-		["898"] = 526,
+		["898"] = 525,
 		["899"] = 530,
-		["900"] = 531,
-		["901"] = 532,
-		["902"] = 532,
-		["904"] = 533,
+		["900"] = 530,
+		["901"] = 530,
+		["902"] = 530,
+		["903"] = 531,
+		["904"] = 532,
 		["905"] = 533,
-		["907"] = 534,
-		["908"] = 536,
-		["909"] = 536,
-		["911"] = 537,
-		["912"] = 538,
-		["913"] = 538,
-		["914"] = 538,
+		["906"] = 533,
+		["908"] = 534,
+		["909"] = 534,
+		["911"] = 535,
+		["912"] = 537,
+		["913"] = 537,
 		["915"] = 538,
-		["916"] = 538,
-		["917"] = 538,
+		["916"] = 539,
+		["917"] = 539,
 		["918"] = 539,
-		["919"] = 540,
-		["920"] = 542,
-		["922"] = 544,
-		["923"] = 545,
-		["924"] = 545,
-		["926"] = 546,
-		["927"] = 547,
-		["928"] = 548,
-		["929"] = 549,
-		["930"] = 550,
-		["931"] = 551,
-		["932"] = 552,
-		["933"] = 552,
-		["934"] = 552,
-		["935"] = 553,
+		["919"] = 539,
+		["920"] = 539,
+		["921"] = 539,
+		["922"] = 540,
+		["923"] = 541,
+		["924"] = 543,
+		["926"] = 545,
+		["927"] = 546,
+		["928"] = 546,
+		["930"] = 547,
+		["931"] = 548,
+		["932"] = 549,
+		["933"] = 550,
+		["934"] = 551,
+		["935"] = 552,
 		["936"] = 553,
 		["937"] = 553,
 		["938"] = 553,
+		["939"] = 554,
+		["940"] = 554,
 		["941"] = 554,
-		["942"] = 555,
-		["943"] = 556,
-		["944"] = 556,
-		["946"] = 552,
-		["947"] = 552,
-		["949"] = 559,
-		["950"] = 530,
-		["951"] = 513,
-		["952"] = 512,
-		["953"] = 513,
+		["942"] = 554,
+		["945"] = 555,
+		["946"] = 556,
+		["947"] = 557,
+		["948"] = 557,
+		["950"] = 553,
+		["951"] = 553,
+		["953"] = 560,
+		["954"] = 531,
 		["955"] = 513,
+		["956"] = 512,
+		["957"] = 513,
+		["959"] = 513,
+		["961"] = 565,
+		["962"] = 571,
+		["963"] = 565,
+		["964"] = 571,
+		["965"] = 572,
+		["966"] = 572,
+		["967"] = 572,
+		["968"] = 573,
+		["969"] = 574,
+		["970"] = 575,
+		["971"] = 573,
+		["972"] = 571,
+		["973"] = 565,
+		["974"] = 571,
+		["976"] = 571,
 	}
 )
 local g = {}
@@ -1606,6 +1623,7 @@ end
 function aw.prototype.EDeclareEvents(self)
 	return {
 		[EOMModifierEvents.MODIFIER_EVENT_ON_BATTLE_START_BEFORE] = { -1, -1 },
+		[EOMModifierEvents.MODIFIER_EVENT_ON_BATTLE_START] = { -1, -1 },
 		[EOMModifierEvents.MODIFIER_EVENT_ON_BATTLE_END] = { self:GetParent(), self:GetParent() },
 	}
 end
@@ -1614,15 +1632,16 @@ function aw.prototype.OnBattleStartBefore(self)
 	self.battling = true
 	self.battleId = self.battleId + 1
 end
+function aw.prototype.OnBattleStart(self)
+	local K = self:GetParent()
+	if self:GetSectSpecialValueFor("197", "sr_197_health") <= 0 then
+		return
+	end
+	K:AddNewModifier(K, self:GetAbility(), "modifier_yang_jian_strength_gain_buff", { duration = 8 })
+end
 function aw.prototype.OnBattleEnd(self)
 	self.battling = false
 	self.battleId = self.battleId + 1
-end
-function aw.prototype.EDeclareFunctions(self)
-	return { EOMModifierFunction.EOM_MODIFIER_PROPERTY_OUTGOING_DAMAGE_CONSTANT }
-end
-function aw.prototype.EOM_GetModifierOutgoingDamageConstant(self)
-	return GetSectHealthModifiedValue(self:GetParent(), self:GetSectSpecialValueFor("197", "sr_197_health"))
 end
 function aw.prototype.TryProtect(self, R)
 	local K = self:GetParent()
@@ -1678,4 +1697,17 @@ function aw.prototype.TryProtect(self, R)
 end
 aw = e({ m(a, { IsHidden = true, IsPurgable = false, IsPurgeException = false, AllowIllusionDuplicate = false }) }, aw)
 g.modifier_yang_jian_talent_5 = aw
+g.modifier_yang_jian_strength_gain_buff = c()
+local aB = g.modifier_yang_jian_strength_gain_buff
+aB.name = "modifier_yang_jian_strength_gain_buff"
+d(aB, l)
+function aB.prototype.EDeclareFunctions(self)
+	return { EOMModifierFunction.EOM_MODIFIER_PROPERTY_OUTGOING_DAMAGE_PERCENTAGE }
+end
+function aB.prototype.EOM_GetModifierOutgoingDamagePercentage(self)
+	local T = self:GetParent():FindModifierByName("modifier_sect_health")
+	return IsValid(T) and T:GetIndomitableSoulDamageReduction() or 0
+end
+aB = e({ m(a, { IsHidden = false, IsPurgable = false, IsPurgeException = false, AllowIllusionDuplicate = false }) }, aB)
+g.modifier_yang_jian_strength_gain_buff = aB
 return g
