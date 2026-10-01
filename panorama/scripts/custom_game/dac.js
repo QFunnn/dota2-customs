@@ -1980,6 +1980,7 @@ function buy_chessboard() {
     refresh_shop_v5();
 }
 function shop_v5_buy() {
+    $.Msg('shop_v5_buy:'+GOODS);
     SendHTTP('shop_v5_buy', 'shop_v5_buy_cb', { item: GOODS }, 1);
     close_confirm();
     // refresh_shop_v5();
@@ -2339,6 +2340,8 @@ function SendHTTPCb(keys) {
     }
 
     if (event == 'refresh_shop_v5_cb') {
+        // $.Msg('refresh_shop_v5_cb');
+        // $.Msg(data);
         FillStoreV5(data);
     }
 
