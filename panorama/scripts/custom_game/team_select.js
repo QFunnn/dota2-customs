@@ -24,13 +24,6 @@ function FindOrCreateLaunchAssistantPanel(type, parent, id) {
   return $("#" + id) || $.CreatePanel(type, parent, id);
 }
 function InitLaunchAssistantTip() {
-  if (Game.IsInToolsMode()) {
-    var existingTip = $("#LaunchAssistantTip");
-    var existingColumn = $("#LaunchAssistantColumn");
-    if (existingTip) existingTip.visible = false;
-    if (existingColumn) existingColumn.visible = false;
-    return;
-  }
   var container = $("#TeamSelectContainer");
   var playerColumn = $("#GameAndPlayersRoot");
   if (!container || !playerColumn) return;
@@ -47,25 +40,22 @@ function InitLaunchAssistantTip() {
     tip.SetParent(tipColumn);
   }
   tip.visible = true;
+  var mainTitle = FindOrCreateLaunchAssistantPanel("Label", tip, "LaunchAssistantMainTitle");
   var title = FindOrCreateLaunchAssistantPanel("Label", tip, "LaunchAssistantTitle");
-  var stepOne = FindOrCreateLaunchAssistantPanel("Panel", tip, "LaunchAssistantStepOne");
-  var stepNumber = FindOrCreateLaunchAssistantPanel("Label", stepOne, "LaunchAssistantStepNumber");
-  var link = FindOrCreateLaunchAssistantPanel("Button", stepOne, "LaunchAssistantLink");
-  var linkLabel = FindOrCreateLaunchAssistantPanel("Label", link, "LaunchAssistantLinkLabel");
-  var url = FindOrCreateLaunchAssistantPanel("Label", tip, "LaunchAssistantURL");
+  var linkButton = FindOrCreateLaunchAssistantPanel("Button", tip, "LaunchAssistantLink");
+  var linkLabel = FindOrCreateLaunchAssistantPanel("Label", linkButton, "LaunchAssistantLinkLabel");
   var copyButton = FindOrCreateLaunchAssistantPanel("Button", tip, "CopyLaunchAssistantLink");
   var copyLabel = FindOrCreateLaunchAssistantPanel("Label", copyButton, "CopyLaunchAssistantLinkLabel");
   var notice = FindOrCreateLaunchAssistantPanel("Label", tip, "LaunchAssistantNotice");
   var stepTwo = FindOrCreateLaunchAssistantPanel("Label", tip, "LaunchAssistantStepTwo");
-  link.SetPanelEvent("onactivate", OnLaunchAssistantLinkPressed);
-  link.SetPanelEvent("oncontextmenu", OnCopyLaunchAssistantLink);
+  linkButton.SetPanelEvent("onactivate", OnLaunchAssistantLinkPressed);
+  linkButton.SetPanelEvent("oncontextmenu", OnCopyLaunchAssistantLink);
   copyButton.SetPanelEvent("onactivate", OnCopyLaunchAssistantLink);
+  mainTitle.text = GetLocalization("#TeamSelect_LaunchAssistantMainTitle", "请下载【VG游廊启动助手】");
   title.text = GetLocalization("#TeamSelect_LaunchAssistantTitle", "目前使用【VG游廊启动助手】可正常游玩：");
-  stepNumber.text = GetLocalization("#TeamSelect_LaunchAssistantStepOne", "1. 下载启动助手：");
-  linkLabel.text = GetLocalization("#TeamSelect_LaunchAssistantLink", "点击此处下载启动助手");
-  url.text = LAUNCH_ASSISTANT_URL;
-  copyLabel.text = GetLocalization("#TeamSelect_CopyLaunchAssistantLink", "复制下载链接");
-  notice.text = GetLocalization("#TeamSelect_LaunchAssistantNotice", "请注意：Dota2浏览器不支持下载及网页端使用，需复制链接到外部浏览器打开！");
+  linkLabel.text = GetLocalization("#TeamSelect_LaunchAssistantLink", "点此下载VG游廊启动助手");
+  copyLabel.text = GetLocalization("#TeamSelect_CopyLaunchAssistantLink", "点此复制启动助手下载链接");
+  notice.text = GetLocalization("#TeamSelect_LaunchAssistantNotice", "请注意：Dota2浏览器不支持下载，请复制链接到外部浏览器打开！");
   stepTwo.text = GetLocalization("#TeamSelect_LaunchAssistantStepTwo", "2. 打开助手，绑定Steam，创建房间，开始游戏！");
 }
 function OnLeaveTeamPressed() {

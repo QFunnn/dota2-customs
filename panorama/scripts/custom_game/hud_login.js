@@ -19,6 +19,7 @@ var EOM_TextEntry = require('./EOM_TextEntry.js');
 var solid_utils = require('./solid_utils.js');
 
 const SET_PASSWORD_URL = "https://eomaccount.eomgames.net";
+const LAUNCH_ASSISTANT_URL = "https://vgbattle.eomgames.net/";
 const LOCAL_AUTH_PREVIEW = false;
 const LOGIN_FLOW_STEPS = [{
   key: "login",
@@ -54,6 +55,81 @@ function Root() {
   const localPlayerLoginState = libs.createMemo(() => previewLocalAuth() ? PlayerLoginState.NeedAuth : loginState()?.[Players.GetLocalPlayer()]?.state ?? PlayerLoginState.None);
   const localPlayerSteps = libs.createMemo(() => previewLocalAuth() ? undefined : loginState()?.[Players.GetLocalPlayer()]?.steps);
   const isLocalHost = libs.createMemo(() => settings()?.is_local_host == true || settings()?.is_local_host);
+  const openLaunchAssistant = () => $.DispatchEvent("ExternalBrowserGoToURL", LAUNCH_ASSISTANT_URL);
+  const copyLaunchAssistantLink = () => $.DispatchEvent("CopyStringToClipboard", LAUNCH_ASSISTANT_URL, null);
+  const LaunchAssistantTip = () => (() => {
+    const _el$ = libs.createElement("Panel", {
+        id: "LaunchAssistantTip"
+      }, null),
+      _el$2 = libs.createElement("Label", {
+        id: "LaunchAssistantMainTitle",
+        get text() {
+          return GetLocalization("#TeamSelect_LaunchAssistantMainTitle", "请下载【VG游廊启动助手】");
+        }
+      }, _el$),
+      _el$3 = libs.createElement("Label", {
+        id: "LaunchAssistantTitle",
+        get text() {
+          return GetLocalization("#TeamSelect_LaunchAssistantTitle", "目前需使用【VG游廊启动助手】进入游戏，可正常游玩！");
+        }
+      }, _el$),
+      _el$4 = libs.createElement("Button", {
+        id: "LaunchAssistantLink"
+      }, _el$),
+      _el$5 = libs.createElement("Label", {
+        id: "LaunchAssistantLinkLabel",
+        get text() {
+          return GetLocalization("#TeamSelect_LaunchAssistantLink", "点此下载VG游廊启动助手");
+        }
+      }, _el$4),
+      _el$6 = libs.createElement("Button", {
+        id: "CopyLaunchAssistantLink"
+      }, _el$),
+      _el$7 = libs.createElement("Label", {
+        id: "CopyLaunchAssistantLinkLabel",
+        get text() {
+          return GetLocalization("#TeamSelect_CopyLaunchAssistantLink", "点此复制启动助手下载链接");
+        }
+      }, _el$6),
+      _el$8 = libs.createElement("Label", {
+        id: "LaunchAssistantNotice",
+        get text() {
+          return GetLocalization("#TeamSelect_LaunchAssistantNotice", "请注意：Dota2浏览器不支持下载，请复制链接到外部浏览器打开！");
+        }
+      }, _el$),
+      _el$9 = libs.createElement("Label", {
+        id: "LaunchAssistantStepTwo",
+        get text() {
+          return GetLocalization("#TeamSelect_LaunchAssistantStepTwo", "下载【VG游廊启动助手】，绑定Steam，创建房间，即刻开始游戏！");
+        }
+      }, _el$);
+    libs.setProp(_el$4, "onactivate", openLaunchAssistant);
+    libs.setProp(_el$4, "oncontextmenu", copyLaunchAssistantLink);
+    libs.setProp(_el$6, "onactivate", copyLaunchAssistantLink);
+    libs.effect(_p$ => {
+      const _v$ = GetLocalization("#TeamSelect_LaunchAssistantMainTitle", "请下载【VG游廊启动助手】"),
+        _v$2 = GetLocalization("#TeamSelect_LaunchAssistantTitle", "目前需使用【VG游廊启动助手】进入游戏，可正常游玩！"),
+        _v$3 = GetLocalization("#TeamSelect_LaunchAssistantLink", "点此下载VG游廊启动助手"),
+        _v$4 = GetLocalization("#TeamSelect_CopyLaunchAssistantLink", "点此复制启动助手下载链接"),
+        _v$5 = GetLocalization("#TeamSelect_LaunchAssistantNotice", "请注意：Dota2浏览器不支持下载，请复制链接到外部浏览器打开！"),
+        _v$6 = GetLocalization("#TeamSelect_LaunchAssistantStepTwo", "下载【VG游廊启动助手】，绑定Steam，创建房间，即刻开始游戏！");
+      _v$ !== _p$._v$ && (_p$._v$ = libs.setProp(_el$2, "text", _v$, _p$._v$));
+      _v$2 !== _p$._v$2 && (_p$._v$2 = libs.setProp(_el$3, "text", _v$2, _p$._v$2));
+      _v$3 !== _p$._v$3 && (_p$._v$3 = libs.setProp(_el$5, "text", _v$3, _p$._v$3));
+      _v$4 !== _p$._v$4 && (_p$._v$4 = libs.setProp(_el$7, "text", _v$4, _p$._v$4));
+      _v$5 !== _p$._v$5 && (_p$._v$5 = libs.setProp(_el$8, "text", _v$5, _p$._v$5));
+      _v$6 !== _p$._v$6 && (_p$._v$6 = libs.setProp(_el$9, "text", _v$6, _p$._v$6));
+      return _p$;
+    }, {
+      _v$: undefined,
+      _v$2: undefined,
+      _v$3: undefined,
+      _v$4: undefined,
+      _v$5: undefined,
+      _v$6: undefined
+    });
+    return _el$;
+  })();
   libs.createEffect(() => {
     $.GetContextPanel().SwitchClass("GameState_Login", previewLocalAuth() ? "GameState_Login" : gameState().state);
   });
@@ -97,7 +173,7 @@ function Root() {
       return [libs.createElement("Panel", {
         id: "SelectedHover"
       }, null), (() => {
-        const _el$2 = libs.createElement("Panel", {
+        const _el$1 = libs.createElement("Panel", {
             id: "SelectParticleRoot"
           }, null);
           libs.createElement("DOTAParticleScenePanel", {
@@ -108,32 +184,32 @@ function Root() {
             lookAt: "0 0 0",
             hittest: false,
             squarePixels: true
-          }, _el$2);
-        return _el$2;
+          }, _el$1);
+        return _el$1;
       })(), (() => {
-        const _el$4 = libs.createElement("Panel", {
+        const _el$11 = libs.createElement("Panel", {
           get ["class"]() {
             return libs.classNames("BGImage", "Return");
           }
         }, null);
-        libs.effect(_$p => libs.setProp(_el$4, "class", libs.classNames("BGImage", "Return"), _$p));
-        return _el$4;
+        libs.effect(_$p => libs.setProp(_el$11, "class", libs.classNames("BGImage", "Return"), _$p));
+        return _el$11;
       })(), (() => {
-        const _el$5 = libs.createElement("Label", {
+        const _el$12 = libs.createElement("Label", {
           get ["class"]() {
             return libs.classNames("MenuLabel", "Return");
           },
           text: "#MenuButton_Return"
         }, null);
-        libs.effect(_$p => libs.setProp(_el$5, "class", libs.classNames("MenuLabel", "Return"), _$p));
-        return _el$5;
+        libs.effect(_$p => libs.setProp(_el$12, "class", libs.classNames("MenuLabel", "Return"), _$p));
+        return _el$12;
       })()];
     }
   }), (() => {
-    const _el$6 = libs.createElement("Panel", {
+    const _el$13 = libs.createElement("Panel", {
       id: "PlayerReadyUp"
     }, null);
-    libs.insert(_el$6, libs.createComponent(libs.For, {
+    libs.insert(_el$13, libs.createComponent(libs.For, {
       get each() {
         return Object.keys(loginState());
       },
@@ -146,7 +222,7 @@ function Root() {
           return loginState()?.[playerID()]?.state ?? PlayerLoginState.None;
         };
         return (() => {
-          const _el$34 = libs.createElement("Panel", {
+          const _el$43 = libs.createElement("Panel", {
               get ["class"]() {
                 return libs.classNames("PlayerReadySlot", {
                   Accepted: state() == PlayerLoginState.Success,
@@ -154,7 +230,7 @@ function Root() {
                 });
               }
             }, null),
-            _el$35 = libs.createElement("DOTAAvatarImage", {
+            _el$44 = libs.createElement("DOTAAvatarImage", {
               id: "AvatarImage",
               get steamid() {
                 return playerSteamID();
@@ -162,49 +238,49 @@ function Root() {
               width: "100%",
               height: "100%",
               hittest: false
-            }, _el$34);
+            }, _el$43);
             libs.createElement("Panel", {
               "class": "AcceptedMatch",
               hittest: false
-            }, _el$34);
+            }, _el$43);
             libs.createElement("Panel", {
               "class": "DeclinedMatch",
               hittest: false
-            }, _el$34);
-          libs.setProp(_el$35, "width", "100%");
-          libs.setProp(_el$35, "height", "100%");
+            }, _el$43);
+          libs.setProp(_el$44, "width", "100%");
+          libs.setProp(_el$44, "height", "100%");
           libs.effect(_p$ => {
-            const _v$3 = libs.classNames("PlayerReadySlot", {
+            const _v$9 = libs.classNames("PlayerReadySlot", {
                 Accepted: state() == PlayerLoginState.Success,
                 Declined: state() != PlayerLoginState.Success
               }),
-              _v$4 = playerSteamID();
-            _v$3 !== _p$._v$3 && (_p$._v$3 = libs.setProp(_el$34, "class", _v$3, _p$._v$3));
-            _v$4 !== _p$._v$4 && (_p$._v$4 = libs.setProp(_el$35, "steamid", _v$4, _p$._v$4));
+              _v$0 = playerSteamID();
+            _v$9 !== _p$._v$9 && (_p$._v$9 = libs.setProp(_el$43, "class", _v$9, _p$._v$9));
+            _v$0 !== _p$._v$0 && (_p$._v$0 = libs.setProp(_el$44, "steamid", _v$0, _p$._v$0));
             return _p$;
           }, {
-            _v$3: undefined,
-            _v$4: undefined
+            _v$9: undefined,
+            _v$0: undefined
           });
-          return _el$34;
+          return _el$43;
         })();
       }
     }));
-    return _el$6;
+    return _el$13;
   })(), libs.createComponent(libs.Show, {
     get when() {
       return localPlayerSteps();
     },
     children: () => (() => {
-      const _el$38 = libs.createElement("Panel", {
+      const _el$47 = libs.createElement("Panel", {
         id: "LoginStepsContainer"
       }, null);
-      libs.insert(_el$38, libs.createComponent(libs.For, {
+      libs.insert(_el$47, libs.createComponent(libs.For, {
         each: LOGIN_FLOW_STEPS,
         children: (step, index) => {
           const completed = () => localPlayerSteps()?.[step.key] ?? false;
           return (() => {
-            const _el$39 = libs.createElement("Panel", {
+            const _el$48 = libs.createElement("Panel", {
                 get ["class"]() {
                   return libs.classNames("LoginStepItem", {
                     Completed: completed()
@@ -213,127 +289,134 @@ function Root() {
               }, null);
               libs.createElement("Panel", {
                 "class": "LoginStepIndicator"
-              }, _el$39);
-              const _el$41 = libs.createElement("Label", {
+              }, _el$48);
+              const _el$50 = libs.createElement("Label", {
                 "class": "LoginStepLabel",
                 color: "white",
                 get text() {
                   return `${index() + 1}. ${GetLocalization(step.label)}`;
                 }
-              }, _el$39);
+              }, _el$48);
             libs.effect(_p$ => {
-              const _v$5 = libs.classNames("LoginStepItem", {
+              const _v$1 = libs.classNames("LoginStepItem", {
                   Completed: completed()
                 }),
-                _v$6 = `${index() + 1}. ${GetLocalization(step.label)}`;
-              _v$5 !== _p$._v$5 && (_p$._v$5 = libs.setProp(_el$39, "class", _v$5, _p$._v$5));
-              _v$6 !== _p$._v$6 && (_p$._v$6 = libs.setProp(_el$41, "text", _v$6, _p$._v$6));
+                _v$10 = `${index() + 1}. ${GetLocalization(step.label)}`;
+              _v$1 !== _p$._v$1 && (_p$._v$1 = libs.setProp(_el$48, "class", _v$1, _p$._v$1));
+              _v$10 !== _p$._v$10 && (_p$._v$10 = libs.setProp(_el$50, "text", _v$10, _p$._v$10));
               return _p$;
             }, {
-              _v$5: undefined,
-              _v$6: undefined
+              _v$1: undefined,
+              _v$10: undefined
             });
-            return _el$39;
+            return _el$48;
           })();
         }
       }));
-      return _el$38;
+      return _el$47;
     })()
   }), libs.createComponent(libs.Show, {
     get when() {
       return localPlayerLoginState() == PlayerLoginState.MatchIDPre;
     },
     get children() {
-      const _el$7 = libs.createElement("Panel", {
+      const _el$14 = libs.createElement("Panel", {
           id: "LoadingContainer"
         }, null),
-        _el$8 = libs.createElement("Label", {
+        _el$15 = libs.createElement("Label", {
           color: "white",
           get text() {
             return GetLocalization("#Login_MatchIDPreparing");
           },
           horizontalAlign: "center",
           marginTop: "20px"
-        }, _el$7);
-      libs.insert(_el$7, libs.createComponent(EOM_Loading.EOM_Loading, {
+        }, _el$14);
+      libs.insert(_el$14, libs.createComponent(EOM_Loading.EOM_Loading, {
         id: "Loading"
-      }), _el$8);
-      libs.setProp(_el$8, "horizontalAlign", "center");
-      libs.setProp(_el$8, "marginTop", "20px");
-      libs.effect(_$p => libs.setProp(_el$8, "text", GetLocalization("#Login_MatchIDPreparing"), _$p));
-      return _el$7;
+      }), _el$15);
+      libs.setProp(_el$15, "horizontalAlign", "center");
+      libs.setProp(_el$15, "marginTop", "20px");
+      libs.effect(_$p => libs.setProp(_el$15, "text", GetLocalization("#Login_MatchIDPreparing"), _$p));
+      return _el$14;
     }
   }), libs.createComponent(libs.Show, {
     get when() {
       return localPlayerLoginState() == PlayerLoginState.Failed;
     },
     get children() {
-      const _el$9 = libs.createElement("Panel", {
+      const _el$16 = libs.createElement("Panel", {
           id: "LoadingContainer"
         }, null),
-        _el$0 = libs.createElement("Label", {
+        _el$17 = libs.createElement("Label", {
           color: "white",
           get text() {
             return GetLocalization("#Login_MatchIDFailed");
           },
           horizontalAlign: "center"
-        }, _el$9);
-      libs.setProp(_el$0, "horizontalAlign", "center");
-      libs.effect(_$p => libs.setProp(_el$0, "text", GetLocalization("#Login_MatchIDFailed"), _$p));
-      return _el$9;
+        }, _el$16);
+      libs.setProp(_el$17, "horizontalAlign", "center");
+      libs.effect(_$p => libs.setProp(_el$17, "text", GetLocalization("#Login_MatchIDFailed"), _$p));
+      return _el$16;
     }
   }), libs.createComponent(libs.Show, {
     get when() {
       return localPlayerLoginState() == PlayerLoginState.None;
     },
     get children() {
-      const _el$1 = libs.createElement("Panel", {
+      const _el$18 = libs.createElement("Panel", {
           id: "LoadingContainer"
         }, null),
-        _el$10 = libs.createElement("Label", {
+        _el$19 = libs.createElement("Label", {
           color: "white",
           text: "#Login_Loading",
           horizontalAlign: "center",
           marginTop: "20px"
-        }, _el$1);
-      libs.insert(_el$1, libs.createComponent(EOM_Loading.EOM_Loading, {
+        }, _el$18);
+      libs.insert(_el$18, libs.createComponent(EOM_Loading.EOM_Loading, {
         id: "Loading"
-      }), _el$10);
-      libs.setProp(_el$10, "horizontalAlign", "center");
-      libs.setProp(_el$10, "marginTop", "20px");
-      return _el$1;
+      }), _el$19);
+      libs.setProp(_el$19, "horizontalAlign", "center");
+      libs.setProp(_el$19, "marginTop", "20px");
+      return _el$18;
+    }
+  }), libs.createComponent(libs.Show, {
+    get when() {
+      return localPlayerLoginState() == PlayerLoginState.MatchIDPre || localPlayerLoginState() == PlayerLoginState.None;
+    },
+    get children() {
+      return libs.createComponent(LaunchAssistantTip, {});
     }
   }), libs.createComponent(libs.Show, {
     get when() {
       return previewLocalAuth() || isLocalHost() && localPlayerLoginState() == PlayerLoginState.NeedAuth;
     },
     get children() {
-      const _el$11 = libs.createElement("Panel", {
+      const _el$20 = libs.createElement("Panel", {
           id: "InviteKey"
         }, null),
-        _el$12 = libs.createElement("Panel", {
+        _el$21 = libs.createElement("Panel", {
           id: "InviteKeyContainer"
-        }, _el$11),
-        _el$13 = libs.createElement("Label", {
+        }, _el$20),
+        _el$22 = libs.createElement("Label", {
           id: "InviteKeyTitle",
           get text() {
             return GetLocalization("#Login_LocalAuth_Title");
           }
-        }, _el$12),
-        _el$14 = libs.createElement("Label", {
+        }, _el$21),
+        _el$23 = libs.createElement("Label", {
           id: "InviteKeyDesc",
           html: true,
           get text() {
             return GetLocalization("#Login_LocalAuth_Desc");
           }
-        }, _el$12),
-        _el$15 = libs.createElement("Panel", {
+        }, _el$21),
+        _el$24 = libs.createElement("Panel", {
           id: "InviteKeyForm"
-        }, _el$12),
-        _el$16 = libs.createElement("Panel", {
+        }, _el$21),
+        _el$25 = libs.createElement("Panel", {
           id: "LocalAuthActions"
-        }, _el$12);
-      libs.insert(_el$15, libs.createComponent(EOM_TextEntry.EOM_TextEntry, {
+        }, _el$21);
+      libs.insert(_el$24, libs.createComponent(EOM_TextEntry.EOM_TextEntry, {
         id: "InviteKeyEntry",
         textmode: "password",
         get text() {
@@ -345,7 +428,7 @@ function Root() {
         onChange: (self, _, text) => setAuthPassword(text),
         oninputsubmit: submitAuthPassword
       }), null);
-      libs.insert(_el$15, libs.createComponent(EOM_Button.EOM_Button, {
+      libs.insert(_el$24, libs.createComponent(EOM_Button.EOM_Button, {
         id: "InviteKeyConfirm",
         get enabled() {
           return libs.memo(() => !!(!previewLocalAuth() && !submittingAuth()))() && authPassword().trim() !== "";
@@ -356,7 +439,7 @@ function Root() {
         },
         onactivate: submitAuthPassword
       }), null);
-      libs.insert(_el$16, libs.createComponent(EOM_Button.EOM_Button, {
+      libs.insert(_el$25, libs.createComponent(EOM_Button.EOM_Button, {
         id: "SetPassword",
         size: "Small",
         get text() {
@@ -368,7 +451,7 @@ function Root() {
           }
         }
       }), null);
-      libs.insert(_el$16, libs.createComponent(libs.Show, {
+      libs.insert(_el$25, libs.createComponent(libs.Show, {
         get when() {
           return previewLocalAuth();
         },
@@ -386,56 +469,56 @@ function Root() {
           });
         }
       }), null);
-      libs.insert(_el$12, libs.createComponent(libs.Show, {
+      libs.insert(_el$21, libs.createComponent(libs.Show, {
         get when() {
           return previewLocalAuth();
         },
         get children() {
-          const _el$17 = libs.createElement("Label", {
+          const _el$26 = libs.createElement("Label", {
             id: "LocalAuthPreviewHint",
             get text() {
               return GetLocalization("#Login_LocalAuth_PreviewHint");
             }
           }, null);
-          libs.effect(_$p => libs.setProp(_el$17, "text", GetLocalization("#Login_LocalAuth_PreviewHint"), _$p));
-          return _el$17;
+          libs.effect(_$p => libs.setProp(_el$26, "text", GetLocalization("#Login_LocalAuth_PreviewHint"), _$p));
+          return _el$26;
         }
       }), null);
       libs.effect(_p$ => {
-        const _v$ = GetLocalization("#Login_LocalAuth_Title"),
-          _v$2 = GetLocalization("#Login_LocalAuth_Desc");
-        _v$ !== _p$._v$ && (_p$._v$ = libs.setProp(_el$13, "text", _v$, _p$._v$));
-        _v$2 !== _p$._v$2 && (_p$._v$2 = libs.setProp(_el$14, "text", _v$2, _p$._v$2));
+        const _v$7 = GetLocalization("#Login_LocalAuth_Title"),
+          _v$8 = GetLocalization("#Login_LocalAuth_Desc");
+        _v$7 !== _p$._v$7 && (_p$._v$7 = libs.setProp(_el$22, "text", _v$7, _p$._v$7));
+        _v$8 !== _p$._v$8 && (_p$._v$8 = libs.setProp(_el$23, "text", _v$8, _p$._v$8));
         return _p$;
       }, {
-        _v$: undefined,
-        _v$2: undefined
+        _v$7: undefined,
+        _v$8: undefined
       });
-      return _el$11;
+      return _el$20;
     }
   }), libs.createComponent(libs.Show, {
     get when() {
       return localPlayerLoginState() == PlayerLoginState.NoPermission;
     },
     get children() {
-      const _el$18 = libs.createElement("Panel", {
+      const _el$27 = libs.createElement("Panel", {
           id: "InviteKey"
         }, null),
-        _el$19 = libs.createElement("Panel", {
+        _el$28 = libs.createElement("Panel", {
           id: "InviteKeyContainer"
-        }, _el$18);
+        }, _el$27);
         libs.createElement("Label", {
           id: "InviteKeyTitle",
           text: "#Login_NoPermission_Title"
-        }, _el$19);
+        }, _el$28);
         libs.createElement("Label", {
           id: "InviteKeyDesc",
           text: "#Login_NoPermission_Desc"
-        }, _el$19);
-        const _el$22 = libs.createElement("Panel", {
+        }, _el$28);
+        const _el$31 = libs.createElement("Panel", {
           id: "InviteKeyForm"
-        }, _el$19);
-      libs.insert(_el$22, libs.createComponent(EOM_TextEntry.EOM_TextEntry, {
+        }, _el$28);
+      libs.insert(_el$31, libs.createComponent(EOM_TextEntry.EOM_TextEntry, {
         id: "InviteKeyEntry",
         get text() {
           return inviteKey();
@@ -444,7 +527,7 @@ function Root() {
         onChange: (self, _, text) => setInviteKey(text),
         oninputsubmit: submitInviteKey
       }), null);
-      libs.insert(_el$22, libs.createComponent(EOM_Button.EOM_Button, {
+      libs.insert(_el$31, libs.createComponent(EOM_Button.EOM_Button, {
         id: "InviteKeyConfirm",
         get enabled() {
           return libs.memo(() => !!!submittingInviteKey())() && inviteKey().trim() !== "";
@@ -455,7 +538,7 @@ function Root() {
         },
         onactivate: submitInviteKey
       }), null);
-      return _el$18;
+      return _el$27;
     }
   }), libs.createComponent(libs.Show, {
     get when() {
@@ -474,40 +557,40 @@ function Root() {
             text: "#Login_Banned_Content",
             html: true
           }, null), (() => {
-            const _el$24 = libs.createElement("Panel", {
+            const _el$33 = libs.createElement("Panel", {
                 id: "BanCountdownContainer"
               }, null);
               libs.createElement("Label", {
                 text: "#Login_Banned_Endtime"
-              }, _el$24);
-            libs.insert(_el$24, libs.createComponent(EOM_Countdown.EOM_Countdown, {
+              }, _el$33);
+            libs.insert(_el$33, libs.createComponent(EOM_Countdown.EOM_Countdown, {
               id: "BanCountdown",
               get endTime() {
                 return loginState()?.[Players.GetLocalPlayer()]?.ban_end_time ?? 0;
               }
             }), null);
-            return _el$24;
+            return _el$33;
           })(), (() => {
-            const _el$26 = libs.createElement("Panel", {
+            const _el$35 = libs.createElement("Panel", {
                 flowChildren: "down",
                 align: "right bottom",
                 marginBottom: "20px"
               }, null),
-              _el$27 = libs.createElement("Panel", {
+              _el$36 = libs.createElement("Panel", {
                 id: "BanQrCode",
                 get ["class"]() {
                   return Language();
                 }
-              }, _el$26);
+              }, _el$35);
               libs.createElement("Label", {
                 id: "BanContact",
                 text: "#BanContact"
-              }, _el$26);
-            libs.setProp(_el$26, "flowChildren", "down");
-            libs.setProp(_el$26, "align", "right bottom");
-            libs.setProp(_el$26, "marginBottom", "20px");
-            libs.effect(_$p => libs.setProp(_el$27, "class", Language(), _$p));
-            return _el$26;
+              }, _el$35);
+            libs.setProp(_el$35, "flowChildren", "down");
+            libs.setProp(_el$35, "align", "right bottom");
+            libs.setProp(_el$35, "marginBottom", "20px");
+            libs.effect(_$p => libs.setProp(_el$36, "class", Language(), _$p));
+            return _el$35;
           })()];
         }
       });
@@ -517,46 +600,46 @@ function Root() {
       return showPasswordBrowser();
     },
     get children() {
-      const _el$29 = libs.createElement("Panel", {
+      const _el$38 = libs.createElement("Panel", {
           id: "PasswordBrowserOverlay",
           hittest: true
         }, null),
-        _el$30 = libs.createElement("Panel", {
+        _el$39 = libs.createElement("Panel", {
           id: "PasswordBrowserWindow"
-        }, _el$29),
-        _el$31 = libs.createElement("Panel", {
+        }, _el$38),
+        _el$40 = libs.createElement("Panel", {
           id: "PasswordBrowserHeader"
-        }, _el$30),
-        _el$32 = libs.createElement("Label", {
+        }, _el$39),
+        _el$41 = libs.createElement("Label", {
           id: "PasswordBrowserTitle",
           get text() {
             return GetLocalization("#Login_SetPassword");
           }
-        }, _el$31),
-        _el$33 = libs.createElement("GenericPanel", {
+        }, _el$40),
+        _el$42 = libs.createElement("GenericPanel", {
           id: "PasswordBrowserContent",
           type: "DOTAHTMLPanel",
           url: SET_PASSWORD_URL,
           acceptsinput: true,
           hittest: true
-        }, _el$30);
-      libs.setProp(_el$29, "onactivate", () => {});
-      libs.insert(_el$31, libs.createComponent(EOM_Button.EOM_CloseButton, {
+        }, _el$39);
+      libs.setProp(_el$38, "onactivate", () => {});
+      libs.insert(_el$40, libs.createComponent(EOM_Button.EOM_CloseButton, {
         id: "PasswordBrowserClose",
         onactivate: () => setShowPasswordBrowser(false)
       }), null);
-      libs.setProp(_el$33, "url", SET_PASSWORD_URL);
-      libs.setProp(_el$33, "onload", self => {
+      libs.setProp(_el$42, "url", SET_PASSWORD_URL);
+      libs.setProp(_el$42, "onload", self => {
         self.SetAcceptsFocus(true);
         self.SetIgnoreCursor(false);
         self.SetFocus();
       });
-      libs.effect(_$p => libs.setProp(_el$32, "text", GetLocalization("#Login_SetPassword"), _$p));
-      return _el$29;
+      libs.effect(_$p => libs.setProp(_el$41, "text", GetLocalization("#Login_SetPassword"), _$p));
+      return _el$38;
     }
   })];
 }
 (() => {
   $.GetContextPanel().SetPanelEvent("onactivate", () => {});
   libs.render(() => libs.createComponent(Root, {}), $.GetContextPanel());
-})();
+})();
