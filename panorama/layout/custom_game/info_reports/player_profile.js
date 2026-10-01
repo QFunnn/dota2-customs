@@ -1091,3 +1091,4 @@ function GetSettingsChange(data)
 	    button_wavealert.SetHasClass("settings_checkbox_active", data.wavealert_hide == 1)
     }
 }
+

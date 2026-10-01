@@ -385,4 +385,4 @@ function SetBindInterval()
         current_button = GetGameKeybind(DOTAKeybindCommand_t.DOTA_KEYBIND_HERO_CHAT_WHEEL)
     }
     $.Schedule( 1, SetBindInterval );
-}
+}

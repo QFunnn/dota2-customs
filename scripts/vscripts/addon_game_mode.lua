@@ -1941,16 +1941,32 @@ function dota1x6:OnGameRulesStateChange()
 	end
 
 	if nNewState == DOTA_GAMERULES_STATE_HERO_SELECTION then
+		local teams = { 2, 3, 6, 7 }
+		if IsSoloMode() then
+			teams = { 2, 3, 6, 7, 12, 9 }
+		end
+
+		local filled = {}
+		for _, team in pairs(teams) do
+			filled[team] = 0
+		end
+
+		for id = 0, 24 do
+			if ValidId(id) then
+				local team = PlayerResource:GetTeam(id)
+				if filled[team] then
+					filled[team] = filled[team] + 1
+				end
+			end
+		end
+
 		for id = 0, 24 do
 			if ValidId(id) then
 				if PlayerResource:GetTeam(id) == DOTA_TEAM_NOTEAM then
-					local teams = { 2, 3, 6, 7 }
-					if IsSoloMode() then
-						teams = { 2, 3, 6, 7, 12, 9 }
-					end
 					for _, team in pairs(teams) do
-						if PlayerResource:GetPlayerCountForTeam(team) < players_in_team then
+						if filled[team] < players_in_team then
 							PlayerResource:SetCustomTeamAssignment(id, team)
+							filled[team] = filled[team] + 1
 							break
 						end
 					end
