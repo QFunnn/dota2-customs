@@ -106,34 +106,35 @@ g(
 		["97"] = 107,
 		["98"] = 108,
 		["99"] = 109,
-		["101"] = 111,
-		["104"] = 114,
+		["100"] = 110,
+		["102"] = 112,
 		["105"] = 115,
 		["106"] = 116,
 		["107"] = 117,
 		["108"] = 118,
 		["109"] = 119,
-		["111"] = 121,
-		["114"] = 124,
-		["115"] = 126,
+		["110"] = 120,
+		["112"] = 122,
 		["116"] = 126,
-		["117"] = 126,
-		["118"] = 126,
-		["119"] = 126,
-		["120"] = 126,
-		["121"] = 126,
-		["122"] = 126,
-		["123"] = 126,
-		["124"] = 126,
-		["125"] = 126,
-		["126"] = 126,
-		["127"] = 126,
-		["128"] = 136,
-		["129"] = 137,
-		["131"] = 5,
-		["132"] = 3,
-		["133"] = 145,
-		["134"] = 146,
+		["117"] = 128,
+		["118"] = 128,
+		["119"] = 128,
+		["120"] = 128,
+		["121"] = 128,
+		["122"] = 128,
+		["123"] = 128,
+		["124"] = 128,
+		["125"] = 128,
+		["126"] = 128,
+		["127"] = 128,
+		["128"] = 128,
+		["129"] = 128,
+		["130"] = 138,
+		["131"] = 139,
+		["133"] = 5,
+		["134"] = 3,
+		["135"] = 147,
+		["136"] = 148,
 	}
 )
 local h = {}
@@ -222,24 +223,26 @@ function k.prototype.init(self, l)
 		m:SetWeatherEffectsDisabled(true)
 		m:SetForcedHUDSkin("default")
 		m:SetGoldSoundDisabled(true)
-		if IsInToolsMode() then
-			GameRules:SetCustomGameSetupAutoLaunchDelay(3)
-			GameRules:LockCustomGameSetupTeamAssignment(false)
-			GameRules:EnableCustomGameSetupAutoLaunch(true)
-			if IsCompetitionMode(nil) or IsGroupMode(nil) then
-				GameRules:SetCustomGameSetupAutoLaunchDelay(30)
-			else
-				GameRules:SetCustomGameSetupAutoLaunchDelay(10)
-			end
-		else
-			GameRules:SetCustomGameSetupAutoLaunchDelay(3)
-			GameRules:LockCustomGameSetupTeamAssignment(false)
-			GameRules:EnableCustomGameSetupAutoLaunch(true)
-			m:SetBuybackEnabled(false)
-			if IsCompetitionMode(nil) or IsGroupMode(nil) then
-				GameRules:SetCustomGameSetupAutoLaunchDelay(30)
+		if GetMapName() ~= "help_map" then
+			if IsInToolsMode() then
+				GameRules:SetCustomGameSetupAutoLaunchDelay(3)
+				GameRules:LockCustomGameSetupTeamAssignment(false)
+				GameRules:EnableCustomGameSetupAutoLaunch(true)
+				if IsCompetitionMode(nil) or IsGroupMode(nil) then
+					GameRules:SetCustomGameSetupAutoLaunchDelay(30)
+				else
+					GameRules:SetCustomGameSetupAutoLaunchDelay(10)
+				end
 			else
 				GameRules:SetCustomGameSetupAutoLaunchDelay(3)
+				GameRules:LockCustomGameSetupTeamAssignment(false)
+				GameRules:EnableCustomGameSetupAutoLaunch(true)
+				m:SetBuybackEnabled(false)
+				if IsCompetitionMode(nil) or IsGroupMode(nil) then
+					GameRules:SetCustomGameSetupAutoLaunchDelay(30)
+				else
+					GameRules:SetCustomGameSetupAutoLaunchDelay(3)
+				end
 			end
 		end
 		GameRules:SetUseUniversalShopMode(true)

@@ -24,6 +24,9 @@ var mapInfo = Game.GetMapInfo();
 var _IsTournamentMap = mapInfo && mapInfo.map_display_name == "tournament_map";
 var _IsGroupMode = mapInfo != undefined && mapInfo.map_display_name == "2v2v2v2";
 
+if (mapInfo.map_display_name == "help_map" && $("#GameAndPlayersRoot")) {
+	$("#GameAndPlayersRoot").style.opacity = "0";
+}
 //--------------------------------------------------------------------------------------------------
 // Keep the legacy handler inert: players may join teams, but cannot opt out into NOTEAM.
 //--------------------------------------------------------------------------------------------------

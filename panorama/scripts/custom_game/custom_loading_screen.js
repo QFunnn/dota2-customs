@@ -14,6 +14,11 @@ function JumpT11Url() {
   $.DispatchEvent('DOTASubscribeToCustomGame', 3591915450);
 }
 
+function PanelVisible(p, visible) {
+  if (p?.IsValid()) {
+    p.style.opacity = visible ? "1" : "0";
+  }
+}
 (() => {
   var root = $.GetContextPanel();
   root.AddClass($.Language().toLowerCase());
@@ -38,4 +43,23 @@ function JumpT11Url() {
   if (loadingScreenSeason != undefined) {
     root.AddClass('Season' + loadingScreenSeason);
   }
-})();
+  var Update = function () {
+    var mapInfo = Game.GetMapInfo();
+    if (mapInfo.map_display_name == "help_map") {
+      PanelVisible($("#VGLauncherNotice"), true);
+      PanelVisible($("#WorldVignetteRight"), false);
+      PanelVisible($("#BlackBlock"), false);
+      PanelVisible($("#RankBG"), false);
+    } else {
+      PanelVisible($("#VGLauncherNotice"), false);
+      PanelVisible($("#WorldVignetteRight"), true);
+      PanelVisible($("#BlackBlock"), true);
+      PanelVisible($("#RankBG"), true);
+    }
+    $.Schedule(0, () => {
+      Update();
+    });
+  };
+  Update();
+})();
+
