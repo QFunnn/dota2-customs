@@ -6076,9 +6076,27 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+const LAUNCHER_DOWNLOAD_URL = "https://vgbattle.eomgames.net/";
+function LauncherGuide() {
+    const [copied, setCopied] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false);
+    return react__WEBPACK_IMPORTED_MODULE_1__.createElement(Panel, { id: "LauncherGuide" },
+        react__WEBPACK_IMPORTED_MODULE_1__.createElement(Label, { id: "LauncherGuideTitle", text: $.Localize("#LoadingScreen_launcher_title") }),
+        react__WEBPACK_IMPORTED_MODULE_1__.createElement(Label, { className: "LauncherGuideStep", text: $.Localize("#LoadingScreen_launcher_download_step") }),
+        react__WEBPACK_IMPORTED_MODULE_1__.createElement(Button, { id: "LauncherDownloadLink", onactivate: () => $.DispatchEvent("ExternalBrowserGoToURL", LAUNCHER_DOWNLOAD_URL) },
+            react__WEBPACK_IMPORTED_MODULE_1__.createElement(Label, { text: $.Localize("#LoadingScreen_launcher_download_link"), hittest: false })),
+        react__WEBPACK_IMPORTED_MODULE_1__.createElement(Label, { id: "LauncherDownloadUrl", text: LAUNCHER_DOWNLOAD_URL }),
+        react__WEBPACK_IMPORTED_MODULE_1__.createElement(Button, { id: "LauncherCopyButton", onactivate: () => {
+                $.DispatchEvent("CopyStringToClipboard", LAUNCHER_DOWNLOAD_URL, null);
+                setCopied(true);
+            } },
+            react__WEBPACK_IMPORTED_MODULE_1__.createElement(Label, { text: $.Localize(copied ? "#LoadingScreen_launcher_copied" : "#LoadingScreen_launcher_copy"), hittest: false })),
+        react__WEBPACK_IMPORTED_MODULE_1__.createElement(Label, { id: "LauncherGuideWarning", text: $.Localize("#LoadingScreen_launcher_warning") }),
+        react__WEBPACK_IMPORTED_MODULE_1__.createElement(Label, { id: "LauncherGuidePlayStep", className: "LauncherGuideStep", text: $.Localize("#LoadingScreen_launcher_play_step") }));
+}
 function CustomLoadingScreen() {
     return react__WEBPACK_IMPORTED_MODULE_1__.createElement(_EOMDesign_Container_EOM_Panel_EOM_Panel__WEBPACK_IMPORTED_MODULE_2__["default"], { id: "CustomLoadingScreen", className: $.Language().toLowerCase() },
-        react__WEBPACK_IMPORTED_MODULE_1__.createElement(Panel, { id: "Logo" }));
+        react__WEBPACK_IMPORTED_MODULE_1__.createElement(Panel, { id: "Logo" }),
+        react__WEBPACK_IMPORTED_MODULE_1__.createElement(LauncherGuide, null));
 }
 function adjustChatPanel() {
     let pHud = $.GetContextPanel();

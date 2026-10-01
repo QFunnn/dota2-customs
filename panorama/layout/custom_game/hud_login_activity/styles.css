@@ -1,0 +1,380 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1a5b3bb 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+.HudRoot
+{
+	width: 100%;
+	height: 100%;
+	z-index: 2;
+}
+
+#Hud_LoginActivity
+{
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	transform: translateY(-38px);
+	pre-transform-scale2d: 0.97;
+	transition-property: opacity, transform, pre-transform-scale2d;
+	transition-duration: 0.25s;
+	transition-timing-function: ease-in-out;
+}
+
+#Hud_LoginActivity.Show
+{
+	opacity: 1;
+	transform: none;
+	pre-transform-scale2d: 1;
+}
+
+#LoginActivityFrame
+{
+	width: 1526px;
+	height: 864px;
+	align: center center;
+	background-image: url("s2r://panorama/images/custom_game/login_activity/qd_frame_png.vtex");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	overflow: noclip;
+}
+
+#LoginActivityClose
+{
+	width: 52px;
+	height: 54px;
+	align: right top;
+	margin-top: 8px;
+	margin-right: 8px;
+	background-image: url("s2r://panorama/images/custom_game/hero_skin/btn_close_png.vtex");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	z-index: 5;
+}
+
+#LoginActivityClose:hover
+{
+	brightness: 2;
+}
+
+#LoginActivityClose:active
+{
+	pre-transform-scale2d: 0.94;
+}
+
+#LoginActivityTitle
+{
+	width: 1330px;
+	height: 108px;
+	horizontal-align: center;
+	margin-top: 62px;
+}
+
+#LoginActivityCountdown
+{
+	width: fit-children;
+	height: 30px;
+	horizontal-align: center;
+	margin-top: 170px;
+	flow-children: right;
+}
+
+#LoginActivityCountdown Label
+{
+	vertical-align: center;
+	text-shadow: 0px 1px 3px 3 #000000;
+}
+
+#LoginActivityCountdownTitle
+{
+	margin-right: 8px;
+	font-size: 18px;
+	color: #d8c69e;
+}
+
+#LoginActivityCountdownTimer
+{
+	width: fit-children;
+	height: fit-children;
+	vertical-align: center;
+}
+
+#LoginActivityCountdownValue
+{
+	font-size: 20px;
+	font-weight: semi-bold;
+	color: #ffe38a;
+}
+
+#LoginActivitySummary
+{
+	width: 562px;
+	height: 50px;
+	horizontal-align: center;
+	margin-top: 208px;
+	background-image: url("s2r://panorama/images/custom_game/login_activity/panel_txt_png.vtex");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+#LoginActivitySummaryContent
+{
+	flow-children: right;
+	align: center center;
+}
+
+#LoginActivitySummaryContent Image
+{
+	width: 38px;
+	height: 38px;
+	vertical-align: center;
+}
+
+#LoginActivitySummaryContent Label
+{
+	vertical-align: center;
+	margin-left: 5px;
+	font-size: 18px;
+	color: #f7e4a6;
+	text-shadow: 0px 1px 3px 3 #000000;
+}
+
+#LoginActivitySummaryContent .LoginActivitySummaryDivider
+{
+	width: 1px;
+	height: 28px;
+	vertical-align: center;
+	margin-left: 18px;
+	margin-right: 18px;
+	background-color: #92783c88;
+}
+
+#LoginRewardsViewport
+{
+	width: 1386px;
+	height: 430px;
+	horizontal-align: center;
+	margin-top: 296px;
+	overflow: noclip;
+}
+
+#LoginRewardsList
+{
+	width: 1386px;
+	height: 420px;
+	flow-children: right;
+	overflow: noclip;
+}
+
+.LoginRewardSlot
+{
+	width: 198px;
+	height: 410px;
+	overflow: noclip;
+	transition-property: transform, brightness;
+	transition-duration: 0.16s;
+	transition-timing-function: ease-in-out;
+}
+
+.LoginRewardSlot.Raised
+{
+	transform: translateY(-38px);
+}
+
+.LoginRewardSlot.Available:hover
+{
+	brightness: 1.12;
+}
+
+.LoginRewardSlot.Available:hover .LoginRewardLine
+{
+	opacity: 1;
+}
+
+.LoginRewardSlot.Unavailable .LoginRewardName,.LoginRewardSlot.Claimed .LoginRewardName,.LoginRewardSlot.Unavailable .LoginRewardLight,.LoginRewardSlot.Claimed .LoginRewardLight,.LoginRewardSlot.Unavailable .LoginRewardImage,.LoginRewardSlot.Claimed .LoginRewardImage,.LoginRewardSlot.Unavailable .LoginRewardAmount,.LoginRewardSlot.Claimed .LoginRewardAmount
+{
+	brightness: 0.58;
+	saturation: 0.35;
+}
+
+.LoginRewardSlot.Receiving .LoginRewardClaim
+{
+	brightness: 0.75;
+}
+
+.LoginRewardDay
+{
+	horizontal-align: center;
+	font-size: 24px;
+	font-weight: semi-bold;
+	color: #f5e7bc;
+	text-shadow: 0px 2px 3px 3 #000000;
+}
+
+.LoginRewardPlate
+{
+	width: 192px;
+	height: 332px;
+	horizontal-align: center;
+	margin-top: 38px;
+	background-image: url("s2r://panorama/images/custom_game/login_activity/rewards_plate_01_png.vtex");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	overflow: noclip;
+}
+
+.LoginRewardPlate.Voucher
+{
+	background-image: url("s2r://panorama/images/custom_game/login_activity/rewards_plate_02_png.vtex");
+}
+
+.LoginRewardName
+{
+	horizontal-align: center;
+	max-width: 160px;
+	margin-top: 28px;
+	font-size: 19px;
+	font-weight: semi-bold;
+	color: #f5e8c6;
+	text-align: center;
+	text-overflow: shrink;
+	text-shadow: 0px 1px 3px 3 #000000;
+}
+
+.LoginRewardLight
+{
+	width: 176px;
+	height: 34px;
+	horizontal-align: center;
+	margin-top: 60px;
+	opacity: 0.72;
+}
+
+.LoginRewardImage
+{
+	width: 156px;
+	height: 156px;
+	horizontal-align: center;
+	margin-top: 70px;
+}
+
+.LoginRewardAmount
+{
+	align: right bottom;
+	margin-right: 25px;
+	margin-bottom: 70px;
+	font-size: 23px;
+	font-weight: bold;
+	color: #ffffff;
+	text-shadow: 0px 1px 4px 4 #000000;
+}
+
+.LoginRewardClaim
+{
+	width: 124px;
+	height: 38px;
+	align: center bottom;
+	margin-bottom: 17px;
+	background-image: url("s2r://panorama/images/custom_game/login_activity/bottom_01_png.vtex");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	transition-property: brightness, pre-transform-scale2d;
+	transition-duration: 0.12s;
+}
+
+.LoginRewardClaim:enabled:hover
+{
+	brightness: 1.45;
+}
+
+.LoginRewardClaim:enabled:active
+{
+	pre-transform-scale2d: 0.94;
+}
+
+.LoginRewardClaim:disabled
+{
+	background-image: url("s2r://panorama/images/custom_game/login_activity/bottom_02_png.vtex");
+}
+
+.LoginRewardClaim Label
+{
+	align: center center;
+	max-width: 108px;
+	max-height: 28px;
+	font-size: 18px;
+	color: #fff7df;
+	text-align: center;
+	text-overflow: shrink;
+	text-shadow: 0px 1px 2px 3 #8a4200;
+}
+
+.LoginRewardSlot.Claimed .LoginRewardClaim Label,.LoginRewardSlot.Unavailable .LoginRewardClaim Label
+{
+	color: #d1d5de;
+	text-shadow: 0px 1px 2px 3 #111722;
+}
+
+.LoginRewardLine
+{
+	width: 192px;
+	height: 333px;
+	align: center center;
+	background-image: url("s2r://panorama/images/custom_game/login_activity/rewards_line_png.vtex");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.12s;
+}
+
+.LoginActivityPager
+{
+	width: 66px;
+	height: 60px;
+	vertical-align: center;
+	margin-top: 72px;
+	background-image: url("s2r://panorama/images/custom_game/login_activity/button_png.vtex");
+	background-size: 66px 60px;
+	background-repeat: no-repeat;
+	overflow: noclip;
+}
+
+.LoginActivityPager:enabled:hover
+{
+	brightness: 1.8;
+	pre-transform-scale2d: 1.05;
+}
+
+.LoginActivityPager:enabled:active
+{
+	pre-transform-scale2d: 0.92;
+}
+
+.LoginActivityPager:disabled
+{
+	saturation: 0;
+	brightness: 0.6;
+	opacity: 0.75;
+}
+
+#LoginActivityPrevious
+{
+	horizontal-align: left;
+	margin-left: 12px;
+	transform: rotateY(180deg);
+}
+
+#LoginActivityNext
+{
+	horizontal-align: right;
+	margin-right: 12px;
+}
