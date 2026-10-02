@@ -853,10 +853,16 @@ function getRandomInt(max)
 
 function check_player_status(id)
 {
+    var server_data = CustomNetTables.GetTableValue("server_data", String(id));
+
+    if (server_data && server_data.block)
+    {
+        show_safe_leave(8, {id_1: id, block: server_data.block})
+    }
+
     if (Players.GetPlayerSelectedHero(id) == 'invalid index') 
         return
 
-    var server_data = CustomNetTables.GetTableValue("server_data", String(id));
     var playerInfo = Game.GetPlayerInfo(id);
 
     if (server_data)
@@ -888,11 +894,6 @@ function check_player_status(id)
                 icon.RemoveClass("hero_icon_search")
                 icon.AddClass("hero_abandon")
             }
-        }
-
-        if (server_data.block)
-        {
-            show_safe_leave(8, {id_1: id, block: server_data.block})
         }
     }
     

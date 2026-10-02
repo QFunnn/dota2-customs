@@ -445,6 +445,7 @@ _G.hero_changes = {
 	},
 	["npc_dota_hero_phantom_assassin"] = {
 		"innate",
+		"stats",
 		"stifling",
 		"stifling",
 		"phantom",

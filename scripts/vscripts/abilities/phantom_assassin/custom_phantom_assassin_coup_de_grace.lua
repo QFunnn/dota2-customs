@@ -174,7 +174,6 @@ function custom_phantom_assassin_coup_de_grace:UpdateTalents(name)
 			r7_chance = caster:GetTalentValue("modifier_phantom_assassin_crit_7", "chance", true),
 			r7_crit = caster:GetTalentValue("modifier_phantom_assassin_crit_7", "crit", true),
 			r7_crit_reduce = caster:GetTalentValue("modifier_phantom_assassin_crit_7", "crit_reduce", true) / 100,
-			r7_mark_duration = caster:GetTalentValue("modifier_phantom_assassin_crit_7", "mark_duration", true),
 		}
 	end
 
@@ -450,12 +449,7 @@ function custom_phantom_assassin_coup_de_grace:ProcFocus(attacker, target)
 			legendary:UpdateUI()
 		end
 
-		target:AddNewModifier(
-			self.caster,
-			self,
-			"modifier_phantom_assassin_phantom_coup_de_grace_legendary_crit",
-			{ duration = self.talents.r7_mark_duration }
-		)
+		legendary.targets[target] = (legendary.targets[target] or 0) + 1
 	end
 end
 
@@ -991,7 +985,7 @@ modifier_phantom_assassin_phantom_coup_de_grace_legendary_crit = class(mod_visib
 function modifier_phantom_assassin_phantom_coup_de_grace_legendary_crit:GetTexture()
 	return "phantom_assassin_coup_de_grace"
 end
-function modifier_phantom_assassin_phantom_coup_de_grace_legendary_crit:OnCreated()
+function modifier_phantom_assassin_phantom_coup_de_grace_legendary_crit:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
@@ -1001,14 +995,14 @@ function modifier_phantom_assassin_phantom_coup_de_grace_legendary_crit:OnCreate
 
 	self.RemoveForDuel = true
 	self.effect_cast = self.parent:GenericParticle("particles/phantom_assassin/crit_legendary_stack.vpcf", self, true)
-	self:OnRefresh()
+	self:OnRefresh(table)
 end
 
-function modifier_phantom_assassin_phantom_coup_de_grace_legendary_crit:OnRefresh()
+function modifier_phantom_assassin_phantom_coup_de_grace_legendary_crit:OnRefresh(table)
 	if not IsServer() then
 		return
 	end
-	self:IncrementStackCount()
+	self:SetStackCount(self:GetStackCount() + table.stacks)
 
 	self.ability.current_target = self.parent
 	self.ability:UpdateUI()
@@ -1044,6 +1038,7 @@ function custom_phantom_assassin_coup_de_grace_legendary:UpdateTalents(name)
 			r7_attack = caster:GetTalentValue("modifier_phantom_assassin_crit_7", "attack", true),
 			r7_status = caster:GetTalentValue("modifier_phantom_assassin_crit_7", "status", true),
 			r7_procs = caster:GetTalentValue("modifier_phantom_assassin_crit_7", "procs", true),
+			r7_mark_duration = caster:GetTalentValue("modifier_phantom_assassin_crit_7", "mark_duration", true),
 			r7_talent_cd = caster:GetTalentValue("modifier_phantom_assassin_crit_7", "talent_cd", true),
 		}
 	end
@@ -1131,6 +1126,7 @@ function modifier_phantom_assassin_phantom_coup_de_grace_legendary:OnCreated()
 	end
 
 	self.RemoveForDuel = true
+	self.targets = {}
 	self.point = self.parent:GetAbsOrigin() - self.parent:GetForwardVector() * 100
 
 	self:SetStackCount(self.ability.talents.r7_procs)
@@ -1278,6 +1274,17 @@ function modifier_phantom_assassin_phantom_coup_de_grace_legendary:OnDestroy()
 	ParticleManager:SetParticleControl(trail, 0, start_abs)
 	ParticleManager:SetParticleControl(trail, 1, self.point)
 	ParticleManager:ReleaseParticleIndex(trail)
+
+	for target, stacks in pairs(self.targets) do
+		if IsValid(target) and target:IsAlive() then
+			target:AddNewModifier(
+				self.parent,
+				self.parent.crit_ability,
+				"modifier_phantom_assassin_phantom_coup_de_grace_legendary_crit",
+				{ duration = self.ability.talents.r7_mark_duration, stacks = stacks }
+			)
+		end
+	end
 end
 
 modifier_phantom_assassin_phantom_coup_de_grace_legendary_clone = class(mod_hidden)
