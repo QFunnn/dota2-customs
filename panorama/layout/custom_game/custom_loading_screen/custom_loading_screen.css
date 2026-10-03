@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 5e0d361 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -1251,4 +1251,110 @@
 	font-style: italic;
 	background-color-opacity: 0.7;
 	margin-top: -10px;
+}
+
+.Banner_DediServers
+{
+	align: center top;
+	margin: 125px 1250px 0 0;
+	width: 600px;
+	max-height: 200px;
+	border-top: 2px solid white;
+	border-bottom: 2px solid white;
+	border-brush: #38394a;
+	flow-children: down;
+	background-color: #1b1e33, gradient(linear, 0% 0%, 0% 100%, from(rgba(33, 43, 45, 0.15)), to(rgba(15, 17, 17, 0.38)));
+	box-shadow: black 0 1px 3px 2;
+}
+
+.Banner_DediServers > Panel
+{
+	vertical-align: center;
+	width: 100%;
+	padding: 10px;
+}
+
+.Banner_DediServers > Panel > Panel
+{
+	flow-children: down;
+	width: 100%;
+}
+
+.Banner_DediServers Image
+{
+	width: 32px;
+	height: 32px;
+	margin-top: 2px;
+	img-shadow: 0px 1px 0 2 black;
+}
+
+.Banner_DediServers Label
+{
+	font-size: 24px;
+}
+
+.Banner_DediServers_HeaderContainer
+{
+	flow-children: right;
+	horizontal-align: center;
+}
+
+.Banner_DediServers_HeaderContainer Label
+{
+	font-family: titleFont;
+	font-weight: semi-bold;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	color: white;
+	margin-left: 10px;
+	text-shadow: 0px 1px 0 2 black;
+	font-size: 22px;
+	height: 100%;
+	text-overflow: shrink;
+}
+
+.Banner_DediServers_Details
+{
+	horizontal-align: center;
+	text-align: center;
+	color: #ececec;
+	font-weight: lighter;
+	text-shadow: 0px 1px 0 2 black;
+}
+
+.Banner_DediServers_Info .Banner_DediServers_HeaderContainer
+{
+	wash-color: #ffc375;
+}
+
+.Banner_DediServers_LocalLobbyWarning .Banner_DediServers_HeaderContainer
+{
+	wash-color: #ee3e2f;
+}
+
+.Banner_DediServers_LocalLobbyWarning
+{
+	background-color: rgba(255, 45, 56, 0.1);
+	visibility: collapse;
+}
+
+.BLobby_Local .Banner_DediServers_LocalLobbyWarning,.BLobby_Dedicated .Banner_DediServers_DediLobbyConfirmed
+{
+	visibility: visible;
+}
+
+.BlueText
+{
+	color: #4da7ff;
+}
+
+.Banner_DediServers_DediLobbyConfirmed .Banner_DediServers_HeaderContainer
+{
+	wash-color: #6fee6f;
+}
+
+.Banner_DediServers_DediLobbyConfirmed
+{
+	background-color: rgba(173, 255, 160, 0.05);
+	visibility: collapse;
 }

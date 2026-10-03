@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 5e0d361 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -11,7 +11,18 @@
 const LOCAL_PLAYER_ID = Game.GetLocalPlayerID();
 const LOCAL_STEAM_ID = Game.GetLocalPlayerInfo() ? Game.GetLocalPlayerInfo().player_steamid : "0";
 const MAP_NAME = Game.GetMapInfo().map_display_name;
-const B_LOCAL_LOBBY = true;
+const B_LOCAL_LOBBY = CustomNetTables.GetTableValue("game_state", "dedicated")?.state === 0;
+const teams_layouts = {
+	// team size / max players in map
+	ot3_necropolis_ffa: [1, 8],
+	ot3_gardens_duo: [2, 10],
+	ot3_jungle_quintet: [5, 15],
+	ot3_desert_octet: [8, 24],
+	ot3_demo: [1, 1],
+};
+
+GameUI.BASE_TEAM_SIZE = teams_layouts[MAP_NAME][0];
+GameUI.MAX_PLAYERS = teams_layouts[MAP_NAME][1];
 
 Object.defineProperties(Array.prototype, {
 	random: {

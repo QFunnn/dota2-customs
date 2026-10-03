@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 5e0d361 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -22,9 +22,10 @@ function SendFeedback() {
 	const text = TEXT_FIELD.text;
 	if (!SEND_BUTTON.BHasClass("Cooldown") && text != "") {
 		SEND_BUTTON.SetHasClass("Cooldown", true);
-		GameEvents.SendToServerEnsured("WebFeedback:send_feedback", {
-			text: text,
-		});
+		if (!B_LOCAL_LOBBY)
+			GameEvents.SendToServerEnsured("WebFeedback:send_feedback", {
+				text: text,
+			});
 		TEXT_FIELD.text = "";
 		Game.EmitSound("General.ButtonClick");
 		CloseFeedback();

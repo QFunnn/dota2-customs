@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 5e0d361 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -140,12 +140,7 @@ function IsShowLobbyTools() {
 		players_in_lobby++;
 	}
 
-	let max_player_in_map = 0;
-	for (let h = DOTATeam_t.DOTA_TEAM_FIRST; h < DOTATeam_t.DOTA_TEAM_CUSTOM_MAX; h++) {
-		max_player_in_map += Game.GetTeamDetails(h).team_max_players;
-	}
-
-	return players_in_lobby < max_player_in_map || Game.IsInToolsMode();
+	return players_in_lobby < GameUI.BASE_TEAM_SIZE || Game.IsInToolsMode();
 }
 
 function CheckPrivileges() {

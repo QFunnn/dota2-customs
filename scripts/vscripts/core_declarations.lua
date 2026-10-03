@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 5e0d361 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -254,7 +254,7 @@ TEAMS_LAYOUTS = {
 		min_connected_players = 4,
 	},
 	["ot3_desert_octet"] = {
-		player_count = 8,
+		player_count = 7,
 		teamlist = {
 			DOTA_TEAM_GOODGUYS,
 			DOTA_TEAM_BADGUYS,

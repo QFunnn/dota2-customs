@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 5e0d361 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -252,6 +252,9 @@ function WebPromoEvents:SendDataEvent(event)
 end
 
 function WebPromoEvents:UpdateClient(player_id)
+	if not player_id then
+		return
+	end
 	local player = PlayerResource:GetPlayer(player_id)
 	if not IsValidEntity(player) then
 		return

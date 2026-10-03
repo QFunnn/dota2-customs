@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 5e0d361 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -133,7 +133,7 @@ function UpdatePlayersLoadState() {
 
 	LOADING_HUD.CONTEXT.SetDialogVariableInt("players_loaded", player_loaded_count);
 
-	$.Schedule(0.1, () => {
+	$.Schedule(0, () => {
 		if (player_loaded_count < players_in_lobby) UpdatePlayersLoadState();
 		else LOADING_HUD.CONTEXT.RemoveClass("BLoadingState");
 	});
@@ -271,6 +271,18 @@ function UpdateTournamentDates() {
 	LOADING_HUD.BANNER_TOURNAMENT_FFA.SetDialogVariableTime("t_ffa_start", 1711792800);
 	LOADING_HUD.BANNER_TOURNAMENT_FFA.SetDialogVariableTime("t_ffa_end", 1711814400);
 }
+
+function CheckLocalLobbyStateLS() {
+	if (Game.GameStateIsAfter(DOTA_GameState.DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP)) return;
+
+	let dedicated_state = CustomNetTables.GetTableValue("game_state", "dedicated")?.state;
+
+	if (dedicated_state != undefined)
+		LOADING_HUD.CONTEXT.SwitchClass("local-lobby-state", `BLobby_${dedicated_state === 0 ? "Local" : "Dedicated"}`);
+
+	$.Schedule(0, CheckLocalLobbyStateLS);
+}
+
 (() => {
 	LOADING_HUD.CONTEXT.RemoveClass("BShowWeekendsEvent");
 	UdpateWeekendsDates();
@@ -278,6 +290,7 @@ function UpdateTournamentDates() {
 	InitHints();
 	UpdateChatStyle();
 	// UpdateTournamentDates();
+	CheckLocalLobbyStateLS();
 	FindDotaHudElementInLS("SidebarAndBattleCupLayoutContainer").visible = false;
 
 	GameEvents.Subscribe("HostOptions:show", ShowHostOptions);
