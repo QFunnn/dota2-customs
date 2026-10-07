@@ -8,7 +8,8 @@
 ]]
 
 
-var BSA_BACKEND = "http://103.54.19.61";
+// С патча 07.10.2026 HTML-панель открывает только https (http, IP и data: -> about:blank)
+var BSA_BACKEND = "https://boss-survival-adventure.com";
 
 (function () {
 	var RU = {
