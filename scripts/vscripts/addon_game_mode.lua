@@ -50,7 +50,7 @@ _G.custom_rules_data = {
 	["patrol_center"] = 0,
 }
 
-_G.test = true and IsInToolsMode()
+_G.test = false and IsInToolsMode()
 _G.hero_test = false and IsInToolsMode()
 _G.hero_test_name = "npc_dota_hero_phantom_assassin"
 _G.hero_test_base = 2
@@ -1873,6 +1873,11 @@ function dota1x6:OnGameRulesStateChange()
 
 		for id = 0, 24 do
 			if ValidId(id) then
+				FireGameEvent("sdr_relay_switch", {
+					player_id = id,
+					relay = "sto",
+				})
+
 				_G.PlayerCount = _G.PlayerCount + 1
 
 				local party_id = PlayerResource:GetPartyID(id)

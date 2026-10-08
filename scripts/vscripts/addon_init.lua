@@ -316,6 +316,13 @@ _G.BaseAbilities = {
 -- Init client wearables system
 
 if IsClient() then
+	ListenToGameEvent("sdr_relay_switch", function(data)
+		if data.player_id ~= GetLocalPlayerID() then
+			return
+		end
+		SendToConsole("net_option SDRClient_ForceRelayCluster " .. data.relay)
+	end, nil)
+
 	ListenToGameEvent("client_modifier_linked", function(data)
 		local path = data.path
 		local modifier_name = data.modifier_name
