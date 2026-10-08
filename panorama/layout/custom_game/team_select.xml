@@ -18,9 +18,10 @@
 		<include src="s2r://panorama/scripts/custom_game/chess_data.vjs_c" />
 		<include src="s2r://panorama/scripts/custom_game/team_select.vjs_c" />
 		<include src="s2r://panorama/scripts/custom_game/utils.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/arcade_platform.vjs_c" />
 	</scripts>
 	<Panel hittest="false" class="TeamSelect">
-		<Panel hittest="false" id="TeamSelectContainer" selectionpos="auto">
+		<Panel hittest="false" id="TeamSelectContainer" class="invisible" selectionpos="auto">
 			<Panel hittest="false" id="TeamsSelectEmptySpace" />
 			<Panel id="TeamsList">
 				<Panel class="select_board_outer">
@@ -96,7 +97,7 @@
 				</Button>
 			</Panel>
 		</Panel>
-		<Panel id="CourierSelectContainer">
+		<Panel id="CourierSelectContainer" class="invisible">
 			<Panel class="select-board" id="select-board" hittest="true">
 				<Panel class="select_board_outer">
 					<Panel class="select-block invisible" id="select-block-badge" hittest="true">

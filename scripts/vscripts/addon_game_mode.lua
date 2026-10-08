@@ -307,12 +307,16 @@ function DAC:InitGameMode()
 
 	-- IsDedicatedServer()
 	-- IsInToolsMode()
+	local config = LoadKeyValues("dac_config.txt")
 
 	--判断是不是官方服务器/自建服务器/玩家主机
 	local config = LoadKeyValues("dac_config.txt")
 	if config.IsAutochessServer == 1 then
 		--服务器主机
 		CustomNetTables:SetTableValue("game_info", "game_host_type", { game_host_type = 'server' })
+	elseif config.IsAutochessServer == 2 then
+		--跳转游廊平台
+		CustomNetTables:SetTableValue("game_info", "game_host_type", { game_host_type = 'arcade_platform' })
 	else
 		CustomNetTables:SetTableValue("game_info", "game_host_type", { game_host_type = 'player_host' })
 	end
@@ -42454,31 +42458,37 @@ end
 --有玩家连入游戏
 function DAC:OnPlayerConnectFull(keys)
 	local playerID = keys.PlayerID
+
+	SetPlayerConnectedInfo({
+		PlayerID = playerID,
+		PlayerName = PlayerResource:GetPlayerName(playerID),
+		SteamID = tostring(PlayerResource:GetSteamID(playerID)),
+	})
 	--因为只能获得userid（没什么用）
 	--干脆直接遍历全部的PlayerID，保存PlayerID、SteamID的对应关系
-	local player_count = 0
-	for i = 0, 20 do
-		local player = PlayerResource:GetPlayer(i)
-		if player then
-			local steam = tostring(PlayerResource:GetSteamID(i))
-			SetPlayerConnectedInfo({
-				PlayerID = i,
-				PlayerName = PlayerResource:GetPlayerName(i),
-				SteamID = steam,
-			})
-			player_count = player_count + 1
-		end
-	end
+	-- local player_count = 0
+	-- for i = 0, 50 do
+	-- 	local player = PlayerResource:GetPlayer(i)
+	-- 	if player then
+	-- 		local steam = tostring(PlayerResource:GetSteamID(i))
+	-- 		SetPlayerConnectedInfo({
+	-- 			PlayerID = i,
+	-- 			PlayerName = PlayerResource:GetPlayerName(i),
+	-- 			SteamID = steam,
+	-- 		})
+	-- 		player_count = player_count + 1
+	-- 	end
+	-- end
 	if _G.playerid2steamid[playerID] ~= nil then
 		if _G.player_state_table[_G.playerid2team[playerID]] == 'undefined' then 
 			_G.player_state_table[_G.playerid2team[playerID]] = 'playing'
 			print('[HEYBOX] player_state steam='.._G.playerid2steamid[playerID]..' state=playing round='.._G.battle_round)
 		end
 	end
-	_G.connect_full_player_count = player_count
+
+	_G.connect_full_player_count = _G.connect_full_player_count + 1
 	--判断是不是官方服务器/自建服务器/玩家主机
 	local config = LoadKeyValues("dac_config.txt")
-	print(config.IsAutochessServer)
 
 	if config.IsAutochessServer == 1 and _G.is_server_game_started == false then
 		print('[AUTOCHESS SERVER] waiting for players '.._G.connect_full_player_count..'/'..config.MaxPlayer)

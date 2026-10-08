@@ -12,18 +12,14 @@ print("[CLIENT] addon_game_mode_client.lua loaded")
 print("[CLIENT] IsClient =", tostring(IsClient()))
 local function OnConnectServerClient(keys)
 	print("[CLIENT] OnConnectServerClient")
-	print("[CLIENT] ip =", tostring(keys.ip))
-	print("[CLIENT] player_id =", tostring(keys.player_id))
-	local localPlayerID = GetLocalPlayerID()
-	print("[CLIENT] localPlayerID =", tostring(localPlayerID))
-	--只让点击按钮的那个客户端处理
-	if tonumber(keys.player_id) ~= tonumber(localPlayerID) then
-		print("[CLIENT] not target player, ignore")
-		return
-	end
-	print("[CLIENT] target client matched")
-	--之后再测试:
-	SendToConsole("connect " .. tostring(keys.ip))
+	local map_name = keys.map_name or "ranked_1x8"
+
+	print("[CLIENT] launch_game: map=" .. map_name)
+	local launch_console = "dota_launch_custom_game 3797844518 platform launch_addon=835235955 launch_map="
+		.. map_name
+		.. " launch_arg=1"
+	print(launch_console)
+	SendToConsole(launch_console)
 end
 
 ListenToGameEvent("client_connect_server", OnConnectServerClient, nil)

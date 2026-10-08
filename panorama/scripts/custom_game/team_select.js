@@ -311,9 +311,9 @@ function UpdateTimer() {
 // 	// $("#GameModeNameLabel").text = $.Localize('#'+'dac_' + Game.GetMapInfo().map_display_name);
 // 	// $("#MapInfoLabel").text = $.Localize('#'+'dac_' + Game.GetMapInfo().map_display_name + '_desc').replaceAll('<br>','\n').replaceAll('<p1>','0').replaceAll('<p2>',GetPlayerCount());
 // }
-
+ 
 $("#GameModeNameLabel").SetHasClass('invisible', true);
-$("#MapInfoLabel").SetHasClass('invisible', true);
+$("#MapInfoLabel").SetHasClass('invisible', true); 
 
 if (Game.GetMapInfo().map_display_name == 'casual_1x8' && GetPlayerCount() == 1){
 	// 单人休闲图，显示云玩家难度选择

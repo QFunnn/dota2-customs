@@ -1365,6 +1365,15 @@ function ShowAllPlayerInfo(data) {
             $('#avatar_player_' + data.info[i].player_id).steamid = i;
         }
 
+        if (data.info[i].is_vip) {
+            $('#avatar_player_vip_badge_' + data.info[i].player_id).SetHasClass('invisible', false);
+            $('#avatar_player_vip_' + data.info[i].player_id).SetHasClass('invisible', false);
+        }
+        else {
+            $('#avatar_player_vip_badge_' + data.info[i].player_id).SetHasClass('invisible', true);
+            $('#avatar_player_vip_' + data.info[i].player_id).SetHasClass('invisible', true);
+        }
+
 
         if (badge) {
             // if (badge.indexOf('bet_') > -1) {
@@ -2253,7 +2262,9 @@ function ActivateCDKEY(cdkey) {
         SendHTTP('activate_cdkey', 'activate_cdkey_cb', { hero: cdkey }, 1);
         $.Schedule(10, function () {
             activate_cd = false;
-            $("#btn_entry_cdkey").SetHasClass('unavailable', false);
+            if ($("#btn_entry_cdkey")) {
+                $("#btn_entry_cdkey").SetHasClass('unavailable', false);
+            }
         });
     }
 }
@@ -2605,6 +2616,9 @@ function SendHTTPCb(keys) {
 
             if (object.award.test == true) {
                 show_msg('内测资格激活成功！');
+            }
+            else if (object.award.vip) {
+                show_msg($.Localize('#text_vip_activate_success')+((object.award.vip.vip_expire||'000000')+'').replace(/(\d{4})(\d{2})(\d{2})/, '$1/$2/$3'));
             }
             else if (object.award.candy) {
                 open_panel_award('dac', 'candy', '', object.award.candy, 'cdkey');
