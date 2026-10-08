@@ -246,15 +246,19 @@ function TooltipContents({
                           get children() {
                             return linkedMechanicsDataList[title].sort((a, b) => (addedMechanicsList.includes(a) ? 0 : 1) - (addedMechanicsList.includes(b) ? 0 : 1)).map(id => {
                               let added = addedMechanicsList.includes(id);
-                              return libs.createComponent(EOM_Label.EOM_Label, {
-                                classList: {
+                              return (() => {
+                                const _el$2 = libs.createElement("Panel", {}, null);
+                                libs.insert(_el$2, libs.createComponent(EOM_Label.EOM_Label, {
+                                  html: true,
+                                  get text() {
+                                    return getAbilityUpgradeMechanicsDescriptionByID(id);
+                                  }
+                                }));
+                                libs.effect(_$p => libs.setProp(_el$2, "className", libs.classNames("UpgradeMechanicsEntry", {
                                   NotAdd: !added
-                                },
-                                html: true,
-                                get text() {
-                                  return getAbilityUpgradeMechanicsDescriptionByID(id);
-                                }
-                              });
+                                }), _$p));
+                                return _el$2;
+                              })();
                             });
                           }
                         })];
@@ -315,13 +319,18 @@ function TooltipContents({
                     return libs.createComponent(EOM_Panel.EOM_Panel, {
                       className: "UpgradeMechanicsRow",
                       get children() {
-                        return libs.createComponent(EOM_Label.EOM_Label, {
+                        const _el$3 = libs.createElement("Panel", {}, null);
+                        libs.insert(_el$3, libs.createComponent(EOM_Label.EOM_Label, {
                           className: "UpgradeMechanicsDecription",
                           html: true,
                           get text() {
                             return getAbilityUpgradeMechanicsDescriptionByID(id);
                           }
-                        });
+                        }));
+                        libs.effect(_$p => libs.setProp(_el$3, "className", libs.classNames("UpgradeMechanicsEntry", {
+                          NotAdd: !addedMechanicsList.includes(id)
+                        }), _$p));
+                        return _el$3;
                       }
                     });
                   })), libs.memo(() => libs.memo(() => mechanicsRecord["None"] != undefined)() && Object.keys(mechanicsRecord["None"]).map(id => {
@@ -716,13 +725,13 @@ const AbilityKeyWordContainer = props => {
           flowChildren: "right",
           get children() {
             return [(() => {
-              const _el$2 = libs.createElement("DOTAAbilityImage", {
+              const _el$4 = libs.createElement("DOTAAbilityImage", {
                 abilityname: abilityName,
                 scaling: "stretch-to-cover-preserve-aspect"
               }, null);
-              libs.setProp(_el$2, "className", "SectAbilityImage");
-              libs.setProp(_el$2, "abilityname", abilityName);
-              return _el$2;
+              libs.setProp(_el$4, "className", "SectAbilityImage");
+              libs.setProp(_el$4, "abilityname", abilityName);
+              return _el$4;
             })(), libs.createComponent(EOM_Panel.EOM_Panel, {
               flowChildren: "down",
               marginLeft: "8px",
@@ -806,11 +815,11 @@ const AbilityKeyWordContainer = props => {
                         return libs.memo(() => itemKV?.Repeat == undefined)() && itemname.indexOf("item_artifact_") != -1;
                       },
                       get children() {
-                        const _el$3 = libs.createElement("Label", {
+                        const _el$5 = libs.createElement("Label", {
                           text: "#DOTA_SHOP_CATEGORY_UNIQUES"
                         }, null);
-                        libs.setProp(_el$3, "className", "AbilityType");
-                        return _el$3;
+                        libs.setProp(_el$5, "className", "AbilityType");
+                        return _el$5;
                       }
                     })];
                   }

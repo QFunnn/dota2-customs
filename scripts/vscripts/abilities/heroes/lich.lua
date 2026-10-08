@@ -197,18 +197,18 @@ f(
 		["200"] = 209,
 		["201"] = 179,
 		["202"] = 211,
-		["203"] = 212,
-		["204"] = 212,
+		["203"] = 213,
+		["204"] = 214,
 		["205"] = 211,
-		["206"] = 214,
-		["207"] = 215,
-		["208"] = 214,
-		["209"] = 217,
-		["210"] = 218,
-		["211"] = 217,
-		["212"] = 220,
-		["213"] = 222,
-		["214"] = 220,
+		["206"] = 216,
+		["207"] = 217,
+		["208"] = 216,
+		["209"] = 219,
+		["210"] = 220,
+		["211"] = 219,
+		["212"] = 222,
+		["213"] = 224,
+		["214"] = 222,
 		["215"] = 134,
 		["216"] = 125,
 		["217"] = 125,
@@ -219,206 +219,206 @@ f(
 		["222"] = 125,
 		["223"] = 134,
 		["225"] = 134,
-		["227"] = 227,
-		["228"] = 234,
-		["229"] = 227,
-		["230"] = 234,
-		["231"] = 236,
-		["232"] = 237,
-		["233"] = 236,
-		["234"] = 239,
-		["235"] = 240,
-		["236"] = 239,
-		["237"] = 242,
-		["238"] = 243,
-		["239"] = 244,
-		["241"] = 242,
-		["242"] = 247,
-		["243"] = 248,
-		["244"] = 249,
-		["245"] = 249,
-		["246"] = 249,
-		["247"] = 249,
-		["249"] = 247,
-		["250"] = 252,
-		["251"] = 253,
-		["252"] = 254,
-		["253"] = 254,
-		["254"] = 253,
-		["255"] = 252,
-		["256"] = 257,
-		["257"] = 258,
-		["258"] = 257,
-		["259"] = 234,
-		["260"] = 227,
-		["261"] = 227,
-		["262"] = 227,
-		["263"] = 227,
-		["264"] = 227,
-		["265"] = 227,
-		["266"] = 227,
-		["267"] = 234,
-		["269"] = 234,
-		["271"] = 263,
-		["272"] = 264,
-		["273"] = 263,
-		["274"] = 264,
-		["275"] = 265,
-		["276"] = 266,
-		["277"] = 267,
-		["278"] = 269,
-		["279"] = 270,
-		["280"] = 271,
-		["281"] = 272,
-		["282"] = 273,
-		["283"] = 274,
-		["284"] = 275,
-		["285"] = 276,
-		["286"] = 276,
-		["287"] = 276,
-		["288"] = 276,
-		["289"] = 276,
-		["290"] = 276,
-		["291"] = 283,
-		["292"] = 284,
-		["293"] = 285,
-		["294"] = 285,
-		["295"] = 285,
-		["296"] = 285,
-		["297"] = 285,
-		["298"] = 285,
-		["299"] = 286,
-		["300"] = 286,
-		["301"] = 286,
-		["302"] = 286,
-		["303"] = 286,
-		["304"] = 286,
-		["305"] = 286,
-		["306"] = 287,
-		["309"] = 288,
-		["310"] = 290,
-		["311"] = 291,
-		["313"] = 293,
-		["315"] = 276,
-		["316"] = 276,
-		["318"] = 265,
-		["319"] = 264,
-		["320"] = 263,
-		["321"] = 264,
-		["323"] = 264,
-		["325"] = 306,
-		["326"] = 315,
-		["327"] = 306,
-		["328"] = 315,
-		["329"] = 322,
-		["330"] = 323,
-		["331"] = 324,
-		["332"] = 325,
-		["333"] = 326,
-		["334"] = 322,
-		["335"] = 329,
-		["336"] = 330,
-		["337"] = 334,
-		["338"] = 339,
-		["340"] = 342,
-		["341"] = 343,
-		["342"] = 345,
-		["343"] = 345,
-		["344"] = 345,
-		["345"] = 345,
-		["346"] = 345,
-		["347"] = 345,
-		["348"] = 345,
-		["349"] = 345,
-		["351"] = 329,
-		["352"] = 348,
-		["353"] = 349,
-		["354"] = 348,
-		["355"] = 351,
-		["356"] = 352,
-		["357"] = 353,
-		["358"] = 354,
-		["359"] = 355,
-		["360"] = 356,
-		["361"] = 356,
-		["362"] = 356,
-		["363"] = 356,
-		["364"] = 356,
-		["365"] = 356,
-		["366"] = 357,
-		["367"] = 357,
-		["368"] = 357,
-		["369"] = 357,
-		["370"] = 357,
-		["371"] = 357,
-		["372"] = 357,
-		["373"] = 359,
-		["374"] = 360,
-		["375"] = 361,
-		["377"] = 363,
-		["378"] = 364,
-		["379"] = 365,
-		["381"] = 351,
-		["382"] = 368,
-		["383"] = 369,
-		["384"] = 371,
-		["385"] = 373,
-		["387"] = 368,
-		["388"] = 315,
-		["389"] = 306,
-		["390"] = 306,
-		["391"] = 306,
-		["392"] = 306,
-		["393"] = 306,
-		["394"] = 306,
-		["395"] = 306,
-		["396"] = 306,
-		["397"] = 306,
-		["398"] = 315,
-		["400"] = 315,
-		["402"] = 389,
-		["403"] = 390,
-		["404"] = 389,
-		["405"] = 390,
-		["406"] = 391,
-		["407"] = 392,
-		["408"] = 391,
-		["409"] = 390,
-		["410"] = 389,
-		["411"] = 390,
-		["413"] = 390,
-		["414"] = 395,
-		["415"] = 403,
-		["416"] = 395,
-		["417"] = 403,
-		["418"] = 405,
-		["419"] = 406,
-		["420"] = 405,
-		["421"] = 408,
-		["422"] = 410,
-		["423"] = 411,
-		["424"] = 412,
-		["425"] = 413,
-		["426"] = 418,
-		["428"] = 408,
-		["429"] = 421,
-		["430"] = 422,
-		["431"] = 421,
-		["432"] = 426,
-		["433"] = 427,
-		["434"] = 428,
-		["436"] = 426,
-		["437"] = 403,
-		["438"] = 395,
-		["439"] = 395,
-		["440"] = 395,
-		["441"] = 395,
-		["442"] = 395,
-		["443"] = 395,
-		["444"] = 395,
-		["445"] = 395,
-		["446"] = 403,
-		["448"] = 403,
+		["227"] = 229,
+		["228"] = 236,
+		["229"] = 229,
+		["230"] = 236,
+		["231"] = 238,
+		["232"] = 239,
+		["233"] = 238,
+		["234"] = 241,
+		["235"] = 242,
+		["236"] = 241,
+		["237"] = 244,
+		["238"] = 245,
+		["239"] = 246,
+		["241"] = 244,
+		["242"] = 249,
+		["243"] = 250,
+		["244"] = 251,
+		["245"] = 251,
+		["246"] = 251,
+		["247"] = 251,
+		["249"] = 249,
+		["250"] = 254,
+		["251"] = 255,
+		["252"] = 256,
+		["253"] = 256,
+		["254"] = 255,
+		["255"] = 254,
+		["256"] = 259,
+		["257"] = 260,
+		["258"] = 259,
+		["259"] = 236,
+		["260"] = 229,
+		["261"] = 229,
+		["262"] = 229,
+		["263"] = 229,
+		["264"] = 229,
+		["265"] = 229,
+		["266"] = 229,
+		["267"] = 236,
+		["269"] = 236,
+		["271"] = 265,
+		["272"] = 266,
+		["273"] = 265,
+		["274"] = 266,
+		["275"] = 267,
+		["276"] = 268,
+		["277"] = 269,
+		["278"] = 271,
+		["279"] = 272,
+		["280"] = 273,
+		["281"] = 274,
+		["282"] = 275,
+		["283"] = 276,
+		["284"] = 277,
+		["285"] = 278,
+		["286"] = 278,
+		["287"] = 278,
+		["288"] = 278,
+		["289"] = 278,
+		["290"] = 278,
+		["291"] = 285,
+		["292"] = 286,
+		["293"] = 287,
+		["294"] = 287,
+		["295"] = 287,
+		["296"] = 287,
+		["297"] = 287,
+		["298"] = 287,
+		["299"] = 288,
+		["300"] = 288,
+		["301"] = 288,
+		["302"] = 288,
+		["303"] = 288,
+		["304"] = 288,
+		["305"] = 288,
+		["306"] = 289,
+		["309"] = 290,
+		["310"] = 292,
+		["311"] = 293,
+		["313"] = 295,
+		["315"] = 278,
+		["316"] = 278,
+		["318"] = 267,
+		["319"] = 266,
+		["320"] = 265,
+		["321"] = 266,
+		["323"] = 266,
+		["325"] = 308,
+		["326"] = 317,
+		["327"] = 308,
+		["328"] = 317,
+		["329"] = 324,
+		["330"] = 325,
+		["331"] = 326,
+		["332"] = 327,
+		["333"] = 328,
+		["334"] = 324,
+		["335"] = 331,
+		["336"] = 332,
+		["337"] = 336,
+		["338"] = 341,
+		["340"] = 344,
+		["341"] = 345,
+		["342"] = 347,
+		["343"] = 347,
+		["344"] = 347,
+		["345"] = 347,
+		["346"] = 347,
+		["347"] = 347,
+		["348"] = 347,
+		["349"] = 347,
+		["351"] = 331,
+		["352"] = 350,
+		["353"] = 351,
+		["354"] = 350,
+		["355"] = 353,
+		["356"] = 354,
+		["357"] = 355,
+		["358"] = 356,
+		["359"] = 357,
+		["360"] = 358,
+		["361"] = 358,
+		["362"] = 358,
+		["363"] = 358,
+		["364"] = 358,
+		["365"] = 358,
+		["366"] = 359,
+		["367"] = 359,
+		["368"] = 359,
+		["369"] = 359,
+		["370"] = 359,
+		["371"] = 359,
+		["372"] = 359,
+		["373"] = 361,
+		["374"] = 362,
+		["375"] = 363,
+		["377"] = 365,
+		["378"] = 366,
+		["379"] = 367,
+		["381"] = 353,
+		["382"] = 370,
+		["383"] = 371,
+		["384"] = 373,
+		["385"] = 375,
+		["387"] = 370,
+		["388"] = 317,
+		["389"] = 308,
+		["390"] = 308,
+		["391"] = 308,
+		["392"] = 308,
+		["393"] = 308,
+		["394"] = 308,
+		["395"] = 308,
+		["396"] = 308,
+		["397"] = 308,
+		["398"] = 317,
+		["400"] = 317,
+		["402"] = 391,
+		["403"] = 392,
+		["404"] = 391,
+		["405"] = 392,
+		["406"] = 393,
+		["407"] = 394,
+		["408"] = 393,
+		["409"] = 392,
+		["410"] = 391,
+		["411"] = 392,
+		["413"] = 392,
+		["414"] = 397,
+		["415"] = 405,
+		["416"] = 397,
+		["417"] = 405,
+		["418"] = 407,
+		["419"] = 408,
+		["420"] = 407,
+		["421"] = 410,
+		["422"] = 412,
+		["423"] = 413,
+		["424"] = 414,
+		["425"] = 415,
+		["426"] = 420,
+		["428"] = 410,
+		["429"] = 423,
+		["430"] = 424,
+		["431"] = 423,
+		["432"] = 428,
+		["433"] = 429,
+		["434"] = 430,
+		["436"] = 428,
+		["437"] = 405,
+		["438"] = 397,
+		["439"] = 397,
+		["440"] = 397,
+		["441"] = 397,
+		["442"] = 397,
+		["443"] = 397,
+		["444"] = 397,
+		["445"] = 397,
+		["446"] = 405,
+		["448"] = 405,
 	}
 )
 local g = {}
@@ -579,8 +579,8 @@ function v.prototype.OnIntervalThink(self)
 	ParticleManager:ReleaseParticleIndex(u)
 end
 function v.prototype.GetResonanceStackCount(self)
-	local y = self:GetParent():FindModifierByName("modifier_lich_frost_resonance")
-	return y and y:GetStackCount() or 0
+	local t = self:GetParent()
+	return t:GetModifierStackCount("modifier_lich_frost_resonance", t)
 end
 function v.prototype.EDeclareFunctions(self)
 	return { EOMModifierFunction.EOM_MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE }
@@ -600,89 +600,89 @@ v = e(
 )
 g.modifier_lich_talent_buff = v
 g.modifier_lich_frost_resonance = c()
-local z = g.modifier_lich_frost_resonance
-z.name = "modifier_lich_frost_resonance"
-d(z, l)
-function z.prototype.GetAbilitySpecialValue(self)
+local y = g.modifier_lich_frost_resonance
+y.name = "modifier_lich_frost_resonance"
+d(y, l)
+function y.prototype.GetAbilitySpecialValue(self)
 	self.limit_stack = self:GetAbilitySpecialValueFor("limit_stack")
 end
-function z.prototype.GetTexture(self)
+function y.prototype.GetTexture(self)
 	return "lich_frost_shield"
 end
-function z.prototype.OnCreated(self, s)
+function y.prototype.OnCreated(self, s)
 	if IsServer() then
 		self:SetStackCount(1)
 	end
 end
-function z.prototype.OnRefresh(self, s)
+function y.prototype.OnRefresh(self, s)
 	if IsServer() then
 		self:SetStackCount(math.min(self:GetStackCount() + 1, self.limit_stack))
 	end
 end
-function z.prototype.EDeclareEvents(self)
+function y.prototype.EDeclareEvents(self)
 	return { [EOMModifierEvents.MODIFIER_EVENT_ON_BATTLE_END] = { self:GetParent(), self:GetParent() } }
 end
-function z.prototype.OnBattleEnd(self, s)
+function y.prototype.OnBattleEnd(self, s)
 	self:Destroy()
 end
-z = e(
+y = e(
 	{ m(
 		a,
 		{ IsHidden = false, IsDebuff = false, IsPurgable = false, IsPurgeException = true, AllowIllusionDuplicate = false }
 	) },
-	z
+	y
 )
-g.modifier_lich_frost_resonance = z
+g.modifier_lich_frost_resonance = y
 g.lich_ult = c()
-local A = g.lich_ult
-A.name = "lich_ult"
-d(A, o)
-function A.prototype.OnSpellStart(self)
-	local B = self:GetCaster()
-	local w = B:GetEnemy()
-	local C = self:GetSpecialValueFor("base_damage")
-	local D = self:GetSpecialValueFor("ice")
-	local E = self:GetTalentValue("lich_talent_2", "ice_factor")
-	local F = self:GetTalentValue("lich_talent_6", "per_ice")
-	B:StartGesture(ACT_DOTA_CAST_ABILITY_6)
+local z = g.lich_ult
+z.name = "lich_ult"
+d(z, o)
+function z.prototype.OnSpellStart(self)
+	local A = self:GetCaster()
+	local w = A:GetEnemy()
+	local B = self:GetSpecialValueFor("base_damage")
+	local C = self:GetSpecialValueFor("ice")
+	local D = self:GetTalentValue("lich_talent_2", "ice_factor")
+	local E = self:GetTalentValue("lich_talent_6", "per_ice")
+	A:StartGesture(ACT_DOTA_CAST_ABILITY_6)
 	if IsInjurable(w) then
-		B:EmitSound("Hero_Lich.ChainFrost")
+		A:EmitSound("Hero_Lich.ChainFrost")
 		Projectile:CreateTrackingProjectile({
 			EffectName = "particles/units/heroes/hero_lich/lich_chain_frost.vpcf",
-			hCaster = B,
-			vSpawnOrigin = B:GetAttachmentPosition("attach_attack1"),
+			hCaster = A,
+			vSpawnOrigin = A:GetAttachmentPosition("attach_attack1"),
 			hTarget = w,
 			iMoveSpeed = 850,
-			OnProjectileHit = function(G, H, I)
+			OnProjectileHit = function(F, G, H)
 				if IsInjurable(w) then
-					B:DealDamage(G, self, C + E * GetIce(G) * 0.01, EOM_DAMAGE_TYPES.DAMAGE_TYPE_MAGICAL)
-					AddIce(B, G, D, "lich_ult", "Ability")
-					if F <= 0 then
+					A:DealDamage(F, self, B + D * GetIce(F) * 0.01, EOM_DAMAGE_TYPES.DAMAGE_TYPE_MAGICAL)
+					AddIce(A, F, C, "lich_ult", "Ability")
+					if E <= 0 then
 						return
 					end
-					local J = math.floor(GetIce(w) / F)
-					if J > 0 then
-						w:AddNewModifier(B, self, "modifier_lich_ult_buff", { count = J })
+					local I = math.floor(GetIce(w) / E)
+					if I > 0 then
+						w:AddNewModifier(A, self, "modifier_lich_ult_buff", { count = I })
 					end
-					B:EmitSound("Hero_Lich.ChainFrostImpact.Creep")
+					A:EmitSound("Hero_Lich.ChainFrostImpact.Creep")
 				end
 			end,
 		})
 	end
 end
-A = e({ p(nil) }, A)
-g.lich_ult = A
+z = e({ p(nil) }, z)
+g.lich_ult = z
 g.modifier_lich_ult_buff = c()
-local K = g.modifier_lich_ult_buff
-K.name = "modifier_lich_ult_buff"
-d(K, l)
-function K.prototype.GetAbilitySpecialValue(self)
+local J = g.modifier_lich_ult_buff
+J.name = "modifier_lich_ult_buff"
+d(J, l)
+function J.prototype.GetAbilitySpecialValue(self)
 	self.ice_factor = self:GetAbilityTalentValue("lich_talent_2", "bonus_ice_factor")
 	self.per_ice = self:GetAbilityTalentValue("lich_talent_6", "per_ice")
 	self.base_damage = self:GetAbilitySpecialValueFor("base_damage")
 	self.ice = self:GetAbilitySpecialValueFor("ice")
 end
-function K.prototype.OnCreated(self, s)
+function J.prototype.OnCreated(self, s)
 	if IsServer() then
 		self.count = s.count
 		self:StartIntervalThink(0.5)
@@ -696,16 +696,16 @@ function K.prototype.OnCreated(self, s)
 		self:AddParticle(u, false, false, -1, false, false)
 	end
 end
-function K.prototype.OnIntervalThink(self)
+function J.prototype.OnIntervalThink(self)
 	self:Burst()
 end
-function K.prototype.Burst(self)
-	local B = self:GetCaster()
+function J.prototype.Burst(self)
+	local A = self:GetCaster()
 	local w = self:GetParent()
-	local L = self:GetAbility()
-	if IsInjurable(B) and IsInjurable(w) then
-		B:DealDamage(w, L, self.base_damage + self.ice_factor * GetIce(w) * 0.01, EOM_DAMAGE_TYPES.DAMAGE_TYPE_MAGICAL)
-		AddIce(B, w, self.ice, "lich_ult", "Ability")
+	local K = self:GetAbility()
+	if IsInjurable(A) and IsInjurable(w) then
+		A:DealDamage(w, K, self.base_damage + self.ice_factor * GetIce(w) * 0.01, EOM_DAMAGE_TYPES.DAMAGE_TYPE_MAGICAL)
+		AddIce(A, w, self.ice, "lich_ult", "Ability")
 		local u = ParticleManager:CreateParticle(
 			"particles/units/heroes/hero_lich/lich_frost_nova.vpcf",
 			PATTACH_ABSORIGIN,
@@ -719,13 +719,13 @@ function K.prototype.Burst(self)
 		self:Destroy()
 	end
 end
-function K.prototype.OnDestroy(self)
+function J.prototype.OnDestroy(self)
 	if IsServer() then
 		local t = self:GetParent()
 		t:StopSound("Hero_Lich.SinisterGaze.Cast")
 	end
 end
-K = e(
+J = e(
 	{
 		m(
 			a,
@@ -740,49 +740,49 @@ K = e(
 			}
 		),
 	},
-	K
+	J
 )
-g.modifier_lich_ult_buff = K
+g.modifier_lich_ult_buff = J
 g.lich_shard = c()
-local M = g.lich_shard
-M.name = "lich_shard"
-d(M, i)
-function M.prototype.GetIntrinsicModifierName(self)
+local L = g.lich_shard
+L.name = "lich_shard"
+d(L, i)
+function L.prototype.GetIntrinsicModifierName(self)
 	return "modifier_lich_shard"
 end
-M = e({ j(nil) }, M)
-g.lich_shard = M
+L = e({ j(nil) }, L)
+g.lich_shard = L
 g.modifier_lich_shard = c()
-local N = g.modifier_lich_shard
-N.name = "modifier_lich_shard"
-d(N, l)
-function N.prototype.GetAbilitySpecialValue(self)
+local M = g.modifier_lich_shard
+M.name = "modifier_lich_shard"
+d(M, l)
+function M.prototype.GetAbilitySpecialValue(self)
 	self.damage = self:GetAbilitySpecialValueFor("damage")
 end
-function N.prototype.OnCreated(self, s)
-	local O = self.parent:GetPlayerOwnerID()
-	if not PlayerData:loadData(O, "lich_shard") then
-		PlayerData:getHero(O):learnAbility("98", true)
+function M.prototype.OnCreated(self, s)
+	local N = self.parent:GetPlayerOwnerID()
+	if not PlayerData:loadData(N, "lich_shard") then
+		PlayerData:getHero(N):learnAbility("98", true)
 		Notification:combatToPlayer(
-			O,
+			N,
 			{
 				message = "notify_artifact_ability_" .. "r",
 				string_itemname_artifact = "DOTA_Tooltip_ability_lich_shard",
 				string_ability_name = "DOTA_Tooltip_ability_mechanics_" .. "98",
 			}
 		)
-		PlayerData:saveData(O, "lich_shard", 1)
+		PlayerData:saveData(N, "lich_shard", 1)
 	end
 end
-function N.prototype.EDeclareFunctions(self)
+function M.prototype.EDeclareFunctions(self)
 	return { EOMModifierFunction.EOM_MODIFIER_PROPERTY_PROC_DAMAGE_BONUS }
 end
-function N.prototype.EOM_GetModifierProcDamageBonus(self, s)
+function M.prototype.EOM_GetModifierProcDamageBonus(self, s)
 	if s.ability_upgrade == "98" then
 		return self.damage
 	end
 end
-N = e(
+M = e(
 	{
 		m(
 			a,
@@ -796,7 +796,7 @@ N = e(
 			}
 		),
 	},
-	N
+	M
 )
-g.modifier_lich_shard = N
+g.modifier_lich_shard = M
 return g

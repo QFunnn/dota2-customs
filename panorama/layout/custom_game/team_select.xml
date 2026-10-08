@@ -25,9 +25,7 @@
 				<Panel class="PlayerInfoPanel">
 					<Panel class="PlayerInfoBackgroundGradient" />
 					<Panel class="PlayerInfoCol">
-						<Panel class="CourierPanel">
-							<Image src="s2r://" />
-						</Panel>
+						<Panel class="CourierPanel" />
 						<Panel class="PlayerInfoRow">
 							<DOTAAvatarImage class="PlayerAvatar" accountid="128320546" />
 							<Label class="PlayerName" text="婉婉最甜" />
@@ -43,8 +41,8 @@
 			<Panel id="GameAndPlayersRoot">
 				<Panel id="GameInfoPanel">
 					<Panel id="StartGameCountdownTimer">
-						<Image id="TimerBg" src="s2r://" />
-						<Image id="TimerRing" src="s2r://" />
+						<Image id="TimerBg" src="s2r://panorama/images/status_icons/timer_background_psd.vtex" />
+						<Image id="TimerRing" src="s2r://panorama/images/status_icons/timer_ring_psd.vtex" />
 						<Label id="TeamSelectTimer" text="#custom_game_team_select_timer" />
 						<Panel id="TimerLabelBox">
 							<Label id="TimerLabelAutoStart" text="#custom_game_team_select_auto_start" />
@@ -78,10 +76,23 @@
 							<Panel id="UnassignedPlayersContainer" />
 						</Panel>
 						<Button id="AutoAssignButton" onactivate="OnAutoAssignPressed()">
-							<Image src="s2r://" style="pre-transform-rotate2d: -90deg;" />
+							<Image src="s2r://panorama/images/control_icons/double_arrow_left_png.vtex" style="pre-transform-rotate2d: -90deg;" />
 							<Label text="#custom_game_team_select_auto_assign" />
 						</Button>
 					</Panel>
+				</Panel>
+				<Panel id="TeamSelectVGLauncherNotice">
+					<Label class="TeamSelectVGLauncherTitle" text="#C4_TeamSelect_VGLauncher_Title" />
+					<Label class="TeamSelectVGLauncherStep" text="#C4_TeamSelect_VGLauncher_DownloadStep" />
+					<Button id="TeamSelectVGLauncherLink" onactivate="OnOpenVGLauncherPressed()" oncontextmenu="OnCopyVGLauncherLinkPressed()">
+						<Label text="#C4_TeamSelect_VGLauncher_Link" />
+					</Button>
+					<Label class="TeamSelectVGLauncherURL" text="https://vgbattle.eomgames.net/" />
+					<Button id="TeamSelectVGLauncherCopyButton" onactivate="OnCopyVGLauncherLinkPressed()">
+						<Label id="VGLauncherCopyButtonLabel" text="#C4_TeamSelect_VGLauncher_Copy" />
+					</Button>
+					<Label class="TeamSelectVGLauncherWarning" text="#C4_TeamSelect_VGLauncher_Warning" />
+					<Label class="TeamSelectVGLauncherStep" text="#C4_TeamSelect_VGLauncher_StartStep" />
 				</Panel>
 				<Button id="LockAndStartButton" class="PlayButton" onactivate="OnLockAndStartPressed()">
 					<Label text="#custom_game_team_select_lock_start" />
