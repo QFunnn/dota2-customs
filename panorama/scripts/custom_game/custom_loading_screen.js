@@ -45,6 +45,7 @@ function PanelVisible(p, visible) {
   }
   var Update = function () {
     var mapInfo = Game.GetMapInfo();
+    PanelVisible($("#StartTips"), isRankMode());
     if (mapInfo.map_display_name == "help_map") {
       PanelVisible($("#VGLauncherNotice"), true);
       PanelVisible($("#WorldVignetteRight"), false);
