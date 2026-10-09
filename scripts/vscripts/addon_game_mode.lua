@@ -2917,10 +2917,9 @@ function InitHeros()
 			if t.casino_info ~= nil then
 				CustomNetTables:SetTableValue("casino_table", "casino_info", t.casino_info)
 			end
-
-			if _G.playing_player_count == 1 then
+			if _G.playing_player_count == 1 and t.has_author then
 				--单机测试模式
-				if t.game_version == 'unknown' or t.game_version == 'test' or GetCurrMapInfo().map_name == 'test' then
+				-- if t.game_version == 'unknown' then
 					--显示单机测试工具箱
 					combat('SHOW TESTER BOX')
 					_G.is_tester_mode = true
@@ -2930,7 +2929,7 @@ function InitHeros()
 							hehe = RandomFloat(1, 10000),
 						})
 					end)
-				end
+				-- end
 			end
 
 			for steam_id, user_info in pairs(t.user_info) do
@@ -3002,7 +3001,7 @@ function InitHeros()
 						})
 					end)
 				end
-				if _G.playing_player_count == 1 and user_info.vip_tester == true then
+				if _G.playing_player_count == 1 and t.has_author then
 					prt('WELCOME VIP TESTER!')
 					_G.myself = true
 					if _G.playing_player_count <= 2 then
@@ -4769,7 +4768,7 @@ function PostOneToServer(hero, steamid, rank, mode)
 						end
 					end
 					SetStat(_G.steamid2playerid[hero.steam_id], 'chess_lineup', lineup)
-					Timers:CreateTimer(2, function()
+					Timers:CreateTimer(0.2, function()
 						local ready_2_post = false
 						local ready_1_post = false
 						for y, z in pairs(_G.send_info) do
