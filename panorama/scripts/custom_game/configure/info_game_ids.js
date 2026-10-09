@@ -399,6 +399,11 @@ GameUI.CustomUIConfig().info_game_ids = {
 		type: "item",
 		name: "银羽骰"
 	},
+	"110026": {
+		item_id: 110026,
+		type: "item",
+		name: "祈愿币"
+	},
 	"110027": {
 		item_id: 110027,
 		type: "item",
@@ -8304,6 +8309,11 @@ GameUI.CustomUIConfig().info_game_ids = {
 		type: "item",
 		name: "头像框-天使之剑"
 	},
+	"1710009": {
+		item_id: 1710009,
+		type: "item",
+		name: "欢度佳节"
+	},
 	"1710010": {
 		item_id: 1710010,
 		type: "item",
@@ -8333,6 +8343,11 @@ GameUI.CustomUIConfig().info_game_ids = {
 		item_id: 1720002,
 		type: "item",
 		name: "头饰"
+	},
+	"1720003": {
+		item_id: 1720003,
+		type: "item",
+		name: "太美坤冠"
 	},
 	"1720401": {
 		item_id: 1720401,
@@ -8852,7 +8867,7 @@ GameUI.CustomUIConfig().info_game_ids = {
 	"1780005": {
 		item_id: 1780005,
 		type: "item",
-		name: "杂项"
+		name: "发条兔"
 	},
 	"1780006": {
 		item_id: 1780006,
@@ -8873,6 +8888,21 @@ GameUI.CustomUIConfig().info_game_ids = {
 		item_id: 1780009,
 		type: "item",
 		name: "杂项"
+	},
+	"1790001": {
+		item_id: 1790001,
+		type: "item",
+		name: "S1巅峰冠军"
+	},
+	"1790002": {
+		item_id: 1790002,
+		type: "item",
+		name: "S1巅峰亚军"
+	},
+	"1790003": {
+		item_id: 1790003,
+		type: "item",
+		name: "S1巅峰季军"
 	},
 	"1800001": {
 		item_id: 1800001,

@@ -704,16 +704,18 @@ function splitProps(props, ...keys) {
   const len = keys.length;
   if (SUPPORTS_PROXY && $PROXY in props) {
     const blocked = len > 1 ? keys.flat() : keys[0];
+    const claimed = new Set();
     const res = keys.map(k => {
+      const owned = k.filter(property => !claimed.has(property) && (claimed.add(property), true));
       return new Proxy({
         get(property) {
-          return k.includes(property) ? props[property] : undefined;
+          return owned.includes(property) ? props[property] : undefined;
         },
         has(property) {
-          return k.includes(property) && property in props;
+          return owned.includes(property) && property in props;
         },
         keys() {
-          return k.filter(property => property in props);
+          return owned.filter(property => property in props);
         }
       }, propTraps);
     });

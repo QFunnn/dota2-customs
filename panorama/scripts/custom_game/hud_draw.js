@@ -784,12 +784,13 @@ function DrawPage() {
                     _el$54 = libs.createElement("DOTAParticleScenePanel", {
                       id: "ShowFx",
                       particleName: "particles/ui/lottery/ui_lottery_back_appear_fx.vpcf",
-                      cameraOrigin: "0 0 500",
+                      cameraOrigin: "0 0 380",
                       lookAt: "0 0 0",
                       fov: 90,
                       hittest: false
                     }, _el$53);
                   libs.use(p => {
+                    p.SetControlPoint(1, -200, 0, 0);
                     $.Schedule((duration + interval) * idx(), () => {
                       if (p.IsValid()) {
                         p.ReloadScene();
@@ -866,6 +867,7 @@ function DrawPage() {
                   hittest: false
                 }, _el$55);
               libs.use(p => {
+                p.SetControlPoint(1, -200, 0, 0);
                 $.Schedule((duration + interval) * idx(), () => {
                   if (p.IsValid()) {
                     p.ReloadScene();
@@ -1589,4 +1591,4 @@ function HudDraw() {
     }
   });
 }
-libs.render(HudDraw, $.GetContextPanel());
+libs.render(HudDraw, $.GetContextPanel());

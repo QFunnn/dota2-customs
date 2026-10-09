@@ -14855,4 +14855,4 @@ function EquipForge() {
     }
   });
 }
-libs.render(() => libs.createComponent(HudEquipment, {}), $.GetContextPanel());
+libs.render(() => libs.createComponent(HudEquipment, {}), $.GetContextPanel());

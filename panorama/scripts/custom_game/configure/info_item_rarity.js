@@ -344,6 +344,11 @@ GameUI.CustomUIConfig().info_item_rarity = {
 		item_id: 110021,
 		rarity: 5
 	},
+	"110026": {
+		id: 2095,
+		item_id: 110026,
+		rarity: 5
+	},
 	"120001": {
 		id: 10,
 		item_id: 120001,
@@ -8299,6 +8304,11 @@ GameUI.CustomUIConfig().info_item_rarity = {
 		item_id: 1710008,
 		rarity: 4
 	},
+	"1710009": {
+		id: 2096,
+		item_id: 1710009,
+		rarity: 5
+	},
 	"1710010": {
 		id: 2094,
 		item_id: 1710010,
@@ -8934,6 +8944,21 @@ GameUI.CustomUIConfig().info_item_rarity = {
 	"1780007": {
 		id: 1092,
 		item_id: 1780007,
+		rarity: 5
+	},
+	"1790001": {
+		id: 2097,
+		item_id: 1790001,
+		rarity: 5
+	},
+	"1790002": {
+		id: 2098,
+		item_id: 1790002,
+		rarity: 5
+	},
+	"1790003": {
+		id: 2099,
+		item_id: 1790003,
 		rarity: 5
 	},
 	"1800001": {

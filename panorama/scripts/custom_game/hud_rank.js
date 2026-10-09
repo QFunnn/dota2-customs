@@ -1738,4 +1738,4 @@ function Rank() {
     }
   });
 }
-libs.render(() => libs.createComponent(Rank, {}), $.GetContextPanel());
+libs.render(() => libs.createComponent(Rank, {}), $.GetContextPanel());

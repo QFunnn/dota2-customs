@@ -15,28 +15,20 @@
 		<include src="s2r://panorama/styles/battle_pass/current_battle_pass.vcss_c" />
 		<include src="s2r://panorama/styles/play.vcss_c" />
 		<include src="s2r://panorama/styles/custom_game/team_select.vcss_c" />
-		<include src="s2r://panorama/styles/custom_game/global_style.vcss_c" />
-		<include src="s2r://panorama/styles/custom_game/team_select.vcss_c" />
+		<include src="s2r://panorama/styles/custom_game/global_style.vcss" />
+		<include src="s2r://panorama/styles/custom_game/team_select.vcss" />
 	</styles>
 	<scripts>
-		<include src="s2r://panorama/scripts/custom_game/panorama-polyfill.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/panorama-polyfill.vjs" />
 		<include src="s2r://panorama/scripts/sequence_actions.vts_c" />
-		<include src="s2r://panorama/scripts/custom_game/team_select.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/team_select.vjs" />
 	</scripts>
 	<snippets>
 		<snippet name="PlayerContainerRoot">
 			<Panel class="team_select PlayerContainerRoot">
 				<Panel class="PlayerInfoPanel">
 					<Panel class="PlayerInfoBackgroundGradient" />
-					<Panel class="PlayerInfoCol">
-						<Panel class="CourierPanel">
-							<Image src="s2r://" />
-						</Panel>
-						<Panel class="PlayerInfoRow">
-							<DOTAAvatarImage class="PlayerAvatar" accountid="128320546" />
-							<Label class="PlayerName" text="" />
-						</Panel>
-					</Panel>
+					<Panel class="PlayerInfoCol" />
 				</Panel>
 			</Panel>
 		</snippet>

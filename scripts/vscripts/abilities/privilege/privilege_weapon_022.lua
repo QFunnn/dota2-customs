@@ -20,18 +20,37 @@ local i = g.RegisterPrivilege
 local j = c()
 j.name = "privilege_weapon_022"
 d(j, h)
+function j.prototype.OnCreated(self)
+	self:RefreshBonus()
+	print(string.format("[%s] Player %d privilege created", self.privilegeName, self:GetPlayerID()))
+end
+function j.prototype.OnRefresh(self)
+	h.prototype.OnRefresh(self)
+	self:RefreshBonus()
+	print(string.format("[%s] Player %d privilege refreshed", self.privilegeName, self:GetPlayerID()))
+end
+function j.prototype.OnDestroy(self)
+	h.prototype.OnDestroy(self)
+	print(string.format("[%s] Player %d privilege destroyed", self.privilegeName, self:GetPlayerID()))
+end
 function j.prototype.EventListener(self)
 	return {
 		bless_suit_changed = function(k, l)
-			local m = l.playerID
-			local n = PlayerResource:GetSelectedHeroEntity(m)
-			local o = Bless:GetSuitLevel(m, "wind")
-			local p = self:GetSpecialValueFor("attack_speed_scale")
-			if IsValid(n) and o > 0 then
-				PropertySystem:AddStaticProperty(n:entindex(), "attackspeed", "privilege_weapon_022", o * p)
+			if l.playerID ~= self:GetPlayerID() then
+				return
 			end
+			self:RefreshBonus()
 		end,
 	}
+end
+function j.prototype.RefreshBonus(self)
+	local m = self:GetCaster()
+	if not IsValid(m) then
+		return
+	end
+	local n = Bless:GetSuitLevel(self:GetPlayerID(), "wind")
+	local o = n * self:GetSpecialValueFor("attack_speed_scale")
+	PropertySystem:AddStaticProperty(m:entindex(), "attackspeed", self.privilegeName, o)
 end
 j = e({ i(nil) }, j)
 return f

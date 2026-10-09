@@ -586,7 +586,12 @@ const NpcOverhead = ({
   const npcName = libs.createMemo(() => npcData()?.name ?? "unknown");
   const playerID = libs.createMemo(() => npcData()?.playerID);
   const isPublicNpc = libs.createMemo(() => playerID() === undefined);
-  const iconPath = libs.createMemo(() => getSrcPath("hud/hud_icon/h_room_" + npcName() + ".png"));
+  const iconPath = libs.createMemo(() => {
+    const name = npcName();
+    if (name === "fishpond" || name === "fisherman") return undefined;
+    const icon = name === "npc_arena" ? "pvp" : name;
+    return getSrcPath("hud/hud_icon/h_room_" + icon + ".png");
+  });
   const npcNameText = libs.createMemo(() => {
     const playerName = isPublicNpc() ? "" : Players.GetPlayerName(playerID());
     return LocalizeWithVars(`#npc_${npcName()}`, {
@@ -606,7 +611,7 @@ const NpcOverhead = ({
       }, _el$45);
     libs.insert(_el$45, libs.createComponent(libs.Show, {
       get when() {
-        return isPublicNpc();
+        return libs.memo(() => !!isPublicNpc())() && iconPath() !== undefined;
       },
       get children() {
         const _el$46 = libs.createElement("Image", {
@@ -1147,4 +1152,4 @@ function getOverheadComponent(type, entIndex) {
     recycleBin.RemoveAndDeleteChildren();
   }
   update();
-})();
+})();

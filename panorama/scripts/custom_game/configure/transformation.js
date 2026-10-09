@@ -64,6 +64,11 @@ GameUI.CustomUIConfig().transformation = {
 		beizhu: "限定信使4",
 		transformation: "110002:600"
 	},
+	"600022": {
+		id: 600022,
+		beizhu: "虚空宝库信使",
+		transformation: "110012:600"
+	},
 	"1000001": {
 		id: 1000001,
 		beizhu: "英雄1紫色武器",

@@ -37,6 +37,7 @@ const HERO_NAME_Y_OFFSET$1 = {
   "npc_dota_hero_vespera": 150
 };
 const DEFAULT_NAME_Y$1 = 120;
+const ABYSSAL_DAILY_FREE_REWARD_LIMIT = 3;
 function getHeroPosition$1(index, total) {
   if (total === 1) {
     return {
@@ -150,6 +151,9 @@ const AbyssalSelection = () => {
     }
   };
   const player_diff_first_passes = solid_utils.createServiceNetData("player_abyssal_first_passes", {});
+  const playerCounters = solid_utils.createServiceNetData("player_counters", {});
+  const remainingFreeRuneRewardCount = libs.createMemo(() => Math.max(0, ABYSSAL_DAILY_FREE_REWARD_LIMIT - (playerCounters()?.daily_free_abyssal_rewards?.count ?? 0)));
+  const remainingFreeEngravingRewardCount = libs.createMemo(() => Math.max(0, ABYSSAL_DAILY_FREE_REWARD_LIMIT - (playerCounters()?.daily_free_abyssal_engraving_rewards?.count ?? 0)));
   const isGamepad = libs.createMemo(() => inputMode().isGamepad == 1);
   const [heroModelList, setHeroModelList] = libs.createSignal([]);
   const [diff, setDiff] = libs.createSignal(1);
@@ -349,9 +353,28 @@ const AbyssalSelection = () => {
         id: "NormalRewardDesc",
         html: true,
         get text() {
-          return "#AbyssalDiffSelection_NormalReward" + diff();
+          return GetLocalization("#AbyssalDiffSelection_NormalReward" + diff());
         }
-      }, _el$0);
+      }, _el$0),
+      _el$12 = libs.createElement("Panel", {
+        id: "DailyFreeRewardCounts"
+      }, _el$0),
+      _el$13 = libs.createElement("Label", {
+        "class": "DailyFreeRewardCount",
+        get text() {
+          return LocalizeWithVars("#AbyssalDiffSelection_FreeRuneRewardCount", {
+            count: remainingFreeRuneRewardCount()
+          });
+        }
+      }, _el$12),
+      _el$14 = libs.createElement("Label", {
+        "class": "DailyFreeRewardCount",
+        get text() {
+          return LocalizeWithVars("#AbyssalDiffSelection_FreeEngravingRewardCount", {
+            count: remainingFreeEngravingRewardCount()
+          });
+        }
+      }, _el$12);
       libs.createElement("Label", {
         id: "ChallengeReward",
         html: true,
@@ -360,7 +383,7 @@ const AbyssalSelection = () => {
       libs.createElement("Panel", {
         id: "DiffDetailDivider"
       }, _el$0);
-      const _el$14 = libs.createElement("Panel", {
+      const _el$17 = libs.createElement("Panel", {
         id: "StarRewardList"
       }, _el$0);
       libs.createElement("Label", {
@@ -370,27 +393,27 @@ const AbyssalSelection = () => {
       libs.createElement("Panel", {
         id: "DiffDetailDivider"
       }, _el$0);
-      const _el$17 = libs.createElement("Panel", {
+      const _el$20 = libs.createElement("Panel", {
         id: "StarConditionList"
       }, _el$0),
-      _el$18 = libs.createElement("Panel", {
+      _el$21 = libs.createElement("Panel", {
         height: "fill-parent-flow(1)"
       }, _el$5),
-      _el$19 = libs.createElement("Panel", {
+      _el$22 = libs.createElement("Panel", {
         id: "Teammate"
       }, _el$5),
-      _el$20 = libs.createElement("Panel", {
+      _el$23 = libs.createElement("Panel", {
         id: "TeammateDiff"
-      }, _el$19),
-      _el$21 = libs.createElement("Label", {
+      }, _el$22),
+      _el$24 = libs.createElement("Label", {
         text: "#DiffSelection_TeamDiff",
         get vars() {
           return {
             diff: teamDiff()
           };
         }
-      }, _el$20),
-      _el$22 = libs.createElement("Label", {
+      }, _el$23),
+      _el$25 = libs.createElement("Label", {
         id: "StartCountdown",
         text: "#DiffSelection_StartCountdown",
         get vars() {
@@ -398,7 +421,7 @@ const AbyssalSelection = () => {
             value: countdown()
           };
         }
-      }, _el$19);
+      }, _el$22);
     libs.insert(_el$2, libs.createComponent(libs.For, {
       get each() {
         return heroModelList();
@@ -413,7 +436,7 @@ const AbyssalSelection = () => {
         const fxTime = 0.25;
         const interval = 0;
         return (() => {
-          const _el$24 = libs.createElement("Panel", {
+          const _el$27 = libs.createElement("Panel", {
               "class": "HeroWithShowFx",
               get style() {
                 return {
@@ -423,7 +446,7 @@ const AbyssalSelection = () => {
                 };
               }
             }, null),
-            _el$25 = libs.createElement("Panel", {
+            _el$28 = libs.createElement("Panel", {
               "class": "PlayerName",
               get style() {
                 return {
@@ -431,20 +454,20 @@ const AbyssalSelection = () => {
                   y: nameY() + "px"
                 };
               }
-            }, _el$24),
-            _el$26 = libs.createElement("Label", {
+            }, _el$27),
+            _el$29 = libs.createElement("Label", {
               id: "Diff",
               get text() {
                 return "#DiffSelection_DiffName" + playerDiff();
               }
-            }, _el$25),
-            _el$27 = libs.createElement("Label", {
+            }, _el$28),
+            _el$30 = libs.createElement("Label", {
               id: "Name",
               get text() {
                 return playerName();
               }
-            }, _el$25);
-          libs.insert(_el$24, libs.createComponent(portraitsFullBodyLoadout.PortraitsFullBodyLoadout, {
+            }, _el$28);
+          libs.insert(_el$27, libs.createComponent(portraitsFullBodyLoadout.PortraitsFullBodyLoadout, {
             id: "HeroModelScene",
             get unit() {
               return hero();
@@ -457,31 +480,31 @@ const AbyssalSelection = () => {
                 animationName: "AbyssalHeroShow"
               };
             }
-          }), _el$25);
+          }), _el$28);
           libs.effect(_p$ => {
-            const _v$6 = {
+            const _v$8 = {
                 x: pos().x + "px",
                 y: pos().y + "px",
                 zIndex: pos().zIndex
               },
-              _v$7 = {
+              _v$9 = {
                 x: 0 + "px",
                 y: nameY() + "px"
               },
-              _v$8 = "#DiffSelection_DiffName" + playerDiff(),
-              _v$9 = playerName();
-            _v$6 !== _p$._v$6 && (_p$._v$6 = libs.setProp(_el$24, "style", _v$6, _p$._v$6));
-            _v$7 !== _p$._v$7 && (_p$._v$7 = libs.setProp(_el$25, "style", _v$7, _p$._v$7));
-            _v$8 !== _p$._v$8 && (_p$._v$8 = libs.setProp(_el$26, "text", _v$8, _p$._v$8));
-            _v$9 !== _p$._v$9 && (_p$._v$9 = libs.setProp(_el$27, "text", _v$9, _p$._v$9));
+              _v$0 = "#DiffSelection_DiffName" + playerDiff(),
+              _v$1 = playerName();
+            _v$8 !== _p$._v$8 && (_p$._v$8 = libs.setProp(_el$27, "style", _v$8, _p$._v$8));
+            _v$9 !== _p$._v$9 && (_p$._v$9 = libs.setProp(_el$28, "style", _v$9, _p$._v$9));
+            _v$0 !== _p$._v$0 && (_p$._v$0 = libs.setProp(_el$29, "text", _v$0, _p$._v$0));
+            _v$1 !== _p$._v$1 && (_p$._v$1 = libs.setProp(_el$30, "text", _v$1, _p$._v$1));
             return _p$;
           }, {
-            _v$6: undefined,
-            _v$7: undefined,
             _v$8: undefined,
-            _v$9: undefined
+            _v$9: undefined,
+            _v$0: undefined,
+            _v$1: undefined
           });
-          return _el$24;
+          return _el$27;
         })();
       }
     }), _el$4);
@@ -514,7 +537,7 @@ const AbyssalSelection = () => {
           return offset;
         };
         return (() => {
-          const _el$28 = libs.createElement("Panel", {
+          const _el$31 = libs.createElement("Panel", {
               get ["class"]() {
                 return libs.classNames("Diff", "Index" + posIndex());
               }
@@ -527,8 +550,8 @@ const AbyssalSelection = () => {
               lookAt: "0 0 0",
               hittest: false,
               squarePixels: true
-            }, _el$28);
-          libs.insert(_el$28, libs.createComponent(EOM_Button.EOM_BaseButton, {
+            }, _el$31);
+          libs.insert(_el$31, libs.createComponent(EOM_Button.EOM_BaseButton, {
             "class": "DiffButton",
             get classList() {
               return {
@@ -542,16 +565,16 @@ const AbyssalSelection = () => {
               updateSelectedDiff(_diff);
             },
             get children() {
-              const _el$30 = libs.createElement("Label", {
+              const _el$33 = libs.createElement("Label", {
                 "class": "DiffName",
                 text: _diff
               }, null);
-              libs.setProp(_el$30, "text", _diff);
-              return _el$30;
+              libs.setProp(_el$33, "text", _diff);
+              return _el$33;
             }
           }), null);
-          libs.effect(_$p => libs.setProp(_el$28, "class", libs.classNames("Diff", "Index" + posIndex()), _$p));
-          return _el$28;
+          libs.effect(_$p => libs.setProp(_el$31, "class", libs.classNames("Diff", "Index" + posIndex()), _$p));
+          return _el$31;
         })();
       }
     }));
@@ -568,7 +591,7 @@ const AbyssalSelection = () => {
         moveDiffSelection(1);
       }
     }), null);
-    libs.insert(_el$14, libs.createComponent(libs.For, {
+    libs.insert(_el$17, libs.createComponent(libs.For, {
       get each() {
         return starRewards();
       },
@@ -597,33 +620,33 @@ const AbyssalSelection = () => {
                   }, null);
                 }
               }), (() => {
-                const _el$32 = libs.createElement("Panel", {
+                const _el$35 = libs.createElement("Panel", {
                   width: "100%",
                   height: "100%"
                 }, null);
-                libs.setProp(_el$32, "width", "100%");
-                libs.setProp(_el$32, "height", "100%");
-                libs.effect(_$p => libs.setProp(_el$32, "customTooltip", {
+                libs.setProp(_el$35, "width", "100%");
+                libs.setProp(_el$35, "height", "100%");
+                libs.effect(_$p => libs.setProp(_el$35, "customTooltip", {
                   name: "title_image_text",
                   title: GetLocalization(String(item.itemId)),
                   image: getSrcPath("store_items/" + item.itemId + ".png"),
                   text: GetLocalization(item.itemId + "_description") + "<br>" + GetLocalization("DiffSelection_StarReward" + reward.star)
                 }, _$p));
-                return _el$32;
+                return _el$35;
               })()];
             }
           })
         });
       }
     }));
-    libs.insert(_el$17, libs.createComponent(libs.For, {
+    libs.insert(_el$20, libs.createComponent(libs.For, {
       get each() {
         return starRewards();
       },
       children: reward => {
         const isChecked = createStarChecked(reward.star);
         return (() => {
-          const _el$33 = libs.createElement("Panel", {
+          const _el$36 = libs.createElement("Panel", {
               get ["class"]() {
                 return libs.classNames("StarCondition", {
                   Unfilled: !isChecked()
@@ -632,30 +655,30 @@ const AbyssalSelection = () => {
             }, null);
             libs.createElement("Image", {
               "class": "DiffStar"
-            }, _el$33);
-            const _el$35 = libs.createElement("Label", {
+            }, _el$36);
+            const _el$38 = libs.createElement("Label", {
               "class": "StarConditionText",
               get text() {
                 return "#AbyssalDiffSelection_StarCondition" + reward.star;
               }
-            }, _el$33);
+            }, _el$36);
           libs.effect(_p$ => {
-            const _v$0 = libs.classNames("StarCondition", {
+            const _v$10 = libs.classNames("StarCondition", {
                 Unfilled: !isChecked()
               }),
-              _v$1 = "#AbyssalDiffSelection_StarCondition" + reward.star;
-            _v$0 !== _p$._v$0 && (_p$._v$0 = libs.setProp(_el$33, "class", _v$0, _p$._v$0));
-            _v$1 !== _p$._v$1 && (_p$._v$1 = libs.setProp(_el$35, "text", _v$1, _p$._v$1));
+              _v$11 = "#AbyssalDiffSelection_StarCondition" + reward.star;
+            _v$10 !== _p$._v$10 && (_p$._v$10 = libs.setProp(_el$36, "class", _v$10, _p$._v$10));
+            _v$11 !== _p$._v$11 && (_p$._v$11 = libs.setProp(_el$38, "text", _v$11, _p$._v$11));
             return _p$;
           }, {
-            _v$0: undefined,
-            _v$1: undefined
+            _v$10: undefined,
+            _v$11: undefined
           });
-          return _el$33;
+          return _el$36;
         })();
       }
     }));
-    libs.setProp(_el$18, "height", "fill-parent-flow(1)");
+    libs.setProp(_el$21, "height", "fill-parent-flow(1)");
     libs.insert(_el$5, libs.createComponent(EOM_Button.EOM_BaseButton, {
       id: "Start",
       get visible() {
@@ -672,27 +695,37 @@ const AbyssalSelection = () => {
       }
     }), null);
     libs.effect(_p$ => {
-      const _v$ = "#AbyssalDiffSelection_NormalReward" + diff(),
-        _v$2 = isCountdownActive(),
-        _v$3 = {
-          diff: teamDiff()
-        },
+      const _v$ = GetLocalization("#AbyssalDiffSelection_NormalReward" + diff()),
+        _v$2 = LocalizeWithVars("#AbyssalDiffSelection_FreeRuneRewardCount", {
+          count: remainingFreeRuneRewardCount()
+        }),
+        _v$3 = LocalizeWithVars("#AbyssalDiffSelection_FreeEngravingRewardCount", {
+          count: remainingFreeEngravingRewardCount()
+        }),
         _v$4 = isCountdownActive(),
         _v$5 = {
+          diff: teamDiff()
+        },
+        _v$6 = isCountdownActive(),
+        _v$7 = {
           value: countdown()
         };
       _v$ !== _p$._v$ && (_p$._v$ = libs.setProp(_el$11, "text", _v$, _p$._v$));
-      _v$2 !== _p$._v$2 && (_p$._v$2 = libs.setProp(_el$19, "visible", _v$2, _p$._v$2));
-      _v$3 !== _p$._v$3 && (_p$._v$3 = libs.setProp(_el$21, "vars", _v$3, _p$._v$3));
+      _v$2 !== _p$._v$2 && (_p$._v$2 = libs.setProp(_el$13, "text", _v$2, _p$._v$2));
+      _v$3 !== _p$._v$3 && (_p$._v$3 = libs.setProp(_el$14, "text", _v$3, _p$._v$3));
       _v$4 !== _p$._v$4 && (_p$._v$4 = libs.setProp(_el$22, "visible", _v$4, _p$._v$4));
-      _v$5 !== _p$._v$5 && (_p$._v$5 = libs.setProp(_el$22, "vars", _v$5, _p$._v$5));
+      _v$5 !== _p$._v$5 && (_p$._v$5 = libs.setProp(_el$24, "vars", _v$5, _p$._v$5));
+      _v$6 !== _p$._v$6 && (_p$._v$6 = libs.setProp(_el$25, "visible", _v$6, _p$._v$6));
+      _v$7 !== _p$._v$7 && (_p$._v$7 = libs.setProp(_el$25, "vars", _v$7, _p$._v$7));
       return _p$;
     }, {
       _v$: undefined,
       _v$2: undefined,
       _v$3: undefined,
       _v$4: undefined,
-      _v$5: undefined
+      _v$5: undefined,
+      _v$6: undefined,
+      _v$7: undefined
     });
     return _el$;
   })();
@@ -1988,4 +2021,4 @@ const DiffSelection = () => {
     return _el$;
   })();
 };
-libs.render(() => libs.createComponent(DiffSelection, {}), $.GetContextPanel());
+libs.render(() => libs.createComponent(DiffSelection, {}), $.GetContextPanel());

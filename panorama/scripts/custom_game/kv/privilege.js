@@ -2096,7 +2096,7 @@ GameUI.CustomUIConfig().privilege = {
 		}
 	},
 	"privilege_gem_suit_005": {
-		"Note": "近战伤害增幅+%value%%，受到伤害+%incoming_damage%%",
+		"Note": "近距离伤害增幅+%value%%，受到伤害+%incoming_damage%%",
 		"IsGlobal": 0,
 		"IsStackable": 0,
 		"AbilityValues": {
@@ -2226,7 +2226,7 @@ GameUI.CustomUIConfig().privilege = {
 		}
 	},
 	"privilege_gem_suit_015": {
-		"Note": "%radius%范围内没有敌人时，远程伤害增幅+%value%%",
+		"Note": "%radius%范围内没有敌人时，远距离伤害增幅+%value%%",
 		"IsGlobal": 0,
 		"IsStackable": 0,
 		"AbilityValues": {
