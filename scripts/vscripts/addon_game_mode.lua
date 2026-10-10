@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build c158db4 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -1754,6 +1754,8 @@ function InitVaribles()
 	_G.max_grids = _G.max_xy * _G.max_xy
 	_G.random_seed_levels = 1
 	_G.online_player_count = 0
+	_G.connect_full_player_count = 0
+	_G.is_server_game_started = false
 	_G.guai = {
 		[1] = "gemtd_kuangbaoyezhu",
 		[2] = "gemtd_kuaidiqingwatiaotiao",
@@ -14471,156 +14473,93 @@ function GetSendKey()
 		.. GetDedicatedServerKeyV2("bsl,bgbxh")
 end
 
-function GemTD:OnPlayerConnectFull(keys)
-	-- DeepPrintTable(keys)
-	--因为DOTA2的7.31版本更新后这里只能获得userid（没什么用）
-	--干脆直接遍历全部的PlayerID
-	--然而PlayerID后来加回来了。。但是已经不想再改回去了！
-
-	local connected_player_count = 0
-	local player_steamid_table = {}
-
-	for i = 0, 20 do
-		if PlayerResource:GetPlayer(i) then
-			-- SetPlayerConnectedInfo({
-			-- 	PlayerID = i,
-			-- 	PlayerName = PlayerResource:GetPlayerName(i),
-			-- 	SteamID = tostring(PlayerResource:GetSteamID(i)),
-			-- })
-			connected_player_count = connected_player_count + 1
-
-			local steamid = tostring(PlayerResource:GetSteamID(i))
-			if
-				steamid == "76561198101849234"
-				or steamid == "76561198090931971"
-				or steamid == "76561198132023205"
-				or steamid == "76561198079679584"
-			then
-				_G.myself = true
-			end
-			-- table.insert(player_steamid_table,steamid)
-
-			if _G.zaotui_table[i] == 1 then
-				_G.zaotui_table[i] = 0
-			end
-
-			--通知ui：玩家i连进来了，显示它的头像面板吧
-			CustomNetTables:SetTableValue("game_state", "player_connect", { id = i, hehe = RandomInt(1, 10000) })
-
-			--通知ui：玩家们分别选了什么英雄
-			if PlayerResource:GetSelectedHeroName(0) ~= nil then
-				CustomNetTables:SetTableValue(
-					"game_state",
-					"select_hero1",
-					{
-						p1 = PlayerResource:GetSelectedHeroName(0),
-						p2 = PlayerResource:GetSelectedHeroName(1),
-						p3 = PlayerResource:GetSelectedHeroName(2),
-						p4 = PlayerResource:GetSelectedHeroName(3),
-					}
-				)
-			end
-		end
-	end
-
-	-- local steamid_str = JoinTableString(player_steamid_table)
-	-- _G.steam_ids_only = steamid_str
-
-	_G.online_player_count = connected_player_count
-	if _G.is_debug == true then
-		GameRules:SendCustomMessage("当前玩家总数: " .. _G.online_player_count, 0, 0)
-	end
-
-	print("player connect: " .. _G.online_player_count .. "/" .. PlayerResource:GetPlayerCount())
-end
-
 function GemTD:OnPlayerStartTeamSelect(keys)
-	if _G.online_player_count >= PlayerResource:GetPlayerCount() and _G.is_heros_get_sended == nil then
-		--所有玩家都连入游戏了，访问服务器获取玩家信息！
-		_G.is_heros_get_sended = true
+	-- if _G.online_player_count >= PlayerResource:GetPlayerCount() and _G.is_heros_get_sended == nil then
+	-- 	--所有玩家都连入游戏了，访问服务器获取玩家信息！
+	-- 	_G.is_heros_get_sended = true
 
-		_G.pcount = PlayerResource:GetPlayerCount() .. "p"
-		if GetMapName() == "gemtd_race" then
-			_G.pcount = "race"
+	_G.pcount = PlayerResource:GetPlayerCount() .. "p"
+	if GetMapName() == "gemtd_race" then
+		_G.pcount = "race"
+	end
+
+	local player_steamid_table = {}
+	for i = 0, PlayerResource:GetPlayerCount() - 1 do
+		table.insert(player_steamid_table, tostring(PlayerResource:GetSteamID(i)))
+	end
+	_G.steam_ids_only = JoinTableString(player_steamid_table)
+
+	--http://gemtd.ppbizon.com/gemtd/201901/heros/get/@76561198090931971,76561198101849234,?ver=v1&compen_shell=2&hehe=
+
+	local url = "http://gemtd.ppbizon.com/gemtd/202203/heros/get/@"
+		.. _G.steam_ids_only
+		.. "?ver=v1&compen_shell=2&pcount="
+		.. _G.pcount
+		.. "&award=true"
+	-- print(url)
+	url = url .. GetSendKey()
+
+	local req = CreateHTTPRequestScriptVM("GET", url)
+	req:SetHTTPRequestAbsoluteTimeoutMS(20000)
+
+	req:Send(function(res)
+		if res.StatusCode ~= 200 or not res.Body then
+			print("GET HERO LIST FAILED!")
+			return
 		end
 
-		local player_steamid_table = {}
-		for i = 0, PlayerResource:GetPlayerCount() - 1 do
-			table.insert(player_steamid_table, tostring(PlayerResource:GetSteamID(i)))
-		end
-		_G.steam_ids_only = JoinTableString(player_steamid_table)
+		local t = json.decode(res.Body)
 
-		--http://gemtd.ppbizon.com/gemtd/201901/heros/get/@76561198090931971,76561198101849234,?ver=v1&compen_shell=2&hehe=
+		if t ~= nil and t.err == 0 then
+			print("Connecting server OK")
 
-		local url = "http://gemtd.ppbizon.com/gemtd/202203/heros/get/@"
-			.. _G.steam_ids_only
-			.. "?ver=v1&compen_shell=2&pcount="
-			.. _G.pcount
-			.. "&award=true"
-		-- print(url)
-		url = url .. GetSendKey()
+			GameRules:SendCustomMessage("Connecting server OK", 0, 0)
 
-		local req = CreateHTTPRequestScriptVM("GET", url)
-		req:SetHTTPRequestAbsoluteTimeoutMS(20000)
+			_G.heros_get_obj = t
 
-		req:Send(function(res)
-			if res.StatusCode ~= 200 or not res.Body then
-				print("GET HERO LIST FAILED!")
+			for steamid, player_info in pairs(t.data) do
+				-- DeepPrintTable(t.data[steamid])
+				CustomNetTables:SetTableValue("player_info_table", "player_info_" .. steamid, t.data[steamid])
+
+				--初始化随机任务
+				if player_info.quest.quest ~= nil and player_info.quest.quest_expire == -2 then
+					_G.quest[player_info.quest.quest] = _G.quest_status[player_info.quest.quest]
+					if string.find(player_info.quest.quest, "q111") then
+						_G.quest[player_info.quest.quest] = false
+						_G.quest_status[player_info.quest.quest] = false
+					end
+				end
+			end
+
+			if t["word_object"] ~= nil then
+				_G.word_object = t["word_object"]
+			end
+
+			-- CustomGameEventManager:Send_ServerToAllClients("set_all_courier_list",{
+			-- 	key = GetClientKey(team_i),
+			-- 	hehe = RandomInt(1,100000),
+			-- 	all_courier_list = t.all_courier_list,
+			-- })
+		else
+			if t ~= nil and t["err"] == 1200 and t["msg"] == "blocked" then
+				prt("#text_black")
+				GameRules:SetGameWinner(DOTA_TEAM_BADGUYS)
 				return
 			end
 
-			local t = json.decode(res.Body)
-
-			if t ~= nil and t.err == 0 then
-				print("Connecting server OK")
-
-				GameRules:SendCustomMessage("Connecting server OK", 0, 0)
-
-				_G.heros_get_obj = t
-
-				for steamid, player_info in pairs(t.data) do
-					-- DeepPrintTable(t.data[steamid])
-					CustomNetTables:SetTableValue("player_info_table", "player_info_" .. steamid, t.data[steamid])
-
-					--初始化随机任务
-					if player_info.quest.quest ~= nil and player_info.quest.quest_expire == -2 then
-						_G.quest[player_info.quest.quest] = _G.quest_status[player_info.quest.quest]
-						if string.find(player_info.quest.quest, "q111") then
-							_G.quest[player_info.quest.quest] = false
-							_G.quest_status[player_info.quest.quest] = false
-						end
-					end
-				end
-
-				if t["word_object"] ~= nil then
-					_G.word_object = t["word_object"]
-				end
-
-				-- CustomGameEventManager:Send_ServerToAllClients("set_all_courier_list",{
-				-- 	key = GetClientKey(team_i),
-				-- 	hehe = RandomInt(1,100000),
-				-- 	all_courier_list = t.all_courier_list,
-				-- })
-			else
-				if t ~= nil and t["err"] == 1200 and t["msg"] == "blocked" then
-					prt("#text_black")
-					GameRules:SetGameWinner(DOTA_TEAM_BADGUYS)
-					return
-				end
-
-				if t ~= nil and t["err"] == nil and t["err"] ~= 0 then
-					prt("Connect Server ERROR: " .. t["err"])
-					GameRules:SetGameWinner(DOTA_TEAM_BADGUYS)
-					return
-				end
-				if t ~= nil and t["err"] == nil then
-					print("Connect Server ERROR: " .. t.err)
-				else
-					print("Connect Server ERROR: nil")
-				end
+			if t ~= nil and t["err"] == nil and t["err"] ~= 0 then
+				prt("Connect Server ERROR: " .. t["err"])
+				GameRules:SetGameWinner(DOTA_TEAM_BADGUYS)
+				return
 			end
-		end)
-	end
+			if t ~= nil and t["err"] == nil then
+				print("Connect Server ERROR: " .. t.err)
+			else
+				print("Connect Server ERROR: nil")
+			end
+		end
+	end)
+	-- end
 end
 
 function GemTD:OnPlayerRequestChooseHero(keys)
@@ -14678,6 +14617,8 @@ function StartGame()
 		end
 		if is_all_precache_finished == true then
 			GameRules:SendCustomMessage("GAME START", 0, 0)
+
+			_G.is_server_game_started = true
 
 			if GetMapName() == "gemtd_coop" then
 				for i = 0, 3 do
@@ -15286,3 +15227,88 @@ end
 --     end
 --     return hHost:GetPlayerID() == nPlayerID
 -- end
+
+--有玩家连入游戏
+function GemTD:OnPlayerConnectFull(keys)
+	local playerID = keys.PlayerID
+
+	-- SetPlayerConnectedInfo({
+	--     PlayerID = playerID,
+	--     PlayerName = PlayerResource:GetPlayerName(playerID),
+	--     SteamID = tostring(PlayerResource:GetSteamID(playerID)),
+	-- })
+
+	-- DeepPrintTable(keys)
+	--因为DOTA2的7.31版本更新后这里只能获得userid（没什么用）
+	--干脆直接遍历全部的PlayerID
+	--然而PlayerID后来加回来了。。但是已经不想再改回去了！
+
+	local connected_player_count = 0
+	local player_steamid_table = {}
+
+	for i = 0, 20 do
+		if PlayerResource:GetPlayer(i) then
+			-- SetPlayerConnectedInfo({
+			-- 	PlayerID = i,
+			-- 	PlayerName = PlayerResource:GetPlayerName(i),
+			-- 	SteamID = tostring(PlayerResource:GetSteamID(i)),
+			-- })
+			connected_player_count = connected_player_count + 1
+
+			local steamid = tostring(PlayerResource:GetSteamID(i))
+			if
+				steamid == "76561198101849234"
+				or steamid == "76561198090931971"
+				or steamid == "76561198132023205"
+				or steamid == "76561198079679584"
+			then
+				_G.myself = true
+			end
+			-- table.insert(player_steamid_table,steamid)
+
+			if _G.zaotui_table[i] == 1 then
+				_G.zaotui_table[i] = 0
+			end
+
+			--通知ui：玩家i连进来了，显示它的头像面板吧
+			CustomNetTables:SetTableValue("game_state", "player_connect", { id = i, hehe = RandomInt(1, 10000) })
+
+			--通知ui：玩家们分别选了什么英雄
+			if PlayerResource:GetSelectedHeroName(0) ~= nil then
+				CustomNetTables:SetTableValue(
+					"game_state",
+					"select_hero1",
+					{
+						p1 = PlayerResource:GetSelectedHeroName(0),
+						p2 = PlayerResource:GetSelectedHeroName(1),
+						p3 = PlayerResource:GetSelectedHeroName(2),
+						p4 = PlayerResource:GetSelectedHeroName(3),
+					}
+				)
+			end
+		end
+	end
+
+	-- local steamid_str = JoinTableString(player_steamid_table)
+	-- _G.steam_ids_only = steamid_str
+
+	_G.online_player_count = connected_player_count
+	if _G.is_debug == true then
+		GameRules:SendCustomMessage("当前玩家总数: " .. _G.online_player_count, 0, 0)
+	end
+
+	print("player connect: " .. _G.online_player_count .. "/" .. PlayerResource:GetPlayerCount())
+
+	_G.connect_full_player_count = _G.connect_full_player_count + 1
+	--判断是不是官方服务器/自建服务器/玩家主机
+	local config = LoadKeyValues("gem_config.txt")
+
+	if config.IsServer == 1 and _G.is_server_game_started == false then
+		pcall(function()
+			GameRules:ResetToCustomGameSetup()
+		end)
+		Timers:CreateTimer(2, function()
+			GemTD:OnPlayerStartTeamSelect({})
+		end)
+	end
+end
