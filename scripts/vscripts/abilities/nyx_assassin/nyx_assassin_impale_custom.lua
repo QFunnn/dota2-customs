@@ -31,22 +31,26 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_nyx_assassin_impale_custom_legendary_stack",
 	"abilities/nyx_assassin/nyx_assassin_impale_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_nyx_impale_7"
 )
 LinkLuaModifier(
 	"modifier_nyx_assassin_impale_custom_legendary_damage",
 	"abilities/nyx_assassin/nyx_assassin_impale_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_nyx_impale_7" }
 )
 LinkLuaModifier(
 	"modifier_nyx_assassin_impale_custom_burn",
 	"abilities/nyx_assassin/nyx_assassin_impale_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_nyx_impale_3"
 )
 LinkLuaModifier(
 	"modifier_nyx_assassin_impale_custom_damage_reduce",
 	"abilities/nyx_assassin/nyx_assassin_impale_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_nyx_impale_4"
 )
 
 nyx_assassin_impale_custom = class({})
@@ -64,7 +68,6 @@ function nyx_assassin_impale_custom:Precache(context)
 	PrecacheResource("particle", "particles/nyx_assassin/impale_legendary_hit.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_snapfire/hero_snapfire_shotgun_debuff.vpcf", context)
 	PrecacheResource("particle", "particles/sand_king/stinger_stack.vpcf", context)
-	PrecacheResource("particle", "particles/nyx_assassin/impale_delay_aoe.vpcf", context)
 	PrecacheResource("particle", "particles/nyx_assassin/impale_base_hit.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_huskar/huskar_inner_fire_debuff.vpcf", context)
 	PrecacheResource("particle", "particles/sand_king/sand_king_wave.vpcf", context)
@@ -282,7 +285,7 @@ function nyx_assassin_impale_custom:ProcCd()
 		return
 	end
 
-	self.caster:CdItems(self.talents.q4_cd_items)
+	self.caster:CdItems(self.talents.q4_cd_items, "modifier_nyx_impale_4")
 end
 
 function nyx_assassin_impale_custom:AbilityHit(target)
@@ -795,7 +798,7 @@ function modifier_nyx_assassin_impale_custom_legendary_damage:OnCreated()
 		self:StartIntervalThink(0.1)
 	end
 
-	self.parent:GenericParticle("particles/general/generic_armor_reduction.vpcf", self, true)
+	self.parent:GenericParticle("particles/generic/generic_armor_reduction.vpcf", self, true)
 end
 
 function modifier_nyx_assassin_impale_custom_legendary_damage:OnIntervalThink()

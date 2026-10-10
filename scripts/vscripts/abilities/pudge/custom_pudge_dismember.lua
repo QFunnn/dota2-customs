@@ -127,11 +127,10 @@ function custom_pudge_dismember:Precache(context)
 	end
 
 	PrecacheResource("particle", "particles/units/heroes/hero_pudge/pudge_dismember.vpcf", context)
-	PrecacheResource("particle", "particles/brist_lowhp_.vpcf", context)
+	PrecacheResource("particle", "particles/bristleback/brist_lowhp_.vpcf", context)
 	PrecacheResource("particle", "particles/items2_fx/sange_maim.vpcf", context)
-	PrecacheResource("particle", "particles/econ/items/dazzle/dazzle_dark_light_weapon/pudge_grave.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_life_stealer/life_stealer_loadout.vpcf", context)
-	PrecacheResource("particle", "particles/pudge_swallow.vpcf", context)
+	PrecacheResource("particle", "particles/pudge/pudge_swallow.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_pudge/pudge_swallow_release.vpcf", context)
 	PrecacheResource("particle", "particles/items_fx/black_king_bar_avatar.vpcf", context)
 	PrecacheResource("particle", "particles/generic_gameplay/generic_break.vpcf", context)
@@ -192,8 +191,11 @@ function custom_pudge_dismember:OnSpellStart(new_target)
 	if stack_mod then
 		if stack_mod:GetStackCount() >= caster:GetTalentValue("modifier_pudge_dismember_4", "max") then
 			caster:EmitSound("Pudge.Dismember_stack")
-			local particle_peffect =
-				ParticleManager:CreateParticle("particles/brist_lowhp_.vpcf", PATTACH_ABSORIGIN_FOLLOW, caster)
+			local particle_peffect = ParticleManager:CreateParticle(
+				"particles/bristleback/brist_lowhp_.vpcf",
+				PATTACH_ABSORIGIN_FOLLOW,
+				caster
+			)
 			ParticleManager:SetParticleControl(particle_peffect, 0, caster:GetAbsOrigin())
 			ParticleManager:SetParticleControl(particle_peffect, 2, caster:GetAbsOrigin())
 			ParticleManager:ReleaseParticleIndex(particle_peffect)
@@ -889,7 +891,7 @@ function modifier_custom_pudge_dismember_devour_caster:OnCreated(table)
 		return
 	end
 
-	self.parent:GenericParticle("particles/pudge_swallow.vpcf", self, true)
+	self.parent:GenericParticle("particles/pudge/pudge_swallow.vpcf", self, true)
 	self.ability:EndCd()
 
 	self.target = EntIndexToHScript(table.target)
@@ -1098,7 +1100,12 @@ function modifier_custom_pudge_dismember_bkb:OnCreated()
 				self.parent,
 				self.ability,
 				"modifier_cooldown_speed",
-				{ ability = current_item:entindex(), is_item = true, cd_inc = cd_items }
+				{
+					ability = current_item:entindex(),
+					is_item = true,
+					cd_inc = cd_items,
+					talent = "modifier_pudge_dismember_6",
+				}
 			)
 			local name = self:GetName()
 			cooldown_mod:SetEndRule(function()

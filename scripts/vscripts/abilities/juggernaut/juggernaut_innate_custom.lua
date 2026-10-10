@@ -16,7 +16,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_juggernaut_innate_custom_stats",
 	"abilities/juggernaut/juggernaut_innate_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 
 juggernaut_innate_custom = class({})

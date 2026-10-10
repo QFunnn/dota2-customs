@@ -11,7 +11,8 @@
 LinkLuaModifier(
 	"modifier_monkey_king_innate_custom",
 	"abilities/monkey_king/monkey_king_innate_custom.lua",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 LinkLuaModifier(
 	"modifier_monkey_king_innate_custom_clone",
@@ -31,7 +32,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_monkey_king_mischief_regen",
 	"abilities/monkey_king/monkey_king_innate_custom.lua",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_monkey_king_hero_6"
 )
 
 monkey_king_innate_custom = class({})

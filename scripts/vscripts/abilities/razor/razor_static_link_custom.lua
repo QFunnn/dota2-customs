@@ -66,7 +66,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_razor_static_link_custom_perma",
 	"abilities/razor/razor_static_link_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_razor_link_4"
 )
 LinkLuaModifier(
 	"modifier_razor_static_link_custom_leash",
@@ -110,7 +111,7 @@ function razor_static_link_custom:Precache(context)
 	PrecacheResource("particle", "particles/razor/link_purge.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_nullifier.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_terrorblade/terrorblade_reflection_slow.vpcf", context)
-	PrecacheResource("particle", "particles/rare_orb_patrol.vpcf", context)
+	PrecacheResource("particle", "particles/patrol/rare_orb_patrol.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/units/heroes/hero_invoker/invoker_deafening_blast_disarm_debuff.vpcf",
@@ -1196,8 +1197,11 @@ function modifier_razor_static_link_custom_perma:Effect()
 	end
 	if self.caster:HasTalent("modifier_razor_link_4") then
 		self.caster:EmitSound("BS.Thirst_legendary_active")
-		local particle_peffect =
-			ParticleManager:CreateParticle("particles/rare_orb_patrol.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.caster)
+		local particle_peffect = ParticleManager:CreateParticle(
+			"particles/patrol/rare_orb_patrol.vpcf",
+			PATTACH_ABSORIGIN_FOLLOW,
+			self.caster
+		)
 		ParticleManager:SetParticleControl(particle_peffect, 0, self.caster:GetAbsOrigin())
 		ParticleManager:SetParticleControl(particle_peffect, 2, self.caster:GetAbsOrigin())
 		ParticleManager:ReleaseParticleIndex(particle_peffect)

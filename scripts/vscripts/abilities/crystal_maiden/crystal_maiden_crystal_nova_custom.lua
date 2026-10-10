@@ -26,7 +26,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_crystal_maiden_crystal_nova_legendary_aura",
 	"abilities/crystal_maiden/crystal_maiden_crystal_nova_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_maiden_crystal_7"
 )
 LinkLuaModifier(
 	"modifier_crystal_maiden_crystal_nova_legendary_slide",
@@ -41,7 +42,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_crystal_maiden_crystal_nova_stun",
 	"abilities/crystal_maiden/crystal_maiden_crystal_nova_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_maiden_crystal_4"
 )
 LinkLuaModifier(
 	"modifier_crystal_maiden_crystal_nova_stun_cd",
@@ -51,7 +53,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_crystal_maiden_crystal_nova_invun",
 	"abilities/crystal_maiden/crystal_maiden_crystal_nova_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_maiden_hero_4"
 )
 
 crystal_maiden_crystal_nova_custom = class({})
@@ -63,9 +66,9 @@ function crystal_maiden_crystal_nova_custom:Precache(context)
 	end
 
 	PrecacheResource("particle", "particles/units/heroes/hero_crystalmaiden/maiden_crystal_nova.vpcf", context)
-	PrecacheResource("particle", "particles/zuus_heal.vpcf", context)
-	PrecacheResource("particle", "particles/maiden_ice_rink.vpcf", context)
-	PrecacheResource("particle", "particles/maiden_rink_glow.vpcf", context)
+	PrecacheResource("particle", "particles/zeus/zuus_heal.vpcf", context)
+	PrecacheResource("particle", "particles/crystal_maiden/maiden_ice_rink.vpcf", context)
+	PrecacheResource("particle", "particles/crystal_maiden/maiden_rink_glow.vpcf", context)
 	PrecacheResource("particle", "particles/econ/items/drow/drow_arcana/drow_arcana_rare_run_slide.vpcf", context)
 
 	dota1x6:PrecacheShopItems("npc_dota_hero_crystal_maiden", context)
@@ -510,7 +513,8 @@ function modifier_crystal_maiden_crystal_nova_legendary:OnCreated(table)
 	self.parent:EmitSound("Maiden.Crystal_rink_loop")
 	AddFOWViewer(self.parent:GetTeamNumber(), self.parent:GetAbsOrigin(), self.radius, self:GetRemainingTime(), false)
 
-	self.effect_cast = ParticleManager:CreateParticle("particles/maiden_ice_rink.vpcf", PATTACH_WORLDORIGIN, nil)
+	self.effect_cast =
+		ParticleManager:CreateParticle("particles/crystal_maiden/maiden_ice_rink.vpcf", PATTACH_WORLDORIGIN, nil)
 	ParticleManager:SetParticleControl(self.effect_cast, 0, self.parent:GetAbsOrigin())
 	ParticleManager:SetParticleControl(
 		self.effect_cast,
@@ -520,7 +524,8 @@ function modifier_crystal_maiden_crystal_nova_legendary:OnCreated(table)
 	ParticleManager:SetParticleControl(self.effect_cast, 2, Vector(self.duration, 0, 0))
 	self:AddParticle(self.effect_cast, false, false, -1, false, false)
 
-	self.particle = ParticleManager:CreateParticle("particles/maiden_rink_glow.vpcf", PATTACH_WORLDORIGIN, nil)
+	self.particle =
+		ParticleManager:CreateParticle("particles/crystal_maiden/maiden_rink_glow.vpcf", PATTACH_WORLDORIGIN, nil)
 	ParticleManager:SetParticleControl(self.particle, 0, self.parent:GetAbsOrigin())
 	ParticleManager:SetParticleControl(self.particle, 1, Vector(self.duration + 0.5, self.radius, 0))
 	self:AddParticle(self.particle, false, false, -1, false, false)

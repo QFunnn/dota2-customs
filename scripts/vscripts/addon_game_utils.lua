@@ -399,26 +399,30 @@ function dota1x6:ChangeCustomRules(data)
 
 	local type = data.type
 
-	if not custom_rules_data[type] then
+	if type == "same_heroes" or type == "enable_pause" then
+		pro_mod_data[type] = not pro_mod_data[type]
+	elseif not custom_rules_data[type] then
 		return
-	end
-
-	if custom_rules_data[type] == 0 then
+	elseif custom_rules_data[type] == 0 then
 		custom_rules_data[type] = 1
 	else
 		custom_rules_data[type] = 0
 	end
 
-	dota1x6:RequestCustomRules({ PlayerID = id })
+	dota1x6:RequestCustomRules()
 end
 
-function dota1x6:RequestCustomRules(data)
-	local id = data.PlayerID
+function dota1x6:RequestCustomRules()
+	local data = {
+		same_heroes = pro_mod_data.same_heroes and 1 or 0,
+		enable_pause = pro_mod_data.enable_pause and 1 or 0,
+	}
 
-	if id == nil then
-		return
+	for name, value in pairs(custom_rules_data) do
+		data[name] = value
 	end
-	CustomGameEventManager:Send_ServerToAllClients("SendCustomRules", custom_rules_data)
+
+	CustomGameEventManager:Send_ServerToAllClients("SendCustomRules", data)
 end
 
 function dota1x6:RequestKunkkaPanel(data)
@@ -1054,10 +1058,10 @@ function dota1x6:CreateUpgradeOrb(hero, rarity, new_point)
 	local name = { "item_gray_upgrade", "item_blue_upgrade", "item_purple_upgrade", "item_legendary_upgrade" }
 	local sound = { "powerup_04", "powerup_03", "powerup_05", "powerup_02" }
 	local effect = {
-		"particles/gray_drop.vpcf",
-		"particles/blue_drop.vpcf",
-		"particles/purple_drop.vpcf",
-		"particles/orange_drop.vpcf",
+		"particles/generic/gray_drop.vpcf",
+		"particles/generic/blue_drop.vpcf",
+		"particles/generic/purple_drop.vpcf",
+		"particles/generic/orange_drop.vpcf",
 	}
 
 	if rarity == 3 then

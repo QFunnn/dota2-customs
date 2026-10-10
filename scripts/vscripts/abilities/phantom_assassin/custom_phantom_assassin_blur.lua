@@ -16,7 +16,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_phantom_assassin_phantom_smoke",
 	"abilities/phantom_assassin/custom_phantom_assassin_blur",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 LinkLuaModifier(
 	"modifier_phantom_assassin_phantom_blur_auto",
@@ -26,17 +27,20 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_phantom_assassin_phantom_blur_auto_cd",
 	"abilities/phantom_assassin/custom_phantom_assassin_blur",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_phantom_assassin_hero_5"
 )
 LinkLuaModifier(
 	"modifier_phantom_assassin_phantom_blur_agi",
 	"abilities/phantom_assassin/custom_phantom_assassin_blur",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_phantom_assassin_blur_2"
 )
 LinkLuaModifier(
 	"modifier_phantom_assassin_phantom_blur_charge",
 	"abilities/phantom_assassin/custom_phantom_assassin_blur",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_phantom_assassin_blur_3"
 )
 LinkLuaModifier(
 	"modifier_phantom_assassin_phantom_blur_double",
@@ -56,7 +60,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_phantom_assassin_phantom_blur_cloud_effect",
 	"abilities/phantom_assassin/custom_phantom_assassin_blur",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_phantom_assassin_blur_4"
 )
 LinkLuaModifier(
 	"modifier_phantom_assassin_phantom_blur_agility",
@@ -76,7 +81,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_phantom_assassin_phantom_blur_innate",
 	"abilities/phantom_assassin/custom_phantom_assassin_blur",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_phantom_assassin_hero_1"
 )
 
 custom_phantom_assassin_blur = class({})
@@ -102,18 +108,17 @@ function custom_phantom_assassin_blur:Precache(context)
 		"particles/units/heroes/hero_phantom_assassin_persona/pa_persona_phantom_blur_active.vpcf",
 		context
 	)
-	PrecacheResource("particle", "particles/blur_absorb.vpcf", context)
+	PrecacheResource("particle", "particles/phantom_assassin/blur_absorb.vpcf", context)
 	PrecacheResource("particle", "particles/phantom_assassin/blur_smoke.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_muerta_parting_shot.vpcf", context)
-	PrecacheResource("particle", "particles/blur_linken.vpcf", context)
+	PrecacheResource("particle", "particles/phantom_assassin/blur_linken.vpcf", context)
 	PrecacheResource("particle", "particles/phantom_assassin/phantom_proc.vpcf", context)
 	PrecacheResource("particle", "particles/phantom_assassin/blur_double_attack.vpcf", context)
 	PrecacheResource("particle", "particles/phantom_assassin/blur_proc.vpcf", context)
 	PrecacheResource("particle", "particles/phantom_assassin/blur_legendary_active.vpcf", context)
 	PrecacheResource("particle", "particles/phantom_assassin/blur_legendary_body.vpcf", context)
-	PrecacheResource("particle", "particles/phantom_assassin/blur_legendary_spawn.vpcf", context)
 	PrecacheResource("particle", "particles/phantom_assassin/blur_illusion.vpcf", context)
-	PrecacheResource("particle", "particles/pa_legendary_blur.vpcf", context)
+	PrecacheResource("particle", "particles/phantom_assassin/pa_legendary_blur.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/econ/items/juggernaut/jugg_arcana/juggernaut_arcana_omni_slash_tgt_bladekeeper.vpcf",
@@ -246,7 +251,7 @@ function custom_phantom_assassin_blur:OnSpellStart()
 	)
 end
 
-function custom_phantom_assassin_blur:ProcSplash(target)
+function custom_phantom_assassin_blur:ProcSplash(target, source)
 	if not IsServer() then
 		return
 	end
@@ -257,6 +262,7 @@ function custom_phantom_assassin_blur:ProcSplash(target)
 		return
 	end
 
+	self.caster:LogProc("modifier_phantom_assassin_blur_1_" .. source, nil, target)
 	local damageTable = {
 		attacker = self.caster,
 		ability = self,
@@ -487,6 +493,7 @@ function modifier_phantom_assassin_phantom_blur:GetAbsorbSpell(params)
 		"modifier_phantom_assassin_phantom_blur_auto_cd",
 		{ duration = self.ability.talents.h5_talent_cd }
 	)
+	self.parent:LogProc("modifier_phantom_assassin_hero_5")
 end
 
 function modifier_phantom_assassin_phantom_blur:AttackStartEvent_out(params)
@@ -508,8 +515,11 @@ function modifier_phantom_assassin_phantom_blur:AttackStartEvent_out(params)
 		mod:OnIntervalThink()
 
 		target:EmitSound("PA.Blur_legendary_attack")
-		local effect =
-			ParticleManager:CreateParticle("particles/pa_legendary_blur.vpcf", PATTACH_CUSTOMORIGIN_FOLLOW, target)
+		local effect = ParticleManager:CreateParticle(
+			"particles/phantom_assassin/pa_legendary_blur.vpcf",
+			PATTACH_CUSTOMORIGIN_FOLLOW,
+			target
+		)
 		ParticleManager:SetParticleControlEnt(
 			effect,
 			0,
@@ -576,7 +586,7 @@ function modifier_phantom_assassin_phantom_blur:AttackEvent_out(params)
 				(self.ability.talents.has_e7 == 1 and illusion) or (self.ability.talents.has_e7 ~= 1 and not illusion)
 			then
 				self.ability.attacks = self.ability.attacks - 1
-				self.parent:CdAbility(self.ability, nil, self.ability.attacks_step)
+				self.parent:CdAbility(self.ability, nil, self.ability.attacks_step, "modifier_phantom_assassin_blur_4")
 			end
 		end
 	end
@@ -600,7 +610,7 @@ function modifier_phantom_assassin_phantom_blur:AttackEvent_out(params)
 		return
 	end
 
-	self.ability:ProcSplash(params.target)
+	self.ability:ProcSplash(params.target, params.attacker:IsIllusion() and "illusion" or "attack")
 end
 
 function modifier_phantom_assassin_phantom_blur:SpellEvent(params)
@@ -710,7 +720,19 @@ function modifier_phantom_assassin_phantom_blur_cloud_effect:StatusEffectPriorit
 	return MODIFIER_PRIORITY_HIGH
 end
 function modifier_phantom_assassin_phantom_blur_cloud_effect:OnCreated()
+	self.parent = self:GetParent()
+	self.caster = self:GetCaster()
 	self.ability = self:GetAbility()
+end
+
+function modifier_phantom_assassin_phantom_blur_cloud_effect:OnDestroy()
+	if not IsServer() then
+		return
+	end
+	if self.parent:IsAlive() then
+		return
+	end
+	self.caster:LogProc("modifier_phantom_assassin_blur_4_death", nil, self.parent)
 end
 
 function modifier_phantom_assassin_phantom_blur_cloud_effect:CheckState()
@@ -799,6 +821,7 @@ function modifier_phantom_assassin_phantom_blur_double:OnDestroy()
 	)
 	self.parent:EmitSound("Pa.Blur_double_attack_end")
 	self.caster.pa_e3 = nil
+	self.caster:LogProc("modifier_phantom_assassin_blur_3", nil, self.parent)
 end
 
 local mod_blur = class(mod_visible)
@@ -829,7 +852,7 @@ function mod_blur:StartBlur()
 		return
 	end
 
-	self.parent:GenericParticle("particles/blur_absorb.vpcf", self)
+	self.parent:GenericParticle("particles/phantom_assassin/blur_absorb.vpcf", self)
 end
 
 function mod_blur:EndBlur()
@@ -895,7 +918,11 @@ function modifier_phantom_assassin_phantom_blur_auto:OnCreated()
 		return
 	end
 
-	local particle = ParticleManager:CreateParticle("particles/blur_linken.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
+	local particle = ParticleManager:CreateParticle(
+		"particles/phantom_assassin/blur_linken.vpcf",
+		PATTACH_ABSORIGIN_FOLLOW,
+		self.parent
+	)
 	ParticleManager:SetParticleControlEnt(
 		particle,
 		0,
@@ -1191,15 +1218,31 @@ end
 
 modifier_phantom_assassin_phantom_blur_illusion = class(mod_hidden)
 function modifier_phantom_assassin_phantom_blur_illusion:OnCreated()
+	self.caster = self:GetCaster()
 	self.ability = self:GetAbility()
+end
+
+function modifier_phantom_assassin_phantom_blur_illusion:OnDestroy()
+	if not IsServer() then
+		return
+	end
+	self.caster:LogProc("modifier_phantom_assassin_blur_7_illusion", self:GetElapsedTime())
 end
 
 function modifier_phantom_assassin_phantom_blur_illusion:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+		MODIFIER_PROPERTY_PROCATTACK_FEEDBACK,
 	}
 end
 
 function modifier_phantom_assassin_phantom_blur_illusion:GetModifierMoveSpeedBonus_Percentage()
 	return self.ability.talents.e7_illusion_move
+end
+
+function modifier_phantom_assassin_phantom_blur_illusion:GetModifierProcAttack_Feedback(params)
+	if not IsServer() then
+		return
+	end
+	self.caster:LogProc("modifier_phantom_assassin_blur_7_attack", nil, params.target)
 end

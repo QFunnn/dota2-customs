@@ -36,22 +36,26 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_hoodwink_acorn_shot_custom_armor_count",
 	"abilities/hoodwink/hoodwink_acorn_shot_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_hoodwink_acorn_7"
 )
 LinkLuaModifier(
 	"modifier_hoodwink_acorn_shot_custom_tracker",
 	"abilities/hoodwink/hoodwink_acorn_shot_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	false
 )
 LinkLuaModifier(
 	"modifier_hoodwink_acorn_shot_custom_attack_cd",
 	"abilities/hoodwink/hoodwink_acorn_shot_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_hoodwink_acorn_3"
 )
 LinkLuaModifier(
 	"modifier_hoodwink_acorn_shot_custom_stun_cd",
 	"abilities/hoodwink/hoodwink_acorn_shot_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_hoodwink_acorn_4"
 )
 
 hoodwink_acorn_shot_custom = class({})
@@ -67,10 +71,9 @@ function hoodwink_acorn_shot_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_hoodwink/hoodwink_acorn_shot_impact.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_sniper/sniper_headshot_slow.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_hoodwink/hoodwink_acorn_shot_slow.vpcf", context)
-	PrecacheResource("particle", "particles/hoodwink/acorn_tree.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_hoodwink/hoodwink_acorn_shot_tree.vpcf", context)
 	PrecacheResource("particle", "particles/tree_fx/tree_simple_explosion.vpcf", context)
-	PrecacheResource("particle", "particles/general/generic_armor_reduction.vpcf", context)
+	PrecacheResource("particle", "particles/generic/generic_armor_reduction.vpcf", context)
 	PrecacheResource("particle", "particles/items_fx/desolator_projectile.vpcf", context)
 	PrecacheResource("particle", "particles/hoodwink/acorn_refresh.vpcf", context)
 	PrecacheResource("particle", "particles/hoodwink/acorn_auto.vpcf", context)
@@ -835,7 +838,7 @@ function modifier_hoodwink_acorn_shot_custom_tracker:SpellEvent(params)
 	)
 	ParticleManager:ReleaseParticleIndex(particle)
 
-	self.parent:CdAbility(self.ability, nil, self.ability.talents.q7_cd_inc)
+	self.parent:CdAbility(self.ability, nil, self.ability.talents.q7_cd_inc, "modifier_hoodwink_acorn_7")
 end
 
 modifier_hoodwink_acorn_shot_custom = class(mod_hidden)
@@ -937,7 +940,7 @@ function modifier_hoodwink_acorn_shot_custom_armor_count:OnRefresh()
 
 	if self:GetStackCount() == self.max then
 		self.parent:EmitSound("Hoodwink.Acorn_armor")
-		self.parent:GenericParticle("particles/general/generic_armor_reduction.vpcf", self, true)
+		self.parent:GenericParticle("particles/generic/generic_armor_reduction.vpcf", self, true)
 	end
 end
 

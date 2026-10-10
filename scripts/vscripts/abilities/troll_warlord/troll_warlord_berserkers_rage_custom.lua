@@ -61,7 +61,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_troll_warlord_berserkers_rage_custom_agi_perma",
 	"abilities/troll_warlord/troll_warlord_berserkers_rage_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_troll_rage_4"
 )
 LinkLuaModifier(
 	"modifier_troll_warlord_berserkers_rage_custom_unslow",
@@ -109,13 +110,13 @@ function troll_warlord_berserkers_rage_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_troll_warlord/troll_warlord_bersekers_net.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_troll_warlord/troll_warlord_berserk_buff.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_monkey_king/monkey_king_quad_tap_hit.vpcf", context)
-	PrecacheResource("particle", "particles/troll_haste.vpcf", context)
+	PrecacheResource("particle", "particles/troll_warlord/troll_haste.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_forcestaff.vpcf", context)
 	PrecacheResource("particle", "particles/items2_fx/sange_maim.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_juggernaut/jugg_agility_boost.vpcf", context)
 	PrecacheResource("particle", "particles/troll_warlord/rage_jump.vpcf", context)
 	PrecacheResource("particle", "particles/troll_warlord/rage_jump_dustd.vpcf", context)
-	PrecacheResource("particle", "particles/brist_lowhp_.vpcf", context)
+	PrecacheResource("particle", "particles/bristleback/brist_lowhp_.vpcf", context)
 	PrecacheResource("particle", "particles/troll_warlord/rage_unslow.vpcf", context)
 
 	PrecacheResource("soundfile", "soundevents/npc_dota_hero_troll_warlord.vsndevts", context)
@@ -721,7 +722,7 @@ function modifier_troll_warlord_berserkers_rage_tracker:AttackEvent_out(params)
 	end
 
 	if self.parent:HasTalent("modifier_troll_rage_legendary") then
-		self.parent:CdAbility(self.ability, self.legendary_cd)
+		self.parent:CdAbility(self.ability, self.legendary_cd, nil, "modifier_troll_rage_legendary")
 	end
 end
 
@@ -785,7 +786,7 @@ function modifier_troll_warlord_rampage_custom:IsPurgable()
 	return false
 end
 function modifier_troll_warlord_rampage_custom:GetEffectName()
-	return "particles/troll_haste.vpcf"
+	return "particles/troll_warlord/troll_haste.vpcf"
 end
 function modifier_troll_warlord_rampage_custom:GetOverrideAnimation()
 	return ACT_DOTA_RUN
@@ -1280,7 +1281,7 @@ function modifier_troll_warlord_berserkers_rage_custom_agi_perma:OnIntervalThink
 		return
 	end
 
-	self.parent:GenericParticle("particles/general/patrol_refresh.vpcf")
+	self.parent:GenericParticle("particles/generic/patrol_refresh.vpcf")
 
 	self.parent:EmitSound("BS.Thirst_legendary_active")
 	self:StartIntervalThink(-1)
@@ -1323,7 +1324,7 @@ function modifier_troll_warlord_berserkers_rage_custom_unslow:OnIntervalThink()
 	end
 
 	self.parent:EmitSound("Troll.Rage_unslow")
-	self.parent:GenericParticle("particles/brist_lowhp_.vpcf")
+	self.parent:GenericParticle("particles/bristleback/brist_lowhp_.vpcf")
 	self:StartIntervalThink(-1)
 end
 

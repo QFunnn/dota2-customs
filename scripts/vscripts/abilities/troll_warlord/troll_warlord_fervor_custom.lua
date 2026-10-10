@@ -68,13 +68,13 @@ function troll_warlord_fervor_custom:Precache(context)
 		context
 	)
 	PrecacheResource("particle", "particles/units/heroes/hero_troll_warlord/troll_warlord_rampage.vpcf", context)
-	PrecacheResource("particle", "particles/troll_fervor_buf.vpcf", context)
+	PrecacheResource("particle", "particles/troll_warlord/troll_fervor_buf.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/econ/items/troll_warlord/troll_warlord_ti7_axe/troll_ti7_axe_bash_explosion.vpcf",
 		context
 	)
-	PrecacheResource("particle", "particles/lc_lowhp.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_lowhp.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/econ/items/juggernaut/jugg_arcana/status_effect_jugg_arcana_v2_omni.vpcf",
@@ -153,7 +153,7 @@ function modifier_troll_warlord_fervor_custom_legendary:OnCreated(table)
 	)
 
 	self.parent:GenericParticle("particles/units/heroes/hero_troll_warlord/troll_warlord_rampage.vpcf")
-	self.parent:GenericParticle("particles/troll_fervor_buf.vpcf", self, true)
+	self.parent:GenericParticle("particles/troll_warlord/troll_fervor_buf.vpcf", self, true)
 	self.parent:GenericParticle(
 		"particles/units/heroes/hero_troll_warlord/troll_warlord_rampage_resistance_buff.vpcf",
 		self
@@ -241,7 +241,7 @@ function modifier_troll_warlord_fervor_custom_legendary_damage:IsPurgable()
 	return false
 end
 function modifier_troll_warlord_fervor_custom_legendary_damage:GetEffectName()
-	return "particles/lc_lowhp.vpcf"
+	return "particles/legion_commander/lc_lowhp.vpcf"
 end
 function modifier_troll_warlord_fervor_custom_legendary_damage:GetTexture()
 	return "buffs/warpath_lowhp"
@@ -789,7 +789,12 @@ function modifier_troll_warlord_fervor_custom_max:OnCreated(table)
 				self.parent,
 				self:GetAbility(),
 				"modifier_cooldown_speed",
-				{ ability = current_item:entindex(), is_item = true, cd_inc = cd_inc }
+				{
+					ability = current_item:entindex(),
+					is_item = true,
+					cd_inc = cd_inc,
+					talent = "modifier_troll_fervor_6",
+				}
 			)
 			local name = self:GetName()
 

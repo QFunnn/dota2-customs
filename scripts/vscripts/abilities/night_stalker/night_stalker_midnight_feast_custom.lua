@@ -16,7 +16,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_night_stalker_midnight_feast_custom_active",
 	"abilities/night_stalker/night_stalker_midnight_feast_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 LinkLuaModifier(
 	"modifier_night_stalker_midnight_feast_custom_legendary",
@@ -31,12 +32,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_night_stalker_midnight_feast_custom_legendary_caster",
 	"abilities/night_stalker/night_stalker_midnight_feast_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_stalker_hunter_7"
 )
 LinkLuaModifier(
 	"modifier_night_stalker_midnight_feast_custom_damage",
 	"abilities/night_stalker/night_stalker_midnight_feast_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_stalker_hunter_3"
 )
 LinkLuaModifier(
 	"modifier_night_stalker_midnight_feast_custom_charge",
@@ -79,7 +82,7 @@ function night_stalker_midnight_feast_custom:Precache(context)
 		"particles/econ/items/nightstalker/nightstalker_black_nihility/nightstalker_black_nihility_void.vpcf",
 		context
 	)
-	PrecacheResource("particle", "particles/anti-mage/manabreak_cleave.vpcf", context)
+	PrecacheResource("particle", "particles/antimage/manabreak_cleave.vpcf", context)
 	PrecacheResource("particle", "particles/enigma/summon_perma.vpcf", context)
 	PrecacheResource("particle", "particles/night_stalker/hunter_charge.vpcf", context)
 	PrecacheResource("particle", "particles/night_stalker/hunter_charge_effect.vpcf", context)
@@ -211,7 +214,12 @@ function night_stalker_midnight_feast_custom:ProcCd(is_dash)
 	if not ability then
 		return
 	end
-	self.caster:CdAbility(ability, self.talents.has_r7 == 1 and self.talents.e4_legendary_cd or self.talents.e4_cd_inc)
+	self.caster:CdAbility(
+		ability,
+		self.talents.has_r7 == 1 and self.talents.e4_legendary_cd or self.talents.e4_cd_inc,
+		nil,
+		"modifier_stalker_hunter_4"
+	)
 end
 
 modifier_night_stalker_midnight_feast_custom = class(mod_hidden)
@@ -265,7 +273,7 @@ function modifier_night_stalker_midnight_feast_custom:AttackEvent_out(params)
 			150,
 			360,
 			500,
-			"particles/anti-mage/manabreak_cleave.vpcf"
+			"particles/antimage/manabreak_cleave.vpcf"
 		)
 
 		self.ability:ProcCd()

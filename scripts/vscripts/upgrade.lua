@@ -635,13 +635,7 @@ function upgrade:make_choise(kv)
 					)
 				end
 
-				if kv.random and kv.random == 1 then
-					CustomGameEventManager:Send_ServerToPlayer(
-						PlayerResource:GetPlayer(hero:GetId()),
-						"random_talent_alert",
-						{ skill = skill_name, hero = hero:GetUnitName() }
-					)
-				else
+				if kv.random ~= 1 then
 					HTTP.FillTalentsData(id, skill_name, player.choise)
 				end
 			end

@@ -11,7 +11,8 @@
 LinkLuaModifier(
 	"modifier_nyx_assassin_burrow_custom",
 	"abilities/nyx_assassin/nyx_assassin_burrow_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "Scepter" }
 )
 LinkLuaModifier(
 	"modifier_nyx_assassin_burrow_custom_dash",
@@ -62,9 +63,9 @@ end
 
 function nyx_assassin_burrow_custom:GetAbilityTextureName()
 	if self.caster:HasModifier("modifier_nyx_assassin_burrow_custom") then
-		return "nyx_assassin_unburrow"
+		return wearables_system:GetAbilityIconReplacement(self:GetCaster(), "nyx_assassin_unburrow", self)
 	end
-	return "nyx_assassin_burrow"
+	return wearables_system:GetAbilityIconReplacement(self:GetCaster(), "nyx_assassin_burrow", self)
 end
 
 function nyx_assassin_burrow_custom:GetBehavior()
@@ -210,7 +211,13 @@ function modifier_nyx_assassin_burrow_custom:OnDestroy()
 	end
 	self.ability:StartCd()
 	self.parent:EndNoDraw(self)
-	self.parent:GenericParticle("particles/units/heroes/hero_nyx_assassin/nyx_assassin_burrow_exit.vpcf")
+	self.parent:GenericParticle(
+		wearables_system:GetParticleReplacementAbility(
+			self.parent,
+			"particles/units/heroes/hero_nyx_assassin/nyx_assassin_burrow_exit.vpcf",
+			self.ability
+		)
+	)
 
 	self.parent:StartGestureWithPlaybackRate(ACT_DOTA_CAST_BURROW_END, 1.4)
 	self.parent:EmitSound("Hero_NyxAssassin.Burrow.Out")

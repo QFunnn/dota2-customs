@@ -20,7 +20,12 @@ LinkLuaModifier(
 	"abilities/invoker/invoker_quas_custom",
 	LUA_MODIFIER_MOTION_NONE
 )
-LinkLuaModifier("modifier_invoker_ghost_walk_custom", "abilities/invoker/invoker_quas_custom", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier(
+	"modifier_invoker_ghost_walk_custom",
+	"abilities/invoker/invoker_quas_custom",
+	LUA_MODIFIER_MOTION_NONE,
+	true
+)
 LinkLuaModifier(
 	"modifier_invoker_ghost_walk_custom_debuff",
 	"abilities/invoker/invoker_quas_custom",
@@ -35,7 +40,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_invoker_cold_snap_custom_legendary",
 	"abilities/invoker/invoker_quas_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_invoker_quas_7"
 )
 LinkLuaModifier(
 	"modifier_invoker_cold_snap_custom_legendary_aura",
@@ -45,17 +51,20 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_invoker_cold_snap_custom_legendary_proc",
 	"abilities/invoker/invoker_quas_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_invoker_quas_7" }
 )
 LinkLuaModifier(
 	"modifier_invoker_ice_wall_custom_root",
 	"abilities/invoker/invoker_quas_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_invoker_quas_4"
 )
 LinkLuaModifier(
 	"modifier_invoker_cold_snap_custom_resist",
 	"abilities/invoker/invoker_quas_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_invoker_quas_3"
 )
 
 invoker_quas_custom = class({})
@@ -75,10 +84,9 @@ function invoker_quas_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_invoker/invoker_ice_wall_b.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_invoker/invoker_ice_wall_debuff.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_drow/drow_hypothermia_counter_stack.vpcf", context)
-	PrecacheResource("particle", "particles/maiden_mark.vpcf", context)
+	PrecacheResource("particle", "particles/crystal_maiden/maiden_mark.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_crystalmaiden/maiden_frostbite_buff.vpcf", context)
-	PrecacheResource("particle", "particles/invoker/walk_resist.vpcf", context)
-	PrecacheResource("particle", "particles/zuus_heal.vpcf", context)
+	PrecacheResource("particle", "particles/zeus/zuus_heal.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_invoker/invoker_dot_enemy.vpcf", context)
 	PrecacheResource("particle", "particles/drow_ranger/multi_armor.vpcf", context)
 	PrecacheResource("particle", "particles/drow_ranger/frost_legendary_active.vpcf", context)
@@ -374,7 +382,7 @@ function modifier_invoker_cold_snap_custom_legendary_proc:OnCreated()
 	}
 	self.parent:AddDamageEvent_inc(self, true)
 
-	self.parent:GenericParticle("particles/maiden_mark.vpcf", self, true)
+	self.parent:GenericParticle("particles/crystal_maiden/maiden_mark.vpcf", self, true)
 	self.parent:EmitSound("Invoker.Quas_legendary_max")
 end
 

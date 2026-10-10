@@ -21,17 +21,20 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_hoodwink_bushwhack_custom_slow",
 	"abilities/hoodwink/hoodwink_bushwhack_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_hoodwink_hero_4"
 )
 LinkLuaModifier(
 	"modifier_hoodwink_bushwhack_custom_damage",
 	"abilities/hoodwink/hoodwink_bushwhack_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_hoodwink_bush_3"
 )
 LinkLuaModifier(
 	"modifier_hoodwink_bushwhack_custom_vision",
 	"abilities/hoodwink/hoodwink_bushwhack_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_hoodwink_bush_4"
 )
 LinkLuaModifier(
 	"modifier_hoodwink_bushwhack_custom_tracker",
@@ -46,17 +49,20 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_hoodwink_bushwhack_custom_heal",
 	"abilities/hoodwink/hoodwink_bushwhack_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_hoodwink_hero_2"
 )
 LinkLuaModifier(
 	"modifier_hoodwink_bushwhack_custom_legendary_stack",
 	"abilities/hoodwink/hoodwink_bushwhack_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_hoodwink_bush_7"
 )
 LinkLuaModifier(
 	"modifier_hoodwink_bushwhack_custom_legendary_damage",
 	"abilities/hoodwink/hoodwink_bushwhack_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_hoodwink_bush_7" }
 )
 LinkLuaModifier(
 	"modifier_hoodwink_bushwhack_custom_legendary_illusion",
@@ -97,12 +103,11 @@ function hoodwink_bushwhack_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_marci/marci_rebound_bounce_impact_debuff.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_snapfire_slow.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_venomancer/venomancer_poison_debuff.vpcf", context)
-	PrecacheResource("particle", "particles/hoodwink/poison_stack.vpcf", context)
-	PrecacheResource("particle", "particles/pa_vendetta.vpcf", context)
+	PrecacheResource("particle", "particles/phantom_assassin/pa_vendetta.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_poison_venomancer.vpcf", context)
 	PrecacheResource("particle", "particles/hoodwink/bush_damage.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_oracle/oracle_purifyingflames.vpcf", context)
-	PrecacheResource("particle", "particles/hoodwink_bush_damage.vpcf", context)
+	PrecacheResource("particle", "particles/hoodwink/hoodwink_bush_damage.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_bloodseeker/bloodseeker_thirst_owner.vpcf", context)
 	PrecacheResource("particle", "particles/hoodwink/scepter_stun.vpcf", context)
 	PrecacheResource("particle", "particles/hoodwink/acorn_refresh.vpcf", context)
@@ -845,7 +850,7 @@ function modifier_hoodwink_bushwhack_custom_vision:OnCreated(table)
 	if not self.parent:IsRealHero() then
 		return
 	end
-	self.parent:GenericParticle("particles/pa_vendetta.vpcf", self)
+	self.parent:GenericParticle("particles/phantom_assassin/pa_vendetta.vpcf", self)
 	self.parent:GenericParticle("particles/units/heroes/hero_bloodseeker/bloodseeker_thirst_owner.vpcf", self)
 	self.interval = 0.2
 	self:StartIntervalThink(self.interval)
@@ -918,7 +923,7 @@ function modifier_hoodwink_bushwhack_custom_legendary_stack:OnCreated()
 	self.RemoveForDuel = true
 
 	if self.ability.talents.has_r7 == 0 then
-		self.particle = self.parent:GenericParticle("particles/hoodwink_bush_damage.vpcf", self, true)
+		self.particle = self.parent:GenericParticle("particles/hoodwink/hoodwink_bush_damage.vpcf", self, true)
 	end
 
 	self:OnRefresh()
@@ -970,7 +975,7 @@ function modifier_hoodwink_bushwhack_custom_legendary_damage:OnCreated()
 		self:StartIntervalThink(0.1)
 	end
 
-	self.parent:GenericParticle("particles/general/generic_armor_reduction.vpcf", self, true)
+	self.parent:GenericParticle("particles/generic/generic_armor_reduction.vpcf", self, true)
 	self.parent:GenericParticle("particles/hoodwink/bush_damage.vpcf", self)
 end
 

@@ -26,7 +26,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_broodmother_spin_web_custom_buff",
 	"abilities/broodmother/broodmother_spin_web_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 LinkLuaModifier(
 	"modifier_broodmother_spin_web_custom_scepter_thinker",
@@ -41,7 +42,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_broodmother_spin_web_custom_silence",
 	"abilities/broodmother/broodmother_spin_web_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_broodmother_web_4"
 )
 LinkLuaModifier(
 	"modifier_broodmother_spin_web_custom_legendary_thinker",
@@ -51,12 +53,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_broodmother_spin_web_custom_legendary_health_reduce",
 	"abilities/broodmother/broodmother_spin_web_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_broodmother_web_7"
 )
 LinkLuaModifier(
 	"modifier_broodmother_spin_web_custom_silence_cd",
 	"abilities/broodmother/broodmother_spin_web_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_broodmother_web_4"
 )
 
 broodmother_spin_web_custom = class({})
@@ -818,6 +822,11 @@ function modifier_broodmother_spin_web_custom_scepter_thinker:OnDestroy()
 end
 
 broodmother_spin_web_destroy_custom = class({})
+
+function broodmother_spin_web_destroy_custom:GetAbilityTextureName()
+	return wearables_system:GetAbilityIconReplacement(self:GetCaster(), "broodmother_spin_web_destroy", self)
+end
+
 function broodmother_spin_web_destroy_custom:OnSpellStart()
 	local mod = self.caster:FindModifierByName("modifier_broodmother_spin_web_custom")
 
@@ -884,7 +893,7 @@ function broodmother_spin_web_custom_legendary:GetAbilityTextureName()
 	if self.talents.has_w4 == 1 and not self.caster:HasModifier("modifier_broodmother_spin_web_custom_silence_cd") then
 		return "broodmother_silken_bola"
 	end
-	return "broodmother_sticky_snare"
+	return wearables_system:GetAbilityIconReplacement(self:GetCaster(), "broodmother_sticky_snare", self)
 end
 
 function broodmother_spin_web_custom_legendary:GetBehavior()

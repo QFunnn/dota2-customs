@@ -228,7 +228,7 @@ function modifier_razor_unstable_current_custom:OnIntervalThink()
 			end
 
 			if self.parent:HasTalent("modifier_razor_current_5") then
-				self.parent:CdItems(self.cd_items)
+				self.parent:CdItems(self.cd_items, "modifier_razor_current_5")
 			end
 		end
 	end
@@ -421,7 +421,7 @@ function modifier_razor_unstable_current_custom:PassiveProc(attacker, no_cd, spe
 		and self.parent:HasTalent("modifier_razor_current_7")
 		and not self.parent:HasModifier("modifier_razor_unstable_current_custom_legendary")
 	then
-		self.parent:CdAbility(self.ability, self.legendary_cd)
+		self.parent:CdAbility(self.ability, self.legendary_cd, nil, "modifier_razor_current_7")
 	end
 end
 

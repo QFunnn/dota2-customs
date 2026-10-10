@@ -22,7 +22,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_axe_counter_helix_custom_armor",
 	"abilities/axe/axe_counter_helix_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_axe_hero_3"
 )
 LinkLuaModifier(
 	"modifier_axe_counter_helix_custom_legendary_active",
@@ -32,12 +33,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_axe_counter_helix_custom_health_change",
 	"abilities/axe/axe_counter_helix_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_axe_helix_3"
 )
 LinkLuaModifier(
 	"modifier_axe_counter_helix_custom_shield_cd",
 	"abilities/axe/axe_counter_helix_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_axe_hero_5"
 )
 LinkLuaModifier(
 	"modifier_axe_counter_helix_custom_haste",
@@ -47,7 +50,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_axe_counter_helix_custom_scepter",
 	"abilities/axe/axe_counter_helix_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "Scepter" }
 )
 
 axe_counter_helix_custom = class({})
@@ -60,7 +64,6 @@ function axe_counter_helix_custom:Precache(context)
 	end
 	PrecacheResource("particle", "particles/units/heroes/hero_axe/axe_counterhelix.vpcf", context)
 	PrecacheResource("particle", "particles/items4_fx/ascetic_cap.vpcf", context)
-	PrecacheResource("particle", "particles/axe_spin.vpcf", context)
 	PrecacheResource("particle", "particles/items2_fx/sange_maim.vpcf", context)
 	PrecacheResource("particle", "particles/items3_fx/hook_root.vpcf", context)
 	PrecacheResource("particle", "particles/axe/axe_charge.vpcf", context)
@@ -273,7 +276,7 @@ function axe_counter_helix_custom:Spin(use_cd, ability)
 			"modifier_axe_counter_helix_custom_haste",
 			{ duration = self.talents.e4_duration }
 		)
-		self.caster:CdItems(self.talents.e4_cd_items)
+		self.caster:CdItems(self.talents.e4_cd_items, "modifier_axe_helix_4")
 	end
 
 	local hit_type = 0

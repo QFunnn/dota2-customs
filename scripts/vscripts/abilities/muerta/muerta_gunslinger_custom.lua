@@ -16,7 +16,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_muerta_gunslinger_custom_speed",
 	"abilities/muerta/muerta_gunslinger_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_muerta_gun_1", "modifier_muerta_gun_3" }
 )
 LinkLuaModifier(
 	"modifier_muerta_gunslinger_custom_active",
@@ -31,12 +32,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_muerta_gunslinger_custom_incoming",
 	"abilities/muerta/muerta_gunslinger_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_muerta_gun_4" }
 )
 LinkLuaModifier(
 	"modifier_muerta_gunslinger_custom_incoming_cd",
 	"abilities/muerta/muerta_gunslinger_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_muerta_gun_4"
 )
 LinkLuaModifier(
 	"modifier_muerta_gunslinger_custom_armor",
@@ -46,7 +49,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_muerta_gunslinger_custom_legendary_stack",
 	"abilities/muerta/muerta_gunslinger_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_muerta_gun_7"
 )
 LinkLuaModifier(
 	"modifier_muerta_gunslinger_custom_legendary_attack",
@@ -72,7 +76,7 @@ function muerta_gunslinger_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_muerta/muerta_ultimate_projectile.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_muerta/muerta_base_attack_alt.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_muerta/muerta_base_attack.vpcf", context)
-	PrecacheResource("particle", "particles/muerta_dig_ground.vpcf", context)
+	PrecacheResource("particle", "particles/muerta/muerta_dig_ground.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_wraithking_ghosts.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_muerta/muerta_ultimate_form_ethereal.vpcf", context)
 	PrecacheResource("particle", "particles/items_fx/force_staff.vpcf", context)
@@ -81,14 +85,14 @@ function muerta_gunslinger_custom:Precache(context)
 	PrecacheResource("particle", "particles/muerta/muerta_attack_slow.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_sniper/sniper_headshot_slow.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_muerta_parting_shot.vpcf", context)
-	PrecacheResource("particle", "particles/blur_absorb.vpcf", context)
+	PrecacheResource("particle", "particles/phantom_assassin/blur_absorb.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_muerta/muerta_parting_shot_tether.vpcf", context)
 	PrecacheResource("particle", "particles/muerta/gun_evasion.vpcf", context)
 	PrecacheResource("particle", "particles/econ/events/ti9/shovel_dig.vpcf", context)
 	PrecacheResource("particle", "particles/econ/events/ti9/shovel_smoke_cloud.vpcf", context)
-	PrecacheResource("particle", "particles/heroes/muerta/muerta_quest_kill.vpcf", context)
+	PrecacheResource("particle", "particles/muerta/muerta_quest_kill.vpcf", context)
 	PrecacheResource("particle", "particles/econ/events/ti9/muerta_dig_treasure.vpcf", context)
-	PrecacheResource("particle", "particles/muerta_dig_drop.vpcf", context)
+	PrecacheResource("particle", "particles/muerta/muerta_dig_drop.vpcf", context)
 	PrecacheResource("particle", "particles/muerta/muerta_quest_item.vpcf", context)
 	PrecacheResource("particle", "particles/econ/events/ti9/shovel_revealed_nothing.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_alchemist/alchemist_lasthit_coins.vpcf", context)
@@ -97,8 +101,7 @@ function muerta_gunslinger_custom:Precache(context)
 		"particles/units/heroes/hero_skeletonking/wraith_king_vampiric_aura_lifesteal.vpcf",
 		context
 	)
-	PrecacheResource("particle", "particles/muerta_item_active.vpcf", context)
-	PrecacheResource("particle", "particles/muerta_item_heal.vpcf", context)
+	PrecacheResource("particle", "particles/muerta/muerta_item_active.vpcf", context)
 end
 
 function muerta_gunslinger_custom:UpdateTalents(name)
@@ -363,7 +366,7 @@ function modifier_muerta_gunslinger_custom:AttackStartEvent_out(params)
 	end
 
 	if self.ability.talents.has_e7 == 1 then
-		self.parent:CdAbility(self.ability, self.ability.talents.e7_cd_inc)
+		self.parent:CdAbility(self.ability, self.ability.talents.e7_cd_inc, nil, "modifier_muerta_gun_7")
 	end
 
 	if IsValid(self.parent.veil_ability) then
@@ -371,7 +374,12 @@ function modifier_muerta_gunslinger_custom:AttackStartEvent_out(params)
 			self.parent.veil_ability:LegendaryStack()
 		end
 		if self.ability.talents.has_r4 == 1 and self.ability.talents.has_r7 == 0 then
-			self.parent:CdAbility(self.parent.veil_ability, nil, self.ability.talents.r4_cd_inc)
+			self.parent:CdAbility(
+				self.parent.veil_ability,
+				nil,
+				self.ability.talents.r4_cd_inc,
+				"modifier_muerta_veil_4"
+			)
 		end
 	end
 
@@ -710,7 +718,7 @@ function modifier_muerta_gunslinger_custom_illusion:OnCreated(table)
 		end
 	end
 
-	self.parent:GenericParticle("particles/blur_absorb.vpcf", self)
+	self.parent:GenericParticle("particles/phantom_assassin/blur_absorb.vpcf", self)
 
 	self.particle = ParticleManager:CreateParticle(
 		"particles/units/heroes/hero_muerta/muerta_parting_shot_tether.vpcf",
@@ -805,7 +813,7 @@ function modifier_muerta_gunslinger_custom_incoming:OnCreated(table)
 	if not IsServer() then
 		return
 	end
-	self.parent:GenericParticle("particles/blur_absorb.vpcf", self)
+	self.parent:GenericParticle("particles/phantom_assassin/blur_absorb.vpcf", self)
 end
 
 function modifier_muerta_gunslinger_custom_incoming:DeclareFunctions()

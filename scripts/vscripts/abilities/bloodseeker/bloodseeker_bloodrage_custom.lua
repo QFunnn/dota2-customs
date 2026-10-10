@@ -11,7 +11,8 @@
 LinkLuaModifier(
 	"modifier_bloodseeker_bloodrage_custom",
 	"abilities/bloodseeker/bloodseeker_bloodrage_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 LinkLuaModifier(
 	"modifier_bloodseeker_bloodrage_custom_tracker",
@@ -21,17 +22,20 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_bloodseeker_bloodrage_custom_blood",
 	"abilities/bloodseeker/bloodseeker_bloodrage_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_bloodseeker_bloodrage_3"
 )
 LinkLuaModifier(
 	"modifier_bloodseeker_bloodrage_custom_slow",
 	"abilities/bloodseeker/bloodseeker_bloodrage_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_bloodseeker_bloodrage_2"
 )
 LinkLuaModifier(
 	"modifier_bloodseeker_bloodrage_custom_shard_cd",
 	"abilities/bloodseeker/bloodseeker_bloodrage_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "Shard" }
 )
 
 bloodseeker_bloodrage_custom = class({})
@@ -42,19 +46,18 @@ function bloodseeker_bloodrage_custom:Precache(context)
 		return
 	end
 
-	PrecacheResource("particle", "particles/bloodseeker/rage_count.vpcf", context)
 	PrecacheResource("particle", "particles/bloodseeker/thirst_legendary.vpcf", context)
 	PrecacheResource("particle", "particles/bloodseeker/bloodseeker_bloodrage_base.vpcf", context)
 	PrecacheResource("particle", "particles/bloodseeker/bloodrage_stack_main.vpcf", context)
 	PrecacheResource("particle", "particles/items2_fx/sange_maim.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_beserkers_call.vpcf", context)
-	PrecacheResource("particle", "particles/bloodrage_reduction.vpcf", context)
+	PrecacheResource("particle", "particles/bloodseeker/bloodrage_reduction.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/econ/items/bloodseeker/bloodseeker_ti7/bloodseeker_ti7_thirst_owner.vpcf",
 		context
 	)
-	PrecacheResource("particle", "particles/bs_root.vpcf", context)
+	PrecacheResource("particle", "particles/bloodseeker/bs_root.vpcf", context)
 	PrecacheResource("particle", "particles/bloodseeker/shard_damage.vpcf", context)
 end
 
@@ -388,7 +391,7 @@ function modifier_bloodseeker_bloodrage_custom:OnIntervalThink()
 	if self.ability.talents.has_q4 == 1 then
 		local low_health = self.parent:GetHealthPercent() <= self.ability.talents.q4_health
 		if low_health and not self.lowhp_particle then
-			self.lowhp_particle = self.parent:GenericParticle("particles/bloodrage_reduction.vpcf", self)
+			self.lowhp_particle = self.parent:GenericParticle("particles/bloodseeker/bloodrage_reduction.vpcf", self)
 			self.parent:EmitSound("BS.Bloodrage_bva")
 		end
 		if self.parent:GetHealthPercent() > (self.ability.talents.q4_health + 5) and self.lowhp_particle then

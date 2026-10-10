@@ -87,10 +87,10 @@ function skywrath_mage_concussive_shot_custom:Precache(context)
 		"particles/units/heroes/hero_skywrath_mage/skywrath_mage_concussive_shot_slow_debuff.vpcf",
 		context
 	)
-	PrecacheResource("particle", "particles/skymage/bolt_slow.vpcf", context)
+	PrecacheResource("particle", "particles/skywrath/bolt_slow.vpcf", context)
 	PrecacheResource("particle", "particles/skywrath/shot_legendary_stack.vpcf", context)
-	PrecacheResource("particle", "particles/skymage/shot_burn.vpcf", context)
-	PrecacheResource("particle", "particles/skymage/shot_haste.vpcf", context)
+	PrecacheResource("particle", "particles/skywrath/shot_burn.vpcf", context)
+	PrecacheResource("particle", "particles/skywrath/shot_haste.vpcf", context)
 	PrecacheResource("particle", "particles/skywrath/shot_legendary.vpcf", context)
 end
 
@@ -367,7 +367,7 @@ function skywrath_mage_concussive_shot_custom:OnProjectileHit_ExtraData(target, 
 				knockback
 			)
 			if mod then
-				enemy:GenericParticle("particles/skymage/bolt_slow.vpcf", mod)
+				enemy:GenericParticle("particles/skywrath/bolt_slow.vpcf", mod)
 			end
 		end
 
@@ -711,7 +711,7 @@ function modifier_skywrath_mage_concussive_shot_custom_legendary_effect:OnCreate
 		return
 	end
 
-	self.parent:GenericParticle("particles/skymage/bolt_lethalh.vpcf", self, true)
+	self.parent:GenericParticle("particles/skywrath/bolt_lethalh.vpcf", self, true)
 
 	local particle_peffect =
 		ParticleManager:CreateParticle("particles/skywrath/shot_legendary.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
@@ -833,7 +833,7 @@ function modifier_skywrath_mage_concussive_shot_custom_burn_tracker:OnRefresh()
 end
 
 function modifier_skywrath_mage_concussive_shot_custom_burn_tracker:GetEffectName()
-	return "particles/skymage/shot_burn.vpcf"
+	return "particles/skywrath/shot_burn.vpcf"
 end
 
 modifier_skywrath_mage_concussive_shot_custom_haste = class({})
@@ -875,5 +875,5 @@ function modifier_skywrath_mage_concussive_shot_custom_haste:CheckState()
 end
 
 function modifier_skywrath_mage_concussive_shot_custom_haste:GetEffectName()
-	return "particles/skymage/shot_haste.vpcf"
+	return "particles/skywrath/shot_haste.vpcf"
 end

@@ -16,7 +16,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_pangolier_lucky_shot_custom_disarm",
 	"abilities/pangolier/pangolier_lucky_shot_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 LinkLuaModifier(
 	"modifier_pangolier_lucky_shot_custom_dash",
@@ -31,7 +32,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_pangolier_lucky_shot_custom_legendary_speed",
 	"abilities/pangolier/pangolier_lucky_shot_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_pangolier_lucky_7"
 )
 LinkLuaModifier(
 	"modifier_pangolier_lucky_shot_custom_legendary_caster",
@@ -41,12 +43,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_pangolier_lucky_shot_custom_armor",
 	"abilities/pangolier/pangolier_lucky_shot_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_pangolier_lucky_3"
 )
 LinkLuaModifier(
 	"modifier_pangolier_lucky_shot_custom_armor_effect",
 	"abilities/pangolier/pangolier_lucky_shot_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_pangolier_lucky_3" }
 )
 
 pangolier_lucky_shot_custom = class({})
@@ -71,14 +75,14 @@ function pangolier_lucky_shot_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_pangolier/pangolier_heartpiercer_delay.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_life_stealer_open_wounds.vpcf", context)
 	PrecacheResource("particle", "particles/items2_fx/sange_maim.vpcf", context)
-	PrecacheResource("particle", "particles/heroes/pango_v/pangolier_heartpiercer_v_front_models.vpcf", context)
-	PrecacheResource("particle", "particles/heroes/pango_v/pangolier_heartpiercer_v_right_models.vpcf", context)
-	PrecacheResource("particle", "particles/heroes/pango_v/pangolier_heartpiercer_v_back_models.vpcf", context)
-	PrecacheResource("particle", "particles/heroes/pango_v/pangolier_heartpiercer_v_left_models.vpcf", context)
-	PrecacheResource("particle", "particles/heroes/pango_v/pangolier_heartpiercer_v_front_end.vpcf", context)
-	PrecacheResource("particle", "particles/heroes/pango_v/pangolier_heartpiercer_v_right_end.vpcf", context)
-	PrecacheResource("particle", "particles/heroes/pango_v/pangolier_heartpiercer_v_back_end.vpcf", context)
-	PrecacheResource("particle", "particles/heroes/pango_v/pangolier_heartpiercer_v_left_end.vpcf", context)
+	PrecacheResource("particle", "particles/pangolier/pangolier_heartpiercer_v_front_models.vpcf", context)
+	PrecacheResource("particle", "particles/pangolier/pangolier_heartpiercer_v_right_models.vpcf", context)
+	PrecacheResource("particle", "particles/pangolier/pangolier_heartpiercer_v_back_models.vpcf", context)
+	PrecacheResource("particle", "particles/pangolier/pangolier_heartpiercer_v_left_models.vpcf", context)
+	PrecacheResource("particle", "particles/pangolier/pangolier_heartpiercer_v_front_end.vpcf", context)
+	PrecacheResource("particle", "particles/pangolier/pangolier_heartpiercer_v_right_end.vpcf", context)
+	PrecacheResource("particle", "particles/pangolier/pangolier_heartpiercer_v_back_end.vpcf", context)
+	PrecacheResource("particle", "particles/pangolier/pangolier_heartpiercer_v_left_end.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/econ/items/troll_warlord/troll_warlord_ti7_axe/troll_ti7_axe_bash_explosion.vpcf",
@@ -297,6 +301,8 @@ function pangolier_lucky_shot_custom:ProcPassive(target, proc)
 		end
 	end
 
+	self.caster:LogProc("pangolier_lucky_shot_custom", proc and 1 or 0, target)
+
 	if target:IsRealHero() and self.caster:GetQuest() == "Pangolier.Quest_7" then
 		self.caster:UpdateQuest(1)
 	end
@@ -321,6 +327,7 @@ function pangolier_lucky_shot_custom:ProcPassive(target, proc)
 			"modifier_generic_silence",
 			{ duration = (1 - target:GetStatusResistance()) * self.talents.h5_silence }
 		)
+		self.caster:LogProc("modifier_pangolier_hero_5", nil, target)
 	end
 
 	local particle = ParticleManager:CreateParticle(
@@ -914,7 +921,6 @@ function pangolier_heartpiercer_custom:UpdateTalents(name)
 			e7_stun = caster:GetTalentValue("modifier_pangolier_lucky_7", "stun", true),
 			e7_effect_duration = caster:GetTalentValue("modifier_pangolier_lucky_7", "effect_duration", true),
 			e7_duration = caster:GetTalentValue("modifier_pangolier_lucky_7", "duration", true),
-			e7_bva = caster:GetTalentValue("modifier_pangolier_lucky_7", "bva", true),
 			e7_status = caster:GetTalentValue("modifier_pangolier_lucky_7", "status", true),
 			e7_talent_cd = caster:GetTalentValue("modifier_pangolier_lucky_7", "talent_cd", true),
 		}
@@ -1080,19 +1086,19 @@ function modifier_pangolier_lucky_shot_custom_legendary:OnCreated(table)
 
 	self.particles_sides = {}
 	self.particles_sides[1] =
-		self.parent:GenericParticle("particles/heroes/pango_v/pangolier_heartpiercer_v_front_models.vpcf", self)
+		self.parent:GenericParticle("particles/pangolier/pangolier_heartpiercer_v_front_models.vpcf", self)
 	self.particles_sides[2] =
-		self.parent:GenericParticle("particles/heroes/pango_v/pangolier_heartpiercer_v_right_models.vpcf", self)
+		self.parent:GenericParticle("particles/pangolier/pangolier_heartpiercer_v_right_models.vpcf", self)
 	self.particles_sides[3] =
-		self.parent:GenericParticle("particles/heroes/pango_v/pangolier_heartpiercer_v_back_models.vpcf", self)
+		self.parent:GenericParticle("particles/pangolier/pangolier_heartpiercer_v_back_models.vpcf", self)
 	self.particles_sides[4] =
-		self.parent:GenericParticle("particles/heroes/pango_v/pangolier_heartpiercer_v_left_models.vpcf", self)
+		self.parent:GenericParticle("particles/pangolier/pangolier_heartpiercer_v_left_models.vpcf", self)
 
 	self.end_effects = {
-		[1] = "particles/heroes/pango_v/pangolier_heartpiercer_v_front_end.vpcf",
-		[2] = "particles/heroes/pango_v/pangolier_heartpiercer_v_right_end.vpcf",
-		[3] = "particles/heroes/pango_v/pangolier_heartpiercer_v_back_end.vpcf",
-		[4] = "particles/heroes/pango_v/pangolier_heartpiercer_v_left_end.vpcf",
+		[1] = "particles/pangolier/pangolier_heartpiercer_v_front_end.vpcf",
+		[2] = "particles/pangolier/pangolier_heartpiercer_v_right_end.vpcf",
+		[3] = "particles/pangolier/pangolier_heartpiercer_v_back_end.vpcf",
+		[4] = "particles/pangolier/pangolier_heartpiercer_v_left_end.vpcf",
 	}
 
 	for i = 1, 4 do
@@ -1262,6 +1268,7 @@ function modifier_pangolier_lucky_shot_custom_legendary:AttackStartEvent_inc(par
 		"modifier_bashed",
 		{ duration = (1 - self.parent:GetStatusResistance()) * self.ability.talents.e7_stun }
 	)
+	self.caster:LogProc("modifier_pangolier_lucky_7", self:GetElapsedTime(), self.parent)
 
 	self.parent:EmitSound("Pango.Lucky_legendary_proc")
 	self.parent:EmitSound("Pango.Lucky_dash2")
@@ -1275,8 +1282,6 @@ modifier_pangolier_lucky_shot_custom_legendary_caster = class(mod_hidden)
 function modifier_pangolier_lucky_shot_custom_legendary_caster:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
-
-	self.bva = self.parent:GetBaseAttackTime(false) + self.ability.talents.e7_bva
 
 	if not IsServer() then
 		return
@@ -1328,7 +1333,7 @@ function modifier_pangolier_lucky_shot_custom_legendary_caster:Activate()
 
 	self.parent:EmitSound("Pango.Lucky_stack")
 	self.parent:GenericParticle("particles/pangolier/lucky_stack_max.vpcf", self)
-	self.parent:GenericParticle("particles/lc_odd_proc_.vpcf")
+	self.parent:GenericParticle("particles/legion_commander/lc_odd_proc_.vpcf")
 	self.parent:GenericParticle("particles/sven/cleave_speed_ready.vpcf", self, true)
 end
 
@@ -1344,7 +1349,6 @@ function modifier_pangolier_lucky_shot_custom_legendary_caster:DeclareFunctions(
 	return {
 		MODIFIER_PROPERTY_STATUS_RESISTANCE_STACKING,
 		MODIFIER_PROPERTY_MODEL_SCALE,
-		MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT,
 	}
 end
 
@@ -1360,13 +1364,6 @@ function modifier_pangolier_lucky_shot_custom_legendary_caster:GetModifierModelS
 		return
 	end
 	return 20
-end
-
-function modifier_pangolier_lucky_shot_custom_legendary_caster:GetModifierBaseAttackTimeConstant()
-	if self:GetStackCount() == 0 then
-		return
-	end
-	return self.bva
 end
 
 modifier_pangolier_lucky_shot_custom_legendary_speed = class(mod_visible)

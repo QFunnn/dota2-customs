@@ -11,17 +11,20 @@
 LinkLuaModifier(
 	"modifier_leshrac_pulse_nova_custom",
 	"abilities/leshrac/leshrac_pulse_nova_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 LinkLuaModifier(
 	"modifier_leshrac_pulse_nova_custom_heal_reduce",
 	"abilities/leshrac/leshrac_pulse_nova_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_leshrac_nova_2"
 )
 LinkLuaModifier(
 	"modifier_leshrac_pulse_nova_custom_health_reduce",
 	"abilities/leshrac/leshrac_pulse_nova_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_leshrac_nova_3"
 )
 LinkLuaModifier(
 	"modifier_leshrac_pulse_nova_custom_legendary",
@@ -36,7 +39,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_leshrac_pulse_nova_custom_bkb_cd",
 	"abilities/leshrac/leshrac_pulse_nova_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_leshrac_hero_6"
 )
 
 leshrac_pulse_nova_custom = class({})
@@ -58,9 +62,8 @@ function leshrac_pulse_nova_custom:Precache(context)
 		"particles/econ/items/outworld_devourer/od_shards_exile/od_shards_exile_prison_end.vpcf",
 		context
 	)
-	PrecacheResource("particle", "particles/leshrac_speed.vpcf", context)
-	PrecacheResource("particle", "particles/puck_blind.vpcf", context)
-	PrecacheResource("particle", "particles/leshrac/nova_mana.vpcf", context)
+	PrecacheResource("particle", "particles/leshrac/leshrac_speed.vpcf", context)
+	PrecacheResource("particle", "particles/puck/puck_blind.vpcf", context)
 	PrecacheResource("particle", "particles/leshrac/nova_legendary_radius.vpcf", context)
 end
 
@@ -345,7 +348,7 @@ function modifier_leshrac_pulse_nova_custom:DamageEvent_inc(params)
 	end
 
 	if not self.shield_effect then
-		self.shield_effect = self.parent:GenericParticle("particles/general/generic_shield.vpcf", self, true)
+		self.shield_effect = self.parent:GenericParticle("particles/generic/generic_shield.vpcf", self, true)
 	end
 
 	if self.parent:PassivesDisabled() then
@@ -368,7 +371,7 @@ function modifier_leshrac_pulse_nova_custom:DamageEvent_inc(params)
 		{ duration = self.ability.talents.h6_bkb, effect = 2, sound = 1 }
 	)
 
-	local rift_particle = ParticleManager:CreateParticle("particles/puck_blind.vpcf", PATTACH_WORLDORIGIN, nil)
+	local rift_particle = ParticleManager:CreateParticle("particles/puck/puck_blind.vpcf", PATTACH_WORLDORIGIN, nil)
 	ParticleManager:SetParticleControl(rift_particle, 0, self.parent:GetAbsOrigin())
 	ParticleManager:SetParticleControl(rift_particle, 1, self.parent:GetAbsOrigin())
 	ParticleManager:SetParticleControl(rift_particle, 2, Vector(400, 0, 0))
@@ -566,6 +569,7 @@ end
 function leshrac_pulse_nova_custom_legendary:CreateTalent()
 	self:SetHidden(false)
 	self:SetLevel(1)
+	self:UpdateTalents()
 end
 
 function leshrac_pulse_nova_custom_legendary:GetCastPoint()

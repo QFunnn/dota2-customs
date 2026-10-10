@@ -2231,7 +2231,7 @@ return {
 					["particles/econ/events/plus/high_five/high_five_lvl1_travel.vpcf"] = "particles/econ/items/wraith_king/arcana/high_five_wk_arcana_travel.vpcf",
 					["particles/wraith_king/blast_delay_damage.vpcf"] = "particles/wraith_king/blast_delay_damage_arcana.vpcf",
 					["particles/wraith_king/reinc_shield_base.vpcf"] = "particles/wraith_king/reinc_shield.vpcf",
-					["particles/wraith_king_custom/wraith_king_tombstone_default.vpcf"] = "particles/wraith_king_custom/wk_arc_reincarn_tombstone.vpcf",
+					["particles/wraith_king/wraith_king_tombstone_default.vpcf"] = "particles/wraith_king/wk_arc_reincarn_tombstone.vpcf",
 				},
 				["0"] = {
 					["particles/units/heroes/hero_skeletonking/wraith_king_ambient.vpcf"] = "particles/econ/items/wraith_king/wraith_king_arcana/wk_arc_ambient.vpcf",

@@ -8,7 +8,12 @@
 ]]
 
 
-LinkLuaModifier("modifier_ogre_magi_ignite_custom", "abilities/ogre_magi/ogre_magi_ignite", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier(
+	"modifier_ogre_magi_ignite_custom",
+	"abilities/ogre_magi/ogre_magi_ignite",
+	LUA_MODIFIER_MOTION_NONE,
+	true
+)
 LinkLuaModifier(
 	"modifier_ogre_magi_ignite_custom_tracker",
 	"abilities/ogre_magi/ogre_magi_ignite",
@@ -17,7 +22,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_ogre_magi_ignite_custom_silence",
 	"abilities/ogre_magi/ogre_magi_ignite",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_ogremagi_hero_5"
 )
 LinkLuaModifier(
 	"modifier_ogre_magi_ignite_custom_slow",
@@ -27,7 +33,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_ogre_magi_ignite_custom_buff",
 	"abilities/ogre_magi/ogre_magi_ignite",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_ogremagi_ignite_3", "modifier_ogremagi_ignite_4", "modifier_ogremagi_ignite_7" }
 )
 LinkLuaModifier(
 	"modifier_ogre_magi_ignite_custom_legendary_damage",
@@ -47,8 +54,7 @@ function ogre_magi_ignite_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_ogre_magi/ogre_magi_ignite_debuff.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_ogre_magi/ogre_magi_fireblast.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_huskar_lifebreak.vpcf", context)
-	PrecacheResource("particle", "particles/ogre_magi/ignite_heal.vpcf", context)
-	PrecacheResource("particle", "particles/ogre-magi/ignite_aoe_proc.vpcf", context)
+	PrecacheResource("particle", "particles/ogre_magi/ignite_aoe_proc.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_sniper/sniper_headshot_slow.vpcf", context)
 	PrecacheResource(
 		"particle",
@@ -469,7 +475,7 @@ function modifier_ogre_magi_ignite_custom_tracker:AttackEvent_out(params)
 	ParticleManager:ReleaseParticleIndex(particle)
 
 	local particle2 =
-		ParticleManager:CreateParticle("particles/ogre-magi/ignite_aoe_proc.vpcf", PATTACH_WORLDORIGIN, nil)
+		ParticleManager:CreateParticle("particles/ogre_magi/ignite_aoe_proc.vpcf", PATTACH_WORLDORIGIN, nil)
 	ParticleManager:SetParticleControl(particle2, 0, point)
 	ParticleManager:Delete(particle2, 1)
 

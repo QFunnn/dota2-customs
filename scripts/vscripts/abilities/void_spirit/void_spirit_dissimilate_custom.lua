@@ -51,7 +51,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_custom_void_dissimilate_spell",
 	"abilities/void_spirit/void_spirit_dissimilate_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_void_astral_4"
 )
 
 void_spirit_dissimilate_custom = class({})
@@ -82,9 +83,9 @@ function void_spirit_dissimilate_custom:Precache(context)
 		"particles/units/heroes/hero_void_spirit/dissimilate/void_spirit_dissimilate_exit.vpcf",
 		context
 	)
-	PrecacheResource("particle", "particles/void_astral_slow.vpcf", context)
+	PrecacheResource("particle", "particles/void_spirit/void_astral_slow.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_oracle/oracle_purifyingflames.vpcf", context)
-	PrecacheResource("particle", "particles/void_step_speed.vpcf", context)
+	PrecacheResource("particle", "particles/void_spirit/void_step_speed.vpcf", context)
 	PrecacheResource("particle", "particles/void_spirit/dissimilate_stack.vpcf", context)
 end
 
@@ -353,7 +354,10 @@ function modifier_custom_void_dissimilate:OnDestroy()
 		end
 
 		if self.parent:HasTalent("modifier_void_astral_6") then
-			self.parent:CdItems(self.parent:GetTalentValue("modifier_void_astral_6", "cd_items"))
+			self.parent:CdItems(
+				self.parent:GetTalentValue("modifier_void_astral_6", "cd_items"),
+				"modifier_void_astral_6"
+			)
 		end
 	end
 
@@ -370,7 +374,12 @@ function modifier_custom_void_dissimilate:OnDestroy()
 	self:PlayEffects2(point, #enemies)
 
 	if hit_heroes == false and self.parent:HasTalent("modifier_void_astral_6") then
-		self.parent:CdAbility(self.ability, self.parent:GetTalentValue("modifier_void_astral_6", "cd_self"))
+		self.parent:CdAbility(
+			self.ability,
+			self.parent:GetTalentValue("modifier_void_astral_6", "cd_self"),
+			nil,
+			"modifier_void_astral_6"
+		)
 	end
 end
 
@@ -659,7 +668,7 @@ function modifier_custom_void_dissimilate_slow:IsHidden()
 	return false
 end
 function modifier_custom_void_dissimilate_slow:GetEffectName()
-	return "particles/void_astral_slow.vpcf"
+	return "particles/void_spirit/void_astral_slow.vpcf"
 end
 function modifier_custom_void_dissimilate_slow:DeclareFunctions()
 	return {
@@ -740,7 +749,7 @@ function modifier_custom_void_dissimilate_speed:GetTexture()
 	return "buffs/remnant_speed"
 end
 function modifier_custom_void_dissimilate_speed:GetEffectName()
-	return "particles/void_step_speed.vpcf"
+	return "particles/void_spirit/void_step_speed.vpcf"
 end
 
 function modifier_custom_void_dissimilate_speed:DeclareFunctions()
@@ -886,7 +895,7 @@ function modifier_custom_void_dissimilate_spell:OnIntervalThink()
 		return
 	end
 
-	self.parent:GenericParticle("particles/void_buf2.vpcf")
+	self.parent:GenericParticle("particles/void_spirit/void_buf2.vpcf")
 
 	self.parent:EmitSound("BS.Thirst_legendary_active")
 	self:StartIntervalThink(-1)

@@ -16,7 +16,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_antimage_innate_custom_slow",
 	"abilities/antimage/antimage_innate_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 
 antimage_innate_custom = class({})

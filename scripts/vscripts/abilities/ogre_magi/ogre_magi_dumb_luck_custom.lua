@@ -16,7 +16,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_ogre_magi_dumb_luck_custom_cdr",
 	"abilities/ogre_magi/ogre_magi_dumb_luck_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_ogremagi_multi_4"
 )
 
 ogre_magi_dumb_luck_custom = class({})
@@ -28,7 +29,7 @@ function ogre_magi_dumb_luck_custom:Precache(context)
 	end
 	PrecacheResource("soundfile", "soundevents/npc_dota_hero_ogre_magi.vsndevts", context)
 	PrecacheResource("soundfile", "soundevents/vo_custom/ogre_magi_vo_custom.vsndevts", context)
-	PrecacheResource("particle", "particles/lc_odd_proc_.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_odd_proc_.vpcf", context)
 	dota1x6:PrecacheShopItems("npc_dota_hero_ogre_magi", context)
 end
 
@@ -306,7 +307,7 @@ function modifier_ogre_magi_dumb_luck_custom_cdr:OnIntervalThink()
 		return
 	end
 
-	self.parent:GenericParticle("particles/lc_odd_proc_.vpcf")
+	self.parent:GenericParticle("particles/legion_commander/lc_odd_proc_.vpcf")
 	self.parent:EmitSound("BS.Thirst_legendary_active")
 
 	self:StartIntervalThink(-1)

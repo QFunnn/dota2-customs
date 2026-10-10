@@ -16,17 +16,20 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_ogre_magi_fireblast_custom_speed",
 	"abilities/ogre_magi/ogre_magi_fireblast",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_ogremagi_blast_4"
 )
 LinkLuaModifier(
 	"modifier_ogre_magi_fireblast_custom_spell",
 	"abilities/ogre_magi/ogre_magi_fireblast",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_ogremagi_blast_3"
 )
 LinkLuaModifier(
 	"modifier_ogre_magi_fireblast_custom_legendary_damage",
 	"abilities/ogre_magi/ogre_magi_fireblast",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_ogremagi_blast_7"
 )
 LinkLuaModifier(
 	"modifier_ogre_magi_fireblast_custom_slow",
@@ -36,7 +39,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_ogre_magi_fireblast_custom_magic",
 	"abilities/ogre_magi/ogre_magi_fireblast",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_ogremagi_blast_3"
 )
 
 ogre_magi_fireblast_custom_class = class({})
@@ -194,7 +198,8 @@ function ogre_magi_fireblast_custom_class:GetParticle(type)
 	end
 
 	if type == 2 then
-		return self.is_scepter and "particles/ogre_fireball_agh.vpcf" or "particles/ogre_fireball.vpcf"
+		return self.is_scepter and "particles/ogre_magi/ogre_fireball_agh.vpcf"
+			or "particles/ogre_magi/ogre_fireball.vpcf"
 	end
 end
 
@@ -228,7 +233,7 @@ function ogre_magi_fireblast_custom_class:OnSpellStart()
 
 	if self.talents.has_q4 == 1 then
 		local cd_items = self.multicast_k and self.talents.q4_cd_items_inc or self.talents.q4_cd_items
-		self.caster:CdItems(cd_items)
+		self.caster:CdItems(cd_items, "modifier_ogremagi_blast_4")
 		self.caster:AddNewModifier(
 			self.caster,
 			self,
@@ -344,7 +349,7 @@ function ogre_magi_fireblast_custom_class:OnProjectileHit_ExtraData(target, loca
 	end
 	if self.can_cd then
 		self.can_cd = false
-		self.caster:CdAbility(self, nil, self.talents.q7_cd)
+		self.caster:CdAbility(self, nil, self.talents.q7_cd, "modifier_ogremagi_blast_7")
 	end
 	target:AddNewModifier(
 		self.caster,
@@ -427,7 +432,7 @@ function ogre_magi_fireblast_custom_class:Impact(target, proc, damage_k, stun_k)
 		if proc == 1 then
 			if aoe_target == target or self.talents.has_q7 == 1 then
 				local effect_cast =
-					ParticleManager:CreateParticle("particles/ogre-magi/fireblast_proc.vpcf", PATTACH_WORLDORIGIN, nil)
+					ParticleManager:CreateParticle("particles/ogre_magi/fireblast_proc.vpcf", PATTACH_WORLDORIGIN, nil)
 				ParticleManager:SetParticleControl(effect_cast, 0, aoe_target:GetAbsOrigin())
 				ParticleManager:SetParticleControl(effect_cast, 1, Vector(150, 0, 0))
 				ParticleManager:ReleaseParticleIndex(effect_cast)
@@ -484,20 +489,17 @@ function ogre_magi_fireblast_custom:Precache(context)
 		return
 	end
 	PrecacheResource("particle", "particles/units/heroes/hero_ogre_magi/ogre_magi_fireblast.vpcf", context)
-	PrecacheResource("particle", "particles/ogre_fireball.vpcf", context)
+	PrecacheResource("particle", "particles/ogre_magi/ogre_fireball.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_ogre_magi/ogre_magi_unr_fireblast.vpcf", context)
-	PrecacheResource("particle", "particles/ogre_fireball_agh.vpcf", context)
-	PrecacheResource("particle", "particles/ogre_knockback.vpcf", context)
+	PrecacheResource("particle", "particles/ogre_magi/ogre_fireball_agh.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_huskar/huskar_burning_spear_debuff.vpcf", context)
-	PrecacheResource("particle", "particles/ogre_fire_stack.vpcf", context)
 	PrecacheResource("particle", "particles/ogre_magi/fire_shield.vpcf", context)
-	PrecacheResource("particle", "particles/ogre_magichit.vpcf", context)
-	PrecacheResource("particle", "particles/ogre_hit.vpcf", context)
+	PrecacheResource("particle", "particles/ogre_magi/ogre_magichit.vpcf", context)
 	PrecacheResource("particle", "particles/ogre_magi/fireblast_stack.vpcf", context)
-	PrecacheResource("particle", "particles/lina_attack_slow.vpcf", context)
-	PrecacheResource("particle", "particles/ogre-magi/fireblast_proc.vpcf", context)
+	PrecacheResource("particle", "particles/lina/lina_attack_slow.vpcf", context)
+	PrecacheResource("particle", "particles/ogre_magi/fireblast_proc.vpcf", context)
 	PrecacheResource("particle", "particles/ember_spirit/guard_resist_max.vpcf", context)
-	PrecacheResource("particle", "particles/ogre_head.vpcf", context)
+	PrecacheResource("particle", "particles/ogre_magi/ogre_head.vpcf", context)
 end
 
 function ogre_magi_fireblast_custom:GetIntrinsicModifierName()
@@ -684,8 +686,8 @@ function modifier_ogre_magi_fireblast_custom_spell:OnRefresh(table)
 
 	if self:GetStackCount() == self.max then
 		self.parent:EmitSound("Ogre.Multi_proc")
-		self.parent:GenericParticle("particles/ogre_magichit.vpcf", self)
-		self.parent:GenericParticle("particles/ogre_head.vpcf", self, true)
+		self.parent:GenericParticle("particles/ogre_magi/ogre_magichit.vpcf", self)
+		self.parent:GenericParticle("particles/ogre_magi/ogre_head.vpcf", self, true)
 	end
 
 	self.ability.tracker:UpdateUI()
@@ -768,7 +770,7 @@ function modifier_ogre_magi_fireblast_custom_slow:OnCreated()
 	if not IsServer() then
 		return
 	end
-	self.parent:GenericParticle("particles/lina_attack_slow.vpcf", self)
+	self.parent:GenericParticle("particles/lina/lina_attack_slow.vpcf", self)
 end
 
 function modifier_ogre_magi_fireblast_custom_slow:DeclareFunctions()

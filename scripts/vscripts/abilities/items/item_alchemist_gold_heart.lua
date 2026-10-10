@@ -39,7 +39,7 @@ function item_alchemist_gold_heart:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
 	end
-	PrecacheResource("particle", "particles/huskar_lowhp.vpcf", context)
+	PrecacheResource("particle", "particles/huskar/huskar_lowhp.vpcf", context)
 	PrecacheResource("particle", "particles/econ/events/fall_2022/radiance_target_fall2022.vpcf", context)
 	PrecacheResource("particle", "particles/items2_fx/radiance_owner.vpcf", context)
 	PrecacheResource("particle", "particles/items2_fx/radiance.vpcf", context)
@@ -166,7 +166,7 @@ function modifier_item_alchemist_gold_heart_buff:OnCreated()
 	self.ability = self:GetAbility()
 
 	self.parent:EmitSound("Alchemist.Heart_active")
-	self.parent:GenericParticle("particles/huskar_lowhp.vpcf", self)
+	self.parent:GenericParticle("particles/huskar/huskar_lowhp.vpcf", self)
 	self.aura_radius = self.ability.aura_radius
 end
 

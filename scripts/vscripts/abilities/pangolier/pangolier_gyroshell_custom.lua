@@ -21,12 +21,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_pangolier_gyroshell_custom_heal_reduce",
 	"abilities/pangolier/pangolier_gyroshell_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_pangolier_rolling_3" }
 )
 LinkLuaModifier(
 	"modifier_pangolier_gyroshell_custom_delay",
 	"abilities/pangolier/pangolier_gyroshell_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_pangolier_rolling_3"
 )
 LinkLuaModifier(
 	"modifier_pangolier_gyroshell_custom_stunned",
@@ -56,7 +58,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_pangolier_gyroshell_custom_legendary_health",
 	"abilities/pangolier/pangolier_gyroshell_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_pangolier_rolling_7"
 )
 
 pangolier_gyroshell_custom = class({})
@@ -81,7 +84,7 @@ function pangolier_gyroshell_custom:Precache(context)
 		context
 	)
 	PrecacheResource("particle", "particles/units/heroes/hero_pangolier/pangolier_tailthump.vpcf", context)
-	PrecacheResource("particle", "particles/beast_charge.vpcf", context)
+	PrecacheResource("particle", "particles/primal_beast/beast_charge.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/units/heroes/hero_primal_beast/primal_beast_onslaught_chargeup.vpcf",
@@ -92,11 +95,11 @@ function pangolier_gyroshell_custom:Precache(context)
 		"particles/units/heroes/hero_primal_beast/primal_beast_onslaught_charge_active.vpcf",
 		context
 	)
-	PrecacheResource("particle", "particles/lc_odd_charge.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_odd_charge.vpcf", context)
 	PrecacheResource("particle", "particles/pangolier/pangolier_gyroshell_cast_fast.vpcf", context)
-	PrecacheResource("particle", "particles/lc_odd_charge_mark.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_odd_charge_mark.vpcf", context)
 	PrecacheResource("particle", "particles/ogre_magi/multicast_radius.vpcf", context)
-	PrecacheResource("particle", "particles/jugg_legendary_proc_.vpcf", context)
+	PrecacheResource("particle", "particles/juggernaut/jugg_legendary_proc_.vpcf", context)
 	PrecacheResource("particle", "particles/items3_fx/iron_talon_active.vpcf", context)
 	PrecacheResource("model", "models/heroes/pangolier/pangolier_gyroshell2.vmdl", context)
 end
@@ -148,9 +151,6 @@ function pangolier_gyroshell_custom:UpdateTalents(name)
 
 			has_w4 = 0,
 			w4_duration = caster:GetTalentValue("modifier_pangolier_shield_4", "duration", true),
-
-			has_w7 = 0,
-			w7_stun_reduce = caster:GetTalentValue("modifier_pangolier_shield_7", "stun_reduce", true) / 100,
 
 			has_w1 = 0,
 
@@ -204,10 +204,6 @@ function pangolier_gyroshell_custom:UpdateTalents(name)
 		self.talents.has_w4 = 1
 	end
 
-	if caster:HasTalent("modifier_pangolier_shield_7") then
-		self.talents.has_w7 = 1
-	end
-
 	if caster:HasTalent("modifier_pangolier_shield_1") then
 		self.talents.has_w1 = 1
 	end
@@ -257,11 +253,7 @@ function pangolier_gyroshell_custom:GetCastPoint(iLevel)
 end
 
 function pangolier_gyroshell_custom:GetStun()
-	local result = self.stun_duration + (self.talents.has_r4 == 1 and self.talents.r4_stun or 0)
-	if self.talents.has_w7 == 1 then
-		result = result * (1 + self.talents.w7_stun_reduce)
-	end
-	return result
+	return self.stun_duration + (self.talents.has_r4 == 1 and self.talents.r4_stun or 0)
 end
 
 function pangolier_gyroshell_custom:OnAbilityPhaseStart()
@@ -370,6 +362,7 @@ function pangolier_gyroshell_custom:DealDamage(enemy, scepter_k)
 				{ duration = self.talents.r7_effect_duration }
 			)
 			legendary:SetDuration(0.2, true)
+			self.caster:LogProc("modifier_pangolier_rolling_7", nil, enemy)
 		end
 	elseif not scepter_k then
 		self.caster.pangolier_r = true
@@ -382,6 +375,7 @@ function pangolier_gyroshell_custom:DealDamage(enemy, scepter_k)
 
 		if enemy:IsRealHero() then
 			self:ProcCd()
+			self.caster:LogProc("pangolier_gyroshell_custom", nil, enemy)
 			if self.caster:GetQuest() == "Pangolier.Quest_8" then
 				self.caster:UpdateQuest(1)
 			end
@@ -453,7 +447,7 @@ function pangolier_gyroshell_custom:ProcCd(is_reduced)
 	end
 
 	local cd_items = is_reduced and self.talents.r4_cd_items_legendary or self.talents.r4_cd_items
-	self.caster:CdItems(cd_items)
+	self.caster:CdItems(cd_items, "modifier_pangolier_rolling_4")
 end
 
 modifier_pangolier_gyroshell_custom = class(mod_visible)
@@ -505,6 +499,8 @@ function modifier_pangolier_gyroshell_custom:OnCreated(table)
 	if self.ability.talents.has_r7 == 1 and IsValid(self.parent.rolling_ability_legendary) then
 		self.parent.rolling_ability_legendary:SetActivated(true)
 	end
+
+	self.parent:AddOrderFilter(self)
 
 	self.interval = 0.01
 	self:OnIntervalThink()
@@ -612,20 +608,23 @@ function modifier_pangolier_gyroshell_custom:OnIntervalThink()
 	end
 end
 
-function modifier_pangolier_gyroshell_custom:OnOrderCustom(new_pos, target)
-	if not IsServer() then
+function modifier_pangolier_gyroshell_custom:OrderFilter(params)
+	if not params.move then
+		return
+	end
+	if params.teleport then
 		return
 	end
 	if
 		self.parent:HasModifier("modifier_pangolier_gyroshell_custom_legendary_cast")
 		or self.parent:HasModifier("modifier_pangolier_rollup_custom")
 	then
-		return
+		return false
 	end
 
-	local vTargetPos = new_pos
-	if target ~= nil and target:IsNull() == false then
-		vTargetPos = target:GetAbsOrigin()
+	local vTargetPos = params.pos
+	if IsValid(params.target) then
+		vTargetPos = params.target:GetAbsOrigin()
 	end
 
 	local vMountOrigin = self.parent:GetOrigin()
@@ -640,6 +639,7 @@ function modifier_pangolier_gyroshell_custom:OnOrderCustom(new_pos, target)
 	vDir = vDir:Normalized()
 	local angles = VectorAngles(vDir)
 	self.parent.flDesiredYaw = angles.y
+	return false
 end
 
 function modifier_pangolier_gyroshell_custom:UpdateHorizontalMotionCustom()
@@ -748,6 +748,10 @@ function modifier_pangolier_gyroshell_custom:OnDestroy()
 		return
 	end
 
+	self.parent:LogProc(
+		self.timer <= 0 and "pangolier_gyroshell_custom_full" or "pangolier_gyroshell_custom_stop",
+		self:GetElapsedTime()
+	)
 	self.parent:UpdateUIshort({ hide = 1, hide_full = 1, priority = 2, style = "PangolierRolling" })
 
 	if IsValid(self.bkb_mod) then
@@ -1066,7 +1070,7 @@ function modifier_pangolier_gyroshell_custom_delay:OnCreated(table)
 		damage_type = self.ability.talents.r3_damage_type,
 		damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION,
 	}
-	self.parent:GenericParticle("particles/lc_odd_charge_mark.vpcf", self, true)
+	self.parent:GenericParticle("particles/legion_commander/lc_odd_charge_mark.vpcf", self, true)
 end
 
 function modifier_pangolier_gyroshell_custom_delay:DamageEvent_inc(params)
@@ -1102,7 +1106,7 @@ function modifier_pangolier_gyroshell_custom_delay:OnDestroy()
 
 	self.parent:EmitSound("Pango.Rolling_delay_damage")
 	self.parent:EmitSound("Pango.Rolling_delay_damage2")
-	self.parent:GenericParticle("particles/jugg_legendary_proc_.vpcf")
+	self.parent:GenericParticle("particles/juggernaut/jugg_legendary_proc_.vpcf")
 
 	local trail_pfx =
 		ParticleManager:CreateParticle("particles/items3_fx/iron_talon_active.vpcf", PATTACH_ABSORIGIN, self.parent)
@@ -1126,8 +1130,10 @@ function modifier_pangolier_gyroshell_custom_delay:OnDestroy()
 	)
 	ParticleManager:ReleaseParticleIndex(trail_pfx)
 
+	local health = self.parent:GetHealth()
 	local real_damage = DoDamage(self.damageTable, "modifier_pangolier_rolling_3")
 	self.parent:SendNumber(106, real_damage)
+	self.caster:LogProc("modifier_pangolier_rolling_3", real_damage / health * 100, self.parent)
 end
 
 modifier_pangolier_gyroshell_custom_legendary_health = class(mod_visible)
@@ -1288,7 +1294,7 @@ function modifier_pangolier_rollup_custom:OnCreated()
 	self.ability = self:GetAbility()
 
 	self.parent:AddAttackEvent_inc(self, true)
-	self.parent:AddOrderEvent(self)
+	self.parent:AddOrderFilter(self)
 
 	self.parent:Stop()
 	self.parent:NoDraw(self)
@@ -1353,8 +1359,8 @@ function modifier_pangolier_rollup_custom:AttackEvent_inc(params)
 	self.parent.rolling_ability:RollUpDamage(self.ability.hit_radius)
 end
 
-function modifier_pangolier_rollup_custom:OrderEvent(params)
-	if not IsServer() then
+function modifier_pangolier_rollup_custom:OrderFilter(params)
+	if params.teleport then
 		return
 	end
 	local order = params.order_type
@@ -1512,11 +1518,14 @@ function modifier_pangolier_gyroshell_custom_legendary_cast:OnCreated(table)
 
 	self.hit_radius = self.parent.rolling_ability.hit_radius
 
-	self.parent:AddOrderEvent(self)
+	self.parent:AddOrderFilter(self)
 	self.parent:StartGesture(ACT_DOTA_SPAWN)
 
-	self.effect_cast =
-		ParticleManager:CreateParticle("particles/beast_charge.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
+	self.effect_cast = ParticleManager:CreateParticle(
+		"particles/primal_beast/beast_charge.vpcf",
+		PATTACH_ABSORIGIN_FOLLOW,
+		self.parent
+	)
 	ParticleManager:SetParticleControl(self.effect_cast, 0, self.parent:GetOrigin())
 	ParticleManager:SetParticleControl(self.effect_cast, 2, Vector(self.hit_radius, 0, 0))
 	self:AddParticle(self.effect_cast, false, false, -1, false, false)
@@ -1573,8 +1582,8 @@ function modifier_pangolier_gyroshell_custom_legendary_cast:CheckState()
 	}
 end
 
-function modifier_pangolier_gyroshell_custom_legendary_cast:OrderEvent(params)
-	if not IsServer() then
+function modifier_pangolier_gyroshell_custom_legendary_cast:OrderFilter(params)
+	if params.teleport then
 		return
 	end
 	local order = params.order_type
@@ -1653,7 +1662,7 @@ function modifier_pangolier_gyroshell_custom_legendary:OnCreated(table)
 	end
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
-	self.parent:GenericParticle("particles/lc_odd_charge.vpcf", self)
+	self.parent:GenericParticle("particles/legion_commander/lc_odd_charge.vpcf", self)
 	self.parent:GenericParticle(
 		"particles/units/heroes/hero_primal_beast/primal_beast_onslaught_charge_active.vpcf",
 		self

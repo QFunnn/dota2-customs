@@ -9,8 +9,13 @@
 
 
 LinkLuaModifier("modifier_lina_innate_custom", "abilities/lina/lina_innate_custom", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_lina_innate_custom_burn", "abilities/lina/lina_innate_custom", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_lina_innate_custom_magic", "abilities/lina/lina_innate_custom", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_lina_innate_custom_burn", "abilities/lina/lina_innate_custom", LUA_MODIFIER_MOTION_NONE, true)
+LinkLuaModifier(
+	"modifier_lina_innate_custom_magic",
+	"abilities/lina/lina_innate_custom",
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_lina_laguna_3"
+)
 
 lina_innate_custom = class({})
 lina_innate_custom.talents = {}

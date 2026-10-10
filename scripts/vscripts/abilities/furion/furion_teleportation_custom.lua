@@ -31,22 +31,26 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_furion_teleportation_custom_legendary",
 	"abilities/furion/furion_teleportation_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_furion_teleport_7"
 )
 LinkLuaModifier(
 	"modifier_furion_teleportation_custom_legendary_damage",
 	"abilities/furion/furion_teleportation_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_furion_teleport_7"
 )
 LinkLuaModifier(
 	"modifier_furion_teleportation_custom_slow",
 	"abilities/furion/furion_teleportation_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_furion_teleport_2"
 )
 LinkLuaModifier(
 	"modifier_furion_teleportation_custom_armor",
 	"abilities/furion/furion_teleportation_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_furion_hero_1"
 )
 LinkLuaModifier(
 	"modifier_furion_teleportation_custom_status",
@@ -56,7 +60,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_furion_teleportation_custom_bkb_cd",
 	"abilities/furion/furion_teleportation_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_furion_hero_5"
 )
 LinkLuaModifier(
 	"modifier_furion_teleportation_custom_quest",
@@ -85,8 +90,8 @@ function furion_teleportation_custom:Precache(context)
 	PrecacheResource("particle", "particles/nature_prophet/double_attack.vpcf", context)
 	PrecacheResource("particle", "particles/nature_prophet/teleport_armor.vpcf", context)
 	PrecacheResource("particle", "particles/hoodwink/scurry_shield.vpcf", context)
-	PrecacheResource("particle", "particles/furion/teleport_refresh.vpcf", context)
-	PrecacheResource("particle", "particles/furtion/teleport_proc_aoe.vpcf", context)
+	PrecacheResource("particle", "particles/nature_prophet/teleport_refresh.vpcf", context)
+	PrecacheResource("particle", "particles/nature_prophet/teleport_proc_aoe.vpcf", context)
 	PrecacheResource("particle", "particles/nature_prophet/sprout_buff.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_furion/furion_sprout_damage.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_brewmaster/brewmaster_thunder_clap_debuff.vpcf", context)
@@ -605,8 +610,11 @@ function modifier_furion_teleportation_custom_tracker:AttackEvent_out(params)
 		local chance = attacker.is_treant and self.ability.talents.w1_chance_ent or self.ability.talents.w1_chance
 		if RollPseudoRandomPercentage(chance, 8999, self.parent) then
 			target:EmitSound("Furion.Teleport_proc")
-			local particle =
-				ParticleManager:CreateParticle("particles/furtion/teleport_proc_aoe.vpcf", PATTACH_WORLDORIGIN, nil)
+			local particle = ParticleManager:CreateParticle(
+				"particles/nature_prophet/teleport_proc_aoe.vpcf",
+				PATTACH_WORLDORIGIN,
+				nil
+			)
 			ParticleManager:SetParticleControl(particle, 0, target:GetAbsOrigin())
 			ParticleManager:Delete(particle, 1)
 
@@ -691,7 +699,7 @@ function modifier_furion_teleportation_custom_tracker:AttackStartEvent_out(param
 		self.ability.talents.has_w4 == 1
 		and not self.parent:HasModifier("modifier_furion_teleportation_custom_legendary")
 	then
-		self.parent:CdAbility(self.ability, nil, self.ability.talents.w4_cd_inc)
+		self.parent:CdAbility(self.ability, nil, self.ability.talents.w4_cd_inc, "modifier_furion_teleport_4")
 	end
 
 	if legendary_mod then
@@ -745,8 +753,11 @@ function modifier_furion_teleportation_custom_tracker:DamageEvent_inc(params)
 		{ duration = self.ability.talents.h5_bkb, effect = 2, sound = 1 }
 	)
 
-	local particle =
-		ParticleManager:CreateParticle("particles/furion/teleport_refresh.vpcf", PATTACH_CUSTOMORIGIN, self.parent)
+	local particle = ParticleManager:CreateParticle(
+		"particles/nature_prophet/teleport_refresh.vpcf",
+		PATTACH_CUSTOMORIGIN,
+		self.parent
+	)
 	ParticleManager:SetParticleControlEnt(
 		particle,
 		0,
@@ -918,7 +929,12 @@ function modifier_furion_teleportation_custom_legendary:OnDestroy()
 	if self.refresh then
 		self.ability:EndCooldown()
 	elseif self.ability.talents.has_w4 == 1 and self.stack > 0 then
-		self.parent:CdAbility(self.ability, nil, self.ability.talents.w4_cd_inc * self.stack)
+		self.parent:CdAbility(
+			self.ability,
+			nil,
+			self.ability.talents.w4_cd_inc * self.stack,
+			"modifier_furion_teleport_4"
+		)
 	end
 
 	self.ability:AddShield(self.parent)

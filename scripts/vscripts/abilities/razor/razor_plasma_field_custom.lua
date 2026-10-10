@@ -70,9 +70,9 @@ function razor_plasma_field_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
 	end
-	PrecacheResource("particle", "particles/razor_custom/razor_whip.vpcf", context)
-	PrecacheResource("particle", "particles/razor_custom/razor_ambient.vpcf", context)
-	PrecacheResource("particle", "particles/razor_custom/razor_ambient_main.vpcf", context)
+	PrecacheResource("particle", "particles/razor/razor_whip.vpcf", context)
+	PrecacheResource("particle", "particles/razor/razor_ambient.vpcf", context)
+	PrecacheResource("particle", "particles/razor/razor_ambient_main.vpcf", context)
 
 	PrecacheResource("particle", "particles/units/heroes/hero_razor/razor_plasmafield.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_zuus/zuus_static_field.vpcf", context)
@@ -81,16 +81,16 @@ function razor_plasma_field_custom:Precache(context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_monkey_king_fur_army.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_zuus/zuus_lightning_bolt_glow_fx.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_techies/techies_stasis_trap_explode.vpcf", context)
-	PrecacheResource("particle", "particles/huskar_timer.vpcf", context)
+	PrecacheResource("particle", "particles/huskar/huskar_timer.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/econ/items/zeus/zeus_immortal_2021/zeus_immortal_2021_static_field.vpcf",
 		context
 	)
 	PrecacheResource("particle", "particles/items_fx/force_staff.vpcf", context)
-	PrecacheResource("particle", "particles/zuus_speed.vpcf", context)
+	PrecacheResource("particle", "particles/zeus/zuus_speed.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_mjollnir_shield.vpcf", context)
-	PrecacheResource("particle", "particles/zuus_shield_wrath.vpcf", context)
+	PrecacheResource("particle", "particles/zeus/zuus_shield_wrath.vpcf", context)
 	PrecacheResource("particle", "particles/econ/items/razor/razor_ti6/razor_plasmafield_ti6.vpcf", context)
 
 	PrecacheResource("particle", "particles/dev/empty_particle.vpcf", context)
@@ -925,7 +925,7 @@ function modifier_razor_plasma_field_custom_legendary_anim:OnIntervalThink()
 		decimal = 1
 	end
 
-	local particleName = "particles/huskar_timer.vpcf"
+	local particleName = "particles/huskar/huskar_timer.vpcf"
 	local particle = ParticleManager:CreateParticle(particleName, PATTACH_OVERHEAD_FOLLOW, self.parent)
 	ParticleManager:SetParticleControl(particle, 0, self.parent:GetAbsOrigin())
 	ParticleManager:SetParticleControl(particle, 1, Vector(0, int, decimal))
@@ -1013,7 +1013,7 @@ function modifier_razor_plasma_field_custom_speed:OnCreated()
 	if not IsServer() then
 		return
 	end
-	self.parent:GenericParticle("particles/zuus_speed.vpcf", self)
+	self.parent:GenericParticle("particles/zeus/zuus_speed.vpcf", self)
 
 	self:OnIntervalThink()
 	self:StartIntervalThink(self.parent:GetTalentValue("modifier_razor_plasma_5", "interval") - 0.01)
@@ -1087,7 +1087,7 @@ function modifier_razor_plasma_field_custom_shield:OnCreated(table)
 	local shield_size = self.parent:GetModelRadius()
 
 	local particle =
-		ParticleManager:CreateParticle("particles/zuus_shield_wrath.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
+		ParticleManager:CreateParticle("particles/zeus/zuus_shield_wrath.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
 	local common_vector = Vector(shield_size, 0, shield_size)
 	ParticleManager:SetParticleControl(particle, 1, common_vector)
 	ParticleManager:SetParticleControl(particle, 2, common_vector)

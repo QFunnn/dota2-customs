@@ -17,12 +17,14 @@ LinkLuaModifier("modifier_slark_dark_pact_custom", "abilities/slark/slark_dark_p
 LinkLuaModifier(
 	"modifier_slark_dark_pact_custom_legendary",
 	"abilities/slark/slark_dark_pact_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_slark_pact_7" }
 )
 LinkLuaModifier(
 	"modifier_slark_dark_pact_custom_legendary_stack",
 	"abilities/slark/slark_dark_pact_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_slark_pact_7"
 )
 LinkLuaModifier(
 	"modifier_slark_dark_pact_custom_tracker",
@@ -32,12 +34,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_slark_dark_pact_custom_speed",
 	"abilities/slark/slark_dark_pact_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_slark_pounce_4"
 )
 LinkLuaModifier(
 	"modifier_slark_dark_pact_custom_health_bonus",
 	"abilities/slark/slark_dark_pact_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_slark_pact_3"
 )
 
 slark_dark_pact_custom = class({})
@@ -52,11 +56,10 @@ function slark_dark_pact_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_slark/slark_dark_pact_pulses_body.vpcf", context)
 	PrecacheResource("particle", "particles/slark/pact_legendary_stack.vpcf", context)
 	PrecacheResource("particle", "particles/slark/pact_move.vpcf", context)
-	PrecacheResource("particle", "particles/lc_odd_proc_.vpcf", context)
-	PrecacheResource("particle", "particles/slark/pact_damage.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_odd_proc_.vpcf", context)
 	PrecacheResource("particle", "particles/slark/pounce_legendary_water.vpcf", context)
 	PrecacheResource("particle", "particles/slark/pact_legendary_heal.vpcf", context)
-	PrecacheResource("particle", "particles/shield/pact_shield.vpcf", context)
+	PrecacheResource("particle", "particles/slark/pact_shield.vpcf", context)
 	PrecacheResource("particle", "particles/slark/pact_legendary_radius.vpcf", context)
 	PrecacheResource("particle", "particles/slark/dance_lifesteal.vpcf", context)
 end
@@ -229,7 +232,7 @@ function slark_dark_pact_custom:AddStack(hit_hero, is_legendary)
 				end)
 
 				local cast_effect = ParticleManager:CreateParticle(
-					"particles/shield/pact_shield.vpcf",
+					"particles/slark/pact_shield.vpcf",
 					PATTACH_CUSTOMORIGIN_FOLLOW,
 					self.parent
 				)
@@ -264,7 +267,7 @@ function slark_dark_pact_custom:AddStack(hit_hero, is_legendary)
 
 	if self.talents.has_w4 == 1 then
 		local cd_items = is_legendary and self.talents.w4_cd_items_legendary or self.talents.w4_cd_items
-		self.parent:CdItems(cd_items)
+		self.parent:CdItems(cd_items, "modifier_slark_pounce_4")
 		self.parent:AddNewModifier(
 			self.parent,
 			self,
@@ -719,7 +722,7 @@ function modifier_slark_dark_pact_custom_legendary:OnDestroy()
 		return
 	end
 	self.ability:StartCd()
-	self.parent:CdAbility(self.ability, self.max_time)
+	self.parent:CdAbility(self.ability, self.max_time, nil, "modifier_slark_pact_7")
 	self.parent:RemoveModifierByName("modifier_slark_dark_pact_custom_legendary_stack")
 end
 

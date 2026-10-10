@@ -16,12 +16,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_jakiro_innate_custom_active_frost",
 	"abilities/jakiro/jakiro_innate_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 LinkLuaModifier(
 	"modifier_jakiro_innate_custom_active_fire",
 	"abilities/jakiro/jakiro_innate_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 LinkLuaModifier(
 	"modifier_jakiro_innate_custom_active_last_spell",
@@ -31,28 +33,38 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_jakiro_innate_custom_regen_mana",
 	"abilities/jakiro/jakiro_innate_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_jakiro_hero_2"
 )
 LinkLuaModifier(
 	"modifier_jakiro_innate_custom_regen_heal",
 	"abilities/jakiro/jakiro_innate_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_jakiro_hero_2" }
 )
-LinkLuaModifier("modifier_jakiro_innate_custom_move", "abilities/jakiro/jakiro_innate_custom", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier(
+	"modifier_jakiro_innate_custom_move",
+	"abilities/jakiro/jakiro_innate_custom",
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_jakiro_hero_5"
+)
 LinkLuaModifier(
 	"modifier_jakiro_innate_custom_armor",
 	"abilities/jakiro/jakiro_innate_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_jakiro_hero_5" }
 )
 LinkLuaModifier(
 	"modifier_jakiro_innate_custom_scepter_cd",
 	"abilities/jakiro/jakiro_innate_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "Scepter" }
 )
 LinkLuaModifier(
 	"modifier_jakiro_innate_custom_scepter_ice",
 	"abilities/jakiro/jakiro_innate_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "Scepter" }
 )
 LinkLuaModifier(
 	"modifier_jakiro_innate_custom_scepter_fire",
@@ -77,10 +89,10 @@ function jakiro_innate_custom:Precache(context)
 	PrecacheResource("particle", "particles/jakiro/macropyre_proc.vpcf", context)
 	PrecacheResource("particle", "particles/econ/events/fall_2022/phase_boots/phase_boots_fall_2022.vpcf", context)
 	PrecacheResource("particle", "particles/jakiro/spells_armor.vpcf", context)
-	PrecacheResource("particle", "particles/orange_heal.vpcf", context)
-	PrecacheResource("particle", "particles/jakrio/scepter_shield_ice.vpcf", context)
+	PrecacheResource("particle", "particles/jakiro/orange_heal.vpcf", context)
+	PrecacheResource("particle", "particles/jakiro/scepter_shield_ice.vpcf", context)
 	PrecacheResource("particle", "particles/jakiro/scepter_shield_ice_start.vpcf", context)
-	PrecacheResource("particle", "particles/maiden_arcane.vpcf", context)
+	PrecacheResource("particle", "particles/crystal_maiden/maiden_arcane.vpcf", context)
 	PrecacheResource("particle", "particles/jakiro/scepter_shield_ice_end.vpcf", context)
 	PrecacheResource("particle", "particles/jakiro/scepter_shield_ice_stun.vpcf", context)
 	PrecacheResource(
@@ -335,7 +347,7 @@ function jakiro_innate_custom:SpellCast(ability, type)
 	end
 
 	if mod and new_spell == 1 and IsValid(self.caster.dual_ability) then
-		self.caster:CdAbility(self.caster.dual_ability, nil, self.talents.q7_cd)
+		self.caster:CdAbility(self.caster.dual_ability, nil, self.talents.q7_cd, "modifier_jakiro_dual_7")
 	end
 
 	self.caster:AddNewModifier(
@@ -506,10 +518,10 @@ function modifier_jakiro_innate_custom_tracker:DamageEvent_inc(params)
 			self.parent:EmitSound("Jakiro.Scepter_shield_ice2")
 
 			self.parent:GenericParticle("particles/jakiro/scepter_shield_ice_start.vpcf", self.shield_mod)
-			self.parent:GenericParticle("particles/maiden_arcane.vpcf")
+			self.parent:GenericParticle("particles/crystal_maiden/maiden_arcane.vpcf")
 
 			self.pfx = ParticleManager:CreateParticle(
-				"particles/jakrio/scepter_shield_ice.vpcf",
+				"particles/jakiro/scepter_shield_ice.vpcf",
 				PATTACH_ABSORIGIN_FOLLOW,
 				self.parent
 			)
@@ -744,7 +756,7 @@ function modifier_jakiro_innate_custom_tracker:OnIntervalThink()
 	end
 
 	if proc_cd then
-		self.parent:CdItems(self.interval * self.ability.talents.q4_cd_items)
+		self.parent:CdItems(self.interval * self.ability.talents.q4_cd_items, "modifier_jakiro_dual_4")
 	end
 
 	if has_liquid then
@@ -917,10 +929,10 @@ function modifier_jakiro_innate_custom_tracker:DamageEvent_out(params)
 			if self.path_shield then
 				self.path_shield.shield_attack_max = 0
 				self.parent:GenericParticle("particles/jakiro/scepter_shield_ice_start.vpcf", self.path_shield)
-				self.parent:GenericParticle("particles/maiden_arcane.vpcf")
+				self.parent:GenericParticle("particles/crystal_maiden/maiden_arcane.vpcf")
 
 				self.pfx = ParticleManager:CreateParticle(
-					"particles/jakrio/scepter_shield_ice.vpcf",
+					"particles/jakiro/scepter_shield_ice.vpcf",
 					PATTACH_ABSORIGIN_FOLLOW,
 					self.parent
 				)
@@ -1344,7 +1356,7 @@ function modifier_jakiro_innate_custom_scepter_fire:OnIntervalThink(first)
 			result * real_damage * self.heal,
 			self.ability,
 			true,
-			"particles/orange_heal.vpcf",
+			"particles/jakiro/orange_heal.vpcf",
 			"Scepter"
 		)
 	end

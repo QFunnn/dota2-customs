@@ -1251,7 +1251,8 @@ function modifier_duel_hero_start:OnCreated(table)
 
 	local point = self.parent:GetAbsOrigin()
 
-	local duel_particle = ParticleManager:CreateParticle("particles/legion_duel_ring.vpcf", PATTACH_WORLDORIGIN, nil)
+	local duel_particle =
+		ParticleManager:CreateParticle("particles/legion_commander/legion_duel_ring.vpcf", PATTACH_WORLDORIGIN, nil)
 	ParticleManager:SetParticleControl(duel_particle, 0, point)
 	ParticleManager:SetParticleControl(duel_particle, 7, point)
 
@@ -1319,7 +1320,8 @@ function modifier_duel_hero_start:OnIntervalThink()
 		decimal = 1
 	end
 
-	local particle = ParticleManager:CreateParticle("particles/duel_timer.vpcf", PATTACH_OVERHEAD_FOLLOW, caster)
+	local particle =
+		ParticleManager:CreateParticle("particles/generic/duel_timer.vpcf", PATTACH_OVERHEAD_FOLLOW, caster)
 	ParticleManager:SetParticleControl(particle, 0, caster:GetAbsOrigin())
 	ParticleManager:SetParticleControl(particle, 1, Vector(0, int, decimal))
 	ParticleManager:SetParticleControl(particle, 2, Vector(digits, 0, 0))

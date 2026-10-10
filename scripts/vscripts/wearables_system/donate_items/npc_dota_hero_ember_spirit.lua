@@ -133,7 +133,7 @@ return {
 		["sets"] = "volcanic_guard",
 		["ParticlesItems"] = {
 			{
-				["ParticleName"] = "particles/ember_spirit_swords/ember_spirit_ambient_sword_primary_volcanic.vpcf",
+				["ParticleName"] = "particles/ember_spirit/ember_spirit_ambient_sword_primary_volcanic.vpcf",
 				["DefaultPattch"] = PATTACH_ABSORIGIN_FOLLOW,
 				["ControllPoints"] = {
 					[0] = {
@@ -145,7 +145,7 @@ return {
 				},
 			},
 			{
-				["ParticleName"] = "particles/ember_spirit_swords/ember_spirit_ambient_sword_primary_blade_volcanic.vpcf",
+				["ParticleName"] = "particles/ember_spirit/ember_spirit_ambient_sword_primary_blade_volcanic.vpcf",
 				["DefaultPattch"] = PATTACH_ABSORIGIN_FOLLOW,
 				["ControllPoints"] = {
 					[0] = {
@@ -286,7 +286,7 @@ return {
 		["sets"] = "volcanic_guard",
 		["ParticlesItems"] = {
 			{
-				["ParticleName"] = "particles/ember_spirit_swords/ember_spirit_ambient_sword_offhand_volcanic.vpcf",
+				["ParticleName"] = "particles/ember_spirit/ember_spirit_ambient_sword_offhand_volcanic.vpcf",
 				["DefaultPattch"] = PATTACH_ABSORIGIN_FOLLOW,
 				["ControllPoints"] = {
 					[0] = {
@@ -868,7 +868,7 @@ return {
 		["sets"] = "wandering_flame",
 		["ParticlesItems"] = {
 			{
-				["ParticleName"] = "particles/ember_spirit_swords/ember_spirit_ambient_sword_offhand_wandering.vpcf",
+				["ParticleName"] = "particles/ember_spirit/ember_spirit_ambient_sword_offhand_wandering.vpcf",
 				["DefaultPattch"] = PATTACH_ABSORIGIN_FOLLOW,
 				["ControllPoints"] = {
 					[0] = {
@@ -899,7 +899,7 @@ return {
 		["sets"] = "wandering_flame",
 		["ParticlesItems"] = {
 			{
-				["ParticleName"] = "particles/ember_spirit_swords/ember_spirit_ambient_sword_primary_wandering.vpcf",
+				["ParticleName"] = "particles/ember_spirit/ember_spirit_ambient_sword_primary_wandering.vpcf",
 				["DefaultPattch"] = PATTACH_ABSORIGIN_FOLLOW,
 				["ControllPoints"] = {
 					[0] = {

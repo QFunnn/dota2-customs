@@ -1173,7 +1173,7 @@ return {
 			"particles/econ/items/wraith_king/wraith_king_arcana/wk_arc_wraithfireblast.vpcf",
 			"particles/econ/items/wraith_king/wraith_king_arcana/wk_arc_reincarn.vpcf",
 			"particles/econ/items/wraith_king/wraith_king_arcana/wk_arc_slow_debuff.vpcf",
-			"particles/wraith_king_custom/wk_arc_reincarn_tombstone.vpcf",
+			"particles/wraith_king/wk_arc_reincarn_tombstone.vpcf",
 		},
 	},
 	[1345601] = {
@@ -1246,7 +1246,7 @@ return {
 			"particles/econ/items/wraith_king/wraith_king_arcana/wk_arc_wraithfireblast_style2.vpcf",
 			"particles/econ/items/wraith_king/wraith_king_arcana/wk_arc_reincarn_style2.vpcf",
 			"particles/econ/items/wraith_king/wraith_king_arcana/wk_arc_slow_debuff.vpcf",
-			"particles/wraith_king_custom/wk_arc_reincarn_tombstone.vpcf",
+			"particles/wraith_king/wk_arc_reincarn_tombstone.vpcf",
 		},
 	},
 	[13473] = {

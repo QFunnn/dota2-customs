@@ -16,7 +16,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_custom_juggernaut_healing_ward_aura",
 	"abilities/juggernaut/custom_juggernaut_healing_ward.lua",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 LinkLuaModifier(
 	"modifier_custom_juggernaut_healing_ward_invun",
@@ -31,7 +32,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_custom_juggernaut_healing_ward_bonus",
 	"abilities/juggernaut/custom_juggernaut_healing_ward.lua",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_juggernaut_hero_2"
 )
 LinkLuaModifier(
 	"modifier_custom_juggernaut_healing_ward_legendary_knock_cd",
@@ -55,7 +57,7 @@ function custom_juggernaut_healing_ward:Precache(context)
 	PrecacheResource("particle", "particles/items2_fx/refresher.vpcf", context)
 	PrecacheResource("particle", "particles/juggernaut/ward_immune.vpcf", context)
 	PrecacheResource("particle", "particles/juggernaut/ward_burn.vpcf", context)
-	PrecacheResource("particle", "particles/jugger_ward_legend.vpcf", context)
+	PrecacheResource("particle", "particles/juggernaut/jugger_ward_legend.vpcf", context)
 	PrecacheResource("particle", "particles/juggernaut/ward_invun.vpcf", context)
 	PrecacheResource("particle", "particles/juggernaut/ward_bolt_damage.vpcf", context)
 	PrecacheResource("particle", "particles/juggernaut/ward_leash.vpcf", context)
@@ -763,7 +765,7 @@ function modifier_custom_juggernaut_healing_ward_aura:OnCreated(table)
 		self.parent:GenericParticle("particles/juggernaut/ward_burn.vpcf", self)
 	elseif self.parent == self.caster then
 		if self.has_scepter then
-			self.parent:GenericParticle("particles/jugger_ward_legend.vpcf", self)
+			self.parent:GenericParticle("particles/juggernaut/jugger_ward_legend.vpcf", self)
 		end
 		if self.ability.talents.has_w4 == 1 then
 			self.interval = 0.5
@@ -776,7 +778,7 @@ function modifier_custom_juggernaut_healing_ward_aura:OnIntervalThink()
 	if not IsServer() then
 		return
 	end
-	self.parent:CdItems(self.interval * self.ability.talents.w4_cd_items)
+	self.parent:CdItems(self.interval * self.ability.talents.w4_cd_items, "modifier_juggernaut_healingward_4")
 end
 
 function modifier_custom_juggernaut_healing_ward_aura:OnDestroy()

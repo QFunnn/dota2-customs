@@ -31,27 +31,32 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_muerta_dead_shot_custom_legendary_stack",
 	"abilities/muerta/muerta_dead_shot_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_muerta_dead_7"
 )
 LinkLuaModifier(
 	"modifier_muerta_dead_shot_custom_damage_reduce",
 	"abilities/muerta/muerta_dead_shot_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_muerta_hero_4"
 )
 LinkLuaModifier(
 	"modifier_muerta_dead_shot_custom_speed",
 	"abilities/muerta/muerta_dead_shot_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_muerta_dead_4"
 )
 LinkLuaModifier(
 	"modifier_muerta_dead_shot_custom_auto_cd",
 	"abilities/muerta/muerta_dead_shot_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_muerta_hero_4"
 )
 LinkLuaModifier(
 	"modifier_muerta_dead_shot_custom_burn",
 	"abilities/muerta/muerta_dead_shot_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_muerta_dead_3"
 )
 
 muerta_dead_shot_custom = class({})
@@ -77,7 +82,7 @@ function muerta_dead_shot_custom:Precache(context)
 	PrecacheResource("particle", "particles/muerta/gun_evasion.vpcf", context)
 	PrecacheResource("particle", "particles/muerta/dead_shot_stack.vpcf", context)
 	PrecacheResource("particle", "particles/muerta/shot_damage_reduce.vpcf", context)
-	PrecacheResource("particle", "particles/wk_burn.vpcf", context)
+	PrecacheResource("particle", "particles/wraith_king/wk_burn.vpcf", context)
 end
 
 function muerta_dead_shot_custom:UpdateTalents(name)
@@ -120,6 +125,7 @@ function muerta_dead_shot_custom:UpdateTalents(name)
 			q7_width = caster:GetTalentValue("modifier_muerta_dead_7", "width", true),
 			q7_cd_proc = caster:GetTalentValue("modifier_muerta_dead_7", "cd_proc", true),
 			q7_heal = caster:GetTalentValue("modifier_muerta_dead_7", "heal", true) / 100,
+			q7_creeps = caster:GetTalentValue("modifier_muerta_dead_7", "creeps", true) / 100,
 
 			has_h1 = 0,
 			h1_fear = 0,
@@ -325,7 +331,8 @@ function muerta_dead_shot_custom:OnProjectileHit_ExtraData(target, location, dat
 			)
 			if is_hero then
 				self.caster:CdItems(
-					self.talents.has_q7 == 1 and self.talents.q4_cd_items_legendary or self.talents.q4_cd_items
+					self.talents.has_q7 == 1 and self.talents.q4_cd_items_legendary or self.talents.q4_cd_items,
+					"modifier_muerta_dead_4"
 				)
 			end
 		end
@@ -390,7 +397,7 @@ function muerta_dead_shot_custom:DealDamage(target, damage_ability)
 	end
 
 	if target:IsCreep() then
-		damage = damage * (1 + self.creeps_damage)
+		damage = damage * (1 + self.creeps_damage + (self.talents.has_q7 == 1 and self.talents.q7_creeps or 0))
 	end
 
 	self:ApplyBurn(target, damage)
@@ -881,7 +888,7 @@ function modifier_muerta_dead_shot_custom_burn:OnCreated(table)
 		return
 	end
 
-	self.parent:GenericParticle("particles/wk_burn.vpcf", self)
+	self.parent:GenericParticle("particles/wraith_king/wk_burn.vpcf", self)
 
 	self:OnRefresh(table)
 	self:StartIntervalThink(self.interval)

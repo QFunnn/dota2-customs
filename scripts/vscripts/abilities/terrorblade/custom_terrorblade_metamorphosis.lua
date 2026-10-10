@@ -61,7 +61,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_custom_terrorblade_metamorphosis_perma",
 	"abilities/terrorblade/custom_terrorblade_metamorphosis",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_terror_meta_4"
 )
 LinkLuaModifier(
 	"modifier_custom_terrorblade_metamorphosis_portrait",
@@ -97,22 +98,22 @@ function custom_terrorblade_metamorphosis:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_terrorblade/terrorblade_reflection_slow.vpcf", context)
 	PrecacheResource("particle", "particles/items2_fx/eternal_shroud.vpcf", context)
 	PrecacheResource("particle", "particles/models/heroes/terrorblade/demon_zeal.vpcf", context)
-	PrecacheResource("particle", "particles/tb_aoe.vpcf", context)
+	PrecacheResource("particle", "particles/terrorblade/tb_aoe.vpcf", context)
 	PrecacheResource("particle", "particles/generic_gameplay/generic_manaburn.vpcf", context)
 
 	PrecacheResource("model", "models/terrorblade_custom/demon.vmdl", context)
 
 	PrecacheResource(
 		"particle",
-		"particles/terrorblade_custom/terrorblade_ti9_immortal_metamorphosis_base_attack_1.vpcf",
+		"particles/terrorblade/terrorblade_ti9_immortal_metamorphosis_base_attack_1.vpcf",
 		context
 	)
-	PrecacheResource("particle", "particles/terrorblade_custom/terrorblade_metamorphosis_base_attack_1.vpcf", context)
+	PrecacheResource("particle", "particles/terrorblade/terrorblade_metamorphosis_base_attack_1.vpcf", context)
 
 	PrecacheResource("particle", "particles/terrorblade/meta_legendary_stack.vpcf", context)
 	PrecacheResource("particle", "particles/slark/essence_cleave.vpcf", context)
 	PrecacheResource("particle", "particles/enigma/summon_perma.vpcf", context)
-	PrecacheResource("particle", "particles/ogre_dd.vpcf", context)
+	PrecacheResource("particle", "particles/ogre_magi/ogre_dd.vpcf", context)
 end
 
 function custom_terrorblade_metamorphosis:UpdateTalents(name)
@@ -189,6 +190,7 @@ function custom_terrorblade_metamorphosis:UpdateTalents(name)
 	if caster:HasTalent("modifier_terror_meta_7") then
 		self.talents.has_e7 = 1
 		caster:AddAttackStartEvent_out(self.tracker, true)
+		caster:AddOrderFilter(self.tracker)
 	end
 
 	if not IsServer() then
@@ -599,12 +601,12 @@ function modifier_custom_terrorblade_metamorphosis:GetModifierProjectileName()
 		self
 	)
 	if self.caster.current_model == "models/heroes/terrorblade/terrorblade_arcana.vmdl" then
-		local particle_name = "particles/terrorblade_custom/terrorblade_metamorphosis_base_attack_"
+		local particle_name = "particles/terrorblade/terrorblade_metamorphosis_base_attack_"
 		if
 			base_particle
 			== "particles/econ/items/terrorblade/terrorblade_ti9_immortal/terrorblade_ti9_immortal_metamorphosis_base_attack.vpcf"
 		then
-			particle_name = "particles/terrorblade_custom/terrorblade_ti9_immortal_metamorphosis_base_attack_"
+			particle_name = "particles/terrorblade/terrorblade_ti9_immortal_metamorphosis_base_attack_"
 		end
 		local id = self.caster:GetTerrorbladeNumber()
 		if id then
@@ -614,9 +616,9 @@ function modifier_custom_terrorblade_metamorphosis:GetModifierProjectileName()
 			base_particle
 			== "particles/econ/items/terrorblade/terrorblade_ti9_immortal/terrorblade_ti9_immortal_metamorphosis_base_attack.vpcf"
 		then
-			return "particles/terrorblade_custom/terrorblade_ti9_immortal_metamorphosis_base_attack_1.vpcf"
+			return "particles/terrorblade/terrorblade_ti9_immortal_metamorphosis_base_attack_1.vpcf"
 		end
-		return "particles/terrorblade_custom/terrorblade_metamorphosis_base_attack_1.vpcf"
+		return "particles/terrorblade/terrorblade_metamorphosis_base_attack_1.vpcf"
 	end
 	return wearables_system:GetParticleReplacementAbility(
 		self.caster,
@@ -693,6 +695,23 @@ end
 function modifier_custom_terrorblade_metamorphosis_tracker:OnRefresh()
 	self.ability.bonus_range = self.ability:GetSpecialValueFor("bonus_range")
 	self.ability.bonus_damage = self.ability:GetSpecialValueFor("bonus_damage")
+end
+
+function modifier_custom_terrorblade_metamorphosis_tracker:OrderFilter(params)
+	if not params.ability then
+		return
+	end
+	if params.ability:GetName() ~= "terrorblade_demon_zeal_custom" then
+		return
+	end
+	if self.ability.talents.has_e5 == 1 then
+		return
+	end
+	if not self.parent:IsStunned() and self.parent:GetForceAttackTarget() == nil then
+		return
+	end
+
+	return false
 end
 
 function modifier_custom_terrorblade_metamorphosis_tracker:DeclareFunctions()
@@ -958,7 +977,8 @@ function modifier_custom_terrorblade_metamorphosis_tracker:AttackEvent_out(param
 	if mod then
 		damage = damage * self.ability.talents.e2_bonus
 
-		local effect_cast = ParticleManager:CreateParticle("particles/tb_aoe.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
+		local effect_cast =
+			ParticleManager:CreateParticle("particles/terrorblade/tb_aoe.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
 		ParticleManager:SetParticleControl(effect_cast, 0, target:GetAbsOrigin())
 		ParticleManager:SetParticleControl(effect_cast, 1, target:GetAbsOrigin())
 		ParticleManager:DestroyParticle(effect_cast, false)
@@ -1163,11 +1183,15 @@ end
 
 modifier_custom_terrorblade_metamorphosis_portrait = class(mod_hidden)
 function modifier_custom_terrorblade_metamorphosis_portrait:GetEffectName()
-	return "particles/ogre_dd.vpcf"
+	return "particles/ogre_magi/ogre_dd.vpcf"
 end
 
 terrorblade_demon_zeal_custom = class({})
 terrorblade_demon_zeal_custom.talents = {}
+
+function terrorblade_demon_zeal_custom:GetAbilityTextureName()
+	return wearables_system:GetAbilityIconReplacement(self:GetCaster(), "terrorblade_demon_zeal", self)
+end
 
 function terrorblade_demon_zeal_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
@@ -1318,6 +1342,11 @@ function modifier_terrorblade_demon_zeal_custom_buff:GetModifierModelScale()
 end
 
 custom_terrorblade_terror_wave = class({})
+
+function custom_terrorblade_terror_wave:GetAbilityTextureName()
+	return wearables_system:GetAbilityIconReplacement(self:GetCaster(), "terrorblade_terror_wave", self)
+end
+
 function custom_terrorblade_terror_wave:Init()
 	if not self:GetCaster() then
 		return

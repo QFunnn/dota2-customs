@@ -76,7 +76,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_snapfire_mortimer_kisses_custom_cdr",
 	"abilities/snapfire/snapfire_mortimer_kisses_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_snapfire_kisses_6"
 )
 LinkLuaModifier(
 	"modifier_snapfire_mortimer_kisses_custom_root",
@@ -99,8 +100,7 @@ function snapfire_mortimer_kisses_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_batrider/batrider_stickynapalm_impact.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_snapfire/hero_snapfire_ultimate_impact.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_snapfire/hero_snapfire_ultimate_linger.vpcf", context)
-	PrecacheResource("particle", "particles/hero_snapfire_ultimate_linger_longer.vpcf", context)
-	PrecacheResource("particle", "particles/alch_stun_legendary.vpcf", context)
+	PrecacheResource("particle", "particles/alchemist/alch_stun_legendary.vpcf", context)
 	PrecacheResource("particle", "particles/items3_fx/star_emblem_friend_shield.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_snapfire/hero_snapfire_burn_debuff.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_snapfire_magma.vpcf", context)
@@ -118,7 +118,7 @@ function snapfire_mortimer_kisses_custom:Precache(context)
 		context
 	)
 	PrecacheResource("particle", "particles/snapfire/fire_long.vpcf", context)
-	PrecacheResource("particle", "particles/beast_root.vpcf", context)
+	PrecacheResource("particle", "particles/primal_beast/beast_root.vpcf", context)
 	PrecacheResource("particle", "particles/snapfire/kisses_legendary_radius.vpcf", context)
 end
 
@@ -1023,7 +1023,10 @@ function modifier_snapfire_mortimer_kisses_custom_scatter:OnIntervalThink()
 	end
 
 	if self.parent:HasTalent("modifier_snapfire_scatter_6") then
-		self.parent:CdItems(self.parent:GetTalentValue("modifier_snapfire_scatter_6", "cd_items"))
+		self.parent:CdItems(
+			self.parent:GetTalentValue("modifier_snapfire_scatter_6", "cd_items"),
+			"modifier_snapfire_scatter_6"
+		)
 	end
 
 	if self.parent:HasTalent("modifier_snapfire_scatter_7") then
@@ -1070,7 +1073,7 @@ function modifier_snapfire_mortimer_kisses_custom_immune:IsPurgable()
 	return false
 end
 function modifier_snapfire_mortimer_kisses_custom_immune:GetEffectName()
-	return "particles/alch_stun_legendary.vpcf"
+	return "particles/alchemist/alch_stun_legendary.vpcf"
 end
 
 modifier_snapfire_mortimer_kisses_custom_blink = class({})
@@ -1117,7 +1120,7 @@ function modifier_snapfire_mortimer_kisses_custom_cdr:OnIntervalThink()
 		return
 	end
 
-	self.parent:GenericParticle("particles/lc_odd_proc_.vpcf")
+	self.parent:GenericParticle("particles/legion_commander/lc_odd_proc_.vpcf")
 	self.parent:EmitSound("BS.Thirst_legendary_active")
 	self:StartIntervalThink(-1)
 end
@@ -1159,7 +1162,7 @@ function modifier_snapfire_mortimer_kisses_custom_root:CheckState()
 end
 
 function modifier_snapfire_mortimer_kisses_custom_root:GetEffectName()
-	return "particles/beast_root.vpcf"
+	return "particles/primal_beast/beast_root.vpcf"
 end
 
 modifier_snapfire_mortimer_kisses_custom_root_count = class({})

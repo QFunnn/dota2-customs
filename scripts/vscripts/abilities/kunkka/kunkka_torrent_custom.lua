@@ -31,12 +31,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_kunkka_torrent_custom_water",
 	"abilities/kunkka/kunkka_torrent_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_kunkka_torrent_3", "modifier_kunkka_torrent_7" }
 )
 LinkLuaModifier(
 	"modifier_kunkka_torrent_custom_wet",
 	"abilities/kunkka/kunkka_torrent_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_kunkka_torrent_7"
 )
 LinkLuaModifier(
 	"modifier_kunkka_torrent_custom_slow",
@@ -51,7 +53,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_kunkka_torrent_custom_deep",
 	"abilities/kunkka/kunkka_torrent_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_kunkka_torrent_7" }
 )
 
 kunkka_torrent_custom = class({})
@@ -462,7 +465,7 @@ function modifier_kunkka_torrent_custom_aoe:OnIntervalThink(first)
 				if self.ability.talents.has_q4 == 1 and not self.ability.proc[self.cast] then
 					self.ability.proc[self.cast] = true
 
-					self.caster:CdItems(self.ability.talents.q4_cd_items)
+					self.caster:CdItems(self.ability.talents.q4_cd_items, "modifier_kunkka_torrent_4")
 				end
 			end
 		end
@@ -793,7 +796,7 @@ function modifier_kunkka_torrent_custom_tracker:SpellEvent(params)
 	ParticleManager:ReleaseParticleIndex(particle)
 
 	self.ability.used_cd = true
-	self.parent:CdAbility(self.ability, nil, self.ability.talents.q3_cd_inc)
+	self.parent:CdAbility(self.ability, nil, self.ability.talents.q3_cd_inc, "modifier_kunkka_torrent_3")
 end
 
 function modifier_kunkka_torrent_custom_tracker:OrderEvent(params)

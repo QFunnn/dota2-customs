@@ -11,7 +11,8 @@
 LinkLuaModifier(
 	"modifier_alchemist_unstable_concoction_custom",
 	"abilities/alchemist/alchemist_unstable_concoction_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 LinkLuaModifier(
 	"modifier_alchemist_unstable_concoction_custom_damage_aura",
@@ -21,7 +22,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_alchemist_unstable_concoction_custom_bonus",
 	"abilities/alchemist/alchemist_unstable_concoction_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_alchemist_unstable_3"
 )
 LinkLuaModifier(
 	"modifier_alchemist_unstable_concoction_custom_charge",
@@ -61,7 +63,7 @@ function alchemist_unstable_concoction_custom:Precache(context)
 		"particles/units/heroes/hero_alchemist/alchemist_unstable_concoction_explosion.vpcf",
 		context
 	)
-	PrecacheResource("particle", "particles/alch_stun_legendary.vpcf", context)
+	PrecacheResource("particle", "particles/alchemist/alch_stun_legendary.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_brewmaster/brewmaster_dispel_magic.vpcf", context)
 	PrecacheResource(
 		"particle",
@@ -75,10 +77,10 @@ function alchemist_unstable_concoction_custom:Precache(context)
 		"particles/units/heroes/hero_brewmaster/brewmaster_fire_immolation_child.vpcf",
 		context
 	)
-	PrecacheResource("particle", "particles/lc_odd_proc_.vpcf", context)
-	PrecacheResource("particle", "particles/lc_lowhp.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_odd_proc_.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_lowhp.vpcf", context)
 	PrecacheResource("particle", "particles/items2_fx/vindicators_axe_armor.vpcf", context)
-	PrecacheResource("particle", "particles/alch_root.vpcf", context)
+	PrecacheResource("particle", "particles/alchemist/alch_root.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_forcestaff.vpcf", context)
 	PrecacheResource("particle", "particles/econ/events/ti10/phase_boots_ti10.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_alchemist/alchemist_unstableconc_bottles.vpcf", context)
@@ -258,7 +260,10 @@ function alchemist_unstable_concoction_custom:OnSpellStart()
 		end
 
 		if self.talents.has_w4 == 1 then
-			self.caster:CdItems(self.talents.w4_cd_items * math.min(1, brew_time / self.brew_time))
+			self.caster:CdItems(
+				self.talents.w4_cd_items * math.min(1, brew_time / self.brew_time),
+				"modifier_alchemist_unstable_4"
+			)
 		end
 
 		local proj = wearables_system:GetParticleReplacementAbility(
@@ -452,7 +457,7 @@ function modifier_alchemist_unstable_concoction_custom:OnCreated()
 	self:AddParticle(self.particle_bottle, false, false, -1, false, false)
 
 	if self.ability.talents.has_h2 == 1 then
-		self.shield_effect = self.parent:GenericParticle("particles/alch_stun_legendary.vpcf", self)
+		self.shield_effect = self.parent:GenericParticle("particles/alchemist/alch_stun_legendary.vpcf", self)
 		self.shield_talent = "modifier_alchemist_hero_2"
 	end
 
@@ -691,9 +696,9 @@ function modifier_alchemist_unstable_concoction_custom_bonus:OnCreated()
 	if not IsServer() then
 		return
 	end
-	self.parent:GenericParticle("particles/lc_odd_proc_.vpcf")
+	self.parent:GenericParticle("particles/legion_commander/lc_odd_proc_.vpcf")
 	self.parent:EmitSound("Lc.Moment_Lowhp")
-	self.parent:GenericParticle("particles/lc_lowhp.vpcf", self)
+	self.parent:GenericParticle("particles/legion_commander/lc_lowhp.vpcf", self)
 	self.parent:AddPercentStat({ str = self.ability.talents.w3_str }, self)
 	self.parent:CalculateStatBonus(true)
 end

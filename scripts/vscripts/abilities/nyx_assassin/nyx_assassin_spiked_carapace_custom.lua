@@ -21,7 +21,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_nyx_assassin_spiked_carapace_custom_legendary",
 	"abilities/nyx_assassin/nyx_assassin_spiked_carapace_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_nyx_carapace_7"
 )
 LinkLuaModifier(
 	"modifier_nyx_assassin_spiked_carapace_custom_legendary_effect",
@@ -31,7 +32,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_nyx_assassin_spiked_carapace_custom_speed",
 	"abilities/nyx_assassin/nyx_assassin_spiked_carapace_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_nyx_carapace_1"
 )
 LinkLuaModifier(
 	"modifier_nyx_assassin_spiked_carapace_custom_attack",
@@ -46,22 +48,26 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_nyx_assassin_spiked_carapace_custom_attack_health",
 	"abilities/nyx_assassin/nyx_assassin_spiked_carapace_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_nyx_carapace_3"
 )
 LinkLuaModifier(
 	"modifier_nyx_assassin_spiked_carapace_custom_armor",
 	"abilities/nyx_assassin/nyx_assassin_spiked_carapace_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_nyx_hero_2"
 )
 LinkLuaModifier(
 	"modifier_nyx_assassin_spiked_carapace_custom_move",
 	"abilities/nyx_assassin/nyx_assassin_spiked_carapace_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_nyx_hero_6"
 )
 LinkLuaModifier(
 	"modifier_nyx_assassin_spiked_carapace_custom_heal_bonus",
 	"abilities/nyx_assassin/nyx_assassin_spiked_carapace_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_nyx_carapace_2"
 )
 
 nyx_assassin_spiked_carapace_custom = class({})
@@ -77,14 +83,14 @@ function nyx_assassin_spiked_carapace_custom:Precache(context)
 		context
 	)
 	PrecacheResource("particle", "particles/units/heroes/hero_nyx_assassin/nyx_assassin_spiked_carapace.vpcf", context)
-	PrecacheResource("particle", "particles/lc_odd_charge_mark.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_odd_charge_mark.vpcf", context)
 	PrecacheResource("particle", "particles/nyx_assassin/carapace_legendary_attack.vpcf", context)
 	PrecacheResource("particle", "particles/nyx_assassin/carapace_legendary_attack2.vpcf", context)
-	PrecacheResource("particle", "particles/brist_proc.vpcf", context)
+	PrecacheResource("particle", "particles/bristleback/brist_proc.vpcf", context)
 	PrecacheResource("particle", "particles/bloodseeker/thirst_legendary.vpcf", context)
 	PrecacheResource("particle", "particles/nyx_assassin/carapace_attack.vpcf", context)
-	PrecacheResource("particle", "particles/zuus_speed.vpcf", context)
-	PrecacheResource("particle", "particles/nyx_assasin/carapace_haste.vpcf", context)
+	PrecacheResource("particle", "particles/zeus/zuus_speed.vpcf", context)
+	PrecacheResource("particle", "particles/nyx_assassin/carapace_haste.vpcf", context)
 	PrecacheResource("particle", "particles/nyx_assassin/mind_refresh.vpcf", context)
 	PrecacheResource(
 		"particle",
@@ -414,7 +420,7 @@ function modifier_nyx_assassin_spiked_carapace_custom:OnDestroy()
 	self.ability:StartCd()
 
 	if not self.proced and self.ability.talents.has_e7 == 1 then
-		self.parent:CdAbility(self.ability, nil, self.ability.talents.e7_cd_inc)
+		self.parent:CdAbility(self.ability, nil, self.ability.talents.e7_cd_inc, "modifier_nyx_carapace_7")
 		local particle = ParticleManager:CreateParticle(
 			"particles/nyx_assassin/mind_refresh.vpcf",
 			PATTACH_CUSTOMORIGIN,
@@ -587,7 +593,7 @@ function modifier_nyx_assassin_spiked_carapace_custom:ReflectDamage(params)
 		if self.ability.talents.has_e7 == 0 then
 			self:ProcStun(self.targets[attacker])
 		else
-			attacker:GenericParticle("particles/lc_odd_charge_mark.vpcf", self, true)
+			attacker:GenericParticle("particles/legion_commander/lc_odd_charge_mark.vpcf", self, true)
 		end
 		block = 1
 	end
@@ -693,7 +699,7 @@ function modifier_nyx_assassin_spiked_carapace_custom_legendary:ChangeStage()
 
 	self.parent:EmitSound("Nyx.Carapace_legendary_start")
 	self.parent:EmitSound("Nyx.Carapace_legendary_start2")
-	self.parent:GenericParticle("particles/brist_proc.vpcf")
+	self.parent:GenericParticle("particles/bristleback/brist_proc.vpcf")
 	self.parent:StartGesture(ACT_DOTA_CAST_ABILITY_3)
 
 	self.legendary_particle =
@@ -868,8 +874,8 @@ function modifier_nyx_assassin_spiked_carapace_custom_move:OnCreated()
 
 	if self.ability.talents.has_h6 == 1 then
 		self.parent:GenericParticle(
-			self.ability.talents.has_e7 == 1 and "particles/nyx_assasin/carapace_haste.vpcf"
-				or "particles/zuus_speed.vpcf",
+			self.ability.talents.has_e7 == 1 and "particles/nyx_assassin/carapace_haste.vpcf"
+				or "particles/zeus/zuus_speed.vpcf",
 			self
 		)
 	end

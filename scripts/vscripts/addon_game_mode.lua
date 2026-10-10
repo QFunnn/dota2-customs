@@ -12,10 +12,11 @@ if dota1x6 == nil then
 	_G.dota1x6 = class({})
 end
 
-_G.CreepsUpgradeTimer = 4 * 60
+_G.CreepsUpgradeTimer = 3 * 60
 
 Convars:RegisterConvar("matchId", "", "123", 0)
 Convars:SetFloat("dota_neutral_spawn_type_upgrade_interval", CreepsUpgradeTimer - 0.1)
+Convars:SetBool("dota_enable_illusion_recycling", false)
 
 _G.test_pick_stage = false
 _G.Time_to_pick_Hero = 25
@@ -24,13 +25,14 @@ _G.Time_to_pick_Base = 20
 _G.pro_mod = false
 _G.pro_mod_data = {
 	new_system = false,
-	disable_vision = false,
-	show_random = true,
-	same_heroes = false,
+	disable_vision = true,
+	show_random = false,
+	same_heroes = true,
+	enable_pause = true,
 	double_legendary = false,
 	long_hook = true,
 	custom_rules = false,
-	enable_voice_radius = true,
+	enable_voice_radius = false,
 	voice_radius = 1200,
 	disable_heroes = {
 		--["npc_dota_hero_pangolier"] = true
@@ -50,9 +52,9 @@ _G.custom_rules_data = {
 	["patrol_center"] = 0,
 }
 
-_G.test = false and IsInToolsMode()
+_G.test = true and IsInToolsMode()
 _G.hero_test = false and IsInToolsMode()
-_G.hero_test_name = "npc_dota_hero_phantom_assassin"
+_G.hero_test_name = "npc_dota_hero_primal_beast"
 _G.hero_test_base = 2
 _G.twitch_alert = false
 _G.sale_alert = false
@@ -128,14 +130,16 @@ _G.duel_start_wave = 11
 
 _G.Target_timer_first = RandomInt(9 * 60, 12 * 60)
 _G.Target_timer_min = 13 * 60
-_G.Target_timer_max = 17 * 60
-_G.Target_cd = 90
-_G.Target_gold_diff = 1.2
+_G.Target_timer_max = 23 * 60
+_G.Target_cd = 120
+_G.Target_gold_diff = 1.35
 _G.Target_k = 0.5
 _G.Target_damage_cd = 15
 _G.Target_proc_count = 0
+_G.Target_proc_max = 3
 _G.Target_duration = 120
 _G.Target_radius = 1500
+_G.Target_duel_extend = 15
 dota1x6.TargetCurrentCd = nil
 dota1x6.TargetCurrentActive = false
 
@@ -349,9 +353,6 @@ _G.ItemBuilds = {}
 
 dota1x6.achivment_table = {}
 
-dota1x6.goodwin_max = 33
-dota1x6.goodwin_used = {}
-
 dota1x6.current_wave = start_wave
 dota1x6.go_wave = start_wave
 dota1x6.go_boss_number = 0
@@ -384,6 +385,7 @@ require("util/selection")
 require("resources")
 require("path_corner")
 require("voice_radius")
+require("match_log")
 
 _G.precache_items = require("precache_items")
 _G.precache_units = require("precache_units")
@@ -791,8 +793,77 @@ r:Send( function( res ) end)
 	ListenToGameEvent("npc_spawned", Dynamic_Wrap(self, "OnNPCSpawned"), self)
 	ListenToGameEvent("game_rules_state_change", Dynamic_Wrap(self, "OnGameRulesStateChange"), self)
 	ListenToGameEvent("dota_player_gained_level", Dynamic_Wrap(self, "OnPlayerLevelUp"), self)
+	ListenToGameEvent("dota_player_learned_ability", Dynamic_Wrap(self, "OnAbilityLearned"), self)
 	ListenToGameEvent("dota_glyph_used", Dynamic_Wrap(self, "OnGlyphUsed"), self)
 	ListenToGameEvent("dota_item_picked_up", Dynamic_Wrap(self, "OnItemPickUp"), self)
+
+	local relay_api_ok, relay_network = pcall(require, "dml.network")
+	if not relay_api_ok then
+		print("[SDR] dml.network not found: " .. tostring(relay_network))
+	elseif not relay_network or type(relay_network.client_relays) ~= "function" then
+		print("[SDR] dml.network.client_relays unavailable")
+	end
+
+	ListenToGameEvent("player_connect_full", function(kv)
+		local player_id = kv.PlayerID
+		if type(player_id) ~= "number" then
+			return
+		end
+		if not PlayerResource:GetPlayer(player_id) then
+			return
+		end
+
+		local steam_id = tostring(PlayerResource:GetSteamID(player_id))
+
+		local function send_best_relay(attempts_remaining)
+			if
+				not PlayerResource:GetPlayer(player_id)
+				or tostring(PlayerResource:GetSteamID(player_id)) ~= steam_id
+			then
+				return
+			end
+			if not relay_api_ok or not relay_network or type(relay_network.client_relays) ~= "function" then
+				return
+			end
+
+			local routes, err = relay_network.client_relays(steam_id)
+			if routes then
+				for _, relay in ipairs(routes.relays or {}) do
+					if type(relay.pop) == "string" then
+						FireGameEvent("sdr_relay_switch", {
+							player_id = player_id,
+							relay = relay.pop,
+						})
+						print(
+							"[SDR] sdr_relay_switch sent steamid:"
+								.. steam_id
+								.. " relay="
+								.. relay.pop
+								.. " ping_ms="
+								.. tostring(relay.ping_ms)
+						)
+						return
+					end
+				end
+			end
+
+			if attempts_remaining > 0 then
+				Timers:CreateTimer(0.5, function()
+					send_best_relay(attempts_remaining - 1)
+				end)
+			else
+				print(
+					"[SDR] relay lookup attempts exhausted steamid:"
+						.. steam_id
+						.. " reason="
+						.. tostring(err or "no session-ready relay")
+				)
+			end
+		end
+
+		send_best_relay(10)
+	end, nil)
+
 	ListenToGameEvent("player_connect_full", Dynamic_Wrap(hero_select, "PlayerConnected"), hero_select)
 	ListenToGameEvent("dota_item_purchased", Dynamic_Wrap(self, "ItemPurchased"), self)
 
@@ -914,7 +985,7 @@ r:Send( function( res ) end)
 	if test then
 		_G.PreGame_time = 5
 		_G.push_timer = 0
-		_G.Target_proc_count = 3
+		_G.Target_proc_count = Target_proc_max
 
 		if test_patrol then
 			_G.patrol_timer_max = 10
@@ -1669,22 +1740,13 @@ function dota1x6:start_game()
 	end
 
 	_G.game_start = true
+	match_log:Start()
 
 	for _, tower in pairs(towers) do
 		tower:RemoveModifierByName("modifier_tower_pre_game")
 	end
 
 	dota1x6:GiveVisionForAll(2)
-
-	for _, player in pairs(players) do
-		if player.goodwin_quest and (test or pro_mod) and false then
-			CustomGameEventManager:Send_ServerToPlayer(
-				PlayerResource:GetPlayer(player:GetId()),
-				"goodwin_quest_alert",
-				{ id = player.goodwin_quest }
-			)
-		end
-	end
 
 	GameRules:SpawnNeutralCreeps()
 end
@@ -1862,6 +1924,39 @@ function dota1x6:FillQuests(hero_name)
 	return new_quests
 end
 
+function dota1x6:AssignTeams()
+	local teams = { 2, 3, 6, 7 }
+	if IsSoloMode() then
+		teams = { 2, 3, 6, 7, 12, 9 }
+	end
+
+	local filled = {}
+	for _, team in pairs(teams) do
+		filled[team] = 0
+	end
+
+	for id = 0, 24 do
+		if ValidId(id) then
+			local team = PlayerResource:GetTeam(id)
+			if filled[team] then
+				filled[team] = filled[team] + 1
+			end
+		end
+	end
+
+	for id = 0, 24 do
+		if ValidId(id) and PlayerResource:GetTeam(id) == DOTA_TEAM_NOTEAM then
+			for _, team in pairs(teams) do
+				if filled[team] < players_in_team then
+					PlayerResource:SetCustomTeamAssignment(id, team)
+					filled[team] = filled[team] + 1
+					break
+				end
+			end
+		end
+	end
+end
+
 function dota1x6:OnGameRulesStateChange()
 	local nNewState = GameRules:State_Get()
 
@@ -1873,11 +1968,6 @@ function dota1x6:OnGameRulesStateChange()
 
 		for id = 0, 24 do
 			if ValidId(id) then
-				FireGameEvent("sdr_relay_switch", {
-					player_id = id,
-					relay = "sto",
-				})
-
 				_G.PlayerCount = _G.PlayerCount + 1
 
 				local party_id = PlayerResource:GetPartyID(id)
@@ -1913,7 +2003,7 @@ function dota1x6:OnGameRulesStateChange()
 		local custom_rules = pro_mod and pro_mod_data.custom_rules
 		if custom_rules then
 			Timers:CreateTimer(0.5, function()
-				CustomGameEventManager:Send_ServerToAllClients("SendCustomRules", custom_rules_data)
+				dota1x6:RequestCustomRules()
 				if GameRules:State_Get() ~= DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP then
 					return
 				end
@@ -1946,36 +2036,22 @@ function dota1x6:OnGameRulesStateChange()
 	end
 
 	if nNewState == DOTA_GAMERULES_STATE_HERO_SELECTION then
-		local teams = { 2, 3, 6, 7 }
-		if IsSoloMode() then
-			teams = { 2, 3, 6, 7, 12, 9 }
+		if dota1x6:IsCustomRules() then
+			GameRules:SetSameHeroSelectionEnabled(pro_mod_data.same_heroes)
+
+			local game_mode = CustomNetTables:GetTableValue("custom_pick", "game_mode")
+			game_mode.same_heroes = pro_mod_data.same_heroes
+			CustomNetTables:SetTableValue("custom_pick", "game_mode", game_mode)
 		end
 
-		local filled = {}
-		for _, team in pairs(teams) do
-			filled[team] = 0
+		if pro_mod and pro_mod_data.enable_pause then
+			_G.enable_pause = true
 		end
 
-		for id = 0, 24 do
-			if ValidId(id) then
-				local team = PlayerResource:GetTeam(id)
-				if filled[team] then
-					filled[team] = filled[team] + 1
-				end
-			end
-		end
+		dota1x6:AssignTeams()
 
 		for id = 0, 24 do
 			if ValidId(id) then
-				if PlayerResource:GetTeam(id) == DOTA_TEAM_NOTEAM then
-					for _, team in pairs(teams) do
-						if filled[team] < players_in_team then
-							PlayerResource:SetCustomTeamAssignment(id, team)
-							filled[team] = filled[team] + 1
-							break
-						end
-					end
-				end
 				CustomGameEventManager:Send_ServerToPlayer(
 					PlayerResource:GetPlayer(id),
 					"get_player_names",
@@ -2144,6 +2220,10 @@ function dota1x6:SetWaveTimer(left)
 	timer = MaxTimer - left
 end
 
+function dota1x6:GetWaveTimer()
+	return timer, MaxTimer
+end
+
 function dota1x6:SetPatrolLaunched(state)
 	patrol_launched = state
 end
@@ -2241,6 +2321,29 @@ function dota1x6:StartTheHunt(tower)
 	local mod = tower:AddNewModifier(tower, nil, "modifier_the_hunt_custom_tower", { duration = Target_duration })
 
 	return mod ~= nil
+end
+
+function dota1x6:TeamInDuel(team)
+	local ids = dota1x6:FindPlayers(team)
+	if not ids then
+		return false
+	end
+
+	for _, id in pairs(ids) do
+		local hero = players[id]
+		if
+			hero
+			and (
+				hero.died_on_duel
+				or hero:HasModifier("modifier_duel_hero_thinker")
+				or hero:HasModifier("modifier_duel_hero_return")
+			)
+		then
+			return true
+		end
+	end
+
+	return false
 end
 
 function dota1x6:GetPatrolIndexes()
@@ -2413,7 +2516,7 @@ function dota1x6:TimerAlerts()
 
 	if GameRules:GetDOTATime(false, false) >= push_timer and push_alert == false then
 		push_alert = true
-		CustomGameEventManager:Send_ServerToAllClients("grenade_alert", {})
+		CustomGameEventManager:Send_ServerToAllClients("PushAlert", {})
 	end
 
 	if dota1x6.current_wave == patrol_wave and timer >= patrol_timer_max - 10 and patrol_first_init == false then
@@ -2737,40 +2840,28 @@ function dota1x6:spawn_timer()
 				dota1x6.TargetCurrentCd = nil
 			end
 		else
-			if Target_timer_max > current_time and not dota1x6.TargetCurrentActive and team_net[#team_net].team then
+			if
+				Target_timer_max > current_time
+				and not dota1x6.TargetCurrentActive
+				and team_net[#team_net].team
+				and not dota1x6:TeamInDuel(team_net[#team_net].team)
+			then
 				local tower = towers[team_net[#team_net].team]
-				if tower then
-					if Target_proc_count == 0 and Target_timer_first <= current_time then
-						local mod = tower:AddNewModifier(
-							tower,
-							nil,
-							"modifier_the_hunt_custom_tower",
-							{ duration = Target_duration }
-						)
-						if mod then
-							Target_proc_count = 1
-						end
+				if Target_proc_count == 0 and Target_timer_first <= current_time then
+					if dota1x6:StartTheHunt(tower) then
+						Target_proc_count = 1
 					end
-					if
-						Target_proc_count == 1
-						and team_net[#team_net - 1]
-						and not tower:HasModifier("modifier_the_hunt_custom_tower")
-						and Target_timer_min <= current_time
-					then
-						local net1 = team_net[#team_net].gold
-						local net2 = team_net[#team_net - 1].gold
+				elseif Target_proc_count < Target_proc_max and Target_timer_min <= current_time then
+					local net_others = 0
+					for i = 1, #team_net - 1 do
+						net_others = net_others + team_net[i].gold
+					end
 
-						if net1 / net2 >= Target_gold_diff then
-							local mod = tower:AddNewModifier(
-								tower,
-								nil,
-								"modifier_the_hunt_custom_tower",
-								{ duration = Target_duration }
-							)
-							if mod then
-								Target_proc_count = 2
-							end
-						end
+					if
+						team_net[#team_net].gold * (#team_net - 1) >= net_others * Target_gold_diff
+						and dota1x6:StartTheHunt(tower)
+					then
+						Target_proc_count = Target_proc_count + 1
 					end
 				end
 			end
@@ -2874,6 +2965,7 @@ function dota1x6:spawn_timer()
 					(HTTP.serverData.isStatsMatch == true or test)
 					and SafeToLeave == false
 					and current_time <= LowPriorityTime
+					and PICK_STATE ~= PICK_STATE_PLAYERS_LOADED
 				then
 					if data.total_games > LOW_PRIORITY_IMMUNITY then
 						lp_games = lp_games + 1
@@ -3256,6 +3348,7 @@ function dota1x6:spawn_timer()
 		end
 
 		dota1x6:ActivateOrbShrines()
+		match_log:Call("Wave", more_gold_teams, low_net_teams)
 		timer = 0
 		dota1x6.wave_tick_open = false
 	end
@@ -3533,11 +3626,13 @@ function dota1x6:destroy_tower(tower, no_end)
 		dota1x6:ResetDuelPairs()
 	end
 
-	if team_count == 3 then
+	if team_count <= win_place then
 		for _, tower in pairs(towers) do
 			tower:RemoveModifierByName("modifier_the_hunt_custom_tower")
 		end
+	end
 
+	if team_count == 3 then
 		if dota1x6:IsDuelWave() then
 			--	CustomGameEventManager:Send_ServerToAllClients( "generic_sound", {sound = "Duel.Normal"} )
 			dota1x6.waiting_top3_duel = true
@@ -3584,9 +3679,20 @@ end
 
 function dota1x6:SaveEndData(id, place)
 	HTTP.playersData[id].place = place
+	match_log:Call("Place", id, place)
 	HTTP.FillItemsData(id, place)
 	if HTTP.TalentsData and HTTP.TalentsData[tostring(id)] then
 		HTTP.TalentsData[tostring(id)].place = place
+	end
+
+	local hero = GlobalHeroes[id]
+	if hero then
+		for _, data in pairs(HTTP.SkillsData) do
+			if data.hero_name == hero:GetUnitName() then
+				data.place = place
+				data.main_talent = HTTP.playersData[id].firstOrangeTalent or "0"
+			end
+		end
 	end
 
 	local data = CustomNetTables:GetTableValue("networth_players", tostring(id))
@@ -3642,10 +3748,15 @@ function dota1x6:WinTeam(team)
 		end
 	end
 
+	match_log:Call("Finish")
+
 	if HTTP.serverData.isStatsMatch then
 		HTTP.Request("/anal", HTTP.ItemsData, function() end, nil, true)
 		if HTTP.TalentsData then
 			HTTP.Request("/anal-talents", HTTP.TalentsData, function() end, nil, true)
+		end
+		if #HTTP.SkillsData > 0 then
+			HTTP.Request("/anal-skills", HTTP.SkillsData, function() end, nil, true)
 		end
 	end
 
@@ -3683,6 +3794,7 @@ function dota1x6:destroy_player(id, no_kill)
 	end
 
 	local player = players[id]
+	match_log:Call("Leave", player)
 
 	if not no_kill then
 		dota1x6:DestroyPlayerUnits(id)
@@ -3794,17 +3906,6 @@ function dota1x6:initiate_player(player, is_bot)
 	end
 
 	HTTP.playersData[id].is_active = 1
-
-	if pro_mod then
-		local random_number = RandomInt(1, dota1x6.goodwin_max)
-
-		repeat
-			random_number = RandomInt(1, dota1x6.goodwin_max)
-		until dota1x6.goodwin_used[random_number] == nil
-
-		dota1x6.goodwin_used[random_number] = true
-		player.goodwin_quest = random_number
-	end
 
 	local pause = Pause_Time
 	if pro_mod then
@@ -4000,7 +4101,7 @@ function dota1x6:initiate_player(player, is_bot)
 			if sub_data.heroes_data[hero_name] and sub_data.heroes_data[hero_name].has_level == 1 then
 				player.hero_tier = sub_data.heroes_data[hero_name].tier
 				local particle = ParticleManager:CreateParticle(
-					"particles/hero_spawn_hero_level_" .. (sub_data.heroes_data[hero_name].tier + 1) .. ".vpcf",
+					"particles/generic/hero_spawn_hero_level_" .. (sub_data.heroes_data[hero_name].tier + 1) .. ".vpcf",
 					PATTACH_ABSORIGIN_FOLLOW,
 					player
 				)

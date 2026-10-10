@@ -22,15 +22,27 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_bane_enfeeble_custom_legendary_effect",
 	"abilities/bane/bane_enfeeble_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_bane_enfeeble_7"
 )
 LinkLuaModifier(
 	"modifier_bane_enfeeble_custom_legendary_caster",
 	"abilities/bane/bane_enfeeble_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_bane_enfeeble_7"
 )
-LinkLuaModifier("modifier_bane_enfeeble_custom_root", "abilities/bane/bane_enfeeble_custom", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_bane_enfeeble_custom_health", "abilities/bane/bane_enfeeble_custom", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier(
+	"modifier_bane_enfeeble_custom_root",
+	"abilities/bane/bane_enfeeble_custom",
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_bane_enfeeble_4"
+)
+LinkLuaModifier(
+	"modifier_bane_enfeeble_custom_health",
+	"abilities/bane/bane_enfeeble_custom",
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_bane_enfeeble_1"
+)
 
 bane_enfeeble_custom = class({})
 bane_enfeeble_custom.talents = {}
@@ -46,7 +58,6 @@ function bane_enfeeble_custom:Precache(context)
 	PrecacheResource("particle", "particles/bane/enfeeble_damage.vpcf", context)
 	PrecacheResource("particle", "particles/bane/enfeeble_root.vpcf", context)
 	PrecacheResource("particle", "particles/void_spirit/shield_buff.vpcf", context)
-	PrecacheResource("particle", "particles/bane/enfeeble_dispell.vpcf", context)
 end
 
 function bane_enfeeble_custom:UpdateTalents()

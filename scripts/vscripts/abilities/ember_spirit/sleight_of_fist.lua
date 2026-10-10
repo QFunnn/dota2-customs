@@ -21,12 +21,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_ember_spirit_sleight_of_fist_custom_legendary",
 	"abilities/ember_spirit/sleight_of_fist",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_ember_fist_7"
 )
 LinkLuaModifier(
 	"modifier_ember_spirit_sleight_of_fist_custom_slow",
 	"abilities/ember_spirit/sleight_of_fist",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_ember_hero_1"
 )
 LinkLuaModifier(
 	"modifier_ember_spirit_sleight_of_fist_custom_tracker",
@@ -36,17 +38,20 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_ember_spirit_sleight_of_fist_custom_speed_bonus",
 	"abilities/ember_spirit/sleight_of_fist",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_ember_hero_1" }
 )
 LinkLuaModifier(
 	"modifier_ember_spirit_sleight_of_fist_custom_unslow",
 	"abilities/ember_spirit/sleight_of_fist",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_ember_fist_4"
 )
 LinkLuaModifier(
 	"modifier_ember_spirit_sleight_of_fist_custom_magic",
 	"abilities/ember_spirit/sleight_of_fist",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_ember_fist_3"
 )
 
 ember_spirit_sleight_of_fist_custom = class({})
@@ -87,9 +92,8 @@ function ember_spirit_sleight_of_fist_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_marci/marci_rebound_bounce_impact_debuff.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_snapfire_slow.vpcf", context)
 	PrecacheResource("particle", "particles/ember_spirit/fist_shield.vpcf", context)
-	PrecacheResource("particle", "particles/ember_spirit/fist_resist.vpcf", context)
 	PrecacheResource("particle", "particles/bristleback/spray_double.vpcf", context)
-	PrecacheResource("particle", "particles/jugg_parry.vpcf", context)
+	PrecacheResource("particle", "particles/juggernaut/jugg_parry.vpcf", context)
 	PrecacheResource("particle", "particles/ember_spirit/guard_stack.vpcf", context)
 	PrecacheResource("particle", "particles/ember_spirit/guard_resist_max.vpcf", context)
 	PrecacheResource("model", "models/ember_spirit_fx.vmdl", context)
@@ -232,7 +236,7 @@ function ember_spirit_sleight_of_fist_custom:ProcCd()
 		return
 	end
 
-	self.caster:CdItems(self.talents.w4_cd_items)
+	self.caster:CdItems(self.talents.w4_cd_items, "modifier_ember_fist_4")
 	self.caster:AddNewModifier(
 		self.caster,
 		self,
@@ -533,8 +537,11 @@ function modifier_ember_spirit_sleight_of_fist_custom_caster:OnDestroy()
 			self.parent:GenericParticle("particles/ember_spirit/fist_shield.vpcf", self.active_shield)
 			self.active_shield:SetHitFunction(function()
 				self.parent:EmitSound("Juggernaut.Parry")
-				local particle =
-					ParticleManager:CreateParticle("particles/jugg_parry.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
+				local particle = ParticleManager:CreateParticle(
+					"particles/juggernaut/jugg_parry.vpcf",
+					PATTACH_ABSORIGIN_FOLLOW,
+					self.parent
+				)
 				ParticleManager:SetParticleControlEnt(
 					particle,
 					0,
@@ -722,7 +729,7 @@ function modifier_ember_spirit_sleight_of_fist_custom_tracker:OnIntervalThink()
 
 	if final >= max_distance then
 		local delta = math.floor(final / max_distance)
-		self.parent:CdAbility(self.ability, nil, self.ability.talents.w7_cd_inc * delta)
+		self.parent:CdAbility(self.ability, nil, self.ability.talents.w7_cd_inc * delta, "modifier_ember_fist_7")
 		self.distance = final - delta * max_distance
 	else
 		self.distance = final

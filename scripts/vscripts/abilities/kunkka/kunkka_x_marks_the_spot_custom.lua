@@ -16,7 +16,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_kunkka_xmark_custom_target",
 	"abilities/kunkka/kunkka_x_marks_the_spot_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 LinkLuaModifier(
 	"modifier_kunkka_xmark_custom_caster",
@@ -31,12 +32,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_kunkka_xmark_custom_stats_bonus",
 	"abilities/kunkka/kunkka_x_marks_the_spot_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_kunkka_shop_5", "modifier_kunkka_xmark_7" }
 )
 LinkLuaModifier(
 	"modifier_kunkka_xmark_custom_speed",
 	"abilities/kunkka/kunkka_x_marks_the_spot_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_kunkka_shop_1", "modifier_kunkka_xmark_7" }
 )
 LinkLuaModifier(
 	"modifier_kunkka_xmark_custom_double",
@@ -51,17 +54,20 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_kunkka_xmark_custom_chest_move",
 	"abilities/kunkka/kunkka_x_marks_the_spot_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_kunkka_shop_10", "modifier_kunkka_xmark_7" }
 )
 LinkLuaModifier(
 	"modifier_kunkka_xmark_custom_bleed",
 	"abilities/kunkka/kunkka_x_marks_the_spot_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_kunkka_xmark_3"
 )
 LinkLuaModifier(
 	"modifier_kunkka_xmark_custom_blink",
 	"abilities/kunkka/kunkka_x_marks_the_spot_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_kunkka_xmark_4"
 )
 
 kunkka_x_marks_the_spot_custom = class({})
@@ -73,7 +79,7 @@ function kunkka_x_marks_the_spot_custom:Precache(context)
 	end
 
 	PrecacheResource("particle", "particles/units/heroes/hero_kunkka/kunkka_spell_x_spot.vpcf", context)
-	PrecacheResource("particle", "particles/alch_stun_legendary.vpcf", context)
+	PrecacheResource("particle", "particles/alchemist/alch_stun_legendary.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_monkey_king/monkey_king_disguise.vpcf", context)
 	PrecacheResource("particle", "particles/econ/events/ti9/shovel_dig.vpcf", context)
 	PrecacheResource("particle", "particles/econ/events/ti9/shovel_revealed_loot_variant_0_treasure.vpcf", context)
@@ -909,10 +915,6 @@ function modifier_kunkka_xmark_custom_tracker:OnCreated(table)
 			str = 10,
 			int = 10,
 			health = 175,
-		},
-		["item_armlet"] = {
-			damage = 15,
-			speed = 25,
 		},
 		["item_vanguard"] = {
 			health = 250,

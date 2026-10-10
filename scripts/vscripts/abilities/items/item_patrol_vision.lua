@@ -16,7 +16,7 @@ function item_patrol_vision:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
 	end
-	PrecacheResource("particle", "particles/general/patrol_refresh.vpcf", context)
+	PrecacheResource("particle", "particles/generic/patrol_refresh.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_oracle/oracle_false_promise_heal.vpcf", context)
 end
 
@@ -105,7 +105,7 @@ function modifier_patrol_vision:DeathEvent(params)
 		return
 	end
 
-	self.parent:GenericParticle("particles/general/patrol_refresh.vpcf")
+	self.parent:GenericParticle("particles/generic/patrol_refresh.vpcf")
 	self.parent:EmitSound("Patrol.Gem_heal")
 
 	self.parent:GenericParticle("particles/units/heroes/hero_oracle/oracle_false_promise_heal.vpcf")

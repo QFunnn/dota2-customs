@@ -9,8 +9,18 @@
 
 
 LinkLuaModifier("modifier_mars_innate_custom", "abilities/mars/mars_innate_custom", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_mars_innate_custom_effect", "abilities/mars/mars_innate_custom", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_mars_innate_custom_str", "abilities/mars/mars_innate_custom", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier(
+	"modifier_mars_innate_custom_effect",
+	"abilities/mars/mars_innate_custom",
+	LUA_MODIFIER_MOTION_NONE,
+	true
+)
+LinkLuaModifier(
+	"modifier_mars_innate_custom_str",
+	"abilities/mars/mars_innate_custom",
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_mars_hero_2"
+)
 
 mars_innate_custom = class({})
 mars_innate_custom.talents = {}

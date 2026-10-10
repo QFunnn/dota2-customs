@@ -31,7 +31,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_antimage_blink_custom_legendary_agility",
 	"abilities/antimage/antimage_blink_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_antimage_blink_7"
 )
 LinkLuaModifier(
 	"modifier_antimage_blink_custom_tracker",
@@ -41,7 +42,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_antimage_blink_custom_move",
 	"abilities/antimage/antimage_blink_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_antimage_blink_2"
 )
 LinkLuaModifier(
 	"modifier_antimage_blink_custom_crit",
@@ -61,16 +63,12 @@ function antimage_blink_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_antimage/antimage_blink_start.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_antimage/antimage_blink_end.vpcf", context)
 	PrecacheResource("particle", "particles/items_fx/force_staff.vpcf", context)
-	PrecacheResource("particle", "particles/antimage_charge.vpcf", context)
+	PrecacheResource("particle", "particles/antimage/antimage_charge.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_forcestaff.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_antimage/antimage_manabreak_slow.vpcf", context)
-	PrecacheResource("particle", "particles/antimage/blink_speed.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_dark_seer_normal_punch_replica.vpcf", context)
-	PrecacheResource("particle", "particles/am_heal.vpcf", context)
-	PrecacheResource("particle", "particles/am_blink_refresh.vpcf", context)
-	PrecacheResource("particle", "particles/antimage/blink_field.vpcf", context)
-	PrecacheResource("particle", "particles/anti-mage/blink_damage.vpcf", context)
-	PrecacheResource("particle", "particles/anti-mage/nomana_haste.vpcf", context)
+	PrecacheResource("particle", "particles/antimage/blink_damage.vpcf", context)
+	PrecacheResource("particle", "particles/antimage/nomana_haste.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_kez/status_effect_kez_afterimage_buff.vpcf", context)
 end
 
@@ -204,6 +202,31 @@ function antimage_blink_custom:GetManaCost(level)
 	return self.BaseClass.GetManaCost(self, level)
 end
 
+function antimage_blink_custom:OnAbilityPhaseStart()
+	if not IsServer() then
+		return true
+	end
+	local caster = self:GetCaster()
+	local origin = caster:GetAbsOrigin()
+	local direction = self:GetCursorPosition() - origin
+	direction.z = 0
+	local particle = ParticleManager:CreateParticle(
+		wearables_system:GetParticleReplacementAbility(
+			caster,
+			"particles/units/heroes/hero_antimage/antimage_blink_pre.vpcf",
+			self
+		),
+		PATTACH_WORLDORIGIN,
+		nil
+	)
+	ParticleManager:SetParticleControl(particle, 0, origin)
+	if direction:Length2D() > 0 then
+		ParticleManager:SetParticleControlForward(particle, 0, direction:Normalized())
+	end
+	ParticleManager:ReleaseParticleIndex(particle)
+	return true
+end
+
 function antimage_blink_custom:OnSpellStart()
 	local origin = self.caster:GetOrigin()
 	local point = self:GetCursorPosition()
@@ -296,7 +319,7 @@ function antimage_blink_custom:DealDamage(origin, point)
 		end
 
 		local particle =
-			ParticleManager:CreateParticle("particles/anti-mage/blink_damage.vpcf", PATTACH_ABSORIGIN_FOLLOW, enemy)
+			ParticleManager:CreateParticle("particles/antimage/blink_damage.vpcf", PATTACH_ABSORIGIN_FOLLOW, enemy)
 		ParticleManager:SetParticleControlEnt(
 			particle,
 			0,
@@ -438,7 +461,7 @@ end
 
 modifier_antimage_blink_custom_active = class(mod_hidden)
 function modifier_antimage_blink_custom_active:GetEffectName()
-	return "particles/antimage_charge.vpcf"
+	return "particles/antimage/antimage_charge.vpcf"
 end
 function modifier_antimage_blink_custom_active:GetStatusEffectName()
 	return "particles/units/heroes/hero_kez/status_effect_kez_afterimage_buff.vpcf"
@@ -744,7 +767,7 @@ function modifier_antimage_blink_custom_tracker:AttackEvent_out(params)
 	if self.ability.talents.has_w4 == 0 then
 		return
 	end
-	self.parent:CdAbility(self.ability, nil, self.ability.talents.w4_cd_inc)
+	self.parent:CdAbility(self.ability, nil, self.ability.talents.w4_cd_inc, "modifier_antimage_blink_4")
 end
 
 modifier_antimage_blink_custom_move = class(mod_hidden)
@@ -781,7 +804,7 @@ function modifier_antimage_blink_custom_move:OnCreated()
 	if self.parent:HasModifier("modifier_antimage_mana_break_custom_haste") then
 		return
 	end
-	self.parent:GenericParticle("particles/anti-mage/nomana_haste.vpcf", self)
+	self.parent:GenericParticle("particles/antimage/nomana_haste.vpcf", self)
 end
 
 function modifier_antimage_blink_custom_move:GetAuraEntityReject(hEntity)

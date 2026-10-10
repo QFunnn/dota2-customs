@@ -21,12 +21,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_custom_juggernaut_omnislash_root",
 	"abilities/juggernaut/custom_juggernaut_omnislash.lua",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_juggernaut_omnislash_4"
 )
 LinkLuaModifier(
 	"modifier_custom_juggernaut_omnislash_move",
 	"abilities/juggernaut/custom_juggernaut_omnislash.lua",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_juggernaut_omnislash_4"
 )
 LinkLuaModifier(
 	"modifier_custom_juggernaut_omnislash_attack",
@@ -51,7 +53,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_custom_juggernaut_omnislash_legendary_mark",
 	"abilities/juggernaut/custom_juggernaut_omnislash.lua",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_juggernaut_omnislash_7"
 )
 
 custom_juggernaut_omnislash = class({})
@@ -76,9 +79,9 @@ function custom_juggernaut_omnislash:Precache(context)
 	)
 	PrecacheResource("particle", "particles/status_fx/status_effect_omnislash.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_swiftslash.vpcf", context)
-	PrecacheResource("particle", "particles/jugger_stack.vpcf", context)
+	PrecacheResource("particle", "particles/juggernaut/jugger_stack.vpcf", context)
 	PrecacheResource("particle", "particles/juggernaut/omni_root.vpcf", context)
-	PrecacheResource("particle", "particles/jugg_legendary_proc_.vpcf", context)
+	PrecacheResource("particle", "particles/juggernaut/jugg_legendary_proc_.vpcf", context)
 	PrecacheResource("particle", "particles/items3_fx/iron_talon_active.vpcf", context)
 	PrecacheResource("particle", "particles/juggernaut/crit_speed.vpcf", context)
 	PrecacheResource("particle", "particles/bristleback/armor_buff.vpcf", context)
@@ -223,7 +226,12 @@ function custom_juggernaut_omnislash:DealAttack(target, is_auto)
 		target:AddNewModifier(self.caster, self, "modifier_custom_juggernaut_omnislash_armor", {})
 	end
 
-	self.caster:AddNewModifier(self.caster, self, "modifier_custom_juggernaut_omnislash_attack", { auto = auto })
+	self.caster:AddNewModifier(
+		self.caster,
+		self,
+		"modifier_custom_juggernaut_omnislash_attack",
+		{ auto = auto, creep = target:IsCreep() and 1 or 0 }
+	)
 	self.caster:PerformAttack(target, true, true, true, false, false, false, auto == 1, { damage = "jugg_omnislash" })
 	self.caster:RemoveModifierByName("modifier_custom_juggernaut_omnislash_attack")
 	target:RemoveModifierByName("modifier_custom_juggernaut_omnislash_armor")
@@ -441,7 +449,8 @@ function modifier_custom_juggernaut_omnislash:OnIntervalThink()
 	end
 
 	if self.count == 1 and self.ability.talents.has_r4 == 1 then
-		local particle = ParticleManager:CreateParticle("particles/jugger_stack.vpcf", PATTACH_ABSORIGIN_FOLLOW, enemy)
+		local particle =
+			ParticleManager:CreateParticle("particles/juggernaut/jugger_stack.vpcf", PATTACH_ABSORIGIN_FOLLOW, enemy)
 		ParticleManager:SetParticleControl(particle, 2, enemy:GetAbsOrigin() + Vector(0, 0, -100))
 		ParticleManager:SetParticleControl(particle, 3, enemy:GetAbsOrigin())
 		ParticleManager:ReleaseParticleIndex(particle)
@@ -525,6 +534,8 @@ function modifier_custom_juggernaut_omnislash_attack:OnCreated(table)
 	if table.auto == 1 then
 		self.is_auto = true
 	end
+
+	self.creeps = table.creep == 1 and self.ability.creeps or 0
 end
 
 function modifier_custom_juggernaut_omnislash_attack:DeclareFunctions()
@@ -541,7 +552,7 @@ function modifier_custom_juggernaut_omnislash_attack:GetModifierOverrideAttackDa
 	if self.is_auto then
 		damage = self.ability.talents.r3_damage * self.parent:GetAverageTrueAttackDamage(nil)
 	end
-	return damage
+	return damage * (1 + self.creeps)
 end
 
 modifier_custom_juggernaut_omnislash_tracker = class(mod_hidden)
@@ -566,6 +577,7 @@ function modifier_custom_juggernaut_omnislash_tracker:OnCreated()
 	self.ability.crit_bonus = self.ability:GetSpecialValueFor("crit_bonus")
 	self.ability.interval = self.ability:GetSpecialValueFor("interval")
 	self.ability.radius = self.ability:GetSpecialValueFor("radius")
+	self.ability.creeps = self.ability:GetSpecialValueFor("creeps") / 100
 end
 
 function modifier_custom_juggernaut_omnislash_tracker:OnRefresh()
@@ -597,7 +609,12 @@ function modifier_custom_juggernaut_omnislash_tracker:OnIntervalThink()
 		local cd = self.ability:GetEffectiveCooldown(self.ability:GetLevel())
 		local delta = math.floor(final / self.ability.talents.r7_distance)
 		for i = 1, delta do
-			self.parent:CdAbility(self.ability, cd * self.ability.talents.r7_cd_inc)
+			self.parent:CdAbility(
+				self.ability,
+				cd * self.ability.talents.r7_cd_inc,
+				nil,
+				"modifier_juggernaut_omnislash_7"
+			)
 		end
 		self.distance = final - delta * self.ability.talents.r7_distance
 	else
@@ -764,7 +781,7 @@ function modifier_custom_juggernaut_omnislash_legendary_mark:CheckDamage()
 	end
 	self.proced = true
 
-	self.parent:GenericParticle("particles/jugg_legendary_proc_.vpcf")
+	self.parent:GenericParticle("particles/juggernaut/jugg_legendary_proc_.vpcf")
 	self.parent:EmitSound("DOTA_Item.Daedelus.Crit")
 	self.parent:EmitSound("Juggernaut.Omni_legendary_proc")
 

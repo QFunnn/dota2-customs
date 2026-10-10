@@ -16,12 +16,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_abaddon_font_of_avernus_custom_heal_reduce",
 	"abilities/abaddon/abaddon_innate_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 LinkLuaModifier(
 	"modifier_abaddon_font_of_avernus_custom_regen",
 	"abilities/abaddon/abaddon_innate_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_abaddon_hero_3"
 )
 
 abaddon_innate_custom = class({})

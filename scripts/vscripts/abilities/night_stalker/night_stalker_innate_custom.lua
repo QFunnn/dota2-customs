@@ -16,12 +16,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_night_stalker_innate_custom_stats",
 	"abilities/night_stalker/night_stalker_innate_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "Scepter" }
 )
 LinkLuaModifier(
 	"modifier_night_stalker_innate_custom_active",
 	"abilities/night_stalker/night_stalker_innate_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 
 night_stalker_innate_custom = class({})

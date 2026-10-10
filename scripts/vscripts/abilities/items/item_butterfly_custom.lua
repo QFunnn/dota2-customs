@@ -24,8 +24,8 @@ function item_butterfly_custom:Precache(context)
 	PrecacheResource("particle", "particles/items2_fx/butterfly_active.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_morphling/morphling_morph_agi.vpcf", context)
 	PrecacheResource("particle", "particles/items3_fx/blink_swift_buff.vpcf", context)
-	PrecacheResource("particle", "particles/butterfly_status.vpcf", context)
-	PrecacheResource("particle", "particles/butterfly_proc.vpcf", context)
+	PrecacheResource("particle", "particles/items/butterfly_status.vpcf", context)
+	PrecacheResource("particle", "particles/items/butterfly_proc.vpcf", context)
 end
 
 function item_butterfly_custom:GetIntrinsicModifierName()
@@ -48,7 +48,7 @@ function item_butterfly_custom:OnSpellStart()
 	local caster = self:GetCaster()
 	self:EmitSound("DOTA_Item.Butterfly")
 
-	caster:GenericParticle("particles/butterfly_proc.vpcf")
+	caster:GenericParticle("particles/items/butterfly_proc.vpcf")
 	caster:EmitSound("Butterfly.Attack_absorb")
 	caster:AddNewModifier(caster, self, "modifier_generic_shield_multiple", {
 		duration = self.duration,
@@ -108,7 +108,7 @@ end
 
 modifier_item_butterfly_custom_move = class(mod_visible)
 function modifier_item_butterfly_custom_move:GetStatusEffectName()
-	return "particles/butterfly_status.vpcf"
+	return "particles/items/butterfly_status.vpcf"
 end
 function modifier_item_butterfly_custom_move:StatusEffectPriority()
 	return MODIFIER_PRIORITY_HIGH

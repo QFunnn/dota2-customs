@@ -21,12 +21,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_life_stealer_open_wounds_custom_legendary",
 	"abilities/life_stealer/life_stealer_open_wounds_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_lifestealer_wounds_7"
 )
 LinkLuaModifier(
 	"modifier_life_stealer_open_wounds_custom_burn",
 	"abilities/life_stealer/life_stealer_open_wounds_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_lifestealer_wounds_3"
 )
 
 life_stealer_open_wounds_custom = class({})
@@ -45,7 +47,6 @@ function life_stealer_open_wounds_custom:Precache(context)
 		context
 	)
 	PrecacheResource("particle", "particles/lifestealer/wounds_legendary_aoe.vpcf", context)
-	PrecacheResource("particle", "particles/lifestealer/wounds_legendary_aoe_init.vpcf", context)
 	PrecacheResource("particle", "particles/lifestealer/wounds_chains.vpcf", context)
 	PrecacheResource("particle", "particles/sand_king/sandking_caustic_finale_explode_custom.vpcf", context)
 	PrecacheResource("particle", "particles/lifestealer/wounds_legendary_end.vpcf", context)

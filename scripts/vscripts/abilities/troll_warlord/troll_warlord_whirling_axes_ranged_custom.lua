@@ -46,8 +46,7 @@ function troll_warlord_whirling_axes_ranged_custom:Precache(context)
 		return
 	end
 
-	PrecacheResource("particle", "particles/troll_ranged.vpcf", context)
-	PrecacheResource("particle", "particles/troll_ranged_legen.vpcf", context)
+	PrecacheResource("particle", "particles/troll_warlord/troll_ranged.vpcf", context)
 end
 
 function troll_warlord_whirling_axes_ranged_custom:OnAbilityPhaseStart()
@@ -152,7 +151,7 @@ function troll_warlord_whirling_axes_ranged_custom:OnSpellStart(new_target)
 		local angle = start_angle + (i - 1) * interval_angle
 		local velocity = RotateVector2D(direction, angle, true) * axe_speed
 
-		local particle_name = "particles/troll_ranged.vpcf"
+		local particle_name = "particles/troll_warlord/troll_ranged.vpcf"
 		local pfx_immortal = wearables_system:GetParticleReplacementAbility(
 			caster,
 			"particles/units/heroes/hero_troll_warlord/troll_warlord_whirling_axe_ranged.vpcf",

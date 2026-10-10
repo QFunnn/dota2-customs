@@ -26,7 +26,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_custom_bristleback_quill_spray_autocast",
 	"abilities/bristleback/bristleback_quill_spray_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_bristle_back_7" }
 )
 LinkLuaModifier(
 	"modifier_custom_bristleback_quill_spray_double",
@@ -54,8 +55,8 @@ function bristleback_quill_spray_custom:Precache(context)
 		"particles/units/heroes/hero_bristleback/bristleback_quill_spray_hit_creep.vpcf",
 		context
 	)
-	PrecacheResource("particle", "particles/lc_lowhp.vpcf", context)
-	PrecacheResource("particle", "particles/brist_proc.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_lowhp.vpcf", context)
+	PrecacheResource("particle", "particles/bristleback/brist_proc.vpcf", context)
 	PrecacheResource("particle", "particles/bristleback/spray_double.vpcf", context)
 	PrecacheResource("particle", "particles/bristleback/spray_legendary_damage.vpcf", context)
 end

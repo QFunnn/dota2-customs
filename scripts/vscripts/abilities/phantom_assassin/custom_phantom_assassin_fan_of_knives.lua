@@ -16,7 +16,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_custom_phantom_assassin_fan_of_knives",
 	"abilities/phantom_assassin/custom_phantom_assassin_fan_of_knives",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "Scepter" }
 )
 
 custom_phantom_assassin_fan_of_knives = class({})

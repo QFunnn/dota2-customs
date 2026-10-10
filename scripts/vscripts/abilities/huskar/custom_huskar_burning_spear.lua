@@ -11,7 +11,8 @@
 LinkLuaModifier(
 	"modifier_custom_huskar_burning_spear_counter",
 	"abilities/huskar/custom_huskar_burning_spear",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 LinkLuaModifier(
 	"modifier_custom_huskar_burning_spear_tracker",
@@ -21,17 +22,20 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_custom_huskar_burning_spear_legendary_buff",
 	"abilities/huskar/custom_huskar_burning_spear",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_huskar_spears_7"
 )
 LinkLuaModifier(
 	"modifier_custom_huskar_burning_spear_legendary_debuff",
 	"abilities/huskar/custom_huskar_burning_spear",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_huskar_spears_7"
 )
 LinkLuaModifier(
 	"modifier_custom_huskar_burning_spear_speed",
 	"abilities/huskar/custom_huskar_burning_spear",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_huskar_spears_1"
 )
 LinkLuaModifier(
 	"modifier_custom_huskar_burning_spear_fear_cd",
@@ -56,7 +60,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_custom_huskar_burning_spear_double_slow",
 	"abilities/huskar/custom_huskar_burning_spear",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_huskar_spears_3"
 )
 
 custom_huskar_burning_spear = class({})
@@ -67,14 +72,14 @@ function custom_huskar_burning_spear:Precache(context)
 		return
 	end
 	PrecacheResource("particle", "particles/units/heroes/hero_huskar/huskar_burning_spear.vpcf", context)
-	PrecacheResource("particle", "particles/huskar_fast.vpcf", context)
+	PrecacheResource("particle", "particles/huskar/huskar_fast.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_ogre_magi/ogre_magi_fireblast.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_monkey_king/monkey_king_quad_tap_hit.vpcf", context)
-	PrecacheResource("particle", "particles/orange_heal.vpcf", context)
+	PrecacheResource("particle", "particles/jakiro/orange_heal.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_huskar/huskar_burning_spear_debuff.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_huskar/huskar_base_attack.vpcf", context)
-	PrecacheResource("particle", "particles/huskar_spears_legen.vpcf", context)
-	PrecacheResource("particle", "particles/huskar_hands.vpcf", context)
+	PrecacheResource("particle", "particles/huskar/huskar_spears_legen.vpcf", context)
+	PrecacheResource("particle", "particles/huskar/huskar_hands.vpcf", context)
 	PrecacheResource("particle", "particles/huskar/double_spear.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_marci/marci_unleash_stack.vpcf", context)
 	PrecacheResource(
@@ -868,7 +873,7 @@ function custom_huskar_burning_spear_legendary:GetCooldown()
 end
 
 function custom_huskar_burning_spear_legendary:OnSpellStart()
-	local particle = ParticleManager:CreateParticle("particles/huskar_fast.vpcf", PATTACH_ABSORIGIN, self.caster)
+	local particle = ParticleManager:CreateParticle("particles/huskar/huskar_fast.vpcf", PATTACH_ABSORIGIN, self.caster)
 	ParticleManager:SetParticleControl(particle, 0, self.caster:GetAbsOrigin())
 	ParticleManager:SetParticleControl(particle, 1, self.caster:GetAbsOrigin())
 	ParticleManager:ReleaseParticleIndex(particle)
@@ -902,7 +907,7 @@ function modifier_custom_huskar_burning_spear_legendary_buff:OnCreated(table)
 		return
 	end
 	self.RemoveForDuel = true
-	self.parent:GenericParticle("particles/huskar_hands.vpcf", self)
+	self.parent:GenericParticle("particles/huskar/huskar_hands.vpcf", self)
 	self.parent:GenericParticle(
 		"particles/econ/items/huskar/huskar_2021_immortal/huskar_2021_immortal_burning_spear_debuff.vpcf",
 		self

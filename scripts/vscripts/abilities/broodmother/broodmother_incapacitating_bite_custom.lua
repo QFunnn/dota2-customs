@@ -16,36 +16,46 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_broodmother_incapacitating_bite_custom",
 	"abilities/broodmother/broodmother_incapacitating_bite_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 LinkLuaModifier(
 	"modifier_broodmother_incapacitating_bite_custom_speed",
 	"abilities/broodmother/broodmother_incapacitating_bite_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_broodmother_bite_1"
 )
 LinkLuaModifier(
 	"modifier_broodmother_incapacitating_bite_custom_bash_cd",
 	"abilities/broodmother/broodmother_incapacitating_bite_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_broodmother_bite_4"
 )
 LinkLuaModifier(
 	"modifier_broodmother_incapacitating_bite_custom_armor",
 	"abilities/broodmother/broodmother_incapacitating_bite_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_broodmother_bite_3"
 )
 LinkLuaModifier(
 	"modifier_broodmother_incapacitating_bite_custom_legendary_stack",
 	"abilities/broodmother/broodmother_incapacitating_bite_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_broodmother_bite_7"
 )
 LinkLuaModifier(
 	"modifier_broodmother_incapacitating_bite_custom_legendary_active",
 	"abilities/broodmother/broodmother_incapacitating_bite_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_broodmother_bite_7" }
 )
 
 broodmother_incapacitating_bite_custom = class({})
 broodmother_incapacitating_bite_custom.talents = {}
+
+function broodmother_incapacitating_bite_custom:GetAbilityTextureName()
+	return wearables_system:GetAbilityIconReplacement(self:GetCaster(), "broodmother_incapacitating_bite", self)
+end
 broodmother_incapacitating_bite_custom.legendary_stack = nil
 broodmother_incapacitating_bite_custom.legendary_active = nil
 
@@ -60,7 +70,7 @@ function broodmother_incapacitating_bite_custom:Precache(context)
 	)
 	PrecacheResource("particle", "particles/hoodwink/bush_damage.vpcf", context)
 	PrecacheResource("particle", "particles/broodmother/bite_stack.vpcf", context)
-	PrecacheResource("particle", "particles/lc_odd_charge_mark.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_odd_charge_mark.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/econ/items/troll_warlord/troll_warlord_ti7_axe/troll_ti7_axe_bash_explosion.vpcf",
@@ -555,7 +565,7 @@ function modifier_broodmother_incapacitating_bite_custom_legendary_stack:OnRefre
 	end
 
 	if self:GetStackCount() >= self.max then
-		self.parent:GenericParticle("particles/lc_odd_charge_mark.vpcf", self, true)
+		self.parent:GenericParticle("particles/legion_commander/lc_odd_charge_mark.vpcf", self, true)
 		if self.effect_cast then
 			ParticleManager:DestroyParticle(self.effect_cast, false)
 			ParticleManager:ReleaseParticleIndex(self.effect_cast)
@@ -596,7 +606,7 @@ function modifier_broodmother_incapacitating_bite_custom_legendary_active:OnCrea
 	if not IsValid(self.ability) then
 		return
 	end
-	self.parent:GenericParticle("particles/general/generic_armor_reduction.vpcf", self, true)
+	self.parent:GenericParticle("particles/generic/generic_armor_reduction.vpcf", self, true)
 	self.ability.legendary_active = self
 	self.ability:EndCd()
 

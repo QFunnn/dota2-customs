@@ -26,27 +26,32 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_kunkka_ghostship_custom_scepter_ride",
 	"abilities/kunkka/kunkka_ghostship_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "Scepter" }
 )
 LinkLuaModifier(
 	"modifier_kunkka_ghostship_custom_speed",
 	"abilities/kunkka/kunkka_ghostship_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_kunkka_hero_6"
 )
 LinkLuaModifier(
 	"modifier_kunkka_ghostship_custom_delay",
 	"abilities/kunkka/kunkka_ghostship_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "Scepter" }
 )
 LinkLuaModifier(
 	"modifier_kunkka_ghostship_custom_delay_heal",
 	"abilities/kunkka/kunkka_ghostship_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "Scepter" }
 )
 LinkLuaModifier(
 	"modifier_kunkka_ghostship_custom_legendary_sail",
 	"abilities/kunkka/kunkka_ghostship_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_kunkka_ship_7"
 )
 LinkLuaModifier(
 	"modifier_kunkka_ghostship_custom_ship_mod",
@@ -61,22 +66,26 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_kunkka_cannon_custom_debuff",
 	"abilities/kunkka/kunkka_ghostship_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_kunkka_ship_7"
 )
 LinkLuaModifier(
 	"modifier_kunkka_ghostship_custom_magic",
 	"abilities/kunkka/kunkka_ghostship_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_kunkka_ship_1"
 )
 LinkLuaModifier(
 	"modifier_kunkka_ghostship_custom_bank",
 	"abilities/kunkka/kunkka_ghostship_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_kunkka_ship_3"
 )
 LinkLuaModifier(
 	"modifier_kunkka_ghostship_custom_perma",
 	"abilities/kunkka/kunkka_ghostship_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_kunkka_ship_4"
 )
 
 kunkka_ghostship_custom = class({})
@@ -95,9 +104,9 @@ function kunkka_ghostship_custom:Precache(context)
 	PrecacheResource("particle", "particles/kunkka/ship_cannonball.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_kunkka/cannonball_explosion.vpcf", context)
 	PrecacheResource("particle", "particles/kunkka/ship_stack.vpcf", context)
-	PrecacheResource("particle", "particles/maiden_shield_active.vpcf", context)
+	PrecacheResource("particle", "particles/crystal_maiden/maiden_shield_active.vpcf", context)
 	PrecacheResource("particle", "particles/kunkka/ship_delayed_damage.vpcf", context)
-	PrecacheResource("particle", "particles/puck_silence_damage.vpcf", context)
+	PrecacheResource("particle", "particles/puck/puck_silence_damage.vpcf", context)
 	PrecacheResource("particle", "particles/kunkka/scepter_heal_reduce.vpcf", context)
 	PrecacheResource("particle", "particles/kunkka/scepter_effect.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_tidehunter/tidehunter_gush_splash_mid.vpcf", context)
@@ -421,6 +430,15 @@ function kunkka_ghostship_custom:ApplyRum(target)
 	)
 end
 
+function kunkka_ghostship_custom:ApplyHealDelay(target)
+	target:AddNewModifier(
+		self.caster,
+		self.caster:BkbAbility(self, true),
+		"modifier_kunkka_ghostship_custom_delay",
+		{ duration = self.scepter_delay, heal_duration = self.scepter_duration }
+	)
+end
+
 function kunkka_ghostship_custom:Crash(point, scepter)
 	if not IsServer() then
 		return
@@ -460,12 +478,7 @@ function kunkka_ghostship_custom:Crash(point, scepter)
 			end
 
 			if self.caster:HasScepter() then
-				target:AddNewModifier(
-					self.caster,
-					self.caster:BkbAbility(self, true),
-					"modifier_kunkka_ghostship_custom_delay",
-					{ duration = self.scepter_delay, heal_duration = self.scepter_duration }
-				)
+				self:ApplyHealDelay(target)
 			end
 
 			if self.talents.has_h4 == 1 then
@@ -519,7 +532,7 @@ function kunkka_ghostship_custom:Crash(point, scepter)
 	end
 
 	if proc and self.talents.has_q4 == 1 and not scepter then
-		self.caster:CdItems(self.talents.q4_cd_items_ship)
+		self.caster:CdItems(self.talents.q4_cd_items_ship, "modifier_kunkka_torrent_4")
 	end
 
 	if scepter then
@@ -669,14 +682,21 @@ function modifier_kunkka_ghostship_custom_thinker:OnIntervalThink()
 	if not IsServer() then
 		return
 	end
-	if not IsValid(self.caster.torrent_ability) then
-		return
-	end
 	if self.scepter then
 		return
 	end
 
 	local point = self.parent:GetAbsOrigin()
+
+	if self.caster:HasScepter() then
+		for _, target in pairs(self.caster:FindTargets(self.width, point)) do
+			self.ability:ApplyHealDelay(target)
+		end
+	end
+
+	if not IsValid(self.caster.torrent_ability) then
+		return
+	end
 	if (point - self.trail):Length2D() < self.step then
 		return
 	end
@@ -739,7 +759,7 @@ function modifier_kunkka_ghostship_custom_scepter:OnDestroy()
 	local elapsed = self:GetElapsedTime()
 
 	self.ability:StartCd()
-	self.parent:CdAbility(self.ability, elapsed)
+	self.parent:CdAbility(self.ability, elapsed, nil, "Scepter")
 end
 
 modifier_kunkka_ghostship_custom_scepter_ride = class(mod_hidden)
@@ -1013,6 +1033,7 @@ function modifier_kunkka_ghostship_custom_legendary_sail:OnCreated(table)
 		self.cannon:SetHidden(false)
 	end
 
+	self.parent:AddOrderFilter(self)
 	self:StartIntervalThink(self.ability.talents.r7_pickup)
 end
 
@@ -1052,20 +1073,24 @@ function modifier_kunkka_ghostship_custom_legendary_sail:OnIntervalThink()
 	self:OnIntervalThink()
 end
 
-function modifier_kunkka_ghostship_custom_legendary_sail:OnOrderCustom(new_pos, target)
-	if not IsServer() then
+function modifier_kunkka_ghostship_custom_legendary_sail:OrderFilter(params)
+	if not params.move then
+		return
+	end
+	if params.teleport then
 		return
 	end
 
-	local point = new_pos
-	if IsValid(target) then
-		point = target:GetAbsOrigin()
+	local point = params.pos
+	if IsValid(params.target) then
+		point = params.target:GetAbsOrigin()
 	end
 
 	local dir = point - self.parent:GetOrigin()
 	dir.z = 0
 
 	self.parent.flDesiredYaw = VectorAngles(dir:Normalized()).y
+	return false
 end
 
 function modifier_kunkka_ghostship_custom_legendary_sail:OnDestroy()
@@ -1654,8 +1679,11 @@ function modifier_kunkka_ghostship_custom_bank:OnIntervalThink()
 
 	self.parent:EmitSound("Kunkka.Ship_delayed_damage")
 
-	local effect =
-		ParticleManager:CreateParticle("particles/puck_silence_damage.vpcf", PATTACH_CUSTOMORIGIN_FOLLOW, self.parent)
+	local effect = ParticleManager:CreateParticle(
+		"particles/puck/puck_silence_damage.vpcf",
+		PATTACH_CUSTOMORIGIN_FOLLOW,
+		self.parent
+	)
 	ParticleManager:SetParticleControlEnt(
 		effect,
 		0,
@@ -1737,7 +1765,7 @@ function modifier_kunkka_ghostship_custom_perma:OnIntervalThink()
 		return
 	end
 
-	self.parent:GenericParticle("particles/maiden_shield_active.vpcf")
+	self.parent:GenericParticle("particles/crystal_maiden/maiden_shield_active.vpcf")
 	self.parent:EmitSound("BS.Thirst_legendary_active")
 	self:StartIntervalThink(-1)
 end

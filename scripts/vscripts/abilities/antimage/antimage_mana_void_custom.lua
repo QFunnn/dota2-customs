@@ -11,7 +11,8 @@
 LinkLuaModifier(
 	"modifier_antimage_mana_void_custom_slow",
 	"abilities/antimage/antimage_mana_void_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_antimage_hero_4"
 )
 LinkLuaModifier(
 	"modifier_antimage_mana_void_custom_tracker",
@@ -21,7 +22,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_antimage_mana_void_custom_int",
 	"abilities/antimage/antimage_mana_void_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_antimage_void_3"
 )
 LinkLuaModifier(
 	"modifier_antimage_mana_void_custom_cast_cd",
@@ -36,12 +38,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_antimage_mana_void_custom_perma",
 	"abilities/antimage/antimage_mana_void_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_antimage_hero_4"
 )
 LinkLuaModifier(
 	"modifier_antimage_mana_void_custom_silence",
 	"abilities/antimage/antimage_mana_void_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_antimage_hero_5"
 )
 
 antimage_mana_void_custom = class({})
@@ -52,16 +56,16 @@ function antimage_mana_void_custom:Precache(context)
 		return
 	end
 	PrecacheResource("particle", "particles/units/heroes/hero_antimage/antimage_manavoid.vpcf", context)
-	PrecacheResource("particle", "particles/void_astral_slow.vpcf", context)
-	PrecacheResource("particle", "particles/am_void_cd.vpcf", context)
-	PrecacheResource("particle", "particles/am_mana_stack.vpcf", context)
+	PrecacheResource("particle", "particles/void_spirit/void_astral_slow.vpcf", context)
+	PrecacheResource("particle", "particles/antimage/am_void_cd.vpcf", context)
+	PrecacheResource("particle", "particles/antimage/am_mana_stack.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_faceless_void/faceless_void_dialatedebuf_2.vpcf", context)
-	PrecacheResource("particle", "particles/am_cast.vpcf", context)
-	PrecacheResource("particle", "particles/am_mana_mark.vpcf", context)
+	PrecacheResource("particle", "particles/antimage/am_cast.vpcf", context)
+	PrecacheResource("particle", "particles/antimage/am_mana_mark.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_silencer/silencer_last_word_status.vpcf", context)
 	PrecacheResource("particle", "particles/items4_fx/nullifier_mute_debuff.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_nullifier.vpcf", context)
-	PrecacheResource("particle", "particles/anti-mage/void_silence.vpcf", context)
+	PrecacheResource("particle", "particles/antimage/void_silence.vpcf", context)
 	PrecacheResource("particle", "particles/enigma/summon_perma.vpcf", context)
 	PrecacheResource(
 		"particle",
@@ -231,7 +235,7 @@ function antimage_mana_void_custom:OnSpellStart()
 
 	if not legendary_mod then
 		if self.talents.has_r4 == 1 then
-			self.caster:CdItems(self.talents.r4_cd_items * (1 - min_mana / max_mana))
+			self.caster:CdItems(self.talents.r4_cd_items * (1 - min_mana / max_mana), "modifier_antimage_void_4")
 		end
 		if self.talents.has_h4 == 1 then
 			target:AddNewModifier(
@@ -431,7 +435,8 @@ function modifier_antimage_mana_void_custom_tracker:SpellEvent(params)
 	)
 	unit:EmitSound("Antimage.Void_silence2")
 
-	local zap_pfx = ParticleManager:CreateParticle("particles/am_void_cd.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
+	local zap_pfx =
+		ParticleManager:CreateParticle("particles/antimage/am_void_cd.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
 	ParticleManager:SetParticleControlEnt(
 		zap_pfx,
 		0,
@@ -469,7 +474,7 @@ function modifier_antimage_mana_void_custom_int:OnCreated(table)
 		return
 	end
 	self.RemoveForDuel = true
-	self.effect_cast = self.parent:GenericParticle("particles/am_mana_stack.vpcf", self, true)
+	self.effect_cast = self.parent:GenericParticle("particles/antimage/am_mana_stack.vpcf", self, true)
 	self:OnRefresh()
 end
 
@@ -588,7 +593,7 @@ function modifier_antimage_mana_void_custom_silence:OnCreated()
 		return
 	end
 	self.parent:EmitSound("Antimage.Void_silence")
-	self.parent:GenericParticle("particles/anti-mage/void_silence.vpcf", self, true)
+	self.parent:GenericParticle("particles/antimage/void_silence.vpcf", self, true)
 end
 
 function modifier_antimage_mana_void_custom_silence:CheckState()

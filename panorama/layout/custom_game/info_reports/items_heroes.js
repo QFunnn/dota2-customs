@@ -533,8 +533,7 @@ function CreateHeroPanelItems(panel, hero_name, stat)
 
     if (new_items[hero_name])
     {
-    	let new_alert = $.CreatePanel("Panel", BlockHero, "")
-    	new_alert.AddClass("new_alert")
+        CreateNewAlert(BlockHero, "")
         BlockHero.AddClass("BlockHeroItems_new")
     }
 
@@ -764,6 +763,21 @@ function InitShopItemsForHero(panel)
             else
             {
                 button_id_3.visible = true
+                let persona_new_alert = button_id_3.FindChildTraverse("persona_new_alert")
+                if (!persona_new_alert)
+                {
+                    persona_new_alert = CreateNewAlert(button_id_3, "persona_new_alert", "new_alert_persona")
+                }
+                let hero_items = CustomNetTables.GetTableValue("heroes_items_info", String(current_shop_hero_choose)) || {}
+                let persona_groups = Object.values(hero_items).filter(item => item.is_persona_item).map(item => [item.item_id])
+                for (let set_name of SETS_PRIORITY_PERSONA[current_shop_hero_choose])
+                {
+                    if (set_name != "rare")
+                    {
+                        persona_groups.push(GetAllItemsInSet(set_name, current_shop_hero_choose)[0])
+                    }
+                }
+                persona_new_alert.visible = persona_groups.some(IsShopItemsNew)
                 let panel_buttons_heroes_items_cat_items_icon = button_id_3.FindChildTraverse("panel_buttons_heroes_items_cat_items_icon")
                 if (panel_buttons_heroes_items_cat_items_icon)
                 {
@@ -864,7 +878,7 @@ function InitShopItemsForHero(panel)
 
             new_table.sort(function (a, b) 
             {
-                return Number(a[1])-Number(b[1])
+                return IsShopItemsNew([b[0]]) - IsShopItemsNew([a[0]]) || Number(a[1])-Number(b[1])
             });
 
             for (var i = 0; i <= new_table.length; i++) 
@@ -977,6 +991,12 @@ function CreateSlotTypeInfo(panel, name, is_persona)
             }
         }
         SetBlockNewBadge(slot_panel, set_has_new_item, "SlotPanelNewBadge")
+
+        if (IsShopItemsNew(set_this_info[0]))
+        {
+            let new_alert = CreateNewAlert(slot_panel, "", "new_alert_set")
+            new_alert.SetHasClass("new_alert_low", SETS_ARCANA_TYPE[name] == true || SETS_PERSONA_TYPE[name] == true)
+        }
 
         let slot_panel_sets = $.CreatePanel("Panel", slot_panel, "");
         slot_panel_sets.AddClass("slot_panel_sets");
@@ -1100,6 +1120,33 @@ function IsItemNewForPlayer(item_id)
         if (Number(sub.new_items[k]) == Number(item_id)) { return true }
     }
     return false
+}
+
+function IsShopItemsNew(item_ids)
+{
+    let new_ids = item_ids.filter(item_id => new_shop_items[item_id])
+    return new_ids.length > 0 && !new_ids.some(item_id => HasItemInventory(item_id))
+}
+
+function UpdateShopNewAlerts()
+{
+    let has_new = Object.keys(new_shop_items).some(item_id => !HasItemInventory(item_id))
+    for (let panel_id of ["shop_items_new", "ChooseCategoryItemsNew"])
+    {
+        let panel = $.GetContextPanel().FindChildTraverse(panel_id)
+        if (panel) { panel.SetHasClass("hidden_panel", !has_new) }
+    }
+}
+
+function CreateNewAlert(parent, id, extra_class)
+{
+    let new_alert = $.CreatePanel("Panel", parent, id)
+    new_alert.AddClass("new_alert")
+    if (extra_class) { new_alert.AddClass(extra_class) }
+    let new_alert_label = $.CreatePanel("Label", new_alert, "")
+    new_alert_label.AddClass("new_alert_label")
+    new_alert_label.text = "NEW"
+    return new_alert
 }
 
 function GetItemIdFromBlockId(panel_id)
@@ -1258,6 +1305,11 @@ function CreateItemShopItemHero(panel, info, is_set, items_list, is_item_effect)
 
     var BlockItemImage = $.CreatePanel("Panel", BlockItem, "BlockItemImage");
     BlockItemImage.AddClass("BlockItemImage");
+
+    if (IsShopItemsNew([original_item_id]))
+    {
+        CreateNewAlert(BlockItemImage, "", "new_alert_item")
+    }
 
     var BlockItemLabel = $.CreatePanel("Label", BlockItem, "");
     BlockItemLabel.AddClass("BlockItemLabel");

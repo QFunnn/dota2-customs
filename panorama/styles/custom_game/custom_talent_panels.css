@@ -529,19 +529,19 @@
 
 .BeastPulverize_Bar
 {
-	border: 1px solid #6b4b0c;
+	border: 1px solid #8b6110;
 	background-color: gradient( linear, 0% 0%, 0% 100%, from( #230c07 ), to( #462828 ) );
 }
 
 .BeastPulverize_Filler
 {
-	background-color: gradient( linear, 0% 0%, 100% 0%, from( #c0501a ), to( #f49327 ) );
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #9e4e27 ), to( #d68635 ) );
 	transition-duration: 0.3s;
 }
 
 .BeastPulverize_Icon
 {
-	border: 1px solid #fbc217;
+	border: 1px solid #8b6110;
 	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_primal_beast/pulverize_png.vtex");
 }
 
@@ -552,6 +552,11 @@
 	animation-duration: 1s;
 	transition-property: opacity, transform;
 	transition-duration: .24s;
+}
+
+.BeastPulverize_Max_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #c0501a ), to( #f49327 ) );
 }
 
 @keyframes 'BeastPulverizeAnim'
@@ -800,7 +805,7 @@
 .BristTaunt_Icon
 {
 	border: 1px solid #4b3859;
-	background-image: url("s2r://");
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_bristleback/back_6_png.vtex");
 }
 
 .BristTaunt_Max
@@ -3679,23 +3684,32 @@
 {
 	border: 1px solid #e48f4a;
 	background-color: gradient( linear, 0% 0%, 0% 100%, from( #1a0c02 ), to( #2f1705 ) );
-	animation-name: BeastUproarActive;
-	animation-iteration-count: infinite;
-	animation-duration: 1.5s;
-	transition-property: opacity, transform;
-	transition-duration: .24s;
 }
 
 .BeastUproar_Filler
 {
-	background-color: gradient( linear, 0% 100%, 0% 0%, from( #fca32f ), to( #c17716 ) );
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #de7e29 ), to( #aa5a13 ) );
 	transition-duration: 0.1s;
 }
 
 .BeastUproar_Icon
 {
 	border: 1px solid #e48f4a;
-	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_primal_beast/blood_frenzy_png.vtex");
+	background-image: url("s2r://panorama/images/spellicons/primal_beast_uproar_none_png.vtex");
+}
+
+.BeastUproar_Filler_Active
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #fc8f2f ), to( #c16616 ) );
+}
+
+.BeastUproar_Icon_Active
+{
+	background-image: url("s2r://panorama/images/spellicons/primal_beast_uproar_max_png.vtex");
+}
+
+.BeastUproar_Glow_Active
+{
 	animation-name: BeastUproarActive;
 	animation-iteration-count: infinite;
 	animation-duration: 1.5s;
@@ -3724,8 +3738,8 @@
 
 .BeastCharge_Filler
 {
-	background-color: gradient( linear, 0% 0%, 100% 0%, from( #9d2202 ), to( #dc7b33 ) );
-	transition-duration: 0.03s;
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #9d2202 ), to( #dc7b33 ) );
+	transition-duration: 0.1s;
 }
 
 .BeastCharge_Icon
@@ -3743,6 +3757,66 @@
 .BeastCharge_Dot
 {
 	background-color: #fad257;
+}
+
+.BeastTrample_Filler
+{
+	background-color: gradient( linear, 0% 100%, 0% 0%, from( #7a401f ), to( #e8955e ) );
+	transition-duration: 0.1s;
+}
+
+.BeastTrample_Icon
+{
+	border: 1px solid #db6805;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_primal_beast/trample_png.vtex");
+}
+
+.BeastTrample_Bar
+{
+	border: 1px solid #db6805;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #251200 ), to( #140900 ) );
+}
+
+.BeastQuake_Bar
+{
+	width: 65px;
+	height: 32px;
+	margin-left: 25px;
+	vertical-align: center;
+	border-top: 1px solid #db6805;
+	border-left: 1px solid #db6805;
+	border-bottom: 1px solid #db6805;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #251200 ), to( #140900 ) );
+	border-bottom-left-radius: 5px;
+	border-top-left-radius: 5px;
+	box-shadow: fill black 0px 0px 10px -2px;
+}
+
+.BeastQuake_Icon
+{
+	width: 40px;
+	height: 40px;
+	margin-left: 0px;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_primal_beast/onslaught_png.vtex");
+	background-size: contain;
+	background-repeat: no-repeat;
+	box-shadow: fill black 0px 0px 12px -2px;
+	border: 1px solid #db6805;
+	border-radius: 3px;
+	z-index: 999;
+}
+
+.BeastQuake_Number
+{
+	font-family: Reaver;
+	font-weight: bold;
+	color: gradient( linear, 0% 100%, 0% 0%, from( #f6cd9c ), to( #fff6ea ) );
+	text-shadow: 1px 1px 2px 3 black;
+	z-index: 8;
+	align: center center;
+	font-size: 21px;
+	text-align: center;
 }
 
 .PuckShift_Bar

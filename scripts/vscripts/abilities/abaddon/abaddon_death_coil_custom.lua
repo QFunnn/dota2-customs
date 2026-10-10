@@ -16,7 +16,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_abaddon_death_coil_custom_cd",
 	"abilities/abaddon/abaddon_death_coil_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_abaddon_hero_4" }
 )
 LinkLuaModifier(
 	"modifier_abaddon_death_coil_custom_tracker",
@@ -26,12 +27,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_abaddon_death_coil_custom_leash",
 	"abilities/abaddon/abaddon_death_coil_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_abaddon_hero_4"
 )
 LinkLuaModifier(
 	"modifier_abaddon_death_coil_custom_move",
 	"abilities/abaddon/abaddon_death_coil_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_abaddon_mist_4"
 )
 LinkLuaModifier(
 	"modifier_abaddon_death_coil_custom_unslow",
@@ -51,7 +54,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_abaddon_death_coil_custom_slow",
 	"abilities/abaddon/abaddon_death_coil_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_abaddon_mist_3"
 )
 
 abaddon_death_coil_custom = class({})
@@ -70,12 +74,11 @@ function abaddon_death_coil_custom:Precache(context)
 	PrecacheResource("particle", "particles/shrine/capture_point_ring_clock_overthrow.vpcf", context)
 	PrecacheResource("particle", "particles/abaddon/coil_legendary_casti.vpcf", context)
 	PrecacheResource("particle", "particles/abaddon/coil_proje.vpcf", context)
-	PrecacheResource("particle", "particles/abaddon/coil_proj.vpcf", context)
 	PrecacheResource("particle", "particles/abaddon/coil_legendary_cast.vpcf", context)
 	PrecacheResource("particle", "particles/abaddon/coil_leash.vpcf", context)
 	PrecacheResource("particle", "particles/abaddon/coil_speed.vpcf", context)
 	PrecacheResource("particle", "particles/abaddon/coil_cdr.vpcf", context)
-	PrecacheResource("particle", "particles/zuus_speed.vpcf", context)
+	PrecacheResource("particle", "particles/zeus/zuus_speed.vpcf", context)
 end
 
 function abaddon_death_coil_custom:UpdateTalents(name)
@@ -236,7 +239,7 @@ function abaddon_death_coil_custom:OnSpellStart(new_target, damage_ability)
 	if not new_target then
 		if self.talents.has_q4 == 1 then
 			self:ProcMove()
-			self.caster:CdItems(self.talents.q4_cd_items)
+			self.caster:CdItems(self.talents.q4_cd_items, "modifier_abaddon_mist_4")
 		end
 		if self.talents.has_q3 == 1 then
 			local chance = self.talents.q3_chance
@@ -715,7 +718,7 @@ function modifier_abaddon_death_coil_custom_move:OnCreated()
 	if not IsServer() then
 		return
 	end
-	self.parent:GenericParticle("particles/zuus_speed.vpcf", self)
+	self.parent:GenericParticle("particles/zeus/zuus_speed.vpcf", self)
 end
 
 function modifier_abaddon_death_coil_custom_move:DeclareFunctions()

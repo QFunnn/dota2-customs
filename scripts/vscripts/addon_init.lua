@@ -8,6 +8,17 @@
 ]]
 
 
+_G.LinkLuaModifier_old = LinkLuaModifier_old or LinkLuaModifier
+_G.log_modifiers = log_modifiers or {}
+
+function LinkLuaModifier(name, path, motion, log)
+	if log ~= nil then
+		log_modifiers[name] = log
+	end
+
+	LinkLuaModifier_old(name, path, motion)
+end
+
 LinkLuaModifier(
 	"modifier_generic_attack_speed",
 	"modifiers/generic/modifier_generic_attack_speed",
@@ -127,11 +138,6 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_patrol_reward_2_buff",
 	"modifiers/patrol_rewards/modifier_patrol_reward_2_buff",
-	LUA_MODIFIER_MOTION_NONE
-)
-LinkLuaModifier(
-	"modifier_patrol_reward_2_necro",
-	"modifiers/patrol_rewards/modifier_patrol_reward_2_necro",
 	LUA_MODIFIER_MOTION_NONE
 )
 LinkLuaModifier(
@@ -277,6 +283,7 @@ _G.added_shop_heroes = {
 	["npc_dota_hero_muerta"] = true,
 	["npc_dota_hero_furion"] = true,
 	["npc_dota_hero_pangolier"] = true,
+	["npc_dota_hero_primal_beast"] = true,
 }
 
 _G.NoCdItems = {

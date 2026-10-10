@@ -21,12 +21,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_pangolier_shield_crash_custom_magic",
 	"abilities/pangolier/pangolier_shield_crash_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_pangolier_shield_3"
 )
 LinkLuaModifier(
 	"modifier_pangolier_shield_crash_custom_legendary",
 	"abilities/pangolier/pangolier_shield_crash_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_pangolier_shield_7"
 )
 LinkLuaModifier(
 	"modifier_pangolier_shield_crash_custom_burn",
@@ -36,7 +38,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_pangolier_shield_crash_custom_health",
 	"abilities/pangolier/pangolier_shield_crash_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_pangolier_shield_4"
 )
 
 pangolier_shield_crash_custom = class({})
@@ -53,14 +56,13 @@ function pangolier_shield_crash_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_pangolier/pangolier_tailthump_buff.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_pangolier/pangolier_tailthump_buff_egg.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_pangolier/pangolier_tailthump_buff_streaks.vpcf", context)
-	PrecacheResource("particle", "particles/jugg_parry.vpcf", context)
+	PrecacheResource("particle", "particles/juggernaut/jugg_parry.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_snapfire/hero_snapfire_shotgun_debuff.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_snapfire_slow.vpcf", context)
 	PrecacheResource("particle", "particles/items3_fx/blink_overwhelming_burst.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_pangolier/pangolier_swashbuckler.vpcf", context)
-	PrecacheResource("particle", "particles/mars_revenge_proc_hands.vpcf", context)
-	PrecacheResource("particle", "particles/lc_odd_proc_.vpcf", context)
-	PrecacheResource("particle", "particles/lc_lowhp.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_odd_proc_.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_lowhp.vpcf", context)
 	PrecacheResource("particle", "particles/pangolier/shield_delay.vpcf", context)
 	PrecacheResource("particle", "particles/pangolier/shield_legendary.vpcf", context)
 	PrecacheResource("particle", "particles/pangolier/buckle_refresh.vpcf", context)
@@ -591,8 +593,8 @@ function modifier_pangolier_shield_crash_custom_legendary:AddStack()
 	self:IncrementStackCount()
 
 	if self:GetStackCount() == (self.max - 1) then
-		self.parent:GenericParticle("particles/lc_odd_proc_.vpcf")
-		self.parent:GenericParticle("particles/lc_lowhp.vpcf", self)
+		self.parent:GenericParticle("particles/legion_commander/lc_odd_proc_.vpcf")
+		self.parent:GenericParticle("particles/legion_commander/lc_lowhp.vpcf", self)
 
 		self.parent:EmitSound("Pango.Shield_damage_proc")
 		self.parent:EmitSound("Pango.Shield_damage_proc2")
@@ -622,7 +624,7 @@ function modifier_pangolier_shield_crash_custom_legendary:OnDestroy()
 	)
 	ParticleManager:ReleaseParticleIndex(particle)
 
-	self.parent:CdAbility(self.ability, nil, self.ability.talents.w7_cd_inc)
+	self.parent:CdAbility(self.ability, nil, self.ability.talents.w7_cd_inc, "modifier_pangolier_shield_7")
 end
 
 modifier_pangolier_shield_crash_custom_slow = class(mod_visible)

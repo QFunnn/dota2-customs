@@ -17,32 +17,38 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_bane_brain_sap_custom_legendary",
 	"abilities/bane/bane_brain_sap_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_bane_brain_7"
 )
 LinkLuaModifier(
 	"modifier_bane_brain_sap_custom_auto_cd",
 	"abilities/bane/bane_brain_sap_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_bane_brain_3"
 )
 LinkLuaModifier(
 	"modifier_bane_brain_sap_custom_shield_auto_cd",
 	"abilities/bane/bane_brain_sap_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_bane_hero_4"
 )
 LinkLuaModifier(
 	"modifier_bane_brain_sap_custom_fear_cd",
 	"abilities/bane/bane_brain_sap_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_bane_brain_4"
 )
 LinkLuaModifier(
 	"modifier_bane_brain_sap_custom_spells",
 	"abilities/bane/bane_brain_sap_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_bane_hero_3"
 )
 LinkLuaModifier(
 	"modifier_bane_brain_sap_custom_heal_reduce",
 	"abilities/bane/bane_brain_sap_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_bane_hero_3"
 )
 
 bane_brain_sap_custom = class({})

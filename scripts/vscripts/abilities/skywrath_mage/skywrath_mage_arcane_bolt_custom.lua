@@ -66,26 +66,26 @@ function skywrath_mage_arcane_bolt_custom:Precache(context)
 	end
 
 	PrecacheResource("particle", "particles/units/heroes/hero_skywrath_mage/skywrath_mage_arcane_bolt.vpcf", context)
-	PrecacheResource("particle", "particles/skymage/bolt_legendary.vpcf", context)
-	PrecacheResource("particle", "particles/skymage/bolt_legendarya.vpcf", context)
-	PrecacheResource("particle", "particles/skymage/bolt_legendary_cast.vpcf", context)
-	PrecacheResource("particle", "particles/skymage/bolt_legendary_status.vpcf", context)
-	PrecacheResource("particle", "particles/skymage/bolt_legendary_mana.vpcf", context)
+	PrecacheResource("particle", "particles/skywrath/bolt_legendary.vpcf", context)
+	PrecacheResource("particle", "particles/skywrath/bolt_legendarya.vpcf", context)
+	PrecacheResource("particle", "particles/skywrath/bolt_legendary_cast.vpcf", context)
+	PrecacheResource("particle", "particles/skywrath/bolt_legendary_status.vpcf", context)
+	PrecacheResource("particle", "particles/skywrath/bolt_legendary_mana.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_keeper_of_the_light/keeper_chakra_magic.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/units/heroes/hero_obsidian_destroyer/obsidian_destroyer_essence_effect.vpcf",
 		context
 	)
-	PrecacheResource("particle", "particles/skymage/bolt_root.vpcf", context)
-	PrecacheResource("particle", "particles/skymage/bolt_root_stack.vpcf", context)
+	PrecacheResource("particle", "particles/skywrath/bolt_root.vpcf", context)
+	PrecacheResource("particle", "particles/skywrath/bolt_root_stack.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/econ/items/outworld_devourer/od_shards_exile/od_shards_exile_prison_end.vpcf",
 		context
 	)
-	PrecacheResource("particle", "particles/skymage/bolt_lethal.vpcf", context)
-	PrecacheResource("particle", "particles/skymage/bolt_slow.vpcf", context)
+	PrecacheResource("particle", "particles/skywrath/bolt_lethal.vpcf", context)
+	PrecacheResource("particle", "particles/skywrath/bolt_slow.vpcf", context)
 end
 
 function skywrath_mage_arcane_bolt_custom:GetIntrinsicModifierName()
@@ -185,7 +185,7 @@ function skywrath_mage_arcane_bolt_custom:OnSpellStart(new_target)
 	end
 
 	if caster:HasModifier("modifier_skywrath_mage_arcane_bolt_custom_range") then
-		caster:CdItems(caster:GetTalentValue("modifier_sky_arcane_bolt_4", "cd_items"))
+		caster:CdItems(caster:GetTalentValue("modifier_sky_arcane_bolt_4", "cd_items"), "modifier_sky_arcane_bolt_4")
 	end
 
 	if caster:HasTalent("modifier_sky_arcane_bolt_2") then
@@ -337,7 +337,7 @@ function modifier_skywrath_mage_arcane_bolt_custom_legendary:OnCreated(table)
 	self.parent:EmitSound("Sky.Bolt_legendary_loop")
 
 	local particle_peffect = ParticleManager:CreateParticle(
-		"particles/skymage/bolt_legendary_cast.vpcf",
+		"particles/skywrath/bolt_legendary_cast.vpcf",
 		PATTACH_ABSORIGIN_FOLLOW,
 		self.parent
 	)
@@ -346,7 +346,7 @@ function modifier_skywrath_mage_arcane_bolt_custom_legendary:OnCreated(table)
 	ParticleManager:ReleaseParticleIndex(particle_peffect)
 
 	self.effect_cast =
-		ParticleManager:CreateParticle("particles/skymage/bolt_legendarya.vpcf", PATTACH_CUSTOMORIGIN, self.parent)
+		ParticleManager:CreateParticle("particles/skywrath/bolt_legendarya.vpcf", PATTACH_CUSTOMORIGIN, self.parent)
 	ParticleManager:SetParticleControlEnt(
 		self.effect_cast,
 		0,
@@ -376,7 +376,7 @@ function modifier_skywrath_mage_arcane_bolt_custom_legendary:OnIntervalThink()
 end
 
 function modifier_skywrath_mage_arcane_bolt_custom_legendary:GetEffectName()
-	return "particles/skymage/bolt_legendary_status.vpcf"
+	return "particles/skywrath/bolt_legendary_status.vpcf"
 end
 
 function modifier_skywrath_mage_arcane_bolt_custom_legendary:GetStatusEffectName()
@@ -622,7 +622,7 @@ function modifier_skywrath_mage_arcane_bolt_custom_legendary_mana:OnIntervalThin
 end
 
 function modifier_skywrath_mage_arcane_bolt_custom_legendary_mana:GetEffectName()
-	return "particles/skymage/bolt_legendary_mana.vpcf"
+	return "particles/skywrath/bolt_legendary_mana.vpcf"
 end
 
 modifier_skywrath_mage_arcane_bolt_custom_slow = class({})
@@ -658,7 +658,7 @@ function modifier_skywrath_mage_arcane_bolt_custom_slow:OnRefresh(table)
 	self:IncrementStackCount()
 
 	if self:GetStackCount() >= self.max and self.parent ~= self.caster then
-		self.parent:GenericParticle("particles/skymage/bolt_slow.vpcf", self)
+		self.parent:GenericParticle("particles/skywrath/bolt_slow.vpcf", self)
 	end
 end
 
@@ -686,7 +686,7 @@ function modifier_skywrath_mage_arcane_bolt_custom_root:CheckState()
 end
 
 function modifier_skywrath_mage_arcane_bolt_custom_root:GetEffectName()
-	return "particles/skymage/bolt_root.vpcf"
+	return "particles/skywrath/bolt_root.vpcf"
 end
 
 modifier_skywrath_mage_arcane_bolt_custom_root_stack = class({})
@@ -708,7 +708,7 @@ function modifier_skywrath_mage_arcane_bolt_custom_root_stack:OnCreated()
 	end
 
 	if not self.caster:HasTalent("modifier_sky_flare_4") then
-		self.particle = self.parent:GenericParticle("particles/skymage/bolt_root_stack.vpcf", self, true)
+		self.particle = self.parent:GenericParticle("particles/skywrath/bolt_root_stack.vpcf", self, true)
 	end
 
 	self:SetStackCount(1)
@@ -769,7 +769,7 @@ function modifier_skywrath_mage_arcane_bolt_custom_range:OnCreated()
 		return
 	end
 	self.effect_cast =
-		ParticleManager:CreateParticle("particles/skymage/bolt_legendary.vpcf", PATTACH_CUSTOMORIGIN, self.parent)
+		ParticleManager:CreateParticle("particles/skywrath/bolt_legendary.vpcf", PATTACH_CUSTOMORIGIN, self.parent)
 	ParticleManager:SetParticleControlEnt(
 		self.effect_cast,
 		0,
@@ -839,7 +839,7 @@ function modifier_skywrath_mage_arcane_bolt_custom_lethal:OnCreated()
 	self.parent:EmitSound("Sky.Bolt_lethal2")
 
 	self.effect_cast =
-		ParticleManager:CreateParticle("particles/skymage/bolt_lethal.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
+		ParticleManager:CreateParticle("particles/skywrath/bolt_lethal.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
 	ParticleManager:SetParticleControl(self.effect_cast, 0, self.parent:GetAbsOrigin())
 	ParticleManager:SetParticleControlEnt(
 		self.effect_cast,
@@ -864,7 +864,7 @@ function modifier_skywrath_mage_arcane_bolt_custom_lethal:GetModifierConstantHea
 end
 
 function modifier_skywrath_mage_arcane_bolt_custom_lethal:GetStatusEffectName()
-	return "particles/skymage/bolt_lethal_status.vpcf"
+	return "particles/skywrath/bolt_lethal_status.vpcf"
 end
 
 function modifier_skywrath_mage_arcane_bolt_custom_lethal:StatusEffectPriority()

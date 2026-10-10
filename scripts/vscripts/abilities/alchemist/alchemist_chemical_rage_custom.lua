@@ -16,7 +16,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_alchemist_chemical_rage_custom_legendary",
 	"abilities/alchemist/alchemist_chemical_rage_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_alchemist_rage_3", "modifier_alchemist_rage_legendary" }
 )
 LinkLuaModifier(
 	"modifier_alchemist_chemical_rage_tracker",
@@ -26,17 +27,20 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_alchemist_chemical_rage_custom_incoming",
 	"abilities/alchemist/alchemist_chemical_rage_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_alchemist_rage_4" }
 )
 LinkLuaModifier(
 	"modifier_alchemist_chemical_rage_custom_attack",
 	"abilities/alchemist/alchemist_chemical_rage_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_alchemist_rage_1"
 )
 LinkLuaModifier(
 	"modifier_alchemist_chemical_rage_custom_low_cd",
 	"abilities/alchemist/alchemist_chemical_rage_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_alchemist_rage_4"
 )
 
 alchemist_chemical_rage_custom = class({})
@@ -47,7 +51,7 @@ function alchemist_chemical_rage_custom:Precache(context)
 		return
 	end
 	PrecacheResource("particle", "particles/units/heroes/hero_alchemist/alchemist_chemical_rage.vpcf", context)
-	PrecacheResource("particle", "particles/alch_cleave.vpcf", context)
+	PrecacheResource("particle", "particles/alchemist/alch_cleave.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/units/heroes/hero_alchemist/alchemist_chemical_rage_hero_effect.vpcf",
@@ -428,7 +432,7 @@ function modifier_alchemist_chemical_rage_tracker:AttackEvent_out(params)
 			150,
 			360,
 			650,
-			"particles/alch_cleave.vpcf"
+			"particles/alchemist/alch_cleave.vpcf"
 		)
 	end
 

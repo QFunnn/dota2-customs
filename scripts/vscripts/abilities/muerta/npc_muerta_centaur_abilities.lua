@@ -31,10 +31,10 @@ function npc_muerta_centaur_charge:Precache(context)
 	end
 	PrecacheResource("particle", "particles/generic_gameplay/generic_has_quest.vpcf", context)
 	PrecacheResource("particle", "particles/items_fx/force_staff.vpcf", context)
-	PrecacheResource("particle", "particles/lc_odd_charge.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_odd_charge.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_forcestaff.vpcf", context)
 	PrecacheResource("particle", "particles/neutral_fx/neutral_centaur_khan_war_stomp.vpcf", context)
-	PrecacheResource("particle", "particles/red_zone.vpcf", context)
+	PrecacheResource("particle", "particles/muerta/red_zone.vpcf", context)
 end
 
 function npc_muerta_centaur_charge:Spawn()
@@ -108,7 +108,7 @@ function modifier_npc_muerta_centaur_chrarge:OnCreated(kv)
 	self.ability = self:GetAbility()
 
 	self.parent:GenericParticle("particles/items_fx/force_staff.vpcf", self)
-	self.parent:GenericParticle("particles/lc_odd_charge.vpcf", self)
+	self.parent:GenericParticle("particles/legion_commander/lc_odd_charge.vpcf", self)
 
 	self.point = GetGroundPosition(Vector(kv.x, kv.y, 0), nil)
 
@@ -308,7 +308,8 @@ function modifier_npc_muerta_centaur_stuns_cast:CastAnim()
 	self.parent:EmitSound("n_creep_Centaur.Stomp")
 	self.parent:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_1, 0.8)
 
-	self.effect_cast = ParticleManager:CreateParticle("particles/red_zone.vpcf", PATTACH_CUSTOMORIGIN, self.parent)
+	self.effect_cast =
+		ParticleManager:CreateParticle("particles/muerta/red_zone.vpcf", PATTACH_CUSTOMORIGIN, self.parent)
 	ParticleManager:SetParticleControl(self.effect_cast, 0, self.parent:GetOrigin())
 	ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(self.radius, 0, -self.radius / self.delay))
 	ParticleManager:SetParticleControl(self.effect_cast, 2, Vector(self.delay, 0, 0))

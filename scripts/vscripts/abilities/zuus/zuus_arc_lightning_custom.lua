@@ -21,7 +21,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_zuus_arc_lightning_custom_legendary",
 	"abilities/zuus/zuus_arc_lightning_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_zuus_arc_7"
 )
 LinkLuaModifier(
 	"modifier_zuus_arc_lightning_custom_legendary_cast",
@@ -31,7 +32,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_zuus_arc_lightning_custom_slow",
 	"abilities/zuus/zuus_arc_lightning_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_zuus_arc_2", "modifier_zuus_arc_4" }
 )
 LinkLuaModifier(
 	"modifier_zuus_arc_lightning_custom_legendary_damage",
@@ -49,15 +51,12 @@ function zuus_arc_lightning_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_zuus/z_w.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_zuus/zuus_arc_lightning_head.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_zuus/zuus_arc_lightning.vpcf", context)
-	PrecacheResource("particle", "particles/zuus_linken.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_zuus/zuus_shard.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_zuus/zuus_shard_slow.vpcf", context)
-	PrecacheResource("particle", "particles/zuus_speed.vpcf", context)
-	PrecacheResource("particle", "particles/zeus_magic_attack.vpcf", context)
+	PrecacheResource("particle", "particles/zeus/zuus_speed.vpcf", context)
 	PrecacheResource("particle", "particles/econ/items/zeus/arcana_chariot/zeus_arcana_blink_end.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_vengeful/vengeful_swap_buff_overhead.vpcf", context)
-	PrecacheResource("particle", "particles/zeus/arc_legendary_radius.vpcf", context)
-	PrecacheResource("particle", "particles/zuus_shield_wrath.vpcf", context)
+	PrecacheResource("particle", "particles/zeus/zuus_shield_wrath.vpcf", context)
 	PrecacheResource("particle", "particles/econ/items/zeus/zeus_ti8_immortal_arms/zeus_ti8_immortal_arc.vpcf", context)
 	PrecacheResource("particle", "particles/zeus/arc_legendary_active.vpcf", context)
 	PrecacheResource(

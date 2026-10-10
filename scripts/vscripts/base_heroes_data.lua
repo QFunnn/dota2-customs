@@ -1262,7 +1262,7 @@ return {
 	},
 	["npc_dota_hero_razor"] = {
 		["effects"] = {
-			["particles/razor_custom/razor_whip.vpcf"] = {
+			["particles/razor/razor_whip.vpcf"] = {
 				["attach_entity"] = "parent",
 				["control_points"] = {
 					["2"] = {
@@ -1298,7 +1298,7 @@ return {
 				},
 				["attach_type"] = "customorigin",
 			},
-			["particles/razor_custom/razor_ambient_main.vpcf"] = {
+			["particles/razor/razor_ambient_main.vpcf"] = {
 				["attach_entity"] = "parent",
 				["control_points"] = {
 					["0"] = {
@@ -1309,7 +1309,7 @@ return {
 				},
 				["attach_type"] = "customorigin",
 			},
-			["particles/razor_custom/razor_ambient.vpcf"] = {
+			["particles/razor/razor_ambient.vpcf"] = {
 				["attach_entity"] = "parent",
 				["control_points"] = {
 					["0"] = {
@@ -1813,7 +1813,7 @@ return {
 	},
 	["npc_dota_hero_terrorblade"] = {
 		["effects"] = {
-			["particles/terrorblade_custom/terrorblade_feet_effects.vpcf"] = {
+			["particles/terrorblade/terrorblade_feet_effects.vpcf"] = {
 				["attach_entity"] = "parent",
 				["control_points"] = {
 					["0"] = {

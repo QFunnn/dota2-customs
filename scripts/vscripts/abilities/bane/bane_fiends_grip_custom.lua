@@ -27,7 +27,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_bane_fiends_grip_custom_legendary_stack",
 	"abilities/bane/bane_fiends_grip_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_bane_grip_7"
 )
 LinkLuaModifier(
 	"modifier_bane_fiends_grip_custom_legendary_cast",
@@ -42,27 +43,32 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_bane_fiends_grip_custom_absorb",
 	"abilities/bane/bane_fiends_grip_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_bane_hero_6"
 )
 LinkLuaModifier(
 	"modifier_bane_fiends_grip_custom_absorb_cd",
 	"abilities/bane/bane_fiends_grip_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_bane_hero_6" }
 )
 LinkLuaModifier(
 	"modifier_bane_fiends_grip_custom_spell_damage",
 	"abilities/bane/bane_fiends_grip_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_bane_grip_3"
 )
 LinkLuaModifier(
 	"modifier_bane_fiends_grip_custom_move_stack",
 	"abilities/bane/bane_fiends_grip_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_bane_grip_4"
 )
 LinkLuaModifier(
 	"modifier_bane_fiends_grip_custom_move",
 	"abilities/bane/bane_fiends_grip_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_bane_grip_4" }
 )
 
 bane_fiends_grip_custom = class({})
@@ -77,11 +83,9 @@ function bane_fiends_grip_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_bane/bane_fiends_grip.vpcf", context)
 	PrecacheResource("particle", "particles/bane/grip_legendary_status.vpcf", context)
 	PrecacheResource("particle", "particles/bane/grip_legendary.vpcf", context)
-	PrecacheResource("particle", "particles/bane/grip_legendary_stack_max.vpcf", context)
 	PrecacheResource("particle", "particles/bane/grip_legendary_stack.vpcf", context)
 	PrecacheResource("particle", "particles/bane/sap_legendaryc.vpcf", context)
 	PrecacheResource("particle", "particles/bane/grip_absorb.vpcf", context)
-	PrecacheResource("particle", "particles/bane/grip_absorb_proc.vpcf", context)
 	PrecacheResource("particle", "particles/bane/grip_legendary_spells.vpcf", context)
 	PrecacheResource("particle", "particles/bane/grip_move.vpcf", context)
 	PrecacheResource("particle", "particles/bane/grip_move_trail.vpcf", context)
@@ -1186,7 +1190,7 @@ function modifier_bane_fiends_grip_custom_move_stack:OnRefresh()
 	self:IncrementStackCount()
 
 	if self:GetStackCount() >= self.max then
-		self.parent:CdItems(self.ability.talents.r4_cd_items)
+		self.parent:CdItems(self.ability.talents.r4_cd_items, "modifier_bane_grip_4")
 		self.parent:AddNewModifier(
 			self.parent,
 			self.ability,

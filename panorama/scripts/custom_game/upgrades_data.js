@@ -684,7 +684,7 @@ function update_talent_increase(data)
 Game.GetValuesArray = (text) => {
     const keys = new Set();
     // Ищем ключи с любым количеством символов % и ^ после них
-    const regex = /\*!?[+-]?(\w+)[%^]*\*/g;
+    const regex = /\*[!~]?[+-]?(\w+)[%^]*\*/g;
     
     let match;
     while ((match = regex.exec(text)) !== null) {
@@ -777,12 +777,18 @@ function replaceValues(str, valuesMap, level, showAll, legendary, no_color, no_t
   if (legendary) color = "#fb9531"; // Оранжевый для легендарных
   if (no_color) color = "#eee"; // Серый, если no_color
   const darkColor = "#297016"; // Цвет для неактивных уровней
+  const negativeColor = "#ea5348";
+  const negativeDarkColor = "#702923";
 
   // Преобразуем level в число один раз в начале
   const currentLevel = Number(level);
 
-  return str.replace(/\*(!?([+-])?)(\w+)(%?)(\^?)\*/g, (match, prefix, sign, key, percent, precisionMark) => {
+  return str.replace(/\*([!~]?([+-])?)(\w+)(%?)(\^?)\*/g, (match, prefix, sign, key, percent, precisionMark) => {
     if (!valuesMap.hasOwnProperty(key)) return match;
+
+    const negative = prefix.includes('~');
+    const mainColor = negative ? negativeColor : color;
+    const inactiveColor = negative ? negativeDarkColor : darkColor;
 
     // Функция для форматирования значения с цветом
     const formatWithColor = (value, useMainColor) => {
@@ -790,7 +796,7 @@ function replaceValues(str, valuesMap, level, showAll, legendary, no_color, no_t
       const rawValue = String(value).replace(/^[+-]/, '');
       const roundedValue = Game.roundPlus(parseFloat(rawValue), decimalPlaces);
       const formatted = (sign || '') + roundedValue + percent;
-      const usedColor = no_color ? color : (useMainColor ? color : darkColor);
+      const usedColor = no_color ? color : (useMainColor ? mainColor : inactiveColor);
 
       let result = no_tags ? formatted : `<b><font color='${usedColor}'>${formatted}</font></b>`
       return result;
@@ -801,7 +807,7 @@ function replaceValues(str, valuesMap, level, showAll, legendary, no_color, no_t
       if (no_color) {
         return formatWithColor(valuesMap[key], true);
       }
-      return prefix.includes('!') 
+      return (prefix.includes('!') || negative) 
         ? formatWithColor(valuesMap[key], true)
         : (sign || '') + Game.roundPlus(parseFloat(String(valuesMap[key]).replace(/^[+-]/, '')), precisionMark === '^' ? 3 : 1) + percent;
     }

@@ -11,7 +11,8 @@
 LinkLuaModifier(
 	"modifier_bloodseeker_rupture_custom",
 	"abilities/bloodseeker/bloodseeker_rupture_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 LinkLuaModifier(
 	"modifier_bloodseeker_rupture_custom_caster",
@@ -31,7 +32,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_bloodseeker_rupture_custom_legendary_damage",
 	"abilities/bloodseeker/bloodseeker_rupture_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_bloodseeker_rupture_7"
 )
 LinkLuaModifier(
 	"modifier_bloodseeker_rupture_custom_legendary_knockback",
@@ -48,17 +50,16 @@ function bloodseeker_rupture_custom:Precache(context)
 	end
 	PrecacheResource("particle", "particles/units/heroes/hero_bloodseeker/bloodseeker_rupture.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_bloodseeker/bloodseeker_rupture_nuke.vpcf", context)
-	PrecacheResource("particle", "particles/bloodseeker_ground.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_rupture.vpcf", context)
 	PrecacheResource("particle", "particles/bloodseeker/bloodrage_stack_main.vpcf", context)
-	PrecacheResource("particle", "particles/bs_pull_target.vpcf", context)
-	PrecacheResource("particle", "particles/bs_pull.vpcf", context)
-	PrecacheResource("particle", "particles/lc_odd_charge_mark.vpcf", context)
+	PrecacheResource("particle", "particles/bloodseeker/bs_pull_target.vpcf", context)
+	PrecacheResource("particle", "particles/bloodseeker/bs_pull.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_odd_charge_mark.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_bloodseeker/rupture_duration_overhead.vpcf", context)
 	PrecacheResource("particle", "particles/sand_king/sandking_caustic_finale_explode_custom.vpcf", context)
 	PrecacheResource("particle", "particles/bloodseeker/rupture_proc_damage.vpcf", context)
 	PrecacheResource("particle", "particles/phantom_assassin/crit_shield.vpcf", context)
-	PrecacheResource("particle", "particles/brist_proc.vpcf", context)
+	PrecacheResource("particle", "particles/bristleback/brist_proc.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_bloodseeker/bloodseeker_thirst_owner.vpcf", context)
 end
 
@@ -463,7 +464,7 @@ function modifier_bloodseeker_rupture_custom:SpellEvent(params)
 	end
 
 	self.parent:EmitSound("BS.Rupture_duration")
-	self.parent:GenericParticle("particles/brist_proc.vpcf")
+	self.parent:GenericParticle("particles/bristleback/brist_proc.vpcf")
 	self.max_duration = self.max_duration + self.ability.scepter_duration
 	self:SetDuration(self:GetRemainingTime() + self.ability.scepter_duration, true)
 	self.scepter_count = self.scepter_count + 1
@@ -559,7 +560,12 @@ function modifier_bloodseeker_rupture_custom_tracker:OnIntervalThink()
 	if final >= legendary_distance then
 		local delta = math.floor(final / legendary_distance)
 		for i = 1, delta do
-			self.parent:CdAbility(self.legendary_ability, self.ability.talents.r7_cd_inc)
+			self.parent:CdAbility(
+				self.legendary_ability,
+				self.ability.talents.r7_cd_inc,
+				nil,
+				"modifier_bloodseeker_rupture_7"
+			)
 		end
 		self.distance = final - delta * legendary_distance
 	else
@@ -615,7 +621,7 @@ function modifier_bloodseeker_rupture_custom_caster:OnIntervalThink()
 	end
 
 	if self.ability.talents.has_r4 == 1 then
-		self.parent:CdItems(self.ability.talents.r4_cd_items * self.interval)
+		self.parent:CdItems(self.ability.talents.r4_cd_items * self.interval, "modifier_bloodseeker_rupture_4")
 	end
 
 	if not IsValid(self.target) or not self.target:HasModifier("modifier_bloodseeker_rupture_custom") then
@@ -785,9 +791,10 @@ function modifier_bloodseeker_rupture_custom_legendary:OnCreated(table)
 	}
 
 	self.caster:GenericParticle("particles/phantom_assassin/crit_shield.vpcf", self)
-	self.target:GenericParticle("particles/bs_pull_target.vpcf", self)
+	self.target:GenericParticle("particles/bloodseeker/bs_pull_target.vpcf", self)
 
-	self.effect_cast = ParticleManager:CreateParticle("particles/bs_pull.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.caster)
+	self.effect_cast =
+		ParticleManager:CreateParticle("particles/bloodseeker/bs_pull.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.caster)
 	ParticleManager:SetParticleControlEnt(
 		self.effect_cast,
 		0,

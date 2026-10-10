@@ -36,7 +36,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_overwhelming_odds_custom_heal_reduce",
 	"abilities/legion_commander/custom_legion_commander_overwhelming_odds",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_legion_odds_1"
 )
 LinkLuaModifier(
 	"modifier_overwhelming_odds_custom_damage",
@@ -76,12 +77,12 @@ function custom_legion_commander_overwhelming_odds:Precache(context)
 		"particles/units/heroes/hero_legion_commander/legion_commander_odds_buff.vpcf",
 		context
 	)
-	PrecacheResource("particle", "particles/lc_odd_proc_burst.vpcf", context)
-	PrecacheResource("particle", "particles/lina_timer.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_odd_proc_burst.vpcf", context)
+	PrecacheResource("particle", "particles/lina/lina_timer.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_snapfire/hero_snapfire_shotgun_debuff.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_snapfire_slow.vpcf", context)
 	PrecacheResource("particle", "particles/items_fx/force_staff.vpcf", context)
-	PrecacheResource("particle", "particles/lc_odd_charge.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_odd_charge.vpcf", context)
 	PrecacheResource("particle", "particles/items2_fx/vindicators_axe_armor.vpcf", context)
 	PrecacheResource("particle", "particles/legion_commander/odds_legendary_aoe.vpcf", context)
 	PrecacheResource("particle", "particles/bristleback/back_shield.vpcf", context)
@@ -90,7 +91,7 @@ function custom_legion_commander_overwhelming_odds:Precache(context)
 		"particles/units/heroes/hero_omniknight/omniknight_hammer_of_purity_detonation.vpcf",
 		context
 	)
-	PrecacheResource("particle", "particles/lc_press_heal.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_press_heal.vpcf", context)
 
 	dota1x6:PrecacheShopItems("npc_dota_hero_legion_commander", context)
 end
@@ -372,8 +373,11 @@ function custom_legion_commander_overwhelming_odds:ProcOdds(point, source, buffe
 			damage = damage * self.talents.q7_damage_max
 
 			EmitSoundOnLocationWithCaster(point, "Lc.Odds_Proc_Damage", self.caster)
-			local particle =
-				ParticleManager:CreateParticle("particles/lc_odd_proc_burst.vpcf", PATTACH_WORLDORIGIN, nil)
+			local particle = ParticleManager:CreateParticle(
+				"particles/legion_commander/lc_odd_proc_burst.vpcf",
+				PATTACH_WORLDORIGIN,
+				nil
+			)
 			ParticleManager:SetParticleControl(particle, 0, point)
 			ParticleManager:SetParticleControl(particle, 1, Vector(radius, radius, radius))
 			ParticleManager:ReleaseParticleIndex(particle)
@@ -723,7 +727,7 @@ end
 
 modifier_overwhelming_odds_custom_proc_charge = class(mod_hidden)
 function modifier_overwhelming_odds_custom_proc_charge:GetEffectName()
-	return "particles/lc_odd_charge.vpcf"
+	return "particles/legion_commander/lc_odd_charge.vpcf"
 end
 function modifier_overwhelming_odds_custom_proc_charge:GetStatusEffectName()
 	return "particles/status_fx/status_effect_forcestaff.vpcf"
@@ -920,8 +924,11 @@ function modifier_overwhelming_odds_custom_damage:CheckDuel()
 	)
 	ParticleManager:ReleaseParticleIndex(particle)
 
-	local effect_target =
-		ParticleManager:CreateParticle("particles/lc_press_heal.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
+	local effect_target = ParticleManager:CreateParticle(
+		"particles/legion_commander/lc_press_heal.vpcf",
+		PATTACH_ABSORIGIN_FOLLOW,
+		self.parent
+	)
 	ParticleManager:SetParticleControl(effect_target, 1, Vector(200, 100, 100))
 	ParticleManager:ReleaseParticleIndex(effect_target)
 

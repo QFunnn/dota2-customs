@@ -34,8 +34,8 @@ function warlock_boss_rain_of_chaos:Precache(context)
 		return
 	end
 
-	PrecacheResource("particle", "particles/warlock_death.vpcf", context)
-	PrecacheResource("particle", "particles/warlock_aoe_cast.vpcf", context)
+	PrecacheResource("particle", "particles/warlock_boss/warlock_death.vpcf", context)
+	PrecacheResource("particle", "particles/warlock_boss/warlock_aoe_cast.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_warlock/warlock_rain_of_chaos.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_warlock/warlock_rain_of_chaos_start.vpcf", context)
 end
@@ -102,8 +102,11 @@ function modifier_warlock_boss_rain_of_chaos_passive:DeathEvent(params)
 	self:GetParent():EmitSound("Warlock.Death_voice")
 	self:GetParent():EmitSound("Warlock.Death_sound")
 
-	local particle =
-		ParticleManager:CreateParticle("particles/warlock_death.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetParent())
+	local particle = ParticleManager:CreateParticle(
+		"particles/warlock_boss/warlock_death.vpcf",
+		PATTACH_ABSORIGIN_FOLLOW,
+		self:GetParent()
+	)
 	ParticleManager:SetParticleControl(particle, 0, self:GetParent():GetAbsOrigin())
 
 	ParticleManager:ReleaseParticleIndex(particle)
@@ -130,8 +133,11 @@ function modifier_warlock_boss_rain_of_chaos_thinker:OnCreated(table)
 	self.stun = self.ability:GetSpecialValueFor("stun")
 	self.radius = self.ability:GetSpecialValueFor("radius")
 
-	self.effect_cast =
-		ParticleManager:CreateParticle("particles/warlock_aoe_cast.vpcf", PATTACH_CUSTOMORIGIN, self.parent)
+	self.effect_cast = ParticleManager:CreateParticle(
+		"particles/warlock_boss/warlock_aoe_cast.vpcf",
+		PATTACH_CUSTOMORIGIN,
+		self.parent
+	)
 	ParticleManager:SetParticleControl(self.effect_cast, 0, self.parent:GetOrigin())
 	ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(self.radius, 0, -self.radius))
 	ParticleManager:SetParticleControl(self.effect_cast, 2, Vector(self:GetRemainingTime(), 0, 0))

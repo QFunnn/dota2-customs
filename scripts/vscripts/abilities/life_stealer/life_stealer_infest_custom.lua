@@ -16,7 +16,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_life_stealer_infest_custom",
 	"abilities/life_stealer/life_stealer_infest_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 LinkLuaModifier(
 	"modifier_life_stealer_infest_custom_bonus",
@@ -56,7 +57,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_life_stealer_infest_custom_legendary_bonus",
 	"abilities/life_stealer/life_stealer_infest_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_lifestealer_infest_3", "modifier_lifestealer_infest_7" }
 )
 LinkLuaModifier(
 	"modifier_life_stealer_infest_custom_legendary_creep_active",
@@ -71,27 +73,32 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_life_stealer_infest_custom_health_bonus",
 	"abilities/life_stealer/life_stealer_infest_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_lifestealer_infest_2"
 )
 LinkLuaModifier(
 	"modifier_life_stealer_infest_custom_magic_reduce",
 	"abilities/life_stealer/life_stealer_infest_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_lifestealer_infest_3"
 )
 LinkLuaModifier(
 	"modifier_life_stealer_infest_custom_health_reduce",
 	"abilities/life_stealer/life_stealer_infest_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_lifestealer_infest_1"
 )
 LinkLuaModifier(
 	"modifier_life_stealer_infest_custom_root",
 	"abilities/life_stealer/life_stealer_infest_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_lifestealer_infest_4"
 )
 LinkLuaModifier(
 	"modifier_life_stealer_infest_custom_armor",
 	"abilities/life_stealer/life_stealer_infest_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_lifestealer_hero_1"
 )
 LinkLuaModifier(
 	"modifier_life_stealer_infest_custom_regen",
@@ -412,7 +419,7 @@ function modifier_life_stealer_infest_custom:OnCreated(table)
 		return
 	end
 
-	self.parent.infest_mod = self
+	self.parent:AddOrderFilter(self)
 
 	self.parent:RemoveModifierByName("modifier_item_echo_sabre_custom_speed")
 	self.parent:RemoveModifierByName("modifier_item_harpoon_custom_speed")
@@ -533,8 +540,19 @@ function modifier_life_stealer_infest_custom:OnIntervalThink()
 	end
 
 	if self.ability.talents.has_h6 == 1 then
-		self.parent:CdItems(self.ability.talents.h6_cd_items)
+		self.parent:CdItems(self.ability.talents.h6_cd_items, "modifier_lifestealer_hero_6")
 	end
+end
+
+function modifier_life_stealer_infest_custom:OrderFilter(params)
+	if self.is_legendary == 1 then
+		return dota1x6:InfestOrderFilter(params, self.target)
+	end
+
+	if not params.teleport then
+		return
+	end
+	return { no_teleport = true }
 end
 
 function modifier_life_stealer_infest_custom:DeclareFunctions()
@@ -577,8 +595,6 @@ function modifier_life_stealer_infest_custom:OnDestroy()
 		return
 	end
 	self.parent:RemoveNoDraw()
-
-	self.parent.infest_mod = nil
 
 	local main_name = self.ability.talents.has_r7 == 1 and "life_stealer_infest_custom_legendary"
 		or "life_stealer_infest_custom"
@@ -811,7 +827,7 @@ function modifier_life_stealer_infest_custom_tracker:SpellEvent(params)
 	end
 
 	if self.ability.talents.has_h6 == 1 and self.ability.talents.has_r7 == 1 then
-		self.parent:CdItems(self.ability.talents.h6_cd_items)
+		self.parent:CdItems(self.ability.talents.h6_cd_items, "modifier_lifestealer_hero_6")
 	end
 end
 
@@ -1336,11 +1352,23 @@ function modifier_life_stealer_infest_custom_legendary_creep_active:OnCreated()
 
 	self.caster.infest_creep = self.parent
 	self.parent.infest_owner = self.caster
+	self.caster:AddOrderFilter(self)
 end
 
 function modifier_life_stealer_infest_custom_legendary_creep_active:OnDestroy()
 	self.caster.infest_creep = nil
 	self.parent.infest_owner = nil
+end
+
+function modifier_life_stealer_infest_custom_legendary_creep_active:OrderFilter(params)
+	if params.order_type ~= DOTA_UNIT_ORDER_ATTACK_TARGET and params.order_type ~= DOTA_UNIT_ORDER_MOVE_TO_TARGET then
+		return
+	end
+	if params.target ~= self.parent then
+		return
+	end
+
+	return false
 end
 
 modifier_life_stealer_infest_custom_legendary_creep = class(mod_hidden)
@@ -1419,10 +1447,15 @@ function modifier_life_stealer_infest_custom_legendary_creep:OnCreated()
 
 	self.caster:AddAttackEvent_out(self, true)
 	self.parent:AddAttackCreateEvent(self, true)
+	self.parent:AddOrderFilter(self)
 
 	self.interval = 1
 	self:StartIntervalThink(0.1)
 	self:SetHasCustomTransmitterData(true)
+end
+
+function modifier_life_stealer_infest_custom_legendary_creep:OrderFilter(params)
+	return dota1x6:ControlledCreepOrderFilter(params, self.parent)
 end
 
 function modifier_life_stealer_infest_custom_legendary_creep:OnIntervalThink()

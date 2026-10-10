@@ -26,27 +26,32 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_jakiro_dual_breath_custom_heal_reduce",
 	"abilities/jakiro/jakiro_dual_breath_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_jakiro_dual_3" }
 )
 LinkLuaModifier(
 	"modifier_jakiro_dual_breath_custom_magic_reduce",
 	"abilities/jakiro/jakiro_dual_breath_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_jakiro_dual_3"
 )
 LinkLuaModifier(
 	"modifier_jakiro_dual_breath_custom_disarm",
 	"abilities/jakiro/jakiro_dual_breath_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_jakiro_hero_4"
 )
 LinkLuaModifier(
 	"modifier_jakiro_dual_breath_custom_legendary_mark",
 	"abilities/jakiro/jakiro_dual_breath_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_jakiro_dual_7"
 )
 LinkLuaModifier(
 	"modifier_jakiro_dual_breath_custom_legendary_damage",
 	"abilities/jakiro/jakiro_dual_breath_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_jakiro_dual_7"
 )
 
 jakiro_dual_breath_custom = class({})

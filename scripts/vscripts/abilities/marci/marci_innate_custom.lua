@@ -10,8 +10,18 @@
 
 LinkLuaModifier("modifier_marci_innate_custom_tracker", "abilities/marci/marci_innate_custom", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_marci_innate_custom_active", "abilities/marci/marci_innate_custom", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_marci_innate_custom_regen", "abilities/marci/marci_innate_custom", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_marci_innate_custom_move", "abilities/marci/marci_innate_custom", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier(
+	"modifier_marci_innate_custom_regen",
+	"abilities/marci/marci_innate_custom",
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_marci_hero_3"
+)
+LinkLuaModifier(
+	"modifier_marci_innate_custom_move",
+	"abilities/marci/marci_innate_custom",
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "Shard" }
+)
 
 marci_innate_custom = class({})
 marci_innate_custom.talents = {}
@@ -132,7 +142,7 @@ function marci_innate_custom:OnSpellStart()
 		self.caster:GiveMana(mana)
 		self.caster:SendNumber(OVERHEAD_ALERT_MANA_ADD, mana)
 
-		self.caster:CdItems(self.talents.w4_cd_items)
+		self.caster:CdItems(self.talents.w4_cd_items, "modifier_marci_rebound_4")
 	end
 
 	local arc = self.caster:AddNewModifier(self.caster, self, "modifier_generic_arc", {

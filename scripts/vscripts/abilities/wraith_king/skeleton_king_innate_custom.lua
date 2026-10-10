@@ -16,7 +16,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_skeleton_king_innate_custom_ghost",
 	"abilities/wraith_king/skeleton_king_innate_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 LinkLuaModifier(
 	"modifier_skeleton_king_innate_custom_cd",
@@ -42,7 +43,6 @@ function skeleton_king_innate_custom:Precache(context)
 		context
 	)
 	PrecacheResource("particle", "particles/units/heroes/hero_skeletonking/wraith_king_curse_overhead.vpcf", context)
-	PrecacheResource("particle", "particles/wraith_king_custom/wraith_king_ambient_custom.vpcf", context)
 	PrecacheResource("particle", "particles/wraith_king/scepter_skelet.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_skeletonking/wraith_king_ghosts_ambient.vpcf", context)
 

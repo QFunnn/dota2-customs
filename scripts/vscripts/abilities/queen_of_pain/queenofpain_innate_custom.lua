@@ -155,7 +155,7 @@ function modifier_queenofpain_scepter_custom:OnCreated()
 	if not IsServer() then
 		return
 	end
-	self.parent:GenericParticle("particles/brist_proc.vpcf")
+	self.parent:GenericParticle("particles/bristleback/brist_proc.vpcf")
 	self.parent:GenericParticle("particles/queen_of_pain/scepter_active.vpcf", self)
 	self.ability:EndCd()
 end

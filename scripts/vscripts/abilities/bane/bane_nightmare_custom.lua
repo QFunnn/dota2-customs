@@ -37,18 +37,26 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_bane_nightmare_custom_legendary_damage",
 	"abilities/bane/bane_nightmare_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_bane_nightmare_7"
 )
-LinkLuaModifier("modifier_bane_nightmare_custom_slow", "abilities/bane/bane_nightmare_custom", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier(
+	"modifier_bane_nightmare_custom_slow",
+	"abilities/bane/bane_nightmare_custom",
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_bane_nightmare_1"
+)
 LinkLuaModifier(
 	"modifier_bane_nightmare_custom_silence",
 	"abilities/bane/bane_nightmare_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_bane_hero_5"
 )
 LinkLuaModifier(
 	"modifier_bane_nightmare_custom_damage",
 	"abilities/bane/bane_nightmare_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_bane_nightmare_2"
 )
 LinkLuaModifier(
 	"modifier_bane_nightmare_custom_attack",
@@ -87,8 +95,8 @@ function bane_nightmare_custom:Precache(context)
 	PrecacheResource("particle", "particles/items4_fx/soul_keeper.vpcf", context)
 	PrecacheResource("particle", "particles/bane/nightmare_legendary_damage.vpcf", context)
 	PrecacheResource("particle", "particles/bane/nightmare_legendary_damage_start.vpcf", context)
-	PrecacheResource("particle", "particles/void_buf2.vpcf", context)
-	PrecacheResource("particle", "particles/void_astral_slow.vpcf", context)
+	PrecacheResource("particle", "particles/void_spirit/void_buf2.vpcf", context)
+	PrecacheResource("particle", "particles/void_spirit/void_astral_slow.vpcf", context)
 	PrecacheResource("particle", "particles/enigma/summon_perma.vpcf", context)
 	PrecacheResource("particle", "particles/items_fx/phylactery.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_bane/bane_projectile.vpcf", context)
@@ -402,7 +410,7 @@ function modifier_bane_nightmare_custom:OnDestroy()
 		self.ability:StartCd()
 
 		if self.caster:HasShard() and (self.is_friend or self.from_attack == 1) then
-			self.caster:CdAbility(self.ability, nil, self.ability.shard_cd)
+			self.caster:CdAbility(self.ability, nil, self.ability.shard_cd, "Shard")
 		end
 	end
 
@@ -671,7 +679,7 @@ function modifier_bane_nightmare_custom_slow:OnCreated()
 		return
 	end
 	self:SetStackCount(1)
-	self.parent:GenericParticle("particles/void_astral_slow.vpcf", self)
+	self.parent:GenericParticle("particles/void_spirit/void_astral_slow.vpcf", self)
 end
 
 function modifier_bane_nightmare_custom_slow:DeclareFunctions()
@@ -696,7 +704,7 @@ function modifier_bane_nightmare_custom_silence:OnCreated()
 		return
 	end
 	self.parent:EmitSound("Sf.Raze_Silence")
-	self.parent:GenericParticle("particles/void_astral_slow.vpcf", self)
+	self.parent:GenericParticle("particles/void_spirit/void_astral_slow.vpcf", self)
 	self.parent:GenericParticle("particles/bane/nightmare_legendary_silence.vpcf", self, true)
 end
 
@@ -1393,7 +1401,7 @@ function modifier_bane_nightmare_custom_legendary_end:OnDestroy()
 	end
 
 	if self.active == 1 then
-		self.parent:GenericParticle("particles/void_buf2.vpcf")
+		self.parent:GenericParticle("particles/void_spirit/void_buf2.vpcf")
 		self.parent:SetHealth(self.parent:GetMaxHealth())
 		self.parent:SetMana(self.parent:GetMaxMana())
 	else

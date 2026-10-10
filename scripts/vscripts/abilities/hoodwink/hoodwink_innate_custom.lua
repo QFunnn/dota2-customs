@@ -16,12 +16,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_hoodwink_innate_custom_cd",
 	"abilities/hoodwink/hoodwink_innate_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 LinkLuaModifier(
 	"modifier_hoodwink_innate_custom_shield_cd",
 	"abilities/hoodwink/hoodwink_innate_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_hoodwink_hero_5"
 )
 
 hoodwink_innate_custom = class({})
@@ -33,7 +35,7 @@ function hoodwink_innate_custom:Precache(context)
 	end
 	PrecacheResource("soundfile", "soundevents/npc_dota_hero_hoodwink.vsndevts", context)
 	PrecacheResource("particle", "particles/hoodwink/scurry_shield.vpcf", context)
-	PrecacheResource("particle", "particles/butterfly_proc.vpcf", context)
+	PrecacheResource("particle", "particles/items/butterfly_proc.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_hoodwink/hoodwink_scurry_passive.vpcf", context)
 	dota1x6:PrecacheShopItems("npc_dota_hero_hoodwink", context)
 end
@@ -280,7 +282,7 @@ function modifier_hoodwink_innate_custom:GetModifierTotal_ConstantBlock(params)
 	self.parent:EmitSound("Hoodwink.Innate_proc")
 
 	self.parent:AddShieldInfo({ shield_mod = self, healing = damage, healing_type = "shield" })
-	self.parent:GenericParticle("particles/butterfly_proc.vpcf")
+	self.parent:GenericParticle("particles/items/butterfly_proc.vpcf")
 	return damage
 end
 

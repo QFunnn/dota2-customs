@@ -17,17 +17,20 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_centaur_return_custom_target_taunt",
 	"abilities/centaur/centaur_return_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_centaur_retaliate_4"
 )
 LinkLuaModifier(
 	"modifier_centaur_return_custom_legendary_speed",
 	"abilities/centaur/centaur_return_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_centaur_retaliate_7"
 )
 LinkLuaModifier(
 	"modifier_centaur_return_custom_shard_stun_cd",
 	"abilities/centaur/centaur_return_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "Shard" }
 )
 LinkLuaModifier(
 	"modifier_centaur_return_custom_shard_spell_cd",
@@ -37,32 +40,38 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_centaur_return_custom_regen",
 	"abilities/centaur/centaur_return_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_centaur_hero_3"
 )
 LinkLuaModifier(
 	"modifier_centaur_return_custom_armor",
 	"abilities/centaur/centaur_return_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_centaur_retaliate_1"
 )
 LinkLuaModifier(
 	"modifier_centaur_return_custom_slow",
 	"abilities/centaur/centaur_return_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_centaur_retaliate_4" }
 )
 LinkLuaModifier(
 	"modifier_centaur_return_custom_status_bonus",
 	"abilities/centaur/centaur_return_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_centaur_hero_5" }
 )
 LinkLuaModifier(
 	"modifier_centaur_return_custom_status_cd",
 	"abilities/centaur/centaur_return_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_centaur_hero_5"
 )
 LinkLuaModifier(
 	"modifier_centaur_return_custom_str",
 	"abilities/centaur/centaur_return_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_centaur_retaliate_3"
 )
 
 centaur_return_custom = class({})
@@ -79,11 +88,8 @@ function centaur_return_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_axe/axe_beserkers_call_owner.vpcf", context)
 	PrecacheResource("particle", "particles/centaur/return_legendary_pulses.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_brewmaster/brewmaster_thunder_clap_debuff.vpcf", context)
-	PrecacheResource("particle", "particles/centaur/return_hit.vpcf", context)
-	PrecacheResource("particle", "particles/mars/arena_linkena.vpcf", context)
 	PrecacheResource("particle", "particles/centaur/return_leash.vpcf", context)
-	PrecacheResource("particle", "particles/centaur/return_purge.vpcf", context)
-	PrecacheResource("particle", "particles/lc_lowhp.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_lowhp.vpcf", context)
 	PrecacheResource("particle", "particles/centaur/retaliate_attack.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_centaur/centaur_double_edge_body.vpcf", context)
 	PrecacheUnitByNameSync("npc_dota_centaur_banner", context, -1)
@@ -962,7 +968,7 @@ function modifier_centaur_return_custom_legendary_speed:OnRefresh()
 
 	self:IncrementStackCount()
 	if self:GetStackCount() >= self.max / 2 and not self.legendary_particle then
-		self.legendary_particle = self.parent:GenericParticle("particles/lc_lowhp.vpcf", self)
+		self.legendary_particle = self.parent:GenericParticle("particles/legion_commander/lc_lowhp.vpcf", self)
 	end
 end
 

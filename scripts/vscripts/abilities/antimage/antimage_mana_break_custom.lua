@@ -21,7 +21,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_antimage_mana_break_custom_legendary_target",
 	"abilities/antimage/antimage_mana_break_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_antimage_break_7"
 )
 LinkLuaModifier(
 	"modifier_antimage_mana_break_custom_target_effect",
@@ -31,22 +32,26 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_antimage_mana_break_custom_caster_effect",
 	"abilities/antimage/antimage_mana_break_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_antimage_break_1", "modifier_antimage_break_3" }
 )
 LinkLuaModifier(
 	"modifier_antimage_mana_break_custom_stun_cd",
 	"abilities/antimage/antimage_mana_break_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_antimage_break_4"
 )
 LinkLuaModifier(
 	"modifier_antimage_mana_break_custom_stats",
 	"abilities/antimage/antimage_mana_break_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_antimage_hero_3"
 )
 LinkLuaModifier(
 	"modifier_antimage_mana_break_custom_haste",
 	"abilities/antimage/antimage_mana_break_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_antimage_hero_6"
 )
 LinkLuaModifier(
 	"modifier_antimage_mana_break_custom_haste_target",
@@ -62,21 +67,18 @@ function antimage_mana_break_custom:Precache(context)
 		return
 	end
 
-	PrecacheResource("particle", "particles/am_heal_mana.vpcf", context)
-	PrecacheResource("particle", "particles/ogre_hit.vpcf", context)
-	PrecacheResource("particle", "particles/am_no_mana.vpcf", context)
+	PrecacheResource("particle", "particles/antimage/am_no_mana.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/econ/items/death_prophet/death_prophet_ti9/death_prophet_silence_custom_ti9_overhead_model.vpcf",
 		context
 	)
-	PrecacheResource("particle", "particles/am_break_2.vpcf", context)
-	PrecacheResource("particle", "particles/am_break_legendary.vpcf", context)
-	PrecacheResource("particle", "particles/am_damage.vpcf", context)
+	PrecacheResource("particle", "particles/antimage/am_break_2.vpcf", context)
+	PrecacheResource("particle", "particles/antimage/am_break_legendary.vpcf", context)
 	PrecacheResource("particle", "particles/items3_fx/gleipnir_root.vpcf", context)
-	PrecacheResource("particle", "particles/anti-mage/manabreak_cleave.vpcf", context)
+	PrecacheResource("particle", "particles/antimage/manabreak_cleave.vpcf", context)
 	PrecacheResource("particle", "particles/generic_gameplay/generic_manaburn.vpcf", context)
-	PrecacheResource("particle", "particles/anti-mage/nomana_haste.vpcf", context)
+	PrecacheResource("particle", "particles/antimage/nomana_haste.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/units/heroes/hero_keeper_of_the_light/keeper_of_the_light_mana_leak.vpcf",
@@ -84,7 +86,7 @@ function antimage_mana_break_custom:Precache(context)
 	)
 	PrecacheResource("particle", "particles/units/heroes/hero_keeper_of_the_light/keeper_mana_leak.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_antimage/antimage_manabreak_slow.vpcf", context)
-	PrecacheResource("particle", "particles/am_mana_mark.vpcf", context)
+	PrecacheResource("particle", "particles/antimage/am_mana_mark.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_kez/status_effect_kez_afterimage_buff.vpcf", context)
 end
 
@@ -623,7 +625,7 @@ function modifier_antimage_mana_break_custom:GetModifierProcAttack_BonusDamage_P
 			150,
 			360,
 			500,
-			"particles/anti-mage/manabreak_cleave.vpcf"
+			"particles/antimage/manabreak_cleave.vpcf"
 		)
 	end
 
@@ -654,7 +656,7 @@ function modifier_antimage_mana_break_custom:GetModifierProcAttack_BonusDamage_P
 		target:EmitSound("Antimage.Break_stun")
 		sound = "Antimage.Break_stun2"
 		local immortal_particle =
-			ParticleManager:CreateParticle("particles/am_no_mana.vpcf", PATTACH_OVERHEAD_FOLLOW, target)
+			ParticleManager:CreateParticle("particles/antimage/am_no_mana.vpcf", PATTACH_OVERHEAD_FOLLOW, target)
 		ParticleManager:SetParticleControl(immortal_particle, 0, target:GetAbsOrigin())
 		ParticleManager:SetParticleControl(immortal_particle, 1, self.parent:GetAbsOrigin())
 		ParticleManager:Delete(immortal_particle, 1)
@@ -733,8 +735,8 @@ function modifier_antimage_mana_break_custom_legendary:OnCreated(table)
 		return
 	end
 	self.RemoveForDuel = true
-	self.parent:GenericParticle("particles/am_break_2.vpcf", self)
-	self.parent:GenericParticle("particles/am_break_legendary.vpcf", self)
+	self.parent:GenericParticle("particles/antimage/am_break_2.vpcf", self)
+	self.parent:GenericParticle("particles/antimage/am_break_legendary.vpcf", self)
 	self:SetStackCount(table.stack)
 
 	self.max_time = self:GetRemainingTime()
@@ -881,7 +883,7 @@ function modifier_antimage_mana_break_custom_haste:OnCreated()
 	then
 		self:SetStackCount(1)
 	end
-	self.parent:GenericParticle("particles/anti-mage/nomana_haste.vpcf", self)
+	self.parent:GenericParticle("particles/antimage/nomana_haste.vpcf", self)
 end
 
 function modifier_antimage_mana_break_custom_haste:DeclareFunctions()
@@ -938,7 +940,7 @@ function modifier_antimage_mana_break_custom_legendary_target:OnCreated(table)
 	self.RemoveForDuel = true
 	self.ability:EndCd()
 	self:SetStackCount(table.stack)
-	self.parent:GenericParticle("particles/am_mana_mark.vpcf", self, true)
+	self.parent:GenericParticle("particles/antimage/am_mana_mark.vpcf", self, true)
 end
 
 function modifier_antimage_mana_break_custom_legendary_target:OnDestroy()

@@ -108,6 +108,7 @@ function modifier_life_stealer_unfettered_custom:OnCreated(table)
 		"particles/econ/items/bloodseeker/bloodseeker_ti7/bloodseeker_ti7_thirst_owner.vpcf",
 		self
 	)
+	self.parent:AddOrderFilter(self)
 
 	if self.parent:HasModifier("modifier_life_stealer_infest_custom_legendary_creep") then
 		self.parent:StartGestureWithPlaybackRate(ACT_DOTA_RUN, 2)
@@ -158,6 +159,13 @@ function modifier_life_stealer_unfettered_custom:OnIntervalThink()
 		self:Destroy()
 		return
 	end
+end
+
+function modifier_life_stealer_unfettered_custom:OrderFilter(params)
+	if params.order_type ~= DOTA_UNIT_ORDER_STOP and params.order_type ~= DOTA_UNIT_ORDER_HOLD_POSITION then
+		return
+	end
+	self:Destroy()
 end
 
 function modifier_life_stealer_unfettered_custom:DeclareFunctions()

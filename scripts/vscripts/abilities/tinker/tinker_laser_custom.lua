@@ -19,27 +19,41 @@ LinkLuaModifier(
 	"abilities/tinker/tinker_laser_custom",
 	LUA_MODIFIER_MOTION_NONE
 )
-LinkLuaModifier("modifier_tinker_laser_custom_slow", "abilities/tinker/tinker_laser_custom", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier(
+	"modifier_tinker_laser_custom_slow",
+	"abilities/tinker/tinker_laser_custom",
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_tinker_laser_2"
+)
 LinkLuaModifier(
 	"modifier_tinker_laser_custom_health_reduce",
 	"abilities/tinker/tinker_laser_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_tinker_laser_3"
 )
 LinkLuaModifier(
 	"modifier_tinker_laser_custom_legendary_stack",
 	"abilities/tinker/tinker_laser_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_tinker_laser_7"
 )
 LinkLuaModifier(
 	"modifier_tinker_laser_custom_stun_cd",
 	"abilities/tinker/tinker_laser_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_tinker_hero_4"
 )
-LinkLuaModifier("modifier_tinker_laser_custom_reduce", "abilities/tinker/tinker_laser_custom", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier(
+	"modifier_tinker_laser_custom_reduce",
+	"abilities/tinker/tinker_laser_custom",
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_tinker_laser_3", "modifier_tinker_laser_4" }
+)
 LinkLuaModifier(
 	"modifier_tinker_laser_custom_legendary_root",
 	"abilities/tinker/tinker_laser_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_tinker_laser_7" }
 )
 
 tinker_laser_custom = class({})
@@ -55,11 +69,9 @@ function tinker_laser_custom:Precache(context)
 	PrecacheResource("particle", "particles/tinker/laser_legendary_hit.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_terrorblade/terrorblade_reflection_slow.vpcf", context)
 	PrecacheResource("particle", "particles/tinker/laser_stun.vpcf", context)
-	PrecacheResource("particle", "particles/laser/stun_stack.vpcf", context)
-	PrecacheResource("particle", "particles/tinker/laser_legendary_red.vpcf", context)
+	PrecacheResource("particle", "particles/tinker/stun_stack.vpcf", context)
 	PrecacheResource("particle", "particles/tinker/laser_mark.vpcf", context)
 	PrecacheResource("particle", "particles/tinker/laser_proc_damage.vpcf", context)
-	PrecacheResource("particle", "particles/lina/soul_attack_end.vpcf", context)
 	PrecacheResource("particle", "particles/tinker/matrix_legendary_laser.vpcf", context)
 	PrecacheResource("particle", "particles/zeus/bolt_disarm.vpcf", context)
 end
@@ -662,7 +674,7 @@ function modifier_tinker_laser_custom_legendary_stack:OnCreated()
 	self.RemoveForDuel = true
 
 	if self.ability.talents.has_e7 == 0 then
-		self.particle = self.parent:GenericParticle("particles/laser/stun_stack.vpcf", self, true)
+		self.particle = self.parent:GenericParticle("particles/tinker/stun_stack.vpcf", self, true)
 	end
 	self:OnRefresh()
 end

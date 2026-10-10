@@ -16,7 +16,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_bristleback_bristleback_custom_active",
 	"abilities/bristleback/bristleback_bristleback_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_bristle_hero_5"
 )
 LinkLuaModifier(
 	"modifier_bristleback_bristleback_custom_make_spray",
@@ -31,12 +32,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_bristleback_bristleback_custom_buff_active",
 	"abilities/bristleback/bristleback_bristleback_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_bristle_back_3"
 )
 LinkLuaModifier(
 	"modifier_bristleback_bristleback_custom_taunt_cd",
 	"abilities/bristleback/bristleback_bristleback_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_bristle_back_4"
 )
 LinkLuaModifier(
 	"modifier_bristleback_bristleback_custom_legendary",
@@ -53,19 +56,16 @@ function bristleback_bristleback_custom:Precache(context)
 	end
 	PrecacheResource("particle", "particles/units/heroes/hero_bristleback/bristleback_back_dmg.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_bristleback/bristleback_quill_spray_impact.vpcf", context)
-	PrecacheResource("particle", "particles/pangolier/linken_proc.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_bristleback/bristleback_back_lrg_dmg.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_pangolier/pangolier_tailthump_buff.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_pangolier/pangolier_tailthump_buff_egg.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_pangolier/pangolier_tailthump_buff_streaks.vpcf", context)
-	PrecacheResource("particle", "particles/pangolier/linken_active.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_oracle/oracle_false_promise_heal.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_oracle/oracle_purifyingflames.vpcf", context)
 	PrecacheResource("particle", "particles/bloodseeker/thirst_legendary.vpcf", context)
-	PrecacheResource("particle", "particles/general/generic_armor_reduction.vpcf", context)
+	PrecacheResource("particle", "particles/generic/generic_armor_reduction.vpcf", context)
 	PrecacheResource("particle", "particles/bristleback/armor_buff.vpcf", context)
 	PrecacheResource("particle", "particles/bristleback/back_buff_count.vpcf", context)
-	PrecacheResource("particle", "particles/bloodseeker/rite_stun.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/units/heroes/hero_bristleback/bristleback_warpath_active_screenfx.vpcf",
@@ -73,8 +73,8 @@ function bristleback_bristleback_custom:Precache(context)
 	)
 	PrecacheResource("particle", "particles/bristleback/back_mana.vpcf", context)
 	PrecacheResource("particle", "particles/bristleback/back_taunt.vpcf", context)
-	PrecacheResource("particle", "particles/brist_proc.vpcf", context)
-	PrecacheResource("particle", "particles/lc_lowhp.vpcf", context)
+	PrecacheResource("particle", "particles/bristleback/brist_proc.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_lowhp.vpcf", context)
 	PrecacheResource("particle", "particles/bristleback/spray_double.vpcf", context)
 end
 
@@ -220,7 +220,7 @@ function bristleback_bristleback_custom:ProcSlow(target)
 	DoDamage(damage_table, "modifier_bristle_back_1")
 
 	target:EmitSound("BB.Quill_proc")
-	target:GenericParticle("particles/brist_proc.vpcf")
+	target:GenericParticle("particles/bristleback/brist_proc.vpcf")
 end
 
 function bristleback_bristleback_custom:GetFacing(attacker)
@@ -689,7 +689,7 @@ function modifier_bristleback_bristleback_custom_buff_active:OnCreated(table)
 	self.RemoveForDuel = true
 
 	self.parent:EmitSound("Lc.Moment_Lowhp")
-	self.parent:GenericParticle("particles/lc_lowhp.vpcf", self)
+	self.parent:GenericParticle("particles/legion_commander/lc_lowhp.vpcf", self)
 
 	self.parent:CalculateStatBonus(true)
 	self:OnIntervalThink()

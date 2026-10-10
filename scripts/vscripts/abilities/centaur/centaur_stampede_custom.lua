@@ -16,7 +16,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_centaur_stampede_custom_slow",
 	"abilities/centaur/centaur_stampede_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 LinkLuaModifier(
 	"modifier_centaur_stampede_custom_tracker",
@@ -36,7 +37,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_centaur_stampede_custom_legendary_stack",
 	"abilities/centaur/centaur_stampede_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_centaur_stampede_7"
 )
 LinkLuaModifier(
 	"modifier_centaur_stampede_custom_legendary_damage",
@@ -46,27 +48,32 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_centaur_stampede_custom_legendary_silence",
 	"abilities/centaur/centaur_stampede_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_centaur_stampede_7"
 )
 LinkLuaModifier(
 	"modifier_centaur_stampede_custom_recast",
 	"abilities/centaur/centaur_stampede_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_centaur_hero_6"
 )
 LinkLuaModifier(
 	"modifier_centaur_stampede_custom_crit_attack",
 	"abilities/centaur/centaur_stampede_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_centaur_stampede_3" }
 )
 LinkLuaModifier(
 	"modifier_centaur_stampede_custom_crit_attack_cd",
 	"abilities/centaur/centaur_stampede_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_centaur_stampede_3"
 )
 LinkLuaModifier(
 	"modifier_centaur_stampede_custom_damage_bonus",
 	"abilities/centaur/centaur_stampede_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_centaur_stampede_1"
 )
 
 centaur_stampede_custom = class({})
@@ -89,8 +96,6 @@ function centaur_stampede_custom:Precache(context)
 	PrecacheResource("particle", "particles/centaur/stampede_legendary_start.vpcf", context)
 	PrecacheResource("particle", "particles/centaur/stampede_legendary_end.vpcf", context)
 	PrecacheResource("particle", "particles/centaur/stampede_legendary_cast.vpcf", context)
-	PrecacheResource("particle", "particles/centaur/stomp_legendary_stack.vpcf", context)
-	PrecacheResource("particle", "particles/centaur/stampede_hit.vpcf", context)
 	PrecacheResource("particle", "particles/items_fx/drum_of_endurance_buff.vpcf", context)
 	PrecacheResource("particle", "particles/centaur/stomp_attack.vpcf", context)
 	PrecacheResource("particle", "particles/centaur/stomp_crit.vpcf", context)
@@ -395,7 +400,12 @@ function modifier_centaur_stampede_custom:OnDestroy()
 		self.ability:StartCd()
 
 		if self.cd_stack > 0 then
-			self.parent:CdAbility(self.ability, nil, self.cd_stack * self.ability.talents.r4_cd_inc)
+			self.parent:CdAbility(
+				self.ability,
+				nil,
+				self.cd_stack * self.ability.talents.r4_cd_inc,
+				"modifier_centaur_stampede_4"
+			)
 		end
 	end
 end
@@ -490,7 +500,7 @@ function modifier_centaur_stampede_custom_tracker:AttackEvent_out(params)
 
 	if self.ability.talents.has_r4 == 1 then
 		if not mod then
-			self.parent:CdAbility(self.ability, nil, self.ability.talents.r4_cd_inc)
+			self.parent:CdAbility(self.ability, nil, self.ability.talents.r4_cd_inc, "modifier_centaur_stampede_4")
 		else
 			mod.cd_stack = mod.cd_stack + 1
 		end

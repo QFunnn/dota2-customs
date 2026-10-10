@@ -21,7 +21,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_abaddon_frostmourne_custom_curse",
 	"abilities/abaddon/abaddon_frostmourne_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 LinkLuaModifier(
 	"modifier_abaddon_frostmourne_custom_buff",
@@ -31,12 +32,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_abaddon_frostmourne_custom_legendary",
 	"abilities/abaddon/abaddon_frostmourne_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_abaddon_curse_7" }
 )
 LinkLuaModifier(
 	"modifier_abaddon_frostmourne_custom_legendary_stats",
 	"abilities/abaddon/abaddon_frostmourne_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_abaddon_curse_7"
 )
 LinkLuaModifier(
 	"modifier_abaddon_frostmourne_custom_illusion",
@@ -46,7 +49,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_abaddon_frostmourne_custom_silence_cd",
 	"abilities/abaddon/abaddon_frostmourne_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_abaddon_curse_3", "modifier_abaddon_curse_4" }
 )
 
 abaddon_frostmourne_custom = class({})

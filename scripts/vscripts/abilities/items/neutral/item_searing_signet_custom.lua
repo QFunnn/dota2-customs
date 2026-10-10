@@ -46,7 +46,7 @@ modifier_item_searing_signet_custom = class(mod_hidden)
 function modifier_item_searing_signet_custom:RemoveOnDeath()
 	return false
 end
-function modifier_item_searing_signet_custom:OnCreated(table)
+function modifier_item_searing_signet_custom:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
@@ -86,7 +86,7 @@ function modifier_item_searing_signet_custom:DamageEvent_out(params)
 	)
 end
 
-modifier_item_searing_signet_custom_burn = class(mod_hidden)
+modifier_item_searing_signet_custom_burn = class(mod_visible)
 function modifier_item_searing_signet_custom_burn:IsPurgable()
 	return true
 end

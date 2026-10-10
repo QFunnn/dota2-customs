@@ -15,7 +15,7 @@ LinkLuaModifier("modifier_patrol_armor_death", "abilities/creeps_patrol/patrol_a
 patrol_armor = class({})
 
 function patrol_armor:Precache(context)
-	PrecacheResource("particle", "particles/glyph_damage.vpcf", context)
+	PrecacheResource("particle", "particles/patrol/glyph_damage.vpcf", context)
 	PrecacheResource("particle", "particles/items2_fx/medallion_of_courage_friend.vpcf", context)
 end
 
@@ -165,7 +165,7 @@ function modifier_patrol_armor_death:OnCreated()
 	self.parent = self:GetParent()
 
 	local particle =
-		ParticleManager:CreateParticle("particles/glyph_damage.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
+		ParticleManager:CreateParticle("particles/patrol/glyph_damage.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
 	ParticleManager:SetParticleControl(particle, 0, self.parent:GetAbsOrigin())
 	ParticleManager:SetParticleControl(particle, 1, Vector(120, 1, 1))
 	self:AddParticle(particle, false, false, -1, false, false)

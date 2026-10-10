@@ -40,15 +40,15 @@ function custom_puck_illusory_orb:Precache(context)
 if self:GetCaster() and self:GetCaster():IsIllusion() then return end
 PrecacheResource( "particle", "particles/units/heroes/hero_puck/puck_base_attack_warmup.vpcf", context )
 PrecacheResource( "particle","particles/units/heroes/hero_puck/puck_illusory_orb_linear_projectile.vpcf", context )
-PrecacheResource( "particle","particles/puck_blind.vpcf", context )
-PrecacheResource( "particle","particles/duel_wall.vpcf", context )
+PrecacheResource( "particle","particles/puck/puck_blind.vpcf", context )
+PrecacheResource( "particle","particles/puck/duel_wall.vpcf", context )
 PrecacheResource( "particle","particles/units/heroes/hero_puck/puck_illusory_orb_blink_out.vpcf", context )
-PrecacheResource( "particle","particles/puck_orb_slow.vpcf", context )
-PrecacheResource( "particle","particles/puck_orb_speed.vpcf", context )
+PrecacheResource( "particle","particles/puck/puck_orb_slow.vpcf", context )
+PrecacheResource( "particle","particles/puck/puck_orb_speed.vpcf", context )
 PrecacheResource( "particle","particles/puck/orb_cleave.vpcf", context )
 PrecacheResource( "particle","particles/generic_gameplay/generic_lifesteal.vpcf", context )
-PrecacheResource( "particle","particles/zuus_heal.vpcf", context )
-PrecacheResource( "particle","particles/puck_stun.vpcf", context )
+PrecacheResource( "particle","particles/zeus/zuus_heal.vpcf", context )
+PrecacheResource( "particle","particles/puck/puck_stun.vpcf", context )
 PrecacheResource( "particle","particles/puck/orb_stack_max.vpcf", context )
 PrecacheResource( "particle","particles/puck/orb_status.vpcf", context )
 PrecacheResource( "particle","particles/econ/items/outworld_devourer/od_shards_exile/od_shards_exile_prison_end.vpcf", context )
@@ -667,7 +667,7 @@ self.caster_abs = self:GetCaster():GetAbsOrigin()
 self.vector = (self.pos2 - self.pos1):Normalized()
 self.ability = self:GetCaster():FindAbilityByName("custom_puck_illusory_orb")
 
-self.wall = ParticleManager:CreateParticle("particles/duel_wall.vpcf", PATTACH_WORLDORIGIN, nil)
+self.wall = ParticleManager:CreateParticle("particles/puck/duel_wall.vpcf", PATTACH_WORLDORIGIN, nil)
 ParticleManager:SetParticleControl(self.wall, 0, self.pos1)
 ParticleManager:SetParticleControl(self.wall, 1, self.pos2)
 self:AddParticle(self.wall, false, false, -1, false, false)
@@ -754,7 +754,7 @@ modifier_puck_coil_orb_slow = class({})
 function modifier_puck_coil_orb_slow:IsHidden() return true end
 function modifier_puck_coil_orb_slow:IsPurgable() return true end
 function modifier_puck_coil_orb_slow:GetTexture() return "buffs/orb_slow" end
-function modifier_puck_coil_orb_slow:GetEffectName() return "particles/puck_orb_slow.vpcf" end
+function modifier_puck_coil_orb_slow:GetEffectName() return "particles/puck/puck_orb_slow.vpcf" end
 function modifier_puck_coil_orb_slow:DeclareFunctions()
 return
 {
@@ -879,7 +879,7 @@ function modifier_puck_coil_orb_heal:GetModifierHealthRegenPercentage()
 return self.heal
 end
 
-function modifier_puck_coil_orb_heal:GetEffectName() return "particles/zuus_heal.vpcf" end
+function modifier_puck_coil_orb_heal:GetEffectName() return "particles/zeus/zuus_heal.vpcf" end
 function modifier_puck_coil_orb_heal:GetEffectAttachType() return PATTACH_ABSORIGIN_FOLLOW end
 
 

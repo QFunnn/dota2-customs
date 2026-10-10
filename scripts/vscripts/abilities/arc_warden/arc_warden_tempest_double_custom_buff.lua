@@ -16,7 +16,7 @@ LinkLuaModifier(
 
 arc_warden_tempest_double_custom_buff = class({})
 function arc_warden_tempest_double_custom_buff:Precache(context)
-	PrecacheResource("particle", "particles/brist_lowhp_.vpcf", context)
+	PrecacheResource("particle", "particles/bristleback/brist_lowhp_.vpcf", context)
 	PrecacheResource("particle", "particles/generic_gameplay/rune_arcane_owner.vpcf", context)
 end
 
@@ -34,7 +34,8 @@ function arc_warden_tempest_double_custom_buff:OnSpellStart()
 
 	self.caster:EmitSound("Arc.Tempest_rune")
 	local base = dota1x6:GetBase(self.caster:GetTeamNumber())
-	local effect = IsRadiant(tostring(base)) and "particles/rare_orb_patrol.vpcf" or "particles/brist_lowhp_.vpcf"
+	local effect = IsRadiant(tostring(base)) and "particles/patrol/rare_orb_patrol.vpcf"
+		or "particles/bristleback/brist_lowhp_.vpcf"
 
 	self.caster:AddNewModifier(
 		self.caster,

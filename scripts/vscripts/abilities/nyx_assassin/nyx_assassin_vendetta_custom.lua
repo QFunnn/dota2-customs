@@ -21,17 +21,20 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_nyx_assassin_vendetta_custom_damage",
 	"abilities/nyx_assassin/nyx_assassin_vendetta_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 LinkLuaModifier(
 	"modifier_nyx_assassin_vendetta_custom_legendary_armor",
 	"abilities/nyx_assassin/nyx_assassin_vendetta_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_nyx_vendetta_7"
 )
 LinkLuaModifier(
 	"modifier_nyx_assassin_vendetta_custom_shard",
 	"abilities/nyx_assassin/nyx_assassin_vendetta_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "Shard" }
 )
 LinkLuaModifier(
 	"modifier_nyx_assassin_vendetta_custom_scarab",
@@ -46,21 +49,28 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_nyx_assassin_vendetta_custom_heal_reduce",
 	"abilities/nyx_assassin/nyx_assassin_vendetta_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_nyx_vendetta_2"
 )
 LinkLuaModifier(
 	"modifier_nyx_assassin_vendetta_custom_heal_reduce_bonus",
 	"abilities/nyx_assassin/nyx_assassin_vendetta_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_nyx_vendetta_2" }
 )
 LinkLuaModifier(
 	"modifier_nyx_assassin_vendetta_custom_bash_cd",
 	"abilities/nyx_assassin/nyx_assassin_vendetta_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_nyx_vendetta_4"
 )
 
 nyx_assassin_vendetta_custom = class({})
 nyx_assassin_vendetta_custom.talents = {}
+
+function nyx_assassin_vendetta_custom:GetAbilityTextureName()
+	return wearables_system:GetAbilityIconReplacement(self:GetCaster(), "nyx_assassin_vendetta", self)
+end
 nyx_assassin_vendetta_custom.legendary_target = nil
 
 function nyx_assassin_vendetta_custom:Precache(context)
@@ -72,7 +82,6 @@ function nyx_assassin_vendetta_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_nyx_assassin/nyx_assassin_vendetta_speed.vpcf", context)
 	PrecacheResource("particle", "particles/bloodseeker/thirst_cleave.vpcf", context)
 	PrecacheResource("particle", "particles/neutral_fx/skeleton_spawn.vpcf", context)
-	PrecacheResource("particle", "particles/nyx_assassin/vendetta_root.vpcf", context)
 	PrecacheResource("particle", "particles/nyx_assassin/vendetta_bash.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_terrorblade/terrorblade_reflection_slow.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_snapfire/hero_snapfire_shotgun_debuff.vpcf", context)
@@ -105,13 +114,15 @@ function nyx_assassin_vendetta_custom:UpdateTalents()
 			has_r4 = 0,
 			r4_chance = caster:GetTalentValue("modifier_nyx_vendetta_4", "chance", true),
 			r4_stun = caster:GetTalentValue("modifier_nyx_vendetta_4", "stun", true),
+			r4_stun_legendary = caster:GetTalentValue("modifier_nyx_vendetta_4", "stun_legendary", true),
 			r4_range = caster:GetTalentValue("modifier_nyx_vendetta_4", "range", true),
 			r4_talent_cd = caster:GetTalentValue("modifier_nyx_vendetta_4", "talent_cd", true),
 
 			has_r7 = 0,
 			r7_cd = caster:GetTalentValue("modifier_nyx_vendetta_7", "cd", true),
 			r7_attacks = caster:GetTalentValue("modifier_nyx_vendetta_7", "attacks", true),
-			r7_armor = caster:GetTalentValue("modifier_nyx_vendetta_7", "armor", true),
+			r7_armor = caster:GetTalentValue("modifier_nyx_vendetta_7", "armor", true) / 100,
+			r7_armor_creeps = caster:GetTalentValue("modifier_nyx_vendetta_7", "armor_creeps", true),
 			r7_duration = caster:GetTalentValue("modifier_nyx_vendetta_7", "duration", true),
 			r7_linger = caster:GetTalentValue("modifier_nyx_vendetta_7", "linger", true),
 			r7_cleave = caster:GetTalentValue("modifier_nyx_vendetta_7", "cleave", true) / 100,
@@ -323,7 +334,10 @@ function nyx_assassin_vendetta_custom:ProcBash(target, bash_proc)
 		self.caster,
 		self,
 		"modifier_bashed",
-		{ duration = self.talents.r4_stun * (1 - target:GetStatusResistance()) }
+		{
+			duration = (self.talents.has_r7 == 1 and self.talents.r4_stun_legendary or self.talents.r4_stun)
+				* (1 - target:GetStatusResistance()),
+		}
 	)
 	target:AddNewModifier(
 		self.caster,
@@ -373,14 +387,18 @@ function modifier_nyx_assassin_vendetta_custom_tracker:OnIntervalThink()
 
 	local max = self.ability.talents.r7_duration
 	local time = 0
-	local stack = 0
+	local stack = "0%"
 
 	if IsValid(self.ability.legendary_target) then
 		local mod =
 			self.ability.legendary_target:FindModifierByName("modifier_nyx_assassin_vendetta_custom_legendary_armor")
 		if mod then
 			time = mod:GetRemainingTime()
-			stack = mod:GetStackCount() * mod.armor
+			if self.ability.legendary_target:IsCreep() then
+				stack = mod:GetStackCount() * mod.armor
+			else
+				stack = math.floor(mod:GetStackCount() * self.ability.talents.r7_armor * 100 + 0.5) .. "%"
+			end
 		else
 			self.ability.legendary_target = nil
 		end
@@ -851,12 +869,12 @@ function modifier_nyx_assassin_vendetta_custom_legendary_armor:OnCreated()
 	self.caster = self:GetCaster()
 	self.ability = self:GetAbility()
 
-	self.armor = self.ability.talents.r7_armor
 	if not IsServer() then
 		return
 	end
 	self.RemoveForDuel = true
-	self.parent:GenericParticle("particles/general/generic_armor_reduction.vpcf", self, true)
+	self.parent:GenericParticle("particles/generic/generic_armor_reduction.vpcf", self, true)
+	self:SetHasCustomTransmitterData(true)
 	self:OnRefresh()
 end
 
@@ -864,6 +882,9 @@ function modifier_nyx_assassin_vendetta_custom_legendary_armor:OnRefresh()
 	if not IsServer() then
 		return
 	end
+	self.armor = self.parent:IsCreep() and self.ability.talents.r7_armor_creeps
+		or self.parent:GetArmor(self) * self.ability.talents.r7_armor
+	self:SendBuffRefreshToClients()
 	self.parent:EmitSound("Nyx.Vendetta_legendary_armor")
 	self:StartIntervalThink(0.1)
 end
@@ -877,6 +898,16 @@ function modifier_nyx_assassin_vendetta_custom_legendary_armor:OnIntervalThink()
 	self:StartIntervalThink(-1)
 end
 
+function modifier_nyx_assassin_vendetta_custom_legendary_armor:AddCustomTransmitterData()
+	return {
+		armor = self.armor,
+	}
+end
+
+function modifier_nyx_assassin_vendetta_custom_legendary_armor:HandleCustomTransmitterData(data)
+	self.armor = data.armor
+end
+
 function modifier_nyx_assassin_vendetta_custom_legendary_armor:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
@@ -884,6 +915,9 @@ function modifier_nyx_assassin_vendetta_custom_legendary_armor:DeclareFunctions(
 end
 
 function modifier_nyx_assassin_vendetta_custom_legendary_armor:GetModifierPhysicalArmorBonus()
+	if not self.armor then
+		return
+	end
 	return self.armor * self:GetStackCount()
 end
 

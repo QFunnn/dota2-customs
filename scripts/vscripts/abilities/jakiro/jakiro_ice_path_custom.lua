@@ -36,12 +36,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_jakiro_ice_path_custom_armor",
 	"abilities/jakiro/jakiro_ice_path_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_jakiro_path_2"
 )
 LinkLuaModifier(
 	"modifier_jakiro_ice_path_custom_damage",
 	"abilities/jakiro/jakiro_ice_path_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_jakiro_path_1"
 )
 LinkLuaModifier(
 	"modifier_jakiro_ice_path_custom_crit",
@@ -51,17 +53,20 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_jakiro_ice_path_custom_charge",
 	"abilities/jakiro/jakiro_ice_path_custom",
-	LUA_MODIFIER_MOTION_HORIZONTAL
+	LUA_MODIFIER_MOTION_HORIZONTAL,
+	{ true, "Shard" }
 )
 LinkLuaModifier(
 	"modifier_jakiro_ice_path_custom_legendary_stack",
 	"abilities/jakiro/jakiro_ice_path_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_jakiro_path_7"
 )
 LinkLuaModifier(
 	"modifier_jakiro_ice_path_custom_legendary_active",
 	"abilities/jakiro/jakiro_ice_path_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_jakiro_path_7" }
 )
 LinkLuaModifier(
 	"modifier_jakiro_ice_path_custom_legendary_armor",
@@ -78,12 +83,11 @@ function jakiro_ice_path_custom:Precache(context)
 	end
 
 	PrecacheResource("particle", "particles/jakiro/ice_path_custom.vpcf", context)
-	PrecacheResource("particle", "particles/jakiro/ice_path_custom_detonate.vpcf", context)
 	PrecacheResource("particle", "particles/jakiro/fire_path/fire_path.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_mars/mars_spear_impact_debuff.vpcf", context)
 	PrecacheResource("particle", "particles/jakiro/ice_path_fire_damage.vpcf", context)
 	PrecacheResource("particle", "particles/jakiro/ice_path_frost_debuff.vpcf", context)
-	PrecacheResource("particle", "particles/maiden_frostbite_slow.vpcf", context)
+	PrecacheResource("particle", "particles/crystal_maiden/maiden_frostbite_slow.vpcf", context)
 	PrecacheResource("particle", "particles/jakiro/path_legendary_stack_fire.vpcf", context)
 	PrecacheResource("particle", "particles/jakiro/path_legendary_stack_ice.vpcf", context)
 	PrecacheResource("particle", "particles/jakiro/path_legendary_fire_target.vpcf", context)
@@ -500,7 +504,7 @@ function modifier_jakiro_ice_path_custom_tracker:AttackStartEvent_out(params)
 	if self.ability.talents.has_w4 == 0 or not cd then
 		return
 	end
-	self.parent:CdAbility(self.ability, nil, cd)
+	self.parent:CdAbility(self.ability, nil, cd, "modifier_jakiro_path_4")
 end
 
 function modifier_jakiro_ice_path_custom_tracker:RecordDestroyEvent(params)
@@ -980,7 +984,7 @@ function modifier_jakiro_ice_path_custom_armor:OnCreated()
 	if not IsServer() then
 		return
 	end
-	self.parent:GenericParticle("particles/maiden_frostbite_slow.vpcf", self)
+	self.parent:GenericParticle("particles/crystal_maiden/maiden_frostbite_slow.vpcf", self)
 end
 
 function modifier_jakiro_ice_path_custom_armor:DeclareFunctions()

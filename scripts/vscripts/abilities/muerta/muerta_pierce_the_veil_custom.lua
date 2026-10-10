@@ -21,22 +21,26 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_muerta_pierce_the_veil_custom_slow",
 	"abilities/muerta/muerta_pierce_the_veil_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_muerta_veil_2" }
 )
 LinkLuaModifier(
 	"modifier_muerta_pierce_the_veil_custom_slow_bonus",
 	"abilities/muerta/muerta_pierce_the_veil_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_muerta_veil_2"
 )
 LinkLuaModifier(
 	"modifier_muerta_pierce_the_veil_custom_bva",
 	"abilities/muerta/muerta_pierce_the_veil_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_muerta_veil_3"
 )
 LinkLuaModifier(
 	"modifier_muerta_pierce_the_veil_custom_attack_cd",
 	"abilities/muerta/muerta_pierce_the_veil_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_muerta_veil_1"
 )
 LinkLuaModifier(
 	"modifier_muerta_pierce_the_veil_custom_burn",
@@ -46,10 +50,22 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_muerta_pierce_the_veil_custom_legendary_stack",
 	"abilities/muerta/muerta_pierce_the_veil_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_muerta_veil_7"
 )
 LinkLuaModifier(
 	"modifier_muerta_pierce_the_veil_custom_legendary_magic",
+	"abilities/muerta/muerta_pierce_the_veil_custom",
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_muerta_veil_7"
+)
+LinkLuaModifier(
+	"modifier_muerta_pierce_the_veil_custom_aura",
+	"abilities/muerta/muerta_pierce_the_veil_custom",
+	LUA_MODIFIER_MOTION_NONE
+)
+LinkLuaModifier(
+	"modifier_muerta_pierce_the_veil_custom_aura_effect",
 	"abilities/muerta/muerta_pierce_the_veil_custom",
 	LUA_MODIFIER_MOTION_NONE
 )
@@ -63,8 +79,6 @@ function muerta_pierce_the_veil_custom:Precache(context)
 	end
 
 	PrecacheResource("particle", "particles/sand_king/sand_pull.vpcf", context)
-	PrecacheResource("particle", "particles/muerta/muerta_absorb.vpcf", context)
-	PrecacheResource("particle", "particles/muerta/muerta_absorb_active.vpcf", context)
 	PrecacheResource("particle", "particles/items3_fx/octarine_core_lifesteal.vpcf", context)
 	PrecacheResource(
 		"particle",
@@ -75,9 +89,9 @@ function muerta_pierce_the_veil_custom:Precache(context)
 	PrecacheResource("particle", "particles/muerta/muerta_attack_slow.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_muerta/muerta_parting_shot_tether.vpcf", context)
 	PrecacheResource("particle", "particles/muerta/veil_radius.vpcf", context)
-	PrecacheResource("particle", "particles/wk_burn.vpcf", context)
+	PrecacheResource("particle", "particles/wraith_king/wk_burn.vpcf", context)
 	PrecacheResource("particle", "particles/muerta/magic_hit.vpcf", context)
-	PrecacheResource("particle", "particles/muerta_item_active.vpcf", context)
+	PrecacheResource("particle", "particles/muerta/muerta_item_active.vpcf", context)
 	PrecacheResource("particle", "particles/muerta/resist_stackb.vpcf", context)
 end
 
@@ -103,7 +117,6 @@ function muerta_pierce_the_veil_custom:UpdateTalents(name)
 			r2_bonus = caster:GetTalentValue("modifier_muerta_veil_2", "bonus", true),
 
 			has_r3 = 0,
-			r3_bva = 0,
 			r3_duration_legendary = 0,
 			r3_duration = 0,
 			r3_effect_duration = caster:GetTalentValue("modifier_muerta_veil_3", "effect_duration", true),
@@ -131,6 +144,10 @@ function muerta_pierce_the_veil_custom:UpdateTalents(name)
 
 			has_e7 = 0,
 			e7_damage_reduce = caster:GetTalentValue("modifier_muerta_gun_7", "damage_reduce", true) / 100,
+
+			has_q7 = 0,
+
+			has_w7 = 0,
 		}
 	end
 
@@ -150,7 +167,6 @@ function muerta_pierce_the_veil_custom:UpdateTalents(name)
 
 	if caster:HasTalent("modifier_muerta_veil_3") then
 		self.talents.has_r3 = 1
-		self.talents.r3_bva = caster:GetTalentValue("modifier_muerta_veil_3", "bva")
 		self.talents.r3_duration_legendary = caster:GetTalentValue("modifier_muerta_veil_3", "duration_legendary")
 		self.talents.r3_duration = caster:GetTalentValue("modifier_muerta_veil_3", "duration")
 	end
@@ -169,6 +185,14 @@ function muerta_pierce_the_veil_custom:UpdateTalents(name)
 
 	if caster:HasTalent("modifier_muerta_gun_7") then
 		self.talents.has_e7 = 1
+	end
+
+	if caster:HasTalent("modifier_muerta_dead_7") then
+		self.talents.has_q7 = 1
+	end
+
+	if caster:HasTalent("modifier_muerta_calling_7") then
+		self.talents.has_w7 = 1
 	end
 end
 
@@ -350,13 +374,19 @@ function modifier_muerta_pierce_the_veil_custom:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.attack_speed = self.ability.bonus_speed
+	local slow_form = self.ability.talents.has_q7 == 1 or self.ability.talents.has_w7 == 1
+	self.attack_speed = slow_form and 0 or self.ability.bonus_speed
 
 	if not IsServer() then
 		return
 	end
 
 	self.ability:EndCd()
+
+	if slow_form then
+		self.aura =
+			self.parent:AddNewModifier(self.parent, self.ability, "modifier_muerta_pierce_the_veil_custom_aura", {})
+	end
 
 	self:SetStackCount(table.stack)
 
@@ -413,6 +443,10 @@ function modifier_muerta_pierce_the_veil_custom:OnDestroy()
 		return
 	end
 
+	if IsValid(self.aura) then
+		self.aura:Destroy()
+	end
+
 	if IsValid(self.bva) then
 		if self.ability.talents.has_r7 == 1 then
 			self.bva:Destroy()
@@ -425,7 +459,12 @@ function modifier_muerta_pierce_the_veil_custom:OnDestroy()
 	self.parent:UpdateUIshort({ hide = 1, hide_full = 1, priority = 3, style = "MuertaVeil" })
 
 	if self.ability.talents.has_r4 == 1 and self:GetStackCount() > 0 then
-		self.parent:CdAbility(self.ability, nil, self:GetStackCount() * self.ability.talents.r4_cd_inc_legendary)
+		self.parent:CdAbility(
+			self.ability,
+			nil,
+			self:GetStackCount() * self.ability.talents.r4_cd_inc_legendary,
+			"modifier_muerta_veil_4"
+		)
 	end
 end
 
@@ -491,6 +530,10 @@ function modifier_muerta_pierce_the_veil_custom_tracker:OnCreated()
 	self.parent.veil_ability = self.ability
 
 	self.ability.bonus_speed = self.ability:GetSpecialValueFor("bonus_speed")
+	self.ability.aura_slow = self.ability:GetSpecialValueFor("aura_slow")
+	self.ability.aura_health = self.ability:GetSpecialValueFor("aura_health")
+	self.ability.aura_radius = self.ability:GetSpecialValueFor("aura_radius")
+	self.ability.aura_linger = self.ability:GetSpecialValueFor("aura_linger")
 	self.ability.duration = self.ability:GetSpecialValueFor("duration")
 	self.ability.transform_duration = self.ability:GetSpecialValueFor("transform_duration")
 	self.ability.damage_reduce = self.ability:GetSpecialValueFor("damage_reduce")
@@ -499,6 +542,8 @@ end
 
 function modifier_muerta_pierce_the_veil_custom_tracker:OnRefresh()
 	self.ability.bonus_speed = self.ability:GetSpecialValueFor("bonus_speed")
+	self.ability.aura_slow = self.ability:GetSpecialValueFor("aura_slow")
+	self.ability.aura_health = self.ability:GetSpecialValueFor("aura_health")
 end
 
 function modifier_muerta_pierce_the_veil_custom_tracker:DeclareFunctions()
@@ -637,26 +682,13 @@ end
 
 modifier_muerta_pierce_the_veil_custom_bva = class(mod_hidden)
 function modifier_muerta_pierce_the_veil_custom_bva:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.bva = self.parent:GetBaseAttackTime(false) + self.ability.talents.r3_bva
 	if not IsServer() then
 		return
 	end
+	self.parent = self:GetParent()
 	self.parent:EmitSound("Muerta.Item_activate")
 	self.parent:EmitSound("Muerta.Item_activate2")
-	self.parent:GenericParticle("particles/muerta_item_active.vpcf", self)
-end
-
-function modifier_muerta_pierce_the_veil_custom_bva:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT,
-	}
-end
-
-function modifier_muerta_pierce_the_veil_custom_bva:GetModifierBaseAttackTimeConstant()
-	return self.bva
+	self.parent:GenericParticle("particles/muerta/muerta_item_active.vpcf", self)
 end
 
 modifier_muerta_pierce_the_veil_custom_burn = class(mod_hidden)
@@ -682,7 +714,7 @@ function modifier_muerta_pierce_the_veil_custom_burn:OnCreated(table)
 		return
 	end
 
-	self.parent:GenericParticle("particles/wk_burn.vpcf", self)
+	self.parent:GenericParticle("particles/wraith_king/wk_burn.vpcf", self)
 
 	self:OnRefresh(table)
 	self:StartIntervalThink(self.interval)
@@ -801,4 +833,70 @@ end
 
 function modifier_muerta_pierce_the_veil_custom_legendary_magic:GetModifierMagicalResistanceBonus()
 	return self.magic
+end
+
+modifier_muerta_pierce_the_veil_custom_aura = class(mod_hidden)
+function modifier_muerta_pierce_the_veil_custom_aura:IsAura()
+	return true
+end
+function modifier_muerta_pierce_the_veil_custom_aura:GetModifierAura()
+	return "modifier_muerta_pierce_the_veil_custom_aura_effect"
+end
+function modifier_muerta_pierce_the_veil_custom_aura:GetAuraRadius()
+	return self.ability.aura_radius
+end
+function modifier_muerta_pierce_the_veil_custom_aura:GetAuraDuration()
+	return self.ability.aura_linger
+end
+function modifier_muerta_pierce_the_veil_custom_aura:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_ENEMY
+end
+function modifier_muerta_pierce_the_veil_custom_aura:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
+end
+function modifier_muerta_pierce_the_veil_custom_aura:OnCreated()
+	self.ability = self:GetAbility()
+end
+
+modifier_muerta_pierce_the_veil_custom_aura_effect = class(mod_visible)
+function modifier_muerta_pierce_the_veil_custom_aura_effect:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	self.slow = self.ability.aura_slow
+	self.health = self.ability.aura_health
+
+	if not IsServer() then
+		return
+	end
+	self.parent:GenericParticle("particles/muerta/muerta_attack_slow.vpcf", self)
+
+	if self.parent:IsHero() then
+		self.parent:CalculateStatBonus(true)
+	end
+end
+
+function modifier_muerta_pierce_the_veil_custom_aura_effect:OnDestroy()
+	if not IsServer() then
+		return
+	end
+	if not self.parent:IsHero() then
+		return
+	end
+	self.parent:CalculateStatBonus(true)
+end
+
+function modifier_muerta_pierce_the_veil_custom_aura_effect:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+		MODIFIER_PROPERTY_EXTRA_HEALTH_PERCENTAGE,
+	}
+end
+
+function modifier_muerta_pierce_the_veil_custom_aura_effect:GetModifierMoveSpeedBonus_Percentage()
+	return self.slow
+end
+
+function modifier_muerta_pierce_the_veil_custom_aura_effect:GetModifierExtraHealthPercentage()
+	return self.health
 end

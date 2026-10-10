@@ -16,7 +16,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_leshrac_nihilism_custom_aura",
 	"abilities/leshrac/leshrac_nihilism_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "Scepter" }
 )
 
 leshrac_nihilism_custom = class({})

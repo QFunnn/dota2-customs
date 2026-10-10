@@ -46,7 +46,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_monkey_king_wukongs_command_custom_slow",
 	"abilities/monkey_king/monkey_king_wukongs_command_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_monkey_king_command_4"
 )
 LinkLuaModifier(
 	"modifier_monkey_king_wukongs_command_custom_inactive",
@@ -61,7 +62,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_monkey_king_wukongs_command_custom_leash",
 	"abilities/monkey_king/monkey_king_wukongs_command_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "Shard" }
 )
 LinkLuaModifier(
 	"modifier_monkey_king_wukongs_command_custom_burn",
@@ -71,12 +73,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_monkey_king_wukongs_command_custom_burn_count",
 	"abilities/monkey_king/monkey_king_wukongs_command_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_monkey_king_command_1"
 )
 LinkLuaModifier(
 	"modifier_monkey_king_wukongs_command_custom_magic",
 	"abilities/monkey_king/monkey_king_wukongs_command_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_monkey_king_command_3"
 )
 
 monkey_king_wukongs_command_custom = class({})
@@ -95,7 +99,7 @@ function monkey_king_wukongs_command_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_monkey_king/monkey_king_fur_army_positions.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_monkey_king/monkey_king_fur_army_attack.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_monkey_king/monkey_king_furarmy_ring.vpcf", context)
-	PrecacheResource("particle", "particles/huskar_disarm_coil.vpcf", context)
+	PrecacheResource("particle", "particles/huskar/huskar_disarm_coil.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_monkey_king_fur_army.vpcf", context)
 	PrecacheResource("particle", "particles/items/celestial_spear_leash.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_sniper/sniper_headshot_slow.vpcf", context)
@@ -460,7 +464,7 @@ function modifier_monkey_king_wukongs_command_custom_thinker:OnCreated(params)
 	self.leash_targets = {}
 
 	if self.caster:HasShard() then
-		self.parent:GenericParticle("particles/huskar_disarm_coil.vpcf", self)
+		self.parent:GenericParticle("particles/huskar/huskar_disarm_coil.vpcf", self)
 	end
 
 	self.soldier_count = 0
@@ -676,17 +680,17 @@ function modifier_monkey_king_wukongs_command_custom_soldier_active:OnCreated(pa
 
 	for i = 0, 5 do
 		local item = self.caster:GetItemInSlot(i)
-		if (i <= 5) and item then
+		if item then
 			local new_item = CreateItem(item:GetName(), nil, nil)
 			if IsValid(new_item) then
 				local soldier_item = self.parent:AddItem(new_item)
-
-				soldier_item:SetPurchaser(nil)
-
-				if item and item:GetCurrentCharges() > 0 then
-					new_item:SetCurrentCharges(item:GetCurrentCharges())
+				if IsValid(soldier_item) then
+					soldier_item:SetPurchaser(nil)
+					if item:GetCurrentCharges() > 0 then
+						soldier_item:SetCurrentCharges(item:GetCurrentCharges())
+					end
+					self.parent:SwapItems(soldier_item:GetItemSlot(), i)
 				end
-				self.parent:SwapItems(new_item:GetItemSlot(), i)
 			end
 		end
 	end
@@ -919,6 +923,9 @@ function modifier_monkey_king_wukongs_command_custom_soldier_active:OnIntervalTh
 
 					if self_ability then
 						self_ability:EndCooldown()
+						if self_ability:GetMaxAbilityCharges(self_ability:GetLevel()) > 0 then
+							self_ability:RefreshCharges()
+						end
 						local range = self_ability:GetEffectiveCastRange(Vector(0, 0, 0), nil)
 						local cast = false
 
@@ -1280,6 +1287,7 @@ function modifier_monkey_king_wukongs_command_custom_soldier_legendary:DeclareFu
 	return {
 		MODIFIER_PROPERTY_MODEL_SCALE,
 		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
+		MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE,
 		MODIFIER_PROPERTY_CAST_RANGE_BONUS_STACKING,
 	}
 end
@@ -1294,6 +1302,10 @@ end
 
 function modifier_monkey_king_wukongs_command_custom_soldier_legendary:GetModifierSpellAmplify_Percentage()
 	return self.spell
+end
+
+function modifier_monkey_king_wukongs_command_custom_soldier_legendary:GetModifierDamageOutgoing_Percentage()
+	return self:GetModifierSpellAmplify_Percentage()
 end
 
 modifier_monkey_king_wukongs_command_custom_inactive = class(mod_hidden)
@@ -1382,7 +1394,7 @@ function modifier_monkey_king_wukongs_command_custom_buff:OnIntervalThink()
 	if not IsServer() then
 		return
 	end
-	self.parent:CdItems(self.ability.talents.r4_cd_items * self.interval)
+	self.parent:CdItems(self.ability.talents.r4_cd_items * self.interval, "modifier_monkey_king_command_4")
 end
 
 function modifier_monkey_king_wukongs_command_custom_buff:DeclareFunctions()

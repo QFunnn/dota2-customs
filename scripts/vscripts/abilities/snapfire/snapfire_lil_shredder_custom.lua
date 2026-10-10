@@ -56,7 +56,7 @@ function snapfire_lil_shredder_custom:Precache(context)
 		return
 	end
 	PrecacheResource("particle", "particles/items4_fx/ascetic_cap.vpcf", context)
-	PrecacheResource("particle", "particles/beast_ult_count.vpcf", context)
+	PrecacheResource("particle", "particles/primal_beast/beast_ult_count.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/econ/items/troll_warlord/troll_warlord_ti7_axe/troll_ti7_axe_bash_explosion.vpcf",
@@ -154,7 +154,7 @@ function modifier_snapfire_lil_shredder_custom:OnCreated(kv)
 	if not self.parent:HasTalent("modifier_snapfire_shredder_7") then
 		self:SetStackCount(self.attacks)
 	else
-		self.particle = self.parent:GenericParticle("particles/beast_ult_count.vpcf", self, true)
+		self.particle = self.parent:GenericParticle("particles/primal_beast/beast_ult_count.vpcf", self, true)
 
 		self.max = self.parent:GetTalentValue("modifier_snapfire_shredder_7", "max")
 		self.decay = self.parent:GetTalentValue("modifier_snapfire_shredder_7", "decay")
@@ -352,7 +352,10 @@ function modifier_snapfire_lil_shredder_custom:AttackStartEvent_out(params)
 			end
 
 			if self.parent:HasTalent("modifier_snapfire_scatter_6") then
-				self.parent:CdItems(self.parent:GetTalentValue("modifier_snapfire_scatter_6", "cd_items"))
+				self.parent:CdItems(
+					self.parent:GetTalentValue("modifier_snapfire_scatter_6", "cd_items"),
+					"modifier_snapfire_scatter_6"
+				)
 			end
 		end
 	end

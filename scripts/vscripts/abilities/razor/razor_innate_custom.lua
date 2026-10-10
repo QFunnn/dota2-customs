@@ -24,9 +24,9 @@ function razor_innate_custom:Precache(context)
 		return
 	end
 
-	PrecacheResource("particle", "particles/razor_custom/razor_whip.vpcf", context)
-	PrecacheResource("particle", "particles/razor_custom/razor_ambient.vpcf", context)
-	PrecacheResource("particle", "particles/razor_custom/razor_ambient_main.vpcf", context)
+	PrecacheResource("particle", "particles/razor/razor_whip.vpcf", context)
+	PrecacheResource("particle", "particles/razor/razor_ambient.vpcf", context)
+	PrecacheResource("particle", "particles/razor/razor_ambient_main.vpcf", context)
 
 	PrecacheResource("model", "models/items/razor/razor_arcana/razor_arcana.vmdl", context)
 

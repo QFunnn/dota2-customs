@@ -26,17 +26,20 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_monkey_king_primal_spring_custom_legendary",
 	"abilities/monkey_king/monkey_king_primal_spring_custom.lua",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_monkey_king_tree_7"
 )
 LinkLuaModifier(
 	"modifier_monkey_king_primal_spring_custom_bonus",
 	"abilities/monkey_king/monkey_king_primal_spring_custom.lua",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_monkey_king_hero_2"
 )
 LinkLuaModifier(
 	"modifier_monkey_king_primal_spring_custom_heal_reduce",
 	"abilities/monkey_king/monkey_king_primal_spring_custom.lua",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_monkey_king_tree_2"
 )
 LinkLuaModifier(
 	"modifier_monkey_king_primal_spring_custom_delay",
@@ -46,7 +49,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_monkey_king_primal_spring_custom_shield_cd",
 	"abilities/monkey_king/monkey_king_primal_spring_custom.lua",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_monkey_king_tree_4"
 )
 
 monkey_king_primal_spring_custom = class({})
@@ -64,15 +68,13 @@ function monkey_king_primal_spring_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_monkey_king/monkey_king_jump_trail.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_monkey_king/monkey_king_spring_slow.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_monkey_king_spring_slow.vpcf", context)
-	PrecacheResource("particle", "particles/mk_double_proc.vpcf", context)
-	PrecacheResource("particle", "particles/mk_refresh.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_monkey_king/monkey_king_disguise.vpcf", context)
-	PrecacheResource("particle", "particles/alch_stun_legendary.vpcf", context)
-	PrecacheResource("particle", "particles/mk_buff_start.vpcf", context)
+	PrecacheResource("particle", "particles/alchemist/alch_stun_legendary.vpcf", context)
+	PrecacheResource("particle", "particles/monkey_king/mk_buff_start.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_marci/marci_rebound_allymovespeed.vpcf", context)
 	PrecacheResource("particle", "particles/monkey_king/primal_double.vpcf", context)
 	PrecacheResource("particle", "particles/monkey_king/tree_shield.vpcf", context)
-	PrecacheResource("particle", "particles/mk_heal_red_1.vpcf", context)
+	PrecacheResource("particle", "particles/monkey_king/mk_heal_red_1.vpcf", context)
 	PrecacheResource("particle", "particles/monkey_king/strike_refresh.vpcf", context)
 end
 
@@ -141,6 +143,9 @@ function monkey_king_primal_spring_custom:UpdateTalents(name)
 			h5_speed = caster:GetTalentValue("modifier_monkey_king_hero_5", "speed", true) / 100,
 			h5_silence = caster:GetTalentValue("modifier_monkey_king_hero_5", "silence", true),
 			h5_talent_cd = caster:GetTalentValue("modifier_monkey_king_hero_5", "talent_cd", true),
+
+			has_r7 = 0,
+			r7_cd_spring = caster:GetTalentValue("modifier_monkey_king_command_7", "cd_spring", true),
 		}
 	end
 
@@ -187,6 +192,10 @@ function monkey_king_primal_spring_custom:UpdateTalents(name)
 			self.talents.has_h2 = 1
 			self.talents.h2_evasion = caster:GetTalentValue("modifier_monkey_king_hero_2", "evasion")
 			self.talents.h2_move = caster:GetTalentValue("modifier_monkey_king_hero_2", "move")
+		end
+
+		if caster:HasTalent("modifier_monkey_king_command_7") then
+			self.talents.has_r7 = 1
 		end
 	end
 
@@ -255,7 +264,9 @@ function monkey_king_primal_spring_custom:GetRange()
 end
 
 function monkey_king_primal_spring_custom:GetCd()
-	return (self.AbilityChargeRestoreTime or 0) + (self.talents.w2_cd or 0)
+	return (self.AbilityChargeRestoreTime or 0)
+		+ (self.talents.w2_cd or 0)
+		+ (self.talents.has_r7 == 1 and self.talents.r7_cd_spring or 0)
 end
 
 function monkey_king_primal_spring_custom:GetAbilityChargeRestoreTime(iLevel)
@@ -888,7 +899,7 @@ function modifier_monkey_king_primal_spring_custom_banana:OnCreated(table)
 	end
 
 	self.particle_ally_fx = ParticleManager:CreateParticleForTeam(
-		"particles/alch_stun_legendary.vpcf",
+		"particles/alchemist/alch_stun_legendary.vpcf",
 		PATTACH_ABSORIGIN_FOLLOW,
 		self.parent,
 		self.parent:GetTeamNumber()
@@ -924,7 +935,7 @@ function modifier_monkey_king_primal_spring_custom_banana:OnIntervalThink()
 	end
 
 	self.caster:EmitSound("MK.Tree_legendary_buff")
-	self.caster:GenericParticle("particles/mk_buff_start.vpcf")
+	self.caster:GenericParticle("particles/monkey_king/mk_buff_start.vpcf")
 
 	local count = self.ability.bananas
 	self.caster:GiveGold(
@@ -1028,7 +1039,7 @@ function modifier_monkey_king_primal_spring_custom_legendary:OnRefresh(table)
 
 	if effect then
 		self.parent:EmitSound("BS.Thirst_legendary_active")
-		self.parent:GenericParticle("particles/mk_buff_start.vpcf")
+		self.parent:GenericParticle("particles/monkey_king/mk_buff_start.vpcf")
 	end
 end
 
@@ -1079,7 +1090,8 @@ function modifier_monkey_king_primal_spring_custom_heal_reduce:OnCreated(table)
 	if not IsServer() then
 		return
 	end
-	self.particle = ParticleManager:CreateParticle("particles/mk_heal_red_1.vpcf", PATTACH_POINT_FOLLOW, self.parent)
+	self.particle =
+		ParticleManager:CreateParticle("particles/monkey_king/mk_heal_red_1.vpcf", PATTACH_POINT_FOLLOW, self.parent)
 	ParticleManager:SetParticleControlEnt(
 		self.particle,
 		0,

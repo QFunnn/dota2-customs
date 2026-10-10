@@ -74,12 +74,12 @@ function troll_warlord_whirling_axes_melee_custom:Precache(context)
 		"particles/units/heroes/hero_troll_warlord/troll_warlord_whirling_axe_melee.vpcf",
 		context
 	)
-	PrecacheResource("particle", "particles/sf_refresh_a.vpcf", context)
+	PrecacheResource("particle", "particles/shadow_fiend/sf_refresh_a.vpcf", context)
 	PrecacheResource("particle", "particles/troll_warlord/refresh_ranged.vpcf", context)
 	PrecacheResource("particle", "particles/troll_warlord/axes_melle_stack.vpcf", context)
 	PrecacheResource("particle", "particles/troll_warlord/axes_ranged_stack.vpcf", context)
-	PrecacheResource("particle", "particles/rare_orb_patrol.vpcf", context)
-	PrecacheResource("particle", "particles/jugg_parry.vpcf", context)
+	PrecacheResource("particle", "particles/patrol/rare_orb_patrol.vpcf", context)
+	PrecacheResource("particle", "particles/juggernaut/jugg_parry.vpcf", context)
 end
 
 function troll_warlord_whirling_axes_melee_custom:GetAbilityTargetFlags()
@@ -621,7 +621,7 @@ function modifier_troll_warlord_whirling_axes_tracker:AttackEvent_out(params)
 		ParticleManager:Delete(hit_effect, 1)
 	end
 
-	local particle = ParticleManager:CreateParticle("particles/troll_hit.vpcf", PATTACH_WORLDORIGIN, nil)
+	local particle = ParticleManager:CreateParticle("particles/troll_warlord/troll_hit.vpcf", PATTACH_WORLDORIGIN, nil)
 	ParticleManager:SetParticleControl(particle, 0, target:GetAbsOrigin())
 	ParticleManager:Delete(particle, 1)
 
@@ -690,7 +690,7 @@ function modifier_troll_warlord_whirling_axes_tracker:AttackStartEvent_out(param
 
 		self.records[params.record] = true
 		local ability = self.ability
-		local effect = "particles/sf_refresh_a.vpcf"
+		local effect = "particles/shadow_fiend/sf_refresh_a.vpcf"
 
 		if self:GetStackCount() == 1 then
 			ability = self.parent:FindAbilityByName("troll_warlord_whirling_axes_ranged_custom")
@@ -705,7 +705,9 @@ function modifier_troll_warlord_whirling_axes_tracker:AttackStartEvent_out(param
 				ability,
 				ability:GetCooldownTimeRemaining()
 					* self.parent:GetTalentValue("modifier_troll_axes_legendary", "cd")
-					/ 100
+					/ 100,
+				nil,
+				"modifier_troll_axes_legendary"
 			)
 			self.parent:EmitSound("Troll.Axed_cd")
 			local particle = ParticleManager:CreateParticle(effect, PATTACH_CUSTOMORIGIN, self.parent)
@@ -801,7 +803,8 @@ function modifier_troll_warlord_whirling_axes_buff:GetModifierIncomingDamageCons
 	end
 
 	self.parent:EmitSound("Juggernaut.Parry")
-	local particle = ParticleManager:CreateParticle("particles/jugg_parry.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
+	local particle =
+		ParticleManager:CreateParticle("particles/juggernaut/jugg_parry.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
 	ParticleManager:SetParticleControlEnt(
 		particle,
 		0,

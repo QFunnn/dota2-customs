@@ -120,7 +120,7 @@ function modifier_item_dagon_custom:SpellEvent(params)
 		return
 	end
 
-	self.parent:CdAbility(self.ability, nil, self.cd_inc)
+	self.parent:CdAbility(self.ability, nil, self.cd_inc, "item_dagon_custom")
 end
 
 function modifier_item_dagon_custom:DealDamage(target, damage_k)

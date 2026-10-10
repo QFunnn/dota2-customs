@@ -12,16 +12,69 @@ modifier_generic_debuff_immune = class(mod_hidden)
 function modifier_generic_debuff_immune:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
-function modifier_generic_debuff_immune:CheckState()
+function modifier_generic_debuff_immune:GetStatusEffectName()
+	return self.status_effect
+end
+function modifier_generic_debuff_immune:StatusEffectPriority()
+	return MODIFIER_PRIORITY_ULTRA
+end
+function modifier_generic_debuff_immune:OnCreated(table)
+	if not IsServer() then
+		return
+	end
+
+	self.parent = self:GetParent()
+	self.RemoveForDuel = true
+	self.status_effect = table.status_effect
+
+	if table.effect then
+		local effect
+		if table.effect == 1 then
+			effect = "particles/items_fx/black_king_bar_avatar.vpcf"
+		elseif table.effect == 2 then
+			effect = "particles/items5_fx/minotaur_horn.vpcf"
+		end
+		if table.sound == 1 then
+			self.parent:EmitSound("DOTA_Item.MinotaurHorn.Cast")
+		end
+		self.parent:GenericParticle(effect, self)
+	end
+
+	self.magic_damage = -60
+
+	if (table.magic_damage and table.magic_damage < self.magic_damage) or table.magic_damage == 0 then
+		self.magic_damage = table.magic_damage
+	end
+
+	if self.magic_damage > 0 then
+		self.magic_damage = self.magic_damage * -1
+	end
+
+	self:SetHasCustomTransmitterData(true)
+end
+
+function modifier_generic_debuff_immune:AddCustomTransmitterData()
 	return {
-		[MODIFIER_STATE_DEBUFF_IMMUNE] = true,
+		magic_damage = self.magic_damage,
+		status_effect = self.status_effect,
 	}
+end
+
+function modifier_generic_debuff_immune:HandleCustomTransmitterData(data)
+	self.magic_damage = data.magic_damage
+	self.status_effect = data.status_effect
 end
 
 function modifier_generic_debuff_immune:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
 		--MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PURE
+	}
+end
+
+function modifier_generic_debuff_immune:CheckState()
+	return {
+		[MODIFIER_STATE_DEBUFF_IMMUNE] = true,
 	}
 end
 
@@ -61,48 +114,4 @@ function modifier_generic_debuff_immune:CheckAllow(params)
 		return true
 	end
 	return false
-end
-
-function modifier_generic_debuff_immune:OnCreated(table)
-	if not IsServer() then
-		return
-	end
-
-	self.parent = self:GetParent()
-	self.RemoveForDuel = true
-
-	if table.effect then
-		local effect
-		if table.effect == 1 then
-			effect = "particles/items_fx/black_king_bar_avatar.vpcf"
-		elseif table.effect == 2 then
-			effect = "particles/items5_fx/minotaur_horn.vpcf"
-		end
-		if table.sound == 1 then
-			self.parent:EmitSound("DOTA_Item.MinotaurHorn.Cast")
-		end
-		self.parent:GenericParticle(effect, self)
-	end
-
-	self.magic_damage = -60
-
-	if (table.magic_damage and table.magic_damage < self.magic_damage) or table.magic_damage == 0 then
-		self.magic_damage = table.magic_damage
-	end
-
-	if self.magic_damage > 0 then
-		self.magic_damage = self.magic_damage * -1
-	end
-
-	self:SetHasCustomTransmitterData(true)
-end
-
-function modifier_generic_debuff_immune:AddCustomTransmitterData()
-	return {
-		magic_damage = self.magic_damage,
-	}
-end
-
-function modifier_generic_debuff_immune:HandleCustomTransmitterData(data)
-	self.magic_damage = data.magic_damage
 end

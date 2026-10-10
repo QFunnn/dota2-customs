@@ -45,7 +45,7 @@ function void_spirit_innate_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
 	end
-	PrecacheResource("particle", "particles/brist_lowhp_.vpcf", context)
+	PrecacheResource("particle", "particles/bristleback/brist_lowhp_.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_faceless_void/faceless_void_dialatedebuf_2.vpcf", context)
 	PrecacheResource("soundfile", "soundevents/npc_dota_hero_void_spirit.vsndevts", context)
 	dota1x6:PrecacheShopItems("npc_dota_hero_void_spirit", context)
@@ -208,11 +208,11 @@ function modifier_void_spirit_innate_custom:OnIntervalThink()
 
 			local effect_name
 			if self.current_max_stat == 0 then
-				effect_name = "particles/brist_lowhp_.vpcf"
+				effect_name = "particles/bristleback/brist_lowhp_.vpcf"
 			elseif self.current_max_stat == 1 then
-				effect_name = "particles/general/patrol_refresh.vpcf"
+				effect_name = "particles/generic/patrol_refresh.vpcf"
 			elseif self.current_max_stat == 2 then
-				effect_name = "particles/rare_orb_patrol.vpcf"
+				effect_name = "particles/patrol/rare_orb_patrol.vpcf"
 			end
 
 			if self.parent:IsRealHero() then

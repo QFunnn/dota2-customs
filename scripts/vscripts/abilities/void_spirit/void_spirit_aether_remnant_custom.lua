@@ -99,12 +99,12 @@ function void_spirit_aether_remnant_custom:Precache(context)
 		"particles/units/heroes/hero_void_spirit/aether_remnant/void_spirit_aether_remnant_flash.vpcf",
 		context
 	)
-	PrecacheResource("particle", "particles/void_astral_slow.vpcf", context)
+	PrecacheResource("particle", "particles/void_spirit/void_astral_slow.vpcf", context)
 	PrecacheResource("particle", "particles/void_spirit/void_mark_hit.vpcf", context)
 	PrecacheResource("particle", "particles/void_spirit/remnant_hit.vpcf", context)
 	PrecacheResource("particle", "particles/void_spirit/remnant_legendary.vpcf", context)
-	PrecacheResource("particle", "particles/void_step_texture.vpcf", context)
-	PrecacheResource("particle", "particles/void_buf2.vpcf", context)
+	PrecacheResource("particle", "particles/void_spirit/void_step_texture.vpcf", context)
+	PrecacheResource("particle", "particles/void_spirit/void_buf2.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/units/heroes/hero_void_spirit/aether_remnant/void_spirit_aether_remnant_puff.vpcf",
@@ -114,7 +114,7 @@ function void_spirit_aether_remnant_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_brewmaster/brewmaster_void_debuff.vpcf", context)
 	PrecacheResource("particle", "particles/items3_fx/blink_arcane_start.vpcf", context)
 	PrecacheResource("particle", "particles/items3_fx/blink_arcane_end.vpcf", context)
-	PrecacheResource("particle", "particles/void_step_speed.vpcf", context)
+	PrecacheResource("particle", "particles/void_spirit/void_step_speed.vpcf", context)
 end
 
 function void_spirit_aether_remnant_custom:GetManaCost(level)
@@ -493,7 +493,7 @@ function modifier_custom_void_remnant_thinker:WatchLogic()
 	end
 
 	if self.caster:HasTalent("modifier_void_astral_6") then
-		self.caster:CdItems(self.caster:GetTalentValue("modifier_void_astral_6", "cd_items"))
+		self.caster:CdItems(self.caster:GetTalentValue("modifier_void_astral_6", "cd_items"), "modifier_void_astral_6")
 	end
 
 	local damageTable = {
@@ -890,7 +890,7 @@ function modifier_custom_void_remnant_slow:OnCreated()
 		return
 	end
 	self.parent:GenericParticle("particles/items4_fx/nullifier_mute.vpcf", self, true)
-	self.parent:GenericParticle("particles/void_astral_slow.vpcf", self)
+	self.parent:GenericParticle("particles/void_spirit/void_astral_slow.vpcf", self)
 
 	self:OnIntervalThink()
 	self:StartIntervalThink(0.1)
@@ -1044,7 +1044,7 @@ function modifier_custom_void_remnant_speed:GetModifierProcAttack_Feedback(param
 	ParticleManager:ReleaseParticleIndex(hit_effect)
 	params.target:EmitSound("Hoodwink.Scurry_attack")
 
-	self.caster:CdAbility(self.ability, self.cd)
+	self.caster:CdAbility(self.ability, self.cd, nil, "modifier_void_remnant_4")
 
 	if self.parent.void_clone and self.parent.void_clone:HasModifier(self:GetName()) then
 		self.parent.void_clone:FindModifierByName(self:GetName()):ReduceStack()
@@ -1078,7 +1078,7 @@ function modifier_custom_void_remnant_legendary_illusion:GetEffectAttachType()
 	return PATTACH_ABSORIGIN_FOLLOW
 end
 function modifier_custom_void_remnant_legendary_illusion:GetStatusEffectName()
-	return "particles/void_step_texture.vpcf"
+	return "particles/void_spirit/void_step_texture.vpcf"
 end
 function modifier_custom_void_remnant_legendary_illusion:StatusEffectPriority()
 	return MODIFIER_PRIORITY_ILLUSION
@@ -1116,7 +1116,7 @@ function modifier_custom_void_remnant_legendary_illusion:OnCreated(table)
 	self.parent:EmitSound("VoidSpirit.Remnant_legendary")
 
 	local effect_cast =
-		ParticleManager:CreateParticle("particles/void_buf2.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
+		ParticleManager:CreateParticle("particles/void_spirit/void_buf2.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
 	ParticleManager:SetParticleControl(effect_cast, 0, self.parent:GetOrigin())
 	ParticleManager:Delete(effect_cast, 1)
 	self.interval = 0.1
@@ -1286,7 +1286,7 @@ function modifier_custom_void_remnant_bonus:GetTexture()
 	return "buffs/remnant_stats"
 end
 function modifier_custom_void_remnant_bonus:GetEffectName()
-	return "particles/void_step_speed.vpcf"
+	return "particles/void_spirit/void_step_speed.vpcf"
 end
 function modifier_custom_void_remnant_bonus:DeclareFunctions()
 	return {

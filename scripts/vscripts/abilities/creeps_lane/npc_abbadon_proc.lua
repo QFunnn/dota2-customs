@@ -14,7 +14,7 @@ LinkLuaModifier("modifier_abbadon_proc", "abilities/creeps_lane/npc_abbadon_proc
 npc_abbadon_proc = class({})
 
 function npc_abbadon_proc:Precache(context)
-	PrecacheResource("particle", "particles/general/generic_armor_reduction.vpcf", context)
+	PrecacheResource("particle", "particles/generic/generic_armor_reduction.vpcf", context)
 end
 
 function npc_abbadon_proc:GetIntrinsicModifierName()
@@ -72,7 +72,7 @@ function modifier_abbadon_proc:OnCreated()
 		return
 	end
 	self.RemoveForDuel = true
-	self.parent:GenericParticle("particles/general/generic_armor_reduction.vpcf", self, true)
+	self.parent:GenericParticle("particles/generic/generic_armor_reduction.vpcf", self, true)
 	self:OnRefresh()
 end
 

@@ -17,7 +17,6 @@ function init()
 	GameEvents.Subscribe_custom('alert_notvalid', notvalid)
 	GameEvents.Subscribe_custom('alert_dont_leave', dontleave)
 	GameEvents.Subscribe_custom('hero_lost', hero_lost)
-	GameEvents.Subscribe_custom('glyph_used', glyph_used)
 	GameEvents.Subscribe_custom('pause_think', pause_think)
 	GameEvents.Subscribe_custom('pause_end', pause_end)
 	GameEvents.Subscribe_custom('report_alert', report_alert)
@@ -25,7 +24,6 @@ function init()
 	GameEvents.Subscribe_custom('init_chat', init_chat)
 	GameEvents.Subscribe_custom('print_debug', print_debug)
 	GameEvents.Subscribe_custom('delete_bounty', delete_bounty)
-	GameEvents.Subscribe_custom('NecroAttack', NecroAttack)
 
 	GameEvents.Subscribe_custom('lownet_bonus', lownet_bonus)
 
@@ -51,8 +49,6 @@ function init()
 
 	GameEvents.Subscribe_custom('unranked_alert', unranked_alert)
 
-	GameEvents.Subscribe_custom('random_talent_alert', random_talent_alert)
-
 	GameEvents.Subscribe_custom('muerta_quest_alert', muerta_quest_alert)
 
 	GameEvents.Subscribe_custom('legion_duel_status', legion_duel_status)
@@ -60,7 +56,7 @@ function init()
 
 	GameEvents.Subscribe_custom('mini_alert_event', mini_alert_event)
 
-	GameEvents.Subscribe_custom('grenade_alert', grenade_alert)
+	GameEvents.Subscribe_custom('PushAlert', PushAlert)
 
 	GameEvents.Subscribe_custom('TargetAttack', TargetAttack)
 	GameEvents.Subscribe_custom('TargetTimer_change', TargetTimer_change)
@@ -174,6 +170,7 @@ function DuelAlert(kv)
 
 	let event = $.CreatePanel("Panel",Main,"event")
 	event.AddClass("DuelAlert_event")
+	event.AddClass("DuelAlert_event_open")
 
 	let top = $.CreatePanel("Panel", event, "")
 	top.AddClass("DuelAlert_event_top")
@@ -233,11 +230,13 @@ function DuelAlert(kv)
 	text.html = true
 	text.text = $.Localize("#duel_alert_text")
 
-	$.Schedule( 5.55, function(){
-		  event.RemoveClass("DuelAlert_event");
-      event.AddClass("DuelAlert_event_close");
-	 })
-	event.DeleteAsync( 6 );
+	let duration = 6
+
+	$.Schedule( duration - 0.45, function(){
+		event.RemoveClass("DuelAlert_event_open")
+		event.AddClass("DuelAlert_event_close")
+	})
+	event.DeleteAsync( duration );
 }
 
 function get_cursor_position(kv)
@@ -1109,60 +1108,6 @@ function hero_lost(kv)
 
 var table = [0,0,0,0,0,0]
 
-function glyph_used(kv)
-{
-
-	var Main = $.GetContextPanel().FindChildTraverse("Glyph")
-
-	let n = Main.GetChildCount()
-	if ( n >= 5 ) { return }
-
-	for (var i = 1; i <= 6; i++) {
-		if (table[i] == 0 )
-		{
-			table[i] = 1
-			break
-		}
-	}
-
-	let margin = String((i - 1)*16.6666)
-
-	let event = $.CreatePanel("Panel",Main,"event")
-	event.AddClass("glyph_event")
-	event.style.marginTop =  margin + '%'
-
-	let length =  Object.keys(kv.heroes).length
-
-	for (var i = 1; i <= length; i++)
-	{
-		let portrait = $.CreatePanel("Panel",event,"portrait")
-		portrait.AddClass("glyph_portrait")
-		portrait.style.backgroundImage = 'url( "file://{images}/heroes/icons/' + kv.heroes[i] + '.png" );'
-		portrait.style.backgroundSize = "contain"
-	}
-
-	Game.EmitSound("Glyph.Used")
-
-	let text = $.CreatePanel("Label",event,"text_skill")
-	text.html = true
-	text.AddClass("glyph_text_skill")
-
-	if (length > 1)
-	{
-		text.text = $.Localize("#glyph_used_2")
-	}else
-	{
-		text.text = $.Localize("#glyph_used")
-	}
-
-	$.Schedule( 7.55, function(){
-  	event.RemoveClass("glyph_event");
-    event.AddClass("glyph_event_close");
-    table[i] = 0
-	 })
-	event.DeleteAsync( 8 );
-}
-
 function lownet_bonus(kv)
 {
 
@@ -1170,19 +1115,23 @@ function lownet_bonus(kv)
 	Game.EmitSound("UI.Lownet_bonus")
 
 	Main.RemoveClass("LowNet_hidden")
-	Main.AddClass("LowNet")
+	Main.RemoveClass("LowNet_hide")
+	Main.AddClass("LowNet_open")
 
 	var text = $.GetContextPanel().FindChildTraverse("LowNet_gold_text")
 
 	text.text = String(kv.gold) + $.Localize("#lownet_gold")
 
-	$.Schedule( 8.55, function(){
+	let duration = 8.55
 
+	$.Schedule( duration, function(){
+
+		Main.RemoveClass("LowNet_open")
 		Main.AddClass("LowNet_hide")
 
 		$.Schedule( 0.55, function(){
 
-			Main.RemoveClass("LowNet")
+			Main.RemoveClass("LowNet_hide")
 			Main.AddClass("LowNet_hidden")
 		})
 	})
@@ -1384,6 +1333,7 @@ function BackdoorAlert(kv)
 
 	let event = $.CreatePanel("Panel",Main,"event")
 	event.AddClass("BackdoorAlert_event")
+	event.AddClass("BackdoorAlert_event_open")
 
 	let event_text_main = $.CreatePanel("Panel",event,"event")
 	event_text_main.AddClass("BackdoorAlert_main")
@@ -1414,65 +1364,13 @@ function BackdoorAlert(kv)
 
 	Game.EmitSound("BackdoorAlert")
 
-	$.Schedule( 7.55, function(){
-		event.RemoveClass("BackdoorAlert_event");
-		event.AddClass("BackdoorAlert_event_close");
+	let duration = 8
+
+	$.Schedule( duration - 0.45, function(){
+		event.RemoveClass("BackdoorAlert_event_open")
+		event.AddClass("BackdoorAlert_event_close")
 	})
-	event.DeleteAsync( 8 );
-}
-
-let necro_table = [0, 0]
-
-function NecroAttack(kv)
-{
-
-	var Main = $.GetContextPanel().FindChildTraverse("NecroAlert")
-
-	let n = Main.GetChildCount()
-	if ( n >= 2 ) { return }
-
-	for (var i = 1; i <= 2; i++) {
-		if (table[i] == 0 )
-		{
-			table[i] = 1
-			break
-		}
-	}
-
-	let margin = String((i - 1)*50)
-
-	let event = $.CreatePanel("Panel",Main,"event")
-	event.AddClass("necro_event")
-	event.style.marginTop =  margin + '%'
-
-	let event_text_main = $.CreatePanel("Panel",event,"event")
-	event_text_main.AddClass("necro_event_main")
-
-	let event_icons = $.CreatePanel("Panel", event, "")
-	event_icons.AddClass("necro_event_portraits")
-
-	let hero = $.CreatePanel("Panel",event_icons,"")
-	hero.AddClass("necro_caster")
-	hero.style.backgroundImage = 'url( "file://{images}/heroes/' +  Game.GetHeroImage(kv.player_id, String(kv.attacker)) + '.png" );'
-	hero.style.backgroundSize = "contain"
-
-	let portrait = $.CreatePanel("Panel",event_icons,"portrait")
-	portrait.AddClass("necro_portrait")
-	portrait.style.backgroundSize = "contain"
-
-	let text = $.CreatePanel("Label",event_text_main,"text_skill")
-	text.html = true
-	text.AddClass("necro_text_skill")
-	text.text = $.Localize("#necro_attack_text")
-
-	Game.EmitSound("Necro.Wave")
-
-	$.Schedule( 7.55, function(){
-		event.RemoveClass("necro_event");
-		event.AddClass("necro_event_close");
-		table[i] = 0
-	})
-	event.DeleteAsync( 8 );
+	event.DeleteAsync( duration );
 }
 
 function TargetAttack(kv)
@@ -1546,104 +1444,6 @@ function TargetAttack(kv)
     event.AddClass("TargetAlert_event_close");
 		event.DeleteAsync( 0.45);
 	})
-}
-
-function random_talent_alert(kv)
-{
-
-	var Main = $.GetContextPanel().FindChildTraverse("random_talent_alert")
-
-	let event = Main.FindChildTraverse("RandomTalentAlert")
-	let bot = Main.FindChildTraverse("RandomTalentAlert_bot")
-	let first = false
-
-	if (!event)
-	{
-		Game.EmitSound("powerup_03")
-
-		event = $.CreatePanel("Panel",Main,"RandomTalentAlert")
-		event.AddClass("random_talent_alert_event")
-
-		let top = $.CreatePanel("Panel",event,"")
-		top.AddClass("random_talent_alert_top")
-
-		let text = $.CreatePanel("Label",top,"")
-		text.html = true
-
-		text.AddClass("random_talent_alert_text")
-		text.text = $.Localize("#random_talents")
-
-		bot = $.CreatePanel("Panel",event,"RandomTalentAlert_bot")
-		bot.AddClass("random_talent_alert_bot")
-
-		first = true
-	}
-
-	let hero = kv.hero
-	let is_general = false
-	let name = kv.skill
-
-	let data = Game.talents_values[hero][name]
-	if (data == undefined)
-	{
-		is_general = true
-		data = Game.talents_values["general"][name]
-	}
-
-	let rarity = data["rarity"]
-
-	let skill_icon = $.CreatePanel("Panel",bot,"")
-	skill_icon.AddClass("random_talent_alert_icon")
-
-	if (first == true)
-	{
-		if (rarity == "gray")
-		{
-			skill_icon.AddClass("random_talent_alert_icon_first_gray")
-		}else
-		{
-			skill_icon.AddClass("random_talent_alert_icon_first")
-		}
-	}
-
-	let show_text = ""
-
-	if (is_general == false)
-	{
-		if (rarity == "orange")
-		{
-			skill_icon.style.backgroundImage = 'url( "file://{images}/custom_game/icons/mini/' + hero + '/' + data["mini_icon"] + '.png" );'
-			skill_icon.style.boxShadow = "fill #f29400 0px 0px 2px 1px"
-		} else
-		{
-			skill_icon.style.backgroundImage = 'url( "file://{images}/custom_game/icons/mini/' + hero + '/' + data["mini_icon"] + '.png" );'
-		}
-	}else
-	{
-		skill_icon.style.backgroundImage = 'url( "file://{images}/custom_game/icons/mini/general/' + data["skill_icon"] + '.png" );'
-	}
-
-	skill_icon.style.backgroundSize = "100%";
-
-	show_text = Game.ShowTalentValues(Game.GetTalentTextKey("#upgrade_disc_" + name, name), name, null, true, false)
-
-	if (rarity == "blue" || rarity == "gray")
-	{
-		skill_icon.SetPanelEvent('onmouseover', function() {
-	    $.DispatchEvent('DOTAShowTextTooltip', skill_icon, show_text )});
-
-		skill_icon.SetPanelEvent('onmouseout', function() {
-	    $.DispatchEvent('DOTAHideTextTooltip', skill_icon); });
-	}
-
-	$.Schedule( 11.55, function(){
-		if (event)
-		{
-		  event.RemoveClass("random_talent_alert_evente");
-      event.AddClass("random_talent_alert_event_close");
-	 	}
-	})
-	event.DeleteAsync(11.9);
 }
 
 function muerta_quest_alert(kv)
@@ -1847,67 +1647,8 @@ event.DeleteAsync(7.8);
 
 }
 
-function legion_duel_alert(kv)
-{
-
-var Main = $.GetContextPanel().FindChildTraverse("legion_duel_alert")
-
-let old = Main.FindChildTraverse("LegionDuel")
-if (old)
-{
-	old.DeleteAsync(0)
-}
-
-let event = $.CreatePanel("Panel",Main,"LegionDuel")
-event.AddClass("legion_duel_alert_event")
-
-let left = $.CreatePanel("Panel", event,"")
-left.AddClass("legion_duel_alert_left")
-
-let left_top = $.CreatePanel("Panel", left,"")
-left_top.AddClass("legion_duel_alert_left_top")
-
-let left_bot = $.CreatePanel("Panel", left,"")
-left_bot.AddClass("legion_duel_alert_left_bot")
-
-let right = $.CreatePanel("Panel", event,"")
-right.AddClass("legion_duel_alert_right")
-
-let icon = $.CreatePanel("Panel", right,"")
-icon.AddClass("legion_duel_alert_icon")
-
-let text_top = $.CreatePanel("Label",left_top,"")
-text_top.html = true
-text_top.AddClass("legion_duel_alert_text_top")
-
-text_top.text = $.Localize("#legion_duel_alert_1")
-
-let text_bot = $.CreatePanel("Label",left_bot,"")
-text_bot.html = true
-text_bot.AddClass("legion_duel_alert_text_bot")
-
-text_bot.text = $.Localize("#legion_duel_alert_2")
-
-$.Schedule( 7.5, function(){
-	if (event !== undefined)
-	{
-	  event.RemoveClass("legion_duel_alert_event");
-    event.AddClass("legion_duel_alert_close");
- 	}
- })
-event.DeleteAsync( 7.8);
-}
-
 function legion_duel_status(kv)
 {
-
-var Main = $.GetContextPanel().FindChildTraverse("legion_duel_alert")
-let old = Main.FindChildTraverse("LegionDuel")
-if (old)
-{
-	return
-}
-
 let status_main = $.GetContextPanel().FindChildTraverse("legion_duel_status_main")
 let event = status_main.FindChildTraverse("legion_duel_status")
 
@@ -1953,35 +1694,38 @@ event.DeleteAsync( 0.4);
 
 }
 
-function grenade_alert(kv)
+function PushAlert(kv)
 {
 
-	var Main = $.GetContextPanel().FindChildTraverse("grenade_alert")
+	var Main = $.GetContextPanel().FindChildTraverse("PushAlert")
 
 	let event = $.CreatePanel("Panel",Main,"TargetAlert")
-	event.AddClass("grenade_alert_event")
+	event.AddClass("PushAlert_event")
+	event.AddClass("PushAlert_event_open")
 
 	Game.EmitSound("Patrol.Sound")
 
 	let left = $.CreatePanel("Panel",event,"")
-	left.AddClass("grenade_alert_left")
+	left.AddClass("PushAlert_left")
 
 	let icon = $.CreatePanel("Panel",left,"")
-	icon.AddClass("grenade_alert_icon")
+	icon.AddClass("PushAlert_icon")
 
 	let right = $.CreatePanel("Panel",event,"")
-	right.AddClass("grenade_alert_right")
+	right.AddClass("PushAlert_right")
 
 	let text = $.CreatePanel("Label",right,"")
 	text.html = true
-	text.AddClass("grenade_alert_text")
-	text.text =  $.Localize("#Grenade_alert")
+	text.AddClass("PushAlert_text")
+	text.text =  $.Localize("#PushAlert")
 
-	$.Schedule( 7.55, function(){
-		  event.RemoveClass("grenade_alert_event");
-           event.AddClass("grenade_alert_event_close");
-	 })
-	event.DeleteAsync( 8);
+	let duration = 8
+
+	$.Schedule( duration - 0.45, function(){
+		event.RemoveClass("PushAlert_event_open")
+		event.AddClass("PushAlert_event_close")
+	})
+	event.DeleteAsync( duration );
 }
 
 function PatrolAlert(kv)
@@ -2005,13 +1749,15 @@ function PatrolAlert(kv)
 	Game.EmitSound("Patrol.Sound")
 	let event = $.CreatePanel("Panel",Main,"TargetAlert")
 	event.AddClass("PatrolAlert_event")
+	event.AddClass("PatrolAlert_event_open")
+	event.SetHasClass("PatrolAlert_purple", number == 2)
 
 	let patrol_top = $.CreatePanel("Panel",event,"event_left")
 	patrol_top.AddClass("patrol_top")
 
 	let text = $.CreatePanel("Label",patrol_top,"")
 	text.html = true
-	text.AddClass("TargetTimer_mid_text")
+	text.AddClass("PatrolAlert_text")
 
 	if (number == 1)
 	{
@@ -2050,12 +1796,14 @@ function PatrolAlert(kv)
 		});
 	}
 
-	$.Schedule( 9.55, function()
+	let duration = 10
+
+	$.Schedule( duration - 0.45, function()
 	{
-		  event.RemoveClass("PatrolAlert_event");
-      event.AddClass("PatrolAlert_event_close");
+		event.RemoveClass("PatrolAlert_event_open")
+		event.AddClass("PatrolAlert_event_close")
 	})
-	event.DeleteAsync( 10);
+	event.DeleteAsync( duration );
 }
 
 function NightStalker(table)
@@ -2188,6 +1936,19 @@ function TargetTimer_change(kv)
 		let target = $.CreatePanel("Panel",top,"")
 		target.AddClass("TargetTimer_top_target")
 
+		let duel = $.CreatePanel("Panel",body,"")
+		duel.AddClass("TargetTimer_duel_row")
+
+		let duel_content = $.CreatePanel("Panel",duel,"")
+		duel_content.AddClass("TargetTimer_row_content")
+
+		let duel_icon = $.CreatePanel("Panel",duel_content,"")
+		duel_icon.AddClass("TargetTimer_duel_icon")
+
+		let duel_text = $.CreatePanel("Label",duel_content,"")
+		duel_text.AddClass("TargetTimer_duel_text")
+		duel_text.text = $.Localize("#Hunt_duel")
+
 		let mid = $.CreatePanel("Panel",body,"TargetTimer")
 		mid.AddClass("TargetTimer_mid")
 
@@ -2232,6 +1993,8 @@ function TargetTimer_change(kv)
 		let back = $.CreatePanel("Panel",body,"")
 		back.AddClass("TargetTimer_back")
 	}
+
+	body.SetHasClass("TargetTimer_duel", kv.duel == 1)
 
 	if (target_length != length)
 	{

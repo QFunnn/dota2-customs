@@ -208,7 +208,7 @@ DOTA1X6_CHESTS_INFO = {
 			{
 				["rare"] = "immortal",
 				["item_name"] = "Blades of Voth Domosh",
-				["item_icon"] = "file://{images}/econ/items/legion_commander/demon_sword.png",
+				["item_icon"] = "file://{images}/econ/items/legion_commander/blades_voth_domosh/blades_voth_domosh.png",
 				["item_id"] = 5810,
 				["drop_type"] = "npc_dota_hero_legion_commander",
 			},
@@ -327,7 +327,7 @@ DOTA1X6_CHESTS_INFO = {
 			{
 				["rare"] = "immortal",
 				["item_name"] = "Blades of Voth Domosh",
-				["item_icon"] = "file://{images}/econ/items/legion_commander/demon_sword.png",
+				["item_icon"] = "file://{images}/econ/items/legion_commander/blades_voth_domosh/blades_voth_domosh.png",
 				["item_id"] = 5810,
 				["drop_type"] = "npc_dota_hero_legion_commander",
 			},
@@ -1872,7 +1872,7 @@ DOTA1X6_RICH_CHESTS = {
 				["rare"] = "immortal",
 				["chance"] = 2,
 				["item_id"] = 5810,
-				["item_icon"] = "file://{images}/econ/items/legion_commander/demon_sword.png",
+				["item_icon"] = "file://{images}/econ/items/legion_commander/blades_voth_domosh/blades_voth_domosh.png",
 			},
 		},
 	},

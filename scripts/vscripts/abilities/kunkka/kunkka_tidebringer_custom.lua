@@ -21,7 +21,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_kunkka_tidebringer_custom_slow",
 	"abilities/kunkka/kunkka_tidebringer_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_kunkka_tidebringer_2"
 )
 LinkLuaModifier(
 	"modifier_kunkka_tidebringer_custom_target",
@@ -36,22 +37,26 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_kunkka_tidebringer_custom_armor",
 	"abilities/kunkka/kunkka_tidebringer_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_kunkka_tidebringer_3"
 )
 LinkLuaModifier(
 	"modifier_kunkka_tidebringer_custom_root",
 	"abilities/kunkka/kunkka_tidebringer_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_kunkka_tidebringer_4"
 )
 LinkLuaModifier(
 	"modifier_kunkka_tidebringer_custom_legendary",
 	"abilities/kunkka/kunkka_tidebringer_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_kunkka_tidebringer_7"
 )
 LinkLuaModifier(
 	"modifier_kunkka_tidebringer_custom_waves",
 	"abilities/kunkka/kunkka_tidebringer_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_kunkka_tidebringer_7" }
 )
 LinkLuaModifier(
 	"modifier_kunkka_tidebringer_custom_wave_armor",
@@ -270,6 +275,7 @@ function modifier_kunkka_tidebringer_custom_tracker:OnCreated(table)
 
 	self.parent:AddAttackRecordEvent_out(self)
 	self.parent:AddAttackEvent_out(self)
+	self.parent:AddOrderFilter(self)
 end
 
 function modifier_kunkka_tidebringer_custom_tracker:OnRefresh(table)
@@ -496,6 +502,20 @@ function modifier_kunkka_tidebringer_custom_tracker:AttackEvent_out(params)
 	end
 
 	self.is_attack = false
+end
+
+function modifier_kunkka_tidebringer_custom_tracker:OrderFilter(params)
+	if params.order_type ~= DOTA_UNIT_ORDER_MOVE_TO_TARGET then
+		return
+	end
+	if not params.target then
+		return
+	end
+	if params.target.kunkka_caster ~= self.parent then
+		return
+	end
+
+	return { order_type = DOTA_UNIT_ORDER_ATTACK_TARGET }
 end
 
 function modifier_kunkka_tidebringer_custom_tracker:DeclareFunctions()

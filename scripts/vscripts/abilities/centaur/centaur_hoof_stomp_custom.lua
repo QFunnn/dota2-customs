@@ -21,17 +21,20 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_centaur_hoof_stomp_custom_charge_target",
 	"abilities/centaur/centaur_hoof_stomp_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_centaur_stomp_7" }
 )
 LinkLuaModifier(
 	"modifier_centaur_hoof_stomp_custom_move",
 	"abilities/centaur/centaur_hoof_stomp_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_centaur_stomp_3"
 )
 LinkLuaModifier(
 	"modifier_centaur_hoof_stomp_custom_legendary_damage",
 	"abilities/centaur/centaur_hoof_stomp_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_centaur_stomp_7"
 )
 LinkLuaModifier(
 	"modifier_centaur_hoof_stomp_custom_tracker",
@@ -41,12 +44,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_centaur_hoof_stomp_custom_damage_reduce",
 	"abilities/centaur/centaur_hoof_stomp_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_centaur_hero_1"
 )
 LinkLuaModifier(
 	"modifier_centaur_hoof_stomp_custom_magic_reduce",
 	"abilities/centaur/centaur_hoof_stomp_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_centaur_stomp_3"
 )
 LinkLuaModifier(
 	"modifier_centaur_hoof_stomp_custom_slow",
@@ -62,7 +67,6 @@ function centaur_hoof_stomp_custom:Precache(context)
 		return
 	end
 	PrecacheResource("particle", "particles/units/heroes/hero_centaur/centaur_warstomp.vpcf", context)
-	PrecacheResource("particle", "particles/centaur/stomp_charge.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/units/heroes/hero_centaur/centaur_shard_buff_strength_counter_stack.vpcf",
@@ -360,7 +364,7 @@ function centaur_hoof_stomp_custom:ProcCd()
 	if self.talents.has_q4 == 0 then
 		return
 	end
-	self.caster:CdItems(self.talents.q4_cd_items)
+	self.caster:CdItems(self.talents.q4_cd_items, "modifier_centaur_stomp_4")
 end
 
 modifier_centaur_hoof_stomp_custom_prepair = class(mod_visible)
@@ -373,6 +377,7 @@ function modifier_centaur_hoof_stomp_custom_prepair:OnCreated(table)
 		return
 	end
 	self.parent:AddOrderEvent(self, true)
+	self.parent:AddOrderFilter(self)
 
 	self.distance = table.distance
 	self.ability:EndCd()
@@ -409,11 +414,14 @@ function modifier_centaur_hoof_stomp_custom_prepair:OnIntervalThink()
 	end
 end
 
-function modifier_centaur_hoof_stomp_custom_prepair:OrderEvent(params)
-	if params.ability and params.ability == self.ability then
+function modifier_centaur_hoof_stomp_custom_prepair:OrderFilter(params)
+	if params.ability ~= self.ability then
 		return
 	end
+	return false
+end
 
+function modifier_centaur_hoof_stomp_custom_prepair:OrderEvent(params)
 	if
 		params.order_type == DOTA_UNIT_ORDER_STOP
 		or params.order_type == DOTA_UNIT_ORDER_HOLD_POSITION
@@ -530,7 +538,7 @@ function modifier_centaur_hoof_stomp_custom_tracker:OnIntervalThink()
 	if final >= self.ability.talents.q7_distance then
 		local delta = math.floor(final / self.ability.talents.q7_distance)
 		for i = 1, delta do
-			self.parent:CdAbility(self.ability, nil, self.ability.talents.q7_cd_inc)
+			self.parent:CdAbility(self.ability, nil, self.ability.talents.q7_cd_inc, "modifier_centaur_stomp_7")
 		end
 		self.distance = final - delta * self.ability.talents.q7_distance
 	else

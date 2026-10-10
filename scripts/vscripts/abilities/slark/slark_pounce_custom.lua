@@ -10,7 +10,12 @@
 
 LinkLuaModifier("modifier_slark_pounce_custom_arc", "abilities/slark/slark_pounce_custom", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_slark_pounce_custom_tracker", "abilities/slark/slark_pounce_custom", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_slark_pounce_custom_leash", "abilities/slark/slark_pounce_custom", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier(
+	"modifier_slark_pounce_custom_leash",
+	"abilities/slark/slark_pounce_custom",
+	LUA_MODIFIER_MOTION_NONE,
+	true
+)
 LinkLuaModifier(
 	"modifier_slark_pounce_custom_legendary_fish",
 	"abilities/slark/slark_pounce_custom",
@@ -24,19 +29,31 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_slark_pounce_custom_magic_effect",
 	"abilities/slark/slark_pounce_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_slark_pounce_3"
 )
 LinkLuaModifier(
 	"modifier_slark_pounce_custom_magic_aura",
 	"abilities/slark/slark_pounce_custom",
 	LUA_MODIFIER_MOTION_NONE
 )
-LinkLuaModifier("modifier_slark_pounce_custom_scepter", "abilities/slark/slark_pounce_custom", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_slark_pounce_custom_invun", "abilities/slark/slark_pounce_custom", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier(
+	"modifier_slark_pounce_custom_scepter",
+	"abilities/slark/slark_pounce_custom",
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "Scepter" }
+)
+LinkLuaModifier(
+	"modifier_slark_pounce_custom_invun",
+	"abilities/slark/slark_pounce_custom",
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_slark_hero_4"
+)
 LinkLuaModifier(
 	"modifier_slark_pounce_custom_health_reduce",
 	"abilities/slark/slark_pounce_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_slark_pounce_1"
 )
 LinkLuaModifier("modifier_slark_pounce_custom_damage", "abilities/slark/slark_pounce_custom", LUA_MODIFIER_MOTION_NONE)
 

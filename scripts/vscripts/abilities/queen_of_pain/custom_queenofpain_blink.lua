@@ -82,8 +82,8 @@ function custom_queenofpain_blink:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_queenofpain/queen_blink_shard_start.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_queenofpain/queen_blink_start.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_queenofpain/queen_blink_end.vpcf", context)
-	PrecacheResource("particle", "particles/qop_attack_.vpcf", context)
-	PrecacheResource("particle", "particles/qop_marker.vpcf", context)
+	PrecacheResource("particle", "particles/queen_of_pain/qop_attack_.vpcf", context)
+	PrecacheResource("particle", "particles/queen_of_pain/qop_marker.vpcf", context)
 	PrecacheResource("particle", "particles/items4_fx/ascetic_cap.vpcf", context)
 	PrecacheResource("particle", "particles/shadow_fiend/requiem_refresh.vpcf", context)
 	PrecacheResource("particle", "particles/queen_of_pain/blink_legendary_stack.vpcf", context)
@@ -631,7 +631,7 @@ function modifier_custom_blink_tracker:AttackEvent_out(params)
 	target:EmitSound("QoP.Blink_attack")
 
 	local blink_shard_pfx =
-		ParticleManager:CreateParticle("particles/qop_attack_.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
+		ParticleManager:CreateParticle("particles/queen_of_pain/qop_attack_.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
 	ParticleManager:SetParticleControlEnt(
 		blink_shard_pfx,
 		0,
@@ -714,7 +714,7 @@ function modifier_custom_blink_legendary_attacks:OnCreated(table)
 	end
 
 	for _, target in pairs(self.targets) do
-		target:GenericParticle("particles/qop_marker.vpcf", self, true)
+		target:GenericParticle("particles/queen_of_pain/qop_marker.vpcf", self, true)
 	end
 
 	self:StartIntervalThink(self.parent:GetTalentValue("modifier_queen_blink_7", "interval"))

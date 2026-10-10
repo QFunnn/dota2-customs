@@ -74,7 +74,7 @@ return {
 			},
 		},
 	},
-	["particles/terrorblade_custom/terrorblade_feet_effects.vpcf"] = {
+	["particles/terrorblade/terrorblade_feet_effects.vpcf"] = {
 		["attach_type"] = "customorigin",
 		["attach_entity"] = "parent",
 		["control_points"] = {

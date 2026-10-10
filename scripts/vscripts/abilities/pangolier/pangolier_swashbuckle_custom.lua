@@ -26,17 +26,20 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_pangolier_swashbuckle_custom_blood",
 	"abilities/pangolier/pangolier_swashbuckle_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_pangolier_buckle_3"
 )
 LinkLuaModifier(
 	"modifier_pangolier_swashbuckle_custom_legendary_stack",
 	"abilities/pangolier/pangolier_swashbuckle_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_pangolier_buckle_7"
 )
 LinkLuaModifier(
 	"modifier_pangolier_swashbuckle_custom_move",
 	"abilities/pangolier/pangolier_swashbuckle_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_pangolier_buckle_4"
 )
 LinkLuaModifier(
 	"modifier_pangolier_swashbuckle_custom_scepter",
@@ -51,7 +54,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_pangolier_swashbuckle_custom_attack_slow",
 	"abilities/pangolier/pangolier_swashbuckle_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_pangolier_buckle_2"
 )
 
 pangolier_swashbuckle_custom = class({})
@@ -62,19 +66,16 @@ function pangolier_swashbuckle_custom:Precache(context)
 		return
 	end
 
-	PrecacheResource("particle", "particles/jugg_legendary_proc_.vpcf", context)
+	PrecacheResource("particle", "particles/juggernaut/jugg_legendary_proc_.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_pangolier/pangolier_swashbuckler_dash.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_marci/marci_rebound_allymovespeed.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_pangolier/pangolier_swashbuckler.vpcf", context)
-	PrecacheResource("particle", "particles/pangolier/buckle_stacks.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_sniper/sniper_headshot_slow.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_snapfire_slow.vpcf", context)
-	PrecacheResource("particle", "particles/pangolier/linken_active.vpcf", context)
-	PrecacheResource("particle", "particles/pangolier/linken_proc.vpcf", context)
-	PrecacheResource("particle", "particles/jugg_parry.vpcf", context)
+	PrecacheResource("particle", "particles/juggernaut/jugg_parry.vpcf", context)
 	PrecacheResource("particle", "particles/items3_fx/iron_talon_active.vpcf", context)
 	PrecacheResource("particle", "particles/pangolier/swashbuckle_bleed.vpcf", context)
-	PrecacheResource("particle", "particles/brist_proc.vpcf", context)
+	PrecacheResource("particle", "particles/bristleback/brist_proc.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_brewmaster/brewmaster_thunder_clap_debuff.vpcf", context)
 	PrecacheResource("particle", "particles/sven/cleave_speed_ready.vpcf", context)
 end
@@ -87,7 +88,6 @@ function pangolier_swashbuckle_custom:UpdateTalents(name)
 			has_q1 = 0,
 			q1_damage = 0,
 			q1_attack = 0,
-			q1_base = 0,
 
 			has_q2 = 0,
 			q2_cd = 0,
@@ -97,6 +97,7 @@ function pangolier_swashbuckle_custom:UpdateTalents(name)
 			has_q3 = 0,
 			q3_crit = 0,
 			q3_damage = 0,
+			q3_base = 0,
 			q3_interval = caster:GetTalentValue("modifier_pangolier_buckle_3", "interval", true),
 			q3_duration = caster:GetTalentValue("modifier_pangolier_buckle_3", "duration", true),
 			q3_damage_type = caster:GetTalentValue("modifier_pangolier_buckle_3", "damage_type", true),
@@ -113,7 +114,7 @@ function pangolier_swashbuckle_custom:UpdateTalents(name)
 			q7_stun = caster:GetTalentValue("modifier_pangolier_buckle_7", "stun", true),
 			q7_attack = caster:GetTalentValue("modifier_pangolier_buckle_7", "attack", true),
 			q7_duration = caster:GetTalentValue("modifier_pangolier_buckle_7", "duration", true),
-			q7_max = caster:GetTalentValue("modifier_pangolier_buckle_7", "max", true),
+			q7_max = caster:GetTalentValue("modifier_pangolier_buckle_7", "max", true) - 1,
 			q7_damage = caster:GetTalentValue("modifier_pangolier_buckle_7", "damage", true) / 100,
 			q7_distance = caster:GetTalentValue("modifier_pangolier_buckle_7", "distance", true),
 			q7_mana = caster:GetTalentValue("modifier_pangolier_buckle_7", "mana", true) / 100,
@@ -130,7 +131,6 @@ function pangolier_swashbuckle_custom:UpdateTalents(name)
 		self.talents.has_q1 = 1
 		self.talents.q1_damage = caster:GetTalentValue("modifier_pangolier_buckle_1", "damage") / 100
 		self.talents.q1_attack = caster:GetTalentValue("modifier_pangolier_buckle_1", "attack")
-		self.talents.q1_base = caster:GetTalentValue("modifier_pangolier_buckle_1", "base")
 	end
 
 	if caster:HasTalent("modifier_pangolier_buckle_2") then
@@ -144,6 +144,7 @@ function pangolier_swashbuckle_custom:UpdateTalents(name)
 		self.talents.has_q3 = 1
 		self.talents.q3_crit = caster:GetTalentValue("modifier_pangolier_buckle_3", "crit")
 		self.talents.q3_damage = caster:GetTalentValue("modifier_pangolier_buckle_3", "damage") / 100
+		self.talents.q3_base = caster:GetTalentValue("modifier_pangolier_buckle_3", "base")
 		caster:AddAttackEvent_out(self.tracker, true)
 	end
 
@@ -216,7 +217,7 @@ function pangolier_swashbuckle_custom:GetCastPoint(iLevel)
 end
 
 function pangolier_swashbuckle_custom:GetDamage()
-	return self.damage + self.talents.q1_base + self.talents.q1_damage * self.caster:GetAverageTrueAttackDamage(nil)
+	return self.damage + self.talents.q1_damage * self.caster:GetAverageTrueAttackDamage(nil)
 end
 
 function pangolier_swashbuckle_custom:OnVectorCastStart(vStartLocation, vDirection)
@@ -257,8 +258,14 @@ function pangolier_swashbuckle_custom:OnVectorCastStart(vStartLocation, vDirecti
 		and self.caster.lucky_ability:GetCooldownTimeRemaining() > 0
 	then
 		if self.talents.has_q7 == 1 then
-			self.caster:CdAbility(self.caster.lucky_ability, nil, self.talents.e4_cd_legendary)
+			self.caster:CdAbility(
+				self.caster.lucky_ability,
+				nil,
+				self.talents.e4_cd_legendary,
+				"modifier_pangolier_lucky_4"
+			)
 		else
+			self.caster:LogProc("modifier_pangolier_lucky_4", self.caster.lucky_ability:GetCooldownTimeRemaining())
 			self.caster.lucky_ability:EndCooldown()
 		end
 	end
@@ -280,7 +287,17 @@ function pangolier_swashbuckle_custom:DealDamage(target)
 	end
 
 	self.caster.pangolier_q = true
-	self.caster:PerformAttack(target, true, true, true, false, false, false, true, { damage = "pangolier_q" })
+	self.caster:PerformAttack(
+		target,
+		true,
+		true,
+		true,
+		false,
+		false,
+		false,
+		true,
+		{ damage = "pangolier_q", attack = "pangolier_q" }
+	)
 	self.caster.pangolier_q = false
 	target:EmitSound("Hero_Pangolier.Swashbuckle.Damage")
 end
@@ -403,6 +420,11 @@ function modifier_pangolier_swashbuckle_custom_attacks:OnCreated(kv)
 	self.is_legendary = false
 
 	local mod = self.parent:FindModifierByName("modifier_pangolier_swashbuckle_custom_legendary_stack")
+
+	if self.ability.talents.has_q7 == 1 then
+		self.parent:LogProc("modifier_pangolier_buckle_7_cast", mod and mod:GetStackCount() or 0)
+	end
+
 	if mod then
 		self.strikes = self.strikes + mod:GetStackCount()
 		if mod:GetStackCount() >= self.ability.talents.q7_max then
@@ -501,7 +523,7 @@ function modifier_pangolier_swashbuckle_custom_attacks:OnIntervalThink()
 			ParticleManager:ReleaseParticleIndex(trail_pfx)
 
 			if self.count == 1 then
-				target:GenericParticle("particles/jugg_legendary_proc_.vpcf")
+				target:GenericParticle("particles/juggernaut/jugg_legendary_proc_.vpcf")
 				target:EmitSound("Pango.Swash_legendary_stun")
 				target:AddNewModifier(
 					self.parent,
@@ -509,6 +531,7 @@ function modifier_pangolier_swashbuckle_custom_attacks:OnIntervalThink()
 					"modifier_stunned",
 					{ duration = (1 - target:GetStatusResistance()) * self.ability.talents.q7_stun }
 				)
+				self.parent:LogProc("modifier_pangolier_buckle_7", nil, target)
 			end
 		end
 	end
@@ -596,6 +619,7 @@ function modifier_pangolier_swashbuckle_custom_attacks:GetModifierPreAttack_Crit
 		return
 	end
 	params.target:EmitSound("DOTA_Item.Daedelus.Crit")
+	self.parent:LogProc("modifier_pangolier_buckle_3", nil, params.target)
 	return self.ability.talents.q3_crit
 end
 
@@ -679,8 +703,10 @@ function modifier_pangolier_swashbuckle_custom_tracker:AttackEvent_out(params)
 		)
 	end
 
-	if self.ability.talents.has_q3 == 1 then
-		local damage = params.damage * self.ability.talents.q3_damage
+	if
+		self.ability.talents.has_q3 == 1 and (self.ability.talents.has_q7 == 0 or params.attack_flag == "pangolier_q")
+	then
+		local damage = self.ability.talents.q3_base + params.damage * self.ability.talents.q3_damage
 		target:AddNewModifier(
 			self.parent,
 			self.ability,
@@ -731,7 +757,7 @@ function modifier_pangolier_swashbuckle_custom_tracker:OnIntervalThink()
 
 	if final >= max_distance then
 		local delta = math.floor(final / max_distance)
-		self.parent:CdAbility(self.ability, nil, self.ability.talents.q7_cd * delta)
+		self.parent:CdAbility(self.ability, nil, self.ability.talents.q7_cd * delta, "modifier_pangolier_buckle_7")
 		self.distance = final - delta * max_distance
 	else
 		self.distance = final
@@ -787,7 +813,7 @@ function modifier_pangolier_swashbuckle_custom_legendary_stack:OnRefresh()
 
 	if self:GetStackCount() >= self.max then
 		self.parent:EmitSound("Pango.Swash_legendary_ready")
-		self.parent:GenericParticle("particles/lc_odd_proc_.vpcf")
+		self.parent:GenericParticle("particles/legion_commander/lc_odd_proc_.vpcf")
 		self.parent:GenericParticle("particles/sven/cleave_speed_ready.vpcf", self, true)
 	end
 end

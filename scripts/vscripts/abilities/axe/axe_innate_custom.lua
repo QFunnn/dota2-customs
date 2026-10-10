@@ -8,7 +8,7 @@
 ]]
 
 
-LinkLuaModifier("modifier_axe_coat_of_blood_custom", "abilities/axe/axe_innate_custom", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_axe_coat_of_blood_custom", "abilities/axe/axe_innate_custom", LUA_MODIFIER_MOTION_NONE, true)
 
 axe_innate_custom = class({})
 axe_innate_custom.talents = {}
@@ -20,7 +20,7 @@ function axe_innate_custom:Precache(context)
 	PrecacheResource("model", "models/items/axe/axe_carnival/axe_carnival_base.vmdl", context)
 	PrecacheResource("soundfile", "soundevents/npc_dota_hero_axe.vsndevts", context)
 	PrecacheResource("soundfile", "soundevents/vo_custom/axe_vo_custom.vsndevts", context)
-	PrecacheResource("particle", "particles/brist_lowhp_.vpcf", context)
+	PrecacheResource("particle", "particles/bristleback/brist_lowhp_.vpcf", context)
 end
 
 function axe_innate_custom:UpdateTalents(name)
@@ -202,7 +202,7 @@ function modifier_axe_coat_of_blood_custom:OnIntervalThink()
 		return
 	end
 
-	self.parent:GenericParticle("particles/brist_lowhp_.vpcf")
+	self.parent:GenericParticle("particles/bristleback/brist_lowhp_.vpcf")
 	self.parent:EmitSound("BS.Thirst_legendary_active")
 
 	self:StartIntervalThink(-1)

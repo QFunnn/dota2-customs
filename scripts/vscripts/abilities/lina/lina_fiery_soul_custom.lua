@@ -22,7 +22,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_lina_fiery_soul_custom_legendary_stack",
 	"abilities/lina/lina_fiery_soul_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_lina_soul_7"
 )
 LinkLuaModifier(
 	"modifier_lina_fiery_soul_custom_legendary_attacks",
@@ -37,12 +38,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_lina_fiery_soul_custom_heal",
 	"abilities/lina/lina_fiery_soul_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_lina_hero_4"
 )
 LinkLuaModifier(
 	"modifier_lina_fiery_soul_custom_heal_cd",
 	"abilities/lina/lina_fiery_soul_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_lina_hero_4"
 )
 LinkLuaModifier(
 	"modifier_lina_fiery_soul_custom_quest",
@@ -57,12 +60,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_lina_fiery_soul_custom_str",
 	"abilities/lina/lina_fiery_soul_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_lina_soul_4"
 )
 LinkLuaModifier(
 	"modifier_lina_fiery_soul_custom_damage_reduce",
 	"abilities/lina/lina_fiery_soul_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_lina_soul_4"
 )
 LinkLuaModifier(
 	"modifier_lina_fiery_soul_custom_blink",
@@ -83,9 +88,9 @@ function lina_fiery_soul_custom:Precache(context)
 		return
 	end
 
-	PrecacheResource("particle", "particles/lina_soul.vpcf", context)
+	PrecacheResource("particle", "particles/lina/lina_soul.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_lina/lina_fiery_soul.vpcf", context)
-	PrecacheResource("particle", "particles/lina_lowhp.vpcf", context)
+	PrecacheResource("particle", "particles/lina/lina_lowhp.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_phoenix/phoenix_icarus_dive_burn_debuff.vpcf", context)
 	PrecacheResource("particle", "particles/lina/soul_stack.vpcf", context)
 	PrecacheResource(
@@ -94,7 +99,7 @@ function lina_fiery_soul_custom:Precache(context)
 		context
 	)
 	PrecacheResource("particle", "particles/units/heroes/hero_sniper/sniper_headshot_slow.vpcf", context)
-	PrecacheResource("particle", "particles/lina_attack_slow.vpcf", context)
+	PrecacheResource("particle", "particles/lina/lina_attack_slow.vpcf", context)
 	PrecacheResource("particle", "particles/econ/events/fall_2022/phase_boots/phase_boots_fall_2022.vpcf", context)
 end
 
@@ -282,7 +287,7 @@ function lina_fiery_soul_custom:LegendaryProc()
 
 	local range = self.talents.e7_range
 
-	local particle = ParticleManager:CreateParticle("particles/lina_soul.vpcf", PATTACH_POINT, self.caster)
+	local particle = ParticleManager:CreateParticle("particles/lina/lina_soul.vpcf", PATTACH_POINT, self.caster)
 	ParticleManager:SetParticleControl(particle, 1, Vector(range * 0.8, 0, 0))
 	ParticleManager:SetParticleControl(particle, 3, self.caster:GetAbsOrigin())
 	ParticleManager:ReleaseParticleIndex(particle)
@@ -584,7 +589,7 @@ function modifier_lina_fiery_soul_custom:DamageEvent_inc(params)
 	self.parent:SetHealth(self.parent:GetMaxHealth() * self.ability.talents.h4_heal)
 	self.parent:Purge(false, true, false, false, false)
 
-	local particle = ParticleManager:CreateParticle("particles/lina_lowhp.vpcf", PATTACH_POINT_FOLLOW, self.parent)
+	local particle = ParticleManager:CreateParticle("particles/lina/lina_lowhp.vpcf", PATTACH_POINT_FOLLOW, self.parent)
 	ParticleManager:SetParticleControlEnt(
 		particle,
 		0,
@@ -1053,7 +1058,7 @@ function modifier_lina_fiery_soul_custom_slow:IsPurgable()
 	return true
 end
 function modifier_lina_fiery_soul_custom_slow:GetEffectName()
-	return "particles/lina_attack_slow.vpcf"
+	return "particles/lina/lina_attack_slow.vpcf"
 end
 function modifier_lina_fiery_soul_custom_slow:OnCreated()
 	self.parent = self:GetParent()

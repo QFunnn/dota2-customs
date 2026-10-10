@@ -37,11 +37,10 @@ function custom_pudge_rot:Precache(context)
 		return
 	end
 
-	PrecacheResource("particle", "particles/pudge_rot.vpcf", context)
+	PrecacheResource("particle", "particles/pudge/pudge_rot.vpcf", context)
 	PrecacheResource("particle", "particles/econ/items/pudge/pudge_immortal_arm/pudge_immortal_arm_rot.vpcf", context)
-	PrecacheResource("particle", "particles/pudge_legendary.vpcf", context)
-	PrecacheResource("particle", "particles/pudge_rot.vpcf", context)
-	PrecacheResource("particle", "particles/pudge_poison.vpcf", context)
+	PrecacheResource("particle", "particles/pudge/pudge_rot.vpcf", context)
+	PrecacheResource("particle", "particles/pudge/pudge_poison.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_drow/rot_silence_stack.vpcf", context)
 	PrecacheResource(
 		"particle",
@@ -49,8 +48,8 @@ function custom_pudge_rot:Precache(context)
 		context
 	)
 	PrecacheResource("particle", "particles/units/heroes/hero_enigma/pudge_pull.vpcf", context)
-	PrecacheResource("particle", "particles/pudge_rot.vpcf", context)
-	PrecacheResource("particle", "particles/brist_lowhp_.vpcf", context)
+	PrecacheResource("particle", "particles/pudge/pudge_rot.vpcf", context)
+	PrecacheResource("particle", "particles/bristleback/brist_lowhp_.vpcf", context)
 	PrecacheResource("particle", "particles/muerta/resist_stackb.vpcf", context)
 	PrecacheResource("particle", "particles/pudge/rot_shield.vpcf", context)
 end
@@ -101,7 +100,7 @@ function modifier_custom_pudge_rot:CreateEffect(name)
 		return
 	end
 	local rot_particle =
-		wearables_system:GetParticleReplacementAbility(self:GetCaster(), "particles/pudge_rot.vpcf", self)
+		wearables_system:GetParticleReplacementAbility(self:GetCaster(), "particles/pudge/pudge_rot.vpcf", self)
 	if name then
 		rot_particle = name
 	end
@@ -301,7 +300,7 @@ function modifier_custom_pudge_rot:OnIntervalThink()
 					self.parent:EmitSound("Rot.Legendary_loop")
 
 					local particle_peffect = ParticleManager:CreateParticle(
-						"particles/brist_lowhp_.vpcf",
+						"particles/bristleback/brist_lowhp_.vpcf",
 						PATTACH_ABSORIGIN_FOLLOW,
 						self.parent
 					)
@@ -544,7 +543,7 @@ function modifier_custom_pudge_rot_slow:OnIntervalThink()
 	)
 
 	if self.caster:HasTalent("modifier_pudge_rot_4") then
-		self.parent:GenericParticle("particles/pudge_poison.vpcf")
+		self.parent:GenericParticle("particles/pudge/pudge_poison.vpcf")
 		self.parent:EmitSound("Pudge.Rot_poison")
 		self.parent:AddNewModifier(
 			self.caster,
@@ -621,6 +620,27 @@ function modifier_custom_pudge_rot_tracker:OnCreated()
 
 	self.heal_creeps = self.parent:GetTalentValue("modifier_pudge_rot_4", "creeps", true)
 	self.parent:AddDamageEvent_out(self)
+	self.parent:AddOrderFilter(self)
+end
+
+function modifier_custom_pudge_rot_tracker:OrderFilter(params)
+	if params.order_type ~= DOTA_UNIT_ORDER_CAST_TOGGLE then
+		return
+	end
+	if not params.ability then
+		return
+	end
+	if params.ability:GetName() ~= "custom_pudge_rot" then
+		return
+	end
+	if not self.parent:IsSilenced() and not self.parent:IsStunned() and self.parent:GetForceAttackTarget() == nil then
+		return
+	end
+	if self.parent:HasTalent("modifier_pudge_rot_6") then
+		return
+	end
+
+	return false
 end
 
 function modifier_custom_pudge_rot_tracker:DamageEvent_out(params)
@@ -669,7 +689,7 @@ function modifier_custom_pudge_rot_poison:OnCreated(table)
 		self.parent:GenericParticle("particles/muerta/resist_stackb.vpcf", self, true)
 	end
 
-	self.pfx = ParticleManager:CreateParticle("particles/pudge_rot.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
+	self.pfx = ParticleManager:CreateParticle("particles/pudge/pudge_rot.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
 	ParticleManager:SetParticleControl(self.pfx, 1, Vector(150, 1, 150))
 	self:AddParticle(self.pfx, false, false, -1, false, false)
 end

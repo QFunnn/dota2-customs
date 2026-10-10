@@ -21,32 +21,38 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_lina_light_strike_array_custom_cdr",
 	"abilities/lina/lina_light_strike_array_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_lina_hero_6"
 )
 LinkLuaModifier(
 	"modifier_lina_light_strike_array_custom_root",
 	"abilities/lina/lina_light_strike_array_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_lina_array_4"
 )
 LinkLuaModifier(
 	"modifier_lina_light_strike_array_custom_root_cd",
 	"abilities/lina/lina_light_strike_array_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_lina_array_4"
 )
 LinkLuaModifier(
 	"modifier_lina_light_strike_array_custom_legendary_stack",
 	"abilities/lina/lina_light_strike_array_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_lina_array_7"
 )
 LinkLuaModifier(
 	"modifier_lina_light_strike_array_custom_legendary",
 	"abilities/lina/lina_light_strike_array_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_lina_array_7" }
 )
 LinkLuaModifier(
 	"modifier_lina_light_strike_array_custom_double",
 	"abilities/lina/lina_light_strike_array_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_lina_array_3"
 )
 
 lina_light_strike_array_custom = class({})
@@ -64,14 +70,13 @@ function lina_light_strike_array_custom:Precache(context)
 		context
 	)
 	PrecacheResource("particle", "particles/units/heroes/hero_terrorblade/ember_slow.vpcf", context)
-	PrecacheResource("particle", "particles/lina/array_fire.vpcf", context)
-	PrecacheResource("particle", "particles/general/generic_armor_reduction.vpcf", context)
+	PrecacheResource("particle", "particles/generic/generic_armor_reduction.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_phoenix/phoenix_icarus_dive_burn_debuff.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_burn.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_qop_tgt_arcana.vpcf", context)
 	PrecacheResource("particle", "particles/lina/stun_clone.vpcf", context)
 	PrecacheResource("particle", "particles/econ/events/fall_2022/radiance/radiance_owner_fall2022.vpcf", context)
-	PrecacheResource("particle", "particles/lina_timer.vpcf", context)
+	PrecacheResource("particle", "particles/lina/lina_timer.vpcf", context)
 	PrecacheResource("particle", "particles/items3_fx/blink_overwhelming_start.vpcf", context)
 	PrecacheResource("particle", "particles/items3_fx/blink_overwhelming_end.vpcf", context)
 	PrecacheResource("particle", "particles/lina/array_shield.vpcf", context)
@@ -83,9 +88,9 @@ function lina_light_strike_array_custom:Precache(context)
 		"particles/units/heroes/hero_ember_spirit/ember_spirit_searing_chains_debuff.vpcf",
 		context
 	)
-	PrecacheResource("particle", "particles/beast_root.vpcf", context)
+	PrecacheResource("particle", "particles/primal_beast/beast_root.vpcf", context)
 	PrecacheResource("particle", "particles/lina/array_legendary_caster.vpcf", context)
-	PrecacheResource("particle", "particles/lc_odd_proc_.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_odd_proc_.vpcf", context)
 	PrecacheResource("particle", "particles/lina/soul_attack.vpcf", context)
 	PrecacheResource(
 		"particle",
@@ -638,7 +643,7 @@ function modifier_lina_light_strike_array_custom_cdr:OnIntervalThink()
 		return
 	end
 
-	self.parent:GenericParticle("particles/lc_odd_proc_.vpcf")
+	self.parent:GenericParticle("particles/legion_commander/lc_odd_proc_.vpcf")
 	self.parent:EmitSound("BS.Thirst_legendary_active")
 	self:StartIntervalThink(-1)
 end
@@ -679,7 +684,7 @@ function modifier_lina_light_strike_array_custom_root:OnCreated()
 	if not IsServer() then
 		return
 	end
-	self.parent:GenericParticle("particles/beast_root.vpcf", self)
+	self.parent:GenericParticle("particles/primal_beast/beast_root.vpcf", self)
 
 	self.max = self.ability.talents.w4_ticks
 	self.interval = self:GetRemainingTime() / self.max
@@ -900,7 +905,7 @@ function modifier_lina_light_strike_array_custom_legendary:OnCreated()
 	if self.array_ability then
 		local cd = self.array_ability:GetCooldownTimeRemaining()
 		if cd > 0 then
-			self.parent:CdAbility(self.array_ability, cd * self.ability.talents.w7_cd_inc)
+			self.parent:CdAbility(self.array_ability, cd * self.ability.talents.w7_cd_inc, nil, "modifier_lina_array_7")
 		end
 	end
 

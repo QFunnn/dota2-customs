@@ -189,7 +189,7 @@ function CDOTA_BaseNPC:InitTalent(skill_name)
 	then
 		CustomGameEventManager:Send_ServerToAllClients(
 			"show_skill_event",
-			{ hero = self:GetUnitName(), skill = skill_name }
+			{ hero = self:GetUnitName(), skill = skill_name, id = playerID, level = talent_level + 1 }
 		)
 	end
 end
@@ -271,7 +271,7 @@ function CDOTA_BaseNPC:AddTalent(talent)
 
 	local general_data = ingame_talents["general"][talent]
 	if general_data and level >= upgrade:GetMaxLevel(general_data) then
-		self:GenericParticle("particles/generica/common_talent_max.vpcf")
+		self:GenericParticle("particles/generic/common_talent_max.vpcf")
 		self:EmitSound("BS.Thirst_legendary_active")
 	end
 end
@@ -907,7 +907,8 @@ function CDOTA_BaseNPC:WallKnock(center, radius, height, inside, extra_dist, no_
 	end
 
 	self:EmitSound("UI.Walls_hit")
-	local attack_particle = ParticleManager:CreateParticle("particles/duel_stun.vpcf", PATTACH_ABSORIGIN_FOLLOW, self)
+	local attack_particle =
+		ParticleManager:CreateParticle("particles/generic/duel_stun.vpcf", PATTACH_ABSORIGIN_FOLLOW, self)
 	ParticleManager:SetParticleControlEnt(
 		attack_particle,
 		1,
@@ -1705,12 +1706,15 @@ function CDOTA_BaseNPC:GetId()
 	return id
 end
 
-function CDOTA_BaseNPC:CdItems(amount)
+function CDOTA_BaseNPC:CdItems(amount, talent)
+	local removed = 0
+
 	for i = 0, 8 do
 		local current_item = self:GetItemInSlot(i)
 
 		if current_item and not NoCdItems[current_item:GetName()] then
 			local cd = current_item:GetCooldownTimeRemaining()
+			removed = removed + math.min(cd, math.abs(amount))
 
 			if test then
 				print("before:", cd)
@@ -1731,9 +1735,13 @@ function CDOTA_BaseNPC:CdItems(amount)
 			end
 		end
 	end
+
+	if talent and removed > 0 then
+		match_log:Call("Proc", self, "cd", talent, removed)
+	end
 end
 
-function CDOTA_BaseNPC:CdAbility(ability, amount, percent_cd)
+function CDOTA_BaseNPC:CdAbility(ability, amount, percent_cd, talent)
 	local cd = ability:GetCooldownTime()
 	if cd <= 0 then
 		return
@@ -1754,6 +1762,10 @@ function CDOTA_BaseNPC:CdAbility(ability, amount, percent_cd)
 	ability:EndCooldown()
 	if cd > reduce_cd then
 		ability:StartCooldown(cd - reduce_cd)
+	end
+
+	if talent then
+		match_log:Call("Proc", self, "cd", talent, math.min(cd, reduce_cd))
 	end
 
 	if test then
@@ -1826,12 +1838,14 @@ function CDOTA_BaseNPC:SendNumber(type, number)
 		[105] = "particles/lina/lina_laguna_number.vpcf",
 		[106] = "particles/mars/spear_delay_number.vpcf",
 		[107] = "particles/muerta/shot_legendary_damage.vpcf",
-		[108] = "particles/furion/teleport_legendary_number.vpcf",
-		[109] = "particles/ogre-magi/fireblast_number.vpcf",
+		[108] = "particles/nature_prophet/teleport_legendary_number.vpcf",
+		[109] = "particles/ogre_magi/fireblast_number.vpcf",
 		[110] = "particles/pangolier/swashbuckle_bleed_number.vpcf",
 		[111] = "particles/kunkka/xmark_bleed_number.vpcf",
 		[112] = "particles/phantom_assassin/crit_bleed.vpcf",
 		[113] = "particles/phantom_assassin/phantom_proc_number.vpcf",
+		[114] = "particles/primal_beast/trample_crit_number.vpcf",
+		[115] = "particles/items4_fx/serrated_shiv_numbers.vpcf",
 	}
 
 	if type_table[type] then
@@ -2139,6 +2153,7 @@ function CDOTA_Ability_Lua:StartCd()
 		return
 	end
 	self:UseResources(false, false, false, true)
+	match_log:Call("Proc", self:GetCaster(), "cds", self:GetAbilityName(), self:GetCooldownTimeRemaining())
 end
 
 function CDOTA_Item:StartCd()
@@ -2266,6 +2281,8 @@ function CDOTA_BaseNPC:CheckBlink(params, ability)
 end
 
 function CDOTA_BaseNPC:UpdateUIshort(params)
+	match_log:Call("Bar", self, params)
+
 	local hide = params.hide and params.hide or 0
 	local style = params.style and params.style or ""
 	local priority = params.priority and params.priority or 0
@@ -2316,6 +2333,8 @@ function CDOTA_BaseNPC:UpdateUIshort(params)
 end
 
 function CDOTA_BaseNPC:UpdateUIlong(params)
+	match_log:Call("Bar", self, params)
+
 	if params.special_event then
 		CustomGameEventManager:Send_ServerToPlayer(
 			PlayerResource:GetPlayer(self:GetId()),
@@ -2326,6 +2345,7 @@ function CDOTA_BaseNPC:UpdateUIlong(params)
 	end
 
 	local style = params.style and params.style or ""
+	local priority = params.priority and params.priority or 0
 	local max = params.max and params.max or 1
 	local stack = params.stack and params.stack or 0
 	local no_min = params.no_min and params.no_min or false
@@ -2336,6 +2356,18 @@ function CDOTA_BaseNPC:UpdateUIlong(params)
 	local hide = params.hide and params.hide or 0
 	local use_zero = params.use_zero and params.use_zero or 0
 	local glow = params.glow and params.glow or false
+
+	if self.current_ui_long == nil then
+		self.current_ui_long = {}
+	elseif self.current_ui_long.style ~= style and self.current_ui_long.priority > priority then
+		return
+	end
+	self.current_ui_long.style = style
+	self.current_ui_long.priority = priority
+
+	if hide == 1 then
+		self.current_ui_long = nil
+	end
 
 	CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(self:GetId()), "talent_ui_long", {
 		style = style,
@@ -2396,6 +2428,16 @@ function CDOTA_BaseNPC:AddOrderEvent(new_mod, sync)
 		end
 	end
 	self.order_mods[new_mod] = sync and 2 or 1
+end
+
+function CDOTA_BaseNPC:AddOrderFilter(new_mod)
+	if not IsValid(new_mod) then
+		return
+	end
+	if not self.order_filters then
+		self.order_filters = {}
+	end
+	self.order_filters[new_mod] = true
 end
 
 function CDOTA_BaseNPC:AddSpellStartEvent(new_mod, sync)
@@ -2985,7 +3027,7 @@ CreateIllusions = function(caster, unit, data, count, range, scramble, clear_spa
 
 	if not hide_particle then
 		local effect =
-			ParticleManager:CreateParticle("particles/general/illusion_created.vpcf", PATTACH_CUSTOMORIGIN_FOLLOW, unit)
+			ParticleManager:CreateParticle("particles/generic/illusion_created.vpcf", PATTACH_CUSTOMORIGIN_FOLLOW, unit)
 		ParticleManager:SetParticleControlEnt(
 			effect,
 			0,

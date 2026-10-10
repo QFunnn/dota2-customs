@@ -49,11 +49,10 @@ function sandking_caustic_finale_custom:Precache(context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_poison_venomancer.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_venomancer/venomancer_venomous_gale_impact.vpcf", context)
 	PrecacheResource("particle", "particles/sand_king/finale_legendary.vpcf", context)
-	PrecacheResource("particle", "particles/sand_king/finale_legendary_explode.vpcf", context)
 	PrecacheResource("particle", "particles/sand_king/finale_double_hit.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_monkey_king/monkey_king_quad_tap_hit.vpcf", context)
-	PrecacheResource("particle", "particles/mars_revenge_proc.vpcf", context)
-	PrecacheResource("particle", "particles/lc_lowhp.vpcf", context)
+	PrecacheResource("particle", "particles/mars/mars_revenge_proc.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_lowhp.vpcf", context)
 
 	PrecacheResource("soundfile", "soundevents/npc_dota_hero_sand_king.vsndevts", context)
 	dota1x6:PrecacheShopItems("npc_dota_hero_sand_king", context)
@@ -288,7 +287,11 @@ function modifier_sandking_caustic_finale_custom:OnIntervalThink()
 
 	if self.parent:GetHealthPercent() <= self.low_health and not self.particle then
 		self.parent:EmitSound("Lc.Moment_Lowhp")
-		self.particle = ParticleManager:CreateParticle("particles/lc_lowhp.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
+		self.particle = ParticleManager:CreateParticle(
+			"particles/legion_commander/lc_lowhp.vpcf",
+			PATTACH_ABSORIGIN_FOLLOW,
+			self.parent
+		)
 		ParticleManager:SetParticleControl(self.particle, 0, self.parent:GetAbsOrigin())
 		ParticleManager:SetParticleControl(self.particle, 1, self.parent:GetAbsOrigin())
 		ParticleManager:SetParticleControl(self.particle, 2, self.parent:GetAbsOrigin())

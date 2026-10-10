@@ -16,17 +16,20 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_alchemist_acid_spray_custom_aura",
 	"abilities/alchemist/alchemist_acid_spray_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 LinkLuaModifier(
 	"modifier_alchemist_acid_spray_custom_aura_red",
 	"abilities/alchemist/alchemist_acid_spray_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_alchemist_spray_legendary" }
 )
 LinkLuaModifier(
 	"modifier_alchemist_acid_spray_custom_aura_purple",
 	"abilities/alchemist/alchemist_acid_spray_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_alchemist_spray_legendary" }
 )
 LinkLuaModifier(
 	"modifier_alchemist_acid_spray_custom_mixing",
@@ -46,7 +49,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_alchemist_acid_spray_custom_armor",
 	"abilities/alchemist/alchemist_acid_spray_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_alchemist_spray_3"
 )
 LinkLuaModifier(
 	"modifier_alchemist_acid_spray_custom_root_cd",
@@ -56,7 +60,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_alchemist_acid_spray_custom_root",
 	"abilities/alchemist/alchemist_acid_spray_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_alchemist_spray_4"
 )
 
 alchemist_acid_spray_class = class({})
@@ -94,16 +99,14 @@ function alchemist_acid_spray_custom:Precache(context)
 	end
 
 	PrecacheResource("particle", "particles/units/heroes/hero_alchemist/alchemist_acid_spray.vpcf", context)
-	PrecacheResource("particle", "particles/alch_spray_red.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_alchemist/alchemist_acid_spray_debuff.vpcf", context)
-	PrecacheResource("particle", "particles/alch_root_timer.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/units/heroes/hero_alchemist/alchemist_unstable_concoction_timer.vpcf",
 		context
 	)
 	PrecacheResource("particle", "particles/generic_gameplay/generic_silenced.vpcf", context)
-	PrecacheResource("particle", "particles/alch_root.vpcf", context)
+	PrecacheResource("particle", "particles/alchemist/alch_root.vpcf", context)
 end
 
 function alchemist_acid_spray_custom:UpdateTalents(name)
@@ -641,7 +644,7 @@ function modifier_alchemist_acid_spray_custom_armor:OnIntervalThink()
 
 	if self.is_enemy and self:GetStackCount() >= self.max then
 		self.parent:EmitSound("Hoodwink.Acorn_armor")
-		self.parent:GenericParticle("particles/general/generic_armor_reduction.vpcf", self, true)
+		self.parent:GenericParticle("particles/generic/generic_armor_reduction.vpcf", self, true)
 	end
 end
 
@@ -665,7 +668,7 @@ function modifier_alchemist_acid_spray_custom_root:IsPurgable()
 	return true
 end
 function modifier_alchemist_acid_spray_custom_root:GetEffectName()
-	return "particles/alch_root.vpcf"
+	return "particles/alchemist/alch_root.vpcf"
 end
 function modifier_alchemist_acid_spray_custom_root:CheckState()
 	return {

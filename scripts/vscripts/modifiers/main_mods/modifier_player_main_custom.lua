@@ -8,7 +8,6 @@
 ]]
 
 
-LinkLuaModifier("modifier_tower_heal", "modifiers/main_mods/modifier_player_main_custom", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_tower_heal_hero", "modifiers/main_mods/modifier_player_main_custom", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_respawn_invun", "modifiers/main_mods/modifier_player_main_custom", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier(
@@ -27,7 +26,7 @@ end
 function modifier_player_main_custom:RemoveOnDeath()
 	return false
 end
-function modifier_player_main_custom:OnCreated(table)
+function modifier_player_main_custom:OnCreated(params)
 	self.parent = self:GetParent()
 
 	self.agi = 0
@@ -287,6 +286,7 @@ function modifier_player_main_custom:HandleCustomTransmitterData(data)
 	if not data.str then
 		return
 	end
+	self.parent = self:GetParent()
 	self.parent.stats_cache = { str = data.str, agi = data.agi, int = data.int }
 end
 
@@ -368,11 +368,11 @@ function modifier_player_main_custom:DeathEvent(params)
 	end
 end
 
-function modifier_player_main_custom:RespawnEvent(param)
+function modifier_player_main_custom:RespawnEvent(params)
 	if not IsServer() then
 		return
 	end
-	if param.unit ~= self.parent then
+	if params.unit ~= self.parent then
 		return
 	end
 
@@ -525,23 +525,13 @@ function modifier_tower_heal_hero:OnTooltip()
 	return 10
 end
 
-modifier_respawn_invun = class({})
-function modifier_respawn_invun:IsHidden()
-	return true
+modifier_respawn_invun = class(mod_hidden)
+function modifier_respawn_invun:GetStatusEffectName()
+	return "particles/status_fx/status_effect_dark_willow_shadow_realm.vpcf"
 end
-function modifier_respawn_invun:IsPurgable()
-	return false
+function modifier_respawn_invun:StatusEffectPriority()
+	return MODIFIER_PRIORITY_SUPER_ULTRA
 end
-function modifier_respawn_invun:CheckState()
-	return {
-		[MODIFIER_STATE_DISARMED] = true,
-		[MODIFIER_STATE_SILENCED] = true,
-		[MODIFIER_STATE_MUTED] = true,
-		[MODIFIER_STATE_INVULNERABLE] = true,
-		[MODIFIER_STATE_NO_HEALTH_BAR] = true,
-	}
-end
-
 function modifier_respawn_invun:OnCreated(params)
 	if not IsServer() then
 		return
@@ -572,10 +562,12 @@ function modifier_respawn_invun:OnIntervalThink()
 	end
 end
 
-function modifier_respawn_invun:GetStatusEffectName()
-	return "particles/status_fx/status_effect_dark_willow_shadow_realm.vpcf"
-end
-
-function modifier_respawn_invun:StatusEffectPriority()
-	return MODIFIER_PRIORITY_SUPER_ULTRA
+function modifier_respawn_invun:CheckState()
+	return {
+		[MODIFIER_STATE_DISARMED] = true,
+		[MODIFIER_STATE_SILENCED] = true,
+		[MODIFIER_STATE_MUTED] = true,
+		[MODIFIER_STATE_INVULNERABLE] = true,
+		[MODIFIER_STATE_NO_HEALTH_BAR] = true,
+	}
 end

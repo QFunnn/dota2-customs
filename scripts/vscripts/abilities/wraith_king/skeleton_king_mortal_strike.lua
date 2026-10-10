@@ -21,7 +21,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_skeleton_king_mortal_strike_legendary_stack",
 	"abilities/wraith_king/skeleton_king_mortal_strike.lua",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_skeleton_strike_7"
 )
 LinkLuaModifier(
 	"modifier_skeleton_king_mortal_strike_stack",
@@ -31,7 +32,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_skeleton_king_mortal_strike_bkb_cd",
 	"abilities/wraith_king/skeleton_king_mortal_strike.lua",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_skeleton_hero_5"
 )
 LinkLuaModifier(
 	"modifier_skeleton_king_mortal_strike_proc",
@@ -41,12 +43,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_skeleton_king_mortal_strike_speed",
 	"abilities/wraith_king/skeleton_king_mortal_strike.lua",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_skeleton_strike_1"
 )
 LinkLuaModifier(
 	"modifier_skeleton_king_mortal_strike_root",
 	"abilities/wraith_king/skeleton_king_mortal_strike.lua",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_skeleton_strike_4"
 )
 LinkLuaModifier(
 	"modifier_skeleton_king_mortal_strike_root_cd",
@@ -69,12 +73,12 @@ function skeleton_king_mortal_strike_custom:Precache(context)
 		context
 	)
 	PrecacheResource("particle", "particles/wraith_king/crit_normal.vpcf", context)
-	PrecacheResource("particle", "particles/general/generic_armor_reduction.vpcf", context)
-	PrecacheResource("particle", "particles/lc_attack_buf.vpcf", context)
+	PrecacheResource("particle", "particles/generic/generic_armor_reduction.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_attack_buf.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_beserkers_call.vpcf", context)
-	PrecacheResource("particle", "particles/wk_crit_buf.vpcf", context)
+	PrecacheResource("particle", "particles/wraith_king/wk_crit_buf.vpcf", context)
 	PrecacheResource("particle", "particles/wraith_king/crit_legendary_stack.vpcf", context)
-	PrecacheResource("particle", "particles/strike_wk_damage.vpcf", context)
+	PrecacheResource("particle", "particles/wraith_king/strike_wk_damage.vpcf", context)
 	PrecacheResource("particle", "particles/items2_fx/sange_maim.vpcf", context)
 	PrecacheResource("particle", "particles/wraith_king/crit_arcana_v1.vpcf", context)
 	PrecacheResource("particle", "particles/wraith_king/crit_arcana_v2.vpcf", context)
@@ -510,7 +514,7 @@ end
 
 modifier_skeleton_king_mortal_strike_legendary = class(mod_visible)
 function modifier_skeleton_king_mortal_strike_legendary:GetEffectName()
-	return "particles/lc_attack_buf.vpcf"
+	return "particles/legion_commander/lc_attack_buf.vpcf"
 end
 function modifier_skeleton_king_mortal_strike_legendary:GetStatusEffectName()
 	return "particles/status_fx/status_effect_beserkers_call.vpcf"
@@ -531,7 +535,7 @@ function modifier_skeleton_king_mortal_strike_legendary:OnCreated(table)
 	self.parent:EmitSound("WK.crit_buf")
 
 	self.parent:GenericParticle("particles/wraith_king/crit_legendary.vpcf", self, true)
-	self.parent:GenericParticle("particles/wk_crit_buf.vpcf", self, true, { 1 })
+	self.parent:GenericParticle("particles/wraith_king/wk_crit_buf.vpcf", self, true, { 1 })
 end
 
 function modifier_skeleton_king_mortal_strike_legendary:DeclareFunctions()
@@ -620,7 +624,7 @@ function modifier_skeleton_king_mortal_strike_stack:OnDestroy()
 	if not self.parent:IsAlive() then
 		return
 	end
-	self.parent:GenericParticle("particles/strike_wk_damage.vpcf")
+	self.parent:GenericParticle("particles/wraith_king/strike_wk_damage.vpcf")
 	self.parent:EmitSound("WK.Strike_damage")
 
 	DoDamage(

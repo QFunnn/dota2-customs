@@ -31,12 +31,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_muerta_the_calling_custom_shard",
 	"abilities/muerta/muerta_the_calling_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "Shard" }
 )
 LinkLuaModifier(
 	"modifier_muerta_the_calling_custom_root",
 	"abilities/muerta/muerta_the_calling_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_muerta_calling_4"
 )
 LinkLuaModifier(
 	"modifier_muerta_the_calling_custom_bink",
@@ -51,7 +53,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_muerta_the_calling_custom_magic_reduce",
 	"abilities/muerta/muerta_the_calling_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_muerta_calling_3"
 )
 LinkLuaModifier(
 	"modifier_muerta_the_calling_custom_slow",
@@ -66,7 +69,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_muerta_the_calling_custom_legendary_stack",
 	"abilities/muerta/muerta_the_calling_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_muerta_calling_7"
 )
 
 muerta_the_calling_custom = class({})
@@ -83,19 +87,18 @@ function muerta_the_calling_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_muerta/muerta_calling_aoe.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_muerta/muerta_calling.vpcf", context)
 	PrecacheResource("particle", "particles/items_fx/force_staff.vpcf", context)
-	PrecacheResource("particle", "particles/muerta/calling_silence.vpcf", context)
 	PrecacheResource("particle", "particles/muerta/muerta_calling_target.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_muerta/muerta_calling_debuff_slow.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_oracle/oracle_purifyingflames.vpcf", context)
 	PrecacheResource("particle", "particles/muerta/calling_hero.vpcf", context)
-	PrecacheResource("particle", "particles/muerta_calling_caster_start_2.vpcf", context)
+	PrecacheResource("particle", "particles/muerta/muerta_calling_caster_start_2.vpcf", context)
 	PrecacheResource("particle", "particles/muerta/muerta_calling_caster_end.vpcf", context)
 	PrecacheResource("particle", "particles/muerta/muerta_calling_caster_start.vpcf", context)
 	PrecacheResource("particle", "particles/muerta/calling_root.vpcf", context)
 	PrecacheResource("particle", "particles/econ/events/ti7/blink_dagger_end_ti7.vpcf", context)
 	PrecacheResource("particle", "particles/muerta/resist_stackb.vpcf", context)
 	PrecacheResource("particle", "particles/muerta/muerta_calling_revenant_custom.vpcf", context)
-	PrecacheResource("particle", "particles/mueta/muerta_shield.vpcf", context)
+	PrecacheResource("particle", "particles/muerta/muerta_shield.vpcf", context)
 end
 
 function muerta_the_calling_custom:UpdateTalents(name)
@@ -355,7 +358,7 @@ function muerta_the_calling_custom:Teleport()
 
 	if self.shield_mod then
 		self.particle = ParticleManager:CreateParticle(
-			"particles/mueta/muerta_shield.vpcf",
+			"particles/muerta/muerta_shield.vpcf",
 			PATTACH_CUSTOMORIGIN_FOLLOW,
 			self.caster
 		)
@@ -1223,7 +1226,7 @@ function modifier_muerta_the_calling_custom_shard:OnCreated(table)
 	self:AddParticle(self.particle, false, false, -1, false, false)
 
 	local particle =
-		ParticleManager:CreateParticle("particles/muerta_calling_caster_start_2.vpcf", PATTACH_WORLDORIGIN, nil)
+		ParticleManager:CreateParticle("particles/muerta/muerta_calling_caster_start_2.vpcf", PATTACH_WORLDORIGIN, nil)
 	ParticleManager:SetParticleControl(particle, 0, self.parent:GetAbsOrigin())
 	ParticleManager:ReleaseParticleIndex(particle)
 

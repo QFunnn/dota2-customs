@@ -16,7 +16,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_zuus_lightning_bolt_custom_item_stack",
 	"abilities/zuus/zuus_lightning_bolt_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_zuus_bolt_3"
 )
 LinkLuaModifier(
 	"modifier_zuus_lightning_bolt_custom_legendary",
@@ -26,12 +27,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_zuus_lightning_bolt_custom_legendary_stack_count",
 	"abilities/zuus/zuus_lightning_bolt_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_zuus_bolt_7"
 )
 LinkLuaModifier(
 	"modifier_zuus_lightning_bolt_custom_root",
 	"abilities/zuus/zuus_lightning_bolt_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_zuus_bolt_4"
 )
 LinkLuaModifier(
 	"modifier_zuus_lightning_bolt_custom_root_cd",
@@ -41,7 +44,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_zuus_lightning_bolt_custom_root_heal_reduce",
 	"abilities/zuus/zuus_lightning_bolt_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_zuus_bolt_2"
 )
 
 zuus_lightning_bolt_custom = class({})
@@ -56,7 +60,7 @@ function zuus_lightning_bolt_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_zuus/zuus_lightning_bolt.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_zuus/zuus_arc_lightning_impact.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_zeus/zeus_cloud.vpcf", context)
-	PrecacheResource("particle", "particles/zuus_attack_stack.vpcf", context)
+	PrecacheResource("particle", "particles/zeus/zuus_attack_stack.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_zuus/zuus_lightning_bolt_aoe.vpcf", context)
 	PrecacheResource("particle", "particles/zeus/bolt_disarm.vpcf", context)
 	PrecacheResource("particle", "particles/zeus/bolt_legendary_stack2.vpcf", context)
@@ -691,7 +695,7 @@ function modifier_zuus_lightning_bolt_custom_legendary_stack_count:OnCreated(tab
 		return
 	end
 	self.RemoveForDuel = true
-	self.particle = self.parent:GenericParticle("particles/zuus_attack_stack.vpcf", self, true)
+	self.particle = self.parent:GenericParticle("particles/zeus/zuus_attack_stack.vpcf", self, true)
 	self:OnRefresh()
 end
 

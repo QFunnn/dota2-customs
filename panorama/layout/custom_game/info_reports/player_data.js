@@ -31,6 +31,7 @@ function UpdatePlayerShopTable(table, key, data )
         {
             player_table_shop = data
             UpdateSelectionSets()
+            UpdateShopNewAlerts()
 		}
 	}
     if (table == "server_data")

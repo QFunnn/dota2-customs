@@ -16,7 +16,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_broodmother_shard_ability_custom_target",
 	"abilities/broodmother/broodmother_shard_ability_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "Shard" }
 )
 
 broodmother_shard_ability_custom = class({})

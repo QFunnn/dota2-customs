@@ -26,22 +26,26 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_nyx_assassin_jolt_custom_legendary_mana",
 	"abilities/nyx_assassin/nyx_assassin_jolt_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_nyx_mind_7"
 )
 LinkLuaModifier(
 	"modifier_nyx_assassin_jolt_custom_slow",
 	"abilities/nyx_assassin/nyx_assassin_jolt_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_nyx_mind_2"
 )
 LinkLuaModifier(
 	"modifier_nyx_assassin_jolt_custom_shield_cd",
 	"abilities/nyx_assassin/nyx_assassin_jolt_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_nyx_hero_5"
 )
 LinkLuaModifier(
 	"modifier_nyx_assassin_jolt_custom_silence",
 	"abilities/nyx_assassin/nyx_assassin_jolt_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_nyx_mind_4"
 )
 LinkLuaModifier(
 	"modifier_nyx_assassin_jolt_custom_silence_cd",
@@ -489,7 +493,7 @@ function modifier_nyx_assassin_jolt_custom_tracker:SpellEvent(params)
 		and params.ability ~= self.ability
 		and self.ability:GetCooldownTimeRemaining() > 0
 	then
-		self.parent:CdAbility(self.ability, nil, self.ability.talents.w3_cd)
+		self.parent:CdAbility(self.ability, nil, self.ability.talents.w3_cd, "modifier_nyx_mind_3")
 		self.ability.cd_used = true
 		local particle = ParticleManager:CreateParticle(
 			"particles/nyx_assassin/mind_refresh.vpcf",

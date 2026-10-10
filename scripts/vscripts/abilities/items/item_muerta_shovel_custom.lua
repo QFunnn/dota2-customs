@@ -29,7 +29,7 @@ function item_muerta_shovel_custom:Precache(context)
 		return
 	end
 	PrecacheResource("particle", "particles/econ/events/ti9/shovel_dig.vpcf", context)
-	PrecacheResource("particle", "particles/muerta_dig_drop.vpcf", context)
+	PrecacheResource("particle", "particles/muerta/muerta_dig_drop.vpcf", context)
 	PrecacheResource("particle", "particles/econ/events/ti9/shovel_revealed_nothing.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_alchemist/alchemist_lasthit_coins.vpcf", context)
 	PrecacheResource("particle", "particles/econ/events/ti9/shovel_smoke_cloud.vpcf", context)
@@ -146,7 +146,7 @@ function item_muerta_shovel_custom:OnChannelFinish(bInterrupted)
 		end
 	end
 
-	local particle = "particles/muerta_dig_drop.vpcf"
+	local particle = "particles/muerta/muerta_dig_drop.vpcf"
 
 	if not found_mod then
 		if area_mod:GetStackCount() < 3 and RollPseudoRandomPercentage(50, 131, caster) then

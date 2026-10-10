@@ -46,7 +46,7 @@ function void_spirit_resonant_pulse_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
 	end
-	PrecacheResource("particle", "particles/void_shield_legen.vpcf", context)
+	PrecacheResource("particle", "particles/void_spirit/void_shield_legen.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_void_spirit/pulse/void_spirit_pulse.vpcf", context)
 	PrecacheResource("particle", "particles/void_spirit/pulse_legendary.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_void_spirit/pulse/void_spirit_pulse_shield.vpcf", context)
@@ -59,7 +59,7 @@ function void_spirit_resonant_pulse_custom:Precache(context)
 		context
 	)
 	PrecacheResource("particle", "particles/void_spirit/shield_buff.vpcf", context)
-	PrecacheResource("particle", "particles/void_astral_slow.vpcf", context)
+	PrecacheResource("particle", "particles/void_spirit/void_astral_slow.vpcf", context)
 	PrecacheResource("particle", "particles/void_spirit/step_status.vpcf", context)
 	PrecacheResource("particle", "particles/void_spirit/shield_legendary_impact.vpcf", context)
 	PrecacheResource("particle", "particles/void_spirit/shield_refresh.vpcf", context)
@@ -130,7 +130,7 @@ function void_spirit_resonant_pulse_custom:DealDamage(enemy, legendary_damage, f
 	end
 
 	if caster:HasTalent("modifier_void_astral_6") and first_hit and first_hit == 1 then
-		caster:CdItems(caster:GetTalentValue("modifier_void_astral_6", "cd_items"))
+		caster:CdItems(caster:GetTalentValue("modifier_void_astral_6", "cd_items"), "modifier_void_astral_6")
 	end
 
 	local step = caster:FindAbilityByName("void_spirit_astral_step_custom")
@@ -405,8 +405,11 @@ function modifier_void_spirit_resonant_pulse:OnDestroy()
 			/ 100
 		self.parent:GenericHeal(heal, self.ability, nil, nil, "modifier_void_pulse_5")
 
-		local effect_cast =
-			ParticleManager:CreateParticle("particles/void_shield_legen.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
+		local effect_cast = ParticleManager:CreateParticle(
+			"particles/void_spirit/void_shield_legen.vpcf",
+			PATTACH_ABSORIGIN_FOLLOW,
+			self.parent
+		)
 		ParticleManager:SetParticleControlEnt(
 			effect_cast,
 			0,
@@ -448,7 +451,9 @@ function modifier_void_spirit_resonant_pulse:OnDestroy()
 			local cd = self.ability:GetCooldownTimeRemaining()
 			self.parent:CdAbility(
 				self.ability,
-				cd * self.parent:GetTalentValue("modifier_void_pulse_legendary", "cd") / 100
+				cd * self.parent:GetTalentValue("modifier_void_pulse_legendary", "cd") / 100,
+				nil,
+				"modifier_void_pulse_legendary"
 			)
 		end
 		self.parent:UpdateUIshort({ hide = 1, hide_full = 1, style = "VoidShield" })
@@ -585,7 +590,7 @@ function modifier_void_spirit_resonant_slow:GetTexture()
 	return "buffs/Pulse_slow"
 end
 function modifier_void_spirit_resonant_slow:GetEffectName()
-	return "particles/void_astral_slow.vpcf"
+	return "particles/void_spirit/void_astral_slow.vpcf"
 end
 
 function modifier_void_spirit_resonant_slow:OnCreated(table)

@@ -9,11 +9,17 @@
 
 
 LinkLuaModifier("modifier_zuus_innate_custom", "abilities/zuus/zuus_innate_custom", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_zuus_innate_custom_purge_cd", "abilities/zuus/zuus_innate_custom", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier(
+	"modifier_zuus_innate_custom_purge_cd",
+	"abilities/zuus/zuus_innate_custom",
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_zuus_hero_5"
+)
 LinkLuaModifier(
 	"modifier_zuus_innate_custom_damage_reduce",
 	"abilities/zuus/zuus_innate_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_zuus_hero_5" }
 )
 
 zuus_innate_custom = class({})

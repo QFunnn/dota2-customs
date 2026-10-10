@@ -13,6 +13,10 @@ LinkLuaModifier("modifier_item_skadi_custom_debuff", "abilities/items/item_skadi
 
 item_skadi_custom = class({})
 
+function item_skadi_custom:GetAbilityTextureName()
+	return wearables_system:GetAbilityIconReplacement(self:GetCaster(), "item_skadi", self)
+end
+
 function item_skadi_custom:GetIntrinsicModifierName()
 	return "modifier_item_skadi_custom"
 end
@@ -69,7 +73,7 @@ function modifier_item_skadi_custom:DeclareFunctions()
 end
 
 function modifier_item_skadi_custom:GetModifierProjectileName()
-	return "particles/items2_fx/skadi_projectile.vpcf"
+	return wearables_system:GetParticleReplacement(self.parent, "particles/items2_fx/skadi_projectile.vpcf")
 end
 
 function modifier_item_skadi_custom:GetModifierBonusStats_Strength()

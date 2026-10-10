@@ -103,8 +103,7 @@ function snapfire_firesnap_cookie_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_snapfire/hero_snapfire_cookie_selfcast.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_snapfire/hero_snapfire_cookie_buff.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_snapfire/hero_snapfire_cookie_receive.vpcf", context)
-	PrecacheResource("particle", "particles/sf_refresh_a.vpcf", context)
-	PrecacheResource("particle", "particles/cleance_blade.vpcf", context)
+	PrecacheResource("particle", "particles/shadow_fiend/sf_refresh_a.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_snapfire/hero_snapfire_cookie_landing.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_snapfire/hero_snapfire_cookie_landing.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_snapfire/hero_snapfire_cookie_receive.vpcf", context)
@@ -113,8 +112,8 @@ function snapfire_firesnap_cookie_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_marci/marci_rebound_allymovespeed.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_oracle/oracle_false_promise_heal.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_snapfire/hero_snapfire_cookie_projectile.vpcf", context)
-	PrecacheResource("particle", "particles/alch_stun_legendary.vpcf", context)
-	PrecacheResource("particle", "particles/sf_refresh_a.vpcf", context)
+	PrecacheResource("particle", "particles/alchemist/alch_stun_legendary.vpcf", context)
+	PrecacheResource("particle", "particles/shadow_fiend/sf_refresh_a.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_monkey_king/monkey_king_disguise.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_snapfire/hero_snapfire_cookie_projectile.vpcf", context)
 	PrecacheResource(
@@ -123,11 +122,10 @@ function snapfire_firesnap_cookie_custom:Precache(context)
 		context
 	)
 	PrecacheResource("particle", "particles/items3_fx/black_powder_bag.vpcf", context)
-	PrecacheResource("particle", "particles/zeus_resist_stack.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_sniper/sniper_headshot_slow.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_huskar_lifebreak.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_snapfire/hero_snapfire_cookie_projectile.vpcf", context)
-	PrecacheResource("particle", "particles/lc_odd_proc_.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_odd_proc_.vpcf", context)
 	PrecacheResource("particle", "particles/snapfire/cookie_shield.vpcf", context)
 end
 
@@ -429,8 +427,11 @@ function modifier_snapfire_firesnap_cookie_custom:OnDestroy()
 			self.parent:HasTalent("modifier_snapfire_scatter_7")
 			and self.scatter_ability:GetCooldownTimeRemaining() > 0
 		then
-			local particle =
-				ParticleManager:CreateParticle("particles/sf_refresh_a.vpcf", PATTACH_CUSTOMORIGIN, self.parent)
+			local particle = ParticleManager:CreateParticle(
+				"particles/shadow_fiend/sf_refresh_a.vpcf",
+				PATTACH_CUSTOMORIGIN,
+				self.parent
+			)
 			ParticleManager:SetParticleControlEnt(
 				particle,
 				0,
@@ -447,7 +448,10 @@ function modifier_snapfire_firesnap_cookie_custom:OnDestroy()
 		end
 
 		if self.parent:HasTalent("modifier_snapfire_scatter_6") then
-			self.parent:CdItems(self.parent:GetTalentValue("modifier_snapfire_scatter_6", "cd_items"))
+			self.parent:CdItems(
+				self.parent:GetTalentValue("modifier_snapfire_scatter_6", "cd_items"),
+				"modifier_snapfire_scatter_6"
+			)
 		end
 	end
 
@@ -825,7 +829,7 @@ function modifier_snapfire_firesnap_cookie_custom_cookie:OnCreated(table)
 	self.is_hero = table.is_hero
 
 	self.particle_ally_fx = ParticleManager:CreateParticleForTeam(
-		"particles/alch_stun_legendary.vpcf",
+		"particles/alchemist/alch_stun_legendary.vpcf",
 		PATTACH_ABSORIGIN_FOLLOW,
 		self.parent,
 		self.parent:GetTeamNumber()
@@ -860,8 +864,11 @@ function modifier_snapfire_firesnap_cookie_custom_cookie:OnIntervalThink()
 		and self.caster:IsAlive()
 		and not self.caster:HasModifier("modifier_snapfire_firesnap_cookie_custom")
 	then
-		local particle =
-			ParticleManager:CreateParticle("particles/sf_refresh_a.vpcf", PATTACH_CUSTOMORIGIN, self.caster)
+		local particle = ParticleManager:CreateParticle(
+			"particles/shadow_fiend/sf_refresh_a.vpcf",
+			PATTACH_CUSTOMORIGIN,
+			self.caster
+		)
 		ParticleManager:SetParticleControlEnt(
 			particle,
 			0,
@@ -947,7 +954,7 @@ function modifier_snapfire_firesnap_cookie_custom_legendary_speed:OnRefresh()
 	self:IncrementStackCount()
 
 	if self:GetStackCount() >= self.max then
-		self.parent:GenericParticle("particles/lc_odd_proc_.vpcf")
+		self.parent:GenericParticle("particles/legion_commander/lc_odd_proc_.vpcf")
 		self.parent:EmitSound("BS.Thirst_legendary_active")
 	end
 end

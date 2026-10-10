@@ -209,7 +209,7 @@ function modifier_warlock_boss_golem_fists_debuff:OnCreated(table)
 
 	self:GetParent():EmitSound("Item.StarEmblem.Enemy")
 	self.particle_peffect = ParticleManager:CreateParticle(
-		"particles/general/generic_armor_reduction.vpcf",
+		"particles/generic/generic_armor_reduction.vpcf",
 		PATTACH_OVERHEAD_FOLLOW,
 		self:GetParent()
 	)

@@ -16,7 +16,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_invoker_invoke_custom_legendary",
 	"abilities/invoker/invoker_invoke_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_invoker_invoke_7"
 )
 LinkLuaModifier(
 	"modifier_invoker_invoke_custom_legendary_illusion",
@@ -31,7 +32,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_invoker_deafening_blast_custom_cd",
 	"abilities/invoker/invoker_invoke_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_invoker_hero_6"
 )
 LinkLuaModifier(
 	"modifier_invoker_invoke_custom_blast_thinker",
@@ -41,7 +43,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_invoker_invoke_custom_damage_effect",
 	"abilities/invoker/invoker_invoke_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_invoker_invoke_3"
 )
 LinkLuaModifier(
 	"modifier_invoker_stolen_ability_tracker",
@@ -85,7 +88,7 @@ function invoker_invoke_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
 	end
-	PrecacheResource("particle", "particles/maiden_shield_active.vpcf", context)
+	PrecacheResource("particle", "particles/crystal_maiden/maiden_shield_active.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_invoker/invoker_invoke.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_invoker/invoker_quas_orb.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_invoker/invoker_wex_orb.vpcf", context)
@@ -111,8 +114,7 @@ function invoker_invoke_custom:Precache(context)
 	)
 	PrecacheResource("particle", "particles/troll_warlord/refresh_ranged.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_weaver/weaver_timelapse.vpcf", context)
-	PrecacheResource("particle", "particles/huskar_timer.vpcf", context)
-	PrecacheResource("particle", "particles/invoker/invoker_scepter.vpcf", context)
+	PrecacheResource("particle", "particles/huskar/huskar_timer.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_invoker/invoker_dot_enemy.vpcf", context)
 	dota1x6:PrecacheShopItems("npc_dota_hero_invoker", context)
 end
@@ -635,7 +637,7 @@ function modifier_invoker_invoke_custom_tracker:SpellEvent(params)
 	end
 
 	if self.ability.talents.has_r4 == 1 then
-		self.parent:CdItems(self.ability.talents.r4_cd_items)
+		self.parent:CdItems(self.ability.talents.r4_cd_items, "modifier_invoker_invoke_4")
 	end
 
 	if self.ability.talents.has_h1 == 1 then
@@ -1049,7 +1051,8 @@ function modifier_invoker_invoke_custom_legendary_illusion:OnIntervalThink()
 		decimal = 1
 	end
 
-	local particle = ParticleManager:CreateParticle("particles/huskar_timer.vpcf", PATTACH_OVERHEAD_FOLLOW, self.parent)
+	local particle =
+		ParticleManager:CreateParticle("particles/huskar/huskar_timer.vpcf", PATTACH_OVERHEAD_FOLLOW, self.parent)
 	ParticleManager:SetParticleControl(particle, 0, self.parent:GetAbsOrigin())
 	ParticleManager:SetParticleControl(particle, 1, Vector(0, int, decimal))
 	ParticleManager:SetParticleControl(particle, 2, Vector(digits, 0, 0))

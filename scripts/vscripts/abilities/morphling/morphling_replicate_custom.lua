@@ -21,7 +21,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_morphling_replicate_custom_active",
 	"abilities/morphling/morphling_replicate_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 LinkLuaModifier(
 	"modifier_morphling_replicate_custom_manager",
@@ -51,7 +52,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_morphling_replicate_custom_armor_reduce",
 	"abilities/morphling/morphling_replicate_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_morphling_morph_1"
 )
 LinkLuaModifier(
 	"modifier_morphling_replicate_custom_scepter_save",
@@ -81,7 +83,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_morphling_replicate_custom_bkb_cd",
 	"abilities/morphling/morphling_replicate_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_morphling_morph_4"
 )
 
 morphling_replicate_custom = class({})

@@ -21,7 +21,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_crystal_maiden_frostbite_custom_legendary_slow",
 	"abilities/crystal_maiden/crystal_maiden_frostbite_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_maiden_frostbite_7"
 )
 LinkLuaModifier(
 	"modifier_crystal_maiden_frostbite_custom_max_slow",
@@ -31,17 +32,20 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_crystal_maiden_frostbite_custom_resist",
 	"abilities/crystal_maiden/crystal_maiden_frostbite_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_maiden_frostbite_1", "modifier_maiden_freezing_1" }
 )
 LinkLuaModifier(
 	"modifier_crystal_maiden_frostbite_custom_lowhp",
 	"abilities/crystal_maiden/crystal_maiden_frostbite_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_maiden_hero_5"
 )
 LinkLuaModifier(
 	"modifier_crystal_maiden_frostbite_custom_lowhp_cd",
 	"abilities/crystal_maiden/crystal_maiden_frostbite_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_maiden_hero_5" }
 )
 LinkLuaModifier(
 	"modifier_crystal_maiden_frostbite_custom_area",
@@ -56,12 +60,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_crystal_maiden_frostbite_custom_regen",
 	"abilities/crystal_maiden/crystal_maiden_frostbite_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_maiden_hero_2", "modifier_maiden_hero_3" }
 )
 LinkLuaModifier(
 	"modifier_crystal_maiden_frostbite_custom_spell",
 	"abilities/crystal_maiden/crystal_maiden_frostbite_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_maiden_frostbite_3"
 )
 LinkLuaModifier(
 	"modifier_crystal_maiden_frostbite_custom_spell_count",
@@ -79,24 +85,23 @@ function crystal_maiden_frostbite_custom:Precache(context)
 
 	PrecacheResource("particle", "particles/units/heroes/hero_crystalmaiden/maiden_frostbite.vpcf", context)
 	PrecacheResource("particle", "particles/generic_gameplay/generic_silenced.vpcf", context)
-	PrecacheResource("particle", "particles/maiden_ground.vpcf", context)
+	PrecacheResource("particle", "particles/crystal_maiden/maiden_ground.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_crystalmaiden/maiden_frostbite_buff.vpcf", context)
-	PrecacheResource("particle", "particles/maiden_radius.vpcf", context)
-	PrecacheResource("particle", "particles/maiden_snow.vpcf", context)
+	PrecacheResource("particle", "particles/crystal_maiden/maiden_radius.vpcf", context)
+	PrecacheResource("particle", "particles/crystal_maiden/maiden_snow.vpcf", context)
 	PrecacheResource("particle", "particles/crystal_maiden/frostbite_legendary_stack.vpcf", context)
-	PrecacheResource("particle", "particles/maiden_mark.vpcf", context)
-	PrecacheResource("particle", "particles/maiden_frostbite_slow.vpcf", context)
-	PrecacheResource("particle", "particles/zeus_resist_stack.vpcf", context)
+	PrecacheResource("particle", "particles/crystal_maiden/maiden_mark.vpcf", context)
+	PrecacheResource("particle", "particles/crystal_maiden/maiden_frostbite_slow.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/econ/items/winter_wyvern/winter_wyvern_ti7/wyvern_cold_embrace_ti7buff.vpcf",
 		context
 	)
-	PrecacheResource("particle", "particles/maiden_frostbite_area.vpcf", context)
+	PrecacheResource("particle", "particles/crystal_maiden/maiden_frostbite_area.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_lich/lich_ice_age_debuff.vpcf", context)
-	PrecacheResource("particle", "particles/maiden_area_damage.vpcf", context)
+	PrecacheResource("particle", "particles/crystal_maiden/maiden_area_damage.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_crystalmaiden/maiden_death.vpcf", context)
-	PrecacheResource("particle", "particles/cm_death_custom/maiden_death.vpcf", context)
+	PrecacheResource("particle", "particles/crystal_maiden/maiden_death.vpcf", context)
 end
 
 function crystal_maiden_frostbite_custom:UpdateTalents()
@@ -240,7 +245,7 @@ function crystal_maiden_frostbite_custom:OnSpellStart()
 	end
 
 	if self.talents.has_w4 == 1 then
-		self.caster:CdItems(self.talents.w4_cd_items)
+		self.caster:CdItems(self.talents.w4_cd_items, "modifier_maiden_frostbite_4")
 	end
 
 	self:ApplyEffect(target, self.duration)
@@ -318,8 +323,11 @@ function modifier_crystal_maiden_frostbite_custom:OnCreated(kv)
 		self:SetStackCount(1)
 		self.parent:EmitSound("Maiden.Arcane_frostbite")
 		self.parent:EmitSound("Maiden.Frostbite_stun")
-		self.ground_particle =
-			ParticleManager:CreateParticle("particles/maiden_ground.vpcf", PATTACH_CUSTOMORIGIN, self.parent)
+		self.ground_particle = ParticleManager:CreateParticle(
+			"particles/crystal_maiden/maiden_ground.vpcf",
+			PATTACH_CUSTOMORIGIN,
+			self.parent
+		)
 		ParticleManager:SetParticleControlEnt(
 			self.ground_particle,
 			0,
@@ -566,8 +574,11 @@ function modifier_crystal_maiden_frostbite_custom_tracker:OnIntervalThink()
 	local enemies = self.parent:FindTargets(radius)
 
 	if #enemies > 0 and not self.ring and self.parent:IsAlive() then
-		self.ring =
-			ParticleManager:CreateParticle("particles/maiden_radius.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
+		self.ring = ParticleManager:CreateParticle(
+			"particles/crystal_maiden/maiden_radius.vpcf",
+			PATTACH_ABSORIGIN_FOLLOW,
+			self.parent
+		)
 		ParticleManager:SetParticleControlEnt(
 			self.ring,
 			0,
@@ -589,8 +600,11 @@ function modifier_crystal_maiden_frostbite_custom_tracker:OnIntervalThink()
 		ParticleManager:SetParticleControl(self.ring, 2, Vector(radius, radius, radius))
 		self:AddParticle(self.ring, false, false, -1, false, false)
 
-		self.effect_cast =
-			ParticleManager:CreateParticle("particles/maiden_snow.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
+		self.effect_cast = ParticleManager:CreateParticle(
+			"particles/crystal_maiden/maiden_snow.vpcf",
+			PATTACH_ABSORIGIN_FOLLOW,
+			self.parent
+		)
 		ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(radius, radius, 1))
 		self:AddParticle(self.effect_cast, false, false, -1, false, false)
 
@@ -692,7 +706,7 @@ function modifier_crystal_maiden_frostbite_custom_legendary_slow:OnStackCountCha
 		self.parent:RemoveModifierByName("modifier_crystal_maiden_frostbite_custom_max_slow")
 	else
 		if not self.mark then
-			self.mark = self.parent:GenericParticle("particles/maiden_mark.vpcf", self, true)
+			self.mark = self.parent:GenericParticle("particles/crystal_maiden/maiden_mark.vpcf", self, true)
 		end
 		if self.effect_cast then
 			ParticleManager:DestroyParticle(self.effect_cast, false)
@@ -739,7 +753,7 @@ function modifier_crystal_maiden_frostbite_custom_max_slow:StatusEffectPriority(
 	return MODIFIER_PRIORITY_ULTRA
 end
 function modifier_crystal_maiden_frostbite_custom_max_slow:GetEffectName()
-	return "particles/maiden_frostbite_slow.vpcf"
+	return "particles/crystal_maiden/maiden_frostbite_slow.vpcf"
 end
 function modifier_crystal_maiden_frostbite_custom_max_slow:OnCreated()
 	if not IsServer() then
@@ -868,8 +882,11 @@ function modifier_crystal_maiden_frostbite_custom_area:OnCreated(table)
 
 	self.origin = self.parent:GetAbsOrigin()
 
-	self.aoe_efx =
-		ParticleManager:CreateParticle("particles/maiden_frostbite_area.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
+	self.aoe_efx = ParticleManager:CreateParticle(
+		"particles/crystal_maiden/maiden_frostbite_area.vpcf",
+		PATTACH_ABSORIGIN_FOLLOW,
+		self.parent
+	)
 	ParticleManager:SetParticleControl(self.aoe_efx, 1, Vector(0, 0, 100))
 	ParticleManager:SetParticleControl(self.aoe_efx, 5, Vector(self.radius, self.radius, self.radius))
 	self:AddParticle(self.aoe_efx, false, false, -1, false, false)
@@ -884,8 +901,11 @@ function modifier_crystal_maiden_frostbite_custom_area:OnIntervalThink()
 	end
 	self.parent:EmitSound("Maiden.Frostbite_aoe")
 
-	local damage_ring =
-		ParticleManager:CreateParticle("particles/maiden_area_damage.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
+	local damage_ring = ParticleManager:CreateParticle(
+		"particles/crystal_maiden/maiden_area_damage.vpcf",
+		PATTACH_ABSORIGIN_FOLLOW,
+		self.parent
+	)
 	ParticleManager:SetParticleControl(damage_ring, 0, self.origin)
 	ParticleManager:SetParticleControl(damage_ring, 1, self.origin)
 	ParticleManager:SetParticleControl(damage_ring, 2, Vector(150, 150, 150))

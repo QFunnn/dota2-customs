@@ -64,9 +64,9 @@ function troll_warlord_battle_trance_custom:Precache(context)
 	PrecacheResource("particle", "particles/troll_warlord/troll_linken_buff.vpcf", context)
 	PrecacheResource("particle", "particles/troll_warlord/troll_linken.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_troll_warlord_battletrance.vpcf", context)
-	PrecacheResource("particle", "particles/roshan_meteor_burn_.vpcf", context)
-	PrecacheResource("particle", "particles/huskar_grave.vpcf", context)
-	PrecacheResource("particle", "particles/troll_hit.vpcf", context)
+	PrecacheResource("particle", "particles/items/roshan_meteor_burn_.vpcf", context)
+	PrecacheResource("particle", "particles/huskar/huskar_grave.vpcf", context)
+	PrecacheResource("particle", "particles/troll_warlord/troll_hit.vpcf", context)
 	PrecacheResource("particle", "particles/troll_warlord/trance_legendary.vpcf", context)
 end
 
@@ -178,7 +178,7 @@ function modifier_troll_warlord_battle_trance_custom:OnCreated(table)
 	self.block = false
 
 	if table.auto == 1 then
-		self.parent:GenericParticle("particles/huskar_grave.vpcf", self)
+		self.parent:GenericParticle("particles/huskar/huskar_grave.vpcf", self)
 	else
 		if self.parent:HasTalent("modifier_troll_trance_6") then
 			self.block = true
@@ -566,7 +566,7 @@ function modifier_troll_warlord_battle_trance_custom_tracker:AttackEvent_out(par
 	local damageTable =
 		{ attacker = self.parent, damage = self.aoe_damage, damage_type = DAMAGE_TYPE_MAGICAL, ability = self.ability }
 
-	local particle = ParticleManager:CreateParticle("particles/troll_hit.vpcf", PATTACH_WORLDORIGIN, nil)
+	local particle = ParticleManager:CreateParticle("particles/troll_warlord/troll_hit.vpcf", PATTACH_WORLDORIGIN, nil)
 	ParticleManager:SetParticleControl(particle, 0, params.target:GetAbsOrigin())
 	ParticleManager:Delete(particle, 1)
 
@@ -718,7 +718,7 @@ function modifier_troll_warlord_battle_trance_custom_aura:OnCreated()
 	self.damageTable =
 		{ victim = self.parent, attacker = self.caster, ability = self.ability, damage_type = DAMAGE_TYPE_MAGICAL }
 
-	self.parent:GenericParticle("particles/roshan_meteor_burn_.vpcf", self)
+	self.parent:GenericParticle("particles/items/roshan_meteor_burn_.vpcf", self)
 	self:StartIntervalThink(self.interval)
 end
 
@@ -827,7 +827,7 @@ function modifier_troll_warlord_battle_trance_custom_legendary:OnIntervalThink()
 
 	if self.ability:GetCooldownTimeRemaining() > 0 then
 		local cd = self.ability:GetEffectiveCooldown(self.ability:GetLevel()) * self.cd_inc
-		self.parent:CdAbility(self.ability, cd)
+		self.parent:CdAbility(self.ability, cd, nil, "modifier_troll_trance_legendary")
 	end
 
 	self:StartIntervalThink(self.interval)

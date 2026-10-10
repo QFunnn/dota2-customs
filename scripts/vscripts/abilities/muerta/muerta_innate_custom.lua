@@ -36,7 +36,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_muerta_innate_custom_bonus_damage",
 	"abilities/muerta/muerta_innate_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 
 muerta_innate_custom = class({})
@@ -48,9 +49,9 @@ function muerta_innate_custom:Precache(context)
 	end
 	PrecacheResource("model", "models/muerta/muerta.vmdl", context)
 	PrecacheResource("soundfile", "soundevents/npc_dota_hero_muerta.vsndevts", context)
-	PrecacheResource("particle", "particles/muerta_dig_ground.vpcf", context)
+	PrecacheResource("particle", "particles/muerta/muerta_dig_ground.vpcf", context)
 	PrecacheResource("particle", "particles/econ/events/ti9/muerta_dig_treasure.vpcf", context)
-	PrecacheResource("particle", "particles/heroes/muerta/muerta_quest_kill.vpcf", context)
+	PrecacheResource("particle", "particles/muerta/muerta_quest_kill.vpcf", context)
 	PrecacheResource("particle", "particles/muerta/muerta_quest_item.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_muerta/muerta_ultimate_form_ethereal.vpcf", context)
 	dota1x6:PrecacheShopItems("npc_dota_hero_muerta", context)
@@ -75,10 +76,18 @@ function muerta_innate_custom:UpdateTalents()
 			has_r2 = 0,
 			r2_duration = caster:GetTalentValue("modifier_muerta_veil_2", "duration", true),
 
+			r3_bva = 0,
+
 			has_h2 = 0,
 			h2_magic = 0,
 			h2_move = 0,
 			h2_bonus = caster:GetTalentValue("modifier_muerta_hero_2", "bonus", true),
+
+			has_q7 = 0,
+			q7_bva = caster:GetTalentValue("modifier_muerta_dead_7", "bva", true),
+
+			has_w7 = 0,
+			w7_bva = caster:GetTalentValue("modifier_muerta_calling_7", "bva", true),
 
 			has_e7 = 0,
 
@@ -124,6 +133,18 @@ function muerta_innate_custom:UpdateTalents()
 		caster:AddDamageEvent_out(self.tracker, true)
 	end
 
+	if caster:HasTalent("modifier_muerta_veil_3") then
+		self.talents.r3_bva = caster:GetTalentValue("modifier_muerta_veil_3", "bva")
+	end
+
+	if caster:HasTalent("modifier_muerta_dead_7") then
+		self.talents.has_q7 = 1
+	end
+
+	if caster:HasTalent("modifier_muerta_calling_7") then
+		self.talents.has_w7 = 1
+	end
+
 	if caster:HasTalent("modifier_muerta_gun_7") then
 		self.talents.has_e7 = 1
 	end
@@ -162,6 +183,7 @@ function modifier_muerta_innate_custom_tracker:OnCreated(table)
 	self.ability:UpdateTalents()
 
 	self.parent.muerta_innate = self.ability
+	self.bva = self.parent:GetBaseAttackTime(false)
 
 	self.ability.radius = self.ability:GetSpecialValueFor("radius")
 	self.ability.damage = self.ability:GetSpecialValueFor("damage")
@@ -570,11 +592,8 @@ function modifier_muerta_innate_custom_tracker:MuertaQuestProgress()
 		item:SetCurrentCharges(item:GetCurrentCharges() + 1)
 	end
 
-	local effect_cast = ParticleManager:CreateParticle(
-		"particles/heroes/muerta/muerta_quest_kill.vpcf",
-		PATTACH_ABSORIGIN_FOLLOW,
-		self.parent
-	)
+	local effect_cast =
+		ParticleManager:CreateParticle("particles/muerta/muerta_quest_kill.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
 	ParticleManager:SetParticleControlEnt(
 		effect_cast,
 		2,
@@ -629,6 +648,7 @@ function modifier_muerta_innate_custom_tracker:DeclareFunctions()
 		MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE,
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
 		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
+		MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT,
 	}
 end
 
@@ -668,6 +688,22 @@ function modifier_muerta_innate_custom_tracker:GetModifierExtraHealthPercentage(
 	return self.ability.talents.w2_health
 end
 
+function modifier_muerta_innate_custom_tracker:GetModifierBaseAttackTimeConstant()
+	local bva = 0
+	if self.ability.talents.has_q7 == 1 then
+		bva = self.ability.talents.q7_bva
+	elseif self.ability.talents.has_w7 == 1 then
+		bva = self.ability.talents.w7_bva
+	end
+	if self.parent:HasModifier("modifier_muerta_pierce_the_veil_custom_bva") then
+		bva = bva + self.ability.talents.r3_bva
+	end
+	if bva == 0 then
+		return
+	end
+	return self.bva + bva
+end
+
 modifier_muerta_innate_custom_dig_area = class(mod_hidden)
 function modifier_muerta_innate_custom_dig_area:OnCreated(table)
 	if not IsServer() then
@@ -700,7 +736,7 @@ function modifier_muerta_innate_custom_dig_area:OnCreated(table)
 	)
 
 	local effect_cast = ParticleManager:CreateParticleForTeam(
-		"particles/muerta_dig_ground.vpcf",
+		"particles/muerta/muerta_dig_ground.vpcf",
 		PATTACH_ABSORIGIN_FOLLOW,
 		self.parent,
 		self.parent:GetTeamNumber()
@@ -998,11 +1034,8 @@ function modifier_muerta_innate_custom_bonus_damage:OnRefresh()
 
 	self:IncrementStackCount()
 
-	local effect_cast = ParticleManager:CreateParticle(
-		"particles/heroes/muerta/muerta_quest_kill.vpcf",
-		PATTACH_ABSORIGIN_FOLLOW,
-		self.parent
-	)
+	local effect_cast =
+		ParticleManager:CreateParticle("particles/muerta/muerta_quest_kill.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
 	ParticleManager:SetParticleControlEnt(
 		effect_cast,
 		2,

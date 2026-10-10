@@ -11,7 +11,8 @@
 LinkLuaModifier(
 	"modifier_centaur_double_edge_custom_legendary",
 	"abilities/centaur/centaur_double_edge_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_centaur_edge_7"
 )
 LinkLuaModifier(
 	"modifier_centaur_double_edge_custom_legendary_blood",
@@ -26,17 +27,20 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_centaur_double_edge_custom_slow",
 	"abilities/centaur/centaur_double_edge_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_centaur_hero_2"
 )
 LinkLuaModifier(
 	"modifier_centaur_double_edge_custom_silence_cd",
 	"abilities/centaur/centaur_double_edge_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_centaur_hero_4"
 )
 LinkLuaModifier(
 	"modifier_centaur_double_edge_custom_silence_ready",
 	"abilities/centaur/centaur_double_edge_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	false
 )
 
 centaur_double_edge_custom = class({})
@@ -49,10 +53,10 @@ function centaur_double_edge_custom:Precache(context)
 	PrecacheResource("particle", "particles/centaur/double_edge.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_centaur/centaur_double_edge_body.vpcf", context)
 	PrecacheResource("particle", "particles/centaur/edge_legendary_caster.vpcf", context)
-	PrecacheResource("particle", "particles/brist_lowhp_.vpcf", context)
+	PrecacheResource("particle", "particles/bristleback/brist_lowhp_.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_bloodseeker/bloodseeker_rupture.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_sven/sven_spell_gods_strength.vpcf", context)
-	PrecacheResource("particle", "particles/brist_proc.vpcf", context)
+	PrecacheResource("particle", "particles/bristleback/brist_proc.vpcf", context)
 	PrecacheResource("particle", "particles/centaur/edge_shield.vpcf", context)
 	PrecacheResource("particle", "particles/centaur/edge_stack.vpcf", context)
 	PrecacheResource("particle", "particles/centaur/edge_pull_cast.vpcf", context)
@@ -524,7 +528,7 @@ function modifier_centaur_double_edge_custom_legendary_blood:OnCreated(table)
 		return
 	end
 
-	self.parent:GenericParticle("particles/brist_proc.vpcf")
+	self.parent:GenericParticle("particles/bristleback/brist_proc.vpcf")
 
 	local particle = ParticleManager:CreateParticle(
 		"particles/units/heroes/hero_bloodseeker/bloodseeker_rupture.vpcf",

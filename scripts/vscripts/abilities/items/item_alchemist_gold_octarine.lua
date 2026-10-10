@@ -185,7 +185,12 @@ function modifier_item_alchemist_gold_octarine_active:OnCreated()
 				self.parent,
 				self.ability,
 				"modifier_cooldown_speed",
-				{ ability = current_item:entindex(), is_item = true, cd_inc = cd_inc }
+				{
+					ability = current_item:entindex(),
+					is_item = true,
+					cd_inc = cd_inc,
+					talent = "item_alchemist_gold_octarine",
+				}
 			)
 			local name = self:GetName()
 

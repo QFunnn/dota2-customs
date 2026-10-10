@@ -13,6 +13,11 @@ LinkLuaModifier(
 	"modifiers/game_mode/modifier_the_hunt_custom_tower",
 	LUA_MODIFIER_MOTION_NONE
 )
+LinkLuaModifier(
+	"modifier_the_hunt_custom_speed",
+	"modifiers/game_mode/modifier_the_hunt_custom_tower",
+	LUA_MODIFIER_MOTION_NONE
+)
 
 modifier_the_hunt_custom_tower = class({})
 function modifier_the_hunt_custom_tower:IsHidden()
@@ -36,6 +41,7 @@ function modifier_the_hunt_custom_tower:OnCreated()
 	self.vision_radius = 1000
 
 	self.alert_delay = 8
+	self.alert_time = GameRules:GetGameTime() + self.alert_delay
 	self.heroes = {}
 	self.heroes_names = {}
 
@@ -48,6 +54,13 @@ function modifier_the_hunt_custom_tower:OnCreated()
 				table.insert(self.heroes_names, player:GetUnitName())
 				player:RemoveModifierByName("modifier_smoke_of_deceit")
 			end
+		end
+	end
+
+	for _, tower in pairs(towers) do
+		local barrier = tower:FindModifierByName("modifier_backdoor_knock_aura")
+		if barrier and (tower == self.parent or barrier.target_team == self.team) then
+			barrier:Destroy()
 		end
 	end
 
@@ -82,15 +95,31 @@ function modifier_the_hunt_custom_tower:OnIntervalThink()
 	end
 
 	local net_target = self:GetNet(self.team)
+	local in_duel = dota1x6:TeamInDuel(self.team)
+
+	if in_duel ~= self.in_duel then
+		if self.in_duel then
+			self:SetDuration(self:GetRemainingTime() + Target_duel_extend, true)
+		end
+		self.in_duel = in_duel
+	end
+
+	if in_duel then
+		self:SetDuration(self:GetRemainingTime() + self.interval, true)
+	end
 
 	for hero, _ in pairs(self.heroes) do
-		if hero and not hero:IsNull() and hero:IsAlive() and not hero:HasModifier("modifier_the_hunt_custom_hero") then
-			hero:AddNewModifier(
-				hero,
-				nil,
-				"modifier_the_hunt_custom_hero",
-				{ duration = self:GetRemainingTime(), gold = Target_k }
-			)
+		if hero and not hero:IsNull() then
+			if in_duel then
+				hero:RemoveModifierByName("modifier_the_hunt_custom_hero")
+			elseif hero:IsAlive() and not hero:HasModifier("modifier_the_hunt_custom_hero") then
+				hero:AddNewModifier(
+					hero,
+					nil,
+					"modifier_the_hunt_custom_hero",
+					{ duration = self:GetRemainingTime(), gold = Target_k }
+				)
+			end
 		end
 	end
 
@@ -100,8 +129,10 @@ function modifier_the_hunt_custom_tower:OnIntervalThink()
 
 		local ids = dota1x6:FindPlayers(team)
 
-		for hero, _ in pairs(self.heroes) do
-			AddFOWViewer(team, hero:GetAbsOrigin(), self.vision_radius, self.interval + 0.1, false)
+		if not in_duel then
+			for hero, _ in pairs(self.heroes) do
+				AddFOWViewer(team, hero:GetAbsOrigin(), self.vision_radius, self.interval + 0.1, false)
+			end
 		end
 
 		if ids and team ~= self.team then
@@ -109,7 +140,7 @@ function modifier_the_hunt_custom_tower:OnIntervalThink()
 		end
 		local time = math.floor(self:GetRemainingTime())
 
-		if self:GetElapsedTime() >= self.alert_delay then
+		if GameRules:GetGameTime() >= self.alert_time then
 			local is_target = team == self.team
 			if ids then
 				for _, id in pairs(ids) do
@@ -122,6 +153,7 @@ function modifier_the_hunt_custom_tower:OnIntervalThink()
 							is_target = is_target,
 							heroes = self.heroes_names,
 							time = time,
+							duel = in_duel and 1 or 0,
 						}
 					)
 				end
@@ -136,6 +168,9 @@ function modifier_the_hunt_custom_tower:TargetKilled(unit, attacker)
 	end
 
 	if not self.heroes[unit] then
+		return
+	end
+	if unit.died_on_duel then
 		return
 	end
 	if attacker and attacker:GetTeamNumber() == unit:GetTeamNumber() then
@@ -220,15 +255,30 @@ end
 function modifier_the_hunt_custom_hero:GetEffectName()
 	return "particles/econ/items/bounty_hunter/bounty_hunter_hunters_hoard/bounty_hunter_hoard_track_trail.vpcf"
 end
-
-function modifier_the_hunt_custom_hero:OnCreated(table)
+function modifier_the_hunt_custom_hero:IsAura()
+	return true
+end
+function modifier_the_hunt_custom_hero:GetAuraRadius()
+	return self.speed_radius
+end
+function modifier_the_hunt_custom_hero:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_ENEMY
+end
+function modifier_the_hunt_custom_hero:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_HERO
+end
+function modifier_the_hunt_custom_hero:GetModifierAura()
+	return "modifier_the_hunt_custom_speed"
+end
+function modifier_the_hunt_custom_hero:OnCreated(params)
 	self.parent = self:GetParent()
 
 	self.damage_inc = 15
+	self.speed_radius = 1200
 	if not IsServer() then
 		return
 	end
-	self.gold = table.gold * 100
+	self.gold = params.gold * 100
 	self:SetHasCustomTransmitterData(true)
 end
 
@@ -276,4 +326,28 @@ end
 
 function modifier_the_hunt_custom_hero:OnTooltip()
 	return self.gold
+end
+
+modifier_the_hunt_custom_speed = class(mod_visible)
+function modifier_the_hunt_custom_speed:GetTexture()
+	return "buffs/odds_fow"
+end
+function modifier_the_hunt_custom_speed:GetEffectName()
+	return "particles/generic_gameplay/rune_haste_owner.vpcf"
+end
+function modifier_the_hunt_custom_speed:IsDebuff()
+	return false
+end
+function modifier_the_hunt_custom_speed:OnCreated()
+	self.speed = 15
+end
+
+function modifier_the_hunt_custom_speed:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+	}
+end
+
+function modifier_the_hunt_custom_speed:GetModifierMoveSpeedBonus_Percentage()
+	return self.speed
 end

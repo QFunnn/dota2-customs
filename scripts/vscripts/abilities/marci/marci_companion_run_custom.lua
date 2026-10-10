@@ -21,7 +21,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_marci_companion_run_custom_heal_reduce",
 	"abilities/marci/marci_companion_run_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_marci_rebound_2"
 )
 LinkLuaModifier(
 	"modifier_marci_companion_run_custom_damage",
@@ -36,11 +37,16 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_marci_companion_run_custom_legendary_magic",
 	"abilities/marci/marci_companion_run_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_marci_rebound_7"
 )
 
 marci_companion_run_custom = class({})
 marci_companion_run_custom.talents = {}
+
+function marci_companion_run_custom:GetAbilityTextureName()
+	return wearables_system:GetAbilityIconReplacement(self:GetCaster(), "marci_companion_run", self)
+end
 
 function marci_companion_run_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
@@ -54,9 +60,7 @@ function marci_companion_run_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_marci/marci_rebound_allymovespeed.vpcf", context)
 	PrecacheResource("particle", "particles/items3_fx/blink_overwhelming_burst.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_marci/marci_unleash_pulse.vpcf", context)
-	PrecacheResource("particle", "particles/marci_field.vpcf", context)
-	PrecacheResource("particle", "particles/alch_stun_legendary.vpcf", context)
-	PrecacheResource("particle", "particles/marci/rebound_double.vpcf", context)
+	PrecacheResource("particle", "particles/alchemist/alch_stun_legendary.vpcf", context)
 	PrecacheResource("particle", "particles/marci/rebound_legendary_stack.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_marci/marci_unleash_attack.vpcf", context)
 end
@@ -589,7 +593,7 @@ function modifier_marci_companion_run_custom_tracker:OnIntervalThink()
 
 	if final >= max_distance then
 		local delta = math.floor(final / max_distance)
-		self.parent:CdAbility(self.ability, nil, self.ability.talents.w7_cd_inc * delta)
+		self.parent:CdAbility(self.ability, nil, self.ability.talents.w7_cd_inc * delta, "modifier_marci_rebound_7")
 		self.distance = final - delta * max_distance
 	else
 		self.distance = final

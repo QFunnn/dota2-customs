@@ -23,23 +23,20 @@ function item_enhancement_crude_custom:GetIntrinsicModifierName()
 	return "modifier_item_enhancement_crude_custom"
 end
 
-function item_enhancement_crude_custom:Spawn()
-	self.armor = self:GetSpecialValueFor("armor")
-	self.resist = self:GetSpecialValueFor("resist")
-	self.movespeed = self:GetSpecialValueFor("movespeed")
-end
-
 modifier_item_enhancement_crude_custom = class(mod_hidden)
 function modifier_item_enhancement_crude_custom:RemoveOnDeath()
 	return false
 end
-function modifier_item_enhancement_crude_custom:OnCreated(table)
+function modifier_item_enhancement_crude_custom:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
+	self:OnRefresh()
+end
 
-	self.armor = self.ability.armor
-	self.resist = self.ability.resist
-	self.movespeed = self.ability.movespeed
+function modifier_item_enhancement_crude_custom:OnRefresh()
+	self.armor = self.ability:GetSpecialValueFor("armor")
+	self.resist = self.ability:GetSpecialValueFor("resist")
+	self.movespeed = self.ability:GetSpecialValueFor("movespeed")
 end
 
 function modifier_item_enhancement_crude_custom:DeclareFunctions()

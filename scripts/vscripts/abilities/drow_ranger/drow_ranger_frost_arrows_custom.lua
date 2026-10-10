@@ -26,7 +26,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_drow_ranger_frost_arrows_custom_legendary",
 	"abilities/drow_ranger/drow_ranger_frost_arrows_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_drow_frost_7"
 )
 LinkLuaModifier(
 	"modifier_drow_ranger_frost_arrows_custom_legendary_active",
@@ -41,22 +42,26 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_drow_ranger_frost_arrows_custom_stun",
 	"abilities/drow_ranger/drow_ranger_frost_arrows_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_drow_frost_7" }
 )
 LinkLuaModifier(
 	"modifier_drow_ranger_frost_arrows_custom_reduction",
 	"abilities/drow_ranger/drow_ranger_frost_arrows_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_drow_hero_1"
 )
 LinkLuaModifier(
 	"modifier_drow_ranger_frost_arrows_custom_root",
 	"abilities/drow_ranger/drow_ranger_frost_arrows_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_drow_frost_4"
 )
 LinkLuaModifier(
 	"modifier_drow_ranger_frost_arrows_custom_attack_cd",
 	"abilities/drow_ranger/drow_ranger_frost_arrows_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_drow_frost_3"
 )
 LinkLuaModifier(
 	"modifier_drow_ranger_frost_arrows_custom_attack_damage",
@@ -66,27 +71,32 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_drow_ranger_frost_arrows_custom_shield",
 	"abilities/drow_ranger/drow_ranger_frost_arrows_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_drow_hero_4"
 )
 LinkLuaModifier(
 	"modifier_drow_ranger_frost_arrows_custom_shield_cd",
 	"abilities/drow_ranger/drow_ranger_frost_arrows_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_drow_hero_4" }
 )
 LinkLuaModifier(
 	"modifier_drow_ranger_frost_arrows_custom_shield_stun",
 	"abilities/drow_ranger/drow_ranger_frost_arrows_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_drow_hero_4"
 )
 LinkLuaModifier(
 	"modifier_drow_ranger_frost_arrows_custom_armor",
 	"abilities/drow_ranger/drow_ranger_frost_arrows_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_drow_frost_1"
 )
 LinkLuaModifier(
 	"modifier_drow_ranger_frost_arrows_custom_haste",
 	"abilities/drow_ranger/drow_ranger_frost_arrows_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_drow_hero_6"
 )
 
 drow_ranger_frost_arrows_custom = class({})
@@ -99,20 +109,19 @@ function drow_ranger_frost_arrows_custom:Precache(context)
 	PrecacheResource("particle", "particles/drow_ranger/frost_legendary_hit.vpcf", context)
 	PrecacheResource("particle", "particles/drow_ranger/frost_legendary.vpcf", context)
 	PrecacheResource("particle", "particles/drow_ranger/frost_legendary_start.vpcf", context)
-	PrecacheResource("particle", "particles/maiden_mark.vpcf", context)
+	PrecacheResource("particle", "particles/crystal_maiden/maiden_mark.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_invoker/invoker_cold_snap.vpcf", context)
-	PrecacheResource("particle", "particles/maiden_frostbite_slow.vpcf", context)
+	PrecacheResource("particle", "particles/crystal_maiden/maiden_frostbite_slow.vpcf", context)
 	PrecacheResource("particle", "particles/drow_ranger/frost_cleave.vpcf", context)
 	PrecacheResource("particle", "particles/drow_ranger/frost_heal.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_crystalmaiden/maiden_frostbite_buff.vpcf", context)
 	PrecacheResource("particle", "particles/drow_ranger/frost_crystal.vpcf", context)
 	PrecacheResource("particle", "particles/drow_ranger/frost_crystal_2.vpcf", context)
-	PrecacheResource("particle", "particles/drow_ranger/frost_legendary_stack.vpcf", context)
 	PrecacheResource("particle", "particles/drow_ranger/frost_shield.vpcf", context)
 	PrecacheResource("particle", "particles/drow_ranger/frost_shield_end.vpcf", context)
 	PrecacheResource("particle", "particles/crystal_maiden/frostbite_legendary_stack.vpcf", context)
 	PrecacheResource("particle", "particles/drow_ranger/frost_legendary_active.vpcf", context)
-	PrecacheResource("particle", "particles/maiden_shield_active.vpcf", context)
+	PrecacheResource("particle", "particles/crystal_maiden/maiden_shield_active.vpcf", context)
 	PrecacheResource("particle", "particles/drow_ranger/multi_armor.vpcf", context)
 	PrecacheResource("particle", "particles/drow_ranger/silence_legendary_speed.vpcf", context)
 	PrecacheResource("particle", "particles/drow_ranger/silence_legendary_speed_start.vpcf", context)
@@ -898,7 +907,7 @@ function modifier_drow_ranger_frost_arrows_custom_legendary:OnRefresh()
 
 	if self:GetStackCount() >= self.max then
 		self.parent:EmitSound("Drow.Frost_legendary_max")
-		self.parent:GenericParticle("particles/maiden_mark.vpcf", self, true)
+		self.parent:GenericParticle("particles/crystal_maiden/maiden_mark.vpcf", self, true)
 
 		if self.effect_cast then
 			ParticleManager:DestroyParticle(self.effect_cast, false)
@@ -984,7 +993,7 @@ function modifier_drow_ranger_frost_arrows_custom_stun:OnCreated()
 	end
 	self.parent = self:GetParent()
 	self.parent:EmitSound("Drow.Frost_legendary_stun")
-	self.parent:GenericParticle("particles/maiden_mark.vpcf", self, true)
+	self.parent:GenericParticle("particles/crystal_maiden/maiden_mark.vpcf", self, true)
 	self.parent:GenericParticle("particles/drow_ranger/frost_legendary_active.vpcf", self)
 end
 

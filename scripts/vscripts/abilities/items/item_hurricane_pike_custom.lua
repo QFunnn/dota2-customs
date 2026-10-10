@@ -197,9 +197,9 @@ function modifier_item_hurricane_pike_custom_active:OnCreated(params)
 	local sound = "DOTA_Item.ForceStaff.Activate"
 
 	if self.is_pike == 1 then
-		self.dist = self.ability.enemy_length
 		local point = self.parent:CastPosition(GetGroundPosition(Vector(params.x, params.y, 0), nil))
 		self.dir = (self.parent:GetAbsOrigin() - point)
+		self.dist = math.max(20, (self.ability.enemy_length - self.dir:Length2D()) / 2)
 		self.speed = self.speed * 1.5
 		sound = "DOTA_Item.HurricanePike.Activate"
 	end

@@ -18,8 +18,8 @@ function item_silver_edge_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
 	end
-	PrecacheResource("particle", "particles/silver_edge_speed_.vpcf", context)
-	PrecacheResource("particle", "particles/silver_edge_sword.vpcf", context)
+	PrecacheResource("particle", "particles/items/silver_edge_speed_.vpcf", context)
+	PrecacheResource("particle", "particles/items/silver_edge_sword.vpcf", context)
 	PrecacheResource("particle", "particles/items3_fx/silver_edge.vpcf", context)
 	PrecacheResource("particle", "particles/generic_gameplay/generic_break.vpcf", context)
 end
@@ -47,7 +47,7 @@ end
 
 item_silver_edge_custom_surge = class(mod_visible)
 function item_silver_edge_custom_surge:GetEffectName()
-	return "particles/silver_edge_speed_.vpcf"
+	return "particles/items/silver_edge_speed_.vpcf"
 end
 function item_silver_edge_custom_surge:OnCreated(table)
 	self.parent = self:GetParent()
@@ -58,7 +58,7 @@ function item_silver_edge_custom_surge:OnCreated(table)
 	if not IsServer() then
 		return
 	end
-	self.parent:GenericParticle("particles/silver_edge_sword.vpcf", self, true)
+	self.parent:GenericParticle("particles/items/silver_edge_sword.vpcf", self, true)
 end
 
 function item_silver_edge_custom_surge:DeclareFunctions()

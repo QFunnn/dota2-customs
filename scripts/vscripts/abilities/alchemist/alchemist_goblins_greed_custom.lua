@@ -21,12 +21,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_alchemist_goblins_greed_custom_rune_cd",
 	"abilities/alchemist/alchemist_goblins_greed_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_alchemist_hero_6" }
 )
 LinkLuaModifier(
 	"modifier_alchemist_goblins_greed_custom_runes",
 	"abilities/alchemist/alchemist_goblins_greed_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_alchemist_hero_6"
 )
 
 alchemist_goblins_greed_custom = class({})
@@ -36,9 +38,9 @@ function alchemist_goblins_greed_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
 	end
-	PrecacheResource("particle", "particles/orange_drop.vpcf", context)
+	PrecacheResource("particle", "particles/generic/orange_drop.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_oracle/oracle_false_promise_heal.vpcf", context)
-	PrecacheResource("particle", "particles/lc_wave.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_wave.vpcf", context)
 	PrecacheResource("particle", "particles/items2_fx/hand_of_midas.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_alchemist/alchemist_lasthit_coins.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_alchemist/alchemist_lasthit_msg_gold.vpcf", context)
@@ -46,7 +48,7 @@ function alchemist_goblins_greed_custom:Precache(context)
 	PrecacheResource("particle", "particles/generic_gameplay/rune_doubledamage_owner.vpcf", context)
 	PrecacheResource("particle", "particles/generic_gameplay/rune_regen_owner.vpcf", context)
 	PrecacheResource("particle", "particles/generic_gameplay/rune_arcane_owner.vpcf", context)
-	PrecacheResource("particle", "particles/lc_odd_proc_.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_odd_proc_.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/econ/items/effigies/status_fx_effigies/status_effect_effigy_gold_lvl2.vpcf",
@@ -124,6 +126,7 @@ function modifier_alchemist_goblins_greed_custom:OnCreated()
 		return
 	end
 
+	self.parent:AddOrderFilter(self)
 	self:StartIntervalThink(2)
 end
 
@@ -152,11 +155,26 @@ function modifier_alchemist_goblins_greed_custom:OnIntervalThink()
 	end
 
 	local item = CreateItem("item_alchemist_recipe", self.parent, self.parent)
-	self.parent:GenericParticle("particles/orange_drop.vpcf")
+	self.parent:GenericParticle("particles/generic/orange_drop.vpcf")
 	EmitSoundOnEntityForPlayer("powerup_02", self.parent, self.parent:GetId())
 	self.parent:AddItem(item)
 
 	self:StartIntervalThink(-1)
+end
+
+function modifier_alchemist_goblins_greed_custom:OrderFilter(params)
+	if params.order_type ~= DOTA_UNIT_ORDER_CAST_TARGET then
+		return
+	end
+	if not params.ability then
+		return
+	end
+	if params.ability:GetName() ~= "item_ultimate_scepter" then
+		return
+	end
+
+	CustomGameEventManager:Send_ServerToPlayer(params.player, "CreateIngameErrorMessage", { message = "#alch_scepter" })
+	return false
 end
 
 function modifier_alchemist_goblins_greed_custom:CheckStack()
@@ -376,7 +394,7 @@ function modifier_alchemist_goblins_greed_custom_runes:OnIntervalThink()
 		return
 	end
 
-	self.parent:GenericParticle("particles/lc_odd_proc_.vpcf")
+	self.parent:GenericParticle("particles/legion_commander/lc_odd_proc_.vpcf")
 	self.parent:EmitSound("BS.Thirst_legendary_active")
 	self:StartIntervalThink(-1)
 end

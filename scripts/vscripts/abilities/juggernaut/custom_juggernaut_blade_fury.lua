@@ -11,7 +11,8 @@
 LinkLuaModifier(
 	"modifier_custom_juggernaut_blade_fury",
 	"abilities/juggernaut/custom_juggernaut_blade_fury.lua",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 LinkLuaModifier(
 	"modifier_custom_juggernaut_blade_fury_legendary_thinker",
@@ -31,7 +32,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_custom_juggernaut_blade_fury_legendary_damage",
 	"abilities/juggernaut/custom_juggernaut_blade_fury.lua",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_juggernaut_bladefury_7"
 )
 LinkLuaModifier(
 	"modifier_custom_juggernaut_blade_fury_anim",
@@ -46,7 +48,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_custom_juggernaut_blade_fury_slow",
 	"abilities/juggernaut/custom_juggernaut_blade_fury.lua",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_juggernaut_bladefury_4"
 )
 LinkLuaModifier(
 	"modifier_custom_juggernaut_blade_fury_aura",
@@ -56,7 +59,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_custom_juggernaut_blade_fury_resist",
 	"abilities/juggernaut/custom_juggernaut_blade_fury.lua",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_juggernaut_bladefury_3"
 )
 LinkLuaModifier(
 	"modifier_custom_juggernaut_blade_fury_resist_status",
@@ -74,17 +78,17 @@ function custom_juggernaut_blade_fury:Precache(context)
 
 	PrecacheResource("particle", "particles/units/heroes/hero_juggernaut/juggernaut_blade_fury_tgt.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_juggernaut/juggernaut_blade_fury.vpcf", context)
-	PrecacheResource("particle", "particles/jugg_small_fury.vpcf", context)
+	PrecacheResource("particle", "particles/juggernaut/jugg_small_fury.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_terrorblade/ember_slow.vpcf", context)
-	PrecacheResource("particle", "particles/sf_refresh_a.vpcf", context)
+	PrecacheResource("particle", "particles/shadow_fiend/sf_refresh_a.vpcf", context)
 	PrecacheResource("particle", "particles/hoodwink/bush_damage.vpcf", context)
 	PrecacheResource("particle", "particles/juggernaut/bladefury_stack.vpcf", context)
-	PrecacheResource("particle", "particles/lc_odd_charge_mark.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_odd_charge_mark.vpcf", context)
 	PrecacheResource("particle", "particles/items2_fx/vindicators_axe_armor.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_minotaur_horn.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_juggernaut/juggernaut_blade_fury_null.vpcf", context)
 	PrecacheResource("particle", "particles/juggernaut/fury_legendary_stack.vpcf", context)
-	PrecacheResource("particle", "particles/jugg_omni_proc.vpcf", context)
+	PrecacheResource("particle", "particles/juggernaut/jugg_omni_proc.vpcf", context)
 	dota1x6:PrecacheShopItems("npc_dota_hero_juggernaut", context)
 end
 
@@ -309,8 +313,11 @@ function modifier_custom_juggernaut_blade_fury:OnCreated(table)
 	)
 
 	if self.is_thinker then
-		local effect_cast =
-			ParticleManager:CreateParticle("particles/jugg_small_fury.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
+		local effect_cast = ParticleManager:CreateParticle(
+			"particles/juggernaut/jugg_small_fury.vpcf",
+			PATTACH_ABSORIGIN_FOLLOW,
+			self.parent
+		)
 		ParticleManager:SetParticleControl(effect_cast, 5, Vector(self.radius / 1.6, 0, 0))
 		self:AddParticle(effect_cast, false, false, -1, false, false)
 	end
@@ -728,7 +735,7 @@ function modifier_custom_juggernaut_blade_fury_legendary_damage:OnRefresh(table)
 
 	self.ability.tracker:UpdateUI()
 	self.parent:GenericParticle("particles/juggernaut/fury_legendary_stack.vpcf")
-	self.parent:GenericParticle("particles/jugg_omni_proc.vpcf")
+	self.parent:GenericParticle("particles/juggernaut/jugg_omni_proc.vpcf")
 	self.parent:EmitSound("Juggernaut.BladeFury_legendary_stack")
 end
 

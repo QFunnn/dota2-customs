@@ -11,7 +11,8 @@
 LinkLuaModifier(
 	"modifier_ogre_magi_bloodlust_custom_buff",
 	"abilities/ogre_magi/ogre_magi_bloodlust",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 LinkLuaModifier(
 	"modifier_ogre_magi_bloodlust_custom_tracker",
@@ -21,7 +22,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_ogre_magi_bloodlust_custom_incoming",
 	"abilities/ogre_magi/ogre_magi_bloodlust",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_ogremagi_hero_6"
 )
 LinkLuaModifier(
 	"modifier_ogre_magi_bloodlust_custom_quest",
@@ -36,7 +38,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_ogre_magi_bloodlust_custom_str",
 	"abilities/ogre_magi/ogre_magi_bloodlust",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_ogremagi_bloodlust_3"
 )
 LinkLuaModifier(
 	"modifier_ogre_magi_bloodlust_custom_armor",
@@ -47,7 +50,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_ogre_magi_bloodlust_custom_legendary",
 	"abilities/ogre_magi/ogre_magi_bloodlust",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_ogremagi_bloodlust_7"
 )
 LinkLuaModifier(
 	"modifier_ogre_magi_bloodlust_custom_legendary_reroll",
@@ -62,22 +66,26 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_ogre_magi_bloodlust_custom_legendary_1",
 	"abilities/ogre_magi/ogre_magi_bloodlust",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_ogremagi_bloodlust_7" }
 )
 LinkLuaModifier(
 	"modifier_ogre_magi_bloodlust_custom_legendary_2",
 	"abilities/ogre_magi/ogre_magi_bloodlust",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_ogremagi_bloodlust_7" }
 )
 LinkLuaModifier(
 	"modifier_ogre_magi_bloodlust_custom_legendary_3",
 	"abilities/ogre_magi/ogre_magi_bloodlust",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_ogremagi_bloodlust_7" }
 )
 LinkLuaModifier(
 	"modifier_ogre_magi_bloodlust_custom_legendary_4",
 	"abilities/ogre_magi/ogre_magi_bloodlust",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_ogremagi_bloodlust_7" }
 )
 LinkLuaModifier(
 	"modifier_ogre_magi_bloodlust_custom_legendary_slow",
@@ -93,10 +101,10 @@ LinkLuaModifier(
 ogre_magi_bloodlust_custom = class({})
 ogre_magi_bloodlust_custom.talents = {}
 ogre_magi_bloodlust_custom.legendary_buffs = {
-	["modifier_ogre_magi_bloodlust_custom_legendary_1"] = "particles/brist_lowhp_.vpcf",
-	["modifier_ogre_magi_bloodlust_custom_legendary_2"] = "particles/rare_orb_patrol.vpcf",
-	["modifier_ogre_magi_bloodlust_custom_legendary_3"] = "particles/general/patrol_refresh.vpcf",
-	["modifier_ogre_magi_bloodlust_custom_legendary_4"] = "particles/lc_odd_proc_.vpcf",
+	["modifier_ogre_magi_bloodlust_custom_legendary_1"] = "particles/bristleback/brist_lowhp_.vpcf",
+	["modifier_ogre_magi_bloodlust_custom_legendary_2"] = "particles/patrol/rare_orb_patrol.vpcf",
+	["modifier_ogre_magi_bloodlust_custom_legendary_3"] = "particles/generic/patrol_refresh.vpcf",
+	["modifier_ogre_magi_bloodlust_custom_legendary_4"] = "particles/legion_commander/lc_odd_proc_.vpcf",
 }
 
 function ogre_magi_bloodlust_custom:Precache(context)
@@ -106,9 +114,8 @@ function ogre_magi_bloodlust_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_ogre_magi/ogre_magi_bloodlust_cast.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_sven/sven_spell_great_cleave.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_ogre_magi/ogre_magi_bloodlust_buff.vpcf", context)
-	PrecacheResource("particle", "particles/orge_lightning.vpcf", context)
 	PrecacheResource("particle", "particles/generic_gameplay/rune_arcane_owner.vpcf", context)
-	PrecacheResource("particle", "particles/ogre_dd.vpcf", context)
+	PrecacheResource("particle", "particles/ogre_magi/ogre_dd.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_sniper/sniper_headshot_slow.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_pangolier/pangolier_tailthump_buff.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_pangolier/pangolier_tailthump_buff_egg.vpcf", context)
@@ -117,23 +124,22 @@ function ogre_magi_bloodlust_custom:Precache(context)
 	PrecacheResource("particle", "particles/ogre_magi/blood_charge.vpcf", context)
 	PrecacheResource("particle", "particles/econ/items/invoker/invoker_ti7/status_effect_alacrity_ti7.vpcf", context)
 	PrecacheResource("particle", "particles/nyx_assassin/vendetta_bash.vpcf", context)
-	PrecacheResource("particle", "particles/troll_hit.vpcf", context)
+	PrecacheResource("particle", "particles/troll_warlord/troll_hit.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/econ/items/zeus/zeus_immortal_2021/zeus_immortal_2021_static_field.vpcf",
 		context
 	)
 	PrecacheResource("particle", "particles/units/heroes/hero_furion/furion_arboreal_might_buff.vpcf", context)
-	PrecacheResource("particle", "particles/general/patrol_refresh.vpcf", context)
-	PrecacheResource("particle", "particles/rare_orb_patrol.vpcf", context)
-	PrecacheResource("particle", "particles/lc_odd_proc_.vpcf", context)
-	PrecacheResource("particle", "particles/arc_warden/tempest_rune_arcane.vpcf", context)
+	PrecacheResource("particle", "particles/generic/patrol_refresh.vpcf", context)
+	PrecacheResource("particle", "particles/patrol/rare_orb_patrol.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_odd_proc_.vpcf", context)
 	PrecacheResource("particle", "particles/ogre_magi/blood_resist.vpcf", context)
-	PrecacheResource("particle", "particles/brist_lowhp_.vpcf", context)
+	PrecacheResource("particle", "particles/bristleback/brist_lowhp_.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_zuus/zuus_shard_slow.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_ogre_magi/ogre_magi_multicast.vpcf", context)
 	PrecacheResource("particle", "particles/items_fx/chain_lightning.vpcf", context)
-	PrecacheResource("particle", "particles/ogre_magichit.vpcf", context)
+	PrecacheResource("particle", "particles/ogre_magi/ogre_magichit.vpcf", context)
 	PrecacheResource("particle", "particles/ogre_magi/fire_shield.vpcf", context)
 end
 
@@ -592,7 +598,12 @@ function modifier_ogre_magi_bloodlust_custom_tracker:AttackEvent_out(params)
 	end
 
 	if self.ability.talents.has_e4 == 1 and self.parent.bloodlust_charge_ability then
-		self.parent:CdAbility(self.parent.bloodlust_charge_ability, self.ability.talents.e4_cd_inc)
+		self.parent:CdAbility(
+			self.parent.bloodlust_charge_ability,
+			self.ability.talents.e4_cd_inc,
+			nil,
+			"modifier_ogremagi_bloodlust_4"
+		)
 	end
 
 	if self.parent:GetQuest() == "Ogre.Quest_7" and not self.parent:QuestCompleted() and target:IsRealHero() then
@@ -783,7 +794,8 @@ function modifier_ogre_magi_bloodlust_custom_legendary_buff:AttackEvent_out(para
 		)
 		ParticleManager:ReleaseParticleIndex(effect)
 
-		local particle = ParticleManager:CreateParticle("particles/troll_hit.vpcf", PATTACH_WORLDORIGIN, nil)
+		local particle =
+			ParticleManager:CreateParticle("particles/troll_warlord/troll_hit.vpcf", PATTACH_WORLDORIGIN, nil)
 		ParticleManager:SetParticleControl(particle, 0, target:GetAbsOrigin())
 		ParticleManager:Delete(particle, 1)
 
@@ -952,13 +964,13 @@ function modifier_ogre_magi_bloodlust_custom_legendary_1:OnCreated(table)
 	if not IsServer() then
 		return
 	end
-	self.parent:GenericParticle("particles/ogre_magichit.vpcf", self)
+	self.parent:GenericParticle("particles/ogre_magi/ogre_magichit.vpcf", self)
 	self.parent:AddAttackEvent_out(self, true)
 end
 
 modifier_ogre_magi_bloodlust_custom_legendary_2 = class(modifier_ogre_magi_bloodlust_custom_legendary_buff)
 function modifier_ogre_magi_bloodlust_custom_legendary_2:GetEffectName()
-	return "particles/ogre_dd.vpcf"
+	return "particles/ogre_magi/ogre_dd.vpcf"
 end
 function modifier_ogre_magi_bloodlust_custom_legendary_2:OnCreated(table)
 	self.parent = self:GetParent()
@@ -1131,7 +1143,7 @@ function modifier_ogre_magi_bloodlust_custom_armor:OnCreated()
 	if not IsServer() then
 		return
 	end
-	self.parent:GenericParticle("particles/general/generic_armor_reduction.vpcf", self, true)
+	self.parent:GenericParticle("particles/generic/generic_armor_reduction.vpcf", self, true)
 end
 
 function modifier_ogre_magi_bloodlust_custom_armor:DeclareFunctions()

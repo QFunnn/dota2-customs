@@ -223,6 +223,10 @@ function custom_general_talents:UpdateTalents()
 	caster:CalculateStatBonus(true)
 end
 
+function custom_general_talents:IsItem()
+	return true
+end
+
 modifier_general_stats = class(mod_hidden)
 function modifier_general_stats:RemoveOnDeath()
 	return false
@@ -410,7 +414,7 @@ function modifier_general_stats:SpellEvent(params)
 	end
 
 	params.target:EmitSound("General.Talent_proc_magic")
-	params.target:GenericParticle("particles/geneirc/talent_aoe_damage.vpcf")
+	params.target:GenericParticle("particles/generic/talent_aoe_damage.vpcf")
 end
 
 function modifier_general_stats:CheckState()

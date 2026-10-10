@@ -252,12 +252,7 @@ function init()
 	GameEvents.Subscribe_custom('hero_quest_complete', hero_quest_complete)
 	GameEvents.Subscribe_custom('hero_quest_update', hero_quest_update)
 
-	GameEvents.Subscribe_custom('goodwin_quest_alert', goodwin_quest_alert)
-	GameEvents.Subscribe_custom('goodwin_quest_icon', goodwin_quest_icon)
-
 	GameEvents.Subscribe_custom('UpdateInnatePanel', UpdateInnatePanel)
-
-	GameEvents.Subscribe_custom('grenade_count_change', grenade_count_change)
 
 	SetBarTooltip("ShrinePoints", "shrine", "gray", "ShrineNumber")
 	SetBarTooltip("PurplePoints", "purple", "purple", "PurpleNumber")
@@ -286,53 +281,6 @@ function SetBarTooltip(id, key, rarity, number_id)
 	$.DispatchEvent("UIHideCustomLayoutTooltip", panel, "skill_tooltip") });
 }
 
-
-
-function goodwin_quest_alert(kv)
-{
-	Game.EmitSound("Hunt.Start")
-	var Main = $.GetContextPanel().FindChildTraverse("GoodwinQuest")
-
-	let event = $.CreatePanel("Panel",Main,"event")
-	event.AddClass("GoodwinQuest_event")
-
-
-	let portrait = $.CreatePanel("Panel",event,"portrait")
-	portrait.AddClass("GoodwinQuest_portrait")
-
-	let event_text_main = $.CreatePanel("Panel",event,"event")
-	event_text_main.AddClass("GoodwinQuest_main")
-
-	let event_text = $.CreatePanel("Label", event_text_main, "")
-	event_text.html = true
-	event_text.AddClass("GoodwinQuest_text") 
-	event_text.text = $.Localize("#goodwin_quest_" + String(kv.id))
-
-	Game.EmitSound("GoodwinQuest")
-
-
-	$.Schedule( 7.55, function(){ 
-		event.RemoveClass("GoodwinQuest_event");
-        event.AddClass("GoodwinQuest_event_close");
-        goodwin_quest_icon(kv)
-	 })
-	event.DeleteAsync( 8 );
-}
-
-function goodwin_quest_icon(kv)
-{
-	var main = $.GetContextPanel().FindChildTraverse("GoodwinQuest_panel")
-
-	main.RemoveClass("GoodwinQuest_panel_hidden")
-
-	var text = $.Localize("#goodwin_quest_" + String(kv.id))
-
-	main.SetPanelEvent('onmouseover', function() {
-	$.DispatchEvent('DOTAShowTextTooltip', main, text) });
-
-	main.SetPanelEvent('onmouseout', function() {
-	$.DispatchEvent('DOTAHideTextTooltip', main); });
-}
 
 
 function OnKill( kv )
@@ -456,42 +404,6 @@ function IsSpectatorCustom(id)
     }
     const localTeam = Players.GetTeam(localPlayer)
     return localTeam !== 2 && localTeam !== 3 && localTeam !== 6 && localTeam !== 7 && localTeam !== 8 && localTeam !== 9 && localTeam !== 10 && localTeam !== 11 && localTeam !== 12 && localTeam !== 13
-}
-
-
-function grenade_count_change(kv)
-{
-  let main = $.GetContextPanel().FindChildTraverse("Grenade_count")
-  if (main.BHasClass("Grenade_count_hidden"))
-  {
-    main.RemoveClass("Grenade_count_hidden")
-   
-    main.AddClass("Grenade_count")
-  }
-
-  if (kv.inc == 1)
-  {
-  	Game.EmitSound("UI.Grenade_Gain")
-  }
-
-
-  let filler = $.GetContextPanel().FindChildTraverse("Grenade_count_Filler")
-
-  let width = (kv.count/kv.max) * 96
-  let text = String(width)+'%'
-
-  filler.style.width = text
-
-  let number = $.GetContextPanel().FindChildTraverse("Grenade_count_Number")
-  number.text = String(kv.count)
-
-  var text1 = $.Localize("#Grenade_count_text")
-
-	main.SetPanelEvent('onmouseover', function() {
-   $.DispatchEvent('DOTAShowTextTooltip', main, text1) });
-    
-	main.SetPanelEvent('onmouseout', function() {
-   $.DispatchEvent('DOTAHideTextTooltip', main); });
 }
 
 

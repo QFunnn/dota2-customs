@@ -581,71 +581,6 @@
 	border: 1px solid #ccc;
 }
 
-.Glyph
-{
-	width: 350px;
-	height: 350px;
-	align: right center;
-	margin-top: 24%;
-}
-
-.glyph_event
-{
-	animation-name: EventOpen;
-	animation-duration: 0.45s;
-	animation-timing-function: ease-in-out;
-	animation-iteration-count: 1;
-	height: 54.59px;
-	background-color: gradient( linear, 0% 0%, 0% 100%, from( #2a3c3d ), to( #111111 ) );
-	border-left: 5px solid #78c8de;
-	border-top-left-radius: 10px;
-	border-bottom-left-radius: 10px;
-	border-top: 1px solid #78c8de;
-	border-bottom: 1px solid #78c8de;
-	flow-children: right;
-	horizontal-align: right;
-}
-
-.glyph_event_close
-{
-	animation-name: EventClose;
-	animation-duration: 0.45s;
-	animation-timing-function: ease-in-out;
-	animation-iteration-count: 1;
-	background-color: gradient( linear, 0% 0%, 0% 100%, from( #2a3c3d ), to( #111111 ) );
-	border-left: 5px solid #78c8de;
-	border-top-left-radius: 10px;
-	border-bottom-left-radius: 10px;
-	border-top: 1px solid #78c8de;
-	border-bottom: 1px solid #78c8de;
-	height: 54.59px;
-	flow-children: right;
-	horizontal-align: right;
-}
-
-.glyph_portrait
-{
-	margin-left: 5px;
-	margin-top: 1px;
-	width: 40px;
-	height: 40px;
-	align: left center;
-	background-repeat: no-repeat;
-}
-
-.glyph_text_skill
-{
-	font-family: defaultFont;
-	font-weight: bold;
-	text-shadow: 1px 1px 5px 2 black;
-	color: gradient( linear, 0% 100%, 0% 0%, from( #dddddd ), to( #ffffff ) );
-	font-size: 21.5px;
-	margin-left: 11px;
-	margin-right: 10px;
-	align: center center;
-	text-align: left;
-}
-
 .pause_event
 {
 	width: 100%;
@@ -1339,18 +1274,23 @@
 
 .BackdoorAlert_event
 {
+	width: 100%;
+	height: 100%;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#101010), to(#232323));
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+	border-right: 3px solid #aaa;
+	border-top: 1px solid #aaa;
+	border-bottom: 1px solid #aaa;
+	flow-children: right;
+}
+
+.BackdoorAlert_event_open
+{
 	animation-name: NecroEventOpen;
 	animation-duration: 0.45s;
 	animation-timing-function: ease-in-out;
 	animation-iteration-count: 1;
-	width: 100%;
-	height: 100%;
-	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
-	background-size: 100%;
-	border-right: 1px solid #999999;
-	border-top: 1px solid #999999;
-	border-bottom: 1px solid #999999;
-	flow-children: right;
 }
 
 .BackdoorAlert_event_close
@@ -1359,23 +1299,16 @@
 	animation-duration: 0.45s;
 	animation-timing-function: ease-in-out;
 	animation-iteration-count: 1;
-	width: 100%;
-	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
-	background-size: 100%;
-	border-right: 1px solid #999999;
-	border-top: 1px solid #999999;
-	border-bottom: 1px solid #999999;
-	height: 100%;
-	flow-children: right;
+	opacity: 0;
 }
 
 .BackdoorAlert_portrait
 {
-	width: 70px;
-	margin-right: 3%;
+	width: 65px;
+	height: 65px;
+	vertical-align: center;
+	margin-left: 8px;
 	border: 1px solid #999999;
-	height: 70px;
-	align: right center;
 }
 
 .BackdoorAlert_main
@@ -1387,10 +1320,10 @@
 
 .BackdoorAlert_text
 {
-	font-family: defaultFont;
+	font-family: Radiance;
 	font-weight: bold;
-	color: #dedede;
-	text-shadow: 2px 2px 4px black;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#aaa), to(#eee));
+	text-shadow: 1px 1px 4px 2 black;
 	font-size: 20px;
 	text-align: center;
 	align: center center;
@@ -1399,10 +1332,10 @@
 
 .BackdoorAlert_text2
 {
-	font-family: defaultFont;
+	font-family: Radiance;
 	font-weight: bold;
-	color: #dedede;
-	text-shadow: 2px 2px 4px black;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#aaa), to(#eee));
+	text-shadow: 1px 1px 4px 2 black;
 	font-size: 21px;
 	width: 80%;
 	align: center center;
@@ -1412,102 +1345,14 @@
 
 .BackdoorAlert_text3
 {
-	font-family: defaultFont;
+	font-family: Radiance;
 	font-weight: bold;
-	color: #dedede;
-	text-shadow: 2px 2px 4px black;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#aaa), to(#eee));
+	text-shadow: 1px 1px 4px 2 black;
 	font-size: 20px;
 	width: 95%;
 	align: center center;
 	text-align: center;
-}
-
-.NecroAlert
-{
-	align: left top;
-	margin-top: 280px;
-	width: 500px;
-	height: 240px;
-}
-
-.necro_event
-{
-	animation-name: NecroEventOpen;
-	animation-duration: 0.45s;
-	animation-timing-function: ease-in-out;
-	animation-iteration-count: 1;
-	width: 100%;
-	height: 50%;
-	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
-	background-size: 100%;
-	border-right: 1px solid #999999;
-	border-top: 1px solid #999999;
-	border-bottom: 1px solid #999999;
-	flow-children: right;
-	opacity: 1;
-}
-
-.necro_event_close
-{
-	animation-name: NecroEventClose;
-	animation-duration: 0.45s;
-	animation-timing-function: ease-in-out;
-	animation-iteration-count: 1;
-	width: 100%;
-	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
-	background-size: 100%;
-	border-right: 1px solid #999999;
-	border-top: 1px solid #999999;
-	border-bottom: 1px solid #999999;
-	height: 50%;
-	flow-children: right;
-	opacity: 1;
-}
-
-.necro_event_main
-{
-	width: 80%;
-	height: 100%;
-	flow-children: down;
-}
-
-.necro_event_portraits
-{
-	width: 20%;
-	height: 100%;
-	flow-children: down;
-}
-
-.necro_caster
-{
-	width: 80px;
-	height: 46px;
-	border: 1px solid #999999;
-	horizontal-align: center;
-	margin-top: 10px;
-	background-repeat: no-repeat;
-}
-
-.necro_portrait
-{
-	width: 63.13px;
-	height: 46px;
-	border: 1px solid #999999;
-	horizontal-align: center;
-	margin-top: 5px;
-	background-image: url("s2r://panorama/images/custom_game/necrobook_png.vtex");
-}
-
-.necro_text_skill
-{
-	font-family: defaultFont;
-	font-weight: bold;
-	color: #dedede;
-	text-shadow: 2px 2px 4px black;
-	font-size: 20px;
-	vertical-align: center;
-	text-align: center;
-	margin-left: 2%;
 }
 
 .TargetAlert
@@ -1826,6 +1671,7 @@
 	height: 100%;
 	horizontal-align: center;
 	flow-children: right;
+	margin-bottom: 6px;
 }
 
 .TargetTimer_damage_text
@@ -1881,6 +1727,46 @@
 	background-size: contain;
 }
 
+.TargetTimer_duel_row
+{
+	width: 100%;
+	height: 30px;
+	margin-top: 1px;
+	visibility: collapse;
+}
+
+.TargetTimer_duel .TargetTimer_duel_row
+{
+	visibility: visible;
+}
+
+.TargetTimer_duel .TargetTimer_mid,.TargetTimer_duel .TargetTimer_epic
+{
+	visibility: collapse;
+}
+
+.TargetTimer_duel_icon
+{
+	width: 24px;
+	height: 24px;
+	margin-top: 3px;
+	margin-right: 4px;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/custom_game/kills_png.vtex");
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+
+.TargetTimer_duel_text
+{
+	font-family: Radiance;
+	font-weight: semi-bold;
+	color: gradient( linear, 0% 100%, 0% 0%, from( #caaaaa ), to( #fff0f0 ) );
+	text-shadow: 1px 1px 4px 2 black;
+	font-size: 21px;
+	vertical-align: center;
+}
+
 @keyframes 'PatrolAlertOpen'
 {
 	0%
@@ -1913,7 +1799,7 @@
 	
 }
 
-.grenade_alert
+.PushAlert
 {
 	align: right top;
 	margin-top: 420px;
@@ -1921,188 +1807,69 @@
 	height: 120px;
 }
 
-.grenade_alert_event
+.PushAlert_event
+{
+	width: 100%;
+	height: 100%;
+	background-color: gradient(linear, 100% 0%, 0% 0%, from(#101010), to(#232323));
+	border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px;
+	border-left: 3px solid #aaa;
+	border-top: 1px solid #aaa;
+	border-bottom: 1px solid #aaa;
+	flow-children: right;
+}
+
+.PushAlert_event_open
 {
 	animation-name: PatrolAlertOpen;
 	animation-duration: 0.45s;
 	animation-timing-function: ease-in-out;
 	animation-iteration-count: 1;
-	width: 100%;
-	height: 100%;
-	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
-	background-size: 100%;
-	border-left: 1px solid #999999;
-	border-top: 1px solid #999999;
-	border-bottom: 1px solid #999999;
-	flow-children: right;
 }
 
-.grenade_alert_event_close
+.PushAlert_event_close
 {
 	animation-name: PatrolAlertClose;
 	animation-duration: 0.45s;
 	animation-timing-function: ease-in-out;
 	animation-iteration-count: 1;
-	width: 100%;
-	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
-	background-size: 100%;
-	border-left: 1px solid #999999;
-	border-top: 1px solid #999999;
-	border-bottom: 1px solid #999999;
-	height: 100%;
-	flow-children: right;
+	opacity: 0;
 }
 
-.grenade_alert_left
+.PushAlert_left
 {
-	width: 17%;
+	width: 20%;
 	height: 100%;
 }
 
-.grenade_alert_icon
+.PushAlert_icon
 {
 	background-image: url("s2r://panorama/images/custom_game/tower_push_png.vtex");
 	background-size: 100%;
 	width: 65px;
 	height: 65px;
-	margin-left: 2%;
-	align: center center;
+	align: right center;
+	margin-right: 8px;
 	border: 1px solid #999999;
 }
 
-.grenade_alert_right
+.PushAlert_right
 {
-	width: 83%;
+	width: 80%;
 	height: 100%;
 }
 
-.grenade_alert_text
+.PushAlert_text
 {
-	font-family: defaultFont;
+	font-family: Radiance;
 	font-weight: bold;
-	color: #e7e7e7;
-	text-shadow: 2px 2px 4px black;
-	font-size: 22px;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#aaa), to(#eee));
+	text-shadow: 1px 1px 4px 2 black;
+	font-size: 24px;
 	align: center center;
 	text-align: center;
-}
-
-@keyframes 'RandomAlertOpen'
-{
-	0%
-	{
-		transform: translate3d( 100%, 0, 0px );
-		opacity: 0;
-	}
-	
-	100%
-	{
-		transform: translate3d( 0, 0, 0px );
-		opacity: 1;
-	}
-	
-}
-
-@keyframes 'RandomAlertClose'
-{
-	0%
-	{
-		transform: translate3d( 0, 0, 0px );
-		opacity: 1;
-	}
-	
-	100%
-	{
-		transform: translate3d( 100%, 0, 0px );
-		opacity: 0;
-	}
-	
-}
-
-.random_talent_alert
-{
-	align: right center;
-	margin-top: 370px;
-	width: 500px;
-	height: 120px;
-}
-
-.random_talent_alert_event
-{
-	animation-name: RandomAlertOpen;
-	animation-duration: 0.45s;
-	animation-timing-function: ease-in-out;
-	animation-iteration-count: 1;
-	width: 100%;
-	height: 100%;
-	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
-	background-size: 100%;
-	border-left: 1px solid #999999;
-	border-top: 1px solid #999999;
-	border-bottom: 1px solid #999999;
-	flow-children: down;
-}
-
-.random_talent_alert_event_close
-{
-	animation-name: RandomAlertClose;
-	animation-duration: 0.45s;
-	animation-timing-function: ease-in-out;
-	animation-iteration-count: 1;
-	width: 100%;
-	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
-	background-size: 100%;
-	border-left: 1px solid #999999;
-	border-top: 1px solid #999999;
-	border-bottom: 1px solid #999999;
-	height: 100%;
-	flow-children: down;
-}
-
-.random_talent_alert_top
-{
-	width: 100%;
-	height: 35%;
-	border-bottom: 1px solid #555555;
-}
-
-.random_talent_alert_text
-{
-	font-family: defaultFont;
-	font-weight: bold;
-	color: #e7e7e7;
-	text-shadow: 2px 2px 4px black;
-	font-size: 20px;
-	align: center center;
-	text-align: center;
-}
-
-.random_talent_alert_bot
-{
-	width: 100%;
-	height: 65%;
-	flow-children: right;
-}
-
-.random_talent_alert_icon
-{
-	width: 10%;
-	height: 65%;
-	background-size: 100%;
-	background-repeat: no-repeat;
-	margin-left: 8%;
-	vertical-align: center;
-	box-shadow: fill #26b6eb 0px 0px 7px -1px;
-}
-
-.random_talent_alert_icon_first
-{
-	margin-left: 18%;
-}
-
-.random_talent_alert_icon_first_gray
-{
-	margin-left: 27%;
+	width: 90%;
 }
 
 @keyframes 'MuertaAlertOpen'
@@ -2255,19 +2022,23 @@
 
 .PatrolAlert_event
 {
+	width: 100%;
+	height: 100%;
+	background-color: gradient(linear, 90% 100%, 0% 0%, from(#020b19), to(#071a38));
+	border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px;
+	border-left: 3px solid #5c8ad4;
+	border-top: 1px solid #5c8ad4;
+	border-bottom: 1px solid #5c8ad4;
+	flow-children: down;
+}
+
+.PatrolAlert_event_open
+{
 	animation-name: PatrolAlertOpen;
 	animation-duration: 0.45s;
 	animation-timing-function: ease-in-out;
 	animation-iteration-count: 1;
-	width: 100%;
-	height: 100%;
-	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
-	background-size: 100%;
-	border-left: 1px solid #999999;
-	border-top: 1px solid #999999;
-	border-bottom: 1px solid #999999;
-	flow-children: down;
-	opacity: 1.1;
 }
 
 .PatrolAlert_event_close
@@ -2276,21 +2047,30 @@
 	animation-duration: 0.45s;
 	animation-timing-function: ease-in-out;
 	animation-iteration-count: 1;
-	width: 100%;
-	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
-	background-size: 100%;
-	border-left: 1px solid #999999;
-	border-top: 1px solid #999999;
-	border-bottom: 1px solid #999999;
-	height: 100%;
-	flow-children: down;
-	opacity: 1.1;
+	opacity: 0;
+}
+
+.PatrolAlert_purple
+{
+	background-color: gradient(linear, 90% 100%, 0% 0%, from(#0f0422), to(#19093b));
+	border-color: #8568e3;
 }
 
 .patrol_top
 {
 	width: 100%;
 	height: 40%;
+}
+
+.PatrolAlert_text
+{
+	font-family: Radiance;
+	font-weight: semi-bold;
+	color: gradient( linear, 0% 100%, 0% 0%, from( #aaa ), to( #eee ) );
+	text-shadow: 1px 1px 4px 2 black;
+	font-size: 21px;
+	align: center center;
+	text-align: left;
 }
 
 .patrol_bot
@@ -2701,40 +2481,41 @@
 	
 }
 
-.LowNet_hide
-{
-	animation-name: HideLowNet;
-	animation-duration: 0.5s;
-	animation-timing-function: ease-in-out;
-	animation-iteration-count: 1;
-}
-
 .LowNet
 {
 	width: 450px;
 	height: 120px;
-	margin-bottom: 200px;
+	margin-bottom: 100px;
 	align: right center;
-	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
-	background-size: 100%;
-	opacity: 1.15;
+	background-color: gradient(linear, 100% 80%, 0% 0%, from(#181702), to(#2b2706));
+	border-top: 1px solid #c4c080;
+	border-bottom: 1px solid #c4c080;
+	border-left: 3px solid #c4c080;
+	border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px;
 	flow-children: down;
+}
+
+.LowNet_open
+{
 	animation-name: ShowLowNet;
 	animation-duration: 0.5s;
 	animation-timing-function: ease-in-out;
 	animation-iteration-count: 1;
 }
 
+.LowNet_hide
+{
+	animation-name: HideLowNet;
+	animation-duration: 0.5s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	opacity: 0;
+}
+
 .LowNet_hidden
 {
-	width: 450px;
-	height: 120px;
-	margin-bottom: 200px;
-	align: right center;
-	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
-	background-size: 100%;
 	opacity: 0;
-	flow-children: down;
 }
 
 .LowNet_top
@@ -2754,8 +2535,8 @@
 {
 	font-family: Radiance;
 	font-weight: bold;
-	color: #e7e7e7;
-	font-size: 23px;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#cdcaa1), to(#eeecca));
+	font-size: 22px;
 	text-shadow: 1px 1px 2px 2 black;
 	align: center top;
 	margin-top: 4%;
@@ -3010,105 +2791,6 @@
 	margin-left: 12px;
 }
 
-.legion_duel_alert
-{
-	align: left center;
-	margin-top: 280px;
-	width: 480px;
-	height: 120px;
-}
-
-.legion_duel_alert_event
-{
-	animation-name: MuertaAlertOpen;
-	animation-duration: 0.45s;
-	animation-timing-function: ease-in-out;
-	animation-iteration-count: 1;
-	width: 100%;
-	height: 100%;
-	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
-	background-size: 100%;
-	border-right: 1px solid #999999;
-	border-top: 1px solid #999999;
-	border-bottom: 1px solid #999999;
-	flow-children: right;
-}
-
-.legion_duel_alert_close
-{
-	animation-name: MuertaAlertClose;
-	animation-duration: 0.45s;
-	animation-timing-function: ease-in-out;
-	animation-iteration-count: 1;
-	width: 100%;
-	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
-	background-size: 100%;
-	border-right: 1px solid #999999;
-	border-top: 1px solid #999999;
-	border-bottom: 1px solid #999999;
-	height: 100%;
-	flow-children: right;
-}
-
-.legion_duel_alert_left
-{
-	width: 80%;
-	height: 100%;
-	flow-children: down;
-}
-
-.legion_duel_alert_left_top
-{
-	width: 100%;
-	height: 35%;
-}
-
-.legion_duel_alert_left_bot
-{
-	width: 100%;
-	height: 65%;
-}
-
-.legion_duel_alert_right
-{
-	width: 20%;
-	height: 100%;
-}
-
-.legion_duel_alert_icon
-{
-	width: 65px;
-	height: 65px;
-	align: center center;
-	border: 1px solid #999999;
-	background-image: url("s2r://panorama/images/custom_game/icons/mini/npc_dota_hero_legion_commander/duel_png.vtex");
-	background-size: contain;
-}
-
-.legion_duel_alert_text_top
-{
-	font-family: defaultFont;
-	font-weight: bold;
-	color: #e7e7e7;
-	text-shadow: 2px 2px 4px black;
-	font-size: 22px;
-	align: center bottom;
-	text-align: center;
-}
-
-.legion_duel_alert_text_bot
-{
-	font-family: defaultFont;
-	font-weight: bold;
-	color: #e7e7e7;
-	text-shadow: 2px 2px 4px black;
-	font-size: 18px;
-	margin-top: 0%;
-	align: center center;
-	width: 94%;
-	text-align: center;
-}
-
 .legion_duel_status_main
 {
 	align: left center;
@@ -3191,18 +2873,23 @@
 
 .DuelAlert_event
 {
+	width: 100%;
+	height: 100%;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#101010), to(#232323));
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+	border-right: 3px solid #aaa;
+	border-top: 1px solid #aaa;
+	border-bottom: 1px solid #aaa;
+	flow-children: down;
+}
+
+.DuelAlert_event_open
+{
 	animation-name: NecroEventOpen;
 	animation-duration: 0.45s;
 	animation-timing-function: ease-in-out;
 	animation-iteration-count: 1;
-	width: 100%;
-	height: 100%;
-	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
-	background-size: 100%;
-	border-right: 1px solid #999999;
-	border-top: 1px solid #999999;
-	border-bottom: 1px solid #999999;
-	flow-children: down;
 }
 
 .DuelAlert_event_close
@@ -3211,14 +2898,7 @@
 	animation-duration: 0.45s;
 	animation-timing-function: ease-in-out;
 	animation-iteration-count: 1;
-	width: 100%;
-	background-image: url("s2r://panorama/images/hud/reborn/item_purchase_bg_psd.vtex");
-	background-size: 100%;
-	border-right: 1px solid #999999;
-	border-top: 1px solid #999999;
-	border-bottom: 1px solid #999999;
-	height: 100%;
-	flow-children: down;
+	opacity: 0;
 }
 
 .DuelAlert_event_top
@@ -3229,9 +2909,9 @@
 
 .DuelAlert_event_text
 {
-	font-family: defaultFont;
+	font-family: Radiance;
 	font-weight: bold;
-	color: #e7e7e7;
+	color: gradient(linear, 0% 100%, 0% 0%, from(#aaa), to(#eee));
 	font-size: 23px;
 	text-shadow: 1px 1px 2px 3 black;
 	align: center center;

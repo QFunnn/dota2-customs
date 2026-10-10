@@ -9,3 +9,7 @@
 
 
 generic_aoe_damage = class({})
+
+function generic_aoe_damage:IsItem()
+	return true
+end

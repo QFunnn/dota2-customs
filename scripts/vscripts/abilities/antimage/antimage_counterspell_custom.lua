@@ -21,7 +21,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_antimage_counterspell_custom_legendary_damage",
 	"abilities/antimage/antimage_counterspell_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_antimage_counter_7"
 )
 LinkLuaModifier(
 	"modifier_antimage_counterspell_custom_burn_damage",
@@ -42,21 +43,23 @@ LinkLuaModifier(
 antimage_counterspell_custom = class({})
 antimage_counterspell_custom.talents = {}
 
+function antimage_counterspell_custom:GetAbilityTextureName()
+	return wearables_system:GetAbilityIconReplacement(self:GetCaster(), "antimage_counterspell", self)
+end
+
 function antimage_counterspell_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
 	end
-	PrecacheResource("particle", "particles/am_spell_damage.vpcf", context)
+	PrecacheResource("particle", "particles/antimage/am_spell_damage.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_antimage/antimage_spellshield_reflect.vpcf", context)
-	PrecacheResource("particle", "particles/am_lightning.vpcf", context)
+	PrecacheResource("particle", "particles/antimage/am_lightning.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_antimage/antimage_counter.vpcf", context)
-	PrecacheResource("particle", "particles/am_no_mana.vpcf", context)
-	PrecacheResource("particle", "particles/void_astral_slow.vpcf", context)
-	PrecacheResource("particle", "particles/zeus_resist_stack.vpcf", context)
+	PrecacheResource("particle", "particles/antimage/am_no_mana.vpcf", context)
+	PrecacheResource("particle", "particles/void_spirit/void_astral_slow.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_oracle/oracle_purifyingflames.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_faceless_void/faceless_void_dialatedebuf_2.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_antimage/antimage_manabreak_slow.vpcf", context)
-	PrecacheResource("particle", "particles/antimage/counter_lowhp.vpcf", context)
 	PrecacheResource("particle", "particles/enigma/summon_perma.vpcf", context)
 	PrecacheResource("particle", "particles/bane/brain_shield.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_antimage/antimage_blink_start.vpcf", context)
@@ -248,7 +251,11 @@ function modifier_antimage_counterspell_custom_active:OnCreated()
 	}
 
 	local particle = ParticleManager:CreateParticle(
-		"particles/units/heroes/hero_antimage/antimage_counter.vpcf",
+		wearables_system:GetParticleReplacementAbility(
+			self.caster,
+			"particles/units/heroes/hero_antimage/antimage_counter.vpcf",
+			self.ability
+		),
 		PATTACH_ABSORIGIN_FOLLOW,
 		self.parent
 	)
@@ -626,7 +633,7 @@ function modifier_antimage_counterspell_custom_legendary_damage:OnCreated(table)
 		self:StartIntervalThink(0.1)
 	end
 
-	self.parent:GenericParticle("particles/general/generic_magic_reduction.vpcf", self, true)
+	self.parent:GenericParticle("particles/generic/generic_magic_reduction.vpcf", self, true)
 end
 
 function modifier_antimage_counterspell_custom_legendary_damage:OnIntervalThink()
@@ -764,7 +771,8 @@ function modifier_antimage_counterspell_custom_shield:OnDestroy()
 
 		self.parent:EmitSound("Antimage.Counterspell_damage")
 
-		local effect_cast = ParticleManager:CreateParticle("particles/am_spell_damage.vpcf", PATTACH_WORLDORIGIN, nil)
+		local effect_cast =
+			ParticleManager:CreateParticle("particles/antimage/am_spell_damage.vpcf", PATTACH_WORLDORIGIN, nil)
 		ParticleManager:SetParticleControl(effect_cast, 0, self.parent:GetAbsOrigin())
 		ParticleManager:SetParticleControl(effect_cast, 1, Vector(radius, 0, 0))
 		ParticleManager:ReleaseParticleIndex(effect_cast)
@@ -823,12 +831,13 @@ function modifier_antimage_counterspell_custom_shield:LegendaryHit(target, range
 	if self.ability.talents.has_e7 == 1 then
 		target:EmitSound("Antimage.Break_stun")
 		local immortal_particle =
-			ParticleManager:CreateParticle("particles/am_no_mana.vpcf", PATTACH_OVERHEAD_FOLLOW, target)
+			ParticleManager:CreateParticle("particles/antimage/am_no_mana.vpcf", PATTACH_OVERHEAD_FOLLOW, target)
 		ParticleManager:SetParticleControl(immortal_particle, 0, target:GetAbsOrigin())
 		ParticleManager:SetParticleControl(immortal_particle, 1, target:GetAbsOrigin())
 		ParticleManager:Delete(immortal_particle, 1)
 
-		local particle = ParticleManager:CreateParticle("particles/am_lightning.vpcf", PATTACH_POINT_FOLLOW, target)
+		local particle =
+			ParticleManager:CreateParticle("particles/antimage/am_lightning.vpcf", PATTACH_POINT_FOLLOW, target)
 		ParticleManager:SetParticleControlEnt(
 			particle,
 			0,

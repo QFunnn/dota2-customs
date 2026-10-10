@@ -31,7 +31,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_arc_warden_tempest_double_custom_legendary_caster",
 	"abilities/arc_warden/arc_warden_tempest_double_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_arc_warden_double_7"
 )
 LinkLuaModifier(
 	"modifier_arc_warden_tempest_double_custom_scepter_tp_invun",
@@ -41,7 +42,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_arc_warden_tempest_double_custom_lowhp",
 	"abilities/arc_warden/arc_warden_tempest_double_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_arc_warden_hero_6"
 )
 LinkLuaModifier(
 	"modifier_arc_warden_tempest_double_custom_items",
@@ -56,7 +58,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_arc_warden_tempest_double_custom_bkb_cd",
 	"abilities/arc_warden/arc_warden_tempest_double_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_arc_warden_double_4"
 )
 LinkLuaModifier(
 	"modifier_arc_warden_tempest_double_custom_auto_damage",
@@ -66,7 +69,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_arc_warden_tempest_double_custom_scepter",
 	"abilities/arc_warden/arc_warden_tempest_double_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "Scepter" }
 )
 
 arc_warden_tempest_double_custom = class({})
@@ -89,7 +93,6 @@ function arc_warden_tempest_double_custom:Precache(context)
 	end
 
 	PrecacheResource("particle", "particles/units/heroes/hero_arc_warden/arc_warden_tempest_cast.vpcf", context)
-	PrecacheResource("particle", "particles/arc_warden/legendary_kill.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_arc_warden/arc_warden_tempest_eyes.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_lone_druid/lone_druid_bear_blink_end.vpcf", context)
 	PrecacheResource(
@@ -102,13 +105,12 @@ function arc_warden_tempest_double_custom:Precache(context)
 	PrecacheResource("particle", "particles/arc_warden/legendary_tp_end.vpcf", context)
 	PrecacheResource("particle", "particles/arc_warden/legendary_tp_tube.vpcf", context)
 	PrecacheResource("particle", "particles/arc_warden/legendary_tp_tube_tempest.vpcf", context)
-	PrecacheResource("particle", "particles/rare_orb_patrol.vpcf", context)
+	PrecacheResource("particle", "particles/patrol/rare_orb_patrol.vpcf", context)
 	PrecacheResource("particle", "particles/arc_warden/tempest_reduce.vpcf", context)
 	PrecacheResource("particle", "particles/arc_warden/tempest_tether.vpcf", context)
-	PrecacheResource("particle", "particles/lc_odd_proc_.vpcf", context)
-	PrecacheResource("particle", "particles/rare_orb_patrol.vpcf", context)
-	PrecacheResource("particle", "particles/arc_warden/tempest_rune_arcane.vpcf", context)
-	PrecacheResource("particle", "particles/brist_lowhp_.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_odd_proc_.vpcf", context)
+	PrecacheResource("particle", "particles/patrol/rare_orb_patrol.vpcf", context)
+	PrecacheResource("particle", "particles/bristleback/brist_lowhp_.vpcf", context)
 	PrecacheResource("particle", "particles/items2_fx/vindicators_axe_armor.vpcf", context)
 	PrecacheResource("particle", "particles/generic_gameplay/rune_doubledamage_owner.vpcf", context)
 	PrecacheResource("particle", "particles/generic_gameplay/rune_arcane_owner.vpcf", context)
@@ -716,6 +718,7 @@ function modifier_arc_warden_tempest_double_custom_tracker:OnCreated()
 	end
 
 	self.parent:AddSpellEvent(self, true)
+	self.parent:AddOrderFilter(self)
 	self.tempest_ability = self.parent:FindAbilityByName(self.ability:GetName())
 
 	self.tempest_init = false
@@ -733,6 +736,34 @@ function modifier_arc_warden_tempest_double_custom_tracker:OnRefresh()
 		return
 	end
 	self.tempest_init = false
+end
+
+function modifier_arc_warden_tempest_double_custom_tracker:OrderFilter(params)
+	if params.order_type ~= DOTA_UNIT_ORDER_CAST_TARGET then
+		return
+	end
+	if not params.ability then
+		return
+	end
+	if params.ability:GetName() ~= "item_cyclone_custom" and params.ability:GetName() ~= "item_wind_waker_custom" then
+		return
+	end
+	if not params.target then
+		return
+	end
+
+	local is_pair = (self.parent.owner == params.target and self.parent:IsTempestDouble())
+		or (params.target.owner == self.parent and params.target:IsTempestDouble())
+	if not is_pair then
+		return
+	end
+
+	CustomGameEventManager:Send_ServerToPlayer(
+		params.player,
+		"CreateIngameErrorMessage",
+		{ message = "#cyclone_error" }
+	)
+	return false
 end
 
 function modifier_arc_warden_tempest_double_custom_tracker:DeclareFunctions()

@@ -21,7 +21,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_moment_of_courage_custom_legendary_defence",
 	"abilities/legion_commander/custom_legion_commander_moment_of_courage",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_legion_moment_7"
 )
 LinkLuaModifier(
 	"modifier_moment_of_courage_custom_legendary_attack",
@@ -36,7 +37,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_moment_of_courage_custom_damage_reduce",
 	"abilities/legion_commander/custom_legion_commander_moment_of_courage",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_legion_moment_2"
 )
 LinkLuaModifier(
 	"modifier_moment_of_courage_custom_attack",
@@ -46,12 +48,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_moment_of_courage_custom_speed",
 	"abilities/legion_commander/custom_legion_commander_moment_of_courage",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_legion_moment_1"
 )
 LinkLuaModifier(
 	"modifier_moment_of_courage_custom_crit_cd",
 	"abilities/legion_commander/custom_legion_commander_moment_of_courage",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_legion_moment_3"
 )
 LinkLuaModifier(
 	"modifier_moment_of_courage_custom_crit_anim",
@@ -72,7 +76,7 @@ function custom_legion_commander_moment_of_courage:Precache(context)
 		return
 	end
 
-	PrecacheResource("particle", "particles/lc_hit.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_hit.vpcf", context)
 	PrecacheResource("particle", "particles/legion_commander/moment_legendary_proc.vpcf", context)
 	PrecacheResource("particle", "particles/legion_commander/crit_ready.vpcf", context)
 	PrecacheResource(
@@ -80,9 +84,8 @@ function custom_legion_commander_moment_of_courage:Precache(context)
 		"particles/econ/items/sven/sven_ti7_sword/sven_ti7_sword_spell_great_cleave_gods_strength.vpcf",
 		context
 	)
-	PrecacheResource("particle", "particles/lc_attack_buf.vpcf", context)
-	PrecacheResource("particle", "particles/lc_attack.vpcf", context)
-	PrecacheResource("particle", "particles/lc_defence.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_attack_buf.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_attack.vpcf", context)
 	PrecacheResource("particle", "particles/items3_fx/star_emblem_friend_shield.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_pangolier/pangolier_tailthump_buff.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_pangolier/pangolier_tailthump_buff_egg.vpcf", context)
@@ -366,7 +369,7 @@ function modifier_moment_of_courage_custom_tracker:ProcAttack(target, is_attack)
 	end
 
 	local dir = (target:GetOrigin() - self.parent:GetOrigin()):Normalized()
-	local part = "particles/lc_hit.vpcf"
+	local part = "particles/legion_commander/lc_hit.vpcf"
 	if is_attack then
 		part = "particles/legion_commander/moment_legendary_proc.vpcf"
 	else
@@ -381,8 +384,8 @@ function modifier_moment_of_courage_custom_tracker:ProcAttack(target, is_attack)
 	end
 
 	local is_arcana = 0
-	local weapon = self.parent:GetItemWearableHandle("weapon")
-	if weapon and weapon:GetModelName() == "models/items/legion_commander/demon_sword.vmdl" then
+	local hero_base = self.parent:GetItemWearableHandle("hero_base")
+	if hero_base and hero_base.item_id_original == "5810" then
 		is_arcana = 1
 	end
 
@@ -619,8 +622,8 @@ function modifier_moment_of_courage_custom_legendary_attack:OnCreated()
 		return
 	end
 
-	self.parent:GenericParticle("particles/lc_attack_buf.vpcf", self)
-	self.parent:GenericParticle("particles/lc_attack.vpcf", self, true)
+	self.parent:GenericParticle("particles/legion_commander/lc_attack_buf.vpcf", self)
+	self.parent:GenericParticle("particles/legion_commander/lc_attack.vpcf", self, true)
 	self.parent:EmitSound("Lc.Moment_Attack")
 end
 

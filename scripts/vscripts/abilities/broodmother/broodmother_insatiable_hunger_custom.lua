@@ -16,7 +16,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_broodmother_insatiable_hunger_custom",
 	"abilities/broodmother/broodmother_insatiable_hunger_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 LinkLuaModifier(
 	"modifier_broodmother_insatiable_hunger_custom_scepter",
@@ -26,26 +27,34 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_broodmother_insatiable_hunger_custom_buff",
 	"abilities/broodmother/broodmother_insatiable_hunger_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_broodmother_insatiable_3"
 )
 LinkLuaModifier(
 	"modifier_broodmother_insatiable_hunger_custom_buff_cd",
 	"abilities/broodmother/broodmother_insatiable_hunger_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_broodmother_insatiable_3" }
 )
 LinkLuaModifier(
 	"modifier_broodmother_insatiable_hunger_custom_bkb_cd",
 	"abilities/broodmother/broodmother_insatiable_hunger_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_broodmother_insatiable_4"
 )
 LinkLuaModifier(
 	"modifier_broodmother_insatiable_hunger_custom_rush_speed",
 	"abilities/broodmother/broodmother_insatiable_hunger_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_broodmother_insatiable_7"
 )
 
 broodmother_insatiable_hunger_custom = class({})
 broodmother_insatiable_hunger_custom.talents = {}
+
+function broodmother_insatiable_hunger_custom:GetAbilityTextureName()
+	return wearables_system:GetAbilityIconReplacement(self:GetCaster(), "broodmother_insatiable_hunger", self)
+end
 
 function broodmother_insatiable_hunger_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
@@ -53,7 +62,7 @@ function broodmother_insatiable_hunger_custom:Precache(context)
 	end
 	PrecacheResource("particle", "particles/units/heroes/hero_broodmother/broodmother_hunger_buff.vpcf", context)
 	PrecacheResource("particle", "particles/bloodseeker/thirst_cleave.vpcf", context)
-	PrecacheResource("particle", "particles/brist_proc.vpcf", context)
+	PrecacheResource("particle", "particles/bristleback/brist_proc.vpcf", context)
 	PrecacheResource("particle", "particles/bloodseeker/thirst_legendary.vpcf", context)
 	PrecacheResource("particle", "particles/broodmother/hunger_shield.vpcf", context)
 	PrecacheResource("particle", "particles/bloodseeker/thirst_dash.vpcf", context)
@@ -643,7 +652,7 @@ function modifier_broodmother_insatiable_hunger_custom_buff:OnCreated()
 		return
 	end
 
-	self.parent:GenericParticle("particles/brist_proc.vpcf")
+	self.parent:GenericParticle("particles/bristleback/brist_proc.vpcf")
 	self.parent:EmitSound("Brood.Hunger_buff")
 	self.parent:EmitSound("Brood.Hunger_buff2")
 

@@ -21,7 +21,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_bloodseeker_blood_bath_custom_legendary_self",
 	"abilities/bloodseeker/bloodseeker_blood_bath_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_bloodseeker_bloodrite_7" }
 )
 LinkLuaModifier(
 	"modifier_bloodseeker_blood_bath_custom_tracker",
@@ -36,7 +37,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_bloodseeker_blood_mist_custom",
 	"abilities/bloodseeker/bloodseeker_blood_bath_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_bloodseeker_bloodrite_7"
 )
 LinkLuaModifier(
 	"modifier_bloodseeker_blood_mist_custom_effect",
@@ -46,17 +48,20 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_bloodseeker_blood_mist_custom_root",
 	"abilities/bloodseeker/bloodseeker_blood_bath_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_bloodseeker_bloodrite_4"
 )
 LinkLuaModifier(
 	"modifier_bloodseeker_blood_mist_custom_health_reduce",
 	"abilities/bloodseeker/bloodseeker_blood_bath_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_bloodseeker_bloodrite_3"
 )
 LinkLuaModifier(
 	"modifier_bloodseeker_blood_mist_custom_health_inc",
 	"abilities/bloodseeker/bloodseeker_blood_bath_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_bloodseeker_bloodrite_3"
 )
 
 bloodseeker_blood_bath_custom = class({})
@@ -73,8 +78,7 @@ function bloodseeker_blood_bath_custom:Precache(context)
 	PrecacheResource("particle", "particles/items2_fx/sange_maim.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_rupture.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_bloodseeker/bloodseeker_rupture.vpcf", context)
-	PrecacheResource("particle", "particles/bloodseeker/rite_stun.vpcf", context)
-	PrecacheResource("particle", "particles/bs_root.vpcf", context)
+	PrecacheResource("particle", "particles/bloodseeker/bs_root.vpcf", context)
 	PrecacheResource("particle", "particles/bloodseeker/bloodrage_shield.vpcf", context)
 end
 
@@ -467,7 +471,7 @@ function modifier_bloodseeker_blood_mist_custom_root:OnCreated()
 		return
 	end
 	self.parent:EmitSound("BS.Bloodrite_root")
-	self.parent:GenericParticle("particles/bs_root.vpcf", self)
+	self.parent:GenericParticle("particles/bloodseeker/bs_root.vpcf", self)
 end
 
 function modifier_bloodseeker_blood_mist_custom_root:CheckState()
@@ -488,7 +492,7 @@ function modifier_bloodseeker_blood_bath_custom_damage_inc:OnCreated()
 	if not IsServer() then
 		return
 	end
-	self.parent:GenericParticle("particles/general/generic_armor_reduction.vpcf", self, true)
+	self.parent:GenericParticle("particles/generic/generic_armor_reduction.vpcf", self, true)
 end
 
 modifier_bloodseeker_blood_bath_custom_legendary_self = class(mod_hidden)

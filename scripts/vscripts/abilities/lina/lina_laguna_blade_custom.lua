@@ -21,12 +21,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_lina_laguna_blade_custom_legendary_stack",
 	"abilities/lina/lina_laguna_blade_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_lina_laguna_7"
 )
 LinkLuaModifier(
 	"modifier_lina_laguna_blade_custom_legendary_haste",
 	"abilities/lina/lina_laguna_blade_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_lina_laguna_7"
 )
 LinkLuaModifier(
 	"modifier_lina_laguna_blade_custom_tracker",
@@ -41,12 +43,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_lina_laguna_blade_custom_damage",
 	"abilities/lina/lina_laguna_blade_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_lina_laguna_3" }
 )
 LinkLuaModifier(
 	"modifier_lina_laguna_blade_custom_shield_cd",
 	"abilities/lina/lina_laguna_blade_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_lina_laguna_4"
 )
 
 lina_laguna_blade_custom = class({})
@@ -69,11 +73,10 @@ function lina_laguna_blade_custom:Precache(context)
 	PrecacheResource("particle", "particles/items_fx/chain_lightning.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_zuus/zuus_shard_slow.vpcf", context)
 	PrecacheResource("particle", "particles/items3_fx/gleipnir_root.vpcf", context)
-	PrecacheResource("particle", "particles/lina/soul_attack_end.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_lina/lina_supercharge_buff.vpcf", context)
 	PrecacheResource("particle", "particles/lina/laguna_legendary_stack.vpcf", context)
 	PrecacheResource("particle", "particles/lina/soul_attack.vpcf", context)
-	PrecacheResource("particle", "particles/maiden_mark.vpcf", context)
+	PrecacheResource("particle", "particles/crystal_maiden/maiden_mark.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/econ/items/zeus/zeus_immortal_2021/zeus_immortal_2021_static_field.vpcf",
@@ -660,7 +663,7 @@ function modifier_lina_laguna_blade_custom_damage:OnCreated()
 	if not IsServer() then
 		return
 	end
-	self.parent:GenericParticle("particles/maiden_mark.vpcf", self, true)
+	self.parent:GenericParticle("particles/crystal_maiden/maiden_mark.vpcf", self, true)
 	self.parent:AddDamageEvent_inc(self, true)
 end
 

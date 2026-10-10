@@ -36,12 +36,12 @@ function modifier_crystal_maiden_death_custom:DeathEvent(params)
 	if not self:GetParent():IsRealHero() then
 		return
 	end
-	local particle_name = "particles/cm_death_custom/maiden_death.vpcf"
+	local particle_name = "particles/crystal_maiden/maiden_death.vpcf"
 	if self:GetParent():GetModelName() == "models/heroes/crystal_maiden_persona/crystal_maiden_persona.vmdl" then
-		particle_name = "particles/cm_death_custom/cm_persona_death.vpcf"
+		particle_name = "particles/crystal_maiden/cm_persona_death.vpcf"
 	end
 	if self:GetParent():GetModelName() == "models/heroes/crystal_maiden/crystal_maiden_arcana.vmdl" then
-		particle_name = "particles/cm_death_custom/maiden_death_arcana.vpcf"
+		particle_name = "particles/crystal_maiden/maiden_death_arcana.vpcf"
 	end
 	local particle = ParticleManager:CreateParticle(particle_name, PATTACH_WORLDORIGIN, nil)
 	ParticleManager:SetParticleControl(particle, 0, self:GetParent():GetAbsOrigin())

@@ -39,12 +39,12 @@ return {
 		["HeroModel"] = "models/heroes/terrorblade/terrorblade_arcana.vmdl",
 		["ArcanaAnim"] = nil,
 		["MaterialGroup"] = nil,
-		["ItemModel"] = "models/heroes/terrorblade/horns_arcana.vmdl",
+		["ItemModel"] = "models/development/invisiblebox.vmdl",
 		["SetItems"] = nil,
 		["hide"] = 0,
 		["is_exclusive"] = 1,
 		["OtherItemsBundle"] = nil,
-		["SlotType"] = "head",
+		["SlotType"] = "hero_base",
 		["RemoveDefaultItemsList"] = nil,
 		--['Modifier'] = "modifier_terrorblade_arcana_custom",
 		["sets"] = "terrorblade_arcana",
@@ -90,34 +90,50 @@ return {
 		},
 		["ParticlesSkills"] = {
 			"particles/econ/items/terrorblade/terrorblade_horns_arcana/terrorblade_arcana_enemy_death_custom.vpcf",
-			"particles/terrorblade_custom/terrorblade_ti9_immortal_metamorphosis_base_attack_1.vpcf",
-			"particles/terrorblade_custom/terrorblade_ti9_immortal_metamorphosis_base_attack_13.vpcf",
-			"particles/terrorblade_custom/terrorblade_metamorphosis_base_attack_13.vpcf",
-			"particles/terrorblade_custom/terrorblade_ti9_immortal_metamorphosis_base_attack_12.vpcf",
-			"particles/terrorblade_custom/terrorblade_metamorphosis_base_attack_12.vpcf",
-			"particles/terrorblade_custom/terrorblade_ti9_immortal_metamorphosis_base_attack_11.vpcf",
-			"particles/terrorblade_custom/terrorblade_metamorphosis_base_attack_11.vpcf",
-			"particles/terrorblade_custom/terrorblade_ti9_immortal_metamorphosis_base_attack_10.vpcf",
-			"particles/terrorblade_custom/terrorblade_metamorphosis_base_attack_10.vpcf",
-			"particles/terrorblade_custom/terrorblade_ti9_immortal_metamorphosis_base_attack_9.vpcf",
-			"particles/terrorblade_custom/terrorblade_metamorphosis_base_attack_9.vpcf",
-			"particles/terrorblade_custom/terrorblade_ti9_immortal_metamorphosis_base_attack_8.vpcf",
-			"particles/terrorblade_custom/terrorblade_metamorphosis_base_attack_8.vpcf",
-			"particles/terrorblade_custom/terrorblade_ti9_immortal_metamorphosis_base_attack_7.vpcf",
-			"particles/terrorblade_custom/terrorblade_metamorphosis_base_attack_7.vpcf",
-			"particles/terrorblade_custom/terrorblade_ti9_immortal_metamorphosis_base_attack_6.vpcf",
-			"particles/terrorblade_custom/terrorblade_metamorphosis_base_attack_6.vpcf",
-			"particles/terrorblade_custom/terrorblade_ti9_immortal_metamorphosis_base_attack_5.vpcf",
-			"particles/terrorblade_custom/terrorblade_metamorphosis_base_attack_5.vpcf",
-			"particles/terrorblade_custom/terrorblade_ti9_immortal_metamorphosis_base_attack_4.vpcf",
-			"particles/terrorblade_custom/terrorblade_metamorphosis_base_attack_4.vpcf",
-			"particles/terrorblade_custom/terrorblade_ti9_immortal_metamorphosis_base_attack_3.vpcf",
-			"particles/terrorblade_custom/terrorblade_metamorphosis_base_attack_3.vpcf",
-			"particles/terrorblade_custom/terrorblade_ti9_immortal_metamorphosis_base_attack_2.vpcf",
-			"particles/terrorblade_custom/terrorblade_metamorphosis_base_attack_2.vpcf",
-			"particles/terrorblade_custom/terrorblade_ti9_immortal_metamorphosis_base_attack_1.vpcf",
-			"particles/terrorblade_custom/terrorblade_metamorphosis_base_attack_1.vpcf",
+			"particles/terrorblade/terrorblade_ti9_immortal_metamorphosis_base_attack_1.vpcf",
+			"particles/terrorblade/terrorblade_ti9_immortal_metamorphosis_base_attack_13.vpcf",
+			"particles/terrorblade/terrorblade_metamorphosis_base_attack_13.vpcf",
+			"particles/terrorblade/terrorblade_ti9_immortal_metamorphosis_base_attack_12.vpcf",
+			"particles/terrorblade/terrorblade_metamorphosis_base_attack_12.vpcf",
+			"particles/terrorblade/terrorblade_ti9_immortal_metamorphosis_base_attack_11.vpcf",
+			"particles/terrorblade/terrorblade_metamorphosis_base_attack_11.vpcf",
+			"particles/terrorblade/terrorblade_ti9_immortal_metamorphosis_base_attack_10.vpcf",
+			"particles/terrorblade/terrorblade_metamorphosis_base_attack_10.vpcf",
+			"particles/terrorblade/terrorblade_ti9_immortal_metamorphosis_base_attack_9.vpcf",
+			"particles/terrorblade/terrorblade_metamorphosis_base_attack_9.vpcf",
+			"particles/terrorblade/terrorblade_ti9_immortal_metamorphosis_base_attack_8.vpcf",
+			"particles/terrorblade/terrorblade_metamorphosis_base_attack_8.vpcf",
+			"particles/terrorblade/terrorblade_ti9_immortal_metamorphosis_base_attack_7.vpcf",
+			"particles/terrorblade/terrorblade_metamorphosis_base_attack_7.vpcf",
+			"particles/terrorblade/terrorblade_ti9_immortal_metamorphosis_base_attack_6.vpcf",
+			"particles/terrorblade/terrorblade_metamorphosis_base_attack_6.vpcf",
+			"particles/terrorblade/terrorblade_ti9_immortal_metamorphosis_base_attack_5.vpcf",
+			"particles/terrorblade/terrorblade_metamorphosis_base_attack_5.vpcf",
+			"particles/terrorblade/terrorblade_ti9_immortal_metamorphosis_base_attack_4.vpcf",
+			"particles/terrorblade/terrorblade_metamorphosis_base_attack_4.vpcf",
+			"particles/terrorblade/terrorblade_ti9_immortal_metamorphosis_base_attack_3.vpcf",
+			"particles/terrorblade/terrorblade_metamorphosis_base_attack_3.vpcf",
+			"particles/terrorblade/terrorblade_ti9_immortal_metamorphosis_base_attack_2.vpcf",
+			"particles/terrorblade/terrorblade_metamorphosis_base_attack_2.vpcf",
+			"particles/terrorblade/terrorblade_ti9_immortal_metamorphosis_base_attack_1.vpcf",
+			"particles/terrorblade/terrorblade_metamorphosis_base_attack_1.vpcf",
 		},
+	},
+	[37161] = {
+		["item_id"] = 37161,
+		["name"] = "Fractal Horns of Inner Abysm - Horns",
+		["icon"] = "econ/heroes/terrorblade/horns_arcana",
+		["price"] = 0,
+		["HeroModel"] = nil,
+		["ArcanaAnim"] = nil,
+		["MaterialGroup"] = nil,
+		["ItemModel"] = "models/heroes/terrorblade/horns_arcana.vmdl",
+		["SetItems"] = nil,
+		["hide"] = 0,
+		["OtherItemsBundle"] = nil,
+		["SlotType"] = "head",
+		["RemoveDefaultItemsList"] = nil,
+		["sets"] = "terrorblade_arcana",
 	},
 
 	[59572] = {
@@ -138,8 +154,8 @@ return {
 		["sets"] = "terrorblade_arcana",
 		["ParticlesHero"] = nil,
 		["ParticlesSkills"] = {
-			"particles/terrorblade_custom/terrorblade_ti9_immortal_metamorphosis_base_attack_2.vpcf",
-			"particles/terrorblade_custom/terrorblade_metamorphosis_base_attack_2.vpcf",
+			"particles/terrorblade/terrorblade_ti9_immortal_metamorphosis_base_attack_2.vpcf",
+			"particles/terrorblade/terrorblade_metamorphosis_base_attack_2.vpcf",
 		},
 	},
 
@@ -161,8 +177,8 @@ return {
 		["sets"] = "terrorblade_arcana",
 		["ParticlesHero"] = nil,
 		["ParticlesSkills"] = {
-			"particles/terrorblade_custom/terrorblade_ti9_immortal_metamorphosis_base_attack_3.vpcf",
-			"particles/terrorblade_custom/terrorblade_metamorphosis_base_attack_3.vpcf",
+			"particles/terrorblade/terrorblade_ti9_immortal_metamorphosis_base_attack_3.vpcf",
+			"particles/terrorblade/terrorblade_metamorphosis_base_attack_3.vpcf",
 		},
 	},
 
@@ -184,8 +200,8 @@ return {
 		["sets"] = "terrorblade_arcana",
 		["ParticlesHero"] = nil,
 		["ParticlesSkills"] = {
-			"particles/terrorblade_custom/terrorblade_ti9_immortal_metamorphosis_base_attack_4.vpcf",
-			"particles/terrorblade_custom/terrorblade_metamorphosis_base_attack_4.vpcf",
+			"particles/terrorblade/terrorblade_ti9_immortal_metamorphosis_base_attack_4.vpcf",
+			"particles/terrorblade/terrorblade_metamorphosis_base_attack_4.vpcf",
 		},
 	},
 
@@ -207,8 +223,8 @@ return {
 		["sets"] = "terrorblade_arcana",
 		["ParticlesHero"] = nil,
 		["ParticlesSkills"] = {
-			"particles/terrorblade_custom/terrorblade_ti9_immortal_metamorphosis_base_attack_5.vpcf",
-			"particles/terrorblade_custom/terrorblade_metamorphosis_base_attack_5.vpcf",
+			"particles/terrorblade/terrorblade_ti9_immortal_metamorphosis_base_attack_5.vpcf",
+			"particles/terrorblade/terrorblade_metamorphosis_base_attack_5.vpcf",
 		},
 	},
 
@@ -230,8 +246,8 @@ return {
 		["sets"] = "terrorblade_arcana",
 		["ParticlesHero"] = nil,
 		["ParticlesSkills"] = {
-			"particles/terrorblade_custom/terrorblade_ti9_immortal_metamorphosis_base_attack_6.vpcf",
-			"particles/terrorblade_custom/terrorblade_metamorphosis_base_attack_6.vpcf",
+			"particles/terrorblade/terrorblade_ti9_immortal_metamorphosis_base_attack_6.vpcf",
+			"particles/terrorblade/terrorblade_metamorphosis_base_attack_6.vpcf",
 		},
 	},
 
@@ -253,8 +269,8 @@ return {
 		["sets"] = "terrorblade_arcana",
 		["ParticlesHero"] = nil,
 		["ParticlesSkills"] = {
-			"particles/terrorblade_custom/terrorblade_ti9_immortal_metamorphosis_base_attack_7.vpcf",
-			"particles/terrorblade_custom/terrorblade_metamorphosis_base_attack_7.vpcf",
+			"particles/terrorblade/terrorblade_ti9_immortal_metamorphosis_base_attack_7.vpcf",
+			"particles/terrorblade/terrorblade_metamorphosis_base_attack_7.vpcf",
 		},
 	},
 
@@ -276,8 +292,8 @@ return {
 		["sets"] = "terrorblade_arcana",
 		["ParticlesHero"] = nil,
 		["ParticlesSkills"] = {
-			"particles/terrorblade_custom/terrorblade_ti9_immortal_metamorphosis_base_attack_8.vpcf",
-			"particles/terrorblade_custom/terrorblade_metamorphosis_base_attack_8.vpcf",
+			"particles/terrorblade/terrorblade_ti9_immortal_metamorphosis_base_attack_8.vpcf",
+			"particles/terrorblade/terrorblade_metamorphosis_base_attack_8.vpcf",
 		},
 	},
 
@@ -299,8 +315,8 @@ return {
 		["sets"] = "terrorblade_arcana",
 		["ParticlesHero"] = nil,
 		["ParticlesSkills"] = {
-			"particles/terrorblade_custom/terrorblade_ti9_immortal_metamorphosis_base_attack_9.vpcf",
-			"particles/terrorblade_custom/terrorblade_metamorphosis_base_attack_9.vpcf",
+			"particles/terrorblade/terrorblade_ti9_immortal_metamorphosis_base_attack_9.vpcf",
+			"particles/terrorblade/terrorblade_metamorphosis_base_attack_9.vpcf",
 		},
 	},
 
@@ -322,8 +338,8 @@ return {
 		["sets"] = "terrorblade_arcana",
 		["ParticlesHero"] = nil,
 		["ParticlesSkills"] = {
-			"particles/terrorblade_custom/terrorblade_ti9_immortal_metamorphosis_base_attack_10.vpcf",
-			"particles/terrorblade_custom/terrorblade_metamorphosis_base_attack_10.vpcf",
+			"particles/terrorblade/terrorblade_ti9_immortal_metamorphosis_base_attack_10.vpcf",
+			"particles/terrorblade/terrorblade_metamorphosis_base_attack_10.vpcf",
 		},
 	},
 
@@ -345,8 +361,8 @@ return {
 		["sets"] = "terrorblade_arcana",
 		["ParticlesHero"] = nil,
 		["ParticlesSkills"] = {
-			"particles/terrorblade_custom/terrorblade_ti9_immortal_metamorphosis_base_attack_11.vpcf",
-			"particles/terrorblade_custom/terrorblade_metamorphosis_base_attack_11.vpcf",
+			"particles/terrorblade/terrorblade_ti9_immortal_metamorphosis_base_attack_11.vpcf",
+			"particles/terrorblade/terrorblade_metamorphosis_base_attack_11.vpcf",
 		},
 	},
 
@@ -368,8 +384,8 @@ return {
 		["sets"] = "terrorblade_arcana",
 		["ParticlesHero"] = nil,
 		["ParticlesSkills"] = {
-			"particles/terrorblade_custom/terrorblade_ti9_immortal_metamorphosis_base_attack_12.vpcf",
-			"particles/terrorblade_custom/terrorblade_metamorphosis_base_attack_12.vpcf",
+			"particles/terrorblade/terrorblade_ti9_immortal_metamorphosis_base_attack_12.vpcf",
+			"particles/terrorblade/terrorblade_metamorphosis_base_attack_12.vpcf",
 		},
 	},
 
@@ -391,8 +407,8 @@ return {
 		["sets"] = "terrorblade_arcana",
 		["ParticlesHero"] = nil,
 		["ParticlesSkills"] = {
-			"particles/terrorblade_custom/terrorblade_ti9_immortal_metamorphosis_base_attack_13.vpcf",
-			"particles/terrorblade_custom/terrorblade_metamorphosis_base_attack_13.vpcf",
+			"particles/terrorblade/terrorblade_ti9_immortal_metamorphosis_base_attack_13.vpcf",
+			"particles/terrorblade/terrorblade_metamorphosis_base_attack_13.vpcf",
 		},
 	},
 
@@ -821,7 +837,7 @@ return {
 		["sets"] = "terror_forgotten",
 		["ParticlesItems"] = {
 			{
-				["ParticleName"] = "particles/terrorblade_custom/ultimate_right.vpcf",
+				["ParticleName"] = "particles/terrorblade/ultimate_right.vpcf",
 				["DefaultPattch"] = PATTACH_ABSORIGIN_FOLLOW,
 				["ControllPoints"] = {
 					[0] = {
@@ -833,7 +849,7 @@ return {
 				},
 			},
 			{
-				["ParticleName"] = "particles/terrorblade_custom/ultimate_left.vpcf",
+				["ParticleName"] = "particles/terrorblade/ultimate_left.vpcf",
 				["DefaultPattch"] = PATTACH_ABSORIGIN_FOLLOW,
 				["ControllPoints"] = {
 					[0] = {
@@ -864,7 +880,7 @@ return {
 		["sets"] = "terror_foulfell",
 		["ParticlesItems"] = {
 			{
-				["ParticleName"] = "particles/terrorblade_custom/knight_right.vpcf",
+				["ParticleName"] = "particles/terrorblade/knight_right.vpcf",
 				["DefaultPattch"] = PATTACH_ABSORIGIN_FOLLOW,
 				["ControllPoints"] = {
 					[0] = {
@@ -876,7 +892,7 @@ return {
 				},
 			},
 			{
-				["ParticleName"] = "particles/terrorblade_custom/knight_left.vpcf",
+				["ParticleName"] = "particles/terrorblade/knight_left.vpcf",
 				["DefaultPattch"] = PATTACH_ABSORIGIN_FOLLOW,
 				["ControllPoints"] = {
 					[0] = {
@@ -907,7 +923,7 @@ return {
 		["sets"] = "weapon",
 		["ParticlesItems"] = {
 			{
-				["ParticleName"] = "particles/terrorblade_custom/endless_left.vpcf",
+				["ParticleName"] = "particles/terrorblade/endless_left.vpcf",
 				["DefaultPattch"] = PATTACH_ABSORIGIN_FOLLOW,
 				["ControllPoints"] = {
 					[0] = {
@@ -919,7 +935,7 @@ return {
 				},
 			},
 			{
-				["ParticleName"] = "particles/terrorblade_custom/endless_right.vpcf",
+				["ParticleName"] = "particles/terrorblade/endless_right.vpcf",
 				["DefaultPattch"] = PATTACH_ABSORIGIN_FOLLOW,
 				["ControllPoints"] = {
 					[0] = {
@@ -1096,7 +1112,7 @@ return {
 		["sets"] = "weapon",
 		["ParticlesItems"] = {
 			{
-				["ParticleName"] = "particles/terrorblade_custom/mara_right.vpcf",
+				["ParticleName"] = "particles/terrorblade/mara_right.vpcf",
 				["DefaultPattch"] = PATTACH_ABSORIGIN_FOLLOW,
 				["ControllPoints"] = {
 					[0] = {
@@ -1108,7 +1124,7 @@ return {
 				},
 			},
 			{
-				["ParticleName"] = "particles/terrorblade_custom/mara_left.vpcf",
+				["ParticleName"] = "particles/terrorblade/mara_left.vpcf",
 				["DefaultPattch"] = PATTACH_ABSORIGIN_FOLLOW,
 				["ControllPoints"] = {
 					[0] = {
@@ -1121,7 +1137,7 @@ return {
 			},
 
 			{
-				["ParticleName"] = "particles/terrorblade_custom/mara_blade.vpcf",
+				["ParticleName"] = "particles/terrorblade/mara_blade.vpcf",
 				["DefaultPattch"] = PATTACH_ABSORIGIN_FOLLOW,
 				["ControllPoints"] = {
 					[0] = {
@@ -1133,7 +1149,7 @@ return {
 				},
 			},
 			{
-				["ParticleName"] = "particles/terrorblade_custom/mara_blade_2.vpcf",
+				["ParticleName"] = "particles/terrorblade/mara_blade_2.vpcf",
 				["DefaultPattch"] = PATTACH_ABSORIGIN_FOLLOW,
 				["ControllPoints"] = {
 					[0] = {
@@ -1165,7 +1181,7 @@ return {
 		["sets"] = "terror_chasm",
 		["ParticlesItems"] = {
 			{
-				["ParticleName"] = "particles/terrorblade_custom/samurai_right.vpcf",
+				["ParticleName"] = "particles/terrorblade/samurai_right.vpcf",
 				["DefaultPattch"] = PATTACH_ABSORIGIN_FOLLOW,
 				["ControllPoints"] = {
 					[0] = {
@@ -1177,7 +1193,7 @@ return {
 				},
 			},
 			{
-				["ParticleName"] = "particles/terrorblade_custom/samurai_left.vpcf",
+				["ParticleName"] = "particles/terrorblade/samurai_left.vpcf",
 				["DefaultPattch"] = PATTACH_ABSORIGIN_FOLLOW,
 				["ControllPoints"] = {
 					[0] = {
@@ -1229,6 +1245,133 @@ return {
 		["ParticlesSkills"] = {
 			"particles/econ/items/terrorblade/terrorblade_back_ti8/terrorblade_sunder_ti8.vpcf",
 		},
+	},
+	[31408] = {
+		["item_id"] = 31408,
+		["name"] = "Rictus Ripper - Armor",
+		["icon"] = "econ/items/terrorblade/dreadhunt_armor/dreadhunt_armor",
+		["price"] = 1000,
+		["HeroModel"] = nil,
+		["ArcanaAnim"] = nil,
+		["MaterialGroup"] = nil,
+		["ItemModel"] = "models/items/terrorblade/dreadhunt_armor/dreadhunt_armor.vmdl",
+		["SetItems"] = nil,
+		["hide"] = 0,
+		["OtherItemsBundle"] = nil,
+		["SlotType"] = "armor",
+		["RemoveDefaultItemsList"] = nil,
+		["Modifier"] = nil,
+		["sets"] = "rictus_ripper",
+	},
+	[31409] = {
+		["item_id"] = 31409,
+		["name"] = "Rictus Ripper - Back",
+		["icon"] = "econ/items/terrorblade/dreadhunt_back/dreadhunt_back",
+		["price"] = 1000,
+		["HeroModel"] = nil,
+		["ArcanaAnim"] = nil,
+		["MaterialGroup"] = nil,
+		["ItemModel"] = "models/items/terrorblade/dreadhunt_back/dreadhunt_back.vmdl",
+		["SetItems"] = nil,
+		["hide"] = 0,
+		["OtherItemsBundle"] = nil,
+		["SlotType"] = "back",
+		["RemoveDefaultItemsList"] = nil,
+		["Modifier"] = nil,
+		["sets"] = "rictus_ripper",
+	},
+	[31411] = {
+		["item_id"] = 31411,
+		["name"] = "Rictus Ripper - Head",
+		["icon"] = "econ/items/terrorblade/dreadhunt_head/dreadhunt_head",
+		["price"] = 1000,
+		["HeroModel"] = nil,
+		["ArcanaAnim"] = nil,
+		["MaterialGroup"] = nil,
+		["ItemModel"] = "models/items/terrorblade/dreadhunt_head/dreadhunt_head.vmdl",
+		["SetItems"] = nil,
+		["hide"] = 0,
+		["OtherItemsBundle"] = nil,
+		["SlotType"] = "head",
+		["RemoveDefaultItemsList"] = nil,
+		["Modifier"] = nil,
+		["sets"] = "rictus_ripper",
+	},
+	[31410] = {
+		["item_id"] = 31410,
+		["name"] = "Rictus Ripper - Demon",
+		["icon"] = "econ/items/terrorblade/dreadhunt_demon/dreadhunt_demon",
+		["price"] = 1000,
+		["HeroModel"] = nil,
+		["ArcanaAnim"] = nil,
+		["MaterialGroup"] = nil,
+		["ItemModel"] = "",
+		["SetItems"] = nil,
+		["hide"] = 0,
+		["OtherItemsBundle"] = nil,
+		["SlotType"] = "terrorblade_form",
+		["RemoveDefaultItemsList"] = {},
+		["Modifier"] = nil,
+		["sets"] = "terrorblade_forms",
+		["OtherModelsPrecache"] = {
+			"models/items/terrorblade/dreadhunt_demon/dreadhunt_demon.vmdl",
+		},
+	},
+	[31412] = {
+		["item_id"] = 31412,
+		["name"] = "Rictus Ripper - Weapon",
+		["icon"] = "econ/items/terrorblade/dreadhunt_weapon/dreadhunt_weapon",
+		["price"] = 3000,
+		["HeroModel"] = nil,
+		["ArcanaAnim"] = nil,
+		["MaterialGroup"] = nil,
+		["ItemModel"] = "models/items/terrorblade/dreadhunt_weapon/dreadhunt_weapon.vmdl",
+		["SetItems"] = nil,
+		["hide"] = 0,
+		["OtherItemsBundle"] = { { 31412, "#c43b3b" }, { 314121, "#3b8fd4" }, { 314122, "#8fe3ff" } },
+		["SlotType"] = "weapon",
+		["RemoveDefaultItemsList"] = nil,
+		["Modifier"] = nil,
+		["sets"] = "rare",
+		["ItemStyle"] = "0",
+	},
+	[314121] = {
+		["dota_id"] = 31412,
+		["ItemStyle"] = "1",
+		["item_id"] = 314121,
+		["name"] = "Rictus Ripper - Weapon",
+		["icon"] = "econ/items/terrorblade/dreadhunt_weapon/dreadhunt_weapon_manta",
+		["price"] = 1,
+		["HeroModel"] = nil,
+		["ArcanaAnim"] = nil,
+		["MaterialGroup"] = nil,
+		["ItemModel"] = "models/items/terrorblade/dreadhunt_weapon/dreadhunt_weapon_manta.vmdl",
+		["SetItems"] = nil,
+		["hide"] = 1,
+		["OtherItemsBundle"] = { { 31412, "#c43b3b" }, { 314121, "#3b8fd4" }, { 314122, "#8fe3ff" } },
+		["SlotType"] = "weapon",
+		["RemoveDefaultItemsList"] = nil,
+		["Modifier"] = nil,
+		["sets"] = "rare",
+	},
+	[314122] = {
+		["dota_id"] = 31412,
+		["ItemStyle"] = "2",
+		["item_id"] = 314122,
+		["name"] = "Rictus Ripper - Weapon",
+		["icon"] = "econ/items/terrorblade/dreadhunt_weapon/dreadhunt_weapon_skadi",
+		["price"] = 1,
+		["HeroModel"] = nil,
+		["ArcanaAnim"] = nil,
+		["MaterialGroup"] = nil,
+		["ItemModel"] = "models/items/terrorblade/dreadhunt_weapon/dreadhunt_weapon_skadi.vmdl",
+		["SetItems"] = nil,
+		["hide"] = 1,
+		["OtherItemsBundle"] = { { 31412, "#c43b3b" }, { 314121, "#3b8fd4" }, { 314122, "#8fe3ff" } },
+		["SlotType"] = "weapon",
+		["RemoveDefaultItemsList"] = nil,
+		["Modifier"] = nil,
+		["sets"] = "rare",
 	},
 }
 

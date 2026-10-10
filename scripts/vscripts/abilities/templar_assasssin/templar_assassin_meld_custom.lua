@@ -106,8 +106,8 @@ function templar_assassin_meld_custom:Precache(context)
 		"particles/units/heroes/hero_templar_assassin/templar_assassin_meld_armor.vpcf",
 		context
 	)
-	PrecacheResource("particle", "particles/lc_odd_proc_.vpcf", context)
-	PrecacheResource("particle", "particles/general/generic_armor_reduction.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_odd_proc_.vpcf", context)
+	PrecacheResource("particle", "particles/generic/generic_armor_reduction.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_juggernaut/jugg_agility_boost.vpcf", context)
 	PrecacheResource("particle", "particles/templar_assassin/meld_buff.vpcf", context)
 end
@@ -586,7 +586,7 @@ function modifier_templar_assassin_meld_custom_tracker:AttackEvent_out(params)
 	end
 
 	if self.parent:HasTalent("modifier_templar_assassin_meld_6") then
-		self.parent:CdAbility(self.ability, self.attack_cd)
+		self.parent:CdAbility(self.ability, self.attack_cd, nil, "modifier_templar_assassin_meld_6")
 	end
 
 	if not self.records[params.record] then

@@ -21,7 +21,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_skywrath_mage_mystic_flare_custom_perma",
 	"abilities/skywrath_mage/skywrath_mage_mystic_flare_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_sky_flare_5"
 )
 LinkLuaModifier(
 	"modifier_skywrath_mage_mystic_flare_custom_legendary_caster",
@@ -67,10 +68,9 @@ function skywrath_mage_mystic_flare_custom:Precache(context)
 	PrecacheResource("particle", "particles/skywrath/flare_base.vpcf", context)
 	PrecacheResource("particle", "particles/skywrath/seal_legendary_self.vpcf", context)
 	PrecacheResource("particle", "particles/skywrath/seal_legendary_self_v2.vpcf", context)
-	PrecacheResource("particle", "particles/skywrath/flare_legendary_shields.vpcf", context)
 	PrecacheResource("particle", "particles/skywrath/flare_mark.vpcf", context)
 	PrecacheResource("particle", "particles/items3_fx/black_powder_blind_debuff.vpcf", context)
-	PrecacheResource("particle", "particles/lc_odd_proc_.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_odd_proc_.vpcf", context)
 end
 
 function skywrath_mage_mystic_flare_custom:GetIntrinsicModifierName()
@@ -343,7 +343,7 @@ function modifier_skywrath_mage_mystic_flare_custom_thinker:OnDestroy()
 
 	if self.cd_mod and not self.cd_mod:IsNull() then
 		local cd = self.cd_mod:GetStackCount() * self.cd_inc
-		self.caster:CdAbility(self.ability, cd)
+		self.caster:CdAbility(self.ability, cd, nil, "modifier_sky_flare_5")
 		self.cd_mod:Destroy()
 	end
 
@@ -404,7 +404,7 @@ function modifier_skywrath_mage_mystic_flare_custom_tracker:SpellEvent(params)
 	if mod then
 		mod:IncrementStackCount()
 	else
-		self.parent:CdAbility(self.ability, self.cd_inc)
+		self.parent:CdAbility(self.ability, self.cd_inc, nil, "modifier_sky_flare_5")
 	end
 end
 
@@ -634,7 +634,7 @@ function modifier_skywrath_mage_mystic_flare_custom_damage_inc:OnCreated()
 	if not IsServer() then
 		return
 	end
-	self.particle = self.parent:GenericParticle("particles/skymage/bolt_root_stack.vpcf", self, true)
+	self.particle = self.parent:GenericParticle("particles/skywrath/bolt_root_stack.vpcf", self, true)
 	self:SetStackCount(1)
 end
 
@@ -747,8 +747,11 @@ function modifier_skywrath_mage_mystic_flare_custom_perma:OnIntervalThink()
 		return
 	end
 
-	local particle_peffect =
-		ParticleManager:CreateParticle("particles/lc_odd_proc_.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
+	local particle_peffect = ParticleManager:CreateParticle(
+		"particles/legion_commander/lc_odd_proc_.vpcf",
+		PATTACH_ABSORIGIN_FOLLOW,
+		self.parent
+	)
 	ParticleManager:SetParticleControl(particle_peffect, 0, self.parent:GetAbsOrigin())
 	ParticleManager:SetParticleControl(particle_peffect, 2, self.parent:GetAbsOrigin())
 	ParticleManager:ReleaseParticleIndex(particle_peffect)

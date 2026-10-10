@@ -16,17 +16,20 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_leshrac_diabolic_edict_custom_speed",
 	"abilities/leshrac/leshrac_diabolic_edict_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_leshrac_hero_5"
 )
 LinkLuaModifier(
 	"modifier_leshrac_diabolic_edict_custom_legendary",
 	"abilities/leshrac/leshrac_diabolic_edict_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_leshrac_edict_7" }
 )
 LinkLuaModifier(
 	"modifier_leshrac_diabolic_edict_custom_legendary_damage",
 	"abilities/leshrac/leshrac_diabolic_edict_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_leshrac_edict_7"
 )
 LinkLuaModifier(
 	"modifier_leshrac_diabolic_edict_custom_proc",
@@ -41,22 +44,26 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_leshrac_diabolic_edict_custom_slow",
 	"abilities/leshrac/leshrac_diabolic_edict_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_leshrac_edict_1"
 )
 LinkLuaModifier(
 	"modifier_leshrac_diabolic_edict_custom_damage_stack",
 	"abilities/leshrac/leshrac_diabolic_edict_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_leshrac_edict_3"
 )
 LinkLuaModifier(
 	"modifier_leshrac_diabolic_edict_custom_root_cd",
 	"abilities/leshrac/leshrac_diabolic_edict_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_leshrac_edict_4"
 )
 LinkLuaModifier(
 	"modifier_leshrac_diabolic_edict_custom_root",
 	"abilities/leshrac/leshrac_diabolic_edict_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_leshrac_edict_4"
 )
 
 leshrac_diabolic_edict_custom = class({})
@@ -68,19 +75,18 @@ function leshrac_diabolic_edict_custom:Precache(context)
 	end
 
 	PrecacheResource("particle", "particles/units/heroes/hero_leshrac/leshrac_diabolic_edict.vpcf", context)
-	PrecacheResource("particle", "particles/leshrac_diabolic_legendary_damage.vpcf", context)
+	PrecacheResource("particle", "particles/leshrac/leshrac_diabolic_legendary_damage.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_monkey_king/monkey_king_quad_tap_hit.vpcf", context)
 	PrecacheResource("particle", "particles/leshrac/edict_proc.vpcf", context)
 	PrecacheResource("particle", "particles/items3_fx/star_emblem_friend.vpcf", context)
 	PrecacheResource("particle", "particles/leshrac/edict_speed.vpcf", context)
-	PrecacheResource("particle", "particles/leshrac_edict_legendary.vpcf", context)
-	PrecacheResource("particle", "particles/lesh_edict_stun.vpcf", context)
-	PrecacheResource("particle", "particles/leshrac_edict_mark.vpcf", context)
-	PrecacheResource("particle", "particles/cleance_blade.vpcf", context)
+	PrecacheResource("particle", "particles/leshrac/leshrac_edict_legendary.vpcf", context)
+	PrecacheResource("particle", "particles/leshrac/lesh_edict_stun.vpcf", context)
+	PrecacheResource("particle", "particles/leshrac/leshrac_edict_mark.vpcf", context)
 	PrecacheResource("particle", "particles/leshrac/edict_shield.vpcf", context)
 	PrecacheResource("particle", "particles/juggernaut/omni_root.vpcf", context)
-	PrecacheResource("particle", "particles/leshrac_speed.vpcf", context)
-	PrecacheResource("particle", "particles/lina_attack_slow.vpcf", context)
+	PrecacheResource("particle", "particles/leshrac/leshrac_speed.vpcf", context)
+	PrecacheResource("particle", "particles/lina/lina_attack_slow.vpcf", context)
 end
 
 function leshrac_diabolic_edict_custom:UpdateTalents(name)
@@ -279,7 +285,7 @@ function leshrac_diabolic_edict_custom:DealDamage(proc)
 		self.count = self.count + 1
 		if self.count >= self.talents.w4_count then
 			self.count = 0
-			self.caster:CdItems(self.talents.w4_cd_items)
+			self.caster:CdItems(self.talents.w4_cd_items, "modifier_leshrac_edict_4")
 		end
 	end
 
@@ -339,7 +345,7 @@ function leshrac_diabolic_edict_custom:PlayEffects(unit, legendary_effect)
 				self.caster
 			)
 			local effect_cast_2 = ParticleManager:CreateParticle(
-				"particles/leshrac_diabolic_legendary_damage.vpcf",
+				"particles/leshrac/leshrac_diabolic_legendary_damage.vpcf",
 				PATTACH_ABSORIGIN,
 				unit
 			)
@@ -510,7 +516,7 @@ function modifier_leshrac_diabolic_edict_custom_speed:OnCreated(table)
 	end
 	self.parent:EmitSound("Leshrac.Edict_purge")
 	self.parent:GenericParticle("particles/leshrac/edict_speed.vpcf", self)
-	self.parent:GenericParticle("particles/leshrac_speed.vpcf", self)
+	self.parent:GenericParticle("particles/leshrac/leshrac_speed.vpcf", self)
 end
 
 function modifier_leshrac_diabolic_edict_custom_speed:DeclareFunctions()
@@ -545,8 +551,11 @@ function modifier_leshrac_diabolic_edict_custom_legendary:OnCreated(table)
 	self.radius = self.ability:GetRadius() + 50
 	self.stun = self.ability.talents.w7_stun
 
-	local effect_cast =
-		ParticleManager:CreateParticle("particles/leshrac_edict_legendary.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
+	local effect_cast = ParticleManager:CreateParticle(
+		"particles/leshrac/leshrac_edict_legendary.vpcf",
+		PATTACH_ABSORIGIN_FOLLOW,
+		self.parent
+	)
 	ParticleManager:SetParticleControlEnt(
 		effect_cast,
 		0,
@@ -612,7 +621,7 @@ function modifier_leshrac_diabolic_edict_custom_legendary:OnDestroy()
 	end
 
 	self.parent:EmitSound("Leshrac.Edict_legendary_stun")
-	self.parent:GenericParticle("particles/lesh_edict_stun.vpcf")
+	self.parent:GenericParticle("particles/leshrac/lesh_edict_stun.vpcf")
 
 	local mod = self.caster:FindModifierByName("modifier_leshrac_diabolic_edict_custom")
 	if IsValid(self.mod) then
@@ -634,7 +643,7 @@ end
 
 modifier_leshrac_diabolic_edict_custom_legendary_damage = class(mod_visible)
 function modifier_leshrac_diabolic_edict_custom_legendary_damage:GetEffectName()
-	return "particles/leshrac_edict_mark.vpcf"
+	return "particles/leshrac/leshrac_edict_mark.vpcf"
 end
 function modifier_leshrac_diabolic_edict_custom_legendary_damage:GetEffectAttachType()
 	return PATTACH_OVERHEAD_FOLLOW
@@ -893,7 +902,7 @@ function modifier_leshrac_diabolic_edict_custom_slow:OnRefresh()
 	if self:GetStackCount() < self.max then
 		return
 	end
-	self.parent:GenericParticle("particles/lina_attack_slow.vpcf", self)
+	self.parent:GenericParticle("particles/lina/lina_attack_slow.vpcf", self)
 end
 
 function modifier_leshrac_diabolic_edict_custom_slow:DeclareFunctions()

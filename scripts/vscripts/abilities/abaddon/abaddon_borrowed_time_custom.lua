@@ -11,7 +11,8 @@
 LinkLuaModifier(
 	"modifier_abaddon_borrowed_time_custom",
 	"abilities/abaddon/abaddon_borrowed_time_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 LinkLuaModifier(
 	"modifier_abaddon_borrowed_time_custom_tracker",
@@ -21,7 +22,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_abaddon_borrowed_time_custom_legendary",
 	"abilities/abaddon/abaddon_borrowed_time_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_abaddon_borrowed_7"
 )
 LinkLuaModifier(
 	"modifier_abaddon_borrowed_time_custom_legendary_caster",
@@ -41,22 +43,26 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_abaddon_borrowed_time_custom_aura_armor",
 	"abilities/abaddon/abaddon_borrowed_time_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_abaddon_borrowed_1"
 )
 LinkLuaModifier(
 	"modifier_abaddon_borrowed_time_custom_heal",
 	"abilities/abaddon/abaddon_borrowed_time_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "Shard" }
 )
 LinkLuaModifier(
 	"modifier_abaddon_borrowed_time_custom_proc",
 	"abilities/abaddon/abaddon_borrowed_time_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_abaddon_borrowed_3" }
 )
 LinkLuaModifier(
 	"modifier_abaddon_borrowed_time_custom_proc_count",
 	"abilities/abaddon/abaddon_borrowed_time_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_abaddon_borrowed_3"
 )
 
 abaddon_borrowed_time_custom = class({})
@@ -72,7 +78,6 @@ function abaddon_borrowed_time_custom:Precache(context)
 	PrecacheResource("particle", "particles/abaddon/curse_proc.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_abaddon_borrowed_time.vpcf", context)
 	PrecacheResource("particle", "particles/abaddon/ulti_attack.vpcf", context)
-	PrecacheResource("particle", "particles/abaddon/ulti_attacka1.vpcf", context)
 	PrecacheResource("particle", "particles/abaddon/coil_legendary_heal.vpcf", context)
 	PrecacheResource("particle", "particles/abaddon/coil_legendary_cast.vpcf", context)
 	PrecacheResource("particle", "particles/abaddon/ulti_legendary_cast.vpcf", context)
@@ -467,7 +472,7 @@ function modifier_abaddon_borrowed_time_custom_tracker:AttackEvent_out(params)
 		if self.ability:IsActivated() then
 			local cd = self.ability.talents.has_r7 == 1 and self.ability.talents.r4_cd_inc_legendary
 				or self.ability.talents.r4_cd_inc
-			self.parent:CdAbility(self.ability, nil, cd)
+			self.parent:CdAbility(self.ability, nil, cd, "modifier_abaddon_borrowed_4")
 		end
 	end
 
@@ -638,7 +643,7 @@ function modifier_abaddon_borrowed_time_custom_aura_armor:OnRefresh()
 	self:IncrementStackCount()
 
 	if self:GetStackCount() >= self.max then
-		self.parent:GenericParticle("particles/general/generic_armor_reduction.vpcf", self, true)
+		self.parent:GenericParticle("particles/generic/generic_armor_reduction.vpcf", self, true)
 	end
 end
 

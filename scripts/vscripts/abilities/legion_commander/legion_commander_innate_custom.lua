@@ -11,7 +11,8 @@
 LinkLuaModifier(
 	"modifier_legion_commander_innate_custom",
 	"abilities/legion_commander/legion_commander_innate_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 LinkLuaModifier(
 	"modifier_legion_commander_innate_custom_bonus",
@@ -21,7 +22,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_legion_commander_innate_custom_armor",
 	"abilities/legion_commander/legion_commander_innate_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_legion_hero_1"
 )
 
 legion_commander_innate_custom = class({})

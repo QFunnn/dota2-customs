@@ -71,9 +71,6 @@ function custom_terrorblade_reflection:Precache(context)
 	)
 	PrecacheResource("particle", "particles/units/heroes/hero_terrorblade/terrorblade_mirror_image.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_terrorblade/terrorblade_reflection_cast.vpcf", context)
-	PrecacheResource("particle", "particles/units/heroes/hero_void_spirit/pulse/void_spirit_agi.vpcf", context)
-	PrecacheResource("particle", "particles/units/heroes/hero_void_spirit/pulse/void_spirit_str.vpcf", context)
-	PrecacheResource("particle", "particles/units/heroes/hero_void_spirit/pulse/void_spirit_int.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_terrorblade/terrorblade_reflection_slow.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_terrorblade_reflection.vpcf", context)
 	PrecacheResource(
@@ -81,7 +78,7 @@ function custom_terrorblade_reflection:Precache(context)
 		"particles/econ/items/silencer/silencer_ti10_immortal_shield/silencer_ti10_immortal_curse_aoe.vpcf",
 		context
 	)
-	PrecacheResource("particle", "particles/huskar_timer.vpcf", context)
+	PrecacheResource("particle", "particles/huskar/huskar_timer.vpcf", context)
 
 	dota1x6:PrecacheShopItems("npc_dota_hero_terrorblade", context)
 end
@@ -325,7 +322,7 @@ function custom_terrorblade_reflection:LaunchIllusion(enemy, double)
 	}, 1, spawn_range, false, true, true)
 
 	local effect =
-		ParticleManager:CreateParticle("particles/general/illusion_created.vpcf", PATTACH_CUSTOMORIGIN_FOLLOW, enemy)
+		ParticleManager:CreateParticle("particles/generic/illusion_created.vpcf", PATTACH_CUSTOMORIGIN_FOLLOW, enemy)
 	ParticleManager:SetParticleControlEnt(
 		effect,
 		0,
@@ -1121,7 +1118,7 @@ function modifier_custom_terrorblade_reflection_tracker:AttackEvent_out(params)
 
 	mod.attack_count = mod.attack_count + 1
 
-	self.parent:CdItems(self.ability.talents.q6_cd_items)
+	self.parent:CdItems(self.ability.talents.q6_cd_items, "modifier_terror_reflection_6")
 	self.parent:GenericHeal(
 		self.ability.talents.q6_heal * self.parent:GetMaxHealth(),
 		self.ability,
@@ -1177,7 +1174,7 @@ function modifier_custom_terrorblade_reflection_stun_delay:OnIntervalThink()
 	end
 
 	local particle =
-		ParticleManager:CreateParticle("particles/huskar_timer.vpcf", PATTACH_OVERHEAD_FOLLOW, self.illusion)
+		ParticleManager:CreateParticle("particles/huskar/huskar_timer.vpcf", PATTACH_OVERHEAD_FOLLOW, self.illusion)
 	ParticleManager:SetParticleControl(particle, 0, self.illusion:GetAbsOrigin())
 	ParticleManager:SetParticleControl(particle, 1, Vector(0, int, decimal))
 	ParticleManager:SetParticleControl(particle, 2, Vector(digits, 0, 0))

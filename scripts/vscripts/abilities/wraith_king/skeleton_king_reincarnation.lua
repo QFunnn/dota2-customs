@@ -36,12 +36,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_skeleton_king_reincarnation_custom_aura_str",
 	"abilities/wraith_king/skeleton_king_reincarnation",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_skeleton_reincarnation_3"
 )
 LinkLuaModifier(
 	"modifier_skeleton_king_reincarnation_custom_perma",
 	"abilities/wraith_king/skeleton_king_reincarnation",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_skeleton_reincarnation_4"
 )
 LinkLuaModifier(
 	"modifier_skeleton_king_reincarnation_custom_scepter",
@@ -51,12 +53,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_skeleton_king_reincarnation_custom_shield_cd",
 	"abilities/wraith_king/skeleton_king_reincarnation",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_skeleton_reincarnation_2"
 )
 LinkLuaModifier(
 	"modifier_skeleton_king_reincarnation_custom_magic",
 	"abilities/wraith_king/skeleton_king_reincarnation",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_skeleton_reincarnation_3"
 )
 LinkLuaModifier(
 	"modifier_skeleton_king_reincarnation_custom_move",
@@ -66,7 +70,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_skeleton_king_reincarnation_custom_fear_slow",
 	"abilities/wraith_king/skeleton_king_reincarnation",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_skeleton_hero_6"
 )
 
 skeleton_king_reincarnation_custom = class({})
@@ -79,14 +84,14 @@ function skeleton_king_reincarnation_custom:Precache(context)
 
 	PrecacheResource("particle", "particles/sand_king/sand_pull.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_skeletonking/wraith_king_reincarnate.vpcf", context)
-	PrecacheResource("particle", "particles/wraith_king_custom/wraith_king_tombstone_default.vpcf", context)
+	PrecacheResource("particle", "particles/wraith_king/wraith_king_tombstone_default.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/units/heroes/hero_skeletonking/wraith_king_reincarnate_slow_debuff.vpcf",
 		context
 	)
 	PrecacheResource("particle", "particles/units/heroes/hero_muerta/muerta_parting_shot_tether.vpcf", context)
-	PrecacheResource("particle", "particles/wk_burn.vpcf", context)
+	PrecacheResource("particle", "particles/wraith_king/wk_burn.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_wraithking_ghosts.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_muerta/muerta_ultimate_form_ethereal.vpcf", context)
 	PrecacheResource("particle", "particles/muerta/muerta_calling_caster_end.vpcf", context)
@@ -99,7 +104,7 @@ function skeleton_king_reincarnation_custom:Precache(context)
 	PrecacheResource("particle", "particles/wraith_king/reinc_magic.vpcf", context)
 	PrecacheResource("particle", "particles/wraith_king/scepter_skelet.vpcf", context)
 	PrecacheResource("particle", "particles/wraith_king/blast_radius.vpcf", context)
-	PrecacheResource("particle", "particles/lc_odd_proc_.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_odd_proc_.vpcf", context)
 end
 
 function skeleton_king_reincarnation_custom:UpdateTalents(name)
@@ -116,6 +121,7 @@ function skeleton_king_reincarnation_custom:UpdateTalents(name)
 			r1_radius = caster:GetTalentValue("modifier_skeleton_reincarnation_1", "radius", true),
 
 			has_r2 = 0,
+			r2_base = 0,
 			r2_shield = 0,
 			r2_talent_cd = caster:GetTalentValue("modifier_skeleton_reincarnation_2", "talent_cd", true),
 			r2_bonus = caster:GetTalentValue("modifier_skeleton_reincarnation_2", "bonus", true) / 100,
@@ -158,6 +164,7 @@ function skeleton_king_reincarnation_custom:UpdateTalents(name)
 
 	if caster:HasTalent("modifier_skeleton_reincarnation_2") then
 		self.talents.has_r2 = 1
+		self.talents.r2_base = caster:GetTalentValue("modifier_skeleton_reincarnation_2", "base")
 		self.talents.r2_shield = caster:GetTalentValue("modifier_skeleton_reincarnation_2", "shield") / 100
 	end
 
@@ -246,11 +253,11 @@ function skeleton_king_reincarnation_custom:ReincarnationStart(params, modifier)
 
 	if self.talents.has_r4 == 1 then
 		local cd = self.talents.r4_cd
-		self.caster:CdItems(cd)
+		self.caster:CdItems(cd, "modifier_skeleton_reincarnation_4")
 		for i = 0, 20 do
 			local current_ability = self.caster:GetAbilityByIndex(i)
 			if current_ability then
-				self.caster:CdAbility(current_ability, cd)
+				self.caster:CdAbility(current_ability, cd, nil, "modifier_skeleton_reincarnation_4")
 			else
 				break
 			end
@@ -310,7 +317,7 @@ function skeleton_king_reincarnation_custom:ReincarnationStart(params, modifier)
 	)
 	local tomb_effect = wearables_system:GetParticleReplacementAbility(
 		self.caster,
-		"particles/wraith_king_custom/wraith_king_tombstone_default.vpcf",
+		"particles/wraith_king/wraith_king_tombstone_default.vpcf",
 		self
 	)
 	local sound_reinc = wearables_system:GetSoundReplacement(self.caster, "Hero_SkeletonKing.Reincarnate", self)
@@ -406,11 +413,16 @@ function modifier_skeleton_king_reincarnation_custom:OnIntervalThink()
 		and self.legendary_ability
 		and self.legendary_ability:GetCooldownTimeRemaining() > 0
 	then
-		self.parent:CdAbility(self.legendary_ability, self.interval * self.ability.talents.r7_cd_inc)
+		self.parent:CdAbility(
+			self.legendary_ability,
+			self.interval * self.ability.talents.r7_cd_inc,
+			nil,
+			"modifier_skeleton_reincarnation_7"
+		)
 	end
 
 	if self.ability.talents.has_r2 == 1 then
-		local max_shield = self.ability.talents.r2_shield * self.parent:GetMaxHealth()
+		local max_shield = self.ability.talents.r2_base + self.ability.talents.r2_shield * self.parent:GetMaxHealth()
 		if is_cd == 1 then
 			max_shield = max_shield * (1 + self.ability.talents.r2_bonus)
 		end
@@ -613,7 +625,7 @@ function modifier_skeleton_king_reincarnation_custom_aura_damage:OnCreated(table
 	self.interval = self.ability.talents.r1_interval
 
 	if self.ability.talents.has_r1 == 1 then
-		self.parent:GenericParticle("particles/wk_burn.vpcf", self)
+		self.parent:GenericParticle("particles/wraith_king/wk_burn.vpcf", self)
 	end
 
 	if self.ability.talents.has_r3 == 1 and self.parent:IsHero() then
@@ -835,7 +847,7 @@ function modifier_skeleton_king_reincarnation_custom_perma:OnIntervalThink()
 		return
 	end
 
-	self.parent:GenericParticle("particles/lc_odd_proc_.vpcf")
+	self.parent:GenericParticle("particles/legion_commander/lc_odd_proc_.vpcf")
 	self.parent:EmitSound("BS.Thirst_legendary_active")
 	self:StartIntervalThink(-1)
 end

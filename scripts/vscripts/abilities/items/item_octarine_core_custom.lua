@@ -31,7 +31,7 @@ function item_octarine_core_custom:Precache(context)
 	end
 
 	PrecacheResource("particle", "particles/leshrac/storm_refresh.vpcf", context)
-	PrecacheResource("particle", "particles/bristle_cdr.vpcf", context)
+	PrecacheResource("particle", "particles/items/bristle_cdr.vpcf", context)
 	PrecacheResource("particle", "particles/generic_gameplay/rune_arcane_owner.vpcf", context)
 end
 
@@ -105,7 +105,7 @@ function modifier_item_octarine_core_custom_active:OnCreated()
 	self.parent:AddSpellEvent(self, true)
 
 	self.particle =
-		ParticleManager:CreateParticle("particles/bristle_cdr.vpcf", PATTACH_CUSTOMORIGIN_FOLLOW, self.parent)
+		ParticleManager:CreateParticle("particles/items/bristle_cdr.vpcf", PATTACH_CUSTOMORIGIN_FOLLOW, self.parent)
 	ParticleManager:SetParticleControlEnt(
 		self.particle,
 		0,
@@ -178,7 +178,7 @@ function modifier_item_octarine_core_custom_active:SpellEvent(params)
 
 	Timers:CreateTimer(0.1, function()
 		if IsValid(self.parent, params.ability) then
-			self.parent:CdAbility(params.ability, nil, self.ability.active_cdr)
+			self.parent:CdAbility(params.ability, nil, self.ability.active_cdr, "item_octarine_core_custom")
 		end
 	end)
 end

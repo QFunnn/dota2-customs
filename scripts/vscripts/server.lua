@@ -100,6 +100,7 @@ HTTP.playersData = {}
 HTTP.leavedPlayers = {}
 HTTP.ItemsData = {}
 HTTP.TalentsData = nil
+HTTP.SkillsData = {}
 HTTP.global_party = false
 
 for id = 0, 24 do
@@ -241,7 +242,7 @@ function HTTP.FillOfflineServerData()
 				all_heroes_data[hero_name].exp = 0 --RandomInt(1, 60)
 				all_heroes_data[hero_name].level = 1
 
-				if hero_name == "npc_dota_hero_phantom_assassin" then
+				if hero_name == "npc_dota_hero_kunkka" then
 					--all_heroes_data[hero_name].level = 3
 				end
 
@@ -947,6 +948,7 @@ table.insert(steamIDs, 5)
 			HTTP.serverData.averageRating = data.averageRating
 			HTTP.serverData.seasonName = data.seasonName
 			HTTP.serverData.isStatsMatch = data.isStatsMatch
+			HTTP.match_start_received = true
 
 			dota1x6.achivment_table["completed"] = {}
 
@@ -1790,6 +1792,34 @@ function HTTP.FillTalentsData(id, name, offered_talents)
 	data.offered_talents = offered_talents
 
 	table.insert(HTTP.TalentsData[key].talents, data)
+end
+
+function HTTP.FillSkillsData(id, name)
+	local hero = GlobalHeroes[id]
+	if not hero then
+		return
+	end
+
+	local hero_name = hero:GetUnitName()
+	local count = 1
+
+	for _, data in pairs(HTTP.SkillsData) do
+		if data.hero_name == hero_name then
+			count = count + 1
+		end
+	end
+
+	local data = {}
+	data.player_id = PlayerResource:GetSteamAccountID(id)
+	data.match_id = HTTP.GetMatchId()
+	data.map_name = GetMapName()
+	data.place = -1
+	data.hero_name = hero_name
+	data.main_talent = HTTP.playersData[id].firstOrangeTalent or "0"
+	data.pick_number = count
+	data.skill_name = name
+
+	table.insert(HTTP.SkillsData, data)
 end
 
 function HTTP.FillItemsData(id, place)

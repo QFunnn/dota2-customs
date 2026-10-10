@@ -26,7 +26,7 @@ function life_stealer_innate_custom:Precache(context)
 	PrecacheResource("particle", "particles/lifestealer/rage_legendary_attack.vpcf", context)
 	PrecacheResource("particle", "particles/lifestealer/rage_legendary_attack_2.vpcf", context)
 	PrecacheResource("particle", "particles/lifestealer/scepter_blood.vpcf", context)
-	PrecacheResource("particle", "particles/brist_lowhp_.vpcf", context)
+	PrecacheResource("particle", "particles/bristleback/brist_lowhp_.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_bloodseeker/bloodseeker_bloodbath.vpcf", context)
 	PrecacheResource("model", "models/events/crownfall/survivors/skeleton_melee/skeleton_melee.vmdl", context)
 

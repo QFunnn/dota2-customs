@@ -37,7 +37,7 @@ function modifier_patrol_reward_2_respawn:OnCreated(table)
 
 	EmitSoundOnEntityForPlayer("Patrol.Respawn", self.parent, self.parent:GetPlayerOwnerID())
 	if not self.particle then
-		self.particle = self.parent:GenericParticle("particles/patrol_respawn.vpcf", self)
+		self.particle = self.parent:GenericParticle("particles/patrol/patrol_respawn.vpcf", self)
 	end
 end
 

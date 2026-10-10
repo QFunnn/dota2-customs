@@ -104,10 +104,13 @@ function item_harpoon_custom:OnProjectileHit(target, vLocation)
 	end
 	local caster = self:GetCaster()
 	local is_tree = target:HasModifier("modifier_item_harpoon_custom_thinker")
-	local min_dist = self.min_distance
 	local duration = self.pull_duration
 
-	if not is_tree then
+	target:EmitSound("Item.Harpoon.Target")
+
+	if is_tree then
+		duration = duration * 1.3
+	else
 		DoDamage({
 			victim = target,
 			attacker = caster,
@@ -115,20 +118,9 @@ function item_harpoon_custom:OnProjectileHit(target, vLocation)
 			damage_type = DAMAGE_TYPE_PURE,
 			damage = self.damage,
 		})
-	else
-		min_dist = min_dist * 2
-		duration = duration * 1.3
-	end
-
-	target:EmitSound("Item.Harpoon.Target")
-
-	local dis = (target:GetAbsOrigin() - caster:GetAbsOrigin()):Length2D()
-	if dis <= min_dist then
-		target:RemoveModifierByName("modifier_item_harpoon_custom_thinker")
-		return
-	end
-
-	if not is_tree then
+		if (target:GetAbsOrigin() - caster:GetAbsOrigin()):Length2D() <= self.min_distance then
+			return
+		end
 		target:AddNewModifier(
 			caster,
 			self,
@@ -147,7 +139,7 @@ function item_harpoon_custom:OnProjectileHit(target, vLocation)
 		caster,
 		self,
 		"modifier_item_harpoon_custom_pull",
-		{ duration = duration, target = target:entindex(), is_tree = is_tree, min_dist = min_dist }
+		{ duration = duration, target = target:entindex(), is_tree = is_tree }
 	)
 end
 
@@ -182,8 +174,7 @@ function modifier_item_harpoon_custom_pull:OnCreated(params)
 	self.angle = (self.target:GetAbsOrigin() - self.parent:GetAbsOrigin()):Normalized()
 
 	if self.is_tree == 1 then
-		self.point = self.target:GetAbsOrigin() - self.angle * params.min_dist
-		self.target:SetAbsOrigin(self.point)
+		self.point = self.target:GetAbsOrigin()
 	else
 		self.point = (self.parent:GetAbsOrigin() + self.target:GetAbsOrigin()) / 2
 		self.point = self.point - self.angle * 50

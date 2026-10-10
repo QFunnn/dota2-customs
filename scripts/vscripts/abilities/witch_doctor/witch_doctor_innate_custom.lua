@@ -75,6 +75,7 @@ function modifier_witch_doctor_innate_custom_grisgris:OnCreated()
 		return
 	end
 	self.parent:AddDeathEvent(self, true)
+	self.parent:AddOrderFilter(self)
 	self:StartIntervalThink(self.gold_interval)
 end
 
@@ -109,8 +110,11 @@ function modifier_witch_doctor_innate_custom_grisgris:DeathEvent(params)
 	end
 end
 
-function modifier_witch_doctor_innate_custom_grisgris:ConsumeGold()
-	if not IsServer() then
+function modifier_witch_doctor_innate_custom_grisgris:OrderFilter(params)
+	if params.order_type ~= DOTA_UNIT_ORDER_CONSUME_ITEM then
+		return
+	end
+	if params.ability ~= self.ability then
 		return
 	end
 	if self.ended then

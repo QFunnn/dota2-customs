@@ -82,7 +82,7 @@ function snapfire_scatterblast_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_snapfire/hero_snapfire_shotgun_debuff.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_snapfire_slow.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_huskar/huskar_inner_fire_debuff.vpcf", context)
-	PrecacheResource("particle", "particles/snapfire_scatter_stack.vpcf", context)
+	PrecacheResource("particle", "particles/snapfire/snapfire_scatter_stack.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/units/heroes/hero_snapfire/hero_snapfire_shotgun_range_finder_aoe.vpcf",
@@ -274,7 +274,10 @@ function snapfire_scatterblast_custom:OnProjectileHit_ExtraData(target, location
 			end
 
 			if caster:HasTalent("modifier_snapfire_scatter_6") then
-				caster:CdItems(caster:GetTalentValue("modifier_snapfire_scatter_6", "cd_items"))
+				caster:CdItems(
+					caster:GetTalentValue("modifier_snapfire_scatter_6", "cd_items"),
+					"modifier_snapfire_scatter_6"
+				)
 				caster:RemoveModifierByName("modifier_snapfire_scatterblast_custom_move")
 				caster:AddNewModifier(
 					caster,
@@ -287,7 +290,9 @@ function snapfire_scatterblast_custom:OnProjectileHit_ExtraData(target, location
 			if caster:HasTalent("modifier_snapfire_scatter_7") then
 				caster:CdAbility(
 					self,
-					self:GetCooldownTimeRemaining() * caster:GetTalentValue("modifier_snapfire_scatter_7", "cd") / 100
+					self:GetCooldownTimeRemaining() * caster:GetTalentValue("modifier_snapfire_scatter_7", "cd") / 100,
+					nil,
+					"modifier_snapfire_scatter_7"
 				)
 			end
 		end
@@ -486,7 +491,7 @@ function modifier_snapfire_scatterblast_custom_stack:OnCreated(table)
 	if not IsServer() then
 		return
 	end
-	self.particle = self.parent:GenericParticle("particles/snapfire_scatter_stack.vpcf", self, true)
+	self.particle = self.parent:GenericParticle("particles/snapfire/snapfire_scatter_stack.vpcf", self, true)
 
 	self.RemoveForDuel = true
 	self:SetStackCount(1)

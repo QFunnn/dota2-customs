@@ -31,12 +31,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_bloodseeker_thirst_custom_vision",
 	"abilities/bloodseeker/bloodseeker_thirst_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_bloodseeker_hero_5"
 )
 LinkLuaModifier(
 	"modifier_bloodseeker_thirst_custom_cdr",
 	"abilities/bloodseeker/bloodseeker_thirst_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_bloodseeker_hero_5"
 )
 LinkLuaModifier(
 	"modifier_bloodseeker_thirst_custom_legendary_dash",
@@ -56,12 +58,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_bloodseeker_thirst_custom_unmiss",
 	"abilities/bloodseeker/bloodseeker_thirst_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_bloodseeker_thirst_4"
 )
 LinkLuaModifier(
 	"modifier_bloodseeker_thirst_custom_bash_cd",
 	"abilities/bloodseeker/bloodseeker_thirst_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_bloodseeker_thirst_4"
 )
 LinkLuaModifier(
 	"modifier_bloodseeker_thirst_custom_crit_count",
@@ -84,9 +88,8 @@ function bloodseeker_thirst_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_bloodseeker/bloodseeker_thirst_owner.vpcf", context)
 	PrecacheResource("particle", "particles/items4_fx/ascetic_cap.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_gods_strength.vpcf", context)
-	PrecacheResource("particle", "particles/bloodseeker_vision.vpcf", context)
 	PrecacheResource("particle", "particles/bloodseeker/thirst_legendary.vpcf", context)
-	PrecacheResource("particle", "particles/brist_lowhp_.vpcf", context)
+	PrecacheResource("particle", "particles/bristleback/brist_lowhp_.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_bloodseeker/bloodseeker_vision.vpcf", context)
 	PrecacheResource("particle", "particles/bloodseeker/thirst_crit.vpcf", context)
 	PrecacheResource("particle", "particles/bloodseeker/thirst_dash_damage.vpcf", context)
@@ -360,7 +363,7 @@ function modifier_bloodseeker_thirst_custom:OnIntervalThink()
 		})
 		if self.ability:GetCooldownTimeRemaining() > 0 and min_health <= self.ability.talents.e7_health then
 			local cd_inc = self.interval * (self.ability.talents.e7_cd_inc - 1)
-			self.parent:CdAbility(self.ability, cd_inc)
+			self.parent:CdAbility(self.ability, cd_inc, nil, "modifier_bloodseeker_thirst_7")
 		end
 	end
 end
@@ -786,7 +789,7 @@ function modifier_bloodseeker_thirst_custom_cdr:OnIntervalThink()
 		return
 	end
 
-	self.parent:GenericParticle("particles/brist_lowhp_.vpcf")
+	self.parent:GenericParticle("particles/bristleback/brist_lowhp_.vpcf")
 	self.parent:EmitSound("BS.Thirst_legendary_active")
 	self:StartIntervalThink(-1)
 end

@@ -21,7 +21,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_night_stalker_crippling_fear_custom_damage_reduce",
 	"abilities/night_stalker/night_stalker_crippling_fear_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_stalker_hero_2"
 )
 LinkLuaModifier(
 	"modifier_night_stalker_crippling_fear_custom_silence",
@@ -31,17 +32,20 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_night_stalker_crippling_fear_custom_health_reduce",
 	"abilities/night_stalker/night_stalker_crippling_fear_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_stalker_fear_3"
 )
 LinkLuaModifier(
 	"modifier_night_stalker_crippling_fear_custom_health_inc",
 	"abilities/night_stalker/night_stalker_crippling_fear_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_stalker_fear_3"
 )
 LinkLuaModifier(
 	"modifier_night_stalker_crippling_fear_custom_legendary_stack",
 	"abilities/night_stalker/night_stalker_crippling_fear_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_stalker_fear_7"
 )
 LinkLuaModifier(
 	"modifier_night_stalker_crippling_fear_custom_legendary_wave",
@@ -51,17 +55,20 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_night_stalker_crippling_fear_custom_pull_leash",
 	"abilities/night_stalker/night_stalker_crippling_fear_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_stalker_fear_4" }
 )
 LinkLuaModifier(
 	"modifier_night_stalker_crippling_fear_custom_regen",
 	"abilities/night_stalker/night_stalker_crippling_fear_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_stalker_hero_1"
 )
 LinkLuaModifier(
 	"modifier_night_stalker_crippling_fear_custom_fear",
 	"abilities/night_stalker/night_stalker_crippling_fear_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_stalker_fear_4"
 )
 
 night_stalker_crippling_fear_custom = class({})
@@ -79,7 +86,6 @@ function night_stalker_crippling_fear_custom:Precache(context)
 		context
 	)
 	PrecacheResource("particle", "particles/night_stalker/fear_stack.vpcf", context)
-	PrecacheResource("particle", "particles/night_stalker/fear_health.vpcf", context)
 	PrecacheResource("particle", "particles/night_stalker/fear_wave.vpcf", context)
 	PrecacheResource("particle", "particles/night_stalker/fear_legendary_hit.vpcf", context)
 	PrecacheResource("particle", "particles/night_stalker/fear_legendary_start.vpcf", context)
@@ -414,7 +420,7 @@ function modifier_night_stalker_crippling_fear_custom:OnIntervalThink()
 	if not IsServer() then
 		return
 	end
-	self.parent:CdItems(self.ability.talents.q4_cd_items_fear * self.interval)
+	self.parent:CdItems(self.ability.talents.q4_cd_items_fear * self.interval, "modifier_stalker_void_4")
 end
 
 function modifier_night_stalker_crippling_fear_custom:DeclareFunctions()

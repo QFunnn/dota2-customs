@@ -43,6 +43,7 @@ Game.IsNoTalentsHero = function(hero_name)
 	return no_talents_heroes != null && no_talents_heroes[hero_name] !== undefined
 }
 
+
 var dotaHud = $.GetContextPanel().GetParent().GetParent().GetParent()
 dotaHud.FindChildTraverse("StatBranch").style.visibility = "collapse";
 

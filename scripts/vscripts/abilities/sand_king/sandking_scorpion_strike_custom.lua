@@ -41,7 +41,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_sandking_scorpion_strike_custom_perma",
 	"abilities/sand_king/sandking_scorpion_strike_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_sand_king_finale_4"
 )
 LinkLuaModifier(
 	"modifier_sandking_scorpion_strike_custom_stun_cd",
@@ -677,8 +678,11 @@ function modifier_sandking_scorpion_strike_custom_perma:OnIntervalThink()
 
 	if self:GetStackCount() >= self.max then
 		self.caster:EmitSound("BS.Thirst_legendary_active")
-		local particle_peffect =
-			ParticleManager:CreateParticle("particles/mars_revenge_proc.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.caster)
+		local particle_peffect = ParticleManager:CreateParticle(
+			"particles/mars/mars_revenge_proc.vpcf",
+			PATTACH_ABSORIGIN_FOLLOW,
+			self.caster
+		)
 		ParticleManager:SetParticleControl(particle_peffect, 0, self.caster:GetAbsOrigin())
 		ParticleManager:SetParticleControl(particle_peffect, 2, self.caster:GetAbsOrigin())
 		ParticleManager:ReleaseParticleIndex(particle_peffect)

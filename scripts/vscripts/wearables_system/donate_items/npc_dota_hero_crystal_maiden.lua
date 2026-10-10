@@ -45,7 +45,7 @@ return {
 			"particles/econ/items/crystal_maiden/crystal_maiden_maiden_of_icewrack/maiden_freezing_field_snow_arcana1.vpcf",
 			"particles/econ/items/crystal_maiden/crystal_maiden_maiden_of_icewrack/maiden_freezing_field_explosion_arcana1.vpcf",
 			"particles/econ/items/crystal_maiden/crystal_maiden_maiden_of_icewrack/maiden_death_arcana.vpcf",
-			"particles/cm_death_custom/maiden_death_arcana.vpcf",
+			"particles/crystal_maiden/maiden_death_arcana.vpcf",
 		},
 	},
 	[13532] = {
@@ -962,7 +962,7 @@ return {
 		["ParticlesSkills"] = {
 			"particles/units/heroes/hero_crystalmaiden_persona/cm_persona_freezing_field_explosion.vpcf",
 			"particles/units/heroes/hero_crystalmaiden_persona/cm_persona_freezing_field_snow.vpcf",
-			"particles/cm_death_custom/cm_persona_death.vpcf",
+			"particles/crystal_maiden/cm_persona_death.vpcf",
 			"particles/units/heroes/hero_crystalmaiden_persona/cm_persona_death.vpcf",
 			"particles/units/heroes/hero_crystalmaiden_persona/cm_persona_nova.vpcf",
 			"particles/units/heroes/hero_crystalmaiden_persona/cm_persona_ambient_crystals.vpcf",
@@ -993,7 +993,7 @@ return {
 		["ParticlesSkills"] = {
 			"particles/units/heroes/hero_crystalmaiden_persona/cm_persona_freezing_field_explosion.vpcf",
 			"particles/units/heroes/hero_crystalmaiden_persona/cm_persona_freezing_field_snow.vpcf",
-			"particles/cm_death_custom/cm_persona_death.vpcf",
+			"particles/crystal_maiden/cm_persona_death.vpcf",
 			"particles/units/heroes/hero_crystalmaiden_persona/cm_persona_death.vpcf",
 			"particles/units/heroes/hero_crystalmaiden_persona/cm_persona_nova.vpcf",
 			"particles/units/heroes/hero_crystalmaiden_persona/cm_persona_ambient_crystals.vpcf",
@@ -1024,7 +1024,7 @@ return {
 		["ParticlesSkills"] = {
 			"particles/units/heroes/hero_crystalmaiden_persona/cm_persona_freezing_field_explosion.vpcf",
 			"particles/units/heroes/hero_crystalmaiden_persona/cm_persona_freezing_field_snow.vpcf",
-			"particles/cm_death_custom/cm_persona_death.vpcf",
+			"particles/crystal_maiden/cm_persona_death.vpcf",
 			"particles/units/heroes/hero_crystalmaiden_persona/cm_persona_death.vpcf",
 			"particles/units/heroes/hero_crystalmaiden_persona/cm_persona_nova.vpcf",
 			"particles/units/heroes/hero_crystalmaiden_persona/cm_persona_ambient_crystals.vpcf",
@@ -1055,7 +1055,7 @@ return {
 		["ParticlesSkills"] = {
 			"particles/units/heroes/hero_crystalmaiden_persona/cm_persona_freezing_field_explosion.vpcf",
 			"particles/units/heroes/hero_crystalmaiden_persona/cm_persona_freezing_field_snow.vpcf",
-			"particles/cm_death_custom/cm_persona_death.vpcf",
+			"particles/crystal_maiden/cm_persona_death.vpcf",
 			"particles/units/heroes/hero_crystalmaiden_persona/cm_persona_death.vpcf",
 			"particles/units/heroes/hero_crystalmaiden_persona/cm_persona_nova.vpcf",
 			"particles/units/heroes/hero_crystalmaiden_persona/cm_persona_ambient_crystals.vpcf",
@@ -1086,7 +1086,7 @@ return {
 		["ParticlesSkills"] = {
 			"particles/units/heroes/hero_crystalmaiden_persona/cm_persona_freezing_field_explosion.vpcf",
 			"particles/units/heroes/hero_crystalmaiden_persona/cm_persona_freezing_field_snow.vpcf",
-			"particles/cm_death_custom/cm_persona_death.vpcf",
+			"particles/crystal_maiden/cm_persona_death.vpcf",
 			"particles/units/heroes/hero_crystalmaiden_persona/cm_persona_death.vpcf",
 			"particles/units/heroes/hero_crystalmaiden_persona/cm_persona_nova.vpcf",
 			"particles/units/heroes/hero_crystalmaiden_persona/cm_persona_ambient_crystals.vpcf",

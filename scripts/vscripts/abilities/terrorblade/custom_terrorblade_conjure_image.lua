@@ -60,14 +60,13 @@ function custom_terrorblade_conjure_image:Precache(context)
 	)
 	PrecacheResource("particle", "particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_r.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_terrorblade/terrorblade_ambient_sword_l.vpcf", context)
-	PrecacheResource("particle", "particles/terrorblade_custom/terrorblade_feet_effects.vpcf", context)
+	PrecacheResource("particle", "particles/terrorblade/terrorblade_feet_effects.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_terrorblade/terrorblade_sunder.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/units/heroes/heroes_underlord/abyssal_underlord_firestorm_wave_burn.vpcf",
 		context
 	)
-	PrecacheResource("particle", "particles/tb_illusion_legendary.vpcf", context)
 	PrecacheResource("particle", "particles/items2_fx/manta_phase.vpcf", context)
 	PrecacheResource("particle", "particles/terrorblade/image_blink.vpcf", context)
 	PrecacheResource("particle", "particles/terrorblade/illusion_damage_reduce.vpcf", context)
@@ -202,7 +201,7 @@ function custom_terrorblade_conjure_image:SpawnIllusion(spaw_unit, attack_target
 		scramble = false
 
 		local effect = ParticleManager:CreateParticle(
-			"particles/general/illusion_created.vpcf",
+			"particles/generic/illusion_created.vpcf",
 			PATTACH_CUSTOMORIGIN_FOLLOW,
 			spaw_unit
 		)

@@ -11,7 +11,8 @@
 LinkLuaModifier(
 	"modifier_tinker_warp_grenade_custom_silence",
 	"abilities/tinker/tinker_warp_grenade_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "Shard" }
 )
 
 tinker_warp_grenade_custom = class({})

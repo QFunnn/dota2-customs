@@ -16,7 +16,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_axe_battle_hunger_custom_debuff",
 	"abilities/axe/axe_battle_hunger_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 LinkLuaModifier(
 	"modifier_axe_battle_hunger_custom_tracker",

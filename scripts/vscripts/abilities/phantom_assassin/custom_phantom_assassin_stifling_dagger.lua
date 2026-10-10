@@ -26,17 +26,20 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_custom_phantom_assassin_stifling_dagger_stack",
 	"abilities/phantom_assassin/custom_phantom_assassin_stifling_dagger",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_phantom_assassin_dagger_7"
 )
 LinkLuaModifier(
 	"modifier_custom_phantom_assassin_stifling_dagger_root",
 	"abilities/phantom_assassin/custom_phantom_assassin_stifling_dagger",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_phantom_assassin_hero_4"
 )
 LinkLuaModifier(
 	"modifier_custom_phantom_assassin_stifling_dagger_poison",
 	"abilities/phantom_assassin/custom_phantom_assassin_stifling_dagger",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_phantom_assassin_dagger_3"
 )
 
 custom_phantom_assassin_stifling_dagger = class({})
@@ -223,12 +226,16 @@ function custom_phantom_assassin_stifling_dagger:OnProjectileHit_ExtraData(hTarg
 		return
 	end
 
+	if table.legendary_index then
+		self.caster:LogProc("modifier_phantom_assassin_dagger_7", table.bonus and 1 or 0, hTarget)
+	end
+
 	if table.bonus then
 		hTarget:AddNewModifier(self.caster, self, "modifier_stunned", { duration = self.talents.q7_stun })
 	end
 
 	if table.legendary_index and self.talents.has_q4 == 1 then
-		self.caster:CdItems(self.talents.q4_cd_items_legendary)
+		self.caster:CdItems(self.talents.q4_cd_items_legendary, "modifier_phantom_assassin_dagger_4")
 	end
 
 	local distance = table.distance or (hTarget:GetAbsOrigin() - self.caster:GetAbsOrigin()):Length2D()
@@ -260,6 +267,7 @@ function custom_phantom_assassin_stifling_dagger:OnProjectileHit_ExtraData(hTarg
 			"modifier_custom_phantom_assassin_stifling_dagger_root",
 			{ duration = self.talents.h4_root * (1 - hTarget:GetStatusResistance()) }
 		)
+		self.caster:LogProc("modifier_phantom_assassin_hero_4", distance, hTarget)
 	end
 
 	if self.caster.blink_ability then
@@ -304,6 +312,7 @@ function custom_phantom_assassin_stifling_dagger:ProcPoison(target, damage, dist
 	if self.talents.has_q3 ~= 1 then
 		return
 	end
+	self.caster:LogProc("modifier_phantom_assassin_dagger_3", distance >= self.talents.q3_range and 1 or 0, target)
 	if distance < self.talents.q3_range then
 		return
 	end
@@ -399,7 +408,7 @@ function custom_phantom_assassin_stifling_dagger:Throw(target, source, crit, mai
 		return
 	end
 
-	self.caster:CdItems(self.talents.q4_cd_items)
+	self.caster:CdItems(self.talents.q4_cd_items, "modifier_phantom_assassin_dagger_4")
 end
 
 modifier_custom_phantom_assassin_stifling_dagger_tracker = class(mod_hidden)
@@ -563,6 +572,7 @@ function modifier_custom_phantom_assassin_stifling_dagger_tracker:SpellEvent(par
 		end
 
 		self.ability:Throw(target, "modifier_phantom_assassin_dagger_4")
+		self.parent:LogProc("modifier_phantom_assassin_dagger_4", target:IsRealHero() and 1 or 0)
 
 		if target:IsRealHero() then
 			self.ability:AddCharge()
@@ -865,6 +875,7 @@ function modifier_custom_phantom_assassin_stifling_legendary_cast:OnCreated()
 	self.max_duration = self.ability:GetDuration()
 
 	local stack = self.parent:GetUpgradeStack("modifier_custom_phantom_assassin_stifling_dagger_stack")
+	self.parent:LogProc("modifier_phantom_assassin_dagger_7_cast", stack)
 	self.bonus = stack >= self.ability.talents.q7_stack_max and 1 or nil
 	self.damage = self.ability.talents.q7_damage + self.ability.talents.q7_damage_inc * stack
 
@@ -933,6 +944,7 @@ function modifier_custom_phantom_assassin_stifling_legendary_cast:OnIntervalThin
 
 	self.parent:EmitSound("Hero_PhantomAssassin.Dagger.Cast")
 	self.dagger.legendary_proj[index] = ProjectileManager:CreateLinearProjectile(projectile)
+	self.parent:LogProc("modifier_phantom_assassin_dagger_7_throw")
 
 	self:DecrementStackCount()
 

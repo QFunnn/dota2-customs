@@ -11,7 +11,8 @@
 LinkLuaModifier(
 	"modifier_bristleback_viscous_nasal_goo_custom",
 	"abilities/bristleback/bristleback_viscous_nasal_goo_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 LinkLuaModifier(
 	"modifier_bristleback_viscous_nasal_goo_tracker",
@@ -21,7 +22,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_bristleback_viscous_nasal_goo_armor",
 	"abilities/bristleback/bristleback_viscous_nasal_goo_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_bristle_goo_3"
 )
 LinkLuaModifier(
 	"modifier_bristleback_viscous_nasal_goo_custom_silence_cd",
@@ -31,7 +33,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_bristleback_viscous_nasal_goo_custom_legendary",
 	"abilities/bristleback/bristleback_viscous_nasal_goo_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_bristle_goo_7"
 )
 LinkLuaModifier(
 	"modifier_bristleback_viscous_nasal_goo_custom_legendary_cd",
@@ -61,14 +64,12 @@ function bristleback_viscous_nasal_goo_custom:Precache(context)
 	)
 	PrecacheResource("particle", "particles/hoodwink/bush_damage.vpcf", context)
 	PrecacheResource("particle", "particles/bristleback/goo_legendary_stack.vpcf", context)
-	PrecacheResource("particle", "particles/bristleback/goo_legendary_proc.vpcf", context)
 	PrecacheResource("particle", "particles/bristleback/goo_legendary_proc_2.vpcf", context)
-	PrecacheResource("particle", "particles/bristleback/bristle_goo_ground.vpcf", context)
-	PrecacheResource("particle", "particles/alch_root.vpcf", context)
+	PrecacheResource("particle", "particles/alchemist/alch_root.vpcf", context)
 	PrecacheResource("particle", "particles/bristleback/goo_legendary_active.vpcf", context)
 	PrecacheResource("particle", "particles/bristleback/goo_legendary_screen.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_ogre_magi/ogre_magi_bloodlust_buff.vpcf", context)
-	PrecacheResource("particle", "particles/brist_proc.vpcf", context)
+	PrecacheResource("particle", "particles/bristleback/brist_proc.vpcf", context)
 	PrecacheResource("particle", "particles/bloodseeker/thirst_legendary.vpcf", context)
 end
 
@@ -591,7 +592,7 @@ function modifier_bristleback_viscous_nasal_goo_custom_legendary:OnCreated(table
 	self.max_duration = self:GetRemainingTime()
 
 	self.parent:GenericParticle("particles/bristleback/goo_legendary_active.vpcf", self)
-	self.parent:GenericParticle("particles/brist_proc.vpcf")
+	self.parent:GenericParticle("particles/bristleback/brist_proc.vpcf")
 	self.legendary_particle =
 		ParticleManager:CreateParticle("particles/bloodseeker/thirst_legendary.vpcf", PATTACH_CUSTOMORIGIN, self.parent)
 	ParticleManager:SetParticleControlEnt(

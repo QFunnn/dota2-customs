@@ -25,7 +25,7 @@ function item_wraith_band_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
 	end
-	PrecacheResource("particle", "particles/wb_bif.vpcf", context)
+	PrecacheResource("particle", "particles/items/wb_bif.vpcf", context)
 end
 
 function item_wraith_band_custom:Spawn()
@@ -120,7 +120,7 @@ function modifier_item_wraith_band_custom_speed:OnCreated(table)
 	if not IsServer() then
 		return
 	end
-	self.parent:GenericParticle("particles/wb_bif.vpcf", self)
+	self.parent:GenericParticle("particles/items/wb_bif.vpcf", self)
 
 	for _, mod in pairs(self.parent:FindAllModifiers()) do
 		if mod:GetName() == "modifier_item_wraith_band_custom" and self:GetStackCount() < self.max_stack then

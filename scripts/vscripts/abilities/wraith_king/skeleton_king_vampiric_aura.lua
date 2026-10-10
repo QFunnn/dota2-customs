@@ -26,12 +26,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_skeleton_king_vampiric_aura_custom_legendary",
 	"abilities/wraith_king/skeleton_king_vampiric_aura.lua",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_skeleton_vampiric_7"
 )
 LinkLuaModifier(
 	"modifier_skeleton_king_vampiric_aura_custom_armor",
 	"abilities/wraith_king/skeleton_king_vampiric_aura.lua",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_skeleton_vampiric_3"
 )
 LinkLuaModifier(
 	"modifier_skeleton_king_vampiric_aura_custom_path",
@@ -46,7 +48,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_skeleton_king_vampiric_aura_custom_totem_aura",
 	"abilities/wraith_king/skeleton_king_vampiric_aura.lua",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_skeleton_vampiric_4"
 )
 LinkLuaModifier(
 	"modifier_skeleton_king_vampiric_aura_custom_slow",
@@ -78,10 +81,9 @@ function skeleton_king_vampiric_aura_custom:Precache(context)
 		context
 	)
 	PrecacheResource("particle", "particles/sand_king/sandking_caustic_finale_explode_custom.vpcf", context)
-	PrecacheResource("particle", "particles/lc_odd_proc_.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_odd_proc_.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_drow_frost_arrow.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_shield_rune.vpcf", context)
-	PrecacheResource("particle", "particles/wk_shield.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/econ/items/ogre_magi/ogre_ti8_immortal_weapon/ogre_ti8_immortal_bloodlust_buff_hands_glow.vpcf",
@@ -745,7 +747,7 @@ function modifier_skeleton_king_vampiric_aura_custom_legendary:OnRefresh()
 		return
 	end
 
-	self.parent:GenericParticle("particles/lc_odd_proc_.vpcf")
+	self.parent:GenericParticle("particles/legion_commander/lc_odd_proc_.vpcf")
 	self.parent:EmitSound("BS.Thirst_legendary_active")
 end
 
@@ -941,7 +943,7 @@ function modifier_skeleton_king_vampiric_aura_custom_armor:OnRefresh(table)
 
 	if self:GetStackCount() >= self.max and self.is_enemy then
 		self.parent:EmitSound("WK.skelet_armor")
-		self.parent:GenericParticle("particles/general/generic_armor_reduction.vpcf", self, true)
+		self.parent:GenericParticle("particles/generic/generic_armor_reduction.vpcf", self, true)
 	end
 end
 

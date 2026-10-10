@@ -34,8 +34,6 @@ function item_conjurers_catalyst_custom:Precache(context)
 	end
 	PrecacheResource("particle", "particles/items7_fx/misrule_focus.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_invoker/invoker_chaos_meteor_burn_debuff.vpcf", context)
-	PrecacheResource("particle", "particles/items3_fx/octarine_core_lifesteal.vpcf", context)
-	PrecacheResource("particle", "particles/status_fx/status_effect_burn.vpcf", context)
 end
 
 function item_conjurers_catalyst_custom:Spawn()
@@ -43,6 +41,7 @@ function item_conjurers_catalyst_custom:Spawn()
 	self.damage = self:GetSpecialValueFor("damage")
 	self.damage_health = self:GetSpecialValueFor("damage_health") / 100
 	self.heal = self:GetSpecialValueFor("heal") / 100
+	self.creeps_damage = self:GetSpecialValueFor("creeps_damage")
 	self.radius = self:GetSpecialValueFor("radius")
 end
 
@@ -50,7 +49,7 @@ modifier_item_conjurers_catalyst_custom = class(mod_hidden)
 function modifier_item_conjurers_catalyst_custom:RemoveOnDeath()
 	return false
 end
-function modifier_item_conjurers_catalyst_custom:OnCreated(table)
+function modifier_item_conjurers_catalyst_custom:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
@@ -128,6 +127,7 @@ function modifier_item_conjurers_catalyst_custom_burn:OnCreated()
 	self.damage_health = self.ability.damage_health
 	self.count = self.ability.duration
 	self.heal = self.ability.heal
+	self.creeps_damage = self.ability.creeps_damage
 
 	self.damageTable = {
 		victim = self.parent,
@@ -147,11 +147,8 @@ function modifier_item_conjurers_catalyst_custom_burn:OnIntervalThink()
 	if not IsServer() then
 		return
 	end
-	local damage = self.damage + self.damage_health * self.parent:GetMaxHealth()
-	if self.parent:IsCreep() then
-		damage = self.damage * 2
-	end
-	self.damageTable.damage = damage
+	self.damageTable.damage = self.parent:IsCreep() and self.creeps_damage
+		or self.damage + self.damage_health * self.parent:GetMaxHealth()
 	local real_damage = DoDamage(self.damageTable)
 	local result = self.caster:CanLifesteal(self.parent)
 	if result then

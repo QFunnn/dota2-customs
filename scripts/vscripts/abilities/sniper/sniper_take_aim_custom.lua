@@ -69,15 +69,14 @@ function sniper_take_aim_custom:Precache(context)
 
 	PrecacheResource("particle", "particles/items3_fx/blink_swift_buff.vpcf", context)
 	PrecacheResource("particle", "particles/items_fx/force_staff.vpcf", context)
-	PrecacheResource("particle", "particles/sniper_aim_blink.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_forcestaff.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_oracle/oracle_purifyingflames.vpcf", context)
 	PrecacheResource("particle", "particles/items3_fx/blink_swift_buff.vpcf", context)
-	PrecacheResource("particle", "particles/lc_odd_proc_hands.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_odd_proc_hands.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_snapfire/hero_snapfire_shotgun_debuff.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_snapfire_slow.vpcf", context)
-	PrecacheResource("particle", "particles/sniper_matrix.vpcf", context)
-	PrecacheResource("particle", "particles/sniper_shield_hit.vpcf", context)
+	PrecacheResource("particle", "particles/sniper/sniper_matrix.vpcf", context)
+	PrecacheResource("particle", "particles/sniper/sniper_shield_hit.vpcf", context)
 	PrecacheResource("particle", "particles/hoodwink/bush_damage.vpcf", context)
 	PrecacheResource("particle", "particles/sniper/aim_block.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_sniper/sniper_take_aim_overhead.vpcf", context)
@@ -180,7 +179,7 @@ function sniper_take_aim_custom:OnProjectileThink_ExtraData(location, data)
 
 			caster:PerformAttack(enemy, false, true, true, true, false, false, false)
 			local particle_aoe_fx = ParticleManager:CreateParticle(
-				"particles/sniper_legendary_attacka.vpcf",
+				"particles/sniper/sniper_legendary_attacka.vpcf",
 				PATTACH_ABSORIGIN_FOLLOW,
 				enemy
 			)
@@ -408,7 +407,7 @@ function modifier_sniper_take_aim_custom_active:OnIntervalThink()
 
 		self.ability.projectiles[index] = ProjectileManager:CreateTrackingProjectile({
 			Target = thinker,
-			EffectName = "particles/sniper_legendary_attack.vpcf",
+			EffectName = "particles/sniper/sniper_legendary_attack.vpcf",
 			Ability = self.ability,
 			iMoveSpeed = self.speed,
 			bDodgeable = false,

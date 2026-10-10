@@ -16,7 +16,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_bristleback_innate_custom_shield",
 	"abilities/bristleback/bristleback_innate_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 LinkLuaModifier(
 	"modifier_bristleback_innate_custom_shield_timer",
@@ -26,7 +27,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_bristleback_innate_custom_heal_reduce",
 	"abilities/bristleback/bristleback_innate_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_bristle_spray_4"
 )
 LinkLuaModifier(
 	"modifier_bristleback_innate_custom_proc_attack",
@@ -268,7 +270,7 @@ function modifier_bristleback_innate_custom:SpellEvent(params)
 	end
 
 	if self.ability.talents.has_w4 == 1 then
-		self.parent:CdItems(self.ability.talents.w4_cd_items)
+		self.parent:CdItems(self.ability.talents.w4_cd_items, "modifier_bristle_spray_4")
 	end
 
 	if self.ability.talents.has_w3 == 1 and self.parent.spray_ability then

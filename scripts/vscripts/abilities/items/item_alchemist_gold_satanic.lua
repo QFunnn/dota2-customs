@@ -29,7 +29,7 @@ function item_alchemist_gold_satanic:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
 	end
-	PrecacheResource("particle", "particles/bristle_cdr.vpcf", context)
+	PrecacheResource("particle", "particles/items/bristle_cdr.vpcf", context)
 	PrecacheResource("particle", "particles/items2_fx/mask_of_madness.vpcf", context)
 end
 

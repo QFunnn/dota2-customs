@@ -16,24 +16,33 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_kunkka_innate_custom_effect",
 	"abilities/kunkka/kunkka_innate_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 LinkLuaModifier(
 	"modifier_kunkka_innate_custom_damage",
 	"abilities/kunkka/kunkka_innate_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
-LinkLuaModifier("modifier_kunkka_innate_custom_heal", "abilities/kunkka/kunkka_innate_custom", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier(
+	"modifier_kunkka_innate_custom_heal",
+	"abilities/kunkka/kunkka_innate_custom",
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_kunkka_hero_2"
+)
 LinkLuaModifier(
 	"modifier_kunkka_innate_custom_shard",
 	"abilities/kunkka/kunkka_innate_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "Shard" }
 )
 LinkLuaModifier("modifier_kunkka_innate_custom_anim", "abilities/kunkka/kunkka_innate_custom", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier(
 	"modifier_kunkka_innate_custom_reduce",
 	"abilities/kunkka/kunkka_innate_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_kunkka_hero_2"
 )
 
 kunkka_innate_custom = class({})

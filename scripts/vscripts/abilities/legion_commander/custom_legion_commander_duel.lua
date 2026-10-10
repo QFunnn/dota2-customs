@@ -16,7 +16,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_legion_commander_duel_custom_damage",
 	"abilities/legion_commander/custom_legion_commander_duel",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_legion_hero_6"
 )
 LinkLuaModifier(
 	"modifier_legion_commander_duel_custom_linger",
@@ -41,7 +42,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_legion_commander_duel_custom_scepter_win",
 	"abilities/legion_commander/custom_legion_commander_duel",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "Scepter" }
 )
 LinkLuaModifier(
 	"modifier_legion_commander_duel_custom_legendary",
@@ -51,7 +53,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_legion_commander_duel_custom_legendary_unit",
 	"abilities/legion_commander/custom_legion_commander_duel",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_legion_duel_7"
 )
 LinkLuaModifier(
 	"modifier_legion_commander_duel_custom_legendary_attack",
@@ -61,17 +64,20 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_legion_commander_duel_custom_armor",
 	"abilities/legion_commander/custom_legion_commander_duel",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_legion_duel_1"
 )
 LinkLuaModifier(
 	"modifier_legion_commander_duel_custom_heal_cd",
 	"abilities/legion_commander/custom_legion_commander_duel",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_legion_duel_4"
 )
 LinkLuaModifier(
 	"modifier_legion_commander_duel_custom_damage_stack",
 	"abilities/legion_commander/custom_legion_commander_duel",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_legion_duel_3"
 )
 
 custom_legion_commander_duel = class({})
@@ -88,22 +94,20 @@ function custom_legion_commander_duel:Precache(context)
 		context
 	)
 	PrecacheResource("particle", "particles/status_fx/status_effect_legion_commander_duel.vpcf", context)
-	PrecacheResource("particle", "particles/beast_grave.vpcf", context)
-	PrecacheResource("particle", "particles/legion_duel_ring.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/legion_duel_ring.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/units/heroes/hero_omniknight/omniknight_hammer_of_purity_detonation.vpcf",
 		context
 	)
-	PrecacheResource("particle", "particles/lc_press_heal.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_press_heal.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_oracle/oracle_false_promise_heal.vpcf", context)
-	PrecacheResource("particle", "particles/lc_odd_charge_mark.vpcf", context)
-	PrecacheResource("particle", "particles/jugg_parry.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_odd_charge_mark.vpcf", context)
+	PrecacheResource("particle", "particles/juggernaut/jugg_parry.vpcf", context)
 	PrecacheResource("particle", "particles/legion_commander/scepter_duel.vpcf", context)
-	PrecacheResource("particle", "particles/lc_odd_proc_.vpcf", context)
-	PrecacheResource("particle", "particles/legion_commander/duel_stack.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_odd_proc_.vpcf", context)
 	PrecacheResource("particle", "particles/legion_commander/duel_legendary_attack.vpcf", context)
-	PrecacheResource("particle", "particles/lc_lowhp.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_lowhp.vpcf", context)
 end
 
 function custom_legion_commander_duel:UpdateTalents(name)
@@ -385,8 +389,11 @@ function modifier_legion_commander_duel_custom_buff:OnCreated(table)
 	if not self.is_enemy then
 		self.parent:EmitSound("Hero_LegionCommander.Duel")
 
-		local particle_name =
-			wearables_system:GetParticleReplacementAbility(self.caster, "particles/legion_duel_ring.vpcf", self.ability)
+		local particle_name = wearables_system:GetParticleReplacementAbility(
+			self.caster,
+			"particles/legion_commander/legion_duel_ring.vpcf",
+			self.ability
+		)
 		local dir = (self.caster:GetAbsOrigin() - self.target:GetAbsOrigin())
 		local center_point = self.target:GetAbsOrigin() + dir:Normalized() * 80
 
@@ -397,6 +404,7 @@ function modifier_legion_commander_duel_custom_buff:OnCreated(table)
 
 		self.ability:EndCd()
 		self.parent:AddDeathEvent(self)
+		self.parent:AddOrderFilter(self)
 
 		if IsValid(self.parent.legion_innate_ability) then
 			self.str_bonus = self.parent:AddNewModifier(
@@ -426,6 +434,23 @@ function modifier_legion_commander_duel_custom_buff:DeathEvent(params)
 		self:Destroy()
 		return
 	end
+end
+
+function modifier_legion_commander_duel_custom_buff:OrderFilter(params)
+	if params.order_type == DOTA_UNIT_ORDER_CAST_TARGET then
+		return
+	end
+	if params.order_type == DOTA_UNIT_ORDER_CAST_NO_TARGET then
+		return
+	end
+	if params.order_type == DOTA_UNIT_ORDER_CAST_POSITION then
+		return
+	end
+	if params.order_type == DOTA_UNIT_ORDER_CAST_TOGGLE then
+		return
+	end
+
+	return false
 end
 
 function modifier_legion_commander_duel_custom_buff:OnIntervalThink(first)
@@ -862,7 +887,7 @@ end
 
 modifier_legion_commander_duel_custom_linger = class(mod_hidden)
 function modifier_legion_commander_duel_custom_linger:GetEffectName()
-	return "particles/lc_odd_charge_mark.vpcf"
+	return "particles/legion_commander/lc_odd_charge_mark.vpcf"
 end
 function modifier_legion_commander_duel_custom_linger:GetEffectAttachType()
 	return PATTACH_OVERHEAD_FOLLOW
@@ -1090,8 +1115,11 @@ function modifier_legion_commander_duel_custom_tracker:DamageEvent_inc(params)
 		return
 	end
 
-	local effect_target =
-		ParticleManager:CreateParticle("particles/lc_press_heal.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
+	local effect_target = ParticleManager:CreateParticle(
+		"particles/legion_commander/lc_press_heal.vpcf",
+		PATTACH_ABSORIGIN_FOLLOW,
+		self.parent
+	)
 	ParticleManager:SetParticleControl(effect_target, 1, Vector(200, 100, 100))
 	ParticleManager:ReleaseParticleIndex(effect_target)
 
@@ -1179,8 +1207,11 @@ function modifier_legion_commander_duel_custom_tracker:GetModifierIncomingDamage
 
 	if RandomInt(1, 4) == 1 then
 		self.parent:EmitSound("Juggernaut.Parry")
-		local particle =
-			ParticleManager:CreateParticle("particles/jugg_parry.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
+		local particle = ParticleManager:CreateParticle(
+			"particles/juggernaut/jugg_parry.vpcf",
+			PATTACH_ABSORIGIN_FOLLOW,
+			self.parent
+		)
 		ParticleManager:SetParticleControlEnt(
 			particle,
 			0,
@@ -1232,7 +1263,7 @@ function modifier_legion_commander_duel_custom_damage_stack:OnRefresh(table)
 	self:IncrementStackCount()
 	if self:GetStackCount() >= self.max then
 		self.parent:EmitSound("Lc.Courage_armor")
-		self.parent:GenericParticle("particles/lc_lowhp.vpcf", self)
+		self.parent:GenericParticle("particles/legion_commander/lc_lowhp.vpcf", self)
 	end
 end
 
@@ -1276,7 +1307,7 @@ function modifier_legion_commander_duel_custom_armor:OnRefresh()
 
 	if self:GetStackCount() >= self.max then
 		self.parent:EmitSound("Hoodwink.Acorn_armor")
-		self.parent:GenericParticle("particles/general/generic_armor_reduction.vpcf", self, true)
+		self.parent:GenericParticle("particles/generic/generic_armor_reduction.vpcf", self, true)
 	end
 end
 

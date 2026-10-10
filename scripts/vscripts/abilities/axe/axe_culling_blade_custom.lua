@@ -17,7 +17,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_axe_culling_blade_custom_attack_stack",
 	"abilities/axe/axe_culling_blade_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_axe_culling_3"
 )
 LinkLuaModifier(
 	"modifier_axe_culling_blade_custom_aegis",
@@ -47,12 +48,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_axe_culling_blade_custom_root",
 	"abilities/axe/axe_culling_blade_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_axe_culling_4"
 )
 LinkLuaModifier(
 	"modifier_axe_culling_blade_custom_root_cd",
 	"abilities/axe/axe_culling_blade_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_axe_culling_4"
 )
 
 axe_culling_blade_custom = class({})
@@ -69,13 +72,12 @@ function axe_culling_blade_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_axe/axe_culling_blade_kill.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_axe/axe_culling_blade.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_axe/axe_cullingblade_sprint.vpcf", context)
-	PrecacheResource("particle", "particles/wk_stack.vpcf", context)
-	PrecacheResource("particle", "particles/lc_odd_charge_mark.vpcf", context)
+	PrecacheResource("particle", "particles/wraith_king/wk_stack.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_odd_charge_mark.vpcf", context)
 	PrecacheResource("particle", "particles/items3_fx/blink_overwhelming_start.vpcf", context)
 	PrecacheResource("particle", "particles/items3_fx/blink_overwhelming_end.vpcf", context)
-	PrecacheResource("particle", "particles/axe_execute.vpcf", context)
-	PrecacheResource("particle", "particles/axe_exe.vpcf", context)
-	PrecacheResource("particle", "particles/brist_lowhp_.vpcf", context)
+	PrecacheResource("particle", "particles/axe/axe_exe.vpcf", context)
+	PrecacheResource("particle", "particles/bristleback/brist_lowhp_.vpcf", context)
 	PrecacheResource("particle", "particles/items4_fx/ascetic_cap.vpcf", context)
 	PrecacheResource("particle", "particles/axe/culling_stack.vpcf", context)
 	PrecacheResource("particle", "particles/items3_fx/hook_root.vpcf", context)
@@ -461,7 +463,7 @@ function modifier_axe_culling_blade_custom_attack_stack:OnCreated(table)
 		return
 	end
 	self.RemoveForDuel = true
-	self.particle = self.parent:GenericParticle("particles/wk_stack.vpcf", self, true)
+	self.particle = self.parent:GenericParticle("particles/wraith_king/wk_stack.vpcf", self, true)
 
 	self:OnRefresh()
 end

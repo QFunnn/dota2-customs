@@ -9,7 +9,12 @@
 
 
 LinkLuaModifier("modifier_tinker_innate_custom", "abilities/tinker/tinker_innate_custom", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_tinker_innate_custom_move", "abilities/tinker/tinker_innate_custom", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier(
+	"modifier_tinker_innate_custom_move",
+	"abilities/tinker/tinker_innate_custom",
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "Scepter" }
+)
 LinkLuaModifier(
 	"modifier_tinker_innate_custom_shield",
 	"abilities/tinker/tinker_innate_custom",
@@ -23,7 +28,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_tinker_innate_custom_shield_auto_cd",
 	"abilities/tinker/tinker_innate_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_tinker_hero_5"
 )
 
 tinker_innate_custom = class({})

@@ -9,7 +9,12 @@
 
 
 LinkLuaModifier("modifier_furion_sprout_custom", "abilities/furion/furion_sprout_custom", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_furion_sprout_custom_aura", "abilities/furion/furion_sprout_custom", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier(
+	"modifier_furion_sprout_custom_aura",
+	"abilities/furion/furion_sprout_custom",
+	LUA_MODIFIER_MOTION_NONE,
+	true
+)
 LinkLuaModifier(
 	"modifier_furion_sprout_custom_legendary",
 	"abilities/furion/furion_sprout_custom",
@@ -28,32 +33,38 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_furion_sprout_custom_legendary_effect",
 	"abilities/furion/furion_sprout_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_furion_sprout_7"
 )
 LinkLuaModifier(
 	"modifier_furion_sprout_custom_tracker",
 	"abilities/furion/furion_sprout_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_furion_sprout_4"
 )
 LinkLuaModifier(
 	"modifier_furion_sprout_custom_caster",
 	"abilities/furion/furion_sprout_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_furion_hero_4", "modifier_furion_sprout_2" }
 )
 LinkLuaModifier(
 	"modifier_furion_sprout_custom_leash",
 	"abilities/furion/furion_sprout_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_furion_hero_4"
 )
 LinkLuaModifier(
 	"modifier_furion_sprout_custom_resist",
 	"abilities/furion/furion_sprout_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_furion_sprout_3"
 )
 LinkLuaModifier(
 	"modifier_furion_sprout_custom_resist_bonus",
 	"abilities/furion/furion_sprout_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_furion_sprout_3" }
 )
 LinkLuaModifier(
 	"modifier_furion_sprout_custom_delay",
@@ -86,7 +97,7 @@ function furion_sprout_custom:Precache(context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_natures_prophet_curse.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_enchantress_shard_debuff.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_sniper/sniper_headshot_slow.vpcf", context)
-	PrecacheResource("particle", "particles/furion/sprout_delay.vpcf", context)
+	PrecacheResource("particle", "particles/nature_prophet/sprout_delay.vpcf", context)
 	PrecacheResource("particle", "particles/nature_prophet/teleport_knock.vpcf", context)
 	PrecacheResource("particle", "particles/items2_fx/heavens_halberd.vpcf", context)
 	PrecacheResource("particle", "particles/nature_prophet/sprout_buff.vpcf", context)
@@ -547,8 +558,11 @@ function modifier_furion_sprout_custom_delay:OnCreated(table)
 
 	self.damageTable = { ability = self.ability, attacker = self.caster, damage_type = DAMAGE_TYPE_MAGICAL }
 
-	self.particle =
-		ParticleManager:CreateParticle("particles/furion/sprout_delay.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
+	self.particle = ParticleManager:CreateParticle(
+		"particles/nature_prophet/sprout_delay.vpcf",
+		PATTACH_ABSORIGIN_FOLLOW,
+		self.parent
+	)
 	ParticleManager:SetParticleControl(self.particle, 1, Vector(self.radius, 0, -self.radius / self.time))
 	ParticleManager:SetParticleControl(self.particle, 2, Vector(self.time, 0, 0))
 	self:AddParticle(self.particle, false, false, -1, false, false)

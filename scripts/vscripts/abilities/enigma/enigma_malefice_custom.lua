@@ -8,7 +8,12 @@
 ]]
 
 
-LinkLuaModifier("modifier_enigma_malefice_custom", "abilities/enigma/enigma_malefice_custom", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier(
+	"modifier_enigma_malefice_custom",
+	"abilities/enigma/enigma_malefice_custom",
+	LUA_MODIFIER_MOTION_NONE,
+	true
+)
 LinkLuaModifier(
 	"modifier_enigma_malefice_custom_aura",
 	"abilities/enigma/enigma_malefice_custom",
@@ -37,12 +42,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_enigma_malefice_custom_health",
 	"abilities/enigma/enigma_malefice_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_enigma_malefice_3"
 )
 LinkLuaModifier(
 	"modifier_enigma_malefice_custom_shield_cd",
 	"abilities/enigma/enigma_malefice_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "Shard" }
 )
 
 enigma_malefice_custom = class({})
@@ -55,9 +62,8 @@ function enigma_malefice_custom:Precache(context)
 	end
 	PrecacheResource("particle", "particles/units/heroes/hero_enigma/enigma_malefice.vpcf", context)
 	PrecacheResource("particle", "particles/enigma/malefice_legendary_stack.vpcf", context)
-	PrecacheResource("particle", "particles/enigma/malefice_legendary_stack_max.vpcf", context)
 	PrecacheResource("particle", "particles/enigma/malefice_legendary_damage.vpcf", context)
-	PrecacheResource("particle", "particles/void_astral_slow.vpcf", context)
+	PrecacheResource("particle", "particles/void_spirit/void_astral_slow.vpcf", context)
 	PrecacheResource("particle", "particles/enigma/malefice_shield.vpcf", context)
 	PrecacheResource("particle", "particles/enigma/malefice_aoe.vpcf", context)
 	PrecacheResource("particle", "particles/items4_fx/soul_keeper.vpcf", context)

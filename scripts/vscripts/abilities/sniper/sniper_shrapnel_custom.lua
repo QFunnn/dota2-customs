@@ -65,7 +65,7 @@ function sniper_shrapnel_custom:Precache(context)
 	end
 	PrecacheResource("particle", "particles/units/heroes/hero_sniper/sniper_shrapnel_launch.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_sniper/sniper_shrapnel.vpcf", context)
-	PrecacheResource("particle", "particles/sf_refresh_a.vpcf", context)
+	PrecacheResource("particle", "particles/shadow_fiend/sf_refresh_a.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_terrorblade/ember_slow.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_techies/techies_land_mine_explode.vpcf", context)
 	PrecacheResource("particle", "particles/generic_gameplay/generic_lifesteal.vpcf", context)
@@ -334,7 +334,7 @@ function modifier_sniper_shrapnel_custom_tracker:AttackEvent_out(params)
 	local ability = self.parent:FindAbilityByName(name)
 
 	if ability then
-		ability:AddCharge(1, "particles/sf_refresh_a.vpcf", "Sniper.Shrapnel_legendary")
+		ability:AddCharge(1, "particles/shadow_fiend/sf_refresh_a.vpcf", "Sniper.Shrapnel_legendary")
 	end
 end
 
@@ -393,7 +393,7 @@ function modifier_sniper_shrapnel_custom:OnRefresh(table)
 		self.parent:EmitSound("Sniper.Shrapnel_slow")
 		if self.particle_peffect == nil then
 			self.particle_peffect = ParticleManager:CreateParticle(
-				"particles/general/generic_armor_reduction.vpcf",
+				"particles/generic/generic_armor_reduction.vpcf",
 				PATTACH_OVERHEAD_FOLLOW,
 				self.parent
 			)

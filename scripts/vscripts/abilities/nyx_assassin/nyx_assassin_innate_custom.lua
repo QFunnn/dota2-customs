@@ -16,7 +16,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_nyx_assassin_innate_custom_perma",
 	"abilities/nyx_assassin/nyx_assassin_innate_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_nyx_hero_4"
 )
 
 nyx_assassin_innate_custom = class({})
@@ -27,7 +28,7 @@ function nyx_assassin_innate_custom:Precache(context)
 		return
 	end
 
-	PrecacheResource("particle", "particles/lc_odd_proc_.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_odd_proc_.vpcf", context)
 	PrecacheResource("soundfile", "soundevents/npc_dota_hero_nyx_assassin.vsndevts", context)
 	dota1x6:PrecacheShopItems("npc_dota_hero_nyx_assassin", context)
 end
@@ -191,7 +192,7 @@ function modifier_nyx_assassin_innate_custom_perma:OnIntervalThink()
 		return
 	end
 
-	self.parent:GenericParticle("particles/lc_odd_proc_.vpcf")
+	self.parent:GenericParticle("particles/legion_commander/lc_odd_proc_.vpcf")
 	self.parent:EmitSound("BS.Thirst_legendary_active")
 	self:StartIntervalThink(-1)
 end

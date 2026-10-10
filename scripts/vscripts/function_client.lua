@@ -362,8 +362,12 @@ function C_DOTA_BaseNPC:AddDeathEvent(mod) end
 function C_DOTA_BaseNPC:AddRespawnEvent(mod) end
 function C_DOTA_BaseNPC:AddStateEvent(mod) end
 function C_DOTA_BaseNPC:AddOrderEvent(mod) end
+function C_DOTA_BaseNPC:AddOrderFilter(mod) end
 
 function C_DOTA_BaseNPC:AddPercentStat(stat, amount, mod) end
+
+function C_DOTA_BaseNPC:LogProc(key, value, target) end
+function C_DOTA_BaseNPC:LogWatch(key, holder, field, target) end
 
 function C_DOTA_BaseNPC:IsTalentIllusion()
 	return self:HasModifier("modifier_skeleton_king_hellfire_blast_custom_illusion")

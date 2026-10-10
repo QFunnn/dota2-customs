@@ -21,7 +21,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_hoodwink_sharpshooter_custom_hits",
 	"abilities/hoodwink/hoodwink_sharpshooter_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_hoodwink_sharp_1"
 )
 LinkLuaModifier(
 	"modifier_hoodwink_sharpshooter_custom_sound",
@@ -31,7 +32,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_hoodwink_sharpshooter_custom_legendary",
 	"abilities/hoodwink/hoodwink_sharpshooter_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_hoodwink_sharp_7"
 )
 LinkLuaModifier(
 	"modifier_hoodwink_sharpshooter_custom_tracker",
@@ -41,7 +43,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_hoodwink_sharpshooter_custom_invun",
 	"abilities/hoodwink/hoodwink_sharpshooter_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_hoodwink_hero_6"
 )
 
 hoodwink_sharpshooter_custom = class({})
@@ -57,7 +60,7 @@ function hoodwink_sharpshooter_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_hoodwink/hoodwink_sharpshooter.vpcf", context)
 	PrecacheResource("particle", "particles/items2_fx/refresher.vpcf", context)
 	PrecacheResource("particle", "particles/items_fx/force_staff.vpcf", context)
-	PrecacheResource("particle", "particles/general/patrol_refresh.vpcf", context)
+	PrecacheResource("particle", "particles/generic/patrol_refresh.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_hoodwink/hoodwink_sharpshooter_timer.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_hoodwink/hoodwink_sharpshooter_debuff.vpcf", context)
 	PrecacheResource("particle", "particles/items2_fx/sange_maim.vpcf", context)
@@ -478,7 +481,7 @@ function modifier_hoodwink_sharpshooter_custom:OnDestroy()
 				self.ability.talents.has_r7 == 1 and self.ability.talents.r4_cd_items_legendary
 				or self.ability.talents.r4_cd_items
 			)
-		self.parent:CdItems(cd_items)
+		self.parent:CdItems(cd_items, "modifier_hoodwink_sharp_4")
 	end
 
 	self.parent:SwapAbilities("hoodwink_sharpshooter_release_custom", "hoodwink_sharpshooter_custom", false, true)
@@ -725,7 +728,7 @@ function modifier_hoodwink_sharpshooter_custom_hits:OnIntervalThink()
 		return
 	end
 
-	self.parent:GenericParticle("particles/general/patrol_refresh.vpcf")
+	self.parent:GenericParticle("particles/generic/patrol_refresh.vpcf")
 	self.parent:EmitSound("BS.Thirst_legendary_active")
 	self:StartIntervalThink(-1)
 end

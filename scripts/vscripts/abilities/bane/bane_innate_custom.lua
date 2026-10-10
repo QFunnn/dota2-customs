@@ -9,7 +9,7 @@
 
 
 LinkLuaModifier("modifier_bane_innate_custom", "abilities/bane/bane_innate_custom", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_bane_innate_custom_buff", "abilities/bane/bane_innate_custom", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_bane_innate_custom_buff", "abilities/bane/bane_innate_custom", LUA_MODIFIER_MOTION_NONE, true)
 
 bane_innate_custom = class({})
 function bane_innate_custom:Precache(context)

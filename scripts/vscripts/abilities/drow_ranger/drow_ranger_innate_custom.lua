@@ -16,7 +16,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_drow_ranger_innate_custom_active",
 	"abilities/drow_ranger/drow_ranger_innate_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 
 drow_ranger_innate_custom = class({})

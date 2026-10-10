@@ -25,9 +25,9 @@ function custom_queenofpain_blood_pact:Precache(context)
 		return
 	end
 
-	PrecacheResource("particle", "particles/brist_proc.vpcf", context)
+	PrecacheResource("particle", "particles/bristleback/brist_proc.vpcf", context)
 	PrecacheResource("particle", "particles/queen_of_pain/scream_legendary.vpcf", context)
-	PrecacheResource("particle", "particles/qop_scepter.vpcf", context)
+	PrecacheResource("particle", "particles/queen_of_pain/qop_scepter.vpcf", context)
 end
 
 function custom_queenofpain_blood_pact:GetCooldown(iLevel)
@@ -48,7 +48,7 @@ function custom_queenofpain_blood_pact:OnSpellStart()
 		{ duration = caster:GetTalentValue("modifier_queen_scream_7", "duration") }
 	)
 
-	caster:GenericParticle("particles/brist_proc.vpcf")
+	caster:GenericParticle("particles/bristleback/brist_proc.vpcf")
 end
 
 modifier_queenofpain_blood_pact = class({})
@@ -83,7 +83,7 @@ function modifier_queenofpain_blood_pact:OnCreated(table)
 				self.parent,
 				self.ability,
 				"modifier_cooldown_speed",
-				{ ability = ability:entindex(), cd_inc = self.cd }
+				{ ability = ability:entindex(), cd_inc = self.cd, talent = "modifier_queen_scream_7" }
 			)
 			local name = self:GetName()
 
@@ -118,7 +118,8 @@ function modifier_queenofpain_blood_pact:OnCreated(table)
 	)
 	self:AddParticle(self.particle, false, false, -1, false, false)
 
-	self.pfx_2 = ParticleManager:CreateParticle("particles/qop_scepter.vpcf", PATTACH_OVERHEAD_FOLLOW, self.parent)
+	self.pfx_2 =
+		ParticleManager:CreateParticle("particles/queen_of_pain/qop_scepter.vpcf", PATTACH_OVERHEAD_FOLLOW, self.parent)
 	ParticleManager:SetParticleControlEnt(
 		self.pfx_2,
 		3,

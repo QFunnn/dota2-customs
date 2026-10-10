@@ -36,17 +36,20 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_monkey_king_boundless_strike_custom_armor",
 	"abilities/monkey_king/monkey_king_boundless_strike_custom.lua",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_monkey_king_boundless_3"
 )
 LinkLuaModifier(
 	"modifier_monkey_king_boundless_strike_custom_damage_bonus",
 	"abilities/monkey_king/monkey_king_boundless_strike_custom.lua",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_monkey_king_boundless_1"
 )
 LinkLuaModifier(
 	"modifier_monkey_king_boundless_strike_custom_slow",
 	"abilities/monkey_king/monkey_king_boundless_strike_custom.lua",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_monkey_king_boundless_2"
 )
 LinkLuaModifier(
 	"modifier_monkey_king_boundless_strike_custom_move",
@@ -94,26 +97,24 @@ function monkey_king_boundless_strike_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_monkey_king/monkey_king_strike_slow_impact.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_monkey_king/monkey_king_jump_trail.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_monkey_king_fur_army.vpcf", context)
-	PrecacheResource("particle", "particles/monkey_king/cast_legendary.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/units/heroes/hero_alchemist/alchemist_unstable_concoction_timer.vpcf",
 		context
 	)
-	PrecacheResource("particle", "particles/mk_heal_red_1.vpcf", context)
+	PrecacheResource("particle", "particles/monkey_king/mk_heal_red_1.vpcf", context)
 	PrecacheResource("particle", "particles/pangolier/buckle_refresh.vpcf", context)
-	PrecacheResource("particle", "particles/boundless_attack.vpcf", context)
 	PrecacheResource("particle", "particles/bloodseeker/thirst_cleave.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_monkey_king/monkey_king_quad_tap_hit.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_huskar_lifebreak.vpcf", context)
-	PrecacheResource("particle", "particles/general/generic_armor_reduction.vpcf", context)
+	PrecacheResource("particle", "particles/generic/generic_armor_reduction.vpcf", context)
 	PrecacheResource("particle", "particles/hoodwink/bush_damage.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_brewmaster/brewmaster_thunder_clap_debuff.vpcf", context)
 	PrecacheResource("particle", "particles/monkey_king/strike_refresh.vpcf", context)
-	PrecacheResource("particle", "particles/mars_revenge_proc.vpcf", context)
+	PrecacheResource("particle", "particles/mars/mars_revenge_proc.vpcf", context)
 	PrecacheResource("particle", "particles/monkey_king/strike_radius.vpcf", context)
 	PrecacheResource("particle", "particles/monkey_king/command_buff.vpcf", context)
-	PrecacheResource("particle", "particles/mk_buff_start.vpcf", context)
+	PrecacheResource("particle", "particles/monkey_king/mk_buff_start.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/econ/items/monkey_king/mk_ti9_immortal/status_effect_mk_ti9_immortal_army.vpcf",
@@ -522,7 +523,7 @@ function monkey_king_boundless_strike_custom:Strike(start_point, end_point, more
 			ParticleManager:ReleaseParticleIndex(particle)
 
 			self.caster:EmitSound("MK.Strike_refresh")
-			self.caster:CdAbility(self.ability, false, self.talents.q4_cd_inc)
+			self.caster:CdAbility(self.ability, false, self.talents.q4_cd_inc, "modifier_monkey_king_boundless_4")
 		end
 	end
 
@@ -615,7 +616,7 @@ function modifier_monkey_king_boundless_strike_custom_legendary:OnCreated(table)
 	)
 	self:AddParticle(self.radius_visual, false, false, -1, false, false)
 
-	self.parent:GenericParticle("particles/mk_buff_start.vpcf")
+	self.parent:GenericParticle("particles/monkey_king/mk_buff_start.vpcf")
 
 	self.parent:AddNewModifier(
 		self.parent,
@@ -1034,7 +1035,7 @@ function modifier_monkey_king_boundless_strike_custom_armor:OnCreated(table)
 	if not IsServer() then
 		return
 	end
-	self.parent:GenericParticle("particles/general/generic_armor_reduction.vpcf", self, true)
+	self.parent:GenericParticle("particles/generic/generic_armor_reduction.vpcf", self, true)
 	self.parent:GenericParticle("particles/hoodwink/bush_damage.vpcf", self)
 
 	if self.parent:IsHero() then

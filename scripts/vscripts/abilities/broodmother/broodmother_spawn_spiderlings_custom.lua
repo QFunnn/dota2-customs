@@ -11,7 +11,8 @@
 LinkLuaModifier(
 	"modifier_broodmother_spawn_spiderlings_custom_tracker",
 	"abilities/broodmother/broodmother_spawn_spiderlings_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 LinkLuaModifier(
 	"modifier_broodmother_spawn_spiderlings_custom",
@@ -31,7 +32,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_broodmother_spawn_spiderlings_custom_legendary_stack",
 	"abilities/broodmother/broodmother_spawn_spiderlings_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_broodmother_spawn_7"
 )
 LinkLuaModifier(
 	"modifier_broodmother_spawn_spiderlings_custom_legendary_caster",
@@ -344,7 +346,13 @@ function broodmother_spawn_spiderlings_custom:DeathSpawn(target)
 		return
 	end
 
-	target:GenericParticle("particles/units/heroes/hero_broodmother/broodmother_spiderlings_spawn.vpcf")
+	target:GenericParticle(
+		wearables_system:GetParticleReplacementAbility(
+			self.caster,
+			"particles/units/heroes/hero_broodmother/broodmother_spiderlings_spawn.vpcf",
+			self
+		)
+	)
 	target:EmitSound("Hero_Broodmother.SpawnSpiderlings")
 
 	for i = 1, self.count do

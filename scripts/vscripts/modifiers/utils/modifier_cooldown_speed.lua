@@ -40,6 +40,7 @@ function modifier_cooldown_speed:OnCreated(table)
 	self.interval = 0.05
 
 	self.cd_inc = table.cd_inc / 100
+	self.talent = table.talent
 
 	self.before_cd = 0
 	self.after_cd = 0
@@ -104,7 +105,7 @@ function modifier_cooldown_speed:OnIntervalThink()
 		end
 	end
 
-	self.parent:CdAbility(self.ability, reduce_cd)
+	self.parent:CdAbility(self.ability, reduce_cd, nil, self.talent)
 
 	self.after_cd = self.ability:GetCooldownTime()
 

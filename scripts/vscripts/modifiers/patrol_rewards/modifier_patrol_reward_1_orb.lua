@@ -50,7 +50,7 @@ function modifier_patrol_reward_1_orb:IncStack()
 	self:IncrementStackCount()
 
 	self.parent:EmitSound("Lina.Array_triple")
-	self.parent:GenericParticle("particles/rare_orb_patrol.vpcf")
+	self.parent:GenericParticle("particles/patrol/rare_orb_patrol.vpcf")
 end
 
 function modifier_patrol_reward_1_orb:DeathEvent(params)

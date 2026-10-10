@@ -302,7 +302,7 @@ function modifier_tormentor_custom:DeathReward(attacker)
 		end
 
 		if hero and hero:IsAlive() and (hero:GetAbsOrigin() - self.parent:GetAbsOrigin()):Length2D() <= self.radius then
-			hero:GenericParticle("particles/lc_odd_proc_.vpcf")
+			hero:GenericParticle("particles/legion_commander/lc_odd_proc_.vpcf")
 			hero:GenericHeal(hero:GetMaxHealth() * self.death_heal, self.shield_ability)
 		end
 	end

@@ -26,7 +26,8 @@ end
 function item_mana_draught_custom:Spawn()
 	self.duration = self:GetSpecialValueFor("duration")
 	self.mana = self:GetSpecialValueFor("mana")
-	self.health = self:GetSpecialValueFor("health")
+	self.mana_pct = self:GetSpecialValueFor("mana_pct") / 100
+	self.max_regen = self:GetSpecialValueFor("max_regen")
 end
 
 function item_mana_draught_custom:OnSpellStart()
@@ -39,12 +40,11 @@ modifier_item_mana_draught_custom = class(mod_visible)
 function modifier_item_mana_draught_custom:IsPurgable()
 	return true
 end
-function modifier_item_mana_draught_custom:OnCreated(table)
+function modifier_item_mana_draught_custom:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.mana = self.ability.mana
-	self.health = self.ability.health
+	self.regen = math.min(self.ability.max_regen, self.ability.mana + self.parent:GetMaxMana() * self.ability.mana_pct)
 
 	if not IsServer() then
 		return
@@ -60,9 +60,9 @@ function modifier_item_mana_draught_custom:DeclareFunctions()
 end
 
 function modifier_item_mana_draught_custom:GetModifierConstantHealthRegen()
-	return self.mana
+	return self.regen
 end
 
 function modifier_item_mana_draught_custom:GetModifierConstantManaRegen()
-	return self.health
+	return self.regen
 end

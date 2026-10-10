@@ -27,17 +27,20 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_mars_gods_rebuke_custom_legendary",
 	"abilities/mars/mars_gods_rebuke_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_mars_rebuke_7"
 )
 LinkLuaModifier(
 	"modifier_mars_gods_rebuke_custom_armor",
 	"abilities/mars/mars_gods_rebuke_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_mars_rebuke_1"
 )
 LinkLuaModifier(
 	"modifier_mars_gods_rebuke_custom_perma",
 	"abilities/mars/mars_gods_rebuke_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_mars_rebuke_3"
 )
 
 mars_gods_rebuke_custom = class({})
@@ -52,20 +55,20 @@ function mars_gods_rebuke_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_mars/mars_shield_bash_crit.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_brewmaster/brewmaster_thunder_clap_debuff.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_brewmaster_thunder_clap.vpcf", context)
-	PrecacheResource("particle", "particles/lc_odd_charge.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_odd_charge.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/units/heroes/hero_primal_beast/primal_beast_onslaught_charge_active.vpcf",
 		context
 	)
 	PrecacheResource("particle", "particles/units/heroes/hero_sven/sven_spell_gods_strength.vpcf", context)
-	PrecacheResource("particle", "particles/brist_lowhp_.vpcf", context)
-	PrecacheResource("particle", "particles/mars_shield_legendary.vpcf", context)
+	PrecacheResource("particle", "particles/bristleback/brist_lowhp_.vpcf", context)
+	PrecacheResource("particle", "particles/mars/mars_shield_legendary.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_monkey_king/monkey_king_quad_tap_hit.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_gods_strength.vpcf", context)
 	PrecacheResource("particle", "particles/wraith_king/reinc_shield.vpcf", context)
 	PrecacheResource("particle", "particles/mars/rebuke_legenadry_head.vpcf", context)
-	PrecacheResource("particle", "particles/lc_odd_proc_.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_odd_proc_.vpcf", context)
 end
 
 function mars_gods_rebuke_custom:UpdateTalents(name)
@@ -529,7 +532,7 @@ function modifier_mars_gods_rebuke_custom_armor:OnCreated(table)
 	if not IsServer() then
 		return
 	end
-	self.parent:GenericParticle("particles/general/generic_armor_reduction.vpcf", self, true)
+	self.parent:GenericParticle("particles/generic/generic_armor_reduction.vpcf", self, true)
 
 	if self.parent:IsCreep() then
 		return
@@ -576,7 +579,7 @@ function modifier_mars_gods_rebuke_custom_charge:OnCreated(table)
 
 	self.speed = self.ability.talents.h5_speed
 
-	self.parent:GenericParticle("particles/lc_odd_charge.vpcf", self)
+	self.parent:GenericParticle("particles/legion_commander/lc_odd_charge.vpcf", self)
 	self.parent:GenericParticle(
 		"particles/units/heroes/hero_primal_beast/primal_beast_onslaught_charge_active.vpcf",
 		self
@@ -707,7 +710,7 @@ function modifier_mars_gods_rebuke_custom_perma:OnIntervalThink()
 		return
 	end
 
-	self.parent:GenericParticle("particles/lc_odd_proc_.vpcf")
+	self.parent:GenericParticle("particles/legion_commander/lc_odd_proc_.vpcf")
 	self.parent:EmitSound("BS.Thirst_legendary_active")
 	self:StartIntervalThink(-1)
 end
@@ -759,7 +762,7 @@ function mars_avatar_custom:OnSpellStart()
 	)
 
 	self.caster:GenericParticle("particles/units/heroes/hero_sven/sven_spell_gods_strength.vpcf")
-	self.caster:GenericParticle("particles/brist_lowhp_.vpcf")
+	self.caster:GenericParticle("particles/bristleback/brist_lowhp_.vpcf")
 end
 
 modifier_mars_gods_rebuke_custom_legendary = class(mod_hidden)
@@ -782,7 +785,7 @@ function modifier_mars_gods_rebuke_custom_legendary:OnCreated(table)
 	self.parent:GenericParticle("particles/mars/rebuke_legenadry_head.vpcf", self, true)
 
 	self.effect_cast =
-		ParticleManager:CreateParticle("particles/mars_shield_legendary.vpcf", PATTACH_CUSTOMORIGIN, self.parent)
+		ParticleManager:CreateParticle("particles/mars/mars_shield_legendary.vpcf", PATTACH_CUSTOMORIGIN, self.parent)
 	ParticleManager:SetParticleControlEnt(
 		self.effect_cast,
 		0,

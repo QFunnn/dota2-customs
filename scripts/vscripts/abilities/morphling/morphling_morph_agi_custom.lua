@@ -21,12 +21,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_morphling_morph_custom_legendary_stack",
 	"abilities/morphling/morphling_morph_agi_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_morphling_attribute_7"
 )
 LinkLuaModifier(
 	"modifier_morphling_morph_custom_legendary",
 	"abilities/morphling/morphling_morph_agi_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_morphling_attribute_7" }
 )
 LinkLuaModifier(
 	"modifier_morphling_morph_custom_legendary_attack",
@@ -36,12 +38,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_morphling_morph_custom_stun_cd",
 	"abilities/morphling/morphling_morph_agi_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_morphling_attribute_4"
 )
 LinkLuaModifier(
 	"modifier_morphling_morph_custom_stats_inc",
 	"abilities/morphling/morphling_morph_agi_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_morphling_attribute_3"
 )
 LinkLuaModifier(
 	"modifier_morphling_morph_custom_burn",
@@ -577,7 +581,12 @@ function modifier_morphling_morph_agi_custom_tracker:AttackEvent_out(params)
 
 	if self.parent:HasModifier("modifier_morphling_morph_custom_legendary") then
 		if IsValid(self.parent.wave_ability) and not params.no_attack_cooldown then
-			self.parent:CdAbility(self.parent.wave_ability, nil, self.ability.talents.e7_wave_cd)
+			self.parent:CdAbility(
+				self.parent.wave_ability,
+				nil,
+				self.ability.talents.e7_wave_cd,
+				"modifier_morphling_attribute_7"
+			)
 		end
 		return
 	end
@@ -1010,7 +1019,7 @@ end
 
 modifier_morphling_morph_custom_legendary = class(mod_hidden)
 function modifier_morphling_morph_custom_legendary:GetStatusEffectName()
-	return "particles/butterfly_status.vpcf"
+	return "particles/items/butterfly_status.vpcf"
 end
 function modifier_morphling_morph_custom_legendary:StatusEffectPriority()
 	return MODIFIER_PRIORITY_ULTRA

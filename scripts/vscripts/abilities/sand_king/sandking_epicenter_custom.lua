@@ -254,10 +254,13 @@ function sandking_epicenter_custom:Pulse(pulse_loc, radius, main_skill, is_legen
 			local cd = self:GetEffectiveCooldown(self:GetLevel())
 				* caster:GetTalentValue("modifier_sand_king_epicenter_7", "cd_inc")
 				/ 100
-			caster:CdAbility(self, cd)
+			caster:CdAbility(self, cd, nil, "modifier_sand_king_epicenter_7")
 		end
 		if caster:HasTalent("modifier_sand_king_epicenter_6") then
-			caster:CdItems(caster:GetTalentValue("modifier_sand_king_epicenter_6", "cd"))
+			caster:CdItems(
+				caster:GetTalentValue("modifier_sand_king_epicenter_6", "cd"),
+				"modifier_sand_king_epicenter_6"
+			)
 			caster:AddNewModifier(
 				caster,
 				self,

@@ -55,10 +55,10 @@ function custom_queenofpain_scream_of_pain:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_queenofpain/queen_scream_of_pain_owner.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_queenofpain/queen_scream_of_pain.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_huskar_lifebreak.vpcf", context)
-	PrecacheResource("particle", "particles/lc_lowhp.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_lowhp.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_pudge/pudge_fleshheap_block_shield_model.vpcf", context)
 	PrecacheResource("particle", "particles/queen_of_pain/scream_speed.vpcf", context)
-	PrecacheResource("particle", "particles/void_astral_slow.vpcf", context)
+	PrecacheResource("particle", "particles/void_spirit/void_astral_slow.vpcf", context)
 end
 
 function custom_queenofpain_scream_of_pain:UpdateTalents()
@@ -407,7 +407,11 @@ function modifier_custom_scream_lowhp:OnCreated()
 	end
 
 	self.parent:EmitSound("Lc.Moment_Lowhp")
-	self.particle = ParticleManager:CreateParticle("particles/lc_lowhp.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
+	self.particle = ParticleManager:CreateParticle(
+		"particles/legion_commander/lc_lowhp.vpcf",
+		PATTACH_ABSORIGIN_FOLLOW,
+		self.parent
+	)
 	ParticleManager:SetParticleControl(self.particle, 0, self.parent:GetAbsOrigin())
 	ParticleManager:SetParticleControl(self.particle, 1, self.parent:GetAbsOrigin())
 	ParticleManager:SetParticleControl(self.particle, 2, self.parent:GetAbsOrigin())

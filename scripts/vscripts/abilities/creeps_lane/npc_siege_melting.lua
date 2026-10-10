@@ -14,7 +14,7 @@ LinkLuaModifier("modifier_siege_armor", "abilities/creeps_lane/npc_siege_melting
 npc_siege_melting = class({})
 
 function npc_siege_melting:Precache(context)
-	PrecacheResource("particle", "particles/general/generic_armor_reduction.vpcf", context)
+	PrecacheResource("particle", "particles/generic/generic_armor_reduction.vpcf", context)
 end
 
 function npc_siege_melting:GetIntrinsicModifierName()
@@ -55,7 +55,7 @@ end
 
 modifier_siege_armor = class(mod_visible)
 function modifier_siege_armor:GetEffectName()
-	return "particles/general/generic_armor_reduction.vpcf"
+	return "particles/generic/generic_armor_reduction.vpcf"
 end
 function modifier_siege_armor:GetEffectAttachType()
 	return PATTACH_OVERHEAD_FOLLOW

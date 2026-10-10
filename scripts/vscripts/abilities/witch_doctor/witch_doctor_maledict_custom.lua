@@ -16,7 +16,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_witch_doctor_maledict_custom",
 	"abilities/witch_doctor/witch_doctor_maledict_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 LinkLuaModifier(
 	"modifier_witch_doctor_maledict_custom_legendary_thinker",
@@ -26,7 +27,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_witch_doctor_maledict_custom_haste",
 	"abilities/witch_doctor/witch_doctor_maledict_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_witch_doctor_maledict_4"
 )
 LinkLuaModifier(
 	"modifier_witch_doctor_maledict_custom_cd_items",
@@ -48,7 +50,7 @@ function witch_doctor_maledict_custom:Precache(context)
 	PrecacheResource("particle", "particles/witch_doctor/maledict_legendary_aoe.vpcf", context)
 	PrecacheResource("particle", "particles/witch_doctor/maledict_legendary_stack.vpcf", context)
 	PrecacheResource("particle", "particles/econ/events/ti9/phase_boots_ti9.vpcf", context)
-	PrecacheResource("particle", "particles/void_astral_slow.vpcf", context)
+	PrecacheResource("particle", "particles/void_spirit/void_astral_slow.vpcf", context)
 end
 
 function witch_doctor_maledict_custom:UpdateTalents()
@@ -352,7 +354,7 @@ function modifier_witch_doctor_maledict_custom:OnIntervalThink()
 			"modifier_witch_doctor_maledict_custom_cd_items",
 			{ duration = 1 }
 		)
-		self.caster:CdItems(self.ability.talents.e4_cd_items)
+		self.caster:CdItems(self.ability.talents.e4_cd_items, "modifier_witch_doctor_maledict_4")
 	end
 
 	if damage <= 0 then

@@ -20,21 +20,19 @@ function item_enhancement_mystical_custom:GetIntrinsicModifierName()
 	return "modifier_item_enhancement_mystical_custom"
 end
 
-function item_enhancement_mystical_custom:Spawn()
-	self.magic_res = self:GetSpecialValueFor("magic_res")
-	self.bonus_mana = self:GetSpecialValueFor("bonus_mana")
-end
-
 modifier_item_enhancement_mystical_custom = class(mod_hidden)
 function modifier_item_enhancement_mystical_custom:RemoveOnDeath()
 	return false
 end
-function modifier_item_enhancement_mystical_custom:OnCreated(table)
+function modifier_item_enhancement_mystical_custom:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
+	self:OnRefresh()
+end
 
-	self.magic_res = self.ability.magic_res
-	self.bonus_mana = self.ability.bonus_mana
+function modifier_item_enhancement_mystical_custom:OnRefresh()
+	self.magic_res = self.ability:GetSpecialValueFor("magic_res")
+	self.bonus_mana = self.ability:GetSpecialValueFor("bonus_mana")
 end
 
 function modifier_item_enhancement_mystical_custom:DeclareFunctions()

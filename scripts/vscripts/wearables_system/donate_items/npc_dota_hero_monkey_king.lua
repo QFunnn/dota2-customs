@@ -580,7 +580,7 @@ return {
 		},
 		["ParticlesSkills"] = {
 			"particles/econ/items/monkey_king/ti7_weapon/mk_ti7_immortal_strike_cast.vpcf",
-			"particles/monkey_king_custom/mk_ti7_immortal_strike.vpcf",
+			"particles/monkey_king/mk_ti7_immortal_strike.vpcf",
 		},
 	},
 	[9453] = {
@@ -631,7 +631,7 @@ return {
 		},
 		["ParticlesSkills"] = {
 			"particles/econ/items/monkey_king/ti7_weapon/mk_ti7_golden_immortal_strike_cast.vpcf",
-			"particles/monkey_king_custom/mk_ti7_golden_immortal_strike.vpcf",
+			"particles/monkey_king/mk_ti7_golden_immortal_strike.vpcf",
 		},
 	},
 	[29347] = {
@@ -682,7 +682,7 @@ return {
 		},
 		["ParticlesSkills"] = {
 			"particles/econ/items/monkey_king/ti7_weapon/mk_10th_anniversary_strike_cast.vpcf",
-			"particles/monkey_king_custom/mk_10th_anniversary_strike.vpcf",
+			"particles/monkey_king/mk_10th_anniversary_strike.vpcf",
 		},
 	},
 

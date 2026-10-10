@@ -28,12 +28,6 @@ function item_enhancement_timeless_custom:GetIntrinsicModifierName()
 	return "modifier_item_enhancement_timeless_custom"
 end
 
-function item_enhancement_timeless_custom:Spawn()
-	self.radius = self:GetSpecialValueFor("radius")
-	self.spell_amp = self:GetSpecialValueFor("spell_amp")
-	self.status_amp = self:GetSpecialValueFor("status_amp")
-end
-
 modifier_item_enhancement_timeless_custom = class(mod_hidden)
 function modifier_item_enhancement_timeless_custom:RemoveOnDeath()
 	return false
@@ -59,12 +53,15 @@ end
 function modifier_item_enhancement_timeless_custom:IsAura()
 	return true
 end
-function modifier_item_enhancement_timeless_custom:OnCreated(table)
+function modifier_item_enhancement_timeless_custom:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
+	self:OnRefresh()
+end
 
-	self.radius = self.ability.radius
-	self.damage = self.ability.spell_amp
+function modifier_item_enhancement_timeless_custom:OnRefresh()
+	self.radius = self.ability:GetSpecialValueFor("radius")
+	self.damage = self.ability:GetSpecialValueFor("spell_amp")
 end
 
 function modifier_item_enhancement_timeless_custom:DeclareFunctions()
@@ -81,7 +78,7 @@ modifier_item_enhancement_timeless_custom_aura = class(mod_hidden)
 function modifier_item_enhancement_timeless_custom_aura:OnCreated()
 	self.ability = self:GetAbility()
 
-	self.status = self.ability.status_amp
+	self.status = self.ability:GetSpecialValueFor("status_amp")
 end
 
 function modifier_item_enhancement_timeless_custom_aura:DeclareFunctions()

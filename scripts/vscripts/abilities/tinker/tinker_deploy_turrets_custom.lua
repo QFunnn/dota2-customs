@@ -26,7 +26,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_tinker_deploy_turrets_custom_legendary_stack",
 	"abilities/tinker/tinker_deploy_turrets_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_tinker_matrix_7"
 )
 LinkLuaModifier(
 	"modifier_tinker_deploy_turrets_custom_legendary",
@@ -36,7 +37,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_tinker_deploy_turrets_custom_legendary_speed",
 	"abilities/tinker/tinker_deploy_turrets_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_tinker_matrix_7"
 )
 LinkLuaModifier(
 	"modifier_tinker_deploy_turrets_custom_legendary_aura",
@@ -51,7 +53,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_tinker_deploy_turrets_custom_root",
 	"abilities/tinker/tinker_deploy_turrets_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_tinker_matrix_4"
 )
 
 tinker_deploy_turrets_custom = class({})
@@ -67,7 +70,6 @@ function tinker_deploy_turrets_custom:Precache(context)
 	PrecacheResource("particle", "particles/zeus/bolt_disarm.vpcf", context)
 	PrecacheResource("particle", "particles/tinker/matrix_legendary_laser.vpcf", context)
 	PrecacheResource("particle", "particles/puck/rift_blink_starta0.vpcf", context)
-	PrecacheResource("particle", "particles/tinker/matrix_invun.vpcf", context)
 	PrecacheResource("particle", "particles/tinker/matrix_legendary_red.vpcf", context)
 	PrecacheResource("particle", "particles/tinker/matrix_legendary.vpcf", context)
 	PrecacheResource(
@@ -80,7 +82,6 @@ function tinker_deploy_turrets_custom:Precache(context)
 		"particles/econ/items/razor/razor_arcana/razor_arcana_static_link_debuff.vpcf",
 		context
 	)
-	PrecacheResource("particle", "particles/tinker/matrix_stack_max.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_arc_warden/arc_warden_flux_cast.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_tinker/tinker_turret_drop.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_tinker/tinker_turret_spawn.vpcf", context)
@@ -90,7 +91,7 @@ function tinker_deploy_turrets_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_tinker/turret_missile_explosion.vpcf", context)
 	PrecacheResource("particle", "particles/items_fx/chain_lightning.vpcf", context)
 	PrecacheResource("particle", "particles/tinker/laser_stun.vpcf", context)
-	PrecacheResource("particle", "particles/laser/stun_stack.vpcf", context)
+	PrecacheResource("particle", "particles/tinker/stun_stack.vpcf", context)
 
 	PrecacheResource("model", "models/heroes/tinker/tinker_turret.vmdl", context)
 end
@@ -975,7 +976,7 @@ function modifier_tinker_deploy_turrets_custom_legendary_stack:OnRefresh(table)
 	self:IncrementStackCount()
 
 	if not self.particle then
-		self.particle = self.parent:GenericParticle("particles/laser/stun_stack.vpcf", self, true)
+		self.particle = self.parent:GenericParticle("particles/tinker/stun_stack.vpcf", self, true)
 	end
 	ParticleManager:SetParticleControl(self.particle, 1, Vector(0, self:GetStackCount(), 0))
 

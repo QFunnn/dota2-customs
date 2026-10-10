@@ -16,7 +16,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_ember_spirit_innate_custom_burn",
 	"abilities/ember_spirit/ember_spirit_innate_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 
 ember_spirit_innate_custom = class({})

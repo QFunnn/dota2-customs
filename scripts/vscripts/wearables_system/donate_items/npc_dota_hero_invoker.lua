@@ -126,8 +126,8 @@ return {
 			"particles/econ/items/invoker/invoker_apex/invoker_apex_exort_orb.vpcf",
 			"particles/econ/items/invoker/invoker_apex/invoker_sun_strike_immortal1.vpcf",
 			"particles/econ/items/invoker/invoker_apex/invoker_sun_strike_team_immortal1.vpcf",
-			"particles/invoker_sunstrike_donate/invoker_sun_strike_team_immortal.vpcf",
-			"particles/invoker_sunstrike/invoker_sun_strike_immortal_donateexplos.vpcf",
+			"particles/invoker/invoker_sun_strike_team_immortal.vpcf",
+			"particles/invoker/invoker_sun_strike_immortal_donateexplos.vpcf",
 		},
 	},
 	[7821] = {

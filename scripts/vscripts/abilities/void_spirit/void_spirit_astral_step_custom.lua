@@ -339,7 +339,7 @@ function void_spirit_astral_step_custom:CastSpell(point, new_origin)
 		end
 
 		if caster:HasTalent("modifier_void_astral_6") and no_damage == 0 then
-			caster:CdItems(caster:GetTalentValue("modifier_void_astral_6", "cd_items"))
+			caster:CdItems(caster:GetTalentValue("modifier_void_astral_6", "cd_items"), "modifier_void_astral_6")
 		end
 	end
 
@@ -725,10 +725,10 @@ function void_spirit_astral_replicant:Precache(context)
 		return
 	end
 
-	PrecacheResource("particle", "particles/generic_gameplay/void_step_active.vpcf", context)
+	PrecacheResource("particle", "particles/generic/void_step_active.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_clinkz/void_buf.vpcf", context)
-	PrecacheResource("particle", "particles/void_buf2.vpcf", context)
-	PrecacheResource("particle", "particles/void_step_texture.vpcf", context)
+	PrecacheResource("particle", "particles/void_spirit/void_buf2.vpcf", context)
+	PrecacheResource("particle", "particles/void_spirit/void_step_texture.vpcf", context)
 end
 
 function void_spirit_astral_replicant:CreateTalent()
@@ -762,7 +762,7 @@ function modifier_void_spirit_astral_replicant:IsPurgable()
 	return false
 end
 function modifier_void_spirit_astral_replicant:GetEffectName()
-	return "particles/generic_gameplay/void_step_active.vpcf"
+	return "particles/generic/void_step_active.vpcf"
 end
 function modifier_void_spirit_astral_replicant:OnCreated(table)
 	if not IsServer() then
@@ -776,7 +776,7 @@ function modifier_void_spirit_astral_replicant:OnCreated(table)
 
 	self.parent:EmitSound("VoidSpirit.Step.Active")
 	self.parent:GenericParticle("particles/units/heroes/hero_clinkz/void_buf.vpcf", self)
-	self.parent:GenericParticle("particles/void_buf2.vpcf")
+	self.parent:GenericParticle("particles/void_spirit/void_buf2.vpcf")
 	self.parent:GenericParticle("particles/void_spirit/step_spells_mark.vpcf", self, true)
 
 	self.particle = ParticleManager:CreateParticleForPlayer(
@@ -912,7 +912,7 @@ function modifier_void_spirit_legendary_illusion:IsPurgable()
 	return false
 end
 function modifier_void_spirit_legendary_illusion:GetStatusEffectName()
-	return "particles/void_step_texture.vpcf"
+	return "particles/void_spirit/void_step_texture.vpcf"
 end
 function modifier_void_spirit_legendary_illusion:StatusEffectPriority()
 	return MODIFIER_PRIORITY_ILLUSION

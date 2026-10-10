@@ -194,7 +194,8 @@ function modifier_lina_scepter_custom:OnIntervalThink()
 		decimal = 1
 	end
 
-	local particle = ParticleManager:CreateParticle("particles/lina_timer.vpcf", PATTACH_OVERHEAD_FOLLOW, self.parent)
+	local particle =
+		ParticleManager:CreateParticle("particles/lina/lina_timer.vpcf", PATTACH_OVERHEAD_FOLLOW, self.parent)
 	ParticleManager:SetParticleControl(particle, 0, self.parent:GetAbsOrigin())
 	ParticleManager:SetParticleControl(particle, 1, Vector(0, int, decimal))
 	ParticleManager:SetParticleControl(particle, 2, Vector(digits, 0, 0))

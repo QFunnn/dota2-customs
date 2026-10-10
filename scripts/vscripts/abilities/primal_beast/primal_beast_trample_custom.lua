@@ -9,29 +9,15 @@
 
 
 LinkLuaModifier(
-	"modifier_primal_beast_trample_custom",
-	"abilities/primal_beast/primal_beast_trample_custom",
-	LUA_MODIFIER_MOTION_NONE
-)
-LinkLuaModifier(
 	"modifier_primal_beast_trample_tracker",
 	"abilities/primal_beast/primal_beast_trample_custom",
 	LUA_MODIFIER_MOTION_NONE
 )
 LinkLuaModifier(
-	"modifier_primal_beast_trample_speed",
+	"modifier_primal_beast_trample_custom",
 	"abilities/primal_beast/primal_beast_trample_custom",
-	LUA_MODIFIER_MOTION_NONE
-)
-LinkLuaModifier(
-	"modifier_primal_beast_trample_slow",
-	"abilities/primal_beast/primal_beast_trample_custom",
-	LUA_MODIFIER_MOTION_NONE
-)
-LinkLuaModifier(
-	"modifier_primal_beast_trample_damage",
-	"abilities/primal_beast/primal_beast_trample_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 LinkLuaModifier(
 	"modifier_primal_beast_trample_charge",
@@ -39,7 +25,7 @@ LinkLuaModifier(
 	LUA_MODIFIER_MOTION_HORIZONTAL
 )
 LinkLuaModifier(
-	"modifier_primal_beast_trample_silence_stack",
+	"modifier_primal_beast_trample_arrow",
 	"abilities/primal_beast/primal_beast_trample_custom",
 	LUA_MODIFIER_MOTION_NONE
 )
@@ -49,40 +35,109 @@ LinkLuaModifier(
 	LUA_MODIFIER_MOTION_NONE
 )
 LinkLuaModifier(
-	"modifier_primal_beast_trample_scepter_attack",
+	"modifier_primal_beast_trample_strength",
 	"abilities/primal_beast/primal_beast_trample_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_primal_beast_trample_3"
 )
 LinkLuaModifier(
-	"modifier_primal_beast_trample_scepter_slow",
+	"modifier_primal_beast_trample_silence",
 	"abilities/primal_beast/primal_beast_trample_custom",
-	LUA_MODIFIER_MOTION_NONE
-)
-LinkLuaModifier(
-	"modifier_primal_beast_trample_custom_haste",
-	"abilities/primal_beast/primal_beast_trample_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_primal_beast_trample_4"
 )
 
 primal_beast_trample_custom = class({})
+primal_beast_trample_custom.talents = {}
+
+function primal_beast_trample_custom:GetAbilityTextureName()
+	return wearables_system:GetAbilityIconReplacement(self:GetCaster(), "primal_beast_trample", self)
+end
 
 function primal_beast_trample_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
 	end
+
 	PrecacheResource("particle", "particles/units/heroes/hero_primal_beast/primal_beast_disarm.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_primal_beast/primal_beast_trample.vpcf", context)
-	PrecacheResource("particle", "particles/generic_gameplay/generic_lifesteal.vpcf", context)
-	PrecacheResource("particle", "particles/units/heroes/hero_primal_beast/primal_beast_pulverize_hit.vpcf", context)
-	PrecacheResource("particle", "particles/items4_fx/ascetic_cap.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/units/heroes/hero_primal_beast/primal_beast_onslaught_charge_active.vpcf",
 		context
 	)
 	PrecacheResource("particle", "particles/units/heroes/hero_primal_beast/primal_beast_onslaught_impact.vpcf", context)
-	PrecacheResource("particle", "particles/beast_silence.vpcf", context)
-	PrecacheResource("particle", "particles/generic_gameplay/generic_silenced.vpcf", context)
+	PrecacheResource("particle", "particles/primal_beast/beast_quake_stack.vpcf", context)
+	PrecacheResource("particle", "particles/primal_beast/beast_charge.vpcf", context)
+	PrecacheResource("particle", "particles/primal_beast/trample_crit_stomp.vpcf", context)
+	PrecacheResource("particle", "particles/primal_beast/trample_silence.vpcf", context)
+end
+
+function primal_beast_trample_custom:UpdateTalents(name)
+	local caster = self:GetCaster()
+	if not self.init then
+		self.init = true
+		self.talents = {
+			w1_str = 0,
+			w1_duration = 0,
+
+			has_w3 = 0,
+			w3_damage = 0,
+			w3_str = 0,
+			w3_chance = caster:GetTalentValue("modifier_primal_beast_trample_3", "chance", true),
+			w3_max = caster:GetTalentValue("modifier_primal_beast_trample_3", "max", true),
+			w3_duration = caster:GetTalentValue("modifier_primal_beast_trample_3", "duration", true),
+
+			has_w4 = 0,
+			w4_cd = caster:GetTalentValue("modifier_primal_beast_trample_4", "cd", true),
+			w4_hits = caster:GetTalentValue("modifier_primal_beast_trample_4", "hits", true),
+			w4_silence = caster:GetTalentValue("modifier_primal_beast_trample_4", "silence", true),
+			w4_duration = caster:GetTalentValue("modifier_primal_beast_trample_4", "duration", true),
+			w4_talent_cd = caster:GetTalentValue("modifier_primal_beast_trample_4", "talent_cd", true),
+
+			has_w7 = 0,
+			w7_damage = caster:GetTalentValue("modifier_primal_beast_trample_7", "damage", true) / 100,
+			w7_distance = caster:GetTalentValue("modifier_primal_beast_trample_7", "distance", true),
+			w7_duration = caster:GetTalentValue("modifier_primal_beast_trample_7", "duration", true),
+			w7_max = caster:GetTalentValue("modifier_primal_beast_trample_7", "max", true) / 100,
+			w7_cast = caster:GetTalentValue("modifier_primal_beast_trample_7", "cast", true),
+			w7_speed = caster:GetTalentValue("modifier_primal_beast_trample_7", "speed", true),
+			w7_radius = caster:GetTalentValue("modifier_primal_beast_trample_7", "radius", true),
+			w7_knockback = caster:GetTalentValue("modifier_primal_beast_trample_7", "knockback", true),
+			w7_knockback_duration = caster:GetTalentValue(
+				"modifier_primal_beast_trample_7",
+				"knockback_duration",
+				true
+			),
+			w7_talent_cd = caster:GetTalentValue("modifier_primal_beast_trample_7", "talent_cd", true),
+
+			r2_radius = 0,
+			r7_trample = caster:GetTalentValue("modifier_primal_beast_pulverize_7", "trample", true),
+		}
+	end
+
+	if caster:HasTalent("modifier_primal_beast_trample_1") then
+		self.talents.w1_str = caster:GetTalentValue("modifier_primal_beast_trample_1", "str") / 100
+		self.talents.w1_duration = caster:GetTalentValue("modifier_primal_beast_trample_1", "duration")
+	end
+
+	if caster:HasTalent("modifier_primal_beast_trample_3") then
+		self.talents.has_w3 = 1
+		self.talents.w3_damage = caster:GetTalentValue("modifier_primal_beast_trample_3", "damage") / 100
+		self.talents.w3_str = caster:GetTalentValue("modifier_primal_beast_trample_3", "str") / 100
+	end
+
+	if caster:HasTalent("modifier_primal_beast_trample_4") then
+		self.talents.has_w4 = 1
+	end
+
+	if caster:HasTalent("modifier_primal_beast_trample_7") then
+		self.talents.has_w7 = 1
+	end
+
+	if caster:HasTalent("modifier_primal_beast_pulverize_2") then
+		self.talents.r2_radius = caster:GetTalentValue("modifier_primal_beast_pulverize_2", "radius")
+	end
 end
 
 function primal_beast_trample_custom:GetIntrinsicModifierName()
@@ -92,191 +147,269 @@ function primal_beast_trample_custom:GetIntrinsicModifierName()
 	return "modifier_primal_beast_trample_tracker"
 end
 
-function primal_beast_trample_custom:GetCooldown(iLevel)
-	local upgrade_cooldown = 0
-	if self:GetCaster():HasTalent("modifier_primal_beast_trample_6") then
-		upgrade_cooldown = self:GetCaster():GetTalentValue("modifier_primal_beast_trample_6", "cd")
-	end
-	return self.BaseClass.GetCooldown(self, iLevel) + upgrade_cooldown
+function primal_beast_trample_custom:IsRecast()
+	return self.talents.has_w7 == 1 and self.caster:HasModifier("modifier_primal_beast_trample_custom")
 end
 
-function primal_beast_trample_custom:OnSpellStart()
+function primal_beast_trample_custom:GetBehavior()
+	if self:IsRecast() then
+		return DOTA_ABILITY_BEHAVIOR_NO_TARGET
+			+ DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING
+			+ DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES
+	end
+	return DOTA_ABILITY_BEHAVIOR_NO_TARGET + DOTA_ABILITY_BEHAVIOR_IMMEDIATE + DOTA_ABILITY_BEHAVIOR_IGNORE_CHANNEL
+end
+
+function primal_beast_trample_custom:GetCastPoint(iLevel)
+	if self:IsRecast() then
+		return self.talents.w7_cast
+	end
+	return self.BaseClass.GetCastPoint(self)
+end
+
+function primal_beast_trample_custom:GetManaCost(level)
+	if self:IsRecast() then
+		return 0
+	end
+	return self.BaseClass.GetManaCost(self, level)
+end
+
+function primal_beast_trample_custom:GetCooldown(iLevel)
+	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.has_w4 == 1 and self.talents.w4_cd or 0)
+end
+
+function primal_beast_trample_custom:GetDamage(target, legendary_damage)
+	local damage = (self.base_damage + self.caster:GetStrength() * self.talents.w1_str) * (1 + legendary_damage)
+	local uproar = self.caster.uproar_ability
+	if IsValid(uproar) and IsValid(uproar.buff_mod) then
+		damage = damage * (1 + uproar.buff_mod:GetTrampleBonus() / 100)
+	end
+	return damage * (target:IsCreep() and 1 + self.creeps_damage or 1)
+end
+
+function primal_beast_trample_custom:OnAbilityPhaseStart()
+	if not IsServer() then
+		return true
+	end
+	if not self:IsRecast() then
+		return true
+	end
+
+	self.caster:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_2, 1.4 / self:GetCastPointModifier())
+	self.caster:AddNewModifier(self.caster, self, "modifier_primal_beast_trample_arrow", {})
+	return true
+end
+
+function primal_beast_trample_custom:OnAbilityPhaseInterrupted()
 	if not IsServer() then
 		return
 	end
-
-	local caster = self:GetCaster()
-	local duration = self:GetSpecialValueFor("duration")
-		+ caster:GetTalentValue("modifier_primal_beast_trample_3", "duration")
-
-	if caster:HasTalent("modifier_primal_beast_trample_7") then
-		local ability = caster:FindAbilityByName("primal_beast_charge_custom")
-		if ability then
-			ability:StartCooldown(0.2)
-		end
-		caster:SwapAbilities("primal_beast_trample_custom", "primal_beast_charge_custom", false, true)
-	end
-
-	if caster:HasTalent("modifier_primal_beast_trample_5") then
-		caster:AddNewModifier(caster, self, "modifier_primal_beast_trample_speed", { duration = duration })
-		caster:AddNewModifier(
-			caster,
-			self,
-			"modifier_primal_beast_trample_custom_haste",
-			{ duration = caster:GetTalentValue("modifier_primal_beast_trample_5", "duration") }
-		)
-	end
-
-	caster:RemoveModifierByName("modifier_primal_beast_trample_damage")
-	caster:AddNewModifier(caster, self, "modifier_primal_beast_trample_custom", { duration = duration })
+	self.caster:FadeGesture(ACT_DOTA_CAST_ABILITY_2)
+	self.caster:RemoveModifierByName("modifier_primal_beast_trample_arrow")
 end
 
-function primal_beast_trample_custom:Trample(damage_ability)
-	local caster = self:GetCaster()
-	local radius = self:GetSpecialValueFor("effect_radius")
-		+ caster:GetTalentValue("modifier_primal_beast_trample_6", "radius")
-	local base_damage = self:GetSpecialValueFor("base_damage")
-	local attack_damage = (
-		self:GetSpecialValueFor("attack_damage") + caster:GetTalentValue("modifier_primal_beast_trample_1", "damage")
-	) / 100
-	local sound = "Hero_PrimalBeast.Trample"
-
-	local source = nil
-	if damage_ability then
-		sound = "PBeast.Trample_mini"
-		source = damage_ability
-		radius = radius + caster:GetTalentValue("modifier_primal_beast_trample_1", "radius")
+function primal_beast_trample_custom:OnSpellStart()
+	if self:IsRecast() then
+		self.caster:RemoveGesture(ACT_DOTA_CAST_ABILITY_2)
+		self.caster:RemoveModifierByName("modifier_primal_beast_trample_arrow")
+		self.caster:AddNewModifier(
+			self.caster,
+			self,
+			"modifier_primal_beast_trample_charge",
+			{ duration = self.talents.w7_distance / self.talents.w7_speed }
+		)
+		self.caster:EmitSound("PBeast.Trample_dash")
+		return
 	end
 
-	local pos = caster:GetOrigin()
-	local enemies = caster:FindTargets(radius)
-	local damage = base_damage + caster:GetAverageTrueAttackDamage(nil) * attack_damage
-	local damageTable = { attacker = caster, damage = damage, damage_type = DAMAGE_TYPE_MAGICAL, ability = self }
+	self.caster:StartGesture(ACT_DOTA_CAST_ABILITY_4)
+	self.trample_mod = self.caster:AddNewModifier(
+		self.caster,
+		self,
+		"modifier_primal_beast_trample_custom",
+		{ duration = self.duration + self.talents.w1_duration }
+	)
+end
 
-	local ult = caster:FindAbilityByName("primal_beast_pulverize_custom")
-	local stack_duration = caster:GetTalentValue("modifier_primal_beast_trample_4", "duration")
-	local damage_duration = caster:GetTalentValue("modifier_primal_beast_trample_7", "duration")
-	local mod = caster:FindModifierByName("modifier_primal_beast_trample_custom")
+function primal_beast_trample_custom:Trample(mod)
+	local enemies = self.caster:FindTargets(mod.radius)
+	local damageTable = { attacker = self.caster, damage_type = DAMAGE_TYPE_MAGICAL, ability = self }
+	local critTable = { attacker = self.caster, damage_type = DAMAGE_TYPE_MAGICAL, ability = self }
+	local crit = self.talents.has_w3 == 1 and RollPseudoRandomPercentage(self.talents.w3_chance, 4162, self.caster)
 
-	if #enemies > 0 then
-		if mod and caster:HasTalent("modifier_primal_beast_trample_7") then
-			caster:AddNewModifier(
-				caster,
+	local origin = self.caster:GetAbsOrigin()
+	local hero_hit = false
+
+	for _, enemy in pairs(enemies) do
+		local damage = self:GetDamage(enemy, mod.legendary_damage)
+		damageTable.victim = enemy
+		damageTable.damage = damage
+		DoDamage(damageTable)
+
+		if crit then
+			critTable.victim = enemy
+			critTable.damage = damage * self.talents.w3_damage
+			DoDamage(critTable, "modifier_primal_beast_trample_3")
+			enemy:SendNumber(114, damage + critTable.damage)
+
+			if IsValid(self.caster.onslaught_ability) then
+				self.caster.onslaught_ability:HitEffect(enemy, origin, false)
+			end
+		else
+			enemy:SendNumber(4, damage)
+		end
+
+		if enemy:IsValidKill(self.caster) then
+			hero_hit = true
+		end
+
+		if self.talents.has_w4 == 1 and not enemy:HasCd("primal_beast_trample_4", self.talents.w4_talent_cd) then
+			enemy:AddNewModifier(
+				self.caster,
 				self,
-				"modifier_primal_beast_trample_damage",
-				{ duration = mod:GetRemainingTime() + damage_duration }
+				"modifier_primal_beast_trample_silence",
+				{ duration = self.talents.w4_duration }
 			)
 		end
 
-		if mod and mod.ult_count then
-			mod.ult_count = mod.ult_count + 1
-			if mod.ult_count >= caster:GetTalentValue("modifier_primal_beast_pulverize_7", "trample", true) then
-				mod.ult_count = 0
-				if ult and ult:IsTrained() then
-					ult:AddLegendaryStack()
-				end
+		if self.caster:GetQuest() == "Beast.Quest_6" and enemy:IsRealHero() and not self.caster:QuestCompleted() then
+			enemy:AddNewModifier(self.caster, self, "modifier_primal_beast_trample_quest", { duration = 1 })
+		end
+	end
+
+	if hero_hit then
+		mod.ult_count = mod.ult_count + 1
+		if mod.ult_count >= self.talents.r7_trample then
+			mod.ult_count = 0
+			if IsValid(self.caster.pulverize_ability) then
+				self.caster.pulverize_ability:AddLegendaryStack("trample")
 			end
 		end
 	end
 
-	for _, enemy in pairs(enemies) do
-		damageTable.victim = enemy
+	local effect_cast = ParticleManager:CreateParticle(
+		wearables_system:GetParticleReplacementAbility(
+			self.caster,
+			"particles/units/heroes/hero_primal_beast/primal_beast_trample.vpcf",
+			self
+		),
+		PATTACH_ABSORIGIN,
+		self.caster
+	)
+	ParticleManager:SetParticleControl(effect_cast, 1, Vector(mod.radius, 0, 0))
+	ParticleManager:ReleaseParticleIndex(effect_cast)
+	self.caster:EmitSound("Hero_PrimalBeast.Trample")
 
-		if mod and ult and ult:IsTrained() and enemy:IsHero() then
-			enemy:AddNewModifier(
-				caster,
-				ult,
-				"modifier_primal_beast_pulverize_custom_trample_count",
-				{ duration = mod:GetRemainingTime() + 0.1 }
-			)
-		end
+	if not crit then
+		return
+	end
+	self.caster:LogProc("modifier_primal_beast_trample_3", hero_hit and 1 or 0)
+	self:ProcCrit(origin, mod.radius, hero_hit)
+end
 
-		local current_damage = damage
-		damageTable.damage = current_damage
-		DoDamage(damageTable, source)
-		enemy:SendNumber(4, current_damage)
-
-		if mod and caster:HasTalent("modifier_primal_beast_trample_4") then
-			enemy:AddNewModifier(
-				caster,
-				self,
-				"modifier_primal_beast_trample_slow",
-				{ duration = mod:GetRemainingTime() + stack_duration }
-			)
-		end
-
-		if caster:GetQuest() == "Beast.Quest_6" and enemy:IsRealHero() and not caster:QuestCompleted() then
-			enemy:AddNewModifier(caster, self, "modifier_primal_beast_trample_quest", { duration = 1 })
-		end
-
-		if
-			caster:HasTalent("modifier_primal_beast_trample_6")
-			and mod
-			and mod.silence_targets
-			and not mod.silence_targets[enemy:entindex()]
-		then
-			enemy:AddNewModifier(
-				caster,
-				self,
-				"modifier_primal_beast_trample_silence_stack",
-				{ duration = mod:GetRemainingTime() + 0.1 }
-			)
-		end
+function primal_beast_trample_custom:ProcCrit(point, radius, hero_hit)
+	if not IsServer() then
+		return
 	end
 
-	self:PlayEffects(radius, sound)
-end
-
-function primal_beast_trample_custom:PlayEffects(radius, sound)
-	local caster = self:GetCaster()
-
-	local effect_cast = ParticleManager:CreateParticle(
-		"particles/units/heroes/hero_primal_beast/primal_beast_trample.vpcf",
-		PATTACH_ABSORIGIN,
-		caster
-	)
-	ParticleManager:SetParticleControl(effect_cast, 1, Vector(radius, 0, 0))
+	local effect_cast =
+		ParticleManager:CreateParticle("particles/primal_beast/trample_crit_stomp.vpcf", PATTACH_WORLDORIGIN, nil)
+	ParticleManager:SetParticleControl(effect_cast, 0, point)
+	ParticleManager:SetParticleControl(effect_cast, 1, Vector(radius, radius, radius))
+	ParticleManager:SetParticleControl(effect_cast, 2, point)
+	ParticleManager:SetParticleControl(effect_cast, 3, point)
 	ParticleManager:ReleaseParticleIndex(effect_cast)
-	caster:EmitSound(sound)
+	EmitSoundOnLocationWithCaster(point, "DOTA_Item.Daedelus.Crit", self.caster)
+
+	if not hero_hit then
+		return
+	end
+	self.caster:AddNewModifier(
+		self.caster,
+		self,
+		"modifier_primal_beast_trample_strength",
+		{ duration = self.talents.w3_duration }
+	)
 end
 
-modifier_primal_beast_trample_custom = class({})
-
-function modifier_primal_beast_trample_custom:IsPurgable()
-	return false
-end
-function modifier_primal_beast_trample_custom:IsHidden()
-	return false
-end
-
-function modifier_primal_beast_trample_custom:OnCreated(kv)
+modifier_primal_beast_trample_tracker = class(mod_hidden)
+function modifier_primal_beast_trample_tracker:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
+	self.ability.tracker = self
+	self.ability:UpdateTalents()
 
-	self.step_distance = self.ability:GetSpecialValueFor("step_distance")
-	self.radius = self.ability:GetSpecialValueFor("effect_radius")
+	self.parent.trample_ability = self.ability
 
-	self.move_bonus = self.parent:GetTalentValue("modifier_primal_beast_trample_3", "move")
+	self.ability.effect_radius = self.ability:GetSpecialValueFor("effect_radius")
+	self.ability.step_distance = self.ability:GetSpecialValueFor("step_distance")
+	self.ability.base_damage = self.ability:GetSpecialValueFor("base_damage")
+	self.ability.duration = self.ability:GetSpecialValueFor("duration")
+	self.ability.creeps_damage = self.ability:GetSpecialValueFor("creeps_damage") / 100
+end
+
+function modifier_primal_beast_trample_tracker:OnRefresh()
+	self.ability.base_damage = self.ability:GetSpecialValueFor("base_damage")
+end
+
+modifier_primal_beast_trample_custom = class(mod_visible)
+function modifier_primal_beast_trample_custom:GetEffectName()
+	return "particles/units/heroes/hero_primal_beast/primal_beast_disarm.vpcf"
+end
+function modifier_primal_beast_trample_custom:GetEffectAttachType()
+	return PATTACH_OVERHEAD_FOLLOW
+end
+function modifier_primal_beast_trample_custom:OnCreated(params)
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
 
 	if not IsServer() then
 		return
 	end
-	self.silence_targets = {}
-	self.ability:EndCd()
-
 	self.RemoveForDuel = true
+	self.ability:EndCd(self.ability.talents.has_w7 == 1 and 0.2 or nil)
+
+	self.step_distance = self.ability.step_distance
+	self.radius = self.ability.effect_radius + self.ability.talents.r2_radius
+
 	self.ult_count = 0
 	self.distance = 0
 	self.treshold = 500
+	self.interval = 0.1
+	self.ticks = 0
+	self.legendary_damage = 0
+	self.base_duration = self:GetDuration()
+	self.max_time = self.base_duration
+	self.extend = 0
 	self.currentpos = self.parent:GetOrigin()
-	self:StartIntervalThink(0.1)
-	self.ability:Trample()
+	self:StartIntervalThink(self.interval)
+	self.ability:Trample(self)
+end
+
+function modifier_primal_beast_trample_custom:OnDestroy()
+	if not IsServer() then
+		return
+	end
+	self.ability:StartCd()
+
+	if self.ability.talents.has_w4 == 1 then
+		FindClearSpaceForUnit(self.parent, self.parent:GetAbsOrigin(), false)
+	end
+
+	if self.ability.talents.has_w7 == 0 then
+		return
+	end
+	self.parent:UpdateUIshort({ hide = 1, style = "BeastTrample", priority = -1 })
+
+	if not self.ability:IsInAbilityPhase() then
+		return
+	end
+	self.parent:Interrupt()
 end
 
 function modifier_primal_beast_trample_custom:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS,
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
 	}
 end
 
@@ -284,29 +417,52 @@ function modifier_primal_beast_trample_custom:GetActivityTranslationModifiers()
 	return "heavy_steps"
 end
 
-function modifier_primal_beast_trample_custom:GetModifierMoveSpeedBonus_Constant()
-	if not self.parent:HasTalent("modifier_primal_beast_trample_3") then
-		return
-	end
-	return self.move_bonus
-end
-
 function modifier_primal_beast_trample_custom:CheckState()
-	if not self.parent:HasScepter() then
-		return {
-			[MODIFIER_STATE_DISARMED] = true,
-			[MODIFIER_STATE_ALLOW_PATHING_THROUGH_TREES] = true,
-			[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
-		}
-	else
-		return {
-			[MODIFIER_STATE_ALLOW_PATHING_THROUGH_TREES] = true,
-			[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
-		}
-	end
+	return {
+		[MODIFIER_STATE_DISARMED] = true,
+		[MODIFIER_STATE_ALLOW_PATHING_THROUGH_TREES] = true,
+		[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
+		[MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY] = self.ability.talents.has_w4 == 1,
+	}
 end
 
 function modifier_primal_beast_trample_custom:OnIntervalThink()
+	if not IsServer() then
+		return
+	end
+
+	if self.parent:HasModifier("modifier_primal_beast_pulverize_custom") then
+		self:SetDuration(self:GetRemainingTime() + self.interval, true)
+	else
+		self.ticks = self.ticks + 1
+	end
+
+	if self.ability.talents.has_w7 == 1 then
+		if self.ticks * self.interval >= 1 then
+			self.ticks = 0
+			self:IncrementStackCount()
+			self.legendary_damage = self:GetStackCount() * self.ability.talents.w7_damage
+
+			if not self.particle then
+				self.particle = self.parent:GenericParticle("particles/primal_beast/beast_quake_stack.vpcf", self, true)
+			end
+
+			local number = self:GetStackCount()
+			local double = math.floor(number / 10)
+			ParticleManager:SetParticleControl(self.particle, 1, Vector(double, number, number - double * 10))
+		end
+
+		self.max_time = math.max(self.max_time, self:GetRemainingTime())
+		self.parent:UpdateUIshort({
+			max_time = self.max_time,
+			time = self:GetRemainingTime(),
+			stack = self:GetRemainingTime(),
+			use_zero = 1,
+			style = "BeastTrample",
+			priority = -1,
+		})
+	end
+
 	local pos = self.parent:GetOrigin()
 	local dist = (pos - self.currentpos):Length2D()
 	self.currentpos = pos
@@ -316,401 +472,72 @@ function modifier_primal_beast_trample_custom:OnIntervalThink()
 	end
 
 	self.distance = self.distance + dist
-	if self.distance > self.step_distance then
-		self.ability:Trample()
-		self.distance = 0
-	end
-end
-
-function modifier_primal_beast_trample_custom:GetEffectName()
-	if self.parent:HasScepter() then
+	if self.distance <= self.step_distance then
 		return
 	end
-	return "particles/units/heroes/hero_primal_beast/primal_beast_disarm.vpcf"
+
+	self.ability:Trample(self)
+	self.distance = 0
 end
 
-function modifier_primal_beast_trample_custom:GetEffectAttachType()
-	return PATTACH_OVERHEAD_FOLLOW
-end
-
-function modifier_primal_beast_trample_custom:OnDestroy()
+modifier_primal_beast_trample_quest = class(mod_hidden)
+function modifier_primal_beast_trample_quest:OnCreated()
 	if not IsServer() then
 		return
 	end
-
-	self.ability:StartCd()
-
-	if self.parent:HasTalent("modifier_primal_beast_trample_7") and self.ability:IsHidden() then
-		self.parent:SwapAbilities("primal_beast_trample_custom", "primal_beast_charge_custom", true, false)
-	end
+	self.caster = self:GetCaster()
+	self:OnRefresh()
 end
 
-modifier_primal_beast_trample_tracker = class({})
-function modifier_primal_beast_trample_tracker:IsHidden()
-	return true
-end
-function modifier_primal_beast_trample_tracker:IsPurgable()
-	return false
-end
-
-function modifier_primal_beast_trample_tracker:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.heal_creeps = self.parent:GetTalentValue("modifier_primal_beast_trample_2", "creeps", true)
-	self.heal_bonus = self.parent:GetTalentValue("modifier_primal_beast_trample_2", "bonus", true)
-
-	self.parent:AddDamageEvent_out(self)
-	self.parent:AddSpellEvent(self)
-
+function modifier_primal_beast_trample_quest:OnRefresh()
 	if not IsServer() then
 		return
 	end
-	self:StartIntervalThink(1)
-end
-
-function modifier_primal_beast_trample_tracker:OnIntervalThink()
-	if not self.parent:HasTalent("modifier_primal_beast_trample_1") then
+	if not self.caster:GetQuest() then
 		return
 	end
-	if not self.parent:IsAlive() then
+	if self.caster:QuestCompleted() then
 		return
 	end
 
-	self.ability:Trample("modifier_primal_beast_trample_1")
-	self:StartIntervalThink(self.parent:GetTalentValue("modifier_primal_beast_trample_1", "cd"))
-end
-
-function modifier_primal_beast_trample_tracker:SpellEvent(params)
-	if not IsServer() then
-		return
-	end
-	if not self.parent:HasScepter() then
-		return
-	end
-	if params.unit ~= self.parent then
-		return
-	end
-	if params.ability:IsItem() then
+	self:IncrementStackCount()
+	if self:GetStackCount() < self.caster.quest.number then
 		return
 	end
 
-	self.parent:AddNewModifier(self.parent, self.ability, "modifier_primal_beast_trample_scepter_attack", {})
-end
-
-function modifier_primal_beast_trample_tracker:DamageEvent_out(params)
-	if not IsServer() then
-		return
-	end
-	if not self.parent:HasTalent("modifier_primal_beast_trample_2") then
-		return
-	end
-	if not self.parent:CheckLifesteal(params, 0) then
-		return
-	end
-
-	local heal = self.parent:GetTalentValue("modifier_primal_beast_trample_2", "heal") * params.damage / 100
-	local hide_number = true
-
-	if params.inflictor and params.inflictor == self.ability then
-		hide_number = false
-		heal = heal * self.heal_bonus
-	end
-
-	if params.unit:IsCreep() then
-		heal = heal / self.heal_creeps
-	end
-
-	self.parent:GenericHeal(heal, self.ability, hide_number, nil, "modifier_primal_beast_trample_2")
-end
-
-modifier_primal_beast_trample_scepter_attack = class({})
-function modifier_primal_beast_trample_scepter_attack:IsHidden()
-	return true
-end
-function modifier_primal_beast_trample_scepter_attack:IsPurgable()
-	return false
-end
-
-function modifier_primal_beast_trample_scepter_attack:CheckState()
-	return {
-		[MODIFIER_STATE_CANNOT_MISS] = true,
-	}
-end
-
-function modifier_primal_beast_trample_scepter_attack:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-	self.parent:AddAttackEvent_out(self)
-end
-
-function modifier_primal_beast_trample_scepter_attack:AttackEvent_out(params)
-	if not IsServer() then
-		return
-	end
-	if self.parent ~= params.attacker then
-		return
-	end
-
-	local target = params.target
-	local radius = self.ability:GetSpecialValueFor("scepter_radius")
-	local damage = self.parent:GetAverageTrueAttackDamage(nil) * self.ability:GetSpecialValueFor("scepter_damage") / 100
-	local duration = self.ability:GetSpecialValueFor("scepter_duration")
-
-	local effect_cast = ParticleManager:CreateParticle(
-		"particles/units/heroes/hero_primal_beast/primal_beast_pulverize_hit.vpcf",
-		PATTACH_WORLDORIGIN,
-		nil
-	)
-	ParticleManager:SetParticleControl(effect_cast, 0, target:GetAbsOrigin())
-	ParticleManager:SetParticleControl(effect_cast, 1, Vector(radius, radius, radius))
-	ParticleManager:DestroyParticle(effect_cast, false)
-	ParticleManager:ReleaseParticleIndex(effect_cast)
-	EmitSoundOnLocationWithCaster(target:GetOrigin(), "Hero_PrimalBeast.Pulverize.Impact", self.parent)
-
-	local enemies = FindUnitsInRadius(
-		self.parent:GetTeamNumber(),
-		target:GetAbsOrigin(),
-		nil,
-		radius,
-		DOTA_UNIT_TARGET_TEAM_ENEMY,
-		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-		0,
-		0,
-		false
-	)
-	local damageTable = {
-		attacker = self.parent,
-		damage = damage,
-		damage_type = DAMAGE_TYPE_MAGICAL,
-		ability = self.ability,
-		damage_flags = DOTA_DAMAGE_FLAG_NONE,
-	}
-
-	for _, enemy in pairs(enemies) do
-		damageTable.victim = enemy
-		DoDamage(damageTable, "scepter")
-		SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE, enemy, damage, nil)
-		enemy:AddNewModifier(
-			self.parent,
-			self.ability,
-			"modifier_primal_beast_trample_scepter_slow",
-			{ duration = (1 - enemy:GetStatusResistance()) * duration }
-		)
-	end
-
+	self.caster:UpdateQuest(1)
 	self:Destroy()
 end
 
-modifier_primal_beast_trample_scepter_slow = class({})
-function modifier_primal_beast_trample_scepter_slow:IsHidden()
-	return false
+modifier_primal_beast_trample_charge = class(mod_hidden)
+function modifier_primal_beast_trample_charge:GetEffectName()
+	return "particles/units/heroes/hero_primal_beast/primal_beast_onslaught_charge_active.vpcf"
 end
-function modifier_primal_beast_trample_scepter_slow:IsPurgable()
-	return true
+function modifier_primal_beast_trample_charge:GetEffectAttachType()
+	return PATTACH_ABSORIGIN_FOLLOW
 end
-function modifier_primal_beast_trample_scepter_slow:OnCreated()
-	self.slow = self:GetAbility():GetSpecialValueFor("scepter_slow")
-	self.attack = self:GetAbility():GetSpecialValueFor("scepter_attack_slow")
-end
-
-function modifier_primal_beast_trample_scepter_slow:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
-	}
-end
-
-function modifier_primal_beast_trample_scepter_slow:GetModifierMoveSpeedBonus_Percentage()
-	return self.slow
-end
-
-function modifier_primal_beast_trample_scepter_slow:GetModifierAttackSpeedBonus_Constant()
-	return self.attack
-end
-
-modifier_primal_beast_trample_speed = class({})
-function modifier_primal_beast_trample_speed:IsHidden()
-	return false
-end
-function modifier_primal_beast_trample_speed:IsPurgable()
-	return false
-end
-function modifier_primal_beast_trample_speed:GetTexture()
-	return "buffs/bloodlust_resist"
-end
-function modifier_primal_beast_trample_speed:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
-		MODIFIER_PROPERTY_STATUS_RESISTANCE_STACKING,
-	}
-end
-
-function modifier_primal_beast_trample_speed:GetModifierIncomingDamage_Percentage()
-	return self.damage_reduce * (self:GetStackCount() / self.stack)
-end
-
-function modifier_primal_beast_trample_speed:GetModifierStatusResistanceStacking()
-	return self.status * (self:GetStackCount() / self.stack)
-end
-
-function modifier_primal_beast_trample_speed:OnCreated(table)
+function modifier_primal_beast_trample_charge:OnCreated()
 	self.parent = self:GetParent()
-	self.stack = self.parent:GetTalentValue("modifier_primal_beast_trample_5", "stack")
-	self.status = self.parent:GetTalentValue("modifier_primal_beast_trample_5", "status")
-	self.damage_reduce = self.parent:GetTalentValue("modifier_primal_beast_trample_5", "damage_reduce")
+	self.ability = self:GetAbility()
 
 	if not IsServer() then
 		return
 	end
-	self.parent:GenericParticle("particles/items4_fx/ascetic_cap.vpcf", self)
-	self:SetStackCount(self.stack)
-	self:StartIntervalThink(self:GetRemainingTime() / self.stack)
-end
+	self.ability:EndCd(self.ability.talents.w7_talent_cd)
+	self.speed = self.ability.talents.w7_speed
+	self.radius = self.ability.talents.w7_radius
+	self.knockback = self.ability.talents.w7_knockback
+	self.knockback_duration = self.ability.talents.w7_knockback_duration
+	self.dir = self.parent:GetForwardVector()
+	self.dir.z = 0
+	self.dir = self.dir:Normalized()
+	self.hit = false
+	self.hit_units = {}
 
-function modifier_primal_beast_trample_speed:OnIntervalThink()
-	if not IsServer() then
+	if self:ApplyHorizontalMotionController() then
 		return
 	end
-	self:DecrementStackCount()
-end
-
-modifier_primal_beast_trample_slow = class({})
-function modifier_primal_beast_trample_slow:IsHidden()
-	return false
-end
-function modifier_primal_beast_trample_slow:IsPurgable()
-	return false
-end
-function modifier_primal_beast_trample_slow:GetTexture()
-	return "buffs/trample_stack"
-end
-function modifier_primal_beast_trample_slow:OnCreated(table)
-	self.caster = self:GetCaster()
-	self.parent = self:GetParent()
-	self.max = self.caster:GetTalentValue("modifier_primal_beast_trample_4", "max", true)
-	self.slow = self.caster:GetTalentValue("modifier_primal_beast_trample_4", "slow") / self.max
-	self.damage = self.caster:GetTalentValue("modifier_primal_beast_trample_4", "damage") / self.max
-	if not IsServer() then
-		return
-	end
-
-	self.effect_cast = self.parent:GenericParticle("particles/beast_silence.vpcf", self, true)
-	self:SetStackCount(1)
-end
-
-function modifier_primal_beast_trample_slow:OnRefresh(table)
-	if not IsServer() then
-		return
-	end
-	if self:GetStackCount() >= self.max then
-		return
-	end
-	self:IncrementStackCount()
-end
-
-function modifier_primal_beast_trample_slow:OnStackCountChanged(iStackCount)
-	if not self.effect_cast then
-		return
-	end
-
-	if self:GetStackCount() < self.max or true then
-		ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(0, self:GetStackCount(), 0))
-	else
-		ParticleManager:DestroyParticle(self.effect_cast, true)
-		ParticleManager:ReleaseParticleIndex(self.effect_cast)
-		self.effect_cast = nil
-		self.parent:EmitSound("Item.StarEmblem.Enemy")
-		self.parent:GenericParticle("particles/general/generic_armor_reduction.vpcf", self, true)
-	end
-end
-
-function modifier_primal_beast_trample_slow:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-		MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
-	}
-end
-
-function modifier_primal_beast_trample_slow:GetModifierMoveSpeedBonus_Percentage()
-	return self:GetStackCount() * self.slow
-end
-
-function modifier_primal_beast_trample_slow:GetModifierIncomingDamage_Percentage(params)
-	if IsServer() and (not params.attacker or params.attacker:FindOwner() ~= self.caster) then
-		return
-	end
-	return self:GetStackCount() * self.damage
-end
-
-modifier_primal_beast_trample_damage = class({})
-function modifier_primal_beast_trample_damage:IsHidden()
-	return false
-end
-function modifier_primal_beast_trample_damage:IsPurgable()
-	return false
-end
-function modifier_primal_beast_trample_damage:GetTexture()
-	return "buffs/bulwark_face"
-end
-function modifier_primal_beast_trample_damage:OnCreated(table)
-	self.caster = self:GetCaster()
-	self.damage = self.caster:GetTalentValue("modifier_primal_beast_trample_7", "damage")
-	if not IsServer() then
-		return
-	end
-	self:SetStackCount(1)
-end
-
-function modifier_primal_beast_trample_damage:OnRefresh(table)
-	if not IsServer() then
-		return
-	end
-	self:IncrementStackCount()
-end
-
-function modifier_primal_beast_trample_damage:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE,
-	}
-end
-
-function modifier_primal_beast_trample_damage:GetModifierDamageOutgoing_Percentage()
-	return self:GetStackCount() * self.damage
-end
-
-modifier_primal_beast_trample_charge = class({})
-
-function modifier_primal_beast_trample_charge:IsPurgable()
-	return false
-end
-function modifier_primal_beast_trample_charge:IsHidden()
-	return true
-end
-function modifier_primal_beast_trample_charge:CheckState()
-	return {
-		[MODIFIER_STATE_DISARMED] = true,
-	}
-end
-
-function modifier_primal_beast_trample_charge:OnCreated(kv)
-	self.parent = self:GetParent()
-	self.speed = self:GetAbility():GetSpecialValueFor("speed")
-	self.turn_speed = 70
-
-	if not IsServer() then
-		return
-	end
-	self.parent:AddOrderEvent(self)
-
-	self.target_angle = self.parent:GetAnglesAsVector().y
-	self.current_angle = self.target_angle
-	self.face_target = true
-
-	if not self:ApplyHorizontalMotionController() then
-		self:Destroy()
-		return
-	end
+	self:Destroy()
 end
 
 function modifier_primal_beast_trample_charge:OnDestroy()
@@ -718,7 +545,14 @@ function modifier_primal_beast_trample_charge:OnDestroy()
 		return
 	end
 	self.parent:RemoveHorizontalMotionController(self)
+	self.parent:FacePoint()
 	FindClearSpaceForUnit(self.parent, self.parent:GetOrigin(), false)
+end
+
+function modifier_primal_beast_trample_charge:CheckState()
+	return {
+		[MODIFIER_STATE_DISARMED] = true,
+	}
 end
 
 function modifier_primal_beast_trample_charge:DeclareFunctions()
@@ -729,29 +563,8 @@ function modifier_primal_beast_trample_charge:DeclareFunctions()
 	}
 end
 
-function modifier_primal_beast_trample_charge:OrderEvent(params)
-	if params.order_type == DOTA_UNIT_ORDER_MOVE_TO_POSITION then
-		self:SetDirection(params.pos)
-	elseif params.order_type == DOTA_UNIT_ORDER_MOVE_TO_DIRECTION then
-		self:SetDirection(params.pos)
-	elseif
-		(params.order_type == DOTA_UNIT_ORDER_MOVE_TO_TARGET or params.order_type == DOTA_UNIT_ORDER_ATTACK_TARGET)
-		and params.target
-	then
-		self:SetDirection(params.target:GetOrigin())
-	elseif params.order_type == DOTA_UNIT_ORDER_STOP or params.order_type == DOTA_UNIT_ORDER_HOLD_POSITION then
-		self:Destroy()
-	end
-end
-
 function modifier_primal_beast_trample_charge:GetModifierDisableTurning()
 	return 1
-end
-
-function modifier_primal_beast_trample_charge:SetDirection(location)
-	local dir = ((location - self.parent:GetOrigin()) * Vector(1, 1, 0)):Normalized()
-	self.target_angle = VectorToAngles(dir).y
-	self.face_target = false
 end
 
 function modifier_primal_beast_trample_charge:GetOverrideAnimation()
@@ -762,172 +575,172 @@ function modifier_primal_beast_trample_charge:GetActivityTranslationModifiers()
 	return "onslaught_movement"
 end
 
-function modifier_primal_beast_trample_charge:TurnLogic(dt)
-	if self.face_target then
+function modifier_primal_beast_trample_charge:UpdateHorizontalMotion(me, dt)
+	if self.parent:IsStunned() or self.parent:IsHexed() or self.parent:IsChanneling() then
+		self:Destroy()
 		return
 	end
-	local angle_diff = AngleDiff(self.current_angle, self.target_angle)
-	local turn_speed = self.turn_speed * dt
 
-	local sign = -1
-	if angle_diff < 0 then
-		sign = 1
+	if self.parent:IsRooted() or self.parent:IsLeashed() then
+		return
 	end
 
-	if math.abs(angle_diff) < 1.1 * turn_speed then
-		self.current_angle = self.target_angle
-		self.face_target = true
-	else
-		self.current_angle = self.current_angle + sign * turn_speed
+	for _, unit in pairs(self.parent:FindTargets(self.radius)) do
+		if not self.hit_units[unit] then
+			self.hit_units[unit] = true
+			self.parent:LogProc("modifier_primal_beast_trample_7", nil, unit)
+
+			if not self.hit and IsValid(self.ability.trample_mod) then
+				self.hit = true
+				local mod = self.ability.trample_mod
+				local duration = math.min(
+					self.ability.talents.w7_duration,
+					mod.base_duration * self.ability.talents.w7_max - mod.extend
+				)
+				mod.extend = mod.extend + duration
+				mod:SetDuration(mod:GetRemainingTime() + duration, true)
+				self.parent:LogProc("modifier_primal_beast_trample_7_extend", duration)
+			end
+
+			if not unit:IsCurrentlyHorizontalMotionControlled() and not unit:IsCurrentlyVerticalMotionControlled() then
+				local vec = unit:GetAbsOrigin() - self.parent:GetAbsOrigin()
+				vec.z = 0
+				vec = vec:Normalized()
+
+				unit:AddNewModifier(self.parent, self.ability, "modifier_generic_knockback", {
+					duration = self.knockback_duration,
+					distance = self.knockback,
+					height = 50,
+					direction_x = vec.x,
+					direction_y = vec.y,
+				})
+			end
+
+			local effect_cast = ParticleManager:CreateParticle(
+				wearables_system:GetParticleReplacementAbility(
+					self.parent,
+					"particles/units/heroes/hero_primal_beast/primal_beast_onslaught_impact.vpcf",
+					self.ability
+				),
+				PATTACH_ABSORIGIN_FOLLOW,
+				unit
+			)
+			ParticleManager:SetParticleControl(effect_cast, 1, Vector(self.radius, self.radius, self.radius))
+			ParticleManager:ReleaseParticleIndex(effect_cast)
+			unit:EmitSound("Hero_PrimalBeast.Onslaught.Hit")
+		end
 	end
 
-	local angles = self.parent:GetAnglesAsVector()
-	self.parent:SetLocalAngles(angles.x, self.current_angle, angles.z)
-end
-
-function modifier_primal_beast_trample_charge:UpdateHorizontalMotion(me, dt)
-	self:TurnLogic(dt)
-	local nextpos = me:GetOrigin() + me:GetForwardVector() * self.speed * dt
-	me:SetOrigin(nextpos)
+	me:SetOrigin(me:GetOrigin() + self.dir * self.speed * dt)
 end
 
 function modifier_primal_beast_trample_charge:OnHorizontalMotionInterrupted()
 	self:Destroy()
 end
 
-function modifier_primal_beast_trample_charge:GetEffectName()
-	return "particles/units/heroes/hero_primal_beast/primal_beast_onslaught_charge_active.vpcf"
-end
-
-function modifier_primal_beast_trample_charge:GetEffectAttachType()
-	return PATTACH_ABSORIGIN_FOLLOW
-end
-
-function modifier_primal_beast_trample_charge:PlayEffects(target, radius)
-	local effect_cast = ParticleManager:CreateParticle(
-		"particles/units/heroes/hero_primal_beast/primal_beast_onslaught_impact.vpcf",
-		PATTACH_ABSORIGIN_FOLLOW,
-		target
-	)
-	ParticleManager:SetParticleControl(effect_cast, 1, Vector(radius, radius, radius))
-	ParticleManager:ReleaseParticleIndex(effect_cast)
-	target:EmitSound("Hero_PrimalBeast.Onslaught.Hit")
-end
-
-primal_beast_charge_custom = class({})
-
-function primal_beast_charge_custom:GetCooldown()
-	return self:GetCaster():GetTalentValue("modifier_primal_beast_trample_7", "cd")
-end
-
-function primal_beast_charge_custom:OnSpellStart()
-	if not IsServer() then
-		return
-	end
-	local caster = self:GetCaster()
-	local duration = caster:GetTalentValue("modifier_primal_beast_trample_7", "distance")
-		/ self:GetSpecialValueFor("speed")
-	caster:AddNewModifier(caster, self, "modifier_primal_beast_trample_charge", { duration = duration })
-end
-
-modifier_primal_beast_trample_silence_stack = class({})
-function modifier_primal_beast_trample_silence_stack:IsHidden()
-	return true
-end
-function modifier_primal_beast_trample_silence_stack:IsPurgable()
-	return false
-end
-function modifier_primal_beast_trample_silence_stack:GetTexture()
-	return "buffs/trample_silence"
-end
-function modifier_primal_beast_trample_silence_stack:OnCreated(table)
-	if not IsServer() then
-		return
-	end
-
-	self.caster = self:GetCaster()
+modifier_primal_beast_trample_arrow = class(mod_hidden)
+function modifier_primal_beast_trample_arrow:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.silence = self.caster:GetTalentValue("modifier_primal_beast_trample_6", "silence")
-	self.max = self.caster:GetTalentValue("modifier_primal_beast_trample_6", "max")
+	if not IsServer() then
+		return
+	end
+	self.distance = self.ability.talents.w7_distance
+	self.particle = ParticleManager:CreateParticleForPlayer(
+		"particles/primal_beast/beast_charge.vpcf",
+		PATTACH_ABSORIGIN_FOLLOW,
+		self.parent,
+		PlayerResource:GetPlayer(self.parent:GetPlayerOwnerID())
+	)
+	ParticleManager:SetParticleControl(self.particle, 2, Vector(self.ability.talents.w7_radius / 1.4, 0, 0))
+	self:AddParticle(self.particle, true, false, -1, false, false)
+	self:StartIntervalThink(FrameTime())
+	self:OnIntervalThink()
+end
+
+function modifier_primal_beast_trample_arrow:OnIntervalThink()
+	if not IsServer() then
+		return
+	end
+	ParticleManager:SetParticleControl(
+		self.particle,
+		1,
+		self.parent:GetAbsOrigin() + self.parent:GetForwardVector() * self.distance
+	)
+end
+
+modifier_primal_beast_trample_strength = class(mod_visible)
+function modifier_primal_beast_trample_strength:GetTexture()
+	return "buffs/primal_beast/trample_3"
+end
+function modifier_primal_beast_trample_strength:OnCreated()
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
+	if not IsServer() then
+		return
+	end
 	self.RemoveForDuel = true
-	self:SetStackCount(1)
+	self.max = self.ability.talents.w3_max
+	self:OnRefresh()
 end
 
-function modifier_primal_beast_trample_silence_stack:OnRefresh(table)
+function modifier_primal_beast_trample_strength:OnRefresh()
 	if not IsServer() then
 		return
 	end
-	self:IncrementStackCount()
-
 	if self:GetStackCount() >= self.max then
-		local mod = self.caster:FindModifierByName("modifier_primal_beast_trample_custom")
-
-		if mod and mod.silence_targets and not mod.silence_targets[self.parent:entindex()] then
-			mod.silence_targets[self.parent:entindex()] = true
-			self.parent:EmitSound("PBeast.Trample_silence")
-			self.parent:AddNewModifier(
-				self.caster,
-				self.ability,
-				"modifier_generic_silence",
-				{ duration = (1 - self.parent:GetStatusResistance()) * self.silence }
-			)
-		end
-
-		self:Destroy()
-	end
-end
-
-modifier_primal_beast_trample_quest = class({})
-function modifier_primal_beast_trample_quest:IsHidden()
-	return true
-end
-function modifier_primal_beast_trample_quest:IsPurgable()
-	return false
-end
-function modifier_primal_beast_trample_quest:OnCreated(table)
-	if not IsServer() then
 		return
 	end
-
-	self:SetStackCount(1)
-end
-
-function modifier_primal_beast_trample_quest:OnRefresh(table)
-	if not IsServer() then
-		return
-	end
-	if not self:GetCaster():GetQuest() or self:GetCaster():QuestCompleted() then
-		return
-	end
-
 	self:IncrementStackCount()
-
-	if self:GetStackCount() >= self:GetCaster().quest.number then
-		self:GetCaster():UpdateQuest(1)
-		self:Destroy()
-	end
+	self.parent:AddPercentStat({ str = self:GetStackCount() * self.ability.talents.w3_str }, self)
 end
 
-modifier_primal_beast_trample_custom_haste = class({})
-
-function modifier_primal_beast_trample_custom_haste:IsHidden()
-	return true
-end
-function modifier_primal_beast_trample_custom_haste:IsPurgable()
-	return false
-end
-function modifier_primal_beast_trample_custom_haste:GetEffectName()
-	return "particles/generic_gameplay/rune_haste_owner.vpcf"
-end
-
-function modifier_primal_beast_trample_custom_haste:GetEffectAttachType()
-	return PATTACH_ABSORIGIN_FOLLOW
-end
-
-function modifier_primal_beast_trample_custom_haste:CheckState()
+function modifier_primal_beast_trample_strength:DeclareFunctions()
 	return {
-		[MODIFIER_STATE_UNSLOWABLE] = true,
+		MODIFIER_PROPERTY_TOOLTIP,
 	}
+end
+
+function modifier_primal_beast_trample_strength:OnTooltip()
+	return self:GetStackCount() * self.ability.talents.w3_str * 100
+end
+
+modifier_primal_beast_trample_silence = class(mod_hidden)
+function modifier_primal_beast_trample_silence:OnCreated()
+	self.parent = self:GetParent()
+	self.caster = self:GetCaster()
+	self.ability = self:GetAbility()
+
+	if not IsServer() then
+		return
+	end
+	self.RemoveForDuel = true
+	self.max = self.ability.talents.w4_hits
+	self.particle = self.parent:GenericParticle("particles/primal_beast/trample_silence.vpcf", self, true)
+	self:OnRefresh()
+end
+
+function modifier_primal_beast_trample_silence:OnRefresh()
+	if not IsServer() then
+		return
+	end
+	self:IncrementStackCount()
+	ParticleManager:SetParticleControl(self.particle, 1, Vector(0, self:GetStackCount(), 0))
+
+	if self:GetStackCount() < self.max then
+		return
+	end
+
+	self.parent:StartCd("primal_beast_trample_4")
+	self.parent:EmitSound("PBeast.Trample_silence")
+	self.parent:AddNewModifier(
+		self.caster,
+		self.ability,
+		"modifier_generic_silence",
+		{ duration = (1 - self.parent:GetStatusResistance()) * self.ability.talents.w4_silence }
+	)
+	self.caster:LogProc("modifier_primal_beast_trample_4", nil, self.parent)
+	self:Destroy()
 end

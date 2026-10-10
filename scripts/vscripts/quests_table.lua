@@ -1341,7 +1341,6 @@ _G.All_Quests = {
 				["reward_shards"] = 15,
 				["reward_exp"] = 80,
 				["goal"] = 20,
-				["number"] = 2,
 			},
 			[6] = {
 				["name"] = "Beast.Quest_6",

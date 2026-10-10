@@ -36,12 +36,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_custom_huskar_life_break_heal",
 	"abilities/huskar/custom_huskar_life_break",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_huskar_hero_3"
 )
 LinkLuaModifier(
 	"modifier_custom_huskar_life_break_aura_damage",
 	"abilities/huskar/custom_huskar_life_break",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_huskar_leap_1"
 )
 
 custom_huskar_life_break = class({})
@@ -59,13 +61,10 @@ function custom_huskar_life_break:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_pangolier/pangolier_tailthump_buff_egg.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_pangolier/pangolier_tailthump_buff_streaks.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_oracle/oracle_purifyingflames.vpcf", context)
-	PrecacheResource("particle", "particles/huskar_earth_hit.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_snapfire/hero_snapfire_ultimate_calldown.vpcf", context)
-	PrecacheResource("particle", "particles/huskar_earth_stack.vpcf", context)
-	PrecacheResource("particle", "particles/huskar_fire.vpcf", context)
-	PrecacheResource("particle", "particles/huskar/break_root.vpcf", context)
-	PrecacheResource("particle", "particles/huskar/break_legendary_cast.vpcf", context)
-	PrecacheResource("particle", "particles/jugg_refresh.vpcf", context)
+	PrecacheResource("particle", "particles/huskar/huskar_earth_stack.vpcf", context)
+	PrecacheResource("particle", "particles/huskar/huskar_fire.vpcf", context)
+	PrecacheResource("particle", "particles/juggernaut/jugg_refresh.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/units/heroes/hero_brewmaster/brewmaster_fire_immolation_child.vpcf",
@@ -523,7 +522,7 @@ function modifier_custom_huskar_life_break:OnDestroy()
 						/ (100 - self.ability.talents.r4_health)
 					)
 			) * self.ability.talents.r4_cd_items
-			self.parent:CdItems(cd_items)
+			self.parent:CdItems(cd_items, "modifier_huskar_leap_4")
 		end
 	end
 end
@@ -690,7 +689,7 @@ function modifier_custom_huskar_life_break_tracker:OnIntervalThink()
 		stack = 1
 		if self.ability:GetCooldownTimeRemaining() > 0 then
 			local cd = self.interval * self.ability.talents.r7_cd_inc
-			self.parent:CdAbility(self.ability, cd)
+			self.parent:CdAbility(self.ability, cd, nil, "modifier_huskar_leap_7")
 		end
 	end
 
@@ -787,7 +786,7 @@ function modifier_custom_huskar_life_delay_damage:OnCreated(table)
 		damage_type = self.ability.talents.r3_damage_type,
 		damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION,
 	}
-	self.parent:GenericParticle("particles/huskar_fire.vpcf", self, true)
+	self.parent:GenericParticle("particles/huskar/huskar_fire.vpcf", self, true)
 end
 
 function modifier_custom_huskar_life_delay_damage:OnDestroy()

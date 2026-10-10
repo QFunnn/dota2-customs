@@ -27,9 +27,9 @@ function item_solar_crest_custom:Precache(context)
 	end
 	PrecacheResource("particle", "particles/items3_fx/star_emblem_friend.vpcf", context)
 	PrecacheResource("particle", "particles/items2_fx/pavise_friend.vpcf", context)
-	PrecacheResource("particle", "particles/general/generic_armor_reduction.vpcf", context)
+	PrecacheResource("particle", "particles/generic/generic_armor_reduction.vpcf", context)
 	PrecacheResource("particle", "particles/items/pavise_shield.vpcf", context)
-	PrecacheResource("particle", "particles/general/generic_shield.vpcf", context)
+	PrecacheResource("particle", "particles/generic/generic_shield.vpcf", context)
 end
 
 function item_solar_crest_custom:Spawn()
@@ -117,7 +117,7 @@ function modifier_item_solar_crest_custom_speed:OnCreated(params)
 	end
 	self.RemoveForDuel = true
 
-	self.nFXIndex = self.parent:GenericParticle("particles/general/generic_shield.vpcf", self, true)
+	self.nFXIndex = self.parent:GenericParticle("particles/generic/generic_shield.vpcf", self, true)
 
 	self.particle =
 		ParticleManager:CreateParticle("particles/items/pavise_shield.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
@@ -190,7 +190,7 @@ function modifier_item_solar_crest_custom_speed:GetModifierIncomingDamageConstan
 		ParticleManager:Delete(self.nFXIndex, 2)
 		ParticleManager:Delete(self.particle, 1)
 
-		self.parent:GenericParticle("particles/general/generic_armor_reduction.vpcf", self, true)
+		self.parent:GenericParticle("particles/generic/generic_armor_reduction.vpcf", self, true)
 		self.parent:EmitSound("Item.Star_emblem_break")
 		self.nFXIndex = nil
 	end

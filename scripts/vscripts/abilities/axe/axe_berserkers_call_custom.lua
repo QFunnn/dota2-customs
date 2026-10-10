@@ -26,12 +26,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_axe_berserkers_call_custom_auto_cd",
 	"abilities/axe/axe_berserkers_call_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_axe_hero_4"
 )
 LinkLuaModifier(
 	"modifier_axe_berserkers_call_custom_legendary",
 	"abilities/axe/axe_berserkers_call_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_axe_call_7"
 )
 LinkLuaModifier(
 	"modifier_axe_berserkers_call_custom_legendary_attack",
@@ -66,7 +68,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_axe_berserkers_call_custom_armor",
 	"abilities/axe/axe_berserkers_call_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_axe_call_3"
 )
 
 axe_berserkers_call_custom = class({})
@@ -77,16 +80,11 @@ function axe_berserkers_call_custom:Precache(context)
 		return
 	end
 	PrecacheResource("particle", "particles/units/heroes/hero_axe/axe_beserkers_call_owner.vpcf", context)
-	PrecacheResource("particle", "particles/axe_aggro.vpcf", context)
-	PrecacheResource("particle", "particles/star_shield.vpcf", context)
 	PrecacheResource("particle", "particles/items4_fx/ascetic_cap.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_axe/axe_beserkers_call.vpcf", context)
 	PrecacheResource("particle", "particles/econ/items/axe/axe_ti9_immortal/axe_ti9_call.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_beserkers_call.vpcf", context)
-	PrecacheResource("particle", "particles/qop_linken.vpcf", context)
-	PrecacheResource("particle", "particles/axe_slow.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_oracle/oracle_purifyingflames.vpcf", context)
-	PrecacheResource("particle", "particles/axe/call_legendary_charge.vpcf", context)
 	PrecacheResource("particle", "particles/econ/events/fall_2022/radiance/radiance_owner_fall2022.vpcf", context)
 	PrecacheResource("particle", "particles/econ/events/fall_2022/radiance_target_fall2022.vpcf", context)
 	PrecacheResource("particle", "particles/axe/call_legendary_aoe.vpcf", context)
@@ -305,7 +303,7 @@ function axe_berserkers_call_custom:ProcCd()
 		return
 	end
 
-	self.caster:CdAbility(self, nil, self.talents.q4_cd_inc)
+	self.caster:CdAbility(self, nil, self.talents.q4_cd_inc, "modifier_axe_call_4")
 end
 
 modifier_axe_berserkers_call_custom_buff = class(mod_visible)
@@ -842,7 +840,7 @@ function modifier_axe_berserkers_call_custom_armor:OnRefresh(table)
 	self:IncrementStackCount()
 
 	if self:GetStackCount() >= self.max then
-		self.parent:GenericParticle("particles/general/generic_armor_reduction.vpcf", self, true)
+		self.parent:GenericParticle("particles/generic/generic_armor_reduction.vpcf", self, true)
 	end
 end
 

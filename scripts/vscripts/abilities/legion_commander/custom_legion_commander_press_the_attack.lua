@@ -11,12 +11,14 @@
 LinkLuaModifier(
 	"modifier_press_the_attack_custom_buff",
 	"abilities/legion_commander/custom_legion_commander_press_the_attack",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 LinkLuaModifier(
 	"modifier_press_the_attack_custom_root",
 	"abilities/legion_commander/custom_legion_commander_press_the_attack",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_legion_press_4"
 )
 LinkLuaModifier(
 	"modifier_press_the_attack_custom_legendary",
@@ -26,7 +28,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_press_the_attack_custom_burn_effect",
 	"abilities/legion_commander/custom_legion_commander_press_the_attack",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 LinkLuaModifier(
 	"modifier_press_the_attack_custom_tracker",
@@ -52,7 +55,7 @@ function custom_legion_commander_press_the_attack:Precache(context)
 		"particles/units/heroes/hero_legion_commander/legion_commander_press_halo.vpcf",
 		context
 	)
-	PrecacheResource("particle", "particles/lc_wave.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_wave.vpcf", context)
 	PrecacheResource("particle", "particles/econ/events/fall_2022/radiance/radiance_owner_fall2022.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_legion_commander/legion_commander_press.vpcf", context)
 	PrecacheResource(
@@ -60,9 +63,9 @@ function custom_legion_commander_press_the_attack:Precache(context)
 		"particles/units/heroes/hero_legion_commander/legion_commander_press_owner.vpcf",
 		context
 	)
-	PrecacheResource("particle", "particles/lc_root.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_root.vpcf", context)
 	PrecacheResource("particle", "particles/legion_commander/press_legendary_buff.vpcf", context)
-	PrecacheResource("particle", "particles/lc_press_heal.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_press_heal.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_brewmaster/brewmaster_dispel_magic.vpcf", context)
 	PrecacheResource("particle", "particles/econ/events/fall_2022/radiance_target_fall2022.vpcf", context)
 	PrecacheResource("particle", "particles/legion_commander/press_legendary_radius.vpcf", context)
@@ -287,7 +290,8 @@ function custom_legion_commander_press_the_attack:ProcRoot(target, new_point)
 		point = target:GetAbsOrigin()
 	end
 
-	local wave_particle = ParticleManager:CreateParticle("particles/lc_wave.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
+	local wave_particle =
+		ParticleManager:CreateParticle("particles/legion_commander/lc_wave.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
 	ParticleManager:SetParticleControl(wave_particle, 1, point)
 	ParticleManager:ReleaseParticleIndex(wave_particle)
 
@@ -535,7 +539,8 @@ function modifier_press_the_attack_custom_buff:OnIntervalThink(first)
 			self.items_timer = 0
 			self.parent:CdItems(
 				self.ability.talents.has_w7 == 1 and self.ability.talents.q4_cd_items_legendary
-					or self.ability.talents.q4_cd_items
+					or self.ability.talents.q4_cd_items,
+				"modifier_legion_odds_4"
 			)
 		end
 	end
@@ -675,8 +680,11 @@ function modifier_press_the_attack_custom_legendary:OnCreated()
 	self.parent:EmitSound("Lc.Press_Heal")
 	self.radius = self.ability:GetRadius()
 
-	local effect_target =
-		ParticleManager:CreateParticle("particles/lc_press_heal.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
+	local effect_target = ParticleManager:CreateParticle(
+		"particles/legion_commander/lc_press_heal.vpcf",
+		PATTACH_ABSORIGIN_FOLLOW,
+		self.parent
+	)
 	ParticleManager:SetParticleControl(effect_target, 1, Vector(200, 100, 100))
 	ParticleManager:ReleaseParticleIndex(effect_target)
 
@@ -741,7 +749,7 @@ function modifier_press_the_attack_custom_root:IsPurgable()
 	return true
 end
 function modifier_press_the_attack_custom_root:GetEffectName()
-	return "particles/lc_root.vpcf"
+	return "particles/legion_commander/lc_root.vpcf"
 end
 
 function modifier_press_the_attack_custom_root:CheckState()

@@ -14,7 +14,8 @@ LinkLuaModifier("modifier_invoker_emp_custom", "abilities/invoker/invoker_wex_cu
 LinkLuaModifier(
 	"modifier_invoker_emp_custom_legendary",
 	"abilities/invoker/invoker_wex_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_invoker_wex_7"
 )
 LinkLuaModifier(
 	"modifier_invoker_emp_custom_legendary_attacks",
@@ -41,22 +42,26 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_invoker_tornado_custom_silence",
 	"abilities/invoker/invoker_wex_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_invoker_hero_5"
 )
 LinkLuaModifier(
 	"modifier_invoker_alacrity_custom_stats",
 	"abilities/invoker/invoker_wex_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_invoker_wex_1"
 )
 LinkLuaModifier(
 	"modifier_invoker_alacrity_custom_damage",
 	"abilities/invoker/invoker_wex_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_invoker_wex_3"
 )
 LinkLuaModifier(
 	"modifier_invoker_tornado_custom_purge",
 	"abilities/invoker/invoker_wex_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "Scepter" }
 )
 LinkLuaModifier("modifier_invoker_emp_custom_invun", "abilities/invoker/invoker_wex_custom", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier(
@@ -77,12 +82,11 @@ function invoker_wex_custom:Precache(context)
 	PrecacheResource("particle", "particles/items3_fx/blink_arcane_end.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_invoker/invoker_emp.vpcf", context)
 	PrecacheResource("particle", "particles/invoker/emp_legendarya.vpcf", context)
-	PrecacheResource("particle", "particles/cleance_blade.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_invoker/invoker_alacrity.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_invoker/invoker_alacrity_buff.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_invoker/invoker_tornado.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_invoker/invoker_tornado_child.vpcf", context)
-	PrecacheResource("particle", "particles/void_astral_slow.vpcf", context)
+	PrecacheResource("particle", "particles/void_spirit/void_astral_slow.vpcf", context)
 	PrecacheResource("particle", "particles/invoker/alacrity_max.vpcf", context)
 	PrecacheResource("particle", "particles/generic_gameplay/generic_break.vpcf", context)
 	PrecacheResource("particle", "particles/items4_fx/nullifier_mute_debuff.vpcf", context)
@@ -563,7 +567,12 @@ function invoker_emp_custom:ProcCd()
 	if self.talents.has_w7 == 0 then
 		return
 	end
-	self.caster:CdAbility(self, self:GetEffectiveCooldown(self:GetLevel()) * self.talents.w7_cd)
+	self.caster:CdAbility(
+		self,
+		self:GetEffectiveCooldown(self:GetLevel()) * self.talents.w7_cd,
+		nil,
+		"modifier_invoker_wex_7"
+	)
 end
 
 modifier_invoker_emp_custom = class(mod_hidden)
@@ -1553,7 +1562,7 @@ function modifier_invoker_tornado_custom_silence:OnCreated()
 	if not IsServer() then
 		return
 	end
-	self.parent:GenericParticle("particles/void_astral_slow.vpcf", self)
+	self.parent:GenericParticle("particles/void_spirit/void_astral_slow.vpcf", self)
 end
 
 function modifier_invoker_tornado_custom_silence:DeclareFunctions()

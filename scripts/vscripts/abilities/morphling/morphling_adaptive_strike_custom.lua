@@ -26,7 +26,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_morphling_adaptive_strike_custom_shield_stack",
 	"abilities/morphling/morphling_adaptive_strike_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_morphling_adaptive_4"
 )
 
 morphling_adaptive_strike_custom = class({})
@@ -48,7 +49,6 @@ function morphling_adaptive_strike_custom:Precache(context)
 	)
 	PrecacheResource("particle", "particles/units/heroes/hero_morphling/morphling_adaptive_strike.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_morphling/morphling_adaptive_strike_str.vpcf", context)
-	PrecacheResource("particle", "particles/morphling/adaptive_linear.vpcf", context)
 	PrecacheResource("particle", "particles/sand_king/stinger_target.vpcf", context)
 	PrecacheResource("particle", "particles/morphling/adaptive_aoe.vpcf", context)
 	PrecacheResource("particle", "particles/morphling/adaptive_aoe_zone.vpcf", context)
@@ -308,7 +308,12 @@ function morphling_adaptive_strike_custom:OnProjectileHit_ExtraData(target, loca
 		end
 
 		if near_hit then
-			self.caster:CdAbility(self, self:GetCooldownTimeRemaining() * self.talents.w7_cd_inc / 100)
+			self.caster:CdAbility(
+				self,
+				self:GetCooldownTimeRemaining() * self.talents.w7_cd_inc / 100,
+				nil,
+				"modifier_morphling_adaptive_7"
+			)
 
 			local effect = ParticleManager:CreateParticle(
 				"particles/morphling/adaptive_refresh.vpcf",

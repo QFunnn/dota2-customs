@@ -14,6 +14,10 @@ LinkLuaModifier("item_manta_custom_illusion", "abilities/items/item_manta_custom
 
 item_manta_custom = class({})
 
+function item_manta_custom:GetAbilityTextureName()
+	return wearables_system:GetAbilityIconReplacement(self:GetCaster(), "item_manta", self)
+end
+
 function item_manta_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return

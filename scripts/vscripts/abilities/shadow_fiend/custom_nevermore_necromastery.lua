@@ -46,15 +46,15 @@ function custom_nevermore_necromastery:Precache(context)
 		return
 	end
 	PrecacheResource("particle", "particles/units/heroes/hero_nevermore/nevermore_necro_souls.vpcf", context)
-	PrecacheResource("particle", "particles/sf_souls_attack.vpcf", context)
-	PrecacheResource("particle", "particles/huskar_leap_heal.vpcf", context)
-	PrecacheResource("particle", "particles/sf_souls_heal.vpcf", context)
-	PrecacheResource("particle", "particles/brist_lowhp_.vpcf", context)
-	PrecacheResource("particle", "particles/sf_wings.vpcf", context)
-	PrecacheResource("particle", "particles/sf_hands_.vpcf", context)
-	PrecacheResource("particle", "particles/sf_souls_souls.vpcf", context)
+	PrecacheResource("particle", "particles/shadow_fiend/sf_souls_attack.vpcf", context)
+	PrecacheResource("particle", "particles/huskar/huskar_leap_heal.vpcf", context)
+	PrecacheResource("particle", "particles/shadow_fiend/sf_souls_heal.vpcf", context)
+	PrecacheResource("particle", "particles/bristleback/brist_lowhp_.vpcf", context)
+	PrecacheResource("particle", "particles/shadow_fiend/sf_wings.vpcf", context)
+	PrecacheResource("particle", "particles/shadow_fiend/sf_hands_.vpcf", context)
+	PrecacheResource("particle", "particles/shadow_fiend/sf_souls_souls.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_nevermore/sf_necromastery_attack.vpcf", context)
-	PrecacheResource("particle", "particles/sf_slow_attack.vpcf", context)
+	PrecacheResource("particle", "particles/shadow_fiend/sf_slow_attack.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_nevermore/nevermore_trail.vpcf", context)
 
 	PrecacheResource("model", "kynomi/models/sf_default_arms/shadow_fiend_arms.vmdl", context)
@@ -345,8 +345,11 @@ function modifier_custom_necromastery_souls:AttackEvent_out(params)
 		)
 	end
 
-	local effect =
-		ParticleManager:CreateParticle("particles/sf_souls_attack.vpcf", PATTACH_ABSORIGIN_FOLLOW, params.target)
+	local effect = ParticleManager:CreateParticle(
+		"particles/shadow_fiend/sf_souls_attack.vpcf",
+		PATTACH_ABSORIGIN_FOLLOW,
+		params.target
+	)
 	ParticleManager:SetParticleControlEnt(
 		effect,
 		0,
@@ -392,11 +395,14 @@ function modifier_custom_necromastery_souls:DamageEvent_inc(params)
 	self.caster:Purge(false, true, false, true, true)
 	self.caster:EmitSound("Sf.Souls_Heal")
 
-	self.caster:GenericParticle("particles/huskar_leap_heal.vpcf")
+	self.caster:GenericParticle("particles/huskar/huskar_leap_heal.vpcf")
 	self.caster:GenericParticle("particles/units/heroes/hero_brewmaster/brewmaster_dispel_magic.vpcf")
 
-	local particle_aoe_fx =
-		ParticleManager:CreateParticle("particles/sf_souls_heal.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.caster)
+	local particle_aoe_fx = ParticleManager:CreateParticle(
+		"particles/shadow_fiend/sf_souls_heal.vpcf",
+		PATTACH_ABSORIGIN_FOLLOW,
+		self.caster
+	)
 	ParticleManager:SetParticleControl(particle_aoe_fx, 0, self.caster:GetAbsOrigin())
 	ParticleManager:SetParticleControl(particle_aoe_fx, 1, Vector(150, 1, 1))
 	ParticleManager:ReleaseParticleIndex(particle_aoe_fx)
@@ -492,7 +498,7 @@ function modifier_custom_necromastery_attack_slow:IsPurgable()
 	return true
 end
 function modifier_custom_necromastery_attack_slow:GetEffectName()
-	return "particles/sf_slow_attack.vpcf"
+	return "particles/shadow_fiend/sf_slow_attack.vpcf"
 end
 function modifier_custom_necromastery_attack_slow:DeclareFunctions()
 	return {

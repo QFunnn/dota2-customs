@@ -73,11 +73,10 @@ function custom_queenofpain_shadow_strike:Precache(context)
 
 	PrecacheResource("particle", "particles/units/heroes/hero_queenofpain/queen_shadow_strike.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_queenofpain/queen_shadow_strike_body.vpcf", context)
-	PrecacheResource("particle", "particles/brist_proc.vpcf", context)
+	PrecacheResource("particle", "particles/bristleback/brist_proc.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_bloodseeker/bloodseeker_bloodbath.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_queenofpain/queen_shadow_strike_debuff.vpcf", context)
 	PrecacheResource("particle", "particles/items4_fx/spirit_vessel_damage.vpcf", context)
-	PrecacheResource("particle", "particles/queen_of_pain/dagger_stacks.vpcf", context)
 	PrecacheResource("particle", "particles/items3_fx/octarine_core_lifesteal.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_bloodseeker/bloodseeker_rupture.vpcf", context)
 	PrecacheResource("particle", "particles/queen_of_pain/dagger_legendary_stack.vpcf", context)
@@ -181,7 +180,7 @@ function custom_queenofpain_shadow_strike:OnSpellStart(new_target)
 	end
 
 	if caster:HasTalent("modifier_queen_dagger_6") then
-		caster:CdItems(caster:GetTalentValue("modifier_queen_dagger_6", "cd_items"))
+		caster:CdItems(caster:GetTalentValue("modifier_queen_dagger_6", "cd_items"), "modifier_queen_dagger_6")
 	end
 
 	caster:EmitSound("Hero_QueenOfPain.ShadowStrike")
@@ -233,7 +232,7 @@ function custom_queenofpain_shadow_strike:OnProjectileHit_ExtraData(target, loca
 		caster:HasTalent("modifier_queen_dagger_5") and not target:HasModifier("modifier_custom_shadowstrike_fear_cd")
 	then
 		target:EmitSound("Generic.Fear")
-		target:GenericParticle("particles/brist_proc.vpcf")
+		target:GenericParticle("particles/bristleback/brist_proc.vpcf")
 		target:AddNewModifier(
 			caster,
 			self,

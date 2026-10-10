@@ -8,9 +8,24 @@
 ]]
 
 
-LinkLuaModifier("modifier_mars_bulwark_custom", "abilities/mars/mars_bulwark_custom", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_mars_bulwark_custom_idle", "abilities/mars/mars_bulwark_custom", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_mars_bulwark_custom_damage", "abilities/mars/mars_bulwark_custom", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier(
+	"modifier_mars_bulwark_custom",
+	"abilities/mars/mars_bulwark_custom",
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_mars_bulwark_3"
+)
+LinkLuaModifier(
+	"modifier_mars_bulwark_custom_idle",
+	"abilities/mars/mars_bulwark_custom",
+	LUA_MODIFIER_MOTION_NONE,
+	true
+)
+LinkLuaModifier(
+	"modifier_mars_bulwark_custom_damage",
+	"abilities/mars/mars_bulwark_custom",
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_mars_bulwark_1"
+)
 LinkLuaModifier("modifier_mars_bulwark_custom_unit", "abilities/mars/mars_bulwark_custom", LUA_MODIFIER_MOTION_BOTH)
 LinkLuaModifier(
 	"modifier_mars_bulwark_custom_unit_passive",
@@ -54,9 +69,8 @@ function mars_bulwark_custom:Precache(context)
 	PrecacheResource("particle", "particles/mars/bulwark_legendary_attack.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_mars/mars_shield_of_mars.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_mars/mars_shield_of_mars_small.vpcf", context)
-	PrecacheResource("particle", "particles/mars_revenge_proc.vpcf", context)
-	PrecacheResource("particle", "particles/mars_revenge_proc_hands.vpcf", context)
-	PrecacheResource("particle", "particles/huskar_lowhp.vpcf", context)
+	PrecacheResource("particle", "particles/mars/mars_revenge_proc.vpcf", context)
+	PrecacheResource("particle", "particles/huskar/huskar_lowhp.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_beserkers_call.vpcf", context)
 	PrecacheResource("particle", "particles/items2_fx/sange_maim.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_marci/marci_unleash_pulse_debuff.vpcf", context)
@@ -67,7 +81,7 @@ function mars_bulwark_custom:Precache(context)
 	PrecacheResource("particle", "particles/nyx_assassin/vendetta_bash.vpcf", context)
 	PrecacheResource("particle", "particles/mars/bulwark_legendary_start.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_sven/sven_spell_gods_strength.vpcf", context)
-	PrecacheResource("particle", "particles/mars_shield_legendary.vpcf", context)
+	PrecacheResource("particle", "particles/mars/mars_shield_legendary.vpcf", context)
 end
 
 function mars_bulwark_custom:UpdateTalents(name)
@@ -653,7 +667,7 @@ function modifier_mars_bulwark_custom_unit_legendary:OnCreated()
 	self.ability = self:GetAbility()
 
 	self.effect_cast =
-		ParticleManager:CreateParticle("particles/mars_shield_legendary.vpcf", PATTACH_CUSTOMORIGIN, self.parent)
+		ParticleManager:CreateParticle("particles/mars/mars_shield_legendary.vpcf", PATTACH_CUSTOMORIGIN, self.parent)
 	ParticleManager:SetParticleControlEnt(
 		self.effect_cast,
 		0,

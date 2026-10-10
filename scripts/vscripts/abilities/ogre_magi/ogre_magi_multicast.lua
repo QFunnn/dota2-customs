@@ -21,7 +21,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_ogre_magi_multicast_custom_legendary",
 	"abilities/ogre_magi/ogre_magi_multicast",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_ogremagi_multi_7"
 )
 LinkLuaModifier(
 	"modifier_ogre_magi_multicast_custom_legendary_status",
@@ -31,22 +32,26 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_ogre_magi_multicast_custom_heal",
 	"abilities/ogre_magi/ogre_magi_multicast",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_ogremagi_multi_2"
 )
 LinkLuaModifier(
 	"modifier_ogre_magi_multicast_custom_fire",
 	"abilities/ogre_magi/ogre_magi_multicast",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_ogremagi_multi_3"
 )
 LinkLuaModifier(
 	"modifier_ogre_magi_multicast_custom_bkb_cd",
 	"abilities/ogre_magi/ogre_magi_multicast",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_ogremagi_hero_4"
 )
 LinkLuaModifier(
 	"modifier_ogre_magi_multicast_custom_bkb_buff",
 	"abilities/ogre_magi/ogre_magi_multicast",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_ogremagi_hero_4" }
 )
 
 ogre_magi_multicast_custom = class({})
@@ -59,12 +64,9 @@ function ogre_magi_multicast_custom:Precache(context)
 
 	PrecacheResource("particle", "particles/units/heroes/hero_ogre_magi/ogre_magi_fire_shield_projectile.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_ogre_magi/ogre_magi_multicast.vpcf", context)
-	PrecacheResource("particle", "particles/ogre_ult.vpcf", context)
-	PrecacheResource("particle", "particles/general/generic_armor_reduction.vpcf", context)
-	PrecacheResource("particle", "particles/ogre_magichit.vpcf", context)
-	PrecacheResource("particle", "particles/ogre_hit.vpcf", context)
-	PrecacheResource("particle", "particles/ogre_head.vpcf", context)
-	PrecacheResource("particle", "particles/ogre_count.vpcf", context)
+	PrecacheResource("particle", "particles/generic/generic_armor_reduction.vpcf", context)
+	PrecacheResource("particle", "particles/ogre_magi/ogre_magichit.vpcf", context)
+	PrecacheResource("particle", "particles/ogre_magi/ogre_head.vpcf", context)
 	PrecacheResource("particle", "particles/ogre_magi/ogre_magi_multicast_infinity.vpcf", context)
 	PrecacheResource("particle", "particles/ogre_magi/ogre_magi_multicast_buff.vpcf", context)
 	PrecacheResource(
@@ -867,7 +869,7 @@ end
 
 modifier_ogre_magi_multicast_custom_bkb_buff = class(mod_hidden)
 function modifier_ogre_magi_multicast_custom_bkb_buff:GetEffectName()
-	return "particles/ogre_head.vpcf"
+	return "particles/ogre_magi/ogre_head.vpcf"
 end
 function modifier_ogre_magi_multicast_custom_bkb_buff:GetEffectAttachType()
 	return PATTACH_OVERHEAD_FOLLOW

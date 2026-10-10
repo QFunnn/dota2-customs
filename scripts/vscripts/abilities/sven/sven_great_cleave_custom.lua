@@ -36,7 +36,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_sven_great_cleave_custom_damage_perma",
 	"abilities/sven/sven_great_cleave_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_sven_cleave_3"
 )
 LinkLuaModifier(
 	"modifier_sven_great_cleave_custom_armor",
@@ -92,28 +93,28 @@ function sven_great_cleave_custom:Precache(context)
 		return
 	end
 
-	PrecacheResource("particle", "particles/sven_wave_normal.vpcf", context)
-	PrecacheResource("particle", "particles/sven_wave_cast.vpcf", context)
-	PrecacheResource("particle", "particles/sven_wave_god.vpcf", context)
-	PrecacheResource("particle", "particles/sven_wave_cast_god.vpcf", context)
+	PrecacheResource("particle", "particles/sven/sven_wave_normal.vpcf", context)
+	PrecacheResource("particle", "particles/sven/sven_wave_cast.vpcf", context)
+	PrecacheResource("particle", "particles/sven/sven_wave_god.vpcf", context)
+	PrecacheResource("particle", "particles/sven/sven_wave_cast_god.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/econ/items/zeus/zeus_immortal_2021/zeus_immortal_2021_static_field.vpcf",
 		context
 	)
-	PrecacheResource("particle", "particles/sven_wave_god_damage.vpcf", context)
+	PrecacheResource("particle", "particles/sven/sven_wave_god_damage.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_sven/sven_spell_great_cleave.vpcf", context)
 	PrecacheResource("particle", "particles/items2_fx/sange_maim.vpcf", context)
-	PrecacheResource("particle", "particles/lc_odd_proc_.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_odd_proc_.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_pangolier/pangolier_tailthump_buff.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_pangolier/pangolier_tailthump_buff_egg.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_pangolier/pangolier_tailthump_buff_streaks.vpcf", context)
 	PrecacheResource("particle", "particles/generic_gameplay/generic_lifesteal.vpcf", context)
-	PrecacheResource("particle", "particles/jugg_parry.vpcf", context)
+	PrecacheResource("particle", "particles/juggernaut/jugg_parry.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_axe/axe_cullingblade_sprint.vpcf", context)
 	PrecacheResource("particle", "particles/sven/cleave_refresh.vpcf", context)
 	PrecacheResource("particle", "particles/sven/cleave_refresh_red.vpcf", context)
-	PrecacheResource("particle", "particles/lc_odd_proc_.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_odd_proc_.vpcf", context)
 	PrecacheResource("particle", "particles/sven/cleave_speed.vpcf", context)
 	PrecacheResource("particle", "particles/sven/cleave_speed_ready.vpcf", context)
 	PrecacheResource("particle", "particles/sven/cleave_speed_attack.vpcf", context)
@@ -169,12 +170,12 @@ function sven_great_cleave_custom_legendary:OnSpellStart()
 		point = caster:GetAbsOrigin() + caster:GetForwardVector()
 	end
 
-	local part = "particles/sven_wave_normal.vpcf"
-	local part_cast = "particles/sven_wave_cast.vpcf"
+	local part = "particles/sven/sven_wave_normal.vpcf"
+	local part_cast = "particles/sven/sven_wave_cast.vpcf"
 
 	if caster:HasModifier("modifier_sven_gods_strength_custom") then
-		part = "particles/sven_wave_god.vpcf"
-		part_cast = "particles/sven_wave_cast_god.vpcf"
+		part = "particles/sven/sven_wave_god.vpcf"
+		part_cast = "particles/sven/sven_wave_cast_god.vpcf"
 	end
 
 	local clown03_effect = ParticleManager:CreateParticle(part_cast, PATTACH_ABSORIGIN_FOLLOW, caster)
@@ -255,7 +256,7 @@ function sven_great_cleave_custom_legendary:OnProjectileHit_ExtraData(target, lo
 
 	local part = "particles/econ/items/zeus/zeus_immortal_2021/zeus_immortal_2021_static_field.vpcf"
 	if caster:HasModifier("modifier_sven_gods_strength_custom") then
-		part = "particles/sven_wave_god_damage.vpcf"
+		part = "particles/sven/sven_wave_god_damage.vpcf"
 	end
 
 	local particle = ParticleManager:CreateParticle(part, PATTACH_POINT_FOLLOW, target)
@@ -791,7 +792,7 @@ function modifier_sven_great_cleave_custom_damage_perma:OnIntervalThink()
 		return
 	end
 
-	self.parent:GenericParticle("particles/lc_odd_proc_.vpcf")
+	self.parent:GenericParticle("particles/legion_commander/lc_odd_proc_.vpcf")
 	self.parent:EmitSound("BS.Thirst_legendary_active")
 	self:StartIntervalThink(-1)
 end
@@ -898,7 +899,8 @@ function modifier_sven_great_cleave_custom_parry:GetModifierIncomingDamage_Perce
 	end
 
 	self.parent:EmitSound("Juggernaut.Parry")
-	local particle = ParticleManager:CreateParticle("particles/jugg_parry.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
+	local particle =
+		ParticleManager:CreateParticle("particles/juggernaut/jugg_parry.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
 	ParticleManager:SetParticleControlEnt(
 		particle,
 		0,

@@ -71,17 +71,16 @@ function templar_assassin_psi_blades_custom:Precache(context)
 		return
 	end
 
-	PrecacheResource("particle", "particles/ta_crystall_spawn.vpcf", context)
-	PrecacheResource("particle", "particles/ta_crystal_end.vpcf", context)
+	PrecacheResource("particle", "particles/templar_assassin/ta_crystall_spawn.vpcf", context)
+	PrecacheResource("particle", "particles/templar_assassin/ta_crystal_end.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/units/heroes/hero_templar_assassin/templar_assassin_psi_blade.vpcf",
 		context
 	)
-	PrecacheResource("particle", "particles/ta_psi_speed.vpcf", context)
-	PrecacheResource("particle", "particles/void_astral_slow.vpcf", context)
-	PrecacheResource("particle", "particles/ta_crystal_end.vpcf", context)
-	PrecacheResource("particle", "particles/templar_assassin_knockback.vpcf", context)
+	PrecacheResource("particle", "particles/templar_assassin/ta_psi_speed.vpcf", context)
+	PrecacheResource("particle", "particles/void_spirit/void_astral_slow.vpcf", context)
+	PrecacheResource("particle", "particles/templar_assassin/ta_crystal_end.vpcf", context)
 end
 
 function templar_assassin_psi_blades_custom:GetIntrinsicModifierName()
@@ -175,8 +174,11 @@ function templar_assassin_psi_blades_custom:OnSpellStart()
 	crystal.is_crystal = true
 
 	crystal:EmitSound("Lina.Array_triple")
-	local particle_peffect =
-		ParticleManager:CreateParticle("particles/ta_crystall_spawn.vpcf", PATTACH_ABSORIGIN_FOLLOW, crystal)
+	local particle_peffect = ParticleManager:CreateParticle(
+		"particles/templar_assassin/ta_crystall_spawn.vpcf",
+		PATTACH_ABSORIGIN_FOLLOW,
+		crystal
+	)
 	ParticleManager:SetParticleControl(particle_peffect, 0, crystal:GetAbsOrigin())
 	ParticleManager:SetParticleControl(particle_peffect, 2, crystal:GetAbsOrigin())
 	ParticleManager:ReleaseParticleIndex(particle_peffect)
@@ -639,8 +641,11 @@ function modifier_templar_assassin_psi_blades_custom:AttackStartEvent_out(params
 		crystal.is_crystal = true
 
 		--crystal:EmitSound("Lina.Array_triple")
-		local particle_peffect =
-			ParticleManager:CreateParticle("particles/ta_crystall_spawn.vpcf", PATTACH_ABSORIGIN_FOLLOW, crystal)
+		local particle_peffect = ParticleManager:CreateParticle(
+			"particles/templar_assassin/ta_crystall_spawn.vpcf",
+			PATTACH_ABSORIGIN_FOLLOW,
+			crystal
+		)
 		ParticleManager:SetParticleControl(particle_peffect, 0, crystal:GetAbsOrigin())
 		ParticleManager:SetParticleControl(particle_peffect, 2, crystal:GetAbsOrigin())
 		ParticleManager:ReleaseParticleIndex(particle_peffect)
@@ -700,7 +705,7 @@ function modifier_templar_assassin_psi_blades_custom_speed:OnRefresh(table)
 	self:IncrementStackCount()
 
 	if self:GetStackCount() >= self.max then
-		self.parent:GenericParticle("particles/ta_psi_speed.vpcf", self)
+		self.parent:GenericParticle("particles/templar_assassin/ta_psi_speed.vpcf", self)
 	end
 end
 
@@ -825,7 +830,8 @@ function modifier_templar_assassin_psi_blades_custom_crystal:OnDestroy()
 	self.parent:AddNoDraw()
 	self.parent:EmitSound("TA.Psibaldes_crystall_end_stun")
 
-	local explode_particle = ParticleManager:CreateParticle("particles/ta_crystal_end.vpcf", PATTACH_WORLDORIGIN, nil)
+	local explode_particle =
+		ParticleManager:CreateParticle("particles/templar_assassin/ta_crystal_end.vpcf", PATTACH_WORLDORIGIN, nil)
 	ParticleManager:SetParticleControl(explode_particle, 0, self:GetParent():GetAbsOrigin())
 	ParticleManager:SetParticleControl(explode_particle, 60, Vector(12, 198, 255))
 	ParticleManager:SetParticleControl(explode_particle, 61, Vector(1, 0, 0))
@@ -931,7 +937,8 @@ function modifier_templar_assassin_psi_blades_custom_legendary:OnDestroy()
 	self.parent:EmitSound("TA.Psibaldes_crystall_end_stun")
 	self.parent:EmitSound("TA.Psibaldes_crystall_end")
 
-	local explode_particle = ParticleManager:CreateParticle("particles/ta_crystal_end.vpcf", PATTACH_WORLDORIGIN, nil)
+	local explode_particle =
+		ParticleManager:CreateParticle("particles/templar_assassin/ta_crystal_end.vpcf", PATTACH_WORLDORIGIN, nil)
 	ParticleManager:SetParticleControl(explode_particle, 0, self:GetParent():GetAbsOrigin())
 	ParticleManager:SetParticleControl(explode_particle, 60, Vector(12, 198, 255))
 	ParticleManager:SetParticleControl(explode_particle, 61, Vector(1, 0, 0))
@@ -1157,7 +1164,7 @@ function modifier_templar_assassin_psi_blades_custom_root:OnIntervalThink()
 	end
 
 	self.parent:EmitSound("TA.Shield_root")
-	self.parent:GenericParticle("particles/ta_shield_roots.vpcf", self)
+	self.parent:GenericParticle("particles/templar_assassin/ta_shield_roots.vpcf", self)
 	self:StartIntervalThink(-1)
 end
 

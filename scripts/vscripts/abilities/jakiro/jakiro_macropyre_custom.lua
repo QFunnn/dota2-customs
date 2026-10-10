@@ -31,12 +31,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_jakiro_macropyre_custom_root",
 	"abilities/jakiro/jakiro_macropyre_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_jakiro_macropyre_4"
 )
 LinkLuaModifier(
 	"modifier_jakiro_macropyre_custom_cdr",
 	"abilities/jakiro/jakiro_macropyre_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_jakiro_hero_6"
 )
 LinkLuaModifier(
 	"modifier_jakiro_macropyre_custom_slow",
@@ -51,7 +53,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_jakiro_macropyre_custom_legendary_damage",
 	"abilities/jakiro/jakiro_macropyre_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_jakiro_macropyre_7"
 )
 
 jakiro_macropyre_custom = class({})

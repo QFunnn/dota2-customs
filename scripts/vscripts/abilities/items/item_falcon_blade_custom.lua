@@ -26,7 +26,7 @@ function item_falcon_blade_custom:Precache(context)
 		return
 	end
 	PrecacheResource("particle", "particles/items_fx/force_staff.vpcf", context)
-	PrecacheResource("particle", "particles/falcon_blade_charge.vpcf", context)
+	PrecacheResource("particle", "particles/items/falcon_blade_charge.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_forcestaff.vpcf", context)
 end
 
@@ -89,7 +89,7 @@ function modifier_item_falcon_blade_custom_active:IsPurgable()
 	return true
 end
 function modifier_item_falcon_blade_custom_active:GetEffectName()
-	return "particles/falcon_blade_charge.vpcf"
+	return "particles/items/falcon_blade_charge.vpcf"
 end
 function modifier_item_falcon_blade_custom_active:GetStatusEffectName()
 	return "particles/status_fx/status_effect_forcestaff.vpcf"

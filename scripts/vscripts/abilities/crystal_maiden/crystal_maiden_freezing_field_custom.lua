@@ -11,7 +11,8 @@
 LinkLuaModifier(
 	"modifier_crystal_maiden_freezing_field_custom",
 	"abilities/crystal_maiden/crystal_maiden_freezing_field_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 LinkLuaModifier(
 	"modifier_crystal_maiden_freezing_field_custom_debuff",
@@ -36,7 +37,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_crystal_maiden_freezing_field_custom_knock_cd",
 	"abilities/crystal_maiden/crystal_maiden_freezing_field_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_maiden_freezing_4"
 )
 LinkLuaModifier(
 	"modifier_crystal_maiden_freezing_field_custom_cd_items",
@@ -57,12 +59,11 @@ function crystal_maiden_freezing_field_custom:Precache(context)
 		"particles/units/heroes/hero_crystalmaiden/maiden_freezing_field_explosion.vpcf",
 		context
 	)
-	PrecacheResource("particle", "particles/crystal_maiden/immunity_sphere_buff.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_crystalmaiden/maiden_freezing_field_snow.vpcf", context)
 	PrecacheResource("particle", "particles/generic_gameplay/generic_slowed_cold.vpcf", context)
-	PrecacheResource("particle", "particles/maiden_frostbite_slow.vpcf", context)
-	PrecacheResource("particle", "particles/maiden_freezing_area.vpcf", context)
-	PrecacheResource("particle", "particles/maiden_field_legendary.vpcf", context)
+	PrecacheResource("particle", "particles/crystal_maiden/maiden_frostbite_slow.vpcf", context)
+	PrecacheResource("particle", "particles/crystal_maiden/maiden_freezing_area.vpcf", context)
+	PrecacheResource("particle", "particles/crystal_maiden/maiden_field_legendary.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/econ/items/effigies/status_fx_effigies/status_effect_effigy_frosty_dire.vpcf",
@@ -645,7 +646,7 @@ function modifier_crystal_maiden_freezing_field_custom_tracker:SpellEvent(params
 		return
 	end
 
-	self.parent:CdAbility(self.legendary_ability, nil, self.ability.talents.r7_cd_inc)
+	self.parent:CdAbility(self.legendary_ability, nil, self.ability.talents.r7_cd_inc, "modifier_maiden_freezing_7")
 end
 
 modifier_crystal_maiden_freezing_field_custom_legendary_mini = class(mod_hidden)
@@ -668,7 +669,7 @@ function modifier_crystal_maiden_freezing_field_custom_legendary_mini:OnDestroy(
 	end
 
 	local effect_cast2 =
-		ParticleManager:CreateParticle("particles/maiden_field_legendary.vpcf", PATTACH_WORLDORIGIN, nil)
+		ParticleManager:CreateParticle("particles/crystal_maiden/maiden_field_legendary.vpcf", PATTACH_WORLDORIGIN, nil)
 	ParticleManager:SetParticleControl(effect_cast2, 0, self.origin)
 	ParticleManager:SetParticleControl(effect_cast2, 1, Vector(self.radius, 3, self.radius))
 	ParticleManager:ReleaseParticleIndex(effect_cast2)
@@ -697,7 +698,7 @@ function modifier_crystal_maiden_freezing_field_custom_cd_items:OnIntervalThink(
 	if not IsServer() then
 		return
 	end
-	self.parent:CdItems(self.interval * self.ability.talents.w4_cd_field)
+	self.parent:CdItems(self.interval * self.ability.talents.w4_cd_field, "modifier_maiden_frostbite_4")
 end
 
 crystal_maiden_freezing_field_legendary = class({})
@@ -790,8 +791,11 @@ function modifier_crystal_maiden_freezing_field_custom_legendary:OnCreated(table
 
 	EmitSoundOnLocationWithCaster(self.origin, "Maiden.Frostbite_stun", self.caster)
 
-	self.effect_timer =
-		ParticleManager:CreateParticle("particles/maiden_freezing_area.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
+	self.effect_timer = ParticleManager:CreateParticle(
+		"particles/crystal_maiden/maiden_freezing_area.vpcf",
+		PATTACH_ABSORIGIN_FOLLOW,
+		self.parent
+	)
 	ParticleManager:SetParticleControl(self.effect_timer, 1, Vector(0, 0, 100))
 	ParticleManager:SetParticleControl(self.effect_timer, 5, Vector(self.radius, self.radius, self.radius))
 	self:AddParticle(self.effect_timer, false, false, -1, false, false)

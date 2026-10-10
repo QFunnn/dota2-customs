@@ -46,7 +46,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_arc_warden_magnetic_field_custom_stun",
 	"abilities/arc_warden/arc_warden_magnetic_field_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_arc_warden_hero_5"
 )
 LinkLuaModifier(
 	"modifier_arc_warden_magnetic_field_custom_linger",
@@ -56,12 +57,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_arc_warden_magnetic_field_custom_agi",
 	"abilities/arc_warden/arc_warden_magnetic_field_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_arc_warden_field_3"
 )
 LinkLuaModifier(
 	"modifier_arc_warden_magnetic_field_custom_slow",
 	"abilities/arc_warden/arc_warden_magnetic_field_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_arc_warden_field_4"
 )
 
 arc_warden_magnetic_field_custom = class({})
@@ -76,8 +79,7 @@ function arc_warden_magnetic_field_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_brewmaster/brewmaster_dispel_magic.vpcf", context)
 	PrecacheResource("particle", "particles/arc_warden/arc_warden_magnetic.vpcf", context)
 	PrecacheResource("particle", "particles/arc_warden/arc_warden_magnetic_shard.vpcf", context)
-	PrecacheResource("particle", "particles/duel_stun.vpcf", context)
-	PrecacheResource("particle", "particles/arc_warden/arc_warden_magnetic_tempest.vpcf", context)
+	PrecacheResource("particle", "particles/generic/duel_stun.vpcf", context)
 	PrecacheResource("particle", "particles/items_fx/immunity_sphere.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_terrorblade/terrorblade_reflection_slow.vpcf", context)
 	PrecacheResource("particle", "particles/arc_warden/field_blink_start.vpcf", context)
@@ -90,8 +92,6 @@ function arc_warden_magnetic_field_custom:Precache(context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_faceless_chronosphere.vpcf", context)
 	PrecacheResource("particle", "particles/arc_warden/field_attack.vpcf", context)
 	PrecacheResource("particle", "particles/arc_warden/spark_heall.vpcf", context)
-	PrecacheResource("particle", "particles/puck_heal.vpcf", context)
-	PrecacheResource("particle", "particles/arc_warden/field_attack_end.vpcf", context)
 	PrecacheResource("particle", "particles/drow_ranger/frost_cleave.vpcf", context)
 end
 
@@ -386,7 +386,7 @@ function modifier_arc_warden_magnetic_field_custom_thinker_speed:OnIntervalThink
 			)
 
 			local attack_particle =
-				ParticleManager:CreateParticle("particles/duel_stun.vpcf", PATTACH_ABSORIGIN_FOLLOW, enemy)
+				ParticleManager:CreateParticle("particles/generic/duel_stun.vpcf", PATTACH_ABSORIGIN_FOLLOW, enemy)
 			ParticleManager:SetParticleControlEnt(
 				attack_particle,
 				1,
@@ -652,7 +652,12 @@ function modifier_arc_warden_magnetic_field_custom_tracker:AttackStartEvent_out(
 		and self.parent.field_legendary_ability
 		and self.parent:HasModifier("modifier_arc_warden_magnetic_field_custom_speed_count")
 	then
-		self.parent:CdAbility(self.parent.field_legendary_ability, self.ability.talents.w7_cd_inc)
+		self.parent:CdAbility(
+			self.parent.field_legendary_ability,
+			self.ability.talents.w7_cd_inc,
+			nil,
+			"modifier_arc_warden_field_7"
+		)
 	end
 end
 

@@ -21,12 +21,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_slark_saltwater_shiv_custom_legendary_steal",
 	"abilities/slark/slark_saltwater_shiv_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_slark_essence_7"
 )
 LinkLuaModifier(
 	"modifier_slark_saltwater_shiv_custom_legendary_target",
 	"abilities/slark/slark_saltwater_shiv_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_slark_essence_7"
 )
 LinkLuaModifier(
 	"modifier_slark_saltwater_shiv_custom_effect",
@@ -41,7 +43,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_slark_saltwater_shiv_custom_speed",
 	"abilities/slark/slark_saltwater_shiv_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_slark_essence_2"
 )
 
 slark_saltwater_shiv_custom = class({})

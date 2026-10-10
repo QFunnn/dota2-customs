@@ -26,17 +26,20 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_furion_blooming_flare_custom_heal_reduce",
 	"abilities/furion/furion_blooming_flare_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_furion_nature_2"
 )
 LinkLuaModifier(
 	"modifier_furion_blooming_flare_custom_proc",
 	"abilities/furion/furion_blooming_flare_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_furion_nature_3"
 )
 LinkLuaModifier(
 	"modifier_furion_blooming_flare_custom_slow",
 	"abilities/furion/furion_blooming_flare_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "Shard" }
 )
 LinkLuaModifier(
 	"modifier_furion_blooming_flare_custom_legendary_tree",
@@ -56,19 +59,16 @@ function furion_blooming_flare_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_monkey_king/monkey_king_quad_tap_hit.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_brewmaster/brewmaster_dispel_magic.vpcf", context)
 	PrecacheResource("particle", "particles/items3_fx/silver_edge.vpcf", context)
-	PrecacheResource("particle", "particles/nature_prophet/scepter_effect.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_furion/furion_wrath_of_nature_cast.vpcf", context)
 	PrecacheResource("particle", "particles/nature_prophet/wrath_legendary_proj.vpcf", context)
 	PrecacheResource("particle", "particles/nature_prophet/wrath_legendary_aoe.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_sniper/sniper_headshot_slow.vpcf", context)
-	PrecacheResource("particle", "particles/lc_odd_proc_.vpcf", context)
-	PrecacheResource("particle", "particles/nature_prophet/wrath_stack.vpcf", context)
-	PrecacheResource("particle", "particles/nature_prophet/wrath_stack_max.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_odd_proc_.vpcf", context)
 	PrecacheResource("particle", "particles/hoodwink/bush_damage.vpcf", context)
 	PrecacheResource("particle", "particles/nature_prophet/blooming_proc_aoe.vpcf", context)
-	PrecacheResource("particle", "particles/furion/furion_wrath_of_nature_custom.vpcf", context)
+	PrecacheResource("particle", "particles/nature_prophet/furion_wrath_of_nature_custom.vpcf", context)
 	PrecacheResource("particle", "particles/nature_prophet/call_root.vpcf", context)
-	PrecacheResource("particle", "particles/furion/teleport_refresh.vpcf", context)
+	PrecacheResource("particle", "particles/nature_prophet/teleport_refresh.vpcf", context)
 	PrecacheResource("particle", "particles/nature_prophet/teleport_damage.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_brewmaster/brewmaster_thunder_clap_debuff.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_furion/furion_sprout_damage.vpcf", context)
@@ -297,7 +297,7 @@ function modifier_furion_blooming_flare_custom:OnCreated(table)
 
 	self.pfx = wearables_system:GetParticleReplacementAbility(
 		self.caster,
-		"particles/furion/furion_wrath_of_nature_custom.vpcf",
+		"particles/nature_prophet/furion_wrath_of_nature_custom.vpcf",
 		self
 	)
 
@@ -395,7 +395,7 @@ function modifier_furion_blooming_flare_custom:CountDamage()
 	if self.ability.talents.has_r4 == 1 then
 		local cd = self.ability.talents.has_r7 == 1 and self.ability.talents.r4_cd_items_legendary
 			or self.ability.talents.r4_cd_items
-		self.caster:CdItems(self.hit_count * cd)
+		self.caster:CdItems(self.hit_count * cd, "modifier_furion_nature_4")
 	end
 
 	self.tree_count = self.hit_count
@@ -671,10 +671,13 @@ function modifier_furion_blooming_flare_custom_tracker:SpellEvent(params)
 		and self.ability:GetCooldownTimeRemaining() > 0
 	then
 		self.ability.can_cd = false
-		self.parent:CdAbility(self.ability, nil, self.ability.talents.r7_cd_inc)
+		self.parent:CdAbility(self.ability, nil, self.ability.talents.r7_cd_inc, "modifier_furion_nature_7")
 
-		local particle =
-			ParticleManager:CreateParticle("particles/furion/teleport_refresh.vpcf", PATTACH_CUSTOMORIGIN, self.parent)
+		local particle = ParticleManager:CreateParticle(
+			"particles/nature_prophet/teleport_refresh.vpcf",
+			PATTACH_CUSTOMORIGIN,
+			self.parent
+		)
 		ParticleManager:SetParticleControlEnt(
 			particle,
 			0,

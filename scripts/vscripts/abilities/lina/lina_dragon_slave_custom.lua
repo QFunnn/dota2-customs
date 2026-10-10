@@ -11,12 +11,14 @@
 LinkLuaModifier(
 	"modifier_lina_dragon_slave_custom_legendary",
 	"abilities/lina/lina_dragon_slave_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_lina_dragon_7" }
 )
 LinkLuaModifier(
 	"modifier_lina_dragon_slave_custom_legendary_stack",
 	"abilities/lina/lina_dragon_slave_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_lina_dragon_7"
 )
 LinkLuaModifier(
 	"modifier_lina_dragon_slave_custom_tracker",
@@ -31,7 +33,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_lina_dragon_slave_custom_proc",
 	"abilities/lina/lina_dragon_slave_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_lina_hero_3", "modifier_lina_dragon_4" }
 )
 
 lina_dragon_slave_custom = class({})
@@ -43,12 +46,12 @@ function lina_dragon_slave_custom:Precache(context)
 	end
 
 	PrecacheResource("particle", "particles/units/heroes/hero_lina/lina_spell_dragon_slave.vpcf", context)
-	PrecacheResource("particle", "particles/huskar_spears_legen.vpcf", context)
+	PrecacheResource("particle", "particles/huskar/huskar_spears_legen.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_omnislash.vpcf", context)
 	PrecacheResource("particle", "particles/lina/dragon_status.vpcf", context)
-	PrecacheResource("particle", "particles/mars_revenge_proc.vpcf", context)
+	PrecacheResource("particle", "particles/mars/mars_revenge_proc.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_phoenix/phoenix_fire_spirit_burn.vpcf", context)
-	PrecacheResource("particle", "particles/lina_attack_slow.vpcf", context)
+	PrecacheResource("particle", "particles/lina/lina_attack_slow.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_enchantress_shard_debuff.vpcf", context)
 	PrecacheResource(
 		"particle",
@@ -510,7 +513,7 @@ end
 
 modifier_lina_dragon_slave_custom_legendary = class(mod_hidden)
 function modifier_lina_dragon_slave_custom_legendary:GetEffectName()
-	return "particles/huskar_spears_legen.vpcf"
+	return "particles/huskar/huskar_spears_legen.vpcf"
 end
 function modifier_lina_dragon_slave_custom_legendary:GetStatusEffectName()
 	return "particles/status_fx/status_effect_omnislash.vpcf"
@@ -531,7 +534,7 @@ function modifier_lina_dragon_slave_custom_legendary:OnCreated(table)
 
 	local cd = self.ability:GetCooldownTimeRemaining()
 	if cd > 0 then
-		self.parent:CdAbility(self.ability, cd * self.ability.talents.q7_cd)
+		self.parent:CdAbility(self.ability, cd * self.ability.talents.q7_cd, nil, "modifier_lina_dragon_7")
 	end
 
 	self.parent:EmitSound("Lina.Dragon_status")
@@ -545,7 +548,7 @@ function modifier_lina_dragon_slave_custom_legendary:OnCreated(table)
 	end
 
 	local particle_peffect =
-		ParticleManager:CreateParticle("particles/mars_revenge_proc.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
+		ParticleManager:CreateParticle("particles/mars/mars_revenge_proc.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
 	ParticleManager:SetParticleControl(particle_peffect, 0, self.parent:GetAbsOrigin())
 	ParticleManager:SetParticleControl(particle_peffect, 2, self.parent:GetAbsOrigin())
 	ParticleManager:ReleaseParticleIndex(particle_peffect)
@@ -600,7 +603,7 @@ function modifier_lina_dragon_slave_custom_slow:IsPurgable()
 	return true
 end
 function modifier_lina_dragon_slave_custom_slow:GetEffectName()
-	return "particles/lina_attack_slow.vpcf"
+	return "particles/lina/lina_attack_slow.vpcf"
 end
 function modifier_lina_dragon_slave_custom_slow:OnCreated()
 	self.parent = self:GetParent()
@@ -656,7 +659,7 @@ function modifier_lina_dragon_slave_custom_proc:OnRefresh(table)
 	end
 
 	if self.ability.talents.has_q4 == 1 then
-		self.parent:CdItems(self.ability.talents.q4_cd_items)
+		self.parent:CdItems(self.ability.talents.q4_cd_items, "modifier_lina_dragon_4")
 		local target = self.parent:RandomTarget(self.ability.talents.q4_range)
 		if target then
 			local delay = 0

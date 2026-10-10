@@ -11,7 +11,8 @@
 LinkLuaModifier(
 	"modifier_phantom_assassin_innate_custom",
 	"abilities/phantom_assassin/phantom_assassin_innate_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 LinkLuaModifier(
 	"modifier_phantom_assassin_innate_custom_illusion",
@@ -26,7 +27,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_phantom_assassin_innate_custom_hunt",
 	"abilities/phantom_assassin/phantom_assassin_innate_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 
 phantom_assassin_innate_custom = class({})
@@ -41,7 +43,7 @@ function phantom_assassin_innate_custom:Precache(context)
 		return
 	end
 
-	PrecacheResource("particle", "particles/pa_cry.vpcf", context)
+	PrecacheResource("particle", "particles/phantom_assassin/pa_cry.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/econ/items/bounty_hunter/bounty_hunter_hunters_hoard/bounty_hunter_hoard_track_trail.vpcf",
@@ -52,7 +54,7 @@ function phantom_assassin_innate_custom:Precache(context)
 		"particles/econ/items/alchemist/alchemist_midas_knuckles/alch_hand_of_midas.vpcf",
 		context
 	)
-	PrecacheResource("particle", "particles/pa_vendetta.vpcf", context)
+	PrecacheResource("particle", "particles/phantom_assassin/pa_vendetta.vpcf", context)
 	PrecacheResource("particle", "particles/phantom_assassin/hunt_complete.vpcf", context)
 	PrecacheResource("soundfile", "soundevents/vo_custom/phantom_assassin_vo_custom.vsndevts", context)
 	PrecacheResource("soundfile", "soundevents/npc_dota_hero_phantom_assassin.vsndevts", context)

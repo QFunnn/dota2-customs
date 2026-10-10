@@ -174,6 +174,8 @@ _G.WEARABLES_ITEM_MODEL = {
 	["34227"] = "default",
 	["35833"] = "1",
 	["35843"] = "3",
+	["24736"] = "1",
+	["247361"] = "2",
 }
 
 _G.WEARABLES_ITEM_BODY_GROUPS = {
@@ -182,6 +184,41 @@ _G.WEARABLES_ITEM_BODY_GROUPS = {
 	["34323"] = { "upper_body", 1 },
 	["31207"] = { "heads", 1 },
 	["31421"] = { "tail", 1 },
+	["36208"] = { "head", 1 },
+}
+
+_G.ARCANA_REFIT_WEAPONS = {
+	["models/items/drow/drow_arcana/drow_arcana_weapon.vmdl"] = { "npc_dota_hero_drow_ranger", 19090, 37144 },
+	["models/items/drow/drow_monster_arcana/drow_monster_arcana_weapon.vmdl"] = {
+		"npc_dota_hero_drow_ranger",
+		19090,
+		34594,
+	},
+	["models/heroes/drow/drow_crossbow.vmdl"] = { "npc_dota_hero_drow_ranger", 19090 },
+	["models/items/legion_commander/voth_domosh/voth_domosh_sword.vmdl"] = {
+		"npc_dota_hero_legion_commander",
+		5810,
+		37140,
+	},
+	["models/items/legion_commander/dragons_soul/dragons_soul_arcana_weapon.vmdl"] = {
+		"npc_dota_hero_legion_commander",
+		5810,
+		33387,
+	},
+	["models/heroes/legion_commander/legion_commander_sword_weapon.vmdl"] = { "npc_dota_hero_legion_commander", 5810 },
+}
+
+_G.ARCANA_FORCED_WEAPON = {
+	["npc_dota_hero_drow_ranger"] = {
+		bases = { [19090] = true, [190901] = true },
+		allowed = { [37144] = true, [34594] = true },
+		default = 77,
+	},
+	["npc_dota_hero_legion_commander"] = {
+		bases = { [5810] = true },
+		allowed = { [37140] = true, [33387] = true },
+		default = 434,
+	},
 }
 
 _G.TERRORBLADE_COLORS_IDS = {

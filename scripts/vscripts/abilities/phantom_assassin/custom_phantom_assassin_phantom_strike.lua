@@ -26,12 +26,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_phantom_assassin_phantom_strike_rush",
 	"abilities/phantom_assassin/custom_phantom_assassin_phantom_strike",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_phantom_assassin_blink_4"
 )
 LinkLuaModifier(
 	"modifier_phantom_assassin_phantom_strike_break",
 	"abilities/phantom_assassin/custom_phantom_assassin_phantom_strike",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_phantom_assassin_blink_3"
 )
 
 custom_phantom_assassin_phantom_strike = class({})
@@ -53,7 +55,6 @@ function custom_phantom_assassin_phantom_strike:Precache(context)
 		context
 	)
 	PrecacheResource("particle", "particles/items2_fx/manta_phase.vpcf", context)
-	PrecacheResource("particle", "particles/pa_blink_buff.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/units/heroes/hero_phantom_assassin_persona/pa_persona_stifling_dagger.vpcf",
@@ -426,6 +427,7 @@ function custom_phantom_assassin_phantom_strike:OnSpellStart()
 		)
 
 		local roll = self.caster:CheckCd("phantom_assassin_w4", self.talents.w4_talent_cd, self.talents.w4_chance, 1225)
+		self.caster:LogProc("modifier_phantom_assassin_blink_4", roll and 1 or 0)
 
 		if roll then
 			local effect = ParticleManager:CreateParticle(
@@ -457,7 +459,7 @@ function custom_phantom_assassin_phantom_strike:OnSpellStart()
 
 	self:CloneVolley(victim)
 	self:CreateClone(start_abs, hero)
-	self.caster:CdAbility(self, nil, self.talents.w7_cd_reduce)
+	self.caster:CdAbility(self, nil, self.talents.w7_cd_reduce, "modifier_phantom_assassin_blink_7")
 end
 
 function custom_phantom_assassin_phantom_strike:OnProjectileHit_ExtraData(hTarget, vLocation, table)
@@ -491,6 +493,7 @@ function custom_phantom_assassin_phantom_strike:OnProjectileHit_ExtraData(hTarge
 		)
 
 		if enemy == hTarget then
+			self.caster:LogProc("modifier_phantom_assassin_blink_7", table.crit and 1 or 0, enemy)
 			self:ProcMark(enemy, true)
 
 			if self.caster.dagger_ability then
@@ -664,6 +667,9 @@ function modifier_phantom_assassin_phantom_strike_passive:OnCreated()
 	self.ability.duration = self.ability:GetSpecialValueFor("duration")
 	self.ability.range_target = self.ability:GetSpecialValueFor("range_target")
 	self.ability.creeps_damage = self.ability:GetSpecialValueFor("creeps_damage") / 100
+
+	self.ability.clones = 0
+	self.parent:LogWatch("modifier_phantom_assassin_blink_7", self.ability, "clones")
 end
 
 function modifier_phantom_assassin_phantom_strike_passive:OnRefresh()
@@ -808,6 +814,7 @@ function modifier_phantom_assassin_phantom_clone:OnCreated()
 	end
 
 	self.caster.blink_clones[self.parent] = self
+	self.ability.clones = self.ability.clones + 1
 
 	self.parent:GenericParticle("particles/phantom_assassin/blink_illusion_blur.vpcf", self)
 end
@@ -818,6 +825,7 @@ function modifier_phantom_assassin_phantom_clone:OnDestroy()
 	end
 
 	self.caster.blink_clones[self.parent] = nil
+	self.ability.clones = self.ability.clones - 1
 end
 
 function modifier_phantom_assassin_phantom_clone:Aim(target)

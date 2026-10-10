@@ -90,6 +90,10 @@ function Spawn()
 		skip_background_entities = "0",
 	}
 
+	if unit_name == "npc_dota_hero_primal_beast" then
+		unit_data.activity = "ACT_DOTA_CAPTURE_CARD"
+	end
+
 	if _G.AllItemsData[unit:GetPlayerOwnerID()] ~= nil then
 		local item_num = 0
 		for k, item_id in pairs(_G.AllItemsData[unit:GetPlayerOwnerID()]) do

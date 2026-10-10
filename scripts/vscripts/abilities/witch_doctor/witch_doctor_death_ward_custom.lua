@@ -21,7 +21,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_witch_doctor_death_ward_custom_caster",
 	"abilities/witch_doctor/witch_doctor_death_ward_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 LinkLuaModifier(
 	"modifier_witch_doctor_death_ward_custom_unit",
@@ -31,12 +32,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_witch_doctor_death_ward_custom_bkb_cd",
 	"abilities/witch_doctor/witch_doctor_death_ward_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_witch_doctor_hero_6"
 )
 LinkLuaModifier(
 	"modifier_witch_doctor_death_ward_custom_shard",
 	"abilities/witch_doctor/witch_doctor_death_ward_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "Shard" }
 )
 
 witch_doctor_death_ward_custom = class({})
@@ -59,7 +62,7 @@ function witch_doctor_death_ward_custom:Precache(context)
 	PrecacheResource("particle", "particles/witch_doctor/ward_root.vpcf", context)
 	PrecacheResource("particle", "particles/witch_doctor/ward_shard_cast.vpcf", context)
 	PrecacheResource("particle", "particles/witch_doctor/ward_shard_castb.vpcf", context)
-	PrecacheResource("particle", "particles/death_ward/ward_cleave.vpcf", context)
+	PrecacheResource("particle", "particles/witch_doctor/ward_cleave.vpcf", context)
 end
 
 function witch_doctor_death_ward_custom:UpdateTalents()
@@ -293,6 +296,7 @@ function modifier_witch_doctor_death_ward_custom:OnCreated(table)
 		return
 	end
 	self.ability.wards[self.parent] = true
+	self.parent:AddOrderFilter(self)
 
 	self.is_auto = false
 	if table.source == "auto" then
@@ -517,18 +521,23 @@ function modifier_witch_doctor_death_ward_custom:OnIntervalThink()
 	self:StartIntervalThink(interval)
 end
 
-function modifier_witch_doctor_death_ward_custom:SetTarget(target)
-	if not IsServer() then
+function modifier_witch_doctor_death_ward_custom:OrderFilter(params)
+	if params.order_type ~= DOTA_UNIT_ORDER_ATTACK_TARGET then
 		return
 	end
-	if not IsValid(target) then
+	if not params.target then
 		return
+	end
+
+	local target = params.target
+	if not IsValid(target) then
+		return false
 	end
 	if not target:IsUnit() then
-		return
+		return false
 	end
 	if target:GetTeamNumber() == self.caster:GetTeamNumber() then
-		return
+		return false
 	end
 
 	local error = nil
@@ -546,9 +555,11 @@ function modifier_witch_doctor_death_ward_custom:SetTarget(target)
 			"CreateIngameErrorMessage",
 			{ message = error }
 		)
-		return
+		return false
 	end
+
 	self.forced_target = target
+	return false
 end
 
 function modifier_witch_doctor_death_ward_custom:OnDestroy()
@@ -848,7 +859,7 @@ function modifier_witch_doctor_death_ward_custom_tracker:DealDamage(target, atta
 
 	if #targets > 1 then
 		local particle =
-			ParticleManager:CreateParticle("particles/death_ward/ward_cleave.vpcf", PATTACH_WORLDORIGIN, nil)
+			ParticleManager:CreateParticle("particles/witch_doctor/ward_cleave.vpcf", PATTACH_WORLDORIGIN, nil)
 		ParticleManager:SetParticleControl(particle, 0, target:GetAbsOrigin())
 		ParticleManager:ReleaseParticleIndex(particle)
 	end

@@ -16,12 +16,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_marci_guardian_custom_armor",
 	"abilities/marci/marci_guardian_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_marci_sidekick_1"
 )
 LinkLuaModifier(
 	"modifier_marci_guardian_custom_damage_reduce",
 	"abilities/marci/marci_guardian_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_marci_sidekick_2"
 )
 LinkLuaModifier(
 	"modifier_marci_guardian_custom_block",
@@ -31,12 +33,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_marci_guardian_custom_crit",
 	"abilities/marci/marci_guardian_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_marci_sidekick_3" }
 )
 LinkLuaModifier(
 	"modifier_marci_guardian_custom_crit_damage",
 	"abilities/marci/marci_guardian_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_marci_sidekick_3"
 )
 LinkLuaModifier(
 	"modifier_marci_guardian_custom_legendary_unit",
@@ -72,6 +76,10 @@ LinkLuaModifier(
 marci_guardian_custom = class({})
 marci_guardian_custom.talents = {}
 
+function marci_guardian_custom:GetAbilityTextureName()
+	return wearables_system:GetAbilityIconReplacement(self:GetCaster(), "marci_guardian", self)
+end
+
 function marci_guardian_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
@@ -82,13 +90,13 @@ function marci_guardian_custom:Precache(context)
 	PrecacheResource("particle", "particles/marci/bodyguard_shield.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_marci/marci_sidekick_buff.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_marci/marci_rebound_allymovespeed.vpcf", context)
-	PrecacheResource("particle", "particles/marci_wave.vpcf", context)
-	PrecacheResource("particle", "particles/marci_heal.vpcf", context)
+	PrecacheResource("particle", "particles/marci/marci_wave.vpcf", context)
+	PrecacheResource("particle", "particles/marci/marci_heal.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_marci/marci_unleash_attack.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_marci/marci_dispose_debuff.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_troll_warlord/troll_warlord_bersekers_net.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_wisp/wisp_overcharge.vpcf", context)
-	PrecacheResource("particle", "particles/jugg_parry.vpcf", context)
+	PrecacheResource("particle", "particles/juggernaut/jugg_parry.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_wisp/wisp_base_attack.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_wisp/wisp_ambient.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_wisp/wisp_tether.vpcf", context)
@@ -251,7 +259,7 @@ function marci_guardian_custom:OnSpellStart()
 						if RandomInt(1, 2) == 1 then
 							caster:EmitSound("Juggernaut.Parry")
 							local particle = ParticleManager:CreateParticle(
-								"particles/jugg_parry.vpcf",
+								"particles/juggernaut/jugg_parry.vpcf",
 								PATTACH_ABSORIGIN_FOLLOW,
 								caster
 							)
@@ -272,7 +280,11 @@ function marci_guardian_custom:OnSpellStart()
 				end)
 
 				local particle = ParticleManager:CreateParticle(
-					"particles/marci/bodyguard_shield.vpcf",
+					wearables_system:GetParticleReplacementAbility(
+						self.caster,
+						"particles/marci/bodyguard_shield.vpcf",
+						self
+					),
 					PATTACH_OVERHEAD_FOLLOW,
 					target
 				)
@@ -312,7 +324,7 @@ function marci_guardian_custom:ProcCd(reason)
 	if not allow then
 		return
 	end
-	self.caster:CdAbility(self, nil, cd)
+	self.caster:CdAbility(self, nil, cd, "modifier_marci_sidekick_4")
 end
 
 modifier_marci_guardian_custom_tracker = class(mod_hidden)
@@ -552,7 +564,7 @@ function modifier_marci_guardian_custom_armor:OnCreated()
 	self.armor = self.ability.talents.e1_armor
 	if self.caster:GetTeamNumber() ~= self.parent:GetTeamNumber() then
 		self.armor = self.ability.talents.e1_armor_reduce
-		self.parent:GenericParticle("particles/general/generic_armor_reduction.vpcf", self, true)
+		self.parent:GenericParticle("particles/generic/generic_armor_reduction.vpcf", self, true)
 	end
 end
 
@@ -867,7 +879,6 @@ function marci_summon_custom_wisp:OnSpellStart()
 	unit:SetOwner(self.caster)
 
 	unit.owner = self.caster
-	unit.marci_creep = true
 	unit:EmitSound("Marci.Sidekick_summon")
 
 	unit:AddNewModifier(self.caster, self, "modifier_marci_guardian_custom_legendary_unit", {})
@@ -1198,6 +1209,7 @@ function modifier_marci_guardian_custom_legendary_tether_wisp:OnCreated()
 
 	self.range = self.ability.talents.e7_range / 3
 	self.caster:AddNewModifier(self.caster, self.ability, "modifier_marci_guardian_custom_legendary_tether_speed", {})
+	self.parent:AddOrderFilter(self)
 
 	self.caster:EmitSound("Hero_Wisp.Tether.Target")
 	self.caster:EmitSound("Hero_Wisp.Tether")
@@ -1211,6 +1223,13 @@ function modifier_marci_guardian_custom_legendary_tether_wisp:OnIntervalThink()
 		return
 	end
 	self:ApplyHorizontalMotionController()
+end
+
+function modifier_marci_guardian_custom_legendary_tether_wisp:OrderFilter(params)
+	if params.order_type ~= DOTA_UNIT_ORDER_MOVE_TO_POSITION then
+		return
+	end
+	self:Destroy()
 end
 
 function modifier_marci_guardian_custom_legendary_tether_wisp:UpdateHorizontalMotion(me, dt)

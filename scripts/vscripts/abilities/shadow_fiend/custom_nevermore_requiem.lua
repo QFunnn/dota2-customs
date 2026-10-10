@@ -84,7 +84,7 @@ function custom_nevermore_requiem:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_nevermore/nevermore_requiemofsouls_a.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_nevermore/nevermore_requiemofsouls.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_nevermore/nevermore_requiemofsouls_line.vpcf", context)
-	PrecacheResource("particle", "particles/sf_ulti_gaze_.vpcf", context)
+	PrecacheResource("particle", "particles/shadow_fiend/sf_ulti_gaze_.vpcf", context)
 	PrecacheResource("particle", "particles/shadow_fiend/requiem_pull.vpcf", context)
 	PrecacheResource("particle", "particles/shadow_fiend/requiem_stacks.vpcf", context)
 	PrecacheResource("particle", "particles/shadow_fiend/requiem_refresh.vpcf", context)
@@ -268,7 +268,9 @@ function custom_nevermore_requiem:OnSpellStart(death_cast)
 		then
 			caster:CdAbility(
 				self,
-				self:GetCooldownTimeRemaining() * caster:GetTalentValue("modifier_nevermore_requiem_7", "cd") / 100
+				self:GetCooldownTimeRemaining() * caster:GetTalentValue("modifier_nevermore_requiem_7", "cd") / 100,
+				nil,
+				"modifier_nevermore_requiem_7"
 			)
 
 			local particle = ParticleManager:CreateParticle(
@@ -690,8 +692,11 @@ function modifier_custom_reqiuem_legendary_stack:OnRefresh()
 		self.parent:EmitSound("Sf.Requiem_max_stack")
 		self.parent:EmitSound("Sf.Requiem_max_stack2")
 
-		local particle_peffect =
-			ParticleManager:CreateParticle("particles/brist_lowhp_.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
+		local particle_peffect = ParticleManager:CreateParticle(
+			"particles/bristleback/brist_lowhp_.vpcf",
+			PATTACH_ABSORIGIN_FOLLOW,
+			self.parent
+		)
 		ParticleManager:SetParticleControl(particle_peffect, 0, self.parent:GetAbsOrigin())
 		ParticleManager:SetParticleControl(particle_peffect, 2, self.parent:GetAbsOrigin())
 		ParticleManager:DestroyParticle(particle_peffect, false)
@@ -766,8 +771,11 @@ function modifier_custom_reqiuem_cast:OnCreated()
 		local origin = self.parent:GetAbsOrigin()
 
 		self.parent:EmitSound("Sf.Requiem_Bkb")
-		self.particle =
-			ParticleManager:CreateParticle("particles/sf_ulti_gaze_.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
+		self.particle = ParticleManager:CreateParticle(
+			"particles/shadow_fiend/sf_ulti_gaze_.vpcf",
+			PATTACH_ABSORIGIN_FOLLOW,
+			self.parent
+		)
 		ParticleManager:SetParticleControlEnt(
 			self.particle,
 			0,

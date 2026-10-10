@@ -87,8 +87,8 @@ function sven_storm_bolt_custom:Precache(context)
 	PrecacheResource("particle", "particles/econ/items/sven/sven_warcry_ti5/sven_warcry_shield_bash_blur.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_sven/sven_spell_storm_bolt_lightning.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_sven/sven_spell_storm_bolt.vpcf", context)
-	PrecacheResource("particle", "particles/sven_bolt_visual.vpcf", context)
-	PrecacheResource("particle", "particles/sven_storm_aoe.vpcf", context)
+	PrecacheResource("particle", "particles/sven/sven_bolt_visual.vpcf", context)
+	PrecacheResource("particle", "particles/sven/sven_storm_aoe.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/econ/items/zeus/zeus_immortal_2021/zeus_immortal_2021_static_field_gold.vpcf",
@@ -113,9 +113,9 @@ function sven_storm_bolt_custom:Precache(context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_forcestaff.vpcf", context)
 	PrecacheResource("particle", "particles/generic_gameplay/generic_stunned.vpcf", context)
 	PrecacheResource("particle", "particles/generic_gameplay/generic_silenced.vpcf", context)
-	PrecacheResource("particle", "particles/lc_odd_proc_hands.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_odd_proc_hands.vpcf", context)
 	PrecacheResource("particle", "particles/sven/hammer_proc.vpcf", context)
-	PrecacheResource("particle", "particles/sven_hammer_stack.vpcf", context)
+	PrecacheResource("particle", "particles/sven/sven_hammer_stack.vpcf", context)
 end
 
 function sven_storm_bolt_custom:OnInventoryContentsChanged()
@@ -233,7 +233,12 @@ function sven_storm_bolt_custom:OnSpellStart(new_target)
 	if caster:HasScepter() then
 		if self:GetAutoCastState() and target:TriggerSpellAbsorb(self) then
 			if caster:HasScepter() then
-				caster:CdAbility(self, self:GetCooldownTimeRemaining() * self:GetSpecialValueFor("scepter_cd") / 100)
+				caster:CdAbility(
+					self,
+					self:GetCooldownTimeRemaining() * self:GetSpecialValueFor("scepter_cd") / 100,
+					nil,
+					"Scepter"
+				)
 			end
 			return
 		end
@@ -287,7 +292,12 @@ function sven_storm_bolt_custom:OnProjectileHit_ExtraData(hTarget, vLocation, ta
 
 	if not hTarget or hTarget:IsInvulnerable() or hTarget:IsDebuffImmune() or linken then
 		if caster:HasScepter() then
-			caster:CdAbility(self, self:GetCooldownTimeRemaining() * self:GetSpecialValueFor("scepter_cd") / 100)
+			caster:CdAbility(
+				self,
+				self:GetCooldownTimeRemaining() * self:GetSpecialValueFor("scepter_cd") / 100,
+				nil,
+				"Scepter"
+			)
 		end
 	end
 
@@ -495,7 +505,7 @@ function modifier_sven_storm_bolt_custom_tracker:AttackEvent_out(params)
 	)
 	enemy:SendNumber(4, real_damage)
 
-	self.parent:CdAbility(self.ability, self.proc_cd)
+	self.parent:CdAbility(self.ability, self.proc_cd, nil, "modifier_sven_hammer_4")
 end
 
 modifier_sven_storm_bolt_custom_scepter = class({})
@@ -684,7 +694,7 @@ function modifier_sven_storm_bolt_custom_proc:GetTexture()
 	return "buffs/hammer_proc"
 end
 function modifier_sven_storm_bolt_custom_proc:GetEffectName()
-	return "particles/lc_odd_proc_hands.vpcf"
+	return "particles/legion_commander/lc_odd_proc_hands.vpcf"
 end
 function modifier_sven_storm_bolt_custom_proc:OnCreated(table)
 	if not IsServer() then
@@ -756,7 +766,7 @@ function modifier_sven_storm_bolt_custom_legendary_stack:OnStackCountChanged(iSt
 		return
 	end
 	if not self.effect_cast then
-		local particle_cast = "particles/sven_hammer_stack.vpcf"
+		local particle_cast = "particles/sven/sven_hammer_stack.vpcf"
 
 		self.effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_OVERHEAD_FOLLOW, self:GetParent())
 		ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(0, self:GetStackCount(), 0))
@@ -912,7 +922,8 @@ function sven_storm_bolt_custom_legendary:OnSpellStart()
 		local qangle = QAngle(0, qangle_rotation_rate, 0)
 		line_position = RotatePosition(point, qangle, line_position)
 
-		local particle = ParticleManager:CreateParticle("particles/sven_bolt_visual.vpcf", PATTACH_WORLDORIGIN, nil)
+		local particle =
+			ParticleManager:CreateParticle("particles/sven/sven_bolt_visual.vpcf", PATTACH_WORLDORIGIN, nil)
 		ParticleManager:SetParticleControl(
 			particle,
 			0,
@@ -961,7 +972,7 @@ function modifier_sven_storm_bolt_custom_legendary:OnCreated(table)
 	self.move_duration = self.ability:GetSpecialValueFor("move_duration")
 
 	self.zuus_nimbus_particle =
-		ParticleManager:CreateParticle("particles/sven_storm_aoe.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
+		ParticleManager:CreateParticle("particles/sven/sven_storm_aoe.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
 	ParticleManager:SetParticleControl(self.zuus_nimbus_particle, 0, self.parent:GetAbsOrigin())
 	ParticleManager:SetParticleControl(self.zuus_nimbus_particle, 1, Vector(self.radius, 0, 0))
 	self:AddParticle(self.zuus_nimbus_particle, false, false, -1, false, false)

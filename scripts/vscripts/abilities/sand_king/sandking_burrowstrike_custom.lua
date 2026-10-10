@@ -98,7 +98,7 @@ function sandking_burrowstrike_custom:Precache(context)
 		context
 	)
 	PrecacheResource("particle", "particles/units/heroes/hero_nyx_assassin/nyx_assassin_burrow_exit.vpcf", context)
-	PrecacheResource("particle", "particles/lina_timer.vpcf", context)
+	PrecacheResource("particle", "particles/lina/lina_timer.vpcf", context)
 	PrecacheResource("particle", "particles/sand_king/burrow_second.vpcf", context)
 	PrecacheResource("particle", "particles/generic_gameplay/generic_stunned.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_marci/marci_rebound_allymovespeed.vpcf", context)
@@ -896,7 +896,7 @@ function modifier_sandking_burrowstrike_custom_second:OnIntervalThink()
 		decimal = 1
 	end
 
-	local particleName = "particles/lina_timer.vpcf"
+	local particleName = "particles/lina/lina_timer.vpcf"
 	local particle = ParticleManager:CreateParticle(particleName, PATTACH_OVERHEAD_FOLLOW, caster)
 	ParticleManager:SetParticleControl(particle, 0, caster:GetAbsOrigin())
 	ParticleManager:SetParticleControl(particle, 1, Vector(0, int, decimal))

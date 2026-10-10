@@ -36,7 +36,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_enigma_black_hole_custom_legendary_stack",
 	"abilities/enigma/enigma_black_hole_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_enigma_blackhole_7"
 )
 LinkLuaModifier(
 	"modifier_enigma_black_hole_custom_legendary_debuff",
@@ -51,12 +52,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_enigma_black_hole_custom_legendary_damage",
 	"abilities/enigma/enigma_black_hole_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_enigma_blackhole_7" }
 )
 LinkLuaModifier(
 	"modifier_enigma_black_hole_custom_stack",
 	"abilities/enigma/enigma_black_hole_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_enigma_blackhole_3"
 )
 LinkLuaModifier(
 	"modifier_enigma_black_hole_custom_spell_active",
@@ -83,17 +86,13 @@ function enigma_black_hole_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_enigma/enigma_blackhole.vpcf", context)
 	PrecacheResource("particle", "particles/enigma/blackhole_delay.vpcf", context)
 	PrecacheResource("particle", "particles/enigma/black_hole_legendary.vpcf", context)
-	PrecacheResource("particle", "particles/enigma/black_hole_legendarye2.vpcf", context)
 	PrecacheResource("particle", "particles/enigma/black_hole_legendaryf.vpcf", context)
-	PrecacheResource("particle", "particles/enigma/blackhole_stack_max.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_enigma/enigma_gravity_effect.vpcf", context)
 	PrecacheResource("particle", "particles/enigma/blackhole_mini.vpcf", context)
 	PrecacheResource("particle", "particles/enigma/black_hole_blink_start.vpcf", context)
 	PrecacheResource("particle", "particles/enigma/black_hole_blink_end.vpcf", context)
-	PrecacheResource("particle", "particles/enigma/blackhole_refresh.vpcf", context)
 	PrecacheResource("particle", "particles/enigma/blackhole_delay_legendary.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_arc_warden/arc_warden_tempest_cast.vpcf", context)
-	PrecacheResource("particle", "particles/enigma/black_hole_stack_max.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/econ/items/enigma/enigma_world_chasm/enigma_blackhole_target_ti5.vpcf",
@@ -440,7 +439,7 @@ function modifier_enigma_black_hole_custom:RegisterHit(target)
 	end
 	local cd_items = self.ability.talents.has_r7 == 1 and self.ability.talents.r4_cd_items_legendary
 		or self.ability.talents.r4_cd_items
-	self.caster:CdItems(cd_items)
+	self.caster:CdItems(cd_items, "modifier_enigma_blackhole_4")
 end
 
 modifier_enigma_black_hole_custom_debuff = class(mod_visible)

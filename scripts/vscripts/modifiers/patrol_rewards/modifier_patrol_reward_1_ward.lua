@@ -15,7 +15,7 @@ end
 function modifier_patrol_reward_1_ward:RemoveOnDeath()
 	return false
 end
-function modifier_patrol_reward_1_ward:OnCreated(table)
+function modifier_patrol_reward_1_ward:OnCreated()
 	if not IsServer() then
 		return
 	end
@@ -25,6 +25,7 @@ function modifier_patrol_reward_1_ward:OnCreated(table)
 	self.radius = self.parent:GetTalentValue("modifier_patrol_reward_ward", "radius")
 	self.max = self.parent:GetTalentValue("modifier_patrol_reward_ward", "max")
 	self.gold = self.parent:GetTalentValue("modifier_patrol_reward_ward", "gold")
+	self.white = self.parent:GetTalentValue("modifier_patrol_reward_ward", "white")
 
 	EmitSoundOnEntityForPlayer("Item.SeerStone", self.parent, self.parent:GetPlayerOwnerID())
 
@@ -89,6 +90,7 @@ function modifier_patrol_reward_1_ward:DeathEvent(params)
 
 	self:DecrementStackCount()
 	self.parent:GiveGold(self.gold, true, nil, "modifier_patrol_reward_ward")
+	self.parent:AddPoints("white", self.white, "modifier_patrol_reward_ward")
 
 	if self:GetStackCount() <= 0 then
 		self:Destroy()

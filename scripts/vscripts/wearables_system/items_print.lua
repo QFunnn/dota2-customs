@@ -152,11 +152,11 @@ function GetBaseItems()
 	local npc_heroes = LoadKeyValues("scripts/npc/npc_heroes.txt")
 
 	local replace_table = {
-		["particles/units/heroes/hero_razor/razor_ambient.vpcf"] = "particles/razor_custom/razor_ambient.vpcf",
-		["particles/units/heroes/hero_razor/razor_ambient_main.vpcf"] = "particles/razor_custom/razor_ambient_main.vpcf",
-		["particles/units/heroes/hero_razor/razor_whip.vpcf"] = "particles/razor_custom/razor_whip.vpcf",
+		["particles/units/heroes/hero_razor/razor_ambient.vpcf"] = "particles/razor/razor_ambient.vpcf",
+		["particles/units/heroes/hero_razor/razor_ambient_main.vpcf"] = "particles/razor/razor_ambient_main.vpcf",
+		["particles/units/heroes/hero_razor/razor_whip.vpcf"] = "particles/razor/razor_whip.vpcf",
 
-		["particles/units/heroes/hero_terrorblade/terrorblade_feet_effects.vpcf"] = "particles/terrorblade_custom/terrorblade_feet_effects.vpcf",
+		["particles/units/heroes/hero_terrorblade/terrorblade_feet_effects.vpcf"] = "particles/terrorblade/terrorblade_feet_effects.vpcf",
 	}
 
 	local hero_table = {}

@@ -21,7 +21,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_arc_warden_spark_wraith_custom_legendary_stack",
 	"abilities/arc_warden/arc_warden_spark_wraith_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_arc_warden_spark_7"
 )
 LinkLuaModifier(
 	"modifier_arc_warden_spark_wraith_custom_slow",
@@ -41,12 +42,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_arc_warden_spark_wraith_custom_str",
 	"abilities/arc_warden/arc_warden_spark_wraith_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_arc_warden_hero_3"
 )
 LinkLuaModifier(
 	"modifier_arc_warden_spark_wraith_custom_move",
 	"abilities/arc_warden/arc_warden_spark_wraith_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_arc_warden_spark_4"
 )
 LinkLuaModifier(
 	"modifier_arc_warden_spark_wraith_custom_unslow",
@@ -64,18 +67,15 @@ function arc_warden_spark_wraith_custom:Precache(context)
 
 	PrecacheResource("particle", "particles/units/heroes/hero_arc_warden/arc_warden_wraith_cast.vpcf", context)
 	PrecacheResource("particle", "particles/arc_warden/spark_heall.vpcf", context)
-	PrecacheResource("particle", "particles/puck_heal.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_arc_warden/arc_warden_tempest_cast.vpcf", context)
 	PrecacheResource("particle", "particles/arc_warden/spark_hero.vpcf", context)
-	PrecacheResource("particle", "particles/arc_warden/spark_tempest.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_arc_warden/arc_warden_wraith_prj.vpcf", context)
 	PrecacheResource("particle", "particles/econ/events/fall_2021/phase_boots_fall_2021_lvl2.vpcf", context)
-	PrecacheResource("particle", "particles/zuus_speed.vpcf", context)
+	PrecacheResource("particle", "particles/zeus/zuus_speed.vpcf", context)
 	PrecacheResource("particle", "particles/arc_warden/spark_cast.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_arc_warden/arc_warden_flux_cast.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_arc_warden/arc_warden_tempest_cast.vpcf", context)
-	PrecacheResource("particle", "particles/blue_zone.vpcf", context)
-	PrecacheResource("particle", "particles/arc_warden/spark_fear_stack.vpcf", context)
+	PrecacheResource("particle", "particles/arc_warden/blue_zone.vpcf", context)
 	PrecacheResource("particle", "particles/arc_warden/spark_stacks.vpcf", context)
 end
 
@@ -391,7 +391,7 @@ function arc_warden_spark_wraith_custom:ApplySpeed(is_flux)
 					{ duration = self.talents.e4_duration }
 				)
 			else
-				target:CdItems(self.talents.e4_cd_items)
+				target:CdItems(self.talents.e4_cd_items, "modifier_arc_warden_spark_4")
 			end
 			target:RemoveModifierByName("modifier_arc_warden_spark_wraith_custom_move")
 			target:AddNewModifier(
@@ -490,7 +490,7 @@ function modifier_arc_warden_spark_wraith_custom_move:OnCreated()
 	if not IsServer() then
 		return
 	end
-	self.parent:GenericParticle("particles/zuus_speed.vpcf", self)
+	self.parent:GenericParticle("particles/zeus/zuus_speed.vpcf", self)
 end
 
 function modifier_arc_warden_spark_wraith_custom_move:DeclareFunctions()
@@ -793,7 +793,7 @@ function modifier_arc_warden_spark_wraith_custom_unslow:OnCreated()
 	if not IsServer() then
 		return
 	end
-	self.parent:GenericParticle("particles/zuus_speed.vpcf", self)
+	self.parent:GenericParticle("particles/zeus/zuus_speed.vpcf", self)
 	self.parent:EmitSound("Arc.Spark_haste")
 end
 
@@ -962,7 +962,8 @@ function modifier_arc_warden_spark_wraith_custom_legendary:OnCreated(table)
 	self.visual_count = 0
 
 	self.radius = self.ability.aoe_radius
-	self.effect_cast = ParticleManager:CreateParticle("particles/blue_zone.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.target)
+	self.effect_cast =
+		ParticleManager:CreateParticle("particles/arc_warden/blue_zone.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.target)
 	ParticleManager:SetParticleControl(self.effect_cast, 0, self.target:GetOrigin())
 	ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(self.radius, 0, 0))
 	self:AddParticle(self.effect_cast, false, false, -1, false, false)

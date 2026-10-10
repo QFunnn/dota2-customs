@@ -77,7 +77,9 @@
 		<Panel class="shop_window_hidden" id="window_shop">
 			<Panel class="shop_window_main" id="shop_window_main">
 				<Panel class="shop_window_buttons" id="shop_window_buttons">
-					<Panel id="shop_items_new" />
+					<Panel id="shop_items_new" class="new_alert hidden_panel">
+						<Label class="new_alert_label" text="NEW" />
+					</Panel>
 					<Panel class="shop_shards_sale">
 						<Label text="#buy_shards_sale_small_30" />
 					</Panel>
@@ -220,11 +222,16 @@
 							<Panel id="ChooseCategoryBlockSale" class="hidden_panel">
 								<Label class="shop_items_sale_text" text="#global_sale_50" />
 							</Panel>
+							<Panel id="ChooseCategoryItemsNew" class="new_alert new_alert_set hidden_panel">
+								<Label class="new_alert_label" text="NEW" />
+							</Panel>
 							<Panel class="ChooseCategoryBlockIcon" id="ChooseCategoryBlockIconItems" />
 							<Label class="ChooseCategoryBlockLabel" text="#items" />
 						</Panel>
 						<Panel class="ChooseCategoryBlock" id="ChooseCategoryChest_button" onactivate="OpenItemsContent(&apos;CategoryChest&apos;);">
-							<Panel id="ChooseCategoryBlockNew" class="hidden_panel" />
+							<Panel id="ChooseCategoryBlockNew" class="new_alert new_alert_set hidden_panel">
+								<Label class="new_alert_label" text="NEW" />
+							</Panel>
 							<Panel class="ChooseCategoryBlockIcon" id="ChooseCategoryBlockIconChest" />
 							<Label class="ChooseCategoryBlockLabel" text="#Chests" />
 						</Panel>

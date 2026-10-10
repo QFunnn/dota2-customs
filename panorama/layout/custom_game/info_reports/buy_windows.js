@@ -8,6 +8,12 @@
 ]]
 
 
+function SetChangesAbilityListSize(panel, count)
+{
+    panel.SetHasClass("changes_ability_list_small", count > 4 && count <= 6)
+    panel.SetHasClass("changes_ability_list_tiny", count > 6)
+}
+
 function CloseBuyWindowIfOpen()
 {
     let main = $.GetContextPanel().FindChildTraverse("window_shop")
@@ -137,6 +143,7 @@ function CreateBuyWindow(id, cost, name, sound, hero, no_money, styles, fast_act
             changes_icons_panel_label.text = $.Localize("#changes_icons_abilities")
             let changes_ability_list = $.CreatePanel("Panel", changes_icons_panel, "")
             changes_ability_list.AddClass("changes_ability_list")
+            SetChangesAbilityListSize(changes_ability_list, ITEM_CHANGED_INFORMATION[id]["changed_icons"].length)
 
             for (let i = 0; i < ITEM_CHANGED_INFORMATION[id]["changed_icons"].length; i++) 
             {
@@ -174,6 +181,7 @@ function CreateBuyWindow(id, cost, name, sound, hero, no_money, styles, fast_act
             changes_effects_panel_label.text = $.Localize("#changes_effects_abilities")
             let changes_ability_list = $.CreatePanel("Panel", changes_effects_panel, "")
             changes_ability_list.AddClass("changes_ability_list")
+            SetChangesAbilityListSize(changes_ability_list, ITEM_CHANGED_INFORMATION[id]["changed_effects"].length)
             for (let i = 0; i < ITEM_CHANGED_INFORMATION[id]["changed_effects"].length; i++) 
             {
                 let ability_info = ITEM_CHANGED_INFORMATION[id]["changed_effects"][i]

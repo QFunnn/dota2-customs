@@ -42,7 +42,7 @@ function item_alchemist_gold_daedalus:Precache(context)
 		context
 	)
 	PrecacheResource("particle", "particles/units/heroes/hero_monkey_king/monkey_king_quad_tap_hit.vpcf", context)
-	PrecacheResource("particle", "particles/huskar_disarm_coil.vpcf", context)
+	PrecacheResource("particle", "particles/huskar/huskar_disarm_coil.vpcf", context)
 	PrecacheResource("particle", "particles/items/celestial_spear_leash.vpcf", context)
 end
 
@@ -334,7 +334,7 @@ function modifier_item_alchemist_gold_daedalus_leash:OnCreated(table)
 		- (self.caster:GetAbsOrigin() - self.parent:GetAbsOrigin()):Normalized() * 60
 
 	self.effect_cast =
-		ParticleManager:CreateParticle("particles/huskar_disarm_coil.vpcf", PATTACH_WORLDORIGIN, self.parent)
+		ParticleManager:CreateParticle("particles/huskar/huskar_disarm_coil.vpcf", PATTACH_WORLDORIGIN, self.parent)
 	ParticleManager:SetParticleControl(self.effect_cast, 0, self.center)
 	self:AddParticle(self.effect_cast, false, false, -1, false, false)
 

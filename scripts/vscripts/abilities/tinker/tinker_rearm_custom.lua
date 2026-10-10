@@ -27,7 +27,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_tinker_rearm_custom_mana_bonus",
 	"abilities/tinker/tinker_rearm_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_tinker_rearm_4"
 )
 LinkLuaModifier(
 	"modifier_tinker_rearm_custom_auto_cast",
@@ -37,12 +38,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_tinker_rearm_custom_invun_cd",
 	"abilities/tinker/tinker_rearm_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_tinker_hero_6"
 )
 LinkLuaModifier(
 	"modifier_tinker_rearm_custom_spell_damage",
 	"abilities/tinker/tinker_rearm_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_tinker_rearm_3"
 )
 LinkLuaModifier("modifier_tinker_rearm_custom_quest", "abilities/tinker/tinker_rearm_custom", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_tinker_rearm_custom_invun", "abilities/tinker/tinker_rearm_custom", LUA_MODIFIER_MOTION_NONE)
@@ -222,7 +225,7 @@ function tinker_rearm_custom:OnChannelFinish(interrupted)
 			end
 
 			if ability:GetName() == "tinker_warp_grenade_custom" and ability.rearm_cd then
-				self.caster:CdAbility(ability, nil, ability.rearm_cd)
+				self.caster:CdAbility(ability, nil, ability.rearm_cd, "tinker_rearm_custom")
 			else
 				ability:EndCd(0)
 				ability:RefreshCharges()
@@ -265,7 +268,7 @@ function tinker_rearm_custom:OnChannelFinish(interrupted)
 	end
 
 	if self.talents.has_r4 == 1 then
-		self.caster:CdItems(self.talents.r4_cd_items)
+		self.caster:CdItems(self.talents.r4_cd_items, "modifier_tinker_rearm_4")
 		self.caster:AddNewModifier(
 			self.caster,
 			self,

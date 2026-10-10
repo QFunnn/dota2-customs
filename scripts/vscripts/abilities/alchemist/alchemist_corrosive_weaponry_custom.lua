@@ -16,12 +16,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_alchemist_corrosive_weaponry_custom_debuff",
 	"abilities/alchemist/alchemist_corrosive_weaponry_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 LinkLuaModifier(
 	"modifier_alchemist_corrosive_weaponry_custom_legendary",
 	"abilities/alchemist/alchemist_corrosive_weaponry_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_alchemist_greed_legendary" }
 )
 LinkLuaModifier(
 	"modifier_alchemist_corrosive_weaponry_custom_legendary_slow",
@@ -31,17 +33,20 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_alchemist_corrosive_weaponry_custom_legendary_str",
 	"abilities/alchemist/alchemist_corrosive_weaponry_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_alchemist_greed_legendary"
 )
 LinkLuaModifier(
 	"modifier_alchemist_corrosive_weaponry_custom_silence_cd",
 	"abilities/alchemist/alchemist_corrosive_weaponry_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_alchemist_greed_4"
 )
 LinkLuaModifier(
 	"modifier_alchemist_corrosive_weaponry_custom_speed",
 	"abilities/alchemist/alchemist_corrosive_weaponry_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_alchemist_greed_1"
 )
 LinkLuaModifier(
 	"modifier_alchemist_corrosive_weaponry_custom_poison",
@@ -62,9 +67,8 @@ function alchemist_corrosive_weaponry_custom:Precache(context)
 		return
 	end
 	PrecacheResource("particle", "particles/units/heroes/hero_alchemist/alchemist_lasthit_coins.vpcf", context)
-	PrecacheResource("particle", "particles/general/generic_armor_reduction.vpcf", context)
+	PrecacheResource("particle", "particles/generic/generic_armor_reduction.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_alchemist/alchemist_corrosive_weaponry.vpcf", context)
-	PrecacheResource("particle", "particles/alchemist/weapon_legendary.vpcf", context)
 	PrecacheResource("particle", "particles/alchemist/weapon_legendary_proj.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_poison_venomancer.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_venomancer/venomancer_venomous_gale_impact.vpcf", context)

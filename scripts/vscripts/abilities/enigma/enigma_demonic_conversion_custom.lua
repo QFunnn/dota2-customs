@@ -16,7 +16,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_enigma_demonic_conversion_custom_tracker",
 	"abilities/enigma/enigma_demonic_conversion_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_enigma_conversion_3", "modifier_enigma_conversion_7" }
 )
 LinkLuaModifier(
 	"modifier_enigma_demonic_conversion_custom_aura",
@@ -31,7 +32,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_enigma_demonic_conversion_custom_legendary_caster",
 	"abilities/enigma/enigma_demonic_conversion_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_enigma_conversion_7"
 )
 LinkLuaModifier(
 	"modifier_enigma_demonic_conversion_custom_legendary_creep",
@@ -46,7 +48,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_enigma_demonic_conversion_custom_perma",
 	"abilities/enigma/enigma_demonic_conversion_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_enigma_conversion_1"
 )
 LinkLuaModifier(
 	"modifier_enigma_demonic_conversion_custom_invun",
@@ -56,7 +59,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_enigma_demonic_conversion_custom_stun_cd",
 	"abilities/enigma/enigma_demonic_conversion_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_enigma_malefice_4"
 )
 LinkLuaModifier(
 	"modifier_enigma_demonic_conversion_custom_teleport",
@@ -66,7 +70,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_enigma_demonic_conversion_custom_slow",
 	"abilities/enigma/enigma_demonic_conversion_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_enigma_malefice_2"
 )
 
 enigma_demonic_conversion_custom = class({})
@@ -93,13 +98,11 @@ function enigma_demonic_conversion_custom:Precache(context)
 	PrecacheResource("particle", "particles/enigma/summon_perma.vpcf", context)
 	PrecacheResource("particle", "particles/enigma/summon_heal.vpcf", context)
 	PrecacheResource("particle", "particles/enigma/summon_spell_damage.vpcf", context)
-	PrecacheResource("particle", "particles/enigma/summon_absorb.vpcf", context)
-	PrecacheResource("particle", "particles/empyreal_lens.vpcf", context)
-	PrecacheResource("particle", "particles/enigma/eidolon_redirect.vpcf", context)
+	PrecacheResource("particle", "particles/enigma/empyreal_lens.vpcf", context)
 	PrecacheResource("particle", "particles/enigma/eidolon_legendary_field.vpcf", context)
 	PrecacheResource("particle", "particles/enigma/eidolon_legendary_effect.vpcf", context)
 	PrecacheResource("particle", "particles/enigma/scepter_effect.vpcf", context)
-	PrecacheResource("particle", "particles/void_astral_slow.vpcf", context)
+	PrecacheResource("particle", "particles/void_spirit/void_astral_slow.vpcf", context)
 	PrecacheResource("particle", "particles/enigma/black_hole_blink_start.vpcf", context)
 	PrecacheResource("particle", "particles/enigma/black_hole_blink_end.vpcf", context)
 end
@@ -638,8 +641,11 @@ function modifier_enigma_demonic_conversion_custom_tracker:AttackStartEvent_out(
 		local unit = self.ability:SummonUnit(point, 0, "modifier_enigma_conversion_3")
 
 		if unit then
-			local particle_2 =
-				ParticleManager:CreateParticle("particles/empyreal_lens.vpcf", PATTACH_ABSORIGIN_FOLLOW, attacker)
+			local particle_2 = ParticleManager:CreateParticle(
+				"particles/enigma/empyreal_lens.vpcf",
+				PATTACH_ABSORIGIN_FOLLOW,
+				attacker
+			)
 			ParticleManager:SetParticleControlEnt(
 				particle_2,
 				0,
@@ -946,7 +952,7 @@ function modifier_enigma_demonic_conversion_custom_slow:OnCreated()
 	if not IsServer() then
 		return
 	end
-	self.parent:GenericParticle("particles/void_astral_slow.vpcf", self)
+	self.parent:GenericParticle("particles/void_spirit/void_astral_slow.vpcf", self)
 end
 
 function modifier_enigma_demonic_conversion_custom_slow:DeclareFunctions()
@@ -980,6 +986,7 @@ function enigma_demonic_conversion_custom_legendary:UpdateTalents()
 			w7_base_health = caster:GetTalentValue("modifier_enigma_conversion_7", "base_health", true),
 			w7_damage_type = caster:GetTalentValue("modifier_enigma_conversion_7", "damage_type", true),
 			w7_movespeed = caster:GetTalentValue("modifier_enigma_conversion_7", "movespeed", true),
+			w7_damage = caster:GetTalentValue("modifier_enigma_conversion_7", "damage", true) / 100,
 		}
 	end
 
@@ -1232,8 +1239,7 @@ function modifier_enigma_demonic_conversion_custom_legendary_caster:OnCreated(ta
 	end
 
 	self.target = EntIndexToHScript(table.target)
-	self.is_legendary = 1
-	self.parent.infest_mod = self
+	self.parent:AddOrderFilter(self)
 	self.ability:EndCd(0.2)
 
 	self.parent:NoDraw(self)
@@ -1257,6 +1263,10 @@ function modifier_enigma_demonic_conversion_custom_legendary_caster:OnIntervalTh
 	else
 		self:SetEnd()
 	end
+end
+
+function modifier_enigma_demonic_conversion_custom_legendary_caster:OrderFilter(params)
+	return dota1x6:InfestOrderFilter(params, self.target)
 end
 
 function modifier_enigma_demonic_conversion_custom_legendary_caster:OnDestroy()
@@ -1370,7 +1380,12 @@ function modifier_enigma_demonic_conversion_custom_legendary_creep:OnCreated(tab
 	ParticleManager:SetParticleControl(self.particle, 1, Vector(self.ability.talents.w7_aura_radius, 1, 1))
 	self:AddParticle(self.particle, false, false, -1, false, false)
 
+	self.parent:AddOrderFilter(self)
 	self:StartIntervalThink(0.2)
+end
+
+function modifier_enigma_demonic_conversion_custom_legendary_creep:OrderFilter(params)
+	return dota1x6:ControlledCreepOrderFilter(params, self.parent)
 end
 
 function modifier_enigma_demonic_conversion_custom_legendary_creep:OnIntervalThink()
@@ -1493,7 +1508,7 @@ function modifier_enigma_demonic_conversion_custom_legendary_aura:GetModifierTot
 		return 0
 	end
 
-	self.damageTable.damage = params.original_damage
+	self.damageTable.damage = params.original_damage * (1 + self.ability.talents.w7_damage)
 	self.damageTable.victim = params.target
 
 	DoDamage(self.damageTable, "modifier_enigma_conversion_7")

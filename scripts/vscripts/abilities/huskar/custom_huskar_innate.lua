@@ -9,11 +9,17 @@
 
 
 LinkLuaModifier("modifier_custom_huskar_innate", "abilities/huskar/custom_huskar_innate", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_custom_huskar_innate_cd", "abilities/huskar/custom_huskar_innate", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier(
+	"modifier_custom_huskar_innate_cd",
+	"abilities/huskar/custom_huskar_innate",
+	LUA_MODIFIER_MOTION_NONE,
+	true
+)
 LinkLuaModifier(
 	"modifier_custom_huskar_innate_scepter",
 	"abilities/huskar/custom_huskar_innate",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "Scepter" }
 )
 
 custom_huskar_innate = class({})
@@ -23,7 +29,6 @@ function custom_huskar_innate:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
 	end
-	PrecacheResource("particle", "particles/huskar/innate_heal.vpcf", context)
 	PrecacheResource("particle", "particles/huskar/shard_shield.vpcf", context)
 	PrecacheResource("particle", "particles/econ/items/effigies/status_fx_effigies/se_effigy_ti6_lvl2.vpcf", context)
 	PrecacheResource(
@@ -31,7 +36,7 @@ function custom_huskar_innate:Precache(context)
 		"amir4an/particles/heroes/huskar/amir4an_1x6/amir4an_1x6_huskar_ability_mana_heal_ambient.vpcf",
 		context
 	)
-	PrecacheResource("particle", "particles/huskar_grave.vpcf", context)
+	PrecacheResource("particle", "particles/huskar/huskar_grave.vpcf", context)
 
 	PrecacheResource("soundfile", "soundevents/npc_dota_hero_huskar.vsndevts", context)
 	dota1x6:PrecacheShopItems("npc_dota_hero_huskar", context)
@@ -190,7 +195,7 @@ modifier_custom_huskar_innate_cd = class(mod_cd)
 
 modifier_custom_huskar_innate_scepter = class(mod_visible)
 function modifier_custom_huskar_innate_scepter:GetEffectName()
-	return "particles/huskar_grave.vpcf"
+	return "particles/huskar/huskar_grave.vpcf"
 end
 function modifier_custom_huskar_innate_scepter:OnCreated()
 	self.parent = self:GetParent()

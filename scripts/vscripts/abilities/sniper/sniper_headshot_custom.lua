@@ -52,15 +52,15 @@ function sniper_headshot_custom:Precache(context)
 		return
 	end
 
-	PrecacheResource("particle", "particles/sniper_legendary_attacka.vpcf", context)
+	PrecacheResource("particle", "particles/sniper/sniper_legendary_attacka.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_sniper/sniper_headshot_slow.vpcf", context)
-	PrecacheResource("particle", "particles/sniper_legendary_attack.vpcf", context)
-	PrecacheResource("particle", "particles/general/generic_armor_reduction.vpcf", context)
+	PrecacheResource("particle", "particles/sniper/sniper_legendary_attack.vpcf", context)
+	PrecacheResource("particle", "particles/generic/generic_armor_reduction.vpcf", context)
 	PrecacheResource("particle", "particles/items4_fx/ascetic_cap.vpcf", context)
 	PrecacheResource("particle", "particles/sniper/headshot_cleave.vpcf", context)
 	PrecacheResource("particle", "particles/sniper/headshot_legendary_radius.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_juggernaut/jugg_agility_boost.vpcf", context)
-	PrecacheResource("particle", "particles/hoodwink_head.vpcf", context)
+	PrecacheResource("particle", "particles/hoodwink/hoodwink_head.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_bounty_hunter/bounty_hunter_windwalk.vpcf", context)
 end
 
@@ -536,7 +536,7 @@ function modifier_sniper_headshot_custom_shield:OnCreated()
 	local position = self.parent:GetAbsOrigin()
 
 	self.particle =
-		ParticleManager:CreateParticle("particles/sniper_matrix.vpcf", PATTACH_CUSTOMORIGIN_FOLLOW, self.parent)
+		ParticleManager:CreateParticle("particles/sniper/sniper_matrix.vpcf", PATTACH_CUSTOMORIGIN_FOLLOW, self.parent)
 	ParticleManager:SetParticleControlEnt(
 		self.particle,
 		0,
@@ -588,7 +588,7 @@ function modifier_sniper_headshot_custom_shield:GetModifierIncomingDamageConstan
 	forward = forward:Normalized()
 
 	local particle_2 =
-		ParticleManager:CreateParticle("particles/sniper_shield_hit.vpcf", PATTACH_CUSTOMORIGIN, self.parent)
+		ParticleManager:CreateParticle("particles/sniper/sniper_shield_hit.vpcf", PATTACH_CUSTOMORIGIN, self.parent)
 	ParticleManager:SetParticleControlEnt(
 		particle_2,
 		0,
@@ -792,7 +792,7 @@ function modifier_sniper_headshot_custom_legendary_effect:OnCreated()
 	self:AddParticle(self.radius_visual, false, false, -1, false, false)
 
 	self.parent:EmitSound("Sniper.Aim_attack")
-	self.parent:GenericParticle("particles/hoodwink_head.vpcf", self, true)
+	self.parent:GenericParticle("particles/hoodwink/hoodwink_head.vpcf", self, true)
 
 	self.max_time = self:GetRemainingTime()
 

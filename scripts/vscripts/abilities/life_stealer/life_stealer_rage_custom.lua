@@ -16,22 +16,26 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_life_stealer_rage_custom",
 	"abilities/life_stealer/life_stealer_rage_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 LinkLuaModifier(
 	"modifier_life_stealer_rage_custom_charge",
 	"abilities/life_stealer/life_stealer_rage_custom",
-	LUA_MODIFIER_MOTION_HORIZONTAL
+	LUA_MODIFIER_MOTION_HORIZONTAL,
+	"modifier_lifestealer_rage_4"
 )
 LinkLuaModifier(
 	"modifier_life_stealer_rage_custom_armor",
 	"abilities/life_stealer/life_stealer_rage_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_lifestealer_rage_1"
 )
 LinkLuaModifier(
 	"modifier_life_stealer_rage_custom_dispel_cd",
 	"abilities/life_stealer/life_stealer_rage_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_lifestealer_hero_4"
 )
 LinkLuaModifier(
 	"modifier_life_stealer_rage_custom_dispel_invun",
@@ -41,7 +45,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_life_stealer_rage_custom_shield_cd",
 	"abilities/life_stealer/life_stealer_rage_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_lifestealer_ghoul_4"
 )
 
 life_stealer_rage_custom = class({})

@@ -114,9 +114,13 @@ function modifier_nevermore_frenzy_custom:OnCreated(table)
 	self.RemoveForDuel = true
 
 	if self.caster:HasTalent("modifier_nevermore_souls_7") then
-		self.wings_particle = self.caster:GenericParticle("particles/sf_wings.vpcf", self)
+		self.wings_particle = self.caster:GenericParticle("particles/shadow_fiend/sf_wings.vpcf", self)
 
-		self.hands = ParticleManager:CreateParticle("particles/sf_hands_.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.caster)
+		self.hands = ParticleManager:CreateParticle(
+			"particles/shadow_fiend/sf_hands_.vpcf",
+			PATTACH_ABSORIGIN_FOLLOW,
+			self.caster
+		)
 		ParticleManager:SetParticleControlEnt(
 			self.hands,
 			0,
@@ -133,7 +137,7 @@ function modifier_nevermore_frenzy_custom:OnCreated(table)
 		if mod then
 			souls = mod:GetStackCount()
 		end
-		self.effect = self.caster:GenericParticle("particles/sf_souls_souls.vpcf", self)
+		self.effect = self.caster:GenericParticle("particles/shadow_fiend/sf_souls_souls.vpcf", self)
 		ParticleManager:SetParticleControl(self.effect, 1, Vector(souls, 0, 0))
 		self.interval = 0.2
 

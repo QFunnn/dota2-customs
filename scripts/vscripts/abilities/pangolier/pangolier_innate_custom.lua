@@ -16,12 +16,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_pangolier_innate_custom_damage_reduce",
 	"abilities/pangolier/pangolier_innate_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 LinkLuaModifier(
 	"modifier_pangolier_innate_custom_cd",
 	"abilities/pangolier/pangolier_innate_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 
 pangolier_innate_custom = class({})
@@ -35,7 +37,7 @@ function pangolier_innate_custom:Precache(context)
 	PrecacheResource("particle", "particles/pangolier/innate_proc.vpcf", context)
 	PrecacheResource("particle", "particles/pangolier/innate_attack.vpcf", context)
 	PrecacheResource("particle", "particles/pangolier/innate_shield.vpcf", context)
-	PrecacheResource("particle", "particles/jugg_parry.vpcf", context)
+	PrecacheResource("particle", "particles/juggernaut/jugg_parry.vpcf", context)
 	PrecacheResource("soundfile", "soundevents/npc_dota_hero_pangolier.vsndevts", context)
 	dota1x6:PrecacheShopItems("npc_dota_hero_pangolier", context)
 end
@@ -45,6 +47,9 @@ function pangolier_innate_custom:UpdateTalents(name)
 	if not self.init then
 		self.init = true
 		self.talents = {
+			has_q7 = 0,
+			q7_bva = caster:GetTalentValue("modifier_pangolier_buckle_7", "bva", true),
+
 			has_w3 = 0,
 			w3_heal = 0,
 
@@ -53,6 +58,7 @@ function pangolier_innate_custom:UpdateTalents(name)
 			e2_bonus = caster:GetTalentValue("modifier_pangolier_lucky_2", "bonus", true),
 
 			has_e7 = 0,
+			e7_bva = caster:GetTalentValue("modifier_pangolier_lucky_7", "bva", true),
 
 			has_h2 = 0,
 			h2_move = 0,
@@ -65,6 +71,10 @@ function pangolier_innate_custom:UpdateTalents(name)
 			h4_bonus = caster:GetTalentValue("modifier_pangolier_hero_4", "bonus", true),
 			h4_heal = caster:GetTalentValue("modifier_pangolier_hero_4", "heal", true),
 		}
+	end
+
+	if caster:HasTalent("modifier_pangolier_buckle_7") then
+		self.talents.has_q7 = 1
 	end
 
 	if caster:HasTalent("modifier_pangolier_shield_3") then
@@ -107,6 +117,8 @@ function modifier_pangolier_innate_custom:OnCreated(table)
 	self.ability = self:GetAbility()
 	self.ability.tracker = self
 	self.ability:UpdateTalents()
+
+	self.bva = self.parent:GetBaseAttackTime(false)
 
 	self.ability.duration = self.ability:GetSpecialValueFor("duration")
 	self.ability.damage_reduce = self.ability:GetSpecialValueFor("damage_reduce")
@@ -202,6 +214,7 @@ function modifier_pangolier_innate_custom:ApplyEffect()
 		"modifier_pangolier_innate_custom_damage_reduce",
 		{ duration = self.ability.duration }
 	)
+	self.parent:LogProc("pangolier_innate_custom", self.parent:GetHealthPercent())
 
 	self.parent:StartGestureWithPlaybackRate(ACT_DOTA_ATTACK_EVENT, 2.5)
 
@@ -272,6 +285,7 @@ function modifier_pangolier_innate_custom:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
 		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
+		MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT,
 	}
 end
 
@@ -282,6 +296,20 @@ end
 
 function modifier_pangolier_innate_custom:GetModifierMoveSpeedBonus_Constant()
 	return self.ability.talents.h2_move
+end
+
+function modifier_pangolier_innate_custom:GetModifierBaseAttackTimeConstant()
+	local bva = 0
+	if self.ability.talents.has_q7 == 1 then
+		bva = self.ability.talents.q7_bva
+	end
+	if self.parent:GetUpgradeStack("modifier_pangolier_lucky_shot_custom_legendary_caster") == 1 then
+		bva = bva + self.ability.talents.e7_bva
+	end
+	if bva == 0 then
+		return
+	end
+	return self.bva + bva
 end
 
 modifier_pangolier_innate_custom_damage_reduce = class(mod_hidden)
@@ -341,8 +369,11 @@ function modifier_pangolier_innate_custom_damage_reduce:DamageEvent_inc(params)
 	self.parent:EmitSound("Juggernaut.Parry")
 
 	for i = 1, 2 do
-		local particle =
-			ParticleManager:CreateParticle("particles/jugg_parry.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
+		local particle = ParticleManager:CreateParticle(
+			"particles/juggernaut/jugg_parry.vpcf",
+			PATTACH_ABSORIGIN_FOLLOW,
+			self.parent
+		)
 		ParticleManager:SetParticleControlEnt(
 			particle,
 			0,

@@ -266,8 +266,8 @@ function modifier_voice_module:IsLcArcana()
 	if self.persona[self.model_name] then
 		return
 	end
-	local weapon_model = self.parent:GetItemWearableHandle("weapon")
-	return weapon_model and weapon_model:GetModelName() == "models/items/legion_commander/demon_sword.vmdl"
+	local hero_base = self.parent:GetItemWearableHandle("hero_base")
+	return hero_base and hero_base.item_id_original == "5810"
 end
 
 function modifier_voice_module:IsMkArcana()

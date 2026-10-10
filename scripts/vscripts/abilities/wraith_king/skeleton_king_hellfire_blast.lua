@@ -11,7 +11,8 @@
 LinkLuaModifier(
 	"modifier_skeleton_king_hellfire_blast_custom_debuff",
 	"abilities/wraith_king/skeleton_king_hellfire_blast.lua",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 LinkLuaModifier(
 	"modifier_skeleton_king_hellfire_blast_custom_illusion",
@@ -26,7 +27,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_skeleton_king_hellfire_blast_custom_damage_burn",
 	"abilities/wraith_king/skeleton_king_hellfire_blast.lua",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_skeleton_blast_3"
 )
 LinkLuaModifier(
 	"modifier_skeleton_king_hellfire_blast_custom_stun",
@@ -81,19 +83,16 @@ function skeleton_king_hellfire_blast_custom:Precache(context)
 		context
 	)
 	PrecacheResource("particle", "particles/items4_fx/spirit_vessel_damage.vpcf", context)
-	PrecacheResource("particle", "particles/wk_haste.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_wraithking_ghosts.vpcf", context)
-	PrecacheResource("particle", "particles/jugg_ward_damage.vpcf", context)
-	PrecacheResource("particle", "particles/wk_stun_legen.vpcf", context)
+	PrecacheResource("particle", "particles/juggernaut/jugg_ward_damage.vpcf", context)
+	PrecacheResource("particle", "particles/wraith_king/wk_stun_legen.vpcf", context)
 	PrecacheResource("particle", "particles/wraith_king/blast_radius.vpcf", context)
 	PrecacheResource("particle", "particles/wraith_king/blast_delay_damage.vpcf", context)
 	PrecacheResource("particle", "particles/wraith_king/blast_delay_damage_2.vpcf", context)
 	PrecacheResource("particle", "particles/nature_prophet/sprout_treant_death.vpcf", context)
 	PrecacheResource("particle", "particles/wraith_king/blast_delay_damage_arcana.vpcf", context)
 	PrecacheResource("particle", "particles/muerta/muerta_attack_slow.vpcf", context)
-	PrecacheResource("particle", "particles/wk_burn.vpcf", context)
-
-	PrecacheResource("particle", "particles/wraith_king_custom/wraith_king_ambient_custom.vpcf", context)
+	PrecacheResource("particle", "particles/wraith_king/wk_burn.vpcf", context)
 
 	dota1x6:PrecacheShopItems("npc_dota_hero_skeleton_king", context)
 end
@@ -467,7 +466,7 @@ function modifier_skeleton_king_hellfire_blast_custom_damage_burn:OnCreated(tabl
 	self.parent:EmitSound("WK.Stun_blast2")
 
 	self.parent:GenericParticle("particles/units/heroes/hero_skeletonking/skeletonking_hellfireblast_debuff.vpcf", self)
-	self.parent:GenericParticle("particles/wk_burn.vpcf", self)
+	self.parent:GenericParticle("particles/wraith_king/wk_burn.vpcf", self)
 
 	self.interval = self.ability.talents.q3_interval
 	self.damage_type = self.ability.talents.q3_damage_type
@@ -849,8 +848,11 @@ function skeleton_king_hellfire_blast_custom_legendary:OnSpellStart()
 		illusion:AddNewModifier(illusion, self, "modifier_chaos_knight_phantasm_illusion", {})
 		FindClearSpaceForUnit(illusion, self.caster:GetAbsOrigin() + self.caster:GetForwardVector() * 200, false)
 
-		local particle =
-			ParticleManager:CreateParticle("particles/wk_stun_legen.vpcf", PATTACH_CUSTOMORIGIN_FOLLOW, target)
+		local particle = ParticleManager:CreateParticle(
+			"particles/wraith_king/wk_stun_legen.vpcf",
+			PATTACH_CUSTOMORIGIN_FOLLOW,
+			target
+		)
 		ParticleManager:SetParticleControlEnt(
 			particle,
 			0,
@@ -996,7 +998,7 @@ function modifier_skeleton_king_hellfire_blast_custom_illusion:PlayEffect()
 	self.parent:EmitSound("WK.Stun_legendary_damage")
 
 	local particle =
-		ParticleManager:CreateParticle("particles/jugg_ward_damage.vpcf", PATTACH_POINT_FOLLOW, self.parent)
+		ParticleManager:CreateParticle("particles/juggernaut/jugg_ward_damage.vpcf", PATTACH_POINT_FOLLOW, self.parent)
 	ParticleManager:SetParticleControlEnt(
 		particle,
 		0,

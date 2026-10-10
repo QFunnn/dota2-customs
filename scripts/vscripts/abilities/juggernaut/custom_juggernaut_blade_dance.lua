@@ -16,7 +16,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_custom_juggernaut_blade_dance_legendary",
 	"abilities/juggernaut/custom_juggernaut_blade_dance.lua",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_juggernaut_bladedance_7"
 )
 LinkLuaModifier(
 	"modifier_custom_juggernaut_blade_dance_anim",
@@ -26,12 +27,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_custom_juggernaut_blade_dance_slow",
 	"abilities/juggernaut/custom_juggernaut_blade_dance.lua",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_juggernaut_hero_3"
 )
 LinkLuaModifier(
 	"modifier_custom_juggernaut_blade_dance_armor",
 	"abilities/juggernaut/custom_juggernaut_blade_dance.lua",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_juggernaut_bladedance_4"
 )
 LinkLuaModifier(
 	"modifier_custom_juggernaut_blade_dance_illusion",
@@ -46,12 +49,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_custom_juggernaut_blade_dance_shield_cd",
 	"abilities/juggernaut/custom_juggernaut_blade_dance.lua",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_juggernaut_hero_6"
 )
 LinkLuaModifier(
 	"modifier_custom_juggernaut_blade_dance_bonus",
 	"abilities/juggernaut/custom_juggernaut_blade_dance.lua",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_juggernaut_omnislash_1"
 )
 
 custom_juggernaut_blade_dance = class({})
@@ -69,17 +74,17 @@ function custom_juggernaut_blade_dance:Precache(context)
 		"particles/econ/items/juggernaut/jugg_arcana/juggernaut_arcana_v2_trigger.vpcf",
 		context
 	)
-	PrecacheResource("particle", "particles/jugger_legendary.vpcf", context)
-	PrecacheResource("particle", "particles/lc_lowhp.vpcf", context)
+	PrecacheResource("particle", "particles/juggernaut/jugger_legendary.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_lowhp.vpcf", context)
 	PrecacheResource("particle", "particles/bloodseeker/thirst_cleave.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_huskar_lifebreak.vpcf", context)
-	PrecacheResource("particle", "particles/jugg_omni_proc.vpcf", context)
-	PrecacheResource("particle", "particles/jugger_stack.vpcf", context)
+	PrecacheResource("particle", "particles/juggernaut/jugg_omni_proc.vpcf", context)
+	PrecacheResource("particle", "particles/juggernaut/jugger_stack.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_juggernaut/juggernaut_crit_tgt.vpcf", context)
 	PrecacheResource("particle", "particles/items2_fx/sange_maim.vpcf", context)
 	PrecacheResource("particle", "particles/juggernaut/dance_shield.vpcf", context)
 	PrecacheResource("particle", "particles/juggernaut/dance_shield_purge.vpcf", context)
-	PrecacheResource("particle", "particles/jugg_parry.vpcf", context)
+	PrecacheResource("particle", "particles/juggernaut/jugg_parry.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/econ/items/juggernaut/jugg_arcana/juggernaut_arcana_v2_body_ambient.vpcf",
@@ -332,7 +337,7 @@ function custom_juggernaut_blade_dance:CasterProc(is_fury)
 	end
 
 	if IsValid(self.caster.swift_ability) then
-		self.caster:CdAbility(self.caster.swift_ability, self.caster.swift_ability.cd_inc)
+		self.caster:CdAbility(self.caster.swift_ability, self.caster.swift_ability.cd_inc, nil, "Shard")
 	end
 
 	local mod = self.caster:FindModifierByName("modifier_custom_juggernaut_blade_dance_shield_cd")
@@ -382,7 +387,7 @@ function modifier_custom_juggernaut_blade_dance_legendary:StatusEffectPriority()
 	return MODIFIER_PRIORITY_HIGH
 end
 function modifier_custom_juggernaut_blade_dance_legendary:GetEffectName()
-	return "particles/jugger_legendary.vpcf"
+	return "particles/juggernaut/jugger_legendary.vpcf"
 end
 function modifier_custom_juggernaut_blade_dance_legendary:OnCreated()
 	self.parent = self:GetParent()
@@ -394,7 +399,7 @@ function modifier_custom_juggernaut_blade_dance_legendary:OnCreated()
 	self.RemoveForDuel = true
 	self.ability:EndCd()
 	self.parent:GenericParticle("particles/econ/items/juggernaut/jugg_arcana/juggernaut_arcana_v2_trigger.vpcf", self)
-	self.parent:GenericParticle("particles/lc_lowhp.vpcf", self)
+	self.parent:GenericParticle("particles/legion_commander/lc_lowhp.vpcf", self)
 
 	self.stack = 0
 	self.max_time = self.ability.talents.e7_duration
@@ -802,7 +807,7 @@ function modifier_custom_juggernaut_blade_dance_armor:DamageEvent_inc(params)
 
 	self.parent:EmitSound("Juggernaut.Parry")
 	local particle =
-		ParticleManager:CreateParticle("particles/jugg_parry.vpcf", PATTACH_CUSTOMORIGIN_FOLLOW, self.parent)
+		ParticleManager:CreateParticle("particles/juggernaut/jugg_parry.vpcf", PATTACH_CUSTOMORIGIN_FOLLOW, self.parent)
 	ParticleManager:SetParticleControlEnt(
 		particle,
 		0,

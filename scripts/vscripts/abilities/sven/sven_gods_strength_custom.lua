@@ -83,19 +83,19 @@ function sven_gods_strength_custom:Precache(context)
 
 	PrecacheResource("particle", "particles/units/heroes/hero_sven/sven_spell_gods_strength.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_sven/sven_spell_gods_strength.vpcf", context)
-	PrecacheResource("particle", "particles/sven_wave.vpcf", context)
+	PrecacheResource("particle", "particles/sven/sven_wave.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_gods_strength.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_sven/sven_gods_strength_hero_effect.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_sven/sven_spell_gods_strength_ambient.vpcf", context)
 	PrecacheResource("particle", "particles/items3_fx/hook_root.vpcf", context)
-	PrecacheResource("particle", "particles/sven_rage.vpcf", context)
-	PrecacheResource("particle", "particles/mars_shield_legendary.vpcf", context)
-	PrecacheResource("particle", "particles/brist_lowhp_.vpcf", context)
-	PrecacheResource("particle", "particles/sven_god_normal_cleave.vpcf", context)
-	PrecacheResource("particle", "particles/sven_god_cleave.vpcf", context)
-	PrecacheResource("particle", "particles/sven_god_cleave_2.vpcf", context)
+	PrecacheResource("particle", "particles/sven/sven_rage.vpcf", context)
+	PrecacheResource("particle", "particles/mars/mars_shield_legendary.vpcf", context)
+	PrecacheResource("particle", "particles/bristleback/brist_lowhp_.vpcf", context)
+	PrecacheResource("particle", "particles/sven/sven_god_normal_cleave.vpcf", context)
+	PrecacheResource("particle", "particles/sven/sven_god_cleave.vpcf", context)
+	PrecacheResource("particle", "particles/sven/sven_god_cleave_2.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_mars/mars_shield_bash_crit.vpcf", context)
-	PrecacheResource("particle", "particles/sven_wave_god_damage.vpcf", context)
+	PrecacheResource("particle", "particles/sven/sven_wave_god_damage.vpcf", context)
 
 	PrecacheResource("particle", "particles/units/heroes/hero_enigma/enigma_blackhole.vpcf", context)
 end
@@ -413,7 +413,7 @@ function modifier_sven_gods_strength_custom_tracker:UpdateUI()
 		end
 	else
 		if not self.particle then
-			self.particle = self.parent:GenericParticle("particles/sven_rage.vpcf", self, true)
+			self.particle = self.parent:GenericParticle("particles/sven/sven_rage.vpcf", self, true)
 			for i = 1, self.visual_max do
 				ParticleManager:SetParticleControl(self.particle, i, Vector(0, 0, 0))
 			end
@@ -486,7 +486,7 @@ function modifier_sven_gods_strength_custom_tracker:AttackEvent_out(params)
 			and not self.parent:HasModifier("modifier_sven_gods_strength_custom_root_cd")
 			and not target:HasModifier("modifier_sven_storm_bolt_custom_stun")
 		then
-			self.parent:GenericParticle("particles/sven_wave.vpcf")
+			self.parent:GenericParticle("particles/sven/sven_wave.vpcf")
 			self.parent:AddNewModifier(
 				self.parent,
 				self.ability,
@@ -573,8 +573,11 @@ function modifier_sven_gods_strength_custom_tracker:DamageEvent_inc(params)
 		self.parent:EmitSound("Sven.God_proc")
 		self.parent:EmitSound("Sven.God_proc2")
 
-		local particle_peffect =
-			ParticleManager:CreateParticle("particles/brist_lowhp_.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
+		local particle_peffect = ParticleManager:CreateParticle(
+			"particles/bristleback/brist_lowhp_.vpcf",
+			PATTACH_ABSORIGIN_FOLLOW,
+			self.parent
+		)
 		ParticleManager:SetParticleControl(particle_peffect, 0, self.parent:GetAbsOrigin())
 		ParticleManager:SetParticleControl(particle_peffect, 2, self.parent:GetAbsOrigin())
 		ParticleManager:ReleaseParticleIndex(particle_peffect)
@@ -663,13 +666,13 @@ function sven_gods_strength_custom_legendary:OnSpellStart()
 
 	local fxPoint = caster:GetAbsOrigin() + (direction * fxRange)
 
-	local part = "particles/sven_god_normal_cleave.vpcf"
+	local part = "particles/sven/sven_god_normal_cleave.vpcf"
 
 	if rage >= max_stack then
 		caster:EmitSound("Sven.God_crit_ground_max")
-		part = "particles/sven_god_cleave.vpcf"
+		part = "particles/sven/sven_god_cleave.vpcf"
 
-		local particleName = "particles/sven_god_cleave_2.vpcf"
+		local particleName = "particles/sven/sven_god_cleave_2.vpcf"
 		local particle = ParticleManager:CreateParticle(particleName, PATTACH_CUSTOMORIGIN, caster)
 		ParticleManager:SetParticleControlEnt(
 			particle,
@@ -742,8 +745,11 @@ function sven_gods_strength_custom_legendary:OnSpellStart()
 				ParticleManager:SetParticleControlForward(effect_cast, 1, direction)
 				ParticleManager:ReleaseParticleIndex(effect_cast)
 
-				local particle =
-					ParticleManager:CreateParticle("particles/sven_wave_god_damage.vpcf", PATTACH_POINT_FOLLOW, enemy)
+				local particle = ParticleManager:CreateParticle(
+					"particles/sven/sven_wave_god_damage.vpcf",
+					PATTACH_POINT_FOLLOW,
+					enemy
+				)
 				ParticleManager:SetParticleControlEnt(
 					particle,
 					0,
@@ -1007,7 +1013,7 @@ function modifier_sven_gods_strength_custom_legendary_stack:OnCreated()
 		return
 	end
 	self.visual_max = 6
-	self.particle = self.parent:GenericParticle("particles/sven_rage.vpcf", self, true)
+	self.particle = self.parent:GenericParticle("particles/sven/sven_rage.vpcf", self, true)
 
 	self:SetStackCount(1)
 	self:StartIntervalThink(0.2)
@@ -1058,8 +1064,11 @@ function modifier_sven_gods_strength_custom_legendary_stack:OnRefresh()
 
 	if self:GetStackCount() >= self.max then
 		self.parent:EmitSound("Sven.God_legendary_active")
-		self.effect_cast =
-			ParticleManager:CreateParticle("particles/mars_shield_legendary.vpcf", PATTACH_CUSTOMORIGIN, self.parent)
+		self.effect_cast = ParticleManager:CreateParticle(
+			"particles/mars/mars_shield_legendary.vpcf",
+			PATTACH_CUSTOMORIGIN,
+			self.parent
+		)
 		ParticleManager:SetParticleControlEnt(
 			self.effect_cast,
 			0,

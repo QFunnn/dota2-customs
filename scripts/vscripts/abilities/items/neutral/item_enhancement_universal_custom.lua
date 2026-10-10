@@ -20,33 +20,18 @@ function item_enhancement_universal_custom:GetIntrinsicModifierName()
 	return "modifier_item_enhancement_universal_custom"
 end
 
-function item_enhancement_universal_custom:Spawn()
-	self.main_stat = self:GetSpecialValueFor("main_stat")
-	self.main_stat_universal = self:GetSpecialValueFor("main_stat_universal")
-	self.stats = self:GetSpecialValueFor("stats")
-end
-
 modifier_item_enhancement_universal_custom = class(mod_hidden)
 function modifier_item_enhancement_universal_custom:RemoveOnDeath()
 	return false
 end
-function modifier_item_enhancement_universal_custom:OnCreated(table)
+function modifier_item_enhancement_universal_custom:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
+	self:OnRefresh()
+end
 
-	self.main_stat = self.ability.main_stat
-	self.main_stat_universal = self.ability.main_stat_universal
-	self.stats = self.ability.stats
-
-	if IsServer() then
-		self:SetStackCount(self.parent:GetPrimaryAttribute())
-	end
-
-	self.agi = self:GetStackCount() == DOTA_ATTRIBUTE_AGILITY and self.main_stat or 0
-	self.str = self:GetStackCount() == DOTA_ATTRIBUTE_STRENGTH and self.main_stat or 0
-	self.int = self:GetStackCount() == DOTA_ATTRIBUTE_INTELLECT and self.main_stat or 0
-
-	self.stats = self:GetStackCount() == DOTA_ATTRIBUTE_ALL and (self.stats + self.main_stat_universal) or self.stats
+function modifier_item_enhancement_universal_custom:OnRefresh()
+	self.stats = self.ability:GetSpecialValueFor("stats")
 end
 
 function modifier_item_enhancement_universal_custom:DeclareFunctions()
@@ -58,13 +43,13 @@ function modifier_item_enhancement_universal_custom:DeclareFunctions()
 end
 
 function modifier_item_enhancement_universal_custom:GetModifierBonusStats_Agility()
-	return self.stats + self.agi
+	return self.stats
 end
 
 function modifier_item_enhancement_universal_custom:GetModifierBonusStats_Strength()
-	return self.stats + self.str
+	return self.stats
 end
 
 function modifier_item_enhancement_universal_custom:GetModifierBonusStats_Intellect()
-	return self.stats + self.int
+	return self.stats
 end

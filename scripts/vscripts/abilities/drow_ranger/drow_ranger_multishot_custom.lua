@@ -21,7 +21,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_drow_ranger_multishot_custom_legendary",
 	"abilities/drow_ranger/drow_ranger_multishot_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_drow_multishot_7"
 )
 
 drow_ranger_multishot_custom = class({})
@@ -33,17 +34,12 @@ function drow_ranger_multishot_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
 	end
-	PrecacheResource("particle", "particles/drow_ranger/multi_cloud.vpcf", context)
 	PrecacheResource("particle", "particles/drow_ranger/multi_proj_scepter.vpcf", context)
 	PrecacheResource("particle", "particles/drow_ranger/multi_scepter_proc_red_low.vpcf", context)
-	PrecacheResource("particle", "particles/drow_ranger/multi_scepter_proc_red.vpcf", context)
 	PrecacheResource("particle", "particles/drow_ranger/multi_refresh.vpcf", context)
-	PrecacheResource("particle", "particles/drow_ranger/multi_legendary_stack.vpcf", context)
-	PrecacheResource("particle", "particles/drow_ranger/multi_block_active.vpcf", context)
-	PrecacheResource("particle", "particles/drow_ranger/multi_block.vpcf", context)
 	PrecacheResource("particle", "particles/drow_ranger/multi_damage_reduce.vpcf", context)
 	PrecacheResource("particle", "particles/drow_ranger/multi_armor.vpcf", context)
-	PrecacheResource("particle", "particles/zuus_speed.vpcf", context)
+	PrecacheResource("particle", "particles/zeus/zuus_speed.vpcf", context)
 	PrecacheResource("particle", "particles/crystal_maiden/frostbite_legendary_stack.vpcf", context)
 	PrecacheResource(
 		"particle",
@@ -424,7 +420,7 @@ function modifier_drow_ranger_multishot_custom:OnIntervalThink()
 	end
 
 	if self.ability.talents.has_e4 == 1 then
-		self.parent:CdItems(self.ability.talents.e4_cd_items)
+		self.parent:CdItems(self.ability.talents.e4_cd_items, "modifier_drow_multishot_4")
 	end
 
 	if IsValid(self.parent.frost_arrow_ability) then
@@ -591,7 +587,7 @@ function modifier_drow_ranger_multishot_custom_tracker:SpellEvent(params)
 		return
 	end
 
-	local cd = self.parent:CdAbility(self.ability, nil, self.ability.talents.e7_cd)
+	local cd = self.parent:CdAbility(self.ability, nil, self.ability.talents.e7_cd, "modifier_drow_multishot_7")
 
 	if cd then
 		local particle = ParticleManager:CreateParticle(

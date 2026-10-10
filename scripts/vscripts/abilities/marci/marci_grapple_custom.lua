@@ -17,12 +17,14 @@ LinkLuaModifier("modifier_marci_dispose_custom_hits", "abilities/marci/marci_gra
 LinkLuaModifier(
 	"modifier_marci_dispose_custom_hits_slow",
 	"abilities/marci/marci_grapple_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_marci_dispose_7"
 )
 LinkLuaModifier(
 	"modifier_marci_dispose_custom_legendary_count",
 	"abilities/marci/marci_grapple_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_marci_dispose_7"
 )
 LinkLuaModifier(
 	"modifier_marci_dispose_custom_tracker",
@@ -34,12 +36,14 @@ LinkLuaModifier("modifier_marci_dispose_custom_swap", "abilities/marci/marci_gra
 LinkLuaModifier(
 	"modifier_marci_dispose_custom_health_reduce",
 	"abilities/marci/marci_grapple_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_marci_dispose_3"
 )
 LinkLuaModifier(
 	"modifier_marci_dispose_custom_health_inc",
 	"abilities/marci/marci_grapple_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_marci_dispose_3"
 )
 
 marci_grapple_custom = class({})
@@ -66,7 +70,7 @@ function marci_grapple_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_marci/marci_rebound_bounce_impact_debuff.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_snapfire_slow.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_huskar/huskar_inner_fire_debuff.vpcf", context)
-	PrecacheResource("particle", "particles/general/generic_armor_reduction.vpcf", context)
+	PrecacheResource("particle", "particles/generic/generic_armor_reduction.vpcf", context)
 	PrecacheResource("particle", "particles/hoodwink/bush_damage.vpcf", context)
 end
 
@@ -142,7 +146,7 @@ function marci_grapple_custom:GetAbilityTextureName()
 	if self.caster:HasModifier("modifier_marci_dispose_custom_swap") then
 		return "dispose_knockback"
 	end
-	return "marci_grapple"
+	return wearables_system:GetAbilityIconReplacement(self:GetCaster(), "marci_grapple", self)
 end
 
 function marci_grapple_custom:GetIntrinsicModifierName()
@@ -328,7 +332,11 @@ function marci_grapple_custom:PlayEffects1(point)
 	ParticleManager:ReleaseParticleIndex(particle)
 
 	local particle2 = ParticleManager:CreateParticle(
-		"particles/units/heroes/hero_marci/marci_dispose_land_aoe.vpcf",
+		wearables_system:GetParticleReplacementAbility(
+			self:GetCaster(),
+			"particles/units/heroes/hero_marci/marci_dispose_land_aoe.vpcf",
+			self
+		),
 		PATTACH_WORLDORIGIN,
 		nil
 	)
@@ -653,7 +661,7 @@ function modifier_marci_dispose_custom_swap:OnDestroy()
 	if self:GetRemainingTime() > 0.1 then
 		return
 	end
-	self.parent:CdAbility(self.ability, self.ability.talents.q4_duration)
+	self.parent:CdAbility(self.ability, self.ability.talents.q4_duration, nil, "modifier_marci_dispose_4")
 end
 
 modifier_marci_dispose_custom_health_reduce = class(mod_visible)

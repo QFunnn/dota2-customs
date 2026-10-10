@@ -368,6 +368,10 @@ function wearables_system:PrecacheHero(hero_name, context)
 	if _G.DEFAULT_MODELS_HEROES and _G.DEFAULT_MODELS_HEROES[hero_name] then
 		PrecacheResource("model", _G.DEFAULT_MODELS_HEROES[hero_name], context)
 	end
+	if hero_name == "npc_dota_hero_terrorblade" then
+		PrecacheResource("model", "models/items/terrorblade/dreadhunt_weapon/dreadhunt_weapon_manta.vmdl", context)
+		PrecacheResource("model", "models/items/terrorblade/dreadhunt_weapon/dreadhunt_weapon_skadi.vmdl", context)
+	end
 	if hero_name == "npc_dota_hero_night_stalker" then
 		PrecacheResource("model", "models/heroes/nightstalker/nightstalker_legarmor_night.vmdl", context)
 		PrecacheResource("model", "models/heroes/nightstalker/nightstalker_tail_night.vmdl", context)
@@ -832,6 +836,15 @@ function wearables_system:AddItemForPlayer(
 		}
 	end
 
+	local arcana_forced_weapon = wearables_system:GetArcanaForcedWeapon(entity, item_info, item_id)
+	if arcana_forced_weapon then
+		item_id = arcana_forced_weapon
+		item_info = wearables_system.ITEMS_LIST[entity_name][tostring(item_id)]
+		item_style = "0"
+		material_group_item = nil
+		body_group_item = nil
+	end
+
 	-- Снятие прошлого предмета и его данных у игрока
 	local old_item = entity.items_list[item_info["item_slot"]]
 	if old_item and IsValid(old_item) then
@@ -1109,6 +1122,13 @@ function wearables_system:AddItemForPlayer(
 					true
 				)
 			end
+		end
+	end
+
+	if item_info["item_slot"] == "hero_base" and ARCANA_FORCED_WEAPON[entity_name] then
+		local weapon = entity.items_list["weapon"]
+		if weapon and IsValid(weapon) and weapon.item_id_original then
+			wearables_system:AddItemForPlayer(entity, tonumber(weapon.item_id_original))
 		end
 	end
 
@@ -1584,6 +1604,25 @@ function wearables_system:UpdateItemsRefit(entity)
 			end
 
 			if
+				entity:GetUnitName() == "npc_dota_hero_terrorblade"
+				and (
+					item_handle:GetModelName() == "models/items/terrorblade/dreadhunt_weapon/dreadhunt_weapon.vmdl"
+					or item_handle:GetModelName() == "models/items/terrorblade/dreadhunt_weapon/dreadhunt_weapon_manta.vmdl"
+					or item_handle:GetModelName()
+						== "models/items/terrorblade/dreadhunt_weapon/dreadhunt_weapon_skadi.vmdl"
+				)
+			then
+				local dreadhunt_weapon_model = "models/items/terrorblade/dreadhunt_weapon/dreadhunt_weapon.vmdl"
+				if entity:HasUnequipItem(314121) then
+					dreadhunt_weapon_model = "models/items/terrorblade/dreadhunt_weapon/dreadhunt_weapon_manta.vmdl"
+				elseif entity:HasUnequipItem(314122) then
+					dreadhunt_weapon_model = "models/items/terrorblade/dreadhunt_weapon/dreadhunt_weapon_skadi.vmdl"
+				end
+				item_handle:SetModel(dreadhunt_weapon_model)
+				item_handle:SetOriginalModel(dreadhunt_weapon_model)
+			end
+
+			if
 				entity:GetUnitName() == "npc_dota_hero_centaur"
 				and (
 					item_handle:GetModelName()
@@ -1624,6 +1663,17 @@ function wearables_system:UpdateItemsRefit(entity)
 					item_handle:SetBodygroupByName("arcana", 2)
 				else
 					item_handle:SetBodygroupByName("arcana", 0)
+				end
+			end
+
+			if
+				entity:GetUnitName() == "npc_dota_hero_drow_ranger"
+				and item_handle:GetModelName() == "models/items/drow/drow_arcana/drow_arcana_weapon.vmdl"
+			then
+				if entity:HasUnequipItem(190901) then
+					item_handle:SetMaterialGroup("1")
+				else
+					item_handle:SetMaterialGroup("default")
 				end
 			end
 

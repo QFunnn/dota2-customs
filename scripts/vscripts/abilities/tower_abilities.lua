@@ -536,7 +536,7 @@ function modifier_tower_plasma:OnCreated(table)
 
 	local particle_cast = "particles/units/heroes/hero_razor/razor_plasmafield.vpcf"
 	if self.parent:GetUnitName() == "npc_towerdire" then
-		particle_cast = "particles/dire_plasma.vpcf"
+		particle_cast = "particles/buildings/dire_plasma.vpcf"
 	end
 
 	self.effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_ABSORIGIN_FOLLOW, self.parent)

@@ -268,7 +268,6 @@ function wearables_system:CheckingUniqueArcaneItems(hero)
 			or wearables_system:HasStartSelectionItem(player_id, hero_name, "persona_selector", 999251)
 		)
 	then
-		print("[wearables_system] " .. "У игрока есть персона на пудг в доте")
 		wearables_system.DEFAULT_ITEMS_IDS[hero_name]["persona_selector"] = 999251
 	elseif
 		hero
@@ -277,10 +276,8 @@ function wearables_system:CheckingUniqueArcaneItems(hero)
 			or wearables_system:HasStartSelectionItem(player_id, hero_name, "hero_base", 7756)
 		)
 	then
-		print("[wearables_system] " .. "У игрока есть аркана на пуджа в доте")
 		wearables_system.DEFAULT_ITEMS_IDS[hero_name]["hero_base"] = 7756
 	end
-
 	if
 		hero
 		and (
@@ -288,7 +285,6 @@ function wearables_system:CheckingUniqueArcaneItems(hero)
 			or wearables_system:HasStartSelectionItem(player_id, hero_name, "hero_base", 9059)
 		)
 	then
-		print("[wearables_system] " .. "У игрока есть аркана на джагернаута в доте")
 		wearables_system.DEFAULT_ITEMS_IDS[hero_name]["hero_base"] = 9059
 	end
 	if
@@ -298,7 +294,6 @@ function wearables_system:CheckingUniqueArcaneItems(hero)
 			or wearables_system:HasStartSelectionItem(player_id, hero_name, "weapon", 12964)
 		)
 	then
-		print("[wearables_system] " .. "У игрока есть персона на акса в доте")
 		wearables_system.DEFAULT_ITEMS_IDS[hero_name]["weapon"] = 12964
 	end
 	if
@@ -308,8 +303,50 @@ function wearables_system:CheckingUniqueArcaneItems(hero)
 			or wearables_system:HasStartSelectionItem(player_id, hero_name, "hero_base", 13670)
 		)
 	then
-		print("[wearables_system] " .. "У игрока есть аркана на огра в доте")
 		wearables_system.DEFAULT_ITEMS_IDS[hero_name]["hero_base"] = 13670
+	end
+	if
+		hero
+		and (
+			hero:GetModelName() == "models/items/drow/drow_arcana/drow_arcana.vmdl"
+			or wearables_system:HasStartSelectionItem(player_id, hero_name, "hero_base", 19090)
+		)
+	then
+		wearables_system.DEFAULT_ITEMS_IDS[hero_name]["hero_base"] = 19090
+	end
+	if hero and wearables_system:HasStartSelectionItem(player_id, hero_name, "hero_base", 5810) then
+		wearables_system.DEFAULT_ITEMS_IDS[hero_name]["hero_base"] = 5810
+	end
+	if
+		hero
+		and (
+			hero:GetModelName() == "models/items/nerubian_assassin/nyx_monster/nyx_monster_base.vmdl"
+			or wearables_system:HasStartSelectionItem(player_id, hero_name, "hero_base", 33393)
+		)
+	then
+		wearables_system.DEFAULT_ITEMS_IDS[hero_name]["hero_base"] = 33393
+	end
+	if
+		hero
+		and (
+			hero:GetModelName() == "models/heroes/terrorblade/terrorblade_arcana.vmdl"
+			or wearables_system:HasStartSelectionItem(player_id, hero_name, "hero_base", 5957)
+		)
+	then
+		wearables_system.DEFAULT_ITEMS_IDS[hero_name]["hero_base"] = 5957
+	end
+	if hero then
+		for _, child in pairs(hero:GetChildren()) do
+			if child and child:GetClassname() == "dota_item_wearable" then
+				local arcana_weapon = ARCANA_REFIT_WEAPONS[child:GetModelName()]
+				if arcana_weapon and arcana_weapon[1] == hero_name then
+					wearables_system.DEFAULT_ITEMS_IDS[hero_name]["hero_base"] = arcana_weapon[2]
+					if arcana_weapon[3] then
+						wearables_system.DEFAULT_ITEMS_IDS[hero_name]["weapon"] = arcana_weapon[3]
+					end
+				end
+			end
+		end
 	end
 	if
 		hero
@@ -318,7 +355,6 @@ function wearables_system:CheckingUniqueArcaneItems(hero)
 			or wearables_system:HasStartSelectionItem(player_id, hero_name, "hero_base", 6996)
 		)
 	then
-		print("[wearables_system] " .. "У игрока есть аркана на огра в доте")
 		wearables_system.DEFAULT_ITEMS_IDS[hero_name]["hero_base"] = 6996
 	end
 	if
@@ -328,7 +364,6 @@ function wearables_system:CheckingUniqueArcaneItems(hero)
 			or wearables_system:HasStartSelectionItem(player_id, hero_name, "persona_selector", 26559)
 		)
 	then
-		print("[wearables_system] " .. "У игрока есть персона на цм в доте")
 		wearables_system.DEFAULT_ITEMS_IDS[hero_name]["persona_selector"] = 26559
 	end
 	if
@@ -338,7 +373,6 @@ function wearables_system:CheckingUniqueArcaneItems(hero)
 			or wearables_system:HasStartSelectionItem(player_id, hero_name, "persona_selector", 4480)
 		)
 	then
-		print("[wearables_system] " .. "У игрока есть персона на фантомка в доте")
 		wearables_system.DEFAULT_ITEMS_IDS[hero_name]["persona_selector"] = 4480
 	end
 	if
@@ -350,7 +384,6 @@ function wearables_system:CheckingUniqueArcaneItems(hero)
 			or wearables_system:HasStartSelectionItem(player_id, hero_name, "persona_selector", 13783)
 		)
 	then
-		print("[wearables_system] " .. "У игрока есть персона на антимаг в доте")
 		wearables_system.DEFAULT_ITEMS_IDS[hero_name]["persona_selector"] = 13783
 	end
 	if
@@ -360,7 +393,6 @@ function wearables_system:CheckingUniqueArcaneItems(hero)
 			or wearables_system:HasStartSelectionItem(player_id, hero_name, "persona_selector", 13042)
 		)
 	then
-		print("[wearables_system] " .. "У игрока есть персона на инвокер в доте")
 		wearables_system.DEFAULT_ITEMS_IDS[hero_name]["persona_selector"] = 13042
 	end
 	if
@@ -370,7 +402,6 @@ function wearables_system:CheckingUniqueArcaneItems(hero)
 			or wearables_system:HasStartSelectionItem(player_id, hero_name, "persona_selector", 31367)
 		)
 	then
-		print("[wearables_system] " .. "У игрока есть персона на фантомка в доте")
 		wearables_system.DEFAULT_ITEMS_IDS[hero_name]["persona_selector"] = 31367
 	end
 	if
@@ -381,7 +412,6 @@ function wearables_system:CheckingUniqueArcaneItems(hero)
 			or wearables_system:HasStartSelectionItem(player_id, hero_name, "persona_selector", 36191)
 		)
 	then
-		print("[wearables_system] " .. "У игрока есть персона на фантомка в доте")
 		wearables_system.DEFAULT_ITEMS_IDS[hero_name]["persona_selector"] = 36191
 	end
 	if
@@ -391,7 +421,6 @@ function wearables_system:CheckingUniqueArcaneItems(hero)
 			or wearables_system:HasStartSelectionItem(player_id, hero_name, "persona_selector", 36193)
 		)
 	then
-		print("[wearables_system] " .. "У игрока есть персона на фантомка в доте")
 		wearables_system.DEFAULT_ITEMS_IDS[hero_name]["persona_selector"] = 36193
 	end
 	if
@@ -401,9 +430,25 @@ function wearables_system:CheckingUniqueArcaneItems(hero)
 			or wearables_system:HasStartSelectionItem(player_id, hero_name, "persona_selector", 36214)
 		)
 	then
-		print("[wearables_system] " .. "У игрока есть персона на фантомка в доте")
 		wearables_system.DEFAULT_ITEMS_IDS[hero_name]["persona_selector"] = 36214
 	end
+end
+
+function wearables_system:GetArcanaForcedWeapon(entity, item_info, item_id)
+	local data = ARCANA_FORCED_WEAPON[entity:GetUnitName()]
+	if not data or not item_info or item_info["item_slot"] ~= "weapon" then
+		return nil
+	end
+	if not entity.items_list_ids or not data.bases[tonumber(entity.items_list_ids["hero_base"])] then
+		return nil
+	end
+	if data.allowed[tonumber(item_id)] or tonumber(item_id) == data.default then
+		return nil
+	end
+	if not wearables_system.ITEMS_LIST[entity:GetUnitName()][tostring(data.default)] then
+		return nil
+	end
+	return data.default
 end
 
 function wearables_system:HasStartSelectionItem(player_id, hero_name, item_slot_type, item_id)

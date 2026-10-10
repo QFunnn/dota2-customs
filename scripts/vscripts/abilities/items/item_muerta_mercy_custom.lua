@@ -255,7 +255,7 @@ function modifier_item_muerta_quest_item_leash:OnDestroy()
 	end
 
 	if self.ability.cd_inc ~= 0 then
-		self.parent:CdAbility(self.ability, nil, self.ability.cd_inc / 100)
+		self.parent:CdAbility(self.ability, nil, self.ability.cd_inc / 100, "item_muerta_mercy_custom")
 
 		local particle =
 			ParticleManager:CreateParticle("particles/muerta/dead_refresh.vpcf", PATTACH_CUSTOMORIGIN, self.caster)

@@ -16,7 +16,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_leshrac_split_earth_custom_charge",
 	"abilities/leshrac/leshrac_split_earth_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_leshrac_hero_4"
 )
 LinkLuaModifier(
 	"modifier_leshrac_split_earth_custom_tracker",
@@ -31,37 +32,44 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_leshrac_split_earth_custom_heal",
 	"abilities/leshrac/leshrac_split_earth_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_leshrac_hero_1"
 )
 LinkLuaModifier(
 	"modifier_leshrac_split_earth_custom_slow",
 	"abilities/leshrac/leshrac_split_earth_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_leshrac_earth_2"
 )
 LinkLuaModifier(
 	"modifier_leshrac_split_earth_custom_leash",
 	"abilities/leshrac/leshrac_split_earth_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "Shard" }
 )
 LinkLuaModifier(
 	"modifier_leshrac_split_earth_custom_armor",
 	"abilities/leshrac/leshrac_split_earth_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_leshrac_earth_1"
 )
 LinkLuaModifier(
 	"modifier_leshrac_split_earth_custom_damage",
 	"abilities/leshrac/leshrac_split_earth_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_leshrac_earth_1"
 )
 LinkLuaModifier(
 	"modifier_leshrac_split_earth_custom_legendary",
 	"abilities/leshrac/leshrac_split_earth_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_leshrac_earth_7"
 )
 LinkLuaModifier(
 	"modifier_leshrac_split_earth_custom_damage_inc",
 	"abilities/leshrac/leshrac_split_earth_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_leshrac_earth_3"
 )
 
 leshrac_split_earth_custom = class({})
@@ -77,19 +85,19 @@ function leshrac_split_earth_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_leshrac/leshrac_split_earth.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_forcestaff.vpcf", context)
 	PrecacheResource("particle", "particles/items_fx/ogre_seal_totem_trail.vpcf", context)
-	PrecacheResource("particle", "particles/falcon_blade_charge.vpcf", context)
+	PrecacheResource("particle", "particles/items/falcon_blade_charge.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/units/heroes/hero_primal_beast/primal_beast_onslaught_charge_active.vpcf",
 		context
 	)
-	PrecacheResource("particle", "particles/leshrac_earth_legendary.vpcf", context)
-	PrecacheResource("particle", "particles/leshrac_earth_legendary_stun.vpcf", context)
-	PrecacheResource("particle", "particles/lc_odd_proc_.vpcf", context)
+	PrecacheResource("particle", "particles/leshrac/leshrac_earth_legendary.vpcf", context)
+	PrecacheResource("particle", "particles/leshrac/leshrac_earth_legendary_stun.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_odd_proc_.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_oracle/oracle_purifyingflames.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_marci/marci_rebound_allymovespeed.vpcf", context)
 	PrecacheResource("particle", "particles/generic_gameplay/generic_stunned.vpcf", context)
-	PrecacheResource("particle", "particles/lina_attack_slow.vpcf", context)
+	PrecacheResource("particle", "particles/lina/lina_attack_slow.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_enchantress_shard_debuff.vpcf", context)
 	PrecacheResource("particle", "particles/lina/stun_stack.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_leshrac/leshrac_base_attack.vpcf", context)
@@ -425,7 +433,7 @@ function modifier_leshrac_split_earth_custom:OnCreated(kv)
 
 	if self.active == 0 then
 		local effect_cast =
-			ParticleManager:CreateParticle("particles/leshrac_earth_legendary.vpcf", PATTACH_WORLDORIGIN, nil)
+			ParticleManager:CreateParticle("particles/leshrac/leshrac_earth_legendary.vpcf", PATTACH_WORLDORIGIN, nil)
 		ParticleManager:SetParticleControl(effect_cast, 0, self.origin)
 		ParticleManager:SetParticleControl(effect_cast, 1, Vector(self.radius, 0, 0))
 		ParticleManager:SetParticleControl(effect_cast, 2, Vector(self:GetRemainingTime(), 0, 0))
@@ -448,7 +456,7 @@ function modifier_leshrac_split_earth_custom:OnDestroy()
 		"leshrac_split_earth_custom"
 	)
 	if self.is_auto == 1 then
-		particle_cast = "particles/leshrac_earth_legendary_stun.vpcf"
+		particle_cast = "particles/leshrac/leshrac_earth_legendary_stun.vpcf"
 		sound_cast = "Leshrac.Earth_legendary"
 	end
 
@@ -461,7 +469,12 @@ function modifier_leshrac_split_earth_custom:OnDestroy()
 	if self.ability.talents.has_h1 == 1 and #enemies > 0 and self.active == 1 then
 		if self.ability.talents.has_r7 == 1 then
 			if self.caster.pulse_ability_legendary then
-				self.caster:CdAbility(self.caster.pulse_ability_legendary, self.ability.talents.h1_cd_inc)
+				self.caster:CdAbility(
+					self.caster.pulse_ability_legendary,
+					self.ability.talents.h1_cd_inc,
+					nil,
+					"modifier_leshrac_hero_1"
+				)
 			end
 		else
 			self.caster:AddNewModifier(
@@ -522,7 +535,7 @@ function modifier_leshrac_split_earth_custom_charge:OnCreated(table)
 	self.ability = self:GetAbility()
 
 	self.parent:GenericParticle("particles/items_fx/ogre_seal_totem_trail.vpcf", self)
-	self.particle = self.parent:GenericParticle("particles/falcon_blade_charge.vpcf", self)
+	self.particle = self.parent:GenericParticle("particles/items/falcon_blade_charge.vpcf", self)
 	self.parent:GenericParticle(
 		"particles/units/heroes/hero_primal_beast/primal_beast_onslaught_charge_active.vpcf",
 		self
@@ -565,7 +578,7 @@ function modifier_leshrac_split_earth_custom_charge:OnIntervalThink(last)
 
 			if not last then
 				local effect_cast = ParticleManager:CreateParticle(
-					"particles/leshrac_earth_legendary_stun.vpcf",
+					"particles/leshrac/leshrac_earth_legendary_stun.vpcf",
 					PATTACH_WORLDORIGIN,
 					nil
 				)
@@ -798,7 +811,7 @@ function modifier_leshrac_split_earth_custom_slow:IsPurgable()
 	return true
 end
 function modifier_leshrac_split_earth_custom_slow:GetEffectName()
-	return "particles/lina_attack_slow.vpcf"
+	return "particles/lina/lina_attack_slow.vpcf"
 end
 function modifier_leshrac_split_earth_custom_slow:OnCreated()
 	self.parent = self:GetParent()

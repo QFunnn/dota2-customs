@@ -67,18 +67,17 @@ function custom_puck_phase_shift:Precache(context)
 	end
 
 	PrecacheResource("particle", "particles/status_fx/status_effect_dark_seer_illusion.vpcf", context)
-	PrecacheResource("particle", "particles/puck_phase_shift.vpcf", context)
+	PrecacheResource("particle", "particles/puck/puck_phase_shift.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_puck/puck_phase_shift.vpcf", context)
-	PrecacheResource("particle", "particles/puck_shift_stun.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_snapfire/hero_snapfire_ultimate_calldown.vpcf", context)
-	PrecacheResource("particle", "particles/puck_stun.vpcf", context)
+	PrecacheResource("particle", "particles/puck/puck_stun.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/econ/items/outworld_devourer/od_shards_exile/od_shards_exile_prison_end.vpcf",
 		context
 	)
-	PrecacheResource("particle", "particles/puck_resist.vpcf", context)
-	PrecacheResource("particle", "particles/puck_orb_speed.vpcf", context)
+	PrecacheResource("particle", "particles/puck/puck_resist.vpcf", context)
+	PrecacheResource("particle", "particles/puck/puck_orb_speed.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_terrorblade/terrorblade_reflection_slow.vpcf", context)
 	PrecacheResource("particle", "particles/puck/shift_proc.vpcf", context)
 	PrecacheResource("particle", "particles/puck/shift_proj.vpcf", context)
@@ -209,12 +208,13 @@ function modifier_custom_puck_phase_shift:OnCreated(table)
 		local pos = self.parent:GetAbsOrigin()
 		pos.z = pos.z + 120
 
-		self.effect_cast = ParticleManager:CreateParticle("particles/puck_phase_shift.vpcf", PATTACH_WORLDORIGIN, nil)
+		self.effect_cast =
+			ParticleManager:CreateParticle("particles/puck/puck_phase_shift.vpcf", PATTACH_WORLDORIGIN, nil)
 		ParticleManager:SetParticleControl(self.effect_cast, 0, pos)
 		ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(35, 0, 0))
 		self:AddParticle(self.effect_cast, false, false, -1, false, false)
 	else
-		self.parent:GenericParticle("particles/puck_resist.vpcf", self)
+		self.parent:GenericParticle("particles/puck/puck_resist.vpcf", self)
 		self.parent:GenericParticle("particles/units/heroes/hero_puck/puck_phase_shift.vpcf", self)
 	end
 
@@ -518,7 +518,7 @@ function modifier_custom_puck_phase_shift_tracker:AttackEvent_inc(params)
 		and (params.attacker:GetAbsOrigin() - self.parent:GetAbsOrigin()):Length2D() <= self.stun_radius
 		and not self.parent:HasModifier("modifier_custom_puck_phase_shift_stun_cd")
 	then
-		local effect = ParticleManager:CreateParticle("particles/puck_stun.vpcf", PATTACH_WORLDORIGIN, nil)
+		local effect = ParticleManager:CreateParticle("particles/puck/puck_stun.vpcf", PATTACH_WORLDORIGIN, nil)
 		ParticleManager:SetParticleControl(effect, 0, self.parent:GetOrigin())
 		ParticleManager:SetParticleControl(effect, 1, Vector(self.stun_radius, self.stun_radius, self.stun_radius))
 		ParticleManager:ReleaseParticleIndex(effect)
@@ -645,7 +645,7 @@ function modifier_custom_puck_phase_shift_slow:GetTexture()
 	return "buffs/orb_slow"
 end
 function modifier_custom_puck_phase_shift_slow:GetEffectName()
-	return "particles/puck_orb_slow.vpcf"
+	return "particles/puck/puck_orb_slow.vpcf"
 end
 function modifier_custom_puck_phase_shift_slow:DeclareFunctions()
 	return {
@@ -844,7 +844,7 @@ function modifier_custom_puck_phase_shift_speed:GetTexture()
 	return "buffs/orb_speed"
 end
 function modifier_custom_puck_phase_shift_speed:GetEffectName()
-	return "particles/puck_orb_speed.vpcf"
+	return "particles/puck/puck_orb_speed.vpcf"
 end
 
 function modifier_custom_puck_phase_shift_speed:DeclareFunctions()

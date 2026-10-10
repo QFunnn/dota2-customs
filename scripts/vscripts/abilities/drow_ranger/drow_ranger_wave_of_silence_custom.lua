@@ -21,7 +21,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_drow_ranger_wave_of_silence_custom_speed",
 	"abilities/drow_ranger/drow_ranger_wave_of_silence_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_drow_hero_2"
 )
 LinkLuaModifier(
 	"modifier_drow_ranger_wave_of_silence_custom_blink",
@@ -31,7 +32,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_drow_ranger_wave_of_silence_custom_attacks",
 	"abilities/drow_ranger/drow_ranger_wave_of_silence_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_drow_gust_3"
 )
 
 drow_ranger_wave_of_silence_custom = class({})
@@ -45,10 +47,9 @@ function drow_ranger_wave_of_silence_custom:Precache(context)
 	PrecacheResource("particle", "particles/drow_ranger/silence_legendary_damage.vpcf", context)
 	PrecacheResource("particle", "particles/drow_ranger/silence_legendary_speed.vpcf", context)
 	PrecacheResource("particle", "particles/drow_ranger/silence_legendary_speed_start.vpcf", context)
-	PrecacheResource("particle", "particles/zuus_speed.vpcf", context)
+	PrecacheResource("particle", "particles/zeus/zuus_speed.vpcf", context)
 	PrecacheResource("particle", "particles/econ/items/drow/drow_arcana/drow_arcana_item_force_staff.vpcf", context)
 	PrecacheResource("particle", "particles/drow_ranger/silence_proc_damage.vpcf", context)
-	PrecacheResource("particle", "particles/drow_ranger/silence_burn.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/units/heroes/hero_crystalmaiden/maiden_crystal_clone_movement.vpcf",

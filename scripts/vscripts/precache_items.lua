@@ -106,4 +106,5 @@ return {
 	"item_overwhelming_blink_custom",
 	"item_lotus_orb_custom",
 	"item_rapier_custom",
+	"item_armlet_custom",
 }

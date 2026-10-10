@@ -17,17 +17,20 @@ LinkLuaModifier("modifier_invoker_exort_custom", "abilities/invoker/invoker_exor
 LinkLuaModifier(
 	"modifier_invoker_exort_custom_bash_cd",
 	"abilities/invoker/invoker_exort_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_invoker_exort_4" }
 )
 LinkLuaModifier(
 	"modifier_invoker_exort_custom_bash_count",
 	"abilities/invoker/invoker_exort_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_invoker_exort_4"
 )
 LinkLuaModifier(
 	"modifier_invoker_exort_custom_speed",
 	"abilities/invoker/invoker_exort_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_invoker_exort_1"
 )
 LinkLuaModifier(
 	"modifier_invoker_exort_custom_attack",
@@ -62,7 +65,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_forged_spirit_melting_strike_custom_slow",
 	"abilities/invoker/invoker_exort_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_invoker_wex_2"
 )
 LinkLuaModifier(
 	"modifier_forged_spirit_melting_strike_custom_range",
@@ -82,7 +86,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_invoker_chaos_meteor_custom_cataclysm_stack",
 	"abilities/invoker/invoker_exort_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_invoker_exort_7"
 )
 LinkLuaModifier(
 	"modifier_invoker_chaos_meteor_custom_cataclysm_visual",
@@ -92,7 +97,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_invoker_chaos_meteor_custom_cataclysm_root",
 	"abilities/invoker/invoker_exort_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_invoker_exort_7"
 )
 LinkLuaModifier(
 	"modifier_invoker_chaos_meteor_custom_cataclysm_root_aura",
@@ -142,7 +148,7 @@ function invoker_exort_custom:Precache(context)
 	PrecacheResource("particle", "particles/juggernaut/omni_root.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_invoker/invoker_forge_spirit_ambient.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_invoker/invoker_forged_spirit_projectile.vpcf", context)
-	PrecacheResource("particle", "particles/void_astral_slow.vpcf", context)
+	PrecacheResource("particle", "particles/void_spirit/void_astral_slow.vpcf", context)
 
 	PrecacheResource("model", "models/heroes/invoker/forge_spirit.vmdl", context)
 	PrecacheResource("model", "models/heroes/invoker_kid/invoker_kid_trainer_dragon.vmdl", context)
@@ -580,7 +586,7 @@ function modifier_forged_spirit_melting_strike_custom_slow:OnCreated(kv)
 	if not IsServer() then
 		return
 	end
-	self.parent:GenericParticle("particles/void_astral_slow.vpcf", self)
+	self.parent:GenericParticle("particles/void_spirit/void_astral_slow.vpcf", self)
 end
 
 function modifier_forged_spirit_melting_strike_custom_slow:DeclareFunctions()

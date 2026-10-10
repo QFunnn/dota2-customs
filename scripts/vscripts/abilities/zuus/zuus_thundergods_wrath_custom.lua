@@ -11,7 +11,8 @@
 LinkLuaModifier(
 	"modifier_zuus_thundergods_wrath_custom_kills",
 	"abilities/zuus/zuus_thundergods_wrath_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_zuus_hero_6"
 )
 LinkLuaModifier(
 	"modifier_zuus_thundergods_wrath_custom_kills_tracker",
@@ -46,7 +47,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_zuus_thundergods_wrath_custom_speed",
 	"abilities/zuus/zuus_thundergods_wrath_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_zuus_wrath_4"
 )
 LinkLuaModifier("modifier_zuus_cloud_custom", "abilities/zuus/zuus_thundergods_wrath_custom", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier(
@@ -57,7 +59,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_zuus_thundergods_wrath_custom_magic",
 	"abilities/zuus/zuus_thundergods_wrath_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_zuus_wrath_3"
 )
 
 zuus_thundergods_wrath_custom = class({})
@@ -72,24 +75,24 @@ function zuus_thundergods_wrath_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_zuus/zuus_thundergods_wrath.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_zuus/zuus_shard_slow.vpcf", context)
 	PrecacheResource("particle", "particles/generic_gameplay/generic_break.vpcf", context)
-	PrecacheResource("particle", "particles/rare_orb_patrol.vpcf", context)
-	PrecacheResource("particle", "particles/zuus_wrath_kill.vpcf", context)
-	PrecacheResource("particle", "particles/zeus_wrath_cloud.vpcf", context)
-	PrecacheResource("particle", "particles/zuus_wrath_legendary.vpcf", context)
+	PrecacheResource("particle", "particles/patrol/rare_orb_patrol.vpcf", context)
+	PrecacheResource("particle", "particles/zeus/zuus_wrath_kill.vpcf", context)
+	PrecacheResource("particle", "particles/zeus/zeus_wrath_cloud.vpcf", context)
+	PrecacheResource("particle", "particles/zeus/zuus_wrath_legendary.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_zeus/zeus_cloud.vpcf", context)
-	PrecacheResource("particle", "particles/zeus_landing.vpcf", context)
-	PrecacheResource("particle", "particles/zeus_blinks_start.vpcf", context)
+	PrecacheResource("particle", "particles/zeus/zeus_landing.vpcf", context)
+	PrecacheResource("particle", "particles/zeus/zeus_blinks_start.vpcf", context)
 	PrecacheResource("particle", "particles/econ/items/zeus/arcana_chariot/zeus_arcana_blink_start.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_zuus/zuus_lightning_bolt_glow_fx.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_zuus/zuus_lightning_bolt.vpcf", context)
-	PrecacheResource("particle", "particles/zeus_wrath_end.vpcf", context)
+	PrecacheResource("particle", "particles/zeus/zeus_wrath_end.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_zuus/zuus_static_field.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_mjollnir_shield.vpcf", context)
 	PrecacheResource("particle", "particles/zeus/wrath_legendary_refresh.vpcf", context)
-	PrecacheResource("particle", "particles/zuus_shield_wrath.vpcf", context)
+	PrecacheResource("particle", "particles/zeus/zuus_shield_wrath.vpcf", context)
 	PrecacheResource("particle", "particles/zeus/arc_legendary_active.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_zuus/zuus_lightning_bolt_aoe.vpcf", context)
-	PrecacheResource("particle", "particles/zuus_speed.vpcf", context)
+	PrecacheResource("particle", "particles/zeus/zuus_speed.vpcf", context)
 	PrecacheResource("particle", "particles/econ/items/zeus/arcana_chariot/zeus_arcana_thundergods_wrath.vpcf", context)
 	PrecacheResource("particle", "particles/zeus/arcana_ulti.vpcf", context)
 end
@@ -320,7 +323,7 @@ function zuus_thundergods_wrath_custom:DealDamage()
 			local shield_size = self.caster:GetModelRadius()
 			local vec = Vector(shield_size, 0, shield_size)
 			local effect = ParticleManager:CreateParticle(
-				"particles/zuus_shield_wrath.vpcf",
+				"particles/zeus/zuus_shield_wrath.vpcf",
 				PATTACH_CUSTOMORIGIN_FOLLOW,
 				self.caster
 			)
@@ -586,7 +589,7 @@ function modifier_zuus_thundergods_wrath_custom_tracker:SpellEvent(params)
 			cd = self.ability.talents.r4_cd_items
 		end
 		if cd ~= 0 then
-			self.parent:CdItems(cd)
+			self.parent:CdItems(cd, "modifier_zuus_wrath_4")
 		end
 	end
 end
@@ -650,7 +653,7 @@ function modifier_zuus_thundergods_wrath_custom_kills:OnIntervalThink()
 	end
 
 	self.parent:EmitSound("BS.Thirst_legendary_active")
-	self.parent:GenericParticle("particles/rare_orb_patrol.vpcf")
+	self.parent:GenericParticle("particles/patrol/rare_orb_patrol.vpcf")
 	self:StartIntervalThink(-1)
 end
 
@@ -697,7 +700,7 @@ function modifier_zuus_thundergods_wrath_custom_kills_tracker:DeathEvent(params)
 		self.parent:UpdateQuest(1)
 	end
 
-	local particle = ParticleManager:CreateParticle("particles/zuus_wrath_kill.vpcf", PATTACH_WORLDORIGIN, nil)
+	local particle = ParticleManager:CreateParticle("particles/zeus/zuus_wrath_kill.vpcf", PATTACH_WORLDORIGIN, nil)
 	ParticleManager:SetParticleControl(particle, 0, params.unit:GetAbsOrigin())
 	ParticleManager:SetParticleControl(particle, 1, params.unit:GetAbsOrigin())
 	ParticleManager:ReleaseParticleIndex(particle)
@@ -777,7 +780,7 @@ function modifier_zuus_thundergods_wrath_custom_cloud:OnCreated(table)
 	self.point = GetGroundPosition(self.parent:GetAbsOrigin(), nil)
 
 	self.zuus_nimbus_particle =
-		ParticleManager:CreateParticle("particles/zeus_wrath_cloud.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
+		ParticleManager:CreateParticle("particles/zeus/zeus_wrath_cloud.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
 	ParticleManager:SetParticleControl(self.zuus_nimbus_particle, 0, self.parent:GetAbsOrigin())
 	ParticleManager:SetParticleControl(self.zuus_nimbus_particle, 2, self.parent:GetAbsOrigin())
 	self:AddParticle(self.zuus_nimbus_particle, false, false, -1, false, false)
@@ -860,7 +863,7 @@ function modifier_zuus_thundergods_wrath_custom_speed:OnCreated()
 	if not IsServer() then
 		return
 	end
-	self.parent:GenericParticle("particles/zuus_speed.vpcf", self)
+	self.parent:GenericParticle("particles/zeus/zuus_speed.vpcf", self)
 end
 
 function modifier_zuus_thundergods_wrath_custom_speed:DeclareFunctions()
@@ -905,7 +908,7 @@ function modifier_zuus_thundergods_wrath_custom_magic:OnRefresh(stack)
 	self:IncrementStackCount()
 
 	if self:GetStackCount() >= self.max then
-		self.parent:GenericParticle("particles/general/generic_magic_reduction.vpcf", self, true)
+		self.parent:GenericParticle("particles/generic/generic_magic_reduction.vpcf", self, true)
 	end
 end
 
@@ -981,8 +984,11 @@ function modifier_zuus_thundergods_wrath_custom_legendary_thinker:OnCreated(tabl
 		{ duration = self.delay }
 	)
 
-	local effect_cast =
-		ParticleManager:CreateParticle("particles/zuus_wrath_legendary.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
+	local effect_cast = ParticleManager:CreateParticle(
+		"particles/zeus/zuus_wrath_legendary.vpcf",
+		PATTACH_ABSORIGIN_FOLLOW,
+		self.parent
+	)
 	ParticleManager:SetParticleControl(effect_cast, 0, point)
 	ParticleManager:SetParticleControl(effect_cast, 2, Vector(self.radius, self.radius, self.radius))
 	self:AddParticle(effect_cast, false, false, -1, false, false)
@@ -1103,12 +1109,12 @@ function modifier_zuus_thundergods_wrath_custom_legendary_thinker:OnDestroy()
 		ParticleManager:ReleaseParticleIndex(particle)
 	end
 
-	local part = ParticleManager:CreateParticle("particles/zeus_wrath_end.vpcf", PATTACH_WORLDORIGIN, nil)
+	local part = ParticleManager:CreateParticle("particles/zeus/zeus_wrath_end.vpcf", PATTACH_WORLDORIGIN, nil)
 	ParticleManager:SetParticleControl(part, 0, self.caster:GetAbsOrigin())
 	ParticleManager:SetParticleControl(part, 1, self.caster:GetAbsOrigin())
 	ParticleManager:ReleaseParticleIndex(part)
 
-	local effect_cast = ParticleManager:CreateParticle("particles/zeus_landing.vpcf", PATTACH_WORLDORIGIN, nil)
+	local effect_cast = ParticleManager:CreateParticle("particles/zeus/zeus_landing.vpcf", PATTACH_WORLDORIGIN, nil)
 	ParticleManager:SetParticleControl(effect_cast, 0, self.caster:GetAbsOrigin())
 	ParticleManager:SetParticleControl(effect_cast, 1, self.caster:GetAbsOrigin())
 	ParticleManager:SetParticleControl(effect_cast, 2, Vector(self.radius, self.radius, self.radius))
@@ -1130,7 +1136,7 @@ function modifier_zuus_thundergods_wrath_custom_legendary_teleport:OnCreated(tab
 	EmitSoundOnLocationWithCaster(self.parent:GetAbsOrigin(), "Zuus.Wrath_legendary_start", self.parent)
 	EmitSoundOnLocationWithCaster(self.parent:GetAbsOrigin(), "Zuus.Wrath_legendary_start_2", self.parent)
 
-	local part = ParticleManager:CreateParticle("particles/zeus_blinks_start.vpcf", PATTACH_WORLDORIGIN, nil)
+	local part = ParticleManager:CreateParticle("particles/zeus/zeus_blinks_start.vpcf", PATTACH_WORLDORIGIN, nil)
 	ParticleManager:SetParticleControl(part, 0, self.parent:GetAbsOrigin())
 	ParticleManager:SetParticleControl(part, 1, self.parent:GetAbsOrigin())
 	ParticleManager:ReleaseParticleIndex(part)
@@ -1343,10 +1349,20 @@ function modifier_zuus_cloud_custom:OnDestroy()
 		ParticleManager:ReleaseParticleIndex(particle)
 
 		if self.caster.bolt_ability then
-			self.caster:CdAbility(self.caster.bolt_ability, nil, self.ability.talents.r7_cd_bolt)
+			self.caster:CdAbility(
+				self.caster.bolt_ability,
+				nil,
+				self.ability.talents.r7_cd_bolt,
+				"modifier_zuus_wrath_7"
+			)
 		end
 		if self.caster.wrath_ability and hit_hero then
-			self.caster:CdAbility(self.caster.wrath_ability, nil, self.ability.talents.r7_cd_wrath)
+			self.caster:CdAbility(
+				self.caster.wrath_ability,
+				nil,
+				self.ability.talents.r7_cd_wrath,
+				"modifier_zuus_wrath_7"
+			)
 		end
 	end
 end

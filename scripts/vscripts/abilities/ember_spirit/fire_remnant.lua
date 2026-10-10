@@ -26,7 +26,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_ember_spirit_fire_remnant_custom_tracker",
 	"abilities/ember_spirit/fire_remnant",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	false
 )
 LinkLuaModifier(
 	"modifier_ember_spirit_activate_fire_remnant_custom_caster",
@@ -41,12 +42,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_ember_spirit_activate_fire_remnant_custom_heal_count",
 	"abilities/ember_spirit/fire_remnant",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_ember_hero_3"
 )
 LinkLuaModifier(
 	"modifier_ember_spirit_activate_fire_remnant_custom_amp",
 	"abilities/ember_spirit/fire_remnant",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_ember_remnant_3"
 )
 LinkLuaModifier(
 	"modifier_ember_spirit_activate_fire_remnant_custom_legendary",
@@ -71,7 +74,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_ember_spirit_activate_fire_remnant_custom_auto_cd",
 	"abilities/ember_spirit/fire_remnant",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_ember_remnant_4"
 )
 LinkLuaModifier(
 	"modifier_ember_spirit_activate_fire_remnant_custom_slow",
@@ -81,7 +85,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_ember_spirit_activate_fire_remnant_custom_silence",
 	"abilities/ember_spirit/fire_remnant",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_ember_hero_4"
 )
 LinkLuaModifier(
 	"modifier_ember_spirit_activate_fire_remnant_custom_silence_cd",
@@ -120,7 +125,7 @@ function ember_spirit_fire_remnant_custom:Precache(context)
 	PrecacheResource("particle", "particles/ember_spirit/legendary_aoe.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_phoenix/phoenix_icarus_dive_burn_debuff.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_burn.vpcf", context)
-	PrecacheResource("particle", "particles/sf_refresh_a.vpcf", context)
+	PrecacheResource("particle", "particles/shadow_fiend/sf_refresh_a.vpcf", context)
 	PrecacheResource("particle", "particles/ember_spirit/attack_slow.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_terrorblade/ember_slow.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_ogre_magi/ogre_magi_fireblast.vpcf", context)
@@ -442,6 +447,7 @@ function modifier_ember_spirit_fire_remnant_custom_tracker:OnRefresh()
 	end
 	self.ability_activate.damage = self.ability_activate:GetSpecialValueFor("damage")
 	self.ability_activate.speed = self.ability_activate:GetSpecialValueFor("speed")
+	self.ability_activate.fast_range = self.ability_activate:GetSpecialValueFor("fast_range")
 	self.ability_activate.radius = self.ability_activate:GetSpecialValueFor("radius")
 
 	self.ability_activate.shard_cd = self.ability_activate:GetSpecialValueFor("shard_cd")
@@ -490,7 +496,7 @@ function modifier_ember_spirit_fire_remnant_custom_tracker:SpellEvent(params)
 		return
 	end
 
-	self.parent:CdAbility(self.legendary_ability, nil, self.ability.talents.r7_cd_inc)
+	self.parent:CdAbility(self.legendary_ability, nil, self.ability.talents.r7_cd_inc, "modifier_ember_remnant_7")
 end
 
 function modifier_ember_spirit_fire_remnant_custom_tracker:DeclareFunctions()
@@ -996,7 +1002,7 @@ function ember_spirit_activate_fire_remnant_custom:OnProjectileHit_ExtraData(tar
 					"modifier_ember_spirit_activate_fire_remnant_custom_auto_cd",
 					{ duration = self.talents.r4_talent_cd }
 				)
-				ability:AddCharge(1, "particles/sf_refresh_a.vpcf", "Ember.Remnant_refresh")
+				ability:AddCharge(1, "particles/shadow_fiend/sf_refresh_a.vpcf", "Ember.Remnant_refresh")
 			end
 		end
 	end
@@ -1102,7 +1108,7 @@ function ember_spirit_activate_fire_remnant_custom:StartFlight(remnant)
 		is_shard = 1
 	else
 		local fDistance = (remnant:GetAbsOrigin() - self.caster:GetAbsOrigin()):Length2D()
-		speed = fDistance > self.speed and (fDistance / 0.4) or self.speed
+		speed = fDistance > self.fast_range and (fDistance / 0.4) or self.speed
 	end
 
 	self.current_remnant = target

@@ -57,10 +57,10 @@ function custom_nevermore_dark_lord:Precache(context)
 		return
 	end
 
-	PrecacheResource("particle", "particles/sf_fear.vpcf", context)
-	PrecacheResource("particle", "particles/sf_wings.vpcf", context)
-	PrecacheResource("particle", "particles/sf_timer.vpcf", context)
-	PrecacheResource("particle", "particles/sf_aura.vpcf", context)
+	PrecacheResource("particle", "particles/shadow_fiend/sf_fear.vpcf", context)
+	PrecacheResource("particle", "particles/shadow_fiend/sf_wings.vpcf", context)
+	PrecacheResource("particle", "particles/shadow_fiend/sf_timer.vpcf", context)
+	PrecacheResource("particle", "particles/shadow_fiend/sf_aura.vpcf", context)
 	PrecacheResource("particle", "particles/shadow_fiend/dark_legendary_caster.vpcf", context)
 	PrecacheResource("particle", "particles/shadow_fiend/dark_legendary_stun.vpcf", context)
 	PrecacheResource("particle", "particles/shadow_fiend/dark_burn.vpcf", context)
@@ -547,7 +547,7 @@ function modifier_custom_dark_lord_legendary:OnCreated()
 		return
 	end
 	self.max_time = self:GetRemainingTime()
-	self.particle = self.parent:GenericParticle("particles/sf_timer.vpcf", self, true)
+	self.particle = self.parent:GenericParticle("particles/shadow_fiend/sf_timer.vpcf", self, true)
 
 	local effect_cast = ParticleManager:CreateParticle(
 		"particles/shadow_fiend/dark_legendary_caster.vpcf",
@@ -627,7 +627,7 @@ function modifier_custom_dark_lord_legendary_fear:OnCreated(table)
 	self.targets = {}
 
 	self.parent:EmitSound("Sf.Aura_Ring")
-	self.effect_cast = ParticleManager:CreateParticle("particles/sf_fear.vpcf", PATTACH_WORLDORIGIN, nil)
+	self.effect_cast = ParticleManager:CreateParticle("particles/shadow_fiend/sf_fear.vpcf", PATTACH_WORLDORIGIN, nil)
 	ParticleManager:SetParticleControl(self.effect_cast, 0, self.origin)
 	ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(900, 1000, 1000))
 	self:AddParticle(self.effect_cast, false, false, -1, false, false)
@@ -738,13 +738,14 @@ function modifier_custom_dark_lord_speed:OnCreated()
 	self.parent:EmitSound("Sf.Dark_speed")
 	self.parent:EmitSound("Sf.Dark_speed2")
 
-	self.effect_cast = ParticleManager:CreateParticle("particles/sf_aura.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
+	self.effect_cast =
+		ParticleManager:CreateParticle("particles/shadow_fiend/sf_aura.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
 	ParticleManager:SetParticleControl(self.effect_cast, 0, self.parent:GetAbsOrigin())
 	ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(self.ability.talents.e5_radius, 0, 0))
 	self:AddParticle(self.effect_cast, false, false, -1, false, false)
 
 	self.parent:GenericParticle("particles/shadow_fiend/dark_speed.vpcf", self)
-	self.parent:GenericParticle("particles/sf_wings.vpcf", self)
+	self.parent:GenericParticle("particles/shadow_fiend/sf_wings.vpcf", self)
 
 	self:StartIntervalThink(0.1)
 end

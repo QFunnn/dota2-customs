@@ -80,6 +80,7 @@ function init()
     }
 
     CheckShards()
+    UpdateShopNewAlerts()
 
     if (IsSpectator())
     {

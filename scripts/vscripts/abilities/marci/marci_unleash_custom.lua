@@ -8,7 +8,7 @@
 ]]
 
 
-LinkLuaModifier("modifier_marci_unleash_custom", "abilities/marci/marci_unleash_custom", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_marci_unleash_custom", "abilities/marci/marci_unleash_custom", LUA_MODIFIER_MOTION_NONE, true)
 LinkLuaModifier("modifier_marci_unleash_custom_fury", "abilities/marci/marci_unleash_custom", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier(
 	"modifier_marci_unleash_custom_debuff",
@@ -25,8 +25,18 @@ LinkLuaModifier(
 	"abilities/marci/marci_unleash_custom",
 	LUA_MODIFIER_MOTION_NONE
 )
-LinkLuaModifier("modifier_marci_unleash_custom_stack", "abilities/marci/marci_unleash_custom", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_marci_unleash_custom_stats", "abilities/marci/marci_unleash_custom", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier(
+	"modifier_marci_unleash_custom_stack",
+	"abilities/marci/marci_unleash_custom",
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_marci_unleash_3"
+)
+LinkLuaModifier(
+	"modifier_marci_unleash_custom_stats",
+	"abilities/marci/marci_unleash_custom",
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_marci_unleash_1"
+)
 LinkLuaModifier("modifier_marci_unleash_custom_invun", "abilities/marci/marci_unleash_custom", LUA_MODIFIER_MOTION_NONE)
 
 marci_unleash_custom = class({})
@@ -44,13 +54,12 @@ function marci_unleash_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_marci/marci_unleash_buff.vpcf", context)
 	PrecacheResource("particle", "particles/marci/unleash_stack.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_marci/marci_unleash_attack.vpcf", context)
-	PrecacheResource("particle", "particles/marci_rage_proc.vpcf", context)
-	PrecacheResource("particle", "particles/marci_count.vpcf", context)
+	PrecacheResource("particle", "particles/marci/marci_count.vpcf", context)
 	PrecacheResource("particle", "particles/marci/unleash_spell_caster.vpcf", context)
 	PrecacheResource("particle", "particles/marci/unleash_spell_start.vpcf", context)
 	PrecacheResource("particle", "particles/marci/unleash_stack_spell.vpcf", context)
-	PrecacheResource("particle", "particles/marci_wave.vpcf", context)
-	PrecacheResource("particle", "particles/marci_heal.vpcf", context)
+	PrecacheResource("particle", "particles/marci/marci_wave.vpcf", context)
+	PrecacheResource("particle", "particles/marci/marci_heal.vpcf", context)
 end
 
 function marci_unleash_custom:UpdateTalents(name)
@@ -155,7 +164,7 @@ function marci_unleash_custom:GetAbilityTextureName()
 	if self.talents.has_q7 == 1 or self.talents.has_w7 == 1 then
 		return "unleash_spell"
 	end
-	return "marci_unleash"
+	return wearables_system:GetAbilityIconReplacement(self:GetCaster(), "marci_unleash", self)
 end
 
 function marci_unleash_custom:GetIntrinsicModifierName()
@@ -188,7 +197,7 @@ function marci_unleash_custom:OnSpellStart()
 		for i = 0, 6 do
 			local current_ability = self.parent:GetAbilityByIndex(i)
 			if current_ability and current_ability ~= self.ability then
-				self.parent:CdAbility(current_ability, nil, self.cdr_bonus / 100)
+				self.parent:CdAbility(current_ability, nil, self.cdr_bonus / 100, "marci_unleash_custom")
 			end
 		end
 		self:Pulse(self.caster:GetAbsOrigin())
@@ -473,8 +482,9 @@ function modifier_marci_unleash_custom:DamageEvent_inc(params)
 	self.parent:EmitSound("Marci.Dispose_damage")
 	self.parent:EmitSound("Marci.Dispose_heal")
 
-	self.parent:GenericParticle("particles/marci_wave.vpcf")
-	local particle = ParticleManager:CreateParticle("particles/marci_heal.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
+	self.parent:GenericParticle("particles/marci/marci_wave.vpcf")
+	local particle =
+		ParticleManager:CreateParticle("particles/marci/marci_heal.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
 	ParticleManager:SetParticleControl(particle, 0, self.parent:GetAbsOrigin())
 	ParticleManager:SetParticleControl(particle, 1, self.parent:GetAbsOrigin())
 	ParticleManager:ReleaseParticleIndex(particle)
@@ -1065,7 +1075,7 @@ function modifier_marci_unleash_custom_stack:OnCreated()
 		return
 	end
 	self.RemoveForDuel = true
-	self.particle = self.parent:GenericParticle("particles/marci_count.vpcf", self, true)
+	self.particle = self.parent:GenericParticle("particles/marci/marci_count.vpcf", self, true)
 
 	self:OnRefresh()
 end

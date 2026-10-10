@@ -725,20 +725,13 @@
 	pre-transform-scale2d: 1.05;
 }
 
-#ChooseCategoryBlockNew
+#ChooseCategoryBlockNew,#ChooseCategoryItemsNew
 {
-	width: 74px;
-	height: 32px;
+	width: 70px;
+	height: 30px;
 	margin-top: 5px;
 	margin-left: 5px;
 	z-index: 9999;
-	background-image: url("s2r://panorama/images/custom_game/shop/new_shop_png.vtex");
-	background-size: 100%;
-	animation-name: ShopNewAnim;
-	animation-iteration-count: infinite;
-	animation-duration: 1.5s;
-	transition-property: opacity, transform;
-	transition-duration: .24s;
 }
 
 #ChooseCategoryBlockSale
@@ -780,16 +773,18 @@
 
 #shop_items_new
 {
-	opacity: 0;
 	width: 61.6px;
 	height: 26.6px;
+	margin-top: 0px;
 	margin-bottom: 105px;
 	margin-left: 10px;
 	vertical-align: center;
 	z-index: 9999;
-	background-image: url("s2r://panorama/images/custom_game/shop/new_shop_png.vtex");
-	background-size: 100%;
-	box-shadow: fill #f0bd22 0px 0px 6px -3px;
+}
+
+#shop_items_new .new_alert_label
+{
+	font-size: 18px;
 }
 
 #shop_items_sale
@@ -8394,32 +8389,71 @@ Slider.HorizontalSlider
 	margin-top: 5px;
 	margin-left: 5px;
 	z-index: 9999;
-	background-image: url("s2r://panorama/images/custom_game/shop/new_shop_png.vtex");
-	background-size: 100%;
-	animation-name: ShopNewAnimSmall;
-	animation-iteration-count: infinite;
-	animation-duration: 1.5s;
-	transition-property: opacity, transform;
-	transition-duration: .24s;
+	border-radius: 2px;
+	border: 1px solid #e8c868;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #997934 ), to( #281b09 ) );
+	box-shadow: fill #ffd34d 0px 0px 4px -1px;
 }
 
-@keyframes 'ShopNewAnimSmall'
+.new_alert_label
 {
-	0%
-	{
-		box-shadow: fill #f0bd22 0px 0px 3px -2px;
-	}
-	
-	50%
-	{
-		box-shadow: fill #f0bd22 0px 0px 8px -3px;
-	}
-	
-	100%
-	{
-		box-shadow: fill #f0bd22 0px 0px 3px -2px;
-	}
-	
+	align: center center;
+	font-size: 15px;
+	font-weight: bold;
+	text-align: center;
+	letter-spacing: 1px;
+	margin-right: 2px;
+	font-family: defaultFont;
+	width: 100%;
+	color: gradient( linear, 0% 0%, 0% 100%, from( #f7eed5 ), to( #ccb885 ) );
+	text-shadow: 0px 1px 2px 2 black;
+}
+
+.new_alert_set
+{
+	width: 70px;
+	height: 28px;
+	margin-top: 8px;
+	margin-left: 8px;
+	border-radius: 2px;
+}
+
+.new_alert_set .new_alert_label
+{
+	font-size: 20px;
+	letter-spacing: 2px;
+}
+
+.new_alert_low
+{
+	margin-top: 44px;
+}
+
+.new_alert_item
+{
+	horizontal-align: right;
+	margin-left: 0px;
+	margin-right: 10px;
+}
+
+.new_alert_persona
+{
+	width: 32px;
+	height: 14px;
+	align: left top;
+	margin-top: -4px;
+	margin-left: -18px;
+	border-radius: 2px;
+	ignore-parent-flow: true;
+	box-shadow: fill #ffd34d 0px 0px 2px -1px;
+}
+
+.new_alert_persona .new_alert_label
+{
+	font-size: 10px;
+	margin-top: 1px;
+	margin-right: 1px;
+	letter-spacing: 0px;
 }
 
 .slot_panel
@@ -8983,6 +9017,34 @@ Slider.HorizontalSlider
 	height: 38px;
 	margin: 3px;
 	box-shadow: fill #ebb13a 0px 0px 8px -3px;
+}
+
+.changes_ability_list_small .ability_info_panel
+{
+	width: 36px;
+	height: 36px;
+	margin: 2px;
+}
+
+.changes_ability_list_small .item_info_panel
+{
+	width: 36px;
+	height: 28px;
+	margin: 2px;
+}
+
+.changes_ability_list_tiny .ability_info_panel
+{
+	width: 26px;
+	height: 26px;
+	margin: 2px;
+}
+
+.changes_ability_list_tiny .item_info_panel
+{
+	width: 26px;
+	height: 20px;
+	margin: 2px;
 }
 
 .item_scene_panel_preview

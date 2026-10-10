@@ -26,6 +26,8 @@ function Init()
 	GameEvents.Subscribe_custom('ability_stalker_dark', ability_stalker_dark)
 	GameEvents.Subscribe_custom('ability_mars_spear', ability_mars_spear)
 	GameEvents.Subscribe_custom('ability_kunkka_ghostship_scepter', start_ghostship)
+	GameEvents.Subscribe_custom('ability_primal_beast_rock_throw', start_rock_throw)
+	GameEvents.Subscribe_custom('ability_primal_beast_onslaught', ability_primal_beast_onslaught)
 }
 
 Init()
@@ -39,6 +41,7 @@ var init_razor = false
 var init_morphling = false
 var init_unfettered = false
 var init_ghostship = false
+var init_rock_throw = false
 var hoodwink_pfx = "particles/units/heroes/hero_hoodwink/hoodwink_sharpshooter_range_finder.vpcf"
 
 function start_scatter()
@@ -94,6 +97,16 @@ function start_ghostship()
 
 	init_ghostship = true
 	ability_kunkka_ghostship_scepter()
+}
+
+function start_rock_throw(kv)
+{
+	rock_throw_min_range = kv.min_range
+
+	if (init_rock_throw == true) return
+
+	init_rock_throw = true
+	ability_primal_beast_rock_throw()
 }
 
 function start_unfettered()
@@ -204,6 +217,56 @@ function ability_stalker_dark(kv)
 		Particles.SetParticleControl(vectorTargetParticle_stalker, 0, origin );
 		Particles.SetParticleControl(vectorTargetParticle_stalker, 1, Vector_add(origin, Vector_mult(forward, max_distance)));
     	$.Schedule(interval, ability_stalker_dark)
+	}
+}
+
+
+
+var vectorTargetParticle_beast;
+var beast_range = 0
+var beast_radius = 0
+
+function ability_primal_beast_onslaught(kv)
+{
+	let state = 0
+	if (kv)
+		state = kv.state
+
+	if (state == 2)
+	{
+		if (vectorTargetParticle_beast)
+		{
+			Particles.DestroyParticleEffect(vectorTargetParticle_beast, true)
+			Particles.ReleaseParticleIndex(vectorTargetParticle_beast)
+			vectorTargetParticle_beast = undefined;
+		}
+		return
+	}
+
+	if (state == 1)
+	{
+		beast_range = kv.range
+		beast_radius = kv.radius
+
+		if (vectorTargetParticle_beast == undefined)
+			vectorTargetParticle_beast = Particles.CreateParticle("particles/primal_beast/beast_charge.vpcf", ParticleAttachment_t.PATTACH_ABSORIGIN_FOLLOW, Players.GetPlayerHeroEntityIndex( Players.GetLocalPlayer() ) );
+	}
+
+	if (vectorTargetParticle_beast)
+	{
+		let hero = Players.GetPlayerHeroEntityIndex( Players.GetLocalPlayer() )
+		let origin = Entities.GetAbsOrigin( hero )
+		let forward = Entities.GetForward( hero )
+		let modifier = HasModifierCustom(hero, "modifier_primal_beast_onslaught_custom_cast")
+		let k = 0
+
+		if (modifier)
+			k = Math.min(1, Buffs.GetElapsedTime(hero, modifier) / Buffs.GetDuration(hero, modifier))
+
+		Particles.SetParticleControl(vectorTargetParticle_beast, 0, origin );
+		Particles.SetParticleControl(vectorTargetParticle_beast, 1, Vector_add(origin, Vector_mult(forward, beast_range*k)));
+		Particles.SetParticleControl(vectorTargetParticle_beast, 2, [beast_radius, 0, 0]);
+    	$.Schedule(interval, ability_primal_beast_onslaught)
 	}
 }
 
@@ -691,6 +754,44 @@ function ability_kunkka_ghostship_scepter()
 		Particles.SetParticleControl(vectorTargetParticle_ghostship, 3, [radius, radius, radius] );
 	}
     $.Schedule(interval, ability_kunkka_ghostship_scepter)
+}
+
+
+
+var vectorTargetParticle_rock_throw;
+var lastAbility_rock_throw = -1;
+var rock_throw_min_range = 0
+
+function ability_primal_beast_rock_throw()
+{
+	const hero = Players.GetLocalPlayerPortraitUnit();
+	const ability = Abilities.GetLocalPlayerActiveAbility();
+	const active = (ability != -1) && (Abilities.GetAbilityName(ability) == "primal_beast_rock_throw_custom");
+
+	if (ability != lastAbility_rock_throw)
+	{
+		lastAbility_rock_throw = ability
+		if (vectorTargetParticle_rock_throw) {
+			Particles.DestroyParticleEffect(vectorTargetParticle_rock_throw, true)
+			Particles.ReleaseParticleIndex(vectorTargetParticle_rock_throw)
+			vectorTargetParticle_rock_throw = undefined;
+		}
+		if (active) {
+			vectorTargetParticle_rock_throw = Particles.CreateParticle("particles/slark/pounce_legendary_ui.vpcf", ParticleAttachment_t.PATTACH_ABSORIGIN_FOLLOW, hero );
+		}
+	}
+
+	if (vectorTargetParticle_rock_throw && active)
+	{
+		const worldPosition = Entities.GetAbsOrigin( hero )
+		let radius = rock_throw_min_range;
+
+		Particles.SetParticleControl(vectorTargetParticle_rock_throw, 0, worldPosition );
+		Particles.SetParticleControl(vectorTargetParticle_rock_throw, 1, worldPosition );
+		Particles.SetParticleControl(vectorTargetParticle_rock_throw, 2, worldPosition );
+		Particles.SetParticleControl(vectorTargetParticle_rock_throw, 3, [radius, radius, radius] );
+	}
+    $.Schedule(interval, ability_primal_beast_rock_throw)
 }
 
 

@@ -16,7 +16,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_arc_warden_flux_custom_legendary",
 	"abilities/arc_warden/arc_warden_flux_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_arc_warden_flux_7"
 )
 LinkLuaModifier(
 	"modifier_arc_warden_flux_custom_legendary_cd",
@@ -36,7 +37,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_arc_warden_flux_custom_resist",
 	"abilities/arc_warden/arc_warden_flux_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_arc_warden_flux_3"
 )
 LinkLuaModifier(
 	"modifier_arc_warden_flux_custom_tracker",
@@ -46,7 +48,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_arc_warden_flux_custom_silence",
 	"abilities/arc_warden/arc_warden_flux_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_arc_warden_hero_4"
 )
 
 arc_warden_flux_custom = class({})
@@ -64,15 +67,14 @@ function arc_warden_flux_custom:Precache(context)
 	PrecacheResource("particle", "particles/arc_warden/flux_self_tempest.vpcf", context)
 	PrecacheResource("particle", "particles/items_fx/force_staff.vpcf", context)
 	PrecacheResource("particle", "particles/items_fx/harpoon_pull.vpcf", context)
-	PrecacheResource("particle", "particles/zuus_speed.vpcf", context)
-	PrecacheResource("particle", "particles/void_astral_slow.vpcf", context)
+	PrecacheResource("particle", "particles/zeus/zuus_speed.vpcf", context)
+	PrecacheResource("particle", "particles/void_spirit/void_astral_slow.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/econ/items/outworld_devourer/od_shards_exile/od_shards_exile_prison_end.vpcf",
 		context
 	)
 	PrecacheResource("particle", "particles/generic_gameplay/generic_silenced.vpcf", context)
-	PrecacheResource("particle", "particles/ta_trap_damage.vpcf", context)
 	PrecacheResource("particle", "particles/arc_warden/spark_heall.vpcf", context)
 	PrecacheResource("particle", "particles/generic_gameplay/rune_arcane_owner.vpcf", context)
 	PrecacheResource("particle", "particles/enigma/summon_spell_damage.vpcf", context)

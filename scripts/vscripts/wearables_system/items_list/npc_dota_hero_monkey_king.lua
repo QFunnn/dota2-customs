@@ -299,7 +299,7 @@ return {
 			},
 			["particles_abilities"] = {
 				["default"] = {
-					["particles/units/heroes/hero_monkey_king/monkey_king_strike.vpcf"] = "particles/monkey_king_custom/mk_ti7_immortal_strike.vpcf",
+					["particles/units/heroes/hero_monkey_king/monkey_king_strike.vpcf"] = "particles/monkey_king/mk_ti7_immortal_strike.vpcf",
 					["particles/units/heroes/hero_monkey_king/monkey_king_strike_cast.vpcf"] = "particles/econ/items/monkey_king/ti7_weapon/mk_ti7_immortal_strike_cast.vpcf",
 				},
 			},
@@ -406,7 +406,7 @@ return {
 			},
 			["particles_abilities"] = {
 				["default"] = {
-					["particles/units/heroes/hero_monkey_king/monkey_king_strike.vpcf"] = "particles/monkey_king_custom/mk_ti7_golden_immortal_strike.vpcf",
+					["particles/units/heroes/hero_monkey_king/monkey_king_strike.vpcf"] = "particles/monkey_king/mk_ti7_golden_immortal_strike.vpcf",
 					["particles/units/heroes/hero_monkey_king/monkey_king_strike_cast.vpcf"] = "particles/econ/items/monkey_king/ti7_weapon/mk_ti7_golden_immortal_strike_cast.vpcf",
 				},
 			},
@@ -1121,7 +1121,7 @@ return {
 			},
 			["particles_abilities"] = {
 				["default"] = {
-					["particles/units/heroes/hero_monkey_king/monkey_king_strike.vpcf"] = "particles/monkey_king_custom/mk_10th_anniversary_strike.vpcf",
+					["particles/units/heroes/hero_monkey_king/monkey_king_strike.vpcf"] = "particles/monkey_king/mk_10th_anniversary_strike.vpcf",
 					["particles/units/heroes/hero_monkey_king/monkey_king_strike_cast.vpcf"] = "particles/econ/items/monkey_king/ti7_weapon/mk_10th_anniversary_strike_cast.vpcf",
 				},
 			},

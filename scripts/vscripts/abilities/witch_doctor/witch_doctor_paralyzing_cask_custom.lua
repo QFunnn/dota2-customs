@@ -21,32 +21,38 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_witch_doctor_paralyzing_cask_custom_legendary_cd",
 	"abilities/witch_doctor/witch_doctor_paralyzing_cask_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_witch_doctor_cask_7" }
 )
 LinkLuaModifier(
 	"modifier_witch_doctor_paralyzing_cask_custom_legendary_speed",
 	"abilities/witch_doctor/witch_doctor_paralyzing_cask_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_witch_doctor_cask_7"
 )
 LinkLuaModifier(
 	"modifier_witch_doctor_paralyzing_cask_custom_poison",
 	"abilities/witch_doctor/witch_doctor_paralyzing_cask_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_witch_doctor_cask_3"
 )
 LinkLuaModifier(
 	"modifier_witch_doctor_paralyzing_cask_custom_slow",
 	"abilities/witch_doctor/witch_doctor_paralyzing_cask_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_witch_doctor_cask_2"
 )
 LinkLuaModifier(
 	"modifier_witch_doctor_paralyzing_cask_custom_auto_cd",
 	"abilities/witch_doctor/witch_doctor_paralyzing_cask_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_witch_doctor_cask_4"
 )
 LinkLuaModifier(
 	"modifier_witch_doctor_paralyzing_cask_custom_root",
 	"abilities/witch_doctor/witch_doctor_paralyzing_cask_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_witch_doctor_deathward_4"
 )
 LinkLuaModifier(
 	"modifier_witch_doctor_paralyzing_cask_custom_root_cd",
@@ -65,7 +71,6 @@ function witch_doctor_paralyzing_cask_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_witchdoctor/witchdoctor_cask.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_venomancer/venomancer_poison_debuff.vpcf", context)
 	PrecacheResource("particle", "particles/void_spirit/remnant_hit.vpcf", context)
-	PrecacheResource("particle", "particles/witch_doctor/cask_delay.vpcf", context)
 	PrecacheResource("particle", "particles/alchemist/weaponry_proc.vpcf", context)
 	PrecacheResource("particle", "particles/leshrac/storm_refresh.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_lina/lina_supercharge_buff.vpcf", context)

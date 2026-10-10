@@ -24,7 +24,7 @@ npc_frostbitten_spam = class({})
 
 function npc_frostbitten_spam:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_snapfire/hero_snapfire_ultimate_calldown.vpcf", context)
-	PrecacheResource("particle", "particles/frostbitten_strike.vpcf", context)
+	PrecacheResource("particle", "particles/creeps/frostbitten_strike.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/econ/items/lich/frozen_chains_ti6/lich_frozenchains_frostnova.vpcf",
@@ -135,8 +135,11 @@ function modifier_frostbitten_spam_thinker:OnDestroy()
 
 	local point = self.parent:GetAbsOrigin()
 
-	local strike =
-		ParticleManager:CreateParticle("particles/frostbitten_strike.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.caster)
+	local strike = ParticleManager:CreateParticle(
+		"particles/creeps/frostbitten_strike.vpcf",
+		PATTACH_ABSORIGIN_FOLLOW,
+		self.caster
+	)
 	ParticleManager:SetParticleControlEnt(
 		strike,
 		0,

@@ -71,17 +71,17 @@ function templar_assassin_refraction_custom:Precache(context)
 		context
 	)
 	PrecacheResource("particle", "particles/units/heroes/hero_antimage/antimage_spellshield_reflect.vpcf", context)
-	PrecacheResource("particle", "particles/ta_wave.vpcf", context)
-	PrecacheResource("particle", "particles/ta_shield_exp.vpcf", context)
+	PrecacheResource("particle", "particles/templar_assassin/ta_wave.vpcf", context)
+	PrecacheResource("particle", "particles/templar_assassin/ta_shield_exp.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/units/heroes/hero_templar_assassin/templar_assassin_refract_hit.vpcf",
 		context
 	)
-	PrecacheResource("particle", "particles/ta_shield_roots.vpcf", context)
-	PrecacheResource("particle", "particles/ta_shield_magic_2.vpcf", context)
-	PrecacheResource("particle", "particles/ta_shield_magic.vpcf", context)
-	PrecacheResource("particle", "particles/templar_assassin_magic_attack.vpcf", context)
+	PrecacheResource("particle", "particles/templar_assassin/ta_shield_roots.vpcf", context)
+	PrecacheResource("particle", "particles/templar_assassin/ta_shield_magic_2.vpcf", context)
+	PrecacheResource("particle", "particles/templar_assassin/ta_shield_magic.vpcf", context)
+	PrecacheResource("particle", "particles/templar_assassin/templar_assassin_magic_attack.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_omnislash.vpcf", context)
 	PrecacheResource("particle", "particles/templar_assassin/shield_invun.vpcf", context)
 	PrecacheResource("particle", "particles/templar_assassin/shield_invun_hit.vpcf", context)
@@ -549,8 +549,8 @@ function modifier_templar_assassin_refraction_custom_absorb:OnDestroy()
 
 	if self.parent:HasTalent("modifier_templar_assassin_refraction_5") then
 		self.parent:EmitSound("TA.Shield_break")
-		self.parent:GenericParticle("particles/ta_wave.vpcf")
-		self.parent:GenericParticle("particles/ta_shield_exp.vpcf")
+		self.parent:GenericParticle("particles/templar_assassin/ta_wave.vpcf")
+		self.parent:GenericParticle("particles/templar_assassin/ta_shield_exp.vpcf")
 		local radius = self.parent:GetTalentValue("modifier_templar_assassin_refraction_5", "radius")
 		local duration = self.parent:GetTalentValue("modifier_templar_assassin_refraction_5", "duration")
 		local silence = self.parent:GetTalentValue("modifier_templar_assassin_refraction_5", "silence")
@@ -603,7 +603,7 @@ function modifier_templar_assassin_refraction_custom_legendary_attack:IsPurgable
 	return false
 end
 function modifier_templar_assassin_refraction_custom_legendary_attack:GetEffectName()
-	return "particles/ta_shield_magic_2.vpcf"
+	return "particles/templar_assassin/ta_shield_magic_2.vpcf"
 end
 function modifier_templar_assassin_refraction_custom_legendary_attack:OnCreated(table)
 	if not IsServer() then
@@ -618,8 +618,11 @@ function modifier_templar_assassin_refraction_custom_legendary_attack:OnCreated(
 	self:SetStackCount(table.stack)
 	self.parent:EmitSound("TA.Shield_legendary")
 
-	local particle_peffect =
-		ParticleManager:CreateParticle("particles/ta_shield_magic.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
+	local particle_peffect = ParticleManager:CreateParticle(
+		"particles/templar_assassin/ta_shield_magic.vpcf",
+		PATTACH_ABSORIGIN_FOLLOW,
+		self.parent
+	)
 	ParticleManager:SetParticleControl(particle_peffect, 0, self.parent:GetAbsOrigin())
 	ParticleManager:SetParticleControl(particle_peffect, 2, self.parent:GetAbsOrigin())
 	ParticleManager:ReleaseParticleIndex(particle_peffect)
@@ -667,7 +670,7 @@ function modifier_templar_assassin_refraction_custom_legendary_attack:AttackStar
 		Target = params.target,
 		Source = self.parent,
 		Ability = self.ability,
-		EffectName = "particles/templar_assassin_magic_attack.vpcf",
+		EffectName = "particles/templar_assassin/templar_assassin_magic_attack.vpcf",
 		iMoveSpeed = self.parent:GetProjectileSpeed(),
 		vSourceLoc = self.parent:GetAbsOrigin(),
 		bDodgeable = false,
@@ -704,7 +707,7 @@ function modifier_templar_assassin_refraction_custom_silence:OnCreated()
 	if not IsServer() then
 		return
 	end
-	self.parent:GenericParticle("particles/void_astral_slow.vpcf", self)
+	self.parent:GenericParticle("particles/void_spirit/void_astral_slow.vpcf", self)
 	self.parent:EmitSound("Sf.Raze_Silence")
 end
 
@@ -841,7 +844,7 @@ function modifier_templar_assassin_refraction_custom_speed_slow:GetTexture()
 	return "buffs/psiblades_slow"
 end
 function modifier_templar_assassin_refraction_custom_speed_slow:GetEffectName()
-	return "particles/void_astral_slow.vpcf"
+	return "particles/void_spirit/void_astral_slow.vpcf"
 end
 function modifier_templar_assassin_refraction_custom_speed_slow:DeclareFunctions()
 	return {

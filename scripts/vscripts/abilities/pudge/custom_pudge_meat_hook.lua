@@ -37,7 +37,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_custom_pudge_meat_hook_perma",
 	"abilities/pudge/custom_pudge_meat_hook",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_pudge_hook_4"
 )
 LinkLuaModifier(
 	"modifier_custom_pudge_meat_hook_stack",
@@ -83,8 +84,8 @@ function custom_pudge_meat_hook:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_pudge/pudge_meathook.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_pudge/pudge_meathook_impact.vpcf", context)
 	PrecacheResource("particle", "particles/items3_fx/hook_root.vpcf", context)
-	PrecacheResource("particle", "particles/lc_odd_proc_.vpcf", context)
-	PrecacheResource("particle", "particles/general/generic_armor_reduction.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_odd_proc_.vpcf", context)
+	PrecacheResource("particle", "particles/generic/generic_armor_reduction.vpcf", context)
 	PrecacheResource("particle", "particles/pudge/hook_stack.vpcf", context)
 	PrecacheResource("particle", "particles/pudge/hook_no_model.vpcf", context)
 
@@ -1057,7 +1058,7 @@ function modifier_custom_pudge_meat_hook_tracker:AttackEvent_out(params)
 	if not self.parent:HasTalent("modifier_pudge_hook_legendary") then
 		return
 	end
-	self.parent:CdAbility(self.ability, self.legendary_cd)
+	self.parent:CdAbility(self.ability, self.legendary_cd, nil, "modifier_pudge_hook_legendary")
 end
 
 modifier_custom_pudge_meat_hook_move_speed = class({})
@@ -1192,8 +1193,11 @@ function modifier_custom_pudge_meat_hook_perma:OnIntervalThink()
 		return
 	end
 
-	local particle_peffect =
-		ParticleManager:CreateParticle("particles/lc_odd_proc_.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
+	local particle_peffect = ParticleManager:CreateParticle(
+		"particles/legion_commander/lc_odd_proc_.vpcf",
+		PATTACH_ABSORIGIN_FOLLOW,
+		self.parent
+	)
 	ParticleManager:SetParticleControl(particle_peffect, 0, self.parent:GetAbsOrigin())
 	ParticleManager:SetParticleControl(particle_peffect, 2, self.parent:GetAbsOrigin())
 	ParticleManager:ReleaseParticleIndex(particle_peffect)

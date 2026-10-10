@@ -56,7 +56,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_custom_shadowraze_perma",
 	"abilities/shadow_fiend/custom_nevermore_shadowraze",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_nevermore_raze_6"
 )
 
 custom_nevermore_shadowraze_close = class({})
@@ -72,8 +73,8 @@ function custom_nevermore_shadowraze_close:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_nevermore/nvm_atk_blur_b.vpcf", context)
 
 	PrecacheResource("particle", "particles/units/heroes/hero_nevermore/nevermore_shadowraze.vpcf", context)
-	PrecacheResource("particle", "particles/sf_double_.vpcf", context)
-	PrecacheResource("particle", "particles/sf_refresh_a.vpcf", context)
+	PrecacheResource("particle", "particles/shadow_fiend/sf_double_.vpcf", context)
+	PrecacheResource("particle", "particles/shadow_fiend/sf_refresh_a.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/econ/items/shadow_fiend/sf_fire_arcana/sf_fire_arcana_shadowraze_triple.vpcf",
@@ -81,8 +82,8 @@ function custom_nevermore_shadowraze_close:Precache(context)
 	)
 	PrecacheResource("particle", "particles/generic_gameplay/rune_haste_owner.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_snapfire/hero_snapfire_ultimate_calldown.vpcf", context)
-	PrecacheResource("particle", "particles/sf_slow_attack.vpcf", context)
-	PrecacheResource("particle", "particles/brist_lowhp_.vpcf", context)
+	PrecacheResource("particle", "particles/shadow_fiend/sf_slow_attack.vpcf", context)
+	PrecacheResource("particle", "particles/bristleback/brist_lowhp_.vpcf", context)
 
 	dota1x6:PrecacheShopItems("npc_dota_hero_nevermore", context)
 end
@@ -354,7 +355,7 @@ function CastShadowRazeOnPoint(caster, ability, point, radius, auto)
 		end
 
 		if caster:HasTalent("modifier_nevermore_raze_6") then
-			caster:CdItems(caster:GetTalentValue("modifier_nevermore_raze_6", "cd_items"))
+			caster:CdItems(caster:GetTalentValue("modifier_nevermore_raze_6", "cd_items"), "modifier_nevermore_raze_6")
 		end
 
 		if heroes > 0 then
@@ -495,7 +496,7 @@ function modifier_custom_shadowraze_combo:OnRefresh(table)
 	self:IncrementStackCount()
 
 	if self:GetStackCount() == 2 and self.caster:HasTalent("modifier_nevermore_raze_7") then
-		self.caster:GenericParticle("particles/sf_double_.vpcf")
+		self.caster:GenericParticle("particles/shadow_fiend/sf_double_.vpcf")
 	end
 
 	if self:GetStackCount() >= self.max then
@@ -518,8 +519,11 @@ function modifier_custom_shadowraze_combo:OnRefresh(table)
 				ability:StartCooldown(0.1)
 			end
 
-			local particle =
-				ParticleManager:CreateParticle("particles/sf_refresh_a.vpcf", PATTACH_CUSTOMORIGIN, self.caster)
+			local particle = ParticleManager:CreateParticle(
+				"particles/shadow_fiend/sf_refresh_a.vpcf",
+				PATTACH_CUSTOMORIGIN,
+				self.caster
+			)
 			ParticleManager:SetParticleControlEnt(
 				particle,
 				0,
@@ -574,7 +578,7 @@ function modifier_custom_shadowraze_combo_heroes:OnRefresh(table)
 	self:IncrementStackCount()
 
 	if self:GetStackCount() == 2 and false and not self.caster:HasTalent("modifier_nevermore_raze_7") then
-		self.caster:GenericParticle("particles/sf_double_.vpcf")
+		self.caster:GenericParticle("particles/shadow_fiend/sf_double_.vpcf")
 	end
 
 	if self:GetStackCount() >= self.max then
@@ -876,7 +880,7 @@ function modifier_custom_shadowraze_perma:OnIntervalThink()
 	end
 
 	local particle_peffect =
-		ParticleManager:CreateParticle("particles/brist_lowhp_.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.caster)
+		ParticleManager:CreateParticle("particles/bristleback/brist_lowhp_.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.caster)
 	ParticleManager:SetParticleControl(particle_peffect, 0, self.caster:GetAbsOrigin())
 	ParticleManager:SetParticleControl(particle_peffect, 2, self.caster:GetAbsOrigin())
 	ParticleManager:ReleaseParticleIndex(particle_peffect)

@@ -68,7 +68,7 @@ function modifier_mid_teleport:OnCreated(table)
 	self.parent:StartGesture(ACT_DOTA_IDLE)
 
 	local effect_cast =
-		ParticleManager:CreateParticle("particles/portal_ring.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetParent())
+		ParticleManager:CreateParticle("particles/generic/portal_ring.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetParent())
 	ParticleManager:SetParticleControl(effect_cast, 12, Vector(cp, 0, 0))
 	self:AddParticle(effect_cast, false, false, -1, false, false)
 end

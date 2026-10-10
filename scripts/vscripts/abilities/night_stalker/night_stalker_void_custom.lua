@@ -11,7 +11,8 @@
 LinkLuaModifier(
 	"modifier_night_stalker_void_custom",
 	"abilities/night_stalker/night_stalker_void_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_stalker_void_7" }
 )
 LinkLuaModifier(
 	"modifier_night_stalker_void_custom_slow",
@@ -26,7 +27,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_night_stalker_void_custom_legendary_buff",
 	"abilities/night_stalker/night_stalker_void_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_stalker_void_7"
 )
 LinkLuaModifier(
 	"modifier_night_stalker_void_custom_legendary_cast",
@@ -41,12 +43,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_night_stalker_void_custom_magic",
 	"abilities/night_stalker/night_stalker_void_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_stalker_void_3"
 )
 LinkLuaModifier(
 	"modifier_night_stalker_void_custom_move",
 	"abilities/night_stalker/night_stalker_void_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_stalker_hero_4"
 )
 
 night_stalker_void_custom = class({})
@@ -79,6 +83,7 @@ function night_stalker_void_custom:UpdateTalents(name)
 		self.talents = {
 			has_q1 = 0,
 			q1_spell = 0,
+			q1_base = 0,
 			q1_damage = 0,
 			q1_creeps = 0,
 
@@ -126,6 +131,7 @@ function night_stalker_void_custom:UpdateTalents(name)
 	if caster:HasTalent("modifier_stalker_void_1") then
 		self.talents.has_q1 = 1
 		self.talents.q1_spell = caster:GetTalentValue("modifier_stalker_void_1", "spell")
+		self.talents.q1_base = caster:GetTalentValue("modifier_stalker_void_1", "base")
 		self.talents.q1_damage = caster:GetTalentValue("modifier_stalker_void_1", "damage") / 100
 		self.talents.q1_creeps = caster:GetTalentValue("modifier_stalker_void_1", "creeps")
 	end
@@ -239,7 +245,7 @@ function night_stalker_void_custom:OnSpellStart()
 
 	if self.talents.has_q4 == 1 then
 		local cd = self.talents.q4_cd_items + stack * self.talents.q4_cd_legendary
-		self.caster:CdItems(cd)
+		self.caster:CdItems(cd, "modifier_stalker_void_4")
 	end
 
 	local damageTable = { attacker = self.caster, ability = self, damage_type = DAMAGE_TYPE_MAGICAL }
@@ -256,7 +262,7 @@ function night_stalker_void_custom:OnSpellStart()
 			damage = damage
 				+ (
 					aoe_target:IsCreep() and self.talents.q1_creeps
-					or self.talents.q1_damage * aoe_target:GetMaxHealth()
+					or (self.talents.q1_base + self.talents.q1_damage * aoe_target:GetMaxHealth())
 				)
 		end
 		damage = damage * (1 + self:LegendaryDamage(stack))
@@ -308,7 +314,12 @@ function night_stalker_void_custom:OnProjectileHit(target, vLocation)
 		return
 	end
 
-	self.caster:CdAbility(self, self:GetEffectiveCooldown(self:GetLevel()) * self.talents.q7_cd_inc)
+	self.caster:CdAbility(
+		self,
+		self:GetEffectiveCooldown(self:GetLevel()) * self.talents.q7_cd_inc,
+		nil,
+		"modifier_stalker_void_7"
+	)
 
 	self.caster:AddNewModifier(
 		self.caster,

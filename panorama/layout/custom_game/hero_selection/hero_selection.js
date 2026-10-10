@@ -14,6 +14,7 @@ $.GetContextPanel = () => main() || kampf
 var dotahud = $.GetContextPanel().GetParent().GetParent().GetParent().GetParent();
 var max_games = 5
 var pick_started = false
+var pick_heroes_loaded = false
 var IS_DUO_MODE = false
 var IS_RANKED_MODE = false
 var IS_SAME_HEROES = false
@@ -164,6 +165,11 @@ function pick_start()
 	UpdateLobbyRating()
     CreatePlayers()
 
+    if (pick_started)
+        ShowPickContent()
+    else
+        UpdatePickWait()
+
 	update_lobby_rating()
 	$.Schedule(0.2, function() 
 	{
@@ -173,6 +179,79 @@ function pick_start()
 			pick_start()
         }
 	})
+}
+
+function CreatePickWait()
+{
+    let hero_pick = $.GetContextPanel().FindChildTraverse("hero_pick")
+    if (!hero_pick || hero_pick.FindChildTraverse("pick_wait"))
+        return
+
+    let pick_wait = $.CreatePanel("Panel", hero_pick, "pick_wait")
+    pick_wait.AddClass("pick_wait")
+    pick_wait.hittest = false
+
+    let content = $.CreatePanel("Panel", pick_wait, "")
+    content.AddClass("loading_content")
+
+    let spin = $.CreatePanel("Panel", content, "")
+    spin.AddClass("loading_content_spin")
+
+    let text = $.CreatePanel("Label", content, "")
+    text.AddClass("loading_content_text")
+    text.text = $.Localize("#pick_loading")
+
+    let timer = $.CreatePanel("Label", pick_wait, "pick_wait_timer")
+    timer.AddClass("pick_wait_timer")
+
+    let hero_pick_content = hero_pick.FindChildTraverse("hero_pick_content")
+    if (hero_pick_content)
+        hero_pick_content.hittestchildren = false
+
+    let lobby_rating_text = $.GetContextPanel().FindChildTraverse("lobby_rating_text")
+    if (lobby_rating_text)
+        lobby_rating_text.GetParent().AddClass("hero_pick_content_hidden")
+
+    UpdatePickWait()
+}
+
+function UpdatePickWait()
+{
+    let timer = $.GetContextPanel().FindChildTraverse("pick_wait_timer")
+    let loading_stage = CustomNetTables.GetTableValue("custom_pick", "loading_stage")
+    if (!timer || !loading_stage)
+        return
+
+    timer.text = loading_stage.time + " " + $.Localize("#pick_loading_sec")
+}
+
+function ShowPickContent()
+{
+    let pick_wait = $.GetContextPanel().FindChildTraverse("pick_wait")
+    if (pick_wait)
+        pick_wait.DeleteAsync(0)
+
+    let hero_pick_content = $.GetContextPanel().FindChildTraverse("hero_pick_content")
+    if (hero_pick_content && hero_pick_content.IsValid())
+    {
+        hero_pick_content.hittestchildren = true
+        hero_pick_content.RemoveClass("hero_pick_content_hidden")
+        hero_pick_content.AddClass("hero_pick_content_show")
+    }
+
+    let lobby_players_list = $.GetContextPanel().FindChildTraverse("lobby_players_list")
+    if (lobby_players_list && lobby_players_list.IsValid())
+    {
+        lobby_players_list.RemoveClass("hero_pick_content_hidden")
+        lobby_players_list.AddClass("lobby_players_list_show")
+    }
+
+    let lobby_rating_text = $.GetContextPanel().FindChildTraverse("lobby_rating_text")
+    if (lobby_rating_text)
+    {
+        lobby_rating_text.GetParent().RemoveClass("hero_pick_content_hidden")
+        lobby_rating_text.GetParent().AddClass("hero_pick_content_show")
+    }
 }
 
 function GetSortedTeams()
@@ -529,6 +608,13 @@ function update_players_heroes(table, key, data)
 	pick_select_hero(data)
 }
 
+CustomNetTables.SubscribeNetTableListener( "custom_pick", update_custom_pick );
+function update_custom_pick(table, key, data)
+{
+	if (key != "game_mode") return
+	IS_SAME_HEROES = data.same_heroes == 1
+}
+
 function get_custom_pick_url(kv)
 {
 	$.DispatchEvent("ExternalBrowserGoToURL", kv.url);
@@ -761,6 +847,10 @@ function show_pick_block(data)
     let rows = (!is_local && block.remote) ? block.remote : (block.local || block.remote)
 
     let hero_pick = $.GetContextPanel().FindChildTraverse("hero_pick")
+    let pick_wait = hero_pick.FindChildTraverse("pick_wait")
+    if (pick_wait)
+        pick_wait.DeleteAsync(0)
+
     let main = hero_pick.FindChildTraverse("UnvalidGameMain")
     main.RemoveClass("BadMap_hidden")
     main.RemoveAndDeleteChildren()
@@ -1599,9 +1689,11 @@ function check_donate_heroes()
 function pick_load_heroes() 
 {
 	let hero_pick_content = $.GetContextPanel().FindChildTraverse("hero_pick_content")
-    let lobby_players_list = $.GetContextPanel().FindChildTraverse("lobby_players_list")
 	if (!hero_pick_content)
 		return
+	if (pick_heroes_loaded)
+		return
+	pick_heroes_loaded = true
 
 	let lang = $.Localize("#lang")
 	let tg_panel = hero_pick_content.FindChildTraverse("tg_panel")
@@ -1630,19 +1722,7 @@ function pick_load_heroes()
 	const all_row = $.CreatePanel("Panel", hero_pick_content, "AllSelector");
 	all_row.BLoadLayoutSnippet('heroes_row')
 
-	$.Schedule(1, function() 
-	{
-		if (hero_pick_content && hero_pick_content.IsValid())
-		{
-			hero_pick_content.RemoveClass("hero_pick_content_hidden")
-			hero_pick_content.AddClass("hero_pick_content_show")
-		}
-    	if (lobby_players_list && lobby_players_list.IsValid())
-    	{
-    		lobby_players_list.RemoveClass("hero_pick_content_hidden")
-    		lobby_players_list.AddClass("lobby_players_list_show")
-    	}
-	})
+	CreatePickWait()
 
 	const hero_list = CustomNetTables.GetTableValue("custom_pick", "hero_list");
 	if (hero_list === undefined)

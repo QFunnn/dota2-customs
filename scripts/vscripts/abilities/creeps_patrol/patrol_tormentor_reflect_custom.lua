@@ -59,8 +59,6 @@ function patrol_tormentor_reflect_custom:Precache(context)
 	PrecacheResource("particle", "particles/neutral_fx/miniboss_shield_dire.vpcf", context)
 	PrecacheResource("particle", "particles/neutral_fx/miniboss_damage_reflect_dire.vpcf", context)
 	PrecacheResource("particle", "particles/neutral_fx/miniboss_dire_damage_impact.vpcf", context)
-	PrecacheResource("particle", "particles/tormentor/tormentor_mark.vpcf", context)
-	PrecacheResource("particle", "particles/tormentor/tormentor_mark_dire.vpcf", context)
 
 	PrecacheResource("particle", "particles/tormentor/stun_wave_dire.vpcf", context)
 	PrecacheResource("particle", "particles/tormentor/stun_wave.vpcf", context)

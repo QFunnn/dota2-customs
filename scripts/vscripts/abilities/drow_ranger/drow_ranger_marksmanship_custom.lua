@@ -16,7 +16,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_drow_ranger_marksmanship_custom_agi_bonus",
 	"abilities/drow_ranger/drow_ranger_marksmanship_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_drow_marksman_3"
 )
 LinkLuaModifier(
 	"modifier_drow_ranger_marksmanship_custom_proc",
@@ -31,22 +32,26 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_drow_ranger_marksmanship_custom_legendary_active",
 	"abilities/drow_ranger/drow_ranger_marksmanship_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_drow_marksman_7" }
 )
 LinkLuaModifier(
 	"modifier_drow_ranger_marksmanship_custom_legendary_stack",
 	"abilities/drow_ranger/drow_ranger_marksmanship_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_drow_marksman_7"
 )
 LinkLuaModifier(
 	"modifier_drow_ranger_marksmanship_custom_gust_spell",
 	"abilities/drow_ranger/drow_ranger_marksmanship_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_drow_gust_7"
 )
 LinkLuaModifier(
 	"modifier_drow_ranger_marksmanship_custom_perma",
 	"abilities/drow_ranger/drow_ranger_marksmanship_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_drow_marksman_1"
 )
 
 drow_ranger_marksmanship_custom = class({})
@@ -71,7 +76,7 @@ function drow_ranger_marksmanship_custom:Precache(context)
 	PrecacheResource("particle", "particles/drow_ranger/multi_refresh.vpcf", context)
 	PrecacheResource("particle", "particles/drow_ranger/multi_armor.vpcf", context)
 	PrecacheResource("particle", "particles/drow_ranger/frost_heal.vpcf", context)
-	PrecacheResource("particle", "particles/maiden_shield_active.vpcf", context)
+	PrecacheResource("particle", "particles/crystal_maiden/maiden_shield_active.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/econ/items/drow/drow_ti9_immortal/status_effect_drow_ti9_frost_arrow.vpcf",
@@ -454,7 +459,7 @@ function modifier_drow_ranger_marksmanship_custom_tracker:AttackStartEvent_out(p
 			and self.parent.gust_ability.can_legendary_cd
 		then
 			self.parent.gust_ability.can_legendary_cd = false
-			self.parent:CdAbility(self.parent.gust_ability, nil, self.ability.talents.w7_cd_inc)
+			self.parent:CdAbility(self.parent.gust_ability, nil, self.ability.talents.w7_cd_inc, "modifier_drow_gust_7")
 			self.parent:EmitSound("Drow.Gust_legendary_cd")
 
 			local particle = ParticleManager:CreateParticle(
@@ -922,7 +927,7 @@ function modifier_drow_ranger_marksmanship_custom_perma:OnIntervalThink()
 		return
 	end
 
-	self.parent:GenericParticle("particles/maiden_shield_active.vpcf")
+	self.parent:GenericParticle("particles/crystal_maiden/maiden_shield_active.vpcf")
 	self.parent:EmitSound("BS.Thirst_legendary_active")
 	self:StartIntervalThink(-1)
 end

@@ -79,20 +79,20 @@ function modifier_tower_incoming:OnCreated(table)
 	if IsClient() then
 		local effect_name = nil
 		if self.parent:GetUnitName() == "npc_filler_radiant_resist" then
-			effect_name = "particles/radiant_resist.vpcf"
+			effect_name = "particles/buildings/radiant_resist.vpcf"
 		end
 		if self.parent:GetUnitName() == "npc_filler_radiant_stun" then
-			effect_name = "particles/radiant_stun.vpcf"
+			effect_name = "particles/buildings/radiant_stun.vpcf"
 		end
 		if self.parent:GetUnitName() == "npc_filler_radiant_plasma" then
-			effect_name = "particles/radiant_plasma.vpcf"
+			effect_name = "particles/buildings/radiant_plasma.vpcf"
 		end
 
 		if self.parent:GetUnitName() == "npc_filler_dire_resist" then
-			effect_name = "particles/dire_resist.vpcf"
+			effect_name = "particles/buildings/dire_resist.vpcf"
 		end
 		if self.parent:GetUnitName() == "npc_filler_dire_stun" then
-			effect_name = "particles/dire_stun.vpcf"
+			effect_name = "particles/buildings/dire_stun.vpcf"
 		end
 		if self.parent:GetUnitName() == "npc_filler_dire_plasma" then
 			effect_name = "particles/world_shrine/dire_shrine_ambient.vpcf"
@@ -261,7 +261,7 @@ function modifier_tower_incoming:GetModifierProcAttack_Feedback(params)
 		DoDamage({
 			victim = aoe_target,
 			attacker = self.parent,
-			ability = self.ability,
+			ability = self.bkb_ability,
 			damage = bonus,
 			damage_type = DAMAGE_TYPE_PURE,
 			damage_flags = DOTA_DAMAGE_FLAG_NO_DAMAGE_MULTIPLIERS
@@ -848,23 +848,39 @@ end
 function modifier_tower_incoming_speed:GetTexture()
 	return "backdoor_protection"
 end
-function modifier_tower_incoming_speed:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_FIXED_ATTACK_RATE,
-		MODIFIER_PROPERTY_TOOLTIP,
-		MODIFIER_PROPERTY_TOOLTIP2,
-		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
-	}
+function modifier_tower_incoming_speed:GetEffectName()
+	return "particles/generic_gameplay/generic_break.vpcf"
 end
-
+function modifier_tower_incoming_speed:ShouldUseOverheadOffset()
+	return true
+end
+function modifier_tower_incoming_speed:GetEffectAttachType()
+	return PATTACH_OVERHEAD_FOLLOW
+end
 function modifier_tower_incoming_speed:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
 	self.rate = 0.75
 	self.heal_reduce = -50
+	self.incoming = 20
 
 	self.parent:AddAttackRecordEvent_out(self, true)
+
+	if not IsServer() then
+		return
+	end
+	self.parent:GenericParticle("particles/hoodwink/bush_damage.vpcf", self)
+end
+
+function modifier_tower_incoming_speed:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_FIXED_ATTACK_RATE,
+		MODIFIER_PROPERTY_TOOLTIP,
+		MODIFIER_PROPERTY_TOOLTIP2,
+		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
+		MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
+	}
 end
 
 function modifier_tower_incoming_speed:AttackRecordEvent_out(params)
@@ -901,20 +917,14 @@ function modifier_tower_incoming_speed:GetModifierHPRegenAmplify_Percentage()
 	return self.heal_reduce
 end
 
+function modifier_tower_incoming_speed:GetModifierIncomingDamage_Percentage()
+	return self.incoming
+end
+
 function modifier_tower_incoming_speed:CheckState()
 	return {
 		[MODIFIER_STATE_PASSIVES_DISABLED] = true,
 	}
-end
-
-function modifier_tower_incoming_speed:GetEffectName()
-	return "particles/generic_gameplay/generic_break.vpcf"
-end
-function modifier_tower_incoming_speed:ShouldUseOverheadOffset()
-	return true
-end
-function modifier_tower_incoming_speed:GetEffectAttachType()
-	return PATTACH_OVERHEAD_FOLLOW
 end
 
 modifier_tower_incoming_damage_cd = class({})
@@ -1167,9 +1177,9 @@ function modifier_tower_incoming_timer:OnCreated(table)
 		mod:ClearParticle()
 	end
 
-	self.particle_cast = "particles/huskar_timer.vpcf"
+	self.particle_cast = "particles/huskar/huskar_timer.vpcf"
 	if towers[self.parent:GetTeamNumber()] and towers[self.parent:GetTeamNumber()]:GetUnitName() == "npc_towerdire" then
-		self.particle_cast = "particles/lina_timer.vpcf"
+		self.particle_cast = "particles/lina/lina_timer.vpcf"
 	end
 
 	self.t = -1

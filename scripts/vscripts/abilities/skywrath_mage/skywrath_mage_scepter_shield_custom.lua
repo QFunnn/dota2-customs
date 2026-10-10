@@ -148,7 +148,7 @@ function modifier_skywrath_mage_scepter_shield_custom:OnDestroy()
 		)
 		local mod = target:AddNewModifier(self.parent, self.ability, "modifier_knockback", knockback)
 		if mod then
-			target:GenericParticle("particles/skymage/bolt_slow.vpcf", mod)
+			target:GenericParticle("particles/skywrath/bolt_slow.vpcf", mod)
 		end
 	end
 

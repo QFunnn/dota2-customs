@@ -16,7 +16,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_enigma_midnight_pulse_custom_silence",
 	"abilities/enigma/enigma_midnight_pulse_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_enigma_hero_5"
 )
 LinkLuaModifier(
 	"modifier_enigma_midnight_pulse_custom_move",
@@ -31,12 +32,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_enigma_midnight_pulse_custom_debuff",
 	"abilities/enigma/enigma_midnight_pulse_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 LinkLuaModifier(
 	"modifier_enigma_midnight_pulse_custom_channel",
 	"abilities/enigma/enigma_midnight_pulse_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_enigma_midnight_7"
 )
 LinkLuaModifier(
 	"modifier_enigma_midnight_pulse_custom_can_channel",
@@ -57,7 +60,6 @@ function enigma_midnight_pulse_custom:Precache(context)
 		return
 	end
 	PrecacheResource("particle", "particles/enigma/midnight_pulse.vpcf", context)
-	PrecacheResource("particle", "particles/enigma/midnight_charge.vpcf", context)
 	PrecacheResource("particle", "particles/enigma/malefice_pull_field.vpcf", context)
 	PrecacheResource("particle", "particles/enigma/malefice_pull_caster.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_lone_druid/lone_druid_savage_roar_debuff.vpcf", context)
@@ -67,7 +69,6 @@ function enigma_midnight_pulse_custom:Precache(context)
 		context
 	)
 	PrecacheResource("particle", "particles/enigma/midnight_status.vpcf", context)
-	PrecacheResource("particle", "particles/enigma/midnight_speed_aura.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_dark_seer/dark_seer_surge.vpcf", context)
 	PrecacheResource("particle", "particles/enigma/midnight_speed.vpcf", context)
 	PrecacheResource("particle", "particles/enigma/midnight_pull_target.vpcf", context)
@@ -77,7 +78,7 @@ function enigma_midnight_pulse_custom:Precache(context)
 		context
 	)
 	PrecacheResource("particle", "particles/enigma/summon_heal.vpcf", context)
-	PrecacheResource("particle", "particles/void_astral_slow.vpcf", context)
+	PrecacheResource("particle", "particles/void_spirit/void_astral_slow.vpcf", context)
 end
 
 function enigma_midnight_pulse_custom:UpdateTalents()
@@ -820,7 +821,7 @@ function modifier_enigma_midnight_pulse_custom_silence:OnCreated()
 	end
 	self.parent:EmitSound("Sf.Raze_Silence")
 	self.parent:GenericParticle("particles/generic_gameplay/generic_silenced.vpcf", self, true)
-	self.parent:GenericParticle("particles/void_astral_slow.vpcf", self)
+	self.parent:GenericParticle("particles/void_spirit/void_astral_slow.vpcf", self)
 end
 
 function modifier_enigma_midnight_pulse_custom_silence:CheckState()

@@ -26,12 +26,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_leshrac_lightning_storm_custom_legendary_count",
 	"abilities/leshrac/leshrac_lightning_storm_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_leshrac_storm_7"
 )
 LinkLuaModifier(
 	"modifier_leshrac_lightning_storm_custom_legendary_speed",
 	"abilities/leshrac/leshrac_lightning_storm_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_leshrac_storm_7" }
 )
 LinkLuaModifier(
 	"modifier_leshrac_lightning_storm_custom_tracker",
@@ -41,17 +43,20 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_leshrac_lightning_storm_custom_speed",
 	"abilities/leshrac/leshrac_lightning_storm_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_leshrac_storm_3"
 )
 LinkLuaModifier(
 	"modifier_leshrac_lightning_storm_custom_silence_cd",
 	"abilities/leshrac/leshrac_lightning_storm_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_leshrac_storm_4"
 )
 LinkLuaModifier(
 	"modifier_leshrac_lightning_storm_custom_root",
 	"abilities/leshrac/leshrac_lightning_storm_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_leshrac_storm_7"
 )
 
 leshrac_lightning_storm_custom = class({})
@@ -63,15 +68,14 @@ function leshrac_lightning_storm_custom:Precache(context)
 	end
 
 	PrecacheResource("particle", "particles/leshrac/storm_refresh.vpcf", context)
-	PrecacheResource("particle", "particles/leshrac_storm.vpcf", context)
+	PrecacheResource("particle", "particles/leshrac/leshrac_storm.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_leshrac/leshrac_lightning_bolt.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_leshrac/leshrac_lightning_slow.vpcf", context)
-	PrecacheResource("particle", "particles/lesh_charges.vpcf", context)
+	PrecacheResource("particle", "particles/leshrac/lesh_charges.vpcf", context)
 	PrecacheResource("particle", "particles/leshrac/storm_max.vpcf", context)
 	PrecacheResource("particle", "particles/items3_fx/octarine_core_lifesteal.vpcf", context)
-	PrecacheResource("particle", "particles/leshrac_stack.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_mjollnir_shield.vpcf", context)
-	PrecacheResource("particle", "particles/ta_shield_roots.vpcf", context)
+	PrecacheResource("particle", "particles/templar_assassin/ta_shield_roots.vpcf", context)
 end
 
 function leshrac_lightning_storm_custom:UpdateTalents(name)
@@ -426,7 +430,7 @@ function modifier_leshrac_lightning_storm_custom_legendary:OnCreated(table)
 	EmitSoundOnLocationWithCaster(self.origin, "Leshrac.Storm_legendary_start", self.caster)
 
 	self.particle =
-		ParticleManager:CreateParticle("particles/leshrac_storm.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
+		ParticleManager:CreateParticle("particles/leshrac/leshrac_storm.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
 	ParticleManager:SetParticleControl(self.particle, 0, self.origin)
 	ParticleManager:SetParticleControl(self.particle, 1, Vector(self.radius, 0, 0))
 	self:AddParticle(self.particle, false, false, -1, false, false)
@@ -525,7 +529,7 @@ function modifier_leshrac_lightning_storm_custom_legendary_count:OnCreated(table
 
 	self.max = self.ability.talents.e7_max
 	self.visual_max = self.ability.talents.e7_visual_max
-	self.particle = self.parent:GenericParticle("particles/lesh_charges.vpcf", self, true)
+	self.particle = self.parent:GenericParticle("particles/leshrac/lesh_charges.vpcf", self, true)
 	self:OnRefresh()
 end
 
@@ -655,7 +659,7 @@ function modifier_leshrac_lightning_storm_custom_tracker:UpdateUI()
 		end
 	else
 		if not self.particle then
-			self.particle = self.parent:GenericParticle("particles/lesh_charges.vpcf", self, true)
+			self.particle = self.parent:GenericParticle("particles/leshrac/lesh_charges.vpcf", self, true)
 			for i = 1, self.ability.talents.e7_visual_max do
 				ParticleManager:SetParticleControl(self.particle, i, Vector(0, 0, 0))
 			end
@@ -893,7 +897,7 @@ function modifier_leshrac_lightning_storm_custom_root:OnCreated()
 	if not IsServer() then
 		return
 	end
-	self.parent:GenericParticle("particles/ta_shield_roots.vpcf", self)
+	self.parent:GenericParticle("particles/templar_assassin/ta_shield_roots.vpcf", self)
 end
 
 function modifier_leshrac_lightning_storm_custom_root:CheckState()

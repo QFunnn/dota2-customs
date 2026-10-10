@@ -21,12 +21,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_morphling_waveform_custom_legendary",
 	"abilities/morphling/morphling_waveform_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_morphling_wave_7"
 )
 LinkLuaModifier(
 	"modifier_morphling_waveform_custom_legendary_effect",
 	"abilities/morphling/morphling_waveform_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_morphling_wave_7" }
 )
 LinkLuaModifier(
 	"modifier_morphling_waveform_custom_trail_thinker",
@@ -41,12 +43,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_morphling_waveform_custom_magic_reduce",
 	"abilities/morphling/morphling_waveform_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_morphling_wave_3"
 )
 LinkLuaModifier(
 	"modifier_morphling_waveform_custom_bonus",
 	"abilities/morphling/morphling_waveform_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_morphling_wave_4"
 )
 LinkLuaModifier(
 	"modifier_morphling_waveform_custom_silence_cd",
@@ -56,7 +60,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_morphling_waveform_custom_silence",
 	"abilities/morphling/morphling_waveform_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_morphling_hero_4"
 )
 
 morphling_waveform_custom = class({})
@@ -73,7 +78,6 @@ function morphling_waveform_custom:Precache(context)
 	PrecacheResource("particle", "particles/morphling/wave_trail_effect.vpcf", context)
 	PrecacheResource("particle", "particles/morphling/wave_health_reduce.vpcf", context)
 	PrecacheResource("particle", "particles/econ/items/slardar/slardar_back_ti9/slardar_back_ti9_sprint.vpcf", context)
-	PrecacheResource("particle", "particles/morphling/waveform_target.vpcf", context)
 	PrecacheResource("particle", "particles/tinker/laser_mark.vpcf", context)
 	PrecacheResource("particle", "particles/morphling/wave_health_reducea.vpcf", context)
 	dota1x6:PrecacheShopItems("npc_dota_hero_morphling", context)
@@ -488,7 +492,7 @@ function modifier_morphling_waveform_custom_tracker:SpellEvent(params)
 	end
 
 	if self.ability.talents.has_q4 == 1 and not params.ability:IsItem() then
-		self.parent:CdItems(self.ability.talents.q4_cd_items)
+		self.parent:CdItems(self.ability.talents.q4_cd_items, "modifier_morphling_wave_4")
 	end
 end
 
@@ -517,7 +521,7 @@ function modifier_morphling_waveform_custom_tracker:OnIntervalThink()
 		local cd = self.ability:GetEffectiveCooldown(self.ability:GetLevel())
 		local delta = math.floor(final / self.ability.talents.q7_distance)
 		for i = 1, delta do
-			self.parent:CdAbility(self.ability, cd * self.ability.talents.q7_cd_inc)
+			self.parent:CdAbility(self.ability, cd * self.ability.talents.q7_cd_inc, nil, "modifier_morphling_wave_7")
 		end
 		self.distance = final - delta * self.ability.talents.q7_distance
 	else

@@ -26,7 +26,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_broodmother_innate_custom_magic",
 	"abilities/broodmother/broodmother_innate_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_broodmother_spawn_3", "modifier_broodmother_web_3" }
 )
 
 broodmother_innate_custom = class({})
@@ -224,7 +225,7 @@ function broodmother_innate_custom:DealDamage(target, damage_ability)
 	target:GenericParticle("particles/broodmother/innate_proc.vpcf")
 
 	if self.talents.has_r4 == 1 and (not damage_ability or target:IsRealHero()) then
-		self.caster:CdItems(self.talents.r4_cd_items)
+		self.caster:CdItems(self.talents.r4_cd_items, "modifier_broodmother_spawn_4")
 	end
 
 	local cast_effect = ParticleManager:CreateParticle(
@@ -492,7 +493,9 @@ function modifier_broodmother_innate_custom:AttackEvent_out(params)
 		self.parent:CdAbility(
 			self.parent.spawn_ability,
 			self.parent.spawn_ability:GetEffectiveCooldown(self.parent.spawn_ability:GetLevel())
-				* self.ability.talents.r7_cd
+				* self.ability.talents.r7_cd,
+			nil,
+			"modifier_broodmother_spawn_7"
 		)
 	end
 

@@ -42,7 +42,6 @@ function item_alchemist_gold_shiva:Precache(context)
 	PrecacheResource("particle", "particles/alchemist/gold_shiva.vpcf", context)
 	PrecacheResource("particle", "particles/econ/events/ti10/shivas_guard_ti10_impact.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_crystalmaiden/maiden_frostbite_buff.vpcf", context)
-	PrecacheResource("particle", "particles/veil_of_corr_debuff.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_frost_lich.vpcf", context)
 end
 

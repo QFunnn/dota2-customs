@@ -73,7 +73,7 @@ function skywrath_mage_ancient_seal_custom:Precache(context)
 		return
 	end
 	PrecacheResource("particle", "particles/enigma/midnight_pulse.vpcf", context)
-	PrecacheResource("particle", "particles/skymage/bolt_slow.vpcf", context)
+	PrecacheResource("particle", "particles/skywrath/bolt_slow.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/units/heroes/hero_skywrath_mage/skywrath_mage_ancient_seal_debuff.vpcf",
@@ -238,7 +238,7 @@ function modifier_skywrath_mage_ancient_seal_custom_silence:OnCreated()
 	end
 
 	if self.caster:HasTalent("modifier_sky_seal_6") then
-		self.parent:GenericParticle("particles/skymage/bolt_slow.vpcf", self)
+		self.parent:GenericParticle("particles/skywrath/bolt_slow.vpcf", self)
 	end
 
 	local silence_fx = wearables_system:GetParticleReplacementAbility(

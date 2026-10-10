@@ -17,7 +17,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_enigma_innate_custom_bonus_effect",
 	"abilities/enigma/enigma_innate_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_enigma_hero_4"
 )
 LinkLuaModifier(
 	"modifier_enigma_innate_custom_bonus_cd",
@@ -27,7 +28,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_enigma_innate_custom_scepter_stats",
 	"abilities/enigma/enigma_innate_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "Scepter" }
 )
 
 enigma_innate_custom = class({})

@@ -16,12 +16,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_night_stalker_darkness_custom_active",
 	"abilities/night_stalker/night_stalker_darkness_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 LinkLuaModifier(
 	"modifier_night_stalker_darkness_custom_armor",
 	"abilities/night_stalker/night_stalker_darkness_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_stalker_dark_3"
 )
 LinkLuaModifier(
 	"modifier_night_stalker_darkness_custom_vision",
@@ -46,22 +48,26 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_night_stalker_darkness_custom_burn_cd",
 	"abilities/night_stalker/night_stalker_darkness_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_stalker_dark_1"
 )
 LinkLuaModifier(
 	"modifier_night_stalker_darkness_custom_bkb_cd",
 	"abilities/night_stalker/night_stalker_darkness_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_stalker_dark_4"
 )
 LinkLuaModifier(
 	"modifier_night_stalker_darkness_custom_blind_cd",
 	"abilities/night_stalker/night_stalker_darkness_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_stalker_hero_5" }
 )
 LinkLuaModifier(
 	"modifier_night_stalker_darkness_custom_blind_flight",
 	"abilities/night_stalker/night_stalker_darkness_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_stalker_hero_5"
 )
 LinkLuaModifier(
 	"modifier_night_stalker_darkness_custom_blind_status",

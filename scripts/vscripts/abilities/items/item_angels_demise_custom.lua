@@ -34,8 +34,8 @@ function item_angels_demise_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
 	end
-	PrecacheResource("particle", "particles/empyreal_lens_target.vpcf", context)
-	PrecacheResource("particle", "particles/empyreal_lens.vpcf", context)
+	PrecacheResource("particle", "particles/enigma/empyreal_lens_target.vpcf", context)
+	PrecacheResource("particle", "particles/enigma/empyreal_lens.vpcf", context)
 	PrecacheResource("particle", "particles/items/khanda_active.vpcf", context)
 	PrecacheResource("particle", "particles/items/khanda_proc.vpcf", context)
 	PrecacheResource("particle", "particles/items_fx/phylactery.vpcf", context)

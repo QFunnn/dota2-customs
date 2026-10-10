@@ -11,7 +11,8 @@
 LinkLuaModifier(
 	"modifier_abaddon_aphotic_shield_custom",
 	"abilities/abaddon/abaddon_aphotic_shield_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 LinkLuaModifier(
 	"modifier_abaddon_aphotic_shield_custom_legendary_effect",
@@ -21,7 +22,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_abaddon_aphotic_shield_custom_legendary_magic",
 	"abilities/abaddon/abaddon_aphotic_shield_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_abaddon_aphotic_7"
 )
 LinkLuaModifier(
 	"modifier_abaddon_aphotic_shield_custom_blink",
@@ -36,17 +38,20 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_abaddon_aphotic_shield_custom_immune",
 	"abilities/abaddon/abaddon_aphotic_shield_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_abaddon_aphotic_7"
 )
 LinkLuaModifier(
 	"modifier_abaddon_aphotic_shield_custom_str_stack",
 	"abilities/abaddon/abaddon_aphotic_shield_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_abaddon_aphotic_4"
 )
 LinkLuaModifier(
 	"modifier_abaddon_aphotic_shield_custom_burn",
 	"abilities/abaddon/abaddon_aphotic_shield_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_abaddon_aphotic_3"
 )
 
 abaddon_aphotic_shield_custom = class({})
@@ -68,7 +73,7 @@ function abaddon_aphotic_shield_custom:Precache(context)
 	)
 	PrecacheResource("particle", "particles/abaddon/shield_legendary_target.vpcf", context)
 	PrecacheResource("particle", "particles/abaddon/shield_blink.vpcf", context)
-	PrecacheResource("particle", "particles/maiden_shield_active.vpcf", context)
+	PrecacheResource("particle", "particles/crystal_maiden/maiden_shield_active.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_terrorblade/terrorblade_reflection_slow.vpcf", context)
 	PrecacheResource("particle", "particles/abaddon/shield_immune.vpcf", context)
 	PrecacheResource("particle", "particles/abaddon/shield_buff.vpcf", context)

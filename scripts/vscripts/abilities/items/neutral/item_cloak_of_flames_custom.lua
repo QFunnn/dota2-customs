@@ -26,7 +26,6 @@ function item_cloak_of_flames_custom:Precache(context)
 		return
 	end
 	PrecacheResource("particle", "particles/items/pyrrhic_cloak_custom.vpcf", context)
-	PrecacheResource("particle", "particles/items/shield_overhead.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/units/heroes/hero_brewmaster/brewmaster_fire_immolation_child.vpcf",

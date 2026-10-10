@@ -29,7 +29,7 @@ function npc_muerta_ogre_hit:Precache(context)
 	PrecacheResource("particle", "particles/act_2/ogre_seal_suprise.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_snapfire/hero_snapfire_shotgun_debuff.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_snapfire_slow.vpcf", context)
-	PrecacheResource("particle", "particles/red_zone.vpcf", context)
+	PrecacheResource("particle", "particles/muerta/red_zone.vpcf", context)
 end
 
 function npc_muerta_ogre_hit:Spawn()
@@ -170,7 +170,8 @@ function npc_muerta_ogre_jump:OnAbilityPhaseStart()
 		self.caster
 	)
 
-	self.effect_cast = ParticleManager:CreateParticle("particles/red_zone.vpcf", PATTACH_CUSTOMORIGIN, self.caster)
+	self.effect_cast =
+		ParticleManager:CreateParticle("particles/muerta/red_zone.vpcf", PATTACH_CUSTOMORIGIN, self.caster)
 	ParticleManager:SetParticleControl(self.effect_cast, 0, self.caster:GetOrigin())
 	ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(self.radius, 0, -self.radius))
 	ParticleManager:SetParticleControl(self.effect_cast, 2, Vector(1, 0, 0))

@@ -30,7 +30,7 @@ function item_orb_of_corrosion_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
 	end
-	PrecacheResource("particle", "particles/corrosion_custom.vpcf", context)
+	PrecacheResource("particle", "particles/items/corrosion_custom.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_poison_dazzle.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_dazzle/dazzle_poison_debuff.vpcf", context)
 end
@@ -62,7 +62,7 @@ function item_orb_of_corrosion_custom:OnSpellStart()
 		Target = self:GetCursorTarget(),
 		Source = self:GetCaster(),
 		Ability = self,
-		EffectName = "particles/corrosion_custom.vpcf",
+		EffectName = "particles/items/corrosion_custom.vpcf",
 		iMoveSpeed = 900,
 		bReplaceExisting = false,
 		bProvidesVision = true,

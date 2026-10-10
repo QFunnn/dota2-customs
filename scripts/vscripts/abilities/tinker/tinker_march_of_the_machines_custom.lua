@@ -21,12 +21,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_tinker_march_of_the_machines_custom_legendary_stack",
 	"abilities/tinker/tinker_march_of_the_machines_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_tinker_march_7"
 )
 LinkLuaModifier(
 	"modifier_tinker_march_of_the_machines_custom_slow",
 	"abilities/tinker/tinker_march_of_the_machines_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_tinker_matrix_2"
 )
 LinkLuaModifier(
 	"modifier_tinker_march_of_the_machines_custom_active",
@@ -36,7 +38,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_tinker_march_of_the_machines_custom_legendary_cd",
 	"abilities/tinker/tinker_march_of_the_machines_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_tinker_march_7" }
 )
 LinkLuaModifier(
 	"modifier_tinker_march_of_the_machines_custom_legendary_armor",
@@ -66,12 +69,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_tinker_march_of_the_machines_custom_armor",
 	"abilities/tinker/tinker_march_of_the_machines_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_tinker_march_1"
 )
 LinkLuaModifier(
 	"modifier_tinker_march_of_the_machines_custom_stats",
 	"abilities/tinker/tinker_march_of_the_machines_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_tinker_matrix_3"
 )
 
 tinker_march_of_the_machines_custom = class({})
@@ -85,7 +90,6 @@ function tinker_march_of_the_machines_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_tinker/tinker_motm.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_tinker/tinker_machine.vpcf", context)
 	PrecacheResource("particle", "particles/tinker/march_legendary_stack.vpcf", context)
-	PrecacheResource("particle", "particles/tinker/march_legendary_robot.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_techies/techies_land_mine_explode.vpcf", context)
 	PrecacheResource("particle", "particles/tinker/scepter_proc.vpcf", context)
 	PrecacheResource("particle", "particles/econ/events/ti10/phase_boots_ti10.vpcf", context)

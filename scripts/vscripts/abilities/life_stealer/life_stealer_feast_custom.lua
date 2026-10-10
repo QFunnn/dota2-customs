@@ -11,17 +11,20 @@
 LinkLuaModifier(
 	"modifier_life_stealer_feast_custom_tracker",
 	"abilities/life_stealer/life_stealer_feast_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "Scepter" }
 )
 LinkLuaModifier(
 	"modifier_life_stealer_feast_custom_legendary_poison",
 	"abilities/life_stealer/life_stealer_feast_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_lifestealer_ghoul_7"
 )
 LinkLuaModifier(
 	"modifier_life_stealer_feast_custom_active",
 	"abilities/life_stealer/life_stealer_feast_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_lifestealer_ghoul_7"
 )
 LinkLuaModifier(
 	"modifier_life_stealer_feast_custom_double",
@@ -36,7 +39,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_life_stealer_feast_custom_double_chance",
 	"abilities/life_stealer/life_stealer_feast_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_lifestealer_ghoul_3"
 )
 LinkLuaModifier(
 	"modifier_life_stealer_feast_custom_double_slow",
@@ -46,17 +50,20 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_life_stealer_feast_custom_speed_bonus",
 	"abilities/life_stealer/life_stealer_feast_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_lifestealer_ghoul_1"
 )
 LinkLuaModifier(
 	"modifier_life_stealer_feast_custom_slow",
 	"abilities/life_stealer/life_stealer_feast_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_lifestealer_hero_3"
 )
 LinkLuaModifier(
 	"modifier_life_stealer_feast_custom_damage_reduce",
 	"abilities/life_stealer/life_stealer_feast_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_lifestealer_ghoul_4"
 )
 LinkLuaModifier(
 	"modifier_life_stealer_feast_custom_scepter_unit",
@@ -101,7 +108,7 @@ function life_stealer_feast_custom:Precache(context)
 	PrecacheResource("particle", "particles/lifestealer/rage_legendary_attack.vpcf", context)
 	PrecacheResource("particle", "particles/lifestealer/rage_legendary_attack_2.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_life_stealer/life_stealer_health_steal.vpcf", context)
-	PrecacheResource("particle", "particles/brist_lowhp_.vpcf", context)
+	PrecacheResource("particle", "particles/bristleback/brist_lowhp_.vpcf", context)
 	PrecacheResource("particle", "particles/lifestealer/scepter_blood.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_bloodseeker/bloodseeker_bloodbath.vpcf", context)
 	PrecacheResource("particle", "particles/sand_king/sandking_caustic_finale_explode_custom.vpcf", context)
@@ -611,7 +618,7 @@ function modifier_life_stealer_feast_custom_tracker:AddStack()
 	ParticleManager:Delete(effect)
 
 	if self:GetStackCount() >= self.ability.scepter_max then
-		self.parent:GenericParticle("particles/brist_lowhp_.vpcf")
+		self.parent:GenericParticle("particles/bristleback/brist_lowhp_.vpcf")
 		self.parent:EmitSound("BS.Thirst_legendary_active")
 	end
 end

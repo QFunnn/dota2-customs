@@ -8,11 +8,17 @@
 ]]
 
 
-LinkLuaModifier("modifier_centaur_innate_custom", "abilities/centaur/centaur_innate_custom", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier(
+	"modifier_centaur_innate_custom",
+	"abilities/centaur/centaur_innate_custom",
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "Scepter" }
+)
 LinkLuaModifier(
 	"modifier_centaur_innate_custom_shield_cd",
 	"abilities/centaur/centaur_innate_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_centaur_edge_4"
 )
 
 centaur_innate_custom = class({})

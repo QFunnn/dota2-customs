@@ -320,6 +320,8 @@ function modifier_event_thinker:OnModifierAdded(params)
 	if IsValid(unit.modifier_hero_wearables_system) then
 		unit.modifier_hero_wearables_system:AddModifier(mod)
 	end
+
+	match_log:Call("Added", unit, mod)
 end
 
 function modifier_event_thinker:OnAttackFail(params)
@@ -331,6 +333,11 @@ function modifier_event_thinker:OnAttackFail(params)
 	local attacker = params.attacker
 	if not attacker or not target then
 		return
+	end
+
+	local owner = attacker:FindOwner()
+	if players[owner:GetId()] == owner then
+		match_log:Call("Attack", owner, attacker, target, false)
 	end
 
 	if attacker.attack_fail_mods_out then
@@ -571,6 +578,9 @@ function modifier_event_thinker:OnAbilityExecuted(params)
 	if not IsValid(caster, ability) then
 		return
 	end
+
+	match_log:Call("Cast", caster, ability, target)
+
 	if ability:IsToggle() then
 		return
 	end
@@ -892,6 +902,11 @@ function modifier_event_thinker:OnAttackLanded(params)
 		return
 	end
 
+	local owner = attacker:FindOwner()
+	if players[owner:GetId()] == owner then
+		match_log:Call("Attack", owner, attacker, target, true)
+	end
+
 	if attacker.attack_flag then
 		params.attack_flag = attacker.attack_flag
 		attacker.attack_flag = nil
@@ -1046,6 +1061,8 @@ function modifier_event_thinker:HealingTableCount(unit, healing, new_name, infli
 	if not ability_name then
 		return
 	end
+
+	match_log:Call("Heal", unit_table, ability_name, healing, healing_type)
 
 	local time = GameRules:GetDOTATime(false, false)
 	if not unit_table.temp_damage_stat["healing"] then
@@ -1299,6 +1316,10 @@ function modifier_event_thinker:CheckDamageData(params)
 	local attacker = params.attacker
 	local damage = math.floor(params.damage)
 
+	if towers[attacker:GetTeamNumber()] == attacker then
+		match_log:Call("Tower", attacker, unit, params.damage)
+	end
+
 	if
 		damage <= 0
 		or not unit:IsRealHero()
@@ -1377,6 +1398,8 @@ function modifier_event_thinker:DamageTableCount(params, new_name, override_atta
 	if new_name then
 		ability_name = new_name
 	end
+
+	match_log:Call("Damage", attacker_table, target_table, ability_name, damage)
 
 	local time = GameRules:GetDOTATime(false, false)
 

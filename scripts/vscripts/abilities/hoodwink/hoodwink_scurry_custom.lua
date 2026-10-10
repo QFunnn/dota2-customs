@@ -21,7 +21,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_hoodwink_scurry_custom_legendary",
 	"abilities/hoodwink/hoodwink_scurry_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_hoodwink_scurry_7"
 )
 LinkLuaModifier(
 	"modifier_hoodwink_scurry_custom_cd",
@@ -31,7 +32,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_hoodwink_scurry_custom_speed",
 	"abilities/hoodwink/hoodwink_scurry_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_hoodwink_scurry_1"
 )
 LinkLuaModifier(
 	"modifier_hoodwink_scurry_custom_attacks",
@@ -59,11 +61,10 @@ function hoodwink_scurry_custom:Precache(context)
 	PrecacheResource("particle", "particles/items3_fx/blink_swift_start.vpcf", context)
 	PrecacheResource("particle", "particles/items3_fx/blink_swift_end.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_hoodwink/hoodwink_scurry_passive.vpcf", context)
-	PrecacheResource("particle", "particles/hood_charge.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_hoodwink/hoodwink_scurry_aura.vpcf", context)
-	PrecacheResource("particle", "particles/hoodwink_head.vpcf", context)
+	PrecacheResource("particle", "particles/hoodwink/hoodwink_head.vpcf", context)
 	PrecacheResource("particle", "particles/hoodwink/scurry_proj.vpcf", context)
-	PrecacheResource("particle", "particles/hoodwink_ground.vpcf", context)
+	PrecacheResource("particle", "particles/hoodwink/hoodwink_ground.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_sniper/sniper_headshot_slow.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_hoodwink/hoodwink_acorn_shot_slow.vpcf", context)
 	PrecacheResource("particle", "particles/hoodwink/scurry_shield.vpcf", context)
@@ -447,7 +448,7 @@ function modifier_hoodwink_scurry_custom_legendary:OnCreated(table)
 
 	self.parent:EmitSound("Hoodwink.Scurry_legendary")
 	self.head_particle =
-		ParticleManager:CreateParticle("particles/hoodwink_head.vpcf", PATTACH_CUSTOMORIGIN, self.parent)
+		ParticleManager:CreateParticle("particles/hoodwink/hoodwink_head.vpcf", PATTACH_CUSTOMORIGIN, self.parent)
 	ParticleManager:SetParticleControlEnt(
 		self.head_particle,
 		0,
@@ -478,7 +479,7 @@ function modifier_hoodwink_scurry_custom_legendary:OnCreated(table)
 	self:AddParticle(self.head_particle, false, false, -1, true, false)
 
 	self.ground_particle =
-		ParticleManager:CreateParticle("particles/hoodwink_ground.vpcf", PATTACH_CUSTOMORIGIN, self.parent)
+		ParticleManager:CreateParticle("particles/hoodwink/hoodwink_ground.vpcf", PATTACH_CUSTOMORIGIN, self.parent)
 	ParticleManager:SetParticleControlEnt(
 		self.ground_particle,
 		0,

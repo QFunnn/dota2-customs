@@ -11,7 +11,8 @@
 LinkLuaModifier(
 	"modifier_antimage_mana_void_custom_legendary",
 	"abilities/antimage/antimage_mana_overload_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "Scepter" }
 )
 LinkLuaModifier(
 	"modifier_antimage_mana_void_custom_anim",
@@ -25,8 +26,8 @@ function antimage_spell_seal_custom:Precache(context)
 		return
 	end
 
-	PrecacheResource("particle", "particles/am_cast.vpcf", context)
-	PrecacheResource("particle", "particles/am_mana_mark.vpcf", context)
+	PrecacheResource("particle", "particles/antimage/am_cast.vpcf", context)
+	PrecacheResource("particle", "particles/antimage/am_mana_mark.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/econ/items/antimage/antimage_weapon_basher_ti5/antimage_manavoid_ti_5.vpcf",
@@ -73,7 +74,7 @@ function antimage_spell_seal_custom:OnSpellStart()
 		return
 	end
 
-	local leakCast = ParticleManager:CreateParticle("particles/am_cast.vpcf", PATTACH_POINT_FOLLOW, target)
+	local leakCast = ParticleManager:CreateParticle("particles/antimage/am_cast.vpcf", PATTACH_POINT_FOLLOW, target)
 	ParticleManager:SetParticleControlEnt(
 		leakCast,
 		0,
@@ -104,7 +105,7 @@ end
 
 modifier_antimage_mana_void_custom_legendary = class(mod_hidden)
 function modifier_antimage_mana_void_custom_legendary:GetEffectName()
-	return "particles/am_mana_mark.vpcf"
+	return "particles/antimage/am_mana_mark.vpcf"
 end
 function modifier_antimage_mana_void_custom_legendary:GetEffectAttachType()
 	return PATTACH_OVERHEAD_FOLLOW

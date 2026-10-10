@@ -9,9 +9,24 @@
 
 
 LinkLuaModifier("modifier_slark_innate_custom", "abilities/slark/slark_innate_custom", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_slark_innate_custom_caster", "abilities/slark/slark_innate_custom", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_slark_innate_custom_target", "abilities/slark/slark_innate_custom", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_slark_innate_custom_perma", "abilities/slark/slark_innate_custom", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier(
+	"modifier_slark_innate_custom_caster",
+	"abilities/slark/slark_innate_custom",
+	LUA_MODIFIER_MOTION_NONE,
+	true
+)
+LinkLuaModifier(
+	"modifier_slark_innate_custom_target",
+	"abilities/slark/slark_innate_custom",
+	LUA_MODIFIER_MOTION_NONE,
+	true
+)
+LinkLuaModifier(
+	"modifier_slark_innate_custom_perma",
+	"abilities/slark/slark_innate_custom",
+	LUA_MODIFIER_MOTION_NONE,
+	false
+)
 LinkLuaModifier("modifier_slark_innate_custom_double", "abilities/slark/slark_innate_custom", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier(
 	"modifier_slark_innate_custom_double_attack",
@@ -21,7 +36,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_slark_innate_custom_double_cd",
 	"abilities/slark/slark_innate_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_slark_essence_3"
 )
 LinkLuaModifier(
 	"modifier_slark_innate_custom_double_slow",
@@ -31,9 +47,15 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_slark_innate_custom_silence_cd",
 	"abilities/slark/slark_innate_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_slark_essence_4"
 )
-LinkLuaModifier("modifier_slark_innate_custom_burn", "abilities/slark/slark_innate_custom", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier(
+	"modifier_slark_innate_custom_burn",
+	"abilities/slark/slark_innate_custom",
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_slark_dance_3"
+)
 
 slark_innate_custom = class({})
 slark_innate_custom.talents = {}

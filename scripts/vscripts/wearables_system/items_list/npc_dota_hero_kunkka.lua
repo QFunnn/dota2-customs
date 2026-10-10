@@ -376,7 +376,7 @@ return {
 			["sound_replace"] = {},
 			["particles_abilities"] = {
 				["default"] = {
-					["particles/units/heroes/hero_kunkka/kunkka_weapon_tidebringer.vpcf"] = "particles/kunkka_weapons/sword_of_the_seventy_seven_seas.vpcf",
+					["particles/units/heroes/hero_kunkka/kunkka_weapon_tidebringer.vpcf"] = "particles/kunkka/sword_of_the_seventy_seven_seas.vpcf",
 				},
 			},
 		},
@@ -529,7 +529,7 @@ return {
 			["sound_replace"] = {},
 			["particles_abilities"] = {
 				["default"] = {
-					["particles/units/heroes/hero_kunkka/kunkka_weapon_tidebringer.vpcf"] = "particles/kunkka_weapons/commodores_kraken_slayer.vpcf",
+					["particles/units/heroes/hero_kunkka/kunkka_weapon_tidebringer.vpcf"] = "particles/kunkka/commodores_kraken_slayer.vpcf",
 				},
 			},
 		},
@@ -845,7 +845,7 @@ return {
 			["sound_replace"] = {},
 			["particles_abilities"] = {
 				["default"] = {
-					["particles/units/heroes/hero_kunkka/kunkka_weapon_tidebringer.vpcf"] = "particles/kunkka_weapons/claddish_voyagers_true_north.vpcf",
+					["particles/units/heroes/hero_kunkka/kunkka_weapon_tidebringer.vpcf"] = "particles/kunkka/claddish_voyagers_true_north.vpcf",
 				},
 			},
 		},
@@ -1009,7 +1009,7 @@ return {
 			["sound_replace"] = {},
 			["particles_abilities"] = {
 				["default"] = {
-					["particles/units/heroes/hero_kunkka/kunkka_weapon_tidebringer.vpcf"] = "particles/kunkka_weapons/compass_edge_of_the_voyager.vpcf",
+					["particles/units/heroes/hero_kunkka/kunkka_weapon_tidebringer.vpcf"] = "particles/kunkka/compass_edge_of_the_voyager.vpcf",
 				},
 			},
 		},
@@ -1236,7 +1236,7 @@ return {
 			["sound_replace"] = {},
 			["particles_abilities"] = {
 				["default"] = {
-					["particles/units/heroes/hero_kunkka/kunkka_weapon_tidebringer.vpcf"] = "particles/kunkka_weapons/cannonade.vpcf",
+					["particles/units/heroes/hero_kunkka/kunkka_weapon_tidebringer.vpcf"] = "particles/kunkka/cannonade.vpcf",
 				},
 			},
 		},
@@ -1433,7 +1433,7 @@ return {
 			["sound_replace"] = {},
 			["particles_abilities"] = {
 				["default"] = {
-					["particles/units/heroes/hero_kunkka/kunkka_weapon_tidebringer.vpcf"] = "particles/kunkka_weapons/neptunian_sabre.vpcf",
+					["particles/units/heroes/hero_kunkka/kunkka_weapon_tidebringer.vpcf"] = "particles/kunkka/neptunian_sabre.vpcf",
 				},
 			},
 		},
@@ -1513,7 +1513,7 @@ return {
 			["sound_replace"] = {},
 			["particles_abilities"] = {
 				["default"] = {
-					["particles/units/heroes/hero_kunkka/kunkka_weapon_tidebringer.vpcf"] = "particles/kunkka_weapons/tsunami_blade.vpcf",
+					["particles/units/heroes/hero_kunkka/kunkka_weapon_tidebringer.vpcf"] = "particles/kunkka/tsunami_blade.vpcf",
 				},
 			},
 		},
@@ -1631,7 +1631,7 @@ return {
 			["sound_replace"] = {},
 			["particles_abilities"] = {
 				["default"] = {
-					["particles/units/heroes/hero_kunkka/kunkka_weapon_tidebringer.vpcf"] = "particles/kunkka_weapons/krakenbringer.vpcf",
+					["particles/units/heroes/hero_kunkka/kunkka_weapon_tidebringer.vpcf"] = "particles/kunkka/krakenbringer.vpcf",
 				},
 			},
 		},
@@ -1749,7 +1749,7 @@ return {
 			["sound_replace"] = {},
 			["particles_abilities"] = {
 				["default"] = {
-					["particles/units/heroes/hero_kunkka/kunkka_weapon_tidebringer.vpcf"] = "particles/kunkka_weapons/cutlass_of_the_renegade.vpcf",
+					["particles/units/heroes/hero_kunkka/kunkka_weapon_tidebringer.vpcf"] = "particles/kunkka/cutlass_of_the_renegade.vpcf",
 				},
 			},
 		},
@@ -1971,7 +1971,7 @@ return {
 			["particles_abilities"] = {
 				["default"] = {
 					["particles/units/heroes/hero_kunkka/kunkka_spell_tidebringer.vpcf"] = "particles/econ/items/kunkka/kunkka_weapon_gunsword/kunkka_spell_tidebringer_gun.vpcf",
-					["particles/units/heroes/hero_kunkka/kunkka_weapon_tidebringer.vpcf"] = "particles/kunkka_weapons/inverse_bayonet.vpcf",
+					["particles/units/heroes/hero_kunkka/kunkka_weapon_tidebringer.vpcf"] = "particles/kunkka/inverse_bayonet.vpcf",
 				},
 			},
 		},
@@ -2296,7 +2296,7 @@ return {
 			["sound_replace"] = {},
 			["particles_abilities"] = {
 				["default"] = {
-					["particles/units/heroes/hero_kunkka/kunkka_weapon_tidebringer.vpcf"] = "particles/kunkka_weapons/sword_of_the_witch_hunter_templar.vpcf",
+					["particles/units/heroes/hero_kunkka/kunkka_weapon_tidebringer.vpcf"] = "particles/kunkka/sword_of_the_witch_hunter_templar.vpcf",
 				},
 			},
 		},
@@ -2480,7 +2480,7 @@ return {
 			["sound_replace"] = {},
 			["particles_abilities"] = {
 				["default"] = {
-					["particles/units/heroes/hero_kunkka/kunkka_weapon_tidebringer.vpcf"] = "particles/kunkka_weapons/grand_sword_of_the_witch_hunter_templar.vpcf",
+					["particles/units/heroes/hero_kunkka/kunkka_weapon_tidebringer.vpcf"] = "particles/kunkka/grand_sword_of_the_witch_hunter_templar.vpcf",
 				},
 			},
 		},
@@ -2626,7 +2626,7 @@ return {
 			["sound_replace"] = {},
 			["particles_abilities"] = {
 				["default"] = {
-					["particles/units/heroes/hero_kunkka/kunkka_weapon_tidebringer.vpcf"] = "particles/kunkka_weapons/ghost_blade_of_seaborne_reprisal.vpcf",
+					["particles/units/heroes/hero_kunkka/kunkka_weapon_tidebringer.vpcf"] = "particles/kunkka/ghost_blade_of_seaborne_reprisal.vpcf",
 				},
 			},
 		},
@@ -2788,7 +2788,7 @@ return {
 			["sound_replace"] = {},
 			["particles_abilities"] = {
 				["default"] = {
-					["particles/units/heroes/hero_kunkka/kunkka_weapon_tidebringer.vpcf"] = "particles/kunkka_weapons/viking_sailor_weapon.vpcf",
+					["particles/units/heroes/hero_kunkka/kunkka_weapon_tidebringer.vpcf"] = "particles/kunkka/viking_sailor_weapon.vpcf",
 				},
 			},
 		},
@@ -3083,7 +3083,7 @@ return {
 			["sound_replace"] = {},
 			["particles_abilities"] = {
 				["default"] = {
-					["particles/units/heroes/hero_kunkka/kunkka_weapon_tidebringer.vpcf"] = "particles/kunkka_weapons/blade_of_the_pack_ice_privateer.vpcf",
+					["particles/units/heroes/hero_kunkka/kunkka_weapon_tidebringer.vpcf"] = "particles/kunkka/blade_of_the_pack_ice_privateer.vpcf",
 				},
 			},
 		},
@@ -3201,7 +3201,7 @@ return {
 			["sound_replace"] = {},
 			["particles_abilities"] = {
 				["default"] = {
-					["particles/units/heroes/hero_kunkka/kunkka_weapon_tidebringer.vpcf"] = "particles/kunkka_weapons/winds_of_conquest_blade.vpcf",
+					["particles/units/heroes/hero_kunkka/kunkka_weapon_tidebringer.vpcf"] = "particles/kunkka/winds_of_conquest_blade.vpcf",
 				},
 			},
 		},
@@ -3385,7 +3385,7 @@ return {
 			["sound_replace"] = {},
 			["particles_abilities"] = {
 				["default"] = {
-					["particles/units/heroes/hero_kunkka/kunkka_weapon_tidebringer.vpcf"] = "particles/kunkka_weapons/sword_of_the_brine_lords.vpcf",
+					["particles/units/heroes/hero_kunkka/kunkka_weapon_tidebringer.vpcf"] = "particles/kunkka/sword_of_the_brine_lords.vpcf",
 				},
 			},
 		},
@@ -3749,7 +3749,7 @@ return {
 			["sound_replace"] = {},
 			["particles_abilities"] = {
 				["default"] = {
-					["particles/units/heroes/hero_kunkka/kunkka_weapon_tidebringer.vpcf"] = "particles/kunkka_weapons/anchors_of_the_ageless_deep_weapon.vpcf",
+					["particles/units/heroes/hero_kunkka/kunkka_weapon_tidebringer.vpcf"] = "particles/kunkka/anchors_of_the_ageless_deep_weapon.vpcf",
 				},
 			},
 		},
@@ -4116,7 +4116,7 @@ return {
 			["sound_replace"] = {},
 			["particles_abilities"] = {
 				["default"] = {
-					["particles/units/heroes/hero_kunkka/kunkka_weapon_tidebringer.vpcf"] = "particles/kunkka_weapons/carronade_corsair_weapon.vpcf",
+					["particles/units/heroes/hero_kunkka/kunkka_weapon_tidebringer.vpcf"] = "particles/kunkka/carronade_corsair_weapon.vpcf",
 				},
 			},
 		},

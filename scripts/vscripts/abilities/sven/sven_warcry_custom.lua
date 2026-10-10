@@ -40,16 +40,15 @@ function sven_warcry_custom:Precache(context)
 		return
 	end
 
-	PrecacheResource("particle", "particles/cleance_blade.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_sven/sven_spell_warcry.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_marci/marci_rebound_allymovespeed.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_sven/sven_warcry_buff.vpcf", context)
 	PrecacheResource("particle", "particles/items2_fx/medallion_of_courage_friend_shield.vpcf", context)
-	PrecacheResource("particle", "particles/general/generic_armor_reduction.vpcf", context)
+	PrecacheResource("particle", "particles/generic/generic_armor_reduction.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_marci/marci_rebound_bounce_impact_debuff.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_snapfire_slow.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_sven/sven_warcry_buff_shield.vpcf", context)
-	PrecacheResource("particle", "particles/sven_shield_break.vpcf", context)
+	PrecacheResource("particle", "particles/sven/sven_shield_break.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/econ/items/zeus/zeus_immortal_2021/zeus_immortal_2021_static_field_gold.vpcf",
@@ -375,7 +374,7 @@ function modifier_sven_warcry_custom_armor:OnRefresh()
 
 	if self:GetStackCount() >= self.max then
 		self.parent:EmitSound("Hoodwink.Acorn_armor")
-		self.parent:GenericParticle("particles/general/generic_armor_reduction.vpcf", self, true)
+		self.parent:GenericParticle("particles/generic/generic_armor_reduction.vpcf", self, true)
 	end
 end
 
@@ -851,7 +850,7 @@ function modifier_sven_warcry_custom_legendary_barrier:OnDestroy()
 		return
 	end
 
-	local pfx = ParticleManager:CreateParticle("particles/sven_shield_break.vpcf", PATTACH_WORLDORIGIN, nil)
+	local pfx = ParticleManager:CreateParticle("particles/sven/sven_shield_break.vpcf", PATTACH_WORLDORIGIN, nil)
 	ParticleManager:SetParticleControl(pfx, 0, self.center + Vector(0, 0, 70))
 	ParticleManager:ReleaseParticleIndex(pfx)
 

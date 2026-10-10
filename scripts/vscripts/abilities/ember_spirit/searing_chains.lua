@@ -11,7 +11,8 @@
 LinkLuaModifier(
 	"modifier_searing_chains_custom_debuff",
 	"abilities/ember_spirit/searing_chains",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 LinkLuaModifier(
 	"modifier_searing_chains_custom_tracker",
@@ -31,12 +32,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_searing_chains_custom_legendary_stack",
 	"abilities/ember_spirit/searing_chains",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_ember_chain_7"
 )
 LinkLuaModifier(
 	"modifier_searing_chains_custom_armor",
 	"abilities/ember_spirit/searing_chains",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_ember_chain_1"
 )
 
 ember_spirit_searing_chains_custom = class({})
@@ -76,12 +79,10 @@ function ember_spirit_searing_chains_custom:Precache(context)
 	PrecacheResource("particle", "particles/ember_spirit/chains_proc_legendary.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_monkey_king/monkey_king_quad_tap_hit.vpcf", context)
 	PrecacheResource("particle", "particles/items2_fx/vindicators_axe_armor.vpcf", context)
-	PrecacheResource("particle", "particles/jugg_parry.vpcf", context)
+	PrecacheResource("particle", "particles/juggernaut/jugg_parry.vpcf", context)
 	PrecacheResource("particle", "particles/ember_spirit/chains_bkb.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_legion_commander_duel.vpcf", context)
-	PrecacheResource("particle", "particles/ember_spirit/chains_stack.vpcf", context)
 	PrecacheResource("particle", "particles/ember_spirit/chains_buff_ready.vpcf", context)
-	PrecacheResource("particle", "particles/ember_spirit/chains_buff_ready_hands.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/econ/items/juggernaut/jugg_arcana/juggernaut_arcana_v2_omni_slash_tgt.vpcf",
@@ -327,7 +328,7 @@ function modifier_searing_chains_custom_tracker:OnIntervalThink()
 	if not IsServer() then
 		return
 	end
-	self.parent:CdAbility(self.ability, self.interval * self.ability.talents.q7_cd_inc)
+	self.parent:CdAbility(self.ability, self.interval * self.ability.talents.q7_cd_inc, nil, "modifier_ember_chain_7")
 
 	if not self.parent:HasModifier("modifier_ember_spirit_flame_guard_custom") or not self.is_active then
 		self.is_active = false

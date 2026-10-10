@@ -26,7 +26,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_jakiro_liquid_fire_custom_fire_debuff",
 	"abilities/jakiro/jakiro_liquid_fire_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 LinkLuaModifier(
 	"modifier_jakiro_liquid_fire_custom_ice_debuff",
@@ -36,17 +37,20 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_jakiro_liquid_fire_custom_speed",
 	"abilities/jakiro/jakiro_liquid_fire_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_jakiro_liquid_3"
 )
 LinkLuaModifier(
 	"modifier_jakiro_liquid_fire_custom_legendary_stack",
 	"abilities/jakiro/jakiro_liquid_fire_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_jakiro_liquid_7"
 )
 LinkLuaModifier(
 	"modifier_jakiro_liquid_fire_custom_legendary_acitve",
 	"abilities/jakiro/jakiro_liquid_fire_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_jakiro_liquid_7" }
 )
 
 jakiro_liquid_fire_custom = class({})

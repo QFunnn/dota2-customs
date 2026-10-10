@@ -26,7 +26,6 @@
 "PICK_STATE_PICK_BANNED" "Запретите героя"
 
 "active_necro" "До новой волны осталось меньше 20 секунд"
-"necro_attack_text" "Necronomicon был использован!<br><br>Через 15 сек всех игроков атакуют крипы"
 
 "necro_wave_tip" "На этой волне вас атакуют 2 дополнительных крипа<br><br>Призывной воин снижает исцеление и регенерацию атаками, а также оглушает своего убийцу после смерти<br><br>Призывной лучник выжигает часть маны каждой атакой и снижает скорость передвижения"
 
@@ -41,6 +40,10 @@
 "Hunt_damage" " урона"
 "Hunt_time" "Время: "
 "Hunt_preparation" "Подготовка: "
+"Hunt_duel" "Дуэль"
+
+"DOTA_Tooltip_modifier_the_hunt_custom_speed" "Охота"
+"DOTA_Tooltip_modifier_the_hunt_custom_speed_Description" "Рядом с целью Охоты скорость передвижения увеличивается на %dMODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE%%%."
 
 "DOTA_Tooltip_modifier_the_hunt_custom_hero"	"The Hunt"
 "DOTA_Tooltip_modifier_the_hunt_custom_hero_Description"	"Когда цель умрет, все игроки получат золото, в зависимости от разницы в общей ценности. Игроки, которые были рядом или наносили урон цели, также получат заряд <b><font color='#a82de8'>Эпической сферы</font></b>.<br><br>Входящий урон по герою увеличен на %dMODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE%%%."
@@ -1482,8 +1485,6 @@
 "upgrade_disc_modifier_up_control_shield_max" "*!-max_bonus%* входящего урона при *max_health%* здоровья"
 "upgrade_disc_modifier_up_control_shield_info" "Также срабатывает от устрашения и провокации<br>Щит длится *duration* сек."
 
-"random_talents"	"Вы получили случайные улучшения"
-
 // 
 
 "Voice.Jugg.1_1"	"Смех"
@@ -1662,7 +1663,7 @@
 "mini_disc_modifier_juggernaut_bladedance_7" "Активная: Увеличивает сопротивление эффектам и урон"
 
 "DOTA_Tooltip_ability_custom_juggernaut_omnislash"	"Omnislash"
-"DOTA_Tooltip_ability_custom_juggernaut_omnislash_Description"	"Герой прыгает к противнику и атакует его несколько раз с интервалом %interval% сек. На время действия получает неуязвимость.<br><br>Шанс <b><font color='#53ea48'>Blade Dance</font></b> от таких атак умножается на %crit_bonus%."
+"DOTA_Tooltip_ability_custom_juggernaut_omnislash_Description"	"Герой прыгает к противнику и атакует его несколько раз с интервалом %interval% сек. На время действия получает неуязвимость.<br><br>Шанс <b><font color='#53ea48'>Blade Dance</font></b> от таких атак умножается на %crit_bonus%.<br><br><b><font color='#53ea48'>Наносит крипам на %creeps%%% больше урона</font></b>"
 "DOTA_Tooltip_ability_custom_juggernaut_omnislash_Lore"	"«Плоды дисциплины; повторение - мать умения»."
 "DOTA_Tooltip_ability_custom_juggernaut_omnislash_attacks"   "КОЛИЧЕСТВО АТАК:"
 "DOTA_Tooltip_ability_custom_juggernaut_omnislash_damage_base"   "БАЗОВЫЙ УРОН:"
@@ -1695,7 +1696,7 @@
 "dota_tooltip_modifier_custom_juggernaut_omnislash_move" "Omnislash"
 "dota_tooltip_modifier_custom_juggernaut_omnislash_move_description" "Скорость передвижения увеличена"
     
-"upgrade_disc_modifier_juggernaut_omnislash_7" "*+bva* базового времени атаки<br><br> Omnislash перезаряжается при передвижении и накапливает *!damage%* нанесенного урона<br><br>Цель получит урон, когда ее здоровье опустится ниже его значения"
+"upgrade_disc_modifier_juggernaut_omnislash_7" "*~+bva* базового времени атаки<br><br> Omnislash перезаряжается при передвижении и накапливает *!damage%* нанесенного урона<br><br>Цель получит урон, когда ее здоровье опустится ниже его значения"
 "upgrade_disc_modifier_juggernaut_omnislash_7_info" "Omnislash перезаряжается на *cd_inc%* за *distance* пройденного расстояния<br><br>Смертельный урон не может быть снижен или увеличен"
 "mini_disc_modifier_juggernaut_omnislash_7" "Omnislash перезаряжается за передвижение и наносит больше урона"
 
@@ -2437,6 +2438,8 @@
 "birdofpray"        "Bird of Pray"
 "triumphimperatrix" "Triumph of the Imperatrix"
 "desolate_conquest" "Desolate Conquest"
+"legion_arcana" "Blades of Voth Domosh (Arcana)"
+"hells_legion" "Hell's Legion"
 
 "DOTA_Tooltip_ability_legion_commander_innate_custom"                           "Duelist"
 "DOTA_Tooltip_ability_legion_commander_innate_custom_Description"               "За каждые %damage% нанесенного урона по героям, Legion Commander навсегда получает +%str% силы, вплоть до %str_max%<br><br>Набранная сила удваивается на дуэлях. Также срабатывает во время Duel, и сохраняется на %linger% сек"
@@ -2635,8 +2638,6 @@
 "mini_disc_modifier_legion_duel_7" "Duel создает арену, которую нельзя покинуть"
 
 "legion_pick_hero"         "Выберите противника"
-"legion_duel_alert_1"     "Вам объявлена дуэль!"
-"legion_duel_alert_2"     "Если Legion Commander умрет первой, вы получите бонусный урон"
 
 // 
 
@@ -2886,6 +2887,7 @@
 "terror_foulfell"   "Foulfell Corruptor"
 "terror_chasm"      "Chasm of the Broken Code"
 "terror_forgotten"  "Forgotten Station"
+"rictus_ripper"     "Rictus Ripper"
 "fluid_frenzy"  "Fluid Frenzy"
 
 "DOTA_Tooltip_ability_terrorblade_innate_custom"                                   "Dark Unity"
@@ -3975,6 +3977,7 @@
 "pudge_arcana"  "Feast of Abscession (Arcana)"
 "pudge_clown" "Rotzo the Clown"
 "wood_cutter"      "The Woodcutter"
+"greasepaint_gutbuster"    "Greasepaint Gutbuster"
 
 "DOTA_Tooltip_ability_pudge_innate_custom"                                 "Flesh Heap"
 "DOTA_Tooltip_ability_pudge_innate_custom_Description"                     "Сила Pudge навсегда увеличивается на %str%, когда вражеский герой погибает в радиусе %radius%.<br><br>Максимум зарядов - %max_stacks%"
@@ -4627,7 +4630,7 @@
 "upgrade_disc_modifier_skeleton_reincarnation_1" "Пассивно наносит урон, равный *!base* + *!damage%* вашего текущего здоровья в сек"
 "upgrade_disc_modifier_skeleton_reincarnation_1_info"   "Работает в радиусе *radius*, наносит крипам в *creeps* раза меньше урона"
 
-"upgrade_disc_modifier_skeleton_reincarnation_2" "Дает щит на *!shield%* здоровья<br><br>Щит удваивается, пока Reincarnation перезаряжается"
+"upgrade_disc_modifier_skeleton_reincarnation_2" "Дает щит на *!base* + *!shield%* здоровья<br><br>Щит удваивается, пока Reincarnation перезаряжается"
 "upgrade_disc_modifier_skeleton_reincarnation_2_info"   "Перезарядка сбрасывается при срабатывании Reincarnation"
 
 "DOTA_Tooltip_modifier_skeleton_king_reincarnation_custom_shield_cd"                "Reincarnation"
@@ -5194,7 +5197,7 @@
 "DOTA_Tooltip_ability_axe_berserkers_call_custom_radius"                                "РАДИУС:"
 "DOTA_Tooltip_ability_axe_berserkers_call_custom_bonus_armor"                           "ДОП. БРОНЯ:"
 "DOTA_Tooltip_ability_axe_berserkers_call_custom_duration"                              "ДЛИТЕЛЬНОСТЬ:"
-"DOTA_Tooltip_ability_axe_berserkers_call_custom_shard_description"                     "Berserker's Call применяется на точку на расстоянии %shard_range%, в которую вы совершаете рывок.<br><br>Способность провоцирует противников во время рывка.<br><br>Alt-применение позволяет не совершать рывок."
+"DOTA_Tooltip_ability_axe_berserkers_call_custom_shard_description"                     "Berserker's Call применяется на точку на расстоянии %shard_range%, в которую вы совершаете рывок.<br><br>Способность провоцирует противников во время рывка и дает вам неуяз. к эффектам.<br><br>Alt-применение позволяет не совершать рывок."
 
 "DOTA_Tooltip_ability_axe_berserkers_call_custom_legendary"                                       "Berserker's Call"
 "DOTA_Tooltip_ability_axe_berserkers_call_custom_legendary_Description"                           "Расходует здоровье, ускоряет передвижение и наносит атаку противникам неподалёку."
@@ -5403,13 +5406,13 @@
 "DOTA_Tooltip_ability_item_patrol_reward_2_always_gadget_Description"             "Вы получаете выбор из 2 наград 2 разряда"
 
 "font_disc_modifier_patrol_reward_ward" "19"
-"upgrade_disc_modifier_patrol_reward_ward"  "Дает обзор на *max* вражеских Observer Ward<br><br>За их уничтожение вы получаете *!gold* золота"
+"upgrade_disc_modifier_patrol_reward_ward"  "Дает обзор на *max* вражеских Observer Ward<br><br>Уничтожение варда дает *!gold* золота и *!white* Обычных очков"
 
 "DOTA_Tooltip_modifier_patrol_reward_1_ward"   "Ward Detector"
 "DOTA_Tooltip_modifier_patrol_reward_1_ward_Description"   "Получает обзор на вражеские Observer Wards неподалёку."
 
 "font_disc_modifier_patrol_reward_gold" "19"
-"upgrade_disc_modifier_patrol_reward_gold"  "Дает *!+gold%* золота за убийство лесных крипов на *duration* сек"
+"upgrade_disc_modifier_patrol_reward_gold"  "*!+gold%* золота за убийство лесных крипов<br><br>Длится *duration* сек, или пока не даст *max_gold* золота"
 
 "DOTA_Tooltip_modifier_patrol_reward_1_gold"   "Hand of Greed"
 "DOTA_Tooltip_modifier_patrol_reward_1_gold_Description"   "Золото за убийство лесных крипов увеличено"
@@ -6214,6 +6217,7 @@
 "am_shinobi"    "Shadows of the Forgotted Plane"
 "am_god_eater"  "Guilt of the Survivor"
 "antimage_persona"    "The Disciples Path"
+"daemon_hunter"    "Daemon Hunter"
 
 "DOTA_Tooltip_ability_antimage_innate_custom"                   "Persecutor"
 "DOTA_Tooltip_ability_antimage_innate_custom_Description"       "Атаки Anti-Mage замедляют цель макс. на %slow_max%%%, в зависимости от ее недостающей маны. Работает на иллюзиях.<br><br>Длительность: %duration% сек."
@@ -6393,14 +6397,11 @@
 "upgrade_creeps_text" "Здоровье и урон лайновых крипов увеличены на "
 
 "DOTA_Tooltip_Ability_item_sphere_custom"				"Linken's Sphere"
-"DOTA_Tooltip_ability_item_sphere_custom_Description"							"<h1>Passive: Spellblock</h1>Блокирует направленную способность от героя. При срабатывании, дает <b><font color='#53ea48'>%status_bonus%%%</font></b> сопр. эффектам на %status_duration% сек.<br><br><b><font color='#ff0000'>Перезарядка предмета не может быть снижена</font></b>"
+"DOTA_Tooltip_ability_item_sphere_custom_Description"							"<h1>Passive: Spellblock</h1>Срабатывает от направленной способности.<br><br>Блокирует все направленные способности <b><font color='#53ea48'>в течение %block_duration% сек</font></b>.<br><br><b><font color='#ff0000'>Перезарядка предмета не может быть снижена</font></b>"
 "DOTA_Tooltip_ability_item_sphere_custom_Lore"									"Некогда эта магическая сфера защитила одного из самых знаменитых героев в истории."
 "DOTA_Tooltip_ability_item_sphere_custom_bonus_all_stats"						"+$all"
 "DOTA_Tooltip_ability_item_sphere_custom_bonus_health_regen"					"+$hp_regen"	
 "DOTA_Tooltip_ability_item_sphere_custom_bonus_mana_regen"						"+$mana_regen"
-
-"DOTA_Tooltip_item_sphere_custom_status"                                   "Linken's Sphere"
-"DOTA_Tooltip_item_sphere_custom_status_Description"                       "Сопр. эффектам увеличено на <b><font color='#53ea48'>%dMODIFIER_PROPERTY_STATUS_RESISTANCE_STACKING%%%</font></b>"
 
 "DOTA_Tooltip_Ability_item_aeon_disk_custom"				"Aeon Disk"
 "DOTA_Tooltip_ability_item_aeon_disk_custom_Description"					"<h1>Пассивное: Combo Breaker</h1>Когда здоровье опускается ниже %health_threshold_pct%%%, вы применяете сильное развеивание и восстанавливаете %heal%%% здоровья.<br><br>В следующие %duration% сек вы не можете получать и наносить урон, а сопр. эффектам увеличивается на %status_resistance%%%.<br><br><b><font color='#53ea48'>Перезарядка всегда составляет %cd% сек и не может быть снижена</font></b>"
@@ -6434,226 +6435,223 @@
 "Beast.Quest_3"	"Займите 1 место, используя основной легендарный талант Uproar"
 "Beast.Quest_4"	"Займите 1 место, используя основной легендарный талант Pulverize"
 
-"Beast.Quest_5"	"Поразите вражеских героев способностью Onslaught с макс. подготовкой"
+"Beast.Quest_5"	"Поразите героев способностью Onslaught с макс. подготовкой"
 "Beast.Quest_6"	"Нанесите урон герою с помощью Trample 4 раза с коротким интервалом"
 "Beast.Quest_7"	"Совершите атаки по героям, находясь под эффектом Uproar с 5 зарядами"
-"Beast.Quest_8"	"Нанесите магический урон героям с помощью Pulverize"
+"Beast.Quest_8"	"Нанесите урон героям с помощью Pulverize"
+
+"age_of_attrition"            "Age of Attrition"
+"the_abominable_snowbeast"    "The Abominable Snowbeast"
+"svarog_the_infernal"         "Svarog the Infernal"
+"primeval_abomination"        "Primeval Abomination"
+"dark_behemoth"               "Dark Behemoth"
+"temple_guardian"             "Temple Guardian"
+"mane_attraction"             "Mane Attraction"
+"slobbering_strongbox"        "Slobbering Strongbox"
 
 "DOTA_Tooltip_ability_primal_beast_innate_custom"                 "Colossal"             
-"DOTA_Tooltip_ability_primal_beast_innate_custom_Description"      "Атаки Primal Beast наносят %cleave%%% прорубающего урона.<br><br>Скорость передвижения и размер модели Primal Beast увеличиваются на %move%%%, а дальность атаки на %range% за %str% единиц силы."
-
-"DOTA_Tooltip_modifier_primal_beast_innate_custom"                "Colossal"  
-"DOTA_Tooltip_modifier_primal_beast_innate_custom_Description"    "Скорость передвижения увеличена на <b><font color='#53ea48'>%dMODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE%%%</font></b>, дальность атаки увеличена на <b><font color='#53ea48'>%dMODIFIER_PROPERTY_ATTACK_RANGE_BONUS%</font></b>"
-
-"DOTA_Tooltip_ability_primal_beast_rock_throw"                              "Rock Throw"
-"DOTA_Tooltip_ability_primal_beast_rock_throw_Description"                  "Герой бросает в указанную точку камень, который оглушает врагов и наносит им урон. После приземления камень разбивается на 3 осколка, которые падают за указанную точку. У броска есть минимальная дальность.<br><br>За каждого противника, задетого камнем, даётся один заряд способности Uproar."
-"DOTA_Tooltip_ability_primal_beast_rock_throw_Lore"                 "ОПЯТЬ ЭТИ КАМНИ!"
-"DOTA_Tooltip_ability_primal_beast_rock_throw_base_damage"          "УРОН:"
-"DOTA_Tooltip_ability_primal_beast_rock_throw_impact_radius"        "РАДИУС ПОПАДАНИЯ:"
-"DOTA_Tooltip_ability_primal_beast_rock_throw_min_range"            "МИН. ДАЛЬНОСТЬ:"
-"DOTA_Tooltip_ability_primal_beast_rock_throw_min_travel_time"      "МИН. ВРЕМЯ ПОЛЁТА:"
-"DOTA_Tooltip_ability_primal_beast_rock_throw_max_travel_time"      "МАКС. ВРЕМЯ ПОЛЁТА:"
-"DOTA_Tooltip_ability_primal_beast_rock_throw_stun_duration"        "ДЛИТЕЛЬНОСТЬ ОГЛУШЕНИЯ:"
-"DOTA_Tooltip_ability_primal_beast_rock_throw_fragment_impact_distance"     "ДАЛЬНОСТЬ ПОЛЁТА ОСКОЛКОВ:"
-"DOTA_Tooltip_ability_primal_beast_rock_throw_fragment_impact_radius"       "РАДИУС УДАРА ОСКОЛКОВ:"
-
-"DOTA_Tooltip_ability_primal_beast_onslaught_custom"								"Onslaught"
-"DOTA_Tooltip_ability_primal_beast_onslaught_custom_Description"					"Герой разгоняется и бежит в выбранном направлении, отталкивая как врагов, так и союзников. При столкновении с противниками наносит им урон и оглушает их. Чем дольше подготавливался разгон, тем дальше пробежит герой. \n\n Можно остановить в любой момент командой отмены.<br><br><b><font color='#53ea48'>Подготовка способности дает неограниченный обзор в радиусе %vision_radius%</font></b>"
-"DOTA_Tooltip_ability_primal_beast_onslaught_custom_Lore"					"Завидев жертву, зверь отбрасывает в сторону всё — и всех — на своём пути, оставляя позади лишь погибель."
-"DOTA_Tooltip_ability_primal_beast_onslaught_custom_charge_speed"					"СКОРОСТЬ БЕГА:"
-"DOTA_Tooltip_ability_primal_beast_onslaught_custom_chargeup_time"				"ВРЕМЯ ДО МАКС. РАЗГОНА:"
-"DOTA_Tooltip_ability_primal_beast_onslaught_custom_max_distance"					"МАКС. ДАЛЬНОСТЬ:"
-"DOTA_Tooltip_ability_primal_beast_onslaught_custom_knockback_damage"				"УРОН:"
-"DOTA_Tooltip_ability_primal_beast_onslaught_custom_stun_duration"					"ДЛИТЕЛЬНОСТЬ ОГЛУШЕНИЯ:"
-
-"DOTA_Tooltip_ability_primal_beast_onslaught_release_custom"						"Begin Onslaught"
-"DOTA_Tooltip_ability_primal_beast_onslaught_release_custom_Description"			"Герой прекращает набирать силы и бежит в выбранном направлении."
-
-"DOTA_Tooltip_modifier_primal_beast_onslaught_custom_cast"					"Onslaught"
-"DOTA_Tooltip_modifier_primal_beast_onslaught_custom"						"Onslaught"
+"DOTA_Tooltip_ability_primal_beast_innate_custom_Description"      "Атаки Primal Beast наносят %cleave%%% прорубающего урона.<br><br>Каждые %health% единиц макс. здоровья дают +%move%%% скорости передвижения и сопр. замедлениям, а также +%range% дальности атаки."
+"DOTA_Tooltip_ability_primal_beast_innate_custom_current_move"    "%СКОРОСТЬ ПЕРЕДВИЖЕНИЯ:"
+"DOTA_Tooltip_ability_primal_beast_innate_custom_current_slow"    "%СОПР. ЗАМЕДЛЕНИЯМ:"
+"DOTA_Tooltip_ability_primal_beast_innate_custom_current_range"   "ДАЛЬНОСТЬ АТАКИ:"
+"DOTA_Tooltip_ability_primal_beast_innate_custom_current_status"  "%СОПР. ЭФФЕКТАМ:"
 
 "hero_change_npc_dota_hero_primal_beast_1" "Врожденная способность изменена"
-"hero_change_npc_dota_hero_primal_beast_2" "Макс. дальность снижена с 2000 до <b><font color='#ff0000'>1700</font></b>"
-"hero_change_npc_dota_hero_primal_beast_3" "Подготовка способности дает обзор в радиусе <b><font color='#53ea48'>2000</font></b>"
-"hero_change_npc_dota_hero_primal_beast_4" "Урон снижен с 60 + 35% урона атаки до <b><font color='#ff0000'>50 + 30%</font></b>"
-"hero_change_npc_dota_hero_primal_beast_5" "Порог урона увеличен до <b><font color='#ff0000'>170</font></b> здоровья"
-"hero_change_npc_dota_hero_primal_beast_6" "Перезарядка и минимальная дальность снижены"
-"hero_change_npc_dota_hero_primal_beast_7" "Aghanim Scepter изменен"
+"hero_change_npc_dota_hero_primal_beast_2" "Перезарядка, оглушение и дальность снижены"
+"hero_change_npc_dota_hero_primal_beast_3" "Дает обзор, урон зависит от атаки"
+"hero_change_npc_dota_hero_primal_beast_4" "Урон не зависит от атаки, перезарядка снижена"
+"hero_change_npc_dota_hero_primal_beast_5" "Дает процентный урон атаки и урон Trample"
+"hero_change_npc_dota_hero_primal_beast_6" "Длительность увеличена, максимум зарядов снижен"
+"hero_change_npc_dota_hero_primal_beast_7" "Перезарядка и урон снижены, дальность увеличена"
+"hero_change_npc_dota_hero_primal_beast_8" "Aghanim Scepter и Aghanim Shard изменены"
 
-"npc_dota_hero_primal_beast_legendary_1"	"Подготовка Onslaught сокращает перезарядку<br><br>Onslaught оставляет землетрясение, которое наносит урон и исцеляет"
-"npc_dota_hero_primal_beast_legendary_2" 	"Trample увеличивает урон атаки<br><br>Trample можно применить повторно, чтобы совершить рывок"
-"npc_dota_hero_primal_beast_legendary_3" 	"Новая способность<br><br>Снимает ограничение на заряды Uproar и увеличивает скорость атаки. Атаки дают заряды Uproar"
-"npc_dota_hero_primal_beast_legendary_4"  	"Применение способностей увеличивает количество ударов следующего Pulverize"
+"npc_dota_hero_primal_beast_legendary_1"	"Onslaught оставляет землетрясение, которое наносит атаку по противникам<br><br>Урон растет с каждым попаданием"
+"npc_dota_hero_primal_beast_legendary_2" 	"Урон Trample растет со временем<br><br>Trample можно применить повторно, чтобы совершить рывок"
+"npc_dota_hero_primal_beast_legendary_3" 	"Uproar позволяет накопить еще *max* зарядов и увеличивает скорость атаки<br><br>Атаки дают заряды Uproar"
+"npc_dota_hero_primal_beast_legendary_4"  	"Новая способность<br><br>Бросает камень, который оглушает цель и увеличивает количество ударов Pulverize"
 
-"upgrade_disc_modifier_primal_beast_onslaught_1" "*!-cd* сек перезарядки Onslaught<br><br>*!+stun* сек оглушения Onslaught"
+"upgrade_disc_modifier_primal_beast_hero_1" "*!+move* скорости передвижения<br><br>Onslaught применяется на *!cast^* сек быстрее и удваивает бонус на *duration* сек"
 
-"upgrade_disc_modifier_primal_beast_onslaught_2" "Урон Onslaught увеличивается на *!damage%* урона атаки<br><br>Onslaught увеличивает урон атаки макс. на *!damage_inc* в зависимости от подготовки"
- 
-"DOTA_Tooltip_modifier_primal_beast_onslaught_custom_damage"  "Onslaught"
-"DOTA_Tooltip_modifier_primal_beast_onslaught_custom_damage_Description"  "Урон атак увеличен на <b><font color='#53ea48'>%dMODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE%</font></b>"
+"upgrade_disc_modifier_primal_beast_hero_2" "*!+armor* брони и *!+magic%* сопр. магии за заряд Uproar<br><br>Пока Uproar не активен, дает *bonus%* этих бонусов"
 
-"upgrade_disc_modifier_primal_beast_onslaught_3" "*!-mana* затрат маны Onslaught<br><br>За время подготовки вы накапливаете щит, прочностью до *!shield* здоровья"
+"upgrade_disc_modifier_primal_beast_hero_3" "Pulverize снижает исцеление цели на *!heal_reduce%*, а ее наносимый урон на *!damage_reduce%*<br><br>Сохраняется на *duration* сек после способности"
+"upgrade_disc_modifier_primal_beast_hero_3_info" "Срабатывает на все цели Pulverize"
 
-"upgrade_disc_modifier_primal_beast_onslaught_4" "*!-cast* сек времени подготовки Onslaught<br><br>Попадания заряженным Onslaught по героям навсегда увеличивают урон заклинаний макс. на *!damage%*<br><br>Суммируется за *max* попаданий"
-"mini_disc_modifier_primal_beast_onslaught_4" "Onslaught увеличивает урон заклинаний с каждым попаданием"
-"epic_disc_modifier_primal_beast_onslaught_4" "Onslaught заряжается быстрее<br><br>Попадания по героям навсегда увеличивают урон заклинаний"
+"DOTA_Tooltip_modifier_primal_beast_pulverize_custom_reduce"   "Pulverize"
+"DOTA_Tooltip_modifier_primal_beast_pulverize_custom_reduce_Description"   "Наносимый урон снижен на <b><font color='#ff0000'>%dMODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE%%%</font></b>, исцеление снижено на <b><font color='#ff0000'>%dMODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE%%%</font></b>"
 
-"DOTA_Tooltip_modifier_primal_beast_onslaught_custom_stacks"	"Onslaught"
-"DOTA_Tooltip_modifier_primal_beast_onslaught_custom_stacks_Description"	"Урон заклинаний увеличен на <b><font color='#53ea48'>%fMODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE%%%</font></b>"
+"upgrade_disc_modifier_primal_beast_hero_4" "Uproar используется в оглушении и применяет обычное развеивание<br><br>Способность дает щит на *!base* + *!shield%* недост. здоровья на *duration* сек"
+"upgrade_disc_modifier_primal_beast_hero_4_alt" "Uproar используется в оглушении и применяет обычное развеивание<br><br>При обновлении Uproar дает щит на *!base* + *!shield%* недост. здоровья на *duration* сек"
+"mini_disc_modifier_primal_beast_hero_4" "Uproar применяет развеивание и дает щит"
+"epic_disc_modifier_primal_beast_hero_4" "Uproar используется в оглушении, применяет развеивание и дает щит"
 
-"upgrade_disc_modifier_primal_beast_onslaught_5" "Во время подготовки Onslaught вы блокируете *!block* заклинание, а во время разгона получаете неуяз. к эффектам<br><br>В начале подготовки вы отталкиваете и сильно замедляете противников на *!duration* сек"
-"mini_disc_modifier_primal_beast_onslaught_5" "Onslaught блокирует заклинания и отталкивает противников"
-"epic_disc_modifier_primal_beast_onslaught_5" "Подготовка Onslaught блокирует заклинания, а разгон дает неуяз. к эффектам<br><br>Способность отталкивает противников"
+"upgrade_disc_modifier_primal_beast_hero_5" "*!+move* макс. скорости передвижения<br><br>*!+bonus%* всех бонусов Colossal<br><br>*!+status%* сопр. эффектам за *health* единиц макс. здоровья"
+"upgrade_disc_modifier_primal_beast_hero_5_info" "Макс. сопр. эффектам - *max%*"
+"mini_disc_modifier_primal_beast_hero_5" "Усиливает Colossal и дает сопр. эффектам"
+"epic_disc_modifier_primal_beast_hero_5" "*+move* макс. скорости передвижения<br><br>Усиливает Colossal и дает сопр. эффектам от здоровья"
 
-"upgrade_disc_modifier_primal_beast_onslaught_6" "*!+speed%* скорости разбега Onslaught<br><br>После оглушения, противник теряет *!move%* скорости передвижения, *!attack* скорости атаки и получает привязку на *leash* сек"
-"mini_disc_modifier_primal_beast_onslaught_6" "Onslaught накладывает привязку и замедление"
-"epic_disc_modifier_primal_beast_onslaught_6" "Скорость Onslaught увеличивается<br><br>После оглушения накладывает привязку и замедление"
+"upgrade_disc_modifier_primal_beast_hero_6" "Pulverize не может быть заблокирован и исцеляет *!heal%* недост. здоровья за удар<br><br>Также дает неуяз. к эффектам, которая сохраняется на *!bkb* сек"
+"mini_disc_modifier_primal_beast_hero_6" "Pulverize исцеляет и дает неуяз. к эффектам"
+"epic_disc_modifier_primal_beast_hero_6" "Pulverize не может быть заблокирован и исцеляет за удар<br><br>Также дает неуяз. к эффектам"
 
-"upgrade_disc_modifier_primal_beast_onslaught_7" "В конце Onslaught остается землетрясение, которое наносит *!damage%* урона способности в сек и исцеляет вас на *!heal%* от этого значения<br><br>Землетрясение длится до *!duration* сек в зависимости от подготовки, а перезарядка Onslaught сокращается макс. на *!cd%*"
-"mini_disc_modifier_primal_beast_onslaught_7" "Onslaught создает землетрясение и перезаряжается быстрее"
+"DOTA_Tooltip_ability_primal_beast_onslaught_custom"								"Onslaught"
+"DOTA_Tooltip_ability_primal_beast_onslaught_custom_Description"					"Герой разгоняется и бежит в выбранном направлении, отталкивая и оглушая врагов. Наносит базовый урон и часть урона атаки.<br><br>Чем дольше подготавливался разгон, тем дальше пробежит герой.<br><br><b><font color='#53ea48'>Подготовка способности дает неограниченный обзор в радиусе %vision_radius%</font></b>"
+"DOTA_Tooltip_ability_primal_beast_onslaught_custom_Lore"					"Завидев жертву, зверь отбрасывает в сторону всё — и всех — на своём пути, оставляя позади лишь погибель."
+"DOTA_Tooltip_ability_primal_beast_onslaught_custom_chargeup_time"				      "ВРЕМЯ ДО МАКС. РАЗГОНА:"
+"DOTA_Tooltip_ability_primal_beast_onslaught_custom_knockback_damage"				"УРОН:"
+"DOTA_Tooltip_ability_primal_beast_onslaught_custom_attack_damage"				      "%УРОН ОТ АТАКИ:"
+"DOTA_Tooltip_ability_primal_beast_onslaught_custom_stun_duration"					"ДЛИТЕЛЬНОСТЬ ОГЛУШЕНИЯ:"
+"DOTA_Tooltip_ability_primal_beast_onslaught_custom_shard_description"				"Противник больше не может прервать Onslaught. Во время подготовки и рывка вы получаете на %shard_damage%%% меньше урона.<br><br>В начале рывка вы применяете сильное развеивание."
+
+"DOTA_Tooltip_modifier_primal_beast_onslaught_custom_cast"					"Onslaught"
+
+"upgrade_disc_modifier_primal_beast_onslaught_1" "*!+damage%* урона атаки в урон Onslaught<br><br>Подготовка Onslaught дает вплоть до *!attack* урона атаки на *duration* сек"
+"upgrade_disc_modifier_primal_beast_onslaught_1_alt" "*!+quake%* урона землетрясения<br><br>Подготовка Onslaught дает вплоть до *!attack* урона атаки на *duration* сек"
+
+"DOTA_Tooltip_modifier_primal_beast_onslaught_custom_damage"   "Onslaught"
+"DOTA_Tooltip_modifier_primal_beast_onslaught_custom_damage_Description"   "Урон атаки увеличен на <b><font color='#53ea48'>%dMODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE%</font></b>"
+
+"upgrade_disc_modifier_primal_beast_onslaught_2" "*!-cd* сек перезарядки Onslaught<br><br>Атаки и Onslaught замедляют цель на *!slow%*"
+"upgrade_disc_modifier_primal_beast_onslaught_2_info"   "Эффект длится *duration* сек"
+
+"upgrade_disc_modifier_primal_beast_onslaught_3" "Onslaught снижает *!base* + *!armor%* брони цели, суммируется *max* раза<br><br>Каждая *count* атака наносит *!crit%* крит. урона и получает *heal%* вампиризма"
+"upgrade_disc_modifier_primal_beast_onslaught_3_alt" "Onslaught снижает *!base* + *!armor%* брони цели, суммируется *max* раза<br><br>*count* волна землетрясения наносит *!crit%* крит. урона и получает *heal%* вампиризма"
+"upgrade_disc_modifier_primal_beast_onslaught_3_info" "Эффект длится *duration* сек<br><br>Против крипов снижает только *!base* брони"
+"mini_disc_modifier_primal_beast_onslaught_3" "Onslaught снижает броню, атаки наносят крит. урон"
+"epic_disc_modifier_primal_beast_onslaught_3" "Onslaught снижает броню цели<br><br>Атаки наносят крит. урон и исцеляют"
+"epic_disc_modifier_primal_beast_onslaught_3_alt" "Onslaught снижает броню цели<br><br>Землетрясение наносит крит. урон и исцеляет"
+
+"DOTA_Tooltip_modifier_primal_beast_onslaught_custom_armor"   "Onslaught"
+"DOTA_Tooltip_modifier_primal_beast_onslaught_custom_armor_Description"   "Броня снижена на <b><font color='#ff0000'>%fMODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS%</font></b>"
+
+"DOTA_Tooltip_modifier_primal_beast_onslaught_custom_count"   "Onslaught"
+"DOTA_Tooltip_modifier_primal_beast_onslaught_custom_count_Description"   "Каждая <b><font color='#53ea48'>%dMODIFIER_PROPERTY_TOOLTIP%</font></b> атака наносит крит. урон"
+
+"upgrade_disc_modifier_primal_beast_onslaught_4" "*!+speed%* скорости бега и поворота Onslaught<br><br>Onslaught пробивает неуяз. к эффектам и перезаряжается на *!cd%* быстрее при полной подготовке"
+"upgrade_disc_modifier_primal_beast_onslaught_4_alt" "*!+speed%* скорости бега и поворота Onslaught<br><br>Onslaught пробивает неуяз. к эффектам и перезаряжается на *!cd%* быстрее во время Uproar"
+"upgrade_disc_modifier_primal_beast_onslaught_4_info" "Сквозь неуяз. к эффектам проходят только оглушение и отталкивание<br><br>Оглушение по таким целям снижено на *!stun%*"
+"mini_disc_modifier_primal_beast_onslaught_4" "Onslaught быстрее, пробивает неуяз. к эффектам"
+"epic_disc_modifier_primal_beast_onslaught_4" "*+speed%* скорости бега и поворота Onslaught<br><br>Onslaught пробивает неуяз. к эффектам и перезаряжается быстрее"
+
+"upgrade_disc_modifier_primal_beast_onslaught_7" "Onslaught оставляет землетрясение. Противники в области получают атаку на *!damage%* урона раз в сек<br><br>Урон растет на *!damage_inc%* с каждым попаданием. Землетрясение длится до *duration* сек, в зависимости от подготовки"
+"upgrade_disc_modifier_primal_beast_onslaught_7_info"   "Эффект длится *stack_duration* сек и суммируется *max* раз<br><br>Атаки землетрясения не могут промахнуться и сильно замедляют цель на *slow_duration* сек<br><br>Снижает затраты маны на Onslaught до *mana*"
+"mini_disc_modifier_primal_beast_onslaught_7" "Onslaught оставляет землетрясение, которое наносит атаки"
+
+"DOTA_Tooltip_modifier_primal_beast_onslaught_custom_stack"   "Onslaught"
+"DOTA_Tooltip_modifier_primal_beast_onslaught_custom_stack_Description"   "Получаемый урон землетрясения увеличен на <b><font color='#ff0000'>%dMODIFIER_PROPERTY_TOOLTIP%%%</font></b>"
 
 "DOTA_Tooltip_ability_primal_beast_trample_custom"			"Trample"
-"DOTA_Tooltip_ability_primal_beast_trample_custom_Description"		"Герой тяжёлой поступью проходит через всё и вся. За каждые %step_distance% пройденных единиц враги в области вокруг героя получают базовый урон, а также умноженный урон героя от атак. Во время действия этой способности её владелец не может атаковать."
+"DOTA_Tooltip_ability_primal_beast_trample_custom_Description"		"Герой тяжёлой поступью проходит через всё и вся. Наносит урон за каждые %step_distance% пройденных единиц. Во время действия способности нельзя атаковать.<br><br><b><font color='#53ea48'>Наносит крипам на %creeps_damage%%% больше урона</font></b>"
 "DOTA_Tooltip_ability_primal_beast_trample_custom_Lore"		"Первобытный зверь — единственный представитель своего вида в этой вселенной, поэтому её обитатели могут лишь догадываться о размерах его сородичей. Определить это было бы проще, если бы объект наблюдений не съедал всё что видит и не разрушал почти всё остальное."
-"DOTA_Tooltip_ability_primal_beast_trample_custom_base_damage"			"БАЗОВЫЙ УРОН:"
-"DOTA_Tooltip_ability_primal_beast_trample_custom_attack_damage"		"%МНОЖИТЕЛЬ УРОНА ОТ АТАК:"
+"DOTA_Tooltip_ability_primal_beast_trample_custom_base_damage"			"УРОН:"
 "DOTA_Tooltip_ability_primal_beast_trample_custom_effect_radius"		"РАДИУС УРОНА:"
 "DOTA_Tooltip_ability_primal_beast_trample_custom_duration"			"ДЛИТЕЛЬНОСТЬ:"
-"DOTA_Tooltip_ability_primal_beast_trample_custom_scepter_description"		"Способность больше не запрещает вам атаковать.<br><br>Применение способностей усиливает следующую атаку. Она не может промахнуться, наносит противникам в радиусе %scepter_radius% маг. урон, равный %scepter_damage%%% урона атаки. Также замедляет их передвижение на %scepter_slow%%%, а атаку на %scepter_attack_slow% на %scepter_duration% сек."
 
 "DOTA_Tooltip_modifier_primal_beast_trample_custom"			"Trample"
 "DOTA_Tooltip_modifier_primal_beast_trample_custom_Description"			"При ходьбе наносит урон всем вокруг себя."
 
-"DOTA_Tooltip_ability_primal_beast_charge_custom"								"Charge"
-"DOTA_Tooltip_ability_primal_beast_charge_custom_Description"					"Совершает рывок на короткую дистанцию"
-"DOTA_Tooltip_ability_primal_beast_charge_custom_duration"								"ДЛИТЕЛЬНОСТЬ:"
-"DOTA_Tooltip_ability_primal_beast_charge_custom_speed"								"СКОРОСТЬ:"
+"upgrade_disc_modifier_primal_beast_trample_1" "*!+str%* силы в урон Trample<br><br>*!+duration* сек длительности Trample"
 
-"upgrade_disc_modifier_primal_beast_trample_1" "*!+damage%* урона атаки в урон Trample<br><br>Trample срабатывает пассивно раз в *!cd* сек с увеличенным радиусом"
+"upgrade_disc_modifier_primal_beast_trample_2" "*!heal%* урона заклинаний исцеляют и дают ману<br><br>Исцеление удваивается от урона Trample"
+"upgrade_disc_modifier_primal_beast_trample_2_info" "Восстанавливает ману на *mana%* от урона"
 
-"upgrade_disc_modifier_primal_beast_trample_2" "*!+heal%* вампиризма от всего наносимого урона<br><br>Эффект в *bonus* раза сильнее от урона Trample"
+"upgrade_disc_modifier_primal_beast_trample_3" "Trample с шансом *chance%* нанесет доп. *!damage%* урона и даст *!+str%* силы<br><br>Срабатывает от Pulverize с шансом *pulverize_chance%*"
+"upgrade_disc_modifier_primal_beast_trample_3_info" "Увеличение силы суммируется *max* раз, длится *duration* сек и срабатывает только против героев<br><br>От Pulverize срабатывает минимум 1 раз за применение"
+"mini_disc_modifier_primal_beast_trample_3" "Trample может нанести доп. урон и дать силу"
+"epic_disc_modifier_primal_beast_trample_3" "Trample может нанести доп. урон и дать силу<br><br>Также срабатывает от Pulverize"
 
-"upgrade_disc_modifier_primal_beast_trample_3" "*!+duration* сек длительности Trample<br><br>*!+move* скорости передвижения во время Trample" 
+"DOTA_Tooltip_modifier_primal_beast_trample_strength"   "Trample"
+"DOTA_Tooltip_modifier_primal_beast_trample_strength_Description"   "Сила увеличена на <b><font color='#53ea48'>%fMODIFIER_PROPERTY_TOOLTIP%%%</font></b>"
 
-"upgrade_disc_modifier_primal_beast_trample_4" "Trample увеличивает весь входящий урон по противнику макс. на *!damage%* и замедляет на *!slow%*<br><br>Эффект суммируется за *max* попаданий и сохраняется на *duration* сек после Trample"
-"mini_disc_modifier_primal_beast_trample_4" "Trample замедляет противника и увеличивает урон"
-"epic_disc_modifier_primal_beast_trample_4" "Trample увеличивает весь урон по противнику и замедляет<br><br>Эффект суммируется"
+"upgrade_disc_modifier_primal_beast_trample_4" "Trample перезаряжается на *!cd* сек быстрее и дает свободное передвижение<br><br>После *hits* попаданий Trample цель получает безмолвие на *!silence* сек"
+"mini_disc_modifier_primal_beast_trample_4" "Попадания Trample накладывают безмолвие"
+"epic_disc_modifier_primal_beast_trample_4" "Trample перезаряжается быстрее и дает свободное передвижение<br><br>Попадания Trample накладывают безмолвие"
 
-"DOTA_Tooltip_modifier_primal_beast_trample_slow"	"Trample"
-"DOTA_Tooltip_modifier_primal_beast_trample_slow_Description"	"Входящий урон увеличен на <b><font color='#ff0000'>%dMODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE%%%</font></b>, скорость передвижения снижена на <b><font color='#ff0000'>%dMODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE%%%</font></b>"
-
-"upgrade_disc_modifier_primal_beast_trample_5" "Trample дает *!+status%* сопр. эффектам и *!-damage_reduce%* входящего урона. Эффект ослабевает со временем<br><br>В первые *!duration* сек вас нельзя замедлить"
-"mini_disc_modifier_primal_beast_trample_5" "Trample увеличивает сопр. эффектам и снижает урон"
-"epic_disc_modifier_primal_beast_trample_5" "Trample снижает урон и увеличивает сопр. эффектам<br><br>Также дает иммунитет к замедлениям"
-
-"DOTA_Tooltip_modifier_primal_beast_trample_speed"	"Trample"
-"DOTA_Tooltip_modifier_primal_beast_trample_speed_Description"	"Входящий урон снижен на <b><font color='#53ea48'>%fMODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE%%%</font></b><br><br>Сопротивление эффектам увеличено на <b><font color='#53ea48'>%fMODIFIER_PROPERTY_STATUS_RESISTANCE_STACKING%%%</font></b>"
-
-"upgrade_disc_modifier_primal_beast_trample_6" "*!-cd* сек перезарядки Trample<br><br>*!+radius* радиуса Trample<br><br>Когда Trample нанесет урон *max* раза, цель получит безмолвие на *!silence* сек. Срабатывает 1 раз"
-"mini_disc_modifier_primal_beast_trample_6" "Trample обезмолвливает цель после нанесения урона"
-"epic_disc_modifier_primal_beast_trample_6" "Trample перезаряжается быстрее и накладывает безмолвие при нанесении урона"
-
-"upgrade_disc_modifier_primal_beast_trample_7" "Когда Trample наносит урон, вы получаете *!+damage%* урона атаки. Эффект сохраняется на *duration* сек после Trample<br><br>Trample можно использовать повторно, чтобы совершить рывок на *!distance* расстояния с перезарядкой *!cd* сек"
-"mini_disc_modifier_primal_beast_trample_7" "Trample увеличивает урон атаки и позволяет совершить рывок"
-
-"DOTA_Tooltip_modifier_primal_beast_trample_damage"   "Trample"
-"DOTA_Tooltip_modifier_primal_beast_trample_damage_Description"   "Урон атаки увеличен на <b><font color='#53ea48'>%dMODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE%%%</font></b>"
+"upgrade_disc_modifier_primal_beast_trample_7" "Урон Trample растет на *!damage%* в сек<br><br>Повторное применение позволяет совершить рывок на *!distance* расстояния<br><br>При попадании рывком Trample продлевается на *!duration* сек, вплоть до *+max%* длительности"
+"mini_disc_modifier_primal_beast_trample_7" "Trample позволяет совершить рывок и наносит больше урона"
 
 "DOTA_Tooltip_ability_primal_beast_uproar_custom"								"Uproar"
-"DOTA_Tooltip_ability_primal_beast_uproar_custom_Description"					"Владельцу способности даётся один её заряд каждый раз, когда он теряет %damage_limit% здоровья. \n\n При активации герой издаёт рёв, увеличивая себе броню и урон от атак, а также замедляя окружающих врагов. Каждый из этих эффектов усиливается с количеством зарядов способности. Действует %roar_duration% сек."
+"DOTA_Tooltip_ability_primal_beast_uproar_custom_Description"					"Герой получает заряд способности за %damage_limit% входящего урона, вплоть до %stack_limit%.<br><br>При активации тратит заряды, увеличивает броню, урон от атак и урон Trample, а также замедляет противников. Действует %roar_duration% сек."
 "DOTA_Tooltip_ability_primal_beast_uproar_custom_Lore"					"В туманную рощу зверь пришёл уже в обрывках верёвок и цепей, и дальнейших попыток его подчинить он не потерпит."
-"DOTA_Tooltip_ability_primal_beast_uproar_custom_stack_limit"								"МАКСИМУМ ЗАРЯДОВ:"
-"DOTA_Tooltip_ability_primal_beast_uproar_custom_bonus_damage_per_stack"							"БОНУС К УРОНУ ЗА ЭФФЕКТ:"
-"DOTA_Tooltip_ability_primal_beast_uproar_custom_move_slow_per_stack"				"%ЗАМЕДЛЕНИЕ ЗА ЭФФЕКТ:"
+"DOTA_Tooltip_ability_primal_beast_uproar_custom_bonus_damage_per_stack"							"%УРОН АТАКИ ЗА ЗАРЯД:"
+"DOTA_Tooltip_ability_primal_beast_uproar_custom_trample_damage_per_stack"							"%УРОН TRAMPLE ЗА ЗАРЯД:"
+"DOTA_Tooltip_ability_primal_beast_uproar_custom_move_slow_per_stack"				"%ЗАМЕДЛЕНИЕ ЗА ЗАРЯД:"
 "DOTA_Tooltip_ability_primal_beast_uproar_custom_slow_duration"						"ДЛИТЕЛЬНОСТЬ ЗАМЕДЛЕНИЯ:"
-"DOTA_Tooltip_ability_primal_beast_uproar_custom_radius"							"РАДИУС РЁВА:"
-"DOTA_Tooltip_ability_primal_beast_uproar_custom_roared_bonus_armor"				"БОНУС К БРОНЕ ЗА ЭФФЕКТ:"				
+"DOTA_Tooltip_ability_primal_beast_uproar_custom_roared_bonus_armor"				"БРОНЯ ЗА ЗАРЯД:"				
 
-"DOTA_Tooltip_modifier_primal_beast_uproar_custom"											"UPROAR"
-"DOTA_Tooltip_modifier_primal_beast_uproar_custom_Description"								"Герой наносит больше урона и замедляет врагов"
+"DOTA_Tooltip_modifier_primal_beast_uproar_custom_stack"											"UPROAR"
+"DOTA_Tooltip_modifier_primal_beast_uproar_custom_stack_Description"								"Заряды Uproar"
 
 "DOTA_Tooltip_modifier_primal_beast_uproar_custom_debuff"									"UPROAR"
 "DOTA_Tooltip_modifier_primal_beast_uproar_custom_debuff_Description"						"Скорость передвижения снижена на <b><font color='#ff0000'>%dMODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE%%%</font></b>"
 
 "DOTA_Tooltip_modifier_primal_beast_uproar_custom_buff"									"UPROAR"
-"DOTA_Tooltip_modifier_primal_beast_uproar_custom_buff_Description"						"Урон атаки увеличен на <b><font color='#53ea48'>%dMODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE%</font></b>, броня увеличена на <b><font color='#53ea48'>%dMODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS%</font></b>.<br><br>Сопротивление магии увеличено на <b><font color='#53ea48'>%dMODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS%%%</font></b>, скорость передвижения увеличена на <b><font color='#53ea48'>%dMODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE%%%</font></b>"
+"DOTA_Tooltip_modifier_primal_beast_uproar_custom_buff_Description"						"Урон атаки увеличен на <b><font color='#53ea48'>%dMODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE%%%</font></b>, урон Trample увеличен на <b><font color='#53ea48'>%dMODIFIER_PROPERTY_TOOLTIP%%%</font></b>, броня увеличена на <b><font color='#53ea48'>%dMODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS%</font></b>"
 
-"DOTA_Tooltip_ability_primal_beast_blood_frenzy_custom"								"Blood Frenzy"
-"DOTA_Tooltip_ability_primal_beast_blood_frenzy_custom_Description"					"Ограничение зарядов Uproar увеличивается до %max% на %duration% сек. Вы получаете +%speed% скорости атаки и 1 заряд Uproar за каждую атаку.<br><br>В конце эффекта вы применяете Uproar и восстанавливаете %heal%%% здоровья за каждый заряд способности."
-"DOTA_Tooltip_ability_primal_beast_blood_frenzy_custom_Lore"					"В туманную рощу зверь пришёл уже в обрывках верёвок и цепей, и дальнейших попыток его подчинить он не потерпит."
+"upgrade_disc_modifier_primal_beast_uproar_1" "*!+damage%* урона атаки за заряд Uproar<br><br>*!-bva^* базового времени атаки во время Uproar"
+"upgrade_disc_modifier_primal_beast_uproar_1_alt" "*!+damage_legendary%* урона атаки за заряд Uproar<br><br>*!-bva^* базового времени атаки во время Uproar"
+"upgrade_disc_modifier_primal_beast_uproar_1_alt2" "*!+damage%* урона атаки за заряд Uproar<br><br>Uproar снижает интервал землетрясений на *!interval%*"
 
-"DOTA_Tooltip_modifier_primal_beast_uproar_custom_legendary"									"Blood Frenzy"
-"DOTA_Tooltip_modifier_primal_beast_uproar_custom_legendary_Description"						"Скорость атаки увеличена на <b><font color='#53ea48'>%dMODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT%</font></b>"
+"upgrade_disc_modifier_primal_beast_uproar_2" "*!+duration* сек длительности Uproar<br><br>Недостающее здоровье дает до *!heal%* вампиризма от атак"
+"upgrade_disc_modifier_primal_beast_uproar_2_info" "С легендарным талантом увеличивает длительность продления"
 
-"upgrade_disc_modifier_primal_beast_uproar_1" "Uproar увеличивает ваше сопр. магии и скорость передвижения на *!magic%* за заряд<br><br>Максимум зарядов: *max*"
+"upgrade_disc_modifier_primal_beast_uproar_3" "*!+damage%* урона и скорости атаки от силы<br><br>Атаки увеличивают силу макс. на *!str*. Суммируется за *max* атак, сохраняется на *duration* сек"
+"upgrade_disc_modifier_primal_beast_uproar_3_alt" "*!+damage%* урона и скорости атаки от силы<br><br>Землетрясения дают до *!+str* силы. Суммируется за *max_quake* попаданий, Onslaught также дает заряд"
+"mini_disc_modifier_primal_beast_uproar_3" "Урон и скорость атаки от силы, атаки увеличивают силу"
+"epic_disc_modifier_primal_beast_uproar_3" "Дает урон и скорость атаки от силы<br><br>Атаки увеличивают силу"
 
-"upgrade_disc_modifier_primal_beast_uproar_2" "*!+status%* сопр. эффектам<br><br>*!+duration* сек длительности бонусов и замедления Uproar"
+"DOTA_Tooltip_modifier_primal_beast_uproar_custom_strength"   "Uproar"
+"DOTA_Tooltip_modifier_primal_beast_uproar_custom_strength_Description"   "Сила увеличена на <b><font color='#53ea48'>%dMODIFIER_PROPERTY_STATS_STRENGTH_BONUS%</font></b>"
 
-"upgrade_disc_modifier_primal_beast_uproar_3" "*!+damage* урона за заряд Uproar<br><br>Применение Uproar наносит *!cast_damage* маг. урона за каждый заряд"
+"upgrade_disc_modifier_primal_beast_uproar_4" "*!+stun* сек оглушения Onslaught<br><br>Uproar обездвиживает противников на *!root* сек. Также притягивает противников к вам в радиусе *!radius*"
+"mini_disc_modifier_primal_beast_uproar_4" "Uproar обездвиживает и притягивает противников"
+"epic_disc_modifier_primal_beast_uproar_4" "*+stun* сек оглушения Onslaught<br><br>Uproar обездвиживает и притягивает противников"
 
-"upgrade_disc_modifier_primal_beast_uproar_4" "Применение способностей увеличивает скорость *!attacks* атак на *!speed*<br><br>Атаки оглушают цель на *stun* сек и имеют *heal%* вампиризма"
-"mini_disc_modifier_primal_beast_uproar_4" "Способности ускоряют следующие атаки"
-"epic_disc_modifier_primal_beast_uproar_4" "Применение способностей увеличивает скорость следующих атак<br><br>Атаки оглушают цель и исцеляют вас"
-
-"DOTA_Tooltip_modifier_primal_beast_uproar_custom_proc"	"Uproar"
-"DOTA_Tooltip_modifier_primal_beast_uproar_custom_proc_Description"	"Скорость атаки увеличена на <b><font color='#53ea48'>%dMODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT%</font></b>"
-
-"upgrade_disc_modifier_primal_beast_uproar_5" "Перед замедлением, Uproar обездвиживает противников на *!root* сек и развеивает положительные эффекты<br><br>Если противник был в радиусе *!radius*, также притягивает его"
-"mini_disc_modifier_primal_beast_uproar_5" "Uproar притягивает и обездвиживает противников"
-"epic_disc_modifier_primal_beast_uproar_5" "Uproar развеивает эффекты с противников, обездвиживает и притягивает"
-
-"upgrade_disc_modifier_primal_beast_uproar_6" "Uproar применяет на вас обычное развеивание и может быть использован в оглушении<br><br>Вы также получаете щит, прочностью *!shield%* недостающего здоровья на *duration* сек"
-"mini_disc_modifier_primal_beast_uproar_6" "Uproar развеивает эффекты и дает щит"
-"epic_disc_modifier_primal_beast_uproar_6" "Uproar развеивает эффекты и может быть использован в оглушении<br><br>Также дает щит"
-
-"upgrade_disc_modifier_primal_beast_uproar_7" "Новая способность<br><br>Ограничение зарядов Uproar увеличивается до *!max* на *duration* сек. Вы получаете *!+speed* скорости атаки и 1 заряд Uproar за каждую атаку<br><br>В конце эффекта вы применяете Uproar и восстанавливаете *!heal%* здоровья за каждый заряд"
-"mini_disc_modifier_primal_beast_uproar_7" "Новая способность: Снимает ограничение зарядов Uproar"
+"upgrade_disc_modifier_primal_beast_uproar_7" "Uproar длится *duration* сек и позволяет накопить еще *!max* зарядов. Дает *!+speed* скорости атаки и заряды за атаки<br><br>Затем Uproar продлевается на *!extend* сек. Доп. заряды дают только урон атаки и исцеляют *!heal%* здоровья"
+"upgrade_disc_modifier_primal_beast_uproar_7_info" "Базовый урон атаки за заряд снижается на *damage%*<br><br>При продлении срабатывает замедление"
+"mini_disc_modifier_primal_beast_uproar_7" "Снимает ограничение зарядов Uproar"
 
 "DOTA_Tooltip_ability_primal_beast_pulverize_custom"				"Pulverize"
-"DOTA_Tooltip_ability_primal_beast_pulverize_custom_Description"	"ПРЕРЫВАЕМАЯ — герой хватает выбранного противника и несколько раз ударяет его об землю, нанося урон всем врагам в области действия и ненадолго оглушая их. Длительность: %channel_time%."
+"DOTA_Tooltip_ability_primal_beast_pulverize_custom_Description"	"ПРЕРЫВАЕМАЯ — герой хватает выбранного противника и несколько раз ударяет его об землю, нанося урон всем врагам в области действия и ненадолго оглушая их. Длительность: %channel_time% сек.<br><br><b><font color='#53ea48'>Наносит крипам на %creeps_damage%%% больше урона<br><br>Приостанавливает действие Trample и Uproar</font></b>"
 "DOTA_Tooltip_ability_primal_beast_pulverize_custom_Lore"	"Никто не уверен наверняка, значат ли что-нибудь эти возгласы, но, чтобы понять намерения зверя, многим вполне достаточно его крепкой хватки и стремления оставить от врага лишь мокрое место."
-"DOTA_Tooltip_ability_primal_beast_pulverize_custom_splash_radius"	"РАДИУС УДАРОВ:"
 "DOTA_Tooltip_ability_primal_beast_pulverize_custom_ministun"		"ДЛИТЕЛЬНОСТЬ ОГЛУШЕНИЯ:"
 "DOTA_Tooltip_ability_primal_beast_pulverize_custom_interval"		"ИНТЕРВАЛ УДАРОВ:"
 "DOTA_Tooltip_ability_primal_beast_pulverize_custom_damage"			"УРОН:"
-"DOTA_Tooltip_ability_primal_beast_pulverize_custom_damage_stack"         "ДОП. УРОН ЗА УДАР:"
-"DOTA_Tooltip_ability_primal_beast_pulverize_custom_damage_stack_max"         "МАКС. ДОПОЛНИТЕЛЬНЫЙ УРОН:"
+"DOTA_Tooltip_ability_primal_beast_pulverize_custom_scepter_description"      "При использовании Pulverize вы выпускаете %scepter_duration% волн, которые наносят урон, накладывают истощение на %scepter_break% сек и замедляют на %scepter_slow_duration% сек.<br><br><b><font color='#ff453c'>С легендарным талантом Q или E:</font></b><br><br>Наносит атаку на %scepter_attack%%% урона, снижает %scepter_armor% брони.<br><br><b><font color='#70aced'>С легендарным талантом W или R:</font></b><br><br>Наносит %scepter_damage%%% урона Trample, снижает %scepter_magic%%% сопр. магии."
 
 "DOTA_Tooltip_modifier_primal_beast_pulverize_custom_debuff"    "Pulverize"
 "DOTA_Tooltip_modifier_primal_beast_pulverize_custom_debuff_Description"    "Оглушение"
 
-"upgrade_disc_modifier_primal_beast_pulverize_1" "Урон Pulverize увеличивается на *!damage%* от силы<br><br>*+spell%* урона заклинаний за *!str* силы"
+"DOTA_Tooltip_ability_primal_beast_rock_throw_custom"                              "Rock Throw"
+"DOTA_Tooltip_ability_primal_beast_rock_throw_custom_Description"                  "Герой бросает в точку камень, который оглушает врагов и наносит урон. Камень разбивается на 3 осколка. У броска есть минимальная дальность.<br><br>Попадание по героям увеличивает количество ударов Pulverize."
+"DOTA_Tooltip_ability_primal_beast_rock_throw_custom_Lore"                 "ОПЯТЬ ЭТИ КАМНИ!"
 
-"upgrade_disc_modifier_primal_beast_pulverize_2" "Pulverize снижает урон цели на *!damage_reduce%*, а исцеление на *!heal_reduce%*<br><br>Эффект сохраняется на *duration* сек после конца способности"
+"upgrade_disc_modifier_primal_beast_pulverize_1" "*!+spell%* урона заклинаний<br><br>Урон Pulverize навсегда увеличивается на *!damage* за *max* ударов по героям"
 
-"DOTA_Tooltip_modifier_primal_beast_pulverize_custom_damage_reduce"	"Pulverize"
-"DOTA_Tooltip_modifier_primal_beast_pulverize_custom_damage_reduce_Description"	"Наносимый урон снижен на <b><font color='#ff0000'>%dMODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE%%%</font></b>, исцеление снижено на <b><font color='#ff0000'>%dMODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE%%%</font></b>"
+"DOTA_Tooltip_modifier_primal_beast_pulverize_custom_perma"   "Pulverize"
+"DOTA_Tooltip_modifier_primal_beast_pulverize_custom_perma_Description"   "Урон Pulverize увеличен на <b><font color='#53ea48'>%dMODIFIER_PROPERTY_TOOLTIP%</font></b>"
 
-"upgrade_disc_modifier_primal_beast_pulverize_3" "*!+range* дальности способностей и предметов<br><br>*!-cd* сек перезарядки Pulverize"
+"upgrade_disc_modifier_primal_beast_pulverize_2" "*!-cd* сек перезарядки Pulverize<br><br>*!+range* дальности способностей и радиуса Trample"
+"upgrade_disc_modifier_primal_beast_pulverize_2_info" "Также дает *+radius* радиуса Trample"
 
-"upgrade_disc_modifier_primal_beast_pulverize_4" "Способности увеличивают вашу силу и снижают силу цели на *!str%*. Суммируется *max* раз за: <br><br>• Заряженный Onslaught<br>• Урон Trample *trample* раза<br>• Uproar с *uproar* зарядами<br>• Применение Pulverize<br>• Попадание Rock Throw"
-"mini_disc_modifier_primal_beast_pulverize_4" "Способности увеличивают вашу силу и снижают силу цели"
-"epic_disc_modifier_primal_beast_pulverize_4" "Применение способностей увеличивает вашу силу и снижает силу задетых противников"
+"upgrade_disc_modifier_primal_beast_pulverize_3" "В конце Pulverize срабатывает еще *!count* раза, оглушая на *stun* сек<br><br>С каждым ударом цель теряет *!health%* макс. здоровья. Сохраняется на *duration* сек"
+"upgrade_disc_modifier_primal_beast_pulverize_3_alt" "Макс. количество зарядов легендарного таланта увеличивается на *!max_legendary*<br><br>С каждым ударом цель теряет *!health_legendary%* макс. здоровья. Сохраняется на *duration* сек"
+"mini_disc_modifier_primal_beast_pulverize_3" "Pulverize наносит доп. удары и снижает макс. здоровье"
+"epic_disc_modifier_primal_beast_pulverize_3" "Pulverize наносит доп. удары<br><br>Удары снижают макс. здоровье цели"
 
-"DOTA_Tooltip_modifier_primal_beast_pulverize_custom_str_count"	"Pulverize"
-"DOTA_Tooltip_modifier_primal_beast_pulverize_custom_str_count_Description"	"Сила изменена на %dMODIFIER_PROPERTY_TOOLTIP%%%"
+"DOTA_Tooltip_modifier_primal_beast_pulverize_custom_health_reduce" "Pulverize"
+"DOTA_Tooltip_modifier_primal_beast_pulverize_custom_health_reduce_Description" "Макс. здоровье снижено на <b><font color='#ff0000'>%dMODIFIER_PROPERTY_EXTRA_HEALTH_PERCENTAGE%%%</font></b>"
 
-"upgrade_disc_modifier_primal_beast_pulverize_5" "*!+cdr%* сокращения перезарядок<br><br>Каждый удар Pulverize перезаряжает ваши предметы на *!cd_items* сек и восстанавливает вам *!heal%* недостающего здоровья"
-"mini_disc_modifier_primal_beast_pulverize_5" "Pulverize перезаряжает предметы и исцеляет"
-"epic_disc_modifier_primal_beast_pulverize_5" "Сокращение перезарядок увеличивается<br><br>Pulverize перезаряжает предметы и исцеляет с каждым ударом"
+"upgrade_disc_modifier_primal_beast_pulverize_4" "*!+cdr%* сокращения перезарядок<br><br>Pulverize не запрещает использование предметов и перезаряжает предметы на *!cd_items* сек за удар"
+"upgrade_disc_modifier_primal_beast_pulverize_4_alt" "*!+cdr%* сокращения перезарядок<br><br>Pulverize не запрещает использование предметов и перезаряжает предметы на *!cd_items_legendary* сек за удар"
+"mini_disc_modifier_primal_beast_pulverize_4" "Pulverize перезаряжает предметы и не запрещает их"
+"epic_disc_modifier_primal_beast_pulverize_4" "*+cdr%* сокращения перезарядок<br><br>Pulverize перезаряжает предметы и не запрещает их использование"
 
-"upgrade_disc_modifier_primal_beast_pulverize_6" "Pulverize не может быть заблокирован или отражен<br><br>Pulverize дает вам неуяз. к эффектам и накладывает истощение на цель. Эффекты сохраняются на *!duration* сек"
-"mini_disc_modifier_primal_beast_pulverize_6" "Pulverize дает неуяз. к эффектам"
-"epic_disc_modifier_primal_beast_pulverize_6" "Pulverize не может быть заблокирован, а также дает неуяз. к эффектам и накладывает истощение"
-
-"upgrade_disc_modifier_primal_beast_pulverize_7" "Количество ударов Pulverize увеличивается на *count*, вплоть до *!max*. Эффект суммируется за: <br><br>• Применение заряженного Onslaught<br>• Нанесение урона Trample *trample* раза<br>• Активацию Uproar с *uproar* зарядами<br>• Нанесение урона Rock Throw"
-"mini_disc_modifier_primal_beast_pulverize_7" "Применение способностей усиливает Pulverize"
-
-"DOTA_Tooltip_modifier_primal_beast_pulverize_custom_legendary_count" "Pulverize"
-"DOTA_Tooltip_modifier_primal_beast_pulverize_custom_legendary_count_Description" "Вы находитесь в бою. Заряды легендарного таланта сохраняются."
+"upgrade_disc_modifier_primal_beast_pulverize_7" "Новая способность: Бросает камень. Оглушает цели и отнимает *!damage%* текущего здоровья<br><br>Pulverize нанесет *!count* доп. удар по задетым противникам<br><br>Суммируется *!max* раза. Trample дает заряд за *trample* попаданий"
+"upgrade_disc_modifier_primal_beast_pulverize_7_info" "Pulverize не развеивается<br><br>Камень оглушает на *stun* сек и разделяется на 3 осколка. Наносит *creeps* урона крипам<br><br>Заряды дают только попадания по героям. Они существуют *duration* сек и обновляются рядом с героями"
+"mini_disc_modifier_primal_beast_pulverize_7" "Бросает камень, попадания дают доп. удары Pulverize"
 
 "calibration" "Калибровка"
-
 
 "DOTA_Tooltip_modifier_patrol_vision"	"Third Eye"
 "DOTA_Tooltip_modifier_patrol_vision_Description"	"Получает обзор на всех вражеских героев. Убийства восстанавливают здоровье и ману"
@@ -6696,6 +6694,7 @@
 "faithful_fortune"      "Faithful Fortune"
 "blue_horizons"         "Blue Horizons"
 "solar_fang"            "School of the Solar Fang"
+"patchwork_protector"   "Patchwork Protector"
 
 "DOTA_Tooltip_ability_marci_innate_custom"              "Lunge"
 "DOTA_Tooltip_ability_marci_innate_custom_Description"      "Marci прыгает в указанную точку и наносит урон противникам в радиусе %radius%.<br><br>Способность доступна только в течение %timer% сек после применения другой способности."
@@ -7164,9 +7163,8 @@
 "DOTA_Tooltip_modifier_templar_assassin_psionic_trap_custom_trap_legendary"                     "Trap"
 "DOTA_Tooltip_modifier_templar_assassin_psionic_trap_custom_trap_legendary_Description"         "Psionic Trap вызовет несколько взрывов"
 
-"Grenade_count_text" "После 15 волны вы получаете Fae Grenade за убийство героев и крипов. Fae Grenade наносит серьезный урон постройкам противника, или исцеляет союзную постройку<br><br>Убийство героя приносит 1 Fae Grenade<br><br>Убийство 6 патрульных или древних крипов приносит 1 Fae Grenade"
 
-"Grenade_alert" "Герои теперь могут наносить урон постройкам"
+"PushAlert" "Герои теперь могут наносить урон постройкам"
 
 "DOTA_Tooltip_Ability_item_patrol_fortifier"                "Ancient Fortifier"
 "DOTA_Tooltip_Ability_item_patrol_fortifier_Description"	"<h1>Активное: Fortify</h1>Восстанавливает вашей башне %heal_tower%%% здоровья за %heal_duration% секунд и помещает на нее защитный механизм<br><br>Когда противник атакует вашу постройку, механизм активируется, снижая входящий урон по постройкам на %incoming%%% и увеличивая скорость атаки башни на %speed% на %duration% секунд"
@@ -7435,7 +7433,7 @@
 "load_tip_9" "Многие предметы и герои отличаются от своих оригиналов из Dota. Все отличия можно посмотреть на стадии выбора героя"
 
 "load_tip_font_10" "25"
-"load_tip_10" "Если самый богатый игрок оторвется на 20% по золоту от 2 места, на него начнется охота. Все игроки получат на него обзор и бонус к урону. Эффект работает только с 8 до 14 волны"
+"load_tip_10" "Если самый богатый игрок оторвется на 35% по золоту от среднего у остальных игроков, на него начнется охота. Все игроки получат на него обзор и бонус к урону. Эффект работает только с 13 по 23 мин"
 
 "load_tip_font_11" "26"
 "load_tip_11" "Убийства до 15 минуты снижают наносимый урон по герою на 10% и увеличивают его урон по вам на 10% вплоть до 40%. Эффект сбрасывается если герой убьет вас"
@@ -7594,7 +7592,7 @@
 "epic_disc_modifier_monkey_king_boundless_4" "Boundless Strike дает ускорение<br><br>С эффектом Jingu Mastery перезаряжается быстрее"
 "epic_disc_modifier_monkey_king_boundless_4_alt" "Boundless Strike дает ускорение<br><br>При макс. подготовке перезаряжается быстрее"
 
-"upgrade_disc_modifier_monkey_king_boundless_7" "*+bva* базового времени атаки<br><br>На конце Boundless Strike остается клон. Повторное применение запускает способность от клона в выбранном направлении<br><br>Крит. урон увеличивается в *!damage* раза за *max* сек подготовки"
+"upgrade_disc_modifier_monkey_king_boundless_7" "*~+bva* базового времени атаки<br><br>На конце Boundless Strike остается клон. Повторное применение запускает способность от клона в выбранном направлении<br><br>Крит. урон увеличивается в *!damage* раза за *max* сек подготовки"
 "upgrade_disc_modifier_monkey_king_boundless_7_info"    "Снижает урон заклинаний на *spell%*<br><br>Также, снижает перезарядку способности на *cd* сек, а затраты маны на *mana%*<br><br>Клон существует до *duration* сек и всегда появляется на расстоянии *range*<br><br>Повторное оглушение снижено на *stun%*"
 "mini_disc_modifier_monkey_king_boundless_7"  "Boundless Strike срабатывает повторно, нанося большой урон"
 
@@ -7705,8 +7703,8 @@
 "mini_disc_modifier_monkey_king_command_4" "Wukongs Command ускоряет перезарядку предметов"
 "epic_disc_modifier_monkey_king_command_4" "Клоны замедляют цель и атакуют бесплотные цели<br><br>Арена ускоряет перезарядку предметов"
 
-"upgrade_disc_modifier_monkey_king_command_7" "Wukongs Command призывает усиленного клона, и сокращает перезарядки на *!cdr%*<br><br>Клон не атакует, и повторяет способности и предметы с задержкой *!delay* сек<br><br>Исцеляет вас на *!heal%* наносимого урона"
-"upgrade_disc_modifier_monkey_king_command_7_info"  "Также, дает *+duration* сек длительности и *-cd* сек перезарядки Wukongs Command<br><br>Клон имеет *+range* дальности способностей и применяет предметы, Boundless Strike и Primal Spring<br><br>Primal Spring имеет заряд героя"
+"upgrade_disc_modifier_monkey_king_command_7" "Wukongs Command призывает усиленного клона, и сокращает перезарядки на *!cdr%*<br><br>Клон не атакует, и повторяет способности и предметы с *!+spell%* урона<br><br>Исцеляет вас на *!heal%* наносимого урона"
+"upgrade_disc_modifier_monkey_king_command_7_info"  "Также, дает *+duration* сек длительности и *-cd* сек перезарядки Wukongs Command, и *-cd_spring* сек перезарядки Primal Spring<br><br>Клон имеет *+range* дальности способностей и применяет предметы, Boundless Strike и Primal Spring с задержкой *delay* сек<br><br>Primal Spring имеет заряд героя"
 "mini_disc_modifier_monkey_king_command_7" "Клон Wukongs Command повторяет способности и предметы героя"
 
 "DOTA_Tooltip_modifier_generic_attack_speed"				"Attack Speed Bonus"
@@ -8132,7 +8130,7 @@
 "DOTA_Tooltip_modifier_generic_repair_Description"       "Восстанавливает <b><font color='#53ea48'>%dMODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT%</font></b> здоровья в секунду"
 
 "DOTA_Tooltip_modifier_tower_incoming_speed"                     "Tower Damage"
-"DOTA_Tooltip_modifier_tower_incoming_speed_Description"         "Пассивные способности отключены, исцеление снижено на <b><font color='#ff0000'>%dMODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE%%%</font></b><br><br>Интервал атак изменен до <b><font color='#53ea48'>%fMODIFIER_PROPERTY_FIXED_ATTACK_RATE%</font></b>. Атаки отнимают башне <b><font color='#53ea48'>%dMODIFIER_PROPERTY_TOOLTIP2%%%</font></b> здоровья, а святыне <b><font color='#53ea48'>%dMODIFIER_PROPERTY_TOOLTIP%%%</font></b> здоровья"
+"DOTA_Tooltip_modifier_tower_incoming_speed_Description"         "Пассивные способности отключены, исцеление снижено на <b><font color='#ff0000'>%dMODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE%%%</font></b>, входящий урон увеличен на <b><font color='#ff0000'>%dMODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE%%%</font></b><br><br>Интервал атак изменен до <b><font color='#53ea48'>%fMODIFIER_PROPERTY_FIXED_ATTACK_RATE%</font></b>. Атаки отнимают башне <b><font color='#53ea48'>%dMODIFIER_PROPERTY_TOOLTIP2%%%</font></b> здоровья, а святыне <b><font color='#53ea48'>%dMODIFIER_PROPERTY_TOOLTIP%%%</font></b> здоровья"
 
 // 
 
@@ -9839,6 +9837,18 @@
 "DOTA_Tooltip_ability_item_rapier_custom_Lore"									"Такому могущественному оружию недостаточно одного владельца."
 "DOTA_Tooltip_ability_item_rapier_custom_bonus_damage_base"							"+$damage"
 
+"DOTA_Tooltip_Ability_item_armlet_custom"				"Armlet of Mordiggian"
+"DOTA_Tooltip_Ability_item_recipe_armlet_custom"					"Рецепт: Armlet of Mordiggian"
+"DOTA_Tooltip_ability_item_armlet_custom_Description"							"<h1>Переключаемое: Unholy Strength</h1>Пока активен, дает +%unholy_bonus_damage% урона, +%unholy_bonus_strength% силы, +%unholy_bonus_armor% брони и +%unholy_bonus_slow_resistance%%% сопр. замедлениям.<br><br>Тратит %unholy_health_drain_per_second% здоровья в секунду. Урон не может быть смертельным."
+"DOTA_Tooltip_ability_item_armlet_custom_Lore"									"Это оружие, горячо любимое дикарями, забирает жизненные силы владельца, взамен наделяя его безмерной силой и мощью."
+"DOTA_Tooltip_ability_item_armlet_custom_Note0"								"Изменение силы действует и на текущий, и на максимальный уровень здоровья, но от него нельзя умереть."
+"DOTA_Tooltip_ability_item_armlet_custom_Note1"								"Изменение силы происходит спустя 0,6 секунды."
+"DOTA_Tooltip_ability_item_armlet_custom_Note2"								"Включение и выключение Unholy Strength не останавливает прерываемые заклинания."
+"DOTA_Tooltip_ability_item_armlet_custom_bonus_damage"							"+$damage"
+"DOTA_Tooltip_ability_item_armlet_custom_bonus_attack_speed"					"+$attack"
+"DOTA_Tooltip_ability_item_armlet_custom_bonus_armor"							"+$armor"
+"DOTA_Tooltip_ability_item_armlet_custom_bonus_health_regen"					"+$hp_regen"
+
 // 
 
 "Voice.Sniper.1_1"	"Хо-хо ха-ха!"
@@ -10081,6 +10091,7 @@
 "mini_disc_modifier_sniper_assassinate_7" "Новая способность: Постепенно увеличивает урон от Assassinate"
 
 "pick_loading" "Загрузка..."
+"pick_loading_sec" "сек"
 
 //  
 
@@ -10157,14 +10168,15 @@
 "muerta_quest_text_6"   "Mercy & Grace<br><br>Предмет полностью усилен!"
 
 "hero_change_npc_dota_hero_muerta_1" "Скорость передвижения увеличена"
-"hero_change_npc_dota_hero_muerta_2" "Врожденная способность изменена"
-"hero_change_npc_dota_hero_muerta_3" "Перезарядка снижена"
-"hero_change_npc_dota_hero_muerta_4" "Перезарядка и урон снижены, длительность увеличена"
-"hero_change_npc_dota_hero_muerta_5" "Замедление сохраняется после выхода из области"
-"hero_change_npc_dota_hero_muerta_6" "Шанс срабатывания снижен"
-"hero_change_npc_dota_hero_muerta_7" "Длительность, перезарядка, и урон маг. атак снижены"
-"hero_change_npc_dota_hero_muerta_8" "Увеличивает скорость атаки, а не урон"
-"hero_change_npc_dota_hero_muerta_9" "Aghanim Scepter и Aghanim Shard изменены"
+"hero_change_npc_dota_hero_muerta_2" "Сила за уровень увеличена на 0.5"
+"hero_change_npc_dota_hero_muerta_3" "Врожденная способность изменена"
+"hero_change_npc_dota_hero_muerta_4" "Перезарядка снижена"
+"hero_change_npc_dota_hero_muerta_5" "Перезарядка и урон снижены, длительность увеличена"
+"hero_change_npc_dota_hero_muerta_6" "Замедление сохраняется после выхода из области"
+"hero_change_npc_dota_hero_muerta_7" "Шанс срабатывания снижен"
+"hero_change_npc_dota_hero_muerta_8" "Длительность, перезарядка, и урон маг. атак снижены"
+"hero_change_npc_dota_hero_muerta_9" "Увеличивает скорость атаки, а не урон"
+"hero_change_npc_dota_hero_muerta_10" "Aghanim Scepter и Aghanim Shard изменены"
 
 "npc_dota_hero_muerta_legendary_1"  "Dead Shot перезаряжается быстрее<br><br>После *max* попаданий, вы можете совершить усиленный выстрел"
 "npc_dota_hero_muerta_legendary_2"  "+1 круг призраков The Calling<br><br>Способность накапливает эффект, а повторное применение наносит урон за заряд"
@@ -10228,7 +10240,7 @@
 "DOTA_Tooltip_modifier_muerta_dead_shot_custom_speed_Description"        "Скорость передвижения увеличена на <b><font color='#53ea48'>%dMODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE%%%</font></b>"
 
 "upgrade_disc_modifier_muerta_dead_7" "*!-cd%* перезарядки, урона, и устрашения Dead Shot<br><br>После *max* попаданий рикошетом, вы можете сделать выстрел по прямой<br><br>Наносит *!damage%* урона Dead Shot, исцеляет от урона, и устрашает на *!fear* сек"
-"upgrade_disc_modifier_muerta_dead_7_info"   "Срабатывает от попадания по герою<br><br>Также, снижает затраты маны на Dead Shot на *mana%*<br><br>Исцеляет на *heal%* от урона"
+"upgrade_disc_modifier_muerta_dead_7_info"   "*~+bva* базового времени атаки<br><br>Срабатывает от попадания по герою<br><br>Также, снижает затраты маны на Dead Shot на *mana%* и увеличивает урон по крипам еще на *creeps%*<br><br>Исцеляет на *heal%* от урона"
 "mini_disc_modifier_muerta_dead_7" "Dead Shot позволяет сделать усиленный выстрел"
 
 "DOTA_Tooltip_Ability_muerta_the_calling_custom"                                "The Calling"
@@ -10261,7 +10273,7 @@
 "epic_disc_modifier_muerta_calling_4" "The Calling длится дольше и обездвиживает противников с перезарядкой"
 
 "upgrade_disc_modifier_muerta_calling_7" "The Calling создает еще один круг из *!count* призраков. Пока в области находится герой, вы накапливаете эффект<br><br>Повторное применение запускает в цель 1 призрака за заряд. При *fear_stack* зарядах, устрашает на *!fear* сек"
-"upgrade_disc_modifier_muerta_calling_7_info"   "Увеличивает перезарядку The Calling на *cd* сек, и снижает базовый урон на *base_damage%*<br><br>Повторное применение запускает до *max* призраков, которые наносят *damage%* урона"
+"upgrade_disc_modifier_muerta_calling_7_info"   "*~+bva* базового времени атаки<br><br>Увеличивает перезарядку The Calling на *cd* сек, и снижает базовый урон на *base_damage%*<br><br>Повторное применение запускает до *max* призраков, которые наносят *damage%* урона"
 "mini_disc_modifier_muerta_calling_7" "Повторное применение The Calling запускает призраков в цель"
 
 "DOTA_Tooltip_Ability_muerta_gunslinger_custom"                             "Gunslinger"
@@ -10296,12 +10308,18 @@
 "DOTA_Tooltip_modifier_muerta_gunslinger_custom_legendary_stack_Description"        "Урон атаки увеличен на <b><font color='#53ea48'>%dMODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE%</font></b>"
 
 "DOTA_Tooltip_Ability_muerta_pierce_the_veil_custom"                            "Pierce the Veil"
-"DOTA_Tooltip_Ability_muerta_pierce_the_veil_custom_Description"                "Герой принимает бесплотную форму, получая бонус к <b><font color='#53ea48'>скорости атаки</font></b> и возможность проходить сквозь существ.<br><br>Пассивно позволяет герою совершать атаки в бесплотной форме и атаковать бесплотных существ. Если герой или его цель бесплотны, весь урон от его атак снижается и становится магическим, а физический вампиризм считается вампиризмом заклинаний.<br><br>ТИП РАЗВЕИВАНИЯ: нормальное"
+"DOTA_Tooltip_Ability_muerta_pierce_the_veil_custom_Description"                "<b><font color='#ddd'>Пассивное:</font></b> Позволяет совершать атаки в бесплотной форме и атаковать бесплотных существ. При этом, урон атак становится магическим, и на него работает вампиризм от атак.<br><br><b><font color='#ddd'>Активное:</font></b> Дает бесплотную форму и развеивает эффекты.<br><br><b><font color='#ff453c'>С легендарным талантом E или R</font></b>:<br><br>Увеличивает скорость атаки.<br><br><b><font color='#70aced'>С легендарным талантом Q или W</font></b>:<br><br>Замедляет противников и снижает их макс. здоровье. Сохраняется на %aura_linger% сек."
 "DOTA_Tooltip_Ability_muerta_pierce_the_veil_custom_Lore"                       "Зайдя за завесу духов, Муэрта сбрасывает свою телесную оболочку и обрушивает на врагов ярость проклятых."
 "DOTA_Tooltip_Ability_muerta_pierce_the_veil_custom_transform_duration"     "ДЛИТЕЛЬНОСТЬ ПРЕВРАЩЕНИЯ:"
 "DOTA_Tooltip_Ability_muerta_pierce_the_veil_custom_duration"                   "ДЛИТЕЛЬНОСТЬ ЭФФЕКТА:"
-"DOTA_Tooltip_Ability_muerta_pierce_the_veil_custom_bonus_speed"               "ДОП. СКОРОСТЬ АТАКИ:"
+"DOTA_Tooltip_Ability_muerta_pierce_the_veil_custom_bonus_speed"               "СКОРОСТЬ АТАКИ:"
+"DOTA_Tooltip_Ability_muerta_pierce_the_veil_custom_aura_slow"               "%ЗАМЕДЛЕНИЕ:"
+"DOTA_Tooltip_Ability_muerta_pierce_the_veil_custom_aura_health"               "%СНИЖЕНИЕ ЗДОРОВЬЯ:"
+"DOTA_Tooltip_Ability_muerta_pierce_the_veil_custom_aura_radius"               "РАДИУС:"
 "DOTA_Tooltip_Ability_muerta_pierce_the_veil_custom_damage_reduce"               "%УРОН МАГ. АТАК:"
+
+"DOTA_Tooltip_modifier_muerta_pierce_the_veil_custom_aura_effect"          "Pierce the Veil"
+"DOTA_Tooltip_modifier_muerta_pierce_the_veil_custom_aura_effect_Description"      "Скорость передвижения снижена на <b><font color='#ff0000'>%dMODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE%%%</font></b>, макс. здоровье снижено на <b><font color='#ff0000'>%dMODIFIER_PROPERTY_EXTRA_HEALTH_PERCENTAGE%%%</font></b>."
 
 "upgrade_disc_modifier_muerta_veil_1" "Атака наносит урон по области, равный *!base* + *!damage%* интеллекта за *duration* сек<br><br>Pierce the Veil сокращает перезарядку в *cd_inc* раза"
 
@@ -10484,11 +10502,12 @@
 "DOTA_Tooltip_ability_pangolier_swashbuckle_custom_damage"                  "УРОН ЗА УДАР:"
 "DOTA_Tooltip_ability_pangolier_swashbuckle_custom_strikes"             "УДАРОВ:"
 
-"upgrade_disc_modifier_pangolier_buckle_1"  "*!+attack%* урона атаки<br><br>Урон Swashbuckle увеличивается на *!base* + *!damage%* от урона атаки"
+"upgrade_disc_modifier_pangolier_buckle_1"  "*!+attack%* урона атаки<br><br>*!+damage%* урона атаки в урон Swashbuckle"
 
 "upgrade_disc_modifier_pangolier_buckle_2"  "*!-cd* сек перезарядки Swashbuckle<br><br>Атаки и Swashbuckle замедляют цель на *!slow%*"
 
-"upgrade_disc_modifier_pangolier_buckle_3"  "Атаки и Swashbuckle наносят цели еще *!damage%* своего урона за *duration* сек<br><br>Последняя атака Swashbuckle наносит противникам *!crit%* крит. урона"
+"upgrade_disc_modifier_pangolier_buckle_3"  "Атаки и Swashbuckle наносят еще *!base* + *!damage%* своего урона за *duration* сек<br><br>Последняя атака Swashbuckle наносит *!crit%* крит. урона"
+"upgrade_disc_modifier_pangolier_buckle_3_alt"  "Swashbuckle наносит еще *!base* + *!damage%* своего урона за *duration* сек<br><br>Последняя атака Swashbuckle наносит *!crit%* крит. урона"
 "mini_disc_modifier_pangolier_buckle_3"  "Атаки и Swashbuckle наносят доп. урон со временем"
 "epic_disc_modifier_pangolier_buckle_3"  "Атаки и Swashbuckle наносят доп. урон со временем<br><br>Swashbuckle наносит крит. атаку"
 
@@ -10503,7 +10522,7 @@
 "DOTA_Tooltip_modifier_pangolier_swashbuckle_custom_move"                  "Swashbuckle"
 "DOTA_Tooltip_modifier_pangolier_swashbuckle_custom_move_Description"      "Скорость передвижения и сопр. замедлениям увеличены на <b><font color='#53ea48'>%dMODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE%%%</font></b>"
 
-"upgrade_disc_modifier_pangolier_buckle_7"  "Передвижение перезаряжает Swashbuckle<br><br>Попадание по герою дает *!+attack* атаку следующего Swashbuckle<br><br>На *max* зарядах Swashbuckle получает *!+damage%* урона и оглушает, а эффект сбрасывается"
+"upgrade_disc_modifier_pangolier_buckle_7"  "*~+bva* базового времени атаки. Передвижение перезаряжает Swashbuckle<br><br>Попадание по герою дает *!+attack* атаку следующего Swashbuckle<br><br>На *max* раз Swashbuckle получает *!+damage%* урона и оглушает"
 "upgrade_disc_modifier_pangolier_buckle_7_info"  "Перезаряжается на *cd%* за *distance* пройденного расстояния<br><br>Оглушение длится *stun* сек. Заряды сбрасываются через *duration* сек<br><br>Снижает затраты маны на Swashbuckle на *mana%*"
 "mini_disc_modifier_pangolier_buckle_7"  "Swashbuckle наносит больше атак и оглушает противников"
 
@@ -10541,7 +10560,7 @@
 "DOTA_Tooltip_modifier_pangolier_shield_crash_custom_health_Description"      "Макс. здоровье увеличено на <b><font color='#53ea48'>%dMODIFIER_PROPERTY_EXTRA_HEALTH_PERCENTAGE%%%</font></b>, урон заклинаний увеличен на <b><font color='#53ea48'>%fMODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE%%%</font></b>"
 
 "upgrade_disc_modifier_pangolier_shield_7"  "После Shield Crash, вы можете прыгнуть еще раз с перезарядкой *!cd* сек, нанося *!damage%* урона<br><br>После попадания *max* прыжками, наносит *!damage_max%* урона, и перезаряжает способность на *!cd_inc%*"
-"upgrade_disc_modifier_pangolier_shield_7_info"     "Снижает оглушение от Rolling Thunder на *stun_reduce%*<br><br>На повторные прыжки дается *duration* сек<br><br>Aghanim Scepter не работает на доп. прыжки, но позволяет использовать способность на точку"
+"upgrade_disc_modifier_pangolier_shield_7_info"     "На повторные прыжки дается *duration* сек<br><br>Aghanim Scepter не работает на доп. прыжки, но позволяет использовать способность на точку"
 "mini_disc_modifier_pangolier_shield_7"  "Shield Crash можно использовать несколько раз после прыжка"
 
 "DOTA_Tooltip_ability_pangolier_lucky_shot_custom"                      "Lucky Shot"
@@ -10898,7 +10917,7 @@
 "DOTA_Tooltip_modifier_item_echo_sabre_custom_slow_Description"                "Замедлен на %dMODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE%%%."
 
 "DOTA_Tooltip_Ability_item_harpoon_custom"                "Harpoon"
-"DOTA_Tooltip_Ability_item_harpoon_custom_Description"                  "<h1>Активное: Draw Forth</h1>Выстреливает в выбранного врага гарпун, который наносит <b><font color='#53ea48'>%damage%</font></b> чистого урона, а также тянет владельца и цель друг к другу.<br><br>Можно использовать на <b><font color='#53ea48'>дерево</font></b>, чтобы притянуться к нему.\n\n <h1>Пассивное: Echo Strike</h1>Следующая атака в ближнем бою получает макс. скорость и сильно замедляет цель на %slow_duration% сек<br><br>Перезарядка: %passive_cooldown% сек."
+"DOTA_Tooltip_Ability_item_harpoon_custom_Description"                  "<h1>Активное: Draw Forth</h1>Выстреливает в выбранного врага гарпун, который наносит <b><font color='#53ea48'>%damage%</font></b> чистого урона, а также тянет владельца и цель друг к другу.<br><br>Можно использовать на <b><font color='#53ea48'>дерево</font></b>, чтобы притянуться к нему и уничтожить его.\n\n <h1>Пассивное: Echo Strike</h1>Следующая атака в ближнем бою получает макс. скорость и сильно замедляет цель на %slow_duration% сек<br><br>Перезарядка: %passive_cooldown% сек."
 "DOTA_Tooltip_Ability_item_harpoon_custom_bonus_health"                 "+$health"
 "DOTA_Tooltip_Ability_item_harpoon_custom_bonus_agility"                    "+$agi"
 "DOTA_Tooltip_Ability_item_harpoon_custom_bonus_intellect"                  "+$int"
@@ -12586,6 +12605,7 @@
 "drow_arcana"   "Dread Retribution (Arcana)"
 "drow_crownfall"    "Ravencloack"
 "motley_marauder"   "Motley Marauder"
+"sepulchral_stalker"    "Sepulchral Stalker"
 
 "DOTA_Tooltip_ability_drow_ranger_innate_custom"                           "Precision Aura"
 "DOTA_Tooltip_ability_drow_ranger_innate_custom_Description"               "Ловкость Drow Ranger увеличивается на %agility%%%.<br><br>Если в радиусе %radius% есть вражеский герой, Precision Aura отключается, а бонус ловкости ослабевает в %reduce% раза."
@@ -13696,7 +13716,7 @@
 "mini_disc_modifier_enigma_conversion_4" "Эйдолоны получают неуязвимость и ускорение" 
 "epic_disc_modifier_enigma_conversion_4" "*-attacks* атака для раздвоения эйдолонов<br><br>Эйдолоны и герой получают неуязвимость" 
 
-"upgrade_disc_modifier_enigma_conversion_7"   "Новая способность: Дает вам форму эйдолона на *!duration* сек. Эйдолоны увеличивают здоровье формы<br><br>Эйдолоны получают неуязвимость и маг. урон от атак. Запрещает создавать эйдолонов" 
+"upgrade_disc_modifier_enigma_conversion_7"   "Вы получаете форму эйдолона на *!duration* сек. Здоровье формы зависит от количества эйдолонов<br><br>Эйдолоны получают неуязвимость, *!+damage%* урона атаки, и маг. урон от атак. Запрещает создавать эйдолонов" 
 "upgrade_disc_modifier_enigma_conversion_7_info"    "Форма имеет *health%* вашего здоровья за каждого эйдолона<br><br>Также, останавливает время жизни эйдолонов, и дает *+movespeed%* скорости передвижения" 
 "mini_disc_modifier_enigma_conversion_7" "Новая способность: Эйдолоны получают неуязвимость"
 
@@ -14139,7 +14159,7 @@
 "DOTA_Tooltip_modifier_morphling_adaptive_strike_custom_shield_stack"              "Adaptive Strike"
 "DOTA_Tooltip_modifier_morphling_adaptive_strike_custom_shield_stack_Description"   "Способности дают щит"
 
-"upgrade_disc_modifier_morphling_adaptive_7"     "*-attack%* урона атаки<br><br>Adaptive Strike применяется на область, а урон меняется на *!base* + *!damage%* всех атрибутов<br><br>Попадание центром оглушает на *!stun* сек и перезаряжает способность на *!cd_inc%*"
+"upgrade_disc_modifier_morphling_adaptive_7"     "*~-attack%* урона атаки<br><br>Adaptive Strike применяется на область, а урон меняется на *!base* + *!damage%* всех атрибутов<br><br>Попадание центром оглушает на *!stun* сек и перезаряжает способность на *!cd_inc%*"
 "upgrade_disc_modifier_morphling_adaptive_7_info"   "Adaptive Strike больше не отталкивает противников<br><br>Также, увеличивает дальность применения на *range*"
 "mini_disc_modifier_morphling_adaptive_7" "Adaptive Strike поражает область и перезаряжается быстрее" 
 
@@ -14233,45 +14253,11 @@
 "DOTA_Tooltip_modifier_morphling_replicate_custom_bkb_cd"               "Morph"
 "DOTA_Tooltip_modifier_morphling_replicate_custom_bkb_cd_Description"   "Перезарядка неуязвимости к эффектам"
 
-"upgrade_disc_modifier_morphling_morph_7"     "*+bva* базового времени атаки. Способности и предметы запускают атаки<br><br>Morph снижает перезарядки способностей на *!cdr%*, и дает *!+damage%* урона таких атак за способность"
+"upgrade_disc_modifier_morphling_morph_7"     "*~+bva* базового времени атаки. Способности и предметы запускают атаки<br><br>Morph снижает перезарядки способностей на *!cdr%*, и дает *!+damage%* урона таких атак за способность"
 "upgrade_disc_modifier_morphling_morph_7_info"  "Запускает атаки в *targets* цели на *damage_base%* урона<br><br>Увеличение урона суммируется *max* раз<br><br>От предметов срабатывает с перезарядкой *items_timer* сек. От каждой способности, срабатывает только раз в *timer* сек"
 "mini_disc_modifier_morphling_morph_7" "Способности запускают атаки в ближайших противников" 
 
 //
-
-"goodwin_quest_1"   "Джейсон Стетхем (с)<br><br>Лучше посрать и опоздать, чем успеть и обосраться."
-"goodwin_quest_2"   "Джейсон Стетхем (с)<br><br>Слабый мужчина ищет оправдания, сильный - подготовил их заранее."
-"goodwin_quest_3"   "Джейсон Стетхем (с)<br><br>Не круто пить, не круто врать, круто маме помогать."
-"goodwin_quest_4"   "Джейсон Стетхем (с)<br><br>По-настоящему несгибаемым делает межпозвоночная грыжа."
-"goodwin_quest_5"   "Джейсон Стетхем (с)<br><br>Не ложусь спать, когда устал, чтобы усталость не думала, что она что-то решает."
-"goodwin_quest_6"   "Джейсон Стетхем (с)<br><br>За двумя зайцами погонишься, не вытащишь рыбку из пруда."
-"goodwin_quest_7"   "Джейсон Стетхем (с)<br><br>Если сделать греческий салат 31 декабря, он станет древнегреческим."
-"goodwin_quest_8"   "Джейсон Стетхем (с)<br><br>Лучше жопа в тепле, чем тепло в жопе."
-"goodwin_quest_9"   "Джейсон Стетхем (с)<br><br>Если жена делает тебя счастливым, то какая разница, чья она жена."
-"goodwin_quest_10"   "Джейсон Стетхем (с)<br><br>Будь как дождь, он даже когда падает, продолжает идти."
-"goodwin_quest_11"   "Джейсон Стетхем (с)<br><br>Чем больше женщину мы любим, тем больше меньше мы чем тем."
-"goodwin_quest_12"   "Джейсон Стетхем (с)<br><br>Иногда маленькая клубника -  это большая земляника."
-"goodwin_quest_13"   "Джейсон Стетхем (с)<br><br>Суп из одной рыбы - уха, из пяти - ухахахахаха."
-"goodwin_quest_14"   "Джейсон Стетхем (с)<br><br>Если не знаешь, как поступить, поступай как знаешь."
-"goodwin_quest_15"   "Джейсон Стетхем (с)<br><br>Одно колесо хорошо, два - хорошо хорошо."
-"goodwin_quest_16"   "Джейсон Стетхем (с)<br><br>Если тебя обидели незаслуженно - вернись и заслужи."
-"goodwin_quest_17"   "Джейсон Стетхем (с)<br><br>Не бойся получить в нос, бойся получить в рот."
-"goodwin_quest_18"   "Джейсон Стетхем (с)<br><br>Слабый мужчина ищет оправдания, а настоящий мужик подготовил их заранее."
-"goodwin_quest_19"   "Джейсон Стетхем (с)<br><br>Если кто-то громко плачет - довыебывался значит."
-"goodwin_quest_20"   "Джейсон Стетхем (с)<br><br>Если пересолил борщ, значит переборщил с солью."
-"goodwin_quest_21"   "Джейсон Стетхем (с)<br><br>Лучше пернуть как медведь, чем всю жизнь как гусь шипеть."
-"goodwin_quest_22"   "Джейсон Стетхем (с)<br><br>Если был мамонт, значит был и папонт."
-"goodwin_quest_23"   "Джейсон Стетхем (с)<br><br>Я бы выиграл, если бы не проиграл."
-"goodwin_quest_24"   "Джейсон Стетхем (с)<br><br>Сегодня завтра будет вчера, а еще вчера сегодня было завтра."
-"goodwin_quest_25"   "Джейсон Стетхем (с)<br><br>Счастье было, есть и будет, пока будильник не разбудит."
-"goodwin_quest_26"   "Джейсон Стетхем (с)<br><br>Я не пил уже три дня, но не подряд."
-"goodwin_quest_27"   "Джейсон Стетхем (с)<br><br>Неважно сколько раз ты упал, никто вообще не считал."
-"goodwin_quest_28"   "Джейсон Стетхем (с)<br><br>На самом деле если играть с сильным соперником, ты не поумнеешь. Ты проебешь."
-"goodwin_quest_29"   "Джейсон Стетхем (с)<br><br>Нет ничего невозможного, если ты пиздабол."
-"goodwin_quest_30"   "Джейсон Стетхем (с)<br><br>Когда волк устает бороться, он делает вид, что помудрел."
-"goodwin_quest_31"   "Джейсон Стетхем (с)<br><br>Самые опасные враги те, от которых волк не думал защищаться."
-"goodwin_quest_32"   "'ЧЕРТОВ ВЕЗУНЧИК'<br><br>Ты просто получаешь +1 балл, потому что ЧЕРТОВ ВЕЗУНЧИК"
-"goodwin_quest_33"   "'Ни себе, ни другим'<br><br>Ты не получаешь бонусный балл, но можешь выбрать 2 людей, у которых отнимешь по баллу"
 
 "chest_items_rare"  "Редкие Предметы"
 "chest_items_normal"    "Обычные Предметы"
@@ -14322,6 +14308,9 @@
 "DOTA_Tooltip_Ability_item_weighted_dice_custom"               "Weighted Dice"
 "DOTA_Tooltip_ability_item_weighted_dice_custom_Description"                         "<h1>Пассивное: Weighted Dice</h1>Атаки с шансом %chance%%% нанесут %damage% маг. урона.<br><br>Убийство нейтральных крипов с шансом %chance%%% принесет %gold% золота."
 
+"DOTA_Tooltip_Ability_item_duelist_gloves_custom"               "Duelist Gloves"
+"DOTA_Tooltip_ability_item_duelist_gloves_custom_Description"                         "<h1>Пассивное: Boldness</h1>Дает +%bonus_attack_speed% к скорости атаки.<br><br>Дает еще +%hero_attack_speed% к скорости атаки, если в радиусе %radius% есть вражеские герои."
+
 "DOTA_Tooltip_Ability_item_ash_legion_shield_custom"               "Ash Legion Shield"
 "DOTA_Tooltip_ability_item_ash_legion_shield_custom_Description"                         "<h1>Активное: Shield Wall</h1>Дает союзникам щит, поглощающий %block_amount% физ. урона. Щит замедляет передвижение на %slow%.<br><br>Длительность: %duration% сек."
 
@@ -14364,13 +14353,16 @@
 "DOTA_Tooltip_modifier_item_kobold_cup_custom_Description"             "Увеличивает скорость передвижения и уклонение союзников."
 
 "DOTA_Tooltip_Ability_item_mana_draught_custom"               "Mana Draught"
-"DOTA_Tooltip_ability_item_mana_draught_custom_Description"                         "<h1>Активная: Bottoms Up</h1>Восстанавливает вам %mana% маны в секунду и равное количество здоровья.<br><br>Длительность: %duration% сек"
+"DOTA_Tooltip_ability_item_mana_draught_custom_Description"                         "<h1>Активная: Bottoms Up</h1>Восстанавливает вам %mana% + %mana_pct%%% макс. маны в секунду (не больше %max_regen%) и равное количество здоровья.<br><br>Длительность: %duration% сек"
 
 "DOTA_Tooltip_modifier_item_mana_draught_custom"                         "Mana Draught"
 "DOTA_Tooltip_modifier_item_mana_draught_custom_Description"             "Восстанавливает <b><font color='#53ea48'>%dMODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT%</font></b> здоровья и маны в секунду."
 
 "DOTA_Tooltip_Ability_item_searing_signet_custom"           "Searing Signet"
 "DOTA_Tooltip_Ability_item_searing_signet_custom_Description"                  "<h1>Пассивное: Burn Through</h1> Когда владелец наносит способностью или предметом более %damage_threshold% урона, его жертва загорается на %burn_duration% сек., отчего суммарно получает %burn_damage% магического урона."
+
+"DOTA_Tooltip_modifier_item_searing_signet_custom_burn"           "Searing Signet"
+"DOTA_Tooltip_modifier_item_searing_signet_custom_burn_Description"                  "Получает урон."
 
 // 3 TIER
 
@@ -14385,6 +14377,9 @@
 
 "DOTA_Tooltip_Ability_item_partisans_brand_custom"               "Partisan's Brand"
 "DOTA_Tooltip_ability_item_partisans_brand_custom_Description"                         "<h1>Пассивное: Brand</h1>Увеличивает урон заклинаний, который наносят ваши предметы на %bonus_damage_pct%%%."
+
+"DOTA_Tooltip_Ability_item_serrated_shiv_custom"               "Serrated Shiv"
+"DOTA_Tooltip_ability_item_serrated_shiv_custom_Description"                         "<h1>Пассивное: Gut 'Em</h1>Каждая атака может с вероятностью в %proc_chance%%% пройти сквозь уклонение и нанести физический урон, равный %damage% + %damage_health%%% текущего здоровья цели.<br><br>Урон по крипам: %creeps_damage%."
 
 "DOTA_Tooltip_Ability_item_clumsy_net_custom"               "Clumsy Net"
 "DOTA_Tooltip_ability_item_clumsy_net_custom_Description"                         "<h1>Активное: Ensnare</h1>Бросает сеть, которая обездвиживает цель на %duration% сек."
@@ -14407,7 +14402,7 @@
 // 4 tier
 
 "DOTA_Tooltip_Ability_item_conjurers_catalyst_custom"       "Conjurer's Catalyst"
-"DOTA_Tooltip_Ability_item_conjurers_catalyst_custom_Description"          "<h1>Пассивное: Spellover</h1>Направленные способности и предметы поджигают цель и противников рядом с ней на %duration% сек.<br><br>Урон в сек: %damage% + %damage_health%%% здоровья цели. Исцеляет на %heal%%% от урона"
+"DOTA_Tooltip_Ability_item_conjurers_catalyst_custom_Description"          "<h1>Пассивное: Spellover</h1>Направленные способности и предметы поджигают цель и противников рядом с ней на %duration% сек.<br><br>Урон в сек: %damage% + %damage_health%%% здоровья цели. Исцеляет на %heal%%% от урона.<br><br>Урон по крипам в сек: %creeps_damage%."
 
 "DOTA_Tooltip_ability_item_dandelion_amulet_custom"                    "Dandelion Amulet"
 "DOTA_Tooltip_ability_item_dandelion_amulet_custom_Description"                    "<h1>Пассивное: Damage Block</h1> Когда вы становитесь целью способности или предмета, дает щит на %shield% + %shield_health%%% макс. здоровья.<br><br>Поглощенный урон исцеляет вас." 
@@ -14459,7 +14454,7 @@
 "DOTA_Tooltip_ability_item_pirate_hat_custom_Description"                      "<h1>Активное: Buried Treasure</h1>Выкапывает из земли <b><font color='#b9c2c5'>Обычную</font></b> Сферу.<br><br>Способность всегда перезаряжается %cd% сек.\n<h1>Пассивное: Plunder</h1>Увеличивает все бонусы от <b><font color='#b9c2c5'>Обычных</font></b> сфер на %bonus%%%, а количество очков <b><font color='#26b6eb'>Редких</font></b> сфер за лесных крипов на %blue%%%."
 
 "DOTA_Tooltip_Ability_item_mirror_shield_custom"  "Mirror Shield"
-"DOTA_Tooltip_ability_item_mirror_shield_custom_Description"                      "<h1>Пассивное: Echo Shield</h1>Поглощает направленное заклинание. При этом, вы получаете +%status%%% сопр. эффектам на %duration% сек.<br><br>Имеет общую перезарядку с Linken's Sphere."
+"DOTA_Tooltip_ability_item_mirror_shield_custom_Description"                      "<h1>Пассивное: Echo Shield</h1>Срабатывает от направленной способности.<br><br>Блокирует все направленные способности <b><font color='#53ea48'>в течение %duration% сек</font></b>.<br><br>Имеет общую перезарядку с Linken's Sphere."
 
 "DOTA_Tooltip_Ability_item_panic_button_custom"  "Magic Lamp"
 "DOTA_Tooltip_Ability_item_panic_button_custom_Description"        "<h1>Пассивное: Rejuvenate</h1> Когда здоровье опускается ниже %health_threshold%%%, вы применяете сильное развеивание и восстанавливаете %heal% здоровья.<br><br>Также, входящий урон снижается на %damage_reduce%%% на %duration% сек."
@@ -14490,8 +14485,7 @@
 "DOTA_Tooltip_ability_item_enhancement_tough_custom_armor"              "+$armor"
 
 "DOTA_Tooltip_ability_item_enhancement_quickened_custom_movement_speed"              "+$move_speed"
-"DOTA_Tooltip_ability_item_enhancement_quickened_custom_slow"              "+к замедлению противников"
-"DOTA_Tooltip_ability_item_enhancement_quickened_custom_Note0"                                "Замедляет противников на %duration% сек при нанесении любого урона."
+"DOTA_Tooltip_ability_item_enhancement_quickened_custom_slow_resist"              "%+к сопр. замедлениям"
 
 "DOTA_Tooltip_ability_item_enhancement_brawny_custom_health_bonus"              "+$health"
 "DOTA_Tooltip_ability_item_enhancement_brawny_custom_heal_bonus"              "%+к увеличению исцеления"
@@ -14531,8 +14525,6 @@
 "DOTA_Tooltip_ability_item_enhancement_hulking_custom_status"               "%-<font color='#e03e2e'>сопр. эффектам</font>"
 
 "DOTA_Tooltip_ability_item_enhancement_universal_custom_stats"                  "+$all"
-"DOTA_Tooltip_ability_item_enhancement_universal_custom_main_stat"                  "+к основному атрибуту"
-"DOTA_Tooltip_ability_item_enhancement_universal_custom_Note0"                                "Бонус ко всем атрибутам для универсальных героев увеличен на %main_stat_universal%."
 
 "tooltip_text_gray"      "Обычный талант"
 "tooltip_text_gray_priority"      "Обычный талант (приоритет)"
@@ -14816,7 +14808,7 @@
 "DOTA_Tooltip_modifier_life_stealer_rage_custom_shield_cd" "Ghoul Frenzy"
 "DOTA_Tooltip_modifier_life_stealer_rage_custom_shield_cd_Description"    "Перезарядка щита"
 
-"upgrade_disc_modifier_lifestealer_ghoul_7"     "Активная: В течение *!duration* сек, атаки накладывают яд, который наносит *!damage* физ. урона в сек и исцеляет вас<br><br>Атаки обновляют действие яда, но наносят на *attack_damage%* меньше урона"
+"upgrade_disc_modifier_lifestealer_ghoul_7"     "Активная: В течение *!duration* сек, атаки накладывают яд, который наносит *!damage* физ. урона в сек и исцеляет вас<br><br>Атаки обновляют действие яда, но наносят на *~attack_damage%* меньше урона"
 "upgrade_disc_modifier_lifestealer_ghoul_7_info"     "Яд длится *effect_duration* сек и исцеляет вас на *heal%* от урона"
 "mini_disc_modifier_lifestealer_ghoul_7" "Активная: Атаки накладывают яд на цель" 
 
@@ -15064,6 +15056,7 @@
 "points_shrine_header" "ОБЫЧНЫЕ ОЧКИ"
 "points_shrine_tooltip" "Начисляются за захват Алтаря и руны богатства.<br><br>Захваченный Алтарь приносит 1.4 очка в сек. Руна богатства дает 8 очков + 1 за каждые 2 минуты игры.<br><br>При заполнении вы получаете <b><font color='#b9c2c5'>Обычную сферу</font></b>.<br><br>Убийство лайновых крипов также приносит Обычную сферу."
 "killfeed_creeps" "Крипы"
+"killfeed_streak_ended" "Серия из {count} убийств прервана"
 
 "achivment_name_2"      "К бою готов"
 "achivment_disc_2"      "Выполните все задания во время Обучения"
@@ -15717,6 +15710,7 @@
 "gilded_worship"      "The Age of the Gilded Worship"
 "chitinous_stalker"   "Chitinous Stalker"
 "amber_apis"            "The Amber Apis"
+"mesmer_eye"          "Mesmer-Eye"
 
 "DOTA_Tooltip_ability_nyx_assassin_innate_custom"                           "Nyxth Sense"
 "DOTA_Tooltip_ability_nyx_assassin_innate_custom_Description"               "Nyx Assassin получает обзор на героев в радиусе %radius%.<br><br>Когда герой погибает в радиусе %kill_radius%, Nyx Assassin получает %blue% очков <b><font color='#26b6eb'>редких</font></b> сфер."
@@ -15923,18 +15917,19 @@
 "epic_disc_modifier_nyx_vendetta_3" "Vendetta перезаряжается быстрее<br><br>Способности призывают жука, который атакует с вашим уроном" 
 
 "upgrade_disc_modifier_nyx_vendetta_4"     "Атаки получают *!+range* дальности и оглушают на *!stun* сек с шансом *chance%*<br><br>Vendetta всегда вызывает оглушение"
+"upgrade_disc_modifier_nyx_vendetta_4_alt"     "Атаки получают *!+range* дальности и оглушают на *!stun_legendary* сек с шансом *chance%*<br><br>Vendetta всегда вызывает оглушение"
 "mini_disc_modifier_nyx_vendetta_4" "Атаки получают шанс оглушить цель" 
 "epic_disc_modifier_nyx_vendetta_4" "Атаки могут оглушить цель<br><br>Всегда срабатывает от Vendetta" 
 
-"upgrade_disc_modifier_nyx_vendetta_7"     "*+bva* базового времени атаки<br><br>Vendetta работает пассивно, перезаряжается *!cd* сек, и не наносит урон<br><br>Добавляет *!attacks* атакам урон и вампиризм. Вторая атака снижает броню на *!armor*"
-"upgrade_disc_modifier_nyx_vendetta_7_info" "Снижение брони суммируется без ограничений<br><br>Усиленные атаки получают *damage%* урона Vendetta, *heal%* вампиризма и *cleave%* прорубающего урона<br><br>Снижает длительность истощения в *break_duration* раза"
+"upgrade_disc_modifier_nyx_vendetta_7"     "*~+bva* базового времени атаки<br><br>Vendetta работает пассивно, перезаряжается *!cd* сек, и не наносит урон<br><br>Добавляет *!attacks* атакам урон и вампиризм. Вторая атака снижает броню на *!armor%*"
+"upgrade_disc_modifier_nyx_vendetta_7_info" "Снижение брони суммируется без ограничений<br><br>Против крипов снижает *armor_creeps* брони за заряд<br><br>Усиленные атаки получают *damage%* урона Vendetta, *heal%* вампиризма и *cleave%* прорубающего урона<br><br>Снижает длительность истощения в *break_duration* раза"
 "mini_disc_modifier_nyx_vendetta_7" "Vendetta работает пассивно и усиливает атаки" 
 
 "DOTA_Tooltip_modifier_nyx_assassin_vendetta_custom_damage"                       "Vendetta"
 "DOTA_Tooltip_modifier_nyx_assassin_vendetta_custom_damage_Description"           "Урон атаки увеличен на <b><font color='#53ea48'>%dMODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE%</font></b>"
 
 "DOTA_Tooltip_modifier_nyx_assassin_vendetta_custom_legendary_armor"                       "Vendetta"
-"DOTA_Tooltip_modifier_nyx_assassin_vendetta_custom_legendary_armor_Description"           "Броня снижена на <b><font color='#ff0000'>%dMODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS%</font></b>"
+"DOTA_Tooltip_modifier_nyx_assassin_vendetta_custom_legendary_armor_Description"           "Броня снижена на <b><font color='#ff0000'>%fMODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS%</font></b>"
 
 //--
 
@@ -15990,6 +15985,7 @@
 "white_widow"   "The White Widow"
 "arcane_infestation"    "Arcane Infestation"
 "golden_orbweaver"      "Goldwn Orbweaver"
+"arachnid_anathema"     "Arachnid Anathema"
 
 "DOTA_Tooltip_ability_broodmother_innate_custom"                     "Spider's Milk"
 "DOTA_Tooltip_ability_broodmother_innate_custom_Description"         "Атаки Broodmother и паучков могут нанести доп. урон. Исцеляет героя и паучков на %heal%%% от урона.<br><br>Эффект имеет перезарядку %cd% сек для цели."
@@ -16349,7 +16345,7 @@
 "DOTA_Tooltip_ability_night_stalker_void_custom_legendary_Description"                           "Притягивает к вам все активные темные сферы."
 "DOTA_Tooltip_ability_night_stalker_void_custom_legendary_Lore"                                  "Баланар яростно погружает врагов в воронку когда-то вечной тьмы."
 
-"upgrade_disc_modifier_stalker_void_1"    "*!+spell%* урона заклинаний<br><br>*!+damage%* здоровья цели в урон Void"
+"upgrade_disc_modifier_stalker_void_1"    "*!+spell%* урона заклинаний<br><br>Урон Void увеличивается на *!base* + *!damage%* макс. здоровья цели"
 "upgrade_disc_modifier_stalker_void_1_info" "Увеличивает урон по крипам на *creeps*"
 
 "upgrade_disc_modifier_stalker_void_2"    "*!-cd* сек перезарядки Void<br><br>*!+range* дальности способностей"
@@ -17126,7 +17122,7 @@
 "DOTA_Tooltip_ability_item_force_staff_custom_bonus_health"                    "+$health"
 
 "DOTA_Tooltip_Ability_item_hurricane_pike_custom"  "Hurricane Pike"
-"DOTA_Tooltip_Ability_item_hurricane_pike_custom_Description"                    "<h1>Активное: Hurricane Thrust</h1> Отталкивает вражескую цель и владельца друг от друга на расстояние в %enemy_length%. Если владелец сражается в дальнем бою, то после этого он следующие %range_duration% секунд может совершить до %max_attacks% атак по цели без ограничения на расстояние. Скорость таких атак увеличена на %bonus_attack_speed%. <br><br>При использовании на себя или союзников толкает цель на расстояние в %push_length%.<br>Дальность применения на врагов: %cast_range_enemy%."
+"DOTA_Tooltip_Ability_item_hurricane_pike_custom_Description"                    "<h1>Активное: Hurricane Thrust</h1> Отталкивает владельца и выбранного противника на расстояние %enemy_length% друг от друга. В дальнем бою также позволяет совершить %max_attacks% атак по цели с любой дистанции. Увеличивает скорость атак на %bonus_attack_speed%.<br><br>При использовании на себя или союзников толкает цель на расстояние в %push_length%.<br>Дальность применения на врагов: %cast_range_enemy%."
 "DOTA_Tooltip_Ability_item_hurricane_pike_custom_Lore"                           "Легендарная пика, в далеком прошлом служившая монаршим символом наездников на вивернах."
 "DOTA_Tooltip_Ability_item_hurricane_pike_custom_Note0"                          "Можно применить на себя."
 "DOTA_Tooltip_Ability_item_hurricane_pike_custom_Note1"                          "Не прерывает действия цели."
@@ -17221,6 +17217,8 @@
 "custom_setting_text_only_cone"  "Изменить всех крипов на Warpine Raider"
 "custom_setting_text_shrine_damage"  "-50% урона по постройкам"
 "custom_setting_text_patrol_center"  "Патруль и Терзатель всегда в центре"
+"custom_setting_text_same_heroes"  "Пик одинаковых героев"
+"custom_setting_text_enable_pause"  "Только ручная пауза, без ограничений"
 
 "chest_pair_open_button"    "Получить награду"
 "chest_pair_info_header"    "Еженедельное задание"
@@ -17531,7 +17529,7 @@
 "DOTA_Tooltip_ability_kunkka_ghostship_custom"                                         "Ghostship"
 "DOTA_Tooltip_ability_kunkka_ghostship_custom_Description"                             "Призывает призрачный корабль, который проплывает сквозь битву и разбивается, оглушая врагов в области крушения и нанося им урон.<br><br>На задетых кораблём союзников накладывается ром от способности Admiral's Rum.<br><br><b><font color='#53ea48'>Наносит крипам на %creeps_damage%%% больше урона</font></b>"
 "DOTA_Tooltip_ability_kunkka_ghostship_custom_Lore"                                    "Последний корабль кладдского флота — не более чем фантом. Однако для врагов адмирала он весьма реален."
-"DOTA_Tooltip_ability_kunkka_ghostship_custom_scepter_description"                       "Оглушение Ghostship пробивает неуяз. к эффектам и откладывает исцеление противников на %scepter_delay% сек. Исцеление вернется за следующие %scepter_duration% сек.<br><br>Повторное применение вызывает еще один корабль, который доставляет вас в точку крушения.<br><br>Оглушает на %scepter_stun% сек, и наносит %scepter_damage%%% урона. Не активирует другие эффекты."
+"DOTA_Tooltip_ability_kunkka_ghostship_custom_scepter_description"                       "Оглушение Ghostship пробивает неуяз. к эффектам. Корабль откладывает исцеление противников на своем пути на %scepter_delay% сек. Исцеление вернется за следующие %scepter_duration% сек.<br><br>Повторное применение вызывает еще один корабль, который доставляет вас в точку крушения.<br><br>Оглушает на %scepter_stun% сек, и наносит %scepter_damage%%% урона. Не активирует другие эффекты."
 "DOTA_Tooltip_ability_kunkka_ghostship_custom_tooltip_delay"                           "ЗАДЕРЖКА КРУШЕНИЯ:"
 "DOTA_Tooltip_ability_kunkka_ghostship_custom_damage"                      "УРОН:"
 "DOTA_Tooltip_ability_kunkka_ghostship_custom_ghostship_distance"                      "ДАЛЬНОСТЬ ПРИМЕНЕНИЯ:"

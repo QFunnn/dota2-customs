@@ -16,7 +16,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_custom_bristleback_warpath_buff",
 	"abilities/bristleback/bristleback_warpath_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 LinkLuaModifier(
 	"modifier_custom_bristleback_warpath_legendary_crit",
@@ -26,17 +27,20 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_custom_bristleback_warpath_legendary_cast",
 	"abilities/bristleback/bristleback_warpath_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_bristle_warpath_7"
 )
 LinkLuaModifier(
 	"modifier_custom_bristleback_warpath_legendary_stack",
 	"abilities/bristleback/bristleback_warpath_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_bristle_warpath_7"
 )
 LinkLuaModifier(
 	"modifier_custom_bristleback_warpath_bkb_cd",
 	"abilities/bristleback/bristleback_warpath_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_bristle_warpath_4"
 )
 LinkLuaModifier(
 	"modifier_custom_bristleback_warpath_legendary_unit",
@@ -46,7 +50,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_custom_bristleback_warpath_damage",
 	"abilities/bristleback/bristleback_warpath_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_bristle_warpath_3"
 )
 
 bristleback_warpath_custom = class({})
@@ -57,14 +62,13 @@ function bristleback_warpath_custom:Precache(context)
 		return
 	end
 	PrecacheResource("particle", "particles/units/heroes/hero_dawnbreaker/dawnbreaker_fire_wreath_smash.vpcf", context)
-	PrecacheResource("particle", "particles/brist_lowhp_.vpcf", context)
+	PrecacheResource("particle", "particles/bristleback/brist_lowhp_.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_bristleback/bristleback_warpath_dust.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_bristleback/bristleback_warpath.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_legion_commander_duel.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_ogre_magi/ogre_magi_bloodlust_buff.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_sniper/sniper_headshot_slow.vpcf", context)
 	PrecacheResource("particle", "particles/items2_fx/vindicators_axe_armor.vpcf", context)
-	PrecacheResource("particle", "particles/back_stack_brist.vpcf", context)
 	PrecacheResource("particle", "particles/bristleback/warpath_hit.vpcf", context)
 	PrecacheResource("particle", "particles/bristleback/warptath_stone.vpcf", context)
 	PrecacheResource("particle", "particles/centaur/edge_stack.vpcf", context)

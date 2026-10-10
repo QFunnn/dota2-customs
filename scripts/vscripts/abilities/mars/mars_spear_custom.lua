@@ -11,17 +11,37 @@
 LinkLuaModifier("modifier_mars_spear_custom", "abilities/mars/mars_spear_custom", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_mars_spear_custom_debuff", "abilities/mars/mars_spear_custom", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_mars_spear_custom_legendary", "abilities/mars/mars_spear_custom", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_mars_spear_custom_hit_speed", "abilities/mars/mars_spear_custom", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier(
+	"modifier_mars_spear_custom_hit_speed",
+	"abilities/mars/mars_spear_custom",
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_mars_spear_4"
+)
 LinkLuaModifier(
 	"modifier_mars_spear_custom_trail_thinker",
 	"abilities/mars/mars_spear_custom",
 	LUA_MODIFIER_MOTION_NONE
 )
 LinkLuaModifier("modifier_mars_spear_custom_trail_burn", "abilities/mars/mars_spear_custom", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_mars_spear_custom_delay", "abilities/mars/mars_spear_custom", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier(
+	"modifier_mars_spear_custom_delay",
+	"abilities/mars/mars_spear_custom",
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_mars_spear_3"
+)
 LinkLuaModifier("modifier_mars_spear_custom_tracker", "abilities/mars/mars_spear_custom", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_mars_spear_custom_slow", "abilities/mars/mars_spear_custom", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_mars_spear_custom_heal_reduce", "abilities/mars/mars_spear_custom", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier(
+	"modifier_mars_spear_custom_slow",
+	"abilities/mars/mars_spear_custom",
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_mars_spear_7"
+)
+LinkLuaModifier(
+	"modifier_mars_spear_custom_heal_reduce",
+	"abilities/mars/mars_spear_custom",
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_mars_spear_1"
+)
 
 mars_spear_custom = class({})
 mars_spear_custom.talents = {}
@@ -33,7 +53,7 @@ function mars_spear_custom:Precache(context)
 
 	PrecacheResource("particle", "particles/mars/spear_legendary_start.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_mars/mars_spear.vpcf", context)
-	PrecacheResource("particle", "particles/sf_raze_heal.vpcf", context)
+	PrecacheResource("particle", "particles/shadow_fiend/sf_raze_heal.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_mars/mars_spear_impact.vpcf", context)
 	PrecacheResource("particle", "particles/mars/spear_legendary_rope.vpcf", context)
 	PrecacheResource(
@@ -45,14 +65,14 @@ function mars_spear_custom:Precache(context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_mars_spear.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_oracle/oracle_purifyingflames.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_marci/marci_rebound_allymovespeed.vpcf", context)
-	PrecacheResource("particle", "particles/mars_trail.vpcf", context)
-	PrecacheResource("particle", "particles/roshan_meteor_burn_.vpcf", context)
-	PrecacheResource("particle", "particles/lc_odd_charge_mark.vpcf", context)
+	PrecacheResource("particle", "particles/mars/mars_trail.vpcf", context)
+	PrecacheResource("particle", "particles/items/roshan_meteor_burn_.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_odd_charge_mark.vpcf", context)
 	PrecacheResource("particle", "particles/items4_fx/spirit_vessel_damage.vpcf", context)
-	PrecacheResource("particle", "particles/jugg_legendary_proc_.vpcf", context)
+	PrecacheResource("particle", "particles/juggernaut/jugg_legendary_proc_.vpcf", context)
 	PrecacheResource("particle", "particles/items3_fx/iron_talon_active.vpcf", context)
-	PrecacheResource("particle", "particles/lina_attack_slow.vpcf", context)
-	PrecacheResource("particle", "particles/jugg_refresh.vpcf", context)
+	PrecacheResource("particle", "particles/lina/lina_attack_slow.vpcf", context)
+	PrecacheResource("particle", "particles/juggernaut/jugg_refresh.vpcf", context)
 end
 
 function mars_spear_custom:UpdateTalents(name)
@@ -279,8 +299,11 @@ function mars_spear_custom:OnProjectileHit_ExtraData(target, location, table)
 
 		self.caster:EmitSound("Sf.Speed_Heal")
 
-		self.particle_aoe_fx =
-			ParticleManager:CreateParticle("particles/sf_raze_heal.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.caster)
+		self.particle_aoe_fx = ParticleManager:CreateParticle(
+			"particles/shadow_fiend/sf_raze_heal.vpcf",
+			PATTACH_ABSORIGIN_FOLLOW,
+			self.caster
+		)
 		ParticleManager:SetParticleControl(self.particle_aoe_fx, 0, self.caster:GetAbsOrigin())
 		ParticleManager:SetParticleControl(self.particle_aoe_fx, 1, self.caster:GetAbsOrigin())
 		ParticleManager:SetParticleControl(self.particle_aoe_fx, 2, self.caster:GetAbsOrigin())
@@ -288,7 +311,7 @@ function mars_spear_custom:OnProjectileHit_ExtraData(target, location, table)
 		ParticleManager:DestroyParticle(self.particle_aoe_fx, false)
 		ParticleManager:ReleaseParticleIndex(self.particle_aoe_fx)
 
-		self.caster:CdItems(self.talents.q4_cd_items)
+		self.caster:CdItems(self.talents.q4_cd_items, "modifier_mars_spear_4")
 		self.caster:AddNewModifier(
 			self.caster,
 			self,
@@ -474,7 +497,7 @@ function mars_spear_custom:LaunchSpear(origin, point, legendary_k)
 
 	if legendary_k >= 0.99 then
 		local particle =
-			ParticleManager:CreateParticle("particles/jugg_refresh.vpcf", PATTACH_CUSTOMORIGIN, self.caster)
+			ParticleManager:CreateParticle("particles/juggernaut/jugg_refresh.vpcf", PATTACH_CUSTOMORIGIN, self.caster)
 		ParticleManager:SetParticleControlEnt(
 			particle,
 			0,
@@ -486,7 +509,7 @@ function mars_spear_custom:LaunchSpear(origin, point, legendary_k)
 		)
 		ParticleManager:ReleaseParticleIndex(particle)
 
-		self.caster:CdAbility(self, nil, self.talents.q7_cd_inc)
+		self.caster:CdAbility(self, nil, self.talents.q7_cd_inc, "modifier_mars_spear_7")
 	end
 
 	self.projectiles[self.index] = {}
@@ -914,7 +937,7 @@ function modifier_mars_spear_custom_trail_thinker:OnCreated(table)
 	local effect_count = math.max(1, math.min(3, math.floor(self.length / 300)))
 
 	for i = 1, effect_count do
-		self.pfx = ParticleManager:CreateParticle("particles/mars_trail.vpcf", PATTACH_WORLDORIGIN, nil)
+		self.pfx = ParticleManager:CreateParticle("particles/mars/mars_trail.vpcf", PATTACH_WORLDORIGIN, nil)
 		ParticleManager:SetParticleControl(self.pfx, 0, self.start_point)
 		ParticleManager:SetParticleControl(self.pfx, 1, self.point)
 		ParticleManager:SetParticleControl(self.pfx, 2, Vector(table.duration, 0, 0))
@@ -979,7 +1002,7 @@ function modifier_mars_spear_custom_trail_burn:OnCreated(table)
 		return
 	end
 	self.parent = self:GetParent()
-	self.parent:GenericParticle("particles/roshan_meteor_burn_.vpcf", self)
+	self.parent:GenericParticle("particles/items/roshan_meteor_burn_.vpcf", self)
 end
 
 modifier_mars_spear_custom_delay = class(mod_visible)
@@ -1003,7 +1026,7 @@ function modifier_mars_spear_custom_delay:OnCreated(table)
 		damage_type = self.ability.talents.q3_damage_type,
 		damage_flags = DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION,
 	}
-	self.parent:GenericParticle("particles/lc_odd_charge_mark.vpcf", self, true)
+	self.parent:GenericParticle("particles/legion_commander/lc_odd_charge_mark.vpcf", self, true)
 end
 
 function modifier_mars_spear_custom_delay:DamageEvent_inc(params)
@@ -1037,7 +1060,7 @@ function modifier_mars_spear_custom_delay:OnDestroy()
 	self.damageTable.damage = self.stack * self.ability.talents.q3_damage
 
 	self.parent:EmitSound("Mars.Spear_damage_after")
-	self.parent:GenericParticle("particles/jugg_legendary_proc_.vpcf")
+	self.parent:GenericParticle("particles/juggernaut/jugg_legendary_proc_.vpcf")
 
 	local trail_pfx =
 		ParticleManager:CreateParticle("particles/items3_fx/iron_talon_active.vpcf", PATTACH_ABSORIGIN, self.parent)
@@ -1121,7 +1144,7 @@ function modifier_mars_spear_custom_slow:IsPurgable()
 	return true
 end
 function modifier_mars_spear_custom_slow:GetEffectName()
-	return "particles/lina_attack_slow.vpcf"
+	return "particles/lina/lina_attack_slow.vpcf"
 end
 function modifier_mars_spear_custom_slow:OnCreated()
 	self.parent = self:GetParent()

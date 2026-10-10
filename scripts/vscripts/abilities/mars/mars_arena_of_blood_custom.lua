@@ -16,7 +16,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_mars_arena_of_blood_custom_projectile_aura",
 	"abilities/mars/mars_arena_of_blood_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 LinkLuaModifier(
 	"modifier_mars_arena_of_blood_custom_tracker",
@@ -26,12 +27,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_mars_arena_of_blood_custom_legendary",
 	"abilities/mars/mars_arena_of_blood_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "Scepter" }
 )
 LinkLuaModifier(
 	"modifier_mars_arena_of_blood_custom_legendary_stack",
 	"abilities/mars/mars_arena_of_blood_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_mars_arena_7"
 )
 LinkLuaModifier(
 	"modifier_mars_arena_of_blood_custom_legendary_slow",
@@ -41,7 +44,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_mars_arena_of_blood_custom_magic",
 	"abilities/mars/mars_arena_of_blood_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_mars_arena_3"
 )
 LinkLuaModifier(
 	"modifier_mars_arena_of_blood_custom_unit",
@@ -66,7 +70,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_mars_arena_of_blood_custom_wall_leash",
 	"abilities/mars/mars_arena_of_blood_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "Shard" }
 )
 LinkLuaModifier(
 	"modifier_mars_arena_of_blood_custom_cd_items",
@@ -86,17 +91,15 @@ function mars_arena_of_blood_custom:Precache(context)
 	PrecacheResource("particle", "particles/items3_fx/blink_overwhelming_end.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_mars/mars_arena_of_blood.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_oracle/oracle_purifyingflames.vpcf", context)
-	PrecacheResource("particle", "particles/roshan_meteor_burn_.vpcf", context)
+	PrecacheResource("particle", "particles/items/roshan_meteor_burn_.vpcf", context)
 	PrecacheResource("particle", "particles/items4_fx/ascetic_cap.vpcf", context)
-	PrecacheResource("particle", "particles/mars/arena_linken.vpcf", context)
-	PrecacheResource("particle", "particles/mars_victory.vpcf", context)
-	PrecacheResource("particle", "particles/lc_odd_proc_.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_odd_proc_.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_terrorblade/ember_slow.vpcf", context)
 	PrecacheResource("particle", "particles/generic_gameplay/generic_break.vpcf", context)
-	PrecacheResource("particle", "particles/mars_revenge_pre.vpcf", context)
-	PrecacheResource("particle", "particles/mars_revenge.vpcf", context)
+	PrecacheResource("particle", "particles/mars/mars_revenge_pre.vpcf", context)
+	PrecacheResource("particle", "particles/mars/mars_revenge.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_mars/mars_shield_bash_crit.vpcf", context)
-	PrecacheResource("particle", "particles/mars_taunt_timer.vpcf", context)
+	PrecacheResource("particle", "particles/mars/mars_taunt_timer.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_brewmaster/brewmaster_thunder_clap_debuff.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_brewmaster_thunder_clap.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_mars/mars_arena_of_blood_spear.vpcf", context)
@@ -244,7 +247,9 @@ function mars_arena_of_blood_custom:OnSpellStart()
 	then
 		self.caster:CdAbility(
 			self.caster.arena_ability_legendary,
-			self.caster.arena_ability_legendary:GetCooldownTimeRemaining() / self.talents.r7_cd_inc
+			self.caster.arena_ability_legendary:GetCooldownTimeRemaining() / self.talents.r7_cd_inc,
+			nil,
+			"modifier_mars_arena_7"
 		)
 	end
 
@@ -752,7 +757,7 @@ function modifier_mars_arena_of_blood_custom_cd_items:OnIntervalThink()
 	if not IsServer() then
 		return
 	end
-	self.parent:CdItems(self.cd_items * self.interval)
+	self.parent:CdItems(self.cd_items * self.interval, "modifier_mars_spear_4")
 end
 
 function modifier_mars_arena_of_blood_custom_cd_items:DeclareFunctions()
@@ -841,7 +846,7 @@ function mars_revenge_custom:OnAbilityPhaseStart()
 	local radius = self:GetAOERadius()
 
 	self.effect_cast =
-		ParticleManager:CreateParticle("particles/mars_revenge_pre.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.caster)
+		ParticleManager:CreateParticle("particles/mars/mars_revenge_pre.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.caster)
 	ParticleManager:SetParticleControl(self.effect_cast, 0, self.caster:GetOrigin())
 	ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(radius, 0, -radius / timer))
 	ParticleManager:SetParticleControl(self.effect_cast, 2, Vector(timer, 0, 0))
@@ -869,7 +874,8 @@ function mars_revenge_custom:OnSpellStart()
 	end
 	local radius = self:GetAOERadius()
 
-	local effect_cast = ParticleManager:CreateParticle("particles/mars_revenge.vpcf", PATTACH_WORLDORIGIN, self.caster)
+	local effect_cast =
+		ParticleManager:CreateParticle("particles/mars/mars_revenge.vpcf", PATTACH_WORLDORIGIN, self.caster)
 	ParticleManager:SetParticleControl(effect_cast, 0, self.caster:GetOrigin())
 	ParticleManager:SetParticleControl(effect_cast, 1, Vector(radius, radius, radius))
 	ParticleManager:ReleaseParticleIndex(effect_cast)
@@ -961,7 +967,7 @@ function modifier_mars_arena_of_blood_custom_legendary_stack:OnRefresh()
 	self:IncrementStackCount()
 
 	if not self.effect_cast then
-		self.effect_cast = self.parent:GenericParticle("particles/mars_taunt_timer.vpcf", self, true)
+		self.effect_cast = self.parent:GenericParticle("particles/mars/mars_taunt_timer.vpcf", self, true)
 	end
 	ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(0, self:GetStackCount(), 0))
 end

@@ -22,7 +22,7 @@ function item_invis_sword_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
 	end
-	PrecacheResource("particle", "particles/silver_edge_speed_.vpcf", context)
+	PrecacheResource("particle", "particles/items/silver_edge_speed_.vpcf", context)
 	PrecacheResource("particle", "particles/items3_fx/silver_edge.vpcf", context)
 end
 
@@ -49,7 +49,7 @@ end
 
 item_invis_sword_custom_surge = class(mod_visible)
 function item_invis_sword_custom_surge:GetEffectName()
-	return "particles/silver_edge_speed_.vpcf"
+	return "particles/items/silver_edge_speed_.vpcf"
 end
 function item_invis_sword_custom_surge:OnCreated(table)
 	self.parent = self:GetParent()

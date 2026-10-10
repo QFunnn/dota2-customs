@@ -2954,7 +2954,7 @@ return {
 			["sound_replace"] = {},
 			["particles_abilities"] = {
 				["default"] = {
-					["particles/furion/furion_wrath_of_nature_custom.vpcf"] = "particles/econ/items/natures_prophet/natures_prophet_ti9_immortal/natures_prophet_ti9_wrath.vpcf",
+					["particles/nature_prophet/furion_wrath_of_nature_custom.vpcf"] = "particles/econ/items/natures_prophet/natures_prophet_ti9_immortal/natures_prophet_ti9_wrath.vpcf",
 					["particles/units/heroes/hero_furion/furion_wrath_of_nature_cast.vpcf"] = "particles/econ/items/natures_prophet/natures_prophet_ti9_immortal/natures_prophet_ti9_cast.vpcf",
 				},
 			},
@@ -3991,7 +3991,7 @@ return {
 			["sound_replace"] = {},
 			["particles_abilities"] = {
 				["default"] = {
-					["particles/furion/furion_wrath_of_nature_custom.vpcf"] = "particles/_2econ/items/natures_prophet/natures_prophet_ti9_immortal/natures_prophet_ti9_wrath_crimson.vpcf",
+					["particles/nature_prophet/furion_wrath_of_nature_custom.vpcf"] = "particles/_2econ/items/natures_prophet/natures_prophet_ti9_immortal/natures_prophet_ti9_wrath_crimson.vpcf",
 					["particles/units/heroes/hero_furion/furion_wrath_of_nature_cast.vpcf"] = "particles/econ/items/natures_prophet/natures_prophet_ti9_immortal/natures_prophet_ti9_crimson_cast.vpcf",
 				},
 			},

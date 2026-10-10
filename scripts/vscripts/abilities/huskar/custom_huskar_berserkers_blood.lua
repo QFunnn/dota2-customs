@@ -16,12 +16,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_custom_huskar_berserkers_blood_legendary_attack",
 	"abilities/huskar/custom_huskar_berserkers_blood",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_huskar_passive_7"
 )
 LinkLuaModifier(
 	"modifier_custom_huskar_berserkers_blood_bonus",
 	"abilities/huskar/custom_huskar_berserkers_blood",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_huskar_passive_1", "modifier_huskar_passive_3", "modifier_huskar_passive_4" }
 )
 
 custom_huskar_berserkers_blood = class({})
@@ -33,11 +35,10 @@ function custom_huskar_berserkers_blood:Precache(context)
 	end
 
 	PrecacheResource("particle", "particles/units/heroes/hero_huskar/huskar_berserkers_blood.vpcf", context)
-	PrecacheResource("particle", "particles/huskar_lowhp.vpcf", context)
-	PrecacheResource("particle", "particles/huskar_active.vpcf", context)
-	PrecacheResource("particle", "particles/huskar_grave.vpcf", context)
+	PrecacheResource("particle", "particles/huskar/huskar_lowhp.vpcf", context)
+	PrecacheResource("particle", "particles/huskar/huskar_active.vpcf", context)
+	PrecacheResource("particle", "particles/huskar/huskar_grave.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_oracle/oracle_false_promise_heal.vpcf", context)
-	PrecacheResource("particle", "particles/huskar_str_stack.vpcf", context)
 	PrecacheResource("particle", "particles/items2_fx/sange_maim.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_bloodseeker/bloodseeker_bloodbath.vpcf", context)
 end
@@ -357,7 +358,7 @@ function modifier_custom_huskar_berserkers_blood_legendary_attack:OnCreated(tabl
 	self.time = self:GetRemainingTime()
 
 	self.effect_cast =
-		ParticleManager:CreateParticle("particles/huskar_active.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
+		ParticleManager:CreateParticle("particles/huskar/huskar_active.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
 	ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(self.time, 0, 0))
 	self:AddParticle(self.effect_cast, false, false, -1, false, false)
 	self.ability:EndCd()
@@ -442,7 +443,7 @@ function modifier_custom_huskar_berserkers_blood_bonus:OnCreated(table)
 	end
 
 	self.parent:EmitSound("Huskar.Passive_LowHp")
-	self.parent:GenericParticle("particles/huskar_lowhp.vpcf", self)
+	self.parent:GenericParticle("particles/huskar/huskar_lowhp.vpcf", self)
 end
 
 function modifier_custom_huskar_berserkers_blood_bonus:DeclareFunctions()

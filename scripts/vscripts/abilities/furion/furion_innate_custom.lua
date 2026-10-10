@@ -13,7 +13,8 @@ LinkLuaModifier("modifier_furion_innate_custom_tree", "abilities/furion/furion_i
 LinkLuaModifier(
 	"modifier_furion_innate_custom_damage",
 	"abilities/furion/furion_innate_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 LinkLuaModifier(
 	"modifier_furion_innate_custom_toggle",
@@ -28,7 +29,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_furion_wrath_of_nature_custom_buff",
 	"abilities/furion/furion_innate_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "Scepter" }
 )
 
 furion_innate_custom = class({})
@@ -379,7 +381,7 @@ function furion_wrath_of_nature_custom:Precache(context)
 		return
 	end
 	PrecacheResource("particle", "particles/units/heroes/hero_furion/furion_wrath_of_nature_cast.vpcf", context)
-	PrecacheResource("particle", "particles/furion/furion_wrath_of_nature_custom.vpcf", context)
+	PrecacheResource("particle", "particles/nature_prophet/furion_wrath_of_nature_custom.vpcf", context)
 end
 
 function furion_wrath_of_nature_custom:GetBehavior()
@@ -488,7 +490,7 @@ function modifier_furion_wrath_of_nature_custom:OnCreated(table)
 
 	self.pfx = wearables_system:GetParticleReplacementAbility(
 		self.parent,
-		"particles/furion/furion_wrath_of_nature_custom.vpcf",
+		"particles/nature_prophet/furion_wrath_of_nature_custom.vpcf",
 		self
 	)
 

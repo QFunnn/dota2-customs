@@ -98,14 +98,14 @@ function sniper_assassinate_custom:Precache(context)
 		context
 	)
 	PrecacheResource("particle", "particles/items2_fx/sange_maim.vpcf", context)
-	PrecacheResource("particle", "particles/sniper_assassinate_stack.vpcf", context)
-	PrecacheResource("particle", "particles/lc_odd_proc_.vpcf", context)
+	PrecacheResource("particle", "particles/sniper/sniper_assassinate_stack.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_odd_proc_.vpcf", context)
 	PrecacheResource("particle", "particles/items3_fx/silver_edge.vpcf", context)
 	PrecacheResource("particle", "particles/generic_gameplay/generic_break.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_snapfire/hero_snapfire_shotgun_debuff.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_snapfire_slow.vpcf", context)
-	PrecacheResource("particle", "particles/lc_odd_charge_mark.vpcf", context)
-	PrecacheResource("particle", "particles/sniper_ult_mark.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_odd_charge_mark.vpcf", context)
+	PrecacheResource("particle", "particles/sniper/sniper_ult_mark.vpcf", context)
 	PrecacheResource("particle", "particles/generic_gameplay/generic_break.vpcf", context)
 end
 
@@ -509,7 +509,12 @@ function sniper_assassinate_custom_legendary:OnProjectileHit_ExtraData(hTarget, 
 	local caster = self:GetCaster()
 
 	if self.projectiles[data.index] == 0 then
-		caster:CdAbility(self, self:GetCooldownTimeRemaining() * self:GetSpecialValueFor("hit_cd") / 100)
+		caster:CdAbility(
+			self,
+			self:GetCooldownTimeRemaining() * self:GetSpecialValueFor("hit_cd") / 100,
+			nil,
+			"modifier_sniper_assassinate_7"
+		)
 		self.projectiles[data.index] = 1
 	end
 
@@ -700,7 +705,7 @@ function modifier_sniper_assassinate_custom_legendary_stack:OnStackCountChanged(
 		return
 	end
 	if not self.effect_cast then
-		local particle_cast = "particles/sniper_assassinate_stack.vpcf"
+		local particle_cast = "particles/sniper/sniper_assassinate_stack.vpcf"
 
 		self.effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_OVERHEAD_FOLLOW, self:GetParent())
 		ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(0, self:GetStackCount(), 0))
@@ -830,7 +835,7 @@ function modifier_sniper_assassinate_custom_kill_stack:OnIntervalThink()
 		return
 	end
 
-	self.parent:GenericParticle("particles/lc_odd_proc_.vpcf")
+	self.parent:GenericParticle("particles/legion_commander/lc_odd_proc_.vpcf")
 	self.parent:EmitSound("BS.Thirst_legendary_active")
 	self:StartIntervalThink(-1)
 end
@@ -968,7 +973,7 @@ function modifier_sniper_assassinate_custom_mark:GetTexture()
 	return "buffs/pulverize_kill"
 end
 function modifier_sniper_assassinate_custom_mark:GetEffectName()
-	return "particles/lc_odd_charge_mark.vpcf"
+	return "particles/legion_commander/lc_odd_charge_mark.vpcf"
 end
 function modifier_sniper_assassinate_custom_mark:GetEffectAttachType()
 	return PATTACH_OVERHEAD_FOLLOW
@@ -1012,7 +1017,7 @@ function modifier_sniper_assassinate_custom_mark:OnDestroy()
 	self.parent:EmitSound("Sniper.Assassinate_mark_damage")
 
 	local effect =
-		ParticleManager:CreateParticle("particles/sniper_ult_mark.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
+		ParticleManager:CreateParticle("particles/sniper/sniper_ult_mark.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
 	ParticleManager:DestroyParticle(effect, false)
 	ParticleManager:ReleaseParticleIndex(effect)
 

@@ -32,7 +32,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_custom_puck_dream_coil_cdr",
 	"abilities/puck/custom_puck_dream_coil",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_puck_coil_6"
 )
 LinkLuaModifier(
 	"modifier_custom_puck_dream_coil_scepter_caster",
@@ -65,12 +66,10 @@ function custom_puck_dream_coil:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return
 	end
-	PrecacheResource("particle", "particles/puck_magic.vpcf", context)
+	PrecacheResource("particle", "particles/puck/puck_magic.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_puck/puck_dreamcoil_tether.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_puck/puck_dreamcoil.vpcf", context)
-	PrecacheResource("particle", "particles/units/heroes/hero_puck/puck_dreamcoil_mini_center.vpcf", context)
-	PrecacheResource("particle", "particles/units/heroes/hero_puck/puck_dreamcoil_mini.vpcf", context)
-	PrecacheResource("particle", "particles/lc_odd_proc_.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_odd_proc_.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_puck/puck_base_attack.vpcf", context)
 	PrecacheResource("particle", "particles/puck/coil_refresh.vpcf", context)
 	PrecacheResource(
@@ -160,7 +159,7 @@ function custom_puck_dream_coil:LegendaryProc(point)
 
 	EmitSoundOnLocationWithCaster(point, "Puck.Coil_Wave", caster)
 
-	local particle = ParticleManager:CreateParticle("particles/puck_magic.vpcf", PATTACH_WORLDORIGIN, nil)
+	local particle = ParticleManager:CreateParticle("particles/puck/puck_magic.vpcf", PATTACH_WORLDORIGIN, nil)
 	ParticleManager:SetParticleControl(particle, 0, point)
 	ParticleManager:SetParticleControl(particle, 1, point)
 	ParticleManager:SetParticleControl(particle, 2, Vector(radius, 0, 0))
@@ -519,7 +518,9 @@ function modifier_custom_puck_dream_coil_thinker:Break()
 	if self.caster:HasTalent("modifier_puck_coil_7") then
 		self.caster:CdAbility(
 			self.ability,
-			self.ability:GetCooldownTimeRemaining() * self.caster:GetTalentValue("modifier_puck_coil_7", "cd_inc") / 100
+			self.ability:GetCooldownTimeRemaining() * self.caster:GetTalentValue("modifier_puck_coil_7", "cd_inc") / 100,
+			nil,
+			"modifier_puck_coil_7"
 		)
 
 		local particle =
@@ -578,7 +579,7 @@ function modifier_custom_puck_dream_coil_resist:OnCreated(table)
 	self.RemoveForDuel = true
 
 	if self.caster:HasTalent("modifier_puck_coil_3") then
-		self.parent:GenericParticle("particles/puck_orb_slow.vpcf", self)
+		self.parent:GenericParticle("particles/puck/puck_orb_slow.vpcf", self)
 	end
 
 	if self.caster:HasTalent("modifier_puck_coil_1") then
@@ -739,8 +740,11 @@ function modifier_custom_puck_dream_coil_cdr:OnIntervalThink()
 		return
 	end
 
-	local particle_peffect =
-		ParticleManager:CreateParticle("particles/lc_odd_proc_.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
+	local particle_peffect = ParticleManager:CreateParticle(
+		"particles/legion_commander/lc_odd_proc_.vpcf",
+		PATTACH_ABSORIGIN_FOLLOW,
+		self.parent
+	)
 	ParticleManager:SetParticleControl(particle_peffect, 0, self.parent:GetAbsOrigin())
 	ParticleManager:SetParticleControl(particle_peffect, 2, self.parent:GetAbsOrigin())
 	ParticleManager:ReleaseParticleIndex(particle_peffect)

@@ -21,22 +21,26 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_crystal_maiden_arcane_aura_custom_shield",
 	"abilities/crystal_maiden/crystal_maiden_arcane_aura_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_maiden_hero_6"
 )
 LinkLuaModifier(
 	"modifier_crystal_maiden_arcane_aura_custom_slow",
 	"abilities/crystal_maiden/crystal_maiden_arcane_aura_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_maiden_arcane_2"
 )
 LinkLuaModifier(
 	"modifier_crystal_maiden_arcane_aura_custom_haste",
 	"abilities/crystal_maiden/crystal_maiden_arcane_aura_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_maiden_arcane_4"
 )
 LinkLuaModifier(
 	"modifier_crystal_maiden_arcane_aura_custom_damage",
 	"abilities/crystal_maiden/crystal_maiden_arcane_aura_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_maiden_arcane_7"
 )
 LinkLuaModifier(
 	"modifier_crystal_maiden_arcane_aura_custom_shard",
@@ -80,11 +84,11 @@ function crystal_maiden_arcane_aura_custom:Precache(context)
 	)
 	PrecacheResource("particle", "particles/units/heroes/hero_oracle/oracle_purifyingflames.vpcf", context)
 	PrecacheResource("particle", "particles/items5_fx/maiden_shield_start.vpcf", context)
-	PrecacheResource("particle", "particles/maiden_shield.vpcf", context)
-	PrecacheResource("particle", "particles/zuus_speed.vpcf", context)
-	PrecacheResource("particle", "particles/maiden_arcane.vpcf", context)
-	PrecacheResource("particle", "particles/maiden_spells.vpcf", context)
-	PrecacheResource("particle", "particles/maiden_shield_active.vpcf", context)
+	PrecacheResource("particle", "particles/crystal_maiden/maiden_shield.vpcf", context)
+	PrecacheResource("particle", "particles/zeus/zuus_speed.vpcf", context)
+	PrecacheResource("particle", "particles/crystal_maiden/maiden_arcane.vpcf", context)
+	PrecacheResource("particle", "particles/crystal_maiden/maiden_spells.vpcf", context)
+	PrecacheResource("particle", "particles/crystal_maiden/maiden_shield_active.vpcf", context)
 	PrecacheResource("particle", "particles/drow_ranger/frost_cleave.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_lina/lina_supercharge_buff.vpcf", context)
 	PrecacheResource("particle", "particles/crystal_maiden/arcane_attack.vpcf", context)
@@ -736,12 +740,16 @@ function modifier_crystal_maiden_arcane_aura_custom_shield:OnCreated(table)
 
 	self.parent:EmitSound("Maiden.Arcane_shield_loop")
 	self.parent:GenericParticle("particles/items5_fx/maiden_shield_start.vpcf", self)
-	self.parent:GenericParticle("particles/maiden_arcane.vpcf")
+	self.parent:GenericParticle("particles/crystal_maiden/maiden_arcane.vpcf")
 	self.parent:EmitSound("Maiden.Arcane_shield")
 	self.parent:EmitSound("Maiden.Arcane_shield_2")
 	self.parent:SendNumber(11, self.max_shield)
 
-	self.pfx = ParticleManager:CreateParticle("particles/maiden_shield.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.parent)
+	self.pfx = ParticleManager:CreateParticle(
+		"particles/crystal_maiden/maiden_shield.vpcf",
+		PATTACH_ABSORIGIN_FOLLOW,
+		self.parent
+	)
 	ParticleManager:SetParticleControlEnt(
 		self.pfx,
 		1,
@@ -765,7 +773,7 @@ function modifier_crystal_maiden_arcane_aura_custom_shield:OnRefresh(table)
 	self.shield = self.max_shield
 
 	self.parent:EmitSound("Maiden.Arcane_shield")
-	self.parent:GenericParticle("particles/maiden_arcane.vpcf")
+	self.parent:GenericParticle("particles/crystal_maiden/maiden_arcane.vpcf")
 	self:SendBuffRefreshToClients()
 end
 
@@ -848,7 +856,7 @@ function modifier_crystal_maiden_arcane_aura_custom_clone:OnCreated()
 
 	local states = { ACT_DOTA_GENERIC_CHANNEL_1, ACT_DOTA_CAST_ABILITY_1, ACT_DOTA_CAST_ABILITY_2 }
 	self.parent:StartGesture(states[RandomInt(1, #states)])
-	self.parent:GenericParticle("particles/maiden_shield_active.vpcf")
+	self.parent:GenericParticle("particles/crystal_maiden/maiden_shield_active.vpcf")
 	self:StartIntervalThink(0.15)
 end
 
@@ -973,7 +981,7 @@ function modifier_crystal_maiden_arcane_aura_custom_haste:GetTexture()
 	return "buffs/crystal_maiden/arcane_4"
 end
 function modifier_crystal_maiden_arcane_aura_custom_haste:GetEffectName()
-	return "particles/zuus_speed.vpcf"
+	return "particles/zeus/zuus_speed.vpcf"
 end
 function modifier_crystal_maiden_arcane_aura_custom_haste:OnCreated()
 	self.ability = self:GetAbility()
@@ -1026,7 +1034,7 @@ function modifier_crystal_maiden_arcane_aura_custom_damage:OnRefresh()
 	self:IncrementStackCount()
 
 	if self:GetStackCount() >= self.max then
-		self.parent:GenericParticle("particles/maiden_spells.vpcf", self)
+		self.parent:GenericParticle("particles/crystal_maiden/maiden_spells.vpcf", self)
 		self.parent:GenericParticle("particles/crystal_maiden/arcane_legendary_max.vpcf", self)
 
 		local particle = ParticleManager:CreateParticle(

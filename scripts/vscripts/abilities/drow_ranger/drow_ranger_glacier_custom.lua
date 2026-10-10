@@ -21,7 +21,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_drow_ranger_glacier_custom_effect",
 	"abilities/drow_ranger/drow_ranger_glacier_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "Scepter" }
 )
 LinkLuaModifier(
 	"modifier_drow_ranger_glacier_custom_knock_cd",
@@ -30,6 +31,11 @@ LinkLuaModifier(
 )
 
 drow_ranger_glacier_custom = class({})
+
+function drow_ranger_glacier_custom:GetAbilityTextureName()
+	return wearables_system:GetAbilityIconReplacement(self:GetCaster(), "drow_ranger_glacier", self)
+end
+
 function drow_ranger_glacier_custom:Precache(context)
 	if self:GetCaster() and self:GetCaster():IsIllusion() then
 		return

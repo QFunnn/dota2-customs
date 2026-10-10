@@ -38,13 +38,12 @@ function custom_puck_waning_rift:Precache(context)
 	end
 
 	PrecacheResource("particle", "particles/units/heroes/hero_puck/puck_waning_rift.vpcf", context)
-	PrecacheResource("particle", "particles/puck_silence_damage.vpcf", context)
+	PrecacheResource("particle", "particles/puck/puck_silence_damage.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/econ/items/outworld_devourer/od_shards_exile/od_shards_exile_prison_end.vpcf",
 		context
 	)
-	PrecacheResource("particle", "particles/puck_silence_charges.vpcf", context)
 	PrecacheResource("particle", "particles/generic_gameplay/rune_arcane_owner.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_keeper_of_the_light/keeper_chakra_magic.vpcf", context)
 	PrecacheResource("particle", "particles/puck/rift_prepare_radius.vpcf", context)
@@ -387,7 +386,7 @@ function modifier_custom_puck_waning_rift:OnDestroy()
 
 	if self:GetStackCount() > 0 and self.caster:HasTalent("modifier_puck_rift_4") then
 		local effect_cast = ParticleManager:CreateParticle(
-			"particles/puck_silence_damage.vpcf",
+			"particles/puck/puck_silence_damage.vpcf",
 			PATTACH_CUSTOMORIGIN_FOLLOW,
 			self.parent
 		)

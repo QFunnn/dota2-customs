@@ -61,7 +61,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_custom_sonic_cdr_perma",
 	"abilities/queen_of_pain/custom_queenofpain_sonic_wave",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_queen_sonic_6"
 )
 
 custom_queenofpain_sonic_wave = class({})
@@ -87,16 +88,16 @@ function custom_queenofpain_sonic_wave:Precache(context)
 		return
 	end
 	PrecacheResource("particle", "particles/units/heroes/hero_queenofpain/queen_sonic_wave.vpcf", context)
-	PrecacheResource("particle", "particles/qop_sonic_attack.vpcf", context)
-	PrecacheResource("particle", "particles/huskar_leap_heal.vpcf", context)
-	PrecacheResource("particle", "particles/queenofpain/sonic_stack.vpcf", context)
-	PrecacheResource("particle", "particles/brist_lowhp_.vpcf", context)
-	PrecacheResource("particle", "particles/qop_sonic_fire.vpcf", context)
-	PrecacheResource("particle", "particles/sf_timer.vpcf", context)
-	PrecacheResource("particle", "particles/lc_odd_charge_mark.vpcf", context)
+	PrecacheResource("particle", "particles/queen_of_pain/qop_sonic_attack.vpcf", context)
+	PrecacheResource("particle", "particles/huskar/huskar_leap_heal.vpcf", context)
+	PrecacheResource("particle", "particles/queen_of_pain/sonic_stack.vpcf", context)
+	PrecacheResource("particle", "particles/bristleback/brist_lowhp_.vpcf", context)
+	PrecacheResource("particle", "particles/queen_of_pain/qop_sonic_fire.vpcf", context)
+	PrecacheResource("particle", "particles/shadow_fiend/sf_timer.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_odd_charge_mark.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_qop_tgt_arcana.vpcf", context)
-	PrecacheResource("particle", "particles/roshan_meteor_burn_.vpcf", context)
-	PrecacheResource("particle", "particles/lc_odd_proc_.vpcf", context)
+	PrecacheResource("particle", "particles/items/roshan_meteor_burn_.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_odd_proc_.vpcf", context)
 end
 
 function custom_queenofpain_sonic_wave:GetHealthCost(level)
@@ -484,14 +485,17 @@ function modifier_custom_sonic_tracker:AttackEvent_out(params)
 
 	if false then
 		params.target:EmitSound("QoP.Sonic_attack")
-		local scream_pfx =
-			ParticleManager:CreateParticle("particles/qop_sonic_attack.vpcf", PATTACH_ABSORIGIN, params.target)
+		local scream_pfx = ParticleManager:CreateParticle(
+			"particles/queen_of_pain/qop_sonic_attack.vpcf",
+			PATTACH_ABSORIGIN,
+			params.target
+		)
 		ParticleManager:SetParticleControl(scream_pfx, 0, params.target:GetAbsOrigin())
 		ParticleManager:ReleaseParticleIndex(scream_pfx)
 	end
 
 	local target = params.target
-	target:GenericParticle("particles/queenofpain/sonic_stack.vpcf")
+	target:GenericParticle("particles/queen_of_pain/sonic_stack.vpcf")
 
 	for _, unit in pairs(self.parent:FindTargets(self.stack_radius, target:GetAbsOrigin())) do
 		unit:AddNewModifier(
@@ -586,7 +590,7 @@ function modifier_custom_sonic_fire_thinker:OnCreated(table)
 
 	self.parent:EmitSound("QoP.Sonic_fire")
 
-	self.pfx = ParticleManager:CreateParticle("particles/qop_sonic_fire.vpcf", PATTACH_WORLDORIGIN, nil)
+	self.pfx = ParticleManager:CreateParticle("particles/queen_of_pain/qop_sonic_fire.vpcf", PATTACH_WORLDORIGIN, nil)
 	ParticleManager:SetParticleControl(self.pfx, 0, self.start_pos)
 	ParticleManager:SetParticleControl(self.pfx, 2, Vector(self:GetRemainingTime(), 0, 0))
 	ParticleManager:SetParticleControl(self.pfx, 1, self.end_pos)
@@ -653,7 +657,7 @@ function modifier_custom_sonic_fire_damage:OnCreated()
 	if not IsServer() then
 		return
 	end
-	self.parent:GenericParticle("particles/roshan_meteor_burn_.vpcf", self)
+	self.parent:GenericParticle("particles/items/roshan_meteor_burn_.vpcf", self)
 	self:StartIntervalThink(self.interval)
 end
 
@@ -708,7 +712,7 @@ function modifier_custom_sonic_stack:OnCreated(table)
 	end
 
 	if not self.caster:HasTalent("modifier_queen_dagger_7") then
-		self.particle = self.parent:GenericParticle("particles/sf_timer.vpcf", self, true)
+		self.particle = self.parent:GenericParticle("particles/shadow_fiend/sf_timer.vpcf", self, true)
 	end
 
 	self:SetStackCount(1)
@@ -739,7 +743,7 @@ function modifier_custom_sonic_stack:OnStackCountChanged(iStackCount)
 			ParticleManager:ReleaseParticleIndex(self.particle)
 			self.particle = nil
 		end
-		self.parent:GenericParticle("particles/lc_odd_charge_mark.vpcf", self, true)
+		self.parent:GenericParticle("particles/legion_commander/lc_odd_charge_mark.vpcf", self, true)
 	end
 end
 
@@ -807,7 +811,7 @@ function modifier_custom_sonic_legendary_stack:OnRefresh()
 		return
 	end
 
-	self.parent:GenericParticle("particles/brist_lowhp_.vpcf")
+	self.parent:GenericParticle("particles/bristleback/brist_lowhp_.vpcf")
 	self.parent:EmitSound("BS.Thirst_legendary_active")
 end
 
@@ -893,7 +897,7 @@ function modifier_custom_sonic_cdr_perma:OnIntervalThink()
 		return
 	end
 
-	self.parent:GenericParticle("particles/lc_odd_proc_.vpcf")
+	self.parent:GenericParticle("particles/legion_commander/lc_odd_proc_.vpcf")
 	self.parent:EmitSound("BS.Thirst_legendary_active")
 	self:StartIntervalThink(-1)
 end

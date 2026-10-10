@@ -16,17 +16,20 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_furion_force_of_nature_custom_tracker",
 	"abilities/furion/furion_force_of_nature_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_furion_call_3"
 )
 LinkLuaModifier(
 	"modifier_furion_force_of_nature_custom_legendary",
 	"abilities/furion/furion_force_of_nature_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	{ true, "modifier_furion_call_7" }
 )
 LinkLuaModifier(
 	"modifier_furion_force_of_nature_custom_legendary_active",
 	"abilities/furion/furion_force_of_nature_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_furion_call_7"
 )
 LinkLuaModifier(
 	"modifier_furion_force_of_nature_custom_treant_auto",
@@ -36,17 +39,20 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_furion_force_of_nature_custom_fear_speed",
 	"abilities/furion/furion_force_of_nature_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_furion_hero_6"
 )
 LinkLuaModifier(
 	"modifier_furion_force_of_nature_custom_health",
 	"abilities/furion/furion_force_of_nature_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_furion_call_2"
 )
 LinkLuaModifier(
 	"modifier_furion_force_of_nature_custom_armor",
 	"abilities/furion/furion_force_of_nature_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_furion_call_3"
 )
 
 furion_force_of_nature_custom = class({})
@@ -66,8 +72,8 @@ function furion_force_of_nature_custom:Precache(context)
 	PrecacheResource("particle", "particles/nature_prophet/call_legendary_overhead.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_doom.vpcf", context)
 	PrecacheResource("particle", "particles/nature_prophet/call_root.vpcf", context)
-	PrecacheResource("particle", "particles/general/patrol_refresh.vpcf", context)
-	PrecacheResource("particle", "particles/general/generic_armor_reduction.vpcf", context)
+	PrecacheResource("particle", "particles/generic/patrol_refresh.vpcf", context)
+	PrecacheResource("particle", "particles/generic/generic_armor_reduction.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_meepo/meepo_ransack.vpcf", context)
 	PrecacheResource("particle", "particles/nature_prophet/sprout_hit.vpcf", context)
 end
@@ -706,7 +712,7 @@ function modifier_furion_force_of_nature_custom_legendary:OnDestroy()
 
 	if not self.active then
 		self.parent:UpdateUIlong({ hide = 1, style = "FurionCall" })
-		self.parent:CdAbility(self.ability, self:GetElapsedTime())
+		self.parent:CdAbility(self.ability, self:GetElapsedTime(), nil, "modifier_furion_call_7")
 	else
 		self.parent:GenericParticle("particles/nature_prophet/call_legendary_cast.vpcf")
 		self.parent:EmitSound("Furion.Call_legendary_cast")
@@ -1071,7 +1077,7 @@ function modifier_furion_force_of_nature_custom_health:OnIntervalThink()
 		return
 	end
 
-	self.parent:GenericParticle("particles/general/patrol_refresh.vpcf")
+	self.parent:GenericParticle("particles/generic/patrol_refresh.vpcf")
 	self.parent:EmitSound("BS.Thirst_legendary_active")
 
 	self:StartIntervalThink(-1)
@@ -1130,7 +1136,7 @@ function modifier_furion_force_of_nature_custom_armor:OnRefresh(table)
 
 	if self:GetStackCount() >= self.max then
 		self.parent:EmitSound("Hoodwink.Acorn_armor")
-		self.parent:GenericParticle("particles/general/generic_armor_reduction.vpcf", self, true)
+		self.parent:GenericParticle("particles/generic/generic_armor_reduction.vpcf", self, true)
 	end
 end
 

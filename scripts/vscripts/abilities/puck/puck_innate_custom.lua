@@ -151,7 +151,7 @@ function modifier_puck_innate_custom:Proc()
 	end
 
 	if self.parent:HasTalent("modifier_puck_coil_6") then
-		self.parent:CdItems(self.cd_items)
+		self.parent:CdItems(self.cd_items, "modifier_puck_coil_6")
 	end
 end
 

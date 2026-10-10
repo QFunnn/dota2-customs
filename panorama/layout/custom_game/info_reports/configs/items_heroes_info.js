@@ -10,6 +10,7 @@
 
 var ITEM_CHANGED_INFORMATION = 
 {
+    
     2059 : 
     {
         "model" : 21095,
@@ -1246,7 +1247,7 @@ var ITEM_CHANGED_INFORMATION =
         [
             ["custom_legion_commander_duel", "legion_commander_duel"],
         ],
-        "model" : 5810,
+        "model" : 37141,
     },
     7930 :
     {
@@ -3014,7 +3015,7 @@ var ITEM_CHANGED_INFORMATION =
     },
     5957 :
     {
-        "model" : 5957,
+        "model" : 37162,
         "styles" : 0,
         "changed_icons" : 
         [
@@ -3028,6 +3029,10 @@ var ITEM_CHANGED_INFORMATION =
             ["custom_terrorblade_metamorphosis", "terrorblade_metamorphosis"],
             ["custom_terrorblade_sunder", "terrorblade_sunder"],
         ],
+    },
+    37161 :
+    {
+        "model" : 37161,
     },
 
     12917 :
@@ -3161,6 +3166,51 @@ var ITEM_CHANGED_INFORMATION =
         [
             ["custom_terrorblade_metamorphosis", "terrorblade_metamorphosis"],
         ],
+    },
+    31408 :
+    {
+        "model" : 31408,
+    },
+    31409 :
+    {
+        "model" : 31409,
+    },
+    31411 :
+    {
+        "model" : 31411,
+    },
+    31410 :
+    {
+        "model" : 31410,
+        "styles" : 0,
+        "changed_effects" :
+        [
+            ["custom_terrorblade_metamorphosis", "terrorblade_metamorphosis"],
+        ],
+    },
+    31412 :
+    {
+        "model" : 31412,
+        "styles" : 0,
+        "changed_icons" : 
+        [
+            ["custom_terrorblade_reflection", "terrorblade/dreadhunt/default/dreadhunt_reflection"],
+            ["custom_terrorblade_conjure_image", "terrorblade/dreadhunt/default/dreadhunt_conjureimage"],
+            ["custom_terrorblade_metamorphosis", "terrorblade/dreadhunt/default/dreadhunt_metamorphosis"],
+            ["terrorblade_demon_zeal_custom", "terrorblade/dreadhunt/default/dreadhunt_demonzeal"],
+            ["custom_terrorblade_terror_wave", "terrorblade/dreadhunt/default/dreadhunt_terrorwave"],
+            ["custom_terrorblade_sunder", "terrorblade/dreadhunt/default/dreadhunt_sunder"],
+        ],
+    },
+    314121 :
+    {
+        "model" : 31412,
+        "styles" : 1,
+    },
+    314122 :
+    {
+        "model" : 31412,
+        "styles" : 2,
     },
     7385 :
     {
@@ -4524,6 +4574,11 @@ var ITEM_CHANGED_INFORMATION =
     29126 :
     {
         "model" : 29126,
+        "styles" : 0,
+    },
+    34610 :
+    {
+        "model" : 34610,
         "styles" : 0,
     },
     5395 :
@@ -7689,6 +7744,40 @@ var ITEM_CHANGED_INFORMATION =
     {
         "model" : 9082,
     },
+    34578 :
+    {
+        "model" : 34578,
+    },
+    34580 :
+    {
+        "model" : 34580,
+    },
+    34577 :
+    {
+        "model" : 34577,
+    },
+    34579 :
+    {
+        "model" : 34579,
+    },
+    33393 :
+    {
+        "model" : 33393,
+        "changed_icons" : 
+        [
+            ["nyx_assassin_impale_custom", "nyx_assassin/nyx_monster/nyx_monster_impale"],
+            ["nyx_assassin_jolt_custom", "nyx_assassin/nyx_monster/nyx_monster_mind_flare"],
+            ["nyx_assassin_spiked_carapace_custom", "nyx_assassin/nyx_monster/nyx_monster_spiked_carapace"],
+            ["nyx_assassin_burrow_custom", "nyx_assassin/nyx_monster/nyx_monster_burrow"],
+            ["nyx_assassin_vendetta_custom", "nyx_assassin/nyx_monster/nyx_monster_vendetta"],
+        ],
+        "changed_effects" : 
+        [
+            ["nyx_assassin_impale_custom", "nyx_assassin_impale"],
+            ["nyx_assassin_spiked_carapace_custom", "nyx_assassin_spiked_carapace"],
+            ["nyx_assassin_burrow_custom", "nyx_assassin_burrow"],
+        ],
+    },
 
 
     8326 :
@@ -8259,6 +8348,39 @@ var ITEM_CHANGED_INFORMATION =
     {
         "model" : 17920,
     },
+    34521 :
+    {
+        "model" : 34521,
+    },
+    34520 :
+    {
+        "model" : 34520,
+        "changed_icons" : 
+        [
+            ["broodmother_insatiable_hunger_custom", "broodmother/brood_monster/bm_monster_insatiable_hunger"],
+            ["broodmother_spin_web_custom", "broodmother/brood_monster/bm_monster_spin_web"],
+            ["broodmother_incapacitating_bite_custom", "broodmother/brood_monster/bm_monster_incapacitating_bite"],
+            ["broodmother_spin_web_custom_legendary", "broodmother/brood_monster/bm_monster_spinners_snare"],
+            ["broodmother_spawn_spiderlings_custom", "broodmother/brood_monster/bm_monster_spawn_spiderlings"],
+        ],
+        "changed_effects" : 
+        [
+            ["broodmother_spin_web_custom", "broodmother_spin_web"],
+            ["broodmother_spawn_spiderlings_custom", "broodmother_spawn_spiderlings"],
+        ],
+    },
+    34522 :
+    {
+        "model" : 34522,
+    },
+    34400 :
+    {
+        "model" : 34400,
+    },
+    35982 :
+    {
+        "model" : 35982,
+    },
     34184 :
     {
         "model" : 34184,
@@ -8494,6 +8616,34 @@ var ITEM_CHANGED_INFORMATION =
     {
         "model" : 35846,
         "styles" : 3,
+    },
+    34609 :
+    {
+        "model" : 34609,
+    },
+    34608 :
+    {
+        "model" : 34608,
+    },
+    34607 :
+    {
+        "model" : 34607,
+    },
+    34606 :
+    {
+        "model" : 34606,
+        "changed_icons" : 
+        [
+            ["antimage_mana_break_custom", "antimage/daemon_hunter/anti_mage_mana_break_daemon"],
+            ["antimage_blink_custom", "antimage/daemon_hunter/anti_mage_blink_daemon"],
+            ["antimage_counterspell_custom", "antimage/daemon_hunter/anti_mage_counterspell_daemon"],
+            ["antimage_mana_void_custom", "antimage/daemon_hunter/anti_mage_mana_void_daemon"],
+        ],
+        "changed_effects" : 
+        [
+            ["antimage_blink_custom", "antimage_blink"],
+            ["antimage_counterspell_custom", "antimage_counterspell"],
+        ],
     },
 
     137611 :
@@ -8912,6 +9062,34 @@ var ITEM_CHANGED_INFORMATION =
     {
         "model" : 28300,
     },
+    31471 :
+    {
+        "model" : 31471,
+    },
+    31470 :
+    {
+        "model" : 31470,
+    },
+    31469 :
+    {
+        "model" : 31469,
+        "changed_icons" : 
+        [
+            ["marci_grapple_custom", "marci/boltheart_brawler/marci_boltheart_grapple"],
+            ["marci_companion_run_custom", "marci/boltheart_brawler/marci_boltheart_lunge"],
+            ["marci_guardian_custom", "marci/boltheart_brawler/marci_boltheart_bodyguard"],
+            ["marci_unleash_custom", "marci/boltheart_brawler/marci_boltheart_unleash"],
+        ],
+        "changed_effects" : 
+        [
+            ["marci_grapple_custom", "marci_grapple"],
+            ["marci_guardian_custom", "marci_guardian"],
+        ],
+    },
+    31468 :
+    {
+        "model" : 31468,
+    },
 
      13538:
     {
@@ -9242,6 +9420,45 @@ var ITEM_CHANGED_INFORMATION =
             ["legion_commander_duel", "legion_commander/dark_carnival/legion_commander_duel"],
         ],
     },
+    33390 :
+    {
+        "model" : 33390,
+    },
+    33387 :
+    {
+        "model" : 33387,
+        "changed_icons" : 
+        [
+            ["custom_legion_commander_overwhelming_odds", "legion_commander/dragons_soul/dragons_soul_overwhelming_odds"],
+            ["custom_legion_commander_press_the_attack", "legion_commander/dragons_soul/dragons_soul_press_the_attack"],
+            ["custom_legion_commander_moment_of_courage", "legion_commander/dragons_soul/dragons_soul_moment_of_courage"],
+            ["custom_legion_commander_duel", "legion_commander/dragons_soul/dragons_soul_duel"],
+        ],
+        "changed_effects" : 
+        [
+            ["custom_legion_commander_overwhelming_odds", "legion_commander_overwhelming_odds"],
+        ],
+    },
+    33391 :
+    {
+        "model" : 33391,
+    },
+    33388 :
+    {
+        "model" : 33388,
+    },
+    33392 :
+    {
+        "model" : 33392,
+    },
+    33389 :
+    {
+        "model" : 33389,
+    },
+    37140 :
+    {
+        "model" : 37140,
+    },
     36193 :
     {
         "model" : 36193,
@@ -9302,6 +9519,52 @@ var ITEM_CHANGED_INFORMATION =
     36052 :
     {
         "model" : 36052,
+    },
+    34590 :
+    {
+        "model" : 34590,
+        "styles" : 0,
+    },
+    34594 :
+    {
+        "model" : 34594,
+        "changed_icons" : 
+        [
+            ["drow_ranger_frost_arrows_custom", "drow_ranger/drow_monster/drow_monster_frost_arrows"],
+            ["drow_ranger_wave_of_silence_custom", "drow_ranger/drow_monster/drow_monster_gust"],
+            ["drow_ranger_multishot_custom", "drow_ranger/drow_monster/drow_monster_multishot"],
+            ["drow_ranger_glacier_custom", "drow_ranger/drow_monster/drow_monster_glacier"],
+            ["drow_ranger_marksmanship_custom", "drow_ranger/drow_monster/drow_monster_marksmanship"],
+        ],
+    },
+    34589 :
+    {
+        "model" : 34589,
+        "styles" : 0,
+    },
+    34593 :
+    {
+        "model" : 34593,
+    },
+    34588 :
+    {
+        "model" : 34588,
+    },
+    34591 :
+    {
+        "model" : 34591,
+    },
+    34592 :
+    {
+        "model" : 34592,
+    },
+    37144 :
+    {
+        "model" : 37144,
+    },
+    371441 :
+    {
+        "model" : 37144,
     },
     36220 :
     {
@@ -9390,6 +9653,46 @@ var ITEM_CHANGED_INFORMATION =
     33846 :
     {
         "model" : 33846,
+    },
+    33593 :
+    {
+        "model" : 33593,
+        "changed_icons" : 
+        [
+            ["custom_pudge_meat_hook", "pudge/horrorfest_butcher/horrorfest_butcher_meat_hook"],
+            ["custom_pudge_rot", "pudge/horrorfest_butcher/horrorfest_butcher_rot"],
+            ["custom_pudge_flesh_heap", "pudge/horrorfest_butcher/horrorfest_butcher_flesh_heap"],
+            ["custom_pudge_dismember", "pudge/horrorfest_butcher/horrorfest_butcher_dismember"],
+        ],
+        "changed_effects" : 
+        [
+            ["custom_pudge_meat_hook", "pudge_meat_hook"],
+            ["custom_pudge_rot", "pudge_rot"],
+        ],
+    },
+    33589 :
+    {
+        "model" : 33589,
+    },
+    33592 :
+    {
+        "model" : 33592,
+    },
+    33594 :
+    {
+        "model" : 33594,
+    },
+    33590 :
+    {
+        "model" : 33590,
+    },
+    33588 :
+    {
+        "model" : 33588,
+    },
+    33596 :
+    {
+        "model" : 33596,
     },
     30950 :
     {
@@ -10164,6 +10467,161 @@ var ITEM_CHANGED_INFORMATION =
         model : 6428,
     },
 
+    // primal_beast
+    23785 :
+    {
+        model : 23785,
+        changed_icons :
+        [
+            ["primal_beast_onslaught_custom", "primal_beast/primal_beast_onslaught_immortal"],
+        ],
+        changed_effects :
+        [
+            ["primal_beast_onslaught_custom", "primal_beast_onslaught"],
+        ],
+    },
+    24759 :
+    {
+        model : 24759,
+    },
+    24747 :
+    {
+        model : 24747,
+    },
+    24736 :
+    {
+        model : 24736,
+        styles : 0,
+    },
+    247361 :
+    {
+        model : 24736,
+        styles : 1,
+    },
+    24693 :
+    {
+        model : 24693,
+    },
+    26765 :
+    {
+        model : 26765,
+    },
+    26764 :
+    {
+        model : 26764,
+    },
+    26763 :
+    {
+        model : 26763,
+    },
+    26762 :
+    {
+        model : 26762,
+    },
+    28133 :
+    {
+        model : 28133,
+    },
+    28134 :
+    {
+        model : 28134,
+    },
+    28135 :
+    {
+        model : 28135,
+    },
+    28136 :
+    {
+        model : 28136,
+    },
+    26795 :
+    {
+        model : 26795,
+    },
+    26772 :
+    {
+        model : 26772,
+    },
+    26771 :
+    {
+        model : 26771,
+    },
+    26770 :
+    {
+        model : 26770,
+    },
+    26780 :
+    {
+        model : 26780,
+    },
+    26779 :
+    {
+        model : 26779,
+    },
+    26778 :
+    {
+        model : 26778,
+    },
+    26777 :
+    {
+        model : 26777,
+    },
+    36206 :
+    {
+        model : 36206,
+    },
+    36207 :
+    {
+        model : 36207,
+    },
+    36208 :
+    {
+        model : 36208,
+    },
+    36209 :
+    {
+        model : 36209,
+    },
+    23770 :
+    {
+        model : 23770,
+    },
+    23766 :
+    {
+        model : 23766,
+    },
+    23765 :
+    {
+        model : 23765,
+    },
+    33303 :
+    {
+        "model" : 33303,
+    },
+    33301 :
+    {
+        "model" : 33301,
+        "changed_icons" : 
+        [
+            ["primal_beast_onslaught_custom", "primal_beast/primal_cheast/primal_cheast_onslaught"],
+            ["primal_beast_trample_custom", "primal_beast/primal_cheast/primal_cheast_trample"],
+            ["primal_beast_uproar_custom", "primal_beast/primal_cheast/primal_cheast_uproar"],
+            ["primal_beast_rock_throw_custom", "primal_beast/primal_cheast/primal_cheast_rock_throw"],
+            ["primal_beast_pulverize_custom", "primal_beast/primal_cheast/primal_cheast_pulverize"],
+        ],
+        "changed_effects" : 
+        [
+            ["primal_beast_trample_custom", "primal_beast_trample"],
+        ],
+    },
+    33302 :
+    {
+        "model" : 33302,
+    },
+    33300 :
+    {
+        "model" : 33300,
+    },
 }
 
 
@@ -10258,6 +10716,10 @@ var razor_arcana_items_blocked =
     34185: true,
     34186: true,
     34183: true,
+    37144 : true,
+    371441 : true,
+    37140 : true,
+    37161 : true,
 }
 
 var pudge_persona_unique =
@@ -10284,6 +10746,7 @@ var antimage_persona_unique =
     27297 : true,
     28278 : true,
     29126 : true,
+    34610 : true,
 }
 
 var crystal_maiden_persona_unique =
@@ -10320,7 +10783,7 @@ var SETS_TEXTURE_FULL_ICON =
     song_shadow_dragon : "custom_game/shop/heroes/phantom_assassin/shadow_dragon",
     gothic : "econ/sets/v2/gothic_whisper",
     onikage_disciple :  "custom_game/shop/heroes/phantom_assassin/onikage_disciple",
-    last_laugh : "econ/sets/v2/phantom_assassin_phantom_assassin__dark_carnival",
+    last_laugh : "econ/sets/v2/the_last_laugh",
 
     // phantom persona
     shadow_stalker : "econ/sets/v2/shadow_stalker",
@@ -10343,6 +10806,8 @@ var SETS_TEXTURE_FULL_ICON =
     daemonfell : "econ/sets/v2/legion_commander_daemonfell_flame",
     desolate_conquest : "econ/sets/v2/desolate_conquest",
     dracons_deed : "econ/sets/v2/drakons_deed",
+    legion_arcana : "econ/sets/v2/blades_of_voth_domosh",
+    hells_legion : "econ/sets/v2/hells_legion",
 
     // Shadow Fiend
     twilight_effigy : "econ/sets/v2/twilight_effigy",
@@ -10393,6 +10858,7 @@ var SETS_TEXTURE_FULL_ICON =
     abarrant_observer : "custom_game/shop/heroes/pudge/abarrant_observer",
     pudge_arcana : "econ/sets/v2/feast_of_abscession",
     pudge_clown : "econ/sets/v2/rotzo_the_clown",
+    greasepaint_gutbuster : "econ/sets/v2/greasepaint_gutbuster",
 
     // pudge persona
     doll_of_the_dead : "econ/sets/v2/pudge_doll_of_the_dead",
@@ -10420,6 +10886,7 @@ var SETS_TEXTURE_FULL_ICON =
     drow_oaths : "econ/sets/v2/oaths_of_the_dragonborn",
     drow_arcana : "econ/sets/v2/dread_retribution_bundle",
     motley_marauder : "econ/sets/v2/motley_marauder",
+    sepulchral_stalker : "econ/sets/v2/sepulchral_stalker",
 
     // ogre magi
     ogre_shoreline : "econ/sets/v2/shoreline_sapper",
@@ -10434,6 +10901,7 @@ var SETS_TEXTURE_FULL_ICON =
     terror_forgotten : "econ/sets/v2/forgotten_station",
     terrorblade_arcana : "econ/sets/v2/fractal_horns_of_inner_abysm",
     terrorblade_forms : "custom_game/shop/heroes/terrorblade/meta",
+    rictus_ripper : "econ/sets/v2/rictus_ripper",
 
     // crystal maiden
     crystal_winterwarden : "econ/sets/v2/winters_warden",
@@ -10441,7 +10909,7 @@ var SETS_TEXTURE_FULL_ICON =
     crystal_white_wind : "econ/sets/v2/whitewind_battlemage",
     crystal_persona : "econ/sets/v2/npc_dota_hero_crystal_maiden_1",
     winter_raven : "econ/sets/v2/crystal_maiden_roost_of_the_winter_raven",
-    wintertroupe_warden : "econ/sets/v2/crystal_maiden_crystal_maiden__dark_carnival",
+    wintertroupe_warden : "econ/sets/v2/wintertroupe_warden",
 
     // crystal maiden persona
     guardian_snow_angel : "econ/sets/v2/guardian_snow_angel",
@@ -10495,6 +10963,7 @@ var SETS_TEXTURE_FULL_ICON =
     pinions_piety : "econ/sets/v2/pinions_of_piety",
     designs_dragon : "econ/sets/v2/designs_of_the_dragon",
     spellbreaker_braid : "econ/sets/v2/spellbreakers_braid",
+    daemon_hunter : "econ/sets/v2/daemon_hunter",
 
     // troll warlord
     savage_monger : "econ/sets/v2/plunder_of_the_savage_monger",
@@ -10596,6 +11065,7 @@ var SETS_TEXTURE_FULL_ICON =
     bottomfeeder_nyx : "econ/sets/v2/bottomfeeder",
     kaktos_nyx : "econ/sets/v2/sect_of_kaktos",
     amber_apis : "custom_game/shop/heroes/nyx_assassin/amber_apis",
+    mesmer_eye : "econ/sets/v2/mesmereye",
 
     // enigma
     twisted_maelstrom : "econ/sets/v2/twisted_maelstrom",
@@ -10619,6 +11089,7 @@ var SETS_TEXTURE_FULL_ICON =
     arcane_infestation : "econ/sets/v2/arcane_infestation",
     brood_abysm : "econ/sets/v2/epoch_of_the_abysm",
     golden_orbweaver : "econ/sets/v2/golden_orbweaver",
+    arachnid_anathema : "econ/sets/v2/arachnid_anathema",
 
     // slark
     dark_reef : "econ/sets/v2/dark_reef_escape",
@@ -10647,6 +11118,7 @@ var SETS_TEXTURE_FULL_ICON =
     faithful_fortune : "econ/sets/v2/faithful_fortune",
     blue_horizons : "econ/sets/v2/blue_horizons",
     solar_fang : "econ/sets/v2/school_of_the_solar_fang",
+    patchwork_protector : "econ/sets/v2/patchwork_protector",
 
     // mars
     forgotten_fate : "econ/sets/v2/forgotten_fate",
@@ -10654,7 +11126,7 @@ var SETS_TEXTURE_FULL_ICON =
     wings_of_imperium : "econ/sets/v2/wings_of_imperium",
     arena_champion : "econ/sets/v2/arena_champion",
     mars_red_berserker : "econ/sets/v2/the_red_berserker",
-    mars_worldsend : "econ/sets/v2/mars_mars_ragnarok__alt",
+    mars_worldsend : "econ/sets/v2/worldsend",
 
     //jakiro
     herald_of_frost_and_flame : "econ/sets/v2/herald_of_frost_and_flame",
@@ -10692,6 +11164,16 @@ var SETS_TEXTURE_FULL_ICON =
     carronade_corsair : "econ/sets/v2/carronade_corsair",
     kunkka_grand_witch_hunter_templar : "econ/sets/v2/kunkka_grand_witch_hunter_templar",
     bestowments_divine_anchor : "econ/sets/v2/bestowments_divine_anchor",
+
+    // primal_beast
+    the_abominable_snowbeast : "econ/sets/v2/the_abominable_snowbeast",
+    svarog_the_infernal : "econ/sets/v2/svarog_the_infernal",
+    temple_guardian : "econ/sets/v2/temple_guardian",
+    dark_behemoth : "econ/sets/v2/dark_behemoth",
+    primeval_abomination : "econ/sets/v2/primeval_abomination",
+    mane_attraction : "econ/sets/v2/mane_attraction",
+    age_of_attrition : "econ/sets/v2/age_of_attrition",
+    slobbering_strongbox : "econ/sets/v2/slobbering_strongbox",
 }
 
 var OTHER_BACKGROUND_HEROES =
@@ -10722,6 +11204,7 @@ var OTHER_BACKGROUND_HEROES =
     npc_dota_hero_furion : "zues",
     npc_dota_hero_pangolier : "witch_doctor",
     npc_dota_hero_kunkka : "lycan",
+    npc_dota_hero_primal_beast : "roshan",
 }
 
 var SETS_ARCANA_TYPE =
@@ -10735,6 +11218,7 @@ var SETS_ARCANA_TYPE =
     skywrath_arcana : true,
     terrorblade_arcana : true,
     axe_persona : true,
+    legion_arcana : true,
 }
 
 var SETS_PERSONA_TYPE =
@@ -10774,6 +11258,7 @@ var SETS_PRIORITY_PERSONA =
     "npc_dota_hero_antimage" :
     [
         "rare",
+        "daemon_hunter",
         "turstarkuri_pilgrim",
         "proselyte_sakura",
         "pinions_piety",
@@ -10879,6 +11364,8 @@ var SETS_PRIORITY =
     "npc_dota_hero_legion_commander":
     [
         "rare",
+        "legion_arcana",
+        "hells_legion",
         "desolate_conquest",
         "triumphimperatrix",
         "dracons_deed",
@@ -10928,6 +11415,7 @@ var SETS_PRIORITY =
     "npc_dota_hero_pudge":
     [
         "rare",
+        "greasepaint_gutbuster",
         "pudge_arcana",
         "doomsday_ripper",
         "pudge_clown",
@@ -10947,6 +11435,7 @@ var SETS_PRIORITY =
     "npc_dota_hero_drow_ranger":
     [
         "rare",
+        "sepulchral_stalker",
         "drow_arcana",
         "drow_eldwurm",
         "drow_crownfall",
@@ -11020,6 +11509,7 @@ var SETS_PRIORITY =
     "npc_dota_hero_terrorblade":
     [
         "rare",
+        "rictus_ripper",
         "terrorblade_forms",
         "terrorblade_arcana",
         "terror_chasm",
@@ -11150,6 +11640,7 @@ var SETS_PRIORITY =
     ["npc_dota_hero_nyx_assassin"]:
     [
         "rare",
+        "mesmer_eye",
         "bottomfeeder_nyx",
         "kaktos_nyx",
         "amber_apis",
@@ -11178,6 +11669,7 @@ var SETS_PRIORITY =
     ["npc_dota_hero_broodmother"]:
     [
         "rare",
+        "arachnid_anathema",
         "spiderlings",
         "brood_abysm",
         "golden_orbweaver",
@@ -11212,6 +11704,8 @@ var SETS_PRIORITY =
     ],
     ["npc_dota_hero_marci"]:
     [
+        "rare",
+        "patchwork_protector",
         "faithful_fortune",
         "solar_fang",
         "little_red",
@@ -11275,6 +11769,18 @@ var SETS_PRIORITY =
         "carronade_corsair",
         "seaborne_reprisal",
         "vengeance_of_the_brine_lords",
+    ],
+    npc_dota_hero_primal_beast :
+    [
+        "rare",
+        "slobbering_strongbox",
+        "dark_behemoth",
+        "temple_guardian",
+        "the_abominable_snowbeast",
+        "mane_attraction",
+        "svarog_the_infernal",
+        "primeval_abomination",
+        "age_of_attrition",
     ],
 }
 
@@ -11359,10 +11865,10 @@ var ITEMS_EFFECTS_DATA =
 
     npc_dota_hero_legion_commander:
     {
-        custom_legion_commander_overwhelming_odds : [9236],
-        custom_legion_commander_press_the_attack : [7930, 7931],
-        custom_legion_commander_moment_of_courage : [],
-        custom_legion_commander_duel : [5810],
+        custom_legion_commander_overwhelming_odds : [9236, 33387],
+        custom_legion_commander_press_the_attack : [7930, 7931, 33387],
+        custom_legion_commander_moment_of_courage : [33387],
+        custom_legion_commander_duel : [5810, 33387],
     },
 
     npc_dota_hero_queenofpain:
@@ -11375,10 +11881,12 @@ var ITEMS_EFFECTS_DATA =
 
     npc_dota_hero_terrorblade:
     {
-        custom_terrorblade_reflection : [],
-        custom_terrorblade_conjure_image : [],
-        custom_terrorblade_metamorphosis : [12917],
-        custom_terrorblade_sunder : [9750],
+        custom_terrorblade_reflection : [31412],
+        custom_terrorblade_conjure_image : [31412],
+        custom_terrorblade_metamorphosis : [12917, 31412],
+        terrorblade_demon_zeal_custom : [31412],
+        custom_terrorblade_terror_wave : [31412],
+        custom_terrorblade_sunder : [9750, 31412],
     },
 
     npc_dota_hero_bristleback:
@@ -11415,10 +11923,10 @@ var ITEMS_EFFECTS_DATA =
 
     npc_dota_hero_pudge:
     {
-        custom_pudge_meat_hook : [],
-        custom_pudge_rot : [9231, 7742, 26089],
-        custom_pudge_flesh_heap : [],
-        custom_pudge_dismember : [7756],
+        custom_pudge_meat_hook : [33593],
+        custom_pudge_rot : [9231, 7742, 26089, 33593],
+        custom_pudge_flesh_heap : [33593],
+        custom_pudge_dismember : [7756, 33593],
     },
 
     npc_dota_hero_hoodwink:
@@ -11473,26 +11981,27 @@ var ITEMS_EFFECTS_DATA =
 
     npc_dota_hero_antimage:
     {
-        antimage_mana_break_custom : [8271, 7277],
-        antimage_blink_custom : [9249, 9457],
-        antimage_counterspell_custom : [],
-        antimage_mana_void_custom : [8271, 7277],
+        antimage_mana_break_custom : [8271, 7277, 34606],
+        antimage_blink_custom : [9249, 9457, 34606],
+        antimage_counterspell_custom : [34606],
+        antimage_mana_void_custom : [8271, 7277, 34606],
     },
 
     npc_dota_hero_primal_beast:
     {
-        primal_beast_onslaught_custom : [],
-        primal_beast_trample_custom : [],
-        primal_beast_uproar_custom : [],
-        primal_beast_pulverize_custom : [],
+        primal_beast_onslaught_custom : [23785, 33301],
+        primal_beast_trample_custom : [33301],
+        primal_beast_uproar_custom : [33301],
+        primal_beast_rock_throw_custom : [33301],
+        primal_beast_pulverize_custom : [33301],
     },
 
     npc_dota_hero_marci:
     {
-        marci_grapple_custom : [],
-        marci_companion_run_custom : [],
-        marci_guardian_custom : [],
-        marci_unleash_custom : [],
+        marci_grapple_custom : [31469],
+        marci_companion_run_custom : [31469],
+        marci_guardian_custom : [31469],
+        marci_unleash_custom : [31469],
     },
 
     npc_dota_hero_templar_assassin:
@@ -11656,10 +12165,11 @@ var ITEMS_EFFECTS_DATA =
 
     npc_dota_hero_drow_ranger:
     {		
-        drow_ranger_frost_arrows_custom : [5386, 12946,19090],
-        drow_ranger_wave_of_silence_custom : [8006, 8035, 8037,19090],
-        drow_ranger_multishot_custom : [19090],
-        drow_ranger_marksmanship_custom : [12946,19090],
+        drow_ranger_frost_arrows_custom : [5386, 12946, 19090, 34594],
+        drow_ranger_wave_of_silence_custom : [8006, 8035, 8037, 19090, 34594],
+        drow_ranger_multishot_custom : [19090, 34594],
+        drow_ranger_glacier_custom : [34594],
+        drow_ranger_marksmanship_custom : [12946, 19090, 34594],
     },
 
     npc_dota_hero_skywrath_mage:
@@ -11737,18 +12247,20 @@ var ITEMS_EFFECTS_DATA =
 
     npc_dota_hero_nyx_assassin:
     {	
-        nyx_assassin_impale_custom : [8005, 8021, 8032],
-        nyx_assassin_jolt_custom : [],
-        nyx_assassin_spiked_carapace_custom : [12957, 13574],
-        nyx_assassin_vendetta_custom : [],
+        nyx_assassin_impale_custom : [8005, 8021, 8032, 33393],
+        nyx_assassin_jolt_custom : [33393],
+        nyx_assassin_spiked_carapace_custom : [12957, 13574, 33393],
+        nyx_assassin_burrow_custom : [33393],
+        nyx_assassin_vendetta_custom : [33393],
     },
 
     npc_dota_hero_broodmother:
     {	
-        broodmother_insatiable_hunger_custom : [],
-        broodmother_spin_web_custom : [23344],
-        broodmother_incapacitating_bite_custom : [],
-        broodmother_spawn_spiderlings_custom : [9090],
+        broodmother_insatiable_hunger_custom : [34520],
+        broodmother_spin_web_custom : [23344, 34520],
+        broodmother_incapacitating_bite_custom : [34520],
+        broodmother_spin_web_custom_legendary : [34520],
+        broodmother_spawn_spiderlings_custom : [9090, 34520],
     },
 
     npc_dota_hero_night_stalker:

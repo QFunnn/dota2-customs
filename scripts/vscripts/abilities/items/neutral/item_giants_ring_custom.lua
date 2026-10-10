@@ -122,6 +122,10 @@ function modifier_item_giants_ring_custom:GetModifierModelScale()
 	if self.parent:HasModifier("modifier_primal_beast_innate_custom") then
 		return
 	end
+	return self:GetScale()
+end
+
+function modifier_item_giants_ring_custom:GetScale()
 	local bonus = self.model_scale
 	if self.parent:HasModifier("modifier_giants_ring_custom") then
 		bonus = bonus * self.model_scale_bonus

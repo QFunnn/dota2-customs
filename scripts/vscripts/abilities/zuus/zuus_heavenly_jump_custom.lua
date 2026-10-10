@@ -26,7 +26,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_zuus_heavenly_jump_custom_legendary",
 	"abilities/zuus/zuus_heavenly_jump_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_zuus_jump_7"
 )
 LinkLuaModifier(
 	"modifier_zuus_heavenly_jump_custom_attack_speed_effect",
@@ -56,12 +57,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_zuus_heavenly_jump_custom_stats",
 	"abilities/zuus/zuus_heavenly_jump_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_zuus_jump_3"
 )
 LinkLuaModifier(
 	"modifier_zuus_heavenly_jump_custom_leash",
 	"abilities/zuus/zuus_heavenly_jump_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_zuus_jump_4"
 )
 
 zuus_heavenly_jump_custom = class({})
@@ -72,14 +75,13 @@ function zuus_heavenly_jump_custom:Precache(context)
 		return
 	end
 	PrecacheResource("particle", "particles/units/heroes/hero_zuus/zuus_shard.vpcf", context)
-	PrecacheResource("particle", "particles/zuus_glow.vpcf", context)
-	PrecacheResource("particle", "particles/zuus_speed.vpcf", context)
-	PrecacheResource("particle", "particles/zuus_heal.vpcf", context)
-	PrecacheResource("particle", "particles/zuus_jump_count.vpcf", context)
-	PrecacheResource("particle", "particles/zuus_speed_max.vpcf", context)
+	PrecacheResource("particle", "particles/zeus/zuus_glow.vpcf", context)
+	PrecacheResource("particle", "particles/zeus/zuus_speed.vpcf", context)
+	PrecacheResource("particle", "particles/zeus/zuus_heal.vpcf", context)
+	PrecacheResource("particle", "particles/zeus/zuus_speed_max.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_mjollnir_shield.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_stormspirit/stormspirit_static_remnant.vpcf", context)
-	PrecacheResource("particle", "particles/huskar_timer.vpcf", context)
+	PrecacheResource("particle", "particles/huskar/huskar_timer.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_techies/techies_stasis_trap_explode.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_zuus/zuus_shard_head.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_zuus/zuus_shard_slow.vpcf", context)
@@ -396,7 +398,7 @@ function zuus_heavenly_jump_custom:DealDamage(target)
 	)
 	ParticleManager:ReleaseParticleIndex(thunder)
 
-	local self_particle = ParticleManager:CreateParticle("particles/zuus_glow.vpcf", PATTACH_POINT, self.caster)
+	local self_particle = ParticleManager:CreateParticle("particles/zeus/zuus_glow.vpcf", PATTACH_POINT, self.caster)
 	ParticleManager:SetParticleControlEnt(
 		self_particle,
 		0,
@@ -451,7 +453,7 @@ function zuus_heavenly_jump_custom:ProcEffects(target)
 	end
 
 	if self.talents.has_e7 == 1 then
-		self.caster:CdAbility(self, nil, self.talents.e7_cd_inc)
+		self.caster:CdAbility(self, nil, self.talents.e7_cd_inc, "modifier_zuus_jump_7")
 	end
 
 	if self.talents.has_e4 == 1 and not IsValid(self.jump_mod) then
@@ -666,7 +668,7 @@ function modifier_zuus_heavenly_jump_custom_attack_speed_effect:OnCreated()
 	self.parent = self:GetParent()
 	self.parent:EmitSound("Zuus.Jump_speed")
 	self.parent:EmitSound("Zuus.Jump_speed2")
-	self.parent:GenericParticle("particles/zuus_speed_max.vpcf", self)
+	self.parent:GenericParticle("particles/zeus/zuus_speed_max.vpcf", self)
 end
 
 function modifier_zuus_heavenly_jump_custom_attack_speed_effect:DeclareFunctions()
@@ -729,7 +731,8 @@ function modifier_zuus_heavenly_jump_custom_illusion:OnIntervalThink()
 		decimal = 1
 	end
 
-	local particle = ParticleManager:CreateParticle("particles/huskar_timer.vpcf", PATTACH_OVERHEAD_FOLLOW, self.parent)
+	local particle =
+		ParticleManager:CreateParticle("particles/huskar/huskar_timer.vpcf", PATTACH_OVERHEAD_FOLLOW, self.parent)
 	ParticleManager:SetParticleControl(particle, 0, self.parent:GetAbsOrigin())
 	ParticleManager:SetParticleControl(particle, 1, Vector(0, int, decimal))
 	ParticleManager:SetParticleControl(particle, 2, Vector(digits, 0, 0))
@@ -878,7 +881,7 @@ function modifier_zuus_heavenly_jump_custom_buff:OnCreated()
 	if self.ability.talents.has_e2 == 1 then
 		self.heal = self.ability.talents.e2_heal / self:GetRemainingTime()
 		if IsServer() then
-			self.parent:GenericParticle("particles/zuus_heal.vpcf", self)
+			self.parent:GenericParticle("particles/zeus/zuus_heal.vpcf", self)
 		end
 	end
 end

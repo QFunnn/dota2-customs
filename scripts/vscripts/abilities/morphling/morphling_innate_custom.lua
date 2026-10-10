@@ -11,7 +11,8 @@
 LinkLuaModifier(
 	"modifier_morphling_innate_custom",
 	"abilities/morphling/morphling_innate_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	false
 )
 LinkLuaModifier(
 	"modifier_morphling_innate_custom_buff",
@@ -21,7 +22,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_morphling_innate_custom_slow",
 	"abilities/morphling/morphling_innate_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_morphling_hero_1"
 )
 
 morphling_innate_custom = class({})
@@ -201,7 +203,7 @@ function modifier_morphling_innate_custom:DeathEvent(params)
 		dota1x6:CreateUpgradeOrb(self.parent, 1)
 		self:IncrementStackCount()
 		if self:GetStackCount() >= self.ability.max then
-			self.parent:GenericParticle("particles/rare_orb_patrol.vpcf")
+			self.parent:GenericParticle("particles/patrol/rare_orb_patrol.vpcf")
 			self.parent:EmitSound("BS.Thirst_legendary_active")
 		end
 	end

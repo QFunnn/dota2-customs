@@ -26,8 +26,8 @@ function warlock_boss_shadow_word:Precache(context)
 		return
 	end
 
-	PrecacheResource("particle", "particles/warlock_aoe_cast.vpcf", context)
-	PrecacheResource("particle", "particles/warlock_wave.vpcf", context)
+	PrecacheResource("particle", "particles/warlock_boss/warlock_aoe_cast.vpcf", context)
+	PrecacheResource("particle", "particles/warlock_boss/warlock_wave.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/econ/items/warlock/warlock_ti9/warlock_ti9_shadow_word_debuff.vpcf",
@@ -38,7 +38,7 @@ end
 
 function warlock_boss_shadow_word:OnAbilityPhaseStart()
 	self.radius = self:GetSpecialValueFor("radius")
-	local particle_cast = "particles/warlock_aoe_cast.vpcf"
+	local particle_cast = "particles/warlock_boss/warlock_aoe_cast.vpcf"
 	self.effect_cast = ParticleManager:CreateParticle(particle_cast, PATTACH_CUSTOMORIGIN, self:GetCaster())
 	ParticleManager:SetParticleControl(self.effect_cast, 0, self:GetCaster():GetOrigin())
 	ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(self.radius, 0, -self.radius))
@@ -85,8 +85,11 @@ function warlock_boss_shadow_word:OnSpellStart()
 
 	self.radius = self:GetSpecialValueFor("radius")
 
-	local wave_particle =
-		ParticleManager:CreateParticle("particles/warlock_wave.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetCaster())
+	local wave_particle = ParticleManager:CreateParticle(
+		"particles/warlock_boss/warlock_wave.vpcf",
+		PATTACH_ABSORIGIN_FOLLOW,
+		self:GetCaster()
+	)
 	ParticleManager:SetParticleControl(wave_particle, 1, self:GetCaster():GetAbsOrigin())
 	ParticleManager:ReleaseParticleIndex(wave_particle)
 

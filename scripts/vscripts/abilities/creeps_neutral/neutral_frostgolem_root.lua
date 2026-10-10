@@ -22,7 +22,7 @@ LinkLuaModifier(
 neutral_frostgolem_root = class({})
 
 function neutral_frostgolem_root:Precache(context)
-	PrecacheResource("particle", "particles/frostbitten_strike.vpcf", context)
+	PrecacheResource("particle", "particles/creeps/frostbitten_strike.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/econ/items/lich/frozen_chains_ti6/lich_frozenchains_frostnova.vpcf",
@@ -128,8 +128,11 @@ function modifier_frostbitten_thinker:OnDestroy()
 		return
 	end
 
-	local strike =
-		ParticleManager:CreateParticle("particles/frostbitten_strike.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.caster)
+	local strike = ParticleManager:CreateParticle(
+		"particles/creeps/frostbitten_strike.vpcf",
+		PATTACH_ABSORIGIN_FOLLOW,
+		self.caster
+	)
 	ParticleManager:SetParticleControlEnt(
 		strike,
 		0,

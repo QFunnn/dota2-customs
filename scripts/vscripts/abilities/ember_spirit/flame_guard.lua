@@ -11,7 +11,8 @@
 LinkLuaModifier(
 	"modifier_ember_spirit_flame_guard_custom",
 	"abilities/ember_spirit/flame_guard",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 LinkLuaModifier(
 	"modifier_ember_spirit_flame_guard_custom_tracker",
@@ -21,7 +22,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_ember_spirit_flame_guard_custom_stats",
 	"abilities/ember_spirit/flame_guard",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_ember_guard_3"
 )
 LinkLuaModifier(
 	"modifier_ember_spirit_flame_guard_custom_max_visual",

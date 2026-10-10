@@ -171,14 +171,17 @@
     "AbilityValues"
     {
         "chance"                    "50"
-        "damage"                    "12"
-        "gold"                      "3"
+        "damage"                    "15"
+        "gold"                      "4"
     }
 }
 
-"item_duelist_gloves"
+"item_duelist_gloves_custom"
 {
     "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "BaseClass"                     "item_lua"
+    "ScriptFile"                    "abilities/items/neutral/item_duelist_gloves_custom"
+    "AbilityTextureName"            "item_duelist_gloves"
 
     "ItemCost"                      "0"
     "ItemIsNeutralActiveDrop"       "1"
@@ -186,15 +189,12 @@
     "ItemSellable"                  "0"
 
     "Model"                         "models/props_gameplay/neutral_box.vmdl"
+
     "AbilityValues"
     {
-        "bonus_attack_speed"        "25"
-        "bonus_damage"              "0"
-        "radius"
-        {
-            "value"                 "1200"
-            "affected_by_aoe_increase" "1"
-        }
+        "bonus_attack_speed"        "12"
+        "hero_attack_speed"         "12"
+        "radius"                    "1200"
     }
 }
 
@@ -383,8 +383,9 @@
 
     "AbilityValues"
     {
-        "mana"                      "70"
-        "health"                    "70"
+        "mana"                      "30"
+        "mana_pct"                  "2"
+        "max_regen"                 "70"
         "duration"                  "5"
     }
 }
@@ -500,7 +501,7 @@
     {
         "bonus_int"                 "0"
         "mp_regen"                  "0"
-        "health_gain"               "300"
+        "health_gain"               "350"
         "health_gain_duration"      "10"
     }
 }
@@ -651,9 +652,12 @@
     }
 }
 
-"item_serrated_shiv"
+"item_serrated_shiv_custom"
 {
     "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "BaseClass"                     "item_lua"
+    "ScriptFile"                    "abilities/items/neutral/item_serrated_shiv_custom"
+    "AbilityTextureName"            "item_serrated_shiv"
 
     "AbilityCooldown"               "1.0"
 
@@ -667,8 +671,9 @@
     "AbilityValues"
     {
         "proc_chance"               "40"
-        "hp_dmg"                    "6"
-        "hp_dmg_rosh"               "200"
+        "damage"                    "50"
+        "damage_health"             "5"
+        "creeps_damage"             "150"
     }
 }
 
@@ -884,7 +889,7 @@
     "ScriptFile"                    "abilities/items/neutral/item_flayers_bota_custom"
     "AbilityTextureName"            "item_flayers_bota"
 
-    "AbilityCooldown"               "20"
+    "AbilityCooldown"               "15"
     "SpellDispellableType"          "SPELL_DISPELLABLE_YES"
 
     "ItemCost"                      "0"
@@ -896,9 +901,9 @@
 
     "AbilityValues"
     {
-        "cost"                      "15"
-        "damage"                    "20"
-        "speed"                     "50"
+        "cost"                      "12"
+        "damage"                    "15"
+        "speed"                     "40"
         "duration"                  "6"
     }
 }
@@ -946,7 +951,7 @@
 
     "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
 
-    "AbilityCooldown"               "10"
+    "AbilityCooldown"               "12"
 
     "ItemCost"                      "0"
     "ItemIsNeutralActiveDrop"       "1"
@@ -958,12 +963,12 @@
     {
         "shield"
         {
-            "value"                 "200"
+            "value"                 "150"
             "apply_curio_bonus"     "1"
         }
         "shield_health"
         {
-            "value"                 "6"
+            "value"                 "5"
             "apply_curio_bonus"     "1"
         }
         "duration"                  "4"
@@ -988,9 +993,10 @@
     "AbilityValues"
     {
         "duration"                  "4"
-        "damage"                    "30"
-        "damage_health"             "3"
+        "damage"                    "20"
+        "damage_health"             "2.5"
         "heal"                      "75"
+        "creeps_damage"             "60"
         "radius"                    "300"
     }
 }
@@ -1011,11 +1017,11 @@
 
     "AbilityValues"
     {
-        "damage"                    "120"
+        "damage"                    "140"
         "slow"                      "-50"
         "slow_duration"             "1"
         "max"                       "3"
-        "radius"                    "700"
+        "radius"                    "800"
         "heal"                      "75"
     }
 }
@@ -1222,16 +1228,15 @@
     "ItemIsNeutralActiveDrop"       "1"
     "ItemPurchasable"               "0"
     "AbilitySharedCooldown"         "sphere"
-    "AbilityCooldown"               "14"
+    "AbilityCooldown"               "16"
     "ItemDisassembleRule"           "DOTA_ITEM_DISASSEMBLE_ALWAYS"
 
     "Model"                         "models/props_gameplay/neutral_box.vmdl"
 
     "AbilityValues"
     {
-        "status"                    "75"
         "duration"                  "1.5"
-        "cd"                        "14"
+        "cd"                        "16"
     }
 }
 
@@ -1279,7 +1284,7 @@
     "AbilityValues"
     {
         "damage_threshold"          "70"
-        "burn_damage"               "100"
+        "burn_damage"               "140"
         "burn_duration"             "4"
         "burn_tickrate"             "1"
     }
@@ -1369,9 +1374,9 @@
 
     "AbilityValues"
     {
-        "cast_range"                "100 150 200 350"
-        "attack_range"              "80 120 160 200"
-        "attack_range_melle"        "50 75 100 125"
+        "cast_range"                "80 120 160 250"
+        "attack_range"              "60 90 120 200"
+        "attack_range_melle"        "40 60 80 100"
     }
 }
 
@@ -1392,9 +1397,7 @@
     "AbilityValues"
     {
         "movement_speed"            "15 30 45 60"
-        "slow"                      "-15 -30 -45 -60"
-        "duration"                  "2"
-        "range"                     "2000"
+        "slow_resist"               "10 15 20 25"
     }
 }
 
@@ -1437,7 +1440,7 @@
 
     "AbilityValues"
     {
-        "bonus_mana"                "150 250 350 450"
+        "bonus_mana"                "150 200 350 500"
         "magic_res"                 "4 8 12 16"
     }
 }
@@ -1500,8 +1503,8 @@
 
     "AbilityValues"
     {
-        "bonus_damage"              "10 20 30 40"
-        "armor"                     "0 3 6 9"
+        "bonus_damage"              "8 16 24 32"
+        "armor"                     "1 3 6 9"
     }
 }
 
@@ -1629,7 +1632,7 @@
 
     "AbilityValues"
     {
-        "cooldown_reduction"        "12"
+        "cooldown_reduction"        "10"
         "mana_burn_reduce"          "35"
     }
 }
@@ -1651,7 +1654,7 @@
 
     "AbilityValues"
     {
-        "spell_amp"                 "10 16"
+        "spell_amp"                 "8 14"
         "status_amp"                "-10 -16"
         "radius"                    "800"
     }
@@ -1697,7 +1700,7 @@
     "AbilityValues"
     {
         "lifesteal"                 "12 16 20"
-        "health_regen"              "5 10 15"
+        "health_regen"              "10 20 30"
         "creeps"                    "3"
     }
 }
@@ -1740,9 +1743,7 @@
 
     "AbilityValues"
     {
-        "stats"                     "3 4 7 10"
-        "main_stat"                 "2 4 6 8"
-        "main_stat_universal"       "1 2 3 4"
+        "stats"                     "4 7 10 13"
     }
 }
 
@@ -1778,7 +1779,7 @@
 
     "AbilityValues"
     {
-        "base_attack_damage"        "15 25"
+        "base_attack_damage"        "12 20"
         "status_resistance"         "10 20"
         "attack_speed"              "0"
     }

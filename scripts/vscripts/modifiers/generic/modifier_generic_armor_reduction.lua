@@ -25,7 +25,7 @@ function modifier_generic_armor_reduction:OnCreated(table)
 	end
 	self.armor_reduction = table.armor_reduction
 	self.particle_peffect = ParticleManager:CreateParticle(
-		"particles/general/generic_armor_reduction.vpcf",
+		"particles/generic/generic_armor_reduction.vpcf",
 		PATTACH_OVERHEAD_FOLLOW,
 		self:GetParent()
 	)

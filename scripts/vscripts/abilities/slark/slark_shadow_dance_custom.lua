@@ -16,7 +16,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_slark_shadow_dance_custom_effect",
 	"abilities/slark/slark_shadow_dance_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 LinkLuaModifier(
 	"modifier_slark_shadow_dance_custom_dummy",
@@ -36,7 +37,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_slark_shadow_dance_custom_heal_effect",
 	"abilities/slark/slark_shadow_dance_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 LinkLuaModifier(
 	"modifier_slark_shadow_dance_custom_creeps",
@@ -59,7 +61,6 @@ function slark_shadow_dance_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_slark/slark_shadow_dance_dummy.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_slark/slark_shadow_dance.vpcf", context)
 	PrecacheResource("particle", "particles/slark/dance_legendary.vpcf", context)
-	PrecacheResource("particle", "particles/slark/dance_burn.vpcf", context)
 	PrecacheResource("particle", "particles/void_spirit/void_mark_hit.vpcf", context)
 end
 

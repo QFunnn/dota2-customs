@@ -302,7 +302,6 @@ _G.UnvalidAbilities = {
 	["marci_summon_luna"] = true,
 	["high_five_custom"] = true,
 	["skywrath_mage_mystic_flare_custom_legendary"] = true,
-	["primal_beast_charge_custom"] = true,
 	["custom_puck_illusory_barrier"] = true,
 	["morphling_morph_replicate_custom"] = true,
 	["templar_assassin_trap_custom"] = true,
@@ -336,6 +335,8 @@ _G.Recast_mods = {
 	["kunkka_x_marks_the_spot_custom"] = "modifier_kunkka_xmark_custom_caster",
 	["kunkka_ghostship_custom"] = "modifier_kunkka_ghostship_custom_legendary_sail",
 	["custom_phantom_assassin_coup_de_grace_legendary"] = "modifier_phantom_assassin_phantom_coup_de_grace_legendary",
+	["primal_beast_onslaught_custom"] = "modifier_primal_beast_onslaught_custom_cast",
+	["primal_beast_trample_custom"] = "modifier_primal_beast_trample_custom",
 }
 
 _G.NoPushSpells = {
@@ -430,6 +431,7 @@ _G.new_talent_system = {
 	["npc_dota_hero_pangolier"] = 1,
 	["npc_dota_hero_kunkka"] = 1,
 	["npc_dota_hero_phantom_assassin"] = 1,
+	["npc_dota_hero_primal_beast"] = 1,
 }
 
 _G.hero_changes = {
@@ -520,7 +522,16 @@ _G.hero_changes = {
 		"manavoid",
 		"Scepter",
 	},
-	["npc_dota_hero_primal_beast"] = { "innate", "Onslaught", "Onslaught", "Trample", "Uproar", "Shard", "Scepter" },
+	["npc_dota_hero_primal_beast"] = {
+		"innate",
+		"onslaught",
+		"onslaught",
+		"trample",
+		"uproar",
+		"uproar",
+		"pulverize",
+		"Scepter",
+	},
 	["npc_dota_hero_marci"] = { "innate", "dispose", "rebound", "sidekick", "sidekick", "unleash", "unleash", "Scepter" },
 	["npc_dota_hero_templar_assassin"] = { "innate", "Refraction", "Meld", "Psionic", "Psionic", "Scepter" },
 	["npc_dota_hero_bloodseeker"] = {
@@ -558,7 +569,18 @@ _G.hero_changes = {
 		"Assassinate",
 		"Scepter",
 	},
-	["npc_dota_hero_muerta"] = { "movespeed", "innate", "dead", "calling", "calling", "Gun", "Veil", "Veil", "Scepter" },
+	["npc_dota_hero_muerta"] = {
+		"movespeed",
+		"stats",
+		"innate",
+		"dead",
+		"calling",
+		"calling",
+		"Gun",
+		"Veil",
+		"Veil",
+		"Scepter",
+	},
 	["npc_dota_hero_pangolier"] = { "innate", "buckle", "Shield", "Lucky", "Rolling", "Rolling", "Scepter" },
 	["npc_dota_hero_arc_warden"] = {
 		"innate",
@@ -891,6 +913,10 @@ _G.attack_mods = {
 		["kunkka_s9"] = "modifier_kunkka_shop_9",
 		["kunkka_w7"] = "modifier_kunkka_tidebringer_7",
 	},
+	["npc_dota_hero_primal_beast"] = {
+		["beast_q7"] = "modifier_primal_beast_onslaught_7",
+		["beast_scepter"] = "Scepter",
+	},
 }
 
 _G.auto_cast_spells = {
@@ -1184,19 +1210,19 @@ _G.Shared_Bounty = {
 	},
 
 	["patrol_melee_good"] = {
-		blue = 6,
+		blue = 7,
 		gold = 50,
 	},
 	["patrol_range_good"] = {
-		blue = 6,
+		blue = 7,
 		gold = 50,
 	},
 	["patrol_melee_bad"] = {
-		blue = 6,
+		blue = 7,
 		gold = 50,
 	},
 	["patrol_range_bad"] = {
-		blue = 6,
+		blue = 7,
 		gold = 50,
 	},
 	["npc_dota_tormentor_custom"] = {

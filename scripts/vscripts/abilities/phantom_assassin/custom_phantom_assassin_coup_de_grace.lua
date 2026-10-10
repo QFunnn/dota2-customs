@@ -26,12 +26,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_phantom_assassin_phantom_coup_de_grace_reduce",
 	"abilities/phantom_assassin/custom_phantom_assassin_coup_de_grace",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_phantom_assassin_hero_3"
 )
 LinkLuaModifier(
 	"modifier_phantom_assassin_phantom_coup_de_grace_legendary",
 	"abilities/phantom_assassin/custom_phantom_assassin_coup_de_grace",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_phantom_assassin_crit_7"
 )
 LinkLuaModifier(
 	"modifier_phantom_assassin_phantom_coup_de_grace_legendary_clone",
@@ -41,22 +43,26 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_phantom_assassin_phantom_coup_de_grace_legendary_crit",
 	"abilities/phantom_assassin/custom_phantom_assassin_coup_de_grace",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_phantom_assassin_crit_7"
 )
 LinkLuaModifier(
 	"modifier_phantom_assassin_phantom_coup_de_grace_rage",
 	"abilities/phantom_assassin/custom_phantom_assassin_coup_de_grace",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_phantom_assassin_crit_1"
 )
 LinkLuaModifier(
 	"modifier_phantom_assassin_phantom_coup_de_grace_armor",
 	"abilities/phantom_assassin/custom_phantom_assassin_coup_de_grace",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_phantom_assassin_crit_3"
 )
 LinkLuaModifier(
 	"modifier_phantom_assassin_phantom_coup_de_grace_haste",
 	"abilities/phantom_assassin/custom_phantom_assassin_coup_de_grace",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_phantom_assassin_crit_3"
 )
 
 custom_phantom_assassin_coup_de_grace = class({})
@@ -79,7 +85,7 @@ function custom_phantom_assassin_coup_de_grace:Precache(context)
 		"particles/units/heroes/hero_phantom_assassin/phantom_assassin_crit_impact.vpcf",
 		context
 	)
-	PrecacheResource("particle", "particles/lc_odd_proc_hands.vpcf", context)
+	PrecacheResource("particle", "particles/legion_commander/lc_odd_proc_hands.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/units/heroes/hero_phantom_assassin/phantom_assassin_mark_overhead.vpcf",
@@ -89,7 +95,7 @@ function custom_phantom_assassin_coup_de_grace:Precache(context)
 	PrecacheResource("particle", "particles/phantom_assassin/crit_legendary_timer.vpcf", context)
 	PrecacheResource("particle", "particles/phantom_assassin/crit_legendary_stack.vpcf", context)
 	PrecacheResource("particle", "particles/phantom_assassin/blink_illusion_blur.vpcf", context)
-	PrecacheResource("particle", "particles/pa_cry.vpcf", context)
+	PrecacheResource("particle", "particles/phantom_assassin/pa_cry.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/units/heroes/hero_phantom_assassin/phantom_assassin_active_blur.vpcf",
@@ -428,7 +434,7 @@ function custom_phantom_assassin_coup_de_grace:ProcFocus(attacker, target)
 	end
 
 	if self.caster.blur_ability then
-		self.caster.blur_ability:ProcSplash(target)
+		self.caster.blur_ability:ProcSplash(target, "focus")
 	end
 
 	if self.talents.has_r3 == 1 then
@@ -450,6 +456,7 @@ function custom_phantom_assassin_coup_de_grace:ProcFocus(attacker, target)
 		end
 
 		legendary.targets[target] = (legendary.targets[target] or 0) + 1
+		self.caster:LogProc("modifier_phantom_assassin_crit_7", self:GetFocusDamage(target), target)
 	end
 end
 
@@ -1156,7 +1163,7 @@ function modifier_phantom_assassin_phantom_coup_de_grace_legendary:OnCreated()
 	end
 
 	self.parent:EmitSound("Phantom_Assassin.SuperCrit")
-	self.parent:GenericParticle("particles/pa_cry.vpcf")
+	self.parent:GenericParticle("particles/phantom_assassin/pa_cry.vpcf")
 
 	self.parent:GenericParticle(
 		"particles/econ/items/phantom_assassin/pa_crimson_witness_2021/pa_crimson_witness_blur_start.vpcf"

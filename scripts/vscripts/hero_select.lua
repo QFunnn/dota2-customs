@@ -19,7 +19,8 @@ PICK_STATE_SELECT_BASE = "PICK_STATE_SELECT_BASE"
 PICK_STATE_PICK_END = "PICK_STATE_PICK_END"
 PICK_STATE = PICK_STATE_PLAYERS_LOADED
 BAN_TIME = 15
-TIME_OF_STATE = { 5, 75, 60, 0 }
+TIME_OF_STATE = { 10, 75, 60, 0 }
+MATCH_START_WAIT = 3
 LOBBY_PLAYERS = {}
 LOBBY_PLAYERS_MAX = 0
 HEROES_FOR_PICK = {}
@@ -49,14 +50,15 @@ DUO_BANNED = {
 
 NO_BANNED_HEROES = {
 	"npc_dota_hero_kunkka",
-	"npc_dota_hero_phantom_assassin",
+	"npc_dota_hero_primal_beast",
 }
 
 DONATE_HEROES = {
 	["npc_dota_hero_kunkka"] = true,
+	["npc_dota_hero_primal_beast"] = true,
 }
 NEW_SYSTEM_HEROES = {
-	["npc_dota_hero_phantom_assassin"] = true,
+	[""] = true,
 }
 
 --[[PRO_MOD_ALLOWED =
@@ -149,8 +151,18 @@ function hero_select:EnsureBase(id)
 	return RandomInt(1, #BASE_FOR_PICK)
 end
 
+function hero_select:IsCancelled()
+	return SafeToLeave and PICK_STATE ~= PICK_STATE_SELECT_BASE and PICK_STATE ~= PICK_STATE_PICK_END
+end
+
 function hero_select:EnsureHero(id)
 	if not ValidId(id) then
+		return
+	end
+	if LOBBY_TEAMS_COUNTER == 0 then
+		return
+	end
+	if hero_select:IsCancelled() then
 		return
 	end
 	if GlobalHeroes[id] then
@@ -378,6 +390,9 @@ function hero_select:ChoseHero(params)
 	if PICK_STATE ~= PICK_STATE_SELECT_HERO then
 		return
 	end
+	if hero_select:IsCancelled() then
+		return
+	end
 
 	if not LOBBY_PLAYERS[params.PlayerID] then
 		return
@@ -542,7 +557,9 @@ end
 
 function hero_select:UpdatePlayersTeams()
 	for i = 0, 24 do
-		if ValidId(i) and PlayerResource:GetTeam(i) ~= 1 then
+		if ValidId(i) and PlayerResource:GetTeam(i) == DOTA_TEAM_NOTEAM then
+			LOBBY_PLAYERS[i] = nil
+		elseif ValidId(i) and PlayerResource:GetTeam(i) ~= 1 then
 			local player_team = PlayerResource:GetTeam(i)
 			if LOBBY_PLAYERS[i] then
 				LOBBY_PLAYERS[i].player_team = player_team
@@ -632,34 +649,74 @@ function hero_select:CheckReadyPlayers(attempt)
 		return
 	end
 
+	attempt = attempt or 0
+	dota1x6:AssignTeams()
+
 	local bAllReady = true
-	for pid, pinfo in pairs(LOBBY_PLAYERS) do
-		if pinfo.bRegistred and not pinfo.bLoaded and PlayerResource:GetTeam(pid) ~= 1 then
-			bAllReady = false
+	for pid = 0, 24 do
+		if ValidId(pid) and not bots_ids[pid] and PlayerResource:GetTeam(pid) ~= 1 then
+			local state = PlayerResource:GetConnectionState(pid)
+			local pinfo = LOBBY_PLAYERS[pid]
+			if
+				state ~= DOTA_CONNECTION_STATE_ABANDONED
+				and (
+					state ~= DOTA_CONNECTION_STATE_CONNECTED
+					or not pinfo
+					or not pinfo.bLoaded
+					or PlayerResource:GetTeam(pid) == DOTA_TEAM_NOTEAM
+				)
+			then
+				bAllReady = false
+			end
 		end
 	end
 
-	if bAllReady then
-		hero_select:Start()
-	else
+	local bMatchStart = IsInToolsMode() or HTTP.match_start_received or attempt >= MATCH_START_WAIT
+
+	if not (bAllReady and bMatchStart) and attempt < TIME_OF_STATE[1] then
+		CustomNetTables:SetTableValue("custom_pick", "loading_stage", { time = math.ceil(TIME_OF_STATE[1] - attempt) })
+
 		local check_interval = 0.5
-		attempt = (attempt or 0) + check_interval
-		if attempt > TIME_OF_STATE[1] then
-			hero_select:Start()
-		else
-			Timers:CreateTimer("hero_select_check_ready", {
-				useGameTime = false,
-				endTime = check_interval,
-				callback = function()
-					hero_select:CheckReadyPlayers(attempt)
-				end,
-			})
+		Timers:CreateTimer("hero_select_check_ready", {
+			useGameTime = false,
+			endTime = check_interval,
+			callback = function()
+				hero_select:CheckReadyPlayers(attempt + check_interval)
+			end,
+		})
+		return
+	end
+
+	for pid = 0, 24 do
+		if ValidId(pid) and not bots_ids[pid] then
+			local state = PlayerResource:GetConnectionState(pid)
+			local team = PlayerResource:GetTeam(pid)
+			if team ~= 1 and (state ~= DOTA_CONNECTION_STATE_CONNECTED or team == DOTA_TEAM_NOTEAM) then
+				print("PICK LOADING NOT READY", pid, state, team)
+
+				local data = CustomNetTables:GetTableValue("server_data", tostring(pid))
+				if data and not data.block then
+					data.block = { name = "player_left" }
+					CustomNetTables:SetTableValue("server_data", tostring(pid), data)
+				end
+
+				if SafeToLeave == false then
+					_G.SafeToLeave = true
+					SafeToLeave_reason = 1
+				end
+			end
 		end
 	end
+
+	print("PICK LOADING END", attempt, bAllReady, bMatchStart, HTTP.match_start_received)
+	hero_select:Start()
 end
 
 function hero_select:PlayerConnected(kv)
 	if kv.PlayerID == nil then
+		return
+	end
+	if LOBBY_TEAMS_COUNTER > 0 and not LOBBY_PLAYERS[kv.PlayerID] then
 		return
 	end
 	local pinfo = hero_select:RegisterPlayerInfo(kv.PlayerID)
@@ -761,11 +818,12 @@ function hero_select:Start()
 			["411040863"] = true,
 			-- ['1674997262'] = true, -- ден
 			--['418896247'] = true,-- колян мейн
-			["1727917408"] = true, -- колян
+			["1727917408"] = true, -- колян акк для фп
 			["149889029"] = true,
 			--  ['143696994'] = true, -- амели
 			-- ['216015457'] = true, -- мяу
-			--  ['1046015320'] = true, -- ашаф
+			["1046015320"] = true, -- ашаф
+			["1027532545"] = true, -- сахарок
 
 			--  ['122413750'] = true,
 			-- ['1442764865'] = true, -- рейз фейк
@@ -847,6 +905,9 @@ function hero_select:StartBanStage()
 		callback = function()
 			if PICK_STATE ~= PICK_STATE_PICK_BANNED then
 				return
+			end
+			if hero_select:IsCancelled() then
+				return 1
 			end
 
 			time_ban_stage = time_ban_stage - 1
@@ -939,6 +1000,9 @@ function hero_select:BanVoteHero(params)
 		return
 	end
 
+	if hero_select:IsCancelled() then
+		return
+	end
 	if not LOBBY_PLAYERS[params.PlayerID] then
 		return
 	end
@@ -1008,6 +1072,9 @@ function hero_select:StartOrderPick()
 		useGameTime = false,
 		endTime = 1,
 		callback = function()
+			if hero_select:IsCancelled() then
+				return 1
+			end
 			if LOBBY_PLAYERS_MAX ~= 1 and not SafeToLeave then
 				time = time - 1
 			end

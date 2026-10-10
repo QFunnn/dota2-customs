@@ -56,7 +56,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_templar_assassin_psionic_trap_custom_trap_cdr",
 	"abilities/templar_assasssin/templar_assassin_psionic_trap_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_templar_assassin_psionic_6"
 )
 LinkLuaModifier(
 	"modifier_templar_assassin_psionic_trap_custom_trap_double",
@@ -114,22 +115,20 @@ function templar_assassin_psionic_trap_custom:Precache(context)
 		"particles/units/heroes/hero_templar_assassin/templar_assassin_trap_slow.vpcf",
 		context
 	)
-	PrecacheResource("particle", "particles/pa_vendetta.vpcf", context)
+	PrecacheResource("particle", "particles/phantom_assassin/pa_vendetta.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_dark_seer_normal_punch_replica.vpcf", context)
-	PrecacheResource("particle", "particles/ta_trap_target.vpcf", context)
+	PrecacheResource("particle", "particles/templar_assassin/ta_trap_target.vpcf", context)
 	PrecacheResource(
 		"particle",
 		"particles/units/heroes/hero_templar_assassin/templar_assassin_meld_armor.vpcf",
 		context
 	)
-	PrecacheResource("particle", "particles/ta_timer.vpcf", context)
-	PrecacheResource("particle", "particles/ta_trap_damage.vpcf", context)
+	PrecacheResource("particle", "particles/templar_assassin/ta_timer.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_oracle/oracle_purifyingflames.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_faceless_chronosphere.vpcf", context)
-	PrecacheResource("particle", "particles/ta_psi_speed.vpcf", context)
+	PrecacheResource("particle", "particles/templar_assassin/ta_psi_speed.vpcf", context)
 	PrecacheResource("particle", "particles/templar_assassin/double_attack.vpcf", context)
 	PrecacheResource("particle", "particles/templar_assassin/trap_stack.vpcf", context)
-	PrecacheResource("particle", "particles/templar_assasin/trap_refresh.vpcf", context)
 end
 
 function templar_assassin_psionic_trap_custom:GetIntrinsicModifierName()
@@ -418,7 +417,10 @@ function templar_assassin_psionic_trap_custom:ExplodeTrap(point, timer_k, is_leg
 
 	if hit_hero == true then
 		if caster:HasTalent("modifier_templar_assassin_psionic_6") then
-			caster:CdItems(caster:GetTalentValue("modifier_templar_assassin_psionic_6", "cd_items"))
+			caster:CdItems(
+				caster:GetTalentValue("modifier_templar_assassin_psionic_6", "cd_items"),
+				"modifier_templar_assassin_psionic_6"
+			)
 		end
 		caster:AddNewModifier(caster, self, "modifier_templar_assassin_psionic_trap_custom_trap_cdr", {})
 	end
@@ -961,7 +963,7 @@ function modifier_templar_assassin_psionic_trap_custom_trap_legendary:OnRefresh(
 	self:IncrementStackCount()
 
 	if self:GetStackCount() >= self.max then
-		self.parent:GenericParticle("particles/ta_trap_target.vpcf", self)
+		self.parent:GenericParticle("particles/templar_assassin/ta_trap_target.vpcf", self)
 	end
 end
 
@@ -1149,7 +1151,7 @@ function modifier_templar_assassin_psionic_trap_custom_trap_cdr:OnIntervalThink(
 		return
 	end
 
-	self.parent:GenericParticle("particles/lc_odd_proc_.vpcf")
+	self.parent:GenericParticle("particles/legion_commander/lc_odd_proc_.vpcf")
 	self.parent:EmitSound("BS.Thirst_legendary_active")
 	self:StartIntervalThink(-1)
 end
@@ -1480,7 +1482,7 @@ function modifier_templar_assassin_psionic_trap_custom_trap_scepter:AddEffect()
 		return
 	end
 
-	self.parent:GenericParticle("particles/ta_trap_target.vpcf", self)
+	self.parent:GenericParticle("particles/templar_assassin/ta_trap_target.vpcf", self)
 	self.parent:EmitSound("TA.Scepter_active")
 end
 
@@ -1508,7 +1510,8 @@ function modifier_templar_assassin_psionic_trap_custom_trap_scepter:OnIntervalTh
 		decimal = 1
 	end
 
-	local particle = ParticleManager:CreateParticle("particles/ta_timer.vpcf", PATTACH_OVERHEAD_FOLLOW, self.parent)
+	local particle =
+		ParticleManager:CreateParticle("particles/templar_assassin/ta_timer.vpcf", PATTACH_OVERHEAD_FOLLOW, self.parent)
 	ParticleManager:SetParticleControl(particle, 0, self.parent:GetAbsOrigin())
 	ParticleManager:SetParticleControl(particle, 1, Vector(0, int, decimal))
 	ParticleManager:SetParticleControl(particle, 2, Vector(digits, 0, 0))

@@ -32,8 +32,8 @@ function item_patrol_razor:Precache(context)
 	end
 	PrecacheResource("particle", "particles/units/heroes/hero_zuus/zuus_arc_lightning.vpcf", context)
 	PrecacheResource("particle", "particles/items2_fx/mjollnir_shield.vpcf", context)
-	PrecacheResource("particle", "particles/tower_dd.vpcf", context)
-	PrecacheResource("particle", "particles/glyph_damage.vpcf", context)
+	PrecacheResource("particle", "particles/items/tower_dd.vpcf", context)
+	PrecacheResource("particle", "particles/patrol/glyph_damage.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_mjollnir_shield.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_brewmaster/brewmaster_dispel_magic.vpcf", context)
 	PrecacheResource("particle", "particles/patrol/razor_friendly_shield.vpcf", context)
@@ -325,7 +325,7 @@ function modifier_razor_tower_custom_friendly:OnCreated(table)
 
 		self.parent:EmitSound("DOTA_Item.Mjollnir.Loop")
 		self.parent:GenericParticle("particles/patrol/razor_friendly_shield.vpcf", self)
-		self.parent:GenericParticle("particles/tower_dd.vpcf", self)
+		self.parent:GenericParticle("particles/items/tower_dd.vpcf", self)
 	end
 end
 

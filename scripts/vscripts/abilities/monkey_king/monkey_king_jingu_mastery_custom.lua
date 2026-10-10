@@ -36,7 +36,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_monkey_king_jingu_mastery_custom_agility",
 	"abilities/monkey_king/monkey_king_jingu_mastery_custom.lua",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_monkey_king_mastery_7"
 )
 LinkLuaModifier(
 	"modifier_monkey_king_jingu_mastery_custom_attacks",
@@ -58,9 +59,8 @@ function monkey_king_jingu_mastery_custom:Precache(context)
 	PrecacheResource("particle", "particles/units/heroes/hero_monkey_king/monkey_king_quad_tap_start.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_monkey_king/monkey_king_tap_buff.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_marci/marci_rebound_allymovespeed.vpcf", context)
-	PrecacheResource("particle", "particles/mk_shield.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_monkey_king/monkey_king_jump_trail.vpcf", context)
-	PrecacheResource("particle", "particles/mk_mastery_legendary.vpcf", context)
+	PrecacheResource("particle", "particles/monkey_king/mk_mastery_legendary.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_monkey_king/monkey_king_strike_slow_impact.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_sniper/sniper_headshot_slow.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_marci/marci_rebound_bounce_impact_debuff.vpcf", context)
@@ -648,7 +648,7 @@ function modifier_monkey_king_jingu_mastery_custom_buff:ReduceStack()
 	end
 
 	if self.ability.talents.has_e7 == 1 then
-		self.parent:CdAbility(self.ability, self.ability.talents.e7_cd_inc)
+		self.parent:CdAbility(self.ability, self.ability.talents.e7_cd_inc, nil, "modifier_monkey_king_mastery_7")
 	end
 
 	if self.ability.talents.has_h3 == 1 then
@@ -916,8 +916,11 @@ function modifier_monkey_king_jingu_mastery_custom_arc:UpdateHorizontalMotion(me
 			"particles/monkey_king/mastery_attack" .. ((RandomInt(0, 1)) == 0 and "" or "2") .. ".vpcf"
 		)
 
-		local startPfx =
-			ParticleManager:CreateParticle("particles/mk_mastery_legendary.vpcf", PATTACH_ABSORIGIN, self.target)
+		local startPfx = ParticleManager:CreateParticle(
+			"particles/monkey_king/mk_mastery_legendary.vpcf",
+			PATTACH_ABSORIGIN,
+			self.target
+		)
 		ParticleManager:SetParticleControl(startPfx, 0, self.target:GetAbsOrigin())
 		ParticleManager:ReleaseParticleIndex(startPfx)
 

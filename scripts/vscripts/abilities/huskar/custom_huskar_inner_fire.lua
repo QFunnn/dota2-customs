@@ -11,7 +11,8 @@
 LinkLuaModifier(
 	"modifier_custom_huskar_inner_fire_silence",
 	"abilities/huskar/custom_huskar_inner_fire",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	true
 )
 LinkLuaModifier(
 	"modifier_custom_huskar_inner_fire_coil",
@@ -21,12 +22,14 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_custom_huskar_inner_fire_root",
 	"abilities/huskar/custom_huskar_inner_fire",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_huskar_disarm_4"
 )
 LinkLuaModifier(
 	"modifier_custom_huskar_inner_fire_burn_damage",
 	"abilities/huskar/custom_huskar_inner_fire",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_huskar_disarm_3"
 )
 LinkLuaModifier(
 	"modifier_custom_huskar_inner_fire_burn_legendary",
@@ -46,7 +49,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_custom_huskar_inner_fire_legendary_magic",
 	"abilities/huskar/custom_huskar_inner_fire",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_huskar_disarm_7"
 )
 
 custom_huskar_inner_fire = class({})
@@ -58,20 +62,19 @@ function custom_huskar_inner_fire:Precache(context)
 	end
 
 	PrecacheResource("particle", "particles/units/heroes/hero_huskar/huskar_inner_fire.vpcf", context)
-	PrecacheResource("particle", "particles/huskar_silence.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_huskar/huskar_inner_fire_debuff.vpcf", context)
-	PrecacheResource("particle", "particles/huskar_disarm_coil.vpcf", context)
-	PrecacheResource("particle", "particles/huskar_disarm_tether.vpcf", context)
+	PrecacheResource("particle", "particles/huskar/huskar_disarm_coil.vpcf", context)
+	PrecacheResource("particle", "particles/huskar/huskar_disarm_tether.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_oracle/oracle_purifyingflames.vpcf", context)
 	PrecacheResource("particle", "particles/ember_spirit/attack_slow.vpcf", context)
 	PrecacheResource("particle", "particles/status_fx/status_effect_huskar_lifebreak.vpcf", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_huskar/huskar_inner_fire_push.vpcf", context)
 	PrecacheResource("particle", "particles/huskar/inner_fire_legendary.vpcf", context)
 	PrecacheResource("particle", "particles/huskar/inner_fire_charge.vpcf", context)
-	PrecacheResource("particle", "particles/huskar_burn_aura.vpcf", context)
+	PrecacheResource("particle", "particles/huskar/huskar_burn_aura.vpcf", context)
 	PrecacheResource("particle", "particles/ember_spirit/guard_resist_max.vpcf", context)
 	PrecacheResource("particle", "particles/huskar/shard_shield.vpcf", context)
-	PrecacheResource("particle", "particles/huskar_earth_stack.vpcf", context)
+	PrecacheResource("particle", "particles/huskar/huskar_earth_stack.vpcf", context)
 end
 
 function custom_huskar_inner_fire:UpdateTalents()
@@ -473,7 +476,7 @@ function modifier_custom_huskar_inner_fire_root:OnCreated(params)
 	self.knockback_duration = self.ability.talents.q4_knock_duration
 
 	local effect_cast =
-		ParticleManager:CreateParticle("particles/huskar_disarm_tether.vpcf", PATTACH_ABSORIGIN, self.parent)
+		ParticleManager:CreateParticle("particles/huskar/huskar_disarm_tether.vpcf", PATTACH_ABSORIGIN, self.parent)
 	ParticleManager:SetParticleControl(effect_cast, 0, self.center)
 	ParticleManager:SetParticleControlEnt(
 		effect_cast,
@@ -538,7 +541,8 @@ function modifier_custom_huskar_inner_fire_coil:OnCreated(table)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.effect_cast = ParticleManager:CreateParticle("particles/huskar_disarm_coil.vpcf", PATTACH_WORLDORIGIN, nil)
+	self.effect_cast =
+		ParticleManager:CreateParticle("particles/huskar/huskar_disarm_coil.vpcf", PATTACH_WORLDORIGIN, nil)
 	ParticleManager:SetParticleControl(self.effect_cast, 0, self.parent:GetOrigin())
 	self:AddParticle(self.effect_cast, false, false, -1, false, false)
 end
@@ -607,7 +611,7 @@ function modifier_custom_huskar_inner_fire_burn_damage:OnCreated()
 	self.RemoveForDuel = true
 	self:OnRefresh()
 
-	self.parent:GenericParticle("particles/huskar_burn_aura.vpcf", self)
+	self.parent:GenericParticle("particles/huskar/huskar_burn_aura.vpcf", self)
 	self.damageTable = {
 		victim = self.parent,
 		ability = self.ability,
@@ -784,7 +788,7 @@ function modifier_custom_huskar_inner_fire_legendary_magic:OnCreated(table)
 	if not IsServer() then
 		return
 	end
-	self.effect_cast = self.parent:GenericParticle("particles/huskar_earth_stack.vpcf", self, true)
+	self.effect_cast = self.parent:GenericParticle("particles/huskar/huskar_earth_stack.vpcf", self, true)
 	self.RemoveForDuel = true
 	self:OnRefresh()
 end

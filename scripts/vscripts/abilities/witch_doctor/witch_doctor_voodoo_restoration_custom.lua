@@ -31,7 +31,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_witch_doctor_voodoo_restoration_custom_shield_cd",
 	"abilities/witch_doctor/witch_doctor_voodoo_restoration_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_witch_doctor_hero_4"
 )
 LinkLuaModifier(
 	"modifier_witch_doctor_voodoo_restoration_custom_hex_timer",
@@ -41,7 +42,8 @@ LinkLuaModifier(
 LinkLuaModifier(
 	"modifier_witch_doctor_voodoo_restoration_custom_hex",
 	"abilities/witch_doctor/witch_doctor_voodoo_restoration_custom",
-	LUA_MODIFIER_MOTION_NONE
+	LUA_MODIFIER_MOTION_NONE,
+	"modifier_witch_doctor_voodoo_4"
 )
 LinkLuaModifier(
 	"modifier_witch_doctor_voodoo_restoration_custom_armor_bonus",
