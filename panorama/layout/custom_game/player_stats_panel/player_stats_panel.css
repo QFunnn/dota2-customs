@@ -1,0 +1,320 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1a5b3bb 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+.PlayerStatsPanel
+{
+	flow-children: down;
+	horizontal-align: center;
+}
+
+.PlayerStatsSummary
+{
+	flow-children: right;
+	horizontal-align: center;
+	margin-bottom: 14px;
+}
+
+.PlayerStatsBlock
+{
+	flow-children: down;
+	background-color: #000000;
+	padding: 10px 20px;
+	margin: 0px 3px;
+	min-width: 190px;
+	height: 82px;
+	border-radius:6px;
+}
+
+.PlayerStatsLabel
+{
+	horizontal-align: center;
+	text-align: center;
+	font-size: 12px;
+	text-transform: uppercase;
+	color: #90999b;
+	text-shadow: 2px 2px 1px black;
+	margin-bottom: 6px;
+}
+
+.PlayerStatsValue
+{
+	horizontal-align: center;
+	vertical-align: center;
+	font-size: 26px;
+	font-weight: bold;
+	color: white;
+	font-family: defaultFont;
+	text-shadow: 2px 2px 2px black;
+}
+
+.PlayerStatsPlace
+{
+	color: #E7D291;
+}
+
+.PlayerStatsValueRow
+{
+	flow-children: right;
+	horizontal-align: center;
+}
+
+.PlayerStatsIcon
+{
+	width: 28px;
+	height: 28px;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	vertical-align: center;
+	margin-right: 8px;
+}
+
+.PlayerStatsRatingIcon
+{
+	background-image: url("s2r://panorama/images/icon_trophy_battle_cup_summer_psd.vtex");
+}
+
+.PlayerStatsCoinIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/shop/wodacoin_png.vtex");
+}
+
+.PlayerStatsSoulIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/shop/boss_soul_png.vtex");
+}
+
+.PlayerStatsSoulBlock
+{
+	min-width: 150px;
+	visibility: collapse;
+}
+
+.PlayerStatsSoulBlock.Visible
+{
+	visibility: visible;
+}
+
+.PlayerStatsSouls
+{
+	color: #ff7a3c;
+}
+
+.PlayerStatsBadgePremium
+{
+	border: 1px solid #e4c269aa;
+	color: #f3d27a;
+}
+
+.PlayerStatsArrow
+{
+	color: #90999b;
+	margin-left: 8px;
+	margin-right: 8px;
+}
+
+.PlayerStatsChange
+{
+	vertical-align: center;
+	margin-left: 10px;
+	font-size: 20px;
+	font-weight: bold;
+	color: green;
+	font-family: defaultFont;
+	text-shadow: 2px 2px 2px black;
+}
+
+.PlayerStatsChange.Negative
+{
+	color: red;
+}
+
+.PlayerStatsChange.Double
+{
+	color: #f7d066;
+}
+
+.PlayerStatsChange.Arena
+{
+	color: orange;
+}
+
+.PlayerStatsPanel.ArenaMode .PlayerStatsPlaceBlock
+{
+	visibility: collapse;
+}
+
+.PlayerStatsHeroBlock
+{
+	height: 82px;
+	min-width: 210px;
+}
+
+.PlayerStatsHeroBlock .PlayerStatsLabel
+{
+	margin-bottom: 2px;
+}
+
+.PlayerStatsHeroBlock .PlayerStatsValue
+{
+	font-size: 18px;
+}
+
+.PlayerStatsHeroBlock .PlayerStatsArrow
+{
+	margin-left: 6px;
+	margin-right: 6px;
+}
+
+.PlayerStatsHeroBlock .PlayerStatsIcon
+{
+	width: 22px;
+	height: 22px;
+	margin-right: 6px;
+}
+
+.PlayerStatsHeroBlock .PlayerStatsChange
+{
+	font-size: 14px;
+	margin-left: 8px;
+}
+
+.PlayerStatsHeroLevelUp
+{
+	color: #f7d066;
+}
+
+.PlayerStatsHeroXpRow
+{
+	flow-children: right;
+	width: 100%;
+	margin-top: 4px;
+}
+
+.PlayerStatsHeroXpBar
+{
+	width: fill-parent-flow(1.0);
+	height: 6px;
+	vertical-align: center;
+	background-color: #000000aa;
+	border: 1px solid #ffffff22;
+	border-radius: 3px;
+}
+
+.PlayerStatsHeroXpFill
+{
+	width: 0%;
+	height: 100%;
+	border-radius: 3px;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#d7aa43), to(#f3df9c));
+}
+
+.PlayerStatsHeroXpText
+{
+	vertical-align: center;
+	margin-left: 8px;
+	font-size: 11px;
+	font-weight: bold;
+	color: #d7c48c;
+	font-family: defaultFont;
+	text-shadow: 1px 1px 1px black;
+}
+
+.PlayerStatsCoins
+{
+	color: #ffc600;
+}
+
+.PlayerStatsBadge
+{
+	vertical-align: center;
+	margin-left: 10px;
+	padding: 2px 7px;
+	border-radius: 4px;
+	background-color: #2a2a2a;
+	border: 1px solid #f7d06655;
+	font-size: 11px;
+	font-weight: bold;
+	text-transform: uppercase;
+	color: #f7d066;
+	text-shadow: 1px 1px 1px black;
+	visibility: collapse;
+}
+
+.PlayerStatsBadge.Visible
+{
+	visibility: visible;
+}
+
+.PlayerStatsLegend
+{
+	horizontal-align: left;
+}
+
+.PlayerStatsRow
+{
+	flow-children: down;
+	horizontal-align: left;
+}
+
+.PlayerStatsPanel #RatingChangeContainer,.PlayerStatsPanel #CoinsContainer
+{
+	visibility: collapse;
+}
+
+.PlayerStatsPanel.SummaryOnly .PlayerStatsSummary
+{
+	margin-bottom: 0px;
+}
+
+.PlayerStatsPanel.SummaryOnly .PlayerStatsLegend,.PlayerStatsPanel.SummaryOnly .PlayerStatsRow
+{
+	visibility: collapse;
+}
+
+.PlayerStatsArenaResultBlock
+{
+	padding: 10px 20px 6px 20px;
+	visibility: collapse;
+}
+
+.PlayerStatsArenaResultBlock.Visible
+{
+	visibility: visible;
+}
+
+.PlayerStatsArenaResultBadge
+{
+	width: 44px;
+	height: 44px;
+	horizontal-align: center;
+	background-image: url("s2r://panorama/images/custom_game/shop/difficulty_level_badge_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	saturation: 0;
+	brightness: 0.6;
+}
+
+.PlayerStatsArenaResultBlock.Victory .PlayerStatsArenaResultBadge
+{
+	saturation: 1;
+	brightness: 1;
+}
+
+.PlayerStatsArenaResultNumber
+{
+	align: center center;
+	font-family: Reaver;
+	font-size: 22px;
+	font-weight: bold;
+	color: white;
+	text-shadow: 1px 1px 4px 2 black;
+}

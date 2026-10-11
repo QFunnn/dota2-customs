@@ -1,0 +1,87 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1a5b3bb 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+.PickLoadingScreen
+{
+	width: 100%;
+	height: 100%;
+	visibility: collapse;
+	opacity: 0;
+	background-color: black;
+	background-size: cover;
+	background-position: 50% 50%;
+	transition-property: opacity;
+	transition-duration: 1.0s;
+	transition-timing-function: ease-in-out;
+}
+
+.PickLoadingContent
+{
+	align: center bottom;
+	margin-bottom: 110px;
+	flow-children: right;
+}
+
+.PickLoadingSpinner
+{
+	width: 46px;
+	height: 46px;
+	margin-right: 18px;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/status_icons/loadingthrobber_round_psd.vtex");
+	background-size: 100%;
+	animation-name: PickLoadingSpin;
+	animation-duration: 1.0s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+.PickLoadingLabel
+{
+	vertical-align: center;
+	font-family: Reaver;
+	font-size: 34px;
+	font-weight: bold;
+	color: white;
+	letter-spacing: 5px;
+	text-transform: uppercase;
+	text-shadow: 2px 2px 8px 3 black;
+}
+
+@keyframes 'PickLoadingSpin'
+{
+	0%
+	{
+		transform: rotateZ(0deg);
+	}
+	
+	25%
+	{
+		transform: rotateZ(90deg);
+	}
+	
+	50%
+	{
+		transform: rotateZ(180deg);
+	}
+	
+	75%
+	{
+		transform: rotateZ(270deg);
+	}
+	
+	100%
+	{
+		transform: rotateZ(360deg);
+	}
+	
+}

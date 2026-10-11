@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -12,25 +12,26 @@
 
 .arena_and_game_timer
 {
-	margin-left:18.6%;
+	width: 100%;
+	margin-left:47.8%;
 	align:center top;
 }
 
 .AspectRatio4x3 .arena_and_game_timer
 {
-	margin-left:54.4%;
+	margin-left:47.07%;
 	align:center top;
 }
 
 .AspectRatio16x10 .arena_and_game_timer
 {
-	margin-left:27.9%;
+	margin-left:47.56%;
 	align:center top;
 }
 
 .AspectRatio21x9 .arena_and_game_timer
 {
-	margin-left:14.1%;
+	margin-left:48.35%;
 	align:center top;
 }
 
@@ -107,6 +108,26 @@
 	wash-color: #A2B23E;
 }
 
+.boss.arena_timer_line_up .BGFX
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #954533 ), to( #452732 ) );
+}
+
+.boss.arena_timer_line_up .TimerFX
+{
+	wash-color: #9F3C3C;
+}
+
+.pve_blue.duel_timer_line_up .BGFX
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #6BAEBC ), to( #135459 ) );
+}
+
+.pve_blue.duel_timer_line_up .TimerFX
+{
+	wash-color: #6BAEBC;
+}
+
 .arena_timer_line_label
 {
 	align:left center;
@@ -129,6 +150,7 @@
 	text-shadow: 2px 2px 2px 1.5 black;
 	margin-top: 41px;
 	margin-left: 90px;
+	white-space: nowrap;
 	text-overflow: clip;
 	text-align: center;
 }
@@ -252,6 +274,29 @@
 	flow-children: right;
 }
 
+.RoundDifficultyBadge
+{
+	width: 27px;
+	height: 27px;
+	margin-right: 5px;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-color: rgba(0,0,0,0.9);
+	padding: 2px;
+}
+
+.RoundDifficultyBadgeNumber
+{
+	align: center center;
+	font-family: Reaver;
+	font-size: 15px;
+	font-weight: bold;
+	color: white;
+	width: 100%;
+	text-align: center;
+	text-shadow: 1px 1px 3px 2 black;
+}
+
 .RoundAbility
 {
 	width: 27px;
@@ -260,4 +305,16 @@
 	background-color: rgba(0,0,0,0.9);
 	padding: 2px;
 	border-radius: 5px;
+}
+
+.RoundRoomFeature
+{
+	border: 1px solid #f3df9c99;
+}
+
+.RoundRoomFeatureIcon
+{
+	width: 100%;
+	height: 100%;
+	border-radius: 3px;
 }

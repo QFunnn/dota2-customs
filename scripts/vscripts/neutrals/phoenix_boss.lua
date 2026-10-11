@@ -3,865 +3,490 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
 
-LinkLuaModifier("modifier_neutral_cast", "neutrals/modifier_neutral_cast", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_phoenix_boss_egg", "neutrals/phoenix_boss", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_phoenix_boss_egg_active", "neutrals/phoenix_boss", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_phoenix_boss_egg_debuff", "neutrals/phoenix_boss", LUA_MODIFIER_MOTION_NONE)
-
-phoenix_boss_egg = class({})
-
-function phoenix_boss_egg:GetIntrinsicModifierName()
-	return "modifier_phoenix_boss_egg"
-end
-
-modifier_phoenix_boss_egg = class({})
-
-function modifier_phoenix_boss_egg:IsHidden()
-	return true
-end
-function modifier_phoenix_boss_egg:IsPurgable()
-	return false
-end
-function modifier_phoenix_boss_egg:IsPurgeException()
-	return false
-end
-
-function modifier_phoenix_boss_egg:OnCreated()
-	if not IsServer() then
-		return
-	end
-	if self:GetAbility():GetLevel() <= 0 then
-		self:GetAbility():SetLevel(1)
-	end
-	self.duration = self:GetAbility():GetSpecialValueFor("duration")
-	self:StartIntervalThink(0)
-end
-
-function modifier_phoenix_boss_egg:OnIntervalThink()
-	if not IsServer() then
-		return
-	end
-	if
-		self:GetAbility():IsFullyCastable()
-		and (self:GetParent():GetAggroTarget() ~= nil or self:GetParent().hTarget ~= nil)
-	then
-		if not self:GetParent():IsAlive() then
-			return
-		end
-		self:StartEgg()
-		self:GetCaster():StartCooldownAbil("phoenix_boss_beam", 13)
-		self:GetCaster():StartCooldownAbil("phoenix_boss_wave", 6)
-		self:GetAbility():StartCooldown(21)
-	end
-end
-
-function modifier_phoenix_boss_egg:StartEgg()
-	if not IsServer() then
-		return
-	end
-	self:GetCaster():AddNewModifier(
-		self:GetCaster(),
-		self:GetAbility(),
-		"modifier_phoenix_boss_egg_active",
-		{ duration = self.duration + 0.5 }
-	)
-end
-
-modifier_phoenix_boss_egg_active = class({})
-function modifier_phoenix_boss_egg_active:IsPurgable()
-	return false
-end
-function modifier_phoenix_boss_egg_active:IsPurgeException()
-	return false
-end
-function modifier_phoenix_boss_egg_active:IsHidden()
-	return true
-end
-
-function modifier_phoenix_boss_egg_active:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_MODEL_CHANGE,
-	}
-end
-
-function modifier_phoenix_boss_egg_active:GetModifierModelChange()
-	return "models/items/phoenix/ultimate/phoenix_crimson_dawn_supernova/phoenix_crimson_dawn_supernova.vmdl"
-end
-
-function modifier_phoenix_boss_egg_active:CheckState()
-	return {
-		[MODIFIER_STATE_STUNNED] = true,
-		[MODIFIER_STATE_DISARMED] = true,
-		[MODIFIER_STATE_ROOTED] = true,
-	}
-end
-
-function modifier_phoenix_boss_egg_active:OnCreated()
-	if not IsServer() then
-		return
-	end
-	if self:GetAbility():GetLevel() <= 0 then
-		self:GetAbility():SetLevel(1)
-	end
-	self.init = false
-	self:StartIntervalThink(0.5)
-	self.particle = ParticleManager:CreateParticle(
-		"particles/abilities_ranger_finder_check_ultimate_calldown.vpcf",
-		PATTACH_ABSORIGIN_FOLLOW,
-		self:GetParent()
-	)
-	ParticleManager:SetParticleControl(self.particle, 0, self:GetParent():GetAbsOrigin())
-	ParticleManager:SetParticleControl(
-		self.particle,
-		1,
-		Vector(self:GetAbility():GetSpecialValueFor("radius"), 0, -500)
-	)
-	ParticleManager:SetParticleControl(self.particle, 2, Vector(3.5, 0, 0))
-	self:AddParticle(self.particle, false, false, -1, false, false)
-end
-
-function modifier_phoenix_boss_egg_active:OnIntervalThink()
-	if not IsServer() then
-		return
-	end
-	if not self.init then
-		self.init = true
-		local pfx = ParticleManager:CreateParticle(
-			"particles/units/heroes/hero_phoenix/phoenix_supernova_egg.vpcf",
-			PATTACH_ABSORIGIN_FOLLOW,
-			self:GetParent()
-		)
-		ParticleManager:SetParticleControlEnt(
-			pfx,
-			1,
-			self:GetParent(),
-			PATTACH_POINT_FOLLOW,
-			"attach_hitloc",
-			self:GetParent():GetAbsOrigin(),
-			true
-		)
-		self:AddParticle(pfx, false, false, -1, false, false)
-		StartSoundEvent("Hero_Phoenix.SuperNova.Begin", self:GetParent())
-		StartSoundEvent("Hero_Phoenix.SuperNova.Cast", self:GetParent())
-	end
-	local enemies = FindUnitsInRadius(
-		self:GetCaster():GetTeamNumber(),
-		self:GetParent():GetAbsOrigin(),
-		nil,
-		-1,
-		DOTA_UNIT_TARGET_TEAM_ENEMY,
-		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-		DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
-		FIND_ANY_ORDER,
-		false
-	)
-	for i = #enemies, 1, -1 do
-		if enemies[i] and enemies[i]:GetUnitName() == "npc_woda_wisp_death" then
-			table.remove(enemies, i)
-		end
-	end
-	for _, enemy in pairs(enemies) do
-		enemy:AddNewModifier(
-			self:GetCaster(),
-			self:GetAbility(),
-			"modifier_phoenix_boss_egg_debuff",
-			{ duration = 0.6 }
-		)
-	end
-end
-
-function modifier_phoenix_boss_egg_active:OnDestroy()
-	if not IsServer() then
-		return
-	end
-	StopSoundEvent("Hero_Phoenix.SuperNova.Begin", self:GetParent())
-	StopSoundEvent("Hero_Phoenix.SuperNova.Cast", self:GetParent())
-	if self:GetParent():IsAlive() then
-		StartSoundEvent("Hero_Phoenix.SuperNova.Explode", self:GetParent())
-		local pfx = ParticleManager:CreateParticle(
-			"particles/units/heroes/hero_phoenix/phoenix_supernova_reborn.vpcf",
-			PATTACH_ABSORIGIN_FOLLOW,
-			self:GetParent()
-		)
-		ParticleManager:SetParticleControl(pfx, 0, self:GetParent():GetAbsOrigin())
-		ParticleManager:SetParticleControl(pfx, 1, Vector(1.5, 1.5, 1.5))
-		ParticleManager:SetParticleControl(pfx, 3, self:GetParent():GetAbsOrigin())
-		ParticleManager:ReleaseParticleIndex(pfx)
-		local enemies = FindUnitsInRadius(
-			self:GetCaster():GetTeamNumber(),
-			self:GetParent():GetAbsOrigin(),
-			nil,
-			self:GetAbility():GetSpecialValueFor("radius"),
-			DOTA_UNIT_TARGET_TEAM_ENEMY,
-			DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-			DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
-			FIND_ANY_ORDER,
-			false
-		)
-		for i = #enemies, 1, -1 do
-			if enemies[i] and enemies[i]:GetUnitName() == "npc_woda_wisp_death" then
-				table.remove(enemies, i)
-			end
-		end
-		for _, enemy in pairs(enemies) do
-			enemy:RemoveModifierByName("modifier_phoenix_boss_egg_debuff")
-			enemy:AddNewModifier(
-				self:GetCaster(),
-				self:GetAbility(),
-				"modifier_stunned",
-				{ duration = self:GetAbility():GetSpecialValueFor("stun_duration") }
-			)
-		end
-	end
-end
-
-modifier_phoenix_boss_egg_debuff = class({})
-
-function modifier_phoenix_boss_egg_debuff:IsHidden()
-	return true
-end
-function modifier_phoenix_boss_egg_debuff:IsPurgable()
-	return false
-end
-function modifier_phoenix_boss_egg_debuff:IsPurgeException()
-	return false
-end
-function modifier_phoenix_boss_egg_debuff:OnCreated()
-	if not IsServer() then
-		return
-	end
-	if self:GetAbility():GetLevel() <= 0 then
-		self:GetAbility():SetLevel(1)
-	end
-	self.speed = self:GetAbility():GetSpecialValueFor("speed_pull")
-	self:StartIntervalThink(FrameTime())
-end
-
-function modifier_phoenix_boss_egg_debuff:OnIntervalThink()
-	if not IsServer() then
-		return
-	end
-	local dir = self:GetCaster():GetAbsOrigin() - self:GetParent():GetAbsOrigin()
-	dir.z = 0
-	self.direction = dir:Normalized()
-	if
-		not self:GetParent():IsCurrentlyVerticalMotionControlled()
-		and not self:GetParent():IsCurrentlyHorizontalMotionControlled()
-		and not self:GetParent():HasModifier("modifier_slark_pounce_arc")
-		and not self:GetParent():HasModifier("modifier_slark_pounce_custom")
-	then
-		local point = self:GetParent():GetAbsOrigin() + self.direction * (self.speed * FrameTime())
-		point = GetGroundPosition(point, self:GetParent())
-		if GridNav:CanFindPath(self:GetParent():GetAbsOrigin(), point) then
-			self:GetParent():SetAbsOrigin(point)
-		else
-			FindClearSpaceForUnit(self:GetParent(), self:GetParent():GetAbsOrigin(), true)
-		end
-	end
-end
-
-function modifier_phoenix_boss_egg_debuff:OnDestroy()
-	if not IsServer() then
-		return
-	end
-	if
-		not self:GetParent():IsCurrentlyVerticalMotionControlled()
-		and not self:GetParent():IsCurrentlyHorizontalMotionControlled()
-		and not self:GetParent():HasModifier("modifier_slark_pounce_arc")
-		and not self:GetParent():HasModifier("modifier_slark_pounce_custom")
-	then
-		FindClearSpaceForUnit(self:GetParent(), self:GetParent():GetAbsOrigin(), true)
-	end
-end
-
-function modifier_phoenix_boss_egg_debuff:GetEffectName()
-	return "particles/units/heroes/hero_phoenix/phoenix_icarus_dive_burn_debuff.vpcf"
-end
-
-function modifier_phoenix_boss_egg_debuff:GetEffectAttachType()
-	return PATTACH_ABSORIGIN_FOLLOW
-end
-
-LinkLuaModifier("modifier_phoenix_boss_wave", "neutrals/phoenix_boss", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_phoenix_boss_wave_debuff", "neutrals/phoenix_boss", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_phoenix_boss_wave_passive", "neutrals/phoenix_boss", LUA_MODIFIER_MOTION_NONE)
-
-phoenix_boss_wave = class({})
-
-function phoenix_boss_wave:Precache(context)
-	PrecacheResource("particle", "particles/doom_fueling_hell.vpcf", context)
-end
-
-function phoenix_boss_wave:GetIntrinsicModifierName()
-	return "modifier_phoenix_boss_wave_passive"
-end
-
-modifier_phoenix_boss_wave_passive = class({})
-
-function modifier_phoenix_boss_wave_passive:IsHidden()
-	return true
-end
-function modifier_phoenix_boss_wave_passive:IsPurgable()
-	return false
-end
-function modifier_phoenix_boss_wave_passive:IsPurgeException()
-	return false
-end
-
-function modifier_phoenix_boss_wave_passive:OnCreated()
-	if not IsServer() then
-		return
-	end
-	if self:GetAbility():GetLevel() <= 0 then
-		self:GetAbility():SetLevel(1)
-	end
-	self.duration = self:GetAbility():GetSpecialValueFor("duration")
-	self:StartIntervalThink(0)
-end
-
-function modifier_phoenix_boss_wave_passive:OnIntervalThink()
-	if not IsServer() then
-		return
-	end
-	if not self:GetCaster():AbilityIsCooldown("phoenix_boss_egg") then
-		return
-	end
-	if
-		self:GetAbility():IsFullyCastable()
-		and (self:GetParent():GetAggroTarget() ~= nil or self:GetParent().hTarget ~= nil)
-	then
-		if not self:GetParent():IsAlive() then
-			return
-		end
-		self:StartWave()
-		self:GetCaster():StartCooldownAbil("phoenix_boss_beam", 4)
-		self:GetAbility():StartCooldown(21)
-	end
-end
-
-function modifier_phoenix_boss_wave_passive:StartWave()
-	if not IsServer() then
-		return
-	end
-	local effect_cast = ParticleManager:CreateParticle("particles/doom_fueling_hell.vpcf", PATTACH_WORLDORIGIN, nil)
-	ParticleManager:SetParticleControl(effect_cast, 0, self:GetCaster():GetAbsOrigin())
-	ParticleManager:SetParticleControl(effect_cast, 1, Vector(1000, 1000, 1000))
-	ParticleManager:SetParticleControl(effect_cast, 15, Vector(255, 90, 0))
-	ParticleManager:SetParticleControl(effect_cast, 16, Vector(1, 1, 1))
-
-	local pulse = self:GetCaster():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_phoenix_boss_wave", {
-		end_radius = self:GetAbility():GetSpecialValueFor("radius_start"),
-		speed = 1000,
-		target_team = DOTA_UNIT_TARGET_TEAM_ENEMY,
-		target_type = DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-	})
-
-	self:GetCaster():EmitSound("Hero_Phoenix.IcarusDive.Cast")
-
-	pulse:SetCallback()
-
-	Timers:CreateTimer(self:GetAbility():GetSpecialValueFor("radius_start") / 1000, function()
-		ParticleManager:DestroyParticle(effect_cast, false)
-		ParticleManager:ReleaseParticleIndex(effect_cast)
-	end)
-end
-
-modifier_phoenix_boss_wave = class({})
-
-function modifier_phoenix_boss_wave:IsHidden()
-	return true
-end
-
-function modifier_phoenix_boss_wave:IsDebuff()
-	return false
-end
-
-function modifier_phoenix_boss_wave:IsStunDebuff()
-	return false
-end
-
-function modifier_phoenix_boss_wave:IsPurgable()
-	return false
-end
-
-function modifier_phoenix_boss_wave:RemoveOnDeath()
-	return false
-end
-
-function modifier_phoenix_boss_wave:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
-end
-
-function modifier_phoenix_boss_wave:OnCreated(kv)
-	if not IsServer() then
-		return
-	end
-	self.origin = self:GetParent():GetAbsOrigin()
-	self.start_radius = kv.start_radius or 0
-	self.end_radius = kv.end_radius or 0
-	self.width = kv.width or 100
-	self.speed = kv.speed or 0
-	self.outward = self.end_radius >= self.start_radius
-	if not self.outward then
-		self.speed = -self.speed
-	end
-
-	self.target_team = kv.target_team or 0
-	self.target_type = kv.target_type or 0
-	self.target_flags = kv.target_flags or 0
-
-	self.IsCircle = kv.IsCircle or 1
-
-	self.targets = {}
-end
-
-function modifier_phoenix_boss_wave:OnDestroy()
-	if self.EndCallback then
-		self.EndCallback()
-	end
-	if not IsServer() then
-		return
-	end
-	if self:GetParent():GetClassname() == "npc_dota_thinker" then
-		UTIL_Remove(self:GetParent())
-	end
-end
-
-function modifier_phoenix_boss_wave:SetCallback(callback)
-	self.Callback = callback
-	self:StartIntervalThink(0.03)
-	self:OnIntervalThink()
-end
-
-function modifier_phoenix_boss_wave:SetEndCallback(callback)
-	self.EndCallback = callback
-end
-
-function modifier_phoenix_boss_wave:OnIntervalThink()
-	local radius = self.start_radius + self.speed * self:GetElapsedTime()
-	if not self.outward and radius < self.end_radius then
-		self:Destroy()
-		return
-	elseif self.outward and radius > self.end_radius then
-		self:Destroy()
-		return
-	end
-
-	local targets = FindUnitsInRadius(
-		self:GetParent():GetTeamNumber(),
-		self.origin,
-		nil,
-		radius,
-		self.target_team,
-		self.target_type,
-		DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
-		0,
-		false
-	)
-	for i = #targets, 1, -1 do
-		if targets[i] and targets[i]:GetUnitName() == "npc_woda_wisp_death" then
-			table.remove(targets, i)
-		end
-	end
-	local fear_duration = 0
-	for _, target in pairs(targets) do
-		if not self.targets[target] then
-			if (not self.IsCircle) or (target:GetOrigin() - self.origin):Length2D() > (radius - self.width) then
-				self.targets[target] = true
-				target:AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_phoenix_boss_wave_debuff", {})
-			end
-		end
-	end
-end
-
-modifier_phoenix_boss_wave_debuff = class({})
-
-function modifier_phoenix_boss_wave_debuff:OnCreated()
-	if not IsServer() then
-		return
-	end
-	if self:GetAbility():GetLevel() <= 0 then
-		self:GetAbility():SetLevel(1)
-	end
-	self.radius = self:GetAbility():GetSpecialValueFor("radius")
-	self.damage_perc = self:GetAbility():GetSpecialValueFor("damage_perc")
-	self:SetStackCount(self:GetAbility():GetSpecialValueFor("duration"))
-	self.effect_cast_2 = ParticleManager:CreateParticle(
-		"particles/phoenix_counter_buff_strength_counter_stack.vpcf",
-		PATTACH_OVERHEAD_FOLLOW,
-		self:GetParent()
-	)
-	ParticleManager:SetParticleControl(self.effect_cast_2, 2, Vector(math.floor(self:GetStackCount()), 0, 0))
-	ParticleManager:SetParticleControlEnt(
-		self.effect_cast_2,
-		3,
-		self:GetParent(),
-		PATTACH_OVERHEAD_FOLLOW,
-		nil,
-		self:GetParent():GetAbsOrigin(),
-		true
-	)
-	self:AddParticle(self.effect_cast_2, false, false, -1, false, false)
-	self:StartIntervalThink(1)
-end
-
-function modifier_phoenix_boss_wave_debuff:OnIntervalThink()
-	if not IsServer() then
-		return
-	end
-	self:DecrementStackCount()
-	if self.effect_cast_2 then
-		ParticleManager:SetParticleControl(self.effect_cast_2, 2, Vector(math.floor(self:GetStackCount()), 0, 0))
-	end
-	if self:GetStackCount() <= 0 then
-		self:Destroy()
-	end
-end
-
-function modifier_phoenix_boss_wave_debuff:OnDestroy()
-	if not IsServer() then
-		return
-	end
-	local effect_cast = ParticleManager:CreateParticle(
-		"particles/econ/items/lina/lina_ti7/lina_spell_light_strike_array_ti7.vpcf",
-		PATTACH_WORLDORIGIN,
-		nil
-	)
-	ParticleManager:SetParticleControl(effect_cast, 0, self:GetParent():GetOrigin())
-	ParticleManager:SetParticleControl(effect_cast, 1, Vector(self.radius, 1, 1))
-	ParticleManager:ReleaseParticleIndex(effect_cast)
-	EmitSoundOnLocationWithCaster(self:GetParent():GetOrigin(), "Ability.LightStrikeArray", self:GetCaster())
-	local enemies = FindUnitsInRadius(
-		self:GetCaster():GetTeamNumber(),
-		self:GetParent():GetAbsOrigin(),
-		nil,
-		self.radius,
-		DOTA_UNIT_TARGET_TEAM_ENEMY,
-		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-		DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
-		FIND_ANY_ORDER,
-		false
-	)
-	for i = #enemies, 1, -1 do
-		if enemies[i] and enemies[i]:GetUnitName() == "npc_woda_wisp_death" then
-			table.remove(enemies, i)
-		end
-	end
-	for _, enemy in pairs(enemies) do
-		local damage = enemy:GetMaxHealth() / 100 * self.damage_perc
-		ApplyDamage({
-			attacker = self:GetCaster(),
-			victim = self:GetParent(),
-			ability = self:GetAbility(),
-			damage = damage,
-			damage_type = DAMAGE_TYPE_PURE,
-		})
-	end
-end
-
-LinkLuaModifier("modifier_phoenix_boss_beam", "neutrals/phoenix_boss", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_phoenix_boss_beam_passive", "neutrals/phoenix_boss", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_phoenix_boss_beam_passive_thinker", "neutrals/phoenix_boss", LUA_MODIFIER_MOTION_NONE)
-
-phoenix_boss_beam = class({})
-
-function phoenix_boss_beam:GetIntrinsicModifierName()
-	return "modifier_phoenix_boss_beam_passive"
-end
-
-modifier_phoenix_boss_beam_passive = class({})
-
-function modifier_phoenix_boss_beam_passive:IsHidden()
-	return true
-end
-function modifier_phoenix_boss_beam_passive:IsPurgable()
-	return false
-end
-function modifier_phoenix_boss_beam_passive:IsPurgeException()
-	return false
-end
-
-function modifier_phoenix_boss_beam_passive:OnCreated()
-	if not IsServer() then
-		return
-	end
-	if self:GetAbility():GetLevel() <= 0 then
-		self:GetAbility():SetLevel(1)
-	end
-	self.duration = self:GetAbility():GetSpecialValueFor("duration")
-	self:StartIntervalThink(0)
-end
-
-function modifier_phoenix_boss_beam_passive:OnIntervalThink()
-	if not IsServer() then
-		return
-	end
-	if not self:GetCaster():AbilityIsCooldown("phoenix_boss_wave") then
-		return
-	end
-	if not self:GetCaster():AbilityIsCooldown("phoenix_boss_egg") then
-		return
-	end
-	if
-		self:GetAbility():IsFullyCastable()
-		and (self:GetParent():GetAggroTarget() ~= nil or self:GetParent().hTarget ~= nil)
-	then
-		if not self:GetParent():IsAlive() then
-			return
-		end
-		self:StartBeam()
-		self:GetAbility():StartCooldown(21)
-	end
-end
-
-function modifier_phoenix_boss_beam_passive:StartBeam()
-	if not IsServer() then
-		return
-	end
-	local origin = self:GetParent():GetAbsOrigin() + self:GetParent():GetForwardVector() * 400
-	local enemies = FindUnitsInRadius(
-		self:GetParent():GetTeamNumber(),
-		self:GetParent():GetAbsOrigin(),
-		nil,
-		-1,
-		DOTA_UNIT_TARGET_TEAM_ENEMY,
-		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-		DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_INVULNERABLE,
-		FIND_FARTHEST,
-		false
-	)
-	for i = #enemies, 1, -1 do
-		if enemies[i] and enemies[i]:GetUnitName() == "npc_woda_wisp_death" then
-			table.remove(enemies, i)
-		end
-	end
-	for count = #enemies, 1, -1 do
-		if enemies[count] and not enemies[count]:IsAlive() and not enemies[count]:IsRealHero() then
-			table.remove(units, count)
-		end
-	end
-	if #enemies > 0 then
-		origin = enemies[1]:GetAbsOrigin()
-	end
-	local target = nil
-	if enemies[1] then
-		target = enemies[1]:entindex()
-	end
-	self:GetCaster():AddNewModifier(
-		self:GetCaster(),
-		self:GetAbility(),
-		"modifier_phoenix_boss_beam",
-		{
-			duration = self:GetAbility():GetSpecialValueFor("duration"),
-			x = origin.x,
-			y = origin.y,
-			z = origin.z,
-			target = target,
-		}
-	)
-end
-
-modifier_phoenix_boss_beam = class({})
-
-function modifier_phoenix_boss_beam:IsPurgable()
-	return false
-end
-function modifier_phoenix_boss_beam:GetTexture()
-	return "phoenix_boss_beam"
-end
-
-function modifier_phoenix_boss_beam:OnCreated(params)
-	if not IsServer() then
-		return
-	end
-	self.point = Vector(params.x, params.y, params.z)
-	self.dummy = CreateUnitByName("npc_dota_companion", self.point, false, nil, nil, self:GetCaster():GetTeamNumber())
-	self.dummy:SetAbsOrigin(self.point)
-	self.dummy:AddNewModifier(
-		self.dummy,
-		self:GetAbility(),
-		"modifier_phoenix_boss_beam_passive_thinker",
-		{ duration = self:GetAbility():GetSpecialValueFor("duration") }
-	)
-	local target = params.target
-	if target ~= nil then
-		self.target = EntIndexToHScript(target)
-	end
-	self.speed = self:GetCaster():GetBaseMoveSpeed()
-	self.damage_perc = self:GetAbility():GetSpecialValueFor("damage_perc")
-	EmitSoundOn("Hero_Phoenix.SunRay.Cast", self:GetCaster())
-	EmitSoundOn("Hero_Phoenix.SunRay.Loop", self:GetCaster())
-
-	self.nBeamFXIndex = ParticleManager:CreateParticle(
-		"particles/econ/items/phoenix/phoenix_solar_forge/phoenix_sunray_solar_forge.vpcf",
-		PATTACH_CUSTOMORIGIN,
-		nil
-	)
-	ParticleManager:SetParticleControlEnt(
-		self.nBeamFXIndex,
-		0,
-		self:GetCaster(),
-		PATTACH_POINT_FOLLOW,
-		"attach_hitloc",
-		self:GetCaster():GetAbsOrigin(),
-		true
-	)
-	ParticleManager:SetParticleControlEnt(
-		self.nBeamFXIndex,
-		1,
-		self.dummy,
-		PATTACH_ABSORIGIN_FOLLOW,
-		nil,
-		self.dummy:GetOrigin(),
-		true
-	)
-	ParticleManager:SetParticleControlEnt(
-		self.nBeamFXIndex,
-		2,
-		self:GetCaster(),
-		PATTACH_ABSORIGIN_FOLLOW,
-		nil,
-		self.dummy:GetOrigin(),
-		true
-	)
-	ParticleManager:SetParticleControlEnt(
-		self.nBeamFXIndex,
-		9,
-		self:GetCaster(),
-		PATTACH_POINT_FOLLOW,
-		"attach_hitloc",
-		self:GetCaster():GetAbsOrigin(),
-		true
-	)
-
-	self:StartIntervalThink(FrameTime())
-end
-
-modifier_phoenix_boss_beam_passive_thinker = class({})
-
-function modifier_phoenix_boss_beam_passive_thinker:IsHidden()
-	return true
-end
-function modifier_phoenix_boss_beam_passive_thinker:IsPurgable()
-	return false
-end
-function modifier_phoenix_boss_beam_passive_thinker:RemoveOnDeath()
-	return false
-end
-
-function modifier_phoenix_boss_beam_passive_thinker:CheckState()
-	return {
-		[MODIFIER_STATE_INVULNERABLE] = true,
-		[MODIFIER_STATE_NO_HEALTH_BAR] = true,
-		[MODIFIER_STATE_NOT_ON_MINIMAP] = true,
-		[MODIFIER_STATE_STUNNED] = true,
-		[MODIFIER_STATE_UNSELECTABLE] = true,
-		[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
-	}
-end
-
-function modifier_phoenix_boss_beam_passive_thinker:OnDestroy()
-	if not IsServer() then
-		return
-	end
-	UTIL_Remove(self:GetParent())
-end
-
-function modifier_phoenix_boss_beam:OnIntervalThink()
-	if not IsServer() then
-		return
-	end
-	if self.dummy and self.dummy:IsNull() then
-		return
-	end
-	if self.target ~= nil then
-		self.point = self.target:GetAbsOrigin()
-	end
-	local direction = self.point - self.dummy:GetAbsOrigin()
-	direction.z = 0
-	direction = direction:Normalized()
-	local new_point = self.dummy:GetAbsOrigin() + direction * (self.speed * FrameTime())
-	local dir_min_c = new_point - self:GetCaster():GetAbsOrigin()
-	local distance = dir_min_c:Length2D()
-	dir_min_c.z = 0
-	local direction_min = dir_min_c:Normalized()
-	new_point = GetGroundPosition(new_point, nil)
-	AddFOWViewer(self:GetCaster():GetTeamNumber(), self.dummy:GetAbsOrigin(), 100, FrameTime(), false)
-	self.dummy:SetAbsOrigin(new_point)
-
-	local enemies = FindUnitsInRadius(
-		self:GetCaster():GetTeamNumber(),
-		new_point,
-		nil,
-		100,
-		DOTA_UNIT_TARGET_TEAM_ENEMY,
-		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-		0,
-		0,
-		false
-	)
-	for i = #enemies, 1, -1 do
-		if enemies[i] and enemies[i]:GetUnitName() == "npc_woda_wisp_death" then
-			table.remove(enemies, i)
-		end
-	end
-	for _, enemy in pairs(enemies) do
-		local damage = enemy:GetMaxHealth() / 100 * self.damage_perc
-		local damageInfo = {
-			victim = enemy,
-			attacker = self:GetCaster(),
-			damage = damage * FrameTime(),
-			damage_type = DAMAGE_TYPE_PURE,
-			ability = self:GetAbility(),
-		}
-		ApplyDamage(damageInfo)
-	end
-
-	local direction2 = self.dummy:GetAbsOrigin() - self:GetCaster():GetAbsOrigin()
-	direction2.z = 0
-	direction2 = direction2:Normalized()
-	self:GetCaster():SetForwardVector(direction2)
-end
-
-function modifier_phoenix_boss_beam:OnDestroy()
-	if not IsServer() then
-		return
-	end
-	if self.dummy and not self.dummy:IsNull() then
-		self.dummy:RemoveModifierByName("modifier_phoenix_boss_beam_passive_thinker")
-	end
-	if self.nBeamFXIndex then
-		ParticleManager:DestroyParticle(self.nBeamFXIndex, true)
-	end
-	StopSoundOn("Hero_Phoenix.SunRay.Cast", self:GetCaster())
-	StopSoundOn("Hero_Phoenix.SunRay.Loop", self:GetCaster())
-	EmitSoundOn("Hero_Phoenix.SunRay.Stop", self:GetCaster())
-end
-
-function modifier_phoenix_boss_beam:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_OVERRIDE_ANIMATION,
-		MODIFIER_PROPERTY_DISABLE_TURNING,
-	}
-end
-
-function modifier_phoenix_boss_beam:CheckState()
-	local state = {
-		[MODIFIER_STATE_DISARMED] = true,
-		[MODIFIER_STATE_ROOTED] = true,
-	}
-	return state
-end
-
-function modifier_phoenix_boss_beam:GetOverrideAnimation()
-	return ACT_DOTA_OVERRIDE_ABILITY_3
-end
-
-function modifier_phoenix_boss_beam:GetModifierDisableTurning()
-	return 1
-end
+return normalDecrypt(
+	[[
+4C696E6B4C75614D6F64696669657228226D6F6469666965725F6E65757472616C5F63617374222C20226E65757472616C732F6D6F6469666965725F
+6E65757472616C5F63617374222C204C55415F4D4F4449464945525F4D4F54494F4E5F4E4F4E45290D0A4C696E6B4C75614D6F64696669657228226D
+6F6469666965725F70686F656E69785F626F73735F656767222C20226E65757472616C732F70686F656E69785F626F7373222C204C55415F4D4F4449
+464945525F4D4F54494F4E5F4E4F4E45290D0A4C696E6B4C75614D6F64696669657228226D6F6469666965725F70686F656E69785F626F73735F6567
+675F616374697665222C20226E65757472616C732F70686F656E69785F626F7373222C204C55415F4D4F4449464945525F4D4F54494F4E5F4E4F4E45
+290D0A4C696E6B4C75614D6F64696669657228226D6F6469666965725F70686F656E69785F626F73735F6567675F646562756666222C20226E657574
+72616C732F70686F656E69785F626F7373222C204C55415F4D4F4449464945525F4D4F54494F4E5F4E4F4E45290D0A0D0A70686F656E69785F626F73
+735F656767203D20636C617373287B7D290D0A0D0A66756E6374696F6E2070686F656E69785F626F73735F6567673A476574496E7472696E7369634D
+6F6469666965724E616D6528290D0A0972657475726E20226D6F6469666965725F70686F656E69785F626F73735F656767220D0A656E640D0A0D0A6D
+6F6469666965725F70686F656E69785F626F73735F656767203D20636C617373287B7D290D0A0D0A66756E6374696F6E206D6F6469666965725F7068
+6F656E69785F626F73735F6567673A497348696464656E28292072657475726E207472756520656E640D0A66756E6374696F6E206D6F646966696572
+5F70686F656E69785F626F73735F6567673A49735075726761626C6528292072657475726E2066616C736520656E640D0A66756E6374696F6E206D6F
+6469666965725F70686F656E69785F626F73735F6567673A49735075726765457863657074696F6E28292072657475726E2066616C736520656E640D
+0A0D0A66756E6374696F6E206D6F6469666965725F70686F656E69785F626F73735F6567673A4F6E4372656174656428290D0A096966206E6F742049
+735365727665722829207468656E2072657475726E20656E640D0A2020202069662073656C663A4765744162696C69747928293A4765744C6576656C
+2829203C3D2030207468656E0D0A202020202020202073656C663A4765744162696C69747928293A5365744C6576656C2831290D0A20202020656E64
+0D0A0973656C662E6475726174696F6E203D2073656C663A4765744162696C69747928293A4765745370656369616C56616C7565466F722822647572
+6174696F6E22290D0A0973656C663A5374617274496E74657276616C5468696E6B2830290D0A656E640D0A0D0A66756E6374696F6E206D6F64696669
+65725F70686F656E69785F626F73735F6567673A4F6E496E74657276616C5468696E6B28290D0A096966206E6F742049735365727665722829207468
+656E2072657475726E20656E640D0A096966206E6F742073656C663A4765744162696C6974792829206F722073656C663A4765744162696C69747928
+293A49734E756C6C2829206F722073656C663A476574506172656E7428293A49734E756C6C2829207468656E2072657475726E20656E640D0A096966
+2073656C663A4765744162696C69747928293A497346756C6C794361737461626C65282920616E64202873656C663A476574506172656E7428293A47
+6574416767726F5461726765742829207E3D206E696C206F722073656C663A476574506172656E7428292E68546172676574207E3D206E696C292074
+68656E0D0A09096966206E6F742073656C663A476574506172656E7428293A4973416C6976652829207468656E2072657475726E20656E640D0A0909
+73656C663A537461727445676728290D0A090973656C663A47657443617374657228293A5374617274436F6F6C646F776E4162696C28202270686F65
+6E69785F626F73735F6265616D222C20313320290D0A090973656C663A47657443617374657228293A5374617274436F6F6C646F776E4162696C2820
+2270686F656E69785F626F73735F77617665222C203620290D0A090973656C663A4765744162696C69747928293A5374617274436F6F6C646F776E28
+3231290D0A09656E640D0A656E640D0A0D0A66756E6374696F6E206D6F6469666965725F70686F656E69785F626F73735F6567673A53746172744567
+6728290D0A096966206E6F742049735365727665722829207468656E2072657475726E20656E640D0A0973656C663A47657443617374657228293A41
+64644E65774D6F6469666965722873656C663A47657443617374657228292C2073656C663A4765744162696C69747928292C20226D6F646966696572
+5F70686F656E69785F626F73735F6567675F616374697665222C207B6475726174696F6E203D2073656C662E6475726174696F6E2B302E357D290D0A
+656E640D0A0D0A6D6F6469666965725F70686F656E69785F626F73735F6567675F616374697665203D20636C617373287B7D290D0A66756E6374696F
+6E206D6F6469666965725F70686F656E69785F626F73735F6567675F6163746976653A49735075726761626C6528292072657475726E2066616C7365
+20656E640D0A66756E6374696F6E206D6F6469666965725F70686F656E69785F626F73735F6567675F6163746976653A497350757267654578636570
+74696F6E28292072657475726E2066616C736520656E640D0A66756E6374696F6E206D6F6469666965725F70686F656E69785F626F73735F6567675F
+6163746976653A497348696464656E28292072657475726E207472756520656E640D0A0D0A66756E6374696F6E206D6F6469666965725F70686F656E
+69785F626F73735F6567675F6163746976653A4465636C61726546756E6374696F6E7328290D0A0972657475726E0D0A097B0D0A09094D4F44494649
+45525F50524F50455254595F4D4F44454C5F4348414E47450D0A097D0D0A656E640D0A0D0A66756E6374696F6E206D6F6469666965725F70686F656E
+69785F626F73735F6567675F6163746976653A4765744D6F6469666965724D6F64656C4368616E676528290D0A0972657475726E20226D6F64656C73
+2F6974656D732F70686F656E69782F756C74696D6174652F70686F656E69785F6372696D736F6E5F6461776E5F73757065726E6F76612F70686F656E
+69785F6372696D736F6E5F6461776E5F73757065726E6F76612E766D646C220D0A656E640D0A09090D0A66756E6374696F6E206D6F6469666965725F
+70686F656E69785F626F73735F6567675F6163746976653A436865636B537461746528290D0A0972657475726E0D0A097B0D0A09095B4D4F44494649
+45525F53544154455F5354554E4E45445D203D20747275652C0D0A09095B4D4F4449464945525F53544154455F44495341524D45445D203D20747275
+652C0D0A09095B4D4F4449464945525F53544154455F524F4F5445445D203D20747275652C0D0A097D0D0A656E640D0A0D0A66756E6374696F6E206D
+6F6469666965725F70686F656E69785F626F73735F6567675F6163746976653A4F6E4372656174656428290D0A096966206E6F742049735365727665
+722829207468656E2072657475726E20656E640D0A096966206E6F742073656C663A4765744162696C6974792829206F722073656C663A4765744162
+696C69747928293A49734E756C6C2829207468656E2072657475726E20656E640D0A2020202069662073656C663A4765744162696C69747928293A47
+65744C6576656C2829203C3D2030207468656E0D0A202020202020202073656C663A4765744162696C69747928293A5365744C6576656C2831290D0A
+20202020656E640D0A0973656C662E696E6974203D2066616C73650D0A0973656C663A5374617274496E74657276616C5468696E6B28302E35290D0A
+0973656C662E7061727469636C65203D20437265617465426F737350726563617374436972636C654F6E556E69745061727469636C652873656C663A
+476574506172656E7428292C2073656C663A4765744162696C69747928293A4765745370656369616C56616C7565466F72282272616469757322292C
+20332E35290D0A0973656C663A4164645061727469636C652873656C662E7061727469636C652C2066616C73652C2066616C73652C202D312C206661
+6C73652C2066616C7365290D0A656E640D0A0D0A66756E6374696F6E206D6F6469666965725F70686F656E69785F626F73735F6567675F6163746976
+653A4F6E496E74657276616C5468696E6B28290D0A096966206E6F742049735365727665722829207468656E2072657475726E20656E640D0A096966
+206E6F742073656C663A4765744361737465722829206F722073656C663A47657443617374657228293A49734E756C6C2829206F72206E6F74207365
+6C663A4765744162696C6974792829206F722073656C663A4765744162696C69747928293A49734E756C6C2829207468656E2072657475726E20656E
+640D0A096966206E6F742073656C662E696E6974207468656E0D0A090973656C662E696E6974203D20747275650D0A09096C6F63616C20706678203D
+205061727469636C654D616E616765723A4372656174655061727469636C652820227061727469636C65732F756E6974732F6865726F65732F686572
+6F5F70686F656E69782F70686F656E69785F73757065726E6F76615F6567672E76706366222C20504154544143485F4142534F524947494E5F464F4C
+4C4F572C2073656C663A476574506172656E74282920290D0A09095061727469636C654D616E616765723A5365745061727469636C65436F6E74726F
+6C456E7428207066782C20312C2073656C663A476574506172656E7428292C20504154544143485F504F494E545F464F4C4C4F572C20226174746163
+685F6869746C6F63222C2073656C663A476574506172656E7428293A4765744162734F726967696E28292C207472756520290D0A090973656C663A41
+64645061727469636C65287066782C2066616C73652C2066616C73652C202D312C2066616C73652C2066616C7365290D0A09095374617274536F756E
+644576656E742820224865726F5F50686F656E69782E53757065724E6F76612E426567696E222C2073656C663A476574506172656E742829290D0A09
+095374617274536F756E644576656E742820224865726F5F50686F656E69782E53757065724E6F76612E43617374222C2073656C663A476574506172
+656E742829290D0A09656E640D0A096C6F63616C20656E656D696573203D2046696E64556E697473496E5261646975732873656C663A476574436173
+74657228293A4765745465616D4E756D62657228292C2073656C663A476574506172656E7428293A4765744162734F726967696E28292C206E696C2C
+202D312C20444F54415F554E49545F5441524745545F5445414D5F454E454D592C20444F54415F554E49545F5441524745545F4845524F202B20444F
+54415F554E49545F5441524745545F42415349432C20444F54415F554E49545F5441524745545F464C41475F4D414749435F494D4D554E455F454E45
+4D4945532C2046494E445F414E595F4F524445522C2066616C736520290D0A20202020666F722069203D2023656E656D6965732C20312C202D312064
+6F0D0A2020202020202020696620656E656D6965735B695D20616E6420656E656D6965735B695D3A476574556E69744E616D652829203D3D20226E70
+635F776F64615F776973705F646561746822207468656E0D0A2020202020202020202020207461626C652E72656D6F766528656E656D6965732C2069
+290D0A2020202020202020656E640D0A20202020656E640D0A09666F72205F2C20656E656D7920696E20706169727328656E656D6965732920646F0D
+0A0909656E656D793A4164644E65774D6F6469666965722873656C663A47657443617374657228292C2073656C663A4765744162696C69747928292C
+20226D6F6469666965725F70686F656E69785F626F73735F6567675F646562756666222C207B6475726174696F6E203D20302E367D290D0A09656E64
+0D0A656E640D0A0D0A66756E6374696F6E206D6F6469666965725F70686F656E69785F626F73735F6567675F6163746976653A4F6E44657374726F79
+28290D0A096966206E6F742049735365727665722829207468656E2072657475726E20656E640D0A0969662073656C663A476574506172656E742829
+3A49734E756C6C2829207468656E2072657475726E20656E640D0A0953746F70536F756E644576656E7428224865726F5F50686F656E69782E537570
+65724E6F76612E426567696E222C2073656C663A476574506172656E742829290D0A0953746F70536F756E644576656E742820224865726F5F50686F
+656E69782E53757065724E6F76612E43617374222C2073656C663A476574506172656E742829290D0A096966206E6F742073656C663A476574436173
+7465722829206F722073656C663A47657443617374657228293A49734E756C6C2829206F72206E6F742073656C663A4765744162696C697479282920
+6F722073656C663A4765744162696C69747928293A49734E756C6C2829207468656E2072657475726E20656E640D0A0969662073656C663A47657450
+6172656E7428293A4973416C6976652829207468656E0D0A09095374617274536F756E644576656E742820224865726F5F50686F656E69782E537570
+65724E6F76612E4578706C6F6465222C2073656C663A476574506172656E742829290D0A09096C6F63616C20706678203D205061727469636C654D61
+6E616765723A4372656174655061727469636C652820227061727469636C65732F756E6974732F6865726F65732F6865726F5F70686F656E69782F70
+686F656E69785F73757065726E6F76615F7265626F726E2E76706366222C20504154544143485F4142534F524947494E5F464F4C4C4F572C2073656C
+663A476574506172656E74282920290D0A09095061727469636C654D616E616765723A5365745061727469636C65436F6E74726F6C28207066782C20
+302C2073656C663A476574506172656E7428293A4765744162734F726967696E282920290D0A09095061727469636C654D616E616765723A53657450
+61727469636C65436F6E74726F6C28207066782C20312C20566563746F7228312E352C312E352C312E352920290D0A09095061727469636C654D616E
+616765723A5365745061727469636C65436F6E74726F6C28207066782C20332C2073656C663A476574506172656E7428293A4765744162734F726967
+696E282920290D0A09095061727469636C654D616E616765723A52656C656173655061727469636C65496E64657828706678290D0A09096C6F63616C
+20656E656D696573203D2046696E64556E697473496E5261646975732873656C663A47657443617374657228293A4765745465616D4E756D62657228
+292C2073656C663A476574506172656E7428293A4765744162734F726967696E28292C206E696C2C2073656C663A4765744162696C69747928293A47
+65745370656369616C56616C7565466F72282272616469757322292C20444F54415F554E49545F5441524745545F5445414D5F454E454D592C20444F
+54415F554E49545F5441524745545F4845524F202B20444F54415F554E49545F5441524745545F42415349432C20444F54415F554E49545F54415247
+45545F464C41475F4D414749435F494D4D554E455F454E454D4945532C2046494E445F414E595F4F524445522C2066616C736520290D0A0909666F72
+2069203D2023656E656D6965732C20312C202D3120646F0D0A202020202020202020202020696620656E656D6965735B695D20616E6420656E656D69
+65735B695D3A476574556E69744E616D652829203D3D20226E70635F776F64615F776973705F646561746822207468656E0D0A202020202020202020
+202020202020207461626C652E72656D6F766528656E656D6965732C2069290D0A202020202020202020202020656E640D0A2020202020202020656E
+640D0A2020202020202020666F72205F2C20656E656D7920696E20706169727328656E656D6965732920646F0D0A090909656E656D793A52656D6F76
+654D6F64696669657242794E616D6528226D6F6469666965725F70686F656E69785F626F73735F6567675F64656275666622290D0A090909656E656D
+793A4164644E65774D6F6469666965722873656C663A47657443617374657228292C2073656C663A4765744162696C69747928292C20226D6F646966
+6965725F7374756E6E6564222C207B6475726174696F6E203D2073656C663A4765744162696C69747928293A4765745370656369616C56616C756546
+6F7228227374756E5F6475726174696F6E2229202A20656E656D793A4765744465627566664475726174696F6E4D756C7469706C6965722873656C66
+3A4765744361737465722829297D290D0A0909656E640D0A09656E640D0A656E640D0A0D0A6D6F6469666965725F70686F656E69785F626F73735F65
+67675F646562756666203D20636C617373287B7D290D0A0D0A66756E6374696F6E206D6F6469666965725F70686F656E69785F626F73735F6567675F
+6465627566663A497348696464656E28292072657475726E2066616C736520656E640D0A66756E6374696F6E206D6F6469666965725F70686F656E69
+785F626F73735F6567675F6465627566663A497344656275666628292072657475726E207472756520656E640D0A66756E6374696F6E206D6F646966
+6965725F70686F656E69785F626F73735F6567675F6465627566663A4765745465787475726528292072657475726E202270686F656E69785F737570
+65726E6F76612220656E640D0A66756E6374696F6E206D6F6469666965725F70686F656E69785F626F73735F6567675F6465627566663A4973507572
+6761626C6528292072657475726E2066616C736520656E640D0A66756E6374696F6E206D6F6469666965725F70686F656E69785F626F73735F656767
+5F6465627566663A49735075726765457863657074696F6E28292072657475726E2066616C736520656E640D0A66756E6374696F6E206D6F64696669
+65725F70686F656E69785F626F73735F6567675F6465627566663A4F6E4372656174656428290D0A096966206E6F7420497353657276657228292074
+68656E2072657475726E20656E640D0A096966206E6F742073656C663A4765744162696C6974792829206F722073656C663A4765744162696C697479
+28293A49734E756C6C2829207468656E2072657475726E20656E640D0A2020202069662073656C663A4765744162696C69747928293A4765744C6576
+656C2829203C3D2030207468656E0D0A202020202020202073656C663A4765744162696C69747928293A5365744C6576656C2831290D0A2020202065
+6E640D0A0973656C662E7370656564203D2073656C663A4765744162696C69747928293A4765745370656369616C56616C7565466F72282273706565
+645F70756C6C22290D0A0973656C663A5374617274496E74657276616C5468696E6B284672616D6554696D652829290D0A656E640D0A0D0A66756E63
+74696F6E206D6F6469666965725F70686F656E69785F626F73735F6567675F6465627566663A4F6E496E74657276616C5468696E6B28290D0A096966
+206E6F742049735365727665722829207468656E2072657475726E20656E640D0A096966206E6F742073656C663A4765744361737465722829206F72
+2073656C663A47657443617374657228293A49734E756C6C2829207468656E0D0A090973656C663A44657374726F7928290D0A090972657475726E0D
+0A09656E640D0A096C6F63616C20646972203D2073656C663A47657443617374657228293A4765744162734F726967696E2829202D2073656C663A47
+6574506172656E7428293A4765744162734F726967696E28290D0A096469722E7A203D20300D0A0973656C662E646972656374696F6E203D20646972
+3A4E6F726D616C697A656428290D0A096966206E6F742073656C663A476574506172656E7428293A497343757272656E746C79566572746963616C4D
+6F74696F6E436F6E74726F6C6C6564282920616E64206E6F742073656C663A476574506172656E7428293A497343757272656E746C79486F72697A6F
+6E74616C4D6F74696F6E436F6E74726F6C6C6564282920616E64206E6F742073656C663A476574506172656E7428293A4861734D6F64696669657228
+226D6F6469666965725F736C61726B5F706F756E63655F617263222920616E64206E6F742073656C663A476574506172656E7428293A4861734D6F64
+696669657228226D6F6469666965725F736C61726B5F706F756E63655F637573746F6D2229207468656E0D0A20202020202020206C6F63616C20706F
+696E74203D2073656C663A476574506172656E7428293A4765744162734F726967696E2829202B2073656C662E646972656374696F6E202A20287365
+6C662E7370656564202A204672616D6554696D652829290D0A0909706F696E74203D2047657447726F756E64506F736974696F6E28706F696E742C20
+73656C663A476574506172656E742829290D0A0909696620477269644E61763A43616E46696E6450617468282073656C663A476574506172656E7428
+293A4765744162734F726967696E28292C20706F696E742029207468656E0D0A09090973656C663A476574506172656E7428293A5365744162734F72
+6967696E28706F696E74290D0A0909656C73650D0A09090946696E64436C6561725370616365466F72556E69742873656C663A476574506172656E74
+28292C2073656C663A476574506172656E7428293A4765744162734F726967696E28292C2074727565290D0A0909656E640D0A09656E640D0A656E64
+0D0A0D0A66756E6374696F6E206D6F6469666965725F70686F656E69785F626F73735F6567675F6465627566663A4F6E44657374726F7928290D0A09
+6966206E6F742049735365727665722829207468656E2072657475726E20656E640D0A0969662073656C663A476574506172656E7428293A49734E75
+6C6C2829207468656E2072657475726E20656E640D0A096966206E6F742073656C663A476574506172656E7428293A497343757272656E746C795665
+72746963616C4D6F74696F6E436F6E74726F6C6C6564282920616E64206E6F742073656C663A476574506172656E7428293A497343757272656E746C
+79486F72697A6F6E74616C4D6F74696F6E436F6E74726F6C6C6564282920616E64206E6F742073656C663A476574506172656E7428293A4861734D6F
+64696669657228226D6F6469666965725F736C61726B5F706F756E63655F617263222920616E64206E6F742073656C663A476574506172656E742829
+3A4861734D6F64696669657228226D6F6469666965725F736C61726B5F706F756E63655F637573746F6D2229207468656E0D0A092020202046696E64
+436C6561725370616365466F72556E69742873656C663A476574506172656E7428292C2073656C663A476574506172656E7428293A4765744162734F
+726967696E28292C2074727565290D0A20202020656E640D0A656E640D0A0D0A66756E6374696F6E206D6F6469666965725F70686F656E69785F626F
+73735F6567675F6465627566663A4765744566666563744E616D6528290D0A0972657475726E20227061727469636C65732F756E6974732F6865726F
+65732F6865726F5F70686F656E69782F70686F656E69785F6963617275735F646976655F6275726E5F6465627566662E76706366220D0A656E640D0A
+0D0A66756E6374696F6E206D6F6469666965725F70686F656E69785F626F73735F6567675F6465627566663A47657445666665637441747461636854
+79706528290D0A0972657475726E20504154544143485F4142534F524947494E5F464F4C4C4F570D0A656E640D0A0D0A4C696E6B4C75614D6F646966
+69657228226D6F6469666965725F70686F656E69785F626F73735F77617665222C20226E65757472616C732F70686F656E69785F626F7373222C204C
+55415F4D4F4449464945525F4D4F54494F4E5F4E4F4E45290D0A4C696E6B4C75614D6F64696669657228226D6F6469666965725F70686F656E69785F
+626F73735F776176655F646562756666222C20226E65757472616C732F70686F656E69785F626F7373222C204C55415F4D4F4449464945525F4D4F54
+494F4E5F4E4F4E45290D0A4C696E6B4C75614D6F64696669657228226D6F6469666965725F70686F656E69785F626F73735F776176655F7061737369
+7665222C20226E65757472616C732F70686F656E69785F626F7373222C204C55415F4D4F4449464945525F4D4F54494F4E5F4E4F4E45290D0A0D0A70
+686F656E69785F626F73735F77617665203D20636C617373287B7D290D0A0D0A66756E6374696F6E2070686F656E69785F626F73735F776176653A50
+7265636163686528636F6E74657874290D0A2020202050726563616368655265736F757263652820227061727469636C65222C20277061727469636C
+65732F646F6F6D5F6675656C696E675F68656C6C2E76706366272C20636F6E7465787420290D0A656E640D0A0D0A66756E6374696F6E2070686F656E
+69785F626F73735F776176653A476574496E7472696E7369634D6F6469666965724E616D6528290D0A0972657475726E20226D6F6469666965725F70
+686F656E69785F626F73735F776176655F70617373697665220D0A656E640D0A0D0A6D6F6469666965725F70686F656E69785F626F73735F77617665
+5F70617373697665203D20636C617373287B7D290D0A0D0A66756E6374696F6E206D6F6469666965725F70686F656E69785F626F73735F776176655F
+706173736976653A497348696464656E28292072657475726E207472756520656E640D0A66756E6374696F6E206D6F6469666965725F70686F656E69
+785F626F73735F776176655F706173736976653A49735075726761626C6528292072657475726E2066616C736520656E640D0A66756E6374696F6E20
+6D6F6469666965725F70686F656E69785F626F73735F776176655F706173736976653A49735075726765457863657074696F6E28292072657475726E
+2066616C736520656E640D0A0D0A66756E6374696F6E206D6F6469666965725F70686F656E69785F626F73735F776176655F706173736976653A4F6E
+4372656174656428290D0A096966206E6F742049735365727665722829207468656E2072657475726E20656E640D0A2020202069662073656C663A47
+65744162696C69747928293A4765744C6576656C2829203C3D2030207468656E0D0A202020202020202073656C663A4765744162696C69747928293A
+5365744C6576656C2831290D0A20202020656E640D0A0973656C662E6475726174696F6E203D2073656C663A4765744162696C69747928293A476574
+5370656369616C56616C7565466F7228226475726174696F6E22290D0A0973656C663A5374617274496E74657276616C5468696E6B2830290D0A656E
+640D0A0D0A66756E6374696F6E206D6F6469666965725F70686F656E69785F626F73735F776176655F706173736976653A4F6E496E74657276616C54
+68696E6B28290D0A096966206E6F742049735365727665722829207468656E2072657475726E20656E640D0A096966206E6F742073656C663A476574
+4162696C6974792829206F722073656C663A4765744162696C69747928293A49734E756C6C2829206F722073656C663A476574506172656E7428293A
+49734E756C6C2829207468656E2072657475726E20656E640D0A096966206E6F742073656C663A47657443617374657228293A4162696C6974794973
+436F6F6C646F776E282270686F656E69785F626F73735F6567672229207468656E2072657475726E20656E640D0A0969662073656C663A4765744162
+696C69747928293A497346756C6C794361737461626C65282920616E64202873656C663A476574506172656E7428293A476574416767726F54617267
+65742829207E3D206E696C206F722073656C663A476574506172656E7428292E68546172676574207E3D206E696C29207468656E0D0A09096966206E
+6F742073656C663A476574506172656E7428293A4973416C6976652829207468656E2072657475726E20656E640D0A090973656C663A537461727457
+61766528290D0A090973656C663A47657443617374657228293A5374617274436F6F6C646F776E4162696C28202270686F656E69785F626F73735F62
+65616D222C2034202B203120290D0A090973656C663A4765744162696C69747928293A5374617274436F6F6C646F776E283231290D0A09656E640D0A
+656E640D0A0D0A66756E6374696F6E206D6F6469666965725F70686F656E69785F626F73735F776176655F706173736976653A537461727457617665
+28290D0A096966206E6F742049735365727665722829207468656E2072657475726E20656E640D0A096C6F63616C20706172656E74203D2073656C66
+3A476574506172656E7428290D0A096C6F63616C2077696E647570203D20310D0A09706172656E743A4164644E65774D6F6469666965722870617265
+6E742C2073656C663A4765744162696C69747928292C20226D6F6469666965725F6E65757472616C5F63617374222C207B6475726174696F6E203D20
+77696E6475707D290D0A09706172656E743A537461727447657374757265284143545F444F54415F434153545F4142494C4954595F31290D0A094372
+65617465426F73734578636C616D6174696F6E28706172656E742C2077696E647570290D0A0954696D6572733A43726561746554696D65722877696E
+6475702C2066756E6374696F6E28290D0A0909696620706172656E743A49734E756C6C2829206F72206E6F7420706172656E743A4973416C69766528
+29207468656E2072657475726E20656E640D0A090969662073656C663A49734E756C6C2829207468656E2072657475726E20656E640D0A090973656C
+663A52656C656173655761766528290D0A09656E64290D0A656E640D0A0D0A66756E6374696F6E206D6F6469666965725F70686F656E69785F626F73
+735F776176655F706173736976653A52656C656173655761766528290D0A096966206E6F742049735365727665722829207468656E2072657475726E
+20656E640D0A096966206E6F742073656C663A4765744162696C6974792829206F722073656C663A4765744162696C69747928293A49734E756C6C28
+29207468656E2072657475726E20656E640D0A096C6F63616C206566666563745F63617374203D205061727469636C654D616E616765723A43726561
+74655061727469636C652820227061727469636C65732F646F6F6D5F6675656C696E675F68656C6C2E76706366222C20504154544143485F574F524C
+444F524947494E2C206E696C20290D0A095061727469636C654D616E616765723A5365745061727469636C65436F6E74726F6C28206566666563745F
+636173742C20302C2073656C663A47657443617374657228293A4765744162734F726967696E2829290D0A095061727469636C654D616E616765723A
+5365745061727469636C65436F6E74726F6C28206566666563745F636173742C20312C20566563746F722820313030302C20313030302C2031303030
+202920290D0A095061727469636C654D616E616765723A5365745061727469636C65436F6E74726F6C28206566666563745F636173742C2031352C20
+566563746F7228203235352C2039302C2030202920290D0A095061727469636C654D616E616765723A5365745061727469636C65436F6E74726F6C28
+206566666563745F636173742C2031362C20566563746F722820312C20312C2031202920290D0A0D0A096C6F63616C2070756C7365203D2073656C66
+3A47657443617374657228293A4164644E65774D6F646966696572280D0A090973656C663A47657443617374657228292C200D0A090973656C663A47
+65744162696C69747928292C200D0A0909226D6F6469666965725F70686F656E69785F626F73735F77617665222C200D0A09097B0D0A090909656E64
+5F726164697573203D2073656C663A4765744162696C69747928293A4765745370656369616C56616C7565466F7228227261646975735F7374617274
+22292C0D0A0909097370656564203D20313030302C0D0A0909097461726765745F7465616D203D20444F54415F554E49545F5441524745545F544541
+4D5F454E454D592C0D0A0909097461726765745F74797065203D20444F54415F554E49545F5441524745545F4845524F202B20444F54415F554E4954
+5F5441524745545F42415349432C0D0A09097D200D0A09290D0A0D0A0973656C663A47657443617374657228293A456D6974536F756E642822486572
+6F5F50686F656E69782E496361727573446976652E4361737422290D0A0D0A0970756C73653A53657443616C6C6261636B28290D0A090D0A0954696D
+6572733A43726561746554696D65722873656C663A4765744162696C69747928293A4765745370656369616C56616C7565466F722822726164697573
+5F737461727422292F313030302C66756E6374696F6E28290D0A09095061727469636C654D616E616765723A44657374726F795061727469636C6528
+6566666563745F636173742C2066616C7365290D0A09095061727469636C654D616E616765723A52656C656173655061727469636C65496E64657828
+6566666563745F63617374290D0A20202020656E64290D0A656E640D0A0D0A6D6F6469666965725F70686F656E69785F626F73735F77617665203D20
+636C617373287B7D290D0A0D0A66756E6374696F6E206D6F6469666965725F70686F656E69785F626F73735F776176653A497348696464656E28290D
+0A0972657475726E20747275650D0A656E640D0A0D0A66756E6374696F6E206D6F6469666965725F70686F656E69785F626F73735F776176653A4973
+44656275666628290D0A0972657475726E2066616C73650D0A656E640D0A0D0A66756E6374696F6E206D6F6469666965725F70686F656E69785F626F
+73735F776176653A49735374756E44656275666628290D0A0972657475726E2066616C73650D0A656E640D0A0D0A66756E6374696F6E206D6F646966
+6965725F70686F656E69785F626F73735F776176653A49735075726761626C6528290D0A0972657475726E2066616C73650D0A656E640D0A0D0A6675
+6E6374696F6E206D6F6469666965725F70686F656E69785F626F73735F776176653A52656D6F76654F6E446561746828290D0A0972657475726E2066
+616C73650D0A656E640D0A0D0A66756E6374696F6E206D6F6469666965725F70686F656E69785F626F73735F776176653A4765744174747269627574
+657328290D0A0972657475726E204D4F4449464945525F4154545249425554455F4D554C5449504C450D0A656E640D0A0D0A66756E6374696F6E206D
+6F6469666965725F70686F656E69785F626F73735F776176653A4F6E4372656174656428206B7620290D0A096966206E6F7420497353657276657228
+29207468656E2072657475726E20656E640D0A0973656C662E6F726967696E203D2073656C663A476574506172656E7428293A4765744162734F7269
+67696E28290D0A0973656C662E73746172745F726164697573203D206B762E73746172745F726164697573206F7220300D0A0973656C662E656E645F
+726164697573203D206B762E656E645F726164697573206F7220300D0A0973656C662E7769647468203D206B762E7769647468206F72203130300D0A
+0973656C662E7370656564203D206B762E7370656564206F7220300D0A0973656C662E6F757477617264203D2073656C662E656E645F726164697573
+3E3D73656C662E73746172745F7261646975730D0A096966206E6F742073656C662E6F757477617264207468656E0D0A090973656C662E7370656564
+203D202D73656C662E73706565640D0A09656E640D0A0D0A0973656C662E7461726765745F7465616D203D206B762E7461726765745F7465616D206F
+7220300D0A0973656C662E7461726765745F74797065203D206B762E7461726765745F74797065206F7220300D0A0973656C662E7461726765745F66
+6C616773203D206B762E7461726765745F666C616773206F7220300D0A0D0A0973656C662E4973436972636C65203D206B762E4973436972636C6520
+6F7220310D0A0D0A0973656C662E74617267657473203D207B7D0D0A656E640D0A0D0A66756E6374696F6E206D6F6469666965725F70686F656E6978
+5F626F73735F776176653A4F6E44657374726F7928290D0A0969662073656C662E456E6443616C6C6261636B207468656E0D0A090973656C662E456E
+6443616C6C6261636B28290D0A09656E640D0A096966206E6F742049735365727665722829207468656E2072657475726E20656E640D0A0969662073
+656C663A476574506172656E7428293A476574436C6173736E616D6528293D3D226E70635F646F74615F7468696E6B657222207468656E0D0A090955
+54494C5F52656D6F7665282073656C663A476574506172656E74282920290D0A09656E640D0A656E640D0A0D0A66756E6374696F6E206D6F64696669
+65725F70686F656E69785F626F73735F776176653A53657443616C6C6261636B282063616C6C6261636B20290D0A0973656C662E43616C6C6261636B
+203D2063616C6C6261636B0D0A0973656C663A5374617274496E74657276616C5468696E6B2820302E303320290D0A0973656C663A4F6E496E746572
+76616C5468696E6B28290D0A656E640D0A0D0A66756E6374696F6E206D6F6469666965725F70686F656E69785F626F73735F776176653A536574456E
+6443616C6C6261636B282063616C6C6261636B20290D0A0973656C662E456E6443616C6C6261636B203D2063616C6C6261636B0D0A656E640D0A0D0A
+66756E6374696F6E206D6F6469666965725F70686F656E69785F626F73735F776176653A4F6E496E74657276616C5468696E6B28290D0A096966206E
+6F742049735365727665722829207468656E2072657475726E20656E640D0A096966206E6F742073656C663A4765744162696C6974792829206F7220
+73656C663A4765744162696C69747928293A49734E756C6C2829206F72206E6F742073656C663A4765744361737465722829206F722073656C663A47
+657443617374657228293A49734E756C6C2829207468656E0D0A090973656C663A44657374726F7928290D0A090972657475726E0D0A09656E640D0A
+096C6F63616C20726164697573203D2073656C662E73746172745F726164697573202B2073656C662E7370656564202A2073656C663A476574456C61
+7073656454696D6528290D0A096966206E6F742073656C662E6F75747761726420616E64207261646975733C73656C662E656E645F72616469757320
+7468656E0D0A090973656C663A44657374726F7928290D0A090972657475726E0D0A09656C736569662073656C662E6F75747761726420616E642072
+61646975733E73656C662E656E645F726164697573207468656E0D0A090973656C663A44657374726F7928290D0A090972657475726E0D0A09656E64
+0D0A0D0A096C6F63616C2074617267657473203D2046696E64556E697473496E526164697573282073656C663A476574506172656E7428293A476574
+5465616D4E756D62657228292C2073656C662E6F726967696E2C206E696C2C207261646975732C2073656C662E7461726765745F7465616D2C207365
+6C662E7461726765745F747970652C20444F54415F554E49545F5441524745545F464C41475F4D414749435F494D4D554E455F454E454D4945532C20
+302C2066616C736520290D0A20202020666F722069203D2023746172676574732C20312C202D3120646F0D0A20202020202020206966207461726765
+74735B695D20616E6420746172676574735B695D3A476574556E69744E616D652829203D3D20226E70635F776F64615F776973705F64656174682220
+7468656E0D0A2020202020202020202020207461626C652E72656D6F766528746172676574732C2069290D0A2020202020202020656E640D0A202020
+20656E640D0A096C6F63616C20666561725F6475726174696F6E203D20300D0A09666F72205F2C74617267657420696E207061697273287461726765
+74732920646F0D0A09096966206E6F742073656C662E746172676574735B7461726765745D207468656E0D0A09090969662028286E6F742073656C66
+2E4973436972636C6529206F7220287461726765743A4765744F726967696E28292D73656C662E6F726967696E293A4C656E677468324428293E2872
+61646975732D73656C662E7769647468292920207468656E0D0A0909090973656C662E746172676574735B7461726765745D203D20747275650D0A09
+0909097461726765743A4164644E65774D6F6469666965722873656C663A47657443617374657228292C2073656C663A4765744162696C6974792829
+2C20226D6F6469666965725F70686F656E69785F626F73735F776176655F646562756666222C207B6475726174696F6E203D2073656C663A47657441
+62696C69747928293A4765745370656369616C56616C7565466F7228226475726174696F6E22297D290D0A090909656E640D0A0909656E640D0A0965
+6E640D0A656E640D0A0D0A6D6F6469666965725F70686F656E69785F626F73735F776176655F646562756666203D20636C617373287B7D290D0A0D0A
+66756E6374696F6E206D6F6469666965725F70686F656E69785F626F73735F776176655F6465627566663A497348696464656E28292072657475726E
+2066616C736520656E640D0A66756E6374696F6E206D6F6469666965725F70686F656E69785F626F73735F776176655F6465627566663A4973446562
+75666628292072657475726E207472756520656E640D0A66756E6374696F6E206D6F6469666965725F70686F656E69785F626F73735F776176655F64
+65627566663A49735075726761626C6528292072657475726E2066616C736520656E640D0A0D0A66756E6374696F6E206D6F6469666965725F70686F
+656E69785F626F73735F776176655F6465627566663A4F6E4372656174656428290D0A096966206E6F742049735365727665722829207468656E2072
+657475726E20656E640D0A096966206E6F742073656C663A4765744162696C6974792829206F722073656C663A4765744162696C69747928293A4973
+4E756C6C2829207468656E2072657475726E20656E640D0A2020202069662073656C663A4765744162696C69747928293A4765744C6576656C282920
+3C3D2030207468656E0D0A202020202020202073656C663A4765744162696C69747928293A5365744C6576656C2831290D0A20202020656E640D0A09
+73656C662E726164697573203D2073656C663A4765744162696C69747928293A4765745370656369616C56616C7565466F7228227261646975732229
+0D0A0973656C662E64616D6167655F70657263203D2073656C663A4765744162696C69747928293A4765745370656369616C56616C7565466F722822
+64616D6167655F7065726322290D0A096C6F63616C206475726174696F6E203D2073656C663A4765744475726174696F6E28290D0A09696620647572
+6174696F6E203C3D2030207468656E0D0A09096475726174696F6E203D2073656C663A4765744162696C69747928293A4765745370656369616C5661
+6C7565466F7228226475726174696F6E22290D0A090973656C663A5365744475726174696F6E286475726174696F6E2C2074727565290D0A09656E64
+0D0A0973656C662E636F756E746572203D206D6174682E666C6F6F72286475726174696F6E202B20302E35290D0A0973656C662E6566666563745F63
+6173745F32203D205061727469636C654D616E616765723A4372656174655061727469636C652820227061727469636C65732F70686F656E69785F63
+6F756E7465725F627566665F737472656E6774685F636F756E7465725F737461636B2E76706366222C20504154544143485F4F564552484541445F46
+4F4C4C4F572C2073656C663A476574506172656E74282920290D0A095061727469636C654D616E616765723A5365745061727469636C65436F6E7472
+6F6C282073656C662E6566666563745F636173745F322C20322C20566563746F72282073656C662E636F756E7465722C20302C2030202920290D0A09
+5061727469636C654D616E616765723A5365745061727469636C65436F6E74726F6C456E742873656C662E6566666563745F636173745F322C20332C
+2073656C663A476574506172656E7428292C20504154544143485F4F564552484541445F464F4C4C4F572C206E696C202C2073656C663A4765745061
+72656E7428293A4765744162734F726967696E28292C207472756520290D0A0973656C663A4164645061727469636C652873656C662E656666656374
+5F636173745F322C66616C73652C2066616C73652C202D312C2066616C73652C2066616C7365290D0A0973656C663A5374617274496E74657276616C
+5468696E6B2831290D0A656E640D0A0D0A66756E6374696F6E206D6F6469666965725F70686F656E69785F626F73735F776176655F6465627566663A
+4F6E496E74657276616C5468696E6B28290D0A096966206E6F742049735365727665722829207468656E2072657475726E20656E640D0A0973656C66
+2E636F756E746572203D206D6174682E6D6178282873656C662E636F756E746572206F72203029202D20312C2030290D0A0969662073656C662E6566
+666563745F636173745F32207468656E0D0A09095061727469636C654D616E616765723A5365745061727469636C65436F6E74726F6C282073656C66
+2E6566666563745F636173745F322C20322C20566563746F72282073656C662E636F756E7465722C20302C2030202920290D0A09656E640D0A656E64
+0D0A0D0A66756E6374696F6E206D6F6469666965725F70686F656E69785F626F73735F776176655F6465627566663A4F6E44657374726F7928290D0A
+096966206E6F742049735365727665722829207468656E2072657475726E20656E640D0A096966206E6F742073656C663A4765744361737465722829
+206F722073656C663A47657443617374657228293A49734E756C6C2829206F72206E6F742073656C663A4765744162696C6974792829206F72207365
+6C663A4765744162696C69747928293A49734E756C6C2829207468656E2072657475726E20656E640D0A096966206E6F742073656C662E7261646975
+73206F72206E6F742073656C662E64616D6167655F70657263206F722073656C663A476574506172656E7428293A49734E756C6C2829207468656E20
+72657475726E20656E640D0A096C6F63616C206566666563745F63617374203D205061727469636C654D616E616765723A4372656174655061727469
+636C652820227061727469636C65732F65636F6E2F6974656D732F6C696E612F6C696E615F7469372F6C696E615F7370656C6C5F6C696768745F7374
+72696B655F61727261795F7469372E76706366222C20504154544143485F574F524C444F524947494E2C206E696C20290D0A095061727469636C654D
+616E616765723A5365745061727469636C65436F6E74726F6C28206566666563745F636173742C20302C2073656C663A476574506172656E7428293A
+4765744F726967696E282920290D0A095061727469636C654D616E616765723A5365745061727469636C65436F6E74726F6C28206566666563745F63
+6173742C20312C20566563746F72282073656C662E7261646975732C20312C2031202920290D0A095061727469636C654D616E616765723A52656C65
+6173655061727469636C65496E64657828206566666563745F6361737420290D0A09456D6974536F756E644F6E4C6F636174696F6E57697468436173
+746572282073656C663A476574506172656E7428293A4765744F726967696E28292C20224162696C6974792E4C69676874537472696B654172726179
+222C2073656C663A476574436173746572282920290D0A096C6F63616C20656E656D696573203D2046696E64556E697473496E526164697573287365
+6C663A47657443617374657228293A4765745465616D4E756D62657228292C2073656C663A476574506172656E7428293A4765744162734F72696769
+6E28292C206E696C2C2073656C662E7261646975732C20444F54415F554E49545F5441524745545F5445414D5F454E454D592C20444F54415F554E49
+545F5441524745545F4845524F202B20444F54415F554E49545F5441524745545F42415349432C20444F54415F554E49545F5441524745545F464C41
+475F4D414749435F494D4D554E455F454E454D4945532C2046494E445F414E595F4F524445522C2066616C736520290D0A20202020666F722069203D
+2023656E656D6965732C20312C202D3120646F0D0A2020202020202020696620656E656D6965735B695D20616E6420656E656D6965735B695D3A4765
+74556E69744E616D652829203D3D20226E70635F776F64615F776973705F646561746822207468656E0D0A2020202020202020202020207461626C65
+2E72656D6F766528656E656D6965732C2069290D0A2020202020202020656E640D0A20202020656E640D0A09666F72205F2C20656E656D7920696E20
+706169727328656E656D6965732920646F0D0A09096C6F63616C2064616D616765203D20656E656D793A4765744D61784865616C74682829202F2031
+3030202A2073656C662E64616D6167655F706572630D0A09094170706C7944616D616765287B61747461636B6572203D2073656C663A476574436173
+74657228292C2076696374696D203D20656E656D792C206162696C697479203D2073656C663A4765744162696C69747928292C2064616D616765203D
+2064616D6167652C2064616D6167655F74797065203D2044414D4147455F545950455F505552457D290D0A09656E640D0A656E640D0A0D0A4C696E6B
+4C75614D6F64696669657228226D6F6469666965725F70686F656E69785F626F73735F6265616D222C20226E65757472616C732F70686F656E69785F
+626F7373222C204C55415F4D4F4449464945525F4D4F54494F4E5F4E4F4E4520290D0A4C696E6B4C75614D6F64696669657228226D6F646966696572
+5F70686F656E69785F626F73735F6265616D5F70617373697665222C20226E65757472616C732F70686F656E69785F626F7373222C204C55415F4D4F
+4449464945525F4D4F54494F4E5F4E4F4E4520290D0A4C696E6B4C75614D6F64696669657228226D6F6469666965725F70686F656E69785F626F7373
+5F6265616D5F706173736976655F7468696E6B6572222C20226E65757472616C732F70686F656E69785F626F7373222C204C55415F4D4F4449464945
+525F4D4F54494F4E5F4E4F4E4520290D0A0D0A70686F656E69785F626F73735F6265616D203D20636C617373287B7D290D0A0D0A66756E6374696F6E
+2070686F656E69785F626F73735F6265616D3A476574496E7472696E7369634D6F6469666965724E616D6528290D0A2020202072657475726E20226D
+6F6469666965725F70686F656E69785F626F73735F6265616D5F70617373697665220D0A656E640D0A0D0A6D6F6469666965725F70686F656E69785F
+626F73735F6265616D5F70617373697665203D20636C617373287B7D290D0A0D0A66756E6374696F6E206D6F6469666965725F70686F656E69785F62
+6F73735F6265616D5F706173736976653A497348696464656E28292072657475726E207472756520656E640D0A66756E6374696F6E206D6F64696669
+65725F70686F656E69785F626F73735F6265616D5F706173736976653A49735075726761626C6528292072657475726E2066616C736520656E640D0A
+66756E6374696F6E206D6F6469666965725F70686F656E69785F626F73735F6265616D5F706173736976653A49735075726765457863657074696F6E
+28292072657475726E2066616C736520656E640D0A0D0A66756E6374696F6E206D6F6469666965725F70686F656E69785F626F73735F6265616D5F70
+6173736976653A4F6E4372656174656428290D0A202020206966206E6F742049735365727665722829207468656E2072657475726E20656E640D0A20
+20202069662073656C663A4765744162696C69747928293A4765744C6576656C2829203C3D2030207468656E0D0A202020202020202073656C663A47
+65744162696C69747928293A5365744C6576656C2831290D0A20202020656E640D0A2020202073656C662E6475726174696F6E203D2073656C663A47
+65744162696C69747928293A4765745370656369616C56616C7565466F7228226475726174696F6E22290D0A2020202073656C663A5374617274496E
+74657276616C5468696E6B2830290D0A656E640D0A0D0A66756E6374696F6E206D6F6469666965725F70686F656E69785F626F73735F6265616D5F70
+6173736976653A4F6E496E74657276616C5468696E6B28290D0A202020206966206E6F742049735365727665722829207468656E2072657475726E20
+656E640D0A202020206966206E6F742073656C663A4765744162696C6974792829206F722073656C663A4765744162696C69747928293A49734E756C
+6C2829206F722073656C663A476574506172656E7428293A49734E756C6C2829207468656E2072657475726E20656E640D0A202020206966206E6F74
+2073656C663A47657443617374657228293A4162696C6974794973436F6F6C646F776E282270686F656E69785F626F73735F77617665222920746865
+6E2072657475726E20656E640D0A202020206966206E6F742073656C663A47657443617374657228293A4162696C6974794973436F6F6C646F776E28
+2270686F656E69785F626F73735F6567672229207468656E2072657475726E20656E640D0A2020202069662073656C663A4765744162696C69747928
+293A497346756C6C794361737461626C65282920616E64202873656C663A476574506172656E7428293A476574416767726F5461726765742829207E
+3D206E696C206F722073656C663A476574506172656E7428292E68546172676574207E3D206E696C29207468656E0D0A20202020202020206966206E
+6F742073656C663A476574506172656E7428293A4973416C6976652829207468656E2072657475726E20656E640D0A202020202020202073656C663A
+53746172744265616D28290D0A202020202020202073656C663A4765744162696C69747928293A5374617274436F6F6C646F776E283231290D0A2020
+2020656E640D0A656E640D0A0D0A66756E6374696F6E206D6F6469666965725F70686F656E69785F626F73735F6265616D5F706173736976653A5374
+6172744265616D28290D0A202020206966206E6F742049735365727665722829207468656E2072657475726E20656E640D0A202020206C6F63616C20
+6F726967696E203D2073656C663A476574506172656E7428293A4765744162734F726967696E2829202B2073656C663A476574506172656E7428293A
+476574466F7277617264566563746F722829202A203430300D0A202020206C6F63616C20656E656D696573203D2046696E64556E697473496E526164
+697573282073656C663A476574506172656E7428293A4765745465616D4E756D62657228292C2073656C663A476574506172656E7428293A47657441
+62734F726967696E28292C206E696C2C202D312C20444F54415F554E49545F5441524745545F5445414D5F454E454D592C20444F54415F554E49545F
+5441524745545F4845524F202B20444F54415F554E49545F5441524745545F42415349432C20444F54415F554E49545F5441524745545F464C41475F
+4D414749435F494D4D554E455F454E454D494553202B20444F54415F554E49545F5441524745545F464C41475F494E56554C4E455241424C452C2046
+494E445F46415254484553542C2066616C736520290D0A20202020666F722069203D2023656E656D6965732C20312C202D3120646F0D0A2020202020
+202020696620656E656D6965735B695D20616E6420656E656D6965735B695D3A476574556E69744E616D652829203D3D20226E70635F776F64615F77
+6973705F646561746822207468656E0D0A2020202020202020202020207461626C652E72656D6F766528656E656D6965732C2069290D0A2020202020
+202020656E640D0A20202020656E640D0A20202020666F7220636F756E74203D2023656E656D6965732C20312C202D3120646F0D0A20202020202020
+20696620656E656D6965735B636F756E745D20616E64206E6F7420656E656D6965735B636F756E745D3A4973416C697665282920616E64206E6F7420
+656E656D6965735B636F756E745D3A49735265616C4865726F2829207468656E0D0A2020202020202020202020207461626C652E72656D6F76652865
+6E656D6965732C20636F756E74290D0A2020202020202020656E640D0A20202020656E640D0A2020202069662023656E656D696573203E2030207468
+656E0D0A20202020202020206F726967696E203D20656E656D6965735B315D3A4765744162734F726967696E28290D0A20202020656E640D0A202020
+206C6F63616C207461726765745F756E6974203D20656E656D6965735B315D0D0A202020206C6F63616C20706172656E74203D2073656C663A476574
+506172656E7428290D0A202020206C6F63616C206162696C697479203D2073656C663A4765744162696C69747928290D0A202020206C6F63616C2077
+696E647570203D20310D0A202020206C6F63616C206265616D5F726164697573203D203130300D0A20202020706172656E743A4164644E65774D6F64
+696669657228706172656E742C206162696C6974792C20226D6F6469666965725F6E65757472616C5F63617374222C207B6475726174696F6E203D20
+77696E6475707D290D0A20202020706172656E743A537461727447657374757265284143545F444F54415F434153545F4142494C4954595F33290D0A
+202020206C6F63616C206D61726B6572203D206E696C0D0A202020206966207461726765745F756E697420616E64206E6F74207461726765745F756E
+69743A49734E756C6C2829207468656E0D0A20202020202020206D61726B6572203D20437265617465426F737350726563617374436972636C654F6E
+556E6974287461726765745F756E69742C206265616D5F7261646975732C2077696E647570290D0A20202020656C73650D0A20202020202020206D61
+726B6572203D20437265617465426F737350726563617374436972636C65286F726967696E2C206265616D5F7261646975732C2077696E647570290D
+0A20202020656E640D0A2020202054696D6572733A43726561746554696D65722877696E6475702C2066756E6374696F6E28290D0A20202020202020
+2044657374726F79426F737350726563617374286D61726B6572290D0A2020202020202020696620706172656E743A49734E756C6C2829206F72206E
+6F7420706172656E743A4973416C6976652829207468656E2072657475726E20656E640D0A20202020202020206966206162696C6974793A49734E75
+6C6C2829207468656E2072657475726E20656E640D0A20202020202020206C6F63616C20706F696E74203D206F726967696E0D0A2020202020202020
+6C6F63616C20746172676574203D206E696C0D0A20202020202020206966207461726765745F756E697420616E64206E6F74207461726765745F756E
+69743A49734E756C6C2829207468656E0D0A202020202020202020202020706F696E74203D207461726765745F756E69743A4765744162734F726967
+696E28290D0A2020202020202020202020206966207461726765745F756E69743A4973416C6976652829207468656E0D0A2020202020202020202020
+20202020206966207461726765745F756E69743A547269676765725370656C6C4162736F7262286162696C69747929207468656E0D0A202020202020
+2020202020202020202020202020706172656E743A4661646547657374757265284143545F444F54415F434153545F4142494C4954595F33290D0A20
+2020202020202020202020202020202020202072657475726E0D0A20202020202020202020202020202020656E640D0A202020202020202020202020
+20202020746172676574203D207461726765745F756E69743A656E74696E64657828290D0A202020202020202020202020656E640D0A202020202020
+2020656E640D0A2020202020202020706172656E743A4164644E65774D6F64696669657228706172656E742C206162696C6974792C20226D6F646966
+6965725F70686F656E69785F626F73735F6265616D222C207B6475726174696F6E203D206162696C6974793A4765745370656369616C56616C756546
+6F7228226475726174696F6E22292C2078203D20706F696E742E782C2079203D20706F696E742E792C207A203D20706F696E742E7A2C207461726765
+74203D20746172676574207D290D0A20202020656E64290D0A656E640D0A0D0A6D6F6469666965725F70686F656E69785F626F73735F6265616D203D
+20636C617373287B7D290D0A0D0A66756E6374696F6E206D6F6469666965725F70686F656E69785F626F73735F6265616D3A49735075726761626C65
+28292072657475726E2066616C736520656E640D0A66756E6374696F6E206D6F6469666965725F70686F656E69785F626F73735F6265616D3A476574
+5465787475726528292072657475726E202270686F656E69785F626F73735F6265616D2220656E640D0A0D0A66756E6374696F6E206D6F6469666965
+725F70686F656E69785F626F73735F6265616D3A4F6E4372656174656428706172616D73290D0A202020206966206E6F742049735365727665722829
+207468656E2072657475726E20656E640D0A2020202073656C662E706F696E74203D20566563746F7228706172616D732E782C20706172616D732E79
+2C20706172616D732E7A290D0A2020202073656C662E64756D6D79203D20437265617465556E697442794E616D652820226E70635F646F74615F636F
+6D70616E696F6E222C2073656C662E706F696E742C2066616C73652C206E696C2C206E696C2C2073656C663A47657443617374657228293A47657454
+65616D4E756D626572282920290D0A2020202073656C662E64756D6D793A5365744162734F726967696E2873656C662E706F696E74290D0A20202020
+73656C662E64756D6D793A4164644E65774D6F6469666965722873656C662E64756D6D792C2073656C663A4765744162696C69747928292C20226D6F
+6469666965725F70686F656E69785F626F73735F6265616D5F706173736976655F7468696E6B6572222C207B6475726174696F6E203D2073656C663A
+4765744162696C69747928293A4765745370656369616C56616C7565466F7228226475726174696F6E22297D290D0A202020206C6F63616C20746172
+676574203D20706172616D732E7461726765740D0A20202020696620746172676574207E3D206E696C207468656E0D0A202020202020202073656C66
+2E746172676574203D20456E74496E646578546F4853637269707428746172676574290D0A20202020656E640D0A2020202073656C662E7370656564
+203D2073656C663A47657443617374657228293A476574426173654D6F7665537065656428290D0A2020202073656C662E64616D6167655F70657263
+203D2073656C663A4765744162696C69747928293A4765745370656369616C56616C7565466F72282264616D6167655F7065726322290D0A20202020
+456D6974536F756E644F6E2820224865726F5F50686F656E69782E53756E5261792E43617374222C2073656C663A476574436173746572282920290D
+0A09456D6974536F756E644F6E2820224865726F5F50686F656E69782E53756E5261792E4C6F6F70222C2073656C663A476574436173746572282920
+290D0A0D0A2020202073656C662E6E4265616D4658496E646578203D205061727469636C654D616E616765723A4372656174655061727469636C6528
+20227061727469636C65732F65636F6E2F6974656D732F70686F656E69782F70686F656E69785F736F6C61725F666F7267652F70686F656E69785F73
+756E7261795F736F6C61725F666F7267652E76706366222C20504154544143485F435553544F4D4F524947494E2C206E696C20290D0A202020205061
+727469636C654D616E616765723A5365745061727469636C65436F6E74726F6C456E74282073656C662E6E4265616D4658496E6465782C20302C2073
+656C663A47657443617374657228292C20504154544143485F504F494E545F464F4C4C4F572C20226174746163685F6869746C6F63222C2073656C66
+3A47657443617374657228293A4765744162734F726967696E28292C207472756520290D0A202020205061727469636C654D616E616765723A536574
+5061727469636C65436F6E74726F6C456E74282073656C662E6E4265616D4658496E6465782C20312C2073656C662E64756D6D792C20504154544143
+485F4142534F524947494E5F464F4C4C4F572C206E696C2C2073656C662E64756D6D793A4765744F726967696E28292C207472756520290D0A202020
+205061727469636C654D616E616765723A5365745061727469636C65436F6E74726F6C456E74282073656C662E6E4265616D4658496E6465782C2032
+2C2073656C663A47657443617374657228292C20504154544143485F4142534F524947494E5F464F4C4C4F572C206E696C2C2073656C662E64756D6D
+793A4765744F726967696E28292C207472756520290D0A202020205061727469636C654D616E616765723A5365745061727469636C65436F6E74726F
+6C456E74282073656C662E6E4265616D4658496E6465782C20392C2073656C663A47657443617374657228292C20504154544143485F504F494E545F
+464F4C4C4F572C20226174746163685F6869746C6F63222C2073656C663A47657443617374657228293A4765744162734F726967696E28292C207472
+756520290D0A0D0A2020202073656C663A5374617274496E74657276616C5468696E6B284672616D6554696D652829290D0A656E640D0A0D0A6D6F64
+69666965725F70686F656E69785F626F73735F6265616D5F706173736976655F7468696E6B6572203D20636C617373287B7D290D0A0D0A66756E6374
+696F6E206D6F6469666965725F70686F656E69785F626F73735F6265616D5F706173736976655F7468696E6B65723A497348696464656E2829207265
+7475726E207472756520656E640D0A66756E6374696F6E206D6F6469666965725F70686F656E69785F626F73735F6265616D5F706173736976655F74
+68696E6B65723A49735075726761626C6528292072657475726E2066616C736520656E640D0A66756E6374696F6E206D6F6469666965725F70686F65
+6E69785F626F73735F6265616D5F706173736976655F7468696E6B65723A52656D6F76654F6E446561746828292072657475726E2066616C73652065
+6E640D0A0D0A66756E6374696F6E206D6F6469666965725F70686F656E69785F626F73735F6265616D5F706173736976655F7468696E6B65723A4368
+65636B537461746528290D0A2020202072657475726E200D0A202020207B0D0A20202020202020205B4D4F4449464945525F53544154455F494E5655
+4C4E455241424C455D203D20747275652C0D0A20202020202020205B4D4F4449464945525F53544154455F4E4F5F4845414C54485F4241525D203D20
+747275652C0D0A20202020202020205B4D4F4449464945525F53544154455F4E4F545F4F4E5F4D494E494D41505D203D20747275652C0D0A20202020
+202020205B4D4F4449464945525F53544154455F5354554E4E45445D203D20747275652C0D0A20202020202020205B4D4F4449464945525F53544154
+455F554E53454C45435441424C455D203D20747275652C0D0A20202020202020205B4D4F4449464945525F53544154455F4E4F5F554E49545F434F4C
+4C4953494F4E5D203D20747275652C0D0A202020207D0D0A656E640D0A0D0A66756E6374696F6E206D6F6469666965725F70686F656E69785F626F73
+735F6265616D5F706173736976655F7468696E6B65723A4F6E44657374726F7928290D0A202020206966206E6F742049735365727665722829207468
+656E2072657475726E20656E640D0A202020205554494C5F52656D6F76652873656C663A476574506172656E742829290D0A656E640D0A0D0A66756E
+6374696F6E206D6F6469666965725F70686F656E69785F626F73735F6265616D3A4F6E496E74657276616C5468696E6B28290D0A202020206966206E
+6F742049735365727665722829207468656E2072657475726E20656E640D0A202020206966206E6F742073656C662E64756D6D79206F722073656C66
+2E64756D6D793A49734E756C6C2829207468656E2072657475726E20656E640D0A202020206966206E6F742073656C663A4765744361737465722829
+206F722073656C663A47657443617374657228293A49734E756C6C2829206F72206E6F742073656C663A4765744162696C6974792829206F72207365
+6C663A4765744162696C69747928293A49734E756C6C2829207468656E0D0A202020202020202073656C663A44657374726F7928290D0A2020202020
+20202072657475726E0D0A20202020656E640D0A2020202069662073656C662E746172676574207E3D206E696C20616E64202873656C662E74617267
+65743A49734E756C6C2829206F72206E6F742073656C662E7461726765743A4973416C697665282929207468656E0D0A202020202020202073656C66
+2E746172676574203D206E696C0D0A20202020656E640D0A2020202069662073656C662E746172676574207E3D206E696C207468656E0D0A20202020
+2020202073656C662E706F696E74203D2073656C662E7461726765743A4765744162734F726967696E28290D0A20202020656E640D0A202020206C6F
+63616C20646972656374696F6E203D2073656C662E706F696E74202D2073656C662E64756D6D793A4765744162734F726967696E28290D0A20202020
+646972656374696F6E2E7A203D20300D0A20202020646972656374696F6E203D20646972656374696F6E3A4E6F726D616C697A656428290D0A202020
+206C6F63616C206E65775F706F696E74203D2073656C662E64756D6D793A4765744162734F726967696E2829202B20646972656374696F6E202A2028
+73656C662E7370656564202A204672616D6554696D652829290D0A202020206C6F63616C206469725F6D696E5F63203D206E65775F706F696E74202D
+2073656C663A47657443617374657228293A4765744162734F726967696E28290D0A202020206C6F63616C2064697374616E6365203D206469725F6D
+696E5F633A4C656E677468324428290D0A202020206469725F6D696E5F632E7A203D20300D0A202020206C6F63616C20646972656374696F6E5F6D69
+6E203D206469725F6D696E5F633A4E6F726D616C697A656428290D0A202020206E65775F706F696E74203D2047657447726F756E64506F736974696F
+6E286E65775F706F696E742C206E696C290D0A20202020416464464F575669657765722873656C663A47657443617374657228293A4765745465616D
+4E756D62657228292C2073656C662E64756D6D793A4765744162734F726967696E28292C203130302C204672616D6554696D6528292C2066616C7365
+290D0A2020202073656C662E64756D6D793A5365744162734F726967696E286E65775F706F696E74290D0A0D0A0D0A202020206C6F63616C20656E65
+6D696573203D2046696E64556E697473496E526164697573282073656C663A47657443617374657228293A4765745465616D4E756D62657228292C20
+6E65775F706F696E742C206E696C2C203130302C20444F54415F554E49545F5441524745545F5445414D5F454E454D592C20444F54415F554E49545F
+5441524745545F4845524F202B20444F54415F554E49545F5441524745545F42415349432C20302C20302C2066616C736520290D0A20202020666F72
+2069203D2023656E656D6965732C20312C202D3120646F0D0A2020202020202020696620656E656D6965735B695D20616E6420656E656D6965735B69
+5D3A476574556E69744E616D652829203D3D20226E70635F776F64615F776973705F646561746822207468656E0D0A20202020202020202020202074
+61626C652E72656D6F766528656E656D6965732C2069290D0A2020202020202020656E640D0A20202020656E640D0A20202020666F72205F2C656E65
+6D7920696E2070616972732820656E656D696573202920646F0D0A20202020202020206C6F63616C2064616D616765203D20656E656D793A4765744D
+61784865616C74682829202F20313030202A2073656C662E64616D6167655F706572630D0A20202020202020206C6F63616C2064616D616765496E66
+6F203D200D0A20202020202020207B0D0A20202020202020202020202076696374696D203D20656E656D792C0D0A2020202020202020202020206174
+7461636B6572203D2073656C663A47657443617374657228292C0D0A20202020202020202020202064616D616765203D2064616D616765202A204672
+616D6554696D6528292C0D0A20202020202020202020202064616D6167655F74797065203D2044414D4147455F545950455F505552452C0D0A202020
+2020202020202020206162696C697479203D2073656C663A4765744162696C69747928292C0D0A20202020202020207D0D0A20202020202020204170
+706C7944616D616765282064616D616765496E666F20290D0A20202020656E640D0A0D0A202020206C6F63616C20646972656374696F6E32203D2073
+656C662E64756D6D793A4765744162734F726967696E2829202D2073656C663A47657443617374657228293A4765744162734F726967696E28290D0A
+20202020646972656374696F6E322E7A203D20300D0A20202020646972656374696F6E32203D20646972656374696F6E323A4E6F726D616C697A6564
+28290D0A2020202073656C663A47657443617374657228293A536574466F7277617264566563746F7228646972656374696F6E32290D0A656E640D0A
+0D0A66756E6374696F6E206D6F6469666965725F70686F656E69785F626F73735F6265616D3A4F6E44657374726F7928290D0A202020206966206E6F
+742049735365727665722829207468656E2072657475726E20656E640D0A2020202069662073656C662E64756D6D7920616E64206E6F742073656C66
+2E64756D6D793A49734E756C6C2829207468656E0D0A202020202020202073656C662E64756D6D793A52656D6F76654D6F64696669657242794E616D
+6528226D6F6469666965725F70686F656E69785F626F73735F6265616D5F706173736976655F7468696E6B657222290D0A20202020656E640D0A2020
+202069662073656C662E6E4265616D4658496E646578207468656E0D0A20202020202020205061727469636C654D616E616765723A44657374726F79
+5061727469636C652873656C662E6E4265616D4658496E6465782C2074727565290D0A20202020202020205061727469636C654D616E616765723A52
+656C656173655061727469636C65496E6465782873656C662E6E4265616D4658496E646578290D0A202020202020202073656C662E6E4265616D4658
+496E646578203D206E696C0D0A20202020656E640D0A202020206C6F63616C20636173746572203D2073656C663A47657443617374657228290D0A20
+2020206966206E6F7420636173746572206F72206361737465723A49734E756C6C2829207468656E2072657475726E20656E640D0A2020202053746F
+70536F756E644F6E2820224865726F5F50686F656E69782E53756E5261792E43617374222C2063617374657220290D0A0953746F70536F756E644F6E
+2820224865726F5F50686F656E69782E53756E5261792E4C6F6F70222C2063617374657220290D0A09456D6974536F756E644F6E2820224865726F5F
+50686F656E69782E53756E5261792E53746F70222C2063617374657220290D0A656E640D0A0D0A66756E6374696F6E206D6F6469666965725F70686F
+656E69785F626F73735F6265616D3A4465636C61726546756E6374696F6E7328290D0A2020202072657475726E207B0D0A20202020202020204D4F44
+49464945525F50524F50455254595F4F564552524944455F414E494D4154494F4E2C0D0A20202020202020204D4F4449464945525F50524F50455254
+595F44495341424C455F5455524E494E472C0D0A202020207D0D0A656E640D0A0D0A66756E6374696F6E206D6F6469666965725F70686F656E69785F
+626F73735F6265616D3A436865636B537461746528290D0A202020206C6F63616C207374617465203D200D0A202020207B0D0A20202020202020205B
+4D4F4449464945525F53544154455F44495341524D45445D203D20747275652C0D0A20202020202020205B4D4F4449464945525F53544154455F524F
+4F5445445D203D20747275652C0D0A202020207D0D0A2020202072657475726E2073746174650D0A656E640D0A0D0A66756E6374696F6E206D6F6469
+666965725F70686F656E69785F626F73735F6265616D3A4765744F76657272696465416E696D6174696F6E28290D0A2020202072657475726E204143
+545F444F54415F4F564552524944455F4142494C4954595F330D0A656E640D0A0D0A66756E6374696F6E206D6F6469666965725F70686F656E69785F
+626F73735F6265616D3A4765744D6F64696669657244697361626C655475726E696E6728290D0A2020202072657475726E20310D0A656E64
+]],
+	"neutrals/phoenix_boss.lua",
+	getfenv and getfenv(1),
+	...
+)

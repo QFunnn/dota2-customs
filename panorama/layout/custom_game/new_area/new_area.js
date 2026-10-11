@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -12,21 +12,15 @@ GameEvents.Subscribe_custom( 'event_new_area', SetNewArea );
 
 function SetNewArea(data) 
 {
+	$("#new_area_label").text = $.Localize("#name_arena_" + data.arena)
+	$("#new_area_stage").text = $.Localize("#arena_room_stage") + " " + (Number(data.arena) || 1) + " / " + (Number(data.stages) || 6)
+	$("#new_area").RemoveClass("Visible")
 	$.Schedule( 0.5, function(){
 		Game.EmitSound("ui.badge_levelup")
-		$("#new_area").style.opacity = "1"
+		$("#new_area").AddClass("Visible")
 	})
-	let language = $.Language()
-	if (language == "russian")
-	{
-		$("#new_area").style.backgroundImage = 'url("file://{images}/custom_game/talents/' + data.arena + 'arearussian.png")';
-		$("#new_area").style.backgroundSize = "100%"
-	} else {
-		$("#new_area").style.backgroundImage = 'url("file://{images}/custom_game/talents/' + data.arena + 'areaenglish.png")';
-		$("#new_area").style.backgroundSize = "100%"
-	}
 	$.Schedule( 4.9, function(){
-		$("#new_area").style.opacity = "0" 
+		$("#new_area").RemoveClass("Visible")
 	})
 }
 
@@ -34,21 +28,14 @@ GameEvents.Subscribe_custom( 'event_new_area_duel', SetNewAreaDuel );
 
 function SetNewAreaDuel(data) 
 {
+	$("#new_area_duel_label").text = $.Localize((data && data.final == 1) ? "#name_final_duel" : "#name_arena_7")
+	$("#new_area_duel").RemoveClass("Visible")
 	$.Schedule( 0.5, function(){
 		Game.EmitSound("ui.badge_levelup")
-		$("#new_area_duel").style.opacity = "1"
+		$("#new_area_duel").AddClass("Visible")
 	})
-	let language = $.Language()
-	if (language == "russian")
-	{
-		$("#new_area_duel").style.backgroundImage = 'url("file://{images}/custom_game/talents/' + 'areaduelrussian.png")';
-		$("#new_area_duel").style.backgroundSize = "100%"
-	} else {
-		$("#new_area_duel").style.backgroundImage = 'url("file://{images}/custom_game/talents/' + 'areaduelenglish.png")';
-		$("#new_area_duel").style.backgroundSize = "100%"
-	}
 	$.Schedule( 4.9, function(){
-		$("#new_area_duel").style.opacity = "0"
+		$("#new_area_duel").RemoveClass("Visible")
 	})
 }
 
@@ -62,10 +49,9 @@ function SetNewAreaGameMode(data)
 		$("#new_area_gamemode").style.opacity = "1"
 	})
 
-	if (Game.GetMapInfo().map_display_name == "arena")
+	if (/^(arena|1_player|4_player)$/.test(Game.GetMapInfo().map_display_name))
 	{
-		$("#new_area_gamemode").style.backgroundImage = 'url("file://{images}/custom_game/talents/' + 'logo_arena.png")';
-		$("#new_area_gamemode").style.backgroundSize = "100%"
+		$("#new_area_gamemode").AddClass("ArenaLogo")
 	}
 
 	if (Game.GetMapInfo().map_display_name == "overthrow")

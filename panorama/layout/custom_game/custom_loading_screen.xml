@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -11,37 +11,17 @@
 <!-- xml reconstructed by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io -->
 <root>
 	<scripts>
-		<include src="s2r://panorama/layout/custom_game/scripts/util.vjs_c" />
-		<include src="s2r://panorama/layout/custom_game/scripts/xsolla_store.vjs_c" />
-		<include src="s2r://panorama/layout/custom_game/scripts/custom_loading_screen.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/scripts/util.vjs" />
+		<include src="s2r://panorama/layout/custom_game/scripts/xsolla_store.vjs" />
+		<include src="s2r://panorama/layout/custom_game/scripts/custom_loading_screen.vjs" />
 	</scripts>
 	<styles>
-		<include src="s2r://panorama/layout/custom_game/styles/custom_loading_screen.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/styles/custom_loading_screen.vcss" />
+		<include src="s2r://panorama/layout/custom_game/styles/xsolla_store.vcss" />
 	</styles>
 	<Panel hittest="false" class="lyboi">
 		<Panel id="loading_screen" />
-		<Panel class="ChoosePayMethode IsOpacity" id="ChoosePayMethode">
-			<Panel class="BuyItemPanelTop">
-				<Label class="BuyItemPanelName" text="#paymethod_choose" />
-				<Panel class="Close" onactivate="PaymentClose();" />
-			</Panel>
-			<Panel class="PaymentVariants">
-				<Panel class="PaymentBlock" onactivate="RequestUrl();">
-					<Panel class="PaymentIcon FunpayIcon" />
-					<Label class="PaymentLabel" text="#funpay_choose" />
-					<Panel class="BuyItemPanel">
-						<Label class="PriceLabel" text="#payment_choose" />
-					</Panel>
-				</Panel>
-				<Panel class="PaymentBlock" onactivate="RequestUrl(&apos;true&apos;);">
-					<Panel class="PaymentIcon XsollaIcon" />
-					<Label class="PaymentLabel" text="#xsolla_choose" />
-					<Panel class="BuyItemPanel">
-						<Label class="PriceLabel" text="#payment_choose" />
-					</Panel>
-				</Panel>
-			</Panel>
-		</Panel>
+		<Label id="WodaConnectLoadingStatus" class="WodaConnectLoadingStatus" text="" />
 		<Panel class="XsollaProductsChoose" id="XsollaProductsChoose">
 			<Panel class="BuyItemPanelTop">
 				<Label class="BuyItemPanelName" text="#xsolla_choose" />

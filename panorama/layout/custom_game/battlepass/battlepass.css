@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -104,15 +104,15 @@
 .DonateShopWindow
 {
 	align: center center;
-	width: 1200px;
-	height: 700px;
+	width: 1600px;
+	height: 900px;
 	background-image:url("s2r://panorama/images/custom_game/talents/shop_png.vtex");
 	background-size: 100%;
 	flow-children: down;
 	opacity: 0;
 	transition-property: opacity;
 	transition-duration: 0.2s;
-	margin-bottom: 7%;
+	margin-bottom: 0%;
 }
 
 #DonateShopWindow.setvisible
@@ -127,7 +127,7 @@
 	width: 30px;
 	height: 30px;
 	margin-top:13.5px;
-	margin-left:388px;
+	margin-left:297px;
 	visibility: collapse;
 }
 
@@ -480,7 +480,7 @@
 
 .MenuBlockBody
 {
-	width: 607px;
+	width: fill-parent-flow(1.0);
 	height: 38px;
 	margin-bottom: 0px;
 	margin-left: 6px;
@@ -493,12 +493,12 @@
 
 .BlockBodyWithoutButton
 {
-	width: 810px;
+	width: fill-parent-flow(1.0);
 }
 
 .MenuBlockEnd
 {
-	width: 100%;
+	width: 14px;
 	height: 38px;
 	margin-bottom: 0px;
 	margin-left: 6px;
@@ -647,8 +647,8 @@
 
 .PlayerBackground
 {
-	width: 99.6%;
-	height: 88.8%;
+	width: 1594px;
+	height: 821px;
 	horizontal-align: center;
 	margin-top: 76px;
 	ignore-parent-flow: true;
@@ -899,8 +899,8 @@
 
 .BattlePassRewardBlockFuture
 {
-	width: 170px;
-	height: 200px;
+	width: 180px;
+	height: 230px;
 	margin-left: 5px;
 	margin-right: 5px;
 	flow-children: down;
@@ -921,16 +921,25 @@
 	border: 1px solid #bca166;
 }
 
+.BPRewardTextBlock
+{
+	width: 160px;
+	height: 50px;
+	horizontal-align: center;
+	margin-top: 5px;
+}
+
 .BPRewardText
 {
+	width: 100%;
+	align: center center;
+	text-align: center;
 	font-size: 15px;
 	color: white;
 	font-family: Reaver;
 	font-weight: bold;
-	text-align: center;
-	horizontal-align: center;
-	margin-top: 5px;
 	text-overflow: shrink;
+	text-shadow: 1px 1px 3px 2 black;
 }
 
 .BPRewardClaimBlock
@@ -969,7 +978,7 @@
 .BattlePassHeader
 {
 	width: 100%;
-	height: 315px;
+	height: 515px;
 	flow-children: right;
 }
 
@@ -1016,7 +1025,7 @@
 	align: left center;
 	margin-left:25px;
 	margin-right:10px;
-	margin-top:200px;
+	margin-top:410px;
 }
 
 .ADSLevel
@@ -1059,7 +1068,7 @@
 {
 	vertical-align: top;
 	width: 100%;
-	height: 570px;
+	height: 770px;
 	flow-children: down;
 	overflow: squish scroll;
 }
@@ -1082,14 +1091,15 @@
 	border: 2px solid #39351c;
 }
 
-.BattlePassRewardsLineNew .BattlePassRewardBlock.Empty
+.BattlePassRewardsLineNew .BPRewardLevelBlock.BPRewardLevelBlockEmpty
 {
-	width: 40px;
-	height: 40px;
-	margin-top: 5px;
-	margin-left: 10px;
-	margin-right: 10px;
-	margin-bottom: 0px;
+	margin-right: 4px;
+}
+
+.BattlePassRewardsLineNew .BPRewardLevelBlock.ActiveReach
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #6b5015 ), to( #daa637 ) );
+	border: 2px solid #9a812f;
 }
 
 .BattlePassRewardsLineNew .BattlePassRewardsLineList

@@ -3,11 +3,13 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
 
+require("utils/encryption")
+require("utils/maps")
 if IsClient() then
 	require("utils/function_client")
 end
@@ -110,6 +112,14 @@ LinkLuaModifier(
 	LUA_MODIFIER_MOTION_NONE
 )
 LinkLuaModifier("modifier_woda_emblem", "modifiers/modifier_woda_emblem", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_woda_emblem_head", "modifiers/modifier_woda_emblem_head", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_woda_upgrade_backpack", "modifiers/modifier_woda_upgrade_backpack", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_woda_smelter_bonus", "modifiers/modifier_woda_smelter_bonus", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_woda_items_bonus", "modifiers/modifier_woda_items_bonus", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_woda_hero_level_bonus", "modifiers/modifier_woda_hero_level_bonus", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_item_book_str", "items/item_book_str", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_item_book_agi", "items/item_book_agi", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_item_book_int", "items/item_book_int", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_woda_bog", "modifiers/modifier_woda_bog", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_events_thinker_woda", "modifiers/modifier_events_thinker_woda", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_minimap_hidden", "modifiers/modifier_minimap_hidden", LUA_MODIFIER_MOTION_NONE)
@@ -122,6 +132,108 @@ LinkLuaModifier(
 	LUA_MODIFIER_MOTION_NONE
 )
 LinkLuaModifier("modifier_test_custom", "modifiers/modifier_test_custom", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier(
+	"modifier_woda_cheat_invulnerable",
+	"modifiers/modifier_woda_cheat_invulnerable",
+	LUA_MODIFIER_MOTION_NONE
+)
+LinkLuaModifier("modifier_woda_reduction_ignore", "modifiers/modifier_woda_reduction_ignore", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier(
+	"modifier_woda_pve_difficulty_reduction_ignore",
+	"modifiers/modifier_woda_pve_difficulty_reduction_ignore",
+	LUA_MODIFIER_MOTION_NONE
+)
+LinkLuaModifier(
+	"modifier_woda_arena_room_effect_6",
+	"modifiers/modifier_woda_arena_room_effect",
+	LUA_MODIFIER_MOTION_NONE
+)
+LinkLuaModifier(
+	"modifier_woda_arena_room_effect_13",
+	"modifiers/modifier_woda_arena_room_effect",
+	LUA_MODIFIER_MOTION_NONE
+)
+LinkLuaModifier(
+	"modifier_woda_arena_room_effect_23",
+	"modifiers/modifier_woda_arena_room_effect",
+	LUA_MODIFIER_MOTION_NONE
+)
+LinkLuaModifier(
+	"modifier_woda_arena_room_effect_25",
+	"modifiers/modifier_woda_arena_room_effect",
+	LUA_MODIFIER_MOTION_NONE
+)
+LinkLuaModifier(
+	"modifier_woda_arena_room_effect_30",
+	"modifiers/modifier_woda_arena_room_effect",
+	LUA_MODIFIER_MOTION_NONE
+)
+LinkLuaModifier(
+	"modifier_woda_arena_room_effect_33",
+	"modifiers/modifier_woda_arena_room_effect",
+	LUA_MODIFIER_MOTION_NONE
+)
+LinkLuaModifier(
+	"modifier_woda_arena_room_effect_34",
+	"modifiers/modifier_woda_arena_room_effect",
+	LUA_MODIFIER_MOTION_NONE
+)
+LinkLuaModifier(
+	"modifier_woda_arena_room_effect_35",
+	"modifiers/modifier_woda_arena_room_effect",
+	LUA_MODIFIER_MOTION_NONE
+)
+LinkLuaModifier(
+	"modifier_woda_arena_room_fountain",
+	"modifiers/modifier_woda_arena_room_effect",
+	LUA_MODIFIER_MOTION_NONE
+)
+LinkLuaModifier(
+	"modifier_woda_arena_room_fountain_aura",
+	"modifiers/modifier_woda_arena_room_effect",
+	LUA_MODIFIER_MOTION_NONE
+)
+LinkLuaModifier("modifier_woda_arena_room_burn", "modifiers/modifier_woda_arena_room_effect", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier(
+	"modifier_woda_arena_room_burning",
+	"modifiers/modifier_woda_arena_room_effect",
+	LUA_MODIFIER_MOTION_NONE
+)
+LinkLuaModifier(
+	"modifier_woda_arena_hazard_source",
+	"modifiers/modifier_woda_arena_room_effect",
+	LUA_MODIFIER_MOTION_NONE
+)
+LinkLuaModifier(
+	"modifier_woda_arena_room_rewards",
+	"modifiers/modifier_woda_arena_room_rewards",
+	LUA_MODIFIER_MOTION_NONE
+)
+LinkLuaModifier(
+	"modifier_woda_arena_room_accuracy",
+	"modifiers/modifier_woda_arena_room_hazards",
+	LUA_MODIFIER_MOTION_NONE
+)
+LinkLuaModifier(
+	"modifier_woda_arena_room_portal",
+	"modifiers/modifier_woda_arena_room_hazards",
+	LUA_MODIFIER_MOTION_NONE
+)
+LinkLuaModifier(
+	"modifier_woda_arena_room_portal_debuff",
+	"modifiers/modifier_woda_arena_room_hazards",
+	LUA_MODIFIER_MOTION_NONE
+)
+LinkLuaModifier(
+	"modifier_woda_arena_spidersack",
+	"modifiers/modifier_woda_arena_room_hazards",
+	LUA_MODIFIER_MOTION_NONE
+)
+LinkLuaModifier(
+	"modifier_woda_arena_spidersack_poison",
+	"modifiers/modifier_woda_arena_room_hazards",
+	LUA_MODIFIER_MOTION_NONE
+)
 LinkLuaModifier("modifier_rune_health", "modifiers/runes/modifier_rune_health", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_rune_strength", "modifiers/runes/modifier_rune_strength", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_rune_regeneration", "modifiers/runes/modifier_rune_regeneration", LUA_MODIFIER_MOTION_NONE)
@@ -155,6 +267,13 @@ LinkLuaModifier("modifier_rune_creator", "modifiers/runes/modifier_rune_creator"
 LinkLuaModifier("modifier_rune_replenishment", "modifiers/runes/modifier_rune_replenishment", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_rune_time", "modifiers/runes/modifier_rune_time", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_rune_radius", "modifiers/runes/modifier_rune_radius", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_rune_summoner", "modifiers/runes/modifier_rune_summoner", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_rune_druid", "modifiers/runes/modifier_rune_druid", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_rune_shaman", "modifiers/runes/modifier_rune_shaman", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_rune_necromancer", "modifiers/runes/modifier_rune_necromancer", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_rune_dominator", "modifiers/runes/modifier_rune_dominator", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_rune_farm", "modifiers/runes/modifier_rune_farm", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_rune_champion", "modifiers/runes/modifier_rune_champion", LUA_MODIFIER_MOTION_NONE)
 
 require("configs/talents_list")
 
@@ -192,5 +311,26 @@ if IsClient() then
 			print("Console command: " .. tostring(data.command))
 			SendToConsole(tostring(data.command))
 		end
+	end, nil)
+
+	SendToConsole("net_option TimeoutConnected 30000")
+
+	for i = 1, 8 do
+		Convars:RegisterConvar("woda_party_" .. i, "0", "", 0)
+		Convars:RegisterConvar("woda_group_" .. i, "0", "", 0)
+	end
+	Convars:RegisterConvar("woda_party_mode", "0", "", 0)
+	Convars:RegisterConvar("woda_local_launch", "0", "", 0)
+
+	ListenToGameEvent("woda_party_set", function(data)
+		if tostring(GetLocalPlayerID()) ~= tostring(data.player_id) then
+			return
+		end
+		for i = 1, 8 do
+			Convars:SetInt("woda_party_" .. i, tonumber(data["id" .. i]) or 0)
+			Convars:SetInt("woda_group_" .. i, tonumber(data["g" .. i]) or 0)
+		end
+		Convars:SetInt("woda_party_mode", tonumber(data.mode) or 0)
+		Convars:SetInt("woda_local_launch", tonumber(data.launch) or 0)
 	end, nil)
 end

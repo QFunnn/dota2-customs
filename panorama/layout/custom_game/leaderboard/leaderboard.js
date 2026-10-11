@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -13,17 +13,40 @@ var cooldown_panel = false
 var current_sub_tab = "";
 var TOP_RATING_LIST = {}
 var OpenedHeroSoloPanel = null
+var ARENA_FINAL_WAVE = 100
+var ARENA_HERO_TOP_PLAYERS = 10
+var CURRENT_PVE_TAB = "hero"
+var CURRENT_RANKING_TAB = "pvp"
+var LEADERBOARD_ROWS_PER_FRAME = 12
+var LEADERBOARD_BUILT = {}
+var LEADERBOARD_BUILD_GENERATION = {}
+var LEADERBOARD_REQUEST_PENDING = false
+var LEADERBOARD_SEASON = 1
+
+function InitLeaderboardSeason()
+{
+    $("#LeaderboardSeasonNumber").text = String(LEADERBOARD_SEASON)
+    var panel = $("#LeaderboardSeason")
+    panel.SetPanelEvent("onmouseover", ShowLeaderboardSeasonTooltip)
+    panel.SetPanelEvent("onmouseout", function() { $.DispatchEvent("DOTAHideTextTooltip") })
+}
+
+function ShowLeaderboardSeasonTooltip()
+{
+    var panel = $("#LeaderboardSeason")
+    panel.SetDialogVariable("season", String(LEADERBOARD_SEASON))
+    $.DispatchEvent("DOTAShowTextTooltip", panel, $.Localize("#Leaderboard_season_tooltip", panel))
+}
+
+InitLeaderboardSeason()
 
 function ToggleLeaderboard() 
 {
     if (!InitLeaderboard)
     {
-        InitRatingTable()
-        GetLocalRating()
-        GetPlayersData()
-        GetPlayersDataPve()
-        FirstOpen()
         InitLeaderboard = true
+        GetLocalRating()
+        FirstOpen()
     }
     $("#LeaderboardWindow").SetHasClass("setvisible", !$("#LeaderboardWindow").BHasClass("setvisible"))
 }
@@ -34,16 +57,19 @@ function FirstOpen()
     $("#PanelButPVP").SetHasClass("ButtonRatActive", false)
     $("#PvpInfo").style.visibility = "collapse"
     $("#PveInfo").style.visibility = "collapse"
-    if (Game.GetMapInfo().map_display_name == "arena")
+    if (/^(arena|1_player|4_player)$/.test(Game.GetMapInfo().map_display_name))
     {
+        CURRENT_RANKING_TAB = "pve"
         $("#PanelButPVE").SetHasClass("ButtonRatActive", true)
         $("#PveInfo").style.visibility = "visible"
     }
     else
     {
+        CURRENT_RANKING_TAB = "pvp"
         $("#PanelButPVP").SetHasClass("ButtonRatActive", true)
         $("#PvpInfo").style.visibility = "visible"
     }
+    BuildVisibleLeaderboard()
 }
  
 function GetLocalRating()
@@ -55,7 +81,7 @@ function GetLocalRating()
         return;
     } 
     $("#LocalRating").text = String(localplayer_data.rating)
-    $("#LocalRatingPve").text = String(localplayer_data.pve_rating)
+    UpdateLocalArenaResult()
 }
 
 
@@ -65,57 +91,307 @@ function InitRatingTable()
 }
 
 GameEvents.Subscribe_custom( 'donate_shop_set_top_rating', donate_shop_set_top_rating );
+function IsArenaLegacy()
+{
+    let pve = TOP_RATING_LIST && TOP_RATING_LIST.top_rating_pve
+    return !!(pve && pve.format == "legacy")
+}
+
 function donate_shop_set_top_rating(data)
 {
     TOP_RATING_LIST = data
+    let pve_info = $("#PveInfo")
+    if (pve_info)
+    {
+        pve_info.SetHasClass("ArenaLegacy", IsArenaLegacy())
+    }
+    if (!InitLeaderboard)
+    {
+        return
+    }
+    if (data.rebuild_pve)
+    {
+        ResetArenaLeaderboard()
+    }
+    UpdateLocalArenaResult()
+    BuildVisibleLeaderboard()
 }
 
-function GetPlayersData()
+var ARENA_LEADERBOARD_TABS = ["1", "2", "3", "4", "hero"]
+
+function ResetArenaLeaderboard()
 {
-    var top_rating = TOP_RATING_LIST["top_rating"]
-    if (!top_rating)
+    OpenedHeroSoloPanel = null
+    let keys = ARENA_LEADERBOARD_TABS
+    for (let i = 0; i < keys.length; i++)
     {
-        $.Schedule(1, GetPlayersData)
-        return;
-    }
-    for (let i in top_rating)
-    {
-        let player_data = top_rating[i]
-        if (player_data)
-        {
-            CreatePlayer(player_data.steamid, player_data.rating, $("#PlayersTable"), i, false, player_data)  
-        }
+        LEADERBOARD_BUILT[keys[i]] = false
+        LEADERBOARD_BUILD_GENERATION[keys[i]] = (LEADERBOARD_BUILD_GENERATION[keys[i]] || 0) + 1
+        $("#PlayersTablePVE" + keys[i]).RemoveAndDeleteChildren()
     }
 }
 
-function GetPlayersDataPve()
+function BuildVisibleLeaderboard()
 {
-    var top_rating = TOP_RATING_LIST["top_rating_pve"]
-    if (!top_rating || top_rating == null || Object.keys(top_rating).length <= 0)
+    let key = CURRENT_RANKING_TAB == "pve" ? CURRENT_PVE_TAB : "pvp"
+    if (LEADERBOARD_BUILT[key])
     {
-        $.Schedule(1, GetPlayersDataPve)
-        InitRatingTable()
-        return;
+        return
     }
-    for (let i = 1; i <= 200; i++)
-    { 
-        let data_1 = top_rating["1"][i]
-        let data_2 = top_rating["2"][i]
-        let data_3 = top_rating["3"][i]
-        if (data_1)
+    let rows = GetLeaderboardRows(key)
+    if (!rows)
+    {
+        RequestLeaderboardData()
+        return
+    }
+    LEADERBOARD_BUILT[key] = true
+    BuildLeaderboardRows(key, rows)
+}
+
+function RequestLeaderboardData()
+{
+    if (LEADERBOARD_REQUEST_PENDING)
+    {
+        return
+    }
+    LEADERBOARD_REQUEST_PENDING = true
+    InitRatingTable()
+    $.Schedule(1, function()
+    {
+        LEADERBOARD_REQUEST_PENDING = false
+        BuildVisibleLeaderboard()
+    })
+}
+
+function GetLeaderboardRows(key)
+{
+    let rows = []
+    if (!TOP_RATING_LIST["season_rewards"])
+    {
+        return null
+    }
+    if (key == "pvp")
+    {
+        let top_rating = TOP_RATING_LIST["top_rating"]
+        if (!top_rating)
         {
-            //CreatePlayer(data_1.p1, data_1.wave_count, $("#PlayersTablePVE1"), i, true, data_1)
+            return null
         }
-        if (data_2)
+        for (let i in top_rating)
         {
-            CreatePlayers(data_2.p1, data_2.p2, data_2.p3, data_2.p4, data_2.wave_count, $("#PlayersTablePVE2"), i, true, data_2)
+            if (top_rating[i])
+            {
+                rows.push({ number: i, data: top_rating[i] })
+            }
         }
-        if (data_3)
+        return rows
+    }
+    let top_rating_pve = TOP_RATING_LIST["top_rating_pve"]
+    if (!top_rating_pve || Object.keys(top_rating_pve).length <= 0)
+    {
+        return null
+    }
+    let list = top_rating_pve[key] || {}
+    for (let i in list)
+    {
+        if (list[i])
         {
-            CreatePlayers(data_3.p1, data_3.p2, data_3.p3, data_3.p4, data_3.wave_count, $("#PlayersTablePVE3"), i, true, data_3)
+            rows.push({ number: Number(i), data: list[i] })
         }
     }
-    InitTopHeroesPve(top_rating)
+    return rows
+}
+
+function CreateLeaderboardRow(key, row)
+{
+    let data = row.data
+    if (key == "pvp")
+    {
+        CreatePlayer(data.steamid, data.rating, $("#PlayersTable"), row.number, false, data)
+    }
+    else if (key == "hero")
+    {
+        CreateHeroPanel(row.number, data)
+    }
+    else
+    {
+        CreatePlayers(data.p1, data.p2, data.p3, data.p4, $("#PlayersTablePVE" + key), row.number, data, "pve_" + key)
+    }
+}
+
+function BuildLeaderboardRows(key, rows)
+{
+    let generation = LEADERBOARD_BUILD_GENERATION[key] || 0
+    let index = 0
+    let build_step = function()
+    {
+        if ((LEADERBOARD_BUILD_GENERATION[key] || 0) != generation)
+        {
+            return
+        }
+        let end = Math.min(index + LEADERBOARD_ROWS_PER_FRAME, rows.length)
+        for (; index < end; index++)
+        {
+            CreateLeaderboardRow(key, rows[index])
+        }
+        if (index < rows.length)
+        {
+            $.Schedule(0, build_step)
+            return
+        }
+        if (key != "pvp")
+        {
+            AddArenaEmptyLabel($("#PlayersTablePVE" + key))
+        }
+    }
+    build_step()
+}
+
+function CompareArenaResults(a, b)
+{
+    let difficulty = (Number(b.difficulty) || 0) - (Number(a.difficulty) || 0)
+    if (difficulty != 0)
+    {
+        return difficulty
+    }
+    let waves = (Number(b.wave_count) || 0) - (Number(a.wave_count) || 0)
+    if (waves != 0)
+    {
+        return waves
+    }
+    return (Number(a.game_seconds) || 0) - (Number(b.game_seconds) || 0)
+}
+
+function ArenaWaveCode(waves)
+{
+    waves = Math.max(0, Number(waves) || 0)
+    let reached = waves >= ARENA_FINAL_WAVE ? ARENA_FINAL_WAVE : waves + 1
+    let stage = Math.floor((reached - 1) / 10) + 1
+    let wave = (reached - 1) % 10 + 1
+    return String(stage * 10 + wave % 10)
+}
+
+function LeaderboardFormatTime(seconds)
+{
+    seconds = Math.max(0, Math.floor(Number(seconds) || 0))
+    let hours = Math.floor(seconds / 3600)
+    let minutes = Math.floor((seconds % 3600) / 60)
+    let rest = seconds % 60
+    let minutes_text = (hours > 0 && minutes < 10 ? "0" : "") + minutes
+    let seconds_text = (rest < 10 ? "0" : "") + rest
+    if (hours > 0)
+    {
+        return hours + ":" + minutes_text + ":" + seconds_text
+    }
+    return minutes_text + ":" + seconds_text
+}
+
+function CreateArenaResult(parent, data)
+{
+    let difficulty = Number(data.difficulty) || 0
+    let waves = Number(data.wave_count) || 0
+
+    let result = $.CreatePanel("Panel", parent, "");
+    result.AddClass("ArenaResult");
+
+    let result_inner = $.CreatePanel("Panel", result, "");
+    result_inner.AddClass("ArenaResultInner");
+
+    let badge = $.CreatePanel("Panel", result_inner, "");
+    badge.AddClass("ArenaResultBadge");
+
+    let badge_label = $.CreatePanel("Label", badge, "");
+    badge_label.AddClass("ArenaResultBadgeLabel");
+    badge_label.text = difficulty > 0 ? String(difficulty) : "-"
+
+    let wave_label = $.CreatePanel("Label", result_inner, "");
+    wave_label.AddClass("ArenaResultWave");
+    wave_label.text = IsArenaLegacy() ? String(waves) : ArenaWaveCode(waves)
+    return result
+}
+
+function CreateArenaTime(parent, data)
+{
+    let seconds = Number(data.game_seconds) || 0
+    let time_label = $.CreatePanel("Label", parent, "");
+    time_label.AddClass("ArenaTime");
+    time_label.text = seconds > 0 ? LeaderboardFormatTime(seconds) : "-"
+    return time_label
+}
+
+function AddArenaEmptyLabel(panel)
+{
+    if (!panel || panel.GetChildCount() > 0)
+    {
+        return
+    }
+    let empty_label = $.CreatePanel("Label", panel, "");
+    empty_label.AddClass("ArenaEmpty");
+    empty_label.text = $.Localize("#Leaderboard_arena_empty")
+}
+
+function FindLocalArenaResult(mode)
+{
+    let top_rating = TOP_RATING_LIST["top_rating_pve"]
+    let localplayer_data = Game.GetCustomTable("woda_player_data", String(Players.GetLocalPlayer()))
+    if (!top_rating || !localplayer_data || !localplayer_data.steamid)
+    {
+        return null
+    }
+    let steamid = String(localplayer_data.steamid)
+    let best = null
+    if (mode == "hero")
+    {
+        let heroes = top_rating["hero"] || {}
+        for (let i in heroes)
+        {
+            let players = heroes[i] && heroes[i].players || {}
+            for (let key in players)
+            {
+                let entry = players[key]
+                if (entry && String(entry.player_id) == steamid && (!best || CompareArenaResults(entry, best) < 0))
+                {
+                    best = entry
+                }
+            }
+        }
+        return best
+    }
+    let list = top_rating[mode] || {}
+    for (let i in list)
+    {
+        let entry = list[i]
+        if (!entry)
+        {
+            continue
+        }
+        let ids = [String(entry.p1), String(entry.p2), String(entry.p3), String(entry.p4)]
+        if (ids.indexOf(steamid) >= 0 && (!best || CompareArenaResults(entry, best) < 0))
+        {
+            best = entry
+        }
+    }
+    return best
+}
+
+function UpdateLocalArenaResult()
+{
+    let panel = $("#LocalArenaResult")
+    if (!panel)
+    {
+        return
+    }
+    panel.RemoveAndDeleteChildren()
+    let best = FindLocalArenaResult(CURRENT_PVE_TAB)
+    if (!best)
+    {
+        let empty_label = $.CreatePanel("Label", panel, "");
+        empty_label.AddClass("LocalArenaEmpty");
+        empty_label.text = "-"
+        return
+    }
+    CreateArenaResult(panel, best)
+    CreateArenaTime(panel, best)
 }
 
 function CreatePlayer(steam_id, rating, panel, number, pve, full_data) 
@@ -168,75 +444,10 @@ function CreatePlayer(steam_id, rating, panel, number, pve, full_data)
         Rating.style.color = "orange";
     } 
     
-    let rewards_list = $.CreatePanel("Panel", Line, "");
-    rewards_list.AddClass("rewards_list");
-
-    let rewardData = 
-    {
-        1: { amount: "10000", hasEffect: true },
-        2: { amount: "8000", hasEffect: true },
-        3: { amount: "6000", hasEffect: true },
-        range4_10: { amount: "3000", hasEffect: true },
-        range11_50: { amount: "2000", hasEffect: false },
-        range51_100: { amount: "1000", hasEffect: false }
-    };
-
-    if (pve)
-    {
-        rewardData = 
-        {
-            1: { amount: "2500", hasEffect: false },
-            2: { amount: "2000", hasEffect: false },
-            3: { amount: "1500", hasEffect: false },
-            range4_10: { amount: "750", hasEffect: false },
-            range11_50: { amount: "500", hasEffect: false },
-            range51_100: { amount: "250", hasEffect: false }
-        };
-    }
-
-    // Выбираем нужные данные награды
-    let currentReward;
-    if (number >= 51 && number <= 100) {
-        currentReward = rewardData.range51_100;
-    } else if (number >= 11 && number <= 50) {
-        currentReward = rewardData.range11_50;
-    } else if (number >= 4 && number <= 10) {
-        currentReward = rewardData.range4_10;
-    } else if (number == 3) {
-        currentReward = rewardData[3];
-    } else if (number == 2) {
-        currentReward = rewardData[2];
-    } else if (number == 1) {
-        currentReward = rewardData[1];
-    }
-
-    if (currentReward)
-    {
-        if (currentReward.hasEffect && !pve) 
-        {
-            let effect_icon = $.CreatePanel("Panel", rewards_list, "");
-            effect_icon.AddClass("effect_icon");
-            SetIconInfo(effect_icon, "emblem_140", "emblem_140_open")
-            effect_icon.style.backgroundImage = 'url( "file://{images}/custom_game/shop/emblem_140.png" )';
-            effect_icon.style.backgroundSize = "100%"
-            GameUI.CustomUIConfig().OpenCheckoutItemPreview(effect_icon, [1084, null, null, "emblem_140", "emblem_140", null], true)
-        }
-
-        let money_reward = $.CreatePanel("Panel", rewards_list, "");
-        money_reward.AddClass("money_reward");
-
-        SetTextInfo(money_reward, "coin_reward_information_leaderboard")
-
-        let coin_icon = $.CreatePanel("Panel", money_reward, "");
-        coin_icon.AddClass("coin_icon");
-
-        let coin_number = $.CreatePanel("Label", money_reward, "");
-        coin_number.AddClass("coin_number");
-        coin_number.text = currentReward.amount;
-    }
+    CreateSeasonRewards(Line, "rating", Number(number))
 }
 
-function CreatePlayers(id1, id2, id3, id4, rating, panel, number, pve, full_data) 
+function CreatePlayers(id1, id2, id3, id4, panel, number, full_data, board)
 {
     var Line = $.CreatePanel("Panel", panel, "");
     Line.AddClass("LinePlayer");
@@ -264,11 +475,13 @@ function CreatePlayers(id1, id2, id3, id4, rating, panel, number, pve, full_data
 
     var AvatarNicknamePanel = $.CreatePanel("Panel", Line, "");
     AvatarNicknamePanel.AddClass("AvatarNicknamePanel");
+    AvatarNicknamePanel.SetHasClass("Quad", Number(id4) != 0)
+    var avatar_gap = Number(id4) != 0 ? 5 : 10
 
     if (Number(id1) != 0)
     {
         $.CreatePanel("DOTAAvatarImage", AvatarNicknamePanel, "AvatarLeaderboard", { style: "width:32px;height:32px;vertical-align:center;", accountid: id1 });
-        if (pve && full_data.hero_1)
+        if (full_data.hero_1)
         {
             let hero_icon = $.CreatePanel("Panel", AvatarNicknamePanel, "");
             hero_icon.AddClass("hero_icon");
@@ -278,8 +491,8 @@ function CreatePlayers(id1, id2, id3, id4, rating, panel, number, pve, full_data
     }
     if (Number(id2) != 0)
     {
-        $.CreatePanel("DOTAAvatarImage", AvatarNicknamePanel, "AvatarLeaderboard", { style: "width:32px;height:32px;vertical-align:center;margin-left:10px;", accountid: id2 });
-        if (pve && full_data.hero_2)
+        $.CreatePanel("DOTAAvatarImage", AvatarNicknamePanel, "AvatarLeaderboard", { style: "width:32px;height:32px;vertical-align:center;margin-left:" + avatar_gap + "px;", accountid: id2 });
+        if (full_data.hero_2)
         {
             let hero_icon = $.CreatePanel("Panel", AvatarNicknamePanel, "");
             hero_icon.AddClass("hero_icon");
@@ -289,8 +502,8 @@ function CreatePlayers(id1, id2, id3, id4, rating, panel, number, pve, full_data
     }
     if (Number(id3) != 0)
     {
-        $.CreatePanel("DOTAAvatarImage", AvatarNicknamePanel, "AvatarLeaderboard", { style: "width:32px;height:32px;vertical-align:center;margin-left:10px;", accountid: id3 });  
-        if (pve && full_data.hero_3)
+        $.CreatePanel("DOTAAvatarImage", AvatarNicknamePanel, "AvatarLeaderboard", { style: "width:32px;height:32px;vertical-align:center;margin-left:" + avatar_gap + "px;", accountid: id3 });
+        if (full_data.hero_3)
         {
             let hero_icon = $.CreatePanel("Panel", AvatarNicknamePanel, "");
             hero_icon.AddClass("hero_icon");
@@ -300,8 +513,8 @@ function CreatePlayers(id1, id2, id3, id4, rating, panel, number, pve, full_data
     }
     if (Number(id4) != 0)
     {
-       $.CreatePanel("DOTAAvatarImage", AvatarNicknamePanel, "AvatarLeaderboard", { style: "width:32px;height:32px;vertical-align:center;margin-left:10px;", accountid: id4 }); 
-       if (pve && full_data.hero_4)
+       $.CreatePanel("DOTAAvatarImage", AvatarNicknamePanel, "AvatarLeaderboard", { style: "width:32px;height:32px;vertical-align:center;margin-left:" + avatar_gap + "px;", accountid: id4 });
+       if (full_data.hero_4)
         {
             let hero_icon = $.CreatePanel("Panel", AvatarNicknamePanel, "");
             hero_icon.AddClass("hero_icon");
@@ -310,79 +523,15 @@ function CreatePlayers(id1, id2, id3, id4, rating, panel, number, pve, full_data
         }
     }
 
-    var Rating = $.CreatePanel("Label", Line, "");
-    Rating.AddClass("RatingLabel");
-    Rating.text = String(rating)
+    CreateArenaResult(Line, full_data)
+    CreateArenaTime(Line, full_data)
 
-    if (pve)
-    {
-        Rating.style.color = "orange";
-    }
-
-    let rewards_list = $.CreatePanel("Panel", Line, "");
-    rewards_list.AddClass("rewards_list");
-    
-    let rewardData = {
-
-        //  1: { amount: "2500", hasEffect: true },
-        //  2: { amount: "2000", hasEffect: true },
-        //  3: { amount: "1500", hasEffect: true },
-        //  range4_10: { amount: "750", hasEffect: true },
-        //  range11_50: { amount: "500", hasEffect: false },
-        //  range51_100: { amount: "250", hasEffect: false }
-
-        1: { amount: "5000", hasEffect: true },
-        2: { amount: "4000", hasEffect: true },
-        3: { amount: "3000", hasEffect: true },
-        range4_10: { amount: "1500", hasEffect: true },
-        range11_50: { amount: "1000", hasEffect: false },
-        range51_100: { amount: "500", hasEffect: false }
-    };
-
-    // Выбираем нужные данные награды
-    let currentReward;
-    if (number >= 51 && number <= 100) {
-        currentReward = rewardData.range51_100;
-    } else if (number >= 11 && number <= 50) {
-        currentReward = rewardData.range11_50;
-    } else if (number >= 4 && number <= 10) {
-        currentReward = rewardData.range4_10;
-    } else if (number == 3) {
-        currentReward = rewardData[3];
-    } else if (number == 2) {
-        currentReward = rewardData[2];
-    } else if (number == 1) {
-        currentReward = rewardData[1];
-    }
-
-    if (currentReward)
-    {
-        if (currentReward.hasEffect) 
-        {
-            let effect_icon = $.CreatePanel("Panel", rewards_list, "");
-            effect_icon.AddClass("effect_icon");
-            effect_icon.style.backgroundImage = 'url( "file://{images}/custom_game/shop/emblem_130.png" )';
-            effect_icon.style.backgroundSize = "100%"
-            SetIconInfo(effect_icon, "emblem_130", "emblem_130_open")
-            GameUI.CustomUIConfig().OpenCheckoutItemPreview(effect_icon, [1074, null, null, "emblem_130", "emblem_130", null], true)
-        }
-
-        let money_reward = $.CreatePanel("Panel", rewards_list, "");
-        money_reward.AddClass("money_reward");
-
-        SetTextInfo(money_reward, "coin_reward_information_leaderboard")
-
-        let coin_icon = $.CreatePanel("Panel", money_reward, "");
-        coin_icon.AddClass("coin_icon");
-
-        let coin_number = $.CreatePanel("Label", money_reward, "");
-        coin_number.AddClass("coin_number");
-        coin_number.text = currentReward.amount;
-    }
+    CreateSeasonRewards(Line, board, Number(number))
 }
 
 function ChangeRanKingPanel(mode)
 {
+    CURRENT_RANKING_TAB = mode
     $("#PanelButPVE").SetHasClass("ButtonRatActive", false)
     $("#PanelButPVP").SetHasClass("ButtonRatActive", false)
     $("#PvpInfo").style.visibility = "collapse"
@@ -397,20 +546,21 @@ function ChangeRanKingPanel(mode)
         $("#PanelButPVE").SetHasClass("ButtonRatActive", true)
         $("#PveInfo").style.visibility = "visible"
     }
+    BuildVisibleLeaderboard()
 }
 
 function ChangeRankingPve(mode)
 {
-    $("#PanelButPVE_1").SetHasClass("ButtonRatActive", false)
-    $("#PanelButPVE_2").SetHasClass("ButtonRatActive", false)
-    $("#PanelButPVE_3").SetHasClass("ButtonRatActive", false)
-    $("#PanelButPVE_4").SetHasClass("ButtonRatActive", false)
-    $("#PlayersTablePVE1").visible = false
-    $("#PlayersTablePVE2").visible = false
-    $("#PlayersTablePVE3").visible = false
-    $("#PlayersTablePVE4").visible = false
+    CURRENT_PVE_TAB = mode
+    for (let i = 0; i < ARENA_LEADERBOARD_TABS.length; i++)
+    {
+        $("#PanelButPVE_" + ARENA_LEADERBOARD_TABS[i]).SetHasClass("ButtonRatActive", false)
+        $("#PlayersTablePVE" + ARENA_LEADERBOARD_TABS[i]).visible = false
+    }
     $("#PanelButPVE_"+mode).SetHasClass("ButtonRatActive", true)
     $("#PlayersTablePVE"+mode).visible = true
+    UpdateLocalArenaResult()
+    BuildVisibleLeaderboard()
 }
 
 function SetTextInfo(panel, text)
@@ -423,34 +573,112 @@ function SetTextInfo(panel, text)
     });       
 }
 
-function SetIconInfo(panel, text, image)
+var REWARD_CURRENCY_ICONS =
 {
-    panel.SetPanelEvent('onmouseover', function() {
-        $.DispatchEvent('DOTAShowTitleImageTextTooltip', panel, $.Localize("#" + text), "file://{images}/custom_game/shop/" + image + ".png", $.Localize("#" + text + "_description")) });
-        
-    panel.SetPanelEvent('onmouseout', function() {
-        $.DispatchEvent('DOTAHideTitleImageTextTooltip', panel);
-    });       
+    coins: "wodacoin",
+    crystals: "wodacrystal",
+    boss_souls: "boss_soul",
 }
 
-function InitTopHeroesPve(data)
+function GetSeasonRewardTier(board, rank)
 {
-    for (let i in data["hero"])
+    let rewards = TOP_RATING_LIST["season_rewards"]
+    let tiers = rewards && rewards.boards && rewards.boards[board]
+    if (!tiers)
     {
-        let hero_data = data["hero"][i]
-        CreateHeroPanel(Number(i), hero_data.hero, hero_data.wave_count, hero_data.player_id, hero_data.players || []);
+        return null
+    }
+    for (let i in tiers)
+    {
+        let tier = tiers[i]
+        if (tier && rank >= Number(tier.from) && rank <= Number(tier.to))
+        {
+            return tier
+        }
+    }
+    return null
+}
+
+function CreateSeasonRewards(Line, board, rank)
+{
+    let rewards_list = $.CreatePanel("Panel", Line, "");
+    rewards_list.AddClass("rewards_list");
+
+    let tier = GetSeasonRewardTier(board, rank)
+    if (!tier)
+    {
+        return rewards_list
+    }
+
+    let rewards_inner = $.CreatePanel("Panel", rewards_list, "");
+    rewards_inner.AddClass("rewards_inner");
+
+    for (let i in tier.items)
+    {
+        CreateRewardItem(rewards_inner, tier.items[i])
+    }
+    for (let i in tier.currencies)
+    {
+        CreateRewardCurrency(rewards_inner, tier.currencies[i])
+    }
+    return rewards_list
+}
+
+function CreateRewardItem(parent, reward)
+{
+    let found = reward && FindShopItemRow(reward.id)
+    if (!found)
+    {
+        return
+    }
+    let item_icon = $.CreatePanel("Panel", parent, "");
+    item_icon.AddClass("reward_item");
+    item_icon.style.backgroundImage = 'url("' + GetShopRowIcon(found.row) + '")';
+    item_icon.style.backgroundSize = "100%"
+    SetShopItemTooltip(item_icon, reward.id)
+    let open_preview = GameUI.CustomUIConfig().OpenCheckoutItemPreview
+    if (open_preview)
+    {
+        open_preview(item_icon, found.row, true)
     }
 }
 
-function CreateHeroPanel(number, hero_name, record, player_id, players)
+function CreateRewardCurrency(parent, reward)
 {
-    var HeroBlock = $.CreatePanel("Panel", $("#PlayersTablePVE4"), "");
+    let icon_name = reward && REWARD_CURRENCY_ICONS[reward.id]
+    if (!icon_name)
+    {
+        return
+    }
+    let money_reward = $.CreatePanel("Panel", parent, "");
+    money_reward.AddClass("money_reward");
+
+    SetTextInfo(money_reward, "coin_reward_information_leaderboard")
+
+    let coin_icon = $.CreatePanel("Panel", money_reward, "");
+    coin_icon.AddClass("coin_icon");
+    coin_icon.style.backgroundImage = 'url("file://{images}/custom_game/shop/' + icon_name + '.png")';
+    coin_icon.style.backgroundSize = "100%"
+
+    let coin_number = $.CreatePanel("Label", money_reward, "");
+    coin_number.AddClass("coin_number");
+    coin_number.AddClass("reward_" + reward.id);
+    coin_number.text = String(reward.count);
+}
+
+function CreateHeroPanel(number, hero_data)
+{
+    let hero_name = hero_data.hero
+    let player_id = hero_data.player_id
+    let players = hero_data.players || {}
+    let has_more_players = Object.keys(players).length > 1
+
+    var HeroBlock = $.CreatePanel("Panel", $("#PlayersTablePVEhero"), "");
     HeroBlock.AddClass("HeroSoloBlock");
 
     var Line = $.CreatePanel("Panel", HeroBlock, "");
     Line.AddClass("LinePlayer");
     Line.AddClass("HeroSoloLine");
-    Line.SetPanelEvent('onactivate', function() { ToggleHeroSoloPlayers(HeroBlock, players, hero_name); });
 
     var RankPanel = $.CreatePanel("Panel", Line, "");
     RankPanel.AddClass("RankPanel");
@@ -484,72 +712,26 @@ function CreateHeroPanel(number, hero_name, record, player_id, players)
 
     $.CreatePanel("DOTAUserName", AvatarNicknamePanel, "NickNameLeaderboard", { style: "vertical-align:center;margin-left:10px;height: 20px;", accountid: player_id });
 
-    var Rating = $.CreatePanel("Label", Line, "");
-    Rating.AddClass("RatingLabel");
-    Rating.text = String(record)
-    Rating.style.color = "orange";
+    CreateArenaResult(Line, hero_data)
+    CreateArenaTime(Line, hero_data)
 
-    let rewards_list = $.CreatePanel("Panel", Line, "");
-    rewards_list.AddClass("rewards_list");
+    CreateSeasonRewards(Line, "hero_best", 1)
 
-    let rewardData = 
+    if (has_more_players)
     {
-        // 1: { amount: "500", hasEffect: true },
-        // 2: { amount: "500", hasEffect: true },
-        // 3: { amount: "500", hasEffect: true },
-        // range4_10: { amount: "500", hasEffect: true },
-        // range11_50: { amount: "500", hasEffect: true },
-        // range51_100: { amount: "500", hasEffect: true }
+        HeroBlock.AddClass("HeroSoloExpandable");
+        Line.SetPanelEvent('onactivate', function() { ToggleHeroSoloPlayers(HeroBlock, players, hero_name); });
 
-        1: { amount: "2500", hasEffect: true },
-        2: { amount: "2500", hasEffect: true },
-        3: { amount: "2500", hasEffect: true },
-        range4_10: { amount: "2500", hasEffect: true },
-        range11_50: { amount: "2500", hasEffect: true },
-        range51_100: { amount: "2500", hasEffect: true }
-    };
+        let expand = $.CreatePanel("Panel", Line, "");
+        expand.AddClass("HeroSoloExpand");
+        expand.hittest = false;
 
-    // Выбираем нужные данные награды
-    let currentReward;
-    if (number >= 51 && number <= 100) {
-        currentReward = rewardData.range51_100;
-    } else if (number >= 11 && number <= 50) {
-        currentReward = rewardData.range11_50;
-    } else if (number >= 4 && number <= 10) {
-        currentReward = rewardData.range4_10;
-    } else if (number == 3) {
-        currentReward = rewardData[3];
-    } else if (number == 2) {
-        currentReward = rewardData[2];
-    } else if (number == 1) {
-        currentReward = rewardData[1];
-    }
-
-    if (currentReward)
-    {
-        if (currentReward.hasEffect) 
-        {
-            let effect_icon = $.CreatePanel("Panel", rewards_list, "");
-            effect_icon.AddClass("effect_icon");
-            effect_icon.style.backgroundImage = 'url( "file://{images}/custom_game/shop/emblem_131.png" )';
-            effect_icon.style.backgroundSize = "100%"
-            SetIconInfo(effect_icon, "emblem_131", "emblem_131_open")
-            GameUI.CustomUIConfig().OpenCheckoutItemPreview(effect_icon, [1075, null, null, "emblem_131", "emblem_131", null], true)
-        }
-
-        let money_reward = $.CreatePanel("Panel", rewards_list, "");
-        money_reward.AddClass("money_reward");
-
-        SetTextInfo(money_reward, "coin_reward_information_leaderboard")
-
-        let coin_icon = $.CreatePanel("Panel", money_reward, "");
-        coin_icon.AddClass("coin_icon");
-
-        let coin_number = $.CreatePanel("Label", money_reward, "");
-        coin_number.AddClass("coin_number");
-        coin_number.text = currentReward.amount;
+        let expand_arrow = $.CreatePanel("Panel", expand, "");
+        expand_arrow.AddClass("HeroSoloArrow");
+        expand_arrow.hittest = false;
     }
 }
+
 function ToggleHeroSoloPlayers(hero_block, players, hero_name)
 {
     let players_panel = hero_block.hero_players_panel;
@@ -590,19 +772,18 @@ function CreateHeroSoloPlayers(players, panel, hero_name)
         }
     }
 
-    players_list.sort(function(a, b) {
-        return Number(b.wave_count || 0) - Number(a.wave_count || 0);
-    });
+    players_list.shift();
+    players_list.sort(CompareArenaResults);
 
-    for (let i = 1; i < players_list.length && i < 10; i++)
+    for (let i = 0; i < players_list.length && i + 1 < ARENA_HERO_TOP_PLAYERS; i++)
     {
-        let player_data = players_list[i];
-        CreateHeroSoloPlayer(i + 1, player_data.player_id, player_data.wave_count, panel, hero_name);
+        CreateHeroSoloPlayer(i + 2, players_list[i], panel, hero_name);
     }
 }
 
-function CreateHeroSoloPlayer(number, steam_id, record, panel, hero_name)
+function CreateHeroSoloPlayer(number, player_data, panel, hero_name)
 {
+    let steam_id = player_data.player_id
     var Line = $.CreatePanel("Panel", panel, "");
     Line.AddClass("LinePlayer");
     Line.AddClass("HeroSoloPlayerLine");
@@ -627,13 +808,9 @@ function CreateHeroSoloPlayer(number, steam_id, record, panel, hero_name)
     hero_icon.style.backgroundSize = "100%"
     $.CreatePanel("DOTAUserName", AvatarNicknamePanel, "NickNameLeaderboard", { style: "vertical-align:center;margin-left:10px;height: 20px;", accountid: steam_id });
 
-    var Rating = $.CreatePanel("Label", Line, "");
-    Rating.AddClass("RatingLabel");
-    Rating.text = String(record);
-    Rating.style.color = "orange";
-
-    let rewards_list = $.CreatePanel("Panel", Line, "");
-    rewards_list.AddClass("rewards_list");
+    CreateArenaResult(Line, player_data)
+    CreateArenaTime(Line, player_data)
+    CreateSeasonRewards(Line, "hero_best", number)
 }
 
 // tp_effect_5

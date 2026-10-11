@@ -1,0 +1,277 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1a5b3bb 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+.WodaConnectRoot
+{
+	width: 100%;
+	height: 100%;
+}
+
+.WodaConnectBox
+{
+	width: 540px;
+	horizontal-align: center;
+	vertical-align: center;
+	flow-children: down;
+	padding: 14px 18px 18px 18px;
+	background-image: url("s2r://panorama/images/custom_game/talents/panelduel_png.vtex");
+	background-size: 100% 100%;
+	border-radius: 8px;
+	opacity: 0;
+	visibility: collapse;
+	transition-property: opacity;
+	transition-duration: 0.2s;
+}
+
+.WodaConnectBox.Visible
+{
+	opacity: 1;
+	visibility: visible;
+}
+
+.WodaConnectTitle
+{
+	horizontal-align: center;
+	font-family: Reaver;
+	font-size: 22px;
+	font-weight: bold;
+	letter-spacing: 1px;
+	color: #f3df9c;
+	text-transform: uppercase;
+	text-shadow: 1px 1px 6px 3 black;
+}
+
+.WodaConnectStatus
+{
+	width: 100%;
+	margin-top: 10px;
+	padding: 12px 14px;
+	text-align: center;
+	font-family: Radiance;
+	font-size: 18px;
+	font-weight: bold;
+	color: #ffffffcc;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #404D65dd ), to( #2B3445dd ) );
+	border: 1px solid #6F819B55;
+	border-radius: 6px;
+	text-shadow: 1px 1px 3px 2 black;
+}
+
+.WodaConnectBox.Error .WodaConnectStatus
+{
+	color: #ff8a7a;
+	border: 1px solid #c8574a88;
+}
+
+.WodaConnectBox.Ready .WodaConnectStatus
+{
+	color: #87d695;
+	border: 1px solid #87d695aa;
+}
+
+.WodaRegionPicker
+{
+	width: 100%;
+	flow-children: down;
+	margin-top: 10px;
+	visibility: collapse;
+}
+
+.WodaRegionPicker.Visible
+{
+	visibility: visible;
+}
+
+.WodaRegionList
+{
+	horizontal-align: center;
+	flow-children: right-wrap;
+}
+
+.WodaRegionPicker.ModeSession .WodaRegionList,.WodaRegionPicker.ModeSession #WodaRegionConnect
+{
+	visibility: collapse;
+}
+
+.WodaRegionPicker.ModeChoose .WodaSessionBox
+{
+	visibility: collapse;
+}
+
+.WodaRegionCard
+{
+	width: 156px;
+	margin: 4px 5px;
+	padding: 8px 10px 10px 10px;
+	flow-children: down;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #404D65dd ), to( #2B3445dd ) );
+	border: 1px solid #6F819B55;
+	border-radius: 6px;
+	transition-property: brightness, pre-transform-scale2d;
+	transition-duration: 0.1s;
+}
+
+.WodaRegionCard:hover
+{
+	border: 1px solid #ffffff40;
+	brightness: 1.1;
+}
+
+.WodaRegionCard.Selected
+{
+	border: 1px solid #87d695aa;
+	brightness: 1.15;
+}
+
+.WodaRegionChip
+{
+	horizontal-align: center;
+	padding: 1px 6px;
+	border-radius: 3px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #5Aa15E ), to( #87d695 ) );
+	font-family: Reaver;
+	font-size: 11px;
+	font-weight: bold;
+	color: white;
+	text-transform: uppercase;
+	text-shadow: 1px 1px 3px 2 black;
+}
+
+.WodaRegionChip.Hidden
+{
+	opacity: 0;
+}
+
+.WodaRegionName
+{
+	margin-top: 6px;
+	horizontal-align: center;
+	font-family: Reaver;
+	font-size: 16px;
+	font-weight: bold;
+	letter-spacing: 1px;
+	color: #f3df9c;
+	text-transform: uppercase;
+	text-shadow: 1px 1px 3px 2 black;
+}
+
+.WodaRegionPing,.WodaRegionFree
+{
+	margin-top: 4px;
+	horizontal-align: center;
+	font-family: Radiance;
+	font-size: 15px;
+	font-weight: bold;
+	color: #ffffffcc;
+	text-shadow: 1px 1px 3px 2 black;
+}
+
+.WodaRegionPing.Good
+{
+	color: #87d695;
+}
+
+.WodaRegionPing.Bad
+{
+	color: #ff9c6b;
+}
+
+.WodaRegionFree.Full
+{
+	color: #ff8a7a;
+}
+
+.WodaSessionBox
+{
+	width: 100%;
+	flow-children: down;
+}
+
+.WodaSessionText
+{
+	width: 100%;
+	padding: 10px 12px;
+	text-align: center;
+	font-family: Radiance;
+	font-size: 17px;
+	font-weight: bold;
+	color: #ffffffcc;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #404D65dd ), to( #2B3445dd ) );
+	border: 1px solid #6F819B55;
+	border-radius: 6px;
+	text-shadow: 1px 1px 3px 2 black;
+}
+
+.WodaConnectButtons
+{
+	horizontal-align: center;
+	margin-top: 10px;
+	flow-children: right;
+}
+
+.WodaConnectButton
+{
+	height: 41px;
+	min-width: 200px;
+	margin: 0px 5px;
+	background-image: url("s2r://panorama/images/backgrounds/background_play_button_2x_png.vtex");
+	background-size: 100%;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #5Aa15E ), to( #87d695 ) );
+	saturation: 0;
+	border-radius: 8px;
+	transition-property: brightness, saturation;
+	transition-duration: 0.1s;
+	transition-timing-function: ease-out;
+}
+
+.WodaConnectButton:hover
+{
+	brightness: 1.2;
+}
+
+.WodaConnectButton.Active
+{
+	saturation: 1;
+}
+
+.WodaConnectButtonLabel
+{
+	align: center center;
+	margin-left: 18px;
+	margin-right: 18px;
+	font-size: 20px;
+	font-weight: bold;
+	color: white;
+	text-transform: uppercase;
+	text-shadow: 1px 1px 8px 4.0 black;
+}
+
+#WodaChangeServer
+{
+	visibility: collapse;
+}
+
+.WodaConnectBox.CanChange #WodaChangeServer
+{
+	visibility: visible;
+}
+
+.WodaRegionCountdown
+{
+	horizontal-align: center;
+	margin-top: 8px;
+	font-size: 14px;
+	font-weight: bold;
+	color: #ffffff99;
+	text-transform: uppercase;
+	text-shadow: 1px 1px 4px 2 black;
+}

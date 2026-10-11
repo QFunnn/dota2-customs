@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -13,15 +13,20 @@
 .LeaderboardWindow
 {
 	align: center center;
-	width: 650px;
-	height: 700px;
+	width: 840px;
+	height: 900px;
 	background-image:url("s2r://panorama/images/custom_game/talents/leaderboard_png.vtex");
 	background-size: 100%;
 	flow-children: down;
 	opacity: 0;
 	transition-property: opacity;
 	transition-duration: 0.2s;
-	margin-bottom: 7%;
+	margin-bottom: 0%;
+}
+
+Label
+{
+	text-shadow: 1px 1px 3px 2 black;
 }
 
 .setvisible
@@ -40,7 +45,7 @@
 	background-repeat: no-repeat;
 	background-position: center;
 	margin-top:13.5px;
-	margin-left: 201px;
+	margin-left: 157px;
 	opacity: 0.5;
 	wash-color: #CDF;
 	img-shadow: 0px 0px 3px 3 black;
@@ -62,7 +67,7 @@ VerticalScrollBar,HTMLVerticalScrollBar
 .Close
 {
 	margin-top:2px;
-	margin-right:2px;
+	margin-right:8px;
 	width: 26px;
 	height: 26px;
 	horizontal-align: right;
@@ -89,8 +94,40 @@ VerticalScrollBar,HTMLVerticalScrollBar
 	font-weight: bold;
 }
 
+.LeaderboardSeason
+{
+	horizontal-align: left;
+	vertical-align: center;
+	width: 46px;
+	height: 46px;
+	margin-left: 8px;
+	background-image: url("s2r://panorama/images/custom_game/leaderboard/season_badge_png.vtex");
+	background-size: 100%;
+	transition-property: brightness;
+	transition-duration: 0.1s;
+}
+
+.LeaderboardSeason:hover
+{
+	brightness: 1.3;
+}
+
+.LeaderboardSeasonLabel
+{
+	align: center center;
+	margin-top: 1px;
+	color: #f3df9c;
+	font-family: Reaver;
+	font-size: 19px;
+	font-weight: bold;
+	text-align: center;
+	text-shadow: 0px 0px 4px 1.5 #000000;
+}
+
 .Leaderboardlogo
 {
+	overflow: noclip;
+	margin-bottom: 10px;
 	margin-top:3px;
 	margin-left:3px;
 	margin-right:3px;
@@ -128,7 +165,7 @@ VerticalScrollBar,HTMLVerticalScrollBar
 {
 	text-align:center center;
 	height:100%;
-	width:264px;
+	width:456px;
 	font-size: 17px;
 }
 
@@ -142,11 +179,10 @@ VerticalScrollBar,HTMLVerticalScrollBar
 
 .Leaderboard_reward_col
 {
-	text-align:left center;
+	text-align:center center;
 	height:100%;
-	width:170px;
+	width:182px;
 	font-size: 17px;
-	margin-left:10px;
 }
 
 .YouLeaderboard
@@ -227,7 +263,7 @@ VerticalScrollBar,HTMLVerticalScrollBar
 .AvatarNicknamePanel
 {
 	height:100%;
-	width:270px;
+	width:462px;
 	margin-left:6px;
 	font-size: 16px;
 	flow-children: right;
@@ -249,50 +285,42 @@ VerticalScrollBar,HTMLVerticalScrollBar
 	horizontal-align: center;
 }
 
-.ButtonRatSmall
+.ButtonRat,.ButtonRatSmall
 {
-	width: 124px;
-	height: 30px;
-	margin:5px;
+	height: 34px;
+	min-width: 60px;
+	margin: 5px 4px;
+	vertical-align: center;
+	border-radius: 4px;
 	background-image: url("s2r://panorama/images/backgrounds/background_play_button_2x_png.vtex");
 	background-size: 100%;
-	background-color: gradient( linear, 0% 0%, 0% 100%, from( #cdb07dcc ), to( #6a624ecc ) );
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #cdb07d88 ), to( #6a624e88 ) );
+	transition-property: brightness, background-color;
+	transition-duration: 0.1s;
 }
 
-.ButtonRat
+.ButtonRat:hover,.ButtonRatSmall:hover
 {
-	width: 124px;
-	height: 32px;
-	margin:5px;
-	background-image: url("s2r://panorama/images/backgrounds/background_play_button_2x_png.vtex");
-	background-size: 100%;
-	background-color: gradient( linear, 0% 0%, 0% 100%, from( #cdb07dcc ), to( #6a624ecc ) );
+	brightness: 1.3;
 }
 
-.ButtonLabelPVP
+.ButtonRat.ButtonRatActive,.ButtonRatSmall.ButtonRatActive
 {
-	align:center center;
-	font-weight:bold;
-	color: white;
-	text-shadow: 1px 1px 4px 1.5 black;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #e9c730cc ), to( #61480acc ) );
+	box-shadow: 0px 0px 8px 1px #e4c26955;
+}
+
+.ButtonLabelPVP,.ButtonLabelPVE
+{
+	align: center center;
+	margin-left: 18px;
+	margin-right: 18px;
 	font-family: Reaver;
-	font-size: 18px;
-}
-
-.ButtonLabelPVE
-{
-	align:center center;
-	font-weight:bold;
+	font-size: 16px;
+	font-weight: bold;
 	color: white;
+	text-transform: uppercase;
 	text-shadow: 1px 1px 4px 1.5 black;
-	font-family: Reaver;
-	font-size: 18px;
-}
-
-.ButtonRatActive
-{
-	box-shadow: 0px 0px 8px 2px #668BBC22;
-	border: 1px solid #668BBC;
 }
 
 .pppanel
@@ -307,7 +335,7 @@ VerticalScrollBar,HTMLVerticalScrollBar
 	visibility: collapse;
 }
 
-#PlayersTablePVE2,#PlayersTablePVE3,#PlayersTablePVE1
+#PlayersTablePVE2,#PlayersTablePVE3,#PlayersTablePVE4,#PlayersTablePVE1
 {
 	visibility: collapse;
 }
@@ -370,20 +398,26 @@ VerticalScrollBar,HTMLVerticalScrollBar
 .rewards_list
 {
 	height: 100%;
+	width: fill-parent-flow( 1.0 );
+}
+
+.rewards_inner
+{
+	height: 100%;
 	flow-children: right;
 	horizontal-align: center;
 }
 
-.effect_icon
+.reward_item
 {
-	width: 32px;
-	height: 32px;
-	background-image: url("s2r://panorama/images/custom_game/shop/emblem_99_png.vtex");
+	width: 28px;
+	height: 28px;
+	vertical-align: center;
+	margin-right: 5px;
 	background-size: 100%;
-	margin-right: 10px;
 }
 
-.effect_icon:hover
+.reward_item:hover
 {
 	box-shadow: 0px 0px 8px 2px #bca16622;
 	border: 1px solid #bca166;
@@ -392,13 +426,16 @@ VerticalScrollBar,HTMLVerticalScrollBar
 .money_reward
 {
 	flow-children: right;
+	margin-left: 4px;
+	margin-right: 4px;
+	vertical-align: center;
 }
 
 .coin_icon
 {
 	vertical-align: center;
-	width: 32px;
-	height: 32px;
+	width: 26px;
+	height: 26px;
 	background-image: url("s2r://panorama/images/custom_game/shop/wodacoin_png.vtex");
 	background-size: 100%;
 }
@@ -409,7 +446,17 @@ VerticalScrollBar,HTMLVerticalScrollBar
 	font-weight: bold;
 	color: gold;
 	vertical-align: center;
-	margin-left: 5px;
+	margin-left: 4px;
+}
+
+.coin_number.reward_crystals
+{
+	color: #07edd2;
+}
+
+.coin_number.reward_boss_souls
+{
+	color: #ff7a3c;
 }
 
 .hero_icon
@@ -429,18 +476,61 @@ VerticalScrollBar,HTMLVerticalScrollBar
 
 .HeroSoloLine
 {
-	transition-property: brightness;
+	border-radius: 4px;
+	transition-property: brightness, background-color;
 	transition-duration: 0.1s;
 }
 
-.HeroSoloLine:hover
+.HeroSoloExpandable .HeroSoloLine:hover
 {
-	brightness: 1.6;
+	brightness: 1.3;
+	background-color: #e4c2691a;
 }
 
 .HeroSoloOpen .HeroSoloLine
 {
-	background-color: #668BBC18;
+	background-color: #e4c26926;
+}
+
+.HeroSoloExpand
+{
+	ignore-parent-flow: true;
+	width: 28px;
+	height: 24px;
+	horizontal-align: right;
+	vertical-align: center;
+	margin-right: 12px;
+	border-radius: 4px;
+	background-color: #00000066;
+	border: 1px solid #e4c26944;
+	transition-property: background-color;
+	transition-duration: 0.1s;
+}
+
+.HeroSoloExpandable .HeroSoloLine:hover .HeroSoloExpand,.HeroSoloOpen .HeroSoloExpand
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #e9c73088 ), to( #61480a88 ) );
+	border: 1px solid #e4c269aa;
+}
+
+.HeroSoloArrow
+{
+	width: 16px;
+	height: 16px;
+	align: center center;
+	background-image: url("s2r://panorama/images/control_icons/24px/chevron_right.vsvg");
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	wash-color: #f3df9c;
+	transform: rotateZ( 90deg );
+	transition-property: transform;
+	transition-duration: 0.15s;
+}
+
+.HeroSoloOpen .HeroSoloArrow
+{
+	transform: rotateZ( -90deg );
 }
 
 .HeroSoloPlayers
@@ -457,4 +547,182 @@ VerticalScrollBar,HTMLVerticalScrollBar
 	margin-left: 3px;
 	width: 96%;
 	opacity: 0.85;
+}
+
+#PveInfo .Leaderboard_player_col
+{
+	width: 270px;
+}
+
+#PveInfo .Leaderboard_rating_col
+{
+	width: 120px;
+}
+
+.Leaderboard_time_col
+{
+	text-align: center;
+	height: 100%;
+	width: 100px;
+	font-size: 17px;
+}
+
+#PveInfo .Leaderboard_reward_col
+{
+	width: 262px;
+}
+
+#PveInfo .AvatarNicknamePanel
+{
+	width: 264px;
+}
+
+#PveInfo .hero_icon
+{
+	margin-left: 6px;
+}
+
+#PveInfo .AvatarNicknamePanel.Quad .hero_icon
+{
+	margin-left: 3px;
+}
+
+#PveInfo .AvatarNicknamePanel DOTAUserName
+{
+	width: fill-parent-flow( 1.0 );
+}
+
+#PveInfo .AvatarNicknamePanel DOTAUserName Label
+{
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.ArenaResult
+{
+	width: 120px;
+	height: 100%;
+}
+
+.ArenaResultInner
+{
+	height: 100%;
+	horizontal-align: center;
+	flow-children: right;
+}
+
+.ArenaResultBadge
+{
+	width: 30px;
+	height: 30px;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/custom_game/shop/difficulty_level_badge_png.vtex");
+	background-size: 100%;
+}
+
+.ArenaResultBadgeLabel
+{
+	align: center center;
+	text-align: center;
+	font-family: Reaver;
+	font-size: 16px;
+	font-weight: bold;
+	color: white;
+	text-shadow: 1px 1px 3px 2 black;
+}
+
+.ArenaResultWave
+{
+	margin-left: 8px;
+	vertical-align: center;
+	font-family: Reaver;
+	font-size: 20px;
+	font-weight: bold;
+	color: #ffb347;
+	text-shadow: 1px 1px 3px 2 black;
+}
+
+.ArenaTime
+{
+	width: 100px;
+	vertical-align: center;
+	text-align: center;
+	font-family: Reaver;
+	font-size: 17px;
+	font-weight: bold;
+	color: #f3df9c;
+	text-shadow: 1px 1px 3px 2 black;
+}
+
+.ArenaEmpty
+{
+	horizontal-align: center;
+	margin-top: 24px;
+	font-family: Radiance;
+	font-size: 18px;
+	color: #9aa4b1;
+	text-shadow: 1px 1px 3px 2 black;
+}
+
+.LocalArenaResult
+{
+	height: 24px;
+	flow-children: right;
+}
+
+.LocalArenaResult .ArenaResult
+{
+	width: fit-children;
+}
+
+.LocalArenaResult .ArenaResultInner
+{
+	margin-left: 0px;
+}
+
+.LocalArenaResult .ArenaResultBadge
+{
+	width: 22px;
+	height: 22px;
+}
+
+.LocalArenaResult .ArenaResultBadgeLabel
+{
+	font-size: 13px;
+}
+
+.LocalArenaResult .ArenaResultWave
+{
+	margin-left: 6px;
+	font-size: 18px;
+}
+
+.LocalArenaResult .ArenaTime
+{
+	width: fit-children;
+	margin-left: 12px;
+	font-size: 15px;
+}
+
+.LocalArenaEmpty
+{
+	vertical-align: center;
+	font-weight: bold;
+	color: #ffb347;
+}
+
+.ArenaLegacy .Leaderboard_time_col,.ArenaLegacy .ArenaTime,.ArenaLegacy .ArenaResultBadge
+{
+	visibility: collapse;
+}
+
+.ArenaLegacy .ArenaResultWave
+{
+	margin-left: 0px;
+}
+
+.ArenaLegacy .ArenaResultInner
+{
+	margin-left: 0px;
+	horizontal-align: center;
 }

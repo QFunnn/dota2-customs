@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -531,6 +531,10 @@ function TalentClick(panel,talentname,attribute,name)
     	}
     	if (talent_click)
     	{
+    		if (IsTalentLocked(talentname))
+    		{
+    			return
+    		}
     		talent_click = false
 
 	    	GameEvents.SendCustomGameEventToServer_custom("talent_learn", {talentname:talentname,attribute:attribute,})
@@ -612,6 +616,25 @@ function TalentCreateBlock(parent, line, block, heroestalent, attribute, attribu
 
     talent_level_image.style.width = "0%"
     talent_block_image.AddClass("talent_nolvl")
+}
+
+function IsTalentLocked(talentname)
+{
+    let heroname = Entities.GetUnitName(Players.GetPlayerHeroEntityIndex(Players.GetLocalPlayer()))
+    let locked = Game.GetCustomTable("lockedtalents", heroname)
+    let playerstalents = Game.GetCustomTable("playerstalents", String(Players.GetLocalPlayer()))
+    if (!locked || !locked[talentname] || !playerstalents)
+    {
+        return false
+    }
+    for (let key in locked[talentname])
+    {
+        if (playerstalents[locked[talentname][key]])
+        {
+            return true
+        }
+    }
+    return false
 }
 
 function IsTalentNoEmpty(name)
@@ -881,7 +904,9 @@ function AddNewTalents(panel, id, hero_name)
             let talent_name = Object.keys(playerstalents)[i]
             if (IsValidTalent(talent_name))
             {
-                TalentCreateBlockEnemy(panel, talent_name, hero_name)
+                let talent_info = playerstalents[talent_name]
+                let talent_level = talent_info && typeof talent_info == "object" ? Number(talent_info["level"]) || 0 : 0
+                TalentCreateBlockEnemy(panel, talent_name, hero_name, talent_level)
             }
         }
     }
@@ -895,6 +920,81 @@ function AddNewTalents(panel, id, hero_name)
             RuneCreateBlockEnemy(panel, rune_id, rune_level)
         }
     }
+
+    let arena_upgrades = Game.GetCustomTable("arena_upgrades", String(id))
+    if (arena_upgrades)
+    {
+        for (let upgrade_id of Object.keys(arena_upgrades))
+        {
+            let count = Number(arena_upgrades[upgrade_id]) || 0
+            if (count > 0)
+            {
+                UpgradeCreateBlockEnemy(panel, upgrade_id, count, id)
+            }
+        }
+    }
+}
+
+function GetHeroRankIndexByLevel(level)
+{
+    level = Number(level) || 0
+    if (level >= 30) { return 6 }
+    if (level >= 25) { return 5 }
+    if (level >= 18) { return 4 }
+    if (level >= 12) { return 3 }
+    if (level >= 6) { return 2 }
+    if (level >= 1) { return 1 }
+    return 0
+}
+
+function UpgradeCreateBlockEnemy(panel, upgrade_id, count, player_id)
+{
+    if (upgrade_id == "smelter_level")
+    {
+        let badge = $.CreatePanel("Panel", panel, "")
+        badge.AddClass("talent_block_image_enemy")
+        badge.AddClass("SmelterLevelEnemy")
+        let badge_label = $.CreatePanel("Label", badge, "")
+        badge_label.AddClass("SmelterLevelEnemyLabel")
+        badge_label.text = String(count)
+        WodaSetTitleTooltip(badge, $.Localize("#arena_upgrade_smelter_level") + " (" + count + ")", BuildArenaStatsTextGold(badge, GetSmelterBonusStats(count)))
+        return
+    }
+    if (upgrade_id == "hero_level")
+    {
+        let rank_index = GetHeroRankIndexByLevel(count)
+        let level_block = $.CreatePanel("Panel", panel, "")
+        level_block.AddClass("talent_block_image_enemy")
+        level_block.AddClass("HeroLevelEnemy")
+        level_block.style.backgroundImage = 'url("file://{images}/custom_game/hero_rank/rank_' + rank_index + '.png")'
+        level_block.style.backgroundSize = "100%"
+        let level_label = $.CreatePanel("Label", level_block, "")
+        level_label.AddClass("SmelterLevelEnemyLabel")
+        level_label.text = String(count)
+        level_block.SetDialogVariableInt("bonus", count)
+        level_block.SetDialogVariableInt("damage", rank_index * 5)
+        WodaSetTitleTooltip(level_block, $.Localize("#arena_upgrade_hero_level") + " (" + count + ") - " + $.Localize("#level_bonus_rank_" + rank_index), WodaGoldNumber($.Localize("#item_tooltip_arena_bonus", level_block)) + "<br>" + WodaGoldNumber($.Localize("#hero_rank_tt_damage_short", level_block)))
+        return
+    }
+    if (upgrade_id == "items_bonus")
+    {
+        let items_block = $.CreatePanel("Panel", panel, "")
+        items_block.AddClass("talent_block_image_enemy")
+        items_block.AddClass("ItemsBonusEnemy")
+        let items_stats = Game.GetCustomTable("arena_item_stats", String(player_id))
+        WodaSetTitleTooltip(items_block, $.Localize("#arena_upgrade_items_bonus") + " (" + count + ")", BuildArenaStatsTextGold(items_block, items_stats))
+        return
+    }
+    let talent_block_image = $.CreatePanel("Panel", panel, "")
+    talent_block_image.AddClass("talent_block_image_enemy")
+    talent_block_image.style.backgroundImage = 'url("file://{images}/custom_game/shop/' + upgrade_id + '.png")';
+    talent_block_image.style.backgroundSize = "100%";
+    let title = $.Localize("#" + upgrade_id)
+    if (upgrade_id == "upgrade_talent_point" || upgrade_id == "upgrade_start_level")
+    {
+        title = title + " (" + count + ")"
+    }
+    WodaSetTitleTooltip(talent_block_image, title, WodaGoldNumber($.Localize("#" + upgrade_id + "_description")))
 }
 
 function RuneCreateBlockEnemy(panel, rune_id, rune_level)
@@ -903,10 +1003,10 @@ function RuneCreateBlockEnemy(panel, rune_id, rune_level)
     talent_block_image.AddClass("talent_block_image_enemy")
     talent_block_image.style.backgroundImage = 'url("file://{images}/custom_game/runes/' + rune_id + '.png")';
     talent_block_image.style.backgroundSize = "100%";
-    MouseOver(talent_block_image, $.Localize("#"+rune_id) + "<br><br>" + $.Localize("#"+rune_id+"_description_"+rune_level))
+    WodaSetTitleTooltip(talent_block_image, $.Localize("#"+rune_id) + " (" + rune_level + ")", FormatRuneDescription(rune_id, rune_level))
 }
 
-function TalentCreateBlockEnemy(panel, talent_name, hero_name)
+function TalentCreateBlockEnemy(panel, talent_name, hero_name, talent_level)
 {
     let talent_orign = talent_name
     talent_name = talent_name.replace("modifier_" + hero_name + "_", '')
@@ -914,7 +1014,14 @@ function TalentCreateBlockEnemy(panel, talent_name, hero_name)
     talent_block_image.AddClass("talent_block_image_enemy")
     talent_block_image.style.backgroundImage = 'url("file://{images}/custom_game/talents/' + hero_name  + '/' + talent_name + '.png")';
     talent_block_image.style.backgroundSize = "100%";
-    MouseOver(talent_block_image, $.Localize("#"+talent_orign + "_0"))
+    let level_key = talent_orign + "_" + (talent_level || 0)
+    let description = $.Localize("#" + level_key)
+    if (description == level_key || description == "#" + level_key)
+    {
+        description = $.Localize("#" + talent_orign + "_0")
+    }
+    let title = talent_level > 0 ? $.Localize("#enemy_tooltip_talent_level").replace("{n}", String(talent_level)) : $.Localize("#enemy_tooltip_talent")
+    WodaSetTitleTooltip(talent_block_image, title, description)
 }
 
 function IsValidTalent(name)
@@ -973,3 +1080,26 @@ function IsValidTalent(name)
     }
     return false
 }
+
+GameEvents.Subscribe_custom("woda_cheat_talents_reinit", CheatReinitTalents)
+
+function CheatReinitTalents(data)
+{
+    if (first_time_talants !== true) { return }
+    let hero = Players.GetPlayerHeroEntityIndex(Players.GetLocalPlayer())
+    if (hero == null || hero == -1) { return }
+    let old_hero = data && data.old_hero ? String(data.old_hero) : ""
+    let panels = { str: $("#talent_choose_str"), agi: $("#talent_choose_agi"), int: $("#talent_choose_int") }
+    for (let attribute in panels)
+    {
+        if (old_hero != "")
+        {
+            panels[attribute].RemoveClass(old_hero + "_" + attribute)
+        }
+        panels[attribute].RemoveAndDeleteChildren()
+    }
+    InitTalentStr()
+    InitTalentAgi()
+    InitTalentInt()
+    updatereconnect()
+}

@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -12,17 +12,23 @@
 <root>
 	<styles>
 		<include src="s2r://panorama/styles/dotastyles.css" />
-		<include src="s2r://panorama/layout/custom_game/leaderboard/leaderboard.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/leaderboard/leaderboard.vcss" />
 	</styles>
 	<scripts>
-		<include src="s2r://panorama/layout/custom_game/scripts/util.vjs_c" />
-		<include src="s2r://panorama/layout/custom_game/leaderboard/leaderboard.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/scripts/util.vjs" />
+		<include src="s2r://panorama/layout/custom_game/shop/shop_items_information.vjs" />
+		<include src="s2r://panorama/layout/custom_game/shop/item_arena_bonus.vjs" />
+		<include src="s2r://panorama/layout/custom_game/shop/item_rarity.vjs" />
+		<include src="s2r://panorama/layout/custom_game/leaderboard/leaderboard.vjs" />
 	</scripts>
 	<Panel style="width:100%;height:100%;" hittest="false">
 		<Panel id="LeaderBoardButton" onactivate="ToggleLeaderboard();" onmouseover="DOTAShowTextTooltip(#button_top_leaderboard)" onmouseout="DOTAHideTextTooltip()" />
 		<Panel class="LeaderboardWindow" id="LeaderboardWindow" hittest="false">
 			<Panel class="Leaderboardlogo">
 				<Label text="#LeaderboardNameLabel" class="LeaderboardNameLabel" />
+				<Panel class="LeaderboardSeason" id="LeaderboardSeason">
+					<Label id="LeaderboardSeasonNumber" class="LeaderboardSeasonLabel" text="" />
+				</Panel>
 				<Panel class="Close" onactivate="ToggleLeaderboard();" />
 			</Panel>
 			<Panel class="Buttons">
@@ -55,7 +61,7 @@
 			</Panel>
 			<Panel class="pppanel" id="PveInfo">
 				<Panel class="Buttons">
-					<Panel class="ButtonRatSmall ButtonRatActive" id="PanelButPVE_4" onactivate="ChangeRankingPve(&apos;4&apos;);">
+					<Panel class="ButtonRatSmall ButtonRatActive" id="PanelButPVE_hero" onactivate="ChangeRankingPve(&apos;hero&apos;);">
 						<Label class="ButtonLabelPVP" text="#Leaderboard_hero_solo" />
 					</Panel>
 					<Panel class="ButtonRatSmall" id="PanelButPVE_1" onactivate="ChangeRankingPve(&apos;1&apos;);">
@@ -67,13 +73,16 @@
 					<Panel class="ButtonRatSmall" id="PanelButPVE_3" onactivate="ChangeRankingPve(&apos;3&apos;);">
 						<Label class="ButtonLabelPVP" text="#Leaderboard_trio" />
 					</Panel>
+					<Panel class="ButtonRatSmall" id="PanelButPVE_4" onactivate="ChangeRankingPve(&apos;4&apos;);">
+						<Label class="ButtonLabelPVP" text="#Leaderboard_quad" />
+					</Panel>
 				</Panel>
 				<Panel class="YouLeaderboard">
 					<Panel style="align: center center;flow-children:right;">
 						<DOTAAvatarImage steamid="local" class="AvatarLocal" />
 						<Panel class="InfoLocal">
 							<DOTAUserName steamid="local" class="NicknameLocal" />
-							<Label class="LocalRating" style="color:orange;" id="LocalRatingPve" text="0" />
+							<Panel class="LocalArenaResult" id="LocalArenaResult" />
 						</Panel>
 					</Panel>
 				</Panel>
@@ -82,12 +91,14 @@
 						<Label text="#Leaderboard_rank_col" class="Leaderboard_rank_col" />
 						<Label text="#Leaderboard_player_col" class="Leaderboard_player_col" />
 						<Label text="#Leaderboard_rating_col" class="Leaderboard_rating_col" />
+						<Label text="#Leaderboard_time_col" class="Leaderboard_time_col" />
 						<Label text="#Leaderboard_reward_col" class="Leaderboard_reward_col" />
 					</Panel>
 					<Panel class="PlayersTable" id="PlayersTablePVE1" />
 					<Panel class="PlayersTable" id="PlayersTablePVE2" />
 					<Panel class="PlayersTable" id="PlayersTablePVE3" />
 					<Panel class="PlayersTable" id="PlayersTablePVE4" />
+					<Panel class="PlayersTable" id="PlayersTablePVEhero" />
 				</Panel>
 			</Panel>
 		</Panel>

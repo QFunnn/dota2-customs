@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -195,3 +195,88 @@ pShop.RemoveAndDeleteChildren();
 
 let pShop2 = FindDotaHudElement("GridUpgradeItems");
 pShop2.RemoveAndDeleteChildren();
+
+var PICK_CURTAIN_SPAWN_DELAY = 1.0
+var PICK_CURTAIN_FADE_TIME = 1.2
+
+GameEvents.Subscribe_custom("pick_heroes_spawned", OnPickHeroesSpawnedHud)
+GameEvents.Subscribe("game_rules_state_change", OnPickCurtainStateChange)
+
+function OnPickCurtainStateChange()
+{
+	if (Game.GetState() >= DOTA_GameState.DOTA_GAMERULES_STATE_GAME_IN_PROGRESS)
+	{
+		HidePickLoadingCurtain()
+		RestoreCameraAfterPick()
+	}
+}
+
+function OnPickHeroesSpawnedHud()
+{
+	$.Schedule(PICK_CURTAIN_SPAWN_DELAY, function()
+	{
+		HidePickLoadingCurtainRetry(10)
+	})
+}
+
+function HidePickLoadingCurtainRetry(attempts)
+{
+	if (HidePickLoadingCurtain()) { return }
+	if (attempts <= 0) { return }
+	$.Schedule(0.5, function()
+	{
+		HidePickLoadingCurtainRetry(attempts - 1)
+	})
+}
+
+function FindPickLoadingCurtain()
+{
+	var root = $.GetContextPanel()
+	while (root.GetParent())
+	{
+		root = root.GetParent()
+	}
+	return root.FindChildTraverse("PickLoadingScreen")
+}
+
+var pick_camera_restored = false
+
+function IsArenaMap()
+{
+	var info = Game.GetMapInfo()
+	return info && /^(arena|1_player|4_player)$/.test(info.map_display_name)
+}
+
+function GetLocalHeroPosition()
+{
+	var hero = Players.GetPlayerHeroEntityIndex(Players.GetLocalPlayer())
+	if (hero == null || hero < 0 || !Entities.IsValidEntity(hero)) { return null }
+	return Entities.GetAbsOrigin(hero)
+}
+
+function RestoreCameraAfterPick()
+{
+	if (pick_camera_restored) { return }
+	if (!IsArenaMap()) { return }
+	pick_camera_restored = true
+
+	Game.CutToDefaultCamera()
+
+	var hero_position = GetLocalHeroPosition()
+	if (hero_position)
+	{
+		GameUI.SetCameraTargetPosition(hero_position, 0.1)
+	}
+}
+
+function HidePickLoadingCurtain()
+{
+	var curtain = FindPickLoadingCurtain()
+	if (!curtain) { return false }
+	if (curtain.BHasClass("Hide")) { return true }
+	RestoreCameraAfterPick()
+	curtain.AddClass("Hide")
+	curtain.style.opacity = "0"
+	curtain.DeleteAsync(PICK_CURTAIN_FADE_TIME + 0.3)
+	return true
+}

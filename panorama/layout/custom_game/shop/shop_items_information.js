@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -59,12 +59,12 @@ var Items_currency =
 var Items_plus = 
 [
     // ID ПРЕДМЕТА для проверки или для добавления в базу,ВАЛЮТА,СТОИМОСТЬ,ИКОНКА(именно название png файла),переменная названия в локализации, можно покупать много раз или один раз(проверка на покупку в базе)
-    ["subscribe_plus_1", "", "", "dp1", "subscribe_plus_1"],
     ["99991", "coin", "1", "new", "subscribe_plus_new"],
     ["battle_pass_1", "", "", "nydp8", "battle_pass_2"],
     ["double_rating_pack", "coin", "500", "double_token", "double_rating_pack"],
-    ["1091", "coin", "1", "dark_carnival_pack", "dark_carnival_pack"],
-    ["rune_chest_item", "", "", "rune_chest", "rune_chest_item"],
+    ["1103", "coin", "1000", "new_logo_notext", "background_136"],
+    //["1091", "coin", "1", "dark_carnival_pack", "dark_carnival_pack"],
+    ["rune_chest_item", "coin", "250", "rune_chest", "rune_chest_item"],
 
     //["1051", "coin", "100", "nydp2", "nydp2"],
     //["1052", "coin", "500", "nydp3", "nydp3"],
@@ -74,7 +74,15 @@ var Items_plus =
     //["1058", "coin", "3250", "nydp7", "nydp7"],
 ] 
 
-// Последний юзабельный айди 1096
+// Последний юзабельный айди 1104
+
+var Items_upgrades =
+[
+    ["upgrade_rune_slot", "crystal", "3000", "upgrade_rune_slot", "upgrade_rune_slot"],
+    ["upgrade_talent_point", "crystal", "50", "upgrade_talent_point", "upgrade_talent_point"],
+    ["upgrade_backpack", "crystal", "1500", "upgrade_backpack", "upgrade_backpack"],
+    ["upgrade_start_level", "crystal", "25", "upgrade_start_level", "upgrade_start_level"],
+]
 
 var Items_Backround =
 [
@@ -118,6 +126,7 @@ var Items_Backround =
     ["1088", "coin", "99999", "background_133", "background_133", true], // Идут в наборе
     ["1089", "coin", "99999", "background_134", "background_134", true], // Идут в наборе
     ["1090", "coin", "99999", "background_135", "background_135", true], // Идут в наборе
+    ["1103", "coin", "1000", "new_logo_notext", "background_136", true],
 
     ["992", "coin", "1000", "background_111", "background_111"],
     ["993", "coin", "1000", "background_112", "background_112"],
@@ -360,6 +369,7 @@ var Background_Images =
     1088 : "file://{images}/loadingscreens/dark_carnival_loadingscreen/dark_carnival_loadingscreen_legioncommander.tga",
     1089 : "file://{images}/loadingscreens/dark_carnival_loadingscreen/dark_carnival_loadingscreen_bristleback.tga",
     1090 : "file://{images}/loadingscreens/dark_carnival_loadingscreen/dark_carnival_loadingscreen_axe.tga",
+    1103 : "file://{images}/custom_game/profile_bg/new_logo_background_notext.png",
 }
 
 var Items_Five =
@@ -423,6 +433,9 @@ var Items_pets =
     ["1008", "coin", "99999", "0", "pet_183", true], // BP ONLY 2026
     ["1009", "coin", "99999", "0", "pet_184", true], // BP ONLY 2026
     ["1010", "coin", "99999", "0", "pet_185", true], // BP ONLY 2026
+    ["1096", "coin", "99999", "0", "pet_186", true],
+    ["1097", "coin", "99999", "0", "pet_187", true],
+    ["1098", "coin", "99999", "0", "pet_188", true],
     
 
 
@@ -575,7 +588,6 @@ var Items_emblems =
     ["836", "coin", "99999", "emblem_60", "emblem_60", true], // BP ONLY
     ["837", "coin", "99999", "emblem_61", "emblem_61", true], // BP ONLY
     ["838", "coin", "99999", "emblem_62", "emblem_62", true], // BP ONLY
-    ["839", "coin", "99999", "emblem_63", "emblem_63", true], // BP ONLY
     ["840", "coin", "99999", "emblem_64", "emblem_64", true], // BP ONLY
     ["842", "coin", "99999", "emblem_66", "emblem_66", true], // BP ONLY
     ["843", "coin", "99999", "emblem_67", "emblem_67", true], // BP ONLY
@@ -594,29 +606,25 @@ var Items_emblems =
     ["859", "coin", "99999", "emblem_83", "emblem_83", true], // BP ONLY
     ["861", "coin", "99999", "emblem_85", "emblem_85", true], // BP ONLY
     ["862", "coin", "99999", "emblem_86", "emblem_86", true], // BP ONLY
-    ["864", "coin", "99999", "emblem_88", "emblem_88", true], // BP ONLY
-    ["865", "coin", "99999", "emblem_89", "emblem_89", true], // BP ONLY
     ["863", "coin", "99999", "emblem_87", "emblem_87", true], // WODA TOURNAMENT
     ["918", "coin", "99999", "emblem_92", "emblem_92", true], // SEASON REWARD
     ["924", "coin", "99999", "emblem_98", "emblem_98", true], // SEASON REWARD
     ["925", "coin", "99999", "emblem_99", "emblem_99", true], // SEASON REWARD
     ["927", "coin", "9999", "emblem_111", "emblem_111", true], // WODA TOURNAMENT
-    ["935", "coin", "9999", "emblem_108", "emblem_108", true], // WODA TOURNAMENT
 
 
     ["1045", "coin", "99999", "emblem_114", "emblem_114", true], // BP ONLY 2026
     ["1046", "coin", "99999", "emblem_115", "emblem_115", true], // BP ONLY 2026
     ["1047", "coin", "99999", "emblem_116", "emblem_116", true], // BP ONLY 2026
     ["1048", "coin", "99999", "emblem_117", "emblem_117", true], // BP ONLY 2026
-    ["1049", "coin", "99999", "emblem_118", "emblem_118", true], // BP ONLY 2026
-    ["1050", "coin", "99999", "emblem_119", "emblem_119", true], // BP ONLY 2026
     ["1071", "coin", "99999", "emblem_120", "emblem_120", true], // BP ONLY 2026
     ["1072", "coin", "99999", "emblem_121", "emblem_121", true], // BP ONLY 2026
+    ["1099", "coin", "99999", "emblem_141", "emblem_141", true],
+    ["1100", "coin", "99999", "emblem_142", "emblem_142", true],
+    ["1101", "coin", "99999", "emblem_143", "emblem_143", true],
+    ["1102", "coin", "99999", "emblem_144", "emblem_144", true],
     
 
-    ["926", "coin", "500", "emblem_100", "emblem_100"],
-    ["205", "coin", "500", "emblem_41", "emblem_41"],
-    ["200", "coin", "500", "emblem_37", "emblem_37"],
     ["178", "coin", "500", "emblem_15", "emblem_15"],
     ["179", "coin", "500", "emblem_16", "emblem_16"],
     ["182", "coin", "500", "emblem_19", "emblem_19"],
@@ -681,8 +689,6 @@ var Items_emblems =
     ["700", "coin", "1500", "emblem_48", "emblem_48"],
     ["207", "coin", "1500", "emblem_45", "emblem_45"],
     ["705", "coin", "1500", "emblem_49", "emblem_49"],
-    ["724", "coin", "1500", "emblem_53", "emblem_53"],
-    ["725", "coin", "1500", "emblem_54", "emblem_54"],
     ["991", "coin", "1500", "emblem_113", "emblem_113"], // BP ONLY
     ["990", "coin", "5000", "emblem_112", "emblem_112"], // BP ONLY
     ["193", "coin", "5000", "emblem_30", "emblem_30"],
@@ -699,15 +705,30 @@ var Items_emblems =
 
     
     ["867", "coin", "5000", "emblem_91", "emblem_91"],
-    ["936", "coin", "5000", "emblem_109", "emblem_109"],
     ["858", "coin", "10000", "emblem_82", "emblem_82"],
-    ["937", "coin", "10000", "emblem_110", "emblem_110"],
-    ["866", "coin", "10000", "emblem_90", "emblem_90"],
 
 
     ["1074", "coin", "99999", "emblem_130", "emblem_130", true], // SEASON REWARD
     ["1075", "coin", "99999", "emblem_131", "emblem_131", true], // SEASON REWARD
-    ["1084", "coin", "99999", "emblem_140", "emblem_140", true], // SEASON REWARD
+    ["1084", "coin", "99999", "emblem_140", "emblem_140", true], // SEASON REWARD
+]
+
+var Items_heads = 
+[
+    ["839", "coin", "99999", "emblem_63", "emblem_63", true], // BP ONLY
+    ["864", "coin", "99999", "emblem_88", "emblem_88", true], // BP ONLY
+    ["865", "coin", "99999", "emblem_89", "emblem_89", true], // BP ONLY
+    ["935", "coin", "9999", "emblem_108", "emblem_108", true], // WODA TOURNAMENT
+    ["1049", "coin", "99999", "emblem_118", "emblem_118", true], // BP ONLY 2026
+    ["1050", "coin", "99999", "emblem_119", "emblem_119", true], // BP ONLY 2026
+    ["926", "coin", "500", "emblem_100", "emblem_100"],
+    ["205", "coin", "500", "emblem_41", "emblem_41"],
+    ["200", "coin", "500", "emblem_37", "emblem_37"],
+    ["724", "coin", "1500", "emblem_53", "emblem_53"],
+    ["725", "coin", "1500", "emblem_54", "emblem_54"],
+    ["936", "coin", "5000", "emblem_109", "emblem_109"],
+    ["937", "coin", "10000", "emblem_110", "emblem_110"],
+    ["866", "coin", "10000", "emblem_90", "emblem_90"],
 ] 
 
 var Items_tips = 
@@ -889,14 +910,26 @@ var Items_Runes =
     {id: "rune_replenishment", color: "#d87f59"},
     {id: "rune_time", color: "#b8a060"},
     {id: "rune_radius", color: "#62b0bd"},
+
+    {id: "rune_summoner", color: "#6f8fe0"},
+    {id: "rune_druid", color: "#6fb56a"},
+    {id: "rune_shaman", color: "#4fb0a8"},
+    {id: "rune_necromancer", color: "#8a6fbf"},
+    {id: "rune_dominator", color: "#c07a4a"},
+    {id: "rune_farm", color: "#d4b04a"},
+    {id: "rune_champion", color: "#d05a5a"},
 ]
 
 var SHOP_BUTTONS_CATEGORY =
 [
     ["ShopMenuButtonCurrency", "shop_button_currency", "FullYellow"],
+    ["ShopMenuButtonWodaPlus", "shop_button_woda_plus", "FullBlue"],
+    ["ShopMenuButtonUpgrades", "shop_button_upgrades", "FullPurple"],
+    ["ShopMenuButtonHeroVotes", "shop_button_hero_votes", "FullGreen"],
     ["ShopMenuButtonPlus", "shop_button_subscribe", "DonateNewMenuButtonSelected"],
     ["ShopMenuButtonPets", "shop_button_pets", null],
     ["ShopMenuButtonEmblems", "shop_button_emblems", null],
+    ["ShopMenuButtonHeads", "shop_button_heads", null],
     ["ShopMenuButtonTips", "shop_button_tips", null],
     ["ShopMenuButtonFive", "shop_button_five", null],
     ["ShopMenuButtonBG", "shop_button_bg", null],

@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -207,32 +207,58 @@ function LinkToStore()
     {
         if (localplayer_data.games >= 1 || Game.IsInToolsMode())
         {
-            $("#ChoosePayMethode").SetHasClass("IsOpacity", false)
+            XsollaOpenProducts()
         }
     }
 }
 
-function PaymentClose()
-{
-    $("#ChoosePayMethode").SetHasClass("IsOpacity", true)
-}
-
-function RequestUrl(xsolla)
-{
-    if (xsolla)
-    {
-        PaymentClose()
-        XsollaOpenProducts()
-    }
-    else
-    {
-        $.DispatchEvent('ExternalBrowserGoToURL', 'https://funpay.com/users/19824830/');
-    }
-}
-
-if ($.Language() == "russian")
-{
-    $("#WowBanner").style.opacity = "1"
-}
+WodaShowAdBanner($("#WowBanner"))
 
 CreateEventLinks()
+
+var WODA_LOADING_CONNECT_KEYS = {
+    waiting: "#woda_connect_waiting",
+    requesting: "#woda_connect_requesting",
+    queued: "#woda_connect_queued",
+    ready: "#woda_connect_ready",
+    relaunch: "#woda_connect_relaunch",
+    error: "#woda_connect_error",
+    choose: "#woda_connect_choose",
+    session: "#woda_connect_choose"
+}
+
+function WodaLoadingConnectStatus()
+{
+    var label = $("#WodaConnectLoadingStatus")
+    var status = CustomNetTables.GetTableValue("woda_connect", "status")
+    if (label && status)
+    {
+        var state = status.state || "waiting"
+        label.SetDialogVariableInt("position", Number(status.position) || 0)
+        var text = $.Localize(WODA_LOADING_CONNECT_KEYS[state] || WODA_LOADING_CONNECT_KEYS.waiting, label)
+        if (state === "error" && status.reason)
+        {
+            text += " (" + status.reason + ")"
+        }
+        label.text = text
+        label.SetHasClass("Visible", true)
+        label.SetHasClass("Error", state === "error")
+    }
+    $.Schedule(1.0, WodaLoadingConnectStatus)
+}
+
+WodaLoadingConnectStatus()
+
+function WodaLoadingArenaLogo()
+{
+    var info = Game.GetMapInfo()
+    var map = info && info.map_display_name
+    if (!map)
+    {
+        $.Schedule(0.5, WodaLoadingArenaLogo)
+        return
+    }
+    $("#PanelHintsImageLogo").SetHasClass("ArenaLogo", /^(arena|1_player|4_player)$/.test(map))
+}
+
+WodaLoadingArenaLogo()

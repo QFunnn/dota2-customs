@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -196,6 +196,7 @@ function init()
 	GameEvents.Subscribe_custom("pick_start_time", pick_start_time)
 	GameEvents.Subscribe_custom("change_time", change_time)
 	GameEvents.Subscribe_custom("change_random", change_random)
+	InitHeroSearch()
 	var InfoText = $.GetContextPanel().FindChildTraverse("InfoText")
 }
 
@@ -218,13 +219,13 @@ function WaitForHeroDataAndStart(attempt)
 {
 	const pick_state = Game.GetCustomTable("custom_pick", "pick_state")
 
-	if (pick_state === undefined || pick_state.in_progress)
+	if (!pick_state || pick_state.in_progress)
 	{
 		// Данные героев (custom tables) могут ещё не прийти — например, если игрок
 		// свернул игру во время загрузки и запрос таблиц ушёл позже. В этом случае
 		// pick_load_heroes() читает undefined и пик открывается пустым. Ждём hero_list.
 		const hero_list = Game.GetCustomTable("custom_pick", "hero_list")
-		if (hero_list === undefined && attempt < 300)
+		if (!hero_list && attempt < 300)
 		{
 			$.Schedule(0.1, function() { WaitForHeroDataAndStart(attempt + 1) })
 			return
@@ -233,6 +234,7 @@ function WaitForHeroDataAndStart(attempt)
 		pick_load_heroes()
 		pick_start()
 		UpdateStoreBackgroundHS()
+		CheckArenaDifficultyState()
 	}
 	else
 	{
@@ -274,7 +276,7 @@ function check_connection()
 
 	$.Schedule(0.2, function() {
 		const pick_state = Game.GetCustomTable("custom_pick", "pick_state")
-		if (pick_state === undefined || pick_state.in_progress)
+		if (!pick_state || pick_state.in_progress)
 		{
 			check_connection()
 		}
@@ -322,19 +324,109 @@ function RestoreButtons()
 	//}
 }
 
-function end_pick() 
-{
-	$.GetContextPanel().AddClass('Deletion');
-	$.GetContextPanel().style.opacity = "0"
+var PICK_CONTENT_HIDE_TIME = 1.8
+var PICK_CURTAIN_SHOW_DELAY = 0.3
+var PICK_SCREEN_FADE_DELAY = 2.2
+var PICK_SCREEN_DELETE_DELAY = 3.4
+var pick_loading_active = false
 
-	$.Schedule(5, function() 
+function end_pick()
+{
+	ResetHeroSearch()
+	$.DispatchEvent("DropInputFocus")
+	ShowPickLoadingScreen()
+}
+
+function CreatePickLoadingCurtain()
+{
+	var curtain = $.CreatePanel("Panel", $.GetContextPanel(), "PickLoadingScreen")
+	curtain.AddClass("PickLoadingScreen")
+	curtain.hittest = false
+	curtain.hittestchildren = false
+
+	var player_data = Game.GetCustomTable("woda_player_data", String(Players.GetLocalPlayer()))
+	if (player_data && player_data.background_id && typeof Background_Images !== "undefined" && Background_Images[player_data.background_id])
 	{
-		if ($("#BGScene_1"))
+		curtain.style.backgroundImage = 'url("' + Background_Images[player_data.background_id] + '")'
+		curtain.style.backgroundSize = "cover"
+		curtain.style.backgroundPosition = "50% 50%"
+	}
+	else
+	{
+		$.CreatePanel("MoviePanel", curtain, "", {class: "PickLoadingMovie", src: "file://{resources}/videos/custom_game/woda_loading.webm", repeat: "true", controls: "none", autoplay: "onload", hittest: "false"})
+	}
+
+	var content = $.CreatePanel("Panel", curtain, "")
+	content.AddClass("PickLoadingContent")
+
+	var spinner = $.CreatePanel("Panel", content, "")
+	spinner.AddClass("PickLoadingSpinner")
+
+	var label = $.CreatePanel("Label", content, "")
+	label.AddClass("PickLoadingLabel")
+	label.text = $.Localize("#donate_shop_loading") + ".."
+
+	curtain.SetParent($.GetContextPanel().GetParent().GetParent().GetParent())
+	return curtain
+}
+
+function FadeOutPickContent()
+{
+	var panels = $.GetContextPanel().FindChildrenWithClassTraverse("custom_pick_general")
+	for (var i = 0; i < panels.length; i++)
+	{
+		panels[i].style.opacity = "0"
+	}
+}
+
+function GetPickLoadingCurtain()
+{
+	var root = $.GetContextPanel()
+	while (root.GetParent())
+	{
+		root = root.GetParent()
+	}
+	return root.FindChildTraverse("PickLoadingScreen")
+}
+
+function ShowPickLoadingScreen()
+{
+	if (pick_loading_active) { return }
+	pick_loading_active = true
+
+	if (!GetPickLoadingCurtain())
+	{
+		CreatePickLoadingCurtain()
+	}
+
+	$.GetContextPanel().AddClass("PickBrighten")
+	FadeOutPickContent()
+
+	$.Schedule(PICK_CURTAIN_SHOW_DELAY, function()
+	{
+		var curtain = GetPickLoadingCurtain()
+		if (curtain)
 		{
-			$("#BGScene_1").DeleteAsync(10)
+			curtain.AddClass("Show")
+			curtain.style.opacity = "1"
 		}
 	})
-	RestoreButtons()
+
+	$.Schedule(PICK_CONTENT_HIDE_TIME, function()
+	{
+		$.GetContextPanel().AddClass("PickLoading")
+		RestoreButtons()
+	})
+
+	$.Schedule(PICK_SCREEN_FADE_DELAY, function()
+	{
+		$.GetContextPanel().style.opacity = "0"
+	})
+
+	$.Schedule(PICK_SCREEN_DELETE_DELAY, function()
+	{
+		$.GetContextPanel().DeleteAsync(0)
+	})
 }
 
 function RandomHero() {
@@ -410,7 +502,13 @@ function change_time(kv)
 		}
 		timer.text = String(kv.time)
 	}
-    
+
+	var difficulty_timer = $.GetContextPanel().FindChildTraverse("ArenaDifficultyTimer")
+	if (difficulty_timer)
+	{
+		difficulty_timer.text = String(kv.time)
+	}
+
     StealButtons()
 }
 
@@ -475,6 +573,8 @@ function GetRatingInfo(panel, pid)
 function pick_start() 
 {
 	StealButtons()
+	ResetHeroSearch()
+	HeroSearchFocus()
 	var lobby_heroes = $.GetContextPanel().FindChildTraverse("lobby_players")
 	var player_list = Game.GetCustomTable("custom_pick", "player_lobby");
 
@@ -618,7 +718,7 @@ function update_buy_heroes_from_lua()
 	$("#AllSelector").RemoveAndDeleteChildren()
 
 	const hero_list = Game.GetCustomTable("custom_pick", "hero_list");
-	if (hero_list === undefined)
+	if (!hero_list)
 		return
 
 	const hero_names_sorted = [...Object.keys(hero_list)].sort()
@@ -749,6 +849,7 @@ function update_buy_heroes_from_lua()
 		ShowHero(panel, hero_name)
 	}
 	//RefreshBuYheroButton()
+	UpdateArenaHeroCrystalMarks()
 }
 
 GameUI.CustomUIConfig().UpdateBuyHeroes = function UpdateBuyHeroes() 
@@ -759,7 +860,7 @@ GameUI.CustomUIConfig().UpdateBuyHeroes = function UpdateBuyHeroes()
 	$("#AllSelector").RemoveAndDeleteChildren()
 
 	const hero_list = Game.GetCustomTable("custom_pick", "hero_list");
-	if (hero_list === undefined)
+	if (!hero_list)
 		return
 
 	const hero_names_sorted = [...Object.keys(hero_list)].sort()
@@ -890,6 +991,7 @@ GameUI.CustomUIConfig().UpdateBuyHeroes = function UpdateBuyHeroes()
 		ShowHero(panel, hero_name)
 	}
 	//RefreshBuYheroButton()
+	UpdateArenaHeroCrystalMarks()
 }
  
 var HERO_LIST_INIT = false
@@ -903,7 +1005,7 @@ function pick_load_heroes()
 	$("#AllSelector").RemoveAndDeleteChildren()
 
 	const hero_list = Game.GetCustomTable("custom_pick", "hero_list");
-	if (hero_list === undefined)
+	if (!hero_list)
 		return
 
 	const hero_names_sorted = [...Object.keys(hero_list)].sort()
@@ -1038,6 +1140,7 @@ function pick_load_heroes()
 
 		ShowHero(panel, hero_name)
 	}
+	UpdateArenaHeroCrystalMarks()
 }
 
 function reload_pick_heroes(data) 
@@ -1183,6 +1286,7 @@ function SetPSelectEvent(panel, hero, attribute)
 	panel.SetPanelEvent("onactivate", function() {
 		ChangeHeroInfo(hero, attribute);
 	});
+	ApplyHeroSearchToPanel(panel, hero)
 }
 
 
@@ -1780,13 +1884,15 @@ function UpdateStoreBackgroundHS()
 {
     let PLAYER_DATA = Game.GetCustomTable("woda_player_data", String(Players.GetLocalPlayer()));
     let CustomBg = $("#BGScene_1")
+    if (!CustomBg) { return }
     let MovieBackground = $("#MovieBackground")
     let MovieBackground2 = $("#MovieBackground2")
 
     if (PLAYER_DATA && PLAYER_DATA.background_id)
     {
         CustomBg.style.backgroundImage = 'url("' + Background_Images[PLAYER_DATA.background_id] + '")'
-        CustomBg.style.backgroundSize = "100%"
+        CustomBg.style.backgroundSize = "cover"
+        CustomBg.style.backgroundPosition = "50% 50%"
         if (MovieBackground)
         {
             MovieBackground.visible = false
@@ -1816,4 +1922,397 @@ function UpdateStoreBackgroundHS()
 MouseOver($("#SelectRandomHero"),$.Localize("#random_button"))
 MouseOver($("#TournamentActivateButton"), $.Localize("#tournament_gamemode_info"))
 
-init()
+var HERO_SEARCH_KEYS =
+[
+    "key_backspace", "key_escape",
+    "key_a", "key_b", "key_c", "key_d", "key_e", "key_f", "key_g",
+    "key_h", "key_i", "key_j", "key_k", "key_l", "key_m", "key_n",
+    "key_o", "key_p", "key_q", "key_r", "key_s", "key_t", "key_u",
+    "key_v", "key_w", "key_x", "key_y", "key_z"
+]
+
+var HERO_SEARCH_RU_MAP =
+{
+    q: "й", w: "ц", e: "у", r: "к", t: "е", y: "н", u: "г", i: "ш", o: "щ", p: "з",
+    a: "ф", s: "ы", d: "в", f: "а", g: "п", h: "р", j: "о", k: "л", l: "д",
+    z: "я", x: "ч", c: "с", v: "м", b: "и", n: "т", m: "ь"
+}
+
+var hero_search_term = ""
+var hero_search_names = {}
+
+function InitHeroSearch()
+{
+    let panel = $.GetContextPanel()
+    panel.SetAcceptsFocus(true)
+    $.RegisterEventHandler("InputFocusLost", panel, HeroSearchOnFocusLost)
+    GameUI.CustomUIConfig().woda_restore_focus = HeroSearchFocus
+    for (let key_name of HERO_SEARCH_KEYS)
+    {
+        $.RegisterKeyBind(panel, key_name, function()
+        {
+            if (panel.BHasClass("Deletion")) return
+            if (key_name === "key_backspace")
+            {
+                hero_search_term = hero_search_term.slice(0, -1)
+            }
+            else if (key_name === "key_escape")
+            {
+                hero_search_term = ""
+            }
+            else
+            {
+                hero_search_term += key_name.slice(4, 5)
+            }
+            UpdateHeroSearchFilter()
+        })
+    }
+    HeroSearchFocus()
+}
+
+function HeroSearchFocus()
+{
+    let panel = $.GetContextPanel()
+    if (!panel || panel.BHasClass("Deletion")) return
+    if (panel.BHasKeyFocus()) return
+    if (WodaIsTextEntryFocused()) return
+    panel.SetAcceptsFocus(true)
+    panel.SetFocus()
+    panel.UpdateFocusInContext()
+}
+
+function HeroSearchOnFocusLost()
+{
+    $.Schedule(0.2, HeroSearchFocus)
+}
+
+function HeroSearchToRussian(term)
+{
+    let result = ""
+    for (let i = 0; i < term.length; i++)
+    {
+        result += HERO_SEARCH_RU_MAP[term[i]] || term[i]
+    }
+    return result
+}
+
+function HeroSearchLocalize(token)
+{
+    let text = $.Localize("#" + token)
+    if (!text || text.indexOf("npc_dota_hero") !== -1)
+    {
+        return ""
+    }
+    return text.toLowerCase()
+}
+
+function GetHeroSearchNames(hero_name)
+{
+    if (hero_search_names[hero_name])
+    {
+        return hero_search_names[hero_name]
+    }
+    let short_name = String(hero_name).replace("npc_dota_hero_", "").toLowerCase()
+    let names =
+    [
+        short_name,
+        short_name.replace(/_/g, " "),
+        short_name.replace(/_/g, ""),
+        HeroSearchLocalize(hero_name),
+        HeroSearchLocalize(hero_name + "__name_alias"),
+        HeroSearchLocalize(hero_name + "_name_alias")
+    ]
+    hero_search_names[hero_name] = names.join(";")
+    return hero_search_names[hero_name]
+}
+
+function HeroSearchMatches(hero_name, latin, russian)
+{
+    if (latin === "") return true
+    let names = GetHeroSearchNames(hero_name)
+    return names.indexOf(latin) !== -1 || names.indexOf(russian) !== -1
+}
+
+function ApplyHeroSearchToPanel(panel, hero_name)
+{
+    if (!panel) return
+    HeroSearchSetPanelState(panel, hero_name, hero_search_term, HeroSearchToRussian(hero_search_term))
+}
+
+function HeroSearchSetPanelState(panel, hero_name, latin, russian)
+{
+    let match = HeroSearchMatches(hero_name, latin, russian)
+    panel.SetHasClass("HeroSearchDim", !match)
+    panel.SetHasClass("HeroSearchHighlighted", latin !== "" && match)
+}
+
+var hero_search_fade_timer = null
+
+function HeroSearchShowLabel(label, show)
+{
+    if (hero_search_fade_timer !== null)
+    {
+        $.CancelScheduled(hero_search_fade_timer)
+        hero_search_fade_timer = null
+    }
+    label.SetHasClass("ShowSearch", show)
+    if (!show) return
+    hero_search_fade_timer = $.Schedule(1.0, function()
+    {
+        hero_search_fade_timer = null
+        label.SetHasClass("ShowSearch", false)
+    })
+}
+
+function UpdateHeroSearchFilter()
+{
+    let latin = hero_search_term
+    let russian = HeroSearchToRussian(latin)
+    let label = $("#HeroSearchLabel")
+    if (label)
+    {
+        label.text = latin
+        HeroSearchShowLabel(label, latin !== "")
+    }
+    let selectors = ["#StrengthSelector", "#AgilitySelector", "#IntellectSelector", "#AllSelector"]
+    for (let selector_id of selectors)
+    {
+        let selector = $(selector_id)
+        if (!selector) continue
+        for (let panel of selector.Children())
+        {
+            HeroSearchSetPanelState(panel, panel.id, latin, russian)
+        }
+    }
+}
+
+function ResetHeroSearch()
+{
+    hero_search_term = ""
+    UpdateHeroSearchFilter()
+}
+
+
+init()
+
+var arena_difficulty_max_unlocked = 1
+var arena_difficulty_selected = 1
+var arena_difficulty_host = -1
+var ARENA_DIFFICULTY_COUNT = 10
+
+function IsArenaDifficultyHost()
+{
+	if (arena_difficulty_host < 0) { return true }
+	return Game.GetLocalPlayerID() == arena_difficulty_host
+}
+
+function UpdateArenaDifficultyHostState()
+{
+	var is_host = IsArenaDifficultyHost()
+	$("#ArenaDifficultyOverlay").SetHasClass("Viewer", !is_host)
+	var description = $("#ArenaDifficultyDescription")
+	if (description)
+	{
+		description.text = $.Localize(is_host ? "#arena_difficulty_description" : "#arena_difficulty_host_only")
+	}
+}
+
+function ArenaDifficultyStart(data)
+{
+	arena_difficulty_max_unlocked = Number(data.max_unlocked) || 1
+	arena_difficulty_selected = Number(data.level) || 0
+	arena_difficulty_host = (data.host !== undefined && data.host !== null) ? Number(data.host) : -1
+	BuildArenaDifficultyGrid()
+	UpdateArenaDifficultyHostState()
+	$.GetContextPanel().AddClass("DifficultyChoosing")
+	$("#ArenaDifficultyOverlay").AddClass("Visible")
+}
+
+function BuildArenaDifficultyGrid()
+{
+	var grid = $("#ArenaDifficultyGrid")
+	if (!grid) { return }
+	grid.RemoveAndDeleteChildren()
+	var per_row = Math.ceil(ARENA_DIFFICULTY_COUNT / 2)
+	var row = null
+	for (var level = 1; level <= ARENA_DIFFICULTY_COUNT; level++)
+	{
+		if ((level - 1) % per_row == 0)
+		{
+			row = $.CreatePanel("Panel", grid, "")
+			row.AddClass("ArenaDifficultyGridRow")
+		}
+		CreateArenaDifficultyCard(row, level)
+	}
+}
+
+function SetArenaDifficultyPicture(panel, level)
+{
+	if (!panel) { return }
+	var room_id = ARENA_DIFFICULTY_ROOMS[level - 1]
+	var image = (room_id !== undefined) ? "arena_rooms/arena_a_0_" + room_id : "shop/difficulty_level_badge"
+	panel.style.backgroundImage = 'url("file://{images}/custom_game/' + image + '.png")'
+	panel.style.backgroundSize = "100%"
+}
+
+function CreateArenaDifficultyCard(grid, level)
+{
+	var locked = level > arena_difficulty_max_unlocked
+	var card = $.CreatePanel("Panel", grid, "ArenaDifficulty_" + level)
+	card.AddClass("ArenaDifficultyCard")
+	card.SetHasClass("Locked", locked)
+	card.SetHasClass("Selected", level == arena_difficulty_selected)
+	card.hittestchildren = false
+
+	var picture = $.CreatePanel("Panel", card, "")
+	picture.AddClass("ArenaDifficultyPicture")
+	picture.AddClass("ArenaDifficultyCardPicture")
+	SetArenaDifficultyPicture(picture, level)
+	var row = $.CreatePanel("Panel", card, "")
+	row.AddClass("ArenaDifficultyCardRow")
+	var badge = $.CreatePanel("Panel", row, "")
+	badge.AddClass("ArenaDifficultyCardBadge")
+	var number = $.CreatePanel("Label", badge, "")
+	number.AddClass("ArenaDifficultyCardNumber")
+	number.text = String(level)
+
+	var text = $.CreatePanel("Panel", row, "")
+	text.AddClass("ArenaDifficultyCardText")
+	var title = $.CreatePanel("Label", text, "")
+	title.AddClass("ArenaDifficultyInfoTitle")
+	title.text = $.Localize("#arena_difficulty_info_title")
+	var room_name = $.CreatePanel("Label", text, "")
+	room_name.AddClass("ArenaDifficultyInfoRoom")
+	var room_id = ARENA_DIFFICULTY_ROOMS[level - 1]
+	room_name.text = (room_id !== undefined) ? $.Localize("#arena_room_" + room_id) : String(level)
+
+	var lock = $.CreatePanel("Panel", card, "")
+	lock.AddClass("ArenaDifficultyLock")
+
+	card.SetPanelEvent("onactivate", function()
+	{
+		if (locked || !IsArenaDifficultyHost())
+		{
+			Game.EmitSound("General.InvalidTarget_Invulnerable")
+			return
+		}
+		Game.EmitSound("ui_topmenu_select")
+		GameEvents.SendCustomGameEventToServer_custom("arena_difficulty_select", {level: level})
+	})
+}
+
+function ArenaDifficultySelected(data)
+{
+	arena_difficulty_selected = Number(data.level) || 0
+	for (var level = 1; level <= ARENA_DIFFICULTY_COUNT; level++)
+	{
+		var card = $("#ArenaDifficulty_" + level)
+		if (card)
+		{
+			card.SetHasClass("Selected", level == arena_difficulty_selected)
+		}
+	}
+}
+
+function ArenaDifficultyConfirm()
+{
+	if (!IsArenaDifficultyHost())
+	{
+		Game.EmitSound("General.InvalidTarget_Invulnerable")
+		return
+	}
+	Game.EmitSound("ui_topmenu_select")
+	GameEvents.SendCustomGameEventToServer_custom("arena_difficulty_confirm", {level: arena_difficulty_selected})
+}
+
+function ArenaDifficultyEnd(data)
+{
+	$.GetContextPanel().RemoveClass("DifficultyChoosing")
+	$("#ArenaDifficultyOverlay").RemoveClass("Visible")
+	if (data && Number(data.level) > 0)
+	{
+		arena_crystal_difficulty = Number(data.level)
+	}
+	UpdateArenaHeroCrystalMarks()
+	UpdateArenaDifficultyInfo()
+}
+
+function UpdateArenaDifficultyInfo()
+{
+	var info = $("#ArenaDifficultyInfo")
+	$.Msg("[DBG_ADI] info=", !!info, " map=", Game.GetMapInfo().map_display_name, " crystal=", arena_crystal_difficulty, " table=", JSON.stringify(Game.GetCustomTable("custom_pick", "arena_difficulty")))
+	if (!info) { return }
+	var difficulty = GetArenaPickDifficulty()
+	$.Schedule(0.5, function()
+	{
+		if (!info.IsValid()) { $.Msg("[DBG_ADI] invalid"); return }
+		var par = info.GetParent()
+		$.Msg("[DBG_ADI] diff=", difficulty, " has=", info.BHasClass("Visible"), " vis=", info.visible, " x=", info.actualxoffset, " y=", info.actualyoffset, " w=", info.actuallayoutwidth, " h=", info.actuallayoutheight, " op=", info.style.opacity, " parent=", par ? par.id + "/" + par.paneltype + " w=" + par.actuallayoutwidth + " h=" + par.actuallayoutheight : "none")
+	})
+	info.SetHasClass("Visible", difficulty > 0)
+	if (difficulty <= 0) { return }
+	$("#ArenaDifficultyInfoNumber").text = String(difficulty)
+	var room_id = ARENA_DIFFICULTY_ROOMS[difficulty - 1]
+	$("#ArenaDifficultyInfoRoom").text = room_id !== undefined ? $.Localize("#arena_room_" + room_id) : ""
+}
+
+var arena_crystal_difficulty = 0
+
+function GetArenaPickDifficulty()
+{
+	if (!/^(arena|1_player|4_player)$/.test(Game.GetMapInfo().map_display_name)) { return 0 }
+	if (arena_crystal_difficulty > 0) { return arena_crystal_difficulty }
+	var state = Game.GetCustomTable("custom_pick", "arena_difficulty")
+	if (state && state.state == "done")
+	{
+		return Number(state.level) || 0
+	}
+	return 0
+}
+
+function UpdateArenaHeroCrystalMarks()
+{
+	if (typeof IsArenaHeroDifficultyDone !== "function") { return }
+	var difficulty = GetArenaPickDifficulty()
+	var player_data = Game.GetCustomTable("woda_player_data", String(Players.GetLocalPlayer()))
+	var selectors = ["StrengthSelector", "AgilitySelector", "IntellectSelector", "AllSelector"]
+	for (var s = 0; s < selectors.length; s++)
+	{
+		var selector = $("#" + selectors[s])
+		if (!selector) { continue }
+		var heroes = selector.Children()
+		for (var h = 0; h < heroes.length; h++)
+		{
+			var hero_panel = heroes[h]
+			var show = difficulty > 0 && player_data != null && GetArenaHeroDifficultyQuestId(hero_panel.id, difficulty) != null && !IsArenaHeroDifficultyDone(player_data, hero_panel.id, difficulty)
+			var mark = hero_panel.FindChild("ArenaCrystalMark")
+			if (show && !mark)
+			{
+				mark = $.CreatePanel("Panel", hero_panel, "ArenaCrystalMark")
+				mark.AddClass("ArenaCrystalMark")
+				mark.hittest = false
+			}
+			if (mark)
+			{
+				mark.visible = show
+			}
+		}
+	}
+}
+
+function CheckArenaDifficultyState()
+{
+	var state = Game.GetCustomTable("custom_pick", "arena_difficulty")
+	if (state && state.state == "choose")
+	{
+		ArenaDifficultyStart({max_unlocked: state.max_unlocked, level: state.level, host: state.host})
+	}
+	else
+	{
+		ArenaDifficultyEnd()
+	}
+}
+
+GameEvents.Subscribe_custom("arena_difficulty_start", ArenaDifficultyStart)
+GameEvents.Subscribe_custom("arena_difficulty_selected", ArenaDifficultySelected)
+GameEvents.Subscribe_custom("arena_difficulty_end", ArenaDifficultyEnd)

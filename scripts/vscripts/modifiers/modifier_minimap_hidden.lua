@@ -3,14 +3,18 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
 
-modifier_minimap_hidden = class({})
-function modifier_minimap_hidden:CheckState()
-	return {
-		[MODIFIER_STATE_NOT_ON_MINIMAP] = true,
-	}
-end
+return normalDecrypt(
+	[[
+6D6F6469666965725F6D696E696D61705F68696464656E203D20636C617373287B7D290D0A66756E6374696F6E206D6F6469666965725F6D696E696D
+61705F68696464656E3A436865636B537461746528290D0A2020202072657475726E0D0A202020207B0D0A20202020202020205B4D4F444946494552
+5F53544154455F4E4F545F4F4E5F4D494E494D41505D203D20747275652C0D0A202020207D0D0A656E64
+]],
+	"modifiers/modifier_minimap_hidden.lua",
+	getfenv and getfenv(1),
+	...
+)

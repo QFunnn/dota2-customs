@@ -1,0 +1,37 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1a5b3bb 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.css" />
+		<include src="s2r://panorama/layout/custom_game/tooltips/free_reward_tooltip/free_reward_tooltip.vcss" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/tooltips/free_reward_tooltip/free_reward_tooltip.vjs" />
+	</scripts>
+	<Panel class="FreeRewardTooltipRoot" hittest="false" hittestchildren="false" ontooltiploaded="UpdateFreeRewardTooltip()">
+		<Panel class="FreeRewardTooltip" id="FreeRewardTooltip">
+			<Label class="FreeRewardTooltipTitle" text="#give_free_reward" />
+			<Panel class="FreeRewardTooltipRow">
+				<Panel class="FreeRewardTooltipIcon FreeRewardTooltipCoin" />
+				<Label class="FreeRewardTooltipText" text="#free_reward_tooltip_coins" />
+				<Label class="FreeRewardTooltipValue FreeRewardTooltipCoinValue" id="FreeRewardTooltipCoins" text="" />
+			</Panel>
+			<Panel class="FreeRewardTooltipRow" id="FreeRewardTooltipCrystalRow">
+				<Panel class="FreeRewardTooltipIcon FreeRewardTooltipCrystal" />
+				<Label class="FreeRewardTooltipText" text="#free_reward_tooltip_crystals" />
+				<Label class="FreeRewardTooltipValue FreeRewardTooltipCrystalValue" id="FreeRewardTooltipCrystals" text="" />
+			</Panel>
+			<Label class="FreeRewardTooltipStatus" id="FreeRewardTooltipPlusStatus" text="" />
+			<Label class="FreeRewardTooltipStatus" id="FreeRewardTooltipClaimStatus" text="" />
+		</Panel>
+	</Panel>
+</root>

@@ -1,0 +1,184 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1a5b3bb 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf66:version{dd571be4-586e-4f41-8b2d-5bbc969e1c53} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 1
+	m_flConstantRadius = 1.0
+	m_bShouldSort = false
+	m_nBehaviorVersion = 5
+	m_flCullRadius = -1.0
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.0
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_CreateWithinSphereTransform"
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.2
+			}
+			m_nOutputField = 1
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = -4.4
+			}
+			m_nOutputField = 5
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_BasicMovement"
+			m_fDrag = 0.0001
+		},
+		{
+			_class = "C_OP_Decay"
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
+		},
+		{
+			_class = "C_OP_SetToCP"
+			m_vecOffset = [ 0.0, 0.0, 90.0 ]
+		},
+		{
+			_class = "C_OP_SetControlPointsToParticle"
+			m_bSetOrientation = true
+			m_nFirstControlPoint = 3
+		},
+		{
+			_class = "C_OP_RemapTransformOrientationToYaw"
+		},
+		{
+			_class = "C_OP_SpinUpdate"
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderModels"
+			m_bOrientZ = true
+			m_flAnimationRate = 0.0
+			m_bSuppressTint = true
+			m_ModelList = 
+			[
+				{
+					m_model = resource:"models/particle/meteor.vmdl"
+				},
+			]
+			m_bAnimated = true
+			m_nLOD = 1
+			m_bForceLoopingAnimation = true
+			m_modelInput = 
+			{
+			}
+		},
+		{
+			_class = "C_OP_RenderScreenShake"
+			m_flDurationScale = 2.0
+			m_nFilterCP = -1
+			m_flAmplitudeScale = 32.0
+			m_flFrequencyScale = 32.0
+			m_flRadiusScale = 1200.0
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_invoker/invoker_chaos_meteor_fire.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_invoker/invoker_chaos_meteor_glow.vpcf"
+		},
+		{
+			m_bEndCap = true
+			m_ChildRef = resource:"particles/units/heroes/hero_invoker/invoker_chaos_meteor_crumble.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_invoker/invoker_chaos_meteor_ray.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_invoker/invoker_chaos_meteor_land_dust_b.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_invoker/invoker_chaos_meteor_land_soil.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_invoker/invoker_chaos_meteor_land_soil_b.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_invoker/invoker_chaos_meteor_land_ring.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_invoker/invoker_chaos_meteor_land_ring_b.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_invoker/invoker_chaos_meteor_land_ring_lrg.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_invoker/invoker_chaos_meteor_land_fireball.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_invoker/invoker_chaos_meteor_land_debris.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_invoker/invoker_chaos_meteor_land_embers.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_invoker/invoker_chaos_meteor_fly_glow_ob.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_invoker/invoker_chaos_meteor_fire_trail.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_invoker/invoker_chaos_meteor_smoke.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_invoker/invoker_chaos_meteor_smoke_b.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_invoker/invoker_chaos_meteor_burnt.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_invoker/invoker_chaos_meteor_light.vpcf"
+		},
+	]
+}

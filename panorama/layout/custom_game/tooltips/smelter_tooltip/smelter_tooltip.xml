@@ -1,0 +1,43 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1a5b3bb 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.css" />
+		<include src="s2r://panorama/layout/custom_game/styles/rarity.vcss" />
+		<include src="s2r://panorama/layout/custom_game/tooltips/smelter_tooltip/smelter_tooltip.vcss" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/util.vjs" />
+		<include src="s2r://panorama/layout/custom_game/tooltips/smelter_tooltip/smelter_tooltip.vjs" />
+	</scripts>
+	<Panel class="SmelterTooltipRoot" hittest="false" hittestchildren="false" ontooltiploaded="UpdateSmelterTooltip()">
+		<Panel class="SmelterTooltip" id="SmelterTooltip">
+			<Panel class="SmelterTooltipHeader">
+				<Panel class="SmelterTooltipIcon" />
+				<Panel class="SmelterTooltipHeaderText">
+					<Label class="SmelterTooltipTitle" text="#smelter_tt_title" />
+					<Label class="SmelterTooltipLevel" id="SmelterTooltipLevel" text="" />
+				</Panel>
+			</Panel>
+			<Panel class="SmelterTooltipDivider" />
+			<Label class="SmelterTooltipText" text="#smelter_tt_source" />
+			<Panel class="SmelterTooltipDivider" />
+			<Label class="SmelterTooltipSection" text="#item_tooltip_arena_bonus_title" />
+			<Panel class="SmelterTooltipBonusList">
+				<Label class="SmelterTooltipBonus" id="SmelterTooltipBonus" text="" />
+			</Panel>
+			<Panel class="SmelterTooltipDivider" />
+			<Label class="SmelterTooltipSection" text="#smelter_tt_exp_title" />
+			<Panel class="SmelterTooltipExpList" id="SmelterTooltipExpList" />
+		</Panel>
+	</Panel>
+</root>

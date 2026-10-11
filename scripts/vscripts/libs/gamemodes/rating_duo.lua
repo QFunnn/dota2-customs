@@ -3,854 +3,512 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
 
------- Дуо
--- Запуск дуэли
-function arena_system:StartDuelDuo()
-	-- Переменные для дуэлей
-	DUEL_ACTIVE = true
-	DUEL_STARTED = true
-
-	-- Если нет участников дуэли то мнгновенно ее закончить нужно
-	if player_system.DUEL_PLAYERS == nil or #player_system.DUEL_PLAYERS < 2 then
-		DUEL_ACTIVE = false
-		DUEL_STARTED = false
-		if DUEL_TIMER ~= nil then
-			Timers:RemoveTimer(DUEL_TIMER)
-		end
-		for id, betid in pairs(DUEL_PREDICT_PLAYERS) do
-			CustomGameEventManager:Send_ServerToAllClients(
-				"event_update_scoreboard_data",
-				{ table_name = "playersbet", player_id = id, data = { bet = nil } }
-			)
-		end
-		DUEL_PREDICT_PLAYERS = {}
-		CustomGameEventManager:Send_ServerToAllClients(
-			"event_update_scoreboard_data",
-			{ table_name = "visibleicon", data = { visible = "false" } }
-		)
-		return
-	end
-
-	-- Если один из участников дуэли отсутствует в таблице каким-то образом
-	if player_system.DUEL_PLAYERS[1] == nil or player_system.DUEL_PLAYERS[2] == nil then
-		DUEL_ACTIVE = false
-		DUEL_STARTED = false
-		if DUEL_TIMER ~= nil then
-			Timers:RemoveTimer(DUEL_TIMER)
-		end
-		for id, betid in pairs(DUEL_PREDICT_PLAYERS) do
-			CustomGameEventManager:Send_ServerToAllClients(
-				"event_update_scoreboard_data",
-				{ table_name = "playersbet", player_id = id, data = { bet = nil } }
-			)
-		end
-		DUEL_PREDICT_PLAYERS = {}
-		CustomGameEventManager:Send_ServerToAllClients(
-			"event_update_scoreboard_data",
-			{ table_name = "visibleicon", data = { visible = "false" } }
-		)
-		return
-	end
-
-	local players_connected_team_1 = false
-	local players_connected_team_2 = false
-
-	for _, player_id in pairs(player_system.DUEL_PLAYERS[1].players) do
-		if
-			PlayerResource:GetConnectionState(player_id) ~= DOTA_CONNECTION_STATE_ABANDONED
-			or (
-				PlayerResource:GetConnectionState(player_id) == DOTA_CONNECTION_STATE_NOT_YET_CONNECTED
-				and PlayerResource:IsFakeClient(player_id)
-			)
-		then
-			players_connected_team_1 = true
-		end
-	end
-
-	for _, player_id in pairs(player_system.DUEL_PLAYERS[2].players) do
-		if
-			PlayerResource:GetConnectionState(player_id) ~= DOTA_CONNECTION_STATE_ABANDONED
-			or (
-				PlayerResource:GetConnectionState(player_id) == DOTA_CONNECTION_STATE_NOT_YET_CONNECTED
-				and PlayerResource:IsFakeClient(player_id)
-			)
-		then
-			players_connected_team_2 = true
-		end
-	end
-
-	if not players_connected_team_1 or not players_connected_team_2 then
-		DUEL_ACTIVE = false
-		DUEL_STARTED = false
-		if DUEL_TIMER ~= nil then
-			Timers:RemoveTimer(DUEL_TIMER)
-		end
-		for id, betid in pairs(DUEL_PREDICT_PLAYERS) do
-			CustomGameEventManager:Send_ServerToAllClients(
-				"event_update_scoreboard_data",
-				{ table_name = "playersbet", player_id = id, data = { bet = nil } }
-			)
-		end
-		DUEL_PREDICT_PLAYERS = {}
-		CustomGameEventManager:Send_ServerToAllClients(
-			"event_update_scoreboard_data",
-			{ table_name = "visibleicon", data = { visible = "false" } }
-		)
-		return
-	end
-
-	-- Если участники дуэли все таки есть, то выдаем ставки людям на выбранного героя
-	if DUEL_PREDICT_PLAYERS then
-		for id, betid in pairs(DUEL_PREDICT_PLAYERS) do
-			CustomGameEventManager:Send_ServerToAllClients(
-				"event_update_scoreboard_data",
-				{ table_name = "playersbet", player_id = id, data = { bet = betid } }
-			)
-		end
-	end
-
-	-- Все игроки заполнение
-	local players_heroes = {}
-	for _, team_info in pairs(player_system.DUEL_PLAYERS) do
-		for __, player_id in pairs(team_info.players) do
-			table.insert(players_heroes, player_id)
-		end
-	end
-
-	for i = #players_heroes, 1, -1 do
-		if
-			players_heroes[i] == nil
-			or player_system:IsLose(players_heroes[i])
-			or PlayerResource:GetConnectionState(players_heroes[i]) == DOTA_CONNECTION_STATE_ABANDONED
-		then
-			table.remove(players_heroes, i)
-		end
-	end
-
-	if #players_heroes <= 0 then
-		DUEL_ACTIVE = false
-		DUEL_STARTED = false
-		if DUEL_TIMER ~= nil then
-			Timers:RemoveTimer(DUEL_TIMER)
-		end
-		for id, betid in pairs(DUEL_PREDICT_PLAYERS) do
-			CustomGameEventManager:Send_ServerToAllClients(
-				"event_update_scoreboard_data",
-				{ table_name = "playersbet", player_id = id, data = { bet = nil } }
-			)
-		end
-		DUEL_PREDICT_PLAYERS = {}
-		CustomGameEventManager:Send_ServerToAllClients(
-			"event_update_scoreboard_data",
-			{ table_name = "visibleicon", data = { visible = "false" } }
-		)
-		return
-	end
-
-	-- Поиск поинтов и телепортация их на арены
-	local points = {
-		"duelarena1",
-		"duelarena2",
-		"duelarena3",
-		"duelarena4",
-	}
-
-	for _, player_id in pairs(players_heroes) do
-		local player_hero = player_system:GetHero(player_id)
-		player_system:SetDuel(player_id, true)
-		if player_hero and not player_hero:IsNull() and player_hero:IsAlive() then
-			player_hero:RemoveModifierByName("modifier_wodarelax")
-			player_hero:RemoveModifierByName("modifier_fountain_invulnerability")
-			player_hero:ResetCooldown()
-			if player_hero.bear and not player_hero.bear:IsNull() and player_hero.bear:IsAlive() then
-				player_hero.bear:ForceKill(false)
-			end
-		end
-		local point_spawn = Entities:FindByName(nil, table.remove(points, RandomInt(1, #points)))
-		if point_spawn then
-			FindClearSpaceForUnit(player_hero, point_spawn:GetAbsOrigin(), true)
-			player_hero:SetCamera(player_hero)
-			player_hero:SetUnit(player_hero)
-		end
-		if player_hero and not player_hero:IsNull() and player_hero:IsAlive() then
-			player_hero:AddNewModifier(player_hero, nil, "modifier_wodaduel_duo", {})
-		end
-		CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(player_id), "event_new_area_duel", {})
-	end
-
-	arena_system:SetMinimapForAllChoose(2)
-	SetCustomTimeOfDay(0.5)
-
-	-- Даем вижен командам в центр дуэли
-	for team = 2, 13 do
-		if team ~= player_system.DUEL_PLAYERS[1].teamnumber and team ~= player_system.DUEL_PLAYERS[2].teamnumber then
-			AddFOWViewer(team, Vector(-1760, -1792, 0), 2500, 1.1, false)
-		end
-	end
-
-	-- Запускаем таймер дуэли с проверками
-	local time = DUEL_DURATION
-	CustomGameEventManager:Send_ServerToAllClients("set_arena_timer_duel", { time = time, full_time = DUEL_DURATION })
-	DUEL_TIMER = Timers:CreateTimer(1, function()
-		time = time - 1
-		if time == DUEL_DURATION / 2 then
-			SetCustomTimeOfDay(0.8)
-		end
-		for team = 2, 13 do
-			if
-				team ~= player_system.DUEL_PLAYERS[1].teamnumber
-				and team ~= player_system.DUEL_PLAYERS[2].teamnumber
-			then
-				AddFOWViewer(team, Vector(-1760, -1792, 0), 2500, 1.1, false)
-			end
-		end
-		CustomGameEventManager:Send_ServerToAllClients(
-			"set_arena_timer_duel",
-			{ time = time, full_time = DUEL_DURATION }
-		)
-		if time <= 0 then
-			self:EndDuelDuo(true)
-			return
-		end
-		return 1
-	end)
-end
-
--- Окончание дуэли
-function arena_system:EndDuelDuo(is_timer)
-	if not DUEL_ACTIVE then
-		return
-	end
-	local team_win = nil
-	local team_1_is_alive = 0
-	local team_2_is_alive = 0
-	local team_1_health = 0
-	local team_2_health = 0
-	local team_1_health_percent = 0
-	local team_2_health_percent = 0
-	-- Подсчет живых героев
-	for _, player_id in pairs(player_system.DUEL_PLAYERS[1].players) do
-		local hero = player_system:GetHero(player_id)
-		if hero and not hero:IsNull() and (hero:IsAlive() or hero:IsReincarnating()) then
-			team_1_is_alive = team_1_is_alive + 1
-		end
-	end
-	for _, player_id in pairs(player_system.DUEL_PLAYERS[2].players) do
-		local hero = player_system:GetHero(player_id)
-		if hero and not hero:IsNull() and (hero:IsAlive() or hero:IsReincarnating()) then
-			team_2_is_alive = team_2_is_alive + 1
-		end
-	end
-	-- Если прям у команды все умерли
-	if team_1_is_alive <= 0 then
-		team_win = player_system.DUEL_PLAYERS[2].teamnumber
-	elseif team_2_is_alive <= 0 then
-		team_win = player_system.DUEL_PLAYERS[1].teamnumber
-	end
-	-- Проверка по окончанию времени
-	if team_win == nil and is_timer then
-		for _, player_id in pairs(player_system.DUEL_PLAYERS[1].players) do
-			local hero = player_system:GetHero(player_id)
-			if hero and not hero:IsNull() and (hero:IsAlive() or hero:IsReincarnating()) then
-				team_1_health = team_1_health + hero:GetHealth()
-				team_1_health_percent = team_1_health_percent + hero:GetHealthPercent()
-			end
-		end
-		for _, player_id in pairs(player_system.DUEL_PLAYERS[2].players) do
-			local hero = player_system:GetHero(player_id)
-			if hero and not hero:IsNull() and (hero:IsAlive() or hero:IsReincarnating()) then
-				team_2_health = team_2_health + hero:GetHealth()
-				team_2_health_percent = team_2_health_percent + hero:GetHealthPercent()
-			end
-		end
-		if team_1_is_alive > team_2_is_alive then
-			team_win = player_system.DUEL_PLAYERS[1].teamnumber
-		elseif team_2_is_alive > team_1_is_alive then
-			team_win = player_system.DUEL_PLAYERS[2].teamnumber
-		elseif team_1_is_alive == team_2_is_alive then
-			if team_1_health_percent > team_2_health_percent then
-				team_win = player_system.DUEL_PLAYERS[1].teamnumber
-			elseif team_2_health_percent > team_1_health_percent then
-				team_win = player_system.DUEL_PLAYERS[2].teamnumber
-			elseif team_1_health_percent == team_2_health_percent then
-				if team_1_health > team_2_health then
-					team_win = player_system.DUEL_PLAYERS[1].teamnumber
-				elseif team_2_health >= team_1_health then
-					team_win = player_system.DUEL_PLAYERS[2].teamnumber
-				end
-			end
-		end
-	end
-	if team_win == nil then
-		return
-	end
-
-	DUEL_ACTIVE = false
-	DUEL_STARTED = false
-
-	if DUEL_TIMER ~= nil then
-		Timers:RemoveTimer(DUEL_TIMER)
-	end
-
-	-- Находим игроков что были на дуэли
-	local players_in_duel = {}
-	local winners = {}
-	local losers = {}
-
-	for id, info in pairs(PLAYERS) do
-		if player_system:IsDuel(id) or player_system:IsDuelEnd(id) then
-			table.insert(players_in_duel, id)
-		end
-	end
-
-	-- сначала разделяем победителей и проигравших
-	for _, id in pairs(players_in_duel) do
-		local hero = player_system:GetHero(id)
-		if hero then
-			if hero:GetTeamNumber() == team_win then
-				table.insert(winners, id)
-			else
-				table.insert(losers, id)
-			end
-		end
-	end
-
-	-- объединяем: сначала победители, потом проигравшие
-	for _, id in ipairs(losers) do
-		table.insert(winners, id)
-	end
-
-	-- основной проход
-	for _, id in ipairs(winners) do
-		local hero = player_system:GetHero(id)
-
-		if hero:GetTeamNumber() ~= team_win then
-			player_system:SetDuel(id, false)
-			player_system:SetLoseDuo(id)
-
-			local wardmodifier = hero:FindModifierByName("modifier_item_ward_dispenser_custom_ward")
-			if wardmodifier then
-				wardmodifier:GetAbility():SetCurrentCharges(3)
-				wardmodifier:GetAbility():SetSecondaryCharges(3)
-			end
-
-			if hero.fake_dazzle then
-				local wardmodifier_dazzle =
-					hero.fake_dazzle:FindModifierByName("modifier_item_ward_dispenser_custom_ward")
-				if wardmodifier_dazzle then
-					wardmodifier_dazzle:GetAbility():SetCurrentCharges(3)
-					wardmodifier_dazzle:GetAbility():SetSecondaryCharges(3)
-				end
-			end
-
-			hero:RemoveModifierByName("modifier_wodaduel_duo")
-			player_system:CheckAttributeQuest(id, 13, 35, 57, 79)
-
-			if is_timer then
-				hero:AddNewModifier(hero, nil, "modifier_wodarelax_invul", { duration = 2 })
-			end
-
-			hero:RemoveAllUnitsOwnerPlayer()
-		else
-			hero:AddNewModifier(hero, nil, "modifier_wodarelax_invul", { duration = 2 })
-			player_system:SetDuel(id, false)
-			hero:ResetHealthAndMana()
-			hero:ResetCooldown()
-
-			Timers:CreateTimer({
-				endTime = 0.07,
-				callback = function()
-					hero:RemoveModifierByName("modifier_wodaduel_duo")
-
-					local teleport_point = Entities:FindByName(nil, "relaxarena")
-					if teleport_point then
-						FindClearSpaceForUnit(hero, teleport_point:GetAbsOrigin(), true)
-					end
-
-					hero:AddNewModifier(hero, nil, "modifier_wodarelax", {})
-					hero:SetCamera(hero)
-					hero:SetUnit(hero)
-				end,
-			})
-
-			WodaTalents:AddPoint(id, 5)
-
-			local particle = ParticleManager:CreateParticle(
-				"particles/units/heroes/hero_legion_commander/legion_commander_duel_victory.vpcf",
-				PATTACH_OVERHEAD_FOLLOW,
-				hero
-			)
-			ParticleManager:ReleaseParticleIndex(particle)
-
-			hero:EmitSound("Hero_LegionCommander.Duel.Victory")
-
-			local wardmodifier = hero:FindModifierByName("modifier_item_ward_dispenser_custom_ward")
-			if wardmodifier then
-				wardmodifier:GetAbility():SetCurrentCharges(3)
-				wardmodifier:GetAbility():SetSecondaryCharges(3)
-			end
-
-			if hero.fake_dazzle then
-				local wardmodifier_dazzle =
-					hero.fake_dazzle:FindModifierByName("modifier_item_ward_dispenser_custom_ward")
-				if wardmodifier_dazzle then
-					wardmodifier_dazzle:GetAbility():SetCurrentCharges(3)
-					wardmodifier_dazzle:GetAbility():SetSecondaryCharges(3)
-				end
-			end
-
-			if PLAYERS[hero:GetPlayerOwnerID()] then
-				PLAYERS[hero:GetPlayerOwnerID()].duel_streak = (PLAYERS[hero:GetPlayerOwnerID()].duel_streak or 0) + 1
-				player_system:CheckAttributeQuest(hero:GetPlayerOwnerID(), 12, 34, 56, 78)
-			end
-
-			hero:RemoveAllUnitsOwnerPlayer()
-		end
-	end
-
-	-- Раздаем награды победителям сюда + сюда
-	if team_win ~= nil then
-		for id, betid in pairs(DUEL_PREDICT_PLAYERS) do
-			if betid == team_win then
-				WodaTalents:AddPoint(id, 8)
-			end
-		end
-	end
-	for id, betid in pairs(DUEL_PREDICT_PLAYERS) do
-		CustomGameEventManager:Send_ServerToAllClients(
-			"event_update_scoreboard_data",
-			{ table_name = "playersbet", player_id = id, data = { bet = nil } }
-		)
-	end
-	DUEL_PREDICT_PLAYERS = {}
-	CustomGameEventManager:Send_ServerToAllClients(
-		"event_update_scoreboard_data",
-		{ table_name = "visibleicon", data = { visible = "false" } }
-	)
-	arena_system:SetMinimapForAllChoose(1)
-end
-
--- Последняя дуэль
-function arena_system:StartEndDuelDuo()
-	DUEL_ACTIVE = true
-	DUEL_STARTED = true
-	player_system.DUEL_PLAYERS = {}
-	player_system.DUEL_PLAYERS = player_system:GetPlayerLastNetworthsTeam()
-
-	-- Если нет участников дуэли то мнгновенно ее закончить нужно
-	if player_system.DUEL_PLAYERS == nil or #player_system.DUEL_PLAYERS < 2 then
-		arena_system:CloseAndEndGame()
-		return
-	end
-
-	-- Если один из участников дуэли отсутствует в таблице каким-то образом
-	if player_system.DUEL_PLAYERS[1] == nil or player_system.DUEL_PLAYERS[2] == nil then
-		arena_system:CloseAndEndGame()
-		return
-	end
-
-	local players_connected_team_1 = false
-	local players_connected_team_2 = false
-
-	for _, player_id in pairs(player_system.DUEL_PLAYERS[1].players) do
-		if
-			PlayerResource:GetConnectionState(player_id) ~= DOTA_CONNECTION_STATE_ABANDONED
-			or (
-				PlayerResource:GetConnectionState(player_id) == DOTA_CONNECTION_STATE_NOT_YET_CONNECTED
-				and PlayerResource:IsFakeClient(player_id)
-			)
-		then
-			players_connected_team_1 = true
-		end
-	end
-
-	for _, player_id in pairs(player_system.DUEL_PLAYERS[2].players) do
-		if
-			PlayerResource:GetConnectionState(player_id) ~= DOTA_CONNECTION_STATE_ABANDONED
-			or (
-				PlayerResource:GetConnectionState(player_id) == DOTA_CONNECTION_STATE_NOT_YET_CONNECTED
-				and PlayerResource:IsFakeClient(player_id)
-			)
-		then
-			players_connected_team_2 = true
-		end
-	end
-
-	if not players_connected_team_1 or not players_connected_team_2 then
-		arena_system:CloseAndEndGame()
-		return
-	end
-
-	-- Все игроки заполнение
-	local players_heroes = {}
-	for _, team_info in pairs(player_system.DUEL_PLAYERS) do
-		for __, player_id in pairs(team_info.players) do
-			table.insert(players_heroes, player_id)
-		end
-	end
-
-	for i = #players_heroes, 1, -1 do
-		if
-			players_heroes[i] == nil
-			or player_system:IsLose(players_heroes[i])
-			or PlayerResource:GetConnectionState(players_heroes[i]) == DOTA_CONNECTION_STATE_ABANDONED
-		then
-			table.remove(players_heroes, i)
-		end
-	end
-
-	if #players_heroes <= 0 then
-		arena_system:CloseAndEndGame()
-		return
-	end
-
-	-- Поиск поинтов и телепортация их на арены
-	local points = {
-		"finalduelarena1",
-		"finalduelarena2",
-		"finalduelarena3",
-		"finalduelarena4",
-	}
-
-	for _, player_id in pairs(players_heroes) do
-		local player_hero = player_system:GetHero(player_id)
-		player_system:SetDuelEnd(player_id, true)
-		if player_hero and not player_hero:IsNull() then
-			player_hero:ResetHealthAndMana()
-			player_hero:ResetCooldown()
-			player_hero:Stop()
-		end
-		Timers:CreateTimer({
-			endTime = 0.07,
-			callback = function()
-				if not player_hero:IsAlive() then
-					return 0.07
-				end
-				if player_hero and not player_hero:IsNull() then
-					player_hero:RemoveModifierByName("modifier_wodarelax")
-					player_hero:RemoveModifierByName("modifier_wodaduel_duo")
-					player_hero:RemoveModifierByName("modifier_wodawispdeath")
-					player_hero:RemoveModifierByName("modifier_fountain_invulnerability")
-					if player_hero.bear and not player_hero.bear:IsNull() and player_hero.bear:IsAlive() then
-						player_hero.bear:ForceKill(false)
-					end
-				end
-				local spawn_point = Entities:FindByName(nil, table.remove(points, RandomInt(1, #points)))
-				if spawn_point then
-					FindClearSpaceForUnit(player_hero, spawn_point:GetAbsOrigin(), true)
-					player_hero:SetCamera(player_hero)
-					player_hero:SetUnit(player_hero)
-					player_hero:Stop()
-					Timers:CreateTimer(0, function()
-						FindClearSpaceForUnit(player_hero, spawn_point:GetAbsOrigin(), true)
-						if not player_hero:IsAlive() then
-							return 0.1
-						end
-					end)
-				end
-				player_hero:AddNewModifier(player_hero, nil, "modifier_wodaduel_duo", { end_duel = true })
-			end,
-		})
-	end
-
-	arena_system:SetMinimapForAllChoose(3)
-
-	CustomGameEventManager:Send_ServerToAllClients(
-		"event_update_scoreboard_data",
-		{
-			table_name = "end_game_score",
-			key = "player_1",
-			data = {
-				score = FINAL_DUEL_POINTS[player_system.DUEL_PLAYERS[1].teamnumber],
-				team = player_system.DUEL_PLAYERS[1].teamnumber,
-			},
-		}
-	)
-	CustomGameEventManager:Send_ServerToAllClients(
-		"event_update_scoreboard_data",
-		{
-			table_name = "end_game_score",
-			key = "player_2",
-			data = {
-				score = FINAL_DUEL_POINTS[player_system.DUEL_PLAYERS[2].teamnumber],
-				team = player_system.DUEL_PLAYERS[2].teamnumber,
-			},
-		}
-	)
-
-	local time = LASTDUEL_DURATION
-	SetCustomTimeOfDay(0.5)
-	CustomGameEventManager:Send_ServerToAllClients(
-		"set_arena_timer_duel",
-		{ time = time, full_time = LASTDUEL_DURATION }
-	)
-	DUEL_TIMER = Timers:CreateTimer(1, function()
-		time = time - 1
-		if time == math.floor(LASTDUEL_DURATION / 2) then
-			SetCustomTimeOfDay(0.8)
-		end
-		CustomGameEventManager:Send_ServerToAllClients(
-			"set_arena_timer_duel",
-			{ time = time, full_time = LASTDUEL_DURATION }
-		)
-		if time <= 0 then
-			self:EndGameDuo(true)
-			return
-		end
-		return 1
-	end)
-end
-
-function arena_system:EndGameDuo(is_timer)
-	if not DUEL_ACTIVE then
-		return
-	end
-	local team_win = nil
-	local team_1_is_alive = 0
-	local team_2_is_alive = 0
-	local team_1_health = 0
-	local team_2_health = 0
-	local team_1_health_percent = 0
-	local team_2_health_percent = 0
-	-- Подсчет живых героев
-	for _, player_id in pairs(player_system.DUEL_PLAYERS[1].players) do
-		local hero = player_system:GetHero(player_id)
-		if hero and not hero:IsNull() and (hero:IsAlive() or hero:IsReincarnating()) then
-			team_1_is_alive = team_1_is_alive + 1
-		end
-	end
-	for _, player_id in pairs(player_system.DUEL_PLAYERS[2].players) do
-		local hero = player_system:GetHero(player_id)
-		if hero and not hero:IsNull() and (hero:IsAlive() or hero:IsReincarnating()) then
-			team_2_is_alive = team_2_is_alive + 1
-		end
-	end
-	-- Если прям у команды все умерли
-	if team_1_is_alive <= 0 then
-		team_win = player_system.DUEL_PLAYERS[2].teamnumber
-	elseif team_2_is_alive <= 0 then
-		team_win = player_system.DUEL_PLAYERS[1].teamnumber
-	end
-	-- Проверка по окончанию времени
-	if team_win == nil and is_timer then
-		for _, player_id in pairs(player_system.DUEL_PLAYERS[1].players) do
-			local hero = player_system:GetHero(player_id)
-			if hero and not hero:IsNull() and (hero:IsAlive() or hero:IsReincarnating()) then
-				team_1_health = team_1_health + hero:GetHealth()
-				team_1_health_percent = team_1_health_percent + hero:GetHealthPercent()
-			end
-		end
-		for _, player_id in pairs(player_system.DUEL_PLAYERS[2].players) do
-			local hero = player_system:GetHero(player_id)
-			if hero and not hero:IsNull() and (hero:IsAlive() or hero:IsReincarnating()) then
-				team_2_health = team_2_health + hero:GetHealth()
-				team_2_health_percent = team_2_health_percent + hero:GetHealthPercent()
-			end
-		end
-		if team_1_is_alive > team_2_is_alive then
-			team_win = player_system.DUEL_PLAYERS[1].teamnumber
-		elseif team_2_is_alive > team_1_is_alive then
-			team_win = player_system.DUEL_PLAYERS[2].teamnumber
-		elseif team_1_is_alive == team_2_is_alive then
-			if team_1_health_percent > team_2_health_percent then
-				team_win = player_system.DUEL_PLAYERS[1].teamnumber
-			elseif team_2_health_percent > team_1_health_percent then
-				team_win = player_system.DUEL_PLAYERS[2].teamnumber
-			elseif team_1_health_percent == team_2_health_percent then
-				if team_1_health > team_2_health then
-					team_win = player_system.DUEL_PLAYERS[1].teamnumber
-				elseif team_2_health >= team_1_health then
-					team_win = player_system.DUEL_PLAYERS[2].teamnumber
-				end
-			end
-		end
-	end
-	if team_win == nil then
-		return
-	end
-
-	DUEL_ACTIVE = false
-
-	if DUEL_TIMER ~= nil then
-		Timers:RemoveTimer(DUEL_TIMER)
-	end
-
-	-- Находим игроков, что были на дуэли
-	local players_in_duel = {}
-	local winners = {}
-	local losers = {}
-	for id, info in pairs(PLAYERS) do
-		if player_system:IsDuel(id) or player_system:IsDuelEnd(id) then
-			table.insert(players_in_duel, id)
-		end
-	end
-
-	-- Разделяем на победителей и проигравших
-	for _, id in ipairs(players_in_duel) do
-		local hero = player_system:GetHero(id)
-		if hero then
-			if hero:GetTeamNumber() == team_win then
-				table.insert(winners, id)
-			else
-				table.insert(losers, id)
-			end
-		end
-	end
-
-	-- Сначала победители
-	for _, id in ipairs(winners) do
-		local hero = player_system:GetHero(id)
-		hero:AddNewModifier(hero, nil, "modifier_wodarelax_invul", { duration = 3 })
-		hero:ResetHealthAndMana()
-		if PLAYERS[hero:GetPlayerOwnerID()] then
-			PLAYERS[hero:GetPlayerOwnerID()].duel_streak = (PLAYERS[hero:GetPlayerOwnerID()].duel_streak or 0) + 1
-			player_system:CheckAttributeQuest(hero:GetPlayerOwnerID(), 12, 34, 56, 78)
-		end
-		hero:RemoveAllUnitsOwnerPlayer()
-	end
-
-	-- Потом проигравшие
-	for _, id in ipairs(losers) do
-		local hero = player_system:GetHero(id)
-		hero:AddNewModifier(hero, nil, "modifier_wodarelax_invul", { duration = 3 })
-		player_system:CheckAttributeQuest(hero:GetPlayerOwnerID(), 13, 35, 57, 79)
-		hero:RemoveAllUnitsOwnerPlayer()
-	end
-
-	if FINAL_DUEL_POINTS[team_win] == nil then
-		FINAL_DUEL_POINTS[team_win] = 1
-	else
-		FINAL_DUEL_POINTS[team_win] = FINAL_DUEL_POINTS[team_win] + 1
-	end
-
-	CustomGameEventManager:Send_ServerToAllClients(
-		"event_update_scoreboard_data",
-		{
-			table_name = "end_game_score",
-			key = "player_1",
-			data = {
-				score = FINAL_DUEL_POINTS[player_system.DUEL_PLAYERS[1].teamnumber],
-				team = player_system.DUEL_PLAYERS[1].teamnumber,
-			},
-		}
-	)
-	CustomGameEventManager:Send_ServerToAllClients(
-		"event_update_scoreboard_data",
-		{
-			table_name = "end_game_score",
-			key = "player_2",
-			data = {
-				score = FINAL_DUEL_POINTS[player_system.DUEL_PLAYERS[2].teamnumber],
-				team = player_system.DUEL_PLAYERS[2].teamnumber,
-			},
-		}
-	)
-
-	if FINAL_DUEL_POINTS[team_win] >= 2 and not TEST_LAST_DUEL_ONLY then
-		for id, info in pairs(PLAYERS) do
-			local hero = info.hero
-			if hero:GetTeamNumber() ~= team_win then
-				if
-					hero:GetTeamNumber() == player_system.DUEL_PLAYERS[1].teamnumber
-					or hero:GetTeamNumber() == player_system.DUEL_PLAYERS[2].teamnumber
-				then
-					player_system:SetLosePlayer(id)
-					PLAYERS[id].pause = 0
-					PLAYERS[id].place = 2
-					player_system:PlayerUnBanLeaved(id)
-				end
-			else
-				PLAYERS[id].pause = 0
-				PLAYERS[id].place = 1
-				player_system:PlayerUnBanLeaved(id)
-			end
-		end
-		player_system:NetWorthUpdate()
-		Timers:CreateTimer({
-			endTime = 0.1,
-			callback = function()
-				arena_system:CloseAndEndGame(team_win)
-			end,
-		})
-	else
-		Timers:CreateTimer({
-			endTime = 3,
-			callback = function()
-				self:StartEndDuelDuo()
-			end,
-		})
-	end
-end
-
-function arena_system:CloseAndEndGameDuo(winner)
-	if winner == nil then
-		for id, info in pairs(PLAYERS) do
-			if
-				not player_system:IsLose(id)
-				and PlayerResource:GetConnectionState(id) == DOTA_CONNECTION_STATE_CONNECTED
-			then
-				PLAYERS[id].place = 1
-				winner = info.hero:GetTeamNumber()
-			end
-		end
-	end
-
-	for id, info in pairs(PLAYERS) do
-		local player_items = {}
-		if info.hero ~= nil then
-			for i = 0, 18 do
-				local item = info.hero:GetItemInSlot(i)
-				local name = ""
-				if item then
-					name = item:GetName()
-				end
-				player_items[i] = name
-			end
-		end
-		CustomGameEventManager:Send_ServerToAllClients(
-			"event_update_scoreboard_data",
-			{ table_name = "end_game_items", player_id = id, data = player_items }
-		)
-	end
-
-	if hero_select.IsTournamentMode then
-		local data_tournament = {}
-		data_tournament["IsTournamentGame"] = true
-		data_tournament["bans_counter"] = hero_select.BANS_COUNTER_SAVE
-		if hero_select.IsRandomHeroes then
-			data_tournament["random"] = true
-		end
-		CustomGameEventManager:Send_ServerToAllClients(
-			"event_update_scoreboard_data",
-			{ table_name = "tournament_data", data = data_tournament }
-		)
-	end
-
-	damage_system:EndGameUpdate()
-
-	Timers:CreateTimer({
-		endTime = 0.1,
-		callback = function()
-			player_system:SendQuestToServer()
-			player_system:SendDataToServer()
-			player_system:SendDataPlayersHeroStats()
-			player_system:SendDataPlayerReports()
-		end,
-	})
-
-	Timers:CreateTimer({
-		endTime = 0.25,
-		callback = function()
-			if arena_system.IS_GAME_END then
-				return
-			end
-			arena_system.IS_GAME_END = true
-			GameRules:SetGameWinner(winner)
-		end,
-	})
-end
+return decrypt(
+	[[
+9A8C72B4627363D33882F67F2DB008F3338B19EAC2AC8426E0A9C1911A46917854BBE8E9E4E27A739BB63147D6B42168F32616C59804FDBF1839A06F
+94A7C3E2316A4060D34E97EE19377D82E5F1B78F2735D00A48E07CDC843EF0581A53372022C343CBA0D85ADDB343DDB0DCF0DED20A1D9694EB6D65C5
+8D8D3D110E1BB4BA9CF8A06D6573EE8B49D6CF2F5A7000A94B153D8B500FF5B466031F914F1BE112CEC28BEC09B3A0FD15BE0A4090B443590CFE7374
+2FF5A4BDD7F8F7840FDBFC09E2596FD4E03E4EF043ECF40C4F4333642129586C601A4DB9D9D3BCE4CE1B7CFC49A9A485647D1C080D3AA3C4FD9EC495
+6CE99B709FA708F42FB80F06FE0796A8C1ED7C806C2D608EE08D368639FD64A9979D55C64A3A64FBBC4846A69B48E9BCC4573C5FE09E9B23430645C6
+0C686157448535B7C9A9211DB9CCD7A1A8E472F62E9B05AF9EC52EE5D49CF8BA053EDCEB01C42F0CD7D189CBE2A4474ED17C5F9443444B5A1299DD86
+26949A3F06E4ABBE9B274809B4AF5578C144DC86BF8D1926A79E73A9409D0C7D6908688A78FE41656BD32A2DEE5DB0EB40C2AA9D8C7D44E794402BD6
+BD86EEF86C1462F018A64067CF0E49DF9052005821E17068203B5BC886308796792C3B67D49EA26B21D816F2B8C48A5B10424A863325179B30179E08
+8248B2FB8905695E75C9501B67587E6B0B75B554CC2DB0FA1D4DC2DF71A8F86E41B8ED120A10EB69EDEDD2256076403DFBD3A3B2BD294BF8AC9F5FE0
+8D5200DC0315A6EE68C32EC323BF0DB74E264AC8C6FA292A6316126F998176DE42C3EF412A91D74E5756C5E1C05A79A5E8C8600473DB74649A1A887E
+463FFCD3889D10F51F63BFBC67B905D85322CBF8CCDF3827E12722354AE3AE5DDC7628E837B05154305C6278B6EA58D25F123D6713217D7AE913F28A
+1867834C6AAD053D8658D8DC5E3E13E08C1004BCF35958606DFFC160B73445FC8213690500905C9FB20C3CF66CF577CA6743BD660122A64447E76141
+07EF9337A89A34039ADD9DD371F798043C72B729741E62E22B1F782C36798B99832D9A5337A2EF35CEE0A387A6A5AD7B20D6D0B754A12F8BCB79EBA1
+4998761770AC5FBA3965985A6574A263FB5C22FC5833B847B62A68DF45B2FFF492902428C43D1487DBCC083952D5899078DD89130DCD9CF8BB2D2C22
+AE8AE25DF3064494A1031830574CC0A3FC0F63598B5CDDD5DD94F67B55AAC11D0DD0F6E2E90704BF02E064F2474F7154F86DE9D2BCC4AD1F8BB0E141
+D0F8FE183BCD4A6C3C7D72ECA19795300193BD8CC2A7B9A24D8F5EAC9224D8F114137D56E8929AF89796812A87D244403A249127392F3FE1D94FA41F
+2B3EDB65DB109B8760A299D168A63A83FF95D19FBBF78768D7904670446A33B35E7C8345FB6E246B679081A1146F66754386988447B51D17AC7D6EBF
+EC7E01F6D296FD74F469AB3F314908337A85C207BD70C651F0933A616910F50202B4738AFDB1B90A65152C299B7EBF287D182737A7D6BC5931E21A76
+8A0561607EC1468FAC1DC2D066208F4C3DA2576A0C246093AAB67D9E3C3167D5A9E73C6772F029ECAF81823D23A2EF1AEF7D6CA476496CFC8E94DC1B
+363848B75AD3481F2C28748F77D8237323F438873AB0818B2B3F8F688C05C5D66B620DC0311671F11D3FA0B4466CB4D710C697350AA4C1D64FADA263
+C9435950A449E122A93DA509A668773D99EF87BAF48F400FEE1A6F0553D4640CD9AEE0D3BEEAE0456CCB382622A7291E23CD8A42361AB2D3FC93FFEE
+50D422F2491D12AED08A44310EA851F93228EEE0C0740B21FAB85A950008BD1F270070590F6AAF80617E31C32657D978615DDDB297E152A514E0CD13
+970B732D22962B7581DC53256AD450024ACA4FCF97EADF55DE9C2297AF7B5FB3DE54DD792884734B1559D541BF8225D6D9317C42D5E81BE90264DD28
+46EFA48C176297702316ECB7762D4E98276DE557E07AED21984E35F59014F0DFD072FD090A0DF7E21834056E011BB7ECC67B53A75CB432EC0EF574E0
+3AC9E611EFF8FE9F5051A1E2895FBB399B0C6DAE22033CFF6FF1EAE6FA31984AC45AB93A3AAA12DE34854E89DBF3ACB670807D3A701D1110EFCC4BCE
+B52D51602275F0DFEC2E81019D5CE858AB801326D8BB30010E9A3C43E6917DCAA3BAAA1FC622D144F10A4D3417BA7C9D9707C54952A0207DE6FE4138
+39E711F03ABF3E19D55208F001D3F47510CC91168F814B8756902AD8FCB415041710AAE05C4E58067835429FDB4426A1B072049DA3BC9FD32E17F6FA
+CB0734EA1F9669BE572E6DBB8672EA3A056767A082E50ABC2A8BA4708EC5F6A428EAA9BD48693F279A1B644D95C5C75FECA94D8912E3921B9EF06475
+ACF61F6970DEAA01D1049808190D984641C9866B4A4F1415B0A4C26020978B059F01D64EFB2F18F46946C8C6B20EDDF398F51D1D15FEB1C2325333F7
+6B8DD12D81B9502E37303E82DA6BA415A92A71320AF70C24A48BD9BF3AC06CE5B69640865F99C265610CB5C2FCB1D1C23ABBDB7E085BB8768D934664
+085C1E991B45A363064E47418766E86082FA0B7791E172751C9507CEE5DF2FD05B60C7700EB62D0F17D98814D593D88A8D3FDF8024E4759AB07C554E
+B33FB69BD90C71ADA6741C598C853CFD5F494E2FEDB9A4B9A81D2A9EE2DCB1FFF935299A0B80EA738492FE8D68C1A315C42C2DAD2644D210736AFC00
+59D1F10BE30D7A9D6792765C847B0695B2A5853DADA24B1B2B6615DA52CCAEF8554D8BB00CF56D686634ACC58959B2E272E4E72B99964064279C8285
+7DF67D0805F9227B2718350264F14F27E0844AAABFE4771FA96ABEB6CD5E05E0D8FDE7C35BC1F3E133A6CC7DA4B3714CB16974541CE42372DAB650A6
+1875C0310CD34B9313C4810E2A39D43AD83E05A2F83A2A248B8AF5C3A6915B2AA1D2AEC4DE336ACB38E65066C6A0FEFFA56225689AF4EA8B748DBDD3
+1A4FCAE22DDC8775A8D925498534F056EF05D1969DF090E164842A0EBFE3871966BFD59EAFAE269D1A21D3DDF8A2E1832EA56B68F07EE214436F25F6
+A296130C21DF74379356CD533284E6F0FA64036194C59D7C09AFA90D8F92897250344ECA5E857458A30C02BCB1AAA26E78283D87720CB0F987B97789
+C439809E6A34595B45551B14AC8B8F7EBE1ACCB204D18AC552E57402F304364F252953F4D4BD2158A6852EE62E164B016281FA0F9A2A6944981F8582
+57F63B2EC177B6F8F381B5A3034F517710B764F1EADA9D3EDE36C3E69C4C2B839A99BDC37EB36859CCF351A98EF0523172A0CECD7F940EB199B68E66
+2835509144D7097340F5F458B43330DBA7B85B1AEDF84605A3E071D13DF8E217347207AAB33A4F98D2A1ECC6CA539BF0EA8B91EE612D7F266FBC55A5
+2E676AD44B9D93840EFB6F27E32805F63647D16955FF29C773E54F45391113875BE18BA9FAD86FB4BBA4BB94FE4A7C3A57F2C5EDAA2E9483101BBE9C
+46F9C0AE4BEEF9D57A7B32EA1CABBDEEA5FDCDE06E33B9523AC71779299B3F2F3065FAE40D18A65AC50F8678A2C2E68D8080195552CC756572B6253F
+9ADEAB78B920BB33925441844B057C986D75C9DFB70DC9E5BD08C5F3E1090E65C230B662E19F42422C196FD03351D6584D1C84DDC40D9D89021DA0D2
+895B6569D01DBDC310749A4A8FD9E1FA9B8FB4F9026EB5963BAF0F6A35D76389494CD06584656352AA8600B0FE403A24506DF349CEB111D223A10393
+621DDAD94A723A1275512DBAC9D87E36A914C5424A2B23CEA472100E5CF1E3FC941212621DDC102C1403CE323E7CAB9DF37B853B1AAAA16AF6252AEF
+2473C001A7B0F34472B089780222B70809FFADC1D7E5C407F0812C378F6B24CFF23A0CE8C8FEF9297E992D71647E245C31C83FDDFFE88F5516B90B14
+C4AB7A42E47342897D4649D67A793D98EB7B48900473F8C2AB0A7A1820569451A0CC67AAEE09F8481701BB347D3BE452CA4D58485FFEEAEE96D506C8
+0BD061E0C20BE987B0139D6FE98919A9147AB25F4CF8A249EAE3F37785E4D2FCA869804B0CFB39F4EB283A27DAC1B89FD5E0D2FFF0774B2D60094114
+386B3E5CE45FE130E3EF18D944D119E2FA591A57AD2FCF7AFE8569497E041D4CA2C1202986120FF4B95AD5200529C2BF5F8D083F77D22A50A2852B85
+642234AD0A2F686537EDE07EE101462ECF2BD1575C9C1CF422AD6162279CD681981E76C2E56C547F779E3F7A995A26A7F66A1329D6CD7B3681CDCE41
+273F9145944DFE38734AF59C076AA5AD9E4BB76887FA26311783ADA81BA73EDB72467DD80EB6DE49B5DC1038F3BE8BAC42FFF844BBB038030267F702
+99035C30ABBB82BA3C0E4CA5685946340336840E32DFACDC6E57EAEA4883E2C859CA8604A7DD34A9026A8C6764BDB3B1EC8A2EC4F0BCF0220B9EB68D
+68FDFDD29500E94AEE5F80D120FCB3E1B0EA4869FAD7EAF7B5723201AE1B7CA10AC5D8E98C642455FA659ADCA324DD6562F85D47407994C64793D299
+803C057BBB10655BD8466C06F5906DAC662DB58CA92ACD3286572D05A7DB367F20DE3ACBD1D73BC214708B4DFACFABD04D2967FAAB7B0B15F70646BF
+A4EAF367132828DC61ABD58C9CFBB49A9C8F97BE5288F48EC86D1B377CFBF406403F2F4648BCA28147B7E8FC33782BE3880BDC4F8A85AD84BA820031
+6425AF039DE105371B5AAA106C06E4F8B8BAD89C0A2C4F4592857A5BAAFE4C842DB119C25EFCEF3417A2C94E9FF1B8FDA53C5965876A4293F74CAF30
+233657C874D110981A6CEF2B42896CD7C8F4926D74D867BAEB7F06F4D80CE6BBD92E26EAE0787352DC858D2867CA51A88BA4804080F2864E689F3194
+F5EAC73EA482EFF4318902721AE86A50DF46F977AF9B23178CB621E4EB328246368A2F26140768E29E099C61C0C8622D3A419ABD9A3233B99E7CD2E1
+E100572804437A69022997D4EA06D91D07B5D34CAEBA60ECC8296196B03BE7A5F7579F7467C5C011AF20A2A2D6FBDA53892BA1161F738C5F5D51A6CA
+E74D8B5204B27B3C28C53F7EF50C4902FBB58C23B8CC11A77C0DD4B2D20A14FE1B11465FA2FF45D169A39BF780B9F82056AA0F0F659080F3FC7C3BD4
+CE375596DC58351E8F15AAB66B59A456FCD94AA07BFF35B257A3F565213E79087C869E55BC5CBF95758B5496E543515910B5828C83F47976A71528E8
+16D8CFED98A1ADCF3044B39878E9872B825102CB43D3C6C55EC70E560B0F047BBF73BE88FC6E8676F9A2AB88580F74733511A36AA16D4B7285D2A5E7
+C4F4A4FB2AD7DDD75D69D59EB531B623DF48E01BE572E44CAFBAAB3CFF8D90CBDCB3DC344C57C02921E1F93265DBE37E34BD2ABE498108B2E043EEB3
+20A7B22CFB74E76B98A996E84FD79245DD2421B591F777F1BC8F4DA40D7B30F18CBF722123FF68A6354B466DCAF8813F091F55EBAA06957BAB0EF602
+9FBDF296E1DD57ED8D9EB4ECE6585546E228BB02F696EE6C94FBB2C961B5F77F5B3FC5BB93EAB7AD0CF1120EDA9DAB567BEE1DD2248936203570351F
+F5262D317503917C5AE7DB841E3240D3C27F6168B854BDD33160805D5E01E62A56096247668B6F51E98009AF0479F3A5C09F4DDE44C7E1011A6890B2
+799CF64C1D1C46560B69CA2B36081490F431EB1268E845B633656B0A2EC2F3AAFA7CC485C2CCE1E8864DA4F9CB78A063A4B6E68B953295849FEC409F
+DDDC8D9AA76ABBC86027EA45207E4C01E4F82C7047643421DDB0340EF67241B72E5735A8E0C761CA067B9E1A5A29A347233A25DFC3E324678E790A6A
+C84EB138E57682FBE7A08A2DA700B6ECAFDB167956AB115DD6288A977643195CFA1FF24AB850AF1A7CC94ACD074A9DE67E1B1AFA8420CF85F6AF4302
+E25C544D51EE240549323296219726FB39659EA4FB0B21B321B7F983EDAEEAF542264A41C41DCE76570C3339B95DAF63348391B1D275599D09F3D3D6
+00B1ABEC6CDCE6E410FABCB3C7744D5DF17123EAD1F388AC36A1A9D78A33EB0A0BDE64F1847BF569456BC7C0A213ED4EB47A47059912212B45BDBF78
+BF01E89968D809B5060A6A4B16D2C7D8BE04EBE9366277F4001ACA94F5EAB5A6F4B4FCD69546AC50AFB798E8A1EA58A422AB904142A185C29C5C3A70
+8DD003242FEB8ED69F8BDC752EA35CB10D6B9E80D7BBF8510E4D006231853CBA11AA63C401EC5D6D1D3189039A6E3C734FA4A29800B7086D9868DBDA
+56CA6B5A9369035AD63E58922F9D269E0B36627D42422CFEAD46131F4A9383C726E532407A202BAB752EE8FCB3B8F3A223A9DFAA47FEB7466EA62311
+6CF8AA9AE3224C25825363EB65D9116D7C9ED18BE0ABF0C99CDAE3385E0CF3FEBBEB096830B0675E70B8073205D73192BF7AE285CA2D82460F4E0826
+8D1B8275957677B44D42D61D29B148876DD1528F1953F1898E73A7CBD3A2A4A9169E10963158448EE478D0DD203AD977C0E6022BF0622ABFAF7E925B
+7B7F1696FA4044ADE2C4357AE99AAA9A796F76D481C6B682BA03CE5673A903D99C4C272E306DE9B58394D759F7F960C8E779A1FB9ABA6A54F7ABA037
+70CB514990EAE7FF0DED510D35D36DCA1E0A48D5C4068FF9B07E3E89C7CC59B03991239B42F8930CD59320E084F0AC95995F6815B644E621BB5FE2AE
+B21A853F9A82AD6B11E92ED0D5C837C26942BC8E1E0538B4B45EAA890E19C3856DAFE1AFA5B0AD7C3FC00A0823246BA0D69EB0C307F7F3CF29F98634
+30F9240405413ED8E7F52CDB443F8070A1F439D0EC05532FFE3EB7840D91F423DD1A3E08489C92649898A2D797BCAB848F1EE594AB245B015B32032F
+0ED0F09E32C5579AE2CA8B1C888D297823354713E3739DBCADAC93501D5790FFDD93C197AAA01215DB789AFAF9A643BD39E6429DBE51A9850DFEB9BA
+7332E9AAF3386A4791CCB42AE85679ABE1E5811E8DAF1BB51EC563A99E49B510CB53D79B3012511FF2C2E8934EC38A4B330E8ACE3B2ECE4C07288294
+A94E98E4C67846CDC4F18C7713AFEC821901A0538CA86AB757891958F7E2A7F3AF42C7D48DCAA3D6F2CC81672535C60841809DE0CF34F4265711B73A
+6F4C544F6FABA5B468979F8408E6E9545BF3F7FF6584079142BFDB2914F182BC144AD0182195191971BA2A40FDAE40EF27A2D2A37E090B9DF89ECAE2
+61A9F8F9EBE74F20EA7EBD61A74E0E08A92933C6F047C5B1D2C29A6711556497CEA6BDEF9E362E5EAE9ACB3B7D0549871DF28D115558AE00AB7DCCE5
+71CC0310F9350A18019F98BA203FE6BFE2CA6EE965998D37BA399B834D94C111F8AD8CE96E21444F67261A429525BBE340C454D9235EC8ED960BA971
+39A8F6B88A59409A1CE010AB5CE0D51DD03B3FBF10635668B9EC425393A5D7661CDB7F92BC1DAC7CA4E429AAEBA4D1EDEFB791A199F65E2480C048AB
+A95C0D2E20C4F8230CE6624B555C4D04023A3483BBE1A56F5F9699C75365C3C9F42B717FA3D47488F45C1AA515E092844598FFB160EDF201329D4306
+DE2F76092D994527C6C1A50984F0E0EE48D237825EDE3A01FDD480E206318E4ACC32AF3F9FB4EFCAB7829A8ED94B974CD0F1C49A0272FE39EA8C7871
+9FA4A9ABA68ABD8B1CD7EC4E1919FAF3DBBE855620C3D521AE90317E40EEA05271B3D5445F50EF2EA583343BA1168FCFC8A16488542493EB9DDA6082
+D9BB0E92FF34C138B43C4D5549D48A55480D906D1AD6955C9571C6C04886FBE4D76B7D582848F8650E6FA96C8AE5CCBF26D932169A38ABA962722A38
+ECC4BCA419DE057B6C8AC4CFE8BA79939CC115198E3D370BBF36AD9BBAD3A5B3A61A37B86487E4C13AFFF5EFA47F69FEBBFBEC4EE812AA0C3F9C281C
+CF69C52BF6938C177723D38B0CBCB7DF48A3F958BE23818CA546FB957232413CBFD39BE4C1A6E497EA60D765E81CA1D43E441A773922A5C4D832FE5D
+08AD2DBC30559C63BE096FDED0E8F22AE05DD305014A2DEDAFCD164BD25354A705F3A8E8FF768CB66DF1F0E5C4BA53A6D80ADA3738B4D8F356863366
+E47685F5AE6FEA81F0E7F5C304363C797AE7F420A0F33F3FD16517B42893959C7F65E4E14AF4B62E245F064E08ED04955A4019BCC3CDFD1A9D48B1A7
+1B93AC5D2A80742411159FD250FAA7086B3203F55CFFC83CD78F89A90F945BD5F390689E7225D96B6D0A018EA6BA6F3B7F109322E1A96DFA3D242B6E
+5586E1E3DC2DC091CF16178583992F18EAB881F0C3D17890544BBB4ADA4A0B96CC156603481AEB29B1D8857BA2940C770319299D1F664988CB537CED
+60BCF37A10789F2411856E78116F3DFC600F534B05781AB52DAA84805E47B8D910672E9A0AFDFB4E9A966FF7B8EE1305E096E30DD6BE0C7513FB8A8C
+7E93208D519AAF245CAF4373803C9AEAE30FFAFE75904E3A08D5E9E85D2742BDF16265623B1AD113D8DEB96330879A581F20E1E40E9B1C5554825970
+35209559DA7C649F4E3A6C0E8822841CD1ED0190C46EBD5FB267E5F6EFBFF7763232A632702C9294C686B55506C7C38BDBC9B816A5F4C72F1E064513
+A6E614F7E9260001F29B64933F647A4CB3ED1F92A576CB9DF0D6A753F9F7A5889CC9E838C75D418C4AA1C01F832DE5F8199337BCB862C0FAF7B7B62E
+43297303216E01C98D0F1D653EF95B5CC386CF42C3BB8E003410073E40323A988E01B5DEAEDCEFF8C4C2DC7793395C4903C2E16F2C183E02B4E83D75
+0831215C60D663FB19A94E9BCD3262A37D4EEA3132856DCD84DFEB676C8109DCAEEF323FBC029841A477DABDFC2D632E734F98A6F0906C3CA5A10ACA
+32DE649AE0460B55943DA982160C6ABA7E622984D122A65ABA302E16BC0558722059ED1E2B6872562A7D1368693E5BAA4409A34ADF84E57B92F6C286
+D12A214DD038ECB66D3E7AA2FD0FA196C5FD18DFD218BAACD6D41F18F6FF34B0539ED5365C3B9CA883B625409566816411B20B63E71CF5F27CF86856
+F22886AF4C63CAE4B16F5D16BF6FF04D1822BA2FF22C10ED16D71C3A3FC4E30D4E1CB0CA8927F8726E63F5382F63EEA53271A21DAC7CA4A57B705048
+3D6028907EBA80550194E7A85823014F9BD78A3DFE72F0FF01EE34C5C883E6B80651B2E327EF15689AFBCB9F4AAEFB8F52638E107E97C0A2332008A0
+E997CE1E4D0846F36D2F92B27547EEFF06C0FB1D173E2379B4347D6D15A29EF3A71C2C4837A18F1AA512E4B8BBC6D8C4F83A96FB412B74BFCB3CBB23
+DBA3CD41CF8D27073B9DA13201184221E95799D625F247A4F484C441D58777B269A55AEE95283444B8A91EBC995DD94222B2F6BAAF5EBB86BD12516D
+72E3EF4FEE0D3E7B7A46965A17649BE5AC589E8D81A616C9D2D8689DA82E8C875BD63D963C217E95CB0F1C4A15939AA89D210C4E89C1D01F0D327689
+6E8E1AD7082338903F5524318D8531F0FF7C15734339AC164835A59DA905FA121DD7B9E85CECB7BEA309C2FCCB3F5816676D0505C2792D7E1223C50D
+5D692D8BA822D6F8554F1E6972933F3B9BA794E108787B48A2AE6E9573F4FB65E74BA63860AA4432478796CF04A6A82BE01F118E6909F293E38645BC
+6543A2F78C7D0DF25802C9B78398EC1BAFE73F8912B7E12BF3B4CBE7D7010DDB716A77B39C5A703FF219BBD5B7EFDAEC8F533074B428D53919915F0C
+8B79260D64599CCB0F7598D27A0A58B73117DF81752BEEC35657708ADE1D4501DDBF8E2B92022FB397106A8E6BDC6335C500CF9AF3A1EC4C7DD8E61D
+BB7DBD69998E427F6EE7CCA37DD997886075EEDEFBBF38EE59C4B7874461A824D8EF757D1CEE2624B76D5BCAEE34DDED60E00636892E29B64CA4CD42
+5BE5D254BBD4C34EA771F8A36EDE89F97F1ABAD47EDCF108A017AD9BED60D7340875C6930B6BAD85DA8A3CECB3D6547C95142868C2CDE0D67FF2049D
+4BD98AEBFAE2934694F978BAB34E5F91D361D1C34CF0F262CD1440C20911CCD0AF2BF9296E888E2DC771957CEC00EA7E72EB2D39C0F009C670B31E92
+3674CEEFA0DEAEF63B1C1A543CD5F048391D83DFF061141972DB8EF8440F79F12DC28B5A3B6BDE21C8121A8789E4B2DF25C34A3F4526651E925B837E
+071F2D4DFEC7F0643E317BB76EC98C5893B2CECFC6449E4BF3F01F99E022C6DEB6878AFA8E92236FA41074C0AD858F07B9368FFF95881AC72ABBE515
+078831AED78D28517DE6F164B7A14EE8C7A789EED3B791E5349A8AB3C37B0B2823F588D34EF2C3E7A84F4C6C7F3F7128B936A2338187DAC9AF074A6A
+D2D1293BFE484808B34821166571F254C6206E9A2EBEE8FD010879427B39E19E6C9CB021493122C0599FCABD8962D19BBC593185355B9973B64741D2
+29C78EC8D4992EABFFAFEB15FBC258F51A6334E6775F53F6D5A9C5B269697FE4871C3127E830D0AE5699E6ABD912970C6BB7EC0C60FBCA424FB1BF59
+02415B092951DDBD0B248D11A6B15550C6A12DD4BABAEE81726C4D17DA5A37E7467BFA0ACB4AA9B1E71D15509B3F8C99AEE7DAF597C56750E9C90441
+9C664C45D5F294E1898154D08324B28FBB850B2D11F8F93ABC26ABBCB78C9595426C4898470A4B7AA3FAB87B66BD56051FAD1F82293BDF06F53364E2
+C2E5EC2C92E08FEF552ABF8FB739F3088EFB553E4363038C0EADB14AAA65D1D8B301AE9A002294A279B66129C655D3AB9BB04A8F8703E1AC6D5FF8A6
+3F29C310B6D21EAD368A414990573BE6E05889FF21997D0E14B4C03DC97A6DA1B7E6EA1B3BFFCD37F90D9FB448DAD81D8B6D7B5C798AFD7055715E8B
+9D99792D2BE5941481EA0E2139EEA19E9AC93C92383C2E5D9E0C370E65A71AA42DDAB3E707EBA42285E55C24BAF09A417098BFFA01E79DF91F7B2A6B
+A416DA2188B0A127103F351193B6D4D661C1B621FAFD22F553CEC461B94AC5188FEACF047B1D0108F45D2C9685A4ACC3C024C9FB4702FB09EE969072
+FDE103090767089D30345FBE2D93A2744E34AB712DB5C37702C8879EB25235D048047699A555CC71B3ECF7F3A8A0F4996A25F5948E38095CA2AB5563
+D9200885A4E15774833D98DE275FBCBAD6F473ABE0FDF436743D541D2C3F993D2DC9E58EF355B53C3E121303F9AD7F55813F5C041E1AF9E86E8FA573
+904B59055C6B64DD6CAE6BB695AF4672D19CA26D038FCD9D58EF18F588AB2BFFF105FCDFE9CB294DAFB04F80E7D053C72A1B12DCBF723D1DC5CB3EEF
+E9E87A5305D1DF1B8F73AB7250641C2003DB50B84BFC433C5D9B72C0A5967362165145B6752536DB7F8A0C4BF85EAAC4B9D71830872E2217042AFEA7
+6E633CCA444EE525591234A1EE66224CC1741E670B3DA9AD934DF64A1CF367913A0102EEB274B466E75F49184150BA9329F27EB4A749049C4026B485
+80F3F2D200D39E9115FEE22D9957522217C8AA0AEEECA45C0988337CDCA177C8BAD7CF89F9AF6FC0F1D7C98B6D86D4C77293F688FD1180C9480B64AC
+5005C615631BFD22AD3D5413EB8ADF4078BD01F68936AA4A9F30E07FCB9BDB150DE246B218C54675E8EF9935E08801C88257B5F62252F2BCA98047DD
+88DFA68245D52965D858B08AD21CD62BC0C2CCE33586A72EDD20B2BCA2E27898CD54C94D6CECEF59CA725A2B5F31B0F9B8AC75DBF2290C7C33EB802E
+1C3FA20CD83DDA93A3812B7DE3533C25156E53EB837C3BAA5863792CF08322A27875C504F929C720E9A57608A5C3BB9FB225035DE299E51F85589C6E
+B78BE134A464D873B3685317D70B61EC0E0742BC43E0D932D64C04701EEC8647648812664B1A3F61C922CED2C9854094CD462D893239C829418BB12A
+955F49F7BC9A293DA0AE4006AA91FA15FA0D12F0B02ABF56B93660A4EBD0DCAD8F131C2D23D74D66A4DDBC9EBF49D387838654A7E7D78A2C31E6C254
+30A29506A154301E33A0FC8DE3B98250F7361D816AC7DEE70CD52E358066266815C40D5E1FD5186EE5DCD5593795348CB42DFE5B1E7E07B80150CB1A
+8482EA320933DBDDE948F22DB2004D8ACC26B301F920CD5AA70CDF822B385E2FAA77623454EDFBEDDCCBBEA29BDB2F944313935E311AA58D7611D304
+A47283F58344A88970A410F0FDA05A7D40B080DC7DE9A8AB1063808BD6035CEF1A169578FC2B60C0252C2EF812D070DA8A303FC3606D9B00CA28127C
+6CCE9D9AFE167910B70C8FCF7CF873E040B73D35EE1E8060C4B5DBC6B030B0C80F4304EC67579D096B7DCF997D8ADB5B2BD2E3827098D10ABC8EEDC2
+05B4865AEFBDF0B39AA5D77848EA6078413BE0443DFCA7F8230DBCA5D4CC18600F6FEDFF30CDABF1235FA54FFC488243BE1ABB0CBCD8E39599DFB5F2
+6429B1BC065A1CDF3A22F768D0752F47693AA5CA2AE95700753DCB1236FF679CC3673447B7333820F8A527042B9128BCF266361B596DCDCE88AA2417
+DDCCBF1F1F4C519D61BF3CF4683A15D6DC0510437CE0D53E2A96E3899F1A0FDCA29252E31F22EB964647B73D062E914D508CE73CC8E2C8622C7C41CD
+DA5F2C79C5BA0A14067B2DC0A4C83D67DA7437DA2C6DB8CD348D543E69C80B16289BFD21CC0CBE963BA3E2ADDC968A984C63491F8C99C69F973ADAC7
+C6ADA2F4C952DFBF87EF224C3BBD614C16353BAC92E50F2041BD3A6D216C860B3B3BE431E46753B8960956C97DC2EFB0A96299E25CEB92AF7CC14B57
+303EBB133515FB5E380F5364D46FE37BE86ED3FF88BEA25898859F4BCA3F9B6CCD00C919D876A115CA93E3E4B108E3F253FE2E7F6E6818542307558F
+78CFC48D204A799B7FD29F066DD884E0656E5D5D12697F3D8C48A289D7C918CF397A13CED2BBC572292EE57201A978B9675675A4FD6C7531B5CF6324
+8478A143F59B4A69F0F9F45EDCC9718878718CF5D756B59E2C0840A29F76576184657D7980FFD32288E335F2C2BED53306E5B10A214DE34BB75FDA82
+91DC2E8B93878516ECF5FB29AA4000264C3F027626D125B2597EA2D240F1869EC94CF41011816B835EC08338EB5F80438F34A2C22E7835422A105083
+1624277E6430FFB2D3407BF41E5F5C56B02D3E2E57FFB9CBEFA676712845B1FB64E09885ED7997072C732B90DDAFB6335EBB5266728CEBFD9AD2B112
+4FD6CC7C19D3F0C2192BE2B52DE118CDC894DF622DF5307908F7C5BAA577E9E39C6735956C1A295C5B90AE131098EE2A5EF876FD487991A673BC594E
+61D89E0CA8FB596BC450B94B6139585B058BFCADD1652016B4F044A7910BB1C6A2F85D17F8FEEB8DFB83396DAA24AF40D5FAE130AC011537F98B7E68
+0BBC16DCFF77644F166726CF3D8D443728367DFD876227034E72DC6ADEBBDB94C590A3EFA255F32A67506D6CE9E8AD954F9FF0951E95945EC6EB2920
+3EA587EFBC0E0D89DB5707AB22B2A3092E5245BC585313B305AF4B528F330E839EFCE7C4BD82DC3A2ECE4A0214ECAC3A1402792014888425C65197A5
+C235CEB5E85D1BC514DFC7929AB4AF5E697961CFE774AA2548A869514CA62D1848252FD9E583CA28975D1C229B9EA4BA16630D4B470B96F5D4CA8493
+0420D32FE7741E4C04BFB0BC61F9BD770B1EAB7384EDE084DB3D40AB4E2813A9DBF31FEB4C2179AACC1C4CEDA4DBF95F111FF5058E6AEFC204BA2FAB
+A6D07CC19E21026538D1AC8EC0B57830EF8E80ECD347F57E4E8118CD18A801A485DC166B230FB4A8B9BA1B1786EDCB3E2C48A06BA33447E21818D9E4
+2B163DFCB816CCDA0795A4ED02FE2611817CBFF49E19967064F27E24FBBD150083F01B62FFAE49B57C416A05BC2B93DAC53742D60784797C4EFCDDCD
+2AF07F3A969C6F9853AE21A2AA6BF7601C66FB1C24FD60449F043D2C1644880CCB5280A04EBC7E4FA521B92DAD2D3B32D4EF81C6831CBF8CBF1D6C98
+961C8EBC06D4908901F07E0C4718DD6F32BDA952F1B85B51310C69EC69DB404EA7E80C4744ECCA65DA931B7DFC1FB9B18BBF34B53060D992430FD8E6
+19B45C45F1E40C589F93D9AA3792DB5CB45939FEF0B51FF87550713919E6751B2916D37B8054137844FB287A28ED9F8C155AF0881DFB0CE1815801AF
+144D2C5154CD632B3522B2DDE976FB3E47D071307E49582C9AD44C37B04DD3C5E3C6F28A85B830D84B584759CD8DBBE0E76875650FE52C0B7F43382B
+FD2E53E2711B742A606F1D3181CC5245420735E264FC8F717B0CC912963092A69DA0D728D7D846B16CBF8D824833F5D914EFCFB3CA0940C390254BBD
+EA634F6512571A5AA4B494D03D5C6F83E9CAEE6F773D6970C355B9FD9D837292330D3C6B10016336D95E37E339ACE23007BD6B50D15D04F7676C4D0F
+17B9EB0FFE9EC7100451C96EE0132B2E5DC09B4753E547DC2D612E8789DEB337B3BE26CC8B20E064B32CA0E19C81E9A21535F7B346B634C48B0799C6
+DAC4BE19FF27F3FF66408DA1764E759C5D01F36C9DACD1A1602DDA7D57CA198DA89E65A83D55F894A2424ED725A9B5811A53F6B28B3077E37D3682B0
+E6BF81F3878FA9FA76408A41936F1C62632D02BA6FD790498EF2B6F18E2281E55429D045DAC021F6ECEB0331C90F6E36415E18F13B9871B0E7DE3251
+3A179DBFB18F4EE1A150CF3786D7B19252DD1567013B18BA8503EF291D0C0D77D10715FE2D5A58ED94AB8A0565B986862D89E1F39E34BF25A394EED1
+1D70D6B9892F7578D564FFEAA46FD79E06103C6F28C2C98D99C1F9BD10A1FC3E6A403B228E011D7C344E0D4F9157124BBBA14FD616F47F84806EA2DF
+DDDB49FE334BF6F1A9725574F866FA8696CD009EB808247A370181EFF528DBC86CA256FE819DAB617CC25E26E3C28605954556C7BF7F87C33D09EEF4
+77799F8B04BEEAE077A01C3C55F0823DADBDEB9DAB9D35A95C704510C75E7EAD3EA4B101E0E8F843049E5988CE5FEB495C039F1A3C0DB987FB8B69D4
+FCAC5E3F89133D2FB256329468EF30202C0C312A8A8A31A8FD18920ACCCD8C6498647A8E2C20C8AFF5BE5F881207324429FC94000E87D7CE81699EE9
+545A11059AFEB5AFDEF3F9110D2C8D3A7666522DC320D5FDDE4CDFA7269CB331458A90702B8A08A3B8E905CF80493393D3700195FB1D1A51A3A92FF3
+7BE62DCEFF4C0A5AE20417A58E2B2BCEA63A0F51F5A1F93DD809455B046A7595C9F396B90B705E80B11312B3BF3B66218499928E49E5FDC7C70134CB
+E3948632B4F2799C04985A4FA266F60F154002114E253ABC72A69660F670B8A27C093C23A14F0F06241BA529BD8CC17FD82479EC3B3398F12DC79D3E
+D92456A242325B3CAAC1D9408E5DEA3AD25F286A8D1EE00460F5253293271D352A1505B9DF3F19D60DCC0304120B1D53832C0D248DDCC4A96F28AA79
+7DB29287BD4BE8F21D5A3AFCD821FE12FD1EB416E6859BD5AA77CF78E6A8451525FA8033A6A67EBB7E920F1E50E049C88322FB6447ECC041D09C1FF8
+93ACF7984E5014F53B0424BE10322FB8F77955AF46F563160A11A9720B6036AC0B842BDB99EDCB3A8E7AF1DCACEB324FB0CEE80D4A62DF867164C9D9
+3057EEC11FB662EF52E866D3DCB918F7F354F5A238B4FFFF52F5435163C6314726727C7BE1E22BB7EC85114DA96CF6E0DCFF61A22078EC157EEDD3C1
+D8050B2100E8C2A14D8BA650B267DC3FC9393339AF0472D323B864D30FEF4EE34E73E9A2B35A774ADD051906A981E6659022372F8EAB769A74933F3B
+23E69B23655CD0CEF61B3B5050AA128CA0047B9243DF0C252FA3B38D07C691BAF39D1443953A7A589693C7418C21193510BC1A049E625B0B1FC1A67B
+2033C075CDE9EEAC15970CD17056CE589E5B16610611883AAD3BDFB96B4E95B7D142B900A52EE4C4487987126D163708B1D73F1A4A46957A5FC2B152
+1573AAC7273B0855D2A5E06CA5FC12D44A565B2034F6B09C920C162712D50E79F5F882B61DAC624BA193B6BB870F495D636A0EE4AF610654D92BA370
+E48CE8CBCD78D98E5EC38A6EB96B0F61085A36CF09804229F4AA499BDADEEE51C4A19A57680C6F517D7B858448664FB369902885741FE94EFA67C55E
+0159F5A5FF60F111252516926F7CA91508B0832C52686B0653D6C78F771B414D66482B961FE7F24515AB40092B80AC93C59EC5FF5F50382C2AAFB95D
+780479A7319272CD1544955B6C33DEF75924185C5BFBD488D725781612CAE4C4CC6BB11C241DA0CD3E3F2C56A56380A24A0645BBB3FBD3EA7A2CBD97
+9C4E9A1125FE2B5E28BA69277A35E825FAE34485CF5601FBEC0A09667F8A0F005B70A2EEBC25EDE0C66D699151DC28FA9908EA1D7103D3D21D5C4392
+800EDEBA14B2EAD6A8D0E832257E0B81D435DC5526A48800CA87E2C07F5E7A97D71A737BDFDC833463F29B5E622BD664F1475A2682660FF86BE9585E
+9B163B843236C8D454218B94602CFF0ECC118F1074F80778C4FB97B1FB120179C10DB8D512BB6924119EF41A43781EDC149D775C27BC0123A3CBED0E
+BD7C4C3AC48CD54278216AA767030E68802FFE7226C6F40C64D8EEF0AE4BB6B548FBEDDD59650E3F2B4C94B379AD6943F88E6A17DD80A38CDB4B8068
+2776A8641932E2205F2591FC0CD987BA3DAACCD5ED9E598DE62D5A0481B3E8D95C41B08D96F92AF014E6AB9591C753986D92149AE43F6ADF4AB30CC5
+9A11F3DC4235D68AAD9B5419CBF150B9BD0B38F199948E9C572A03ED06610AC863BAE6F24B24CF10E214625C6E633F82DC65591C55B4FCADD08771C2
+F8F4C4CA9F68FD5321DDCEBA46EF6C277BA65A125ABAC37ED5CD3A050E4987208B82A895EC4B781476FF8115FBFED4D431E57BC6558BF98803180E4A
+A4A405557D2EF83CEDC619CED994447845D0FAB109B90B77C94FB2091FAC66CB96B5EBC7CE1CCCD9C31B38D475B1A1A5EBF2CDE3BF3932408F8CCD4C
+00FFE67C927DC7CF6D279DE9E66A6C6106C582621F064F71CCF576EC955AA251616E8CCF2D26711DA1EBC3E278D06B0A487C555A6895E259F5EB85DF
+0DF29F835F89462A733BE3F8D64EA5A42F007D3DDA71B737935D49D913EA8E7D3DE8329F944F2F9E3C6E25949958DB0BD24FB18AAF823F67179595D4
+D13DCE498EDE8FB0DAE9B64688C2C2B62111CDF7D5B31EC93811AE7E38A9384DCD5FA92889106F79E3D6C937889EF483DCAC93919BD059877CDA0463
+D198BB49946180D424BE2E29FE873B33506B6512A7CB371FBD9984E1ACC7468F417FB350C5BC2E1BAC2B81AB5640079279464609672983B4FF8B941D
+5FDE5BA4A8E132F6E72851925C7D66E324EFD3B621ADF5F96106B90F2515041DACDDC3729796ECF7808D6D1184F3CDD301352E72F7F8FC768DB83D69
+1DC8191A4C8A691473A5F6894693EC2930E7CED8852310630B35D66E0B79B00A2578F928909201824D9169B9831C745C74D60EB75F1F5F3DE7011784
+AD5AE8EAD9D3506D7CD29AD19512D552D0D3140F19FA91FB1397E3C4EA04395020954C6D836FBFDB9C288C2E52065C05EA3A3CBADA6B82F9A6E03278
+7A3F17FB4ACFAB32C4E5B9F67CE207FC901602866B9B384DE59A844A82DAD8818E28B2E273383A331F411AA1355687823F7D88922ADFAD0693E5BA7A
+FDFE98CAE44BDC66B2175FC45ED0E619861221001362A825CBDAEFE1CA14FF538D4DE46354824C10FD5C6B79C6AFDA74758DD5E530B0D0A7545CA458
+2A46C5CE0BD68AD6E51CE80B8DE0FDE771CE35A16C425DAF5FBE1F7A1D06C3064B07C7E15ABF7E09AFED57E7DC148304AAB0E972C426043B86D9CB30
+F78C7D82857E6755D10054A79410BF1C81A1DFD5988A31DC7DB41DD95182C6203D87DBF65DC61DAF5370F776ADD7DA45BF391FEAA2213151A207EDC3
+6C6E31391F5BECA13F10F1F652734B43361E02B14F5C631AD765D69143AA19B6F62B7B6B7308D1B142AE12E4AA41E50F00E546B1707F328A1DEBFD5B
+6B74AF2CE03756C783A389C60412700497A63855EFD6CDA16256A5C1FA9D3EA3411102D968FF41036D08F3C6569BF13E9C7BCA537F836A0F3A560618
+D2D978677A47D78D552FA28EDBEE65AB8B18D8019E21F4E71B81729C5710A1445D11FFBA98DD88EE7CFE64B978DD0FE63D7CF37B7E21201155E27126
+E851FE16A2C61ADCB787A846B3D8AC2395350F5BB33349456EA57A12FA5DA280E56F474078BECAECDDFE19A17F1B7C06528033A35609D674D50B6E87
+37D23FC524609DD21DA12FE439F44B1B25DB847D18AE6F5F19558A8A24FDE24F6887B07DABA2228B04797EA098D3BF33630024932F6DBB92B45BA4DC
+63FB52EFD353949C6B968C49A3809EE2AE8236CF96D879BB02FA9C9E7515C11E1DF8D51EA4611281AD794DFFFF26038D559FC2CD960A2BB469D96F76
+0B61C78BB74E828D82E1552EB337FC6EAD9E3350AF0CD6D175BD2765CA37E1B55FC96F4FACF3585494D758062526F9982A14648F56746F3C418AA75A
+D8DD59BD071E3E8652F75E3332FF384974C0248F69357936B0FE5E304DF2149DDC356339B36153DA67869AFA92BC0F783A9E68A7EEAB99C27B9FF337
+A0A861AF46C2E9C251538FE1EB9E68A18DF7287AE635E194350BA8655A137587EDF648B29131CAB9DA77754DF6BAD8B4279A73A8199B5B5DEE441239
+A34B838C0AAAD8166B571B2C79CA81FAA7255767E945647D52CAC59D2CA264BEA8B54D07373B403E6F167E73ED47896026709CC343E81B12288213C8
+B6611CC011C682248D691819E55711236315918802D6C7730965EF0B878326B991E1E429AD4476D3D4F9F9BED65A3D3B00FFEE2A5B15064AB20627EE
+662E9D937D28829B6E43849112B9A370CF069F05D455ABCD7E8E41E80D9C17D16B2F5DF1580A957C3646208EB6029227053C2C81EBD4694081FFAA1A
+306075144AC990219BA750F7126E7F24F0CB96CC145A99E56F4033D37985F5C5D3C6AD28163C7ADC0BA86FD1E561EEB11F0E98B8B622CF1BEE1769CB
+05DA305429782E25231D2B4F2C364555C84A7B8518B89548C39E25D7EAAD797B9A94518676AC8F49EB6E0F450F0A1D7C636BBC4D3FB6F8CFC2BF2AF2
+56CF1B46C082B138B5CF570714A23730885A17F9D8AAE61C563A3DBC5267023F714F39C81501A36FE5832493140FECF2F1CA4A6411DFDB570689FBD0
+5C46769C8AE4957CC8C118CB0F31E7889A79D3FB2F86153B6A1F0661E5201F55BB4ADD59738423981865B34279C23109AD6E1DE6C8E79F038BCEB3DD
+F7BE193960E090B799782A8FBB8CC9678E39FE5C00CFF5A159EB9EABF98F7EFC3A0BF2DB695C97CEB91AA644C8E13E946AF607D6907C9E3EE8AC26CA
+5020006D3CB7BCA0D085E03D0FA43AB1B4475E9427E1DDE4BB9F5EB05F5E6213AEECE65CC1E693D48DA95FCB6DC45173193D4206185B712E05B2D327
+CEBF0DD4379124E6DF318FF20D54DCD153E9E5951FC6FB23A96A472131B4181A3AB8EA7247108EE68D9AB54A1313ECE5266D9364325120D098E1058E
+9A98E757BDAD54047E45783609B320101FF63115F1D8132EE8108E6B50C901AF644C0EF60A62A711709C71FB159A4397EF5B3B9A29CDF89BBC026575
+9CFEC43695C48C0C74BE0D181480FA92ACAF98151F5264707043542BBF037EF178009EAAB5FD088E721E445F07E26FCC0C62D23AFF4B1CBE0C2746D6
+9A1A8E261A2736FBC0FB1BA07B2B666EC1FD363C3E084098A6BBFE8A1D101D348F5E5DAB519B072F919E2212C560C59DA090770C48A473FD28980F12
+471CAE176B59F430D6805F03585E98CE4899036E1718F6871EA13FC5FBB74DD0AD877D74A34297AA6E43FCB4920C79CB1F6211F271B31273A38B2330
+C641DF35AB63FED7AD690AD7E5AACAF0157BF4FFF6375820C1B83610BE667AADC6323D77C8A5C2452FA9AB80BB64DE5F78A866FF6C5550EA6E0BBEA1
+7B5DCBB24E3EB23BC1848124CD44A07115A3F31556B9375D321194114A1D89B2601F0EE782F01EB0115B410E34AA36F27B4DF5417898C32318904BCA
+F2DC15DF431EA5C0A8E29AD9715D1E57F6306FD5B16E0EF5B1C3F806C6EF34A01D4AA0A0380CB656DBAD0A7E667A7AFD2EC9017BFBFB0BBDD4440A85
+B0C6719080D7CBAE7B93C816C6C63EF2344A02B256651A3E3CF6FEF8087C8F961121BFB5D5440E88CDA262CDD348E27B627CA38AD71D333BB8554470
+86766F8A9DF1813505960D20418F5A776D924BD510F765D9001177919CDF7B5C400D65B145B03AB15347A9B854820CED40325A27FAE37910E96AB0E6
+415CB75EDDB696F60A9AA41638AE9A74CA6F1D20BD47B3AB918C44F89151E535B4FF85D1922D8237D4E6FD550BC598F94389FDE0B8663363CD396284
+42C883DA0CD9D8F5B41154AB4B9EC8D5943AB4139C0FDF0B2CA89A89632EDB1AF54A2FC976024E74242439733A4B19FA6E1DCCA73DCB50C30C6FA2E3
+A938BE4BEB6F91F18C3D64D253273E9FDBEA2282FAF7E29E2B74E2F825631DB3C6D408B3C412A9559029D510CCFA725806529B9BC04CA46630A0776B
+AEC08404EA683C2D5D7FBD9B7675AEA70337BD8B54CB58B158FA348D37E9F540DBFB5CF0D4BD4D149D2865B35800C0EAE8A21069D4A0B2B357E5C571
+10EA7CF3452706C1CF52BA34685F6E6AC998FEDEC185D47D6862D07381A967B84B88B23FB6EEC3A0853F690DF364699AF4E5181136548C735669EC13
+67A8F5D66BF7D6C077EAF61E14BA0BF22826A6BBAE776F502DD3DCF187CFF764C722B6600FBC8D8463434644CDFB50C74662BE9F4D4E545356BADF5C
+49782BFBC1191FCAB6D4B4E718DAD2E9E1DCC4A38DDF9AED461FDF17F4E425D4F36E1C1D51759D1E2CB2EDBCE4552BCBF36D3B5F74C4B596737AD19D
+9AE2670AD233DD58D90896066A554A5201BBD720949ECDF0D51C2342273B7B59AF4895EC70E652ABBACBB7ABB6C09EBCEB86A46184A644CE8E76BD02
+BB6A9BA922FC32CF3C6922069A8EAA8A2D3EF259EBC4FEB1323A61E309B3A43607A38C98A830A05EDF6EC95507333F3DE28334713BB9232A1E4ADC36
+38755BE270F8107A850D2E3A4A22376A7EF679096D2A968AE0C789084DBE20B230F6999C7A7BC3ACFD650BCB0905CA02B256BC56910683A86B90C413
+91F392229F24BDCD4DA6E411DFBC56721A380F185FD93D6FE3E3575CAEB3C5D1F76A8AC6AF17E0989237E788E4E63817E14E83D0CD47ADFC615CDDF4
+4297EC44971474A564014E1A089B2CFBB5193A1150DD4768F4C3002EDE3B35B79D55CC88AEAE24BF0B5AF8E1F2197143CB0C08AC2484068AFB4D5A15
+73F440FF7C27D0FC29E6EF9ED7F080B9A68E812B33886CDEE8E59893BC21FEF80F4338D90170F44D4EE261E03DE39BA45B28FB2B12DCA51B52B4F750
+39BD664BE052FECDAF7940917962FF27A4E42FBBC81C3F4598F0733394A8D4A2B49A9794C7FB592BDD6266026EBF60DD9A04ABCEBAFAF83A08F323BD
+3D406B1916E97632047049D4FED26647248F72DEF222D5876FE098CDE76F7AEA2CB0F0B3F94D8FB7B5DBEC16A628B55E103ED71D03F98A8B65B855D8
+C6E15ACDC81AD995024FC1541D27967FABAC0EE82B02CC81CCEA043BE9DE5DDCDB35BB90A24FE663BC405956867D8F4E3E9869EE7250F6B728DEDD49
+2A87D881144C61F233731046C0A86638F5C5FC472F10259C9CE3271994EDD8D139A0B2813385D3A5ADB2B190BFC69018B3C08725057D30873D9B1F76
+3830BC5D47FD70F3CB1355A47F03179E11F39083A0A3E1E564DEC48DF004CCD2F810D9ECE61E7C0380452D378AAC6A83E2CD7D2280BEA8567515A517
+188D1DF8D423D28AEDAAA429799DC0B4786FDBA348916D2056E0D430C982F97B48AB33EC4383CEB4E2175E8D59F18BDE126A88FBCF91B700CE8D6112
+6AB62552586E12E958393AC388A6BB2945403779E1D97C4ABCBA36CD3697C644363E6192AD9E3CDD74BA00E1C8E68C94FBC577BC5AA291F311D7D19F
+67BDC3A8F754D6462A119BCC8979F416A24044EF563E5CC019185FE9C4539561C670E35C5409CCFCE6D62EDB26345FAC0970CF7E132DA2E7D72A18CC
+DF8F1DDBC26B4108230814C08B1E5AB30C0084D8106B5A2B96A151618A73238F5DAF9F31F23FC76C3C14CF524741E573698E15F341FA4AD2DE9D64E9
+B9F6EFA015CD8C803C26FCC28920828521584ADC7D372B6CAC3636B93507686DA3F2B702EC298D83260540EE1D31883B065521CB2605D18D98EAB92F
+C7A80558CE9F21DFB159B9A7543892A4C3A64FCDEB8A5422A70EFDCFE1164EC254ECDFE7C77EC6D0772465313E99DFE3A60DE5D6FA66426743D6C077
+1CCE2D8CE7D7A1405EEDF188AC43672F30853D5D32A42A3D9BADB578E35D107A3F4773368D291260E0EF561A616A9660992D46F0258E6DAC1AE93C24
+166DA772670FA9E6805CA1EE8449618DB54A164962532514B5234C04AA2A22A8933E9D788F459C3040BEF56E31919362470848E271C90D2759F2E87A
+661A0FA417EEE3AC5B736F560C842D42DC9937DFE07E73372D0F060D4A088BBD0ED9DC1E4B3BAD108A08A1202298750C22F7230494E7568EAC6E2C80
+35B3AD97D10FBBF41F7DA1330399A1F80F33B9036C3DB0FDE9873B6EF46D5E13A0FF8C231BE7C97092C33B7A3E640C0F3FB90BD30E90016A4B529F2C
+EB5FFC0B0E6D19E854D6ECCED37916CF1552FF3A14435E6F1E047843DF5E3BC7A87C9CD548C89455F5FF56EFF8433C0E633E66EFA1C671C6CC3C400C
+3580B833482E298F2E75D472C6E881DBB0DA12A580611349060C09CD6812A5351B2920A094607366BF36AA1A598F23CB965F28561CFC70AC9A26DF39
+42D8E7AB25771925FA3DAC84F72AF6CBD0C502AED22787300AA2BBF85B6B656FEAE40C1EFE0B7BF20777A2DF16C9A07CB1C461ADAF02D84E0E5A3CCB
+02EF437FA2D71EDDC652A24AF9BA50820E60FF1B974C9ECCD943D61A9BCDBF7895AA3C66B054B34F9583398338EB7B1FC4BD1CD18A6DBAFC05E0E3E6
+E262EA3BC56E9383DC143D73271051BA574582E1E84CA4F3F7637D89FB791A7E953D1632D91D96D6941C5C97388B6D8365B466763F3F3FCDE694934B
+90D439014591C3DEF0AC867FC6AE0CD57CBD4804DA4D4F94CF1C7BA5A499D36FF32D64A35ED0A5E716B76D93F4B09EDE21C63F4F452B47FBD91BFBAA
+5E33D771E0699AFA5F16CE300224211086D0A9C5243E367C82E5B99F4794A8469A6078F9460A3463D3FB1DBFCEE41B896387BB985166161AE27B5F24
+B078C9ABBDA020BD468AC2AD8CE717D5E7EAA8C6ADCC0ABB909D77C960C6BD89F0D6A44CBFB94E50EA1DB1BA32502DB9901A846C16AFCACD2B24639F
+CCDA5F468749BA3098F734619CDF9FD6AF763156CF21493840668853EA0428B348C2BFCF67F9F69525D6471A712E78A0EBBADD6DFAFDDF6DBD3E0135
+8683D0689CA8425C037710F62B27A45955C1F4537E32CDB01C8510F69C57641E47574E2A89E929F9E3BF8F2B44728448222F1A6EA328F9F1E5FE08E0
+4B3EE20B3ADD320D22688AF203B1AA10CF73F5E8D27DA8E0C08BCA67982C85431609AD220187F1F08E389BC2959F3921360F6ABA9C3665C7D64BB3A1
+A8C32BD99095624028B5558DE3F17FDF201DC9C2B274255ADD4F9D10CDCDA0C0231BE42E628CDB4EE00747CDE30A8AE15316001AC408D088A5102EA5
+AFB87993B6ED4F00C87B0A7EE496357667B6A1DFFBCD8641A450948863EBEFE9222849FE9F8B5737ECCC6DF3F26D4257461FF94EC94A21D02F07FEF7
+32CAA9159E7DE522120923398853B62A4FD462EB8433ACD879F98E52BCD7DAEE2954099FDFAC1FFE9FD1595F46681030508C0635502E929554F927BD
+037460118F11047765451F020D4BB02C25A3136D9FE069A9FE8ED76A1956F108D455CFE945012456963D32033F27ADF819EE760ED58B16B50A12DD0C
+3DD5C2C985249BA94B9156A60C395C3F92C268D081E286961BF90AF067764BFF2C44561D9FEA365CAF426D7D2407E78D1A54966725715E73E62342DA
+74CDD34E1E5078D45D477FC89E88D3E4F623444634195D545CA484D08FDA34CACB16BE6B358096C9323AF3A012B364915BD7529503A5900034DA1477
+8A0BFEE0558DBF932C97EA9A8C29760392F0595DF4FA77D79951A64E784E19B50FC41F16EC21D3F8CD1449282840D06B034C628383625FACBDC2D5F2
+F3C499854C1F0D905028912ED36CD64A91262971251C3C3202ED87F0CC59BA54AF26E2FA03BCB95DFBAA2CA19EE373E98E1BCFEFA9FD34515B01E874
+9E2CFB2F7243600849E477FC1ACB29F7B4D90A49CE57CF12A14996025CE37A5FD3C48D7C3B1A0E91DA59B550989F8954CD85C516FB0DAF230741345D
+E46C25F447218BA8DA50D17F4E9CFC9962F460C352CA1092E488607920FCE848382F46CE000333C410AB484A076E0ADAF9F9C5A196128CAECAF00EA7
+98EF8C0323EA57ECA8D1866E935488D29452B3F9A51221DBF54DF32F6382AF80027E7EF6177DE021A363964A93B670B6C621BDDFEBAA146B9C473F80
+B848A59D151C9DC42B54C43E607EA2A1D023D2A6D8F00BFE30CFA4C8267989BFB1D88BC8C0E912D89859EAE33676DBD829A34954BF3C1AB87CFAA1E5
+2DF9DD37F046FF74F3834B4264FE4E1A6132EDFC3398FEFB8D1DC854343CBD6578CBF183DFB2787335AB3F7B1AA6CCEEFF155F1536555F14BE8ED3C0
+FCE99412A0855F0692BF60BCC1929FA879F9B6BE545B32215D44A67AB7255E20054CC2FB0F24C6169B7CB964998AFE23B83EE62858FA1A69366D3266
+589AC1AF335491B28982B87A331DECE07393F47FBAF02A3B2909C5B0CB74FE9306C62F38A5DD145D5C78420DACAF47B8923818E98F086344E40B8CCB
+E5AE3083B14DBF85D8AECA5A630FA59A1788015E8FCC452044CB17EBE7DA3ABCB8A3F4FF48C9844CF4A6C83751CDDC627AB2274D9EA1A3C07449BC41
+79BAC60C8111244EC416F9FEC2CE94E737781D9F3D25D3B97FFF2DB047CFE5801E5D3EEE7E12B537B7040B199B5866A159A19A2D52B4D18359211E87
+EAC1A9BC7D6417A7CAF2C3453DD1C47DE017F3EAD388D3F00F4152E6CEC5FD380FD38F80A7892E0ADCCFE677DD65F95087946EB23D5EEBFA8F08ADAE
+5D319ADC0D7DCB8B71AB69AAABA00D79BBFB9C7B0D2000201A57FEFF7D80035646DA76E65264253233C515D6B1EAF687D642E85997E8F2054C92E573
+BD7BCB30505EF8BBC6DC722183FF63BF258FD5B3EBEE90C33815D9E069B1E2DA0BEC5BA19D97BD8A0FE3A2BC1026BB5AABE9C8FC7D9EF8B53C482A4F
+2C1D9E917D974A9142029BD23D1697B4765969E1643C8507E03FCDCE09B8A2436A4BB01CD1540BEA5F54A2BFB4FB66249C0AC3AF9409278D09CFC1ED
+B23427B0E10DCF810C77113DBC8627E5057A5F116318B5F20CC8F692C3054E9A00B161EF85B902812D123E96F5A24615AF327A8D5C2778D2E18ADE95
+AC7990041BF5BE9970FF2906D4F1DDC03002A239181144B48FD02BD982A05A6D1A52EE859CA84EF33D2EDE81EE22134222B0C05708A9F44E2B880278
+F28DC0F570844C4D8F0B9EEB48E7C59462C6B84C8E95B4F32D3F2ABAFF5AED4ED188F9C34198E24399CC2FFB969452FFA888E74027A6515E78393C9E
+DCFFC1A4D389B751448C3BB1CE98005E18741E9124DE5E046FF6B40A2472B0310E7C2A619E3F4FB425A7F5776EB3CF374F2083B788C953DB7279BCA0
+FAFB95B0876FF27CFA4842C74DF3F28FBC0F1B798580A5543C6DC601D1F46297A482E4A45380256B67B525AA10C179FF0B29712C653A374C61FB2234
+9BFC39307E1DBEFBD6848C76B61EFFE6C54CEEDC91C5DE1E6C947B9B5188E20210573FDB4D43681DA62ED79B7754631568AC87AC851F1E27EF360351
+AFDA71FF0CB1A094E63815A569B13641A9E5576AA829E17E84A79444E1A607EEAFB18F0DCA6620AD3F70F605434404EF8FE0D4110104A1FFE7865C9C
+C04698B657C5CF3645E955973F01420538FDB7A3B83C90911CDF1F58D9791D453F2FAEF897980C7514FB5218497835CD89BB40C6E832EF71E0EFEA38
+5BD801E218A90C3D7E502FE4C0CCE065A9F12C7A97B522426DEBE80FF0F2DE3A1161DF86E34D5D41313452A48DEE858D8D745BBA143CE035638139DC
+C7D145CEDBE4C6196CC973898DB46E115965D2DCD47332C1B47AA2589014DC9B34AE8C3AF37909AAF3781B378495E6A346BC12A27DC1EC8D828B2D7A
+3E1E8AC8E991E30D593010D40D69E6DD6518621CA16437D58C91774F476BC4F28BCEFAB42C576A415DBD2D2BF3B77D631EA29906CD2668944F9B62F0
+9496FC03A365F2AB2694B98A981087F84AC3AC0A510E8168A16F9731600DFECB9256D9D37195D8ABBA0E5B8967F808B4235AC973FFA47C488E30B885
+BE11D96CC20B23BE8243937CE7C6CD3D4AEA93ACEC21B66FBE45E593D7C19F50ABC51A9612E41F691B96755F5A06E12F40B6FB347AAD693792CBF7C4
+19C9721F3EDD91C70921D34D03C74F3F1FDBA0BAB8ED0AC083DD043F5CE4517125EFD5AC76A2171B861D4729962187F6F1C22CEB83BC549066DFA517
+5AE564B12637EE6E0B9DD877CC74864B217A90AD3DE0F81CF939333C44EAD226C2279DCA9F89E591F9C51F45E01A3D14462218CC98C2B65B19590848
+A6705721614AE18A8548E0187D7B0BBE42F50781D6200F07672A339E59942FEBDE70692DA6D44CE029A1B9D1633E6C4FB2E0DF5A43DFDEFA6890EE17
+3F9DEBA632962563380090E1C24971D5D737A96EDAC579C4EDB04E32132477D00A4064B7D50868241DE3DE0EF03001788ED2810ECE0E9240E9E1208F
+BC5C574AD9C0E6F478A9E40EB032091D3AAABF8B15AE9F28D1F0C9A4078FB744E25D76933B12DABEB2A198FAFE29F149905BC01DFDB9375B51115F2F
+346D5622FF13906B6630E8BF81AEC6B1603A30FD8007F04602502340721BD4314EBD7BCB166DDE0C1C4D296FADABDB049F7AA5BFC430B423BDB40272
+C9090DE0275806537E4F78C3E1A4644B74F36E4A7BF8BEBF32F05E15102D73A7BE5A70EB9ACF9DFFA8136D5219F56AC00F11F04AA2087D436CED6DCC
+20D74EFE8B2FD47AB8A7B145B1841816170D9A5150ED9F8E6A7FECB0EEE91B15CA35451B90476E2E5B556C090B8584DA6219450814493A817225EF48
+B35506404176F3099F45434A1C8ACC09E604742B4A86EC9DE4CA863717D45512D186A38B356B8E0780A177E05DA5E5CF9268F3600510A9CCA9BDEF72
+3E307BBE1A79682AB41224DB942F5510C01EC21628413D925485A406DCF0F2E4038078ECA377C754EC0CCFB5E32DE13C24BC0850DDACABFDF92BCDF3
+03AD422996E0B65D589B7CAFD559113EFBFCD9E7F52013E89ACF8B7D9E4C4767DABC0670107D444BC9ADE2DCA9E23369C77FC7942B3FEF4067BA6A33
+060FDC699DF214C861FA3EA6FEDADFE878FA8FFB442D11AC3336571B5E763358E09FE03B006CD9B5D8D2F27A918A9D07D07238365C253B1BFB67FCDC
+ADD400C53888F523A8544B641D976A88F0C843A83DDE2D21278189AE50534DFB1C1FBE8A2A9B7E7EB25082F212FB9A4D644E1176E024AF00AB79AF95
+305DF47F5FFD1653F15AB138F87FDA08B6EC373481A02A3D430333ACF4A6D26333BB7CB9F7EEAC04C08150911145712A94E3B37772879B3E893C0939
+B6A605FAF260D91CA2838DDD0A62B9A4CD4181C1A3531318EF0F207AA35A8F88D656CE322A966DABAD5CA6E19C0296CAC40579ED696CD803826E54EB
+70156CC55BA2FD17436DAAE0F780A66AA2997FE5137EC2DDCA2C3E8664C784F265D4AE7A875C99E7AD937662FAE9F461C3A39D758B963CE11842E3B8
+B4FFC5269AC49F5D9B330A369D9B9CB47A9992100730EB753ED02D11EC163BE32C25E3D7E8CD40727FDCE53279D3DCF7ED34728ABA1D2664FAEB9F45
+B329297BF5F485EBEBD0DF553590CE17939B1284AEB4B3441925B21049330ABD799533963A87C91BEA98203F6471880882E6CE0751684AB6DACC171C
+1BA796BDE4080B576DC557218D94B979369C6D1D3CE838F05A681A0EF796B3861C861438C9BFC2AFA7F6392CC06EA581F96896AAA892642967D4A1CD
+9B81E6BABF14BC909F342ED1712E9F856C7302861AD776CD7F62D7A55CF1A9CB9A8020E6A38FE4576E73B0733B6B7171ADB98B50C703515E77DDBCAC
+A418B47C8F5E7A94115C7431533D8D9092DAB5A5C78C91FEE6923F924F9FB8AB28ABC7E6D5D9FB7826CEFD29E7411E4022B6EE560666F790BC06D7C5
+5DC058C8E415253B8F4AC803DD074FAB5BA8E178FA17AB516136A131C30F2A8E913326E647DB65303CD001ACAAAF05BDEA0ACE08C0416FBB51A2D156
+69BC32A4682BCD1C0991FB348F84AC1E113B663E3E989659830B0656DF3C8EE1331CD288EAD22FDF4832375C99551285AD7794B34FE70327CEE079FF
+0C883E2A23DE9C13F35BE3BECEDB39852B41D48DE22B6BBD868CDAB84D8F378F236003A4FE8C7B596A6B4E917E642CF68E532541D64A1CB57A8134A5
+94F8BD7A1E5FD6D87A70943C15B13450457E0CE64A49E480168CDD2D70A6553AB15C2053E1FAE2945A6BDCAFE5876C727CE271691F22389A2D914993
+D2A1BACF9CC18A088EE0D668DECA47C3A628BBB8DFAE55B76512361C46269411C8E202EA1D0FF9B97370D7EDD3CFC72E556FDF29C92B4F45576A2D8D
+CD59193458FB6963E0C59C70C2622B439BA7C3F483468EF9395E1F3804739C5188F01A1D08E37C8B32F65B572F0DF40F08578ADCD7CB0DBFA6C3654A
+41A6CF622E745A1764C0B6E7DEEB60BC42DA41667CB25B276176FCF96A05411A73D061559BB74ED85A33012537F24FB93CE153F8795DAA539ADA22BF
+81022F597FC8BC7CC5CCFA2803896008582D46C8026D25D20D0194A9CA86D4AE69E8F69BFECA5DFB2D3D69A5EE3284AAC34E433C39F75FED550319E9
+CBCEDDCEE15C192E496DFBA535A6C23032B441DE656920EE77563F3784127E5736BE766544A09DF0F191A3FC958D3A93239EB4A1185FF9933D506023
+AD154A26F5E3F7C7897423470196ABFABA64AF0BAF4EA4EEC64E04AC9D67F31C3CD798C870266640320D4F4B61FAD1691E852EDC6340B98ECF943DEA
+9F1A3174EE74EFA737A8064AF15782385B4B519763647841BCD718A6800566A83C8FB19D3F6158D3313F9AD3BFF1B53F1DC9670F38CE93589FC6F22D
+B47573FEB80B4900F4A9808625E1D2DC2CDA81EAC30FFCCD8AB4341AF557C3FB97442A3E397DA8364851A426C6E77CC9D45AFFE2A78F98DE37E82B87
+6842E109B27CA3612024A03998343387A1679CCDC1F4AD1112560ED37366CEBA3B229C2757264C6E0A6088FADACD402545D0E81EEB43880604A7B1FD
+43E5AE1171CCF249BB68ABD1C194C46552CCDBCA9D8F8D0E3BAC2019CDA63F13B6AF4E08E6AFC61D9B5FF60BE2ECFDDF6B2BBB64F5CEFBAFDCB82261
+3855051F433EC876F9897F33CEC074378C6151142F2D4324E03FA887960C08C098E1B7FC6B1E123746B2F94D11832F0D3BEAC1B2FCE09A4F806177ED
+C9D2621EC75C528B3B829A91C420E70EBB37664FFF63849D477E90630A52A350761B32FEF04BDE7C68123588ABF2E1705972E1D56A698C69861D6C1B
+EAF49B1A7A392BF0A29DA8C2B5AE56B5B57A6B1766E809C27534B72F05B979DFBD556A233CBDA964C68A9037A4E933BD0F5F8F360AA53ACDE0755538
+92D55B64B5906380177BA55D6C5DBD9F46CCCE3B5555FF439044286A0906123F8CB3DDB70DDAB063263AD2378EA94BB4F2CB31CA6C99F56725BEB2AD
+53596001E412CC5F5CD7660FBDEB540BCF210D1A82648BC10826784108631BD3EC67CEC788EB50C1E70A82B9EC01B8EBEB00401BE400B74D825894A6
+F777AC2F0A4807D0FFBB6001037844347FAC253984CFD56C293E482F1865BBB3CC43936D09594F55EE4C549C7600F64A9ACC9D49223B44EA72A351CD
+6CB589EDA17D87DB9E689549A3A643704F02954804620C3138AA554B2F05893340FC0F1760093038461F6A269B746816E0F7E2A48605CF008BBDD688
+0649C9179D4E8A0CF7506AEE1A2C6518FD20F9345EE3B1D42E6289820C7FCFCF7EED4E3B203FC286240E8F27DE52AFBF69C015AD2FDDA8CBB6CE90DE
+84CDE568637240055F7627C8DC162597AEB4D40E112E29DAA3F69C9D9D21F86EDD9666102438952E973E5ED57C6A013318BAB54F94D12C28B6A524EF
+A00938DDA04B935AF8451D492601FD3671B1AA28D6381E98C9EF26CD90F75C922D6FD1081885A7FB9932945540D463B5B3CA451BF5FC933B9F9CB8EC
+C969BCAA9DECD35B5AD81E43C17DEA7B2B5E89E7C214BBB01581C19219E05DFD9B96D81B4E534E81C49D267EAEBDEE251D7C4EB52DA6C2327361BFF1
+3303E3833834A34C50F81BC4BC495ED6F21C5D6E82A56717C12D608804623ACD9BFD526D36B9A9E9D912CC0A0766895453560723DD59CEF557663FF9
+E9EE9AE80ABA94AD84EFE0962D7D56BB299306B715EDDC2EA23F9CFB7E23F988F6940022AFF441A096E7A7A43BCACD20F2FC2BED8CD8C29E78DDEA56
+5E14E53E4F0ABF1804E3E89380628BF00A2E5B09EB6FC682FB333FF29DA5B6941261EC2767B6FA09EF911E08FB73CE61F1E7E57748E74042B5C69ACC
+91393F12137B831E1FD44655BA358FE404A64CC42B63F06900FF692808ED7FCD27E66ECEB7C65D4628B2DD453C95480EC4FC4EA2EAB6A93B37C3635F
+33D411C60FCE8F3A704A030DC8E7E6136AED8504E7EDB57210275B6445F36D46CA5DD562A23F6E9F73321788A0D7C7B490CF90B641DBF608D28E02E4
+E69ECA03B958D78FD9300067DE44E5AB5F2097C54779FDC71E9A99C916D9CF6169C1FA6D36DE87C5E48C35E89E23C9A184DEA6CEE4A17A37CBE7BE7C
+2902BCCB566269409AF3E220D188F8C3091FE5FF6147263DBEDBBA38B63A7D25B13BEF0E1D7F4199F366106DB550082F293CE4780704615B573F7514
+5E359A68BAD86912E30F051DCA02F10CF6C1E61798E47DBA39D24512FC199254C86BFA481AE019057E2FCB9E4229F89B9F0D47F7ADA9F789F4B1B2C0
+AB2339BCA8C83396D0659F0EFFE73B6B40347A6622CACA0B3058805DD4FB9A27AACE11D18A02B42597AC0F89550EE5A63D0624936FAC15536A8D7C91
+CD2663347ED6213BF58D0440BDF773E4CAC27A56E4A61B1FA1F6FB9477E8C19D08525FB505567579504B202E058396EA30EBBE52BDDB245C1A947FA2
+2EDF227FF931BC34E880300E73B3F2B0686F099DBF6A74F188CEA7475464B00C7F1A0B3822344E06BF157D387B250B3B6ECCEF22C69F87FA72D36302
+425EB7D6636F8EF037FBA2D5E89735B5A063CAAF67BF5D796836B05CAD80C047DAB0AFD7545EF3AC291FFDCEF8782F1566C114F4E5343065112FB4C9
+F91912E58BA64B3D3AD0679B928995FEC00EC22541074042B2C4EAF909D8196AEAE3F80A6C30A0A59CACF080139C128C091112A929B7A9B4E834F935
+25C8375318DA0D86C5EAF316387F994DFDFFAF9D425B8C5EDD38A23A54EE495DCA04EFC071C78F158498436DFACC9564780DF3145039FA3CCBB60FD3
+86E12E74F782AD87D0C6CF173B42ACC903BC790D965F2410C119D6B6138E62663E3456EF1B7A90D7C7311B6BF338050A38781E9B7630D5CD469DDE4A
+DB55E260B212E07850C7C2A9321AC47ABE9241256ED86E9B8D6C28F424193C21E154805C4C5B286FA56D667DD6BFE08871391C36D9224B75BE2FF7D9
+870CF96EEA30C289DB1C80A93C2B5193E7C71CB817243D0D3C6B3EB9A1EB12D2CFAA2B6EAE8ABE3BB642EE4B9B828C5FC4D3B74207A0A99676A40851
+10CB40AB85BE105BCF726076A9C47C2D2A83426FC6BEFEED60AEA73BECBEB19F2F95B17362FD11CF940C2C9EC4055FF8916FC8AB8A40B7F7A835C35B
+D5E980D6F1BD0203E632A86375803B2450A2DC79C221ECBA2E120A79280F8D728A0AB6E1B5616BE832515D79E8ABAF38AF886F667F3F65F67B6323B3
+BBA8FF9FCD4FF367C41FE15127CC0AD01FE4E8879729DE92E846BBB40CDCD67EA71601EF9062BE513FFA29E143D3A8AE34683730E2DF072A47618DFF
+F96C2664D8FF0377F9CAFB8F13E246644D306E5591F94537FEB1BB6557149ABB14F56F54F10839C99DC5A5E5B489419C8D1CF79BE66B978FD20BBD04
+6CB5A49A58848F4B12C8850E8F77441DD2D509F8B100757AD07B55E0F7634F7C393E53F4A75DBE6F10892929C519D6F4E2229F833728A01DA3CD6ACE
+568F3CBB7E025DF73D080E90C7FE38577ACBF1C51769E983C1D9A29A824C574ECB030296B227A43841971BA76D1761CB79B487F36DA0F2C086B68ADB
+B0C533AC65287478220EED23DC9641A414CF4531085293A37893C2BE6ADA70D05CA7CEF6DFF55E0056FCBC07F8337E6FE1004BFBBCD2D55455EA35FF
+0CFF8C1A46591A7A75C18D186CF7A6E6A3CFA84E41FF44A68396CB57310B8C81D0B0FEC407ED25ADC94AABAD89138F9BB43C14FD05FA64B51AED03EF
+53EA89923E02E456BE52D54174C9B7C5570D19627B37426373EDCDC981080FA076800D6C6A06833B23CA7B81C6F2AD981E71978E53E5D93FBC5495A1
+7A776BB1B1F0FE641911827C40BBAC586FF0BA2FBB295F2F20F1001532EBE7B523D6ADECF82223A7CB0A9BCE24033DAA8D309EC60AB34D8978232385
+04A4F06BD79C5876B4962D16561CFE59867BCC7879D0616026D716F15145274A204F13E4D1548A1D8A43B89146CA4358E922471166A22A0A683C3E8F
+37E54D7EA658BEA22FE9F996BCCFA0D845B85EBE7E8DE503E716E0768D9D3B6D99A8249A1AA2013FBD39E3F42BB3DCA40CAA9D47FDE8C3152C02CEA4
+9D8D042734BA6932FC8F5ADC949D2F513EFC503F8725FC746151AE2472A34EE48BF23FD44C23A34DD42FC59EC30C4CD6203D0C2325DDF82CC0F91738
+6A22F02F3444CBEE42752BBA4B99D61F0F685D33DB8595924E3EA0BB71F7C19319FC6C7AFAA9DA8ADE08B2D9285F26B57DB44B5C2C6ADE66BC084E2F
+420D108088882C56B1BC09491D98B08B82C831BCC3D76286D633F5C1FE669CAAEB7C86F9618E89F2C6334A0DF2A72CAEEDAEFC43E7CC67F86AB78D19
+9ECD6F214ECC95F2230393648BFFDFD1585E405710068BB0E58E2A63E8A7CCE9D022D6DB5BE6A8DB82E65B23C765DEABCE610C8337DA20E2A39DFFE0
+F85CA02A9FB39050A0EC9589D9E2447A4EEB7E1730B1EF86438130B251583BD3ABCBD308E9EB3046B31F17972BFDB2B78F43EB0E47E3DDE6EDEB2CB4
+8FE55A83C542E19916011273DE523B46ABAE8C968BDF1CEDE04FACDB0E1AD5DE80774E2EB90A3B36C994F5A24E378C24D6E8A1873927CD33B95296E7
+87C9CDB22E3E52E2CA362631BEAD53A9792BC740942BC395DC10BB92E4A53AE718CE0E04D974820825B8615726769A9D789577650CFA1156FD4396B7
+6C557E050BBDE12CFCFF43273391207C527760905908D2197E6A2111A8E2833F426D455D230EFCB325F75216D0B3E1951D2CFDB6C0D11B1F5298F7AC
+CEB615D68C39E8EC8AD60AE9D19A0EC61F3597FE375B83848545276A555EC465BDE5C0BDA6EE6B1D8B75F191BFB613E638C810A7E0462A11C72A3310
+007048A9CA56183DBC8CE23AC8F1E04C1901A0DC9C5E781F83A93651F15246FD30560FA3A50CF61AE76160308142D2AD9BD36EEED82B5A4286BB042E
+0EFEB1767B36006355D07DC8B237E2A239721325CA1FBD80AF4B7FA0074D9DBDCF0CD5526278202309BD6371F8627F97D1C5BAF1270B82072DD041A3
+F004758BE8BDD39E6FACC232C94ECDCFF2181840342640C4A5044B3C111F20CDF58352D09D380F1B735D451D9609F295C8FD9B0CAA661D7E334C425A
+0A0CFAD40EB93AC7AC5596055A4559CF0A539A7D941C9B61BD769DD7036C6CC76EDFB98F6050A82E72D44EA471C5D6A3FD51F475C4411C6CEC1955C6
+3FAD7C3DE2174F36936D2B3C18A4C9B616BDC685E14299E1DD673396FD1879C598DD22D0F10688576937BA49D33C0FA7D1C4A06473057907F60E0C9C
+ECAB9C8B33A9192144877F4CD112C98AF61B799336A71AE0CD843ADA2B8A1C1D20624390308D82087007757A596FA90F255D333B5C9920245AC7C0D8
+65BD6E3D0A3CDDF592F6F71529E4319865879B5D7DBBA459E499664E45574BC4876FCBB7EDEF7357A45201423A6CA053E3F47A4BEE8BB59F79A44221
+F49ADBC3ADD74123028228965285B0B1C12F16F4982819A15A52869FAE3119E1F7520AFA24D3EE397826A56DE64D4C113C48E9805E2BCD1C17E48BFB
+90C20401746A90BD249A033312DEB2B15E396DB56ED375EE65393C450144F5C3C60591C50F8F663343A4246FDAA3745BB57CFEB6BB015CC47DD74BF7
+86A8C805066EEDDF6F2ECB17B5D7E103ABF86F00B2E1D65E647AA6F70004A5A8C03C32508652B5965D6B27EDC078A555459AE3649D6270F1DF6CB6FA
+CCB4AF820EAC2A4B4A09E211E4E04B6B735984A074CC68FDD4D712F98C97F2B906B81DA14E440D4E289D5BCE8A4F15E65E0A2E4CAC34FDACAE5FAD5F
+29586B75E7F1FC399654DCB919160F702A8BF8C0D7EC63357F95D6063544D0D34B98324B2C9C35EC874884625647727868E8FAE80BFF6267A6698326
+3583DA9885DEC5CCA1C462A7B81745FF1D7923EB0B1D8437ABA0DA7CE3E29100F9342222C0CE2DA3CF19E869656B8B07C4151D25A95BDE938F3D5925
+37D0F5CA0582F5AE9CB4F21DFB0FD8FA4E38FCC5A204DEF20FC881C823C62A780F4CAA912420F3618D17E4AF673C7AD1ABD872D2F8890BEDEF5FC1F4
+8729FF07CC1F1C841EC060575E0D2A97A5678EAA78491875532FDF4223AA77D222A3D62D5290FD8B29D53EC21DA0493A0965B19C18A63A66E6FA958A
+AC33772FB44E53D669E54B59CC9AB9104FFF3E62C42C4EB10964ADDF542B665F355EB608AA48EE3048D98836F09264AD81F09AC2C11DB09F5C2E8B2D
+5628EF12A8137250F67946223509B2F49557DE435F53E976F189BD387EE2AA4DCA7CAAC0C61FEFEAABC38FCCDE4C6DEAE8B8BBB3BBB3E5E7ECFED49C
+88DEF68454C0E6772F302A9A7A78C45865DE18A5AA723A097C6B6FEBA310365218E1D49BEAB64E84AA495307A456E4CFC18DC00C0B288C57D04E6FC7
+EB78D5822061D134B4877797F704B2B9181943BC76BECE8D14A14E13FC3695C72AFCD978741E721D6B19FEE0AC05AE5E47BFE55532AA2CEE3C3EB3E2
+BF4FB12CFB0C568F3BB246586A70286E9F7F0196E67BB6EF4A2685B19DB8AAD1BF9798E424F15A8DE58EEC22B1F533CBFA1FFDA6C0EECAB2DC53AEF1
+9FF8DBF323CB723438C1CB5EBACAADF6368593675626B0CF3B54C637E37F5D1040DE300EF1718D589E67A29E06F1EF6A6335F61EE4C694489A30372B
+BBC5E3E044842DF70F8D5405D6F02D079B3EFE7DBD5904E122A8F83A25A7A8E59F010509CDA0DE718DC40AEA8C47E1B8BA4C62C91DB2BA2F28436031
+7B8B929BAD8EED511332F8A00AA6CD2E9A53A5114B7BF50EA99A4DBBF10D799BA75DF0BC8C6633639A06D68BC10E35E5037FEC085D244AB76D99BA30
+F67C38748DE6F01D8463A89FE8EBDEDC65FE577ED647938D2D3475712E0A8E84599E2F414312C208B73BC1DCB800912593E48252CA76DC10E81CFB2A
+4261FED2A8CC21DA448C34B3F6763BCCF5BCF29C038CE39ACFE1FDE5EEE37943CEA772B473A727948B937B55320186BBCE717F2B9D1B5506E8A4484C
+0D185A1F7367ABE9276BF5F23E087EE35DD48F5D4A2AD537E0C922C107C0E286A3592FB8DFF44185C6EA93E33131AE2776885572A7D96664C4D03914
+F094FF6C7938C844DA8156E2CC2C14E995DE61FB7448DE99092226777543700DAA566B9DEEEE31DD559BE33BA1F71BFD06FC50AF5E48FBBD811D1800
+925E58E30338AF2C54406C4F9527287040BCC01706EFC69BDE98CBA318EB00EDE8EE6B3A604D07C3AEDB927B61FCBCEB07DE787C2C9EAFFF9E42F472
+EDEC44853D102265CE2AAB8C26BF08CF7B084F4FFAF62299C59D8CB40774430D8D7D718E41510687F00CE755BDDAF07F6337283E39E743D17C3D54A6
+1B5FADBDF188173FDF5D627AB11FFF35760CD3137D9301DC4D7C4AD0B08AB1EB2DFB414A401A83C6AD0F7EEE2DF7639AA7AD9F588371CD9EA587CF13
+6792ED0B5480D7CFFC896A7EC8918266EB3FF7B74A87BBA945942FF4D6E57F13EB36D939908ACEEB5E637D94D6D73B0AA470911A5AFD76776CC1D522
+BDC4A3BC6099296B7A397C08ACB5C1A6AD17CE5EC4BD044AC41D5DC51C1654705A329DC70D4F7DEFCC43660D0435D2C2D10E616FFB7EA5409618EE90
+084FD22DF0ECB0F86B384BBCD1168B6F5CC387CB5E1F0F44E74E656F8557EBDAF4A926DBFBE12047A62188D64E6893035DA91914E2615AE91FF91018
+D4A611554F0B009288BE27E388D5EEB7C802754B357C963F79695659679EE007F1CF58A28327CF1F8681896F099411ACF5C1F2B340560F7AAA21FB6B
+04A3766CC7389D732748BAF4FAB448BBCAFA43304802CC99C4956AB8A24319F301C6EB79ED2D801253FDFBF83CD9DE4ACD6BC86B020099AE41292F86
+09AF6B4CB7DEB7D0CFBA35AA746CAB185E380169A043688C1AEDA3E7B3AC3DE9DD1F6A6149435889F5D7B3711E0DA9CE1F8F4CCF6B968E39668D6748
+E53CE9BDD0E33491CAFA301468D5E2FDF4C33CEC0CE7A3385EC90D1AC281C5CAE6F05B5F6D54063C1424AC5E2990528084D45EEE710414BF6D568E71
+649F8227703972FAA0D7A00D3C1510E1F46BBC1FE5F3189511B9405415A18A54F53EFE776FF82661E83B318193121EE7CA0B0463F9B56776DCC54BE8
+43EE6CBC88CDB2D135B2B91B675836BC444CFFB48FC7DC14BB9D61F572E83A2D514FC2A660CB79BB921563F02A0AF5301F7A9A62EE2B4F137BC429FF
+FD3E16B340B70CF2911EF3DCD9EF3791FF63D9871EEA225EDD11C4A5C3283CA063E4FEE46AEB0BEC0443323D2DE95E6FFAF9BDAEE2ED161DD695CE19
+2763559CD39641E1C5FBF66D733E5A86A65EE0186A1F0ECDC62B7484452AD46488EB9AC052582E5FF521AD3C928430D7DDF59765A8C024CBE6632CB6
+1AF82BCEADBCA32A003B1A08F59288A78AE4C253C59F31781ABAD0A604D90227F656673357F0651FA6652234FCDBE46628B9752F3A9B974EEAD3C5AB
+AB0C335F35DBDF9C29D42B49A680915E79CAB4A6E5A603273F4D245A6075185AAA4826253A45BEB5834500807237E94B631123FC410A68EC5F987663
+10506FAA419A1939FB34066F9A825A7A223F75F0BB8E03B0E4F69C4C10BDD8EA1A47F0CD56E369EA30B613D0EBEC318215E058F88E35AAC1B615BB55
+8914DB8656C074D391932582CD644C571210B39DD7993132F57049A1E62401894C44CE231EB42C8C1A9B615E18D89174B6C38ADDFDA143FFBBD0BD33
+BFF5A902C28B9CFCBE3E1A82A6E169E61EEC47513954FC36661C0F61C297B92F00F8923F28A8F6885A791BA8E8585234CCC460BF33F3BC78664D1E53
+36B7FE3BD3CE49F92FECF5D644B938F71595E9982295F6C330B599C51DCF7FF040185D3F54B34876FB4DEAA203E227A222C4841C8A4C39984F1FEA38
+5ED0BEFAD83B65242F3EC2697271A881274D7D51FEE354D7B5B8AAF5B50FA0A885507ED3427A93A7F8D3B541E7F55984D2E3629A6A91F5EE1994A7AB
+BDF8D02D111CA21BCE648937E94BCFD13F536600112BE48F9FD8B996B2B42283A83E1E49BC4C29F4DF7CF46F8AD47FFB6EA8082F111F367642C35BA7
+CEF279EFF385AE4F6CD7754BDE47FAD3F6C4B5E64E26F9DC51CDE475DF2788B88C5C896AA8B977AF35A2E4B20390B359339EC18A99E7442220CF84FB
+24D11F9B06E562826442463544DC51A24A1B40C03F960E835F5221AC3B80294F8EE2C9A3E33D6626D2A02EBB96964C653C5CF9A84D217407B3A40B16
+9B8393BA5983E1EDEC42F2AFB72A23E8DF9A9A59670434E6D5A48273A7AD949C061A7FC32C906A303726CDF8EC23E199CC12B396D0AD9F2CF04DA9F8
+E2DE291D6C870252A64E92B6529F72675F4F84E5CFF77EF08650A425972B22334E4B529561A2D4F1408E6FF893A88B4C700C2FDF37532229FC70C42E
+AA5868B5A1EBF64E87D7C217AEC12A661F2505D2D3C38C05B7635A254089EE4F98FF57F6218150D4B7EBA945F0544766D723F0837DBF24784465E597
+6AFF95E9E3734B441C1A93913CEA0DC5EF8EE541D41C12D32276BD64E9BCA437A15F7B84F7C396F15EAF67D79D71E53E2941539593DA53210CF7C239
+2F00B6179648B7D25E6C740EE4E0E0A3963ABC8B9EEFBBDBD6AD56A850EF8FE00F8DF6C67CD6AE7B2D87B35F51B90BAA08319E75F8908001DB5DEE1B
+ACC357D5659AB47B020259EDFC901D1805E5FA7B57B80E7A39FB221E33AB4368EA128EA145A662A68C868A8692A6D5AB35A1E2641F0AC8AA7C26A001
+C31B262AC2DC670CA2503C2642AB663D43ACE20FC9AC42FF912ACEB11074C7C84D28E4B9A9EA3FD299667B61D74A7150197E4D18EA24ED4886958ADC
+891D5FB1089EEEFE7DA7319C86359F999088F0E1E2FB2DF30D4D58D19E8939CCA4ABAF730527467D30DFD2EFE529913393903362518B6F7365597B0D
+C90D00B41D5E3C90C11DD0DE8C4FFEF51A950B0B6B071E2BBE047EB05602481750545F58AD5BD8EBFC112C713C7227FC31A00B4DE5EA039C95B98E0F
+C66879478DB9337B550CEFD2D8ACE985627E035BB6AF2178DBF9A8077859FD532127F5EFED876E2AA7922FCE371BEB85185A6EEFCC8E27F12C689B80
+EE900A6CBE4A1F812A6DC8879C507DBE03480F98DAF93D4C4BE7ABB6884C3D74842032D327512CCB134AB7A3BCB261A51C5A25554343B9AA1C6F9033
+CC909EAC370D400A74654B89CAB6D25DB121D54596AC569A254532AFD7C9ABC593661946C7F37B04750D81145DA56529809BD714E6D3BD1F6F0FD3A3
+39512605A8A5B421E7A44E52A1DD877D8F6BEA2A4FE4E62501C25C6D194ACEDFB1C76CDC394FD597F7329DC455AC7A7724B5A7BD3C2CB42AE2E74F01
+7A8A222C62D62AB1F6A17840CA9227DE51CFE864224AD9CB32CEFB4D0AAB34194FAD7F17E6F44112AE6637FDA6B9CDD72C68117406AA686807CBA196
+0EC6C831C807C71DD5CAA9B487CF5AF127844C4959E2A1EF86D6585DC892970AE741CA55AAAB4BE3C61BCD1E7CF686BC23859E2991773A18D9D60020
+8E85B36130E084F37AD343C61E79F5CD611963B1F76FAC6CE695E70146AEC91E2CA1E0CE729319359AABB246031757F5864BC82C32DD046A4D3CB41C
+385C7FFD5D1E008F6C379079842BF3574338C1846989AABCD9AFFCB06332BC34FCE4CA491F61CEA06777D2BD113E2C0D17101DDE8938735D3D437202
+CA9B59B16564824C538EF30F630F168CA4E1B3042DA5E9E0324285AC12A9D36D438E73F4341AD430DE5C60F6B1C4ADD31C9994A7CA04A853D7FC86AD
+59948A419B41E767BAEBF1BF9297D7220481E69FC80A9E10227F0779951083C9F699D1E396CA6B0F83DCBC125942621DE5A88C12CE706313D7B5B97C
+03276B41B8571007687AC122A139F5A298E031CE68435BF95818B8046E15FDCD237249A6B97315C3B61A209A5BA9869BA9155D73FDCFD5B917A5A343
+F8C016D6C5FA7C08C02982AA81E267F3ED875C06B65F0A288F97B39193365BCE9706C0D89566CF849AF76E849993785D04C77C37D8F0303BAB5FCDF3
+7B6B71F1A7873BB1E4A8183CF166D1CE8B65EC4BF186DB247698B0AC5250E78C229872DDBD893CB6479D20A1A3739411C4D6AD84E019FB4A1AD362C6
+04A5F61B227E53EEC276E1FF522E09A6A6A4C619B640F380A83FD2E90D95CF5AB9269F991764F8C6B833F7F1C84DC934DAE43C345A239B9448407347
+4B098665010A9CA4406B060B400ED9B8FD912D2044C931015FBDDE1FACFC9D26DE4B9D20A0CC58CC6DCDB8D31256A889D6978FC8075078EA8928F5AB
+3C2D4D1B92A124FA7149A580F4AC5A64EBDCCE827199E2F67C6968EFE765B2BABA8F6E695250F1BA34BBCC8B35699E5F51C7D99F86D1E96A66CB1308
+CB409600C173E0482498AEB3E9FD9275686FFF864C0F69A1BF95C72B95A790D827C20C7B7D08B377088D58E01F22F81115B3210DF58CE0963A6ADCD4
+8D9D77A18435D373A22E3E26AA0B4E65340BE585E652DAEBDEF8A45148DFAE07EAF0064C69F187F214032A10ADBBC7047B8E42315F43054C0FF8A783
+868329A935C439F28FDF197D4BC936FF8604319251799CD5A107FE6868D4E0966D16EEFFBBF3B18C94B25C536AC3AC3BC63A7764EE5E40E178A87DDB
+0523B02A063285FF57B812CC451FB83CB1D2C2CD03E7A1583AD3185C08A17605A191EC1DD6DBFC04EB5D31B062D969B4E12FE03031EC476C16DE9AEA
+368E6FD8D79BE9F64EA5C97EEB67590F396D35DFA8085A3934F552AE926C9778BCD06089F8E8C022E11919939221E0E364CB8BC27D2D9F9EACE4650B
+C4A19B8B91A6E7D68A49E8473B49FD4CDEFB927333C99438CD0603CB3818E1109421691E111A5723F2640DF3C19C03E8909F680A0DB6680D23333D71
+5FDDF738C19CFBFBA1873E5490D22226D7ED7BE5E68C77A5F22BD60943934F0AFDEC6DF499C3AF0C056C23DD5D5B9B5198CD03CA5395EFCD8A31C762
+DD5545AF1861127B416CB4F5B19EB38C65FD0AB4EBBBF2ACCD5DA36DEE295918324B21F1CAE07DF101DFD0774D226799C1773A7CB127246F0D6272D7
+247F48C7CBA523DF67F649EC3EFA53BE0979B82489957B3D4007FADD4452188A364EAF6B7150DD3C3EAF7190F3E655A89698450967A456F570D9020D
+87B2F196642D6CC89BD3622D641C0ADD269FD19940300B3DE6F60EF9D1A9B02F85CA99C48B3D74E5F188E9F176C204EDD6CBEE0F28F4AD37D64192E7
+70F632741EC2028FDD67239252DCD34AA772A0B285C963C6D5758823C589E49F6DFC57909B5EB75D18FF2D8C3E02F8F36AC3AF35592D3C6C9EC35C26
+514596A0A31A1CA6D08AC647CA776A14B010AC9611BFE2C03B2FAAC6BABBE92A74136051FB07C822AF2EC79A0916D1BB5A78CCA75F2C77D0B87936CB
+014DB6113E6C6396F2E03AF99F75C01055E7D6386C6C37EDC614C149C23A5413B6D0AFC929C00E736E7153FC1055726878EAEDEC7A33DBA3EF8CB401
+EE6872F516EF7DF0A5F1E74FD98886CFD46753B8CB1E4CBF87E4DCC6C059C874EC58F938467331C4D11ADC759C025E66D925A1CAB485BC5283990473
+F5F96C76CD05AD0E534786D770EFF6E92612D2A2B0E24425440C90C19CA0008BBBB412AA9A7792F84EA3AD39699D0C1C98DC142CBD3321E1686287B7
+E8783460AC7939996CE425631B332368C336BBDBAE6CCF3DB437FD8CD6CDA4DF6068A8D7FC13E40A32C1A59745B2A3CF2654B0BB0A201FC82F646A9F
+B7A4D472210E66996A97309428FC3CDC2305BC7043FBD2CA91EF085B05578CB1788080F536844033635C57090DD0374FDCE2EF41923B80E8C78B8B4D
+67FE80DDFFE2E3504C3155A611E331B5B1CB474D499107B5E19D23DDD647DBED11907EA1638B90B5ECB2196FFEB6A9065277C75051DA8AF5DA3BE8D2
+AE417532F208D508CC86E1829E70F884EDB8C1C065B05B65C26AF5AE5FC2F545F3B14BEBE18A63D953AE6E717B903FD5477F43C45A879B380E71BC1C
+E3359FD5FF39F9282BF94E250164E8A27ADB16D7D8A9BA5737465C40B088C072E14EF2ED44A12CB711D2CE58250AE048DAE3C03CF115B49E7B0CB392
+6FFDE053B6CF68299B319BE1267548DF2F3038B794EC69993011473FAF8C21DE385E8ABDB4C342AE3F7724B8D3EC73954A95FFBA470DE4BC6F828100
+5957B36E442851B3448B9F4180EDC51CD0E9C514C54B4D4B9ACDBE5DA70D9FF99EAA57D09BFE1CBBA9FF3B561BCB3E3230EA0A18FDB00602E9857E11
+E3A58585412155A7053E464743A645DB19308E3BCFA63C0D1794A652A8B70C646F4CCBA4EFAB0025214EEEE4D0EC6DF117ECB396A63B1F506220529D
+8F696E14A525CCD7751235EACEE38108B657AA23F23F5D86CAF0282531EA1A9B8BA5B829D69F2B45595D9FCFAEBC40EC362AC030672558E2E0E66E0D
+AAE66BFDA9090437EC2C742804B3D8CC323D12A470958C9CB94AD3A8077FA47FC3881657C0138E0EF3E2695C7576A6885BA84FD3172405F5F5B13559
+35E26DB4BF46A79CD5C996D50762EF65F56FE105CE668868311E28DE6F6B85A3469FD15347E5B7A489A6E7362298B052811A6146126CB3DC4C1FF0FD
+FE8AE2A57049548F42A4212C19D41E192A058307120BA69DD9EB94B91036A48EF4623CF3441081CE646A1B9566BA33E9C83966BBD8F5CDE91343C1BC
+4AFF03AC7261B7C5E215D705CA78C9B494F7888CBC3E475B60D85096DC00E7D2
+]],
+	"libs/gamemodes/rating_duo.lua",
+	getfenv and getfenv(1),
+	...
+)

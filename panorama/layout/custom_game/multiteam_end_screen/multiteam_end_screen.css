@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -25,7 +25,6 @@
 {
 	width: 100%;
 	height: 100%;
-	background-color: gradient( linear, 0% 0%, 0% 100%, from( #000000FF ), color-stop( 0.12, #000000ff ), color-stop( 0.5, #00000022 ), to( #00000000 ) );
 }
 
 #VictoryRow
@@ -115,10 +114,21 @@
 	transform: translatey( 0px );
 }
 
-#TeamsContainer
+#ScoreboardBody
 {
 	horizontal-align: center;
 	flow-children: down;
+}
+
+#TeamsContainer
+{
+	horizontal-align: left;
+	flow-children: down;
+}
+
+.AltStats #TeamsContainer
+{
+	horizontal-align: center;
 }
 
 .FlyoutTeam.team_endgame
@@ -710,6 +720,22 @@ DOTAAvatarImage
 	vertical-align: center;
 }
 
+#WodaPremiumContainer
+{
+	width: 32px;
+	height: 32px;
+	visibility: collapse;
+}
+
+.WodaPremiumContainerIcon
+{
+	width: 28px;
+	height: 28px;
+	background-size: 100%;
+	background-image: url("s2r://panorama/images/custom_game/shop/dp2_premium_png.vtex");
+	vertical-align: center;
+}
+
 #BattlePassContainer
 {
 	width: 32px;
@@ -724,6 +750,57 @@ DOTAAvatarImage
 	background-size: 100%;
 	background-image: url("s2r://panorama/images/custom_game/shop/dp4_png.vtex");
 	vertical-align: center;
+}
+
+#DoubleTokenContainer,#BossSoulContainer
+{
+	width: 32px;
+	height: 32px;
+	visibility: collapse;
+}
+
+.DoubleTokenContainerIcon
+{
+	width: 24px;
+	height: 24px;
+	horizontal-align: center;
+	vertical-align: center;
+	background-size: 100%;
+	background-image: url("s2r://panorama/images/custom_game/talents/double_timer_png.vtex");
+}
+
+.BossSoulContainerIcon
+{
+	width: 28px;
+	height: 28px;
+	background-size: 100%;
+	background-image: url("s2r://panorama/images/custom_game/shop/boss_soul_png.vtex");
+	vertical-align: center;
+}
+
+.BossSoulContainerCount
+{
+	ignore-parent-flow: true;
+	horizontal-align: right;
+	vertical-align: top;
+	min-width: 14px;
+	height: 14px;
+	padding: 0px 3px;
+	border-radius: 7px;
+	background-color: #000000dd;
+	border: 1px solid #f3df9caa;
+	text-align: center;
+	font-family: Reaver;
+	font-size: 10px;
+	font-weight: bold;
+	color: #f3df9c;
+	text-shadow: 1px 1px 2px 1 black;
+	visibility: collapse;
+}
+
+.BossSoulContainerCount.Visible
+{
+	visibility: visible;
 }
 
 .ButtonsEnd
@@ -881,6 +958,12 @@ DOTAAvatarImage
 	margin-top: 30px;
 }
 
+.WodaLogo.ArenaLogo
+{
+	background-image: url("s2r://panorama/images/logo_no_background_png.vtex");
+	width: 304px;
+}
+
 .IsTournamentGame
 {
 	horizontal-align: center;
@@ -943,4 +1026,12 @@ DOTAAvatarImage
 .WowBanner:hover
 {
 	brightness: 1.8;
+}
+
+.LocalPlayerStats
+{
+	horizontal-align: center;
+	flow-children: down;
+	margin-bottom: 14px;
+	visibility: collapse;
 }

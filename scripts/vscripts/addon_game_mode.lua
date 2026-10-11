@@ -3,10 +3,13 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
+
+require("utils/encryption")
+require("utils/maps")
 
 if WODAGameMode == nil then
 	_G.WODAGameMode = class({})
@@ -20,6 +23,45 @@ if IsClient() then
 	require("utils/function_client")
 end
 
+require("utils/requests")
+require("launcher/woda_connect_config")
+
+local function WodaCheatsEnabled()
+    local ok, cheats = pcall(function()
+        if Convars:GetBool("sv_cheats") then return true end
+        return GameRules ~= nil and GameRules:IsCheatMode() == true
+    end)
+    return ok and cheats == true
+end
+
+local function WodaHasServerKey()
+    local key = GetWodaServerKey and GetWodaServerKey() or nil
+    return type(key) == "string" and key ~= "" and key:sub(1, 7) ~= "Invalid"
+end
+
+local function WodaIsLauncherMode()
+    if GetMapName and GetMapName() == WODA_CONNECT_CONFIG.launcher_map then return true end
+    if IsInToolsMode() or WODA_SELF_HOSTED then return false end
+    if WodaCheatsEnabled() and WodaHasServerKey() then return false end
+    return WodaConnectIsConfigured()
+end
+
+WODA_LAUNCHER_MODE = WodaIsLauncherMode()
+
+if WODA_LAUNCHER_MODE then
+    require("utils/timers")
+    require("launcher/woda_connect")
+
+    function Precache(context)
+    end
+
+    function Activate()
+        WodaConnect:Init()
+    end
+
+    return
+end
+
 require("configs/global_settings")
 require("utils/events_protector")
 require("utils/timers")
@@ -30,6 +72,7 @@ require('utils/physics')
 require('utils/selection')
 require("utils/table")
 require("utils/custom_tables")
+require("utils/boss_precast")
 require("addon_init")
 require("libs/hero_select")
 require("libs/neutrals_reward")
@@ -38,6 +81,10 @@ require("libs/talents")
 require("libs/arena_system")
 require("libs/damage_system")
 require("libs/filters")
+require("libs/cheat_panel")
+require("libs/smelter_system")
+require("libs/profile_stats")
+require("libs/self_hosted")
 Precache = require "utils/precache"
 
 function Activate()
@@ -47,6 +94,11 @@ function Activate()
     end
 	WODAGameMode:InitGameMode()
 	player_system:RegListeners()
+    cheat_panel:Init()
+    smelter_system:Init()
+    profile_stats:Init()
+    player_system:PublishHeroSounds()
+    player_system:PublishChestPrayerChances()
 end
 
 function WODAGameMode:InitGameMode()
@@ -86,6 +138,11 @@ function WODAGameMode:InitGameMode()
     if IsInToolsMode() then
         GameRules:SetCustomGameSetupAutoLaunchDelay(2)
     end
+    if woda_self_hosted:IsActive() then
+        GameRules:SetCustomGameSetupAutoLaunchDelay(-1)
+        GameRules:SetCustomGameSetupTimeout(-1)
+        woda_self_hosted:Init()
+    end
     GameRules:GetGameModeEntity():SetNeutralStashEnabled(false)
 	GameRules:GetGameModeEntity():SetCustomScanCooldown(99999)
 	GameRules:GetGameModeEntity():SetCustomGlyphCooldown(99999)
@@ -103,10 +160,10 @@ function WODAGameMode:InitGameMode()
 	GameRules:GetGameModeEntity():SetPauseEnabled(false)
 	GameRules:GetGameModeEntity():SetBuybackEnabled( false )
 
-	if GetMapName() == "arena" then
-		GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_GOODGUYS, 3 )
+	if IsWodaArenaMap() then
+		GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_GOODGUYS, 4 )
 		GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_BADGUYS, 0 )
-        GameRules:GetGameModeEntity():SetFogOfWarDisabled(true)
+        GameRules:GetGameModeEntity():SetFogOfWarDisabled(false)
     elseif GetMapName() == "overthrow" then
 		GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_GOODGUYS, 1 )
 		GameRules:SetCustomGameTeamMaxPlayers( DOTA_TEAM_BADGUYS, 1 )
@@ -164,6 +221,7 @@ function WODAGameMode:InitGameMode()
     CustomGameEventManager:RegisterListener("donate_shop_buy_hero_votes", Dynamic_Wrap(player_system, "BuyVotes"))
 	CustomGameEventManager:RegisterListener("change_premium_pet", Dynamic_Wrap(player_system, "ChangePetPremium"))
 	CustomGameEventManager:RegisterListener("change_premium_emblem", Dynamic_Wrap(player_system, "ChangeEffectPremium"))
+	CustomGameEventManager:RegisterListener("change_premium_head", Dynamic_Wrap(player_system, "ChangeHeadPremium"))
     CustomGameEventManager:RegisterListener("change_premium_five", Dynamic_Wrap(player_system, "ChangeFivePremium"))
   	CustomGameEventManager:RegisterListener("change_premium_tip", Dynamic_Wrap(player_system, "change_premium_tip"))
     CustomGameEventManager:RegisterListener("change_premium_bg", Dynamic_Wrap(player_system, "change_premium_bg"))
@@ -184,6 +242,10 @@ function WODAGameMode:InitGameMode()
     CustomGameEventManager:RegisterListener("update_player_items_list_server", Dynamic_Wrap(player_system, "UpdatePlayerSetItem"))
     CustomGameEventManager:RegisterListener("woda_rune_spin_request", Dynamic_Wrap(player_system, "RuneSpinRequest"))
     CustomGameEventManager:RegisterListener("woda_rune_toggle_equip", Dynamic_Wrap(player_system, "RuneToggleEquip"))
+    CustomGameEventManager:RegisterListener("woda_rune_buy_request", Dynamic_Wrap(player_system, "RuneBuyRequest"))
+    CustomGameEventManager:RegisterListener("donate_shop_buy_hero_level", Dynamic_Wrap(player_system, "BuyHeroLevel"))
+    CustomGameEventManager:RegisterListener("woda_chest_open_request", Dynamic_Wrap(player_system, "ChestOpenRequest"))
+    CustomGameEventManager:RegisterListener("woda_rune_chest_buy_request", Dynamic_Wrap(player_system, "RuneChestBuyRequest"))
     CustomGameEventManager:RegisterListener("xsolla_create_order", Dynamic_Wrap(player_system, "XsollaCreateOrder"))
     
     -- Thinker
@@ -203,6 +265,7 @@ function WODAGameMode:OnThink()
 end
 
 function GoldTimer()
+	if IsWodaArenaMap() then return 0.8 end
 	if hero_select:GetState() ~= "PICK_STATE_PICK_END" then return 0.8 end
 	if GameRules:IsGamePaused() then return 0.8 end
     player_system:NetWorthUpdate()
@@ -220,6 +283,8 @@ end
 function WODAGameMode:OnConnectFull(data)
 	local player_index = EntIndexToHScript( data.index )
 	if player_index == nil then return end
+    if not woda_self_hosted:AcceptPlayer(data) then return end
+    if PlayerResource:IsFakeClient(data.PlayerID) and cheat_panel:ClaimBot(data.PlayerID) then return end
 	player_system:RegisterPlayerInfo(data.PlayerID, nil)
 	hero_select:PlayerConnected(data)
 	player_system:RegisterWebData(data.PlayerID)
@@ -273,23 +338,26 @@ function WODAGameMode:StartGame()
 	CustomGameEventManager:Send_ServerToAllClients( 'end_loading', {} )
     if string.find(GetMapName(), "rating") then
         arena_system:Init()
-    elseif GetMapName() == "arena" then
+    elseif IsWodaArenaMap() then
         arena_system:StartGameArenaPve()
         GameRules:GetGameModeEntity():SetPauseEnabled(true)
     elseif GetMapName() == "overthrow" then
         arena_system:StartGameOverthrow()
     end
+    cheat_panel:OnGameStart()
     arena_system:SetMinimapAll()
     WODAGameMode.start_game = true
     if string.find(GetMapName(), "rating") then
         Timers:CreateTimer(2, function()
             if (player_system.data_base_connected) and ((player_system:GetPlayerCountAll() >= arena_system:GetMaxPlayersMode())) then
+                player_system.WIN_PREDICT_OPEN = true
                 CustomGameEventManager:Send_ServerToAllClients( 'open_win_predict', {})
                 local time = 30
                 Timers:CreateTimer(1, function()
                     time = time - 1
                     CustomGameEventManager:Send_ServerToAllClients( 'win_predict_timer', {time = time})
                     if time <= 0 then
+                        player_system.WIN_PREDICT_OPEN = false
                         CustomGameEventManager:Send_ServerToAllClients( 'close_win_predict', {time = time})
                         return nil 
                     end
@@ -307,6 +375,9 @@ function WODAGameMode:OnNPCSpawned(data)
         local twin_gate_portal_warp = hero:FindAbilityByName("twin_gate_portal_warp")
         if twin_gate_portal_warp then
             hero:RemoveAbilityByHandle(twin_gate_portal_warp)
+        end
+        if IsWodaArenaMap() and hero:GetTeamNumber() == DOTA_TEAM_NEUTRALS and not hero:HasModifier("modifier_woda_reduction_ignore") then
+            hero:AddNewModifier(hero, nil, "modifier_woda_reduction_ignore", {})
         end
     end
 
@@ -339,6 +410,12 @@ function WODAGameMode:OnNPCSpawned(data)
             if high_five_custom then
                 high_five_custom:SetLevel(1)
             end
+        end
+        if IsWodaArenaMap() and hero:IsRealHero() and hero:GetTeamNumber() ~= DOTA_TEAM_NEUTRALS and not hero:HasModifier("modifier_woda_pve_difficulty_reduction_ignore") then
+            hero:AddNewModifier(hero, nil, "modifier_woda_pve_difficulty_reduction_ignore", {})
+        end
+        if IsWodaArenaMap() and hero:IsRealHero() and hero:GetTeamNumber() ~= DOTA_TEAM_NEUTRALS and not hero.cheat_spawned and arena_system.EnsurePveHeroFeatureModifiers then
+            arena_system:EnsurePveHeroFeatureModifiers(hero)
         end
     end
 
@@ -387,6 +464,10 @@ function WODAGameMode:OnNPCSpawned(data)
         local id = hero:GetPlayerOwnerID()
         hero.first_spawn_active = true
         hero.IsMainAtturibute = hero:GetPrimaryAttribute()
+        if PlayerResource:IsFakeClient(id) and cheat_panel:ClaimBot(id) then
+            cheat_panel:SetupBotHero(hero)
+            return
+        end
         -- Инициализация бота
         if IsInToolsMode() and PlayerResource:IsFakeClient(id) then
             player_system:RegisterPlayerInfo(id, hero)
@@ -401,6 +482,7 @@ function WODAGameMode:OnNPCSpawned(data)
         end
         -- Инициализация игрока
 		Timers:CreateTimer(0.1, function()
+            if hero:IsNull() or hero.cheat_spawned then return end
             if hero:HasModifier("modifier_dazzle_nothl_projection_soul_clone") then return end
             if hero:HasModifier("modifier_monkey_king_wukongs_command_custom_soldier") then return end
             if hero:GetUnitName() == "npc_dota_hero_monkey_king" then
@@ -481,4 +563,4 @@ function WODAGameMode:OnNPCSpawned(data)
 	        end
 	    end)
 	end
-end
+end

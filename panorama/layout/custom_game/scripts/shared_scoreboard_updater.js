@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -28,6 +28,7 @@ if (!GameUI.CustomUIConfig().DATA_TABLE_SERVER)
         "end_game_damage" : {},
         "aegis_count" : {},
         "end_game_items" : {},
+        "end_game_player" : {},
         "coins_end" : {},
         "rating_end" : {},
         "playersbet" : {},
@@ -39,6 +40,7 @@ if (!GameUI.CustomUIConfig().DATA_TABLE_SERVER)
         "playernetworths_team" : {},
         "reported_info" : {},
         "tournament_data" : {},
+        "arena_pve_result" : {},
         "tip_cooldown" : 
         {
             "0" : {cooldown : 0},
@@ -315,7 +317,7 @@ function _ScoreboardUpdater_UpdatePlayerPanel(scoreboardConfig, playersContainer
         if (table) 
         {
             let networths = table.networths 
-            if (Game.GetMapInfo().map_display_name != "arena")
+            if (!/^(arena|1_player|4_player)$/.test(Game.GetMapInfo().map_display_name))
             {
                 if (networths > 99999) 
                 {
@@ -387,7 +389,7 @@ function _ScoreboardUpdater_UpdatePlayerPanel(scoreboardConfig, playersContainer
 		var HeroAegis = playerPanel.FindChildInLayoutFile("HeroAegis");
 		if (HeroAegis) 
 		{
-			if (Game.GetMapInfo().map_display_name == "arena")
+			if (/^(arena|1_player|4_player)$/.test(Game.GetMapInfo().map_display_name))
 			{
 				let tables_aegis = GameUI.CustomUIConfig().DATA_TABLE_SERVER["aegis_count"][String(playerId)]
 				if (tables_aegis)
@@ -455,6 +457,51 @@ function _ScoreboardUpdater_UpdatePlayerPanel(scoreboardConfig, playersContainer
             {
                 BattlePassContainer.visible = true
                 SetTextBattlePass(BattlePassContainer)
+            }
+        }
+
+        let end_game_tables = GameUI.CustomUIConfig().DATA_TABLE_SERVER["end_game_player"]
+        let end_game_info = end_game_tables ? end_game_tables[String(playerId)] : null
+
+        let WodaPremiumContainer = playerPanel.FindChildInLayoutFile("WodaPremiumContainer")
+        if (WodaPremiumContainer)
+        {
+            let table_player_info = ScoreboardGetCustomTable("woda_player_data", String(playerId))
+            let has_premium = (end_game_info && Number(end_game_info.has_premium) == 1) || (table_player_info && Number(table_player_info.premium_days) > 0)
+            if (has_premium)
+            {
+                WodaPremiumContainer.visible = true
+                SetScoreboardBadgeTooltip(WodaPremiumContainer, $.Localize("#woda_premium_endgame_info"))
+            }
+        }
+
+        let DoubleTokenContainer = playerPanel.FindChildInLayoutFile("DoubleTokenContainer")
+        if (DoubleTokenContainer)
+        {
+            let rating_end_info = GameUI.CustomUIConfig().DATA_TABLE_SERVER["rating_end"] ? GameUI.CustomUIConfig().DATA_TABLE_SERVER["rating_end"][String(playerId)] : null
+            let is_double = (end_game_info && Number(end_game_info.is_double) == 1) || (rating_end_info && (rating_end_info.is_double === 1 || rating_end_info.is_double === true))
+            if (is_double)
+            {
+                DoubleTokenContainer.visible = true
+                SetScoreboardBadgeTooltip(DoubleTokenContainer, $.Localize("#double_token_endgame_info"))
+            }
+        }
+
+        let BossSoulContainer = playerPanel.FindChildInLayoutFile("BossSoulContainer")
+        if (BossSoulContainer)
+        {
+            let souls = end_game_info ? (Number(end_game_info.boss_souls_change) || 0) : 0
+            BossSoulContainer.visible = souls > 0
+            if (souls > 0)
+            {
+                let souls_count = BossSoulContainer.FindChildInLayoutFile("BossSoulContainerCount")
+                if (souls_count)
+                {
+                    souls_count.text = String(souls)
+                    souls_count.SetHasClass("Visible", souls > 1)
+                }
+                BossSoulContainer.SetDialogVariableInt("souls", souls)
+                SetScoreboardBadgeTooltip(BossSoulContainer, $.Localize("#boss_souls_endgame_info", BossSoulContainer))
             }
         }
 
@@ -589,7 +636,7 @@ function _ScoreboardUpdater_UpdatePlayerPanel(scoreboardConfig, playersContainer
 	{
 		SetReportPlayerButton(report_button_player, playerId)
 
-		if (Game.GetMapInfo().map_display_name == "arena" || playerInfo.player_team_id == localPlayerTeamId || Game.GetMapInfo().map_display_name == "rating_duo" || Game.GetMapInfo().map_display_name == "rating_duo_300")
+		if (/^(arena|1_player|4_player)$/.test(Game.GetMapInfo().map_display_name) || playerInfo.player_team_id == localPlayerTeamId || Game.GetMapInfo().map_display_name == "rating_duo" || Game.GetMapInfo().map_display_name == "rating_duo_300")
 		{
 			report_button_player.style.opacity = "0"
 		}
@@ -719,6 +766,18 @@ function SetTextWodaPlus(panel)
         $.DispatchEvent('DOTAShowTextTooltip', panel, $.Localize("#woda_plus_endgame_info")); 
     });
     panel.SetPanelEvent('onmouseout', function() 
+    {
+        $.DispatchEvent('DOTAHideTextTooltip', panel);
+    });
+}
+
+function SetScoreboardBadgeTooltip(panel, text)
+{
+    panel.SetPanelEvent('onmouseover', function()
+    {
+        $.DispatchEvent('DOTAShowTextTooltip', panel, text);
+    });
+    panel.SetPanelEvent('onmouseout', function()
     {
         $.DispatchEvent('DOTAHideTextTooltip', panel);
     });

@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -20,8 +20,18 @@
 {
 	width: 100%;
 	height: 100%;
+	background-size: cover;
+	background-position: 50% 50%;
 	brightness: 0.4;
 	opacity: 1;
+	transition-property: brightness;
+	transition-duration: 1.2s;
+	transition-timing-function: ease-in-out;
+}
+
+.MainPick.PickBrighten #BGScene_1,.MainPick.PickLoading #BGScene_1
+{
+	brightness: 1.0;
 }
 
 .Deletion
@@ -35,7 +45,175 @@
 	height: 100%;
 	opacity: 1;
 	transition-property: opacity;
-	transition-duration: 0.5s;
+	transition-duration: 1.0s;
+	transition-timing-function: ease-in-out;
+}
+
+.MainPick.PickLoading .custom_pick_general,.MainPick.PickLoading .HeroSearchLabel
+{
+	visibility: collapse;
+}
+
+.PickLoadingScreen
+{
+	width: 100%;
+	height: 100%;
+	ignore-parent-flow: true;
+	z-index: 1000;
+	background-color: black;
+	background-size: cover;
+	background-position: 50% 50%;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 1.2s;
+	transition-timing-function: ease-in-out;
+}
+
+.ArenaDifficultyInfo
+{
+	ignore-parent-flow: true;
+	horizontal-align: center;
+	vertical-align: top;
+	width: 280px;
+	height: 56px;
+	margin-left: 400px;
+	margin-top: 23px;
+	flow-children: right;
+	visibility: collapse;
+}
+
+.ArenaDifficultyInfo.Visible
+{
+	visibility: visible;
+}
+
+.ArenaDifficultyInfoBadge
+{
+	width: 52px;
+	height: 52px;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/custom_game/shop/difficulty_level_badge_png.vtex");
+	background-size: 100%;
+}
+
+.ArenaDifficultyPicture
+{
+	background-size: 100%;
+	background-repeat: no-repeat;
+	border: 1px solid #e4c26999;
+	border-radius: 4px;
+	box-shadow: 0px 0px 4px 0px #000000aa;
+}
+
+.ArenaDifficultyInfoNumber
+{
+	width: 100%;
+	text-align: center;
+	align: center center;
+	font-family: Reaver;
+	font-size: 26px;
+	font-weight: bold;
+	color: white;
+	text-shadow: 1px 1px 4px 2 black;
+}
+
+.ArenaDifficultyInfoText
+{
+	width: 216px;
+	margin-left: 10px;
+	vertical-align: center;
+	flow-children: down;
+}
+
+.ArenaDifficultyInfoTitle
+{
+	font-family: Reaver;
+	font-size: 12px;
+	font-weight: bold;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	color: #f3df9c;
+	text-shadow: 1px 1px 3px 2 black;
+}
+
+.ArenaDifficultyInfoRoom
+{
+	font-family: Reaver;
+	height: 20px;
+	font-size: 14px;
+	font-weight: bold;
+	color: white;
+	text-overflow: shrink;
+	text-shadow: 1px 1px 3px 2 black;
+}
+
+.PickLoadingMovie
+{
+	width: 100%;
+	height: 100%;
+	ignore-parent-flow: true;
+}
+
+.PickLoadingContent
+{
+	align: center bottom;
+	margin-bottom: 110px;
+	flow-children: right;
+}
+
+.PickLoadingSpinner
+{
+	width: 46px;
+	height: 46px;
+	vertical-align: center;
+	margin-right: 18px;
+	background-image: url("s2r://panorama/images/status_icons/loadingthrobber_round_psd.vtex");
+	background-size: 100%;
+	animation-name: PickLoadingSpin;
+	animation-duration: 1.0s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+.PickLoadingLabel
+{
+	vertical-align: center;
+	font-family: Reaver;
+	font-size: 34px;
+	font-weight: bold;
+	color: white;
+	letter-spacing: 5px;
+	text-transform: uppercase;
+	text-shadow: 2px 2px 8px 3 black;
+}
+
+@keyframes 'PickLoadingSpin'
+{
+	0%
+	{
+		transform: rotateZ(0deg);
+	}
+	
+	25%
+	{
+		transform: rotateZ(90deg);
+	}
+	
+	50%
+	{
+		transform: rotateZ(180deg);
+	}
+	
+	75%
+	{
+		transform: rotateZ(270deg);
+	}
+	
+	100%
+	{
+		transform: rotateZ(360deg);
+	}
+	
 }
 
 .talent_block
@@ -55,6 +233,10 @@
 	flow-children: down;
 	width: 100%;
 	height: 100%;
+	opacity: 1;
+	transition-property: opacity;
+	transition-duration: 1.2s;
+	transition-timing-function: ease-in-out;
 }
 
 .HeroesAndTalentsWindows
@@ -753,6 +935,25 @@
 	text-shadow: 0px 0px 2px 3 black;
 }
 
+.ArenaCrystalMark
+{
+	width: 24px;
+	height: 24px;
+	margin-left: 1px;
+	margin-bottom: 1px;
+	horizontal-align: left;
+	vertical-align: bottom;
+	z-index: 50;
+	background-image: url("s2r://panorama/images/custom_game/shop/wodacrystal_png.vtex");
+	background-size: 100%;
+	img-shadow: 0px 0px 3px 2 black;
+}
+
+.ArenaDifficultyTimer
+{
+	vertical-align: top;
+}
+
 .BuyHeroButton
 {
 	margin-left: 1%;
@@ -1155,4 +1356,299 @@
 	font-size: 22px;
 	text-align: center;
 	text-shadow: 1px 1px 3px 3 black;
+}
+
+.HeroSearchLabel
+{
+	ignore-parent-flow: true;
+	horizontal-align: center;
+	vertical-align: center;
+	color: white;
+	font-size: 72px;
+	font-weight: bold;
+	font-family: Radiance;
+	letter-spacing: 3px;
+	text-transform: uppercase;
+	text-shadow: 2px 2px 0px 4 #000000a0;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.05s;
+}
+
+.HeroSearchLabel.ShowSearch
+{
+	opacity: 1;
+	transition-duration: 1.0s;
+}
+
+.hero_select_panel
+{
+	transition-property: brightness, saturation;
+	transition-duration: 0.15s;
+}
+
+.hero_select_panel.HeroSearchDim
+{
+	brightness: 0.3;
+	saturation: 0.2;
+}
+
+@keyframes 'HeroCardSelected'
+{
+	0%
+	{
+		brightness: 1;
+	}
+	
+	50%
+	{
+		brightness: 2;
+	}
+	
+	100%
+	{
+		brightness: 1;
+	}
+	
+}
+
+.hero_select_panel.HeroSearchHighlighted
+{
+	z-index: 1;
+	box-shadow: #00ffff44 0px 0px 8px 0px;
+	animation-name: HeroCardSelected;
+	animation-iteration-count: infinite;
+	animation-duration: 0.8s;
+}
+
+.ArenaDifficultyOverlay
+{
+	width: 100%;
+	height: 100%;
+	ignore-parent-flow: true;
+	align: center center;
+	background-color: #000000bb;
+	z-index: 200;
+	opacity: 0;
+	visibility: collapse;
+	transition-property: opacity;
+	transition-duration: 0.3s;
+}
+
+.ArenaDifficultyOverlay.Visible
+{
+	opacity: 1;
+	visibility: visible;
+}
+
+.ArenaDifficultyTitle
+{
+	horizontal-align: center;
+	font-family: Reaver;
+	font-size: 34px;
+	font-weight: bold;
+	color: #f3df9c;
+	text-transform: uppercase;
+	text-shadow: 1px 1px 6px 3 black;
+}
+
+.ArenaDifficultyCard:hover
+{
+	brightness: 1.25;
+	pre-transform-scale2d: 1.03;
+}
+
+.ArenaDifficultyCard.Selected
+{
+	border: 2px solid #e4c269;
+	box-shadow: 0px 0px 6px 2px #e4c26955;
+}
+
+.ArenaDifficultyCard.Locked
+{
+	saturation: 0;
+	brightness: 0.5;
+}
+
+.ArenaDifficultyCard.Locked .ArenaDifficultyLock
+{
+	visibility: visible;
+}
+
+.ArenaDifficultyOverlay.Viewer .ArenaDifficultyConfirm
+{
+	visibility: collapse;
+}
+
+.ArenaDifficultyOverlay.Viewer .ArenaDifficultyCard:hover
+{
+	brightness: 1;
+	pre-transform-scale2d: 1;
+}
+
+.ArenaDifficultyFooter
+{
+	margin-top: 16px;
+	horizontal-align: center;
+	flow-children: right;
+}
+
+.ArenaDifficultyConfirm
+{
+	width: 260px;
+	height: 50px;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/backgrounds/background_play_button_2x_png.vtex");
+	background-size: 100%;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#e9c730), to(#61480a));
+	border-radius: 4px;
+}
+
+.ArenaDifficultyConfirm:hover
+{
+	brightness: 1.3;
+}
+
+.ArenaDifficultyConfirm Label
+{
+	align: center center;
+	font-family: Reaver;
+	font-size: 22px;
+	font-weight: bold;
+	color: white;
+	text-transform: uppercase;
+	text-shadow: 1px 1px 4px 2 black;
+}
+
+.MainPick.DifficultyChoosing .custom_pick_general,.MainPick.DifficultyChoosing .HeroSearchLabel
+{
+	visibility: collapse;
+}
+
+.ArenaDifficultyWindow
+{
+	align: center center;
+	flow-children: down;
+	padding: 24px;
+	width: 1340px;
+}
+
+.ArenaDifficultyDescription
+{
+	horizontal-align: center;
+	margin-top: 6px;
+	text-align: center;
+	font-size: 18px;
+	color: #ffffffaa;
+	text-shadow: 1px 1px 4px 2 black;
+	width: 1290px;
+	visibility: collapse;
+}
+
+.ArenaDifficultyGrid
+{
+	flow-children: down;
+	horizontal-align: center;
+}
+
+.ArenaDifficultyGridRow
+{
+	flow-children: right;
+	horizontal-align: center;
+}
+
+.ArenaDifficultyCard
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#404D65dd), to(#2B3445dd));
+	border: 1px solid #6F819B55;
+	border-radius: 6px;
+	transition-property: brightness, pre-transform-scale2d;
+	transition-duration: 0.1s;
+	width: 246px;
+	height: 312px;
+	margin: 6px;
+	flow-children: down;
+}
+
+.ArenaDifficultyCardPicture
+{
+	width: 230px;
+	height: 230px;
+	margin-top: 8px;
+	horizontal-align: center;
+}
+
+.ArenaDifficultyCardRow
+{
+	width: 230px;
+	height: 60px;
+	margin-top: 6px;
+	horizontal-align: center;
+	flow-children: right;
+}
+
+.ArenaDifficultyCardBadge
+{
+	width: 52px;
+	height: 52px;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/custom_game/shop/difficulty_level_badge_png.vtex");
+	background-size: 100%;
+}
+
+.ArenaDifficultyCardNumber
+{
+	align: center center;
+	font-family: Reaver;
+	font-size: 26px;
+	font-weight: bold;
+	color: white;
+	text-shadow: 1px 1px 4px 2 black;
+}
+
+.ArenaDifficultyCardText
+{
+	width: 170px;
+	margin-left: 8px;
+	vertical-align: center;
+	flow-children: down;
+}
+
+.ArenaDifficultyNumber
+{
+	font-family: Reaver;
+	font-weight: bold;
+	color: white;
+	text-shadow: 1px 1px 6px 3 black;
+	width: 100%;
+	margin-top: 22px;
+	align: center center;
+	text-align: center;
+	font-size: 54px;
+}
+
+.ArenaDifficultyName
+{
+	font-family: Radiance;
+	font-weight: bold;
+	color: #ffffffcc;
+	margin-top: 4px;
+	margin-left: 0px;
+	vertical-align: top;
+	horizontal-align: center;
+	font-size: 16px;
+}
+
+.ArenaDifficultyLock
+{
+	ignore-parent-flow: true;
+	background-image: url("s2r://panorama/images/control_icons/lock_png.vtex");
+	background-size: 100%;
+	visibility: collapse;
+	margin-right: 14px;
+	width: 30px;
+	height: 30px;
+	vertical-align: top;
+	horizontal-align: right;
+	margin: 6px;
 }

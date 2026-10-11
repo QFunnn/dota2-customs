@@ -1,0 +1,317 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1a5b3bb 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+.RoomChoiceWindow
+{
+	align: center top;
+	margin-top: 200px;
+	width: 540px;
+	flow-children: down;
+	background-image: url("s2r://panorama/images/custom_game/talents/panelduel_png.vtex");
+	background-size: 100% 100%;
+	border-radius: 8px;
+	padding-bottom: 10px;
+	opacity: 0;
+	visibility: collapse;
+	transition-property: opacity;
+	transition-duration: 0.2s;
+	z-index: 150;
+}
+
+.RoomChoiceWindow.Visible
+{
+	opacity: 1;
+	visibility: visible;
+}
+
+.RoomChoiceTimerBar
+{
+	width: 540px;
+	height: 16px;
+	horizontal-align: center;
+	border-radius: 8px;
+}
+
+.RoomChoiceTimerBack
+{
+	width: 540px;
+	height: 16px;
+	background-image: url("s2r://panorama/images/custom_game/talents/timer_bar2_png.vtex");
+	background-size: 600px 16px;
+}
+
+.RoomChoiceTimerFill
+{
+	width: 100%;
+	height: 16px;
+	background-image: url("s2r://panorama/images/custom_game/talents/dueltimer_png.vtex");
+	background-size: 600px 16px;
+	background-repeat: no-repeat;
+}
+
+.RoomChoiceTimerFill.animation
+{
+	transition-property: width;
+	transition-duration: 1s;
+	transition-timing-function: linear;
+}
+
+.RoomChoiceHeader
+{
+	width: 100%;
+	height: 26px;
+	margin-top: 4px;
+	flow-children: right;
+}
+
+.RoomChoiceTitle
+{
+	margin-left: 14px;
+	vertical-align: center;
+	font-size: 17px;
+	font-weight: bold;
+	color: #f3df9c;
+	text-transform: uppercase;
+	text-shadow: 1px 1px 6px 3 black;
+}
+
+.RoomChoiceStage
+{
+	margin-right: 14px;
+	horizontal-align: right;
+	vertical-align: center;
+	font-size: 14px;
+	font-weight: bold;
+	color: #ffffff99;
+	text-transform: uppercase;
+	text-shadow: 1px 1px 4px 2 black;
+}
+
+.RoomChoiceCards
+{
+	flow-children: right;
+	horizontal-align: center;
+}
+
+.RoomCard
+{
+	width: 246px;
+	margin: 4px 10px 0px 10px;
+	flow-children: down;
+}
+
+.RoomCardBody
+{
+	width: 100%;
+	height: 370px;
+	padding-bottom: 6px;
+	flow-children: down;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#404D65dd), to(#2B3445dd));
+	border: 1px solid #6F819B55;
+	border-radius: 6px;
+	transition-property: brightness, pre-transform-scale2d;
+	transition-duration: 0.1s;
+}
+
+.RoomCard.Selected .RoomCardBody
+{
+	border: 1px solid #87d695aa;
+	brightness: 1.15;
+}
+
+.RoomCardImage
+{
+	width: 230px;
+	height: 230px;
+	margin-top: 8px;
+	horizontal-align: center;
+	background-size: 100% 100%;
+	background-position: center;
+	border: 1px solid #00000088;
+	border-radius: 4px;
+	border: 1px solid #e4c26999;
+	box-shadow: 0px 0px 4px 0px #000000aa;
+	border-radius: 4px;
+}
+
+.RoomCardName
+{
+	font-family: Reaver;
+	font-size: 14px;
+	font-weight: bold;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	color: #f3df9c;
+	text-shadow: 1px 1px 3px 2 black;
+	text-align: center;
+	horizontal-align: center;
+	text-overflow: shrink;
+	margin-top: 8px;
+}
+
+.RoomCardBonus
+{
+	font-family: Radiance;
+	font-weight: bold;
+	color: #ffffffcc;
+	margin-top: 4px;
+	margin-left: 0px;
+	vertical-align: top;
+	horizontal-align: center;
+	font-size: 16px;
+	text-align: center;
+	horizontal-align: center;
+	text-overflow: shrink;
+}
+
+.RoomCardVotes
+{
+	height: 28px;
+	margin-bottom: 4px;
+	horizontal-align: center;
+	flow-children: right;
+	vertical-align: bottom;
+}
+
+.RoomCardVoteHero
+{
+	width: 26px;
+	height: 26px;
+	margin-right: 4px;
+	border-radius: 4px;
+	img-shadow: 0px 0px 3px 2 black;
+}
+
+.RoomCardButton
+{
+	width: 260px;
+	height: 41px;
+	margin-top: 6px;
+	horizontal-align: center;
+	background-image: url("s2r://panorama/images/backgrounds/background_play_button_2x_png.vtex");
+	background-size: 100%;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#5Aa15E), to(#87d695));
+	saturation: 0;
+	border-radius: 8px;
+	transition-property: brightness, saturation;
+	transition-duration: 0.1s;
+	transition-timing-function: ease-out;
+}
+
+.RoomCardButton:hover
+{
+	brightness: 1.2;
+}
+
+.RoomCard.Selected .RoomCardButton
+{
+	saturation: 1;
+}
+
+.RoomCard.Clickable:hover .RoomCardBody
+{
+	border: 1px solid #ffffff40;
+	brightness: 1.1;
+}
+
+.RoomCard.Clickable:hover .RoomCardButton
+{
+	brightness: 1.2;
+}
+
+.RoomCardButton Label
+{
+	color: white;
+	font-size: 22px;
+	font-weight: bold;
+	horizontal-align: center;
+	vertical-align: center;
+	text-shadow: 1px 1px 8px 4.0 black;
+}
+
+.RoomChoiceWindow.Fixed
+{
+	width: 340px;
+}
+
+.RoomChoiceWindow.Fixed .RoomChoiceTimerBar,.RoomChoiceWindow.Fixed .RoomChoiceTimerBack
+{
+	width: 340px;
+	background-size: 340px 16px;
+}
+
+.RoomChoiceWindow.Fixed .RoomChoiceTimerFill
+{
+	background-size: 340px 16px;
+}
+
+.RoomChoiceWindow.Fixed .RoomCard
+{
+	width: 300px;
+	margin: 4px 0px 0px 0px;
+	horizontal-align: center;
+}
+
+.RoomEnterBanner
+{
+	horizontal-align: center;
+	vertical-align: top;
+	margin-top: 160px;
+	flow-children: down;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.4s;
+	z-index: 140;
+}
+
+.RoomEnterBanner.Visible
+{
+	opacity: 1;
+}
+
+.RoomEnterStage
+{
+	horizontal-align: center;
+	font-size: 18px;
+	font-weight: bold;
+	color: #ffffffaa;
+	text-transform: uppercase;
+	letter-spacing: 3px;
+	text-shadow: 1px 1px 6px 3 black;
+}
+
+.RoomEnterName
+{
+	horizontal-align: center;
+	font-family: Reaver;
+	font-size: 44px;
+	font-weight: bold;
+	color: #f3df9c;
+	text-transform: uppercase;
+	text-shadow: 2px 2px 8px 4 black;
+}
+
+.RoomChoiceWindow.Wide
+{
+	width: 1200px;
+}
+
+.RoomChoiceWindow.Wide .RoomChoiceTimerBar,.RoomChoiceWindow.Wide .RoomChoiceTimerBack
+{
+	width: 1200px;
+	background-size: 1200px 16px;
+}
+
+.RoomChoiceWindow.Wide .RoomChoiceTimerFill
+{
+	background-size: 1200px 16px;
+}

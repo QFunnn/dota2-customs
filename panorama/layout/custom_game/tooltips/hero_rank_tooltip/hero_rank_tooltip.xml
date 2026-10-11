@@ -1,0 +1,46 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1a5b3bb 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.css" />
+		<include src="s2r://panorama/layout/custom_game/tooltips/hero_rank_tooltip/hero_rank_tooltip.vcss" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/util.vjs" />
+		<include src="s2r://panorama/layout/custom_game/tooltips/hero_rank_tooltip/hero_rank_tooltip.vjs" />
+	</scripts>
+	<Panel class="HeroRankTooltipRoot" hittest="false" hittestchildren="false" ontooltiploaded="UpdateHeroRankTooltip()">
+		<Panel class="HeroRankTooltip" id="HeroRankTooltip">
+			<Panel class="HeroRankTooltipHeader">
+				<Panel class="HeroRankTooltipIcon" id="HeroRankTooltipIcon">
+					<Label class="HeroRankTooltipIconLevel" id="HeroRankTooltipIconLevel" text="" />
+				</Panel>
+				<Panel class="HeroRankTooltipHeaderText">
+					<Label class="HeroRankTooltipTitle" id="HeroRankTooltipTitle" text="" />
+					<Label class="HeroRankTooltipLevel" id="HeroRankTooltipLevel" text="" />
+				</Panel>
+			</Panel>
+			<Panel class="HeroRankTooltipBonusSection" id="HeroRankTooltipBonusSection">
+				<Panel class="HeroRankTooltipDivider" />
+				<Label class="HeroRankTooltipSection" text="#item_tooltip_arena_bonus_title" />
+				<Panel class="HeroRankTooltipBonusList">
+					<Label class="HeroRankTooltipBonus" id="HeroRankTooltipAttr" text="" />
+					<Label class="HeroRankTooltipBonus" id="HeroRankTooltipDamage" text="" />
+					<Label class="HeroRankTooltipBonus" id="HeroRankTooltipCoin" text="#hero_rank_tt_coin" />
+				</Panel>
+			</Panel>
+			<Panel class="HeroRankTooltipDivider" />
+			<Label class="HeroRankTooltipSection" text="#hero_rank_tt_ranks" />
+			<Panel class="HeroRankTooltipRanks" id="HeroRankTooltipRanks" />
+		</Panel>
+	</Panel>
+</root>

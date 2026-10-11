@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -13,15 +13,15 @@
 .DonateShopWindow
 {
 	align: center center;
-	width: 1200px;
-	height: 700px;
+	width: 1600px;
+	height: 900px;
 	background-image:url("s2r://panorama/images/custom_game/talents/shop_png.vtex");
 	background-size: 100%;
 	flow-children: down;
 	opacity: 0;
 	transition-property: opacity;
 	transition-duration: 0.2s;
-	margin-bottom: 7%;
+	margin-bottom: 0%;
 }
 
 #DonateShopWindow.setvisible
@@ -31,17 +31,10 @@
 	transition-duration: 0.2s;
 }
 
-#HeroVotesWindowMain.setvisible
-{
-	opacity: 1;
-	transition-property: opacity;
-	transition-duration: 0.2s;
-}
-
 #DonateButton
 {
 	margin-top: 13.5px;
-	margin-left: 247px;
+	margin-left: 203px;
 }
 
 #DonateButton:hover
@@ -280,7 +273,55 @@
 	vertical-align: center;
 	margin-top: 0px;
 	margin-left: 6px;
+	color: #6fb6ff;
+}
+
+.WodaPremiumBlock,.BossSoulsBlock
+{
+	flow-children: right;
+	margin-left: 3px;
+	height: 32px;
+	width: 128px;
+	tooltip-position: bottom;
+}
+
+.WodaPremiumIcon
+{
+	vertical-align: center;
+	width: 30px;
+	height: 30px;
+	background-image: url("s2r://panorama/images/custom_game/shop/dp2_premium_png.vtex");
+	background-size: 100%;
+}
+
+.BossSoulsIcon
+{
+	vertical-align: center;
+	width: 30px;
+	height: 30px;
+	background-image: url("s2r://panorama/images/custom_game/shop/boss_soul_png.vtex");
+	background-size: 100%;
+}
+
+.WodaPremiumLabelCount,.BossSoulsLabelCount
+{
+	font-weight: bold;
+	font-family: Reaver;
+	font-size: 20px;
+	vertical-align: center;
+	margin-top: 0px;
+	margin-left: 6px;
 	color: white;
+}
+
+.WodaPremiumLabelCount
+{
+	color: #f3c96b;
+}
+
+.BossSoulsLabelCount
+{
+	color: #ff7a3c;
 }
 
 .NavigationMenu
@@ -306,9 +347,22 @@
 	transform: skew(-20deg);
 }
 
+.MenuBlockBody
+{
+	width: fill-parent-flow(1.0);
+	height: 38px;
+	margin-bottom: 0px;
+	margin-left: 6px;
+	margin-right: -3px;
+	background-image: url("s2r://panorama/images/backgrounds/background_play_button_2x_png.vtex");
+	background-size: 100%;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#cdb07dcc), to(#6a624ecc));
+	transform: skew(-20deg);
+}
+
 .MenuBlockEnd
 {
-	width: 100%;
+	width: 14px;
 	height: 38px;
 	margin-bottom: 0px;
 	margin-left: 6px;
@@ -409,6 +463,7 @@
 	color: white;
 	text-shadow: 1px 1px 4px 1.5 black;
 	font-family: Reaver;
+	text-transform: uppercase;
 	font-size: 18px;
 	transform: skew(20deg);
 }
@@ -420,18 +475,6 @@
 	margin-left: 3px;
 	margin-right: 3px;
 	margin-bottom: 3px;
-}
-
-.HeroesWindow
-{
-	width: 100%;
-	height: 100%;
-	margin-left: 3px;
-	margin-right: 3px;
-	margin-bottom: 3px;
-	visibility: collapse;
-	flow-children: right-wrap;
-	overflow: squish scroll;
 }
 
 .ShopWindow
@@ -611,6 +654,11 @@
 	brightness: 0.55;
 }
 
+.RunesOpenButton.SkipMode
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#5b6880), to(#2b3445));
+}
+
 .RunesOpenButtonContent
 {
 	flow-children: left;
@@ -695,15 +743,16 @@
 {
 	width: 100%;
 	height: 100%;
+	margin-left:2px;
 	flow-children: right-wrap;
 	overflow: squish scroll;
 }
 
 .RuneCard
 {
-	width: 231px;
-	height: 70px;
-	margin:3px;
+	width: 257px;
+	height: 96px;
+	margin:4px;
 	background-color: #000b;
 	border: 1px solid #4f5e6f88;
 	border-radius: 6px;
@@ -722,7 +771,6 @@
 .RuneCard.Owned
 {
 	border: 1px solid #f3df9caa;
-	box-shadow: 0px 0px 0px 1px #f3df9c18;
 }
 
 .RuneCard.Equipped
@@ -734,14 +782,12 @@
 .RuneCardTop
 {
 	width: 100%;
-	height: 68px;
+	height: 72px;
 	flow-children: right;
 }
 
 .RuneCardIcon
 {
-	width: 52px;
-	height: 52px;
 	width:72px;
 	height:72px;
 	background-color:grey;
@@ -752,15 +798,21 @@
 .RuneCardInfo
 {
 	margin-left: 10px;
-	margin-top: 11px;
 	width: 175px;
-	flow-children: down;
+	height: 72px;
+}
+
+.RuneCardNameCenter
+{
+	width: 100%;
+	height: 100%;
 }
 
 .RuneCardName
 {
-	width: 175px;
-	height: 24px;
+	width: 100%;
+	align: center center;
+	text-align: left;
 	font-family: Reaver;
 	font-size: 18px;
 	font-weight: bold;
@@ -769,32 +821,104 @@
 	text-shadow: 1px 1px 3px 2 black;
 }
 
-.RuneCardLevel
+.RuneCardBottom
 {
-	margin-top: 2px;
-	font-family: Radiance;
-	font-size: 16px;
-	color: #f3df9c;
+	width: 100%;
+	height: 32px;
+	flow-children: right;
+}
+
+.RuneProgress
+{
+	width: 156px;
+	height: 24px;
+	vertical-align: center;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #272d2eee ), to( #131617ee ) );
+}
+
+.RuneProgressFill
+{
+	height: 100%;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#60862d), to(#3d5f1c));
+	transition-property: width;
+	transition-duration: 0.2s;
+}
+
+.RuneProgressLabel
+{
+	align: center center;
+	font-family: Reaver;
+	font-size: 15px;
+	font-weight: bold;
+	color: white;
 	text-shadow: 1px 1px 3px 2 black;
 }
 
-.RuneStars
+.RuneCardBuyButton
 {
-	height: 6px;
+	horizontal-align: right;
+	vertical-align: center;
+	width: 100px;
+	height: 24px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#60862d), to(#3d5f1c));
+	border-top: 1px solid #ffffff22;
+	border-bottom: 1px solid #00000088;
 	flow-children: right;
-	border-radius: 3px;
+	tooltip-position: top;
+	transition-property: brightness;
+	transition-duration: 0.1s;
 }
 
-.RuneStar
+.RuneCardBuyButton:hover
 {
-	width: 24px;
-	height: 6px;
+	brightness: 1.35;
 }
 
-.RuneStar.Active
+.RuneCard.MaxLevel .RuneCardBuyButton
 {
-	background-image:url("s2r://panorama/images/custom_game/talents/lvl_3_3_png.vtex");
-	background-size:100%;
+	visibility: collapse;
+}
+
+.RuneCard.MaxLevel .RuneProgress
+{
+	width: 100%;
+}
+
+.RuneCard.MaxLevel.MaxLayoutBigIcon .RuneCardBottom
+{
+	visibility: collapse;
+}
+
+.RuneCard.MaxLevel.MaxLayoutBigIcon .RuneCardTop
+{
+	height: 94px;
+}
+
+.RuneCard.MaxLevel.MaxLayoutBigIcon .RuneCardIcon
+{
+	width: 94px;
+	height: 94px;
+}
+
+.RuneCard.MaxLevel.MaxLayoutBigIcon .RuneCardInfo
+{
+	width: 150px;
+	height: 94px;
+}
+
+.RuneCard.ThemeGold .RuneProgressFill,.RuneCard.ThemeGold .RuneCardBuyButton,.RuneGold .RuneLevelBarFill,.RuneGold .button_buy_item
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#e9c730), to(#61480a));
+}
+
+.RuneCardBuyCoin
+{
+	vertical-align: center;
+	margin-left: 4px;
+	width: 18px;
+	height: 18px;
+	background-image: url("s2r://panorama/images/custom_game/shop/wodacoin_png.vtex");
+	background-size: 100%;
 }
 
 .RuneCardDescription
@@ -842,11 +966,9 @@
 
 .HeroVotesWindow
 {
-	width: 100%;
-	height: 100%;
-	margin-left: 3px;
-	margin-right: 3px;
-	margin-bottom: 3px;
+	width: fill-parent-flow(1.0);
+	height: 815px;
+	visibility: collapse;
 	flow-children: down;
 }
 
@@ -1002,6 +1124,7 @@
 	background-size: 100%;
 	background-color: gradient(linear, 0% 0%, 0% 100%, from(#e9c730), to(#61480a));
 	box-shadow: fill transparent 0px 0px 0px 0px;
+	margin-top:10px;
 }
 
 .CrystalBuyButton
@@ -1110,6 +1233,7 @@
 	margin-top:2px;
 	margin-left: 10px;
 	color: #07edd2;
+	text-shadow: 1px 1px 3px 3 black;
 }
 
 .WodaPlusTime
@@ -1178,8 +1302,8 @@
 	height: 189px;
 	border: 1px solid black;
 	margin-right: 0px;
-	margin-left: 22px;
-	margin-bottom: 22px;
+	margin-left: 13.5px;
+	margin-bottom: 14px;
 	margin-top: 0px;
 }
 
@@ -1393,22 +1517,26 @@
 
 .button_buy_hero_label
 {
-	margin: 4px;
-	vertical-align: center;
-	font-weight: bold;
+	width: 100%;
+	align: center center;
+	text-align: center;
+	font-family: Reaver;
 	font-size: 20px;
+	font-weight: bold;
 	color: white;
-	font-family: Radiance;
-	horizontal-align: center;
+	text-overflow: shrink;
+	text-shadow: 1px 1px 3px 2 black;
 }
 
 .valuteicon
 {
-	margin-bottom: 2px;
+	margin-left: 6px;
 	width: 25px;
 	height: 25px;
-	vertical-align: center;
+	background-image: url("s2r://panorama/images/custom_game/shop/wodacoin_png.vtex");
 	background-size: 100%;
+	vertical-align: center;
+	img-shadow: 0px 0px 2px 2 black;
 }
 
 .button_buy_hero_info_center
@@ -1438,18 +1566,16 @@
 
 .ShopMenu
 {
-	width: 200px;
-	margin-left: 10px;
-	margin-right:5px;
+	width: 220px;
+	height:100%;
 	flow-children: down;
-	margin-top:10px;
-	border-radius:6px;
-	background-color: rgba(0, 0, 0, 0.507);
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#12151cdd), to(#07080bdd));
+	border: 1px solid #6a5a3a66;
 }
 
 .ShopMenuButton
 {
-	margin: 5px;
+	margin: 10px 10px 0px 10px;
 	width: 100%;
 	height: 40px;
 	background-image: url("s2r://panorama/images/backgrounds/background_play_button_2x_png.vtex");
@@ -1472,9 +1598,13 @@
 	align:center center;
 	font-weight:bold;
 	color: white;
-	text-shadow: 1px 1px 4px 1.5 black;
+	text-shadow: 1px 1px 3px 2 black;
 	font-family: Reaver;
-	font-size: 18px;
+	font-size: 20px;
+	text-overflow: shrink;
+	text-align: center;
+	margin-left:1px;
+	margin-right:1px;
 }
 
 .PetsWindow
@@ -1575,12 +1705,12 @@
 .ItemShop
 {
 	width: 180px;
-	height: 200px;
+	height: 230px;
 	background-color: #0009;
-	margin-left: 5px;
-	margin-right: 5px;
-	margin-top: 10px;
-	margin-bottom: 0px;
+	margin-left: 12px;
+	margin-right: 0px;
+	margin-top: 6px;
+	margin-bottom: 4px;
 	transition-duration: 0.1s;
 	transition-property: pre-transform-scale2d;
 	flow-children: down;
@@ -1594,7 +1724,7 @@
 	height: 200px;
 	background-color: #0009;
 	margin-left: 5px;
-	margin-right: 5px;
+	margin-right: 9px;
 	margin-top: 10px;
 	margin-bottom: 0px;
 	transition-duration: 0.1s;
@@ -1609,6 +1739,61 @@
 	pre-transform-scale2d: 1.05;
 }
 
+.UpgradeCounterBar
+{
+	width: 150px;
+	height: 30px;
+	horizontal-align: center;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #272d2eee ), to( #131617ee ) );
+}
+
+.UpgradeCounterFill
+{
+	height: 100%;
+	transition-property: width;
+	transition-duration: 0.2s;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#60862d), to(#3d5f1c));
+}
+
+.UpgradeCounterLabel
+{
+	width: 100%;
+	align: center center;
+	text-align: center;
+	font-family: Reaver;
+	font-size: 15px;
+	font-weight: bold;
+	color: white;
+	text-overflow: shrink;
+	text-shadow: 1px 1px 3px 2 black;
+}
+
+.ItemShop.HasCounter
+{
+	height: 262px;
+}
+
+.ItemShop.HasCounter .ItemImage
+{
+	margin-top: 6px;
+}
+
+.ItemShop.HasCounter .ItemNamePanels
+{
+	margin-top: 4px;
+	height: 50px;
+}
+
+.ItemShop.HasCounter .UpgradeCounterBar
+{
+	margin-top: 6px;
+}
+
+.ItemShop.HasCounter .BuyItemPanel
+{
+	margin-bottom: 10px;
+}
+
 .ItemImage
 {
 	width: 120px;
@@ -1617,6 +1802,13 @@
 	horizontal-align: center;
 	margin-top: 10px;
 	border-radius:6px;
+}
+
+.ItemNamePanels
+{
+	margin-top: 5px;
+	horizontal-align: center;
+	height: 50px;
 }
 
 .ItemName
@@ -1628,7 +1820,9 @@
 	font-weight: bold;
 	text-overflow: ellipsis;
 	font-family: Reaver;
-	margin-top: 5px;
+	text-overflow: shrink;
+	text-shadow: 1px 1px 3px 2 black;
+	vertical-align: center;
 }
 
 .BuyItemPanel
@@ -1651,30 +1845,35 @@
 
 .PriceIconcrystal
 {
+	margin-left: 6px;
 	width: 25px;
 	height: 25px;
 	background-image: url("s2r://panorama/images/custom_game/shop/wodacrystal_png.vtex");
 	background-size: 100%;
 	vertical-align: center;
+	img-shadow: 0px 0px 2px 2 black;
 }
 
 .PriceIconcoin
 {
-	margin-bottom:2px;
+	margin-left: 6px;
 	width: 25px;
 	height: 25px;
 	background-image: url("s2r://panorama/images/custom_game/shop/wodacoin_png.vtex");
 	background-size: 100%;
 	vertical-align: center;
+	img-shadow: 0px 0px 2px 2 black;
 }
 
 .PriceLabel
 {
 	horizontal-align: center;
-	font-weight: bold;
+	font-family: Reaver;
 	font-size: 20px;
+	font-weight: bold;
 	color: white;
-	font-family: Radiance;
+	text-overflow: shrink;
+	text-shadow: 1px 1px 3px 2 black;
 }
 
 .HeroDaysCount
@@ -1699,7 +1898,7 @@
 	background-image:url("s2r://panorama/images/custom_game/talents/buyhero_png.vtex");
 	background-size: 100%;
 	z-index: 1020;
-	margin-bottom: 7%;
+	margin-bottom: 1%;
 	flow-children: down;
 	visibility:collapse;
 }
@@ -1769,8 +1968,9 @@
 .ItemDescription
 {
 	width: 250px;
+	height: 150px;
 	text-align: left;
-	horizontal-align: center;
+	horizontal-align: left;
 	font-size: 16px;
 	color: white;
 	font-weight: bold;
@@ -1784,9 +1984,9 @@
 
 .button_buy_item
 {
-	margin-top: 10px;
-	width: 250px;
-	height: 32px;
+	margin-left:100px;
+	width: 150px;
+	height: 30px;
 	background-color: gradient(linear, 0% 0%, 0% 100%, from(#60862d), to(#3d5f1c));
 	border-top: 1px solid #ffffff22;
 	border-bottom: 1px solid #00000088;
@@ -1811,17 +2011,17 @@
 
 .button_buy_item_label
 {
-	margin-left: 4px;
-	vertical-align: center;
-	font-weight: bold;
+	font-family: Reaver;
 	font-size: 20px;
+	font-weight: bold;
 	color: white;
-	font-family: Radiance;
+	text-overflow: shrink;
+	text-shadow: 1px 1px 3px 2 black;
 }
 
 .button_buy_item_center
 {
-	flow-children: left;
+	flow-children: right;
 	align: center center;
 }
 
@@ -1877,7 +2077,7 @@
 	width: 100%;
 	height: 100%;
 	visibility: collapse;
-	z-index: 300;
+	z-index: 1300;
 }
 
 #donate_accept_label
@@ -1897,7 +2097,7 @@
 	width: 100%;
 	height: 100%;
 	visibility: collapse;
-	z-index: 300;
+	z-index: 1300;
 }
 
 #donate_error_label
@@ -1915,7 +2115,6 @@
 {
 	flow-children: right;
 	margin-top: 10px;
-	margin-left: 50px;
 }
 
 .PromoEntryIDButton
@@ -2164,7 +2363,7 @@
 	background-repeat: no-repeat;
 	background-position: center;
 	margin-top:13.5px;
-	margin-left:294px;
+	margin-left:250px;
 	opacity: 0.9;
 	img-shadow: 0px 0px 3px 2 black;
 	transition-property: opacity;
@@ -2185,7 +2384,7 @@
 	background-repeat: no-repeat;
 	background-position: center;
 	margin-top:13.5px;
-	margin-left:435px;
+	margin-left:344px;
 	opacity: 0.9;
 	img-shadow: 0px 0px 3px 2 black;
 	transition-property: opacity;
@@ -2193,28 +2392,6 @@
 }
 
 #DonateButtonRunes:hover
-{
-	brightness: 3;
-}
-
-#HeroVotesButton
-{
-	width: 30px;
-	height: 30px;
-	background-image: url("s2r://panorama/images/custom_game/leaderboard/icon2_png.vtex");
-	background-size: 24px;
-	background-repeat: no-repeat;
-	background-position: center;
-	margin-top:13.5px;
-	margin-left:157px;
-	opacity: 0.5;
-	wash-color: #CDF;
-	img-shadow: 0px 0px 3px 2 black;
-	transition-property: opacity;
-	transition-duration: 0.2s;
-}
-
-#HeroVotesButton:hover
 {
 	brightness: 3;
 }
@@ -2347,19 +2524,39 @@
 	font-family: Radiance;
 }
 
-#HeroListVotes
+.HeroListVotes1
 {
-	flow-children: right-wrap;
-	horizontal-align: center;
+	flow-children: down;
 	overflow: squish scroll;
-	width:100%;
+	width: 100%;
+	height: fill-parent-flow(1.0);
+	padding-bottom: 16px;
+}
+
+.HeroVotesRow
+{
+	horizontal-align: center;
+	flow-children: right;
+	margin-bottom: 14px;
+}
+
+.HeroVoteBuyContent
+{
+	align: center center;
+	flow-children: right;
+}
+
+.HeroVoteBuyContent .panel_votes_count_buy_votes_label,.HeroVoteBuyContent .button_buy_hero_label
+{
+	width: fit-children;
+	vertical-align: center;
 }
 
 .HeroVotePanel
 {
 	width: 144px;
-	margin-left: 22px;
-	margin-bottom:22px;
+	margin-left: 3px;
+	margin-right: 3px;
 	flow-children: down;
 }
 
@@ -2374,7 +2571,7 @@
 .panel_votes_count
 {
 	width: 100%;
-	height: 25px;
+	height: 30px;
 	margin-top: 5px;
 }
 
@@ -2394,14 +2591,21 @@
 
 .panel_votes_count_label
 {
+	width: 100%;
 	align: center center;
+	text-align: center;
+	font-family: Reaver;
+	font-size: 15px;
+	font-weight: bold;
 	color: white;
+	text-overflow: shrink;
+	text-shadow: 1px 1px 3px 2 black;
 }
 
 .panel_votes_count_buy_votes
 {
 	width: 100%;
-	height: 25px;
+	height: 30px;
 	margin-top: 5px;
 	background-color: gradient(linear, 0% 0%, 0% 100%, from(#60862d), to(#3d5f1c));
 	border-top: 1px solid #ffffff22;
@@ -2425,8 +2629,15 @@
 
 .panel_votes_count_buy_votes_label
 {
-	align: center center;
+	width: 100%;
+	horizontal-align: center;
+	text-align: center;
+	font-family: Reaver;
+	font-size: 20px;
+	font-weight: bold;
 	color: white;
+	text-overflow: shrink;
+	text-shadow: 1px 1px 3px 2 black;
 }
 
 .hero_buy_info_all
@@ -2598,8 +2809,8 @@
 
 .PlayerBackground
 {
-	width: 99.6%;
-	height: 88.8%;
+	width: 1594px;
+	height: 821px;
 	horizontal-align: center;
 	margin-top: 76px;
 	ignore-parent-flow: true;
@@ -2625,7 +2836,7 @@
 .ItemsCollectionPanel
 {
 	flow-children: right;
-	margin-bottom: 10px;
+	margin-top:10px;
 }
 
 .ItemsCollectionButton
@@ -2663,6 +2874,27 @@
 	font-size: 18px;
 	margin-top:2px;
 	margin-left:16px;
+}
+
+.TestAccountResetPanel
+{
+	visibility: collapse;
+}
+
+.TestAccountResetPanel.Visible
+{
+	visibility: visible;
+}
+
+.TestAccountResetBackground
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#4a1414), to(#7a2020));
+	saturation: 1;
+}
+
+.TestAccountResetButton:hover .TestAccountResetBackground
+{
+	brightness: 1.4;
 }
 
 .ItemsCollectionPercent
@@ -2746,19 +2978,6 @@
 	color: #f7d066;
 }
 
-.MenuBlockBody
-{
-	width: 810px;
-	height: 38px;
-	margin-bottom: 0px;
-	margin-left: 6px;
-	margin-right: -3px;
-	background-image: url("s2r://panorama/images/backgrounds/background_play_button_2x_png.vtex");
-	background-size: 100%;
-	background-color: gradient(linear, 0% 0%, 0% 100%, from(#cdb07dcc), to(#6a624ecc));
-	transform: skew(-20deg);
-}
-
 .hero_level_progress_bar
 {
 	width: 100%;
@@ -2821,87 +3040,13 @@
 	background-color: gradient(linear, 0% 0%, 100% 0%, from(GrandmasterTierColorDark), to(GrandmasterTierColorLight));
 }
 
-.ChoosePayMethode
-{
-	width: 710px;
-	height: 438px;
-	background-image: url("s2r://panorama/images/custom_game/shop/bg_preview_png.vtex");
-	background-size: 100%;
-	margin-bottom: 7%;
-	z-index: 1000;
-	align: center center;
-}
-
-.IsOpacity.ChoosePayMethode
-{
-	opacity: 0;
-}
-
-.PaymentVariants
-{
-	align: center center;
-	flow-children: right;
-}
-
-.PaymentBlock
-{
-	width: 180px;
-	height: 200px;
-	background-color: #0009;
-	margin: 20px;
-	border-radius: 6px;
-	flow-children: down;
-	ui-scale: 150%;
-	transition-duration: 0.1s;
-	transition-property: pre-transform-scale2d;
-}
-
-.PaymentBlock:hover
-{
-	pre-transform-scale2d: 1.05;
-}
-
-.PaymentIcon
-{
-	width: 120px;
-	height: 120px;
-	background-size: 100%;
-	horizontal-align: center;
-	margin-top: 10px;
-	border-radius:6px;
-}
-
-.FunpayIcon
-{
-	background-image:url("s2r://panorama/images/custom_game/shop/funpay_png.vtex");
-	background-size: 100%;
-}
-
-.XsollaIcon
-{
-	background-image:url("s2r://panorama/images/custom_game/shop/xsolla_png.vtex");
-	background-size: 100%;
-}
-
-.PaymentLabel
-{
-	horizontal-align: center;
-	text-align: center;
-	font-size: 15px;
-	color: white;
-	font-weight: bold;
-	text-overflow: ellipsis;
-	font-family: Reaver;
-	margin-top: 5px;
-}
-
 .XsollaProductsChoose
 {
-	width: 816px;
-	height: 454px;
-	background-image: url("s2r://panorama/images/custom_game/shop/bg_preview_png.vtex");
+	width: 986px;
+	height: 770px;
+	background-image: url("s2r://panorama/images/custom_game/shop/bg_preview_2_png.vtex");
 	background-size: 100%;
-	margin-bottom: 6%;
+	margin-bottom: 1%;
 	z-index: 1001;
 	align: center center;
 	visibility: collapse;
@@ -2911,18 +3056,19 @@
 {
 	horizontal-align: center;
 	margin-top: 40px;
-	width: 810px;
-	height: 411px;
+	width: 986px;
+	height: 720px;
 	flow-children: right-wrap;
 }
 
 .XsollaProductCard
 {
-	width: 150px;
-	height: 172px;
+	width: 180px;
+	height: 230px;
 	background-color: #0009;
-	margin-left: 10px;
-	margin-top: 22px;
+	margin-left: 8px;
+	margin-right: 8px;
+	margin-top: 10px;
 	border-radius: 6px;
 	flow-children: down;
 	transition-duration: 0.1s;
@@ -2954,4 +3100,2922 @@
 	text-overflow: ellipsis;
 	font-family: Reaver;
 	margin-top: 10px;
+}
+
+.ItemShop.Owned
+{
+	border: 1px solid #f3df9caa;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#2a2410dd), to(#000c));
+}
+
+.FullBlue
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#3d86e0cc), to(#0f2a5acc));
+}
+
+.FullPurple
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#9b59d6cc), to(#3a1a5acc));
+}
+
+.FullGreen
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#82b83dcc), to(#528026cc));
+}
+
+.AchievementsButton .RedAlert
+{
+	margin-right: 6px;
+	margin-bottom: 6px;
+}
+
+.AchievementsWindow
+{
+	width: 100%;
+	height: 100%;
+	margin-left: 3px;
+	margin-right: 3px;
+	margin-bottom: 3px;
+	visibility: collapse;
+	flow-children: down;
+}
+
+.AchievementsTitle
+{
+	margin-left: 15px;
+	vertical-align: center;
+	font-family: Reaver;
+	font-weight: bold;
+	color: #f3df9c;
+	text-shadow: 1px 1px 4px 3 black;
+	font-size: 20px;
+}
+
+.quest_container
+{
+	margin-top: 8px;
+	width: 100%;
+	height: 100%;
+	horizontal-align: center;
+	flow-children: right-wrap;
+	overflow: squish scroll;
+}
+
+.quest_panel
+{
+	width: 506px;
+	margin-bottom: 20px;
+	margin-right: 12px;
+	margin-left: 12px;
+	margin-top: 4px;
+	height: 213px;
+	background-image: url("s2r://panorama/images/custom_game/talents/bpquest_png.vtex");
+	background-size: 100%;
+}
+
+.quest_panel.QuestClaimed
+{
+	saturation: 0.4;
+	opacity: 0.75;
+}
+
+.quest_reward_icon
+{
+	width: 144px;
+	height: 189px;
+	vertical-align: top;
+	margin-left: 12px;
+	margin-top: 12px;
+	background-size: 100%;
+}
+
+.quest_reward_icon_hover:hover
+{
+	box-shadow: 0px 0px 8px 2px #bca1666e;
+	border: 1px solid #bca166;
+}
+
+.quest_reward_name
+{
+	margin-left: 165px;
+	margin-top: 9px;
+	margin-right: 9px;
+	color: white;
+	font-weight: bold;
+	text-transform: uppercase;
+	text-align: center;
+	font-size: 22px;
+	font-family: Reaver;
+}
+
+.quest_description
+{
+	margin-left: 166px;
+	margin-top: 40px;
+	margin-right: 9px;
+	text-align: left;
+	horizontal-align: left;
+	font-size: 16px;
+	color: white;
+	font-weight: bold;
+	font-family: Reaver;
+}
+
+.quest_progress_with_button_claim
+{
+	margin-left: 165px;
+	vertical-align: bottom;
+	margin-bottom: 9px;
+	margin-right: 9px;
+	flow-children: right;
+}
+
+.quest_progress_line
+{
+	width: 175px;
+	height: 30px;
+	margin-right: 7px;
+	vertical-align: center;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #272d2eee ), to( #131617ee ) );
+}
+
+.quest_progress_bar
+{
+	width: 50%;
+	height: 100%;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#60862d), to(#3d5f1c));
+	border-top: 1px solid #ffffff22;
+	border-bottom: 1px solid #00000088;
+}
+
+.quest_progress_label
+{
+	color: white;
+	align: center center;
+	font-family: Reaver;
+	font-weight: bold;
+	font-size: 15px;
+	text-align: center;
+	text-overflow: shrink;
+	text-shadow: 1px 1px 3px 2 black;
+}
+
+.quest_button_claim
+{
+	width: 150px;
+	height: 30px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#60862d), to(#3d5f1c));
+	border-top: 1px solid #ffffff22;
+	border-bottom: 1px solid #00000088;
+	saturation: 0;
+}
+
+.quest_button_claim_label
+{
+	color: white;
+	align: center center;
+	font-family: Reaver;
+	font-weight: bold;
+	font-size: 20px;
+	text-align: center;
+	text-overflow: shrink;
+	text-shadow: 1px 1px 3px 2 black;
+}
+
+.quest_button_claim.activate
+{
+	saturation: 1;
+}
+
+.quest_button_claim.activate:hover
+{
+	brightness: 1.2;
+}
+
+.ShopPlusWindow
+{
+	width: 100%;
+	height: 100%;
+	visibility: collapse;
+	overflow: clip;
+}
+
+.SubscriptionBackground
+{
+	background-image: url("s2r://panorama/images/custom_game/shop/subscriptions/background_png.vtex");
+	background-color: #080c12;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	width: 100%;
+	height: 100%;
+}
+
+.WodaPlusLargeIcon
+{
+	width: 536px;
+	height: 100%;
+	margin-left: 60px;
+}
+
+.WodaPlusLargeIconImage
+{
+	width: 536px;
+	height: 1026px;
+	margin-left: 33px;
+	background-image: url("s2r://panorama/images/dota_plus/key_art_psd.vtex");
+	background-size: contain;
+	transform: scaleX( -1 );
+	background-position: center 50px;
+	background-repeat: no-repeat;
+	ignore-parent-flow: true;
+}
+
+.WodaPlusHeaderLabel
+{
+	color: gradient( linear, 0% 0%, 100% 0%, from( #F8E8B9 ), color-stop( 0.5, #E4C269), to( #C79123 ) );
+	letter-spacing: 3px;
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 50px;
+	text-shadow: 2px 2px 4px black;
+	margin-bottom: 8px;
+	horizontal-align: center;
+	text-overflow: shrink;
+}
+
+.WodaPlusDescriptionLabel
+{
+	horizontal-align: center;
+	width: 100%;
+	color: #ffffff90;
+	font-size: 22px;
+	text-align: center;
+	text-shadow: 0px 0px 8px 5.0 black;
+	font-weight: light;
+	text-overflow: shrink;
+}
+
+.WodaPlusSubscribeButton
+{
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #F8E8B9 ), color-stop( 0.5, #E4C269), to( #C79123 ) );
+	border-top: 1px solid #DCD08680;
+	margin-top: 16px;
+	horizontal-align: center;
+	ui-scale: 120%;
+}
+
+.WodaPlusSubscribeButton Label
+{
+	text-align: center;
+	color: white;
+	text-transform: uppercase;
+	padding: 8px 12px;
+	font-size: 20px;
+	letter-spacing: 2px;
+	font-weight: bold;
+	horizontal-align: center;
+	text-shadow: 1px 1px 4px black;
+}
+
+.WodaPlusSubscribeButton:hover
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #d8a253 ), to( #ecdf90 ) );
+}
+
+.WodaPlusSubscribeButton:active
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #ca974d ), to( #dfd388 ) );
+}
+
+.ContentSliderPreview
+{
+	width: 100%;
+	padding: 0px 6px 12px 6px;
+	margin-bottom: 0px;
+	padding-top: 5px;
+}
+
+.ContentHeaderLabel
+{
+	font-size: 30px;
+	text-align: center;
+	horizontal-align: center;
+	text-transform: uppercase;
+	line-height: 40px;
+	letter-spacing: 2px;
+	font-weight: semi-bold;
+	color: dotaPlusGoldGradient;
+	text-shadow: 0px 0px 3px 5 #000000;
+}
+
+.ContentDescriptionLabel
+{
+	font-size: 18px;
+	text-align: center;
+	horizontal-align: center;
+	font-weight: light;
+	color: #ffffff90;
+	text-shadow: 0px 0px 8px 5 #000000;
+	height: 100px;
+	width: 500px;
+	text-overflow: shrink;
+}
+
+.ContentSlider
+{
+	height: 140px;
+	flow-children: right;
+}
+
+.pass_reward_block
+{
+	width: 120px;
+	height: 120px;
+	margin: 10px;
+	border: 2px solid #0009;
+	border-bottom: 2px solid #B78946;
+	background-color: #0009;
+	flow-children: none;
+	tooltip-position: top;
+	saturation: 0;
+	brightness: 0.3;
+	vertical-align: bottom;
+	transition-property: brightness, saturation, transform;
+	transition-duration: 0.2s;
+}
+
+.pass_reward_block_label
+{
+	width: 100%;
+	font-size: 14px;
+	text-align: center;
+	horizontal-align: center;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-weight: semi-bold;
+	text-shadow: 0px 0px 3px 5 #000000;
+	vertical-align: bottom;
+	margin-bottom: 10px;
+	color: gradient( linear, 0% 0%, 100% 0%, from( #F8E8B9 ), color-stop( 0.5, #E4C269), to( #C79123 ) );
+}
+
+.pass_reward_block:hover
+{
+	brightness: 0.5;
+}
+
+.pass_image_block
+{
+	ignore-parent-flow: true;
+	width: 98%;
+	height: 98%;
+	align: center center;
+	z-index: -1;
+	saturation: 0.5;
+}
+
+.pass_reward_block:hover .pass_image_block
+{
+	saturation: 1;
+}
+
+.active_reward_info
+{
+	saturation: 1;
+	brightness: 1;
+	transform: translateY(-10px);
+}
+
+.active_reward_info.pass_reward_block:hover
+{
+	brightness: 1;
+}
+
+.MenuChest
+{
+	width: 200px;
+	height: 38px;
+	margin-bottom: 0px;
+	margin-left: 6px;
+	margin-right: -3px;
+	background-image: url("s2r://panorama/images/backgrounds/background_play_button_2x_png.vtex");
+	background-size: 100%;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#cdb07dcc), to(#6a624ecc));
+	transform: skew(-20deg);
+}
+
+.MenuChest:hover
+{
+	brightness: 1.2;
+}
+
+.MenuSmelter
+{
+	width: 200px;
+	height: 38px;
+	margin-bottom: 0px;
+	margin-left: 6px;
+	margin-right: -3px;
+	background-image: url("s2r://panorama/images/backgrounds/background_play_button_2x_png.vtex");
+	background-size: 100%;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#cdb07dcc), to(#6a624ecc));
+	transform: skew(-20deg);
+}
+
+.MenuSmelter:hover
+{
+	brightness: 1.2;
+}
+
+.SmelterWindow
+{
+	width: 100%;
+	height: 100%;
+	margin-left: 3px;
+	margin-right: 3px;
+	margin-bottom: 3px;
+	visibility: collapse;
+	flow-children: down;
+}
+
+.MenuCountBadge
+{
+	visibility: collapse;
+	horizontal-align: right;
+	vertical-align: top;
+	margin-top: 2px;
+	margin-right: 2px;
+	min-width: 22px;
+	height: 20px;
+	padding: 0px 6px;
+	border-radius: 10px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#e9c730), to(#8a6a12));
+	border: 1px solid #ffffff55;
+	box-shadow: 0px 0px 6px 1px #00000088;
+	text-align: center;
+	font-family: Reaver;
+	font-size: 14px;
+	font-weight: bold;
+	color: white;
+	text-shadow: 1px 1px 2px 1 black;
+	transform: skew(20deg);
+	z-index: 3;
+}
+
+.MenuCountBadge.Visible
+{
+	visibility: visible;
+}
+
+.MenuCountBadge.MenuCountBadgeOrange
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#f08a2a), to(#8a3a0b));
+}
+
+.MenuCountBadge.MenuCountBadgeRed
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#ff4d4d), to(#8a1010));
+}
+
+.RunesRouletteFooter.RunesRouletteFooterWide
+{
+	width: 100%;
+	flow-children: right;
+	horizontal-align: center;
+}
+
+.RunesFooterSpacer
+{
+	width: fill-parent-flow(1.0);
+}
+
+.ChestPoolCard.Owned
+{
+	border: 1px solid #f3df9caa;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#2a2410dd), to(#000c));
+}
+
+.SmelterMain
+{
+	width: 100%;
+	height: 100%;
+	flow-children: right;
+}
+
+.SmelterStorageColumn
+{
+	width: fill-parent-flow(1.0);
+	height: 100%;
+	flow-children: down;
+}
+
+.SmelterList
+{
+	height: fill-parent-flow(1.0);
+}
+
+.SmelterSideColumn
+{
+	width: 413px;
+	height: 100%;
+	flow-children: down;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#12151cdd), to(#07080bdd));
+	border: 1px solid #6a5a3a66;
+}
+
+.SmelterIconFrame
+{
+	horizontal-align: center;
+	width: 340px;
+	height: 330px;
+}
+
+.SmelterIconGlow
+{
+	align: center center;
+	width: 100%;
+	height: 100%;
+	background-color: gradient(radial, 50% 65%, 0% 0%, 48% 45%, from(#ff8a2444), color-stop(0.45, #d74a151c), to(#00000000));
+	animation-name: SmelterGlowPulse;
+	animation-duration: 2.4s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+}
+
+@keyframes 'SmelterGlowPulse'
+{
+	0%
+	{
+		opacity: 0.6;
+	}
+	
+	50%
+	{
+		opacity: 1;
+	}
+	
+	100%
+	{
+		opacity: 0.6;
+	}
+	
+}
+
+.SmelterIcon
+{
+	align: center center;
+	width: 330px;
+	height: 330px;
+	background-image: url("s2r://panorama/images/custom_game/shop/smelter_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+	img-shadow: 0px 2px 10px 1 #ff731f33;
+}
+
+.SmelterHowToRow
+{
+	horizontal-align: center;
+	margin-top: 6px;
+	margin-bottom: 14px;
+	flow-children: right;
+	tooltip-position: top;
+	transition-property: brightness;
+	transition-duration: 0.1s;
+}
+
+.SmelterHowToRow:hover
+{
+	brightness: 1.3;
+}
+
+.SmelterHowToIcon
+{
+	vertical-align: center;
+	width: 28px;
+	height: 28px;
+	margin-right: 8px;
+	background-image: url("s2r://panorama/images/custom_game/shop/smelter_info_png.vtex");
+	background-size: 100%;
+}
+
+.SmelterHowToLabel
+{
+	vertical-align: center;
+	font-family: Radiance;
+	font-size: 16px;
+	font-weight: bold;
+	color: #f3df9c;
+	text-shadow: 1px 1px 3px 2 black;
+}
+
+.SmelterBar
+{
+	horizontal-align: center;
+	width: 340px;
+	height: 70px;
+}
+
+.SmelterBarFrame
+{
+	width: 310px;
+	height: 62px;
+	margin-left: 30px;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/custom_game/shop/smelter_gauge_frame_png.vtex");
+	background-size: 100% 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+	margin-top: 4px;
+}
+
+.SmelterLevelBadge
+{
+	width: 65px;
+	height: 65px;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/custom_game/shop/smelter_level_badge_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	margin-left:-3px;
+	img-shadow: 0px 1px 3px 2 #000000cc;
+	z-index: 10;
+}
+
+.SmelterBarLine
+{
+	width: 270px;
+	height: 38px;
+	margin-left: 46px;
+	margin-top: 2px;
+	vertical-align: center;
+	border-radius: 3px;
+	overflow: clip;
+}
+
+.SmelterExpFill
+{
+	width: 0%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/shop/lava_line_png.vtex");
+	background-size: 100% 100%;
+	transition-property: width;
+	transition-duration: 0.3s;
+	animation-name: SmelterFillHeat;
+	animation-duration: 2.2s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+}
+
+@keyframes 'SmelterFillHeat'
+{
+	0%
+	{
+		brightness: 1;
+	}
+	
+	50%
+	{
+		brightness: 1.18;
+	}
+	
+	100%
+	{
+		brightness: 1;
+	}
+	
+}
+
+.SmelterExpText
+{
+	align: center center;
+	margin-top: 1px;
+	font-family: Reaver;
+	font-size: 16px;
+	color: white;
+	text-shadow: 0px 0px 5px 4 #000000;
+}
+
+.SmelterLevelValue
+{
+	width: 40px;
+	horizontal-align: center;
+	vertical-align: center;
+	text-align: center;
+	z-index: 11;
+	font-size: 26px;
+	font-weight: semi-bold;
+	color: #fde0c8;
+	text-shadow: 0px 0px 5px 6 black;
+}
+
+.ChestOpenButton.SmelterMeltAllButton
+{
+	margin-top: 14px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#e8731a), to(#7a2a06));
+}
+
+.SmelterMeltAllButton.Locked
+{
+	saturation: 0.2;
+	brightness: 0.55;
+}
+
+.SmelterMeltAllButton .ChestOpenButtonLabel
+{
+	text-transform: uppercase;
+}
+
+.SmelterMeltAllExp
+{
+	vertical-align: center;
+	font-family: Radiance;
+	font-size: 16px;
+	font-weight: bold;
+	color: #ffe0a8;
+	text-shadow: 1px 1px 3px 2 black;
+}
+
+.SmelterStatsTitle
+{
+	margin-top: 16px;
+	horizontal-align: center;
+	text-align: center;
+	text-transform: uppercase;
+	font-family: Reaver;
+	font-size: 18px;
+	font-weight: semi-bold;
+	color: #f0df96;
+	text-shadow: 1px 1px 3px 2 black;
+}
+
+.SmelterStatsBox
+{
+	width: 100%;
+	margin-top: 8px;
+	padding: 12px;
+	flow-children: down;
+	background-color: #00000066;
+	box-shadow: 0px 0px 8px 0px #00000080;
+	border: 1.5px solid white;
+	border-brush: gradient(linear, 100% 0%, 0% 100%, from(transparent), color-stop(0.5, #ff7d04), to(transparent));
+}
+
+.SmelterStatPanel
+{
+	width: 100%;
+	height: 27px;
+	border-bottom: 1px solid #80808033;
+	margin-bottom: 2px;
+}
+
+.SmelterStatCenter
+{
+	width: 100%;
+	align: center center;
+	flow-children: right;
+}
+
+.SmelterStatLabel
+{
+	vertical-align: center;
+	font-family: Reaver;
+	font-size: 16px;
+	letter-spacing: 0.4px;
+	color: #f0f0ea;
+	text-overflow: shrink;
+	text-shadow: 1px 1px 2px 1 black;
+}
+
+.SmelterStatLabel2
+{
+	width: 100%;
+	vertical-align: center;
+	text-align: center;
+	font-family: Reaver;
+	font-size: 16px;
+	font-weight: bold;
+	color: #f0f0ea;
+	text-overflow: shrink;
+	text-shadow: 1px 1px 2px 1 black;
+}
+
+.SmelterStatPanel.TwoLines
+{
+	height: 46px;
+}
+
+.SmelterStatPanel.TwoLines .SmelterStatLabel2
+{
+	text-overflow: clip;
+}
+
+.SmelterStatLabel2.SmelterStatActive
+{
+	color: #81db77;
+}
+
+.SmelterEmptyLabel
+{
+	margin-top:16px;
+	margin-bottom:16px;
+	margin-left:15px;
+	margin-right:25px;
+	text-align: center;
+	horizontal-align: center;
+	color: white;
+	font-size: 20px;
+	font-family: Radiance;
+	font-weight: bold;
+	text-shadow: 1px 1px 3px 3 black;
+}
+
+.StorageCard
+{
+	tooltip-position: top;
+}
+
+.StorageCardCount
+{
+	ignore-parent-flow: true;
+	horizontal-align: right;
+	vertical-align: top;
+	margin: 6px;
+	min-width: 30px;
+	height: 26px;
+	padding: 0px 7px;
+	border-radius: 13px;
+	background-color: #000000dd;
+	border: 1px solid #f3df9caa;
+	text-align: center;
+	font-family: Reaver;
+	font-size: 15px;
+	font-weight: bold;
+	color: #f3df9c;
+	text-shadow: 1px 1px 2px 1 black;
+	z-index: 2;
+}
+
+.StorageCardNamePanel
+{
+	flow-children: down;
+}
+
+.StorageCardNamePanel .ItemName
+{
+	height: 30px;
+	vertical-align: top;
+}
+
+.StorageCard.Melting
+{
+	animation-name: StorageCardBurn;
+	animation-duration: 0.35s;
+	animation-timing-function: ease-in;
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards;
+}
+
+@keyframes 'StorageCardBurn'
+{
+	0%
+	{
+		opacity: 1;
+		wash-color: #ffffff00;
+		pre-transform-scale2d: 1.0;
+	}
+	
+	40%
+	{
+		opacity: 1;
+		wash-color: #ff9a2eaa;
+		pre-transform-scale2d: 1.06;
+	}
+	
+	100%
+	{
+		opacity: 0;
+		wash-color: #ff4d0aff;
+		pre-transform-scale2d: 0.65;
+	}
+	
+}
+
+.StorageCardExp
+{
+	horizontal-align: center;
+	text-align: center;
+	font-family: Radiance;
+	font-size: 14px;
+	font-weight: bold;
+	text-transform:uppercase;
+	color: #ffb347;
+	text-shadow: 1px 1px 2px 1 black;
+}
+
+.StorageCardMeltButton
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#d9741f), to(#8a3a0b));
+	transition-property: brightness;
+	transition-duration: 0.1s;
+}
+
+.StorageCardMeltButton:hover
+{
+	brightness: 1.35;
+}
+
+.ChestWindow
+{
+	width: 100%;
+	height: 100%;
+	margin-left: 3px;
+	margin-right: 3px;
+	margin-bottom: 3px;
+	visibility: collapse;
+	flow-children: down;
+}
+
+.RunesOpenButtonCrystal
+{
+	width: 26px;
+	height: 26px;
+	margin-right: 6px;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/custom_game/shop/wodacrystal_png.vtex");
+	background-size: 100%;
+	img-shadow: 0px 0px 2px 2 black;
+}
+
+.RunesOpenButtonCrystal.BossSoulIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/shop/boss_soul_png.vtex");
+}
+
+.SubscriptionCards
+{
+	align: center center;
+	flow-children: right;
+}
+
+.SubscriptionCard
+{
+	width: 420px;
+	height: 790px;
+	margin: 0px 24px;
+	padding: 26px 40px 30px 40px;
+	flow-children: down;
+	background-color: #080d16;
+	background-size: 100% 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+	box-shadow: 0px 0px 24px 2px #00000099;
+}
+
+.SubscriptionCardPlus
+{
+	background-image: url("s2r://panorama/images/custom_game/shop/subscriptions/plus_png.vtex");
+}
+
+.SubscriptionCardPremium
+{
+	background-image: url("s2r://panorama/images/custom_game/shop/subscriptions/premium_png.vtex");
+}
+
+.SubscriptionCardTitle
+{
+	margin-top:40px;
+	width: 100%;
+	horizontal-align: center;
+	text-align: center;
+	font-family: Reaver;
+	font-size: 34px;
+	font-weight: bold;
+	letter-spacing: 3px;
+	text-transform: uppercase;
+	color: white;
+	text-shadow: 2px 2px 4px black;
+}
+
+.SubscriptionCardPlus .SubscriptionCardTitle
+{
+	color: gradient(linear, 0% 0%, 100% 0%, from(#bfe0ff), color-stop(0.5, #6fa8e6), to(#3d7ac2));
+}
+
+.SubscriptionCardPremium .SubscriptionCardTitle
+{
+	color: gradient(linear, 0% 0%, 100% 0%, from(#F8E8B9), color-stop(0.5, #E4C269), to(#C79123));
+}
+
+.SubscriptionCardSubtitle
+{
+	width: 100%;
+	margin-top: 2px;
+	horizontal-align: center;
+	text-align: center;
+	font-family: Radiance;
+	font-size: 16px;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	color: #ffffff99;
+	text-shadow: 1px 1px 2px black;
+}
+
+.SubscriptionCardImage
+{
+	width: 200px;
+	height: 200px;
+	margin-top: 18px;
+	margin-bottom: 14px;
+	horizontal-align: center;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	img-shadow: 0px 0px 14px 3 black;
+}
+
+.SubscriptionCardImagePlus
+{
+	background-image: url("s2r://panorama/images/custom_game/shop/dp_plus_noglow_png.vtex");
+}
+
+.SubscriptionCardImagePremium
+{
+	background-image: url("s2r://panorama/images/custom_game/shop/dp_premium_png.vtex");
+}
+
+.SubscriptionCardRewards
+{
+	width: 100%;
+	height: 210px;
+	padding: 10px;
+	flow-children: down;
+	background-color: #00000066;
+	border-radius: 6px;
+}
+
+.SubscriptionRewardRow
+{
+	width: 100%;
+	margin-bottom: 8px;
+	flow-children: right;
+}
+
+.SubscriptionRewardMark
+{
+	width: 9px;
+	height: 9px;
+	margin-top: 6px;
+	margin-right: 10px;
+	border-radius: 5px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#6fa8e6), to(#2f66b0));
+	border: 1px solid #ffffff44;
+}
+
+.SubscriptionCardPremium .SubscriptionRewardMark
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#e9c730), to(#8a6a12));
+}
+
+.SubscriptionRewardLabel
+{
+	width: 302px;
+	font-family: Radiance;
+	font-size: 16px;
+	color: #e6edf3;
+	text-shadow: 1px 1px 2px black;
+}
+
+.SubscriptionRewardDivider
+{
+	width: 100%;
+	height: 22px;
+	margin-top: 4px;
+	margin-bottom: 8px;
+	flow-children: right;
+}
+
+.SubscriptionRewardDividerLine
+{
+	width: fill-parent-flow(1.0);
+	height: 1px;
+	vertical-align: center;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#6fa8e600), color-stop(0.5, #6fa8e6aa), to(#6fa8e600));
+}
+
+.SubscriptionCardPremium .SubscriptionRewardDividerLine
+{
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#e4c26900), color-stop(0.5, #e4c269bb), to(#e4c26900));
+}
+
+.SubscriptionRewardDividerLabel
+{
+	margin: 0px 10px;
+	vertical-align: center;
+	font-family: Reaver;
+	font-size: 12px;
+	font-weight: bold;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	color: #8fc0f0;
+	text-shadow: 1px 1px 2px black;
+}
+
+.SubscriptionCardPremium .SubscriptionRewardDividerLabel
+{
+	color: #e4c269;
+}
+
+.SubscriptionRewardRow.Instant .SubscriptionRewardMark
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#ffffff), to(#9fb3c8));
+}
+
+.SubscriptionCardBuy
+{
+	width: 100%;
+	height: 50px;
+	margin-top: 16px;
+	horizontal-align: center;
+	background-image: url("s2r://panorama/images/backgrounds/background_play_button_2x_png.vtex");
+	background-size: 100%;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#5b9be0), to(#2a5a9c));
+	border-top: 1px solid #ffffff33;
+	border-bottom: 1px solid #000000aa;
+	transition-property: brightness;
+	transition-duration: 0.1s;
+}
+
+.SubscriptionCardPremium .SubscriptionCardBuy
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#e9c730), to(#61480a));
+}
+
+.SubscriptionCardBuy:hover
+{
+	brightness: 1.3;
+}
+
+.SubscriptionCardBuyLabel
+{
+	align: center center;
+	text-align: center;
+	font-family: Reaver;
+	font-size: 18px;
+	font-weight: bold;
+	letter-spacing: 1px;
+	text-overflow: shrink;
+	text-transform: uppercase;
+	color: white;
+	text-shadow: 1px 1px 3px 2 black;
+}
+
+.SubscriptionCardDescription
+{
+	width: 100%;
+	margin-top: 14px;
+	horizontal-align: center;
+	text-align: center;
+	font-family: Radiance;
+	font-size: 13px;
+	color: #ffffff77;
+	text-shadow: 1px 1px 2px black;
+}
+
+.ChestGacha
+{
+	width: 100%;
+	height: fill-parent-flow(1.0);
+	border-top: 1px solid #4f5e6f88;
+	border-bottom: 1px solid #4f5e6f88;
+	flow-children: down;
+}
+
+.ChestGachaStage
+{
+	width: 100%;
+	background-color: #000a;
+	height: fill-parent-flow(1.0);
+}
+
+.ChestGachaStage.ChestPrayerIdle
+{
+	background-image: url("s2r://panorama/images/custom_game/shop/prayer_background_celestial_png.vtex");
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.ChestGachaStage.ChestPrayerIdle.BossPrayer
+{
+	background-image: url("s2r://panorama/images/custom_game/shop/prayer_background_infernal_png.vtex");
+}
+
+.ChestGachaRow
+{
+	flow-children: right;
+	horizontal-align: center;
+	margin-top: 120px;
+	padding: 0px 24px 140px 24px;
+	overflow: noclip;
+}
+
+.ChestGachaIdle
+{
+	align: center center;
+	flow-children: down;
+}
+
+@keyframes 'ChestIdleFloat'
+{
+	0%
+	{
+		transform: translateY(0px);
+	}
+	
+	50%
+	{
+		transform: translateY(-14px);
+	}
+	
+	100%
+	{
+		transform: translateY(0px);
+	}
+	
+}
+
+.ChestPrayerSelectedRow
+{
+	horizontal-align: center;
+	flow-children: right;
+}
+
+.ChestPrayerOthers
+{
+	margin-top: 10px;
+	horizontal-align: center;
+	flow-children: right;
+}
+
+.ChestPrayerCard
+{
+	width: 160px;
+	margin: 0px 8px;
+	horizontal-align: center;
+	flow-children: down;
+	saturation: 0.15;
+	brightness: 0.7;
+	transition-property: saturation, brightness;
+	transition-duration: 0.15s;
+}
+
+.ChestPrayerCard:hover
+{
+	brightness: 1.15;
+	saturation: 0.45;
+}
+
+.ChestPrayerCard.Selected:hover
+{
+	brightness: 1.0;
+	saturation: 1;
+}
+
+.ChestPrayerCard.Selected
+{
+	width: 260px;
+	saturation: 1;
+	brightness: 1;
+}
+
+.ChestPrayerIcon
+{
+	width: 110px;
+	height: 110px;
+	horizontal-align: center;
+	background-image: url("s2r://panorama/images/custom_game/shop/prayer_treasure_celestial_png.vtex");
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.ChestPrayerCard.BossPrayer .ChestPrayerIcon
+{
+	background-image: url("s2r://panorama/images/custom_game/shop/prayer_treasure_infernal_png.vtex");
+}
+
+.ChestPrayerCard.Selected .ChestPrayerIcon
+{
+	width: 220px;
+	height: 220px;
+	img-shadow: 0px 0px 24px 6 #f3df9c55;
+	animation-name: ChestIdleFloat;
+	animation-duration: 3s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+}
+
+.ChestPrayerName
+{
+	margin-top: 6px;
+	padding: 4px 8px;
+	background-color: #101824cc;
+	border-radius: 4px;
+	width: 100%;
+	horizontal-align: center;
+	text-align: center;
+	font-family: Reaver;
+	font-size: 16px;
+	font-weight: bold;
+	color: #b8c2cc;
+	text-overflow: shrink;
+	text-shadow: 1px 1px 3px 2 black;
+}
+
+.ChestPrayerCard.Selected .ChestPrayerName
+{
+	font-size: 22px;
+	color: #f3df9c;
+}
+
+.ChestPrayerCard.Selected.BossPrayer .ChestPrayerIcon
+{
+	img-shadow: 0px 0px 24px 6 #ff682c66;
+}
+
+.ChestPrayerCard.Selected.BossPrayer .ChestPrayerName
+{
+	color: #ffbc86;
+}
+
+.ChestGachaFooter
+{
+	width: 100%;
+	height: 80px;
+	border-top: 1px solid #4f5e6f88;
+}
+
+.ChestGachaButtons
+{
+	flow-children: right;
+	align: center center;
+}
+
+.ChestOpenButtonWrap
+{
+	width: 330px;
+	height: 78px;
+}
+
+.ChestPoolButton
+{
+	ignore-parent-flow: true;
+	horizontal-align: right;
+	vertical-align: center;
+	margin-right: 20px;
+	width: 240px;
+	height: 40px;
+	background-color: #000b;
+	border: 1px solid #4f5e6f88;
+	border-radius: 4px;
+	transition-property: brightness;
+	transition-duration: 0.1s;
+}
+
+.ChestPoolButton:hover
+{
+	brightness: 1.4;
+}
+
+.ChestPoolButtonLabel
+{
+	align: center center;
+	font-family: Reaver;
+	font-size: 16px;
+	font-weight: bold;
+	color: #f3df9c;
+	text-shadow: 1px 1px 2px 1 black;
+}
+
+.ChestPoolButton.Active
+{
+	border: 1px solid #f3df9caa;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#5a4a1add), to(#000c));
+}
+
+.ChestPoolInline
+{
+	width: 100%;
+	background-color: #000a;
+	height: fill-parent-flow(1.0);
+	flow-children: down;
+}
+
+.ChestPoolFooterCounter
+{
+	ignore-parent-flow: true;
+	horizontal-align: left;
+	vertical-align: center;
+	margin-left: 20px;
+	font-family: Reaver;
+	font-size: 18px;
+	font-weight: bold;
+	color: #f3df9c;
+	text-shadow: 1px 1px 3px 2 black;
+}
+
+.ChestPoolInlineList
+{
+	height: fill-parent-flow(1.0);
+	margin: 0px 0px 0px 0px;
+}
+
+.ChestGachaStatus
+{
+	ignore-parent-flow: true;
+	horizontal-align: left;
+	vertical-align: center;
+	margin-left: 20px;
+	font-family: Radiance;
+	font-size: 16px;
+	color: #f3df9c;
+	text-shadow: 1px 1px 3px 2 black;
+}
+
+.ChestOpenButton
+{
+	width: 300px;
+	height: 46px;
+	horizontal-align: center;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/backgrounds/background_play_button_2x_png.vtex");
+	background-size: 100%;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#e9c730), to(#61480a));
+	border-top: 1px solid #ffffff33;
+	border-bottom: 1px solid #000000aa;
+	transition-property: brightness;
+	transition-duration: 0.1s;
+}
+
+.ChestOpenButton:hover
+{
+	brightness: 1.35;
+}
+
+.ChestOpenButton.PrayerHeaven
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#f1ddb0), to(#8c7148));
+	border-top: 1px solid #fff6dd88;
+}
+
+.ChestOpenButton.PrayerHell
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#6e1510), to(#1c0403));
+	border-top: 1px solid #ff6a3c66;
+}
+
+.ChestOpenButton.PrayerHell .ChestOpenButtonDivider
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#ff6a3c00), color-stop(0.5, #ff6a3caa), to(#ff6a3c00));
+}
+
+.ChestOpenButton.PrayerHell .RunesOpenButtonCrystal.BossSoulIcon
+{
+	img-shadow: 0px 0px 6px 2 #ffb347;
+}
+
+.ChestAcceptButton
+{
+	ignore-parent-flow: true;
+	horizontal-align: center;
+	vertical-align: bottom;
+	margin-bottom: 46px;
+	width: 260px;
+	z-index: 5;
+	opacity: 0;
+	transform: translateY(24px);
+	transition-property: opacity, transform;
+	transition-duration: 0.45s;
+	transition-timing-function: ease-out;
+}
+
+.ChestAcceptButton.Show
+{
+	opacity: 1;
+	transform: translateY(0px);
+}
+
+.ChestAcceptButtonLabel
+{
+	margin-right: 0px;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+}
+
+.ChestOpenButton.Locked
+{
+	saturation: 0.2;
+	brightness: 0.55;
+}
+
+.ChestOpenButtonContent
+{
+	flow-children: right;
+	align: center center;
+}
+
+.ChestOpenButtonDivider
+{
+	width: 2px;
+	height: 26px;
+	margin-right: 14px;
+	margin-left: 14px;
+	vertical-align: center;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#00000000), color-stop(0.5, #000000aa), to(#00000000));
+}
+
+.ChestOpenButtonLabel
+{
+	vertical-align: center;
+	font-family: Reaver;
+	font-size: 20px;
+	font-weight: bold;
+	color: white;
+	text-shadow: 1px 1px 3px 2 black;
+}
+
+.ChestOpenButtonPriceRow
+{
+	flow-children: right;
+	vertical-align: center;
+}
+
+.ChestOpenButtonHint
+{
+	ignore-parent-flow: true;
+	horizontal-align: right;
+	vertical-align: top;
+	margin-top: 6px;
+	margin-right: -15px;
+	padding: 1px 8px;
+	border-radius: 9px;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#60862d), to(#3d5f1c));
+	border: 1px solid #ffffff55;
+	font-family: Reaver;
+	font-size: 13px;
+	font-weight: bold;
+	color: white;
+	text-shadow: 1px 1px 2px 1 black;
+	z-index: 2;
+}
+
+.ChestRevealCard
+{
+	width: 132px;
+	height: 360px;
+	margin: 6px 5px;
+	vertical-align: center;
+	tooltip-position: top;
+	overflow: noclip;
+	opacity: 0;
+	transform: translateY(120px) rotateY(90deg);
+	brightness: 6;
+	transition-property: opacity, transform, brightness, position;
+	transition-duration: 0.45s;
+	transition-timing-function: ease-out;
+}
+
+.ChestRevealCard.Show
+{
+	opacity: 1;
+	transform: translateY(0px) rotateY(0deg);
+	brightness: 1;
+}
+
+.ChestRevealGlow
+{
+	ignore-parent-flow: true;
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/shop/chest_card_glow_png.vtex");
+	background-size: 100% 100%;
+	opacity: 0.55;
+	animation-name: ChestCardGlowPulse;
+	animation-duration: 2.2s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+}
+
+@keyframes 'ChestCardGlowPulse'
+{
+	0%
+	{
+		opacity: 0.35;
+	}
+	
+	50%
+	{
+		opacity: 0.75;
+	}
+	
+	100%
+	{
+		opacity: 0.35;
+	}
+	
+}
+
+.ChestRevealBG
+{
+	ignore-parent-flow: true;
+	width: 100%;
+	height: 100%;
+	opacity-mask: url("s2r://panorama/images/custom_game/shop/chest_card_mask_png.vtex") 1;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#5f6d81), to(#12151c));
+	opacity: 0.9;
+}
+
+.ChestRevealFrame
+{
+	ignore-parent-flow: true;
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/shop/chest_card_frame_png.vtex");
+	background-size: 100% 100%;
+	wash-color: #c9d2de;
+	img-shadow: 0px 0px 10px 2 #ffffff44;
+}
+
+.ChestRevealContent
+{
+	ignore-parent-flow: true;
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+}
+
+.ChestRevealFx
+{
+	ignore-parent-flow: true;
+	width: 100%;
+	height: 302px;
+	vertical-align: top;
+	z-index: 6;
+	wash-color: #c9d2de;
+	brightness: 2;
+}
+
+.ChestRevealTier
+{
+	horizontal-align: center;
+	margin-top: 34px;
+	font-family: Reaver;
+	font-size: 34px;
+	font-weight: bold;
+	color: #c9d2de;
+	text-shadow: 1px 1px 4px 3 black;
+}
+
+.ChestRevealIcon
+{
+	width: 100px;
+	height: 100px;
+	margin-top: 25px;
+	horizontal-align: center;
+	border-radius: 6px;
+	background-size: 100%;
+}
+
+.ChestRevealName
+{
+	width: 112px;
+	margin-top: 100px;
+	horizontal-align: center;
+	vertical-align: center;
+	text-align: center;
+	font-family: Reaver;
+	font-weight: bold;
+	ignore-parent-flow: true;
+	font-size: 15px;
+	color: white;
+	text-overflow: shrink;
+	text-shadow: 1px 1px 3px 2 black;
+	z-index: 100;
+}
+
+.ChestRevealTag
+{
+	width: 100px;
+	horizontal-align: center;
+	text-align: center;
+	font-family: Radiance;
+	font-size: 14px;
+	font-weight: bold;
+	text-transform: uppercase;
+	color: #81db77;
+	text-shadow: 1px 1px 2px 1 black;
+	ignore-parent-flow: true;
+	vertical-align: center;
+	margin-top: 220px;
+}
+
+.ChestRevealCard.Duplicate .ChestRevealTag
+{
+	color: #f3df9c;
+}
+
+.ChestRarity_C .ChestRevealBG
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#2a5ea8), to(#0d1a33));
+}
+
+.ChestRarity_B .ChestRevealBG
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#6b3aa0), to(#22103a));
+}
+
+.ChestRarity_A .ChestRevealBG
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#a5851c), to(#2e2408));
+}
+
+.ChestRarity_S .ChestRevealBG
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#b85d14), to(#361a05));
+}
+
+.ChestRarity_R .ChestRevealBG
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#a92727), to(#330a0a));
+}
+
+.ChestRarity_U .ChestRevealBG
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#2c8a3e), to(#0b2612));
+}
+
+.ChestRarity_C .ChestRevealFrame,.ChestRarity_C .ChestRevealGlow,.ChestRarity_C .ChestRevealFx
+{
+	wash-color: #3d86ff;
+}
+
+.ChestRarity_B .ChestRevealFrame,.ChestRarity_B .ChestRevealGlow,.ChestRarity_B .ChestRevealFx
+{
+	wash-color: #b04ee6;
+}
+
+.ChestRarity_A .ChestRevealFrame,.ChestRarity_A .ChestRevealGlow,.ChestRarity_A .ChestRevealFx
+{
+	wash-color: #f2d21c;
+}
+
+.ChestRarity_S .ChestRevealFrame,.ChestRarity_S .ChestRevealGlow,.ChestRarity_S .ChestRevealFx
+{
+	wash-color: #ff8a1f;
+}
+
+.ChestRarity_R .ChestRevealFrame,.ChestRarity_R .ChestRevealGlow,.ChestRarity_R .ChestRevealFx
+{
+	wash-color: #ff3b3b;
+}
+
+.ChestRarity_U .ChestRevealFrame,.ChestRarity_U .ChestRevealGlow,.ChestRarity_U .ChestRevealFx
+{
+	wash-color: #3fe05a;
+}
+
+.ChestRarity_C .ChestRevealTier
+{
+	color: #3d86ff;
+}
+
+.ChestRarity_B .ChestRevealTier
+{
+	color: #b04ee6;
+}
+
+.ChestRarity_A .ChestRevealTier
+{
+	color: #f2d21c;
+}
+
+.ChestRarity_S .ChestRevealTier
+{
+	color: #ff8a1f;
+}
+
+.ChestRarity_R .ChestRevealTier
+{
+	color: #ff3b3b;
+}
+
+.ChestRarity_U .ChestRevealTier
+{
+	color: #3fe05a;
+}
+
+.ChestPoolGroupHeader
+{
+	width: 100%;
+	height: 34px;
+	flow-children: right;
+}
+
+.ChestPoolGroupLine
+{
+	width: fill-parent-flow(1.0);
+	height: 1px;
+	vertical-align: center;
+	background-color: #4f5e6f66;
+}
+
+.ChestPoolGroupNameRow
+{
+	vertical-align: center;
+	margin: 0px 2px 0px 14px;
+	flow-children: right;
+}
+
+.ChestPoolGroupPrefix
+{
+	color: #ffffff99;
+	margin-right: 6px;
+}
+
+.ChestPoolGroupName
+{
+	vertical-align: center;
+	font-family: Radiance;
+	font-size: 15px;
+	font-weight: bold;
+	text-shadow: 1px 1px 2px 1 black;
+}
+
+.ChestPoolGroupValue
+{
+	font-family: Reaver;
+	font-size: 18px;
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	text-shadow: 1px 1px 3px 2 black;
+}
+
+.ChestPoolGroupChance
+{
+	vertical-align: center;
+	margin-right: 14px;
+	font-family: Radiance;
+	font-size: 15px;
+	font-weight: bold;
+	color: #b8c2cc;
+	text-shadow: 1px 1px 2px 1 black;
+}
+
+.ChestPoolCard
+{
+	width: 118px;
+	height: 150px;
+	margin-top: 4px;
+	margin-bottom: 4px;
+	margin-left:13px;
+	background-color: #000b;
+	border: 1px solid #4f5e6f88;
+	border-radius: 6px;
+	flow-children: down;
+	tooltip-position: top;
+	transition-property: brightness, pre-transform-scale2d;
+	transition-duration: 0.1s;
+}
+
+.ChestPoolCard:hover
+{
+	brightness: 1.18;
+	pre-transform-scale2d: 1.03;
+}
+
+.ChestPoolIcon
+{
+	width: 100px;
+	height: 100px;
+	margin-top: 6px;
+	horizontal-align: center;
+	border-radius: 6px;
+	background-size: 100%;
+}
+
+.ChestPoolNamePanel
+{
+	width: 110px;
+	height: 36px;
+	margin-top: 4px;
+	horizontal-align: center;
+}
+
+.ChestPoolName
+{
+	width: 110px;
+	horizontal-align: center;
+	vertical-align: center;
+	text-align: center;
+	font-family: Radiance;
+	font-weight: bold;
+	font-size: 13px;
+	color: white;
+	text-overflow: shrink;
+	text-shadow: 1px 1px 3px 2 black;
+}
+
+.HeroesWindow
+{
+	width: 100%;
+	height: 100%;
+	margin-left: 3px;
+	margin-right: 3px;
+	margin-bottom: 3px;
+	visibility: collapse;
+	flow-children: right;
+}
+
+.HeroTabPanel
+{
+	flow-children: down;
+}
+
+.HeroTabLeft
+{
+	width: 320px;
+}
+
+.HeroTabRight
+{
+	width: 420px;
+}
+
+.HeroTabPanelHeader
+{
+	width: 100%;
+	height: 44px;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#3a3120ee), to(#1a1710ee));
+	border-bottom: 1px solid #b6923f55;
+	border-radius: 6px 6px 0px 0px;
+	flow-children: right;
+}
+
+.HeroTabPanelTitle
+{
+	vertical-align: center;
+	margin-left: 16px;
+	font-family: Reaver;
+	font-size: 20px;
+	font-weight: bold;
+	color: #f3df9c;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	text-shadow: 1px 1px 4px 2 black;
+}
+
+.HeroTabFilters
+{
+	width: 100%;
+	height: 36px;
+	margin-top:12px;
+	margin-bottom:12px;
+	flow-children: right;
+	horizontal-align: center;
+}
+
+.HeroTabFilter
+{
+	width: 36px;
+	height: 36px;
+	margin-left:24px;
+	border-radius: 32px;
+	saturation: 0.3;
+	brightness: 0.6;
+	transition-property: brightness, saturation, box-shadow;
+	transition-duration: 0.15s;
+	tooltip-position: bottom;
+}
+
+.HeroTabFilter:hover
+{
+	brightness: 1.1;
+	saturation: 0.8;
+}
+
+.HeroTabFilter.Active
+{
+	saturation: 1;
+	brightness: 1;
+	box-shadow: #638fe4 0px 0px 4px 2px;
+}
+
+.HeroTabList
+{
+	width: 100%;
+	flow-children: down;
+	horizontal-align: center;
+	overflow: squish scroll;
+}
+
+.HeroTabCard
+{
+	width: 90px;
+	height: 118px;
+	margin: 5px;
+	border-radius: 6px;
+	transition-property: brightness, saturation, pre-transform-scale2d;
+	transition-duration: 0.1s;
+}
+
+.HeroTabCard:hover
+{
+	brightness: 1.15;
+	saturation: 1;
+	pre-transform-scale2d: 1.04;
+}
+
+.HeroTabCard.Selected
+{
+	border: 2px solid #e4c269;
+	box-shadow: 0px 0px 3px 1px #e4c26955;
+	saturation: 1;
+	brightness: 1.1;
+}
+
+.HeroTabCardImage
+{
+	width: 100%;
+	height: 100%;
+}
+
+.HeroTabCardBadge
+{
+	width: 34px;
+	height: 34px;
+	horizontal-align: right;
+	vertical-align: bottom;
+	margin: 2px;
+}
+
+.HeroTabCardBadgeLabel
+{
+	align: center center;
+	text-align: center;
+	font-family: Reaver;
+	font-size: 17px;
+	font-weight: bold;
+	color: white;
+	text-shadow: 1px 1px 3px 2 black;
+}
+
+.HeroTabCenter
+{
+	width: 858px;
+	height: 810px;
+	flow-children: down;
+}
+
+.HeroTabModel
+{
+	horizontal-align: center;
+	width: 100%;
+	height: 89%;
+}
+
+.HeroTabInfo
+{
+	width: 100%;
+	margin-top: -153.5px;
+	flow-children: down;
+	horizontal-align:center;
+}
+
+.HeroTabNameRow
+{
+	flow-children: right;
+	margin-left:24px;
+}
+
+.HeroTabHowToRow
+{
+	margin-left: 26px;
+	margin-bottom: 2px;
+	flow-children: right;
+	tooltip-position: top;
+	transition-property: brightness;
+	transition-duration: 0.1s;
+}
+
+.HeroTabHowToRow:hover
+{
+	brightness: 1.3;
+}
+
+.HeroTabRank
+{
+	width: 74px;
+	height: 74px;
+	margin-bottom:4px;
+	vertical-align: center;
+	tooltip-position: top;
+}
+
+.HeroTabRankNumber
+{
+	align: center center;
+	text-align:center center;
+	font-family: Reaver;
+	font-size: 30px;
+	font-weight: bold;
+	color: white;
+	text-shadow: 1px 1px 4px 2 black;
+}
+
+.HeroTabNameBlock
+{
+	margin-left: 12px;
+	vertical-align: center;
+	flow-children: down;
+}
+
+.HeroTabName
+{
+	margin-top:4px;
+	font-family: Reaver;
+	font-size: 38px;
+	font-weight: bold;
+	color: white;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	text-shadow: 2px 2px 6px 3 black;
+}
+
+.HeroTabXpRow
+{
+	margin-left:24px;
+	margin-bottom: 12px;
+	flow-children: right;
+}
+
+.HeroTabXpBlock
+{
+	width: 516px;
+	flow-children: down;
+}
+
+.HeroTabXpTitle
+{
+	font-family: Radiance;
+	font-size: 15px;
+	margin-bottom:6px;
+	font-weight: bold;
+	color: #dfe8f3;
+	text-shadow: 1px 1px 3px 2 black;
+	visibility:collapse;
+}
+
+.HeroTabXpBar
+{
+	width: 100%;
+	height: 46px;
+	background-color: #000000aa;
+	border: 1px solid #ffffff22;
+	border-radius: 6px;
+}
+
+.HeroTabXpFill
+{
+	height: 100%;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#2f7bd2), to(#63b6ff));
+	border-radius: 4px;
+	transition-property: width;
+	transition-duration: 0.3s;
+}
+
+.HeroTabXpFill.Rank_0
+{
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#3d4854), to(#8a99a8));
+}
+
+.HeroTabXpFill.Rank_1
+{
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#97472A), to(#CF9F68));
+}
+
+.HeroTabXpFill.Rank_2
+{
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#59748A), to(#C8E9FF));
+}
+
+.HeroTabXpFill.Rank_3
+{
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#ae9249), to(#e0c59a));
+}
+
+.HeroTabXpFill.Rank_4
+{
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#4867C5), to(#85D4EF));
+}
+
+.HeroTabXpFill.Rank_5
+{
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#48165E), to(#918BD0));
+}
+
+.HeroTabXpFill.Rank_6
+{
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#4b141d), to(#fe8650));
+}
+
+.HeroTabLevelUp.Rank_0
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#8a99a8), to(#3d4854));
+}
+
+.HeroTabLevelUp.Rank_1
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#CF9F68), to(#97472A));
+}
+
+.HeroTabLevelUp.Rank_2
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#C8E9FF), to(#59748A));
+}
+
+.HeroTabLevelUp.Rank_3
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#e0c59a), to(#ae9249));
+}
+
+.HeroTabLevelUp.Rank_4
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#85D4EF), to(#4867C5));
+}
+
+.HeroTabLevelUp.Rank_5
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#918BD0), to(#48165E));
+}
+
+.HeroTabLevelUp.Rank_6
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#fe8650), to(#4b141d));
+}
+
+.HeroTabXpText
+{
+	align: center center;
+	font-family: Radiance;
+	font-size: 20px;
+	font-weight: bold;
+	color: white;
+	text-shadow: 1px 1px 3px 2 black;
+}
+
+.HeroTabLevelUp
+{
+	margin-left: 6px;
+	width: 300px;
+	height: 46px;
+	horizontal-align: center;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/backgrounds/background_play_button_2x_png.vtex");
+	background-size: 100%;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#e9c730), to(#61480a));
+	border-top: 1px solid #ffffff33;
+	border-bottom: 1px solid #000000aa;
+	tooltip-position: top;
+	transition-property: brightness;
+	transition-duration: 0.1s;
+}
+
+.HeroTabLevelUp:hover
+{
+	brightness: 1.35;
+}
+
+.HeroTabLevelUpContent
+{
+	flow-children: right;
+	align: center center;
+}
+
+.HeroTabLevelUp.Hidden
+{
+	visibility: collapse;
+}
+
+.HeroTabLevelUpLabel
+{
+	vertical-align: center;
+	font-family: Reaver;
+	font-size: 20px;
+	font-weight: bold;
+	color: white;
+	text-shadow: 1px 1px 3px 2 black;
+}
+
+.HeroTabLevelUpPrice
+{
+	vertical-align: center;
+	flow-children: right;
+}
+
+.HeroTabLevelUpPriceLabel
+{
+	vertical-align: center;
+	font-family: Reaver;
+	font-size: 20px;
+	font-weight: bold;
+	color: white;
+	text-shadow: 1px 1px 3px 2 black;
+}
+
+.HeroTabLevelUpCrystal
+{
+	width: 26px;
+	height: 26px;
+	margin-left: 4px;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/custom_game/shop/wodacrystal_png.vtex");
+	background-size: 100%;
+	img-shadow: 0px 0px 2px 2 black;
+}
+
+.HeroTabAbilities
+{
+	margin-left:24px;
+	flow-children: right;
+}
+
+.HeroTabAbilityIcon
+{
+	width: 70px;
+	height: 70px;
+	horizontal-align: center;
+	border-radius: 6px;
+	box-shadow: 0px 0px 8px 0px black;
+	tooltip-position: top;
+}
+
+.HeroTabInnateIcon
+{
+	border-radius: 100%;
+	box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0);
+	background-image: url("s2r://panorama/images/hud/facets/innate_icon_large_png.vtex");
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.HeroTabAbilityName
+{
+	width: 96px;
+	height: 32px;
+	margin-top: 4px;
+	horizontal-align: center;
+	text-align: center;
+	font-family: Radiance;
+	font-size: 12px;
+	font-weight: bold;
+	color: #dfe8f3;
+	text-transform: uppercase;
+	text-overflow: shrink;
+	text-shadow: 1px 1px 3px 2 black;
+}
+
+.HeroTabPanel.HeroTabRight
+{
+	background-color: transparent;
+	border: 0px solid transparent;
+}
+
+.HeroTabTalentButtons
+{
+	horizontal-align: right;
+	flow-children: right;
+	margin-top: 12px;
+	margin-bottom: 12px;
+}
+
+.HeroTabTalentButton
+{
+	width: 36px;
+	height: 36px;
+	margin-right: 24px;
+	border-radius: 32px;
+}
+
+.HeroTabTalentButton.SelectTalentButton
+{
+	box-shadow: #638fe4 0px 0px 4px 2px;
+}
+
+.HeroTabTalentWindows
+{
+	width: 100%;
+	margin-right:12px;
+}
+
+.HeroTabTalentWindow
+{
+	horizontal-align: right;
+	width: 392px;
+	height: 590px;
+	flow-children: down;
+	border-radius: 8px;
+	visibility: collapse;
+}
+
+.HeroTabDifficulties
+{
+	width: 420px;
+	horizontal-align: right;
+	overflow: scroll squish;
+}
+
+.HeroTabDifficultyRows
+{
+	margin-top:5px;
+	horizontal-align:center;
+	flow-children: down;
+}
+
+.HeroTabDifficultyRow
+{
+	flow-children: right;
+}
+
+.HeroTabDifficultyCell
+{
+	width: 72px;
+	height: 72px;
+	margin: 4px;
+	background-image: url("s2r://panorama/images/custom_game/shop/difficulty_level_badge_png.vtex");
+	background-size: 100%;
+	saturation: 0;
+	brightness: 0.55;
+	transition-property: brightness;
+	transition-duration: 0.1s;
+}
+
+.HeroTabDifficultyCell:hover
+{
+	brightness: 0.8;
+}
+
+.HeroTabDifficultyCell.Done
+{
+	saturation: 1;
+	brightness: 1;
+}
+
+.HeroTabDifficultyCell.Done:hover
+{
+	brightness: 1.25;
+}
+
+.HeroTabDifficultyNumber
+{
+	align: center center;
+	text-align: center;
+	font-family: Reaver;
+	font-size: 28px;
+	font-weight: bold;
+	color: white;
+	text-shadow: 1px 1px 4px 2 black;
+}
+
+.MenuAchievements
+{
+	width: 200px;
+	height: 38px;
+	margin-bottom: 0px;
+	margin-left: 6px;
+	margin-right: -3px;
+	background-image: url("s2r://panorama/images/backgrounds/background_play_button_2x_png.vtex");
+	background-size: 100%;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#cdb07dcc), to(#6a624ecc));
+	transform: skew(-20deg);
+}
+
+.MenuAchievements:hover
+{
+	brightness: 1.2;
+}
+
+.MenuAchievements .RedAlert
+{
+	horizontal-align: right;
+	vertical-align: top;
+	margin-top: 5px;
+	margin-right: 14px;
+	transform: skew(20deg);
+}
+
+.HeroTabRow
+{
+	flow-children: right;
+	horizontal-align: center;
+}
+
+.HeroTabAbility
+{
+	flow-children: down;
+	width: 78px;
+	margin-right: 8px;
+}
+
+.WodaPlusCenter
+{
+	align: center center;
+	flow-children: down;
+}
+
+.WodaPlusContent
+{
+	flow-children: down;
+	horizontal-align: center;
+	vertical-align: top;
+	margin-right: 0px;
+}
+
+.WodaPlusLargeInfo
+{
+	width: 736px;
+	flow-children: down;
+	ui-scale: 80%;
+	vertical-align: top;
+	horizontal-align: center;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+.WodaPlusDP
+{
+	background-image: url("s2r://panorama/images/custom_game/shop/dp3_png.vtex");
+	background-size: 100%;
+	img-shadow: 0px 0px 3px 2 black;
+	horizontal-align: center;
+	width: 150px;
+	height: 150px;
+}
+
+.ContentImage
+{
+	width: 100%;
+	ui-scale: 105%;
+	height: 300px;
+}
+
+.ThumbContent
+{
+	flow-children: down;
+	horizontal-align: center;
+	vertical-align: top;
+	margin-top: 190px;
+}
+
+.ShopToast
+{
+	width: 100%;
+	height: 100%;
+	visibility: collapse;
+	z-index: 1100;
+}
+
+.ShopToastAccept .ShopToastBody
+{
+	border-bottom: 3px solid #16eb02;
+}
+
+.ShopToastError .ShopToastBody
+{
+	border-bottom: 3px solid #ff3b3b;
+}
+
+.ShopToastLoading .ShopToastBody
+{
+	border-bottom: 3px solid #e4c269;
+}
+
+.ShopToastIcon
+{
+	width: 14px;
+	height: 14px;
+	border-radius: 100%;
+	vertical-align: center;
+	margin-right: 14px;
+}
+
+.ShopToastAccept .ShopToastIcon
+{
+	background-color: #16eb02;
+	box-shadow: 0px 0px 8px 2px #16eb0266;
+}
+
+.ShopToastError .ShopToastIcon
+{
+	background-color: #ff3b3b;
+	box-shadow: 0px 0px 8px 2px #ff3b3b66;
+}
+
+#donate_accept_window #donate_accept_label
+{
+	font-size: 26px;
+	margin-top: 0px;
+	background-color: transparent;
+	color: #16eb02;
+}
+
+#donate_error_window #donate_error_label
+{
+	font-size: 26px;
+	margin-top: 0px;
+	background-color: transparent;
+	color: #ff5e5e;
+}
+
+#donate_loading_window #donate_loading_label
+{
+	font-size: 26px;
+	margin-top: 0px;
+	margin-left: 10px;
+	background-color: transparent;
+	color: #e4c269;
+}
+
+.MenuProfie,.MenuAchievements,.MenuHeroes,.MenuShop,.MenuRunes,.MenuChest,.MenuSmelter,.MenuHeroVotes
+{
+	width: 188px;
+}
+
+.ShopToast.Show .ShopToastBody
+{
+	opacity: 1;
+	transform: translateY(0px);
+	pre-transform-scale2d: 1;
+}
+
+.ShopToastAccept .ShopToastBody,.ShopToastError .ShopToastBody,.ShopToastLoading .ShopToastBody
+{
+	border-bottom: 0px solid transparent;
+}
+
+.ShopToastIcon,.ShopToastLoading #LoadingSpinner
+{
+	visibility: collapse;
+}
+
+.ShopToastBody
+{
+	horizontal-align: center;
+	vertical-align: top;
+	flow-children: right;
+	border-radius: 8px;
+	padding: 0px;
+	background-color: transparent;
+	border: 0px solid transparent;
+	box-shadow: fill transparent 0px 0px 0px 0px;
+	opacity: 0;
+	transform: translateY(0px);
+	pre-transform-scale2d: 0.3;
+	transition-property: opacity, pre-transform-scale2d;
+	transition-duration: 0.18s;
+	transition-timing-function: ease-out;
+	align: center center;
+	margin-top: 0px;
+}
+
+.ShopToastLabel
+{
+	vertical-align: center;
+	font-family: Reaver;
+	font-weight: bold;
+	text-transform: uppercase;
+	text-shadow: 2px 2px 6px 3 black;
+	font-size: 72px;
+	text-align: center;
+	horizontal-align: center;
+}
+
+#donate_accept_window #donate_accept_label,#donate_error_window #donate_error_label,#donate_loading_window #donate_loading_label
+{
+	margin-left: 0px;
+	font-size: 72px;
+	text-align: center;
+	horizontal-align: center;
+}
+
+.RuneCardBuyContent
+{
+	align: center center;
+	flow-children: right;
+}
+
+.RuneCardBuyLabel
+{
+	vertical-align: center;
+	font-family: Reaver;
+	font-size: 16px;
+	font-weight: bold;
+	color: white;
+	text-shadow: 1px 1px 3px 2 black;
+}
+
+.RuneCardBuyCrystal
+{
+	vertical-align: center;
+	margin-left: 2px;
+	width: 18px;
+	height: 18px;
+	background-image: url("s2r://panorama/images/custom_game/shop/wodacrystal_png.vtex");
+	background-size: 100%;
+	img-shadow: 0px 0px 2px 2 black;
+}
+
+.RuneRewardPanel
+{
+	z-index: 1030;
+}
+
+.RuneRewardInfo
+{
+	width: 100%;
+	height: 100%;
+	flow-children: right;
+}
+
+.RuneRewardIcon
+{
+	width: 144px;
+	height: 188px;
+	margin-top: 22px;
+	background-size: 100%;
+}
+
+.RuneRewardName
+{
+	width: 250px;
+	margin-bottom: 8px;
+	horizontal-align: center;
+	text-align: left;
+	font-family: Reaver;
+	font-size: 18px;
+	font-weight: bold;
+	text-overflow: shrink;
+	text-shadow: 1px 1px 3px 2 black;
+	color: white;
+}
+
+.BuyItemPanelMain.RunePanel
+{
+	background-image: url("s2r://panorama/images/custom_game/shop/buyrune_png.vtex");
+	background-size: 100%;
+}
+
+.BuyItemPanelMain.RunePanel .ItemImageBuy
+{
+	width: 144px;
+	height: 144px;
+	margin-top: 20px;
+	margin-left: 40px;
+	background-size: 100%;
+}
+
+.BuyItemPanelMain.RunePanel .ItemInfoAndBuyButton
+{
+	margin-left: 40px;
+}
+
+.RuneLevelBar
+{
+	ignore-parent-flow: true;
+	visibility: collapse;
+	horizontal-align: left;
+	vertical-align: top;
+	margin-left: 37px;
+	margin-top: 215px;
+	width: 150px;
+	height: 30px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #272d2eee ), to( #131617ee ) );
+}
+
+.RunePanel .RuneLevelBar
+{
+	visibility: visible;
+}
+
+.RuneLevelBarFill
+{
+	height: 100%;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#60862d), to(#3d5f1c));
+	transition-property: width;
+	transition-duration: 0.2s;
+}
+
+.RuneLevelBarLabel
+{
+	width: 100%;
+	align: center center;
+	text-align: center;
+	font-family: Reaver;
+	font-size: 15px;
+	font-weight: bold;
+	color: white;
+	text-overflow: shrink;
+	text-shadow: 1px 1px 3px 2 black;
+}
+
+.AchievementsFilters
+{
+	margin-left: 12px;
+	margin-top: 4px;
+	flow-children: right;
+}
+
+.AchievementsFilterButton
+{
+	height: 34px;
+	min-width: 60px;
+	margin-right: 8px;
+	border-radius: 4px;
+	background-image: url("s2r://panorama/images/backgrounds/background_play_button_2x_png.vtex");
+	background-size: 100%;
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#cdb07d88), to(#6a624e88));
+	transition-property: brightness, background-color;
+	transition-duration: 0.1s;
+}
+
+.AchievementsFilterButton:hover
+{
+	brightness: 1.3;
+}
+
+.AchievementsFilterButton .RedAlert
+{
+	horizontal-align: right;
+	vertical-align: top;
+	margin: 3px;
+}
+
+.AchievementsFilterButton.Active
+{
+	background-color: gradient(linear, 0% 0%, 0% 100%, from(#e9c730cc), to(#61480acc));
+	box-shadow: 0px 0px 8px 1px #e4c26955;
+}
+
+.AchievementsFilterLabel
+{
+	align: center center;
+	font-family: Reaver;
+	font-size: 16px;
+	font-weight: bold;
+	margin-left: 18px;
+	margin-right: 18px;
+	color: white;
+	text-transform: uppercase;
+	text-shadow: 1px 1px 4px 1.5 black;
+}
+
+.AchievementsHeader
+{
+	width: 100%;
+	flow-children: right;
+	height: 34px;
+	margin-top: 2px;
+}
+
+.AchievementsCounter
+{
+	vertical-align: center;
+	font-family: Reaver;
+	font-weight: bold;
+	margin-left: 8px;
+	font-size: 20px;
+	color: white;
+	text-shadow: 1px 1px 3px 2 black;
+}
+
+.ShopArenaFilters
+{
+	width: 100%;
+	margin-top:10px;
+	flow-children: right-wrap;
+}
+
+.ShopArenaFilters .AchievementsFilterButton
+{
+	margin-bottom: 6px;
+}
+
+.ShopArenaFilters .AchievementsFilterLabel
+{
+	font-size: 16px;
+	margin-left: 8px;
+	margin-right: 8px;
 }

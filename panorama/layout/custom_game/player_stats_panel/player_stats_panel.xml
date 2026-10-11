@@ -1,0 +1,98 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1a5b3bb 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/multiteam_end_screen/multiteam_end_screen.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/player_stats_panel/player_stats_panel.vcss" />
+	</styles>
+	<Panel class="PlayerStatsPanel" hittest="false">
+		<Panel class="PlayerStatsSummary" hittest="false">
+			<Panel class="PlayerStatsBlock PlayerStatsPlaceBlock" hittest="false">
+				<Label class="PlayerStatsLabel" text="#eliminated_place_label" />
+				<Panel class="PlayerStatsValueRow" hittest="false">
+					<Label class="PlayerStatsValue PlayerStatsPlace" id="PlayerStatsPlace" text="-" />
+				</Panel>
+			</Panel>
+			<Panel class="PlayerStatsBlock PlayerStatsArenaResultBlock" id="PlayerStatsArenaResult" hittest="false">
+				<Label class="PlayerStatsLabel" text="#arena_difficulty_info_title" />
+				<Panel class="PlayerStatsArenaResultBadge" id="PlayerStatsArenaResultBadge" hittest="false">
+					<Label class="PlayerStatsArenaResultNumber" id="PlayerStatsArenaResultNumber" text="" />
+				</Panel>
+			</Panel>
+			<Panel class="PlayerStatsBlock" hittest="false">
+				<Label class="PlayerStatsLabel" text="#flayoutraiting" />
+				<Panel class="PlayerStatsValueRow" hittest="false">
+					<Panel class="PlayerStatsIcon PlayerStatsRatingIcon" />
+					<Label class="PlayerStatsValue" id="PlayerStatsRatingNow" text="0" />
+					<Label class="PlayerStatsValue PlayerStatsArrow" text="»" />
+					<Label class="PlayerStatsValue" id="PlayerStatsRatingNew" text="0" />
+					<Label class="PlayerStatsChange" id="PlayerStatsRatingChange" text="" />
+					<Label class="PlayerStatsBadge" id="PlayerStatsBadgeDouble" text="#eliminated_x2_double" />
+				</Panel>
+			</Panel>
+			<Panel class="PlayerStatsBlock" hittest="false">
+				<Label class="PlayerStatsLabel" text="#flayoutcoins" />
+				<Panel class="PlayerStatsValueRow" hittest="false">
+					<Panel class="PlayerStatsIcon PlayerStatsCoinIcon" />
+					<Label class="PlayerStatsValue PlayerStatsCoins" id="PlayerStatsCoins" text="0" />
+					<Label class="PlayerStatsBadge" id="PlayerStatsBadgePlus" text="#eliminated_x2_plus" />
+					<Label class="PlayerStatsBadge PlayerStatsBadgePremium" id="PlayerStatsBadgePremium" text="#eliminated_premium" />
+				</Panel>
+			</Panel>
+			<Panel class="PlayerStatsBlock PlayerStatsSoulBlock" id="PlayerStatsSoulBlock" hittest="false">
+				<Label class="PlayerStatsLabel" text="#boss_souls" />
+				<Panel class="PlayerStatsValueRow" hittest="false">
+					<Panel class="PlayerStatsIcon PlayerStatsSoulIcon" />
+					<Label class="PlayerStatsValue PlayerStatsSouls" id="PlayerStatsSouls" text="0" />
+				</Panel>
+			</Panel>
+			<Panel class="PlayerStatsBlock" hittest="false">
+				<Label class="PlayerStatsLabel" text="#eliminated_game_time" />
+				<Panel class="PlayerStatsValueRow" hittest="false">
+					<Label class="PlayerStatsValue" id="PlayerStatsGameTime" text="00:00" />
+				</Panel>
+			</Panel>
+			<Panel class="PlayerStatsBlock PlayerStatsHeroBlock" hittest="false">
+				<Label class="PlayerStatsLabel" text="#eliminated_hero_progress" />
+				<Panel class="PlayerStatsValueRow" hittest="false">
+					<Panel class="PlayerStatsIcon PlayerStatsHeroRankIcon" id="PlayerStatsHeroRankIcon" />
+					<Label class="PlayerStatsValue" id="PlayerStatsHeroLevelBefore" text="0" />
+					<Label class="PlayerStatsValue PlayerStatsArrow" text="»" />
+					<Label class="PlayerStatsValue" id="PlayerStatsHeroLevelAfter" text="0" />
+					<Label class="PlayerStatsChange" id="PlayerStatsHeroXpChange" text="" />
+				</Panel>
+				<Panel class="PlayerStatsHeroXpRow" hittest="false">
+					<Panel class="PlayerStatsHeroXpBar" hittest="false">
+						<Panel class="PlayerStatsHeroXpFill" id="PlayerStatsHeroXpFill" />
+					</Panel>
+					<Label class="PlayerStatsHeroXpText" id="PlayerStatsHeroXpText" text="" />
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel class="Legend PlayerStatsLegend" hittest="false">
+			<Panel class="LegendPanel ScoreCol_Avatar" />
+			<Panel class="LegendPanel ScoreCol_Hero" />
+			<Panel class="LegendPanel ScoreCol_PlayerDetails" />
+			<Label class="LegendPanel ScoreCol_TalentStrength" text="#flayoutstr" />
+			<Label class="LegendPanel ScoreCol_TalentAgility" text="#flayoutagi" />
+			<Label class="LegendPanel ScoreCol_TalentIntellect" text="#flayoutint" />
+			<Label class="LegendPanel ScoreCol_Level" text="#flayoutlevel" />
+			<Label class="LegendPanel ScoreCol_Networths" text="#flayoutnetworths" />
+			<Label class="LegendPanel ScoreCol_Kills" text="#flayoutkills" />
+			<Label class="LegendPanel ScoreCol_Deaths" text="#flayoutdeaths" />
+			<Label class="LegendPanel ScoreCol_Assists" text="#flayoutassists" />
+			<Label class="LegendPanel ScoreCol_Items" text="#flayoutitems" />
+		</Panel>
+		<Panel class="PlayerStatsRow" id="PlayerStatsRow" hittest="false" />
+	</Panel>
+</root>

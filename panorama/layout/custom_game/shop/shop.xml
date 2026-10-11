@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -12,13 +12,22 @@
 <root>
 	<styles>
 		<include src="s2r://panorama/styles/dotastyles.css" />
-		<include src="s2r://panorama/layout/custom_game/shop/shop.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/shop/shop.vcss" />
+		<include src="s2r://panorama/layout/custom_game/styles/xsolla_store.vcss" />
+		<include src="s2r://panorama/layout/custom_game/custom_talents/custom_talents.vcss" />
+		<include src="s2r://panorama/layout/custom_game/styles/rarity.vcss" />
+		<include src="s2r://panorama/layout/custom_game/shop/profile.vcss" />
 	</styles>
 	<scripts>
-		<include src="s2r://panorama/layout/custom_game/scripts/util.vjs_c" />
-		<include src="s2r://panorama/layout/custom_game/scripts/xsolla_store.vjs_c" />
-		<include src="s2r://panorama/layout/custom_game/shop/shop_items_information.vjs_c" />
-		<include src="s2r://panorama/layout/custom_game/shop/shop.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/scripts/util.vjs" />
+		<include src="s2r://panorama/layout/custom_game/scripts/top_menu_info.vjs" />
+		<include src="s2r://panorama/layout/custom_game/scripts/xsolla_store.vjs" />
+		<include src="s2r://panorama/layout/custom_game/shop/shop_items_information.vjs" />
+		<include src="s2r://panorama/layout/custom_game/shop/item_arena_bonus.vjs" />
+		<include src="s2r://panorama/layout/custom_game/shop/item_rarity.vjs" />
+		<include src="s2r://panorama/layout/custom_game/shop/quests_list.vjs" />
+		<include src="s2r://panorama/layout/custom_game/shop/shop.vjs" />
+		<include src="s2r://panorama/layout/custom_game/shop/profile.vjs" />
 	</scripts>
 	<Panel style="width:100%;height:100%;" hittest="false">
 		<Panel id="DonateButton" onactivate="ToggleDonateButton(&apos;ProfileWindow&apos;, &apos;MenuProfie&apos;);" onmouseover="DOTAShowTextTooltip(#button_top_profile)" onmouseout="DOTAHideTextTooltip()">
@@ -26,30 +35,7 @@
 			<Panel class="RedAlert" />
 		</Panel>
 		<Panel id="DonateButtonNY" onactivate="ToggleDonateButton(&apos;ShopWindow&apos;, &apos;MenuShop&apos;);SwitchTabShop(&apos;ShopMenuButtonPlus&apos;, &apos;ShopMenuButtonPlus&apos;);" onmouseover="DOTAShowTextTooltip(#button_top_shop)" onmouseout="DOTAHideTextTooltip()" />
-		<Panel id="HeroVotesButton" class="HeroVotesButton" onactivate="OpenHeroVotesPanel();" onmouseover="DOTAShowTextTooltip(#button_top_hero_votes)" onmouseout="DOTAHideTextTooltip()" />
 		<Panel id="DonateButtonRunes" onactivate="ToggleDonateButton(&apos;RunesWindow&apos;, &apos;MenuRunes&apos;);" onmouseover="DOTAShowTextTooltip(#rune_top_button_2)" onmouseout="DOTAHideTextTooltip()" />
-		<Panel class="ChoosePayMethode IsOpacity" id="ChoosePayMethode">
-			<Panel class="BuyItemPanelTop">
-				<Label class="BuyItemPanelName" text="#paymethod_choose" />
-				<Panel class="Close" onactivate="PaymentClose();" />
-			</Panel>
-			<Panel class="PaymentVariants">
-				<Panel class="PaymentBlock" onactivate="RequestUrl();">
-					<Panel class="PaymentIcon FunpayIcon" />
-					<Label class="PaymentLabel" text="#funpay_choose" />
-					<Panel class="BuyItemPanel">
-						<Label class="PriceLabel" text="#payment_choose" />
-					</Panel>
-				</Panel>
-				<Panel class="PaymentBlock" onactivate="RequestUrl(&apos;true&apos;);">
-					<Panel class="PaymentIcon XsollaIcon" />
-					<Label class="PaymentLabel" text="#xsolla_choose" />
-					<Panel class="BuyItemPanel">
-						<Label class="PriceLabel" text="#payment_choose" />
-					</Panel>
-				</Panel>
-			</Panel>
-		</Panel>
 		<Panel class="XsollaProductsChoose" id="XsollaProductsChoose">
 			<Panel class="BuyItemPanelTop">
 				<Label class="BuyItemPanelName" text="#xsolla_choose" />
@@ -70,50 +56,53 @@
 				<Panel class="Close" onactivate="CloseBuyItemPanel();" />
 			</Panel>
 			<Panel id="BuyItemPanelInfo" />
+			<Panel class="RuneLevelBar" id="BuyRuneLevel">
+				<Panel class="RuneLevelBarFill" id="BuyRuneLevelFill" />
+				<Label class="RuneLevelBarLabel" id="BuyRuneLevelLabel" text="" />
+			</Panel>
 		</Panel>
-		<Button id="donate_accept_window">
-			<Panel style="align:center center;flow-children:down;">
-				<Label id="donate_accept_label" text="#donate_shop_aceept" />
+		<Panel class="BuyItemPanelMain RuneRewardPanel" id="RuneRewardPanel">
+			<Panel class="BuyItemPanelTop">
+				<Label class="BuyItemPanelName" id="RewardPanelTitle" text="#shop_rune_is_drop" />
 			</Panel>
-		</Button>
-		<Button id="donate_error_window">
-			<Panel style="align:center center;flow-children:down;">
-				<Label id="donate_error_label" text="#donate_shop_error" />
+			<Panel class="RuneRewardInfo">
+				<Panel class="ItemImageBuy RuneRewardIcon" id="RuneRewardIcon" />
+				<Panel class="ItemInfoAndBuyButton">
+					<Label class="ItemDescription" id="RuneRewardDescription" html="true" text="" />
+					<Panel class="button_buy_item" onactivate="RuneRewardAccept();">
+						<Panel class="button_buy_item_center">
+							<Label class="button_buy_item_label" text="#shop_rune_accept" />
+						</Panel>
+					</Panel>
+				</Panel>
 			</Panel>
-		</Button>
-		<Button id="donate_loading_window">
-			<Panel style="align:center center;flow-children:down;">
+			<Panel class="RuneLevelBar" id="RewardRuneLevel">
+				<Panel class="RuneLevelBarFill" id="RewardRuneLevelFill" />
+				<Label class="RuneLevelBarLabel" id="RewardRuneLevelLabel" text="" />
+			</Panel>
+		</Panel>
+		<Panel id="donate_accept_window" class="ShopToast ShopToastAccept" hittest="false" hittestchildren="false">
+			<Panel class="ShopToastBody">
+				<Panel class="ShopToastIcon" />
+				<Label id="donate_accept_label" class="ShopToastLabel" text="#donate_shop_aceept" />
+			</Panel>
+		</Panel>
+		<Panel id="donate_error_window" class="ShopToast ShopToastError" hittest="false" hittestchildren="false">
+			<Panel class="ShopToastBody">
+				<Panel class="ShopToastIcon" />
+				<Label id="donate_error_label" class="ShopToastLabel" text="#donate_shop_error" />
+			</Panel>
+		</Panel>
+		<Panel id="donate_loading_window" class="ShopToast ShopToastLoading" hittest="false" hittestchildren="false">
+			<Panel class="ShopToastBody">
 				<Panel id="LoadingSpinner" />
-				<Label id="donate_loading_label" text="#donate_shop_loading" />
+				<Label id="donate_loading_label" class="ShopToastLabel" text="#donate_shop_loading" />
 			</Panel>
-		</Button>
+		</Panel>
 		<Panel class="DonateShopWindow sethidden" id="DonateShopWindow" hittest="false">
 			<Panel class="PlayerBackground" id="PlayerBackground" />
 			<Panel class="DonateShopTopMenu">
-				<Panel class="TopMenuInfo">
-					<Panel class="ProfileBlock">
-						<DOTAAvatarImage steamid="local" class="AvatarLocal" />
-						<Panel class="InfoLocal">
-							<DOTAUserName steamid="local" class="NicknameLocal" />
-						</Panel>
-					</Panel>
-					<Panel class="CoinBlock" id="CoinBlock">
-						<Panel class="CoinIcon" />
-						<Label class="CoinLabelCount" id="CoinLabelCount" text="0" />
-					</Panel>
-					<Panel class="WodaplusBlock" id="WodaplusBlock">
-						<Panel class="WodaplusIcon" />
-						<Label class="WodaplusLabelCount" id="WodaplusLabelCount" text="0 дней" />
-					</Panel>
-					<Panel class="BattlePassBlock" id="BattlePassBlock">
-						<Panel class="BattlePassIcon" />
-						<Label class="BattlePassLabelCount" id="BattlePassLabelCount" text="0" />
-					</Panel>
-					<Panel class="DoubleTokensBlock" id="DoubleTokensBlock">
-						<Panel class="DoubleTokensIcon" />
-						<Label class="DoubleTokensLabelCount" id="DoubleTokensLabelCount" text="0" />
-					</Panel>
-				</Panel>
+				<Panel class="TopMenuInfo" id="TopMenuInfoHost" />
 				<Panel class="Close" onactivate="ToggleDonateButtonClose();" />
 			</Panel>
 			<Panel class="NavigationMenu">
@@ -121,6 +110,11 @@
 				<Panel class="MenuProfie" id="MenuProfie" onactivate="SwitchTab(&apos;ProfileWindow&apos;, &apos;MenuProfie&apos;);">
 					<Panel class="BGColor" />
 					<Label text="#shopprofile" class="MenuButtonLabel" />
+				</Panel>
+				<Panel class="MenuAchievements" id="MenuAchievements" onactivate="SwitchTab(&apos;AchievementsWindow&apos;, &apos;MenuAchievements&apos;);">
+					<Panel class="BGColor" />
+					<Label text="#shop_achievements" class="MenuButtonLabel" />
+					<Label class="MenuCountBadge MenuCountBadgeRed" id="MenuAchievementsCount" text="0" />
 				</Panel>
 				<Panel class="MenuHeroes" id="MenuHeroes" onactivate="SwitchTab(&apos;HeroesWindow&apos;, &apos;MenuHeroes&apos;);">
 					<Panel class="BGColor" />
@@ -130,14 +124,21 @@
 					<Panel class="BGColor" />
 					<Label text="#shopshop" class="MenuButtonLabel" />
 				</Panel>
-				<Panel class="MenuInventory" id="MenuInventory" onactivate="SwitchTab(&apos;InventoryWindow&apos;, &apos;MenuInventory&apos;);">
-					<Panel class="BGColor" />
-					<Label text="#shop_button_inventory" class="MenuButtonLabel" />
-				</Panel>
 				<Panel class="MenuRunes" id="MenuRunes" onactivate="SwitchTab(&apos;RunesWindow&apos;, &apos;MenuRunes&apos;);">
 					<Panel class="BGColor" />
 					<Label text="#shop_button_runes" class="MenuButtonLabel" />
+					<Label class="MenuCountBadge" id="MenuRunesChestCount" text="0" />
 				</Panel>
+				<Panel class="MenuChest" id="MenuChest" onactivate="SwitchTab(&apos;ChestWindow&apos;, &apos;MenuChest&apos;);">
+					<Panel class="BGColor" />
+					<Label text="#shop_button_chest" class="MenuButtonLabel" />
+				</Panel>
+				<Panel class="MenuSmelter" id="MenuSmelter" onactivate="SwitchTab(&apos;SmelterWindow&apos;, &apos;MenuSmelter&apos;);">
+					<Panel class="BGColor" />
+					<Label text="#shop_button_smelter" class="MenuButtonLabel" />
+					<Label class="MenuCountBadge MenuCountBadgeOrange" id="MenuSmelterCount" text="0" />
+				</Panel>
+				<Panel class="MenuBlockBody" id="MenuBlockBody" />
 				<Panel class="MenuBlockSocial_3" onactivate="GameUI.CustomUIConfig().GoToSiteStore()">
 					<Panel class="TelegramButton" />
 				</Panel>
@@ -150,190 +151,183 @@
 				<Panel class="MenuBlockEnd" />
 			</Panel>
 			<Panel class="ProfileWindow" id="ProfileWindow">
-				<Panel class="PlayerInformationAndDonate">
-					<Panel class="PlayerInformation">
-						<Panel class="AvatarId">
-							<DOTAAvatarImage steamid="local" class="AvatarLocalBig" />
-						</Panel>
-						<Panel class="InfoLocalProfile">
-							<DOTAUserName steamid="local" class="NicknameLocalBig" />
-							<Label class="YourDotaID" id="YourDotaID" text="ID: 0000" />
-							<Label class="LocalRatingBig" id="LocalRatingBig" text="Rating: 0000" />
-							<Label class="LocalPveRatingBig" id="LocalPveRatingBig" text="Arena: 0000" />
-						</Panel>
-					</Panel>
-					<Panel class="StatsGameplay">
-						<Label class="StatsGamesCount" id="StatsGamesCount" text="" />
-						<Label class="StatsHoursCount" id="StatsHoursCount" text="" />
-					</Panel>
-					<Panel class="DonateButtons">
-						<Panel class="ItemsCollectionPanel">
-							<Panel class="ItemsCollectionButton">
-								<Panel class="ItemsCollectionLinerBackground" />
-								<Panel class="ItemsCollectionLiner" id="ItemsCollectionLiner" />
-								<Label class="ItemsCollectionName" text="#ItemsCollectionName" />
+				<Panel class="ProfileSide">
+					<Panel class="ProfileCard ProfilePlayerCard">
+						<Panel class="ProfilePlayerTop">
+							<DOTAAvatarImage steamid="local" class="ProfileAvatar" />
+							<Panel class="ProfilePlayerInfo">
+								<DOTAUserName steamid="local" class="ProfileNickname" />
+								<Label class="ProfilePlayerId" id="ProfilePlayerId" text="" />
+								<Label class="ProfilePlayerGames" id="ProfilePlayerGames" text="" />
 							</Panel>
-							<Label class="ItemsCollectionPercent" id="ItemsCollectionPercent" text="0%" />
 						</Panel>
-						<Panel class="CoinsBuy">
-							<Panel class="CoinsBuyButton" onactivate="GameUI.CustomUIConfig().GoToSiteStore(&apos;coins&apos;);">
-								<Label class="CoinsBuyLabel" text="#wodacoins" />
-								<Panel class="CoinsBuyPlus" id="CoinsBuyPlusBB" />
+						<Panel class="ProfileChips">
+							<Panel class="ProfileChip ProfileChipRating" id="ProfileChipRating">
+								<Label class="ProfileChipTitle" text="#profile_rating" />
+								<Label class="ProfileChipValue" id="ProfileChipRatingValue" text="0" />
 							</Panel>
-							<Label class="CoinsBuyCount" id="CoinsBuyCount" text="0" />
-						</Panel>
-						<Panel class="WodaPlusBuy">
-							<Panel class="WodaPlusBuyButton" onactivate="GameUI.CustomUIConfig().GoToSiteStore(&apos;plus&apos;);">
-								<Label class="WodaPlusBuyLabel" text="#wodaplus" />
-								<Panel class="WodaPlusBuyPlus" id="WodaBuyPlusBB" />
+							<Panel class="ProfileChip ProfileChipArena" id="ProfileChipArena">
+								<Label class="ProfileChipTitle" text="#profile_arena_record" />
+								<Panel class="ProfileChipArenaRow">
+									<Panel class="ProfileChipBadge">
+										<Label class="ProfileChipBadgeLabel" id="ProfileChipArenaDifficulty" text="-" />
+									</Panel>
+									<Label class="ProfileChipValue ProfileChipArenaStage" id="ProfileChipArenaValue" text="-" />
+								</Panel>
 							</Panel>
-							<Label class="WodaPlusTime" id="WodaPlusTime" text="0 дней" />
 						</Panel>
 					</Panel>
-					<Panel class="promopanel">
-						<TextEntry id="PromoEntryID" class="PromoEntryID" maxchars="30" placeholder="#promo_entry" />
-						<Panel class="PromoEntryIDButton" onactivate="PromocodeUse();" />
+					<Panel class="ProfileCard ProfileAccountCard">
+						<Panel class="ProfileCardHeader">
+							<Label class="ProfileCardTitle" text="#profile_account" />
+						</Panel>
+						<Panel class="ProfileAccountBody">
+							<Panel class="ProfileAccountList">
+								<Panel class="ProfileAccountRow" id="ProfileAccountCoins" onmouseover="DOTAShowTextTooltip(&apos;#coin_information&apos;)" onmouseout="DOTAHideTextTooltip()">
+									<Panel class="ProfileAccountIcon ProfileAccountIconCoin" />
+									<Label class="ProfileAccountName" text="#wodacoins" />
+									<Label class="ProfileAccountValue ProfileAccountValueCoin" id="CoinsBuyCount" text="0" />
+									<Panel class="ProfileAccountPlus" id="CoinsBuyPlusBB" onactivate="GameUI.CustomUIConfig().GoToSiteStore(&apos;coins&apos;);" />
+								</Panel>
+								<Panel class="ProfileAccountRow" id="ProfileAccountCrystals" onmouseover="DOTAShowTextTooltip(&apos;#crystal_information&apos;)" onmouseout="DOTAHideTextTooltip()">
+									<Panel class="ProfileAccountIcon ProfileAccountIconCrystal" />
+									<Label class="ProfileAccountName" text="#wodacrystals" />
+									<Label class="ProfileAccountValue ProfileAccountValueCrystal" id="CrystalsBuyCount" text="0" />
+									<Panel class="ProfileAccountPlus ProfileAccountPlusCrystal" id="ProfileCrystalsPlus" onactivate="GameUI.CustomUIConfig().GoToSiteStore(&apos;crystals&apos;);" />
+								</Panel>
+								<Panel class="ProfileAccountRow" id="ProfileAccountPlusRow">
+									<Panel class="ProfileAccountIcon ProfileAccountIconPlus" />
+									<Label class="ProfileAccountName" text="#wodaplus" />
+									<Panel class="ProfileAccountStatus ProfileAccountStatusPlus" id="ProfileAccountPlusStatus" onactivate="GameUI.CustomUIConfig().GoToSiteStore(&apos;plus&apos;);">
+										<Label class="ProfileAccountStatusLabel" id="ProfileAccountPlusStatusLabel" text="#profile_account_active" />
+									</Panel>
+									<Panel class="ProfileAccountPlus ProfileAccountPlusSubscription" id="ProfileAccountPlusBuy" onactivate="GameUI.CustomUIConfig().GoToSiteStore(&apos;plus&apos;);" />
+								</Panel>
+								<Panel class="ProfileAccountRow" id="ProfileAccountPremiumRow">
+									<Panel class="ProfileAccountIcon ProfileAccountIconPremium" />
+									<Label class="ProfileAccountName" text="#wodapremium" />
+									<Panel class="ProfileAccountStatus ProfileAccountStatusPremium" id="ProfileAccountPremiumStatus" onactivate="GameUI.CustomUIConfig().GoToSiteStore(&apos;premium&apos;);">
+										<Label class="ProfileAccountStatusLabel" id="ProfileAccountPremiumStatusLabel" text="#profile_account_active" />
+									</Panel>
+									<Panel class="ProfileAccountPlus ProfileAccountPlusPremium" id="ProfileAccountPremiumBuy" onactivate="GameUI.CustomUIConfig().GoToSiteStore(&apos;premium&apos;);" />
+								</Panel>
+								<Panel class="ProfileAccountRow" id="ProfileAccountBossSouls" onmouseover="DOTAShowTextTooltip(&apos;#boss_souls_information&apos;)" onmouseout="DOTAHideTextTooltip()">
+									<Panel class="ProfileAccountIcon ProfileAccountIconBossSouls" />
+									<Label class="ProfileAccountName" text="#boss_souls" />
+									<Label class="ProfileAccountValue ProfileAccountValueBossSouls" id="ProfileBossSoulsCount" text="0" />
+								</Panel>
+								<Panel class="ProfileAccountRow ProfileAccountCollection" id="ProfileAccountCollection">
+									<Panel class="ProfileAccountIcon ProfileAccountIconCollection" />
+									<Panel class="ProfileAccountCollectionInfo">
+										<Panel class="ProfileAccountCollectionTop">
+											<Label class="ProfileAccountName" text="#ItemsCollectionName" />
+											<Label class="ProfileAccountValue ProfileAccountValueCollection" id="ItemsCollectionPercent" text="0%" />
+										</Panel>
+										<Panel class="ProfileAccountCollectionBar">
+											<Panel class="ProfileAccountCollectionFill" id="ItemsCollectionLiner" />
+										</Panel>
+									</Panel>
+								</Panel>
+							</Panel>
+							<Panel class="ProfileDailyReward free_reward_accepted GetReward" id="FreeReward">
+								<Panel class="ProfileDailyRewardContent">
+									<Panel class="ProfileDailyRewardIcon" />
+									<Label class="ProfileDailyRewardLabel" text="#profile_daily_reward" />
+								</Panel>
+							</Panel>
+							<Panel class="ProfilePromoRow">
+								<TextEntry id="PromoEntryID" class="ProfilePromoEntry" maxchars="30" placeholder="#promo_entry" />
+								<Panel class="ProfilePromoButton" onactivate="PromocodeUse();">
+									<Label class="ProfilePromoButtonLabel" text="#profile_promo_activate" />
+								</Panel>
+							</Panel>
+							<Panel class="ProfileResetButton TestAccountResetPanel" id="TestAccountResetPanel" onactivate="TestAccountReset()" onmouseover="DOTAShowTextTooltip(&apos;#test_account_reset_tooltip&apos;)" onmouseout="DOTAHideTextTooltip()">
+								<Panel class="ProfileResetContent">
+									<Panel class="ProfileResetIcon" />
+									<Label class="ProfileResetLabel" id="TestAccountResetLabel" text="#test_account_reset" />
+								</Panel>
+							</Panel>
+						</Panel>
 					</Panel>
-					<Panel class="promopanel free_reward_accepted GetReward" id="FreeReward">
-						<Panel class="WodaPlusBuyButtonFree">
-							<Label class="WodaPlusBuyLabel" text="#give_free_reward" />
-							<Panel class="WodaPlusBuyPlusGreen" onmouseover="DOTAShowTextTooltip(&apos;#give_free_reward_description&apos;)" onmouseout="DOTAHideTextTooltip()" />
+					<Panel class="ProfileCard ProfileFavoritesCard">
+						<Panel class="ProfileCardHeader">
+							<Label class="ProfileCardTitle" text="#profile_favorites" />
+						</Panel>
+						<Panel class="ProfileFavoriteHeroes" id="ProfileFavoriteHeroes" />
+						<Panel class="ProfileTalentPicks">
+							<Label class="ProfileTalentPicksTitle" text="#profile_talents" />
+							<Panel class="ProfileTalentPick" id="ProfileTalentPickSTR">
+								<Panel class="ProfileTalentIcon ProfileTalentIconSTR" />
+								<Label class="ProfileTalentValue" id="ProfileTalentSTR" text="0" />
+							</Panel>
+							<Panel class="ProfileTalentPick" id="ProfileTalentPickAGI">
+								<Panel class="ProfileTalentIcon ProfileTalentIconAGI" />
+								<Label class="ProfileTalentValue" id="ProfileTalentAGI" text="0" />
+							</Panel>
+							<Panel class="ProfileTalentPick" id="ProfileTalentPickINT">
+								<Panel class="ProfileTalentIcon ProfileTalentIconINT" />
+								<Label class="ProfileTalentValue" id="ProfileTalentINT" text="0" />
+							</Panel>
 						</Panel>
 					</Panel>
 				</Panel>
-				<Panel class="PlayerStats">
-					<Panel class="PlayerStatsAllInfo">
-						<Panel class="TopTalentsStats">
-							<Panel class="TopTalentStats">
-								<Panel class="TopTalentImage TopTalentImageSTR" />
-								<Label id="TopTalentLabelSTR" class="TopTalentLabel" text="0" />
-							</Panel>
-							<Panel class="TopTalentStats">
-								<Panel class="TopTalentImage TopTalentImageAGI" />
-								<Label id="TopTalentLabelAGI" class="TopTalentLabel" text="0" />
-							</Panel>
-							<Panel class="TopTalentStats">
-								<Panel class="TopTalentImage TopTalentImageINT" />
-								<Label id="TopTalentLabelINT" class="TopTalentLabel" text="0" />
-							</Panel>
+				<Panel class="ProfileMain">
+					<Panel class="ProfileModeTabs">
+						<Panel class="ProfileModeTab" id="ProfileModeTab_arena" onactivate="ProfileSelectMode(&apos;arena&apos;);">
+							<Label class="ProfileModeTabLabel" text="#profile_mode_arena" />
 						</Panel>
-						<Panel id="TopHeroesStats" class="TopHeroesStats">
-							<Panel class="TopHeroStats">
-								<Label class="TopHeroStatsGames" id="TopHeroStatsGames1" text="0" />
-								<Panel class="TopHeroStatsImage BigIconHero" id="TopHeroStatsImage1" />
-							</Panel>
-							<Panel class="TopHeroStats">
-								<Label class="TopHeroStatsGames" id="TopHeroStatsGames2" text="0" />
-								<Panel class="TopHeroStatsImage" id="TopHeroStatsImage2" />
-							</Panel>
-							<Panel class="TopHeroStats">
-								<Label class="TopHeroStatsGames" id="TopHeroStatsGames3" text="0" />
-								<Panel class="TopHeroStatsImage" id="TopHeroStatsImage3" />
-							</Panel>
+						<Panel class="ProfileModeTab" id="ProfileModeTab_rating" onactivate="ProfileSelectMode(&apos;rating&apos;);">
+							<Label class="ProfileModeTabLabel" text="#profile_mode_rating" />
 						</Panel>
+						<Panel class="ProfileModeTab" id="ProfileModeTab_rating_duo" onactivate="ProfileSelectMode(&apos;rating_duo&apos;);">
+							<Label class="ProfileModeTabLabel" text="#profile_mode_rating_duo" />
+						</Panel>
+						<Label class="ProfileStatus" id="ProfileStatus" text="" />
 					</Panel>
-					<Panel class="WinratePlayer">
-						<Panel class="WinratePlayerColumns">
-							<Panel class="ColumnWinrate ColumnWinrate1" id="ColumnWinrate1" />
-							<Panel class="ColumnWinrate ColumnWinrate2" id="ColumnWinrate2" />
-							<Panel class="ColumnWinrate ColumnWinrate3" id="ColumnWinrate3" />
-							<Panel class="ColumnWinrate ColumnWinrate4" id="ColumnWinrate4" />
-							<Panel class="ColumnWinrate ColumnWinrate5" id="ColumnWinrate5" />
-							<Panel class="ColumnWinrate ColumnWinrate6" id="ColumnWinrate6" />
-							<Panel class="ColumnWinrate ColumnWinrate7" id="ColumnWinrate7" />
-							<Panel class="ColumnWinrate ColumnWinrateleave" id="ColumnWinrateleave" />
-						</Panel>
-						<Panel class="WinratePlayerColumnsLabel">
-							<Label class="ColumnsLabel" text="1" />
-							<Label class="ColumnsLabel" text="2" />
-							<Label class="ColumnsLabel" text="3" />
-							<Label class="ColumnsLabel" text="4" />
-							<Label class="ColumnsLabel" text="5" />
-							<Label class="ColumnsLabel" text="6" />
-							<Label class="ColumnsLabel" text="7" />
-							<Label class="ColumnsLabel" text="#leave" />
-						</Panel>
-					</Panel>
-					<Panel class="WinratePlayer">
-						<Panel class="WinratePlayerColumns">
-							<Panel class="ColumnWinrateDuo ColumnWinrate1" id="ColumnWinrateDuo1" />
-							<Panel class="ColumnWinrateDuo ColumnWinrate2" id="ColumnWinrateDuo2" />
-							<Panel class="ColumnWinrateDuo ColumnWinrate3" id="ColumnWinrateDuo3" />
-							<Panel class="ColumnWinrateDuo ColumnWinrate4" id="ColumnWinrateDuo4" />
-							<Panel class="ColumnWinrateDuo ColumnWinrateleave" id="ColumnWinrateDuoleave" />
-						</Panel>
-						<Panel class="WinratePlayerColumnsLabel">
-							<Label class="ColumnsLabelDuo" text="1" />
-							<Label class="ColumnsLabelDuo" text="2" />
-							<Label class="ColumnsLabelDuo" text="3" />
-							<Label class="ColumnsLabelDuo" text="4" />
-							<Label class="ColumnsLabelDuo" text="#leave" />
-						</Panel>
-					</Panel>
+					<Panel class="ProfilePage" id="ProfilePage_arena" />
+					<Panel class="ProfilePage" id="ProfilePage_rating" />
+					<Panel class="ProfilePage" id="ProfilePage_rating_duo" />
 				</Panel>
 			</Panel>
 			<Panel class="HeroesWindow" id="HeroesWindow" />
+			<Panel class="AchievementsWindow" id="AchievementsWindow" />
 			<Panel class="ShopWindow" id="ShopWindow">
 				<Panel class="ShopMenu" id="ShopMenu" />
 				<Panel class="ShopItemsWindow" id="ShopItemsWindow" />
 				<Label class="ShopInfoBuyItemsCounter" id="ShopInfoBuyItemsCounter" text="0/0" />
-			</Panel>
-			<Panel class="InventoryWindow" id="InventoryWindow">
-				<Panel class="ItemsWindow" id="ItemsWindow" />
-			</Panel>
-			<Panel class="RunesWindow" id="RunesWindow" />
-		</Panel>
-		<Panel class="DonateShopWindow sethidden" id="HeroVotesWindowMain" hittest="false">
-			<Panel class="PlayerBackground" id="PlayerBackgroundHeroVotes" />
-			<Panel class="DonateShopTopMenu">
-				<Panel class="TopMenuInfo">
-					<Panel class="ProfileBlock">
-						<DOTAAvatarImage steamid="local" class="AvatarLocal" />
-						<Panel class="InfoLocal">
-							<DOTAUserName steamid="local" class="NicknameLocal" />
+				<Panel class="ShopPlusWindow" id="ShopPlusWindow">
+					<Panel class="SubscriptionBackground" id="SubscriptionBackground" hittest="false" hittestchildren="false" />
+					<Panel class="SubscriptionCards">
+						<Panel class="SubscriptionCard SubscriptionCardPlus" id="SubscriptionCardPlus">
+							<Label class="SubscriptionCardTitle" text="#wodaplus" />
+							<Label class="SubscriptionCardSubtitle" text="#subscription_plus_subtitle" />
+							<Panel class="SubscriptionCardImage SubscriptionCardImagePlus" />
+							<Panel class="SubscriptionCardRewards" id="SubscriptionPlusRewards" />
+							<Panel class="SubscriptionCardBuy" onactivate="GameUI.CustomUIConfig().GoToSiteStore(&apos;plus&apos;);">
+								<Label class="SubscriptionCardBuyLabel" text="#subscription_plus_buy" />
+							</Panel>
+							<Label class="SubscriptionCardDescription" text="#subscription_plus_footer" />
+						</Panel>
+						<Panel class="SubscriptionCard SubscriptionCardPremium" id="SubscriptionCardPremium">
+							<Label class="SubscriptionCardTitle" text="#wodapremium" />
+							<Label class="SubscriptionCardSubtitle" text="#subscription_premium_subtitle" />
+							<Panel class="SubscriptionCardImage SubscriptionCardImagePremium" />
+							<Panel class="SubscriptionCardRewards" id="SubscriptionPremiumRewards" />
+							<Panel class="SubscriptionCardBuy" onactivate="GameUI.CustomUIConfig().GoToSiteStore(&apos;premium&apos;);">
+								<Label class="SubscriptionCardBuyLabel" text="#subscription_premium_buy" />
+							</Panel>
+							<Label class="SubscriptionCardDescription" text="#subscription_premium_footer" />
 						</Panel>
 					</Panel>
-					<Panel class="CoinBlock" id="CoinBlockHeroVotes">
-						<Panel class="CoinIcon" />
-						<Label class="CoinLabelCount" id="CoinLabelCountHeroVotes" text="0" />
-					</Panel>
-					<Panel class="WodaplusBlock" id="WodaplusBlockHeroVotes">
-						<Panel class="WodaplusIcon" />
-						<Label class="WodaplusLabelCount" id="WodaplusLabelCountHeroVotes" text="0 дней" />
-					</Panel>
-					<Panel class="BattlePassBlock" id="BattlePassBlockHeroVotes">
-						<Panel class="BattlePassIcon" />
-						<Label class="BattlePassLabelCount" id="BattlePassLabelCountHeroVotes" text="0" />
-					</Panel>
-					<Panel class="DoubleTokensBlock" id="DoubleTokensBlockHeroVotes">
-						<Panel class="DoubleTokensIcon" />
-						<Label class="DoubleTokensLabelCount" id="DoubleTokensLabelCountHeroVotes" text="0" />
-					</Panel>
 				</Panel>
-				<Panel class="Close" onactivate="OpenHeroVotesPanel();" />
+				<Panel class="HeroVotesWindow" id="HeroVotesWindow">
+					<Label class="label_votes_header_info" text="#label_votes_header_info" />
+					<Panel class="HeroListVotes1" id="HeroListVotes1" />
+				</Panel>
 			</Panel>
-			<Panel class="NavigationMenu">
-				<Panel class="MenuBlockStart" />
-				<Panel class="MenuHeroVotes DonateNewMenuButtonSelected2" id="MenuHeroVotes">
-					<Panel class="BGColor" />
-					<Label text="#shop_button_hero_votes" class="MenuButtonLabel" />
-				</Panel>
-				<Panel class="MenuBlockBody" />
-				<Panel class="MenuBlockSocial_3" onactivate="GameUI.CustomUIConfig().GoToSiteStore()">
-					<Panel class="TelegramButton" />
-				</Panel>
-				<Panel class="MenuBlockSocial_2" onactivate="ExternalBrowserGoToURL(&apos;https://wodota.net/ru/heroes&apos;);">
-					<Panel class="YoutubeButton" />
-				</Panel>
-				<Panel class="MenuBlockSocial_1" onactivate="ExternalBrowserGoToURL(&apos;https://discord.gg/hC6cQRm&apos;);">
-					<Panel class="DiscordButton" />
-				</Panel>
-				<Panel class="MenuBlockEnd" />
-			</Panel>
-			<Panel class="HeroVotesWindow" id="HeroVotesWindow">
-				<Label class="label_votes_header_info" text="#label_votes_header_info" />
-				<Panel class="HeroListVotes" id="HeroListVotes" />
-			</Panel>
+			<Panel class="RunesWindow" id="RunesWindow" />
+			<Panel class="ChestWindow" id="ChestWindow" />
+			<Panel class="SmelterWindow" id="SmelterWindow" />
 		</Panel>
 	</Panel>
 </root>

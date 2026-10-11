@@ -1,0 +1,839 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1a5b3bb 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+@define cheatTopOffset: 50px;
+@define cheatPanelWidth: 280px;
+@define cheatPanelHeight: 750px;
+.CheatHudRoot
+{
+	width: 100%;
+	height: 100%;
+}
+
+.ControlPanel
+{
+	vertical-align: top;
+	horizontal-align: left;
+	flow-children: right;
+	margin-top: cheatTopOffset;
+	visibility: collapse;
+	transition-property: transform;
+	transition-duration: 0.2s;
+	transition-timing-function: cubic-bezier(0, 0.9, 0, 0.9);
+}
+
+.ControlPanel.Enabled
+{
+	visibility: visible;
+}
+
+.ControlPanel.Minimized
+{
+	transform: translateX( -280px );
+}
+
+.ControlPanelContainer
+{
+	width: cheatPanelWidth;
+	height: fit-children;
+	max-height: cheatPanelHeight;
+	flow-children: down;
+	overflow: squish scroll;
+	background-color: gradient( linear, 100% 0%, 0% 0%, from( #202527 ), to( #202224 ) );
+	border: 1px solid black;
+	z-index: 2;
+}
+
+.ControlPanelContainer VerticalScrollBar
+{
+	width: 4px;
+}
+
+.BottomSpacer
+{
+	width: 100%;
+	height: 10px;
+}
+
+.Header
+{
+	flow-children: right;
+	width: 100%;
+	height: fit-children;
+	margin: 12px 12px 6px 12px;
+}
+
+.HeaderHeroImageFrame
+{
+	width: 60px;
+	height: 40px;
+	vertical-align: center;
+	border: 1px solid #000000;
+	transition-property: brightness;
+	transition-duration: 0.15s;
+}
+
+.HeaderHeroImageFrame:hover
+{
+	brightness: 1.4;
+}
+
+.HeaderHeroImage
+{
+	width: 100%;
+	height: 100%;
+}
+
+.HeaderTextContainer
+{
+	flow-children: down;
+	width: fill-parent-flow( 1.0 );
+	margin: 0px 6px;
+	vertical-align: middle;
+}
+
+.HeaderHeroName
+{
+	height: 22px;
+	color: whitesmoke;
+	font-family: titleFont;
+	font-weight: semi-bold;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	line-height: 1.1;
+	text-overflow: shrink;
+	width: 100%;
+	text-shadow: 0px 2px 8px black;
+}
+
+.HeaderModeLabel
+{
+	font-size: 11px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	color: #9aa0a6;
+}
+
+.HeaderLinks
+{
+	flow-children: right;
+	width: 100%;
+	margin-top: 2px;
+}
+
+.LinkButton
+{
+	margin-right: 10px;
+}
+
+.LinkButton Label
+{
+	text-decoration: underline;
+	font-size: 12px;
+	color: #d0d0d086;
+	transition-property: color;
+	transition-duration: 0.15s;
+	transition-timing-function: ease-in-out;
+}
+
+.LinkButton:hover Label
+{
+	color: white;
+}
+
+.HorizontalRule
+{
+	width: 100%;
+	horizontal-align: center;
+	height: 1px;
+	background-color: #4e515599;
+	margin: 4px 12px;
+	margin-bottom: 0px;
+}
+
+.HorizontalRule.Hidden
+{
+	visibility: collapse;
+}
+
+.Category
+{
+	width: 100%;
+	flow-children: down;
+	margin: 6px 12px 0px 12px;
+}
+
+.Category.Hidden
+{
+	visibility: collapse;
+}
+
+.CategoryHeaderContainer
+{
+	width: 100%;
+	flow-children: right;
+	margin-bottom: 6px;
+}
+
+.CategoryHeader
+{
+	vertical-align: center;
+	width: fill-parent-flow( 1 );
+	font-size: 15px;
+	color: whitesmoke;
+	font-weight: semi-bold;
+	text-shadow: 0px 2px 10px black;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	margin-right: 4px;
+}
+
+.CategoryStatus
+{
+	vertical-align: center;
+	horizontal-align: right;
+	font-size: 12px;
+	color: #c9b36a;
+	text-shadow: 0px 1px 4px black;
+	text-overflow: clip;
+	white-space: nowrap;
+}
+
+.CategoryStatus.Running
+{
+	color: #7fe39a;
+}
+
+.SubtitleHeader
+{
+	font-size: 13px;
+	color: LightGrey;
+	text-shadow: 0px 1px 6px black;
+	margin-bottom: 2px;
+	margin-top: 2px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+.SubtitleHeader.Running
+{
+	color: #7fe39a;
+}
+
+.CategoryButtonContainer
+{
+	flow-children: down;
+	width: 100%;
+}
+
+.CheckboxesContainer
+{
+	width: 100%;
+	flow-children: down;
+	margin-top: 4px;
+	margin-bottom: 2px;
+}
+
+.DemoCheckbox
+{
+	margin: 0px 0px 4px 0px;
+}
+
+.DemoCheckbox Label
+{
+	color: whitesmoke;
+	opacity: 0.85;
+	text-shadow: 0px 1px 4px #000000;
+	font-size: 15px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+.DemoCheckbox:hover Label
+{
+	opacity: 1;
+}
+
+.Row
+{
+	flow-children: right;
+	width: 100%;
+	margin: 3px 0px;
+}
+
+.Row Button
+{
+	width: fill-parent-flow( 1 );
+	padding: 0px;
+}
+
+.LeftButton
+{
+	margin-right: 3px;
+}
+
+.DemoButton
+{
+	background-color: #3e4144;
+	border: 1px solid #4e5155;
+	height: 30px;
+	width: fill-parent-flow( 1.0 );
+	border-radius: 3px;
+	transition-property: background-color, border, color;
+	transition-duration: 0.15s;
+	transition-timing-function: linear;
+}
+
+.DemoButton Label
+{
+	horizontal-align: center;
+	vertical-align: middle;
+	color: #D8DADE;
+	font-size: 14px;
+	text-transform: uppercase;
+	font-family: defaultFont;
+	font-weight: normal;
+	text-overflow: shrink;
+	width: 100%;
+	text-align: center;
+}
+
+.DemoButton:hover
+{
+	background-color: gradient( linear, 0% 0%, 70% 0%, from( #676b70 ), to( #3e4144 ) );
+	border: 1px solid #686b70;
+}
+
+.DemoButton:hover Label
+{
+	color: #FFF;
+}
+
+.DemoButton:active
+{
+	background-color: #7E94B1;
+	pre-transform-scale2d: 1.02;
+}
+
+.DemoButton.Selected
+{
+	background-color: gradient( linear, 0% 0%, 70% 0%, from( #4f7a5a ), to( #2f4b39 ) );
+	border: 1px solid #7fbf92;
+}
+
+.DemoButton.Selected Label
+{
+	color: #FFFFFF;
+}
+
+.DemoButton.Danger
+{
+	border: 1px solid #6e3a3a;
+}
+
+.DemoButton.Danger Label
+{
+	color: #f0a3a3;
+}
+
+.DemoButton.Danger:hover
+{
+	background-color: gradient( linear, 0% 0%, 70% 0%, from( #7a3a3a ), to( #3e4144 ) );
+	border: 1px solid #a05050;
+}
+
+.DemoButton.Hidden
+{
+	visibility: collapse;
+}
+
+.GroupLeft
+{
+	border-radius: 3px 0px 0px 3px;
+	margin-right: 0px;
+}
+
+.GroupMiddle
+{
+	border-radius: 0px;
+	margin-right: 0px;
+}
+
+.GroupRight
+{
+	border-radius: 0px 3px 3px 0px;
+}
+
+.Row.Hidden
+{
+	visibility: collapse;
+}
+
+.ArenaButton
+{
+	height: 28px;
+}
+
+.ArenaButton Label
+{
+	font-size: 13px;
+}
+
+.WaveStepperRow Button
+{
+	width: fill-parent-flow( 0.6 );
+}
+
+.StepButton Label
+{
+	font-size: 13px;
+}
+
+.DemoEntry
+{
+	height: 30px;
+	background-color: #141618;
+	border: 1px solid #4e5155;
+	border-radius: 3px;
+	padding-left: 6px;
+	padding-right: 6px;
+	color: #ffffff;
+	font-size: 14px;
+	font-family: defaultFont;
+}
+
+.DemoEntry:focus
+{
+	border: 1px solid #8a9096;
+}
+
+.WaveEntry
+{
+	width: fill-parent-flow( 1 );
+	margin-right: 3px;
+	text-align: center;
+}
+
+.SpawnHeroRow
+{
+	flow-children: right;
+	width: 100%;
+	margin: 2px 0px 4px 0px;
+	padding: 4px;
+	border: 1px solid #00000000;
+	border-radius: 3px;
+	transition-property: background-color, border;
+	transition-duration: 0.15s;
+}
+
+.SpawnHeroRow:hover
+{
+	background-color: #33373b;
+	border: 1px solid #4e5155;
+}
+
+.SpawnHeroImageFrame
+{
+	width: 60px;
+	height: 40px;
+	border: 1px solid black;
+	vertical-align: center;
+}
+
+.SpawnHeroImage
+{
+	width: 100%;
+	height: 100%;
+}
+
+.SpawnHeroText
+{
+	flow-children: down;
+	vertical-align: center;
+	margin-left: 8px;
+	width: fill-parent-flow( 1 );
+}
+
+.SpawnHeroName
+{
+	font-size: 15px;
+	color: whitesmoke;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-weight: semi-bold;
+	text-shadow: 0px 1px 4px black;
+	text-overflow: shrink;
+	width: 100%;
+}
+
+.SpawnHeroHint
+{
+	font-size: 11px;
+	color: #9aa0a6;
+}
+
+.SlideThumbContainer
+{
+	width: 40px;
+	height: 200px;
+	vertical-align: middle;
+}
+
+.SlideThumb
+{
+	width: 25px;
+	height: 120px;
+	vertical-align: middle;
+	background-color: gradient( linear, 0% 0%, 70% 0%, from( #111111 ), to( #3b3b3b ) );
+	border-top-right-radius: 8px;
+	border-bottom-right-radius: 12px;
+	box-shadow: #000000AA 1px 1px 6px;
+	transition-property: background-color;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+}
+
+.SlideThumb:hover
+{
+	background-color: gradient( linear, 0% 0%, 70% 0%, from( #181818 ), to( #474747 ) );
+}
+
+.ThumbArrowIcon
+{
+	width: 16px;
+	height: 16px;
+	vertical-align: middle;
+	horizontal-align: center;
+	background-image: url("s2r://panorama/images/control_icons/24px/chevron_right.vsvg");
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	wash-color: #D0D0D0;
+	transform: rotateZ( 180deg );
+	transition-property: transform, wash-color;
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+}
+
+.SlideThumb:hover .ThumbArrowIcon
+{
+	wash-color: white;
+	transform: rotateZ( 180deg ) translateX( 3px );
+}
+
+.Minimized .ThumbArrowIcon
+{
+	transform: rotateZ( 0deg );
+}
+
+.Minimized .SlideThumb:hover .ThumbArrowIcon
+{
+	transform: rotateZ( 0deg ) translateX( 3px );
+}
+
+.Flyout
+{
+	flow-children: down;
+	horizontal-align: left;
+	vertical-align: top;
+	margin-top: cheatTopOffset;
+	margin-left: 322px;
+	width: 300px;
+	height: fit-children;
+	max-height: cheatPanelHeight;
+	padding: 8px;
+	background-color: #131414f2;
+	background-image: url("s2r://panorama/images/settings/settings_rock_texture_png.vtex");
+	background-size: cover;
+	background-img-opacity: 0.2;
+	border: 1px solid black;
+	z-index: 5;
+	opacity: 0;
+	visibility: collapse;
+	transform: translateX( -24px );
+	transition-property: opacity, transform;
+	transition-duration: 0.15s;
+	transition-timing-function: cubic-bezier(0, 0.9, 0, 0.9);
+}
+
+.Flyout.Visible
+{
+	visibility: visible;
+	opacity: 1;
+	transform: translateX( 0px );
+}
+
+.FlyoutHeader
+{
+	width: 100%;
+	flow-children: right;
+	margin-bottom: 6px;
+}
+
+.FlyoutTitleBlock
+{
+	flow-children: down;
+	vertical-align: center;
+	width: fill-parent-flow( 1 );
+	margin-left: 8px;
+}
+
+.FlyoutTitle
+{
+	vertical-align: center;
+	width: fill-parent-flow( 1 );
+	font-size: 15px;
+	color: whitesmoke;
+	font-weight: semi-bold;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	text-shadow: 0px 2px 10px black;
+}
+
+.FlyoutSubtitle
+{
+	font-size: 12px;
+	color: #b8bcc0;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+.FlyoutClose
+{
+	width: 22px;
+	height: 22px;
+	vertical-align: center;
+	horizontal-align: right;
+}
+
+.FlyoutCloseIcon
+{
+	width: 14px;
+	height: 14px;
+	horizontal-align: center;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/control_icons/24px/x_close.vsvg");
+	background-size: contain;
+	background-repeat: no-repeat;
+	wash-color: #b0b0b0;
+}
+
+.FlyoutClose:hover .FlyoutCloseIcon
+{
+	wash-color: white;
+}
+
+.PickerSearch
+{
+	width: 100%;
+	margin-bottom: 6px;
+}
+
+.PickerGrid
+{
+	width: 100%;
+	height: fit-children;
+	max-height: 840px;
+	flow-children: right-wrap;
+	overflow: squish scroll;
+}
+
+.PickerGrid VerticalScrollBar
+{
+	width: 4px;
+}
+
+.PickerItem
+{
+	width: 52px;
+	height: 30px;
+	margin: 2px;
+	border: 1px solid #000000;
+	saturation: 0.8;
+	brightness: 0.8;
+	transition-property: brightness, saturation, border;
+	transition-duration: 0.12s;
+}
+
+.PickerItem:hover
+{
+	brightness: 1.3;
+	saturation: 1.0;
+	border: 1px solid #c8c8c8;
+}
+
+.PickerItem.Hidden
+{
+	visibility: collapse;
+}
+
+.PickerItem.Selected
+{
+	border: 1px solid #7fbf92;
+	brightness: 1.2;
+}
+
+.TalentUnitImage
+{
+	width: 36px;
+	height: 36px;
+	border: 1px solid black;
+	vertical-align: center;
+}
+
+.TalentPopupRow
+{
+	margin-bottom: 6px;
+}
+
+.TalentPopup
+{
+	width: 410px;
+}
+
+.TalentTabs
+{
+	width: 100%;
+	flow-children: right;
+	margin-bottom: 6px;
+}
+
+.TalentTab
+{
+	width: 50px;
+	height: 50px;
+	margin-right: 6px;
+	border-radius: 50px;
+	border: 2px solid #00000000;
+	transition-property: border, brightness;
+	transition-duration: 0.15s;
+}
+
+.TalentTab:hover
+{
+	brightness: 1.3;
+}
+
+.TalentTab.Selected
+{
+	border: 2px solid #e9c57c;
+}
+
+.TalentResetButton
+{
+	width: fill-parent-flow( 1 );
+	height: 30px;
+	vertical-align: center;
+	margin-left: 8px;
+}
+
+.TalentGrids
+{
+	width: 100%;
+	height: fit-children;
+	max-height: 780px;
+	overflow: squish scroll;
+	flow-children: down;
+}
+
+.TalentGrids VerticalScrollBar
+{
+	width: 4px;
+}
+
+.CheatTalentGrid
+{
+	width: 392px;
+	height: 590px;
+	horizontal-align: center;
+	background-size: 100% 100%;
+	visibility: collapse;
+}
+
+.CheatTalentGrid.Active
+{
+	visibility: visible;
+}
+
+.CheatTalentGrid .talent_block
+{
+	height: 78px;
+}
+
+.CheatTalentGrid .talent_block_image
+{
+	background-size: 100%;
+}
+
+.CheatTalentGrid .talent_block.EmptyTalent
+{
+	opacity: 0;
+}
+
+.CheatTalentControls
+{
+	width: 100%;
+	height: 22px;
+	vertical-align: bottom;
+	flow-children: right;
+	background-color: #000000aa;
+}
+
+.CheatTalentControls.Hidden
+{
+	visibility: collapse;
+}
+
+.CheatTalentBtn
+{
+	width: 22px;
+	height: 22px;
+	background-color: #2a2d31cc;
+	transition-property: background-color;
+	transition-duration: 0.1s;
+}
+
+.CheatTalentBtn:hover
+{
+	background-color: #5a5e63;
+}
+
+.CheatTalentBtn:active
+{
+	background-color: #7E94B1;
+}
+
+.CheatTalentBtn Label
+{
+	horizontal-align: center;
+	vertical-align: center;
+	font-size: 15px;
+	font-weight: bold;
+	color: #ffffff;
+	text-shadow: 0px 1px 2px black;
+}
+
+.CheatTalentLevel
+{
+	width: fill-parent-flow( 1 );
+	vertical-align: center;
+	text-align: center;
+	font-size: 12px;
+	font-weight: bold;
+	color: #f0d68a;
+	text-shadow: 0px 1px 2px black;
+}
+
+.CheatTalentLevel.Maxed
+{
+	color: #7fe39a;
+}

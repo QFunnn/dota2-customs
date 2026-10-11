@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -14,9 +14,51 @@ GameEvents.Subscribe_custom("event_woda_boss_health_bar_start", BossHealthBarSta
 GameEvents.Subscribe_custom("event_woda_boss_health_bar_update", BossHealthBarUpdate)
 GameEvents.Subscribe_custom("event_woda_boss_health_bar_end", BossHealthBarEnd)
 
+var BOSS_HEALTH_BAR_HERO_ICONS =
+{
+	boss_9_pve: "nevermore",
+	boss_cm_wolf_pve: "crystal_maiden",
+	boss_mars_pve: "mars",
+	boss_rubick_pve: "rubick",
+	boss_lifestealer_pve: "life_stealer",
+	boss_chen_pve: "chen",
+	boss_beastmaster_pve: "beastmaster",
+	boss_undying_pve: "undying",
+	boss_skywrath_pve: "skywrath_mage",
+	boss_brewmaster_pve: "brewmaster",
+	boss_mirana_pve: "mirana",
+	boss_treant_pve: "treant",
+	boss_nyx_pve: "nyx_assassin",
+	boss_snapfire_pve: "snapfire",
+	boss_clockwerk_pve: "rattletrap",
+	boss_shadow_shaman_pve: "shadow_shaman",
+	boss_broodmother_pve: "broodmother",
+	boss_primal_beast_pve: "primal_beast",
+	boss_earth_spirit_pve: "earth_spirit",
+	boss_elder_titan_pve: "elder_titan",
+}
+
+var BOSS_HEALTH_BAR_CUSTOM_ICONS =
+{
+	boss_cosmic_roshan_pve: "s2r://panorama/images/events/monster_hunter/heroes_icons/npc_dota_hero_roshan_psd.vtex",
+}
+
+function GetBossHealthBarIcon(unit_name)
+{
+	if (BOSS_HEALTH_BAR_CUSTOM_ICONS[unit_name])
+	{
+		return BOSS_HEALTH_BAR_CUSTOM_ICONS[unit_name]
+	}
+	if (BOSS_HEALTH_BAR_HERO_ICONS[unit_name])
+	{
+		return "s2r://panorama/images/heroes/icons/npc_dota_hero_" + BOSS_HEALTH_BAR_HERO_ICONS[unit_name] + "_png.vtex"
+	}
+	return "file://{images}/custom_game/talents/" + unit_name + ".png"
+}
+
 function BossHealthBarStart(data)
 {
-	$("#BossIcon").style.backgroundImage = 'url("file://{images}/custom_game/talents/' + data.unit_name + '.png")'
+	$("#BossIcon").style.backgroundImage = 'url("' + GetBossHealthBarIcon(data.unit_name) + '")'
 	$("#BossIcon").style.backgroundSize = "100%"
 	$("#BossLabel").text = $.Localize("#" + data.unit_name)
 	$("#BossHpLabel").text = data.health + " / " + data.max_health

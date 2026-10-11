@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -51,6 +51,15 @@
 	margin-left: 100px;
 	background-image: url("s2r://panorama/images/custom_game/talents/wodalogo1_png.vtex");
 	background-size: 100%;
+}
+
+.PanelHintsImageLogo.ArenaLogo
+{
+	width: 456px;
+	height: 300px;
+	margin-top: 80px;
+	margin-left: 222px;
+	background-image: url("s2r://panorama/images/logo_no_background_png.vtex");
 }
 
 .PanelHintsInformation
@@ -252,91 +261,6 @@
 	brightness: 1.8;
 }
 
-.ChoosePayMethode
-{
-	width: 710px;
-	height: 438px;
-	background-image: url("s2r://panorama/images/custom_game/shop/bg_preview_png.vtex");
-	background-size: 100%;
-	margin-bottom: -6%;
-	margin-left: 5%;
-	z-index: 1000;
-	align: left center;
-}
-
-.AspectRatio16x10 .ChoosePayMethode
-{
-	margin-left: 5.5%;
-}
-
-.AspectRatio21x9 .ChoosePayMethode
-{
-	margin-left: 3.8%;
-}
-
-.IsOpacity.ChoosePayMethode
-{
-	opacity: 0;
-}
-
-.PaymentVariants
-{
-	align: center center;
-	flow-children: right;
-}
-
-.PaymentBlock
-{
-	width: 180px;
-	height: 200px;
-	background-color: #0009;
-	margin: 20px;
-	border-radius: 6px;
-	flow-children: down;
-	ui-scale: 150%;
-	transition-duration: 0.1s;
-	transition-property: pre-transform-scale2d;
-}
-
-.PaymentBlock:hover
-{
-	pre-transform-scale2d: 1.05;
-}
-
-.PaymentIcon
-{
-	width: 120px;
-	height: 120px;
-	background-size: 100%;
-	horizontal-align: center;
-	margin-top: 10px;
-	border-radius:6px;
-}
-
-.FunpayIcon
-{
-	background-image:url("s2r://panorama/images/custom_game/shop/funpay_png.vtex");
-	background-size: 100%;
-}
-
-.XsollaIcon
-{
-	background-image:url("s2r://panorama/images/custom_game/shop/xsolla_png.vtex");
-	background-size: 100%;
-}
-
-.PaymentLabel
-{
-	horizontal-align: center;
-	text-align: center;
-	font-size: 15px;
-	color: white;
-	font-weight: bold;
-	text-overflow: ellipsis;
-	font-family: Reaver;
-	margin-top: 5px;
-}
-
 .BuyItemPanel
 {
 	width: 150px;
@@ -399,9 +323,9 @@
 
 .XsollaProductsChoose
 {
-	width: 816px;
-	height: 454px;
-	background-image: url("s2r://panorama/images/custom_game/shop/bg_preview_png.vtex");
+	width: 986px;
+	height: 770px;
+	background-image: url("s2r://panorama/images/custom_game/shop/bg_preview_2_png.vtex");
 	background-size: 100%;
 	margin-bottom: -6%;
 	margin-left: 2.3%;
@@ -414,8 +338,8 @@
 {
 	horizontal-align: center;
 	margin-top: 40px;
-	width: 810px;
-	height: 411px;
+	width: 986px;
+	height: 720px;
 	flow-children: right-wrap;
 }
 
@@ -480,4 +404,33 @@
 	text-overflow: ellipsis;
 	font-family: Reaver;
 	margin-top: 10px;
+}
+
+.WodaConnectLoadingStatus
+{
+	horizontal-align: center;
+	vertical-align: bottom;
+	margin-bottom: 120px;
+	padding: 12px 26px;
+	border-radius: 6px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #404D65ee ), to( #2B3445ee ) );
+	border: 1px solid #6F819B55;
+	font-family: Radiance;
+	font-size: 22px;
+	font-weight: bold;
+	color: #ffffffcc;
+	text-align: center;
+	text-shadow: 1px 1px 3px 2 black;
+	visibility: collapse;
+}
+
+.WodaConnectLoadingStatus.Visible
+{
+	visibility: visible;
+}
+
+.WodaConnectLoadingStatus.Error
+{
+	color: #ff8a7a;
+	border: 1px solid #c8574a88;
 }

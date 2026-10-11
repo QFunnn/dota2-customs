@@ -1,0 +1,54 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1a5b3bb 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/multiteam_end_screen/multiteam_end_screen.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/eliminated_screen/eliminated_screen.vcss" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/util.vjs" />
+		<include src="s2r://panorama/layout/custom_game/scripts/icon_change.vjs" />
+		<include src="s2r://panorama/layout/custom_game/shop/shop_items_information.vjs" />
+		<include src="s2r://panorama/layout/custom_game/scripts/player_stats_panel.vjs" />
+		<include src="s2r://panorama/layout/custom_game/eliminated_screen/eliminated_screen.vjs" />
+	</scripts>
+	<Panel class="EliminatedContainer" hittest="false">
+		<Panel class="EliminatedRoot" id="EliminatedRoot" hittest="true">
+			<Panel class="EndScreenRoot" hittest="false">
+				<Panel id="CustomBg" hittest="false" />
+				<Panel class="WodaLogo" hittest="false" />
+				<Panel class="EndGameWithBanner" hittest="false">
+					<Panel hittest="false" class="EndScreenWindow">
+						<Panel class="EliminatedHeader" hittest="false">
+							<Label class="EliminatedTitle" id="EliminatedTitle" text="#eliminated_title" />
+							<Label class="EliminatedReason" id="EliminatedReason" html="true" text="" />
+						</Panel>
+						<Panel class="EliminatedStats" id="EliminatedStats" hittest="false" />
+						<Label class="EliminatedHint" text="#eliminated_hint_stay" />
+						<Panel class="ButtonsEnd EliminatedButtons">
+							<Button id="EliminatedStatsButton" class="ButtonPanel EliminatedButton" onactivate="EliminatedChangeGameStats()">
+								<Label text="#CustomEndScreenStats" />
+							</Button>
+							<Button class="ButtonPanel EliminatedButton" onactivate="EliminatedClose()">
+								<Label text="#eliminated_button_close" />
+							</Button>
+							<Button class="ButtonPanel EliminatedButton EliminatedLeaveButton" onactivate="EliminatedLeave()">
+								<Label text="#eliminated_button_leave" />
+							</Button>
+						</Panel>
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

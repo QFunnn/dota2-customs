@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -11,6 +11,12 @@
 var first_time = false;
 var current_tab
 var PLAYER_DATA = Game.GetCustomTable("woda_player_data", String(Players.GetLocalPlayer()));
+var inventory_items_map_cache = null
+var bp_reward_refs = []
+var bp_list_built = {2025: false, 2026: false}
+var bp_list_building = {2025: false, 2026: false}
+var bp26_pending_empty_levels = []
+var BP_BUILD_CHUNK = 40
 
 // Серверная логика в configs/battlepass_data // lua
 
@@ -23,7 +29,7 @@ var bp_rewards =
         ["930", "emblem_103", "emblem_103"],
         ["946", "background_66", "background_66"],
         ["941", "tip", "tipped_941"],
-        ["20000", "big_coin", "bp_coins_1150"],
+        ["20000", "xsolla_packs/coins_1", "bp_coins_1150"],
     ],
     [
         ["20001", "double_token", "bp_double_token"],
@@ -44,7 +50,7 @@ var bp_rewards =
         ["945", "tip", "tipped_945"],
     ],
     [
-        ["20004", "big_coin", "bp_coins_25"],
+        ["20004", "xsolla_packs/coins_1", "bp_coins_25"],
     ],
     [],
     [
@@ -64,7 +70,7 @@ var bp_rewards =
     ],
     [],
     [   
-        ["20007", "big_coin", "bp_coins_25"],
+        ["20007", "xsolla_packs/coins_1", "bp_coins_25"],
         ["20008", "dp1", "bp_woda_plus"],
     ],
     [],
@@ -85,7 +91,7 @@ var bp_rewards =
     [],
     [],
     [   
-        ["20011", "big_coin", "bp_coins_25"],
+        ["20011", "xsolla_packs/coins_1", "bp_coins_25"],
         ["929","emblem_102", "emblem_102"],
     ],
     [],
@@ -106,7 +112,7 @@ var bp_rewards =
     [],
     [],
     [   
-        ["20015", "big_coin", "bp_coins_25"],
+        ["20015", "xsolla_packs/coins_1", "bp_coins_25"],
         ["932", "emblem_105", "emblem_105"],
     ],
     [],
@@ -125,7 +131,7 @@ var bp_rewards =
     [],
     [
         ["20018", "dp1", "bp_woda_plus"],
-        ["20019", "big_coin", "bp_coins_25"],
+        ["20019", "xsolla_packs/coins_1", "bp_coins_25"],
         ["949", "background_69", "background_69"],
     ],
     [],
@@ -144,7 +150,7 @@ var bp_rewards =
     [],
     [],
     [
-        ["20022", "big_coin", "bp_coins_25"],
+        ["20022", "xsolla_packs/coins_1", "bp_coins_25"],
     ],
     [],
     [
@@ -164,7 +170,7 @@ var bp_rewards =
     [],
     [],
     [
-        ["20026", "big_coin", "bp_coins_25"],
+        ["20026", "xsolla_packs/coins_1", "bp_coins_25"],
     ],
     [],
     [
@@ -186,7 +192,7 @@ var bp_rewards =
     [],
     [],
     [   
-        ["20034", "big_coin", "bp_coins_25"],
+        ["20034", "xsolla_packs/coins_1", "bp_coins_25"],
         ["20035", "dp1", "bp_woda_plus"],
     ],
     [],
@@ -205,7 +211,7 @@ var bp_rewards =
     [],
     [],
     [
-        ["20038", "big_coin", "bp_coins_25"],
+        ["20038", "xsolla_packs/coins_1", "bp_coins_25"],
     ],
     [],
     [
@@ -223,7 +229,7 @@ var bp_rewards =
     [],
     [],
     [
-        ["20042", "big_coin", "bp_coins_100"],
+        ["20042", "xsolla_packs/coins_1", "bp_coins_100"],
         ["936", "emblem_109", "emblem_109"],
     ],
     [],
@@ -242,7 +248,7 @@ var bp_rewards =
     [],
     [],
     [
-        ["20045", "big_coin", "bp_coins_25"],
+        ["20045", "xsolla_packs/coins_1", "bp_coins_25"],
         ["20046", "dp1", "bp_woda_plus"],
     ],
     [],
@@ -261,7 +267,7 @@ var bp_rewards =
     [],
     [],
     [
-        ["20049", "big_coin", "bp_coins_25"],
+        ["20049", "xsolla_packs/coins_1", "bp_coins_25"],
     ],
     [],
     [
@@ -279,7 +285,7 @@ var bp_rewards =
     [],
     [],
     [
-        ["20053", "big_coin", "bp_coins_25"],
+        ["20053", "xsolla_packs/coins_1", "bp_coins_25"],
     ],
     [],
     [
@@ -297,7 +303,7 @@ var bp_rewards =
     [],
     [],
     [
-        ["20056", "big_coin", "bp_coins_25"],
+        ["20056", "xsolla_packs/coins_1", "bp_coins_25"],
         ["20057", "dp1", "bp_woda_plus"],
     ],
     [],
@@ -314,7 +320,7 @@ var bp_rewards =
     [],
     [],
     [
-        ["20060", "big_coin", "bp_coins_25"],
+        ["20060", "xsolla_packs/coins_1", "bp_coins_25"],
         ["928", "emblem_101", "emblem_101"],
     ],
     [],
@@ -333,7 +339,7 @@ var bp_rewards =
     [],
     [],
     [
-        ["20064", "big_coin", "bp_coins_25"],
+        ["20064", "xsolla_packs/coins_1", "bp_coins_25"],
 
     ],
     [],
@@ -350,7 +356,7 @@ var bp_rewards =
     [],
     [],
     [
-        ["20067", "big_coin", "bp_coins_25"],
+        ["20067", "xsolla_packs/coins_1", "bp_coins_25"],
         ["20068", "dp1", "bp_woda_plus"],
     ],
     [],
@@ -373,7 +379,7 @@ var bp_rewards =
     [],
     [],
     [
-        ["20076", "big_coin", "bp_coins_25"],
+        ["20076", "xsolla_packs/coins_1", "bp_coins_25"],
     ],
     [],
     [
@@ -391,7 +397,7 @@ var bp_rewards =
     [],
     [],
     [
-        ["20080", "big_coin", "bp_coins_25"],
+        ["20080", "xsolla_packs/coins_1", "bp_coins_25"],
     ],
     [],
     [
@@ -407,7 +413,7 @@ var bp_rewards =
     [],
     [],
     [
-        ["20083", "big_coin", "bp_coins_100"],
+        ["20083", "xsolla_packs/coins_1", "bp_coins_100"],
         ["20084", "dp1", "bp_woda_plus"],
         ["938", "938", "pet_158"],
     ],
@@ -427,7 +433,7 @@ var bp_rewards =
     [],
     [],
     [
-        ["20087", "big_coin", "bp_coins_25"],
+        ["20087", "xsolla_packs/coins_1", "bp_coins_25"],
     ],
     [],
     [
@@ -445,7 +451,7 @@ var bp_rewards =
     [],
     [],
     [
-        ["20091", "big_coin", "bp_coins_25"],
+        ["20091", "xsolla_packs/coins_1", "bp_coins_25"],
     ],
     [],
     [
@@ -463,7 +469,7 @@ var bp_rewards =
     [],
     [],
     [
-        ["20094", "big_coin", "bp_coins_25"],
+        ["20094", "xsolla_packs/coins_1", "bp_coins_25"],
         ["20095", "dp1", "bp_woda_plus"],
     ],
     [],
@@ -480,7 +486,7 @@ var bp_rewards =
     [],
     [],
     [
-        ["20098", "big_coin", "bp_coins_25"],
+        ["20098", "xsolla_packs/coins_1", "bp_coins_25"],
     ],
     [],
     [
@@ -498,7 +504,7 @@ var bp_rewards =
     [],
     [],
     [
-        ["20102", "big_coin", "bp_coins_25"],
+        ["20102", "xsolla_packs/coins_1", "bp_coins_25"],
         ["937", "emblem_110", "emblem_110"],
     ],
     [],
@@ -515,7 +521,7 @@ var bp_rewards =
     [],
     [],
     [
-        ["20105", "big_coin", "bp_coins_25"],
+        ["20105", "xsolla_packs/coins_1", "bp_coins_25"],
         ["20106", "dp1", "bp_woda_plus"],
     ],
     [],
@@ -532,7 +538,7 @@ var bp_rewards =
     [],
     [],
     [
-        ["20109", "big_coin", "bp_coins_25"],
+        ["20109", "xsolla_packs/coins_1", "bp_coins_25"],
     ],
     [],
     [
@@ -555,7 +561,7 @@ var bp_rewards =
     [],
     [],
     [
-        ["20118", "big_coin", "bp_coins_25"],
+        ["20118", "xsolla_packs/coins_1", "bp_coins_25"],
     ],
     [],
     [
@@ -571,7 +577,7 @@ var bp_rewards =
     [],
     [],
     [
-        ["20121", "big_coin", "bp_coins_25"],
+        ["20121", "xsolla_packs/coins_1", "bp_coins_25"],
         ["20122", "dp1", "bp_woda_plus"],
     ],
     [],
@@ -588,32 +594,32 @@ var bp_rewards =
     [],
     [],
     [
-        ["20125", "big_coin", "bp_coins_1150"],
+        ["20125", "xsolla_packs/coins_1", "bp_coins_1150"],
     ]
 ]
 
 var bp_rewards_2026 =
 [
-    [["30206", "big_coin", "bp_coins_500"], ["1017", "tip", "tipped_1017"], ["1050", "emblem_119", "emblem_119"], ["1029", "background_114", "background_114"], ["1005", "1005", "pet_180"], ["1011", "tp_effect_11", "tp_effect_11"]], //1
+    [["30206", "xsolla_packs/coins_1", "bp_coins_500"], ["1017", "tip", "tipped_1017"], ["1050", "emblem_119", "emblem_119"], ["1029", "background_114", "background_114"], ["1005", "1005", "pet_180"], ["1011", "tp_effect_11", "tp_effect_11"]], //1
     [["30000", "double_token", "bp_double_token"]], //2
     [], //3
     [["1073", "background_130", "background_130"]], //4
-    [["30001", "big_coin", "bp_coins_25"]], //5
+    [["30001", "xsolla_packs/coins_1", "bp_coins_25"]], //5
     [], //6
     [["30002", "dp1", "bp_woda_plus"]], //7
     [], //8
     [], //9
-    [["30003", "big_coin", "bp_coins_25"], ["1016", "five_14", "five_14"]], //10
+    [["30003", "xsolla_packs/coins_1", "bp_coins_25"], ["1016", "five_14", "five_14"]], //10
     [], //11
     [["30004", "double_token", "bp_double_token"]], //12
     [], //13
     [], //14
-    [["30005", "big_coin", "bp_coins_25"]], //15
+    [["30005", "xsolla_packs/coins_1", "bp_coins_25"], ["30227", "boss_soul_big", "bp_boss_souls_3"]], //15
     [], //16
     [["30006", "dp1", "bp_woda_plus"]], //17
     [], //18
     [], //19
-    [["30007", "big_coin", "bp_coins_25"], ["1048", "emblem_117", "emblem_117"]], //20
+    [["30007", "xsolla_packs/coins_1", "bp_coins_25"], ["1048", "emblem_117", "emblem_117"]], //20
     [], //21
     [["30008", "double_token", "bp_double_token"]], //22
     [], //23
@@ -623,22 +629,22 @@ var bp_rewards_2026 =
     [["30009", "dp1", "bp_woda_plus"]], //27
     [], //28
     [], //29
-    [["30010", "big_coin", "bp_coins_25"]], //30
+    [["30010", "xsolla_packs/coins_1", "bp_coins_25"]], //30
     [], //31
     [["30011", "double_token", "bp_double_token"]], //32
-    [], //33
+    [["30212", "xsolla_packs/crystals_1", "bp_crystals_5"]], //33
     [], //34
-    [["30012", "big_coin", "bp_coins_25"]], //35
+    [["30012", "xsolla_packs/coins_1", "bp_coins_25"], ["30207", "rune_chest", "rune_chest_item"]], //35
     [], //36
     [["30013", "dp1", "bp_woda_plus"]], //37
     [], //38
     [], //39
-    [["30014", "big_coin", "bp_coins_25"], ["1072", "emblem_121", "emblem_121"]], //40
+    [["30014", "xsolla_packs/coins_1", "bp_coins_25"], ["1072", "emblem_121", "emblem_121"]], //40
     [], //41
     [["30015", "double_token", "bp_double_token"]], //42
     [], //43
     [], //44
-    [["30016", "big_coin", "bp_coins_25"]], //45
+    [["30016", "xsolla_packs/coins_1", "bp_coins_25"]], //45
     [], //46
     [["30017", "dp1", "bp_woda_plus"]], //47
     [], //48
@@ -648,22 +654,22 @@ var bp_rewards_2026 =
     [["30023", "double_token", "bp_double_token"]], //52
     [], //53
     [], //54
-    [["30024", "big_coin", "bp_coins_25"]], //55
+    [["30024", "xsolla_packs/coins_1", "bp_coins_25"]], //55
     [], //56
     [["30025", "dp1", "bp_woda_plus"]], //57
     [], //58
     [], //59
-    [["30026", "big_coin", "bp_coins_25"], ["1041", "background_126", "background_126"]], //60
+    [["30026", "xsolla_packs/coins_1", "bp_coins_25"], ["1041", "background_126", "background_126"]], //60
     [], //61
     [["30027", "double_token", "bp_double_token"]], //62
     [], //63
     [], //64
-    [["30028", "big_coin", "bp_coins_25"]], //65
-    [], //66
+    [["30028", "xsolla_packs/coins_1", "bp_coins_25"], ["30228", "boss_soul_big", "bp_boss_souls_3"]], //65
+    [["30213", "xsolla_packs/crystals_1", "bp_crystals_5"]], //66
     [["30029", "dp1", "bp_woda_plus"]], //67
     [], //68
     [], //69
-    [["30030", "big_coin", "bp_coins_25"]], //70
+    [["30030", "xsolla_packs/coins_1", "bp_coins_25"]], //70
     [], //71
     [["30031", "double_token", "bp_double_token"]], //72
     [], //73
@@ -673,47 +679,47 @@ var bp_rewards_2026 =
     [["30032", "dp1", "bp_woda_plus"]], //77
     [], //78
     [], //79
-    [["30033", "big_coin", "bp_coins_25"]], //80
+    [["30033", "xsolla_packs/coins_1", "bp_coins_25"]], //80
     [], //81
     [["30034", "double_token", "bp_double_token"]], //82
     [], //83
     [], //84
-    [["30035", "big_coin", "bp_coins_25"]], //85
+    [["30035", "xsolla_packs/coins_1", "bp_coins_25"]], //85
     [], //86
     [["30036", "dp1", "bp_woda_plus"]], //87
     [], //88
     [], //89
-    [["30037", "big_coin", "bp_coins_25"]], //90
+    [["30037", "xsolla_packs/coins_1", "bp_coins_25"]], //90
     [], //91
     [["30038", "double_token", "bp_double_token"]], //92
     [], //93
     [], //94
-    [["30039", "big_coin", "bp_coins_25"]], //95
+    [["30039", "xsolla_packs/coins_1", "bp_coins_25"]], //95
     [], //96
     [["30040", "dp1", "bp_woda_plus"]], //97
     [], //98
-    [], //99
+    [["30214", "xsolla_packs/crystals_1", "bp_crystals_5"]], //99
     [["1019", "tip", "tipped_1019"], ["1045", "emblem_114", "emblem_114"], ["1014", "five_12", "five_12"]], //100
     [], //101
     [["30041", "double_token", "bp_double_token"]], //102
     [], //103
     [], //104
-    [["30042", "big_coin", "bp_coins_25"]], //105
+    [["30042", "xsolla_packs/coins_1", "bp_coins_25"]], //105
     [], //106
     [["30043", "dp1", "bp_woda_plus"]], //107
     [], //108
     [], //109
-    [["30044", "big_coin", "bp_coins_25"]], //110
+    [["30044", "xsolla_packs/coins_1", "bp_coins_25"]], //110
     [], //111
     [["30045", "double_token", "bp_double_token"]], //112
     [], //113
     [], //114
-    [["30046", "big_coin", "bp_coins_25"]], //115
+    [["30046", "xsolla_packs/coins_1", "bp_coins_25"], ["30229", "boss_soul_big", "bp_boss_souls_3"]], //115
     [], //116
     [["30047", "dp1", "bp_woda_plus"]], //117
     [], //118
     [], //119
-    [["30048", "big_coin", "bp_coins_25"]], //120
+    [["30048", "xsolla_packs/coins_1", "bp_coins_25"]], //120
     [], //121
     [["30049", "double_token", "bp_double_token"]], //122
     [], //123
@@ -723,22 +729,22 @@ var bp_rewards_2026 =
     [["30050", "dp1", "bp_woda_plus"]], //127
     [], //128
     [], //129
-    [["30051", "big_coin", "bp_coins_25"]], //130
+    [["30051", "xsolla_packs/coins_1", "bp_coins_25"]], //130
     [], //131
-    [["30052", "double_token", "bp_double_token"]], //132
+    [["30052", "double_token", "bp_double_token"], ["30215", "xsolla_packs/crystals_1", "bp_crystals_5"]], //132
     [], //133
     [], //134
-    [["30053", "big_coin", "bp_coins_25"]], //135
+    [["30053", "xsolla_packs/coins_1", "bp_coins_25"], ["30208", "rune_chest", "rune_chest_item"]], //135
     [], //136
     [["30054", "dp1", "bp_woda_plus"]], //137
     [], //138
     [], //139
-    [["30055", "big_coin", "bp_coins_25"]], //140
+    [["30055", "xsolla_packs/coins_1", "bp_coins_25"]], //140
     [], //141
     [["30056", "double_token", "bp_double_token"]], //142
     [], //143
     [], //144
-    [["30057", "big_coin", "bp_coins_25"]], //145
+    [["30057", "xsolla_packs/coins_1", "bp_coins_25"]], //145
     [], //146
     [["30058", "dp1", "bp_woda_plus"]], //147
     [], //148
@@ -748,22 +754,22 @@ var bp_rewards_2026 =
     [["30064", "double_token", "bp_double_token"]], //152
     [], //153
     [], //154
-    [["30065", "big_coin", "bp_coins_25"]], //155
+    [["30065", "xsolla_packs/coins_1", "bp_coins_25"]], //155
     [], //156
     [["30066", "dp1", "bp_woda_plus"]], //157
     [], //158
     [], //159
-    [["30067", "big_coin", "bp_coins_25"], ["1042", "background_127", "background_127"]], //160
+    [["30067", "xsolla_packs/coins_1", "bp_coins_25"], ["1042", "background_127", "background_127"]], //160
     [], //161
     [["30068", "double_token", "bp_double_token"]], //162
     [], //163
     [], //164
-    [["30069", "big_coin", "bp_coins_25"]], //165
+    [["30069", "xsolla_packs/coins_1", "bp_coins_25"], ["30216", "xsolla_packs/crystals_1", "bp_crystals_5"], ["30230", "boss_soul_big", "bp_boss_souls_3"]], //165
     [], //166
     [["30070", "dp1", "bp_woda_plus"]], //167
     [], //168
     [], //169
-    [["30071", "big_coin", "bp_coins_25"]], //170
+    [["30071", "xsolla_packs/coins_1", "bp_coins_25"]], //170
     [], //171
     [["30072", "double_token", "bp_double_token"]], //172
     [], //173
@@ -773,47 +779,47 @@ var bp_rewards_2026 =
     [["30073", "dp1", "bp_woda_plus"]], //177
     [], //178
     [], //179
-    [["30074", "big_coin", "bp_coins_25"]], //180
+    [["30074", "xsolla_packs/coins_1", "bp_coins_25"]], //180
     [], //181
     [["30075", "double_token", "bp_double_token"]], //182
     [], //183
     [], //184
-    [["30076", "big_coin", "bp_coins_25"]], //185
+    [["30076", "xsolla_packs/coins_1", "bp_coins_25"]], //185
     [], //186
     [["30077", "dp1", "bp_woda_plus"]], //187
     [], //188
     [], //189
-    [["30078", "big_coin", "bp_coins_25"]], //190
+    [["30078", "xsolla_packs/coins_1", "bp_coins_25"]], //190
     [], //191
     [["30079", "double_token", "bp_double_token"]], //192
     [], //193
     [], //194
-    [["30080", "big_coin", "bp_coins_25"]], //195
+    [["30080", "xsolla_packs/coins_1", "bp_coins_25"]], //195
     [], //196
     [["30081", "dp1", "bp_woda_plus"]], //197
-    [], //198
+    [["30217", "xsolla_packs/crystals_1", "bp_crystals_5"]], //198
     [], //199
     [["1022", "tip", "tipped_1022"], ["1046", "emblem_115", "emblem_115"]], //200
     [], //201
     [["30082", "double_token", "bp_double_token"]], //202
     [], //203
     [], //204
-    [["30083", "big_coin", "bp_coins_25"]], //205
+    [["30083", "xsolla_packs/coins_1", "bp_coins_25"]], //205
     [], //206
     [["30084", "dp1", "bp_woda_plus"]], //207
     [], //208
     [], //209
-    [["30085", "big_coin", "bp_coins_25"]], //210
+    [["30085", "xsolla_packs/coins_1", "bp_coins_25"]], //210
     [], //211
     [["30086", "double_token", "bp_double_token"]], //212
     [], //213
     [], //214
-    [["30087", "big_coin", "bp_coins_25"]], //215
+    [["30087", "xsolla_packs/coins_1", "bp_coins_25"], ["30231", "boss_soul_big", "bp_boss_souls_3"]], //215
     [], //216
     [["30088", "dp1", "bp_woda_plus"]], //217
     [], //218
     [], //219
-    [["30089", "big_coin", "bp_coins_25"]], //220
+    [["30089", "xsolla_packs/coins_1", "bp_coins_25"]], //220
     [], //221
     [["30090", "double_token", "bp_double_token"]], //222
     [], //223
@@ -823,22 +829,22 @@ var bp_rewards_2026 =
     [["30091", "dp1", "bp_woda_plus"]], //227
     [], //228
     [], //229
-    [["30092", "big_coin", "bp_coins_25"]], //230
-    [], //231
+    [["30092", "xsolla_packs/coins_1", "bp_coins_25"]], //230
+    [["30218", "xsolla_packs/crystals_1", "bp_crystals_5"]], //231
     [["30093", "double_token", "bp_double_token"]], //232
     [], //233
     [], //234
-    [["30094", "big_coin", "bp_coins_25"]], //235
+    [["30094", "xsolla_packs/coins_1", "bp_coins_25"], ["30209", "rune_chest", "rune_chest_item"]], //235
     [], //236
     [["30095", "dp1", "bp_woda_plus"]], //237
     [], //238
     [], //239
-    [["30096", "big_coin", "bp_coins_25"]], //240
+    [["30096", "xsolla_packs/coins_1", "bp_coins_25"]], //240
     [], //241
     [["30097", "double_token", "bp_double_token"]], //242
     [], //243
     [], //244
-    [["30098", "big_coin", "bp_coins_25"]], //245
+    [["30098", "xsolla_packs/coins_1", "bp_coins_25"]], //245
     [], //246
     [["30099", "dp1", "bp_woda_plus"]], //247
     [], //248
@@ -848,22 +854,22 @@ var bp_rewards_2026 =
     [["30105", "double_token", "bp_double_token"]], //252
     [], //253
     [], //254
-    [["30106", "big_coin", "bp_coins_25"]], //255
+    [["30106", "xsolla_packs/coins_1", "bp_coins_25"]], //255
     [], //256
     [["30107", "dp1", "bp_woda_plus"]], //257
     [], //258
     [], //259
-    [["30108", "big_coin", "bp_coins_25"], ["1043", "background_128", "background_128"]], //260
+    [["30108", "xsolla_packs/coins_1", "bp_coins_25"], ["1043", "background_128", "background_128"]], //260
     [], //261
     [["30109", "double_token", "bp_double_token"]], //262
     [], //263
-    [], //264
-    [["30110", "big_coin", "bp_coins_25"]], //265
+    [["30219", "xsolla_packs/crystals_1", "bp_crystals_5"]], //264
+    [["30110", "xsolla_packs/coins_1", "bp_coins_25"], ["30232", "boss_soul_big", "bp_boss_souls_3"]], //265
     [], //266
     [["30111", "dp1", "bp_woda_plus"]], //267
     [], //268
     [], //269
-    [["30112", "big_coin", "bp_coins_25"]], //270
+    [["30112", "xsolla_packs/coins_1", "bp_coins_25"]], //270
     [], //271
     [["30113", "double_token", "bp_double_token"]], //272
     [], //273
@@ -873,24 +879,24 @@ var bp_rewards_2026 =
     [["30114", "dp1", "bp_woda_plus"]], //277
     [], //278
     [], //279
-    [["30115", "big_coin", "bp_coins_25"]], //280
+    [["30115", "xsolla_packs/coins_1", "bp_coins_25"]], //280
     [], //281
     [["30116", "double_token", "bp_double_token"]], //282
     [], //283
     [], //284
-    [["30117", "big_coin", "bp_coins_25"]], //285
+    [["30117", "xsolla_packs/coins_1", "bp_coins_25"]], //285
     [], //286
     [["30118", "dp1", "bp_woda_plus"]], //287
     [], //288
     [], //289
-    [["30119", "big_coin", "bp_coins_25"]], //290
+    [["30119", "xsolla_packs/coins_1", "bp_coins_25"]], //290
     [], //291
     [["30120", "double_token", "bp_double_token"]], //292
     [], //293
     [], //294
-    [["30121", "big_coin", "bp_coins_25"]], //295
+    [["30121", "xsolla_packs/coins_1", "bp_coins_25"]], //295
     [], //296
-    [["30122", "dp1", "bp_woda_plus"]], //297
+    [["30122", "dp1", "bp_woda_plus"], ["30220", "xsolla_packs/crystals_1", "bp_crystals_5"]], //297
     [], //298
     [], //299
     [["1024", "tip", "tipped_1024"], ["1047", "emblem_116", "emblem_116"], ["1013", "five_11", "five_11"]], //300
@@ -898,22 +904,22 @@ var bp_rewards_2026 =
     [["30123", "double_token", "bp_double_token"]], //302
     [], //303
     [], //304
-    [["30124", "big_coin", "bp_coins_25"]], //305
+    [["30124", "xsolla_packs/coins_1", "bp_coins_25"]], //305
     [], //306
     [["30125", "dp1", "bp_woda_plus"]], //307
     [], //308
     [], //309
-    [["30126", "big_coin", "bp_coins_25"]], //310
+    [["30126", "xsolla_packs/coins_1", "bp_coins_25"]], //310
     [], //311
     [["30127", "double_token", "bp_double_token"]], //312
     [], //313
     [], //314
-    [["30128", "big_coin", "bp_coins_25"]], //315
+    [["30128", "xsolla_packs/coins_1", "bp_coins_25"], ["30233", "boss_soul_big", "bp_boss_souls_3"]], //315
     [], //316
     [["30129", "dp1", "bp_woda_plus"]], //317
     [], //318
     [], //319
-    [["30130", "big_coin", "bp_coins_25"]], //320
+    [["30130", "xsolla_packs/coins_1", "bp_coins_25"]], //320
     [], //321
     [["30131", "double_token", "bp_double_token"]], //322
     [], //323
@@ -923,22 +929,22 @@ var bp_rewards_2026 =
     [["30132", "dp1", "bp_woda_plus"]], //327
     [], //328
     [], //329
-    [["30133", "big_coin", "bp_coins_25"]], //330
+    [["30133", "xsolla_packs/coins_1", "bp_coins_25"], ["30221", "xsolla_packs/crystals_1", "bp_crystals_5"]], //330
     [], //331
     [["30134", "double_token", "bp_double_token"]], //332
     [], //333
     [], //334
-    [["30135", "big_coin", "bp_coins_25"]], //335
+    [["30135", "xsolla_packs/coins_1", "bp_coins_25"], ["30210", "rune_chest", "rune_chest_item"]], //335
     [], //336
     [["30136", "dp1", "bp_woda_plus"]], //337
     [], //338
     [], //339
-    [["30137", "big_coin", "bp_coins_25"]], //340
+    [["30137", "xsolla_packs/coins_1", "bp_coins_25"]], //340
     [], //341
     [["30138", "double_token", "bp_double_token"]], //342
     [], //343
     [], //344
-    [["30139", "big_coin", "bp_coins_25"]], //345
+    [["30139", "xsolla_packs/coins_1", "bp_coins_25"]], //345
     [], //346
     [["30140", "dp1", "bp_woda_plus"]], //347
     [], //348
@@ -948,22 +954,22 @@ var bp_rewards_2026 =
     [["30146", "double_token", "bp_double_token"]], //352
     [], //353
     [], //354
-    [["30147", "big_coin", "bp_coins_25"]], //355
+    [["30147", "xsolla_packs/coins_1", "bp_coins_25"]], //355
     [], //356
     [["30148", "dp1", "bp_woda_plus"]], //357
     [], //358
     [], //359
-    [["30149", "big_coin", "bp_coins_25"], ["1044", "background_129", "background_129"]], //360
+    [["30149", "xsolla_packs/coins_1", "bp_coins_25"], ["1044", "background_129", "background_129"]], //360
     [], //361
     [["30150", "double_token", "bp_double_token"]], //362
-    [], //363
+    [["30222", "xsolla_packs/crystals_1", "bp_crystals_5"]], //363
     [], //364
-    [["30151", "big_coin", "bp_coins_25"]], //365
+    [["30151", "xsolla_packs/coins_1", "bp_coins_25"], ["30234", "boss_soul_big", "bp_boss_souls_3"]], //365
     [], //366
     [["30152", "dp1", "bp_woda_plus"]], //367
     [], //368
     [], //369
-    [["30153", "big_coin", "bp_coins_25"]], //370
+    [["30153", "xsolla_packs/coins_1", "bp_coins_25"]], //370
     [], //371
     [["30154", "double_token", "bp_double_token"]], //372
     [], //373
@@ -973,23 +979,23 @@ var bp_rewards_2026 =
     [["30155", "dp1", "bp_woda_plus"]], //377
     [], //378
     [], //379
-    [["30156", "big_coin", "bp_coins_25"]], //380
+    [["30156", "xsolla_packs/coins_1", "bp_coins_25"]], //380
     [], //381
     [["30157", "double_token", "bp_double_token"]], //382
     [], //383
     [], //384
-    [["30158", "big_coin", "bp_coins_25"]], //385
+    [["30158", "xsolla_packs/coins_1", "bp_coins_25"]], //385
     [], //386
     [["30159", "dp1", "bp_woda_plus"]], //387
     [], //388
     [], //389
-    [["30160", "big_coin", "bp_coins_25"]], //390
+    [["30160", "xsolla_packs/coins_1", "bp_coins_25"]], //390
     [], //391
     [["30161", "double_token", "bp_double_token"]], //392
     [], //393
     [], //394
-    [["30162", "big_coin", "bp_coins_25"]], //395
-    [], //396
+    [["30162", "xsolla_packs/coins_1", "bp_coins_25"]], //395
+    [["30223", "xsolla_packs/crystals_1", "bp_crystals_5"]], //396
     [["30163", "dp1", "bp_woda_plus"]], //397
     [], //398
     [], //399
@@ -998,22 +1004,22 @@ var bp_rewards_2026 =
     [["30164", "double_token", "bp_double_token"]], //402
     [], //403
     [], //404
-    [["30165", "big_coin", "bp_coins_25"]], //405
+    [["30165", "xsolla_packs/coins_1", "bp_coins_25"]], //405
     [], //406
     [["30166", "dp1", "bp_woda_plus"]], //407
     [], //408
     [], //409
-    [["30167", "big_coin", "bp_coins_25"]], //410
+    [["30167", "xsolla_packs/coins_1", "bp_coins_25"]], //410
     [], //411
     [["30168", "double_token", "bp_double_token"]], //412
     [], //413
     [], //414
-    [["30169", "big_coin", "bp_coins_25"]], //415
+    [["30169", "xsolla_packs/coins_1", "bp_coins_25"], ["30235", "boss_soul_big", "bp_boss_souls_3"]], //415
     [], //416
     [["30170", "dp1", "bp_woda_plus"]], //417
     [], //418
     [], //419
-    [["30171", "big_coin", "bp_coins_25"]], //420
+    [["30171", "xsolla_packs/coins_1", "bp_coins_25"]], //420
     [], //421
     [["30172", "double_token", "bp_double_token"]], //422
     [], //423
@@ -1022,23 +1028,23 @@ var bp_rewards_2026 =
     [], //426
     [["30173", "dp1", "bp_woda_plus"]], //427
     [], //428
-    [], //429
-    [["30174", "big_coin", "bp_coins_25"]], //430
+    [["30224", "xsolla_packs/crystals_1", "bp_crystals_5"]], //429
+    [["30174", "xsolla_packs/coins_1", "bp_coins_25"]], //430
     [], //431
     [["30175", "double_token", "bp_double_token"]], //432
     [], //433
     [], //434
-    [["30176", "big_coin", "bp_coins_25"]], //435
+    [["30176", "xsolla_packs/coins_1", "bp_coins_25"], ["30211", "rune_chest", "rune_chest_item"]], //435
     [], //436
     [["30177", "dp1", "bp_woda_plus"]], //437
     [], //438
     [], //439
-    [["30178", "big_coin", "bp_coins_25"]], //440
+    [["30178", "xsolla_packs/coins_1", "bp_coins_25"]], //440
     [], //441
     [["30179", "double_token", "bp_double_token"]], //442
     [], //443
     [], //444
-    [["30180", "big_coin", "bp_coins_25"]], //445
+    [["30180", "xsolla_packs/coins_1", "bp_coins_25"]], //445
     [], //446
     [["30181", "dp1", "bp_woda_plus"]], //447
     [], //448
@@ -1048,22 +1054,22 @@ var bp_rewards_2026 =
     [["30187", "double_token", "bp_double_token"]], //452
     [], //453
     [], //454
-    [["30188", "big_coin", "bp_coins_25"]], //455
+    [["30188", "xsolla_packs/coins_1", "bp_coins_25"]], //455
     [], //456
     [["30189", "dp1", "bp_woda_plus"]], //457
     [], //458
     [], //459
-    [["30190", "big_coin", "bp_coins_25"], ["1071", "emblem_120", "emblem_120"]], //460
+    [["30190", "xsolla_packs/coins_1", "bp_coins_25"], ["1071", "emblem_120", "emblem_120"]], //460
     [], //461
-    [["30191", "double_token", "bp_double_token"]], //462
+    [["30191", "double_token", "bp_double_token"], ["30225", "xsolla_packs/crystals_1", "bp_crystals_5"]], //462
     [], //463
     [], //464
-    [["30192", "big_coin", "bp_coins_25"]], //465
+    [["30192", "xsolla_packs/coins_1", "bp_coins_25"], ["30236", "boss_soul_big", "bp_boss_souls_3"]], //465
     [], //466
     [["30193", "dp1", "bp_woda_plus"]], //467
     [], //468
     [], //469
-    [["30194", "big_coin", "bp_coins_25"]], //470
+    [["30194", "xsolla_packs/coins_1", "bp_coins_25"]], //470
     [], //471
     [["30195", "double_token", "bp_double_token"]], //472
     [], //473
@@ -1073,27 +1079,27 @@ var bp_rewards_2026 =
     [["30196", "dp1", "bp_woda_plus"]], //477
     [], //478
     [], //479
-    [["30197", "big_coin", "bp_coins_25"]], //480
+    [["30197", "xsolla_packs/coins_1", "bp_coins_25"]], //480
     [], //481
     [["30198", "double_token", "bp_double_token"]], //482
     [], //483
     [], //484
-    [["30199", "big_coin", "bp_coins_25"]], //485
+    [["30199", "xsolla_packs/coins_1", "bp_coins_25"]], //485
     [], //486
     [["30200", "dp1", "bp_woda_plus"]], //487
     [], //488
     [], //489
-    [["30201", "big_coin", "bp_coins_25"]], //490
+    [["30201", "xsolla_packs/coins_1", "bp_coins_25"]], //490
     [], //491
     [["30202", "double_token", "bp_double_token"]], //492
     [], //493
     [], //494
-    [["30203", "big_coin", "bp_coins_25"]], //495
+    [["30203", "xsolla_packs/coins_1", "bp_coins_25"], ["30226", "xsolla_packs/crystals_1", "bp_crystals_5"]], //495
     [], //496
     [["30204", "dp1", "bp_woda_plus"]], //497
     [], //498
     [], //499
-    [["30205", "big_coin", "bp_coins_500"], ["1028", "tip", "tipped_1028"], ["1049", "emblem_118", "emblem_118"], ["1040", "background_125", "background_125"], ["1006", "1006", "pet_181"], ["1012", "tp_effect_12", "tp_effect_12"]] //500
+    [["30205", "xsolla_packs/coins_1", "bp_coins_500"], ["1028", "tip", "tipped_1028"], ["1049", "emblem_118", "emblem_118"], ["1040", "background_125", "background_125"], ["1006", "1006", "pet_181"], ["1012", "tp_effect_12", "tp_effect_12"]] //500
 ];
 
 for (let bp_num in bp_rewards)
@@ -1135,6 +1141,8 @@ function UpdatePlayerData(table, key, data)
         if (key == String(Players.GetLocalPlayer()) || key == Players.GetLocalPlayer())
         {
             PLAYER_DATA = data;
+            inventory_items_map_cache = null
+            UpdateIconButton()
             if ($("#DonateShopWindow").BHasClass("setvisible"))
             {
                 InitData()
@@ -1164,6 +1172,7 @@ function ToggleDonateButton(tab, button)
     }
     if ($("#DonateShopWindow").BHasClass("setvisible"))
     {
+        EnsureRewardList(current_tab)
         ScrollBattlePassToCurrentLevel()
     }
     if (GameUI.CustomUIConfig().CloseShopGlobal)
@@ -1204,52 +1213,157 @@ function SwitchTab(tab, button)
         {
             menu_panel.visible = true
         }
-    } 
+    }
     current_tab = tab
+    EnsureRewardList(tab)
+}
+
+function GetRewardListYear(tab)
+{
+    return tab == "MainPanel" ? 2025 : 2026
+}
+
+function EnsureRewardList(tab)
+{
+    var year = GetRewardListYear(tab)
+    if (bp_list_built[year] || bp_list_building[year])
+    {
+        return
+    }
+    bp_list_building[year] = true
+    var rewards = year == 2025 ? bp_rewards : bp_rewards_2026
+    var line = $(year == 2025 ? "#BattlePassRewardsLine" : "#BattlePassRewardsLineNew")
+    if (line)
+    {
+        line.RemoveAndDeleteChildren()
+    }
+    if (year == 2026)
+    {
+        bp26_pending_empty_levels = []
+    }
+    var total = rewards.length
+    var index = 0
+    var step = function()
+    {
+        var stop = Math.min(index + BP_BUILD_CHUNK, total)
+        for (; index < stop; index++)
+        {
+            if (year == 2025)
+            {
+                CreateRewardBlock(index + 1, rewards[index])
+            }
+            else
+            {
+                CreateRewardBlockNew(index + 1, rewards[index])
+            }
+        }
+        if (index < total)
+        {
+            $.Schedule(0.0, step)
+            return
+        }
+        if (year == 2026)
+        {
+            FlushBattlePassEmptyLevels()
+        }
+        bp_list_building[year] = false
+        bp_list_built[year] = true
+        RefreshRewardStates()
+        if (year == 2026)
+        {
+            ScrollBattlePassToCurrentLevel()
+        }
+    }
+    step()
+}
+
+function RefreshRewardStates()
+{
+    var localplayer_data = PLAYER_DATA
+    if (!localplayer_data) { return }
+    var level_2025 = Number(localplayer_data.battlepass_level) || 0
+    var level_2026 = Number(localplayer_data.battlepass_level_2026) || 0
+    var has_2025 = localplayer_data.has_battlepass === 1
+    var has_2026 = localplayer_data.has_battlepass_2026 === 1
+    for (var i = 0; i < bp_reward_refs.length; i++)
+    {
+        var ref = bp_reward_refs[i]
+        if (!ref.block.IsValid()) { continue }
+        var reach = ref.year == 2025 ? (has_2025 && level_2025 >= ref.level) : (has_2026 && level_2026 >= ref.level)
+        ref.block.SetHasClass("ActiveReach", reach)
+        if (!ref.claim) { continue }
+        var owned = ref.claimed || HasItemInventory(ref.reward_id)
+        if (owned != ref.owned_state)
+        {
+            ref.owned_state = owned
+            ref.claim.SetHasClass("ClaimRewardSuccess", owned)
+            ref.claim_label.text = $.Localize(owned ? "#woda_quest_claim_reward_sucess" : "#woda_quest_claim_reward")
+        }
+        var can_claim = reach && !owned
+        if (can_claim != ref.bound)
+        {
+            ref.bound = can_claim
+            if (can_claim)
+            {
+                BindRewardClaim(ref)
+            }
+            else
+            {
+                ref.claim.ClearPanelEvent("onactivate")
+            }
+        }
+    }
+}
+
+function BindRewardClaim(ref)
+{
+    ref.claim.SetPanelEvent("onactivate", function()
+    {
+        ref.claim.ClearPanelEvent("onactivate")
+        ref.bound = false
+        var payload = {reward_id : ref.reward_id, level : ref.level}
+        if (ref.year == 2026)
+        {
+            payload.battlepass_2026 = true
+        }
+        GameEvents.SendCustomGameEventToServer_custom("battlepass_get_player_reward", payload)
+        ref.claimed = true
+        ref.owned_state = true
+        ref.claim.SetHasClass("ClaimRewardSuccess", true)
+        ref.claim_label.text = $.Localize("#woda_quest_claim_reward_sucess")
+    })
 }
 
 function InitData()
 {
+    TopMenuInfo_Load()
     var localplayer_data = PLAYER_DATA;
     if (localplayer_data)
     {
-        $("#CoinLabelCount").text = String(localplayer_data.coins)
-        $("#WodaplusLabelCount").text = String(localplayer_data.plus_days)
-        $("#BattlePassLabelCount").text = String(localplayer_data.battlepass_level_2026)
+        TopMenuInfo_Find("CoinLabelCount").text = String(localplayer_data.coins)
+        TopMenuInfo_Find("CrystalLabelCount").text = String(localplayer_data.crystals || 0)
+        TopMenuInfo_Find("WodaplusLabelCount").text = String(localplayer_data.plus_days)
+        TopMenuInfo_Find("BattlePassLabelCount").text = String(localplayer_data.battlepass_level_2026)
         $("#LevelCircleLabel").text = String(localplayer_data.battlepass_level)
         $("#ExpLineFXUp").style.width = String(localplayer_data.battlepass_coins / 20 * 100) + "%"
         $("#ExpCounter").text = String(localplayer_data.battlepass_coins) + " / 20"
         $("#LevelCircleLabelNew").text = String(localplayer_data.battlepass_level_2026)
         $("#ExpLineFXUpNew").style.width = String(localplayer_data.battlepass_coins_2026 / 20 * 100) + "%"
         $("#ExpCounterNew").text = String(localplayer_data.battlepass_coins_2026) + " / 20"
-        $("#DoubleTokensLabelCount").text = String(localplayer_data.double_tokens)
+        TopMenuInfo_Find("DoubleTokensLabelCount").text = String(localplayer_data.double_tokens)
+        TopMenuInfo_Update(localplayer_data)
     }
     if (localplayer_data.has_battlepass !== 1)
     {
         $("#MenuProfie").visible = false
         $("#MenuBlockBody").SetHasClass("BlockBodyWithoutButton", true)
     }
-    SetTextInfo($("#CoinBlock"), "coin_information")
-    SetTextInfo($("#WodaplusBlock"), "subscribe_information")
-    SetTextInfo($("#BattlePassBlock"), "battlepass_information")
-    SetTextInfo($("#DoubleTokensBlock"), "double_tokens_information")
+    TopMenuInfo_SetTooltips()
     $("#ButtonBuyBP").SetPanelEvent("onactivate", function()
     {
         GameUI.CustomUIConfig().GoToSiteStore('battlepass')
     });
-    $("#BattlePassRewardsLine").RemoveAndDeleteChildren()
-    for (let bp_num in bp_rewards)
-    {
-        let reward_data = bp_rewards[bp_num]
-        CreateRewardBlock(Number(bp_num)+1, reward_data)
-    }
-
-    $("#BattlePassRewardsLineNew").RemoveAndDeleteChildren()
-    for (let bp_num in bp_rewards_2026)
-    {
-        let reward_data = bp_rewards_2026[bp_num]
-        CreateRewardBlockNew(Number(bp_num)+1, reward_data)
-    }
+    RefreshRewardStates()
 }
 
 function ScrollBattlePassToCurrentLevel()
@@ -1289,7 +1403,6 @@ function UpdateIconButton()
     {
         $("#DonateButton").visible = false
     }
-    $.Schedule(1, UpdateIconButton)
 }
 
 UpdateIconButton()
@@ -1312,40 +1425,33 @@ function UpdateStoreBackground()
     }
 }
 
+function GetInventoryItemsMap()
+{
+    if (inventory_items_map_cache != null)
+    {
+        return inventory_items_map_cache
+    }
+    inventory_items_map_cache = {}
+    if (PLAYER_DATA && PLAYER_DATA.donate_items)
+    {
+        for (var item_slot in PLAYER_DATA.donate_items)
+        {
+            if (PLAYER_DATA.donate_items[item_slot])
+            {
+                inventory_items_map_cache[String(PLAYER_DATA.donate_items[item_slot])] = true
+            }
+        }
+    }
+    return inventory_items_map_cache
+}
+
 function HasItemInventory(item_id)
 {
-	if (PLAYER_DATA && PLAYER_DATA.donate_items)
-	{
-		for (var d = 1; d <= Object.keys(PLAYER_DATA.donate_items).length; d++) 
-		{
-			if (PLAYER_DATA.donate_items[d])
-			{
-				if (String(PLAYER_DATA.donate_items[d]) == String(item_id))
-				{
-					return true
-				}
-			}
-		}
-	}
-    // if (Game.IsInToolsMode())
-    // {
-    //     return true
-    // }
-	return false
+    return GetInventoryItemsMap()[String(item_id)] === true
 }
 
 function CreateRewardBlock(level, reward_data)
 {
-    var has_reward_reach = false
-    var localplayer_data = PLAYER_DATA;
-    if (localplayer_data)
-    {
-        if (localplayer_data.battlepass_level >= level && localplayer_data.has_battlepass === 1)
-        {
-            has_reward_reach = true
-        }
-    }
-
     let BattlePassRewardsLine = $("#BattlePassRewardsLine")
 
     let BattlePassRewardBlock = $.CreatePanel("Panel", BattlePassRewardsLine, "BattlePassRewardBlock_" + level)
@@ -1371,13 +1477,19 @@ function CreateRewardBlock(level, reward_data)
             BPRewardImage.AddClass("BPRewardImage")
             BPRewardImage.style.backgroundImage = 'url("file://{images}/custom_game/shop/' + reward_data[reward_info][1] + '.png")'
             BPRewardImage.style.backgroundSize = "100%"
+            ApplyRarityGlow(BPRewardImage, GetItemRarityById(reward_data[reward_info][0]))
+            BPRewardImage.SetHasClass("TipImage", reward_data[reward_info][1] == "tip")
+            SetItemTooltip(BPRewardImage, {item_id: reward_data[reward_info][0], name_key: reward_data[reward_info][2], desc_key: reward_data[reward_info][2] + "_description", rarity: GetItemRarityById(reward_data[reward_info][0]), icon: "file://{images}/custom_game/shop/" + reward_data[reward_info][1] + ".png"})
             if (GameUI.CustomUIConfig().OpenCheckoutItemPreview && (reward_data[reward_info][1].indexOf("background") === 0 || reward_data[reward_info][1].indexOf("emblem") === 0 || reward_data[reward_info][1].indexOf("five_") === 0 || reward_data[reward_info][1].indexOf("tp_effect") === 0))
             {
                 BPRewardImage.AddClass("HoverBPReward", true)
                 GameUI.CustomUIConfig().OpenCheckoutItemPreview(BPRewardImage, [reward_data[reward_info][0], null, null, reward_data[reward_info][1], reward_data[reward_info][2], null], true)
             }
 
-            let BPRewardText = $.CreatePanel("Label", BattlePassRewardBlockFuture, "")
+            let BPRewardTextBlock = $.CreatePanel("Panel", BattlePassRewardBlockFuture, "")
+            BPRewardTextBlock.AddClass("BPRewardTextBlock")
+
+            let BPRewardText = $.CreatePanel("Label", BPRewardTextBlock, "")
             BPRewardText.AddClass("BPRewardText")
             BPRewardText.text = $.Localize("#" + reward_data[reward_info][2])
 
@@ -1386,39 +1498,14 @@ function CreateRewardBlock(level, reward_data)
 
             let BPRewardClaim = $.CreatePanel("Label", BPRewardClaimBlock, "")
             BPRewardClaim.text = $.Localize("#woda_quest_claim_reward")
- 
-            if (HasItemInventory(reward_data[reward_info][0]))
-            {
-                BPRewardClaimBlock.SetHasClass("ClaimRewardSuccess", true)
-                BPRewardClaim.text = $.Localize("#woda_quest_claim_reward_sucess")
-            }
-            else
-            {
-                if (has_reward_reach)
-                {
-                    BPRewardClaimBlock.SetPanelEvent("onactivate", function()
-                    {
-                        BPRewardClaimBlock.ClearPanelEvent("onactivate")
-                        GameEvents.SendCustomGameEventToServer_custom( "battlepass_get_player_reward", {reward_id : reward_data[reward_info][0], level : level} );
-                        BPRewardClaimBlock.SetHasClass("ClaimRewardSuccess", true)
-                        BPRewardClaim.text = $.Localize("#woda_quest_claim_reward_sucess")
-                        //CheckoutEveryReward(true)
-                        //$.Schedule( 0.5, function()
-                        //{
-                        //    CheckoutEveryReward()
-                        //})
-                    })
-                }
-            }
+
+            bp_reward_refs.push({year: 2025, level: level, reward_id: reward_data[reward_info][0], block: BattlePassRewardBlock, claim: BPRewardClaimBlock, claim_label: BPRewardClaim, owned_state: null, bound: false, claimed: false})
         }
     }
     else
     {
         BattlePassRewardBlock.AddClass("Empty")
-    }
-    if (has_reward_reach)
-    {
-        BattlePassRewardBlock.SetHasClass("ActiveReach", true)
+        bp_reward_refs.push({year: 2025, level: level, reward_id: null, block: BattlePassRewardBlock, claim: null, claim_label: null, owned_state: null, bound: false, claimed: false})
     }
 }
 
@@ -1470,16 +1557,40 @@ function CheckoutEveryReward(is_fast)
     $("#DonateButton").SetHasClass("HasReward", !is_fast && has_reward);
 }
 
+function CreateBattlePassLevelBlock(row, level, is_empty)
+{
+    let block = $.CreatePanel("Panel", row, is_empty ? "BattlePassRewardBlock_" + level : "BPRewardLevelBlock_" + level)
+    block.AddClass("BPRewardLevelBlock")
+    block.SetHasClass("BPRewardLevelBlockEmpty", is_empty)
+    let label = $.CreatePanel("Label", block, "BPRewardLevel_" + level)
+    label.text = level
+    if (is_empty)
+    {
+        bp_reward_refs.push({year: 2026, level: level, reward_id: null, block: block, claim: null, claim_label: null, owned_state: null, bound: false, claimed: false})
+    }
+    return block
+}
+
+function FlushBattlePassEmptyLevels()
+{
+    if (bp26_pending_empty_levels.length == 0) { return }
+    let BattlePassRewardsLine = $("#BattlePassRewardsLineNew")
+    if (!BattlePassRewardsLine) { return }
+    let row = $.CreatePanel("Panel", BattlePassRewardsLine, "")
+    row.AddClass("BattlePassRewardBlock")
+    for (let i = 0; i < bp26_pending_empty_levels.length; i++)
+    {
+        CreateBattlePassLevelBlock(row, bp26_pending_empty_levels[i], true)
+    }
+    bp26_pending_empty_levels = []
+}
+
 function CreateRewardBlockNew(level, reward_data)
 {
-    var has_reward_reach = false
-    var localplayer_data = PLAYER_DATA;
-    if (localplayer_data)
+    if (!reward_data || reward_data.length == 0)
     {
-        if (localplayer_data.battlepass_level_2026 >= level && localplayer_data.has_battlepass_2026 === 1)
-        {
-            has_reward_reach = true
-        }
+        bp26_pending_empty_levels.push(level)
+        return
     }
 
     let BattlePassRewardsLine = $("#BattlePassRewardsLineNew")
@@ -1487,11 +1598,13 @@ function CreateRewardBlockNew(level, reward_data)
     let BattlePassRewardBlock = $.CreatePanel("Panel", BattlePassRewardsLine, "BattlePassRewardBlock_" + level)
     BattlePassRewardBlock.AddClass("BattlePassRewardBlock")
 
-    let BPRewardLevelBlock = $.CreatePanel("Panel", BattlePassRewardBlock, "BPRewardLevelBlock_" + level)
-    BPRewardLevelBlock.AddClass("BPRewardLevelBlock")
+    for (let e = 0; e < bp26_pending_empty_levels.length; e++)
+    {
+        CreateBattlePassLevelBlock(BattlePassRewardBlock, bp26_pending_empty_levels[e], true)
+    }
+    bp26_pending_empty_levels = []
 
-    let BPRewardLevel = $.CreatePanel("Label", BPRewardLevelBlock, "BPRewardLevel_" + level)
-    BPRewardLevel.text = level
+    let BPRewardLevelBlock = CreateBattlePassLevelBlock(BattlePassRewardBlock, level, false)
 
     let BattlePassRewardsLineList = $.CreatePanel("Panel", BattlePassRewardBlock, "BattlePassRewardsLineList_" + level)
     BattlePassRewardsLineList.AddClass("BattlePassRewardsLineList")
@@ -1507,13 +1620,19 @@ function CreateRewardBlockNew(level, reward_data)
             BPRewardImage.AddClass("BPRewardImage")
             BPRewardImage.style.backgroundImage = 'url("file://{images}/custom_game/shop/' + reward_data[reward_info][1] + '.png")'
             BPRewardImage.style.backgroundSize = "100%"
+            ApplyRarityGlow(BPRewardImage, GetItemRarityById(reward_data[reward_info][0]))
+            BPRewardImage.SetHasClass("TipImage", reward_data[reward_info][1] == "tip")
+            SetItemTooltip(BPRewardImage, {item_id: reward_data[reward_info][0], name_key: reward_data[reward_info][2], desc_key: reward_data[reward_info][2] + "_description", rarity: GetItemRarityById(reward_data[reward_info][0]), icon: "file://{images}/custom_game/shop/" + reward_data[reward_info][1] + ".png"})
             if (GameUI.CustomUIConfig().OpenCheckoutItemPreview && (reward_data[reward_info][1].indexOf("background") === 0 || reward_data[reward_info][1].indexOf("emblem") === 0 || reward_data[reward_info][1].indexOf("five_") === 0 || reward_data[reward_info][1].indexOf("tp_effect") === 0))
             {
                 BPRewardImage.AddClass("HoverBPReward", true)
                 GameUI.CustomUIConfig().OpenCheckoutItemPreview(BPRewardImage, [reward_data[reward_info][0], null, null, reward_data[reward_info][1], reward_data[reward_info][2], null], true)
             }
 
-            let BPRewardText = $.CreatePanel("Label", BattlePassRewardBlockFuture, "")
+            let BPRewardTextBlock = $.CreatePanel("Panel", BattlePassRewardBlockFuture, "")
+            BPRewardTextBlock.AddClass("BPRewardTextBlock")
+
+            let BPRewardText = $.CreatePanel("Label", BPRewardTextBlock, "")
             BPRewardText.AddClass("BPRewardText")
             BPRewardText.text = $.Localize("#" + reward_data[reward_info][2])
 
@@ -1522,39 +1641,9 @@ function CreateRewardBlockNew(level, reward_data)
 
             let BPRewardClaim = $.CreatePanel("Label", BPRewardClaimBlock, "")
             BPRewardClaim.text = $.Localize("#woda_quest_claim_reward")
- 
-            if (HasItemInventory(reward_data[reward_info][0]))
-            {
-                BPRewardClaimBlock.SetHasClass("ClaimRewardSuccess", true)
-                BPRewardClaim.text = $.Localize("#woda_quest_claim_reward_sucess")
-            }
-            else
-            {
-                if (has_reward_reach)
-                {
-                    BPRewardClaimBlock.SetPanelEvent("onactivate", function()
-                    {
-                        BPRewardClaimBlock.ClearPanelEvent("onactivate")
-                        GameEvents.SendCustomGameEventToServer_custom( "battlepass_get_player_reward", {reward_id : reward_data[reward_info][0], level : level, battlepass_2026 : true} );
-                        BPRewardClaimBlock.SetHasClass("ClaimRewardSuccess", true)
-                        BPRewardClaim.text = $.Localize("#woda_quest_claim_reward_sucess")
-                        //CheckoutEveryReward(true)
-                        //$.Schedule( 0.5, function()
-                        //{
-                        //    CheckoutEveryReward()
-                        //})
-                    })
-                }
-            }
+
+            bp_reward_refs.push({year: 2026, level: level, reward_id: reward_data[reward_info][0], block: BattlePassRewardBlock, claim: BPRewardClaimBlock, claim_label: BPRewardClaim, owned_state: null, bound: false, claimed: false})
         }
-    }
-    else
-    {
-        BattlePassRewardBlock.AddClass("Empty")
-    }
-    if (has_reward_reach)
-    {
-        BattlePassRewardBlock.SetHasClass("ActiveReach", true)
     }
 }
 

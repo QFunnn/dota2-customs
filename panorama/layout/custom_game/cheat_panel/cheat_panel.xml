@@ -1,0 +1,261 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1a5b3bb 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/custom_talents/custom_talents.vcss" />
+		<include src="s2r://panorama/layout/custom_game/cheat_panel/cheat_panel.vcss" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/scripts/util.vjs" />
+		<include src="s2r://panorama/layout/custom_game/cheat_panel/cheat_panel.vjs" />
+	</scripts>
+	<Panel class="CheatHudRoot" hittest="false">
+		<Panel id="CheatControlPanel" class="ControlPanel" hittest="false">
+			<Panel id="CheatPanelContainer" class="ControlPanelContainer" hittest="true">
+				<Panel id="CheatHeader" class="Header">
+					<Panel class="HeaderHeroImageFrame" onactivate="CheatOpenPicker(&apos;main&apos;)">
+						<DOTAHeroImage id="CheatPlayerHeroImage" class="HeaderHeroImage" heroimagestyle="landscape" />
+					</Panel>
+					<Panel class="HeaderTextContainer">
+						<Label id="CheatHeroName" class="HeaderHeroName" text="" />
+						<Label id="CheatModeLabel" class="HeaderModeLabel" text="" />
+						<Panel class="HeaderLinks">
+							<Button class="LinkButton" onactivate="CheatOpenPicker(&apos;main&apos;)">
+								<Label text="#cheat_hero_change" />
+							</Button>
+							<Button class="LinkButton" onactivate="CheatSend(&apos;hero_reset&apos;)">
+								<Label text="#cheat_hero_reset" />
+							</Button>
+						</Panel>
+					</Panel>
+				</Panel>
+				<Panel class="HorizontalRule" />
+				<Panel id="CatRating" class="Category">
+					<Panel class="CategoryHeaderContainer">
+						<Label class="CategoryHeader" text="#cheat_cat_rating" />
+						<Label id="CheatFlowStatus" class="CategoryStatus" text="" />
+					</Panel>
+					<Panel class="Row">
+						<Button id="CheatFlowButton" class="DemoButton LeftButton" onactivate="CheatSend(&apos;flow_toggle&apos;)">
+							<Label id="CheatFlowButtonLabel" text="#cheat_flow_start" />
+						</Button>
+						<Button class="DemoButton" onactivate="CheatSend(&apos;flow_skip&apos;)">
+							<Label text="#cheat_flow_skip" />
+						</Button>
+					</Panel>
+					<Label class="SubtitleHeader" text="#cheat_arena_label" />
+					<Panel id="CheatArenaRows" class="CategoryButtonContainer" />
+				</Panel>
+				<Panel id="CatRatingRule" class="HorizontalRule" />
+				<Panel id="CatArena" class="Category">
+					<Panel class="CategoryHeaderContainer">
+						<Label class="CategoryHeader" text="#cheat_cat_arena" />
+						<Label id="CheatWaveLabel" class="CategoryStatus" text="#cheat_wave_label" />
+					</Panel>
+					<Label id="CheatRoomLabel" class="SubtitleHeader" text="" />
+					<Label id="CheatWaveStatus" class="SubtitleHeader" text="#cheat_wave_timer_running" />
+					<Panel class="Row">
+						<Button id="CheatWaveButton" class="DemoButton" onactivate="CheatSend(&apos;wave_toggle&apos;)">
+							<Label id="CheatWaveButtonLabel" text="#cheat_wave_stop" />
+						</Button>
+					</Panel>
+					<Panel class="Row WaveStepperRow">
+						<Button class="DemoButton StepButton LeftButton" onactivate="CheatWaveAdjust(-10)">
+							<Label text="-10" />
+						</Button>
+						<Button class="DemoButton StepButton LeftButton" onactivate="CheatWaveAdjust(-1)">
+							<Label text="-1" />
+						</Button>
+						<TextEntry id="CheatWaveEntry" class="DemoEntry WaveEntry" maxchars="2" text="1" oninputsubmit="CheatWaveApply()" />
+						<Button class="DemoButton StepButton LeftButton" onactivate="CheatWaveAdjust(1)">
+							<Label text="+1" />
+						</Button>
+						<Button class="DemoButton StepButton" onactivate="CheatWaveAdjust(10)">
+							<Label text="+10" />
+						</Button>
+					</Panel>
+					<Panel class="Row">
+						<Button class="DemoButton LeftButton" onactivate="CheatWaveApply()">
+							<Label text="#cheat_wave_apply" />
+						</Button>
+						<Button class="DemoButton Danger" onactivate="CheatSend(&apos;wave_kill&apos;)">
+							<Label text="#cheat_wave_kill" />
+						</Button>
+					</Panel>
+					<Panel class="Row">
+						<Button class="DemoButton" onactivate="CheatSend(&apos;room_choice&apos;)">
+							<Label text="#cheat_room_choice" />
+						</Button>
+					</Panel>
+					<Label class="SubtitleHeader" text="#cheat_room_title" />
+					<Panel id="CheatRoomRows" class="CategoryButtonContainer" />
+				</Panel>
+				<Panel id="CatArenaRule" class="HorizontalRule" />
+				<Panel id="CatHero" class="Category">
+					<Panel class="CategoryHeaderContainer">
+						<Label class="CategoryHeader" text="#cheat_cat_hero" />
+						<Label id="CheatHeroTarget" class="CategoryStatus" text="" />
+					</Panel>
+					<Panel class="Row">
+						<Button class="DemoButton LeftButton GroupLeft" onactivate="CheatHeroAction(&apos;hero_level&apos;)">
+							<Label text="#cheat_hero_level" />
+						</Button>
+						<Button class="DemoButton GroupRight" onactivate="CheatHeroAction(&apos;hero_max_level&apos;)">
+							<Label text="#cheat_hero_max_level" />
+						</Button>
+					</Panel>
+					<Panel class="Row">
+						<Button class="DemoButton LeftButton" onactivate="CheatHeroAction(&apos;hero_refresh&apos;)">
+							<Label text="#cheat_hero_refresh" />
+						</Button>
+						<Button class="DemoButton" onactivate="CheatHeroAction(&apos;hero_gold&apos;)">
+							<Label text="#cheat_hero_gold" />
+						</Button>
+					</Panel>
+					<Panel class="Row">
+						<Button class="DemoButton LeftButton" onactivate="CheatHeroAction(&apos;hero_talent&apos;)">
+							<Label text="#cheat_hero_talent" />
+						</Button>
+						<Button class="DemoButton" onactivate="CheatHeroAction(&apos;hero_respawn&apos;)">
+							<Label text="#cheat_hero_respawn" />
+						</Button>
+					</Panel>
+					<Panel class="Row">
+						<Button class="DemoButton LeftButton" onactivate="CheatTalentsResetTarget()">
+							<Label text="#cheat_talents_reset" />
+						</Button>
+						<Button class="DemoButton" onactivate="CheatToggleTalents()">
+							<Label text="#cheat_talents_open" />
+						</Button>
+					</Panel>
+					<Panel id="CheatAegisRow" class="Row">
+						<Button class="DemoButton" onactivate="CheatHeroAction(&apos;hero_aegis&apos;)">
+							<Label text="#cheat_hero_aegis" />
+						</Button>
+					</Panel>
+					<Panel class="CheckboxesContainer">
+						<ToggleButton id="CheatInvuln" class="DemoCheckbox" text="#cheat_hero_invuln" onactivate="CheatInvulnToggle()" />
+					</Panel>
+				</Panel>
+				<Panel class="HorizontalRule" />
+				<Panel id="CatUnits" class="Category">
+					<Panel class="CategoryHeaderContainer">
+						<Label class="CategoryHeader" text="#cheat_cat_units" />
+						<Label id="CheatDummiesLabel" class="CategoryStatus" text="#cheat_dummies_count" />
+					</Panel>
+					<Panel class="SpawnHeroRow" onactivate="CheatOpenPicker(&apos;spawn&apos;)">
+						<Panel class="SpawnHeroImageFrame">
+							<DOTAHeroImage id="CheatSpawnHeroImage" class="SpawnHeroImage" heroimagestyle="landscape" />
+						</Panel>
+						<Panel class="SpawnHeroText">
+							<Label id="CheatSpawnHeroName" class="SpawnHeroName" text="" />
+							<Label class="SpawnHeroHint" text="#cheat_unit_pick_hint" />
+						</Panel>
+					</Panel>
+					<Panel class="Row">
+						<Button class="DemoButton GroupLeft" onactivate="CheatUnitSpawn()">
+							<Label text="#cheat_unit_spawn" />
+						</Button>
+						<Button class="DemoButton GroupRight" onactivate="CheatSend(&apos;dummy_spawn&apos;)">
+							<Label text="#cheat_unit_dummy" />
+						</Button>
+					</Panel>
+					<Panel class="Row">
+						<Button class="DemoButton LeftButton Danger" onactivate="CheatUnitAction(&apos;unit_kill&apos;)">
+							<Label text="#cheat_unit_kill" />
+						</Button>
+						<Button class="DemoButton" onactivate="CheatUnitAction(&apos;unit_remove&apos;)">
+							<Label text="#cheat_unit_remove" />
+						</Button>
+					</Panel>
+					<Panel class="Row">
+						<Button class="DemoButton" onactivate="CheatSend(&apos;dummy_remove&apos;)">
+							<Label text="#cheat_dummy_remove" />
+						</Button>
+					</Panel>
+				</Panel>
+				<Panel class="HorizontalRule" />
+				<Panel id="CatGame" class="Category">
+					<Panel class="CategoryHeaderContainer">
+						<Label class="CategoryHeader" text="#cheat_cat_game" />
+					</Panel>
+					<Panel class="CheckboxesContainer">
+						<ToggleButton id="CheatFreeSpells" class="DemoCheckbox" text="#cheat_game_free_spells" onactivate="CheatSend(&apos;game_free_spells&apos;)" />
+						<ToggleButton id="CheatNight" class="DemoCheckbox" text="#cheat_game_night" onactivate="CheatSend(&apos;game_night&apos;)" />
+					</Panel>
+					<Panel class="Row">
+						<Button class="DemoButton" onactivate="CheatSend(&apos;game_runes&apos;)">
+							<Label text="#cheat_game_runes" />
+						</Button>
+					</Panel>
+					<Panel class="Row">
+						<Button class="DemoButton" onactivate="CheatSend(&apos;game_neutrals&apos;)">
+							<Label text="#cheat_game_neutrals" />
+						</Button>
+					</Panel>
+					<Panel id="CheatEndRow" class="Row">
+						<Button class="DemoButton Danger" onactivate="CheatSend(&apos;game_end&apos;)">
+							<Label text="#cheat_game_end" />
+						</Button>
+						<Button id="CheatEndVictory" class="DemoButton" onactivate="CheatSend(&apos;game_end_victory&apos;)">
+							<Label text="#cheat_game_end_victory" />
+						</Button>
+					</Panel>
+				</Panel>
+				<Panel class="BottomSpacer" />
+			</Panel>
+			<Panel id="CheatSlideThumbContainer" class="SlideThumbContainer" hittest="false">
+				<Panel id="CheatSlideThumb" class="SlideThumb" hittest="true" onactivate="CheatToggleMinimized()" onmouseover="DOTAShowTextTooltip(#cheat_thumb_tooltip)" onmouseout="DOTAHideTextTooltip()">
+					<Panel class="ThumbArrowIcon" hittest="false" />
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel id="CheatHeroPicker" class="Flyout HeroPicker" hittest="true" oncancel="CheatClosePicker()">
+			<Panel class="FlyoutHeader">
+				<Label id="CheatPickerTitle" class="FlyoutTitle" text="#cheat_picker_title_spawn" />
+				<Button class="FlyoutClose" onactivate="CheatClosePicker()">
+					<Panel class="FlyoutCloseIcon" hittest="false" />
+				</Button>
+			</Panel>
+			<TextEntry id="CheatPickerSearch" class="DemoEntry PickerSearch" maxchars="32" placeholder="#cheat_picker_search" ontextentrychange="CheatPickerFilter()" />
+			<Panel id="CheatPickerGrid" class="PickerGrid" />
+		</Panel>
+		<Panel id="CheatTalentPopup" class="Flyout TalentPopup" hittest="true" oncancel="CheatCloseTalents()">
+			<Panel class="FlyoutHeader">
+				<DOTAHeroImage id="CheatTalentUnitImage" class="TalentUnitImage" heroimagestyle="icon" />
+				<Panel class="FlyoutTitleBlock">
+					<Label class="FlyoutTitle" text="#cheat_talents_title" />
+					<Label id="CheatTalentUnitName" class="FlyoutSubtitle" text="" />
+				</Panel>
+				<Button class="FlyoutClose" onactivate="CheatCloseTalents()">
+					<Panel class="FlyoutCloseIcon" hittest="false" />
+				</Button>
+			</Panel>
+			<Panel class="TalentTabs">
+				<Button id="CheatTab_str" class="TalentTab" onactivate="CheatTalentTab(&apos;str&apos;)">
+					<Panel class="talent_buttons_str_icon" hittest="false" />
+				</Button>
+				<Button id="CheatTab_agi" class="TalentTab" onactivate="CheatTalentTab(&apos;agi&apos;)">
+					<Panel class="talent_buttons_agi_icon" hittest="false" />
+				</Button>
+				<Button id="CheatTab_int" class="TalentTab" onactivate="CheatTalentTab(&apos;int&apos;)">
+					<Panel class="talent_buttons_int_icon" hittest="false" />
+				</Button>
+				<Button class="DemoButton Danger TalentResetButton" onactivate="CheatTalentsResetUnit()">
+					<Label text="#cheat_talents_reset" />
+				</Button>
+			</Panel>
+			<Panel id="CheatTalentGrids" class="TalentGrids" />
+		</Panel>
+	</Panel>
+</root>

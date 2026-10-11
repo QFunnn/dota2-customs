@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -201,6 +201,11 @@ function notification_free_disconnect(data)
     {
         label.text = "<font color='" + color + "'>" + $.Localize("#is_game_free_disconnect_team_detected") + "</font>"
     }
+    else if (data.end_time)
+    {
+        label.SetDialogVariableInt("seconds", Number(data.end_time))
+        label.text = "<font color='" + color + "'>" + $.Localize("#is_game_free_disconnect_end_timer", label) + "</font>"
+    }
     else
     {
         label.text = "<font color='" + color + "'>" + $.Localize("#is_game_free_disconnect") + "</font>"
@@ -272,12 +277,73 @@ function notification_team_has_been_killed_boss(data)
 			}
 		}
 		label.AddClass("label_duel_lose")
-		label.text = "<font color='" + color + "'>" + player.player_name + "</font>" + " " + $.Localize("#kill_boss")
+		var text = "<font color='" + color + "'>" + player.player_name + "</font>" + " " + $.Localize("#kill_boss")
+		if (Number(data.soul) == 1)
+		{
+			text = text + " " + $.Localize("#kill_boss_soul")
+			let soul_icon = $.CreatePanel("Panel", notification, "")
+			soul_icon.AddClass("heroicon")
+			soul_icon.AddClass("boss_soul_icon")
+			soul_icon.AddClass("boss_soul_icon_after")
+		}
+		label.text = text
 		$.Schedule(6.5, function() {
 			notification.style.opacity = "0"
 		})
 		notification.DeleteAsync(7.4)
 	}
+}
+
+GameEvents.Subscribe_custom("notification_boss_souls_arena", notification_boss_souls_arena)
+
+function notification_boss_souls_arena(data)
+{
+	if (!data || !data.players) { return }
+	var index = 0
+	for (var key in data.players)
+	{
+		var player_id = Number(data.players[key])
+		var player = Game.GetPlayerInfo(player_id)
+		if (!player) { continue }
+		var hero_name = data.heroes && data.heroes[key] ? String(data.heroes[key]) : ""
+		CreateBossSoulLine(player, hero_name, index * 0.15)
+		index++
+	}
+}
+
+function CreateBossSoulLine(player, hero_name, delay)
+{
+	let notification = $.CreatePanel("Panel", $("#NotificationDuo"), "")
+	notification.AddClass("notification_duel_lose_duo")
+	$.Schedule(0.4 + delay, function() {
+		notification.style.opacity = "1"
+	})
+	if (hero_name != "")
+	{
+		let hero = $.CreatePanel("Panel", notification, "")
+		hero.AddClass("heroicon")
+		hero.style.backgroundImage = 'url( "file://{images}/heroes/icons/' + hero_name + '.png" );'
+		hero.style.backgroundSize = "100%"
+	}
+	let label = $.CreatePanel("Label", notification, "")
+	label.html = true
+	let color = "white"
+	if (GameUI.CustomUIConfig().team_colors) {
+		var teamColor = GameUI.CustomUIConfig().team_colors[player.player_team_id]
+		if (teamColor) {
+			color = teamColor
+		}
+	}
+	label.AddClass("label_duel_lose")
+	label.text = "<font color='" + color + "'>" + player.player_name + "</font>" + " " + $.Localize("#arena_boss_soul_received")
+	let soul_icon = $.CreatePanel("Panel", notification, "")
+	soul_icon.AddClass("heroicon")
+	soul_icon.AddClass("boss_soul_icon")
+	soul_icon.AddClass("boss_soul_icon_after")
+	$.Schedule(6.5 + delay, function() {
+		notification.style.opacity = "0"
+	})
+	notification.DeleteAsync(7.4 + delay)
 }
 
 GameEvents.Subscribe_custom("notification_tournament_data", notification_tournament_data)
@@ -337,3 +403,27 @@ function notification_tournament_game(data)
 	})
 	notification.DeleteAsync(7.4) 
 }
+
+GameEvents.Subscribe_custom("notification_cheat_mode", notification_cheat_mode)
+
+function notification_cheat_mode(data)
+{
+	let notification = $.CreatePanel("Panel",$("#notification"), "")
+	notification.AddClass("notification_duel_lose")
+	$.Schedule(0.4, function() {
+		notification.style.opacity = "1"
+	})
+	$.CreatePanel("DOTAEmoticon", notification, "", { emoticonid:`340`, style:"width:30px;height:30px;vertical-align:center;margin-right:6px;margin-bottom:4px;" });
+	let label = $.CreatePanel("Label", notification, "")
+	label.html = true
+	let color = "gold"
+	label.AddClass("label_duel_lose")
+	label.AddClass("label_cheat_mode")
+	label.style.textAlign = "center"
+	label.text = "<font color='" + color + "'>" + $.Localize("#cheat_mode_notification") + "</font>"
+	$.Schedule(8.5, function() {
+		notification.style.opacity = "0"
+	})
+	notification.DeleteAsync(9.4)
+}
+

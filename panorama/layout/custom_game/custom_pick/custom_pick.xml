@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -11,15 +11,16 @@
 <!-- xml reconstructed by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io -->
 <root>
 	<styles>
-		<include src="s2r://panorama/layout/custom_game/custom_pick/custom_pick.vcss_c" />
-		<include src="s2r://panorama/layout/custom_game/custom_talents/custom_talents.vcss_c" />
+		<include src="s2r://panorama/layout/custom_game/custom_pick/custom_pick.vcss" />
+		<include src="s2r://panorama/layout/custom_game/custom_talents/custom_talents.vcss" />
 		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
 	</styles>
 	<scripts>
-		<include src="s2r://panorama/layout/custom_game/scripts/util.vjs_c" />
-		<include src="s2r://panorama/layout/custom_game/scripts/icon_change.vjs_c" />
-		<include src="s2r://panorama/layout/custom_game/shop/shop_items_information.vjs_c" />
-		<include src="s2r://panorama/layout/custom_game/custom_pick/custom_pick.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/scripts/util.vjs" />
+		<include src="s2r://panorama/layout/custom_game/scripts/icon_change.vjs" />
+		<include src="s2r://panorama/layout/custom_game/shop/shop_items_information.vjs" />
+		<include src="s2r://panorama/layout/custom_game/shop/quests_list.vjs" />
+		<include src="s2r://panorama/layout/custom_game/custom_pick/custom_pick.vjs" />
 	</scripts>
 	<snippets>
 		<snippet name="hero_portrait">
@@ -36,6 +37,15 @@
 			<Panel class="pick_timer" id="pick_timer_panel_main">
 				<DOTAParticleScenePanel class="pick_timer_particle" particleName="particles/agh_aura_ti10_2.vpcf" particleOnly="true" cameraOrigin="0 0 165" lookAt="0 0 0" fov="64" squarePixels="true" startActive="true" />
 				<Label class="pick_timer_label" text="" id="pick_timer" />
+			</Panel>
+			<Panel class="ArenaDifficultyInfo" id="ArenaDifficultyInfo" hittest="false" hittestchildren="false">
+				<Panel class="ArenaDifficultyInfoBadge">
+					<Label class="ArenaDifficultyInfoNumber" id="ArenaDifficultyInfoNumber" text="" />
+				</Panel>
+				<Panel class="ArenaDifficultyInfoText">
+					<Label class="ArenaDifficultyInfoTitle" text="#arena_difficulty_info_title" />
+					<Label class="ArenaDifficultyInfoRoom" id="ArenaDifficultyInfoRoom" text="" />
+				</Panel>
 			</Panel>
 			<Panel class="SelectBanCounter" id="SelectBanCounter">
 				<Panel class="SelectBanCounterTop">
@@ -114,5 +124,22 @@
 				</Panel>
 			</Panel>
 		</Panel>
+		<Panel class="ArenaDifficultyOverlay" id="ArenaDifficultyOverlay">
+			<Panel class="pick_timer ArenaDifficultyTimer" id="ArenaDifficultyTimerPanel">
+				<DOTAParticleScenePanel class="pick_timer_particle" particleName="particles/agh_aura_ti10_2.vpcf" particleOnly="true" cameraOrigin="0 0 165" lookAt="0 0 0" fov="64" squarePixels="true" startActive="true" />
+				<Label class="pick_timer_label" text="" id="ArenaDifficultyTimer" />
+			</Panel>
+			<Panel class="ArenaDifficultyWindow">
+				<Label class="ArenaDifficultyTitle" text="#arena_difficulty_title" />
+				<Label class="ArenaDifficultyDescription" id="ArenaDifficultyDescription" text="#arena_difficulty_description" />
+				<Panel class="ArenaDifficultyGrid" id="ArenaDifficultyGrid" />
+				<Panel class="ArenaDifficultyFooter">
+					<Panel class="ArenaDifficultyConfirm" id="ArenaDifficultyConfirm" onactivate="ArenaDifficultyConfirm();">
+						<Label text="#arena_difficulty_confirm" />
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+		<Label class="HeroSearchLabel" id="HeroSearchLabel" text="" hittest="false" />
 	</Panel>
 </root>

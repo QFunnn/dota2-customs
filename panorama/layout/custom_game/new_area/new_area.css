@@ -3,35 +3,57 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
 
 /* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
 
-.new_area
+.new_area_banner
 {
-	align:center top;
-	margin-top:17.5%;
-	width:784px;
-	height:148px;
-	background-size:100%;
-	transition-property:opacity;
-	transition-duration:0.7s;
-	opacity:0;
+	horizontal-align: center;
+	vertical-align: top;
+	margin-top: 160px;
+	width: 100%;
+	height: 100px;
+	flow-children: down;
+	transition-property: opacity;
+	transition-duration: 0.4s;
+	opacity: 0;
+	z-index: 140;
 }
 
-.new_area_duel
+.new_area_banner.Visible
 {
-	align:center top;
-	margin-top:17.5%;
-	width:784px;
-	height:148px;
-	background-size:100%;
-	transition-property:opacity;
-	transition-duration:0.7s;
-	opacity:0;
+	opacity: 1;
+}
+
+.new_area_stage
+{
+	width: 100%;
+	height: 26px;
+	text-align: center;
+	horizontal-align: center;
+	font-size: 18px;
+	font-weight: bold;
+	color: #ffffffaa;
+	text-transform: uppercase;
+	letter-spacing: 3px;
+	text-shadow: 1px 1px 6px 3 black;
+}
+
+.new_area_text
+{
+	width: 100%;
+	text-align: center;
+	horizontal-align: center;
+	font-family: Reaver;
+	font-size: 44px;
+	font-weight: bold;
+	color: #f3df9c;
+	text-transform: uppercase;
+	text-shadow: 2px 2px 8px 4 black;
 }
 
 .new_area_gamemode
@@ -44,4 +66,11 @@
 	transition-property:opacity;
 	transition-duration:0.7s;
 	opacity:0;
+}
+
+.new_area_gamemode.ArenaLogo
+{
+	width:334px;
+	height:220px;
+	background-image:url("s2r://panorama/images/logo_no_background_png.vtex");
 }

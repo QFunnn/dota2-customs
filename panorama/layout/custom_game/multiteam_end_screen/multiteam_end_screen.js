@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -22,6 +22,7 @@
 
 	var endScoreboardHandle = ScoreboardUpdater_InitializeScoreboard( scoreboardConfig, $( "#TeamsContainer" ) );
 	$.GetContextPanel().SetHasClass( "endgame", 1 );
+	$("#WodaLogo").SetHasClass("ArenaLogo", /^(arena|1_player|4_player)$/.test(Game.GetMapInfo().map_display_name));
 	
 	var teamInfoList = ScoreboardUpdater_GetSortedTeamInfoList( endScoreboardHandle );
 	var delay = 0.2;
@@ -39,7 +40,34 @@
 			delay += delay_per_panel;
 		}
 	}
-	
+	 
+	var local_player_id = Players.GetLocalPlayer();
+	var end_player_table = GameUI.CustomUIConfig().DATA_TABLE_SERVER["end_game_player"];
+	var local_stats = end_player_table ? end_player_table[String(local_player_id)] : null;
+	if (local_stats)
+	{
+		var stats_data = {};
+		for (var stats_key in local_stats)
+		{
+			stats_data[stats_key] = local_stats[stats_key];
+		}
+		var local_rating_end = GameUI.CustomUIConfig().DATA_TABLE_SERVER["rating_end"][String(local_player_id)];
+		if (local_rating_end) 
+		{
+			stats_data.rating_change = local_rating_end.rating || 0;
+			stats_data.is_double = (local_rating_end.is_double === 1 || local_rating_end.is_double === true) ? 1 : 0;
+		}
+		var local_coins_end = GameUI.CustomUIConfig().DATA_TABLE_SERVER["coins_end"][String(local_player_id)];
+		if (local_coins_end)
+		{
+			stats_data.coins_change = local_coins_end.coin || 0;
+		}
+		var local_stats_panel = PlayerStatsPanel_Create($("#LocalPlayerStats"), true);
+		PlayerStatsPanel_Fill(local_stats_panel, stats_data);
+		ShowArenaResult(local_stats_panel)
+		$("#LocalPlayerStats").visible = true;
+	}
+
 	var winningTeamId = Game.GetGameWinner();
 	var winningTeamDetails = Game.GetTeamDetails( winningTeamId );
 	var endScreenVictory = $( "#EndScreenVictory" );
@@ -84,20 +112,33 @@
         }
     }
 
-    if ($.Language() == "russian")
-    {
-        $("#WowBanner").style.opacity = "1"
-    }
+    WodaShowAdBanner($("#WowBanner"))
 
     UpdateStoreBackground()
 })();
 
-var IS_DEFAULT_STATS = true
+var END_SCREEN_IS_DEFAULT_STATS = true
 
 function ChangeGameStats()
 {
-    IS_DEFAULT_STATS = !IS_DEFAULT_STATS
-    $.GetContextPanel().SetHasClass("AltStats", !IS_DEFAULT_STATS)
+    END_SCREEN_IS_DEFAULT_STATS = !END_SCREEN_IS_DEFAULT_STATS
+    $.GetContextPanel().SetHasClass("AltStats", !END_SCREEN_IS_DEFAULT_STATS)
+}
+
+function ShowArenaResult(stats_panel)
+{
+    if (!stats_panel) { return }
+    var block = stats_panel.FindChildTraverse("PlayerStatsArenaResult")
+    var badge = stats_panel.FindChildTraverse("PlayerStatsArenaResultBadge")
+    var number = stats_panel.FindChildTraverse("PlayerStatsArenaResultNumber")
+    if (!block || !badge || !number) { return }
+    var results = GameUI.CustomUIConfig().DATA_TABLE_SERVER["arena_pve_result"]
+    var result = results ? results[String(Players.GetLocalPlayer())] : null
+    if (!result || result.difficulty === undefined) { return }
+    var difficulty = Number(result.difficulty) || 1
+    number.text = String(difficulty)
+    block.SetHasClass("Victory", Number(result.victory) == 1)
+    block.AddClass("Visible")
 }
 
 function UpdateStoreBackground()

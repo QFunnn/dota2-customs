@@ -3,7 +3,7 @@
   ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
   ~ special for t.me/wildguild
 
-  ~ build 0b85d8d 
+  ~ build 1a5b3bb 
   ~ auto-generated — do not edit
 ]]
 
@@ -5576,7 +5576,7 @@
 		"BaseClass"	"ability_lua"
 		"MaxLevel"	"1"
 		"ScriptFile"	"neutrals/tiny_boss"
-		"AbilityTextureName"	"woda_tiny_boss_2"
+		"AbilityTextureName"	"tiny_boss_toss"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_CUSTOM"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_CUSTOM"
@@ -5598,7 +5598,7 @@
 		"BaseClass"	"ability_lua"
 		"MaxLevel"	"1"
 		"ScriptFile"	"neutrals/tiny_boss"
-		"AbilityTextureName"	"woda_tiny_boss_1"
+		"AbilityTextureName"	"tiny_boss_avalanche"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_CUSTOM"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_CUSTOM"
@@ -5621,7 +5621,7 @@
 		"BaseClass"	"ability_lua"
 		"MaxLevel"	"1"
 		"ScriptFile"	"neutrals/tiny_boss"
-		"AbilityTextureName"	"woda_tiny_boss_3"
+		"AbilityTextureName"	"tiny_boss_stone_throw"
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_CUSTOM"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_CUSTOM"
@@ -5887,7 +5887,7 @@
 			"storm_speed_step"	"40"
 			"spiral_storm_count"	"12"
 			"damage"	"3"
-			"damagu"	"6"
+			"damagu"	"3"
 		}
 	}
 	"sand_king_boss_sandstorm_storm_passive"
@@ -12697,8 +12697,7 @@
 		"MaxLevel"	"1"
 		"AbilityValues"
 		{
-			"health_threshold_pct"	"50"
-			"stages"	"4"
+			"stages"	"1"
 			"cyclone_duration"	"2.5"
 		}
 	}
@@ -18916,6 +18915,1569 @@
 		"AbilityValues"
 		{
 			"recall_duration"				"4"
+		}
+	}
+	"woda_arena_trap_dart"
+	{
+		"BaseClass"					"ability_lua"
+		"ScriptFile"				"neutrals/woda_arena_trap_dart"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"AbilityTextureName"		"techies_stasis_trap"
+		"MaxLevel"					"1"
+	}
+	"boss_primal_beast_onslaught"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"primal_beast_onslaught"
+		"ScriptFile"				"neutrals/arena_bosses/boss_primal_beast"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"			"SPELL_IMMUNITY_ENEMIES_YES"
+		"MaxLevel"					"1"
+		"AbilityCooldown"			"14"
+		"AbilityValues"
+		{
+			"chargeup_time"			"1.8"
+			"width"					"400"
+			"charge_speed"			"1800"
+			"damage"				"25"
+			"stun_duration"			"1.2"
+			"knockback_distance"	"250"
+			"knockback_duration"	"0.3"
+			"max_distance"			"2000"
+			"first_delay"			"9"
+		}
+	}
+	"boss_primal_beast_pulverize"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"primal_beast_pulverize"
+		"ScriptFile"				"neutrals/arena_bosses/boss_primal_beast"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+		"AbilityUnitTargetTeam"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"			"SPELL_IMMUNITY_ENEMIES_YES"
+		"AnimationIgnoresModelScale"	"1"
+		"AbilityCastPoint"			"0"
+		"AbilityChannelAnimation"	"ACT_DOTA_CHANNEL_ABILITY_5"
+		"MaxLevel"					"1"
+		"AbilityCooldown"			"18"
+		"AbilityManaCost"			"0"
+		"AbilityValues"
+		{
+			"grab_delay"			"0.4"
+			"slam_count"			"3"
+			"slam_interval"			"0.75"
+			"radius"				"450"
+			"damage"				"10"
+			"ministun"				"0.4"
+			"cast_range"			"350"
+			"grab_range"			"500"
+			"slam_offset"			"200"
+			"animation_rate"		"1.5"
+			"first_delay"			"6"
+		}
+	}
+	"boss_primal_beast_rock_throw"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"primal_beast_rock_throw"
+		"ScriptFile"				"neutrals/arena_bosses/boss_primal_beast"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"			"SPELL_IMMUNITY_ENEMIES_YES"
+		"MaxLevel"					"1"
+		"AbilityCooldown"			"8"
+		"AbilityValues"
+		{
+			"radius"				"250"
+			"damage"				"20"
+			"stun_duration"			"1.0"
+			"fragment_count"		"3"
+			"fragment_radius"		"175"
+			"fragment_damage"		"8"
+			"fragment_stun"			"0.5"
+			"min_range"				"500"
+			"windup"				"0.6"
+			"rock_speed"			"1200"
+			"min_travel"			"0.7"
+			"max_travel"			"1.6"
+			"fragment_distance"		"450"
+			"fragment_angle"		"30"
+			"fragment_delay"		"0.5"
+			"first_delay"			"3"
+		}
+	}
+	"boss_earth_spirit_geomagnetic_grip"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"earth_spirit_geomagnetic_grip"
+		"ScriptFile"				"neutrals/arena_bosses/boss_earth_spirit"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"			"SPELL_IMMUNITY_ENEMIES_YES"
+		"MaxLevel"					"1"
+		"AbilityCooldown"			"15"
+		"AbilityValues"
+		{
+			"stone_count"			"4"
+			"pull_delay"			"1.8"
+			"width"					"300"
+			"damage"				"20"
+			"stun_duration"			"1.5"
+			"rise_delay"			"1.0"
+			"stone_speed"			"1200"
+			"rotation_interval"		"5"
+			"first_delay"			"3"
+		}
+	}
+	"boss_earth_spirit_boulder_smash"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"earth_spirit_boulder_smash"
+		"ScriptFile"				"neutrals/arena_bosses/boss_earth_spirit"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"			"SPELL_IMMUNITY_ENEMIES_YES"
+		"MaxLevel"					"1"
+		"AbilityCooldown"			"15"
+		"AbilityValues"
+		{
+			"prepare_time"			"0.75"
+			"width"					"350"
+			"damage"				"20"
+			"stun_duration"			"1.5"
+			"speed"					"1600"
+			"distance"				"3200"
+			"rotation_interval"		"5"
+			"first_delay"			"3"
+		}
+	}
+	"boss_earth_spirit_petrify"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"earth_spirit_petrify"
+		"ScriptFile"				"neutrals/arena_bosses/boss_earth_spirit"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"					"1"
+		"AbilityCooldown"			"15"
+		"AbilityValues"
+		{
+			"duration"				"3"
+			"damage_reduction"		"50"
+			"rotation_interval"		"5"
+			"first_delay"			"3"
+		}
+	}
+	"boss_elder_titan_astral_spirit"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"elder_titan_ancestral_spirit"
+		"ScriptFile"				"neutrals/arena_bosses/boss_elder_titan"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"			"SPELL_IMMUNITY_ENEMIES_YES"
+		"MaxLevel"					"1"
+		"AbilityCooldown"			"15"
+		"AbilityValues"
+		{
+			"delay"					"3.0"
+			"radius"				"450"
+			"damage"				"22"
+			"stun_duration"			"1.5"
+			"damage_bonus"			"25"
+			"buff_duration"			"3"
+			"cast_point"			"0.4"
+			"return_speed"			"1000"
+			"return_max_time"		"4"
+			"stomp_anim_time"		"1.7"
+			"first_delay"			"4"
+		}
+	}
+	"boss_elder_titan_splash"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"sven_great_cleave"
+		"ScriptFile"				"neutrals/arena_bosses/boss_elder_titan"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"			"SPELL_IMMUNITY_ENEMIES_YES"
+		"MaxLevel"					"1"
+		"AbilityValues"
+		{
+			"splash_pct"			"50"
+			"radius"				"300"
+		}
+	}
+	"boss_elder_titan_earth_splitter"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"elder_titan_earth_splitter"
+		"ScriptFile"				"neutrals/arena_bosses/boss_elder_titan"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"			"SPELL_IMMUNITY_ENEMIES_YES"
+		"MaxLevel"					"1"
+		"AbilityCooldown"			"15"
+		"AbilityValues"
+		{
+			"crack_time"			"2.7"
+			"width"					"400"
+			"damage"				"50"
+			"slow_pct"				"40"
+			"slow_duration"			"3"
+			"line_count"			"1"
+			"cast_point"			"0.4"
+			"first_delay"			"11"
+		}
+	}
+	"boss_radiant_tower_volley"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"boss_radiant_tower_volley"
+		"ScriptFile"				"neutrals/arena_bosses/boss_radiant_tower"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"					"1"
+		"AbilityValues"
+		{
+			"attack_damage_pct"		"-70"
+		}
+	}
+	"boss_radiant_tower_teleport"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"boss_radiant_tower_teleport"
+		"ScriptFile"				"neutrals/arena_bosses/boss_radiant_tower"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"			"SPELL_IMMUNITY_ENEMIES_NO"
+		"MaxLevel"					"1"
+		"AbilityCooldown"			"15"
+		"AbilityValues"
+		{
+			"channel_time"			"2"
+			"radius"				"300"
+			"damage"				"50"
+			"knockback"				"250"
+			"min_distance"			"400"
+			"first_delay"			"6"
+		}
+	}
+	"boss_radiant_tower_glyph"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"boss_radiant_tower_glyph"
+		"ScriptFile"				"neutrals/arena_bosses/boss_radiant_tower"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"					"1"
+		"AbilityCooldown"			"20"
+		"AbilityValues"
+		{
+			"warning_time"			"1.25"
+			"duration"				"4"
+			"first_delay"			"12"
+		}
+	}
+	"boss_dire_tower_heavy_shot"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"boss_dire_tower_heavy_shot"
+		"ScriptFile"				"neutrals/arena_bosses/boss_dire_tower"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"			"SPELL_IMMUNITY_ENEMIES_YES"
+		"MaxLevel"					"1"
+		"AbilityCooldown"			"1.5"
+		"AbilityValues"
+		{
+			"aim_time"				"0.3"
+			"projectile_speed"		"750"
+			"radius"				"275"
+			"attack_damage_pct"		"300"
+			"first_delay"			"2"
+		}
+	}
+	"boss_dire_tower_corrosion"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"boss_dire_tower_corrosion"
+		"ScriptFile"				"neutrals/arena_bosses/boss_dire_tower"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+		"SpellImmunityType"			"SPELL_IMMUNITY_ENEMIES_YES"
+		"MaxLevel"					"1"
+		"AbilityValues"
+		{
+			"armor_reduction_pct"	"30"
+			"radius"				"6000"
+		}
+	}
+	"boss_dire_tower_restoration"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"boss_dire_tower_restoration"
+		"ScriptFile"				"neutrals/arena_bosses/boss_dire_tower"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"					"1"
+		"AbilityValues"
+		{
+			"windup"				"1.5"
+			"duration"				"6"
+			"heal_pct"				"50"
+			"barrier_pct"			"100"
+		}
+	}
+	"boss_golden_tomb_zombies"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"boss_golden_tomb_zombies"
+		"ScriptFile"				"neutrals/arena_bosses/boss_golden_tomb"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"					"1"
+		"AbilityValues"
+		{
+			"zombie_count"			"100"
+			"max_alive"				"14"
+			"spawn_interval"		"0.75"
+			"zombie_hp_pct"			"2"
+			"zombie_damage_pct"		"10"
+			"zombie_gold"			"10"
+			"spawn_radius"			"700"
+			"first_delay"			"3"
+		}
+	}
+	"boss_golden_tomb_zombie_frenzy"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"undying_tombstone_zombie_deathstrike"
+		"ScriptFile"				"neutrals/arena_bosses/boss_golden_tomb"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"					"1"
+		"AbilityValues"
+		{
+			"radius"				"500"
+			"damage_per_zombie"		"8"
+			"max_stacks"			"12"
+		}
+	}
+	"boss_rune_chest_regen"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"boss_rune_chest_regen"
+		"ScriptFile"				"neutrals/arena_bosses/boss_rune_chest"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"					"1"
+		"AbilityValues"
+		{
+			"regen_pct"				"5"
+		}
+	}
+	"boss_rune_chest_blink"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"boss_rune_chest_blink"
+		"ScriptFile"				"neutrals/arena_bosses/boss_rune_chest"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"			"SPELL_IMMUNITY_ENEMIES_NO"
+		"MaxLevel"					"1"
+		"AbilityCooldown"			"7"
+		"AbilityValues"
+		{
+			"channel_time"			"2"
+			"min_distance"			"300"
+			"first_delay"			"7"
+			"arrival_radius"		"350"
+			"arrival_damage"		"15"
+			"knockback_distance"	"300"
+			"knockback_duration"	"0.4"
+		}
+	}
+	"boss_treant_stump_teleport"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"furion_teleportation"
+		"ScriptFile"				"neutrals/arena_bosses/boss_treant_stump"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"			"SPELL_IMMUNITY_ENEMIES_NO"
+		"MaxLevel"					"1"
+		"AbilityCooldown"			"15"
+		"AbilityValues"
+		{
+			"channel_time"			"2.5"
+			"radius"				"375"
+			"damage"				"50"
+			"stun_duration"			"2.5"
+			"first_delay"			"6"
+		}
+	}
+	"boss_treant_stump_accuracy"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"furion_spirit_of_the_forest"
+		"ScriptFile"				"neutrals/arena_bosses/boss_treant_stump"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"					"1"
+		"AbilityValues"
+		{
+			"accuracy"				"50"
+		}
+	}
+	"boss_treant_stump_ranged_strike"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"boss_treant_stump_ranged_strike"
+		"ScriptFile"				"neutrals/arena_bosses/boss_treant_stump"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"			"SPELL_IMMUNITY_ENEMIES_YES"
+		"MaxLevel"					"1"
+		"AbilityCooldown"			"3"
+		"AbilityValues"
+		{
+			"projectile_speed"		"1300"
+		}
+	}
+	"boss_snapfire_shredder"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"snapfire_lil_shredder"
+		"ScriptFile"				"neutrals/arena_bosses/boss_snapfire"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"			"SPELL_IMMUNITY_ENEMIES_YES"
+		"MaxLevel"					"1"
+		"AbilityValues"
+		{
+			"base_damage_pct"		"-75"
+			"attack_time"			"0.5"
+			"armor_per_stack"		"1"
+			"stack_duration"		"4"
+		}
+	}
+	"boss_snapfire_magma"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"snapfire_mortimer_kisses"
+		"ScriptFile"				"neutrals/arena_bosses/boss_snapfire"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"			"SPELL_IMMUNITY_ENEMIES_NO"
+		"MaxLevel"					"1"
+		"AbilityCooldown"			"15"
+		"AbilityValues"
+		{
+			"impact_damage"			"50"
+			"burn_damage"			"25"
+			"burn_duration"			"3"
+			"burn_linger"			"0.5"
+			"radius"				"275"
+			"delay"					"1.8"
+			"start_delay"			"5"
+		}
+	}
+	"boss_clockwerk_jetpack"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"rattletrap_jetpack"
+		"ScriptFile"				"neutrals/arena_bosses/boss_clockwerk"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"					"1"
+		"AbilityValues"
+		{
+			"hover_height"			"90"
+			"turn_rate"				"110"
+			"pass_distance"			"500"
+			"accel_time"			"0.6"
+		}
+	}
+	"boss_clockwerk_rocket_flare"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"rattletrap_rocket_flare"
+		"ScriptFile"				"neutrals/arena_bosses/boss_clockwerk"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"			"SPELL_IMMUNITY_ENEMIES_NO"
+		"MaxLevel"					"1"
+		"AbilityValues"
+		{
+			"attack_damage_pct"		"200"
+			"radius"				"225"
+			"slow"					"-50"
+			"slow_duration"			"2"
+			"interval"				"1.2"
+			"rocket_count"			"1"
+			"spread"				"250"
+			"aim_time"				"0.4"
+			"stagger"				"0.15"
+			"speed"					"900"
+			"start_delay"			"3"
+		}
+	}
+	"boss_clockwerk_hookshot"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"rattletrap_hookshot"
+		"ScriptFile"				"neutrals/arena_bosses/boss_clockwerk"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"			"SPELL_IMMUNITY_ENEMIES_NO"
+		"MaxLevel"					"1"
+		"AbilityCooldown"			"14"
+		"AbilityValues"
+		{
+			"damage"				"20"
+			"stun_duration"			"1.5"
+			"delay"					"0.75"
+			"hook_range"			"3000"
+			"hook_radius"			"100"
+			"hook_speed"			"4000"
+			"pull_speed"			"4000"
+			"latch_radius"			"175"
+			"start_delay"			"6"
+			"recover_time"			"0.6"
+		}
+	}
+	"boss_shadow_shaman_serpent_ward"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"shadow_shaman_mass_serpent_ward"
+		"ScriptFile"				"neutrals/arena_bosses/boss_shadow_shaman"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_PHYSICAL"
+		"MaxLevel"					"1"
+		"AbilityCooldown"			"5"
+		"AbilityValues"
+		{
+			"ward_hits"				"2"
+			"ward_duration"			"20"
+			"max_wards"				"5"
+			"ward_damage_pct"		"30"
+			"spawn_min"				"200"
+			"spawn_max"				"350"
+			"start_delay"			"2"
+		}
+	}
+	"boss_shadow_shaman_voodoo"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"shadow_shaman_voodoo"
+		"ScriptFile"				"neutrals/arena_bosses/boss_shadow_shaman"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"SpellImmunityType"			"SPELL_IMMUNITY_ENEMIES_NO"
+		"MaxLevel"					"1"
+		"AbilityCooldown"			"16"
+		"AbilityValues"
+		{
+			"hex_duration"			"1.5"
+			"hex_movespeed"			"100"
+			"cast_range"			"900"
+			"delay"					"1.5"
+			"start_delay"			"8"
+		}
+	}
+	"boss_shadow_shaman_shackles"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"shadow_shaman_shackles"
+		"ScriptFile"				"neutrals/arena_bosses/boss_shadow_shaman"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"			"SPELL_IMMUNITY_ENEMIES_NO"
+		"MaxLevel"					"1"
+		"AbilityCooldown"			"16"
+		"AbilityValues"
+		{
+			"duration"				"3"
+			"damage"				"20"
+			"tick_interval"			"0.25"
+			"cast_range"			"700"
+			"break_range"			"1100"
+			"delay"					"1"
+			"start_delay"			"4"
+		}
+	}
+	"boss_broodmother_spin_web"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"boss_broodmother_spin_web"
+		"ScriptFile"				"neutrals/arena_bosses/boss_broodmother"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"					"1"
+		"AbilityValues"
+		{
+			"web_radius"			"2700"
+			"vision_radius"			"300"
+			"min_move_speed"		"300"
+		}
+	}
+	"boss_broodmother_egg_sacs"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"boss_broodmother_egg_sacs"
+		"ScriptFile"				"neutrals/arena_bosses/boss_broodmother"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"					"1"
+		"AbilityCooldown"			"3"
+		"AbilityValues"
+		{
+			"egg_hits"				"4"
+			"hatch_time"			"10"
+			"spiders_per_egg"		"1"
+			"spider_health_pct"		"20"
+			"spawn_min"				"250"
+			"spawn_max"				"650"
+			"start_delay"			"3"
+		}
+	}
+	"boss_broodmother_hunger"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"boss_broodmother_hunger"
+		"ScriptFile"				"neutrals/arena_bosses/boss_broodmother"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"					"1"
+		"AbilityValues"
+		{
+			"lifesteal"				"35"
+		}
+	}
+	"boss_cm_wolf_freezing_field"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"crystal_maiden_freezing_field"
+		"ScriptFile"				"neutrals/arena_bosses/boss_cm_wolf"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"			"SPELL_IMMUNITY_ENEMIES_YES"
+		"MaxLevel"					"1"
+		"AbilityCooldown"			"24"
+		"AbilityValues"
+		{
+			"duration"					"6"
+			"radius"					"1400"
+			"min_distance"				"250"
+			"explosion_radius"			"260"
+			"explosion_delay"			"1.3"
+			"explosion_interval"		"0.25"
+			"explosion_interval_last"	"0.17"
+			"hero_chance"				"45"
+			"damage"					"12"
+			"slow"						"-30"
+			"slow_duration"				"2"
+			"leap_delay"				"1.2"
+			"leap_duration"				"0.6"
+			"leap_radius"				"350"
+			"leap_damage"				"8"
+			"first_cast_delay"			"8"
+		}
+	}
+	"boss_cm_wolf_crystal_nova"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"crystal_maiden_crystal_nova"
+		"ScriptFile"				"neutrals/arena_bosses/boss_cm_wolf"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"			"SPELL_IMMUNITY_ENEMIES_YES"
+		"MaxLevel"					"1"
+		"AbilityCooldown"			"9"
+		"AbilityValues"
+		{
+			"count"						"2"
+			"radius"					"350"
+			"delay"						"1.5"
+			"damage"					"15"
+			"move_slow"					"-40"
+			"attack_slow"				"-60"
+			"duration"					"3"
+			"first_cast_delay"			"3"
+		}
+	}
+	"boss_cm_wolf_frostbite"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"crystal_maiden_frostbite"
+		"ScriptFile"				"neutrals/arena_bosses/boss_cm_wolf"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"			"SPELL_IMMUNITY_ENEMIES_YES"
+		"MaxLevel"					"1"
+		"AbilityCooldown"			"13"
+		"AbilityValues"
+		{
+			"delay"						"1.2"
+			"duration"					"2.5"
+			"tick_interval"				"0.5"
+			"tick_damage"				"3"
+			"first_cast_delay"			"6"
+		}
+	}
+	"boss_cosmic_roshan_slam"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"roshan_slam"
+		"ScriptFile"				"neutrals/arena_bosses/boss_cosmic_roshan"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"			"SPELL_IMMUNITY_ENEMIES_YES"
+		"MaxLevel"					"1"
+		"AbilityCooldown"			"9"
+		"AbilityValues"
+		{
+			"radius"					"450"
+			"delay"						"1.3"
+			"damage"					"18"
+			"slow"						"-50"
+			"slow_duration"				"3"
+			"first_cast_delay"			"4"
+		}
+	}
+	"boss_cosmic_roshan_bash"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"roshan_bash"
+		"ScriptFile"				"neutrals/arena_bosses/boss_cosmic_roshan"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"			"SPELL_IMMUNITY_ENEMIES_YES"
+		"MaxLevel"					"1"
+		"AbilityValues"
+		{
+			"attacks"					"10"
+			"bonus_damage"				"8"
+			"stun_duration"				"1.2"
+		}
+	}
+	"boss_cosmic_roshan_spell_block"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"roshan_spell_block"
+		"ScriptFile"				"neutrals/arena_bosses/boss_cosmic_roshan"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"					"1"
+		"AbilityCooldown"			"12"
+	}
+	"boss_cosmic_roshan_charge"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"boss_cosmic_roshan_charge"
+		"ScriptFile"				"neutrals/arena_bosses/boss_cosmic_roshan"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"			"SPELL_IMMUNITY_ENEMIES_YES"
+		"MaxLevel"					"1"
+		"AbilityCooldown"			"14"
+		"AbilityValues"
+		{
+			"delay"						"1.6"
+			"speed"						"1800"
+			"radius"					"175"
+			"damage"					"22"
+			"stun_duration"				"1"
+			"knockback_distance"		"300"
+			"overshoot"					"400"
+			"min_distance"				"900"
+			"max_distance"				"2600"
+			"first_cast_delay"			"7"
+		}
+	}
+	"boss_mars_spear"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"mars_spear"
+		"ScriptFile"				"neutrals/arena_bosses/boss_mars"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"			"SPELL_IMMUNITY_ENEMIES_YES"
+		"MaxLevel"					"1"
+		"AbilityCooldown"			"10"
+		"AbilityValues"
+		{
+			"delay"						"0.75"
+			"speed"						"1400"
+			"width"						"125"
+			"distance"					"1600"
+			"damage"					"25"
+			"pin_duration"				"1.8"
+			"knockback_distance"		"250"
+			"first_cast_delay"			"4"
+		}
+	}
+	"boss_mars_bulwark"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"mars_bulwark"
+		"ScriptFile"				"neutrals/arena_bosses/boss_mars"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"					"1"
+		"AbilityValues"
+		{
+			"damage_reduction"			"40"
+		}
+	}
+	"boss_mars_rebuke"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"mars_gods_rebuke"
+		"ScriptFile"				"neutrals/arena_bosses/boss_mars"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"			"SPELL_IMMUNITY_ENEMIES_YES"
+		"MaxLevel"					"1"
+		"AbilityCooldown"			"8"
+		"AbilityValues"
+		{
+			"radius"					"500"
+			"angle"						"140"
+			"delay"						"1"
+			"damage"					"20"
+			"knockback_distance"		"350"
+			"knockback_duration"		"0.3"
+			"first_cast_delay"			"2.5"
+		}
+	}
+	"boss_nian_cataclysm"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"boss_nian_cataclysm"
+		"ScriptFile"				"neutrals/arena_bosses/boss_nian"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"			"SPELL_IMMUNITY_ENEMIES_YES"
+		"MaxLevel"					"1"
+		"AbilityCooldown"			"8"
+		"AbilityValues"
+		{
+			"radius"					"175"
+			"delay"						"1.7"
+			"damage"					"50"
+			"cast_time"					"0.9"
+			"first_cast_delay"			"5"
+		}
+	}
+	"boss_nian_blast"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"boss_nian_blast"
+		"ScriptFile"				"neutrals/arena_bosses/boss_nian"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"			"SPELL_IMMUNITY_ENEMIES_YES"
+		"MaxLevel"					"1"
+		"AbilityCooldown"			"12"
+		"AbilityValues"
+		{
+			"count"						"8"
+			"distance"					"1300"
+			"radius_start"				"175"
+			"radius_end"				"225"
+			"speed"						"1100"
+			"delay"						"1.3"
+			"damage"					"15"
+			"knockback_distance"		"350"
+			"knockback_duration"		"0.5"
+			"disarm_duration"			"2"
+			"first_cast_delay"			"8"
+		}
+	}
+	"boss_nian_leap"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"boss_nian_leap"
+		"ScriptFile"				"neutrals/arena_bosses/boss_nian"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"			"SPELL_IMMUNITY_ENEMIES_YES"
+		"MaxLevel"					"1"
+		"AbilityCooldown"			"11"
+		"AbilityValues"
+		{
+			"radius"					"400"
+			"delay"						"1.5"
+			"damage"					"20"
+			"slow"						"-50"
+			"slow_duration"				"4"
+			"first_cast_delay"			"3"
+		}
+	}
+	"boss_rubick_telekinesis"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"rubick_telekinesis"
+		"ScriptFile"				"neutrals/arena_bosses/boss_rubick"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"			"SPELL_IMMUNITY_ENEMIES_YES"
+		"MaxLevel"					"1"
+		"AbilityCooldown"			"13"
+		"AbilityValues"
+		{
+			"count"						"1"
+			"cast_delay"				"1"
+			"lift_duration"				"1.8"
+			"land_distance"				"450"
+			"first_cast_delay"			"5"
+		}
+	}
+	"boss_rubick_chaos_meteor"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"boss_rubick_chaos_meteor"
+		"ScriptFile"				"neutrals/arena_bosses/boss_rubick"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"			"SPELL_IMMUNITY_ENEMIES_YES"
+		"MaxLevel"					"1"
+		"AbilityCooldown"			"11"
+		"AbilityValues"
+		{
+			"count"						"1"
+			"radius"					"225"
+			"distance"					"1100"
+			"speed"						"350"
+			"fall_time"					"1.3"
+			"tick_interval"				"0.25"
+			"tick_damage"				"3.5"
+			"burn_duration"				"3"
+			"burn_damage"				"2"
+			"cast_time"					"0.6"
+			"first_cast_delay"			"3"
+		}
+	}
+	"boss_rubick_null_field"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"rubick_null_field"
+		"ScriptFile"				"neutrals/arena_bosses/boss_rubick"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"					"1"
+		"AbilityValues"
+		{
+			"spell_damage_reduction"	"50"
+		}
+	}
+	"boss_skywrath_mystic_flares"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"skywrath_mage_mystic_flare"
+		"ScriptFile"				"neutrals/arena_bosses/boss_skywrath"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"			"SPELL_IMMUNITY_ENEMIES_NO"
+		"MaxLevel"					"1"
+		"AbilityCooldown"			"16"
+		"AbilityValues"
+		{
+			"flare_count"			"4"
+			"flare_radius"			"275"
+			"delay"					"2"
+			"duration"				"2"
+			"damage_interval"		"0.25"
+			"damage"				"25"
+			"spread"				"700"
+			"first_cast_delay"		"6"
+		}
+	}
+	"boss_skywrath_doves"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"skywrath_mage_arcane_bolt"
+		"ScriptFile"				"neutrals/arena_bosses/boss_skywrath"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"			"SPELL_IMMUNITY_ENEMIES_NO"
+		"MaxLevel"					"1"
+		"AbilityCooldown"			"4"
+		"AbilityValues"
+		{
+			"windup"				"0.7"
+			"speed"					"650"
+			"damage"				"15"
+			"first_cast_delay"		"3"
+		}
+	}
+	"boss_skywrath_ancient_seal"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"skywrath_mage_ancient_seal"
+		"ScriptFile"				"neutrals/arena_bosses/boss_skywrath"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"SpellImmunityType"			"SPELL_IMMUNITY_ENEMIES_NO"
+		"MaxLevel"					"1"
+		"AbilityCooldown"			"12"
+		"AbilityValues"
+		{
+			"cast_range"			"1200"
+			"silence_duration"		"4"
+			"first_cast_delay"		"9"
+		}
+	}
+	"boss_brewmaster_thunder_clap"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"brewmaster_thunder_clap"
+		"ScriptFile"				"neutrals/arena_bosses/boss_brewmaster"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"			"SPELL_IMMUNITY_ENEMIES_NO"
+		"MaxLevel"					"1"
+		"AbilityCooldown"			"10"
+		"AbilityValues"
+		{
+			"radius"				"400"
+			"trigger_radius"		"350"
+			"delay"					"1.4"
+			"damage"				"25"
+			"move_slow"				"45"
+			"attack_slow"			"60"
+			"slow_duration"			"4"
+			"first_cast_delay"		"4"
+		}
+	}
+	"boss_brewmaster_drunken_brawler"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"brewmaster_drunken_brawler"
+		"ScriptFile"				"neutrals/arena_bosses/boss_brewmaster"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"					"1"
+		"AbilityValues"
+		{
+			"evasion"				"30"
+		}
+	}
+	"boss_brewmaster_primal_split"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"brewmaster_primal_split"
+		"ScriptFile"				"neutrals/arena_bosses/boss_brewmaster"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"					"1"
+		"AbilityValues"
+		{
+			"split_delay"			"1.5"
+			"spawn_radius"			"250"
+			"panda_damage_pct"		"45"
+			"panda_health_pct"		"50"
+		}
+	}
+	"boss_brewmaster_storm_dispel"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"brewmaster_storm_dispel_magic"
+		"ScriptFile"				"neutrals/arena_bosses/boss_brewmaster"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"SpellImmunityType"			"SPELL_IMMUNITY_ENEMIES_NO"
+		"MaxLevel"					"1"
+		"AbilityCooldown"			"8"
+		"AbilityValues"
+		{
+			"radius"				"275"
+			"delay"					"1.5"
+			"first_cast_delay"		"3"
+		}
+	}
+	"boss_brewmaster_fire_burn"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"brewmaster_fire_permanent_immolation"
+		"ScriptFile"				"neutrals/arena_bosses/boss_brewmaster"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"			"SPELL_IMMUNITY_ENEMIES_NO"
+		"MaxLevel"					"1"
+		"AbilityValues"
+		{
+			"burn_damage"			"5"
+			"radius"				"350"
+			"burn_interval"			"0.5"
+		}
+	}
+	"boss_brewmaster_void_pulse"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"brewmaster_void_astral_pulse"
+		"ScriptFile"				"neutrals/arena_bosses/boss_brewmaster"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"			"SPELL_IMMUNITY_ENEMIES_NO"
+		"MaxLevel"					"1"
+		"AbilityCooldown"			"9"
+		"AbilityValues"
+		{
+			"radius"				"450"
+			"delay"					"1.4"
+			"damage"				"25"
+			"first_cast_delay"		"5"
+		}
+	}
+	"boss_mirana_sacred_arrows"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"mirana_arrow"
+		"ScriptFile"				"neutrals/arena_bosses/boss_mirana"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"			"SPELL_IMMUNITY_ENEMIES_NO"
+		"MaxLevel"					"1"
+		"AbilityCooldown"			"7"
+		"AbilityValues"
+		{
+			"arrow_count"			"4"
+			"arrow_width"			"130"
+			"arrow_speed"			"1600"
+			"delay"					"1.5"
+			"damage"				"50"
+			"stun_duration"			"2"
+			"first_cast_delay"		"4"
+		}
+	}
+	"boss_mirana_moonlight_shadow"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"mirana_invis"
+		"ScriptFile"				"neutrals/arena_bosses/boss_mirana"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_MAGICAL"
+		"MaxLevel"					"1"
+		"AbilityCooldown"			"6"
+		"AbilityValues"
+		{
+			"fade_delay"			"5"
+			"fade_duration"			"6"
+			"stalk_duration"		"1.5"
+			"bonus_movespeed"		"25"
+		}
+	}
+	"boss_mirana_starlight"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"mirana_celestial_quiver"
+		"ScriptFile"				"neutrals/arena_bosses/boss_mirana"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_MAGICAL"
+		"MaxLevel"					"1"
+		"AbilityValues"
+		{
+			"bonus_damage"			"5"
+		}
+	}
+	"boss_treant_overgrowth"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"treant_overgrowth"
+		"ScriptFile"				"neutrals/arena_bosses/boss_treant"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"			"SPELL_IMMUNITY_ENEMIES_YES"
+		"MaxLevel"					"1"
+		"AbilityCooldown"			"12"
+		"AbilityValues"
+		{
+			"radius"				"600"
+			"delay"					"1"
+			"duration"				"3"
+			"damage_per_second"		"10"
+			"tick_interval"			"0.5"
+			"first_cast_delay"		"6"
+		}
+	}
+	"boss_treant_ancient_might"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"treant_natures_grasp"
+		"ScriptFile"				"neutrals/arena_bosses/boss_treant"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"					"1"
+		"AbilityValues"
+		{
+			"bonus_attack_damage_pct"	"50"
+		}
+	}
+	"boss_treant_pine_cleanse"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"treant_living_armor"
+		"ScriptFile"				"neutrals/arena_bosses/boss_treant"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"					"1"
+		"AbilityCooldown"			"12"
+	}
+	"boss_nyx_spiked_carapace"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"nyx_assassin_spiked_carapace"
+		"ScriptFile"				"neutrals/arena_bosses/boss_nyx"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"			"SPELL_IMMUNITY_ENEMIES_YES"
+		"MaxLevel"					"1"
+		"AbilityCooldown"			"13"
+		"AbilityValues"
+		{
+			"warning_time"			"0.8"
+			"duration"				"1"
+			"trigger_radius"		"600"
+			"reflect_pct"			"10"
+			"stun_duration"			"1.5"
+			"first_cast_delay"		"5"
+		}
+	}
+	"boss_nyx_mana_burn"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"nyx_assassin_mana_burn"
+		"ScriptFile"				"neutrals/arena_bosses/boss_nyx"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_MAGICAL"
+		"MaxLevel"					"1"
+		"AbilityValues"
+		{
+			"mana_burn_pct"			"3"
+			"burn_damage_pct"		"50"
+		}
+	}
+	"boss_nyx_burrow"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"nyx_assassin_burrow"
+		"ScriptFile"				"neutrals/arena_bosses/boss_nyx"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"					"1"
+		"AbilityCooldown"			"20"
+		"AbilityValues"
+		{
+			"burrow_time"			"0.8"
+			"duration"				"5"
+			"heal_pct"				"6"
+			"first_cast_delay"		"10"
+		}
+	}
+	"boss_lifestealer_rage"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"life_stealer_rage"
+		"ScriptFile"				"neutrals/arena_bosses/boss_lifestealer"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"					"1"
+		"AbilityCooldown"			"16"
+		"AbilityValues"
+		{
+			"duration"				"5"
+			"magic_resistance"		"50"
+			"bonus_movespeed"		"15"
+		}
+	}
+	"boss_lifestealer_feast"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"life_stealer_feast"
+		"ScriptFile"				"neutrals/arena_bosses/boss_lifestealer"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"					"1"
+		"AbilityValues"
+		{
+			"lifesteal_pct"			"30"
+		}
+	}
+	"boss_lifestealer_infest"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"life_stealer_infest"
+		"ScriptFile"				"neutrals/arena_bosses/boss_lifestealer"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"SpellImmunityType"			"SPELL_IMMUNITY_ENEMIES_YES"
+		"MaxLevel"					"1"
+		"AbilityCooldown"			"15"
+		"AbilityValues"
+		{
+			"radius"				"200"
+			"heal_pct"				"5"
+			"leap_duration"			"0.45"
+			"leap_speed"			"1800"
+			"retry_cooldown"		"3"
+			"first_delay"			"10"
+		}
+	}
+	"boss_chen_holy_persuasion"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"chen_holy_persuasion"
+		"ScriptFile"				"neutrals/arena_bosses/boss_chen"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"					"1"
+		"AbilityValues"
+		{
+			"pet_health_pct"		"10"
+			"pet_damage_pct"		"20"
+			"pet_respawn"			"10"
+			"pet_leash"				"900"
+			"pet_teleport"		"1200"
+		}
+	}
+	"boss_chen_command"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"chen_divine_favor"
+		"ScriptFile"				"neutrals/arena_bosses/boss_chen"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"					"1"
+		"AbilityCooldown"			"4"
+		"AbilityValues"
+		{
+			"first_delay"			"4"
+		}
+	}
+	"boss_chen_pet_war_stomp"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"centaur_khan_war_stomp"
+		"ScriptFile"				"neutrals/arena_bosses/boss_chen"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"			"SPELL_IMMUNITY_ENEMIES_NO"
+		"MaxLevel"					"1"
+		"AbilityValues"
+		{
+			"radius"				"325"
+			"stun_duration"			"1.5"
+			"damage"				"25"
+			"delay"					"1.3"
+		}
+	}
+	"boss_chen_pet_ensnare"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"dark_troll_warlord_ensnare"
+		"ScriptFile"				"neutrals/arena_bosses/boss_chen"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"SpellImmunityType"			"SPELL_IMMUNITY_ENEMIES_NO"
+		"MaxLevel"					"1"
+		"AbilityValues"
+		{
+			"root_duration"			"2.5"
+			"cast_range"			"1100"
+			"delay"					"1.2"
+			"net_speed"				"1500"
+		}
+	}
+	"boss_chen_pet_thunder_clap"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"polar_furbolg_ursa_warrior_thunder_clap"
+		"ScriptFile"				"neutrals/arena_bosses/boss_chen"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"			"SPELL_IMMUNITY_ENEMIES_NO"
+		"MaxLevel"					"1"
+		"AbilityValues"
+		{
+			"radius"				"325"
+			"move_slow"				"40"
+			"attack_slow"			"60"
+			"slow_duration"			"3"
+			"damage"				"50"
+			"delay"					"1.2"
+		}
+	}
+	"boss_dark_gravel_meteors"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"invoker_chaos_meteor"
+		"ScriptFile"				"neutrals/arena_bosses/boss_dark_gravel"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"			"SPELL_IMMUNITY_ENEMIES_NO"
+		"MaxLevel"					"1"
+		"AbilityCooldown"			"4"
+		"AbilityValues"
+		{
+			"damage"				"50"
+			"radius"				"150"
+			"roll_speed"			"688"
+			"delay"					"2.2"
+			"land_time"				"1.3"
+			"first_delay"			"4"
+		}
+	}
+	"boss_dark_gravel_boulder"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"mud_golem_hurl_boulder"
+		"ScriptFile"				"neutrals/arena_bosses/boss_dark_gravel"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"			"SPELL_IMMUNITY_ENEMIES_NO"
+		"MaxLevel"					"1"
+		"AbilityCooldown"			"9"
+		"AbilityValues"
+		{
+			"stun_duration"			"2"
+			"cast_range"			"900"
+			"boulder_speed"			"1000"
+			"first_delay"			"4"
+		}
+	}
+	"boss_dark_gravel_crit"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"brewmaster_earth_pulverize"
+		"ScriptFile"				"neutrals/arena_bosses/boss_dark_gravel"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"					"1"
+		"AbilityValues"
+		{
+			"crit_chance"			"25"
+			"crit_damage"			"250"
+		}
+	}
+	"boss_beastmaster_evasion"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"beastmaster_inner_beast"
+		"ScriptFile"				"neutrals/arena_bosses/boss_beastmaster"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"					"1"
+		"AbilityValues"
+		{
+			"evasion"				"30"
+		}
+	}
+	"boss_beastmaster_wild_axes"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"beastmaster_wild_axes"
+		"ScriptFile"				"neutrals/arena_bosses/boss_beastmaster"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_PHYSICAL"
+		"SpellImmunityType"			"SPELL_IMMUNITY_ENEMIES_NO"
+		"MaxLevel"					"1"
+		"AbilityCooldown"			"8"
+		"AbilityValues"
+		{
+			"damage"				"50"
+			"axe_radius"			"110"
+			"min_throw_duration"	"0.4"
+			"max_throw_duration"	"1.0"
+			"range"					"1500"
+			"min_range"				"500"
+			"spread"				"40"
+			"delay"					"2"
+			"first_delay"			"4"
+		}
+	}
+	"boss_beastmaster_boar"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"beastmaster_call_of_the_wild"
+		"ScriptFile"				"neutrals/arena_bosses/boss_beastmaster"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"					"1"
+		"AbilityValues"
+		{
+			"boar_damage_pct"		"35"
+			"follow_range"			"550"
+			"teleport_range"		"1300"
+		}
+	}
+	"boss_beastmaster_boar_poison"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"beastmaster_boar_poison"
+		"ScriptFile"				"neutrals/arena_bosses/boss_beastmaster"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"					"1"
+		"AbilityValues"
+		{
+			"move_slow"				"15"
+			"attack_slow"			"20"
+			"duration"				"2"
+		}
+	}
+	"boss_undying_decay"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"undying_decay"
+		"ScriptFile"				"neutrals/arena_bosses/boss_undying"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"			"SPELL_IMMUNITY_ENEMIES_NO"
+		"MaxLevel"					"1"
+		"AbilityCooldown"			"8"
+		"AbilityValues"
+		{
+			"damage"				"10"
+			"steal_pct"				"10"
+			"steal_duration"		"20"
+			"cast_range"			"1100"
+			"radius"				"325"
+			"delay"					"1"
+			"first_delay"			"3"
+		}
+	}
+	"boss_undying_tombstone"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"undying_tombstone"
+		"ScriptFile"				"neutrals/arena_bosses/boss_undying"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"					"1"
+		"AbilityCooldown"			"12"
+		"AbilityValues"
+		{
+			"zombie_count"			"3"
+			"zombie_max"			"9"
+			"zombie_range"			"1800"
+			"zombie_health_pct"		"2"
+			"spawn_radius"			"700"
+			"delay"					"0.4"
+			"first_delay"			"5"
+		}
+	}
+	"boss_undying_zombie_grab"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"undying_tombstone_zombie_deathstrike"
+		"ScriptFile"				"neutrals/arena_bosses/boss_undying"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"					"1"
+		"AbilityValues"
+		{
+			"slow_per_stack"		"10"
+			"max_stacks"			"10"
+			"slow_duration"			"4"
+		}
+	}
+	"boss_undying_flesh_golem"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"undying_flesh_golem"
+		"ScriptFile"				"neutrals/arena_bosses/boss_undying"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"					"1"
+		"AbilityValues"
+		{
+			"regen_pct"				"2"
+			"model_scale"			"15"
+		}
+	}
+	"boss_broodmother_spider_bite"
+	{
+		"BaseClass"					"ability_lua"
+		"AbilityTextureName"		"boss_broodmother_spider_bite"
+		"ScriptFile"				"neutrals/arena_bosses/boss_broodmother"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"SpellImmunityType"			"SPELL_IMMUNITY_ENEMIES_YES"
+		"MaxLevel"					"1"
+		"AbilityValues"
+		{
+			"heal_reduction"		"10"
+			"max_stacks"			"10"
+			"duration"				"2"
 		}
 	}
 }
