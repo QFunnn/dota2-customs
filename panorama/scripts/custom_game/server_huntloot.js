@@ -13,6 +13,7 @@
 var libs = require('./libs.js');
 var EOM_Loading = require('./EOM_Loading.js');
 var solid_utils = require('./solid_utils.js');
+var huntloot_utils = require('./huntloot_utils.js');
 var server_huntloot = require('./server_huntloot2.js');
 require('./attribute_formatter.js');
 require('./equipment_utils.js');
@@ -52,7 +53,7 @@ function ServerHuntlootDetailLoaded(props) {
     if (!bonus) return entries;
     return entries.map(entry => ({
       ...entry,
-      value: server_huntloot.HuntlootAttributeRound(entry.id, (entry.base_value ?? entry.value) + (entry.base_value ?? entry.value) * bonus)
+      value: huntloot_utils.HuntlootAttributeRound(entry.id, (entry.base_value ?? entry.value) + (entry.base_value ?? entry.value) * bonus)
     }));
   });
   const canWear = () => {
@@ -69,7 +70,7 @@ function ServerHuntlootDetailLoaded(props) {
     return map;
   });
   const displayName = libs.createMemo(() => {
-    let nameStr = server_huntloot.GetHuntlootName(huntlootData());
+    let nameStr = huntloot_utils.GetHuntlootName(huntlootData());
     if (huntlootData().level > 0) {
       nameStr = nameStr.concat(`+${huntlootData().level}`);
     }
@@ -182,7 +183,7 @@ function ServerHuntlootDetailLoaded(props) {
   })();
 }
 function HuntlootAttrRow(props) {
-  const info = libs.createMemo(() => server_huntloot.GetHuntlootAttrDisplay(props.data, 2, {
+  const info = libs.createMemo(() => huntloot_utils.GetHuntlootAttrDisplay(props.data, 2, {
     showAttributeRange: props.showAttributeRange,
     hideExtraValue: props.compareMap != undefined || props.hideExtraValue
   }));
@@ -253,7 +254,7 @@ function HuntlootAttrRow(props) {
   })();
 }
 function HuntlootSpellRow(props) {
-  const info = libs.createMemo(() => server_huntloot.GetHuntlootAttrDisplay(props.data, 3, {
+  const info = libs.createMemo(() => huntloot_utils.GetHuntlootAttrDisplay(props.data, 3, {
     showAttributeRange: props.showAttributeRange
   }));
   return (() => {
@@ -351,7 +352,7 @@ function SetupTooltip() {
     id1 && idList.push(id1);
     id2 && idList.push(id2);
     if (idList.length > 0) {
-      server_huntloot.GetHuntlootDetail(idList, list => {
+      huntloot_utils.GetHuntlootDetail(idList, list => {
         if (requestVersion !== tooltipRequestVersion || !root.IsValid()) return;
         libs.batch(() => {
           list[id1] && setHuntlootData({
