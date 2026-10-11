@@ -1540,31 +1540,65 @@
 	
 }
 
+@keyframes 'TargetTimerOpen'
+{
+	0%
+	{
+		transform: translate3d( 0, -160px, 0px );
+		opacity: 0;
+	}
+	
+	100%
+	{
+		transform: translate3d( 0, 0, 0px );
+		opacity: 1;
+	}
+	
+}
+
+@keyframes 'TargetTimerClose'
+{
+	0%
+	{
+		transform: translate3d( 0, 0, 0px );
+		opacity: 1;
+	}
+	
+	100%
+	{
+		transform: translate3d( 0, -160px, 0px );
+		opacity: 0;
+	}
+	
+}
+
 .TargetTimer
 {
-	align: right top;
-	margin-top: 300px;
-	width: 160px;
+	align: center top;
 }
 
 .TargetTimer_panel
 {
-	width: 160px;
-	flow-children: down;
-	padding-bottom: 2px;
-	background-color: gradient(linear, 90% 100%, 0% 0%, from(#140404), to(#48080c));
-	border-top-left-radius: 5px;
-	border-bottom-left-radius: 5px;
-	border-left: 3px solid #ccc;
-	border-top: 1px solid #ccc;
-	border-bottom: 1px solid #ccc;
-	border-color: #ad2d34;
+	margin-top: 55px;
+	flow-children: right;
+	background-color: gradient(linear, 0% 0%, 90% 100%, from(#140404), to(#48080c));
+	border-radius: 4px;
+	border: 1px solid #ad2d34;
+}
+
+.TargetTimer_shadow
+{
 	box-shadow: fill #dc5d64 0px 0px 5px -1px;
+}
+
+.TargetTimer_shadow .TargetTimer_top_hero
+{
+	box-shadow: fill #ad2d34 0px 0px 4px -1px;
 }
 
 .TargetTimer_main
 {
-	animation-name: TargetAlertOpen;
+	animation-name: TargetTimerOpen;
 	animation-duration: 0.45s;
 	animation-timing-function: ease-in-out;
 	animation-iteration-count: 1;
@@ -1572,7 +1606,7 @@
 
 .TargetTimer_main_close
 {
-	animation-name: TargetAlertClose;
+	animation-name: TargetTimerClose;
 	animation-duration: 0.45s;
 	animation-timing-function: ease-in-out;
 	animation-iteration-count: 1;
@@ -1580,71 +1614,73 @@
 
 .TargetTimer_back
 {
-	width: 160px;
+	width: 100%;
 	height: 100%;
 	ignore-parent-flow: true;
 	background-image: url("s2r://panorama/images/loadout_backgrounds/loadout_bg_rocky_003_jpg.vtex");
 	background-size: 100%;
-	border-top-left-radius: 5px;
-	border-bottom-left-radius: 5px;
+	border-radius: 5px;
 	brightness: 0.1;
 	opacity: 0.2;
 	z-index: -1;
 	blur: gaussian( 10 );
 }
 
-.TargetTimer_top
+.TargetTimer_left
 {
-	width: 100%;
+	margin-top: 5px;
+	margin-bottom: 4px;
+	margin-left: 8px;
+	flow-children: down;
 }
 
 .TargetTimer_top_icons
 {
-	width: 100%;
-	margin-top: 12px;
-	flow-children: down;
+	margin-left: 11px;
+	margin-right: 8px;
+	flow-children: right;
 }
 
 .TargetTimer_top_hero
 {
-	horizontal-align: center;
-	width: 90px;
-	height: 51px;
-	margin-bottom: 6px;
+	width: 72px;
+	height: 40px;
+	margin-right: 3px;
 	border: 1px solid #ad2d34;
 	border-radius: 2px;
-	box-shadow: fill #ad2d34 0px 0px 4px -1px;
 }
 
 .TargetTimer_top_target
 {
 	align: left top;
 	background-image: url("s2r://panorama/images/hud/arcana/drow/drow_arcana_target_psd.vtex");
-	width: 32px;
-	height: 32px;
+	width: 26px;
+	height: 26px;
 	background-size: contain;
 	z-index: 3;
-	margin-top: 3px;
-	margin-left: 16px;
 }
 
 .TargetTimer_top_shadow
 {
 	align: left top;
 	background-image: url("s2r://panorama/images/hud/arcana/drow/drow_arcana_target_shadow_psd.vtex");
-	width: 35px;
-	height: 35px;
+	width: 28px;
+	height: 28px;
 	background-size: contain;
 	z-index: 2;
-	margin-top: 3px;
-	margin-left: 16px;
+}
+
+.TargetTimer_right
+{
+	width: 112px;
+	vertical-align: center;
+	margin-right: 6px;
+	flow-children: down;
 }
 
 .TargetTimer_mid
 {
-	width: 100%;
 	height: 26px;
-	margin-top: 1px;
 }
 
 .TargetTimer_mid_text
@@ -1654,15 +1690,14 @@
 	color: gradient( linear, 0% 100%, 0% 0%, from( #caaaaa ), to( #fff0f0 ) );
 	text-shadow: 1px 1px 4px 2 black;
 	font-size: 21px;
-	align: center center;
+	vertical-align: center;
 	text-align: left;
 }
 
 .TargetTimer_epic
 {
-	width: 100%;
-	height: 26px;
-	margin-top: 1px;
+	width: 106px;
+	height: 24px;
 }
 
 .TargetTimer_row_content
@@ -1671,7 +1706,6 @@
 	height: 100%;
 	horizontal-align: center;
 	flow-children: right;
-	margin-bottom: 6px;
 }
 
 .TargetTimer_damage_text
@@ -1680,8 +1714,9 @@
 	font-weight: bold;
 	color: gradient( linear, 0% 100%, 0% 0%, from( #dd2929 ), to( #f56060 ) );
 	text-shadow: 1px 1px 4px 1 black;
-	font-size: 18px;
-	align: center center;
+	font-size: 15px;
+	horizontal-align: center;
+	margin-top: 2px;
 }
 
 .TargetTimer_epic_text
@@ -1731,7 +1766,6 @@
 {
 	width: 100%;
 	height: 30px;
-	margin-top: 1px;
 	visibility: collapse;
 }
 

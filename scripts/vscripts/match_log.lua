@@ -25,6 +25,11 @@ if match_log == nil then
 	match_log.mods = setmetatable({}, { __mode = "k" })
 end
 
+match_log.wrapped = match_log.wrapped or {}
+match_log.child = match_log.child or {}
+match_log.depth = match_log.depth or 0
+match_log.hitch_spent = match_log.hitch_spent or 0
+match_log.hitch_max = match_log.hitch_max or 0
 match_log.enabled = true
 match_log.frame_time = 5
 match_log.pre_time = 30
@@ -36,6 +41,7 @@ match_log.min_time = 30
 match_log.min_damage = 300
 match_log.track_time = 5
 match_log.send_time = 180
+match_log.hitch_time = 0.05
 match_log.url = "/anal-gamelog"
 match_log.states =
 	{ "IsStunned", "IsSilenced", "IsRooted", "IsHexed", "IsDisarmed", "IsDebuffImmune", "IsInvisible", "IsTaunted" }
@@ -69,6 +75,92 @@ match_log.match_cols = { "wave", "timer", "max_timer", "players", "hunt", "final
 
 function match_log:Start()
 	self.active = self.enabled and IsSoloMode()
+	self.spent = 0
+	self.spent_max = 0
+	self.clock = Plat_FloatTime()
+	self.frame = GetFrameCount()
+	self.time = GameRules:GetGameTime()
+	self.depth = 0
+	self.hitch_spent = 0
+	self.hitch_max = 0
+
+	self.hitch_timer = Timers:CreateTimer(0, function()
+		local clock = Plat_FloatTime()
+		local frame = GetFrameCount()
+		local time = GameRules:GetGameTime()
+		local gap = clock - self.clock
+
+		if gap > self.hitch_time and not GameRules:IsGamePaused() then
+			local ok, name, unit, source = pcall(function()
+				local key = self.hitch_name
+				if type(key) == "function" then
+					local info = rawget(_G, "debug") and debug.getinfo and debug.getinfo(key, "S")
+					key = info and tostring(info.short_src) .. ":" .. tostring(info.linedefined) or "timer"
+				end
+
+				local obj = self.hitch_obj
+				local arg = self.hitch_arg
+				local owner = IsValid(obj) and (obj.GetParent and obj:GetParent() or obj.GetCaster and obj:GetCaster())
+				local inflictor = ""
+
+				if type(arg) == "table" and IsValid(arg.attacker or arg.unit) then
+					owner = arg.attacker or arg.unit
+					if IsValid(arg.inflictor) then
+						inflictor = arg.inflictor:GetAbilityName()
+					end
+				end
+
+				return key or "", IsValid(owner) and owner.GetUnitName and owner:GetUnitName() or "", inflictor
+			end)
+
+			print(
+				"SERVER HITCH",
+				math.floor(gap * 1000),
+				math.floor((time - self.time) * 1000),
+				frame - self.frame,
+				math.floor(GameRules:GetDOTATime(false, false)),
+				math.floor(self.spent * 1000),
+				self.spent_name or "",
+				math.floor(self.spent_max * 1000),
+				next(self.open) and 1 or 0,
+				math.floor(self.hitch_spent * 1000),
+				ok and name or "?",
+				math.floor(self.hitch_max * 1000),
+				ok and unit or "",
+				ok and source or ""
+			)
+		end
+
+		self.clock = clock
+		self.frame = frame
+		self.time = time
+		self.spent = 0
+		self.spent_max = 0
+		self.spent_name = nil
+		self.depth = 0
+		self.hitch_spent = 0
+		self.hitch_max = 0
+		self.hitch_name = nil
+		self.hitch_obj = nil
+		self.hitch_arg = nil
+		return 0
+	end)
+
+	for name, timer in pairs(Timers.timers) do
+		if name ~= self.hitch_timer then
+			self:WrapTimer(timer)
+		end
+	end
+
+	local create = Timers.CreateTimer
+	Timers.CreateTimer = function(timers, ...)
+		local name = create(timers, ...)
+		if name and timers.timers[name] then
+			self:WrapTimer(timers.timers[name])
+		end
+		return name
+	end
+
 	if not self.active then
 		return
 	end
@@ -100,7 +192,16 @@ function match_log:Call(name, ...)
 		return
 	end
 
+	local clock = Plat_FloatTime()
 	local ok, result = pcall(self[name], self, ...)
+	local time = Plat_FloatTime() - clock
+	self.spent = self.spent + time
+
+	if time > self.spent_max then
+		self.spent_max = time
+		self.spent_name = name
+	end
+
 	if ok then
 		return result
 	end
@@ -115,6 +216,64 @@ function match_log:Call(name, ...)
 		"/http-errors",
 		{ StatusCode = 600, Url = "/lua-errors", RequestBody = result, ResponseMessage = result }
 	)
+end
+
+function match_log:WrapClass(name, all)
+	if self.wrapped[name] then
+		return
+	end
+	self.wrapped[name] = true
+
+	local class = rawget(_G, name)
+	if type(class) ~= "table" then
+		return
+	end
+
+	for method, func in pairs(class) do
+		if
+			type(method) == "string"
+			and type(func) == "function"
+			and not method:find("^__")
+			and (all or method:find("^On") or method:find("Event") or method:find("Filter"))
+		then
+			local key = method .. " " .. name
+			rawset(class, method, function(obj, ...)
+				self.depth = self.depth + 1
+				self.child[self.depth] = 0
+				return self:Measure(key, obj, ..., Plat_FloatTime(), func(obj, ...))
+			end)
+		end
+	end
+end
+
+function match_log:WrapTimer(timer)
+	local func = timer.callback
+	timer.callback = function(...)
+		self.depth = self.depth + 1
+		self.child[self.depth] = 0
+		return self:Measure(func, nil, nil, Plat_FloatTime(), func(...))
+	end
+end
+
+function match_log:Measure(key, obj, arg, clock, ...)
+	local time = Plat_FloatTime() - clock
+	local own = time - (self.child[self.depth] or 0)
+	self.depth = self.depth - 1
+
+	if self.depth > 0 then
+		self.child[self.depth] = (self.child[self.depth] or 0) + time
+	else
+		self.hitch_spent = self.hitch_spent + time
+	end
+
+	if own > self.hitch_max then
+		self.hitch_max = own
+		self.hitch_name = key
+		self.hitch_obj = obj
+		self.hitch_arg = arg
+	end
+
+	return ...
 end
 
 function CDOTA_BaseNPC:LogProc(key, value, target)
@@ -342,6 +501,65 @@ function match_log:Rune(hero, net_k, gold, exp, white)
 		exp = math.floor(exp + 0.5),
 		white = math.floor(white + 0.5),
 	})
+end
+
+function match_log:HuntStart(team, reason)
+	local teams = dota1x6:GetTeamsNet()
+	if #teams < 2 then
+		return
+	end
+
+	local net_others = 0
+	local kills_others = 0
+	local target = nil
+
+	for _, data in pairs(teams) do
+		if data.team == team then
+			target = data
+		else
+			net_others = net_others + data.gold
+			kills_others = kills_others + data.kills
+		end
+	end
+
+	if not target then
+		return
+	end
+
+	local count = #teams - 1
+	self.hunt_gold = 0
+
+	for _, id in pairs(dota1x6:FindPlayers(team) or {}) do
+		local hero = players[id]
+		if hero then
+			self:Event(hero, {
+				type = "hunt",
+				src = reason,
+				net_k = math.floor(target.gold * count / math.max(net_others, 1) * 100 + 0.5),
+				k_gap = self:Tenth(target.kills - kills_others / count),
+			})
+		end
+	end
+end
+
+function match_log:HuntGold(gold)
+	self.hunt_gold = (self.hunt_gold or 0) + gold
+end
+
+function match_log:HuntEnd(team, result, killer)
+	for _, id in pairs(dota1x6:FindPlayers(team) or {}) do
+		local hero = players[id]
+		if hero then
+			self:Event(hero, {
+				type = "hunt_end",
+				src = result,
+				by_id = self:IsHero(killer) and killer:GetId() or nil,
+				gold = math.floor((self.hunt_gold or 0) + 0.5),
+			})
+		end
+	end
+
+	self.hunt_gold = nil
 end
 
 function match_log:Buy(hero, item, cost)

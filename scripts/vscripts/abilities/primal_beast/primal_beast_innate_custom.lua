@@ -151,7 +151,7 @@ function modifier_primal_beast_innate_custom:OnIntervalThink()
 	end
 
 	self.parent:SetModelScale(self.current_scale)
-	self:StartIntervalThink(self.current_scale == scale and 1 or 0.01)
+	self:StartIntervalThink(self.current_scale == scale and 1 or 0.03)
 end
 
 function modifier_primal_beast_innate_custom:DeclareFunctions()

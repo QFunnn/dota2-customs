@@ -300,7 +300,7 @@ function modifier_tower_incoming:OnIntervalThink()
 	if not self.tower then
 		return
 	end
-	if self.tower:HasModifier("modifier_the_hunt_custom_tower") then
+	if dota1x6.TargetCurrentActive then
 		return
 	end
 
@@ -324,7 +324,6 @@ function modifier_tower_incoming:OnIntervalThink()
 		if
 			GetGroundHeight(enemy:GetAbsOrigin(), nil) >= self.height
 			and not target
-			and not enemy:HasModifier("modifier_the_hunt_custom_hero")
 			and enemy:IsRealHero()
 			and not enemy:IsTempestDouble()
 		then
@@ -582,7 +581,7 @@ function modifier_tower_incoming:AttackEvent_inc(params)
 		return
 	end
 
-	if self.tower:HasModifier("modifier_the_hunt_custom_tower") then
+	if dota1x6.TargetCurrentActive then
 		self:PlayEffect(self.parent)
 		CustomGameEventManager:Send_ServerToPlayer(
 			PlayerResource:GetPlayer(attacker:GetPlayerOwnerID()),
@@ -1333,7 +1332,7 @@ function modifier_backdoor_knock_aura:OnIntervalThink()
 		local allow = false
 
 		for _, hero in pairs(self.heroes) do
-			if hero and not hero:IsNull() and not hero:HasModifier("modifier_the_hunt_custom_hero") then
+			if hero and not hero:IsNull() then
 				local dist = (hero:GetAbsOrigin() - self.parent:GetAbsOrigin()):Length2D()
 
 				if hero:IsAlive() or hero:IsReincarnating() then

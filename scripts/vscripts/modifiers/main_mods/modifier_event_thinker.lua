@@ -27,6 +27,7 @@ function modifier_event_thinker:OnCreated(table)
 	self.parent = self:GetParent()
 
 	dota1x6.event_thinker_mod = self
+	match_log:WrapClass("modifier_event_thinker")
 
 	self.neutral_mods = {
 		"modifier_ursa_clap",
@@ -296,6 +297,8 @@ function modifier_event_thinker:OnModifierAdded(params)
 	if self.test and self.clock then
 		self:TestWrapClass(mod)
 	end
+
+	match_log:WrapClass(mod:GetName())
 
 	if mod.GetModifierHealChange and unit:IsRealHero() then
 		if not unit.heal_reduce_mods then
@@ -579,6 +582,7 @@ function modifier_event_thinker:OnAbilityExecuted(params)
 		return
 	end
 
+	match_log:WrapClass(ability:GetAbilityName())
 	match_log:Call("Cast", caster, ability, target)
 
 	if ability:IsToggle() then
@@ -589,6 +593,7 @@ function modifier_event_thinker:OnAbilityExecuted(params)
 		params.target
 		and params.target:GetTeamNumber() ~= caster:GetTeamNumber()
 		and caster:HasModifier("modifier_smoke_of_deceit")
+		and params.target.IsCreep
 		and not params.target:IsCreep()
 	then
 		caster:RemoveModifierByName("modifier_smoke_of_deceit")

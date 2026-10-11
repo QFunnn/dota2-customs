@@ -98,6 +98,7 @@ function primal_beast_uproar_custom:UpdateTalents(name)
 
 			has_e4 = 0,
 			e4_root = caster:GetTalentValue("modifier_primal_beast_uproar_4", "root", true),
+			e4_root_legendary = caster:GetTalentValue("modifier_primal_beast_uproar_4", "root_legendary", true),
 			e4_radius = caster:GetTalentValue("modifier_primal_beast_uproar_4", "radius", true),
 			e4_min_distance = caster:GetTalentValue("modifier_primal_beast_uproar_4", "min_distance", true),
 			e4_pull_duration = caster:GetTalentValue("modifier_primal_beast_uproar_4", "pull_duration", true),
@@ -334,7 +335,8 @@ function primal_beast_uproar_custom:ProcRoar(stack, root)
 				self,
 				"modifier_primal_beast_uproar_custom_root",
 				{
-					duration = self.talents.e4_root * (1 - enemy:GetStatusResistance()),
+					duration = (self.talents.has_e7 == 1 and self.talents.e4_root_legendary or self.talents.e4_root)
+						* (1 - enemy:GetStatusResistance()),
 					delay = pull and self.talents.e4_pull_duration or nil,
 				}
 			)
@@ -344,7 +346,7 @@ function primal_beast_uproar_custom:ProcRoar(stack, root)
 				enemy:AddNewModifier(self.caster, self, "modifier_generic_arc", {
 					dir_x = dir.x,
 					dir_y = dir.y,
-					distance = length - 100,
+					distance = length - self.talents.e4_min_distance,
 					duration = self.talents.e4_pull_duration,
 					height = 0,
 					fix_end = false,
@@ -574,6 +576,7 @@ function modifier_primal_beast_uproar_custom_buff:OnCreated(params)
 	if not IsServer() then
 		return
 	end
+	self.RemoveForDuel = true
 	self.legendary = self.ability.talents.has_e7 == 1
 	self.ability:EndCd()
 
@@ -668,6 +671,7 @@ function modifier_primal_beast_uproar_custom_buff:OnDestroy()
 	if not self.legendary then
 		return
 	end
+	self.parent:RemoveModifierByName("modifier_primal_beast_uproar_custom_legendary")
 	self.parent:UpdateUIshort({ hide = 1, hide_full = 1, style = "BeastUproar", priority = 1 })
 	self.parent.innate_ability:UpdateScale()
 end
@@ -756,7 +760,6 @@ function modifier_primal_beast_uproar_custom_legendary:OnCreated(params)
 	if not IsServer() then
 		return
 	end
-	self.RemoveForDuel = true
 	self.parent:AddAttackEvent_out(self, true)
 
 	local effect_cast = self.parent:GenericParticle("particles/primal_beast/beast_hands.vpcf", self, true)
@@ -794,6 +797,9 @@ function modifier_primal_beast_uproar_custom_legendary:OnDestroy()
 	if not IsValid(buff) then
 		return
 	end
+	if not self.parent:HasModifier("modifier_primal_beast_uproar_custom_buff") then
+		return
+	end
 
 	if not self.parent:IsAlive() then
 		buff:Destroy()
@@ -818,7 +824,7 @@ function modifier_primal_beast_uproar_custom_legendary:OnDestroy()
 		"modifier_primal_beast_uproar_custom_buff",
 		{ duration = self.ability.talents.e7_extend + self.ability.talents.e2_duration, stack = total }
 	)
-	self.ability:ProcRoar(math.min(total, self.ability.stack_limit))
+	self.ability:ProcRoar(math.min(total, self.ability.stack_limit), true)
 	self.parent.innate_ability:UpdateScale()
 end
 

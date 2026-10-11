@@ -52,6 +52,8 @@ function item_celestial_spear_custom:Spawn()
 	self.projectile_speed = self:GetSpecialValueFor("projectile_speed")
 	self.leash_duration = self:GetSpecialValueFor("leash_duration")
 	self.armor_reduce = self:GetSpecialValueFor("corruption_armor")
+	self.armor_pct = self:GetSpecialValueFor("corruption_armor_pct") / 100
+	self.armor_creeps = self:GetSpecialValueFor("corruption_armor_creeps")
 	self.corruption_duration = self:GetSpecialValueFor("corruption_duration")
 	self.bonus_speed = self:GetSpecialValueFor("bonus_speed")
 	self.bonus_damage = self:GetSpecialValueFor("bonus_damage")
@@ -174,6 +176,7 @@ function modifier_item_celestial_spear_custom:OnCreated()
 	self.caster = self:GetCaster()
 	self.ability = self:GetAbility()
 	self.caster:AddAttackEvent_out(self, true)
+	self.caster.celestial_spear_ability = self.ability
 
 	self.corruption_duration = self.ability.corruption_duration
 	self.speed = self.ability.bonus_speed
@@ -223,7 +226,7 @@ function modifier_item_celestial_spear_custom:AttackEvent_out(params)
 		self.caster,
 		self.caster:BkbAbility(nil, true),
 		"modifier_item_celestial_spear_custom_armor",
-		{ armor = self.ability.armor_reduce, duration = self.corruption_duration }
+		{ duration = self.corruption_duration }
 	)
 	target:EmitSound("Item_Desolator.Target")
 end
@@ -235,11 +238,44 @@ end
 function modifier_item_celestial_spear_custom_armor:GetTexture()
 	return "item_desolator"
 end
-function modifier_item_celestial_spear_custom_armor:OnCreated(table)
+function modifier_item_celestial_spear_custom_armor:OnCreated()
 	if not IsServer() then
 		return
 	end
-	self:SetStackCount(table.armor)
+	self.parent = self:GetParent()
+	self.ability = self:GetCaster().celestial_spear_ability
+	if not IsValid(self.ability) then
+		self:Destroy()
+		return
+	end
+
+	self.base = self.ability.armor_reduce
+	self.pct = self.ability.armor_pct
+	self.creeps = self.ability.armor_creeps
+	self:SetHasCustomTransmitterData(true)
+	self:OnRefresh()
+end
+
+function modifier_item_celestial_spear_custom_armor:OnRefresh()
+	if not IsServer() then
+		return
+	end
+	if not self.parent:CheckCd("item_celestial_spear_armor", 5) and self.armor then
+		return
+	end
+
+	self.armor = self.parent:IsCreep() and self.creeps or self.base + self.parent:GetArmor(self) * self.pct
+	self:SendBuffRefreshToClients()
+end
+
+function modifier_item_celestial_spear_custom_armor:AddCustomTransmitterData()
+	return {
+		armor = self.armor,
+	}
+end
+
+function modifier_item_celestial_spear_custom_armor:HandleCustomTransmitterData(data)
+	self.armor = data.armor
 end
 
 function modifier_item_celestial_spear_custom_armor:DeclareFunctions()
@@ -249,7 +285,7 @@ function modifier_item_celestial_spear_custom_armor:DeclareFunctions()
 end
 
 function modifier_item_celestial_spear_custom_armor:GetModifierPhysicalArmorBonus()
-	return self:GetStackCount() * -1
+	return self.armor
 end
 
 modifier_item_celestial_spear_custom_leash = class(mod_hidden)

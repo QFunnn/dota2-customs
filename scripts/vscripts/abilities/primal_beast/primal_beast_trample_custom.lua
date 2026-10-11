@@ -101,6 +101,7 @@ function primal_beast_trample_custom:UpdateTalents(name)
 			w7_duration = caster:GetTalentValue("modifier_primal_beast_trample_7", "duration", true),
 			w7_max = caster:GetTalentValue("modifier_primal_beast_trample_7", "max", true) / 100,
 			w7_cast = caster:GetTalentValue("modifier_primal_beast_trample_7", "cast", true),
+			w7_turn_rate = caster:GetTalentValue("modifier_primal_beast_trample_7", "turn_rate", true),
 			w7_speed = caster:GetTalentValue("modifier_primal_beast_trample_7", "speed", true),
 			w7_radius = caster:GetTalentValue("modifier_primal_beast_trample_7", "radius", true),
 			w7_knockback = caster:GetTalentValue("modifier_primal_beast_trample_7", "knockback", true),
@@ -153,7 +154,8 @@ end
 
 function primal_beast_trample_custom:GetBehavior()
 	if self:IsRecast() then
-		return DOTA_ABILITY_BEHAVIOR_NO_TARGET
+		return DOTA_ABILITY_BEHAVIOR_POINT
+			+ DOTA_ABILITY_BEHAVIOR_DIRECTIONAL
 			+ DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING
 			+ DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES
 	end
@@ -162,9 +164,19 @@ end
 
 function primal_beast_trample_custom:GetCastPoint(iLevel)
 	if self:IsRecast() then
-		return self.talents.w7_cast
+		return 0
 	end
 	return self.BaseClass.GetCastPoint(self)
+end
+
+function primal_beast_trample_custom:GetCastRange(vLocation, hTarget)
+	if not self:IsRecast() then
+		return self.BaseClass.GetCastRange(self, vLocation, hTarget)
+	end
+	if IsServer() then
+		return 999999
+	end
+	return self.talents.w7_distance
 end
 
 function primal_beast_trample_custom:GetManaCost(level)
@@ -187,38 +199,16 @@ function primal_beast_trample_custom:GetDamage(target, legendary_damage)
 	return damage * (target:IsCreep() and 1 + self.creeps_damage or 1)
 end
 
-function primal_beast_trample_custom:OnAbilityPhaseStart()
-	if not IsServer() then
-		return true
-	end
-	if not self:IsRecast() then
-		return true
-	end
-
-	self.caster:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_2, 1.4 / self:GetCastPointModifier())
-	self.caster:AddNewModifier(self.caster, self, "modifier_primal_beast_trample_arrow", {})
-	return true
-end
-
-function primal_beast_trample_custom:OnAbilityPhaseInterrupted()
-	if not IsServer() then
-		return
-	end
-	self.caster:FadeGesture(ACT_DOTA_CAST_ABILITY_2)
-	self.caster:RemoveModifierByName("modifier_primal_beast_trample_arrow")
-end
-
 function primal_beast_trample_custom:OnSpellStart()
 	if self:IsRecast() then
-		self.caster:RemoveGesture(ACT_DOTA_CAST_ABILITY_2)
-		self.caster:RemoveModifierByName("modifier_primal_beast_trample_arrow")
+		self.caster:FacePoint(self.caster:CastPosition(self:GetCursorPosition()))
+		self.caster:StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_2, 1.4)
 		self.caster:AddNewModifier(
 			self.caster,
 			self,
-			"modifier_primal_beast_trample_charge",
-			{ duration = self.talents.w7_distance / self.talents.w7_speed }
+			"modifier_primal_beast_trample_arrow",
+			{ duration = self.talents.w7_cast }
 		)
-		self.caster:EmitSound("PBeast.Trample_dash")
 		return
 	end
 
@@ -400,11 +390,7 @@ function modifier_primal_beast_trample_custom:OnDestroy()
 		return
 	end
 	self.parent:UpdateUIshort({ hide = 1, style = "BeastTrample", priority = -1 })
-
-	if not self.ability:IsInAbilityPhase() then
-		return
-	end
-	self.parent:Interrupt()
+	self.parent:RemoveModifierByName("modifier_primal_beast_trample_arrow")
 end
 
 function modifier_primal_beast_trample_custom:DeclareFunctions()
@@ -523,7 +509,6 @@ function modifier_primal_beast_trample_charge:OnCreated()
 	if not IsServer() then
 		return
 	end
-	self.ability:EndCd(self.ability.talents.w7_talent_cd)
 	self.speed = self.ability.talents.w7_speed
 	self.radius = self.ability.talents.w7_radius
 	self.knockback = self.ability.talents.w7_knockback
@@ -534,10 +519,21 @@ function modifier_primal_beast_trample_charge:OnCreated()
 	self.hit = false
 	self.hit_units = {}
 
+	self:SetPriority(DOTA_MOTION_CONTROLLER_PRIORITY_HIGHEST)
 	if self:ApplyHorizontalMotionController() then
 		return
 	end
 	self:Destroy()
+end
+
+function modifier_primal_beast_trample_charge:OnIntervalThink()
+	if not IsServer() then
+		return
+	end
+	if not self:ApplyHorizontalMotionController() then
+		return
+	end
+	self:StartIntervalThink(-1)
 end
 
 function modifier_primal_beast_trample_charge:OnDestroy()
@@ -576,12 +572,8 @@ function modifier_primal_beast_trample_charge:GetActivityTranslationModifiers()
 end
 
 function modifier_primal_beast_trample_charge:UpdateHorizontalMotion(me, dt)
-	if self.parent:IsStunned() or self.parent:IsHexed() or self.parent:IsChanneling() then
+	if self.parent:IsChanneling() then
 		self:Destroy()
-		return
-	end
-
-	if self.parent:IsRooted() or self.parent:IsLeashed() then
 		return
 	end
 
@@ -635,7 +627,7 @@ function modifier_primal_beast_trample_charge:UpdateHorizontalMotion(me, dt)
 end
 
 function modifier_primal_beast_trample_charge:OnHorizontalMotionInterrupted()
-	self:Destroy()
+	self:StartIntervalThink(FrameTime())
 end
 
 modifier_primal_beast_trample_arrow = class(mod_hidden)
@@ -646,28 +638,106 @@ function modifier_primal_beast_trample_arrow:OnCreated()
 	if not IsServer() then
 		return
 	end
-	self.distance = self.ability.talents.w7_distance
-	self.particle = ParticleManager:CreateParticleForPlayer(
-		"particles/primal_beast/beast_charge.vpcf",
-		PATTACH_ABSORIGIN_FOLLOW,
-		self.parent,
-		PlayerResource:GetPlayer(self.parent:GetPlayerOwnerID())
+	self.ability:EndCd(self.ability.talents.w7_talent_cd + self.ability.talents.w7_cast)
+	self.parent:AddOrderEvent(self)
+
+	self.turn_speed = self.ability.talents.w7_turn_rate
+	self.target_angle = self.parent:GetAnglesAsVector().y
+	self.current_angle = self.target_angle
+	self.face_target = true
+	self.interval = FrameTime()
+
+	CustomGameEventManager:Send_ServerToPlayer(
+		PlayerResource:GetPlayer(self.parent:GetPlayerOwnerID()),
+		"ability_primal_beast_trample",
+		{ state = 1, range = self.ability.talents.w7_distance, radius = self.ability.talents.w7_radius / 1.4 }
 	)
-	ParticleManager:SetParticleControl(self.particle, 2, Vector(self.ability.talents.w7_radius / 1.4, 0, 0))
-	self:AddParticle(self.particle, true, false, -1, false, false)
-	self:StartIntervalThink(FrameTime())
-	self:OnIntervalThink()
+	self:StartIntervalThink(self.interval)
+end
+
+function modifier_primal_beast_trample_arrow:OnDestroy()
+	if not IsServer() then
+		return
+	end
+	CustomGameEventManager:Send_ServerToPlayer(
+		PlayerResource:GetPlayer(self.parent:GetPlayerOwnerID()),
+		"ability_primal_beast_trample",
+		{ state = 2 }
+	)
+	self.parent:RemoveGesture(ACT_DOTA_CAST_ABILITY_2)
+	if self:GetRemainingTime() > 0.03 then
+		return
+	end
+
+	self.parent:AddNewModifier(
+		self.parent,
+		self.ability,
+		"modifier_primal_beast_trample_charge",
+		{ duration = self.ability.talents.w7_distance / self.ability.talents.w7_speed }
+	)
+	self.parent:EmitSound("PBeast.Trample_dash")
+end
+
+function modifier_primal_beast_trample_arrow:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_MOVESPEED_LIMIT,
+		MODIFIER_PROPERTY_DISABLE_TURNING,
+		MODIFIER_PROPERTY_IGNORE_CAST_ANGLE,
+	}
+end
+
+function modifier_primal_beast_trample_arrow:GetModifierMoveSpeed_Limit()
+	return 0.1
+end
+
+function modifier_primal_beast_trample_arrow:GetModifierDisableTurning()
+	return 1
+end
+
+function modifier_primal_beast_trample_arrow:GetModifierIgnoreCastAngle()
+	return 1
+end
+
+function modifier_primal_beast_trample_arrow:OrderEvent(params)
+	if
+		params.order_type == DOTA_UNIT_ORDER_MOVE_TO_POSITION
+		or params.order_type == DOTA_UNIT_ORDER_MOVE_TO_DIRECTION
+	then
+		self:SetDirection(params.pos)
+	elseif
+		(params.order_type == DOTA_UNIT_ORDER_MOVE_TO_TARGET or params.order_type == DOTA_UNIT_ORDER_ATTACK_TARGET)
+		and params.target
+	then
+		self:SetDirection(params.target:GetOrigin())
+	end
+end
+
+function modifier_primal_beast_trample_arrow:SetDirection(location)
+	local dir = ((location - self.parent:GetOrigin()) * Vector(1, 1, 0)):Normalized()
+	self.target_angle = VectorToAngles(dir).y
+	self.face_target = false
 end
 
 function modifier_primal_beast_trample_arrow:OnIntervalThink()
 	if not IsServer() then
 		return
 	end
-	ParticleManager:SetParticleControl(
-		self.particle,
-		1,
-		self.parent:GetAbsOrigin() + self.parent:GetForwardVector() * self.distance
-	)
+
+	if not self.face_target and not self.parent:IsStunned() and not self.parent:IsHexed() then
+		local angle_diff = AngleDiff(self.current_angle, self.target_angle)
+		local turn_speed = self.turn_speed * self.interval
+		local sign = angle_diff < 0 and 1 or -1
+
+		if math.abs(angle_diff) < 1.1 * turn_speed then
+			self.current_angle = self.target_angle
+			self.face_target = true
+		else
+			self.current_angle = self.current_angle + sign * turn_speed
+		end
+
+		local angles = self.parent:GetAnglesAsVector()
+		self.parent:SetLocalAngles(angles.x, self.current_angle, angles.z)
+	end
 end
 
 modifier_primal_beast_trample_strength = class(mod_visible)

@@ -28,6 +28,7 @@ function Init()
 	GameEvents.Subscribe_custom('ability_kunkka_ghostship_scepter', start_ghostship)
 	GameEvents.Subscribe_custom('ability_primal_beast_rock_throw', start_rock_throw)
 	GameEvents.Subscribe_custom('ability_primal_beast_onslaught', ability_primal_beast_onslaught)
+	GameEvents.Subscribe_custom('ability_primal_beast_trample', ability_primal_beast_trample)
 }
 
 Init()
@@ -267,6 +268,51 @@ function ability_primal_beast_onslaught(kv)
 		Particles.SetParticleControl(vectorTargetParticle_beast, 1, Vector_add(origin, Vector_mult(forward, beast_range*k)));
 		Particles.SetParticleControl(vectorTargetParticle_beast, 2, [beast_radius, 0, 0]);
     	$.Schedule(interval, ability_primal_beast_onslaught)
+	}
+}
+
+
+
+var vectorTargetParticle_trample;
+var trample_range = 0
+var trample_radius = 0
+
+function ability_primal_beast_trample(kv)
+{
+	let state = 0
+	if (kv)
+		state = kv.state
+
+	if (state == 2)
+	{
+		if (vectorTargetParticle_trample)
+		{
+			Particles.DestroyParticleEffect(vectorTargetParticle_trample, true)
+			Particles.ReleaseParticleIndex(vectorTargetParticle_trample)
+			vectorTargetParticle_trample = undefined;
+		}
+		return
+	}
+
+	if (state == 1)
+	{
+		trample_range = kv.range
+		trample_radius = kv.radius
+
+		if (vectorTargetParticle_trample == undefined)
+			vectorTargetParticle_trample = Particles.CreateParticle("particles/primal_beast/beast_charge.vpcf", ParticleAttachment_t.PATTACH_ABSORIGIN_FOLLOW, Players.GetPlayerHeroEntityIndex( Players.GetLocalPlayer() ) );
+	}
+
+	if (vectorTargetParticle_trample)
+	{
+		let hero = Players.GetPlayerHeroEntityIndex( Players.GetLocalPlayer() )
+		let origin = Entities.GetAbsOrigin( hero )
+		let forward = Entities.GetForward( hero )
+
+		Particles.SetParticleControl(vectorTargetParticle_trample, 0, origin );
+		Particles.SetParticleControl(vectorTargetParticle_trample, 1, Vector_add(origin, Vector_mult(forward, trample_range)));
+		Particles.SetParticleControl(vectorTargetParticle_trample, 2, [trample_radius, 0, 0]);
+		$.Schedule(interval, ability_primal_beast_trample)
 	}
 }
 

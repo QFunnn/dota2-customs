@@ -1915,6 +1915,14 @@ function TargetTimer_change(kv)
 		body.AddClass("TargetTimer_panel")
 		body.AddClass("TargetTimer_main")
 
+		$.Schedule(0.45, function()
+		{
+			if (body.IsValid() && !body.BHasClass("TargetTimer_main_close"))
+			{
+				body.AddClass("TargetTimer_shadow")
+			}
+		})
+
 		body.SetPanelEvent('onmouseover', function()
 		{
 			$.DispatchEvent("UIShowCustomLayoutParametersTooltip", body, "skill_tooltip",
@@ -1927,8 +1935,10 @@ function TargetTimer_change(kv)
 			$.DispatchEvent("UIHideCustomLayoutTooltip", body, "skill_tooltip")
 		});
 
-		top = $.CreatePanel("Panel",body,"TargetTimer_top")
-		top.AddClass("TargetTimer_top")
+		let left = $.CreatePanel("Panel",body,"")
+		left.AddClass("TargetTimer_left")
+
+		top = $.CreatePanel("Panel",left,"TargetTimer_top")
 
 		let target_shadow = $.CreatePanel("Panel",top,"")
 		target_shadow.AddClass("TargetTimer_top_shadow")
@@ -1936,7 +1946,14 @@ function TargetTimer_change(kv)
 		let target = $.CreatePanel("Panel",top,"")
 		target.AddClass("TargetTimer_top_target")
 
-		let duel = $.CreatePanel("Panel",body,"")
+		let damage_text = $.CreatePanel("Label",left,"text_target_damage")
+		damage_text.html = true
+		damage_text.AddClass("TargetTimer_damage_text")
+
+		let right = $.CreatePanel("Panel",body,"")
+		right.AddClass("TargetTimer_right")
+
+		let duel = $.CreatePanel("Panel",right,"")
 		duel.AddClass("TargetTimer_duel_row")
 
 		let duel_content = $.CreatePanel("Panel",duel,"")
@@ -1949,25 +1966,16 @@ function TargetTimer_change(kv)
 		duel_text.AddClass("TargetTimer_duel_text")
 		duel_text.text = $.Localize("#Hunt_duel")
 
-		let mid = $.CreatePanel("Panel",body,"TargetTimer")
+		let mid = $.CreatePanel("Panel",right,"TargetTimer")
 		mid.AddClass("TargetTimer_mid")
 
 		let timer = $.CreatePanel("Label",mid,"text_target_timer")
 		timer.html = true
 		timer.AddClass("TargetTimer_mid_text")
 
-		let purple = $.CreatePanel("Panel",body,"TargetTimer")
-		purple.AddClass("TargetTimer_epic")
-
-		let damage_text = $.CreatePanel("Label",purple,"text_skill")
-		damage_text.html = true
-		damage_text.AddClass("TargetTimer_damage_text")
-		damage_text.text = "+" + String(kv.damage_inc) + "%" + $.Localize("#Hunt_damage")
-
 		if (kv.is_target == 0)
 		{
-
-			let gold = $.CreatePanel("Panel",body,"TargetTimer")
+			let gold = $.CreatePanel("Panel",right,"TargetTimer")
 			gold.AddClass("TargetTimer_epic")
 
 			let gold_content = $.CreatePanel("Panel",gold,"")
@@ -2051,17 +2059,34 @@ function TargetTimer_change(kv)
 		gold_text.text = String(kv.gold)
 	}
 
+	let damage_text = Main.FindChildTraverse("text_target_damage")
+	if (damage_text)
+	{
+		damage_text.text = "+" + String(kv.damage_inc) + "%" + $.Localize("#Hunt_damage")
+	}
+
 }
 
 function TargetTimer_delete(kv)
 {
 
 	target_length = 0
+
+	if (kv.result == "kill")
+	{
+		Game.EmitSound("Hunt.Success")
+	}
+	else if (kv.result == "time")
+	{
+		Game.EmitSound("Hunt.Fail")
+	}
+
 	var Main = $.GetContextPanel().FindChildTraverse("TargetTimer")
 	var timer = Main.FindChildTraverse("TargetTimer_main")
 	if (timer)
 	{
 		timer.RemoveClass("TargetTimer_main")
+		timer.RemoveClass("TargetTimer_shadow")
 		timer.AddClass("TargetTimer_main_close")
 		timer.DeleteAsync(0.45)
 	}

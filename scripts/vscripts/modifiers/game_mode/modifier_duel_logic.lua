@@ -1192,7 +1192,7 @@ function modifier_duel_tower_return:OnIntervalThink()
 	end
 	self.arrived = true
 
-	if not self.parent:HasModifier("modifier_the_hunt_custom_tower") then
+	if not dota1x6.TargetCurrentActive then
 		local barrier = self.parent:FindModifierByName("modifier_backdoor_knock_aura")
 
 		if barrier and barrier.target_team ~= self.team then

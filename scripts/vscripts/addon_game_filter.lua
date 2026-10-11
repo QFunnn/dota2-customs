@@ -1039,11 +1039,11 @@ function dota1x6:OnEntityKilled(param)
 	match_log:Call("Death", unit, hero)
 
 	if unit:IsRealHero() and not unit:IsCreepHero() and unit:IsReincarnating() == false then
+		dota1x6:KillGold(unit, hero)
+
 		if hero and hero_player then
 			hero_player.kills_done = hero_player.kills_done + 1
 		end
-
-		dota1x6:KillGold(unit, hero)
 
 		if not unit.died_on_duel then
 			if unit_player then
@@ -1252,12 +1252,16 @@ function dota1x6:OnEntityKilled(param)
 	dota1x6:KillPurple(unit, hero, no_purple_for_hero)
 end
 
-function dota1x6:KillGoldTeam(net_victim, net_team, count, k)
+function dota1x6:KillGoldTeam(net_victim, net_team, count, k, kills_diff)
 	local gold = kill_net_gold
 	local diff = net_victim - net_team
 
 	if diff > 0 then
 		gold = gold + math.floor((diff * k) / count)
+	end
+
+	if kills_diff and kills_diff > 0 then
+		gold = gold + math.floor((kills_diff * Target_kill_gold) / count)
 	end
 
 	return gold
@@ -1273,6 +1277,7 @@ function dota1x6:KillGold(unit, hero)
 	local k = hunt and Target_k or Streak_k
 
 	local net_teams = {}
+	local kills_teams = {}
 	local near_teams = {}
 	local killer_team = hero and hero:GetTeamNumber()
 
@@ -1283,6 +1288,7 @@ function dota1x6:KillGold(unit, hero)
 	for id, player in pairs(players) do
 		local team = player:GetTeamNumber()
 		net_teams[team] = (net_teams[team] or 0) + player.networth
+		kills_teams[team] = (kills_teams[team] or 0) + player.kills_done
 
 		if hunt or (player:GetAbsOrigin() - unit:GetAbsOrigin()):Length2D() <= more_gold_radius then
 			near_teams[team] = true
@@ -1303,22 +1309,38 @@ function dota1x6:KillGold(unit, hero)
 	end
 
 	local team_gold = {}
+	local hunt_paid = 0
 
 	for team, list in pairs(gold_teams) do
-		local gold = dota1x6:KillGoldTeam(net_teams[unit:GetTeamNumber()] or 0, net_teams[team] or 0, #list, k)
+		local kills_diff = hunt and (kills_teams[unit:GetTeamNumber()] or 0) - (kills_teams[team] or 0)
+		local gold =
+			dota1x6:KillGoldTeam(net_teams[unit:GetTeamNumber()] or 0, net_teams[team] or 0, #list, k, kills_diff)
 
 		for _, player in pairs(list) do
 			local total = gold
+			local hunt_gold = hunt and gold or 0
 
 			if player == hero then
 				total = total + kill_gold_base + kill_gold_level * unit:GetLevel()
 			end
 
 			team_gold[team] = (team_gold[team] or 0) + total
+			hunt_paid = hunt_paid + hunt_gold
 
-			player:GiveGold(total, nil, true, "hero_kill")
+			if hunt_gold > 0 then
+				player:GiveGold(hunt_gold, nil, true, "hunt")
+			end
+
+			if total > hunt_gold then
+				player:GiveGold(total - hunt_gold, nil, true, "hero_kill")
+			end
+
 			player:SendNumber(0, total)
 		end
+	end
+
+	if hunt then
+		match_log:Call("HuntGold", hunt_paid)
 	end
 
 	local team_ids = {}

@@ -132,8 +132,14 @@ _G.Target_timer_first = RandomInt(9 * 60, 12 * 60)
 _G.Target_timer_min = 13 * 60
 _G.Target_timer_max = 23 * 60
 _G.Target_cd = 120
-_G.Target_gold_diff = 1.35
-_G.Target_k = 0.5
+_G.Target_gold_diff = 1.30
+_G.Target_kills_diff = 6
+_G.Target_kills_gold_diff = 1.15
+_G.Target_k = 0.45
+_G.Target_kill_gold = 100
+_G.Target_damage_min = 10
+_G.Target_damage_max = 40
+_G.Target_damage_step = 5
 _G.Target_damage_cd = 15
 _G.Target_proc_count = 0
 _G.Target_proc_max = 3
@@ -699,6 +705,7 @@ r:Send( function( res ) end)
 
 	if team_size == 2 then
 		low_net_max = 1
+		Target_kills_diff = 10
 		setup_delay = 15
 	end
 
@@ -777,6 +784,7 @@ r:Send( function( res ) end)
 	GameRules:GetGameModeEntity():SetPauseEnabled(false)
 	GameRules:GetGameModeEntity():SetForcedHUDSkin("reborn")
 
+	match_log:WrapClass("dota1x6", true)
 	--GameRules:GetGameModeEntity():SetDamageFilter( Dynamic_Wrap( dota1x6, "DamageFilter" ), self )
 	--GameRules:GetGameModeEntity():SetHealingFilter( Dynamic_Wrap( dota1x6, "HealingFilter" ), self )
 	GameRules:GetGameModeEntity():SetBountyRunePickupFilter(Dynamic_Wrap(self, "BountyRunePickupFilter"), self)
@@ -2310,7 +2318,7 @@ function dota1x6:RemoveTeamIcons(team)
 	end
 end
 
-function dota1x6:StartTheHunt(tower)
+function dota1x6:StartTheHunt(tower, reason)
 	if not IsValid(tower) then
 		return false
 	end
@@ -2318,7 +2326,12 @@ function dota1x6:StartTheHunt(tower)
 		return false
 	end
 
-	local mod = tower:AddNewModifier(tower, nil, "modifier_the_hunt_custom_tower", { duration = Target_duration })
+	local mod = tower:AddNewModifier(
+		tower,
+		nil,
+		"modifier_the_hunt_custom_tower",
+		{ duration = Target_duration, reason = reason }
+	)
 
 	return mod ~= nil
 end
@@ -2592,10 +2605,12 @@ function dota1x6:GetTeamsNet()
 		if index == #team_net + 1 then
 			team_net[index] = {}
 			team_net[index].gold = 0
+			team_net[index].kills = 0
 			team_net[index].team = team
 		end
 
 		team_net[index].gold = team_net[index].gold + player.networth -- PlayerResource:GetNetWorth(id)
+		team_net[index].kills = team_net[index].kills + player.kills_done
 	end
 	return team_net
 end
@@ -2840,28 +2855,42 @@ function dota1x6:spawn_timer()
 				dota1x6.TargetCurrentCd = nil
 			end
 		else
-			if
-				Target_timer_max > current_time
-				and not dota1x6.TargetCurrentActive
-				and team_net[#team_net].team
-				and not dota1x6:TeamInDuel(team_net[#team_net].team)
-			then
-				local tower = towers[team_net[#team_net].team]
+			if Target_timer_max > current_time and not dota1x6.TargetCurrentActive then
 				if Target_proc_count == 0 and Target_timer_first <= current_time then
-					if dota1x6:StartTheHunt(tower) then
+					if
+						not dota1x6:TeamInDuel(team_net[#team_net].team)
+						and dota1x6:StartTheHunt(towers[team_net[#team_net].team], "first")
+					then
 						Target_proc_count = 1
 					end
 				elseif Target_proc_count < Target_proc_max and Target_timer_min <= current_time then
-					local net_others = 0
-					for i = 1, #team_net - 1 do
-						net_others = net_others + team_net[i].gold
+					local net_all = 0
+					local kills_all = 0
+					for _, data in pairs(team_net) do
+						net_all = net_all + data.gold
+						kills_all = kills_all + data.kills
 					end
 
-					if
-						team_net[#team_net].gold * (#team_net - 1) >= net_others * Target_gold_diff
-						and dota1x6:StartTheHunt(tower)
-					then
-						Target_proc_count = Target_proc_count + 1
+					for index = #team_net, 1, -1 do
+						local data = team_net[index]
+						local net_others = (net_all - data.gold) / (#team_net - 1)
+						local kills_others = (kills_all - data.kills) / (#team_net - 1)
+
+						local reason = data.gold >= net_others * Target_gold_diff and "gold"
+							or (
+								data.kills - kills_others >= Target_kills_diff
+								and data.gold >= net_others * Target_kills_gold_diff
+								and "kills"
+							)
+
+						if reason then
+							if
+								not dota1x6:TeamInDuel(data.team) and dota1x6:StartTheHunt(towers[data.team], reason)
+							then
+								Target_proc_count = Target_proc_count + 1
+							end
+							break
+						end
 					end
 				end
 			end

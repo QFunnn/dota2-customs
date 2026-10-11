@@ -143,6 +143,7 @@ function primal_beast_onslaught_custom:UpdateTalents(name)
 			q7_slow = caster:GetTalentValue("modifier_primal_beast_onslaught_7", "slow", true),
 			q7_slow_duration = caster:GetTalentValue("modifier_primal_beast_onslaught_7", "slow_duration", true),
 			q7_mana = caster:GetTalentValue("modifier_primal_beast_onslaught_7", "mana", true),
+			q7_creeps = caster:GetTalentValue("modifier_primal_beast_onslaught_7", "creeps", true) / 100,
 
 			e1_interval = 0,
 			has_e4 = 0,
@@ -546,6 +547,7 @@ function modifier_primal_beast_onslaught_custom_tracker:GetModifierTotalDamageOu
 			* params.target:GetModifierStackCount("modifier_primal_beast_onslaught_custom_stack", self.parent)
 	)
 			* (1 + self.ability.talents.q1_quake)
+			* (1 + (params.target:IsCreep() and self.ability.talents.q7_creeps or 0))
 		- 100
 end
 
@@ -959,20 +961,28 @@ function modifier_primal_beast_onslaught_custom:OnDestroy()
 		)
 	end
 
+	self:CreateQuake(self.parent:GetAbsOrigin() + self.parent:GetForwardVector() * 100)
+end
+
+function modifier_primal_beast_onslaught_custom:CreateQuake(point)
 	if self.ability.talents.has_q7 == 0 then
 		return
 	end
 	if self.charge < 1 then
 		return
 	end
+	if self.quake then
+		return
+	end
 
+	self.quake = true
 	self.parent:LogProc("modifier_primal_beast_onslaught_7", self.charge)
 	CreateModifierThinker(
 		self.parent,
 		self.ability,
 		"modifier_primal_beast_onslaught_custom_thinker",
 		{ max = self.charge },
-		self.parent:GetAbsOrigin() + self.parent:GetForwardVector() * 100,
+		point,
 		self.parent:GetTeamNumber(),
 		false
 	)
@@ -1095,10 +1105,12 @@ function modifier_primal_beast_onslaught_custom:UpdateHorizontalMotion(me, dt)
 
 			self.ability:ProcSlow(unit)
 
+			local point = unit:GetAbsOrigin()
+
 			if not unit:IsCurrentlyHorizontalMotionControlled() and not unit:IsCurrentlyVerticalMotionControlled() then
 				local origin = self.parent:GetOrigin()
 
-				unit:AddNewModifier(
+				local knockback = unit:AddNewModifier(
 					self.parent,
 					self.parent:BkbAbility(self.ability, self.ability.talents.has_q4 == 1),
 					"modifier_knockback",
@@ -1112,6 +1124,17 @@ function modifier_primal_beast_onslaught_custom:UpdateHorizontalMotion(me, dt)
 						knockback_height = 50,
 					}
 				)
+
+				if IsValid(knockback) then
+					point = GetGroundPosition(
+						point + ((point - origin) * Vector(1, 1, 0)):Normalized() * self.ability.knockback_distance,
+						nil
+					)
+				end
+			end
+
+			if unit:IsRealHero() then
+				self:CreateQuake(point)
 			end
 
 			local effect_cast = ParticleManager:CreateParticle(

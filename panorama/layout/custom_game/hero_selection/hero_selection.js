@@ -629,6 +629,8 @@ const PICK_BLOCKS =
             {type: "title", text: "#LocalServer_top"},
             {type: "text",  text: "#LocalServer_mid"},
             {type: "image", text: "#LocalServer_image", css: "pick_block_image_local_server"},
+            {type: "text",  text: "#LocalServer_bot"},
+            {type: "link",  text: "https://t.me/Dota1x6/1798", url: "https://t.me/Dota1x6/1798", css: "pick_block_link_local_server"},
         ],
     },
 
@@ -829,6 +831,9 @@ function BuildBlock(rows, parent, d)
 
         let panel = $.CreatePanel("Panel", parent, "")
         panel.AddClass("pick_block_" + row.type)
+
+        if (row.css)
+            panel.AddClass(row.css)
 
         let label = CreateBlockLabel(panel, typeof row.text == "function" ? row.text(d) : $.Localize(row.text))
 

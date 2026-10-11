@@ -26,11 +26,10 @@ end
 function modifier_the_hunt_custom_tower:IsPurgable()
 	return false
 end
-function modifier_the_hunt_custom_tower:OnCreated()
+function modifier_the_hunt_custom_tower:OnCreated(params)
 	self.parent = self:GetParent()
 
 	self.team = self.parent:GetTeamNumber()
-	self.damage_inc = 15
 
 	if not IsServer() then
 		return
@@ -58,17 +57,17 @@ function modifier_the_hunt_custom_tower:OnCreated()
 	end
 
 	for _, tower in pairs(towers) do
-		local barrier = tower:FindModifierByName("modifier_backdoor_knock_aura")
-		if barrier and (tower == self.parent or barrier.target_team == self.team) then
-			barrier:Destroy()
-		end
+		tower:RemoveModifierByName("modifier_backdoor_knock_aura")
 	end
 
 	CustomGameEventManager:Send_ServerToAllClients(
 		"TargetAttack",
 		{ heroes = self.heroes_names, delay = self.alert_delay }
 	)
+	match_log:Call("HuntStart", self.team, params.reason)
 
+	self.elapsed = 0
+	self.damage_inc = Target_damage_min
 	self.interval = 0.5
 	self:OnIntervalThink()
 	self:StartIntervalThink(self.interval)
@@ -79,14 +78,16 @@ function modifier_the_hunt_custom_tower:GetNet(team)
 		return
 	end
 	local net = 0
+	local kills = 0
 
 	local ids = dota1x6:FindPlayers(team)
 	if ids then
 		for _, id in pairs(ids) do
 			net = net + players[id].networth -- PlayerResource:GetNetWorth(id)
+			kills = kills + players[id].kills_done
 		end
 	end
-	return net
+	return net, kills
 end
 
 function modifier_the_hunt_custom_tower:OnIntervalThink()
@@ -94,7 +95,7 @@ function modifier_the_hunt_custom_tower:OnIntervalThink()
 		return
 	end
 
-	local net_target = self:GetNet(self.team)
+	local net_target, kills_target = self:GetNet(self.team)
 	local in_duel = dota1x6:TeamInDuel(self.team)
 
 	if in_duel ~= self.in_duel then
@@ -106,25 +107,39 @@ function modifier_the_hunt_custom_tower:OnIntervalThink()
 
 	if in_duel then
 		self:SetDuration(self:GetRemainingTime() + self.interval, true)
+	else
+		self.damage_inc = Target_damage_min
+			+ math.floor(
+					(Target_damage_max - Target_damage_min)
+						* math.min(1, self.elapsed / Target_duration)
+						/ Target_damage_step
+				)
+				* Target_damage_step
+		self.elapsed = self.elapsed + self.interval
 	end
 
 	for hero, _ in pairs(self.heroes) do
 		if hero and not hero:IsNull() then
+			local mod = hero:FindModifierByName("modifier_the_hunt_custom_hero")
 			if in_duel then
 				hero:RemoveModifierByName("modifier_the_hunt_custom_hero")
-			elseif hero:IsAlive() and not hero:HasModifier("modifier_the_hunt_custom_hero") then
+			elseif mod then
+				if mod:GetStackCount() ~= self.damage_inc then
+					mod:SetStackCount(self.damage_inc)
+				end
+			elseif hero:IsAlive() then
 				hero:AddNewModifier(
 					hero,
 					nil,
 					"modifier_the_hunt_custom_hero",
-					{ duration = self:GetRemainingTime(), gold = Target_k }
+					{ duration = self:GetRemainingTime(), gold = Target_k, damage = self.damage_inc }
 				)
 			end
 		end
 	end
 
 	for team, tower in pairs(towers) do
-		local net = self:GetNet(team)
+		local net, kills = self:GetNet(team)
 		local bonus_gold = 0
 
 		local ids = dota1x6:FindPlayers(team)
@@ -136,9 +151,9 @@ function modifier_the_hunt_custom_tower:OnIntervalThink()
 		end
 
 		if ids and team ~= self.team then
-			bonus_gold = dota1x6:KillGoldTeam(net_target, net, #ids, Target_k)
+			bonus_gold = dota1x6:KillGoldTeam(net_target, net, #ids, Target_k, kills_target - kills)
 		end
-		local time = math.floor(self:GetRemainingTime())
+		local time = math.max(0, math.floor(self:GetRemainingTime()))
 
 		if GameRules:GetGameTime() >= self.alert_time then
 			local is_target = team == self.team
@@ -211,11 +226,11 @@ function modifier_the_hunt_custom_tower:TargetKilled(unit, attacker)
 			then
 				player:AddPoints("purple", 1)
 			end
-
-			EmitSoundOnEntityForPlayer("Hunt.End", player, id)
 		end
 	end
 
+	self.killed = true
+	self.killer = attacker
 	self:Destroy()
 end
 
@@ -233,7 +248,10 @@ function modifier_the_hunt_custom_tower:OnDestroy()
 	dota1x6.TargetCurrentActive = false
 	dota1x6.TargetCurrentCd = Target_cd
 
-	CustomGameEventManager:Send_ServerToAllClients("TargetTimer_delete", {})
+	local result = self.killed and "kill" or (self:GetRemainingTime() > 0.5 and "cancel" or "time")
+	match_log:Call("HuntEnd", self.team, result, self.killer)
+
+	CustomGameEventManager:Send_ServerToAllClients("TargetTimer_delete", { result = result })
 end
 
 modifier_the_hunt_custom_hero = class({})
@@ -273,12 +291,12 @@ end
 function modifier_the_hunt_custom_hero:OnCreated(params)
 	self.parent = self:GetParent()
 
-	self.damage_inc = 15
 	self.speed_radius = 1200
 	if not IsServer() then
 		return
 	end
 	self.gold = params.gold * 100
+	self:SetStackCount(params.damage)
 	self:SetHasCustomTransmitterData(true)
 end
 
@@ -301,7 +319,7 @@ end
 
 function modifier_the_hunt_custom_hero:GetModifierIncomingDamage_Percentage(params)
 	if IsClient() then
-		return self.damage_inc
+		return self:GetStackCount()
 	end
 
 	local attacker = params.attacker
@@ -321,7 +339,7 @@ function modifier_the_hunt_custom_hero:GetModifierIncomingDamage_Percentage(para
 		player:StartCd("hunt_damage", Target_damage_cd)
 	end
 
-	return self.damage_inc
+	return self:GetStackCount()
 end
 
 function modifier_the_hunt_custom_hero:OnTooltip()

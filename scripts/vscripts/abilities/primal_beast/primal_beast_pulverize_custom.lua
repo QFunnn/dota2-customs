@@ -117,6 +117,7 @@ function primal_beast_pulverize_custom:UpdateTalents(name)
 		self.talents = {
 			has_r1 = 0,
 			r1_spell = 0,
+			r1_base = 0,
 			r1_damage = 0,
 			r1_max = caster:GetTalentValue("modifier_primal_beast_pulverize_1", "max", true),
 
@@ -159,6 +160,7 @@ function primal_beast_pulverize_custom:UpdateTalents(name)
 
 			has_h6 = 0,
 			h6_heal = caster:GetTalentValue("modifier_primal_beast_hero_6", "heal", true) / 100,
+			h6_heal_legendary = caster:GetTalentValue("modifier_primal_beast_hero_6", "heal_legendary", true) / 100,
 			h6_bkb = caster:GetTalentValue("modifier_primal_beast_hero_6", "bkb", true),
 		}
 	end
@@ -166,6 +168,7 @@ function primal_beast_pulverize_custom:UpdateTalents(name)
 	if caster:HasTalent("modifier_primal_beast_pulverize_1") then
 		self.talents.has_r1 = 1
 		self.talents.r1_spell = caster:GetTalentValue("modifier_primal_beast_pulverize_1", "spell")
+		self.talents.r1_base = caster:GetTalentValue("modifier_primal_beast_pulverize_1", "base")
 		self.talents.r1_damage = caster:GetTalentValue("modifier_primal_beast_pulverize_1", "damage")
 	end
 
@@ -243,6 +246,26 @@ function primal_beast_pulverize_custom:GetCooldown(iLevel)
 	return self.BaseClass.GetCooldown(self, iLevel) + (self.talents.r2_cd or 0)
 end
 
+function primal_beast_pulverize_custom:OnAbilityPhaseStart()
+	if not IsServer() then
+		return true
+	end
+	if self.talents.has_h6 == 0 then
+		return true
+	end
+	if not self.caster:CheckCd("primal_beast_hero_6", 5) then
+		return true
+	end
+
+	self.bkb_mod = self.caster:AddNewModifier(
+		self.caster,
+		self,
+		"modifier_generic_debuff_immune",
+		{ duration = 1, sound = 1, effect = 2, status_effect = "particles/status_fx/status_effect_avatar.vpcf" }
+	)
+	return true
+end
+
 function primal_beast_pulverize_custom:OnSpellStart(new_target)
 	local target = new_target or self:GetCursorTarget()
 
@@ -273,21 +296,29 @@ function primal_beast_pulverize_custom:OnSpellStart(new_target)
 		"modifier_primal_beast_pulverize_custom_debuff",
 		{ duration = duration }
 	)
-	self.caster_mod =
-		self.caster:AddNewModifier(self.caster, self, "modifier_primal_beast_pulverize_custom", { duration = duration })
+	self.caster_mod = self.caster:AddNewModifier(
+		self.caster,
+		self,
+		"modifier_primal_beast_pulverize_custom",
+		{ duration = duration, creep = target:IsCreep() and 1 or 0 }
+	)
 
 	if self.talents.has_h6 == 1 then
-		self.bkb_mod = self.caster:AddNewModifier(
-			self.caster,
-			self,
-			"modifier_generic_debuff_immune",
-			{
-				duration = duration + self.talents.h6_bkb,
-				sound = 1,
-				effect = 2,
-				status_effect = "particles/status_fx/status_effect_avatar.vpcf",
-			}
-		)
+		if IsValid(self.bkb_mod) then
+			self.bkb_mod:SetDuration(duration + self.talents.h6_bkb, true)
+		else
+			self.bkb_mod = self.caster:AddNewModifier(
+				self.caster,
+				self,
+				"modifier_generic_debuff_immune",
+				{
+					duration = duration + self.talents.h6_bkb,
+					sound = 1,
+					effect = 2,
+					status_effect = "particles/status_fx/status_effect_avatar.vpcf",
+				}
+			)
+		end
 	end
 
 	if target:IsHero() then
@@ -349,7 +380,7 @@ function primal_beast_pulverize_custom:UltimateHit(point, forced_crit, quake)
 	end
 
 	local targets = self.caster:FindTargets(self.splash_radius, point)
-	local damage = self.damage + (IsValid(self.perma_mod) and self.perma_mod:GetDamage() or 0)
+	local damage = self.damage + self.talents.r1_base + (IsValid(self.perma_mod) and self.perma_mod:GetDamage() or 0)
 	local damageTable = { attacker = self.caster, damage_type = DAMAGE_TYPE_MAGICAL, ability = self }
 	local critTable = { attacker = self.caster, damage_type = DAMAGE_TYPE_MAGICAL, ability = self }
 	local crit = self.talents.has_w3 == 1
@@ -414,7 +445,8 @@ function primal_beast_pulverize_custom:UltimateHit(point, forced_crit, quake)
 
 	if self.talents.has_h6 == 1 then
 		self.caster:GenericHeal(
-			(self.caster:GetMaxHealth() - self.caster:GetHealth()) * self.talents.h6_heal,
+			(self.caster:GetMaxHealth() - self.caster:GetHealth())
+				* (self.talents.has_r7 == 1 and self.talents.h6_heal_legendary or self.talents.h6_heal),
 			self,
 			false,
 			false,
@@ -466,6 +498,7 @@ function modifier_primal_beast_pulverize_custom_tracker:OnCreated()
 	self.ability.animation_rate = self.ability:GetSpecialValueFor("animation_rate")
 	self.ability.channel_time = self.ability:GetSpecialValueFor("channel_time")
 	self.ability.creeps_damage = self.ability:GetSpecialValueFor("creeps_damage") / 100
+	self.ability.creeps_cd = self.ability:GetSpecialValueFor("creeps_cd") / 100
 	self.ability.scepter_duration = self.ability:GetSpecialValueFor("scepter_duration")
 	self.ability.scepter_break = self.ability:GetSpecialValueFor("scepter_break")
 	self.ability.scepter_slow_duration = self.ability:GetSpecialValueFor("scepter_slow_duration")
@@ -554,13 +587,14 @@ function modifier_primal_beast_pulverize_custom_tracker:GetModifierTotalDamageOu
 end
 
 modifier_primal_beast_pulverize_custom = class(mod_hidden)
-function modifier_primal_beast_pulverize_custom:OnCreated()
+function modifier_primal_beast_pulverize_custom:OnCreated(params)
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
 	if not IsServer() then
 		return
 	end
+	self.creep = params.creep == 1
 	self.ability:EndCd()
 
 	if self.ability.talents.has_r4 == 0 then
@@ -574,6 +608,11 @@ function modifier_primal_beast_pulverize_custom:OnDestroy()
 		return
 	end
 	self.ability:StartCd()
+
+	if not self.creep then
+		return
+	end
+	self.parent:CdAbility(self.ability, nil, self.ability.creeps_cd, "primal_beast_pulverize_custom")
 end
 
 function modifier_primal_beast_pulverize_custom:OrderFilter(params)

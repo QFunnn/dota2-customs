@@ -33,7 +33,7 @@
 "DOTA_Tooltip_modifier_aegis_custom_Description"	"Пропадет через %dMODIFIER_PROPERTY_TOOLTIP% секунд"
 
 "Hunt_Tip_header" "Охота"
-"Hunt_Tip" "Когда этот герой умрет, все игроки получат золото<br><br>Игроки, которые участвовали в убийстве, также получат 1 заряд эпической сферы<br><br>Входящий урон по этому герою увеличен на 15%"
+"Hunt_Tip" "Когда этот герой умрет, все игроки получат золото<br><br>Игроки, которые участвовали в убийстве, также получат 1 заряд эпической сферы<br><br>Входящий урон по этому герою увеличен на 10% и растет до 50% к концу Охоты"
 
 "Hunt_Start" "За убийство этого героя все игроки получат награду"
 "Hunt_Start_team" "За убийство этих героев все игроки получат награду"
@@ -46,7 +46,7 @@
 "DOTA_Tooltip_modifier_the_hunt_custom_speed_Description" "Рядом с целью Охоты скорость передвижения увеличивается на %dMODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE%%%."
 
 "DOTA_Tooltip_modifier_the_hunt_custom_hero"	"The Hunt"
-"DOTA_Tooltip_modifier_the_hunt_custom_hero_Description"	"Когда цель умрет, все игроки получат золото, в зависимости от разницы в общей ценности. Игроки, которые были рядом или наносили урон цели, также получат заряд <b><font color='#a82de8'>Эпической сферы</font></b>.<br><br>Входящий урон по герою увеличен на %dMODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE%%%."
+"DOTA_Tooltip_modifier_the_hunt_custom_hero_Description"	"Когда цель умрет, все игроки получат золото, в зависимости от разницы в общей ценности и убийствах. Игроки, которые были рядом или наносили урон цели, также получат заряд <b><font color='#a82de8'>Эпической сферы</font></b>.<br><br>Входящий урон по герою увеличен на %dMODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE%%%."
 
 "DOTA_Tooltip_modifier_mid_teleport_cd"	"Teleport cooldown"
 "DOTA_Tooltip_modifier_mid_teleport_cd_Description"	"Вы не можете воспользоваться центральным телепортом"
@@ -6491,6 +6491,7 @@
 "epic_disc_modifier_primal_beast_hero_5" "*+move* макс. скорости передвижения<br><br>Усиливает Colossal и дает сопр. эффектам от здоровья"
 
 "upgrade_disc_modifier_primal_beast_hero_6" "Pulverize не может быть заблокирован и исцеляет *!heal%* недост. здоровья за удар<br><br>Также дает неуяз. к эффектам, которая сохраняется на *!bkb* сек"
+"upgrade_disc_modifier_primal_beast_hero_6_alt" "Pulverize не может быть заблокирован и исцеляет *!heal_legendary%* недост. здоровья за удар<br><br>Также дает неуяз. к эффектам, которая сохраняется на *!bkb* сек"
 "mini_disc_modifier_primal_beast_hero_6" "Pulverize исцеляет и дает неуяз. к эффектам"
 "epic_disc_modifier_primal_beast_hero_6" "Pulverize не может быть заблокирован и исцеляет за удар<br><br>Также дает неуяз. к эффектам"
 
@@ -6533,8 +6534,8 @@
 "mini_disc_modifier_primal_beast_onslaught_4" "Onslaught быстрее, пробивает неуяз. к эффектам"
 "epic_disc_modifier_primal_beast_onslaught_4" "*+speed%* скорости бега и поворота Onslaught<br><br>Onslaught пробивает неуяз. к эффектам и перезаряжается быстрее"
 
-"upgrade_disc_modifier_primal_beast_onslaught_7" "Onslaught оставляет землетрясение. Противники в области получают атаку на *!damage%* урона раз в сек<br><br>Урон растет на *!damage_inc%* с каждым попаданием. Землетрясение длится до *duration* сек, в зависимости от подготовки"
-"upgrade_disc_modifier_primal_beast_onslaught_7_info"   "Эффект длится *stack_duration* сек и суммируется *max* раз<br><br>Атаки землетрясения не могут промахнуться и сильно замедляют цель на *slow_duration* сек<br><br>Снижает затраты маны на Onslaught до *mana*"
+"upgrade_disc_modifier_primal_beast_onslaught_7" "При столкновении с героем, Onslaught оставляет землетрясение. Наносит атаку в области на *!damage%* урона раз сек<br><br>Урон растет на *!damage_inc%* с каждым попаданием. Землетрясение длится до *duration* сек, в зависимости от подготовки"
+"upgrade_disc_modifier_primal_beast_onslaught_7_info"   "Эффект длится *stack_duration* сек и суммируется *max* раз<br><br>Атаки землетрясения не могут промахнуться и сильно замедляют цель на *slow_duration* сек<br><br>Снижает затраты маны на Onslaught до *mana*<br><br>Землетрясение наносит крипам на *creeps%* больше урона. Если не поражает героя, срабатывает в конце рывка"
 "mini_disc_modifier_primal_beast_onslaught_7" "Onslaught оставляет землетрясение, которое наносит атаки"
 
 "DOTA_Tooltip_modifier_primal_beast_onslaught_custom_stack"   "Onslaught"
@@ -6603,7 +6604,8 @@
 "DOTA_Tooltip_modifier_primal_beast_uproar_custom_strength"   "Uproar"
 "DOTA_Tooltip_modifier_primal_beast_uproar_custom_strength_Description"   "Сила увеличена на <b><font color='#53ea48'>%dMODIFIER_PROPERTY_STATS_STRENGTH_BONUS%</font></b>"
 
-"upgrade_disc_modifier_primal_beast_uproar_4" "*!+stun* сек оглушения Onslaught<br><br>Uproar обездвиживает противников на *!root* сек. Также притягивает противников к вам в радиусе *!radius*"
+"upgrade_disc_modifier_primal_beast_uproar_4" "*!+stun* сек оглушения Onslaught<br><br>Uproar обездвиживает противников на *!root* сек. Также притягивает противников в радиусе *!radius*"
+"upgrade_disc_modifier_primal_beast_uproar_4_alt" "*!+stun* сек оглушения Onslaught<br><br>Uproar обездвиживает противников на *!root_legendary* сек. Также притягивает противников в радиусе *!radius*"
 "mini_disc_modifier_primal_beast_uproar_4" "Uproar обездвиживает и притягивает противников"
 "epic_disc_modifier_primal_beast_uproar_4" "*+stun* сек оглушения Onslaught<br><br>Uproar обездвиживает и притягивает противников"
 
@@ -6612,7 +6614,7 @@
 "mini_disc_modifier_primal_beast_uproar_7" "Снимает ограничение зарядов Uproar"
 
 "DOTA_Tooltip_ability_primal_beast_pulverize_custom"				"Pulverize"
-"DOTA_Tooltip_ability_primal_beast_pulverize_custom_Description"	"ПРЕРЫВАЕМАЯ — герой хватает выбранного противника и несколько раз ударяет его об землю, нанося урон всем врагам в области действия и ненадолго оглушая их. Длительность: %channel_time% сек.<br><br><b><font color='#53ea48'>Наносит крипам на %creeps_damage%%% больше урона<br><br>Приостанавливает действие Trample и Uproar</font></b>"
+"DOTA_Tooltip_ability_primal_beast_pulverize_custom_Description"	"ПРЕРЫВАЕМАЯ — герой хватает выбранного противника и несколько раз ударяет его об землю, нанося урон всем врагам в области действия и ненадолго оглушая их. Длительность: %channel_time% сек.<br><br><b><font color='#53ea48'>Против крипов наносит на %creeps_damage%%% больше урона и перезаряжается на %creeps_cd%%% быстрее<br><br>Приостанавливает действие Trample и Uproar</font></b>"
 "DOTA_Tooltip_ability_primal_beast_pulverize_custom_Lore"	"Никто не уверен наверняка, значат ли что-нибудь эти возгласы, но, чтобы понять намерения зверя, многим вполне достаточно его крепкой хватки и стремления оставить от врага лишь мокрое место."
 "DOTA_Tooltip_ability_primal_beast_pulverize_custom_ministun"		"ДЛИТЕЛЬНОСТЬ ОГЛУШЕНИЯ:"
 "DOTA_Tooltip_ability_primal_beast_pulverize_custom_interval"		"ИНТЕРВАЛ УДАРОВ:"
@@ -6626,7 +6628,7 @@
 "DOTA_Tooltip_ability_primal_beast_rock_throw_custom_Description"                  "Герой бросает в точку камень, который оглушает врагов и наносит урон. Камень разбивается на 3 осколка. У броска есть минимальная дальность.<br><br>Попадание по героям увеличивает количество ударов Pulverize."
 "DOTA_Tooltip_ability_primal_beast_rock_throw_custom_Lore"                 "ОПЯТЬ ЭТИ КАМНИ!"
 
-"upgrade_disc_modifier_primal_beast_pulverize_1" "*!+spell%* урона заклинаний<br><br>Урон Pulverize навсегда увеличивается на *!damage* за *max* ударов по героям"
+"upgrade_disc_modifier_primal_beast_pulverize_1" "*!+spell%* урона заклинаний<br><br>*!+base* урона Pulverize. Увеличивается еще на *!damage* за *max* ударов по героям"
 
 "DOTA_Tooltip_modifier_primal_beast_pulverize_custom_perma"   "Pulverize"
 "DOTA_Tooltip_modifier_primal_beast_pulverize_custom_perma_Description"   "Урон Pulverize увеличен на <b><font color='#53ea48'>%dMODIFIER_PROPERTY_TOOLTIP%</font></b>"
@@ -8390,6 +8392,7 @@
 
 "LocalServer_top" "Матчи на <b><font color='#ff4d30'>Локальном Сервере</font></b> больше не поддерживаются"
 "LocalServer_mid" "Используйте кнопку <b><font color='#33bb33'>Играть в Dota 1x6</font></b> на главной странице игры<br><br>Вы можете использовать локальный сервер для тестового лобби с 1 или 2 игроками"
+"LocalServer_bot" "Как играть полной группой с друзьями?"
 
 "LocalServer_image" "localhost_block"
 
@@ -8670,6 +8673,7 @@
 "info_table_sanctuary" "Алтари"
 "info_table_shrine" "Святыни"
 "info_table_hero_kill" "Убийства героев"
+"info_table_hunt" "Охота"
 "info_table_watcher" "Смотрители"
 "info_table_ward" "Уничтожение вардов"
 "info_table_lownet" "Бонус отстающим"
@@ -9572,7 +9576,7 @@
 "lownet_blue"	"1 сфера"
 "lownet_purple"	"1 заряд"
 
-"push_target" "На владельца постройки объявлена Охота"
+"push_target" "Во время Охоты постройки неуязвимы"
 "push_duel" "Владелец постройки сражается на дуэли"
 "push_duel_soon" "До дуэли осталось менее 10 секунд"
 
@@ -10892,7 +10896,7 @@
 "DOTA_Tooltip_modifier_item_solar_crest_custom_speed_Description"   "Скорость атаки увеличена на %dMODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT%, скорость передвижения увеличена на %dMODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE%%%."
 
 "DOTA_Tooltip_Ability_item_celestial_spear_custom"                "Celestial Spear"
-"DOTA_Tooltip_ability_item_celestial_spear_custom_Description"                 "<h1>Активное: Sky Reach</h1>Бросает копье, которое <b><font color='#53ea48'>привязывает</font></b> цель к земле, запрещая телепортироваться на %leash_duration% сек.<br><br>Привязку можно порвать, отойдя на расстояние %break_radius%.\n<h1>Пассивное: Corruption</h1> Атаки уменьшают броню цели на %corruption_armor%. Эффект длится %corruption_duration% сек."    
+"DOTA_Tooltip_ability_item_celestial_spear_custom_Description"                 "<h1>Активное: Sky Reach</h1>Бросает копье, которое <b><font color='#53ea48'>привязывает</font></b> цель к земле, запрещая телепортироваться на %leash_duration% сек.<br><br>Привязку можно порвать, отойдя на расстояние %break_radius%.\n<h1>Пассивное: Corruption</h1> Атаки уменьшают броню цели на %corruption_armor% + <b><font color='#53ea48'>%corruption_armor_pct%%%</font></b> от ее брони, крипов — на %corruption_armor_creeps%."    
 "DOTA_Tooltip_ability_item_celestial_spear_custom_bonus_speed"             "+$attack"
 "DOTA_Tooltip_ability_item_celestial_spear_custom_bonus_damage"             "+$damage"
 "DOTA_Tooltip_ability_item_celestial_spear_custom_bonus_health"             "+$health"

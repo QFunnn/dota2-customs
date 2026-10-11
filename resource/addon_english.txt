@@ -252,7 +252,7 @@
 "lownet_blue"	"1 orb"
 "lownet_purple"	"1 charge"
 
-"push_target" "The building owner is Hunted"
+"push_target" "Buildings are invulnerable during the Hunt"
 "push_duel" "The building owner is in a Duel"
 "push_duel_soon" "Less than 10 sec left before the Duel"
 
@@ -300,6 +300,7 @@
 
 "LocalServer_top" "Matches on a <b><font color='#ff4d30'>Local Server</font></b> are no longer supported"
 "LocalServer_mid" "Use the <b><font color='#33bb33'>Play Dota 1x6</font></b> button on the main game page<br><br>You can use a local server for a test lobby with 1 or 2 players"
+"LocalServer_bot" "How to play with a full party of friends?"
 
 "LocalServer_image" "localhost_block"
 
@@ -348,7 +349,7 @@
 "PICK_STATE_PICK_BANNED" "Ban a hero"
 
 "Hunt_Tip_header" "The Hunt"
-"Hunt_Tip" "When this hero dies, all players receive gold<br><br>Players who took part in the kill also receive 1 charge of an epic orb<br><br>Incoming damage to this hero is increased by 15%"
+"Hunt_Tip" "When this hero dies, all players receive gold<br><br>Players who took part in the kill also receive 1 charge of an epic orb<br><br>Incoming damage to this hero is increased by 10%, up to 50% by the end of the Hunt"
 
 "Hunt_damage" " damage"
 "Hunt_time" "Time: "
@@ -362,7 +363,7 @@
 "Hunt_Start_team" "For killing these heroes, all players will receive a reward"
 
 "DOTA_Tooltip_modifier_the_hunt_custom_hero"	"The Hunt"
-"DOTA_Tooltip_modifier_the_hunt_custom_hero_Description"	"When the target dies, all players receive gold based on the difference in networth. Players who were nearby or damaged the target also receive a charge of an <b><font color='#a82de8'>Epic Orb</font></b>.<br><br>Incoming damage to the hero is increased by %dMODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE%%%."
+"DOTA_Tooltip_modifier_the_hunt_custom_hero_Description"	"When the target dies, all players receive gold based on the difference in networth and kills. Players who were nearby or damaged the target also receive a charge of an <b><font color='#a82de8'>Epic Orb</font></b>.<br><br>Incoming damage to the hero is increased by %dMODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE%%%."
 
 "Outgoing_damage" "This hero died several times in a row<br><br>Its incoming damage <b><font color='#ff0000'>reduced</font></b> by "
 "Incoming_damage" "You died several times in a row<br><br>Your incoming damage <b><font color='#53ea48'>reduced</font></b> by "
@@ -1268,6 +1269,7 @@
 "info_table_sanctuary" "Sanctuaries"
 "info_table_shrine" "Shrines"
 "info_table_hero_kill" "Hero kills"
+"info_table_hunt" "The Hunt"
 "info_table_watcher" "Watchers"
 "info_table_ward" "Ward kills"
 "info_table_lownet" "Catch-up bonus"
@@ -2402,7 +2404,7 @@
 "DOTA_Tooltip_modifier_item_solar_crest_custom_speed_Description"   "Attack speed increased by %dMODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT%, movespeed increased by %dMODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE%%%."
 
 "DOTA_Tooltip_Ability_item_celestial_spear_custom"                "Celestial Spear"
-"DOTA_Tooltip_ability_item_celestial_spear_custom_Description"                 "<h1>Active: Sky Reach</h1>Throws a spear, that <b><font color='#53ea48'>leashes</font></b> the target to the ground, preventing it from teleportation for %leash_duration% sec.<br><br>The leash can be broken by moving away at a distance of %break_radius%.\n<h1>Passive: Corruption</h1> Your attacks reduce the target's armor by %corruption_armor% for %corruption_duration% seconds."    
+"DOTA_Tooltip_ability_item_celestial_spear_custom_Description"                 "<h1>Active: Sky Reach</h1>Throws a spear, that <b><font color='#53ea48'>leashes</font></b> the target to the ground, preventing it from teleportation for %leash_duration% sec.<br><br>The leash can be broken by moving away at a distance of %break_radius%.\n<h1>Passive: Corruption</h1> Your attacks reduce the target's armor by %corruption_armor% + <b><font color='#53ea48'>%corruption_armor_pct%%%</font></b> of its armor (%corruption_armor_creeps% for creeps)."    
 "DOTA_Tooltip_ability_item_celestial_spear_custom_bonus_speed"             "+$attack"
 "DOTA_Tooltip_ability_item_celestial_spear_custom_bonus_damage"             "+$damage"
 "DOTA_Tooltip_ability_item_celestial_spear_custom_bonus_health"             "+$health"
@@ -8907,6 +8909,7 @@
 "epic_disc_modifier_primal_beast_hero_5" "*+move* max movement speed<br><br>Empowers Colossal and grants status resistance from health"
 
 "upgrade_disc_modifier_primal_beast_hero_6" "Pulverize cannot be blocked and heals *!heal%* missing health per hit<br><br>Also grants debuff immunity that lingers for *!bkb* sec"
+"upgrade_disc_modifier_primal_beast_hero_6_alt" "Pulverize cannot be blocked and heals *!heal_legendary%* missing health per hit<br><br>Also grants debuff immunity that lingers for *!bkb* sec"
 "mini_disc_modifier_primal_beast_hero_6" "Pulverize heals and grants debuff immunity"
 "epic_disc_modifier_primal_beast_hero_6" "Pulverize cannot be blocked and heals per hit<br><br>Also grants debuff immunity"
 
@@ -8949,8 +8952,8 @@
 "mini_disc_modifier_primal_beast_onslaught_4" "Onslaught is faster and pierces debuff immunity"
 "epic_disc_modifier_primal_beast_onslaught_4" "*+speed%* Onslaught run and turn speed<br><br>Onslaught pierces debuff immunity and cooldowns faster"
 
-"upgrade_disc_modifier_primal_beast_onslaught_7" "Onslaught leaves an earthquake. Enemies in the area receive an attack for *!damage%* damage every sec<br><br>Damage grows by *!damage_inc%* with each hit. The earthquake lasts up to *duration* sec depending on preparation"
-"upgrade_disc_modifier_primal_beast_onslaught_7_info"   "The effect lasts *stack_duration* sec and stacks *max* times<br><br>Earthquake attacks cannot miss and heavily slow the target for *slow_duration* sec<br><br>Reduces Onslaught mana cost to *mana*"
+"upgrade_disc_modifier_primal_beast_onslaught_7" "Upon hitting a hero, Onslaught leaves an earthquake. Enemies in the area receive an attack for *!damage%* damage every *interval* sec<br><br>Damage grows by *!damage_inc%* with each hit. The earthquake lasts up to *duration* sec depending on preparation"
+"upgrade_disc_modifier_primal_beast_onslaught_7_info"   "The effect lasts *stack_duration* sec and stacks *max* times<br><br>Earthquake attacks cannot miss and heavily slow the target for *slow_duration* sec<br><br>Reduces Onslaught mana cost to *mana*<br><br>The earthquake deals *creeps%* more damage to creeps. If no hero is hit, it triggers at the end of the dash"
 "mini_disc_modifier_primal_beast_onslaught_7" "Onslaught leaves an earthquake that deals attacks"
 
 "DOTA_Tooltip_modifier_primal_beast_onslaught_custom_stack"   "Onslaught"
@@ -9019,7 +9022,8 @@
 "DOTA_Tooltip_modifier_primal_beast_uproar_custom_strength"   "Uproar"
 "DOTA_Tooltip_modifier_primal_beast_uproar_custom_strength_Description"   "Strength increased by <b><font color='#53ea48'>%dMODIFIER_PROPERTY_STATS_STRENGTH_BONUS%</font></b>"
 
-"upgrade_disc_modifier_primal_beast_uproar_4" "*!+stun* sec Onslaught stun<br><br>Uproar roots enemies for *!root* sec. Also pulls enemies to you within *!radius* radius"
+"upgrade_disc_modifier_primal_beast_uproar_4" "*!+stun* sec Onslaught stun<br><br>Uproar roots enemies for *!root* sec. Also pulls enemies within *!radius* radius"
+"upgrade_disc_modifier_primal_beast_uproar_4_alt" "*!+stun* sec Onslaught stun<br><br>Uproar roots enemies for *!root_legendary* sec. Also pulls enemies within *!radius* radius"
 "mini_disc_modifier_primal_beast_uproar_4" "Uproar roots and pulls enemies"
 "epic_disc_modifier_primal_beast_uproar_4" "*+stun* sec Onslaught stun<br><br>Uproar roots and pulls enemies"
 
@@ -9028,7 +9032,7 @@
 "mini_disc_modifier_primal_beast_uproar_7" "Removes the Uproar stack limit"
 
 "DOTA_Tooltip_ability_primal_beast_pulverize_custom"				"Pulverize"
-"DOTA_Tooltip_ability_primal_beast_pulverize_custom_Description"	"CHANNELED - Primal Beast grabs the target enemy and slams them into the ground repeatedly, damaging and briefly stunning all enemies in the area. Lasts %channel_time% sec.<br><br><b><font color='#53ea48'>Deals %creeps_damage%%% more damage to creeps<br><br>Pauses Trample and Uproar</font></b>"
+"DOTA_Tooltip_ability_primal_beast_pulverize_custom_Description"	"CHANNELED - Primal Beast grabs the target enemy and slams them into the ground repeatedly, damaging and briefly stunning all enemies in the area. Lasts %channel_time% sec.<br><br><b><font color='#53ea48'>Against creeps, deals %creeps_damage%%% more damage and cooldowns %creeps_cd%%% faster<br><br>Pauses Trample and Uproar</font></b>"
 "DOTA_Tooltip_ability_primal_beast_pulverize_custom_Lore"	"Though none are certain whether his utterances have true meaning, most concede the Beast's powerful grip and tendency to smash his enemies into naught but pulp and pieces communicates his intent well enough."
 "DOTA_Tooltip_ability_primal_beast_pulverize_custom_ministun"		"STUN DURATION:"
 "DOTA_Tooltip_ability_primal_beast_pulverize_custom_interval"		"HIT INTERVAL:"
@@ -9042,7 +9046,7 @@
 "DOTA_Tooltip_ability_primal_beast_rock_throw_custom_Description"                  "Primal Beast throws a rock at the target location that stuns and damages enemies. The rock splits into 3 fragments. The throw has a minimum range.<br><br>Hitting heroes increases the number of Pulverize hits."
 "DOTA_Tooltip_ability_primal_beast_rock_throw_custom_Lore"                 "AGAIN WITH THE ROCKS!"
 
-"upgrade_disc_modifier_primal_beast_pulverize_1" "*!+spell%* spell amplification<br><br>Pulverize damage permanently increases by *!damage* over *max* hits on heroes"
+"upgrade_disc_modifier_primal_beast_pulverize_1" "*!+spell%* spell amplification<br><br>*!+base* Pulverize damage. Increases by another *!damage* over *max* hits on heroes"
 
 "DOTA_Tooltip_modifier_primal_beast_pulverize_custom_perma"   "Pulverize"
 "DOTA_Tooltip_modifier_primal_beast_pulverize_custom_perma_Description"   "Pulverize damage increased by <b><font color='#53ea48'>%dMODIFIER_PROPERTY_TOOLTIP%</font></b>"
