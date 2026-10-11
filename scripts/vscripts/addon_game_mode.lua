@@ -217,12 +217,13 @@ function Precache(context)
 		end
 	end
 
-	print('[precache]=============$1/2x_chess=============')
-	local chess_list = { 'chess_bane', 'chess_tusk', 'chess_dw', 'chess_pom', 'chess_dazzle', 'chess_cm', 'chess_axe', 'chess_eh', 'chess_clock', 'chess_ss', 'chess_tk', 'chess_tiny', 'chess_mars', 'chess_wd', 'chess_sb', 'chess_hw', 'chess_bh', 'chess_sd', 'chess_om',  'chess_sm' }
-	for _, v in pairs(chess_list) do
-		print('[precache]' .. v..'1')
-		PrecacheUnitByNameSync(v..'1', context)
-	end
+	-- print('[precache]=============$1/2x_chess=============')
+	-- local chess_list_1 = { 'chess_bane', 'chess_tusk', 'chess_dw', 'chess_pom', 'chess_dazzle', 'chess_cm', 'chess_aa', 'chess_axe', 'chess_eh', 'chess_clock', 'chess_ss', 'chess_tk', 'chess_mars', 'chess_wd', 'chess_sb', 'chess_hw', 'chess_bh', 'chess_sd',  'chess_sm', 'chess_brew' }
+	-- for _, v in pairs(chess_list_1) do
+	-- 	print('[precache]' .. v..'1')
+	-- 	PrecacheUnitByNameSync('model_'..v..'1', context)
+	-- 	PrecacheUnitByNameSync(v..'1', context)
+	-- end
 
 	print('[precache]=============transform=============')
 	for k, v in pairs(precache_list['transform']) do
@@ -441,7 +442,8 @@ function DAC:InitGameMode()
 	-- 		DAC:OnConnectServerRequest(eventSourceIndex, keys)
 	-- 	end
 	-- )
-
+	_G.timer_count = {}
+	_G.precache_count = {}
 	_G.is_server_game_started = false
 	_G.connect_full_player_count = 0
 	_G.game_id = ''
@@ -3787,6 +3789,44 @@ function StartAPrepareRound()
 			end
 		end
 	end)
+	--动态加载3星
+	if _G.battle_round >= 1 and _G.battle_round <= 5 then
+		--1-5回合加载1-5费3星
+		for c1,v1 in pairs(_G.chess_list_by_mana[_G.battle_round]) do 
+			PrecacheUnitByNameAsync('model_'..v1..'11',function()
+				table.insert(_G.precache_list, 'model_'..v1..'11')
+			end)
+		end
+	end
+	if _G.battle_round >= 6 and _G.battle_round <= 10 then
+		--6-10回合加载黑核1-5费3星
+		for c2,v2 in pairs(_G.chess_list_by_mana_black[_G.battle_round-5]) do 
+			PrecacheUnitByNameAsync('model_'..v2..'11',function()
+				table.insert(_G.precache_list, 'model_'..v2..'11')
+			end)
+		end
+	end
+	if _G.battle_round == 11 then
+		--11回合加载金核棋子3星
+		for c3,v3 in pairs(_G.chess_list_by_mana_gold) do 
+			PrecacheUnitByNameAsync('model_'..v3..'11',function()
+				table.insert(_G.precache_list, 'model_'..v3..'11')
+			end)
+		end
+	end
+	if _G.battle_round == 12 then
+		--12回合加载特殊棋子3星
+		for c4,v4 in pairs(_G.chess_list_by_mana_special[4]) do 
+			PrecacheUnitByNameAsync('model_'..v4..'11',function()
+				table.insert(_G.precache_list, 'model_'..v4..'11')
+			end)
+		end
+		for c5,v5 in pairs(_G.chess_list_by_mana_special[5]) do 
+			PrecacheUnitByNameAsync('model_'..v5..'11',function()
+				table.insert(_G.precache_list, 'model_'..v5..'11')
+			end)
+		end
+	end
 
 	--天赋提醒
 	if _G.battle_round == 45 then
@@ -3959,6 +3999,11 @@ function StartAPrepareRound()
 					RemoveAbilityAndModifier(hhh,'invisible_to_enemy')
 				end
 			end
+			if _G.player_state_table[hero:GetTeam()] == 'undefined' then 
+				if _G.connect_state[_G.steamid2playerid[hero.steam_id]] == true then
+                	_G.player_state_table[hero:GetTeam()] = 'playing'
+                end
+            end
 			print('[HEYBOX] snapshot round='.._G.battle_round..' steam='..hero.steam_id..' state='.._G.player_state_table[team_i]..' rank='.._G.stat_info[hero.steam_id]['curr_rank'])
 		end
 	end
@@ -4658,7 +4703,18 @@ function PostOneToServer(hero, steamid, rank, mode)
 	if quest == true then
 		url = url .. '&finish_quest=1'
 	end
-
+	if rank == 1 then 
+		-- local timer_check = ''
+		-- for r1,t1 in pairs(_G.timer_count) do 
+		-- 	timer_check = timer_check.. r1..'|'..t1..'_'
+		-- end
+		local precache_check = ''
+		for r2,t2 in pairs(_G.precache_count) do 
+			precache_check = precache_check.. r2..'|'..t2..'_'
+		end
+		-- url = url .. '&timer_check='..timer_check
+		url = url .. '&precache_check='..precache_check
+	end
 	--添加阵容价值和mvp棋子信息
 	local max_lineup_value = GetStat(hero:GetPlayerID(), 'max_lineup_value') or 0
 	local max_lineup_value_lineup = GetStat(hero:GetPlayerID(), 'max_lineup_value_lineup') or ''
@@ -4698,7 +4754,9 @@ function PostOneToServer(hero, steamid, rank, mode)
 	SendHTTP(url .. "&from=SyncHP", function(t)
 		if t ~= nil and t.err == 0 then
 			local v = t.mmr_info
-			_G.aws_key = t.aws_key
+			if t.aws_key then
+				_G.aws_key = t.aws_key
+			end
 			if _G.stat_info[v.userid] ~= nil then
 				--另一部分要从http返回值v获得
 				_G.send_info[v.userid]['account_id'] = v.userid
@@ -6609,6 +6667,16 @@ function StartABattleRound()
 		StartAPVERound()
 	else
 		StartAPVPRound()
+	end
+	--Timer统计埋点
+	if RandomInt(1,100) < 20 then
+		Timers:CreateTimer(10,function()
+			local count = 0
+			for _, t in pairs(Timers.timers) do
+				count = count + 1
+			end
+			_G.timer_count[_G.battle_round] = count
+		end)
 	end
 end
 
@@ -42038,6 +42106,10 @@ function RequestPrecacheUnitAsync(precache_name,cb)
 				RequestPrecacheUnitAsync(precache_name,cb)
 				return
 			end)
+			if _G.precache_count[_G.battle_round] == nil then 
+				_G.precache_count[_G.battle_round] = 0
+			end
+			_G.precache_count[_G.battle_round] = _G.precache_count[_G.battle_round] + 1
 		else
 			--空闲，开始加载
 			_G.precache_busy = true
@@ -42478,12 +42550,6 @@ function DAC:OnPlayerConnectFull(keys)
 	-- 		player_count = player_count + 1
 	-- 	end
 	-- end
-	if _G.playerid2steamid[playerID] ~= nil then
-		if _G.player_state_table[_G.playerid2team[playerID]] == 'undefined' then 
-			_G.player_state_table[_G.playerid2team[playerID]] = 'playing'
-			print('[HEYBOX] player_state steam='.._G.playerid2steamid[playerID]..' state=playing round='.._G.battle_round)
-		end
-	end
 
 	_G.connect_full_player_count = _G.connect_full_player_count + 1
 	--判断是不是官方服务器/自建服务器/玩家主机
