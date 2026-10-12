@@ -8,7 +8,31 @@
 ]]
 
 
+-- utils/sunlight/ts_utils/SunLightType.lua
+local ____debugRuntime = require("utils.debug_runtime")
+local debug = ____debugRuntime.safe_debug
 --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+____debugRuntime.register(
+	"utils/sunlight/ts_utils/SunLightType.lua",
+	{
+		["6"] = "13:11",
+		["11"] = "18:5",
+		["12"] = "19:9",
+		["13"] = "18:5",
+		["17"] = "25:5",
+		["18"] = "26:9",
+		["19"] = "25:5",
+		["23"] = "32:5",
+		["24"] = "33:9",
+		["25"] = "32:5",
+		["29"] = "39:5",
+		["30"] = "40:9",
+		["31"] = "39:5",
+		["35"] = "52:5",
+		["36"] = "53:9",
+		["37"] = "52:5",
+	}
+)
 SLType = SLType or {}
 do
 	--- 是否是 CBaseEntity

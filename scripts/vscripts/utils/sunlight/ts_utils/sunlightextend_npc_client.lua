@@ -8,7 +8,14 @@
 ]]
 
 
+-- utils/sunlight/ts_utils/SunLightExtend_Npc_Client.lua
+local ____debugRuntime = require("utils.debug_runtime")
+local debug = ____debugRuntime.safe_debug
 --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+____debugRuntime.register(
+	"utils/sunlight/ts_utils/SunLightExtend_Npc_Client.lua",
+	{ ["8"] = "7:5", ["9"] = "8:9", ["10"] = "7:31" }
+)
 local ____exports = {}
 do
 	C_DOTA_BaseNPC.HasShard = function(self)

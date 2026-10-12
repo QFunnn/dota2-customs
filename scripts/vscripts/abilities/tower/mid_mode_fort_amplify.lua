@@ -8,10 +8,97 @@
 ]]
 
 
+-- abilities/tower/mid_mode_fort_amplify.lua
+local ____debugRuntime = require("utils.debug_runtime")
+local debug = ____debugRuntime.safe_debug
 local ____lualib = require("lualib_bundle")
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
 local __TS__Decorate = ____lualib.__TS__Decorate
+____debugRuntime.register(
+	"abilities/tower/mid_mode_fort_amplify.lua",
+	{
+		["10"] = "1:1",
+		["11"] = "1:10",
+		["12"] = "2:1",
+		["13"] = "2:10",
+		["14"] = "2:27",
+		["15"] = "2:40",
+		["16"] = "4:1",
+		["17"] = "5:14",
+		["18"] = "4:1",
+		["19"] = "5:36",
+		["20"] = "6:5",
+		["21"] = "7:15",
+		["22"] = "8:13",
+		["23"] = "9:13",
+		["25"] = "6:5",
+		["26"] = "5:14",
+		["27"] = "4:2",
+		["28"] = "4:2",
+		["29"] = "4:2",
+		["31"] = "4:2",
+		["32"] = "5:14",
+		["34"] = "5:14",
+		["35"] = "13:1",
+		["36"] = "14:14",
+		["37"] = "13:1",
+		["38"] = "14:45",
+		["39"] = "15:5",
+		["40"] = "16:9",
+		["41"] = "15:5",
+		["42"] = "19:5",
+		["43"] = "20:9",
+		["44"] = "19:5",
+		["45"] = "31:5",
+		["46"] = "32:9",
+		["47"] = "33:9",
+		["48"] = "34:14",
+		["51"] = "35:15",
+		["52"] = "36:14",
+		["55"] = "37:9",
+		["56"] = "37:33",
+		["57"] = "37:62",
+		["59"] = "37:62",
+		["61"] = "37:9",
+		["62"] = "31:5",
+		["63"] = "40:5",
+		["64"] = "41:14",
+		["65"] = "41:50",
+		["67"] = "42:15",
+		["68"] = "43:13",
+		["69"] = "43:43",
+		["71"] = "44:15",
+		["72"] = "45:9",
+		["73"] = "40:5",
+		["74"] = "48:5",
+		["75"] = "49:9",
+		["76"] = "48:5",
+		["77"] = "52:5",
+		["78"] = "53:16",
+		["80"] = "53:16",
+		["82"] = "53:9",
+		["83"] = "52:5",
+		["84"] = "56:5",
+		["85"] = "57:16",
+		["87"] = "57:16",
+		["89"] = "57:9",
+		["90"] = "56:5",
+		["91"] = "60:5",
+		["92"] = "61:16",
+		["94"] = "61:16",
+		["96"] = "61:9",
+		["97"] = "60:5",
+		["98"] = "14:14",
+		["99"] = "13:2",
+		["100"] = "13:2",
+		["101"] = "13:19",
+		["102"] = "13:2",
+		["104"] = "13:2",
+		["105"] = "14:14",
+		["107"] = "14:14",
+	}
+)
 local ____exports = {}
 local ____sl_modifier_base = require("modifiers.sl_modifier_base")
 local SLModifierBase = ____sl_modifier_base.SLModifierBase
@@ -29,7 +116,7 @@ function mid_mode_fort_amplify.prototype.GetIntrinsicModifierName(self)
 		return ____exports.modifier_mid_mode_fort_amplify.name
 	end
 end
-mid_mode_fort_amplify = __TS__Decorate({ registerAbility(nil) }, mid_mode_fort_amplify)
+mid_mode_fort_amplify = __TS__Decorate({ registerAbility(nil, nil, getfenv()) }, mid_mode_fort_amplify)
 ____exports.mid_mode_fort_amplify = mid_mode_fort_amplify
 ____exports.modifier_mid_mode_fort_amplify = __TS__Class()
 local modifier_mid_mode_fort_amplify = ____exports.modifier_mid_mode_fort_amplify
@@ -99,7 +186,9 @@ function modifier_mid_mode_fort_amplify.prototype.GetModifierMagicalResistanceBo
 	end
 	return ____temp_5
 end
-modifier_mid_mode_fort_amplify =
-	__TS__Decorate({ registerModifier(nil, "abilities/tower/mid_mode_fort_amplify") }, modifier_mid_mode_fort_amplify)
+modifier_mid_mode_fort_amplify = __TS__Decorate(
+	{ registerModifier(nil, "abilities/tower/mid_mode_fort_amplify", nil, getfenv()) },
+	modifier_mid_mode_fort_amplify
+)
 ____exports.modifier_mid_mode_fort_amplify = modifier_mid_mode_fort_amplify
 return ____exports

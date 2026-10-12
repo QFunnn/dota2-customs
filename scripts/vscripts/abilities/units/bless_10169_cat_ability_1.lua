@@ -8,10 +8,170 @@
 ]]
 
 
+-- abilities/units/bless_10169_cat_ability_1.lua
+local ____debugRuntime = require("utils.debug_runtime")
+local debug = ____debugRuntime.safe_debug
 local ____lualib = require("lualib_bundle")
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
 local __TS__Decorate = ____lualib.__TS__Decorate
+____debugRuntime.register(
+	"abilities/units/bless_10169_cat_ability_1.lua",
+	{
+		["10"] = "1:1",
+		["11"] = "1:10",
+		["12"] = "2:1",
+		["13"] = "2:10",
+		["14"] = "2:27",
+		["15"] = "3:1",
+		["16"] = "3:10",
+		["18"] = "8:1",
+		["19"] = "9:14",
+		["20"] = "8:1",
+		["21"] = "9:40",
+		["23"] = "9:48",
+		["24"] = "10:5",
+		["25"] = "8:1",
+		["26"] = "11:5",
+		["27"] = "12:15",
+		["28"] = "13:15",
+		["29"] = "15:9",
+		["30"] = "15:35",
+		["31"] = "15:52",
+		["32"] = "15:9",
+		["33"] = "17:9",
+		["34"] = "18:13",
+		["35"] = "19:13",
+		["36"] = "20:13",
+		["37"] = "21:13",
+		["38"] = "21:20",
+		["39"] = "21:50",
+		["40"] = "21:19",
+		["41"] = "17:32",
+		["42"] = "23:15",
+		["43"] = "24:9",
+		["44"] = "26:15",
+		["45"] = "27:9",
+		["47"] = "28:18",
+		["48"] = "28:38",
+		["50"] = "29:13",
+		["54"] = "9:48",
+		["55"] = "11:5",
+		["56"] = "9:14",
+		["57"] = "8:2",
+		["58"] = "8:2",
+		["59"] = "8:2",
+		["61"] = "8:2",
+		["62"] = "9:14",
+		["64"] = "9:14",
+		["65"] = "40:1",
+		["66"] = "41:14",
+		["67"] = "40:1",
+		["68"] = "41:52",
+		["69"] = "42:5",
+		["70"] = "43:15",
+		["71"] = "44:15",
+		["72"] = "45:13",
+		["73"] = "45:13",
+		["74"] = "45:13",
+		["76"] = "45:40",
+		["77"] = "45:40",
+		["78"] = "45:40",
+		["80"] = "45:13",
+		["81"] = "46:13",
+		["83"] = "48:9",
+		["84"] = "42:5",
+		["85"] = "51:5",
+		["86"] = "52:9",
+		["87"] = "51:5",
+		["88"] = "55:5",
+		["89"] = "56:9",
+		["90"] = "55:5",
+		["91"] = "59:5",
+		["92"] = "60:9",
+		["93"] = "59:5",
+		["94"] = "67:5",
+		["95"] = "68:14",
+		["98"] = "69:15",
+		["99"] = "70:15",
+		["100"] = "71:29",
+		["101"] = "71:29",
+		["102"] = "71:29",
+		["104"] = "71:15",
+		["105"] = "72:14",
+		["106"] = "73:13",
+		["107"] = "73:21",
+		["108"] = "73:13",
+		["110"] = "73:13",
+		["113"] = "76:30",
+		["114"] = "76:30",
+		["115"] = "76:30",
+		["117"] = "76:9",
+		["118"] = "77:13",
+		["119"] = "78:13",
+		["120"] = "79:13",
+		["121"] = "80:13",
+		["123"] = "82:13",
+		["124"] = "83:13",
+		["126"] = "85:15",
+		["127"] = "86:9",
+		["128"] = "86:26",
+		["129"] = "86:31",
+		["130"] = "86:38",
+		["131"] = "86:45",
+		["132"] = "86:48",
+		["133"] = "86:55",
+		["134"] = "86:9",
+		["135"] = "87:9",
+		["136"] = "88:9",
+		["137"] = "67:5",
+		["138"] = "91:5",
+		["139"] = "92:14",
+		["142"] = "93:14",
+		["145"] = "94:15",
+		["146"] = "95:22",
+		["147"] = "95:22",
+		["148"] = "95:22",
+		["150"] = "95:15",
+		["151"] = "96:14",
+		["154"] = "97:15",
+		["155"] = "98:15",
+		["156"] = "99:15",
+		["157"] = "100:15",
+		["158"] = "101:13",
+		["159"] = "102:13",
+		["161"] = "104:13",
+		["163"] = "106:13",
+		["164"] = "107:13",
+		["166"] = "91:5",
+		["167"] = "111:5",
+		["168"] = "112:27",
+		["169"] = "112:27",
+		["170"] = "112:49",
+		["172"] = "112:56",
+		["174"] = "112:9",
+		["175"] = "113:9",
+		["176"] = "111:5",
+		["177"] = "116:5",
+		["178"] = "117:9",
+		["179"] = "116:5",
+		["180"] = "123:5",
+		["181"] = "124:16",
+		["182"] = "124:16",
+		["183"] = "124:34",
+		["185"] = "124:54",
+		["187"] = "124:9",
+		["188"] = "123:5",
+		["189"] = "41:14",
+		["190"] = "40:2",
+		["191"] = "40:2",
+		["192"] = "40:19",
+		["193"] = "40:2",
+		["195"] = "40:2",
+		["196"] = "41:14",
+		["198"] = "41:14",
+	}
+)
 local ____exports = {}
 local ____sl_modifier_base = require("modifiers.sl_modifier_base")
 local SLModifierBase = ____sl_modifier_base.SLModifierBase
@@ -59,7 +219,7 @@ function bless_10169_cat_ability_1.prototype.OnSpellStart(self)
 	end
 	_bless_10169_cat_ability_base.prototype.OnSpellStart(self)
 end
-bless_10169_cat_ability_1 = __TS__Decorate({ registerAbility(nil) }, bless_10169_cat_ability_1)
+bless_10169_cat_ability_1 = __TS__Decorate({ registerAbility(nil, nil, getfenv()) }, bless_10169_cat_ability_1)
 ____exports.bless_10169_cat_ability_1 = bless_10169_cat_ability_1
 ____exports.sl_modifier_bless_10169_cat_ability_1 = __TS__Class()
 local sl_modifier_bless_10169_cat_ability_1 = ____exports.sl_modifier_bless_10169_cat_ability_1
@@ -102,7 +262,7 @@ function sl_modifier_bless_10169_cat_ability_1.prototype.OnCreated(self, params)
 	end
 	local caster_team = ____caster_GetTeam_result_4
 	if not IsDotaTwoTeam(caster_team) then
-		SLError(nil, self:GetName())
+		SLError(self:GetName(), nil, "abilities/units/bless_10169_cat_ability_1.ts:73:13")
 		return
 	end
 	local ____GameMap_GetTeamFountain_result_GetAbsOrigin_result_6 = GameMap:GetTeamFountain(caster_team)
@@ -176,7 +336,7 @@ function sl_modifier_bless_10169_cat_ability_1.prototype.GetModifierMoveSpeedBon
 	return ____table__is_active_11
 end
 sl_modifier_bless_10169_cat_ability_1 = __TS__Decorate(
-	{ registerModifier(nil, "abilities/units/bless_10169_cat_ability_1") },
+	{ registerModifier(nil, "abilities/units/bless_10169_cat_ability_1", nil, getfenv()) },
 	sl_modifier_bless_10169_cat_ability_1
 )
 ____exports.sl_modifier_bless_10169_cat_ability_1 = sl_modifier_bless_10169_cat_ability_1

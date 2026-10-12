@@ -8,6 +8,9 @@
 ]]
 
 
+-- modifiers/bless_modifiers/sl_modifier_bless_10078.lua
+local ____debugRuntime = require("utils.debug_runtime")
+local debug = ____debugRuntime.safe_debug
 local ____lualib = require("lualib_bundle")
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
@@ -16,6 +19,64 @@ local __TS__SparseArrayPush = ____lualib.__TS__SparseArrayPush
 local __TS__SparseArraySpread = ____lualib.__TS__SparseArraySpread
 local __TS__ObjectAssign = ____lualib.__TS__ObjectAssign
 local __TS__Decorate = ____lualib.__TS__Decorate
+____debugRuntime.register(
+	"modifiers/bless_modifiers/sl_modifier_bless_10078.lua",
+	{
+		["14"] = "1:1",
+		["15"] = "1:10",
+		["16"] = "3:1",
+		["17"] = "3:10",
+		["20"] = "9:1",
+		["21"] = "10:14",
+		["22"] = "9:1",
+		["23"] = "10:38",
+		["24"] = "12:5",
+		["25"] = "13:9",
+		["26"] = "12:5",
+		["27"] = "16:5",
+		["28"] = "17:9",
+		["29"] = "16:5",
+		["30"] = "20:5",
+		["31"] = "21:17",
+		["33"] = "21:9",
+		["34"] = "20:5",
+		["35"] = "24:5",
+		["36"] = "25:9",
+		["37"] = "24:5",
+		["38"] = "28:5",
+		["39"] = "29:14",
+		["42"] = "10:46",
+		["43"] = "31:9",
+		["44"] = "32:9",
+		["45"] = "28:5",
+		["46"] = "35:5",
+		["47"] = "36:9",
+		["48"] = "10:46",
+		["49"] = "35:5",
+		["50"] = "40:5",
+		["51"] = "41:9",
+		["52"] = "41:16",
+		["53"] = "10:46",
+		["54"] = "41:58",
+		["55"] = "41:16",
+		["56"] = "40:5",
+		["57"] = "44:5",
+		["58"] = "45:9",
+		["59"] = "10:46",
+		["60"] = "44:5",
+		["61"] = "49:5",
+		["62"] = "50:14",
+		["65"] = "49:5",
+		["66"] = "10:14",
+		["67"] = "9:2",
+		["68"] = "9:2",
+		["69"] = "9:19",
+		["70"] = "9:2",
+		["72"] = "9:2",
+		["73"] = "10:14",
+		["75"] = "10:14",
+	}
+)
 local ____exports = {}
 local ____dota_ts_adapter = require("utils.dota_ts_adapter")
 local registerModifier = ____dota_ts_adapter.registerModifier
@@ -66,7 +127,7 @@ function sl_modifier_bless_10078.prototype.OnDestroy(self)
 	end
 end
 sl_modifier_bless_10078 = __TS__Decorate(
-	{ registerModifier(nil, "modifiers/bless_modifiers/sl_modifier_bless_10078") },
+	{ registerModifier(nil, "modifiers/bless_modifiers/sl_modifier_bless_10078", nil, getfenv()) },
 	sl_modifier_bless_10078
 )
 ____exports.sl_modifier_bless_10078 = sl_modifier_bless_10078

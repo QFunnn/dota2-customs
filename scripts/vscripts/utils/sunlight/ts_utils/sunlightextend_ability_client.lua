@@ -8,7 +8,26 @@
 ]]
 
 
+-- utils/sunlight/ts_utils/SunLightExtend_Ability_Client.lua
+local ____debugRuntime = require("utils.debug_runtime")
+local debug = ____debugRuntime.safe_debug
 --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+____debugRuntime.register(
+	"utils/sunlight/ts_utils/SunLightExtend_Ability_Client.lua",
+	{
+		["8"] = "7:5",
+		["9"] = "8:15",
+		["10"] = "9:9",
+		["11"] = "7:37",
+		["12"] = "12:5",
+		["13"] = "13:15",
+		["14"] = "14:15",
+		["15"] = "15:14",
+		["16"] = "15:53",
+		["18"] = "16:9",
+		["19"] = "12:47",
+	}
+)
 local ____exports = {}
 do
 	C_DOTABaseAbility.HasBehavior = function(self, behavior)

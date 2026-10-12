@@ -8,7 +8,23 @@
 ]]
 
 
+-- utils/multi_extends.lua
+local ____debugRuntime = require("utils.debug_runtime")
+local debug = ____debugRuntime.safe_debug
 --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+____debugRuntime.register(
+	"utils/multi_extends.lua",
+	{
+		["86"] = "123:1",
+		["87"] = "127:9",
+		["88"] = "128:9",
+		["89"] = "129:12",
+		["90"] = "130:9",
+		["91"] = "131:9",
+		["93"] = "133:5",
+		["94"] = "123:1",
+	}
+)
 --- 多重继承函数
 --
 -- 该函数允许一个基类通过多个扩展函数进行扩展，实现类似多重继承的效果。

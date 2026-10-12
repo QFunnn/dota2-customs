@@ -8,7 +8,11 @@
 ]]
 
 
+-- global/both/_index.lua
+local ____debugRuntime = require("utils.debug_runtime")
+local debug = ____debugRuntime.safe_debug
 --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+____debugRuntime.register("global/both/_index.lua", { ["7"] = "1:8", ["8"] = "2:8", ["9"] = "3:8", ["10"] = "4:8" })
 local ____exports = {}
 require("global.both.global_consts")
 require("global.both.global_symbols")

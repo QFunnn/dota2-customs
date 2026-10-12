@@ -8,7 +8,36 @@
 ]]
 
 
+-- utils/sunlight/index.lua
+local ____debugRuntime = require("utils.debug_runtime")
+local debug = ____debugRuntime.safe_debug
 --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+____debugRuntime.register(
+	"utils/sunlight/index.lua",
+	{
+		["7"] = "2:8",
+		["8"] = "3:8",
+		["9"] = "4:8",
+		["10"] = "5:8",
+		["11"] = "6:8",
+		["12"] = "7:8",
+		["13"] = "8:8",
+		["14"] = "9:8",
+		["15"] = "10:8",
+		["16"] = "11:8",
+		["17"] = "12:8",
+		["18"] = "15:8",
+		["19"] = "16:8",
+		["20"] = "17:8",
+		["21"] = "18:8",
+		["22"] = "19:8",
+		["23"] = "20:8",
+		["24"] = "23:8",
+		["25"] = "24:8",
+		["26"] = "25:8",
+		["27"] = "26:8",
+	}
+)
 local ____exports = {}
 require("utils.sunlight.ts_utils.SunLightDebug")
 require("utils.sunlight.ts_utils.SunLightDebugDraw")

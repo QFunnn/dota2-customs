@@ -8,10 +8,168 @@
 ]]
 
 
+-- abilities/items/item_flame_cloak.lua
+local ____debugRuntime = require("utils.debug_runtime")
+local debug = ____debugRuntime.safe_debug
 local ____lualib = require("lualib_bundle")
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
 local __TS__Decorate = ____lualib.__TS__Decorate
+____debugRuntime.register(
+	"abilities/items/item_flame_cloak.lua",
+	{
+		["10"] = "36:7",
+		["11"] = "1:1",
+		["12"] = "1:10",
+		["13"] = "1:52",
+		["14"] = "3:1",
+		["15"] = "3:10",
+		["16"] = "3:27",
+		["17"] = "4:1",
+		["18"] = "4:10",
+		["21"] = "10:1",
+		["22"] = "11:14",
+		["23"] = "10:1",
+		["24"] = "11:31",
+		["26"] = "11:39",
+		["27"] = "20:5",
+		["28"] = "10:1",
+		["29"] = "12:5",
+		["30"] = "13:9",
+		["31"] = "12:5",
+		["32"] = "16:5",
+		["33"] = "17:9",
+		["34"] = "16:5",
+		["35"] = "22:5",
+		["36"] = "23:9",
+		["37"] = "24:9",
+		["38"] = "22:5",
+		["39"] = "27:5",
+		["40"] = "28:13",
+		["41"] = "29:13",
+		["43"] = "31:9",
+		["44"] = "27:5",
+		["45"] = "11:14",
+		["46"] = "10:2",
+		["47"] = "10:2",
+		["48"] = "10:2",
+		["50"] = "10:2",
+		["51"] = "11:14",
+		["53"] = "11:14",
+		["54"] = "36:7",
+		["55"] = "35:1",
+		["56"] = "36:36",
+		["57"] = "37:5",
+		["58"] = "38:9",
+		["59"] = "37:5",
+		["60"] = "41:5",
+		["61"] = "42:9",
+		["62"] = "41:5",
+		["63"] = "45:5",
+		["64"] = "46:9",
+		["65"] = "45:5",
+		["66"] = "49:5",
+		["67"] = "50:9",
+		["68"] = "49:5",
+		["69"] = "53:5",
+		["70"] = "54:9",
+		["71"] = "53:5",
+		["72"] = "57:5",
+		["73"] = "58:14",
+		["74"] = "58:37",
+		["76"] = "59:9",
+		["77"] = "57:5",
+		["78"] = "62:5",
+		["79"] = "63:9",
+		["80"] = "62:5",
+		["81"] = "66:5",
+		["82"] = "67:9",
+		["83"] = "66:5",
+		["84"] = "70:5",
+		["85"] = "71:9",
+		["86"] = "70:5",
+		["87"] = "74:5",
+		["88"] = "75:9",
+		["89"] = "74:5",
+		["90"] = "78:5",
+		["91"] = "79:9",
+		["92"] = "78:5",
+		["93"] = "82:5",
+		["94"] = "83:9",
+		["95"] = "82:5",
+		["96"] = "36:7",
+		["97"] = "35:2",
+		["98"] = "35:2",
+		["99"] = "35:19",
+		["100"] = "35:2",
+		["102"] = "35:2",
+		["103"] = "36:7",
+		["105"] = "88:7",
+		["106"] = "87:1",
+		["107"] = "88:42",
+		["108"] = "89:5",
+		["109"] = "90:9",
+		["110"] = "89:5",
+		["111"] = "93:5",
+		["112"] = "94:16",
+		["113"] = "94:16",
+		["114"] = "94:16",
+		["116"] = "94:9",
+		["117"] = "93:5",
+		["118"] = "99:5",
+		["119"] = "100:9",
+		["120"] = "99:5",
+		["121"] = "105:5",
+		["122"] = "107:14",
+		["125"] = "108:9",
+		["126"] = "109:9",
+		["127"] = "105:5",
+		["128"] = "112:5",
+		["129"] = "113:9",
+		["130"] = "112:5",
+		["131"] = "118:5",
+		["132"] = "119:15",
+		["133"] = "120:13",
+		["134"] = "121:13",
+		["135"] = "123:13",
+		["136"] = "124:13",
+		["137"] = "125:13",
+		["139"] = "127:13",
+		["140"] = "128:13",
+		["142"] = "131:15",
+		["143"] = "132:13",
+		["144"] = "133:15",
+		["145"] = "134:13",
+		["146"] = "135:19",
+		["147"] = "136:13",
+		["149"] = "138:9",
+		["150"] = "139:26",
+		["151"] = "139:27",
+		["156"] = "139:9",
+		["157"] = "118:5",
+		["158"] = "142:5",
+		["159"] = "143:14",
+		["162"] = "144:9",
+		["163"] = "145:15",
+		["164"] = "146:15",
+		["165"] = "147:13",
+		["166"] = "148:13",
+		["167"] = "149:17",
+		["168"] = "150:17",
+		["169"] = "151:17",
+		["170"] = "152:17",
+		["171"] = "153:17",
+		["172"] = "148:25",
+		["174"] = "142:5",
+		["175"] = "88:7",
+		["176"] = "87:2",
+		["177"] = "87:2",
+		["178"] = "87:19",
+		["179"] = "87:2",
+		["181"] = "87:2",
+		["182"] = "88:7",
+	}
+)
 local ____exports = {}
 local sl_modifier_item_flame_cloak, sl_modifier_item_flame_burn_debuff
 local ____sl_modifier_base = require("modifiers.sl_modifier_base")
@@ -48,7 +206,7 @@ function item_flame_cloak.prototype.GetAbilityTextureName(self)
 	end
 	return "item_flame_cloak"
 end
-item_flame_cloak = __TS__Decorate({ registerAbility(nil) }, item_flame_cloak)
+item_flame_cloak = __TS__Decorate({ registerAbility(nil, nil, getfenv()) }, item_flame_cloak)
 ____exports.item_flame_cloak = item_flame_cloak
 sl_modifier_item_flame_cloak = __TS__Class()
 sl_modifier_item_flame_cloak.name = "sl_modifier_item_flame_cloak"
@@ -96,8 +254,10 @@ end
 function sl_modifier_item_flame_cloak.prototype.GetAuraDuration(self)
 	return 0.5
 end
-sl_modifier_item_flame_cloak =
-	__TS__Decorate({ registerModifier(nil, "abilities/items/item_flame_cloak") }, sl_modifier_item_flame_cloak)
+sl_modifier_item_flame_cloak = __TS__Decorate(
+	{ registerModifier(nil, "abilities/items/item_flame_cloak", nil, getfenv()) },
+	sl_modifier_item_flame_cloak
+)
 sl_modifier_item_flame_burn_debuff = __TS__Class()
 sl_modifier_item_flame_burn_debuff.name = "sl_modifier_item_flame_burn_debuff"
 __TS__ClassExtends(sl_modifier_item_flame_burn_debuff, SLModifierBase_Debuff)
@@ -169,6 +329,8 @@ function sl_modifier_item_flame_burn_debuff.prototype.OnIntervalThink(self)
 		})
 	end
 end
-sl_modifier_item_flame_burn_debuff =
-	__TS__Decorate({ registerModifier(nil, "abilities/items/item_flame_cloak") }, sl_modifier_item_flame_burn_debuff)
+sl_modifier_item_flame_burn_debuff = __TS__Decorate(
+	{ registerModifier(nil, "abilities/items/item_flame_cloak", nil, getfenv()) },
+	sl_modifier_item_flame_burn_debuff
+)
 return ____exports

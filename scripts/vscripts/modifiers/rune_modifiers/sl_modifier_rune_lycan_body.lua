@@ -8,10 +8,92 @@
 ]]
 
 
+-- modifiers/rune_modifiers/sl_modifier_rune_lycan_body.lua
+local ____debugRuntime = require("utils.debug_runtime")
+local debug = ____debugRuntime.safe_debug
 local ____lualib = require("lualib_bundle")
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
 local __TS__Decorate = ____lualib.__TS__Decorate
+____debugRuntime.register(
+	"modifiers/rune_modifiers/sl_modifier_rune_lycan_body.lua",
+	{
+		["10"] = "1:1",
+		["11"] = "1:10",
+		["12"] = "2:1",
+		["13"] = "2:10",
+		["17"] = "9:1",
+		["18"] = "10:14",
+		["19"] = "9:1",
+		["20"] = "10:42",
+		["21"] = "11:5",
+		["22"] = "12:9",
+		["23"] = "12:16",
+		["24"] = "12:16",
+		["25"] = "12:16",
+		["26"] = "12:16",
+		["28"] = "12:16",
+		["29"] = "11:5",
+		["30"] = "21:5",
+		["31"] = "22:15",
+		["32"] = "22:25",
+		["33"] = "24:13",
+		["34"] = "25:13",
+		["35"] = "22:25",
+		["36"] = "27:15",
+		["37"] = "27:25",
+		["38"] = "29:13",
+		["39"] = "30:13",
+		["40"] = "27:25",
+		["41"] = "32:9",
+		["42"] = "21:5",
+		["43"] = "35:5",
+		["44"] = "36:9",
+		["45"] = "36:16",
+		["46"] = "38:13",
+		["47"] = "39:13",
+		["48"] = "36:16",
+		["49"] = "35:5",
+		["50"] = "43:5",
+		["51"] = "44:15",
+		["52"] = "45:9",
+		["53"] = "43:5",
+		["54"] = "48:5",
+		["55"] = "49:9",
+		["56"] = "48:5",
+		["57"] = "53:5",
+		["58"] = "54:15",
+		["59"] = "55:14",
+		["60"] = "55:62",
+		["62"] = "56:15",
+		["63"] = "57:13",
+		["64"] = "57:37",
+		["66"] = "58:15",
+		["67"] = "59:15",
+		["68"] = "61:15",
+		["69"] = "61:56",
+		["70"] = "61:83",
+		["71"] = "61:28",
+		["72"] = "62:15",
+		["73"] = "63:15",
+		["74"] = "64:9",
+		["75"] = "53:5",
+		["76"] = "67:5",
+		["77"] = "68:9",
+		["78"] = "67:5",
+		["79"] = "71:5",
+		["80"] = "72:9",
+		["81"] = "71:5",
+		["82"] = "10:14",
+		["83"] = "9:2",
+		["84"] = "9:2",
+		["85"] = "9:19",
+		["86"] = "9:2",
+		["88"] = "9:2",
+		["89"] = "10:14",
+		["91"] = "10:14",
+	}
+)
 local ____exports = {}
 local ____dota_ts_adapter = require("utils.dota_ts_adapter")
 local registerModifier = ____dota_ts_adapter.registerModifier
@@ -85,7 +167,7 @@ function sl_modifier_rune_lycan_body.prototype.GetModifierPreAttack_BonusDamage(
 	return self:_GetShapeshiftAttackSpeedBonus()
 end
 sl_modifier_rune_lycan_body = __TS__Decorate(
-	{ registerModifier(nil, "modifiers/rune_modifiers/sl_modifier_rune_lycan_body") },
+	{ registerModifier(nil, "modifiers/rune_modifiers/sl_modifier_rune_lycan_body", nil, getfenv()) },
 	sl_modifier_rune_lycan_body
 )
 ____exports.sl_modifier_rune_lycan_body = sl_modifier_rune_lycan_body

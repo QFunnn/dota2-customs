@@ -8,7 +8,32 @@
 ]]
 
 
+-- utils/sunlight/ts_utils/SunLightExtend_HeroList.lua
+local ____debugRuntime = require("utils.debug_runtime")
+local debug = ____debugRuntime.safe_debug
 --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+____debugRuntime.register(
+	"utils/sunlight/ts_utils/SunLightExtend_HeroList.lua",
+	{
+		["8"] = "32:5",
+		["9"] = "33:15",
+		["10"] = "34:15",
+		["11"] = "35:9",
+		["12"] = "36:17",
+		["13"] = "37:17",
+		["16"] = "40:9",
+		["17"] = "32:40",
+		["18"] = "42:5",
+		["19"] = "43:9",
+		["20"] = "42:40",
+		["21"] = "45:5",
+		["22"] = "46:9",
+		["23"] = "45:43",
+		["24"] = "48:5",
+		["25"] = "49:9",
+		["26"] = "48:47",
+	}
+)
 local ____exports = {}
 do
 	CScriptHeroList.GetAllRealHeroes = function(self)

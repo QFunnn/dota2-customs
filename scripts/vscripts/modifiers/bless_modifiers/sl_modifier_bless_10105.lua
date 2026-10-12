@@ -8,10 +8,87 @@
 ]]
 
 
+-- modifiers/bless_modifiers/sl_modifier_bless_10105.lua
+local ____debugRuntime = require("utils.debug_runtime")
+local debug = ____debugRuntime.safe_debug
 local ____lualib = require("lualib_bundle")
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
 local __TS__Decorate = ____lualib.__TS__Decorate
+____debugRuntime.register(
+	"modifiers/bless_modifiers/sl_modifier_bless_10105.lua",
+	{
+		["10"] = "1:1",
+		["11"] = "1:10",
+		["12"] = "2:1",
+		["13"] = "2:10",
+		["14"] = "4:1",
+		["15"] = "5:14",
+		["16"] = "4:1",
+		["17"] = "5:38",
+		["18"] = "6:5",
+		["19"] = "7:9",
+		["20"] = "6:5",
+		["21"] = "10:5",
+		["22"] = "11:9",
+		["23"] = "12:9",
+		["24"] = "10:5",
+		["25"] = "15:5",
+		["26"] = "16:9",
+		["27"] = "15:5",
+		["28"] = "19:5",
+		["29"] = "20:9",
+		["30"] = "19:5",
+		["31"] = "25:5",
+		["32"] = "26:14",
+		["35"] = "27:14",
+		["36"] = "27:14",
+		["37"] = "27:14",
+		["39"] = "27:13",
+		["41"] = "27:44",
+		["42"] = "27:44",
+		["43"] = "27:44",
+		["45"] = "27:44",
+		["50"] = "28:9",
+		["51"] = "29:9",
+		["52"] = "25:5",
+		["53"] = "32:5",
+		["54"] = "33:9",
+		["55"] = "32:5",
+		["56"] = "36:5",
+		["57"] = "37:9",
+		["58"] = "36:5",
+		["59"] = "40:5",
+		["60"] = "41:9",
+		["61"] = "40:5",
+		["62"] = "44:5",
+		["63"] = "45:16",
+		["64"] = "45:40",
+		["65"] = "45:40",
+		["66"] = "45:40",
+		["68"] = "45:40",
+		["70"] = "45:40",
+		["72"] = "45:9",
+		["73"] = "44:5",
+		["74"] = "48:5",
+		["75"] = "49:16",
+		["76"] = "49:40",
+		["77"] = "49:40",
+		["78"] = "49:40",
+		["80"] = "49:40",
+		["82"] = "49:40",
+		["84"] = "49:9",
+		["85"] = "48:5",
+		["86"] = "5:14",
+		["87"] = "4:2",
+		["88"] = "4:2",
+		["89"] = "4:19",
+		["90"] = "4:2",
+		["92"] = "4:2",
+		["93"] = "5:14",
+		["95"] = "5:14",
+	}
+)
 local ____exports = {}
 local ____dota_ts_adapter = require("utils.dota_ts_adapter")
 local registerModifier = ____dota_ts_adapter.registerModifier
@@ -90,7 +167,7 @@ function sl_modifier_bless_10105.prototype.GetModifierTotalDamageOutgoing_Percen
 	return ____temp_12 * ____table__params_dmg_out_per_stack_9_11
 end
 sl_modifier_bless_10105 = __TS__Decorate(
-	{ registerModifier(nil, "modifiers/bless_modifiers/sl_modifier_bless_10105") },
+	{ registerModifier(nil, "modifiers/bless_modifiers/sl_modifier_bless_10105", nil, getfenv()) },
 	sl_modifier_bless_10105
 )
 ____exports.sl_modifier_bless_10105 = sl_modifier_bless_10105

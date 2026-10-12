@@ -8,7 +8,30 @@
 ]]
 
 
+-- utils/sunlight/ts_utils/SunLightExtend_Buff.lua
+local ____debugRuntime = require("utils.debug_runtime")
+local debug = ____debugRuntime.safe_debug
 --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+____debugRuntime.register(
+	"utils/sunlight/ts_utils/SunLightExtend_Buff.lua",
+	{
+		["8"] = "28:5",
+		["9"] = "29:15",
+		["10"] = "30:14",
+		["13"] = "31:9",
+		["14"] = "28:44",
+		["15"] = "34:5",
+		["16"] = "35:15",
+		["17"] = "36:14",
+		["20"] = "37:9",
+		["21"] = "34:49",
+		["22"] = "40:5",
+		["23"] = "41:15",
+		["24"] = "42:14",
+		["27"] = "43:9",
+		["28"] = "40:34",
+	}
+)
 local ____exports = {}
 do
 	CDOTA_Buff.GetAbilitySpecialValueFor = function(self, name)

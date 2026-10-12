@@ -8,11 +8,105 @@
 ]]
 
 
+-- modifiers/rune_modifiers/sl_modifier_rune_techies.lua
+local ____debugRuntime = require("utils.debug_runtime")
+local debug = ____debugRuntime.safe_debug
 local ____lualib = require("lualib_bundle")
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
 local __TS__ObjectAssign = ____lualib.__TS__ObjectAssign
 local __TS__Decorate = ____lualib.__TS__Decorate
+____debugRuntime.register(
+	"modifiers/rune_modifiers/sl_modifier_rune_techies.lua",
+	{
+		["11"] = "1:1",
+		["12"] = "1:10",
+		["13"] = "2:1",
+		["14"] = "2:10",
+		["16"] = "5:7",
+		["20"] = "12:1",
+		["21"] = "13:14",
+		["22"] = "12:1",
+		["23"] = "13:39",
+		["25"] = "13:47",
+		["26"] = "15:5",
+		["27"] = "12:1",
+		["28"] = "17:5",
+		["29"] = "18:9",
+		["30"] = "17:5",
+		["31"] = "26:5",
+		["32"] = "27:9",
+		["33"] = "27:16",
+		["34"] = "29:13",
+		["35"] = "30:13",
+		["36"] = "27:16",
+		["37"] = "26:5",
+		["38"] = "34:5",
+		["39"] = "35:15",
+		["40"] = "35:25",
+		["41"] = "37:13",
+		["42"] = "38:13",
+		["43"] = "35:25",
+		["44"] = "40:15",
+		["45"] = "40:25",
+		["46"] = "42:13",
+		["47"] = "43:13",
+		["48"] = "40:25",
+		["49"] = "45:9",
+		["50"] = "34:5",
+		["51"] = "48:5",
+		["52"] = "13:47",
+		["53"] = "50:14",
+		["56"] = "51:9",
+		["57"] = "52:9",
+		["58"] = "48:5",
+		["59"] = "55:5",
+		["60"] = "56:14",
+		["63"] = "57:15",
+		["64"] = "58:13",
+		["67"] = "59:9",
+		["68"] = "60:9",
+		["69"] = "55:5",
+		["70"] = "63:5",
+		["71"] = "64:9",
+		["72"] = "63:5",
+		["73"] = "68:5",
+		["74"] = "69:9",
+		["75"] = "68:5",
+		["76"] = "73:5",
+		["77"] = "74:15",
+		["78"] = "75:14",
+		["79"] = "75:31",
+		["81"] = "76:15",
+		["82"] = "78:15",
+		["83"] = "79:9",
+		["84"] = "73:5",
+		["85"] = "82:5",
+		["86"] = "13:47",
+		["87"] = "84:29",
+		["88"] = "84:29",
+		["89"] = "84:29",
+		["91"] = "84:29",
+		["93"] = "84:29",
+		["95"] = "84:9",
+		["96"] = "82:5",
+		["97"] = "87:5",
+		["98"] = "88:9",
+		["99"] = "88:16",
+		["100"] = "13:47",
+		["101"] = "88:16",
+		["102"] = "88:16",
+		["103"] = "87:5",
+		["104"] = "13:14",
+		["105"] = "12:2",
+		["106"] = "12:2",
+		["107"] = "12:19",
+		["108"] = "12:2",
+		["110"] = "12:2",
+		["111"] = "13:14",
+		["113"] = "13:14",
+	}
+)
 local ____exports = {}
 local ____dota_ts_adapter = require("utils.dota_ts_adapter")
 local registerModifier = ____dota_ts_adapter.registerModifier
@@ -119,7 +213,7 @@ function sl_modifier_rune_techies.prototype.AddCustomTransmitterData(self)
 	)
 end
 sl_modifier_rune_techies = __TS__Decorate(
-	{ registerModifier(nil, "modifiers/rune_modifiers/sl_modifier_rune_techies") },
+	{ registerModifier(nil, "modifiers/rune_modifiers/sl_modifier_rune_techies", nil, getfenv()) },
 	sl_modifier_rune_techies
 )
 ____exports.sl_modifier_rune_techies = sl_modifier_rune_techies

@@ -8,10 +8,100 @@
 ]]
 
 
+-- modifiers/rune_modifiers/_sl_modifier_rune_base.lua
+local ____debugRuntime = require("utils.debug_runtime")
+local debug = ____debugRuntime.safe_debug
 local ____lualib = require("lualib_bundle")
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
 local __TS__StringReplace = ____lualib.__TS__StringReplace
+____debugRuntime.register(
+	"modifiers/rune_modifiers/_sl_modifier_rune_base.lua",
+	{
+		["10"] = "1:1",
+		["11"] = "1:10",
+		["12"] = "3:1",
+		["13"] = "3:23",
+		["14"] = "3:1",
+		["15"] = "3:45",
+		["17"] = "3:53",
+		["18"] = "17:5",
+		["19"] = "18:9",
+		["20"] = "19:9",
+		["21"] = "20:9",
+		["22"] = "17:96",
+		["23"] = "23:5",
+		["24"] = "3:1",
+		["25"] = "4:5",
+		["26"] = "5:9",
+		["27"] = "4:5",
+		["28"] = "8:5",
+		["29"] = "9:15",
+		["30"] = "10:9",
+		["31"] = "8:5",
+		["32"] = "13:5",
+		["33"] = "14:9",
+		["34"] = "14:16",
+		["35"] = "14:39",
+		["36"] = "14:55",
+		["37"] = "14:16",
+		["38"] = "13:5",
+		["39"] = "35:5",
+		["40"] = "46:9",
+		["41"] = "46:9",
+		["42"] = "46:9",
+		["44"] = "60:15",
+		["45"] = "61:15",
+		["46"] = "62:15",
+		["47"] = "63:15",
+		["48"] = "63:30",
+		["49"] = "63:40",
+		["50"] = "63:30",
+		["51"] = "64:13",
+		["52"] = "65:13",
+		["53"] = "66:13",
+		["55"] = "68:9",
+		["56"] = "35:5",
+		["57"] = "74:5",
+		["58"] = "75:14",
+		["59"] = "75:36",
+		["61"] = "76:14",
+		["62"] = "77:17",
+		["63"] = "78:17",
+		["64"] = "78:25",
+		["65"] = "78:17",
+		["67"] = "78:17",
+		["69"] = "80:13",
+		["71"] = "82:9",
+		["72"] = "74:5",
+		["73"] = "85:5",
+		["74"] = "86:9",
+		["75"] = "87:9",
+		["76"] = "85:5",
+		["77"] = "90:5",
+		["78"] = "91:9",
+		["79"] = "90:5",
+		["80"] = "94:5",
+		["81"] = "95:14",
+		["84"] = "96:15",
+		["85"] = "97:15",
+		["86"] = "98:30",
+		["87"] = "98:30",
+		["88"] = "98:30",
+		["90"] = "98:15",
+		["91"] = "99:14",
+		["92"] = "100:13",
+		["95"] = "103:9",
+		["96"] = "104:9",
+		["97"] = "94:5",
+		["98"] = "107:5",
+		["99"] = "108:9",
+		["100"] = "107:5",
+		["101"] = "111:5",
+		["102"] = "112:9",
+		["103"] = "111:5",
+	}
+)
 local ____exports = {}
 local ____sl_modifier_base = require("modifiers.sl_modifier_base")
 local SLModifierBase = ____sl_modifier_base.SLModifierBase
@@ -74,7 +164,11 @@ function sl_modifier_rune_base.prototype._GetRuneSpecialValue(self, key)
 	end
 	if not self._special_values[key] then
 		if IsServer() then
-			SLError(nil, (("符文特殊值不存在:" .. self:_GetRuneType()) .. " ") .. key)
+			SLError(
+				(("符文特殊值不存在:" .. self:_GetRuneType()) .. " ") .. key,
+				nil,
+				"modifiers/rune_modifiers/_sl_modifier_rune_base.ts:78:17"
+			)
 		end
 		return 0
 	end
@@ -99,7 +193,11 @@ function sl_modifier_rune_base.prototype._SyncSettingData(self)
 	end
 	local rune_setting = ____setting_rune_type_2
 	if not rune_setting then
-		SLError(nil, "符文配置不存在: " .. rune_type)
+		SLError(
+			"符文配置不存在: " .. rune_type,
+			nil,
+			"modifiers/rune_modifiers/_sl_modifier_rune_base.ts:100:13"
+		)
 		return
 	end
 	self._special_values = rune_setting.special_values

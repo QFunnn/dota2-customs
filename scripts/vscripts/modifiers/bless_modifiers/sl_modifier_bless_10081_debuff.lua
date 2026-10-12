@@ -8,6 +8,9 @@
 ]]
 
 
+-- modifiers/bless_modifiers/sl_modifier_bless_10081_debuff.lua
+local ____debugRuntime = require("utils.debug_runtime")
+local debug = ____debugRuntime.safe_debug
 local ____lualib = require("lualib_bundle")
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
@@ -15,6 +18,86 @@ local __TS__SparseArrayNew = ____lualib.__TS__SparseArrayNew
 local __TS__SparseArrayPush = ____lualib.__TS__SparseArrayPush
 local __TS__SparseArraySpread = ____lualib.__TS__SparseArraySpread
 local __TS__Decorate = ____lualib.__TS__Decorate
+____debugRuntime.register(
+	"modifiers/bless_modifiers/sl_modifier_bless_10081_debuff.lua",
+	{
+		["13"] = "1:1",
+		["14"] = "1:10",
+		["15"] = "2:1",
+		["16"] = "2:10",
+		["19"] = "8:1",
+		["20"] = "9:14",
+		["21"] = "8:1",
+		["22"] = "9:45",
+		["23"] = "12:5",
+		["24"] = "13:9",
+		["25"] = "12:5",
+		["26"] = "16:5",
+		["27"] = "17:9",
+		["28"] = "16:5",
+		["29"] = "20:5",
+		["30"] = "21:9",
+		["31"] = "20:5",
+		["32"] = "24:5",
+		["33"] = "25:9",
+		["34"] = "24:5",
+		["35"] = "28:5",
+		["36"] = "29:9",
+		["37"] = "28:5",
+		["38"] = "32:5",
+		["39"] = "33:9",
+		["40"] = "32:5",
+		["41"] = "37:5",
+		["42"] = "38:9",
+		["43"] = "37:5",
+		["44"] = "41:5",
+		["45"] = "42:17",
+		["47"] = "42:9",
+		["48"] = "41:5",
+		["49"] = "45:5",
+		["50"] = "46:9",
+		["51"] = "45:5",
+		["52"] = "49:5",
+		["53"] = "50:14",
+		["56"] = "51:9",
+		["57"] = "52:28",
+		["58"] = "52:37",
+		["59"] = "52:37",
+		["60"] = "52:37",
+		["62"] = "52:37",
+		["64"] = "52:37",
+		["66"] = "52:9",
+		["67"] = "9:53",
+		["68"] = "54:9",
+		["69"] = "49:5",
+		["70"] = "57:5",
+		["71"] = "58:14",
+		["74"] = "59:28",
+		["75"] = "59:37",
+		["76"] = "59:37",
+		["77"] = "59:37",
+		["79"] = "59:37",
+		["81"] = "59:37",
+		["83"] = "59:9",
+		["84"] = "9:53",
+		["85"] = "61:9",
+		["86"] = "57:5",
+		["87"] = "64:5",
+		["88"] = "65:9",
+		["89"] = "64:5",
+		["90"] = "68:5",
+		["91"] = "69:9",
+		["92"] = "68:5",
+		["93"] = "9:14",
+		["94"] = "8:2",
+		["95"] = "8:2",
+		["96"] = "8:19",
+		["97"] = "8:2",
+		["99"] = "8:2",
+		["100"] = "9:14",
+		["102"] = "9:14",
+	}
+)
 local ____exports = {}
 local ____dota_ts_adapter = require("utils.dota_ts_adapter")
 local registerModifier = ____dota_ts_adapter.registerModifier
@@ -97,7 +180,7 @@ function sl_modifier_bless_10081_debuff.prototype.AddCustomTransmitterData(self)
 	return { value = self._reduce_pct }
 end
 sl_modifier_bless_10081_debuff = __TS__Decorate(
-	{ registerModifier(nil, "modifiers/bless_modifiers/sl_modifier_bless_10081_debuff") },
+	{ registerModifier(nil, "modifiers/bless_modifiers/sl_modifier_bless_10081_debuff", nil, getfenv()) },
 	sl_modifier_bless_10081_debuff
 )
 ____exports.sl_modifier_bless_10081_debuff = sl_modifier_bless_10081_debuff

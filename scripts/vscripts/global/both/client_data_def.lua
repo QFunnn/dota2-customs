@@ -8,4 +8,8 @@
 ]]
 
 
+-- global/both/client_data_def.lua
+local ____debugRuntime = require("utils.debug_runtime")
+local debug = ____debugRuntime.safe_debug
 --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+____debugRuntime.register("global/both/client_data_def.lua", {})

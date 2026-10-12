@@ -8,4 +8,8 @@
 ]]
 
 
+-- client/client_kv.lua
+local ____debugRuntime = require("utils.debug_runtime")
+local debug = ____debugRuntime.safe_debug
 --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+____debugRuntime.register("client/client_kv.lua", {})

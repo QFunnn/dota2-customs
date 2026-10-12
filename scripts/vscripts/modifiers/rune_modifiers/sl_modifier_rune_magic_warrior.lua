@@ -8,10 +8,57 @@
 ]]
 
 
+-- modifiers/rune_modifiers/sl_modifier_rune_magic_warrior.lua
+local ____debugRuntime = require("utils.debug_runtime")
+local debug = ____debugRuntime.safe_debug
 local ____lualib = require("lualib_bundle")
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
 local __TS__Decorate = ____lualib.__TS__Decorate
+____debugRuntime.register(
+	"modifiers/rune_modifiers/sl_modifier_rune_magic_warrior.lua",
+	{
+		["10"] = "1:1",
+		["11"] = "1:10",
+		["12"] = "2:1",
+		["13"] = "2:10",
+		["15"] = "7:1",
+		["16"] = "8:14",
+		["17"] = "7:1",
+		["18"] = "8:45",
+		["19"] = "9:5",
+		["20"] = "10:9",
+		["21"] = "9:5",
+		["22"] = "13:5",
+		["23"] = "14:9",
+		["24"] = "14:16",
+		["25"] = "16:13",
+		["26"] = "17:13",
+		["27"] = "14:16",
+		["28"] = "13:5",
+		["29"] = "21:5",
+		["30"] = "22:15",
+		["31"] = "22:24",
+		["32"] = "24:13",
+		["33"] = "25:13",
+		["34"] = "22:24",
+		["35"] = "27:15",
+		["36"] = "27:24",
+		["37"] = "29:13",
+		["38"] = "30:13",
+		["39"] = "27:24",
+		["40"] = "32:9",
+		["41"] = "21:5",
+		["42"] = "8:14",
+		["43"] = "7:2",
+		["44"] = "7:2",
+		["45"] = "7:19",
+		["46"] = "7:2",
+		["48"] = "7:2",
+		["49"] = "8:14",
+		["51"] = "8:14",
+	}
+)
 local ____exports = {}
 local ____dota_ts_adapter = require("utils.dota_ts_adapter")
 local registerModifier = ____dota_ts_adapter.registerModifier
@@ -52,7 +99,7 @@ function sl_modifier_rune_magic_warrior.prototype.GetModifierHealthBonus(self)
 	return int_hp + str_hp
 end
 sl_modifier_rune_magic_warrior = __TS__Decorate(
-	{ registerModifier(nil, "modifiers/rune_modifiers/sl_modifier_rune_magic_warrior") },
+	{ registerModifier(nil, "modifiers/rune_modifiers/sl_modifier_rune_magic_warrior", nil, getfenv()) },
 	sl_modifier_rune_magic_warrior
 )
 ____exports.sl_modifier_rune_magic_warrior = sl_modifier_rune_magic_warrior

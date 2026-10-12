@@ -99,27 +99,40 @@ if not _G.__CUSTOM_SERVER_KEY_OK then
 		function Precache(context) end
 	end
 else
-	_G.PUBLISH_TIMESTAMP = "2026-9-21 17:17"
-
-	print("loading addon dota_super_mid compiled@2026-9-21 17:16:46")
-	local ____lualib = require("lualib_bundle")
-	local __TS__ObjectAssign = ____lualib.__TS__ObjectAssign
-	local ____exports = {}
-	require("_pre_init")
-	require("utils.sunlight.index")
-	require("utils._index")
-	require("extends._index_server")
-	require("global._index")
-	local _____index = require("modules._index")
-	local ActivateModules = _____index.ActivateModules
-	local ____precache = require("precache")
-	local Precache = ____precache.default
-	require("modifiers._loader")
-	__TS__ObjectAssign(getfenv(), {
-		Activate = function()
-			ActivateModules(nil)
-		end,
-		Precache = Precache,
-	})
-	return ____exports
+	local loader, err = loadstring(
+		[=[_G.ONLINE_TEST_MODE = false; _G.PUBLISH_TIMESTAMP = "2026-10-12 10:46"; print('loading addon dota_super_mid compiled@2026-10-12 10:45:47'); -- addon_game_mode.lua
+local ____debugRuntime = require("utils.debug_runtime")
+local debug = ____debugRuntime.safe_debug
+local ____lualib = require("lualib_bundle")
+local __TS__ObjectAssign = ____lualib.__TS__ObjectAssign
+____debugRuntime.register("addon_game_mode.lua", {["8"] = "2:8",["9"] = "4:8",["10"] = "6:8",["11"] = "8:8",["12"] = "10:8",["13"] = "11:1",["14"] = "11:10",["15"] = "12:1",["16"] = "12:8",["17"] = "14:8",["18"] = "15:1",["19"] = "15:15",["20"] = "15:26",["21"] = "17:5",["22"] = "18:9",["23"] = "17:15",["24"] = "21:5",["25"] = "15:26",["26"] = "15:1"});
+local ____exports = {}
+require("utils.error_collect")
+require("utils.sunlight.index")
+require("utils._index")
+require("extends._index_server")
+require("global._index")
+local _____index = require("modules._index")
+local ActivateModules = _____index.ActivateModules
+local ____precache = require("precache")
+local Precache = ____precache.default
+require("modifiers._loader")
+__TS__ObjectAssign(
+    getfenv(),
+    {
+        Activate = function()
+            ActivateModules(nil)
+        end,
+        Precache = Precache
+    }
+)
+return ____exports
+]=],
+		"@addon_game_mode.lua"
+	)
+	if not loader then
+		error(err)
+	end
+	setfenv(loader, getfenv(1))
+	return loader(...)
 end

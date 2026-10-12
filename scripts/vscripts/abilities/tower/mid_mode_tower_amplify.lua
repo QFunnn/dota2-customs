@@ -8,10 +8,146 @@
 ]]
 
 
+-- abilities/tower/mid_mode_tower_amplify.lua
+local ____debugRuntime = require("utils.debug_runtime")
+local debug = ____debugRuntime.safe_debug
 local ____lualib = require("lualib_bundle")
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
 local __TS__Decorate = ____lualib.__TS__Decorate
+____debugRuntime.register(
+	"abilities/tower/mid_mode_tower_amplify.lua",
+	{
+		["10"] = "1:1",
+		["11"] = "1:10",
+		["12"] = "2:1",
+		["13"] = "2:10",
+		["14"] = "2:27",
+		["15"] = "2:40",
+		["16"] = "4:1",
+		["17"] = "5:14",
+		["18"] = "4:1",
+		["19"] = "5:37",
+		["20"] = "6:5",
+		["21"] = "7:15",
+		["22"] = "8:13",
+		["23"] = "9:13",
+		["25"] = "6:5",
+		["26"] = "5:14",
+		["27"] = "4:2",
+		["28"] = "4:2",
+		["29"] = "4:2",
+		["31"] = "4:2",
+		["32"] = "5:14",
+		["34"] = "5:14",
+		["35"] = "13:1",
+		["36"] = "14:14",
+		["37"] = "13:1",
+		["38"] = "14:46",
+		["39"] = "15:5",
+		["40"] = "16:9",
+		["41"] = "15:5",
+		["42"] = "19:5",
+		["43"] = "20:9",
+		["44"] = "20:16",
+		["45"] = "20:16",
+		["46"] = "20:16",
+		["47"] = "20:16",
+		["48"] = "20:16",
+		["49"] = "20:16",
+		["50"] = "20:16",
+		["52"] = "20:16",
+		["53"] = "19:5",
+		["54"] = "34:5",
+		["55"] = "35:9",
+		["56"] = "34:5",
+		["57"] = "42:5",
+		["58"] = "43:9",
+		["59"] = "44:9",
+		["60"] = "45:14",
+		["63"] = "46:15",
+		["64"] = "47:14",
+		["67"] = "48:9",
+		["68"] = "48:33",
+		["69"] = "48:62",
+		["71"] = "48:62",
+		["73"] = "48:9",
+		["74"] = "42:5",
+		["75"] = "55:5",
+		["76"] = "56:14",
+		["79"] = "57:15",
+		["80"] = "58:15",
+		["81"] = "59:15",
+		["82"] = "60:13",
+		["83"] = "61:17",
+		["84"] = "62:23",
+		["85"] = "63:22",
+		["88"] = "64:23",
+		["89"] = "65:17",
+		["92"] = "55:5",
+		["93"] = "70:5",
+		["94"] = "71:14",
+		["97"] = "72:15",
+		["98"] = "73:15",
+		["99"] = "75:13",
+		["100"] = "76:19",
+		["101"] = "77:19",
+		["102"] = "78:17",
+		["104"] = "79:21",
+		["105"] = "80:22",
+		["107"] = "81:21",
+		["110"] = "83:22",
+		["112"] = "84:21",
+		["119"] = "89:17",
+		["120"] = "90:17",
+		["121"] = "90:36",
+		["122"] = "90:43",
+		["123"] = "91:21",
+		["124"] = "90:43",
+		["125"] = "90:17",
+		["128"] = "70:5",
+		["129"] = "101:5",
+		["130"] = "102:14",
+		["131"] = "102:50",
+		["133"] = "103:15",
+		["134"] = "104:13",
+		["135"] = "104:43",
+		["137"] = "105:15",
+		["138"] = "106:9",
+		["139"] = "101:5",
+		["140"] = "109:5",
+		["141"] = "110:9",
+		["142"] = "109:5",
+		["143"] = "113:5",
+		["144"] = "114:16",
+		["146"] = "114:16",
+		["148"] = "114:9",
+		["149"] = "113:5",
+		["150"] = "117:5",
+		["151"] = "118:16",
+		["153"] = "118:16",
+		["155"] = "118:9",
+		["156"] = "117:5",
+		["157"] = "121:5",
+		["158"] = "122:16",
+		["160"] = "122:16",
+		["162"] = "122:9",
+		["163"] = "121:5",
+		["164"] = "125:5",
+		["165"] = "126:16",
+		["167"] = "126:16",
+		["169"] = "126:9",
+		["170"] = "125:5",
+		["171"] = "14:14",
+		["172"] = "13:2",
+		["173"] = "13:2",
+		["174"] = "13:19",
+		["175"] = "13:2",
+		["177"] = "13:2",
+		["178"] = "14:14",
+		["180"] = "14:14",
+	}
+)
 local ____exports = {}
 local ____sl_modifier_base = require("modifiers.sl_modifier_base")
 local SLModifierBase = ____sl_modifier_base.SLModifierBase
@@ -29,7 +165,7 @@ function mid_mode_tower_amplify.prototype.GetIntrinsicModifierName(self)
 		return ____exports.modifier_mid_mode_tower_amplify.name
 	end
 end
-mid_mode_tower_amplify = __TS__Decorate({ registerAbility(nil) }, mid_mode_tower_amplify)
+mid_mode_tower_amplify = __TS__Decorate({ registerAbility(nil, nil, getfenv()) }, mid_mode_tower_amplify)
 ____exports.mid_mode_tower_amplify = mid_mode_tower_amplify
 ____exports.modifier_mid_mode_tower_amplify = __TS__Class()
 local modifier_mid_mode_tower_amplify = ____exports.modifier_mid_mode_tower_amplify
@@ -164,7 +300,9 @@ function modifier_mid_mode_tower_amplify.prototype.GetModifierMagicalResistanceB
 	end
 	return ____temp_6
 end
-modifier_mid_mode_tower_amplify =
-	__TS__Decorate({ registerModifier(nil, "abilities/tower/mid_mode_tower_amplify") }, modifier_mid_mode_tower_amplify)
+modifier_mid_mode_tower_amplify = __TS__Decorate(
+	{ registerModifier(nil, "abilities/tower/mid_mode_tower_amplify", nil, getfenv()) },
+	modifier_mid_mode_tower_amplify
+)
 ____exports.modifier_mid_mode_tower_amplify = modifier_mid_mode_tower_amplify
 return ____exports

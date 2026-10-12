@@ -8,10 +8,109 @@
 ]]
 
 
+-- modifiers/game_modifiers/sl_modifier_illusion_fix.lua
+local ____debugRuntime = require("utils.debug_runtime")
+local debug = ____debugRuntime.safe_debug
 local ____lualib = require("lualib_bundle")
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
 local __TS__Decorate = ____lualib.__TS__Decorate
+____debugRuntime.register(
+	"modifiers/game_modifiers/sl_modifier_illusion_fix.lua",
+	{
+		["10"] = "1:1",
+		["11"] = "1:10",
+		["12"] = "2:1",
+		["13"] = "2:10",
+		["15"] = "7:1",
+		["16"] = "8:14",
+		["17"] = "7:1",
+		["18"] = "8:39",
+		["19"] = "9:5",
+		["20"] = "10:9",
+		["21"] = "10:16",
+		["22"] = "10:16",
+		["23"] = "10:16",
+		["24"] = "10:16",
+		["25"] = "10:16",
+		["26"] = "10:16",
+		["27"] = "10:16",
+		["29"] = "10:16",
+		["30"] = "9:5",
+		["31"] = "22:5",
+		["32"] = "23:16",
+		["33"] = "23:16",
+		["34"] = "23:16",
+		["36"] = "23:16",
+		["38"] = "23:16",
+		["40"] = "23:9",
+		["41"] = "22:5",
+		["42"] = "26:5",
+		["43"] = "27:16",
+		["44"] = "27:16",
+		["45"] = "27:16",
+		["47"] = "27:16",
+		["49"] = "27:16",
+		["51"] = "27:9",
+		["52"] = "26:5",
+		["53"] = "30:5",
+		["54"] = "31:16",
+		["55"] = "31:16",
+		["56"] = "31:16",
+		["58"] = "31:16",
+		["60"] = "31:16",
+		["62"] = "31:9",
+		["63"] = "30:5",
+		["64"] = "34:5",
+		["65"] = "35:16",
+		["66"] = "35:16",
+		["67"] = "35:16",
+		["69"] = "35:16",
+		["71"] = "35:16",
+		["73"] = "35:9",
+		["74"] = "34:5",
+		["75"] = "38:5",
+		["76"] = "39:16",
+		["77"] = "39:16",
+		["78"] = "39:16",
+		["80"] = "39:16",
+		["82"] = "39:16",
+		["84"] = "39:9",
+		["85"] = "38:5",
+		["86"] = "42:5",
+		["87"] = "43:16",
+		["88"] = "43:16",
+		["89"] = "43:16",
+		["91"] = "43:16",
+		["93"] = "43:16",
+		["95"] = "43:9",
+		["96"] = "42:5",
+		["97"] = "46:5",
+		["98"] = "47:16",
+		["99"] = "47:16",
+		["100"] = "47:16",
+		["102"] = "47:16",
+		["104"] = "47:16",
+		["106"] = "47:9",
+		["107"] = "46:5",
+		["108"] = "50:5",
+		["109"] = "51:16",
+		["110"] = "51:16",
+		["111"] = "51:16",
+		["113"] = "51:16",
+		["115"] = "51:16",
+		["117"] = "51:9",
+		["118"] = "50:5",
+		["119"] = "8:14",
+		["120"] = "7:2",
+		["121"] = "7:2",
+		["122"] = "7:19",
+		["123"] = "7:2",
+		["125"] = "7:2",
+		["126"] = "8:14",
+		["128"] = "8:14",
+	}
+)
 local ____exports = {}
 local ____dota_ts_adapter = require("utils.dota_ts_adapter")
 local registerModifier = ____dota_ts_adapter.registerModifier
@@ -123,7 +222,7 @@ function sl_modifier_illusion_fix.prototype.GetModifierAttackRangeBonus(self)
 	return ____table__params_diff_atk_range_21_23
 end
 sl_modifier_illusion_fix = __TS__Decorate(
-	{ registerModifier(nil, "modifiers/game_modifiers/sl_modifier_illusion_fix") },
+	{ registerModifier(nil, "modifiers/game_modifiers/sl_modifier_illusion_fix", nil, getfenv()) },
 	sl_modifier_illusion_fix
 )
 ____exports.sl_modifier_illusion_fix = sl_modifier_illusion_fix

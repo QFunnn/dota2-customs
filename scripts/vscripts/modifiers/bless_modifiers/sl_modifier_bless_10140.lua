@@ -8,10 +8,65 @@
 ]]
 
 
+-- modifiers/bless_modifiers/sl_modifier_bless_10140.lua
+local ____debugRuntime = require("utils.debug_runtime")
+local debug = ____debugRuntime.safe_debug
 local ____lualib = require("lualib_bundle")
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
 local __TS__Decorate = ____lualib.__TS__Decorate
+____debugRuntime.register(
+	"modifiers/bless_modifiers/sl_modifier_bless_10140.lua",
+	{
+		["10"] = "1:1",
+		["11"] = "1:10",
+		["12"] = "3:1",
+		["13"] = "3:10",
+		["14"] = "5:1",
+		["15"] = "6:14",
+		["16"] = "5:1",
+		["17"] = "6:45",
+		["18"] = "7:5",
+		["19"] = "8:9",
+		["20"] = "7:5",
+		["21"] = "11:5",
+		["22"] = "12:9",
+		["23"] = "11:5",
+		["24"] = "15:5",
+		["25"] = "16:9",
+		["26"] = "15:5",
+		["27"] = "19:5",
+		["28"] = "20:14",
+		["31"] = "21:15",
+		["32"] = "22:13",
+		["33"] = "23:13",
+		["35"] = "6:53",
+		["36"] = "19:5",
+		["37"] = "28:5",
+		["38"] = "6:53",
+		["39"] = "30:9",
+		["40"] = "31:9",
+		["41"] = "28:5",
+		["42"] = "35:5",
+		["43"] = "36:14",
+		["46"] = "37:9",
+		["47"] = "37:9",
+		["49"] = "38:14",
+		["50"] = "39:13",
+		["53"] = "43:15",
+		["54"] = "44:14",
+		["55"] = "46:13",
+		["57"] = "35:5",
+		["58"] = "6:14",
+		["59"] = "5:2",
+		["60"] = "5:2",
+		["61"] = "5:19",
+		["62"] = "5:2",
+		["64"] = "5:2",
+		["65"] = "6:14",
+		["67"] = "6:14",
+	}
+)
 local ____exports = {}
 local ____dota_ts_adapter = require("utils.dota_ts_adapter")
 local registerModifier = ____dota_ts_adapter.registerModifier
@@ -62,7 +117,7 @@ function sl_modifier_bless_10140_zombie.prototype.OnIntervalThink(self)
 	end
 end
 sl_modifier_bless_10140_zombie = __TS__Decorate(
-	{ registerModifier(nil, "modifiers/bless_modifiers/sl_modifier_bless_10140") },
+	{ registerModifier(nil, "modifiers/bless_modifiers/sl_modifier_bless_10140", nil, getfenv()) },
 	sl_modifier_bless_10140_zombie
 )
 ____exports.sl_modifier_bless_10140_zombie = sl_modifier_bless_10140_zombie

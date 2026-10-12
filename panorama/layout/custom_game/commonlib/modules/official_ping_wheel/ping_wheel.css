@@ -1,0 +1,174 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1a5b3bb 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+#official_ping_wheel,.official-ping-wheel-root
+{
+	width: 100%;
+	height: 100%;
+	z-index: 100;
+}
+
+.official-ping-wheel
+{
+	width: 400px;
+	height: 400px;
+	overflow: noclip;
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0s;
+	transition-delay: 0s;
+	transform-origin: 50% 50%;
+}
+
+.official-ping-wheel.minimap .ping-name
+{
+	transform: scale3d(1.5, 1.5, 1);
+	transform-origin: 50% 0%;
+}
+
+.official-ping-wheel.minimap .ping-option
+{
+	opacity: 0.6;
+	saturation: 0.8;
+}
+
+.official-ping-wheel.open
+{
+	opacity: 1;
+	transition-duration: 0.25s;
+	transition-delay: 0.05s;
+}
+
+.official-ping-wheel .ping-circle
+{
+	width: 200px;
+	height: 200px;
+	x: 100px;
+	y: 100px;
+}
+
+.official-ping-wheel .ping-image
+{
+	width: 100%;
+	height: 100%;
+	background-size: 100% 100%;
+}
+
+.official-ping-wheel .ping-bottom
+{
+	background-image: url("s2r://panorama/images/hud/ping_wheel/large/minimap_wheel_background_bottomlayer_png.vtex");
+	opacity: 0.7;
+}
+
+.official-ping-wheel .ping-background
+{
+	background-image: url("s2r://panorama/images/hud/ping_wheel/large/minimap_wheel_background_png.vtex");
+	opacity: 0.4;
+}
+
+.official-ping-wheel .ping-lines
+{
+	background-image: url("s2r://panorama/images/hud/ping_wheel/large/minimap_wheel_backlines_png.vtex");
+	opacity: 0.3;
+}
+
+.official-ping-wheel .ping-separator
+{
+	background-image: url("s2r://panorama/images/hud/ping_wheel/large/minimap_wheel_backline_single_png.vtex");
+	opacity: 0.6;
+}
+
+.official-ping-wheel .ping-edge
+{
+	background-image: url("s2r://panorama/images/hud/ping_wheel/large/minimap_wheel_edge_png.vtex");
+	opacity: 0.5;
+}
+
+.official-ping-wheel .ping-slice
+{
+	background-image: url("s2r://panorama/images/hud/ping_wheel/large/minimap_wheel_slice_hover_png.vtex");
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 0.05s;
+}
+
+.official-ping-wheel .ping-slice.thin
+{
+	background-image: url("s2r://panorama/images/hud/ping_wheel/large/minimap_wheel_slicethin_hover_png.vtex");
+}
+
+.official-ping-wheel .ping-slice.highlighted
+{
+	opacity: 0.9;
+}
+
+.official-ping-wheel .ping-center
+{
+	background-image: url("s2r://panorama/images/hud/ping_wheel/large/minimap_wheel_middlebutton_png.vtex");
+	opacity: 0.5;
+}
+
+.official-ping-wheel .ping-center-pressed
+{
+	background-image: url("s2r://panorama/images/hud/ping_wheel/large/minimap_wheel_middlebutton_pressed_png.vtex");
+	opacity: 0.9;
+	transition-property: opacity;
+	transition-duration: 0.05s;
+}
+
+.official-ping-wheel.selected .ping-center-pressed
+{
+	opacity: 0;
+}
+
+.official-ping-wheel .ping-center-x
+{
+	background-image: url("s2r://panorama/images/hud/ping_wheel/large/minimap_wheel_x_png.vtex");
+}
+
+.official-ping-wheel .ping-option
+{
+	opacity: 0.5;
+	saturation: 0.7;
+	transition-property: opacity, saturation;
+	transition-duration: 0.05s;
+}
+
+.official-ping-wheel .ping-option.highlighted
+{
+	opacity: 1;
+	saturation: 1;
+}
+
+.official-ping-wheel .ping-name
+{
+	x: 0px;
+	y: 310px;
+	width: 400px;
+	height: 50px;
+	opacity: 0;
+	color: white;
+	font-weight: bold;
+	font-size: 20px;
+	text-align: center;
+	text-transform: uppercase;
+	text-shadow: 3px 3px 3px black;
+	text-overflow: shrink;
+	transition-property: opacity;
+	transition-duration: 0.1s;
+	transition-delay: 0.1s;
+}
+
+.official-ping-wheel.selected .ping-name
+{
+	opacity: 1;
+}

@@ -8,10 +8,80 @@
 ]]
 
 
+-- modifiers/bless_modifiers/sl_modifier_bless_10131.lua
+local ____debugRuntime = require("utils.debug_runtime")
+local debug = ____debugRuntime.safe_debug
 local ____lualib = require("lualib_bundle")
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
 local __TS__Decorate = ____lualib.__TS__Decorate
+____debugRuntime.register(
+	"modifiers/bless_modifiers/sl_modifier_bless_10131.lua",
+	{
+		["10"] = "1:1",
+		["11"] = "1:10",
+		["12"] = "3:1",
+		["13"] = "3:10",
+		["14"] = "3:40",
+		["15"] = "5:1",
+		["16"] = "6:14",
+		["17"] = "5:1",
+		["18"] = "6:38",
+		["19"] = "7:5",
+		["20"] = "8:9",
+		["21"] = "7:5",
+		["22"] = "11:5",
+		["23"] = "12:9",
+		["24"] = "11:5",
+		["25"] = "15:5",
+		["26"] = "16:16",
+		["27"] = "16:16",
+		["28"] = "16:16",
+		["30"] = "16:9",
+		["31"] = "15:5",
+		["32"] = "19:5",
+		["33"] = "20:9",
+		["34"] = "19:5",
+		["35"] = "6:14",
+		["36"] = "5:2",
+		["37"] = "5:2",
+		["38"] = "5:19",
+		["39"] = "5:2",
+		["41"] = "5:2",
+		["42"] = "6:14",
+		["44"] = "6:14",
+		["45"] = "28:1",
+		["46"] = "29:14",
+		["47"] = "28:1",
+		["48"] = "29:45",
+		["49"] = "30:5",
+		["50"] = "31:9",
+		["51"] = "30:5",
+		["52"] = "34:5",
+		["53"] = "35:9",
+		["54"] = "34:5",
+		["55"] = "38:5",
+		["56"] = "39:9",
+		["57"] = "38:5",
+		["58"] = "42:5",
+		["59"] = "43:16",
+		["60"] = "43:16",
+		["61"] = "43:16",
+		["63"] = "43:9",
+		["64"] = "42:5",
+		["65"] = "46:5",
+		["66"] = "47:9",
+		["67"] = "46:5",
+		["68"] = "29:14",
+		["69"] = "28:2",
+		["70"] = "28:2",
+		["71"] = "28:19",
+		["72"] = "28:2",
+		["74"] = "28:2",
+		["75"] = "29:14",
+		["77"] = "29:14",
+	}
+)
 local ____exports = {}
 local ____dota_ts_adapter = require("utils.dota_ts_adapter")
 local registerModifier = ____dota_ts_adapter.registerModifier
@@ -39,7 +109,7 @@ function sl_modifier_bless_10131.prototype.GetTexture(self)
 	return "buff/bless/10131"
 end
 sl_modifier_bless_10131 = __TS__Decorate(
-	{ registerModifier(nil, "modifiers/bless_modifiers/sl_modifier_bless_10131") },
+	{ registerModifier(nil, "modifiers/bless_modifiers/sl_modifier_bless_10131", nil, getfenv()) },
 	sl_modifier_bless_10131
 )
 ____exports.sl_modifier_bless_10131 = sl_modifier_bless_10131
@@ -67,7 +137,7 @@ function sl_modifier_bless_10131_debuff.prototype.GetTexture(self)
 	return "buff/bless/10131"
 end
 sl_modifier_bless_10131_debuff = __TS__Decorate(
-	{ registerModifier(nil, "modifiers/bless_modifiers/sl_modifier_bless_10131") },
+	{ registerModifier(nil, "modifiers/bless_modifiers/sl_modifier_bless_10131", nil, getfenv()) },
 	sl_modifier_bless_10131_debuff
 )
 ____exports.sl_modifier_bless_10131_debuff = sl_modifier_bless_10131_debuff

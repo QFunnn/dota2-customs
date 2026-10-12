@@ -8,10 +8,43 @@
 ]]
 
 
+-- modifiers/bless_modifiers/sl_modifier_bless_10009.lua
+local ____debugRuntime = require("utils.debug_runtime")
+local debug = ____debugRuntime.safe_debug
 local ____lualib = require("lualib_bundle")
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
 local __TS__Decorate = ____lualib.__TS__Decorate
+____debugRuntime.register(
+	"modifiers/bless_modifiers/sl_modifier_bless_10009.lua",
+	{
+		["10"] = "1:1",
+		["11"] = "1:10",
+		["12"] = "2:1",
+		["13"] = "2:10",
+		["15"] = "7:1",
+		["16"] = "8:14",
+		["17"] = "7:1",
+		["18"] = "8:38",
+		["19"] = "9:5",
+		["20"] = "10:9",
+		["21"] = "9:5",
+		["22"] = "13:5",
+		["23"] = "14:9",
+		["24"] = "13:5",
+		["25"] = "18:5",
+		["26"] = "19:9",
+		["27"] = "18:5",
+		["28"] = "8:14",
+		["29"] = "7:2",
+		["30"] = "7:2",
+		["31"] = "7:19",
+		["32"] = "7:2",
+		["34"] = "7:2",
+		["35"] = "8:14",
+		["37"] = "8:14",
+	}
+)
 local ____exports = {}
 local ____dota_ts_adapter = require("utils.dota_ts_adapter")
 local registerModifier = ____dota_ts_adapter.registerModifier
@@ -32,7 +65,7 @@ function sl_modifier_bless_10009.prototype.GetAttributes(self)
 	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
 sl_modifier_bless_10009 = __TS__Decorate(
-	{ registerModifier(nil, "modifiers/bless_modifiers/sl_modifier_bless_10009") },
+	{ registerModifier(nil, "modifiers/bless_modifiers/sl_modifier_bless_10009", nil, getfenv()) },
 	sl_modifier_bless_10009
 )
 ____exports.sl_modifier_bless_10009 = sl_modifier_bless_10009

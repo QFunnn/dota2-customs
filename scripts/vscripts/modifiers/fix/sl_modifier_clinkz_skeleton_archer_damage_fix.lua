@@ -8,10 +8,67 @@
 ]]
 
 
+-- modifiers/fix/sl_modifier_clinkz_skeleton_archer_damage_fix.lua
+local ____debugRuntime = require("utils.debug_runtime")
+local debug = ____debugRuntime.safe_debug
 local ____lualib = require("lualib_bundle")
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
 local __TS__Decorate = ____lualib.__TS__Decorate
+____debugRuntime.register(
+	"modifiers/fix/sl_modifier_clinkz_skeleton_archer_damage_fix.lua",
+	{
+		["10"] = "1:1",
+		["11"] = "1:10",
+		["12"] = "2:1",
+		["13"] = "2:10",
+		["14"] = "5:1",
+		["15"] = "6:14",
+		["16"] = "5:1",
+		["17"] = "6:60",
+		["18"] = "9:5",
+		["19"] = "10:14",
+		["22"] = "11:15",
+		["23"] = "12:14",
+		["26"] = "13:15",
+		["27"] = "14:23",
+		["28"] = "14:23",
+		["29"] = "14:23",
+		["31"] = "14:15",
+		["32"] = "15:14",
+		["35"] = "16:15",
+		["36"] = "17:14",
+		["39"] = "18:15",
+		["40"] = "19:15",
+		["41"] = "20:15",
+		["42"] = "21:15",
+		["43"] = "22:9",
+		["44"] = "23:9",
+		["45"] = "9:5",
+		["46"] = "26:5",
+		["47"] = "27:9",
+		["48"] = "26:5",
+		["49"] = "30:5",
+		["50"] = "31:9",
+		["51"] = "30:5",
+		["52"] = "36:5",
+		["53"] = "37:9",
+		["54"] = "36:5",
+		["55"] = "40:5",
+		["56"] = "41:16",
+		["58"] = "41:16",
+		["60"] = "41:9",
+		["61"] = "40:5",
+		["62"] = "6:14",
+		["63"] = "5:2",
+		["64"] = "5:2",
+		["65"] = "5:19",
+		["66"] = "5:2",
+		["68"] = "5:2",
+		["69"] = "6:14",
+		["71"] = "6:14",
+	}
+)
 local ____exports = {}
 local ____dota_ts_adapter = require("utils.dota_ts_adapter")
 local registerModifier = ____dota_ts_adapter.registerModifier
@@ -66,7 +123,7 @@ function sl_modifier_clinkz_skeleton_archer_damage_fix.prototype.GetModifierPreA
 	return ____self_extraBonusDamage_2
 end
 sl_modifier_clinkz_skeleton_archer_damage_fix = __TS__Decorate(
-	{ registerModifier(nil, "modifiers/fix/sl_modifier_clinkz_skeleton_archer_damage_fix") },
+	{ registerModifier(nil, "modifiers/fix/sl_modifier_clinkz_skeleton_archer_damage_fix", nil, getfenv()) },
 	sl_modifier_clinkz_skeleton_archer_damage_fix
 )
 ____exports.sl_modifier_clinkz_skeleton_archer_damage_fix = sl_modifier_clinkz_skeleton_archer_damage_fix

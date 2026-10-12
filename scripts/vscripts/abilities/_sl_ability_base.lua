@@ -8,9 +8,58 @@
 ]]
 
 
+-- abilities/_sl_ability_base.lua
+local ____debugRuntime = require("utils.debug_runtime")
+local debug = ____debugRuntime.safe_debug
 local ____lualib = require("lualib_bundle")
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
+____debugRuntime.register(
+	"abilities/_sl_ability_base.lua",
+	{
+		["9"] = "1:1",
+		["10"] = "1:10",
+		["11"] = "3:1",
+		["12"] = "3:23",
+		["13"] = "3:1",
+		["14"] = "3:37",
+		["15"] = "6:5",
+		["16"] = "7:9",
+		["17"] = "6:5",
+		["18"] = "10:5",
+		["19"] = "11:9",
+		["20"] = "10:5",
+		["21"] = "14:5",
+		["22"] = "15:9",
+		["23"] = "14:5",
+		["24"] = "18:5",
+		["25"] = "19:9",
+		["26"] = "18:5",
+		["27"] = "22:5",
+		["28"] = "31:9",
+		["29"] = "31:48",
+		["30"] = "31:58",
+		["31"] = "31:73",
+		["32"] = "31:79",
+		["33"] = "31:96",
+		["34"] = "31:108",
+		["35"] = "31:116",
+		["36"] = "31:9",
+		["37"] = "22:5",
+		["38"] = "34:5",
+		["39"] = "35:9",
+		["40"] = "34:5",
+		["41"] = "38:5",
+		["42"] = "39:9",
+		["43"] = "38:5",
+		["44"] = "42:5",
+		["45"] = "43:9",
+		["46"] = "42:5",
+		["47"] = "46:5",
+		["48"] = "47:9",
+		["49"] = "46:5",
+	}
+)
 local ____exports = {}
 local ____dota_ts_adapter = require("utils.dota_ts_adapter")
 local BaseAbility = ____dota_ts_adapter.BaseAbility

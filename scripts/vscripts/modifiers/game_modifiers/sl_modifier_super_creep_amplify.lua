@@ -8,10 +8,61 @@
 ]]
 
 
+-- modifiers/game_modifiers/sl_modifier_super_creep_amplify.lua
+local ____debugRuntime = require("utils.debug_runtime")
+local debug = ____debugRuntime.safe_debug
 local ____lualib = require("lualib_bundle")
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
 local __TS__Decorate = ____lualib.__TS__Decorate
+____debugRuntime.register(
+	"modifiers/game_modifiers/sl_modifier_super_creep_amplify.lua",
+	{
+		["10"] = "1:1",
+		["11"] = "1:10",
+		["12"] = "2:1",
+		["13"] = "2:10",
+		["15"] = "7:1",
+		["16"] = "8:14",
+		["17"] = "7:1",
+		["18"] = "8:46",
+		["19"] = "9:5",
+		["20"] = "10:9",
+		["21"] = "9:5",
+		["22"] = "13:5",
+		["23"] = "14:9",
+		["24"] = "13:5",
+		["25"] = "17:5",
+		["26"] = "18:9",
+		["27"] = "17:5",
+		["28"] = "21:5",
+		["29"] = "22:16",
+		["30"] = "22:16",
+		["31"] = "22:16",
+		["33"] = "22:9",
+		["34"] = "21:5",
+		["35"] = "25:5",
+		["36"] = "26:16",
+		["37"] = "26:16",
+		["38"] = "26:16",
+		["40"] = "26:9",
+		["41"] = "25:5",
+		["42"] = "29:5",
+		["43"] = "30:16",
+		["44"] = "30:16",
+		["45"] = "30:16",
+		["47"] = "30:9",
+		["48"] = "29:5",
+		["49"] = "8:14",
+		["50"] = "7:2",
+		["51"] = "7:2",
+		["52"] = "7:19",
+		["53"] = "7:2",
+		["55"] = "7:2",
+		["56"] = "8:14",
+		["58"] = "8:14",
+	}
+)
 local ____exports = {}
 local ____dota_ts_adapter = require("utils.dota_ts_adapter")
 local registerModifier = ____dota_ts_adapter.registerModifier
@@ -57,7 +108,7 @@ function sl_modifier_super_creep_amplify.prototype.GetModifierPhysicalArmorBonus
 	return ____table__params_armor_4
 end
 sl_modifier_super_creep_amplify = __TS__Decorate(
-	{ registerModifier(nil, "modifiers/game_modifiers/sl_modifier_super_creep_amplify") },
+	{ registerModifier(nil, "modifiers/game_modifiers/sl_modifier_super_creep_amplify", nil, getfenv()) },
 	sl_modifier_super_creep_amplify
 )
 ____exports.sl_modifier_super_creep_amplify = sl_modifier_super_creep_amplify

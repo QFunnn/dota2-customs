@@ -8,7 +8,11 @@
 ]]
 
 
+-- utils/sunlight/ts_utils/SunlightExtend_Modifier.lua
+local ____debugRuntime = require("utils.debug_runtime")
+local debug = ____debugRuntime.safe_debug
 --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+____debugRuntime.register("utils/sunlight/ts_utils/SunlightExtend_Modifier.lua", {})
 local ____exports = {}
 do
 end

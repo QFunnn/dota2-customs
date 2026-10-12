@@ -8,9 +8,31 @@
 ]]
 
 
+-- modifiers/sl_modifier_motion_types.lua
+local ____debugRuntime = require("utils.debug_runtime")
+local debug = ____debugRuntime.safe_debug
 local ____lualib = require("lualib_bundle")
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
+____debugRuntime.register(
+	"modifiers/sl_modifier_motion_types.lua",
+	{
+		["9"] = "2:1",
+		["10"] = "2:10",
+		["12"] = "8:1",
+		["13"] = "8:23",
+		["14"] = "8:1",
+		["15"] = "8:49",
+		["17"] = "14:1",
+		["18"] = "14:23",
+		["19"] = "14:1",
+		["20"] = "14:55",
+		["22"] = "20:1",
+		["23"] = "20:23",
+		["24"] = "20:1",
+		["25"] = "20:53",
+	}
+)
 local ____exports = {}
 local ____sl_modifier_base = require("modifiers.sl_modifier_base")
 local SLModifierBase = ____sl_modifier_base.SLModifierBase

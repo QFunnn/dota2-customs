@@ -8,10 +8,80 @@
 ]]
 
 
+-- modifiers/random_event_modifiers/sl_modifier_rnd_event_1022.lua
+local ____debugRuntime = require("utils.debug_runtime")
+local debug = ____debugRuntime.safe_debug
 local ____lualib = require("lualib_bundle")
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
 local __TS__Decorate = ____lualib.__TS__Decorate
+____debugRuntime.register(
+	"modifiers/random_event_modifiers/sl_modifier_rnd_event_1022.lua",
+	{
+		["10"] = "1:1",
+		["11"] = "1:10",
+		["12"] = "3:1",
+		["13"] = "3:10",
+		["15"] = "8:1",
+		["16"] = "9:14",
+		["17"] = "8:1",
+		["18"] = "9:41",
+		["19"] = "13:5",
+		["20"] = "14:9",
+		["21"] = "13:5",
+		["22"] = "17:5",
+		["23"] = "18:9",
+		["24"] = "17:5",
+		["25"] = "21:5",
+		["26"] = "22:9",
+		["27"] = "21:5",
+		["28"] = "25:5",
+		["29"] = "26:9",
+		["30"] = "25:5",
+		["31"] = "29:5",
+		["32"] = "30:14",
+		["35"] = "9:49",
+		["36"] = "32:9",
+		["37"] = "29:5",
+		["38"] = "35:5",
+		["39"] = "36:14",
+		["42"] = "9:49",
+		["43"] = "38:9",
+		["44"] = "35:5",
+		["45"] = "41:5",
+		["46"] = "42:14",
+		["49"] = "43:15",
+		["50"] = "44:15",
+		["51"] = "45:13",
+		["52"] = "46:13",
+		["55"] = "49:9",
+		["56"] = "50:13",
+		["57"] = "51:13",
+		["58"] = "49:26",
+		["59"] = "41:5",
+		["60"] = "55:5",
+		["61"] = "56:22",
+		["63"] = "56:22",
+		["65"] = "56:15",
+		["66"] = "57:21",
+		["68"] = "57:21",
+		["70"] = "57:15",
+		["71"] = "58:13",
+		["72"] = "59:13",
+		["75"] = "62:9",
+		["76"] = "63:9",
+		["77"] = "55:5",
+		["78"] = "11:37",
+		["79"] = "9:14",
+		["80"] = "8:2",
+		["81"] = "8:2",
+		["82"] = "8:19",
+		["83"] = "8:2",
+		["85"] = "8:2",
+		["86"] = "9:14",
+		["88"] = "9:14",
+	}
+)
 local ____exports = {}
 local ____dota_ts_adapter = require("utils.dota_ts_adapter")
 local registerModifier = ____dota_ts_adapter.registerModifier
@@ -83,7 +153,7 @@ function sl_modifier_rnd_event_1022.prototype._StartDecay(self, params)
 end
 sl_modifier_rnd_event_1022._TICK = 0.1
 sl_modifier_rnd_event_1022 = __TS__Decorate(
-	{ registerModifier(nil, "modifiers/random_event_modifiers/sl_modifier_rnd_event_1022") },
+	{ registerModifier(nil, "modifiers/random_event_modifiers/sl_modifier_rnd_event_1022", nil, getfenv()) },
 	sl_modifier_rnd_event_1022
 )
 ____exports.sl_modifier_rnd_event_1022 = sl_modifier_rnd_event_1022

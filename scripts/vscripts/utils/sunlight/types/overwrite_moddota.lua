@@ -8,4 +8,8 @@
 ]]
 
 
+-- utils/sunlight/types/overwrite_moddota.lua
+local ____debugRuntime = require("utils.debug_runtime")
+local debug = ____debugRuntime.safe_debug
 --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+____debugRuntime.register("utils/sunlight/types/overwrite_moddota.lua", {})

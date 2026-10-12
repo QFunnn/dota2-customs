@@ -8,7 +8,25 @@
 ]]
 
 
+-- modifiers/game_modifiers/_loader.lua
+local ____debugRuntime = require("utils.debug_runtime")
+local debug = ____debugRuntime.safe_debug
 --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+____debugRuntime.register(
+	"modifiers/game_modifiers/_loader.lua",
+	{
+		["7"] = "1:8",
+		["8"] = "2:8",
+		["9"] = "3:8",
+		["10"] = "4:8",
+		["11"] = "5:8",
+		["12"] = "6:8",
+		["13"] = "7:8",
+		["14"] = "8:8",
+		["15"] = "9:8",
+		["16"] = "10:8",
+	}
+)
 local ____exports = {}
 require("modifiers.game_modifiers.sl_modifier_mid_mode")
 require("modifiers.game_modifiers.sl_modifier_game_over")

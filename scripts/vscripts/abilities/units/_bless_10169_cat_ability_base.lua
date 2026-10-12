@@ -8,10 +8,48 @@
 ]]
 
 
+-- abilities/units/_bless_10169_cat_ability_base.lua
+local ____debugRuntime = require("utils.debug_runtime")
+local debug = ____debugRuntime.safe_debug
 local ____lualib = require("lualib_bundle")
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
 local __TS__InstanceOf = ____lualib.__TS__InstanceOf
+____debugRuntime.register(
+	"abilities/units/_bless_10169_cat_ability_base.lua",
+	{
+		["10"] = "1:1",
+		["11"] = "1:10",
+		["12"] = "3:1",
+		["13"] = "3:23",
+		["14"] = "3:1",
+		["15"] = "3:53",
+		["17"] = "3:61",
+		["18"] = "7:5",
+		["19"] = "3:1",
+		["20"] = "8:5",
+		["21"] = "3:61",
+		["22"] = "10:15",
+		["23"] = "11:9",
+		["24"] = "12:17",
+		["25"] = "13:17",
+		["26"] = "14:17",
+		["29"] = "17:9",
+		["30"] = "18:9",
+		["31"] = "19:9",
+		["32"] = "19:28",
+		["33"] = "19:56",
+		["34"] = "20:13",
+		["35"] = "19:56",
+		["36"] = "19:9",
+		["37"] = "8:5",
+		["38"] = "24:5",
+		["39"] = "25:13",
+		["40"] = "26:13",
+		["41"] = "27:13",
+		["43"] = "24:5",
+	}
+)
 local ____exports = {}
 local _____sl_ability_base = require("abilities._sl_ability_base")
 local SLAbilityBase = _____sl_ability_base.SLAbilityBase

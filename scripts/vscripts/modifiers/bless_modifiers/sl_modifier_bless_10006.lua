@@ -8,11 +8,104 @@
 ]]
 
 
+-- modifiers/bless_modifiers/sl_modifier_bless_10006.lua
+local ____debugRuntime = require("utils.debug_runtime")
+local debug = ____debugRuntime.safe_debug
 local ____lualib = require("lualib_bundle")
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
 local __TS__ObjectAssign = ____lualib.__TS__ObjectAssign
 local __TS__Decorate = ____lualib.__TS__Decorate
+____debugRuntime.register(
+	"modifiers/bless_modifiers/sl_modifier_bless_10006.lua",
+	{
+		["11"] = "1:1",
+		["12"] = "1:10",
+		["13"] = "2:1",
+		["14"] = "2:10",
+		["16"] = "7:1",
+		["17"] = "8:14",
+		["18"] = "7:1",
+		["19"] = "8:38",
+		["20"] = "9:5",
+		["21"] = "10:9",
+		["22"] = "9:5",
+		["23"] = "13:5",
+		["24"] = "14:9",
+		["25"] = "13:5",
+		["26"] = "17:5",
+		["27"] = "18:9",
+		["28"] = "17:5",
+		["29"] = "25:5",
+		["30"] = "26:14",
+		["33"] = "27:9",
+		["34"] = "28:9",
+		["35"] = "29:9",
+		["36"] = "25:5",
+		["37"] = "32:5",
+		["38"] = "33:14",
+		["41"] = "34:9",
+		["42"] = "35:9",
+		["43"] = "32:5",
+		["44"] = "38:5",
+		["45"] = "39:42",
+		["46"] = "39:17",
+		["47"] = "40:15",
+		["48"] = "41:9",
+		["49"] = "42:9",
+		["50"] = "38:5",
+		["51"] = "45:5",
+		["52"] = "47:31",
+		["53"] = "48:31",
+		["54"] = "48:31",
+		["55"] = "48:31",
+		["57"] = "49:35",
+		["58"] = "49:35",
+		["59"] = "49:35",
+		["61"] = "46:9",
+		["62"] = "45:5",
+		["63"] = "53:5",
+		["64"] = "54:9",
+		["65"] = "55:24",
+		["67"] = "56:31",
+		["68"] = "56:31",
+		["69"] = "56:31",
+		["71"] = "57:35",
+		["72"] = "57:35",
+		["73"] = "57:35",
+		["75"] = "55:24",
+		["77"] = "55:9",
+		["78"] = "53:5",
+		["79"] = "61:5",
+		["80"] = "62:9",
+		["81"] = "61:5",
+		["82"] = "65:5",
+		["83"] = "66:9",
+		["84"] = "65:5",
+		["85"] = "69:5",
+		["86"] = "70:15",
+		["87"] = "71:15",
+		["88"] = "71:56",
+		["89"] = "71:83",
+		["90"] = "71:28",
+		["91"] = "72:27",
+		["92"] = "72:27",
+		["93"] = "72:27",
+		["95"] = "72:15",
+		["96"] = "73:13",
+		["97"] = "74:13",
+		["99"] = "76:9",
+		["100"] = "69:5",
+		["101"] = "8:14",
+		["102"] = "7:2",
+		["103"] = "7:2",
+		["104"] = "7:19",
+		["105"] = "7:2",
+		["107"] = "7:2",
+		["108"] = "8:14",
+		["110"] = "8:14",
+	}
+)
 local ____exports = {}
 local ____dota_ts_adapter = require("utils.dota_ts_adapter")
 local registerModifier = ____dota_ts_adapter.registerModifier
@@ -111,7 +204,7 @@ function sl_modifier_bless_10006.prototype.GetModifierAttackSpeedBonus_Constant(
 	return 0
 end
 sl_modifier_bless_10006 = __TS__Decorate(
-	{ registerModifier(nil, "modifiers/bless_modifiers/sl_modifier_bless_10006") },
+	{ registerModifier(nil, "modifiers/bless_modifiers/sl_modifier_bless_10006", nil, getfenv()) },
 	sl_modifier_bless_10006
 )
 ____exports.sl_modifier_bless_10006 = sl_modifier_bless_10006

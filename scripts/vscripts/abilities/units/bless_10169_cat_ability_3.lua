@@ -8,10 +8,88 @@
 ]]
 
 
+-- abilities/units/bless_10169_cat_ability_3.lua
+local ____debugRuntime = require("utils.debug_runtime")
+local debug = ____debugRuntime.safe_debug
 local ____lualib = require("lualib_bundle")
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
 local __TS__Decorate = ____lualib.__TS__Decorate
+____debugRuntime.register(
+	"abilities/units/bless_10169_cat_ability_3.lua",
+	{
+		["10"] = "1:1",
+		["11"] = "1:10",
+		["12"] = "2:1",
+		["13"] = "2:10",
+		["14"] = "2:27",
+		["15"] = "3:1",
+		["16"] = "3:10",
+		["18"] = "8:1",
+		["19"] = "9:14",
+		["20"] = "8:1",
+		["21"] = "9:40",
+		["23"] = "9:48",
+		["24"] = "10:5",
+		["25"] = "8:1",
+		["26"] = "11:5",
+		["27"] = "12:15",
+		["28"] = "13:14",
+		["31"] = "14:15",
+		["32"] = "15:15",
+		["33"] = "17:9",
+		["34"] = "17:35",
+		["35"] = "17:52",
+		["36"] = "17:9",
+		["37"] = "19:9",
+		["38"] = "20:13",
+		["39"] = "21:13",
+		["40"] = "22:13",
+		["41"] = "23:13",
+		["42"] = "23:20",
+		["43"] = "23:50",
+		["44"] = "23:78",
+		["45"] = "23:19",
+		["46"] = "19:32",
+		["47"] = "25:15",
+		["48"] = "26:15",
+		["49"] = "27:15",
+		["50"] = "36:13",
+		["51"] = "37:19",
+		["52"] = "38:13",
+		["53"] = "38:30",
+		["54"] = "38:35",
+		["55"] = "38:42",
+		["56"] = "38:49",
+		["57"] = "38:52",
+		["58"] = "38:59",
+		["59"] = "38:13",
+		["61"] = "9:48",
+		["62"] = "11:5",
+		["63"] = "9:14",
+		["64"] = "8:2",
+		["65"] = "8:2",
+		["66"] = "8:2",
+		["68"] = "8:2",
+		["69"] = "9:14",
+		["71"] = "9:14",
+		["72"] = "44:1",
+		["73"] = "45:14",
+		["74"] = "44:1",
+		["75"] = "45:52",
+		["76"] = "46:5",
+		["77"] = "47:9",
+		["78"] = "46:5",
+		["79"] = "45:14",
+		["80"] = "44:2",
+		["81"] = "44:2",
+		["82"] = "44:19",
+		["83"] = "44:2",
+		["85"] = "44:2",
+		["86"] = "45:14",
+		["88"] = "45:14",
+	}
+)
 local ____exports = {}
 local ____sl_modifier_simple = require("modifiers.game_modifiers.sl_modifier_simple")
 local sl_modifier_shield_all = ____sl_modifier_simple.sl_modifier_shield_all
@@ -64,7 +142,7 @@ function bless_10169_cat_ability_3.prototype.OnSpellStart(self)
 	end
 	_bless_10169_cat_ability_base.prototype.OnSpellStart(self)
 end
-bless_10169_cat_ability_3 = __TS__Decorate({ registerAbility(nil) }, bless_10169_cat_ability_3)
+bless_10169_cat_ability_3 = __TS__Decorate({ registerAbility(nil, nil, getfenv()) }, bless_10169_cat_ability_3)
 ____exports.bless_10169_cat_ability_3 = bless_10169_cat_ability_3
 ____exports.sl_modifier_bless_10169_cat_ability_3 = __TS__Class()
 local sl_modifier_bless_10169_cat_ability_3 = ____exports.sl_modifier_bless_10169_cat_ability_3
@@ -74,7 +152,7 @@ function sl_modifier_bless_10169_cat_ability_3.prototype.GetAttributes(self)
 	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
 sl_modifier_bless_10169_cat_ability_3 = __TS__Decorate(
-	{ registerModifier(nil, "abilities/units/bless_10169_cat_ability_3") },
+	{ registerModifier(nil, "abilities/units/bless_10169_cat_ability_3", nil, getfenv()) },
 	sl_modifier_bless_10169_cat_ability_3
 )
 ____exports.sl_modifier_bless_10169_cat_ability_3 = sl_modifier_bless_10169_cat_ability_3

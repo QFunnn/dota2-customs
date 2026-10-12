@@ -8,10 +8,67 @@
 ]]
 
 
+-- modifiers/bless_modifiers/sl_modifier_bless_10168.lua
+local ____debugRuntime = require("utils.debug_runtime")
+local debug = ____debugRuntime.safe_debug
 local ____lualib = require("lualib_bundle")
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
 local __TS__Decorate = ____lualib.__TS__Decorate
+____debugRuntime.register(
+	"modifiers/bless_modifiers/sl_modifier_bless_10168.lua",
+	{
+		["10"] = "1:1",
+		["11"] = "1:10",
+		["12"] = "3:1",
+		["13"] = "3:10",
+		["14"] = "5:1",
+		["15"] = "6:14",
+		["16"] = "5:1",
+		["17"] = "6:38",
+		["18"] = "7:5",
+		["19"] = "8:9",
+		["20"] = "7:5",
+		["21"] = "13:5",
+		["22"] = "14:14",
+		["25"] = "15:9",
+		["26"] = "13:5",
+		["27"] = "18:5",
+		["28"] = "19:14",
+		["31"] = "20:13",
+		["33"] = "20:24",
+		["34"] = "20:24",
+		["35"] = "20:24",
+		["37"] = "20:24",
+		["42"] = "21:9",
+		["43"] = "18:5",
+		["44"] = "24:5",
+		["45"] = "25:14",
+		["48"] = "26:14",
+		["51"] = "27:15",
+		["52"] = "28:38",
+		["53"] = "28:17",
+		["54"] = "28:27",
+		["55"] = "29:13",
+		["58"] = "30:15",
+		["59"] = "31:15",
+		["60"] = "32:13",
+		["63"] = "33:15",
+		["64"] = "34:13",
+		["67"] = "35:15",
+		["68"] = "36:15",
+		["69"] = "38:9",
+		["70"] = "24:5",
+		["71"] = "6:14",
+		["72"] = "5:2",
+		["73"] = "5:2",
+		["74"] = "5:19",
+		["75"] = "5:2",
+		["77"] = "5:2",
+		["78"] = "6:14",
+		["80"] = "6:14",
+	}
+)
 local ____exports = {}
 local ____dota_ts_adapter = require("utils.dota_ts_adapter")
 local registerModifier = ____dota_ts_adapter.registerModifier
@@ -75,7 +132,7 @@ function sl_modifier_bless_10168.prototype.GetModifierTotalDamageOutgoing_Percen
 	return out_pct
 end
 sl_modifier_bless_10168 = __TS__Decorate(
-	{ registerModifier(nil, "modifiers/bless_modifiers/sl_modifier_bless_10168") },
+	{ registerModifier(nil, "modifiers/bless_modifiers/sl_modifier_bless_10168", nil, getfenv()) },
 	sl_modifier_bless_10168
 )
 ____exports.sl_modifier_bless_10168 = sl_modifier_bless_10168

@@ -8,7 +8,34 @@
 ]]
 
 
+-- utils/sunlight/ts_utils/SunLightPlayer.lua
+local ____debugRuntime = require("utils.debug_runtime")
+local debug = ____debugRuntime.safe_debug
 --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+____debugRuntime.register(
+	"utils/sunlight/ts_utils/SunLightPlayer.lua",
+	{
+		["6"] = "1:11",
+		["11"] = "6:5",
+		["13"] = "7:18",
+		["14"] = "7:42",
+		["15"] = "8:19",
+		["16"] = "9:17",
+		["17"] = "10:21",
+		["21"] = "7:79",
+		["24"] = "6:5",
+		["29"] = "22:5",
+		["31"] = "23:18",
+		["32"] = "23:25",
+		["33"] = "24:19",
+		["34"] = "25:19",
+		["35"] = "26:17",
+		["36"] = "27:17",
+		["38"] = "23:34",
+		["41"] = "31:9",
+		["42"] = "22:5",
+	}
+)
 SLPlayer = SLPlayer or {}
 do
 	--- 遍历有效玩家

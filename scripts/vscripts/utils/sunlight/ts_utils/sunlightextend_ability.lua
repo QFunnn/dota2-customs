@@ -8,7 +8,33 @@
 ]]
 
 
+-- utils/sunlight/ts_utils/SunLightExtend_Ability.lua
+local ____debugRuntime = require("utils.debug_runtime")
+local debug = ____debugRuntime.safe_debug
 --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
+____debugRuntime.register(
+	"utils/sunlight/ts_utils/SunLightExtend_Ability.lua",
+	{
+		["8"] = "28:5",
+		["9"] = "29:15",
+		["10"] = "30:9",
+		["11"] = "28:36",
+		["12"] = "33:5",
+		["13"] = "34:15",
+		["14"] = "35:15",
+		["15"] = "36:14",
+		["16"] = "36:34",
+		["18"] = "37:9",
+		["19"] = "33:46",
+		["20"] = "40:5",
+		["21"] = "41:15",
+		["22"] = "42:13",
+		["23"] = "43:13",
+		["25"] = "45:13",
+		["26"] = "46:13",
+		["28"] = "40:39",
+	}
+)
 local ____exports = {}
 do
 	CDOTABaseAbility.HasBehavior = function(self, behavior)
