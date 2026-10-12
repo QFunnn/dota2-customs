@@ -21,7 +21,23 @@
 	</styles>
 	<Panel hittest="false" class="lyboi">
 		<Panel id="loading_screen" />
-		<Label id="WodaConnectLoadingStatus" class="WodaConnectLoadingStatus" text="" />
+		<Panel id="WodaRoster" class="WodaRoster" hittest="false" hittestchildren="false">
+			<Panel class="WodaRosterGameHeader">
+				<Label class="WodaRosterGameName" text="#addon_game_name" />
+			</Panel>
+			<Panel class="WodaRosterStatusBox">
+				<Panel class="WodaRosterStatusHeader">
+					<Panel class="WodaRosterPlayersHeader">
+						<Label class="WodaRosterTitle" text="#woda_roster_title" />
+						<Label id="WodaRosterCount" class="WodaRosterCount" text="" />
+					</Panel>
+					<Panel class="WodaRosterSpacer" />
+					<Label id="WodaRosterCountdown" class="WodaRosterTimer" text="" />
+					<Panel class="WodaRosterThrobber" />
+				</Panel>
+				<Panel id="WodaRosterList" class="WodaRosterList" />
+			</Panel>
+		</Panel>
 		<Panel class="XsollaProductsChoose" id="XsollaProductsChoose">
 			<Panel class="BuyItemPanelTop">
 				<Label class="BuyItemPanelName" text="#xsolla_choose" />

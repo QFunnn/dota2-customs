@@ -314,6 +314,7 @@ if IsClient() then
 	end, nil)
 
 	SendToConsole("net_option TimeoutConnected 30000")
+	SendToConsole('net_option SDRClient_ForceRelayCluster ""')
 
 	for i = 1, 8 do
 		Convars:RegisterConvar("woda_party_" .. i, "0", "", 0)

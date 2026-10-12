@@ -16,7 +16,7 @@ var WODA_CONNECT_STATE_KEYS = {
 	relaunch: "#woda_connect_relaunch",
 	error: "#woda_connect_error",
 	choose: "#woda_connect_choose",
-	session: "#woda_connect_choose",
+	session: "#woda_connect_session",
 	search_choose: "#woda_connect_search_choose",
 	searching: "#woda_connect_searching",
 	search_found: "#woda_connect_search_found"
@@ -86,9 +86,11 @@ function WodaBuildModeCard(parent, mode, info)
 {
 	var card = $.CreatePanel("Panel", parent, "WodaModeCard_" + mode);
 	card.AddClass("WodaRegionCard");
+	card.AddClass("WodaModeCard");
 
 	var name = $.CreatePanel("Label", card, "");
 	name.AddClass("WodaRegionName");
+	name.AddClass("WodaModeName");
 	name.text = WodaModeName(mode);
 
 	var count = $.CreatePanel("Label", card, "");
@@ -382,7 +384,12 @@ function WodaUpdateStatusText(state, status)
 		return;
 	}
 	label.SetDialogVariableInt("position", Number(status.position) || 0);
-	var text = $.Localize(WODA_CONNECT_STATE_KEYS[state] || WODA_CONNECT_STATE_KEYS.waiting, label);
+	var key = WODA_CONNECT_STATE_KEYS[state] || WODA_CONNECT_STATE_KEYS.waiting;
+	var text = $.Localize(key, label);
+	if (state === "session" && (!text || text === key || text === key.substring(1)))
+	{
+		text = $.Localize("#woda_session_title");
+	}
 	if (state === "error" && status.reason)
 	{
 		text += " (" + status.reason + ")";
@@ -396,6 +403,13 @@ function WodaUpdateStatusText(state, status)
 		text += "\n" + WodaRegionName(status.region);
 	}
 	label.text = text;
+	var note = $("#WodaConnectNote");
+	if (note)
+	{
+		var reason = (state === "queued" && status.reason) ? String(status.reason) : "";
+		note.text = reason !== "" ? WodaLocalizeOr("#woda_queue_reason_" + reason, reason) : "";
+		note.visible = reason !== "";
+	}
 	var box = $("#WodaConnectBox");
 	box.SetHasClass("Error", state === "error");
 	box.SetHasClass("Ready", state === "ready" || state === "relaunch");

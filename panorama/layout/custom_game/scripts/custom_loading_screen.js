@@ -216,38 +216,120 @@ WodaShowAdBanner($("#WowBanner"))
 
 CreateEventLinks()
 
-var WODA_LOADING_CONNECT_KEYS = {
-    waiting: "#woda_connect_waiting",
-    requesting: "#woda_connect_requesting",
-    queued: "#woda_connect_queued",
-    ready: "#woda_connect_ready",
-    relaunch: "#woda_connect_relaunch",
-    error: "#woda_connect_error",
-    choose: "#woda_connect_choose",
-    session: "#woda_connect_choose"
+var WODA_ROSTER_STATE_KEYS = {
+    waiting: "#woda_roster_waiting",
+    connecting: "#woda_roster_connecting",
+    loaded: "#woda_roster_loaded",
+    left: "#woda_roster_left"
 }
+var g_WodaRosterRows = {}
 
-function WodaLoadingConnectStatus()
+function WodaRosterPlayers(data)
 {
-    var label = $("#WodaConnectLoadingStatus")
-    var status = CustomNetTables.GetTableValue("woda_connect", "status")
-    if (label && status)
+    var players = []
+    if (!data || !data.players || data.phase === "started")
     {
-        var state = status.state || "waiting"
-        label.SetDialogVariableInt("position", Number(status.position) || 0)
-        var text = $.Localize(WODA_LOADING_CONNECT_KEYS[state] || WODA_LOADING_CONNECT_KEYS.waiting, label)
-        if (state === "error" && status.reason)
-        {
-            text += " (" + status.reason + ")"
-        }
-        label.text = text
-        label.SetHasClass("Visible", true)
-        label.SetHasClass("Error", state === "error")
+        return players
     }
-    $.Schedule(1.0, WodaLoadingConnectStatus)
+    var keys = Object.keys(data.players).sort(function(a, b) { return Number(a) - Number(b) })
+    for (var i = 0; i < keys.length; i++)
+    {
+        var player = data.players[keys[i]]
+        if (player && player.id)
+        {
+            players.push(player)
+        }
+    }
+    return players
 }
 
-WodaLoadingConnectStatus()
+function WodaRosterRow(list, id)
+{
+    var row = g_WodaRosterRows[id]
+    if (row && row.IsValid())
+    {
+        return row
+    }
+    row = $.CreatePanel("Panel", list, "")
+    row.AddClass("WodaRosterPlayer")
+    var avatar = $.CreatePanel("DOTAAvatarImage", row, "", { accountid: id })
+    avatar.AddClass("WodaRosterAvatar")
+    var name = $.CreatePanel("DOTAUserName", row, "", { accountid: id })
+    name.AddClass("WodaRosterName")
+    var state = $.CreatePanel("Label", row, "WodaRosterState")
+    state.AddClass("WodaRosterState")
+    g_WodaRosterRows[id] = row
+    return row
+}
+
+function WodaRosterTime(seconds)
+{
+    var rest = seconds % 60
+    return Math.floor(seconds / 60) + ":" + (rest < 10 ? "0" : "") + rest
+}
+
+function WodaLoadingRoster()
+{
+    var root = $("#WodaRoster")
+    var list = $("#WodaRosterList")
+    var data = CustomNetTables.GetTableValue("woda_connect", "expected")
+    var players = WodaRosterPlayers(data)
+    if (root && list)
+    {
+        root.SetHasClass("Visible", players.length > 0)
+        var keep = {}
+        var previous = null
+        for (var i = 0; i < players.length; i++)
+        {
+            var id = String(players[i].id)
+            var state = WODA_ROSTER_STATE_KEYS[players[i].state] ? players[i].state : "waiting"
+            var row = WodaRosterRow(list, id)
+            keep[id] = true
+            if (previous)
+            {
+                list.MoveChildAfter(row, previous)
+            }
+            else if (list.GetChild(0) !== row)
+            {
+                list.MoveChildBefore(row, list.GetChild(0))
+            }
+            previous = row
+            for (var key in WODA_ROSTER_STATE_KEYS)
+            {
+                row.SetHasClass("State_" + key, key === state)
+            }
+            var label = row.FindChildTraverse("WodaRosterState")
+            if (label)
+            {
+                label.text = $.Localize(WODA_ROSTER_STATE_KEYS[state])
+            }
+        }
+        for (var rowId in g_WodaRosterRows)
+        {
+            if (!keep[rowId])
+            {
+                if (g_WodaRosterRows[rowId].IsValid())
+                {
+                    g_WodaRosterRows[rowId].DeleteAsync(0)
+                }
+                delete g_WodaRosterRows[rowId]
+            }
+        }
+        if (players.length > 0)
+        {
+            var count = $("#WodaRosterCount")
+            count.SetDialogVariableInt("loaded", Number(data.loaded) || 0)
+            count.SetDialogVariableInt("total", Number(data.total) || players.length)
+            count.text = $.Localize("#woda_roster_count", count)
+            var seconds = Math.max(0, Math.floor(Number(data.seconds_left) || 0))
+            var countdown = $("#WodaRosterCountdown")
+            countdown.text = seconds > 0 ? WodaRosterTime(seconds) : ""
+        }
+    }
+    $.Schedule(1.0, WodaLoadingRoster)
+}
+
+WodaLoadingRoster()
 
 function WodaLoadingArenaLogo()
 {

@@ -156,6 +156,36 @@ function UpdatePlayerData(table, key, data)
 	}
 }
 
+var donate_window_hide_schedule = -1
+
+function SetDonateWindowVisible(visible)
+{
+    var donate_window = $("#DonateShopWindow")
+    if (donate_window_hide_schedule != -1)
+    {
+        $.CancelScheduled(donate_window_hide_schedule)
+        donate_window_hide_schedule = -1
+    }
+    if (visible)
+    {
+        donate_window.style.visibility = "visible"
+    }
+    donate_window.SetHasClass("setvisible", visible)
+    if (!visible)
+    {
+        donate_window_hide_schedule = $.Schedule(0.25, function()
+        {
+            donate_window_hide_schedule = -1
+            if (!donate_window.BHasClass("setvisible"))
+            {
+                donate_window.style.visibility = "collapse"
+            }
+        })
+    }
+}
+
+$("#DonateShopWindow").style.visibility = "collapse"
+
 function ToggleDonateButton(tab, button) 
 {
     if (!first_time)
@@ -169,11 +199,11 @@ function ToggleDonateButton(tab, button)
     if (current_tab != tab)
     {
         SwitchTab(tab, button)
-        $("#DonateShopWindow").SetHasClass("setvisible", true)
+        SetDonateWindowVisible(true)
     }
     else
     {
-        $("#DonateShopWindow").SetHasClass("setvisible", !$("#DonateShopWindow").BHasClass("setvisible"))
+        SetDonateWindowVisible(!$("#DonateShopWindow").BHasClass("setvisible"))
         if (!$("#DonateShopWindow").BHasClass("setvisible"))
         {
             GameEvents.SendCustomGameEventToServer_custom( "update_player_items_list_server", {} );
@@ -188,7 +218,7 @@ function ToggleDonateButton(tab, button)
 
 function ToggleDonateButtonClose() 
 {
-    $("#DonateShopWindow").SetHasClass("setvisible", false)
+    SetDonateWindowVisible(false)
     GameEvents.SendCustomGameEventToServer_custom( "update_player_items_list_server", {} );
 }
 

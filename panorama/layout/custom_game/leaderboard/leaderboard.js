@@ -13,7 +13,6 @@ var cooldown_panel = false
 var current_sub_tab = "";
 var TOP_RATING_LIST = {}
 var OpenedHeroSoloPanel = null
-var ARENA_FINAL_WAVE = 100
 var ARENA_HERO_TOP_PLAYERS = 10
 var CURRENT_PVE_TAB = "hero"
 var CURRENT_RANKING_TAB = "pvp"
@@ -262,15 +261,6 @@ function CompareArenaResults(a, b)
     return (Number(a.game_seconds) || 0) - (Number(b.game_seconds) || 0)
 }
 
-function ArenaWaveCode(waves)
-{
-    waves = Math.max(0, Number(waves) || 0)
-    let reached = waves >= ARENA_FINAL_WAVE ? ARENA_FINAL_WAVE : waves + 1
-    let stage = Math.floor((reached - 1) / 10) + 1
-    let wave = (reached - 1) % 10 + 1
-    return String(stage * 10 + wave % 10)
-}
-
 function LeaderboardFormatTime(seconds)
 {
     seconds = Math.max(0, Math.floor(Number(seconds) || 0))
@@ -306,7 +296,7 @@ function CreateArenaResult(parent, data)
 
     let wave_label = $.CreatePanel("Label", result_inner, "");
     wave_label.AddClass("ArenaResultWave");
-    wave_label.text = IsArenaLegacy() ? String(waves) : ArenaWaveCode(waves)
+    wave_label.text = String(waves)
     return result
 }
 

@@ -457,6 +457,9 @@ function WODAGameMode:OnNPCSpawned(data)
 			hero:AddNewModifier(hero, nil, "modifier_fountain_invulnerability", {})
 			hero:AddNewModifier(hero, nil, "modifier_disconnect_player_no_damage", {})
 		end
+		if IsWodaArenaMap() and not hero.cheat_spawned and arena_system.OnPveHeroSpawned then
+			arena_system:OnPveHeroSpawned(hero)
+		end
 	end
     
     -- Первый спавн героя
@@ -495,7 +498,7 @@ function WODAGameMode:OnNPCSpawned(data)
             if LOBBY_PLAYERS[id] then
 			    LOBBY_PLAYERS[id].respawn = true
             end
-            if not IsInToolsMode() then
+            if not IsInToolsMode() and not WODAGameMode.start_game then
 	            hero:AddNewModifier(hero, nil, "modifier_woda_stunned", {})
             end
 	        hero:AddNewModifier(hero, nil, "modifier_wodarelax", {})
@@ -553,6 +556,9 @@ function WODAGameMode:OnNPCSpawned(data)
 					hero:AddNewModifier(hero, vengefulspirit_magic_missile_custom, "modifier_vengefulspirit_magic_missile_custom_stack", {})
 				end
 			end
+            if IsWodaArenaMap() and WODAGameMode.start_game and PLAYERS[id] and arena_system.SetupPveHero then
+                arena_system:SetupPveHero(id, PLAYERS[id])
+            end
 	        if player_system:IsLose(id) then
 	            hero:PlayerForceKillAndLose()
 	        elseif player_system.PLAYERS_GLOBAL_INFORMATION[id] and tonumber(player_system.PLAYERS_GLOBAL_INFORMATION[id].has_report_kill) > 0 and (GetMapName() == "rating" or GetMapName() == "rating_300") then
@@ -563,4 +569,4 @@ function WODAGameMode:OnNPCSpawned(data)
 	        end
 	    end)
 	end
-end
+end

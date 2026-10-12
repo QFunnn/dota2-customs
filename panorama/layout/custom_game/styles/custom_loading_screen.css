@@ -406,31 +406,183 @@
 	margin-top: 10px;
 }
 
-.WodaConnectLoadingStatus
+.WodaRoster
 {
-	horizontal-align: center;
-	vertical-align: bottom;
-	margin-bottom: 120px;
-	padding: 12px 26px;
-	border-radius: 6px;
-	background-color: gradient( linear, 0% 0%, 0% 100%, from( #404D65ee ), to( #2B3445ee ) );
-	border: 1px solid #6F819B55;
-	font-family: Radiance;
-	font-size: 22px;
-	font-weight: bold;
-	color: #ffffffcc;
-	text-align: center;
-	text-shadow: 1px 1px 3px 2 black;
-	visibility: collapse;
+	width: 400px;
+	height: 100%;
+	horizontal-align: right;
+	flow-children: down;
+	padding: 15px;
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #262a2f ), to( #131518 ) );
+	transform: translatex( 400px );
+	opacity: 0;
+	transition-property: transform, opacity;
+	transition-duration: 0.25s;
 }
 
-.WodaConnectLoadingStatus.Visible
+.WodaRoster.Visible
 {
-	visibility: visible;
+	transform: translatex( 0px );
+	opacity: 1;
 }
 
-.WodaConnectLoadingStatus.Error
+.WodaRosterGameHeader
 {
-	color: #ff8a7a;
-	border: 1px solid #c8574a88;
+	flow-children: right;
+}
+
+.WodaRosterGameName
+{
+	font-size: 27px;
+	text-transform: uppercase;
+	color: white;
+	vertical-align: center;
+	margin: 5px;
+}
+
+.WodaRosterStatusBox
+{
+	flow-children: down;
+	margin-top: 20px;
+	width: 100%;
+	height: fill-parent-flow( 1 );
+	background-color: #151719;
+	box-shadow: inset black 0px 5px 5px 10px;
+}
+
+.WodaRosterStatusHeader
+{
+	flow-children: right;
+	width: 100%;
+	padding: 10px;
+}
+
+.WodaRosterPlayersHeader
+{
+	flow-children: down;
+}
+
+.WodaRosterTitle
+{
+	text-transform: uppercase;
+	color: white;
+	font-size: 24px;
+	margin-top: 4px;
+	margin-left: 5px;
+}
+
+.WodaRosterCount
+{
+	text-transform: uppercase;
+	color: #808080;
+	font-size: 16px;
+	margin-left: 5px;
+}
+
+.WodaRosterSpacer
+{
+	width: fill-parent-flow( 1 );
+}
+
+.WodaRosterTimer
+{
+	vertical-align: center;
+	font-size: 24px;
+	color: white;
+}
+
+.WodaRosterThrobber
+{
+	vertical-align: center;
+	width: 29px;
+	height: 29px;
+	margin: 5px;
+	background-image: url("s2r://panorama/images/status_icons/loadingthrobber_round_png.vtex");
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: 100% 100%;
+	animation-name: WodaRosterSpin;
+	animation-duration: 1.0s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+@keyframes 'WodaRosterSpin'
+{
+	0%
+	{
+		transform: rotateZ( 360deg );
+	}
+	
+	50%
+	{
+		transform: rotateZ( 180deg );
+	}
+	
+	100%
+	{
+		transform: rotateZ( 0deg );
+	}
+	
+}
+
+.WodaRosterList
+{
+	width: 100%;
+	flow-children: down;
+	padding: 10px;
+	padding-left: 15px;
+	border-top: 1px solid #363d3b;
+	overflow: squish scroll;
+}
+
+.WodaRosterPlayer
+{
+	width: 100%;
+	margin: 5px;
+	flow-children: right;
+}
+
+.WodaRosterAvatar
+{
+	width: 36px;
+	height: 36px;
+}
+
+.WodaRosterName
+{
+	margin: 5px;
+	width: fill-parent-flow( 1 );
+	vertical-align: middle;
+}
+
+.WodaRosterName Label
+{
+	font-size: 18px;
+	color: #b4b4b4;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.WodaRosterState
+{
+	font-size: 18px;
+	color: #808080;
+	vertical-align: middle;
+	text-transform: uppercase;
+}
+
+.WodaRosterPlayer.State_connecting .WodaRosterState
+{
+	color: #b8a253;
+}
+
+.WodaRosterPlayer.State_loaded .WodaRosterState
+{
+	color: #328022;
+}
+
+.WodaRosterPlayer.State_left .WodaRosterState
+{
+	color: #801e27;
 }
