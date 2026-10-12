@@ -223,7 +223,7 @@ Game.DamageToggle = function(override)
 
 		if (cooldown_update == false)
 		{
-			player_table = CustomNetTables.GetTableValue("upgrades_player", String(Game.GetLocalPlayerID()))
+			player_table = Game.GetUpgrades(Game.GetLocalPlayerID())
     		GameEvents.SendCustomGameEventToServer_custom("update_damage_stats", {})
 			cooldown_update = true
 

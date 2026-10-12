@@ -15,6 +15,11 @@ LinkLuaModifier(
 	"modifiers/main_mods/modifier_player_main_custom",
 	LUA_MODIFIER_MOTION_NONE
 )
+LinkLuaModifier(
+	"modifier_player_main_custom_stats",
+	"modifiers/main_mods/modifier_player_main_custom",
+	LUA_MODIFIER_MOTION_NONE
+)
 
 modifier_player_main_custom = class(mod_hidden)
 function modifier_player_main_custom:IsHidden()
@@ -32,6 +37,7 @@ function modifier_player_main_custom:OnCreated(params)
 	self.agi = 0
 	self.str = 0
 	self.int = 0
+	self.stats_key = ""
 	self.NeedRefresh = false
 	self.StackOnIllusion = true
 
@@ -86,11 +92,7 @@ function modifier_player_main_custom:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
 		MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE,
-
 		MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL,
-		MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
-		MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
-		MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
 		MODIFIER_PROPERTY_PROJECTILE_NAME,
 		MODIFIER_PROPERTY_BASE_MRES_PER_INT_BONUS_PERCENTAGE,
 	}
@@ -245,6 +247,25 @@ function modifier_player_main_custom:OnIntervalThink()
 		end
 	end
 
+	local stats_key = (self.str ~= 0 and "str" or "")
+		.. (self.agi ~= 0 and "agi" or "")
+		.. (self.int ~= 0 and "int" or "")
+	if stats_key ~= self.stats_key then
+		self.stats_key = stats_key
+		if IsValid(self.stats_mod) then
+			self.stats_mod:Destroy()
+		end
+		self.stats_mod = stats_key ~= ""
+				and self.parent:AddNewModifier(self.parent, nil, "modifier_player_main_custom_stats", {})
+			or nil
+	end
+
+	if IsValid(self.stats_mod) then
+		self.stats_mod.str = self.str
+		self.stats_mod.agi = self.agi
+		self.stats_mod.int = self.int
+	end
+
 	local cache = self.parent.stats_cache
 	local stats = {
 		str = math.floor(self.parent:GetStrength(true)),
@@ -258,6 +279,16 @@ function modifier_player_main_custom:OnIntervalThink()
 			self.NeedRefresh = true
 		end
 		self:SendBuffRefreshToClients()
+		self.stats_changed = true
+	end
+
+	if
+		self.stats_changed
+		and players[self.parent:GetId()] == self.parent
+		and self.parent:CheckCd("player_stats", 4)
+	then
+		self.stats_changed = false
+		dota1x6:SendPlayerStats(self.parent)
 	end
 
 	if self.NeedRefresh then
@@ -288,18 +319,6 @@ function modifier_player_main_custom:HandleCustomTransmitterData(data)
 	end
 	self.parent = self:GetParent()
 	self.parent.stats_cache = { str = data.str, agi = data.agi, int = data.int }
-end
-
-function modifier_player_main_custom:GetModifierBonusStats_Agility()
-	return self.agi
-end
-
-function modifier_player_main_custom:GetModifierBonusStats_Strength()
-	return self.str
-end
-
-function modifier_player_main_custom:GetModifierBonusStats_Intellect()
-	return self.int
 end
 
 function modifier_player_main_custom:GetAbsoluteNoDamagePhysical(params)
@@ -501,6 +520,45 @@ function modifier_player_main_custom:DamageEvent_out(params)
 		self.parent:AddNewModifier(self.parent, nil, "modifier_patrol_reward_damage", { duration = 4 })
 		return
 	end
+end
+
+modifier_player_main_custom_stats = class(mod_hidden)
+modifier_player_main_custom_stats.functions = {
+	str = MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
+	agi = MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
+	int = MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
+}
+function modifier_player_main_custom_stats:RemoveOnDeath()
+	return false
+end
+function modifier_player_main_custom_stats:OnCreated()
+	self.str = 0
+	self.agi = 0
+	self.int = 0
+end
+
+function modifier_player_main_custom_stats:DeclareFunctions()
+	local main = IsServer() and self:GetParent():FindModifierByName("modifier_player_main_custom")
+	local key = main and main.stats_key or "stragiint"
+	local list = {}
+	for name, func in pairs(self.functions) do
+		if key:find(name) then
+			table.insert(list, func)
+		end
+	end
+	return list
+end
+
+function modifier_player_main_custom_stats:GetModifierBonusStats_Strength()
+	return self.str
+end
+
+function modifier_player_main_custom_stats:GetModifierBonusStats_Agility()
+	return self.agi
+end
+
+function modifier_player_main_custom_stats:GetModifierBonusStats_Intellect()
+	return self.int
 end
 
 modifier_patrol_reward_damage = class(mod_hidden)

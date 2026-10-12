@@ -238,7 +238,7 @@ function modifier_slark_saltwater_shiv_custom_tracker:OnCreated(table)
 	self.ability.duration = self.ability:GetSpecialValueFor("duration")
 	self.ability.health_rest_steal = self.ability:GetSpecialValueFor("health_rest_steal")
 	self.ability.ms_steal = self.ability:GetSpecialValueFor("ms_steal")
-	self.ability.creeps_damage = self.ability:GetSpecialValueFor("creeps_damage")
+	self.ability.creeps_attack = self.ability:GetSpecialValueFor("creeps_attack")
 	self.ability.max = self.ability:GetSpecialValueFor("max")
 	self.ability.shard_cd = self.ability:GetSpecialValueFor("shard_cd")
 
@@ -316,7 +316,7 @@ function modifier_slark_saltwater_shiv_custom_tracker:OnRefresh()
 	self.ability.AbilityCooldown = self.ability:GetSpecialValueFor("AbilityCooldown")
 	self.ability.health_rest_steal = self.ability:GetSpecialValueFor("health_rest_steal")
 	self.ability.ms_steal = self.ability:GetSpecialValueFor("ms_steal")
-	self.ability.creeps_damage = self.ability:GetSpecialValueFor("creeps_damage")
+	self.ability.creeps_attack = self.ability:GetSpecialValueFor("creeps_attack")
 end
 
 function modifier_slark_saltwater_shiv_custom_tracker:ForceDelete(spell)
@@ -629,7 +629,7 @@ function modifier_slark_saltwater_shiv_custom_tracker:GetModifierPreAttack_Bonus
 		return
 	end
 
-	return self.ability.creeps_damage
+	return self.ability.creeps_attack
 end
 
 function modifier_slark_saltwater_shiv_custom_tracker:SpellStartEvent(params)

@@ -114,7 +114,7 @@ local caster = self:GetCaster()
 target:EmitSound("Hero_Puck.IIllusory_Orb_Damage")
 
 local damage = self:GetAbilityDamage()
-local creeps_k = self:GetSpecialValueFor("creeps_damage")/100 + 1
+self.creeps_damage = self:GetSpecialValueFor("creeps_damage")/100
 local stun = false
 if data.bonus_stack and data.bonus_stack > 0 then 
 
@@ -143,10 +143,6 @@ end
 
 if stun == false and caster:HasTalent("modifier_puck_orb_6") then 
   target:AddNewModifier( caster, self, "modifier_puck_coil_orb_slow", { duration = caster:GetTalentValue("modifier_puck_orb_6", "duration")})
-end
-
-if target:IsCreep() then
-  damage = damage*creeps_k
 end
 
 if data.bounced == 1 then 

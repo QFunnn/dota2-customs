@@ -213,9 +213,6 @@ function ogre_magi_fireblast_custom_class:GetDamage(target)
 		self.fireblast_damage
 		+ self.caster:GetMana() * (self.is_scepter and self.mana_damage or self.talents.q1_damage)
 	) * k
-	if self.creeps and target:IsCreep() then
-		result = result * (1 + self.creeps)
-	end
 	return result
 end
 
@@ -574,7 +571,7 @@ function modifier_ogre_magi_fireblast_custom_tracker:OnCreated()
 	self.ability.mana_damage = self.ability:GetSpecialValueFor("mana_damage")
 	self.ability.cleave_damage = self.ability:GetSpecialValueFor("cleave_damage") / 100
 	self.ability.cleave_radius = self.ability:GetSpecialValueFor("cleave_radius")
-	self.ability.creeps = self.ability:GetSpecialValueFor("creeps") / 100
+	self.ability.creeps_damage = self.ability:GetSpecialValueFor("creeps_damage") / 100
 	self.ability:CheckInterval()
 end
 

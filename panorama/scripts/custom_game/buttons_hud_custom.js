@@ -186,8 +186,8 @@ function ButtonsUpdate()
 
 		let stack = HowStacks("modifier_item_custom_observer_ward_charges")
 
-        let modifier = FindModifier(entindex, "modifier_item_custom_observer_ward_charges")
-        if (modifier != "No")
+        let modifier = Game.FindModifier(entindex, "modifier_item_custom_observer_ward_charges")
+        if (modifier != -1)
         {
             let check_time = Number(Buffs.GetRemainingTime(entindex, modifier))
             if (check_time > 0)
@@ -208,8 +208,8 @@ function ButtonsUpdate()
 
 		let stack = HowStacks("modifier_item_custom_sentry_ward_charges")
 
-        let modifier = FindModifier(entindex, "modifier_item_custom_sentry_ward_charges")
-        if (modifier != "No")
+        let modifier = Game.FindModifier(entindex, "modifier_item_custom_sentry_ward_charges")
+        if (modifier != -1)
         {
             let check_time = Number(Buffs.GetRemainingTime(entindex, modifier))
             if (check_time > 0)
@@ -232,8 +232,8 @@ function ButtonsUpdate()
 		
 		let stack = HowStacks("modifier_item_custom_smoke_charges")
 
-        let modifier = FindModifier(entindex, "modifier_item_custom_smoke_charges")
-        if (modifier != "No")
+        let modifier = Game.FindModifier(entindex, "modifier_item_custom_smoke_charges")
+        if (modifier != -1)
         {
             let check_time = Number(Buffs.GetRemainingTime(entindex, modifier))
             if (check_time > 0)
@@ -325,36 +325,12 @@ function SetShowText(panel, text)
 
 
 
-function HasModifier(unit, modifier) {
-    for (var i = 0; i < Entities.GetNumBuffs(unit); i++) {
-        if (Buffs.GetName(unit, Entities.GetBuff(unit, i)) == modifier){
-            return true
-        }
-    }
-    return false
-}
-
-function FindModifier(unit, modifier) {
-    for (var i = 0; i < Entities.GetNumBuffs(unit); i++) {
-        if (Buffs.GetName(unit, Entities.GetBuff(unit, i)) == modifier){
-            return Entities.GetBuff(unit, i);
-        }
-    }
-    return "No"
-}
-
 function HowStacks(mod) {
 
 	var hero = Players.GetPlayerHeroEntityIndex( Players.GetLocalPlayer() )
+	var buff = Game.FindModifier(hero, mod)
 
-	for (var i = 0; i < Entities.GetNumBuffs(hero); i++) {
-		var buffID = Entities.GetBuff(hero, i)
-		if (Buffs.GetName(hero, buffID ) == mod ){
-			var stack = Buffs.GetStackCount(hero, buffID ) 
-			return stack
-		}
-	}
-	return 0
+	return buff != -1 ? Buffs.GetStackCount(hero, buff) : 0
 }
 
 

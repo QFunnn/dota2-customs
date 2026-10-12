@@ -446,10 +446,6 @@ function muerta_the_calling_custom:DealDamage(target, damage_ability, use_fear)
 		self.caster.veil_ability:LegendaryStack()
 	end
 
-	if target:IsCreep() then
-		damage = damage * (1 + self.creeps_damage)
-	end
-
 	DoDamage(
 		{ victim = target, attacker = self.caster, damage = damage, damage_type = DAMAGE_TYPE_MAGICAL, ability = self },
 		damage_ability

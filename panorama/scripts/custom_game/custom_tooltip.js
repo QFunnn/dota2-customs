@@ -170,7 +170,7 @@ function UpdateTooltip()
 
     let text = Game.ShowTalentValues(Game.GetTalentTextKey(talent_text, name, hero_name, player_id), name, lvl, all_levels, legendary, false, false, undefined, hero_name, player_id) + Game.ShowTalentMax(name, lvl, max_level, hero_name, player_id)
 
-    let player_upgrades = CustomNetTables.GetTableValue("upgrades_player", String(player_id))
+    let player_upgrades = Game.GetUpgrades(player_id)
 
     if (is_upgrade != undefined && is_upgrade != "undefined")
     {
@@ -308,8 +308,8 @@ function UpdateTooltip()
                 let hero = Players.GetPlayerHeroEntityIndex(player_id)
                 if (mod_name != undefined)
                 {
-                    let mod = HasModifier(hero, mod_name)
-                    if (mod != "None")
+                    let mod = Game.FindModifier(hero, mod_name)
+                    if (mod != -1)
                         perma_current = Buffs.GetStackCount(hero, mod)
                 }
             }
@@ -627,15 +627,4 @@ function GetSpellNumber(modifier, mult)
 {
     let info = skills_table_cnt.skill_number
     return info[modifier] * mult
-}
-function HasModifier(unit, modifier) 
-{
-    for (var i = 0; i < Entities.GetNumBuffs(unit); i++) 
-    {
-        if (Buffs.GetName(unit, Entities.GetBuff(unit, i)) == modifier)
-        {
-            return Entities.GetBuff(unit, i)
-        }
-    }
-   return "None"
 }

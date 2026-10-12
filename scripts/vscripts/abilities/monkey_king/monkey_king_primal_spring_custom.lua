@@ -499,10 +499,6 @@ function monkey_king_primal_spring_custom:DealDamage(point, channel_pct, new_rad
 				)
 		end
 
-		if enemy:IsCreep() then
-			target_damage = target_damage * (1 + self.creeps)
-		end
-
 		damageTable.damage = target_damage * channel_pct * damage_k * legendary_k
 		damageTable.victim = enemy
 		DoDamage(damageTable, damage_ability)
@@ -628,7 +624,7 @@ function modifier_monkey_king_primal_spring_custom_tracker:OnCreated(table)
 	self.ability.max_distance = self.ability:GetSpecialValueFor("max_distance")
 	self.ability.speed = self.ability:GetSpecialValueFor("speed")
 	self.ability.AbilityChannelTime = self.ability:GetSpecialValueFor("AbilityChannelTime")
-	self.ability.creeps = self.ability:GetSpecialValueFor("creeps") / 100
+	self.ability.creeps_damage = self.ability:GetSpecialValueFor("creeps_damage") / 100
 	self.ability.tree_cast = self.ability:GetSpecialValueFor("tree_cast") / 100
 	self.ability.tree_range = self.ability:GetSpecialValueFor("tree_range")
 	self.ability.AbilityChargeRestoreTime = self.ability:GetSpecialValueFor("AbilityChargeRestoreTime")

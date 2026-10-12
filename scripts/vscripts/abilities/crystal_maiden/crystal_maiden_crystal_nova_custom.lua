@@ -188,11 +188,7 @@ function crystal_maiden_crystal_nova_custom:OnSpellStart(new_target, single_targ
 			damageTable.victim = enemy
 			attacked_targets[enemy] = true
 
-			local deal_damage = damage
-			if enemy:IsCreep() then
-				deal_damage = deal_damage * (1 + self.creeps_damage)
-			end
-			damageTable.damage = deal_damage
+			damageTable.damage = damage
 
 			if
 				self.talents.has_q4 == 1

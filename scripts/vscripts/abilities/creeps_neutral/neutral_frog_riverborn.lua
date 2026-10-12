@@ -37,11 +37,16 @@ function modifier_neutral_frog_riverborn:GetWater()
 end
 
 function modifier_neutral_frog_riverborn:DeclareFunctions()
-	return {
+	local result = {
 		MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE,
-		MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE,
 		MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
 	}
+
+	if IsClient() then
+		table.insert(result, MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE)
+	end
+
+	return result
 end
 
 function modifier_neutral_frog_riverborn:GetModifierTotalDamageOutgoing_Percentage(params)
@@ -52,9 +57,6 @@ function modifier_neutral_frog_riverborn:GetModifierTotalDamageOutgoing_Percenta
 end
 
 function modifier_neutral_frog_riverborn:GetModifierDamageOutgoing_Percentage()
-	if IsServer() then
-		return
-	end
 	if not self:GetWater() then
 		return
 	end

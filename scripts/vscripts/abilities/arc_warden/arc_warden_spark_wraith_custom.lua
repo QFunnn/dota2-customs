@@ -263,10 +263,6 @@ function arc_warden_spark_wraith_custom:DealDamage(target, not_main, damage_abil
 		damage = damage * self.talents.e3_damage
 	end
 
-	if target:IsCreep() then
-		damage = damage * (1 + self.creeps)
-	end
-
 	target:EmitSound("Hero_ArcWarden.SparkWraith.Damage")
 
 	DoDamage(
@@ -525,7 +521,7 @@ function modifier_arc_warden_spark_wraith_custom_tracker:OnCreated(table)
 	self.ability.wraith_vision_duration = self.ability:GetSpecialValueFor("wraith_vision_duration")
 	self.ability.ministun_duration = self.ability:GetSpecialValueFor("ministun_duration")
 	self.ability.move_speed_slow_pct = self.ability:GetSpecialValueFor("move_speed_slow_pct")
-	self.ability.creeps = self.ability:GetSpecialValueFor("creeps") / 100
+	self.ability.creeps_damage = self.ability:GetSpecialValueFor("creeps_damage") / 100
 	self.ability.damage_near = self.ability:GetSpecialValueFor("damage_near") / 100
 	self.ability.tower_duration = self.ability:GetSpecialValueFor("tower_duration")
 	self.ability.tower_radius = self.ability:GetSpecialValueFor("tower_radius")

@@ -1,0 +1,61 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1a5b3bb 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss" />
+		<include src="s2r://panorama/layout/custom_game/ability_tooltip/ability_tooltip.vcss" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/layout/custom_game/ability_tooltip/ability_tooltip.vjs" />
+	</scripts>
+	<Panel class="AbilityTooltip" hittest="false" hittestchildren="false" ontooltiploaded="AbilityTooltipLoaded()">
+		<Panel id="AbilityDetails">
+			<Panel id="AbilityHeader">
+				<Label id="AbilityName" />
+				<Label id="CurrentAbilityCharges" />
+				<Label id="CurrentAbilityCooldown" class="Cooldown" html="true" />
+			</Panel>
+			<Panel id="AbilityTarget">
+				<Label id="AbilityDamageType" html="true" />
+				<Label id="AbilitySpellImmunityType" html="true" />
+				<Label id="AbilityDispelType" html="true" />
+				<Label id="AbilityBreakable" html="true" />
+			</Panel>
+			<Label id="AbilityDescription" html="true" />
+			<Panel id="AbilityCreeps_buff" class="AbilityCreeps AbilityCreeps_buff">
+				<Panel class="AbilityCreepsHeader">
+					<Panel class="AbilityCreepsIcon" />
+					<Label class="AbilityCreepsTitle" text="#tooltip_ability_creeps" />
+				</Panel>
+				<Panel id="AbilityCreepsText_buff" class="AbilityCreepsText" />
+			</Panel>
+			<Panel id="AbilityCreeps_nerf" class="AbilityCreeps AbilityCreeps_nerf">
+				<Panel class="AbilityCreepsHeader">
+					<Panel class="AbilityCreepsIcon" />
+					<Label class="AbilityCreepsTitle" text="#tooltip_ability_creeps" />
+				</Panel>
+				<Panel id="AbilityCreepsText_nerf" class="AbilityCreepsText" />
+			</Panel>
+			<Panel id="AbilityExtraAttributes" />
+			<Panel id="AbilityCostsSeparator" />
+			<Panel id="AbilityCosts">
+				<Label id="AbilityCooldown" class="Cooldown" html="true" />
+				<Label id="AbilityManaCost" class="ManaCost" html="true" />
+				<Label id="AbilityHealthCost" class="HealthCost" html="true" />
+				<Label id="AbilityCastRange" class="CastRange" html="true" />
+			</Panel>
+			<Panel id="AbilityLoreBox">
+				<Label id="AbilityLore" />
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

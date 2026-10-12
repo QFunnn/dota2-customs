@@ -196,7 +196,7 @@ function primal_beast_trample_custom:GetDamage(target, legendary_damage)
 	if IsValid(uproar) and IsValid(uproar.buff_mod) then
 		damage = damage * (1 + uproar.buff_mod:GetTrampleBonus() / 100)
 	end
-	return damage * (target:IsCreep() and 1 + self.creeps_damage or 1)
+	return damage
 end
 
 function primal_beast_trample_custom:OnSpellStart()
@@ -240,7 +240,7 @@ function primal_beast_trample_custom:Trample(mod)
 			critTable.victim = enemy
 			critTable.damage = damage * self.talents.w3_damage
 			DoDamage(critTable, "modifier_primal_beast_trample_3")
-			enemy:SendNumber(114, damage + critTable.damage)
+			enemy:SendNumber(114, (damage + critTable.damage) * self:GetCreepsMult(enemy))
 
 			if IsValid(self.caster.onslaught_ability) then
 				self.caster.onslaught_ability:HitEffect(enemy, origin, false)

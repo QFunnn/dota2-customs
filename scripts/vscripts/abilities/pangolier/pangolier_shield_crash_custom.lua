@@ -187,12 +187,8 @@ function pangolier_shield_crash_custom:GetManaCost(level)
 	return self.BaseClass.GetManaCost(self, level)
 end
 
-function pangolier_shield_crash_custom:GetDamage(target)
-	local result = self.damage + self.caster:GetMaxHealth() * self.talents.w1_damage
-	if target:IsCreep() then
-		result = result * (1 + self.creeps)
-	end
-	return result
+function pangolier_shield_crash_custom:GetDamage()
+	return self.damage + self.caster:GetMaxHealth() * self.talents.w1_damage
 end
 
 function pangolier_shield_crash_custom:GetRadius()
@@ -678,7 +674,7 @@ function modifier_pangolier_shield_crash_custom_tracker:OnCreated()
 	self.ability.jump_height_gyroshell = self.ability:GetSpecialValueFor("jump_height_gyroshell")
 	self.ability.jump_height = self.ability:GetSpecialValueFor("jump_height")
 	self.ability.jump_horizontal_distance = self.ability:GetSpecialValueFor("jump_horizontal_distance")
-	self.ability.creeps = self.ability:GetSpecialValueFor("creeps") / 100
+	self.ability.creeps_damage = self.ability:GetSpecialValueFor("creeps_damage") / 100
 
 	self.ability.scepter_range = self.ability:GetSpecialValueFor("scepter_range")
 	self.ability.scepter_attacks = self.ability:GetSpecialValueFor("scepter_attacks")

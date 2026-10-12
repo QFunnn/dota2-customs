@@ -12,6 +12,7 @@ var parentHUDElements = FindDotaHudElement("HUDElements");
 
 var pick_event_panel = $.CreatePanel("Panel", $.GetContextPanel(), "PickEvent")
 var pick_event_branches = ["H", "Q", "W", "E", "R"]
+var pick_event_flags = ["bkb", "stun", "silence", "root", "save"]
 
 function init() {
 	pick_event_panel.AddClass("PickEvent")
@@ -110,6 +111,19 @@ function show_skill(kv)
 		let branch_text = $.CreatePanel("Label", branch, "")
 		branch_text.AddClass("PickEventBranchText")
 		branch_text.text = pick_event_branches[skill_number]
+	}
+
+	let flags = $.CreatePanel("Panel", holder, "")
+	flags.AddClass("PickEventFlags")
+
+	for (const flag of pick_event_flags)
+	{
+		if (data["is_" + flag] != 1)
+			continue
+
+		let flag_icon = $.CreatePanel("Panel", flags, "")
+		flag_icon.AddClass("PickEventFlag")
+		flag_icon.AddClass("PickEventFlag_" + flag)
 	}
 
 	if (rarity == "orange" && build_type != undefined)

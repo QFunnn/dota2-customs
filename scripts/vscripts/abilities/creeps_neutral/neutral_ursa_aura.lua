@@ -13,46 +13,65 @@ LinkLuaModifier("modifier_ursa_aura_buff", "abilities/creeps_neutral/neutral_urs
 
 neutral_ursa_aura = class({})
 
+function neutral_ursa_aura:Precache(context)
+	PrecacheResource("particle", "particles/neutral_fx/hellbear_rush_cast.vpcf", context)
+	PrecacheResource("particle", "particles/neutral_fx/hellbear_power.vpcf", context)
+end
+
 function neutral_ursa_aura:GetIntrinsicModifierName()
 	return "modifier_ursa_aura"
 end
 
 modifier_ursa_aura = class(mod_hidden)
-function modifier_ursa_aura:IsAura()
-	return true
-end
-function modifier_ursa_aura:GetAuraDuration()
-	return 0.1
-end
-function modifier_ursa_aura:GetAuraRadius()
-	return 500
-end
-function modifier_ursa_aura:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_FRIENDLY
-end
-function modifier_ursa_aura:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
-end
 function modifier_ursa_aura:OnCreated()
+	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
 	self.ability.damage = self.ability:GetSpecialValueFor("damage")
 	self.ability.speed = self.ability:GetSpecialValueFor("speed")
+	self.ability.radius = self.ability:GetSpecialValueFor("radius")
+
+	if not IsServer() then
+		return
+	end
+	self.parent:AddDeathEvent(self, true)
 end
 
-function modifier_ursa_aura:GetModifierAura()
-	return "modifier_ursa_aura_buff"
+function modifier_ursa_aura:DeathEvent(params)
+	if not IsServer() then
+		return
+	end
+	if self.parent ~= params.unit then
+		return
+	end
+
+	self.parent:GenericParticle("particles/neutral_fx/hellbear_rush_cast.vpcf")
+	for _, unit in pairs(self.parent:FindFriends(self.ability.radius)) do
+		unit:AddNewModifier(self.parent, self.ability, "modifier_ursa_aura_buff", {})
+	end
 end
 
 modifier_ursa_aura_buff = class(mod_visible)
-function modifier_ursa_aura_buff:GetAttributes()
-	return MODIFIER_ATTRIBUTE_MULTIPLE
+function modifier_ursa_aura_buff:GetEffectName()
+	return "particles/neutral_fx/hellbear_power.vpcf"
 end
 function modifier_ursa_aura_buff:OnCreated()
 	self.ability = self:GetAbility()
 
 	self.damage = self.ability.damage
 	self.speed = self.ability.speed
+
+	if not IsServer() then
+		return
+	end
+	self:OnRefresh()
+end
+
+function modifier_ursa_aura_buff:OnRefresh()
+	if not IsServer() then
+		return
+	end
+	self:IncrementStackCount()
 end
 
 function modifier_ursa_aura_buff:DeclareFunctions()
@@ -63,9 +82,9 @@ function modifier_ursa_aura_buff:DeclareFunctions()
 end
 
 function modifier_ursa_aura_buff:GetModifierAttackSpeedBonus_Constant()
-	return self.speed
+	return self.speed * self:GetStackCount()
 end
 
 function modifier_ursa_aura_buff:GetModifierPreAttack_BonusDamage()
-	return self.damage
+	return self.damage * self:GetStackCount()
 end

@@ -407,7 +407,7 @@ function furion_wrath_of_nature_custom:Spawn()
 	self.ability.vision_duration = self:GetLevelSpecialValueFor("vision_duration", 1)
 	self.ability.vision_radius = self:GetLevelSpecialValueFor("vision_radius", 1)
 	self.ability.jump_delay = self:GetLevelSpecialValueFor("jump_delay", 1)
-	self.ability.creeps = self:GetLevelSpecialValueFor("creeps", 1) / 100
+	self.ability.creeps_damage = self:GetLevelSpecialValueFor("creeps_damage", 1) / 100
 end
 
 function furion_wrath_of_nature_custom:OnInventoryContentsChanged()
@@ -486,7 +486,6 @@ function modifier_furion_wrath_of_nature_custom:OnCreated(table)
 	self.max_targets = self.ability.max_creeps
 	self.damage_add = (self.ability.damage_max - self.damage) / self.max_targets
 	self.jump_delay = self.ability.jump_delay
-	self.creeps = self.ability.creeps
 
 	self.pfx = wearables_system:GetParticleReplacementAbility(
 		self.parent,
@@ -568,7 +567,7 @@ function modifier_furion_wrath_of_nature_custom:OnIntervalThink()
 		enemy:EmitSound("Hero_Furion.WrathOfNature_Damage")
 	end
 
-	self.damageTable.damage = self.damage * (1 + (enemy:IsCreep() and self.creeps or 0))
+	self.damageTable.damage = self.damage
 	self.damageTable.victim = enemy
 	DoDamage(self.damageTable)
 

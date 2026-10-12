@@ -267,10 +267,6 @@ function night_stalker_void_custom:OnSpellStart()
 		end
 		damage = damage * (1 + self:LegendaryDamage(stack))
 
-		if aoe_target:IsCreep() then
-			damage = damage * (1 + self.creeps)
-		end
-
 		damageTable.damage = damage
 		damageTable.victim = aoe_target
 
@@ -399,7 +395,7 @@ function modifier_night_stalker_void_custom:OnCreated(table)
 	self.ability.movespeed_slow = self.ability:GetSpecialValueFor("movespeed_slow")
 	self.ability.attackspeed_slow = self.ability:GetSpecialValueFor("attackspeed_slow")
 	self.ability.cast_radius = self.ability:GetSpecialValueFor("cast_radius")
-	self.ability.creeps = self.ability:GetSpecialValueFor("creeps") / 100
+	self.ability.creeps_damage = self.ability:GetSpecialValueFor("creeps_damage") / 100
 end
 
 function modifier_night_stalker_void_custom:OnRefresh(table)

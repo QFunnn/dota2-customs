@@ -39,6 +39,35 @@ test_mode.dummy_pending = false
 test_mode.time_scale_steps = { 0.01, 0.2, 0.5, 1, 2, 3, 4, 5, 10 }
 test_mode.time_scale_default = 4
 test_mode.time_scale_index = 4
+test_mode.lag_heroes = {
+	npc_dota_hero_antimage = "item_heart_custom",
+	npc_dota_hero_sven = "item_heart_custom",
+	npc_dota_hero_life_stealer = "item_assault_custom",
+	npc_dota_hero_phantom_assassin = "item_heart_custom",
+	npc_dota_hero_huskar = "item_heart_custom",
+}
+test_mode.lag_items = {
+	"item_butterfly_custom",
+	"item_moon_shard",
+	"item_mjollnir_custom",
+	"item_greater_crit_custom",
+	"item_satanic_custom",
+}
+test_mode.lag_player_items = {
+	"item_butterfly_custom",
+	"item_moon_shard",
+	"item_mjollnir_custom",
+	"item_celestial_spear_custom",
+	"item_satanic_custom",
+}
+test_mode.lag_dummy_items = {
+	"item_radiance_custom",
+	"item_soulguard_custom",
+	"item_crimson_guard_custom",
+	"item_bloodstone_custom",
+	"item_hydras_breath_custom",
+}
+test_mode.lag_general = { "modifier_up_lifesteal" }
 
 function test_mode:InitGameMode()
 	CustomGameEventManager:RegisterListener("AddTalent", Dynamic_Wrap(self, "AddTalent"))
@@ -62,6 +91,7 @@ function test_mode:InitGameMode()
 	CustomGameEventManager:RegisterListener("SpawnPatrol", Dynamic_Wrap(self, "SpawnPatrol"))
 	CustomGameEventManager:RegisterListener("LaneWave", Dynamic_Wrap(self, "LaneWave"))
 	CustomGameEventManager:RegisterListener("Vision", Dynamic_Wrap(self, "Vision"))
+	CustomGameEventManager:RegisterListener("LagTest", Dynamic_Wrap(self, "LagTest"))
 
 	CustomNetTables:SetTableValue("test_mode", "lane_waves", wave_types)
 
@@ -352,7 +382,7 @@ function test_mode:AddTalent(data)
 	)
 end
 
-function test_mode:AddHero(data, full_test)
+function test_mode:AddHero(data, full_test, on_spawn)
 	if _G.TestMode == false then
 		return
 	end
@@ -454,14 +484,10 @@ function test_mode:AddHero(data, full_test)
 				level_data.PlayerID = data.PlayerID
 				level_data.value = 30
 				test_mode:LevelBots(level_data)
+			end
 
-				local talent_data = {}
-				talent_data.ent = unit:entindex()
-				talent_data.PlayerID = data.PlayerID
-				for name, talent in pairs(ingame_talents["general"]) do
-					talent_data.value = name
-					test_mode:AddTalent(talent_data)
-				end
+			if on_spawn then
+				on_spawn(unit)
 			end
 		end
 	)
@@ -494,6 +520,21 @@ function test_mode:TargetDummy(data)
 		return
 	end
 
+	test_mode:CreateTargetDummy(player)
+end
+
+function test_mode:CreateTargetDummy(player, on_spawn)
+	if IsValid(test_mode.target_dummy) then
+		if on_spawn then
+			on_spawn(test_mode.target_dummy)
+		end
+		return
+	end
+
+	if test_mode.dummy_pending then
+		return
+	end
+
 	test_mode.dummy_pending = true
 
 	local point = player:GetAbsOrigin() + player:GetForwardVector() * 300
@@ -522,7 +563,102 @@ function test_mode:TargetDummy(data)
 		CustomNetTables:SetTableValue("test_mode", "target_dummy", { ent = unit:entindex() })
 
 		test_mode:WatchTargetDummy()
+
+		if on_spawn then
+			on_spawn(unit)
+		end
 	end)
+end
+
+function test_mode:LagTest(data)
+	if _G.TestMode == false then
+		return
+	end
+	if data.PlayerID == nil then
+		return
+	end
+
+	local player = players[data.PlayerID]
+
+	if not player then
+		return
+	end
+
+	test_mode:LagTestHero(player, test_mode.lag_player_items, "item_heart_custom", data.PlayerID)
+
+	test_mode:CreateTargetDummy(player, function(dummy)
+		for _, name in pairs(test_mode.lag_dummy_items) do
+			if not dummy:HasItemInInventory(name) then
+				test_mode:GiveItem(dummy, name)
+			end
+		end
+
+		local teams = {}
+
+		for i = 1, max_teams do
+			local team = test_mode.TeamNumber[i]
+			if team and test_mode.TeamList[team] < players_in_team then
+				teams[#teams + 1] = i
+			end
+		end
+
+		local index = 0
+
+		for hero_name, armor in pairs(test_mode.lag_heroes) do
+			index = index + 1
+			if not teams[index] then
+				break
+			end
+
+			test_mode:AddHero(
+				{ PlayerID = data.PlayerID, value = hero_name, spawn_for_team = teams[index] },
+				true,
+				function(unit)
+					unit:FindModifierByName("modifier_test_hero_custom"):StartIntervalThink(-1)
+
+					test_mode:LagTestHero(unit, test_mode.lag_items, armor, data.PlayerID)
+
+					if IsValid(dummy) then
+						unit:MoveToTargetToAttack(dummy)
+					end
+				end
+			)
+		end
+	end)
+end
+
+function test_mode:LagTestHero(unit, items, armor, id)
+	for slot = 0, 8 do
+		local item = unit:GetItemInSlot(slot)
+		if item then
+			unit:RemoveItem(item)
+		end
+	end
+
+	for _, name in pairs(items) do
+		test_mode:GiveItem(unit, name)
+	end
+	test_mode:GiveItem(unit, armor)
+
+	local talent_data = { PlayerID = id, ent = unit:entindex() }
+	local talents = {}
+
+	for name, talent in pairs(ingame_talents[unit:GetUnitName()] or {}) do
+		if talent.rarity ~= "orange" and talent.rarity ~= "legendary" then
+			talents[name] = talent
+		end
+	end
+
+	for _, name in pairs(test_mode.lag_general) do
+		talents[name] = ingame_talents["general"][name]
+	end
+
+	for name, talent in pairs(talents) do
+		talent_data.value = name
+		for i = unit:TalentLevel(name) + 1, upgrade:GetMaxLevel(talent) do
+			test_mode:AddTalent(talent_data)
+		end
+	end
 end
 
 function test_mode:WatchTargetDummy()

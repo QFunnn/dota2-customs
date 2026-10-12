@@ -27,7 +27,7 @@ function modifier_event_thinker:OnCreated(table)
 	self.parent = self:GetParent()
 
 	dota1x6.event_thinker_mod = self
-	match_log:WrapClass("modifier_event_thinker")
+	match_log:WrapClass("modifier_event_thinker", nil, self)
 
 	self.neutral_mods = {
 		"modifier_ursa_clap",
@@ -68,7 +68,10 @@ function modifier_event_thinker:OnCreated(table)
 	self.test = false and test
 
 	self.max_per_tick = 20
+	self.max_time = 0.003
 	self.event_table = {}
+	self.event_mods = {}
+	self.event_types = {}
 	self.event_head = 1
 	self.event_tail = 0
 
@@ -120,16 +123,24 @@ function modifier_event_thinker:OnIntervalThink()
 
 	dota1x6:pcall(function()
 		local limit = 0
-		while limit < self.max_per_tick and self.event_head <= self.event_tail do
+		local start = Plat_FloatTime()
+		while
+			self.event_head <= self.event_tail
+			and (limit < self.max_per_tick or Plat_FloatTime() - start < self.max_time)
+		do
 			local callback = self.event_table[self.event_head]
+			local mod = self.event_mods[self.event_head]
+			local event_type = self.event_types[self.event_head]
 			self.event_table[self.event_head] = nil
+			self.event_mods[self.event_head] = nil
+			self.event_types[self.event_head] = nil
 			self.event_head = self.event_head + 1
 			limit = limit + 1
 
 			if self.test then
 				self:TestCallback(callback)
 			else
-				callback()
+				match_log:MeasureQueue(event_type, mod, callback)
 			end
 		end
 	end)
@@ -156,6 +167,8 @@ function modifier_event_thinker:StartThink(callback, mod, event_type)
 
 	self.event_tail = self.event_tail + 1
 	self.event_table[self.event_tail] = self.test and self:TestEntry(callback, mod, event_type) or callback
+	self.event_mods[self.event_tail] = mod
+	self.event_types[self.event_tail] = event_type
 
 	if not self.active then
 		self.active = true
@@ -272,7 +285,6 @@ function modifier_event_thinker:DeclareFunctions()
 		MODIFIER_EVENT_ON_ATTACK_RECORD,
 		MODIFIER_EVENT_ON_ATTACK_FAIL,
 		MODIFIER_EVENT_ON_RESPAWN,
-		MODIFIER_EVENT_ON_HEAL_RECEIVED,
 		MODIFIER_EVENT_ON_ABILITY_START,
 		MODIFIER_EVENT_ON_STATE_CHANGED,
 	}
@@ -298,7 +310,15 @@ function modifier_event_thinker:OnModifierAdded(params)
 		self:TestWrapClass(mod)
 	end
 
-	match_log:WrapClass(mod:GetName())
+	match_log:WrapClass(mod:GetName(), nil, mod)
+
+	local meta = getmetatable(mod)
+	local class = type(meta) == "table" and rawget(meta, "__index")
+	local declare = type(class) == "table" and rawget(class, "DeclareFunctions")
+	if type(declare) == "function" and not rawget(class, "hub_wrapped") then
+		rawset(class, "hub_wrapped", true)
+		rawset(class, "DeclareFunctions", HubDeclareWrap(declare))
+	end
 
 	if mod.GetModifierHealChange and unit:IsRealHero() then
 		if not unit.heal_reduce_mods then
@@ -582,7 +602,7 @@ function modifier_event_thinker:OnAbilityExecuted(params)
 		return
 	end
 
-	match_log:WrapClass(ability:GetAbilityName())
+	match_log:WrapClass(ability:GetAbilityName(), nil, ability)
 	match_log:Call("Cast", caster, ability, target)
 
 	if ability:IsToggle() then
@@ -987,68 +1007,6 @@ function modifier_event_thinker:OnAttackLanded(params)
 				logic_mod.quest_attack_logic(params)
 			end
 		end
-	end
-end
-
-function modifier_event_thinker:OnHealReceived(params)
-	if not IsServer() then
-		return
-	end
-	local unit = params.unit
-	local inflictor = params.inflictor
-
-	if unit == nil then
-		return
-	end
-
-	params.prev_health = unit:GetHealth()
-
-	if unit.heal_mods_inc then
-		for mod, sync_type in pairs(unit.heal_mods_inc) do
-			if IsValid(mod) and mod.HealEvent_inc ~= nil then
-				if sync_type == 2 then
-					local callback = function()
-						if IsValid(mod, params.unit) then
-							mod:HealEvent_inc(params)
-						end
-					end
-					self:StartThink(callback, mod, "HealEvent_inc")
-				else
-					mod:HealEvent_inc(params)
-				end
-			else
-				unit.heal_mods_inc[mod] = nil
-			end
-		end
-	end
-
-	if not unit:IsRealHero() or unit:IsTempestDouble() then
-		return
-	end
-	if not inflictor then
-		return
-	end
-
-	local healing = math.min(math.floor(params.gain), unit:GetMaxHealth() - unit:GetHealth())
-
-	local new_name = nil
-	if
-		unit.ReplaceHealing
-		and unit.ReplaceHealing.new_name
-		and unit.ReplaceHealing.inflictor
-		and unit.ReplaceHealing.inflictor == inflictor
-	then
-		new_name = unit.ReplaceHealing.new_name
-		unit.ReplaceHealing = {}
-	end
-
-	if healing > 0 then
-		local callback = function()
-			if IsValid(params.unit) then
-				self:HealingTableCount(unit, healing, new_name, inflictor, "healing")
-			end
-		end
-		self:StartThink(callback, self, "HealingTableCount")
 	end
 end
 
@@ -1491,6 +1449,59 @@ function modifier_event_thinker:FillDamageTable(
 
 	damage_table[ability_name].damage = damage_table[ability_name].damage + amount
 	damage_table[ability_name].damage_types[damage_type] = damage_table[ability_name].damage_types[damage_type] + amount
+end
+
+modifier_event_thinker_heal = class(mod_hidden)
+function modifier_event_thinker_heal:RemoveOnDeath()
+	return false
+end
+function modifier_event_thinker_heal:DeclareFunctions()
+	return {
+		MODIFIER_EVENT_ON_HEAL_RECEIVED,
+	}
+end
+
+function modifier_event_thinker_heal:OnHealReceived(params)
+	if not IsServer() then
+		return
+	end
+	for mod in pairs(heal_event_mods) do
+		if not IsValid(mod) then
+			heal_event_mods[mod] = nil
+		end
+	end
+
+	if not next(heal_event_mods) then
+		self:Destroy()
+		return
+	end
+
+	local unit = params.unit
+	if unit == nil then
+		return
+	end
+	if not unit.heal_mods_inc then
+		return
+	end
+
+	params.prev_health = unit:GetHealth()
+
+	for mod, sync_type in pairs(unit.heal_mods_inc) do
+		if IsValid(mod) and mod.HealEvent_inc ~= nil then
+			if sync_type == 2 then
+				local callback = function()
+					if IsValid(mod, params.unit) then
+						mod:HealEvent_inc(params)
+					end
+				end
+				dota1x6.event_thinker_mod:StartThink(callback, mod, "HealEvent_inc")
+			else
+				mod:HealEvent_inc(params)
+			end
+		else
+			unit.heal_mods_inc[mod] = nil
+		end
+	end
 end
 
 modifier_quest_blink = class({})

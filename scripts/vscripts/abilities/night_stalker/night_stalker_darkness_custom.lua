@@ -976,7 +976,6 @@ function modifier_night_stalker_darkness_custom_blind_flight:CheckState()
 	return {
 		[MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY] = true,
 		[MODIFIER_STATE_FORCED_FLYING_VISION] = true,
-		[MODIFIER_STATE_ATTACKS_DONT_REVEAL] = true,
 	}
 end
 

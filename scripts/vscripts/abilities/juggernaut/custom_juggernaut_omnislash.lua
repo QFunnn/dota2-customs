@@ -535,7 +535,7 @@ function modifier_custom_juggernaut_omnislash_attack:OnCreated(table)
 		self.is_auto = true
 	end
 
-	self.creeps = table.creep == 1 and self.ability.creeps or 0
+	self.creeps = table.creep == 1 and self.ability.creeps_damage or 0
 end
 
 function modifier_custom_juggernaut_omnislash_attack:DeclareFunctions()
@@ -577,7 +577,7 @@ function modifier_custom_juggernaut_omnislash_tracker:OnCreated()
 	self.ability.crit_bonus = self.ability:GetSpecialValueFor("crit_bonus")
 	self.ability.interval = self.ability:GetSpecialValueFor("interval")
 	self.ability.radius = self.ability:GetSpecialValueFor("radius")
-	self.ability.creeps = self.ability:GetSpecialValueFor("creeps") / 100
+	self.ability.creeps_damage = self.ability:GetSpecialValueFor("creeps_damage") / 100
 end
 
 function modifier_custom_juggernaut_omnislash_tracker:OnRefresh()

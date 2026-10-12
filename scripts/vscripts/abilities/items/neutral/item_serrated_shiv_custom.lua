@@ -34,7 +34,7 @@ function item_serrated_shiv_custom:Spawn()
 	self.proc_chance = self:GetSpecialValueFor("proc_chance")
 	self.damage = self:GetSpecialValueFor("damage")
 	self.damage_health = self:GetSpecialValueFor("damage_health") / 100
-	self.creeps_damage = self:GetSpecialValueFor("creeps_damage")
+	self.damage_creeps = self:GetSpecialValueFor("damage_creeps")
 end
 
 modifier_item_serrated_shiv_custom = class(mod_hidden)
@@ -136,7 +136,7 @@ function modifier_item_serrated_shiv_custom:AttackEvent_out(params)
 
 	local target = params.target
 	self.damageTable.victim = target
-	self.damageTable.damage = target:IsCreep() and self.ability.creeps_damage
+	self.damageTable.damage = target:IsCreep() and self.ability.damage_creeps
 		or self.ability.damage + target:GetHealth() * self.ability.damage_health
 	local real_damage = DoDamage(self.damageTable)
 	target:SendNumber(115, real_damage)

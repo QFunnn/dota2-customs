@@ -283,10 +283,6 @@ function leshrac_lightning_storm_custom:DealDamage(target, ability)
 
 	target:EmitSound("Hero_Leshrac.Lightning_Storm")
 
-	if target:IsCreep() then
-		damage = damage * (1 + self.creeps)
-	end
-
 	DoDamage(
 		{
 			victim = target,
@@ -625,7 +621,7 @@ function modifier_leshrac_lightning_storm_custom_tracker:OnCreated()
 	self.ability.radius = self.ability:GetSpecialValueFor("radius")
 	self.ability.jump_delay = self.ability:GetSpecialValueFor("jump_delay")
 	self.ability.slow_movement_speed = self.ability:GetSpecialValueFor("slow_movement_speed")
-	self.ability.creeps = self.ability:GetSpecialValueFor("creeps") / 100
+	self.ability.creeps_damage = self.ability:GetSpecialValueFor("creeps_damage") / 100
 end
 
 function modifier_leshrac_lightning_storm_custom_tracker:OnRefresh()

@@ -447,11 +447,7 @@ function custom_legion_commander_overwhelming_odds:ProcOdds(point, source, buffe
 			self.parent.press_ability:ProcDamage(enemy)
 		end
 
-		local target_damage = damage
-		if enemy:IsCreep() then
-			target_damage = target_damage * (1 + self.creeps)
-		end
-		damageTable.damage = target_damage
+		damageTable.damage = damage
 		damageTable.victim = enemy
 		DoDamage(damageTable, source)
 	end
@@ -531,7 +527,7 @@ function modifier_overwhelming_odds_custom_tracker:OnCreated()
 	self.ability.shard_cast = self.ability:GetSpecialValueFor("shard_cast")
 	self.ability.shard_range = self.ability:GetSpecialValueFor("shard_range")
 	self.ability.shard_speed = self.ability:GetSpecialValueFor("shard_speed")
-	self.ability.creeps = self.ability:GetSpecialValueFor("creeps") / 100
+	self.ability.creeps_damage = self.ability:GetSpecialValueFor("creeps_damage") / 100
 end
 
 function modifier_overwhelming_odds_custom_tracker:OnRefresh(table)

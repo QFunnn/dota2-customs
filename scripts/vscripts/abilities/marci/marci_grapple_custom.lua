@@ -219,16 +219,11 @@ function marci_grapple_custom:OnSpellStart()
 			ParticleManager:ReleaseParticleIndex(particle)
 		end
 
-		local damage_k = 1
-		if target:IsCreep() then
-			damage_k = 1 + self.creeps
-		end
-
 		if IsValid(self.caster.rebound_ability) then
 			self.caster.rebound_ability:ApplyProc(target)
 		end
 
-		damageTable.damage = damage * damage_k * self.talents.q4_damage
+		damageTable.damage = damage * self.talents.q4_damage
 		damageTable.victim = target
 		DoDamage(damageTable, "modifier_marci_dispose_4")
 
@@ -262,10 +257,8 @@ function marci_grapple_custom:OnSpellStart()
 
 	for _, aoe_target in pairs(self.caster:FindTargets(self.landing_radius, target:GetOrigin())) do
 		local totaldist = (aoe_target:GetOrigin() - targetpos):Length2D()
-		local damage_k = 1
 		if aoe_target:IsCreep() then
 			totaldist = 0
-			damage_k = 1 + self.creeps
 		end
 
 		self:PlayEffects3(aoe_target, self.air_duration)
@@ -309,7 +302,7 @@ function marci_grapple_custom:OnSpellStart()
 					)
 				end
 
-				damageTable.damage = damage * damage_k
+				damageTable.damage = damage
 				damageTable.victim = aoe_target
 				DoDamage(damageTable)
 
@@ -567,7 +560,7 @@ function modifier_marci_dispose_custom_tracker:OnCreated(table)
 	self.ability.air_height = self.ability:GetSpecialValueFor("air_height")
 	self.ability.throw_distance_behind = self.ability:GetSpecialValueFor("throw_distance_behind")
 	self.ability.slow_duration = self.ability:GetSpecialValueFor("slow_duration")
-	self.ability.creeps = self.ability:GetSpecialValueFor("creeps") / 100
+	self.ability.creeps_damage = self.ability:GetSpecialValueFor("creeps_damage") / 100
 end
 
 function modifier_marci_dispose_custom_tracker:OnRefresh()

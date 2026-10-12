@@ -356,11 +356,7 @@ function skeleton_king_hellfire_blast_custom:OnProjectileHit_ExtraData(target, v
 	local damageTable = { attacker = self.caster, damage_type = DAMAGE_TYPE_MAGICAL, ability = self }
 	for _, aoe_target in pairs(self.caster:FindTargets(self.radius, target:GetAbsOrigin())) do
 		damageTable.victim = aoe_target
-		local damage = stun_damage
-		if aoe_target:IsCreep() then
-			damage = damage * (1 + self.creeps_damage)
-		end
-		damageTable.damage = damage
+		damageTable.damage = stun_damage
 		DoDamage(damageTable)
 		aoe_target:AddNewModifier(
 			self.caster,
@@ -581,9 +577,6 @@ function modifier_skeleton_king_hellfire_blast_custom_debuff:OnCreated()
 
 	if not IsServer() then
 		return
-	end
-	if self.parent:IsCreep() then
-		self.per_damage = self.per_damage * (1 + self.ability.creeps_damage)
 	end
 	self.damageTable = {
 		victim = self.parent,

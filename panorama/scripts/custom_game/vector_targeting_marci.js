@@ -33,27 +33,6 @@ var ability_min_cast_range = 450
 var ability_max_cast_range = 850
 var cast_range
 
-var modifier_for_bonus_cast_range = ""
-var bonus_cast_range_for_stack = 0
-
-function MarciGetBonusCastRange(number, mod) {
-
-	var hero = Players.GetPlayerHeroEntityIndex( Players.GetLocalPlayer() )
-
-	for (var i = 0; i < Entities.GetNumBuffs(hero); i++) {
-		var buffID = Entities.GetBuff(hero, i)
-		if (Buffs.GetName(hero, buffID ) == mod ){
-			var stack = Buffs.GetStackCount(hero, buffID ) 
-			if (stack == 0) {
-				stack = 1
-			}
-			return number * stack
-		}
-	}
-	return 0
-}
-   
-
 const MarcidefaultAbilities = ["marci_companion_run_custom"];
 
 var marci_check_mouse_f = function marci_check_mouse(eventName, arg, arg2, arg3)
@@ -171,11 +150,10 @@ function MarciOnVectorTargetingStart(fStartWidth, fEndWidth, fCastLength, bDual,
 		radius = Abilities.GetSpecialValueFor(marci_currentlyActiveVectorTargetAbility, "landing_radius");
 
 		ability_min_cast_range = Abilities.GetSpecialValueFor(marci_currentlyActiveVectorTargetAbility, "min_jump_distance");
-		ability_max_cast_range = Abilities.GetSpecialValueFor(marci_currentlyActiveVectorTargetAbility, "max_jump_distance") + MarciGetBonusCastRange(bonus_cast_range_for_stack, modifier_for_bonus_cast_range) - 50;
+		ability_max_cast_range = Abilities.GetSpecialValueFor(marci_currentlyActiveVectorTargetAbility, "max_jump_distance") - 50;
 		cast_range = Abilities.GetCastRange( marci_currentlyActiveVectorTargetAbility ) -50
 
-		if (Game.HasTalent("npc_dota_hero_marci", "modifier_marci_rebound_4"))
-			ability_max_cast_range = ability_max_cast_range + Game.GetTalentValue("modifier_marci_rebound_4", "range")
+		ability_max_cast_range = ability_max_cast_range + Game.GetTalentValue("modifier_marci_rebound_4", "range", Entities.GetPlayerOwnerID(Abilities.GetCaster(marci_currentlyActiveVectorTargetAbility)), true)
 	}
 
 	let particleName = "particles/ui_mouseactions/range_finder_generic_aoe_nocenter.vpcf";

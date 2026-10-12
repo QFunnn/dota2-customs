@@ -161,6 +161,33 @@ function dota1x6:RequestMinimapIcons(data)
 	dota1x6:SendMinimapIcons(PlayerResource:GetTeam(id), PlayerResource:GetPlayer(id))
 end
 
+function dota1x6:SendPlayerStats(hero, player)
+	if not hero.stats_cache then
+		return
+	end
+
+	local data =
+		{ id = hero:GetId(), str = hero.stats_cache.str, agi = hero.stats_cache.agi, int = hero.stats_cache.int }
+
+	if player then
+		CustomGameEventManager:Send_ServerToPlayer(player, "update_player_stats", data)
+	else
+		CustomGameEventManager:Send_ServerToAllClients("update_player_stats", data)
+	end
+end
+
+function dota1x6:RequestPlayerStats(data)
+	local id = data.PlayerID
+
+	if id == nil then
+		return
+	end
+
+	for _, hero in pairs(players) do
+		dota1x6:SendPlayerStats(hero, PlayerResource:GetPlayer(id))
+	end
+end
+
 function dota1x6:GetPlayerNames(data)
 	local id = data.PlayerID
 
@@ -1002,28 +1029,6 @@ function dota1x6:CheckDisarm(unit)
 		end
 	end
 	return false
-end
-
-function dota1x6:GenericHeal(target, heal, ability, no_text, effect)
-	if not IsServer() then
-		return
-	end
-
-	target:Heal(heal, ability)
-
-	local part = "particles/generic_gameplay/generic_lifesteal.vpcf"
-
-	if effect then
-		part = effect
-	end
-
-	local particle = ParticleManager:CreateParticle(part, PATTACH_ABSORIGIN_FOLLOW, target)
-	ParticleManager:ReleaseParticleIndex(particle)
-
-	if no_text and no_text == true then
-		return
-	end
-	SendOverheadEventMessage(target, 10, target, heal, nil)
 end
 
 function dota1x6:CreateUnitCustom(name, vector, clear_space, npc_owner, entity_owner, team, callback)

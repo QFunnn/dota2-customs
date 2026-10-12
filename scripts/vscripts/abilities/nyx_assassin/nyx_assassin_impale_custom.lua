@@ -142,9 +142,8 @@ function nyx_assassin_impale_custom:GetCooldown(level)
 	return self.BaseClass.GetCooldown(self, level) + (self.talents.q2_cd or 0)
 end
 
-function nyx_assassin_impale_custom:GetDamage(target)
-	local bonus = target:IsCreep() and (self.damage_creeps + 1) or 1
-	return (self.impale_damage + self.talents.q1_damage * self.caster:GetIntellect(false)) * bonus
+function nyx_assassin_impale_custom:GetDamage()
+	return self.impale_damage + self.talents.q1_damage * self.caster:GetIntellect(false)
 end
 
 function nyx_assassin_impale_custom:OnSpellStart()
@@ -406,7 +405,7 @@ function modifier_nyx_assassin_impale_custom_tracker:OnCreated(table)
 	self.ability.duration = self.ability:GetSpecialValueFor("duration")
 	self.ability.length = self.ability:GetSpecialValueFor("length")
 	self.ability.speed = self.ability:GetSpecialValueFor("speed")
-	self.ability.damage_creeps = self.ability:GetSpecialValueFor("damage_creeps") / 100
+	self.ability.creeps_damage = self.ability:GetSpecialValueFor("creeps_damage") / 100
 end
 
 function modifier_nyx_assassin_impale_custom_tracker:OnRefresh()
@@ -680,7 +679,7 @@ function modifier_nyx_assassin_impale_custom_legendary_thinker:OnDestroy()
 		target:AddNewModifier(self.caster, self.ability, "modifier_knockback", knockbackProperties)
 		target:AddNewModifier(self.caster, self.ability, "modifier_stunned", { duration = stun })
 
-		damageTable.damage = self.impale:GetDamage(target) * self.damage
+		damageTable.damage = self.impale:GetDamage() * self.damage * self.impale:GetCreepsMult(target)
 		damageTable.victim = target
 		DoDamage(damageTable, "modifier_nyx_impale_7")
 		target:AddNewModifier(

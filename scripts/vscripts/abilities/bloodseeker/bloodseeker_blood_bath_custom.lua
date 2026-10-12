@@ -342,15 +342,10 @@ function modifier_bloodseeker_blood_bath_custom_thinker:OnDestroy(kv)
 			{ duration = self.silence_duration * (1 - enemy:GetStatusResistance()) }
 		)
 
-		local target_damage = self.damage
-		if enemy:IsCreep() then
-			target_damage = target_damage * (1 + self.ability.creeps)
-		end
-
 		DoDamage({
 			attacker = self.caster,
 			victim = enemy,
-			damage = target_damage,
+			damage = self.damage,
 			damage_type = DAMAGE_TYPE_PURE,
 			ability = self.ability,
 		})
@@ -420,7 +415,7 @@ function modifier_bloodseeker_blood_bath_custom_tracker:OnCreated()
 	self.ability.delay = self.ability:GetSpecialValueFor("delay")
 	self.ability.radius = self.ability:GetSpecialValueFor("radius")
 	self.ability.damage = self.ability:GetSpecialValueFor("damage")
-	self.ability.creeps = self.ability:GetSpecialValueFor("creeps") / 100
+	self.ability.creeps_damage = self.ability:GetSpecialValueFor("creeps_damage") / 100
 	self.ability.silence_duration = self.ability:GetSpecialValueFor("silence_duration")
 end
 

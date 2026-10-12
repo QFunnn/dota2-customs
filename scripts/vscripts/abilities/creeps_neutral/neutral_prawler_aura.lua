@@ -9,7 +9,6 @@
 
 
 LinkLuaModifier("modifier_prawler_aura", "abilities/creeps_neutral/neutral_prawler_aura", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_prawler_aura_buff", "abilities/creeps_neutral/neutral_prawler_aura", LUA_MODIFIER_MOTION_NONE)
 
 neutral_prawler_aura = class({})
 
@@ -18,40 +17,12 @@ function neutral_prawler_aura:GetIntrinsicModifierName()
 end
 
 modifier_prawler_aura = class(mod_hidden)
-function modifier_prawler_aura:IsAura()
-	return true
-end
-function modifier_prawler_aura:GetAuraDuration()
-	return 0.1
-end
-function modifier_prawler_aura:GetAuraRadius()
-	return self.ability.radius
-end
-function modifier_prawler_aura:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_FRIENDLY
-end
-function modifier_prawler_aura:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
-end
 function modifier_prawler_aura:OnCreated()
-	self.ability = self:GetAbility()
-
-	self.ability.radius = self.ability:GetSpecialValueFor("radius")
-	self.ability.heal = self.ability:GetSpecialValueFor("heal") / 100
-	self.ability.heal_mult = self.ability:GetSpecialValueFor("heal_mult")
-end
-
-function modifier_prawler_aura:GetModifierAura()
-	return "modifier_prawler_aura_buff"
-end
-
-modifier_prawler_aura_buff = class(mod_visible)
-function modifier_prawler_aura_buff:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
 
-	self.heal = self.ability.heal
-	self.heal_mult = self.ability.heal_mult
+	self.heal = self.ability:GetSpecialValueFor("heal") / 100
+	self.heal_mult = self.ability:GetSpecialValueFor("heal_mult")
 
 	if not IsServer() then
 		return
@@ -59,13 +30,13 @@ function modifier_prawler_aura_buff:OnCreated()
 	self.parent:AddDamageEvent_out(self, true)
 end
 
-function modifier_prawler_aura_buff:CheckState()
+function modifier_prawler_aura:CheckState()
 	return {
 		[MODIFIER_STATE_CANNOT_MISS] = true,
 	}
 end
 
-function modifier_prawler_aura_buff:DamageEvent_out(params)
+function modifier_prawler_aura:DamageEvent_out(params)
 	if not IsServer() then
 		return
 	end

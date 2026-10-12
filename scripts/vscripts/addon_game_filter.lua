@@ -646,6 +646,7 @@ function dota1x6:OnRuneActivated(params)
 	local unit = players[id]
 	local team = unit:GetTeamNumber()
 	local net_k = bounty_net_min
+	local place = 1
 	local teams_net = dota1x6:GetTeamsNet()
 	local bonus = 1
 
@@ -658,6 +659,7 @@ function dota1x6:OnRuneActivated(params)
 	for index, data in pairs(teams_net) do
 		if data.team == team then
 			net_k = bounty_net_min + (bounty_net_max - bounty_net_min) * ((index - 1) / (max_teams - 1))
+			place = index
 		end
 	end
 
@@ -704,17 +706,25 @@ function dota1x6:OnRuneActivated(params)
 	local white = bounty_white_init + minute * bounty_white_per_minute
 
 	local names = {}
+	local ids = {}
 	for _, hero in pairs(heroes) do
 		table.insert(names, hero:GetUnitName())
+		table.insert(ids, hero:GetId())
 	end
 
-	for _, hero in pairs(heroes) do
-		CustomGameEventManager:Send_ServerToPlayer(
-			PlayerResource:GetPlayer(hero:GetId()),
-			"mini_alert_event",
-			{ heroes = names, net_k = math.floor(net_k * 100), event_type = "bounty" }
-		)
+	CustomGameEventManager:Send_ServerToAllClients(
+		"kill_feed_bounty",
+		{
+			ids = table.concat(ids, ","),
+			heroes = table.concat(names, ","),
+			gold = math.floor(gold),
+			white = math.floor(white),
+			place = place,
+			bonus = math.floor((net_k - 1) * 100 + 0.5),
+		}
+	)
 
+	for _, hero in pairs(heroes) do
 		local gold_k = 1
 		local white_k = 1
 		local exp_k = 1
@@ -761,7 +771,6 @@ function dota1x6:OnRuneActivated(params)
 end
 
 function dota1x6:BountyRunePickupFilter(params)
-	CustomGameEventManager:Send_ServerToAllClients("delete_bounty", {})
 	params["gold_bounty"] = 0
 	dota1x6:StartBountyWatch()
 	return true

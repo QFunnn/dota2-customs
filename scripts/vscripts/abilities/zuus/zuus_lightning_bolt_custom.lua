@@ -302,10 +302,6 @@ function zuus_lightning_bolt_custom:CastLightningBolt(point, damage_ability)
 			)
 		end
 
-		if unit:IsCreep() then
-			damage = damage * (1 + self.creeps)
-		end
-
 		local real_damage = DoDamage(
 			{ attacker = self.caster, ability = self, damage_type = DAMAGE_TYPE_MAGICAL, damage = damage, victim = unit },
 			damage_ability
@@ -357,7 +353,7 @@ function modifier_zuus_lightning_bolt_custom_tracker:OnCreated()
 	self.ability.sight_duration = self.ability:GetSpecialValueFor("sight_duration")
 	self.ability.radius = self.ability:GetSpecialValueFor("radius")
 	self.ability.stun_duration = self.ability:GetSpecialValueFor("stun_duration")
-	self.ability.creeps = self.ability:GetSpecialValueFor("creeps") / 100
+	self.ability.creeps_damage = self.ability:GetSpecialValueFor("creeps_damage") / 100
 end
 
 function modifier_zuus_lightning_bolt_custom_tracker:OnRefresh()

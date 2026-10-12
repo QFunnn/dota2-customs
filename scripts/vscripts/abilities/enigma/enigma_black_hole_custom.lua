@@ -231,12 +231,8 @@ function enigma_black_hole_custom:InvalidMods(target)
 	return false
 end
 
-function enigma_black_hole_custom:GetDamage(target, auto)
-	local damage = self.damage + self.talents.r1_damage * self.caster:GetIntellect(false)
-	if target:IsCreep() then
-		damage = damage * (1 + self.creeps)
-	end
-	return damage
+function enigma_black_hole_custom:GetDamage()
+	return self.damage + self.talents.r1_damage * self.caster:GetIntellect(false)
 end
 
 function enigma_black_hole_custom:GetStunDuration()
@@ -273,7 +269,7 @@ function modifier_enigma_black_hole_custom_tracker:OnCreated()
 	self.ability.duration = self.ability:GetSpecialValueFor("duration")
 	self.ability.animation_rate = self.ability:GetSpecialValueFor("animation_rate")
 	self.ability.radius = self.ability:GetSpecialValueFor("radius")
-	self.ability.creeps = self.ability:GetSpecialValueFor("creeps") / 100
+	self.ability.creeps_damage = self.ability:GetSpecialValueFor("creeps_damage") / 100
 end
 
 function modifier_enigma_black_hole_custom_tracker:OnRefresh()

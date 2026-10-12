@@ -620,7 +620,6 @@ function modifier_press_the_attack_custom_burn_effect:OnCreated()
 		return
 	end
 	self.interval = self.ability.interval
-	self.damage_k = self.parent:IsCreep() and (1 + self.ability.creeps) or 1
 
 	self.particle = ParticleManager:CreateParticle(
 		"particles/econ/events/fall_2022/radiance_target_fall2022.vpcf",
@@ -654,7 +653,7 @@ function modifier_press_the_attack_custom_burn_effect:OnIntervalThink()
 	if mod and mod.active then
 		damage_ability = "modifier_legion_press_7"
 	end
-	self.damageTable.damage = self.ability:GetDamage() * self.interval * self.damage_k
+	self.damageTable.damage = self.ability:GetDamage() * self.interval
 	DoDamage(self.damageTable, damage_ability)
 end
 
@@ -735,7 +734,7 @@ function modifier_press_the_attack_custom_tracker:OnCreated()
 	self.ability.damage = self.ability:GetSpecialValueFor("damage")
 	self.ability.radius = self.ability:GetSpecialValueFor("radius")
 	self.ability.interval = self.ability:GetSpecialValueFor("interval")
-	self.ability.creeps = self.ability:GetSpecialValueFor("creeps") / 100
+	self.ability.creeps_damage = self.ability:GetSpecialValueFor("creeps_damage") / 100
 end
 
 function modifier_press_the_attack_custom_tracker:OnRefresh()

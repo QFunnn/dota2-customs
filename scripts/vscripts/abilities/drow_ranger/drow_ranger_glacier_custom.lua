@@ -232,12 +232,6 @@ function modifier_drow_ranger_glacier_custom_effect:OnCreated()
 	self.range = self.ability.attack_range
 end
 
-function modifier_drow_ranger_glacier_custom_effect:CheckState()
-	return {
-		[MODIFIER_STATE_ATTACKS_DONT_REVEAL] = true,
-	}
-end
-
 function modifier_drow_ranger_glacier_custom_effect:DeclareFunctions()
 	return {
 		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,

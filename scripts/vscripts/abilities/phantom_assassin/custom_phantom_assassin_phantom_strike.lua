@@ -356,7 +356,7 @@ function custom_phantom_assassin_phantom_strike:OnSpellStart()
 		})
 
 		if proc then
-			self.caster.crit_ability:ApplyBleed(self.caster, enemy, damage)
+			self.caster.crit_ability:ApplyBleed(self.caster, enemy, damage * self:GetCreepsMult(enemy))
 		end
 
 		if self.caster.dagger_ability then
@@ -501,7 +501,7 @@ function custom_phantom_assassin_phantom_strike:OnProjectileHit_ExtraData(hTarge
 			end
 
 			if table.crit then
-				self.caster.crit_ability:ApplyBleed(clone, enemy, damage)
+				self.caster.crit_ability:ApplyBleed(clone, enemy, damage * self:GetCreepsMult(enemy))
 			end
 		else
 			local particle = ParticleManager:CreateParticle(
@@ -529,10 +529,8 @@ function custom_phantom_assassin_phantom_strike:IsArcana()
 	return self.caster:GetModelName() ~= "models/heroes/phantom_assassin/phantom_assassin.vmdl"
 end
 
-function custom_phantom_assassin_phantom_strike:GetDamage(target)
-	local damage = self.damage + self.caster:GetMaxHealth() * self.talents.w1_health
-
-	return damage * ((target and target:IsCreep()) and (1 + (self.creeps_damage or 0)) or 1)
+function custom_phantom_assassin_phantom_strike:GetDamage()
+	return self.damage + self.caster:GetMaxHealth() * self.talents.w1_health
 end
 
 function custom_phantom_assassin_phantom_strike:ProcMark(target, clone)

@@ -244,7 +244,7 @@ function modifier_razor_static_link_custom:OnCreated(table)
 	end
 
 	if self.target:IsCreep() then
-		self.total_damage = self.total_damage * (1 + self.ability:GetSpecialValueFor("creeps_damage") / 100)
+		self.total_damage = self.total_damage * (1 + self.ability:GetSpecialValueFor("creeps_drain") / 100)
 	end
 
 	self.damage_rate = self.total_damage / self.total_duration

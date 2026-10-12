@@ -191,14 +191,13 @@ function kunkka_torrent_custom:GetCooldown(iLevel)
 		+ (self.talents.has_q7 == 1 and self.talents.q7_cd or 0)
 end
 
-function kunkka_torrent_custom:GetDamage(target)
-	local damage = (self.torrent_damage or 0)
+function kunkka_torrent_custom:GetDamage()
+	return (self.torrent_damage or 0)
 		+ (
 			self.talents.has_q1 == 1
 				and (self.talents.q1_damage + self.caster:GetIntellect(false) * self.talents.q1_int)
 			or 0
 		)
-	return damage * ((target and target:IsCreep()) and (1 + (self.creeps_damage or 0)) or 1)
 end
 
 function kunkka_torrent_custom:GetRadius()

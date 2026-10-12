@@ -422,9 +422,6 @@ function modifier_hoodwink_bushwhack_custom_debuff:OnCreated(kv)
 	self.tick_count = math.floor(self.duration / self.interval)
 
 	self.damage = (self.ability.total_damage + self.ability.talents.w1_damage) / self.tick_count
-	if self.parent:IsCreep() then
-		self.damage = self.damage * (1 + self.ability.creeps)
-	end
 
 	self.ability:AddPoison(self.parent)
 
@@ -645,7 +642,7 @@ function modifier_hoodwink_bushwhack_custom_tracker:OnCreated()
 	self.ability.total_damage = self.ability:GetSpecialValueFor("total_damage")
 	self.ability.animation_rate = self.ability:GetSpecialValueFor("animation_rate")
 	self.ability.visual_height = self.ability:GetSpecialValueFor("visual_height")
-	self.ability.creeps = self.ability:GetSpecialValueFor("creeps_damage") / 100
+	self.ability.creeps_damage = self.ability:GetSpecialValueFor("creeps_damage") / 100
 end
 
 function modifier_hoodwink_bushwhack_custom_tracker:OnRefresh()

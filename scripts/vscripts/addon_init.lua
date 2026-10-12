@@ -10,10 +10,90 @@
 
 _G.LinkLuaModifier_old = LinkLuaModifier_old or LinkLuaModifier
 _G.log_modifiers = log_modifiers or {}
+_G.hub_pending = hub_pending or {}
+_G.hub_functions = {
+	[MODIFIER_PROPERTY_STATS_STRENGTH_BONUS] = "GetModifierBonusStats_Strength",
+	[MODIFIER_PROPERTY_STATS_AGILITY_BONUS] = "GetModifierBonusStats_Agility",
+	[MODIFIER_PROPERTY_STATS_INTELLECT_BONUS] = "GetModifierBonusStats_Intellect",
+	[MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT] = "GetModifierAttackSpeedBonus_Constant",
+	[MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE] = "GetModifierPreAttack_BonusDamage",
+	[MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS] = "GetModifierPhysicalArmorBonus",
+	[MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT] = "GetModifierMoveSpeedBonus_Constant",
+}
+_G.hub_units = {
+	[MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT] = true,
+}
+
+function HubUnit(unit)
+	local team = unit:GetTeamNumber()
+	return team ~= DOTA_TEAM_NEUTRALS and team ~= DOTA_TEAM_CUSTOM_5 and unit:GetUnitName() ~= "npc_dota_thinker"
+end
+
+function HubDeclareWrap(declare)
+	return function(obj)
+		local list = declare(obj)
+		if not IsServer() or type(list) ~= "table" or obj.is_hub then
+			return list
+		end
+		local parent = obj:GetParent()
+		if not IsValid(parent) or not HubUnit(parent) then
+			return list
+		end
+
+		local hero = parent:IsHero()
+		local hub = IsValid(parent.stats_hub) and parent.stats_hub.hub
+		if not hub and not hero then
+			return list
+		end
+
+		local result = {}
+		for _, func in pairs(list) do
+			if not hub_functions[func] or (not hero and not hub_units[func]) then
+				table.insert(result, func)
+			elseif hub then
+				hub[func][obj] = true
+			else
+				parent.hub_orphans = parent.hub_orphans or {}
+				parent.hub_orphans[obj] = parent.hub_orphans[obj] or {}
+				table.insert(parent.hub_orphans[obj], func)
+			end
+		end
+		return result
+	end
+end
 
 function LinkLuaModifier(name, path, motion, log)
 	if log ~= nil then
 		log_modifiers[name] = log
+	end
+
+	if rawget(_G, "getfenv") then
+		local env = getfenv(2)
+		local meta = getmetatable(env)
+		hub_pending[name] = true
+		if env ~= _G and type(meta) == "table" and not meta.__newindex then
+			meta.__newindex = function(t, key, value)
+				rawset(t, key, value)
+				if type(value) ~= "table" or not hub_pending[key] then
+					return
+				end
+				local class_meta = getmetatable(value)
+				if not class_meta then
+					class_meta = {}
+					setmetatable(value, class_meta)
+				end
+				if class_meta.__newindex then
+					return
+				end
+				class_meta.__newindex = function(class, field, func)
+					if field == "DeclareFunctions" and type(func) == "function" then
+						rawset(class, "hub_wrapped", true)
+						func = HubDeclareWrap(func)
+					end
+					rawset(class, field, func)
+				end
+			end
+		end
 	end
 
 	LinkLuaModifier_old(name, path, motion)
@@ -95,9 +175,11 @@ LinkLuaModifier(
 	"modifiers/main_mods/modifier_player_main_custom",
 	LUA_MODIFIER_MOTION_NONE
 )
+LinkLuaModifier("modifier_stats_hub", "modifiers/main_mods/modifier_stats_hub", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_death", "modifiers/main_mods/modifier_death", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_mob_thinker", "modifiers/main_mods/modifier_mob_thinker", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_event_thinker", "modifiers/main_mods/modifier_event_thinker", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_event_thinker_heal", "modifiers/main_mods/modifier_event_thinker", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_quest_blink", "modifiers/main_mods/modifier_event_thinker", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_voice_module", "modifiers/main_mods/modifier_voice_module", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_donate_pet", "modifiers/main_mods/modifier_donate_pet", LUA_MODIFIER_MOTION_NONE)
@@ -692,7 +774,7 @@ function InvokerAbilityManager(caster)
 			caster.wall_ability.wall_element_spacing = caster.wall_ability:GetSpecialValueFor("wall_element_spacing")
 			caster.wall_ability.wall_element_radius = caster.wall_ability:GetSpecialValueFor("wall_element_radius")
 				* radius_inc
-			caster.wall_ability.creeps = caster.wall_ability:GetSpecialValueFor("creeps") / 100
+			caster.wall_ability.creeps_damage = caster.wall_ability:GetSpecialValueFor("creeps_damage") / 100
 			caster.wall_ability.duration = caster:GetValueQuas(caster.wall_ability, "duration")
 			caster.wall_ability.slow = caster:GetValueQuas(caster.wall_ability, "slow")
 			caster.wall_ability.damage_per_second = caster:GetValueExort(caster.wall_ability, "damage_per_second")
@@ -749,7 +831,7 @@ function InvokerAbilityManager(caster)
 			caster.emp_ability.damage_per_mana_pct = caster.emp_ability:GetSpecialValueFor("damage_per_mana_pct")
 				* damage_inc
 			caster.emp_ability.mana_burned = caster:GetValueWex(caster.emp_ability, "mana_burned")
-			caster.emp_ability.creeps_damage = caster:GetValueWex(caster.emp_ability, "creeps_damage") * damage_inc
+			caster.emp_ability.damage_creeps = caster:GetValueWex(caster.emp_ability, "damage_creeps") * damage_inc
 		end
 		caster.emp_ability.area_of_effect = caster.emp_ability:GetSpecialValueFor("area_of_effect") * radius_inc
 	end

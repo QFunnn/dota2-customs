@@ -17,11 +17,6 @@ LinkLuaModifier(
 )
 LinkLuaModifier("modifier_tower_incoming_no_heal", "modifiers/tower/modifier_tower_incoming", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier(
-	"modifier_tower_incoming_no_spells",
-	"modifiers/tower/modifier_tower_incoming",
-	LUA_MODIFIER_MOTION_NONE
-)
-LinkLuaModifier(
 	"modifier_tower_incoming_push_reduce",
 	"modifiers/tower/modifier_tower_incoming",
 	LUA_MODIFIER_MOTION_NONE
@@ -40,6 +35,7 @@ LinkLuaModifier("modifier_tower_incoming_timer", "modifiers/tower/modifier_tower
 LinkLuaModifier("modifier_tower_alert_cd", "modifiers/tower/modifier_tower_incoming", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_tower_mark", "modifiers/tower/modifier_tower_incoming", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_tower_voice_cd", "modifiers/tower/modifier_tower_incoming", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_tower_final_duel", "modifiers/tower/modifier_tower_incoming", LUA_MODIFIER_MOTION_NONE)
 
 LinkLuaModifier("modifier_backdoor_knock_aura", "modifiers/tower/modifier_tower_incoming", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier(
@@ -47,24 +43,45 @@ LinkLuaModifier(
 	"modifiers/tower/modifier_tower_incoming",
 	LUA_MODIFIER_MOTION_NONE
 )
-LinkLuaModifier("modifier_backdoor_mute", "modifiers/tower/modifier_tower_incoming", LUA_MODIFIER_MOTION_NONE)
 
-modifier_tower_incoming = class({})
-
+modifier_tower_incoming = class(mod_hidden)
 modifier_tower_incoming.skills = {
 	"ember_spirit_activate_fire_remnant_custom",
 	"alchemist_acid_spray_mixing",
 	"custom_puck_ethereal_jaunt",
 }
+modifier_tower_incoming.no_push_mods = {
+	"modifier_mars_scepter_damage",
+	"modifier_skeleton_king_reincarnation_custom_legendary",
+	"modifier_can_not_push",
+	"modifier_custom_juggernaut_blade_fury",
+	"modifier_invoker_invoke_custom_legendary",
+	"modifier_abaddon_borrowed_time_custom",
+	"modifier_bristleback_bristleback_custom_legendary_active",
+	"modifier_monkey_king_wukongs_command_custom_buff",
+	"modifier_muerta_the_calling_custom_tower_damage",
+	"modifier_skeleton_king_innate_custom_ghost",
+	"modifier_custom_puck_phase_shift",
+	"modifier_slark_shadow_dance_custom",
+	"item_aeon_disk_custom_proc",
+	"modifier_sven_warcry_custom_legendary",
+	"modifier_bane_nightmare_custom_legendary",
+	"modifier_crystal_maiden_freezing_field_custom",
+	"modifier_morphling_replicate_custom",
+	"modifier_abaddon_aphotic_shield_custom_immune",
+	"modifier_life_stealer_rage_custom",
+	"modifier_life_stealer_infest_custom_legendary_creep",
+	"modifier_tinker_march_of_the_machines_custom_active",
+	"modifier_phantom_assassin_phantom_smoke",
+}
+modifier_tower_incoming.creep_names = {
+	["npc_dota_invoker_forged_spirit_custom"] = 0.5,
+	["npc_dota_furion_treant_custom"] = 1,
+	["npc_dota_lesser_eidolon_custom"] = 1,
+	["npc_dota_broodmother_spiderling_custom"] = 1,
+}
 
-function modifier_tower_incoming:IsHidden()
-	return true
-end
-function modifier_tower_incoming:IsPurgable()
-	return false
-end
-
-function modifier_tower_incoming:OnCreated(table)
+function modifier_tower_incoming:OnCreated(params)
 	self.caster = self:GetCaster()
 	self.parent = self:GetParent()
 
@@ -112,16 +129,10 @@ function modifier_tower_incoming:OnCreated(table)
 	self.bkb_ability:SetLevel(1)
 
 	self.radius = 1200
-	self.tower = EntIndexToHScript(table.tower)
+	self.tower = EntIndexToHScript(params.tower)
 	self.tower_pos = self.tower:GetAbsOrigin()
 	self.tower_range = self.tower:Script_GetAttackRange() + 100
 	self.height = GetGroundHeight(self.tower_pos, nil) - 10
-
-	self:SetStackCount(0)
-
-	if self.tower == self.parent then
-		self:SetStackCount(1)
-	end
 
 	self.parent:AddAttackEvent_inc(self, true)
 	self.parent:AddAttackRecordEvent_inc(self)
@@ -130,40 +141,14 @@ function modifier_tower_incoming:OnCreated(table)
 
 	self.leash_duration = self.parent:GetTalentValue("modifier_patrol_reward_fortifier", "duration", true)
 
+	self.tower.incoming_mods = self.tower.incoming_mods or {}
+	self.tower.incoming_mods[self] = true
+
 	self.state = 0
-	self:StartIntervalThink(0.5)
-
-	self.no_push_mods = {
-		"modifier_mars_scepter_damage",
-		"modifier_skeleton_king_reincarnation_custom_legendary",
-		"modifier_can_not_push",
-		"modifier_custom_juggernaut_blade_fury",
-		"modifier_invoker_invoke_custom_legendary",
-		"modifier_abaddon_borrowed_time_custom",
-		"modifier_bristleback_bristleback_custom_legendary_active",
-		"modifier_monkey_king_wukongs_command_custom_buff",
-		"modifier_muerta_the_calling_custom_tower_damage",
-		"modifier_skeleton_king_innate_custom_ghost",
-		"modifier_custom_puck_phase_shift",
-		"modifier_slark_shadow_dance_custom",
-		"item_aeon_disk_custom_proc",
-		"modifier_sven_warcry_custom_legendary",
-		"modifier_bane_nightmare_custom_legendary",
-		"modifier_crystal_maiden_freezing_field_custom",
-		"modifier_morphling_replicate_custom",
-		"modifier_abaddon_aphotic_shield_custom_immune",
-		"modifier_life_stealer_rage_custom",
-		"modifier_life_stealer_infest_custom_legendary_creep",
-		"modifier_tinker_march_of_the_machines_custom_active",
-		"modifier_phantom_assassin_phantom_smoke",
-	}
-
-	self.creep_names = {
-		["npc_dota_invoker_forged_spirit_custom"] = 0.5,
-		["npc_dota_furion_treant_custom"] = 1,
-		["npc_dota_lesser_eidolon_custom"] = 1,
-		["npc_dota_broodmother_spiderling_custom"] = 1,
-	}
+	if self.tower == self.parent then
+		self:SetStackCount(1)
+		self:StartIntervalThink(0.5)
+	end
 end
 
 function modifier_tower_incoming:DamageEvent_inc(params)
@@ -284,74 +269,79 @@ function modifier_tower_incoming:OnIntervalThink()
 	if not IsServer() then
 		return
 	end
-	if not self.caster then
-		return
-	end
-	if not self.parent then
-		return
-	end
 	if not towers[self.parent:GetTeamNumber()] then
 		return
 	end
 	if GameRules:GetDOTATime(false, false) < push_timer then
 		return
 	end
-
-	if not self.tower then
-		return
-	end
 	if dota1x6.TargetCurrentActive then
 		return
 	end
 
-	local enemies = FindUnitsInRadius(
-		self.parent:GetTeamNumber(),
-		self.tower:GetAbsOrigin(),
-		nil,
-		self.radius,
-		DOTA_UNIT_TARGET_TEAM_ENEMY,
-		DOTA_UNIT_TARGET_HERO,
-		DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
-			+ DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS
-			+ DOTA_UNIT_TARGET_FLAG_INVULNERABLE
-			+ DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD
-			+ DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO,
-		FIND_CLOSEST,
-		false
-	)
 	local target = nil
-	for _, enemy in pairs(enemies) do
+	for _, enemy in
+		pairs(
+			FindUnitsInRadius(
+				self.parent:GetTeamNumber(),
+				self.tower_pos,
+				nil,
+				self.radius,
+				DOTA_UNIT_TARGET_TEAM_ENEMY,
+				DOTA_UNIT_TARGET_HERO,
+				DOTA_UNIT_TARGET_FLAG_NOT_ILLUSIONS
+					+ DOTA_UNIT_TARGET_FLAG_INVULNERABLE
+					+ DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD
+					+ DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO,
+				FIND_CLOSEST,
+				false
+			)
+		)
+	do
 		if
 			GetGroundHeight(enemy:GetAbsOrigin(), nil) >= self.height
-			and not target
 			and enemy:IsRealHero()
 			and not enemy:IsTempestDouble()
 		then
 			target = enemy
+			break
 		end
 	end
 
-	if target then
-		if self.tower and not self.tower:HasModifier("modifier_backdoor_knock_aura") then
-			self.tower:AddNewModifier(
-				self.tower,
-				nil,
-				"modifier_backdoor_knock_aura",
-				{ target_team = target:GetTeamNumber() }
-			)
+	if not target then
+		if self.state ~= 0 then
+			self:SetState(0)
 		end
+		return
+	end
 
-		if self.state == 0 then
-			self.state = 1
-			self.parent:AddNewModifier(self.caster, nil, "modifier_tower_incoming_timer", { duration = 2 })
-		end
-		if self.state == 1 and not self.parent:HasModifier("modifier_tower_incoming_timer") then
-			self.state = 2
-		end
-	else
-		self.state = 0
-		if self.parent:HasModifier("modifier_tower_incoming_timer") then
-			self.parent:RemoveModifierByName("modifier_tower_incoming_timer")
+	if not self.parent:HasModifier("modifier_backdoor_knock_aura") then
+		self.parent:AddNewModifier(
+			self.parent,
+			nil,
+			"modifier_backdoor_knock_aura",
+			{ target_team = target:GetTeamNumber() }
+		)
+	end
+
+	if self.state == 0 then
+		self:SetState(1)
+	elseif self.state == 1 and not self.parent:HasModifier("modifier_tower_incoming_timer") then
+		self:SetState(2)
+	end
+end
+
+function modifier_tower_incoming:SetState(state)
+	for mod in pairs(self.parent.incoming_mods) do
+		if IsValid(mod) then
+			mod.state = state
+			if state == 1 then
+				mod.parent:AddNewModifier(mod.caster, nil, "modifier_tower_incoming_timer", { duration = 2 })
+			elseif state == 0 then
+				mod.parent:RemoveModifierByName("modifier_tower_incoming_timer")
+			end
+		else
+			self.parent.incoming_mods[mod] = nil
 		end
 	end
 end
@@ -513,21 +503,6 @@ function modifier_tower_incoming:PlayEffect(new_target)
 	ParticleManager:SetParticleControl(self.effect_cast, 0, target:GetOrigin())
 	ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(200, 0, 0))
 	ParticleManager:ReleaseParticleIndex(self.effect_cast)
-end
-
-function modifier_tower_incoming:CheckState()
-	local state = {}
-
-	if dota1x6:FinalDuel() == true then
-		state[MODIFIER_STATE_INVULNERABLE] = true
-		state[MODIFIER_STATE_NO_HEALTH_BAR] = true
-	end
-
-	if self.parent:HasModifier("modifier_the_hunt_custom_tower") then
-		state[MODIFIER_STATE_DISARMED] = true
-	end
-
-	return state
 end
 
 function modifier_tower_incoming:AttackRecordEvent_inc(params)
@@ -826,23 +801,11 @@ function modifier_tower_incoming:AttackEvent_inc(params)
 	attacker:RemoveModifierByName("modifier_tower_incoming_damage")
 end
 
-modifier_tower_incoming_damage = class({})
-function modifier_tower_incoming_damage:IsHidden()
-	return true
-end
-function modifier_tower_incoming_damage:IsPurgable()
-	return false
-end
+modifier_tower_incoming_damage = class(mod_hidden)
 
-modifier_tower_incoming_speed = class({})
-function modifier_tower_incoming_speed:IsHidden()
-	return false
-end
+modifier_tower_incoming_speed = class(mod_visible)
 function modifier_tower_incoming_speed:IsDebuff()
 	return true
-end
-function modifier_tower_incoming_speed:IsPurgable()
-	return false
 end
 function modifier_tower_incoming_speed:GetTexture()
 	return "backdoor_protection"
@@ -926,76 +889,46 @@ function modifier_tower_incoming_speed:CheckState()
 	}
 end
 
-modifier_tower_incoming_damage_cd = class({})
-function modifier_tower_incoming_damage_cd:IsHidden()
-	return true
-end
-function modifier_tower_incoming_damage_cd:IsPurgable()
-	return false
-end
+modifier_tower_incoming_damage_cd = class(mod_hidden)
 
-modifier_tower_incoming_no_heal = class({})
-function modifier_tower_incoming_no_heal:IsHidden()
-	return true
-end
-function modifier_tower_incoming_no_heal:IsPurgable()
-	return false
-end
-
-modifier_tower_incoming_no_spells = class({})
-function modifier_tower_incoming_no_spells:IsHidden()
-	return false
-end
-function modifier_tower_incoming_no_spells:IsPurgable()
-	return false
-end
-function modifier_tower_incoming_no_spells:OnCreated(table)
-	if not IsServer() then
-		return
-	end
-
-	for _, name in pairs(self.skills) do
-		local ability = self:GetParent():FindAbilityByName(name)
-		if ability then
-			local cd = ability:GetCooldownTimeRemaining()
-			if cd < self:GetRemainingTime() then
-				ability:StartCooldown(self:GetRemainingTime())
-			end
-		end
-	end
-end
-
-function modifier_tower_incoming_no_spells:OnRefresh(table)
-	self:OnCreated()
-end
-
-modifier_tower_incoming_push_reduce = class({})
-function modifier_tower_incoming_push_reduce:IsHidden()
-	return true
-end
-function modifier_tower_incoming_push_reduce:IsPurgable()
-	return false
-end
-function modifier_tower_incoming_push_reduce:GetTexture()
-	return "shrine_aura"
-end
-function modifier_tower_incoming_push_reduce:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_TOOLTIP,
-	}
-end
-
-function modifier_tower_incoming_push_reduce:OnTooltip()
-	return -70
-end
-
-function modifier_tower_incoming_push_reduce:OnCreated(table)
+modifier_tower_incoming_no_heal = class(mod_hidden)
+function modifier_tower_incoming_no_heal:OnCreated()
 	if not IsServer() then
 		return
 	end
 	self.parent = self:GetParent()
 
-	self.killed_index = table.killed_index
+	local mod = self.parent:FindModifierByName("modifier_towerresist_aura")
+	if mod then
+		mod:UpdateRegen(true)
+	end
+end
+
+function modifier_tower_incoming_no_heal:OnDestroy()
+	if not IsServer() then
+		return
+	end
+	if not IsValid(self.parent) then
+		return
+	end
+
+	local mod = self.parent:FindModifierByName("modifier_towerresist_aura")
+	if mod then
+		mod:UpdateRegen(false)
+	end
+end
+
+modifier_tower_incoming_push_reduce = class(mod_hidden)
+function modifier_tower_incoming_push_reduce:GetTexture()
+	return "shrine_aura"
+end
+function modifier_tower_incoming_push_reduce:OnCreated(params)
+	if not IsServer() then
+		return
+	end
+	self.parent = self:GetParent()
+
+	self.killed_index = params.killed_index
 
 	if self.killed_index and self.killed_index ~= -1 then
 		self.killed_unit = EntIndexToHScript(self.killed_index)
@@ -1004,7 +937,7 @@ function modifier_tower_incoming_push_reduce:OnCreated(table)
 	self.effects = {}
 
 	self:OnIntervalThink()
-	self:StartIntervalThink(0.2)
+	self:StartIntervalThink(0.5)
 end
 
 function modifier_tower_incoming_push_reduce:OnIntervalThink()
@@ -1056,28 +989,32 @@ function modifier_tower_incoming_push_reduce:OnIntervalThink()
 	end
 end
 
-modifier_tower_incoming_push_reduce_hero = class({})
-function modifier_tower_incoming_push_reduce_hero:IsHidden()
-	return true
+function modifier_tower_incoming_push_reduce:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_TOOLTIP,
+	}
 end
-function modifier_tower_incoming_push_reduce_hero:IsPurgable()
-	return false
+
+function modifier_tower_incoming_push_reduce:OnTooltip()
+	return -70
 end
+
+modifier_tower_incoming_push_reduce_hero = class(mod_hidden)
 function modifier_tower_incoming_push_reduce_hero:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
-function modifier_tower_incoming_push_reduce_hero:OnCreated(table)
+function modifier_tower_incoming_push_reduce_hero:OnCreated(params)
 	if not IsServer() then
 		return
 	end
 	self.caster = self:GetCaster()
 
-	self.killed_index = table.killed_index
+	self.killed_index = params.killed_index
 
 	if self.killed_index and self.killed_index ~= -1 then
 		self.killed_unit = EntIndexToHScript(self.killed_index)
 		self:OnIntervalThink()
-		self:StartIntervalThink(0.2)
+		self:StartIntervalThink(0.5)
 	end
 end
 
@@ -1099,7 +1036,7 @@ modifier_tower_incoming_push_reduce_hero_duo = class(mod_hidden)
 function modifier_tower_incoming_push_reduce_hero_duo:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
-function modifier_tower_incoming_push_reduce_hero_duo:OnCreated(table)
+function modifier_tower_incoming_push_reduce_hero_duo:OnCreated(params)
 	if not IsServer() then
 		return
 	end
@@ -1107,12 +1044,12 @@ function modifier_tower_incoming_push_reduce_hero_duo:OnCreated(table)
 	self.caster = self:GetCaster()
 	self.parent = self:GetParent()
 
-	self.killed_index = table.killed_index
+	self.killed_index = params.killed_index
 
 	if self.killed_index and self.killed_index ~= -1 then
 		self.killed_unit = EntIndexToHScript(self.killed_index)
 		self:OnIntervalThink()
-		self:StartIntervalThink(0.2)
+		self:StartIntervalThink(0.5)
 	end
 
 	local buildings = FindUnitsInRadius(
@@ -1156,15 +1093,8 @@ function modifier_tower_incoming_push_reduce_hero_duo:OnIntervalThink()
 	end
 end
 
-modifier_tower_incoming_timer = class({})
-function modifier_tower_incoming_timer:IsHidden()
-	return true
-end
-function modifier_tower_incoming_timer:IsPurgable()
-	return false
-end
-
-function modifier_tower_incoming_timer:OnCreated(table)
+modifier_tower_incoming_timer = class(mod_hidden)
+function modifier_tower_incoming_timer:OnCreated()
 	if not IsServer() then
 		return
 	end
@@ -1231,33 +1161,47 @@ function modifier_tower_incoming_timer:OnIntervalThink()
 	ParticleManager:ReleaseParticleIndex(particle)
 end
 
-modifier_tower_alert_cd = class({})
-function modifier_tower_alert_cd:IsHidden()
-	return true
-end
-function modifier_tower_alert_cd:IsPurgable()
-	return false
-end
+modifier_tower_alert_cd = class(mod_hidden)
 function modifier_tower_alert_cd:RemoveOnDeath()
 	return false
 end
 
-modifier_backdoor_knock_aura = class({})
-function modifier_backdoor_knock_aura:IsHidden()
+modifier_backdoor_knock_aura = class(mod_hidden)
+function modifier_backdoor_knock_aura:IsAura()
 	return true
 end
-function modifier_backdoor_knock_aura:IsPurgable()
-	return false
+function modifier_backdoor_knock_aura:GetAuraDuration()
+	return 0
 end
-function modifier_backdoor_knock_aura:OnCreated(table)
+function modifier_backdoor_knock_aura:GetAuraRadius()
+	return self.radius
+end
+function modifier_backdoor_knock_aura:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_BOTH
+end
+function modifier_backdoor_knock_aura:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
+end
+function modifier_backdoor_knock_aura:GetAuraSearchFlags()
+	return DOTA_UNIT_TARGET_FLAG_INVULNERABLE
+end
+function modifier_backdoor_knock_aura:GetModifierAura()
+	return "modifier_backdoor_knock_aura_damage"
+end
+function modifier_backdoor_knock_aura:GetAuraEntityReject(hEntity)
+	return hEntity:GetTeamNumber() ~= self.target_team
+		and hEntity:GetTeamNumber() ~= self.parent:GetTeamNumber()
+		and GetGroundHeight(hEntity:GetAbsOrigin(), nil) >= self.height
+end
+function modifier_backdoor_knock_aura:OnCreated(params)
 	if not IsServer() then
 		return
 	end
 	self.parent = self:GetParent()
 	self.parent:EmitSound("UI.Tower_wall")
 
-	self.target_team = table.target_team
-	self.fixed = table.fixed
+	self.target_team = params.target_team
+	self.fixed = params.fixed
 
 	self.center = self.parent:GetAbsOrigin()
 	self.heroes = dota1x6:FindPlayers(self.target_team, false, true)
@@ -1292,34 +1236,6 @@ function modifier_backdoor_knock_aura:OnCreated(table)
 
 	self:OnIntervalThink()
 	self:StartIntervalThink(self.interval)
-end
-
-function modifier_backdoor_knock_aura:IsAura()
-	return true
-end
-function modifier_backdoor_knock_aura:GetAuraDuration()
-	return 0
-end
-function modifier_backdoor_knock_aura:GetAuraRadius()
-	return self.radius
-end
-function modifier_backdoor_knock_aura:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_BOTH
-end
-function modifier_backdoor_knock_aura:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC
-end
-function modifier_backdoor_knock_aura:GetAuraSearchFlags()
-	return DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
-end
-function modifier_backdoor_knock_aura:GetModifierAura()
-	return "modifier_backdoor_knock_aura_damage"
-end
-
-function modifier_backdoor_knock_aura:GetAuraEntityReject(hEntity)
-	return hEntity:GetTeamNumber() ~= self.target_team
-		and hEntity:GetTeamNumber() ~= self.parent:GetTeamNumber()
-		and GetGroundHeight(hEntity:GetAbsOrigin(), nil) >= self.height
 end
 
 function modifier_backdoor_knock_aura:OnIntervalThink()
@@ -1372,19 +1288,12 @@ function modifier_backdoor_knock_aura:OnIntervalThink()
 		1500,
 		DOTA_UNIT_TARGET_TEAM_ENEMY,
 		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,
-		DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES
-			+ DOTA_UNIT_TARGET_FLAG_INVULNERABLE
-			+ DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD,
+		DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD,
 		FIND_CLOSEST,
 		false
 	)
 
 	for _, unit in pairs(enemies) do
-		--[[
-	if unit:IsHero() and unit:GetTeamNumber() ~= self.target_team and unit:GetTeamNumber() ~= DOTA_TEAM_CUSTOM_5  then 
-		unit:AddNewModifier(unit, nil, "modifier_backdoor_mute", {duration = 0.2})
-	end]]
-
 		if
 			unit:GetTeamNumber() ~= self.target_team
 			and unit:GetTeamNumber() ~= DOTA_TEAM_CUSTOM_5
@@ -1404,22 +1313,7 @@ function modifier_backdoor_knock_aura:OnIntervalThink()
 	end
 end
 
-modifier_backdoor_knock_aura_damage = class({})
-function modifier_backdoor_knock_aura_damage:IsHidden()
-	return true
-end
-function modifier_backdoor_knock_aura_damage:IsPurgable()
-	return false
-end
-function modifier_backdoor_knock_aura_damage:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL,
-		MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_MAGICAL,
-		MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PURE,
-		MODIFIER_PROPERTY_ABSORB_SPELL,
-	}
-end
-
+modifier_backdoor_knock_aura_damage = class(mod_hidden)
 function modifier_backdoor_knock_aura_damage:OnCreated()
 	if not IsServer() then
 		return
@@ -1456,6 +1350,15 @@ function modifier_backdoor_knock_aura_damage:OnDestroy()
 	if self.parent.field_invun_mod == self then
 		self.parent.field_invun_mod = nil
 	end
+end
+
+function modifier_backdoor_knock_aura_damage:DeclareFunctions()
+	return {
+		MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PHYSICAL,
+		MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_MAGICAL,
+		MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_PURE,
+		MODIFIER_PROPERTY_ABSORB_SPELL,
+	}
 end
 
 function modifier_backdoor_knock_aura_damage:NoDamage(attacker)
@@ -1534,42 +1437,17 @@ function modifier_backdoor_knock_aura_damage:GetAbsoluteNoDamageMagical(params)
 	return self:NoDamage(params.attacker)
 end
 
-modifier_backdoor_mute = class({})
-function modifier_backdoor_mute:IsHidden()
-	return true
-end
-function modifier_backdoor_mute:IsPurgable()
-	return false
-end
-function modifier_backdoor_mute:CheckState()
-	return {
-		[MODIFIER_STATE_DISARMED] = true,
-		[MODIFIER_STATE_MUTED] = true,
-		[MODIFIER_STATE_SILENCED] = true,
-	}
-end
-function modifier_backdoor_mute:GetEffectName()
-	return "particles/units/heroes/hero_demonartist/demonartist_engulf_disarm/items2_fx/heavens_halberd.vpcf"
-end
-function modifier_backdoor_mute:GetEffectAttachType()
-	return PATTACH_OVERHEAD_FOLLOW
-end
-
-modifier_tower_mark = class({})
-function modifier_tower_mark:IsHidden()
-	return false
-end
-function modifier_tower_mark:IsPurgable()
-	return false
-end
+modifier_tower_mark = class(mod_visible)
 function modifier_tower_mark:GetTexture()
 	return self:GetCaster():GetUnitName()
 end
 
-modifier_tower_voice_cd = class({})
-function modifier_tower_voice_cd:IsHidden()
-	return true
-end
-function modifier_tower_voice_cd:IsPurgable()
-	return false
+modifier_tower_voice_cd = class(mod_hidden)
+
+modifier_tower_final_duel = class(mod_hidden)
+function modifier_tower_final_duel:CheckState()
+	return {
+		[MODIFIER_STATE_INVULNERABLE] = true,
+		[MODIFIER_STATE_NO_HEALTH_BAR] = true,
+	}
 end

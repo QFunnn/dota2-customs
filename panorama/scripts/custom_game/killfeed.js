@@ -13,6 +13,7 @@
 let kill_feed_pending = []
 let kill_feed_victims = []
 let kill_feed_glyphs = []
+let kill_feed_bounties = []
 let kill_feed_manager = null
 
 function KillFeedSplit(value, separator)
@@ -84,6 +85,12 @@ function KillFeedGlyph(kv)
 		GameEvents.SendEventClientSide("dota_glyph_used", {teamnumber: local_team == 2 ? 3 : 2})
 
 	Game.EmitSound("Glyph.Used")
+	KillFeedScan(false)
+}
+
+function KillFeedBounty(kv)
+{
+	kill_feed_bounties.push({team: KillFeedTeam(kv.ids, kv.heroes, ""), gold: kv.gold, white: kv.white, place: kv.place, bonus: kv.bonus, time: Game.Time()})
 	KillFeedScan(false)
 }
 
@@ -270,6 +277,55 @@ function KillFeedGlyphRow(row)
 	row.AddClass("KillFeedDone")
 }
 
+function KillFeedBountyRow(row)
+{
+	let label = row.FindChildTraverse("EventLabel")
+
+	if (!label)
+	{
+		row.AddClass("KillFeedDone")
+		return
+	}
+
+	let age = KillFeedAge(row)
+
+	while (kill_feed_bounties.length > 0 && Game.Time() - kill_feed_bounties[0].time > 1.5)
+		kill_feed_bounties.shift()
+
+	if (age > 1.5)
+	{
+		row.AddClass("KillFeedDone")
+		return
+	}
+
+	if (kill_feed_bounties.length === 0)
+		return
+
+	let entry = kill_feed_bounties.shift()
+
+	let line = $.CreatePanel("Panel", $.GetContextPanel(), "")
+	line.AddClass("KillFeedLine")
+
+	if (row.BHasClass("AllyEvent"))
+		line.AddClass("Ally")
+
+	for (let member of entry.team)
+		KillFeedPortrait(line, member.id, member.hero)
+
+	KillFeedLabel(line, $.Localize("#killfeed_bounty_place").replace("{place}", String(entry.place)), "KillFeedBountyPlace")
+	KillFeedLabel(line, (entry.bonus >= 0 ? "+" : "") + entry.bonus + "%", "KillFeedBountyBonus")
+	$.CreatePanel("Panel", line, "").AddClass("KillFeedRune")
+	KillFeedLabel(line, "+" + entry.gold, "KillFeedBountyGold")
+	$.CreatePanel("Panel", line, "").AddClass("KillFeedBountyCoin")
+	KillFeedLabel(line, "+" + entry.white, "KillFeedBountyWhite")
+	$.CreatePanel("Panel", line, "").AddClass("KillFeedWhiteOrb")
+
+	line.SetParent(row)
+	row.MoveChildAfter(line, label)
+	label.visible = false
+	row.AddClass("KillFeedDone")
+}
+
 function KillFeedStreakRow(row)
 {
 	let label = row.FindChildTraverse("EventLabel")
@@ -337,6 +393,8 @@ function KillFeedScan(initial)
 			KillFeedRow(row)
 		else if (row.BHasClass("event_dota_glyph_used"))
 			KillFeedGlyphRow(row)
+		else if (row.BHasClass("event_dota_rune_pickup"))
+			KillFeedBountyRow(row)
 		else
 			KillFeedStreakRow(row)
 	}
@@ -359,6 +417,7 @@ function OnStyleClassesChanged(panel)
 {
 	GameEvents.Subscribe_custom("kill_feed_gold", KillFeedGold)
 	GameEvents.Subscribe_custom("glyph_used", KillFeedGlyph)
+	GameEvents.Subscribe_custom("kill_feed_bounty", KillFeedBounty)
 	$.RegisterForUnhandledEvent("StyleClassesChanged", OnStyleClassesChanged)
 	KillFeedScan(true)
 })()

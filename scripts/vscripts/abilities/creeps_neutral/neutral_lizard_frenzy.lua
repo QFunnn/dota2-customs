@@ -79,38 +79,30 @@ function modifier_lizard_frenzy:EndCast()
 end
 
 modifier_lizard_frenzy_aura = class(mod_hidden)
-function modifier_lizard_frenzy_aura:IsAura()
-	return IsServer() and self.parent:IsAlive()
-end
-function modifier_lizard_frenzy_aura:GetAuraDuration()
-	return 0.1
-end
-function modifier_lizard_frenzy_aura:GetAuraRadius()
-	return self.aoe
-end
-function modifier_lizard_frenzy_aura:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_FRIENDLY
-end
-function modifier_lizard_frenzy_aura:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
-end
-function modifier_lizard_frenzy_aura:GetAuraSearchFlags()
-	return DOTA_UNIT_TARGET_FLAG_INVULNERABLE
-end
 function modifier_lizard_frenzy_aura:OnCreated()
-	self.parent = self:GetParent()
-	self.ability = self:GetAbility()
-
-	self.aoe = self.ability.aoe
-
 	if not IsServer() then
 		return
 	end
+	self.parent = self:GetParent()
+	self.ability = self:GetAbility()
+
 	self.parent:GenericParticle("particles/generic_gameplay/generic_has_quest.vpcf", self, true)
+	self:OnRefresh()
 end
 
-function modifier_lizard_frenzy_aura:GetModifierAura()
-	return "modifier_lizard_frenzy_buff"
+function modifier_lizard_frenzy_aura:OnRefresh()
+	if not IsServer() then
+		return
+	end
+
+	for _, unit in pairs(self.parent:FindFriends(self.ability.aoe, nil, nil, DOTA_UNIT_TARGET_FLAG_INVULNERABLE)) do
+		unit:AddNewModifier(
+			self.parent,
+			self.ability,
+			"modifier_lizard_frenzy_buff",
+			{ duration = self.ability.duration }
+		)
+	end
 end
 
 modifier_lizard_frenzy_buff = class(mod_visible)

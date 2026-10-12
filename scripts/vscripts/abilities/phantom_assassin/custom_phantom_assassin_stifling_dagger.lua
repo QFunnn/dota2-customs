@@ -515,7 +515,6 @@ function modifier_custom_phantom_assassin_stifling_dagger_tracker:GetModifierTot
 	end
 
 	self.damageTable.damage = params.original_damage
-		* (params.target:IsCreep() and (1 + self.ability.creeps_damage) or 1)
 	self.damageTable.victim = params.target
 
 	if self.parent.pa_source == "modifier_phantom_assassin_dagger_4" then
@@ -531,7 +530,11 @@ function modifier_custom_phantom_assassin_stifling_dagger_tracker:GetModifierTot
 	self.ability:ProcPoison(params.target, self.damageTable.damage, self.parent.pa_distance)
 
 	if self.parent.pa_focus and self.parent.crit_ability then
-		self.parent.crit_ability:ApplyBleed(self.parent, params.target, self.damageTable.damage)
+		self.parent.crit_ability:ApplyBleed(
+			self.parent,
+			params.target,
+			self.damageTable.damage * self.ability:GetCreepsMult(params.target)
+		)
 	end
 
 	return -200

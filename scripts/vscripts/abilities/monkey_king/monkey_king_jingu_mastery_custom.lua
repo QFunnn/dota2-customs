@@ -84,7 +84,7 @@ function monkey_king_jingu_mastery_custom:UpdateTalents(name)
 
 			has_e3 = 0,
 			e3_attacks = 0,
-			e3_agility = 0,
+			e3_agi = 0,
 			e3_damage_legendary = caster:GetTalentValue("modifier_monkey_king_mastery_3", "damage_legendary", true),
 			e3_damage = caster:GetTalentValue("modifier_monkey_king_mastery_3", "damage", true),
 			e3_interval = caster:GetTalentValue("modifier_monkey_king_mastery_3", "interval", true),
@@ -142,9 +142,9 @@ function monkey_king_jingu_mastery_custom:UpdateTalents(name)
 	if caster:HasTalent("modifier_monkey_king_mastery_3") then
 		self.talents.has_e3 = 1
 		self.talents.e3_attacks = caster:GetTalentValue("modifier_monkey_king_mastery_3", "attacks")
-		self.talents.e3_agility = caster:GetTalentValue("modifier_monkey_king_mastery_3", "agility") / 100
+		self.talents.e3_agi = caster:GetTalentValue("modifier_monkey_king_mastery_3", "agi") / 100
 		if IsServer() then
-			self.parent:AddPercentStat({ agi = self.talents.e3_agility }, self.tracker)
+			self.parent:AddPercentStat({ agi = self.talents.e3_agi }, self.tracker)
 		end
 	end
 

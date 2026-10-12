@@ -300,9 +300,6 @@ function modifier_crystal_maiden_frostbite_custom:OnCreated(kv)
 	if not IsServer() then
 		return
 	end
-	if self.parent:IsCreep() then
-		self.damage = self.damage * self.ability.creeps_damage
-	end
 	self.damageTable = {
 		victim = self.parent,
 		attacker = self.caster,
@@ -405,7 +402,7 @@ function modifier_crystal_maiden_frostbite_custom_tracker:OnCreated(table)
 
 	self.ability.damage_per_second = self.ability:GetSpecialValueFor("damage_per_second")
 	self.ability.duration = self.ability:GetSpecialValueFor("duration")
-	self.ability.creeps_damage = self.ability:GetSpecialValueFor("creeps_damage")
+	self.ability.creeps_damage = self.ability:GetSpecialValueFor("creeps_damage") / 100
 	self.ability.tick_interval = self.ability:GetSpecialValueFor("tick_interval")
 end
 

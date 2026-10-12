@@ -479,7 +479,7 @@ function modifier_furion_blooming_flare_custom:OnIntervalThink()
 		self.hit_count = self.hit_count + 1
 
 		if self.stage == 2 then
-			self.damageTable.damage = self.damage * (1 + (enemy:IsCreep() and self.ability.creeps or 0))
+			self.damageTable.damage = self.damage
 			self.damageTable.victim = enemy
 			DoDamage(self.damageTable)
 
@@ -648,7 +648,7 @@ function modifier_furion_blooming_flare_custom_tracker:OnCreated()
 	self.ability.shard_root = self.ability:GetSpecialValueFor("shard_root")
 	self.ability.shard_slow = self.ability:GetSpecialValueFor("shard_slow")
 	self.ability.shard_duration = self.ability:GetSpecialValueFor("shard_duration")
-	self.ability.creeps = self.ability:GetSpecialValueFor("creeps") / 100
+	self.ability.creeps_damage = self.ability:GetSpecialValueFor("creeps_damage") / 100
 end
 
 function modifier_furion_blooming_flare_custom_tracker:OnRefresh()

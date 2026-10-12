@@ -1,0 +1,345 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1a5b3bb 
+  ~ auto-generated — do not edit
+]]
+
+
+/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+
+#Contents.AbilityTooltip
+{
+	padding: 0px;
+	border: 2px solid black;
+	background-color: #10171c;
+}
+
+#AbilityDetails
+{
+	min-width: 356px;
+	flow-children: down;
+	padding: 8px;
+	background-image: url("s2r://panorama/images/hud/ability_tooltip_psd.vtex");
+	background-repeat: no-repeat;
+	background-position: 0px -2px;
+	background-size: 131% 512px;
+}
+
+.AbilityTooltip Label
+{
+	font-size: 16px;
+	font-weight: normal;
+	letter-spacing: 0px;
+	margin-right: 2px;
+}
+
+.AbilityTooltip .Hidden
+{
+	visibility: collapse;
+}
+
+#AbilityHeader
+{
+	width: 100%;
+	flow-children: right;
+}
+
+#AbilityName
+{
+	width: fill-parent-flow( 1.0 );
+	vertical-align: middle;
+	margin-top: 2px;
+	padding-left: 8px;
+	font-family: titleFont;
+	font-size: 18px;
+	font-weight: semi-bold;
+	color: #e1e1e1;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	text-overflow: shrink;
+	text-shadow: 2px 2px 0px 1.0 #00000090;
+}
+
+#CurrentAbilityCharges
+{
+	vertical-align: middle;
+	margin-left: 8px;
+	font-size: 18px;
+	color: #e1e1e1;
+}
+
+#CurrentAbilityCooldown
+{
+	horizontal-align: right;
+	vertical-align: middle;
+	margin-left: 8px;
+	padding-left: 28px;
+	font-size: 18px;
+	color: #7D7D7D;
+	background-size: 22px;
+	background-position: 0% 50%;
+	background-repeat: no-repeat;
+}
+
+#AbilityTarget
+{
+	width: 100%;
+	flow-children: down;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	padding: 5px 0px 2px 8px;
+	border-top: 1px solid #29353b;
+	border-bottom: 1px solid #29353b;
+}
+
+#AbilityTarget Label
+{
+	font-size: 16px;
+	color: #596e89;
+}
+
+.Cooldown,.ManaCost,.HealthCost,.CastRange
+{
+	margin-left: 5px;
+	margin-right: 2px;
+	text-overflow: shrink;
+	background-size: 20px;
+}
+
+.Cooldown
+{
+	background-image: url("s2r://panorama/images/status_icons/ability_cooldown_icon_psd.vtex");
+}
+
+.ManaCost
+{
+	background-image: url("s2r://panorama/images/status_icons/ability_manacost_icon_psd.vtex");
+}
+
+.HealthCost
+{
+	background-image: url("s2r://panorama/images/status_icons/ability_healthcost_icon_psd.vtex");
+}
+
+.CastRange
+{
+	background-image: url("s2r://panorama/images/status_icons/ability_castrange_icon_psd.vtex");
+}
+
+#AbilityDescription
+{
+	width: 330px;
+	margin-left: 2px;
+	margin-bottom: 8px;
+	padding: 6px 8px 8px 8px;
+	font-size: 16px;
+	color: #9ab0cd;
+}
+
+#AbilityDescription.AfterHeader
+{
+	margin-top: 10px;
+}
+
+.AbilityCreeps
+{
+	width: 322px;
+	flow-children: down;
+	margin-left: 8px;
+	margin-bottom: 10px;
+	padding: 6px 8px 7px 8px;
+	border: 1px solid #3a8f3466;
+	border-radius: 3px;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #16361acc ), to( #0b170dcc ) );
+}
+
+.AbilityCreepsHeader
+{
+	flow-children: right;
+}
+
+.AbilityCreepsIcon
+{
+	width: 22px;
+	height: 22px;
+	margin-right: 6px;
+	vertical-align: center;
+	border: 1px solid #3a8f3480;
+	background-image: url("s2r://panorama/images/custom_game/icons/mini/info_table/neutral_png.vtex");
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+
+.AbilityCreeps .AbilityCreepsTitle
+{
+	vertical-align: center;
+	font-size: 18px;
+	font-weight: bold;
+	color: gradient( linear, 0% 0%, 0% 100%, from( #5cc954 ), to( #2b7f26 ) );
+}
+
+.AbilityCreepsText
+{
+	flow-children: down;
+}
+
+.AbilityCreepsLine
+{
+	width: 322px;
+	margin-top: 6px;
+	color: #9ab0cd;
+}
+
+.AbilityCreeps_nerf
+{
+	border-color: #8f3a3466;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #361616cc ), to( #170b0bcc ) );
+}
+
+.AbilityCreeps_nerf .AbilityCreepsIcon
+{
+	border-color: #8f3a3480;
+}
+
+.AbilityCreeps_nerf .AbilityCreepsTitle
+{
+	color: gradient( linear, 0% 0%, 0% 100%, from( #e0605a ), to( #8a2b26 ) );
+}
+
+#AbilityExtraAttributes
+{
+	flow-children: down;
+	padding-left: 8px;
+}
+
+.AbilityStatRow
+{
+	flow-children: right;
+	overflow: noclip;
+}
+
+.AbilityStatText
+{
+	vertical-align: center;
+	white-space: nowrap;
+	color: #596e89;
+}
+
+.AbilityTalentIcon
+{
+	width: 22px;
+	height: 22px;
+	min-width: 22px;
+	min-height: 22px;
+	margin-left: 4px;
+	vertical-align: center;
+	border: 1px solid #888888;
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+
+.AbilityTalentIcon_blue
+{
+	border-color: #3485f2;
+}
+
+.AbilityTalentIcon_purple
+{
+	border-color: #a943eb;
+}
+
+.AbilityTalentIcon_orange
+{
+	border-color: #f7942b;
+}
+
+#AbilityCostsSeparator
+{
+	width: 100%;
+	height: 1px;
+	margin-top: 10px;
+	margin-bottom: 4px;
+	background-color: gradient( radial, 50% 50%, 0% 0%, 50% 50%, from( #596e89aa ), to( #596e8900 ) );
+}
+
+#AbilityCosts
+{
+	flow-children: right-wrap;
+}
+
+#AbilityCosts Label
+{
+	margin-right: 10px;
+	padding-left: 25px;
+	font-size: 16px;
+	color: #7D7D7D;
+	background-position: 0% 50%;
+	background-repeat: no-repeat;
+}
+
+#AbilityLoreBox
+{
+	width: 100%;
+	margin-top: 12px;
+	background-color: #0b1215;
+}
+
+#AbilityLore
+{
+	width: 330px;
+	margin: 5px 10px 5px 10px;
+	font-size: 14px;
+	font-style: italic;
+	color: #3d4e5b;
+}
+
+.AbilityTooltip h1
+{
+	font-size: 16px;
+	font-weight: semi-bold;
+	color: #91a0b4;
+}
+
+.AbilityTooltip Label .GameplayValues
+{
+	color: #4d5560;
+}
+
+.AbilityTooltip Label .GameplayValues.GameplayVariable
+{
+	font-weight: semi-bold;
+	color: #e1e1e1;
+}
+
+.AbilityTooltip Label .GameplayValues.DamageTypePhysical
+{
+	color: #ae2f28;
+}
+
+.AbilityTooltip Label .GameplayValues.GameplayVariable.DamageTypePhysical
+{
+	color: #ff443b;
+}
+
+.AbilityTooltip Label .GameplayValues.DamageTypeMagical
+{
+	color: #5b93d1;
+}
+
+.AbilityTooltip Label .GameplayValues.GameplayVariable.DamageTypeMagical
+{
+	color: #99c9ff;
+}
+
+.AbilityTooltip Label .GameplayValues.DamageTypePure
+{
+	color: #d8ae53;
+}
+
+.AbilityTooltip Label .GameplayValues.GameplayVariable.DamageTypePure
+{
+	color: #ffdf99;
+}

@@ -442,7 +442,6 @@ function modifier_zuus_arc_lightning_tracker:OnCreated(table)
 	self.parent.arc_ability = self.ability
 
 	self.ability.arc_damage = self.ability:GetSpecialValueFor("arc_damage")
-	self.ability.creeps_damage = self.ability:GetSpecialValueFor("creeps_damage")
 	self.ability.radius = self.ability:GetSpecialValueFor("radius")
 	self.ability.jump_count = self.ability:GetSpecialValueFor("jump_count")
 	self.ability.jump_delay = self.ability:GetSpecialValueFor("jump_delay")

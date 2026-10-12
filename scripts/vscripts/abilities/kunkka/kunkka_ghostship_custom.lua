@@ -273,14 +273,13 @@ function kunkka_ghostship_custom:GetCooldown(iLevel)
 		+ (self.talents.r2_cd or 0)
 end
 
-function kunkka_ghostship_custom:GetDamage(target)
-	local damage = (self.damage or 0)
+function kunkka_ghostship_custom:GetDamage()
+	return (self.damage or 0)
 		+ (
 			self.talents.has_r1 == 1
 				and (self.talents.r1_damage + self.caster:GetMaxHealth() * self.talents.r1_health)
 			or 0
 		)
-	return damage * ((target and target:IsCreep()) and (1 + (self.creeps_damage or 0)) or 1)
 end
 
 function kunkka_ghostship_custom:GetRadius()
@@ -1857,7 +1856,9 @@ function kunkka_cannon_custom:GetDamage(target)
 	if not IsValid(self.caster.ghostship_ability) then
 		return 0
 	end
-	return self.caster.ghostship_ability:GetDamage(target) * self.talents.r7_cannon_damage
+	return self.caster.ghostship_ability:GetDamage()
+		* self.talents.r7_cannon_damage
+		* (target and self.caster.ghostship_ability:GetCreepsMult(target) or 1)
 end
 
 function kunkka_cannon_custom:OnSpellStart()

@@ -200,7 +200,7 @@ function modifier_warlock_boss_shadow_word_heal:OnIntervalThink()
 	end
 
 	if self:GetParent():GetTeamNumber() == self:GetCaster():GetTeamNumber() then
-		dota1x6:GenericHeal(self:GetParent(), self.heal * self:GetParent():GetMaxHealth(), self:GetAbility())
+		self:GetParent():GenericHeal(self.heal * self:GetParent():GetMaxHealth(), self:GetAbility())
 	else
 		SendOverheadEventMessage(
 			self:GetParent(),

@@ -520,12 +520,7 @@ function modifier_slark_dark_pact_custom:OnIntervalThink()
 				self.parent:PullTarget(target, self.ability, self.ability.talents.q7_knock_duration)
 			end
 		end
-		local real_damage = self.damage
-		if target:IsCreep() then
-			real_damage = real_damage * (1 + self.ability.creeps)
-		end
-
-		self.damageTable.damage = real_damage
+		self.damageTable.damage = self.damage
 		self.damageTable.victim = target
 		DoDamage(self.damageTable, self.damage_ability)
 	end
@@ -605,7 +600,7 @@ function modifier_slark_dark_pact_custom_tracker:OnCreated()
 	self.ability.pulse_interval = self.ability:GetSpecialValueFor("pulse_interval")
 	self.ability.self_damage_pct = self.ability:GetSpecialValueFor("self_damage_pct")
 	self.ability.radius = self.ability:GetSpecialValueFor("radius")
-	self.ability.creeps = self.ability:GetSpecialValueFor("creeps") / 100
+	self.ability.creeps_damage = self.ability:GetSpecialValueFor("creeps_damage") / 100
 end
 
 function modifier_slark_dark_pact_custom_tracker:OnRefresh()

@@ -174,7 +174,7 @@ function custom_puck_waning_rift:OnSpellStart(self_cast)
 		+ caster:GetTalentValue("modifier_puck_rift_1", "damage") * caster:GetAverageTrueAttackDamage(nil) / 100
 	local silence = self:GetSpecialValueFor("silence_duration")
 		+ caster:GetTalentValue("modifier_puck_rift_3", "duration")
-	local creeps_k = self:GetSpecialValueFor("creeps_damage") / 100 + 1
+	self.creeps_damage = self:GetSpecialValueFor("creeps_damage") / 100
 
 	local legendary_duration = caster:GetTalentValue("modifier_puck_rift_7", "effect_duration")
 
@@ -227,11 +227,7 @@ function custom_puck_waning_rift:OnSpellStart(self_cast)
 			{ duration = silence * (1 - enemy:GetStatusResistance()) }
 		)
 
-		local real_damage = damage
-		if enemy:IsCreep() then
-			real_damage = real_damage * creeps_k
-		end
-		damageTable.damage = real_damage
+		damageTable.damage = damage
 
 		DoDamage(damageTable)
 

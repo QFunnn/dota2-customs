@@ -27,6 +27,17 @@ end
 
 match_log.wrapped = match_log.wrapped or {}
 match_log.child = match_log.child or {}
+match_log.child_mem = match_log.child_mem or {}
+match_log.alloc = match_log.alloc or {}
+match_log.alloc_pre = match_log.alloc_pre or {}
+match_log.calls = match_log.calls or {}
+match_log.count = match_log.count or {}
+match_log.engine_count = match_log.engine_count or {}
+match_log.last_mem = match_log.last_mem or 0
+match_log.alloc_total = match_log.alloc_total or 0
+match_log.gc = rawget(_G, "collectgarbage") or function()
+	return 0
+end
 match_log.depth = match_log.depth or 0
 match_log.hitch_spent = match_log.hitch_spent or 0
 match_log.hitch_max = match_log.hitch_max or 0
@@ -42,6 +53,23 @@ match_log.min_damage = 300
 match_log.track_time = 5
 match_log.send_time = 180
 match_log.hitch_time = 0.05
+match_log.alloc_time = 60
+match_log.alloc_top = 10
+match_log.calls_top = 80
+match_log.wrap_state = IsInToolsMode()
+match_log.wrap_getters = IsInToolsMode()
+match_log.wrap_meta = IsInToolsMode()
+match_log.gc_mode = "pace"
+match_log.gc_mul = 1
+match_log.gc_smooth = 0.2
+match_log.gc_pause = 3
+match_log.gc_late = 0.045
+match_log.gc_push = 1.3
+match_log.gc_limit = 5
+match_log.gc_growth = 4
+match_log.gc_floor = 49152
+match_log.gc_cap = 204800
+match_log.gc_setpause = 300
 match_log.url = "/anal-gamelog"
 match_log.states =
 	{ "IsStunned", "IsSilenced", "IsRooted", "IsHexed", "IsDisarmed", "IsDebuffImmune", "IsInvisible", "IsTaunted" }
@@ -72,6 +100,31 @@ match_log.track_cols = {
 	"conn",
 }
 match_log.match_cols = { "wave", "timer", "max_timer", "players", "hunt", "final" }
+match_log.engine_methods = {
+	CDOTA_BaseNPC_Hero = { "CalculateStatBonus", "GetStrength_old", "GetAgility_old", "GetIntellect_old" },
+	CDOTA_BaseNPC = {
+		"CalculateStatBonus",
+		"GetAttackSpeed",
+		"GetIncreasedAttackSpeed",
+		"GetDisplayAttackSpeed",
+		"GetAttacksPerSecond",
+		"GetSecondsPerAttack",
+		"GetAverageTrueAttackDamage",
+		"GetDamageMin",
+		"GetDamageMax",
+		"GetPhysicalArmorValue",
+		"GetMagicalArmorValue",
+		"GetIdealSpeed",
+		"GetMoveSpeedModifier",
+		"GetHealthRegen",
+		"GetManaRegen",
+		"GetEvasion",
+		"GetStatusResistance_old",
+		"GetSpellAmplification",
+		"GetCooldownReduction",
+		"GetCastRangeBonus",
+	},
+}
 
 function match_log:Start()
 	self.active = self.enabled and IsSoloMode()
@@ -80,22 +133,47 @@ function match_log:Start()
 	self.clock = Plat_FloatTime()
 	self.frame = GetFrameCount()
 	self.time = GameRules:GetGameTime()
-	self.depth = 0
 	self.hitch_spent = 0
 	self.hitch_max = 0
+	self.memory = rawget(_G, "collectgarbage") and collectgarbage("count") or -1
+	self.alloc = {}
+	self.alloc_pre = {}
+	self.calls = {}
+	self.count = {}
+	self.last_mem = self.gc("count")
+	self.alloc_total = 0
+	self.alloc_clock = Plat_FloatTime()
+	self.queue_max = 0
 
 	self.hitch_timer = Timers:CreateTimer(0, function()
 		local clock = Plat_FloatTime()
 		local frame = GetFrameCount()
 		local time = GameRules:GetGameTime()
+		local memory = rawget(_G, "collectgarbage") and collectgarbage("count") or -1
 		local gap = clock - self.clock
+		local paused = GameRules:IsGamePaused()
+		local events = dota1x6.event_thinker_mod
+		local queue = events and events.event_tail and events.event_tail - events.event_head + 1 or 0
 
-		if gap > self.hitch_time and not GameRules:IsGamePaused() then
+		if memory > self.memory then
+			self.alloc_total = self.alloc_total + memory - self.memory
+		end
+
+		if queue > self.queue_max then
+			self.queue_max = queue
+		end
+
+		if gap > self.hitch_time and not paused then
 			local ok, name, unit, source = pcall(function()
-				local key = self.hitch_name
-				if type(key) == "function" then
-					local info = rawget(_G, "debug") and debug.getinfo and debug.getinfo(key, "S")
-					key = info and tostring(info.short_src) .. ":" .. tostring(info.linedefined) or "timer"
+				local key = self:KeyName(self.hitch_name)
+
+				if
+					type(key) == "string"
+					and not key:find(" ")
+					and IsValid(self.hitch_obj)
+					and self.hitch_obj.GetName
+				then
+					key = key .. " " .. self.hitch_obj:GetName()
 				end
 
 				local obj = self.hitch_obj
@@ -127,13 +205,88 @@ function match_log:Start()
 				ok and name or "?",
 				math.floor(self.hitch_max * 1000),
 				ok and unit or "",
-				ok and source or ""
+				ok and source or "",
+				math.floor(self.memory),
+				math.floor(memory)
 			)
+		end
+
+		if clock - self.alloc_clock >= self.alloc_time then
+			pcall(function()
+				local list, sum = self:Top(self.alloc)
+				local out = {
+					"SERVER ALLOC",
+					math.floor(GameRules:GetDOTATime(false, false)),
+					math.floor(clock - self.alloc_clock),
+					math.floor(self.alloc_total),
+					math.floor(sum),
+					queue,
+					self.queue_max,
+				}
+				for i = 1, math.min(self.alloc_top, #list) do
+					table.insert(out, self:KeyName(list[i][1]))
+					table.insert(out, math.floor(list[i][2]))
+				end
+				print(table.concat(out, "\t"))
+
+				local pre, pre_sum = self:Top(self.alloc_pre)
+				local pre_out = {
+					"SERVER ALLOC PRE",
+					math.floor(GameRules:GetDOTATime(false, false)),
+					math.floor(clock - self.alloc_clock),
+					math.floor(pre_sum),
+				}
+				for i = 1, math.min(self.alloc_top, #pre) do
+					table.insert(pre_out, self:KeyName(pre[i][1]))
+					table.insert(pre_out, math.floor(pre[i][2]))
+					table.insert(pre_out, self.calls[pre[i][1]] or 0)
+				end
+				print(table.concat(pre_out, "\t"))
+
+				if self.wrap_getters then
+					local calls, calls_sum = self:Top(self.count)
+					local calls_out = {
+						"SERVER CALLS",
+						math.floor(GameRules:GetDOTATime(false, false)),
+						math.floor(clock - self.alloc_clock),
+						math.floor(calls_sum),
+					}
+					for i = 1, math.min(self.calls_top, #calls) do
+						table.insert(calls_out, self:KeyName(calls[i][1]))
+						table.insert(calls_out, calls[i][2])
+						table.insert(calls_out, self.calls[calls[i][1]] or 0)
+					end
+					print(table.concat(calls_out, "\t"))
+
+					local engine, engine_sum = self:Top(self.engine_count)
+					local engine_out = {
+						"SERVER ENGINE",
+						math.floor(GameRules:GetDOTATime(false, false)),
+						math.floor(clock - self.alloc_clock),
+						math.floor(engine_sum),
+					}
+					for i = 1, math.min(self.calls_top, #engine) do
+						table.insert(engine_out, engine[i][1])
+						table.insert(engine_out, engine[i][2])
+					end
+					print(table.concat(engine_out, "\t"))
+				end
+			end)
+
+			self.alloc = {}
+			self.alloc_pre = {}
+			self.calls = {}
+			self.count = {}
+			self.engine_count = {}
+			self.alloc_total = 0
+			self.alloc_clock = clock
+			self.queue_max = 0
 		end
 
 		self.clock = clock
 		self.frame = frame
 		self.time = time
+		self.memory = memory
 		self.spent = 0
 		self.spent_max = 0
 		self.spent_name = nil
@@ -159,6 +312,147 @@ function match_log:Start()
 			self:WrapTimer(timers.timers[name])
 		end
 		return name
+	end
+
+	if self.wrap_getters and not self.wrapped.engine and rawget(_G, "debug") and debug.getinfo then
+		self.wrapped.engine = true
+		for class_name, methods in pairs(self.engine_methods) do
+			local class = rawget(_G, class_name)
+			for _, method in pairs(methods) do
+				local func = type(class) == "table" and rawget(class, method)
+				if type(func) == "function" then
+					local level = method:find("_old$") and 3 or 2
+					rawset(class, method, function(obj, ...)
+						local info = debug.getinfo(level, "Sl")
+						local key = method
+							.. " "
+							.. (info and tostring(info.short_src) .. ":" .. tostring(info.currentline) or "?")
+						self.engine_count[key] = (self.engine_count[key] or 0) + 1
+						return func(obj, ...)
+					end)
+				end
+			end
+		end
+	end
+
+	if self.gc_mode == "pause" and rawget(_G, "collectgarbage") then
+		collectgarbage("setpause", self.gc_setpause)
+		print("SERVER GC MODE", self.gc_mode, self.gc_setpause)
+	end
+
+	if self.gc_mode == "pace" and rawget(_G, "collectgarbage") then
+		print("SERVER GC MODE", self.gc_mode, self.gc_pause, self.gc_mul)
+		self.gc_stats = self:GcStats()
+		self.gc_clock = Plat_FloatTime()
+		self.gc_tick = Plat_FloatTime()
+		self.gc_wait = nil
+		self.gc_base = nil
+		self.gc_first = nil
+		self.gc_rate = 0
+		self.gc_last = collectgarbage("count")
+		self.gc_sweep = false
+		self.gc_float = 0
+		collectgarbage("stop")
+
+		local step = function()
+			if GameRules:State_Get() >= DOTA_GAMERULES_STATE_POST_GAME then
+				return
+			end
+			local stats = self.gc_stats
+			local memory = collectgarbage("count")
+			local now = Plat_FloatTime()
+			local late = now - self.gc_tick > self.gc_late
+			self.gc_tick = now
+			local alloc = math.max(memory - self.gc_last, 0)
+			self.gc_rate = self.gc_rate + (alloc - self.gc_rate) * self.gc_smooth
+			if self.gc_sweep then
+				self.gc_float = self.gc_float + alloc
+			end
+			if memory > stats.peak then
+				stats.peak = memory
+			end
+
+			if
+				memory > self.gc_cap
+				or (
+					self.gc_base
+					and (
+						memory > self.gc_base * self.gc_limit
+						or (self.gc_base > self.gc_first * self.gc_growth and self.gc_base > self.gc_floor)
+					)
+				)
+			then
+				print(
+					"SERVER GC FALLBACK",
+					math.floor(GameRules:GetDOTATime(false, false)),
+					math.floor(self.gc_first or 0),
+					math.floor(self.gc_base or 0),
+					math.floor(memory)
+				)
+				return
+			end
+
+			local behind = not self.gc_base or memory > self.gc_base * self.gc_pause * self.gc_push
+			if (not self.gc_wait or memory >= self.gc_wait) and late and not behind then
+				stats.skip = stats.skip + 1
+			elseif not self.gc_wait or memory >= self.gc_wait then
+				local before = memory
+				local start = Plat_FloatTime()
+				local done = collectgarbage("step", math.ceil(self.gc_rate * self.gc_mul))
+				collectgarbage("stop")
+				local spent = Plat_FloatTime() - start
+				stats.step = stats.step + spent
+				if spent > stats.tick_max then
+					stats.tick_max = spent
+				end
+				memory = collectgarbage("count")
+				if memory < before then
+					self.gc_sweep = true
+				end
+				self.gc_wait = nil
+				if done then
+					self.gc_base = math.max(memory - self.gc_float, 1024)
+					self.gc_first = self.gc_first or self.gc_base
+					self.gc_wait = self.gc_base * self.gc_pause
+					self.gc_sweep = false
+					self.gc_float = 0
+					stats.cycles = stats.cycles + 1
+				end
+			end
+			self.gc_last = memory
+
+			local clock = Plat_FloatTime()
+			if clock - self.gc_clock >= self.alloc_time then
+				print(
+					"SERVER GC",
+					math.floor(GameRules:GetDOTATime(false, false)),
+					math.floor(clock - self.gc_clock),
+					math.floor(stats.step * 1000),
+					math.floor(stats.tick_max * 1000),
+					stats.cycles,
+					math.floor(stats.peak),
+					math.floor(self.gc_base or 0),
+					math.floor(self.gc_rate),
+					math.floor(memory),
+					stats.skip
+				)
+				self.gc_stats = self:GcStats()
+				self.gc_clock = clock
+			end
+			return true
+		end
+
+		GameRules:GetGameModeEntity():SetThink(function()
+			local ok, result = pcall(step)
+			if ok and result then
+				return 0.01
+			end
+			collectgarbage("restart")
+			if not ok then
+				print("SERVER GC ERROR", tostring(result))
+			end
+			return -1
+		end, "MatchLogGc", 0)
 	end
 
 	if not self.active then
@@ -218,14 +512,23 @@ function match_log:Call(name, ...)
 	)
 end
 
-function match_log:WrapClass(name, all)
+function match_log:WrapClass(name, all, obj)
 	if self.wrapped[name] then
 		return
 	end
 	self.wrapped[name] = true
 
 	local class = rawget(_G, name)
+	local check = false
+	if type(class) ~= "table" and self.wrap_meta and obj then
+		local meta = getmetatable(obj)
+		class = type(meta) == "table" and rawget(meta, "__index")
+		check = true
+	end
 	if type(class) ~= "table" then
+		return
+	end
+	if check and not (rawget(_G, "debug") and debug.getinfo) then
 		return
 	end
 
@@ -234,13 +537,14 @@ function match_log:WrapClass(name, all)
 			type(method) == "string"
 			and type(func) == "function"
 			and not method:find("^__")
-			and (all or method:find("^On") or method:find("Event") or method:find("Filter"))
+			and (all or method:find("^On") or method:find("Event") or method:find("Filter") or (self.wrap_state and method == "CheckState") or (self.wrap_getters and (method:find(
+				"^Get"
+			) or method:find("^Is"))))
+			and (not check or debug.getinfo(func, "S").what == "Lua")
 		then
 			local key = method .. " " .. name
 			rawset(class, method, function(obj, ...)
-				self.depth = self.depth + 1
-				self.child[self.depth] = 0
-				return self:Measure(key, obj, ..., Plat_FloatTime(), func(obj, ...))
+				return self:Measure(key, obj, ..., Plat_FloatTime(), self:Enter(key), func(obj, ...))
 			end)
 		end
 	end
@@ -249,21 +553,82 @@ end
 function match_log:WrapTimer(timer)
 	local func = timer.callback
 	timer.callback = function(...)
-		self.depth = self.depth + 1
-		self.child[self.depth] = 0
-		return self:Measure(func, nil, nil, Plat_FloatTime(), func(...))
+		return self:Measure(func, nil, nil, Plat_FloatTime(), self:Enter(func), func(...))
 	end
 end
 
-function match_log:Measure(key, obj, arg, clock, ...)
+function match_log:KeyName(key)
+	if type(key) ~= "function" then
+		return key
+	end
+	local info = rawget(_G, "debug") and debug.getinfo and debug.getinfo(key, "S")
+	return info and tostring(info.short_src) .. ":" .. tostring(info.linedefined) or "timer"
+end
+
+function match_log:Top(data)
+	local list = {}
+	local sum = 0
+	for key, value in pairs(data) do
+		table.insert(list, { key, value })
+		sum = sum + value
+	end
+
+	table.sort(list, function(a, b)
+		return a[2] > b[2]
+	end)
+	return list, sum
+end
+
+function match_log:GcStats()
+	return {
+		step = 0,
+		tick_max = 0,
+		cycles = 0,
+		peak = 0,
+		skip = 0,
+	}
+end
+
+function match_log:Enter(key)
+	local memory = self.gc("count")
+	if self.wrap_getters then
+		self.count[key] = (self.count[key] or 0) + 1
+	end
+	if self.depth == 0 then
+		self.calls[key] = (self.calls[key] or 0) + 1
+		if memory > self.last_mem then
+			self.alloc_pre[key] = (self.alloc_pre[key] or 0) + memory - self.last_mem
+		end
+	end
+
+	self.depth = self.depth + 1
+	self.child[self.depth] = 0
+	self.child_mem[self.depth] = 0
+	return memory
+end
+
+function match_log:MeasureQueue(key, obj, func)
+	return self:Measure(key, obj, nil, Plat_FloatTime(), self:Enter(key), func())
+end
+
+function match_log:Measure(key, obj, arg, clock, memory, ...)
 	local time = Plat_FloatTime() - clock
+	local memory_now = self.gc("count")
+	local used = memory_now - memory
+	self.last_mem = memory_now
 	local own = time - (self.child[self.depth] or 0)
+	local own_used = used - (self.child_mem[self.depth] or 0)
 	self.depth = self.depth - 1
 
 	if self.depth > 0 then
 		self.child[self.depth] = (self.child[self.depth] or 0) + time
+		self.child_mem[self.depth] = (self.child_mem[self.depth] or 0) + math.max(used, 0)
 	else
 		self.hitch_spent = self.hitch_spent + time
+	end
+
+	if used > 0 and own_used > 0 then
+		self.alloc[key] = (self.alloc[key] or 0) + own_used
 	end
 
 	if own > self.hitch_max then

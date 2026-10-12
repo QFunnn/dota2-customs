@@ -123,21 +123,9 @@ function UpdatePanelForEntity(entity)
 
 function IsPetInvisible(entity)
 {
-    if (HasModifierPet(entity, "modifier_invisible") || Entities.IsInvisible(entity))
+    if (Game.HasModifier(entity, "modifier_invisible") || Entities.IsInvisible(entity))
     {
         return true
-    }
-    return false
-}
-
-function HasModifierPet(unit, modifier) 
-{
-    for (var i = 0; i < Entities.GetNumBuffs(unit); i++) 
-    {
-        if (Buffs.GetName(unit, Entities.GetBuff(unit, i)) == modifier)
-        {
-            return true
-        }
     }
     return false
 }

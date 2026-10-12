@@ -328,24 +328,6 @@
     }
 }
 
-"neutral_golem_aura"
-{
-    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_AURA | DOTA_ABILITY_BEHAVIOR_PASSIVE"
-    "BaseClass"                     "ability_lua"
-    "ScriptFile"                    "abilities/creeps_neutral/neutral_golem_aura"
-    "AbilityTextureName"            "granite_golem_hp_aura"
-    "SpellDispellableType"          "SPELL_DISPELLABLE_NO"
-    "MaxLevel"                      "1"
-
-    "AbilityManaCost"               "0"
-
-    "AbilityValues"
-    {
-        "health"                    "20"
-        "radius"                    "1000"
-    }
-}
-
 "neutral_golem_craggy"
 {
     "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
@@ -360,7 +342,7 @@
 
     "AbilityValues"
     {
-        "reflect"                   "10"
+        "reflect"                   "16"
         "chance"                    "10"
         "duration"                  "1"
         "cd"                        "4"
@@ -386,7 +368,7 @@
 
 "neutral_centaur_aura"
 {
-    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_AURA | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
     "BaseClass"                     "ability_lua"
     "ScriptFile"                    "abilities/creeps_neutral/neutral_centaur_aura"
     "AbilityTextureName"            "mudgolem_cloak_aura"
@@ -400,12 +382,14 @@
     {
         "armor"                     "6"
         "magic"                     "15"
+        "radius"                    "700"
+        "duration"                  "6"
     }
 }
 
 "neutral_ursa_aura"
 {
-    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_AURA | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
     "BaseClass"                     "ability_lua"
     "ScriptFile"                    "abilities/creeps_neutral/neutral_ursa_aura"
     "AbilityTextureName"            "centaur_khan_endurance_aura"
@@ -416,8 +400,9 @@
 
     "AbilityValues"
     {
-        "damage"                    "20"
-        "speed"                     "20"
+        "damage"                    "40"
+        "speed"                     "40"
+        "radius"                    "500"
     }
 }
 
@@ -490,7 +475,7 @@
 
 "neutral_bird_slow"
 {
-    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_AURA | DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
     "BaseClass"                     "ability_lua"
     "ScriptFile"                    "abilities/creeps_neutral/neutral_bird_slow"
     "AbilityTextureName"            "enraged_wildkin_toughness_aura"
@@ -502,9 +487,10 @@
 
     "AbilityValues"
     {
-        "move"                      "-10"
+        "move"                      "-15"
         "speed"                     "-10"
         "radius"                    "500"
+        "duration"                  "5"
     }
 }
 
@@ -532,7 +518,7 @@
 
 "neutral_prawler_aura"
 {
-    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_AURA"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
     "BaseClass"                     "ability_lua"
     "ScriptFile"                    "abilities/creeps_neutral/neutral_prawler_aura"
     "AbilityTextureName"            "spawnlord_aura"
@@ -546,7 +532,6 @@
     {
         "heal"                      "75"
         "heal_mult"                 "2"
-        "radius"                    "500"
     }
 }
 

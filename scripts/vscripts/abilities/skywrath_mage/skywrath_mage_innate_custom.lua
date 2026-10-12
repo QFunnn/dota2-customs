@@ -32,6 +32,20 @@ function skywrath_mage_innate_custom:GetIntrinsicModifierName()
 	return "modifier_skywrath_mage_innate_custom"
 end
 
+function skywrath_mage_innate_custom:UpdateTalents()
+	if not IsServer() then
+		return
+	end
+	if not IsValid(self.tracker) then
+		return
+	end
+	if not self.caster:HasTalent("modifier_sky_seal_4") then
+		return
+	end
+
+	self.caster:AddHealEvent_inc(self.tracker)
+end
+
 modifier_skywrath_mage_innate_custom = class({})
 function modifier_skywrath_mage_innate_custom:IsHidden()
 	return true
@@ -47,7 +61,9 @@ function modifier_skywrath_mage_innate_custom:OnCreated(table)
 	self.ability = self:GetAbility()
 
 	self.parent:AddDamageEvent_out(self)
-	self.parent:AddHealEvent_inc(self)
+
+	self.ability.tracker = self
+	self.ability:UpdateTalents()
 
 	self.seal_health = self.parent:GetTalentValue("modifier_sky_seal_4", "health", true)
 	self.seal_duration = self.parent:GetTalentValue("modifier_sky_seal_4", "duration", true)
@@ -63,6 +79,7 @@ end
 
 function modifier_skywrath_mage_innate_custom:OnRefresh(table)
 	self.lifesteal = self.ability:GetSpecialValueFor("lifesteal") / 100
+	self.ability:UpdateTalents()
 end
 
 function modifier_skywrath_mage_innate_custom:DamageEvent_out(params)

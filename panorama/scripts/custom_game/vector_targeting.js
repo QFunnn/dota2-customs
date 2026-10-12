@@ -218,12 +218,7 @@ function OnVectorTargetingStart(fStartWidth, fEndWidth, fCastLength, bDual, bIgn
 		
 		}else if (abilityName == "pangolier_swashbuckle_custom") {
 			vectorRange = Abilities.GetSpecialValueFor(currentlyActiveVectorTargetAbility, "range")
-
-			let level = Game.HasTalent("npc_dota_hero_pangolier", "modifier_pangolier_lucky_2", true)
-			if (level)
-			{
-				vectorRange = vectorRange + Game.GetTalentValue("modifier_pangolier_lucky_2", "range")[level]
-			}
+			vectorRange = vectorRange + Game.GetTalentValue("modifier_pangolier_lucky_2", "range", Entities.GetPlayerOwnerID(Abilities.GetCaster(currentlyActiveVectorTargetAbility)), true)
 
 			let multiplier = 1
 			vectorRange = vectorRange * multiplier	
@@ -259,12 +254,9 @@ function OnVectorTargetingStart(fStartWidth, fEndWidth, fCastLength, bDual, bIgn
 				muerta_current_target_index = ent[0].entityIndex
 			}
 
-			if (Game.HasTalent("npc_dota_hero_muerta", "modifier_muerta_dead_4"))
-			{
-				let bonus = 1 + (Game.GetTalentValue("modifier_muerta_dead_4", "width")/100)
-				endWidth = endWidth * bonus
-				startWidth = startWidth * bonus
-			}
+			let bonus = 1 + Game.GetTalentValue("modifier_muerta_dead_4", "width", Entities.GetPlayerOwnerID(Abilities.GetCaster(currentlyActiveVectorTargetAbility)), true)/100
+			endWidth = endWidth * bonus
+			startWidth = startWidth * bonus
 		}
 		else 
 

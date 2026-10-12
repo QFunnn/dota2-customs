@@ -273,11 +273,7 @@ function marci_companion_run_custom:DealDamage(forced_point)
 	for _, enemy in pairs(self.caster:FindTargets(radius, point)) do
 		if not enemy:HasModifier("modifier_marci_companion_run_custom_no_damage") then
 			damageTable.victim = enemy
-			local real_damage = damage
-			if enemy:IsCreep() then
-				real_damage = real_damage * (1 + self.creeps)
-			end
-			damageTable.damage = real_damage
+			damageTable.damage = damage
 			DoDamage(damageTable)
 
 			if enemy:IsRealHero() and self.caster:GetQuest() == "Marci.Quest_6" then
@@ -546,7 +542,7 @@ function modifier_marci_companion_run_custom_tracker:OnCreated()
 	self.ability.move_speed = self.ability:GetSpecialValueFor("move_speed")
 	self.ability.landing_radius = self.ability:GetSpecialValueFor("landing_radius")
 	self.ability.min_height_above_highest = self.ability:GetSpecialValueFor("min_height_above_highest")
-	self.ability.creeps = self.ability:GetSpecialValueFor("creeps") / 100
+	self.ability.creeps_damage = self.ability:GetSpecialValueFor("creeps_damage") / 100
 end
 
 function modifier_marci_companion_run_custom_tracker:OnRefresh()

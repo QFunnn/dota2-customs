@@ -9,6 +9,8 @@
 
 
 Game.talents_values = {}
+Game.talents_heroes = {}
+Game.upgrades_player = {}
 Game.new_talent_system = {}
 Game.spells_by_number = {}
 Game.achivment_table = {}
@@ -16,11 +18,13 @@ Game.pickrate_talents = {}
 Game.local_chosen_build = -1
 Game.CustomTooltipOpened = false
 Game.Subscribed = false
+Game.player_stats = {}
 var talent_increase_multipliers = {}
 
 CustomNetTables.SubscribeNetTableListener( "sub_data", update_hero_image );
 CustomNetTables.SubscribeNetTableListener( "local_items", update_hero_image_local );
 CustomNetTables.SubscribeNetTableListener( "custom_pick", update_custom_pick );
+CustomNetTables.SubscribeNetTableListener( "upgrades_player", update_upgrades_player );
 GameEvents.Subscribe_custom("reconnect_hero_image", reconnect_hero_image)
 
 var player_heroes = {}
@@ -29,6 +33,11 @@ var player_heroes = {}
 function update_player_heroes(data)
 {
 	player_heroes = data
+}
+
+function update_player_stats(data)
+{
+	Game.player_stats[data.id] = {str: data.str, agi: data.agi, int: data.int}
 }
 
 Game.GetPlayerHero = (player_id) =>
@@ -73,6 +82,7 @@ GameEvents.OnLoaded(() => {
   GameEvents.Subscribe_custom('update_talent_increase', update_talent_increase)
   GameEvents.Subscribe_custom('player_heroes', update_player_heroes)
   GameEvents.Subscribe_custom('get_player_names', get_player_names)
+  GameEvents.Subscribe_custom('update_player_stats', update_player_stats)
 
   GameEvents.SendCustomGameEventToServer_custom("RequestAchivments", {})
   GameEvents.SendCustomGameEventToServer_custom("RequestPickRates", {})
@@ -81,6 +91,7 @@ GameEvents.OnLoaded(() => {
   GameEvents.SendCustomGameEventToServer_custom("RequestNames", {})
   GameEvents.SendCustomGameEventToServer_custom("RequestTalentIncrease", {})
   GameEvents.SendCustomGameEventToServer_custom("request_player_heroes", {})
+  GameEvents.SendCustomGameEventToServer_custom("request_player_stats", {})
 })
 
 var talents_recieved = false
@@ -242,6 +253,7 @@ function SendTalents(data)
 			Game.talents_values[name] = data[name]
 			for (let talent_name in data[name])
 			{
+				Game.talents_heroes[talent_name] = name
 				let talent_data = data[name][talent_name]
 				let skill_number = talent_data["skill_number"]
 				let skill_name = talent_data["skill_name"]
@@ -483,37 +495,52 @@ Game.GetLocalLegendary = () =>
 
 
 
+function update_upgrades_player(table, key, data)
+{
+	Game.upgrades_player[key] = data
+}
+
+Game.GetUpgrades = (player_id) =>
+{
+	let key = String(player_id)
+
+	if (Game.upgrades_player[key] == undefined)
+		Game.upgrades_player[key] = CustomNetTables.GetTableValue("upgrades_player", key)
+
+	return Game.upgrades_player[key]
+}
+
 Game.HasTalent = (player_id, talent_name, return_level) =>
 {
-	let talents = CustomNetTables.GetTableValue("upgrades_player", String(player_id))
+	let talents = Game.GetUpgrades(player_id)
 
-	if ((talents == undefined) || (talents == null))
-	{
+	if (!talents || !talents.upgrades || talents.upgrades[talent_name] == undefined)
 		return
+
+	let level = talents.upgrades[talent_name]
+
+	if (level > 0)
+		return return_level ? level : true
+
+	return false
+}
+
+Game.FindModifier = (unit, name) =>
+{
+	for (let i = 0; i < Entities.GetNumBuffs(unit); i++)
+	{
+		let buff = Entities.GetBuff(unit, i)
+
+		if (Buffs.GetName(unit, buff) == name)
+			return buff
 	}
 
-	let upgrades = talents.upgrades
+	return -1
+}
 
-
-	if ((upgrades == undefined) || (upgrades == null) || (upgrades[talent_name] == null) || (upgrades[talent_name] == undefined))
-	{
-		return
-	}
-
-	if ((upgrades[talent_name]) > 0)
-	{
-		if (return_level)
-		{
-			return upgrades[talent_name]
-		}else
-		{
-			return true
-		}
-	}else 
-	{
-		return false
-	}
-	
+Game.HasModifier = (unit, name) =>
+{
+	return Game.FindModifier(unit, name) !== -1
 }
 
 
@@ -636,39 +663,37 @@ Game.GetLocalHeroName = () =>
 	return Entities.GetUnitName(index)
 }
 
-Game.GetTalentValue = (name, value_name, player_id) => 
+Game.GetTalentValue = (name, value_name, player_id, use_level) =>
 {
-	for (const hero_name of Object.keys(Game.talents_values)) 
-	{	
-		if (Game.talents_values[hero_name] !== undefined)
+	let hero_table = Game.talents_values[Game.talents_heroes[name]]
+	let id = player_id !== undefined ? player_id : Game.GetLocalPlayerID()
+	let result = hero_table && hero_table[name] ? hero_table[name][value_name] : undefined
+
+	if (typeof(result) == "object" && result !== null)
+	{
+		let multipliers = talent_increase_multipliers[id]
+		let k = multipliers && multipliers[name]
+
+		if (k !== undefined)
 		{
-			for (const talent_data of Object.keys(Game.talents_values[hero_name]))
-			{
+			let new_result = {}
 
-				if ((talent_data == name) && (Game.talents_values[hero_name][talent_data][value_name] !== undefined))
-				{
-					let result = Game.talents_values[hero_name][talent_data][value_name]
+			for (let key in result)
+				new_result[key] = result[key]*k
 
-					if (typeof(result) == "object" && result !== null)
-					{
-						let multipliers = talent_increase_multipliers[player_id !== undefined ? player_id : Game.GetLocalPlayerID()]
-						let k = multipliers && multipliers[name]
-						if (k !== undefined)
-						{
-        					let new_result = {}
-							for (let key in result)
-					    {
-								new_result[key] = result[key] * k;
-					    }
-        					result = new_result
-						}
-					}
-					return result
-				}
-			} 
+			result = new_result
 		}
 	}
-	return undefined
+
+	if (!use_level)
+		return result
+
+	let level = Game.HasTalent(id, name, true)
+
+	if (!level || result === undefined)
+		return 0
+
+	return (typeof(result) == "object" ? result[level] : result) || 0
 }
 
 

@@ -275,7 +275,7 @@ function modifier_bloodseeker_rupture_custom:OnCreated()
 	self:AddParticle(particle, false, false, -1, false, false)
 
 	self.interval = 0.2
-	self.creeps_damage = self.ability.creeps_damage * self.interval
+	self.creeps_dps = self.ability.creeps_dps * self.interval
 	self.elapsed = 0
 	self.count = 0
 	self.is_invun = false
@@ -322,7 +322,7 @@ function modifier_bloodseeker_rupture_custom:OnIntervalThink(first)
 		DoDamage({
 			victim = self.parent,
 			attacker = self.caster,
-			damage = self.creeps_damage * bonus_damage,
+			damage = self.creeps_dps * bonus_damage,
 			damage_type = DAMAGE_TYPE_PURE,
 			damage_flags = DOTA_DAMAGE_FLAG_NONE,
 			ability = self.ability,
@@ -521,7 +521,7 @@ function modifier_bloodseeker_rupture_custom_tracker:OnCreated()
 	self.ability.no_damage_distance = self.ability:GetSpecialValueFor("no_damage_distance")
 	self.ability.movement_damage_pct = self.ability:GetSpecialValueFor("movement_damage_pct") / 100
 	self.ability.hp_pct = self.ability:GetSpecialValueFor("hp_pct") / 100
-	self.ability.creeps_damage = self.ability:GetSpecialValueFor("creeps_damage")
+	self.ability.creeps_dps = self.ability:GetSpecialValueFor("creeps_dps")
 	self.ability.creeps_cd = self.ability:GetSpecialValueFor("creeps_cd")
 	self.ability.scepter_duration = self.ability:GetSpecialValueFor("scepter_duration")
 	self.ability.scepter_max = self.ability:GetSpecialValueFor("scepter_max")
@@ -532,7 +532,7 @@ end
 
 function modifier_bloodseeker_rupture_custom_tracker:OnRefresh()
 	self.ability.movement_damage_pct = self.ability:GetSpecialValueFor("movement_damage_pct") / 100
-	self.ability.creeps_damage = self.ability:GetSpecialValueFor("creeps_damage")
+	self.ability.creeps_dps = self.ability:GetSpecialValueFor("creeps_dps")
 end
 
 function modifier_bloodseeker_rupture_custom_tracker:OnIntervalThink()

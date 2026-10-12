@@ -396,8 +396,8 @@ function muerta_dead_shot_custom:DealDamage(target, damage_ability)
 		damage = damage * (1 + self.talents.q7_damage_reduce)
 	end
 
-	if target:IsCreep() then
-		damage = damage * (1 + self.creeps_damage + (self.talents.has_q7 == 1 and self.talents.q7_creeps or 0))
+	if target:IsCreep() and self.talents.has_q7 == 1 then
+		damage = damage * (1 + self.talents.q7_creeps / (1 + self.creeps_damage))
 	end
 
 	self:ApplyBurn(target, damage)

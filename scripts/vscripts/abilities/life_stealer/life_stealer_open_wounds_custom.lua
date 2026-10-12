@@ -380,11 +380,7 @@ function modifier_life_stealer_open_wounds_custom:DamageEvent_inc(params)
 				local damageTable =
 					{ attacker = caster_attacker, ability = self.ability, damage_type = DAMAGE_TYPE_MAGICAL }
 				for _, target in pairs(self.caster:FindTargets(self.ability.radius, self.parent:GetAbsOrigin())) do
-					local real_damage = damage
-					if target:IsCreep() then
-						real_damage = real_damage * (1 + self.ability.creeps)
-					end
-					damageTable.damage = real_damage
+					damageTable.damage = damage
 					damageTable.victim = target
 					DoDamage(damageTable)
 				end
@@ -449,7 +445,7 @@ function modifier_life_stealer_open_wounds_custom_tracker:OnCreated()
 	self.ability.radius = self.ability:GetSpecialValueFor("radius")
 	self.ability.attacks = self.ability:GetSpecialValueFor("attacks")
 	self.ability.damage = self.ability:GetSpecialValueFor("damage")
-	self.ability.creeps = self.ability:GetSpecialValueFor("creeps") / 100
+	self.ability.creeps_damage = self.ability:GetSpecialValueFor("creeps_damage") / 100
 end
 
 function modifier_life_stealer_open_wounds_custom_tracker:OnRefresh(table)

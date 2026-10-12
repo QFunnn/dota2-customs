@@ -1153,8 +1153,8 @@ _G.CreepsStats = {
 	["npc_dota_neutral_black_dragon"] = { damage = 69, health = 2200, exp = 188, gold = 85, blue = 15 },
 	["npc_dota_neutral_black_drake"] = { damage = 60, health = 1700, exp = 131, gold = 64, blue = 10 },
 
-	["npc_dota_neutral_granite_golem"] = { damage = 134, health = 2200, exp = 225, gold = 85, blue = 15 },
-	["npc_dota_neutral_rock_golem"] = { damage = 89, health = 1700, exp = 112, gold = 64, blue = 10 },
+	["npc_dota_neutral_granite_golem"] = { damage = 134, health = 2640, exp = 225, gold = 85, blue = 15 },
+	["npc_dota_neutral_rock_golem"] = { damage = 89, health = 2040, exp = 112, gold = 64, blue = 10 },
 
 	["npc_dota_neutral_big_thunder_lizard"] = { damage = 32, health = 2200, exp = 188, gold = 85, blue = 15 },
 	["npc_dota_neutral_small_thunder_lizard"] = { damage = 134, health = 1700, exp = 131, gold = 64, blue = 10 },

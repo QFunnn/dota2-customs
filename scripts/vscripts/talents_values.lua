@@ -737,6 +737,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				invun = 1.5,
 				invun_legendary = 1,
 				heal = 3,
+				is_stun = 1,
 				alt_talent = "modifier_juggernaut_healingward_7",
 			},
 			["modifier_juggernaut_hero_6"] = {
@@ -791,6 +792,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				slow = -50,
 				is_purgable_self = 1,
+				is_silence = 1,
 			},
 			["modifier_juggernaut_bladefury_7"] = {
 				skill_number = 1,
@@ -978,6 +980,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				duration = 1.5,
 				root = 1.5,
 				cast = -0.2,
+				is_root = 1,
 			},
 			["modifier_juggernaut_omnislash_7"] = {
 				skill_number = 4,
@@ -1044,6 +1047,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				root = 2,
 				talent_cd = 10,
 				is_purgable_self = 1,
+				is_root = 1,
 			},
 			["modifier_phantom_assassin_hero_5"] = {
 				skill_number = 0,
@@ -2401,6 +2405,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				slow = 1,
 				silence = 2,
+				is_silence = 1,
 			},
 			["modifier_legion_hero_5"] = {
 				skill_number = 0,
@@ -2410,6 +2415,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				bkb = 2,
 				cd = 10,
+				is_bkb = 1,
 				alt_talent = "modifier_legion_press_7",
 			},
 			["modifier_legion_hero_6"] = {
@@ -2544,6 +2550,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				cd = -4,
 				odds_count = 3,
 				is_purgable_self = 1,
+				is_root = 1,
 				alt_talent = "modifier_legion_odds_7",
 				alt_talent2 = "modifier_legion_press_7",
 			},
@@ -2602,6 +2609,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				cd_reduce = 2,
 				is_basher = 1,
 				is_through_bkb = 1,
+				is_stun = 1,
 			},
 			["modifier_legion_moment_4"] = {
 				skill_number = 3,
@@ -2676,6 +2684,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				heal = 35,
 				talent_cd = 20,
 				is_breakable = 1,
+				is_save = 1,
 				alt_talent = "modifier_legion_duel_7",
 			},
 			["modifier_legion_duel_7"] = {
@@ -2735,6 +2744,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				stun = 1,
 				is_through_bkb = 1,
 				is_basher = 1,
+				is_stun = 1,
 			},
 			["modifier_bristle_hero_5"] = {
 				skill_number = 0,
@@ -2802,6 +2812,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				silence = 3,
 				talent_cd = 10,
 				is_purgable_self = 1,
+				is_silence = 1,
 			},
 			["modifier_bristle_goo_7"] = {
 				skill_number = 1,
@@ -2999,6 +3010,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				talent_cd = 10,
 				bkb = 2.5,
 				is_breakable = 1,
+				is_bkb = 1,
 			},
 			["modifier_bristle_warpath_7"] = {
 				skill_number = 4,
@@ -4064,6 +4076,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				silence = 3,
 				miss = 100,
 				talent_cd = 12,
+				is_silence = 1,
 			},
 			["modifier_ember_hero_5"] = {
 				skill_number = 0,
@@ -4084,6 +4097,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				status = 15,
 				bkb = 2,
 				cd = -3,
+				is_bkb = 1,
 			},
 
 			["modifier_ember_chain_1"] = {
@@ -4260,6 +4274,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				duration_legendary = 1,
 				is_through_bkb = 1,
 				is_basher = 1,
+				is_stun = 1,
 				alt_talent = "modifier_ember_guard_7",
 			},
 			["modifier_ember_guard_7"] = {
@@ -4708,6 +4723,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				silence = 2.5,
 				slow = -50,
 				is_purgable_self = 1,
+				is_silence = 1,
 				alt_talent = "modifier_hoodwink_bush_7",
 			},
 			["modifier_hoodwink_hero_5"] = {
@@ -4722,6 +4738,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				health = 30,
 				talent_cd = 15,
 				is_breakable = 1,
+				is_save = 1,
 			},
 			["modifier_hoodwink_hero_6"] = {
 				skill_number = 0,
@@ -4733,6 +4750,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				invun_legendary = 1,
 				bkb = 2,
 				bkb_legendary = 1,
+				is_bkb = 1,
 				alt_talent = "modifier_hoodwink_sharp_7",
 			},
 
@@ -4782,6 +4800,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				talent_cd = 3,
 				is_basher = 1,
 				is_through_bkb = 1,
+				is_stun = 1,
 			},
 			["modifier_hoodwink_acorn_7"] = {
 				skill_number = 1,
@@ -5047,6 +5066,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				heal_legendary = 5,
 				talent_cd = 10,
 				bkb = 2.5,
+				is_bkb = 1,
 				alt_talent = "modifier_skeleton_strike_7",
 			},
 			["modifier_skeleton_hero_6"] = {
@@ -5111,6 +5131,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				duration = 0.3,
 				max_dist = 450,
 				is_purgable_self = 1,
+				is_silence = 1,
 				trigger_ability = "skeleton_king_hellfire_blast_custom",
 			},
 			["modifier_skeleton_blast_7"] = {
@@ -5237,6 +5258,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				talent_cd = 8,
 				is_through_bkb = 1,
 				is_purgable_self = 1,
+				is_root = 1,
 			},
 			["modifier_skeleton_strike_7"] = {
 				skill_number = 3,
@@ -5370,6 +5392,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				health_loss = 40,
 				talent_cd = 20,
 				is_breakable = 1,
+				is_save = 1,
 			},
 			["modifier_lina_hero_5"] = {
 				skill_number = 0,
@@ -5511,6 +5534,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				ticks = 3,
 				talent_cd = 10,
 				is_purgable_self = 1,
+				is_root = 1,
 				damage_type = DAMAGE_TYPE_MAGICAL,
 			},
 			["modifier_lina_array_7"] = {
@@ -6076,6 +6100,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				talent_cd = 15,
 				cd_inc = -1,
 				is_breakable = 1,
+				is_save = 1,
 			},
 			["modifier_axe_hero_6"] = {
 				skill_number = 0,
@@ -6199,6 +6224,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				distance = 350,
 				range = 750,
 				knock_duration = 0.3,
+				is_silence = 1,
 			},
 			["modifier_axe_hunger_7"] = {
 				skill_number = 2,
@@ -6329,6 +6355,8 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				talent_cd = 12,
 				is_through_bkb = 1,
 				is_purgable_self = 1,
+				is_bkb = 1,
+				is_root = 1,
 			},
 			["modifier_axe_culling_7"] = {
 				skill_number = 4,
@@ -6457,6 +6485,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				radius = 150,
 				root = 1.6,
 				cd = 6,
+				is_root = 1,
 			},
 			["modifier_alchemist_spray_legendary"] = {
 				skill_number = 1,
@@ -6577,6 +6606,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				silence = 3,
 				cd = 10,
 				is_purgable_self = 1,
+				is_silence = 1,
 			},
 			["modifier_alchemist_greed_legendary"] = {
 				skill_number = 3,
@@ -6646,6 +6676,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				health = 30,
 				talent_cd = 25,
 				is_breakable = 1,
+				is_bkb = 1,
 			},
 			["modifier_alchemist_rage_legendary"] = {
 				skill_number = 4,
@@ -6717,6 +6748,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				duration = 6,
 				talent_cd = 20,
 				is_breakable = 1,
+				is_bkb = 1,
 			},
 			["modifier_ogremagi_hero_5"] = {
 				skill_number = 0,
@@ -6728,6 +6760,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				silence = 1.5,
 				slow = -100,
 				is_purgable_self = 1,
+				is_silence = 1,
 				talent_cd = 8,
 			},
 			["modifier_ogremagi_hero_6"] = {
@@ -7090,6 +7123,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				attack_slow = -150,
 				talent_cd = 10,
 				is_purgable_self = 1,
+				is_silence = 1,
 			},
 			["modifier_antimage_hero_6"] = {
 				skill_number = 0,
@@ -7149,6 +7183,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				talent_cd = 10,
 				is_through_bkb = 1,
 				is_breakable = 1,
+				is_stun = 1,
 			},
 			["modifier_antimage_break_7"] = {
 				skill_number = 1,
@@ -7382,6 +7417,8 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				cast = { -0.2, -0.3, -0.4 },
 				bonus = 2,
 				duration = 4,
+				tooltip_ability = "primal_beast_onslaught_custom",
+				tooltip = { chargeup_time = "cast" },
 			},
 			["modifier_primal_beast_hero_2"] = {
 				skill_number = 0,
@@ -7391,6 +7428,8 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				armor = { 2, 3, 4 },
 				magic = { 2, 3, 4 },
 				bonus = 250,
+				tooltip_ability = "primal_beast_uproar_custom",
+				tooltip = { roared_bonus_armor = "armor" },
 			},
 			["modifier_primal_beast_hero_3"] = {
 				skill_number = 0,
@@ -7424,6 +7463,8 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				status = 1,
 				health = 250,
 				max = 30,
+				tooltip_ability = "primal_beast_innate_custom",
+				tooltip = { cleave = "bonus*kv", move = "bonus*kv", range = "bonus*kv" },
 			},
 			["modifier_primal_beast_hero_6"] = {
 				skill_number = 0,
@@ -7434,6 +7475,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				heal = 15,
 				heal_legendary = 10,
 				bkb = 2,
+				is_bkb = 1,
 				alt_talent = "modifier_primal_beast_pulverize_7",
 			},
 
@@ -7447,6 +7489,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				quake = { 10, 15, 20 },
 				attack = { 30, 45, 60 },
 				duration = 6,
+				tooltip = { attack_damage = "damage" },
 				alt_talent = "modifier_primal_beast_onslaught_7",
 			},
 			["modifier_primal_beast_onslaught_2"] = {
@@ -7521,6 +7564,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				str = { 20, 30, 40 },
 				duration = { 1, 1.5, 2 },
+				tooltip = { duration = "duration", base_damage = "str" },
 			},
 			["modifier_primal_beast_trample_2"] = {
 				skill_number = 2,
@@ -7559,6 +7603,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				duration = 5,
 				talent_cd = 6,
 				is_purgable_self = 1,
+				is_silence = 1,
 			},
 			["modifier_primal_beast_trample_7"] = {
 				skill_number = 2,
@@ -7594,6 +7639,8 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				damage_legendary = { 1, 1.5, 2 },
 				bva = { -0.1, -0.15, -0.2 },
 				interval = { -10, -15, -20 },
+				tooltip = { bonus_damage_per_stack = "damage" },
+				tooltip_alt = { bonus_damage_per_stack = "damage_legendary" },
 				alt_talent = "modifier_primal_beast_uproar_7",
 				alt_talent2 = "modifier_primal_beast_onslaught_7",
 			},
@@ -7605,6 +7652,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				duration = { 1, 1.5, 2 },
 				heal = { 30, 45, 60 },
+				tooltip = { roar_duration = "duration" },
 			},
 			["modifier_primal_beast_uproar_3"] = {
 				skill_number = 3,
@@ -7635,6 +7683,10 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				min_distance = 200,
 				pull_duration = 0.3,
 				is_purgable_self = 1,
+				is_root = 1,
+				tooltip_ability = "primal_beast_onslaught_custom",
+				tooltip = { stun_duration = "stun" },
+				tooltip_alt = { stun_duration = "stun" },
 				alt_talent = "modifier_primal_beast_uproar_7",
 			},
 			["modifier_primal_beast_uproar_7"] = {
@@ -7653,6 +7705,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				duration = 4,
 				extend = 8,
 				damage = -20,
+				tooltip = { bonus_damage_per_stack = "damage*kv" },
 			},
 
 			["modifier_primal_beast_pulverize_1"] = {
@@ -7667,6 +7720,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				max = 50,
 				is_perma = 1,
 				mod_name = "modifier_primal_beast_pulverize_custom_perma",
+				tooltip = { damage = "base + damage*perma" },
 			},
 			["modifier_primal_beast_pulverize_2"] = {
 				skill_number = 4,
@@ -7677,6 +7731,8 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				cd = { -2, -3, -4 },
 				range = { 80, 120, 160 },
 				radius = { 40, 60, 80 },
+				tooltip_ability = "primal_beast_trample_custom",
+				tooltip = { effect_radius = "radius" },
 			},
 			["modifier_primal_beast_pulverize_3"] = {
 				skill_number = 4,
@@ -7775,6 +7831,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				cdr = 12,
 				slow = -20,
 				silence = 2.5,
+				is_silence = 1,
 			},
 			["modifier_marci_hero_5"] = {
 				skill_number = 0,
@@ -7792,6 +7849,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				bkb = 2,
 				cd = 10,
+				is_bkb = 1,
 			},
 
 			["modifier_marci_dispose_1"] = {
@@ -7837,6 +7895,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				range = 650,
 				stun = 1.2,
 				cast_range = 200,
+				is_stun = 1,
 			},
 			["modifier_marci_dispose_7"] = {
 				skill_number = 1,
@@ -8053,6 +8112,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				talent_cd = 3,
 				is_through_bkb = 1,
 				is_basher = 1,
+				is_stun = 1,
 			},
 			["modifier_marci_unleash_7"] = {
 				skill_number = 4,
@@ -8447,6 +8507,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				has_video = 1,
 
 				bkb_duration = 2,
+				is_bkb = 1,
 			},
 			["modifier_bloodseeker_hero_5"] = {
 				skill_number = 0,
@@ -8577,6 +8638,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				range = 400,
 				duration = 0.3,
 				is_purgable_self = 1,
+				is_root = 1,
 			},
 			["modifier_bloodseeker_bloodrite_7"] = {
 				skill_number = 2,
@@ -8642,6 +8704,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				talent_cd = 3.5,
 				is_basher = 1,
 				is_through_bkb = 1,
+				is_stun = 1,
 			},
 			["modifier_bloodseeker_thirst_7"] = {
 				skill_number = 3,
@@ -8776,6 +8839,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				speed = 30,
 				silence = 2.5,
 				is_purgable_self = 1,
+				is_silence = 1,
 				talent_cd = 8,
 			},
 			["modifier_monkey_king_hero_6"] = {
@@ -8788,6 +8852,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				bkb = 2.5,
 				heal = 6,
 				duration = 2,
+				is_bkb = 1,
 			},
 
 			["modifier_monkey_king_boundless_1"] = {
@@ -8967,7 +9032,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				main_epic = 1,
 				has_video = 1,
 
-				agility = { 8, 15 },
+				agi = { 8, 15 },
 				damage = 40,
 				attacks = { 2, 3 },
 				interval = 0.25,
@@ -9123,6 +9188,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				speed = 40,
 				silence = 2,
 				is_purgable_self = 1,
+				is_silence = 1,
 			},
 			["modifier_mars_hero_5"] = {
 				skill_number = 0,
@@ -9135,6 +9201,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				cast = -50,
 				radius = -100,
 				is_root_disabled = 1,
+				is_bkb = 1,
 			},
 			["modifier_mars_hero_6"] = {
 				skill_number = 0,
@@ -9334,6 +9401,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				talent_cd = 3,
 				is_through_bkb = 1,
 				is_basher = 1,
+				is_stun = 1,
 			},
 			["modifier_mars_bulwark_7"] = {
 				skill_number = 3,
@@ -9474,6 +9542,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				knock_duration = 0.3,
 				talent_cd = 20,
 				is_breakable = 1,
+				is_save = 1,
 			},
 			["modifier_zuus_hero_6"] = {
 				skill_number = 0,
@@ -9488,6 +9557,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				is_perma = 1,
 				duration = 10,
 				is_purgable_self = 1,
+				is_silence = 1,
 				mod_name = "modifier_zuus_thundergods_wrath_custom_kills",
 			},
 
@@ -9602,6 +9672,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				talent_cd = 12,
 				root = 2,
 				is_purgable_self = 1,
+				is_root = 1,
 			},
 			["modifier_zuus_bolt_7"] = {
 				skill_number = 2,
@@ -9670,6 +9741,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				delay = 2,
 				radius = 350,
 				stun = 1.2,
+				is_stun = 1,
 			},
 			["modifier_zuus_jump_7"] = {
 				skill_number = 3,
@@ -9822,6 +9894,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				talent_cd = 15,
 				bkb = 2,
 				is_breakable = 1,
+				is_bkb = 1,
 			},
 
 			["modifier_leshrac_earth_1"] = {
@@ -9874,6 +9947,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				is_basher = 1,
 				talent_cd = 3,
 				is_through_bkb = 1,
+				is_stun = 1,
 			},
 			["modifier_leshrac_earth_7"] = {
 				skill_number = 1,
@@ -9941,6 +10015,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				cd_items = -1,
 				count = 10,
 				is_purgable_self = 1,
+				is_root = 1,
 			},
 			["modifier_leshrac_edict_7"] = {
 				skill_number = 2,
@@ -10010,6 +10085,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				distance_max = 400,
 				duration = 0.3,
 				silence = 2.5,
+				is_silence = 1,
 			},
 			["modifier_leshrac_storm_7"] = {
 				skill_number = 3,
@@ -10145,6 +10221,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				heal = 20,
 				duration = 2.5,
 				is_breakable = 1,
+				is_save = 1,
 			},
 			["modifier_maiden_hero_6"] = {
 				skill_number = 0,
@@ -10199,6 +10276,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				cast = -0.2,
 				talent_cd = 10,
 				stun = 1.2,
+				is_stun = 1,
 			},
 			["modifier_maiden_crystal_7"] = {
 				skill_number = 1,
@@ -10314,6 +10392,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				duration = 1.5,
 				damage = { 150, 250 },
 				talent_cd = 2.5,
+				is_stun = 1,
 			},
 			["modifier_maiden_arcane_4"] = {
 				skill_number = 3,
@@ -10394,6 +10473,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				cd = 3,
 				delay = 1.5,
 				is_purgable_self = 1,
+				is_silence = 1,
 				trigger_ability = "crystal_maiden_freezing_field_custom",
 			},
 			["modifier_maiden_freezing_7"] = {
@@ -11622,6 +11702,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				root = 1.5,
 				cd = 5,
 				is_purgable_self = 1,
+				is_root = 1,
 			},
 			["modifier_muerta_calling_7"] = {
 				skill_number = 2,
@@ -11694,6 +11775,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				duration = 8,
 				incoming = 250,
 				is_breakable = 1,
+				is_save = 1,
 				talent_cd = 20,
 			},
 			["modifier_muerta_gun_7"] = {
@@ -11843,6 +11925,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				silence = 3,
 				talent_cd = 12,
 				is_purgable_self = 1,
+				is_silence = 1,
 			},
 			["modifier_pangolier_hero_6"] = {
 				skill_number = 0,
@@ -12184,6 +12267,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				silence = 1.6,
 				allow_illusion = 1,
 				is_purgable_self = 1,
+				is_silence = 1,
 			},
 
 			["modifier_arc_warden_hero_5"] = {
@@ -12197,6 +12281,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				stun = 1,
 				talent_cd = 10,
 				allow_illusion = 1,
+				is_stun = 1,
 			},
 			["modifier_arc_warden_hero_6"] = {
 				skill_number = 0,
@@ -12459,6 +12544,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				damage = 100,
 				status = 50,
 				is_breakable = 1,
+				is_bkb = 1,
 				allow_illusion = 1,
 			},
 			["modifier_arc_warden_double_7"] = {
@@ -12529,6 +12615,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				silence = 2.5,
 				slow = -50,
 				is_purgable_self = 1,
+				is_silence = 1,
 			},
 			["modifier_invoker_hero_6"] = {
 				skill_number = 0,
@@ -12541,6 +12628,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				bkb = 2,
 				talent_cd = 20,
 				is_breakable = 1,
+				is_bkb = 1,
 			},
 
 			["modifier_invoker_quas_1"] = {
@@ -12586,6 +12674,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				root = 1.6,
 				wall = 2,
 				is_purgable_self = 1,
+				is_root = 1,
 			},
 			["modifier_invoker_quas_7"] = {
 				skill_number = 1,
@@ -12721,6 +12810,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				duration = 10,
 				is_through_bkb = 1,
 				is_basher = 1,
+				is_stun = 1,
 			},
 			["modifier_invoker_exort_7"] = {
 				skill_number = 3,
@@ -13523,6 +13613,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				health = 30,
 				talent_cd = 20,
 				is_breakable = 1,
+				is_bkb = 1,
 			},
 			["modifier_furion_hero_6"] = {
 				skill_number = 0,
@@ -13734,6 +13825,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				talent_cd = 3,
 				is_basher = 1,
 				is_through_bkb = 1,
+				is_stun = 1,
 			},
 			["modifier_furion_call_7"] = {
 				skill_number = 3,
@@ -13890,6 +13982,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				status = 15,
 				duration = 1,
+				is_bkb = 1,
 			},
 
 			["modifier_abaddon_mist_1"] = {
@@ -13999,6 +14092,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				stun = 1.5,
 				duration = 8,
 				damage = 120,
+				is_stun = 1,
 			},
 			["modifier_abaddon_aphotic_7"] = {
 				skill_number = 2,
@@ -14064,6 +14158,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				talent_cd = 6,
 				duration = 5,
 				is_purgable_self = 1,
+				is_silence = 1,
 			},
 			["modifier_abaddon_curse_7"] = {
 				skill_number = 3,
@@ -14203,6 +14298,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				stun = 1,
 				duration = 4,
 				is_breakable = 1,
+				is_save = 1,
 			},
 			["modifier_drow_hero_5"] = {
 				skill_number = 0,
@@ -14272,6 +14368,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				root = 1.5,
 				talent_cd = 8,
 				is_purgable_self = 1,
+				is_root = 1,
 			},
 			["modifier_drow_frost_7"] = {
 				skill_number = 1,
@@ -15055,6 +15152,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				silence = 3,
 				talent_cd = 10,
 				is_purgable_self = 1,
+				is_silence = 1,
 			},
 			["modifier_slark_essence_7"] = {
 				skill_number = 3,
@@ -15184,6 +15282,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				talent_cd = 12,
 				knock_duration = 0.3,
 				is_purgable_self = 1,
+				is_silence = 1,
 				trigger_ability = "centaur_double_edge_custom",
 			},
 			["modifier_centaur_hero_5"] = {
@@ -15206,6 +15305,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				has_video = 1,
 
 				bkb = 2.5,
+				is_bkb = 1,
 			},
 
 			["modifier_centaur_stomp_1"] = {
@@ -15318,6 +15418,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				resist = 20,
 				duration = 10,
 				is_breakable = 1,
+				is_save = 1,
 			},
 			["modifier_centaur_edge_7"] = {
 				skill_number = 2,
@@ -15528,6 +15629,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				speed = 600,
 				duration = 2,
 				slow = -50,
+				is_silence = 1,
 			},
 			["modifier_enigma_hero_6"] = {
 				skill_number = 0,
@@ -15844,6 +15946,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				talent_cd = 12,
 				shield = 20,
 				is_breakable = 1,
+				is_save = 1,
 			},
 			["modifier_bane_hero_5"] = {
 				skill_number = 0,
@@ -15855,6 +15958,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				silence = 2.5,
 				slow = -100,
 				is_purgable_self = 1,
+				is_silence = 1,
 				alt_talent = "modifier_bane_nightmare_7",
 			},
 			["modifier_bane_hero_6"] = {
@@ -15910,6 +16014,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				has_video = 1,
 
 				is_purgable_self = 1,
+				is_root = 1,
 				range = -30,
 				root = 2,
 			},
@@ -16167,6 +16272,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				miss = 100,
 				talent_cd = 10,
 				is_purgable_self = 1,
+				is_silence = 1,
 			},
 			["modifier_morphling_hero_5"] = {
 				skill_number = 0,
@@ -16179,6 +16285,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				heal = 40,
 				invun = 0.7,
 				max = 16,
+				is_save = 1,
 			},
 			["modifier_morphling_hero_6"] = {
 				skill_number = 0,
@@ -16379,6 +16486,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				talent_cd = 3,
 				is_basher = 1,
 				is_through_bkb = 1,
+				is_stun = 1,
 			},
 			["modifier_morphling_attribute_7"] = {
 				skill_number = 3,
@@ -16448,6 +16556,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				duration_max = 12,
 				bkb = 2.5,
 				talent_cd = 10,
+				is_bkb = 1,
 				alt_talent = "modifier_morphling_morph_7",
 			},
 			["modifier_morphling_morph_7"] = {
@@ -16513,6 +16622,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				health = 30,
 				talent_cd = 20,
 				is_breakable = 1,
+				is_save = 1,
 			},
 			["modifier_lifestealer_hero_5"] = {
 				skill_number = 0,
@@ -16528,6 +16638,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				range = 200,
 				trigger_ability = "life_stealer_open_wounds_custom",
 				is_purgable_self = 1,
+				is_silence = 1,
 			},
 			["modifier_lifestealer_hero_6"] = {
 				skill_number = 0,
@@ -16792,6 +16903,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				root = 2,
 				heal_creep = 10,
 				is_through_bkb = 1,
+				is_root = 1,
 				alt_talent = "modifier_lifestealer_infest_7",
 			},
 			["modifier_lifestealer_infest_7"] = {
@@ -16848,6 +16960,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				cd_inc = -35,
 				cast = -0.2,
 				talent_cd = 16,
+				is_stun = 1,
 			},
 			["modifier_tinker_hero_5"] = {
 				skill_number = 0,
@@ -16858,6 +16971,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				talent_cd = 15,
 				health = 30,
 				is_breakable = 1,
+				is_save = 1,
 			},
 			["modifier_tinker_hero_6"] = {
 				skill_number = 0,
@@ -17063,6 +17177,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				root = 2,
 				talent_cd = 8,
 				is_purgable_self = 1,
+				is_root = 1,
 			},
 			["modifier_tinker_matrix_7"] = {
 				skill_number = 3,
@@ -17197,6 +17312,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				mana = 50,
 				talent_cd = 6,
 				is_breakable = 1,
+				is_save = 1,
 			},
 			["modifier_witch_doctor_hero_5"] = {
 				skill_number = 0,
@@ -17208,6 +17324,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				damage_reduce = -25,
 				cast = -0.2,
 				is_purgable_self = 1,
+				is_silence = 1,
 			},
 			["modifier_witch_doctor_hero_6"] = {
 				skill_number = 0,
@@ -17219,6 +17336,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				duration = 2,
 				bkb = 2,
 				bkb_cd = 8,
+				is_bkb = 1,
 				alt_talent = "modifier_witch_doctor_deathward_7",
 			},
 
@@ -17472,6 +17590,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				chance = 25,
 				talent_cd = 3,
 				is_purgable_self = 1,
+				is_root = 1,
 			},
 			["modifier_witch_doctor_deathward_7"] = {
 				skill_number = 4,
@@ -17671,6 +17790,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				speed = -180,
 				talent_cd = 6,
 				is_purgable_self = 1,
+				is_silence = 1,
 			},
 			["modifier_nyx_mind_7"] = {
 				skill_number = 2,
@@ -17808,6 +17928,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				talent_cd = 3,
 				is_through_bkb = 1,
 				is_basher = 1,
+				is_stun = 1,
 				alt_talent = "modifier_nyx_vendetta_7",
 			},
 			["modifier_nyx_vendetta_7"] = {
@@ -17948,6 +18069,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				health = 50,
 				talent_cd = 8,
 				bkb = 2.5,
+				is_bkb = 1,
 			},
 			["modifier_broodmother_insatiable_7"] = {
 				skill_number = 1,
@@ -18019,6 +18141,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				silence = 3,
 				slow = -50,
 				knock_distance = 30,
+				is_silence = 1,
 				alt_talent = "modifier_broodmother_web_7",
 				trigger_ability = "broodmother_spin_web_custom_legendary",
 			},
@@ -18091,6 +18214,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				talent_cd = 3,
 				is_through_bkb = 1,
 				is_basher = 1,
+				is_stun = 1,
 			},
 			["modifier_broodmother_bite_7"] = {
 				skill_number = 3,
@@ -18208,6 +18332,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				slow_resist = 50,
 				stun = 1.2,
 				talent_cd = 8,
+				is_stun = 1,
 			},
 			["modifier_stalker_hero_5"] = {
 				skill_number = 0,
@@ -18222,6 +18347,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				duration = 4,
 				talent_cd = 20,
 				is_breakable = 1,
+				is_save = 1,
 			},
 			["modifier_stalker_hero_6"] = {
 				skill_number = 0,
@@ -18496,6 +18622,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				bkb = 2.5,
 				max = 15,
 				talent_cd = 10,
+				is_bkb = 1,
 				alt_talent = "modifier_stalker_dark_7",
 			},
 			["modifier_stalker_dark_7"] = {
@@ -18560,6 +18687,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				silence = 2.5,
 				talent_cd = 10,
 				is_purgable_self = 1,
+				is_silence = 1,
 			},
 			["modifier_jakiro_hero_5"] = {
 				skill_number = 0,
@@ -18840,6 +18968,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				root = 2,
 				talent_cd = 8,
 				is_purgable_self = 1,
+				is_root = 1,
 				alt_talent = "modifier_jakiro_macropyre_7",
 			},
 			["modifier_jakiro_macropyre_7"] = {
@@ -18903,6 +19032,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				has_video = 1,
 
 				is_purgable_self = 1,
+				is_silence = 1,
 				radius = 60,
 				cast = 40,
 				silence = 1.5,
@@ -18928,6 +19058,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				bkb = 2.5,
 				speed = 600,
 				duration_legendary = 2,
+				is_bkb = 1,
 				alt_talent = "modifier_kunkka_ship_7",
 			},
 
@@ -19052,6 +19183,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				distance = 150,
 				root = 2,
 				talent_cd = 8,
+				is_root = 1,
 			},
 			["modifier_kunkka_tidebringer_7"] = {
 				skill_number = 2,
@@ -19460,6 +19592,14 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 			["max_level"] = true,
 			["is_basher"] = true,
 			["is_breakable"] = true,
+			["is_bkb"] = true,
+			["is_stun"] = true,
+			["is_silence"] = true,
+			["is_root"] = true,
+			["is_save"] = true,
+			["tooltip"] = true,
+			["tooltip_ability"] = true,
+			["tooltip_alt"] = true,
 			["update_mod"] = true,
 			["allow_illusion"] = true,
 			["banned_talent"] = true,

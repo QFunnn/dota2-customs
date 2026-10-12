@@ -374,7 +374,7 @@ function modifier_night_stalker_crippling_fear_custom:OnCreated(table)
 	self.ability.dps = self.ability:GetSpecialValueFor("dps")
 	self.ability.tick_rate = self.ability:GetSpecialValueFor("tick_rate")
 	self.ability.radius = self.ability:GetSpecialValueFor("radius")
-	self.ability.creeps = self.ability:GetSpecialValueFor("creeps") / 100
+	self.ability.creeps_damage = self.ability:GetSpecialValueFor("creeps_damage") / 100
 end
 
 function modifier_night_stalker_crippling_fear_custom:OnRefresh(table)
@@ -696,9 +696,6 @@ function modifier_night_stalker_crippling_fear_custom_silence:OnIntervalThink()
 	self.damage_count = 0
 
 	local damage = self.ability:GetDamage() * self.damage_interval
-	if self.parent:IsCreep() then
-		damage = damage * (1 + self.ability.creeps)
-	end
 
 	self.damageTable.damage = damage
 
@@ -707,7 +704,7 @@ function modifier_night_stalker_crippling_fear_custom_silence:OnIntervalThink()
 			self.caster,
 			self.void_ability,
 			"modifier_night_stalker_void_custom_damage_stack",
-			{ duration = self.ability.talents.q3_duration, damage = damage }
+			{ duration = self.ability.talents.q3_duration, damage = damage * self.ability:GetCreepsMult(self.parent) }
 		)
 	end
 

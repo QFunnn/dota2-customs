@@ -73,6 +73,12 @@ function modifier_the_hunt_custom_tower:OnCreated(params)
 	self:StartIntervalThink(self.interval)
 end
 
+function modifier_the_hunt_custom_tower:CheckState()
+	return {
+		[MODIFIER_STATE_DISARMED] = true,
+	}
+end
+
 function modifier_the_hunt_custom_tower:GetNet(team)
 	if not IsServer() then
 		return

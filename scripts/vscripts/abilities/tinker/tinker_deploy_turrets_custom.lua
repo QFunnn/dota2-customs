@@ -216,9 +216,6 @@ function tinker_deploy_turrets_custom:OnProjectileHit_ExtraData(target, vLocatio
 		if aoe_target ~= target then
 			target_damage = target_damage * self.splash_pct
 		end
-		if aoe_target:IsCreep() then
-			target_damage = target_damage * (1 + self.creeps)
-		end
 		damageTable.victim = aoe_target
 		damageTable.damage = target_damage
 		DoDamage(damageTable)
@@ -605,7 +602,7 @@ function modifier_tinker_deploy_turrets_custom_tracker:OnCreated()
 	self.ability.radius_explosion = self.ability:GetSpecialValueFor("radius_explosion")
 	self.ability.splash_pct = self.ability:GetSpecialValueFor("splash_pct") / 100
 	self.ability.activation_time = self.ability:GetSpecialValueFor("activation_time")
-	self.ability.creeps = self.ability:GetSpecialValueFor("creeps") / 100
+	self.ability.creeps_damage = self.ability:GetSpecialValueFor("creeps_damage") / 100
 	self.ability.magic = self.ability:GetSpecialValueFor("magic")
 	self.ability.armor = self.ability:GetSpecialValueFor("armor")
 	self.ability.health = self.ability:GetSpecialValueFor("health")

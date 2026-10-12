@@ -282,7 +282,7 @@ function modifier_custom_huskar_life_break:OnCreated(params)
 	self.use_taunt = 0
 	self.health_cost_percent = self.ability.health_cost_percent
 	self.heroes_damage = self.ability.health_damage
-	self.creeps_damage = self.ability.creeps_damage
+	self.creeps_health = self.ability.creeps_health
 	self.charge_speed = self.ability.charge_speed
 	self.aoe_radius = self.ability.aoe_radius
 
@@ -472,7 +472,7 @@ function modifier_custom_huskar_life_break:OnDestroy()
 					source = "modifier_huskar_leap_7"
 				end
 				if unit:IsCreep() then
-					unit_damage = self.creeps_damage * self.parent:GetMaxHealth()
+					unit_damage = self.creeps_health * self.parent:GetMaxHealth()
 					source = nil
 				end
 
@@ -626,7 +626,7 @@ function modifier_custom_huskar_life_break_tracker:OnCreated()
 	self.ability.attack_speed = self.ability:GetSpecialValueFor("attack_speed")
 	self.ability.slow_durtion = self.ability:GetSpecialValueFor("slow_durtion")
 	self.ability.movespeed = self.ability:GetSpecialValueFor("movespeed")
-	self.ability.creeps_damage = self.ability:GetSpecialValueFor("creeps_damage") / 100
+	self.ability.creeps_health = self.ability:GetSpecialValueFor("creeps_health") / 100
 	self.ability.aoe_radius = self.ability:GetSpecialValueFor("aoe_radius")
 	self.ability.shard_speed = self.ability:GetSpecialValueFor("shard_speed") / 100
 	self.ability.shard_range = self.ability:GetSpecialValueFor("shard_range")

@@ -270,13 +270,10 @@ function witch_doctor_voodoo_restoration_custom:GetCastRange(vector, hTarget)
 	return (self.radius or 0) + (self.talents.e2_radius_voodoo or 0) - self.caster:GetCastRangeBonus()
 end
 
-function witch_doctor_voodoo_restoration_custom:GetDamage(passive, target)
+function witch_doctor_voodoo_restoration_custom:GetDamage(passive)
 	local result = self.damage + self.talents.w1_base + self.caster:GetMaxHealth() * self.talents.w1_damage
 	if passive and self.talents.has_w7 == 1 then
 		result = result * (1 + self.talents.w7_passive)
-	end
-	if target:IsCreep() then
-		result = result * (1 + self.creeps)
 	end
 	return result
 end
@@ -653,7 +650,7 @@ function modifier_witch_doctor_voodoo_restoration_custom_tracker:OnCreated(table
 	self.ability.heal = self.ability:GetSpecialValueFor("heal")
 	self.ability.heal_interval = self.ability:GetSpecialValueFor("heal_interval")
 	self.ability.damage = self.ability:GetSpecialValueFor("damage")
-	self.ability.creeps = self.ability:GetSpecialValueFor("creeps") / 100
+	self.ability.creeps_damage = self.ability:GetSpecialValueFor("creeps_damage") / 100
 end
 
 function modifier_witch_doctor_voodoo_restoration_custom_tracker:OnRefresh()

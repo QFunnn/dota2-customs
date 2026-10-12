@@ -296,7 +296,7 @@ function modifier_antimage_mana_break_custom:OnCreated(kv)
 	self.ability.nomana_max = self.ability:GetSpecialValueFor("nomana_max")
 	self.ability.nomana_min = self.ability:GetSpecialValueFor("nomana_min")
 	self.ability.percent_damage_per_burn = self.ability:GetSpecialValueFor("percent_damage_per_burn")
-	self.ability.creeps_bonus = self.ability:GetSpecialValueFor("creeps_bonus")
+	self.ability.creeps_damage = self.ability:GetSpecialValueFor("creeps_damage") / 100
 	self.ability.illusion_burn = self.ability:GetSpecialValueFor("illusion_burn")
 	self.ability.mana_per_hit = self.ability:GetSpecialValueFor("mana_per_hit")
 	self.ability.mana_per_hit_pct = self.ability:GetSpecialValueFor("mana_per_hit_pct")
@@ -673,7 +673,7 @@ function modifier_antimage_mana_break_custom:GetModifierProcAttack_BonusDamage_P
 		return
 	end
 
-	local damage_bonus = target:IsCreep() and self.ability.creeps_bonus * self.ability.percent_damage_per_burn
+	local damage_bonus = target:IsCreep() and (1 + self.ability.creeps_damage) * self.ability.percent_damage_per_burn
 		or self.ability.percent_damage_per_burn
 	return mana_burn * damage_bonus
 end

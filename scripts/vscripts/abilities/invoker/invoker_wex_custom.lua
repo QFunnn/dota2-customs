@@ -588,7 +588,7 @@ function modifier_invoker_emp_custom:OnCreated(kv)
 	self.parent:EmitSound("Hero_Invoker.EMP.Cast")
 	self.parent:EmitSound("Hero_Invoker.EMP.Charge")
 
-	self.creeps_damage = self.ability.creeps_damage
+	self.damage_creeps = self.ability.damage_creeps
 	self.mana_burned = self.ability.mana_burned / 100
 	self.self_mana = self.ability.self_mana
 	self.damage_per_mana_pct = self.ability.damage_per_mana_pct / 100
@@ -762,7 +762,7 @@ function modifier_invoker_emp_custom:OnDestroy()
 
 		local damage = mana_burn * self.damage_per_mana_pct
 		if enemy:IsCreep() then
-			damage = self.creeps_damage
+			damage = self.damage_creeps
 		end
 
 		damageTable.victim = enemy

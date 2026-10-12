@@ -436,7 +436,7 @@ function morphling_adaptive_strike_custom:DealDamage(target, damage, stun_durati
 		victim = target,
 		attacker = self.caster,
 		ability = self,
-		damage = damage * (1 + (target:IsCreep() and self.creeps or 0)),
+		damage = damage,
 		damage_type = DAMAGE_TYPE_MAGICAL,
 	})
 
@@ -517,7 +517,7 @@ function modifier_morphling_adaptive_strike_custom_tracker:OnCreated(table)
 	self.ability.knockback_duration = self.ability:GetSpecialValueFor("knockback_duration")
 	self.ability.projectile_speed = self.ability:GetSpecialValueFor("projectile_speed")
 	self.ability.radius = self.ability:GetSpecialValueFor("radius")
-	self.ability.creeps = self.ability:GetSpecialValueFor("creeps") / 100
+	self.ability.creeps_damage = self.ability:GetSpecialValueFor("creeps_damage") / 100
 end
 
 function modifier_morphling_adaptive_strike_custom_tracker:OnRefresh()

@@ -902,7 +902,7 @@ function modifier_monkey_king_boundless_strike_custom_tracker:OnCreated()
 	self.ability.bonus_damage = self.ability:GetSpecialValueFor("bonus_damage")
 	self.ability.strike_radius = self.ability:GetSpecialValueFor("strike_radius")
 	self.ability.strike_cast_range = self.ability:GetSpecialValueFor("strike_cast_range")
-	self.ability.creeps = self.ability:GetSpecialValueFor("creeps")
+	self.ability.creeps_damage = self.ability:GetSpecialValueFor("creeps_damage") / 100
 end
 
 function modifier_monkey_king_boundless_strike_custom_tracker:OnRefresh(table)
@@ -987,7 +987,7 @@ function modifier_monkey_king_boundless_strike_custom_tracker:GetModifierTotalDa
 	if not params.target or not params.target:IsCreep() then
 		return
 	end
-	return self.ability.creeps
+	return self.ability.creeps_damage * 100
 end
 
 modifier_monkey_king_boundless_strike_custom_slow = class(mod_hidden)

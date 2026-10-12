@@ -41,15 +41,14 @@ end
 function modifier_neutral_skeleton_aura:GetAuraSearchType()
 	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
 end
+function modifier_neutral_skeleton_aura:GetModifierAura()
+	return "modifier_neutral_skeleton_aura_buff"
+end
 function modifier_neutral_skeleton_aura:OnCreated()
 	self.ability = self:GetAbility()
 
 	self.ability.damage = self.ability:GetSpecialValueFor("damage")
 	self.ability.radius = self.ability:GetSpecialValueFor("radius")
-end
-
-function modifier_neutral_skeleton_aura:GetModifierAura()
-	return "modifier_neutral_skeleton_aura_buff"
 end
 
 modifier_neutral_skeleton_aura_buff = class(mod_visible)

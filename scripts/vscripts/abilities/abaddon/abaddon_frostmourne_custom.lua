@@ -272,7 +272,7 @@ function modifier_abaddon_frostmourne_custom:OnCreated(table)
 	self.ability.curse_attack_speed = self.ability:GetSpecialValueFor("curse_attack_speed")
 	self.ability.curse_dps = self.ability:GetSpecialValueFor("curse_dps")
 	self.ability.curse_interval = self.ability:GetSpecialValueFor("curse_interval")
-	self.ability.creeps = self.ability:GetSpecialValueFor("creeps") / 100
+	self.ability.creeps_damage = self.ability:GetSpecialValueFor("creeps_damage") / 100
 
 	self.parent:AddAttackEvent_out(self, true)
 end
@@ -514,9 +514,6 @@ function modifier_abaddon_frostmourne_custom_curse:OnIntervalThink()
 	local damage = self.damage
 	if self:GetStackCount() > 0 and self.ability.talents.has_e1 == 1 then
 		damage = self.ability.talents.e1_damage * self:GetStackCount() + damage
-	end
-	if self.parent:IsCreep() then
-		damage = damage * (1 + self.ability.creeps)
 	end
 	damage = damage * self.interval
 

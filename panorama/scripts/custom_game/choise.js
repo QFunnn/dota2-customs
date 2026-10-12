@@ -581,7 +581,7 @@ function OnShow(kv, change_view)
         })
     }
 
-    let player_upgrades = CustomNetTables.GetTableValue("upgrades_player", String(Game.GetLocalPlayerID()))
+    let player_upgrades = Game.GetUpgrades(Game.GetLocalPlayerID())
 
     if (global_rarity == "gray" && !(player_upgrades && player_upgrades.priority))
     {

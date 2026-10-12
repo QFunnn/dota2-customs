@@ -239,9 +239,6 @@ function witch_doctor_paralyzing_cask_custom:OnProjectileHit_ExtraData(target, v
 		local stun = self.stun_duration + (self.talents.has_q4 == 1 and self.talents.q4_stun or 0)
 		local damage = (self.base_damage + self.caster:GetAverageTrueAttackDamage(nil) * self.attack_damage)
 			* (1 + self.talents.q1_damage)
-		if target:IsCreep() then
-			damage = damage * self.creep_damage
-		end
 		local damageTable = {
 			victim = target,
 			damage = damage * damage_k,
@@ -517,7 +514,7 @@ function modifier_witch_doctor_paralyzing_cask_custom_tracker:OnCreated(table)
 	self.parent.cask_ability = self.ability
 
 	self.ability.stun_duration = self.ability:GetSpecialValueFor("hero_duration")
-	self.ability.creep_damage = self.ability:GetSpecialValueFor("creep_damage")
+	self.ability.creeps_damage = self.ability:GetSpecialValueFor("creeps_damage") / 100
 	self.ability.base_damage = self.ability:GetSpecialValueFor("base_damage")
 	self.ability.bounces = self.ability:GetSpecialValueFor("bounces")
 	self.ability.bounce_range = self.ability:GetSpecialValueFor("bounce_range")

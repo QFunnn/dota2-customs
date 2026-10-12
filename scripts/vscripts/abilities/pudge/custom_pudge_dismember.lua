@@ -293,7 +293,7 @@ function custom_pudge_dismember:GetDamage()
 end
 
 function custom_pudge_dismember:DealDamage(target, damage_amount, no_heal, damage_ability)
-	local creeps_damage = self:GetSpecialValueFor("creeps")
+	self.creeps_damage = self:GetSpecialValueFor("creeps_damage") / 100
 	local caster = self:GetCaster()
 	local ability = nil
 	if damage_ability then
@@ -301,16 +301,12 @@ function custom_pudge_dismember:DealDamage(target, damage_amount, no_heal, damag
 	end
 
 	local damage = damage_amount
-	local k = 1
-	if target:IsCreep() then
-		k = 1 + creeps_damage / 100
-	end
 
 	DoDamage(
 		{
 			victim = target,
 			attacker = caster,
-			damage = damage * k,
+			damage = damage,
 			damage_type = DAMAGE_TYPE_MAGICAL,
 			damage_flags = DOTA_DAMAGE_FLAG_NONE,
 			ability = self,

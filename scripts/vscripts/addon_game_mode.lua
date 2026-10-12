@@ -924,6 +924,7 @@ r:Send( function( res ) end)
 	CustomGameEventManager:RegisterListener("request_player_heroes", Dynamic_Wrap(self, "SendPlayerHeroes"))
 	CustomGameEventManager:RegisterListener("request_items", Dynamic_Wrap(self, "SendItems"))
 	CustomGameEventManager:RegisterListener("request_minimap_icons", Dynamic_Wrap(self, "RequestMinimapIcons"))
+	CustomGameEventManager:RegisterListener("request_player_stats", Dynamic_Wrap(self, "RequestPlayerStats"))
 	CustomGameEventManager:RegisterListener("CustomPick", Dynamic_Wrap(self, "CustomPick"))
 	CustomGameEventManager:RegisterListener("TipPlayer", Dynamic_Wrap(self, "TipPlayer"))
 	CustomGameEventManager:RegisterListener("select_current_emblem", Dynamic_Wrap(shop, "select_current_emblem"))
@@ -1046,6 +1047,11 @@ end
 function dota1x6:OnNPCSpawned(event)
 	local unit = EntIndexToHScript(event.entindex)
 	local new_spawned_hero = EntIndexToHScript(event.entindex)
+
+	if IsValid(unit) and HubUnit(unit) and not unit:HasModifier("modifier_stats_hub") then
+		unit:AddNewModifier(unit, nil, "modifier_stats_hub", {})
+	end
+
 	wearables_system:InitPlayerWerable(unit)
 
 	if unit:GetTeamNumber() == DOTA_TEAM_NEUTRALS and unit:IsCreep() and unit:GetUnitName() ~= "npc_dota_thinker" then
@@ -3108,6 +3114,11 @@ function dota1x6:spawn_timer()
 
 				if state ~= player.connect_state then
 					player.connect_state = state
+					if state == DOTA_CONNECTION_STATE_DISCONNECTED or state == DOTA_CONNECTION_STATE_ABANDONED then
+						player:AddNewModifier(player, nil, "modifier_towerresist_disconnect", {})
+					else
+						player:RemoveModifierByName("modifier_towerresist_disconnect")
+					end
 				end
 
 				if can_pause then
@@ -4619,6 +4630,28 @@ function dota1x6:InitDuel(team1, team2, final)
 
 				if data.duel_mod and not data.duel_mod:IsNull() then
 					data.duel_mod:Destroy()
+				end
+			end
+		end
+
+		for team, tower in pairs(towers) do
+			for _, building in
+				pairs(
+					FindUnitsInRadius(
+						team,
+						tower:GetAbsOrigin(),
+						nil,
+						2500,
+						DOTA_UNIT_TARGET_TEAM_FRIENDLY,
+						DOTA_UNIT_TARGET_BUILDING + DOTA_UNIT_TARGET_BASIC,
+						DOTA_UNIT_TARGET_FLAG_INVULNERABLE + DOTA_UNIT_TARGET_FLAG_OUT_OF_WORLD,
+						FIND_ANY_ORDER,
+						false
+					)
+				)
+			do
+				if building:HasModifier("modifier_tower_incoming") then
+					building:AddNewModifier(building, nil, "modifier_tower_final_duel", {})
 				end
 			end
 		end

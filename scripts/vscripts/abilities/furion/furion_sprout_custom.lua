@@ -255,12 +255,8 @@ function furion_sprout_custom:OnSpellStart()
 	end
 end
 
-function furion_sprout_custom:GetDamage(target)
-	local k = 1
-	if target and target:IsCreep() then
-		k = k + self.creeps
-	end
-	return (self.sprout_damage + self.talents.q1_base + self.talents.q1_damage * self.caster:GetMaxHealth()) * k
+function furion_sprout_custom:GetDamage()
+	return self.sprout_damage + self.talents.q1_base + self.talents.q1_damage * self.caster:GetMaxHealth()
 end
 
 modifier_furion_sprout_custom = class(mod_hidden)
@@ -491,7 +487,7 @@ function modifier_furion_sprout_custom_tracker:OnCreated()
 	self.ability.sprout_damage = self.ability:GetSpecialValueFor("sprout_damage")
 	self.ability.sprout_damage_dot = self.ability:GetSpecialValueFor("sprout_damage_dot") / 100
 	self.ability.sprout_damage_radius = self.ability:GetSpecialValueFor("sprout_damage_radius")
-	self.ability.creeps = self.ability:GetSpecialValueFor("creeps") / 100
+	self.ability.creeps_damage = self.ability:GetSpecialValueFor("creeps_damage") / 100
 end
 
 function modifier_furion_sprout_custom_tracker:OnRefresh()
@@ -833,7 +829,10 @@ function modifier_furion_sprout_custom_legendary:OnIntervalThink()
 	for _, target in pairs(self.caster:FindTargets(self.radius, self.point)) do
 		if do_damage and IsValid(self.sprout) then
 			self.damageTable.victim = target
-			self.damageTable.damage = self.sprout:GetDamage(target) * self.damage * self.damage_interval
+			self.damageTable.damage = self.sprout:GetDamage()
+				* self.damage
+				* self.damage_interval
+				* self.sprout:GetCreepsMult(target)
 			DoDamage(self.damageTable, "modifier_furion_sprout_7")
 		end
 

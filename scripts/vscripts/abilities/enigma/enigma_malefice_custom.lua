@@ -245,12 +245,8 @@ function enigma_malefice_custom:OnSpellStart(new_target)
 	target:EmitSound("Hero_Enigma.Malefice")
 end
 
-function enigma_malefice_custom:GetDamage(target)
-	local damage = self.damage + self.caster:GetAverageTrueAttackDamage(nil) * self.talents.q1_damage
-	if target:IsCreep() then
-		damage = damage * (1 + self.creeps)
-	end
-	return damage
+function enigma_malefice_custom:GetDamage()
+	return self.damage + self.caster:GetAverageTrueAttackDamage(nil) * self.talents.q1_damage
 end
 
 function enigma_malefice_custom:ProcStun(target, sound, talent)
@@ -287,7 +283,7 @@ function enigma_malefice_custom:ProcStun(target, sound, talent)
 		damageTable.victim = aoe_target
 		damageTable.damage = self:GetDamage(aoe_target)
 		DoDamage(damageTable, talent)
-		aoe_target:SendNumber(4, damageTable.damage)
+		aoe_target:SendNumber(4, damageTable.damage * self:GetCreepsMult(aoe_target))
 	end
 end
 
@@ -304,7 +300,7 @@ function modifier_enigma_malefice_custom_tracker:OnCreated()
 	self.ability.stun_duration = self.ability:GetSpecialValueFor("stun_duration")
 	self.ability.damage = self.ability:GetSpecialValueFor("damage")
 	self.ability.radius = self.ability:GetSpecialValueFor("radius")
-	self.ability.creeps = self.ability:GetSpecialValueFor("creeps") / 100
+	self.ability.creeps_damage = self.ability:GetSpecialValueFor("creeps_damage") / 100
 	self.ability.stun_instances = self.ability:GetSpecialValueFor("stun_instances")
 
 	self.ability.shard_cd = self.ability:GetSpecialValueFor("shard_cd")

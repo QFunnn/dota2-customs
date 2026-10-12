@@ -134,16 +134,6 @@ function start_adaptive()
 	ability_morphling_adaptive()
 }
 
-function HasModifierCustom(unit, modifier) {
-    for (var i = 0; i < Entities.GetNumBuffs(unit); i++) {
-        if (Buffs.GetName(unit, Entities.GetBuff(unit, i)) == modifier){
-            return Entities.GetBuff(unit, i)
-        }
-    }
-	return false
-}
-
-
 var vectorTargetParticle_mars;
 var mars_range = 0
 var mars_width = 0
@@ -258,10 +248,10 @@ function ability_primal_beast_onslaught(kv)
 		let hero = Players.GetPlayerHeroEntityIndex( Players.GetLocalPlayer() )
 		let origin = Entities.GetAbsOrigin( hero )
 		let forward = Entities.GetForward( hero )
-		let modifier = HasModifierCustom(hero, "modifier_primal_beast_onslaught_custom_cast")
+		let modifier = Game.FindModifier(hero, "modifier_primal_beast_onslaught_custom_cast")
 		let k = 0
 
-		if (modifier)
+		if (modifier !== -1)
 			k = Math.min(1, Buffs.GetElapsedTime(hero, modifier) / Buffs.GetDuration(hero, modifier))
 
 		Particles.SetParticleControl(vectorTargetParticle_beast, 0, origin );
@@ -324,10 +314,10 @@ function ability_razor_current()
 {
 
 	let hero_id = Players.GetLocalPlayerPortraitUnit()
-   	let modifier_main = HasModifierCustom(hero_id, "modifier_razor_unstable_current_custom_legendary")
+   	let modifier_main = Game.FindModifier(hero_id, "modifier_razor_unstable_current_custom_legendary")
 
 
-	if (modifier_main)
+	if (modifier_main !== -1)
 	{
 		if (vectorTargetParticle_razor == undefined) {
 			vectorTargetParticle_razor = Particles.CreateParticle("particles/razor/surge_range.vpcf", ParticleAttachment_t.PATTACH_ABSORIGIN_FOLLOW, Players.GetPlayerHeroEntityIndex( Players.GetLocalPlayer() ) );
@@ -342,7 +332,7 @@ function ability_razor_current()
 
 	if (vectorTargetParticle_razor)
 	{
-	    if (modifier_main)
+	    if (modifier_main !== -1)
 	    {
 	    	let max_time = Number(Game.GetTalentValue("modifier_razor_current_7", "duration"))
 			let max_distance = Number(Game.GetTalentValue("modifier_razor_current_7", "max_distance"))
@@ -363,7 +353,7 @@ function ability_razor_current()
 
 function ability_hoodwink_ulti()
 {
-	if (HasModifier(Players.GetPlayerHeroEntityIndex( Players.GetLocalPlayer() ), "modifier_hoodwink_sharpshooter_custom") )
+	if (Game.HasModifier(Players.GetPlayerHeroEntityIndex( Players.GetLocalPlayer() ), "modifier_hoodwink_sharpshooter_custom") )
 	{
 		if (vectorTargetParticle_hoodwink == undefined) {
 			vectorTargetParticle_hoodwink = Particles.CreateParticle(hoodwink_pfx, ParticleAttachment_t.PATTACH_ABSORIGIN_FOLLOW, Players.GetPlayerHeroEntityIndex( Players.GetLocalPlayer() ) );
@@ -381,9 +371,9 @@ function ability_hoodwink_ulti()
 		const cursor = GameUI.GetCursorPosition();
 		const worldPosition = GameUI.GetScreenWorldPosition(cursor);
 
-	    if (HasModifier(Players.GetPlayerHeroEntityIndex( Players.GetLocalPlayer() ), "modifier_hoodwink_sharpshooter_custom")  )
+	    if (Game.HasModifier(Players.GetPlayerHeroEntityIndex( Players.GetLocalPlayer() ), "modifier_hoodwink_sharpshooter_custom")  )
 	    {
-	    	let cast_range = Abilities.GetSpecialValueFor(Buffs.GetAbility( Players.GetPlayerHeroEntityIndex( Players.GetLocalPlayer() ), FindModifier(Players.GetPlayerHeroEntityIndex( Players.GetLocalPlayer() ), "modifier_hoodwink_sharpshooter_custom") ), "arrow_range");
+	    	let cast_range = Abilities.GetSpecialValueFor(Buffs.GetAbility( Players.GetPlayerHeroEntityIndex( Players.GetLocalPlayer() ), Game.FindModifier(Players.GetPlayerHeroEntityIndex( Players.GetLocalPlayer() ), "modifier_hoodwink_sharpshooter_custom") ), "arrow_range");
 	    	let origin = Entities.GetAbsOrigin( Players.GetPlayerHeroEntityIndex( Players.GetLocalPlayer() ) )
 	    	let forward = Entities.GetForward( Players.GetPlayerHeroEntityIndex( Players.GetLocalPlayer() ))
 	    	Particles.SetParticleControl(vectorTargetParticle_hoodwink, 0, origin );
@@ -392,23 +382,6 @@ function ability_hoodwink_ulti()
 	}
 
     $.Schedule(interval, ability_hoodwink_ulti)
-}
-
-function HasModifier(unit, modifier) {
-    for (var i = 0; i < Entities.GetNumBuffs(unit); i++) {
-        if (Buffs.GetName(unit, Entities.GetBuff(unit, i)) == modifier){
-            return true
-        }
-    }
-    return false
-}
-
-function FindModifier(unit, modifier) {
-    for (var i = 0; i < Entities.GetNumBuffs(unit); i++) {
-        if (Buffs.GetName(unit, Entities.GetBuff(unit, i)) == modifier){
-            return Entities.GetBuff(unit, i);
-        }
-    }
 }
 
 function Vector_normalize(vec)
@@ -472,7 +445,7 @@ function ability_snapfire_scatter()
 		if ( (Abilities.GetLocalPlayerActiveAbility() != -1) && (Abilities.GetAbilityName(Abilities.GetLocalPlayerActiveAbility()) == "snapfire_scatterblast_custom") ) 
 		{
 			let name = "particles/units/heroes/hero_snapfire/hero_snapfire_shotgun_range_finder_aoe.vpcf"
-			if (HasModifier(Players.GetPlayerHeroEntityIndex( Players.GetLocalPlayer() ), "modifier_snapfire_scatterblast_custom_reverse") )
+			if (Game.HasModifier(Players.GetPlayerHeroEntityIndex( Players.GetLocalPlayer() ), "modifier_snapfire_scatterblast_custom_reverse") )
 			{
 				name = "particles/snapfire/scatter_range.vpcf"
 			}
@@ -492,7 +465,7 @@ function ability_snapfire_scatter()
 	    	let origin = Entities.GetAbsOrigin( Players.GetLocalPlayerPortraitUnit() )
 	    	let width_start = Abilities.GetSpecialValueFor(Abilities.GetLocalPlayerActiveAbility(), "blast_width_initial");
 
-			if (HasModifier(Players.GetPlayerHeroEntityIndex( Players.GetLocalPlayer() ), "modifier_snapfire_scatterblast_custom_reverse") )
+			if (Game.HasModifier(Players.GetPlayerHeroEntityIndex( Players.GetLocalPlayer() ), "modifier_snapfire_scatterblast_custom_reverse") )
 			{
 				distance = Number(Game.GetTalentValue("modifier_snapfire_scatter_5", "range"))
 				blast_width_end = Number(Game.GetTalentValue("modifier_snapfire_scatter_5", "width_end"))
@@ -506,7 +479,7 @@ function ability_snapfire_scatter()
 
 	    	Particles.SetParticleControl(vectorTargetParticle_snapfire, 0, origin );
 
-			if (HasModifier(Players.GetPlayerHeroEntityIndex( Players.GetLocalPlayer() ), "modifier_snapfire_scatterblast_custom_reverse") )
+			if (Game.HasModifier(Players.GetPlayerHeroEntityIndex( Players.GetLocalPlayer() ), "modifier_snapfire_scatterblast_custom_reverse") )
 			{
 				Particles.SetParticleControl(vectorTargetParticle_snapfire, 1, Vector_sub(origin, Vector_mult(direction, (cast_range + (blast_width_end*1.3) ))) );
 				Particles.SetParticleControl(vectorTargetParticle_snapfire, 2, [width_start, blast_width_end, 0] );
@@ -773,7 +746,7 @@ function ability_kunkka_ghostship_scepter()
 {
 	const hero = Players.GetLocalPlayerPortraitUnit();
 	const ability = Abilities.GetLocalPlayerActiveAbility();
-	const active = (ability != -1) && (Abilities.GetAbilityName(ability) == "kunkka_ghostship_custom") && (HasModifierCustom(hero, "modifier_kunkka_ghostship_custom_scepter") != false);
+	const active = (ability != -1) && (Abilities.GetAbilityName(ability) == "kunkka_ghostship_custom") && Game.HasModifier(hero, "modifier_kunkka_ghostship_custom_scepter");
 
 	if (ability != lastAbility_ghostship || active != lastActive_ghostship)
 	{

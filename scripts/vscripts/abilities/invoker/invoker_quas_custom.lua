@@ -1187,7 +1187,6 @@ function modifier_invoker_ice_wall_custom:OnCreated(kv)
 
 	self.max_count = 0.5
 	self.damage = self.ability.damage_per_second * self.max_count
-	self.creeps = self.ability.creeps
 
 	self.interval = 0.1
 	self.count = self.max_count
@@ -1261,11 +1260,7 @@ function modifier_invoker_ice_wall_custom:OnIntervalThink()
 			end
 
 			if self.count >= self.max_count then
-				local real_damage = self.damage
-				if enemy:IsCreep() then
-					real_damage = real_damage * (1 + self.creeps)
-				end
-				self.damageTable.damage = real_damage
+				self.damageTable.damage = self.damage
 				self.damageTable.victim = enemy
 				DoDamage(self.damageTable)
 

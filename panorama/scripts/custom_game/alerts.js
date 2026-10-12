@@ -23,7 +23,6 @@ function init()
 	GameEvents.Subscribe_custom('banned', banned)
 	GameEvents.Subscribe_custom('init_chat', init_chat)
 	GameEvents.Subscribe_custom('print_debug', print_debug)
-	GameEvents.Subscribe_custom('delete_bounty', delete_bounty)
 
 	GameEvents.Subscribe_custom('lownet_bonus', lownet_bonus)
 
@@ -893,28 +892,6 @@ function generic_sound(kv)
 	Game.EmitSound(kv.sound)
 }
 
-function delete_bounty(kv)
-{
-
-	$.Schedule(0.01, function ()
-	{
-		var dotaHud = $.GetContextPanel().GetParent().GetParent().FindChild("HUDElements");
-		var combat = dotaHud.FindChildTraverse("combat_events")
-		var manager = combat.FindChildTraverse("ToastManager")
-		var bounty = manager.FindChildrenWithClassTraverse("event_dota_rune_pickup")
-
-		for (var i = 0; i < manager.GetChildCount(); i++)
-		{
-			if (manager.GetChild(i).BHasClass("event_dota_rune_pickup"))
-			{
-
-       				manager.GetChild(i).DeleteAsync(0)
-   			}
-   	 }
-	})
-
-}
-
 function init_chat(kv)
 {
 
@@ -1600,21 +1577,6 @@ if (event_type == "razor")
 	filler.AddClass("mini_alert_filler")
 
 	Game.EmitSound("Patrol_razor")
-}
-
-if (event_type == "bounty")
-{
-	icon.AddClass("mini_alert_feed_bounty_icon")
-
-	let net_k = kv.net_k + "%"
-
-	let text = $.CreatePanel("Label",event,"")
-	text.html = true
-	text.AddClass("mini_alert_text")
-	text.text = net_k
-
-	let filler = $.CreatePanel("Panel", event, "")
-	filler.AddClass("mini_alert_filler")
 }
 
 if (event_type == "necro")

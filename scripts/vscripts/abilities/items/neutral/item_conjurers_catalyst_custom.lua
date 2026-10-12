@@ -41,7 +41,7 @@ function item_conjurers_catalyst_custom:Spawn()
 	self.damage = self:GetSpecialValueFor("damage")
 	self.damage_health = self:GetSpecialValueFor("damage_health") / 100
 	self.heal = self:GetSpecialValueFor("heal") / 100
-	self.creeps_damage = self:GetSpecialValueFor("creeps_damage")
+	self.damage_creeps = self:GetSpecialValueFor("damage_creeps")
 	self.radius = self:GetSpecialValueFor("radius")
 end
 
@@ -127,7 +127,7 @@ function modifier_item_conjurers_catalyst_custom_burn:OnCreated()
 	self.damage_health = self.ability.damage_health
 	self.count = self.ability.duration
 	self.heal = self.ability.heal
-	self.creeps_damage = self.ability.creeps_damage
+	self.damage_creeps = self.ability.damage_creeps
 
 	self.damageTable = {
 		victim = self.parent,
@@ -147,7 +147,7 @@ function modifier_item_conjurers_catalyst_custom_burn:OnIntervalThink()
 	if not IsServer() then
 		return
 	end
-	self.damageTable.damage = self.parent:IsCreep() and self.creeps_damage
+	self.damageTable.damage = self.parent:IsCreep() and self.damage_creeps
 		or self.damage + self.damage_health * self.parent:GetMaxHealth()
 	local real_damage = DoDamage(self.damageTable)
 	local result = self.caster:CanLifesteal(self.parent)

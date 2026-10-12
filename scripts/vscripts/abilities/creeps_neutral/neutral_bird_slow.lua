@@ -18,21 +18,6 @@ function neutral_bird_slow:GetIntrinsicModifierName()
 end
 
 modifier_bird_slow = class(mod_hidden)
-function modifier_bird_slow:IsAura()
-	return true
-end
-function modifier_bird_slow:GetAuraDuration()
-	return 0.1
-end
-function modifier_bird_slow:GetAuraRadius()
-	return self.ability.radius
-end
-function modifier_bird_slow:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_ENEMY
-end
-function modifier_bird_slow:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
-end
 function modifier_bird_slow:OnCreated()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -40,14 +25,37 @@ function modifier_bird_slow:OnCreated()
 	self.ability.radius = self.ability:GetSpecialValueFor("radius")
 	self.ability.move = self.ability:GetSpecialValueFor("move")
 	self.ability.speed = self.ability:GetSpecialValueFor("speed")
+	self.ability.duration = self.ability:GetSpecialValueFor("duration")
+
+	if not IsServer() then
+		return
+	end
+	self.parent:AddAttackEvent_out(self, true)
 end
 
-function modifier_bird_slow:GetAuraEntityReject(target)
-	return not target:CanEntityBeSeenByMyTeam(self.parent)
-end
+function modifier_bird_slow:AttackEvent_out(params)
+	if not IsServer() then
+		return
+	end
+	if self.parent ~= params.attacker then
+		return
+	end
 
-function modifier_bird_slow:GetModifierAura()
-	return "modifier_bird_slow_buff"
+	for _, unit in pairs(self.parent:FindTargets(self.ability.radius)) do
+		if unit:CanEntityBeSeenByMyTeam(self.parent) then
+			local mod = unit:FindModifierByNameAndCaster("modifier_bird_slow_buff", self.parent)
+			if mod then
+				mod:SetDuration(self.ability.duration, true)
+			else
+				unit:AddNewModifier(
+					self.parent,
+					self.ability,
+					"modifier_bird_slow_buff",
+					{ duration = self.ability.duration }
+				)
+			end
+		end
+	end
 end
 
 modifier_bird_slow_buff = class(mod_visible)

@@ -832,15 +832,5 @@ function OgreText(panel, text)
     });       
 }
 
-function HasModifier(unit, modifier) {
-    for (var i = 0; i < Entities.GetNumBuffs(unit); i++) {
-        if (Buffs.GetName(unit, Entities.GetBuff(unit, i)) == modifier){
-            return Entities.GetBuff(unit, i)
-        }
-    }
-  return false
-}
-
-
 init()
 

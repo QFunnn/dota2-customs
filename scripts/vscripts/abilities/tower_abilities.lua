@@ -10,8 +10,8 @@
 
 LinkLuaModifier("modifier_towerresist_aura", "abilities/tower_abilities.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_towerresist", "abilities/tower_abilities.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_towerresist_disconnect", "abilities/tower_abilities.lua", LUA_MODIFIER_MOTION_NONE)
 
-LinkLuaModifier("modifier_tower_stun", "abilities/tower_abilities.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_tower_stun_thinker", "abilities/tower_abilities.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_tower_stun_cd", "abilities/tower_abilities.lua", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_tower_stun_search", "abilities/tower_abilities.lua", LUA_MODIFIER_MOTION_NONE)
@@ -30,7 +30,6 @@ LinkLuaModifier("modifier_shrine_tower_search", "abilities/tower_abilities.lua",
 LinkLuaModifier("modifier_filler_armor", "abilities/tower_abilities.lua", LUA_MODIFIER_MOTION_NONE)
 
 tower_aura_regen = class({})
-
 function tower_aura_regen:GetIntrinsicModifierName()
 	return "modifier_towerresist"
 end
@@ -39,15 +38,28 @@ function tower_aura_regen:GetCastRange(vLocation, hTarget)
 	return self:GetCaster():Script_GetAttackRange()
 end
 
-modifier_towerresist = class({})
-
-function modifier_towerresist:IsHidden()
-	return true
+modifier_towerresist = class(mod_hidden)
+function modifier_towerresist:IsAura()
+	return self.parent and not self.parent:IsNull() and not self.parent:HasModifier("modifier_razor_tower_custom")
 end
-function modifier_towerresist:IsPurgable()
-	return false
+function modifier_towerresist:GetAuraDuration()
+	return 3
 end
-
+function modifier_towerresist:GetAuraRadius()
+	return self.radius
+end
+function modifier_towerresist:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_FRIENDLY
+end
+function modifier_towerresist:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BUILDING
+end
+function modifier_towerresist:GetModifierAura()
+	return "modifier_towerresist_aura"
+end
+function modifier_towerresist:GetAuraEntityReject(hEntity)
+	return hEntity:GetUnitName() == "npc_teleport"
+end
 function modifier_towerresist:OnCreated()
 	self.parent = self:GetParent()
 
@@ -134,68 +146,17 @@ function modifier_towerresist:OnIntervalThink()
 	end
 end
 
-function modifier_towerresist:IsAura()
-	return self.parent and not self.parent:IsNull() and not self.parent:HasModifier("modifier_razor_tower_custom")
-end
-function modifier_towerresist:GetAuraDuration()
-	return 3
-end
-function modifier_towerresist:GetAuraRadius()
-	return self.radius
-end
-function modifier_towerresist:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_FRIENDLY
-end
-function modifier_towerresist:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BUILDING
-end
-function modifier_towerresist:GetModifierAura()
-	return "modifier_towerresist_aura"
-end
-function modifier_towerresist:GetAuraEntityReject(hEntity)
-	return hEntity:GetUnitName() == "npc_teleport"
-end
-
 function modifier_towerresist:CheckState()
 	return {
 		[MODIFIER_STATE_CANNOT_MISS] = true,
 	}
 end
 
-modifier_towerresist_aura = class({})
+modifier_towerresist_aura = class(mod_hidden)
 function modifier_towerresist_aura:IsHidden()
 	return self:GetStackCount() > 0 or self:GetParent():IsBuilding()
 end
-function modifier_towerresist_aura:IsPurgable()
-	return false
-end
-function modifier_towerresist_aura:CheckState()
-	if GameRules:State_Get() ~= DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
-		return
-	end
-	if not PlayerResource then
-	end
-	if not self.parent or self.parent:IsNull() then
-		return
-	end
-	if not self.parent:IsHero() then
-		return
-	end
-	local state = PlayerResource:GetConnectionState(self.parent:GetPlayerOwnerID())
-
-	if state ~= DOTA_CONNECTION_STATE_DISCONNECTED and state ~= DOTA_CONNECTION_STATE_ABANDONED then
-		return
-	end
-	if self.parent:HasModifier("modifier_death") then
-		return
-	end
-	return {
-		[MODIFIER_STATE_INVULNERABLE] = true,
-		[MODIFIER_STATE_STUNNED] = true,
-	}
-end
-
-function modifier_towerresist_aura:OnCreated(table)
+function modifier_towerresist_aura:OnCreated()
 	self.caster = self:GetCaster()
 	self.parent = self:GetParent()
 	self.ability = self:GetAbility()
@@ -219,6 +180,12 @@ function modifier_towerresist_aura:OnCreated(table)
 	if not IsServer() then
 		return
 	end
+
+	if self.parent:IsBuilding() then
+		self.base_regen = self.parent:GetBaseHealthRegen()
+		self:UpdateRegen(self.parent:HasModifier("modifier_tower_incoming_no_heal"))
+	end
+
 	local player_id = self.parent:GetPlayerOwnerID()
 	local custom_effect_data = shop:GetCurrentEffectData(player_id, "effect_regeneration")
 	self.default_effect = nil
@@ -248,25 +215,35 @@ function modifier_towerresist_aura:UpdateEffect()
 	end
 end
 
+function modifier_towerresist_aura:UpdateRegen(no_heal)
+	self.parent:SetBaseHealthRegen(self.base_regen + (no_heal and 0 or self.tower_heal))
+end
+
+function modifier_towerresist_aura:OnDestroy()
+	if not IsServer() then
+		return
+	end
+	if not self.base_regen then
+		return
+	end
+	if not IsValid(self.parent) then
+		return
+	end
+
+	self.parent:SetBaseHealthRegen(self.base_regen)
+end
+
 function modifier_towerresist_aura:DeclareFunctions()
+	if self:GetParent():IsBuilding() then
+		return {}
+	end
 	return {
 		MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE,
 		MODIFIER_PROPERTY_MANA_REGEN_TOTAL_PERCENTAGE,
-		MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
 	}
 end
 
-function modifier_towerresist_aura:GetModifierConstantHealthRegen()
-	if self.parent:HasModifier("modifier_tower_incoming_no_heal") then
-		return
-	end
-	return self.tower_heal
-end
-
 function modifier_towerresist_aura:GetModifierHealthRegenPercentage()
-	if self.parent:IsBuilding() then
-		return
-	end
 	if self:GetStackCount() > 0 then
 		return
 	end
@@ -274,9 +251,6 @@ function modifier_towerresist_aura:GetModifierHealthRegenPercentage()
 end
 
 function modifier_towerresist_aura:GetModifierTotalPercentageManaRegen()
-	if self.parent:IsBuilding() then
-		return
-	end
 	if self:GetStackCount() > 0 then
 		return
 	end
@@ -316,19 +290,36 @@ function modifier_towerresist_aura:DamageEvent_inc(params)
 	self:StartIntervalThink(self.interval)
 end
 
-tower_truesight = class({})
+modifier_towerresist_disconnect = class(mod_hidden)
+function modifier_towerresist_disconnect:RemoveOnDeath()
+	return false
+end
+function modifier_towerresist_disconnect:OnCreated()
+	self.parent = self:GetParent()
+end
 
+function modifier_towerresist_disconnect:CheckState()
+	if GameRules:State_Get() ~= DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+		return
+	end
+	if not self.parent:HasModifier("modifier_towerresist_aura") then
+		return
+	end
+	if self.parent:HasModifier("modifier_death") then
+		return
+	end
+	return {
+		[MODIFIER_STATE_INVULNERABLE] = true,
+		[MODIFIER_STATE_STUNNED] = true,
+	}
+end
+
+tower_truesight = class({})
 function tower_truesight:GetIntrinsicModifierName()
 	return "modifier_tower_truesight"
 end
 
-modifier_tower_truesight = class({})
-function modifier_tower_truesight:IsHidden()
-	return true
-end
-function modifier_tower_truesight:IsPurgable()
-	return false
-end
+modifier_tower_truesight = class(mod_hidden)
 function modifier_tower_truesight:RemoveOnDeath()
 	return false
 end
@@ -336,7 +327,7 @@ function modifier_tower_truesight:GetAuraRadius()
 	return 1200
 end
 function modifier_tower_truesight:GetAuraSearchFlags()
-	return DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES + DOTA_UNIT_TARGET_FLAG_INVULNERABLE
+	return DOTA_UNIT_TARGET_FLAG_INVULNERABLE
 end
 function modifier_tower_truesight:GetAuraSearchTeam()
 	return DOTA_UNIT_TARGET_TEAM_ENEMY
@@ -352,7 +343,6 @@ function modifier_tower_truesight:IsAura()
 end
 
 tower_stun = class({})
-
 function tower_stun:GetIntrinsicModifierName()
 	return "modifier_tower_stun_search"
 end
@@ -361,7 +351,7 @@ modifier_tower_stun_search = class({})
 function modifier_tower_stun_search:IsHidden()
 	return true
 end
-function modifier_tower_stun_search:OnCreated(table)
+function modifier_tower_stun_search:OnCreated()
 	if not IsServer() then
 		return
 	end
@@ -393,14 +383,8 @@ function modifier_tower_stun_search:ProcEffect(target)
 	)
 end
 
-modifier_tower_stun_thinker = class({})
-function modifier_tower_stun_thinker:IsHidden()
-	return true
-end
-function modifier_tower_stun_thinker:IsPurgable()
-	return false
-end
-function modifier_tower_stun_thinker:OnCreated(table)
+modifier_tower_stun_thinker = class(mod_hidden)
+function modifier_tower_stun_thinker:OnCreated()
 	if not IsServer() then
 		return
 	end
@@ -411,18 +395,15 @@ function modifier_tower_stun_thinker:OnCreated(table)
 	self.radius = self.ability:GetSpecialValueFor("radius")
 	self.damage = self.ability:GetSpecialValueFor("damage") / 100
 
-	self.effect_cast = ParticleManager:CreateParticle(
-		"particles/units/heroes/hero_snapfire/hero_snapfire_ultimate_calldown.vpcf",
-		PATTACH_WORLDORIGIN,
-		nil
-	)
-	ParticleManager:SetParticleControl(self.effect_cast, 0, self.parent:GetOrigin())
-	ParticleManager:SetParticleControl(self.effect_cast, 1, Vector(self.radius, 0, -self.radius))
-	ParticleManager:SetParticleControl(self.effect_cast, 2, Vector(self:GetRemainingTime(), 0, 0))
-	self:AddParticle(self.effect_cast, false, false, -1, false, false)
+	local time = self:GetRemainingTime()
+	local particle = ParticleManager:CreateParticle("particles/generic/red_zone.vpcf", PATTACH_WORLDORIGIN, nil)
+	ParticleManager:SetParticleControl(particle, 0, self.parent:GetAbsOrigin())
+	ParticleManager:SetParticleControl(particle, 1, Vector(self.radius, 0, -self.radius / time))
+	ParticleManager:SetParticleControl(particle, 2, Vector(time, 0, 0))
+	self:AddParticle(particle, false, false, -1, false, false)
 end
 
-function modifier_tower_stun_thinker:OnDestroy(table)
+function modifier_tower_stun_thinker:OnDestroy()
 	if not IsServer() then
 		return
 	end
@@ -463,16 +444,9 @@ function modifier_tower_stun_thinker:OnDestroy(table)
 	end
 end
 
-modifier_tower_stun_cd = class({})
-function modifier_tower_stun_cd:IsHidden()
-	return false
-end
-function modifier_tower_stun_cd:IsPurgable()
-	return false
-end
+modifier_tower_stun_cd = class(mod_visible)
 
 tower_plasma = class({})
-
 function tower_plasma:GetIntrinsicModifierName()
 	return "modifier_tower_plasma_search"
 end
@@ -484,14 +458,8 @@ function tower_plasma:GetAbilityTextureName()
 	return "razor_plasma_field"
 end
 
-modifier_tower_plasma_search = class({})
-function modifier_tower_plasma_search:IsHidden()
-	return true
-end
-function modifier_tower_plasma_search:IsPurgable()
-	return false
-end
-function modifier_tower_plasma_search:OnCreated(table)
+modifier_tower_plasma_search = class(mod_hidden)
+function modifier_tower_plasma_search:OnCreated()
 	if not IsServer() then
 		return
 	end
@@ -517,11 +485,7 @@ modifier_tower_plasma = class({})
 function modifier_tower_plasma:IsHidden()
 	return true
 end
-function modifier_tower_plasma:IsPurchasable()
-	return false
-end
-
-function modifier_tower_plasma:OnCreated(table)
+function modifier_tower_plasma:OnCreated()
 	if not IsServer() then
 		return
 	end
@@ -575,7 +539,7 @@ function modifier_tower_plasma:OnIntervalThink()
 		radius,
 		DOTA_UNIT_TARGET_TEAM_ENEMY,
 		DOTA_UNIT_TARGET_HERO,
-		DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES,
+		DOTA_UNIT_TARGET_FLAG_NONE,
 		0,
 		false
 	)
@@ -590,12 +554,7 @@ function modifier_tower_plasma:OnIntervalThink()
 				target:ForceKill(false)
 			end
 
-			target:AddNewModifier(
-				self.parent,
-				self.ability,
-				"modifier_tower_plasma_slow",
-				{ duration = self.duration * (1 - target:GetStatusResistance()) }
-			)
+			target:AddNewModifier(self.parent, self.ability, "modifier_tower_plasma_slow", { duration = self.duration })
 			target:AddNewModifier(
 				self.parent,
 				self.ability,
@@ -607,14 +566,11 @@ function modifier_tower_plasma:OnIntervalThink()
 	end
 end
 
-modifier_tower_plasma_slow = class({})
-function modifier_tower_plasma_slow:IsHidden()
-	return true
-end
+modifier_tower_plasma_slow = class(mod_hidden)
 function modifier_tower_plasma_slow:IsPurgable()
 	return true
 end
-function modifier_tower_plasma_slow:OnCreated(table)
+function modifier_tower_plasma_slow:OnCreated()
 	self.slow = -1 * self:GetAbility():GetSpecialValueFor("slow")
 end
 
@@ -628,60 +584,37 @@ function modifier_tower_plasma_slow:GetModifierMoveSpeedBonus_Percentage()
 	return self.slow
 end
 
-modifier_tower_plasma_heal_reduce = class({})
-function modifier_tower_plasma_heal_reduce:IsHidden()
-	return false
+modifier_tower_plasma_heal_reduce = class(mod_visible)
+function modifier_tower_plasma_heal_reduce:GetEffectName()
+	return "particles/items4_fx/spirit_vessel_damage.vpcf"
 end
-function modifier_tower_plasma_heal_reduce:IsPurgable()
-	return false
-end
-function modifier_tower_plasma_heal_reduce:OnCreated(table)
+function modifier_tower_plasma_heal_reduce:OnCreated()
 	self.heal = self:GetAbility():GetSpecialValueFor("heal") * -1
 end
 
 function modifier_tower_plasma_heal_reduce:DeclareFunctions()
 	return {
-		--MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET,
 		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
-		--MODIFIER_PROPERTY_LIFESTEAL_AMPLIFY_PERCENTAGE
 	}
 end
 
-function modifier_tower_plasma_heal_reduce:GetModifierLifestealRegenAmplify_Percentage()
-	return self.heal
-end
 function modifier_tower_plasma_heal_reduce:GetModifierHealChange()
 	return self.heal
 end
+
 function modifier_tower_plasma_heal_reduce:GetModifierHPRegenAmplify_Percentage()
 	return self.heal
 end
-function modifier_tower_plasma_heal_reduce:GetEffectName()
-	return "particles/items4_fx/spirit_vessel_damage.vpcf"
-end
 
-modifier_tower_plasma_cd = class({})
-function modifier_tower_plasma_cd:IsHidden()
-	return false
-end
-function modifier_tower_plasma_cd:IsPurgable()
-	return false
-end
+modifier_tower_plasma_cd = class(mod_visible)
 
 tower_aura_resist = class({})
-
 function tower_aura_resist:GetIntrinsicModifierName()
 	return "modifier_tower_armor_aura"
 end
 
-modifier_tower_armor_aura = class({})
-function modifier_tower_armor_aura:IsHidden()
-	return false
-end
-function modifier_tower_armor_aura:IsPurgable()
-	return false
-end
-function modifier_tower_armor_aura:OnCreated(table)
+modifier_tower_armor_aura = class(mod_visible)
+function modifier_tower_armor_aura:OnCreated()
 	if not IsServer() then
 		return
 	end
@@ -710,13 +643,7 @@ function tower_stun_filler:GetIntrinsicModifierName()
 	return "modifier_shrine_tower_search"
 end
 
-modifier_shrine_tower_search = class({})
-function modifier_shrine_tower_search:IsHidden()
-	return true
-end
-function modifier_shrine_tower_search:IsPurgable()
-	return false
-end
+modifier_shrine_tower_search = class(mod_hidden)
 function modifier_shrine_tower_search:OnCreated()
 	if not IsServer() then
 		return
@@ -785,18 +712,11 @@ function modifier_shrine_tower_search:OnDestroy()
 	end
 end
 
-modifier_tower_shrine_damaga_reduction = class({})
-function modifier_tower_shrine_damaga_reduction:IsHidden()
-	return true
-end
-function modifier_tower_shrine_damaga_reduction:IsPurgable()
-	return false
-end
+modifier_tower_shrine_damaga_reduction = class(mod_hidden)
 function modifier_tower_shrine_damaga_reduction:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
-
-function modifier_tower_shrine_damaga_reduction:OnCreated(table)
+function modifier_tower_shrine_damaga_reduction:OnCreated()
 	if not IsServer() then
 		return
 	end
@@ -818,17 +738,11 @@ function modifier_tower_shrine_damaga_reduction:OnDestroy()
 	end
 end
 
-modifier_filler_armor = class({})
-function modifier_filler_armor:IsHidden()
-	return false
-end
-function modifier_filler_armor:IsPurgable()
-	return false
-end
+modifier_filler_armor = class(mod_visible)
 function modifier_filler_armor:GetTexture()
 	return "buffs/tower_armor"
 end
-function modifier_filler_armor:OnCreated(table)
+function modifier_filler_armor:OnCreated()
 	self.damage_reduce = 20
 
 	if not IsServer() then
@@ -837,7 +751,7 @@ function modifier_filler_armor:OnCreated(table)
 	self:SetStackCount(1)
 end
 
-function modifier_filler_armor:OnRefresh(table)
+function modifier_filler_armor:OnRefresh()
 	if not IsServer() then
 		return
 	end
@@ -846,7 +760,6 @@ end
 
 function modifier_filler_armor:DeclareFunctions()
 	return {
-		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
 		MODIFIER_PROPERTY_TOOLTIP,
 	}
 end

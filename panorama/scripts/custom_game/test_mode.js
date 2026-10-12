@@ -684,6 +684,7 @@ function ShowObjects()
 	type_button.AddClass("TestMode_btn_type")
 
 	CreateWindowButton(tempo, "LaneWaves", "#lane_waves", ToggleLaneWaves, lane_waves_open)
+	CreateWindowButton(tempo, "LagTest", "Lag test", LagTest, false)
 
 	if (lane_waves_open)
 		ShowLaneWaves()
@@ -1103,7 +1104,7 @@ function DrawTalents(main, ent, show_bot)
 
 	var more_talents = (hero == "npc_dota_hero_broodmother" || hero == "npc_dota_hero_invoker")
 	var player_id = Entities.GetPlayerOwnerID(ent)
-	var player_table = CustomNetTables.GetTableValue("upgrades_player", String(player_id))
+	var player_table = Game.GetUpgrades(player_id)
 
 	if (use_new_system == false)
 	{
@@ -1692,6 +1693,12 @@ function JungleCreeps()
 {
 	Game.EmitSound("UI.Click")
 	GameEvents.SendCustomGameEventToServer_custom("JungleCreeps", {})
+}
+
+function LagTest()
+{
+	Game.EmitSound("UI.Click")
+	GameEvents.SendCustomGameEventToServer_custom("LagTest", {})
 }
 
 function WtfMode()

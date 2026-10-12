@@ -210,10 +210,6 @@ function drow_ranger_multishot_custom:OnProjectileHit_ExtraData(target, location
 			target:EmitSound("Drow.Multi_scepter_proc_damage")
 		end
 
-		if target:IsCreep() then
-			damage = damage * (1 + self.creeps_damage)
-		end
-
 		local damageTable = {
 			victim = target,
 			attacker = self.caster,

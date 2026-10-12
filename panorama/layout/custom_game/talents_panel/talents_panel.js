@@ -16,6 +16,7 @@ var unique_panel_heroes =
     "npc_dota_hero_kunkka" : true,
 }
 
+var talent_flags = ["bkb", "stun", "silence", "root", "save"]
 
 Game.init_talent_panel = (panel, player_id, pick_hero) =>
 {
@@ -127,7 +128,7 @@ Game.init_talent_panel = (panel, player_id, pick_hero) =>
 
     let hero_index = Players.GetPlayerHeroEntityIndex(player_id)
 
-    var player_table = CustomNetTables.GetTableValue("upgrades_player", String(player_id))
+    var player_table = Game.GetUpgrades(player_id)
 
     if (use_new_system)
     {
@@ -342,6 +343,7 @@ Game.init_talent_panel = (panel, player_id, pick_hero) =>
                 }
 
                 Game.MouseOverTalent(purple_content, "#upgrade_disc_" + name, name, lvl, true, "purple", max_level, player_id, hero, false, skill_change)
+                SetTalentFlags(purple_content, data, !pick_stage && lvl !== undefined)
 
                 purple_fill.style.width = level_width + "%"
             }
@@ -410,6 +412,7 @@ Game.init_talent_panel = (panel, player_id, pick_hero) =>
                 }
 
                 Game.MouseOverTalent(blue_content, "#upgrade_disc_" + name, name, lvl, true, "blue", max_level, player_id, hero, false, skill_change)
+                SetTalentFlags(blue_content, data, !pick_stage && lvl !== undefined)
                 
                 blue_fill.style.width = level_width + "%"
             }
@@ -559,6 +562,34 @@ function MouseOver(panel, text) {
     });
 }
 
+function SetTalentFlags(panel, data, active)
+{
+    let container = panel.FindChildTraverse("talent_flags")
+    if (!container)
+    {
+        container = $.CreatePanel("Panel", panel, "talent_flags")
+        container.AddClass("talent_flags")
+        container.hittest = false
+        panel.AddClass("talent_flags_holder")
+    }
+
+    container.RemoveAndDeleteChildren()
+
+    if (!active)
+        return
+
+    for (const flag of talent_flags)
+    {
+        if (data["is_" + flag] != 1)
+            continue
+
+        let icon = $.CreatePanel("Panel", container, "")
+        icon.AddClass("talent_flag")
+        icon.AddClass("talent_flag_" + flag)
+        icon.hittest = false
+    }
+}
+
 function CreateUniquePanel(main, hero_name, player_id, entindex)
 {
     var content = $.CreatePanel("Panel", main, "UniqueTalents_Content")
@@ -613,7 +644,7 @@ function CreateUniquePanel(main, hero_name, player_id, entindex)
         blue_row.AddClass("UniqueTalents_Kunkka_Row")
 
         let talent_table = Object.entries(Game.talents_values["kunkka_shop"])
-        var player_table = CustomNetTables.GetTableValue("upgrades_player", String(player_id))
+        var player_table = Game.GetUpgrades(player_id)
 
         talent_table.sort(([a], [b]) => {
             const numA = Number(a.split("_").pop())
@@ -677,7 +708,7 @@ function CreateUniquePanel(main, hero_name, player_id, entindex)
         talent_table = Object.values(talent_table)
         talent_table.sort((a, b) => (a["name_number"] - b["name_number"]))
 
-        var player_table = CustomNetTables.GetTableValue("upgrades_player", String(player_id))
+        var player_table = Game.GetUpgrades(player_id)
 
         for (const data of talent_table)
         {           
@@ -742,7 +773,7 @@ function CreateUniquePanel(main, hero_name, player_id, entindex)
         talent_table = Object.values(talent_table)
         talent_table.sort((a, b) => (a["name_number"] - b["name_number"]))
 
-        var player_table = CustomNetTables.GetTableValue("upgrades_player", String(player_id))
+        var player_table = Game.GetUpgrades(player_id)
         var last_complete = has_scepter
 
         for (const data of talent_table)
@@ -809,7 +840,7 @@ function CreateUniquePanel(main, hero_name, player_id, entindex)
         talent_table = Object.values(talent_table)
         talent_table.sort((a, b) => (a["name_number"] - b["name_number"]))
 
-        var player_table = CustomNetTables.GetTableValue("upgrades_player", String(player_id))
+        var player_table = Game.GetUpgrades(player_id)
 
         for (const data of talent_table)
         {

@@ -188,9 +188,6 @@ end
 
 function ogre_magi_ignite_custom:GetDamage(target, is_proc)
 	local result = (self.burn_damage + self.caster:GetAverageTrueAttackDamage(nil) * self.talents.w1_bonus)
-	if target:IsCreep() then
-		result = result * (1 + self.creeps)
-	end
 	if self.talents.has_w7 == 1 and not is_proc then
 		result = result * (1 + self.talents.w7_damage_reduce)
 	end
@@ -434,7 +431,7 @@ function modifier_ogre_magi_ignite_custom_tracker:OnCreated()
 	self.ability.aoe_radius = self.ability:GetSpecialValueFor("aoe_radius")
 	self.ability.duration_inc = self.ability:GetSpecialValueFor("duration_inc")
 	self.ability.duration_max = self.ability:GetSpecialValueFor("duration_max")
-	self.ability.creeps = self.ability:GetSpecialValueFor("creeps") / 100
+	self.ability.creeps_damage = self.ability:GetSpecialValueFor("creeps_damage") / 100
 
 	self.damageTable = { attacker = self.parent, ability = self.ability, damage_type = DAMAGE_TYPE_MAGICAL }
 end

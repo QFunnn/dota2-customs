@@ -676,7 +676,7 @@ function modifier_custom_void_remnant_target_creep:OnCreated()
 		return
 	end
 	self.creeps_interval = self.ability:GetSpecialValueFor("creeps_interval")
-	self.damage = self.ability:GetDamage() * self.ability:GetSpecialValueFor("creeps_damage") / 100
+	self.damage = self.ability:GetDamage() * self.ability:GetSpecialValueFor("creeps_dps") / 100
 
 	self.damageTable = {
 		victim = self.parent,

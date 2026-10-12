@@ -1876,14 +1876,6 @@ function CDOTA_BaseNPC:GenericHeal(heal, ability, no_text, effect, talent_name)
 
 	local health_before = self:GetHealth()
 
-	if talent_name then
-		if not self.ReplaceHealing then
-			self.ReplaceHealing = {}
-		end
-		self.ReplaceHealing.new_name = talent_name
-		self.ReplaceHealing.inflictor = ability
-	end
-
 	if
 		self:IsRealHero()
 		and self.heal_reduce_mods
@@ -1905,6 +1897,10 @@ function CDOTA_BaseNPC:GenericHeal(heal, ability, no_text, effect, talent_name)
 
 	self:Heal(heal * (self.heal_change and self.heal_change or 1), ability)
 	local real_heal = self:GetHealth() - health_before
+
+	if ability and real_heal >= 1 then
+		self:AddHealingInfo({ healing = math.floor(real_heal), inflictor = ability, name = talent_name })
+	end
 
 	local part = "particles/generic_gameplay/generic_lifesteal.vpcf"
 
@@ -1953,7 +1949,7 @@ function CDOTA_BaseNPC:AddHealingInfo(params)
 
 	local callback = function()
 		if IsValid(self) then
-			dota1x6.event_thinker_mod:HealingTableCount(self, params.healing, nil, params.inflictor, "healing")
+			dota1x6.event_thinker_mod:HealingTableCount(self, params.healing, params.name, params.inflictor, "healing")
 		end
 	end
 	dota1x6.event_thinker_mod:StartThink(callback, dota1x6.event_thinker_mod, "HealingTableCount")
@@ -2730,6 +2726,8 @@ function CDOTA_BaseNPC:AddDamageEvent_inc(new_mod, sync)
 	self.take_damage_mods_inc[new_mod] = sync and 2 or 1
 end
 
+_G.heal_event_mods = heal_event_mods or {}
+
 function CDOTA_BaseNPC:AddHealEvent_inc(new_mod, sync)
 	if not IsValid(new_mod) then
 		return
@@ -2744,6 +2742,11 @@ function CDOTA_BaseNPC:AddHealEvent_inc(new_mod, sync)
 		end
 	end
 	self.heal_mods_inc[new_mod] = sync and 2 or 1
+	heal_event_mods[new_mod] = true
+
+	if IsValid(dota1x6.event_thinker) and not dota1x6.event_thinker:HasModifier("modifier_event_thinker_heal") then
+		dota1x6.event_thinker:AddNewModifier(dota1x6.event_thinker, nil, "modifier_event_thinker_heal", {})
+	end
 end
 
 function CDOTA_BaseNPC:AddPercentStat(stats, mod)
@@ -3055,7 +3058,15 @@ function DoDamage(data, replace_damage)
 		end
 	end
 
+	local ability = data.ability
+	local damage = data.damage
+
+	if ability and ability.creeps_damage then
+		data.damage = damage * ability:GetCreepsMult(data.victim)
+	end
+
 	local result = ApplyDamage(data)
+	data.damage = damage
 
 	if data.victim:IsRealHero() and data.ability and dota1x6.event_thinker_mod and attacker then
 		dota1x6.event_thinker_mod:CheckDamageData({
@@ -3069,6 +3080,10 @@ function DoDamage(data, replace_damage)
 	end
 
 	return result
+end
+
+function CDOTABaseAbility:GetCreepsMult(target)
+	return target:IsCreep() and 1 + (self.creeps_damage or 0) or 1
 end
 
 CDOTA_BaseNPC.PerformAttack_old = CDOTA_BaseNPC.PerformAttack

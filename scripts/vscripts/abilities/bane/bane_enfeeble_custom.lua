@@ -274,10 +274,6 @@ function modifier_bane_enfeeble_custom:OnCreated(table)
 
 	self:SetHasCustomTransmitterData(true)
 
-	if self.parent:IsCreep() then
-		self.damage = self.damage * (1 + self.ability.creeps)
-	end
-
 	self.damageTable = {
 		attacker = self.caster,
 		ability = self.ability,
@@ -407,7 +403,7 @@ function modifier_bane_enfeeble_custom_tracker:OnCreated()
 
 	self.ability.radius = self.ability:GetSpecialValueFor("radius")
 	self.ability.duration = self.ability:GetSpecialValueFor("duration")
-	self.ability.creeps = self.ability:GetSpecialValueFor("creeps") / 100
+	self.ability.creeps_damage = self.ability:GetSpecialValueFor("creeps_damage") / 100
 	self.ability.slow = self.ability:GetSpecialValueFor("slow")
 	self.ability.damage_tick_rate = self.ability:GetSpecialValueFor("damage_tick_rate")
 	self.ability.enfeeble_tick_damage = self.ability:GetSpecialValueFor("enfeeble_tick_damage")

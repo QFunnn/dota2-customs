@@ -723,7 +723,7 @@ function modifier_witch_doctor_death_ward_custom_tracker:OnCreated(table)
 
 	self.ability.damage = self.ability:GetSpecialValueFor("damage")
 	self.ability.bva = self.ability:GetSpecialValueFor("bva")
-	self.ability.creeps = self.ability:GetSpecialValueFor("creeps") / 100
+	self.ability.creeps_damage = self.ability:GetSpecialValueFor("creeps_damage") / 100
 	self.ability.duration = self.ability:GetSpecialValueFor("duration")
 	self.ability.attack_range_tooltip = self.ability:GetSpecialValueFor("attack_range_tooltip")
 	self.ability.bonus_accuracy = self.ability:GetSpecialValueFor("bonus_accuracy")
@@ -844,12 +844,8 @@ function modifier_witch_doctor_death_ward_custom_tracker:DealDamage(target, atta
 	local targets = self.parent:FindTargets(self.ability.radius, target:GetAbsOrigin())
 
 	for _, aoe_target in pairs(targets) do
-		local target_damage = damage
-		if aoe_target:IsCreep() then
-			target_damage = target_damage * (1 + self.ability.creeps)
-		end
 		damageTable.victim = aoe_target
-		damageTable.damage = target_damage
+		damageTable.damage = damage
 
 		local real_damage = DoDamage(damageTable, damage_ability)
 		if self.parent:GetQuest() == "WitchDoctor.Quest_8" and aoe_target:IsRealHero() then

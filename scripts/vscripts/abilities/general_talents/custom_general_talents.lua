@@ -15,6 +15,11 @@ LinkLuaModifier(
 	LUA_MODIFIER_MOTION_NONE
 )
 LinkLuaModifier("modifier_general_stats", "abilities/general_talents/custom_general_talents", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier(
+	"modifier_general_stats_aura",
+	"abilities/general_talents/custom_general_talents",
+	LUA_MODIFIER_MOTION_NONE
+)
 
 custom_general_talents = class({})
 custom_general_talents.talents = {}
@@ -25,33 +30,63 @@ custom_general_talents.damage_out_mods = {
 	"modifier_up_aoe_damage",
 }
 
+custom_general_talents.stats_functions = {
+	[MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT] = { "has_gray_speed" },
+	[MODIFIER_PROPERTY_ATTACK_RANGE_BONUS] = { "has_gray_speed" },
+	[MODIFIER_PROPERTY_STATS_STRENGTH_BONUS] = { "has_gray_stats" },
+	[MODIFIER_PROPERTY_STATS_AGILITY_BONUS] = { "has_gray_stats" },
+	[MODIFIER_PROPERTY_STATS_INTELLECT_BONUS] = { "has_gray_stats" },
+	[MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT] = { "has_gray_movespeed" },
+	[MODIFIER_PROPERTY_STATUS_RESISTANCE_STACKING] = { "has_gray_movespeed", "duo" },
+	[MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE] = { "has_gray_spelldamage" },
+	[MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE] = { "has_gray_spelldamage" },
+	[MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS] = { "has_gray_armor" },
+	[MODIFIER_PROPERTY_EVASION_CONSTANT] = { "has_gray_armor" },
+	[MODIFIER_PROPERTY_MANA_BONUS] = { "has_gray_mana" },
+	[MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE] = { "has_gray_mana" },
+	[MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE] = { "has_gray_damage" },
+	[MODIFIER_PROPERTY_HEALTH_BONUS] = { "has_gray_health" },
+	[MODIFIER_PROPERTY_EXTRA_HEALTH_PERCENTAGE] = { "has_gray_health", "duo" },
+	[MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS] = { "has_gray_magicresist" },
+	[MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE] = { "has_gray_magicresist", "has_gray_control_shield" },
+	[MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE] = { "has_gray_lifesteal" },
+	[MODIFIER_PROPERTY_CAST_RANGE_BONUS_STACKING] = { "has_gray_spell_proc" },
+}
+
 function custom_general_talents:UpdateTalents()
 	local caster = self:GetCaster()
 
 	if not self.init then
 		self.init = true
 		self.talents = {
+			has_gray_health = 0,
 			gray_health = 0,
 			gray_health_max = 0,
 
+			has_gray_mana = 0,
 			gray_mana = 0,
 			gray_mana_max = 0,
 
+			has_gray_damage = 0,
 			gray_damage = 0,
 			gray_damage_max = 0,
 			gray_damage_max_duration = caster:GetTalentValue("modifier_up_damage", "max_duration", true),
 
 			has_gray_debuff_max = 0,
 
+			has_gray_armor = 0,
 			gray_armor = 0,
 			gray_armor_max = 0,
 
+			has_gray_stats = 0,
 			gray_stats = 0,
 			gray_stats_max = 0,
 
+			has_gray_spelldamage = 0,
 			gray_spelldamage = 0,
 			gray_spelldamage_max = 0,
 
+			has_gray_movespeed = 0,
 			gray_movespeed = 0,
 			gray_movespeed_max = 0,
 
@@ -59,10 +94,12 @@ function custom_general_talents:UpdateTalents()
 			gray_lifesteal = 0,
 			gray_lifesteal_max = 0,
 
+			has_gray_speed = 0,
 			gray_speed = 0,
 			gray_speed_max = 0,
 			gray_speed_max_range = 0,
 
+			has_gray_magicresist = 0,
 			gray_magicresist = 0,
 			gray_magicresist_max = 0,
 
@@ -96,36 +133,43 @@ function custom_general_talents:UpdateTalents()
 	end
 
 	if caster:HasTalent("modifier_up_health") then
+		self.talents.has_gray_health = 1
 		self.talents.gray_health = caster:GetTalentValue("modifier_up_health", "general_bonus")
 		self.talents.gray_health_max = caster:GetTalentValue("modifier_up_health", "max_bonus")
 	end
 
 	if caster:HasTalent("modifier_up_mana") then
+		self.talents.has_gray_mana = 1
 		self.talents.gray_mana = caster:GetTalentValue("modifier_up_mana", "general_bonus")
 		self.talents.gray_mana_max = caster:GetTalentValue("modifier_up_mana", "max_bonus")
 	end
 
 	if caster:HasTalent("modifier_up_damage") then
+		self.talents.has_gray_damage = 1
 		self.talents.gray_damage = caster:GetTalentValue("modifier_up_damage", "general_bonus")
 		self.talents.gray_damage_max = caster:GetTalentValue("modifier_up_damage", "max_bonus")
 	end
 
 	if caster:HasTalent("modifier_up_armor") then
+		self.talents.has_gray_armor = 1
 		self.talents.gray_armor = caster:GetTalentValue("modifier_up_armor", "general_bonus")
 		self.talents.gray_armor_max = caster:GetTalentValue("modifier_up_armor", "max_bonus")
 	end
 
 	if caster:HasTalent("modifier_up_stats") then
+		self.talents.has_gray_stats = 1
 		self.talents.gray_stats = caster:GetTalentValue("modifier_up_stats", "general_bonus")
 		self.talents.gray_stats_max = caster:GetTalentValue("modifier_up_stats", "max_bonus") / 100
 	end
 
 	if caster:HasTalent("modifier_up_spelldamage") then
+		self.talents.has_gray_spelldamage = 1
 		self.talents.gray_spelldamage = caster:GetTalentValue("modifier_up_spelldamage", "general_bonus")
 		self.talents.gray_spelldamage_max = caster:GetTalentValue("modifier_up_spelldamage", "max_bonus")
 	end
 
 	if caster:HasTalent("modifier_up_movespeed") then
+		self.talents.has_gray_movespeed = 1
 		self.talents.gray_movespeed = caster:GetTalentValue("modifier_up_movespeed", "general_bonus")
 		self.talents.gray_movespeed_max = caster:GetTalentValue("modifier_up_movespeed", "max_bonus")
 	end
@@ -137,12 +181,14 @@ function custom_general_talents:UpdateTalents()
 	end
 
 	if caster:HasTalent("modifier_up_speed") then
+		self.talents.has_gray_speed = 1
 		self.talents.gray_speed = caster:GetTalentValue("modifier_up_speed", "general_bonus")
 		self.talents.gray_speed_max = caster:GetTalentValue("modifier_up_speed", "max_bonus")
 		self.talents.gray_speed_max_range = caster:GetTalentValue("modifier_up_speed", "max_bonus_range")
 	end
 
 	if caster:HasTalent("modifier_up_magicresist") then
+		self.talents.has_gray_magicresist = 1
 		self.talents.gray_magicresist = caster:GetTalentValue("modifier_up_magicresist", "general_bonus")
 		self.talents.gray_magicresist_max = caster:GetTalentValue("modifier_up_magicresist", "max_bonus")
 	end
@@ -186,6 +232,20 @@ function custom_general_talents:UpdateTalents()
 		return
 	end
 
+	local key = table.concat(self:GetStatsFunctions(), ",")
+	if IsValid(self.tracker) and self.tracker.stats_key and self.tracker.stats_key ~= key then
+		self.tracker.stats_key = key
+		Timers:CreateTimer(FrameTime(), function()
+			if not IsValid(self, caster) then
+				return
+			end
+			if IsValid(self.tracker) then
+				self.tracker:Destroy()
+			end
+			caster:AddNewModifier(caster, self, "modifier_general_stats", {})
+		end)
+	end
+
 	if self.talents.gray_stats_max > 0 then
 		caster:AddPercentStat(
 			{ str = self.talents.gray_stats_max, agi = self.talents.gray_stats_max, int = self.talents.gray_stats_max },
@@ -200,6 +260,11 @@ function custom_general_talents:UpdateTalents()
 	if self.talents.has_gray_aoe_damage == 1 then
 		self.talents.aoe_damage_ability = caster:FindAbilityByName("generic_aoe_damage")
 			or caster:AddAbility("generic_aoe_damage")
+		if not caster:HasModifier("modifier_general_stats_aura") then
+			caster:AddNewModifier(caster, self, "modifier_general_stats_aura", {})
+		end
+	else
+		caster:RemoveModifierByName("modifier_general_stats_aura")
 	end
 
 	for _, check_name in pairs(self.damage_out_mods) do
@@ -225,6 +290,20 @@ end
 
 function custom_general_talents:IsItem()
 	return true
+end
+
+function custom_general_talents:GetStatsFunctions(all)
+	local list = {}
+	for func, names in pairs(self.stats_functions) do
+		for _, name in pairs(names) do
+			if all or self.talents[name] == 1 or (name == "duo" and not IsSoloMode()) then
+				table.insert(list, func)
+				break
+			end
+		end
+	end
+	table.sort(list)
+	return list
 end
 
 modifier_general_stats = class(mod_hidden)
@@ -429,48 +508,15 @@ function modifier_general_stats:CheckState()
 	}
 end
 
-function modifier_general_stats:IsAura()
-	return IsServer()
-		and self.ability.talents.has_gray_aoe_damage == 1
-		and self.parent:IsRealHero()
-		and self.parent:IsAlive()
-end
-function modifier_general_stats:GetModifierAura()
-	return "modifier_up_aoe_damage_effect"
-end
-function modifier_general_stats:GetAuraSearchTeam()
-	return DOTA_UNIT_TARGET_TEAM_ENEMY
-end
-function modifier_general_stats:GetAuraSearchType()
-	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
-end
-function modifier_general_stats:GetAuraRadius()
-	return self.ability.talents.gray_aoe_damage_radius
-end
-
 function modifier_general_stats:DeclareFunctions()
-	return {
-		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
-		MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
-		MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
-		MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
-		MODIFIER_PROPERTY_STATUS_RESISTANCE_STACKING,
-		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
-		MODIFIER_PROPERTY_EVASION_CONSTANT,
-		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
-		MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE,
-		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
-		MODIFIER_PROPERTY_HEALTH_BONUS,
-		MODIFIER_PROPERTY_MANA_BONUS,
-		MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
-		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS,
-		MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE,
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
-		MODIFIER_PROPERTY_EXTRA_HEALTH_PERCENTAGE,
-		MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
-		MODIFIER_PROPERTY_CAST_RANGE_BONUS_STACKING,
-		MODIFIER_PROPERTY_TOTALDAMAGEOUTGOING_PERCENTAGE,
-	}
+	local ability = self:GetAbility()
+	if not IsServer() or not ability then
+		return custom_general_talents:GetStatsFunctions(true)
+	end
+
+	local list = ability:GetStatsFunctions()
+	self.stats_key = table.concat(list, ",")
+	return list
 end
 
 function modifier_general_stats:GetModifierIncomingDamage_Percentage(params)
@@ -797,6 +843,32 @@ function modifier_general_stats:GeneralTrigger(name)
 		self:GiveItem("item_recipe_alchemist_gold_skadi")
 		return
 	end
+end
+
+modifier_general_stats_aura = class(mod_hidden)
+function modifier_general_stats_aura:RemoveOnDeath()
+	return false
+end
+function modifier_general_stats_aura:IsAura()
+	return true
+end
+function modifier_general_stats_aura:IsAuraActiveOnDeath()
+	return false
+end
+function modifier_general_stats_aura:GetModifierAura()
+	return "modifier_up_aoe_damage_effect"
+end
+function modifier_general_stats_aura:GetAuraSearchTeam()
+	return DOTA_UNIT_TARGET_TEAM_ENEMY
+end
+function modifier_general_stats_aura:GetAuraSearchType()
+	return DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO
+end
+function modifier_general_stats_aura:GetAuraRadius()
+	return self.ability.talents.gray_aoe_damage_radius
+end
+function modifier_general_stats_aura:OnCreated()
+	self.ability = self:GetAbility()
 end
 
 modifier_up_aoe_damage_effect = class(mod_hidden)
