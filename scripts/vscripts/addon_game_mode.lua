@@ -99,6 +99,7 @@ function Activate()
     profile_stats:Init()
     player_system:PublishHeroSounds()
     player_system:PublishChestPrayerChances()
+    player_system:PublishArenaDifficultyRewards()
 end
 
 function WODAGameMode:InitGameMode()

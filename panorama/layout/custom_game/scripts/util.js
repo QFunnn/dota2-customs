@@ -170,7 +170,7 @@ var RUNE_VALUES =
     rune_creator: {values: [1, 2, 3, 4, 5], suffix: ""},
     rune_replenishment: {values: [10, 20, 30, 40, 50], suffix: "%"},
     rune_time: {values: [10, 20, 30, 40, 50], suffix: ""},
-    rune_radius: {values: [100, 200, 300, 400, 500], suffix: ""},
+    rune_radius: {values: [50, 100, 150, 200, 250], suffix: ""},
     rune_summoner: {values: [20, 40, 60, 80, 100], suffix: "%"},
     rune_druid: {values: [20, 40, 60, 80, 100], suffix: "%"},
     rune_shaman: {values: [20, 40, 60, 80, 100], suffix: "%"},
@@ -293,6 +293,65 @@ function FormatRuneDescription(rune_id, level)
 }
 
 var ARENA_DIFFICULTY_ROOMS = [0, 12, 3, 10, 5, 21, 17, 29, 4, 33]
+
+var WODA_BOSS_SOUL_COLOR = "#ff7a3c"
+
+function GetArenaDifficultyRewards(level)
+{
+    var levels = Game.GetCustomTable("arena_difficulty_rewards", "levels")
+    return levels ? (levels[String(level)] || null) : null
+}
+
+function BuildArenaDifficultyRewardsLines(level)
+{
+    var info = GetArenaDifficultyRewards(level)
+    if (!info) { return [] }
+    var lines = []
+    lines.push($.Localize("#arena_difficulty_rewards_coins").split("{value}").join(WodaGold(FormatArenaStatValue(info.coins))))
+    lines.push($.Localize("#arena_difficulty_rewards_boss_soul").split("{value}").join("<b><font color='" + WODA_BOSS_SOUL_COLOR + "'>" + FormatArenaStatValue(info.boss_soul_chance) + "%</font></b>"))
+    var rooms = info.rooms || {}
+    for (var i = 1; rooms[i]; i++)
+    {
+        var room_text = $.Localize("#arena_difficulty_rewards_room").split("{room}").join($.Localize("#arena_room_" + rooms[i].room))
+        lines.push(room_text.split("{value}").join(WodaGold(FormatArenaStatValue(rooms[i].chance) + "%")))
+    }
+    if (Number(info.rune_slot) > 0)
+    {
+        lines.push($.Localize("#arena_difficulty_rewards_rune_slot"))
+    }
+    return lines
+}
+
+function BuildArenaDifficultyInfoText(info)
+{
+    if (!info) { return "" }
+    var global_damage = Number(info.global_damage) || 0
+    var final_room = Number(info.final_room)
+    return $.Localize("#arena_difficulty_tooltip_text")
+        .replace("{final_room}", final_room >= 0 ? $.Localize("#arena_room_" + final_room) : "")
+        .replace("{final_boss}", info.final_boss ? $.Localize("#" + info.final_boss) : "")
+        .replace("{global_damage}", (global_damage > 0 ? "+" : "") + global_damage)
+        .replace("{reduction_ignore}", String(Number(info.reduction_ignore) || 0))
+        .replace("{status_resistance}", String(Number(info.status_resistance) || 0))
+        .replace("{slow_resistance}", String(Number(info.slow_resistance) || 0))
+        .replace("{debuff_amplify}", String(Number(info.debuff_amplify) || 0))
+        .replace("{accuracy}", String(Number(info.accuracy) || 0))
+}
+
+function BuildArenaDifficultyTooltipText(level, info)
+{
+    var parts = []
+    var info_text = BuildArenaDifficultyInfoText(info)
+    if (info_text != "") { parts.push(info_text) }
+    var rewards = BuildArenaDifficultyRewardsLines(level)
+    if (rewards.length > 0) { parts.push(rewards.join("<br>")) }
+    return parts.join("<br><br>")
+}
+
+function GetArenaDifficultyTooltipTitle(level)
+{
+    return $.Localize("#arena_difficulty_tooltip_title").replace("{level}", String(level))
+}
 
 var WODA_HEROES_ID =
 {

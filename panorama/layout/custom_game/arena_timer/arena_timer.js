@@ -131,23 +131,7 @@ function ShowRoundDifficultyTooltip(badge)
 {
 	var info = CustomNetTables.GetTableValue("map_info", "pve_difficulty")
 	var level = info && info.level ? Number(info.level) : GetArenaTimerDifficulty()
-	var title = $.Localize("#arena_difficulty_tooltip_title").replace("{level}", String(level))
-	if (!info)
-	{
-		$.DispatchEvent("DOTAShowTitleTextTooltip", badge, title, "")
-		return
-	}
-	var global_damage = Number(info.global_damage) || 0
-	var final_room = Number(info.final_room)
-	var text = $.Localize("#arena_difficulty_tooltip_text")
-		.replace("{final_room}", final_room >= 0 ? $.Localize("#arena_room_" + final_room) : "")
-		.replace("{final_boss}", info.final_boss ? $.Localize("#" + info.final_boss) : "")
-		.replace("{global_damage}", (global_damage > 0 ? "+" : "") + global_damage)
-		.replace("{reduction_ignore}", String(Number(info.reduction_ignore) || 0))
-		.replace("{status_resistance}", String(Number(info.status_resistance) || 0))
-		.replace("{debuff_amplify}", String(Number(info.debuff_amplify) || 0))
-		.replace("{accuracy}", String(Number(info.accuracy) || 0))
-	$.DispatchEvent("DOTAShowTitleTextTooltip", badge, title, text)
+	$.DispatchEvent("DOTAShowTitleTextTooltip", badge, GetArenaDifficultyTooltipTitle(level), BuildArenaDifficultyInfoText(info))
 }
 
 function GetRoomFeatureIconPath(icon)

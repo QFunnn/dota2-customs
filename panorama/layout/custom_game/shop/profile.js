@@ -913,6 +913,12 @@ function ProfileRenderDifficultyCard(info, arena)
     {
         lines.push($.Localize(available ? "#profile_difficulty_available" : "#profile_difficulty_not_done"))
     }
+    var rewards = BuildArenaDifficultyRewardsLines(info.difficulty)
+    if (rewards.length > 0)
+    {
+        lines.push("")
+        lines = lines.concat(rewards)
+    }
     ProfileTooltip(card, ProfileLoc("#profile_tt_difficulty", {d: info.difficulty}) + " - " + $.Localize("#arena_room_" + info.room), lines)
 }
 

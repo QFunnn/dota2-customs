@@ -2199,6 +2199,14 @@ function CreateArenaDifficultyCard(grid, level)
 		Game.EmitSound("ui_topmenu_select")
 		GameEvents.SendCustomGameEventToServer_custom("arena_difficulty_select", {level: level})
 	})
+	card.SetPanelEvent("onmouseover", function()
+	{
+		$.DispatchEvent("DOTAShowTitleTextTooltip", card, GetArenaDifficultyTooltipTitle(level), BuildArenaDifficultyRewardsLines(level).join("<br>"))
+	})
+	card.SetPanelEvent("onmouseout", function()
+	{
+		$.DispatchEvent("DOTAHideTitleTextTooltip", card)
+	})
 }
 
 function ArenaDifficultySelected(data)
@@ -2254,6 +2262,18 @@ function UpdateArenaDifficultyInfo()
 	$("#ArenaDifficultyInfoNumber").text = String(difficulty)
 	var room_id = ARENA_DIFFICULTY_ROOMS[difficulty - 1]
 	$("#ArenaDifficultyInfoRoom").text = room_id !== undefined ? $.Localize("#arena_room_" + room_id) : ""
+	info.SetPanelEvent("onmouseover", function()
+	{
+		var level = GetArenaPickDifficulty()
+		if (level <= 0) { return }
+		var difficulty_info = CustomNetTables.GetTableValue("map_info", "pve_difficulty")
+		if (difficulty_info && Number(difficulty_info.level) != level) { difficulty_info = null }
+		$.DispatchEvent("DOTAShowTitleTextTooltip", info, GetArenaDifficultyTooltipTitle(level), BuildArenaDifficultyTooltipText(level, difficulty_info))
+	})
+	info.SetPanelEvent("onmouseout", function()
+	{
+		$.DispatchEvent("DOTAHideTitleTextTooltip", info)
+	})
 }
 
 var arena_crystal_difficulty = 0

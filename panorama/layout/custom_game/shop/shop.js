@@ -965,8 +965,12 @@ function BuyItemToServer(item_info)
 
 function ShowHero(panel, hero, buy) 
 {
-    panel.SetPanelEvent('onmouseover', function() 
+    panel.SetPanelEvent('onmouseover', function()
     {
+        if (panel.FindChild('portrait_' + hero))
+        {
+            return
+        }
         let vid = $.CreatePanel("MoviePanel", panel, 'portrait_' + hero, {
             class: "hero_portrait_hover",
             src: "file://{resources}/videos/heroes/" + hero + ".webm",
@@ -976,10 +980,13 @@ function ShowHero(panel, hero, buy)
         });
     });
     panel.SetPanelEvent('onmouseout', function() {
-        var movie = panel.FindChild('portrait_' + hero + '')
-        if (movie) 
+        var children = panel.Children()
+        for (var i = 0; i < children.length; i++)
         {
-            movie.DeleteAsync(0)
+            if (children[i].id == 'portrait_' + hero)
+            {
+                children[i].DeleteAsync(0)
+            }
         }
     })
 }
@@ -2433,6 +2440,20 @@ function GetHeroInformationOther(hero, player_id) {
 
 const level_colors = ['#edb96e','#d5edf3','#feeb44',"#c4eaff",'#d1ce89','#d1ce89']
 
+var level_timer_icon = null
+var level_timer_label = null
+var level_timer_badge = null
+var level_timer_applied = null
+
+function GetLevelTimerPanel(panel, id)
+{
+    if (panel && panel.IsValid())
+    {
+        return panel
+    }
+    return FindDotaHudElement(id)
+}
+
 function check_level_timer()
 {
     let hero_id = Players.GetLocalPlayerPortraitUnit()
@@ -2453,9 +2474,9 @@ function check_level_timer()
         let hero_lvl = GetLevelByCoins(info.coins)
         level_icon_img = GetHeroRankIcon(hero_lvl)
     }
-    let level_icon = FindDotaHudElement("level_icon_custom")
-    let hero_label = FindDotaHudElement("UnitNameLabel");
-    let dota_level = FindDotaHudElement('unitbadge')
+    let level_icon = GetLevelTimerPanel(level_timer_icon, "level_icon_custom")
+    let hero_label = GetLevelTimerPanel(level_timer_label, "UnitNameLabel");
+    let dota_level = GetLevelTimerPanel(level_timer_badge, 'unitbadge')
     if (dota_level)
     {
         dota_level.style.opacity = '0';
@@ -2465,18 +2486,26 @@ function check_level_timer()
         level_icon =  $.CreatePanel("Panel", $.GetContextPanel(), "level_icon_custom")
         level_icon.AddClass("level_icon_custom")
         level_icon.SetParent(dota_level.GetParent())
-    }  
-    if (level_icon_img && level_icon_img != "rank_0")
-    {
-        hero_label.style.color = level_colors[Number(level_icon_img.replace("rank_", ""))-1];
-        level_icon.style.backgroundImage = 'url("s2r://panorama/images/hud/portrait_hero_badge_frame_tier_' + level_icon_img.replace("rank_", "") + '_psd.vtex")';
-        level_icon.style.opacity = "1";
     }
-    else 
+    let applied_key = String(level_icon_img)
+    if (level_icon !== level_timer_icon || hero_label !== level_timer_label || applied_key !== level_timer_applied)
     {
-        hero_label.style.color = 'white';
-        level_icon.style.opacity = "0";
+        if (level_icon_img && level_icon_img != "rank_0")
+        {
+            hero_label.style.color = level_colors[Number(level_icon_img.replace("rank_", ""))-1];
+            level_icon.style.backgroundImage = 'url("s2r://panorama/images/hud/portrait_hero_badge_frame_tier_' + level_icon_img.replace("rank_", "") + '_psd.vtex")';
+            level_icon.style.opacity = "1";
+        }
+        else
+        {
+            hero_label.style.color = 'white';
+            level_icon.style.opacity = "0";
+        }
     }
+    level_timer_icon = level_icon
+    level_timer_label = hero_label
+    level_timer_badge = dota_level
+    level_timer_applied = applied_key
     $.Schedule( 0.1, check_level_timer)
 }
 

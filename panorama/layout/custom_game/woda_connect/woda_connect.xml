@@ -26,7 +26,7 @@
 				<Panel id="WodaRegionList" class="WodaRegionList" />
 				<Panel id="WodaSessionBox" class="WodaSessionBox">
 					<Label id="WodaSessionText" class="WodaSessionText" text="" />
-					<Panel class="WodaConnectButtons">
+					<Panel class="WodaConnectButtons WodaSessionButtons">
 						<Panel id="WodaSessionReconnect" class="WodaConnectButton Active">
 							<Label class="WodaConnectButtonLabel" text="#woda_session_reconnect" />
 						</Panel>
@@ -43,7 +43,7 @@
 				<Label id="WodaRegionCountdown" class="WodaRegionCountdown" text="" />
 			</Panel>
 			<Panel id="WodaSearchPicker" class="WodaRegionPicker">
-				<Panel id="WodaModeList" class="WodaRegionList" />
+				<Panel id="WodaModeList" class="WodaModeList" />
 				<Label id="WodaSearchLeaderNote" class="WodaRegionCountdown" text="#woda_search_leader" />
 				<Panel class="WodaConnectButtons">
 					<Panel id="WodaSearchStart" class="WodaConnectButton Active">
@@ -52,16 +52,41 @@
 				</Panel>
 			</Panel>
 			<Panel id="WodaSearchBox" class="WodaRegionPicker">
-				<Label id="WodaSearchText" class="WodaSessionText" text="" />
+				<Panel class="WodaSearchInfo">
+					<Label id="WodaSearchMode" class="WodaSearchMode" text="" />
+					<Label id="WodaSearchProgress" class="WodaSearchProgress" text="" />
+					<Label id="WodaSearchTime" class="WodaSearchTime" text="" />
+				</Panel>
 				<Panel class="WodaConnectButtons">
 					<Panel id="WodaSearchCancel" class="WodaConnectButton">
 						<Label class="WodaConnectButtonLabel" text="#woda_search_cancel" />
 					</Panel>
 				</Panel>
 			</Panel>
+			<Panel id="WodaBanBox" class="WodaRegionPicker">
+				<Panel class="WodaSearchInfo">
+					<Label id="WodaBanText" class="WodaBanText" text="" />
+					<Panel id="WodaBanPlayer" class="WodaBanPlayer" />
+					<Label id="WodaBanLeft" class="WodaBanLeft" text="" />
+				</Panel>
+			</Panel>
 			<Panel class="WodaConnectButtons">
 				<Panel id="WodaChangeServer" class="WodaConnectButton">
 					<Label class="WodaConnectButtonLabel" text="#woda_region_change" />
+				</Panel>
+			</Panel>
+		</Panel>
+		<Panel id="WodaConfirmOverlay" class="WodaConfirmOverlay">
+			<Panel class="WodaConfirmWindow">
+				<Label class="WodaConfirmTitle" text="#woda_session_new_confirm" />
+				<Label class="WodaConfirmText" text="#woda_session_new_confirm_text" />
+				<Panel class="WodaConnectButtons WodaConfirmButtons">
+					<Panel id="WodaConfirmNew" class="WodaConnectButton Danger">
+						<Label class="WodaConnectButtonLabel" text="#woda_session_new" />
+					</Panel>
+					<Panel id="WodaConfirmBack" class="WodaConnectButton Active">
+						<Label class="WodaConnectButtonLabel" text="#woda_session_new_confirm_no" />
+					</Panel>
 				</Panel>
 			</Panel>
 		</Panel>

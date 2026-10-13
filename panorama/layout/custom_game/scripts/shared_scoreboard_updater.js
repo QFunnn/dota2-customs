@@ -275,11 +275,15 @@ function _ScoreboardUpdater_UpdatePlayerPanel(scoreboardConfig, playersContainer
 		var playerPortrait = playerPanel.FindChildInLayoutFile("HeroIcon");
 
 		if (playerPortrait) {
-			if (playerInfo.player_selected_hero !== "") 
+			var portraitSrc = "file://{images}/custom_game/unassigned.png";
+			if (playerInfo.player_selected_hero !== "")
             {
-				playerPortrait.SetImage("file://{images}/heroes/" + GetPortraitHero(playerInfo.player_selected_hero) + ".png");
-			} else {
-				playerPortrait.SetImage("file://{images}/custom_game/unassigned.png");
+				portraitSrc = "file://{images}/heroes/" + GetPortraitHero(playerInfo.player_selected_hero) + ".png";
+			}
+			if (playerPortrait.woda_portrait_src !== portraitSrc)
+			{
+				playerPortrait.woda_portrait_src = portraitSrc;
+				playerPortrait.SetImage(portraitSrc);
 			}
 		}
 
@@ -290,17 +294,21 @@ function _ScoreboardUpdater_UpdatePlayerPanel(scoreboardConfig, playersContainer
 			{
 				let info = GetHeroInformation(String(playerInfo.player_selected_hero), playerId)
 				let hero_lvl = GetLevelByCoins(info.coins)
-                if (hero_lvl > 0)
+                if (image_rank.woda_rank_level !== hero_lvl)
                 {
-                    image_rank.style.backgroundImage = 'url("s2r://panorama/images/hud/reborn/top_bar_hero_radiant_badge_' + GetHeroRankIcon(hero_lvl) + '_psd.vtex")'
-                    image_rank.style.backgroundSize = "69px 47px"
-                    image_rank.style.backgroundPosition = "-5px 7px"
-                    image_rank.style.backgroundRepeat = "no-repeat"
-                    image_rank.style.opacity = "1"
-                }
-                else
-                {
-                    image_rank.style.opacity = "0"
+                    image_rank.woda_rank_level = hero_lvl
+                    if (hero_lvl > 0)
+                    {
+                        image_rank.style.backgroundImage = 'url("s2r://panorama/images/hud/reborn/top_bar_hero_radiant_badge_' + GetHeroRankIcon(hero_lvl) + '_psd.vtex")'
+                        image_rank.style.backgroundSize = "69px 47px"
+                        image_rank.style.backgroundPosition = "-5px 7px"
+                        image_rank.style.backgroundRepeat = "no-repeat"
+                        image_rank.style.opacity = "1"
+                    }
+                    else
+                    {
+                        image_rank.style.opacity = "0"
+                    }
                 }
 			}
 		}
@@ -842,17 +850,24 @@ function SetPSelectEvent(panel, cooldown, player_id_tip)
 {
 	if (panel)
 	{
-		if ( cooldown ) 
-		{ 
+		var tip_event_state = cooldown ? "cooldown" : "ready"
+		if (panel.woda_tip_event_state === tip_event_state)
+		{
+			return
+		}
+		panel.woda_tip_event_state = tip_event_state
+		if ( cooldown )
+		{
 			panel.SetPanelEvent("onactivate", function() {})
 	    	return
 		}
-	    panel.SetPanelEvent("onactivate", function() 
-	    { 
+	    panel.SetPanelEvent("onactivate", function()
+	    {
 	    	if (tip_cooldown_visual)
 	    	{
 				GameEvents.SendCustomGameEventToServer_custom("PlayerTip", {player_id_tip : player_id_tip, });
 	        	panel.SetPanelEvent("onactivate", function() {})
+	        	panel.woda_tip_event_state = "used"
 	        	tip_cooldown_visual = false
 	        	$.Schedule( 1.5, function()
 			    {
@@ -867,8 +882,14 @@ function SetTalentSelectEvent(panel, player_id, hero_name)
 {
 	if (panel)
 	{
-	    panel.SetPanelEvent("onactivate", function() 
-	    { 
+		var talent_event_key = player_id + ":" + hero_name
+		if (panel.woda_talent_event_key === talent_event_key)
+		{
+			return
+		}
+		panel.woda_talent_event_key = talent_event_key
+	    panel.SetPanelEvent("onactivate", function()
+	    {
             GameUI.CustomUIConfig().CheckEnemyTalent(player_id, hero_name)
 	    })
 	}

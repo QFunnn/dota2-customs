@@ -113,13 +113,12 @@ var mines_particles_list = {}
 
 function TechiesAltCast()
 {
-    let npc_dota_techies_land_mine = Entities.GetAllEntities();
-    npc_dota_techies_land_mine = npc_dota_techies_land_mine.filter(index => IsMine(index) && Entities.GetTeamNumber(index) == Players.GetTeam(Players.GetLocalPlayer()) && Entities.GetPlayerOwnerID(index) == Players.GetLocalPlayer() );
-
     let lastAbility = Abilities.GetLocalPlayerActiveAbility()
-    if ( (lastAbility != -1) && (Abilities.GetAbilityName(lastAbility) == "techies_land_mines_custom") ) 
+    if ( (lastAbility != -1) && (Abilities.GetAbilityName(lastAbility) == "techies_land_mines_custom") )
     {
-        npc_dota_techies_land_mine.forEach(function(mine_id) 
+        let npc_dota_techies_land_mine = Entities.GetAllEntities();
+        npc_dota_techies_land_mine = npc_dota_techies_land_mine.filter(index => IsMine(index) && Entities.GetTeamNumber(index) == Players.GetTeam(Players.GetLocalPlayer()) && Entities.GetPlayerOwnerID(index) == Players.GetLocalPlayer() );
+        npc_dota_techies_land_mine.forEach(function(mine_id)
         {
             if ((Entities.IsAlive(mine_id)))
             {
@@ -133,10 +132,11 @@ function TechiesAltCast()
             else
             {
                 let particle = mines_particles_list[mine_id];
-                if (particle) 
+                if (particle)
                 {
                     Particles.DestroyParticleEffect(particle, true);
                     Particles.ReleaseParticleIndex(particle);
+                    delete mines_particles_list[mine_id];
                 }
             }
         });

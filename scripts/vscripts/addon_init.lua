@@ -26,7 +26,6 @@ LinkLuaModifier(
 	"heroes/npc_dota_hero_vengefulspirit_custom/vengefulspirit_magic_missile_custom",
 	LUA_MODIFIER_MOTION_NONE
 )
-LinkLuaModifier("modifier_wodahunt_check", "modifiers/modifier_wodahunt", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier(
 	"modifier_disruptor_glimpse_custom_movement_check_aura",
 	"heroes/npc_dota_hero_disruptor_custom/disruptor_glimpse_custom",

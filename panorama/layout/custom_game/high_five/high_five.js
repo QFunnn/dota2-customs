@@ -45,9 +45,21 @@ function HighFive()
     GameEvents.SendCustomGameEventToServer_custom( "StartHighFive", {} );
 }
 
-function Tick() 
+var high_five_panel_cache = null
+
+function GetHighFivePanel()
 {
-    let high_five_woda = FindDotaHudElement("high_five_woda")
+    if (high_five_panel_cache && high_five_panel_cache.IsValid())
+    {
+        return high_five_panel_cache
+    }
+    high_five_panel_cache = FindDotaHudElement("high_five_woda")
+    return high_five_panel_cache
+}
+
+function Tick()
+{
+    let high_five_woda = GetHighFivePanel()
     var selected_index = Players.GetLocalPlayerPortraitUnit();
     let heroIndex = Game.GetPlayerInfo(Game.GetLocalPlayerID()).player_selected_hero_entity_index
     if (high_five_woda)

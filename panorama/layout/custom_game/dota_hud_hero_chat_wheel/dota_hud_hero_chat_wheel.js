@@ -298,6 +298,9 @@ function OnMouseOut(num) {
 
 GameEvents.Subscribe_custom( 'chat_dota_sound', ChatSound );
 
+var chat_wheel_lines = []
+var CHAT_WHEEL_MAX_LINES = 50
+
 function ChatSound( data )
 {
     let dotaHud = $.GetContextPanel().GetParent().GetParent().GetParent()
@@ -351,9 +354,19 @@ function ChatSound( data )
     let SoundIcon = $.CreatePanel("Image", ChatPanelSound, "", { class:"ChatWheelIcon", style:"margin-left:4px;width:20px;height:20px;", src:"file://{images}/hud/reborn/icon_scoreboard_mute_sound.psd" }); 
     let LabelSound = $.CreatePanel("Label", ChatPanelSound, "", { text:`${sound_name}`, style:`${phase_label_color_style}`});
 
+    chat_wheel_lines.push(ChatPanelSound)
+    while (chat_wheel_lines.length > CHAT_WHEEL_MAX_LINES)
+    {
+        let old_line = chat_wheel_lines.shift()
+        if (old_line && old_line.IsValid())
+        {
+            old_line.DeleteAsync(0)
+        }
+    }
+
     $.Schedule( 7, function()
     {
-        if (ChatPanelSound) 
+        if (ChatPanelSound && ChatPanelSound.IsValid())
         {
             ChatPanelSound.AddClass("ChatLine"); 
             ChatPanelSound.AddClass("Expired");  

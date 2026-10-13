@@ -30,12 +30,14 @@ function Think()
         if (vectorTargetParticle) 
         {
             Particles.DestroyParticleEffect(vectorTargetParticle, true);
+            Particles.ReleaseParticleIndex(vectorTargetParticle);
             vectorTargetParticle = undefined;
         }
 
         if (vectorTargetParticleDB) 
         {
             Particles.DestroyParticleEffect(vectorTargetParticleDB, true);
+            Particles.ReleaseParticleIndex(vectorTargetParticleDB);
             vectorTargetParticleDB = undefined;
         }
         
@@ -290,28 +292,50 @@ function Vector_normalize(vec)
 	return [vec[0] * val, vec[1] * val, vec[2] * val];
 }
 
+var wardThinkTpContainer = null;
+var wardThinkTpCharges = null;
+var wardThinkTpHotkey = null;
+
+function WardThinkPanelAlive(panel)
+{
+    return panel != null && panel.IsValid();
+}
+
 function updateTeleportUI() {
-    const panel = FindDotaHudElement("inventory_tpscroll_container");
-    
+    if (!WardThinkPanelAlive(wardThinkTpContainer)) {
+        wardThinkTpContainer = FindDotaHudElement("inventory_tpscroll_container");
+        wardThinkTpCharges = null;
+        wardThinkTpHotkey = null;
+    }
+    const panel = wardThinkTpContainer;
+
     if (!panel) return;
-    
-    const panelCharges = panel.FindChildTraverse("tpCharges");
+
+    if (!WardThinkPanelAlive(wardThinkTpCharges)) {
+        wardThinkTpCharges = panel.FindChildTraverse("tpCharges");
+    }
+    const panelCharges = wardThinkTpCharges;
     if (panelCharges) {
         panelCharges.visible = true;
-        
+
+        let chargesText = "0/0";
         const modifier = FindModifier(cachedLocalPlayer, "modifier_item_ward_dispenser_custom_ward");
         if (modifier !== "none") {
             const ability = Buffs.GetAbility(cachedLocalPlayer, modifier);
-            panelCharges.text = 
-                Items.GetSecondaryCharges(ability) + "/" + 
+            chargesText =
+                Items.GetSecondaryCharges(ability) + "/" +
                 Items.GetCurrentCharges(ability);
-        } else {
-            panelCharges.text = "0/0";
+        }
+        if (panelCharges.text !== chargesText) {
+            panelCharges.text = chargesText;
         }
     }
-    
-    const panelHotkey = panel.FindChildTraverse("inventory_tpscroll_HotkeyContainer")?.FindChildTraverse("Hotkey");
-    if (panelHotkey) 
+
+    if (!WardThinkPanelAlive(wardThinkTpHotkey)) {
+        wardThinkTpHotkey = panel.FindChildTraverse("inventory_tpscroll_HotkeyContainer")?.FindChildTraverse("Hotkey");
+    }
+    const panelHotkey = wardThinkTpHotkey;
+    if (panelHotkey)
     {
         panelHotkey.visible = true;
     }

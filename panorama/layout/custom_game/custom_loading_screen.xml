@@ -35,6 +35,7 @@
 					<Label id="WodaRosterCountdown" class="WodaRosterTimer" text="" />
 					<Panel class="WodaRosterThrobber" />
 				</Panel>
+				<Label id="WodaRosterCancelled" class="WodaRosterCancelled" text="#woda_roster_cancelled" />
 				<Panel id="WodaRosterList" class="WodaRosterList" />
 			</Panel>
 		</Panel>
@@ -78,5 +79,8 @@
 			</Panel>
 		</Panel>
 		<Image class="WowBanner" id="WowBanner" style="opacity:0;" src="s2r://panorama/images/banners/wow_2_png.vtex" onactivate="ExternalBrowserGoToURL(&apos;https://plrk.co/p/WorldOfDotaAug&apos;);" />
+		<Panel class="WodaDashboardOverlay">
+			<Button class="WodaDashboardButton" onactivate="DOTAShowDashboard()" />
+		</Panel>
 	</Panel>
 </root>

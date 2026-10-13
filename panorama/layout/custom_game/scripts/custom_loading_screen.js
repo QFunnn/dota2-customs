@@ -277,6 +277,7 @@ function WodaLoadingRoster()
     if (root && list)
     {
         root.SetHasClass("Visible", players.length > 0)
+        root.SetHasClass("Cancelled", !!data && data.phase === "cancelled")
         var keep = {}
         var previous = null
         for (var i = 0; i < players.length; i++)

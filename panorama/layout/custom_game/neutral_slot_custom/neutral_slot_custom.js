@@ -14,19 +14,27 @@ if (inventory_composition_layer_container)
     $("#NeutralSlotCustom").SetParent(inventory_composition_layer_container)
 }
 
+var neutral_slot_last_image = null
+var neutral_slot_last_item = null
+var neutral_slot_last_name = null
+
 function NeutralSlotUpdater()
 {
     if (inventory_composition_layer_container)
     {
         let NeutralSlotCustom = inventory_composition_layer_container.FindChildTraverse("NeutralSlotCustom")
-        if (NeutralSlotCustom)
+        let item = NeutralSlotCustom ? Entities.GetItemInSlot( Players.GetLocalPlayerPortraitUnit(), 17 ) : -1;
+        let item_name = ""
+        if (item && item != -1)
         {
-            let item = Entities.GetItemInSlot( Players.GetLocalPlayerPortraitUnit(), 17 );
-            let item_name = ""
-            if (item && item != -1)
-            {
-                item_name = Abilities.GetAbilityName( item );
-            }
+            item_name = Abilities.GetAbilityName( item );
+        }
+        let item_image = NeutralSlotCustom ? NeutralSlotCustom.GetChild(0) : null
+        if (NeutralSlotCustom && (item_image !== neutral_slot_last_image || item !== neutral_slot_last_item || item_name !== neutral_slot_last_name))
+        {
+            neutral_slot_last_image = item_image
+            neutral_slot_last_item = item
+            neutral_slot_last_name = item_name
             NeutralSlotCustom.GetChild(0).itemname = item_name;
             NeutralSlotCustom.GetChild(0).contextEntityIndex = item;
             if (item && item != -1)

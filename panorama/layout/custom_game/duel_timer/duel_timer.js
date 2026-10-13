@@ -15,6 +15,7 @@ GameEvents.Subscribe_custom( "wodaset_removeduel", removeduel );
 GameEvents.Subscribe_custom( "wodaset_startduel_boss", wodaset_startduel_boss );
 var duelBetTimeEnd = 0;
 var duelBetUpdateToken = 0;
+var duelHeroPanels = {};
 
 function GetCurrentDuelGameTime()
 {
@@ -119,6 +120,7 @@ function wodaset_startduel_duo(data)
     }
 
     // init
+    duelHeroPanels = {}
     $("#panelheroes").RemoveAndDeleteChildren()
     //$("#buttonpredict1").SetHasClass("selected", false)
 	//$("#buttonpredict2").SetHasClass("selected", false)
@@ -206,12 +208,13 @@ function wodaset_startduel_duo(data)
     $("#PanelBoss").style.visibility = "collapse"
     $("#panelheroes").style.visibility = "visible"
 
+    UpdateDuelHeroes(data.heroes)
     StartDuelBetTime(data)
 }
 
 function CreatePlayerPanelDuel(id, player_team, player_count, heroes_in_panel)
 {
-    let playerInfo = Game.GetPlayerInfo( Number(id) );
+    let playerInfo = Game.GetPlayerInfo( Number(id) ) || {};
 
     let panelhero = $.CreatePanel("Panel", heroes_in_panel, "")
     panelhero.AddClass("panelhero")
@@ -243,14 +246,6 @@ function CreatePlayerPanelDuel(id, player_team, player_count, heroes_in_panel)
     let herotalentint1 = $.CreatePanel("Label", herotalentslot_3, "")
     herotalentint1.AddClass("herotalentlabel")
 
-    let playerstalents_table = Game.GetCustomTable("playerstalents", String(id))
-	if (playerstalents_table) 
-	{
-		herotalentstr1.text = playerstalents_table["str"] || 0
-		herotalentagi1.text = playerstalents_table["agi"] || 0
-		herotalentint1.text = playerstalents_table["int"] || 0
-	}
-
     // icon and level
     let heroicon = $.CreatePanel("Panel", heroinfo, "heroicon"+player_team)
     heroicon.AddClass("heroicon"+player_team)
@@ -279,115 +274,117 @@ function CreatePlayerPanelDuel(id, player_team, player_count, heroes_in_panel)
 
     let ItemPanel_neutral = $.CreatePanel("Panel", NeutralSlots, "ItemPanel_"+player_team+"_neutral")
     ItemPanel_neutral.AddClass("ItemPanel_"+player_team+"_neutral")
-    ItemPanel_neutral.neutral_id = -1
 
     let ItemPanel_neutral_passive = $.CreatePanel("Panel", NeutralSlots, "ItemPanel_"+player_team+"_neutral_passive")
     ItemPanel_neutral_passive.AddClass("ItemPanel_"+player_team+"_neutral_passive")
-    ItemPanel_neutral_passive.neutral_id = -1
 
-    CheckItemsPlayer(playerInfo.player_selected_hero_entity_index, ItemPanel_inventory, ItemPanel_neutral, HeroLevelLabel, ItemPanel_neutral_passive)
+    RegisterDuelHeroPanel(id, ItemPanel_inventory, ItemPanel_neutral, ItemPanel_neutral_passive, HeroLevelLabel, "item_neutral_passive", { str: herotalentstr1, agi: herotalentagi1, int: herotalentint1 })
 }
 
-function CheckItemsPlayer(player, item_panel, item_neutral, HeroLevelLabel, item_neutral_passive)
+function RegisterDuelHeroPanel(player_id, item_panel, item_neutral, item_neutral_passive, level_label, passive_image_id, talent_labels)
 {
-    if ($("#panelduel").style.opacity == 0 || $("#panelduel").style.opacity == "0") 
+    item_panel.RemoveAndDeleteChildren()
+    item_panel.EntityItemsNames = []
+    item_neutral.RemoveAndDeleteChildren()
+    item_neutral.item_name = ""
+    item_neutral_passive.RemoveAndDeleteChildren()
+    item_neutral_passive.item_name = ""
+    level_label.text = ""
+    duelHeroPanels[String(player_id)] =
+    {
+        items: item_panel,
+        neutral: item_neutral,
+        neutral_passive: item_neutral_passive,
+        level: level_label,
+        passive_image_id: passive_image_id,
+        talents: talent_labels
+    }
+}
+
+function UpdateDuelHeroes(heroes)
+{
+    for (var player_id in duelHeroPanels)
+    {
+        UpdateDuelHeroTalents(duelHeroPanels[player_id], player_id)
+        if (heroes && heroes[player_id])
+        {
+            ApplyDuelHeroInfo(duelHeroPanels[player_id], heroes[player_id])
+        }
+    }
+}
+
+function UpdateDuelHeroTalents(panels, player_id)
+{
+    let talents = Game.GetCustomTable("playerstalents", player_id)
+    if (!talents || !panels.talents)
     {
         return
     }
+    panels.talents.str.text = talents["str"] || 0
+    panels.talents.agi.text = talents["agi"] || 0
+    panels.talents.int.text = talents["int"] || 0
+}
 
-    var EntityItems = [];
+function ApplyDuelHeroInfo(panels, info)
+{
+    if (info.level !== undefined)
+    {
+        panels.level.text = info.level
+    }
+
     var EntityItemsNames = [];
-    var neutral_item_id = -1;
-    var neutral_item_name = ""
-    var neutral_item_id_passive = -1;
-    var neutral_item_name_passive = ""
-
-    for (var i = 0; i <= 5; i++) 
+    if (info.items)
     {
-        var item = Entities.GetItemInSlot(player, i);
-        if (item !== -1)
+        for (var i = 1; i <= 6; i++)
         {
-            EntityItems.push(item);
-            EntityItemsNames.push(Abilities.GetAbilityName(item));
+            if (info.items[i])
+            {
+                EntityItemsNames.push(info.items[i]);
+            }
         }
     }
 
-    HeroLevelLabel.text = Entities.GetLevel( player )
-
-    var neutral_item = Entities.GetItemInSlot(player, 16);
-    if (neutral_item !== -1)
+    if (!isEqual(EntityItemsNames, panels.items.EntityItemsNames))
     {
-        neutral_item_id = neutral_item;
-        neutral_item_name = Abilities.GetAbilityName(neutral_item)
-    }
-
-    var neutral_item_passive = Entities.GetItemInSlot(player, 17);
-    if (neutral_item_passive !== -1)
-    {
-        neutral_item_id_passive = neutral_item_passive;
-        neutral_item_name_passive = Abilities.GetAbilityName(neutral_item_passive)
-    }
-
-    if (!isEqual(EntityItemsNames, item_panel.EntityItemsNames) || item_panel.GetChildCount() <= 0) 
-    {
-        item_panel.RemoveAndDeleteChildren()
-        for (k in EntityItems)
+        panels.items.RemoveAndDeleteChildren()
+        for (var k = 0; k < EntityItemsNames.length; k++)
         {
-            var item = EntityItems[k];
-            var itemName = Abilities.GetAbilityName(item);
-            let itemImage = $.CreatePanel("DOTAItemImage", item_panel, "");
-            //itemImage.abilityId = item;
-            itemImage.itemname = itemName;
-            itemImage.SetPanelEvent("onmouseover", ShowItemTooltip(itemImage));
-            itemImage.SetPanelEvent("onmouseout", HideItemTooltip(itemImage));
+            CreateDuelItemImage(panels.items, "", EntityItemsNames[k])
         }
-        item_panel.EntityItems = EntityItems;
-        item_panel.EntityItemsNames = EntityItemsNames;
-    }
-    if ( (item_neutral.neutral_id != neutral_item_id || item_neutral.GetChildCount() <= 0 ) && neutral_item_id != -1)
-    {
-        item_neutral.RemoveAndDeleteChildren()
-        item_neutral.neutral_id = neutral_item_id
-        var item_n = neutral_item_id;
-        var itemName = Abilities.GetAbilityName(item_n);
-        let itemImage = $.CreatePanel("DOTAItemImage", item_neutral, "neutral_item");
-        itemImage.style.verticalAlign = "center"
-        //itemImage.abilityId = item_n;
-        itemImage.itemname = itemName;
-        itemImage.SetPanelEvent("onmouseover", ShowItemTooltip(itemImage));
-        itemImage.SetPanelEvent("onmouseout", HideItemTooltip(itemImage));
-    }
-    else if (neutral_item_id == -1)
-    {
-        item_neutral.RemoveAndDeleteChildren()
+        panels.items.EntityItemsNames = EntityItemsNames;
     }
 
-    if ( (item_neutral_passive.neutral_id != neutral_item_id_passive || item_neutral_passive.GetChildCount() <= 0 ) && neutral_item_id_passive != -1)
-    {
-        item_neutral_passive.RemoveAndDeleteChildren()
-        item_neutral_passive.neutral_id = neutral_item_id_passive
-        var item_n = neutral_item_id_passive;
-        var itemName = Abilities.GetAbilityName(item_n);
-        let itemImage = $.CreatePanel("DOTAItemImage", item_neutral_passive, "item_neutral_passive");
-        itemImage.style.verticalAlign = "center"
-        //itemImage.abilityId = item_n;
-        itemImage.itemname = itemName;
-        itemImage.SetPanelEvent("onmouseover", ShowItemTooltip(itemImage));
-        itemImage.SetPanelEvent("onmouseout", HideItemTooltip(itemImage));
-    }
-    else if (neutral_item_id_passive == -1)
-    {
-        item_neutral_passive.RemoveAndDeleteChildren()
-    }
+    SetDuelNeutralItem(panels.neutral, info.neutral || "", "neutral_item")
+    SetDuelNeutralItem(panels.neutral_passive, info.neutral_passive || "", panels.passive_image_id)
+}
 
-    $.Schedule(0.5, function() 
+function SetDuelNeutralItem(item_panel, item_name, image_id)
+{
+    if (item_panel.item_name == item_name)
     {
-        CheckItemsPlayer(player, item_panel, item_neutral, HeroLevelLabel, item_neutral_passive)
-    });
+        return
+    }
+    item_panel.RemoveAndDeleteChildren()
+    item_panel.item_name = item_name
+    if (item_name != "")
+    {
+        let itemImage = CreateDuelItemImage(item_panel, image_id, item_name)
+        itemImage.style.verticalAlign = "center"
+    }
+}
+
+function CreateDuelItemImage(parent, image_id, item_name)
+{
+    let itemImage = $.CreatePanel("DOTAItemImage", parent, image_id);
+    itemImage.itemname = item_name;
+    itemImage.SetPanelEvent("onmouseover", ShowItemTooltip(itemImage));
+    itemImage.SetPanelEvent("onmouseout", HideItemTooltip(itemImage));
+    return itemImage
 }
 
 function startduel(data)
 {
+    duelHeroPanels = {}
 	$("#buttonpredict1").SetHasClass("selected", false)
 	$("#buttonpredict2").SetHasClass("selected", false)
 	$("#paneldueltimer2").SetHasClass("animation", false)
@@ -398,8 +395,8 @@ function startduel(data)
 	if (data.player_id_1 == Players.GetLocalPlayer() || data.player_id_2 == Players.GetLocalPlayer()) {
 		predictactive = false
 	}
-	var playerInfo_1 = Game.GetPlayerInfo( data.player_id_1 );
-	var playerInfo_2 = Game.GetPlayerInfo( data.player_id_2 );
+	var playerInfo_1 = Game.GetPlayerInfo( data.player_id_1 ) || {};
+	var playerInfo_2 = Game.GetPlayerInfo( data.player_id_2 ) || {};
 
     let icon_1 = GetPortraitHero(playerInfo_1.player_selected_hero)
     let icon_2 = GetPortraitHero(playerInfo_2.player_selected_hero)
@@ -408,18 +405,6 @@ function startduel(data)
 	$("#heroicon2").style.backgroundImage='url("file://{images}/heroes/' + icon_2 + '.png")'
 	$("#heroicon1").style.backgroundSize="100%"
 	$("#heroicon2").style.backgroundSize="100%"
-	let table1 = Game.GetCustomTable("playerstalents", String(data.player_id_1))
-	let table2 = Game.GetCustomTable("playerstalents", String(data.player_id_2))
-	if (table1) {
-		$("#herotalentstr1").text = table1["str"] || 0
-		$("#herotalentagi1").text = table1["agi"] || 0
-		$("#herotalentint1").text = table1["int"] || 0
-	}
-	if (table2) {
-		$("#herotalentstr2").text = table2["str"] || 0
-		$("#herotalentagi2").text = table2["agi"] || 0
-		$("#herotalentint2").text = table2["int"] || 0
-	}
 	if (predictactive) {
 		$("#buttonpredict1").style.visibility = "visible"
 		$("#buttonpredict2").style.visibility = "visible"
@@ -456,13 +441,15 @@ function startduel(data)
 	$("#PanelBoss").style.visibility = "collapse"
 	$("#panelheroes").style.visibility = "visible"
 	$("#panelduel").style.opacity = 1
-    CheckItemsPlayer_One(playerInfo_1.player_selected_hero_entity_index)
-    CheckItemsPlayer_One2(playerInfo_2.player_selected_hero_entity_index)
+    RegisterDuelHeroPanel(data.player_id_1, $("#ItemPanel_1_inventory"), $("#ItemPanel_1_neutral"), $("#ItemPanel_1_neutral_passive"), $("#HeroLevelLabel_1"), "neutral_item_passive", { str: $("#herotalentstr1"), agi: $("#herotalentagi1"), int: $("#herotalentint1") })
+    RegisterDuelHeroPanel(data.player_id_2, $("#ItemPanel_2_inventory"), $("#ItemPanel_2_neutral"), $("#ItemPanel_2_neutral_passive"), $("#HeroLevelLabel_2"), "neutral_item_passive", { str: $("#herotalentstr2"), agi: $("#herotalentagi2"), int: $("#herotalentint2") })
+    UpdateDuelHeroes(data.heroes)
     StartDuelBetTime(data)
 }
 
 function wodaset_startduel_boss(data)
 {
+    duelHeroPanels = {}
     StopDuelBetTime()
 	$("#PanelBoss").style.backgroundImage='url("file://{images}/custom_game/talents/bg_boss_' + data.boss + '.png")'
 	$("#PanelBoss").style.backgroundSize="100%"
@@ -475,6 +462,7 @@ function wodaset_startduel_boss(data)
 
 function dueltimer(data)
 {
+    UpdateDuelHeroes(data.heroes)
 	$("#paneldueltimer2").SetHasClass("animation", true)
 	let percent = ((data.full_time-(data.time-1))*100)/data.full_time
     $("#paneldueltimer2").style['width'] = (100 - percent) +'%';
@@ -501,6 +489,7 @@ function dueltimer(data)
 
 function removeduel(data)
 {
+    duelHeroPanels = {}
     StopDuelBetTime()
     let buttons = GetDuelBetButtons();
     for (let i = 0; i < buttons.length; i++)
@@ -521,211 +510,6 @@ function selectbutton(panel)
 	$("#buttonpredict1").SetHasClass("selected", false)
 	$("#buttonpredict2").SetHasClass("selected", false)
 	panel.SetHasClass("selected", true)
-}
-
-function CheckItemsPlayer_One(player)
-{
-    if ($("#panelduel").style.opacity == 0 || $("#panelduel").style.opacity == "0") 
-    {
-        return
-    }
-
-    let item_panel = $("#ItemPanel_1_inventory")
-    let item_neutral = $("#ItemPanel_1_neutral")
-    let item_neutral_passive = $("#ItemPanel_1_neutral_passive")
-    var EntityItems = [];
-    var EntityItemsNames = [];
-    var neutral_item_id = -1;
-    var neutral_item_name = ""
-    var neutral_item_id_passive = -1;
-    var neutral_item_name_passive = ""
-
-    for (var i = 0; i <= 5; i++) 
-    {
-        var item = Entities.GetItemInSlot(player, i);
-        if (item !== -1)
-        {
-            EntityItems.push(item);
-            EntityItemsNames.push(Abilities.GetAbilityName(item));
-        }
-    }
-
-    $("#HeroLevelLabel_1").text = Entities.GetLevel( player )
-
-    var neutral_item = Entities.GetItemInSlot(player, 16);
-    if (neutral_item !== -1)
-    {
-        neutral_item_id = neutral_item;
-        neutral_item_name = Abilities.GetAbilityName(neutral_item)
-    }
-
-    var neutral_item_passive = Entities.GetItemInSlot(player, 17);
-    if (neutral_item_passive !== -1)
-    {
-        neutral_item_id_passive = neutral_item_passive;
-        neutral_item_name_passive = Abilities.GetAbilityName(neutral_item_passive)
-    }
-
-    if (!isEqual(EntityItemsNames, item_panel.EntityItemsNames) || item_panel.GetChildCount() <= 0) 
-    {
-        item_panel.RemoveAndDeleteChildren()
-        for (k in EntityItems)
-        {
-            var item = EntityItems[k];
-            var itemName = Abilities.GetAbilityName(item);
-            let itemImage = $.CreatePanel("DOTAItemImage", item_panel, "");
-            //itemImage.abilityId = item;
-            itemImage.itemname = itemName;
-            itemImage.SetPanelEvent("onmouseover", ShowItemTooltip(itemImage));
-            itemImage.SetPanelEvent("onmouseout", HideItemTooltip(itemImage));
-        }
-        item_panel.EntityItems = EntityItems;
-        item_panel.EntityItemsNames = EntityItemsNames;
-    }
-    if ( (item_neutral.neutral_id != neutral_item_id || item_neutral.GetChildCount() <= 0 ) && neutral_item_id != -1)
-    {
-        item_neutral.RemoveAndDeleteChildren()
-        item_neutral.neutral_id = neutral_item_id
-        var item_n = neutral_item_id;
-        var itemName = Abilities.GetAbilityName(item_n);
-        let itemImage = $.CreatePanel("DOTAItemImage", item_neutral, "neutral_item");
-        itemImage.style.verticalAlign = "center"
-        //itemImage.abilityId = item_n;
-        itemImage.itemname = itemName;
-        itemImage.SetPanelEvent("onmouseover", ShowItemTooltip(itemImage));
-        itemImage.SetPanelEvent("onmouseout", HideItemTooltip(itemImage));
-    }
-    else if (neutral_item_id == -1)
-    {
-        item_neutral.RemoveAndDeleteChildren()
-    }
-
-    if ( (item_neutral_passive.neutral_id != neutral_item_id_passive || item_neutral_passive.GetChildCount() <= 0 ) && neutral_item_id_passive != -1)
-    {
-        item_neutral_passive.RemoveAndDeleteChildren()
-        item_neutral_passive.neutral_id = neutral_item_id_passive
-        var item_n = neutral_item_id_passive;
-        var itemName = Abilities.GetAbilityName(item_n);
-        let itemImage = $.CreatePanel("DOTAItemImage", item_neutral_passive, "neutral_item_passive");
-        itemImage.style.verticalAlign = "center"
-        //itemImage.abilityId = item_n;
-        itemImage.itemname = itemName;
-        itemImage.SetPanelEvent("onmouseover", ShowItemTooltip(itemImage));
-        itemImage.SetPanelEvent("onmouseout", HideItemTooltip(itemImage));
-    }
-    else if (neutral_item_id_passive == -1)
-    {
-        item_neutral_passive.RemoveAndDeleteChildren()
-    }
-
-    $.Schedule(0.5, function() 
-    {
-        CheckItemsPlayer_One(player)
-    });
-}
-
-function CheckItemsPlayer_One2(player)
-{
-    if ($("#panelduel").style.opacity == 0 || $("#panelduel").style.opacity == "0") 
-    {
-        return
-    }
-
-    let item_panel = $("#ItemPanel_2_inventory")
-    let item_neutral = $("#ItemPanel_2_neutral")
-    let item_neutral_passive = $("#ItemPanel_2_neutral_passive")
-    var EntityItems = [];
-    var EntityItemsNames = [];
-    var neutral_item_id = -1;
-    var neutral_item_name = ""
-    var neutral_item_id_passive = -1;
-    var neutral_item_name_passive = ""
-
-    for (var i = 0; i <= 5; i++) 
-    {
-        var item = Entities.GetItemInSlot(player, i);
-        if (item !== -1)
-        {
-            EntityItems.push(item);
-            EntityItemsNames.push(Abilities.GetAbilityName(item));
-        }
-    }
-
-    $("#HeroLevelLabel_2").text = Entities.GetLevel( player )
-
-    var neutral_item = Entities.GetItemInSlot(player, 16);
-    if (neutral_item !== -1)
-    {
-        neutral_item_id = neutral_item;
-        neutral_item_name = Abilities.GetAbilityName(neutral_item)
-    }
-
-    var neutral_item_passive = Entities.GetItemInSlot(player, 17);
-    if (neutral_item_passive !== -1)
-    {
-        neutral_item_id_passive = neutral_item_passive;
-        neutral_item_name_passive = Abilities.GetAbilityName(neutral_item_passive)
-    }
-
-    if (!isEqual(EntityItemsNames, item_panel.EntityItemsNames) || item_panel.GetChildCount() <= 0) 
-    {
-        
-        item_panel.RemoveAndDeleteChildren()
-        for (k in EntityItems)
-        {
-            
-            var item = EntityItems[k];
-            var itemName = Abilities.GetAbilityName(item);
-            let itemImage = $.CreatePanel("DOTAItemImage", item_panel, "");
-            //itemImage.abilityId = item;
-            itemImage.itemname = itemName;
-            itemImage.SetPanelEvent("onmouseover", ShowItemTooltip(itemImage));
-            itemImage.SetPanelEvent("onmouseout", HideItemTooltip(itemImage));
-        }
-        item_panel.EntityItems = EntityItems;
-        item_panel.EntityItemsNames = EntityItemsNames;
-    }
-
-    if ( (item_neutral.neutral_id != neutral_item_id || item_neutral.GetChildCount() <= 0 ) && neutral_item_id != -1)
-    {
-        item_neutral.RemoveAndDeleteChildren()
-        item_neutral.neutral_id = neutral_item_id
-        var item_n = neutral_item_id;
-        var itemName = Abilities.GetAbilityName(item_n);
-        let itemImage = $.CreatePanel("DOTAItemImage", item_neutral, "neutral_item");
-        itemImage.style.verticalAlign = "center"
-        //itemImage.abilityId = item_n;
-        itemImage.itemname = itemName;
-        itemImage.SetPanelEvent("onmouseover", ShowItemTooltip(itemImage));
-        itemImage.SetPanelEvent("onmouseout", HideItemTooltip(itemImage));
-    }
-    else if (neutral_item_id == -1)
-    {
-        item_neutral.RemoveAndDeleteChildren()
-    }
-
-    if ( (item_neutral_passive.neutral_id != neutral_item_id_passive || item_neutral_passive.GetChildCount() <= 0 ) && neutral_item_id_passive != -1)
-    {
-        item_neutral_passive.RemoveAndDeleteChildren()
-        item_neutral_passive.neutral_id = neutral_item_id_passive
-        var item_n = neutral_item_id_passive;
-        var itemName = Abilities.GetAbilityName(item_n);
-        let itemImage = $.CreatePanel("DOTAItemImage", item_neutral_passive, "neutral_item_passive");
-        itemImage.style.verticalAlign = "center"
-        //itemImage.abilityId = item_n;
-        itemImage.itemname = itemName;
-        itemImage.SetPanelEvent("onmouseover", ShowItemTooltip(itemImage));
-        itemImage.SetPanelEvent("onmouseout", HideItemTooltip(itemImage));
-    }
-    else if (neutral_item_id_passive == -1)
-    {
-        item_neutral_passive.RemoveAndDeleteChildren()
-    }
-
-    $.Schedule(0.5, function() 
-    {
-        CheckItemsPlayer_One2(player)
-    });
 }
 
 function isEqual(a, b)

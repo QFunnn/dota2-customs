@@ -19,11 +19,13 @@ var WODA_CONNECT_STATE_KEYS = {
 	session: "#woda_connect_session",
 	search_choose: "#woda_connect_search_choose",
 	searching: "#woda_connect_searching",
-	search_found: "#woda_connect_search_found"
+	search_found: "#woda_connect_search_found",
+	search_ban: "#woda_connect_search_ban"
 };
 var g_WodaStatusTime = null;
-var g_WodaRegion = { serial: null, selected: null, deadline: 0, mode: null, newConfirm: false };
-var g_WodaSearch = { selected: null, leader: false, status: null, startedAt: 0 };
+var g_WodaRegion = { serial: null, selected: null, deadline: 0, mode: null, newConfirm: false, sessionSerial: null, confirmArmedAt: 0 };
+var g_WodaSearch = { selected: null, picked: false, leader: false, status: null, startedAt: 0, cards: {} };
+var g_WodaBan = { entries: [], receivedAt: 0, partner: null };
 
 function WodaLocalizeOr(key, fallback)
 {
@@ -61,15 +63,9 @@ function WodaModeName(mode)
 function WodaSelectMode(mode)
 {
 	g_WodaSearch.selected = mode;
-	var list = $("#WodaModeList");
-	if (!list)
+	for (var key in g_WodaSearch.cards)
 	{
-		return;
-	}
-	var children = list.Children();
-	for (var i = 0; i < children.length; i++)
-	{
-		children[i].SetHasClass("Selected", children[i].id === "WodaModeCard_" + mode);
+		g_WodaSearch.cards[key].SetHasClass("Selected", key === mode);
 	}
 }
 
@@ -94,20 +90,22 @@ function WodaBuildModeCard(parent, mode, info)
 	name.text = WodaModeName(mode);
 
 	var count = $.CreatePanel("Label", card, "");
-	count.AddClass("WodaRegionFree");
+	count.AddClass("WodaModeCount");
 	if (info && Number(info.known) > 0)
 	{
-		count.SetDialogVariableInt("count", Number(info.searching) || 0);
+		var searching = Number(info.searching) || 0;
+		count.SetDialogVariableInt("count", searching);
 		count.SetDialogVariableInt("needed", Number(info.needed) || 0);
 		count.text = $.Localize("#woda_search_in_queue", count);
+		count.SetHasClass("HasPlayers", searching > 0);
 	}
 	else
 	{
 		count.text = "";
 	}
 
-	card.SetPanelEvent("onactivate", function() { if (g_WodaSearch.leader) { WodaSelectMode(mode); } });
-	card.SetPanelEvent("ondblclick", function() { if (g_WodaSearch.leader) { WodaSelectMode(mode); WodaStartSearch(mode); } });
+	card.SetPanelEvent("onactivate", function() { if (g_WodaSearch.leader) { g_WodaSearch.picked = true; WodaSelectMode(mode); } });
+	card.SetPanelEvent("ondblclick", function() { if (g_WodaSearch.leader) { g_WodaSearch.picked = true; WodaSelectMode(mode); WodaStartSearch(mode); } });
 	return card;
 }
 
@@ -121,15 +119,23 @@ function WodaRenderSearchChoice(status)
 	}
 	g_WodaSearch.leader = Number(status.leader) > 0;
 	list.RemoveAndDeleteChildren();
+	g_WodaSearch.cards = {};
 	var modes = String(status.modes || "").split(",").filter(function(x) { return x !== ""; });
 	var counts = status.counts || {};
-	if (!g_WodaSearch.selected || modes.indexOf(g_WodaSearch.selected) < 0)
+	var preferred = String(status.preferred || "");
+	if (!g_WodaSearch.picked || !g_WodaSearch.selected || modes.indexOf(g_WodaSearch.selected) < 0)
 	{
-		g_WodaSearch.selected = modes[0];
+		g_WodaSearch.selected = modes.indexOf(preferred) >= 0 ? preferred : modes[0];
 	}
+	var row = null;
 	for (var i = 0; i < modes.length; i++)
 	{
-		WodaBuildModeCard(list, modes[i], counts[modes[i]]);
+		if (i % 2 === 0)
+		{
+			row = $.CreatePanel("Panel", list, "");
+			row.AddClass("WodaModeRow");
+		}
+		g_WodaSearch.cards[modes[i]] = WodaBuildModeCard(row, modes[i], counts[modes[i]]);
 	}
 	WodaSelectMode(g_WodaSearch.selected);
 	$("#WodaSearchStart").visible = g_WodaSearch.leader;
@@ -148,28 +154,37 @@ function WodaFormatTime(seconds)
 function WodaUpdateSearchText()
 {
 	var status = g_WodaSearch.status;
-	var label = $("#WodaSearchText");
-	if (!status || !label)
+	var modeLabel = $("#WodaSearchMode");
+	var progress = $("#WodaSearchProgress");
+	var time = $("#WodaSearchTime");
+	if (!status || !modeLabel || !progress || !time)
 	{
 		return;
 	}
-	var lines = [WodaModeName(status.search_mode)];
-	if (status.state === "search_found")
+	modeLabel.text = WodaModeName(status.search_mode);
+	var found = status.state === "search_found";
+	progress.SetHasClass("Found", found);
+	if (found)
 	{
-		lines.push($.Localize("#woda_search_found"));
+		progress.text = $.Localize("#woda_search_found");
+		progress.visible = true;
+		time.visible = false;
+		return;
+	}
+	if (Number(status.needed) > 0)
+	{
+		progress.SetDialogVariableInt("count", Number(status.searching) || 0);
+		progress.SetDialogVariableInt("needed", Number(status.needed) || 0);
+		progress.text = $.Localize("#woda_search_progress", progress);
+		progress.visible = true;
 	}
 	else
 	{
-		if (Number(status.needed) > 0)
-		{
-			label.SetDialogVariableInt("count", Number(status.searching) || 0);
-			label.SetDialogVariableInt("needed", Number(status.needed) || 0);
-			lines.push($.Localize("#woda_search_progress", label));
-		}
-		label.SetDialogVariable("time", WodaFormatTime((Date.now() - g_WodaSearch.startedAt) / 1000));
-		lines.push($.Localize("#woda_search_time", label));
+		progress.visible = false;
 	}
-	label.text = lines.join("\n");
+	time.SetDialogVariable("time", WodaFormatTime((Date.now() - g_WodaSearch.startedAt) / 1000));
+	time.text = $.Localize("#woda_search_time", time);
+	time.visible = true;
 }
 
 function WodaRenderSearching(status)
@@ -201,6 +216,103 @@ function WodaHideSearch()
 	$("#WodaSearchStart").visible = false;
 	$("#WodaSearchLeaderNote").visible = false;
 	g_WodaSearch.status = null;
+}
+
+function WodaParseBans(text)
+{
+	var entries = [];
+	var parts = String(text || "").split(",");
+	for (var i = 0; i < parts.length; i++)
+	{
+		var fields = parts[i].split(":");
+		if (fields.length >= 2 && fields[0] !== "")
+		{
+			entries.push({ sid: fields[0], left: Number(fields[1]) || 0, pid: fields.length >= 3 ? Number(fields[2]) : -1 });
+		}
+	}
+	return entries;
+}
+
+function WodaUpdateBanText()
+{
+	var box = $("#WodaBanBox");
+	if (!box || !box.BHasClass("Visible") || g_WodaBan.entries.length === 0)
+	{
+		return;
+	}
+	var elapsed = (Date.now() - g_WodaBan.receivedAt) / 1000;
+	var local = Players.GetLocalPlayer();
+	var own = null;
+	var other = null;
+	for (var i = 0; i < g_WodaBan.entries.length; i++)
+	{
+		var entry = g_WodaBan.entries[i];
+		var left = Math.ceil(entry.left - elapsed);
+		if (left <= 0)
+		{
+			continue;
+		}
+		if (entry.pid === local)
+		{
+			own = own || { sid: entry.sid, left: left };
+		}
+		else
+		{
+			other = other || { sid: entry.sid, left: left };
+		}
+	}
+	var shown = own || other;
+	var text = $("#WodaBanText");
+	var leftLabel = $("#WodaBanLeft");
+	var player = $("#WodaBanPlayer");
+	if (!shown)
+	{
+		leftLabel.text = "";
+		return;
+	}
+	text.text = $.Localize(own ? "#woda_search_ban_self" : "#woda_search_ban_party");
+	if (own)
+	{
+		player.visible = false;
+	}
+	else
+	{
+		if (g_WodaBan.partner !== other.sid)
+		{
+			player.RemoveAndDeleteChildren();
+			var avatar = $.CreatePanel("DOTAAvatarImage", player, "", { accountid: other.sid });
+			avatar.AddClass("WodaBanAvatar");
+			var name = $.CreatePanel("DOTAUserName", player, "", { accountid: other.sid });
+			name.AddClass("WodaBanName");
+			g_WodaBan.partner = other.sid;
+		}
+		player.visible = true;
+	}
+	leftLabel.SetDialogVariable("time", WodaFormatTime(shown.left));
+	leftLabel.text = $.Localize("#woda_search_ban_left", leftLabel);
+}
+
+function WodaRenderBan(status)
+{
+	var box = $("#WodaBanBox");
+	if (!box)
+	{
+		return;
+	}
+	g_WodaBan.entries = WodaParseBans(status.bans);
+	g_WodaBan.receivedAt = Date.now();
+	box.SetHasClass("Visible", true);
+	WodaUpdateBanText();
+}
+
+function WodaHideBan()
+{
+	var box = $("#WodaBanBox");
+	if (box)
+	{
+		box.SetHasClass("Visible", false);
+	}
+	g_WodaBan.entries = [];
 }
 
 function WodaSelectRegion(id)
@@ -307,12 +419,13 @@ function WodaRenderSession(status)
 	{
 		text.text = $.Localize("#woda_session_title") + (status.search_mode ? "\n" + WodaModeName(status.search_mode) : "") + (status.region ? "\n" + $.Localize("#woda_session_server") + " " + WodaRegionName(status.region) : "");
 	}
-	g_WodaRegion.newConfirm = false;
-	var newLabel = $("#WodaSessionNewLabel");
-	if (newLabel)
+	var sessionSerial = String(status.serial || "");
+	if (g_WodaRegion.sessionSerial !== sessionSerial)
 	{
-		newLabel.text = $.Localize("#woda_session_new");
+		g_WodaRegion.sessionSerial = sessionSerial;
+		g_WodaRegion.newConfirm = Number(status.new_confirm) > 0;
 	}
+	WodaShowSessionConfirm();
 	picker.SetHasClass("ModeChoose", false);
 	picker.SetHasClass("ModeSession", true);
 	picker.SetHasClass("Visible", true);
@@ -328,6 +441,37 @@ function WodaHidePicker()
 	g_WodaRegion.mode = null;
 	g_WodaRegion.deadline = 0;
 	g_WodaRegion.newConfirm = false;
+	g_WodaRegion.sessionSerial = null;
+	WodaShowSessionConfirm();
+}
+
+function WodaShowSessionConfirm()
+{
+	var overlay = $("#WodaConfirmOverlay");
+	if (overlay)
+	{
+		if (g_WodaRegion.newConfirm && !overlay.BHasClass("Visible"))
+		{
+			g_WodaRegion.confirmArmedAt = Date.now() + 600;
+		}
+		overlay.SetHasClass("Visible", g_WodaRegion.newConfirm);
+	}
+}
+
+function WodaCloseSessionConfirm()
+{
+	g_WodaRegion.newConfirm = false;
+	WodaShowSessionConfirm();
+}
+
+function WodaConfirmSessionNew()
+{
+	if (Date.now() < g_WodaRegion.confirmArmedAt)
+	{
+		return;
+	}
+	WodaCloseSessionConfirm();
+	WodaSendRegionChoice("new", "");
 }
 
 function WodaUpdateCountdown()
@@ -348,22 +492,14 @@ function WodaUpdateCountdown()
 		}
 	}
 	WodaUpdateSearchText();
+	WodaUpdateBanText();
 	$.Schedule(0.5, WodaUpdateCountdown);
 }
 
 function WodaOnSessionNew()
 {
-	if (!g_WodaRegion.newConfirm)
-	{
-		g_WodaRegion.newConfirm = true;
-		var newLabel = $("#WodaSessionNewLabel");
-		if (newLabel)
-		{
-			newLabel.text = $.Localize("#woda_session_new_confirm");
-		}
-		return;
-	}
-	WodaSendRegionChoice("new", "");
+	g_WodaRegion.newConfirm = true;
+	WodaShowSessionConfirm();
 }
 
 function WodaBindButtons()
@@ -371,6 +507,8 @@ function WodaBindButtons()
 	$("#WodaRegionConnect").SetPanelEvent("onactivate", function() { WodaSendRegionChoice("connect", g_WodaRegion.selected); });
 	$("#WodaSessionReconnect").SetPanelEvent("onactivate", function() { WodaSendRegionChoice("reconnect", ""); });
 	$("#WodaSessionNew").SetPanelEvent("onactivate", WodaOnSessionNew);
+	$("#WodaConfirmBack").SetPanelEvent("onactivate", WodaCloseSessionConfirm);
+	$("#WodaConfirmNew").SetPanelEvent("onactivate", WodaConfirmSessionNew);
 	$("#WodaChangeServer").SetPanelEvent("onactivate", function() { WodaSendRegionChoice("change", ""); });
 	$("#WodaSearchStart").SetPanelEvent("onactivate", function() { WodaStartSearch(g_WodaSearch.selected); });
 	$("#WodaSearchCancel").SetPanelEvent("onactivate", function() { WodaSendRegionChoice("cancel", ""); });
@@ -411,8 +549,8 @@ function WodaUpdateStatusText(state, status)
 		note.visible = reason !== "";
 	}
 	var box = $("#WodaConnectBox");
-	box.SetHasClass("Error", state === "error");
-	box.SetHasClass("Ready", state === "ready" || state === "relaunch");
+	box.SetHasClass("Error", state === "error" || state === "search_ban");
+	box.SetHasClass("Ready", state === "ready" || state === "relaunch" || state === "search_found");
 	box.SetHasClass("CanChange", state === "queued" && !!status.can_change);
 }
 
@@ -425,6 +563,15 @@ function WodaApplyStatus(status)
 	g_WodaStatusTime = status.updated_at;
 	$("#WodaConnectBox").SetHasClass("Visible", true);
 	var state = status.state || "waiting";
+	if (state === "search_ban")
+	{
+		WodaHidePicker();
+		WodaHideSearch();
+		WodaRenderBan(status);
+		WodaUpdateStatusText(state, status);
+		return;
+	}
+	WodaHideBan();
 	if (state === "search_choose")
 	{
 		WodaHidePicker();
@@ -454,6 +601,7 @@ function WodaApplyStatus(status)
 		g_WodaRegion.mode = state;
 		if (state === "choose")
 		{
+			WodaCloseSessionConfirm();
 			WodaRenderPicker(status);
 		}
 		else
