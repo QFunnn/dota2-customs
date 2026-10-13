@@ -14496,7 +14496,7 @@ function GemTD:OnPlayerStartTeamSelect(keys)
 		.. "?ver=v1&compen_shell=2&pcount="
 		.. _G.pcount
 		.. "&award=true"
-	-- print(url)
+	print(url)
 	url = url .. GetSendKey()
 
 	local req = CreateHTTPRequestScriptVM("GET", url)
@@ -14519,6 +14519,7 @@ function GemTD:OnPlayerStartTeamSelect(keys)
 
 			for steamid, player_info in pairs(t.data) do
 				-- DeepPrintTable(t.data[steamid])
+				print("放入玩家信息：" .. "player_info_" .. steamid)
 				CustomNetTables:SetTableValue("player_info_table", "player_info_" .. steamid, t.data[steamid])
 
 				--初始化随机任务
@@ -15299,15 +15300,19 @@ function GemTD:OnPlayerConnectFull(keys)
 
 	print("player connect: " .. _G.online_player_count .. "/" .. PlayerResource:GetPlayerCount())
 
+	PlayerResource:SetCustomTeamAssignment(0, DOTA_TEAM_GOODGUYS)
+	PlayerResource:SetCustomTeamAssignment(1, DOTA_TEAM_GOODGUYS)
+	PlayerResource:SetCustomTeamAssignment(2, DOTA_TEAM_GOODGUYS)
+	PlayerResource:SetCustomTeamAssignment(3, DOTA_TEAM_GOODGUYS)
+
 	_G.connect_full_player_count = _G.connect_full_player_count + 1
 	--判断是不是官方服务器/自建服务器/玩家主机
 	local config = LoadKeyValues("gem_config.txt")
-
 	if config.IsServer == 1 and _G.is_server_game_started == false then
 		pcall(function()
 			GameRules:ResetToCustomGameSetup()
 		end)
-		Timers:CreateTimer(2, function()
+		Timers:CreateTimer(1, function()
 			GemTD:OnPlayerStartTeamSelect({})
 		end)
 	end

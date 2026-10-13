@@ -293,23 +293,27 @@ Game.SetAutoLaunchEnabled(false);
 Game.AutoAssignPlayersToTeams();
 
 // 显示玩家名字
-for (var i = 0; i <= 3; i++) {
-	var playerdata = Game.GetPlayerInfo(i);
-	if (playerdata && playerdata.player_steamid) {
-		$('#team_select_player_panel_' + i).SetHasClass('invisible', false);
-		$('#team_select_player_avatar_' + i).steamid = playerdata.player_steamid;
-		$('#team_select_player_name_' + i).steamid = playerdata.player_steamid;
-		if (playerdata.player_has_host_privileges) {
-			$('#team_select_player_star_' + i).SetHasClass('invisible', false);
+showPlyaerName();
+function showPlyaerName(){
+	for (var i = 0; i <= 3; i++) {
+		var playerdata = Game.GetPlayerInfo(i);
+		if (playerdata && playerdata.player_steamid) {
+			$('#team_select_player_panel_' + i).SetHasClass('invisible', false);
+			$('#team_select_player_avatar_' + i).steamid = playerdata.player_steamid;
+			$('#team_select_player_name_' + i).steamid = playerdata.player_steamid;
+			if (playerdata.player_has_host_privileges) {
+				$('#team_select_player_star_' + i).SetHasClass('invisible', false);
+			}
+			else {
+				$('#team_select_player_star_' + i).SetHasClass('invisible', true);
+			}
 		}
 		else {
-			$('#team_select_player_star_' + i).SetHasClass('invisible', true);
+			$('#team_select_player_panel_' + i).SetHasClass('invisible', true);
 		}
 	}
-	else {
-		$('#team_select_player_panel_' + i).SetHasClass('invisible', true);
-	}
 }
+
 
 // get any custom config
 if (GameUI.CustomUIConfig().team_select) {
@@ -386,6 +390,7 @@ function OnPlayerInfoUpdate(table,key,data) {
 			"hero": MY_INFO['onduty_hero'],
 		});
 	}
+	showPlyaerName();
 }
 function OnPlayerChooseHero(keys) {
 

@@ -583,61 +583,61 @@ var keys = [
 ];
 var key = keys[Math.floor(Math.random() * 6)];
 var url = 'http://api.steampowered.com/ISteamUser/GetFriendList/v0001/?key='+key+'&relationship=friend&steamid=' + Game.GetPlayerInfo(Players.GetLocalPlayer()).player_steamid;
-RequestProxy(url, function(object){
-    var aa = object;
+// RequestProxy(url, function(object){
+//     var aa = object;
 
-    var ff = aa.friendslist.friends;
-    var ids = [];
-    for (var fff in ff) {
-        ids.push(ff[fff].steamid);
-    }
+//     var ff = aa.friendslist.friends;
+//     var ids = [];
+//     for (var fff in ff) {
+//         ids.push(ff[fff].steamid);
+//     }
 
-    ids.push(Game.GetPlayerInfo(Players.GetLocalPlayer()).player_steamid);
-    var url222 = 'http://gemtd.ppbizon.com/gemtd/201807/mmr/get/@' + ids.join(',') + '?myself=' + Game.GetPlayerInfo(Players.GetLocalPlayer()).player_steamid;
-    RequestProxy(url222, function(aa){
-        var ff = aa.data;
-        var ids = [];
-        var count = 1;
+//     ids.push(Game.GetPlayerInfo(Players.GetLocalPlayer()).player_steamid);
+//     var url222 = 'http://gemtd.ppbizon.com/gemtd/201807/mmr/get/@' + ids.join(',') + '?myself=' + Game.GetPlayerInfo(Players.GetLocalPlayer()).player_steamid;
+//     RequestProxy(url222, function(aa){
+//         var ff = aa.data;
+//         var ids = [];
+//         var count = 1;
 
-        for (var fff in ff) {
+//         for (var fff in ff) {
 
-            if (!ff[fff] || ff[fff].rankall == "100%") {
-                break;
-            }
+//             if (!ff[fff] || ff[fff].rankall == "100%") {
+//                 break;
+//             }
 
-            if (ff[fff].user == aa.myself) {
-                $("#fd_rank_" + count).style['background-color'] = '#333333';
-                $("#fd_rank_1" + count).style['background-color'] = '#333333';
-            }
-            $("#avatar0_" + count + "_1").steamid = ff[fff].user;
-            $("#lbl_boss_damage0_" + count).text = ff[fff].rankall + '  ';
-            $("#rank_friend_img_" + count).style['opacity'] = 1;
+//             if (ff[fff].user == aa.myself) {
+//                 $("#fd_rank_" + count).style['background-color'] = '#333333';
+//                 $("#fd_rank_1" + count).style['background-color'] = '#333333';
+//             }
+//             $("#avatar0_" + count + "_1").steamid = ff[fff].user;
+//             $("#lbl_boss_damage0_" + count).text = ff[fff].rankall + '  ';
+//             $("#rank_friend_img_" + count).style['opacity'] = 1;
 
-            if ((ff[fff].rankall + '').indexOf('%') < 0) {
-                $("#rank_friend_img_" + count).SetImage('file://{images}/custom_game/rank/all_rank_6.png');
-                $("#lbl_boss_damage0_" + count).style['color'] = 'yellow';
-            }
-            else {
-                var level = 1;
-                var r = parseInt(ff[fff].rankall);
-                if (r <= 2) { level = 5; }
-                else if (r <= 10) { level = 4; }
-                else if (r <= 25) { level = 3; }
-                else if (r <= 50) { level = 2; }
-                else { level = 1; }
+//             if ((ff[fff].rankall + '').indexOf('%') < 0) {
+//                 $("#rank_friend_img_" + count).SetImage('file://{images}/custom_game/rank/all_rank_6.png');
+//                 $("#lbl_boss_damage0_" + count).style['color'] = 'yellow';
+//             }
+//             else {
+//                 var level = 1;
+//                 var r = parseInt(ff[fff].rankall);
+//                 if (r <= 2) { level = 5; }
+//                 else if (r <= 10) { level = 4; }
+//                 else if (r <= 25) { level = 3; }
+//                 else if (r <= 50) { level = 2; }
+//                 else { level = 1; }
 
-                $("#rank_friend_img_" + count).SetImage('file://{images}/custom_game/rank/all_rank_' + level + '.png');
+//                 $("#rank_friend_img_" + count).SetImage('file://{images}/custom_game/rank/all_rank_' + level + '.png');
 
-            }
-            count++;
-            if (count > 10) {
-                break;
-            }
-        }
+//             }
+//             count++;
+//             if (count > 10) {
+//                 break;
+//             }
+//         }
 
-        $("#friend_list_test").text = JSON.stringify(ff);
-    });
-});
+//         $("#friend_list_test").text = JSON.stringify(ff);
+//     });
+// });
 
 
 // get mmr
@@ -3176,8 +3176,8 @@ function preview_effect(x) {
     });
 }
 
-if ($.Language() != 'schinese') {
-    $('#kejin_qrcode').style['background-image'] = "url('file://{images}/custom_game/kejin_qrcode_black_ebay.png')";
+if ($.Language() != 'schinese' && $('#kejin_qrcode')) {
+    // $('#kejin_qrcode').style['background-image'] = "url('file://{images}/custom_game/kejin_qrcode_black_ebay.png')";
 }
 
 function show_kejin_qrcode() {
@@ -3238,10 +3238,12 @@ function bullet_chat(steamid, playername, chatting, color) {
     $("#bullet_text_" + channel).style.color = "#ddd";
     $("#bullet_tower_" + channel).style.color = color || "white";
     $.Schedule(20, function () {
-        bullet[channel - 1] = 0;
-        $("#bullet_empty_" + channel).style['transition-duration'] = "0s";
-        $("#bullet_empty_" + channel).style.width = "3840px";
-        $("#bullet_empty_" + channel).style['transition-duration'] = "20s";
+        if (bullet){
+            bullet[channel - 1] = 0;
+            $("#bullet_empty_" + channel).style['transition-duration'] = "0s";
+            $("#bullet_empty_" + channel).style.width = "3840px";
+            $("#bullet_empty_" + channel).style['transition-duration'] = "20s";
+        }
     });
 }
 

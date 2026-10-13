@@ -12,12 +12,12 @@
 <root>
 	<styles>
 		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
-		<include src="s2r://panorama/styles/custom_game/team_select.vcss_c" />
-		<include src="s2r://panorama/styles/custom_game/custom_loading_screen.vcss_c" />
+		<include src="s2r://panorama/styles/custom_game/team_select.vcss" />
+		<include src="s2r://panorama/styles/custom_game/custom_loading_screen.vcss" />
 	</styles>
 	<scripts>
-		<include src="s2r://panorama/scripts/custom_game/data.vjs_c" />
-		<include src="s2r://panorama/scripts/custom_game/team_select.vjs_c" />
+		<include src="s2r://panorama/scripts/custom_game/data.vjs" />
+		<include src="s2r://panorama/scripts/custom_game/team_select.vjs" />
 	</scripts>
 	<Panel hittest="false" class="TeamSelect">
 		<Panel hittest="false" id="TeamSelectContainer" selectionpos="auto">
@@ -84,8 +84,8 @@
 					</Panel>
 					<Panel id="panel_start_button" style="flow-children:down;horizontal-align:right;" class="invisible">
 						<Panel id="StartGameCountdownTimer">
-							<Image id="TimerBg" src="s2r://" />
-							<Image id="TimerRing" src="s2r://" />
+							<Image id="TimerBg" src="" />
+							<Image id="TimerRing" src="" />
 							<Label id="TeamSelectTimer" text="#custom_game_team_select_timer" />
 							<Panel id="TimerLabelBox">
 								<Label id="TimerLabelAutoStart" text="#custom_game_team_select_auto_start" />
@@ -107,7 +107,7 @@
 								<Panel id="UnassignedPlayersContainer" />
 							</Button>
 							<Button id="AutoAssignButton" onactivate="OnAutoAssignPressed()">
-								<Image src="s2r://" />
+								<Image src="" />
 								<Label text="#custom_game_team_select_auto_assign" />
 							</Button>
 						</Panel>
@@ -115,12 +115,12 @@
 					<Panel id="TeamsListGroup" style="visibility:collapse;">
 						<Panel id="TeamListHeader">
 							<Label id="TeamListHeaderLabel" text="#custom_game_team_select" />
-							<Image id="TeamListLockedIcon" src="s2r://" />
+							<Image id="TeamListLockedIcon" src="" />
 						</Panel>
 						<Panel id="TeamsListRoot" />
 						<Button id="ShuffleTeamAssignmentButton" onactivate="OnShufflePlayersPressed()">
 							<Label text="#custom_game_team_select_shuffle" />
-							<Image src="s2r://" />
+							<Image src="" />
 						</Button>
 					</Panel>
 				</Panel>
