@@ -334,6 +334,8 @@ _G.WtfMode = false
 
 _G.abandon_players = {}
 
+_G.no_hero_players = {}
+
 _G.wrong_map_players = {}
 
 _G.spell_cast_mods = {}
@@ -821,6 +823,18 @@ r:Send( function( res ) end)
 			return
 		end
 
+		local rate = Convars:GetInt("sv_minrate")
+		print("[RATE] player=" .. player_id .. " sv_minrate=" .. tostring(rate))
+		if rate > 80000 then
+			Timers:CreateTimer(3, function()
+				if not PlayerResource:GetPlayer(player_id) then
+					return
+				end
+				FireGameEvent("dota1x6_client_rate", { player_id = player_id, rate = rate })
+				print("[RATE] dota1x6_client_rate sent player=" .. player_id .. " rate=" .. rate)
+			end)
+		end
+
 		local steam_id = tostring(PlayerResource:GetSteamID(player_id))
 
 		local function send_best_relay(attempts_remaining)
@@ -1089,6 +1103,18 @@ function dota1x6:OnNPCSpawned(event)
 		shop:UpdateEmblemForHero(unit, unit:GetId())
 	end
 
+	if unit:IsRealHero() and not players[unit:GetId()] then
+		print(
+			"HERO SPAWN",
+			unit:GetId(),
+			unit:GetUnitName(),
+			event.is_respawn,
+			SpawnedPlayers,
+			PlayerCount,
+			GameRules:GetDOTATime(false, false)
+		)
+	end
+
 	if SpawnedPlayers >= PlayerCount then
 		return
 	end
@@ -1098,6 +1124,9 @@ function dota1x6:OnNPCSpawned(event)
 
 		Timers:CreateTimer(0.1, function()
 			if unit:HasModifier("modifier_monkey_king_wukongs_command_custom_soldier") then
+				return
+			end
+			if players[id] then
 				return
 			end
 
@@ -2981,7 +3010,12 @@ function dota1x6:spawn_timer()
 				(
 					(state == DOTA_CONNECTION_STATE_ABANDONED)
 					or (state == DOTA_CONNECTION_STATE_DISCONNECTED and abandon_count == PlayerCount - 1)
-					or (not player and current_time > 3 and current_time <= LowPriorityTime)
+					or (
+						not player
+						and current_time > 3
+						and current_time <= LowPriorityTime
+						and (state ~= DOTA_CONNECTION_STATE_CONNECTED or HTTP.playersData[id].is_active == 1)
+					)
 				)
 				and abandon_players[id] ~= true
 				and not bots_ids[id]
@@ -3019,6 +3053,39 @@ function dota1x6:spawn_timer()
 				data.switch_safetoleave = switch_safetoleave
 				CustomNetTables:SetTableValue("server_data", tostring(id), data)
 				HTTP.PlayerLeave(id)
+			end
+
+			if
+				not player
+				and current_time > 3
+				and state == DOTA_CONNECTION_STATE_CONNECTED
+				and HTTP.playersData[id].is_active == 0
+				and not no_hero_players[id]
+			then
+				local hero = PlayerResource:GetSelectedHeroEntity(id)
+
+				if hero then
+					no_hero_players[id] = true
+					print(
+						"NO HERO",
+						id,
+						hero:GetUnitName(),
+						hero:GetId(),
+						GlobalHeroes[id] and 1 or 0,
+						SpawnedPlayers,
+						PlayerCount,
+						current_time
+					)
+
+					GlobalHeroes[id] = hero
+					_G.SpawnedPlayers = _G.SpawnedPlayers + 1
+
+					dota1x6:initiate_player(hero)
+					if SelectedBases[id] then
+						dota1x6:PlaceHero(id)
+					end
+					dota1x6:UpdateHeroIcons()
+				end
 			end
 
 			if SafeToLeave == false and current_time < 3 then

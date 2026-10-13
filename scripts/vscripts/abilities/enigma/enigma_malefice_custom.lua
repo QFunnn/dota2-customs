@@ -283,7 +283,7 @@ function enigma_malefice_custom:ProcStun(target, sound, talent)
 		damageTable.victim = aoe_target
 		damageTable.damage = self:GetDamage(aoe_target)
 		DoDamage(damageTable, talent)
-		aoe_target:SendNumber(4, damageTable.damage * self:GetCreepsMult(aoe_target))
+		aoe_target:SendNumber(4, damageTable.damage)
 	end
 end
 

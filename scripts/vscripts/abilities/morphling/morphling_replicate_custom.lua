@@ -1193,6 +1193,9 @@ function modifier_morphling_replicate_custom_tracker:GetModifierBaseAttackTimeCo
 	if self.ability.talents.has_r7 == 0 then
 		return
 	end
+	if not self.bva then
+		return
+	end
 	return self.ability.talents.r7_bva + self.bva
 end
 

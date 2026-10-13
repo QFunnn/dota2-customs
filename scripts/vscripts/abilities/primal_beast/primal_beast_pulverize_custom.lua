@@ -405,7 +405,7 @@ function primal_beast_pulverize_custom:UltimateHit(point, forced_crit, quake)
 			critTable.victim = target
 			critTable.damage = damageTable.damage * self.talents.w3_damage
 			DoDamage(critTable, "modifier_primal_beast_trample_3")
-			target:SendNumber(114, (damageTable.damage + critTable.damage) * self:GetCreepsMult(target))
+			target:SendNumber(114, damageTable.damage + critTable.damage)
 
 			if IsValid(self.caster.onslaught_ability) then
 				self.caster.onslaught_ability:HitEffect(target, point, false)

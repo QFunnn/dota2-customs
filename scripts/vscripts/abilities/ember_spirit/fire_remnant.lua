@@ -648,6 +648,9 @@ function modifier_ember_spirit_activate_fire_remnant_custom_legendary_timer:OnDe
 	if not IsServer() then
 		return
 	end
+	if not IsValid(self.parent) then
+		return
+	end
 	local mod = self.parent:FindModifierByName("modifier_ember_spirit_fire_remnant_custom_remnant")
 	local activate_ability = self.caster.remnant_activate_ability
 

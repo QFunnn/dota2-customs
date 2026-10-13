@@ -707,22 +707,8 @@ function dota1x6:OnRuneActivated(params)
 
 	local names = {}
 	local ids = {}
-	for _, hero in pairs(heroes) do
-		table.insert(names, hero:GetUnitName())
-		table.insert(ids, hero:GetId())
-	end
-
-	CustomGameEventManager:Send_ServerToAllClients(
-		"kill_feed_bounty",
-		{
-			ids = table.concat(ids, ","),
-			heroes = table.concat(names, ","),
-			gold = math.floor(gold),
-			white = math.floor(white),
-			place = place,
-			bonus = math.floor((net_k - 1) * 100 + 0.5),
-		}
-	)
+	local golds = {}
+	local whites = {}
 
 	for _, hero in pairs(heroes) do
 		local gold_k = 1
@@ -762,7 +748,25 @@ function dota1x6:OnRuneActivated(params)
 		hero:GiveGold(gold * gold_k, nil, true, "bounty_rune")
 		hero:SendNumber(0, gold * gold_k)
 		match_log:Call("Rune", hero, net_k, gold * gold_k, exp * exp_k, white * white_k)
+
+		table.insert(names, hero:GetUnitName())
+		table.insert(ids, hero:GetId())
+		table.insert(golds, math.floor(gold * gold_k))
+		table.insert(whites, math.floor(white * white_k))
 	end
+
+	CustomGameEventManager:Send_ServerToAllClients(
+		"kill_feed_bounty",
+		{
+			ids = table.concat(ids, ","),
+			heroes = table.concat(names, ","),
+			gold = table.concat(golds, ","),
+			white = table.concat(whites, ","),
+			picker = id,
+			place = place,
+			bonus = math.floor((net_k - 1) * 100 + 0.5),
+		}
+	)
 
 	local mod = unit:FindModifierByName("modifier_voice_module")
 	if mod then

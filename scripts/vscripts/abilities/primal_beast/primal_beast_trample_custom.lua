@@ -240,7 +240,7 @@ function primal_beast_trample_custom:Trample(mod)
 			critTable.victim = enemy
 			critTable.damage = damage * self.talents.w3_damage
 			DoDamage(critTable, "modifier_primal_beast_trample_3")
-			enemy:SendNumber(114, (damage + critTable.damage) * self:GetCreepsMult(enemy))
+			enemy:SendNumber(114, damage + critTable.damage)
 
 			if IsValid(self.caster.onslaught_ability) then
 				self.caster.onslaught_ability:HitEffect(enemy, origin, false)

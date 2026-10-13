@@ -3068,7 +3068,7 @@ function DoDamage(data, replace_damage)
 	local result = ApplyDamage(data)
 	data.damage = damage
 
-	if data.victim:IsRealHero() and data.ability and dota1x6.event_thinker_mod and attacker then
+	if data.victim:IsRealHero() and data.ability and dota1x6.event_thinker_mod and IsValid(attacker) then
 		dota1x6.event_thinker_mod:CheckDamageData({
 			unit = data.victim,
 			damage = result,

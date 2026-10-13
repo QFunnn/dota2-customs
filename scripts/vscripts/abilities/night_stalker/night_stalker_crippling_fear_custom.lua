@@ -704,7 +704,7 @@ function modifier_night_stalker_crippling_fear_custom_silence:OnIntervalThink()
 			self.caster,
 			self.void_ability,
 			"modifier_night_stalker_void_custom_damage_stack",
-			{ duration = self.ability.talents.q3_duration, damage = damage * self.ability:GetCreepsMult(self.parent) }
+			{ duration = self.ability.talents.q3_duration, damage = damage }
 		)
 	end
 

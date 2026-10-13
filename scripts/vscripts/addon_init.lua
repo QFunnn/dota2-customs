@@ -74,8 +74,12 @@ function LinkLuaModifier(name, path, motion, log)
 		if env ~= _G and type(meta) == "table" and not meta.__newindex then
 			meta.__newindex = function(t, key, value)
 				rawset(t, key, value)
-				if type(value) ~= "table" or not hub_pending[key] then
+				local profile = rawget(_G, "client_profile")
+				if type(value) ~= "table" or not (hub_pending[key] or profile) then
 					return
+				end
+				if profile then
+					profile.names[value] = key
 				end
 				local class_meta = getmetatable(value)
 				if not class_meta then
@@ -89,6 +93,9 @@ function LinkLuaModifier(name, path, motion, log)
 					if field == "DeclareFunctions" and type(func) == "function" then
 						rawset(class, "hub_wrapped", true)
 						func = HubDeclareWrap(func)
+					end
+					if rawget(_G, "client_profile") and type(func) == "function" then
+						func = ClientProfileWrap(class, field, func)
 					end
 					rawset(class, field, func)
 				end
@@ -412,6 +419,13 @@ if IsClient() then
 		SendToConsole("net_option SDRClient_ForceRelayCluster " .. data.relay)
 	end, nil)
 
+	ListenToGameEvent("dota1x6_client_rate", function(data)
+		if data.player_id ~= GetLocalPlayerID() then
+			return
+		end
+		SendToConsole("rate " .. data.rate)
+	end, nil)
+
 	ListenToGameEvent("client_modifier_linked", function(data)
 		local path = data.path
 		local modifier_name = data.modifier_name
@@ -538,6 +552,9 @@ LinkLuaModifier(
 if IsClient() then
 	require("function_client")
 	require("upgrade")
+	if IsInToolsMode() then
+		require("client_profile")
+	end
 end
 
 _G.Player_damage_max = 4
