@@ -1,0 +1,41 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1a5b3bb 
+  ~ auto-generated — do not edit
+]]
+
+
+return {
+	schema_version = 1,
+	prefab = "prefabs/level_ice/award_ice_right",
+	fingerprint = "9d6a415ff6ba142b46f05ec9fe768dc51c92bf0d30d3c21aca8081c7616ccbbb",
+	grid_size = 64,
+	sample_z = 0,
+	capture_radius = 2048,
+	x_min = -96,
+	y_min = -480,
+	width = 25,
+	height = 16,
+	encoding = "ascii_bitflags",
+	rows = {
+		"0000000011111111111111111",
+		"0000000011111111111111111",
+		"0000000011111111111111111",
+		"0000000011111111111111111",
+		"0000000011111111111111111",
+		"0000000011111111111111111",
+		"1111111111111111111111111",
+		"1111111111111111111111111",
+		"1111111111111111111111111",
+		"1111111111111111111111111",
+		"0000000011111111111111111",
+		"0000000011111111111111111",
+		"0000000011111111111111111",
+		"0000000011111111111111111",
+		"0000000011111111111111111",
+		"0000000011111111111111111",
+	},
+}

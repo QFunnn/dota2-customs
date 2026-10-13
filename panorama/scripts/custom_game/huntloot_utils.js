@@ -79,7 +79,8 @@ function GetSimplifyHuntloots(playerID = Game.GetLocalPlayerID()) {
   CustomUIConfig.HuntlootDetailCache ??= {};
   CustomUIConfig.HuntlootSimpleDataCache ??= {};
   const playerHuntloots = solid_utils.createServiceNetData("player_huntloots", {}, playerID);
-  function Parse(huntloots) {
+  const equipSuits = solid_utils.createServiceNetData("player_hero_huntloot_equip_suits", {}, playerID);
+  function Parse(huntloots, suits) {
     let res = {};
     for (const key in huntloots) {
       const data = huntloots[key];
@@ -87,13 +88,15 @@ function GetSimplifyHuntloots(playerID = Game.GetLocalPlayerID()) {
       const cacheData = CustomUIConfig.HuntlootDetailCache[key];
       let parsed = ParseHuntloot(data, cacheData);
       if (parsed) {
+        parsed.in_equip_suit = GetHuntlootEquippedSuits(parsed, suits).map(([heroID, suitID]) => `${heroID}:${suitID}`).join(";");
+        if (cacheData) cacheData.in_equip_suit = parsed.in_equip_suit;
         res[key] = parsed;
       }
     }
     return res;
   }
   return libs.createMemo(() => {
-    let simpleData = Parse(playerHuntloots());
+    let simpleData = Parse(playerHuntloots(), equipSuits());
     CustomUIConfig.HuntlootSimpleDataCache = simpleData;
     return simpleData;
   });
@@ -139,21 +142,21 @@ function ShowServerHuntlootTooltip(p, props) {
     }
   }, props.force);
 }
-function HuntlootIsEquiped(huntloot, heroID) {
-  if (huntloot.in_equip_suit == undefined || huntloot.in_equip_suit == "") {
-    return false;
-  }
-  if (heroID == undefined) {
-    return true;
-  }
-  const datas = huntloot.in_equip_suit.split(";");
-  for (let i = 0; i < datas.length; i++) {
-    const [hID] = datas[i].split(":");
-    if (toFiniteNumber(hID) == heroID) {
-      return true;
+function GetHuntlootEquippedSuits(huntloot, equipSuits = getServiceNetData("player_hero_huntloot_equip_suits", Players.GetLocalPlayer()) ?? {}) {
+  const result = [];
+  if (huntloot.id <= 0) return result;
+  for (const [heroID, suits] of Object.entries(equipSuits)) {
+    for (const [suitID, parts] of Object.entries(suits)) {
+      const equippedID = parts[huntloot.huntloot_part];
+      if (equippedID != undefined && equippedID !== "nil" && String(equippedID) === String(huntloot.id)) {
+        result.push([toFiniteNumber(heroID), toFiniteNumber(suitID)]);
+      }
     }
   }
-  return false;
+  return result;
+}
+function HuntlootIsEquiped(huntloot, heroID) {
+  return GetHuntlootEquippedSuits(huntloot).some(([equippedHeroID]) => heroID == undefined || equippedHeroID === heroID);
 }
 function HuntlootHasStates(huntloot, showTips) {
   let state = "";
@@ -224,6 +227,7 @@ function ParseHuntlootDevourCosts() {
 
 exports.GetHuntlootAttrDisplay = GetHuntlootAttrDisplay;
 exports.GetHuntlootDetail = GetHuntlootDetail;
+exports.GetHuntlootEquippedSuits = GetHuntlootEquippedSuits;
 exports.GetHuntlootName = GetHuntlootName;
 exports.GetSimplifyHuntloots = GetSimplifyHuntloots;
 exports.HUNTLOOT_PARTS = HUNTLOOT_PARTS;
@@ -233,4 +237,4 @@ exports.HuntlootIsEquiped = HuntlootIsEquiped;
 exports.MAX_HUNTLOOT_RARITY = MAX_HUNTLOOT_RARITY;
 exports.ParseHuntlootDevourCosts = ParseHuntlootDevourCosts;
 exports.ShowServerHuntlootTooltip = ShowServerHuntlootTooltip;
-exports.createHuntlootDetailSignal = createHuntlootDetailSignal;
+exports.createHuntlootDetailSignal = createHuntlootDetailSignal;

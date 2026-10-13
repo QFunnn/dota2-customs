@@ -69,6 +69,10 @@ function l.prototype.StaticState(self)
 end
 function l.prototype.OnIntervalThink(self)
 	local q = self:GetParent()
+	if not q:HasMovementCapability() then
+		self:StartIntervalThink(-1)
+		return
+	end
 	local r = q:GetAbsOrigin()
 	if q:HasModifier("modifier_wisp") then
 		self:StartIntervalThink(-1)
@@ -86,6 +90,10 @@ function l.prototype.StartContinuousValidPositionCheck(self)
 	self.IsCheckingValidPosition = true
 	self:StartThink(0.1, "ContinuousValidPositionCheck", function()
 		local q = self:GetParent()
+		if not q:HasMovementCapability() then
+			self.IsCheckingValidPosition = false
+			return -1
+		end
 		local r = q:GetAbsOrigin()
 		if q:IsAlive() then
 			if GridNav:IsValidPosition(r) then

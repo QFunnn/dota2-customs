@@ -16,45 +16,50 @@ local e = b.__TS__ArrayForEach
 local f = b.__TS__Delete
 local g = b.__TS__StringSplit
 local h = b.__TS__ArraySort
-local i = b.__TS__ArraySlice
-local j = b.__TS__StringTrim
-local k = b.__TS__ArrayMap
-local l = b.__TS__ObjectAssign
-local m = b.__TS__ArrayIncludes
-local n = b.__TS__ArrayFilter
-local o = b.__TS__StringEndsWith
-local p = b.Set
-local q = b.__TS__StringStartsWith
-local r = b.__TS__ArrayFind
-local s = b.__TS__ArrayFrom
-local t = b.__TS__NumberToFixed
-local u = {}
-local v = require("class.client_item")
-local w = v.ClientItem
-local x = require("class.dungeon_trap")
-local y = x.DungeonTrap
-local z = require("class.drop_item")
-local A = z.DropItem
-local B = require("class.shop_item")
-local C = B.ShopItem
-local D = require("class.weight_pool")
-local E = D.CWeightPool
-local F = {
+local i = b.__TS__ArrayUnshift
+local j = b.__TS__ArrayMap
+local k = b.__TS__ArrayFilter
+local l = b.__TS__ArraySlice
+local m = b.__TS__StringTrim
+local n = b.__TS__ObjectAssign
+local o = b.__TS__ArrayIncludes
+local p = b.__TS__StringEndsWith
+local q = b.Set
+local r = b.__TS__StringStartsWith
+local s = b.__TS__ArrayFind
+local t = b.__TS__ArrayFrom
+local u = b.__TS__NumberToFixed
+local v = {}
+local w = require("class.client_item")
+local x = w.ClientItem
+local y = require("framework.native_gridnav_obstruction")
+local z = y.NativeGridNavObstruction
+local A = require("data.dungeon_gridnav.reader")
+local B = A.gridNavReader
+local C = require("class.dungeon_trap")
+local D = C.DungeonTrap
+local E = require("class.drop_item")
+local F = E.DropItem
+local G = require("class.shop_item")
+local H = G.ShopItem
+local I = require("class.weight_pool")
+local J = I.CWeightPool
+local K = {
 	[RoomType.BOSS] = "particles/generic_gameplay/rune/rune_boss.vpcf",
 	[RoomType.SHOP] = "particles/generic_gameplay/rune/rune_store.vpcf",
 	[RoomType.TAVERN] = "particles/generic_gameplay/rune/rune_tavern.vpcf",
 	[RoomType.STAIR] = "particles/generic_gameplay/rune/rune_stair_exit.vpcf",
 	[RoomType.INVALID] = "particles/generic_gameplay/rune/rune_stair_exit.vpcf",
 }
-local G = {
+local L = {
 	WishingPool = "particles/generic_gameplay/rune/wishing_pool_exit.vpcf",
 	RegenWell = "particles/generic_gameplay/rune/regen_well_exit.vpcf",
 	Book = "particles/generic_gameplay/rune/book_exit.vpcf",
 	Smithy = "particles/generic_gameplay/rune/smithy_exit.vpcf",
 }
-local H = "TravelingMerchant"
-local I = 320
-local J = {
+local M = "TravelingMerchant"
+local N = 320
+local O = {
 	[RoomRewardType.BOON] = "particles/generic_gameplay/rune/rune_blessings.vpcf",
 	[RoomRewardType.DOUBLE_BOON] = "particles/generic_gameplay/rune/rune_blessings.vpcf",
 	[RoomRewardType.HERO_UPGRADE] = "particles/generic_gameplay/rune/rune_experience.vpcf",
@@ -62,11 +67,12 @@ local J = {
 	[RoomRewardType.GOLD] = "particles/generic_gameplay/rune/rune_bounty_first.vpcf",
 	[RoomRewardType.TREASURE] = "particles/generic_gameplay/rune/rune_treasure.vpcf",
 }
-u.DungeonRoom = c()
-local K = u.DungeonRoom
-K.name = "DungeonRoom"
-function K.prototype.____constructor(self, L, M, N, O, P, Q, R, S, T, U, V, W)
+v.DungeonRoom = c()
+local P = v.DungeonRoom
+P.name = "DungeonRoom"
+function P.prototype.____constructor(self, Q, R, S, T, U, V, W, X, Y, Z, _, a0)
 	self.validGridPositions = {}
+	self.enemySpawnGatePositions = {}
 	self.occupiedPositions = {}
 	self.breakables = {}
 	self.items = {}
@@ -111,36 +117,49 @@ function K.prototype.____constructor(self, L, M, N, O, P, Q, R, S, T, U, V, W)
 	self.wishingPoolCount = 1
 	self.shopRefreshCount = 0
 	self.isSecretRoomCreated = false
-	self.zoneID = L
-	self.terrainThemeKey = S
-	self.roomID = M
-	self.mapName = N
-	self.rewardType = P
-	self.roomType = O
-	self.position = Q
-	self.bossName = T
-	self.shopRarityPoolName = V or ""
-	self.specialKind = W
-	self.spawnInfo = self:CreateSpawnInfo(R, S)
+	self.zoneID = Q
+	self.terrainThemeKey = X
+	self.roomID = R
+	self.mapName = S
+	self.rewardType = U
+	self.roomType = T
+	self.position = V
+	self.bossName = Y
+	self.shopRarityPoolName = _ or ""
+	self.specialKind = a0
+	self.spawnInfo = self:CreateSpawnInfo(W, X)
 	self.guaranteedDrops = {}
 	self:CalculateDifficultyModifiers()
-	if U ~= nil then
-		local X = d(E)
-		if U.ItemList ~= nil then
-			for Y, Z in pairs(U.ItemList) do
-				X:Add(tostring(Y), toFiniteNumber(Z))
+	if Z ~= nil then
+		local a1 = d(J)
+		if Z.ItemList ~= nil then
+			for a2, a3 in pairs(Z.ItemList) do
+				a1:Add(tostring(a2), toFiniteNumber(a3))
 			end
 		end
-		self.dropPool = { dropChance = toFiniteNumber(U.DropChance), itemPool = X }
+		self.dropPool = { dropChance = toFiniteNumber(Z.DropChance), itemPool = a1 }
 	end
-	self.spawnGroup = DOTA_SpawnMapAtPosition(N, Q, true, function(_)
-		print(((("[DungeonRoom " .. tostring(self.roomID)) .. "-") .. R) .. "] onReadyToSpawn")
-		ManuallyTriggerSpawnGroupCompletion(_)
+	self.spawnGroup = DOTA_SpawnMapAtPosition(S, V, true, function(a4)
+		if self.isDispose then
+			UnloadSpawnGroupByHandle(a4)
+			return
+		end
+		print(((("[DungeonRoom " .. tostring(self.roomID)) .. "-") .. W) .. "] onReadyToSpawn")
+		ManuallyTriggerSpawnGroupCompletion(a4)
 	end, function()
-		print(((("[DungeonRoom " .. tostring(self.roomID)) .. "-") .. R) .. "] onSpawnComplete")
-		self.isSpawnComplete = true
+		print(((("[DungeonRoom " .. tostring(self.roomID)) .. "-") .. W) .. "] onSpawnComplete")
+		if self.isDispose then
+			return
+		end
+		local a5 = d(z, self.mapName, self.position, self:GetNativeNavigationProtectedAreas(self.spawnGroup))
+		self.nativeNavigation = a5
+		a5:Start(function()
+			if not self.isDispose and self.nativeNavigation == a5 then
+				self.isSpawnComplete = true
+			end
+		end)
 	end, nil)
-	self.dungeonTrap = d(y, {
+	self.dungeonTrap = d(D, {
 		getRoomID = function()
 			return self.roomID
 		end,
@@ -168,41 +187,46 @@ function K.prototype.____constructor(self, L, M, N, O, P, Q, R, S, T, U, V, W)
 		getRandomValidGridPosition = function()
 			return self:GetRandomValidGridPosition()
 		end,
-		removeUnit = function(a0, a1)
-			return self:RemoveUnit(a1)
+		removeUnit = function(a6, a7)
+			return self:RemoveUnit(a7)
 		end,
 	})
 end
-function K.prototype.RollShopRarity(self)
+function P.prototype.RollShopRarity(self)
 	if self.shopRarityPoolName == nil or self.shopRarityPoolName == "" then
 		return 1
 	end
-	local a2 = DrawPool:Draw(self.shopRarityPoolName)
-	if a2 == nil then
+	local a8 = DrawPool:Draw(self.shopRarityPoolName)
+	if a8 == nil then
 		return 1
 	end
-	local a3 = 0
-	Game:EachPlayer(function(a0, a4)
-		a3 = a3 + GetShopItemRarity(a4) + GetArtifactItemRarity(a4)
+	local a9 = 0
+	Game:EachPlayer(function(a6, aa)
+		a9 = a9 + GetShopItemRarity(aa) + GetArtifactItemRarity(aa)
 	end)
-	local a5 = math.floor(a3 / 100)
-	if math.random(1, 100) <= a3 % 100 then
-		a5 = a5 + 1
+	local ab = math.floor(a9 / 100)
+	if math.random(1, 100) <= a9 % 100 then
+		ab = ab + 1
 	end
-	local a6 = toFiniteNumber(a2, 1) + a5
-	if a6 < 1 then
+	local ac = toFiniteNumber(a8, 1) + ab
+	if ac < 1 then
 		return 1
 	end
-	if a6 > 5 then
+	if ac > 5 then
 		return 5
 	end
-	return a6
+	return ac
 end
-function K.prototype.dispose(self)
+function P.prototype.dispose(self)
 	if self.isDispose then
 		return
 	end
 	self.isDispose = true
+	local ad = self.nativeNavigation
+	if ad ~= nil then
+		ad:Dispose()
+	end
+	self.nativeNavigation = nil
 	self.previewRewardSlots = {}
 	self.enemyPreviewRewards = {}
 	self.previewRewardAssignedEnemyCount = 0
@@ -217,44 +241,44 @@ function K.prototype.dispose(self)
 	self.stairChestIgnoredPlayers = {}
 	self.stairChestItemPos = nil
 	self.aliveEnemyCount = 0
-	e(self.breakables, function(a0, a7)
-		self:RemoveUnit(a7)
+	e(self.breakables, function(a6, ae)
+		self:RemoveUnit(ae)
 	end)
-	e(self.npcs, function(a0, a7)
-		self:RemoveUnit(a7)
+	e(self.npcs, function(a6, ae)
+		self:RemoveUnit(ae)
 	end)
-	e(self.enemies, function(a0, a7)
-		self:RemoveUnit(a7)
+	e(self.enemies, function(a6, ae)
+		self:RemoveUnit(ae)
 	end)
-	e(self.simulateEnemies, function(a0, a7)
-		a7:dispose()
+	e(self.simulateEnemies, function(a6, ae)
+		ae:dispose()
 	end)
-	e(self.items, function(a0, a7)
-		if IsValid(a7) then
-			local a8 = a7:GetContainedItem()
-			if IsValid(a8) then
-				UTIL_Remove(a8)
+	e(self.items, function(a6, ae)
+		if IsValid(ae) then
+			local af = ae:GetContainedItem()
+			if IsValid(af) then
+				UTIL_Remove(af)
 			end
-			UTIL_Remove(a7)
+			UTIL_Remove(ae)
 		end
 	end)
-	e(self.dropItems, function(a0, a7)
-		a7:dispose()
+	e(self.dropItems, function(a6, ae)
+		ae:dispose()
 	end)
-	e(self.clientItems, function(a0, a7)
-		a7:dispose()
+	e(self.clientItems, function(a6, ae)
+		ae:dispose()
 	end)
-	e(self.shopItems, function(a0, a7)
-		a7:dispose()
+	e(self.shopItems, function(a6, ae)
+		ae:dispose()
 	end)
-	for a0, a9 in ipairs(self.exitInfos) do
-		if a9.rewardParticleID ~= nil then
-			ParticleManager:DestroyParticle(a9.rewardParticleID, true)
-			ParticleManager:ReleaseParticleIndex(a9.rewardParticleID)
+	for a6, ag in ipairs(self.exitInfos) do
+		if ag.rewardParticleID ~= nil then
+			ParticleManager:DestroyParticle(ag.rewardParticleID, true)
+			ParticleManager:ReleaseParticleIndex(ag.rewardParticleID)
 		end
-		if a9.eliteParticleID ~= nil then
-			ParticleManager:DestroyParticle(a9.eliteParticleID, true)
-			ParticleManager:ReleaseParticleIndex(a9.eliteParticleID)
+		if ag.eliteParticleID ~= nil then
+			ParticleManager:DestroyParticle(ag.eliteParticleID, true)
+			ParticleManager:ReleaseParticleIndex(ag.eliteParticleID)
 		end
 	end
 	self.exitInfos = {}
@@ -273,10 +297,10 @@ function K.prototype.dispose(self)
 		self.travelingMerchantPlaceholder = nil
 	end
 	do
-		local aa = 0
-		while aa < #self.registeredInteracts do
-			Interaction:UnregisterInteractable(self.registeredInteracts[aa + 1])
-			aa = aa + 1
+		local ah = 0
+		while ah < #self.registeredInteracts do
+			Interaction:UnregisterInteractable(self.registeredInteracts[ah + 1])
+			ah = ah + 1
 		end
 	end
 	self.registeredInteracts = {}
@@ -287,6 +311,7 @@ function K.prototype.dispose(self)
 	self.items = {}
 	self.dropItems = {}
 	self.clientItems = {}
+	self:RemovePrefabNavigationUnits()
 	if self.secretRoomSpawnGroup ~= nil then
 		UnloadSpawnGroupByHandle(self.secretRoomSpawnGroup)
 		self.secretRoomSpawnGroup = nil
@@ -301,13 +326,13 @@ function K.prototype.dispose(self)
 	self.isSecretRoomCreated = false
 	UnloadSpawnGroupByHandle(self.spawnGroup)
 end
-function K.prototype.SetRewardType(self, P)
-	self.rewardType = P
+function P.prototype.SetRewardType(self, U)
+	self.rewardType = U
 end
-function K.prototype.SetSpecialKind(self, W)
-	self.specialKind = W
+function P.prototype.SetSpecialKind(self, a0)
+	self.specialKind = a0
 end
-function K.prototype.Prepare(self)
+function P.prototype.Prepare(self)
 	if self.isPrepare then
 		return
 	end
@@ -349,7 +374,7 @@ function K.prototype.Prepare(self)
 	if self.roomType == RoomType.SPECIAL then
 		self:CreateSpecialRoom()
 	end
-	if self.specialKind == H and self.roomType == RoomType.STAIR then
+	if self.specialKind == M and self.roomType == RoomType.STAIR then
 		if self.zoneID < 3 then
 			self:CreateInteractiveTravelingMerchant()
 		end
@@ -364,190 +389,190 @@ function K.prototype.Prepare(self)
 		return self:OnEntityKilled(...)
 	end, self)
 end
-function K.prototype.InitializePreviewRoomRewards(self)
+function P.prototype.InitializePreviewRoomRewards(self)
 	self.previewRewardSlots = {}
 	self.enemyPreviewRewards = {}
 	self.previewRewardAssignedEnemyCount = 0
-	local ab = self:IsBossRoom() and 1 or math.max(1, self.spawnInfo.totalCount)
+	local ai = self:IsBossRoom() and 1 or math.max(1, self.spawnInfo.totalCount)
 	do
-		local aa = 0
-		while aa < ab do
-			local ac = self.previewRewardSlots
-			ac[#ac + 1] = {}
-			aa = aa + 1
+		local ah = 0
+		while ah < ai do
+			local aj = self.previewRewardSlots
+			aj[#aj + 1] = {}
+			ah = ah + 1
 		end
 	end
-	local ad = 0
-	Game:EachPlayer(function(a0, ae)
-		local af = CommonService:GetPlayerServiceNetTable(ae, "player_room_rewards_preview")
-		local ag = af and af[self.roomID]
-		if ag == nil then
+	local ak = 0
+	Game:EachPlayer(function(a6, al)
+		local am = CommonService:GetPlayerServiceNetTable(al, "player_room_rewards_preview")
+		local an = am and am[self.roomID]
+		if an == nil then
 			return
 		end
-		if toFiniteNumber(ag.receive_times, 0) > 0 then
+		if toFiniteNumber(an.receive_times, 0) > 0 then
 			return
 		end
-		local ah = ag.rewards
-		if ah == nil or #ah <= 0 then
+		local ao = an.rewards
+		if ao == nil or #ao <= 0 then
 			return
 		end
 		do
-			local aa = 0
-			while aa < #ah do
+			local ah = 0
+			while ah < #ao do
 				do
-					local ai = ah[aa + 1]
-					local aj = toFiniteNumber(ai.item_id, 0)
-					local ak = toFiniteNumber(ai.amounts, 0)
-					if aj <= 0 or ak <= 0 then
-						goto al
+					local ap = ao[ah + 1]
+					local aq = toFiniteNumber(ap.item_id, 0)
+					local ar = toFiniteNumber(ap.amounts, 0)
+					if aq <= 0 or ar <= 0 then
+						goto as
 					end
-					local Y = self:ResolvePreviewRewardItemName(aj)
-					if Y == nil then
+					local a2 = self:ResolvePreviewRewardItemName(aq)
+					if a2 == nil then
 						print(
-							((("[DungeonRoom " .. tostring(self.roomID)) .. "] 预览奖励 item_id=") .. tostring(aj))
+							((("[DungeonRoom " .. tostring(self.roomID)) .. "] 预览奖励 item_id=") .. tostring(aq))
 								.. " 未找到对应 itemName，已跳过"
 						)
-						goto al
+						goto as
 					end
-					local am = RandomInt(0, ab - 1)
-					local an = self.previewRewardSlots[am + 1]
-					an[#an + 1] = { playerID = ae, itemID = aj, amounts = ak, itemName = Y }
-					ad = ad + 1
+					local at = RandomInt(0, ai - 1)
+					local au = self.previewRewardSlots[at + 1]
+					au[#au + 1] = { playerID = al, itemID = aq, amounts = ar, itemName = a2 }
+					ak = ak + 1
 				end
-				::al::
-				aa = aa + 1
+				::as::
+				ah = ah + 1
 			end
 		end
 	end)
-	if ad > 0 then
+	if ak > 0 then
 		print(
 			(
-				((("[DungeonRoom " .. tostring(self.roomID)) .. "] 预览奖励已预分配到 ") .. tostring(ab))
+				((("[DungeonRoom " .. tostring(self.roomID)) .. "] 预览奖励已预分配到 ") .. tostring(ai))
 				.. " 个怪物槽位，奖励条目数="
-			) .. tostring(ad)
+			) .. tostring(ak)
 		)
 	end
 end
-function K.prototype.ResolvePreviewRewardItemName(self, aj)
-	if aj <= 0 then
+function P.prototype.ResolvePreviewRewardItemName(self, aq)
+	if aq <= 0 then
 		return nil
 	end
-	local ao = self.itemNameByItemID[aj]
-	if ao ~= nil then
-		return ao
+	local av = self.itemNameByItemID[aq]
+	if av ~= nil then
+		return av
 	end
-	for Y, ap in pairs(KeyValues.items) do
-		local aq = toFiniteNumber
-		local ar = ap.ItemID
-		if ar == nil then
-			ar = ap.item_id
+	for a2, aw in pairs(KeyValues.items) do
+		local ax = toFiniteNumber
+		local ay = aw.ItemID
+		if ay == nil then
+			ay = aw.item_id
 		end
-		local as = ar
-		if as == nil then
-			as = ap.id
+		local az = ay
+		if az == nil then
+			az = aw.id
 		end
-		local at = as
-		if at == nil then
-			at = ap.ID
+		local aA = az
+		if aA == nil then
+			aA = aw.ID
 		end
-		local au = at
-		if au == nil then
-			au = ap.ServiceItemID
+		local aB = aA
+		if aB == nil then
+			aB = aw.ServiceItemID
 		end
-		local av = aq(au, -1)
-		if av == aj then
-			self.itemNameByItemID[aj] = Y
-			return Y
+		local aC = ax(aB, -1)
+		if aC == aq then
+			self.itemNameByItemID[aq] = a2
+			return a2
 		end
 	end
 	if KeyValues.items.item_health_potion_1 ~= nil then
-		self.itemNameByItemID[aj] = "item_health_potion_1"
+		self.itemNameByItemID[aq] = "item_health_potion_1"
 		print(
-			((("[DungeonRoom " .. tostring(self.roomID)) .. "] 预览奖励 item_id=") .. tostring(aj))
+			((("[DungeonRoom " .. tostring(self.roomID)) .. "] 预览奖励 item_id=") .. tostring(aq))
 				.. " 未找到精确映射，使用调试占位物 item_health_potion_1"
 		)
 		return "item_health_potion_1"
 	end
 	return nil
 end
-function K.prototype.AssignPreviewRewardsToEnemy(self, aw)
-	local ax = self.previewRewardSlots[self.previewRewardAssignedEnemyCount + 1] or {}
-	if #ax > 0 then
-		local ay = aw:GetEntityIndex()
-		self.enemyPreviewRewards[ay] = {}
+function P.prototype.AssignPreviewRewardsToEnemy(self, aD)
+	local aE = self.previewRewardSlots[self.previewRewardAssignedEnemyCount + 1] or {}
+	if #aE > 0 then
+		local aF = aD:GetEntityIndex()
+		self.enemyPreviewRewards[aF] = {}
 		do
-			local aa = 0
-			while aa < #ax do
-				local az = self.enemyPreviewRewards[ay]
-				az[#az + 1] = ax[aa + 1]
-				aa = aa + 1
+			local ah = 0
+			while ah < #aE do
+				local aG = self.enemyPreviewRewards[aF]
+				aG[#aG + 1] = aE[ah + 1]
+				ah = ah + 1
 			end
 		end
 		print(
 			(
-				(((("[DungeonRoom " .. tostring(self.roomID)) .. "] 怪物 ") .. aw:GetUnitName()) .. " 分配到 ")
-				.. tostring(#ax)
+				(((("[DungeonRoom " .. tostring(self.roomID)) .. "] 怪物 ") .. aD:GetUnitName()) .. " 分配到 ")
+				.. tostring(#aE)
 			) .. " 条预览奖励"
 		)
 	end
 	self.previewRewardAssignedEnemyCount = self.previewRewardAssignedEnemyCount + 1
 end
-function K.prototype.DropPreviewRewardsFromEnemy(self, a1)
-	local ay = a1:GetEntityIndex()
-	local ah = self.enemyPreviewRewards[ay]
-	if ah == nil or #ah <= 0 then
+function P.prototype.DropPreviewRewardsFromEnemy(self, a7)
+	local aF = a7:GetEntityIndex()
+	local ao = self.enemyPreviewRewards[aF]
+	if ao == nil or #ao <= 0 then
 		return
 	end
-	f(self.enemyPreviewRewards, ay)
-	local aA = GetGroundPosition(a1:GetAbsOrigin(), a1)
+	f(self.enemyPreviewRewards, aF)
+	local aH = GetGroundPosition(a7:GetAbsOrigin(), a7)
 	Interaction:BeginSyncBatch()
 	do
-		local aa = 0
-		while aa < #ah do
+		local ah = 0
+		while ah < #ao do
 			do
-				local ai = ah[aa + 1]
-				if KeyValues.items[ai.itemName] == nil then
-					goto aB
+				local ap = ao[ah + 1]
+				if KeyValues.items[ap.itemName] == nil then
+					goto aI
 				end
-				self:AddDroppedPreviewReward(ai.playerID, ai.itemID, ai.amounts)
-				local aC = d(w, ai.playerID, ai.itemID, aA)
-				local aD = self.clientItems
-				aD[#aD + 1] = aC
-				local aE = { clientItem = aC, reward = ai }
-				local aF = self.previewRewardDrops
-				aF[#aF + 1] = aE
-				local aG = Interaction:RegisterInteract(aC.entity, InteractType.Consumables, 200, function(a0, aH, ae)
-					return self:PickupPreviewRewardDrop(aH, aE, ae)
-				end, 1, ai.playerID)
-				if aG ~= -1 then
-					aE.interactIndex = aG
-					local aI = self.registeredInteracts
-					aI[#aI + 1] = aG
+				self:AddDroppedPreviewReward(ap.playerID, ap.itemID, ap.amounts)
+				local aJ = d(x, ap.playerID, ap.itemID, aH)
+				local aK = self.clientItems
+				aK[#aK + 1] = aJ
+				local aL = { clientItem = aJ, reward = ap }
+				local aM = self.previewRewardDrops
+				aM[#aM + 1] = aL
+				local aN = Interaction:RegisterInteract(aJ.entity, InteractType.Consumables, 200, function(a6, aO, al)
+					return self:PickupPreviewRewardDrop(aO, aL, al)
+				end, 1, ap.playerID)
+				if aN ~= -1 then
+					aL.interactIndex = aN
+					local aP = self.registeredInteracts
+					aP[#aP + 1] = aN
 				end
 				Match:AddPlayerRoundRewards(
-					ai.playerID,
-					{ { item_id = ai.itemID, amounts = ai.amounts, item_rarity = GetPropRarity(ai.itemID) } }
+					ap.playerID,
+					{ { item_id = ap.itemID, amounts = ap.amounts, item_rarity = GetPropRarity(ap.itemID) } }
 				)
 			end
-			::aB::
-			aa = aa + 1
+			::aI::
+			ah = ah + 1
 		end
 	end
 	Interaction:EndSyncBatch()
 end
-function K.prototype.PickupPreviewRewardDrop(self, aH, aE, ae)
-	if not IsValid(aH) or not aH:IsRealHero() or not aH:IsAlive() then
+function P.prototype.PickupPreviewRewardDrop(self, aO, aL, al)
+	if not IsValid(aO) or not aO:IsRealHero() or not aO:IsAlive() then
 		return false
 	end
-	local aC = aE.clientItem
-	if aC.isDispose or not aC:IsLanded() or not IsValid(aC.entity) then
+	local aJ = aL.clientItem
+	if aJ.isDispose or not aJ:IsLanded() or not IsValid(aJ.entity) then
 		return false
 	end
-	local aJ = ae or aH:GetPlayerOwnerID()
-	if aJ ~= aE.reward.playerID then
+	local aQ = al or aO:GetPlayerOwnerID()
+	if aQ ~= aL.reward.playerID then
 		return false
 	end
-	local aK = aC:GetLandedPosition()
+	local aR = aJ:GetLandedPosition()
 	print(
 		(
 			(
@@ -558,173 +583,173 @@ function K.prototype.PickupPreviewRewardDrop(self, aH, aE, ae)
 								(
 									(
 										(("[DungeonRoom " .. tostring(self.roomID)) .. "] 预览奖励拾取 player=")
-										.. tostring(aJ)
+										.. tostring(aQ)
 									) .. " owner="
-								) .. tostring(aE.reward.playerID)
+								) .. tostring(aL.reward.playerID)
 							) .. " item_id="
-						) .. tostring(aE.reward.itemID)
+						) .. tostring(aL.reward.itemID)
 					) .. " item_name="
-				) .. aE.reward.itemName
+				) .. aL.reward.itemName
 			) .. " amounts="
-		) .. tostring(aE.reward.amounts)
+		) .. tostring(aL.reward.amounts)
 	)
-	CommonService:SendReceiveRewards(aJ, { { item_id = aE.reward.itemID, amounts = aE.reward.amounts } })
-	Event:Fire("client_item_pickup", { playerID = aJ, item_id = aE.reward.itemID })
-	self:CreateClientItemPickupParticle(aK, aH)
-	if aE.interactIndex ~= nil then
-		Interaction:UnregisterInteractable(aE.interactIndex)
-		ArrayRemove(self.registeredInteracts, aE.interactIndex)
-		aE.interactIndex = nil
+	CommonService:SendReceiveRewards(aQ, { { item_id = aL.reward.itemID, amounts = aL.reward.amounts } })
+	Event:Fire("client_item_pickup", { playerID = aQ, item_id = aL.reward.itemID })
+	self:CreateClientItemPickupParticle(aR, aO)
+	if aL.interactIndex ~= nil then
+		Interaction:UnregisterInteractable(aL.interactIndex)
+		ArrayRemove(self.registeredInteracts, aL.interactIndex)
+		aL.interactIndex = nil
 	end
-	ArrayRemove(self.previewRewardDrops, aE)
-	ArrayRemove(self.clientItems, aC)
-	aC:dispose()
+	ArrayRemove(self.previewRewardDrops, aL)
+	ArrayRemove(self.clientItems, aJ)
+	aJ:dispose()
 	return true
 end
-function K.prototype.TryAutoPickupPreviewReward(self, aH)
-	if not IsValid(aH) or not aH:IsRealHero() or not aH:IsAlive() then
+function P.prototype.TryAutoPickupPreviewReward(self, aO)
+	if not IsValid(aO) or not aO:IsRealHero() or not aO:IsAlive() then
 		return false
 	end
-	local aJ = aH:GetPlayerOwnerID()
-	local aL = aH:GetAbsOrigin()
-	local aM
-	local aN = 200
+	local aQ = aO:GetPlayerOwnerID()
+	local aS = aO:GetAbsOrigin()
+	local aT
+	local aU = 200
 	do
-		local aa = 0
-		while aa < #self.previewRewardDrops do
+		local ah = 0
+		while ah < #self.previewRewardDrops do
 			do
-				local aE = self.previewRewardDrops[aa + 1]
-				if aE == nil then
-					goto aO
+				local aL = self.previewRewardDrops[ah + 1]
+				if aL == nil then
+					goto aV
 				end
-				local aC = aE.clientItem
-				if aE.reward.playerID ~= aJ or aC.isDispose or not aC:IsLanded() or not IsValid(aC.entity) then
-					goto aO
+				local aJ = aL.clientItem
+				if aL.reward.playerID ~= aQ or aJ.isDispose or not aJ:IsLanded() or not IsValid(aJ.entity) then
+					goto aV
 				end
-				local aP = aC.entity:GetAbsOrigin()
-				local aQ = (aL - aP):Length2D()
-				if aQ <= aN then
-					aN = aQ
-					aM = aE
+				local aW = aJ.entity:GetAbsOrigin()
+				local aX = (aS - aW):Length2D()
+				if aX <= aU then
+					aU = aX
+					aT = aL
 				end
 			end
-			::aO::
-			aa = aa + 1
+			::aV::
+			ah = ah + 1
 		end
 	end
-	if aM == nil then
+	if aT == nil then
 		return false
 	end
-	return self:PickupPreviewRewardDrop(aH, aM, aJ)
+	return self:PickupPreviewRewardDrop(aO, aT, aQ)
 end
-function K.prototype.CanAutoPickupDropItem(self, aR, aS)
-	local aT = aS
-	if not aT then
-		local aU = KeyValues.items[aR.itemName]
-		if aU ~= nil then
-			aU = aU.AutoPickUp
+function P.prototype.CanAutoPickupDropItem(self, aY, aZ)
+	local a_ = aZ
+	if not a_ then
+		local b0 = KeyValues.items[aY.itemName]
+		if b0 ~= nil then
+			b0 = b0.AutoPickUp
 		end
-		aT = aU == 1
+		a_ = b0 == 1
 	end
-	return aT
+	return a_
 end
-function K.prototype.RegisterDropItemForAutoPickup(self, aR, aV)
-	local aW = self.dropItems
-	aW[#aW + 1] = aR
-	if aV ~= -1 then
-		local aX = self.registeredInteracts
-		aX[#aX + 1] = aV
-	end
-end
-function K.prototype.UnregisterDropItemForAutoPickup(self, aR, aV)
-	ArrayRemove(self.dropItems, aR)
-	if aV ~= -1 then
-		ArrayRemove(self.registeredInteracts, aV)
+function P.prototype.RegisterDropItemForAutoPickup(self, aY, b1)
+	local b2 = self.dropItems
+	b2[#b2 + 1] = aY
+	if b1 ~= -1 then
+		local b3 = self.registeredInteracts
+		b3[#b3 + 1] = b1
 	end
 end
-function K.prototype.TryAutoPickupDropItem(self, aH, aS)
-	if aS == nil then
-		aS = false
-	end
-	if not IsValid(aH) or not aH:IsRealHero() or not aH:IsAlive() then
-		return false
-	end
-	local aJ = aH:GetPlayerOwnerID()
-	local aL = aH:GetAbsOrigin()
-	local aY
-	local aZ
-	local aN = 200
-	do
-		local aa = 0
-		while aa < #self.dropItems do
-			do
-				local aR = self.dropItems[aa + 1]
-				if
-					aR == nil
-					or aR.isDispose
-					or not aR:IsLanded()
-					or not IsValid(aR.entity)
-					or not self:CanAutoPickupDropItem(aR, aS)
-				then
-					goto a_
-				end
-				if aR.playerID ~= nil and aR.playerID ~= aJ then
-					goto a_
-				end
-				local ay = aR:GetEntityIndex()
-				if ay == -1 then
-					goto a_
-				end
-				local aP = aR.entity:GetAbsOrigin()
-				local aQ = (aL - aP):Length2D()
-				if aQ <= aN then
-					aN = aQ
-					aY = aR
-					aZ = ay
-				end
-			end
-			::a_::
-			aa = aa + 1
-		end
-	end
-	if aY == nil or aZ == nil then
-		return false
-	end
-	local aK = aY.entity:GetAbsOrigin()
-	local b0 = Interaction:ExecutePrimaryCallback(aZ, aH, aJ)
-	if not b0 then
-		return false
-	end
-	self:CreateClientItemPickupParticle(aK, aH)
-	Interaction:UnregisterInteractable(aZ)
-	ArrayRemove(self.registeredInteracts, aZ)
+function P.prototype.UnregisterDropItemForAutoPickup(self, aY, b1)
 	ArrayRemove(self.dropItems, aY)
+	if b1 ~= -1 then
+		ArrayRemove(self.registeredInteracts, b1)
+	end
+end
+function P.prototype.TryAutoPickupDropItem(self, aO, aZ)
+	if aZ == nil then
+		aZ = false
+	end
+	if not IsValid(aO) or not aO:IsRealHero() or not aO:IsAlive() then
+		return false
+	end
+	local aQ = aO:GetPlayerOwnerID()
+	local aS = aO:GetAbsOrigin()
+	local b4
+	local b5
+	local aU = 200
+	do
+		local ah = 0
+		while ah < #self.dropItems do
+			do
+				local aY = self.dropItems[ah + 1]
+				if
+					aY == nil
+					or aY.isDispose
+					or not aY:IsLanded()
+					or not IsValid(aY.entity)
+					or not self:CanAutoPickupDropItem(aY, aZ)
+				then
+					goto b6
+				end
+				if aY.playerID ~= nil and aY.playerID ~= aQ then
+					goto b6
+				end
+				local aF = aY:GetEntityIndex()
+				if aF == -1 then
+					goto b6
+				end
+				local aW = aY.entity:GetAbsOrigin()
+				local aX = (aS - aW):Length2D()
+				if aX <= aU then
+					aU = aX
+					b4 = aY
+					b5 = aF
+				end
+			end
+			::b6::
+			ah = ah + 1
+		end
+	end
+	if b4 == nil or b5 == nil then
+		return false
+	end
+	local aR = b4.entity:GetAbsOrigin()
+	local b7 = Interaction:ExecutePrimaryCallback(b5, aO, aQ)
+	if not b7 then
+		return false
+	end
+	self:CreateClientItemPickupParticle(aR, aO)
+	Interaction:UnregisterInteractable(b5)
+	ArrayRemove(self.registeredInteracts, b5)
+	ArrayRemove(self.dropItems, b4)
 	return true
 end
-function K.prototype.AddDroppedPreviewReward(self, ae, aj, ak)
-	if ak <= 0 then
+function P.prototype.AddDroppedPreviewReward(self, al, aq, ar)
+	if ar <= 0 then
 		return
 	end
-	local b1 = tostring(ae)
-	local b2 = tostring(aj)
-	local b3, b4 = self.droppedPreviewRewards, b1
-	if b3[b4] == nil then
-		b3[b4] = {}
+	local b8 = tostring(al)
+	local b9 = tostring(aq)
+	local ba, bb = self.droppedPreviewRewards, b8
+	if ba[bb] == nil then
+		ba[bb] = {}
 	end
-	self.droppedPreviewRewards[b1][b2] = (self.droppedPreviewRewards[b1][b2] or 0) + ak
+	self.droppedPreviewRewards[b8][b9] = (self.droppedPreviewRewards[b8][b9] or 0) + ar
 end
-function K.prototype.GetDroppedPreviewRewards(self, ae)
-	local b5 = self.droppedPreviewRewards[tostring(ae)]
-	if b5 == nil then
+function P.prototype.GetDroppedPreviewRewards(self, al)
+	local bc = self.droppedPreviewRewards[tostring(al)]
+	if bc == nil then
 		return {}
 	end
-	local b6 = {}
-	for aj, ak in pairs(b5) do
-		b6[tostring(aj)] = toFiniteNumber(ak, 0)
+	local bd = {}
+	for aq, ar in pairs(bc) do
+		bd[tostring(aq)] = toFiniteNumber(ar, 0)
 	end
-	return b6
+	return bd
 end
-function K.prototype.Activate(self)
+function P.prototype.Activate(self)
 	if self.isDispose then
 		return
 	end
@@ -746,9 +771,9 @@ function K.prototype.Activate(self)
 		) .. (self.specialKind or "-")
 	)
 	if self.roomType == RoomType.STAIR and not DungeonManager:IsTutorial() then
-		local b7 = DungeonManager:GetRoomIndex() + 1
-		Game:EachPlayer(function(a0, ae)
-			Service:ReportClick(ae, "dungeon", "reward_room|enter|room_" .. tostring(b7))
+		local be = DungeonManager:GetRoomIndex() + 1
+		Game:EachPlayer(function(a6, al)
+			Service:ReportClick(al, "dungeon", "reward_room|enter|room_" .. tostring(be))
 		end)
 	end
 	self.currentWave = 0
@@ -761,8 +786,8 @@ function K.prototype.Activate(self)
 			self:CreateBoss()
 		else
 			if self.spawnInfo.isDeploy then
-				for aa, a1 in ipairs(self.enemies) do
-					a1:RemoveModifierByName("modifier_sleep")
+				for ah, a7 in ipairs(self.enemies) do
+					a7:RemoveModifierByName("modifier_sleep")
 				end
 			end
 			self.timerID = Timer:GameTimer(self.spawnInfo.isDeploy and self.spawnInfo.spawnInterval or 0, function()
@@ -785,7 +810,7 @@ function K.prototype.Activate(self)
 		end
 	end
 end
-function K.prototype.Complete(self, b8)
+function P.prototype.Complete(self, bf)
 	if self.isComplete then
 		return
 	end
@@ -801,491 +826,628 @@ function K.prototype.Complete(self, b8)
 		StopGameEvent(self.eventListenerID)
 		self.eventListenerID = nil
 	end
-	e(self.items, function(a0, a7)
-		if IsValid(a7) then
-			local a8 = a7:GetContainedItem()
-			if IsValid(a8) then
-				UTIL_Remove(a8)
+	e(self.items, function(a6, ae)
+		if IsValid(ae) then
+			local af = ae:GetContainedItem()
+			if IsValid(af) then
+				UTIL_Remove(af)
 			end
-			UTIL_Remove(a7)
+			UTIL_Remove(ae)
 		end
 	end)
-	e(self.dropItems, function(a0, a7)
-		a7:dispose()
+	e(self.dropItems, function(a6, ae)
+		ae:dispose()
 	end)
-	e(self.clientItems, function(a0, a7)
-		a7:dispose()
+	e(self.clientItems, function(a6, ae)
+		ae:dispose()
 	end)
-	e(self.shopItems, function(a0, a7)
-		print(a7.itemName, "dispose")
-		a7:dispose()
+	e(self.shopItems, function(a6, ae)
+		print(ae.itemName, "dispose")
+		ae:dispose()
 	end)
 	self.items = {}
 	self.dropItems = {}
 	self.clientItems = {}
 	self.shopItems = {}
 	do
-		local aa = 0
-		while aa < #self.registeredInteracts do
-			Interaction:UnregisterInteractable(self.registeredInteracts[aa + 1])
-			aa = aa + 1
+		local ah = 0
+		while ah < #self.registeredInteracts do
+			Interaction:UnregisterInteractable(self.registeredInteracts[ah + 1])
+			ah = ah + 1
 		end
 	end
 	self.registeredInteracts = {}
-	for a0, a9 in ipairs(self.exitInfos) do
-		if a9.rewardParticleID ~= nil then
-			ParticleManager:DestroyParticle(a9.rewardParticleID, true)
-			ParticleManager:ReleaseParticleIndex(a9.rewardParticleID)
+	for a6, ag in ipairs(self.exitInfos) do
+		if ag.rewardParticleID ~= nil then
+			ParticleManager:DestroyParticle(ag.rewardParticleID, true)
+			ParticleManager:ReleaseParticleIndex(ag.rewardParticleID)
 		end
-		if a9.eliteParticleID ~= nil then
-			ParticleManager:DestroyParticle(a9.eliteParticleID, true)
-			ParticleManager:ReleaseParticleIndex(a9.eliteParticleID)
+		if ag.eliteParticleID ~= nil then
+			ParticleManager:DestroyParticle(ag.eliteParticleID, true)
+			ParticleManager:ReleaseParticleIndex(ag.eliteParticleID)
 		end
 	end
-	local b9 = self.exitInfos[b8 + 1]
-	if b9 ~= nil then
+	local bg = self.exitInfos[bf + 1]
+	if bg ~= nil then
 		print(
 			(
 				(
 					(
-						((("[DungeonRoom " .. tostring(self.roomID)) .. "] 玩家选择出口 ") .. tostring(b8))
+						((("[DungeonRoom " .. tostring(self.roomID)) .. "] 玩家选择出口 ") .. tostring(bf))
 						.. "，进入下个房间，房间奖励: "
-					) .. tostring(b9.rewardType)
+					) .. tostring(bg.rewardType)
 				) .. " special="
-			) .. (b9.specialKind or "")
+			) .. (bg.specialKind or "")
 		)
-		DungeonManager:SetSelectedNextRoomRoute(b9.rewardType, b9.specialKind)
+		DungeonManager:SetSelectedNextRoomRoute(bg.rewardType, bg.specialKind)
 	end
 	Event:Fire("dungeon_room_complete", { room = self })
 end
-function K.prototype.LockGate(self)
-	local ba = self:FindEntities("prop_dynamic", "prop_gate")
-	for a0, bb in ipairs(ba) do
-		local bc = bb:GetName()
-		local bd = g(bc, "_")[1]
-		if bd == self.entrancePrefix then
-			bb:FireOutput("OnUser1", nil, nil, nil, 0)
+function P.prototype.LockGate(self)
+	local bh = self:FindEntities("prop_dynamic", "prop_gate")
+	for a6, bi in ipairs(bh) do
+		local bj = bi:GetName()
+		local bk = g(bj, "_")[1]
+		if bk == self.entrancePrefix then
+			bi:FireOutput("OnUser1", nil, nil, nil, 0)
 		end
 	end
 end
-function K.prototype.OpenGates(self)
+function P.prototype.OpenGates(self)
 	if self.gatesOpened then
 		return
 	end
 	self.gatesOpened = true
-	local ba = self:FindEntities("prop_dynamic", "prop_gate")
+	local bh = self:FindEntities("prop_dynamic", "prop_gate")
 	print(
 		(
-			((("[DungeonRoom " .. tostring(self.roomID)) .. "] OpenGates - 找到 ") .. tostring(#ba))
+			((("[DungeonRoom " .. tostring(self.roomID)) .. "] OpenGates - 找到 ") .. tostring(#bh))
 			.. " 个门，出口数量: "
 		) .. tostring(#self.exitInfos)
 	)
-	local be = {}
-	for a0, bb in ipairs(ba) do
-		local bc = bb:GetName()
-		local bd = g(bc, "_")[1]
-		if not be[bd] then
-			be[bd] = {}
+	local bl = {}
+	for a6, bi in ipairs(bh) do
+		local bj = bi:GetName()
+		local bk = g(bj, "_")[1]
+		if not bl[bk] then
+			bl[bk] = {}
 		end
-		local bf = be[bd]
-		bf[#bf + 1] = bb
+		local bm = bl[bk]
+		bm[#bm + 1] = bi
 	end
 	do
-		local aa = 0
-		while aa < #self.exitInfos do
+		local ah = 0
+		while ah < #self.exitInfos do
 			do
-				local a9 = self.exitInfos[aa + 1]
-				if a9 == nil then
-					goto bg
+				local ag = self.exitInfos[ah + 1]
+				if ag == nil then
+					goto bn
 				end
-				local b8 = aa
-				local bh = self:GetExitTooltip(a9)
-				local bi = be[a9.prefix]
-				if bi == nil or #bi == 0 then
+				local bf = ah
+				local bo = self:GetExitTooltip(ag)
+				local bp = bl[ag.prefix]
+				if bp == nil or #bp == 0 then
 					print(
-						((("[DungeonRoom " .. tostring(self.roomID)) .. "] ⚠️ 未找到前缀为 ") .. a9.prefix)
+						((("[DungeonRoom " .. tostring(self.roomID)) .. "] ⚠️ 未找到前缀为 ") .. ag.prefix)
 							.. " 的门"
 					)
-					goto bg
+					goto bn
 				end
-				local bj = G[a9.specialKind or ""] or F[a9.roomType] or J[a9.rewardType]
+				local bq = L[ag.specialKind or ""] or K[ag.roomType] or O[ag.rewardType]
 				print(
 					(
 						(
 							(
 								(
-									(((("[DungeonRoom " .. tostring(self.roomID)) .. "] ") .. tostring(b8)) .. " ")
-									.. RoomType[a9.roomType]
+									(((("[DungeonRoom " .. tostring(self.roomID)) .. "] ") .. tostring(bf)) .. " ")
+									.. RoomType[ag.roomType]
 								) .. " "
-							) .. RoomRewardType[a9.rewardType]
+							) .. RoomRewardType[ag.rewardType]
 						) .. " 创建粒子效果: "
-					) .. tostring(bj)
+					) .. tostring(bq)
 				)
-				if bj ~= nil and a9.rewardParticleID == nil then
-					local bk = bi[1]:GetAbsOrigin()
-					local bl = ParticleManager:CreateParticleForce(bj, PATTACH_CUSTOMORIGIN, nil)
-					ParticleManager:SetParticleControl(bl, 0, bk)
-					a9.rewardParticleID = bl
+				if bq ~= nil and ag.rewardParticleID == nil then
+					local br = bp[1]:GetAbsOrigin()
+					local bs = ParticleManager:CreateParticleForce(bq, PATTACH_CUSTOMORIGIN, nil)
+					ParticleManager:SetParticleControl(bs, 0, br)
+					ag.rewardParticleID = bs
 				end
-				if a9.roomType == RoomType.ELITE and a9.eliteParticleID == nil then
-					local bk = bi[1]:GetAbsOrigin()
-					local bm = ParticleManager:CreateParticleForce(
+				if ag.roomType == RoomType.ELITE and ag.eliteParticleID == nil then
+					local br = bp[1]:GetAbsOrigin()
+					local bt = ParticleManager:CreateParticleForce(
 						"particles/generic_gameplay/rune/rune_elite.vpcf",
 						PATTACH_CUSTOMORIGIN,
 						nil
 					)
-					ParticleManager:SetParticleControl(bm, 0, bk)
-					a9.eliteParticleID = bm
+					ParticleManager:SetParticleControl(bt, 0, br)
+					ag.eliteParticleID = bt
 				end
-				for a0, bb in ipairs(bi) do
-					local bc = bb:GetName()
-					bb:FireOutput("OnUser1", nil, nil, nil, 0)
+				for a6, bi in ipairs(bp) do
+					local bj = bi:GetName()
+					bi:FireOutput("OnUser1", nil, nil, nil, 0)
 					if self:IsFirstRoomRewardGuideEnabled() then
-						self:ShowFirstRoomRewardGuide(bb:GetEntityIndex())
+						self:ShowFirstRoomRewardGuide(bi:GetEntityIndex())
 					end
-					local aG = Interaction:RegisterInteract(bb, InteractType.Portal, 200, function(a0, aH)
+					local aN = Interaction:RegisterInteract(bi, InteractType.Portal, 200, function(a6, aO)
 						self:ClearFirstRoomRewardGuide()
-						aH:AddNewModifier(
-							aH,
+						aO:AddNewModifier(
+							aO,
 							nil,
 							"modifier_enter_gate",
-							{ position = VectorToString(bb:GetAbsOrigin() + a9.direction * 600), duration = 1 }
+							{ position = VectorToString(bi:GetAbsOrigin() + ag.direction * 600), duration = 1 }
 						)
 						DungeonManager:ShowLoadingScreen()
 						if self:IsFirstRoomRewardGuideEnabled() then
-							self:ShowFirstRoomRewardGuide(bb:GetEntityIndex())
+							self:ShowFirstRoomRewardGuide(bi:GetEntityIndex())
 						end
-						aH:GameTimer(1, function()
-							self:Complete(b8)
+						aO:GameTimer(1, function()
+							self:Complete(bf)
 						end)
 					end)
-					Interaction:UpdateInteract(aG, { tooltip = bh })
-					if aG ~= -1 then
-						local bn = self.registeredInteracts
-						bn[#bn + 1] = aG
+					Interaction:UpdateInteract(aN, { tooltip = bo })
+					if aN ~= -1 then
+						local bu = self.registeredInteracts
+						bu[#bu + 1] = aN
 					end
 				end
 			end
-			::bg::
-			aa = aa + 1
+			::bn::
+			ah = ah + 1
 		end
 	end
 	Event:Fire("dungeon_room_open_gates", { room = self })
 end
-function K.prototype.CreateTreasure(self, Q)
+function P.prototype.CreateTreasure(self, V)
 	if self:IsBossRoom() then
-		self:SpawnBossCoinStacks(Q)
+		self:SpawnBossCoinStacks(V)
 		self:OpenGates()
 		return
 	end
 	print("创建奖励:", self.roomID, RoomRewardType[self.rewardType])
-	local Y
+	local a2
 	repeat
-		local bo = self.rewardType
-		local bp = bo == RoomRewardType.POM
-		if bp then
-			Y = "item_tome_of_prop"
+		local bv = self.rewardType
+		local bw = bv == RoomRewardType.POM
+		if bw then
+			a2 = "item_tome_of_prop"
 			break
 		end
-		bp = bp or bo == RoomRewardType.BOON
-		if bp then
-			Y = "item_boon_bless"
+		bw = bw or bv == RoomRewardType.BOON
+		if bw then
+			a2 = "item_boon_bless"
 			break
 		end
-		bp = bp or bo == RoomRewardType.DOUBLE_BOON
-		if bp then
-			Y = "item_boon_bless_double"
+		bw = bw or bv == RoomRewardType.DOUBLE_BOON
+		if bw then
+			a2 = "item_boon_bless_double"
 			break
 		end
-		bp = bp or bo == RoomRewardType.HERO_UPGRADE
-		if bp then
-			Y = "item_hammer_weapon"
+		bw = bw or bv == RoomRewardType.HERO_UPGRADE
+		if bw then
+			a2 = "item_hammer_weapon"
 			break
 		end
-		bp = bp or bo == RoomRewardType.TREASURE
-		if bp then
-			Y = "item_treasure"
+		bw = bw or bv == RoomRewardType.TREASURE
+		if bw then
+			a2 = "item_treasure"
 			break
 		end
-		bp = bp or bo == RoomRewardType.GOLD
+		bw = bw or bv == RoomRewardType.GOLD
 		do
-			Y = "item_gold_pouch"
+			a2 = "item_gold_pouch"
 			break
 		end
 	until true
-	if Y == nil then
+	if a2 == nil then
 		print(("[DungeonRoom " .. tostring(self.roomID)) .. "] 警告：无法获取奖励物品")
 		self:OpenGates()
 		return
 	end
-	local aR = d(A, Y, Q)
-	local bq = aR.particleIDs
-	bq[#bq + 1] = ParticleManager:CreateParticleForce(
+	local aY = d(F, a2, V)
+	local bx = aY.particleIDs
+	bx[#bx + 1] = ParticleManager:CreateParticleForce(
 		"particles/generic_gameplay/rune/rube_drop_items_fx.vpcf",
 		PATTACH_ABSORIGIN_FOLLOW,
-		aR.entity
+		aY.entity
 	)
-	local br = self.dropItems
-	br[#br + 1] = aR
+	local by = self.dropItems
+	by[#by + 1] = aY
 	if self:IsFirstRoomRewardGuideEnabled() then
-		self:ShowFirstRoomRewardGuide(aR.entity:GetEntityIndex())
+		self:ShowFirstRoomRewardGuide(aY.entity:GetEntityIndex())
 	end
-	local aG = Interaction:RegisterInteract(aR.entity, InteractType.Chest, 150, function(a0, aH, ae)
-		if not aR:IsLanded() then
+	local aN = Interaction:RegisterInteract(aY.entity, InteractType.Chest, 150, function(a6, aO, al)
+		if not aY:IsLanded() then
 			return false
 		end
-		aH:AddItemByName(Y)
+		aO:AddItemByName(a2)
 		if not DungeonManager:IsTutorial() then
-			local b7 = DungeonManager:GetRoomIndex() + 1
-			Service:ReportClick(ae, "dungeon", "room_reward|pickup|room_" .. tostring(b7))
+			local be = DungeonManager:GetRoomIndex() + 1
+			Service:ReportClick(al, "dungeon", "room_reward|pickup|room_" .. tostring(be))
 		end
 		if self.rewardType == RoomRewardType.BOON or self.rewardType == RoomRewardType.DOUBLE_BOON then
-			local bs = self.rewardType == RoomRewardType.DOUBLE_BOON
-			Game:EachPlayer(function(a0, bt)
-				Event:Fire("bless_room_reward_claimed", { playerID = bt, isDouble = bs })
+			local bz = self.rewardType == RoomRewardType.DOUBLE_BOON
+			Game:EachPlayer(function(a6, bA)
+				Event:Fire("bless_room_reward_claimed", { playerID = bA, isDouble = bz })
 			end)
 		end
-		aR:dispose()
+		aY:dispose()
 		self:ClearFirstRoomRewardGuide()
 		self:OpenGates()
-	end, nil, nil, Y)
-	if aG ~= -1 then
-		local bu = self.registeredInteracts
-		bu[#bu + 1] = aG
+	end, nil, nil, a2)
+	if aN ~= -1 then
+		local bB = self.registeredInteracts
+		bB[#bB + 1] = aN
 	end
 end
-function K.prototype.IsFirstRoomRewardGuideEnabled(self)
+function P.prototype.IsFirstRoomRewardGuideEnabled(self)
 	return GameRules:GetCustomGameDifficulty() <= 2 and self.roomID == 0
 end
-function K.prototype.ShowFirstRoomRewardGuide(self, bv)
-	Game:EachPlayer(function(a0, ae)
-		local aH = PlayerResource:GetSelectedHeroEntity(ae)
-		if IsValid(aH) and aH:IsRealHero() then
-			aH:AddNewModifier(aH, nil, "modifier_first_dungeon_guide", { targetEntIndex = bv })
+function P.prototype.ShowFirstRoomRewardGuide(self, bC)
+	Game:EachPlayer(function(a6, al)
+		local aO = PlayerResource:GetSelectedHeroEntity(al)
+		if IsValid(aO) and aO:IsRealHero() then
+			aO:AddNewModifier(aO, nil, "modifier_first_dungeon_guide", { targetEntIndex = bC })
 		end
 	end)
 end
-function K.prototype.ClearFirstRoomRewardGuide(self)
+function P.prototype.ClearFirstRoomRewardGuide(self)
 	if not self:IsFirstRoomRewardGuideEnabled() then
 		return
 	end
-	Game:EachPlayer(function(a0, ae)
-		local aH = PlayerResource:GetSelectedHeroEntity(ae)
-		if IsValid(aH) then
-			aH:RemoveAllModifiersOfName("modifier_first_dungeon_guide")
+	Game:EachPlayer(function(a6, al)
+		local aO = PlayerResource:GetSelectedHeroEntity(al)
+		if IsValid(aO) then
+			aO:RemoveAllModifiersOfName("modifier_first_dungeon_guide")
 		end
 	end)
 end
-function K.prototype.SpawnBossCoinStacks(self, bw)
-	local bx = RandomInt(8, 15)
-	local by = 480
-	local bz = 10
+function P.prototype.SpawnBossCoinStacks(self, bD)
+	local bE = RandomInt(8, 15)
+	local bF = 480
+	local bG = 10
 	Interaction:BeginSyncBatch()
 	do
-		local aa = 0
-		while aa < bx do
-			local bA
+		local ah = 0
+		while ah < bE do
+			local bH
 			do
-				local bB = 0
-				while bB < bz do
-					local bC = RandomFloat(0, 360)
-					local aQ = RandomFloat(0, by)
-					local bD = Vector(math.cos(bC * math.pi / 180) * aQ, math.sin(bC * math.pi / 180) * aQ, 0)
-					local bE = bw:__add(bD)
-					if GridNav:IsValidPosition(bE) then
-						bA = bE
+				local bI = 0
+				while bI < bG do
+					local bJ = RandomFloat(0, 360)
+					local aX = RandomFloat(0, bF)
+					local bK = Vector(math.cos(bJ * math.pi / 180) * aX, math.sin(bJ * math.pi / 180) * aX, 0)
+					local bL = bD:__add(bK)
+					if GridNav:IsValidPosition(bL) then
+						bH = bL
 						break
 					end
-					bB = bB + 1
+					bI = bI + 1
 				end
 			end
-			if bA == nil then
-				bA = self:GetNearestValidGridPosition(bw) or bw
+			if bH == nil then
+				bH = self:GetNearestValidGridPosition(bD) or bD
 			end
-			local aR = d(A, "item_coin_stack", bA)
-			local bF = self.dropItems
-			bF[#bF + 1] = aR
-			local aG = Interaction:RegisterInteract(aR.entity, InteractType.Chest, 200, function(a0, aH)
-				aH:AddItemByName("item_coin_stack")
-				aR:dispose()
+			local aY = d(F, "item_coin_stack", bH)
+			local bM = self.dropItems
+			bM[#bM + 1] = aY
+			local aN = Interaction:RegisterInteract(aY.entity, InteractType.Chest, 200, function(a6, aO)
+				aO:AddItemByName("item_coin_stack")
+				aY:dispose()
 			end, nil, nil, "item_coin_stack")
-			if aG ~= -1 then
-				local bG = self.registeredInteracts
-				bG[#bG + 1] = aG
+			if aN ~= -1 then
+				local bN = self.registeredInteracts
+				bN[#bN + 1] = aN
 			end
-			aa = aa + 1
+			ah = ah + 1
 		end
 	end
 	Interaction:EndSyncBatch()
-	print(((("[DungeonRoom " .. tostring(self.roomID)) .. "] Boss房掉落 ") .. tostring(bx)) .. " 个金币堆")
+	print(((("[DungeonRoom " .. tostring(self.roomID)) .. "] Boss房掉落 ") .. tostring(bE)) .. " 个金币堆")
 end
-function K.prototype.NormalizeGridPhaseFromCenter(self, bD)
-	local bH = GRID_SIZE * 0.5
-	local bI = math.abs(bD % GRID_SIZE)
-	local bJ = math.min(bI, math.abs(GRID_SIZE - bI))
-	local bK = math.abs(bI - bH)
-	return bK < bJ and bH or 0
+function P.prototype.NormalizeGridPhaseFromCenter(self, bK)
+	local bO = GRID_SIZE * 0.5
+	local bP = math.abs(bK % GRID_SIZE)
+	local bQ = math.min(bP, math.abs(GRID_SIZE - bP))
+	local bR = math.abs(bP - bO)
+	return bR < bQ and bO or 0
 end
-function K.prototype.ResolveGridAnalysisOrigin(self)
-	local bi = self:FindEntities("prop_dynamic", "prop_gate")
-	if #bi <= 0 then
+function P.prototype.ResolveGridAnalysisOrigin(self)
+	local bp = self:FindEntities("prop_dynamic", "prop_gate")
+	if #bp <= 0 then
 		return self.position
 	end
-	local bL = 0
-	local bM = 0
-	local bN = 0
-	local bH = GRID_SIZE * 0.5
+	local bS = 0
+	local bT = 0
+	local bU = 0
+	local bO = GRID_SIZE * 0.5
 	do
-		local aa = 0
-		while aa < #bi do
-			local bb = bi[aa + 1]
-			local bO = bb:GetAbsOrigin()
-			local bP = bO.x - self.position.x
-			local bQ = bO.y - self.position.y
-			local bR = bO.x
-			local bS = bO.y
-			if math.abs(bP) > math.abs(bQ) then
-				bR = bO.x - (bP > 0 and bH or -bH)
+		local ah = 0
+		while ah < #bp do
+			local bi = bp[ah + 1]
+			local bV = bi:GetAbsOrigin()
+			local bW = bV.x - self.position.x
+			local bX = bV.y - self.position.y
+			local bY = bV.x
+			local bZ = bV.y
+			if math.abs(bW) > math.abs(bX) then
+				bY = bV.x - (bW > 0 and bO or -bO)
 			else
-				bS = bO.y - (bQ > 0 and bH or -bH)
+				bZ = bV.y - (bX > 0 and bO or -bO)
 			end
-			if self:NormalizeGridPhaseFromCenter(bR - self.position.x) >= bH then
-				bM = bM + 1
+			if self:NormalizeGridPhaseFromCenter(bY - self.position.x) >= bO then
+				bT = bT + 1
 			end
-			if self:NormalizeGridPhaseFromCenter(bS - self.position.y) >= bH then
-				bN = bN + 1
+			if self:NormalizeGridPhaseFromCenter(bZ - self.position.y) >= bO then
+				bU = bU + 1
 			end
-			bL = bL + 1
-			aa = aa + 1
+			bS = bS + 1
+			ah = ah + 1
 		end
 	end
-	local bT = bM * 2 > bL and bH or 0
-	local bU = bN * 2 > bL and bH or 0
-	return Vector(self.position.x + bT, self.position.y + bU, self.position.z)
+	local b_ = bT * 2 > bS and bO or 0
+	local c0 = bU * 2 > bS and bO or 0
+	return Vector(self.position.x + b_, self.position.y + c0, self.position.z)
 end
-function K.prototype.AnalyzeGrid(self)
-	local bw = self:ResolveGridAnalysisOrigin()
-	local bV = 5
-	local bW = 20
+function P.prototype.IsInsideEnemySpawnGates(self, V)
+	local c1 = 32
+	for a6, bi in ipairs(self.enemySpawnGatePositions) do
+		local bW = bi.x - self.position.x
+		local bX = bi.y - self.position.y
+		if math.abs(bW) > math.abs(bX) then
+			if bW > 0 and V.x >= bi.x - c1 then
+				return false
+			end
+			if bW < 0 and V.x <= bi.x + c1 then
+				return false
+			end
+		else
+			if bX > 0 and V.y >= bi.y - c1 then
+				return false
+			end
+			if bX < 0 and V.y <= bi.y + c1 then
+				return false
+			end
+		end
+	end
+	return true
+end
+function P.prototype.IsCurrentRoomSpawnCell(self, V)
+	if self.isDispose or not self:IsInsideEnemySpawnGates(V) then
+		return false
+	end
+	local c2 = B:GetCode(self.mapName, V, self.position)
+	return c2 == 1 and GridNav:IsValidPosition(V)
+end
+function P.prototype.GetEnemySpawnReference(self)
+	local c3
+	if self.isActived then
+		Game:EachPlayer(function(a6, al)
+			local aO = PlayerResource:GetSelectedHeroEntity(al)
+			if c3 == nil and IsValid(aO) and aO:IsAlive() and self:IsCurrentRoomSpawnCell(aO:GetAbsOrigin()) then
+				c3 = aO:GetAbsOrigin()
+			end
+		end)
+	end
+	if c3 ~= nil then
+		return c3
+	end
+	if self:IsCurrentRoomSpawnCell(self.position) then
+		return self.position
+	end
+	local aU = math.huge
+	for a6, bL in ipairs(self.validGridPositions) do
+		do
+			if not self:IsCurrentRoomSpawnCell(bL) then
+				goto c4
+			end
+			local aX = CalcDistance(bL, self.position)
+			if aX < aU then
+				aU = aX
+				c3 = bL
+			end
+		end
+		::c4::
+	end
+	return c3
+end
+function P.prototype.IsEnemySpawnPositionValid(self, V, c3)
+	return c3 ~= nil and self:IsCurrentRoomSpawnCell(V) and GridNav:CanFindPath(c3, V)
+end
+function P.prototype.PlaceEnemyAtValidPosition(self, aD, c5)
+	local c3 = self:GetEnemySpawnReference()
+	local c6 = h({ unpack(self.validGridPositions) }, function(a6, c7, c8)
+		return CalcDistance(c7, c5) - CalcDistance(c8, c5)
+	end)
+	i(c6, c5)
+	local c9
+	local ca = 0
+	for a6, bL in ipairs(c6) do
+		do
+			if not self:IsEnemySpawnPositionValid(bL, c3) then
+				goto cb
+			end
+			if c9 == nil then
+				c9 = bL
+			end
+			FindClearSpaceForUnit(aD, bL, true)
+			if self:IsEnemySpawnPositionValid(aD:GetAbsOrigin(), c3) then
+				return true
+			end
+			ca = ca + 1
+			if ca >= 8 then
+				break
+			end
+		end
+		::cb::
+	end
+	if c9 == nil or not self:IsEnemySpawnPositionValid(c9, c3) then
+		return false
+	end
+	local cc = aD:GetAbsOrigin()
+	aD:SetAbsOrigin(GetGroundPosition(c9, aD))
+	local cd = self:IsEnemySpawnPositionValid(aD:GetAbsOrigin(), c3)
+	print(
+		(
+			(
+				(
+					(
+						(
+							(
+								(
+									(
+										(("[DungeonRoom " .. tostring(self.roomID)) .. "] 修正刷怪落点 map=")
+										.. self.mapName
+									) .. " unit="
+								) .. aD:GetUnitName()
+							) .. " from="
+						) .. VectorToString(cc)
+					) .. " to="
+				) .. VectorToString(aD:GetAbsOrigin())
+			) .. " valid="
+		) .. tostring(cd)
+	)
+	return cd
+end
+function P.prototype.AnalyzeGrid(self)
+	local bD = self:ResolveGridAnalysisOrigin()
+	local ce = 5
+	local cf = 20
 	self.validGridPositions = {}
-	local bX = bw.y - GRID_SIZE * 2
+	self.enemySpawnGatePositions = j(self:FindEntities("prop_dynamic", "prop_gate"), function(a6, bi)
+		return bi:GetAbsOrigin()
+	end)
+	local cg, ch = B:GetMap(self.mapName)
+	if cg == nil then
+		print(
+			(
+				((("[DungeonRoom " .. tostring(self.roomID)) .. "] 无有效刷怪模板 map=") .. self.mapName)
+				.. " reason="
+			) .. tostring(ch)
+		)
+		return
+	end
+	local ci = bD.y - GRID_SIZE * 2
 	do
-		local bY = 0
-		while bY <= bW do
-			local bZ = false
+		local cj = 0
+		while cj <= cf do
+			local ck = false
 			do
-				local b_ = -bY
-				while b_ <= bY do
+				local cl = -cj
+				while cl <= cj do
 					do
-						local c0 = -bY
-						while c0 <= bY do
-							if math.abs(b_) == bY or math.abs(c0) == bY then
-								local c1 = Vector(bw.x + b_ * GRID_SIZE, bw.y + c0 * GRID_SIZE, bw.z)
-								if c1.y > bX and GridNav:IsValidPosition(c1) then
-									bZ = true
-									local c2 = self.validGridPositions
-									c2[#c2 + 1] = c1
+						local cm = -cj
+						while cm <= cj do
+							if math.abs(cl) == cj or math.abs(cm) == cj then
+								local cn = Vector(bD.x + cl * GRID_SIZE, bD.y + cm * GRID_SIZE, bD.z)
+								if cn.y > ci and self:IsCurrentRoomSpawnCell(cn) then
+									ck = true
+									local co = self.validGridPositions
+									co[#co + 1] = cn
 								else
 								end
 							end
-							c0 = c0 + 1
+							cm = cm + 1
 						end
 					end
-					b_ = b_ + 1
+					cl = cl + 1
 				end
 			end
-			if not bZ and bY >= bV then
+			if not ck and cj >= ce then
 				break
 			end
-			bY = bY + 1
+			cj = cj + 1
 		end
 	end
+	local c3 = self:GetEnemySpawnReference()
+	self.validGridPositions = k(self.validGridPositions, function(a6, V)
+		return self:IsEnemySpawnPositionValid(V, c3)
+	end)
 end
-function K.prototype.CreateBreakable(self)
+function P.prototype.CreateBreakable(self)
 	if #self.validGridPositions == 0 then
 		return
 	end
-	local c3 = RandomInt(0, 3)
-	local c4 = math.floor(#self.validGridPositions / 20)
-	local c5 = c3 + c4
-	if c5 == 0 then
+	local cp = RandomInt(0, 3)
+	local cq = math.floor(#self.validGridPositions / 20)
+	local cr = cp + cq
+	if cr == 0 then
 		return
 	end
-	local bw = self.position
-	local c6 = h({ unpack(self.validGridPositions) }, function(a0, c7, c8)
-		local c9 = c7:__sub(bw):Length2D()
-		local ca = c8:__sub(bw):Length2D()
-		return ca - c9
+	local bD = self.position
+	local cs = h({ unpack(self.validGridPositions) }, function(a6, c7, c8)
+		local ct = c7:__sub(bD):Length2D()
+		local cu = c8:__sub(bD):Length2D()
+		return cu - ct
 	end)
-	local cb = i(c6, 0, math.ceil(#c6 * 0.7))
-	local cc = {}
+	local cv = l(cs, 0, math.ceil(#cs * 0.7))
+	local cw = {}
 	do
-		local aa = 0
-		while aa < #cb do
-			local cd = cb[aa + 1]
-			if not self:IsTravelingMerchantNear(cd, GRID_SIZE * 1.5) then
-				cc[#cc + 1] = cd
+		local ah = 0
+		while ah < #cv do
+			local cx = cv[ah + 1]
+			if not self:IsTravelingMerchantNear(cx, GRID_SIZE * 1.5) then
+				cw[#cw + 1] = cx
 			end
-			aa = aa + 1
+			ah = ah + 1
 		end
 	end
-	local ce = #cc > 0 and cc or cb
+	local cy = #cw > 0 and cw or cv
 	do
-		local aa = #ce - 1
-		while aa > 0 do
-			local cf = RandomInt(0, aa)
-			local cg = { ce[cf + 1], ce[aa + 1] }
-			ce[aa + 1] = cg[1]
-			ce[cf + 1] = cg[2]
-			aa = aa - 1
+		local ah = #cy - 1
+		while ah > 0 do
+			local cz = RandomInt(0, ah)
+			local cA = { cy[cz + 1], cy[ah + 1] }
+			cy[ah + 1] = cA[1]
+			cy[cz + 1] = cA[2]
+			ah = ah - 1
 		end
 	end
-	local ch = math.max(1, math.floor(#ce / (c5 + 1)))
+	local cB = math.max(1, math.floor(#cy / (cr + 1)))
 	do
-		local aa = 0
-		while aa < c5 do
-			local ci = RandomInt(2, 4)
-			local cj = aa * ch
-			if cj >= #ce then
+		local ah = 0
+		while ah < cr do
+			local cC = RandomInt(2, 4)
+			local cD = ah * cB
+			if cD >= #cy then
 				break
 			end
-			local ck = ce[cj + 1]
+			local cE = cy[cD + 1]
 			do
-				local cf = 0
-				while cf < ci do
-					local bC = RandomFloat(0, 360)
-					local aQ = RandomFloat(50, 150)
-					local bD = Vector(math.cos(bC * math.pi / 180) * aQ, math.sin(bC * math.pi / 180) * aQ, 0)
-					local cl = ck:__add(bD)
+				local cz = 0
+				while cz < cC do
+					local bJ = RandomFloat(0, 360)
+					local aX = RandomFloat(50, 150)
+					local bK = Vector(math.cos(bJ * math.pi / 180) * aX, math.sin(bJ * math.pi / 180) * aX, 0)
+					local cF = cE:__add(bK)
 					CreateUnitByNameAsync(
 						DrawPool:Draw(self.terrainThemeKey ~= "ice" and "breakable" or "breakable_ice")
 							or "npc_dungeon_crate_1",
-						cl,
+						cF,
 						true,
 						nil,
 						nil,
 						DOTA_TEAM_BADGUYS,
-						function(cm)
+						function(cG)
 							if self.isDispose then
-								cm:SafeRemoveUnit()
+								cG:SafeRemoveUnit()
 							else
-								cm:SetForwardVector(RandomVector(1))
-								cm:SetModelScale(RandomFloat(0.8, 1))
-								local cn = self.breakables
-								cn[#cn + 1] = cm
-								self.occupiedPositions[cj] = true
+								cG:SetForwardVector(RandomVector(1))
+								cG:SetModelScale(RandomFloat(0.8, 1))
+								local cH = self.breakables
+								cH[#cH + 1] = cG
+								self.occupiedPositions[cD] = true
 							end
 						end
 					)
-					cf = cf + 1
+					cz = cz + 1
 				end
 			end
-			aa = aa + 1
+			ah = ah + 1
 		end
 	end
 end
-function K.prototype.CreateSpawnInfo(self, co, S)
-	if co == "" or co == nil then
+function P.prototype.CreateSpawnInfo(self, cI, X)
+	if cI == "" or cI == nil then
 		return {
 			totalCount = 0,
 			countPerRound = { 0, 0 },
@@ -1296,27 +1458,27 @@ function K.prototype.CreateSpawnInfo(self, co, S)
 			bossName = "",
 			healthFactor = 1,
 			damageFactor = 1,
-			enemyPool = d(E),
+			enemyPool = d(J),
 		}
 	end
-	local cp = KeyValues.spawn_info
-	local cq = KeyValues["spawn_info_" .. S]
-	local cr
-	if cq ~= nil then
-		cr = cq[co]
+	local cJ = KeyValues.spawn_info
+	local cK = KeyValues["spawn_info_" .. X]
+	local cL
+	if cK ~= nil then
+		cL = cK[cI]
 	else
-		cr = nil
+		cL = nil
 	end
-	local cs = cr
-	local ct
-	if cp ~= nil then
-		ct = cp[co]
+	local cM = cL
+	local cN
+	if cJ ~= nil then
+		cN = cJ[cI]
 	else
-		ct = nil
+		cN = nil
 	end
-	local cu = ct
-	if cs == nil and cu == nil then
-		print(((("[DungeonRoom] 警告：刷怪配置 '" .. co) .. "' 在默认和主题'") .. S) .. "'中均未找到")
+	local cO = cN
+	if cM == nil and cO == nil then
+		print(((("[DungeonRoom] 警告：刷怪配置 '" .. cI) .. "' 在默认和主题'") .. X) .. "'中均未找到")
 		return {
 			totalCount = 0,
 			countPerRound = { 0, 0 },
@@ -1327,116 +1489,129 @@ function K.prototype.CreateSpawnInfo(self, co, S)
 			bossName = "",
 			healthFactor = 1,
 			damageFactor = 1,
-			enemyPool = d(E),
+			enemyPool = d(J),
 		}
 	end
-	local function cv(a0, cw)
-		if cs ~= nil and cs[cw] ~= nil then
-			return cs[cw]
+	local function cP(a6, cQ)
+		if cM ~= nil and cM[cQ] ~= nil then
+			return cM[cQ]
 		end
-		if cu ~= nil and cu[cw] ~= nil then
-			return cu[cw]
+		if cO ~= nil and cO[cQ] ~= nil then
+			return cO[cQ]
 		end
 		return nil
 	end
-	local cx = k(g(j(tostring(cv(nil, "EnemyCount"))), "|"), function(a0, a7)
-		return toFiniteNumber(a7, 0)
+	local cR = j(g(m(tostring(cP(nil, "EnemyCount"))), "|"), function(a6, ae)
+		return toFiniteNumber(ae, 0)
 	end)
-	local cy = k(g(j(tostring(cv(nil, "CountPerRound"))), "|"), function(a0, a7)
-		return toFiniteNumber(a7, 0)
+	local cS = j(g(m(tostring(cP(nil, "CountPerRound"))), "|"), function(a6, ae)
+		return toFiniteNumber(ae, 0)
 	end)
-	if cy[2] == nil then
-		cy[2] = cy[1]
+	if cS[2] == nil then
+		cS[2] = cS[1]
 	end
-	local cz = RollPercentage(toFiniteNumber(cv(nil, "CaptainRoomChance")))
-	local cA = RollPercentage(toFiniteNumber(cv(nil, "EliteRoomChance")))
-	local cB = cA and toFiniteNumber(cv(nil, "OverrideEliteChance")) or toFiniteNumber(cv(nil, "EliteChance"))
-	local cC = cv(nil, "EnemyList")
-	local cD = d(E)
-	if cC ~= nil then
-		for cE, a7 in pairs(cC) do
-			cD:Set(cE, toFiniteNumber(a7, 0))
+	local cT = RollPercentage(toFiniteNumber(cP(nil, "CaptainRoomChance")))
+	local cU = RollPercentage(toFiniteNumber(cP(nil, "EliteRoomChance")))
+	local cV = cU and toFiniteNumber(cP(nil, "OverrideEliteChance")) or toFiniteNumber(cP(nil, "EliteChance"))
+	local cW = cP(nil, "EnemyList")
+	local cX = d(J)
+	if cW ~= nil then
+		for cY, ae in pairs(cW) do
+			cX:Set(cY, toFiniteNumber(ae, 0))
 		end
 	end
-	local cF = RandomInt(cx[1], cx[2])
-	local cG = RollPercentage(toFiniteNumber(cv(nil, "DeployChance")))
-	local cH = toFiniteNumber(cv(nil, "SpawnInterval"))
-	local cI
-	if cz then
-		cI = cv(nil, "CaptainName")
+	local cZ = RandomInt(cR[1], cR[2])
+	local c_ = RollPercentage(toFiniteNumber(cP(nil, "DeployChance")))
+	local d0 = toFiniteNumber(cP(nil, "SpawnInterval"))
+	local d1
+	if cT then
+		d1 = cP(nil, "CaptainName")
 	else
-		cI = ""
+		d1 = ""
 	end
 	return {
-		totalCount = cF,
-		countPerRound = cy,
-		isDeploy = cG,
-		eliteChance = cB,
-		spawnInterval = cH,
-		captainName = cI,
-		bossName = cv(nil, "BossName"),
-		healthFactor = toFiniteNumber(cv(nil, "HealthFactor"), 1),
-		damageFactor = toFiniteNumber(cv(nil, "DamageFactor"), 1),
-		enemyPool = cD,
+		totalCount = cZ,
+		countPerRound = cS,
+		isDeploy = c_,
+		eliteChance = cV,
+		spawnInterval = d0,
+		captainName = d1,
+		bossName = cP(nil, "BossName"),
+		healthFactor = toFiniteNumber(cP(nil, "HealthFactor"), 1),
+		damageFactor = toFiniteNumber(cP(nil, "DamageFactor"), 1),
+		enemyPool = cX,
 	}
 end
-function K.prototype.CreateEnemyForTutorial(self, cJ, cK, cL, cM)
-	local cN = {}
-	local cO = self:GetGridsAroundPosition(cL, 300)
-	if #cO < cK then
-		cO = self:GetGridsAroundPosition(cL, 600)
+function P.prototype.CreateEnemyForTutorial(self, d2, d3, d4, d5)
+	local d6 = {}
+	local d7 = self:GetGridsAroundPosition(d4, 300)
+	if #d7 < d3 then
+		d7 = self:GetGridsAroundPosition(d4, 600)
 	end
-	if #cO < cK then
-		cO = self:GetGridsAroundPosition(cL, 1200)
+	if #d7 < d3 then
+		d7 = self:GetGridsAroundPosition(d4, 1200)
 	end
-	if #cO == 0 then
+	if #d7 == 0 then
 		print(("[DungeonRoom " .. tostring(self.roomID)) .. "] ⚠️ 没有可用生成位置")
 		return {}
 	end
 	do
-		local aa = #cO - 1
-		while aa > 0 do
-			local cf = RandomInt(0, aa)
-			local cP = { cO[cf + 1], cO[aa + 1] }
-			cO[aa + 1] = cP[1]
-			cO[cf + 1] = cP[2]
-			aa = aa - 1
+		local ah = #d7 - 1
+		while ah > 0 do
+			local cz = RandomInt(0, ah)
+			local d8 = { d7[cz + 1], d7[ah + 1] }
+			d7[ah + 1] = d8[1]
+			d7[cz + 1] = d8[2]
+			ah = ah - 1
 		end
 	end
 	do
-		local aa = 0
-		while aa < cK and aa < #cO do
-			local cl = cO[aa + 1]
-			if cJ ~= nil and KeyValues.units[cJ] ~= nil then
-				if SimulateUnitManager:IsSimulateUnit(cJ) then
-					local aw = SimulateUnitManager:CreateCustomUnit(cJ, cl, DOTA_TEAM_BADGUYS)
-					aw:SetForwardVector(RandomVector(1))
-					local cQ = self.simulateEnemies
-					cQ[#cQ + 1] = aw
-					self:AssignPreviewRewardsToEnemy(aw)
-				else
-					local aw = CreateUnitByName(cJ, cl, true, nil, nil, DOTA_TEAM_BADGUYS)
-					self:ApplyDifficultyModifiers(aw)
-					cN[#cN + 1] = aw
-					if cM then
-						aw:AddNewModifier(aw, nil, "modifier_elite", {})
-					end
+		local ah = 0
+		while ah < d3 and ah < #d7 do
+			do
+				local cF = d7[ah + 1]
+				if not self:IsEnemySpawnPositionValid(cF, self:GetEnemySpawnReference()) then
+					goto d9
 				end
-			else
-				print(
-					((("[DungeonRoom " .. tostring(self.roomID)) .. "] ⚠️警告：单位 '") .. cJ)
-						.. "' 无法创建（可能未在KV中定义）"
-				)
+				if d2 ~= nil and KeyValues.units[d2] ~= nil then
+					if SimulateUnitManager:IsSimulateUnit(d2) then
+						local aD = SimulateUnitManager:CreateCustomUnit(d2, cF, DOTA_TEAM_BADGUYS)
+						aD:SetForwardVector(RandomVector(1))
+						local da = self.simulateEnemies
+						da[#da + 1] = aD
+						self:AssignPreviewRewardsToEnemy(aD)
+					else
+						local aD = CreateUnitByName(d2, cF, true, nil, nil, DOTA_TEAM_BADGUYS)
+						if not IsValid(aD) then
+							goto d9
+						end
+						if not self:PlaceEnemyAtValidPosition(aD, cF) then
+							aD:SafeRemoveUnit()
+							goto d9
+						end
+						self:ApplyDifficultyModifiers(aD)
+						d6[#d6 + 1] = aD
+						if d5 then
+							aD:AddNewModifier(aD, nil, "modifier_elite", {})
+						end
+					end
+				else
+					print(
+						((("[DungeonRoom " .. tostring(self.roomID)) .. "] ⚠️警告：单位 '") .. d2)
+							.. "' 无法创建（可能未在KV中定义）"
+					)
+				end
 			end
-			aa = aa + 1
+			::d9::
+			ah = ah + 1
 		end
 	end
-	return cN
+	return d6
 end
-function K.prototype.CreateWaveEnemy(self)
-	local cR =
+function P.prototype.CreateWaveEnemy(self)
+	local db =
 		math.min(self.spawnInfo.totalCount, RandomInt(self.spawnInfo.countPerRound[1], self.spawnInfo.countPerRound[2]))
-	if cR <= 0 then
+	if db <= 0 then
 		print(
 			(
 				(
@@ -1456,116 +1631,141 @@ function K.prototype.CreateWaveEnemy(self)
 		return
 	end
 	self.occupiedPositions = {}
-	local bw = self.position
-	local cO
+	local bD = self.position
+	local d7
 	if self.currentWave == 0 then
-		cO = self:GetAvailablePositionIndices(bw.y - 400, bw.y)
-		if #cO < cR then
-			cO = self:GetAvailablePositionIndices()
+		d7 = self:GetAvailablePositionIndices(bD.y - 400, bD.y)
+		if #d7 < db then
+			d7 = self:GetAvailablePositionIndices()
 		end
 	else
-		cO = self:GetAvailablePositionIndices(bw.y, bw.y + 600)
-		if #cO < cR then
-			cO = self:GetAvailablePositionIndices()
+		d7 = self:GetAvailablePositionIndices(bD.y, bD.y + 600)
+		if #d7 < db then
+			d7 = self:GetAvailablePositionIndices()
 		end
 	end
-	if #cO == 0 then
+	if #d7 == 0 then
 		print(
 			(
 				(
 					(("[DungeonRoom " .. tostring(self.roomID)) .. "] ⚠️ 没有可用生成位置，跳过本波 ")
-					.. tostring(cR)
+					.. tostring(db)
 				) .. " 只怪，剩余待刷="
 			) .. tostring(self.spawnInfo.totalCount)
 		)
-		local cS, cT = self.spawnInfo, "totalCount"
-		cS[cT] = cS[cT] - cR
+		local dc, dd = self.spawnInfo, "totalCount"
+		dc[dd] = dc[dd] - db
 		self.spawnInfo.totalCount = math.max(0, self.spawnInfo.totalCount)
 		self:TryFinishCombatWhenNoEnemies(self.position)
 		return
 	end
-	local cU = math.min(cR, #cO)
-	local cV, cW = self.spawnInfo, "totalCount"
-	cV[cW] = cV[cW] - cU
-	if cU < cR then
+	local de = math.min(db, #d7)
+	local df, dg = self.spawnInfo, "totalCount"
+	df[dg] = df[dg] - de
+	if de < db then
 		print(
 			(
 				(
 					(("[DungeonRoom " .. tostring(self.roomID)) .. "] ⚠️ 可用生成位置不足，计划=")
-					.. tostring(cR)
+					.. tostring(db)
 				) .. "，实际尝试="
-			) .. tostring(cU)
+			) .. tostring(de)
 		)
 	end
 	self.currentWave = self.currentWave + 1
 	do
-		local aa = #cO - 1
-		while aa > 0 do
-			local cf = RandomInt(0, aa)
-			local cX = { cO[cf + 1], cO[aa + 1] }
-			cO[aa + 1] = cX[1]
-			cO[cf + 1] = cX[2]
-			aa = aa - 1
+		local ah = #d7 - 1
+		while ah > 0 do
+			local cz = RandomInt(0, ah)
+			local dh = { d7[cz + 1], d7[ah + 1] }
+			d7[ah + 1] = dh[1]
+			d7[cz + 1] = dh[2]
+			ah = ah - 1
 		end
 	end
-	local cY = 0
+	local di = 0
 	do
-		local aa = 0
-		while aa < cU and aa < #cO do
-			local cZ = cO[aa + 1]
-			local cl = self.validGridPositions[cZ + 1]
-			local cJ = self.spawnInfo.enemyPool:Random()
-			if cJ ~= nil and KeyValues.units[cJ] ~= nil then
-				local cB = self.spawnInfo.eliteChance
-				local cM = RollPercentage(cB)
-				self.aliveEnemyCount = self.aliveEnemyCount + 1
-				cY = cY + 1
-				if SimulateUnitManager:IsSimulateUnit(cJ) then
-					local aw = SimulateUnitManager:CreateCustomUnit(cJ, cl, DOTA_TEAM_BADGUYS)
-					aw:SetForwardVector(RandomVector(1))
-					local c_ = self.simulateEnemies
-					c_[#c_ + 1] = aw
-					self:AssignPreviewRewardsToEnemy(aw)
-				else
-					CreateUnitByNameAsync(cJ, cl, true, nil, nil, DOTA_TEAM_BADGUYS, function(aw)
-						if not IsValid(aw) then
-							print(
-								((("[DungeonRoom " .. tostring(self.roomID)) .. "] ⚠️ 单位创建失败: ") .. cJ)
-									.. "，回退计数器"
-							)
-							self.aliveEnemyCount = self.aliveEnemyCount - 1
-							self.aliveEnemyCount = math.max(0, self.aliveEnemyCount)
-							return
-						end
-						if self.isDispose then
-							aw:SafeRemoveUnit()
-						else
-							FindClearSpaceForUnit(aw, cl, true)
-							aw:SetForwardVector(RandomVector(1))
-							local d0 = self.enemies
-							d0[#d0 + 1] = aw
-							self:AssignPreviewRewardsToEnemy(aw)
-							if not self.isActived then
-								aw:AddNewModifier(aw, nil, "modifier_sleep", {})
-							end
-							self:ApplyDifficultyModifiers(aw)
-							if cM then
-								aw:AddNewModifier(aw, nil, "modifier_elite", {})
-							end
-						end
-					end)
+		local ah = 0
+		while ah < de and ah < #d7 do
+			do
+				local dj = d7[ah + 1]
+				local cF = self.validGridPositions[dj + 1]
+				if not self:IsEnemySpawnPositionValid(cF, self:GetEnemySpawnReference()) then
+					local dk, dl = self.spawnInfo, "totalCount"
+					dk[dl] = dk[dl] + 1
+					goto dm
 				end
-				self.occupiedPositions[cZ] = true
-			else
-				print(
-					((("[DungeonRoom " .. tostring(self.roomID)) .. "] ⚠️警告：单位 '") .. tostring(cJ))
-						.. "' 无法创建（可能未在KV中定义）"
-				)
+				local d2 = self.spawnInfo.enemyPool:Random()
+				if d2 ~= nil and KeyValues.units[d2] ~= nil then
+					local cV = self.spawnInfo.eliteChance
+					local d5 = RollPercentage(cV)
+					self.aliveEnemyCount = self.aliveEnemyCount + 1
+					di = di + 1
+					if SimulateUnitManager:IsSimulateUnit(d2) then
+						local aD = SimulateUnitManager:CreateCustomUnit(d2, cF, DOTA_TEAM_BADGUYS)
+						aD:SetForwardVector(RandomVector(1))
+						local dn = self.simulateEnemies
+						dn[#dn + 1] = aD
+						self:AssignPreviewRewardsToEnemy(aD)
+					else
+						CreateUnitByNameAsync(d2, cF, true, nil, nil, DOTA_TEAM_BADGUYS, function(aD)
+							if not IsValid(aD) then
+								print(
+									(
+										(("[DungeonRoom " .. tostring(self.roomID)) .. "] ⚠️ 单位创建失败: ")
+										.. d2
+									) .. "，回退计数器"
+								)
+								self.aliveEnemyCount = self.aliveEnemyCount - 1
+								self.aliveEnemyCount = math.max(0, self.aliveEnemyCount)
+								return
+							end
+							if self.isDispose then
+								aD:SafeRemoveUnit()
+							else
+								if not self:PlaceEnemyAtValidPosition(aD, cF) then
+									print(
+										(
+											(
+												(
+													("[DungeonRoom " .. tostring(self.roomID))
+													.. "] 无安全刷怪落点 map="
+												) .. self.mapName
+											) .. " unit="
+										) .. d2
+									)
+									aD:SafeRemoveUnit()
+									self.aliveEnemyCount = math.max(0, self.aliveEnemyCount - 1)
+									self:TryFinishCombatWhenNoEnemies(self.position)
+									return
+								end
+								aD:SetForwardVector(RandomVector(1))
+								local dp = self.enemies
+								dp[#dp + 1] = aD
+								self:AssignPreviewRewardsToEnemy(aD)
+								if not self.isActived then
+									aD:AddNewModifier(aD, nil, "modifier_sleep", {})
+								end
+								self:ApplyDifficultyModifiers(aD)
+								if d5 then
+									aD:AddNewModifier(aD, nil, "modifier_elite", {})
+								end
+							end
+						end)
+					end
+					self.occupiedPositions[dj] = true
+				else
+					print(
+						((("[DungeonRoom " .. tostring(self.roomID)) .. "] ⚠️警告：单位 '") .. tostring(d2))
+							.. "' 无法创建（可能未在KV中定义）"
+					)
+				end
 			end
-			aa = aa + 1
+			::dm::
+			ah = ah + 1
 		end
 	end
-	if cY <= 0 then
+	if di <= 0 then
 		print(
 			(
 				(
@@ -1579,7 +1779,7 @@ function K.prototype.CreateWaveEnemy(self)
 		self:TryFinishCombatWhenNoEnemies(self.position)
 	end
 end
-function K.prototype.TryFinishCombatWhenNoEnemies(self, Q)
+function P.prototype.TryFinishCombatWhenNoEnemies(self, V)
 	if self.isCombatEnd or self.isDispose then
 		return
 	end
@@ -1592,49 +1792,60 @@ function K.prototype.TryFinishCombatWhenNoEnemies(self, Q)
 	if self.aliveEnemyCount > 0 or self.spawnInfo.totalCount > 0 then
 		return
 	end
-	local d1 = GetGroundPosition(Q, nil)
-	if not GridNav:IsValidPosition(d1) then
-		d1 = self:GetNearestValidGridPosition(d1) or self.position
+	local dq = GetGroundPosition(V, nil)
+	if not GridNav:IsValidPosition(dq) then
+		dq = self:GetNearestValidGridPosition(dq) or self.position
 	end
 	print(("[DungeonRoom " .. tostring(self.roomID)) .. "] 无剩余有效怪物，执行战斗房兜底清场")
-	self:FinishCombat(d1)
+	self:FinishCombat(dq)
 end
-function K.prototype.FinishCombat(self, Q)
+function P.prototype.FinishCombat(self, V)
 	if self.isCombatEnd or self.isDispose then
 		return
 	end
 	self.dungeonTrap:StopCombat()
-	self:CreateTreasure(Q)
+	self:CreateTreasure(V)
 	self:CreateInteractiveTravelingMerchant()
 	self.isCombatEnd = true
 	self:StopUnitManagerGuardTimer()
-	Event:Fire("dungeon_room_clear", { room = self, position = Q, trapOnlyClear = self.playerKilledEnemyCount == 0 })
+	Event:Fire("dungeon_room_clear", { room = self, position = V, trapOnlyClear = self.playerKilledEnemyCount == 0 })
 end
-function K.prototype.CreateBoss(self)
+function P.prototype.CreateBoss(self)
 	if self.bossName == nil or self.bossName == "" then
 		print(("[DungeonRoom " .. tostring(self.roomID)) .. "] Boss房缺少Boss名称配置")
 		return
 	end
-	local T = self.bossName
-	if KeyValues.units[T] == nil then
-		print(((("[DungeonRoom " .. tostring(self.roomID)) .. "] 警告：Boss单位 '") .. T) .. "' 未在KV中定义")
+	local Y = self.bossName
+	if KeyValues.units[Y] == nil then
+		print(((("[DungeonRoom " .. tostring(self.roomID)) .. "] 警告：Boss单位 '") .. Y) .. "' 未在KV中定义")
 		return
 	end
-	local d2 = self:FindInfoTarget("info_boss_spawn")
-	local d3 = d2 and d2:GetAbsOrigin() or self.position
+	local dr = self:FindInfoTarget("info_boss_spawn")
+	local ds = dr and dr:GetAbsOrigin() or self.position
+	local dt = self:IsEnemySpawnPositionValid(ds, self:GetEnemySpawnReference()) and ds
+		or self:GetNearestValidGridPosition(ds)
+	if dt == nil then
+		print(
+			(
+				((("[DungeonRoom " .. tostring(self.roomID)) .. "] Boss无安全刷怪点 map=") .. self.mapName)
+				.. " unit="
+			) .. Y
+		)
+		return
+	end
 	print(
 		(
 			(
-				((((("[DungeonRoom " .. tostring(self.roomID)) .. "] 生成Boss: ") .. T) .. " at (") .. tostring(d3.x))
+				((((("[DungeonRoom " .. tostring(self.roomID)) .. "] 生成Boss: ") .. Y) .. " at (") .. tostring(dt.x))
 				.. ", "
-			) .. tostring(d3.y)
+			) .. tostring(dt.y)
 		) .. ")"
 	)
 	self.aliveEnemyCount = self.aliveEnemyCount + 1
-	CreateUnitByNameAsync(T, d3, true, nil, nil, DOTA_TEAM_BADGUYS, function(d4)
-		if not IsValid(d4) then
+	CreateUnitByNameAsync(Y, dt, true, nil, nil, DOTA_TEAM_BADGUYS, function(du)
+		if not IsValid(du) then
 			print(
-				((("[DungeonRoom " .. tostring(self.roomID)) .. "] ⚠️ Boss创建失败: ") .. T)
+				((("[DungeonRoom " .. tostring(self.roomID)) .. "] ⚠️ Boss创建失败: ") .. Y)
 					.. "，回退计数器"
 			)
 			self.aliveEnemyCount = self.aliveEnemyCount - 1
@@ -1642,59 +1853,70 @@ function K.prototype.CreateBoss(self)
 			return
 		end
 		if self.isDispose then
-			d4:SafeRemoveUnit()
+			du:SafeRemoveUnit()
 		else
-			d4:SetForwardVector(vec3_bottom)
-			local d5 = KeyValues.units[T]
-			local d6 = math.max(0.1, toFiniteNumber(d5.IntroDuration, 4))
-			local d7 = toFiniteNumber(d5.IntroFocusDistance, 520)
-			local d8 = toFiniteNumber(d5.IntroHeightOffset, 160)
-			local d9 = GameRules:GetGameTime()
-			local da = d4:GetForwardVector()
-			local db = {
-				targetEntIndex = d4:GetEntityIndex(),
-				targetX = d3.x,
-				targetY = d3.y,
-				targetZ = d3.z,
-				forwardX = da.x,
-				forwardY = da.y,
-				forwardZ = da.z,
-				duration = d6,
-				focusDistance = d7,
-				heightOffset = d8,
+			if not self:PlaceEnemyAtValidPosition(du, dt) then
+				du:SafeRemoveUnit()
+				self.aliveEnemyCount = math.max(0, self.aliveEnemyCount - 1)
+				print(
+					(
+						((("[DungeonRoom " .. tostring(self.roomID)) .. "] Boss无安全落点 map=") .. self.mapName)
+						.. " unit="
+					) .. Y
+				)
+				return
+			end
+			du:SetForwardVector(vec3_bottom)
+			local dv = KeyValues.units[Y]
+			local dw = math.max(0.1, toFiniteNumber(dv.IntroDuration, 4))
+			local dx = toFiniteNumber(dv.IntroFocusDistance, 520)
+			local dy = toFiniteNumber(dv.IntroHeightOffset, 160)
+			local dz = GameRules:GetGameTime()
+			local dA = du:GetForwardVector()
+			local dB = {
+				targetEntIndex = du:GetEntityIndex(),
+				targetX = dt.x,
+				targetY = dt.y,
+				targetZ = dt.z,
+				forwardX = dA.x,
+				forwardY = dA.y,
+				forwardZ = dA.z,
+				duration = dw,
+				focusDistance = dx,
+				heightOffset = dy,
 				restoreDuration = 1,
-				startTime = d9,
-				endTime = d9 + d6,
-				sequence = d9,
+				startTime = dz,
+				endTime = dz + dw,
+				sequence = dz,
 			}
 			CustomNetTables:SetNetData("common", "boss_intro", { state = true })
-			CustomNetTables:SetNetData("common", "boss_intro_camera", l({ state = true }, db))
-			CustomGameEventManager:Send_ServerToAllClients("boss_camera_intro", db)
-			Timer:GameTimer(d6, function()
+			CustomNetTables:SetNetData("common", "boss_intro_camera", n({ state = true }, dB))
+			CustomGameEventManager:Send_ServerToAllClients("boss_camera_intro", dB)
+			Timer:GameTimer(dw, function()
 				CustomNetTables:SetNetData("common", "boss_intro", { state = false })
 				CustomNetTables:SetNetData("common", "boss_intro_camera", { state = false })
 				self.dungeonTrap:AddBossShrink()
 			end)
-			Game:EachPlayer(function(a0, ae)
-				local aH = PlayerResource:GetSelectedHeroEntity(ae)
-				if IsValid(aH) then
-					aH:AddNewModifier(aH, nil, "modifier_stunned", { duration = d6 })
+			Game:EachPlayer(function(a6, al)
+				local aO = PlayerResource:GetSelectedHeroEntity(al)
+				if IsValid(aO) then
+					aO:AddNewModifier(aO, nil, "modifier_stunned", { duration = dw })
 				end
 			end)
-			DungeonManager:MarkBossSpawned(T)
-			local dc = self.enemies
-			dc[#dc + 1] = d4
-			self:AssignPreviewRewardsToEnemy(d4)
-			d4:AddNewModifier(d4, nil, "modifier_boss_custom", {})
-			self:ApplyDifficultyModifiers(d4)
+			DungeonManager:MarkBossSpawned(Y)
+			local dC = self.enemies
+			dC[#dC + 1] = du
+			self:AssignPreviewRewardsToEnemy(du)
+			du:AddNewModifier(du, nil, "modifier_boss_custom", {})
+			self:ApplyDifficultyModifiers(du)
 			if self.difficultyCooldownReduction ~= 0 then
-				d4:AddProperty(PropertyFunction.COOLDOWN_REDUCTION, self.difficultyCooldownReduction)
+				du:AddProperty(PropertyFunction.COOLDOWN_REDUCTION, self.difficultyCooldownReduction)
 			end
 			if self.difficultyBossGapAmplify ~= 0 then
-				d4:AddProperty(PropertyFunction.BOSS_GAP_AMPLIFY, self.difficultyBossGapAmplify)
+				du:AddProperty(PropertyFunction.BOSS_GAP_AMPLIFY, self.difficultyBossGapAmplify)
 			end
 			if self.difficultyBossDamageAmplify ~= 0 then
-				d4:AddProperty(PropertyFunction.FINAL_DAMAGE, self.difficultyBossDamageAmplify)
+				du:AddProperty(PropertyFunction.FINAL_DAMAGE, self.difficultyBossDamageAmplify)
 			end
 			print(
 				(
@@ -1704,58 +1926,58 @@ function K.prototype.CreateBoss(self)
 								(
 									(
 										(("[DungeonRoom " .. tostring(self.roomID)) .. "] Boss已生成: ")
-										.. d4:GetUnitName()
+										.. du:GetUnitName()
 									) .. "， health:"
-								) .. tostring(d4:GetMaxHealth())
+								) .. tostring(du:GetMaxHealth())
 							) .. " attack:"
-						) .. tostring(d4:GetAttackDamage())
+						) .. tostring(du:GetAttackDamage())
 					) .. "当前计数="
 				) .. tostring(self.aliveEnemyCount)
 			)
 		end
 	end)
 end
-function K.prototype.CreateShopItem(self, dd)
-	local de = {}
-	local df = self:GetSinglePlayerShopFilterHero()
-	if df ~= nil then
-		self:AppendShopExcludedForHero(de, df)
+function P.prototype.CreateShopItem(self, dD)
+	local dE = {}
+	local dF = self:GetSinglePlayerShopFilterHero()
+	if dF ~= nil then
+		self:AppendShopExcludedForHero(dE, dF)
 	end
-	local dg = self:FindInfoTarget("info_shop_heal")
-	if IsValid(dg) then
-		self:SpawnShopItemAtPosition("item_heal_shop", 1, dg:GetAbsOrigin(), "heal")
-		de[#de + 1] = "item_heal_shop"
+	local dG = self:FindInfoTarget("info_shop_heal")
+	if IsValid(dG) then
+		self:SpawnShopItemAtPosition("item_heal_shop", 1, dG:GetAbsOrigin(), "heal")
+		dE[#dE + 1] = "item_heal_shop"
 	end
-	local dh = self:FindInfoTarget("info_shop_upgrade")
-	if IsValid(dh) then
-		self:SpawnShopItemAtPosition("item_bless_upgrade", 1, dh:GetAbsOrigin(), "upgrade")
-		de[#de + 1] = "item_bless_upgrade"
+	local dH = self:FindInfoTarget("info_shop_upgrade")
+	if IsValid(dH) then
+		self:SpawnShopItemAtPosition("item_bless_upgrade", 1, dH:GetAbsOrigin(), "upgrade")
+		dE[#dE + 1] = "item_bless_upgrade"
 	end
-	local di = self:FindInfoTarget("info_shop_refresh")
-	if IsValid(di) then
+	local dI = self:FindInfoTarget("info_shop_refresh")
+	if IsValid(dI) then
 		self:ClearShopRefreshInteract()
-		local a1 = CreateUnitByName("interact_shop_refresh", di:GetAbsOrigin(), false, nil, nil, DOTA_TEAM_GOODGUYS)
-		a1:SetForwardVector(vec3_bottom)
-		local aG = Interaction:RegisterInteract(a1, InteractType.Refresh, 200, function(a0, aH, ae)
-			local dj = SHOP_REFRESH_BASE_COST + self.shopRefreshCount * SHOP_REFRESH_COST_INCREMENT
-			if Player:GetGold(ae) < dj then
+		local a7 = CreateUnitByName("interact_shop_refresh", dI:GetAbsOrigin(), false, nil, nil, DOTA_TEAM_GOODGUYS)
+		a7:SetForwardVector(vec3_bottom)
+		local aN = Interaction:RegisterInteract(a7, InteractType.Refresh, 200, function(a6, aO, al)
+			local dJ = SHOP_REFRESH_BASE_COST + self.shopRefreshCount * SHOP_REFRESH_COST_INCREMENT
+			if Player:GetGold(al) < dJ then
 				return false
 			end
-			Player:ModifyGold(ae, -dj)
-			local dk = math.max(0, math.min(100, GetShopRefreshRefund(aH)))
-			if dk > 0 then
-				local dl = dj * dk * 0.01
-				Player:ModifyGold(ae, dl, true, true, false)
+			Player:ModifyGold(al, -dJ)
+			local dK = math.max(0, math.min(100, GetShopRefreshRefund(aO)))
+			if dK > 0 then
+				local dL = dJ * dK * 0.01
+				Player:ModifyGold(al, dL, true, true, false)
 			end
 			self.shopRefreshCount = self.shopRefreshCount + 1
 			self:RefreshShopItems()
-			EmitSoundOnLocationForPlayer("General.Buy", aH:GetAbsOrigin(), ae)
-			Event:Fire("shop_refresh_purchased", { playerID = ae, cost = dj })
+			EmitSoundOnLocationForPlayer("General.Buy", aO:GetAbsOrigin(), al)
+			Event:Fire("shop_refresh_purchased", { playerID = al, cost = dJ })
 			return true
 		end, 999999)
-		if aG ~= -1 then
+		if aN ~= -1 then
 			Interaction:UpdateInteract(
-				aG,
+				aN,
 				{
 					costInfo = {
 						costType = "gold",
@@ -1763,285 +1985,285 @@ function K.prototype.CreateShopItem(self, dd)
 					},
 				}
 			)
-			local dm = self.registeredInteracts
-			dm[#dm + 1] = aG
-			self.shopRefreshInteractIndex = aG
+			local dM = self.registeredInteracts
+			dM[#dM + 1] = aN
+			self.shopRefreshInteractIndex = aN
 		end
-		self.shopRefreshUnit = a1
-		local dn = self.npcs
-		dn[#dn + 1] = a1
+		self.shopRefreshUnit = a7
+		local dN = self.npcs
+		dN[#dN + 1] = a7
 	end
-	local dp = self:FindInfoTarget("info_shop_item")
-	if not IsValid(dp) then
+	local dO = self:FindInfoTarget("info_shop_item")
+	if not IsValid(dO) then
 		print(
 			("[DungeonRoom " .. tostring(self.roomID))
 				.. "] ⚠️ 未找到 info_shop_item，跳过常规商店商品生成"
 		)
 		return
 	end
-	local dq = self:GetSymmetricShopPositions(dp:GetAbsOrigin(), SHOP_ITEM_COUNT)
+	local dP = self:GetSymmetricShopPositions(dO:GetAbsOrigin(), SHOP_ITEM_COUNT)
 	do
-		local dr = 0
-		while dr < #dq do
+		local dQ = 0
+		while dQ < #dP do
 			do
-				local a6 = 1
-				local Y
+				local ac = 1
+				local a2
 				do
-					local ds = 0
-					while ds < 10 do
-						a6 = self:RollShopRarity()
-						Y = DrawPool:PickShopItemNameByRarity(a6, de)
-						if Y ~= nil then
+					local dR = 0
+					while dR < 10 do
+						ac = self:RollShopRarity()
+						a2 = DrawPool:PickShopItemNameByRarity(ac, dE)
+						if a2 ~= nil then
 							break
 						end
-						ds = ds + 1
+						dR = dR + 1
 					end
 				end
-				if Y == nil then
-					Y = DrawPool:Draw("items", de)
-					a6 = 1
+				if a2 == nil then
+					a2 = DrawPool:Draw("items", dE)
+					ac = 1
 				end
-				if Y == nil then
-					goto dt
+				if a2 == nil then
+					goto dS
 				end
-				self:AppendShopGeneratedExcluded(de, Y)
-				self:SpawnShopItemAtPosition(Y, a6, dq[dr + 1], "item_" .. tostring(dr + 1))
+				self:AppendShopGeneratedExcluded(dE, a2)
+				self:SpawnShopItemAtPosition(a2, ac, dP[dQ + 1], "item_" .. tostring(dQ + 1))
 			end
-			::dt::
-			dr = dr + 1
+			::dS::
+			dQ = dQ + 1
 		end
 	end
-	if not dd then
-		local du = Vector(dp:GetAbsOrigin().x, dp:GetAbsOrigin().y - 300, dp:GetAbsOrigin().z)
-		Game:EachPlayer(function(a0, ae)
-			if Privilege:HasPrivilege("privilege_bless_003", ae) then
-				self:CreateFreeShopItem(ae, du, de)
+	if not dD then
+		local dT = Vector(dO:GetAbsOrigin().x, dO:GetAbsOrigin().y - 300, dO:GetAbsOrigin().z)
+		Game:EachPlayer(function(a6, al)
+			if Privilege:HasPrivilege("privilege_bless_003", al) then
+				self:CreateFreeShopItem(al, dT, dE)
 			end
 		end)
 	end
 end
-function K.prototype.CreateFreeShopItem(self, ae, Q, de)
-	local dv = { unpack(de) }
-	local aH = self:GetShopFilterHero(ae)
-	if aH ~= nil then
-		self:AppendShopExcludedForHero(dv, aH)
+function P.prototype.CreateFreeShopItem(self, al, V, dE)
+	local dU = { unpack(dE) }
+	local aO = self:GetShopFilterHero(al)
+	if aO ~= nil then
+		self:AppendShopExcludedForHero(dU, aO)
 	end
-	local Y
-	local a6 = 1
-	local dw = ShuffledList({ 3, 4, 5 })
+	local a2
+	local ac = 1
+	local dV = ShuffledList({ 3, 4, 5 })
 	do
-		local aa = 0
-		while aa < #dw do
-			local dx = dw[aa + 1]
-			Y = DrawPool:PickShopItemNameByRarity(dx, dv)
-			if Y ~= nil then
-				a6 = dx
+		local ah = 0
+		while ah < #dV do
+			local dW = dV[ah + 1]
+			a2 = DrawPool:PickShopItemNameByRarity(dW, dU)
+			if a2 ~= nil then
+				ac = dW
 				break
 			end
-			aa = aa + 1
+			ah = ah + 1
 		end
 	end
-	if Y == nil then
-		Y = DrawPool:Draw("items", dv)
-		a6 = 1
+	if a2 == nil then
+		a2 = DrawPool:Draw("items", dU)
+		ac = 1
 	end
-	if Y ~= nil then
-		self:AppendShopGeneratedExcluded(de, Y)
-		self:SpawnShopItemAtPosition(Y, a6, Q, "free_item_" .. tostring(ae), true, ae)
+	if a2 ~= nil then
+		self:AppendShopGeneratedExcluded(dE, a2)
+		self:SpawnShopItemAtPosition(a2, ac, V, "free_item_" .. tostring(al), true, al)
 		print(
 			(
 				(
 					(
 						(
-							((("[DungeonRoom " .. tostring(self.roomID)) .. "] 玩家") .. tostring(ae))
+							((("[DungeonRoom " .. tostring(self.roomID)) .. "] 玩家") .. tostring(al))
 							.. "专属免费商品: "
-						) .. Y
+						) .. a2
 					) .. " (稀有度"
-				) .. tostring(a6)
+				) .. tostring(ac)
 			) .. ")"
 		)
 	end
-	return Y
+	return a2
 end
-function K.prototype.GetShopFilterHero(self, ae)
-	if ae ~= nil then
-		local aH = PlayerResource:GetSelectedHeroEntity(ae)
-		return IsValid(aH) and aH or nil
+function P.prototype.GetShopFilterHero(self, al)
+	if al ~= nil then
+		local aO = PlayerResource:GetSelectedHeroEntity(al)
+		return IsValid(aO) and aO or nil
 	end
-	local b6
-	Game:EachPlayer(function(a0, dy)
-		if b6 ~= nil then
+	local bd
+	Game:EachPlayer(function(a6, dX)
+		if bd ~= nil then
 			return
 		end
-		local aH = PlayerResource:GetSelectedHeroEntity(dy)
-		if IsValid(aH) then
-			b6 = aH
+		local aO = PlayerResource:GetSelectedHeroEntity(dX)
+		if IsValid(aO) then
+			bd = aO
 		end
 	end)
-	return b6
+	return bd
 end
-function K.prototype.GetSinglePlayerShopFilterHero(self)
+function P.prototype.GetSinglePlayerShopFilterHero(self)
 	if Game:GetPlayerCount() ~= 1 then
 		return nil
 	end
 	return self:GetShopFilterHero()
 end
-function K.prototype.AppendShopExcludedForHero(self, de, aH)
-	local dz = {}
-	local dA = aH:GetAllItems()
+function P.prototype.AppendShopExcludedForHero(self, dE, aO)
+	local dY = {}
+	local dZ = aO:GetAllItems()
 	do
-		local aa = 0
-		while aa < #dA do
+		local ah = 0
+		while ah < #dZ do
 			do
-				local a8 = dA[aa + 1]
-				if not IsValid(a8) then
-					goto dB
+				local af = dZ[ah + 1]
+				if not IsValid(af) then
+					goto d_
 				end
-				local Y = a8:GetAbilityName()
-				local dC = KeyValues.items[Y]
-				if dC == nil then
-					goto dB
+				local a2 = af:GetAbilityName()
+				local e0 = KeyValues.items[a2]
+				if e0 == nil then
+					goto d_
 				end
-				local dD = toFiniteNumber(dC.Quantitylimit, 0)
-				if dD > 0 and aH:GetItemCount(Y) >= dD then
-					self:AppendShopExcludedItem(de, Y)
+				local e1 = toFiniteNumber(e0.Quantitylimit, 0)
+				if e1 > 0 and aO:GetItemCount(a2) >= e1 then
+					self:AppendShopExcludedItem(dE, a2)
 				end
-				local dE = self:GetArtifactUpgradeGroup(Y)
-				local dF = self:GetArtifactUpgradeRank(Y)
-				if dE ~= "" and dF > (dz[dE] or 0) then
-					dz[dE] = dF
+				local e2 = self:GetArtifactUpgradeGroup(a2)
+				local e3 = self:GetArtifactUpgradeRank(a2)
+				if e2 ~= "" and e3 > (dY[e2] or 0) then
+					dY[e2] = e3
 				end
 			end
-			::dB::
-			aa = aa + 1
+			::d_::
+			ah = ah + 1
 		end
 	end
-	for Y, ap in pairs(KeyValues.items) do
+	for a2, aw in pairs(KeyValues.items) do
 		do
-			local dG = tostring
-			local dH = ap.UpgradeGroup
-			if dH == nil then
-				dH = ""
+			local e4 = tostring
+			local e5 = aw.UpgradeGroup
+			if e5 == nil then
+				e5 = ""
 			end
-			local dE = dG(dH)
-			if dE == "" then
-				goto dI
+			local e2 = e4(e5)
+			if e2 == "" then
+				goto e6
 			end
-			local dJ = dz[dE]
-			if dJ == nil then
-				goto dI
+			local e7 = dY[e2]
+			if e7 == nil then
+				goto e6
 			end
-			local dF = toFiniteNumber(ap.UpgradeRank, 0)
-			if dF > 0 and dF <= dJ then
-				self:AppendShopExcludedItem(de, Y)
+			local e3 = toFiniteNumber(aw.UpgradeRank, 0)
+			if e3 > 0 and e3 <= e7 then
+				self:AppendShopExcludedItem(dE, a2)
 			end
 		end
-		::dI::
+		::e6::
 	end
 end
-function K.prototype.AppendShopGeneratedExcluded(self, de, Y)
-	self:AppendShopExcludedItem(de, Y)
-	local dE = self:GetArtifactUpgradeGroup(Y)
-	local dF = self:GetArtifactUpgradeRank(Y)
-	if dE == "" or dF <= 0 then
+function P.prototype.AppendShopGeneratedExcluded(self, dE, a2)
+	self:AppendShopExcludedItem(dE, a2)
+	local e2 = self:GetArtifactUpgradeGroup(a2)
+	local e3 = self:GetArtifactUpgradeRank(a2)
+	if e2 == "" or e3 <= 0 then
 		return
 	end
-	for dK, ap in pairs(KeyValues.items) do
+	for e8, aw in pairs(KeyValues.items) do
 		do
-			local dL = tostring
-			local dM = ap.UpgradeGroup
-			if dM == nil then
-				dM = ""
+			local e9 = tostring
+			local ea = aw.UpgradeGroup
+			if ea == nil then
+				ea = ""
 			end
-			if dL(dM) ~= dE then
-				goto dN
+			if e9(ea) ~= e2 then
+				goto eb
 			end
-			local dO = toFiniteNumber(ap.UpgradeRank, 0)
-			if dO > 0 and dO <= dF then
-				self:AppendShopExcludedItem(de, dK)
+			local ec = toFiniteNumber(aw.UpgradeRank, 0)
+			if ec > 0 and ec <= e3 then
+				self:AppendShopExcludedItem(dE, e8)
 			end
 		end
-		::dN::
+		::eb::
 	end
 end
-function K.prototype.AppendShopExcludedItem(self, de, Y)
-	if not m(de, Y) then
-		de[#de + 1] = Y
+function P.prototype.AppendShopExcludedItem(self, dE, a2)
+	if not o(dE, a2) then
+		dE[#dE + 1] = a2
 	end
 end
-function K.prototype.GetArtifactUpgradeGroup(self, Y)
-	local dP = tostring
-	local dQ = KeyValues.items[Y]
-	if dQ ~= nil then
-		dQ = dQ.UpgradeGroup
+function P.prototype.GetArtifactUpgradeGroup(self, a2)
+	local ed = tostring
+	local ee = KeyValues.items[a2]
+	if ee ~= nil then
+		ee = ee.UpgradeGroup
 	end
-	local dR = dQ
-	if dR == nil then
-		dR = ""
+	local ef = ee
+	if ef == nil then
+		ef = ""
 	end
-	return dP(dR)
+	return ed(ef)
 end
-function K.prototype.GetArtifactUpgradeRank(self, Y)
-	local dS = toFiniteNumber
-	local dT = KeyValues.items[Y]
-	if dT ~= nil then
-		dT = dT.UpgradeRank
+function P.prototype.GetArtifactUpgradeRank(self, a2)
+	local eg = toFiniteNumber
+	local eh = KeyValues.items[a2]
+	if eh ~= nil then
+		eh = eh.UpgradeRank
 	end
-	return dS(dT, 0)
+	return eg(eh, 0)
 end
-function K.prototype.SpawnShopItemAtPosition(self, Y, a6, Q, dU, dV, dW, dX)
-	if dV == nil then
-		dV = false
+function P.prototype.SpawnShopItemAtPosition(self, a2, ac, V, ei, ej, ek, el)
+	if ej == nil then
+		ej = false
 	end
-	if dX == nil then
-		dX = "Default"
+	if el == nil then
+		el = "Default"
 	end
 	print(
 		(
 			(
 				(
-					((((("[DungeonRoom " .. tostring(self.roomID)) .. "] Shop item slot=") .. dU) .. " item=") .. Y)
+					((((("[DungeonRoom " .. tostring(self.roomID)) .. "] Shop item slot=") .. ei) .. " item=") .. a2)
 					.. " rarity="
-				) .. tostring(a6)
+				) .. tostring(ac)
 			) .. " free="
-		) .. tostring(dV)
+		) .. tostring(ej)
 	)
-	local aR = d(C, Y, a6, Q, dV, dW, dX)
-	Interaction:RegisterShopItemInteract(aR)
-	local dY = self.registeredInteracts
-	dY[#dY + 1] = aR:GetEntityIndex()
-	local dZ = self.shopItems
-	dZ[#dZ + 1] = aR
+	local aY = d(H, a2, ac, V, ej, ek, el)
+	Interaction:RegisterShopItemInteract(aY)
+	local em = self.registeredInteracts
+	em[#em + 1] = aY:GetEntityIndex()
+	local en = self.shopItems
+	en[#en + 1] = aY
 end
-function K.prototype.GetSymmetricShopPositions(self, bw, cK)
-	local dq = {}
-	local d_ = 256 - (cK - 2) * 32
-	local e0 = -((cK - 1) * d_) * 0.5
+function P.prototype.GetSymmetricShopPositions(self, bD, d3)
+	local dP = {}
+	local eo = 256 - (d3 - 2) * 32
+	local ep = -((d3 - 1) * eo) * 0.5
 	do
-		local dr = 0
-		while dr < cK do
-			local bT = e0 + dr * d_
-			dq[#dq + 1] = Vector(bw.x + bT, bw.y, bw.z)
-			dr = dr + 1
+		local dQ = 0
+		while dQ < d3 do
+			local b_ = ep + dQ * eo
+			dP[#dP + 1] = Vector(bD.x + b_, bD.y, bD.z)
+			dQ = dQ + 1
 		end
 	end
-	return dq
+	return dP
 end
-function K.prototype.ClearShopRefreshInteract(self)
+function P.prototype.ClearShopRefreshInteract(self)
 	if self.shopRefreshInteractIndex ~= nil then
 		Interaction:UnregisterInteractable(self.shopRefreshInteractIndex)
-		local e1 = {}
+		local eq = {}
 		do
-			local aa = 0
-			while aa < #self.registeredInteracts do
-				local ay = self.registeredInteracts[aa + 1]
-				if ay ~= self.shopRefreshInteractIndex then
-					e1[#e1 + 1] = ay
+			local ah = 0
+			while ah < #self.registeredInteracts do
+				local aF = self.registeredInteracts[ah + 1]
+				if aF ~= self.shopRefreshInteractIndex then
+					eq[#eq + 1] = aF
 				end
-				aa = aa + 1
+				ah = ah + 1
 			end
 		end
-		self.registeredInteracts = e1
+		self.registeredInteracts = eq
 		self.shopRefreshInteractIndex = nil
 	end
 	if self.shopRefreshUnit ~= nil then
@@ -2050,159 +2272,159 @@ function K.prototype.ClearShopRefreshInteract(self)
 		self.shopRefreshUnit = nil
 	end
 end
-function K.prototype.RefreshShopItems(self)
+function P.prototype.RefreshShopItems(self)
 	if self.roomType ~= RoomType.SHOP then
 		return
 	end
 	print(("[DungeonRoom " .. tostring(self.roomID)) .. "] RefreshShopItems")
 	Interaction:BeginSyncBatch()
-	local e2 = {}
+	local er = {}
 	do
-		local aa = 0
-		while aa < #self.shopItems do
+		local ah = 0
+		while ah < #self.shopItems do
 			do
-				local e3 = self.shopItems[aa + 1]
-				if e3 == nil then
-					goto e4
+				local es = self.shopItems[ah + 1]
+				if es == nil then
+					goto et
 				end
-				local ay = e3:GetEntityIndex()
-				if ay == -1 then
-					goto e4
+				local aF = es:GetEntityIndex()
+				if aF == -1 then
+					goto et
 				end
-				Interaction:UnregisterInteractable(ay)
-				e2[ay] = true
-				e3:dispose()
+				Interaction:UnregisterInteractable(aF)
+				er[aF] = true
+				es:dispose()
 			end
-			::e4::
-			aa = aa + 1
+			::et::
+			ah = ah + 1
 		end
 	end
 	self.shopItems = {}
-	local e1 = {}
+	local eq = {}
 	do
-		local aa = 0
-		while aa < #self.registeredInteracts do
-			local ay = self.registeredInteracts[aa + 1]
-			if e2[ay] ~= true then
-				e1[#e1 + 1] = ay
+		local ah = 0
+		while ah < #self.registeredInteracts do
+			local aF = self.registeredInteracts[ah + 1]
+			if er[aF] ~= true then
+				eq[#eq + 1] = aF
 			end
-			aa = aa + 1
+			ah = ah + 1
 		end
 	end
-	self.registeredInteracts = e1
+	self.registeredInteracts = eq
 	self:ClearShopRefreshInteract()
 	self:CreateShopItem(true)
 	Interaction:EndSyncBatch()
 end
-function K.prototype.CreateStairItem(self)
-	local e5 = GetGroundPosition(self.position, nil)
+function P.prototype.CreateStairItem(self)
+	local eu = GetGroundPosition(self.position, nil)
 	self.stairChestPlayers = {}
 	self.stairChestCompletedPlayers = {}
 	self.stairChestAutoClaimingPlayers = {}
 	self.stairChestOpeningPlayers = {}
 	self.stairChestIgnoredPlayers = {}
-	self.stairChestItemPos = e5
-	local e6 = DungeonManager:IsTutorial()
-	Game:EachPlayer(function(a0, ae)
-		self.stairChestPlayers[ae] = true
-		local aC = d(w, ae, "9900000", e5, { 0, 0 })
-		local e7 = self.clientItems
-		e7[#e7 + 1] = aC
-		local aG
-		aG = Interaction:RegisterInteract(aC.entity, InteractType.BossChest, 200, function(a0, aH)
-			if not self:CanOpenStairChest(ae) then
+	self.stairChestItemPos = eu
+	local ev = DungeonManager:IsTutorial()
+	Game:EachPlayer(function(a6, al)
+		self.stairChestPlayers[al] = true
+		local aJ = d(x, al, "9900000", eu, { 0, 0 })
+		local ew = self.clientItems
+		ew[#ew + 1] = aJ
+		local aN
+		aN = Interaction:RegisterInteract(aJ.entity, InteractType.BossChest, 200, function(a6, aO)
+			if not self:CanOpenStairChest(al) then
 				return false
 			end
-			if self:IsEquipmentCapacityFull(ae) then
-				self:ShowEquipmentCapacityDialog(ae, true)
+			if self:IsEquipmentCapacityFull(al) then
+				self:ShowEquipmentCapacityDialog(al, true)
 				return false
 			end
-			self.stairChestOpeningPlayers[ae] = true
-			self:RequestStairChestRewards(ae, 1, false, e5, function(a0, e8, e9)
-				self.stairChestOpeningPlayers[ae] = false
-				if not e8 or self.isDispose or self.stairChestIgnoredPlayers[ae] == true then
+			self.stairChestOpeningPlayers[al] = true
+			self:RequestStairChestRewards(al, 1, false, eu, function(a6, ex, ey)
+				self.stairChestOpeningPlayers[al] = false
+				if not ex or self.isDispose or self.stairChestIgnoredPlayers[al] == true then
 					if DungeonManager:IsTutorial() then
-						self:CompleteManualStairChestOpen(ae, aG, aC, e5, false, false)
+						self:CompleteManualStairChestOpen(al, aN, aJ, eu, false, false)
 						self:OpenGates()
 						return
 					end
 					self:TryOpenStairGatesByChestState()
 					return
 				end
-				self:CompleteManualStairChestOpen(ae, aG, aC, e5, false, false, e9)
+				self:CompleteManualStairChestOpen(al, aN, aJ, eu, false, false, ey)
 			end, true)
 			return false
-		end, nil, ae)
-		if not e6 then
-			Interaction:SetSecondaryInteraction(aG, function(a0, aH)
-				if not self:CanOpenStairChest(ae) then
+		end, nil, al)
+		if not ev then
+			Interaction:SetSecondaryInteraction(aN, function(a6, aO)
+				if not self:CanOpenStairChest(al) then
 					return false
 				end
-				if self:IsEquipmentCapacityFull(ae) then
-					self:ShowEquipmentCapacityDialog(ae, true)
+				if self:IsEquipmentCapacityFull(al) then
+					self:ShowEquipmentCapacityDialog(al, true)
 					return false
 				end
-				local ea = Privilege:HasPrivilege("privilege_bless_001", ae)
-				local eb = ea and Privilege:GetPrivilegeSpecialValue("privilege_bless_001", 1, "free_count", aH) or 0
-				local ec = CommonService:GetPlayerServiceNetTable(ae, "player_counters") or {}
-				local ed = ec.daily_free_boss_rewards
-				local ee = ed and ed.count or 0
-				local ef = ee < eb
+				local ez = Privilege:HasPrivilege("privilege_bless_001", al)
+				local eA = ez and Privilege:GetPrivilegeSpecialValue("privilege_bless_001", 1, "free_count", aO) or 0
+				local eB = CommonService:GetPlayerServiceNetTable(al, "player_counters") or {}
+				local eC = eB.daily_free_boss_rewards
+				local eD = eC and eC.count or 0
+				local eE = eD < eA
 				print(
 					(
 						(
 							(
 								(
 									(
-										((("[DungeonRoom " .. tostring(self.roomID)) .. "] Player ") .. tostring(ae))
+										((("[DungeonRoom " .. tostring(self.roomID)) .. "] Player ") .. tostring(al))
 										.. " Open Boss Chest Rewards isUseFreeCount="
-									) .. tostring(ef)
+									) .. tostring(eE)
 								) .. " usedFreeCount="
-							) .. tostring(ee)
+							) .. tostring(eD)
 						) .. " freeCount="
-					) .. tostring(eb)
+					) .. tostring(eA)
 				)
-				if not ef then
-					local eg = CommonService:GetPlayerServiceNetTable(ae, "player_tokens") or {}
-					local eh = eg["110006"]
-					if (eh and eh.amounts or 0) < 1 then
-						ErrorMessage("error_token_no_enough", ae)
+				if not eE then
+					local eF = CommonService:GetPlayerServiceNetTable(al, "player_tokens") or {}
+					local eG = eF["110006"]
+					if (eG and eG.amounts or 0) < 1 then
+						ErrorMessage("error_token_no_enough", al)
 						return false
 					end
 				end
-				self.stairChestOpeningPlayers[ae] = true
-				self:RequestStairChestRewards(ae, 2, ef, e5, function(a0, e8, e9)
-					self.stairChestOpeningPlayers[ae] = false
-					if not e8 or self.isDispose or self.stairChestIgnoredPlayers[ae] == true then
+				self.stairChestOpeningPlayers[al] = true
+				self:RequestStairChestRewards(al, 2, eE, eu, function(a6, ex, ey)
+					self.stairChestOpeningPlayers[al] = false
+					if not ex or self.isDispose or self.stairChestIgnoredPlayers[al] == true then
 						self:TryOpenStairGatesByChestState()
 						return
 					end
-					self:CompleteManualStairChestOpen(ae, aG, aC, e5, true, ef, e9)
+					self:CompleteManualStairChestOpen(al, aN, aJ, eu, true, eE, ey)
 				end, true)
 				return false
 			end)
-			local aH = PlayerResource:GetSelectedHeroEntity(ae)
-			local ea = Privilege:HasPrivilege("privilege_bless_001", ae)
-			local eb = ea and Privilege:GetPrivilegeSpecialValue("privilege_bless_001", 1, "free_count", aH) or 0
-			local ec = CommonService:GetPlayerServiceNetTable(ae, "player_counters") or {}
-			local ei = ec.daily_free_boss_rewards
-			local ee = ei and ei.count or 0
+			local aO = PlayerResource:GetSelectedHeroEntity(al)
+			local ez = Privilege:HasPrivilege("privilege_bless_001", al)
+			local eA = ez and Privilege:GetPrivilegeSpecialValue("privilege_bless_001", 1, "free_count", aO) or 0
+			local eB = CommonService:GetPlayerServiceNetTable(al, "player_counters") or {}
+			local eH = eB.daily_free_boss_rewards
+			local eD = eH and eH.count or 0
 			Interaction:UpdateSecondaryInteract(
-				aG,
+				aN,
 				{ tooltip = "DoubleBossChest", costInfo = {
 					cost = 1,
 					costType = "110006",
 					costSource = "tokens",
-					freeCount = eb - ee,
+					freeCount = eA - eD,
 				} }
 			)
 		end
-		if aG ~= -1 then
-			local ej = self.registeredInteracts
-			ej[#ej + 1] = aG
+		if aN ~= -1 then
+			local eI = self.registeredInteracts
+			eI[#eI + 1] = aN
 		end
 	end)
-	local a1 = CreateUnitByName(
+	local a7 = CreateUnitByName(
 		"interact_regen_well",
 		self.position + Vector(500, 700, 0),
 		false,
@@ -2210,123 +2432,123 @@ function K.prototype.CreateStairItem(self)
 		nil,
 		DOTA_TEAM_GOODGUYS
 	)
-	local aG = Interaction:RegisterInteract(a1, InteractType.RegenWell, 200, function(a0, aH, ae)
-		local ek = a1:FindModifierByName("modifier_spawn_interact_regen_well")
-		if ek ~= nil then
-			ek:Activity()
+	local aN = Interaction:RegisterInteract(a7, InteractType.RegenWell, 200, function(a6, aO, al)
+		local eJ = a7:FindModifierByName("modifier_spawn_interact_regen_well")
+		if eJ ~= nil then
+			eJ:Activity()
 		end
 	end, 1)
-	if aG ~= -1 then
-		local el = self.registeredInteracts
-		el[#el + 1] = aG
+	if aN ~= -1 then
+		local eK = self.registeredInteracts
+		eK[#eK + 1] = aN
 	end
-	local em = self.npcs
-	em[#em + 1] = a1
+	local eL = self.npcs
+	eL[#eL + 1] = a7
 	if DungeonManager:IsFinalZone(self.zoneID) then
 		DungeonAdventure:OpenAdventure(self.zoneID, self.roomType, self.position)
 	end
 end
-function K.prototype.CompleteManualStairChestOpen(self, ae, aG, aC, e5, bs, ef, e9)
-	if e9 == nil then
-		e9 = false
+function P.prototype.CompleteManualStairChestOpen(self, al, aN, aJ, eu, bz, eE, ey)
+	if ey == nil then
+		ey = false
 	end
-	Interaction:UnregisterInteractable(aG)
-	ArrayRemove(self.registeredInteracts, aG)
-	self:MarkStairChestCompleted(ae)
-	if e9 then
-		e(aC.particleIDs, function(a0, en)
-			ParticleManager:DestroyParticle(en, false)
+	Interaction:UnregisterInteractable(aN)
+	ArrayRemove(self.registeredInteracts, aN)
+	self:MarkStairChestCompleted(al)
+	if ey then
+		e(aJ.particleIDs, function(a6, eM)
+			ParticleManager:DestroyParticle(eM, false)
 		end)
-		aC.particleIDs = {}
-		local eo = PlayerResource:GetPlayer(ae)
-		if eo ~= nil then
-			local ep = ParticleManager:CreateParticleForPlayer(
+		aJ.particleIDs = {}
+		local eN = PlayerResource:GetPlayer(al)
+		if eN ~= nil then
+			local eO = ParticleManager:CreateParticleForPlayer(
 				"particles/generic_gameplay/boss_chest_open.vpcf",
 				PATTACH_CUSTOMORIGIN,
 				nil,
-				eo
+				eN
 			)
-			ParticleManager:SetParticleControl(ep, 0, aC.entity:GetAbsOrigin())
-			local eq = aC.particleIDs
-			eq[#eq + 1] = ep
+			ParticleManager:SetParticleControl(eO, 0, aJ.entity:GetAbsOrigin())
+			local eP = aJ.particleIDs
+			eP[#eP + 1] = eO
 		end
 		return
 	end
 	if not DungeonManager:IsTutorial() then
-		local b7 = DungeonManager:GetRoomIndex() + 1
-		Service:ReportClick(ae, "dungeon", "reward_room|open_chest|room_" .. tostring(b7))
+		local be = DungeonManager:GetRoomIndex() + 1
+		Service:ReportClick(al, "dungeon", "reward_room|open_chest|room_" .. tostring(be))
 	end
-	EmitSoundOnLocationForPlayer(bs and "Chess.LongOpen" or "Chess.Open", e5, ae)
-	if ef then
-		Notification:CombatToPlayer(ae, { message = "Notify_FreeOpenBossRewards" })
+	EmitSoundOnLocationForPlayer(bz and "Chess.LongOpen" or "Chess.Open", eu, al)
+	if eE then
+		Notification:CombatToPlayer(al, { message = "Notify_FreeOpenBossRewards" })
 	end
-	e(aC.particleIDs, function(a0, en)
-		ParticleManager:DestroyParticle(en, false)
+	e(aJ.particleIDs, function(a6, eM)
+		ParticleManager:DestroyParticle(eM, false)
 	end)
-	aC.particleIDs = {}
-	local eo = PlayerResource:GetPlayer(ae)
-	if eo == nil then
+	aJ.particleIDs = {}
+	local eN = PlayerResource:GetPlayer(al)
+	if eN == nil then
 		return
 	end
-	local er = ParticleManager:CreateParticleForPlayer(
+	local eQ = ParticleManager:CreateParticleForPlayer(
 		"particles/generic_gameplay/boss_chest_opening.vpcf",
 		PATTACH_ABSORIGIN_FOLLOW,
-		aC.entity,
-		eo
+		aJ.entity,
+		eN
 	)
-	ParticleManager:SetParticleControlEnt(er, 1, aC.entity, PATTACH_INVALID, nil, aC.entity:GetAbsOrigin(), true)
-	local es = aC.particleIDs
-	es[#es + 1] = er
+	ParticleManager:SetParticleControlEnt(eQ, 1, aJ.entity, PATTACH_INVALID, nil, aJ.entity:GetAbsOrigin(), true)
+	local eR = aJ.particleIDs
+	eR[#eR + 1] = eQ
 	Timer:GameTimer(0.8, function()
-		if self.isDispose or aC.isDispose then
+		if self.isDispose or aJ.isDispose then
 			return
 		end
-		e(aC.particleIDs, function(a0, en)
-			ParticleManager:DestroyParticle(en, false)
+		e(aJ.particleIDs, function(a6, eM)
+			ParticleManager:DestroyParticle(eM, false)
 		end)
-		aC.particleIDs = {}
-		local et = ParticleManager:CreateParticleForPlayer(
+		aJ.particleIDs = {}
+		local eS = ParticleManager:CreateParticleForPlayer(
 			"particles/generic_gameplay/treasure_box/treasure_box_open_fx.vpcf",
 			PATTACH_CUSTOMORIGIN,
 			nil,
-			eo
+			eN
 		)
-		ParticleManager:SetParticleControl(et, 0, aC.entity:GetAbsOrigin())
-		ParticleManager:ReleaseParticleIndex(et)
-		local ep = ParticleManager:CreateParticleForPlayer(
+		ParticleManager:SetParticleControl(eS, 0, aJ.entity:GetAbsOrigin())
+		ParticleManager:ReleaseParticleIndex(eS)
+		local eO = ParticleManager:CreateParticleForPlayer(
 			"particles/generic_gameplay/boss_chest_open.vpcf",
 			PATTACH_CUSTOMORIGIN,
 			nil,
-			eo
+			eN
 		)
-		ParticleManager:SetParticleControl(ep, 0, aC.entity:GetAbsOrigin())
-		local eu = aC.particleIDs
-		eu[#eu + 1] = ep
+		ParticleManager:SetParticleControl(eO, 0, aJ.entity:GetAbsOrigin())
+		local eT = aJ.particleIDs
+		eT[#eT + 1] = eO
 	end)
 end
-function K.prototype.CanOpenStairChest(self, ae)
+function P.prototype.CanOpenStairChest(self, al)
 	if self.roomType ~= RoomType.STAIR then
 		return true
 	end
-	return self.stairChestCompletedPlayers[ae] ~= true
-		and self.stairChestAutoClaimingPlayers[ae] ~= true
-		and self.stairChestOpeningPlayers[ae] ~= true
-		and self.stairChestIgnoredPlayers[ae] ~= true
+	return self.stairChestCompletedPlayers[al] ~= true
+		and self.stairChestAutoClaimingPlayers[al] ~= true
+		and self.stairChestOpeningPlayers[al] ~= true
+		and self.stairChestIgnoredPlayers[al] ~= true
 end
-function K.prototype.MarkStairChestCompleted(self, ae)
+function P.prototype.MarkStairChestCompleted(self, al)
 	if self.roomType ~= RoomType.STAIR then
 		return
 	end
-	if self.stairChestCompletedPlayers[ae] == true then
+	if self.stairChestCompletedPlayers[al] == true then
 		return
 	end
-	self.stairChestCompletedPlayers[ae] = true
-	self.stairChestAutoClaimingPlayers[ae] = false
-	self.stairChestOpeningPlayers[ae] = false
-	print((("[DungeonRoom " .. tostring(self.roomID)) .. "] 楼梯房宝箱完成 player=") .. tostring(ae))
+	self.stairChestCompletedPlayers[al] = true
+	self.stairChestAutoClaimingPlayers[al] = false
+	self.stairChestOpeningPlayers[al] = false
+	print((("[DungeonRoom " .. tostring(self.roomID)) .. "] 楼梯房宝箱完成 player=") .. tostring(al))
 	self:TryOpenStairGatesByChestState()
 end
-function K.prototype.StartStairChestStateWatcher(self)
+function P.prototype.StartStairChestStateWatcher(self)
 	if
 		self.roomType ~= RoomType.STAIR
 		or self.stairChestStateTimerID ~= nil
@@ -2347,14 +2569,14 @@ function K.prototype.StartStairChestStateWatcher(self)
 		end
 	end)
 end
-function K.prototype.StopStairChestStateWatcher(self)
+function P.prototype.StopStairChestStateWatcher(self)
 	if self.stairChestStateTimerID == nil then
 		return
 	end
 	Timer:StopTimer(self.stairChestStateTimerID)
 	self.stairChestStateTimerID = nil
 end
-function K.prototype.StartUnitManagerGuardTimer(self)
+function P.prototype.StartUnitManagerGuardTimer(self)
 	if
 		not self:IsCombatRoom()
 		or self.unitManagerGuardTimerID ~= nil
@@ -2373,49 +2595,49 @@ function K.prototype.StartUnitManagerGuardTimer(self)
 		return 5
 	end)
 end
-function K.prototype.StopUnitManagerGuardTimer(self)
+function P.prototype.StopUnitManagerGuardTimer(self)
 	if self.unitManagerGuardTimerID == nil then
 		return
 	end
 	Timer:StopTimer(self.unitManagerGuardTimerID)
 	self.unitManagerGuardTimerID = nil
 end
-function K.prototype.CheckUnitManagerGuard(self)
+function P.prototype.CheckUnitManagerGuard(self)
 	if UnitManager == nil or not UnitManager:IsReady() then
 		return
 	end
-	local ev = self:GetAliveManagedEnemies()
-	if #ev >= 5 then
+	local eU = self:GetAliveManagedEnemies()
+	if #eU >= 5 then
 		return
 	end
-	local ew = {}
-	for a0, aw in ipairs(ev) do
-		if not UnitManager:IsUnitIndexValid(aw) then
-			UnitManager:RepairUnitIndex(aw)
-			ew[#ew + 1] = aw
+	local eV = {}
+	for a6, aD in ipairs(eU) do
+		if not UnitManager:IsUnitIndexValid(aD) then
+			UnitManager:RepairUnitIndex(aD)
+			eV[#eV + 1] = aD
 		end
 	end
-	if #ew <= 0 or self.hasReportedUnitManagerGuard then
+	if #eV <= 0 or self.hasReportedUnitManagerGuard then
 		return
 	end
 	self.hasReportedUnitManagerGuard = true
-	self:ReportUnitManagerGuard(ew, #ev)
+	self:ReportUnitManagerGuard(eV, #eU)
 end
-function K.prototype.GetAliveManagedEnemies(self)
-	local ev = {}
+function P.prototype.GetAliveManagedEnemies(self)
+	local eU = {}
 	do
-		local aa = 0
-		while aa < #self.enemies do
-			local aw = self.enemies[aa + 1]
-			if IsValid(aw) and aw:IsAlive() then
-				ev[#ev + 1] = aw
+		local ah = 0
+		while ah < #self.enemies do
+			local aD = self.enemies[ah + 1]
+			if IsValid(aD) and aD:IsAlive() then
+				eU[#eU + 1] = aD
 			end
-			aa = aa + 1
+			ah = ah + 1
 		end
 	end
-	return ev
+	return eU
 end
-function K.prototype.ReportUnitManagerGuard(self, ew, ex)
+function P.prototype.ReportUnitManagerGuard(self, eV, eW)
 	if CommonService == nil then
 		return
 	end
@@ -2429,122 +2651,122 @@ function K.prototype.ReportUnitManagerGuard(self, ew, ex)
 				roomKey = self:GetRoomKey(),
 				roomType = RoomType[self.roomType],
 				mapName = self.mapName,
-				aliveEnemyCount = ex,
+				aliveEnemyCount = eW,
 				trackedEnemyCount = #self.enemies,
 				pendingAliveEnemyCount = self.aliveEnemyCount,
 				remainingSpawnCount = self.spawnInfo.totalCount,
-				repairedEnemies = k(ew, function(a0, aw)
-					return self:GetUnitManagerGuardUnitReport(aw)
+				repairedEnemies = j(eV, function(a6, aD)
+					return self:GetUnitManagerGuardUnitReport(aD)
 				end),
 			}),
 		}
 	)
 end
-function K.prototype.GetUnitManagerGuardUnitReport(self, a1)
-	return UnitManager and UnitManager:GetUnitIndexReport(a1) or { valid = false }
+function P.prototype.GetUnitManagerGuardUnitReport(self, a7)
+	return UnitManager and UnitManager:GetUnitIndexReport(a7) or { valid = false }
 end
-function K.prototype.GetStairChestPlayerCount(self)
-	local cK = 0
-	for ey in pairs(self.stairChestPlayers) do
-		cK = cK + 1
+function P.prototype.GetStairChestPlayerCount(self)
+	local d3 = 0
+	for eX in pairs(self.stairChestPlayers) do
+		d3 = d3 + 1
 	end
-	return cK
+	return d3
 end
-function K.prototype.RefreshStairChestPlayerStates(self)
+function P.prototype.RefreshStairChestPlayerStates(self)
 	if self.roomType ~= RoomType.STAIR or self.isDispose or self.isComplete or self.gatesOpened then
 		return
 	end
-	for ez in pairs(self.stairChestPlayers) do
+	for eY in pairs(self.stairChestPlayers) do
 		do
-			local ae = tonumber(ez)
+			local al = tonumber(eY)
 			if
-				ae == nil
-				or self.stairChestCompletedPlayers[ae] == true
-				or self.stairChestIgnoredPlayers[ae] == true
+				al == nil
+				or self.stairChestCompletedPlayers[al] == true
+				or self.stairChestIgnoredPlayers[al] == true
 			then
-				goto eA
+				goto eZ
 			end
-			local eB = PlayerResource:GetConnectionState(ae)
-			if eB == DOTA_CONNECTION_STATE_CONNECTED then
-				goto eA
+			local e_ = PlayerResource:GetConnectionState(al)
+			if e_ == DOTA_CONNECTION_STATE_CONNECTED then
+				goto eZ
 			end
-			if eB == DOTA_CONNECTION_STATE_ABANDONED then
-				self.stairChestIgnoredPlayers[ae] = true
-				self.stairChestAutoClaimingPlayers[ae] = false
-				self.stairChestOpeningPlayers[ae] = false
+			if e_ == DOTA_CONNECTION_STATE_ABANDONED then
+				self.stairChestIgnoredPlayers[al] = true
+				self.stairChestAutoClaimingPlayers[al] = false
+				self.stairChestOpeningPlayers[al] = false
 				print(
 					(
 						("[DungeonRoom " .. tostring(self.roomID))
 						.. "] 楼梯房玩家已放弃，跳过宝箱并不再等待 player="
-					) .. tostring(ae)
+					) .. tostring(al)
 				)
-				goto eA
+				goto eZ
 			end
-			self:AutoClaimStairChest(ae)
+			self:AutoClaimStairChest(al)
 		end
-		::eA::
+		::eZ::
 	end
 	self:TryOpenStairGatesByChestState()
 end
-function K.prototype.AutoClaimStairChest(self, ae)
+function P.prototype.AutoClaimStairChest(self, al)
 	if
-		self.stairChestCompletedPlayers[ae] == true
-		or self.stairChestIgnoredPlayers[ae] == true
-		or self.stairChestAutoClaimingPlayers[ae] == true
-		or self.stairChestOpeningPlayers[ae] == true
+		self.stairChestCompletedPlayers[al] == true
+		or self.stairChestIgnoredPlayers[al] == true
+		or self.stairChestAutoClaimingPlayers[al] == true
+		or self.stairChestOpeningPlayers[al] == true
 	then
 		return
 	end
 	if self.stairChestItemPos == nil then
 		return
 	end
-	self.stairChestAutoClaimingPlayers[ae] = true
+	self.stairChestAutoClaimingPlayers[al] = true
 	print(
 		(("[DungeonRoom " .. tostring(self.roomID)) .. "] 楼梯房玩家断线，自动普通开箱 player=")
-			.. tostring(ae)
+			.. tostring(al)
 	)
-	self:RequestStairChestRewards(ae, 1, false, self.stairChestItemPos, function(a0, e8)
-		self.stairChestAutoClaimingPlayers[ae] = false
-		if not e8 then
+	self:RequestStairChestRewards(al, 1, false, self.stairChestItemPos, function(a6, ex)
+		self.stairChestAutoClaimingPlayers[al] = false
+		if not ex then
 			self:TryOpenStairGatesByChestState()
 			return
 		end
-		if self.isDispose or self.isComplete or self.stairChestIgnoredPlayers[ae] == true then
+		if self.isDispose or self.isComplete or self.stairChestIgnoredPlayers[al] == true then
 			self:TryOpenStairGatesByChestState()
 			return
 		end
-		self:MarkStairChestCompleted(ae)
+		self:MarkStairChestCompleted(al)
 	end)
 end
-function K.prototype.TryOpenStairGatesByChestState(self)
+function P.prototype.TryOpenStairGatesByChestState(self)
 	if self.roomType ~= RoomType.STAIR or self.isDispose or self.isComplete or self.gatesOpened then
 		return
 	end
-	local eC = 0
-	local eD = 0
-	local eE = 0
-	local eF = 0
-	for ez in pairs(self.stairChestPlayers) do
+	local f0 = 0
+	local f1 = 0
+	local f2 = 0
+	local f3 = 0
+	for eY in pairs(self.stairChestPlayers) do
 		do
-			local ae = tonumber(ez)
-			if ae == nil then
-				goto eG
+			local al = tonumber(eY)
+			if al == nil then
+				goto f4
 			end
-			eC = eC + 1
-			if self.stairChestIgnoredPlayers[ae] == true then
-				eE = eE + 1
-				goto eG
+			f0 = f0 + 1
+			if self.stairChestIgnoredPlayers[al] == true then
+				f2 = f2 + 1
+				goto f4
 			end
-			if self.stairChestCompletedPlayers[ae] == true then
-				eD = eD + 1
-				goto eG
+			if self.stairChestCompletedPlayers[al] == true then
+				f1 = f1 + 1
+				goto f4
 			end
-			eF = eF + 1
+			f3 = f3 + 1
 		end
-		::eG::
+		::f4::
 	end
-	local eH = DungeonAdventure:AreOpenedAdventuresCompleted()
-	local eI = eC <= 0 or eF <= 0
+	local f5 = DungeonAdventure:AreOpenedAdventuresCompleted()
+	local f6 = f0 <= 0 or f3 <= 0
 	print(
 		(
 			(
@@ -2559,554 +2781,554 @@ function K.prototype.TryOpenStairGatesByChestState(self)
 												(
 													("[DungeonRoom " .. tostring(self.roomID))
 													.. "] 楼梯房离开进度 chestCompleted="
-												) .. tostring(eI)
+												) .. tostring(f6)
 											) .. " completed="
-										) .. tostring(eD)
+										) .. tostring(f1)
 									) .. " ignored="
-								) .. tostring(eE)
+								) .. tostring(f2)
 							) .. " waiting="
-						) .. tostring(eF)
+						) .. tostring(f3)
 					) .. " total="
-				) .. tostring(eC)
+				) .. tostring(f0)
 			) .. " adventuresCompleted="
-		) .. tostring(eH)
+		) .. tostring(f5)
 	)
-	if eI and eH then
+	if f6 and f5 then
 		self:StopStairChestStateWatcher()
 		self:OpenGates()
 	end
 end
-function K.prototype.RequestBossChestRewards(self, ae, eJ, eK, e5, eL, eM)
-	if eM == nil then
-		eM = false
+function P.prototype.RequestBossChestRewards(self, al, f7, f8, eu, f9, fa)
+	if fa == nil then
+		fa = false
 	end
-	if eM and self:IsEquipmentCapacityFull(ae) then
-		self:ShowEquipmentCapacityDialog(ae, true)
-		if eL ~= nil then
-			eL(nil, false)
+	if fa and self:IsEquipmentCapacityFull(al) then
+		self:ShowEquipmentCapacityDialog(al, true)
+		if f9 ~= nil then
+			f9(nil, false)
 		end
 		return
 	end
-	local eN = false
+	local fb = false
 	CommonService:RepeatCallAction(
 		"/v1/settle/receive_boss_rewards",
-		ae,
+		al,
 		{
 			match_id = Match:GetMatchID(),
 			round = DungeonManager:GetZoneIndex(),
 			room_step = DungeonManager:GetRoomIndex(),
-			open_times = eJ,
-			use_daily_free_open_times = eK,
+			open_times = f7,
+			use_daily_free_open_times = f8,
 		},
-		function(a0, eO, eP)
-			if eN then
+		function(a6, fc, fd)
+			if fb then
 				return
 			end
-			eN = true
-			if eP.code == 2 and eP.message == "rewards received" then
+			fb = true
+			if fd.code == 2 and fd.message == "rewards received" then
 				ErrorMessage("error_boss_rewards_already_received")
-				if eL ~= nil then
-					eL(nil, true, true)
+				if f9 ~= nil then
+					f9(nil, true, true)
 				end
 				return
 			end
-			CommonService:CommonCallback(ae, eP)
-			self:HandleBossChestRewardsResponse(eO, eP, e5, eL)
+			CommonService:CommonCallback(al, fd)
+			self:HandleBossChestRewardsResponse(fc, fd, eu, f9)
 		end,
 		false
 	)
 end
-function K.prototype.RequestStairChestRewards(self, ae, eJ, eK, e5, eL, eM)
-	if eM == nil then
-		eM = false
+function P.prototype.RequestStairChestRewards(self, al, f7, f8, eu, f9, fa)
+	if fa == nil then
+		fa = false
 	end
 	if DungeonManager:IsTutorial() then
-		if eM and self:IsEquipmentCapacityFull(ae) then
-			self:ShowEquipmentCapacityDialog(ae, true)
-			if eL ~= nil then
-				eL(nil, false)
+		if fa and self:IsEquipmentCapacityFull(al) then
+			self:ShowEquipmentCapacityDialog(al, true)
+			if f9 ~= nil then
+				f9(nil, false)
 			end
 			return
 		end
-		CommonService:RepeatCallAction("/v1/player/receive_teach_rewards", ae, {}, function(a0, eO, eP)
-			if eP.code == 0 or eP.code == 200 then
-				CommonService:CommonCallback(ae, eP, false)
+		CommonService:RepeatCallAction("/v1/player/receive_teach_rewards", al, {}, function(a6, fc, fd)
+			if fd.code == 0 or fd.code == 200 then
+				CommonService:CommonCallback(al, fd, false)
 			else
-				ErrorMessage("Tutorial's reward has been received", ae)
-				if eL ~= nil then
-					eL(nil, false)
+				ErrorMessage("Tutorial's reward has been received", al)
+				if f9 ~= nil then
+					f9(nil, false)
 				end
 				return
 			end
-			self:HandleBossChestRewardsResponse(eO, eP, e5, eL)
+			self:HandleBossChestRewardsResponse(fc, fd, eu, f9)
 		end, false)
 		return
 	end
-	self:RequestBossChestRewards(ae, eJ, eK, e5, eL, eM)
+	self:RequestBossChestRewards(al, f7, f8, eu, f9, fa)
 end
-function K.prototype.HandleBossChestRewardsResponse(self, ae, eP, e5, eL)
-	if eP.code ~= 0 and eP.code ~= 200 then
-		if eL ~= nil then
-			eL(nil, false)
+function P.prototype.HandleBossChestRewardsResponse(self, al, fd, eu, f9)
+	if fd.code ~= 0 and fd.code ~= 200 then
+		if f9 ~= nil then
+			f9(nil, false)
 		end
 		return
 	end
-	local eQ
-	if eP ~= nil then
-		eQ = eP.data
+	local fe
+	if fd ~= nil then
+		fe = fd.data
 	end
-	local eR
-	if eQ ~= nil then
-		eR = eQ.add_items
+	local ff
+	if fe ~= nil then
+		ff = fe.add_items
 	end
-	local eS = eR
-	local eT
-	if eS ~= nil then
-		eT = eS.other
+	local fg = ff
+	local fh
+	if fg ~= nil then
+		fh = fg.other
 	end
-	local eU = eT
-	local eV
-	if eP ~= nil then
-		eV = eP.data
+	local fi = fh
+	local fj
+	if fd ~= nil then
+		fj = fd.data
 	end
-	local eW
-	if eV ~= nil then
-		eW = eV.player_equipments
+	local fk
+	if fj ~= nil then
+		fk = fj.player_equipments
 	end
-	local eX = eW
-	local eY
-	if eP ~= nil then
-		eY = eP.data
+	local fl = fk
+	local fm
+	if fd ~= nil then
+		fm = fd.data
 	end
-	local eZ
-	if eY ~= nil then
-		eZ = eY.player_drawings
+	local fn
+	if fm ~= nil then
+		fn = fm.player_drawings
 	end
-	local e_ = eZ
-	local f0
-	if eP ~= nil then
-		f0 = eP.data
+	local fo = fn
+	local fp
+	if fd ~= nil then
+		fp = fd.data
 	end
-	local f1
-	if f0 ~= nil then
-		f1 = f0.player_keys
+	local fq
+	if fp ~= nil then
+		fq = fp.player_keys
 	end
-	local f2 = f1
-	local f3
-	if eP ~= nil then
-		f3 = eP.data
+	local fr = fq
+	local fs
+	if fd ~= nil then
+		fs = fd.data
 	end
-	local f4
-	if f3 ~= nil then
-		f4 = f3.player_notices
+	local ft
+	if fs ~= nil then
+		ft = fs.player_notices
 	end
-	local f5 = f4
-	if f5 == nil then
-		f5 = {}
+	local fu = ft
+	if fu == nil then
+		fu = {}
 	end
-	local f6 = f5
-	local f7 = f6[1]
-	local f8 = (f7 and f7.key) == "BossRewards3TimesDrop"
-	if f8 then
-		Notification:CombatToPlayer(ae, { message = "Notify_BossRewards3TimesDrop" })
+	local fv = fu
+	local fw = fv[1]
+	local fx = (fw and fw.key) == "BossRewards3TimesDrop"
+	if fx then
+		Notification:CombatToPlayer(al, { message = "Notify_BossRewards3TimesDrop" })
 	end
-	if not eU and not eX and not e_ and not f2 then
-		if eL ~= nil then
-			eL(nil, true)
+	if not fi and not fl and not fo and not fr then
+		if f9 ~= nil then
+			f9(nil, true)
 		end
-		self:ScheduleEquipmentCapacityDialog(ae)
+		self:ScheduleEquipmentCapacityDialog(al)
 		return
 	end
-	if eL ~= nil then
-		eL(nil, true)
+	if f9 ~= nil then
+		f9(nil, true)
 	end
-	self:ScheduleEquipmentCapacityDialog(ae)
+	self:ScheduleEquipmentCapacityDialog(al)
 	Timer:GameTimer(0.8, function()
 		if self.isDispose then
 			return
 		end
-		EmitSoundOnLocationForPlayer("Chess.Finish", e5, ae)
-		local f9 = {}
-		if eU then
-			for a0, ai in ipairs(eU) do
+		EmitSoundOnLocationForPlayer("Chess.Finish", eu, al)
+		local fy = {}
+		if fi then
+			for a6, ap in ipairs(fi) do
 				do
-					local fa = tonumber(GetItemPropType(ai.item_id))
-					if fa == 9 or fa == 19 or fa == 20 then
-						goto fb
+					local fz = tonumber(GetItemPropType(ap.item_id))
+					if fz == 9 or fz == 19 or fz == 20 then
+						goto fA
 					end
-					f9[#f9 + 1] =
-						{ item_id = ai.item_id, amounts = ai.amounts, item_rarity = GetPropRarity(ai.item_id) }
+					fy[#fy + 1] =
+						{ item_id = ap.item_id, amounts = ap.amounts, item_rarity = GetPropRarity(ap.item_id) }
 				end
-				::fb::
+				::fA::
 			end
 		end
-		if eX then
-			for a0, fc in ipairs(eX) do
-				f9[#f9 + 1] = { item_id = fc.equipment_item_id, amounts = 1, item_rarity = fc.rarity, uid = fc.id }
+		if fl then
+			for a6, fB in ipairs(fl) do
+				fy[#fy + 1] = { item_id = fB.equipment_item_id, amounts = 1, item_rarity = fB.rarity, uid = fB.id }
 			end
 		end
-		if e_ then
-			for a0, fd in ipairs(e_) do
-				f9[#f9 + 1] = { item_id = fd.drawing_item_id, amounts = 1, item_rarity = fd.rarity, uid = fd.id }
+		if fo then
+			for a6, fC in ipairs(fo) do
+				fy[#fy + 1] = { item_id = fC.drawing_item_id, amounts = 1, item_rarity = fC.rarity, uid = fC.id }
 			end
 		end
-		if f2 then
-			for a0, fe in ipairs(f2) do
-				f9[#f9 + 1] = { item_id = fe.key_item_id, amounts = 1, item_rarity = fe.rarity, uid = fe.id }
+		if fr then
+			for a6, fD in ipairs(fr) do
+				fy[#fy + 1] = { item_id = fD.key_item_id, amounts = 1, item_rarity = fD.rarity, uid = fD.id }
 			end
 		end
-		local ff = {}
-		for aa, ai in ipairs(f9) do
-			ff[#ff + 1] = ai
-			Timer:GameTimer(0.1 * aa, function()
+		local fE = {}
+		for ah, ap in ipairs(fy) do
+			fE[#fE + 1] = ap
+			Timer:GameTimer(0.1 * ah, function()
 				if self.isDispose then
 					return
 				end
-				local fg = d(w, ae, ai.item_id, e5, { 200, 300 })
-				local fh = self.clientItems
-				fh[#fh + 1] = fg
-				local aG = Interaction:RegisterInteract(fg.entity, InteractType.Consumables, 200, function(a0, aH, bt)
+				local fF = d(x, al, ap.item_id, eu, { 200, 300 })
+				local fG = self.clientItems
+				fG[#fG + 1] = fF
+				local aN = Interaction:RegisterInteract(fF.entity, InteractType.Consumables, 200, function(a6, aO, bA)
 					CommonService:SendReceiveRewards(
-						bt,
-						{ { item_id = ai.item_id, amounts = ai.amounts, uid = ai.uid } }
+						bA,
+						{ { item_id = ap.item_id, amounts = ap.amounts, uid = ap.uid } }
 					)
-					fg:dispose()
-					Event:Fire("client_item_pickup", { playerID = ae, item_id = ai.item_id })
-				end, 1, ae)
-				Interaction:UpdateInteract(aG, { position = fg:GetLandedPosition() })
-				Interaction:SetSecondaryInteraction(aG, function(a0, aH, ae)
-					local aJ = aH:GetPlayerOwnerID()
-					local fi = {}
+					fF:dispose()
+					Event:Fire("client_item_pickup", { playerID = al, item_id = ap.item_id })
+				end, 1, al)
+				Interaction:UpdateInteract(aN, { position = fF:GetLandedPosition() })
+				Interaction:SetSecondaryInteraction(aN, function(a6, aO, al)
+					local aQ = aO:GetPlayerOwnerID()
+					local fH = {}
 					do
-						local aa = 0
-						while aa < #self.clientItems do
+						local ah = 0
+						while ah < #self.clientItems do
 							do
-								local aC = self.clientItems[aa + 1]
-								if aC == nil or aC.isDispose or not aC:IsLanded() or not IsValid(aC.entity) then
-									goto fj
+								local aJ = self.clientItems[ah + 1]
+								if aJ == nil or aJ.isDispose or not aJ:IsLanded() or not IsValid(aJ.entity) then
+									goto fI
 								end
-								if aC.playerID ~= aJ then
-									goto fj
+								if aJ.playerID ~= aQ then
+									goto fI
 								end
-								local ay = aC:GetEntityIndex()
-								if ay == -1 then
-									goto fj
+								local aF = aJ:GetEntityIndex()
+								if aF == -1 then
+									goto fI
 								end
-								fi[#fi + 1] = { entityIndex = ay, position = aC:GetLandedPosition() }
+								fH[#fH + 1] = { entityIndex = aF, position = aJ:GetLandedPosition() }
 							end
-							::fj::
-							aa = aa + 1
+							::fI::
+							ah = ah + 1
 						end
 					end
 					do
-						local aa = 0
-						while aa < #fi do
-							local fk = fi[aa + 1]
-							self:CreateClientItemPickupParticle(fk.position, aH)
-							Interaction:ExecutePrimaryCallback(fk.entityIndex, aH, ae)
-							Interaction:UnregisterInteractable(fk.entityIndex)
-							ArrayRemove(self.registeredInteracts, fk.entityIndex)
-							aa = aa + 1
+						local ah = 0
+						while ah < #fH do
+							local fJ = fH[ah + 1]
+							self:CreateClientItemPickupParticle(fJ.position, aO)
+							Interaction:ExecutePrimaryCallback(fJ.entityIndex, aO, al)
+							Interaction:UnregisterInteractable(fJ.entityIndex)
+							ArrayRemove(self.registeredInteracts, fJ.entityIndex)
+							ah = ah + 1
 						end
 					end
-					self.clientItems = n(self.clientItems, function(a0, a7)
-						return not a7.isDispose
+					self.clientItems = k(self.clientItems, function(a6, ae)
+						return not ae.isDispose
 					end)
 				end)
-				Interaction:UpdateSecondaryInteract(aG, { tooltip = "DoubleConsumables" })
-				if aG ~= -1 then
-					local fl = self.registeredInteracts
-					fl[#fl + 1] = aG
+				Interaction:UpdateSecondaryInteract(aN, { tooltip = "DoubleConsumables" })
+				if aN ~= -1 then
+					local fK = self.registeredInteracts
+					fK[#fK + 1] = aN
 				end
 			end)
 		end
-		if #ff > 0 then
-			Match:AddPlayerRoundRewards(ae, ff)
+		if #fE > 0 then
+			Match:AddPlayerRoundRewards(al, fE)
 		end
 	end)
 end
-function K.prototype.GetEquipmentCount(self, ae)
-	return Equipment:GetCapacityCount(ae, "equipment")
+function P.prototype.GetEquipmentCount(self, al)
+	return Equipment:GetCapacityCount(al, "equipment")
 end
-function K.prototype.IsEquipmentCapacityFull(self, ae)
-	return Equipment:IsCapacityFull(ae, "equipment")
+function P.prototype.IsEquipmentCapacityFull(self, al)
+	return Equipment:IsCapacityFull(al, "equipment")
 end
-function K.prototype.ScheduleEquipmentCapacityDialog(self, ae)
+function P.prototype.ScheduleEquipmentCapacityDialog(self, al)
 	Timer:GameTimer(0.8, function()
-		local cK = self:GetEquipmentCount(ae)
-		if cK >= I then
-			self:ShowEquipmentCapacityDialog(ae, cK >= Equipment:GetCapacityLimit("equipment"))
+		local d3 = self:GetEquipmentCount(al)
+		if d3 >= N then
+			self:ShowEquipmentCapacityDialog(al, d3 >= Equipment:GetCapacityLimit("equipment"))
 		end
 	end)
 end
-function K.prototype.ShowEquipmentCapacityDialog(self, ae, fm)
-	Equipment:ShowCapacityDialog(ae, "equipment", fm)
+function P.prototype.ShowEquipmentCapacityDialog(self, al, fL)
+	Equipment:ShowCapacityDialog(al, "equipment", fL)
 end
-function K.prototype.CreateSpecialRoom(self)
+function P.prototype.CreateSpecialRoom(self)
 	if self.roomType == RoomType.SPECIAL then
-		local b6 = self.specialKind
-		if b6 == nil or b6 == "" then
-			local fn = "special_room_zone" .. tostring(self.zoneID)
-			b6 = DrawPool:Draw(fn)
+		local bd = self.specialKind
+		if bd == nil or bd == "" then
+			local fM = "special_room_zone" .. tostring(self.zoneID)
+			bd = DrawPool:Draw(fM)
 			print(
-				(((("[DungeonRoom " .. tostring(self.roomID)) .. "] SpecialRoom fallback draw from ") .. fn) .. ": ")
-					.. (b6 or "-")
+				(((("[DungeonRoom " .. tostring(self.roomID)) .. "] SpecialRoom fallback draw from ") .. fM) .. ": ")
+					.. (bd or "-")
 			)
 		end
-		print((("[DungeonRoom " .. tostring(self.roomID)) .. "] SpecialRoom resolved: ") .. (b6 or "-"))
-		if b6 ~= nil and type(self["Create" .. b6]) == "function" then
-			self["Create" .. b6](self)
+		print((("[DungeonRoom " .. tostring(self.roomID)) .. "] SpecialRoom resolved: ") .. (bd or "-"))
+		if bd ~= nil and type(self["Create" .. bd]) == "function" then
+			self["Create" .. bd](self)
 		end
 	end
 end
-function K.prototype.CreateWishingPool(self)
-	local a1 = CreateUnitByName("interact_wishing_pool", self.position, false, nil, nil, DOTA_TEAM_GOODGUYS)
-	local aG
-	aG = Interaction:RegisterInteract(a1, InteractType.Pool, 380, function(a0, aH, ae)
-		local fo = self.wishingPoolCount * WISHING_POOL_COST
-		local eb = Privilege:GetPlayerDynamicValue("privilege_bless_012", ae, "free_count") or 0
-		local dj = eb > 0 and 0 or fo
-		if eb > 0 then
-			Privilege:SetPlayerDynamicValue("privilege_bless_012", ae, "free_count", eb - 1)
+function P.prototype.CreateWishingPool(self)
+	local a7 = CreateUnitByName("interact_wishing_pool", self.position, false, nil, nil, DOTA_TEAM_GOODGUYS)
+	local aN
+	aN = Interaction:RegisterInteract(a7, InteractType.Pool, 380, function(a6, aO, al)
+		local fN = self.wishingPoolCount * WISHING_POOL_COST
+		local eA = Privilege:GetPlayerDynamicValue("privilege_bless_012", al, "free_count") or 0
+		local dJ = eA > 0 and 0 or fN
+		if eA > 0 then
+			Privilege:SetPlayerDynamicValue("privilege_bless_012", al, "free_count", eA - 1)
 		end
-		if dj > 0 then
-			if Player:GetGold(ae) < dj then
-				EmitAnnouncerSoundForPlayer("General.Cancel", ae)
+		if dJ > 0 then
+			if Player:GetGold(al) < dJ then
+				EmitAnnouncerSoundForPlayer("General.Cancel", al)
 				return false
 			end
-			Player:ModifyGold(ae, -dj, true, true)
+			Player:ModifyGold(al, -dJ, true, true)
 		end
 		self.wishingPoolCount = self.wishingPoolCount + 1
 		Interaction:UpdateInteract(
-			aG,
+			aN,
 			{ costInfo = { cost = self.wishingPoolCount * WISHING_POOL_COST, costType = "gold" } }
 		)
-		local ai = DrawPool:Draw("wish_pool_zone" .. tostring(self.zoneID))
-		if ai ~= nil then
-			local fp = CalcDirection2D(aH, self.position)
-			local fq = self.position + fp * RandomInt(400, 500)
-			fq.z = aH:GetAbsOrigin().z
-			local aR = d(A, ai, fq)
-			local fr = self.dropItems
-			fr[#fr + 1] = aR
-			local fs = Interaction:RegisterInteract(aR.entity, InteractType.Chest, 200, function(a0, aH, ae)
-				if not aR:IsLanded() then
+		local ap = DrawPool:Draw("wish_pool_zone" .. tostring(self.zoneID))
+		if ap ~= nil then
+			local fO = CalcDirection2D(aO, self.position)
+			local fP = self.position + fO * RandomInt(400, 500)
+			fP.z = aO:GetAbsOrigin().z
+			local aY = d(F, ap, fP)
+			local fQ = self.dropItems
+			fQ[#fQ + 1] = aY
+			local fR = Interaction:RegisterInteract(aY.entity, InteractType.Chest, 200, function(a6, aO, al)
+				if not aY:IsLanded() then
 					return false
 				end
-				if aH ~= nil then
-					aH:AddItemByName(ai, nil, false)
+				if aO ~= nil then
+					aO:AddItemByName(ap, nil, false)
 				end
-				aR:dispose()
-			end, nil, nil, ai)
-			if fs ~= -1 then
-				local ft = self.registeredInteracts
-				ft[#ft + 1] = fs
+				aY:dispose()
+			end, nil, nil, ap)
+			if fR ~= -1 then
+				local fS = self.registeredInteracts
+				fS[#fS + 1] = fR
 			end
 		end
-		Event:Fire("wishing_pool_reward", { playerID = ae, cost = dj })
+		Event:Fire("wishing_pool_reward", { playerID = al, cost = dJ })
 	end, 99999999)
-	if aG ~= -1 then
+	if aN ~= -1 then
 		Interaction:UpdateInteract(
-			aG,
+			aN,
 			{ costInfo = { cost = self.wishingPoolCount * WISHING_POOL_COST, costType = "gold" } }
 		)
-		local fu = self.registeredInteracts
-		fu[#fu + 1] = aG
+		local fT = self.registeredInteracts
+		fT[#fT + 1] = aN
 	end
-	local fv = self.npcs
-	fv[#fv + 1] = a1
+	local fU = self.npcs
+	fU[#fU + 1] = a7
 end
-function K.prototype.CreateRegenWell(self)
-	local a1 = CreateUnitByName("interact_regen_well", self.position, false, nil, nil, DOTA_TEAM_GOODGUYS)
-	local aG = Interaction:RegisterInteract(a1, InteractType.RegenWell, 200, function(a0, aH, ae)
-		local fw = a1:FindModifierByName("modifier_spawn_interact_regen_well")
-		if fw ~= nil then
-			fw:Activity()
+function P.prototype.CreateRegenWell(self)
+	local a7 = CreateUnitByName("interact_regen_well", self.position, false, nil, nil, DOTA_TEAM_GOODGUYS)
+	local aN = Interaction:RegisterInteract(a7, InteractType.RegenWell, 200, function(a6, aO, al)
+		local fV = a7:FindModifierByName("modifier_spawn_interact_regen_well")
+		if fV ~= nil then
+			fV:Activity()
 		end
 	end, 1)
-	if aG ~= -1 then
-		local fx = self.registeredInteracts
-		fx[#fx + 1] = aG
+	if aN ~= -1 then
+		local fW = self.registeredInteracts
+		fW[#fW + 1] = aN
 	end
-	local fy = self.npcs
-	fy[#fy + 1] = a1
+	local fX = self.npcs
+	fX[#fX + 1] = a7
 end
-function K.prototype.CreateBook(self)
-	local a1 = CreateUnitByName("interact_book", self.position, false, nil, nil, DOTA_TEAM_GOODGUYS)
-	local aG = Interaction:RegisterInteract(a1, InteractType.Book, 200, function(a0, aH, ae)
-		Game:EachPlayer(function(a0, ae)
-			BlessUpgrade:RequestEnqueueBlessUpgrade(ae, 3)
+function P.prototype.CreateBook(self)
+	local a7 = CreateUnitByName("interact_book", self.position, false, nil, nil, DOTA_TEAM_GOODGUYS)
+	local aN = Interaction:RegisterInteract(a7, InteractType.Book, 200, function(a6, aO, al)
+		Game:EachPlayer(function(a6, al)
+			BlessUpgrade:RequestEnqueueBlessUpgrade(al, 3)
 		end)
-		a1:EmitSoundParams("ui.badge_levelup", 0, 0.5, 0)
+		a7:EmitSoundParams("ui.badge_levelup", 0, 0.5, 0)
 	end, 1)
-	if aG ~= -1 then
-		local fz = self.registeredInteracts
-		fz[#fz + 1] = aG
+	if aN ~= -1 then
+		local fY = self.registeredInteracts
+		fY[#fY + 1] = aN
 	end
-	local fA = self.npcs
-	fA[#fA + 1] = a1
+	local fZ = self.npcs
+	fZ[#fZ + 1] = a7
 end
-function K.prototype.CreateSmithy(self)
-	local a1 = CreateUnitByName("interact_smithy", self.position, false, nil, nil, DOTA_TEAM_GOODGUYS)
-	a1:SetForwardVector(vec3_bottom)
-	local aG = Interaction:RegisterInteract(a1, InteractType.Smithy, 200, function(a0, fB, ey)
-		Game:EachPlayer(function(a0, ae)
-			local b6 = ArtifactUpgrade:RequestEnqueueArtifactUpgrade(ae, 3)
-			if not b6 then
-				ErrorMessage("#error_no_artifact_upgrade", ae)
-				Artifact:RequestEnqueueArtifactSelection(ae, 3, { [2] = 7, [3] = 3 })
+function P.prototype.CreateSmithy(self)
+	local a7 = CreateUnitByName("interact_smithy", self.position, false, nil, nil, DOTA_TEAM_GOODGUYS)
+	a7:SetForwardVector(vec3_bottom)
+	local aN = Interaction:RegisterInteract(a7, InteractType.Smithy, 200, function(a6, f_, eX)
+		Game:EachPlayer(function(a6, al)
+			local bd = ArtifactUpgrade:RequestEnqueueArtifactUpgrade(al, 3)
+			if not bd then
+				ErrorMessage("#error_no_artifact_upgrade", al)
+				Artifact:RequestEnqueueArtifactSelection(al, 3, { [2] = 7, [3] = 3 })
 			end
 		end)
-		a1:EmitSoundParams("ui.badge_levelup", 0, 0.5, 0)
+		a7:EmitSoundParams("ui.badge_levelup", 0, 0.5, 0)
 	end, 1)
-	if aG ~= -1 then
-		local fC = self.registeredInteracts
-		fC[#fC + 1] = aG
+	if aN ~= -1 then
+		local g0 = self.registeredInteracts
+		g0[#g0 + 1] = aN
 	end
-	local fD = self.npcs
-	fD[#fD + 1] = a1
+	local g1 = self.npcs
+	g1[#g1 + 1] = a7
 end
-function K.prototype.HasTravelingMerchant(self)
-	return self.specialKind == H
+function P.prototype.HasTravelingMerchant(self)
+	return self.specialKind == M
 end
-function K.prototype.IsTravelingMerchantNear(self, Q, fE)
+function P.prototype.IsTravelingMerchantNear(self, V, g2)
 	if self.travelingMerchantPosition == nil then
 		return false
 	end
-	return CalcDistance(Q, self.travelingMerchantPosition) <= fE
+	return CalcDistance(V, self.travelingMerchantPosition) <= g2
 end
-function K.prototype.GetTravelingMerchantTrapPositions(self)
-	local fF = {}
-	local fG = Entities:FindAllByClassname("prop_dynamic")
+function P.prototype.GetTravelingMerchantTrapPositions(self)
+	local g3 = {}
+	local g4 = Entities:FindAllByClassname("prop_dynamic")
 	do
-		local aa = 0
-		while aa < #fG do
-			local fH = fG[aa + 1]
-			if fH:GetSpawnGroupHandle() == self.spawnGroup and o(fH:GetName(), "trap_fire_model") then
-				fF[#fF + 1] = fH:GetAbsOrigin()
+		local ah = 0
+		while ah < #g4 do
+			local g5 = g4[ah + 1]
+			if g5:GetSpawnGroupHandle() == self.spawnGroup and p(g5:GetName(), "trap_fire_model") then
+				g3[#g3 + 1] = g5:GetAbsOrigin()
 			end
-			aa = aa + 1
+			ah = ah + 1
 		end
 	end
-	return fF
+	return g3
 end
-function K.prototype.GetTravelingMerchantExitInfos(self)
-	local fI = {}
+function P.prototype.GetTravelingMerchantExitInfos(self)
+	local g6 = {}
 	do
-		local aa = 0
-		while aa < #self.exitInfos do
+		local ah = 0
+		while ah < #self.exitInfos do
 			do
-				local a9 = self.exitInfos[aa + 1]
-				if a9 == nil then
-					goto fJ
+				local ag = self.exitInfos[ah + 1]
+				if ag == nil then
+					goto g7
 				end
-				fI[#fI + 1] = { position = a9.position, direction = a9.direction }
+				g6[#g6 + 1] = { position = ag.position, direction = ag.direction }
 			end
-			::fJ::
-			aa = aa + 1
+			::g7::
+			ah = ah + 1
 		end
 	end
-	return fI
+	return g6
 end
-function K.prototype.IsTravelingMerchantBlockedByExit(self, Q)
-	local fI = self:GetTravelingMerchantExitInfos()
-	local fK = GRID_SIZE * 2
-	local fL = GRID_SIZE * 0.75
+function P.prototype.IsTravelingMerchantBlockedByExit(self, V)
+	local g6 = self:GetTravelingMerchantExitInfos()
+	local g8 = GRID_SIZE * 2
+	local g9 = GRID_SIZE * 0.75
 	do
-		local aa = 0
-		while aa < #fI do
-			local a9 = fI[aa + 1]
-			local fM = Q:__sub(a9.position)
-			local fN = fM.x * a9.direction.x + fM.y * a9.direction.y
-			local fO = -fN
-			local fP = math.abs(fM.x * -a9.direction.y + fM.y * a9.direction.x)
-			if fO >= 0 and fO <= fK and fP <= fL then
+		local ah = 0
+		while ah < #g6 do
+			local ag = g6[ah + 1]
+			local ga = V:__sub(ag.position)
+			local gb = ga.x * ag.direction.x + ga.y * ag.direction.y
+			local gc = -gb
+			local gd = math.abs(ga.x * -ag.direction.y + ga.y * ag.direction.x)
+			if gc >= 0 and gc <= g8 and gd <= g9 then
 				return true
 			end
-			aa = aa + 1
+			ah = ah + 1
 		end
 	end
 	return false
 end
-function K.prototype.ResolveTravelingMerchantForward(self, Q)
-	local bP = Q.x - self.position.x
-	local bQ = Q.y - self.position.y
-	if math.abs(bP) > math.abs(bQ) then
-		return bP > 0 and vec3_left or vec3_right
+function P.prototype.ResolveTravelingMerchantForward(self, V)
+	local bW = V.x - self.position.x
+	local bX = V.y - self.position.y
+	if math.abs(bW) > math.abs(bX) then
+		return bW > 0 and vec3_left or vec3_right
 	end
 	return vec3_bottom
 end
-function K.prototype.IsTravelingMerchantGridPositionValid(self, Q)
+function P.prototype.IsTravelingMerchantGridPositionValid(self, V)
 	do
-		local aa = 0
-		while aa < #self.validGridPositions do
-			local fQ = self.validGridPositions[aa + 1]
-			if fQ ~= nil and CalcDistance(fQ, Q) <= GRID_SIZE * 0.25 then
+		local ah = 0
+		while ah < #self.validGridPositions do
+			local ge = self.validGridPositions[ah + 1]
+			if ge ~= nil and CalcDistance(ge, V) <= GRID_SIZE * 0.25 then
 				return true
 			end
-			aa = aa + 1
+			ah = ah + 1
 		end
 	end
 	return false
 end
-function K.prototype.CanPlaceTravelingMerchantAt(self, Q, fR)
-	if not self:IsTravelingMerchantGridPositionValid(Q) then
+function P.prototype.CanPlaceTravelingMerchantAt(self, V, gf)
+	if not self:IsTravelingMerchantGridPositionValid(V) then
 		return false
 	end
-	local fS = Q:__add(fR:__mul(GRID_SIZE))
-	local fT = Vector(-fR.y, fR.x, 0)
-	local fU = Q:__add(fT:__mul(GRID_SIZE))
-	local fV = Q:__sub(fT:__mul(GRID_SIZE))
-	return self:IsTravelingMerchantGridPositionValid(fS)
-		and self:IsTravelingMerchantGridPositionValid(fU)
-		and self:IsTravelingMerchantGridPositionValid(fV)
+	local gg = V:__add(gf:__mul(GRID_SIZE))
+	local gh = Vector(-gf.y, gf.x, 0)
+	local gi = V:__add(gh:__mul(GRID_SIZE))
+	local gj = V:__sub(gh:__mul(GRID_SIZE))
+	return self:IsTravelingMerchantGridPositionValid(gg)
+		and self:IsTravelingMerchantGridPositionValid(gi)
+		and self:IsTravelingMerchantGridPositionValid(gj)
 end
-function K.prototype.GetTravelingMerchantDirectionCandidates(self, Q)
-	local fW = self:ResolveTravelingMerchantForward(Q)
-	local fX = { fW }
-	local fY = { vec3_bottom, vec3_left, vec3_right }
+function P.prototype.GetTravelingMerchantDirectionCandidates(self, V)
+	local gk = self:ResolveTravelingMerchantForward(V)
+	local gl = { gk }
+	local gm = { vec3_bottom, vec3_left, vec3_right }
 	do
-		local aa = 0
-		while aa < #fY do
-			local fp = fY[aa + 1]
-			if fp ~= fW then
-				fX[#fX + 1] = fp
+		local ah = 0
+		while ah < #gm do
+			local fO = gm[ah + 1]
+			if fO ~= gk then
+				gl[#gl + 1] = fO
 			end
-			aa = aa + 1
+			ah = ah + 1
 		end
 	end
-	return fX
+	return gl
 end
-function K.prototype.ResolveTravelingMerchantAngles(self, fp)
-	if fp == vec3_left then
+function P.prototype.ResolveTravelingMerchantAngles(self, fO)
+	if fO == vec3_left then
 		return "0 180 0"
 	end
-	if fp == vec3_right then
+	if fO == vec3_right then
 		return "0 0 0"
 	end
 	return "0 -90 0"
 end
-function K.prototype.ResolveTravelingMerchantAdjustedPosition(self, Q, fR)
-	local fZ = Q
-	local f_ = fR:__mul(-1)
-	local g0 = GRID_SIZE * 0.1
-	local g1 = GRID_SIZE * 0.5
-	local g2 = 10
+function P.prototype.ResolveTravelingMerchantAdjustedPosition(self, V, gf)
+	local gn = V
+	local go = gf:__mul(-1)
+	local gp = GRID_SIZE * 0.1
+	local gq = GRID_SIZE * 0.5
+	local gr = 10
 	do
-		local g3 = 0
-		while g3 <= g2 do
-			local g4 = g1 + g0 * g3
-			local cd = Q:__add(f_:__mul(g4))
-			if not self:IsPositionInside(cd) or not GridNav:IsValidPosition(cd) then
+		local gs = 0
+		while gs <= gr do
+			local gt = gq + gp * gs
+			local cx = V:__add(go:__mul(gt))
+			if not self:IsPositionInside(cx) or not GridNav:IsValidPosition(cx) then
 				break
 			end
-			fZ = cd
-			g3 = g3 + 1
+			gn = cx
+			gs = gs + 1
 		end
 	end
-	return fZ
+	return gn
 end
-function K.prototype.ResolveTravelingMerchantSpawnData(self)
+function P.prototype.ResolveTravelingMerchantSpawnData(self)
 	self.travelingMerchantPosition = nil
 	self.travelingMerchantForward = vec3_bottom
 	self.travelingMerchantAngles = "0 -90 0"
@@ -3116,95 +3338,95 @@ function K.prototype.ResolveTravelingMerchantSpawnData(self)
 	if #self.validGridPositions <= 0 then
 		return
 	end
-	local g5 = math.huge
-	local g6 = -math.huge
-	local g7 = -math.huge
+	local gu = math.huge
+	local gv = -math.huge
+	local gw = -math.huge
 	do
-		local aa = 0
-		while aa < #self.validGridPositions do
+		local ah = 0
+		while ah < #self.validGridPositions do
 			do
-				local fQ = self.validGridPositions[aa + 1]
-				if fQ == nil then
-					goto g8
+				local ge = self.validGridPositions[ah + 1]
+				if ge == nil then
+					goto gx
 				end
-				g5 = math.min(g5, fQ.x)
-				g6 = math.max(g6, fQ.x)
-				g7 = math.max(g7, fQ.y)
+				gu = math.min(gu, ge.x)
+				gv = math.max(gv, ge.x)
+				gw = math.max(gw, ge.y)
 			end
-			::g8::
-			aa = aa + 1
+			::gx::
+			ah = ah + 1
 		end
 	end
-	local fF = self:GetTravelingMerchantTrapPositions()
-	local g9 = GRID_SIZE * 1.25
-	local ga = nil
-	local gb = nil
-	local gc = math.huge
-	local gd = -math.huge
+	local g3 = self:GetTravelingMerchantTrapPositions()
+	local gy = GRID_SIZE * 1.25
+	local gz = nil
+	local gA = nil
+	local gB = math.huge
+	local gC = -math.huge
 	do
-		local aa = 0
-		while aa < #self.validGridPositions do
+		local ah = 0
+		while ah < #self.validGridPositions do
 			do
-				local fQ = self.validGridPositions[aa + 1]
-				if fQ == nil then
-					goto ge
+				local ge = self.validGridPositions[ah + 1]
+				if ge == nil then
+					goto gD
 				end
-				if self:IsTravelingMerchantBlockedByExit(fQ) then
-					goto ge
+				if self:IsTravelingMerchantBlockedByExit(ge) then
+					goto gD
 				end
-				local gf = false
+				local gE = false
 				do
-					local gg = 0
-					while gg < #fF do
-						if CalcDistance(fQ, fF[gg + 1]) <= g9 then
-							gf = true
+					local gF = 0
+					while gF < #g3 do
+						if CalcDistance(ge, g3[gF + 1]) <= gy then
+							gE = true
 							break
 						end
-						gg = gg + 1
+						gF = gF + 1
 					end
 				end
-				if gf then
-					goto ge
+				if gE then
+					goto gD
 				end
-				local fX = self:GetTravelingMerchantDirectionCandidates(fQ)
-				local gh = nil
+				local gl = self:GetTravelingMerchantDirectionCandidates(ge)
+				local gG = nil
 				do
-					local gi = 0
-					while gi < #fX do
-						local fp = fX[gi + 1]
-						if self:CanPlaceTravelingMerchantAt(fQ, fp) then
-							gh = fp
+					local gH = 0
+					while gH < #gl do
+						local fO = gl[gH + 1]
+						if self:CanPlaceTravelingMerchantAt(ge, fO) then
+							gG = fO
 							break
 						end
-						gi = gi + 1
+						gH = gH + 1
 					end
 				end
-				if gh == nil then
-					goto ge
+				if gG == nil then
+					goto gD
 				end
-				local gj = math.min(math.abs(fQ.x - g5), math.abs(g6 - fQ.x), math.abs(g7 - fQ.y))
-				local gk = CalcDistance(fQ, self.position)
-				if gj < gc or gj == gc and gk > gd then
-					ga = fQ
-					gb = gh
-					gc = gj
-					gd = gk
+				local gI = math.min(math.abs(ge.x - gu), math.abs(gv - ge.x), math.abs(gw - ge.y))
+				local gJ = CalcDistance(ge, self.position)
+				if gI < gB or gI == gB and gJ > gC then
+					gz = ge
+					gA = gG
+					gB = gI
+					gC = gJ
 				end
 			end
-			::ge::
-			aa = aa + 1
+			::gD::
+			ah = ah + 1
 		end
 	end
-	if ga == nil or gb == nil then
+	if gz == nil or gA == nil then
 		print(
 			("[DungeonRoom " .. tostring(self.roomID))
 				.. "] TravelingMerchant 未找到满足前方和两侧相邻网格条件的站位，跳过创建"
 		)
 		return
 	end
-	local fZ = self:ResolveTravelingMerchantAdjustedPosition(ga, gb)
-	self.travelingMerchantPosition = GetGroundPosition(fZ, nil)
-	self.travelingMerchantForward = gb
+	local gn = self:ResolveTravelingMerchantAdjustedPosition(gz, gA)
+	self.travelingMerchantPosition = GetGroundPosition(gn, nil)
+	self.travelingMerchantForward = gA
 	self.travelingMerchantAngles = self:ResolveTravelingMerchantAngles(self.travelingMerchantForward)
 	print(
 		(
@@ -3223,7 +3445,7 @@ function K.prototype.ResolveTravelingMerchantSpawnData(self)
 		) .. self.travelingMerchantAngles
 	)
 end
-function K.prototype.CreateTravelingMerchantPlaceholder(self)
+function P.prototype.CreateTravelingMerchantPlaceholder(self)
 	if
 		not self:HasTravelingMerchant()
 		or self.travelingMerchantPosition == nil
@@ -3244,134 +3466,134 @@ function K.prototype.CreateTravelingMerchantPlaceholder(self)
 		}
 	)
 end
-function K.prototype.GetTravelingMerchantArtifactPool(self)
-	local gl = {}
-	for Y, ap in pairs(KeyValues.artifact) do
-		local gm = tostring
-		local gn = ap.Access
-		if gn == nil then
-			gn = ""
+function P.prototype.GetTravelingMerchantArtifactPool(self)
+	local gK = {}
+	for a2, aw in pairs(KeyValues.artifact) do
+		local gL = tostring
+		local gM = aw.Access
+		if gM == nil then
+			gM = ""
 		end
-		if gm(gn) == "Meepo" then
-			gl[#gl + 1] = tostring(Y)
+		if gL(gM) == "Meepo" then
+			gK[#gK + 1] = tostring(a2)
 		end
 	end
-	return gl
+	return gK
 end
-function K.prototype.GetTravelingMerchantItemRarity(self, Y)
-	return self:RollTavernItemRarity(Y)
+function P.prototype.GetTravelingMerchantItemRarity(self, a2)
+	return self:RollTavernItemRarity(a2)
 end
-function K.prototype.CreateTravelingMerchantShopItems(self)
+function P.prototype.CreateTravelingMerchantShopItems(self)
 	if self.travelingMerchantPosition == nil then
 		return
 	end
-	local X = self:GetTravelingMerchantArtifactPool()
-	if #X <= 0 then
+	local a1 = self:GetTravelingMerchantArtifactPool()
+	if #a1 <= 0 then
 		print(
 			("[DungeonRoom " .. tostring(self.roomID))
 				.. "] TravelingMerchant 未找到 Access=Meepo 的 artifact 商品"
 		)
 		return
 	end
-	local de = {}
-	local df = self:GetSinglePlayerShopFilterHero()
-	if df ~= nil then
-		self:AppendShopExcludedForHero(de, df)
+	local dE = {}
+	local dF = self:GetSinglePlayerShopFilterHero()
+	if dF ~= nil then
+		self:AppendShopExcludedForHero(dE, dF)
 	end
-	local go = self.travelingMerchantForward:__mul(128)
-	local gp = self.travelingMerchantPosition:__add(go)
-	local fT = Vector(-self.travelingMerchantForward.y, self.travelingMerchantForward.x, 0)
-	local gq = { -128, 0, 128 }
-	local gr = {}
-	local gs = ShuffledList(X)
+	local gN = self.travelingMerchantForward:__mul(128)
+	local gO = self.travelingMerchantPosition:__add(gN)
+	local gh = Vector(-self.travelingMerchantForward.y, self.travelingMerchantForward.x, 0)
+	local gP = { -128, 0, 128 }
+	local gQ = {}
+	local gR = ShuffledList(a1)
 	do
-		local aa = 0
-		while aa < #gs and #gr < 3 do
+		local ah = 0
+		while ah < #gR and #gQ < 3 do
 			do
-				local Y = gs[aa + 1]
-				if Y == nil or Y == "" or m(de, Y) then
-					goto gt
+				local a2 = gR[ah + 1]
+				if a2 == nil or a2 == "" or o(dE, a2) then
+					goto gS
 				end
-				gr[#gr + 1] = Y
-				self:AppendShopGeneratedExcluded(de, Y)
+				gQ[#gQ + 1] = a2
+				self:AppendShopGeneratedExcluded(dE, a2)
 			end
-			::gt::
-			aa = aa + 1
+			::gS::
+			ah = ah + 1
 		end
 	end
 	do
-		local aa = 0
-		while aa < #gr do
+		local ah = 0
+		while ah < #gQ do
 			do
-				local Y = gr[aa + 1]
-				if Y == nil or Y == "" then
-					goto gu
+				local a2 = gQ[ah + 1]
+				if a2 == nil or a2 == "" then
+					goto gT
 				end
-				local aK = gp:__add(fT:__mul(gq[aa + 1] or 0))
-				local a6 = self:GetTravelingMerchantItemRarity(Y)
+				local aR = gO:__add(gh:__mul(gP[ah + 1] or 0))
+				local ac = self:GetTravelingMerchantItemRarity(a2)
 				self:SpawnShopItemAtPosition(
-					Y,
-					a6,
-					aK,
-					"traveling_merchant_" .. tostring(aa + 1),
+					a2,
+					ac,
+					aR,
+					"traveling_merchant_" .. tostring(ah + 1),
 					false,
 					nil,
 					"TravelingMerchant"
 				)
 			end
-			::gu::
-			aa = aa + 1
+			::gT::
+			ah = ah + 1
 		end
 	end
-	local du = gp:__add(go)
-	Game:EachPlayer(function(a0, ae)
-		if Privilege:HasPrivilege("privilege_041", ae) then
-			self:CreateFreeTravelingMerchantItem(ae, du, X, de)
+	local dT = gO:__add(gN)
+	Game:EachPlayer(function(a6, al)
+		if Privilege:HasPrivilege("privilege_041", al) then
+			self:CreateFreeTravelingMerchantItem(al, dT, a1, dE)
 		end
 	end)
 end
-function K.prototype.CreateFreeTravelingMerchantItem(self, ae, Q, X, de)
-	local dv = { unpack(de) }
-	local gv = {}
-	local aH = self:GetShopFilterHero(ae)
-	if aH ~= nil then
-		self:AppendShopExcludedForHero(dv, aH)
-		self:AppendShopExcludedForHero(gv, aH)
+function P.prototype.CreateFreeTravelingMerchantItem(self, al, V, a1, dE)
+	local dU = { unpack(dE) }
+	local gU = {}
+	local aO = self:GetShopFilterHero(al)
+	if aO ~= nil then
+		self:AppendShopExcludedForHero(dU, aO)
+		self:AppendShopExcludedForHero(gU, aO)
 	end
-	local Y
-	local gs = ShuffledList(X)
+	local a2
+	local gR = ShuffledList(a1)
 	do
-		local aa = 0
-		while aa < #gs do
-			local bE = gs[aa + 1]
-			if bE ~= nil and bE ~= "" and not m(dv, bE) then
-				Y = bE
+		local ah = 0
+		while ah < #gR do
+			local bL = gR[ah + 1]
+			if bL ~= nil and bL ~= "" and not o(dU, bL) then
+				a2 = bL
 				break
 			end
-			aa = aa + 1
+			ah = ah + 1
 		end
 	end
-	if Y == nil then
+	if a2 == nil then
 		do
-			local aa = 0
-			while aa < #gs do
-				local bE = gs[aa + 1]
-				if bE ~= nil and bE ~= "" and not m(gv, bE) then
-					Y = bE
+			local ah = 0
+			while ah < #gR do
+				local bL = gR[ah + 1]
+				if bL ~= nil and bL ~= "" and not o(gU, bL) then
+					a2 = bL
 					break
 				end
-				aa = aa + 1
+				ah = ah + 1
 			end
 		end
 	end
-	if Y == nil then
+	if a2 == nil then
 		return
 	end
-	self:AppendShopGeneratedExcluded(de, Y)
-	local a6 = self:GetTravelingMerchantItemRarity(Y)
-	self:SpawnShopItemAtPosition(Y, a6, Q, "traveling_merchant_free_" .. tostring(ae), true, ae, "TravelingMerchant")
+	self:AppendShopGeneratedExcluded(dE, a2)
+	local ac = self:GetTravelingMerchantItemRarity(a2)
+	self:SpawnShopItemAtPosition(a2, ac, V, "traveling_merchant_free_" .. tostring(al), true, al, "TravelingMerchant")
 end
-function K.prototype.CreateInteractiveTravelingMerchant(self)
+function P.prototype.CreateInteractiveTravelingMerchant(self)
 	if
 		not self:HasTravelingMerchant()
 		or self.travelingMerchantPosition == nil
@@ -3379,192 +3601,192 @@ function K.prototype.CreateInteractiveTravelingMerchant(self)
 	then
 		return
 	end
-	local a1 = CreateUnitByName("interact_meepo", self.travelingMerchantPosition, false, nil, nil, DOTA_TEAM_GOODGUYS)
-	a1:SetForwardVector(Rotation2D(self.travelingMerchantForward, 135, true))
-	self.travelingMerchantUnit = a1
-	local gw = self.npcs
-	gw[#gw + 1] = a1
+	local a7 = CreateUnitByName("interact_meepo", self.travelingMerchantPosition, false, nil, nil, DOTA_TEAM_GOODGUYS)
+	a7:SetForwardVector(Rotation2D(self.travelingMerchantForward, 135, true))
+	self.travelingMerchantUnit = a7
+	local gV = self.npcs
+	gV[#gV + 1] = a7
 	self:CreateTravelingMerchantShopItems()
 end
-function K.prototype.RollTavernItemRarity(self, Y)
-	local ap = KeyValues.items[Y]
-	local gx = ap and ap.RarityRange
-	if gx == nil or j(tostring(gx)) == "" then
-		local gy = ap and ap.Rarity
-		if gy ~= nil and j(tostring(gy)) ~= "" then
-			return toFiniteNumber(gy, 1)
+function P.prototype.RollTavernItemRarity(self, a2)
+	local aw = KeyValues.items[a2]
+	local gW = aw and aw.RarityRange
+	if gW == nil or m(tostring(gW)) == "" then
+		local gX = aw and aw.Rarity
+		if gX ~= nil and m(tostring(gX)) ~= "" then
+			return toFiniteNumber(gX, 1)
 		end
 		return 1
 	end
-	local gz = n(
-		k(g(tostring(gx), "|"), function(a0, a7)
-			return toFiniteNumber(a7, 0)
+	local gY = k(
+		j(g(tostring(gW), "|"), function(a6, ae)
+			return toFiniteNumber(ae, 0)
 		end),
-		function(a0, a7)
-			return a7 > 0
+		function(a6, ae)
+			return ae > 0
 		end
 	)
-	if #gz == 0 then
+	if #gY == 0 then
 		return 1
 	end
-	local gA = { [1] = 50, [2] = 30, [3] = 15, [4] = 4, [5] = 1 }
-	local gB = d(E)
+	local gZ = { [1] = 50, [2] = 30, [3] = 15, [4] = 4, [5] = 1 }
+	local g_ = d(J)
 	do
-		local aa = 0
-		while aa < #gz do
-			local a6 = gz[aa + 1]
-			gB:Set(a6, gA[a6] or 1)
-			aa = aa + 1
+		local ah = 0
+		while ah < #gY do
+			local ac = gY[ah + 1]
+			g_:Set(ac, gZ[ac] or 1)
+			ah = ah + 1
 		end
 	end
-	return gB:Random() or gz[1]
+	return g_:Random() or gY[1]
 end
-function K.prototype.CreateTavernItems(self)
-	local gC = PickList(TAVERN_ITEMS, 4)
-	local gD = { 1, 1, 1, 1 }
-	local dp = self:FindInfoTarget("info_shop_item")
-	if not IsValid(dp) then
+function P.prototype.CreateTavernItems(self)
+	local h0 = PickList(TAVERN_ITEMS, 4)
+	local h1 = { 1, 1, 1, 1 }
+	local dO = self:FindInfoTarget("info_shop_item")
+	if not IsValid(dO) then
 		print(
 			("[DungeonRoom " .. tostring(self.roomID)) .. "] ⚠️ 未找到 info_shop_item，跳过酒馆商品生成"
 		)
 		return
 	end
-	local gE = dp:GetAbsOrigin()
-	local dq = self:GetSymmetricShopPositions(gE, #gC)
-	print((("[DungeonRoom " .. tostring(self.roomID)) .. "] CreateTavernItems: slots=") .. tostring(#dq))
+	local h2 = dO:GetAbsOrigin()
+	local dP = self:GetSymmetricShopPositions(h2, #h0)
+	print((("[DungeonRoom " .. tostring(self.roomID)) .. "] CreateTavernItems: slots=") .. tostring(#dP))
 	do
-		local dr = 0
-		while dr < #dq do
+		local dQ = 0
+		while dQ < #dP do
 			do
-				local Y = gC[dr + 1]
-				local a6 = gD[dr + 1] or 1
-				if Y == nil or Y == "" then
-					goto gF
+				local a2 = h0[dQ + 1]
+				local ac = h1[dQ + 1] or 1
+				if a2 == nil or a2 == "" then
+					goto h3
 				end
 				print(
 					(
 						(
 							(
-								((("[DungeonRoom " .. tostring(self.roomID)) .. "] Tavern item slot=") .. tostring(dr))
+								((("[DungeonRoom " .. tostring(self.roomID)) .. "] Tavern item slot=") .. tostring(dQ))
 								.. " item="
-							) .. Y
+							) .. a2
 						) .. " rarity="
-					) .. tostring(a6)
+					) .. tostring(ac)
 				)
-				self:SpawnShopItemAtPosition(Y, a6, dq[dr + 1], "tavern_" .. tostring(dr + 1))
+				self:SpawnShopItemAtPosition(a2, ac, dP[dQ + 1], "tavern_" .. tostring(dQ + 1))
 			end
-			::gF::
-			dr = dr + 1
+			::h3::
+			dQ = dQ + 1
 		end
 	end
-	local gG = n(TAVERN_ITEMS, function(a0, Y)
-		return not m(gC, Y)
+	local h4 = k(TAVERN_ITEMS, function(a6, a2)
+		return not o(h0, a2)
 	end)
-	local du = Vector(gE.x, gE.y - 300, gE.z)
-	Game:EachPlayer(function(a0, ae)
-		if not Privilege:HasPrivilege("privilege_042", ae) then
+	local dT = Vector(h2.x, h2.y - 300, h2.z)
+	Game:EachPlayer(function(a6, al)
+		if not Privilege:HasPrivilege("privilege_042", al) then
 			return
 		end
-		local gH = PickList(#gG > 0 and gG or TAVERN_ITEMS, 1)
-		local Y = gH[1]
-		if Y == nil or Y == "" then
+		local h5 = PickList(#h4 > 0 and h4 or TAVERN_ITEMS, 1)
+		local a2 = h5[1]
+		if a2 == nil or a2 == "" then
 			return
 		end
-		local a6 = gD[1] or 1
-		self:SpawnShopItemAtPosition(Y, a6, du, "tavern_free_" .. tostring(ae), true, ae)
+		local ac = h1[1] or 1
+		self:SpawnShopItemAtPosition(a2, ac, dT, "tavern_free_" .. tostring(al), true, al)
 	end)
 end
-function K.prototype.CreateFaith(self)
-	local gI = DrawPool:Draw("faith")
-	if gI then
-		local a1 = CreateUnitByName(gI, self.position, false, nil, nil, DOTA_TEAM_GOODGUYS)
-		local aG = Interaction:RegisterInteract(a1, InteractType.ShopItem, 200, function(a0, aH, ae)
-			local a8 = DrawPool:Draw(gI)
-			if a8 ~= nil then
-				aH:AddItemByName(a8)
+function P.prototype.CreateFaith(self)
+	local h6 = DrawPool:Draw("faith")
+	if h6 then
+		local a7 = CreateUnitByName(h6, self.position, false, nil, nil, DOTA_TEAM_GOODGUYS)
+		local aN = Interaction:RegisterInteract(a7, InteractType.ShopItem, 200, function(a6, aO, al)
+			local af = DrawPool:Draw(h6)
+			if af ~= nil then
+				aO:AddItemByName(af)
 			end
 		end)
-		if aG ~= -1 then
-			local gJ = self.registeredInteracts
-			gJ[#gJ + 1] = aG
+		if aN ~= -1 then
+			local h7 = self.registeredInteracts
+			h7[#h7 + 1] = aN
 		end
-		local gK = self.npcs
-		gK[#gK + 1] = a1
+		local h8 = self.npcs
+		h8[#h8 + 1] = a7
 	end
 end
-function K.prototype.CreateOutpost(self)
-	local a1 = CreateUnitByName("bonus_outpost", self.position, false, nil, nil, DOTA_TEAM_GOODGUYS)
-	local gL = self.npcs
-	gL[#gL + 1] = a1
+function P.prototype.CreateOutpost(self)
+	local a7 = CreateUnitByName("bonus_outpost", self.position, false, nil, nil, DOTA_TEAM_GOODGUYS)
+	local h9 = self.npcs
+	h9[#h9 + 1] = a7
 end
-function K.prototype.ShouldCreateSecretRoom(self)
+function P.prototype.ShouldCreateSecretRoom(self)
 	if not DungeonManager:HasSecretRoomPrefabs() then
 		print(
 			("[DungeonRoom " .. tostring(self.roomID)) .. "] 当前地形未配置隐藏房间预制体，跳过创建"
 		)
 		return false
 	end
-	local gM = DungeonManager:GetSecretRoomChance()
-	local gN = RollPercentage(gM)
+	local ha = DungeonManager:GetSecretRoomChance()
+	local hb = RollPercentage(ha)
 	print(
 		(
-			((("[DungeonRoom " .. tostring(self.roomID)) .. "] 隐藏房间判定 chance=") .. tostring(gM))
+			((("[DungeonRoom " .. tostring(self.roomID)) .. "] 隐藏房间判定 chance=") .. tostring(ha))
 			.. "% result="
-		) .. tostring(gN)
+		) .. tostring(hb)
 	)
-	return gN
+	return hb
 end
-function K.prototype.TryCreateSecretGate(self, gO, gP, gQ)
+function P.prototype.TryCreateSecretGate(self, hc, hd, he)
 	if self.secretRoomPrefix ~= nil then
 		return
 	end
 	if not self:ShouldCreateSecretRoom() then
 		return
 	end
-	local gR = d(p, gP)
-	gR:add(self.entrancePrefix)
-	local gS = {}
+	local hf = d(q, hd)
+	hf:add(self.entrancePrefix)
+	local hg = {}
 	do
-		local aa = 0
-		while aa < #gO do
-			local bd = gO[aa + 1]
-			if bd ~= nil and not gR:has(bd) then
-				gS[#gS + 1] = bd
+		local ah = 0
+		while ah < #hc do
+			local bk = hc[ah + 1]
+			if bk ~= nil and not hf:has(bk) then
+				hg[#hg + 1] = bk
 			end
-			aa = aa + 1
+			ah = ah + 1
 		end
 	end
-	if #gS == 0 then
+	if #hg == 0 then
 		print(("[DungeonRoom " .. tostring(self.roomID)) .. "] 没有未使用的出口可用于隐藏房间")
 		return
 	end
-	local gT = GetRandomElement(gS)
-	if gT == nil then
+	local hh = GetRandomElement(hg)
+	if hh == nil then
 		return
 	end
-	local gU = r(gQ, function(a0, gV)
-		return q(gV:GetName(), gT .. "_")
+	local hi = s(he, function(a6, hj)
+		return r(hj:GetName(), hh .. "_")
 	end)
-	if not IsValid(gU) then
-		print((("[DungeonRoom " .. tostring(self.roomID)) .. "] 隐藏房间出口实体无效: ") .. gT)
+	if not IsValid(hi) then
+		print((("[DungeonRoom " .. tostring(self.roomID)) .. "] 隐藏房间出口实体无效: ") .. hh)
 		return
 	end
-	local gW = gU:GetAbsOrigin()
-	local bw = self.position
-	local bP = gW.x - bw.x
-	local bQ = gW.y - bw.y
-	local fp
-	if math.abs(bQ) > math.abs(bP) then
-		fp = vec3_top
+	local hk = hi:GetAbsOrigin()
+	local bD = self.position
+	local bW = hk.x - bD.x
+	local bX = hk.y - bD.y
+	local fO
+	if math.abs(bX) > math.abs(bW) then
+		fO = vec3_top
 	else
-		fp = bP > 0 and vec3_right or vec3_left
+		fO = bW > 0 and vec3_right or vec3_left
 	end
-	local bO = gW:__add(fp:__mul(-128))
-	self.secretRoomPrefix = gT
-	self.secretRoomDoorPosition = gW
-	self.secretRoomDoorDirection = fp
-	CreateUnitByNameAsync("npc_dungeon_secret_gate", bO, true, nil, nil, DOTA_TEAM_BADGUYS, function(bb)
-		if not IsValid(bb) then
+	local bV = hk:__add(fO:__mul(-128))
+	self.secretRoomPrefix = hh
+	self.secretRoomDoorPosition = hk
+	self.secretRoomDoorDirection = fO
+	CreateUnitByNameAsync("npc_dungeon_secret_gate", bV, true, nil, nil, DOTA_TEAM_BADGUYS, function(bi)
+		if not IsValid(bi) then
 			print(("[DungeonRoom " .. tostring(self.roomID)) .. "] 隐藏房间门创建失败")
 			self.secretRoomPrefix = nil
 			self.secretRoomDoorPosition = nil
@@ -3572,14 +3794,14 @@ function K.prototype.TryCreateSecretGate(self, gO, gP, gQ)
 			return
 		end
 		if self.isDispose then
-			bb:SafeRemoveUnit()
+			bi:SafeRemoveUnit()
 			return
 		end
-		bb:SetAbsOrigin(bO)
-		bb:SetForwardVector(Rotation2D(fp, 180, true))
-		self.secretRoomGate = bb
-		local gX = self.enemies
-		gX[#gX + 1] = bb
+		bi:SetAbsOrigin(bV)
+		bi:SetForwardVector(Rotation2D(fO, 180, true))
+		self.secretRoomGate = bi
+		local hl = self.enemies
+		hl[#hl + 1] = bi
 		print(
 			(
 				(
@@ -3587,37 +3809,37 @@ function K.prototype.TryCreateSecretGate(self, gO, gP, gQ)
 						(
 							(
 								(("[DungeonRoom " .. tostring(self.roomID)) .. "] 隐藏房间门已创建: prefix=")
-								.. gT
+								.. hh
 							) .. " pos=("
-						) .. tostring(bO.x)
+						) .. tostring(bV.x)
 					) .. ", "
-				) .. tostring(bO.y)
+				) .. tostring(bV.y)
 			) .. ")"
 		)
 	end)
 end
-function K.prototype.CreateSecretRoom(self, gY, fp)
-	local gZ = DungeonManager:GetSecretRoomPrefab(fp)
-	if gZ == nil then
+function P.prototype.CreateSecretRoom(self, hm, fO)
+	local hn = DungeonManager:GetSecretRoomPrefab(fO)
+	if hn == nil then
 		print(
 			("[DungeonRoom " .. tostring(self.roomID))
 				.. "] 隐藏房间未配置当前方向的预制体，跳过创建"
 		)
 		return
 	end
-	local function g_(a0, h0, h1)
-		if h0 % 64 == 0 then
-			return h0
+	local function ho(a6, hp, hq)
+		if hp % 64 == 0 then
+			return hp
 		end
-		if h1 > 0 then
-			return math.ceil(h0 / 64) * 64
+		if hq > 0 then
+			return math.ceil(hp / 64) * 64
 		end
-		if h1 < 0 then
-			return math.floor(h0 / 64) * 64
+		if hq < 0 then
+			return math.floor(hp / 64) * 64
 		end
-		return math.floor(h0 / 64 + 0.5) * 64
+		return math.floor(hp / 64 + 0.5) * 64
 	end
-	local fq = Vector(g_(nil, gY.x, fp.x), g_(nil, gY.y, fp.y), gY.z)
+	local fP = Vector(ho(nil, hm.x, fO.x), ho(nil, hm.y, fO.y), hm.z)
 	print(
 		(
 			(
@@ -3637,71 +3859,93 @@ function K.prototype.CreateSecretRoom(self, gY, fp)
 																.. "] 创建隐藏房间: prefix="
 															) .. tostring(self.secretRoomPrefix)
 														) .. " prefab="
-													) .. gZ
+													) .. hn
 												) .. " door=("
-											) .. tostring(gY.x)
+											) .. tostring(hm.x)
 										) .. ", "
-									) .. tostring(gY.y)
+									) .. tostring(hm.y)
 								) .. ") spawn=("
-							) .. tostring(fq.x)
+							) .. tostring(fP.x)
 						) .. ", "
-					) .. tostring(fq.y)
+					) .. tostring(fP.y)
 				) .. ", "
-			) .. tostring(fq.z)
+			) .. tostring(fP.z)
 		) .. ")"
 	)
 	self.isSecretRoomCreated = true
-	self.secretRoomSpawnGroup = DOTA_SpawnMapAtPosition(gZ, fq, true, function(_)
+	self.secretRoomSpawnGroup = DOTA_SpawnMapAtPosition(hn, fP, true, function(a4)
+		if self.isDispose then
+			UnloadSpawnGroupByHandle(a4)
+			return
+		end
 		print(("[DungeonRoom " .. tostring(self.roomID)) .. "] 隐藏房间 onReadyToSpawn")
-		ManuallyTriggerSpawnGroupCompletion(_)
+		ManuallyTriggerSpawnGroupCompletion(a4)
 	end, function()
+		if self.isDispose or self.secretRoomSpawnGroup == nil then
+			return
+		end
 		print(("[DungeonRoom " .. tostring(self.roomID)) .. "] 隐藏房间 onSpawnComplete")
-		self:RevealSecretRoomGates()
-		self:OnSecretRoomContentReady(fq, fp)
+		local function hr()
+			if self.isDispose then
+				return
+			end
+			self:RevealSecretRoomGates()
+			self:OnSecretRoomContentReady(fP, fO)
+		end
+		if self.nativeNavigation ~= nil then
+			self.nativeNavigation:AddTerrain(
+				hn,
+				fP,
+				self:GetNativeNavigationProtectedAreas(self.secretRoomSpawnGroup),
+				hr
+			)
+		else
+			hr(nil)
+		end
 	end, nil)
 end
-function K.prototype.OnSecretRoomContentReady(self, fq, fp)
-	local h2 = Entities:FindAllByClassname("info_target")
-	local h3 = {}
-	for a0, h4 in ipairs(h2) do
-		if h4:GetSpawnGroupHandle() == self.secretRoomSpawnGroup and o(h4:GetName(), "info_waard") then
-			h3[#h3 + 1] = h4:GetAbsOrigin()
+function P.prototype.OnSecretRoomContentReady(self, fP, fO)
+	local hs = Entities:FindAllByClassname("info_target")
+	local ht = {}
+	for a6, hu in ipairs(hs) do
+		if hu:GetSpawnGroupHandle() == self.secretRoomSpawnGroup and p(hu:GetName(), "info_waard") then
+			ht[#ht + 1] = hu:GetAbsOrigin()
 		end
 	end
-	if #h3 == 0 then
+	if #ht == 0 then
 		print(
 			("[DungeonRoom " .. tostring(self.roomID))
 				.. "] 隐藏房间内未找到 info_waard 实体，使用推算中心位置"
 		)
-		h3[#h3 + 1] = fq:__add(fp:__mul(960))
+		ht[#ht + 1] = fP:__add(fO:__mul(960))
 	end
 	Interaction:BeginSyncBatch()
 	do
-		local h5 = 0
-		while h5 < #h3 do
-			local h6 = h3[h5 + 1]
+		local hv = 0
+		while hv < #ht do
+			local hw = ht[hv + 1]
 			if RollPercentage(50) then
-				local bx = RandomInt(8, 15)
-				local by = 480
+				local bE = RandomInt(8, 15)
+				local bF = 480
 				do
-					local aa = 0
-					while aa < bx do
-						local bC = RandomFloat(0, 360)
-						local aQ = RandomFloat(0, by)
-						local bD = Vector(math.cos(bC * math.pi / 180) * aQ, math.sin(bC * math.pi / 180) * aQ, 0)
-						local bA = h6:__add(bD)
-						local aR = d(A, "item_coin_stack", bA)
-						local h7 = self.dropItems
-						h7[#h7 + 1] = aR
-						local aG = Interaction:RegisterInteract(aR.entity, InteractType.Chest, 200, function(a0, aH)
-							aH:AddItemByName("item_coin_stack")
-							aR:dispose()
+					local ah = 0
+					while ah < bE do
+						local bJ = RandomFloat(0, 360)
+						local aX = RandomFloat(0, bF)
+						local bK = Vector(math.cos(bJ * math.pi / 180) * aX, math.sin(bJ * math.pi / 180) * aX, 0)
+						local bH = hw:__add(bK)
+						local aY = d(F, "item_coin_stack", bH)
+						local hx = self.dropItems
+						hx[#hx + 1] = aY
+						local aN = Interaction:RegisterInteract(aY.entity, InteractType.Chest, 200, function(a6, aO)
+							aO:AddItemByName("item_coin_stack")
+							aY:dispose()
 						end, nil, nil, "item_coin_stack")
-						if aG ~= -1 then
-							local h8 = self.registeredInteracts
-							h8[#h8 + 1] = aG
+						if aN ~= -1 then
+							local hy = self.registeredInteracts
+							hy[#hy + 1] = aN
 						end
-						aa = aa + 1
+						ah = ah + 1
 					end
 				end
 				print(
@@ -3709,186 +3953,186 @@ function K.prototype.OnSecretRoomContentReady(self, fq, fp)
 						(
 							(
 								(("[DungeonRoom " .. tostring(self.roomID)) .. "] 隐藏房间内容就绪，在 ward[")
-								.. tostring(h5)
+								.. tostring(hv)
 							) .. "] 周围生成 "
-						) .. tostring(bx)
+						) .. tostring(bE)
 					) .. " 个金币堆"
 				)
 			else
-				local aR = d(A, "item_treasure_secret", h6)
-				local h9 = self.dropItems
-				h9[#h9 + 1] = aR
-				local aG = Interaction:RegisterInteract(aR.entity, InteractType.Chest, 200, function(a0, aH)
-					aH:AddItemByName("item_treasure_secret")
-					aR:dispose()
+				local aY = d(F, "item_treasure_secret", hw)
+				local hz = self.dropItems
+				hz[#hz + 1] = aY
+				local aN = Interaction:RegisterInteract(aY.entity, InteractType.Chest, 200, function(a6, aO)
+					aO:AddItemByName("item_treasure_secret")
+					aY:dispose()
 				end, nil, nil, "item_treasure_secret")
-				if aG ~= -1 then
-					local ha = self.registeredInteracts
-					ha[#ha + 1] = aG
+				if aN ~= -1 then
+					local hA = self.registeredInteracts
+					hA[#hA + 1] = aN
 				end
 			end
-			h5 = h5 + 1
+			hv = hv + 1
 		end
 	end
 	Interaction:EndSyncBatch()
 end
-function K.prototype.RevealSecretRoomGates(self)
+function P.prototype.RevealSecretRoomGates(self)
 	if self.secretRoomPrefix == nil then
 		return
 	end
-	local hb = self:FindEntities("prop_dynamic", "prop_wall")
-	local ba = self:FindEntities("prop_dynamic", "prop_gate")
-	local hc = self:FindEntities("prop_dynamic", "prop_gate_decorate")
-	for a0, hd in ipairs(hb) do
-		local bd = g(hd:GetName(), "_")[1]
-		if bd == self.secretRoomPrefix then
-			hd:AddEffects(EF_NODRAW)
+	local hB = self:FindEntities("prop_dynamic", "prop_wall")
+	local bh = self:FindEntities("prop_dynamic", "prop_gate")
+	local hC = self:FindEntities("prop_dynamic", "prop_gate_decorate")
+	for a6, hD in ipairs(hB) do
+		local bk = g(hD:GetName(), "_")[1]
+		if bk == self.secretRoomPrefix then
+			hD:AddEffects(EF_NODRAW)
 		end
 	end
-	for a0, bb in ipairs(ba) do
-		local bd = g(bb:GetName(), "_")[1]
-		if bd == self.secretRoomPrefix then
-			bb:AddEffects(EF_NODRAW)
+	for a6, bi in ipairs(bh) do
+		local bk = g(bi:GetName(), "_")[1]
+		if bk == self.secretRoomPrefix then
+			bi:AddEffects(EF_NODRAW)
 		end
 	end
-	for a0, bb in ipairs(hc) do
-		local bd = g(bb:GetName(), "_")[1]
-		if bd == self.secretRoomPrefix then
-			bb:AddEffects(EF_NODRAW)
+	for a6, bi in ipairs(hC) do
+		local bk = g(bi:GetName(), "_")[1]
+		if bk == self.secretRoomPrefix then
+			bi:AddEffects(EF_NODRAW)
 		end
 	end
 	print(
 		(("[DungeonRoom " .. tostring(self.roomID)) .. "] 隐藏房间门已揭示: prefix=") .. self.secretRoomPrefix
 	)
 end
-function K.prototype.CreateEntrance(self)
-	local gQ = self:FindInfoTargets("info_room_start")
-	if #gQ == 0 then
+function P.prototype.CreateEntrance(self)
+	local he = self:FindInfoTargets("info_room_start")
+	if #he == 0 then
 		self.entrancePos = GetRandomElement(self.validGridPositions) or vec3_zero
 		return
 	end
-	local he = d(p)
-	for a0, h4 in ipairs(gQ) do
-		local bc = h4:GetName()
-		local bd = g(bc, "_")[1]
-		if bd ~= nil and bd ~= "" then
-			he:add(bd)
+	local hE = d(q)
+	for a6, hu in ipairs(he) do
+		local bj = hu:GetName()
+		local bk = g(bj, "_")[1]
+		if bk ~= nil and bk ~= "" then
+			hE:add(bk)
 		end
 	end
-	local hf = s(he)
-	if #hf == 0 then
+	local hF = t(hE)
+	if #hF == 0 then
 		self.entrancePos = GetRandomElement(self.validGridPositions) or vec3_zero
 		return
 	end
-	self.entrancePrefix = GetRandomElement(hf) or ""
-	local hg = r(gQ, function(a0, gV)
-		return q(gV:GetName(), self.entrancePrefix .. "_")
+	self.entrancePrefix = GetRandomElement(hF) or ""
+	local hG = s(he, function(a6, hj)
+		return r(hj:GetName(), self.entrancePrefix .. "_")
 	end)
-	self.entrancePos = IsValid(hg) and hg:GetAbsOrigin() or (GetRandomElement(self.validGridPositions) or vec3_zero)
+	self.entrancePos = IsValid(hG) and hG:GetAbsOrigin() or (GetRandomElement(self.validGridPositions) or vec3_zero)
 end
-function K.prototype.CreateExit(self)
-	local gQ = self:FindInfoTargets("info_room_exit")
+function P.prototype.CreateExit(self)
+	local he = self:FindInfoTargets("info_room_exit")
 	print(
-		((("[DungeonRoom " .. tostring(self.roomID)) .. "] CreateExit - 找到 ") .. tostring(#gQ))
+		((("[DungeonRoom " .. tostring(self.roomID)) .. "] CreateExit - 找到 ") .. tostring(#he))
 			.. " 个 info_room_exit"
 	)
-	if #gQ == 0 then
+	if #he == 0 then
 		print(("[DungeonRoom " .. tostring(self.roomID)) .. "] CreateExit - 无出口实体，使用默认配置")
 		return
 	end
-	local he = d(p)
-	for a0, h4 in ipairs(gQ) do
-		local bc = h4:GetName()
-		local bd = g(bc, "_")[1]
-		if bd ~= nil and bd ~= "" then
-			he:add(bd)
+	local hE = d(q)
+	for a6, hu in ipairs(he) do
+		local bj = hu:GetName()
+		local bk = g(bj, "_")[1]
+		if bk ~= nil and bk ~= "" then
+			hE:add(bk)
 		end
 	end
-	local hf = s(he)
-	if #hf == 0 then
+	local hF = t(hE)
+	if #hF == 0 then
 		print(("[DungeonRoom " .. tostring(self.roomID)) .. "] CreateExit - 无有效前缀")
 		return
 	end
-	local hh = DungeonManager:GetExitCountOverrideByIndex(self.roomID) or 1
-	local hi = self.roomID + 1
-	local hj = DungeonManager:GetRoomTypeByIndex(hi)
-	local hk = DungeonManager:GetRewardTypeByIndex(hi)
-	local hl = DungeonManager:GetRewardOptionsByIndex(hi)
-	local hm = DungeonManager:GetSpecialOptionsByIndex(hi)
-	if #hm > 0 then
-		hh = #hm
-	elseif #hl > 1 then
-		hh = #hl
+	local hH = DungeonManager:GetExitCountOverrideByIndex(self.roomID) or 1
+	local hI = self.roomID + 1
+	local hJ = DungeonManager:GetRoomTypeByIndex(hI)
+	local hK = DungeonManager:GetRewardTypeByIndex(hI)
+	local hL = DungeonManager:GetRewardOptionsByIndex(hI)
+	local hM = DungeonManager:GetSpecialOptionsByIndex(hI)
+	if #hM > 0 then
+		hH = #hM
+	elseif #hL > 1 then
+		hH = #hL
 	end
-	hh = math.min(#hf, hh)
-	local gP = PickList(hf, hh)
-	local hn = {}
-	local ho = {}
-	if #hm > 0 then
-		local hp = { unpack(hm) }
+	hH = math.min(#hF, hH)
+	local hd = PickList(hF, hH)
+	local hN = {}
+	local hO = {}
+	if #hM > 0 then
+		local hP = { unpack(hM) }
 		do
-			local aa = #hp - 1
-			while aa > 0 do
-				local cf = RandomInt(0, aa)
-				local hq = { hp[cf + 1], hp[aa + 1] }
-				hp[aa + 1] = hq[1]
-				hp[cf + 1] = hq[2]
-				aa = aa - 1
+			local ah = #hP - 1
+			while ah > 0 do
+				local cz = RandomInt(0, ah)
+				local hQ = { hP[cz + 1], hP[ah + 1] }
+				hP[ah + 1] = hQ[1]
+				hP[cz + 1] = hQ[2]
+				ah = ah - 1
 			end
 		end
 		do
-			local aa = 0
-			while aa < hh do
-				hn[#hn + 1] = hk
-				ho[#ho + 1] = hp[aa + 1] or hp[1] or ""
-				aa = aa + 1
+			local ah = 0
+			while ah < hH do
+				hN[#hN + 1] = hK
+				hO[#hO + 1] = hP[ah + 1] or hP[1] or ""
+				ah = ah + 1
 			end
 		end
-	elseif #hl > 0 then
-		if hh <= 1 then
-			hn = { hk }
+	elseif #hL > 0 then
+		if hH <= 1 then
+			hN = { hK }
 		else
 			do
-				local aa = 0
-				while aa < hh do
-					hn[#hn + 1] = hl[aa + 1] or hk
-					aa = aa + 1
+				local ah = 0
+				while ah < hH do
+					hN[#hN + 1] = hL[ah + 1] or hK
+					ah = ah + 1
 				end
 			end
 		end
 	else
-		hn = { hk }
+		hN = { hK }
 	end
 	self.exitInfos = {}
-	local bw = self.position
+	local bD = self.position
 	do
-		local aa = 0
-		while aa < #gP do
+		local ah = 0
+		while ah < #hd do
 			do
-				local bd = gP[aa + 1]
-				if bd == nil then
-					goto hr
+				local bk = hd[ah + 1]
+				if bk == nil then
+					goto hR
 				end
-				local gU = r(gQ, function(a0, gV)
-					return q(gV:GetName(), bd .. "_")
+				local hi = s(he, function(a6, hj)
+					return r(hj:GetName(), bk .. "_")
 				end)
-				local gW = IsValid(gU) and gU:GetAbsOrigin() or (GetRandomElement(self.validGridPositions) or vec3_zero)
-				local bP = gW.x - bw.x
-				local bQ = gW.y - bw.y
-				local fp
-				if math.abs(bQ) > math.abs(bP) then
-					fp = vec3_top
+				local hk = IsValid(hi) and hi:GetAbsOrigin() or (GetRandomElement(self.validGridPositions) or vec3_zero)
+				local bW = hk.x - bD.x
+				local bX = hk.y - bD.y
+				local fO
+				if math.abs(bX) > math.abs(bW) then
+					fO = vec3_top
 				else
-					fp = bP > 0 and vec3_right or vec3_left
+					fO = bW > 0 and vec3_right or vec3_left
 				end
-				local hs = self.exitInfos
-				hs[#hs + 1] = {
-					prefix = bd,
-					position = gW,
-					direction = fp,
-					roomType = hj,
-					rewardType = hn[aa + 1] or hk,
-					specialKind = ho[aa + 1],
+				local hS = self.exitInfos
+				hS[#hS + 1] = {
+					prefix = bk,
+					position = hk,
+					direction = fO,
+					roomType = hJ,
+					rewardType = hN[ah + 1] or hK,
+					specialKind = hO[ah + 1],
 				}
 				print(
 					(
@@ -3900,22 +4144,22 @@ function K.prototype.CreateExit(self)
 											(
 												(
 													(("[DungeonRoom " .. tostring(self.roomID)) .. "] Exit ")
-													.. tostring(aa)
+													.. tostring(ah)
 												) .. ": prefix="
-											) .. bd
+											) .. bk
 										) .. " nextType="
-									) .. RoomType[hj]
+									) .. RoomType[hJ]
 								) .. " reward="
-							) .. RoomRewardType[hn[aa + 1] or hk]
+							) .. RoomRewardType[hN[ah + 1] or hK]
 						) .. " special="
-					) .. (ho[aa + 1] or "-")
+					) .. (hO[ah + 1] or "-")
 				)
 			end
-			::hr::
-			aa = aa + 1
+			::hR::
+			ah = ah + 1
 		end
 	end
-	self:TryCreateSecretGate(hf, gP, gQ)
+	self:TryCreateSecretGate(hF, hd, he)
 	self:UpdateGateVisibility()
 	print(
 		(
@@ -3937,325 +4181,499 @@ function K.prototype.CreateExit(self)
 															) .. "-"
 														) .. RoomRewardType[self.rewardType]
 													) .. "] 出口数量："
-												) .. tostring(hh)
+												) .. tostring(hH)
 											) .. "，next:"
-										) .. RoomType[hj]
+										) .. RoomType[hJ]
 									) .. "-"
-								) .. RoomRewardType[hk]
+								) .. RoomRewardType[hK]
 							) .. " 前缀: "
-						) .. table.concat(gP, ", ")
+						) .. table.concat(hd, ", ")
 					) .. "，奖励："
-				) .. table.concat(hn, ", ")
+				) .. table.concat(hN, ", ")
 			) .. " special="
-		) .. table.concat(ho, ", ")
+		) .. table.concat(hO, ", ")
 	)
 end
-function K.prototype.GetExitTooltip(self, a9)
-	if a9.roomType == RoomType.SPECIAL then
-		if a9.specialKind == "WishingPool" then
+function P.prototype.GetExitTooltip(self, ag)
+	if ag.roomType == RoomType.SPECIAL then
+		if ag.specialKind == "WishingPool" then
 			return "WishingPool"
 		end
-		if a9.specialKind == "RegenWell" then
+		if ag.specialKind == "RegenWell" then
 			return "RegenWell"
 		end
-		if a9.specialKind == "Book" then
+		if ag.specialKind == "Book" then
 			return "Book"
 		end
-		if a9.specialKind == "Smithy" then
+		if ag.specialKind == "Smithy" then
 			return "Smithy"
 		end
 	end
 	if
-		a9.roomType == RoomType.SHOP
-		or a9.roomType == RoomType.BOSS
-		or a9.roomType == RoomType.STARTING
-		or a9.roomType == RoomType.TAVERN
+		ag.roomType == RoomType.SHOP
+		or ag.roomType == RoomType.BOSS
+		or ag.roomType == RoomType.STARTING
+		or ag.roomType == RoomType.TAVERN
 	then
-		return RoomType[a9.roomType]
+		return RoomType[ag.roomType]
 	end
-	if a9.rewardType ~= RoomRewardType.NONE then
-		return RoomRewardType[a9.rewardType]
+	if ag.rewardType ~= RoomRewardType.NONE then
+		return RoomRewardType[ag.rewardType]
 	end
-	return RoomType[a9.roomType]
+	return RoomType[ag.roomType]
 end
-function K.prototype.UpdateGateVisibility(self)
-	local hb = self:FindEntities("prop_dynamic", "prop_wall")
-	local ba = self:FindEntities("prop_dynamic", "prop_gate")
-	local hc = self:FindEntities("prop_dynamic", "prop_gate_decorate")
-	local ht = d(p)
-	ht:add(self.entrancePrefix)
+function P.prototype.UpdateGateVisibility(self)
+	local hB = self:FindEntities("prop_dynamic", "prop_wall")
+	local bh = self:FindEntities("prop_dynamic", "prop_gate")
+	local hC = self:FindEntities("prop_dynamic", "prop_gate_decorate")
+	local hT = d(q)
+	hT:add(self.entrancePrefix)
 	do
-		local aa = 0
-		while aa < #self.exitInfos do
-			local a9 = self.exitInfos[aa + 1]
-			if a9 ~= nil then
-				ht:add(a9.prefix)
+		local ah = 0
+		while ah < #self.exitInfos do
+			local ag = self.exitInfos[ah + 1]
+			if ag ~= nil then
+				hT:add(ag.prefix)
 			end
-			aa = aa + 1
+			ah = ah + 1
 		end
 	end
-	for a0, hd in ipairs(hb) do
-		local bc = hd:GetName()
-		local bd = g(bc, "_")[1]
-		if ht:has(bd) then
-			hd:AddEffects(EF_NODRAW)
+	for a6, hD in ipairs(hB) do
+		local bj = hD:GetName()
+		local bk = g(bj, "_")[1]
+		if hT:has(bk) then
+			hD:AddEffects(EF_NODRAW)
 		else
-			hd:RemoveEffects(EF_NODRAW)
+			hD:RemoveEffects(EF_NODRAW)
 		end
 	end
-	for a0, bb in ipairs(ba) do
-		local bc = bb:GetName()
-		local bd = g(bc, "_")[1]
-		if ht:has(bd) then
-			bb:RemoveEffects(EF_NODRAW)
+	for a6, bi in ipairs(bh) do
+		local bj = bi:GetName()
+		local bk = g(bj, "_")[1]
+		if hT:has(bk) then
+			bi:RemoveEffects(EF_NODRAW)
 		else
-			UTIL_Remove(bb)
+			UTIL_Remove(bi)
 		end
 	end
-	for a0, bb in ipairs(hc) do
-		local bc = bb:GetName()
-		local bd = g(bc, "_")[1]
-		if ht:has(bd) then
-			bb:RemoveEffects(EF_NODRAW)
+	for a6, bi in ipairs(hC) do
+		local bj = bi:GetName()
+		local bk = g(bj, "_")[1]
+		if hT:has(bk) then
+			bi:RemoveEffects(EF_NODRAW)
 		else
-			UTIL_Remove(bb)
+			UTIL_Remove(bi)
 		end
 	end
 end
-function K.prototype.GetAvailablePositionIndices(self, hu, g7)
-	local b6 = {}
+function P.prototype.DebugCheckEnemySpawnPositions(self, hU)
+	if hU == nil then
+		hU = 20
+	end
+	if not IsInToolsMode() or self.isDispose then
+		return nil
+	end
+	hU = math.max(1, math.min(60, toFiniteNumber(hU, 20)))
+	local c3 = self:GetEnemySpawnReference()
+	local hV = {
+		mapName = self.mapName,
+		gridCount = #self.validGridPositions,
+		invalidGridCount = 0,
+		enemyCount = 0,
+		invalidEnemyCount = 0,
+		duration = hU,
+	}
+	local function hW(a6, V, hX, hY)
+		local c2, ch = B:GetCode(self.mapName, V, self.position)
+		local hZ = self:IsInsideEnemySpawnGates(V)
+		local h_ = GridNav:IsTraversable(V)
+		local i0 = GridNav:IsBlocked(V)
+		local i1 = c3 ~= nil and GridNav:CanFindPath(c3, V)
+		local cd = c2 == 1 and hZ and h_ and not i0 and i1
+		local i2 = cd and (hY and Vector(0, 255, 255) or Vector(0, 255, 0)) or Vector(255, 0, 0)
+		local i3 = GetGroundPosition(V, nil)
+		local g2 = hY and 64 or 32
+		local i4 = {
+			Vector(i3.x - g2, i3.y - g2, i3.z + 64),
+			Vector(i3.x + g2, i3.y - g2, i3.z + 64),
+			Vector(i3.x + g2, i3.y + g2, i3.z + 64),
+			Vector(i3.x - g2, i3.y + g2, i3.z + 64),
+		}
+		do
+			local ah = 0
+			while ah < #i4 do
+				DebugDrawLineColor(i4[ah + 1], i4[(ah + 1) % #i4 + 1], i2, false, hU)
+				ah = ah + 1
+			end
+		end
+		if hY or not cd then
+			print(
+				(
+					(
+						(
+							(
+								(
+									(
+										(
+											(
+												(
+													(
+														(
+															(
+																(
+																	(
+																		(
+																			(
+																				(
+																					(
+																						(
+																							(
+																								(
+																									(
+																										"[SpawnCheck] map="
+																										.. self.mapName
+																									)
+																									.. " source="
+																								)
+																								.. hX
+																							)
+																							.. " world="
+																						)
+																						.. VectorToString(V)
+																					) .. " local="
+																				)
+																				.. tostring(V.x - self.position.x)
+																			) .. ","
+																		)
+																		.. tostring(V.y - self.position.y)
+																	) .. " code="
+																) .. tostring(c2 or "unknown")
+															) .. " insideGates="
+														) .. tostring(hZ)
+													) .. " traversable="
+												) .. tostring(h_)
+											) .. " blocked="
+										) .. tostring(i0)
+									) .. " reachable="
+								) .. tostring(i1)
+							) .. " valid="
+						) .. tostring(cd)
+					) .. " reason="
+				) .. (ch or "-")
+			)
+		end
+		return cd
+	end
 	do
-		local aa = 0
-		while aa < #self.validGridPositions do
-			if self.occupiedPositions[aa] ~= true then
-				local hv = self.validGridPositions[aa + 1]
-				if (hu == nil or hv.y >= hu) and (g7 == nil or hv.y <= g7) then
-					b6[#b6 + 1] = aa
+		local ah = 0
+		while ah < #self.validGridPositions do
+			if not hW(nil, self.validGridPositions[ah + 1], "grid:" .. tostring(ah), false) then
+				hV.invalidGridCount = hV.invalidGridCount + 1
+			end
+			ah = ah + 1
+		end
+	end
+	for a6, aD in ipairs(self.enemies) do
+		do
+			if not IsValid(aD) or not aD:IsAlive() or aD == self.secretRoomGate then
+				goto i5
+			end
+			hV.enemyCount = hV.enemyCount + 1
+			if not hW(nil, aD:GetAbsOrigin(), aD:GetUnitName(), true) then
+				hV.invalidEnemyCount = hV.invalidEnemyCount + 1
+			end
+		end
+		::i5::
+	end
+	do
+		local ah = 0
+		while ah < #self.simulateEnemies do
+			do
+				local aD = self.simulateEnemies[ah + 1]
+				if aD.isDispose or not IsValid(aD.entity) then
+					goto i6
+				end
+				hV.enemyCount = hV.enemyCount + 1
+				if not hW(nil, aD:GetAbsOrigin(), "simulate:" .. tostring(ah), true) then
+					hV.invalidEnemyCount = hV.invalidEnemyCount + 1
 				end
 			end
-			aa = aa + 1
+			::i6::
+			ah = ah + 1
 		end
 	end
-	return b6
+	print(
+		(
+			(
+				(
+					(
+						(
+							(
+								(
+									(
+										(
+											(
+												(("[SpawnCheck] room=" .. tostring(self.roomID)) .. " map=")
+												.. self.mapName
+											) .. " reference="
+										) .. (c3 == nil and "none" or VectorToString(c3))
+									) .. " grids="
+								) .. tostring(hV.gridCount)
+							) .. " invalidGrids="
+						) .. tostring(hV.invalidGridCount)
+					) .. " enemies="
+				) .. tostring(hV.enemyCount)
+			) .. " invalidEnemies="
+		) .. tostring(hV.invalidEnemyCount)
+	)
+	return hV
 end
-function K.prototype.GetGridsAroundPosition(self, bw, fE, hw)
-	if hw == nil then
-		hw = 0
-	end
-	local dq = {}
-	for a0, hx in ipairs(self:GetAvailablePositionIndices()) do
-		do
-			local Q = self.validGridPositions[hx + 1]
-			if Q == nil then
-				goto hy
+function P.prototype.GetAvailablePositionIndices(self, i7, gw)
+	local bd = {}
+	local c3 = self:GetEnemySpawnReference()
+	do
+		local ah = 0
+		while ah < #self.validGridPositions do
+			do
+				if self.occupiedPositions[ah] ~= true then
+					local i8 = self.validGridPositions[ah + 1]
+					if not self:IsEnemySpawnPositionValid(i8, c3) then
+						goto i9
+					end
+					if (i7 == nil or i8.y >= i7) and (gw == nil or i8.y <= gw) then
+						bd[#bd + 1] = ah
+					end
+				end
 			end
-			local aQ = CalcDistance(Q, bw)
-			if hw > 0 then
-				if aQ < fE + hw and aQ > fE - hw then
-					dq[#dq + 1] = Q
+			::i9::
+			ah = ah + 1
+		end
+	end
+	return bd
+end
+function P.prototype.GetGridsAroundPosition(self, bD, g2, ia)
+	if ia == nil then
+		ia = 0
+	end
+	local dP = {}
+	for a6, ib in ipairs(self:GetAvailablePositionIndices()) do
+		do
+			local V = self.validGridPositions[ib + 1]
+			if V == nil then
+				goto ic
+			end
+			local aX = CalcDistance(V, bD)
+			if ia > 0 then
+				if aX < g2 + ia and aX > g2 - ia then
+					dP[#dP + 1] = V
 				end
 			else
-				if aQ < fE then
-					dq[#dq + 1] = Q
+				if aX < g2 then
+					dP[#dP + 1] = V
 				end
 			end
 		end
-		::hy::
+		::ic::
 	end
-	return dq
+	return dP
 end
-function K.prototype.GetNearestValidGridPosition(self, hz)
+function P.prototype.GetNearestValidGridPosition(self, id)
 	if #self.validGridPositions == 0 then
 		self:AnalyzeGrid()
 	end
-	local hA = nil
-	local aN = math.huge
+	local ie = nil
+	local aU = math.huge
+	local c3 = self:GetEnemySpawnReference()
 	do
-		local aa = 0
-		while aa < #self.validGridPositions do
+		local ah = 0
+		while ah < #self.validGridPositions do
 			do
-				local Q = self.validGridPositions[aa + 1]
-				if Q == nil then
-					goto hB
+				local V = self.validGridPositions[ah + 1]
+				if V == nil or not self:IsEnemySpawnPositionValid(V, c3) then
+					goto ig
 				end
-				local aQ = CalcDistance(Q, hz)
-				if aQ < aN then
-					aN = aQ
-					hA = Q
+				local aX = CalcDistance(V, id)
+				if aX < aU then
+					aU = aX
+					ie = V
 				end
 			end
-			::hB::
-			aa = aa + 1
+			::ig::
+			ah = ah + 1
 		end
 	end
-	return hA
+	return ie
 end
-function K.prototype.IsPositionInside(self, Q)
+function P.prototype.IsPositionInside(self, V)
 	if #self.validGridPositions == 0 then
 		self:AnalyzeGrid()
 	end
-	local g5 = math.huge
-	local g6 = -math.huge
-	local hu = math.huge
-	local g7 = -math.huge
-	for a0, c1 in ipairs(self.validGridPositions) do
-		if c1 ~= nil then
-			g5 = math.min(g5, c1.x)
-			g6 = math.max(g6, c1.x)
-			hu = math.min(hu, c1.y)
-			g7 = math.max(g7, c1.y)
+	local gu = math.huge
+	local gv = -math.huge
+	local i7 = math.huge
+	local gw = -math.huge
+	for a6, cn in ipairs(self.validGridPositions) do
+		if cn ~= nil then
+			gu = math.min(gu, cn.x)
+			gv = math.max(gv, cn.x)
+			i7 = math.min(i7, cn.y)
+			gw = math.max(gw, cn.y)
 		end
 	end
-	if g5 == math.huge then
+	if gu == math.huge then
 		return false
 	end
-	local hC = GRID_SIZE * 0.5
-	return Q.x >= g5 - hC and Q.x <= g6 + hC and Q.y >= hu - hC and Q.y <= g7 + hC
+	local ih = GRID_SIZE * 0.5
+	return V.x >= gu - ih and V.x <= gv + ih and V.y >= i7 - ih and V.y <= gw + ih
 end
-function K.prototype.GetRandomValidGridPosition(self)
+function P.prototype.GetRandomValidGridPosition(self)
 	if #self.validGridPositions == 0 then
 		self:AnalyzeGrid()
 	end
 	if #self.validGridPositions == 0 then
 		return nil
 	end
-	return self.validGridPositions[RandomInt(0, #self.validGridPositions - 1) + 1]
+	local c3 = self:GetEnemySpawnReference()
+	local dP = k(self.validGridPositions, function(a6, V)
+		return self:IsEnemySpawnPositionValid(V, c3)
+	end)
+	return #dP > 0 and dP[RandomInt(0, #dP - 1) + 1] or nil
 end
-function K.prototype.FindEntities(self, hD, hE)
-	local hF = Entities:FindAllByClassname(hD)
-	local b6 = {}
-	for a0, h4 in ipairs(hF) do
-		if h4:GetSpawnGroupHandle() == self.spawnGroup and o(h4:GetName(), hE) then
-			b6[#b6 + 1] = h4
+function P.prototype.FindEntities(self, ii, ij)
+	local ik = Entities:FindAllByClassname(ii)
+	local bd = {}
+	for a6, hu in ipairs(ik) do
+		if hu:GetSpawnGroupHandle() == self.spawnGroup and p(hu:GetName(), ij) then
+			bd[#bd + 1] = hu
 		end
 	end
-	return b6
+	return bd
 end
-function K.prototype.FindInfoTargets(self, hE)
-	local hF = Entities:FindAllByClassname("info_target")
-	local b6 = {}
-	for a0, h4 in ipairs(hF) do
-		if h4:GetSpawnGroupHandle() == self.spawnGroup and o(h4:GetName(), hE) then
-			b6[#b6 + 1] = h4
+function P.prototype.FindInfoTargets(self, ij)
+	local ik = Entities:FindAllByClassname("info_target")
+	local bd = {}
+	for a6, hu in ipairs(ik) do
+		if hu:GetSpawnGroupHandle() == self.spawnGroup and p(hu:GetName(), ij) then
+			bd[#bd + 1] = hu
 		end
 	end
-	return b6
+	return bd
 end
-function K.prototype.FindInfoTarget(self, hE)
-	local hF = Entities:FindAllByClassname("info_target")
-	for a0, h4 in ipairs(hF) do
-		if h4:GetSpawnGroupHandle() == self.spawnGroup and o(h4:GetName(), hE) then
-			return h4
+function P.prototype.FindInfoTarget(self, ij)
+	local ik = Entities:FindAllByClassname("info_target")
+	for a6, hu in ipairs(ik) do
+		if hu:GetSpawnGroupHandle() == self.spawnGroup and p(hu:GetName(), ij) then
+			return hu
 		end
 	end
 end
-function K.prototype.RemoveUnit(self, a1)
-	if IsValid(a1) then
+function P.prototype.RemoveUnit(self, a7)
+	if IsValid(a7) then
 		if BehaviorTree ~= nil then
-			BehaviorTree:UnregisterUnit(a1)
+			BehaviorTree:UnregisterUnit(a7)
 		end
 		if PropertySystem ~= nil then
-			PropertySystem:CleanupUnitProperties(a1)
+			PropertySystem:CleanupUnitProperties(a7)
 		end
 		if StateSystem ~= nil then
-			StateSystem:CleanupUnitStates(a1)
+			StateSystem:CleanupUnitStates(a7)
 		end
-		a1:RemoveAllModifiers(0, false, true, false)
-		a1:ForceKill(false)
-		a1:MakeIllusion()
-		a1:AddNoDraw()
-		a1:CallAbilityDestroy()
-		UTIL_Remove(a1)
+		a7:RemoveAllModifiers(0, false, true, false)
+		a7:ForceKill(false)
+		a7:MakeIllusion()
+		a7:AddNoDraw()
+		a7:CallAbilityDestroy()
+		UTIL_Remove(a7)
 	end
 end
-function K.prototype.CreateClientItemPickupParticle(self, aK, aH)
-	local hG =
+function P.prototype.CreateClientItemPickupParticle(self, aR, aO)
+	local il =
 		ParticleManager:CreateParticleForce("particles/generic_gameplay/drop_item_pick.vpcf", PATTACH_CUSTOMORIGIN, nil)
-	ParticleManager:SetParticleControl(hG, 0, aK)
-	ParticleManager:SetParticleControlEnt(hG, 1, aH, PATTACH_POINT_FOLLOW, "attach_hitloc", aH:GetAbsOrigin(), true)
-	ParticleManager:ReleaseParticleIndex(hG)
+	ParticleManager:SetParticleControl(il, 0, aR)
+	ParticleManager:SetParticleControlEnt(il, 1, aO, PATTACH_POINT_FOLLOW, "attach_hitloc", aO:GetAbsOrigin(), true)
+	ParticleManager:ReleaseParticleIndex(il)
 end
-function K.prototype.DropItemFromEnemy(self, a1, hH)
-	local Y
+function P.prototype.DropItemFromEnemy(self, a7, im)
+	local a2
 	if self.guaranteedDrops ~= nil then
-		for hI, hJ in pairs(self.guaranteedDrops) do
-			if hJ > 0 then
-				Y = hI
-				self.guaranteedDrops[hI] = hJ - 1
-				if self.guaranteedDrops[hI] <= 0 then
-					f(self.guaranteedDrops, hI)
+		for io, ip in pairs(self.guaranteedDrops) do
+			if ip > 0 then
+				a2 = io
+				self.guaranteedDrops[io] = ip - 1
+				if self.guaranteedDrops[io] <= 0 then
+					f(self.guaranteedDrops, io)
 				end
 				break
 			end
 		end
 	end
-	local ae = hH:GetPlayerOwnerID()
-	if Y == nil then
+	local al = im:GetPlayerOwnerID()
+	if a2 == nil then
 		if self.dropPool == nil then
 			return
 		end
-		local hK = Privilege:GetPlayerDynamicValue("privilege_bless_009", ae, "FirstDropCount") or 0
-		if hK < 1 and not RollPercentage(self.dropPool.dropChance + GetBreakDropChance(hH)) then
+		local iq = Privilege:GetPlayerDynamicValue("privilege_bless_009", al, "FirstDropCount") or 0
+		if iq < 1 and not RollPercentage(self.dropPool.dropChance + GetBreakDropChance(im)) then
 			return
 		end
-		Privilege:SetPlayerDynamicValue("privilege_bless_009", ae, "FirstDropCount", hK - 1)
-		Y = self.dropPool.itemPool:Random(nil)
+		Privilege:SetPlayerDynamicValue("privilege_bless_009", al, "FirstDropCount", iq - 1)
+		a2 = self.dropPool.itemPool:Random(nil)
 	end
-	if Y == nil then
+	if a2 == nil then
 		return
 	end
-	local aA = a1:GetAbsOrigin()
-	local aR = d(A, Y, aA)
-	local hL = self.dropItems
-	hL[#hL + 1] = aR
-	local aG = Interaction:RegisterInteract(aR.entity, InteractType.Chest, 200, function(a0, aH)
-		aH:AddItemByName(Y)
-		aR:dispose()
-	end, nil, nil, Y)
-	if aG ~= -1 then
-		local hM = self.registeredInteracts
-		hM[#hM + 1] = aG
+	local aH = a7:GetAbsOrigin()
+	local aY = d(F, a2, aH)
+	local ir = self.dropItems
+	ir[#ir + 1] = aY
+	local aN = Interaction:RegisterInteract(aY.entity, InteractType.Chest, 200, function(a6, aO)
+		aO:AddItemByName(a2)
+		aY:dispose()
+	end, nil, nil, a2)
+	if aN ~= -1 then
+		local is = self.registeredInteracts
+		is[#is + 1] = aN
 	end
-	Event:Fire("break_drop", { itemName = Y, drop_item = aR })
+	Event:Fire("break_drop", { itemName = a2, drop_item = aY })
 end
-function K.prototype.CalculateDifficultyModifiers(self)
-	local hN = GameRules:GetCustomGameDifficulty()
-	local hO = KeyValues.difficulty[tostring(hN)]
-	if hO == nil then
-		print(("[DungeonRoom] 警告：难度配置 " .. tostring(hN)) .. " 未找到")
+function P.prototype.CalculateDifficultyModifiers(self)
+	local it = GameRules:GetCustomGameDifficulty()
+	local iu = KeyValues.difficulty[tostring(it)]
+	if iu == nil then
+		print(("[DungeonRoom] 警告：难度配置 " .. tostring(it)) .. " 未找到")
 		self.difficultyHealthAmplify = 0
 		self.difficultyDamageAmplify = 0
 		return
 	end
-	local hP = toFiniteNumber(hO.HealthFactor, 1)
-	local hQ = toFiniteNumber(hO.DamageFactor, 1)
-	local hR = DungeonManager:GetZoneIndex()
-	if hR == 1 then
-		hP = hP * toFiniteNumber(hO.Chapter1HealthFactor, 1)
-		hQ = hQ * toFiniteNumber(hO.Chapter1DamageFactor, 1)
-	elseif hR == 2 then
-		hP = hP * toFiniteNumber(hO.Chapter2HealthFactor, 1)
-		hQ = hQ * toFiniteNumber(hO.Chapter2DamageFactor, 1)
-	elseif hR == 3 then
-		hP = hP * toFiniteNumber(hO.Chapter3HealthFactor, 1)
-		hQ = hQ * toFiniteNumber(hO.Chapter3DamageFactor, 1)
+	local iv = toFiniteNumber(iu.HealthFactor, 1)
+	local iw = toFiniteNumber(iu.DamageFactor, 1)
+	local ix = DungeonManager:GetZoneIndex()
+	if ix == 1 then
+		iv = iv * toFiniteNumber(iu.Chapter1HealthFactor, 1)
+		iw = iw * toFiniteNumber(iu.Chapter1DamageFactor, 1)
+	elseif ix == 2 then
+		iv = iv * toFiniteNumber(iu.Chapter2HealthFactor, 1)
+		iw = iw * toFiniteNumber(iu.Chapter2DamageFactor, 1)
+	elseif ix == 3 then
+		iv = iv * toFiniteNumber(iu.Chapter3HealthFactor, 1)
+		iw = iw * toFiniteNumber(iu.Chapter3DamageFactor, 1)
 	end
-	local hS = Game:GetPlayerCount()
-	if hS == 2 then
-		hP = hP * toFiniteNumber(hO.Player2HealthFactor, 1)
-		hQ = hQ * toFiniteNumber(hO.Player2DamageFactor, 1)
-	elseif hS == 3 then
-		hP = hP * toFiniteNumber(hO.Player3HealthFactor, 1)
-		hQ = hQ * toFiniteNumber(hO.Player3DamageFactor, 1)
-	elseif hS >= 4 then
-		hP = hP * toFiniteNumber(hO.Player4HealthFactor, 1)
-		hQ = hQ * toFiniteNumber(hO.Player4DamageFactor, 1)
+	local iy = Game:GetPlayerCount()
+	if iy == 2 then
+		iv = iv * toFiniteNumber(iu.Player2HealthFactor, 1)
+		iw = iw * toFiniteNumber(iu.Player2DamageFactor, 1)
+	elseif iy == 3 then
+		iv = iv * toFiniteNumber(iu.Player3HealthFactor, 1)
+		iw = iw * toFiniteNumber(iu.Player3DamageFactor, 1)
+	elseif iy >= 4 then
+		iv = iv * toFiniteNumber(iu.Player4HealthFactor, 1)
+		iw = iw * toFiniteNumber(iu.Player4DamageFactor, 1)
 	end
-	self.difficultyHealthAmplify = (hP - 1) * 100
-	self.difficultyDamageAmplify = (hQ - 1) * 100
-	self.difficultyCooldownReduction = DIFFICULTY_COOLDOWN_REDUCTION[hN] or 0
-	self.difficultyBossGapAmplify = DIFFICULTY_BOSS_GAP_AMPLIFY[hN] or 0
-	self.difficultyBossDamageAmplify = DIFFICULTY_BOSS_DAMAGE_AMPLIFY[hN] or 0
+	self.difficultyHealthAmplify = (iv - 1) * 100
+	self.difficultyDamageAmplify = (iw - 1) * 100
+	self.difficultyCooldownReduction = DIFFICULTY_COOLDOWN_REDUCTION[it] or 0
+	self.difficultyBossGapAmplify = DIFFICULTY_BOSS_GAP_AMPLIFY[it] or 0
+	self.difficultyBossDamageAmplify = DIFFICULTY_BOSS_DAMAGE_AMPLIFY[it] or 0
 	print(
 		(
 			(
@@ -4280,17 +4698,17 @@ function K.prototype.CalculateDifficultyModifiers(self)
 																					.. tostring(self.roomID)
 																				)
 																				.. "] 难度系数已计算 - 难度:"
-																			) .. tostring(hN)
+																			) .. tostring(it)
 																		) .. " 玩家:"
-																	) .. tostring(hS)
+																	) .. tostring(iy)
 																) .. " 血量:"
-															) .. t(hP, 2)
+															) .. u(iv, 2)
 														) .. "x("
-													) .. t(self.difficultyHealthAmplify, 1)
+													) .. u(self.difficultyHealthAmplify, 1)
 												) .. "%) 伤害:"
-											) .. t(hQ, 2)
+											) .. u(iw, 2)
 										) .. "x("
-									) .. t(self.difficultyDamageAmplify, 1)
+									) .. u(self.difficultyDamageAmplify, 1)
 								) .. "%) 冷却缩减:"
 							) .. tostring(self.difficultyCooldownReduction)
 						) .. "% Boss间隔增幅:"
@@ -4300,132 +4718,166 @@ function K.prototype.CalculateDifficultyModifiers(self)
 		) .. "%"
 	)
 end
-function K.prototype.ApplyDifficultyModifiers(self, aw)
-	local hP = self.spawnInfo.healthFactor or 1
-	local hQ = self.spawnInfo.damageFactor or 1
-	local hT = DungeonManager:GetDifficultyKeyHealthFactor()
-	local hU = DungeonManager:GetDifficultyKeyDamageFactor()
-	local hV = (1 + self.difficultyHealthAmplify / 100) * hP * hT
-	local hW = (1 + self.difficultyDamageAmplify / 100) * hQ * hU
-	local hX = (hV - 1) * 100
-	local hY = (hW - 1) * 100
-	print("ApplyDifficultyModifiers", hP, hQ)
-	if hX ~= 0 then
-		aw:AddProperty(PropertyFunction.HEALTH_AMPLIFY, hX)
+function P.prototype.ApplyDifficultyModifiers(self, aD)
+	local iv = self.spawnInfo.healthFactor or 1
+	local iw = self.spawnInfo.damageFactor or 1
+	local iz = DungeonManager:GetDifficultyKeyHealthFactor()
+	local iA = DungeonManager:GetDifficultyKeyDamageFactor()
+	local iB = (1 + self.difficultyHealthAmplify / 100) * iv * iz
+	local iC = (1 + self.difficultyDamageAmplify / 100) * iw * iA
+	local iD = (iB - 1) * 100
+	local iE = (iC - 1) * 100
+	print("ApplyDifficultyModifiers", iv, iw)
+	if iD ~= 0 then
+		aD:AddProperty(PropertyFunction.HEALTH_AMPLIFY, iD)
 	end
-	if hY ~= 0 then
-		aw:AddProperty(PropertyFunction.ATTACK_AMPLIFY, hY)
+	if iE ~= 0 then
+		aD:AddProperty(PropertyFunction.ATTACK_AMPLIFY, iE)
 	end
-	DungeonManager:ApplyDifficultyKeyDebuffs(aw)
+	DungeonManager:ApplyDifficultyKeyDebuffs(aD)
 end
-function K.prototype.DropPomReward(self, Q)
-	local Y = DrawPool:Draw("pom_reward")
-	if Y ~= nil then
-		local aR = d(A, Y, Q)
-		local hZ = self.dropItems
-		hZ[#hZ + 1] = aR
-		local aG = Interaction:RegisterInteract(aR.entity, InteractType.Chest, 200, function(a0, aH)
-			aH:AddItemByName(Y)
-			aR:dispose()
+function P.prototype.DropPomReward(self, V)
+	local a2 = DrawPool:Draw("pom_reward")
+	if a2 ~= nil then
+		local aY = d(F, a2, V)
+		local iF = self.dropItems
+		iF[#iF + 1] = aY
+		local aN = Interaction:RegisterInteract(aY.entity, InteractType.Chest, 200, function(a6, aO)
+			aO:AddItemByName(a2)
+			aY:dispose()
 		end)
-		if aG ~= -1 then
-			local h_ = self.registeredInteracts
-			h_[#h_ + 1] = aG
+		if aN ~= -1 then
+			local iG = self.registeredInteracts
+			iG[#iG + 1] = aN
 		end
 	end
 end
-function K.prototype.GetRoomKey(self)
+function P.prototype.GetRoomKey(self)
 	return (tostring(self.zoneID) .. "-") .. tostring(self.roomID)
 end
-function K.prototype.GetRoomType(self)
+function P.prototype.GetRoomType(self)
 	return self.roomType
 end
-function K.prototype.GetRewardType(self)
+function P.prototype.GetRewardType(self)
 	return self.rewardType
 end
-function K.prototype.GetPosition(self)
+function P.prototype.GetPosition(self)
 	return Vector(self.position.x, self.position.y, self.position.z)
 end
-function K.prototype.GetEntrancePosition(self)
+function P.prototype.GetEntrancePosition(self)
 	return self.entrancePos + CalcDirection2D(self.position, self.entrancePos):__mul(100)
 end
-function K.prototype.IsCombatRoom(self)
+function P.prototype.IsCombatRoom(self)
 	return self.roomType == RoomType.ENEMY
 		or self.roomType == RoomType.ELITE
 		or self.roomType == RoomType.MINI_BOSS
 		or self.roomType == RoomType.BOSS
 end
-function K.prototype.IsBossRoom(self)
+function P.prototype.IsBossRoom(self)
 	return self.roomType == RoomType.BOSS
 end
-function K.prototype.GetBossName(self)
+function P.prototype.GetBossName(self)
 	return self.bossName
 end
-function K.prototype.IsSpawnComplete(self)
+function P.prototype.GetNativeNavigationProtectedAreas(self, a4)
+	local bd = {}
+	local hu = Entities:First()
+	while hu ~= nil do
+		if hu:GetSpawnGroupHandle() == a4 then
+			local bj = hu:GetName()
+			if p(bj, "prop_gate") or p(bj, "prop_wall") or hu:IsNPC() and not hu:HasMovementCapability() then
+				bd[#bd + 1] = hu:GetAbsOrigin()
+			end
+		end
+		hu = Entities:Next(hu)
+	end
+	return bd
+end
+function P.prototype.RemovePrefabNavigationUnits(self)
+	local iH = self.secretRoomSpawnGroup == nil and { self.spawnGroup } or {
+			self.spawnGroup,
+			self.secretRoomSpawnGroup,
+		}
+	local iI = {}
+	local hu = Entities:First()
+	while hu ~= nil do
+		if hu:IsNPC() and o(iH, hu:GetSpawnGroupHandle()) then
+			iI[#iI + 1] = hu
+		end
+		hu = Entities:Next(hu)
+	end
+	for a6, a7 in ipairs(iI) do
+		self:RemoveUnit(a7)
+	end
+end
+function P.prototype.IsSpawnComplete(self)
 	return self.isSpawnComplete
 end
-function K.prototype.AddGuaranteedDropCount(self, Y, i0)
-	local i1 = self.guaranteedDrops[Y] or 0
-	local i2 = i1 + i0
-	if i2 <= 0 then
-		f(self.guaranteedDrops, Y)
-		print((("[DungeonRoom " .. tostring(self.roomID)) .. "] 移除必掉物品: ") .. Y)
+function P.prototype.AddGuaranteedDropCount(self, a2, iJ)
+	local iK = self.guaranteedDrops[a2] or 0
+	local iL = iK + iJ
+	if iL <= 0 then
+		f(self.guaranteedDrops, a2)
+		print((("[DungeonRoom " .. tostring(self.roomID)) .. "] 移除必掉物品: ") .. a2)
 	else
-		self.guaranteedDrops[Y] = i2
+		self.guaranteedDrops[a2] = iL
 		print(
 			(
 				(
-					(((("[DungeonRoom " .. tostring(self.roomID)) .. "] 增加 ") .. Y) .. " 掉落次数: ")
-					.. tostring(i1)
+					(((("[DungeonRoom " .. tostring(self.roomID)) .. "] 增加 ") .. a2) .. " 掉落次数: ")
+					.. tostring(iK)
 				) .. " -> "
-			) .. tostring(i2)
+			) .. tostring(iL)
 		)
 	end
 end
-function K.prototype.IsCompleted(self)
+function P.prototype.IsCompleted(self)
 	return self.isComplete
 end
-function K.prototype.IsCombatEnd(self)
+function P.prototype.IsCombatEnd(self)
 	return self:IsCombatRoom() and self.isCombatEnd
 end
-function K.prototype.ClearGuaranteedDropItems(self)
+function P.prototype.ClearGuaranteedDropItems(self)
 	self.guaranteedDrops = {}
 end
-function K.prototype.GetExitInfo(self)
+function P.prototype.GetExitInfo(self)
 	return self.exitInfos
 end
-function K.prototype.GetTrapList(self)
+function P.prototype.GetTrapList(self)
 	return self.dungeonTrap:GetTrapList()
 end
-function K.prototype.GetNpcs(self)
+function P.prototype.GetNpcs(self)
 	return self.npcs
 end
-function K.prototype.GetShopItems(self)
+function P.prototype.GetShopItems(self)
 	return self.shopItems
 end
-function K.prototype.GetSpawnGroup(self)
+function P.prototype.GetSpawnGroup(self)
 	return self.spawnGroup
 end
-function K.prototype.OnEntityKilled(self, i3)
-	local i4 = EntIndexToHScript(i3.entindex_killed)
-	if not IsValid(i4) then
+function P.prototype.OnEntityKilled(self, iM)
+	if self.isDispose then
 		return
 	end
-	if self.secretRoomGate ~= nil and i4 == self.secretRoomGate then
+	local iN = EntIndexToHScript(iM.entindex_killed)
+	if not IsValid(iN) then
+		return
+	end
+	if self.secretRoomGate ~= nil and iN == self.secretRoomGate then
 		self.secretRoomGate = nil
-		ArrayRemove(self.enemies, i4)
+		ArrayRemove(self.enemies, iN)
 		if self.secretRoomDoorPosition ~= nil and self.secretRoomDoorDirection ~= nil then
 			self:CreateSecretRoom(self.secretRoomDoorPosition, self.secretRoomDoorDirection)
 		end
 		return
 	end
-	if m(self.enemies, i4) then
-		local hH = EntIndexToHScript(i3.entindex_attacker)
-		if IsValid(hH) and hH:IsRealHero() then
+	if o(self.enemies, iN) then
+		local im = EntIndexToHScript(iM.entindex_attacker)
+		if IsValid(im) and im:IsRealHero() then
 			self.playerKilledEnemyCount = self.playerKilledEnemyCount + 1
 		end
-		self:DropPreviewRewardsFromEnemy(i4)
-		ArrayRemove(self.enemies, i4)
+		self:DropPreviewRewardsFromEnemy(iN)
+		ArrayRemove(self.enemies, iN)
 		self.aliveEnemyCount = self.aliveEnemyCount - 1
 		self.aliveEnemyCount = math.max(0, self.aliveEnemyCount)
 		print(
@@ -4452,18 +4904,18 @@ function K.prototype.OnEntityKilled(self, i3)
 				end
 			else
 				print(("[DungeonRoom " .. tostring(self.roomID)) .. "] 所有敌人已清除，生成宝箱")
-				local Q = GetGroundPosition(i4:GetAbsOrigin(), i4)
-				if not GridNav:IsValidPosition(Q) then
-					Q = self:GetNearestValidGridPosition(Q) or Q
+				local V = GetGroundPosition(iN:GetAbsOrigin(), iN)
+				if not GridNav:IsValidPosition(V) then
+					V = self:GetNearestValidGridPosition(V) or V
 				end
-				self:FinishCombat(Q)
+				self:FinishCombat(V)
 			end
 		end
 	end
-	if m(self.breakables, i4) then
-		local hH = EntIndexToHScript(i3.entindex_attacker)
-		self:DropItemFromEnemy(i4, hH)
+	if o(self.breakables, iN) then
+		local im = EntIndexToHScript(iM.entindex_attacker)
+		self:DropItemFromEnemy(iN, im)
 		return
 	end
 end
-return u
+return v

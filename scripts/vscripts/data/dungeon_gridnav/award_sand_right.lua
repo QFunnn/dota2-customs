@@ -1,0 +1,41 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1a5b3bb 
+  ~ auto-generated — do not edit
+]]
+
+
+return {
+	schema_version = 1,
+	prefab = "prefabs/level_sand/award_sand_right",
+	fingerprint = "84744bccced7beceace9356155a49e4134d5d0e07b122bfdb1afe268fc293f4f",
+	grid_size = 64,
+	sample_z = 0,
+	capture_radius = 2048,
+	x_min = -96,
+	y_min = -480,
+	width = 25,
+	height = 16,
+	encoding = "ascii_bitflags",
+	rows = {
+		"0000000011111111111111111",
+		"0000000011111111111111111",
+		"0000000011111111111111111",
+		"0000000011111111111111111",
+		"0000000011111111111111111",
+		"0000000011111111111111111",
+		"1111111111111111111111111",
+		"1111111111111111111111111",
+		"1111111111111111111111111",
+		"1111111111111111111111111",
+		"0000000011111111111111111",
+		"0000000011111111111111111",
+		"0000000011111111111111111",
+		"0000000011111111111111111",
+		"0000000011111111111111111",
+		"0000000011111111111111111",
+	},
+}

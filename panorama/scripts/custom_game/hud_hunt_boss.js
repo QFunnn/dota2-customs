@@ -479,11 +479,11 @@ const HuntBossHud = () => {
           return libs.classNames("CustomHudRoot", {
             Show: isVisible()
           });
-        }
+        },
+        hittest: false
       }, null),
       _el$2 = libs.createElement("Panel", {
-        id: "HuntBossTopCenter",
-        hittest: false
+        id: "HuntBossTopCenter"
       }, _el$),
       _el$3 = libs.createElement("Label", {
         id: "HuntBossTitle",
@@ -526,4 +526,4 @@ const HuntBossHud = () => {
     return _el$;
   })();
 };
-libs.render(() => libs.createComponent(HuntBossHud, {}), $.GetContextPanel());
+libs.render(() => libs.createComponent(HuntBossHud, {}), $.GetContextPanel());

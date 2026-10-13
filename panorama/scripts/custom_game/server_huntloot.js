@@ -15,8 +15,8 @@ var EOM_Loading = require('./EOM_Loading.js');
 var solid_utils = require('./solid_utils.js');
 var huntloot_utils = require('./huntloot_utils.js');
 var server_huntloot = require('./server_huntloot2.js');
+var equipment_utils = require('./equipment_utils.js');
 require('./attribute_formatter.js');
-require('./equipment_utils.js');
 
 function ServerHuntlootDetail(props) {
   const [local, others] = libs.splitProps(props, ["data", "class"]);
@@ -43,8 +43,10 @@ function ServerHuntlootDetail(props) {
 }
 function ServerHuntlootDetailLoaded(props) {
   const partDatas = solid_utils.createServiceNetData("player_huntloot_part_datas", {});
+  const equipSuits = solid_utils.createServiceNetData("player_hero_huntloot_equip_suits", {});
   const huntlootData = () => props.data;
-  const equipped = () => huntlootData().in_equip_suit && huntlootData().in_equip_suit != "";
+  const equippedData = libs.createMemo(() => huntloot_utils.GetHuntlootEquippedSuits(huntlootData(), equipSuits()));
+  const equipped = () => equippedData().length > 0;
   const displayedAdverbEntries = libs.createMemo(() => {
     const entries = huntlootData().adverb_entry_data;
     if (!equipped()) return entries;
@@ -106,12 +108,11 @@ function ServerHuntlootDetailLoaded(props) {
       _el$8 = libs.createElement("Label", {
         id: "EquipNeedLevel",
         "class": "TopLabel",
-        get vars() {
-          return {
-            value: canWear() ? huntlootData().need_level.toString() : ToColor(huntlootData().need_level.toString(), "#E55043")
-          };
+        get text() {
+          return LocalizeWithVars("#Equip_NeedLevel", {
+            "s:value": canWear() ? huntlootData().need_level.toString() : ToColor(huntlootData().need_level.toString(), "#E55043")
+          });
         },
-        text: "#Equip_NeedLevel",
         html: true
       }, _el$7),
       _el$9 = libs.createElement("Panel", {
@@ -162,17 +163,81 @@ function ServerHuntlootDetailLoaded(props) {
         })];
       }
     }), null);
+    libs.insert(_el$2, libs.createComponent(libs.Show, {
+      get when() {
+        return equipped();
+      },
+      get children() {
+        const _el$10 = libs.createElement("Panel", {
+            id: "Bottom"
+          }, null),
+          _el$11 = libs.createElement("Panel", {
+            id: "EquipedInfoContainer"
+          }, _el$10);
+          libs.createElement("Panel", {
+            "class": "Separator"
+          }, _el$11);
+          const _el$13 = libs.createElement("Label", {
+            id: "EquipedTips",
+            get text() {
+              return GetLocalization("#EquipedTips");
+            }
+          }, _el$11),
+          _el$14 = libs.createElement("Panel", {
+            id: "EquipedInfo"
+          }, _el$11);
+        libs.insert(_el$14, libs.createComponent(libs.For, {
+          get each() {
+            return equippedData();
+          },
+          children: ([heroID, suitID]) => (() => {
+            const _el$15 = libs.createElement("Panel", {
+                "class": "EquipState"
+              }, null),
+              _el$16 = libs.createElement("Image", {
+                "class": "HeroSmallAvatar",
+                get src() {
+                  return `s2r://panorama/images/heroes/icons/${equipment_utils.HeroID2Name[heroID]}_png.vtex`;
+                }
+              }, _el$15),
+              _el$17 = libs.createElement("Label", {
+                id: "EquipSuit",
+                get text() {
+                  return LocalizeWithVars("#EquipmentSuitType", {
+                    "d:value": suitID
+                  });
+                }
+              }, _el$15);
+            libs.effect(_p$ => {
+              const _v$4 = `s2r://panorama/images/heroes/icons/${equipment_utils.HeroID2Name[heroID]}_png.vtex`,
+                _v$5 = LocalizeWithVars("#EquipmentSuitType", {
+                  "d:value": suitID
+                });
+              _v$4 !== _p$._v$4 && (_p$._v$4 = libs.setProp(_el$16, "src", _v$4, _p$._v$4));
+              _v$5 !== _p$._v$5 && (_p$._v$5 = libs.setProp(_el$17, "text", _v$5, _p$._v$5));
+              return _p$;
+            }, {
+              _v$4: undefined,
+              _v$5: undefined
+            });
+            return _el$15;
+          })()
+        }));
+        libs.effect(_$p => libs.setProp(_el$13, "text", GetLocalization("#EquipedTips"), _$p));
+        return _el$10;
+      }
+    }), null);
     libs.effect(_p$ => {
       const _v$ = libs.classNames("TipsRarity" + huntlootData().rarity, {
           UnableWear: !canWear()
         }),
         _v$2 = displayName(),
-        _v$3 = {
-          value: canWear() ? huntlootData().need_level.toString() : ToColor(huntlootData().need_level.toString(), "#E55043")
-        };
+        _v$3 = LocalizeWithVars("#Equip_NeedLevel", {
+          "s:value": canWear() ? huntlootData().need_level.toString() : ToColor(huntlootData().need_level.toString(), "#E55043")
+        });
       _v$ !== _p$._v$ && (_p$._v$ = libs.setProp(_el$2, "class", _v$, _p$._v$));
       _v$2 !== _p$._v$2 && (_p$._v$2 = libs.setProp(_el$6, "text", _v$2, _p$._v$2));
-      _v$3 !== _p$._v$3 && (_p$._v$3 = libs.setProp(_el$8, "vars", _v$3, _p$._v$3));
+      _v$3 !== _p$._v$3 && (_p$._v$3 = libs.setProp(_el$8, "text", _v$3, _p$._v$3));
       return _p$;
     }, {
       _v$: undefined,
@@ -196,34 +261,36 @@ function HuntlootAttrRow(props) {
     return baseValue > compareValue;
   };
   return (() => {
-    const _el$10 = libs.createElement("Panel", {
+    const _el$18 = libs.createElement("Panel", {
         get ["class"]() {
-          return `EquipmentAttrRow Adverb ${info()?.colorName ?? ""}`;
+          return libs.classNames("HuntlootTooltipAttrRow EquipmentAttrRow Adverb", info()?.colorName, {
+            WithDifficulty: props.data.class != undefined
+          });
         }
       }, null);
       libs.createElement("Panel", {
         id: "Point"
-      }, _el$10);
-      const _el$12 = libs.createElement("Label", {
+      }, _el$18);
+      const _el$20 = libs.createElement("Label", {
         id: "AttrValue",
         get text() {
           return info()?.valueText ?? "";
         },
         html: true
-      }, _el$10),
-      _el$13 = libs.createElement("Label", {
+      }, _el$18),
+      _el$21 = libs.createElement("Label", {
         id: "AttrName",
         get text() {
           return info()?.nameHtml ?? "";
         },
         html: true
-      }, _el$10);
-    libs.insert(_el$10, libs.createComponent(libs.Show, {
+      }, _el$18);
+    libs.insert(_el$18, libs.createComponent(libs.Show, {
       get when() {
         return isUp() !== undefined;
       },
       get children() {
-        const _el$14 = libs.createElement("Panel", {
+        const _el$22 = libs.createElement("Panel", {
           id: "CompareTag",
           get ["class"]() {
             return libs.classNames({
@@ -231,26 +298,47 @@ function HuntlootAttrRow(props) {
             });
           }
         }, null);
-        libs.effect(_$p => libs.setProp(_el$14, "class", libs.classNames({
+        libs.effect(_$p => libs.setProp(_el$22, "class", libs.classNames({
           Up: isUp()
         }), _$p));
-        return _el$14;
+        return _el$22;
+      }
+    }), null);
+    libs.insert(_el$18, libs.createComponent(libs.Show, {
+      get when() {
+        return props.data.class != undefined;
+      },
+      get children() {
+        const _el$23 = libs.createElement("Label", {
+          "class": "AttrDifficulty",
+          get text() {
+            return LocalizeWithVars("#Huntloot_EntryDifficulty", {
+              difficulty: props.data.class
+            });
+          }
+        }, null);
+        libs.effect(_$p => libs.setProp(_el$23, "text", LocalizeWithVars("#Huntloot_EntryDifficulty", {
+          difficulty: props.data.class
+        }), _$p));
+        return _el$23;
       }
     }), null);
     libs.effect(_p$ => {
-      const _v$4 = `EquipmentAttrRow Adverb ${info()?.colorName ?? ""}`,
-        _v$5 = info()?.valueText ?? "",
-        _v$6 = info()?.nameHtml ?? "";
-      _v$4 !== _p$._v$4 && (_p$._v$4 = libs.setProp(_el$10, "class", _v$4, _p$._v$4));
-      _v$5 !== _p$._v$5 && (_p$._v$5 = libs.setProp(_el$12, "text", _v$5, _p$._v$5));
-      _v$6 !== _p$._v$6 && (_p$._v$6 = libs.setProp(_el$13, "text", _v$6, _p$._v$6));
+      const _v$6 = libs.classNames("HuntlootTooltipAttrRow EquipmentAttrRow Adverb", info()?.colorName, {
+          WithDifficulty: props.data.class != undefined
+        }),
+        _v$7 = info()?.valueText ?? "",
+        _v$8 = info()?.nameHtml ?? "";
+      _v$6 !== _p$._v$6 && (_p$._v$6 = libs.setProp(_el$18, "class", _v$6, _p$._v$6));
+      _v$7 !== _p$._v$7 && (_p$._v$7 = libs.setProp(_el$20, "text", _v$7, _p$._v$7));
+      _v$8 !== _p$._v$8 && (_p$._v$8 = libs.setProp(_el$21, "text", _v$8, _p$._v$8));
       return _p$;
     }, {
-      _v$4: undefined,
-      _v$5: undefined,
-      _v$6: undefined
+      _v$6: undefined,
+      _v$7: undefined,
+      _v$8: undefined
     });
-    return _el$10;
+    return _el$18;
   })();
 }
 function HuntlootSpellRow(props) {
@@ -258,42 +346,65 @@ function HuntlootSpellRow(props) {
     showAttributeRange: props.showAttributeRange
   }));
   return (() => {
-    const _el$15 = libs.createElement("Panel", {
+    const _el$24 = libs.createElement("Panel", {
         get ["class"]() {
-          return `DrawingAttrRow EquipmentAttrRow Adverb ${info()?.colorName ?? ""}`;
+          return libs.classNames("HuntlootTooltipAttrRow DrawingAttrRow EquipmentAttrRow Adverb", info()?.colorName, {
+            WithDifficulty: props.data.class != undefined
+          });
         }
       }, null);
       libs.createElement("Panel", {
         id: "Point"
-      }, _el$15);
-      const _el$17 = libs.createElement("Label", {
+      }, _el$24);
+      const _el$26 = libs.createElement("Label", {
         id: "AttrValue",
         get text() {
           return info()?.valueText ?? "";
         },
         html: true
-      }, _el$15),
-      _el$18 = libs.createElement("Label", {
+      }, _el$24),
+      _el$27 = libs.createElement("Label", {
         id: "AttrName",
         get text() {
           return info()?.nameHtml ?? "";
         },
         html: true
-      }, _el$15);
+      }, _el$24);
+    libs.insert(_el$24, libs.createComponent(libs.Show, {
+      get when() {
+        return props.data.class != undefined;
+      },
+      get children() {
+        const _el$28 = libs.createElement("Label", {
+          "class": "AttrDifficulty",
+          get text() {
+            return LocalizeWithVars("#Huntloot_EntryDifficulty", {
+              difficulty: props.data.class
+            });
+          }
+        }, null);
+        libs.effect(_$p => libs.setProp(_el$28, "text", LocalizeWithVars("#Huntloot_EntryDifficulty", {
+          difficulty: props.data.class
+        }), _$p));
+        return _el$28;
+      }
+    }), null);
     libs.effect(_p$ => {
-      const _v$7 = `DrawingAttrRow EquipmentAttrRow Adverb ${info()?.colorName ?? ""}`,
-        _v$8 = info()?.valueText ?? "",
-        _v$9 = info()?.nameHtml ?? "";
-      _v$7 !== _p$._v$7 && (_p$._v$7 = libs.setProp(_el$15, "class", _v$7, _p$._v$7));
-      _v$8 !== _p$._v$8 && (_p$._v$8 = libs.setProp(_el$17, "text", _v$8, _p$._v$8));
-      _v$9 !== _p$._v$9 && (_p$._v$9 = libs.setProp(_el$18, "text", _v$9, _p$._v$9));
+      const _v$9 = libs.classNames("HuntlootTooltipAttrRow DrawingAttrRow EquipmentAttrRow Adverb", info()?.colorName, {
+          WithDifficulty: props.data.class != undefined
+        }),
+        _v$0 = info()?.valueText ?? "",
+        _v$1 = info()?.nameHtml ?? "";
+      _v$9 !== _p$._v$9 && (_p$._v$9 = libs.setProp(_el$24, "class", _v$9, _p$._v$9));
+      _v$0 !== _p$._v$0 && (_p$._v$0 = libs.setProp(_el$26, "text", _v$0, _p$._v$0));
+      _v$1 !== _p$._v$1 && (_p$._v$1 = libs.setProp(_el$27, "text", _v$1, _p$._v$1));
       return _p$;
     }, {
-      _v$7: undefined,
-      _v$8: undefined,
-      _v$9: undefined
+      _v$9: undefined,
+      _v$0: undefined,
+      _v$1: undefined
     });
-    return _el$15;
+    return _el$24;
   })();
 }
 
