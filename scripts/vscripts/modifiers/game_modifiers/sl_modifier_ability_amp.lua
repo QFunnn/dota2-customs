@@ -28,358 +28,379 @@ ____debugRuntime.register(
 		["18"] = "9:1",
 		["19"] = "10:38",
 		["21"] = "10:46",
-		["22"] = "26:5",
-		["23"] = "61:5",
-		["24"] = "62:5",
-		["25"] = "63:5",
-		["26"] = "64:9",
-		["27"] = "65:9",
-		["28"] = "66:9",
-		["29"] = "67:9",
-		["30"] = "68:9",
-		["31"] = "63:61",
-		["32"] = "273:5",
-		["33"] = "291:5",
-		["34"] = "371:5",
-		["35"] = "373:9",
-		["36"] = "374:17",
-		["37"] = "374:38",
-		["39"] = "375:13",
-		["40"] = "373:34",
-		["41"] = "377:9",
-		["42"] = "378:17",
-		["43"] = "378:38",
-		["45"] = "379:13",
-		["46"] = "377:38",
-		["47"] = "381:9",
-		["48"] = "371:128",
-		["49"] = "433:5",
-		["50"] = "458:5",
-		["51"] = "9:1",
-		["52"] = "17:5",
-		["53"] = "18:15",
-		["54"] = "19:9",
-		["55"] = "17:5",
-		["56"] = "28:5",
-		["57"] = "29:9",
+		["22"] = "24:5",
+		["23"] = "26:5",
+		["24"] = "47:5",
+		["25"] = "61:5",
+		["26"] = "62:5",
+		["27"] = "63:5",
+		["28"] = "64:9",
+		["29"] = "65:9",
+		["30"] = "66:9",
+		["31"] = "67:9",
+		["32"] = "68:9",
+		["33"] = "63:61",
+		["34"] = "256:5",
+		["35"] = "274:5",
+		["36"] = "352:5",
+		["37"] = "354:9",
+		["38"] = "355:17",
+		["39"] = "355:38",
+		["41"] = "356:13",
+		["42"] = "354:34",
+		["43"] = "358:9",
+		["44"] = "359:17",
+		["45"] = "359:38",
+		["47"] = "360:13",
+		["48"] = "358:38",
+		["49"] = "362:9",
+		["50"] = "352:128",
+		["51"] = "430:5",
+		["52"] = "455:5",
+		["53"] = "9:1",
+		["54"] = "17:5",
+		["55"] = "18:15",
+		["56"] = "19:9",
+		["57"] = "17:5",
 		["58"] = "28:5",
-		["59"] = "33:5",
-		["60"] = "34:14",
-		["63"] = "35:15",
-		["64"] = "36:15",
-		["65"] = "37:15",
-		["66"] = "39:9",
-		["67"] = "41:9",
-		["68"] = "42:9",
-		["69"] = "43:9",
-		["70"] = "33:5",
-		["71"] = "48:5",
-		["72"] = "49:9",
-		["73"] = "50:20",
-		["74"] = "51:19",
-		["75"] = "52:13",
-		["76"] = "53:24",
-		["77"] = "54:17",
-		["80"] = "57:9",
-		["81"] = "48:5",
-		["82"] = "71:5",
-		["83"] = "72:14",
-		["84"] = "72:32",
-		["86"] = "73:13",
-		["87"] = "73:69",
-		["89"] = "74:13",
-		["90"] = "74:73",
-		["92"] = "75:9",
-		["93"] = "71:5",
-		["94"] = "78:5",
-		["95"] = "79:9",
+		["59"] = "29:9",
+		["60"] = "28:5",
+		["61"] = "33:5",
+		["62"] = "34:14",
+		["65"] = "35:15",
+		["66"] = "36:15",
+		["67"] = "37:15",
+		["68"] = "39:9",
+		["69"] = "41:9",
+		["70"] = "42:9",
+		["71"] = "43:9",
+		["72"] = "33:5",
+		["73"] = "48:5",
+		["74"] = "49:9",
+		["75"] = "50:20",
+		["76"] = "51:19",
+		["77"] = "52:13",
+		["78"] = "53:24",
+		["79"] = "54:17",
+		["82"] = "57:9",
+		["83"] = "48:5",
+		["84"] = "71:5",
+		["85"] = "72:14",
+		["86"] = "72:32",
+		["88"] = "73:13",
+		["89"] = "73:69",
+		["91"] = "74:13",
+		["92"] = "74:73",
+		["94"] = "75:9",
+		["95"] = "71:5",
 		["96"] = "78:5",
-		["97"] = "86:5",
-		["98"] = "87:14",
-		["101"] = "89:15",
-		["102"] = "90:14",
-		["103"] = "90:14",
+		["97"] = "79:9",
+		["98"] = "78:5",
+		["99"] = "86:5",
+		["100"] = "87:14",
+		["103"] = "89:15",
 		["104"] = "90:14",
+		["105"] = "90:14",
 		["106"] = "90:14",
-		["107"] = "90:14",
 		["108"] = "90:14",
+		["109"] = "90:14",
 		["110"] = "90:14",
-		["113"] = "91:13",
-		["116"] = "93:9",
-		["117"] = "94:9",
-		["118"] = "86:5",
-		["119"] = "100:5",
-		["120"] = "104:9",
-		["121"] = "104:9",
-		["123"] = "106:14",
-		["124"] = "106:32",
-		["126"] = "107:52",
-		["127"] = "107:17",
-		["128"] = "107:35",
-		["129"] = "109:13",
-		["130"] = "111:13",
-		["131"] = "112:19",
-		["132"] = "113:22",
+		["112"] = "90:14",
+		["115"] = "91:13",
+		["118"] = "93:9",
+		["119"] = "94:9",
+		["120"] = "86:5",
+		["121"] = "100:5",
+		["122"] = "104:9",
+		["123"] = "104:9",
+		["125"] = "106:14",
+		["126"] = "106:32",
+		["128"] = "107:52",
+		["129"] = "107:17",
+		["130"] = "107:35",
+		["131"] = "109:13",
+		["132"] = "111:13",
+		["133"] = "112:19",
 		["134"] = "113:22",
-		["136"] = "113:13",
-		["138"] = "116:13",
-		["139"] = "117:17",
-		["140"] = "118:17",
-		["142"] = "120:17",
-		["145"] = "124:9",
-		["146"] = "100:5",
-		["147"] = "127:5",
-		["148"] = "129:14",
-		["151"] = "130:9",
-		["152"] = "131:9",
-		["153"] = "127:5",
-		["154"] = "134:5",
-		["155"] = "136:14",
-		["158"] = "137:9",
-		["159"] = "138:9",
-		["160"] = "134:5",
-		["161"] = "141:5",
-		["162"] = "142:15",
-		["163"] = "143:13",
-		["164"] = "144:17",
-		["165"] = "145:32",
-		["167"] = "145:32",
-		["169"] = "145:23",
-		["170"] = "146:17",
-		["171"] = "147:17",
-		["174"] = "150:13",
-		["175"] = "151:17",
-		["176"] = "157:17",
-		["179"] = "160:9",
-		["180"] = "141:5",
-		["181"] = "163:5",
-		["182"] = "180:15",
-		["183"] = "182:15",
-		["184"] = "183:14",
-		["185"] = "183:19",
-		["187"] = "185:15",
-		["188"] = "187:13",
-		["189"] = "201:13",
-		["192"] = "204:17",
-		["193"] = "206:19",
-		["194"] = "209:17",
-		["195"] = "211:23",
-		["196"] = "213:21",
-		["197"] = "214:21",
-		["200"] = "217:19",
-		["201"] = "218:19",
-		["202"] = "219:19",
-		["203"] = "225:19",
-		["204"] = "227:17",
-		["205"] = "228:17",
-		["206"] = "229:17",
-		["207"] = "230:17",
-		["209"] = "232:17",
-		["211"] = "239:13",
-		["213"] = "163:5",
-		["214"] = "248:5",
-		["215"] = "249:15",
-		["216"] = "250:14",
-		["217"] = "250:14",
-		["218"] = "250:14",
-		["220"] = "250:14",
-		["221"] = "250:76",
-		["223"] = "252:15",
-		["224"] = "253:13",
-		["225"] = "253:33",
-		["227"] = "255:15",
-		["228"] = "256:13",
-		["229"] = "256:35",
-		["231"] = "258:16",
-		["232"] = "264:15",
-		["233"] = "265:9",
-		["234"] = "248:5",
-		["235"] = "275:5",
-		["236"] = "276:9",
-		["237"] = "276:9",
-		["239"] = "281:13",
-		["240"] = "282:13",
-		["242"] = "284:13",
-		["244"] = "275:5",
-		["245"] = "293:5",
-		["246"] = "294:15",
-		["247"] = "295:15",
-		["248"] = "296:9",
-		["249"] = "293:5",
-		["250"] = "300:5",
-		["251"] = "301:14",
-		["254"] = "303:15",
-		["255"] = "304:14",
-		["258"] = "305:13",
-		["259"] = "306:20",
-		["260"] = "307:19",
-		["261"] = "308:19",
-		["262"] = "309:19",
-		["263"] = "310:17",
-		["264"] = "311:17",
-		["265"] = "312:17",
-		["266"] = "312:17",
-		["267"] = "313:17",
-		["270"] = "316:13",
-		["271"] = "318:13",
-		["272"] = "319:13",
-		["274"] = "300:5",
-		["275"] = "323:5",
-		["276"] = "324:9",
-		["277"] = "325:9",
-		["278"] = "323:5",
-		["279"] = "328:5",
-		["280"] = "329:15",
-		["281"] = "330:9",
-		["282"] = "331:13",
-		["284"] = "333:9",
-		["285"] = "334:9",
-		["286"] = "328:5",
-		["287"] = "337:5",
-		["288"] = "338:14",
-		["291"] = "339:9",
-		["292"] = "339:9",
-		["294"] = "344:20",
-		["295"] = "345:19",
-		["296"] = "346:19",
-		["297"] = "347:13",
-		["299"] = "350:9",
-		["300"] = "337:5",
-		["301"] = "357:5",
-		["302"] = "358:15",
-		["303"] = "359:15",
-		["304"] = "360:13",
-		["305"] = "361:17",
-		["306"] = "364:17",
-		["309"] = "367:9",
-		["310"] = "357:5",
-		["311"] = "384:5",
-		["312"] = "385:15",
-		["313"] = "386:15",
-		["314"] = "388:14",
-		["315"] = "388:68",
-		["317"] = "390:30",
-		["318"] = "390:30",
-		["319"] = "390:30",
-		["321"] = "390:15",
-		["322"] = "391:13",
-		["323"] = "392:13",
-		["325"] = "395:17",
-		["326"] = "396:19",
-		["327"] = "397:24",
-		["329"] = "398:23",
-		["330"] = "399:21",
-		["331"] = "399:50",
-		["333"] = "400:32",
-		["334"] = "400:17",
-		["338"] = "403:13",
-		["339"] = "403:13",
-		["340"] = "403:13",
-		["342"] = "404:13",
-		["343"] = "407:13",
-		["345"] = "384:5",
-		["346"] = "413:5",
-		["347"] = "414:9",
-		["348"] = "413:5",
-		["349"] = "417:5",
-		["350"] = "418:13",
-		["351"] = "419:19",
-		["352"] = "420:18",
-		["353"] = "421:17",
-		["356"] = "424:9",
-		["357"] = "425:9",
-		["358"] = "427:9",
-		["359"] = "428:9",
-		["360"] = "429:9",
-		["361"] = "417:5",
-		["362"] = "436:5",
-		["363"] = "438:13",
-		["366"] = "440:13",
-		["367"] = "441:13",
-		["369"] = "444:13",
-		["370"] = "444:51",
-		["371"] = "444:71",
-		["372"] = "445:22",
-		["375"] = "446:21",
-		["376"] = "447:21",
-		["377"] = "448:21",
-		["379"] = "450:21",
-		["381"] = "444:71",
-		["382"] = "444:32",
-		["384"] = "436:5",
-		["385"] = "459:5",
-		["386"] = "461:9",
-		["387"] = "464:9",
-		["388"] = "465:9",
-		["389"] = "459:5",
-		["390"] = "468:5",
-		["391"] = "469:15",
-		["392"] = "470:14",
-		["393"] = "470:41",
-		["395"] = "471:13",
-		["396"] = "472:13",
-		["398"] = "474:9",
-		["399"] = "468:5",
-		["400"] = "477:5",
-		["401"] = "478:9",
-		["402"] = "479:9",
-		["403"] = "477:5",
-		["404"] = "482:5",
-		["405"] = "483:15",
-		["406"] = "484:13",
-		["407"] = "485:13",
-		["408"] = "486:13",
-		["409"] = "483:36",
-		["410"] = "488:9",
-		["411"] = "482:5",
-		["412"] = "491:5",
-		["413"] = "493:52",
-		["414"] = "493:17",
-		["415"] = "493:26",
-		["416"] = "494:9",
-		["417"] = "495:13",
-		["418"] = "496:13",
-		["419"] = "497:20",
-		["420"] = "498:13",
-		["422"] = "500:9",
-		["423"] = "491:5",
-		["424"] = "505:5",
-		["425"] = "507:75",
-		["426"] = "507:17",
-		["427"] = "507:26",
-		["428"] = "507:49",
-		["429"] = "508:9",
-		["430"] = "509:15",
-		["431"] = "510:30",
-		["432"] = "510:30",
-		["433"] = "510:30",
-		["435"] = "510:30",
-		["436"] = "510:30",
-		["437"] = "510:30",
-		["439"] = "510:15",
-		["440"] = "511:13",
-		["441"] = "515:13",
-		["443"] = "517:19",
-		["444"] = "519:20",
-		["445"] = "526:19",
-		["446"] = "527:19",
-		["447"] = "529:13",
-		["448"] = "529:13",
-		["449"] = "529:13",
-		["451"] = "530:13",
-		["452"] = "530:13",
-		["453"] = "530:13",
-		["455"] = "531:13",
-		["456"] = "533:13",
-		["458"] = "505:5",
-		["459"] = "10:14",
-		["460"] = "9:2",
-		["461"] = "9:2",
-		["462"] = "9:19",
-		["463"] = "9:2",
-		["465"] = "9:2",
-		["466"] = "10:14",
-		["468"] = "10:14",
+		["136"] = "113:22",
+		["138"] = "113:13",
+		["140"] = "116:13",
+		["141"] = "117:17",
+		["142"] = "118:17",
+		["144"] = "120:17",
+		["147"] = "124:9",
+		["148"] = "100:5",
+		["149"] = "127:5",
+		["150"] = "129:14",
+		["153"] = "130:9",
+		["154"] = "131:9",
+		["155"] = "127:5",
+		["156"] = "134:5",
+		["157"] = "136:14",
+		["160"] = "137:9",
+		["161"] = "138:9",
+		["162"] = "134:5",
+		["163"] = "141:5",
+		["164"] = "142:13",
+		["165"] = "143:17",
+		["166"] = "144:32",
+		["168"] = "144:32",
+		["170"] = "144:23",
+		["171"] = "145:17",
+		["172"] = "146:17",
+		["175"] = "149:13",
+		["176"] = "150:17",
+		["177"] = "156:17",
+		["180"] = "159:9",
+		["181"] = "141:5",
+		["182"] = "162:5",
+		["183"] = "176:15",
+		["184"] = "177:14",
+		["185"] = "177:19",
+		["187"] = "180:13",
+		["188"] = "181:15",
+		["189"] = "182:13",
+		["190"] = "183:19",
+		["191"] = "184:17",
+		["192"] = "184:63",
+		["195"] = "186:15",
+		["196"] = "188:13",
+		["197"] = "193:13",
+		["199"] = "195:19",
+		["200"] = "196:19",
+		["201"] = "197:19",
+		["202"] = "203:19",
+		["203"] = "205:17",
+		["204"] = "206:17",
+		["205"] = "207:17",
+		["206"] = "208:17",
+		["207"] = "209:17",
+		["208"] = "210:17",
+		["210"] = "212:17",
+		["211"] = "213:21",
+		["212"] = "214:21",
+		["213"] = "215:21",
+		["214"] = "216:21",
+		["215"] = "217:21",
+		["216"] = "212:77",
+		["218"] = "221:13",
+		["220"] = "162:5",
+		["221"] = "230:5",
+		["222"] = "231:15",
+		["223"] = "232:14",
+		["224"] = "232:14",
+		["225"] = "232:14",
+		["227"] = "232:14",
+		["228"] = "232:76",
+		["230"] = "234:15",
+		["231"] = "235:13",
+		["232"] = "235:33",
+		["234"] = "237:15",
+		["235"] = "238:13",
+		["236"] = "238:35",
+		["238"] = "240:16",
+		["239"] = "241:13",
+		["240"] = "242:13",
+		["241"] = "243:13",
+		["242"] = "244:13",
+		["243"] = "245:13",
+		["244"] = "240:46",
+		["245"] = "247:15",
+		["246"] = "248:9",
+		["247"] = "230:5",
+		["248"] = "258:5",
+		["249"] = "259:9",
+		["250"] = "259:9",
+		["252"] = "264:13",
+		["253"] = "265:13",
+		["255"] = "267:13",
+		["257"] = "258:5",
+		["258"] = "276:5",
+		["259"] = "277:15",
+		["260"] = "278:15",
+		["261"] = "279:9",
+		["262"] = "276:5",
+		["263"] = "283:5",
+		["264"] = "284:14",
+		["267"] = "286:15",
+		["268"] = "287:14",
+		["271"] = "288:13",
+		["272"] = "289:20",
+		["273"] = "290:19",
+		["274"] = "291:19",
+		["275"] = "292:19",
+		["276"] = "293:17",
+		["277"] = "294:17",
+		["278"] = "295:17",
+		["279"] = "295:17",
+		["280"] = "296:17",
+		["283"] = "299:13",
+		["284"] = "301:13",
+		["285"] = "302:13",
+		["287"] = "283:5",
+		["288"] = "306:5",
+		["289"] = "307:9",
+		["290"] = "306:5",
+		["291"] = "310:5",
+		["292"] = "311:15",
+		["293"] = "312:9",
+		["294"] = "313:13",
+		["296"] = "315:9",
+		["297"] = "316:9",
+		["298"] = "310:5",
+		["299"] = "319:5",
+		["300"] = "320:14",
+		["303"] = "321:9",
+		["304"] = "321:9",
+		["306"] = "326:20",
+		["307"] = "327:19",
+		["308"] = "328:19",
+		["309"] = "329:13",
+		["311"] = "332:9",
+		["312"] = "319:5",
+		["313"] = "339:5",
+		["314"] = "340:15",
+		["315"] = "341:13",
+		["316"] = "342:17",
+		["317"] = "345:17",
+		["320"] = "348:9",
+		["321"] = "339:5",
+		["322"] = "365:5",
+		["323"] = "372:15",
+		["324"] = "374:14",
+		["325"] = "374:68",
+		["327"] = "376:30",
+		["328"] = "376:30",
+		["329"] = "376:30",
+		["331"] = "376:30",
+		["332"] = "376:30",
+		["333"] = "376:30",
+		["335"] = "376:15",
+		["336"] = "377:13",
+		["337"] = "378:13",
+		["339"] = "381:17",
+		["340"] = "382:19",
+		["341"] = "383:24",
+		["343"] = "384:23",
+		["344"] = "385:21",
+		["345"] = "385:50",
+		["347"] = "386:32",
+		["348"] = "386:17",
+		["352"] = "389:13",
+		["353"] = "389:13",
+		["354"] = "389:13",
+		["356"] = "390:13",
+		["357"] = "390:13",
+		["358"] = "390:13",
+		["360"] = "391:17",
+		["361"] = "392:17",
+		["362"] = "393:17",
+		["363"] = "394:17",
+		["365"] = "396:17",
+		["367"] = "404:13",
+		["369"] = "365:5",
+		["370"] = "410:5",
+		["371"] = "411:9",
+		["372"] = "410:5",
+		["373"] = "414:5",
+		["374"] = "415:13",
+		["375"] = "416:19",
+		["376"] = "417:18",
+		["377"] = "418:17",
+		["380"] = "421:9",
+		["381"] = "422:9",
+		["382"] = "424:9",
+		["383"] = "425:9",
+		["384"] = "426:9",
+		["385"] = "414:5",
+		["386"] = "433:5",
+		["387"] = "435:13",
+		["390"] = "437:13",
+		["391"] = "438:13",
+		["393"] = "441:13",
+		["394"] = "441:51",
+		["395"] = "441:71",
+		["396"] = "442:22",
+		["399"] = "443:21",
+		["400"] = "444:21",
+		["401"] = "445:21",
+		["403"] = "447:21",
+		["405"] = "441:71",
+		["406"] = "441:32",
+		["408"] = "433:5",
+		["409"] = "456:5",
+		["410"] = "458:9",
+		["411"] = "461:9",
+		["412"] = "462:9",
+		["413"] = "456:5",
+		["414"] = "465:5",
+		["415"] = "466:15",
+		["416"] = "467:14",
+		["417"] = "467:41",
+		["419"] = "468:13",
+		["420"] = "469:13",
+		["422"] = "471:9",
+		["423"] = "465:5",
+		["424"] = "474:5",
+		["425"] = "475:9",
+		["426"] = "476:9",
+		["427"] = "474:5",
+		["428"] = "479:5",
+		["429"] = "480:15",
+		["430"] = "481:13",
+		["431"] = "482:13",
+		["432"] = "483:13",
+		["433"] = "480:36",
+		["434"] = "485:9",
+		["435"] = "479:5",
+		["436"] = "488:5",
+		["437"] = "490:52",
+		["438"] = "490:17",
+		["439"] = "490:26",
+		["440"] = "491:14",
+		["441"] = "491:32",
+		["443"] = "492:9",
+		["444"] = "493:15",
+		["445"] = "494:13",
+		["446"] = "495:13",
+		["447"] = "496:20",
+		["448"] = "497:13",
+		["450"] = "499:9",
+		["451"] = "488:5",
+		["452"] = "502:5",
+		["453"] = "504:75",
+		["454"] = "504:17",
+		["455"] = "504:26",
+		["456"] = "504:49",
+		["457"] = "505:14",
+		["458"] = "505:32",
+		["460"] = "506:9",
+		["461"] = "507:15",
+		["462"] = "509:15",
+		["463"] = "510:16",
+		["464"] = "511:13",
+		["465"] = "512:13",
+		["466"] = "513:13",
+		["467"] = "514:13",
+		["468"] = "515:13",
+		["469"] = "510:46",
+		["470"] = "517:15",
+		["471"] = "518:13",
+		["472"] = "519:13",
+		["473"] = "520:13",
+		["474"] = "521:13",
+		["475"] = "522:13",
+		["476"] = "517:36",
+		["477"] = "524:9",
+		["478"] = "502:5",
+		["479"] = "10:14",
+		["480"] = "9:2",
+		["481"] = "9:2",
+		["482"] = "9:19",
+		["483"] = "9:2",
+		["485"] = "9:2",
+		["486"] = "10:14",
+		["488"] = "10:14",
 	}
 )
 local ____exports = {}
@@ -395,7 +416,9 @@ sl_modifier_ability_amp.name = "sl_modifier_ability_amp"
 __TS__ClassExtends(sl_modifier_ability_amp, SLModifierBase)
 function sl_modifier_ability_amp.prototype.____constructor(self, ...)
 	SLModifierBase.prototype.____constructor(self, ...)
+	self._amp_record = {}
 	self._need_send_amp_record = false
+	self._amp_cache = {}
 	self._special_record = {}
 	self._native_ability_damage_override_warning_record = {}
 	self._special_record_refuse_list = {
@@ -455,7 +478,7 @@ function sl_modifier_ability_amp.prototype._RefreshAmpCache(self)
 			self._amp_cache[ability_name][special_key] = {}
 		end
 	end
-	self._total_cached_table = {}
+	self:_RefreshSpecialAttrCache()
 end
 function sl_modifier_ability_amp.prototype._FilterSpecialRecord(self, ability)
 	if not IsValid(ability) then
@@ -549,8 +572,7 @@ function sl_modifier_ability_amp.prototype._HandleCustomTransmitterDataForAbilit
 	self._amp_record = data
 	self:_RefreshAmpCache()
 end
-function sl_modifier_ability_amp.prototype._FilterSpecialValueForAbilityAmp(self, ability, special_key)
-	local ability_name = ability:GetAbilityName()
+function sl_modifier_ability_amp.prototype._FilterSpecialValueForAbilityAmp(self, ability, ability_name, special_key)
 	if IsInToolsMode() then
 		if self:_FilterSpecialRecord(ability) then
 			local ____self__special_record_ability_name_6 = self._special_record[ability_name]
@@ -574,27 +596,31 @@ function sl_modifier_ability_amp.prototype._GetTotalBonusValueForAbilityAmp(
 	ability,
 	special_level,
 	special_key,
-	original_value
+	original_value,
+	ability_name
 )
-	local ability_name = ability:GetAbilityName()
 	local cfg = self._amp_record[ability_name] and self._amp_record[ability_name][special_key]
 	if not cfg then
 		return original_value, 0
 	end
+	local target_level = special_level + 1
+	local ability_current_level = ability:GetLevel()
+	if ability_current_level > target_level then
+		local original_value_for_current =
+			ability:GetLevelSpecialValueNoOverride(special_key, ability_current_level - 1)
+		if original_value_for_current == original_value then
+			target_level = ability_current_level
+		end
+	end
 	local cached_table = self._amp_cache[ability_name][special_key][special_level]
-	if cached_table ~= nil and cached_table.original == original_value then
+	if
+		cached_table ~= nil
+		and cached_table.ability == ability
+		and cached_table.original == original_value
+		and cached_table.target_level == target_level
+	then
 		return cached_table.override_origin, cached_table.cached
 	else
-		--- 目标等级（1=1级）
-		local target_level = special_level + 1
-		local ability_current_level = ability:GetLevel()
-		if ability_current_level > target_level then
-			local original_value_for_current =
-				ability:GetLevelSpecialValueNoOverride(special_key, ability_current_level)
-			if original_value_for_current == original_value then
-				target_level = ability_current_level
-			end
-		end
 		local actual_base = self:_CalculateAmpValueByType(cfg, "c", target_level, original_value)
 		local actual_constant_bonus = self:_CalculateAmpValueByType(cfg, "b", target_level, 0)
 		local actual_percent_bonus = self:_CalculateAmpValueByType(cfg, "a", target_level, 0)
@@ -603,9 +629,16 @@ function sl_modifier_ability_amp.prototype._GetTotalBonusValueForAbilityAmp(
 			cached_table.cached = total_bonus
 			cached_table.original = original_value
 			cached_table.override_origin = actual_base
+			cached_table.ability = ability
+			cached_table.target_level = target_level
 		else
-			self._amp_cache[ability_name][special_key][special_level] =
-				{ cached = total_bonus, original = original_value, override_origin = actual_base }
+			self._amp_cache[ability_name][special_key][special_level] = {
+				cached = total_bonus,
+				original = original_value,
+				override_origin = actual_base,
+				ability = ability,
+				target_level = target_level,
+			}
 		end
 		return actual_base, total_bonus
 	end
@@ -628,8 +661,13 @@ function sl_modifier_ability_amp.prototype.GetAbilityDamageAmpFactor(self, abili
 	if original_damage <= 0 then
 		return nil
 	end
-	local override_origin, amp_bonus =
-		self:_GetTotalBonusValueForAbilityAmp(ability, ability_level - 1, ABILITY_DAMAGE_SPECIAL_KEY, original_damage)
+	local override_origin, amp_bonus = self:_GetTotalBonusValueForAbilityAmp(
+		ability,
+		ability_level - 1,
+		ABILITY_DAMAGE_SPECIAL_KEY,
+		original_damage,
+		ability_name
+	)
 	local modified_damage = math.max(override_origin + amp_bonus, 0)
 	return modified_damage / original_damage
 end
@@ -675,7 +713,6 @@ function sl_modifier_ability_amp.prototype.RefreshSpecialAttr(self)
 end
 function sl_modifier_ability_amp.prototype._RefreshSpecialAttrCache(self)
 	self._special_attr_cached_table = {}
-	self._total_cached_table = {}
 end
 function sl_modifier_ability_amp.prototype._AddCustomTransmitterDataForSpecialAttr(self)
 	local data = {}
@@ -699,8 +736,7 @@ function sl_modifier_ability_amp.prototype._HandleCustomTransmitterDataForSpecia
 	end
 	self:_RefreshSpecialAttrCache()
 end
-function sl_modifier_ability_amp.prototype._FilterSpecialValueForSpecialAttr(self, ability, special_key)
-	local ability_name = ability:GetAbilityName()
+function sl_modifier_ability_amp.prototype._FilterSpecialValueForSpecialAttr(self, ability_name, special_key)
 	local map = self._special_attr_relation_map[ability_name]
 	if map then
 		if map[special_key] ~= nil then
@@ -709,21 +745,33 @@ function sl_modifier_ability_amp.prototype._FilterSpecialValueForSpecialAttr(sel
 	end
 	return false
 end
-function sl_modifier_ability_amp.prototype._GetTotalBonusValueForSpecialAttr(self, ability, special_key, original_value)
+function sl_modifier_ability_amp.prototype._GetTotalBonusValueForSpecialAttr(
+	self,
+	ability,
+	ability_name,
+	special_key,
+	special_level,
+	original_value
+)
 	local map = self._special_attr_relation_map
-	local ability_name = ability:GetAbilityName()
 	if not map[ability_name] or not map[ability_name][special_key] then
 		return 0
 	end
-	local ____table__special_attr_cached_table_ability_name_special_key_10 =
+	local ____table__special_attr_cached_table_ability_name_special_key_12 =
 		self._special_attr_cached_table[ability_name]
-	if ____table__special_attr_cached_table_ability_name_special_key_10 ~= nil then
-		____table__special_attr_cached_table_ability_name_special_key_10 =
-			____table__special_attr_cached_table_ability_name_special_key_10[special_key]
+	if ____table__special_attr_cached_table_ability_name_special_key_12 ~= nil then
+		____table__special_attr_cached_table_ability_name_special_key_12 =
+			____table__special_attr_cached_table_ability_name_special_key_12[special_key]
 	end
-	local cached_value = ____table__special_attr_cached_table_ability_name_special_key_10
-	if cached_value then
-		return cached_value
+	local ____table__special_attr_cached_table_ability_name_special_key_special_level_10 =
+		____table__special_attr_cached_table_ability_name_special_key_12
+	if ____table__special_attr_cached_table_ability_name_special_key_special_level_10 ~= nil then
+		____table__special_attr_cached_table_ability_name_special_key_special_level_10 =
+			____table__special_attr_cached_table_ability_name_special_key_special_level_10[special_level]
+	end
+	local cached_value = ____table__special_attr_cached_table_ability_name_special_key_special_level_10
+	if cached_value ~= nil and cached_value.ability == ability and cached_value.original == original_value then
+		return cached_value.cached
 	else
 		local total_bonus = 0
 		local relation_attrs = map[ability_name][special_key]
@@ -733,17 +781,29 @@ function sl_modifier_ability_amp.prototype._GetTotalBonusValueForSpecialAttr(sel
 				if self._attr_value[attr] == 0 then
 					goto __continue78
 				end
-				local ____self_12 = self._special_attr_calc_cb
-				total_bonus = total_bonus + ____self_12[attr](____self_12, original_value, self._attr_value[attr])
+				local ____self_14 = self._special_attr_calc_cb
+				total_bonus = total_bonus + ____self_14[attr](____self_14, original_value, self._attr_value[attr])
 			end
 			::__continue78::
 		end
-		local ____self__special_attr_cached_table_13, ____ability_name_14 =
+		local ____self__special_attr_cached_table_15, ____ability_name_16 =
 			self._special_attr_cached_table, ability_name
-		if ____self__special_attr_cached_table_13[____ability_name_14] == nil then
-			____self__special_attr_cached_table_13[____ability_name_14] = {}
+		if ____self__special_attr_cached_table_15[____ability_name_16] == nil then
+			____self__special_attr_cached_table_15[____ability_name_16] = {}
 		end
-		self._special_attr_cached_table[ability_name][special_key] = total_bonus
+		local ____self__special_attr_cached_table_ability_name_17, ____special_key_18 =
+			self._special_attr_cached_table[ability_name], special_key
+		if ____self__special_attr_cached_table_ability_name_17[____special_key_18] == nil then
+			____self__special_attr_cached_table_ability_name_17[____special_key_18] = {}
+		end
+		if cached_value ~= nil then
+			cached_value.ability = ability
+			cached_value.original = original_value
+			cached_value.cached = total_bonus
+		else
+			self._special_attr_cached_table[ability_name][special_key][special_level] =
+				{ ability = ability, original = original_value, cached = total_bonus }
+		end
 		return total_bonus
 	end
 end
@@ -757,7 +817,7 @@ function sl_modifier_ability_amp.prototype.OnCreated(self, params)
 			SLError(
 				"sl_modifier_ability_amp: 只有真英雄才能添加技能增强修饰器",
 				nil,
-				"modifiers/game_modifiers/sl_modifier_ability_amp.ts:421:17"
+				"modifiers/game_modifiers/sl_modifier_ability_amp.ts:418:17"
 			)
 		end
 	end
@@ -815,57 +875,47 @@ function sl_modifier_ability_amp.prototype.AddCustomTransmitterData(self)
 	return data
 end
 function sl_modifier_ability_amp.prototype.GetModifierOverrideAbilitySpecial(self, event)
-	local ____event_15 = event
-	local ability = ____event_15.ability
-	local ability_special_value = ____event_15.ability_special_value
+	local ____event_19 = event
+	local ability = ____event_19.ability
+	local ability_special_value = ____event_19.ability_special_value
+	if not IsValid(ability) then
+		return 0
+	end
 	self:_WarnIfNativeAbilityDamageOverrideDetected(ability, ability_special_value)
-	if self:_FilterSpecialValueForAbilityAmp(ability, ability_special_value) then
+	local ability_name = ability:GetAbilityName()
+	if self:_FilterSpecialValueForAbilityAmp(ability, ability_name, ability_special_value) then
 		return 1
-	elseif self:_FilterSpecialValueForSpecialAttr(ability, ability_special_value) then
+	elseif self:_FilterSpecialValueForSpecialAttr(ability_name, ability_special_value) then
 		return 1
 	end
 	return 0
 end
 function sl_modifier_ability_amp.prototype.GetModifierOverrideAbilitySpecialValue(self, event)
-	local ____event_16 = event
-	local ability = ____event_16.ability
-	local ability_special_level = ____event_16.ability_special_level
-	local ability_special_value = ____event_16.ability_special_value
+	local ____event_20 = event
+	local ability = ____event_20.ability
+	local ability_special_level = ____event_20.ability_special_level
+	local ability_special_value = ____event_20.ability_special_value
+	if not IsValid(ability) then
+		return 0
+	end
 	self:_WarnIfNativeAbilityDamageOverrideDetected(ability, ability_special_value)
 	local ability_name = ability:GetAbilityName()
-	local ____table__total_cached_table_ability_name_ability_special_value_19 = self._total_cached_table[ability_name]
-	if ____table__total_cached_table_ability_name_ability_special_value_19 ~= nil then
-		____table__total_cached_table_ability_name_ability_special_value_19 =
-			____table__total_cached_table_ability_name_ability_special_value_19[ability_special_value]
-	end
-	local ____table__total_cached_table_ability_name_ability_special_value_ability_special_level_17 =
-		____table__total_cached_table_ability_name_ability_special_value_19
-	if ____table__total_cached_table_ability_name_ability_special_value_ability_special_level_17 ~= nil then
-		____table__total_cached_table_ability_name_ability_special_value_ability_special_level_17 =
-			____table__total_cached_table_ability_name_ability_special_value_ability_special_level_17[ability_special_level]
-	end
-	local cached_value = ____table__total_cached_table_ability_name_ability_special_value_ability_special_level_17
-	if cached_value then
-		return cached_value
-	else
-		local original_value = ability:GetLevelSpecialValueNoOverride(ability_special_value, ability_special_level)
-		local override_origin, amp_bonus =
-			self:_GetTotalBonusValueForAbilityAmp(ability, ability_special_level, ability_special_value, original_value)
-		local special_attr_bonus =
-			self:_GetTotalBonusValueForSpecialAttr(ability, ability_special_value, override_origin)
-		local result = override_origin + amp_bonus + special_attr_bonus
-		local ____self__total_cached_table_21, ____ability_name_22 = self._total_cached_table, ability_name
-		if ____self__total_cached_table_21[____ability_name_22] == nil then
-			____self__total_cached_table_21[____ability_name_22] = {}
-		end
-		local ____self__total_cached_table_ability_name_23, ____ability_special_value_24 =
-			self._total_cached_table[ability_name], ability_special_value
-		if ____self__total_cached_table_ability_name_23[____ability_special_value_24] == nil then
-			____self__total_cached_table_ability_name_23[____ability_special_value_24] = {}
-		end
-		self._total_cached_table[ability_name][ability_special_value][ability_special_level] = result
-		return result
-	end
+	local original_value = ability:GetLevelSpecialValueNoOverride(ability_special_value, ability_special_level)
+	local override_origin, amp_bonus = self:_GetTotalBonusValueForAbilityAmp(
+		ability,
+		ability_special_level,
+		ability_special_value,
+		original_value,
+		ability_name
+	)
+	local special_attr_bonus = self:_GetTotalBonusValueForSpecialAttr(
+		ability,
+		ability_name,
+		ability_special_value,
+		ability_special_level,
+		override_origin
+	)
+	return override_origin + amp_bonus + special_attr_bonus
 end
 sl_modifier_ability_amp = __TS__Decorate(
 	{ registerModifier(nil, "modifiers/game_modifiers/sl_modifier_ability_amp", nil, getfenv()) },

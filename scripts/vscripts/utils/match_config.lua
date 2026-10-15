@@ -16,126 +16,217 @@ local __TS__StringTrim = ____lualib.__TS__StringTrim
 local __TS__StringCharAt = ____lualib.__TS__StringCharAt
 local __TS__Number = ____lualib.__TS__Number
 local __TS__StringSplit = ____lualib.__TS__StringSplit
+local __TS__ArrayMap = ____lualib.__TS__ArrayMap
 local __TS__ArraySlice = ____lualib.__TS__ArraySlice
 local __TS__ArraySort = ____lualib.__TS__ArraySort
-local __TS__ArrayMap = ____lualib.__TS__ArrayMap
 local __TS__NumberIsFinite = ____lualib.__TS__NumberIsFinite
 local __TS__ObjectValues = ____lualib.__TS__ObjectValues
 local __TS__ObjectEntries = ____lualib.__TS__ObjectEntries
 ____debugRuntime.register(
 	"utils/match_config.lua",
 	{
-		["18"] = "2:1",
-		["19"] = "3:9",
-		["20"] = "3:40",
-		["22"] = "4:11",
-		["23"] = "5:9",
-		["24"] = "5:61",
-		["27"] = "6:14",
-		["28"] = "6:21",
-		["29"] = "7:15",
-		["30"] = "8:13",
-		["31"] = "8:41",
-		["33"] = "6:39",
-		["36"] = "12:11",
-		["37"] = "13:9",
-		["38"] = "13:51",
-		["40"] = "14:5",
-		["41"] = "2:1",
-		["43"] = "21:1",
-		["44"] = "22:11",
-		["46"] = "23:14",
-		["47"] = "23:28",
-		["48"] = "24:13",
-		["49"] = "24:55",
-		["51"] = "23:62",
-		["54"] = "26:5",
-		["55"] = "21:1",
-		["57"] = "30:1",
-		["58"] = "31:16",
-		["59"] = "31:16",
-		["60"] = "31:16",
-		["62"] = "31:9",
-		["63"] = "31:47",
-		["65"] = "33:11",
-		["66"] = "34:11",
-		["67"] = "35:5",
-		["68"] = "36:15",
-		["69"] = "37:13",
-		["70"] = "37:57",
-		["72"] = "38:9",
-		["73"] = "39:9",
-		["75"] = "41:5",
-		["76"] = "30:1",
-		["78"] = "45:1",
-		["79"] = "46:11",
-		["80"] = "47:11",
-		["81"] = "48:27",
-		["83"] = "48:27",
-		["85"] = "48:5",
-		["86"] = "49:9",
-		["88"] = "51:5",
-		["89"] = "45:1",
-		["91"] = "55:1",
-		["92"] = "56:11",
-		["93"] = "57:9",
-		["94"] = "60:26",
-		["95"] = "60:26",
-		["96"] = "61:15",
-		["98"] = "62:15",
-		["99"] = "62:15",
-		["100"] = "62:15",
-		["101"] = "64:25",
-		["102"] = "62:15",
-		["103"] = "65:24",
-		["104"] = "62:15",
-		["106"] = "60:15",
-		["107"] = "66:9",
-		["108"] = "67:9",
-		["110"] = "69:12",
-		["111"] = "69:12",
-		["112"] = "69:12",
-		["113"] = "69:12",
-		["114"] = "69:44",
-		["115"] = "69:12",
-		["117"] = "69:5",
-		["118"] = "55:1",
-		["120"] = "73:1",
-		["121"] = "74:11",
-		["122"] = "75:9",
-		["123"] = "75:50",
-		["125"] = "76:9",
-		["126"] = "76:37",
-		["128"] = "78:11",
-		["129"] = "79:5",
-		["130"] = "79:17",
-		["131"] = "79:26",
-		["132"] = "81:13",
-		["134"] = "82:18",
-		["135"] = "82:25",
-		["136"] = "83:19",
-		["137"] = "84:17",
-		["138"] = "84:45",
-		["140"] = "85:17",
-		["141"] = "85:32",
-		["143"] = "82:45",
-		["146"] = "87:14",
-		["147"] = "87:62",
-		["149"] = "88:9",
-		["150"] = "89:17",
-		["151"] = "89:73",
-		["153"] = "90:19",
-		["154"] = "91:18",
-		["155"] = "91:129",
-		["157"] = "92:19",
-		["158"] = "93:17",
-		["159"] = "93:99",
-		["161"] = "94:13",
-		["164"] = "97:5",
-		["165"] = "73:1",
+		["18"] = "11:1",
+		["19"] = "12:11",
+		["20"] = "13:9",
+		["21"] = "14:16",
+		["22"] = "14:16",
+		["23"] = "14:34",
+		["25"] = "14:84",
+		["27"] = "14:9",
+		["29"] = "16:9",
+		["30"] = "16:48",
+		["32"] = "19:12",
+		["33"] = "20:10",
+		["34"] = "20:42",
+		["36"] = "21:11",
+		["37"] = "22:20",
+		["38"] = "22:20",
+		["39"] = "22:56",
+		["41"] = "22:86",
+		["43"] = "22:11",
+		["44"] = "23:9",
+		["45"] = "24:9",
+		["47"] = "26:5",
+		["48"] = "11:1",
+		["50"] = "30:1",
+		["51"] = "31:9",
+		["52"] = "31:40",
+		["54"] = "32:11",
+		["55"] = "33:9",
+		["56"] = "33:61",
+		["59"] = "34:14",
+		["60"] = "34:21",
+		["61"] = "35:15",
+		["62"] = "36:13",
+		["63"] = "36:41",
+		["65"] = "34:39",
+		["68"] = "40:11",
+		["69"] = "41:9",
+		["70"] = "41:51",
+		["72"] = "42:5",
+		["73"] = "30:1",
+		["75"] = "49:1",
+		["76"] = "50:11",
+		["78"] = "51:14",
+		["79"] = "51:28",
+		["80"] = "52:13",
+		["81"] = "52:55",
+		["83"] = "51:62",
+		["86"] = "54:5",
+		["87"] = "49:1",
+		["89"] = "58:1",
+		["90"] = "59:16",
+		["91"] = "59:16",
+		["92"] = "59:16",
+		["94"] = "59:9",
+		["95"] = "59:47",
+		["97"] = "61:11",
+		["98"] = "62:11",
+		["99"] = "63:5",
+		["100"] = "64:15",
+		["101"] = "65:13",
+		["102"] = "65:57",
+		["104"] = "66:9",
+		["105"] = "67:9",
+		["107"] = "69:5",
+		["108"] = "58:1",
+		["110"] = "73:1",
+		["111"] = "74:12",
+		["112"] = "74:12",
+		["113"] = "74:12",
+		["114"] = "74:12",
+		["115"] = "74:50",
+		["116"] = "74:12",
+		["118"] = "74:5",
+		["119"] = "73:1",
+		["121"] = "78:1",
+		["122"] = "79:11",
+		["123"] = "80:11",
+		["124"] = "81:5",
+		["125"] = "81:21",
+		["126"] = "81:69",
+		["127"] = "81:98",
+		["128"] = "81:129",
+		["129"] = "81:129",
+		["130"] = "81:129",
+		["132"] = "81:129",
+		["134"] = "81:129",
+		["136"] = "81:5",
+		["137"] = "78:1",
+		["139"] = "85:1",
+		["140"] = "86:11",
+		["141"] = "87:11",
+		["142"] = "88:11",
+		["143"] = "89:27",
+		["145"] = "89:27",
+		["147"] = "89:5",
+		["148"] = "90:9",
+		["150"] = "92:5",
+		["151"] = "93:12",
+		["152"] = "93:12",
+		["153"] = "93:12",
+		["154"] = "93:12",
+		["155"] = "93:26",
+		["156"] = "93:12",
+		["158"] = "93:5",
+		["159"] = "85:1",
+		["161"] = "97:1",
+		["162"] = "98:11",
+		["163"] = "99:9",
+		["164"] = "102:26",
+		["165"] = "102:26",
+		["166"] = "103:15",
+		["168"] = "104:15",
+		["169"] = "104:15",
+		["170"] = "104:15",
+		["171"] = "106:25",
+		["172"] = "104:15",
+		["173"] = "107:24",
+		["174"] = "104:15",
+		["176"] = "102:15",
+		["177"] = "108:9",
+		["178"] = "109:9",
+		["180"] = "111:12",
+		["181"] = "111:38",
+		["182"] = "111:38",
+		["183"] = "111:38",
+		["185"] = "111:5",
+		["186"] = "97:1",
+		["188"] = "115:1",
+		["189"] = "116:11",
+		["190"] = "117:9",
+		["191"] = "117:50",
+		["193"] = "118:9",
+		["194"] = "118:37",
+		["196"] = "120:11",
+		["197"] = "121:5",
+		["198"] = "121:17",
+		["199"] = "121:26",
+		["200"] = "123:13",
+		["202"] = "124:18",
+		["203"] = "124:25",
+		["204"] = "125:19",
+		["205"] = "126:17",
+		["206"] = "126:45",
+		["208"] = "127:17",
+		["209"] = "127:32",
+		["211"] = "124:45",
+		["214"] = "129:14",
+		["215"] = "129:62",
+		["217"] = "130:9",
+		["218"] = "131:17",
+		["219"] = "131:73",
+		["221"] = "132:19",
+		["222"] = "133:18",
+		["223"] = "133:129",
+		["225"] = "134:19",
+		["226"] = "135:17",
+		["227"] = "135:99",
+		["229"] = "136:13",
+		["232"] = "139:5",
+		["233"] = "115:1",
 	}
 )
 local ____exports = {}
+--- 与名单查询共用已有模块，避免本地载入依赖额外的认证 Lua 文件。
+function ____exports.GetPlayerSteamAuthState(steamId32)
+	local api = rawget(_G, "DotaPlatform")
+	if type(api) ~= "table" or type(api.GetPlayerAuthState) ~= "function" then
+		local ____IsInToolsMode_result_0
+		if IsInToolsMode() then
+			____IsInToolsMode_result_0 = { status = "tools_mode", reason = "local_tools" }
+		else
+			____IsInToolsMode_result_0 = { status = "unknown", reason = "api_unavailable" }
+		end
+		return ____IsInToolsMode_result_0
+	end
+	if steamId32 == "0" or steamId32 == "" then
+		return { status = "unknown", reason = "invalid_account_id" }
+	end
+	local ok, result = pcall(function()
+		return api.GetPlayerAuthState(steamId32)
+	end)
+	if not ok or type(result) ~= "table" then
+		return { status = "unknown", reason = "query_failed" }
+	end
+	local status = result.status
+	local ____temp_1
+	if type(result.reason) == "string" then
+		____temp_1 = string.sub(result.reason, 1, 256)
+	else
+		____temp_1 = ""
+	end
+	local reason = ____temp_1
+	if
+		status == "authenticated"
+		or status == "not_authenticated"
+		or status == "not_connected"
+		or status == "unknown"
+	then
+		return { status = status, reason = reason }
+	end
+	return { status = "unknown", reason = "invalid_status" }
+end
 --- SteamID64（公开个人账号）转换为 SteamAccountID32 字符串。
 function ____exports.ConvertSteamId64ToAccountId(self, steamId64)
 	if type(steamId64) ~= "string" then
@@ -177,11 +268,11 @@ function ____exports.GetValidPlayerIds(self)
 end
 --- 校验完整名单并保留 SteamID64 字符串，供加载页精确匹配。
 local function ParseMatchSteamIds(self, config)
-	local ____config_steamids_0 = config
-	if ____config_steamids_0 ~= nil then
-		____config_steamids_0 = ____config_steamids_0.steamids
+	local ____config_steamids_2 = config
+	if ____config_steamids_2 ~= nil then
+		____config_steamids_2 = ____config_steamids_2.steamids
 	end
-	if type(____config_steamids_0) ~= "string" then
+	if type(____config_steamids_2) ~= "string" then
 		return nil
 	end
 	local steamIds = {}
@@ -196,28 +287,78 @@ local function ParseMatchSteamIds(self, config)
 	end
 	return steamIds
 end
---- 地图初始化时同步加载页名单；配置缺失或无效时不显示任何玩家。
+--- 解析实例完整名单，统一使用精确的 SteamAccountID32 字符串。
+function ____exports.ParseMatchSteamAccountIds(self, steamids)
+	local ____ParseMatchSteamIds_result_map_result_4 = ParseMatchSteamIds(nil, { steamids = steamids })
+	if ____ParseMatchSteamIds_result_map_result_4 ~= nil then
+		____ParseMatchSteamIds_result_map_result_4 = __TS__ArrayMap(
+			ParseMatchSteamIds(nil, { steamids = steamids }),
+			function(____, steamId)
+				return ____exports.ConvertSteamId64ToAccountId(nil, steamId)
+			end
+		)
+	end
+	return ____ParseMatchSteamIds_result_map_result_4
+end
+--- 打印当前阶段实际读取 KV 的结果，不使用 Tools 默认名单掩盖文件缺失。
+function ____exports.PrintMatchConfigRead(self, stage)
+	local config = LoadKeyValues("scripts_dedicated/match_config.kv")
+	local steamIds = ParseMatchSteamIds(nil, config)
+	local ____print_12 = print
+	local ____stage_9 = stage
+	local ____temp_10 = config ~= nil
+	local ____temp_11 = steamIds ~= nil
+	local ____steamIds_length_6 = steamIds
+	if ____steamIds_length_6 ~= nil then
+		____steamIds_length_6 = #____steamIds_length_6
+	end
+	local ____steamIds_length_6_8 = ____steamIds_length_6
+	if ____steamIds_length_6_8 == nil then
+		____steamIds_length_6_8 = 0
+	end
+	____print_12(
+		(
+			(
+				(
+					(
+						(("[载入配置][" .. ____stage_9) .. "] scripts_dedicated/match_config.kv 可读取=")
+						.. tostring(____temp_10)
+					) .. "，名单有效="
+				) .. tostring(____temp_11)
+			) .. "，名单人数="
+		) .. tostring(____steamIds_length_6_8)
+	)
+end
+--- 载入阶段同步完整名单，未连接玩家也能显示占位行；返回已校验的账号名单。
 function ____exports.SyncMatchLoadingPlayers(self)
 	local config = LoadKeyValues("scripts_dedicated/match_config.kv")
+	local steamIds = ParseMatchSteamIds(nil, config)
 	local players = {}
-	local ____ParseMatchSteamIds_result_2 = ParseMatchSteamIds(nil, config)
-	if ____ParseMatchSteamIds_result_2 == nil then
-		____ParseMatchSteamIds_result_2 = {}
+	local ____steamIds_13 = steamIds
+	if ____steamIds_13 == nil then
+		____steamIds_13 = {}
 	end
-	for ____, steamId in ipairs(____ParseMatchSteamIds_result_2) do
+	for ____, steamId in ipairs(____steamIds_13) do
 		players[steamId] = 1
 	end
 	CustomNetTables:SetTableValue("game_flow", "loading_players", players)
+	local ____steamIds_map_result_14 = steamIds
+	if ____steamIds_map_result_14 ~= nil then
+		____steamIds_map_result_14 = __TS__ArrayMap(steamIds, function(____, steamId)
+			return ____exports.ConvertSteamId64ToAccountId(nil, steamId)
+		end)
+	end
+	return ____steamIds_map_result_14
 end
 --- 读取实例名单；仅本地 Tools Mode 缺少文件时，使用当前玩家生成默认名单。
 function ____exports.LoadMatchSteamAccountIds(self, getToolsDefaultSteamIds)
 	local config = LoadKeyValues("scripts_dedicated/match_config.kv")
 	if config == nil and IsInToolsMode() then
-		local ____getToolsDefaultSteamIds_3
+		local ____getToolsDefaultSteamIds_16
 		if getToolsDefaultSteamIds then
-			____getToolsDefaultSteamIds_3 = getToolsDefaultSteamIds(nil)
+			____getToolsDefaultSteamIds_16 = getToolsDefaultSteamIds(nil)
 		else
-			____getToolsDefaultSteamIds_3 = __TS__ArrayMap(
+			____getToolsDefaultSteamIds_16 = __TS__ArrayMap(
 				__TS__ArraySort(__TS__ArraySlice(PlayerInfo:GetAllPlayerIds()), function(____, a, b)
 					return a - b
 				end),
@@ -226,7 +367,7 @@ function ____exports.LoadMatchSteamAccountIds(self, getToolsDefaultSteamIds)
 				end
 			)
 		end
-		local steamIds = ____getToolsDefaultSteamIds_3
+		local steamIds = ____getToolsDefaultSteamIds_16
 		print(
 			(
 				"[分队配置] 本地未提供比赛名单，按玩家编号生成默认名单：["
@@ -235,16 +376,12 @@ function ____exports.LoadMatchSteamAccountIds(self, getToolsDefaultSteamIds)
 		)
 		return steamIds
 	end
-	local ____ParseMatchSteamIds_result_map_result_4 = ParseMatchSteamIds(nil, config)
-	if ____ParseMatchSteamIds_result_map_result_4 ~= nil then
-		____ParseMatchSteamIds_result_map_result_4 = __TS__ArrayMap(
-			ParseMatchSteamIds(nil, config),
-			function(____, steamId)
-				return ____exports.ConvertSteamId64ToAccountId(nil, steamId)
-			end
-		)
+	local ____exports_ParseMatchSteamAccountIds_19 = ____exports.ParseMatchSteamAccountIds
+	local ____config_steamids_17 = config
+	if ____config_steamids_17 ~= nil then
+		____config_steamids_17 = ____config_steamids_17.steamids
 	end
-	return ____ParseMatchSteamIds_result_map_result_4
+	return ____exports_ParseMatchSteamAccountIds_19(nil, ____config_steamids_17)
 end
 --- 读取本场组队关系：外层键是 PartyID，内层值是 SteamAccountID32。仅 Tools 缺少文件时使用原生组队。
 function ____exports.LoadMatchPartyIds(self, getToolsDefaultPartyIds)

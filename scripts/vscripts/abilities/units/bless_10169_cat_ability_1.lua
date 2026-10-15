@@ -90,86 +90,89 @@ ____debugRuntime.register(
 		["91"] = "59:5",
 		["92"] = "60:9",
 		["93"] = "59:5",
-		["94"] = "67:5",
-		["95"] = "68:14",
-		["98"] = "69:15",
-		["99"] = "70:15",
-		["100"] = "71:29",
-		["101"] = "71:29",
-		["102"] = "71:29",
-		["104"] = "71:15",
-		["105"] = "72:14",
-		["106"] = "73:13",
-		["107"] = "73:21",
-		["108"] = "73:13",
-		["110"] = "73:13",
-		["113"] = "76:30",
-		["114"] = "76:30",
-		["115"] = "76:30",
-		["117"] = "76:9",
-		["118"] = "77:13",
-		["119"] = "78:13",
-		["120"] = "79:13",
-		["121"] = "80:13",
-		["123"] = "82:13",
-		["124"] = "83:13",
-		["126"] = "85:15",
-		["127"] = "86:9",
-		["128"] = "86:26",
-		["129"] = "86:31",
-		["130"] = "86:38",
-		["131"] = "86:45",
-		["132"] = "86:48",
-		["133"] = "86:55",
-		["134"] = "86:9",
-		["135"] = "87:9",
-		["136"] = "88:9",
-		["137"] = "67:5",
-		["138"] = "91:5",
-		["139"] = "92:14",
-		["142"] = "93:14",
-		["145"] = "94:15",
-		["146"] = "95:22",
-		["147"] = "95:22",
-		["148"] = "95:22",
-		["150"] = "95:15",
-		["151"] = "96:14",
-		["154"] = "97:15",
-		["155"] = "98:15",
-		["156"] = "99:15",
-		["157"] = "100:15",
-		["158"] = "101:13",
-		["159"] = "102:13",
-		["161"] = "104:13",
-		["163"] = "106:13",
-		["164"] = "107:13",
-		["166"] = "91:5",
-		["167"] = "111:5",
-		["168"] = "112:27",
-		["169"] = "112:27",
-		["170"] = "112:49",
-		["172"] = "112:56",
-		["174"] = "112:9",
-		["175"] = "113:9",
-		["176"] = "111:5",
-		["177"] = "116:5",
-		["178"] = "117:9",
-		["179"] = "116:5",
-		["180"] = "123:5",
-		["181"] = "124:16",
-		["182"] = "124:16",
-		["183"] = "124:34",
-		["185"] = "124:54",
-		["187"] = "124:9",
-		["188"] = "123:5",
-		["189"] = "41:14",
-		["190"] = "40:2",
-		["191"] = "40:2",
-		["192"] = "40:19",
-		["193"] = "40:2",
+		["94"] = "68:5",
+		["95"] = "69:14",
+		["98"] = "70:15",
+		["99"] = "71:15",
+		["100"] = "72:15",
+		["101"] = "73:14",
+		["102"] = "74:13",
+		["105"] = "77:29",
+		["106"] = "77:29",
+		["107"] = "77:29",
+		["109"] = "77:15",
+		["110"] = "78:14",
+		["111"] = "79:13",
+		["112"] = "79:21",
+		["113"] = "79:13",
+		["115"] = "79:13",
+		["118"] = "82:30",
+		["119"] = "82:30",
+		["120"] = "82:30",
+		["122"] = "82:9",
+		["123"] = "84:9",
+		["124"] = "85:13",
+		["125"] = "86:13",
+		["126"] = "87:13",
+		["127"] = "88:13",
+		["129"] = "90:13",
+		["130"] = "91:13",
+		["132"] = "93:15",
+		["133"] = "94:9",
+		["134"] = "94:26",
+		["135"] = "94:31",
+		["136"] = "94:38",
+		["137"] = "94:45",
+		["138"] = "94:48",
+		["139"] = "94:55",
+		["140"] = "94:9",
+		["141"] = "95:9",
+		["142"] = "96:9",
+		["143"] = "68:5",
+		["144"] = "99:5",
+		["145"] = "100:14",
+		["148"] = "101:14",
+		["151"] = "102:15",
+		["152"] = "103:22",
+		["153"] = "103:22",
+		["154"] = "103:22",
+		["156"] = "103:15",
+		["157"] = "104:14",
+		["160"] = "105:15",
+		["161"] = "106:15",
+		["162"] = "107:15",
+		["163"] = "108:13",
+		["164"] = "109:13",
+		["166"] = "111:13",
+		["168"] = "113:13",
+		["169"] = "114:13",
+		["171"] = "99:5",
+		["172"] = "118:5",
+		["173"] = "119:27",
+		["174"] = "119:27",
+		["175"] = "119:49",
+		["177"] = "119:56",
+		["179"] = "119:9",
+		["180"] = "120:9",
+		["181"] = "118:5",
+		["182"] = "123:5",
+		["183"] = "124:9",
+		["184"] = "123:5",
+		["185"] = "130:5",
+		["186"] = "131:16",
+		["187"] = "131:16",
+		["188"] = "131:34",
+		["190"] = "131:54",
+		["192"] = "131:9",
+		["193"] = "130:5",
+		["194"] = "41:14",
 		["195"] = "40:2",
-		["196"] = "41:14",
-		["198"] = "41:14",
+		["196"] = "40:2",
+		["197"] = "40:19",
+		["198"] = "40:2",
+		["200"] = "40:2",
+		["201"] = "41:14",
+		["203"] = "41:14",
 	}
 )
 local ____exports = {}
@@ -256,13 +259,18 @@ function sl_modifier_bless_10169_cat_ability_1.prototype.OnCreated(self, params)
 	end
 	local caster = self:GetCaster()
 	local parent = self:GetParent()
+	local ability = self:GetAbility()
+	if not IsValid(caster) or not IsValid(parent) or not IsValid(ability) then
+		self:Destroy()
+		return
+	end
 	local ____caster_GetTeam_result_4 = caster
 	if ____caster_GetTeam_result_4 ~= nil then
 		____caster_GetTeam_result_4 = ____caster_GetTeam_result_4:GetTeam()
 	end
 	local caster_team = ____caster_GetTeam_result_4
 	if not IsDotaTwoTeam(caster_team) then
-		SLError(self:GetName(), nil, "abilities/units/bless_10169_cat_ability_1.ts:73:13")
+		SLError(self:GetName(), nil, "abilities/units/bless_10169_cat_ability_1.ts:79:13")
 		return
 	end
 	local ____GameMap_GetTeamFountain_result_GetAbsOrigin_result_6 = GameMap:GetTeamFountain(caster_team)
@@ -271,12 +279,13 @@ function sl_modifier_bless_10169_cat_ability_1.prototype.OnCreated(self, params)
 			____GameMap_GetTeamFountain_result_GetAbsOrigin_result_6:GetAbsOrigin()
 	end
 	self._fountain_pos = ____GameMap_GetTeamFountain_result_GetAbsOrigin_result_6
+	self._check_angle = ability:GetSpecialValueFor("check_angle") / 2
 	local particle_path
 	if caster_team == parent:GetTeam() then
-		self._speed_bonus = self:GetAbilitySpecialValueFor("speed_ally")
+		self._speed_bonus = ability:GetSpecialValueFor("speed_ally")
 		particle_path = BLESS_PARTICLES.bless_10169_speed_buff
 	else
-		self._speed_bonus = self:GetAbilitySpecialValueFor("speed_enemy")
+		self._speed_bonus = ability:GetSpecialValueFor("speed_enemy")
 		particle_path = BLESS_PARTICLES.bless_10169_slow_buff
 	end
 	local pid = self:CreateParticle(particle_path, PATTACH_ABSORIGIN_FOLLOW, parent)
@@ -302,9 +311,8 @@ function sl_modifier_bless_10169_cat_ability_1.prototype.OnIntervalThink(self)
 	end
 	local dir = self._fountain_pos:__sub(parent:GetAbsOrigin())
 	local forward = parent:GetForwardVector()
-	local check_angle = self:GetAbilitySpecialValueFor("check_angle") / 2
 	local current_is_active = self._is_active
-	if SLVector:GetAngleDiffVecter(forward, dir) <= check_angle then
+	if SLVector:GetAngleDiffVecter(forward, dir) <= self._check_angle then
 		self._is_active = true
 	else
 		self._is_active = false

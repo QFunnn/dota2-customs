@@ -422,39 +422,47 @@ ____debugRuntime.register(
 		["506"] = "789:72",
 		["508"] = "789:72",
 		["510"] = "789:13",
-		["511"] = "790:13",
-		["512"] = "791:23",
-		["514"] = "791:23",
-		["516"] = "791:78",
-		["518"] = "791:78",
-		["520"] = "791:13",
-		["522"] = "793:9",
-		["523"] = "788:5",
-		["524"] = "796:5",
-		["525"] = "797:22",
-		["527"] = "797:22",
-		["529"] = "797:78",
-		["531"] = "797:78",
-		["533"] = "797:13",
-		["534"] = "798:13",
-		["535"] = "799:23",
-		["537"] = "799:23",
-		["539"] = "799:84",
-		["541"] = "799:84",
-		["543"] = "799:13",
-		["545"] = "801:9",
-		["546"] = "796:5",
-		["547"] = "804:5",
-		["548"] = "805:9",
-		["549"] = "804:5",
-		["550"] = "8:14",
-		["551"] = "7:2",
-		["552"] = "7:2",
-		["553"] = "7:19",
-		["554"] = "7:2",
-		["556"] = "7:2",
-		["557"] = "8:14",
-		["559"] = "8:14",
+		["511"] = "790:24",
+		["512"] = "790:24",
+		["513"] = "790:24",
+		["515"] = "790:15",
+		["516"] = "791:13",
+		["517"] = "792:23",
+		["519"] = "792:23",
+		["521"] = "792:78",
+		["523"] = "792:78",
+		["525"] = "792:13",
+		["527"] = "794:9",
+		["528"] = "788:5",
+		["529"] = "797:5",
+		["530"] = "798:22",
+		["532"] = "798:22",
+		["534"] = "798:78",
+		["536"] = "798:78",
+		["538"] = "798:13",
+		["539"] = "799:24",
+		["540"] = "799:24",
+		["541"] = "799:24",
+		["543"] = "799:15",
+		["544"] = "800:13",
+		["545"] = "801:23",
+		["547"] = "801:23",
+		["549"] = "801:84",
+		["551"] = "801:84",
+		["553"] = "801:13",
+		["555"] = "803:9",
+		["556"] = "797:5",
+		["557"] = "806:5",
+		["558"] = "807:9",
+		["559"] = "806:5",
+		["560"] = "8:14",
+		["561"] = "7:2",
+		["562"] = "7:2",
+		["563"] = "7:19",
+		["564"] = "7:2",
+		["566"] = "7:2",
+		["567"] = "8:14",
+		["569"] = "8:14",
 	}
 )
 local ____exports = {}
@@ -987,39 +995,49 @@ function sl_modifier_custom_attr.prototype.GetModifierProperty_PhysicalLifesteal
 		____temp_32 = 0
 	end
 	local value = ____temp_31 + ____temp_32
-	if event.target:IsRealHero() then
-		local ____temp_33 = self:_GetAttrValue("yxxx")
-		if ____temp_33 == nil then
-			____temp_33 = 0
+	local ____event_target_33 = event
+	if ____event_target_33 ~= nil then
+		____event_target_33 = ____event_target_33.target
+	end
+	local target = ____event_target_33
+	if IsValid(target) and target:IsRealHero() then
+		local ____temp_35 = self:_GetAttrValue("yxxx")
+		if ____temp_35 == nil then
+			____temp_35 = 0
 		end
-		local ____temp_34 = self:_GetAttrValue("yxqnxx")
-		if ____temp_34 == nil then
-			____temp_34 = 0
+		local ____temp_36 = self:_GetAttrValue("yxqnxx")
+		if ____temp_36 == nil then
+			____temp_36 = 0
 		end
-		value = value + (____temp_33 + ____temp_34)
+		value = value + (____temp_35 + ____temp_36)
 	end
 	return value
 end
 function sl_modifier_custom_attr.prototype.GetModifierProperty_MagicalLifesteal(self, event)
-	local ____temp_35 = self:_GetAttrValue("jnxx")
-	if ____temp_35 == nil then
-		____temp_35 = 0
+	local ____temp_37 = self:_GetAttrValue("jnxx")
+	if ____temp_37 == nil then
+		____temp_37 = 0
 	end
-	local ____temp_36 = self:_GetAttrValue("qnxx")
-	if ____temp_36 == nil then
-		____temp_36 = 0
+	local ____temp_38 = self:_GetAttrValue("qnxx")
+	if ____temp_38 == nil then
+		____temp_38 = 0
 	end
-	local value = ____temp_35 + ____temp_36
-	if event.target:IsRealHero() then
-		local ____temp_37 = self:_GetAttrValue("yxjnxx")
-		if ____temp_37 == nil then
-			____temp_37 = 0
+	local value = ____temp_37 + ____temp_38
+	local ____event_target_39 = event
+	if ____event_target_39 ~= nil then
+		____event_target_39 = ____event_target_39.target
+	end
+	local target = ____event_target_39
+	if IsValid(target) and target:IsRealHero() then
+		local ____temp_41 = self:_GetAttrValue("yxjnxx")
+		if ____temp_41 == nil then
+			____temp_41 = 0
 		end
-		local ____temp_38 = self:_GetAttrValue("yxqnxx")
-		if ____temp_38 == nil then
-			____temp_38 = 0
+		local ____temp_42 = self:_GetAttrValue("yxqnxx")
+		if ____temp_42 == nil then
+			____temp_42 = 0
 		end
-		value = value + (____temp_37 + ____temp_38)
+		value = value + (____temp_41 + ____temp_42)
 	end
 	return value
 end
