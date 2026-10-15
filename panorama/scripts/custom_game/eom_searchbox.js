@@ -69,4 +69,4 @@ const EOM_SearchBox = props => {
   })();
 };
 
-exports.EOM_SearchBox = EOM_SearchBox;
+exports.EOM_SearchBox = EOM_SearchBox;

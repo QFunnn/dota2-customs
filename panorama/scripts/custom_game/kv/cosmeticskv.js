@@ -10843,7 +10843,7 @@ GameUI.CustomUIConfig().CosmeticsKv = {
 	},
 	"5710088": {
 		"name": "sell",
-		"Note": "8月祈愿【】炎歌头像框",
+		"Note": "8月祈愿【灵虚】炎歌头像框",
 		"rarity": 3,
 		"StoreID": 99100010,
 		"access": "draw",
@@ -10857,15 +10857,13 @@ GameUI.CustomUIConfig().CosmeticsKv = {
 		"mark": "liujin",
 	},
 	"5710090": {
-		"tool": 1,
 		"name": "sell",
-		"Note": "9月祈愿【】狂徒头像框",
+		"Note": "9月祈愿【赤啸】狂徒头像框",
 		"rarity": 3,
 		"access": "draw",
 		"mark": "kuangtu",
 	},
 	"5710091": {
-		"tool": 1,
 		"name": "sell",
 		"Note": "9月幻梦【】甜心头像框",
 		"rarity": 2,
@@ -11262,7 +11260,6 @@ GameUI.CustomUIConfig().CosmeticsKv = {
 		"mark": "liujin",
 	},
 	"5720048": {
-		"tool": 1,
 		"name": "sell",
 		"Note": "【】狂徒名片背景",
 		"rarity": 2,
@@ -11270,7 +11267,6 @@ GameUI.CustomUIConfig().CosmeticsKv = {
 		"mark": "kuangtu",
 	},
 	"5720049": {
-		"tool": 1,
 		"name": "sell",
 		"Note": "【】甜心名片背景",
 		"rarity": 2,
@@ -11680,7 +11676,6 @@ GameUI.CustomUIConfig().CosmeticsKv = {
 		"mark": "liujin",
 	},
 	"5730050": {
-		"tool": 1,
 		"name": "sell",
 		"Note": "【】狂徒名片装饰",
 		"rarity": 2,
@@ -11688,7 +11683,6 @@ GameUI.CustomUIConfig().CosmeticsKv = {
 		"mark": "kuangtu",
 	},
 	"5730051": {
-		"tool": 1,
 		"name": "sell",
 		"Note": "【】甜心名片装饰",
 		"rarity": 2,
