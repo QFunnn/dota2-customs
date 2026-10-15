@@ -45,6 +45,7 @@ function OnTestButtonPressed() {
 
 var VER = 'v1';
 var IS_GAME_STARTED = false;
+var end_game_extra_data = null;
 
 // 移除天赋树、命石UI
 FindDotaHudElement('StatBranch').style['width'] = '0';
@@ -62,6 +63,18 @@ FindDotaHudElement('inventory_neutral_level_up').style['opacity'] = '0';
 FindDotaHudElement('inventory_neutral_craft_holder').style['opacity'] = '0';
 FindDotaHudElement('inventory_neutral_slot_container').style['opacity'] = '0';
 FindDotaHudElement('RoshanTimerContainer').style['opacity'] = '0';
+
+var tormentorTimer = FindDotaHudElement('DOTATormentorTimer');
+if (tormentorTimer) {
+    tormentorTimer.style['visibility'] = 'collapse';
+    tormentorTimer.style['opacity'] = '0';
+}
+
+var tormentorTimerContainer = FindDotaHudElement('TormentorTimerContainer');
+if (tormentorTimerContainer) {
+    tormentorTimerContainer.style['visibility'] = 'collapse';
+    tormentorTimerContainer.style['opacity'] = '0';
+}
 
 // 其他UI
 FindDotaHudElement('abilities').style['margin-left'] = '15px';
@@ -258,7 +271,7 @@ var my_maze_cache = null;
 //GameUI.SetCameraDistance( 1200 );
 // Camera yaw smoothing.
 var g_Distance = 0;
-var g_targetDistance = 0;
+var g_targetDistance = 1000;
 var g_MaxDistance = 4000;
 var g_MinDistance = 0;
 var g_camera_angle = 60;
@@ -268,51 +281,14 @@ function smoothCameraDistance() {
     $.Schedule(1.0 / 30.0, smoothCameraDistance);
 
     g_targetDistance = Math.max(Math.min(g_targetDistance, g_MaxDistance), g_MinDistance);
+    g_Distance = g_Distance + (g_targetDistance - g_Distance) * 0.3;
     g_Distance = Math.max(Math.min(g_Distance, g_MaxDistance), g_MinDistance);
 
-    var minStep = 1;
-    var delta = (g_targetDistance - g_Distance);
-    // if ( Math.abs( delta ) < minStep )
-    // {
-    //     g_Distance = g_targetDistance;
-    // }
-    // else
-    // {
-    //     var step = delta * 0.3;
-    //     if ( Math.abs( step ) < minStep )
-    //     {
-    //         if ( delta > 0 )
-    //             step = minStep;
-    //         else
-    //             step = -minStep;
-    //     }
-    //     g_Distance += step;
-    // }
-
-    // if (g_targetDistance > g_Distance+50){
-    //     g_Distance = g_Distance + 50
-    // }
-    // if (g_targetDistance < g_Distance-50){
-    //     g_Distance = g_Distance - 50
-    // }
-
-    // GameUI.SetCameraDistance( 1000 + g_Distance );
-
-    if (g_camera_angle_target > g_camera_angle) {
-        g_camera_angle = g_camera_angle + 1
-        GameUI.SetCameraPitchMax(g_camera_angle);
-        GameUI.SetCameraPitchMin(g_camera_angle);
-    }
-    if (g_camera_angle_target < g_camera_angle) {
-        g_camera_angle = g_camera_angle - 1
-        GameUI.SetCameraPitchMax(g_camera_angle);
-        GameUI.SetCameraPitchMin(g_camera_angle);
-    }
-
-    g_Distance = (g_camera_angle - 50) * 100
-    GameUI.SetCameraDistance(800 + g_Distance);
-    return;
+    GameUI.SetCameraDistance(Math.floor(800 + g_Distance));
+    GameUI.SetCameraPitchMax(60);
+    GameUI.SetCameraPitchMin(60);
 }
+
 // Main mouse event callback
 GameUI.SetMouseCallback(
     function (eventName, arg) {
@@ -328,8 +304,6 @@ GameUI.SetMouseCallback(
         if (eventName === "wheeled") {
             g_targetDistance += arg * -100;
             g_targetDistance = Math.max(Math.min(g_targetDistance, g_MaxDistance), g_MinDistance);
-
-            g_camera_angle_target = 50 + (g_targetDistance) / 100;
 
             return CONSUME_EVENT;
         }
@@ -583,61 +557,61 @@ var keys = [
 ];
 var key = keys[Math.floor(Math.random() * 6)];
 var url = 'http://api.steampowered.com/ISteamUser/GetFriendList/v0001/?key='+key+'&relationship=friend&steamid=' + Game.GetPlayerInfo(Players.GetLocalPlayer()).player_steamid;
-// RequestProxy(url, function(object){
-//     var aa = object;
+RequestProxy(url, function(object){
+    var aa = object;
 
-//     var ff = aa.friendslist.friends;
-//     var ids = [];
-//     for (var fff in ff) {
-//         ids.push(ff[fff].steamid);
-//     }
+    var ff = aa.friendslist.friends;
+    var ids = [];
+    for (var fff in ff) {
+        ids.push(ff[fff].steamid);
+    }
 
-//     ids.push(Game.GetPlayerInfo(Players.GetLocalPlayer()).player_steamid);
-//     var url222 = 'http://gemtd.ppbizon.com/gemtd/201807/mmr/get/@' + ids.join(',') + '?myself=' + Game.GetPlayerInfo(Players.GetLocalPlayer()).player_steamid;
-//     RequestProxy(url222, function(aa){
-//         var ff = aa.data;
-//         var ids = [];
-//         var count = 1;
+    ids.push(Game.GetPlayerInfo(Players.GetLocalPlayer()).player_steamid);
+    var url222 = 'http://gemtd.ppbizon.com/gemtd/201807/mmr/get/@' + ids.join(',') + '?myself=' + Game.GetPlayerInfo(Players.GetLocalPlayer()).player_steamid;
+    RequestProxy(url222, function(aa){
+        var ff = aa.data;
+        var ids = [];
+        var count = 1;
 
-//         for (var fff in ff) {
+        for (var fff in ff) {
 
-//             if (!ff[fff] || ff[fff].rankall == "100%") {
-//                 break;
-//             }
+            if (!ff[fff] || ff[fff].rankall == "100%") {
+                break;
+            }
 
-//             if (ff[fff].user == aa.myself) {
-//                 $("#fd_rank_" + count).style['background-color'] = '#333333';
-//                 $("#fd_rank_1" + count).style['background-color'] = '#333333';
-//             }
-//             $("#avatar0_" + count + "_1").steamid = ff[fff].user;
-//             $("#lbl_boss_damage0_" + count).text = ff[fff].rankall + '  ';
-//             $("#rank_friend_img_" + count).style['opacity'] = 1;
+            if (ff[fff].user == aa.myself) {
+                $("#fd_rank_" + count).style['background-color'] = '#333333';
+                $("#fd_rank_1" + count).style['background-color'] = '#333333';
+            }
+            $("#avatar0_" + count + "_1").steamid = ff[fff].user;
+            $("#lbl_boss_damage0_" + count).text = ff[fff].rankall + '  ';
+            $("#rank_friend_img_" + count).style['opacity'] = 1;
 
-//             if ((ff[fff].rankall + '').indexOf('%') < 0) {
-//                 $("#rank_friend_img_" + count).SetImage('file://{images}/custom_game/rank/all_rank_6.png');
-//                 $("#lbl_boss_damage0_" + count).style['color'] = 'yellow';
-//             }
-//             else {
-//                 var level = 1;
-//                 var r = parseInt(ff[fff].rankall);
-//                 if (r <= 2) { level = 5; }
-//                 else if (r <= 10) { level = 4; }
-//                 else if (r <= 25) { level = 3; }
-//                 else if (r <= 50) { level = 2; }
-//                 else { level = 1; }
+            if ((ff[fff].rankall + '').indexOf('%') < 0) {
+                $("#rank_friend_img_" + count).SetImage('file://{images}/custom_game/rank/all_rank_6.png');
+                $("#lbl_boss_damage0_" + count).style['color'] = 'yellow';
+            }
+            else {
+                var level = 1;
+                var r = parseInt(ff[fff].rankall);
+                if (r <= 2) { level = 5; }
+                else if (r <= 10) { level = 4; }
+                else if (r <= 25) { level = 3; }
+                else if (r <= 50) { level = 2; }
+                else { level = 1; }
 
-//                 $("#rank_friend_img_" + count).SetImage('file://{images}/custom_game/rank/all_rank_' + level + '.png');
+                $("#rank_friend_img_" + count).SetImage('file://{images}/custom_game/rank/all_rank_' + level + '.png');
 
-//             }
-//             count++;
-//             if (count > 10) {
-//                 break;
-//             }
-//         }
+            }
+            count++;
+            if (count > 10) {
+                break;
+            }
+        }
 
-//         $("#friend_list_test").text = JSON.stringify(ff);
-//     });
-// });
+        $("#friend_list_test").text = JSON.stringify(ff);
+    });
+});
 
 
 // get mmr
@@ -756,8 +730,8 @@ function open_store() {
 
     hide_right_panel();
     $("#gameinfo_board").style["position"] = "1200px 0px 0px";
-    $("#merge_board").style["position"] = "2000px 0px 0px";
-    $("#ranking_board").style["position"] = "1920px 0px 0px";
+    $("#merge_board").style["position"] = "3000px 0px 0px";
+    $("#ranking_board").style["position"] = "3000px 0px 0px";
     $("#map_board").style["position"] = "920px 0px 0px";
     $("#quest_board").style["position"] = "920px 0px 0px";
     is_bet_board_open = false;
@@ -782,8 +756,8 @@ function open_heropool_board() {
 
     hide_store_panel();
     $("#gameinfo_board").style["position"] = "1200px 0px 0px";
-    $("#merge_board").style["position"] = "2000px 0px 0px";
-    $("#ranking_board").style["position"] = "1920px 0px 0px";
+    $("#merge_board").style["position"] = "3000px 0px 0px";
+    $("#ranking_board").style["position"] = "3000px 0px 0px";
     $("#map_board").style["position"] = "920px 0px 0px";
     $("#quest_board").style["position"] = "920px 0px 0px";
 
@@ -809,8 +783,8 @@ function open_gameinfo_board() {
 
     hide_right_panel();
     hide_store_panel();
-    $("#merge_board").style["position"] = "2000px 0px 0px";
-    $("#ranking_board").style["position"] = "1920px 0px 0px";
+    $("#merge_board").style["position"] = "3000px 0px 0px";
+    $("#ranking_board").style["position"] = "3000px 0px 0px";
     $("#map_board").style["position"] = "920px 0px 0px";
     $("#friend_board").style["position"] = "920px 0px 0px";
     $("#quest_board").style["position"] = "920px 0px 0px";
@@ -829,14 +803,14 @@ function open_merge_board() {
         is_merge_board_open = true;
     }
     else {
-        $("#merge_board").style["position"] = "2000px 0px 0px";
+        $("#merge_board").style["position"] = "3000px 0px 0px";
         is_merge_board_open = false;
     }
 
     hide_right_panel();
     hide_store_panel();
     $("#gameinfo_board").style["position"] = "1200px 0px 0px";
-    $("#ranking_board").style["position"] = "1920px 0px 0px";
+    $("#ranking_board").style["position"] = "3000px 0px 0px";
     $("#map_board").style["position"] = "920px 0px 0px";
     $("#quest_board").style["position"] = "920px 0px 0px";
     is_bet_board_open = false;
@@ -861,8 +835,8 @@ function open_map_board() {
     hide_right_panel();
     hide_store_panel();
     $("#gameinfo_board").style["position"] = "1200px 0px 0px";
-    $("#ranking_board").style["position"] = "1920px 0px 0px";
-    $("#merge_board").style["position"] = "2000px 0px 0px";
+    $("#ranking_board").style["position"] = "3000px 0px 0px";
+    $("#merge_board").style["position"] = "3000px 0px 0px";
     $("#quest_board").style["position"] = "920px 0px 0px";
     is_bet_board_open = false;
     is_heropool_board_open = false;
@@ -879,7 +853,7 @@ function open_ranking_board() {
         is_ranking_board_open = true;
     }
     else {
-        $("#ranking_board").style["position"] = "1920px 0px 0px";
+        $("#ranking_board").style["position"] = "3000px 0px 0px";
         is_ranking_board_open = false;
     }
 
@@ -887,7 +861,7 @@ function open_ranking_board() {
     hide_store_panel();
     $("#gameinfo_board").style["position"] = "1200px 0px 0px";
     $("#map_board").style["position"] = "920px 0px 0px";
-    $("#merge_board").style["position"] = "2000px 0px 0px";
+    $("#merge_board").style["position"] = "3000px 0px 0px";
     $("#quest_board").style["position"] = "920px 0px 0px";
     is_bet_board_open = false;
     is_heropool_board_open = false;
@@ -897,6 +871,11 @@ function open_ranking_board() {
     is_friend_board_open = false;
     is_merge_board_open = false;
     is_quest_board_open = false;
+}
+
+function close_ranking_board() {
+    $("#ranking_board").style["position"] = "3000px 0px 0px";
+    is_ranking_board_open = false;
 }
 
 function open_quest_board() {
@@ -912,8 +891,8 @@ function open_quest_board() {
     hide_right_panel();
     hide_store_panel();
     $("#gameinfo_board").style["position"] = "1200px 0px 0px";
-    $("#ranking_board").style["position"] = "1920px 0px 0px";
-    $("#merge_board").style["position"] = "2000px 0px 0px";
+    $("#ranking_board").style["position"] = "3000px 0px 0px";
+    $("#merge_board").style["position"] = "3000px 0px 0px";
     $("#map_board").style["position"] = "920px 0px 0px";
     is_bet_board_open = false;
     is_heropool_board_open = false;
@@ -950,7 +929,122 @@ function click_maze_guide_panel_coop(index) {
 function click_maze_guide_panel_race(index) {
     GameEvents.SendCustomGameEventToServer("click_maze_guide_panel_race", { "maze_index": index, "player_id": Game.GetLocalPlayerID(), "hehe": Date.now() });
 }
-function OnGameStateChanged(table, key, data) {
+function end_game_parse_towers(raw) {
+    var result = [];
+    if (!raw) return result;
+    var tower_part = String(raw).split("|")[0];
+    var parts = tower_part.split(",");
+    for (var i = 0; i < parts.length; i++) {
+        if (!parts[i]) continue;
+        var t = parts[i].split(":");
+        var name = t[0];
+        if (!name) continue;
+        var count = parseInt(t[1]);
+        if (isNaN(count) || count < 1) count = 1;
+        var level = TOWER_LEVEL[name] || 0;
+        var color = TOWER_LEVEL_COLOR[level] || "#888888";
+        result.push({ name: name, count: count, level: level, color: color });
+    }
+    result.sort(function(a, b) {
+        if (b.level !== a.level) return b.level - a.level;
+        return b.count - a.count;
+    });
+    return result;
+}
+
+function update_end_game_towers(raw) {
+    var list = $("#end_game_tower_list");
+    if (!list) return;
+    list.RemoveAndDeleteChildren();
+    var towers = end_game_parse_towers(raw);
+    var per_row = 10;
+    var item_w = 88;
+    var gap = 0;
+    var row = null;
+    var rows = [];
+    for (var i = 0; i < towers.length; i++) {
+        if (i % per_row == 0) {
+            row = $.CreatePanel("Panel", list, "");
+            row.style["width"] = "100%";
+            row.style["height"] = "80px";
+            row.style["flow-children"] = "right";
+            row.style["horizontal-align"] = "center";
+            rows.push(row);
+        }
+
+        var t = towers[i];
+        var p = $.CreatePanel("Panel", row, "");
+        p.style["width"] = item_w + "px";
+        p.style["height"] = "78px";
+        p.style["margin-right"] = gap + "px";
+        p.style["flow-children"] = "down";
+        p.style["border-top"] = "0px";
+        p.style["border-right"] = "0px";
+        p.style["border-left"] = "0px";
+        p.style["border-bottom"] = "0px";
+
+        var imgBox = $.CreatePanel("Panel", p, "");
+        imgBox.style["width"] = "74px";
+        imgBox.style["height"] = "46px";
+        imgBox.style["overflow"] = "clip";
+        imgBox.style["horizontal-align"] = "center";
+        imgBox.style["margin-top"] = "2px";
+
+        var img = $.CreatePanel("Image", imgBox, "");
+        img.SetImage("file://{images}/custom_game/towers/" + t.name + ".png");
+        img.style["width"] = "74px";
+        img.style["height"] = "64px";
+        img.style["vertical-align"] = "center";
+
+        var label = $.CreatePanel("Label", p, "");
+        label.text = "x" + t.count;
+        label.style["width"] = "100%";
+        label.style["height"] = "30px";
+        label.style["font-size"] = "28px";
+        label.style["color"] = t.color;
+        label.style["text-align"] = "center";
+        label.style["horizontal-align"] = "center";
+        label.style["font-family"] = "defaultFont";
+        label.style["font-weight"] = "bold";
+
+        (function(panel, tower) {
+            panel.SetPanelEvent("onmouseover", function () {
+                var towerName = "<font color='" + tower.color + "'>" + $.Localize('#' + tower.name) + "</font>";
+                $.DispatchEvent("DOTAShowTitleTextTooltip", panel, towerName, "");
+            });
+            panel.SetPanelEvent("onmouseout", function () {
+                $.DispatchEvent("DOTAHideTitleTextTooltip");
+                $.DispatchEvent("DOTAHideTextTooltip");
+            });
+        })(p, t);
+    }
+    for (var r = 0; r < rows.length; r++) {
+        var count = Math.min(per_row, towers.length - r * per_row);
+        rows[r].style["width"] = (count * (item_w + gap)) + "px";
+    }
+}
+
+function update_end_game_avatars(raw) {
+    var ids = [];
+    if (raw) ids = String(raw).split(",");
+    if (ids.length == 0 || (ids.length == 1 && !ids[0])) {
+        ids = [];
+        for (var p = 0; p <= 3; p++) {
+            var info = Game.GetPlayerInfo(p);
+            if (info && info.player_steamid) ids.push(info.player_steamid);
+        }
+    }
+    for (var i = 1; i <= 4; i++) {
+        var av = $("#end_game_avatar_" + i);
+        if (!av) continue;
+        av.steamid = ids[i - 1] || "";
+        av.SetHasClass("invisible", false);
+    }
+    var list = $("#end_game_avatar_list");
+    if (list) {
+        list.style["width"] = "256px";
+    }
+}function OnGameStateChanged(table, key, data) {
     if (key == 'bullet') {
         var steamid = Game.GetPlayerInfo(data.player_id).player_steamid;
         var playername = Game.GetPlayerInfo(data.player_id).player_name;
@@ -1529,6 +1623,11 @@ function OnGameStateChanged(table, key, data) {
 
     if (key == 'send_ranking') { //发送成绩
         var auth = parseInt(data.seed) * parseInt(data.level) * 7;
+        end_game_extra_data = {
+            towers: data.towers,
+            maze_length: data.maze_length,
+            player_ids: data.player_ids
+        };
 
         var url = 'http://gemtd.ppbizon.com/gemtd/ranking/add/@' + data.time_cost + '@' + data.level + '@' + data.kills + '@' + data.player_ids + '@' + (data.finishd_quest || ',') + '@' + local_id + '?hehe=' + Math.random() + '&towers=' + data.towers + '&ac=20180827&gold=' + data.gold + '&extra_kill=' + data.extra_kill + '&maze_length=' + data.maze_length+'&player_count='+data.player_count;
 
@@ -1572,45 +1671,48 @@ function OnGameStateChanged(table, key, data) {
             stars = "★★";
         }
 
-        if (is_win) {
-            Game.EmitSound("Loot_Drop_Stinger_Arcana");
-            $("#panel_end_game_title").style["background-color"] = "#ff4444";
-            $("#label_end_game_title").text = $.Localize('#'+"end_game_defender_win");
-        }
-        else {
-            Game.EmitSound("diretide_roshdeath_Stinger");
-            $("#panel_end_game_title").style["background-color"] = "#777777";
-            $("#label_end_game_title").text = $.Localize('#'+"end_game_enemy_win");
+        // 结束面板已搬到 end.xml(EndScreen)，由 end.js 用 net table 填充；
+        // 这里(游戏内 Hud)已经没有 #panel_end_game，跳过这段，只保留下面的通关奖励逻辑
+        if ($("#panel_end_game")) {
+            if (is_win) {
+                Game.EmitSound("Loot_Drop_Stinger_Arcana");
+                // $("#panel_end_game_title").style["background-color"] = "#ff4444";
+                $("#label_end_game_title").SetHasClass("end_game_win", true);
+                $("#label_end_game_title").SetHasClass("end_game_lose", false);
+                $("#label_end_game_title").text = $.Localize('#'+"end_game_defender_win");
+            }
+            else {
+                Game.EmitSound("diretide_roshdeath_Stinger");
+                // $("#panel_end_game_title").style["background-color"] = "#777777";
+                $("#label_end_game_title").SetHasClass("end_game_win", false);
+                $("#label_end_game_title").SetHasClass("end_game_lose", true);
+                $("#label_end_game_title").text = $.Localize('#'+"end_game_enemy_win");
+            }
+
+            // 填写战绩
+            $("#label_end_game_subtitle2").text = (object.level - 1);
+            $("#label_end_game_subtitle6").text = (object.kill);
+            // $("#label_end_game_subtitle4").text = Math.floor(parseInt(data.boss_damage)/1000)+'k';
+
+            if (is_win) {
+                $("#label_end_game_subtitle4").text = time2showtime_hour(object.time);
+            }
+            else {
+                $("#label_end_game_subtitle4").text = time2showtime_hour(object.time);
+            }
+
+            $("#panel_end_game").style["opacity"] = 0.95;
+            $("#label_beat_percent").text = $.Localize('#'+"end_game_beat_1") + beat_percent + $.Localize('#'+"end_game_beat_2") + object.player_count + $.Localize('#'+"end_game_beat_3") + stars;
+            update_end_game_towers(object.towers || (end_game_extra_data && end_game_extra_data.towers));
+            var maze_table = CustomNetTables.GetTableValue("game_state", "gem_maze_length");
+            var maze_length = object.maze_length || (end_game_extra_data && end_game_extra_data.maze_length) || (maze_table && maze_table.length) || 0;
+            $("#end_game_maze_length").text = maze_length;
+            update_end_game_avatars(object.player_ids || (end_game_extra_data && end_game_extra_data.player_ids));
         }
 
-        // 填写战绩
-        $("#label_end_game_subtitle2").text = (object.level - 1);
-        $("#label_end_game_subtitle6").text = (object.kill);
-        // $("#label_end_game_subtitle4").text = Math.floor(parseInt(data.boss_damage)/1000)+'k';
-
-        if (is_win) {
-            $("#label_end_game_subtitle4").text = time2showtime_hour(object.time);
-        }
-        else {
-            $("#label_end_game_subtitle4").text = time2showtime_hour(object.time);
-        }
-
-        $("#panel_end_game").style["opacity"] = 0.95;
-        $("#label_beat_percent").text = $.Localize('#'+"end_game_beat_1") + beat_percent + $.Localize('#'+"end_game_beat_2") + object.player_count + $.Localize('#'+"end_game_beat_3") + stars;
-
-        // 通关奖励
+        // 通关奖励：弹窗已在 end.xml/end.js(结束界面)里弹，这里只更新 HUD 上的贝壳数
         if (object.award > 0) {
-            open_panel_award('gem', 'shell', '', object.award, 'pass');
-
             $("#store_shell_count").text = "× " + object.shell || "0";
-        }
-
-        if (object.award_extend) {
-            open_panel_award('gem', 'item', 'extend', 1, 'pass');
-        }
-
-        if (object.award_item) {
-            open_panel_award('gem', 'item', object.award_item, 1, 'pass');
         }
     }
 
@@ -1690,8 +1792,8 @@ function OnGameStateChanged(table, key, data) {
         hide_right_panel();
         hide_store_panel();
         $("#gameinfo_board").style["position"] = "1200px 0px 0px";
-        $("#ranking_board").style["position"] = "1920px 0px 0px";
-        $("#merge_board").style["position"] = "2000px 0px 0px";
+        $("#ranking_board").style["position"] = "3000px 0px 0px";
+        $("#merge_board").style["position"] = "3000px 0px 0px";
 
         is_heropool_board_open = false;
         is_store_board_open = false;
@@ -2864,23 +2966,36 @@ function show_right_panel() {
     $("#right_panel").style["position"] = "0px 230px 0px";
 }
 function hide_store_panel() {
+    $("#store_panel").style["position"] = "0px -1200px 0px";
     $("#store_panel").SetHasClass("invisible", true);
 }
 function show_store_panel() {
+    $("#store_panel").style["position"] = "0px -1200px 0px";
     $("#store_panel").SetHasClass("invisible", false);
+    $.Schedule(0, function () {
+        $("#store_panel").style["position"] = "0px 0px 0px";
+    });
+}
+
+function end_game_exit() {
+    // 结束面板的“退出游戏”：只让服务器直接判定游戏结束，不再走结算/提交成绩流程
+    $.Msg('end_game_exit');
+    GameEvents.SendCustomGameEventToServer("end_game_exit", {
+        player_id: Game.GetLocalPlayerID()
+    });
 }
 
 function ggsimida() {
-    $("#confirm_ggsimida").style["position"] = "0px 0px 0px";
+    $("#panel_confirm_ggsimida").style["position"] = "0px 0px 0px";
 }
 
 function close_confirm_ggsimida() {
-    $("#confirm_ggsimida").style["position"] = "0px -1000px 0px";
+    $("#panel_confirm_ggsimida").style["position"] = "0px -1000px 0px";
 }
 
 function confirm_ggsimida() {
     $("#panel_ggsimida").SetHasClass('hidden', true);
-    $("#confirm_ggsimida").style["position"] = "0px -1000px 0px";
+    $("#panel_confirm_ggsimida").style["position"] = "0px -1000px 0px";
     GameEvents.SendCustomGameEventToServer("click_ggsimida", {
         player_id: Game.GetLocalPlayerID()
     });
@@ -3057,99 +3172,7 @@ function OnRankKillsOut() {
     $.DispatchEvent("DOTAHideTitleTextTooltip");
 }
 
-var TOWER_LEVEL = {
-    gemtd_zhenjiazhishi: 5,
-    gemtd_heiyaoshi: 4,
-    gemtd_manao: 4,
-    gemtd_ranshaozhishi: 4,
-    gemtd_xiameishi: 4,
-    gemtd_geluanshi: 4,
-    gemtd_keyinuoerguangmingzhishan: 4,
-    gemtd_shuaibiankaipayou: 4,
-    gemtd_heiwangzihuangguanhongbaoshi: 4,
-    gemtd_xingguanglanbaoshi: 4,
-    gemtd_yijiazhishi: 4,
-    gemtd_huguoshenyishi: 4,
-    gemtd_jingangshikulinan: 4,
-    gemtd_sililankazhixing: 4,
-    gemtd_jixiangdezhongguoyu: 3,
-    gemtd_juxingfenhongzuanshi: 3,
-    gemtd_you235: 3,
-    gemtd_jingxindiaozhuodepalayibabixi: 3,
-    gemtd_gudaidejixueshi: 3,
-    gemtd_mirendeqingjinshi: 3,
-    gemtd_aijijin: 3,
-    gemtd_hongshanhu: 3,
-    gemtd_feicuimoxiang: 3,
-    gemtd_huaguoshanxiandan: 3,
-    gemtd_tianranzumulv: 3,
-    gemtd_haibao: 3,
-    gemtd_heianfeicui: 2,
-    gemtd_huangcailanbaoshi: 2,
-    gemtd_palayibabixi: 2,
-    gemtd_heisemaoyanshi: 2,
-    gemtd_jin: 2,
-    gemtd_fenhongzuanshi: 2,
-    gemtd_jixueshi: 2,
-    gemtd_you238: 2,
-    gemtd_baiyinqishi: 2,
-    gemtd_xianyandekongqueshi: 2,
-    gemtd_xuehonghuoshan: 2,
-    gemtd_shenhaizhenzhu: 2,
-    gemtd_haiyangqingyu: 2,
-    gemtd_baiyin: 1,
-    gemtd_kongqueshi: 1,
-    gemtd_xingcaihongbaoshi: 1,
-    gemtd_yu: 1,
-    gemtd_furongshi: 1,
-
-    gemtd_youbushiban: 2,
-    gemtd_zhangqishiban: 2,
-    gemtd_hongliushiban: 2,
-    gemtd_haojiaoshiban: 2,
-    gemtd_suanwushiban: 2,
-    gemtd_mabishiban: 2,
-    gemtd_kongheshiban: 2,
-    gemtd_xuwushiban: 2,
-    gemtd_youbushiban_yin: 3,
-    gemtd_zhangqishiban_yin: 3,
-    gemtd_hongliushiban_yin: 3,
-    gemtd_haojiaoshiban_yin: 3,
-    gemtd_suanwushiban_yin: 3,
-    gemtd_mabishiban_yin: 3,
-    gemtd_kongheshiban_yin: 3,
-    gemtd_xuwushiban_yin: 3,
-    gemtd_youbushiban_jin: 4,
-    gemtd_zhangqishiban_jin: 4,
-    gemtd_hongliushiban_jin: 4,
-    gemtd_haojiaoshiban_jin: 4,
-    gemtd_suanwushiban_jin: 4,
-    gemtd_mabishiban_jin: 4,
-    gemtd_kongheshiban_jin: 4,
-    gemtd_xuwushiban_jin: 4,
-
-    item_jingying: 6,
-    item_huichun: 6,
-    item_fog: 6,
-    item_fly: 6,
-    item_aojiao: 6,
-    item_fanbei: 6,
-    item_qianggong: 6,
-
-    item_huabingxie: 6,
-    item_qiongguidun: 6,
-    item_mobang: 6,
-    item_moshuhe: 6,
-}
-var TOWER_LEVEL_COLOR = {
-    6: '#d9534f',
-    0: '#888888',
-    1: '#ffffff',
-    2: '#8888ff',
-    3: '#ff88ff',
-    4: '#ff8800',
-    5: '#ffff00',
-}
+// TOWER_LEVEL / TOWER_LEVEL_COLOR 已移到 data.js（Hud 和 EndScreen 两个 layout 共用）
 
 function preview_effect(x) {
     var goods = STORE_LIST[x].id;
@@ -3167,7 +3190,6 @@ function preview_effect(x) {
     $.Schedule(0.1, function () {
         g_targetDistance = 0;
         g_targetDistance = Math.max(Math.min(g_targetDistance, g_MaxDistance), g_MinDistance);
-        g_camera_angle_target = 50 + (g_targetDistance) / 100;
 
         $.Schedule(5, function () {
             GameUI.SetCameraTarget(-1);
@@ -3615,17 +3637,10 @@ function update_leaderboard() {
                     }
 
                     // $("#lbl_waves"+p+"_"+(r+1)).text = '     lv.'+(rk[r].level-1);
-                    $("#lbl_boss_damage" + p + "_" + (r)).text = rk[r].kill + ' kills';
+                    $("#lbl_boss_damage" + p + "_" + (r)).text = rk[r].kill + '<font color="gray"> kills</font>';
 
                 }
             }
-        }
-        for (var r in aa['data']['race']) {
-            var d = aa['data']['race'][r];
-            $('#avatar0_' + (r) + '_1_race').steamid = d.player_id;
-            $('#lbl_boss_damage0_' + (r) + '_race').text = 'Lv' + (26 - d.race_level);
-            $('#rank_race_img_' + (r)).SetImage('file://{images}/custom_game/rank/race_rank_' + d.race_level + '.png');
-            $('#rank_race_img_' + (r)).SetHasClass('invisible', false);
         }
 
         var season_ttl = ranking_get_all['season_ttl'];

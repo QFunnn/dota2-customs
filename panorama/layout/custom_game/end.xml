@@ -1,0 +1,79 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1a5b3bb 
+  ~ auto-generated — do not edit
+]]
+
+
+<!-- xml reconstructed by Source 2 Viewer 20.1.0.0 - https://valveresourceformat.github.io -->
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/custom_game/gem_board.vcss" />
+		<include src="s2r://panorama/styles/custom_game/window.vcss" />
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+	</styles>
+	<scripts>
+		<include src="s2r://panorama/scripts/custom_game/data.vjs" />
+		<include src="s2r://panorama/scripts/custom_game/end.vjs" />
+	</scripts>
+	<Panel style="width:100%;height:100%;z-index:99999;" hittest="true">
+		<Panel id="panel_end_game" class="" hittest="true">
+			<Panel id="panel_end_game_title" class="ranking_title">
+				<Label id="label_end_game_title" class="text_panel_title" text="" />
+			</Panel>
+			<Panel style="width:100%;height:50px;margin-top:16px;">
+				<Label id="label_beat_percent" text="" style="font-size:26px; color:yellow;font-family:FZLanTingHei-R-GBK;horizontal-align:middle;" />
+			</Panel>
+			<Panel id="end_game_stats_row" style="width:900px;height:100px;background-color:transparent;margin-top:16px;margin-left:40px;margin-right:40px;flow-children:right;">
+				<Panel class="end_game_stat_block end_game_player_block">
+					<Panel id="end_game_avatar_list" class="end_game_avatar_list">
+						<DOTAAvatarImage id="end_game_avatar_1" class="avatar" steamid="" />
+						<DOTAAvatarImage id="end_game_avatar_2" class="avatar" steamid="" />
+						<DOTAAvatarImage id="end_game_avatar_3" class="avatar" steamid="" />
+						<DOTAAvatarImage id="end_game_avatar_4" class="avatar" steamid="" />
+					</Panel>
+				</Panel>
+				<Panel class="end_game_stat_block end_game_level_block">
+					<Label class="end_game_stat_label" text="#end_game_level" />
+					<Label id="label_end_game_subtitle2" class="end_game_stat_value" text="" />
+				</Panel>
+				<Panel class="end_game_stat_block end_game_kill_block">
+					<Label class="end_game_stat_label" text="#end_game_kills" />
+					<Label id="label_end_game_subtitle6" class="end_game_stat_value" text="" />
+				</Panel>
+				<Panel class="end_game_stat_block end_game_time_block">
+					<Label class="end_game_stat_label" text="#end_game_time" />
+					<Label id="label_end_game_subtitle4" class="end_game_stat_value" text="" />
+				</Panel>
+				<Panel class="end_game_stat_block end_game_maze_block">
+					<Label class="end_game_stat_label" text="#txt_maze_length" />
+					<Label id="end_game_maze_length" class="end_game_stat_value" text="0" />
+				</Panel>
+			</Panel>
+			<Panel id="end_game_towers_panel" style="width:900px;height:205px;background-color:#000000;border:1px solid #ffffff18;border-radius:2px;margin-top:16px;margin-left:40px;margin-right:40px;flow-children:down;">
+				<Panel id="end_game_tower_list" style="width:100%;height:160px;flow-children:down;padding-left:10px;padding-right:10px;margin-top:22px;horizontal-align:center;" />
+			</Panel>
+			<Panel id="end_game_exit_btn" class="dota_button" onactivate="Game.FinishGame();" style="width:240px;height:56px;horizontal-align:middle;margin-top:50px;">
+				<Label text="EXIT GAME" class="text_large" style="horizontal-align:middle;vertical-align:middle;" />
+			</Panel>
+		</Panel>
+		<Panel id="panel_award" hittest="true">
+			<Image id="panel_award_bgimg" src="s2r://panorama/images/custom_game/panel_award_bgimg_gem_jpg.vtex" />
+			<Panel id="panel_award_bgimg_zhezhao" />
+			<Panel id="panel_award_title" />
+			<Image id="panel_award_img" src="s2r://panorama/images/custom_game/award_item_driver4_png.vtex" class="invisible" />
+			<Image id="panel_award_img_small" src="" class="invisible" />
+			<DOTAHeroMovie heroimagestyle="portrait" id="panel_award_img_hero" heroname="" class="invisible" />
+			<Label id="panel_award_title_count" text="" />
+			<Label id="panel_award_title_text" text="" />
+			<Label id="panel_award_title_subtitle" text="" />
+			<Label id="panel_award_title_desc" text="" />
+			<Panel id="panel_award_ok" class="confirm_button_no" onactivate="close_panel_award();">
+				<Label id="panel_award_ok_text" text="#award_ok" />
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

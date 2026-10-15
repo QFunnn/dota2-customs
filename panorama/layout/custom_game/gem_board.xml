@@ -8,7 +8,7 @@
 ]]
 
 
-<!-- xml reconstructed by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io -->
+<!-- xml reconstructed by Source 2 Viewer 20.1.0.0 - https://valveresourceformat.github.io -->
 <root>
 	<styles>
 		<include src="s2r://panorama/styles/custom_game/gem_board.vcss" />
@@ -391,22 +391,6 @@
 				</Panel>
 			</Panel>
 		</Panel>
-		<Panel id="panel_end_game" class="" hittest="true">
-			<Panel id="panel_end_game_title" style="background-color:#ff4444;width:1000px;height:80px;margin-top:40px;">
-				<Label id="label_end_game_title" text="" style="horizontal-align:middle;vertical-align:middle; font-size:60px; color:white;font-family:FZLanTingHei-R-GBK;font-weight:bold;" />
-			</Panel>
-			<Panel id="panel_end_game_subtitle" style="background-color:rgba(0,0,0,0.5);width:1000px;height:50px;">
-				<Label id="label_end_game_subtitle" text="#end_game_level" style="font-size:22px; color:gray;font-family:FZLanTingHei-R-GBK;font-weight:bold;width:80px;margin-left:50px;vertical-align:middle;" />
-				<Label id="label_end_game_subtitle2" text="" style="font-size:26px; color:white;font-weight:thin;width:80px;margin-left:130px;vertical-align:middle;" />
-				<Label id="label_end_game_subtitle5" text="#end_game_kills" style="font-size:22px; color:gray;font-family:FZLanTingHei-R-GBK;font-weight:bold;width:80px;margin-left:210px;vertical-align:middle;" />
-				<Label id="label_end_game_subtitle6" text="" style="font-size:26px; color:white;font-weight:thin;width:100px;margin-left:290px;vertical-align:middle;" />
-				<Label id="label_end_game_subtitle3" text="#end_game_time" style="font-size:22px; color:gray;font-family:FZLanTingHei-R-GBK;font-weight:bold;width:80px;margin-left:390px;vertical-align:middle;" />
-				<Label id="label_end_game_subtitle4" text="" style="font-size:26px; color:white;font-weight:thin;width:100px;margin-left:470px;vertical-align:middle;" />
-			</Panel>
-			<Panel style="width:600px;height:50px;margin-top:40px;">
-				<Label id="label_beat_percent" text="" style="font-size:25px; color:yellow;font-family:FZLanTingHei-R-GBK;horizontal-align:middle;" />
-			</Panel>
-		</Panel>
 		<Panel id="award_gemtd" hittest="false">
 			<Label id="congrads1" text="#get_award_gemtd1" hittest="false" style="z-index:2;width:350px;font-size:24px;font-family:FZLanTingHei-R-GBK;font-weight:bold;color:#eeeeee;margin-left:10px;margin-top:25px;text-align:center;" />
 			<Label id="congrads2" text="#get_award_gemtd2" hittest="false" style="z-index:2;font-size:24px;font-family:FZLanTingHei-R-GBK;width:350px;font-weight:bold;color:#4444ff;margin-left:10px;margin-top:125px;text-align:center;" />
@@ -763,7 +747,7 @@
 				<Image id="panel_hero_cards_right_arrow" src="s2r://panorama/images/custom_game/right-arrow_png.vtex" class="img_hero_cards_border_arrow" />
 			</Panel>
 		</Panel>
-		<Panel id="confirm_ggsimida" class="confirm_box" onactivate="" hittest="false">
+		<Panel id="panel_confirm_ggsimida" class="confirm_box" onactivate="" hittest="false">
 			<Panel style="width:400px;height:80px;flow-children:right;">
 				<Label id="text_confirm_ggsimida" text="#text_confirm_ggsimida" class="text_large" style="margin-top:40px;margin-left:0px;" />
 			</Panel>
@@ -914,7 +898,10 @@
 			</Panel>
 		</Panel>
 		<Panel id="map_board" class="gamemap_board" style="">
-			<Label id="map_board_title_text" class="lbl_gameinfo" style="font-size:40px;margin-top:50px;" text="#text_map_board_title" />
+			<Panel class="panel_topbar">
+				<Label id="map_board_title_text" class="text_panel_title" text="#text_map_board_title" />
+				<Image class="panel_close_btn" hittest="true" src="s2r://panorama/images/custom_game/cross_png.vtex" onactivate="open_map_board();" />
+			</Panel>
 			<Panel id="maze_guide_coop" class="maze_guide_panel_all">
 				<Panel class="maze_guide_panel_line">
 					<Panel id="maze_guide_coop_0" class="maze_guide_panel" onactivate="click_maze_guide_panel_coop(0);" />
@@ -1514,10 +1501,11 @@
 			</Panel>
 		</Panel>
 		<Panel id="quest_board" class="quest_board">
-			<Panel style="margin-top:50px;margin-left:40px;flow-children:down;overflow:scroll scroll;">
-				<Panel style="width:100%;height:50px;width:400px;flow-children:right;margin-bottom:15px;">
-					<Label text="#text_myquest" style="margin-left:20px;horizontal-align:left;font-size:40px;color:white;" />
-				</Panel>
+			<Panel class="panel_topbar">
+				<Label class="text_panel_title" text="#text_myquest" />
+				<Image class="panel_close_btn" hittest="true" src="s2r://panorama/images/custom_game/cross_png.vtex" onactivate="open_quest_board();" />
+			</Panel>
+			<Panel style="margin-top:20px;margin-left:40px;flow-children:down;overflow:scroll scroll;">
 				<Panel id="quest_random" class="quest_row" style="flow-children:right;margin-bottom:10px;">
 					<Panel class="item" style="width:75px;height:110px;">
 						<Image id="quest_image_random" src="s2r://panorama/images/custom_game/quest_active_png.vtex" style="horizontal-align:center;vertical-align:center;" />
@@ -1589,20 +1577,24 @@
 			</Panel>
 		</Panel>
 		<Panel id="gameinfo_board" class="gameinfo_board">
-			<Label class="lbl_gameinfo" style="font-size:40px;margin-top:50px;" text="#text_gameinfo_1" />
+			<Panel class="panel_topbar">
+				<Label class="text_panel_title" text="#text_gameinfo_1" />
+				<Image class="panel_close_btn" hittest="true" src="s2r://panorama/images/custom_game/cross_png.vtex" onactivate="open_gameinfo_board();" />
+			</Panel>
 			<Image src="s2r://panorama/images/custom_game/info_board_png.vtex" style="margin:40px;margin-top:30px;" />
 		</Panel>
 		<Panel id="merge_board" class="merge_board">
-			<Panel style="width:100%;height:50px;flow-children:right;margin-bottom:15px;margin-top:50px;margin-left:30px;">
-				<Label text="#text_mycombine" style="margin-left:20px;horizontal-align:left;font-size:40px;color:white;" />
+			<Panel class="merge_title">
+				<Label class="text_panel_title" text="#text_mycombine" />
+				<Image id="merge_close_btn" hittest="true" src="s2r://panorama/images/custom_game/cross_png.vtex" onactivate="open_merge_board();" />
 			</Panel>
-			<Panel style="width:1900px;margin-top:0px;margin-left:40px;flow-children:right;margin-right:0px; overflow: scroll squish;" id="hehehe">
+			<Panel style="width:1840px;margin-top:0px;margin-left:40px;flow-children:right;margin-right:0px; overflow: scroll squish;" id="hehehe">
 				<Panel style="flow-children:down;width:600px;">
-					<Panel style="flow-children:right;margin-bottom:5px;margin-right:15px; margin-top:15px;">
+					<Panel style="flow-children:right;margin-bottom:3px;margin-right:15px; margin-top:8px;">
 						<Panel class="item0 item_combine gemtd_baiyin">
 							<Label class="lbl no gemtd_baiyin" text="#gemtd_baiyin" />
 						</Panel>
-						<Panel class="">
+						<Panel class="item_img_box">
 							<Image id="gemtd_baiyin" class="item_img" src="s2r://panorama/images/custom_game/towers/gemtd_baiyin_png.vtex" onmouseover="OnDrawRightIn(&apos;gemtd_baiyin&apos;)" onmouseout="OnDrawRightOut()" />
 						</Panel>
 						<Panel class="item_space">
@@ -1624,11 +1616,11 @@
 							<Label class="lbl no gemtd_y1" text="Y1" />
 						</Panel>
 					</Panel>
-					<Panel style="flow-children:right;margin-bottom:5px;">
+					<Panel style="flow-children:right;margin-bottom:3px;">
 						<Panel class="item0 item_combine gemtd_baiyinqishi">
 							<Label class="lbl no gemtd_baiyinqishi" text="#gemtd_baiyinqishi" />
 						</Panel>
-						<Panel class="">
+						<Panel class="item_img_box">
 							<Image id="gemtd_baiyinqishi" class="item_img" src="s2r://panorama/images/custom_game/towers/gemtd_baiyinqishi_png.vtex" onmouseover="OnDrawRightIn(&apos;gemtd_baiyinqishi&apos;)" onmouseout="OnDrawRightOut()" />
 						</Panel>
 						<Panel class="item_space">
@@ -1650,11 +1642,11 @@
 							<Label class="lbl no gemtd_r111" text="R3" />
 						</Panel>
 					</Panel>
-					<Panel style="flow-children:right;margin-bottom:5px;">
+					<Panel style="flow-children:right;margin-bottom:3px;">
 						<Panel class="item0 item_combine gemtd_fenhongzuanshi">
 							<Label class="lbl no gemtd_fenhongzuanshi" text="#gemtd_fenhongzuanshi" />
 						</Panel>
-						<Panel class="">
+						<Panel class="item_img_box">
 							<Image id="gemtd_fenhongzuanshi" class="item_img" src="s2r://panorama/images/custom_game/towers/gemtd_fenhongzuanshi_png.vtex" onmouseover="OnDrawRightIn(&apos;gemtd_fenhongzuanshi&apos;)" onmouseout="OnDrawRightOut()" />
 						</Panel>
 						<Panel class="item_space">
@@ -1676,11 +1668,11 @@
 							<Label class="lbl no gemtd_y111" text="Y3" />
 						</Panel>
 					</Panel>
-					<Panel style="flow-children:right;margin-bottom:5px;">
+					<Panel style="flow-children:right;margin-bottom:3px;">
 						<Panel class="item0 item_combine gemtd_juxingfenhongzuanshi">
 							<Label class="lbl no gemtd_juxingfenhongzuanshi" text="#gemtd_juxingfenhongzuanshi" />
 						</Panel>
-						<Panel class="">
+						<Panel class="item_img_box">
 							<Image id="gemtd_juxingfenhongzuanshi" class="item_img" src="s2r://panorama/images/custom_game/towers/gemtd_juxingfenhongzuanshi_png.vtex" onmouseover="OnDrawRightIn(&apos;gemtd_juxingfenhongzuanshi&apos;)" onmouseout="OnDrawRightOut()" />
 						</Panel>
 						<Panel class="item_space">
@@ -1702,11 +1694,11 @@
 							<Label class="lbl no gemtd_baiyin" text="#gemtd_baiyin" />
 						</Panel>
 					</Panel>
-					<Panel style="flow-children:right;margin-bottom:5px;margin-right:15px; margin-top:0px;">
+					<Panel style="flow-children:right;margin-bottom:3px;margin-right:15px; margin-top:0px;">
 						<Panel class="item0 item_combine gemtd_keyinuoerguangmingzhishan">
 							<Label class="lbl no gemtd_keyinuoerguangmingzhishan" text="#gemtd_keyinuoerguangmingzhishan" />
 						</Panel>
-						<Panel class="">
+						<Panel class="item_img_box">
 							<Image id="gemtd_keyinuoerguangmingzhishan" class="item_img" src="s2r://panorama/images/custom_game/towers/gemtd_keyinuoerguangmingzhishan_png.vtex" onmouseover="OnDrawRightIn(&apos;gemtd_keyinuoerguangmingzhishan&apos;)" onmouseout="OnDrawRightOut()" />
 						</Panel>
 						<Panel class="item_space">
@@ -1729,11 +1721,11 @@
 						</Panel>
 					</Panel>
 					<Panel class="panel_split_line" />
-					<Panel style="flow-children:right;margin-bottom:5px;">
+					<Panel style="flow-children:right;margin-bottom:3px;">
 						<Panel class="item0 item_combine gemtd_kongqueshi">
 							<Label class="lbl no gemtd_kongqueshi" text="#gemtd_kongqueshi" />
 						</Panel>
-						<Panel class="">
+						<Panel class="item_img_box">
 							<Image id="gemtd_kongqueshi" class="item_img" src="s2r://panorama/images/custom_game/towers/gemtd_kongqueshi_png.vtex" onmouseover="OnDrawRightIn(&apos;gemtd_kongqueshi&apos;)" onmouseout="OnDrawRightOut()" />
 						</Panel>
 						<Panel class="item_space">
@@ -1755,11 +1747,11 @@
 							<Label class="lbl no gemtd_q1" text="Q1" />
 						</Panel>
 					</Panel>
-					<Panel style="flow-children:right;margin-bottom:5px;">
+					<Panel style="flow-children:right;margin-bottom:3px;">
 						<Panel class="item0 item_combine gemtd_xianyandekongqueshi">
 							<Label class="lbl no gemtd_xianyandekongqueshi" text="#gemtd_xianyandekongqueshi" />
 						</Panel>
-						<Panel class="">
+						<Panel class="item_img_box">
 							<Image id="gemtd_xianyandekongqueshi" class="item_img" src="s2r://panorama/images/custom_game/towers/gemtd_xianyandekongqueshi_png.vtex" onmouseover="OnDrawRightIn(&apos;gemtd_xianyandekongqueshi&apos;)" onmouseout="OnDrawRightOut()" />
 						</Panel>
 						<Panel class="item_space">
@@ -1781,11 +1773,11 @@
 							<Label class="lbl no gemtd_y111" text="Y3" />
 						</Panel>
 					</Panel>
-					<Panel style="flow-children:right;margin-bottom:5px;">
+					<Panel style="flow-children:right;margin-bottom:3px;">
 						<Panel class="item0 item_combine gemtd_you238">
 							<Label class="lbl no gemtd_you238" text="#gemtd_you238" />
 						</Panel>
-						<Panel class="">
+						<Panel class="item_img_box">
 							<Image id="gemtd_you238" class="item_img" src="s2r://panorama/images/custom_game/towers/gemtd_you238_png.vtex" onmouseover="OnDrawRightIn(&apos;gemtd_you238&apos;)" onmouseout="OnDrawRightOut()" />
 						</Panel>
 						<Panel class="item_space">
@@ -1807,11 +1799,11 @@
 							<Label class="lbl no gemtd_e11" text="E2" />
 						</Panel>
 					</Panel>
-					<Panel style="flow-children:right;margin-bottom:5px;">
+					<Panel style="flow-children:right;margin-bottom:3px;">
 						<Panel class="item0 item_combine gemtd_you235">
 							<Label class="lbl no gemtd_you235" text="#gemtd_you235" />
 						</Panel>
-						<Panel class="">
+						<Panel class="item_img_box">
 							<Image id="gemtd_you235" class="item_img" src="s2r://panorama/images/custom_game/towers/gemtd_you235_png.vtex" onmouseover="OnDrawRightIn(&apos;gemtd_you235&apos;)" onmouseout="OnDrawRightOut()" />
 						</Panel>
 						<Panel class="item_space">
@@ -1833,11 +1825,11 @@
 							<Label class="lbl no gemtd_kongqueshi" text="#gemtd_kongqueshi" />
 						</Panel>
 					</Panel>
-					<Panel style="flow-children:right;margin-bottom:5px;margin-right:15px; margin-top:0px;">
+					<Panel style="flow-children:right;margin-bottom:3px;margin-right:15px; margin-top:0px;">
 						<Panel class="item0 item_combine gemtd_shuaibiankaipayou">
 							<Label class="lbl no gemtd_shuaibiankaipayou" text="#gemtd_shuaibiankaipayou" />
 						</Panel>
-						<Panel class="">
+						<Panel class="item_img_box">
 							<Image id="gemtd_shuaibiankaipayou" class="item_img" src="s2r://panorama/images/custom_game/towers/gemtd_shuaibiankaipayou_png.vtex" onmouseover="OnDrawRightIn(&apos;gemtd_shuaibiankaipayou&apos;)" onmouseout="OnDrawRightOut()" />
 						</Panel>
 						<Panel class="item_space">
@@ -1860,11 +1852,11 @@
 						</Panel>
 					</Panel>
 					<Panel class="panel_split_line" />
-					<Panel style="flow-children:right;margin-bottom:5px;">
+					<Panel style="flow-children:right;margin-bottom:3px;">
 						<Panel class="item0 item_combine gemtd_xingcaihongbaoshi">
 							<Label class="lbl no gemtd_xingcaihongbaoshi" text="#gemtd_xingcaihongbaoshi" />
 						</Panel>
-						<Panel class="">
+						<Panel class="item_img_box">
 							<Image id="gemtd_xingcaihongbaoshi" class="item_img" src="s2r://panorama/images/custom_game/towers/gemtd_xingcaihongbaoshi_png.vtex" onmouseover="OnDrawRightIn(&apos;gemtd_xingcaihongbaoshi&apos;)" onmouseout="OnDrawRightOut()" />
 						</Panel>
 						<Panel class="item_space">
@@ -1886,11 +1878,11 @@
 							<Label class="lbl no gemtd_p1" text="P1" />
 						</Panel>
 					</Panel>
-					<Panel style="flow-children:right;margin-bottom:5px;">
+					<Panel style="flow-children:right;margin-bottom:3px;">
 						<Panel class="item0 item_combine gemtd_xuehonghuoshan">
 							<Label class="lbl no gemtd_xuehonghuoshan" text="#gemtd_xuehonghuoshan" />
 						</Panel>
-						<Panel class="">
+						<Panel class="item_img_box">
 							<Image id="gemtd_xuehonghuoshan" class="item_img" src="s2r://panorama/images/custom_game/towers/gemtd_xuehonghuoshan_png.vtex" onmouseover="OnDrawRightIn(&apos;gemtd_xuehonghuoshan&apos;)" onmouseout="OnDrawRightOut()" />
 						</Panel>
 						<Panel class="item_space">
@@ -1912,11 +1904,11 @@
 							<Label class="lbl no gemtd_p111" text="P3" />
 						</Panel>
 					</Panel>
-					<Panel style="flow-children:right;margin-bottom:5px;">
+					<Panel style="flow-children:right;margin-bottom:3px;">
 						<Panel class="item0 item_combine gemtd_jixueshi">
 							<Label class="lbl no gemtd_jixueshi" text="#gemtd_jixueshi" />
 						</Panel>
-						<Panel class="">
+						<Panel class="item_img_box">
 							<Image id="gemtd_jixueshi" class="item_img" src="s2r://panorama/images/custom_game/towers/gemtd_jixueshi_png.vtex" onmouseover="OnDrawRightIn(&apos;gemtd_jixueshi&apos;)" onmouseout="OnDrawRightOut()" />
 						</Panel>
 						<Panel class="item_space">
@@ -1938,11 +1930,11 @@
 							<Label class="lbl no gemtd_p111" text="P3" />
 						</Panel>
 					</Panel>
-					<Panel style="flow-children:right;margin-bottom:5px;">
+					<Panel style="flow-children:right;margin-bottom:3px;">
 						<Panel class="item0 item_combine gemtd_gudaidejixueshi">
 							<Label class="lbl no gemtd_gudaidejixueshi" text="#gemtd_gudaidejixueshi" />
 						</Panel>
-						<Panel class="">
+						<Panel class="item_img_box">
 							<Image id="gemtd_gudaidejixueshi" class="item_img" src="s2r://panorama/images/custom_game/towers/gemtd_gudaidejixueshi_png.vtex" onmouseover="OnDrawRightIn(&apos;gemtd_gudaidejixueshi&apos;)" onmouseout="OnDrawRightOut()" />
 						</Panel>
 						<Panel class="item_space">
@@ -1964,11 +1956,11 @@
 							<Label class="lbl no gemtd_r11" text="R2" />
 						</Panel>
 					</Panel>
-					<Panel style="flow-children:right;margin-bottom:5px;margin-right:15px;">
+					<Panel style="flow-children:right;margin-bottom:3px;margin-right:15px;">
 						<Panel class="item0 item_combine gemtd_heiwangzihuangguanhongbaoshi">
 							<Label class="lbl no gemtd_heiwangzihuangguanhongbaoshi" text="#gemtd_heiwangzihuangguanhongbaoshi" />
 						</Panel>
-						<Panel class="">
+						<Panel class="item_img_box">
 							<Image id="gemtd_heiwangzihuangguanhongbaoshi" class="item_img" src="s2r://panorama/images/custom_game/towers/gemtd_heiwangzihuangguanhongbaoshi_png.vtex" onmouseover="OnDrawRightIn(&apos;gemtd_heiwangzihuangguanhongbaoshi&apos;)" onmouseout="OnDrawRightOut()" />
 						</Panel>
 						<Panel class="item_space">
@@ -1992,11 +1984,11 @@
 					</Panel>
 				</Panel>
 				<Panel style="flow-children:down;width:600px;">
-					<Panel style="flow-children:right;margin-bottom:5px;margin-top:15px;">
+					<Panel style="flow-children:right;margin-bottom:3px;margin-top:8px;">
 						<Panel class="item0 item_combine gemtd_yu">
 							<Label class="lbl no gemtd_yu" text="#gemtd_yu" />
 						</Panel>
-						<Panel class="">
+						<Panel class="item_img_box">
 							<Image id="gemtd_yu" class="item_img" src="s2r://panorama/images/custom_game/towers/gemtd_yu_png.vtex" onmouseover="OnDrawRightIn(&apos;gemtd_yu&apos;)" onmouseout="OnDrawRightOut()" />
 						</Panel>
 						<Panel class="item_space">
@@ -2018,11 +2010,11 @@
 							<Label class="lbl no gemtd_b11" text="B2" />
 						</Panel>
 					</Panel>
-					<Panel style="flow-children:right;margin-bottom:5px;">
+					<Panel style="flow-children:right;margin-bottom:3px;">
 						<Panel class="item0 item_combine gemtd_haiyangqingyu">
 							<Label class="lbl no gemtd_haiyangqingyu" text="#gemtd_haiyangqingyu" />
 						</Panel>
-						<Panel class="">
+						<Panel class="item_img_box">
 							<Image id="gemtd_haiyangqingyu" class="item_img" src="s2r://panorama/images/custom_game/towers/gemtd_haiyangqingyu_png.vtex" onmouseover="OnDrawRightIn(&apos;gemtd_haiyangqingyu&apos;)" onmouseout="OnDrawRightOut()" />
 						</Panel>
 						<Panel class="item_space">
@@ -2044,11 +2036,11 @@
 							<Label class="lbl no gemtd_q111" text="Q3" />
 						</Panel>
 					</Panel>
-					<Panel style="flow-children:right;margin-bottom:5px;">
+					<Panel style="flow-children:right;margin-bottom:3px;">
 						<Panel class="item0 item_combine gemtd_huaguoshanxiandan">
 							<Label class="lbl no gemtd_huaguoshanxiandan" text="#gemtd_huaguoshanxiandan" />
 						</Panel>
-						<Panel class="">
+						<Panel class="item_img_box">
 							<Image id="gemtd_huaguoshanxiandan" class="item_img" src="s2r://panorama/images/custom_game/towers/gemtd_huaguoshanxiandan_png.vtex" onmouseover="OnDrawRightIn(&apos;gemtd_huaguoshanxiandan&apos;)" onmouseout="OnDrawRightOut()" />
 						</Panel>
 						<Panel class="item_space">
@@ -2070,11 +2062,11 @@
 							<Label class="lbl no gemtd_p11" text="P2" />
 						</Panel>
 					</Panel>
-					<Panel style="flow-children:right;margin-bottom:5px;">
+					<Panel style="flow-children:right;margin-bottom:3px;">
 						<Panel class="item0 item_combine gemtd_jingangshikulinan">
 							<Label class="lbl no gemtd_jingangshikulinan" text="#gemtd_jingangshikulinan" />
 						</Panel>
-						<Panel class="">
+						<Panel class="item_img_box">
 							<Image id="gemtd_jingangshikulinan" class="item_img" src="s2r://panorama/images/custom_game/towers/gemtd_jingangshikulinan_png.vtex" onmouseover="OnDrawRightIn(&apos;gemtd_jingangshikulinan&apos;)" onmouseout="OnDrawRightOut()" />
 						</Panel>
 						<Panel class="item_space">
@@ -2097,11 +2089,11 @@
 						</Panel>
 					</Panel>
 					<Panel class="panel_split_line" />
-					<Panel style="flow-children:right;margin-bottom:5px;">
+					<Panel style="flow-children:right;margin-bottom:3px;">
 						<Panel class="item0 item_combine gemtd_furongshi">
 							<Label class="lbl no gemtd_furongshi" text="#gemtd_furongshi" />
 						</Panel>
-						<Panel class="">
+						<Panel class="item_img_box">
 							<Image id="gemtd_furongshi" class="item_img" src="s2r://panorama/images/custom_game/towers/gemtd_furongshi_png.vtex" onmouseover="OnDrawRightIn(&apos;gemtd_furongshi&apos;)" onmouseout="OnDrawRightOut()" />
 						</Panel>
 						<Panel class="item_space">
@@ -2123,11 +2115,11 @@
 							<Label class="lbl no gemtd_p11" text="P2" />
 						</Panel>
 					</Panel>
-					<Panel style="flow-children:right;margin-bottom:5px;">
+					<Panel style="flow-children:right;margin-bottom:3px;">
 						<Panel class="item0 item_combine gemtd_jixiangdezhongguoyu">
 							<Label class="lbl no gemtd_jixiangdezhongguoyu" text="#gemtd_jixiangdezhongguoyu" />
 						</Panel>
-						<Panel class="">
+						<Panel class="item_img_box">
 							<Image id="gemtd_jixiangdezhongguoyu" class="item_img" src="s2r://panorama/images/custom_game/towers/gemtd_jixiangdezhongguoyu_png.vtex" onmouseover="OnDrawRightIn(&apos;gemtd_jixiangdezhongguoyu&apos;)" onmouseout="OnDrawRightOut()" />
 						</Panel>
 						<Panel class="item_space">
@@ -2149,11 +2141,11 @@
 							<Label class="lbl no gemtd_g111" text="G3" />
 						</Panel>
 					</Panel>
-					<Panel style="flow-children:right;margin-bottom:5px;">
+					<Panel style="flow-children:right;margin-bottom:3px;">
 						<Panel class="item0 item_combine gemtd_mirendeqingjinshi">
 							<Label class="lbl no gemtd_mirendeqingjinshi" text="#gemtd_mirendeqingjinshi" />
 						</Panel>
-						<Panel class="">
+						<Panel class="item_img_box">
 							<Image id="gemtd_mirendeqingjinshi" class="item_img" src="s2r://panorama/images/custom_game/towers/gemtd_mirendeqingjinshi_png.vtex" onmouseover="OnDrawRightIn(&apos;gemtd_mirendeqingjinshi&apos;)" onmouseout="OnDrawRightOut()" />
 						</Panel>
 						<Panel class="item_space">
@@ -2175,11 +2167,11 @@
 							<Label class="lbl no gemtd_y11" text="Y2" />
 						</Panel>
 					</Panel>
-					<Panel style="flow-children:right;margin-bottom:5px;">
+					<Panel style="flow-children:right;margin-bottom:3px;">
 						<Panel class="item0 item_combine gemtd_huguoshenyishi">
 							<Label class="lbl no gemtd_huguoshenyishi" text="#gemtd_huguoshenyishi" />
 						</Panel>
-						<Panel class="">
+						<Panel class="item_img_box">
 							<Image id="gemtd_huguoshenyishi" class="item_img" src="s2r://panorama/images/custom_game/towers/gemtd_huguoshenyishi_png.vtex" onmouseover="OnDrawRightIn(&apos;gemtd_huguoshenyishi&apos;)" onmouseout="OnDrawRightOut()" />
 						</Panel>
 						<Panel class="item_space">
@@ -2202,11 +2194,11 @@
 						</Panel>
 					</Panel>
 					<Panel class="panel_split_line" />
-					<Panel style="flow-children:right;margin-bottom:5px;">
+					<Panel style="flow-children:right;margin-bottom:3px;">
 						<Panel class="item0 item_combine gemtd_jin">
 							<Label class="lbl no gemtd_jin" text="#gemtd_jin" />
 						</Panel>
-						<Panel class="">
+						<Panel class="item_img_box">
 							<Image id="gemtd_jin" class="item_img" src="s2r://panorama/images/custom_game/towers/gemtd_jin_png.vtex" onmouseover="OnDrawRightIn(&apos;gemtd_jin&apos;)" onmouseout="OnDrawRightOut()" />
 						</Panel>
 						<Panel class="item_space">
@@ -2228,11 +2220,11 @@
 							<Label class="lbl no gemtd_d11" text="D2" />
 						</Panel>
 					</Panel>
-					<Panel style="flow-children:right;margin-bottom:5px;">
+					<Panel style="flow-children:right;margin-bottom:3px;">
 						<Panel class="item0 item_combine gemtd_aijijin">
 							<Label class="lbl no gemtd_aijijin" text="#gemtd_aijijin" />
 						</Panel>
-						<Panel class="">
+						<Panel class="item_img_box">
 							<Image id="gemtd_aijijin" class="item_img" src="s2r://panorama/images/custom_game/towers/gemtd_aijijin_png.vtex" onmouseover="OnDrawRightIn(&apos;gemtd_aijijin&apos;)" onmouseout="OnDrawRightOut()" />
 						</Panel>
 						<Panel class="item_space">
@@ -2254,11 +2246,11 @@
 							<Label class="lbl no gemtd_q11" text="Q2" />
 						</Panel>
 					</Panel>
-					<Panel style="flow-children:right;margin-bottom:5px;">
+					<Panel style="flow-children:right;margin-bottom:3px;">
 						<Panel class="item0 item_combine gemtd_heianfeicui">
 							<Label class="lbl no gemtd_heianfeicui" text="#gemtd_heianfeicui" />
 						</Panel>
-						<Panel class="">
+						<Panel class="item_img_box">
 							<Image id="gemtd_heianfeicui" class="item_img" src="s2r://panorama/images/custom_game/towers/gemtd_heianfeicui_png.vtex" onmouseover="OnDrawRightIn(&apos;gemtd_heianfeicui&apos;)" onmouseout="OnDrawRightOut()" />
 						</Panel>
 						<Panel class="item_space">
@@ -2280,11 +2272,11 @@
 							<Label class="lbl no gemtd_y11" text="Y2" />
 						</Panel>
 					</Panel>
-					<Panel style="flow-children:right;margin-bottom:5px;">
+					<Panel style="flow-children:right;margin-bottom:3px;">
 						<Panel class="item0 item_combine gemtd_feicuimoxiang">
 							<Label class="lbl no gemtd_feicuimoxiang" text="#gemtd_feicuimoxiang" />
 						</Panel>
-						<Panel class="">
+						<Panel class="item_img_box">
 							<Image id="gemtd_feicuimoxiang" class="item_img" src="s2r://panorama/images/custom_game/towers/gemtd_feicuimoxiang_png.vtex" onmouseover="OnDrawRightIn(&apos;gemtd_feicuimoxiang&apos;)" onmouseout="OnDrawRightOut()" />
 						</Panel>
 						<Panel class="item_space">
@@ -2306,11 +2298,11 @@
 							<Label class="lbl no gemtd_d111" text="D3" />
 						</Panel>
 					</Panel>
-					<Panel style="flow-children:right;margin-bottom:5px;">
+					<Panel style="flow-children:right;margin-bottom:3px;">
 						<Panel class="item0 item_combine gemtd_palayibabixi">
 							<Label class="lbl no gemtd_palayibabixi" text="#gemtd_palayibabixi" />
 						</Panel>
-						<Panel class="">
+						<Panel class="item_img_box">
 							<Image id="gemtd_palayibabixi" class="item_img" src="s2r://panorama/images/custom_game/towers/gemtd_palayibabixi_png.vtex" onmouseover="OnDrawRightIn(&apos;gemtd_palayibabixi&apos;)" onmouseout="OnDrawRightOut()" />
 						</Panel>
 						<Panel class="item_space">
@@ -2332,11 +2324,11 @@
 							<Label class="lbl no gemtd_g11" text="G2" />
 						</Panel>
 					</Panel>
-					<Panel style="flow-children:right;margin-bottom:5px;">
+					<Panel style="flow-children:right;margin-bottom:3px;">
 						<Panel class="item0 item_combine gemtd_jingxindiaozhuodepalayibabixi">
 							<Label class="lbl no gemtd_jingxindiaozhuodepalayibabixi" text="#gemtd_jingxindiaozhuodepalayibabixi" />
 						</Panel>
-						<Panel class="">
+						<Panel class="item_img_box">
 							<Image id="gemtd_jingxindiaozhuodepalayibabixi" class="item_img" src="s2r://panorama/images/custom_game/towers/gemtd_jingxindiaozhuodepalayibabixi_png.vtex" onmouseover="OnDrawRightIn(&apos;gemtd_jingxindiaozhuodepalayibabixi&apos;)" onmouseout="OnDrawRightOut()" />
 						</Panel>
 						<Panel class="item_space">
@@ -2358,11 +2350,11 @@
 							<Label class="lbl no gemtd_g11" text="G2" />
 						</Panel>
 					</Panel>
-					<Panel style="flow-children:right;margin-bottom:5px;">
+					<Panel style="flow-children:right;margin-bottom:3px;">
 						<Panel class="item0 item_combine gemtd_sililankazhixing">
 							<Label class="lbl no gemtd_sililankazhixing" text="#gemtd_sililankazhixing" />
 						</Panel>
-						<Panel class="">
+						<Panel class="item_img_box">
 							<Image id="gemtd_sililankazhixing" class="item_img" src="s2r://panorama/images/custom_game/towers/gemtd_sililankazhixing_png.vtex" onmouseover="OnDrawRightIn(&apos;gemtd_sililankazhixing&apos;)" onmouseout="OnDrawRightOut()" />
 						</Panel>
 						<Panel class="item_space">
@@ -2386,11 +2378,11 @@
 					</Panel>
 				</Panel>
 				<Panel style="flow-children:down;width:600px;">
-					<Panel style="flow-children:right;margin-bottom:5px;margin-top:15px;">
+					<Panel style="flow-children:right;margin-bottom:3px;margin-top:8px;">
 						<Panel class="item0 item_combine gemtd_shenhaizhenzhu">
 							<Label class="lbl no gemtd_shenhaizhenzhu" text="#gemtd_shenhaizhenzhu" />
 						</Panel>
-						<Panel class="">
+						<Panel class="item_img_box">
 							<Image id="gemtd_shenhaizhenzhu" class="item_img" src="s2r://panorama/images/custom_game/towers/gemtd_shenhaizhenzhu_png.vtex" onmouseover="OnDrawRightIn(&apos;gemtd_shenhaizhenzhu&apos;)" onmouseout="OnDrawRightOut()" />
 						</Panel>
 						<Panel class="item_space">
@@ -2412,11 +2404,11 @@
 							<Label class="lbl no gemtd_e11" text="E2" />
 						</Panel>
 					</Panel>
-					<Panel style="flow-children:right;margin-bottom:5px;">
+					<Panel style="flow-children:right;margin-bottom:3px;">
 						<Panel class="item0 item_combine gemtd_heisemaoyanshi">
 							<Label class="lbl no gemtd_heisemaoyanshi" text="#gemtd_heisemaoyanshi" />
 						</Panel>
-						<Panel class="">
+						<Panel class="item_img_box">
 							<Image id="gemtd_heisemaoyanshi" class="item_img" src="s2r://panorama/images/custom_game/towers/gemtd_heisemaoyanshi_png.vtex" onmouseover="OnDrawRightIn(&apos;gemtd_heisemaoyanshi&apos;)" onmouseout="OnDrawRightOut()" />
 						</Panel>
 						<Panel class="item_space">
@@ -2438,11 +2430,11 @@
 							<Label class="lbl no gemtd_q111" text="Q3" />
 						</Panel>
 					</Panel>
-					<Panel style="flow-children:right;margin-bottom:5px;margin-right:15px; margin-top:0px;">
+					<Panel style="flow-children:right;margin-bottom:3px;margin-right:15px; margin-top:0px;">
 						<Panel class="item0 item_combine gemtd_tianranzumulv">
 							<Label class="lbl no gemtd_tianranzumulv" text="#gemtd_tianranzumulv" />
 						</Panel>
-						<Panel class="">
+						<Panel class="item_img_box">
 							<Image id="gemtd_tianranzumulv" class="item_img" src="s2r://panorama/images/custom_game/towers/gemtd_tianranzumulv_png.vtex" onmouseover="OnDrawRightIn(&apos;gemtd_tianranzumulv&apos;)" onmouseout="OnDrawRightOut()" />
 						</Panel>
 						<Panel class="item_space">
@@ -2464,11 +2456,11 @@
 							<Label class="lbl no gemtd_d111" text="D3" />
 						</Panel>
 					</Panel>
-					<Panel style="flow-children:right;margin-bottom:5px;">
+					<Panel style="flow-children:right;margin-bottom:3px;">
 						<Panel class="item0 item_combine gemtd_hongshanhu">
 							<Label class="lbl no gemtd_hongshanhu" text="#gemtd_hongshanhu" />
 						</Panel>
-						<Panel class="">
+						<Panel class="item_img_box">
 							<Image id="gemtd_hongshanhu" class="item_img" src="s2r://panorama/images/custom_game/towers/gemtd_hongshanhu_png.vtex" onmouseover="OnDrawRightIn(&apos;gemtd_hongshanhu&apos;)" onmouseout="OnDrawRightOut()" />
 						</Panel>
 						<Panel class="item_space">
@@ -2490,11 +2482,11 @@
 							<Label class="lbl no gemtd_e1111" text="E4" />
 						</Panel>
 					</Panel>
-					<Panel style="flow-children:right;margin-bottom:5px;">
+					<Panel style="flow-children:right;margin-bottom:3px;">
 						<Panel class="item0 item_combine gemtd_yijiazhishi">
 							<Label class="lbl no gemtd_yijiazhishi" text="#gemtd_yijiazhishi" />
 						</Panel>
-						<Panel class="">
+						<Panel class="item_img_box">
 							<Image id="gemtd_yijiazhishi" class="item_img" src="s2r://panorama/images/custom_game/towers/gemtd_yijiazhishi_png.vtex" onmouseover="OnDrawRightIn(&apos;gemtd_yijiazhishi&apos;)" onmouseout="OnDrawRightOut()" />
 						</Panel>
 						<Panel class="item_space">
@@ -2517,11 +2509,11 @@
 						</Panel>
 					</Panel>
 					<Panel class="panel_split_line" />
-					<Panel style="flow-children:right;margin-bottom:5px;margin-right:15px; margin-top:0px;">
+					<Panel style="flow-children:right;margin-bottom:3px;margin-right:15px; margin-top:0px;">
 						<Panel class="item0 item_combine gemtd_huangcailanbaoshi">
 							<Label class="lbl no gemtd_huangcailanbaoshi" text="#gemtd_huangcailanbaoshi" />
 						</Panel>
-						<Panel class="">
+						<Panel class="item_img_box">
 							<Image id="gemtd_huangcailanbaoshi" class="item_img" src="s2r://panorama/images/custom_game/towers/gemtd_huangcailanbaoshi_png.vtex" onmouseover="OnDrawRightIn(&apos;gemtd_huangcailanbaoshi&apos;)" onmouseout="OnDrawRightOut()" />
 						</Panel>
 						<Panel class="item_space">
@@ -2543,11 +2535,11 @@
 							<Label class="lbl no gemtd_r1111" text="R4" />
 						</Panel>
 					</Panel>
-					<Panel style="flow-children:right;margin-bottom:5px;margin-right:15px; margin-top:0px;">
+					<Panel style="flow-children:right;margin-bottom:3px;margin-right:15px; margin-top:0px;">
 						<Panel class="item0 item_combine gemtd_haibao">
 							<Label class="lbl no gemtd_haibao" text="#gemtd_haibao" />
 						</Panel>
-						<Panel class="">
+						<Panel class="item_img_box">
 							<Image id="gemtd_haibao" class="item_img" src="s2r://panorama/images/custom_game/towers/gemtd_haibao_png.vtex" onmouseover="OnDrawRightIn(&apos;gemtd_haibao&apos;)" onmouseout="OnDrawRightOut()" />
 						</Panel>
 						<Panel class="item_space">
@@ -2569,11 +2561,11 @@
 							<Label class="lbl no gemtd_b11111" text="B5" />
 						</Panel>
 					</Panel>
-					<Panel style="flow-children:right;margin-bottom:5px;margin-right:15px; margin-top:0px;">
+					<Panel style="flow-children:right;margin-bottom:3px;margin-right:15px; margin-top:0px;">
 						<Panel class="item0 item_combine gemtd_xingguanglanbaoshi">
 							<Label class="lbl no gemtd_xingguanglanbaoshi" text="#gemtd_xingguanglanbaoshi" />
 						</Panel>
-						<Panel class="">
+						<Panel class="item_img_box">
 							<Image id="gemtd_xingguanglanbaoshi" class="item_img" src="s2r://panorama/images/custom_game/towers/gemtd_xingguanglanbaoshi_png.vtex" onmouseover="OnDrawRightIn(&apos;gemtd_xingguanglanbaoshi&apos;)" onmouseout="OnDrawRightOut()" />
 						</Panel>
 						<Panel class="item_space">
@@ -2596,7 +2588,7 @@
 						</Panel>
 					</Panel>
 					<Panel class="panel_split_line" />
-					<Panel style="flow-children:right;margin-bottom:5px;margin-right:15px; margin-top:0px;" class="panel_shiban">
+					<Panel style="flow-children:right;margin-bottom:3px;margin-right:15px; margin-top:0px;" class="panel_shiban">
 						<Panel class="item0 item_combine gemtd_youbushiban gemtd_youbushiban_yin gemtd_youbushiban_jin">
 							<Label class="lbl no gemtd_youbushiban gemtd_youbushiban_yin gemtd_youbushiban_jin" text="#gemtd_youbushiban" />
 						</Panel>
@@ -2618,7 +2610,7 @@
 							<Label class="lbl no gemtd_d11  only_1turn" text="D2" />
 						</Panel>
 					</Panel>
-					<Panel style="flow-children:right;margin-bottom:5px;" class="panel_shiban">
+					<Panel style="flow-children:right;margin-bottom:3px;" class="panel_shiban">
 						<Panel class="item0 item_combine gemtd_zhangqishiban gemtd_zhangqishiban_yin gemtd_zhangqishiban_jin">
 							<Label class="lbl no gemtd_zhangqishiban gemtd_zhangqishiban_yin gemtd_zhangqishiban_jin" text="#gemtd_zhangqishiban" />
 						</Panel>
@@ -2640,7 +2632,7 @@
 							<Label class="lbl no gemtd_e11  only_1turn" text="E2" />
 						</Panel>
 					</Panel>
-					<Panel style="flow-children:right;margin-bottom:5px;" class="panel_shiban">
+					<Panel style="flow-children:right;margin-bottom:3px;" class="panel_shiban">
 						<Panel class="item0 item_combine gemtd_hongliushiban gemtd_hongliushiban_yin gemtd_hongliushiban_jin">
 							<Label class="lbl no gemtd_hongliushiban gemtd_hongliushiban_yin gemtd_hongliushiban_jin" text="#gemtd_hongliushiban" />
 						</Panel>
@@ -2662,7 +2654,7 @@
 							<Label class="lbl no gemtd_q11  only_1turn" text="Q2" />
 						</Panel>
 					</Panel>
-					<Panel style="flow-children:right;margin-bottom:5px;" class="panel_shiban">
+					<Panel style="flow-children:right;margin-bottom:3px;" class="panel_shiban">
 						<Panel class="item0 item_combine gemtd_haojiaoshiban gemtd_haojiaoshiban_yin gemtd_haojiaoshiban_jin">
 							<Label class="lbl no gemtd_haojiaoshiban gemtd_haojiaoshiban_yin gemtd_haojiaoshiban_jin" text="#gemtd_haojiaoshiban" />
 						</Panel>
@@ -2684,7 +2676,7 @@
 							<Label class="lbl no gemtd_r11  only_1turn" text="R2" />
 						</Panel>
 					</Panel>
-					<Panel style="flow-children:right;margin-bottom:5px;" class="panel_shiban">
+					<Panel style="flow-children:right;margin-bottom:3px;" class="panel_shiban">
 						<Panel class="item0 item_combine gemtd_suanwushiban gemtd_suanwushiban_yin gemtd_suanwushiban_jin">
 							<Label class="lbl no gemtd_suanwushiban gemtd_suanwushiban_yin gemtd_suanwushiban_jin" text="#gemtd_suanwushiban" />
 						</Panel>
@@ -2706,7 +2698,7 @@
 							<Label class="lbl no gemtd_y11  only_1turn" text="Y2" />
 						</Panel>
 					</Panel>
-					<Panel style="flow-children:right;margin-bottom:5px;" class="panel_shiban">
+					<Panel style="flow-children:right;margin-bottom:3px;" class="panel_shiban">
 						<Panel class="item0 item_combine gemtd_mabishiban gemtd_mabishiban_yin gemtd_mabishiban_jin">
 							<Label class="lbl no gemtd_mabishiban gemtd_mabishiban_yin gemtd_mabishiban_jin" text="#gemtd_mabishiban" />
 						</Panel>
@@ -2728,7 +2720,7 @@
 							<Label class="lbl no gemtd_g11  only_1turn" text="G2" />
 						</Panel>
 					</Panel>
-					<Panel style="flow-children:right;margin-bottom:5px;" class="panel_shiban">
+					<Panel style="flow-children:right;margin-bottom:3px;" class="panel_shiban">
 						<Panel class="item0 item_combine gemtd_kongheshiban gemtd_kongheshiban_yin gemtd_kongheshiban_jin">
 							<Label class="lbl no gemtd_kongheshiban gemtd_kongheshiban_yin gemtd_kongheshiban_jin " text="#gemtd_kongheshiban" />
 						</Panel>
@@ -2750,7 +2742,7 @@
 							<Label class="lbl no gemtd_p11  only_1turn" text="P2" />
 						</Panel>
 					</Panel>
-					<Panel style="flow-children:right;margin-bottom:5px;" class="panel_shiban">
+					<Panel style="flow-children:right;margin-bottom:3px;" class="panel_shiban">
 						<Panel class="item0 item_combine gemtd_xuwushiban gemtd_xuwushiban_yin gemtd_xuwushiban_jin">
 							<Label class="lbl no gemtd_xuwushiban gemtd_xuwushiban_yin gemtd_xuwushiban_jin" text="#gemtd_xuwushiban" />
 						</Panel>
@@ -2776,8 +2768,8 @@
 			</Panel>
 		</Panel>
 		<Panel id="ranking_board" class="ranking_board">
-			<Panel style="margin-top:50px;margin-left:40px;flow-children:down;overflow:scroll scroll;">
-				<Panel style="width:100%;height:80px;flow-children:right;margin-bottom:0px;">
+			<Panel style="width:100%;height:100%;flow-children:down;overflow:scroll scroll;">
+				<Panel class="ranking_title">
 					<Label id="title_leaderboard" text="#text_leaderboard" />
 					<Panel id="panel_leaderboard_award">
 						<Panel id="panel_season_ttl">
@@ -2801,31 +2793,29 @@
 							</Panel>
 						</Panel>
 					</Panel>
+					<Image id="ranking_close_btn" hittest="true" src="s2r://panorama/images/custom_game/cross_png.vtex" onactivate="open_ranking_board();" />
 				</Panel>
-				<Panel style="flow-children:right;margin-top:20px;margin-bottom:10px;">
-					<Panel class="" style="width:85px;margin-right:10px;">
-						<Label class="lbl middle large_text" text="#txt_rank" style="color:#666;" />
+				<Panel style="flow-children:right;margin-top:20px;margin-bottom:10px;margin-left:40px;">
+					<Panel class="" style="width:85px;margin-right:44px;">
+						<Label class="lbl middle large_text" text="#txt_rank" style="color:gray;" />
 					</Panel>
-					<Panel class="" style="width:195px;margin-right:10px;flow-children: right;">
-						<Label class="lbl middle large_text" text="#txt_friend_rank" style="color:#666;" />
+					<Panel class="" style="width:195px;margin-right:44px;flow-children: right;">
+						<Label class="lbl middle large_text" text="#txt_friend_rank" style="color:gray;" />
 					</Panel>
-					<Panel class="" style="width:195px;margin-right:10px;flow-children: right;">
-						<Label class="lbl middle large_text" text="#txt_game_mode_gemtd_race" style="color:#666;" />
+					<Panel class="" style="width:195px;margin-right:44px;flow-children: right;">
+						<Label class="lbl middle large_text" text="#txt_game_mode_gemtd_coop_1" style="color:gray;" />
 					</Panel>
-					<Panel class="" style="width:195px;margin-right:10px;flow-children: right;">
-						<Label class="lbl middle large_text" text="#txt_game_mode_gemtd_coop_1" style="color:#666;" />
+					<Panel class="" style="width:270px;margin-right:44px;flow-children: right;">
+						<Label class="lbl middle large_text" text="#txt_game_mode_gemtd_coop_2" style="color:gray;" />
 					</Panel>
-					<Panel class="" style="width:270px;margin-right:10px;flow-children: right;">
-						<Label class="lbl middle large_text" text="#txt_game_mode_gemtd_coop_2" style="color:#666;" />
-					</Panel>
-					<Panel class="" style="width:345px;margin-right:10px;flow-children: right;">
-						<Label class="lbl middle large_text" text="#txt_game_mode_gemtd_coop_3" style="color:#666;" />
+					<Panel class="" style="width:345px;margin-right:44px;flow-children: right;">
+						<Label class="lbl middle large_text" text="#txt_game_mode_gemtd_coop_3" style="color:gray;" />
 					</Panel>
 					<Panel class="" style="width:420px;flow-children: right;">
-						<Label class="lbl middle large_text" text="#txt_game_mode_gemtd_coop_4" style="color:#666;" />
+						<Label class="lbl middle large_text" text="#txt_game_mode_gemtd_coop_4" style="color:gray;" />
 					</Panel>
 				</Panel>
-				<Panel style="flow-children:right;margin-bottom:5px;">
+				<Panel style="flow-children:right;margin-bottom:8px;margin-left:40px;">
 					<Panel class="item" style="width:85px;">
 						<Image src="s2r://panorama/images/custom_game/driver3_png.vtex" style="horizontal-align:center;vertical-align:center;" />
 					</Panel>
@@ -2845,22 +2835,10 @@
 						<Label class="lbl no" text=" " />
 					</Panel>
 					<Panel class="item_long" style="width:75px;flow-children: right;">
-						<DOTAAvatarImage class="avatar" id="avatar0_1_1_race" steamid="" />
-					</Panel>
-					<Panel class="item" style="width:50px;flow-children:right;">
-						<Image id="rank_race_img_1" src="s2r://panorama/images/custom_game/rank/race_rank_0_png.vtex" class="invisible" style="width:45px;height:45px;vertical-align:center;horizontal-align:right;" />
-					</Panel>
-					<Panel class="item" style="width:70px;flow-children:right;">
-						<Label class="lbl middle large_text" style="horizontal-align:left;margin-left:5px;" id="lbl_boss_damage0_1_race" text="" />
-					</Panel>
-					<Panel class="item_space">
-						<Label class="lbl no" text=" " />
-					</Panel>
-					<Panel class="item_long" style="width:75px;flow-children: right;">
 						<DOTAAvatarImage class="avatar" id="avatar1_1_1" steamid="" />
 					</Panel>
 					<Panel class="item" style="width:120px;">
-						<Label class="lbl middle large_text" id="lbl_boss_damage1_1" onmouseover="OnRankKillsIn(1,1)" onmouseout="OnRankKillsOut()" text="" />
+						<Label class="lbl middle large_text" id="lbl_boss_damage1_1" onmouseover="OnRankKillsIn(1,1)" onmouseout="OnRankKillsOut()" text="" html="true" />
 					</Panel>
 					<Panel class="item_space">
 						<Label class="lbl no" text=" " />
@@ -2870,7 +2848,7 @@
 						<DOTAAvatarImage class="avatar" id="avatar2_1_2" steamid="" />
 					</Panel>
 					<Panel class="item" style="width:120px;">
-						<Label class="lbl middle large_text" id="lbl_boss_damage2_1" onmouseover="OnRankKillsIn(2,1)" onmouseout="OnRankKillsOut()" text="" />
+						<Label class="lbl middle large_text" id="lbl_boss_damage2_1" onmouseover="OnRankKillsIn(2,1)" onmouseout="OnRankKillsOut()" text="" html="true" />
 					</Panel>
 					<Panel class="item_space">
 						<Label class="lbl no" text=" " />
@@ -2881,7 +2859,7 @@
 						<DOTAAvatarImage class="avatar" id="avatar3_1_3" steamid="" />
 					</Panel>
 					<Panel class="item" style="width:120px;">
-						<Label class="lbl middle large_text" id="lbl_boss_damage3_1" onmouseover="OnRankKillsIn(3,1)" onmouseout="OnRankKillsOut()" text="" />
+						<Label class="lbl middle large_text" id="lbl_boss_damage3_1" onmouseover="OnRankKillsIn(3,1)" onmouseout="OnRankKillsOut()" text="" html="true" />
 					</Panel>
 					<Panel class="item_space">
 						<Label class="lbl no" text=" " />
@@ -2893,10 +2871,10 @@
 						<DOTAAvatarImage class="avatar" id="avatar4_1_4" steamid="" />
 					</Panel>
 					<Panel class="item" style="width:120px;">
-						<Label class="lbl middle large_text" id="lbl_boss_damage4_1" onmouseover="OnRankKillsIn(4,1)" onmouseout="OnRankKillsOut()" text="" />
+						<Label class="lbl middle large_text" id="lbl_boss_damage4_1" onmouseover="OnRankKillsIn(4,1)" onmouseout="OnRankKillsOut()" text="" html="true" />
 					</Panel>
 				</Panel>
-				<Panel style="flow-children:right;margin-bottom:5px;">
+				<Panel style="flow-children:right;margin-bottom:8px;margin-left:40px;">
 					<Panel class="item" style="width:85px;">
 						<Image src="s2r://panorama/images/custom_game/driver2_png.vtex" style="horizontal-align:center;vertical-align:center;" />
 					</Panel>
@@ -2916,22 +2894,10 @@
 						<Label class="lbl no" text=" " />
 					</Panel>
 					<Panel class="item_long" style="width:75px;flow-children: right;">
-						<DOTAAvatarImage class="avatar" id="avatar0_2_1_race" steamid="" />
-					</Panel>
-					<Panel class="item" style="width:50px;flow-children:right;">
-						<Image id="rank_race_img_2" src="s2r://panorama/images/custom_game/rank/race_rank_0_png.vtex" class="invisible" style="width:45px;height:45px;vertical-align:center;horizontal-align:right;" />
-					</Panel>
-					<Panel class="item" style="width:70px;flow-children:right;">
-						<Label class="lbl middle large_text" style="horizontal-align:left;margin-left:5px;" id="lbl_boss_damage0_2_race" text="" />
-					</Panel>
-					<Panel class="item_space">
-						<Label class="lbl no" text=" " />
-					</Panel>
-					<Panel class="item_long" style="width:75px;flow-children: right;">
 						<DOTAAvatarImage class="avatar" id="avatar1_2_1" steamid="" />
 					</Panel>
 					<Panel class="item" style="width:120px;">
-						<Label class="lbl middle large_text" id="lbl_boss_damage1_2" onmouseover="OnRankKillsIn(1,2)" onmouseout="OnRankKillsOut()" text="" />
+						<Label class="lbl middle large_text" id="lbl_boss_damage1_2" onmouseover="OnRankKillsIn(1,2)" onmouseout="OnRankKillsOut()" text="" html="true" />
 					</Panel>
 					<Panel class="item_space">
 						<Label class="lbl no" text=" " />
@@ -2941,7 +2907,7 @@
 						<DOTAAvatarImage class="avatar" id="avatar2_2_2" steamid="" />
 					</Panel>
 					<Panel class="item" style="width:120px;">
-						<Label class="lbl middle large_text" id="lbl_boss_damage2_2" onmouseover="OnRankKillsIn(2,2)" onmouseout="OnRankKillsOut()" text="" />
+						<Label class="lbl middle large_text" id="lbl_boss_damage2_2" onmouseover="OnRankKillsIn(2,2)" onmouseout="OnRankKillsOut()" text="" html="true" />
 					</Panel>
 					<Panel class="item_space">
 						<Label class="lbl no" text=" " />
@@ -2952,7 +2918,7 @@
 						<DOTAAvatarImage class="avatar" id="avatar3_2_3" steamid="" />
 					</Panel>
 					<Panel class="item" style="width:120px;">
-						<Label class="lbl middle large_text" id="lbl_boss_damage3_2" onmouseover="OnRankKillsIn(3,2)" onmouseout="OnRankKillsOut()" text="" />
+						<Label class="lbl middle large_text" id="lbl_boss_damage3_2" onmouseover="OnRankKillsIn(3,2)" onmouseout="OnRankKillsOut()" text="" html="true" />
 					</Panel>
 					<Panel class="item_space">
 						<Label class="lbl no" text=" " />
@@ -2964,10 +2930,10 @@
 						<DOTAAvatarImage class="avatar" id="avatar4_2_4" steamid="" />
 					</Panel>
 					<Panel class="item" style="width:120px;">
-						<Label class="lbl middle large_text" id="lbl_boss_damage4_2" onmouseover="OnRankKillsIn(4,2)" onmouseout="OnRankKillsOut()" text="" />
+						<Label class="lbl middle large_text" id="lbl_boss_damage4_2" onmouseover="OnRankKillsIn(4,2)" onmouseout="OnRankKillsOut()" text="" html="true" />
 					</Panel>
 				</Panel>
-				<Panel style="flow-children:right;margin-bottom:5px;">
+				<Panel style="flow-children:right;margin-bottom:8px;margin-left:40px;">
 					<Panel class="item" style="width:85px;">
 						<Image src="s2r://panorama/images/custom_game/driver1_png.vtex" style="horizontal-align:center;vertical-align:center;" />
 					</Panel>
@@ -2987,22 +2953,10 @@
 						<Label class="lbl no" text=" " />
 					</Panel>
 					<Panel class="item_long" style="width:75px;flow-children: right;">
-						<DOTAAvatarImage class="avatar" id="avatar0_3_1_race" steamid="" />
-					</Panel>
-					<Panel class="item" style="width:50px;flow-children:right;">
-						<Image id="rank_race_img_3" src="s2r://panorama/images/custom_game/rank/race_rank_0_png.vtex" class="invisible" style="width:45px;height:45px;vertical-align:center;horizontal-align:right;" />
-					</Panel>
-					<Panel class="item" style="width:70px;flow-children:right;">
-						<Label class="lbl middle large_text" style="horizontal-align:left;margin-left:5px;" id="lbl_boss_damage0_3_race" text="" />
-					</Panel>
-					<Panel class="item_space">
-						<Label class="lbl no" text=" " />
-					</Panel>
-					<Panel class="item_long" style="width:75px;flow-children: right;">
 						<DOTAAvatarImage class="avatar" id="avatar1_3_1" steamid="" />
 					</Panel>
 					<Panel class="item" style="width:120px;">
-						<Label class="lbl middle large_text" id="lbl_boss_damage1_3" onmouseover="OnRankKillsIn(1,3)" onmouseout="OnRankKillsOut()" text="" />
+						<Label class="lbl middle large_text" id="lbl_boss_damage1_3" onmouseover="OnRankKillsIn(1,3)" onmouseout="OnRankKillsOut()" text="" html="true" />
 					</Panel>
 					<Panel class="item_space">
 						<Label class="lbl no" text=" " />
@@ -3012,7 +2966,7 @@
 						<DOTAAvatarImage class="avatar" id="avatar2_3_2" steamid="" />
 					</Panel>
 					<Panel class="item" style="width:120px;">
-						<Label class="lbl middle large_text" id="lbl_boss_damage2_3" onmouseover="OnRankKillsIn(2,3)" onmouseout="OnRankKillsOut()" text="" />
+						<Label class="lbl middle large_text" id="lbl_boss_damage2_3" onmouseover="OnRankKillsIn(2,3)" onmouseout="OnRankKillsOut()" text="" html="true" />
 					</Panel>
 					<Panel class="item_space">
 						<Label class="lbl no" text=" " />
@@ -3023,7 +2977,7 @@
 						<DOTAAvatarImage class="avatar" id="avatar3_3_3" steamid="" />
 					</Panel>
 					<Panel class="item" style="width:120px;">
-						<Label class="lbl middle large_text" id="lbl_boss_damage3_3" onmouseover="OnRankKillsIn(3,3)" onmouseout="OnRankKillsOut()" text="" />
+						<Label class="lbl middle large_text" id="lbl_boss_damage3_3" onmouseover="OnRankKillsIn(3,3)" onmouseout="OnRankKillsOut()" text="" html="true" />
 					</Panel>
 					<Panel class="item_space">
 						<Label class="lbl no" text=" " />
@@ -3035,10 +2989,10 @@
 						<DOTAAvatarImage class="avatar" id="avatar4_3_4" steamid="" />
 					</Panel>
 					<Panel class="item" style="width:120px;">
-						<Label class="lbl middle large_text" id="lbl_boss_damage4_3" onmouseover="OnRankKillsIn(4,3)" onmouseout="OnRankKillsOut()" text="" />
+						<Label class="lbl middle large_text" id="lbl_boss_damage4_3" onmouseover="OnRankKillsIn(4,3)" onmouseout="OnRankKillsOut()" text="" html="true" />
 					</Panel>
 				</Panel>
-				<Panel style="flow-children:right;margin-bottom:5px;">
+				<Panel style="flow-children:right;margin-bottom:8px;margin-left:40px;">
 					<Panel class="item" style="width:85px;">
 						<Label class="lbl middle large_text" text="4th" style="color:gray;" />
 					</Panel>
@@ -3058,22 +3012,10 @@
 						<Label class="lbl no" text=" " />
 					</Panel>
 					<Panel class="item_long" style="width:75px;flow-children: right;">
-						<DOTAAvatarImage class="avatar" id="avatar0_4_1_race" steamid="" />
-					</Panel>
-					<Panel class="item" style="width:50px;flow-children:right;">
-						<Image id="rank_race_img_4" src="s2r://panorama/images/custom_game/rank/race_rank_0_png.vtex" class="invisible" style="width:45px;height:45px;vertical-align:center;horizontal-align:right;" />
-					</Panel>
-					<Panel class="item" style="width:70px;flow-children:right;">
-						<Label class="lbl middle large_text" style="horizontal-align:left;margin-left:5px;" id="lbl_boss_damage0_4_race" text="" />
-					</Panel>
-					<Panel class="item_space">
-						<Label class="lbl no" text=" " />
-					</Panel>
-					<Panel class="item_long" style="width:75px;flow-children: right;">
 						<DOTAAvatarImage class="avatar" id="avatar1_4_1" steamid="" />
 					</Panel>
 					<Panel class="item" style="width:120px;">
-						<Label class="lbl middle large_text" id="lbl_boss_damage1_4" onmouseover="OnRankKillsIn(1,4)" onmouseout="OnRankKillsOut()" text="" />
+						<Label class="lbl middle large_text" id="lbl_boss_damage1_4" onmouseover="OnRankKillsIn(1,4)" onmouseout="OnRankKillsOut()" text="" html="true" />
 					</Panel>
 					<Panel class="item_space">
 						<Label class="lbl no" text=" " />
@@ -3083,7 +3025,7 @@
 						<DOTAAvatarImage class="avatar" id="avatar2_4_2" steamid="" />
 					</Panel>
 					<Panel class="item" style="width:120px;">
-						<Label class="lbl middle large_text" id="lbl_boss_damage2_4" onmouseover="OnRankKillsIn(2,4)" onmouseout="OnRankKillsOut()" text="" />
+						<Label class="lbl middle large_text" id="lbl_boss_damage2_4" onmouseover="OnRankKillsIn(2,4)" onmouseout="OnRankKillsOut()" text="" html="true" />
 					</Panel>
 					<Panel class="item_space">
 						<Label class="lbl no" text=" " />
@@ -3094,7 +3036,7 @@
 						<DOTAAvatarImage class="avatar" id="avatar3_4_3" steamid="" />
 					</Panel>
 					<Panel class="item" style="width:120px;">
-						<Label class="lbl middle large_text" id="lbl_boss_damage3_4" onmouseover="OnRankKillsIn(3,4)" onmouseout="OnRankKillsOut()" text="" />
+						<Label class="lbl middle large_text" id="lbl_boss_damage3_4" onmouseover="OnRankKillsIn(3,4)" onmouseout="OnRankKillsOut()" text="" html="true" />
 					</Panel>
 					<Panel class="item_space">
 						<Label class="lbl no" text=" " />
@@ -3106,10 +3048,10 @@
 						<DOTAAvatarImage class="avatar" id="avatar4_4_4" steamid="" />
 					</Panel>
 					<Panel class="item" style="width:120px;">
-						<Label class="lbl middle large_text" id="lbl_boss_damage4_4" onmouseover="OnRankKillsIn(4,4)" onmouseout="OnRankKillsOut()" text="" />
+						<Label class="lbl middle large_text" id="lbl_boss_damage4_4" onmouseover="OnRankKillsIn(4,4)" onmouseout="OnRankKillsOut()" text="" html="true" />
 					</Panel>
 				</Panel>
-				<Panel style="flow-children:right;margin-bottom:5px;">
+				<Panel style="flow-children:right;margin-bottom:8px;margin-left:40px;">
 					<Panel class="item" style="width:85px;">
 						<Label class="lbl middle large_text" text="5th" style="color:gray;" />
 					</Panel>
@@ -3129,22 +3071,10 @@
 						<Label class="lbl no" text=" " />
 					</Panel>
 					<Panel class="item_long" style="width:75px;flow-children: right;">
-						<DOTAAvatarImage class="avatar" id="avatar0_5_1_race" steamid="" />
-					</Panel>
-					<Panel class="item" style="width:50px;flow-children:right;">
-						<Image id="rank_race_img_5" src="s2r://panorama/images/custom_game/rank/race_rank_0_png.vtex" class="invisible" style="width:45px;height:45px;vertical-align:center;horizontal-align:right;" />
-					</Panel>
-					<Panel class="item" style="width:70px;flow-children:right;">
-						<Label class="lbl middle large_text" style="horizontal-align:left;margin-left:5px;" id="lbl_boss_damage0_5_race" text="" />
-					</Panel>
-					<Panel class="item_space">
-						<Label class="lbl no" text=" " />
-					</Panel>
-					<Panel class="item_long" style="width:75px;flow-children: right;">
 						<DOTAAvatarImage class="avatar" id="avatar1_5_1" steamid="" />
 					</Panel>
 					<Panel class="item" style="width:120px;">
-						<Label class="lbl middle large_text" id="lbl_boss_damage1_5" onmouseover="OnRankKillsIn(1,5)" onmouseout="OnRankKillsOut()" text="" />
+						<Label class="lbl middle large_text" id="lbl_boss_damage1_5" onmouseover="OnRankKillsIn(1,5)" onmouseout="OnRankKillsOut()" text="" html="true" />
 					</Panel>
 					<Panel class="item_space">
 						<Label class="lbl no" text=" " />
@@ -3154,7 +3084,7 @@
 						<DOTAAvatarImage class="avatar" id="avatar2_5_2" steamid="" />
 					</Panel>
 					<Panel class="item" style="width:120px;">
-						<Label class="lbl middle large_text" id="lbl_boss_damage2_5" onmouseover="OnRankKillsIn(2,5)" onmouseout="OnRankKillsOut()" text="" />
+						<Label class="lbl middle large_text" id="lbl_boss_damage2_5" onmouseover="OnRankKillsIn(2,5)" onmouseout="OnRankKillsOut()" text="" html="true" />
 					</Panel>
 					<Panel class="item_space">
 						<Label class="lbl no" text=" " />
@@ -3165,7 +3095,7 @@
 						<DOTAAvatarImage class="avatar" id="avatar3_5_3" steamid="" />
 					</Panel>
 					<Panel class="item" style="width:120px;">
-						<Label class="lbl middle large_text" id="lbl_boss_damage3_5" onmouseover="OnRankKillsIn(3,5)" onmouseout="OnRankKillsOut()" text="" />
+						<Label class="lbl middle large_text" id="lbl_boss_damage3_5" onmouseover="OnRankKillsIn(3,5)" onmouseout="OnRankKillsOut()" text="" html="true" />
 					</Panel>
 					<Panel class="item_space">
 						<Label class="lbl no" text=" " />
@@ -3177,10 +3107,10 @@
 						<DOTAAvatarImage class="avatar" id="avatar4_5_4" steamid="" />
 					</Panel>
 					<Panel class="item" style="width:120px;">
-						<Label class="lbl middle large_text" id="lbl_boss_damage4_5" onmouseover="OnRankKillsIn(4,5)" onmouseout="OnRankKillsOut()" text="" />
+						<Label class="lbl middle large_text" id="lbl_boss_damage4_5" onmouseover="OnRankKillsIn(4,5)" onmouseout="OnRankKillsOut()" text="" html="true" />
 					</Panel>
 				</Panel>
-				<Panel style="flow-children:right;margin-bottom:5px;">
+				<Panel style="flow-children:right;margin-bottom:8px;margin-left:40px;">
 					<Panel class="item" style="width:85px;">
 						<Label class="lbl middle large_text" text="6th" style="color:gray;" />
 					</Panel>
@@ -3200,22 +3130,10 @@
 						<Label class="lbl no" text=" " />
 					</Panel>
 					<Panel class="item_long" style="width:75px;flow-children: right;">
-						<DOTAAvatarImage class="avatar" id="avatar0_6_1_race" steamid="" />
-					</Panel>
-					<Panel class="item" style="width:50px;flow-children:right;">
-						<Image id="rank_race_img_6" src="s2r://panorama/images/custom_game/rank/race_rank_0_png.vtex" class="invisible" style="width:45px;height:45px;vertical-align:center;horizontal-align:right;" />
-					</Panel>
-					<Panel class="item" style="width:70px;flow-children:right;">
-						<Label class="lbl middle large_text" style="horizontal-align:left;margin-left:5px;" id="lbl_boss_damage0_6_race" text="" />
-					</Panel>
-					<Panel class="item_space">
-						<Label class="lbl no" text=" " />
-					</Panel>
-					<Panel class="item_long" style="width:75px;flow-children: right;">
 						<DOTAAvatarImage class="avatar" id="avatar1_6_1" steamid="" />
 					</Panel>
 					<Panel class="item" style="width:120px;">
-						<Label class="lbl middle large_text" id="lbl_boss_damage1_6" onmouseover="OnRankKillsIn(1,6)" onmouseout="OnRankKillsOut()" text="" />
+						<Label class="lbl middle large_text" id="lbl_boss_damage1_6" onmouseover="OnRankKillsIn(1,6)" onmouseout="OnRankKillsOut()" text="" html="true" />
 					</Panel>
 					<Panel class="item_space">
 						<Label class="lbl no" text=" " />
@@ -3225,7 +3143,7 @@
 						<DOTAAvatarImage class="avatar" id="avatar2_6_2" steamid="" />
 					</Panel>
 					<Panel class="item" style="width:120px;">
-						<Label class="lbl middle large_text" id="lbl_boss_damage2_6" onmouseover="OnRankKillsIn(2,6)" onmouseout="OnRankKillsOut()" text="" />
+						<Label class="lbl middle large_text" id="lbl_boss_damage2_6" onmouseover="OnRankKillsIn(2,6)" onmouseout="OnRankKillsOut()" text="" html="true" />
 					</Panel>
 					<Panel class="item_space">
 						<Label class="lbl no" text=" " />
@@ -3236,7 +3154,7 @@
 						<DOTAAvatarImage class="avatar" id="avatar3_6_3" steamid="" />
 					</Panel>
 					<Panel class="item" style="width:120px;">
-						<Label class="lbl middle large_text" id="lbl_boss_damage3_6" onmouseover="OnRankKillsIn(3,6)" onmouseout="OnRankKillsOut()" text="" />
+						<Label class="lbl middle large_text" id="lbl_boss_damage3_6" onmouseover="OnRankKillsIn(3,6)" onmouseout="OnRankKillsOut()" text="" html="true" />
 					</Panel>
 					<Panel class="item_space">
 						<Label class="lbl no" text=" " />
@@ -3248,10 +3166,10 @@
 						<DOTAAvatarImage class="avatar" id="avatar4_6_4" steamid="" />
 					</Panel>
 					<Panel class="item" style="width:120px;">
-						<Label class="lbl middle large_text" id="lbl_boss_damage4_6" onmouseover="OnRankKillsIn(4,6)" onmouseout="OnRankKillsOut()" text="" />
+						<Label class="lbl middle large_text" id="lbl_boss_damage4_6" onmouseover="OnRankKillsIn(4,6)" onmouseout="OnRankKillsOut()" text="" html="true" />
 					</Panel>
 				</Panel>
-				<Panel style="flow-children:right;margin-bottom:5px;">
+				<Panel style="flow-children:right;margin-bottom:8px;margin-left:40px;">
 					<Panel class="item" style="width:85px;">
 						<Label class="lbl middle large_text" text="7th" style="color:gray;" />
 					</Panel>
@@ -3271,22 +3189,10 @@
 						<Label class="lbl no" text=" " />
 					</Panel>
 					<Panel class="item_long" style="width:75px;flow-children: right;">
-						<DOTAAvatarImage class="avatar" id="avatar0_7_1_race" steamid="" />
-					</Panel>
-					<Panel class="item" style="width:50px;flow-children:right;">
-						<Image id="rank_race_img_7" src="s2r://panorama/images/custom_game/rank/race_rank_0_png.vtex" class="invisible" style="width:45px;height:45px;vertical-align:center;horizontal-align:right;" />
-					</Panel>
-					<Panel class="item" style="width:70px;flow-children:right;">
-						<Label class="lbl middle large_text" style="horizontal-align:left;margin-left:5px;" id="lbl_boss_damage0_7_race" text="" />
-					</Panel>
-					<Panel class="item_space">
-						<Label class="lbl no" text=" " />
-					</Panel>
-					<Panel class="item_long" style="width:75px;flow-children: right;">
 						<DOTAAvatarImage class="avatar" id="avatar1_7_1" steamid="" />
 					</Panel>
 					<Panel class="item" style="width:120px;">
-						<Label class="lbl middle large_text" id="lbl_boss_damage1_7" onmouseover="OnRankKillsIn(1,7)" onmouseout="OnRankKillsOut()" text="" />
+						<Label class="lbl middle large_text" id="lbl_boss_damage1_7" onmouseover="OnRankKillsIn(1,7)" onmouseout="OnRankKillsOut()" text="" html="true" />
 					</Panel>
 					<Panel class="item_space">
 						<Label class="lbl no" text=" " />
@@ -3296,7 +3202,7 @@
 						<DOTAAvatarImage class="avatar" id="avatar2_7_2" steamid="" />
 					</Panel>
 					<Panel class="item" style="width:120px;">
-						<Label class="lbl middle large_text" id="lbl_boss_damage2_7" onmouseover="OnRankKillsIn(2,7)" onmouseout="OnRankKillsOut()" text="" />
+						<Label class="lbl middle large_text" id="lbl_boss_damage2_7" onmouseover="OnRankKillsIn(2,7)" onmouseout="OnRankKillsOut()" text="" html="true" />
 					</Panel>
 					<Panel class="item_space">
 						<Label class="lbl no" text=" " />
@@ -3307,7 +3213,7 @@
 						<DOTAAvatarImage class="avatar" id="avatar3_7_3" steamid="" />
 					</Panel>
 					<Panel class="item" style="width:120px;">
-						<Label class="lbl middle large_text" id="lbl_boss_damage3_7" onmouseover="OnRankKillsIn(3,7)" onmouseout="OnRankKillsOut()" text="" />
+						<Label class="lbl middle large_text" id="lbl_boss_damage3_7" onmouseover="OnRankKillsIn(3,7)" onmouseout="OnRankKillsOut()" text="" html="true" />
 					</Panel>
 					<Panel class="item_space">
 						<Label class="lbl no" text=" " />
@@ -3319,10 +3225,10 @@
 						<DOTAAvatarImage class="avatar" id="avatar4_7_4" steamid="" />
 					</Panel>
 					<Panel class="item" style="width:120px;">
-						<Label class="lbl middle large_text" id="lbl_boss_damage4_7" onmouseover="OnRankKillsIn(4,7)" onmouseout="OnRankKillsOut()" text="" />
+						<Label class="lbl middle large_text" id="lbl_boss_damage4_7" onmouseover="OnRankKillsIn(4,7)" onmouseout="OnRankKillsOut()" text="" html="true" />
 					</Panel>
 				</Panel>
-				<Panel style="flow-children:right;margin-bottom:5px;">
+				<Panel style="flow-children:right;margin-bottom:8px;margin-left:40px;">
 					<Panel class="item" style="width:85px;">
 						<Label class="lbl middle large_text" text="8th" style="color:gray;" />
 					</Panel>
@@ -3342,22 +3248,10 @@
 						<Label class="lbl no" text=" " />
 					</Panel>
 					<Panel class="item_long" style="width:75px;flow-children: right;">
-						<DOTAAvatarImage class="avatar" id="avatar0_8_1_race" steamid="" />
-					</Panel>
-					<Panel class="item" style="width:50px;flow-children:right;">
-						<Image id="rank_race_img_8" src="s2r://panorama/images/custom_game/rank/race_rank_0_png.vtex" class="invisible" style="width:45px;height:45px;vertical-align:center;horizontal-align:right;" />
-					</Panel>
-					<Panel class="item" style="width:70px;flow-children:right;">
-						<Label class="lbl middle large_text" style="horizontal-align:left;margin-left:5px;" id="lbl_boss_damage0_8_race" text="" />
-					</Panel>
-					<Panel class="item_space">
-						<Label class="lbl no" text=" " />
-					</Panel>
-					<Panel class="item_long" style="width:75px;flow-children: right;">
 						<DOTAAvatarImage class="avatar" id="avatar1_8_1" steamid="" />
 					</Panel>
 					<Panel class="item" style="width:120px;">
-						<Label class="lbl middle large_text" id="lbl_boss_damage1_8" onmouseover="OnRankKillsIn(1,8)" onmouseout="OnRankKillsOut()" text="" />
+						<Label class="lbl middle large_text" id="lbl_boss_damage1_8" onmouseover="OnRankKillsIn(1,8)" onmouseout="OnRankKillsOut()" text="" html="true" />
 					</Panel>
 					<Panel class="item_space">
 						<Label class="lbl no" text=" " />
@@ -3367,7 +3261,7 @@
 						<DOTAAvatarImage class="avatar" id="avatar2_8_2" steamid="" />
 					</Panel>
 					<Panel class="item" style="width:120px;">
-						<Label class="lbl middle large_text" id="lbl_boss_damage2_8" onmouseover="OnRankKillsIn(2,8)" onmouseout="OnRankKillsOut()" text="" />
+						<Label class="lbl middle large_text" id="lbl_boss_damage2_8" onmouseover="OnRankKillsIn(2,8)" onmouseout="OnRankKillsOut()" text="" html="true" />
 					</Panel>
 					<Panel class="item_space">
 						<Label class="lbl no" text=" " />
@@ -3378,7 +3272,7 @@
 						<DOTAAvatarImage class="avatar" id="avatar3_8_3" steamid="" />
 					</Panel>
 					<Panel class="item" style="width:120px;">
-						<Label class="lbl middle large_text" id="lbl_boss_damage3_8" onmouseover="OnRankKillsIn(3,8)" onmouseout="OnRankKillsOut()" text="" />
+						<Label class="lbl middle large_text" id="lbl_boss_damage3_8" onmouseover="OnRankKillsIn(3,8)" onmouseout="OnRankKillsOut()" text="" html="true" />
 					</Panel>
 					<Panel class="item_space">
 						<Label class="lbl no" text=" " />
@@ -3390,10 +3284,10 @@
 						<DOTAAvatarImage class="avatar" id="avatar4_8_4" steamid="" />
 					</Panel>
 					<Panel class="item" style="width:120px;">
-						<Label class="lbl middle large_text" id="lbl_boss_damage4_8" onmouseover="OnRankKillsIn(4,8)" onmouseout="OnRankKillsOut()" text="" />
+						<Label class="lbl middle large_text" id="lbl_boss_damage4_8" onmouseover="OnRankKillsIn(4,8)" onmouseout="OnRankKillsOut()" text="" html="true" />
 					</Panel>
 				</Panel>
-				<Panel style="flow-children:right;margin-bottom:5px;">
+				<Panel style="flow-children:right;margin-bottom:8px;margin-left:40px;">
 					<Panel class="item" style="width:85px;">
 						<Label class="lbl middle large_text" text="9th" style="color:gray;" />
 					</Panel>
@@ -3413,22 +3307,10 @@
 						<Label class="lbl no" text=" " />
 					</Panel>
 					<Panel class="item_long" style="width:75px;flow-children: right;">
-						<DOTAAvatarImage class="avatar" id="avatar0_9_1_race" steamid="" />
-					</Panel>
-					<Panel class="item" style="width:50px;flow-children:right;">
-						<Image id="rank_race_img_9" src="s2r://panorama/images/custom_game/rank/race_rank_0_png.vtex" class="invisible" style="width:45px;height:45px;vertical-align:center;horizontal-align:right;" />
-					</Panel>
-					<Panel class="item" style="width:70px;flow-children:right;">
-						<Label class="lbl middle large_text" style="horizontal-align:left;margin-left:5px;" id="lbl_boss_damage0_9_race" text="" />
-					</Panel>
-					<Panel class="item_space">
-						<Label class="lbl no" text=" " />
-					</Panel>
-					<Panel class="item_long" style="width:75px;flow-children: right;">
 						<DOTAAvatarImage class="avatar" id="avatar1_9_1" steamid="" />
 					</Panel>
 					<Panel class="item" style="width:120px;">
-						<Label class="lbl middle large_text" id="lbl_boss_damage1_9" onmouseover="OnRankKillsIn(1,9)" onmouseout="OnRankKillsOut()" text="" />
+						<Label class="lbl middle large_text" id="lbl_boss_damage1_9" onmouseover="OnRankKillsIn(1,9)" onmouseout="OnRankKillsOut()" text="" html="true" />
 					</Panel>
 					<Panel class="item_space">
 						<Label class="lbl no" text=" " />
@@ -3438,7 +3320,7 @@
 						<DOTAAvatarImage class="avatar" id="avatar2_9_2" steamid="" />
 					</Panel>
 					<Panel class="item" style="width:120px;">
-						<Label class="lbl middle large_text" id="lbl_boss_damage2_9" onmouseover="OnRankKillsIn(2,9)" onmouseout="OnRankKillsOut()" text="" />
+						<Label class="lbl middle large_text" id="lbl_boss_damage2_9" onmouseover="OnRankKillsIn(2,9)" onmouseout="OnRankKillsOut()" text="" html="true" />
 					</Panel>
 					<Panel class="item_space">
 						<Label class="lbl no" text=" " />
@@ -3449,7 +3331,7 @@
 						<DOTAAvatarImage class="avatar" id="avatar3_9_3" steamid="" />
 					</Panel>
 					<Panel class="item" style="width:120px;">
-						<Label class="lbl middle large_text" id="lbl_boss_damage3_9" onmouseover="OnRankKillsIn(3,9)" onmouseout="OnRankKillsOut()" text="" />
+						<Label class="lbl middle large_text" id="lbl_boss_damage3_9" onmouseover="OnRankKillsIn(3,9)" onmouseout="OnRankKillsOut()" text="" html="true" />
 					</Panel>
 					<Panel class="item_space">
 						<Label class="lbl no" text=" " />
@@ -3461,10 +3343,10 @@
 						<DOTAAvatarImage class="avatar" id="avatar4_9_4" steamid="" />
 					</Panel>
 					<Panel class="item" style="width:120px;">
-						<Label class="lbl middle large_text" id="lbl_boss_damage4_9" onmouseover="OnRankKillsIn(4,9)" onmouseout="OnRankKillsOut()" text="" />
+						<Label class="lbl middle large_text" id="lbl_boss_damage4_9" onmouseover="OnRankKillsIn(4,9)" onmouseout="OnRankKillsOut()" text="" html="true" />
 					</Panel>
 				</Panel>
-				<Panel style="flow-children:right;margin-bottom:5px;">
+				<Panel style="flow-children:right;margin-bottom:8px;margin-left:40px;">
 					<Panel class="item" style="width:85px;">
 						<Label class="lbl middle large_text" text="10th" style="color:gray;" />
 					</Panel>
@@ -3484,22 +3366,10 @@
 						<Label class="lbl no" text=" " />
 					</Panel>
 					<Panel class="item_long" style="width:75px;flow-children: right;">
-						<DOTAAvatarImage class="avatar" id="avatar0_10_1_race" steamid="" />
-					</Panel>
-					<Panel class="item" style="width:50px;flow-children:right;">
-						<Image id="rank_race_img_10" src="s2r://panorama/images/custom_game/rank/race_rank_0_png.vtex" class="invisible" style="width:45px;height:45px;vertical-align:center;horizontal-align:right;" />
-					</Panel>
-					<Panel class="item" style="width:70px;flow-children:right;">
-						<Label class="lbl middle large_text" style="horizontal-align:left;margin-left:5px;" id="lbl_boss_damage0_10_race" text="" />
-					</Panel>
-					<Panel class="item_space">
-						<Label class="lbl no" text=" " />
-					</Panel>
-					<Panel class="item_long" style="width:75px;flow-children: right;">
 						<DOTAAvatarImage class="avatar" id="avatar1_10_1" steamid="" />
 					</Panel>
 					<Panel class="item" style="width:120px;">
-						<Label class="lbl middle large_text" id="lbl_boss_damage1_10" onmouseover="OnRankKillsIn(1,10)" onmouseout="OnRankKillsOut()" text="" />
+						<Label class="lbl middle large_text" id="lbl_boss_damage1_10" onmouseover="OnRankKillsIn(1,10)" onmouseout="OnRankKillsOut()" text="" html="true" />
 					</Panel>
 					<Panel class="item_space">
 						<Label class="lbl no" text=" " />
@@ -3509,7 +3379,7 @@
 						<DOTAAvatarImage class="avatar" id="avatar2_10_2" steamid="" />
 					</Panel>
 					<Panel class="item" style="width:120px;">
-						<Label class="lbl middle large_text" id="lbl_boss_damage2_10" onmouseover="OnRankKillsIn(2,10)" onmouseout="OnRankKillsOut()" text="" />
+						<Label class="lbl middle large_text" id="lbl_boss_damage2_10" onmouseover="OnRankKillsIn(2,10)" onmouseout="OnRankKillsOut()" text="" html="true" />
 					</Panel>
 					<Panel class="item_space">
 						<Label class="lbl no" text=" " />
@@ -3520,7 +3390,7 @@
 						<DOTAAvatarImage class="avatar" id="avatar3_10_3" steamid="" />
 					</Panel>
 					<Panel class="item" style="width:120px;">
-						<Label class="lbl middle large_text" id="lbl_boss_damage3_10" onmouseover="OnRankKillsIn(3,10)" onmouseout="OnRankKillsOut()" text="" />
+						<Label class="lbl middle large_text" id="lbl_boss_damage3_10" onmouseover="OnRankKillsIn(3,10)" onmouseout="OnRankKillsOut()" text="" html="true" />
 					</Panel>
 					<Panel class="item_space">
 						<Label class="lbl no" text=" " />
@@ -3532,7 +3402,7 @@
 						<DOTAAvatarImage class="avatar" id="avatar4_10_4" steamid="" />
 					</Panel>
 					<Panel class="item" style="width:120px;">
-						<Label class="lbl middle large_text" id="lbl_boss_damage4_10" onmouseover="OnRankKillsIn(4,10)" onmouseout="OnRankKillsOut()" text="" />
+						<Label class="lbl middle large_text" id="lbl_boss_damage4_10" onmouseover="OnRankKillsIn(4,10)" onmouseout="OnRankKillsOut()" text="" html="true" />
 					</Panel>
 				</Panel>
 				<Label id="lbl_ranking" text="#ranking_borad_rules" />

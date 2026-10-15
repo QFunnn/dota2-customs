@@ -8,7 +8,7 @@
 ]]
 
 
-/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+/* Prettified by Source 2 Viewer 20.1.0.0 - https://valveresourceformat.github.io */
 
 .dota_button
 {
@@ -63,12 +63,20 @@ Label
 	text-shadow: 1px 1px 0px 1.0 #000000;
 }
 
+Panel
+{
+	border-radius: 2px;
+}
+
 .right_panel
 {
 	horizontal-align:center;
 	vertical-align:bottom;
 	width:1800px;
 	height:940px;
+	transition-property: position;
+	transition-duration: 0.35s;
+	transition-timing-function: ease-out;
 	opacity:1;
 	z-index:55;
 	flow-children: right;
@@ -208,7 +216,7 @@ Label
 	width:250px;
 	height:20px;
 	margin-top:-1px;
-	border-radius: 0px;
+	border-radius: 2px;
 }
 
 .player_board_line2 .text_player_hp
@@ -274,33 +282,218 @@ Label
 
 .merge_board
 {
-	width:1900px;
+	width:1880px;
 	height:1080px;
 	margin-top:0px;
 	background-color:rgba(0,0,0,0.98);
 	horizontal-align:right;
+	vertical-align:center;
 	visibility:visible;
 	z-index:51;
 	flow-children:down;
-	position:2000px 0px 0px;
+	position:3000px 0px 0px;
 	background-image: url("s2r://panorama/images/backgrounds/gallery_background_png.vtex");
 	background-size:100% 100%;
 	box-shadow: fill #00000066 0px 0px 8px 0px;
 }
 
+.merge_title
+{
+	background-image: url("s2r://panorama/images/custom_game/welcome_jpg.vtex");
+	background-size: cover;
+	background-position: center;
+	height: 100px;
+	width: 100%;
+	box-shadow: fill #00000066 0px 0px 8px 0px;
+	margin-bottom: 15px;
+}
+
+.panel_topbar
+{
+	background-image: url("s2r://panorama/images/custom_game/welcome_jpg.vtex");
+	background-size: cover;
+	background-position: center;
+	height: 100px;
+	width: 100%;
+	box-shadow: fill #00000066 0px 0px 8px 0px;
+	margin-bottom: 15px;
+}
+
+.panel_close_btn
+{
+	width: 30px;
+	height: 30px;
+	horizontal-align: right;
+	vertical-align: center;
+	margin-right: 40px;
+	transition-property: transform;
+	transition-duration: 0.2s;
+}
+
+.panel_close_btn:hover
+{
+	transform: scale3d( 1.5, 1.5, 1.5 );
+}
+
+#merge_close_btn
+{
+	width: 30px;
+	height: 30px;
+	horizontal-align: right;
+	vertical-align: center;
+	margin-right: 40px;
+	transition-property: transform;
+	transition-duration: 0.2s;
+}
+
+#merge_close_btn:hover
+{
+	transform: scale3d( 1.5, 1.5, 1.5 );
+}
+
+#hehehe .item0,#hehehe .item_combine
+{
+	width: 115px;
+	height: 54px;
+}
+
+#hehehe .item1
+{
+	width: 95px;
+	height: 38px;
+}
+
+#hehehe .item2
+{
+	width: 105px;
+	height: 46px;
+}
+
+#hehehe .item3
+{
+	width: 112px;
+	height: 54px;
+}
+
+#hehehe .item_img_box
+{
+	width: 50px;
+	height: 48px;
+	overflow: clip;
+}
+
+#hehehe .item_img_box .item_img
+{
+	width: 50px;
+	height: 50px;
+	vertical-align: center;
+}
+
+#hehehe .panel_shiban_pics
+{
+	height: 48px;
+	overflow: clip;
+}
+
+#hehehe .panel_shiban_pics .item_img
+{
+	width: 50px;
+	height: 50px;
+	vertical-align: center;
+}
+
+#hehehe .item_space
+{
+	width: 16px;
+	height: 54px;
+}
+
+.ranking_board,.merge_board,.gamemap_board,.quest_board,.gameinfo_board,#store_panel
+{
+	transition-property: position;
+	transition-duration: 0.35s;
+	transition-timing-function: ease-out;
+}
+
 .ranking_board
 {
-	width:1900px;
+	width:1820px;
 	height:1080px;
 	margin-top:0px;
 	background-color:rgba(0,0,0,0.98);
 	horizontal-align:right;
+	vertical-align:center;
 	visibility:visible;
 	z-index:51;
-	position:1920px 0px 0px;
+	position:3000px 0px 0px;
 	background-image: url("s2r://panorama/images/backgrounds/gallery_background_png.vtex");
 	background-size:100% 100%;
 	box-shadow: fill #00000066 0px 0px 8px 0px;
+}
+
+.ranking_board .item
+{
+	height: 70px;
+	overflow: clip;
+}
+
+.ranking_board .item_long
+{
+	height: 70px;
+	overflow: clip;
+}
+
+.ranking_board .item_long .avatar
+{
+	width: 75px;
+	height: 75px;
+	vertical-align: center;
+	border-radius: 2px;
+	border-top: 1px solid #ffffff22;
+	border-right: 1px solid #00000066;
+	border-left: 1px solid #ffffff22;
+	border-bottom: 1px solid #00000066;
+}
+
+.ranking_board .item_space
+{
+	width: 44px;
+	height: 60px;
+}
+
+.ranking_title
+{
+	background-image: url("s2r://panorama/images/custom_game/welcome_jpg.vtex");
+	background-size: cover;
+	background-position: center;
+	height: 100px;
+	width: 100%;
+	box-shadow: fill #00000066 0px 0px 8px 0px;
+	margin-top: 0px;
+	margin-bottom: 10px;
+}
+
+#panel_end_game_title
+{
+	height: 140px;
+	background-color: #101010;
+	border-bottom: 2px solid #caa25b66;
+}
+
+#label_end_game_title
+{
+	width: 100%;
+	margin-left: 0px;
+	horizontal-align: center;
+	text-align: center;
+	font-size: 56px;
+	font-weight: bold;
+	font-family: defaultFont;
+	font-style: italic;
+	letter-spacing: 3px;
+	color: #ffffff;
+	background-color: rgba(0,0,0,0);
+	text-shadow: 1px 1px 2px 1.0 #000000;
 }
 
 #left_buttons
@@ -465,8 +658,8 @@ Label
 	font-weight: bold;
 	color:#666666;
 	font-size:20px;
-	margin-top:15px;
-	margin-left:10px;
+	margin-top:35px;
+	margin-left:50px;
 	margin-right:30px;
 }
 
@@ -930,7 +1123,7 @@ Label
 	width:180px;
 	margin:10px;
 	background-color:#111111;
-	border-radius: 0px;
+	border-radius: 2px;
 	box-shadow: fill #00000066 0px 0px 8px 0px;
 	border-right:1px solid #00000088;
 	border-left:1px solid #ffffff44;
@@ -1198,7 +1391,7 @@ Label
 	height:236px;
 	background-color:#888;
 	margin:10px;
-	border-radius: 10px;
+	border-radius: 2px;
 }
 
 .panel_top_tips
@@ -1240,14 +1433,14 @@ Label
 	margin-left:300px;
 	horizontal-align:center;
 	vertical-align: center;
-	opacity:1;
+	opacity:0;
 }
 
 #panel_end_game
 {
 	opacity:0;
-	width:600px;
-	height:300px;
+	width:980px;
+	height:690px;
 	horizontal-align:middle;
 	vertical-align:middle;
 	flow-children:down;
@@ -1256,6 +1449,87 @@ Label
 	background-image: url("s2r://panorama/images/backgrounds/gallery_background_png.vtex");
 	background-size: 100% 100%;
 	box-shadow: fill #00000066 0px 0px 8px 0px;
+}
+
+.end_game_stat_block
+{
+	width: 125px;
+	height: 100%;
+	flow-children: down;
+	horizontal-align: center;
+	margin-right: 10px;
+	border: 1px solid #ffffff18;
+	border-radius: 2px;
+	background-color: #000000;
+}
+
+.end_game_player_block
+{
+	width: 330px;
+	background-color: #000000;
+}
+
+.end_game_time_block
+{
+	width: 155px;
+	background-color: #000000;
+}
+
+.end_game_level_block,.end_game_kill_block,.end_game_time_block,.end_game_maze_block
+{
+	background-color: #000000;
+}
+
+.end_game_maze_block
+{
+	margin-right: 0px;
+}
+
+.end_game_stat_label
+{
+	width: 100%;
+	height: 26px;
+	margin-top: 17px;
+	font-size: 18px;
+	color: #9fb0c4;
+	font-family: FZLanTingHei-R-GBK;
+	font-weight: bold;
+	text-align: center;
+	horizontal-align: center;
+}
+
+.end_game_stat_value
+{
+	width: 100%;
+	height: 48px;
+	font-size: 30px;
+	color: #ffffff;
+	font-weight: bold;
+	text-align: center;
+	horizontal-align: center;
+}
+
+.end_game_avatar_list
+{
+	width: 256px;
+	height: 66px;
+	flow-children: right;
+	margin-top: 17px;
+	horizontal-align: center;
+}
+
+.end_game_avatar_list .avatar
+{
+	width: 56px;
+	height: 56px;
+	margin-right: 8px;
+	border-radius: 2px;
+	vertical-align: center;
+	background-color: #0a0a0a;
+	border-top: 1px solid #ffffff22;
+	border-right: 1px solid #00000066;
+	border-left: 1px solid #ffffff22;
+	border-bottom: 1px solid #00000066;
 }
 
 #panel_right_bottom
@@ -1314,7 +1588,7 @@ Label
 {
 	height:260px;
 	width:700px;
-	border-radius:50px;
+	border-radius: 2px;
 	background-color:#996633;
 	margin-top:57px;
 	z-index:500000;
@@ -1562,7 +1836,7 @@ Label
 	width: 30px;
 	height: 30px;
 	background-color: #333;
-	border-radius: 15px;
+	border-radius: 2px;
 	border: 1px solid #777;
 	background-size: 100% 100%;
 }
@@ -1593,7 +1867,7 @@ Label
 {
 	width:120px;
 	height:40px;
-	border-radius: 0px;
+	border-radius: 2px;
 	overflow:clip;
 }
 
@@ -2091,7 +2365,7 @@ Label
 	vertical-align:bottom;
 	margin-bottom:245px;
 	background-color:rgba(0,0,128,0.6);
-	border-radius: 5px;
+	border-radius: 2px;
 	transition-property: transform,opacity;
 	transition-duration: 0.2s;
 	opacity: 0;
@@ -2356,8 +2630,8 @@ Label
 .store_title
 {
 	background-image: url("s2r://panorama/images/custom_game/welcome_jpg.vtex");
-	background-size: 100% 700%;
-	background-position: 0px 300px;
+	background-size: cover;
+	background-position: center;
 	height:100px;
 	width:100%;
 	box-shadow: fill #00000066 0px 0px 8px 0px;
@@ -2438,7 +2712,7 @@ Label
 
 #title_leaderboard
 {
-	margin-left: 20px;
+	margin-left: 50px;
 	horizontal-align: left;
 	vertical-align: center;
 	font-size: 40px;
@@ -2447,22 +2721,45 @@ Label
 
 #panel_leaderboard_award
 {
+	width: 500px;
 	horizontal-align: right;
+	vertical-align: center;
 	flow-children: right;
+	margin-right: 100px;
+	background-color: #000000;
+	border: 1px solid #ffffff18;
+	border-radius: 2px;
+}
+
+#ranking_close_btn
+{
+	width: 30px;
+	height: 30px;
+	horizontal-align: right;
+	vertical-align: center;
+	margin-right: 40px;
+	transition-property: transform;
+	transition-duration: 0.2s;
+}
+
+#ranking_close_btn:hover
+{
+	transform: scale3d( 1.5, 1.5, 1.5 );
 }
 
 #panel_season_ttl
 {
 	flow-children: down;
 	vertical-align: center;
-	margin-right: 20px;
+	margin-left: 20px;
+	margin-right: 36px;
 }
 
 #panel_season_rank
 {
 	flow-children: down;
 	vertical-align: center;
-	margin-right: 20px;
+	margin-right: 36px;
 }
 
 #text_leaderboard_ttl
@@ -2477,6 +2774,7 @@ Label
 	color: #666;
 	font-size: 18px;
 	horizontal-align: center;
+	margin-bottom: 5px;
 }
 
 #panel_leaderboard_my_rank
@@ -2504,6 +2802,7 @@ Label
 	color: #666;
 	font-size: 18px;
 	horizontal-align: center;
+	margin-bottom: 5px;
 }
 
 #text_leaderboard_ttl
@@ -2514,8 +2813,9 @@ Label
 
 #button_collect_award
 {
-	min-width:150px;
-	height:80px;
+	min-width:220px;
+	height:90px;
+	margin-left: 4px;
 }
 
 #button_collect_award_inner

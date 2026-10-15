@@ -441,6 +441,9 @@ function sort_hero_list(hero_list_obj) {
 		}
 		var ability_slot_count_extend = parseInt(h.extend || 0);
 		var ability_slot_count = hero_rarity + ability_slot_count_extend;
+		if (ability_slot_count > 4){
+			ability_slot_count = 4
+		}
 		var empty_slot_count = ability_slot_count - ability_count;
 
 		sort_array.push({

@@ -718,6 +718,10 @@ function InitVaribles()
 	GameRules:GetGameModeEntity():SetBuybackEnabled(false)
 	GameRules:SetSameHeroSelectionEnabled(true)
 	GameRules:SetGoldPerTick(0)
+	--游戏结束后不显示默认的胜利消息(夜魇/天辉胜利横幅)
+	GameRules:SetCustomVictoryMessageDuration(0)
+	--结束游戏出现后不再等待，点击立刻退出地图
+	GameRules:SetCustomGameEndDelay(2)
 	GameRules:GetGameModeEntity():SetUseCustomHeroLevels(true)
 	GameRules:GetGameModeEntity():SetCustomHeroMaxLevel(5)
 	_G.top_runner = nil
@@ -2693,6 +2697,8 @@ function GemTD:InitGameMode()
 	CustomGameEventManager:RegisterListener("gemtd_repick_hero", Dynamic_Wrap(GemTD, "OnRepickHero"))
 	CustomGameEventManager:RegisterListener("lobster2", Dynamic_Wrap(GemTD, "OnLobster2"))
 	CustomGameEventManager:RegisterListener("click_ggsimida", Dynamic_Wrap(GemTD, "OnGGsimida"))
+	--结束面板(panel_end_game)的“退出游戏”按钮：直接判定游戏结束，不再重复结算
+	CustomGameEventManager:RegisterListener("end_game_exit", Dynamic_Wrap(GemTD, "OnEndGameExit"))
 	CustomGameEventManager:RegisterListener("catch_crab", Dynamic_Wrap(GemTD, "OnCatchCrab"))
 	CustomGameEventManager:RegisterListener("preview_effect", Dynamic_Wrap(GemTD, "OnPreviewEffect"))
 	CustomGameEventManager:RegisterListener(
@@ -4028,7 +4034,8 @@ function OnThink()
 
 					unit:Destroy()
 					-- ShowCenterMessage("failed", 5)
-					Timers:CreateTimer(20, function()
+					--3秒后判定胜负并进入结束界面(end.xml)，输赢按是否过了50关
+					Timers:CreateTimer(3, function()
 						if _G.level > 50 then
 							GameRules:SetGameWinner(DOTA_TEAM_GOODGUYS)
 						else
@@ -6659,8 +6666,9 @@ function start_shuaguai()
 	if _G.level > 100 then
 		_G.game_status = 3
 		send_ranking()
-		Timers:CreateTimer(20, function()
-			GameRules:SetGameWinner(DOTA_TEAM_BADGUYS)
+		--3秒后判定胜利并进入结束界面(end.xml)
+		Timers:CreateTimer(3, function()
+			GameRules:SetGameWinner(DOTA_TEAM_GOODGUYS)
 		end)
 	end
 
@@ -7939,14 +7947,28 @@ function GemTD:OnGGsimida(keys)
 	if GetMapName() == "gemtd_1p" or GetMapName() == "gemtd_coop" then
 		_G.game_status = 3
 		send_ranking()
-		Timers:CreateTimer(20, function()
-			GameRules:SetGameWinner(DOTA_TEAM_BADGUYS)
+		--3秒后判定胜负并进入结束界面(end.xml)，输赢按是否过了50关
+		Timers:CreateTimer(3, function()
+			if _G.level > 50 then
+				GameRules:SetGameWinner(DOTA_TEAM_GOODGUYS)
+			else
+				GameRules:SetGameWinner(DOTA_TEAM_BADGUYS)
+			end
 		end)
 	else
 		--竞速模式
 		_G.gem_castle_hp_race[keys.player_id] = 0
 		race_player_fail(keys.player_id)
 	end
+end
+--结束面板(panel_end_game)的“退出游戏”按钮：直接判定游戏结束，不再重复结算(不调用 send_ranking)
+function GemTD:OnEndGameExit(keys)
+	--按当局胜负判定胜者：通关(等级>50，与结算面板 is_win 的判定一致) -> GOODGUYS，失败 -> BADGUYS
+	local winner = DOTA_TEAM_BADGUYS
+	if _G.level > 50 or _G.is_passed == true then
+		winner = DOTA_TEAM_GOODGUYS
+	end
+	GameRules:SetGameWinner(winner)
 end
 --界面操作3——玩家说话
 function GemTD:OnPlayerSay(keys)
@@ -14496,7 +14518,6 @@ function GemTD:OnPlayerStartTeamSelect(keys)
 		.. "?ver=v1&compen_shell=2&pcount="
 		.. _G.pcount
 		.. "&award=true"
-	print(url)
 	url = url .. GetSendKey()
 
 	local req = CreateHTTPRequestScriptVM("GET", url)
