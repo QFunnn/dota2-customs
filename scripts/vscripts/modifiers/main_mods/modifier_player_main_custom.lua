@@ -230,9 +230,11 @@ function modifier_player_main_custom:OnIntervalThink()
 		local prev_str = self.str
 		local prev_agi = self.agi
 
-		self.int = 0
-		self.str = 0
-		self.agi = 0
+		if IsValid(self.stats_mod) then
+			self.stats_mod.int = 0
+			self.stats_mod.str = 0
+			self.stats_mod.agi = 0
+		end
 
 		self.int = self.parent:GetIntellect(false, nil, true) * int_k
 		self.str = self.parent:GetStrength(true) * str_k

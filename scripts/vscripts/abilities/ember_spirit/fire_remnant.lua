@@ -628,10 +628,10 @@ function modifier_ember_spirit_fire_remnant_custom_remnant:OnDestroy()
 	ParticleManager:SetParticleFoWProperties(iParticleID, 0, -1, self.ability.radius)
 	ParticleManager:ReleaseParticleIndex(iParticleID)
 
-	self.parent:RemoveSelf()
+	UTIL_Remove(self.parent)
 
 	if self.ability_activate then
-		self.ability_activate:FilterRemnants()
+		self.ability_activate:FilterRemnants(self.parent)
 	end
 end
 
@@ -1030,21 +1030,21 @@ function ember_spirit_activate_fire_remnant_custom:OnProjectileHit_ExtraData(tar
 	self:StartFlight(remnant)
 end
 
-function ember_spirit_activate_fire_remnant_custom:FilterRemnants()
+function ember_spirit_activate_fire_remnant_custom:FilterRemnants(removed)
 	if not IsServer() then
 		return
 	end
 
 	local mods = self.caster:FindAllModifiersByName("modifier_ember_spirit_fire_remnant_custom_timer")
 	for _, mod in pairs(mods) do
-		if not IsValid(mod.thinker) or not mod.thinker:IsAlive() then
+		if not IsValid(mod.thinker) or not mod.thinker:IsAlive() or mod.thinker == removed then
 			mod:Destroy()
 		end
 	end
 
 	for i = #self.active_remnants, 1, -1 do
 		local remnant = self.active_remnants[i]
-		if not IsValid(remnant) or not remnant:IsAlive() then
+		if not IsValid(remnant) or not remnant:IsAlive() or remnant == removed then
 			table.remove(self.active_remnants, i)
 		end
 	end

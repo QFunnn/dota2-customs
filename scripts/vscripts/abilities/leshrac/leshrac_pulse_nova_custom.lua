@@ -178,7 +178,7 @@ function leshrac_pulse_nova_custom:GetCastRange(vLocation, hTarget)
 end
 
 function leshrac_pulse_nova_custom:GetMana()
-	return (self.mana_cost_per_second + self.mana_cost_max * self.caster:GetMaxMana()) * (1 - self.talents.h1_mana_loss)
+	return (self.mana_cost_per_second + self.mana_cost_max * self.caster:GetMaxMana()) * (1 + self.talents.h1_mana_loss)
 end
 
 function leshrac_pulse_nova_custom:GetDamage()

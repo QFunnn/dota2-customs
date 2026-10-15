@@ -165,7 +165,7 @@ function modifier_furion_innate_custom_tree:OnCreated(params)
 			if unit then
 				unit:RemoveModifierByName("modifier_furion_innate_custom_tree")
 				if IsValid(unit) then
-					unit:RemoveSelf()
+					UTIL_Remove(unit)
 				end
 			end
 		end
@@ -243,7 +243,7 @@ function modifier_furion_innate_custom_tree:OnDestroy()
 		end
 	end
 
-	self.parent:RemoveSelf()
+	UTIL_Remove(self.parent)
 end
 
 function modifier_furion_innate_custom_tree:GetAuraEntityReject(hEntity)
@@ -320,7 +320,7 @@ function modifier_furion_innate_custom:OnDestroy()
 			if IsValid(unit) then
 				unit:RemoveModifierByName("modifier_furion_innate_custom_tree")
 				if IsValid(unit) then
-					unit:RemoveSelf()
+					UTIL_Remove(unit)
 				end
 			end
 		end

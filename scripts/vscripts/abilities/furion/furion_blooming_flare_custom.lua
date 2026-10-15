@@ -971,5 +971,5 @@ function modifier_furion_blooming_flare_custom_legendary_tree:OnDestroy()
 	end
 
 	self.ability.trees[self.tree] = nil
-	self.parent:RemoveSelf()
+	UTIL_Remove(self.parent)
 end

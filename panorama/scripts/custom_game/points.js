@@ -13,7 +13,6 @@ $.GetContextPanel().SetParent(parentHUDElements);
 
 var local_unit = -1
 var legendary_info = []
-var current_legendary = ""
 
 GameEvents.Subscribe( "dota_player_update_selected_unit", UpdateSelectionUnit );
 GameEvents.Subscribe( "dota_player_update_query_unit", UpdateSelectionUnit );
@@ -87,37 +86,7 @@ function Hack()
 	if (unit != local_unit)
 	{
 		local_unit = unit
-		current_legendary = ""
 		UpdateInnatePanel()
-	}
-
-	var dotaHud = $.GetContextPanel().GetParent().GetParent().GetParent()
-	let innate = dotaHud.FindChildTraverse("DOTAHUDInnateStatusTooltip")
-
-	if (innate)
-	{
-		let content = innate.FindChildTraverse("Contents")
-		let legendary_panel = dotaHud.FindChildTraverse("legendary_details")
-
-		if (legendary_panel && content)
-		{
-
-			legendary_panel.SetParent(content)
-			let innate_details = innate.FindChildrenWithClassTraverse("InnateContainer")[0]
-
-			if (innate_details)
-			{
-				content.MoveChildBefore(legendary_panel, innate_details)
-			}
-
-			if (legendary_table[1] && legendary_table[1] != 0)
-			{
-				legendary_panel.RemoveClass("legendary_aspect_hidden")
-			}else 
-			{
-				legendary_panel.AddClass("legendary_aspect_hidden")
-			}
-		}
 	}
 }
 
@@ -159,33 +128,6 @@ function UpdateInnatePanel(new_table)
 	    }
 	}
 
-	let legendary_panel = dotaHud.FindChildTraverse("legendary_details")
-
-	if (legendary_panel)
-	{
-
-		let legendary_details_top_icon = legendary_panel.FindChildTraverse("legendary_details_top_icon")
-		let legendary_name = legendary_panel.FindChildTraverse("legendary_details_top_text")
-	  	let legendary_text = legendary_panel.FindChildTraverse("legendary_details_text")
-	  
-		if (legendary_details_top_icon && legendary_table[0] && legendary_table[0] != 0)
-		{
-	        if (skill_name)
-	        {
-                let ability = Entities.GetAbilityByName(hero_index, skill_name)
-                if (ability)
-                    legendary_details_top_icon.contextEntityIndex =  ability
-                legendary_details_top_icon.abilityname = skill_name
-	        }
-		}
-
-		if (legendary_name)
-		{
-			legendary_name.text = $.Localize("#DOTA_Tooltip_ability_" + legendary_table[2])
-		}
-	}
-
-	
 	let global_facet = dotaHud.FindChildTraverse("ContentsContainer").GetParent()
 	if (!global_facet)
 		return
@@ -200,18 +142,7 @@ function UpdateInnatePanel(new_table)
 	{
 		let content = global_facet.FindChildTraverse("ContentsContainer")
 		if (content)
-		{	
-			content.SetPanelEvent('onmouseover', function() 
-			{
-	  			let legendary_text = legendary_panel.FindChildTraverse("legendary_details_text")
-				let legendary_info = Game.GetLocalLegendary()
-				if (legendary_text && legendary_table[1] && legendary_info[1] != 0 && current_legendary == "")
-				{
-					current_legendary = Game.ShowTalentValues("#upgrade_disc_" + legendary_info[1], legendary_info[1], 0, false, true, true)
-					legendary_text.text = current_legendary
-				}
-    		});
-
+		{
 			aspect.SetParent(content)
 
 			let innate_icon = content.FindChildTraverse("InnateIcon")

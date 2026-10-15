@@ -8,7 +8,7 @@
 ]]
 
 
-<!-- xml reconstructed by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io -->
+<!-- xml reconstructed by Source 2 Viewer 20.1.0.0 - https://valveresourceformat.github.io -->
 <root>
 	<styles>
 		<include src="s2r://panorama/styles/dotastyles.vcss" />
@@ -18,43 +18,121 @@
 		<include src="s2r://panorama/layout/custom_game/ability_tooltip/ability_tooltip.vjs" />
 	</scripts>
 	<Panel class="AbilityTooltip" hittest="false" hittestchildren="false" ontooltiploaded="AbilityTooltipLoaded()">
-		<Panel id="AbilityDetails">
-			<Panel id="AbilityHeader">
-				<Label id="AbilityName" />
-				<Label id="CurrentAbilityCharges" />
-				<Label id="CurrentAbilityCooldown" class="Cooldown" html="true" />
-			</Panel>
-			<Panel id="AbilityTarget">
-				<Label id="AbilityDamageType" html="true" />
-				<Label id="AbilitySpellImmunityType" html="true" />
-				<Label id="AbilityDispelType" html="true" />
-				<Label id="AbilityBreakable" html="true" />
-			</Panel>
-			<Label id="AbilityDescription" html="true" />
-			<Panel id="AbilityCreeps_buff" class="AbilityCreeps AbilityCreeps_buff">
-				<Panel class="AbilityCreepsHeader">
-					<Panel class="AbilityCreepsIcon" />
-					<Label class="AbilityCreepsTitle" text="#tooltip_ability_creeps" />
+		<Panel id="AghsDetails">
+			<Panel id="AghsScepterSection" class="AghsSection">
+				<Panel class="AghsSectionHeader">
+					<Image class="AghsSectionTexture" />
+					<Panel class="AghsSectionIcon AghsScepterIcon" />
+					<Label class="AghsSectionTitle" text="#DOTA_AbilityTooltip_Aghs_Scepter" />
 				</Panel>
-				<Panel id="AbilityCreepsText_buff" class="AbilityCreepsText" />
+				<Panel id="AghsScepterCards" class="AghsCards" />
 			</Panel>
-			<Panel id="AbilityCreeps_nerf" class="AbilityCreeps AbilityCreeps_nerf">
-				<Panel class="AbilityCreepsHeader">
-					<Panel class="AbilityCreepsIcon" />
-					<Label class="AbilityCreepsTitle" text="#tooltip_ability_creeps" />
+			<Panel class="AghsConnector" />
+			<Panel id="AghsShardSection" class="AghsSection">
+				<Panel class="AghsSectionHeader">
+					<Image class="AghsSectionTexture" />
+					<Panel class="AghsSectionIcon AghsShardIcon" />
+					<Label class="AghsSectionTitle" text="#DOTA_AbilityTooltip_Aghs_Shard" />
 				</Panel>
-				<Panel id="AbilityCreepsText_nerf" class="AbilityCreepsText" />
+				<Panel id="AghsShardCards" class="AghsCards" />
 			</Panel>
-			<Panel id="AbilityExtraAttributes" />
-			<Panel id="AbilityCostsSeparator" />
-			<Panel id="AbilityCosts">
-				<Label id="AbilityCooldown" class="Cooldown" html="true" />
-				<Label id="AbilityManaCost" class="ManaCost" html="true" />
-				<Label id="AbilityHealthCost" class="HealthCost" html="true" />
-				<Label id="AbilityCastRange" class="CastRange" html="true" />
+		</Panel>
+		<Panel id="InnateLegendary" class="InnateCard InnateLegendaryCard">
+			<Panel class="InnateHeader">
+				<Panel class="InnateHeaderBack" />
+				<Panel class="InnateHeaderTexture" />
+				<Panel class="InnateImageContainer">
+					<DOTAAbilityImage id="InnateLegendaryImage" class="InnateImage" />
+					<Panel class="InnateBevel" />
+				</Panel>
+				<Panel class="InnateTitles">
+					<Label id="InnateLegendaryName" class="InnateTitleText" />
+					<Label class="InnateTitleTag InnateLegendaryTag" text="#legendary_talent" />
+				</Panel>
 			</Panel>
-			<Panel id="AbilityLoreBox">
-				<Label id="AbilityLore" />
+			<Panel class="InnateLegendaryBody">
+				<Panel class="InnateCardTexture" />
+				<Label id="InnateLegendaryText" class="InnateLegendaryText" html="true" />
+			</Panel>
+		</Panel>
+		<Panel id="InnateConnector" />
+		<Panel id="AbilityCard">
+			<Panel class="InnateCardTexture" />
+			<Panel id="InnateHeader" class="InnateHeader">
+				<Panel id="InnateLinkedImage" class="InnateImageContainer">
+					<DOTAAbilityImage id="InnateAbilityImage" class="InnateImage" />
+					<Panel class="InnateBevel" />
+				</Panel>
+				<Panel id="InnateDefaultImage" class="InnateImageContainer">
+					<Panel class="InnateDefaultIcon" />
+				</Panel>
+				<Panel class="InnateTitles">
+					<Label id="InnateName" class="InnateTitleText" />
+					<Label class="InnateTitleTag" text="#DOTA_InnateAbilityTag" />
+				</Panel>
+			</Panel>
+			<Panel id="AbilityDetails">
+				<Label id="InnateDependency" class="Hidden" html="true" />
+				<Panel id="AbilityHeader">
+					<Label id="AbilityName" />
+					<Label id="CurrentAbilityCharges" />
+					<Label id="CurrentAbilityCooldown" class="Cooldown" html="true" />
+				</Panel>
+				<Panel id="AbilityTarget">
+					<Label id="AbilityDamageType" html="true" />
+					<Label id="AbilitySpellImmunityType" html="true" />
+					<Label id="AbilityDispelType" html="true" />
+					<Label id="AbilityBreakable" html="true" />
+				</Panel>
+				<Label id="AbilityDescription" html="true" />
+				<Panel id="AbilityLegendary" />
+				<Label id="AbilityDescriptionAfter" html="true" />
+				<Panel id="AbilityDiff" class="AbilityCreeps AbilityDiff">
+					<Panel class="AbilityCreepsHeader">
+						<Panel class="AbilityCreepsIcon" />
+						<Label class="AbilityCreepsTitle" text="#tooltip_ability_diff" />
+					</Panel>
+					<Panel id="AbilityDiffText" class="AbilityCreepsText" />
+				</Panel>
+				<Panel id="AbilityFeatures" class="AbilityCreeps AbilityFeatures">
+					<Panel class="AbilityCreepsHeader">
+						<Panel class="AbilityCreepsIcon" />
+						<Label class="AbilityCreepsTitle" text="#tooltip_ability_features" />
+					</Panel>
+					<Panel id="AbilityFeaturesText" class="AbilityCreepsText" />
+				</Panel>
+				<Panel id="AbilityCreeps" class="AbilityCreeps">
+					<Panel class="AbilityCreepsHeader">
+						<Panel class="AbilityCreepsIcon" />
+						<Label class="AbilityCreepsTitle" text="#tooltip_ability_creeps" />
+					</Panel>
+					<Panel id="AbilityCreepsText" class="AbilityCreepsText" />
+				</Panel>
+				<Panel id="AbilityBuildings" class="AbilityCreeps AbilityBuildings">
+					<Panel class="AbilityCreepsHeader">
+						<Panel class="AbilityCreepsIcon" />
+						<Label class="AbilityCreepsTitle" text="#tooltip_ability_buildings" />
+					</Panel>
+					<Panel id="AbilityBuildingsText" class="AbilityCreepsText" />
+				</Panel>
+				<Panel id="AbilityExtraAttributes" />
+				<Panel id="AbilityCostsSeparator" />
+				<Panel id="AbilityCosts">
+					<Label id="AbilityCooldown" class="Cooldown" html="true" />
+					<Panel id="AbilityCooldownTalents" class="AbilityCostTalents" />
+					<Label id="AbilityManaCost" class="ManaCost" html="true" />
+					<Panel id="AbilityManaCostTalents" class="AbilityCostTalents" />
+					<Label id="AbilityHealthCost" class="HealthCost" html="true" />
+					<Panel id="AbilityHealthCostTalents" class="AbilityCostTalents" />
+					<Label id="AbilityCastRange" class="CastRange" html="true" />
+					<Panel id="AbilityCastRangeTalents" class="AbilityCostTalents" />
+					<Panel id="AbilityCastPointIcon" class="CastPointIcon" />
+					<Label id="AbilityCastPoint" class="CastPoint" html="true" />
+					<Panel id="AbilityCastPointTalents" class="AbilityCostTalents" />
+				</Panel>
+				<Panel id="AbilityLoreBox">
+					<Label id="AbilityLore" />
+				</Panel>
 			</Panel>
 		</Panel>
 	</Panel>

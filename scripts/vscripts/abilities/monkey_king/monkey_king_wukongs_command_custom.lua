@@ -583,7 +583,7 @@ function modifier_monkey_king_wukongs_command_custom_thinker:OnDestroy()
 	self.parent:StopSound("Hero_MonkeyKing.FurArmy")
 
 	EmitSoundOnLocationWithCaster(self.center, "Hero_MonkeyKing.FurArmy.End", self.caster)
-	self.parent:RemoveSelf()
+	UTIL_Remove(self.parent)
 end
 
 modifier_monkey_king_wukongs_command_custom_tracker = class(mod_hidden)

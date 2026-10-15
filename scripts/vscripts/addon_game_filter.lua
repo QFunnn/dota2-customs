@@ -755,14 +755,14 @@ function dota1x6:OnRuneActivated(params)
 		table.insert(whites, math.floor(white * white_k))
 	end
 
-	CustomGameEventManager:Send_ServerToAllClients(
+	CustomGameEventManager:Send_ServerToTeam(
+		team,
 		"kill_feed_bounty",
 		{
 			ids = table.concat(ids, ","),
 			heroes = table.concat(names, ","),
 			gold = table.concat(golds, ","),
 			white = table.concat(whites, ","),
-			picker = id,
 			place = place,
 			bonus = math.floor((net_k - 1) * 100 + 0.5),
 		}
@@ -1112,9 +1112,7 @@ function dota1x6:OnEntityKilled(param)
 				if killed_by_hero and target then
 					new_respawn = Short_Respawn_target
 					target:Destroy()
-				end
-
-				if respawn_mod and respawn_mod.respawn_time then
+				elseif respawn_mod and respawn_mod.respawn_time then
 					new_respawn = respawn_mod.respawn_time
 					respawn_mod:Proc()
 				end

@@ -492,7 +492,12 @@ function modifier_hoodwink_acorn_shot_custom_thinker:OnDestroy()
 	if not IsServer() then
 		return
 	end
-	UTIL_Remove(self.parent)
+	local parent = self.parent
+	Timers:CreateTimer(FrameTime(), function()
+		if IsValid(parent) then
+			UTIL_Remove(parent)
+		end
+	end)
 end
 
 modifier_hoodwink_acorn_shot_custom_thinker_tree = class(mod_hidden)
@@ -576,7 +581,12 @@ function modifier_hoodwink_acorn_shot_custom_thinker_tree_target:OnDestroy()
 	if not IsServer() then
 		return
 	end
-	UTIL_Remove(self.parent)
+	local parent = self.parent
+	Timers:CreateTimer(FrameTime(), function()
+		if IsValid(parent) then
+			UTIL_Remove(parent)
+		end
+	end)
 end
 
 modifier_hoodwink_acorn_shot_custom_tracker = class(mod_hidden)

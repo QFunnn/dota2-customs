@@ -141,6 +141,7 @@ function lina_fiery_soul_custom:UpdateTalents(name)
 			e7_duration = caster:GetTalentValue("modifier_lina_soul_7", "duration", true),
 			e7_range = caster:GetTalentValue("modifier_lina_soul_7", "range", true),
 			e7_damage = caster:GetTalentValue("modifier_lina_soul_7", "damage", true) / 100,
+			e7_speed = caster:GetTalentValue("modifier_lina_soul_7", "speed", true) / 100,
 			e7_knock_max = caster:GetTalentValue("modifier_lina_soul_7", "knock_max", true),
 
 			has_h4 = 0,
@@ -740,7 +741,7 @@ end
 function modifier_lina_fiery_soul_custom_stack:GetModifierAttackSpeedBonus_Constant()
 	return self:GetStackCount()
 		* (self.ability.fiery_soul_attack_speed_bonus + self.ability.talents.e1_speed)
-		* (self.ability.talents.has_e7 == 1 and (1 - self.ability.talents.e7_damage) or 1)
+		* (self.ability.talents.has_e7 == 1 and (1 + self.ability.talents.e7_speed) or 1)
 end
 
 function modifier_lina_fiery_soul_custom_stack:GetModifierPreAttack_BonusDamage()

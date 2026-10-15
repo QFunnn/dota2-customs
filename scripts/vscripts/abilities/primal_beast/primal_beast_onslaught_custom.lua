@@ -288,6 +288,10 @@ function primal_beast_onslaught_custom:GetTurnRate()
 	return self.turn_rate * (1 + (self.talents.has_q4 == 1 and self.talents.q4_speed or 0))
 end
 
+function primal_beast_onslaught_custom:GetKnockbackRadius()
+	return self.knockback_radius * (1 + (self.talents.has_q4 == 1 and self.talents.q4_speed or 0))
+end
+
 function primal_beast_onslaught_custom:GetMaxDistance()
 	return self.max_distance + self.caster:GetCastRangeBonus()
 end
@@ -671,7 +675,7 @@ function modifier_primal_beast_onslaught_custom_cast:OnCreated(params)
 	CustomGameEventManager:Send_ServerToPlayer(
 		PlayerResource:GetPlayer(self.parent:GetPlayerOwnerID()),
 		"ability_primal_beast_onslaught",
-		{ state = 1, range = self.ability:GetMaxDistance(), radius = self.ability.knockback_radius / 1.4 }
+		{ state = 1, range = self.ability:GetMaxDistance(), radius = self.ability:GetKnockbackRadius() / 1.4 }
 	)
 
 	self.anim_return = 0
@@ -883,7 +887,7 @@ function modifier_primal_beast_onslaught_custom:OnCreated(params)
 	self.ability = self:GetAbility()
 
 	self.turn_speed = self.ability:GetTurnRate()
-	self.radius = self.ability.knockback_radius
+	self.radius = self.ability:GetKnockbackRadius()
 	self.tree_radius = 100
 
 	if not IsServer() then

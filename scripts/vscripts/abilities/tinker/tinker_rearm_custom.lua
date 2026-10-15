@@ -374,7 +374,7 @@ function modifier_tinker_rearm_custom_tracker:OnCreated()
 	self.ability.tracker = self
 	self.ability:UpdateTalents()
 
-	self.ability.channel_time = self.ability:GetSpecialValueFor("AbilityChannelTime")
+	self.ability.channel_time = self.ability:GetSpecialValueFor("channel_time")
 	self.ability.mana_cost = self.ability:GetSpecialValueFor("mana_cost") / 100
 
 	self.int_per_cdr = self.ability:GetSpecialValueFor("int_per_one_cdr")
@@ -392,13 +392,25 @@ end
 
 function modifier_tinker_rearm_custom_tracker:OnRefresh(table)
 	self.int_per_cdr = self.ability:GetSpecialValueFor("int_per_one_cdr")
-	self.ability.channel_time = self.ability:GetSpecialValueFor("AbilityChannelTime")
+	self.ability.channel_time = self.ability:GetSpecialValueFor("channel_time")
 end
 
 function modifier_tinker_rearm_custom_tracker:DeclareFunctions()
-	return {
+	local result = {
 		MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE,
 	}
+
+	if IsClient() then
+		table.insert(result, MODIFIER_PROPERTY_OVERRIDE_ABILITY_SPECIAL)
+		table.insert(result, MODIFIER_PROPERTY_OVERRIDE_ABILITY_SPECIAL_VALUE)
+	end
+
+	return result
+end
+
+function modifier_tinker_rearm_custom_tracker:GetCdr()
+	return math.min(self.parent:GetIntellect(false) / self.int_per_cdr, self.max_cdr)
+		+ (self.ability.talents.has_r4 == 1 and self.ability.talents.r4_cdr or 0)
 end
 
 function modifier_tinker_rearm_custom_tracker:GetModifierPercentageCooldown(params)
@@ -411,8 +423,27 @@ function modifier_tinker_rearm_custom_tracker:GetModifierPercentageCooldown(para
 	if NoCdItems[params.ability:GetName()] then
 		return
 	end
-	return math.min(self.parent:GetIntellect(false) / self.int_per_cdr, self.max_cdr)
-		+ (self.ability.talents.has_r4 == 1 and self.ability.talents.r4_cdr or 0)
+	return self:GetCdr()
+end
+
+function modifier_tinker_rearm_custom_tracker:GetModifierOverrideAbilitySpecial(params)
+	if params.ability ~= self.ability then
+		return
+	end
+	if params.ability_special_value ~= "current_cdr" then
+		return
+	end
+	return 1
+end
+
+function modifier_tinker_rearm_custom_tracker:GetModifierOverrideAbilitySpecialValue(params)
+	if params.ability ~= self.ability then
+		return
+	end
+	if params.ability_special_value ~= "current_cdr" then
+		return
+	end
+	return self:GetCdr()
 end
 
 function modifier_tinker_rearm_custom_tracker:DamageEvent_out(params)

@@ -65,6 +65,15 @@ function modifier_event_thinker:OnCreated(table)
 		["muerta_pierce_the_veil_custom"] = true,
 	}
 
+	self.model_gestures = {
+		ACT_DOTA_RUN,
+		ACT_DOTA_IDLE,
+		ACT_DOTA_DISABLED,
+		ACT_DOTA_FLAIL,
+		ACT_DOTA_TELEPORT,
+		ACT_DOTA_GENERIC_CHANNEL_1,
+	}
+
 	self.test = false and test
 
 	self.max_per_tick = 20
@@ -287,6 +296,7 @@ function modifier_event_thinker:DeclareFunctions()
 		MODIFIER_EVENT_ON_RESPAWN,
 		MODIFIER_EVENT_ON_ABILITY_START,
 		MODIFIER_EVENT_ON_STATE_CHANGED,
+		MODIFIER_EVENT_ON_MODEL_CHANGED,
 	}
 end
 
@@ -318,6 +328,19 @@ function modifier_event_thinker:OnModifierAdded(params)
 	if type(declare) == "function" and not rawget(class, "hub_wrapped") then
 		rawset(class, "hub_wrapped", true)
 		rawset(class, "DeclareFunctions", HubDeclareWrap(declare))
+	end
+
+	local destroy = type(class) == "table" and rawget(class, "OnDestroy")
+	if type(destroy) == "function" and not rawget(class, "free_check") then
+		rawset(class, "free_check", true)
+		local name = mod:GetName()
+		rawset(class, "OnDestroy", function(obj, ...)
+			local result = destroy(obj, ...)
+			if obj:IsNull() then
+				print("MODIFIER FREED IN ONDESTROY", name, rawget(_G, "debug") and debug.traceback() or "")
+			end
+			return result
+		end)
 	end
 
 	if mod.GetModifierHealChange and unit:IsRealHero() then
@@ -727,6 +750,33 @@ function modifier_event_thinker:OnStateChanged(params)
 			else
 				unit.state_event_mods[mod] = nil
 			end
+		end
+	end
+end
+
+function modifier_event_thinker:OnModelChanged(params)
+	if not IsServer() then
+		return
+	end
+
+	local unit = params.attacker
+	if not unit then
+		return
+	end
+
+	for _, gesture in pairs(self.model_gestures) do
+		unit:RemoveGesture(gesture)
+	end
+
+	if not unit.model_event_mods then
+		return
+	end
+
+	for mod, _ in pairs(unit.model_event_mods) do
+		if not IsValid(mod) or mod.ModelEvent == nil then
+			unit.model_event_mods[mod] = nil
+		elseif IsValid(mod:GetParent()) and mod:GetParent():HasModifier(mod:GetName()) then
+			mod:ModelEvent(params)
 		end
 	end
 end

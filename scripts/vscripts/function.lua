@@ -2508,6 +2508,16 @@ function CDOTA_BaseNPC:AddStateEvent(new_mod, sync)
 	self.state_event_mods[new_mod] = sync and 2 or 1
 end
 
+function CDOTA_BaseNPC:AddModelEvent(new_mod)
+	if not IsValid(new_mod) then
+		return
+	end
+	if not self.model_event_mods then
+		self.model_event_mods = {}
+	end
+	self.model_event_mods[new_mod] = true
+end
+
 function CDOTA_BaseNPC:AddDeathEvent(new_mod, sync)
 	if not IsValid(new_mod) then
 		return

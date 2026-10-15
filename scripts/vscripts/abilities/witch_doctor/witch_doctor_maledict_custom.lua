@@ -478,7 +478,7 @@ function modifier_witch_doctor_maledict_custom_tracker:OnCreated(table)
 
 	self.ability.radius = self.ability:GetSpecialValueFor("radius")
 	self.ability.bonus_damage = self.ability:GetSpecialValueFor("bonus_damage") / 100
-	self.ability.damage = self.ability:GetSpecialValueFor("AbilityDamage")
+	self.ability.damage = self.ability:GetSpecialValueFor("damage")
 	self.ability.ticks = self.ability:GetSpecialValueFor("ticks")
 	self.ability.duration = self.ability:GetSpecialValueFor("AbilityDuration")
 
@@ -487,7 +487,7 @@ end
 
 function modifier_witch_doctor_maledict_custom_tracker:OnRefresh()
 	self.ability.bonus_damage = self.ability:GetSpecialValueFor("bonus_damage") / 100
-	self.ability.damage = self.ability:GetSpecialValueFor("AbilityDamage")
+	self.ability.damage = self.ability:GetSpecialValueFor("damage")
 end
 
 function modifier_witch_doctor_maledict_custom_tracker:OnIntervalThink()

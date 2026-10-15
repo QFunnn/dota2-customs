@@ -662,7 +662,7 @@ function modifier_hoodwink_bushwhack_custom_tracker:OnDestroy()
 			if IsValid(unit) then
 				unit:RemoveModifierByName("modifier_hoodwink_bushwhack_custom_trap")
 				if IsValid(unit) then
-					unit:RemoveSelf()
+					UTIL_Remove(unit)
 				end
 			end
 		end
@@ -1062,7 +1062,7 @@ function modifier_hoodwink_bushwhack_custom_trap:OnCreated(params)
 		if unit then
 			unit:RemoveModifierByName("modifier_hoodwink_bushwhack_custom_trap")
 			if IsValid(unit) then
-				unit:RemoveSelf()
+				UTIL_Remove(unit)
 			end
 		end
 	end
@@ -1182,7 +1182,7 @@ function modifier_hoodwink_bushwhack_custom_trap:OnDestroy()
 		self.icon:RemoveSelf()
 	end
 
-	self.parent:RemoveSelf()
+	UTIL_Remove(self.parent)
 end
 
 modifier_hoodwink_bushwhack_custom_trap_icon = class(mod_hidden)

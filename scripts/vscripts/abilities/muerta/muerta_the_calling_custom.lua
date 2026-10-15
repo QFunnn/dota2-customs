@@ -866,7 +866,12 @@ function modifier_muerta_the_calling_custom_revenant:OnDestroy()
 	if not IsValid(self.parent) then
 		return
 	end
-	UTIL_Remove(self.parent)
+	local parent = self.parent
+	Timers:CreateTimer(FrameTime(), function()
+		if IsValid(parent) then
+			UTIL_Remove(parent)
+		end
+	end)
 end
 
 function modifier_muerta_the_calling_custom_revenant:CheckState()

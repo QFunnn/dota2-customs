@@ -460,7 +460,7 @@ function modifier_bane_fiends_grip_custom_tracker:OnCreated(table)
 	self.ability.fiend_grip_ticks = self.ability:GetSpecialValueFor("fiend_grip_ticks")
 	self.ability.fiend_grip_damage = self.ability:GetSpecialValueFor("fiend_grip_damage")
 	self.ability.fiend_grip_mana_drain = self.ability:GetSpecialValueFor("fiend_grip_mana_drain") / 100
-	self.ability.channel_time = self.ability:GetSpecialValueFor("AbilityChannelTime")
+	self.ability.channel_time = self.ability:GetSpecialValueFor("channel_time")
 	self.ability.scepter_range = self.ability:GetSpecialValueFor("scepter_range")
 	self.ability.scepter_duration = self.ability:GetSpecialValueFor("scepter_duration")
 

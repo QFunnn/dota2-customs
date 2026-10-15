@@ -417,7 +417,11 @@ function modifier_primal_beast_trample_custom:OnIntervalThink()
 		return
 	end
 
-	if self.parent:HasModifier("modifier_primal_beast_pulverize_custom") then
+	if
+		self.parent:HasModifier("modifier_primal_beast_pulverize_custom")
+		or self.parent:HasModifier("modifier_primal_beast_trample_arrow")
+		or self.parent:HasModifier("modifier_primal_beast_trample_charge")
+	then
 		self:SetDuration(self:GetRemainingTime() + self.interval, true)
 	else
 		self.ticks = self.ticks + 1

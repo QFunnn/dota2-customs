@@ -1767,6 +1767,9 @@ function wearables_system:UpdatePlayerModel(entity)
 		if entity:GetModelName() ~= entity.current_model then
 			return FrameTime()
 		end
+		if IsValid(dota1x6.event_thinker_mod) then
+			dota1x6.event_thinker_mod:OnModelChanged({ attacker = entity })
+		end
 	end)
 end
 

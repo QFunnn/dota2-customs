@@ -90,11 +90,7 @@ function KillFeedGlyph(kv)
 
 function KillFeedBounty(kv)
 {
-	let ids = KillFeedSplit(kv.ids, ",")
-	let index = ids.indexOf(String(Game.GetLocalPlayerID()))
-
-	if (index === -1)
-		index = Math.max(0, ids.indexOf(String(kv.picker)))
+	let index = KillFeedSplit(kv.ids, ",").indexOf(String(Game.GetLocalPlayerID()))
 
 	kill_feed_bounties.push({team: KillFeedTeam(kv.ids, kv.heroes, ""), gold: KillFeedSplit(kv.gold, ",")[index], white: KillFeedSplit(kv.white, ",")[index], place: kv.place, bonus: kv.bonus, time: Game.Time()})
 	KillFeedScan(false)

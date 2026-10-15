@@ -696,6 +696,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				health = { 4, 6, 8 },
 				stats = { 6, 9, 12 },
+				tooltip = { juggernaut_innate_custom = { stats = "+stats" } },
 			},
 			["modifier_juggernaut_hero_2"] = {
 				skill_number = 0,
@@ -726,6 +727,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				duration = 1,
 				damage_reduce = -35,
+				tooltip = { custom_juggernaut_blade_fury = { duration = "duration" } },
 			},
 			["modifier_juggernaut_hero_5"] = {
 				skill_number = 0,
@@ -738,6 +740,8 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				invun_legendary = 1,
 				heal = 3,
 				is_stun = 1,
+				tooltip = { custom_juggernaut_healing_ward = { health_regen = "heal" } },
+				tooltip_alt = { custom_juggernaut_healing_ward = { health_regen = "heal" } },
 				alt_talent = "modifier_juggernaut_healingward_7",
 			},
 			["modifier_juggernaut_hero_6"] = {
@@ -760,6 +764,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				damage = { 30, 45, 60 },
 				heal = { 10, 15, 20 },
+				tooltip = { default = { blade_fury_damage = "damage" } },
 			},
 			["modifier_juggernaut_bladefury_2"] = {
 				skill_number = 1,
@@ -769,6 +774,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				cd = { -2, -3, -4 },
 				radius = { 30, 45, 60 },
+				tooltip = { default = { blade_fury_radius = "radius", AbilityCooldown = "cd" } },
 			},
 			["modifier_juggernaut_bladefury_3"] = {
 				skill_number = 1,
@@ -822,6 +828,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				spell = { 6, 9, 12 },
 				damage = { 1, 1.5, 2 },
+				tooltip = { default = { damage = "damage*max_health" } },
 			},
 			["modifier_juggernaut_healingward_2"] = {
 				skill_number = 2,
@@ -832,6 +839,8 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				cd = { -2, -3, -4 },
 				duration = { 1, 1.5, 2 },
 				duration_legendary = { 0.6, 0.9, 1.2 },
+				tooltip = { default = { duration = "duration", AbilityCooldown = "cd" } },
+				tooltip_alt = { default = { AbilityCooldown = "cd", duration = "duration_legendary" } },
 				alt_talent = "modifier_juggernaut_healingward_7",
 			},
 			["modifier_juggernaut_healingward_3"] = {
@@ -871,6 +880,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				damage = 35,
 				damage_type = DAMAGE_TYPE_MAGICAL,
 				skill_name = "custom_juggernaut_healing_ward",
+				tooltip = { default = { AbilityCooldown = "cd_inc", duration = "~=duration" } },
 			},
 			["modifier_juggernaut_bladedance_1"] = {
 				skill_number = 3,
@@ -880,6 +890,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				speed = { 20, 30, 40 },
 				chance = { 6, 9, 12 },
+				tooltip = { default = { chance = "chance" } },
 			},
 			["modifier_juggernaut_bladedance_2"] = {
 				skill_number = 3,
@@ -934,6 +945,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				duration = 4,
 				talent_cd = 12,
 				skill_name = "custom_juggernaut_blade_dance",
+				tooltip = { default = { AbilityCooldown = "talent_cd" } },
 			},
 			["modifier_juggernaut_omnislash_1"] = {
 				skill_number = 4,
@@ -953,6 +965,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				range = { 80, 120, 160 },
 				cd = { -2, -3, -4 },
+				tooltip = { default = { AbilityCooldown = "cd" } },
 			},
 			["modifier_juggernaut_omnislash_3"] = {
 				skill_number = 4,
@@ -981,6 +994,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				root = 1.5,
 				cast = -0.2,
 				is_root = 1,
+				tooltip = { default = { AbilityCastPoint = "cast" } },
 			},
 			["modifier_juggernaut_omnislash_7"] = {
 				skill_number = 4,
@@ -1074,6 +1088,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				health = 300,
 				gold = 300,
 				cdr = 3,
+				tooltip = { custom_phantom_assassin_coup_de_grace = { AbilityCooldown = "cd" } },
 			},
 
 			["modifier_phantom_assassin_dagger_1"] = {
@@ -1085,6 +1100,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				spell = { 4, 6, 8 },
 				damage = { 10, 15, 20 },
 				int = { 30, 45, 60 },
+				tooltip = { default = { base_damage = "damage + int" } },
 			},
 			["modifier_phantom_assassin_dagger_2"] = {
 				skill_number = 1,
@@ -1094,6 +1110,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				range = { 100, 150, 200 },
 				cd = { -1, -1.5, -2 },
+				tooltip = { default = { AbilityCooldown = "cd" } },
 			},
 			["modifier_phantom_assassin_dagger_3"] = {
 				skill_number = 1,
@@ -1160,6 +1177,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				spell = { 4, 6, 8 },
 				health = { 1.6, 2.4, 3.2 },
+				tooltip = { default = { damage = "health*max_health" } },
 			},
 			["modifier_phantom_assassin_blink_2"] = {
 				skill_number = 2,
@@ -1169,6 +1187,10 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				cd = { -1, -1.5, -2 },
 				cast = { -20, -30, -40 },
+				tooltip = {
+					default = { AbilityCooldown = "cd", AbilityCastPoint = "cast" },
+					custom_phantom_assassin_stifling_dagger = { AbilityCastPoint = "cast" },
+				},
 			},
 			["modifier_phantom_assassin_blink_3"] = {
 				skill_number = 2,
@@ -1245,6 +1267,10 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				agi = { 8, 12, 16 },
 				agi_duration = 4,
 				allow_illusion = 1,
+				tooltip = {
+					default = { duration = "duration" },
+					custom_phantom_assassin_phantom_strike = { duration = "duration" },
+				},
 			},
 			["modifier_phantom_assassin_blur_3"] = {
 				skill_number = 3,
@@ -1352,6 +1378,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				move = 20,
 				max = 3,
 				duration = 10,
+				tooltip = { default = { crit_chance = "chance", ability_crit_chance = "chance" } },
 			},
 			["modifier_phantom_assassin_crit_7"] = {
 				skill_number = 4,
@@ -1376,6 +1403,10 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				skill_name = "custom_phantom_assassin_coup_de_grace",
 				trigger_ability = "custom_phantom_assassin_coup_de_grace_legendary",
 				banned_talent = { "modifier_phantom_assassin_dagger_7", "modifier_phantom_assassin_blink_7" },
+				tooltip = {
+					default = { crit_bonus = "~crit_reduce*kv" },
+					custom_phantom_assassin_phantom_strike = { AbilityCooldown = "blink_cd" },
+				},
 			},
 		},
 
@@ -1417,6 +1448,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				shield = 15,
 				base = 100,
 				duration = 5,
+				tooltip = { custom_huskar_inner_fire = { AbilityCastPoint = "=0" } },
 			},
 			["modifier_huskar_hero_5"] = {
 				skill_number = 0,
@@ -1425,6 +1457,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				health = 10,
 				mana = 20,
+				tooltip = { custom_huskar_berserkers_blood = { hp_threshold_max = "health" } },
 			},
 			["modifier_huskar_hero_6"] = {
 				skill_number = 0,
@@ -1437,6 +1470,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				taunt = 2,
 				talent_cd = 12,
 				is_through_bkb = 1,
+				tooltip = { custom_huskar_life_break = { AbilityCastPoint = "cast" } },
 			},
 
 			["modifier_huskar_disarm_1"] = {
@@ -1447,6 +1481,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				damage = { 6, 9, 12 },
 				spell = { 8, 12, 16 },
+				tooltip = { default = { damage = "damage*max_mana" } },
 			},
 			["modifier_huskar_disarm_2"] = {
 				skill_number = 1,
@@ -1456,6 +1491,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				cd = { -2, -3, -4 },
 				damage_reduce = { -12, -18, -24 },
+				tooltip = { default = { AbilityCooldown = "cd" } },
 			},
 			["modifier_huskar_disarm_3"] = {
 				skill_number = 1,
@@ -1486,6 +1522,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				knock_duration = 0.2,
 				knock_dist = 200,
 				radius = 450,
+				tooltip = { default = { silence_duration = "silence" } },
 			},
 			["modifier_huskar_disarm_7"] = {
 				skill_number = 1,
@@ -1582,6 +1619,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				health = 25,
 				bonus = 2,
 				duration = 4,
+				tooltip = { custom_huskar_burning_spear = { burn_damage = "damage*kv" } },
 			},
 			["modifier_huskar_passive_2"] = {
 				skill_number = 3,
@@ -1591,6 +1629,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				heal = { 10, 15, 20 },
 				regen = { 8, 12, 16 },
+				tooltip = { default = { maximum_health_regen = "regen" } },
 			},
 			["modifier_huskar_passive_3"] = {
 				skill_number = 3,
@@ -1633,6 +1672,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				duration = 4,
 				talent_cd = 6,
 				skill_name = "custom_huskar_berserkers_blood",
+				tooltip = { default = { AbilityCooldown = "talent_cd", AbilityHealthCost = "~cost" } },
 			},
 			["modifier_huskar_leap_1"] = {
 				skill_number = 4,
@@ -1653,6 +1693,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "blue",
 
 				cd = { -2, -3, -4 },
+				tooltip = { default = { AbilityCooldown = "cd" } },
 			},
 			["modifier_huskar_leap_3"] = {
 				skill_number = 4,
@@ -1694,6 +1735,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				cost = 18,
 				damage_type = DAMAGE_TYPE_PURE,
 				skill_name = "custom_huskar_life_break",
+				tooltip = { default = { AbilityHealthCost = "~cost" } },
 			},
 		},
 
@@ -2395,6 +2437,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				range = { 100, 150, 200 },
 				cd = { -6, -9, -12 },
+				tooltip = { custom_legion_commander_duel = { AbilityCooldown = "cd" } },
 			},
 
 			["modifier_legion_hero_4"] = {
@@ -2406,6 +2449,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				slow = 1,
 				silence = 2,
 				is_silence = 1,
+				tooltip = { custom_legion_commander_overwhelming_odds = { slow_duration = "slow" } },
 			},
 			["modifier_legion_hero_5"] = {
 				skill_number = 0,
@@ -2416,6 +2460,8 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				bkb = 2,
 				cd = 10,
 				is_bkb = 1,
+				tooltip = { custom_legion_commander_press_the_attack = { AbilityCastPoint = "=0" } },
+				tooltip_alt = { custom_legion_commander_press_the_attack = { AbilityCastPoint = "=0" } },
 				alt_talent = "modifier_legion_press_7",
 			},
 			["modifier_legion_hero_6"] = {
@@ -2431,6 +2477,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				max = 8,
 				is_perma = 1,
 				mod_name = "modifier_legion_commander_duel_custom_damage",
+				tooltip = { custom_legion_commander_duel = { AbilityCastPoint = "cast" } },
 			},
 
 			["modifier_legion_odds_1"] = {
@@ -2442,6 +2489,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				damage = { 30, 45, 60 },
 				heal_reduce = { -12, -18, -24 },
 				duration = 5,
+				tooltip = { default = { damage = "damage*str + damage*int" } },
 			},
 			["modifier_legion_odds_2"] = {
 				skill_number = 1,
@@ -2452,6 +2500,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				radius = { 60, 90, 120 },
 				cd = { -2, -3, -4 },
 				radius_press = { 40, 60, 80 },
+				tooltip = { default = { radius = "radius", AbilityCooldown = "cd" } },
 			},
 			["modifier_legion_odds_3"] = {
 				skill_number = 1,
@@ -2498,6 +2547,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				aoe_radius = 450,
 				skill_name = "custom_legion_commander_overwhelming_odds",
 				skill_change = "duel_magic",
+				tooltip = { default = { radius = "~=aoe_radius" } },
 			},
 
 			["modifier_legion_press_1"] = {
@@ -2508,6 +2558,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				damage = { 0.8, 1.2, 1.6 },
 				magic = { -8, -12, -16 },
+				tooltip = { default = { damage = "damage*max_health" } },
 			},
 			["modifier_legion_press_2"] = {
 				skill_number = 2,
@@ -2518,6 +2569,8 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				duration = { 1, 1.5, 2 },
 				duration_legendary = { 0.6, 0.9, 1.2 },
 				heal = { 0.8, 1.2, 1.6 },
+				tooltip = { default = { duration = "duration", hp_regen = "heal*max_health" } },
+				tooltip_alt = { default = { hp_regen = "heal*max_health", duration = "duration_legendary" } },
 				alt_talent = "modifier_legion_press_7",
 			},
 			["modifier_legion_press_3"] = {
@@ -2530,7 +2583,6 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				heal = { 25, 40 },
 				chance = 15,
-				talent_cd = 2,
 				damage = { 250, 400 },
 				duration = 4,
 				talent_cd = 1,
@@ -2551,6 +2603,8 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				odds_count = 3,
 				is_purgable_self = 1,
 				is_root = 1,
+				tooltip = { default = { AbilityCooldown = "cd" } },
+				tooltip_alt = { default = { AbilityCooldown = "cd" } },
 				alt_talent = "modifier_legion_odds_7",
 				alt_talent2 = "modifier_legion_press_7",
 			},
@@ -2570,6 +2624,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				heal_reduce = -15,
 				skill_name = "custom_legion_commander_press_the_attack",
 				skill_change = "duel_magic",
+				tooltip = { default = { duration = "~=duration" } },
 			},
 
 			["modifier_legion_moment_1"] = {
@@ -2620,6 +2675,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				attack = -1,
 				duration = 5,
+				tooltip = { default = { trigger_attacks = "attack" } },
 			},
 			["modifier_legion_moment_7"] = {
 				skill_number = 3,
@@ -2671,6 +2727,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				radius = 700,
 				max = 12,
 				duration = 6,
+				tooltip = { legion_commander_innate_custom = { str_max = "+str" } },
 			},
 			["modifier_legion_duel_4"] = {
 				skill_number = 4,
@@ -2685,6 +2742,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				talent_cd = 20,
 				is_breakable = 1,
 				is_save = 1,
+				tooltip = { default = { duration = "duration" } },
 				alt_talent = "modifier_legion_duel_7",
 			},
 			["modifier_legion_duel_7"] = {
@@ -2703,6 +2761,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				damage = 100,
 				radius = 500,
 				skill_name = "custom_legion_commander_duel",
+				tooltip = { default = { duration = "=duration" } },
 			},
 		},
 
@@ -2722,6 +2781,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				str = { 6, 9, 12 },
 				shield = { 2, 3, 4 },
+				tooltip = { bristleback_innate_custom = { shield = "shield" } },
 			},
 			["modifier_bristle_hero_3"] = {
 				skill_number = 0,
@@ -2755,6 +2815,13 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				damage_reduce = -10,
 				talent_cd = 20,
 				duration = 3,
+				tooltip = {
+					bristleback_bristleback_custom = {
+						side_damage_reduction = "damage_reduce",
+						back_damage_reduction = "damage_reduce",
+						AbilityCooldown = "talent_cd",
+					},
+				},
 			},
 			["modifier_bristle_hero_6"] = {
 				skill_number = 0,
@@ -2765,6 +2832,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				move = 1,
 				move_max = 600,
 				move_tooltip = 50,
+				tooltip = { bristleback_warpath_custom = { move_speed_per_stack = "move" } },
 			},
 
 			["modifier_bristle_goo_1"] = {
@@ -2786,6 +2854,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				cd = { -0.4, -0.6, -0.8 },
 				range = { 100, 150, 200 },
+				tooltip = { default = { AbilityCooldown = "cd" } },
 			},
 			["modifier_bristle_goo_3"] = {
 				skill_number = 1,
@@ -2813,6 +2882,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				talent_cd = 10,
 				is_purgable_self = 1,
 				is_silence = 1,
+				tooltip = { default = { stack_limit = "max" } },
 			},
 			["modifier_bristle_goo_7"] = {
 				skill_number = 1,
@@ -2843,6 +2913,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				damage = { 50, 75, 100 },
 				damage_max = 300,
+				tooltip = { default = { quill_base_damage = "damage*int", max_damage = "damage*damage_max%*int" } },
 			},
 			["modifier_bristle_spray_2"] = {
 				skill_number = 2,
@@ -2852,6 +2923,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				radius = { 80, 120, 160 },
 				cd = { -0.6, -0.9, -1.2 },
+				tooltip = { default = { radius = "radius", AbilityCooldown = "cd" } },
 			},
 			["modifier_bristle_spray_3"] = {
 				skill_number = 2,
@@ -2896,6 +2968,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				mana_inc = 15,
 				creeps = 4,
 				skill_name = "bristleback_quill_spray_custom",
+				tooltip = { default = { AbilityManaCost = "~mana" } },
 			},
 			["modifier_bristle_back_1"] = {
 				skill_number = 3,
@@ -2949,6 +3022,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				radius = 700,
 				talent_cd = 10,
 				is_through_bkb = 1,
+				tooltip = { default = { quill_release_threshold = "damage" } },
 			},
 			["modifier_bristle_back_7"] = {
 				skill_number = 3,
@@ -2976,6 +3050,8 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				range = { 40, 60, 80 },
 				damage = { 4, 6, 8 },
 				radius = { 30, 45, 60 },
+				tooltip = { default = { damage_per_stack = "damage" } },
+				tooltip_alt = { default = { damage_per_stack = "damage" } },
 				alt_talent = "modifier_bristle_warpath_7",
 			},
 			["modifier_bristle_warpath_2"] = {
@@ -2986,6 +3062,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				status = { 12, 18, 24 },
 				max = { 2, 3, 4 },
+				tooltip = { default = { max_stacks = "max" } },
 			},
 			["modifier_bristle_warpath_3"] = {
 				skill_number = 4,
@@ -3035,6 +3112,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				duration = 12,
 				is_through_bkb = 1,
 				skill_name = "bristleback_warpath_custom",
+				tooltip = { default = { AbilityCooldown = "talent_cd", AbilityCastPoint = "cast" } },
 			},
 		},
 
@@ -4098,6 +4176,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				bkb = 2,
 				cd = -3,
 				is_bkb = 1,
+				tooltip = { ember_spirit_flame_guard_custom = { AbilityCooldown = "cd" } },
 			},
 
 			["modifier_ember_chain_1"] = {
@@ -4118,6 +4197,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				duration = { 0.4, 0.6, 0.8 },
 				cd = { -2, -3, -4 },
+				tooltip = { default = { duration = "duration", AbilityCooldown = "cd" } },
 			},
 			["modifier_ember_chain_3"] = {
 				skill_number = 1,
@@ -4145,6 +4225,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				damage_reduce = -40,
 				is_through_bkb = 1,
 				trigger_ability = "ember_spirit_searing_chains_custom",
+				tooltip = { default = { radius = "radius" } },
 			},
 			["modifier_ember_chain_7"] = {
 				skill_number = 1,
@@ -4164,6 +4245,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				effect_duration = 15,
 				mana = -50,
 				skill_name = "ember_spirit_searing_chains_custom",
+				tooltip = { default = { AbilityManaCost = "mana" } },
 			},
 			["modifier_ember_fist_1"] = {
 				skill_number = 2,
@@ -4173,6 +4255,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				damage = { 20, 30, 40 },
 				cd = { -0.8, -1.2, -1.6 },
+				tooltip = { default = { AbilityCooldown = "cd" }, ember_spirit_innate_custom = { damage = "damage*int" } },
 			},
 			["modifier_ember_fist_2"] = {
 				skill_number = 2,
@@ -4228,6 +4311,10 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				chance = 60,
 				interval = 0.15,
 				skill_name = "ember_spirit_sleight_of_fist_custom",
+				tooltip = {
+					default = { attack_interval = "=interval" },
+					ember_spirit_innate_custom = { duration = "=duration" },
+				},
 			},
 			["modifier_ember_guard_1"] = {
 				skill_number = 3,
@@ -4237,6 +4324,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				damage = { 20, 30, 40 },
 				burn = { 12, 18, 24 },
+				tooltip = { default = { damage_per_second = "burn*attack" } },
 			},
 			["modifier_ember_guard_2"] = {
 				skill_number = 3,
@@ -4246,6 +4334,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				range = { 50, 75, 100 },
 				shield = { 6, 9, 12 },
+				tooltip = { default = { radius = "range", absorb_amount = "shield*max_health" } },
 			},
 			["modifier_ember_guard_3"] = {
 				skill_number = 3,
@@ -4275,6 +4364,8 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				is_through_bkb = 1,
 				is_basher = 1,
 				is_stun = 1,
+				tooltip = { default = { duration = "duration" } },
+				tooltip_alt = { default = { duration = "duration_legendary" } },
 				alt_talent = "modifier_ember_guard_7",
 			},
 			["modifier_ember_guard_7"] = {
@@ -4292,6 +4383,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				max = 20,
 				shield_cd = 6,
 				skill_name = "ember_spirit_flame_guard_custom",
+				tooltip = { default = { duration = "~=duration" } },
 			},
 			["modifier_ember_remnant_1"] = {
 				skill_number = 4,
@@ -4315,6 +4407,10 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				cd = { -4, -6, -8 },
 				mana = { -40, -60, -80 },
+				tooltip = {
+					default = { AbilityCooldown = "cd" },
+					ember_spirit_activate_fire_remnant_custom = { AbilityManaCost = "mana" },
+				},
 			},
 			["modifier_ember_remnant_3"] = {
 				skill_number = 4,
@@ -4724,6 +4820,8 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				slow = -50,
 				is_purgable_self = 1,
 				is_silence = 1,
+				tooltip = { hoodwink_bushwhack_custom = { AbilityCastPoint = "=0" } },
+				tooltip_alt = { hoodwink_bushwhack_custom = { AbilityCastPoint = "=0" } },
 				alt_talent = "modifier_hoodwink_bush_7",
 			},
 			["modifier_hoodwink_hero_5"] = {
@@ -4739,6 +4837,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				talent_cd = 15,
 				is_breakable = 1,
 				is_save = 1,
+				tooltip = { hoodwink_innate_custom = { chance = "chance" } },
 			},
 			["modifier_hoodwink_hero_6"] = {
 				skill_number = 0,
@@ -4772,6 +4871,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				heal = { 12, 18, 24 },
 				cd = { -1, -1.5, -2 },
+				tooltip = { default = { AbilityCooldown = "cd" } },
 			},
 			["modifier_hoodwink_acorn_3"] = {
 				skill_number = 1,
@@ -4801,6 +4901,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				is_basher = 1,
 				is_through_bkb = 1,
 				is_stun = 1,
+				tooltip = { default = { bounce_count = "max", AbilityCastPoint = "cast" } },
 			},
 			["modifier_hoodwink_acorn_7"] = {
 				skill_number = 1,
@@ -4825,6 +4926,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				damage = { 80, 120, 160 },
 				spell = { 6, 9, 12 },
+				tooltip = { default = { total_damage = "damage" } },
 			},
 			["modifier_hoodwink_bush_2"] = {
 				skill_number = 2,
@@ -4834,6 +4936,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				cd = { -2, -3, -4 },
 				stun = { 0.2, 0.3, 0.4 },
+				tooltip = { default = { debuff_duration = "stun", AbilityCooldown = "cd" } },
 			},
 			["modifier_hoodwink_bush_3"] = {
 				skill_number = 2,
@@ -4906,6 +5009,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				move = { 30, 45, 60 },
 				duration = { 1, 1.5, 2 },
+				tooltip = { default = { duration = "duration" } },
 			},
 			["modifier_hoodwink_scurry_3"] = {
 				skill_number = 3,
@@ -4961,6 +5065,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				max = 12,
 				is_perma = 1,
 				mod_name = "modifier_hoodwink_sharpshooter_custom_hits",
+				tooltip = { default = { max_damage = "damage*perma" } },
 			},
 			["modifier_hoodwink_sharp_2"] = {
 				skill_number = 4,
@@ -4970,6 +5075,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				cd = { -2, -3, -4 },
 				speed = { 20, 30, 40 },
+				tooltip = { default = { AbilityCooldown = "cd" } },
 			},
 			["modifier_hoodwink_sharp_3"] = {
 				skill_number = 4,
@@ -4982,6 +5088,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				cast = { -20, -35 },
 				delay = 50,
 				damage = { 35, 60 },
+				tooltip = { default = { max_charge_time = "cast*all" } },
 			},
 			["modifier_hoodwink_sharp_4"] = {
 				skill_number = 4,
@@ -5015,6 +5122,14 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				duration = 15,
 				mana = -50,
 				skill_name = "hoodwink_sharpshooter_custom",
+				tooltip = {
+					default = {
+						AbilityCooldown = "cd",
+						AbilityManaCost = "mana",
+						max_damage = "~damage*all",
+						max_charge_time = "delay",
+					},
+				},
 			},
 		},
 
@@ -5027,6 +5142,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				range = { 100, 150, 200 },
 				stun = { 0.3, 0.45, 0.6 },
+				tooltip = { skeleton_king_hellfire_blast_custom = { blast_stun_duration = "stun" } },
 			},
 			["modifier_skeleton_hero_2"] = {
 				skill_number = 0,
@@ -5035,6 +5151,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				heal_amp = { 6, 9, 12 },
 				heal = { 8, 12, 16 },
+				tooltip = { skeleton_king_innate_custom = { heal = "heal" } },
 			},
 			["modifier_skeleton_hero_3"] = {
 				skill_number = 0,
@@ -5059,7 +5176,6 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				mini_icon = "hero_5",
 				rarity = "purple",
 				has_video = 1,
-				has_video = 1,
 
 				magic = 15,
 				heal = 8,
@@ -5074,7 +5190,6 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				mini_icon = "hero_6",
 				rarity = "purple",
 				has_video = 1,
-				has_video = 1,
 
 				fear = 1.5,
 				fear_move = 200,
@@ -5084,6 +5199,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				move = 550,
 				move_duration = 1.5,
 				is_through_bkb = 1,
+				tooltip = { skeleton_king_reincarnation_custom = { reincarnate_time = "delay" } },
 			},
 
 			["modifier_skeleton_blast_1"] = {
@@ -5094,6 +5210,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				spell = { 6, 9, 12 },
 				damage = { 60, 90, 120 },
+				tooltip = { default = { blast_damage = "damage" } },
 			},
 			["modifier_skeleton_blast_2"] = {
 				skill_number = 1,
@@ -5103,6 +5220,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				cd = { -1, -1.5, -2 },
 				cast = { -0.1, -0.15, -0.2 },
+				tooltip = { default = { AbilityCooldown = "cd", AbilityCastPoint = "cast" } },
 			},
 			["modifier_skeleton_blast_3"] = {
 				skill_number = 1,
@@ -5157,6 +5275,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				cd = { -4, -6, -8 },
 				shield = { 12, 18, 24 },
+				tooltip = { default = { AbilityCooldown = "cd" } },
 			},
 			["modifier_skeleton_vampiric_2"] = {
 				skill_number = 2,
@@ -5208,7 +5327,9 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				max = 200,
 				stack_init = 150,
 				duration = 12,
+				mod_name = "modifier_skeleton_king_vampiric_aura_custom_legendary",
 				skill_name = "skeleton_king_vampiric_aura_custom",
+				tooltip = { default = { damage = "damage*perma" } },
 			},
 			["modifier_skeleton_strike_1"] = {
 				skill_number = 3,
@@ -5245,6 +5366,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				damage = { 18, 30 },
 				damage_type = DAMAGE_TYPE_PURE,
 				is_through_bkb = 1,
+				tooltip = { default = { AbilityCooldown = "cd" } },
 				alt_talent = "modifier_skeleton_strike_7",
 			},
 			["modifier_skeleton_strike_4"] = {
@@ -5277,6 +5399,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				crit = 140,
 				duration = 8,
 				skill_name = "skeleton_king_mortal_strike_custom",
+				tooltip = { default = { crit_mult = "~damage*kv", AbilityCooldown = "~talent_cd" } },
 			},
 			["modifier_skeleton_reincarnation_1"] = {
 				skill_number = 4,
@@ -5406,6 +5529,8 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				range_legendary = 350,
 				speed = 1350,
 				is_root_disabled = 1,
+				tooltip = { lina_fiery_soul_custom = { fiery_soul_move_speed_bonus = "move", AbilityCooldown = "cd" } },
+				tooltip_alt = { lina_fiery_soul_custom = { fiery_soul_move_speed_bonus = "move" } },
 				alt_talent = "modifier_lina_soul_7",
 			},
 			["modifier_lina_hero_6"] = {
@@ -5420,6 +5545,9 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				max = 25,
 				is_perma = 1,
 				mod_name = "modifier_lina_light_strike_array_custom_cdr",
+				tooltip = {
+					lina_light_strike_array_custom = { light_strike_array_aoe = "radius", AbilityCastPoint = "cast" },
+				},
 			},
 
 			["modifier_lina_dragon_1"] = {
@@ -5430,6 +5558,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				spell = { 4, 6, 8 },
 				damage = { 60, 90, 120 },
+				tooltip = { default = { dragon_slave_damage = "damage" } },
 			},
 			["modifier_lina_dragon_2"] = {
 				skill_number = 1,
@@ -5442,6 +5571,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				slow = { -40, -60, -80 },
 				duration = 1,
 				is_purgable_self = 1,
+				tooltip = { default = { AbilityCooldown = "cd" } },
 			},
 			["modifier_lina_dragon_3"] = {
 				skill_number = 1,
@@ -5520,6 +5650,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				damage = { 60, 100 },
 				duration = 6,
 				interval = 0.2,
+				tooltip = { default = { AbilityCooldown = "cd" } },
 			},
 			["modifier_lina_array_4"] = {
 				skill_number = 2,
@@ -5568,6 +5699,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				duration = 3,
 				slow = { -20, -30, -40 },
 				speed = { 6, 9, 12 },
+				tooltip = { default = { fiery_soul_attack_speed_bonus = "speed" } },
 			},
 			["modifier_lina_soul_2"] = {
 				skill_number = 3,
@@ -5615,6 +5747,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				build_type = 1,
 
 				damage = 35,
+				speed = -35,
 				mana = 25,
 				range = 550,
 				cast = 3,
@@ -5626,6 +5759,13 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				stack = 2,
 				stack_duration = 10,
 				skill_name = "lina_fiery_soul_custom",
+				tooltip = {
+					default = {
+						AbilityCooldown = "talent_cd",
+						fiery_soul_attack_speed_bonus = "~speed*all",
+						AbilityManaCost = "~mana",
+					},
+				},
 			},
 
 			["modifier_lina_laguna_1"] = {
@@ -5636,6 +5776,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				spell = { 4, 6, 8 },
 				damage = { 4, 6, 8 },
+				tooltip = { default = { damage = "damage*max_health" } },
 			},
 			["modifier_lina_laguna_2"] = {
 				skill_number = 4,
@@ -5675,6 +5816,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				slow_resist = 30,
 				cast = -0.15,
 				talent_cd = 3,
+				tooltip = { default = { AbilityCastPoint = "cast" } },
 			},
 			["modifier_lina_laguna_7"] = {
 				skill_number = 4,
@@ -6134,6 +6276,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				range = { 50, 75, 100 },
 				duration = { 0.3, 0.45, 0.6 },
+				tooltip = { default = { radius = "range", duration = "duration" } },
 			},
 			["modifier_axe_call_3"] = {
 				skill_number = 1,
@@ -6159,6 +6302,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				cast = -0.3,
 				mana = 0,
 				cd_inc = -5,
+				tooltip = { default = { AbilityManaCost = "=0", AbilityCastPoint = "cast" } },
 			},
 			["modifier_axe_call_7"] = {
 				skill_number = 1,
@@ -6187,6 +6331,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				spell = { 6, 9, 12 },
 				damage = { 10, 15, 20 },
+				tooltip = { default = { damage_per_second = "damage" } },
 			},
 			["modifier_axe_hunger_2"] = {
 				skill_number = 2,
@@ -6196,6 +6341,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				slow = { -10, -15, -20 },
 				damage_reduce = { -10, -15, -20 },
+				tooltip = { default = { slow = "slow" } },
 			},
 			["modifier_axe_hunger_3"] = {
 				skill_number = 2,
@@ -6240,6 +6386,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				radius = 500,
 				duration = 4,
 				skill_name = "axe_battle_hunger_custom",
+				tooltip = { default = { duration = "~=duration" } },
 			},
 			["modifier_axe_helix_1"] = {
 				skill_number = 3,
@@ -6249,6 +6396,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				base = { 6, 9, 12 },
 				health = { 0.6, 0.9, 1.2 },
+				tooltip = { default = { damage = "base + health*max_health" } },
 			},
 			["modifier_axe_helix_2"] = {
 				skill_number = 3,
@@ -6259,6 +6407,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				radius = { 40, 60, 80 },
 				base = { 6, 9, 12 },
 				heal = { 0.6, 0.9, 1.2 },
+				tooltip = { default = { radius = "radius" } },
 			},
 			["modifier_axe_helix_3"] = {
 				skill_number = 3,
@@ -6303,6 +6452,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				max = 10,
 				status = 70,
 				skill_name = "axe_counter_helix_custom",
+				tooltip = { default = { AbilityCooldown = "~talent_cd" } },
 			},
 			["modifier_axe_culling_1"] = {
 				skill_number = 4,
@@ -6404,6 +6554,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				duration = { 4, 6, 8 },
 				cd = { -4, -6, -8 },
+				tooltip = { alchemist_chemical_rage_custom = { duration = "duration", AbilityCooldown = "cd" } },
 			},
 
 			["modifier_alchemist_hero_4"] = {
@@ -6428,6 +6579,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				duration = 0.25,
 				is_root_disabled = 1,
 				trigger_ability = "alchemist_unstable_concoction_custom",
+				tooltip = { alchemist_unstable_concoction_custom = { movespeed = "move" } },
 			},
 			["modifier_alchemist_hero_6"] = {
 				skill_number = 0,
@@ -6459,6 +6611,11 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				cd = { -2, -3, -4 },
 				mana = { 16, 24, 32 },
+				tooltip = {
+					default = { AbilityCooldown = "cd" },
+					alchemist_acid_spray_red_custom = { AbilityCooldown = "cd" },
+					alchemist_acid_spray_purple_custom = { AbilityCooldown = "cd" },
+				},
 			},
 			["modifier_alchemist_spray_3"] = {
 				skill_number = 1,
@@ -6486,6 +6643,11 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				root = 1.6,
 				cd = 6,
 				is_root = 1,
+				tooltip = {
+					default = { radius = "radius" },
+					alchemist_acid_spray_red_custom = { radius = "radius" },
+					alchemist_acid_spray_purple_custom = { radius = "radius" },
+				},
 			},
 			["modifier_alchemist_spray_legendary"] = {
 				skill_number = 1,
@@ -6524,6 +6686,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				cd = { -2, -3, -4 },
 				stun = { 0.4, 0.6, 0.8 },
+				tooltip = { default = { max_stun = "stun", AbilityCooldown = "cd" } },
 			},
 			["modifier_alchemist_unstable_3"] = {
 				skill_number = 2,
@@ -6561,6 +6724,10 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				magic_resist = -20,
 				creeps = 3,
 				duration = 2,
+				tooltip = {
+					default = { brew_explosion = "duration" },
+					alchemist_acid_spray_custom = { armor_reduction = "~=0" },
+				},
 			},
 			["modifier_alchemist_greed_1"] = {
 				skill_number = 3,
@@ -6579,6 +6746,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				move_slow = { -10, -15, -20 },
 				range = { 50, 75, 100 },
+				tooltip = { default = { max_slow = "move_slow" } },
 			},
 			["modifier_alchemist_greed_3"] = {
 				skill_number = 3,
@@ -6625,6 +6793,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				slow_duration = 1,
 				skill_name = "alchemist_corrosive_weaponry_custom",
 				is_through_bkb = 1,
+				tooltip = { default = { AbilityCooldown = "talent_cd" } },
 			},
 			["modifier_alchemist_rage_1"] = {
 				skill_number = 4,
@@ -6719,6 +6888,10 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				slow = { -20, -30, -40 },
 				duration = 5,
 				is_purgable_self = 1,
+				tooltip = {
+					ogre_magi_fireblast_custom = { stun_duration = "stun" },
+					ogre_magi_unrefined_fireblast_custom = { stun_duration = "stun" },
+				},
 			},
 			["modifier_ogremagi_hero_2"] = {
 				skill_number = 0,
@@ -6727,6 +6900,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				move = { 2, 3, 4 },
 				magic = { 4, 6, 8 },
+				tooltip = { ogre_magi_bloodlust_custom = { bonus_movement_speed = "move" } },
 			},
 			["modifier_ogremagi_hero_3"] = {
 				skill_number = 0,
@@ -6735,6 +6909,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				mana = { 2, 3, 4 },
 				str = { 6, 9, 12 },
+				tooltip = { ogre_magi_dumb_luck_custom = { mana_per_str = "mana" } },
 			},
 			["modifier_ogremagi_hero_4"] = {
 				skill_number = 0,
@@ -6762,6 +6937,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				is_purgable_self = 1,
 				is_silence = 1,
 				talent_cd = 8,
+				tooltip = { ogre_magi_ignite_custom = { AbilityCastPoint = "cast" } },
 			},
 			["modifier_ogremagi_hero_6"] = {
 				skill_number = 0,
@@ -6773,6 +6949,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				bonus = 4,
 				duration = 3,
 				heal = 6,
+				tooltip = { ogre_magi_bloodlust_custom = { AbilityCastPoint = "=0" } },
 			},
 
 			["modifier_ogremagi_blast_1"] = {
@@ -6783,6 +6960,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				spell = { 4, 6, 8 },
 				damage = { 4, 6, 8 },
+				tooltip = { default = { fireblast_damage = "damage*max_mana" } },
 			},
 			["modifier_ogremagi_blast_2"] = {
 				skill_number = 1,
@@ -6792,6 +6970,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				cd = { -1, -1.5, -2 },
 				range = { 100, 150, 200 },
+				tooltip = { default = { AbilityCooldown = "cd" } },
 			},
 			["modifier_ogremagi_blast_3"] = {
 				skill_number = 1,
@@ -6818,6 +6997,10 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				duration = 3,
 				cd_items = 1,
 				cd_items_inc = 0.5,
+				tooltip = {
+					default = { AbilityCastPoint = "cast" },
+					ogre_magi_unrefined_fireblast_custom = { AbilityCastPoint = "cast" },
+				},
 			},
 			["modifier_ogremagi_blast_7"] = {
 				skill_number = 1,
@@ -6840,6 +7023,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				max = 20,
 				interval = 0.25,
 				skill_name = "ogre_magi_fireblast_custom",
+				tooltip = { default = { AbilityManaCost = "mana" } },
 			},
 
 			["modifier_ogremagi_ignite_1"] = {
@@ -6850,6 +7034,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				bonus = { 10, 15, 20 },
 				damage = { 20, 30, 40 },
+				tooltip = { default = { burn_damage = "bonus*attack" } },
 			},
 			["modifier_ogremagi_ignite_2"] = {
 				skill_number = 2,
@@ -6860,6 +7045,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				cd = { -2, -3, -4 },
 				heal = { 10, 15, 20 },
 				bonus = 3,
+				tooltip = { default = { AbilityCooldown = "cd" } },
 			},
 			["modifier_ogremagi_ignite_3"] = {
 				skill_number = 2,
@@ -6890,6 +7076,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				range = 600,
 				duration = 5,
 				cd = -3,
+				tooltip = { ogre_magi_bloodlust_custom = { max = "max" } },
 			},
 			["modifier_ogremagi_ignite_7"] = {
 				skill_number = 2,
@@ -6907,6 +7094,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				damage_reduce = -30,
 				cd = -3,
 				skill_name = "ogre_magi_ignite_custom",
+				tooltip = { default = { duration = "duration_inc", burn_damage = "~damage_reduce*all" } },
 			},
 
 			["modifier_ogremagi_bloodlust_1"] = {
@@ -6918,6 +7106,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				range = { 50, 75, 100 },
 				speed = { 20, 30, 40 },
 				speed_legendary = { 16, 24, 32 },
+				tooltip = { default = { self_bonus = "speed" } },
 				alt_talent = "modifier_ogremagi_bloodlust_7",
 			},
 			["modifier_ogremagi_bloodlust_2"] = {
@@ -7045,6 +7234,9 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				max = 150,
 				mod_name = "modifier_ogre_magi_dumb_luck_custom_cdr",
 				is_perma = 1,
+				tooltip = {
+					default = { multicast_2_times = "icon", multicast_3_times = "icon", multicast_4_times = "icon" },
+				},
 			},
 			["modifier_ogremagi_multi_7"] = {
 				skill_number = 4,
@@ -7065,6 +7257,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				aura_radius = 1000,
 				skill_name = "ogre_magi_multicast_custom",
 				banned_talent = "modifier_ogremagi_bloodlust_7",
+				tooltip = { default = { AbilityCooldown = "talent_cd" } },
 			},
 		},
 
@@ -7077,6 +7270,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				slow = { 10, 15, 20 },
 				damage_reduce = { -12, -18, -24 },
+				tooltip = { antimage_innate_custom = { slow_max = "slow" } },
 			},
 			["modifier_antimage_hero_2"] = {
 				skill_number = 0,
@@ -7169,6 +7363,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				speed = { 70, 120 },
 				duration = 3,
 				allow_illusion = 1,
+				tooltip = { default = { mana_per_hit_pct = "mana" } },
 			},
 			["modifier_antimage_break_4"] = {
 				skill_number = 1,
@@ -7199,6 +7394,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				duration = 6,
 				status = 50,
 				skill_name = "antimage_mana_break_custom",
+				tooltip = { default = { AbilityCooldown = "talent_cd" } },
 			},
 
 			["modifier_antimage_blink_1"] = {
@@ -7237,7 +7433,6 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				legendary_count = 2,
 				damage = { 50, 80 },
 				heal = { 70, 100 },
-				legendary_count = 2,
 				duration = 4,
 				alt_talent = "modifier_antimage_blink_7",
 			},
@@ -7250,6 +7445,8 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				cast = -0.2,
 				speed = 30,
 				cd_inc = -10,
+				tooltip = { default = { AbilityManaCost = "=0", AbilityCastPoint = "cast" } },
+				tooltip_alt = { default = { AbilityManaCost = "=0" } },
 				alt_talent = "modifier_antimage_blink_7",
 			},
 			["modifier_antimage_blink_7"] = {
@@ -7273,6 +7470,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				allow_illusion = 1,
 				trigger_ability = "antimage_blink_custom",
 				skill_name = "antimage_blink_custom",
+				tooltip = { default = { AbilityCooldown = "cd", AbilityManaCost = "mana", AbilityCastPoint = "=0" } },
 			},
 
 			["modifier_antimage_counter_1"] = {
@@ -7365,6 +7563,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				cd = { -4, -6, -8 },
 				heal = { 10, 15, 20 },
+				tooltip = { default = { AbilityCooldown = "cd" } },
 			},
 			["modifier_antimage_void_3"] = {
 				skill_number = 4,
@@ -7417,8 +7616,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				cast = { -0.2, -0.3, -0.4 },
 				bonus = 2,
 				duration = 4,
-				tooltip_ability = "primal_beast_onslaught_custom",
-				tooltip = { chargeup_time = "cast" },
+				tooltip = { primal_beast_onslaught_custom = { chargeup_time = "cast" } },
 			},
 			["modifier_primal_beast_hero_2"] = {
 				skill_number = 0,
@@ -7428,8 +7626,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				armor = { 2, 3, 4 },
 				magic = { 2, 3, 4 },
 				bonus = 250,
-				tooltip_ability = "primal_beast_uproar_custom",
-				tooltip = { roared_bonus_armor = "armor" },
+				tooltip = { primal_beast_uproar_custom = { roared_bonus_armor = "armor" } },
 			},
 			["modifier_primal_beast_hero_3"] = {
 				skill_number = 0,
@@ -7463,8 +7660,17 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				status = 1,
 				health = 250,
 				max = 30,
-				tooltip_ability = "primal_beast_innate_custom",
-				tooltip = { cleave = "bonus*kv", move = "bonus*kv", range = "bonus*kv" },
+				tooltip = {
+					primal_beast_innate_custom = {
+						cleave = "bonus*kv",
+						move = "bonus*kv",
+						range = "bonus*kv",
+						current_move = "icon",
+						current_slow = "icon",
+						current_range = "icon",
+						current_status = "icon",
+					},
+				},
 			},
 			["modifier_primal_beast_hero_6"] = {
 				skill_number = 0,
@@ -7489,7 +7695,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				quake = { 10, 15, 20 },
 				attack = { 30, 45, 60 },
 				duration = 6,
-				tooltip = { attack_damage = "damage" },
+				tooltip = { default = { attack_damage = "damage" } },
 				alt_talent = "modifier_primal_beast_onslaught_7",
 			},
 			["modifier_primal_beast_onslaught_2"] = {
@@ -7501,6 +7707,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				cd = { -2, -3, -4 },
 				slow = { -20, -30, -40 },
 				duration = 3,
+				tooltip = { default = { AbilityCooldown = "cd" } },
 			},
 			["modifier_primal_beast_onslaught_3"] = {
 				skill_number = 1,
@@ -7528,7 +7735,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "purple",
 				has_video = 1,
 
-				speed = 40,
+				speed = 30,
 				cd = -40,
 				stun = -50,
 				alt_talent = "modifier_primal_beast_uproar_7",
@@ -7543,17 +7750,18 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				build_type = 1,
 
 				damage = 60,
-				damage_inc = 10,
+				damage_inc = 15,
 				interval = 1.1,
 				skill_name = "primal_beast_onslaught_custom",
-				radius = 500,
+				radius = 550,
 				duration = 3,
 				max = 9,
 				stack_duration = 15,
 				slow = -100,
-				slow_duration = 0.3,
+				slow_duration = 0.5,
 				mana = 50,
 				creeps = 20,
+				tooltip = { default = { AbilityManaCost = "mana" } },
 			},
 
 			["modifier_primal_beast_trample_1"] = {
@@ -7562,9 +7770,9 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				skill_icon = "trample",
 				rarity = "blue",
 
-				str = { 20, 30, 40 },
+				str = { 16, 24, 32 },
 				duration = { 1, 1.5, 2 },
-				tooltip = { duration = "duration", base_damage = "str" },
+				tooltip = { default = { duration = "duration", base_damage = "str" } },
 			},
 			["modifier_primal_beast_trample_2"] = {
 				skill_number = 2,
@@ -7604,6 +7812,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				talent_cd = 6,
 				is_purgable_self = 1,
 				is_silence = 1,
+				tooltip = { default = { AbilityCooldown = "cd" } },
 			},
 			["modifier_primal_beast_trample_7"] = {
 				skill_number = 2,
@@ -7622,7 +7831,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				cast = 0.5,
 				turn_rate = 360,
 				speed = 1300,
-				radius = 190,
+				radius = 240,
 				knockback = 200,
 				knockback_duration = 0.3,
 				is_root_disabled = 1,
@@ -7639,8 +7848,8 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				damage_legendary = { 1, 1.5, 2 },
 				bva = { -0.1, -0.15, -0.2 },
 				interval = { -10, -15, -20 },
-				tooltip = { bonus_damage_per_stack = "damage" },
-				tooltip_alt = { bonus_damage_per_stack = "damage_legendary" },
+				tooltip = { default = { bonus_damage_per_stack = "damage" } },
+				tooltip_alt = { default = { bonus_damage_per_stack = "damage_legendary" } },
 				alt_talent = "modifier_primal_beast_uproar_7",
 				alt_talent2 = "modifier_primal_beast_onslaught_7",
 			},
@@ -7652,7 +7861,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				duration = { 1, 1.5, 2 },
 				heal = { 30, 45, 60 },
-				tooltip = { roar_duration = "duration" },
+				tooltip = { default = { roar_duration = "duration" } },
 			},
 			["modifier_primal_beast_uproar_3"] = {
 				skill_number = 3,
@@ -7684,9 +7893,8 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				pull_duration = 0.3,
 				is_purgable_self = 1,
 				is_root = 1,
-				tooltip_ability = "primal_beast_onslaught_custom",
-				tooltip = { stun_duration = "stun" },
-				tooltip_alt = { stun_duration = "stun" },
+				tooltip = { primal_beast_onslaught_custom = { stun_duration = "stun" } },
+				tooltip_alt = { primal_beast_onslaught_custom = { stun_duration = "stun" } },
 				alt_talent = "modifier_primal_beast_uproar_7",
 			},
 			["modifier_primal_beast_uproar_7"] = {
@@ -7705,7 +7913,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				duration = 4,
 				extend = 8,
 				damage = -20,
-				tooltip = { bonus_damage_per_stack = "damage*kv" },
+				tooltip = { default = { bonus_damage_per_stack = "~damage*kv" } },
 			},
 
 			["modifier_primal_beast_pulverize_1"] = {
@@ -7720,7 +7928,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				max = 50,
 				is_perma = 1,
 				mod_name = "modifier_primal_beast_pulverize_custom_perma",
-				tooltip = { damage = "base + damage*perma" },
+				tooltip = { default = { damage = "base + damage*perma" } },
 			},
 			["modifier_primal_beast_pulverize_2"] = {
 				skill_number = 4,
@@ -7731,8 +7939,10 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				cd = { -2, -3, -4 },
 				range = { 80, 120, 160 },
 				radius = { 40, 60, 80 },
-				tooltip_ability = "primal_beast_trample_custom",
-				tooltip = { effect_radius = "radius" },
+				tooltip = {
+					default = { AbilityCooldown = "cd" },
+					primal_beast_trample_custom = { effect_radius = "radius" },
+				},
 			},
 			["modifier_primal_beast_pulverize_3"] = {
 				skill_number = 4,
@@ -7792,6 +8002,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				damage_type = DAMAGE_TYPE_MAGICAL,
 				skill_name = "primal_beast_pulverize_custom",
 				trigger_ability = "primal_beast_rock_throw_custom",
+				tooltip = { primal_beast_rock_throw_custom = { AbilityCastPoint = "cast" } },
 			},
 		},
 
@@ -7803,6 +8014,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				cd = { -1, -1.5, -2 },
 				move = { 30, 45, 60 },
+				tooltip = { marci_innate_custom = { AbilityCooldown = "cd" } },
 			},
 			["modifier_marci_hero_2"] = {
 				skill_number = 0,
@@ -7811,6 +8023,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				status = { 8, 12, 16 },
 				shield = { 6, 9, 12 },
+				tooltip = { marci_guardian_custom = { shield = "shield*max_health" } },
 			},
 			["modifier_marci_hero_3"] = {
 				skill_number = 0,
@@ -7821,6 +8034,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				regen = { 8, 12, 16 },
 				max = 4,
 				duration = 5,
+				tooltip = { marci_unleash_custom = { AbilityCooldown = "cd" } },
 			},
 
 			["modifier_marci_hero_4"] = {
@@ -7832,6 +8046,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				slow = -20,
 				silence = 2.5,
 				is_silence = 1,
+				tooltip = { marci_grapple_custom = { slow_move = "slow" } },
 			},
 			["modifier_marci_hero_5"] = {
 				skill_number = 0,
@@ -7840,6 +8055,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				stun = 0.5,
 				speed = 25,
+				tooltip = { marci_companion_run_custom = { stun_duration = "stun" } },
 			},
 			["modifier_marci_hero_6"] = {
 				skill_number = 0,
@@ -7850,6 +8066,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				bkb = 2,
 				cd = 10,
 				is_bkb = 1,
+				tooltip = { marci_unleash_custom = { AbilityCastPoint = "=0" } },
 			},
 
 			["modifier_marci_dispose_1"] = {
@@ -7860,6 +8077,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				base = { 20, 30, 40 },
 				damage = { 4, 6, 8 },
+				tooltip = { default = { impact_damage = "base + damage*max_health" } },
 			},
 			["modifier_marci_dispose_2"] = {
 				skill_number = 1,
@@ -7869,6 +8087,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				cd = { -1, -1.5, -2 },
 				range = { 100, 150, 200 },
+				tooltip = { default = { AbilityCooldown = "cd" } },
 			},
 			["modifier_marci_dispose_3"] = {
 				skill_number = 1,
@@ -7928,6 +8147,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				spell = { 6, 9, 12 },
 				damage = { 60, 90, 120 },
+				tooltip = { default = { impact_damage = "damage" }, marci_innate_custom = { damage = "damage" } },
 			},
 			["modifier_marci_rebound_2"] = {
 				skill_number = 2,
@@ -7938,6 +8158,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				cd = { -1, -1.5, -2 },
 				heal_reduce = { -12, -18, -24 },
 				duration = 5,
+				tooltip = { default = { AbilityCooldown = "cd" } },
 			},
 			["modifier_marci_rebound_3"] = {
 				skill_number = 2,
@@ -7964,6 +8185,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				range = 150,
 				cd_items = -1.5,
 				mana = 6,
+				tooltip = { default = { max_jump_distance = "range" }, marci_innate_custom = { range = "range" } },
 			},
 			["modifier_marci_rebound_7"] = {
 				skill_number = 2,
@@ -7982,6 +8204,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				stun = -50,
 				skill_name = "marci_companion_run_custom",
 				banned_talent = "modifier_marci_unleash_7",
+				tooltip = { default = { stun_duration = "~stun*all" } },
 			},
 
 			["modifier_marci_sidekick_1"] = {
@@ -8082,6 +8305,8 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				speed = { 50, 75, 100 },
 				speed_legendary = { 50, 75, 100 },
 				slow = { -10, -15, -20 },
+				tooltip = { default = { pulse_move_slow_pct = "slow" } },
+				tooltip_alt = { default = { pulse_move_slow_pct = "slow" } },
 				alt_talent = "modifier_marci_sidekick_7",
 			},
 			["modifier_marci_unleash_3"] = {
@@ -8490,6 +8715,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				shield = { 30, 45, 60 },
 				shield_max = { 30, 45, 60 },
+				tooltip = { bloodseeker_innate_custom = { shield_max = "shield_max*kv" } },
 			},
 			["modifier_bloodseeker_hero_3"] = {
 				skill_number = 0,
@@ -8508,6 +8734,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				bkb_duration = 2,
 				is_bkb = 1,
+				tooltip = { bloodseeker_blood_bath_custom = { AbilityCastPoint = "=0" } },
 			},
 			["modifier_bloodseeker_hero_5"] = {
 				skill_number = 0,
@@ -8532,6 +8759,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				cast = -0.2,
 				fear = 1.4,
 				is_through_bkb = 1,
+				tooltip = { bloodseeker_rupture_custom = { AbilityCastPoint = "cast" } },
 			},
 
 			["modifier_bloodseeker_bloodrage_1"] = {
@@ -8542,6 +8770,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				speed = { 30, 45, 60 },
 				range = { 50, 75, 100 },
+				tooltip = { default = { attack_speed = "speed" } },
 			},
 			["modifier_bloodseeker_bloodrage_2"] = {
 				skill_number = 1,
@@ -8595,6 +8824,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				cd = 1,
 				skill_name = "bloodseeker_bloodrage_custom",
 				trigger_ability = "bloodseeker_bloodrage_custom",
+				tooltip = { default = { AbilityCooldown = "cd", damage_pct = "~=cost" } },
 			},
 			["modifier_bloodseeker_bloodrite_1"] = {
 				skill_number = 2,
@@ -8604,6 +8834,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				spell = { 6, 9, 12 },
 				damage = { 50, 75, 100 },
+				tooltip = { default = { damage = "damage" } },
 			},
 			["modifier_bloodseeker_bloodrite_2"] = {
 				skill_number = 2,
@@ -8613,6 +8844,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				cd = { -2, -3, -4 },
 				delay = { -0.4, -0.6, -0.8 },
+				tooltip = { default = { AbilityCooldown = "cd", delay_plus_castpoint_tooltip = "delay" } },
 			},
 			["modifier_bloodseeker_bloodrite_3"] = {
 				skill_number = 2,
@@ -8639,6 +8871,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				duration = 0.3,
 				is_purgable_self = 1,
 				is_root = 1,
+				tooltip = { default = { radius = "radius" } },
 			},
 			["modifier_bloodseeker_bloodrite_7"] = {
 				skill_number = 2,
@@ -8727,6 +8960,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				cd_inc = 2,
 				health = 50,
 				skill_name = "bloodseeker_thirst_custom",
+				tooltip = { default = { AbilityCooldown = "talent_cd" } },
 			},
 			["modifier_bloodseeker_rupture_1"] = {
 				skill_number = 4,
@@ -8745,6 +8979,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				range = { 120, 180, 240 },
 				cd = { -6, -9, -12 },
+				tooltip = { default = { AbilityCooldown = "cd" } },
 			},
 			["modifier_bloodseeker_rupture_3"] = {
 				skill_number = 4,
@@ -8800,6 +9035,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				range = { 100, 150, 200 },
 				stun = { 0.3, 0.45, 0.6 },
+				tooltip = { monkey_king_boundless_strike_custom = { stun = "stun" } },
 			},
 			["modifier_monkey_king_hero_2"] = {
 				skill_number = 0,
@@ -8829,6 +9065,10 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				tree_cd = -1.5,
 				cd = -5,
 				invun = 0.8,
+				tooltip = {
+					monkey_king_tree_dance_custom = { jump_damage_cooldown = "tree_cd" },
+					monkey_king_innate_custom = { AbilityCooldown = "cd" },
+				},
 			},
 			["modifier_monkey_king_hero_5"] = {
 				skill_number = 0,
@@ -8853,6 +9093,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				heal = 6,
 				duration = 2,
 				is_bkb = 1,
+				tooltip = { monkey_king_wukongs_command_custom = { AbilityCastPoint = "cast" } },
 			},
 
 			["modifier_monkey_king_boundless_1"] = {
@@ -8874,6 +9115,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				slow = { -20, -30, -40 },
 				duration = 4,
 				cd = { -2, -3, -4 },
+				tooltip = { default = { AbilityCooldown = "cd" } },
 			},
 			["modifier_monkey_king_boundless_3"] = {
 				skill_number = 1,
@@ -8888,6 +9130,8 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				base = { -4, -6 },
 				duration = 4,
 				is_through_bkb = 1,
+				tooltip = { default = { strike_crit_mult = "damage" } },
+				tooltip_alt = { default = { strike_crit_mult = "damage" } },
 				alt_talent = "modifier_monkey_king_boundless_7",
 			},
 			["modifier_monkey_king_boundless_4"] = {
@@ -8901,6 +9145,8 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				slow_resist = 50,
 				cd_inc = -50,
 				cast = -0.15,
+				tooltip = { default = { AbilityCastPoint = "cast" } },
+				tooltip_alt = { default = { AbilityCastPoint = "cast" } },
 				alt_talent = "modifier_monkey_king_boundless_7",
 			},
 			["modifier_monkey_king_boundless_7"] = {
@@ -8923,6 +9169,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				range = 1200,
 				damage_k = 1.5,
 				skill_name = "monkey_king_boundless_strike_custom",
+				tooltip = { default = { AbilityCooldown = "cd", AbilityManaCost = "mana" } },
 			},
 
 			["modifier_monkey_king_tree_1"] = {
@@ -8945,6 +9192,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				cd = { -2, -3, -4 },
 				heal_reduce = { -12, -18, -24 },
 				duration = 5,
+				tooltip = { monkey_king_primal_spring_custom = { AbilityCooldown = "cd" } },
 			},
 			["modifier_monkey_king_tree_3"] = {
 				skill_number = 2,
@@ -9004,6 +9252,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				skill_change = "jingu_mastery_magic",
 				skill_name = "monkey_king_tree_dance_custom",
 				trigger_ability = "monkey_king_primal_spring_custom",
+				tooltip = { monkey_king_primal_spring_custom = { AbilityManaCost = "mana" } },
 			},
 
 			["modifier_monkey_king_mastery_1"] = {
@@ -9014,6 +9263,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				speed = { 20, 30, 40 },
 				damage = { 12, 18, 24 },
+				tooltip = { default = { bonus_attack = "damage*agi" } },
 			},
 			["modifier_monkey_king_mastery_2"] = {
 				skill_number = 3,
@@ -9023,6 +9273,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				health = { 1, 1.5, 2 },
 				heal = { 16, 24, 32 },
+				tooltip = { default = { lifesteal = "heal" } },
 			},
 			["modifier_monkey_king_mastery_3"] = {
 				skill_number = 3,
@@ -9052,6 +9303,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				damage_reduce = -25,
 				status = 25,
 				is_breakable = 1,
+				tooltip = { default = { required_hits = "attack", charges = "count" } },
 			},
 			["modifier_monkey_king_mastery_7"] = {
 				skill_number = 3,
@@ -9076,6 +9328,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				is_through_bkb = 1,
 				is_root_disabled = 1,
 				skill_name = "monkey_king_jingu_mastery_custom",
+				tooltip = { default = { AbilityCooldown = "talent_cd" } },
 			},
 
 			["modifier_monkey_king_command_1"] = {
@@ -9098,6 +9351,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				cd = { -4, -6, -8 },
 				duration = { 2, 3, 4 },
+				tooltip = { default = { duration = "duration", AbilityCooldown = "cd" } },
 			},
 			["modifier_monkey_king_command_3"] = {
 				skill_number = 4,
@@ -9145,6 +9399,10 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				delay_spring = 0.5,
 				skill_change = "jingu_mastery_magic",
 				skill_name = "monkey_king_wukongs_command_custom",
+				tooltip = {
+					default = { duration = "duration", AbilityCooldown = "cd" },
+					monkey_king_primal_spring_custom = { AbilityCooldown = "cd_spring" },
+				},
 			},
 		},
 
@@ -9156,6 +9414,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				move = { 30, 45, 60 },
 				status = { 10, 15, 20 },
+				tooltip = { mars_innate_custom = { movespeed = "move" } },
 			},
 			["modifier_mars_hero_2"] = {
 				skill_number = 0,
@@ -9189,6 +9448,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				silence = 2,
 				is_purgable_self = 1,
 				is_silence = 1,
+				tooltip = { mars_spear_custom = { stun_duration = "stun" } },
 			},
 			["modifier_mars_hero_5"] = {
 				skill_number = 0,
@@ -9202,6 +9462,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				radius = -100,
 				is_root_disabled = 1,
 				is_bkb = 1,
+				tooltip = { mars_gods_rebuke_custom = { radius = "~radius", AbilityCastPoint = "cast" } },
 			},
 			["modifier_mars_hero_6"] = {
 				skill_number = 0,
@@ -9234,6 +9495,8 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				cd = { -1, -1.5, -2 },
 				range = { 100, 150, 200 },
 				radius = { 40, 60, 80 },
+				tooltip = { default = { AbilityCooldown = "cd" } },
+				tooltip_alt = { default = { AbilityCooldown = "cd" } },
 				alt_talent = "modifier_mars_arena_7",
 			},
 			["modifier_mars_spear_3"] = {
@@ -9279,6 +9542,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				turn_speed = 175,
 				cast = 1.4,
 				skill_name = "mars_spear_custom",
+				tooltip = { default = { AbilityCastPoint = "=0" } },
 			},
 
 			["modifier_mars_rebuke_1"] = {
@@ -9300,6 +9564,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				cd = { -2, -3, -4 },
 				duration = { 1, 1.5, 2 },
+				tooltip = { default = { knockback_slow_duration = "duration", AbilityCooldown = "cd" } },
 			},
 			["modifier_mars_rebuke_3"] = {
 				skill_number = 2,
@@ -9313,6 +9578,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				max = 30,
 				is_perma = 1,
 				mod_name = "modifier_mars_gods_rebuke_custom_perma",
+				tooltip = { default = { damage_crit = "crit" } },
 			},
 			["modifier_mars_rebuke_4"] = {
 				skill_number = 2,
@@ -9402,6 +9668,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				is_through_bkb = 1,
 				is_basher = 1,
 				is_stun = 1,
+				tooltip = { default = { soldier_range = "range" } },
 			},
 			["modifier_mars_bulwark_7"] = {
 				skill_number = 3,
@@ -9420,6 +9687,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				talent_cd = 12,
 				duration_max = 10,
 				skill_name = "mars_bulwark_custom",
+				tooltip = { default = { AbilityCooldown = "~talent_cd", soldier_count = "=max" } },
 			},
 
 			["modifier_mars_arena_1"] = {
@@ -9430,6 +9698,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				damage = { 40, 60, 80 },
 				spell = { 6, 9, 12 },
+				tooltip = { default = { damage = "damage*str" } },
 			},
 			["modifier_mars_arena_2"] = {
 				skill_number = 4,
@@ -9439,6 +9708,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				duration = { 1, 1.5, 2 },
 				cd = { -4, -6, -8 },
+				tooltip = { default = { duration = "duration", AbilityCooldown = "cd" } },
 			},
 			["modifier_mars_arena_3"] = {
 				skill_number = 4,
@@ -9480,7 +9750,6 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				damage_inc = 50,
 				talent_cd = 3,
 				radius = 400,
-				cast = 0.4,
 				max = 6,
 				duration = 18,
 				slow = -100,
@@ -9492,6 +9761,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				trigger_ability = "mars_revenge_custom",
 				skill_name = "mars_arena_of_blood_custom",
 				banned_talent = "modifier_mars_rebuke_7",
+				tooltip = { mars_revenge_custom = { AbilityCastPoint = "cast" } },
 			},
 		},
 
@@ -9503,6 +9773,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				slow = { 0.3, 0.45, 0.6 },
 				stun = { 0.3, 0.45, 0.6 },
+				tooltip = { zuus_heavenly_jump_custom = { duration = "slow" } },
 			},
 			["modifier_zuus_hero_2"] = {
 				skill_number = 0,
@@ -9527,6 +9798,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "purple",
 
 				range = 150,
+				tooltip = { zuus_heavenly_jump_custom = { hop_distance = "range" } },
 			},
 			["modifier_zuus_hero_5"] = {
 				skill_number = 0,
@@ -9570,6 +9842,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				attack = { 20, 30, 40 },
 				damage = { 20, 30, 40 },
 				damage_legendary = { 12, 18, 24 },
+				tooltip = { default = { arc_damage = "damage*attack" } },
 				alt_talent = "modifier_zuus_arc_7",
 			},
 			["modifier_zuus_arc_2"] = {
@@ -9594,6 +9867,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				cd = { -0.4, -0.8 },
 				chance = { 25, 40 },
 				delay = 0.2,
+				tooltip = { default = { AbilityCooldown = "cd" } },
 			},
 			["modifier_zuus_arc_4"] = {
 				skill_number = 1,
@@ -9606,6 +9880,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				max = 5,
 				duration = 6,
 				cast = -0.1,
+				tooltip = { default = { AbilityCastPoint = "cast" } },
 			},
 			["modifier_zuus_arc_7"] = {
 				skill_number = 1,
@@ -9626,6 +9901,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				radius = 500,
 				mana = -50,
 				skill_name = "zuus_arc_lightning_custom",
+				tooltip = { default = { AbilityManaCost = "mana" } },
 			},
 			["modifier_zuus_bolt_1"] = {
 				skill_number = 2,
@@ -9634,6 +9910,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "blue",
 
 				cd = { -1.2, -1.8, -2.4 },
+				tooltip = { default = { AbilityCooldown = "cd" } },
 			},
 			["modifier_zuus_bolt_2"] = {
 				skill_number = 2,
@@ -9644,6 +9921,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				damage = { 80, 120, 160 },
 				heal_reduce = { -10, -15, -20 },
 				duration = 6,
+				tooltip = { default = { damage = "damage*int" } },
 			},
 			["modifier_zuus_bolt_3"] = {
 				skill_number = 2,
@@ -9673,6 +9951,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				root = 2,
 				is_purgable_self = 1,
 				is_root = 1,
+				tooltip = { default = { AbilityCastPoint = "cast" } },
 			},
 			["modifier_zuus_bolt_7"] = {
 				skill_number = 2,
@@ -9715,6 +9994,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				cd = { -2, -3, -4 },
 				heal = { 6, 9, 12 },
+				tooltip = { default = { AbilityCooldown = "cd" } },
 			},
 			["modifier_zuus_jump_3"] = {
 				skill_number = 3,
@@ -9768,6 +10048,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				damage = { 12, 18, 24 },
 				spell = { 6, 9, 12 },
+				tooltip = { default = { damage = "damage*kv", health_damage = "damage*kv" } },
 			},
 			["modifier_zuus_wrath_2"] = {
 				skill_number = 4,
@@ -9777,6 +10058,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				cd = { -10, -15, -20 },
 				heal = { 10, 15, 20 },
+				tooltip = { default = { AbilityCooldown = "cd" } },
 			},
 			["modifier_zuus_wrath_3"] = {
 				skill_number = 4,
@@ -9837,10 +10119,22 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				mini_icon = "hero_1",
 				rarity = "blue",
 
-				mana_loss = { 12, 18, 24 },
+				mana_loss = { -12, -18, -24 },
 				mana = { 10, 15, 20 },
 				duration = 4,
 				cd_inc = { -2, -3, -4 },
+				tooltip = {
+					leshrac_pulse_nova_custom = {
+						mana_cost_per_second = "mana_loss*kv",
+						mana_cost_max = "mana_loss*kv",
+					},
+				},
+				tooltip_alt = {
+					leshrac_pulse_nova_custom = {
+						mana_cost_per_second = "mana_loss*kv",
+						mana_cost_max = "mana_loss*kv",
+					},
+				},
 				alt_talent = "modifier_leshrac_nova_7",
 			},
 			["modifier_leshrac_hero_2"] = {
@@ -9859,6 +10153,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				range = { 30, 45, 60 },
 				health = { 10, 15, 20 },
+				tooltip = { leshrac_innate_custom = { radius = "range*kv" } },
 			},
 
 			["modifier_leshrac_hero_4"] = {
@@ -9871,6 +10166,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				speed = 1400,
 				is_root_disabled = 1,
 				trigger_ability = "leshrac_split_earth_custom",
+				tooltip = { leshrac_split_earth_custom = { AbilityCastPoint = "cast" } },
 			},
 			["modifier_leshrac_hero_5"] = {
 				skill_number = 0,
@@ -9882,6 +10178,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				speed = 600,
 				duration = 2,
 				cd = 5,
+				tooltip = { leshrac_diabolic_edict_custom = { AbilityCastPoint = "=0" } },
 			},
 			["modifier_leshrac_hero_6"] = {
 				skill_number = 0,
@@ -9919,6 +10216,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				slow = { -20, -30, -40 },
 				duration = 3,
 				is_purgable_self = 1,
+				tooltip = { default = { AbilityCooldown = "cd" } },
 			},
 			["modifier_leshrac_earth_3"] = {
 				skill_number = 1,
@@ -9948,6 +10246,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				talent_cd = 3,
 				is_through_bkb = 1,
 				is_stun = 1,
+				tooltip = { default = { stun = "stun_inc" } },
 			},
 			["modifier_leshrac_earth_7"] = {
 				skill_number = 1,
@@ -9967,6 +10266,14 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				stun = -30,
 				duration = 15,
 				skill_name = "leshrac_split_earth_custom",
+				tooltip = {
+					default = {
+						stun = "~stun*all",
+						shard_stun = "~stun*kv",
+						shard_leash = "~stun*kv",
+						AbilityCooldown = "cd",
+					},
+				},
 			},
 			["modifier_leshrac_edict_1"] = {
 				skill_number = 2,
@@ -9978,6 +10285,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				slow = { -1, -1.5, -2 },
 				duration = 3,
 				max = 20,
+				tooltip = { default = { damage = "damage" } },
 			},
 			["modifier_leshrac_edict_2"] = {
 				skill_number = 2,
@@ -9987,6 +10295,9 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				cd = { -2, -3, -4 },
 				duration = { 10, 15, 20 },
+				tooltip = {
+					default = { duration = "duration*kv", num_explosions = "duration*kv", AbilityCooldown = "cd" },
+				},
 			},
 			["modifier_leshrac_edict_3"] = {
 				skill_number = 2,
@@ -10043,6 +10354,8 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				damage = { 60, 90, 120 },
 
 				damage_earth = { 60, 90, 120 },
+				tooltip = { default = { damage = "damage*int" } },
+				tooltip_alt = { default = { damage = "damage_earth*attack" } },
 				alt_talent = "modifier_leshrac_earth_7",
 			},
 			["modifier_leshrac_storm_2"] = {
@@ -10053,6 +10366,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				cd = { -1, -1.5, -2 },
 				heal = { 16, 24, 32 },
+				tooltip = { default = { AbilityCooldown = "cd" } },
 			},
 			["modifier_leshrac_storm_3"] = {
 				skill_number = 3,
@@ -10086,6 +10400,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				duration = 0.3,
 				silence = 2.5,
 				is_silence = 1,
+				tooltip = { default = { slow_duration = "slow", AbilityCastPoint = "cast" } },
 			},
 			["modifier_leshrac_storm_7"] = {
 				skill_number = 3,
@@ -10117,6 +10432,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				damage = { 2, 3, 4 },
 				base = { 20, 30, 40 },
+				tooltip = { default = { damage = "base" } },
 			},
 			["modifier_leshrac_nova_2"] = {
 				skill_number = 4,
@@ -10169,6 +10485,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				talent_cd = 18,
 				skill_name = "leshrac_pulse_nova_custom",
 				trigger_ability = "leshrac_pulse_nova_custom_legendary",
+				tooltip = { leshrac_pulse_nova_custom_legendary = { AbilityCastPoint = "cast" } },
 			},
 		},
 
@@ -10243,6 +10560,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				speed = { 20, 30, 40 },
 				damage = { 50, 75, 100 },
+				tooltip = { default = { nova_damage = "damage*int" } },
 			},
 			["modifier_maiden_crystal_2"] = {
 				skill_number = 1,
@@ -10251,6 +10569,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "blue",
 
 				cd = { -2, -3, -4 },
+				tooltip = { default = { AbilityCooldown = "cd" } },
 			},
 			["modifier_maiden_crystal_3"] = {
 				skill_number = 1,
@@ -10277,6 +10596,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				talent_cd = 10,
 				stun = 1.2,
 				is_stun = 1,
+				tooltip = { default = { AbilityCastPoint = "cast" } },
 			},
 			["modifier_maiden_crystal_7"] = {
 				skill_number = 1,
@@ -10304,6 +10624,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				damage = { 20, 30, 40 },
 				resist = { -8, -12, -16 },
 				duration = 5,
+				tooltip = { default = { damage_per_second = "damage" } },
 			},
 			["modifier_maiden_frostbite_2"] = {
 				skill_number = 2,
@@ -10341,6 +10662,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				cd = -1,
 				cd_items = -2,
 				cd_field = 100,
+				tooltip = { default = { AbilityCooldown = "cd" } },
 			},
 			["modifier_maiden_frostbite_7"] = {
 				skill_number = 2,
@@ -10367,6 +10689,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				stats = { 6, 9, 12 },
 				damage = { 10, 15, 20 },
+				tooltip = { default = { damage = "damage*attack" } },
 			},
 			["modifier_maiden_arcane_2"] = {
 				skill_number = 3,
@@ -10405,6 +10728,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				duration_legendary = 0.5,
 				move = 40,
 				duration = 2.5,
+				tooltip = { default = { count = "count" } },
 				alt_talent = "modifier_maiden_arcane_7",
 			},
 			["modifier_maiden_arcane_7"] = {
@@ -10435,6 +10759,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				duration = 5,
 				base = { 10, 15, 20 },
 				damage = { 1, 1.5, 2 },
+				tooltip = { default = { damage = "base + damage*max_mana" } },
 			},
 			["modifier_maiden_freezing_2"] = {
 				skill_number = 4,
@@ -10444,6 +10769,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				cd = { -4, -6, -8 },
 				linger = { 1, 1.5, 2 },
+				tooltip = { default = { AbilityCooldown = "cd" } },
 			},
 			["modifier_maiden_freezing_3"] = {
 				skill_number = 4,
@@ -10493,6 +10819,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				mana_regen = 20,
 				trigger_ability = "crystal_maiden_freezing_field_legendary",
 				skill_name = "crystal_maiden_freezing_field_custom",
+				tooltip = { default = { AbilityManaCost = "=0" } },
 			},
 		},
 
@@ -11528,6 +11855,10 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				fear = { 0.3, 0.45, 0.6 },
 				slow = { -10, -15, -20 },
+				tooltip = {
+					muerta_dead_shot_custom = { ricochet_fear_duration = "fear" },
+					muerta_the_calling_custom = { aura_movespeed_slow = "slow" },
+				},
 			},
 			["modifier_muerta_hero_2"] = {
 				skill_number = 0,
@@ -11590,6 +11921,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				spell = { 6, 9, 12 },
 				damage = { 60, 90, 120 },
+				tooltip = { default = { damage = "damage*int" } },
 			},
 			["modifier_muerta_dead_2"] = {
 				skill_number = 1,
@@ -11599,6 +11931,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				cd = { -1, -1.5, -2 },
 				range = { 100, 150, 200 },
+				tooltip = { default = { AbilityCooldown = "cd" } },
 			},
 			["modifier_muerta_dead_3"] = {
 				skill_number = 1,
@@ -11651,6 +11984,14 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				width = 3,
 				cd_proc = 1,
 				skill_name = "muerta_dead_shot_custom",
+				tooltip = {
+					default = {
+						damage = "~damage_reduce*all",
+						ricochet_fear_duration = "~fear_reduce*all",
+						AbilityCooldown = "cd",
+						AbilityManaCost = "mana",
+					},
+				},
 			},
 
 			["modifier_muerta_calling_1"] = {
@@ -11661,6 +12002,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				cd = { -2, -3, -4 },
 				damage = { 2, 3, 4 },
+				tooltip = { default = { damage = "damage*max_health", AbilityCooldown = "cd" } },
 			},
 			["modifier_muerta_calling_2"] = {
 				skill_number = 2,
@@ -11703,6 +12045,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				cd = 5,
 				is_purgable_self = 1,
 				is_root = 1,
+				tooltip = { default = { duration = "duration" } },
 			},
 			["modifier_muerta_calling_7"] = {
 				skill_number = 2,
@@ -11726,6 +12069,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				range = 1200,
 				cd = 2,
 				skill_name = "muerta_the_calling_custom",
+				tooltip = { default = { damage = "~base_damage*kv", num_revenants = "count", AbilityCooldown = "~cd" } },
 			},
 
 			["modifier_muerta_gun_1"] = {
@@ -11746,6 +12090,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				heal = { 12, 18, 24 },
 				chance = { 6, 9, 12 },
+				tooltip = { default = { double_shot_chance = "chance" } },
 			},
 			["modifier_muerta_gun_3"] = {
 				skill_number = 3,
@@ -11800,6 +12145,10 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				is_root_disabled = 1,
 				skill_name = "muerta_gunslinger_custom",
 				trigger_ability = "muerta_gunslinger_custom",
+				tooltip = {
+					default = { AbilityCooldown = "talent_cd" },
+					muerta_pierce_the_veil_custom = { damage_reduce = "~damage_reduce*kv" },
+				},
 			},
 
 			["modifier_muerta_veil_1"] = {
@@ -11840,6 +12189,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				duration_legendary = { 0.8, 1.5 },
 				bva = { -0.25, -0.4 },
 				effect_duration = 2,
+				tooltip = { default = { duration = "duration" } },
 				alt_talent = "modifier_muerta_veil_7",
 			},
 			["modifier_muerta_veil_4"] = {
@@ -11885,6 +12235,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				stats = { 6, 9, 12 },
 				shield = { 60, 90, 120 },
+				tooltip = { pangolier_shield_crash_custom = { hero_stacks = "shield*stats" } },
 			},
 			["modifier_pangolier_hero_2"] = {
 				skill_number = 0,
@@ -11894,6 +12245,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				move = { 30, 45, 60 },
 				armor = { 4, 6, 8 },
 				bonus = 2,
+				tooltip = { pangolier_gyroshell_custom = { forward_move_speed = "move" } },
 			},
 			["modifier_pangolier_hero_3"] = {
 				skill_number = 0,
@@ -11914,6 +12266,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				heal = 6,
 				bonus = 2,
 				health = 50,
+				tooltip = { pangolier_innate_custom = { damage_reduce = "damage_reduce" } },
 			},
 			["modifier_pangolier_hero_5"] = {
 				skill_number = 0,
@@ -11936,6 +12289,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				status = 15,
 				cast = -0.5,
 				bkb = 2,
+				tooltip = { pangolier_gyroshell_custom = { AbilityCastPoint = "cast" } },
 			},
 
 			["modifier_pangolier_buckle_1"] = {
@@ -11946,6 +12300,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				attack = { 6, 9, 12 },
 				damage = { 16, 24, 32 },
+				tooltip = { default = { damage = "damage*attack" } },
 			},
 			["modifier_pangolier_buckle_2"] = {
 				skill_number = 1,
@@ -11957,6 +12312,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				slow = { -20, -30, -40 },
 				duration = 3,
 				is_through_bkb = 1,
+				tooltip = { default = { AbilityCooldown = "cd" } },
 			},
 			["modifier_pangolier_buckle_3"] = {
 				skill_number = 1,
@@ -11986,6 +12342,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				slow_resist = 25,
 				duration = 3,
 				cast = 0,
+				tooltip = { default = { AbilityCastPoint = "=0" } },
 			},
 			["modifier_pangolier_buckle_7"] = {
 				skill_number = 1,
@@ -12007,6 +12364,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				mana = -50,
 				is_through_bkb = 1,
 				skill_name = "pangolier_swashbuckle_custom",
+				tooltip = { default = { AbilityManaCost = "mana" } },
 			},
 
 			["modifier_pangolier_shield_1"] = {
@@ -12018,6 +12376,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				damage = { 4, 6, 8 },
 				burn = { 40, 60, 80 },
 				duration = 4,
+				tooltip = { default = { damage = "damage*max_health" } },
 			},
 			["modifier_pangolier_shield_2"] = {
 				skill_number = 2,
@@ -12027,6 +12386,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				cd = { -2, -3, -4 },
 				radius = { 12, 18, 24 },
+				tooltip = { default = { radius = "radius*kv", AbilityCooldown = "cd" } },
 			},
 			["modifier_pangolier_shield_3"] = {
 				skill_number = 2,
@@ -12080,6 +12440,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				damage = { 80, 120, 160 },
 				radius = 300,
 				damage_type = DAMAGE_TYPE_PHYSICAL,
+				tooltip = { default = { chance_pct = "chance" } },
 			},
 			["modifier_pangolier_lucky_2"] = {
 				skill_number = 3,
@@ -12090,6 +12451,8 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				range = { 50, 75, 100 },
 				heal = { 12, 18, 24 },
 				bonus = 2,
+				tooltip = { pangolier_swashbuckle_custom = { range = "range" } },
+				tooltip_alt = { pangolier_swashbuckle_custom = { range = "range" } },
 				alt_talent = "modifier_pangolier_lucky_7",
 			},
 			["modifier_pangolier_lucky_3"] = {
@@ -12126,6 +12489,8 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				cd_legendary = -35,
 				talent_cd = 12,
 				is_root_disabled = 1,
+				tooltip = { default = { AbilityCooldown = "talent_cd" } },
+				tooltip_alt = { default = { AbilityCooldown = "talent_cd" } },
 				alt_talent = "modifier_pangolier_buckle_7",
 			},
 			["modifier_pangolier_lucky_7"] = {
@@ -12159,6 +12524,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				spell = { 6, 9, 12 },
 				damage = { 40, 60, 80 },
+				tooltip = { default = { damage = "damage*int" } },
 			},
 			["modifier_pangolier_rolling_2"] = {
 				skill_number = 4,
@@ -12168,6 +12534,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				cd = { -4, -6, -8 },
 				duration = { 1, 1.5, 2 },
+				tooltip = { default = { duration = "duration", AbilityCooldown = "cd" } },
 			},
 			["modifier_pangolier_rolling_3"] = {
 				skill_number = 4,
@@ -12193,6 +12560,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				stun = 0.2,
 				cd_items = -1.2,
 				cd_items_legendary = -0.6,
+				tooltip = { default = { stun_duration = "stun" } },
 			},
 			["modifier_pangolier_rolling_7"] = {
 				skill_number = 4,
@@ -12268,6 +12636,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				allow_illusion = 1,
 				is_purgable_self = 1,
 				is_silence = 1,
+				tooltip = { arc_warden_flux_custom = { AbilityCastPoint = "cast" } },
 			},
 
 			["modifier_arc_warden_hero_5"] = {
@@ -12282,6 +12651,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				talent_cd = 10,
 				allow_illusion = 1,
 				is_stun = 1,
+				tooltip = { arc_warden_magnetic_field_custom = { AbilityCastPoint = "cast" } },
 			},
 			["modifier_arc_warden_hero_6"] = {
 				skill_number = 0,
@@ -12306,6 +12676,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				spell = { 4, 6, 8 },
 				damage = { 1.2, 1.8, 2.4 },
 				allow_illusion = 1,
+				tooltip = { default = { damage_per_second = "damage*max_health" } },
 			},
 			["modifier_arc_warden_flux_2"] = {
 				skill_number = 1,
@@ -12316,6 +12687,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				cd = { -2, -3, -4 },
 				slow = { -8, -12, -16 },
 				allow_illusion = 1,
+				tooltip = { default = { move_speed_slow_pct = "slow", AbilityCooldown = "cd" } },
 			},
 			["modifier_arc_warden_flux_3"] = {
 				skill_number = 1,
@@ -12368,6 +12740,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				cleave = { 20, 30, 40 },
 				radius = 300,
 				allow_illusion = 1,
+				tooltip = { default = { attack_speed_bonus = "speed" } },
 			},
 			["modifier_arc_warden_field_2"] = {
 				skill_number = 2,
@@ -12405,6 +12778,8 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				slow = -35,
 				slow_duration = 3,
 				range = 350,
+				tooltip = { default = { AbilityCooldown = "cd" } },
+				tooltip_alt = { default = { AbilityCooldown = "cd" } },
 				alt_talent = "modifier_arc_warden_field_7",
 				allow_illusion = 1,
 				is_root_disabled = 1,
@@ -12428,6 +12803,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				is_root_disabled = 1,
 				allow_illusion = 1,
 				skill_name = "arc_warden_magnetic_field_custom",
+				tooltip = { default = { radius = "~=radius" } },
 			},
 			["modifier_arc_warden_spark_1"] = {
 				skill_number = 3,
@@ -12438,6 +12814,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				delay = { -20, -30, -40 },
 				damage = { 40, 60, 80 },
 				allow_illusion = 1,
+				tooltip = { default = { spark_damage_base = "damage*int", base_activation_delay = "delay*kv" } },
 			},
 			["modifier_arc_warden_spark_2"] = {
 				skill_number = 3,
@@ -12448,6 +12825,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				cd = { -1, -1.5, -2 },
 				cast = { -0.1, -0.15, -0.2 },
 				allow_illusion = 1,
+				tooltip = { default = { AbilityCooldown = "cd", AbilityCastPoint = "cast" } },
 			},
 			["modifier_arc_warden_spark_3"] = {
 				skill_number = 3,
@@ -12586,6 +12964,10 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				armor = { 6, 9, 12 },
 				duration = { 0.3, 0.45, 0.6 },
+				tooltip = {
+					invoker_deafening_blast_custom = { knockback_duration = "duration", disarm_duration = "duration" },
+					invoker_forge_spirit_custom = { spirit_armor = "armor" },
+				},
 			},
 			["modifier_invoker_hero_3"] = {
 				skill_number = 0,
@@ -12604,6 +12986,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				damage_reduce = -25,
 				regen = 4,
 				duration = 2,
+				tooltip = { invoker_ghost_walk_custom = { health_regen = "regen*max_health" } },
 			},
 			["modifier_invoker_hero_5"] = {
 				skill_number = 0,
@@ -12616,6 +12999,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				slow = -50,
 				is_purgable_self = 1,
 				is_silence = 1,
+				tooltip = { invoker_tornado_custom = { AbilityCooldown = "cd" } },
 			},
 			["modifier_invoker_hero_6"] = {
 				skill_number = 0,
@@ -12640,6 +13024,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				duration = { 1, 1.5, 2 },
 				damage = { 1, 1.5, 2 },
 				creeps = { 40, 60, 80 },
+				tooltip = { invoker_cold_snap_custom = { duration = "duration" } },
 			},
 			["modifier_invoker_quas_2"] = {
 				skill_number = 1,
@@ -12648,6 +13033,11 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "blue",
 
 				cd = { -2, -3, -4 },
+				tooltip = {
+					invoker_cold_snap_custom = { AbilityCooldown = "cd" },
+					invoker_ghost_walk_custom = { AbilityCooldown = "cd" },
+					invoker_ice_wall_custom = { AbilityCooldown = "cd" },
+				},
 			},
 			["modifier_invoker_quas_3"] = {
 				skill_number = 1,
@@ -12713,6 +13103,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				range = { 100, 150, 200 },
 				duration = 3,
 				is_purgable_self = 1,
+				tooltip = { invoker_forge_spirit_custom = { spirit_attack_range = "range" } },
 			},
 			["modifier_invoker_wex_3"] = {
 				skill_number = 2,
@@ -12724,6 +13115,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				duration = { 3, 5 },
 				bonus = { 12, 20 },
 				effect_duration = 12,
+				tooltip = { invoker_alacrity_custom = { duration = "duration" } },
 			},
 			["modifier_invoker_wex_4"] = {
 				skill_number = 2,
@@ -12740,6 +13132,8 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				is_root_disabled = 1,
 				speed = 50,
 				legendary_stack = 5,
+				tooltip = { invoker_emp_custom = { delay = "delay" } },
+				tooltip_alt = { invoker_emp_custom = { delay = "delay" } },
 				alt_talent = "modifier_invoker_exort_7",
 				trigger_ability = "invoker_emp_custom",
 			},
@@ -12761,6 +13155,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				max = 4,
 				mana = -70,
 				skill_name = "invoker_wex_custom",
+				tooltip = { invoker_emp_custom = { mana_burned = "~mana*kv" } },
 			},
 			["modifier_invoker_exort_1"] = {
 				skill_number = 3,
@@ -12781,6 +13176,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				health = { 30, 45, 60 },
 				heal = { 1, 1.5, 2 },
 				forge = 2,
+				tooltip = { invoker_forge_spirit_custom = { spirit_hp = "health*kv" } },
 			},
 			["modifier_invoker_exort_3"] = {
 				skill_number = 3,
@@ -12835,6 +13231,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				talent_cd = 8,
 				skill_name = "invoker_exort_custom",
 				trigger_ability = "invoker_exort_custom",
+				tooltip = { invoker_chaos_meteor_custom = { AbilityCooldown = "talent_cd", AbilityManaCost = "mana" } },
 			},
 			["modifier_invoker_invoke_1"] = {
 				skill_number = 4,
@@ -12844,6 +13241,15 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				spell = { 6, 9, 12 },
 				damage = { 6, 9, 12 },
+				tooltip = {
+					invoker_emp_custom = { damage_per_mana_pct = "damage*kv", damage_creeps = "damage*kv" },
+					invoker_cold_snap_custom = { freeze_damage = "damage*kv" },
+					invoker_ice_wall_custom = { damage_per_second = "damage*kv" },
+					invoker_tornado_custom = { wex_damage = "damage*kv" },
+					invoker_sun_strike_custom = { damage = "damage*kv", burn_damage = "damage*kv" },
+					invoker_chaos_meteor_custom = { main_damage = "damage*kv", burn_dps = "damage*kv" },
+					invoker_deafening_blast_custom = { damage = "damage*kv" },
+				},
 			},
 			["modifier_invoker_invoke_2"] = {
 				skill_number = 4,
@@ -12853,6 +13259,13 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				cdr = { 6, 9, 12 },
 				radius = { 12, 18, 24 },
+				tooltip = {
+					invoker_ghost_walk_custom = { area_of_effect = "radius*kv" },
+					invoker_tornado_custom = { area_of_effect = "radius*kv" },
+					invoker_emp_custom = { area_of_effect = "radius*kv" },
+					invoker_sun_strike_custom = { area_of_effect = "radius*kv" },
+					invoker_chaos_meteor_custom = { area_of_effect = "radius*kv" },
+				},
 			},
 			["modifier_invoker_invoke_3"] = {
 				skill_number = 4,
@@ -13575,6 +13988,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				bonus = 2,
 				armor = { 4, 6, 8 },
 				duration = 4,
+				tooltip = { furion_force_of_nature_custom = { base_armor = "armor" } },
 			},
 			["modifier_furion_hero_2"] = {
 				skill_number = 0,
@@ -13583,6 +13997,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				shield = { 6, 9, 12 },
 				mana = { 20, 30, 40 },
+				tooltip = { furion_teleportation_custom = { shield = "shield*max_health" } },
 			},
 			["modifier_furion_hero_3"] = {
 				skill_number = 0,
@@ -13614,6 +14029,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				talent_cd = 20,
 				is_breakable = 1,
 				is_bkb = 1,
+				tooltip = { furion_teleportation_custom = { AbilityCastPoint = "cast*kv", fast_cast = "cast*kv" } },
 			},
 			["modifier_furion_hero_6"] = {
 				skill_number = 0,
@@ -13624,6 +14040,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				cd = -4,
 				speed = 200,
 				fear = 1.5,
+				tooltip = { furion_force_of_nature_custom = { AbilityCooldown = "cd" } },
 			},
 
 			["modifier_furion_sprout_1"] = {
@@ -13635,6 +14052,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				cd = { -1, -1.5, -2 },
 				damage = { 3, 4.5, 6 },
 				base = { 20, 30, 40 },
+				tooltip = { default = { sprout_damage = "base + damage*max_health", AbilityCooldown = "cd" } },
 			},
 			["modifier_furion_sprout_2"] = {
 				skill_number = 1,
@@ -13673,6 +14091,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				max = 8,
 				duration = 0.5,
 				damage_reduce = -30,
+				tooltip = { default = { duration = "duration" } },
 			},
 			["modifier_furion_sprout_7"] = {
 				skill_number = 1,
@@ -13794,6 +14213,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				mod_name = "modifier_furion_force_of_nature_custom_health",
 				is_perma = 1,
 				max = 500,
+				tooltip = { default = { treant_health = "health*perma" } },
 			},
 			["modifier_furion_call_3"] = {
 				skill_number = 3,
@@ -13857,6 +14277,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				health = { 1.2, 1.8, 2.4 },
 				damage = { 80, 120, 160 },
+				tooltip = { default = { damage_max = "damage*int" } },
 			},
 			["modifier_furion_nature_2"] = {
 				skill_number = 4,
@@ -13867,6 +14288,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				cd = { -2, -3, -4 },
 				heal_reduce = { -16, -24, -32 },
 				duration = 5,
+				tooltip = { default = { AbilityCooldown = "cd" } },
 			},
 			["modifier_furion_nature_3"] = {
 				skill_number = 4,
@@ -13899,6 +14321,8 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				cast = -25,
 				cd_items = -0.5,
 				cd_items_legendary = -0.2,
+				tooltip = { default = { AbilityCastPoint = "cast" } },
+				tooltip_alt = { default = { AbilityCastPoint = "cast" } },
 				alt_talent = "modifier_furion_nature_7",
 			},
 			["modifier_furion_nature_7"] = {
@@ -13919,6 +14343,14 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				radius = 600,
 				mana = -50,
 				skill_name = "furion_blooming_flare_custom",
+				tooltip = {
+					default = {
+						root_max = "~root*kv",
+						shard_root = "~root*kv",
+						shard_duration = "~root*kv",
+						AbilityManaCost = "mana",
+					},
+				},
 			},
 		},
 
@@ -13931,6 +14363,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				move = { 30, 45, 60 },
 				slow = { -10, -15, -20 },
+				tooltip = { abaddon_frostmourne_custom = { curse_slow = "slow" } },
 			},
 			["modifier_abaddon_hero_2"] = {
 				skill_number = 0,
@@ -13973,6 +14406,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				range = 600,
 				duration = 0.5,
 				is_root_disabled = 1,
+				tooltip = { abaddon_aphotic_shield_custom = { AbilityCastPoint = "=0" } },
 			},
 			["modifier_abaddon_hero_6"] = {
 				skill_number = 0,
@@ -13983,6 +14417,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				status = 15,
 				duration = 1,
 				is_bkb = 1,
+				tooltip = { abaddon_borrowed_time_custom = { duration = "duration" } },
 			},
 
 			["modifier_abaddon_mist_1"] = {
@@ -13993,6 +14428,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				spell = { 6, 9, 12 },
 				damage = { 40, 60, 80 },
+				tooltip = { default = { target_damage = "damage*int" } },
 			},
 			["modifier_abaddon_mist_2"] = {
 				skill_number = 1,
@@ -14002,6 +14438,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				cd = { -1, -1.5, -2 },
 				heal = { 10, 15, 20 },
+				tooltip = { default = { AbilityCooldown = "cd" } },
 			},
 			["modifier_abaddon_mist_3"] = {
 				skill_number = 1,
@@ -14054,6 +14491,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				base = { 40, 60, 80 },
 				shield = { 4, 6, 8 },
+				tooltip = { default = { damage_absorb = "base + shield*max_health" } },
 			},
 			["modifier_abaddon_aphotic_2"] = {
 				skill_number = 2,
@@ -14063,6 +14501,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				cd = { -2, -3, -4 },
 				mana = { 16, 24, 32 },
+				tooltip = { default = { AbilityCooldown = "cd" } },
 			},
 			["modifier_abaddon_aphotic_3"] = {
 				skill_number = 2,
@@ -14177,6 +14616,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				duration = 8,
 				is_through_bkb = 1,
 				skill_name = "abaddon_frostmourne_custom",
+				tooltip = { default = { AbilityCooldown = "talent_cd" } },
 			},
 			["modifier_abaddon_borrowed_1"] = {
 				skill_number = 4,
@@ -14249,6 +14689,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				damage_type = DAMAGE_TYPE_PHYSICAL,
 				skill_name = "abaddon_borrowed_time_custom",
 				trigger_ability = "abaddon_borrowed_time_custom_legendary",
+				tooltip = { default = { duration = "duration_inc*all" } },
 			},
 		},
 
@@ -14308,6 +14749,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				duration = 0.4,
 				silence = 1,
+				tooltip = { drow_ranger_wave_of_silence_custom = { knockback_duration = "duration" } },
 			},
 			["modifier_drow_hero_6"] = {
 				skill_number = 0,
@@ -14342,6 +14784,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				mana = { -6, -9, -12 },
 				slow = { -10, -15, -20 },
 				allow_illusion = 1,
+				tooltip = { default = { frost_arrows_movement_speed = "slow", AbilityManaCost = "mana" } },
 			},
 			["modifier_drow_frost_3"] = {
 				skill_number = 1,
@@ -14369,6 +14812,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				talent_cd = 8,
 				is_purgable_self = 1,
 				is_root = 1,
+				tooltip = { default = { abilityduration = "duration" } },
 			},
 			["modifier_drow_frost_7"] = {
 				skill_number = 1,
@@ -14390,6 +14834,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				max = 6,
 				heal = 35,
 				skill_name = "drow_ranger_frost_arrows_custom",
+				tooltip = { default = { AbilityCooldown = "talent_cd", AbilityCastPoint = "cast" } },
 			},
 			["modifier_drow_gust_1"] = {
 				skill_number = 2,
@@ -14399,6 +14844,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				damage = { 100, 150, 200 },
 				spell = { 8, 12, 16 },
+				tooltip = { default = { damage = "damage" } },
 			},
 			["modifier_drow_gust_2"] = {
 				skill_number = 2,
@@ -14408,6 +14854,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				cd = { -2, -3, -4 },
 				cast = { -0.1, -0.15, -0.2 },
+				tooltip = { default = { AbilityCooldown = "cd", AbilityCastPoint = "cast" } },
 			},
 			["modifier_drow_gust_3"] = {
 				skill_number = 2,
@@ -14456,6 +14903,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				mana = -50,
 				damage_type = DAMAGE_TYPE_MAGICAL,
 				skill_name = "drow_ranger_wave_of_silence_custom",
+				tooltip = { default = { AbilityManaCost = "mana" } },
 			},
 
 			["modifier_drow_multishot_1"] = {
@@ -14466,6 +14914,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				damage = { 30, 45, 60 },
 				heal = { 12, 18, 24 },
+				tooltip = { default = { arrow_damage_pct = "damage" } },
 			},
 			["modifier_drow_multishot_2"] = {
 				skill_number = 3,
@@ -14475,6 +14924,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				cd = { -2, -3, -4 },
 				range = { 100, 150, 200 },
+				tooltip = { default = { AbilityCooldown = "cd" } },
 			},
 			["modifier_drow_multishot_3"] = {
 				skill_number = 3,
@@ -14486,6 +14936,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				max = { 1, 2 },
 				damage = { 35, 60 },
 				damage_type = DAMAGE_TYPE_PURE,
+				tooltip = { default = { wave_count = "max" } },
 			},
 			["modifier_drow_multishot_4"] = {
 				skill_number = 3,
@@ -14548,6 +14999,8 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				duration_creeps = 3,
 				bonus = { 60, 100 },
 				max = 5,
+				tooltip = { default = { bonus_damage = "damage*agi" } },
+				tooltip_alt = { default = { bonus_damage = "damage_alt*attack" } },
 				alt_talent = "modifier_drow_frost_7",
 			},
 			["modifier_drow_marksman_4"] = {
@@ -14579,6 +15032,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				radius = 1000,
 				skill_name = "drow_ranger_marksmanship_custom",
 				trigger_ability = "drow_ranger_marksmanship_custom",
+				tooltip = { default = { AbilityCooldown = "talent_cd" } },
 			},
 		},
 
@@ -14917,6 +15371,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				duration = { 0.4, 0.6, 0.8 },
 				damage_reduce = { -16, -24, -32 },
+				tooltip = { slark_pounce_custom = { leash_duration = "duration" } },
 			},
 			["modifier_slark_hero_2"] = {
 				skill_number = 0,
@@ -14933,6 +15388,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				magic = { 8, 12, 16 },
 				heal = { 40, 60, 80 },
+				tooltip = { slark_shadow_dance_custom = { bonus_regen = "heal" } },
 			},
 			["modifier_slark_hero_4"] = {
 				skill_number = 0,
@@ -14944,6 +15400,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				speed = 40,
 				range = 40,
 				invun = 0.7,
+				tooltip = { slark_pounce_custom = { pounce_distance = "range*kv" } },
 			},
 			["modifier_slark_hero_5"] = {
 				skill_number = 0,
@@ -14965,6 +15422,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				radius = -250,
 				radius_tooltip = 650,
 				linger = 3,
+				tooltip = { slark_shadow_dance_custom = { radius = "radius" } },
 			},
 
 			["modifier_slark_pact_1"] = {
@@ -14975,6 +15433,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				base = { 30, 45, 60 },
 				damage = { 4, 6, 8 },
+				tooltip = { default = { total_damage = "base + damage*max_health" } },
 			},
 			["modifier_slark_pact_2"] = {
 				skill_number = 1,
@@ -15031,6 +15490,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				knock_duration = 0.4,
 				trigger_ability = "slark_dark_pact_custom",
 				skill_name = "slark_dark_pact_custom",
+				tooltip = { default = { AbilityHealthCost = "~cost" } },
 			},
 			["modifier_slark_pounce_1"] = {
 				skill_number = 2,
@@ -15049,6 +15509,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "blue",
 
 				cd = { -1, -1.5, -2 },
+				tooltip = { default = { AbilityCooldown = "cd" }, slark_dark_pact_custom = { AbilityCooldown = "cd" } },
 			},
 			["modifier_slark_pounce_3"] = {
 				skill_number = 2,
@@ -15103,6 +15564,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				skill_name = "slark_pounce_custom",
 				trigger_ability = "slark_pounce_custom_legendary",
+				tooltip = { slark_innate_custom = { agi_gain = "~=0" } },
 			},
 			["modifier_slark_essence_1"] = {
 				skill_number = 3,
@@ -15112,6 +15574,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				agi = { 0.4, 0.6, 0.8 },
 				range = { 50, 75, 100 },
+				tooltip = { slark_innate_custom = { agi_gain = "+agi" } },
 			},
 			["modifier_slark_essence_2"] = {
 				skill_number = 3,
@@ -15153,6 +15616,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				talent_cd = 10,
 				is_purgable_self = 1,
 				is_silence = 1,
+				tooltip = { slark_innate_custom = { duration = "duration" } },
 			},
 			["modifier_slark_essence_7"] = {
 				skill_number = 3,
@@ -15172,6 +15636,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				cdr = 40,
 				cast = 40,
 				skill_name = "slark_saltwater_shiv_custom",
+				tooltip = { default = { AbilityCooldown = "~talent_cd" } },
 			},
 			["modifier_slark_dance_1"] = {
 				skill_number = 4,
@@ -15191,6 +15656,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				duration = { 0.2, 0.3, 0.4 },
 				cd = { -4, -6, -8 },
+				tooltip = { default = { duration = "duration", AbilityCooldown = "cd" } },
 			},
 			["modifier_slark_dance_3"] = {
 				skill_number = 4,
@@ -15316,6 +15782,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				damage = { 80, 120, 160 },
 				spell = { 6, 9, 12 },
+				tooltip = { default = { stomp_damage = "damage" } },
 			},
 			["modifier_centaur_stomp_2"] = {
 				skill_number = 1,
@@ -15325,6 +15792,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				cd = { -2, -3, -4 },
 				cast = { -0.1, -0.15, -0.2 },
+				tooltip = { default = { windup_time = "cast", AbilityCooldown = "cd" } },
 			},
 			["modifier_centaur_stomp_3"] = {
 				skill_number = 1,
@@ -15391,6 +15859,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				cd = { -20, -30, -40 },
 				cast = { -20, -30, -40 },
+				tooltip = { default = { AbilityCooldown = "cd", AbilityCastPoint = "cast" } },
 			},
 			["modifier_centaur_edge_3"] = {
 				skill_number = 2,
@@ -15449,6 +15918,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				armor = { -4, -6, -8 },
 				duration = 6,
 				damage = { 8, 12, 16 },
+				tooltip = { default = { return_damage_str = "damage" } },
 			},
 			["modifier_centaur_retaliate_2"] = {
 				skill_number = 3,
@@ -15488,6 +15958,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				duration = 10,
 				is_through_bkb = 1,
 				talent_cd = 12,
+				tooltip = { default = { AbilityCooldown = "talent_cd" } },
 				alt_talent = "modifier_centaur_retaliate_7",
 			},
 			["modifier_centaur_retaliate_7"] = {
@@ -15513,6 +15984,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				knock_duration = 0.3,
 				attack_radius = 250,
 				skill_name = "centaur_return_custom",
+				tooltip = { default = { AbilityCooldown = "talent_cd" } },
 			},
 			["modifier_centaur_stampede_1"] = {
 				skill_number = 4,
@@ -15534,6 +16006,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				range = { 40, 60, 80 },
 				bonus = 2,
 				duration = { 1, 1.5, 2 },
+				tooltip = { default = { duration = "duration" } },
 			},
 			["modifier_centaur_stampede_3"] = {
 				skill_number = 4,
@@ -15559,6 +16032,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				cd_inc = -5,
 				duration = 1,
+				tooltip = { default = { slow_duration = "duration" } },
 			},
 			["modifier_centaur_stampede_7"] = {
 				skill_number = 4,
@@ -15600,6 +16074,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				armor = { 6, 9, 12 },
 				move = { 30, 45, 60 },
+				tooltip = { enigma_demonic_conversion_custom = { eidolon_armor = "armor" } },
 			},
 			["modifier_enigma_hero_3"] = {
 				skill_number = 0,
@@ -15651,6 +16126,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				cd = { -1, -1.5, -2 },
 				damage = { 50, 75, 100 },
+				tooltip = { default = { damage = "damage*attack", AbilityCooldown = "cd" } },
 			},
 			["modifier_enigma_malefice_2"] = {
 				skill_number = 1,
@@ -15686,6 +16162,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				chance = 10,
 				talent_cd = 4,
 				is_basher = 1,
+				tooltip = { default = { stun_duration = "stun" } },
 			},
 			["modifier_enigma_malefice_7"] = {
 				skill_number = 1,
@@ -15703,6 +16180,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				max = 12,
 				stun_reduce = -30,
 				skill_name = "enigma_malefice_custom",
+				tooltip = { default = { stun_duration = "~stun_reduce*all" } },
 			},
 			["modifier_enigma_conversion_1"] = {
 				skill_number = 2,
@@ -15715,6 +16193,13 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				max = 200,
 				is_perma = 1,
 				mod_name = "modifier_enigma_demonic_conversion_custom_perma",
+				tooltip = {
+					default = {
+						eidelon_max_health = "health*kv",
+						health_pct = "health*kv",
+						eidelon_base_damage = "damage*perma",
+					},
+				},
 			},
 			["modifier_enigma_conversion_2"] = {
 				skill_number = 2,
@@ -15724,6 +16209,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				cd = { -2, -3, -4 },
 				heal = { 4, 6, 8 },
+				tooltip = { default = { AbilityCooldown = "cd" } },
 			},
 			["modifier_enigma_conversion_3"] = {
 				skill_number = 2,
@@ -15751,6 +16237,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				attacks = -1,
 				duration = 1.5,
 				move = 50,
+				tooltip = { default = { split_attack_count = "attacks" } },
 			},
 			["modifier_enigma_conversion_7"] = {
 				skill_number = 2,
@@ -15783,6 +16270,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				damage = { 1, 1.5, 2 },
 				magic = { -8, -12, -16 },
 				creeps = { 50, 75, 100 },
+				tooltip = { default = { damage_percent = "damage", damage_creeps = "creeps" } },
 			},
 			["modifier_enigma_midnight_2"] = {
 				skill_number = 3,
@@ -15792,6 +16280,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				cd = { -2, -3, -4 },
 				radius = { 80, 120, 160 },
+				tooltip = { default = { radius = "radius", AbilityCooldown = "cd" } },
 			},
 			["modifier_enigma_midnight_3"] = {
 				skill_number = 3,
@@ -15818,6 +16307,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				heal = 4,
 				health = 12,
 				damage_reduce = -12,
+				tooltip = { enigma_innate_custom = { damage_reduction = "damage_reduce" } },
 			},
 			["modifier_enigma_midnight_7"] = {
 				skill_number = 3,
@@ -15841,6 +16331,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				damage = { 30, 45, 60 },
 				heal_reduce = { -12, -18, -24 },
+				tooltip = { default = { damage = "damage*int" } },
 			},
 			["modifier_enigma_blackhole_2"] = {
 				skill_number = 4,
@@ -15850,6 +16341,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				cd = { -4, -6, -8 },
 				cast = { -0.2, -0.3, -0.4 },
+				tooltip = { default = { delay = "cast", AbilityCooldown = "cd" } },
 			},
 			["modifier_enigma_blackhole_3"] = {
 				skill_number = 4,
@@ -15923,6 +16415,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				cd = { -2, -3, -4 },
 				health = { 6, 9, 12 },
+				tooltip = { bane_nightmare_custom = { AbilityCooldown = "cd" } },
 			},
 			["modifier_bane_hero_3"] = {
 				skill_number = 0,
@@ -16033,6 +16526,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				max = 15,
 				duration = 10,
 				skill_name = "bane_enfeeble_custom",
+				tooltip = { default = { radius = "=radius" } },
 			},
 			["modifier_bane_brain_1"] = {
 				skill_number = 2,
@@ -16042,6 +16536,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				cd = { -2, -3, -4 },
 				mana = { 10, 15, 20 },
+				tooltip = { default = { AbilityCooldown = "cd" } },
 			},
 			["modifier_bane_brain_2"] = {
 				skill_number = 2,
@@ -16051,6 +16546,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				base = { 20, 30, 40 },
 				damage = { 1.6, 2.4, 3.2 },
+				tooltip = { default = { brain_sap_damage = "base + damage*max_mana" } },
 			},
 			["modifier_bane_brain_3"] = {
 				skill_number = 2,
@@ -16075,6 +16571,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				cast = -0.1,
 				talent_cd = 10,
 				fear = 1.2,
+				tooltip = { default = { AbilityCastPoint = "cast" } },
 			},
 			["modifier_bane_brain_7"] = {
 				skill_number = 2,
@@ -16093,6 +16590,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				cd = -40,
 				skill_name = "bane_brain_sap_custom",
 				trigger_ability = "bane_brain_sap_custom_legendary",
+				tooltip = { default = { AbilityCooldown = "cd", AbilityManaCost = "~mana" } },
 			},
 			["modifier_bane_nightmare_1"] = {
 				skill_number = 3,
@@ -16167,6 +16665,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				cd = { -4, -6, -8 },
 				duration = { 0.2, 0.3, 0.4 },
+				tooltip = { default = { AbilityCooldown = "cd", channel_time = "duration" } },
 			},
 			["modifier_bane_grip_2"] = {
 				skill_number = 4,
@@ -16178,6 +16677,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				damage = { 6, 9, 12 },
 				is_through_bkb = 1,
 				damage_type = DAMAGE_TYPE_PURE,
+				tooltip = { default = { fiend_grip_damage = "base" } },
 			},
 			["modifier_bane_grip_3"] = {
 				skill_number = 4,
@@ -16347,6 +16847,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				duration = 4,
 				cd = -2,
 				slow_resist = 50,
+				tooltip = { default = { AbilityCooldown = "cd" } },
 			},
 			["modifier_morphling_wave_7"] = {
 				skill_number = 1,
@@ -16374,6 +16875,10 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "blue",
 
 				damage = { 12, 18, 24 },
+				tooltip = {
+					default = { damage_base = "damage*kv", damage_min = "damage*kv", damage_max = "damage*kv" },
+					morphling_waveform_custom = { damage = "damage*kv" },
+				},
 			},
 			["modifier_morphling_adaptive_2"] = {
 				skill_number = 2,
@@ -16383,6 +16888,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				cd = { -1, -1.5, -2 },
 				stun = { 0.2, 0.3, 0.4 },
+				tooltip = { default = { stun_min = "stun", stun_max = "stun", AbilityCooldown = "cd" } },
 			},
 			["modifier_morphling_adaptive_3"] = {
 				skill_number = 2,
@@ -16431,6 +16937,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				range = 200,
 				speed = 2000,
 				skill_name = "morphling_adaptive_strike_custom",
+				tooltip = { default = { radius = "=radius" } },
 			},
 
 			["modifier_morphling_attribute_1"] = {
@@ -16590,6 +17097,10 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				cd = { -4, -6, -8 },
 				armor = { 8, 12, 16 },
 				duration = 4,
+				tooltip = {
+					life_stealer_infest_custom = { AbilityCooldown = "cd" },
+					life_stealer_infest_custom_legendary = { AbilityCooldown = "cd" },
+				},
 			},
 			["modifier_lifestealer_hero_2"] = {
 				skill_number = 0,
@@ -16649,6 +17160,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				duration = 1,
 				cd_items = -1,
 				duration_creep = 1,
+				tooltip = { life_stealer_infest_custom = { infest_duration_enemy = "duration" } },
 				alt_talent = "modifier_lifestealer_infest_7",
 			},
 
@@ -16673,6 +17185,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				cd = { -2, -3, -4 },
 				duration = { 0.6, 0.9, 1.2 },
+				tooltip = { default = { duration = "duration", AbilityCooldown = "cd" } },
 			},
 			["modifier_lifestealer_rage_3"] = {
 				skill_number = 1,
@@ -16697,6 +17210,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				move = 30,
 				slow_resist = 30,
 				trigger_ability = "life_stealer_rage_custom",
+				tooltip = { default = { move_bonus = "move" } },
 			},
 			["modifier_lifestealer_rage_7"] = {
 				skill_number = 1,
@@ -16712,6 +17226,14 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				health = 40,
 				bonus = 3,
 				skill_name = "life_stealer_rage_custom",
+				tooltip = {
+					default = {
+						duration = "~cd*all",
+						AbilityCooldown = "cd",
+						AbilityManaCost = "=0",
+						AbilityHealthCost = "~health",
+					},
+				},
 			},
 
 			["modifier_lifestealer_wounds_1"] = {
@@ -16722,6 +17244,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				spell = { 8, 12, 16 },
 				damage = { 4, 6, 8 },
+				tooltip = { default = { damage = "damage*max_health" } },
 			},
 			["modifier_lifestealer_wounds_2"] = {
 				skill_number = 2,
@@ -16731,6 +17254,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				cd = { -2, -3, -4 },
 				heal = { 10, 15, 20 },
+				tooltip = { default = { AbilityCooldown = "cd" } },
 			},
 			["modifier_lifestealer_wounds_3"] = {
 				skill_number = 2,
@@ -16757,6 +17281,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				slow = -30,
 				duration = 1,
+				tooltip = { default = { duration = "duration", slow = "slow" } },
 			},
 			["modifier_lifestealer_wounds_7"] = {
 				skill_number = 2,
@@ -16845,6 +17370,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				talent_cd = 5,
 				damage_type = DAMAGE_TYPE_PHYSICAL,
 				skill_name = "life_stealer_feast_custom",
+				tooltip = { default = { AbilityCooldown = "talent_cd" } },
 			},
 
 			["modifier_lifestealer_infest_1"] = {
@@ -16872,6 +17398,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				duration = 10,
 				heal_creep = { 0.6, 0.9, 1.2 },
 				health_creep = { 8, 12, 16 },
+				tooltip = { default = { self_regen = "heal" } },
 				alt_talent = "modifier_lifestealer_infest_7",
 			},
 			["modifier_lifestealer_infest_3"] = {
@@ -16919,6 +17446,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				health_creep = 50,
 				skill_name = "life_stealer_infest_custom",
 				trigger_ability = "life_stealer_infest_custom_legendary",
+				tooltip = { life_stealer_infest_custom_legendary = { health_loss = "=health" } },
 			},
 		},
 
@@ -16938,6 +17466,13 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				status = { 10, 15, 20 },
 				shield = { 40, 60, 80 },
+				tooltip = {
+					tinker_innate_custom = {
+						shield_base = "shield*kv",
+						shield_health = "shield*kv",
+						status_bonus = "status",
+					},
+				},
 			},
 			["modifier_tinker_hero_3"] = {
 				skill_number = 0,
@@ -16961,6 +17496,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				cast = -0.2,
 				talent_cd = 16,
 				is_stun = 1,
+				tooltip = { tinker_laser_custom = { AbilityCastPoint = "cast" } },
 			},
 			["modifier_tinker_hero_5"] = {
 				skill_number = 0,
@@ -16992,6 +17528,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				damage = { 2, 3, 4 },
 				base = { 40, 60, 80 },
+				tooltip = { default = { laser_damage = "base + damage*max_health" } },
 			},
 			["modifier_tinker_laser_2"] = {
 				skill_number = 1,
@@ -17090,6 +17627,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				chance = 15,
 				damage = { 35, 60 },
 				talent_cd = 0.5,
+				tooltip = { default = { duration = "duration" } },
 			},
 			["modifier_tinker_march_4"] = {
 				skill_number = 2,
@@ -17104,6 +17642,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				cd = -8,
 				is_root_disabled = 1,
 				trigger_ability = "tinker_march_of_the_machines_custom",
+				tooltip = { default = { AbilityCooldown = "cd", AbilityCastPoint = "cast" } },
 			},
 			["modifier_tinker_march_7"] = {
 				skill_number = 2,
@@ -17128,6 +17667,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				hit_radius = 180,
 				mana = -50,
 				skill_name = "tinker_march_of_the_machines_custom",
+				tooltip = { default = { AbilityManaCost = "mana", radius = "~=width" } },
 			},
 
 			["modifier_tinker_matrix_1"] = {
@@ -17142,6 +17682,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				chance = 30,
 				chance_turret = 15,
 				damage_type = DAMAGE_TYPE_MAGICAL,
+				tooltip = { default = { missile_damage = "attack*kv", missile_damage_attack = "attack*kv" } },
 			},
 			["modifier_tinker_matrix_2"] = {
 				skill_number = 3,
@@ -17178,6 +17719,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				talent_cd = 8,
 				is_purgable_self = 1,
 				is_root = 1,
+				tooltip = { default = { health = "health*kv", missile_target_range = "range" } },
 			},
 			["modifier_tinker_matrix_7"] = {
 				skill_number = 3,
@@ -17222,6 +17764,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				cast = { -10, -15, -20 },
 				heal = { 16, 24, 32 },
+				tooltip = { default = { channel_time = "cast*kv" } },
 			},
 			["modifier_tinker_rearm_3"] = {
 				skill_number = 4,
@@ -17244,6 +17787,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				cd_items = -1,
 				duration = 6,
 				mana = 100,
+				tooltip = { default = { current_cdr = "icon", max_cdr = "cdr" } },
 			},
 			["modifier_tinker_rearm_7"] = {
 				skill_number = 4,
@@ -17275,6 +17819,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				cd = { -1, -1.5, -2 },
 				range = { 120, 180, 240 },
+				tooltip = { witch_doctor_paralyzing_cask_custom = { AbilityCooldown = "cd" } },
 			},
 			["modifier_witch_doctor_hero_2"] = {
 				skill_number = 0,
@@ -17325,6 +17870,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				cast = -0.2,
 				is_purgable_self = 1,
 				is_silence = 1,
+				tooltip = { witch_doctor_maledict_custom = { AbilityCastPoint = "cast" } },
 			},
 			["modifier_witch_doctor_hero_6"] = {
 				skill_number = 0,
@@ -17349,6 +17895,8 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				speed = { 30, 45, 60 },
 				speed_ward = { 20, 30, 40 },
 				damage = { 20, 30, 40 },
+				tooltip = { default = { base_damage = "damage*kv", attack_damage = "damage*kv" } },
+				tooltip_alt = { default = { base_damage = "damage*kv", attack_damage = "damage*kv" } },
 				alt_talent = "modifier_witch_doctor_deathward_7",
 			},
 			["modifier_witch_doctor_cask_2"] = {
@@ -17360,6 +17908,10 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				range = { 100, 150, 200 },
 				slow = { -16, -24, -32 },
 				duration = 3,
+				tooltip = {
+					witch_doctor_death_ward_custom = { attack_range_tooltip = "range" },
+					witch_doctor_death_ward_custom_legendary = { attack_range_tooltip = "range" },
+				},
 			},
 			["modifier_witch_doctor_cask_3"] = {
 				skill_number = 1,
@@ -17390,6 +17942,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				max = 2,
 				radius = 700,
 				talent_cd = 10,
+				tooltip = { default = { hero_duration = "stun" } },
 			},
 			["modifier_witch_doctor_cask_7"] = {
 				skill_number = 1,
@@ -17421,6 +17974,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				base = { 10, 15, 20 },
 				heal = { 0.5, 0.75, 1 },
 				damage = { 0.5, 0.75, 1 },
+				tooltip = { default = { heal = "base + heal*max_health", damage = "base + damage*max_health" } },
 			},
 			["modifier_witch_doctor_voodoo_2"] = {
 				skill_number = 2,
@@ -17480,6 +18034,14 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				mana_return = 50,
 				trigger_ability = "witch_doctor_voodoo_restoration_custom",
 				skill_name = "witch_doctor_voodoo_restoration_custom",
+				tooltip = {
+					default = {
+						AbilityCooldown = "talent_cd",
+						AbilityManaCost = "~mana",
+						heal = "~passive*all",
+						damage = "~passive*all",
+					},
+				},
 			},
 
 			["modifier_witch_doctor_maledict_1"] = {
@@ -17490,6 +18052,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				spell = { 6, 9, 12 },
 				damage = { 20, 30, 40 },
+				tooltip = { default = { damage = "damage*int" } },
 			},
 			["modifier_witch_doctor_maledict_2"] = {
 				skill_number = 3,
@@ -17500,6 +18063,10 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				cd = { -2, -3, -4 },
 				radius = { 40, 60, 80 },
 				radius_voodoo = { 40, 60, 80 },
+				tooltip = {
+					default = { radius = "radius", AbilityCooldown = "cd" },
+					witch_doctor_voodoo_restoration_custom = { radius = "radius_voodoo" },
+				},
 			},
 			["modifier_witch_doctor_maledict_3"] = {
 				skill_number = 3,
@@ -17525,6 +18092,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				effect_duration = 2,
 				cd_items = -1.5,
 				move = 30,
+				tooltip = { default = { abilityduration = "duration" } },
 			},
 			["modifier_witch_doctor_maledict_7"] = {
 				skill_number = 3,
@@ -17553,6 +18121,10 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				attack = { 20, 30, 40 },
 				damage = { 8, 12, 16 },
+				tooltip = {
+					default = { damage = "damage*attack" },
+					witch_doctor_death_ward_custom_legendary = { damage = "damage*attack" },
+				},
 			},
 			["modifier_witch_doctor_deathward_2"] = {
 				skill_number = 4,
@@ -17562,6 +18134,10 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				cd = { -4, -6, -8 },
 				duration = { 1, 1.5, 2 },
+				tooltip = {
+					default = { duration = "duration", AbilityCooldown = "cd" },
+					witch_doctor_death_ward_custom_legendary = { duration = "duration", AbilityCooldown = "cd" },
+				},
 			},
 			["modifier_witch_doctor_deathward_3"] = {
 				skill_number = 4,
@@ -17591,6 +18167,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				talent_cd = 3,
 				is_purgable_self = 1,
 				is_root = 1,
+				tooltip = { default = { channel = "cast" } },
 			},
 			["modifier_witch_doctor_deathward_7"] = {
 				skill_number = 4,
@@ -17677,6 +18254,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				stun = 0.4,
 				move = 40,
 				duration = 4,
+				tooltip = { nyx_assassin_spiked_carapace_custom = { stun_duration = "stun", AbilityCooldown = "cd" } },
 			},
 
 			["modifier_nyx_impale_1"] = {
@@ -17687,6 +18265,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				damage = { 80, 120, 160 },
 				heal = { 10, 15, 20 },
+				tooltip = { default = { impale_damage = "damage*int" } },
 			},
 			["modifier_nyx_impale_2"] = {
 				skill_number = 1,
@@ -17696,6 +18275,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				cd = { -2, -3, -4 },
 				stun = { 0.2, 0.3, 0.4 },
+				tooltip = { default = { duration = "stun", AbilityCooldown = "cd" } },
 			},
 			["modifier_nyx_impale_3"] = {
 				skill_number = 1,
@@ -17721,6 +18301,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				damage_reduce = -40,
 				duration = 4,
 				cd_items = -0.8,
+				tooltip = { default = { AbilityCastPoint = "cast" } },
 			},
 			["modifier_nyx_impale_7"] = {
 				skill_number = 1,
@@ -17754,6 +18335,13 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				rarity = "blue",
 
 				damage = { 16, 24, 32 },
+				tooltip = {
+					default = {
+						max_mana_as_damage_pct = "damage*kv",
+						damage_echo_pct = "damage*kv",
+						damage_creeps = "damage*kv",
+					},
+				},
 			},
 			["modifier_nyx_mind_2"] = {
 				skill_number = 2,
@@ -17855,6 +18443,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				duration = 0.5,
 				damage_reduce = -70,
+				tooltip = { default = { reflect_duration = "duration" } },
 			},
 			["modifier_nyx_carapace_7"] = {
 				skill_number = 3,
@@ -17912,6 +18501,8 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				cd = { -6, -10 },
 				cd_legendary = { -0.6, -1 },
 				bva = 1,
+				tooltip = { default = { AbilityCooldown = "cd" } },
+				tooltip_alt = { default = { AbilityCooldown = "cd_legendary" } },
 				alt_talent = "modifier_nyx_vendetta_7",
 			},
 			["modifier_nyx_vendetta_4"] = {
@@ -17953,6 +18544,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				break_duration = 2,
 				is_through_bkb = 1,
 				skill_name = "nyx_assassin_vendetta_custom",
+				tooltip = { default = { AbilityCooldown = "cd", AbilityManaCost = "=0", break_duration = "~-50*kv" } },
 			},
 		},
 
@@ -17965,6 +18557,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				move = { 8, 12, 16 },
 				slow = { -10, -15, -20 },
 				radius = 900,
+				tooltip = { broodmother_spin_web_custom = { bonus_movespeed = "move" } },
 			},
 			["modifier_broodmother_hero_2"] = {
 				skill_number = 0,
@@ -17983,6 +18576,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				str = { 8, 12, 16 },
 				health = { 30, 45, 60 },
+				tooltip = { broodmother_spawn_spiderlings_custom = { spiderling_hp = "health*kv" } },
 			},
 
 			["modifier_broodmother_hero_4"] = {
@@ -17993,6 +18587,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				resist = 30,
 				max = 8,
 				radius = 3000,
+				tooltip = { broodmother_spin_web_custom = { count = "max" } },
 			},
 			["modifier_broodmother_hero_5"] = {
 				skill_number = 0,
@@ -18031,6 +18626,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				damage_inc = { 30, 45, 60 },
 				damage_aura = { 4, 6, 8 },
 				radius = 800,
+				tooltip = { default = { bonus_damage = "damage" } },
 				alt_talent = "modifier_broodmother_insatiable_7",
 			},
 			["modifier_broodmother_insatiable_2"] = {
@@ -18042,6 +18638,8 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				cd = { -2, -3, -4 },
 				duration = { 2, 3, 4 },
 				duration_legendary = { 1, 1.5, 2 },
+				tooltip = { default = { duration = "duration", AbilityCooldown = "cd" } },
+				tooltip_alt = { default = { AbilityCooldown = "cd", duration = "duration_legendary" } },
 				alt_talent = "modifier_broodmother_insatiable_7",
 			},
 			["modifier_broodmother_insatiable_3"] = {
@@ -18090,6 +18688,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				talent_cd = 3,
 				min_range = 400,
 				skill_name = "broodmother_insatiable_hunger_custom",
+				tooltip = { default = { lifesteal_pct = "~heal_reduce*kv", duration = "~=duration" } },
 			},
 
 			["modifier_broodmother_web_1"] = {
@@ -18100,6 +18699,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				base = { 16, 24, 32 },
 				damage = { 1.6, 2.4, 3.2 },
+				tooltip = { broodmother_innate_custom = { damage = "base + damage*max_health" } },
 			},
 			["modifier_broodmother_web_2"] = {
 				skill_number = 2,
@@ -18234,6 +18834,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				talent_cd = 2,
 				is_through_bkb = 1,
 				skill_name = "broodmother_incapacitating_bite_custom",
+				tooltip = { default = { AbilityCooldown = "talent_cd" } },
 			},
 
 			["modifier_broodmother_spawn_1"] = {
@@ -18244,6 +18845,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				spell = { 8, 12, 16 },
 				damage = { 100, 150, 200 },
+				tooltip = { default = { damage = "damage*int" } },
 			},
 			["modifier_broodmother_spawn_2"] = {
 				skill_number = 4,
@@ -18253,6 +18855,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				cd = { -1, -1.5, -2 },
 				range = { 100, 150, 200 },
+				tooltip = { default = { AbilityCooldown = "cd" } },
 			},
 			["modifier_broodmother_spawn_3"] = {
 				skill_number = 4,
@@ -18265,6 +18868,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				magic = { -25, -40 },
 				max = 5,
 				duration = 8,
+				tooltip = { broodmother_innate_custom = { cd = "cd" } },
 			},
 			["modifier_broodmother_spawn_4"] = {
 				skill_number = 4,
@@ -18320,6 +18924,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				max_move = { 580, 595, 610 },
 				max = { 30, 45, 60 },
 				move = { 8, 12, 16 },
+				tooltip = { night_stalker_innate_custom = { movespeed_init = "move" } },
 			},
 
 			["modifier_stalker_hero_4"] = {
@@ -18380,6 +18985,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				cd = { -1, -1.5, -2 },
 				range = { 100, 150, 200 },
+				tooltip = { default = { AbilityCooldown = "cd" } },
 			},
 			["modifier_stalker_void_3"] = {
 				skill_number = 1,
@@ -18408,6 +19014,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				cd_items = -1,
 				cd_items_fear = -0.4,
 				cd_legendary = -0.25,
+				tooltip = { default = { AbilityCastPoint = "cast" } },
 			},
 			["modifier_stalker_void_7"] = {
 				skill_number = 1,
@@ -18443,6 +19050,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				damage = { 1.2, 1.8, 2.4 },
 				radius = { 40, 60, 80 },
+				tooltip = { default = { dps = "damage*max_health", radius = "radius" } },
 			},
 			["modifier_stalker_fear_2"] = {
 				skill_number = 2,
@@ -18452,6 +19060,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				duration = { 1, 1.5, 2 },
 				cd = { -2, -3, -4 },
+				tooltip = { default = { duration_day = "duration", duration_night = "duration", AbilityCooldown = "cd" } },
 			},
 			["modifier_stalker_fear_3"] = {
 				skill_number = 2,
@@ -18511,6 +19120,8 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				range = { 40, 60, 80 },
 				speed = { 30, 45, 60 },
 				damage = { 30, 45, 60 },
+				tooltip = { night_stalker_innate_custom = { attackspeed_init = "speed" } },
+				tooltip_alt = { night_stalker_innate_custom = { attackspeed_init = "damage" } },
 				alt_talent = "modifier_stalker_dark_7",
 			},
 			["modifier_stalker_hunter_2"] = {
@@ -18521,6 +19132,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				duration = { 1, 1.5, 2 },
 				damage = { 12, 18, 24 },
+				tooltip = { default = { duration = "duration", damage_base = "damage*kv", damage_health = "damage*kv" } },
 			},
 			["modifier_stalker_hunter_3"] = {
 				skill_number = 3,
@@ -18556,7 +19168,6 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				mini_icon = "hunter",
 				skill_icon = "hunter",
 				rarity = "orange",
-				has_video = 1,
 				has_video = 1,
 				complexity = 1,
 				build_type = 1,
@@ -18596,6 +19207,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				heal = { 10, 15, 20 },
 				cd = { -6, -9, -12 },
 				bonus = 2,
+				tooltip = { default = { AbilityCooldown = "cd" } },
 			},
 			["modifier_stalker_dark_3"] = {
 				skill_number = 4,
@@ -18658,6 +19270,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				stun = { 0.2, 0.3, 0.4 },
 				range = { 100, 150, 200 },
+				tooltip = { jakiro_ice_path_custom = { path_stun = "stun" } },
 			},
 			["modifier_jakiro_hero_2"] = {
 				skill_number = 0,
@@ -18676,6 +19289,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				move = { 30, 45, 60 },
 				status = { 10, 15, 20 },
+				tooltip = { jakiro_innate_custom = { fire_move = "move" } },
 			},
 
 			["modifier_jakiro_hero_4"] = {
@@ -18713,6 +19327,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				cdr = 16,
 				is_perma = 1,
 				mod_name = "modifier_jakiro_macropyre_custom_cdr",
+				tooltip = { jakiro_macropyre_custom = { fire_duration = "duration" } },
 			},
 
 			["modifier_jakiro_dual_1"] = {
@@ -18724,6 +19339,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				damage = { 20, 30, 40 },
 				spell = { 4, 6, 8 },
 				damage_ice = 1.5,
+				tooltip = { default = { fire_damage = "damage*int", frost_damage = "damage*damage_ice*int" } },
 			},
 			["modifier_jakiro_dual_2"] = {
 				skill_number = 1,
@@ -18733,6 +19349,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				cd = { -1, -1.5, -2 },
 				slow = { -10, -15, -20 },
+				tooltip = { default = { fire_slow = "slow", frost_slow = "slow", AbilityCooldown = "cd" } },
 			},
 			["modifier_jakiro_dual_3"] = {
 				skill_number = 1,
@@ -18755,6 +19372,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				duration = 1,
 				cd_items = 40,
+				tooltip = { default = { slow_duration = "duration" } },
 			},
 			["modifier_jakiro_dual_7"] = {
 				skill_number = 1,
@@ -18774,7 +19392,15 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				spell_timer = 12,
 				mana = -50,
 				speed = 30,
+				mod_name = "modifier_jakiro_dual_breath_custom_legendary_damage",
 				skill_name = "jakiro_dual_breath_custom",
+				tooltip = {
+					default = {
+						AbilityManaCost = "mana",
+						fire_damage = "damage*stacks*all",
+						frost_damage = "damage*stacks*all",
+					},
+				},
 			},
 
 			["modifier_jakiro_path_1"] = {
@@ -18821,10 +19447,14 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				has_video = 1,
 
 				cast = -0.2,
-				damage = 10,
+				damage = -10,
 				damage_inc = 5,
 				cd_inc = -4,
 				cd_inc_legendary = -10,
+				tooltip = { default = { fire_debuff = "damage_inc", frost_debuff = "damage", AbilityCastPoint = "cast" } },
+				tooltip_alt = {
+					default = { fire_debuff = "damage_inc", frost_debuff = "damage", AbilityCastPoint = "cast" },
+				},
 				alt_talent = "modifier_jakiro_path_7",
 			},
 			["modifier_jakiro_path_7"] = {
@@ -18863,6 +19493,13 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				fire_damage = { 10, 15, 20 },
 				frost_damage = { 6, 9, 12 },
+				tooltip = {
+					default = {
+						fire_damage = "fire_damage*kv",
+						fire_damage_health = "fire_damage*kv",
+						frost_damage = "frost_damage*attack",
+					},
+				},
 			},
 			["modifier_jakiro_liquid_2"] = {
 				skill_number = 3,
@@ -18872,6 +19509,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				duration = { 1, 1.5, 2 },
 				heal = { 12, 18, 24 },
+				tooltip = { default = { duration = "duration" } },
 			},
 			["modifier_jakiro_liquid_3"] = {
 				skill_number = 3,
@@ -18929,6 +19567,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				spell = { 4, 6, 8 },
 				damage = { 1.6, 2.4, 3.2 },
+				tooltip = { default = { damage = "damage*max_health" } },
 			},
 			["modifier_jakiro_macropyre_2"] = {
 				skill_number = 4,
@@ -18938,6 +19577,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				health = { 1, 1.5, 2 },
 				cd = { -4, -6, -8 },
+				tooltip = { default = { AbilityCooldown = "cd" } },
 			},
 			["modifier_jakiro_macropyre_3"] = {
 				skill_number = 4,
@@ -18969,6 +19609,8 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				talent_cd = 8,
 				is_purgable_self = 1,
 				is_root = 1,
+				tooltip = { default = { duration = "duration" } },
+				tooltip_alt = { default = { duration = "duration" } },
 				alt_talent = "modifier_jakiro_macropyre_7",
 			},
 			["modifier_jakiro_macropyre_7"] = {
@@ -18992,6 +19634,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				damage_k = 1.5,
 				mana = -60,
 				skill_name = "jakiro_macropyre_custom",
+				tooltip = { default = { AbilityCooldown = "cd", AbilityManaCost = "mana", duration = "~duration*all" } },
 			},
 		},
 
@@ -19037,6 +19680,10 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				cast = 40,
 				silence = 1.5,
 				torrent_cd = 10,
+				tooltip = {
+					kunkka_torrent_custom = { radius = "radius" },
+					kunkka_ghostship_custom = { ghostship_width = "radius" },
+				},
 			},
 			["modifier_kunkka_hero_5"] = {
 				skill_number = 0,
@@ -19047,6 +19694,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				absorb = 10,
 				burn = 40,
 				shield = 40,
+				tooltip = { kunkka_innate_custom = { ghostship_absorb = "absorb" } },
 			},
 			["modifier_kunkka_hero_6"] = {
 				skill_number = 0,
@@ -19071,6 +19719,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				cd = { -1, -1.5, -2 },
 				damage = { 30, 45, 60 },
 				int = { 40, 60, 80 },
+				tooltip = { default = { torrent_damage = "damage + int", AbilityCooldown = "cd" } },
 			},
 			["modifier_kunkka_torrent_2"] = {
 				skill_number = 1,
@@ -19106,6 +19755,8 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				slow_legendary = -15,
 				cd_items = 2,
 				cd_items_ship = 4,
+				tooltip = { default = { delay = "delay", movespeed_bonus = "slow" } },
+				tooltip_alt = { default = { delay = "delay" } },
 				alt_talent = "modifier_kunkka_torrent_7",
 			},
 			["modifier_kunkka_torrent_7"] = {
@@ -19134,6 +19785,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				cd = 2,
 
 				skill_name = "kunkka_torrent_custom",
+				tooltip = { default = { AbilityCooldown = "~cd" } },
 			},
 
 			["modifier_kunkka_tidebringer_1"] = {
@@ -19145,6 +19797,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				damage = { 20, 30, 40 },
 				cleave = { 16, 24, 32 },
 				damage_wave = { 30, 45, 60 },
+				tooltip = { default = { cleave_damage = "cleave" } },
 				alt_talent = "modifier_kunkka_tidebringer_7",
 			},
 			["modifier_kunkka_tidebringer_2"] = {
@@ -19157,6 +19810,8 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				cd_legendary = { -10, -15, -20 },
 				slow = { -20, -30, -40 },
 				duration = 3,
+				tooltip = { default = { AbilityCooldown = "cd" } },
+				tooltip_alt = { default = { AbilityCooldown = "cd_legendary" } },
 				alt_talent = "modifier_kunkka_tidebringer_7",
 			},
 			["modifier_kunkka_tidebringer_3"] = {
@@ -19184,6 +19839,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				root = 2,
 				talent_cd = 8,
 				is_root = 1,
+				tooltip = { default = { cleave_distance = "distance" } },
 			},
 			["modifier_kunkka_tidebringer_7"] = {
 				skill_number = 2,
@@ -19213,6 +19869,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				knockback = 250,
 
 				skill_name = "kunkka_tidebringer_custom",
+				tooltip = { default = { target_hits = "~hits", AbilityCooldown = "cd" } },
 			},
 
 			["modifier_kunkka_xmark_1"] = {
@@ -19234,6 +19891,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				lifesteal = { 12, 18, 24 },
 				cd = { -2, -3, -4 },
 				bonus = 2,
+				tooltip = { default = { AbilityCooldown = "cd" } },
 			},
 			["modifier_kunkka_xmark_3"] = {
 				skill_number = 3,
@@ -19248,6 +19906,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				duration = 6,
 				interval = 1,
 				damage_type = DAMAGE_TYPE_MAGICAL,
+				tooltip = { default = { allied_duration = "bonus_duration" } },
 			},
 			["modifier_kunkka_xmark_4"] = {
 				skill_number = 3,
@@ -19299,6 +19958,8 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				damage = { 40, 60, 80 },
 				health = { 3, 4.5, 6 },
 				duration = 8,
+				tooltip = { default = { damage = "damage + health*max_health" } },
+				tooltip_alt = { default = { damage = "damage + health*max_health" } },
 				alt_talent = "modifier_kunkka_ship_7",
 			},
 			["modifier_kunkka_ship_2"] = {
@@ -19309,6 +19970,10 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 
 				cd = { -4, -6, -8 },
 				stun = { 0.2, 0.3, 0.4 },
+				tooltip = {
+					default = { stun_duration = "stun", AbilityCooldown = "cd" },
+					kunkka_torrent_custom = { stun_duration = "stun" },
+				},
 			},
 			["modifier_kunkka_ship_3"] = {
 				skill_number = 4,
@@ -19339,6 +20004,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				max = 20,
 				is_perma = 1,
 				mod_name = "modifier_kunkka_ghostship_custom_perma",
+				tooltip = { default = { tooltip_delay = "delay" } },
 				alt_talent = "modifier_kunkka_ship_7",
 			},
 			["modifier_kunkka_ship_7"] = {
@@ -19376,6 +20042,7 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 				cannon_distance = 900,
 
 				skill_name = "kunkka_ghostship_custom",
+				tooltip = { default = { AbilityCooldown = "cd" } },
 			},
 		},
 	}
@@ -19598,7 +20265,6 @@ function talents_values:SendTalents(client_id, hero_name, test_skill, more_test_
 			["is_root"] = true,
 			["is_save"] = true,
 			["tooltip"] = true,
-			["tooltip_ability"] = true,
 			["tooltip_alt"] = true,
 			["update_mod"] = true,
 			["allow_illusion"] = true,

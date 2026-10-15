@@ -131,7 +131,7 @@ end
 
 function C_DOTA_BaseNPC:RefreshTalentValues(talent)
 	if not self.base_abilities then
-		return
+		SaveBaseAbilities(self)
 	end
 
 	for _, name in pairs(self.base_abilities) do
@@ -144,7 +144,7 @@ end
 
 function C_DOTA_BaseNPC:ResetTalentValues(talent)
 	if not self.base_abilities then
-		return
+		SaveBaseAbilities(self)
 	end
 
 	for _, name in pairs(self.base_abilities) do
@@ -361,6 +361,7 @@ function C_DOTA_BaseNPC:AddSpellEvent(mod) end
 function C_DOTA_BaseNPC:AddDeathEvent(mod) end
 function C_DOTA_BaseNPC:AddRespawnEvent(mod) end
 function C_DOTA_BaseNPC:AddStateEvent(mod) end
+function C_DOTA_BaseNPC:AddModelEvent(mod) end
 function C_DOTA_BaseNPC:AddOrderEvent(mod) end
 function C_DOTA_BaseNPC:AddOrderFilter(mod) end
 

@@ -446,5 +446,5 @@ function modifier_item_harpoon_custom_thinker:OnDestroy()
 	if not IsServer() then
 		return
 	end
-	self.parent:RemoveSelf()
+	UTIL_Remove(self.parent)
 end

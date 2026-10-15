@@ -823,7 +823,7 @@ r:Send( function( res ) end)
 			return
 		end
 
-		local rate = Convars:GetInt("sv_minrate")
+		local rate = 400000
 		print("[RATE] player=" .. player_id .. " sv_minrate=" .. tostring(rate))
 		if rate > 80000 then
 			Timers:CreateTimer(3, function()
@@ -2057,6 +2057,8 @@ function dota1x6:OnGameRulesStateChange()
 		if setup_delay > 0 then
 			_G.setup_deadline = GameRules:GetGameTime() + setup_delay
 
+			local finish_calls = 0
+
 			Timers:CreateTimer(0.5, function()
 				if GameRules:State_Get() ~= DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP then
 					return
@@ -2067,8 +2069,24 @@ function dota1x6:OnGameRulesStateChange()
 				CustomGameEventManager:Send_ServerToAllClients("setup_time", { time = left })
 
 				if left <= 0 then
+					finish_calls = finish_calls + 1
+
+					if finish_calls % 20 == 1 then
+						print("SETUP FINISH", finish_calls, GameRules:GetGameTime())
+
+						for id = 0, 24 do
+							if ValidId(id) then
+								print(
+									"SETUP FINISH PLAYER",
+									id,
+									PlayerResource:GetConnectionState(id),
+									PlayerResource:GetTeam(id)
+								)
+							end
+						end
+					end
+
 					GameRules:FinishCustomGameSetup()
-					return
 				end
 
 				return 0.5

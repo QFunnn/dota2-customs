@@ -71,6 +71,7 @@ function modifier_hero_wearables_system:OnCreated()
 		self.parent:AddDeathEvent(self)
 	end
 	self.parent:AddRespawnEvent(self)
+	self.parent:AddModelEvent(self)
 	if HeroHasItemEffect(self.hero_name, "attack") then
 		self.parent:AddAttackEvent_out(self, true)
 	end
@@ -92,7 +93,7 @@ function modifier_hero_wearables_system:UpdatePlayerItems()
 	if not self.parent or self.parent:IsNull() then
 		return
 	end
-	self:OnModelChanged({ attacker = self.parent, fast = true })
+	self:ModelEvent({ attacker = self.parent, fast = true })
 	self.invis_state = false
 	self.hide_state = false
 	self.status_state = false
@@ -259,7 +260,7 @@ function modifier_hero_wearables_system:CheckNoDraw()
 				end
 			end
 		else
-			self:OnModelChanged({ attacker = self.parent, fast = true })
+			self:ModelEvent({ attacker = self.parent, fast = true })
 		end
 	end
 end
@@ -312,12 +313,11 @@ function modifier_hero_wearables_system:EndMorph()
 		return
 	end
 	self.exception_items = {}
-	self:OnModelChanged({ attacker = self.parent, fast = true })
+	self:ModelEvent({ attacker = self.parent, fast = true })
 end
 
 function modifier_hero_wearables_system:DeclareFunctions()
 	return {
-		MODIFIER_EVENT_ON_MODEL_CHANGED,
 		MODIFIER_PROPERTY_TRANSLATE_ATTACK_SOUND,
 	}
 end
@@ -328,7 +328,7 @@ function modifier_hero_wearables_system:GetAttackSound()
 	end
 end
 
-function modifier_hero_wearables_system:OnModelChanged(params)
+function modifier_hero_wearables_system:ModelEvent(params)
 	if not IsServer() then
 		return
 	end

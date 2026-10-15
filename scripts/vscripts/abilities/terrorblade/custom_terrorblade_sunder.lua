@@ -755,9 +755,9 @@ function modifier_custom_terrorblade_sunder_stats:OnIntervalThink()
 	self.agility = 0
 	self.int = 0
 
-	self.strength = self.parent:GetStrength() * (self.init + self.inc * self:GetStackCount())
-	self.agility = self.parent:GetAgility() * (self.init + self.inc * self:GetStackCount())
-	self.int = self.parent:GetIntellect(false) * (self.init + self.inc * self:GetStackCount())
+	self.strength = self.parent:GetStrength(true) * (self.init + self.inc * self:GetStackCount())
+	self.agility = self.parent:GetAgility(true) * (self.init + self.inc * self:GetStackCount())
+	self.int = self.parent:GetIntellect(false, nil, true) * (self.init + self.inc * self:GetStackCount())
 
 	self.parent:CalculateStatBonus(true)
 

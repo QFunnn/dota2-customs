@@ -802,7 +802,7 @@ function modifier_custom_bristleback_warpath_legendary_unit:OnDestroy()
 	if not IsServer() then
 		return
 	end
-	self.parent:RemoveSelf()
+	UTIL_Remove(self.parent)
 end
 
 modifier_custom_bristleback_warpath_legendary_stack = class(mod_hidden)

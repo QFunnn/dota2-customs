@@ -897,7 +897,7 @@ function modifier_jakiro_ice_path_custom_frost_debuff:OnCreated()
 		return
 	end
 
-	self.damage = self.ability.frost_debuff - (self.ability.talents.has_w4 == 1 and self.ability.talents.w4_damage or 0)
+	self.damage = self.ability.frost_debuff + (self.ability.talents.has_w4 == 1 and self.ability.talents.w4_damage or 0)
 	if not IsServer() then
 		return
 	end

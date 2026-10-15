@@ -23,6 +23,11 @@ _G.hub_functions = {
 _G.hub_units = {
 	[MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT] = true,
 }
+_G.hub_stats = {
+	[MODIFIER_PROPERTY_STATS_STRENGTH_BONUS] = true,
+	[MODIFIER_PROPERTY_STATS_AGILITY_BONUS] = true,
+	[MODIFIER_PROPERTY_STATS_INTELLECT_BONUS] = true,
+}
 
 function HubUnit(unit)
 	local team = unit:GetTeamNumber()
@@ -47,7 +52,11 @@ function HubDeclareWrap(declare)
 		end
 
 		local result = {}
+		local stats = false
 		for _, func in pairs(list) do
+			if hero and hub_stats[func] then
+				stats = true
+			end
 			if not hub_functions[func] or (not hero and not hub_units[func]) then
 				table.insert(result, func)
 			elseif hub then
@@ -58,6 +67,32 @@ function HubDeclareWrap(declare)
 				table.insert(parent.hub_orphans[obj], func)
 			end
 		end
+		if not stats then
+			return result
+		end
+
+		local meta = getmetatable(obj)
+		local class = type(meta) == "table" and rawget(meta, "__index")
+		if type(class) ~= "table" or rawget(class, "hub_destroy") then
+			return result
+		end
+
+		rawset(class, "hub_destroy", true)
+		local destroy = class.OnDestroy
+		rawset(class, "OnDestroy", function(mod)
+			local unit = mod:GetParent()
+			if IsValid(unit) and IsValid(unit.stats_hub) then
+				for _, mods in pairs(unit.stats_hub.hub) do
+					mods[mod] = nil
+				end
+				if unit:IsAlive() then
+					unit:CalculateStatBonus(true)
+				end
+			end
+			if destroy then
+				return destroy(mod)
+			end
+		end)
 		return result
 	end
 end
@@ -74,12 +109,8 @@ function LinkLuaModifier(name, path, motion, log)
 		if env ~= _G and type(meta) == "table" and not meta.__newindex then
 			meta.__newindex = function(t, key, value)
 				rawset(t, key, value)
-				local profile = rawget(_G, "client_profile")
-				if type(value) ~= "table" or not (hub_pending[key] or profile) then
+				if type(value) ~= "table" or not hub_pending[key] then
 					return
-				end
-				if profile then
-					profile.names[value] = key
 				end
 				local class_meta = getmetatable(value)
 				if not class_meta then
@@ -93,9 +124,6 @@ function LinkLuaModifier(name, path, motion, log)
 					if field == "DeclareFunctions" and type(func) == "function" then
 						rawset(class, "hub_wrapped", true)
 						func = HubDeclareWrap(func)
-					end
-					if rawget(_G, "client_profile") and type(func) == "function" then
-						func = ClientProfileWrap(class, field, func)
 					end
 					rawset(class, field, func)
 				end
@@ -471,35 +499,83 @@ if IsClient() then
 	end, nil)
 end
 
+function SaveBaseAbilities(unit)
+	unit.base_abilities = {}
+	local hero_values = LoadKeyValues("scripts/npc/npc_heroes_custom.txt")
+	if hero_values and hero_values[unit:GetUnitName()] then
+		local max = unit:GetUnitName() == "npc_dota_hero_invoker" and 17 or 7
+		for i = 1, max do
+			if hero_values[unit:GetUnitName()]["Ability" .. i] then
+				local name = hero_values[unit:GetUnitName()]["Ability" .. i]
+				local ability = unit:FindAbilityByName(name)
+				if ability then
+					ability.init = false
+					table.insert(unit.base_abilities, hero_values[unit:GetUnitName()]["Ability" .. i])
+				end
+			end
+		end
+	end
+	for name, _ in pairs(BaseAbilities) do
+		local ability = unit:FindAbilityByName(name)
+		if ability then
+			ability.init = false
+			table.insert(unit.base_abilities, name)
+		end
+	end
+
+	table.insert(unit.base_abilities, "custom_general_talents")
+end
+
 ListenToGameEvent("save_abilities", function(event)
 	local ent_index = event.ent_index
 	local unit = EntIndexToHScript(ent_index)
 
 	if IsValid(unit) and not unit.base_abilities then
-		unit.base_abilities = {}
-		local hero_values = LoadKeyValues("scripts/npc/npc_heroes_custom.txt")
-		if hero_values and hero_values[unit:GetUnitName()] then
-			local max = unit:GetUnitName() == "npc_dota_hero_invoker" and 17 or 7
-			for i = 1, max do
-				if hero_values[unit:GetUnitName()]["Ability" .. i] then
-					local name = hero_values[unit:GetUnitName()]["Ability" .. i]
-					local ability = unit:FindAbilityByName(name)
-					if ability then
-						ability.init = false
-						table.insert(unit.base_abilities, hero_values[unit:GetUnitName()]["Ability" .. i])
+		SaveBaseAbilities(unit)
+
+		local aghs_key = "aghs_" .. unit:GetUnitName()
+		if not CustomNetTables:GetTableValue("custom_pick", aghs_key) then
+			local upgrades = {}
+			local ability_keys = {}
+			for i = 0, unit:GetAbilityCount() - 1 do
+				local ability = unit:GetAbilityByIndex(i)
+				if ability then
+					local kv = ability:GetAbilityKeyValues()
+					local scepter = tostring(kv.IsGrantedByScepter) == "1" and 2
+						or tostring(kv.HasScepterUpgrade) == "1" and 1
+						or 0
+					local shard = tostring(kv.IsGrantedByShard) == "1" and 2
+						or tostring(kv.HasShardUpgrade) == "1" and 1
+						or 0
+					if scepter > 0 or shard > 0 then
+						table.insert(
+							upgrades,
+							{
+								name = ability:GetAbilityName(),
+								scepter = scepter,
+								shard = shard,
+								innate = tostring(kv.Innate) == "1" and 1 or 0,
+							}
+						)
+					end
+					if type(kv.AbilityValues) == "table" then
+						for key, value in pairs(kv.AbilityValues) do
+							local mark = type(value) == "table"
+									and (value.levelkey or tostring(value.dynamic_value) == "true" and "dynamic")
+								or nil
+							if mark then
+								ability_keys[ability:GetAbilityName()] = ability_keys[ability:GetAbilityName()] or {}
+								ability_keys[ability:GetAbilityName()][key] = mark
+							end
+						end
 					end
 				end
 			end
-		end
-		for name, _ in pairs(BaseAbilities) do
-			local ability = unit:FindAbilityByName(name)
-			if ability then
-				ability.init = false
-				table.insert(unit.base_abilities, name)
+			CustomNetTables:SetTableValue("custom_pick", aghs_key, upgrades)
+			if next(ability_keys) then
+				CustomNetTables:SetTableValue("custom_pick", "ability_keys_" .. unit:GetUnitName(), ability_keys)
 			end
 		end
-
-		table.insert(unit.base_abilities, "custom_general_talents")
 	end
 end, nil)
 
@@ -552,9 +628,6 @@ LinkLuaModifier(
 if IsClient() then
 	require("function_client")
 	require("upgrade")
-	if IsInToolsMode() then
-		require("client_profile")
-	end
 end
 
 _G.Player_damage_max = 4

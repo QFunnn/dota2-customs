@@ -772,7 +772,7 @@ function modifier_leshrac_split_earth_custom_tracker:DeclareFunctions()
 end
 
 function modifier_leshrac_split_earth_custom_tracker:GetModifierPercentageManacostStacking(params)
-	return self.ability.talents.h1_mana_loss
+	return -self.ability.talents.h1_mana_loss
 end
 
 function modifier_leshrac_split_earth_custom_tracker:GetModifierDamageOutgoing_Percentage(params)

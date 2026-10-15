@@ -545,7 +545,7 @@ function modifier_custom_puck_dream_coil_thinker:OnDestroy()
 		return
 	end
 	self.parent:StopSound("Puck.Coil")
-	self.parent:RemoveSelf()
+	UTIL_Remove(self.parent)
 end
 
 modifier_custom_puck_dream_coil_resist = class({})

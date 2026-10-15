@@ -8,13 +8,26 @@
 ]]
 
 
-/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+/* Prettified by Source 2 Viewer 20.1.0.0 - https://valveresourceformat.github.io */
 
 #Contents.AbilityTooltip
 {
+	flow-children: down;
 	padding: 0px;
 	border: 2px solid black;
 	background-color: #10171c;
+}
+
+.AbilityTooltip
+{
+	transition-property: opacity;
+	transition-duration: 0.08s;
+}
+
+.AbilityTooltip.TooltipPending
+{
+	opacity: 0;
+	transition-duration: 0s;
 }
 
 #AbilityDetails
@@ -129,6 +142,24 @@
 	background-image: url("s2r://panorama/images/status_icons/ability_castrange_icon_psd.vtex");
 }
 
+.CastPointIcon
+{
+	width: 20px;
+	height: 20px;
+	margin-left: 5px;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/status_icons/ability_cooldown_icon_psd.vtex");
+	background-size: 20px;
+	background-repeat: no-repeat;
+	wash-color: #5fd35f;
+}
+
+#AbilityCosts .CastPoint
+{
+	margin-left: 5px;
+	padding-left: 0px;
+}
+
 #AbilityDescription
 {
 	width: 330px;
@@ -144,6 +175,122 @@
 	margin-top: 10px;
 }
 
+#AbilityDescriptionAfter
+{
+	width: 330px;
+	margin-left: 2px;
+	margin-bottom: 8px;
+	padding: 0px 8px 8px 8px;
+	font-size: 16px;
+	color: #9ab0cd;
+}
+
+#AbilityLegendary
+{
+	flow-children: down;
+	margin-bottom: 6px;
+}
+
+.AbilityLegendaryBlock
+{
+	width: 322px;
+	flow-children: down;
+	margin-left: 8px;
+	margin-bottom: 10px;
+	padding: 6px 8px 7px 8px;
+	border: 1px solid #c8782e66;
+	border-radius: 3px;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #4a2a0ccc ), to( #1f1206cc ) );
+}
+
+.AbilityLegendaryHeader
+{
+	flow-children: right;
+}
+
+.AbilityLegendaryTitle
+{
+	vertical-align: center;
+	font-size: 16px;
+	font-weight: bold;
+	color: gradient( linear, 0% 0%, 0% 100%, from( #ffb24a ), to( #c8661e ) );
+}
+
+.AbilityLegendaryIcon
+{
+	width: 22px;
+	height: 22px;
+	margin-left: 6px;
+	vertical-align: center;
+	border: 1px solid #c8782e80;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+.AbilityLegendaryOr
+{
+	margin-left: 6px;
+	font-weight: normal;
+}
+
+.AbilityLegendaryBuild_1
+{
+	border-color: #b8342a;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #4c0d0dcc ), to( #1e0404cc ) );
+}
+
+.AbilityLegendaryBuild_1 .AbilityLegendaryTitle
+{
+	color: gradient( linear, 0% 0%, 0% 100%, from( #ffd6c8 ), to( #ff7650 ) );
+}
+
+.AbilityLegendaryBuild_1 .AbilityLegendaryIcon
+{
+	border-color: #b8342a;
+}
+
+.AbilityLegendaryBuild_2
+{
+	border-color: #3169c9;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #0d2250cc ), to( #040a1ecc ) );
+}
+
+.AbilityLegendaryBuild_2 .AbilityLegendaryTitle
+{
+	color: gradient( linear, 0% 0%, 0% 100%, from( #d6e6ff ), to( #66a8ff ) );
+}
+
+.AbilityLegendaryBuild_2 .AbilityLegendaryIcon
+{
+	border-color: #3169c9;
+}
+
+.AbilityLegendarySeparator
+{
+	width: 100%;
+	height: 1px;
+	margin-top: 6px;
+	background-color: gradient( radial, 50% 50%, 0% 0%, 50% 50%, from( #c8782eaa ), to( #c8782e00 ) );
+}
+
+.AbilityLegendaryBuild_1 .AbilityLegendarySeparator
+{
+	background-color: gradient( radial, 50% 50%, 0% 0%, 50% 50%, from( #d8483cdd ), to( #d8483c00 ) );
+}
+
+.AbilityLegendaryBuild_2 .AbilityLegendarySeparator
+{
+	background-color: gradient( radial, 50% 50%, 0% 0%, 50% 50%, from( #4f8ae8dd ), to( #4f8ae800 ) );
+}
+
+.AbilityLegendaryText
+{
+	width: 322px;
+	margin-top: 6px;
+	font-size: 16px;
+	color: #9ab0cd;
+}
+
 .AbilityCreeps
 {
 	width: 322px;
@@ -151,9 +298,9 @@
 	margin-left: 8px;
 	margin-bottom: 10px;
 	padding: 6px 8px 7px 8px;
-	border: 1px solid #3a8f3466;
+	border: 1px solid #7a3fa866;
 	border-radius: 3px;
-	background-color: gradient( linear, 0% 0%, 100% 0%, from( #16361acc ), to( #0b170dcc ) );
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #2a1638cc ), to( #140b1ccc ) );
 }
 
 .AbilityCreepsHeader
@@ -167,7 +314,7 @@
 	height: 22px;
 	margin-right: 6px;
 	vertical-align: center;
-	border: 1px solid #3a8f3480;
+	border: 1px solid #7a3fa880;
 	background-image: url("s2r://panorama/images/custom_game/icons/mini/info_table/neutral_png.vtex");
 	background-size: contain;
 	background-repeat: no-repeat;
@@ -178,7 +325,7 @@
 	vertical-align: center;
 	font-size: 18px;
 	font-weight: bold;
-	color: gradient( linear, 0% 0%, 0% 100%, from( #5cc954 ), to( #2b7f26 ) );
+	color: gradient( linear, 0% 0%, 0% 100%, from( #c48cf0 ), to( #7a3fb0 ) );
 }
 
 .AbilityCreepsText
@@ -189,24 +336,29 @@
 .AbilityCreepsLine
 {
 	width: 322px;
-	margin-top: 6px;
+	margin-top: 9px;
 	color: #9ab0cd;
 }
 
-.AbilityCreeps_nerf
+.AbilityDiff .AbilityCreepsIcon,.AbilityFeatures .AbilityCreepsIcon
 {
-	border-color: #8f3a3466;
-	background-color: gradient( linear, 0% 0%, 100% 0%, from( #361616cc ), to( #170b0bcc ) );
+	border: 0px solid transparent;
 }
 
-.AbilityCreeps_nerf .AbilityCreepsIcon
+#AbilityCreeps,#AbilityBuildings
 {
-	border-color: #8f3a3480;
+	border-color: #6a879a66;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #1b2a34cc ), to( #0d1519cc ) );
 }
 
-.AbilityCreeps_nerf .AbilityCreepsTitle
+#AbilityCreeps .AbilityCreepsIcon,#AbilityBuildings .AbilityCreepsIcon
 {
-	color: gradient( linear, 0% 0%, 0% 100%, from( #e0605a ), to( #8a2b26 ) );
+	border-color: #6a879a80;
+}
+
+#AbilityCreeps .AbilityCreepsTitle,#AbilityBuildings .AbilityCreepsTitle
+{
+	color: gradient( linear, 0% 0%, 0% 100%, from( #bccfdc ), to( #7193a8 ) );
 }
 
 #AbilityExtraAttributes
@@ -256,6 +408,53 @@
 	border-color: #f7942b;
 }
 
+.AbilityTalentIconImage
+{
+	width: 100%;
+	height: 100%;
+	background-repeat: no-repeat;
+}
+
+.AbilityTalentIcon_off
+{
+	border-color: #484848;
+}
+
+.AbilityTalentIcon_off.AbilityTalentIcon_blue
+{
+	border-color: #1f4f91;
+}
+
+.AbilityTalentIcon_off.AbilityTalentIcon_purple
+{
+	border-color: #5f2685;
+}
+
+.AbilityTalentIcon_off.AbilityTalentIcon_orange
+{
+	border-color: #8a5218;
+}
+
+.AbilityTalentIcon_off .AbilityTalentIconImage
+{
+	saturation: 0.4;
+	brightness: 0.2;
+}
+
+.AbilityCostTalents
+{
+	flow-children: right;
+	vertical-align: center;
+	margin-left: -3px;
+	margin-right: 3px;
+}
+
+.AbilityCostTalent
+{
+	margin-left: 0px;
+	margin-right: 7px;
+}
+
 #AbilityCostsSeparator
 {
 	width: 100%;
@@ -265,13 +464,20 @@
 	background-color: gradient( radial, 50% 50%, 0% 0%, 50% 50%, from( #596e89aa ), to( #596e8900 ) );
 }
 
+#AbilityCostsSeparator.AfterText
+{
+	margin-top: 0px;
+}
+
 #AbilityCosts
 {
-	flow-children: right-wrap;
+	flow-children: right;
+	margin-top: 2px;
 }
 
 #AbilityCosts Label
 {
+	vertical-align: center;
 	margin-right: 10px;
 	padding-left: 25px;
 	font-size: 16px;
@@ -342,4 +548,495 @@
 .AbilityTooltip Label .GameplayValues.GameplayVariable.DamageTypePure
 {
 	color: #ffdf99;
+}
+
+#Contents.AghsMode
+{
+	padding: 0px;
+	border: 0px;
+	background-color: transparent;
+	box-shadow: none;
+}
+
+#AghsDetails
+{
+	flow-children: down;
+}
+
+.AghsSection
+{
+	width: fit-children;
+	flow-children: down;
+	horizontal-align: center;
+	border: 2px solid black;
+	background-color: gradient( radial, 0% 0%, 0% 0%, 100% 100%, from( #182229 ), to( #0d1317 ) );
+	box-shadow: 0px 1px 16px 0px #0008;
+}
+
+#AghsShardSection
+{
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #182229 ), to( #0d1317 ) );
+}
+
+.AghsConnector
+{
+	width: 332px;
+	height: 12px;
+	horizontal-align: center;
+	background-color: #111416f7;
+}
+
+.AghsSectionHeader
+{
+	width: 100%;
+	flow-children: right;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #8fd6ff04 ), to( #8fd6ff01 ) );
+	border-bottom: 1px solid #000000cc;
+}
+
+.AghsOwned .AghsSectionHeader
+{
+	background-color: gradient( linear, 0% 0%, 80% 0%, from( #53afff2b ), to( #608dff06 ) );
+}
+
+.AghsSectionTexture
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/hud/facets/ripple_texture_png.vtex");
+	background-size: cover;
+	ignore-parent-flow: true;
+	opacity-brush: gradient( linear, 0% 0%, 100% 0%, from( #ffffff ), to( #ffffff00 ) );
+	-s2-mix-blend-mode: screen;
+	opacity: 0.1;
+	wash-color: #a1cbff;
+}
+
+.AghsOwned .AghsSectionTexture
+{
+	opacity: 0.2;
+}
+
+.AghsSectionIcon
+{
+	width: 34px;
+	height: 34px;
+	margin: 4px;
+	vertical-align: center;
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.AghsScepterIcon
+{
+	background-image: url("s2r://panorama/images/hud/reborn/aghsstatus_scepter_psd.vtex");
+}
+
+.AghsOwned .AghsScepterIcon
+{
+	background-image: url("s2r://panorama/images/hud/reborn/aghsstatus_scepter_on_psd.vtex");
+	brightness: 2;
+}
+
+.AghsShardIcon
+{
+	background-image: url("s2r://panorama/images/hud/reborn/aghsstatus_shard_psd.vtex");
+}
+
+.AghsOwned .AghsShardIcon
+{
+	background-image: url("s2r://panorama/images/hud/reborn/aghsstatus_shard_on_psd.vtex");
+	brightness: 2;
+}
+
+.AghsMode .AghsSectionTitle
+{
+	vertical-align: center;
+	font-size: 20px;
+	font-weight: semi-bold;
+	color: gradient( linear, 0% 0%, 40% 0%, from( #89b4ff ), to( #6a94d4 ) );
+	text-shadow: 0px 1px 8px 1.0 #000000;
+}
+
+.AghsMode .AghsOwned .AghsSectionTitle
+{
+	color: gradient( linear, 0% 0%, 90% 0%, from( #7ad5ff ), to( #789aff ) );
+}
+
+.AghsCards
+{
+	min-width: 356px;
+	flow-children: down;
+}
+
+.AghsCard
+{
+	min-width: 356px;
+	flow-children: down;
+	padding: 8px;
+}
+
+.AghsCardHeader
+{
+	flow-children: right;
+}
+
+.AghsGranted
+{
+	border-radius: 4px;
+}
+
+.AghsCardIcon
+{
+	width: 36px;
+	height: 36px;
+	margin: 2px 6px 0px 8px;
+	border: 1px solid black;
+	border-radius: 3px;
+	box-shadow: 0px 1px 6px 0px #0008;
+}
+
+.AghsCardSeparator
+{
+	width: 100%;
+	height: 1px;
+	margin-top: 6px;
+	margin-bottom: 5px;
+	background-color: #29353b;
+}
+
+.AghsCardInfo
+{
+	flow-children: down;
+}
+
+.AghsCardTitles
+{
+	height: 36px;
+	flow-children: down;
+	margin-top: 2px;
+}
+
+.AghsMode .AghsCardName
+{
+	vertical-align: top;
+	margin-top: -2px;
+	font-family: titleFont;
+	font-size: 18px;
+	font-weight: semi-bold;
+	color: #c9cdd4;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	text-shadow: 0px 1px 6px 2 black;
+}
+
+.AghsMode .AghsOwned .AghsCardName
+{
+	color: white;
+}
+
+.AghsMode .AghsCardTag
+{
+	height: 18px;
+	vertical-align: center;
+	padding: -1px 5px -1px 5px;
+	border-radius: 3px;
+	font-size: 16px;
+	color: #9ab0cd;
+	text-align: center;
+	text-transform: uppercase;
+	text-overflow: shrink;
+	background-color: #4160b630;
+}
+
+.AghsMode .AghsGranted .AghsCardTag
+{
+	background-color: #4160b660;
+}
+
+.AghsMode .AghsCardText
+{
+	width: 330px;
+	margin-left: 2px;
+	margin-bottom: 8px;
+	padding: 6px 8px 8px 8px;
+	font-size: 16px;
+	color: #9ab0cd;
+}
+
+.AghsMode .AghsCardText.AghsCardLast
+{
+	margin-bottom: 0px;
+	padding-bottom: 2px;
+}
+
+.AghsLegendary
+{
+	flow-children: down;
+	margin-bottom: 2px;
+}
+
+.AghsLegendary.AghsCardLast
+{
+	margin-bottom: -12px;
+}
+
+.AghsCardKeys
+{
+	flow-children: down;
+	padding-left: 8px;
+}
+
+.AghsCardCostsSeparator
+{
+	width: 100%;
+	height: 1px;
+	margin-top: 10px;
+	margin-bottom: 4px;
+	background-color: gradient( radial, 50% 50%, 0% 0%, 50% 50%, from( #596e89aa ), to( #596e8900 ) );
+}
+
+.AghsCardCostsSeparator.AfterText
+{
+	margin-top: 0px;
+}
+
+.AghsCardCosts
+{
+	flow-children: right-wrap;
+}
+
+.AghsCardCosts Label
+{
+	margin-left: 5px;
+	margin-right: 10px;
+	padding-left: 25px;
+	font-size: 16px;
+	color: #7D7D7D;
+	background-position: 0% 50%;
+	background-repeat: no-repeat;
+}
+
+.AghsMode .AghsEmpty
+{
+	margin: 6px 10px 0px 10px;
+	color: #856e45;
+}
+
+#Contents.InnateMode
+{
+	padding: 0px;
+	border: 0px;
+	background-color: transparent;
+	box-shadow: none;
+}
+
+.InnateCard
+{
+	width: 368px;
+	flow-children: down;
+	border: 2px solid black;
+	background-color: #181f24;
+}
+
+#InnateConnector
+{
+	width: 336px;
+	height: 12px;
+	horizontal-align: center;
+	background-color: #111416f7;
+}
+
+.InnateCardTexture
+{
+	width: 100%;
+	height: 100%;
+	ignore-parent-flow: true;
+	background-image: url("s2r://panorama/images/hud/facets/ripple_texture_png.vtex");
+	background-size: cover;
+	background-position: center;
+	-s2-mix-blend-mode: screen;
+	wash-color: #1e2731;
+}
+
+.InnateHeader
+{
+	width: 100%;
+	flow-children: right;
+	background-color: gradient( linear, 0% 0%, 100% 0%, from( #aac9ff0c ), to( #05080e33 ) );
+}
+
+.InnateLegendaryCard .InnateHeader
+{
+	background-color: transparent;
+	box-shadow: 1px 1px -1px 3px black;
+}
+
+.InnateHeaderBack
+{
+	width: 100%;
+	height: 100%;
+	ignore-parent-flow: true;
+	background-color: gradient( linear, 100% 0%, 0% 0%, from( #4d362411 ), to( #ad59101F ) );
+}
+
+.InnateHeaderTexture
+{
+	width: 100%;
+	height: 100%;
+	ignore-parent-flow: true;
+	background-image: url("s2r://panorama/images/hud/facets/ripple_texture_png.vtex");
+	background-size: cover;
+	background-position: center;
+	-s2-mix-blend-mode: screen;
+	opacity: 0.05;
+	wash-color: #e86920;
+}
+
+.InnateImageContainer
+{
+	width: 52px;
+	padding: 8px 0px;
+	vertical-align: center;
+	background-color: #0000004d;
+	border-right: 1px solid #0000001a;
+}
+
+.InnateLegendaryCard .InnateImageContainer
+{
+	background-color: #000000aa;
+	border-right: 1px solid black;
+}
+
+.InnateImage
+{
+	width: 40px;
+	height: 40px;
+	horizontal-align: center;
+	vertical-align: center;
+}
+
+.InnateBevel
+{
+	width: 100%;
+	height: 100%;
+	background-image: url("s2r://panorama/images/hud/reborn/ability_bevel_psd.vtex");
+	background-size: contain;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	z-index: 1;
+	transform: rotatez(180deg);
+	wash-color: #00000088;
+}
+
+.InnateDefaultIcon
+{
+	width: 36px;
+	height: 36px;
+	horizontal-align: center;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/hud/facets/innate_icon_large_png.vtex");
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.InnateTitles
+{
+	margin-left: 12px;
+	vertical-align: middle;
+	flow-children: down;
+}
+
+.InnateMode .InnateTitleText
+{
+	max-height: 26px;
+	margin-bottom: -1px;
+	font-family: titleFont;
+	font-size: 18px;
+	font-weight: semi-bold;
+	color: white;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	text-overflow: shrink;
+	text-shadow: 0px 2px 8px #000000;
+}
+
+.InnateMode .InnateTitleTag
+{
+	padding: 0px 8px;
+	border: 1px solid #e6dcc014;
+	border-radius: 2px;
+	font-size: 12px;
+	color: #e5d3ae;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	text-shadow: 0px 1px 3px black;
+	background-color: #9082512f;
+}
+
+.InnateMode .InnateLegendaryTag
+{
+	margin-bottom: 4px;
+	border: 1px solid #f09555;
+	color: #ffdda2;
+	background-color: #d67c1545;
+}
+
+.InnateLegendaryBody
+{
+	width: 100%;
+	padding: 4px;
+}
+
+.InnateMode .InnateLegendaryText
+{
+	width: 100%;
+	padding: 8px 12px 8px 12px;
+	font-size: 16px;
+	color: #9ab0cd;
+}
+
+#AbilityCard
+{
+	flow-children: down;
+}
+
+.InnateMode #AbilityCard
+{
+	width: 368px;
+	border: 2px solid black;
+	background-color: #181f24;
+}
+
+.InnateMode #AbilityDetails
+{
+	background-image: none;
+	border-top: 1px solid #00000066;
+}
+
+#InnateDependency
+{
+	width: 100%;
+	margin-bottom: 2px;
+	padding: 2px 0px 6px 8px;
+	border-bottom: 1px solid #29353b;
+	font-size: 16px;
+	color: #596e89;
+}
+
+#AghsDetails,#InnateLegendary,#InnateConnector,#InnateHeader,#AbilityCard .InnateCardTexture
+{
+	visibility: collapse;
+}
+
+.AghsMode #AghsDetails,.InnateMode #InnateLegendary,.InnateMode #InnateConnector,.InnateMode #InnateHeader,.InnateMode #AbilityCard .InnateCardTexture
+{
+	visibility: visible;
+}
+
+.AghsMode #AbilityCard,.InnateMode #InnateLegendary.InnateNoLegendary,.InnateMode #InnateConnector.InnateNoLegendary,.InnateMode #AbilityCard.InnateEmpty,.InnateMode #AbilityHeader,.InnateMode #AbilityTarget,.InnateMode #AbilityLoreBox
+{
+	visibility: collapse;
 }

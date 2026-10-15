@@ -211,7 +211,7 @@ function ogre_magi_fireblast_custom_class:GetDamage(target)
 	end
 	local result = (
 		self.fireblast_damage
-		+ self.caster:GetMana() * (self.is_scepter and self.mana_damage or self.talents.q1_damage)
+		+ self.caster:GetMaxMana() * (self.is_scepter and self.mana_damage or self.talents.q1_damage)
 	) * k
 	return result
 end
