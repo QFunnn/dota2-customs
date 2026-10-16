@@ -25,14 +25,14 @@ _G.Time_to_pick_Base = 20
 _G.pro_mod = false
 _G.pro_mod_data = {
 	new_system = false,
-	disable_vision = true,
+	disable_vision = false,
 	show_random = false,
-	same_heroes = true,
+	same_heroes = false,
 	enable_pause = true,
 	double_legendary = false,
-	long_hook = true,
+	long_hook = false,
 	custom_rules = false,
-	enable_voice_radius = false,
+	enable_voice_radius = true,
 	voice_radius = 1200,
 	disable_heroes = {
 		--["npc_dota_hero_pangolier"] = true
@@ -708,7 +708,7 @@ r:Send( function( res ) end)
 	if team_size == 2 then
 		low_net_max = 1
 		Target_kills_diff = 10
-		setup_delay = 15
+		setup_delay = 25
 	end
 
 	if pro_mod == true then
@@ -785,6 +785,10 @@ r:Send( function( res ) end)
 	GameRules:SetSafeToLeave(true)
 	GameRules:GetGameModeEntity():SetPauseEnabled(false)
 	GameRules:GetGameModeEntity():SetForcedHUDSkin("reborn")
+	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_STRENGTH_DAMAGE, 0.9)
+	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_AGILITY_DAMAGE, 0.9)
+	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_INTELLIGENCE_DAMAGE, 0.9)
+	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_ALL_DAMAGE, 0.4)
 
 	match_log:WrapClass("dota1x6", true)
 	--GameRules:GetGameModeEntity():SetDamageFilter( Dynamic_Wrap( dota1x6, "DamageFilter" ), self )
@@ -814,6 +818,8 @@ r:Send( function( res ) end)
 		print("[SDR] dml.network.client_relays unavailable")
 	end
 
+	local connect_times = {}
+
 	ListenToGameEvent("player_connect_full", function(kv)
 		local player_id = kv.PlayerID
 		if type(player_id) ~= "number" then
@@ -824,6 +830,7 @@ r:Send( function( res ) end)
 		end
 
 		local rate = 400000
+		connect_times[player_id] = { connect = Time() }
 		print("[RATE] player=" .. player_id .. " sv_minrate=" .. tostring(rate))
 		if rate > 80000 then
 			Timers:CreateTimer(3, function()
@@ -831,6 +838,7 @@ r:Send( function( res ) end)
 					return
 				end
 				FireGameEvent("dota1x6_client_rate", { player_id = player_id, rate = rate })
+				connect_times[player_id].rate = Time()
 				print("[RATE] dota1x6_client_rate sent player=" .. player_id .. " rate=" .. rate)
 			end)
 		end
@@ -884,6 +892,31 @@ r:Send( function( res ) end)
 		end
 
 		send_best_relay(10)
+	end, nil)
+
+	ListenToGameEvent("player_disconnect", function(data)
+		local player_id = data.PlayerID
+		if type(player_id) ~= "number" then
+			return
+		end
+		local times = connect_times[player_id] or {}
+		local time = Time()
+		print(
+			"[DISCONNECT] player="
+				.. player_id
+				.. " id="
+				.. tostring(data.networkid)
+				.. " reason="
+				.. tostring(data.reason)
+				.. " full="
+				.. tostring(data.ever_fully_connected)
+				.. " state="
+				.. GameRules:State_Get()
+				.. " connect="
+				.. (times.connect and string.format("%.1f", time - times.connect) or "nil")
+				.. " rate="
+				.. (times.rate and string.format("%.1f", time - times.rate) or "nil")
+		)
 	end, nil)
 
 	ListenToGameEvent("player_connect_full", Dynamic_Wrap(hero_select, "PlayerConnected"), hero_select)

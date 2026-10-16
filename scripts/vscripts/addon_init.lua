@@ -85,7 +85,7 @@ function HubDeclareWrap(declare)
 				for _, mods in pairs(unit.stats_hub.hub) do
 					mods[mod] = nil
 				end
-				if unit:IsAlive() then
+				if unit:IsAlive() and unit:IsHero() then
 					unit:CalculateStatBonus(true)
 				end
 			end
@@ -790,6 +790,33 @@ function AddFOWViewer(team, point, radius, duration, full_vision)
 		return
 	end
 	AddFOWViewer_old(team, point, radius, duration, full_vision)
+end
+
+_G.destroy_parents = destroy_parents or setmetatable({}, { __mode = "k" })
+
+if not UTIL_Remove_old then
+	UTIL_Remove_old = UTIL_Remove
+	RemoveSelf_old = CEntityInstance.RemoveSelf
+end
+
+function UTIL_Remove(unit)
+	if unit and destroy_parents[unit] == GetFrameCount() then
+		Timers:CreateTimer(FrameTime(), function()
+			if IsValid(unit) then
+				UTIL_Remove_old(unit)
+			end
+		end)
+		return
+	end
+	UTIL_Remove_old(unit)
+end
+
+function CEntityInstance:RemoveSelf()
+	if destroy_parents[self] == GetFrameCount() then
+		UTIL_Remove(self)
+		return
+	end
+	RemoveSelf_old(self)
 end
 
 function InvokerAbilityManager(caster)

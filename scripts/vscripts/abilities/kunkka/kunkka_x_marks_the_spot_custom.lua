@@ -927,7 +927,7 @@ function modifier_kunkka_xmark_custom_tracker:OnCreated(table)
 			damage = 15,
 		},
 		["item_moon_shard"] = {
-			speed = 140,
+			speed = 130,
 		},
 	}
 

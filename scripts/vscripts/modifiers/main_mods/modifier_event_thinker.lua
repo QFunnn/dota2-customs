@@ -335,7 +335,15 @@ function modifier_event_thinker:OnModifierAdded(params)
 		rawset(class, "free_check", true)
 		local name = mod:GetName()
 		rawset(class, "OnDestroy", function(obj, ...)
+			local parent = obj:GetParent()
+			local prev = parent and destroy_parents[parent]
+			if parent then
+				destroy_parents[parent] = GetFrameCount()
+			end
 			local result = destroy(obj, ...)
+			if parent then
+				destroy_parents[parent] = prev
+			end
 			if obj:IsNull() then
 				print("MODIFIER FREED IN ONDESTROY", name, rawget(_G, "debug") and debug.traceback() or "")
 			end
