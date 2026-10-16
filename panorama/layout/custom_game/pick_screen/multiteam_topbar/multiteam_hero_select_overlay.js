@@ -255,31 +255,13 @@ function InitChatFilter() {
 	const chat_lines_container = chat.FindChildTraverse("ChatLinesPanel");
 	if (!chat_lines_container) return void $.Schedule(1, InitChatFilter);
 
-	const filter_messages_basic = [
-		"DOTA_Chat_Disconnect",
-		"DOTA_Chat_PlayerLeft",
-		"DOTA_Chat_DisconnectWaitForReconnect",
-		"DOTA_Chat_DisconnectTimeRemaining",
-		"DOTA_Chat_DisconnectTimeRemainingPlural",
-	];
-	let filter_values = [];
-	filter_messages_basic.forEach((loc_token) => {
-		let text = $.Localize(loc_token);
-		text = text
-			.replace(/.*%s2/, "")
-			.replace("%s1", "")
-			.replace(/ +(?= )/g, "");
-		text = text.replace(/<[^>]+>/g, "").trim();
-		filter_values.push(text);
-	});
-
 	const chat_filter = () => {
 		if (Game.GameStateIsAfter(DOTA_GameState.DOTA_GAMERULES_STATE_TEAM_SHOWCASE)) return;
 
 		const chat_lines = chat_lines_container.Children();
 		for (const message_line of chat_lines) {
 			if (message_line.type != "Label") continue;
-			filter_values.forEach((check_text) => {
+			CHAT_FILTERS.forEach((check_text) => {
 				if (message_line.text.includes(check_text)) message_line.visible = false;
 			});
 		}
@@ -386,4 +368,4 @@ function UpdateLocalStats() {
 
 	SubscribeToNetTableKey("heroes_winrate", "heroes", ApplyGoldBonuses);
 	SubscribeToNetTableKey("game_state", "penalty_fix_disconnect", PenaltyFixDisonnect);
-})();
+})();

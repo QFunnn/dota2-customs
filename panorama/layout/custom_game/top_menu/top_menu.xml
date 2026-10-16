@@ -8,21 +8,21 @@
 ]]
 
 
-<!-- xml reconstructed by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io -->
+<!-- xml reconstructed by Source 2 Viewer 20.1.0.0 - https://valveresourceformat.github.io -->
 <root>
 	<styles>
-		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
-		<include src="s2r://panorama/layout/custom_game/top_menu/top_menu.vcss_c" />
-		<include src="s2r://panorama/layout/custom_game/collection/chat_wheel/chat_wheel_colors_style.vcss_c" />
+		<include src="s2r://panorama/styles/dotastyles.vcss" />
+		<include src="s2r://panorama/layout/custom_game/top_menu/top_menu.vcss" />
+		<include src="s2r://panorama/layout/custom_game/collection/chat_wheel/chat_wheel_colors_style.vcss" />
 	</styles>
 	<scripts>
-		<include src="s2r://panorama/layout/custom_game/scripts/utils.vjs_c" />
-		<include src="s2r://panorama/layout/custom_game/top_menu/top_menu.vjs_c" />
+		<include src="s2r://panorama/layout/custom_game/scripts/utils.vjs" />
+		<include src="s2r://panorama/layout/custom_game/top_menu/top_menu.vjs" />
 	</scripts>
 	<Panel class="CustomTopMenu_Root" hittest="false">
 		<Panel id="CTM_Lines">
 			<Panel class="CTM_Line1">
-				<Button id="CTM_ReturnToDashboard" class="CTM_DefultButton" onactivate="DOTAHUDShowDashboard();" onmouseover="DOTAShowTextTooltip(#DOTA_HUD_BackToDashboard)" onmouseout="DOTAHideTextTooltip()">
+				<Button id="CTM_ReturnToDashboard" class="CTM_DefultButton" onactivate="ToggleDisconnectWarning();" onmouseover="DOTAShowTextTooltip(#DOTA_HUD_BackToDashboard)" onmouseout="DOTAHideTextTooltip()">
 					<Panel />
 				</Button>
 				<Button id="CTM_Settings" class="CTM_DefultButton" onactivate="DOTAShowSettingsRebornPopup();" onmouseover="DOTAShowTextTooltip(#DOTA_HUD_Settings)" onmouseout="DOTAHideTextTooltip()">
@@ -88,6 +88,20 @@
 					<TextButton class="CTM_Banner_Button" text="#click_to_open_2" onactivate="OpenMail()" />
 				</Panel>
 				<Panel class="CTB_Banner_Arrow" />
+			</Panel>
+		</Panel>
+		<Panel class="CTB_DisconnectRoot" hittest="false">
+			<Panel class="CTB_Disconnect">
+				<Panel class="CTB_DC_HeaderContainer">
+					<DOTAEmoticon emoticonid="12" />
+					<Label class="CTB_DC_Header" text="#ctb_disconnect_header" />
+					<DOTAEmoticon emoticonid="123" />
+				</Panel>
+				<Label class="CTB_DC_Desc" text="#ctb_disconnect_register" />
+				<Panel class="CTB_DC_Buttons">
+					<TextButton class="CTB_DC_Buttons_Confirm" text="#ctb_disconnect_confirm" onactivate="DOTAHUDShowDashboard();" />
+					<TextButton class="CTB_DC_Buttons_Cancel" text="#ctb_disconnect_cancel" onactivate="HideDisconnectWarning()" />
+				</Panel>
 			</Panel>
 		</Panel>
 	</Panel>

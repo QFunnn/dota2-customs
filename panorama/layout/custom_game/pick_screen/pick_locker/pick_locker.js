@@ -161,8 +161,14 @@ function UpdateBanStage() {
 	$.RegisterEventHandler("PanelStyleChanged", hero_inspect, _UpdateHeroInspect);
 }
 
+function LocalLobbyStateUpdate() {
+	dotaHud.SetHasClass("BLocalLobby", CustomNetTables.GetTableValue("game_options", "dedicated")?.state === 0);
+
+	$.Schedule(10, LocalLobbyStateUpdate);
+}
+
 (() => {
-	dotaHud.SetHasClass("BLocalLobby", B_LOCAL_LOBBY);
+	LocalLobbyStateUpdate();
 
 	random_button.visible = false;
 	custom_random_button.visible = true;

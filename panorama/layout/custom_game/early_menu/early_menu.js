@@ -147,5 +147,6 @@ function UpdateVisibleState() {
 		GameEvents.Subscribe("game_rules_state_change", UpdateVisibleState);
 	});
 
+	UpdateVisibleState();
 	InjectChatWheelKeybind();
-})();
+})();

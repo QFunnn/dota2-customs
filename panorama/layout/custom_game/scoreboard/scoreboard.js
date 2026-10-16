@@ -376,15 +376,15 @@ function CreatePanelForPlayer(player_id) {
 				: "file://{images}/custom_game/unassigned.png",
 		);
 
-		const connection_state = _player_info_tracking.player_connection_state;
-		player_root.SetHasClass(
-			"Disconnected",
-			connection_state == DOTAConnectionState_t.DOTA_CONNECTION_STATE_DISCONNECTED,
-		);
-		player_root.SetHasClass(
-			"Abandoneded",
-			connection_state == DOTAConnectionState_t.DOTA_CONNECTION_STATE_ABANDONED,
-		);
+		// const connection_state = _player_info_tracking.player_connection_state;
+		// player_root.SetHasClass(
+		// 	"Disconnected",
+		// 	connection_state == DOTAConnectionState_t.DOTA_CONNECTION_STATE_DISCONNECTED,
+		// );
+		// player_root.SetHasClass(
+		// 	"Abandoneded",
+		// 	connection_state == DOTAConnectionState_t.DOTA_CONNECTION_STATE_ABANDONED,
+		// );
 
 		if (HUD.CONTEXT.BHasClass("CS_State_Short")) return;
 		player_root.SetDialogVariable("networth", FormatBigNumber(_player_info_tracking.player_gold));

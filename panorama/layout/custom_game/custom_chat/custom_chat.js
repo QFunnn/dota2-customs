@@ -332,10 +332,8 @@ function ClearChatBuffer() {
 }
 function RedirectMessages() {
 	default_chat_area.Children().forEach((line, idx, children) => {
-		if (line.paneltype == "Panel" || (children.length > 10 && idx != 15)) {
-			line.DeleteAsync(0);
-			return;
-		}
+		if (line.paneltype == "Panel" || (children.length > 10 && idx != 15)) return void line.DeleteAsync(0);
+		for (const check_text of CHAT_FILTERS) if (line.text.includes(check_text)) return void line.DeleteAsync(0);
 
 		GameEvents.SendEventClientSide("CustomChat:update_history_size", {});
 
@@ -404,4 +402,4 @@ function CalcNameLength(player_id) {
 
 	GameUI.CreateCustomMessage = CreateCustomMessage;
 	InitCustomChatOverrideArea();
-})();
+})();

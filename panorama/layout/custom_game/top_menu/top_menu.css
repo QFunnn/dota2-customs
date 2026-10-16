@@ -8,7 +8,13 @@
 ]]
 
 
-/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+/* Prettified by Source 2 Viewer 20.1.0.0 - https://valveresourceformat.github.io */
+
+.CustomTopMenu_Root
+{
+	width: 100%;
+	height: 100%;
+}
 
 #CTM_Lines
 {
@@ -117,7 +123,6 @@
 
 #CTM_CustomSettings > Panel
 {
-	background-image: url("s2r://");
 	img-shadow: black 0 1px 1px 1;
 }
 
@@ -421,4 +426,123 @@
 .BClose_ChatWheelNewPromo .CTM_Banner_ChatWheel,.BClose_NewMail .CTM_Banner_NewMail
 {
 	visibility: collapse;
+}
+
+.CTB_DisconnectRoot
+{
+	width: 100%;
+	height: 100%;
+	background-color: transparent;
+	transition-property: background-color;
+	transition-duration: 0.15s;
+}
+
+.BShowDisconnectWarning .CTB_DisconnectRoot
+{
+	background-color: gradient( radial, 50% 50%, 0% 0%, 45% 33%, from(rgba(0, 0, 0, 0.3)), color-stop(0.4, rgba(0, 0, 0, 0.8)), color-stop(0.7, rgba(0, 0, 0, 0.9)), to(rgba(0, 0, 0, 0.95)) );
+	transition-duration: 0s;
+}
+
+.CTB_Disconnect
+{
+	align: center center;
+	width: 730px;
+	background-color: rgb(12, 11, 25), gradient( linear, 0% 0%, 0% 100%, from(black), color-stop(0.1, black), color-stop(0.35, rgba(12, 13, 21, 0.9)), color-stop(0.65, rgba(12, 13, 21, 0.9)), color-stop(0.9, black), to(black) ), gradient( linear, 0% 0%, 100% 0%, from(rgb(5, 7, 8)), color-stop(0.1, rgba(12, 13, 21, 0.8)), color-stop(0.9, rgba(12, 13, 21, 0.8)), to(rgb(5, 7, 8)) );
+	flow-children: down;
+	box-shadow: hollow rgba(223, 51, 51, 0.8) 0 0 4px 0;
+	padding: 30px;
+	border: 3px solid white;
+	border-brush: gradient( radial, 50% 100%, 0% 0%, 50% 50%, from(#ff3f3f), color-stop(0.3, #b42828), color-stop(0.8, #3d4445), to(#327170) );
+	transition-property: transform, opacity;
+	transition-duration: 0.35s;
+	opacity: 0;
+	transform: translateY(-30px);
+}
+
+.BShowDisconnectWarning .CTB_Disconnect
+{
+	opacity: 1;
+	transform: translateY(0px);
+	transition-duration: 0s;
+}
+
+.CTB_DC_HeaderContainer
+{
+	width: 100%;
+	flow-children: right;
+}
+
+.CTB_DC_HeaderContainer DOTAEmoticon
+{
+	width: 64px;
+	height: 64px;
+}
+
+.CTB_DC_Header
+{
+	width: fill-parent-flow(1);
+	text-align: center;
+	font-family: titleFont;
+	font-weight: semi-bold;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	color: #f2fcff;
+	text-shadow: 0px 1px 0 2 black;
+	font-size: 24px;
+}
+
+.CTB_DC_Desc
+{
+	width: 100%;
+	text-align: center;
+	color: #ee3e2f;
+	font-weight: lighter;
+	text-shadow: 0px 1px 0 2 black;
+	font-size: 30px;
+	margin: 40px 0;
+}
+
+.CTB_DC_Buttons
+{
+	flow-children: right;
+	padding-left: -10px;
+	horizontal-align: center;
+}
+
+.CTB_DC_Buttons TextButton
+{
+	width: 200px;
+	background-image: url("s2r://panorama/images/custom_game/kick_voting/button_yes_png.vtex");
+	padding: 1px 3px;
+	border-radius: 3px;
+	box-shadow: rgba(0, 0, 0, 0.8) 0 2px 3px -1px;
+	border: 1px solid white;
+	border-brush: gradient(linear, 0% 100%, 0% 0%, from(transparent), to(rgba(255, 255, 255, 0.06)));
+	margin-left: 10px;
+}
+
+.CTB_DC_Buttons TextButton:hover
+{
+	brightness: 1.5;
+}
+
+.CTB_DC_Buttons TextButton:active
+{
+	brightness: 0.7;
+}
+
+.CTB_DC_Buttons Label
+{
+	align: center center;
+	text-align: center;
+	color: #ececec;
+	font-size: 22px;
+	text-transform: uppercase;
+	text-shadow: 0px 1px 0 2 black;
+}
+
+TextButton.CTB_DC_Buttons_Confirm
+{
+	background-image: url("s2r://panorama/images/custom_game/kick_voting/button_no_png.vtex");
+	opacity: 0.65;
 }

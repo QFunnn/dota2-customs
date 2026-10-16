@@ -38,31 +38,31 @@ const C_PingsTypes = {
 
 const PINGS_DATA = {
 	[C_PingsTypes.DEFAULT]: {
-		image: "file://{resources}/images/custom_game/ping_icon_world_minimap.png",
+		image: "file://{images}/custom_game/ping_icon_world_minimap.png",
 		sound: "General.Ping",
 	},
 	[C_PingsTypes.DANGER]: {
-		image: "file://{resources}/images/custom_game/import_dota/ping_danger_psd.png",
+		image: "file://{images}/custom_game/import_dota/ping_danger_psd.png",
 		sound: "General.PingWarning",
 	},
 	[C_PingsTypes.WAYPOINT]: {
-		image: "file://{resources}/images/custom_game/ping_icon_waypoint_minimap.png",
+		image: "file://{images}/custom_game/ping_icon_waypoint_minimap.png",
 		sound: "General.PingWaypoint",
 	},
 	[C_PingsTypes.RETREAT]: {
-		image: "file://{resources}/images/custom_game/import_dota/ping_danger_psd.png",
+		image: "file://{images}/custom_game/import_dota/ping_danger_psd.png",
 		sound: "General.PingWarning",
 	},
 	[C_PingsTypes.ATTACK]: {
-		image: "file://{resources}/images/custom_game/import_dota/ping_icon_attack_psd.png",
+		image: "file://{images}/custom_game/import_dota/ping_icon_attack_psd.png",
 		sound: "General.PingAttack",
 	},
 	[C_PingsTypes.ENEMY_WARD]: {
-		image: "file://{resources}/images/custom_game/import_dota/ping_icon_enemyward_psd.png",
+		image: "file://{images}/custom_game/import_dota/ping_icon_enemyward_psd.png",
 		sound: "General.PingEnemyWard",
 	},
 	[C_PingsTypes.FRIENDLY_WARD]: {
-		image: "file://{resources}/images/custom_game/import_dota/ping_icon_friendlyward_psd.png",
+		image: "file://{images}/custom_game/import_dota/ping_icon_friendlyward_psd.png",
 		sound: "General.PingFriendlyWard",
 	},
 };
@@ -75,4 +75,4 @@ const ROOT = $.GetContextPanel();
 
 /* DOTA HUD */
 const minimap = FindDotaHudElement("minimap_block");
-const dota_hud = FindDotaHudElement("Hud");
+const dota_hud = FindDotaHudElement("Hud");

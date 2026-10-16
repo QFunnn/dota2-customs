@@ -46,7 +46,7 @@ function SetHint(idx) {
 	if (TIP_SCHEDULE_TIMER) $.CancelScheduled(TIP_SCHEDULE_TIMER);
 	if (idx > TIPS_LIST.length - 1) idx = 0;
 
-	HUD.TIP_IMAGE.SetImage(`file://{resources}/images/custom_game/tips_icon/${TIPS_LIST[idx]}.png`);
+	HUD.TIP_IMAGE.SetImage(`file://{images}/custom_game/tips_icon/${TIPS_LIST[idx]}.png`);
 	HUD.CONTEXT.SetDialogVariableLocString("loading_screen_tip_desc", `tip_${TIPS_LIST[idx]}`);
 	HUD.CONTEXT.SetHasClass("BFirstTip", idx == 0);
 
@@ -191,4 +191,4 @@ function CheckLocalLobbyStateLS() {
 	});
 
 	FindDotaHudElementInLS("SidebarAndBattleCupLayoutContainer").visible = false;
-})();
+})();

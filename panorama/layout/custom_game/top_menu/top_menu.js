@@ -38,6 +38,22 @@ function OpenMail() {
 	GameUI.ToggleMailPanel();
 	CloseMailBanner();
 }
+
+function ToggleDisconnectWarning() {
+	if (Game.GameStateIsBefore(DOTA_GameState.DOTA_GAMERULES_STATE_GAME_IN_PROGRESS)) {
+		GameEvents.SendEventClientSide("dota_hud_error_message", {
+			splitscreenplayer: 0,
+			reason: 80,
+			message: "ctb_disconnect_error",
+		});
+		return;
+	}
+	HUD.CONTEXT.ToggleClass("BShowDisconnectWarning");
+}
+function HideDisconnectWarning() {
+	HUD.CONTEXT.SetHasClass("BShowDisconnectWarning", false);
+}
+
 GameUI.OpenTopBanner = OpenTopBanner;
 GameUI.CloseTopBanner = CloseTopBanner;
 
@@ -45,4 +61,4 @@ GameUI.CloseTopBanner = CloseTopBanner;
 	CloseTopBanner("NewMail");
 	CloseTopBanner("ChatWheelNewPromo");
 	HideDefaultButtons();
-})();
+})();
