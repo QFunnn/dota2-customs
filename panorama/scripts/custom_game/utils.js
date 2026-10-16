@@ -22,6 +22,70 @@ var CENTER_ENTITY_INDEX = {
 };
 var ALL_COURIER_LIST = null;
 
+// ============================================================
+// VIP 徽章 tooltip：显示该玩家通行证的到期日
+// 数据来源：服务器下发的玩家信息表里的 vip_info（addon_game_mode.lua:3157）
+// vip_expire 形如 20250101（既有格式化写法见 dac.js:2611）
+// 缓存键 = 徽章 id 后缀（dac 侧为 player_id，end 侧为数组序号 i+1），
+// 由绑定处传入，保证"哪个徽章显示哪个玩家的日期"不会错位。
+// ============================================================
+var VIP_INFO_CACHE = {};
+
+function FormatVipExpire(v) {
+	var s = (v === null || v === undefined) ? '' : (v + '');
+	if (!/^\d{8}$/.test(s)) return '';
+	var y = s.substr(0, 4), m = s.substr(4, 2), d = s.substr(6, 2);
+	if (m === '00' || d === '00') return '';
+	return y + '/' + m + '/' + d;
+}
+
+// 到期日字段名不完全确定，按可能性依次尝试，取不到就返回空串
+function GetVipExpireText(info) {
+	if (!info) return '';
+	var cands = [info.vip_expire, info.vip_expired, info.vip_expire_date, info.expire, info.vip_end_time];
+	if (info.vip && typeof info.vip === 'object') cands.push(info.vip.vip_expire);
+	for (var k = 0; k < cands.length; k++) {
+		var s = FormatVipExpire(cands[k]);
+		if (s) return s;
+	}
+	return '';
+}
+
+// 在"给徽章设可见性"的地方顺手绑定，键与徽章后缀一致
+function RefreshVipTooltip(panel, key, info) {
+	if (key === null || key === undefined) return;
+	VIP_INFO_CACHE[key] = info || null;
+	if (!panel) return;
+	// 覆盖 XML 里静态的 DOTAShowTextTooltip('#txt_dac_vip')
+	panel.SetPanelEvent('onmouseover', function () { ShowVipTooltip(key, panel); });
+	panel.SetPanelEvent('onmouseout', function () {
+		$.DispatchEvent("DOTAHideTitleTextTooltip");
+		$.DispatchEvent("DOTAHideTextTooltip");
+	});
+}
+
+function ShowVipTooltip(key, panel) {
+	var dateStr = GetVipExpireText(VIP_INFO_CACHE[key]);
+	var body = $.Localize('#txt_dac_vip');
+	var text = body;
+	if (dateStr) {
+		// 第一行：灰色"有效期至%s"；第二行空行；第三行正文
+		var tpl = $.Localize('#txt_dac_vip_expire');
+		var line = '';
+		if (tpl && tpl.indexOf('#txt_dac_vip_expire') < 0) {
+			line = (tpl.indexOf('%s') >= 0) ? tpl.replace('%s', dateStr) : (tpl + ' ' + dateStr);
+		} else {
+			line = "<font color='#888888'>" + dateStr + '</font>';
+		}
+		if (line) text = line + '<br><br>' + body;
+	}
+	if (panel) {
+		var title = $.Localize('#txt_dac_vip_title');
+		if (!title || title.indexOf('#txt_dac_vip_title') >= 0) title = '';
+		$.DispatchEvent("DOTAShowTitleTextTooltip", panel, title, text);
+	}
+}
+
 GameEvents.Subscribe("receive_client_key", function (keys) {
     CheckClientKey(keys.key)
 });
@@ -981,13 +1045,13 @@ function InitTalentTreeNew(talent_tree_panel_name, round) {
         class: '',
         style: 'width:50px;height:4px;transform:rotateZ(-90deg) translate3d( -3px, 35px, 0px);opacity-mask:url("s2r://panorama/images/hud/reborn/statbranch_progress_mask_psd.vtex") 1.0;horizontal-align:center;margin-top:10px;margin-bottom:50px;margin-left:5px;overflow:clip;border-radius:0;border-bottom-right-radius:3px;border-bottom-left-radius:2px;z-index:2;',
     });
-    // var panel_talent_tree_new_level_progress_bar = $.CreatePanel('ProgressBar', panel_talent_tree_new_level_progress, 'panel_talent_tree_new_level_progress_bar', {
-    //     class: '',
-    //     style: 'width:100%;vertical-align:bottom;height:6px;border-radius:1px;background-color:none;box-shadow:none;',
-    //     max: 35,
-    //     min: 0,
-    //     // value: 30,
-    // });
+    var panel_talent_tree_new_level_progress_bar = $.CreatePanel('ProgressBar', panel_talent_tree_new_level_progress, 'panel_talent_tree_new_level_progress_bar', {
+        class: '',
+        style: 'width:100%;vertical-align:bottom;height:6px;border-radius:1px;background-color:none;box-shadow:none;',
+        max: 35,
+        min: 0,
+        // value: 30,
+    });
     var panel_talent_tree_new_level_progress_bar = $.CreatePanel('Panel', panel_talent_tree_new_level_progress, talent_tree_panel_name+'_level_progress_bar', {
         class: '',
         style: 'width:100%;vertical-align:bottom;height:6px;background-color:#ffff88;',

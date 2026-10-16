@@ -562,7 +562,7 @@ if (IsOBing() == true) {
     $('#round_battle').text = $.Localize('#' + 'round_status_obing');
     $('#round_status').style['color'] = '#00ffff';
 
-    $('#battle_icon').SetImage("s2r://panorama/images/control_icons/eye_png.vtex");
+    // $('#battle_icon').SetImage("s2r://panorama/images/control_icons/eye_png.vtex");
 }
 
 
@@ -1104,6 +1104,7 @@ function PlayerInfoTableChanged(table, key, data) {
             if (info.is_vip) {
                 $('#avatar_player_vip_badge_' + player_id).SetHasClass('invisible', false);
                 $('#avatar_player_vip_' + player_id).SetHasClass('invisible', false);
+                RefreshVipTooltip($('#avatar_player_vip_badge_' + player_id), player_id, info.vip_info || info);
             }
             else {
                 $('#avatar_player_vip_badge_' + player_id).SetHasClass('invisible', true);
@@ -1368,6 +1369,7 @@ function ShowAllPlayerInfo(data) {
         if (data.info[i].is_vip) {
             $('#avatar_player_vip_badge_' + data.info[i].player_id).SetHasClass('invisible', false);
             $('#avatar_player_vip_' + data.info[i].player_id).SetHasClass('invisible', false);
+            RefreshVipTooltip($('#avatar_player_vip_badge_' + data.info[i].player_id), data.info[i].player_id, data.info[i].vip_info || data.info[i]);
         }
         else {
             $('#avatar_player_vip_badge_' + data.info[i].player_id).SetHasClass('invisible', true);
@@ -3746,7 +3748,7 @@ function set_showing_courier(onduty_zhugong, new_index) {
                 $('#button_recycle_effect').SetHasClass('unavailable', false);
             }
             else {
-                $('#store_panel_my_courier_effect').style['background-image'] = "url('s2r://panorama/images/items/emptyitembg_png.vtex')";
+                // $('#store_panel_my_courier_effect').style['background-image'] = "url('s2r://panorama/images/items/emptyitembg_png.vtex')";
                 $('#store_panel_my_courier_effect').style['opacity'] = "1";
                 $('#icon_my_equiped_effect').style['background-color'] = '#000';
                 $('#text_my_courier_effect_line1').style['color'] = '#bbb';
@@ -3779,7 +3781,7 @@ function set_showing_courier(onduty_zhugong, new_index) {
                 $('#button_recycle_projectile').SetHasClass('unavailable', false);
             }
             else {
-                $('#store_panel_my_courier_projectile').style['background-image'] = "url('s2r://panorama/images/items/emptyitembg_png.vtex')";
+                // $('#store_panel_my_courier_projectile').style['background-image'] = "url('s2r://panorama/images/items/emptyitembg_png.vtex')";
                 $('#store_panel_my_courier_projectile').style['opacity'] = "1";
                 $('#icon_my_equiped_projectile').style['background-color'] = '#000';
                 $('#text_my_courier_projectile_line1').style['color'] = '#bbb';
@@ -3812,7 +3814,7 @@ function set_showing_courier(onduty_zhugong, new_index) {
                 $('#button_recycle_animation').SetHasClass('unavailable', false);
             }
             else {
-                $('#store_panel_my_courier_animation').style['background-image'] = "url('s2r://panorama/images/items/emptyitembg_png.vtex')";
+                // $('#store_panel_my_courier_animation').style['background-image'] = "url('s2r://panorama/images/items/emptyitembg_png.vtex')";
                 $('#store_panel_my_courier_animation').style['opacity'] = "1";
                 $('#icon_my_equiped_animation').style['background-color'] = '#000';
                 $('#text_my_courier_animation_line1').style['color'] = '#bbb';
@@ -3845,7 +3847,7 @@ function set_showing_courier(onduty_zhugong, new_index) {
                 $('#button_recycle_pet').SetHasClass('unavailable', false);
             }
             else {
-                $('#store_panel_my_courier_pet').style['background-image'] = "url('s2r://panorama/images/items/emptyitembg_png.vtex')";
+                // $('#store_panel_my_courier_pet').style['background-image'] = "url('s2r://panorama/images/items/emptyitembg_png.vtex')";
                 $('#store_panel_my_courier_pet').style['opacity'] = "1";
                 $('#icon_my_equiped_pet').style['background-color'] = '#000';
                 $('#text_my_courier_pet_line1').style['color'] = '#bbb';
@@ -5512,7 +5514,7 @@ function UpdateRankingTop(info) {
 
             $.CreatePanel('Image', panel_one, '', {
                 style: "width:30px;height:30px;margin-left:0px;vertical-align:center;margin-left:10px;",
-                src: 's2r://panorama/images/hud/facets/icons/damage_png.vtex',
+                // src: 's2r://panorama/images/hud/facets/icons/damage_png.vtex',
             });
             $.CreatePanel('Label', panel_one, '', {
                 text: data[j].damage,
@@ -6866,7 +6868,7 @@ function ShowChessDetail(chess) {
                 });
 
                 $.CreatePanel('Image', detail_prop_one, "", {
-                    src: "s2r://panorama/images/hud/reborn/icon_damage_psd.vtex",
+                    // src: "s2r://panorama/images/hud/reborn/icon_damage_psd.vtex",
                 });
                 $.CreatePanel('Label', detail_prop_one, "", {
                     text: $.Localize('#AttackDamage'),
@@ -6897,7 +6899,7 @@ function ShowChessDetail(chess) {
                     class: 'detail_prop_one',
                 });
                 $.CreatePanel('Image', detail_prop_one, "", {
-                    src: "s2r://panorama/images/hud/reborn/icon_attack_speed2_psd.vtex",
+                    // src: "s2r://panorama/images/hud/reborn/icon_attack_speed2_psd.vtex",
                 });
 
                 $.CreatePanel('Label', detail_prop_one, "", {
@@ -6909,7 +6911,7 @@ function ShowChessDetail(chess) {
                 });
 
                 $.CreatePanel('Image', detail_prop_one, "", {
-                    src: "s2r://panorama/images/hud/reborn/icon_attack_range_psd.vtex",
+                    // src: "s2r://panorama/images/hud/reborn/icon_attack_range_psd.vtex",
                     style: 'margin-left: 20px;',
                 });
 
@@ -6926,7 +6928,7 @@ function ShowChessDetail(chess) {
                     class: 'detail_prop_one',
                 });
                 $.CreatePanel('Image', detail_prop_one, "", {
-                    src: "s2r://panorama/images/hud/reborn/icon_armor_psd.vtex",
+                    // src: "s2r://panorama/images/hud/reborn/icon_armor_psd.vtex",
                 });
 
                 $.CreatePanel('Label', detail_prop_one, "", {
@@ -6937,7 +6939,7 @@ function ShowChessDetail(chess) {
                     text: chess_kv.ArmorPhysical || 0,
                 });
                 $.CreatePanel('Image', detail_prop_one, "", {
-                    src: "s2r://panorama/images/hud/reborn/icon_magic_resist_psd.vtex",
+                    // src: "s2r://panorama/images/hud/reborn/icon_magic_resist_psd.vtex",
                     style: 'margin-left: 20px;',
                 });
 
@@ -7079,7 +7081,7 @@ function ShowChessDetail(chess) {
                 }
                 if (have_manacost) {
                     $.CreatePanel('Image', ability_kv_prop_one, "", {
-                        src: "s2r://panorama/images/status_icons/ability_manacost_icon_psd.vtex",
+                        // src: "s2r://panorama/images/status_icons/ability_manacost_icon_psd.vtex",
                         style: 'margin-right:5px;',
                     });
                     for (var i = 0; i < v.length; i++) {
@@ -7111,7 +7113,7 @@ function ShowChessDetail(chess) {
                 }
 
                 $.CreatePanel('Image', ability_kv_prop_one, "", {
-                    src: "s2r://panorama/images/status_icons/ability_cooldown_icon_psd.vtex",
+                    // src: "s2r://panorama/images/status_icons/ability_cooldown_icon_psd.vtex",
                     style: 'margin-left:0px;margin-right:5px;',
                 });
 
@@ -8375,7 +8377,7 @@ function FillStoreV5OneLottery(panel, one, i) {
     });
     var panel_image_container = $.CreatePanel('Panel', panel_outer, 'store_v5_couriers_lottery_image_' + i, {
         class: 'img_shop_courier_lottery',
-        style: 'background-image:url("file://{images}/custom_game/lottery/lottery.png");width:200px;height:190px;z-index:10;background-size:100% 100%;margin-top:10px;margin-bottom:10px;opacity-mask:url("s2r://panorama/images/masks/scratched_box_psd.vtex");',
+        style: 'background-image:url("file://{images}/custom_game/lottery/lottery.png");width:200px;height:190px;z-index:10;background-size:100% 100%;margin-top:10px;margin-bottom:10px;',
         onmouseover: "show_lottery_content();",
         onmouseout: "hide_lottery_content();",
     });
@@ -9856,7 +9858,35 @@ function UpdateTalentTree(player_id) {
     }
 }
 
-GameEvents.Subscribe("choose_talent_result", HideTalentTreeBox);
+// 面板上是否还有"可以学（还亮着）"的天赋格子
+function HasLearnableTalentOption() {
+    for (var i = 1; i <= 4; i++) {
+        var a = FindDotaHudElement('talent_tree_' + i + 'a');
+        var b = FindDotaHudElement('talent_tree_' + i + 'b');
+        if (a && a.BHasClass('learnable')) { return true; }
+        if (b && b.BHasClass('learnable')) { return true; }
+    }
+    return false;
+}
+
+// 点完一个天赋后，只有"没有还亮着的可选项"时才关闭弹窗。
+// 服务端的新状态是异步下发的：刚点完时面板上仍留着旧的 learnable，直接用会误判，
+// 所以按 0.1 秒轮询复查（最多 0.5 秒），一旦发现确实没有可选项就关闭；
+// 若一直还有可选项（或状态迟迟未刷新）就保持打开——宁可多开，不可误关。
+GameEvents.Subscribe("choose_talent_result", function () {
+    var tries = 0;
+    var check = function () {
+        tries++;
+        if (!HasLearnableTalentOption()) {
+            HideTalentTreeBox();
+            return;
+        }
+        if (tries < 5) {
+            $.Schedule(0.1, check);
+        }
+    };
+    $.Schedule(0.1, check);
+});
 
 // 显示圣物剩余回合数的新UI
 var pui = FindDotaHudElement('inventory_composition_layer_container');

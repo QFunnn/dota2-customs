@@ -316,7 +316,7 @@ function OnShowPopupBox(keys) {
 		$('#panel_popup_box').style['background-position'] = 'center 35%';
 	}
 	else{
-		$('#panel_popup_box').style['background-image'] = 'url("s2r://panorama/images/dpc/aegis_icon_flat_large_psd.vtex");';
+		// $('#panel_popup_box').style['background-image'] = 'url("s2r://panorama/images/dpc/aegis_icon_flat_large_psd.vtex");';
 		$('#panel_popup_box').style['background-img-opacity'] = '0.005';
 		$('#panel_popup_box').style['background-position'] = '0% 0%';
 	}

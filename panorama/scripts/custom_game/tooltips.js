@@ -189,7 +189,7 @@ function ShowSynergyTooltipsSmallIconsInner(chess_list_all, panel_icons_containe
 			if (c.i_have){
 				$.CreatePanel("Image", container1, "", { 
 					style: "height:16px;width:16px;margin-left:-16px;margin-top:21px;img-shadow:1px 1px 3px 0.0 #00000011;",
-					src: "s2r://panorama/images/control_icons/check_png.vtex",
+					// src: "s2r://panorama/images/control_icons/check_png.vtex",
 				});
 			}
 		}

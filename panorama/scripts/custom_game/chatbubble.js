@@ -31,9 +31,6 @@ function InitBattleBubble(keys) {
 		chatBubbleTable[unit_index].panel.RemoveAndDeleteChildren();
 	}
 
-	if (keys.type == 'host' && keys.name == ''){
-		keys.name = '测试玩家';
-	}
 	if (keys.type == 'pve'){
 		keys.name = $.Localize('#'+keys.name);
 	}

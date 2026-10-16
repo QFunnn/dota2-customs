@@ -217,12 +217,13 @@ function Precache(context)
 		end
 	end
 
-	print('[precache]=============$1/2x_chess=============')
-	local chess_list = { 'chess_bane', 'chess_tusk', 'chess_dw', 'chess_pom', 'chess_dazzle', 'chess_cm', 'chess_axe', 'chess_eh', 'chess_clock', 'chess_ss', 'chess_tk', 'chess_tiny', 'chess_mars', 'chess_wd', 'chess_sb', 'chess_hw', 'chess_bh', 'chess_sd', 'chess_om',  'chess_sm' }
-	for _, v in pairs(chess_list) do
-		print('[precache]' .. v..'1')
-		PrecacheUnitByNameSync(v..'1', context)
-	end
+	-- print('[precache]=============$1/2x_chess=============')
+	-- local chess_list_1 = { 'chess_bane', 'chess_tusk', 'chess_dw', 'chess_pom', 'chess_dazzle', 'chess_cm', 'chess_aa', 'chess_axe', 'chess_eh', 'chess_clock', 'chess_ss', 'chess_tk', 'chess_mars', 'chess_wd', 'chess_sb', 'chess_hw', 'chess_bh', 'chess_sd',  'chess_sm', 'chess_brew' }
+	-- for _, v in pairs(chess_list_1) do
+	-- 	print('[precache]' .. v..'1')
+	-- 	PrecacheUnitByNameSync('model_'..v..'1', context)
+	-- 	PrecacheUnitByNameSync(v..'1', context)
+	-- end
 
 	print('[precache]=============transform=============')
 	for k, v in pairs(precache_list['transform']) do
@@ -307,7 +308,6 @@ function DAC:InitGameMode()
 
 	-- IsDedicatedServer()
 	-- IsInToolsMode()
-	local config = LoadKeyValues("dac_config.txt")
 
 	--判断是不是官方服务器/自建服务器/玩家主机
 	local config = LoadKeyValues("dac_config.txt")
@@ -441,7 +441,8 @@ function DAC:InitGameMode()
 	-- 		DAC:OnConnectServerRequest(eventSourceIndex, keys)
 	-- 	end
 	-- )
-
+	_G.timer_count = {}
+	_G.precache_count = {}
 	_G.is_server_game_started = false
 	_G.connect_full_player_count = 0
 	_G.game_id = ''
@@ -2984,7 +2985,7 @@ function InitHeros()
 				if user_info['xhw'] ~= nil then
 					Timers:CreateTimer(7, function()
 						KillSelfTeam(hero:GetTeam(), true)
-						prt(_G.steamid2name[steam_id] .. '|#txt_banned_player')
+						prt(SafeSteamName(steam_id) .. '|#txt_banned_player')
 					end)
 				end
 				if user_info['candy_insufficient'] ~= nil then
@@ -2992,7 +2993,7 @@ function InitHeros()
 						KillSelfTeam(hero:GetTeam(), true)
 						_G.stat_info[steam_id]['candy_award'] = -999
 						table.insert(_G.thunder_user, steam_id)
-						prt(_G.steamid2name[steam_id] .. '|#txt_candy_insufficient')
+						prt(SafeSteamName(steam_id) .. '|#txt_candy_insufficient')
 						CustomGameEventManager:Send_ServerToTeam(hero:GetTeam(), "msg_box", {
 							key = GetClientKey(hero:GetTeam()),
 							text = "#text_candy_insufficient_tips",
@@ -3011,7 +3012,7 @@ function InitHeros()
 				user_info['player_id'] = player_id
 				hero.steam_id = steam_id
 				if _G.steamid2name[steam_id] ~= nil then
-					hero.player_name = _G.steamid2name[steam_id]
+					do local _pn = _G.steamid2name[steam_id]; if _pn == nil or _pn == '' then _pn = PlayerResource:GetPlayerName(player_id) end; if _pn == nil or _pn == '' then _pn = '' end; hero.player_name = _pn end
 				end
 
 				
@@ -3391,7 +3392,7 @@ function InitHeros()
 				user_info['player_id'] = player_id
 				hero.steam_id = steam_id
 				if _G.steamid2name[steam_id] ~= nil then
-					hero.player_name = _G.steamid2name[steam_id]
+					do local _pn = _G.steamid2name[steam_id]; if _pn == nil or _pn == '' then _pn = PlayerResource:GetPlayerName(player_id) end; if _pn == nil or _pn == '' then _pn = '' end; hero.player_name = _pn end
 				end
 
 				user_info['onduty_hero'] = GetCourierInfo(player_id) or user_info.onduty_hero
@@ -3555,7 +3556,7 @@ function InitHeros()
 			user_info['player_id'] = player_id
 			hero.steam_id = steam_id
 			if _G.steamid2name[steam_id] ~= nil then
-				hero.player_name = _G.steamid2name[steam_id]
+				do local _pn = _G.steamid2name[steam_id]; if _pn == nil or _pn == '' then _pn = PlayerResource:GetPlayerName(player_id) end; if _pn == nil or _pn == '' then _pn = '' end; hero.player_name = _pn end
 			end
 
 			user_info['onduty_hero'] = GetCourierInfo(player_id) or user_info.onduty_hero
@@ -3787,6 +3788,44 @@ function StartAPrepareRound()
 			end
 		end
 	end)
+	--动态加载3星
+	-- if _G.battle_round >= 1 and _G.battle_round <= 5 then
+	-- 	--1-5回合加载1-5费3星
+	-- 	for c1,v1 in pairs(_G.chess_list_by_mana[_G.battle_round]) do 
+	-- 		PrecacheUnitByNameAsync('model_'..v1..'11',function()
+	-- 			table.insert(_G.precache_list, 'model_'..v1..'11')
+	-- 		end)
+	-- 	end
+	-- end
+	-- if _G.battle_round >= 6 and _G.battle_round <= 10 then
+	-- 	--6-10回合加载黑核1-5费3星
+	-- 	for c2,v2 in pairs(_G.chess_list_by_mana_black[_G.battle_round-5]) do 
+	-- 		PrecacheUnitByNameAsync('model_'..v2..'11',function()
+	-- 			table.insert(_G.precache_list, 'model_'..v2..'11')
+	-- 		end)
+	-- 	end
+	-- end
+	-- if _G.battle_round == 11 then
+	-- 	--11回合加载金核棋子3星
+	-- 	for c3,v3 in pairs(_G.chess_list_by_mana_gold) do 
+	-- 		PrecacheUnitByNameAsync('model_'..v3..'11',function()
+	-- 			table.insert(_G.precache_list, 'model_'..v3..'11')
+	-- 		end)
+	-- 	end
+	-- end
+	-- if _G.battle_round == 12 then
+	-- 	--12回合加载特殊棋子3星
+	-- 	for c4,v4 in pairs(_G.chess_list_by_mana_special[4]) do 
+	-- 		PrecacheUnitByNameAsync('model_'..v4..'11',function()
+	-- 			table.insert(_G.precache_list, 'model_'..v4..'11')
+	-- 		end)
+	-- 	end
+	-- 	for c5,v5 in pairs(_G.chess_list_by_mana_special[5]) do 
+	-- 		PrecacheUnitByNameAsync('model_'..v5..'11',function()
+	-- 			table.insert(_G.precache_list, 'model_'..v5..'11')
+	-- 		end)
+	-- 	end
+	-- end
 
 	--天赋提醒
 	if _G.battle_round == 45 then
@@ -3959,6 +3998,11 @@ function StartAPrepareRound()
 					RemoveAbilityAndModifier(hhh,'invisible_to_enemy')
 				end
 			end
+			if _G.player_state_table[hero:GetTeam()] == 'undefined' then 
+				if _G.connect_state[_G.steamid2playerid[hero.steam_id]] == true then
+                	_G.player_state_table[hero:GetTeam()] = 'playing'
+                end
+            end
 			print('[HEYBOX] snapshot round='.._G.battle_round..' steam='..hero.steam_id..' state='.._G.player_state_table[team_i]..' rank='.._G.stat_info[hero.steam_id]['curr_rank'])
 		end
 	end
@@ -4658,7 +4702,18 @@ function PostOneToServer(hero, steamid, rank, mode)
 	if quest == true then
 		url = url .. '&finish_quest=1'
 	end
-
+	if rank == 1 then 
+		-- local timer_check = ''
+		-- for r1,t1 in pairs(_G.timer_count) do 
+		-- 	timer_check = timer_check.. r1..'|'..t1..'_'
+		-- end
+		local precache_check = ''
+		for r2,t2 in pairs(_G.precache_count) do 
+			precache_check = precache_check.. r2..'|'..t2..'_'
+		end
+		-- url = url .. '&timer_check='..timer_check
+		url = url .. '&precache_check='..precache_check
+	end
 	--添加阵容价值和mvp棋子信息
 	local max_lineup_value = GetStat(hero:GetPlayerID(), 'max_lineup_value') or 0
 	local max_lineup_value_lineup = GetStat(hero:GetPlayerID(), 'max_lineup_value_lineup') or ''
@@ -4698,7 +4753,9 @@ function PostOneToServer(hero, steamid, rank, mode)
 	SendHTTP(url .. "&from=SyncHP", function(t)
 		if t ~= nil and t.err == 0 then
 			local v = t.mmr_info
-			_G.aws_key = t.aws_key
+			if t.aws_key then
+				_G.aws_key = t.aws_key
+			end
 			if _G.stat_info[v.userid] ~= nil then
 				--另一部分要从http返回值v获得
 				_G.send_info[v.userid]['account_id'] = v.userid
@@ -6610,6 +6667,16 @@ function StartABattleRound()
 	else
 		StartAPVPRound()
 	end
+	--Timer统计埋点
+	if RandomInt(1,100) < 20 then
+		Timers:CreateTimer(10,function()
+			local count = 0
+			for _, t in pairs(Timers.timers) do
+				count = count + 1
+			end
+			_G.timer_count[_G.battle_round] = count
+		end)
+	end
 end
 
 --2v2相关的方法
@@ -7859,26 +7926,51 @@ function AddComboAbility(teamid)
 	-- })
 	local hero = TeamId2Hero(teamid)
 	if hero.mirror_chesser_host ~= nil then
+		local host_name = hero.player_name
+		if host_name == nil or host_name == '' then
+			host_name = _G.steamid2name[hero.steam_id]
+		end
 		CustomGameEventManager:Send_ServerToAllClients("battle_bubble", {
 			key = GetClientKey(teamid),
 			unit_index = hero.mirror_chesser_host:entindex(),
 			type = 'host',
 			duration = 9999,
-			name = hero.player_name,
+			name = host_name,
 			win_streak = hero.win_streak or 0,
 			synergy = ally_synergy,
+			steam_id = hero.steam_id,
 		})
 	end
 	if hero.mirror_chesser ~= nil and hero.enemy_type ~= 'pve'  then
+		local oppo_name = nil
+		local oppo_streak = 0
+		local oppo_steam_id = hero.guest_steam_id
+		if hero.enemy_type == 'cloud' then
+			--云玩家：对手是云端阵容快照，没有自己的 hero，身份只能取 guest_steam_id（= chesses.owner）
+			if oppo_steam_id ~= nil then
+				oppo_name = _G.steamid2name[oppo_steam_id]
+			end
+		else
+			local oppo_hero = TeamId2Hero(_G.counterpart[teamid])
+			--对手英雄必须是"别人"的英雄；若解析回自己，说明这局没有真实对手，不能显示成自己的名字
+			if oppo_hero ~= nil and oppo_hero ~= hero then
+				oppo_name = oppo_hero.player_name
+				if oppo_name == nil or oppo_name == '' then
+					oppo_name = _G.steamid2name[oppo_hero.steam_id]
+				end
+				oppo_streak = oppo_hero.win_streak or 0
+				oppo_steam_id = oppo_hero.steam_id or hero.guest_steam_id
+			end
+		end
 		CustomGameEventManager:Send_ServerToAllClients("battle_bubble", {
 			key = GetClientKey(teamid),
 			unit_index = hero.mirror_chesser:entindex(),
 			type = hero.enemy_type,
 			duration = 9999,
-			name = TeamId2Hero(_G.counterpart[teamid]).player_name,
+			name = oppo_name,
 			synergy = enemy_synergy,
-			win_streak = TeamId2Hero(_G.counterpart[teamid]).win_streak or 0,
-			steam_id = hero.guest_steam_id,
+			win_streak = oppo_streak,
+			steam_id = oppo_steam_id,
 		})
 	end
 end
@@ -14677,10 +14769,23 @@ function SetQuest(team, tf)
 	ShowQuest()
 end
 
+function SafeSteamName(steam_id)
+    local n = _G.steamid2name[steam_id]
+    if n == nil or n == '' then
+        local pid = _G.steamid2playerid and _G.steamid2playerid[steam_id]
+        if pid ~= nil then n = PlayerResource:GetPlayerName(pid) end
+        if n == nil or n == '' then n = '' end
+    end
+    return n
+end
+
 function TeamId2PlayerName(team)
 	local hero = TeamId2Hero(team)
+	if hero == nil then
+		return ''
+	end
 	local steam_id = hero.steam_id
-	local player_name = _G.steamid2name[steam_id] or '未知玩家'
+	local player_name = SafeSteamName(steam_id)
 	return player_name
 end
 
@@ -26176,7 +26281,11 @@ end
 function SetPlayerConnectedInfo(keys)
 	_G.playerid2steamid[keys.PlayerID] = keys.SteamID
 	_G.steamid2playerid[keys.SteamID] = keys.PlayerID
-	_G.steamid2name[keys.SteamID] = keys.PlayerName
+	local name = keys.PlayerName
+	if name == nil or name == '' then
+		name = PlayerResource:GetPlayerName(keys.PlayerID)
+	end
+	_G.steamid2name[keys.SteamID] = name
 	_G.connect_state[keys.PlayerID] = true
 end
 
@@ -32682,7 +32791,7 @@ function SayCheerBubble(team_id, unit_index, text, delay, emotion_index)
 			CustomGameEventManager:Send_ServerToAllClients("drodo_bubble", {
 				unit_index = unit_index,
 				text = '#text_cheer_' .. text .. '_' .. RandomInt(1, 10),
-				player_name = TeamId2Hero(team_id).player_name,
+				player_name = (TeamId2Hero(team_id) and TeamId2Hero(team_id).player_name ~= '' and TeamId2Hero(team_id).player_name) or '',
 				emotion_index = emotion_index,
 			})
 		end
@@ -34983,7 +35092,7 @@ function DAC:GetAllPlayerInfoFromServer(keys)
 					candy = user_info["candy"]
 				})
 
-				user_info['player_name'] = _G.steamid2name[steam_id]
+				user_info['player_name'] = SafeSteamName(steam_id)
 				user_info['zhugong'] = JoinTableString(user_info["zhugong"])
 				user_info['chessboard_list'] = json.encode(user_info['chessboard_list'])
 
@@ -42038,6 +42147,10 @@ function RequestPrecacheUnitAsync(precache_name,cb)
 				RequestPrecacheUnitAsync(precache_name,cb)
 				return
 			end)
+			if _G.precache_count[_G.battle_round] == nil then 
+				_G.precache_count[_G.battle_round] = 0
+			end
+			_G.precache_count[_G.battle_round] = _G.precache_count[_G.battle_round] + 1
 		else
 			--空闲，开始加载
 			_G.precache_busy = true
@@ -42478,12 +42591,6 @@ function DAC:OnPlayerConnectFull(keys)
 	-- 		player_count = player_count + 1
 	-- 	end
 	-- end
-	if _G.playerid2steamid[playerID] ~= nil then
-		if _G.player_state_table[_G.playerid2team[playerID]] == 'undefined' then 
-			_G.player_state_table[_G.playerid2team[playerID]] = 'playing'
-			print('[HEYBOX] player_state steam='.._G.playerid2steamid[playerID]..' state=playing round='.._G.battle_round)
-		end
-	end
 
 	_G.connect_full_player_count = _G.connect_full_player_count + 1
 	--判断是不是官方服务器/自建服务器/玩家主机

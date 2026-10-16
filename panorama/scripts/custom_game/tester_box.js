@@ -92,7 +92,7 @@ function changeChessStars() {
 		});
 		for (var i = 0; i < CHESS_STARS; i++) {
 			CreateUIElement(panel_c, 'Image', '', {
-				src: 's2r://panorama/images/guilds/contracts/contracts_star_psd.vtex',
+				// src: 's2r://panorama/images/guilds/contracts/contracts_star_psd.vtex',
 			});
 		}
 		Game.EmitSound("ui.crafting_newslot");
@@ -122,7 +122,7 @@ function openChessSelect() {
 		});
 		for (var i = 0; i < CHESS_STARS; i++) {
 			CreateUIElement(panel_c, 'Image', '', {
-				src: 's2r://panorama/images/guilds/contracts/contracts_star_psd.vtex',
+				// src: 's2r://panorama/images/guilds/contracts/contracts_star_psd.vtex',
 			});
 		}
 

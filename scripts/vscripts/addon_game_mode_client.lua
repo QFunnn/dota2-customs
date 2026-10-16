@@ -10,6 +10,7 @@
 
 print("[CLIENT] addon_game_mode_client.lua loaded")
 print("[CLIENT] IsClient =", tostring(IsClient()))
+
 local function OnConnectServerClient(keys)
 	print("[CLIENT] OnConnectServerClient")
 	local map_name = keys.map_name or "ranked_1x8"

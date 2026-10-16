@@ -85,7 +85,8 @@ function ShowBetInfo(info){
 		var bet_one_image = $.CreatePanel('Image', bet_one_image_container, '', {
 			class: 'bet_one_image',
 			style: 'z-index:50;',
-			src: t.pic,
+			// 防御：t.pic 来自服务端，未下发或路径失效时不要传 undefined/null 进去（避免 url('undefined') 之类的加载报错）
+			src: t.pic || '',
 		});
 
 		InitTeamHover(bet_one_image,t);
