@@ -8,7 +8,7 @@
 ]]
 
 
-<!-- xml reconstructed by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io -->
+<!-- xml reconstructed by Source 2 Viewer 20.1.0.0 - https://valveresourceformat.github.io -->
 <root>
 	<styles>
 		<include src="s2r://panorama/styles/dotastyles.css" />
@@ -45,7 +45,10 @@
 						<DOTAAvatarImage steamid="local" class="AvatarLocal" />
 						<Panel class="InfoLocal">
 							<DOTAUserName steamid="local" class="NicknameLocal" />
-							<Label class="LocalRating" id="LocalRating" text="0" />
+							<Panel class="LocalRatingPanel">
+								<Label class="LocalRating" id="LocalRating" text="0" />
+								<Label class="LocalRatingGames" id="LocalRatingGames" text="" />
+							</Panel>
 						</Panel>
 					</Panel>
 				</Panel>
@@ -54,6 +57,7 @@
 						<Label text="#Leaderboard_rank_col" class="Leaderboard_rank_col" />
 						<Label text="#Leaderboard_player_col" class="Leaderboard_player_col" />
 						<Label text="#Leaderboard_rating_col" class="Leaderboard_rating_col" />
+						<Label text="#profile_col_games" class="Leaderboard_games_col" />
 						<Label text="#Leaderboard_reward_col" class="Leaderboard_reward_col" />
 					</Panel>
 					<Panel class="PlayersTable" id="PlayersTable" />

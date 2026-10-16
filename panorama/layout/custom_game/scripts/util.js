@@ -122,18 +122,24 @@ function IsSpectator()
 
 function ConvertTimeMinutes(time)
 {
-    var min = Math.trunc((time)/60) 
-    var sec_n =  (time) - 60*Math.trunc((time)/60) 
-    var min = String(min - 60*( Math.trunc(min/60) ))
+    var total = Math.max(0, Math.floor(Number(time) || 0))
+    var hours = Math.floor(total / 3600)
+    var min_n = Math.floor((total % 3600) / 60)
+    var sec_n = total % 60
+    var min = String(min_n)
     var sec = String(sec_n)
-    if (sec_n < 10) 
+    if (sec_n < 10)
     {
         sec = '0' + sec
     }
-    if (min < 10)
+    if (min_n < 10)
     {
         min = '0' + min
-    } 
+    }
+    if (hours > 0)
+    {
+        return hours + ':' + min + ':' + sec
+    }
     return min + ':' + sec
 }
 var RUNE_VALUES =
@@ -154,7 +160,7 @@ var RUNE_VALUES =
     rune_rage: {values: [5, 10, 15, 20, 25], suffix: "%"},
     rune_monk: {values: [5, 10, 15, 20, 25], suffix: "%"},
     rune_berserker: {values: [1.5, 1.45, 1.4, 1.35, 1.3], suffix: ""},
-    rune_hunter: {values: [100, 200, 300, 400, 500], suffix: ""},
+    rune_hunter: {values: [50, 100, 150, 200, 250], values_ranged: [100, 200, 300, 400, 500], suffix: ""},
     rune_vampire: {values: [5, 10, 15, 20, 25], suffix: "%"},
     rune_speed: {values: [10, 20, 30, 40, 50], suffix: "%"},
     rune_gold: {values: [5, 10, 15, 20, 25], suffix: "%"},
@@ -279,17 +285,26 @@ function FormatRuneDescription(rune_id, level)
     {
         return text
     }
-    var parts = []
-    for (var i = 0; i < info.values.length; i++)
+    var format_values = function(values)
     {
-        var value = String(info.values[i]) + (info.suffix || "")
-        if (Number(level) == i + 1)
+        var parts = []
+        for (var i = 0; i < values.length; i++)
         {
-            value = "<b><font color='#eabe10'>" + value + "</font></b>"
+            var value = String(values[i]) + (info.suffix || "")
+            if (Number(level) == i + 1)
+            {
+                value = "<b><font color='#eabe10'>" + value + "</font></b>"
+            }
+            parts.push(value)
         }
-        parts.push(value)
+        return parts.join("/")
     }
-    return text.split("{values}").join(parts.join("/"))
+    text = text.split("{values}").join(format_values(info.values))
+    if (info.values_ranged)
+    {
+        text = text.split("{values_ranged}").join(format_values(info.values_ranged))
+    }
+    return text
 }
 
 var ARENA_DIFFICULTY_ROOMS = [0, 12, 3, 10, 5, 21, 17, 29, 4, 33]

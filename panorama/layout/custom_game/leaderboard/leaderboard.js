@@ -111,7 +111,34 @@ function GetLocalRating()
         return;
     } 
     $("#LocalRating").text = String(localplayer_data.rating)
+    UpdateLocalRatingGames()
     UpdateLocalArenaResult()
+}
+
+function UpdateLocalRatingGames()
+{
+    let label = $("#LocalRatingGames")
+    if (!label)
+    {
+        return
+    }
+    label.text = ""
+    let top_rating = TOP_RATING_LIST["top_rating"]
+    let localplayer_data = Game.GetCustomTable("woda_player_data", String(Players.GetLocalPlayer()))
+    if (!top_rating || !localplayer_data || !localplayer_data.steamid)
+    {
+        return
+    }
+    let steamid = String(localplayer_data.steamid)
+    for (let i in top_rating)
+    {
+        let entry = top_rating[i]
+        if (entry && String(entry.steamid) == steamid && entry.games !== undefined)
+        {
+            label.text = $.Localize("#profile_tt_games").split("{n}").join(String(Number(entry.games) || 0))
+            return
+        }
+    }
 }
 
 
@@ -143,8 +170,20 @@ function donate_shop_set_top_rating(data)
     {
         ResetArenaLeaderboard()
     }
+    if (data.rebuild_pvp)
+    {
+        ResetRatingLeaderboard()
+    }
+    UpdateLocalRatingGames()
     UpdateLocalArenaResult()
     BuildVisibleLeaderboard()
+}
+
+function ResetRatingLeaderboard()
+{
+    LEADERBOARD_BUILT["pvp"] = false
+    LEADERBOARD_BUILD_GENERATION["pvp"] = (LEADERBOARD_BUILD_GENERATION["pvp"] || 0) + 1
+    $("#PlayersTable").RemoveAndDeleteChildren()
 }
 
 // var ARENA_LEADERBOARD_TABS = ["1", "2", "3", "4", "hero"]
@@ -466,6 +505,13 @@ function CreatePlayer(steam_id, rating, panel, number, pve, full_data)
         Rating.style.color = "orange";
     } 
     
+    if (!pve)
+    {
+        let games = $.CreatePanel("Label", Line, "");
+        games.AddClass("RatingGamesLabel");
+        games.text = full_data && full_data.games !== undefined ? String(Number(full_data.games) || 0) : "-"
+    }
+
     CreateSeasonRewards(Line, "rating", Number(number))
 }
 

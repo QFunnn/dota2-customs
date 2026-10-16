@@ -10,6 +10,7 @@
 
 require("utils/encryption")
 require("utils/maps")
+pcall(require, "utils/lua_profiler")
 
 if WODAGameMode == nil then
 	_G.WODAGameMode = class({})

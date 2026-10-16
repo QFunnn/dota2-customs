@@ -132,6 +132,11 @@ function event_woda_timer_neutral_reward(data)
 
 	let radial_number = -360 * ( time / max )
     $("#RewardTime").style.clip = 'radial( 50.0% 50.0%, 0.0deg, ' + radial_number + 'deg);'
+
+	if (Number(time) <= 0)
+	{
+		CloseNeutralSelect()
+	}
 }
 
 

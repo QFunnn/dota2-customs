@@ -446,8 +446,7 @@ function ProfileReachedWave(result)
 
 function ProfileWaveCode(result)
 {
-    var reached = ProfileReachedWave(result)
-    return reached ? String(reached.stage * 10 + reached.wave % 10) : "-"
+    return result ? String(result.waves) : "-"
 }
 
 function Profile_UpdateAccount(pd)
