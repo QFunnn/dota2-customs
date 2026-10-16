@@ -38,6 +38,7 @@ require("libraries/timers")
 require("rooms/server_mode")
 require("rooms/connector")
 require("rooms/room_server")
+require("rooms/lobby")
 
 require("overrides")
 -- require("debug_panel")
@@ -79,7 +80,14 @@ if CAddonAdvExGameMode == nil then
 	CAddonAdvExGameMode = class({})
 end
 
-Precache = require("precache")
+local PrecacheAll = require("precache")
+-- На карте lobby только список комнат: грузить модели незачем.
+function Precache(context)
+	if GetMapName() == "lobby" then
+		return
+	end
+	PrecacheAll(context)
+end
 
 function Activate()
 	GameRules.AddonAdventure = CAddonAdvExGameMode()
@@ -87,6 +95,10 @@ function Activate()
 end
 
 function CAddonAdvExGameMode:InitGameMode()
+	if GetMapName() == "lobby" then
+		Lobby:Init()
+		return
+	end
 	local GameModeEntity = GameRules:GetGameModeEntity()
 	GameRules:SetUseUniversalShopMode(true)
 	GameRules:GetGameModeEntity():SetLoseGoldOnDeath(false)

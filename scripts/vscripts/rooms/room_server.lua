@@ -19,6 +19,7 @@ RoomServer.DIFF_WINDOW = 25
 RoomServer.HOLD_KICK = 45 -- столько терпим чужого, если бэкенд так и не признал группу
 RoomServer.CLAIM_RETRY = 5
 RoomServer.MAX_PLAYERS = 5
+RoomServer.MAPS = { bsa = true, ability_mode = true }
 
 local STATE_NAMES = {}
 for _, name in ipairs({
@@ -185,6 +186,7 @@ function RoomServer:Heartbeat()
 end
 
 function RoomServer:OnHeartbeat(data)
+	self:CheckMap(data.map)
 	local sids = {}
 	if type(data.sids) == "table" then
 		for _, s in pairs(data.sids) do
@@ -208,6 +210,33 @@ function RoomServer:OnHeartbeat(data)
 		end
 	end
 	self:CheckGather()
+end
+
+-- Лобби бронирует комнату с выбранной картой. Пустая комната встаёт на неё сама,
+-- игрокам бэкенд отдаёт адрес, только когда heartbeat покажет нужную карту.
+-- Без брони бэкенд просит основную карту — так комната возвращается на bsa.
+function RoomServer:CheckMap(want)
+	want = tostring(want or "")
+	if self.map_switching or not self.MAPS[want] or want == GetMapName() then
+		return
+	end
+	if not self:IsIdleState() or self.gathered or next(self.arrived) ~= nil then
+		return
+	end
+	if self:Roster() > 0 then
+		return
+	end
+	self.map_switching = true
+	print("[Room] меняю карту " .. GetMapName() .. " -> " .. want)
+	SendToServerConsole("map " .. want)
+	-- Если карта так и не сменилась, через минуту можно попробовать снова.
+	Timers:CreateTimer({
+		endTime = 60,
+		useGameTime = false,
+		callback = function()
+			self.map_switching = false
+		end,
+	})
 end
 
 function RoomServer:OnConnectFull(e)

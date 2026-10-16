@@ -12,6 +12,8 @@
 var BSA_BACKEND = "https://boss-survival-adventure.com";
 
 (function () {
+	// На карте lobby свой экран (lobby_rooms.js), коннектора там нет.
+	try { if (Game.GetMapInfo().map_display_name === "lobby") return; } catch (e) {}
 	var RU = {
 		connecting: "Подключаем к серверу BSA…",
 		queued: "Ждём свободный сервер. Вы {p}-й в очереди",

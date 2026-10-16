@@ -8,7 +8,7 @@
 ]]
 
 
-<!-- xml reconstructed by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io -->
+<!-- xml reconstructed by Source 2 Viewer 20.1.0.0 - https://valveresourceformat.github.io -->
 <root>
 	<styles>
 		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
@@ -19,6 +19,7 @@
 	<scripts>
 		<include src="s2r://panorama/scripts/custom_game/team_select.vjs_c" />
 		<include src="s2r://panorama/layout/custom_game/team_select/team_select_rooms.js" />
+		<include src="s2r://panorama/layout/custom_game/team_select/lobby_rooms.js" />
 	</scripts>
 	<Panel hittest="false" class="TeamSelect">
 		<Panel hittest="false" id="TeamSelectContainer" selectionpos="auto">
@@ -55,6 +56,11 @@
 		</Panel>
 		<Panel id="RoomStatus" hittest="false">
 			<Label id="RoomStatusText" text="" />
+		</Panel>
+		<Panel id="LobbyRooms" class="LobbyHidden" hittest="false">
+			<Label id="LobbyTitle" text="" />
+			<Label id="LobbyHint" text="" />
+			<Panel id="LobbyList" />
 		</Panel>
 	</Panel>
 </root>
