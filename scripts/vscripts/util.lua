@@ -626,6 +626,9 @@ function Util:IsInRoom(hUnit, sRoomName, vPos)
 	vPos = vPos or hUnit:GetAbsOrigin()
 	local suppose_pos = Util:GetRoomCenter(sRoomName)
 	local mapName = GetMapName()
+	if mapName == "solo" then
+		mapName = "1x8"
+	end
 	local RoomWidths = {
 		["1x8"] = {
 			center_2 = 1824,
