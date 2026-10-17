@@ -98,7 +98,7 @@ function s.prototype.CreateHitEffect(self, u)
 	end
 	local C = v.damageFlags
 	if C == nil then
-		C = EOM_DAMAGE_FLAGS.NO_OUTGOING_ADJUST
+		C = EOM_DAMAGE_FLAGS.NONE
 	end
 	local D = v.sourceAbility
 	local t = self:GetCaster()

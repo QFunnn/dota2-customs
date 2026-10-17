@@ -41,7 +41,7 @@ function l.prototype.EventListener(self)
 				return
 			end
 			local q = self:GetSpecialValueFor("hp_pct")
-			p:AddProperty(PropertyFunction.HEALTH_AMPLIFY, q)
+			p:AddProperty(PropertyFunction.HEALTH_AMPLIFY, q, self.privilegeName)
 			self.triggeredCount = self.triggeredCount + 1
 			Notification:CombatToPlayer(
 				self:GetPlayerID(),

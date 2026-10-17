@@ -39,7 +39,7 @@ function j.prototype.EventListener(self)
 			end
 			local r = self:GetSpecialValueFor("attr_value")
 			print("privilege_weapon_038 attrValue", r)
-			n:AddProperty(PropertyFunction.SPELL_DAMAGE_AMPLIFY, r)
+			n:AddProperty(PropertyFunction.SPELL_DAMAGE_AMPLIFY, r, "privilege_weapon_038")
 			Notification:CombatToPlayer(
 				o,
 				{ message = "Notify_privilege_weapon_038", item_name = "item_champagne", int_attr_value = r }

@@ -209,7 +209,8 @@ function k.prototype.DeclareFunctions(self)
 	return { MODIFIER_PROPERTY_MANA_REGEN_CONSTANT, MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS }
 end
 function k.prototype.GetModifierConstantManaRegen(self)
-	return GetFuryRegen(self:GetParent()) * 1 + GetFuryAmplify(self:GetParent()) * 0.01
+	return (GetFuryRegen(self:GetParent()) * 1 + GetFuryAmplify(self:GetParent()) * 0.01)
+		* GetFinalGainMultiplier(nil, self:GetParent(), "fury_reduction_mul")
 end
 k = f(
 	{

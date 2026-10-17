@@ -227,6 +227,6 @@ function BTree_Stagger(d, e)
 		K = 1.5
 	end
 	local l = K
-	f:AddNewModifier(f, nil, "modifier_stagger", { duration = l })
+	f:Stagger(l, nil, nil, true)
 	return BehaviorNodeStatus.Success
 end

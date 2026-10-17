@@ -194,7 +194,7 @@ function q.prototype.GetStageTempoScale(self)
 	return 0.68
 end
 function q.prototype.GetBossGapMultiplier(self)
-	return 1 + math.max(0, GetBossGapAmplify(self:GetParent())) / 100
+	return math.max(0.01, 1 + GetBossGapAmplify(self:GetParent()) / 100)
 end
 function q.prototype.CanSelectWeightedAbility(self, y, z)
 	if z == nil then

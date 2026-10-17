@@ -101,7 +101,7 @@ function n.prototype.EventListener(self)
 				local p = self.summonedGhostCount
 				while p < B do
 					self.summonedGhostCount = p + 1
-					local q = o:SummonUnit("grimstroke_ghost", o:GetAbsOrigin())
+					local q = o:SummonUnit("grimstroke_ghost", o:GetAbsOrigin(), nil, nil, true)
 					if IsValid(q) then
 						local C = self.summonRecords
 						C[#C + 1] = q

@@ -199,6 +199,12 @@ const CAPACITY_TIP_CONFIG = [{
   title: "#Equipment_KeyCapacityTipTitle",
   fullTitle: "#Equipment_KeyCapacityTipTitle2",
   content: "#Equipment_KeyCapacityTipContent"
+}, {
+  type: "huntloot",
+  counterKey: "huntloot_count",
+  title: "#Huntloot_CapacityTipTitle",
+  fullTitle: "#Huntloot_CapacityTipTitle2",
+  content: "#Huntloot_CapacityTipContent"
 }];
 function getCapacityLevel(count, limit) {
   const ratio = count / limit;

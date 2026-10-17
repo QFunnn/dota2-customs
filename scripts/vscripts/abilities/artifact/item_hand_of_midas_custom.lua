@@ -60,7 +60,6 @@ function k.prototype.EventListener(self)
 					EOM_DAMAGE_FLAGS.NO_CRIT
 						+ EOM_DAMAGE_FLAGS.NO_DAMAGE_AMPLIFY
 						+ EOM_DAMAGE_FLAGS.NO_INCOMING_ADJUST
-						+ EOM_DAMAGE_FLAGS.NO_OUTGOING_ADJUST
 						+ EOM_DAMAGE_FLAGS.NO_SOURCE_AMPLIFY
 				)
 				Player:ModifyGold(o.attacker:GetPlayerOwnerID(), self.gold)

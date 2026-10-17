@@ -36,20 +36,12 @@ function k.prototype.OnSpellStart(self)
 			hero = n,
 			item = self,
 			gains = {
-				{
-					property = PropertyFunction.ATTACK,
-					value = self:GetSpecialValueFor("attack"),
-					source = "item_tome_of_prop_single",
-				},
-				{
-					property = PropertyFunction.HEALTH,
-					value = self:GetSpecialValueFor("health"),
-					source = "item_tome_of_prop_single",
-				},
+				{ property = PropertyFunction.ATTACK, value = self:GetSpecialValueFor("attack"), source = self:GetName() },
+				{ property = PropertyFunction.HEALTH, value = self:GetSpecialValueFor("health"), source = self:GetName() },
 				{
 					property = PropertyFunction.SPELL_DAMAGE_AMPLIFY,
 					value = self:GetSpecialValueFor("spell_damage"),
-					source = "item_tome_of_prop_single",
+					source = self:GetName(),
 				},
 			},
 			multipliers = {},
@@ -61,7 +53,7 @@ function k.prototype.OnSpellStart(self)
 		end
 		for q, s in ipairs(o.gains) do
 			local t = s.value * p
-			n:AddProperty(s.property, t)
+			n:AddProperty(s.property, t, s.source or self:GetName())
 			local u = s.onApplied
 			if u ~= nil then
 				u(s, t)

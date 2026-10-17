@@ -23,6 +23,8 @@ var common_item = require('./common_item.js');
 require('./EOM_MultiDropDown.js');
 require('./equipment_utils.js');
 var service_netdata_helper = require('./service_netdata_helper.js');
+var RecycleView = require('./RecycleView.js');
+var global_selection = require('./global_selection.js');
 var BackpackItem = require('./BackpackItem.js');
 var EOM_NumberAdjust = require('./EOM_NumberAdjust.js');
 var EOM_Loading = require('./EOM_Loading.js');
@@ -2360,6 +2362,394 @@ const Popup_HeroTalent = props => {
       }), null);
       libs.effect(_$p => libs.setProp(_el$, "class", "SelectHero" + heroID(), _$p));
       return _el$;
+    }
+  });
+};
+
+const SAVE_LIMIT = 5;
+const CURRENT_RUN = {
+  id: 0,
+  time: "09/17 22:16",
+  hero: "npc_dota_hero_axe",
+  difficulty: 12,
+  strength: 22,
+  damage: 1284567,
+  blessings: ["item_bleed_attack", "item_bleed_raze", "item_bleed_ultimate"],
+  artifacts: ["item_artifact_giant_killer_1", "item_artifact_healing_potion"]
+};
+const EMPTY_SLOTS = [undefined, undefined, undefined, undefined, undefined];
+const deserializeSave = save => {
+  if (save === undefined) return undefined;
+  const snapshot = JSON.parseSafe(save.data);
+  if (snapshot?.hero_name === undefined) return undefined;
+  return {
+    id: save.slot_id,
+    time: global_selection.formatDateText(Number(snapshot.time)),
+    hero: snapshot.hero_name,
+    difficulty: save.diff,
+    strength: snapshot.strength ?? 0,
+    damage: snapshot.total_damage ?? 0,
+    blessings: snapshot.blessings?.map(blessing => blessing.name) ?? [],
+    artifacts: snapshot.artifacts?.map(artifact => artifact.item_name) ?? []
+  };
+};
+const formatDifficulty = record => LocalizeWithVars("#HuntSaveArchive_DifficultyValue", {
+  difficulty: record.difficulty,
+  strength: record.strength
+});
+function HuntSaveItems(props) {
+  const width = () => props.items.length * 36;
+  return (() => {
+    const _el$ = libs.createElement("Panel", {
+      "class": "HuntSaveItemsColumn"
+    }, null);
+    libs.insert(_el$, libs.createComponent(RecycleView.RecycleView, {
+      "class": "HuntSaveItems",
+      get style() {
+        return {
+          width: `${width()}px`
+        };
+      },
+      input: () => props.items,
+      direction: "Horizontal",
+      showBar: false,
+      childConfig: {
+        width: 36,
+        height: 36
+      },
+      children: item => libs.createComponent(common_item.CommonItem, {
+        get itemName() {
+          return item();
+        },
+        showTips: true
+      })
+    }));
+    return _el$;
+  })();
+}
+function HuntSaveSnapshot(props) {
+  return (() => {
+    const _el$2 = libs.createElement("Panel", {
+        id: "HuntSaveCurrentRecord"
+      }, null),
+      _el$3 = libs.createElement("Panel", {
+        "class": "HuntSaveRecordHeader"
+      }, _el$2),
+      _el$4 = libs.createElement("Label", {
+        "class": "HuntSaveSnapshotTime",
+        get text() {
+          return props.record.time;
+        }
+      }, _el$3),
+      _el$5 = libs.createElement("Panel", {
+        "class": "HuntSaveSnapshotHero"
+      }, _el$3),
+      _el$6 = libs.createElement("Label", {
+        "class": "HuntSaveSnapshotDamage",
+        get text() {
+          return FormatNumber(props.record.damage);
+        }
+      }, _el$3);
+    libs.insert(_el$5, libs.createComponent(EOM_HeroImage.EOM_HeroImage, {
+      get heroname() {
+        return props.record.hero;
+      },
+      heroimagestyle: "icon"
+    }));
+    libs.insert(_el$3, libs.createComponent(HuntSaveItems, {
+      get items() {
+        return props.record.blessings;
+      }
+    }), null);
+    libs.insert(_el$3, libs.createComponent(HuntSaveItems, {
+      get items() {
+        return props.record.artifacts;
+      }
+    }), null);
+    libs.effect(_p$ => {
+      const _v$ = props.record.time,
+        _v$2 = FormatNumber(props.record.damage);
+      _v$ !== _p$._v$ && (_p$._v$ = libs.setProp(_el$4, "text", _v$, _p$._v$));
+      _v$2 !== _p$._v$2 && (_p$._v$2 = libs.setProp(_el$6, "text", _v$2, _p$._v$2));
+      return _p$;
+    }, {
+      _v$: undefined,
+      _v$2: undefined
+    });
+    return _el$2;
+  })();
+}
+const Popup_HuntSaveArchive = props => {
+  const [selectedSlot, setSelectedSlot] = libs.createSignal();
+  const huntSaveSnapshot = solid_utils.createPlayerNetDataSignal("player_data", "hunt_save_snapshot");
+  const playerHuntSaveDatas = solid_utils.createServiceNetData("player_hunt_save_datas", {});
+  const slots = libs.createMemo(() => {
+    const serviceSlots = Object.values(playerHuntSaveDatas());
+    const slotRecords = EMPTY_SLOTS.slice();
+    for (const save of serviceSlots) {
+      if (save.slot_id >= 1 && save.slot_id <= SAVE_LIMIT) slotRecords[save.slot_id - 1] = save;
+    }
+    return slotRecords.map(deserializeSave);
+  });
+  libs.createMemo(() => slots().filter(record => record !== undefined).length);
+  const selectedRecord = libs.createMemo(() => selectedSlot() === undefined ? undefined : slots()[selectedSlot()]);
+  const hasSaved = libs.createMemo(() => huntSaveSnapshot()?.has_saved === true);
+  const currentRun = libs.createMemo(() => {
+    const snapshot = huntSaveSnapshot();
+    if (snapshot === undefined) return CURRENT_RUN;
+    return {
+      ...CURRENT_RUN,
+      time: global_selection.formatDateText(snapshot.time),
+      hero: snapshot.hero_name,
+      damage: snapshot.total_damage,
+      blessings: snapshot.blessings.map(blessing => blessing.name),
+      artifacts: snapshot.artifacts.map(artifact => artifact.item_name)
+    };
+  });
+  const saveToSelectedSlot = () => {
+    const slot = selectedSlot();
+    if (hasSaved() || slot === undefined || selectedRecord() !== undefined) return;
+    GameEvents.SendCustomEventToServer("hunt_save_archive_save", {
+      slot_id: slot + 1
+    });
+  };
+  const replaceSelected = () => {
+    const record = selectedRecord();
+    if (hasSaved() || record === undefined || selectedSlot() === undefined) return;
+    CustomUIConfig.showPopup("CommonConfirm", {
+      title: GetLocalization("#HuntSaveArchive_Title"),
+      text: LocalizeWithVars("#HuntSaveArchive_ReplaceConfirm", {
+        time: record.time,
+        damage: FormatNumber(record.damage)
+      }),
+      onconfirm: () => {
+        const slot = selectedSlot();
+        if (slot === undefined) return;
+        GameEvents.SendCustomEventToServer("hunt_save_archive_save", {
+          slot_id: slot + 1
+        });
+      }
+    });
+  };
+  return libs.createComponent(BasePopup, {
+    id: "Popup_HuntSaveArchive",
+    size: "normal",
+    get PopupID() {
+      return props.PopupID;
+    },
+    get group() {
+      return props.group;
+    },
+    get title() {
+      return GetLocalization("#HuntSaveArchive_Title");
+    },
+    get children() {
+      const _el$7 = libs.createElement("Panel", {
+          id: "HuntSaveArchiveContent"
+        }, null),
+        _el$8 = libs.createElement("Panel", {
+          id: "HuntSaveSnapshotHeader"
+        }, _el$7),
+        _el$9 = libs.createElement("Label", {
+          "class": "HuntSaveHeaderTime",
+          get text() {
+            return GetLocalization("#HuntSaveArchive_Time");
+          }
+        }, _el$8),
+        _el$0 = libs.createElement("Label", {
+          "class": "HuntSaveHeaderHero",
+          get text() {
+            return GetLocalization("#HuntSaveArchive_Hero");
+          }
+        }, _el$8),
+        _el$1 = libs.createElement("Label", {
+          "class": "HuntSaveHeaderDamage",
+          get text() {
+            return GetLocalization("#HuntSaveArchive_Damage");
+          }
+        }, _el$8),
+        _el$10 = libs.createElement("Label", {
+          "class": "HuntSaveHeaderItems",
+          get text() {
+            return GetLocalization("#HuntSaveArchive_Blessing");
+          }
+        }, _el$8),
+        _el$11 = libs.createElement("Label", {
+          "class": "HuntSaveHeaderItems",
+          get text() {
+            return GetLocalization("#HuntSaveArchive_Artifact");
+          }
+        }, _el$8),
+        _el$12 = libs.createElement("Label", {
+          "class": "HuntSaveSectionTitle",
+          get text() {
+            return GetLocalization("#HuntSaveArchive_ExistingSaves");
+          }
+        }, _el$7),
+        _el$13 = libs.createElement("Panel", {
+          id: "HuntSaveSlotList"
+        }, _el$7);
+      libs.insert(_el$7, libs.createComponent(HuntSaveSnapshot, {
+        get record() {
+          return currentRun();
+        }
+      }), _el$12);
+      libs.insert(_el$13, libs.createComponent(libs.For, {
+        get each() {
+          return slots();
+        },
+        children: (record, index) => (() => {
+          const _el$17 = libs.createElement("Panel", {}, null);
+          libs.insert(_el$17, libs.createComponent(EOM_Button.EOM_BaseButton, {
+            "class": "HuntSaveSlotContent",
+            onactivate: () => setSelectedSlot(index()),
+            get children() {
+              return libs.createComponent(libs.Show, {
+                when: record,
+                get fallback() {
+                  return (() => {
+                    const _el$21 = libs.createElement("Label", {
+                      "class": "HuntSaveEmptySlot",
+                      get text() {
+                        return GetLocalization("#HuntSaveArchive_EmptySlot");
+                      }
+                    }, null);
+                    libs.effect(_$p => libs.setProp(_el$21, "text", GetLocalization("#HuntSaveArchive_EmptySlot"), _$p));
+                    return _el$21;
+                  })();
+                },
+                get children() {
+                  return [libs.createComponent(EOM_HeroImage.EOM_HeroImage, {
+                    "class": "HuntSaveSlotHero",
+                    get heroname() {
+                      return record.hero;
+                    },
+                    heroimagestyle: "icon"
+                  }), (() => {
+                    const _el$18 = libs.createElement("Label", {
+                      "class": "HuntSaveSlotPrimary",
+                      get text() {
+                        return formatDifficulty(record);
+                      }
+                    }, null);
+                    libs.effect(_$p => libs.setProp(_el$18, "text", formatDifficulty(record), _$p));
+                    return _el$18;
+                  })(), (() => {
+                    const _el$19 = libs.createElement("Label", {
+                      "class": "HuntSaveSlotDamage",
+                      get text() {
+                        return FormatNumber(record.damage);
+                      }
+                    }, null);
+                    libs.effect(_$p => libs.setProp(_el$19, "text", FormatNumber(record.damage), _$p));
+                    return _el$19;
+                  })(), (() => {
+                    const _el$20 = libs.createElement("Label", {
+                      "class": "HuntSaveSlotTime",
+                      get text() {
+                        return record.time;
+                      }
+                    }, null);
+                    libs.effect(_$p => libs.setProp(_el$20, "text", record.time, _$p));
+                    return _el$20;
+                  })()];
+                }
+              });
+            }
+          }));
+          libs.effect(_$p => libs.setProp(_el$17, "classList", {
+            HuntSaveSlot: true,
+            Empty: record === undefined,
+            Selected: selectedSlot() === index()
+          }, _$p));
+          return _el$17;
+        })()
+      }));
+      libs.insert(_el$7, libs.createComponent(libs.Show, {
+        get when() {
+          return hasSaved();
+        },
+        get fallback() {
+          return libs.createComponent(libs.Show, {
+            get when() {
+              return selectedRecord();
+            },
+            get fallback() {
+              return libs.createComponent(EOM_Button.EOM_Button, {
+                id: "HuntSaveAction",
+                color: "Confirm",
+                get enabled() {
+                  return selectedSlot() !== undefined;
+                },
+                get text() {
+                  return GetLocalization("#HuntSaveArchive_Save");
+                },
+                onactivate: saveToSelectedSlot
+              });
+            },
+            get children() {
+              return libs.createComponent(EOM_Button.EOM_Button, {
+                id: "HuntSaveAction",
+                color: "Confirm",
+                get text() {
+                  return GetLocalization("#HuntSaveArchive_Replace");
+                },
+                onactivate: replaceSelected
+              });
+            }
+          });
+        },
+        get children() {
+          const _el$14 = libs.createElement("Panel", {
+              id: "HuntSaveSavedState"
+            }, null),
+            _el$15 = libs.createElement("Label", {
+              get text() {
+                return GetLocalization("#HuntSaveArchive_SavedHint");
+              }
+            }, _el$14);
+          libs.effect(_$p => libs.setProp(_el$15, "text", GetLocalization("#HuntSaveArchive_SavedHint"), _$p));
+          return _el$14;
+        }
+      }), null);
+      libs.insert(_el$7, libs.createComponent(libs.Show, {
+        get when() {
+          return libs.memo(() => !!!hasSaved())() && selectedSlot() === undefined;
+        },
+        get children() {
+          const _el$16 = libs.createElement("Label", {
+            id: "HuntSaveReplaceHint",
+            get text() {
+              return GetLocalization("#HuntSaveArchive_SelectReplace");
+            }
+          }, null);
+          libs.effect(_$p => libs.setProp(_el$16, "text", GetLocalization("#HuntSaveArchive_SelectReplace"), _$p));
+          return _el$16;
+        }
+      }), null);
+      libs.effect(_p$ => {
+        const _v$3 = GetLocalization("#HuntSaveArchive_Time"),
+          _v$4 = GetLocalization("#HuntSaveArchive_Hero"),
+          _v$5 = GetLocalization("#HuntSaveArchive_Damage"),
+          _v$6 = GetLocalization("#HuntSaveArchive_Blessing"),
+          _v$7 = GetLocalization("#HuntSaveArchive_Artifact"),
+          _v$8 = GetLocalization("#HuntSaveArchive_ExistingSaves");
+        _v$3 !== _p$._v$3 && (_p$._v$3 = libs.setProp(_el$9, "text", _v$3, _p$._v$3));
+        _v$4 !== _p$._v$4 && (_p$._v$4 = libs.setProp(_el$0, "text", _v$4, _p$._v$4));
+        _v$5 !== _p$._v$5 && (_p$._v$5 = libs.setProp(_el$1, "text", _v$5, _p$._v$5));
+        _v$6 !== _p$._v$6 && (_p$._v$6 = libs.setProp(_el$10, "text", _v$6, _p$._v$6));
+        _v$7 !== _p$._v$7 && (_p$._v$7 = libs.setProp(_el$11, "text", _v$7, _p$._v$7));
+        _v$8 !== _p$._v$8 && (_p$._v$8 = libs.setProp(_el$12, "text", _v$8, _p$._v$8));
+        return _p$;
+      }, {
+        _v$3: undefined,
+        _v$4: undefined,
+        _v$5: undefined,
+        _v$6: undefined,
+        _v$7: undefined,
+        _v$8: undefined
+      });
+      return _el$7;
     }
   });
 };
@@ -5403,6 +5793,7 @@ const PopupComponents = {
   StoreBuyItemResult: Popup_StoreBuyItemResult,
   ChooseDrawLucky: Popup_ChooseDrawLucky,
   HeroTalent: Popup_HeroTalent,
+  HuntSaveArchive: Popup_HuntSaveArchive,
   ReviveCoinDialog: Popup_ReviveCoinDialog,
   ReviveCoinPurchaseDialog: Popup_ReviveCoinPurchaseDialog,
   AvatarEdit: Popup_AvatarEdit,

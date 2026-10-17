@@ -57,7 +57,7 @@ function s.prototype.EventListener(self)
 				self:DecrementStackCount()
 			end
 		end,
-		dungeon_start = function(t, v)
+		GameModeStarted = function(t, v)
 			self:SetStackCount(0)
 		end,
 	}

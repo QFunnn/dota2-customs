@@ -73,9 +73,14 @@ const NPC_OFFSET_CONFIG = {
   dungeon_start: 400,
   talent: 200,
   training: 200,
-  fisherman: 200
+  fisherman: 200,
+  hunt_save: 200
 };
-const NPC_ALWAYS_VISIBLE_NAMES = ["gem_entrance"];
+const LOCAL_NPC_LIST = [{
+  unitName: "npc_hunt_save",
+  name: "hunt_save"
+}];
+const NPC_ALWAYS_VISIBLE_NAMES = ["gem_entrance", ...LOCAL_NPC_LIST.map(npc => npc.name)];
 const DEFAULT_UPGRADE_KEY = "Q";
 function formatPanoramaPercent(value) {
   return Math.max(0, Math.min(100, finiteNumber(value))).toFixed(3) + "%";
@@ -119,6 +124,11 @@ function getOverheadType(entIndex) {
   return "Unit";
 }
 function getNpcData(entIndex) {
+  const unitName = Entities.GetUnitName(entIndex);
+  const localNpc = LOCAL_NPC_LIST.find(npc => npc.unitName === unitName);
+  if (localNpc !== undefined) {
+    return localNpc;
+  }
   if (CustomUIConfig.NpcManager === undefined) {
     return undefined;
   }
@@ -588,7 +598,7 @@ const NpcOverhead = ({
   const isPublicNpc = libs.createMemo(() => playerID() === undefined);
   const iconPath = libs.createMemo(() => {
     const name = npcName();
-    if (name === "fishpond" || name === "fisherman") return undefined;
+    if (name === "fishpond" || name === "fisherman" || name === "hunt_save") return undefined;
     const icon = name === "npc_arena" ? "pvp" : name;
     return getSrcPath("hud/hud_icon/h_room_" + icon + ".png");
   });

@@ -23,6 +23,7 @@ var EOM_DropDown = require('./EOM_DropDown.js');
 var EOM_FilterChip = require('./EOM_FilterChip.js');
 var EOM_SearchBox = require('./EOM_SearchBox.js');
 var EOM_TextEntry = require('./EOM_TextEntry.js');
+var global_selection = require('./global_selection.js');
 var courier_card = require('./courier_card.js');
 var EOM_SectionDivider = require('./EOM_SectionDivider.js');
 var fishRod3DPreview = require('./fishRod3DPreview.js');
@@ -627,16 +628,6 @@ const getFishActualWeightValue = (fishItemID, weight) => {
   return getMappedStatNumericValue(weight, collectionData?.weight_min, collectionData?.weight_max) ?? 0;
 };
 const normalizeSearchKeyword = keyword => keyword.trim().toLowerCase();
-const formatDateText = timestamp => {
-  if (timestamp === undefined || timestamp <= 0) {
-    return "-";
-  }
-  const date = new Date(timestamp * 1000);
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, "0");
-  const day = String(date.getDate()).padStart(2, "0");
-  return `${year}-${month}-${day}`;
-};
 const getFishCapacityLimit = () => {
   const configuredCapacity = Number(GameUI.CustomUIConfig().idle_game_setting?.fish_num_max?.value ?? 0);
   return configuredCapacity > 0 ? configuredCapacity : 200;
@@ -708,7 +699,7 @@ const FishingBag = () => {
   const fishList = libs.createMemo(() => Object.values(playerIdleGameFishes()));
   const getFishTooltip = fishData => {
     const fishItemID = fishData.fish_item_id;
-    const getTimeText = ToColor(`${GetLocalization("#FishingBag_GetTime", "获得时间：")}${formatDateText(fishData.get_time)}`, "#ffffff");
+    const getTimeText = ToColor(`${GetLocalization("#FishingBag_GetTime", "获得时间：")}${global_selection.formatDateText(fishData.get_time)}`, "#ffffff");
     const description = GetLocalization(`Normal_${fishItemID}_description`, "");
     return {
       name: "title_image_text",

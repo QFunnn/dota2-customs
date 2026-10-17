@@ -13,36 +13,32 @@
 var libs = require('./libs.js');
 var solid_utils = require('./solid_utils.js');
 
-const INTELLIGENCE_CARDS = [{
-  rarity: 1,
-  className: "Rarity_3",
-  amount: 20,
-  title: "#HuntIntelligence_Rare"
-}, {
-  rarity: 2,
-  className: "Rarity_4",
-  amount: 50,
-  title: "#HuntIntelligence_Epic"
-}, {
-  rarity: 3,
-  className: "Rarity_5",
-  amount: 100,
-  title: "#HuntIntelligence_Legendary"
-}];
-const INTELLIGENCE_CURRENT = 105;
+const INTELLIGENCE_CARDS = {
+  1: {
+    className: "Rarity_3",
+    title: "#HuntIntelligence_Rare"
+  },
+  2: {
+    className: "Rarity_4",
+    title: "#HuntIntelligence_Epic"
+  },
+  3: {
+    className: "Rarity_5",
+    title: "#HuntIntelligence_Legendary"
+  }
+};
 const INTELLIGENCE_LIMIT = 300;
 const HuntIntelligenceHud = () => {
   const intelligence = solid_utils.createPlayerNetDataSignal("hunt_boss", "intelligence");
   const [dismissed, setDismissed] = libs.createSignal(false);
   const [displayedProgress, setDisplayedProgress] = libs.createSignal(0);
-  const selectedRarity = libs.createMemo(() => intelligence()?.rarity ?? 0);
-  const selectedCard = libs.createMemo(() => INTELLIGENCE_CARDS[selectedRarity() - 1] ?? INTELLIGENCE_CARDS[0]);
-  const visible = libs.createMemo(() => selectedRarity() > 0 && !dismissed());
+  const amount = libs.createMemo(() => intelligence()?.amount ?? 0);
+  const selectedRarity = libs.createMemo(() => amount() <= 20 ? 1 : amount() <= 50 ? 2 : 3);
+  const selectedCard = libs.createMemo(() => INTELLIGENCE_CARDS[selectedRarity()]);
+  const visible = libs.createMemo(() => amount() > 0 && !dismissed());
   let dismissSchedule;
   let progressStartSchedule;
   let progressTickSchedule;
-  let netUpdateCount = 0;
-  let rootMountCount = 0;
   const cancelSchedules = () => {
     if (dismissSchedule !== undefined) $.CancelScheduled(dismissSchedule);
     if (progressStartSchedule !== undefined) $.CancelScheduled(progressStartSchedule);
@@ -53,45 +49,32 @@ const HuntIntelligenceHud = () => {
   };
   libs.createEffect(() => {
     const data = intelligence();
-    netUpdateCount++;
-    console.log(`[HuntIntelligence] net update=${netUpdateCount} rarity=${data?.rarity ?? "undefined"}`);
-    if (data === undefined) {
-      cancelSchedules();
+    cancelSchedules();
+    if (data === undefined || data.amount <= 0) {
       return;
     }
-    cancelSchedules();
+    const previous = Math.max(0, data.current - data.amount);
     setDismissed(false);
-    setDisplayedProgress(0);
+    setDisplayedProgress(previous);
     progressStartSchedule = $.Schedule(1.05, () => {
       progressStartSchedule = undefined;
       let step = 0;
       const tick = () => {
         step++;
-        setDisplayedProgress(Math.min(INTELLIGENCE_CURRENT, Math.floor(INTELLIGENCE_CURRENT * step / 14)));
-        if (step < 14) progressTickSchedule = $.Schedule(0.05, tick);
+        setDisplayedProgress(Math.min(data.current, previous + Math.floor((data.current - previous) * step / 14)));
+        progressTickSchedule = step < 14 ? $.Schedule(0.05, tick) : undefined;
       };
       tick();
     });
     dismissSchedule = $.Schedule(5, () => {
       dismissSchedule = undefined;
-      console.log("[HuntIntelligence] auto dismiss");
       setDismissed(true);
     });
-  });
-  libs.createEffect(() => {
-    console.log(`[HuntIntelligence] visible=${visible()}`);
   });
   libs.onCleanup(() => {
     cancelSchedules();
   });
   const HuntIntelligenceDisplay = () => {
-    const mountIndex = ++rootMountCount;
-    libs.onMount(() => {
-      console.log(`[HuntIntelligence] root mounted=${mountIndex} rarity=${selectedRarity()}`);
-    });
-    libs.onCleanup(() => {
-      console.log(`[HuntIntelligence] root unmounted=${mountIndex}`);
-    });
     return (() => {
       const _el$ = libs.createElement("Panel", {
           id: "HuntIntelligenceRoot",
@@ -123,7 +106,7 @@ const HuntIntelligenceHud = () => {
           "class": "HuntIntelligenceCardAmount",
           get text() {
             return LocalizeWithVars("#HuntIntelligence_Amount", {
-              amount: selectedCard().amount
+              amount: amount()
             });
           }
         }, _el$5),
@@ -143,7 +126,7 @@ const HuntIntelligenceHud = () => {
           id: "HuntIntelligenceProgressFill",
           get style() {
             return {
-              width: `${displayedProgress() / INTELLIGENCE_LIMIT * 100}%`
+              width: `${Math.min(100, Math.max(0, displayedProgress() / INTELLIGENCE_LIMIT * 100))}%`
             };
           }
         }, _el$0),
@@ -159,11 +142,11 @@ const HuntIntelligenceHud = () => {
           },
           _v$2 = GetLocalization(selectedCard().title),
           _v$3 = LocalizeWithVars("#HuntIntelligence_Amount", {
-            amount: selectedCard().amount
+            amount: amount()
           }),
           _v$4 = GetLocalization("#HuntIntelligence_Obtained"),
           _v$5 = {
-            width: `${displayedProgress() / INTELLIGENCE_LIMIT * 100}%`
+            width: `${Math.min(100, Math.max(0, displayedProgress() / INTELLIGENCE_LIMIT * 100))}%`
           },
           _v$6 = `${displayedProgress()} / ${INTELLIGENCE_LIMIT}`;
         _v$ !== _p$._v$ && (_p$._v$ = libs.setProp(_el$3, "classList", _v$, _p$._v$));

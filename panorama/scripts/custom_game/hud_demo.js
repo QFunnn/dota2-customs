@@ -24,6 +24,7 @@ var EOMChildren = require('./EOMChildren.js');
 var EOM_TextEntry = require('./EOM_TextEntry.js');
 var server_equipment = require('./server_equipment.js');
 var upgrade_icon = require('./upgrade_icon.js');
+var hunt_buff_icon = require('./hunt_buff_icon.js');
 var RecycleView = require('./RecycleView.js');
 var StoreItem = require('./StoreItem.js');
 var portraitsFullBodyLoadout = require('./portraitsFullBodyLoadout.js');
@@ -4457,6 +4458,186 @@ const RemoveUpgradePicker = () => {
   });
 };
 
+const HuntEffectTestPicker = () => {
+  const state = solid_utils.createPlayerNetDataSignal("common", "demo_hunt_effects", {
+    hero_ent_index: -1,
+    effects: [],
+    active_ids: []
+  });
+  const effects = libs.createMemo(() => (Array.isArray(state().effects) ? state().effects : []).map(effect => hunt_buff_icon.GetHuntBuffData(effect.id, effect.level)).filter(effect => effect !== undefined));
+  const active = () => Array.isArray(state().active_ids) ? state().active_ids : [];
+  let content;
+  libs.onMount(() => {
+    FireEvent("RefreshHuntEffectTest");
+    const timer = setInterval(() => {
+      if (content?.IsValid() && content.FindAncestor("HuntEffectTest")?.BHasClass("Show")) FireEvent("RefreshHuntEffectTest");
+    }, 1000);
+    libs.onCleanup(() => clearInterval(timer));
+  });
+  return libs.createComponent(SelectionContainer, {
+    eventName: "HuntEffectTest",
+    get title() {
+      return GetLocalization("#Demo_HuntEffect_Title");
+    },
+    hasFilter: false,
+    hasRawMode: false,
+    hasToggleSize: false,
+    width: "620px",
+    height: "640px",
+    get children() {
+      const _el$ = libs.createElement("Panel", {
+          id: "HuntEffectTestContent",
+          flowChildren: "down"
+        }, null),
+        _el$2 = libs.createElement("Panel", {
+          id: "HuntEffectTestActions",
+          flowChildren: "right"
+        }, _el$),
+        _el$3 = libs.createElement("Label", {
+          id: "HuntEffectTestCount",
+          get text() {
+            return LocalizeWithVars("#Demo_HuntEffect_Count", {
+              count: active().length,
+              total: effects().length
+            });
+          }
+        }, _el$2),
+        _el$4 = libs.createElement("Panel", {
+          width: "fill-parent-flow(1)"
+        }, _el$2),
+        _el$6 = libs.createElement("Label", {
+          id: "HuntEffectTestHint",
+          get text() {
+            return GetLocalization("#Demo_HuntEffect_Hint");
+          }
+        }, _el$),
+        _el$7 = libs.createElement("Panel", {
+          id: "HuntEffectTestList",
+          flowChildren: "down",
+          scroll: "y"
+        }, _el$);
+      libs.use(panel => content = panel, _el$);
+      libs.setProp(_el$, "flowChildren", "down");
+      libs.setProp(_el$2, "flowChildren", "right");
+      libs.setProp(_el$4, "width", "fill-parent-flow(1)");
+      libs.insert(_el$2, libs.createComponent(EOM_Button.EOM_BaseButton, {
+        "class": "DemoButton RedButton HuntEffectRemoveAll",
+        get enabled() {
+          return active().length > 0;
+        },
+        onactivate: () => FireEvent("RemoveAllHuntEffects"),
+        get children() {
+          const _el$5 = libs.createElement("Label", {
+            get text() {
+              return GetLocalization("#Demo_HuntEffect_RemoveAll");
+            }
+          }, null);
+          libs.effect(_$p => libs.setProp(_el$5, "text", GetLocalization("#Demo_HuntEffect_RemoveAll"), _$p));
+          return _el$5;
+        }
+      }), null);
+      libs.setProp(_el$7, "flowChildren", "down");
+      libs.setProp(_el$7, "scroll", "y");
+      libs.insert(_el$7, libs.createComponent(libs.For, {
+        get each() {
+          return effects();
+        },
+        children: effect => {
+          const added = () => active().includes(effect.id);
+          return (() => {
+            const _el$8 = libs.createElement("Panel", {
+                "class": "HuntEffectTestRow",
+                flowChildren: "right"
+              }, null),
+              _el$9 = libs.createElement("Panel", {
+                "class": "HuntEffectTestInfo",
+                flowChildren: "down"
+              }, _el$8),
+              _el$0 = libs.createElement("Label", {
+                "class": "HuntEffectTestName",
+                get text() {
+                  return hunt_buff_icon.GetHuntEffectName(effect.id, effect.level);
+                }
+              }, _el$9),
+              _el$1 = libs.createElement("Label", {
+                "class": "HuntEffectTestID",
+                get text() {
+                  return LocalizeWithVars("#Demo_HuntEffect_ID", {
+                    id: effect.id,
+                    kind: GetLocalization(effect.type === 1 ? "#Demo_HuntEffect_Fixed" : "#Demo_HuntEffect_Random")
+                  });
+                }
+              }, _el$9),
+              _el$10 = libs.createElement("Label", {
+                "class": "HuntEffectTestDescription",
+                get text() {
+                  return hunt_buff_icon.GetHuntEffectDescription(effect.id, effect.level);
+                }
+              }, _el$9);
+            libs.setProp(_el$8, "flowChildren", "right");
+            libs.insert(_el$8, libs.createComponent(hunt_buff_icon.HuntBuffIcon, {
+              "class": "HuntEffectTestIcon",
+              buff: effect,
+              showTips: false,
+              hittest: false
+            }), _el$9);
+            libs.setProp(_el$9, "flowChildren", "down");
+            libs.insert(_el$8, libs.createComponent(EOM_Button.EOM_BaseButton, {
+              get ["class"]() {
+                return libs.classNames("DemoButton", "HuntEffectTestAction", added() ? "RedButton" : "GreenButton");
+              },
+              get enabled() {
+                return state().hero_ent_index !== -1;
+              },
+              onactivate: () => FireEvent(added() ? "RemoveHuntEffect" : "AddHuntEffect", effect.id),
+              get children() {
+                const _el$11 = libs.createElement("Label", {
+                  get text() {
+                    return GetLocalization(added() ? "#Demo_HuntEffect_Remove" : "#Demo_HuntEffect_Add");
+                  }
+                }, null);
+                libs.effect(_$p => libs.setProp(_el$11, "text", GetLocalization(added() ? "#Demo_HuntEffect_Remove" : "#Demo_HuntEffect_Add"), _$p));
+                return _el$11;
+              }
+            }), null);
+            libs.effect(_p$ => {
+              const _v$3 = hunt_buff_icon.GetHuntEffectName(effect.id, effect.level),
+                _v$4 = LocalizeWithVars("#Demo_HuntEffect_ID", {
+                  id: effect.id,
+                  kind: GetLocalization(effect.type === 1 ? "#Demo_HuntEffect_Fixed" : "#Demo_HuntEffect_Random")
+                }),
+                _v$5 = hunt_buff_icon.GetHuntEffectDescription(effect.id, effect.level);
+              _v$3 !== _p$._v$3 && (_p$._v$3 = libs.setProp(_el$0, "text", _v$3, _p$._v$3));
+              _v$4 !== _p$._v$4 && (_p$._v$4 = libs.setProp(_el$1, "text", _v$4, _p$._v$4));
+              _v$5 !== _p$._v$5 && (_p$._v$5 = libs.setProp(_el$10, "text", _v$5, _p$._v$5));
+              return _p$;
+            }, {
+              _v$3: undefined,
+              _v$4: undefined,
+              _v$5: undefined
+            });
+            return _el$8;
+          })();
+        }
+      }));
+      libs.effect(_p$ => {
+        const _v$ = LocalizeWithVars("#Demo_HuntEffect_Count", {
+            count: active().length,
+            total: effects().length
+          }),
+          _v$2 = GetLocalization("#Demo_HuntEffect_Hint");
+        _v$ !== _p$._v$ && (_p$._v$ = libs.setProp(_el$3, "text", _v$, _p$._v$));
+        _v$2 !== _p$._v$2 && (_p$._v$2 = libs.setProp(_el$6, "text", _v$2, _p$._v$2));
+        return _p$;
+      }, {
+        _v$: undefined,
+        _v$2: undefined
+      });
+      return _el$;
+    }
+  });
+};
+
 const ServicePicker = props => {
   const getServiceList = () => {
     const serviceSet = new Set();
@@ -4490,6 +4671,9 @@ const ServicePicker = props => {
       serviceSet.add(id);
     }
     for (const id of Object.keys(KeyValues.info_item_drawing)) {
+      serviceSet.add(id);
+    }
+    for (const id of Object.keys(KeyValues.info_item_huntloot)) {
       serviceSet.add(id);
     }
     return Array.from(serviceSet);
@@ -4667,14 +4851,14 @@ const ServicePicker = props => {
               "class": "RowItem",
               width: "100px",
               get text() {
-                return "#PropType_" + PropType[GetPropType(item().itemID)];
+                return GetLocalization("#PropType_" + PropType[GetPropType(item().itemID)]);
               }
             }, _el$26),
             _el$31 = libs.createElement("Label", {
               "class": "RowItem",
               width: "100px",
               get text() {
-                return KeyValues.info_item_rarity[item().itemID]?.rarity ?? 0;
+                return KeyValues.info_item_huntloot[item().itemID]?.rarity ?? KeyValues.info_item_rarity[item().itemID]?.rarity ?? 0;
               }
             }, _el$26),
             _el$32 = libs.createElement("Panel", {
@@ -4722,8 +4906,8 @@ const ServicePicker = props => {
               _v$5 = item().itemID,
               _v$6 = GetLocalization("#" + item().itemID, item().itemID),
               _v$7 = GetLocalization("#" + item().itemID + "_Description", ""),
-              _v$8 = "#PropType_" + PropType[GetPropType(item().itemID)],
-              _v$9 = KeyValues.info_item_rarity[item().itemID]?.rarity ?? 0;
+              _v$8 = GetLocalization("#PropType_" + PropType[GetPropType(item().itemID)]),
+              _v$9 = KeyValues.info_item_huntloot[item().itemID]?.rarity ?? KeyValues.info_item_rarity[item().itemID]?.rarity ?? 0;
             _v$4 !== _p$._v$4 && (_p$._v$4 = libs.setProp(_el$26, "class", _v$4, _p$._v$4));
             _v$5 !== _p$._v$5 && (_p$._v$5 = libs.setProp(_el$27, "text", _v$5, _p$._v$5));
             _v$6 !== _p$._v$6 && (_p$._v$6 = libs.setProp(_el$28, "text", _v$6, _p$._v$6));
@@ -6635,7 +6819,7 @@ function Demo() {
             get itemNames() {
               return commonHeroList();
             }
-          }), libs.createComponent(UpgradePicker, {}), libs.createComponent(RemoveUpgradePicker, {}), libs.createComponent(PropertyPicker, {}), libs.createComponent(PrivilagePicker, {}), libs.createComponent(LoadoutPicker, {}), libs.createComponent(ServicePicker, {}), libs.createComponent(UnitInfo, {}), libs.createComponent(ServiceSwitch, {}), libs.createComponent(CombatPowerPicker, {})];
+          }), libs.createComponent(UpgradePicker, {}), libs.createComponent(RemoveUpgradePicker, {}), libs.createComponent(HuntEffectTestPicker, {}), libs.createComponent(PropertyPicker, {}), libs.createComponent(PrivilagePicker, {}), libs.createComponent(LoadoutPicker, {}), libs.createComponent(ServicePicker, {}), libs.createComponent(UnitInfo, {}), libs.createComponent(ServiceSwitch, {}), libs.createComponent(CombatPowerPicker, {})];
         },
         get children() {
           return [libs.createComponent(EOM_DebugTool_Category, {
@@ -6680,6 +6864,17 @@ function Demo() {
               }), libs.createComponent(DemoButton, {
                 eventName: "UnLockMaxDiff",
                 text: "解锁最大难度"
+              }), libs.createComponent(DemoTextEntry, {
+                eventName: "PrepareHuntSave",
+                text: "猎杀存档",
+                defaultValue: "1"
+              }), libs.createComponent(DemoTextEntry, {
+                eventName: "StartHuntBoss",
+                text: "开始猎杀",
+                defaultValue: "1"
+              }), libs.createComponent(DemoSelectionButton, {
+                eventName: "HuntEffectTest",
+                text: "猎杀效果"
               })];
             }
           }), libs.createComponent(EOM_DebugTool_Category, {
@@ -6703,9 +6898,7 @@ function Demo() {
                 text: "添加技能升级"
               }), libs.createComponent(DemoSelectionButton, {
                 eventName: "RemoveAbilityUpgrade",
-                get text() {
-                  return GetLocalization("#Demo_RemoveAbilityUpgrade");
-                }
+                text: "移除技能升级"
               }), libs.createComponent(DemoSelectionButton, {
                 eventName: "AddAttribute",
                 text: "添加属性"
@@ -6741,9 +6934,7 @@ function Demo() {
                 }
               }), libs.createComponent(DemoToggle, {
                 eventName: "ForceDashAutoCast",
-                get text() {
-                  return GetLocalization("#Demo_ForceDash");
-                },
+                text: "强制冲刺",
                 get selected() {
                   return demoSetting()?.force_dash_auto_cast == 1;
                 }
@@ -6761,9 +6952,7 @@ function Demo() {
             get children() {
               return [libs.createComponent(DemoButton, {
                 eventName: "DummyTarget",
-                get text() {
-                  return GetLocalization("#Demo_CreateDummy");
-                }
+                text: "创建假人"
               }), libs.createComponent(DemoSelectionButton, {
                 eventName: "DemoLoadout",
                 text: "英雄配置"

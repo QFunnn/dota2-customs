@@ -344,6 +344,11 @@ GameUI.CustomUIConfig().info_item_rarity = {
 		item_id: 110021,
 		rarity: 5
 	},
+	"110025": {
+		id: 2100,
+		item_id: 110025,
+		rarity: 5
+	},
 	"110026": {
 		id: 2095,
 		item_id: 110026,

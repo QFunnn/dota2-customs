@@ -53,8 +53,13 @@ function l.prototype.OnCreated(self, m)
 		if p.CritDamage ~= nil then
 			self.CritDamage = toFiniteNumber(p.CritDamage, 0)
 		end
-		if p.StatusHealth ~= nil then
-			self.StatusHealth = toFiniteNumber(p.StatusHealth, 0)
+		if p.LogicalStatusHealth ~= nil or p.StatusHealth ~= nil then
+			local q = toFiniteNumber
+			local r = p.LogicalStatusHealth
+			if r == nil then
+				r = p.StatusHealth
+			end
+			self.StatusHealth = q(r, 0)
 		end
 		if p.StatusMana ~= nil then
 			self.StatusMana = toFiniteNumber(p.StatusMana, 0)
@@ -68,20 +73,20 @@ function l.prototype.StaticState(self)
 	return { [StateEnum.HEALTH_BAR] = true }
 end
 function l.prototype.OnIntervalThink(self)
-	local q = self:GetParent()
-	if not q:HasMovementCapability() then
+	local s = self:GetParent()
+	if not s:HasMovementCapability() then
 		self:StartIntervalThink(-1)
 		return
 	end
-	local r = q:GetAbsOrigin()
-	if q:HasModifier("modifier_wisp") then
+	local t = s:GetAbsOrigin()
+	if s:HasModifier("modifier_wisp") then
 		self:StartIntervalThink(-1)
 		return
 	end
 	if self.IsCheckingValidPosition == true then
 		return
 	end
-	if not GridNav:IsValidPosition(r) then
+	if not GridNav:IsValidPosition(t) then
 		self:StartContinuousValidPositionCheck()
 	end
 end
@@ -89,14 +94,14 @@ function l.prototype.StartContinuousValidPositionCheck(self)
 	self.ValidPositionCheckCount = 0
 	self.IsCheckingValidPosition = true
 	self:StartThink(0.1, "ContinuousValidPositionCheck", function()
-		local q = self:GetParent()
-		if not q:HasMovementCapability() then
+		local s = self:GetParent()
+		if not s:HasMovementCapability() then
 			self.IsCheckingValidPosition = false
 			return -1
 		end
-		local r = q:GetAbsOrigin()
-		if q:IsAlive() then
-			if GridNav:IsValidPosition(r) then
+		local t = s:GetAbsOrigin()
+		if s:IsAlive() then
+			if GridNav:IsValidPosition(t) then
 				self.ValidPositionCheckCount = 0
 				self.IsCheckingValidPosition = false
 				return -1
@@ -104,11 +109,11 @@ function l.prototype.StartContinuousValidPositionCheck(self)
 			self.ValidPositionCheckCount = self.ValidPositionCheckCount + 1
 			if self.ValidPositionCheckCount >= 10 then
 				self.IsCheckingValidPosition = false
-				local s = DungeonManager:GetCurrentRoom()
-				if s ~= nil then
-					local t = s:GetNearestValidGridPosition(r)
-					if t ~= nil then
-						FindClearSpaceForUnit(q, t, true)
+				local u = DungeonManager:GetCurrentRoom()
+				if u ~= nil then
+					local v = u:GetNearestValidGridPosition(t)
+					if v ~= nil then
+						FindClearSpaceForUnit(s, v, true)
 					end
 				end
 				return -1
@@ -121,7 +126,7 @@ function l.prototype.CheckState(self)
 	return { [MODIFIER_STATE_NO_HEALTH_BAR] = true }
 end
 function l.prototype.DeclareFunctions(self)
-	local u = {
+	local w = {
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
 		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
 		MODIFIER_PROPERTY_ATTACKSPEED_BASE_OVERRIDE,
@@ -134,7 +139,7 @@ function l.prototype.DeclareFunctions(self)
 	}
 	if self:GetParent():IsRealHero() then
 		e(
-			u,
+			w,
 			{
 				MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET,
 				MODIFIER_EVENT_ON_ABILITY_FULLY_CAST,
@@ -147,7 +152,7 @@ function l.prototype.DeclareFunctions(self)
 			}
 		)
 	end
-	return u
+	return w
 end
 function l.prototype.GetDisableAutoAttack(self)
 	return 1
@@ -158,14 +163,18 @@ end
 function l.prototype.GetModifierManaBonus(self)
 	return self:GetParent():GetMaxMana() - GetBaseMana(self:GetParent())
 end
-function l.prototype.GetModifierPercentageCooldown(self, v)
+function l.prototype.GetModifierPercentageCooldown(self, x)
 	return GetCooldownReduction(self:GetParent())
 end
 function l.prototype.GetModifierMoveSpeed_MaxOverride(self)
 	return 8000
 end
 function l.prototype.GetModifierMoveSpeedBonus_Percentage(self)
-	return GetMovespeedAmplify(self:GetParent())
+	return (
+		(1 + GetMovespeedAmplify(self:GetParent()) * 0.01)
+			* GetFinalGainMultiplier(nil, self:GetParent(), "movespeed_reduce_mul")
+		- 1
+	) * 100
 end
 function l.prototype.GetModifierAttackSpeedPercentage(self)
 	return -GetAttackspeedReduction(self:GetParent())
@@ -198,90 +207,93 @@ end
 function l.prototype.GetModifierHealAmplify_PercentageTarget(self)
 	return GetHealAmplify(self:GetParent())
 end
-function l.prototype.OnAbilityEndChannel(self, v)
-	if v.unit ~= self:GetParent() then
+function l.prototype.OnAbilityEndChannel(self, x)
+	if x.unit ~= self:GetParent() then
 		return
 	end
 	Event:Fire(
 		"ability_end_channel",
-		{ ability = v.ability, caster = v.unit, position = v.ability:GetCursorPosition(), abilityTag = v.ability:GetAbilityTag() }
+		{ ability = x.ability, caster = x.unit, position = x.ability:GetCursorPosition(), abilityTag = x.ability:GetAbilityTag() }
 	)
 end
-function l.prototype.OnAbilityFullyCast(self, v)
-	if v.unit ~= self:GetParent() then
+function l.prototype.OnAbilityFullyCast(self, x)
+	if x.unit ~= self:GetParent() then
 		return
 	end
 	Event:Fire(
 		"ability_cast_complete",
-		{ ability = v.ability, caster = v.unit, position = v.ability:GetCursorPosition(), abilityTag = v.ability:GetAbilityTag() }
+		{
+			ability = x.ability,
+			caster = x.unit,
+			position = x.ability:GetCursorPosition(),
+			abilityTag = x.ability:GetAbilityTag(),
+			isActualCast = true,
+		}
 	)
-	if v.ability:UseCharges() then
-		v.ability:EndCooldown()
-		if v.ability:GetCharges() == 0 then
-			v.ability:StartCooldown(v.ability.__ChargeRestoreTime - GameRules:GetGameTime())
-		end
+	if x.ability:UseCharges() then
+		x.ability:SyncChargeCooldown()
 	end
-	if v.ability:GetCastCooldown() > 0 then
-		v.ability:SetActivated(false)
-		self:StartThink(v.ability:GetCastCooldown(), DoUniqueString("CastCooldown"), function()
-			v.ability:SetActivated(true)
+	if x.ability:GetCastCooldown() > 0 then
+		x.ability:SetActivated(false)
+		self:StartThink(x.ability:GetCastCooldown(), DoUniqueString("CastCooldown"), function()
+			x.ability:SetActivated(true)
 			return -1
 		end)
 	end
 end
-function l.prototype.OnAbilityStart(self, v)
-	if v.unit ~= self:GetParent() then
+function l.prototype.OnAbilityStart(self, x)
+	if x.unit ~= self:GetParent() then
 		return
 	end
 	Event:Fire(
 		"ability_cast_start",
-		{ ability = v.ability, caster = v.unit, position = v.ability:GetCursorPosition(), abilityTag = v.ability:GetAbilityTag() }
+		{ ability = x.ability, caster = x.unit, position = x.ability:GetCursorPosition(), abilityTag = x.ability:GetAbilityTag() }
 	)
 end
-function l.prototype.OnSpentMana(self, v)
-	local w = v.cost
-	if w > 0 then
-		Event:Fire("spent_mana", { unit = v.unit, ability = v.ability, cost = w })
+function l.prototype.OnSpentMana(self, x)
+	local y = x.cost
+	if y > 0 then
+		Event:Fire("spent_mana", { unit = x.unit, ability = x.ability, cost = y })
 	end
 end
 function l.prototype.EventListener(self)
 	return {
-		property_changed = function(x, y)
-			local q = self:GetParent()
-			if y.key ~= q:entindex() then
+		property_changed = function(z, A)
+			local s = self:GetParent()
+			if A.key ~= s:entindex() then
 				return
 			end
 			if
 				f(
 					{ "health", "health_amplify", "defense_intensity", "hero_defense_boost", "final_defense" },
-					y.propertyId
+					A.propertyId
 				)
 			then
-				if q:IsHero() then
-					q:CalculateStatBonus(true)
+				if s:IsHero() then
+					s:CalculateStatBonus(true)
 				else
-					local z = q:GetMaxHealth()
-					local A = q:GetHealthPercent_Engine()
-					if not LargeNumberHealth:Refresh(q) then
-						q:SetMaxHealth(z)
-						q:SetBaseMaxHealth(z)
-						q:SetHealth(math.max(1, z * A * 0.01))
+					local B = s:GetMaxHealth()
+					local C = s:GetHealthPercent_Engine()
+					if not LargeNumberHealth:Refresh(s) then
+						s:SetMaxHealth(B)
+						s:SetBaseMaxHealth(B)
+						s:SetHealth(math.max(1, B * C * 0.01))
 					end
-					q:CalculateGenericBonuses()
+					s:CalculateGenericBonuses()
 				end
-			elseif f({ "mana", "mana_amplify" }, y.propertyId) then
-				if q:IsHero() then
-					q:CalculateStatBonus(true)
+			elseif f({ "mana", "mana_amplify" }, A.propertyId) then
+				if s:IsHero() then
+					s:CalculateStatBonus(true)
 				else
-					q:CalculateGenericBonuses()
+					s:CalculateGenericBonuses()
 				end
 			end
 		end,
-		dungeon_start = function(x, y)
-			local q = self:GetParent()
-			if q:IsHero() then
-				q:SetHealth(q:GetMaxHealth())
-				q:SetMana(q:GetMaxMana())
+		GameModeStarted = function(z, A)
+			local s = self:GetParent()
+			if s:IsHero() then
+				s:SetHealth(s:GetMaxHealth())
+				s:SetMana(s:GetMaxMana())
 			end
 		end,
 	}

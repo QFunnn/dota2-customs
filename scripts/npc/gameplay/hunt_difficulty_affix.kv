@@ -1,0 +1,38 @@
+--[[
+  ~ dumper · customs · dota2
+  ~ credits: rou (a.k.a internetenemy), qfun(a.k.a qfun_g9s)
+  ~ special for t.me/wildguild
+
+  ~ build 1a5b3bb 
+  ~ auto-generated — do not edit
+]]
+
+
+"KeyValues"
+{
+	// FixedAffixes：本场固定词缀（Type=1），不随机、不占 FieldBuffCount。
+	// 写法：potion:2|heavy|freeze|calm；冒号后为该词缀等级，省略等级时默认 1 级。
+	// 同一 ID 不可重复；逐级数值配置在 hunt_field_buff.kv 的 EffectParams 与 Time 中。
+	// FieldBuffCount：每层随机抽取 Type=2 Buff 的数量，难度 1/2/3 对应 1/2/3 种。
+	// 每个抽中的 Buff ID 直接决定具体效果，没有第二次独立的 Effect 抽取。
+	"1"
+	{
+		"FixedAffixes"		"potion:1|heavy:1|freeze:1|calm:1"
+		"FieldBuffCount"	"1"
+	}
+	"2"
+	{
+		"FixedAffixes"		"potion:2|heavy:2|freeze:2|calm:2"
+		"FieldBuffCount"	"2"
+	}
+	"3"
+	{
+		"FixedAffixes"		"potion:3|heavy:3|freeze:3|calm:3"
+		"FieldBuffCount"	"3"
+	}
+	"4"
+	{
+		"FixedAffixes"		"potion:4|heavy:4|freeze:4|calm:4"
+		"FieldBuffCount"	"3"
+	}
+}

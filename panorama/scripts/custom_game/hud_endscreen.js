@@ -21,6 +21,7 @@ var portraitsFullBodyLoadout = require('./portraitsFullBodyLoadout.js');
 var server_rune_utils = require('./server_rune_utils.js');
 var rune_data = require('./rune_data.js');
 var StoreItem = require('./StoreItem.js');
+var server_huntloot = require('./server_huntloot2.js');
 require('./service_netdata_helper.js');
 require('./EOM_TextEntry.js');
 require('./attribute_formatter.js');
@@ -952,6 +953,7 @@ const AbyssalSummary = props => {
   });
   const [countDown, setCountDown] = libs.createSignal(0);
   let countDownTimer;
+  let hasHandledCountDownElapsed = false;
   const localHeroSelection = solid_utils.createPlayerNetDataSignal("common", "hero_selection");
   const lastAbyssalSummary = solid_utils.createPlayerNetDataSignal("player_data", "last_abyssal_end_summary");
   const lastAbyssalBattle = solid_utils.createPlayerNetDataSignal("player_data", "last_abyssal_end_battle");
@@ -1024,7 +1026,7 @@ const AbyssalSummary = props => {
     }];
   });
   const skillDamageTotal = libs.createMemo(() => activeBattle()?.skill_damage_total ?? 0);
-  const isCountDownActive = libs.createMemo(() => settle_info().end_by_custom === false && countDown() > 0);
+  const isCountDownActive = libs.createMemo(() => settle_info().end_by_custom !== true && countDown() > 0);
   const damageSources = libs.createMemo(() => {
     const sources = activeBattle()?.ability_damage_sources ?? [];
     const blessings = blessingList();
@@ -1037,10 +1039,12 @@ const AbyssalSummary = props => {
       clearInterval(countDownTimer);
       countDownTimer = undefined;
     }
-    if (endTime == undefined) {
+    hasHandledCountDownElapsed = false;
+    if (endTime == undefined || endTime < 0) {
       setCountDown(0);
       return;
     }
+    console.log(`[AbyssalSummary] settlement countdown endTime=${endTime} endByCustom=${String(settle_info().end_by_custom)}`);
     const updateCountDown = () => {
       const remaining = Math.max(0, Math.ceil(endTime - Game.GetGameTime()));
       setCountDown(remaining);
@@ -1048,10 +1052,19 @@ const AbyssalSummary = props => {
         clearInterval(countDownTimer);
         countDownTimer = undefined;
       }
+      if (remaining <= 0 && !hasHandledCountDownElapsed) {
+        hasHandledCountDownElapsed = true;
+        if (settle_info().end_by_custom === true) {
+          console.log("[AbyssalSummary] settlement countdown elapsed; custom settlement flow keeps the end screen open.");
+          return;
+        }
+        console.log("[AbyssalSummary] settlement countdown elapsed; closing end screen.");
+        props.onCountdownElapsed();
+      }
     };
     updateCountDown();
     if (endTime - Game.GetGameTime() > 0) {
-      countDownTimer = setInterval(updateCountDown, 100);
+      countDownTimer = setInterval(updateCountDown, 1000);
     }
   }));
   libs.onCleanup(() => {
@@ -1580,6 +1593,7 @@ const Abyssal = props => {
   let particleReadySchedule;
   let cancelRewardConfirmPopupID;
   let handledPreviewRevision = 0;
+  let hasLoggedSummaryWaitElapsed = false;
   const snapshotID = libs.createMemo(() => lastEndScreenMeta()?.mode == "abyssal" ? lastEndScreenMeta()?.snapshot_id : undefined);
   const isAbyssalDefeat = libs.createMemo(() => lastEndScreenMeta()?.result != "victory");
   const isAbyssalSettling = libs.createMemo(() => gameState()?.state == "GameState_Settle" && lastEndScreenMeta()?.mode == "abyssal");
@@ -1735,20 +1749,26 @@ const Abyssal = props => {
   }));
   libs.createEffect(libs.on(() => isSummaryWaiting() ? activeAbyssalSettleInfo()?.wait_end_time ?? -1 : -1, endTime => {
     clearSummaryWaitTimer();
+    hasLoggedSummaryWaitElapsed = false;
     if (endTime < 0) {
       setSummaryWaitRemaining(0);
       return;
     }
+    console.log(`[Abyssal] participant wait countdown endTime=${endTime} snapshot=${snapshotID() ?? "unknown"}`);
     const updateSummaryWaitRemaining = () => {
       const remaining = Math.max(0, Math.ceil(endTime - Game.GetGameTime()));
       setSummaryWaitRemaining(remaining);
       if (remaining <= 0) {
         clearSummaryWaitTimer();
+        if (!hasLoggedSummaryWaitElapsed) {
+          hasLoggedSummaryWaitElapsed = true;
+          console.log(`[Abyssal] participant wait elapsed for snapshot=${snapshotID() ?? "unknown"}; awaiting server state transition from waiting_participants.`);
+        }
       }
     };
     updateSummaryWaitRemaining();
     if (endTime > Game.GetGameTime()) {
-      summaryWaitTimer = setInterval(updateSummaryWaitRemaining, 100);
+      summaryWaitTimer = setInterval(updateSummaryWaitRemaining, 1000);
     }
   }));
   libs.createEffect(libs.on(() => activeAbyssalSettleInfo()?.state == "all_summary_ready" && isAbyssalSettling() && view() != "summary", shouldShowSummary => {
@@ -1899,6 +1919,9 @@ const Abyssal = props => {
           },
           get summaryWaitRemaining() {
             return summaryWaitRemaining();
+          },
+          get onCountdownElapsed() {
+            return props.onCountdownElapsed;
           }
         });
       }
@@ -2628,23 +2651,294 @@ const DungeonSummary = props => {
   })();
 };
 
+const HuntBossSummary = props => {
+  const settleInfo = solid_utils.createNetDataSignal("common", "settle_info", {
+    end_time: -1,
+    show_menu_bar: false
+  });
+  const huntBossMeta = libs.createMemo(() => props.meta);
+  const playerResult = libs.createMemo(() => huntBossMeta()?.player_results?.[Game.GetLocalPlayerID()]);
+  const isVictory = libs.createMemo(() => (playerResult()?.result ?? huntBossMeta()?.result) === "victory");
+  const lastHuntEndRewards = solid_utils.createPlayerNetDataSignal("player_data", "last_hunt_end_rewards");
+  const activeRewardSnapshot = libs.createMemo(() => {
+    const meta = huntBossMeta();
+    const snapshot = lastHuntEndRewards();
+    return meta?.mode === "hunt_boss" && snapshot?.snapshot_id === meta.snapshot_id ? snapshot : undefined;
+  });
+  const rewards = libs.createMemo(() => {
+    const issuedRewards = activeRewardSnapshot()?.rewards;
+    return (Array.isArray(issuedRewards) ? issuedRewards : []).map(reward => ({
+      ...reward,
+      need_level: KeyValues.huntloot_class_setting[reward.class]?.need_level ?? 0
+    })).sort((a, b) => b.rarity - a.rarity);
+  });
+  const localHeroSelection = solid_utils.createPlayerNetDataSignal("common", "hero_selection");
+  const heroName = libs.createMemo(() => localHeroSelection()?.heroName ?? "npc_dota_hero_vexis");
+  const level = libs.createMemo(() => playerResult()?.level ?? huntBossMeta()?.level ?? 0);
+  const reason = libs.createMemo(() => playerResult()?.reason ?? huntBossMeta()?.reason);
+  const statusText = libs.createMemo(() => reason() === "AllPlayersRetreated" ? GetLocalization("#HuntBossSettle_Retreated") : isVictory() ? GetLocalization("#HuntBossSettle_Completed") : GetLocalization("#HuntBossSettle_Failed"));
+  const [countDown, setCountDown] = libs.createSignal(0);
+  let countDownTimer;
+  libs.createEffect(libs.on(() => props.visible && !props.personal ? settleInfo().end_time : -1, endTime => {
+    if (countDownTimer !== undefined) {
+      clearInterval(countDownTimer);
+      countDownTimer = undefined;
+    }
+    const update = () => setCountDown(Math.max(0, Math.ceil((endTime ?? 0) - Game.GetGameTime())));
+    update();
+    if ((endTime ?? 0) > Game.GetGameTime()) {
+      countDownTimer = setInterval(update, 100);
+    }
+  }));
+  libs.onCleanup(() => {
+    if (countDownTimer !== undefined) {
+      clearInterval(countDownTimer);
+    }
+  });
+  return (() => {
+    const _el$ = libs.createElement("Panel", {
+        id: "HuntBossSummary",
+        get ["class"]() {
+          return libs.classNames({
+            HuntBossDefeat: !isVictory(),
+            HuntBossStageSummaryVisible: props.visible
+          });
+        }
+      }, null),
+      _el$2 = libs.createElement("Panel", {
+        id: "HuntBossSummaryLayer"
+      }, _el$);
+      libs.createElement("Image", {
+        id: "SummaryBackground",
+        hittest: false
+      }, _el$2);
+      const _el$4 = libs.createElement("Panel", {
+        id: "HuntBossContentStage",
+        hittest: false
+      }, _el$2),
+      _el$5 = libs.createElement("Panel", {
+        id: "HuntBossSummaryStage"
+      }, _el$4),
+      _el$6 = libs.createElement("Panel", {
+        id: "Certificate"
+      }, _el$5),
+      _el$7 = libs.createElement("Panel", {
+        id: "Header"
+      }, _el$6),
+      _el$8 = libs.createElement("Panel", {
+        id: "SummaryHeaderContainer"
+      }, _el$7),
+      _el$9 = libs.createElement("Panel", {
+        id: "SummaryHeader"
+      }, _el$8),
+      _el$0 = libs.createElement("Label", {
+        id: "SummaryHeaderText",
+        get text() {
+          return GetLocalization("#HuntBossSettle_Title");
+        }
+      }, _el$9);
+      libs.createElement("Image", {
+        id: "SummaryDivider",
+        hittest: false
+      }, _el$8);
+      const _el$10 = libs.createElement("Panel", {
+        id: "SummaryScoreContainer"
+      }, _el$8),
+      _el$11 = libs.createElement("Label", {
+        id: "SummaryScoreTitleText",
+        get text() {
+          return LocalizeWithVars("#HuntBossHudLevel", {
+            level: level()
+          });
+        }
+      }, _el$10),
+      _el$12 = libs.createElement("Label", {
+        id: "SummaryScoreValue",
+        get text() {
+          return statusText();
+        }
+      }, _el$10),
+      _el$13 = libs.createElement("Panel", {
+        id: "HalfHero"
+      }, _el$6),
+      _el$14 = libs.createElement("Panel", {
+        id: "CertificateBody"
+      }, _el$6),
+      _el$15 = libs.createElement("Panel", {
+        id: "InfoColumn"
+      }, _el$14),
+      _el$16 = libs.createElement("Panel", {
+        id: "RewardList"
+      }, _el$15),
+      _el$17 = libs.createElement("Panel", {
+        "class": "SectionTitleRow"
+      }, _el$16);
+      libs.createElement("Image", {
+        "class": "TitleIcon"
+      }, _el$17);
+      const _el$19 = libs.createElement("Label", {
+        "class": "SectionTitle",
+        get text() {
+          return GetLocalization("#HuntBossSettle_Rewards");
+        }
+      }, _el$17);
+      libs.createElement("Panel", {
+        "class": "SectionLine"
+      }, _el$17);
+      const _el$21 = libs.createElement("Panel", {
+        id: "RewardItemList",
+        scroll: "y"
+      }, _el$16);
+    libs.insert(_el$13, libs.createComponent(portraitsFullBodyLoadout.PortraitsFullBodyLoadout, {
+      get unit() {
+        return heroName();
+      },
+      camera: "endscreen"
+    }));
+    libs.setProp(_el$21, "scroll", "y");
+    libs.insert(_el$21, libs.createComponent(libs.Show, {
+      get when() {
+        return rewards().length > 0;
+      },
+      get fallback() {
+        return (() => {
+          const _el$22 = libs.createElement("Label", {
+            id: "HuntBossRewardEmpty",
+            get text() {
+              return GetLocalization(activeRewardSnapshot() === undefined ? "#HuntBossSettle_RewardsPending" : "#HuntBossSettle_NoRewards");
+            }
+          }, null);
+          libs.effect(_$p => libs.setProp(_el$22, "text", GetLocalization(activeRewardSnapshot() === undefined ? "#HuntBossSettle_RewardsPending" : "#HuntBossSettle_NoRewards"), _$p));
+          return _el$22;
+        })();
+      },
+      get children() {
+        return libs.createComponent(libs.For, {
+          get each() {
+            return rewards();
+          },
+          children: (reward, index) => (() => {
+            const _el$23 = libs.createElement("Panel", {
+              "class": "HuntBossSummaryRewardCard",
+              get style() {
+                return {
+                  animationDelay: 0.5 + index() * 0.3 + "s"
+                };
+              }
+            }, null);
+            libs.insert(_el$23, libs.createComponent(server_huntloot.Huntloot, libs.mergeProps$1(reward, {
+              panelClass: "HuntBossSummaryReward",
+              tooltipData: reward
+            })));
+            libs.effect(_$p => libs.setProp(_el$23, "style", {
+              animationDelay: 0.5 + index() * 0.3 + "s"
+            }, _$p));
+            return _el$23;
+          })()
+        });
+      }
+    }));
+    libs.insert(_el$5, libs.createComponent(libs.Show, {
+      get when() {
+        return !props.personal;
+      },
+      get children() {
+        return libs.createComponent(EOM_ImageNumber.EOM_ImageNumber, {
+          id: "CountDown",
+          type: "5",
+          get value() {
+            return countDown();
+          }
+        });
+      }
+    }), null);
+    libs.insert(_el$2, libs.createComponent(libs.Show, {
+      get when() {
+        return props.personal;
+      },
+      get children() {
+        return libs.createComponent(EOM_Button.EOM_CloseButton, {
+          id: "HuntBossSummaryClose",
+          get tooltip_text() {
+            return GetLocalization("#HuntBossSettle_Close");
+          },
+          onactivate: () => props.onClose()
+        });
+      }
+    }), null);
+    libs.effect(_p$ => {
+      const _v$ = libs.classNames({
+          HuntBossDefeat: !isVictory(),
+          HuntBossStageSummaryVisible: props.visible
+        }),
+        _v$2 = GetLocalization("#HuntBossSettle_Title"),
+        _v$3 = LocalizeWithVars("#HuntBossHudLevel", {
+          level: level()
+        }),
+        _v$4 = statusText(),
+        _v$5 = GetLocalization("#HuntBossSettle_Rewards");
+      _v$ !== _p$._v$ && (_p$._v$ = libs.setProp(_el$, "class", _v$, _p$._v$));
+      _v$2 !== _p$._v$2 && (_p$._v$2 = libs.setProp(_el$0, "text", _v$2, _p$._v$2));
+      _v$3 !== _p$._v$3 && (_p$._v$3 = libs.setProp(_el$11, "text", _v$3, _p$._v$3));
+      _v$4 !== _p$._v$4 && (_p$._v$4 = libs.setProp(_el$12, "text", _v$4, _p$._v$4));
+      _v$5 !== _p$._v$5 && (_p$._v$5 = libs.setProp(_el$19, "text", _v$5, _p$._v$5));
+      return _p$;
+    }, {
+      _v$: undefined,
+      _v$2: undefined,
+      _v$3: undefined,
+      _v$4: undefined,
+      _v$5: undefined
+    });
+    return _el$;
+  })();
+};
+
 const QUESTIONNAIRE_COMPLETED_COUNTER = "questionnaire_completed";
 const EndScreen = () => {
   const gameState = solid_utils.createNetDataSignal("common", "game_state");
   const loginState = solid_utils.createNetDataSignal("common", "login_state", {});
   const lastEndScreenMeta = solid_utils.createNetDataSignal("common", "last_end_screen_meta");
+  const gameModeState = solid_utils.createNetDataSignal("common", "game_mode_state");
+  const lastHuntEndMeta = solid_utils.createPlayerNetDataSignal("player_data", "last_hunt_end_meta");
   const playerCounters = solid_utils.createServiceNetData("player_counters", {});
   const [show, setShow] = solid_utils.createToggleWindowSignal("MenuButton_endscreen", gameState()?.state == "GameState_Settle", {
     ignoreOtherWindows: true
   });
-  const summaryMode = libs.createMemo(() => lastEndScreenMeta()?.mode);
+  const personalHuntMeta = libs.createMemo(() => {
+    const personal = lastHuntEndMeta();
+    const global = lastEndScreenMeta();
+    const state = gameState()?.state;
+    const isHunting = (state === "GameState_Dungeon" || state === "GameState_Settle") && gameModeState()?.activeModeId === "hunt_boss";
+    const isCurrent = isHunting || state !== "GameState_Dungeon" && global?.mode === "hunt_boss" && global.snapshot_id === personal?.snapshot_id;
+    return personal?.mode === "hunt_boss" && isCurrent ? personal : undefined;
+  });
+  const summaryMode = libs.createMemo(() => personalHuntMeta()?.mode ?? lastEndScreenMeta()?.mode);
+  const huntSummaryMeta = libs.createMemo(() => personalHuntMeta() ?? (lastEndScreenMeta()?.mode === "hunt_boss" ? lastEndScreenMeta() : undefined));
+  const shownHuntSnapshots = new Set();
   const questionnaireCompleted = libs.createMemo(() => {
     return toFiniteNumber(playerCounters()[QUESTIONNAIRE_COMPLETED_COUNTER]?.count, 0) > 0;
   });
   let questionnaireShown = false;
   let questionnaireSchedule;
-  libs.createEffect(libs.on(() => gameState()?.state, state => {
-    if (state == "GameState_Settle") {
+  const closeAbyssalEndScreen = () => {
+    console.log("[EndScreen] abyssal settlement countdown elapsed; hiding end screen.");
+    setShow(false);
+    ToggleWindow("MenuButton_endscreen", false);
+  };
+  const closeHuntEndScreen = () => {
+    console.log(`[EndScreen] hunt closed snapshot=${huntSummaryMeta()?.snapshot_id ?? "none"} personal=${personalHuntMeta() !== undefined}`);
+    setShow(false);
+    ToggleWindow("MenuButton_endscreen", false);
+  };
+  libs.createEffect(libs.on(() => [gameState()?.state, summaryMode(), huntSummaryMeta()?.snapshot_id, personalHuntMeta() !== undefined], ([state, mode, snapshotID, personal]) => {
+    console.log(`[EndScreen] transition state=${state ?? "none"} mode=${mode ?? "none"} huntSnapshot=${snapshotID ?? "none"} personal=${personal} alreadyShown=${snapshotID !== undefined && shownHuntSnapshots.has(snapshotID)}`);
+    if (state === "GameState_Dungeon" && personal || state === "GameState_Settle" && mode === "hunt_boss") {
+      if (snapshotID === undefined || shownHuntSnapshots.has(snapshotID)) return;
+      shownHuntSnapshots.add(snapshotID);
+      setShow(true);
+      ToggleWindow("MenuButton_endscreen", true);
+    } else if (state == "GameState_Settle") {
       setShow(true);
       ToggleWindow("MenuButton_endscreen", true);
     } else if (state == "GameState_Prepare") {
@@ -2657,6 +2951,9 @@ const EndScreen = () => {
       setShow(false);
     }
   }));
+  libs.createEffect(() => {
+    console.log(`[EndScreen] visible=${show()} mode=${summaryMode() ?? "none"} globalSnapshot=${lastEndScreenMeta()?.snapshot_id ?? "none"} personalSnapshot=${lastHuntEndMeta()?.snapshot_id ?? "none"}`);
+  });
   const shouldShowQuestionnaire = () => {
     const localPlayerID = Players.GetLocalPlayer();
     return gameState()?.state == "GameState_Settle" && loginState()?.[localPlayerID]?.state == PlayerLoginState.Success && !questionnaireCompleted() && !questionnaireShown;
@@ -2699,7 +2996,8 @@ const EndScreen = () => {
         return libs.createComponent(Abyssal, {
           get visible() {
             return show();
-          }
+          },
+          onCountdownElapsed: closeAbyssalEndScreen
         });
       }
     }), null);
@@ -2712,6 +3010,25 @@ const EndScreen = () => {
           get visible() {
             return show();
           }
+        });
+      }
+    }), null);
+    libs.insert(_el$, libs.createComponent(libs.Show, {
+      get when() {
+        return summaryMode() == "hunt_boss";
+      },
+      get children() {
+        return libs.createComponent(HuntBossSummary, {
+          get visible() {
+            return show();
+          },
+          get meta() {
+            return huntSummaryMeta();
+          },
+          get personal() {
+            return personalHuntMeta() !== undefined;
+          },
+          onClose: closeHuntEndScreen
         });
       }
     }), null);

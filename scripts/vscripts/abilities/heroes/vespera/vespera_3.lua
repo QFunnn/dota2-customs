@@ -33,23 +33,26 @@ function o.prototype.OnSpellStart(self)
 	p:EmitSound("Hero_TemplarAssassin.Meld")
 	local q = self:GetSpecialValueFor("duration")
 	p:AddNewModifier(p, self, "modifier_vespera_3_buff", { duration = q })
-	p:AddNewModifier(
+	local r = p:AddNewModifier(
 		p,
 		self,
 		"modifier_vespera_3_movespeed",
 		{ duration = self:GetSpecialValueFor("movespeed_duration") }
 	)
-	local r = self:GetSpecialValueFor("image_duration")
-	if r > 0 then
-		local s = p:SummonUnit("vespera_dummy", p:GetAbsOrigin(), r)
-		if s ~= nil then
-			s:AddNewModifier(p, self, "modifier_vespera_upgrade_24", { duration = r })
+	if IsValid(r) then
+		self:SetFrozenCooldown(true, r:GetRemainingTime())
+	end
+	local s = self:GetSpecialValueFor("image_duration")
+	if s > 0 then
+		local t = p:SummonUnit("vespera_dummy", p:GetAbsOrigin(), s)
+		if t ~= nil then
+			t:AddNewModifier(p, self, "modifier_vespera_upgrade_24", { duration = s })
 		end
-		local t = FindEnemiesInRadius(p, p:GetAbsOrigin(), 900)
-		for u, v in ipairs(t) do
-			if BehaviorTree:GetTarget(v) == p then
-				BehaviorTree:ClearTarget(v)
-				v:Stop()
+		local u = FindEnemiesInRadius(p, p:GetAbsOrigin(), 900)
+		for v, w in ipairs(u) do
+			if BehaviorTree:GetTarget(w) == p then
+				BehaviorTree:ClearTarget(w)
+				w:Stop()
 			end
 		end
 	end
@@ -57,66 +60,66 @@ end
 o = e(
 	{
 		n(nil, {
-			funcCondition = function(w, x)
-				local y = DungeonManager:GetCurrentRoom()
+			funcCondition = function(x, y)
+				local z = DungeonManager:GetCurrentRoom()
 				if Demo.force_dash_auto_cast then
-					return Demo:CanForceDefenseAutoCast(x)
+					return Demo:CanForceDefenseAutoCast(y)
 				end
-				local z = x:GetAutoCastState()
-				if z then
-					local A = y and y:IsCombatRoom() and not y:IsCombatEnd() or AbyssalHordeManager:IsRunning()
-					if not A then
-						local B = DungeonAdventure
-						local C = DungeonAdventure.IsPlayerInRunningAdventure
-						local D = x:GetCaster()
-						A = C(B, D and D:GetPlayerOwnerID())
+				local A = y:GetAutoCastState()
+				if A then
+					local B = z and z:IsCombatRoom() and not z:IsCombatEnd() or AbyssalHordeManager:IsRunning()
+					if not B then
+						local C = DungeonAdventure
+						local D = DungeonAdventure.IsPlayerInRunningAdventure
+						local E = y:GetCaster()
+						B = D(C, E and E:GetPlayerOwnerID())
 					end
-					z = A
+					A = B
 				end
-				return z
+				return A
 			end,
 		}),
 	},
 	o
 )
-local E = c()
-E.name = "modifier_vespera_3_buff"
-d(E, h)
-function E.prototype.OnCreated(self, F)
+local F = c()
+F.name = "modifier_vespera_3_buff"
+d(F, h)
+function F.prototype.OnCreated(self, G)
 	if IsClient() then
-		local G = self:GetParent()
-		local H = ParticleManager:CreateParticle(
+		local H = self:GetParent()
+		local I = ParticleManager:CreateParticle(
 			"particles/units/heroes/hero_phantom_assassin/phantom_assassin_2_fx_shanbi_01.vpcf",
 			PATTACH_ABSORIGIN_FOLLOW,
-			G
+			H
 		)
-		ParticleManager:SetParticleControlEnt(H, 1, G, PATTACH_ABSORIGIN, nil, G:GetAbsOrigin(), true)
-		self:AddParticle(H, false, false, -1, false, false)
-		local I = ParticleManager:CreateParticle(
+		ParticleManager:SetParticleControlEnt(I, 1, H, PATTACH_ABSORIGIN, nil, H:GetAbsOrigin(), true)
+		self:AddParticle(I, false, false, -1, false, false)
+		local J = ParticleManager:CreateParticle(
 			"particles/status_fx/status_effect_phantom_assassin_active_blur.vpcf",
 			PATTACH_INVALID,
-			G
+			H
 		)
-		self:AddParticle(I, false, true, -1, false, false)
+		self:AddParticle(J, false, true, -1, false, false)
 	end
 end
-function E.prototype.OnDestroy(self)
+function F.prototype.OnDestroy(self)
 	if IsServer() then
 		self:GetParent():AddShield(self:GetAbilitySpecialValueFor("shield"), "vespera_upgrade_15")
 	end
 end
-function E.prototype.CheckState(self)
+function F.prototype.CheckState(self)
 	return { [MODIFIER_STATE_NO_UNIT_COLLISION] = true }
 end
-function E.prototype.StaticProperty(self)
+function F.prototype.StaticProperty(self)
 	return { [PropertyFunction.AVOID_DAMAGE] = 1, [PropertyFunction.ATTACK] = self.effect_attack }
 end
-function E.prototype.StaticState(self)
+function F.prototype.StaticState(self)
 	return { [StateEnum.NO_HEALTH_BAR] = true, [StateEnum.STUN_IMMUNE] = true, [StateEnum.KNOCKBACK_IMMUNE] = true }
 end
-e({ m(nil) }, E.prototype, "effect_attack", nil)
-e({ m(nil) }, E.prototype, "reduce_damage", nil)
-E = e(
+e({ m(nil) }, F.prototype, "effect_attack", nil)
+e({ m(nil) }, F.prototype, "reduce_damage", nil)
+F = e(
 	{
 		i(
 			a,
@@ -130,33 +133,32 @@ E = e(
 			}
 		),
 	},
-	E
+	F
 )
-local J = c()
-J.name = "modifier_vespera_3_movespeed"
-d(J, h)
-function J.prototype.GetAbilitySpecialValue(self)
+local K = c()
+K.name = "modifier_vespera_3_movespeed"
+d(K, h)
+function K.prototype.GetAbilitySpecialValue(self)
 	self.movespeed = self:GetAbilitySpecialValueFor("movespeed")
 	self.evade = self:GetAbilitySpecialValueFor("evade")
 	self.snow_ball_interval = self:GetAbilitySpecialValueFor("snow_ball_interval")
 	self.snow_ball_frozen = self:GetAbilitySpecialValueFor("snow_ball_frozen")
 	self.snow_ball_damage = self:GetAbilitySpecialValueFor("snow_ball_damage")
 end
-function J.prototype.OnCreated(self, F)
+function K.prototype.OnCreated(self, G)
 	if IsServer() then
-		self:GetAbility():SetFrozenCooldown(true)
 		self:IncrementStackCount()
-		local G = self:GetParent()
-		if G:HasAbilityUpgrade("vespera_upgrade_5") then
-			local x = G:GetAbilityByTag(AbilityTag.Attack)
-			x:CuttingStorm(G, 1)
+		local H = self:GetParent()
+		if H:HasAbilityUpgrade("vespera_upgrade_5") then
+			local y = H:GetAbilityByTag(AbilityTag.Attack)
+			y:CuttingStorm(H, 1)
 		end
-		if G:HasAbilityUpgrade("vespera_upgrade_26") then
-			local K = self:GetAbilitySpecialValueFor("suriken_interval")
-			if K > 0 then
-				self:ThrowSuriken(G)
-				self:StartThink(K, "vespera_upgrade_26", function()
-					self:ThrowSuriken(G)
+		if H:HasAbilityUpgrade("vespera_upgrade_26") then
+			local L = self:GetAbilitySpecialValueFor("suriken_interval")
+			if L > 0 then
+				self:ThrowSuriken(H)
+				self:StartThink(L, "vespera_upgrade_26", function()
+					self:ThrowSuriken(H)
 				end)
 			end
 		end
@@ -165,47 +167,42 @@ function J.prototype.OnCreated(self, F)
 		end
 	end
 end
-function J.prototype.ThrowSuriken(self, G)
-	local x = G:GetAbilityByTag(AbilityTag.Skill)
-	if not IsValid(x) then
+function K.prototype.ThrowSuriken(self, H)
+	local y = H:GetAbilityByTag(AbilityTag.Skill)
+	if not IsValid(y) then
 		return
 	end
-	local t = FindEnemiesInRadius(G, G:GetAbsOrigin(), x:GetSpecialValueFor("distance"), FIND_CLOSEST)
-	local L = t[1]
-	local M = IsValid(L) and L:GetAbsOrigin() or G:GetAbsOrigin() + G:GetForwardVector() * 100
-	x:SurikenToss({ castPosition = M })
-	Event:Fire("ability_cast_complete", { ability = x, caster = G, position = M, abilityTag = x:GetAbilityTag() })
+	local u = FindEnemiesInRadius(H, H:GetAbsOrigin(), y:GetSpecialValueFor("distance"), FIND_CLOSEST)
+	local M = u[1]
+	local N = IsValid(M) and M:GetAbsOrigin() or H:GetAbsOrigin() + H:GetForwardVector() * 100
+	y:SurikenToss({ castPosition = N })
+	Event:Fire("ability_cast_complete", { ability = y, caster = H, position = N, abilityTag = y:GetAbilityTag() })
 end
-function J.prototype.OnDestroy(self)
-	if IsServer() then
-		self:GetAbility():SetFrozenCooldown(false)
+function K.prototype.OnIntervalThink(self)
+	local H = self:GetParent()
+	local u = FindEnemiesInRadius(H, H:GetAbsOrigin(), 900)
+	local M = GetRandomElement(u)
+	if IsValid(M) then
+		H:ThrowSnowball(M, nil, self.snow_ball_frozen, self.snow_ball_damage)
 	end
 end
-function J.prototype.OnIntervalThink(self)
-	local G = self:GetParent()
-	local t = FindEnemiesInRadius(G, G:GetAbsOrigin(), 900)
-	local L = GetRandomElement(t)
-	if IsValid(L) then
-		G:ThrowSnowball(L, nil, self.snow_ball_frozen, self.snow_ball_damage)
-	end
-end
-function J.prototype.DeclareFunctions(self)
+function K.prototype.DeclareFunctions(self)
 	return {}
 end
-function J.prototype.GetActivityTranslationModifiers(self)
+function K.prototype.GetActivityTranslationModifiers(self)
 	return "haste"
 end
-function J.prototype.StaticProperty(self)
+function K.prototype.StaticProperty(self)
 	return { [PropertyFunction.EVASION] = self.evade, [PropertyFunction.MOVESPEED] = self.movespeed }
 end
-function J.prototype.DynamicProperty(self)
+function K.prototype.DynamicProperty(self)
 	return {
 		[PropertyFunction.ATTACK] = function()
 			return self:GetAbilitySpecialValueFor("attack_bonus")
 		end,
 	}
 end
-J = e(
+K = e(
 	{
 		i(
 			a,
@@ -219,50 +216,50 @@ J = e(
 			}
 		),
 	},
-	J
+	K
 )
-local N = c()
-N.name = "modifier_vespera_upgrade_24"
-d(N, h)
-function N.prototype.GetAbilitySpecialValue(self) end
-function N.prototype.OnCreated(self, F)
+local O = c()
+O.name = "modifier_vespera_upgrade_24"
+d(O, h)
+function O.prototype.GetAbilitySpecialValue(self) end
+function O.prototype.OnCreated(self, G)
 	local p = self:GetCaster()
 	if IsClient() then
-		local O = ParticleManager:CreateParticle(
+		local P = ParticleManager:CreateParticle(
 			"particles/units/heroes/hero_phantom_assassin/remnant_dummy.vpcf",
 			PATTACH_ABSORIGIN,
 			p
 		)
-		self:AddParticle(O, false, false, -1, false, false)
+		self:AddParticle(P, false, false, -1, false, false)
 	end
 end
-function N.prototype.CheckState(self)
+function O.prototype.CheckState(self)
 	return { [MODIFIER_STATE_NO_UNIT_COLLISION] = true }
 end
-function N.prototype.StaticProperty(self)
+function O.prototype.StaticProperty(self)
 	return { [PropertyFunction.AVOID_DAMAGE] = 1 }
 end
-function N.prototype.StaticState(self)
+function O.prototype.StaticState(self)
 	return { [StateEnum.NO_HEALTH_BAR] = true }
 end
-function N.prototype.OnDestroy(self)
+function O.prototype.OnDestroy(self)
 	if IsServer() then
 		local p = self:GetCaster()
-		local G = self:GetParent()
+		local H = self:GetParent()
 		if IsValid(p) then
-			local x = p:GetAbilityByTag(AbilityTag.Attack)
-			if IsValid(x) then
-				x:CuttingStorm(G:GetAbsOrigin() + Vector(0, 0, 100), self:GetAbilitySpecialValueFor("aoe_image_factor"))
+			local y = p:GetAbilityByTag(AbilityTag.Attack)
+			if IsValid(y) then
+				y:CuttingStorm(H:GetAbsOrigin() + Vector(0, 0, 100), self:GetAbilitySpecialValueFor("aoe_image_factor"))
 			end
 		end
-		G:RemoveSelf()
+		H:RemoveSelf()
 	end
 end
-N = e(
+O = e(
 	{ i(
 		a,
 		{ IsHidden = false, IsDebuff = false, IsPurgable = false, IsPurgeException = false, AllowIllusionDuplicate = false }
 	) },
-	N
+	O
 )
 return f

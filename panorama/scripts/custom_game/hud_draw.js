@@ -333,11 +333,7 @@ function DrawPage() {
     return data?.[rarity] ?? 0;
   });
   const luckyPercent = () => luckyValue() / Math.max(1, poolConfig().q5_must);
-  let refBGScene;
   libs.createEffect(libs.on(selectedPool, pool => {
-    if (refBGScene?.IsValid()) {
-      refBGScene.ReloadScene();
-    }
   }));
   let PoolMenu;
   const debugItems = [{
@@ -678,16 +674,16 @@ function DrawPage() {
     },
     get backgroundChildren() {
       return (() => {
-        const _el$50 = libs.createElement("Panel", {
+        const _el$49 = libs.createElement("Panel", {
             "class": "HudBG"
           }, null);
           libs.createElement("Panel", {
             "class": "Background"
-          }, _el$50);
+          }, _el$49);
           libs.createElement("Panel", {
             "class": "Background2"
-          }, _el$50);
-        return _el$50;
+          }, _el$49);
+        return _el$49;
       })();
     },
     close: () => {
@@ -773,7 +769,7 @@ function DrawPage() {
                 const fxTime = 0.25;
                 const interval = 0;
                 return (() => {
-                  const _el$53 = libs.createElement("Panel", {
+                  const _el$52 = libs.createElement("Panel", {
                       get id() {
                         return `${selectedPool()}_${idx()}`;
                       },
@@ -781,14 +777,14 @@ function DrawPage() {
                         return libs.classNames("HeroWithShowFx", `ModelIndex_${idx()}`);
                       }
                     }, null),
-                    _el$54 = libs.createElement("DOTAParticleScenePanel", {
+                    _el$53 = libs.createElement("DOTAParticleScenePanel", {
                       id: "ShowFx",
                       particleName: "particles/ui/lottery/ui_lottery_back_appear_fx.vpcf",
                       cameraOrigin: "0 0 380",
                       lookAt: "0 0 0",
                       fov: 90,
                       hittest: false
-                    }, _el$53);
+                    }, _el$52);
                   libs.use(p => {
                     p.SetControlPoint(1, -200, 0, 0);
                     $.Schedule((duration + interval) * idx(), () => {
@@ -798,8 +794,8 @@ function DrawPage() {
                         Game.EmitSound("UI.Draw.Fall");
                       }
                     });
-                  }, _el$54);
-                  libs.insert(_el$53, libs.createComponent(portraitsFullBodyLoadout.PortraitsFullBodyLoadout, {
+                  }, _el$53);
+                  libs.insert(_el$52, libs.createComponent(portraitsFullBodyLoadout.PortraitsFullBodyLoadout, {
                     id: "HeroModelScene",
                     unit: hero,
                     get style() {
@@ -813,14 +809,14 @@ function DrawPage() {
                   libs.effect(_p$ => {
                     const _v$12 = `${selectedPool()}_${idx()}`,
                       _v$13 = libs.classNames("HeroWithShowFx", `ModelIndex_${idx()}`);
-                    _v$12 !== _p$._v$12 && (_p$._v$12 = libs.setProp(_el$53, "id", _v$12, _p$._v$12));
-                    _v$13 !== _p$._v$13 && (_p$._v$13 = libs.setProp(_el$53, "class", _v$13, _p$._v$13));
+                    _v$12 !== _p$._v$12 && (_p$._v$12 = libs.setProp(_el$52, "id", _v$12, _p$._v$12));
+                    _v$13 !== _p$._v$13 && (_p$._v$13 = libs.setProp(_el$52, "class", _v$13, _p$._v$13));
                     return _p$;
                   }, {
                     _v$12: undefined,
                     _v$13: undefined
                   });
-                  return _el$53;
+                  return _el$52;
                 })();
               }
             });
@@ -850,7 +846,7 @@ function DrawPage() {
             const courierKV = KeyValues.courier[courierID];
             if (courierKV == undefined) return;
             return (() => {
-              const _el$55 = libs.createElement("Panel", {
+              const _el$54 = libs.createElement("Panel", {
                   get id() {
                     return `${selectedPool()}_${idx()}`;
                   },
@@ -858,14 +854,14 @@ function DrawPage() {
                     return libs.classNames("CourierWithShowFx", `ModelIndex_${idx()}`);
                   }
                 }, null),
-                _el$56 = libs.createElement("DOTAParticleScenePanel", {
+                _el$55 = libs.createElement("DOTAParticleScenePanel", {
                   id: "ShowFx",
                   particleName: "particles/ui/lottery/ui_lottery_back_appear_fx.vpcf",
                   cameraOrigin: "0 0 500",
                   lookAt: "0 0 0",
                   fov: 90,
                   hittest: false
-                }, _el$55);
+                }, _el$54);
               libs.use(p => {
                 p.SetControlPoint(1, -200, 0, 0);
                 $.Schedule((duration + interval) * idx(), () => {
@@ -875,8 +871,8 @@ function DrawPage() {
                     Game.EmitSound("UI.Draw.Fall");
                   }
                 });
-              }, _el$56);
-              libs.insert(_el$55, libs.createComponent(portraitsCourier.PortraitsCourier, {
+              }, _el$55);
+              libs.insert(_el$54, libs.createComponent(portraitsCourier.PortraitsCourier, {
                 id: "CourierPreview",
                 courier_id: courierID,
                 scale: scale ?? 1,
@@ -891,14 +887,14 @@ function DrawPage() {
               libs.effect(_p$ => {
                 const _v$14 = `${selectedPool()}_${idx()}`,
                   _v$15 = libs.classNames("CourierWithShowFx", `ModelIndex_${idx()}`);
-                _v$14 !== _p$._v$14 && (_p$._v$14 = libs.setProp(_el$55, "id", _v$14, _p$._v$14));
-                _v$15 !== _p$._v$15 && (_p$._v$15 = libs.setProp(_el$55, "class", _v$15, _p$._v$15));
+                _v$14 !== _p$._v$14 && (_p$._v$14 = libs.setProp(_el$54, "id", _v$14, _p$._v$14));
+                _v$15 !== _p$._v$15 && (_p$._v$15 = libs.setProp(_el$54, "class", _v$15, _p$._v$15));
                 return _p$;
               }, {
                 _v$14: undefined,
                 _v$15: undefined
               });
-              return _el$55;
+              return _el$54;
             })();
           }
         }), null);
@@ -926,7 +922,7 @@ function DrawPage() {
             const weaponKV = KeyValues.weapon[weaponID];
             if (weaponKV == undefined) return;
             return (() => {
-              const _el$57 = libs.createElement("Panel", {
+              const _el$56 = libs.createElement("Panel", {
                 get id() {
                   return `${selectedPool()}_${idx()}`;
                 },
@@ -934,7 +930,7 @@ function DrawPage() {
                   return libs.classNames("WeaponWithShowFx", `ModelIndex_${idx()}`);
                 }
               }, null);
-              libs.insert(_el$57, libs.createComponent(weapon3DPreview.Weapon3DPreview, {
+              libs.insert(_el$56, libs.createComponent(weapon3DPreview.Weapon3DPreview, {
                 id: "WeaponPreview",
                 get model() {
                   return weaponKV.model;
@@ -952,14 +948,14 @@ function DrawPage() {
               libs.effect(_p$ => {
                 const _v$16 = `${selectedPool()}_${idx()}`,
                   _v$17 = libs.classNames("WeaponWithShowFx", `ModelIndex_${idx()}`);
-                _v$16 !== _p$._v$16 && (_p$._v$16 = libs.setProp(_el$57, "id", _v$16, _p$._v$16));
-                _v$17 !== _p$._v$17 && (_p$._v$17 = libs.setProp(_el$57, "class", _v$17, _p$._v$17));
+                _v$16 !== _p$._v$16 && (_p$._v$16 = libs.setProp(_el$56, "id", _v$16, _p$._v$16));
+                _v$17 !== _p$._v$17 && (_p$._v$17 = libs.setProp(_el$56, "class", _v$17, _p$._v$17));
                 return _p$;
               }, {
                 _v$16: undefined,
                 _v$17: undefined
               });
-              return _el$57;
+              return _el$56;
             })();
           }
         }), null);
@@ -976,25 +972,13 @@ function DrawPage() {
         particleonly: false,
         hittest: false
       }, null), (() => {
-        const _el$18 = libs.createElement("DOTAParticleScenePanel", {
-          id: "BGScene",
-          particleName: "particles/ui/lottery/ui_lottery_back_fx.vpcf",
-          cameraOrigin: "0 0 500",
-          lookAt: "0 0 0",
-          fov: 90,
-          hittest: false
-        }, null);
-        const _ref$ = refBGScene;
-        typeof _ref$ === "function" ? libs.use(_ref$, _el$18) : refBGScene = _el$18;
-        return _el$18;
-      })(), (() => {
-        const _el$19 = libs.createElement("Panel", {
+        const _el$18 = libs.createElement("Panel", {
             id: "AspectAdpater",
             hittest: false
           }, null),
-          _el$20 = libs.createElement("Panel", {
+          _el$19 = libs.createElement("Panel", {
             id: "PoolNameContainer"
-          }, _el$19);
+          }, _el$18);
           libs.createElement("DOTAParticleScenePanel", {
             id: "PoolNameParticle",
             particleName: "particles/ui/game/ui_game_fx_chouka_huoyan_03k.vpcf",
@@ -1003,30 +987,30 @@ function DrawPage() {
             lookAt: "0 0 0",
             hittest: false,
             squarePixels: true
-          }, _el$20);
-          const _el$22 = libs.createElement("Image", {
+          }, _el$19);
+          const _el$21 = libs.createElement("Image", {
             id: "PoolName",
             get src() {
               return `file://{images}/custom_game/draw/${selectedPool()}/title_${Language()}.png`;
             }
-          }, _el$20),
-          _el$23 = libs.createElement("Panel", {
+          }, _el$19),
+          _el$22 = libs.createElement("Panel", {
             id: "DescAndInfo",
             hittest: false
-          }, _el$19);
+          }, _el$18);
           libs.createElement("Panel", {
             id: "InfoBG"
-          }, _el$23);
-          const _el$25 = libs.createElement("Image", {
+          }, _el$22);
+          const _el$24 = libs.createElement("Image", {
             id: "Info"
-          }, _el$23),
-          _el$26 = libs.createElement("Label", {
+          }, _el$22),
+          _el$25 = libs.createElement("Label", {
             id: "PoolDesc",
             get text() {
               return `#Draw_PoolRibbon_${selectedPool()}`;
             }
-          }, _el$23),
-          _el$27 = libs.createElement("Panel", {
+          }, _el$22),
+          _el$26 = libs.createElement("Panel", {
             id: "LeftPanel",
             get ["class"]() {
               return libs.classNames({
@@ -1034,12 +1018,12 @@ function DrawPage() {
               });
             },
             hittest: false
-          }, _el$19),
-          _el$28 = libs.createElement("Panel", {
+          }, _el$18),
+          _el$27 = libs.createElement("Panel", {
             id: "PoolMenu",
             hittest: false
-          }, _el$27),
-          _el$29 = libs.createElement("Panel", {
+          }, _el$26),
+          _el$28 = libs.createElement("Panel", {
             id: "BottomPanel",
             get ["class"]() {
               return libs.classNames({
@@ -1047,8 +1031,8 @@ function DrawPage() {
               });
             },
             hittest: false
-          }, _el$19),
-          _el$43 = libs.createElement("Panel", {
+          }, _el$18),
+          _el$42 = libs.createElement("Panel", {
             id: "DrawResultWindow",
             get ["class"]() {
               return libs.classNames({
@@ -1058,13 +1042,13 @@ function DrawPage() {
             get hittest() {
               return drawState() >= EDrawState.result_flip;
             }
-          }, _el$29),
-          _el$48 = libs.createElement("Panel", {
+          }, _el$28),
+          _el$47 = libs.createElement("Panel", {
             "class": "DrawButtonList"
-          }, _el$29);
-        const _ref$2 = PoolMenu;
-        typeof _ref$2 === "function" ? libs.use(_ref$2, _el$28) : PoolMenu = _el$28;
-        libs.insert(_el$28, libs.createComponent(libs.For, {
+          }, _el$28);
+        const _ref$ = PoolMenu;
+        typeof _ref$ === "function" ? libs.use(_ref$, _el$27) : PoolMenu = _el$27;
+        libs.insert(_el$27, libs.createComponent(libs.For, {
           each: PoolIDList,
           children: poolID => {
             const inToolMode = Game.IsInToolsMode();
@@ -1087,24 +1071,24 @@ function DrawPage() {
                 },
                 get children() {
                   return [(() => {
-                    const _el$58 = libs.createElement("Panel", {
+                    const _el$57 = libs.createElement("Panel", {
                         id: "PoolMenuCard"
                       }, null),
-                      _el$59 = libs.createElement("Image", {
+                      _el$58 = libs.createElement("Image", {
                         id: "BG",
                         get src() {
                           return getSrcPath(`draw/${poolID}/tab_button.png`);
                         }
-                      }, _el$58),
-                      _el$60 = libs.createElement("Image", {
+                      }, _el$57),
+                      _el$59 = libs.createElement("Image", {
                         id: "SelectedMark"
-                      }, _el$58),
-                      _el$61 = libs.createElement("Label", {
+                      }, _el$57),
+                      _el$60 = libs.createElement("Label", {
                         id: "Title",
                         text: "#Draw_PoolName_" + poolID
-                      }, _el$58);
-                    libs.setProp(_el$61, "text", "#Draw_PoolName_" + poolID);
-                    libs.insert(_el$58, libs.createComponent(libs.Show, {
+                      }, _el$57);
+                    libs.setProp(_el$60, "text", "#Draw_PoolName_" + poolID);
+                    libs.insert(_el$57, libs.createComponent(libs.Show, {
                       get when() {
                         return config.end_time;
                       },
@@ -1122,14 +1106,14 @@ function DrawPage() {
                         _v$19 = {
                           Show: selectedPool() == poolID
                         };
-                      _v$18 !== _p$._v$18 && (_p$._v$18 = libs.setProp(_el$59, "src", _v$18, _p$._v$18));
-                      _v$19 !== _p$._v$19 && (_p$._v$19 = libs.setProp(_el$60, "classList", _v$19, _p$._v$19));
+                      _v$18 !== _p$._v$18 && (_p$._v$18 = libs.setProp(_el$58, "src", _v$18, _p$._v$18));
+                      _v$19 !== _p$._v$19 && (_p$._v$19 = libs.setProp(_el$59, "classList", _v$19, _p$._v$19));
                       return _p$;
                     }, {
                       _v$18: undefined,
                       _v$19: undefined
                     });
-                    return _el$58;
+                    return _el$57;
                   })(), libs.createComponent(libs.Show, {
                     get when() {
                       return isPoolNew(poolID);
@@ -1141,25 +1125,25 @@ function DrawPage() {
                       }, null);
                     }
                   }), (() => {
-                    const _el$63 = libs.createElement("Panel", {
+                    const _el$62 = libs.createElement("Panel", {
                       id: "AbyssTag"
                     }, null);
-                    libs.effect(_$p => libs.setProp(_el$63, "visible", config.end_time != 0, _$p));
-                    return _el$63;
+                    libs.effect(_$p => libs.setProp(_el$62, "visible", config.end_time != 0, _$p));
+                    return _el$62;
                   })(), (() => {
-                    const _el$64 = libs.createElement("Label", {
+                    const _el$63 = libs.createElement("Label", {
                       id: "ToolOnly",
                       text: "ToolOnly"
                     }, null);
-                    libs.setProp(_el$64, "visible", toolOnly);
-                    return _el$64;
+                    libs.setProp(_el$63, "visible", toolOnly);
+                    return _el$63;
                   })()];
                 }
               });
             }
           }
         }));
-        libs.insert(_el$29, libs.createComponent(libs.Show, {
+        libs.insert(_el$28, libs.createComponent(libs.Show, {
           get when() {
             return poolConfig().choose == 1;
           },
@@ -1182,13 +1166,13 @@ function DrawPage() {
               },
               get children() {
                 return [(() => {
-                  const _el$30 = libs.createElement("Panel", {
+                  const _el$29 = libs.createElement("Panel", {
                       id: "WishContainer"
                     }, null),
-                    _el$31 = libs.createElement("Panel", {
+                    _el$30 = libs.createElement("Panel", {
                       id: "ClipContainer"
-                    }, _el$30);
-                  libs.insert(_el$31, () => libs.createMemo(() => {
+                    }, _el$29);
+                  libs.insert(_el$30, () => libs.createMemo(() => {
                     let localConfig = poolLocalConfig();
                     const lucky_choice = curPoolSelectLucky();
                     if (localConfig == undefined) return;
@@ -1213,19 +1197,19 @@ function DrawPage() {
                     }
                     if (src != "") {
                       return (() => {
-                        const _el$65 = libs.createElement("Image", {
+                        const _el$64 = libs.createElement("Image", {
                           get ["class"]() {
                             return classNames.join(" ");
                           },
                           src: src
                         }, null);
-                        libs.setProp(_el$65, "src", src);
-                        libs.effect(_$p => libs.setProp(_el$65, "class", classNames.join(" "), _$p));
-                        return _el$65;
+                        libs.setProp(_el$64, "src", src);
+                        libs.effect(_$p => libs.setProp(_el$64, "class", classNames.join(" "), _$p));
+                        return _el$64;
                       })();
                     }
                   }));
-                  libs.insert(_el$30, libs.createComponent(libs.Show, {
+                  libs.insert(_el$29, libs.createComponent(libs.Show, {
                     get when() {
                       return !curPoolSelectLucky();
                     },
@@ -1235,30 +1219,30 @@ function DrawPage() {
                       }, null);
                     }
                   }), null);
-                  return _el$30;
+                  return _el$29;
                 })(), (() => {
-                  const _el$33 = libs.createElement("Panel", {
+                  const _el$32 = libs.createElement("Panel", {
                       "class": "BottomArea"
                     }, null);
                     libs.createElement("Label", {
                       id: "WishLabel",
                       text: "#Draw_Wish_Button"
-                    }, _el$33);
+                    }, _el$32);
                     libs.createElement("Image", {
                       id: "RefreshIcon"
-                    }, _el$33);
-                  return _el$33;
+                    }, _el$32);
+                  return _el$32;
                 })()];
               }
             });
           }
-        }), _el$43);
-        libs.insert(_el$29, libs.createComponent(libs.Show, {
+        }), _el$42);
+        libs.insert(_el$28, libs.createComponent(libs.Show, {
           get when() {
             return poolConfig().q5_must;
           },
           get children() {
-            const _el$36 = libs.createElement("Panel", {
+            const _el$35 = libs.createElement("Panel", {
                 id: "LuckyContainer",
                 get ["class"]() {
                   return libs.classNames({
@@ -1274,30 +1258,30 @@ function DrawPage() {
                 lookAt: "0 0 0",
                 hittest: false,
                 squarePixels: true
-              }, _el$36);
-              const _el$38 = libs.createElement("Panel", {
+              }, _el$35);
+              const _el$37 = libs.createElement("Panel", {
                 id: "ProgressMask",
                 get style() {
                   return {
                     height: `${RemapValClamped(luckyPercent(), 0, 1, 25, 70)}%`
                   };
                 }
-              }, _el$36);
+              }, _el$35);
               libs.createElement("Image", {
                 scaling: "none",
                 id: "LuckyProgressImg"
-              }, _el$38);
-              const _el$40 = libs.createElement("Label", {
+              }, _el$37);
+              const _el$39 = libs.createElement("Label", {
                 id: "LuckyValue",
                 get text() {
                   return `${Round(luckyPercent() * 100, 1)}%`;
                 }
-              }, _el$36);
+              }, _el$35);
               libs.createElement("Label", {
                 id: "LuckyTitle",
                 text: "#Draw_Pool_LuckyValue"
-              }, _el$36);
-            libs.setProp(_el$36, "tooltip_text", "#Draw_Lucky_Tips");
+              }, _el$35);
+            libs.setProp(_el$35, "tooltip_text", "#Draw_Lucky_Tips");
             libs.effect(_p$ => {
               const _v$3 = libs.classNames({
                   HighLuckyValue: luckyPercent() >= 0.5
@@ -1306,19 +1290,19 @@ function DrawPage() {
                   height: `${RemapValClamped(luckyPercent(), 0, 1, 25, 70)}%`
                 },
                 _v$5 = `${Round(luckyPercent() * 100, 1)}%`;
-              _v$3 !== _p$._v$3 && (_p$._v$3 = libs.setProp(_el$36, "class", _v$3, _p$._v$3));
-              _v$4 !== _p$._v$4 && (_p$._v$4 = libs.setProp(_el$38, "style", _v$4, _p$._v$4));
-              _v$5 !== _p$._v$5 && (_p$._v$5 = libs.setProp(_el$40, "text", _v$5, _p$._v$5));
+              _v$3 !== _p$._v$3 && (_p$._v$3 = libs.setProp(_el$35, "class", _v$3, _p$._v$3));
+              _v$4 !== _p$._v$4 && (_p$._v$4 = libs.setProp(_el$37, "style", _v$4, _p$._v$4));
+              _v$5 !== _p$._v$5 && (_p$._v$5 = libs.setProp(_el$39, "text", _v$5, _p$._v$5));
               return _p$;
             }, {
               _v$3: undefined,
               _v$4: undefined,
               _v$5: undefined
             });
-            return _el$36;
+            return _el$35;
           }
-        }), _el$43);
-        libs.insert(_el$29, libs.createComponent(EOM_Button.EOM_BaseButton, {
+        }), _el$42);
+        libs.insert(_el$28, libs.createComponent(EOM_Button.EOM_BaseButton, {
           id: "ExchangeBtn",
           get visible() {
             return poolConfig().store_tag != "";
@@ -1329,13 +1313,13 @@ function DrawPage() {
               text: "#Draw_Exchange"
             }, null);
           }
-        }), _el$43);
-        libs.setProp(_el$43, "onactivate", () => {
+        }), _el$42);
+        libs.setProp(_el$42, "onactivate", () => {
           if (drawState() != EDrawState.result_flip) return;
           CancelFlip();
           SetDrawState(EDrawState.result);
         });
-        libs.insert(_el$43, libs.createComponent(libs.Show, {
+        libs.insert(_el$42, libs.createComponent(libs.Show, {
           get when() {
             return drawState() == EDrawState.waiting_circle;
           },
@@ -1345,13 +1329,13 @@ function DrawPage() {
             });
           }
         }), null);
-        libs.insert(_el$43, libs.createComponent(libs.Show, {
+        libs.insert(_el$42, libs.createComponent(libs.Show, {
           get when() {
             return drawState() >= EDrawState.result_flip;
           },
           get children() {
             return [(() => {
-              const _el$44 = libs.createElement("DOTAParticleScenePanel", {
+              const _el$43 = libs.createElement("DOTAParticleScenePanel", {
                 id: "BottomParticle",
                 particleName: "particles/ui/game/ui_game_general_special_effects_05_1_fx.vpcf",
                 cameraOrigin: "0 0 800",
@@ -1360,12 +1344,12 @@ function DrawPage() {
                 hittest: false,
                 squarePixels: true
               }, null);
-              libs.effect(_$p => libs.setProp(_el$44, "classList", {
+              libs.effect(_$p => libs.setProp(_el$43, "classList", {
                 show: (state => state == EDrawState.result)(drawState())
               }, _$p));
-              return _el$44;
+              return _el$43;
             })(), (() => {
-              const _el$45 = libs.createElement("Panel", {
+              const _el$44 = libs.createElement("Panel", {
                 id: "ResultList",
                 get ["class"]() {
                   return libs.classNames({
@@ -1373,7 +1357,7 @@ function DrawPage() {
                   });
                 }
               }, null);
-              libs.insert(_el$45, libs.createComponent(libs.Show, {
+              libs.insert(_el$44, libs.createComponent(libs.Show, {
                 get when() {
                   return resultList().length == 10;
                 },
@@ -1398,11 +1382,11 @@ function DrawPage() {
                 },
                 get children() {
                   return [(() => {
-                    const _el$46 = libs.createElement("Panel", {
+                    const _el$45 = libs.createElement("Panel", {
                       id: "FirstRowContainer",
                       "class": "RowContainer"
                     }, null);
-                    libs.insert(_el$46, libs.createComponent(libs.For, {
+                    libs.insert(_el$45, libs.createComponent(libs.For, {
                       get each() {
                         return resultList().slice(0, 5);
                       },
@@ -1419,13 +1403,13 @@ function DrawPage() {
                         });
                       }
                     }));
-                    return _el$46;
+                    return _el$45;
                   })(), (() => {
-                    const _el$47 = libs.createElement("Panel", {
+                    const _el$46 = libs.createElement("Panel", {
                       id: "SecondRowContainer",
                       "class": "RowContainer"
                     }, null);
-                    libs.insert(_el$47, libs.createComponent(libs.For, {
+                    libs.insert(_el$46, libs.createComponent(libs.For, {
                       get each() {
                         return resultList().slice(5);
                       },
@@ -1443,51 +1427,51 @@ function DrawPage() {
                         });
                       }
                     }));
-                    return _el$47;
+                    return _el$46;
                   })()];
                 }
               }));
-              libs.effect(_$p => libs.setProp(_el$45, "class", libs.classNames({
+              libs.effect(_$p => libs.setProp(_el$44, "class", libs.classNames({
                 TenItems: resultList().length == 10
               }), _$p));
-              return _el$45;
+              return _el$44;
             })()];
           }
         }), null);
-        libs.insert(_el$48, libs.createComponent(libs.For, {
+        libs.insert(_el$47, libs.createComponent(libs.For, {
           each: ["one_num", "ten_num"],
           children: key => {
             const count = () => poolConfig()[key];
             const drawCount = key == "one_num" ? 1 : 10;
             return (() => {
-              const _el$66 = libs.createElement("Panel", {
+              const _el$65 = libs.createElement("Panel", {
                   id: "Button_" + key,
                   "class": "DrawButtonContainer",
                   hittest: false
                 }, null),
-                _el$67 = libs.createElement("Panel", {
+                _el$66 = libs.createElement("Panel", {
                   id: "TopContainer",
                   hittest: false
-                }, _el$66);
+                }, _el$65);
                 libs.createElement("Panel", {
                   id: "TopContainerBG"
-                }, _el$67);
-                const _el$69 = libs.createElement("Panel", {
+                }, _el$66);
+                const _el$68 = libs.createElement("Panel", {
                   id: "TopCenter"
-                }, _el$67),
-                _el$70 = libs.createElement("Label", {
+                }, _el$66),
+                _el$69 = libs.createElement("Label", {
                   id: "TicketLabel",
                   get text() {
                     return "X " + count();
                   }
-                }, _el$69);
-              libs.setProp(_el$66, "id", "Button_" + key);
-              libs.insert(_el$69, libs.createComponent(Player.CurrencyIcon, {
+                }, _el$68);
+              libs.setProp(_el$65, "id", "Button_" + key);
+              libs.insert(_el$68, libs.createComponent(Player.CurrencyIcon, {
                 get tokenID() {
                   return poolConfig().item;
                 }
-              }), _el$70);
-              libs.insert(_el$66, libs.createComponent(EOM_Button.EOM_Button, {
+              }), _el$69);
+              libs.insert(_el$65, libs.createComponent(EOM_Button.EOM_Button, {
                 id: "DrawButton",
                 text: "#Draw_Count_" + key,
                 color: key == "one_num" ? "Confirm" : "Gold",
@@ -1509,12 +1493,12 @@ function DrawPage() {
                   }
                 }
               }), null);
-              libs.effect(_$p => libs.setProp(_el$70, "text", "X " + count(), _$p));
-              return _el$66;
+              libs.effect(_$p => libs.setProp(_el$69, "text", "X " + count(), _$p));
+              return _el$65;
             })();
           }
         }));
-        libs.insert(_el$29, libs.createComponent(EOM_ToggleButton.EOM_ToggleButton, {
+        libs.insert(_el$28, libs.createComponent(EOM_ToggleButton.EOM_ToggleButton, {
           id: "SKipAnimBtn",
           text: "#Draw_Skip_Animation",
           get selected() {
@@ -1544,14 +1528,14 @@ function DrawPage() {
             _v$11 = {
               show: (state => state == EDrawState.common || state == EDrawState.result)(drawState())
             };
-          _v$6 !== _p$._v$6 && (_p$._v$6 = libs.setProp(_el$22, "src", _v$6, _p$._v$6));
-          _v$7 !== _p$._v$7 && (_p$._v$7 = libs.setProp(_el$25, "tooltip_text", _v$7, _p$._v$7));
-          _v$8 !== _p$._v$8 && (_p$._v$8 = libs.setProp(_el$26, "text", _v$8, _p$._v$8));
-          _v$9 !== _p$._v$9 && (_p$._v$9 = libs.setProp(_el$27, "class", _v$9, _p$._v$9));
-          _v$0 !== _p$._v$0 && (_p$._v$0 = libs.setProp(_el$29, "class", _v$0, _p$._v$0));
-          _v$1 !== _p$._v$1 && (_p$._v$1 = libs.setProp(_el$43, "class", _v$1, _p$._v$1));
-          _v$10 !== _p$._v$10 && (_p$._v$10 = libs.setProp(_el$43, "hittest", _v$10, _p$._v$10));
-          _v$11 !== _p$._v$11 && (_p$._v$11 = libs.setProp(_el$48, "classList", _v$11, _p$._v$11));
+          _v$6 !== _p$._v$6 && (_p$._v$6 = libs.setProp(_el$21, "src", _v$6, _p$._v$6));
+          _v$7 !== _p$._v$7 && (_p$._v$7 = libs.setProp(_el$24, "tooltip_text", _v$7, _p$._v$7));
+          _v$8 !== _p$._v$8 && (_p$._v$8 = libs.setProp(_el$25, "text", _v$8, _p$._v$8));
+          _v$9 !== _p$._v$9 && (_p$._v$9 = libs.setProp(_el$26, "class", _v$9, _p$._v$9));
+          _v$0 !== _p$._v$0 && (_p$._v$0 = libs.setProp(_el$28, "class", _v$0, _p$._v$0));
+          _v$1 !== _p$._v$1 && (_p$._v$1 = libs.setProp(_el$42, "class", _v$1, _p$._v$1));
+          _v$10 !== _p$._v$10 && (_p$._v$10 = libs.setProp(_el$42, "hittest", _v$10, _p$._v$10));
+          _v$11 !== _p$._v$11 && (_p$._v$11 = libs.setProp(_el$47, "classList", _v$11, _p$._v$11));
           return _p$;
         }, {
           _v$6: undefined,
@@ -1563,14 +1547,14 @@ function DrawPage() {
           _v$10: undefined,
           _v$11: undefined
         });
-        return _el$19;
+        return _el$18;
       })(), (() => {
-        const _el$49 = libs.createElement("Panel", {
+        const _el$48 = libs.createElement("Panel", {
           id: "MovieContainer",
           hittest: false
         }, null);
-        libs.effect(_$p => libs.setProp(_el$49, "visible", drawState() == EDrawState.waiting, _$p));
-        return _el$49;
+        libs.effect(_$p => libs.setProp(_el$48, "visible", drawState() == EDrawState.waiting, _$p));
+        return _el$48;
       })(), libs.createComponent(ExchangeStore.ExchangeStore, {
         tag: "StarStone",
         get show() {

@@ -15,14 +15,14 @@ GameUI.CustomUIConfig().huntloot_common_setting = {
 	},
 	spell_weight: {
 		key: "spell_weight",
-		value: "200|120|80|60|50|40|30|15|5|3|1"
+		value: "150|120|80|60|50|40|30|15|5|3|1"
 	},
 	huntloot_devour: {
 		key: "huntloot_devour",
-		value: "120008:90"
+		value: "120008:100"
 	},
 	fail_pct: {
 		key: "fail_pct",
-		value: "10"
+		value: "20"
 	}
 };

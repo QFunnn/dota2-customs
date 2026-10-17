@@ -51,7 +51,7 @@ function j.prototype.EventListener(self)
 				return
 			end
 			self.consumedCount = self.consumedCount + 1
-			p:AddProperty(PropertyFunction.HEALTH, s)
+			p:AddProperty(PropertyFunction.HEALTH, s, "privilege_023")
 			Notification:CombatToPlayer(
 				o,
 				{ message = "Notify_privilege_023", item_name = "item_ball_health", int_extra_health = s }

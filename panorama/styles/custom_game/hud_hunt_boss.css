@@ -8,7 +8,7 @@
 ]]
 
 
-/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+/* Prettified by Source 2 Viewer 20.1.0.0 - https://valveresourceformat.github.io */
 
 .CustomHudRoot
 {
@@ -41,68 +41,156 @@
 	background-size: 100%;
 }
 
-#HuntBossTitle,#HuntBossStatus,#HuntBossLevel
+#HuntBossHeaderRow
 {
+	width: 354px;
+	height: 40px;
+	horizontal-align: center;
+	vertical-align: center;
+	margin-bottom: 12px;
+	flow-children: right;
+}
+
+.HuntBossHeaderSlot
+{
+	width: 104px;
+	height: 100%;
+}
+
+.HuntBossLevelSlot
+{
+	width: 146px;
+}
+
+#HuntBossTitle,#HuntBossDifficulty,#HuntBossStatus,#HuntBossLevel
+{
+	width: fit-children;
+	max-width: 100%;
+	horizontal-align: center;
+	vertical-align: center;
+	text-align: center;
 	text-overflow: shrink;
+	white-space: nowrap;
+	font-family: monospaceNumbersFont;
 	text-shadow: 0px 0px 2px #000000;
 }
 
 #HuntBossTitle,#HuntBossStatus
 {
-	width: 176px;
-	height: 24px;
-	margin-top: 12px;
-	font-family: monospaceNumbersFont;
-	font-size: 16px;
+	font-size: 20px;
 	font-weight: semi-bold;
-	color: #A28F78;
-}
-
-#HuntBossTitle
-{
-	horizontal-align: left;
-	margin-left: 48px;
-	text-align: left;
-}
-
-#HuntBossStatus
-{
-	horizontal-align: right;
-	margin-right: 48px;
-	text-align: right;
+	color: #B9AA90;
 }
 
 #HuntBossLevel
 {
-	width: 100%;
-	height: 46px;
-	margin-top: 44px;
-	text-align: center;
-	font-family: UnifrakturCook;
-	font-size: 36px;
+	font-size: 28px;
 	font-weight: bold;
 	color: #E6D4A4;
 }
 
+#HuntBossTitleGroup
+{
+	width: 100%;
+	vertical-align: center;
+	flow-children: down;
+}
+
+#HuntBossDifficulty
+{
+	font-size: 14px;
+	color: #B9AA90;
+}
+
+#HuntBossCurrentBuffs
+{
+	z-index: 2;
+	width: fit-children;
+	height: fit-children;
+	horizontal-align: center;
+	margin-top: 100px;
+	flow-children: right;
+}
+
+.HuntBossCurrentBuffGroup
+{
+	flow-children: right;
+	margin: 0px 6px;
+}
+
+.HuntBossCurrentBuffGroup .HuntBuffIcon
+{
+	margin: 0px 4px;
+}
+
+.HuntBuffIcon
+{
+	width: 48px;
+	height: fit-children;
+	flow-children: down;
+}
+
+.HuntBuffIcon .HuntBuffIconImage
+{
+	width: 100%;
+	height: width-percentage(100%);
+	horizontal-align: center;
+}
+
+.HuntBuffIcon .HuntBuffIconLevel
+{
+	width: fit-children;
+	max-width: 100%;
+	height: 18px;
+	margin: 2px 0px 0px;
+	padding: 0px;
+	text-align: center;
+	horizontal-align: center;
+	font-size: 14px;
+	font-weight: semi-bold;
+	color: #E6D4A4;
+	text-shadow: 0px 0px 2px 2 #000000;
+	white-space: nowrap;
+	text-overflow: shrink;
+}
+
 #HuntBossHealthContainer
 {
-	width: 610px;
-	height: 66px;
+	z-index: 1;
+	width: fit-children;
+	height: fit-children;
 	horizontal-align: center;
 	margin-top: 132px;
 	flow-children: right;
 }
 
+#HuntBossHealthContainer.SingleBoss .HuntBossHealthSlot
+{
+	width: 536px;
+	height: 98px;
+	margin: 0px;
+}
+
+#HuntBossHealthContainer.SingleBoss .HuntBossHealthBarFill
+{
+	background-size: 536px 98px;
+}
+
+#HuntBossHealthContainer.SingleBoss .HuntBossHealthValue
+{
+	margin-top: 56px;
+}
+
 .HuntBossHealthBar
 {
-	width: 300px;
-	height: 55px;
+	width: 100%;
+	height: 100%;
 }
 
 .HuntBossHealthBar .HuntBossHealthBarBackground,.HuntBossHealthBar .HuntBossHealthBarFill
 {
 	width: 100%;
-	height: 55px;
+	height: 100%;
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
 }
@@ -115,6 +203,7 @@
 .HuntBossHealthBar .HuntBossHealthBarFill
 {
 	background-image: url("s2r://panorama/images/custom_game/hud/h_boss_bar_png.vtex");
+	background-size: 420px 77px;
 	transition-property: width;
 	transition-duration: 0.2s;
 }
@@ -122,7 +211,7 @@
 .HuntBossHealthBar .HuntBossHealthValue
 {
 	horizontal-align: center;
-	margin-top: 31px;
+	margin-top: 44px;
 	font-size: 14px;
 	color: #E8DCBE;
 	text-shadow: 0px 0px 3px 3 #000000;
@@ -130,9 +219,9 @@
 
 .HuntBossHealthSlot
 {
-	width: 300px;
-	height: 55px;
-	margin: 0px 2px;
+	width: 420px;
+	height: 77px;
+	margin: 0px 6px;
 }
 
 .EOM_BaseButton
@@ -582,6 +671,51 @@
 	
 }
 
+.EOM_ProgressBar
+{
+	border-radius: 5px;
+	width: 320px;
+	height: 22px;
+	border: 2px solid #232222;
+	background-color: #222222ff;
+}
+
+.EOM_ProgressBar .EOM_ProgressBar_Left
+{
+	height: 100%;
+	background-color: gradient(linear, 60% 0%, 0% 100%, from(#b6261f), to(#65211b));
+	border-radius: 3px;
+	border-top: 1px solid rgba(255, 255, 255, 0.18);
+	transition-property: position, width;
+	transition-duration: 0.6s;
+}
+
+.EOM_ProgressBar .EOM_ProgressBar_Right
+{
+	height: 100%;
+	horizontal-align: right;
+	z-index: -1;
+}
+
+.EOM_ProgressBar.Tui12
+{
+	background-color: #2A284FFF;
+	border-radius: 0px;
+	border: 0px;
+	padding: 5px;
+}
+
+.EOM_ProgressBar.Tui12 .EOM_ProgressBar_Left
+{
+	background-color: #D5B661FF;
+	border-radius: 0px;
+}
+
+.EOM_ProgressBar.Tui12 .EOM_ProgressBar_Right
+{
+	background-color: #2A284FFF;
+}
+
 .Huntloot
 {
 	width: 88px;
@@ -712,12 +846,14 @@
 	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_blackgold_png.vtex");
 }
 
-#HuntBossProgressRule
+#HuntBossProgressPanel.EOM_PopupMain.normal
 {
-	width: 100%;
-	text-align: center;
-	font-size: 18px;
-	color: #b9aa90;
+	height: 700px;
+}
+
+#HuntBossProgressPanel.EOM_PopupMain.normal .EOM_PopupBG
+{
+	background-size: 100% 667px;
 }
 
 .HuntBossProgressSectionTitle
@@ -726,21 +862,52 @@
 	font-size: 20px;
 	font-weight: bold;
 	color: #e1cb7e;
-	margin-left: 100px;
-	margin-right: 100px;
+	max-width: 100%;
+	text-align: center;
 }
 
 #HuntBossLevelRewards
 {
 	width: 100%;
-	height: 110px;
+	height: 118px;
+	min-height: 118px;
 	flow-children: down;
-	margin-top: 20px;
+	margin-top: 4px;
+}
+
+#HuntBossLevelRewardsHeader
+{
+	max-width: 100%;
+	height: 24px;
+	min-height: 24px;
+	horizontal-align: center;
+	flow-children: right;
+}
+
+#HuntBossLevelRewardsHeader .HuntBossProgressSectionTitle
+{
+	max-width: 780px;
+	vertical-align: center;
+	white-space: nowrap;
+	text-overflow: shrink;
+}
+
+#HuntBossProgressRuleInfo
+{
+	width: 22px;
+	height: 22px;
+	min-width: 22px;
+	min-height: 22px;
+	margin-left: 6px;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/custom_game/v1_void/v1_tag_info_png.vtex");
+	background-size: 100%;
 }
 
 #HuntBossLevelRewardList
 {
 	height: 88px;
+	min-height: 88px;
 	flow-children: right;
 	horizontal-align: center;
 	margin-top: 6px;
@@ -750,6 +917,8 @@
 {
 	width: 88px;
 	height: 88px;
+	min-width: 88px;
+	min-height: 88px;
 	margin: 0px 12px;
 }
 
@@ -762,65 +931,66 @@
 #HuntBossCumulativeRewards
 {
 	width: 100%;
-	height: 128px;
-	margin-top: 20px;
+	height: fill-parent-flow(1);
+	min-height: 171px;
+	margin-top: 12px;
 	flow-children: down;
-}
-
-#HuntBossCumulativeRewards.Collapsed
-{
-	height: 32px;
 }
 
 #HuntBossCumulativeRewardsHeader
 {
 	horizontal-align: center;
-	height: 32px;
+	height: 26px;
+	min-height: 26px;
 	flow-children: right;
+	padding: 0px 10px;
 	background-color: #201b15cc;
 	border-bottom: 1px solid #806743;
 }
 
+#HuntBossCumulativeRewardsHeader .HuntBossProgressSectionTitle
+{
+	font-size: 18px;
+}
+
 #HuntBossCumulativeRewardsChest
 {
-	width: 28px;
-	height: 28px;
-	margin: 2px 8px 2px 5px;
+	width: 22px;
+	height: 22px;
+	margin: 2px 6px 2px 0px;
 	background-image: url("s2r://panorama/images/custom_game/m4_mining/m4_img_block_chest_png.vtex");
 	background-size: 100% 100%;
-}
-
-#HuntBossCumulativeRewardsToggle
-{
-	width: 32px;
-	height: 32px;
-	text-align: center;
-	font-size: 24px;
-	color: #e1cb7e;
-}
-
-#HuntBossCumulativeRewardsToggle Label
-{
-	align: center center;
-	font-size: 24px;
-	color: #e1cb7e;
 }
 
 #HuntBossCumulativeRewardList
 {
 	margin-top: 5px;
 	horizontal-align: center;
-	height: 300px;
-	flow-children: right-wrap;
+	width: 568px;
+	min-width: 568px;
+	height: 140px;
+	min-height: 140px;
+	max-height: 140px;
+	flow-children: down;
 	padding: 5px 12px;
 	overflow: squish scroll;
 }
 
+.HuntBossCumulativeRewardRow
+{
+	height: 65px;
+	min-height: 65px;
+	horizontal-align: center;
+	flow-children: right;
+}
+
 .HuntBossCumulativeReward
 {
-	width: 58px;
-	height: 58px;
-	margin: 0px 6px 5px 0px;
+	width: 60px;
+	height: 60px;
+	min-width: 60px;
+	min-height: 60px;
+	margin: 0px 3px 5px;
 }
 
 .HuntBossCumulativeReward #ItemCount
@@ -840,35 +1010,15 @@
 #HuntBossProgressCountdownBar
 {
 	width: 420px;
-	height: 24px;
-	padding: 4px;
-	background-color: #2A284FFF;
+	height: 12px;
+	padding: 2px;
+	vertical-align: center;
 }
 
-#HuntBossProgressCountdownBarBg
+#HuntBossProgressCountdownBar .EOM_ProgressBar_Left
 {
-	width: 100%;
-	height: 100%;
-	background-color: #231c10;
-}
-
-#HuntBossProgressCountdownFillClip
-{
-	width: 0%;
-	height: 100%;
-	horizontal-align: left;
-	overflow: clip;
-	transition-property: width;
 	transition-duration: 0.1s;
 	transition-timing-function: linear;
-}
-
-#HuntBossProgressCountdownFill
-{
-	width: 412px;
-	height: 100%;
-	horizontal-align: left;
-	background-color: gradient(linear, 0% 0%, 100% 0%, from(#b98a27), to(#f4d98d));
 }
 
 #HuntBossProgressCountdownValue
@@ -885,7 +1035,7 @@
 
 #HuntBossProgressActions
 {
-	margin-top: 20px;
+	margin-top: 12px;
 	flow-children: right;
 	horizontal-align: center;
 }
@@ -894,6 +1044,7 @@
 {
 	width: 266px;
 	flow-children: down;
+	vertical-align: bottom;
 }
 
 .HuntBossProgressAction.ContinueAction
@@ -904,9 +1055,39 @@
 .HuntBossProgressActionHint
 {
 	width: 100%;
-	height: 22px;
+	height: 36px;
+	min-height: 36px;
+	margin-top: 6px;
 	text-align: center;
 	font-size: 14px;
+}
+
+#HuntBossNextLevelBuffs
+{
+	width: 100%;
+	flow-children: down;
+	margin-bottom: 8px;
+}
+
+#HuntBossNextLevelBuffsTitle
+{
+	horizontal-align: center;
+	font-size: 15px;
+	color: #b9aa90;
+	margin-bottom: 6px;
+}
+
+#HuntBossNextLevelBuffList
+{
+	horizontal-align: center;
+	flow-children: right;
+}
+
+.HuntBossNextLevelBuffIcon
+{
+	width: 40px;
+	height: fit-children;
+	margin: 0px 5px;
 }
 
 .HuntBossProgressActionHint.Retreat
@@ -959,45 +1140,84 @@
 	background-size: 100%;
 }
 
-#HuntBossTitle,#HuntBossStatus,#HuntBossLevel
+#HuntBossHeaderRow
 {
+	width: 354px;
+	height: 40px;
+	horizontal-align: center;
+	vertical-align: center;
+	margin-bottom: 12px;
+	flow-children: right;
+}
+
+.HuntBossHeaderSlot
+{
+	width: 104px;
+	height: 100%;
+}
+
+.HuntBossLevelSlot
+{
+	width: 146px;
+}
+
+#HuntBossTitle,#HuntBossDifficulty,#HuntBossStatus,#HuntBossLevel
+{
+	width: fit-children;
+	max-width: 100%;
+	horizontal-align: center;
+	vertical-align: center;
+	text-align: center;
 	text-overflow: shrink;
+	white-space: nowrap;
+	font-family: monospaceNumbersFont;
 	text-shadow: 0px 0px 2px #000000;
 }
 
 #HuntBossTitle,#HuntBossStatus
 {
-	width: 176px;
-	height: 24px;
-	margin-top: 12px;
-	font-family: monospaceNumbersFont;
-	font-size: 16px;
+	font-size: 20px;
 	font-weight: semi-bold;
-	color: #A28F78;
-}
-
-#HuntBossTitle
-{
-	horizontal-align: left;
-	margin-left: 48px;
-	text-align: left;
-}
-
-#HuntBossStatus
-{
-	horizontal-align: right;
-	margin-right: 48px;
-	text-align: right;
+	color: #B9AA90;
 }
 
 #HuntBossLevel
 {
-	width: 100%;
-	height: 46px;
-	margin-top: 44px;
-	text-align: center;
-	font-family: UnifrakturCook;
-	font-size: 36px;
+	font-size: 28px;
 	font-weight: bold;
 	color: #E6D4A4;
+}
+
+#HuntBossTitleGroup
+{
+	width: 100%;
+	vertical-align: center;
+	flow-children: down;
+}
+
+#HuntBossDifficulty
+{
+	font-size: 14px;
+	color: #B9AA90;
+}
+
+#HuntBossCurrentBuffs
+{
+	z-index: 2;
+	width: fit-children;
+	height: fit-children;
+	horizontal-align: center;
+	margin-top: 100px;
+	flow-children: right;
+}
+
+.HuntBossCurrentBuffGroup
+{
+	flow-children: right;
+	margin: 0px 6px;
+}
+
+.HuntBossCurrentBuffGroup .HuntBuffIcon
+{
+	margin: 0px 4px;
 }

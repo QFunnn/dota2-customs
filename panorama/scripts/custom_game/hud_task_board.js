@@ -70,6 +70,38 @@ const currentPeriodTasks = source => {
   const timestamp = CustomUIConfig.GetServerTimeStamp();
   return Object.values(source).filter(task => KeyValues.task[task.task_id] != undefined && isTaskInCurrentPeriod(task, timestamp)).sort((a, b) => a.index - b.index);
 };
+const createBountyBoardList = (source, period) => {
+  let lastDuplicateSignature = "";
+  return libs.createMemo(() => {
+    const tasks = source().filter(task => Number.isInteger(task.index) && task.index >= 1 && task.index <= PAGE_SIZE);
+    const slots = new Set();
+    const list = tasks.filter(task => {
+      if (slots.has(task.index)) return false;
+      slots.add(task.index);
+      return true;
+    });
+    const duplicateSignature = tasks.length > list.length ? JSON.stringify(tasks.map(({
+      task_id,
+      extra_id,
+      index,
+      start_time,
+      end_time,
+      active
+    }) => ({
+      task_id,
+      extra_id,
+      index,
+      start_time,
+      end_time,
+      active
+    }))) : "";
+    if (duplicateSignature && duplicateSignature !== lastDuplicateSignature) {
+      console.warn(`[TaskBoard] Duplicate ${period} bounty slots: ${duplicateSignature}`);
+    }
+    lastDuplicateSignature = duplicateSignature;
+    return list;
+  });
+};
 const taskState = task => {
   if (task.receive_progress == 1) return "Received";
   if (task.active === true && task.progress >= task.target) return "CanReceive";
@@ -766,8 +798,8 @@ const TaskBoard = props => {
   const period = () => secondTabName() === TAB_WEEKLY ? "weekly" : "daily";
   const dailyAllList = libs.createMemo(() => currentPeriodTasks(dailyBountyTasks()));
   const weeklyAllList = libs.createMemo(() => currentPeriodTasks(weeklyBountyTasks()));
-  const dailyList = libs.createMemo(() => dailyAllList().filter(task => task.index >= 1 && task.index <= PAGE_SIZE));
-  const weeklyList = libs.createMemo(() => weeklyAllList().filter(task => task.index >= 1 && task.index <= PAGE_SIZE));
+  const dailyList = createBountyBoardList(dailyAllList, "daily");
+  const weeklyList = createBountyBoardList(weeklyAllList, "weekly");
   const boardList = libs.createMemo(() => period() === "daily" ? dailyList() : weeklyList());
   const dailyAcceptedList = libs.createMemo(() => dailyAllList().filter(task => task.active === true));
   const weeklyAcceptedList = libs.createMemo(() => weeklyAllList().filter(task => task.active === true));

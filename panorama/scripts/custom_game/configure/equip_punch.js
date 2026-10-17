@@ -64,5 +64,19 @@ GameUI.CustomUIConfig().equip_punch = {
 		rarity: 7,
 		punch_num: 1,
 		cost: "120008:1200|120009:240|120010:240"
+	},
+	"9": {
+		id: 9,
+		class: 18,
+		rarity: 7,
+		punch_num: 1,
+		cost: "120008:1300|120009:260|120010:260"
+	},
+	"10": {
+		id: 10,
+		class: 19,
+		rarity: 7,
+		punch_num: 1,
+		cost: "120008:1400|120009:280|120010:280"
 	}
 };

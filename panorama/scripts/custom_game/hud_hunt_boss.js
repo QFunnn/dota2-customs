@@ -11,8 +11,10 @@
 'use strict'; const require = GameUI.__require;
 
 var libs = require('./libs.js');
+var hunt_buff_icon = require('./hunt_buff_icon.js');
 var solid_utils = require('./solid_utils.js');
 var EOM_Popup = require('./EOM_Popup.js');
+var EOM_ProgressBar = require('./EOM_ProgressBar.js');
 var EOM_Button = require('./EOM_Button.js');
 var server_huntloot = require('./server_huntloot2.js');
 
@@ -50,12 +52,12 @@ const HuntBossHealthBar = props => {
       _el$4 = libs.createElement("Label", {
         "class": "HuntBossHealthValue",
         get text() {
-          return `${FormatNumber(props.boss().current)}/${FormatNumber(props.boss().maximum)}`;
+          return `${percent().toFixed(1)}%`;
         }
       }, _el$);
     libs.effect(_p$ => {
       const _v$ = `${percent()}%`,
-        _v$2 = `${FormatNumber(props.boss().current)}/${FormatNumber(props.boss().maximum)}`;
+        _v$2 = `${percent().toFixed(1)}%`;
       _v$ !== _p$._v$ && (_p$._v$ = libs.setProp(_el$3, "width", _v$, _p$._v$));
       _v$2 !== _p$._v$2 && (_p$._v$2 = libs.setProp(_el$4, "text", _v$2, _p$._v$2));
       return _p$;
@@ -91,6 +93,7 @@ const HuntBossHealth = () => {
     const bosses = state()?.bosses;
     return Array.isArray(bosses) ? bosses : [];
   });
+  const slots = libs.createMemo(() => bossData().map(boss => boss.slot).sort((a, b) => a - b));
   const isBattle = libs.createMemo(() => state()?.phase === "battle");
   libs.createEffect(() => {
     const timer = setInterval(() => {
@@ -113,15 +116,21 @@ const HuntBossHealth = () => {
     get children() {
       const _el$6 = libs.createElement("Panel", {
         id: "HuntBossHealthContainer",
-        hittest: false
+        hittest: false,
+        hittestchildren: false
       }, null);
       libs.insert(_el$6, libs.createComponent(libs.For, {
-        each: [0, 1],
+        get each() {
+          return slots();
+        },
         children: slot => libs.createComponent(HuntBossHealthSlot, {
           slot: slot,
           bosses: bosses
         })
       }));
+      libs.effect(_$p => libs.setProp(_el$6, "classList", {
+        SingleBoss: slots().length === 1
+      }, _$p));
       return _el$6;
     }
   });
@@ -137,7 +146,7 @@ const toHuntlootDisplayData = reward => ({
   class: reward.class,
   huntloot_part: reward.huntloot_part,
   rarity: reward.rarity,
-  need_level: 0
+  need_level: KeyValues.huntloot_class_setting[reward.class]?.need_level ?? 0
 });
 const toHuntlootTooltipData = reward => ({
   ...toHuntlootDisplayData(reward),
@@ -149,25 +158,7 @@ const HuntBossCountdown = props => {
     const _el$ = libs.createElement("Panel", {
         id: "HuntBossProgressCountdown"
       }, null),
-      _el$2 = libs.createElement("Panel", {
-        id: "HuntBossProgressCountdownBar",
-        hittest: false
-      }, _el$);
-      libs.createElement("Panel", {
-        id: "HuntBossProgressCountdownBarBg"
-      }, _el$2);
-      const _el$4 = libs.createElement("Panel", {
-        id: "HuntBossProgressCountdownFillClip",
-        get style() {
-          return {
-            width: `${props.progress.toFixed(2)}%`
-          };
-        }
-      }, _el$2);
-      libs.createElement("Panel", {
-        id: "HuntBossProgressCountdownFill"
-      }, _el$4);
-      const _el$6 = libs.createElement("Label", {
+      _el$2 = libs.createElement("Label", {
         id: "HuntBossProgressCountdownValue",
         get text() {
           return LocalizeWithVars("#HuntBossIntermission_RemainingSeconds", {
@@ -175,34 +166,48 @@ const HuntBossCountdown = props => {
           });
         }
       }, _el$);
-    libs.effect(_p$ => {
-      const _v$ = {
-          width: `${props.progress.toFixed(2)}%`
-        },
-        _v$2 = LocalizeWithVars("#HuntBossIntermission_RemainingSeconds", {
-          seconds: props.seconds
-        });
-      _v$ !== _p$._v$ && (_p$._v$ = libs.setProp(_el$4, "style", _v$, _p$._v$));
-      _v$2 !== _p$._v$2 && (_p$._v$2 = libs.setProp(_el$6, "text", _v$2, _p$._v$2));
-      return _p$;
-    }, {
-      _v$: undefined,
-      _v$2: undefined
-    });
+    libs.insert(_el$, libs.createComponent(EOM_ProgressBar.EOM_ProgressBar, {
+      id: "HuntBossProgressCountdownBar",
+      type: "Tui12",
+      get value() {
+        return props.progress;
+      },
+      hittest: false
+    }), _el$2);
+    libs.effect(_$p => libs.setProp(_el$2, "text", LocalizeWithVars("#HuntBossIntermission_RemainingSeconds", {
+      seconds: props.seconds
+    }), _$p));
     return _el$;
   })();
 };
 const HuntBossProgress = () => {
   const playerID = Players.GetLocalPlayer();
   const state = solid_utils.createNetDataSignal("hunt_boss", "state");
+  const nextLevelBuffs = libs.createMemo(() => {
+    const buffs = state()?.next_level_buffs;
+    return Array.isArray(buffs) ? buffs : [];
+  });
   const huntMatchRecords = solid_utils.createServiceNetData("player_hunt_match_records", {});
   const currentMatchRecord = libs.createMemo(() => Object.values(huntMatchRecords()).sort((a, b) => b.match_id - a.match_id)[0]);
   const rewardData = libs.createMemo(() => JSON.parseSafe(currentMatchRecord()?.reward_data ?? ""));
   const accumulatedRewards = libs.createMemo(() => {
     const rewards = rewardData()?.rewards;
-    return Array.isArray(rewards) ? rewards : [];
+    return Array.isArray(rewards) ? [...rewards].sort((a, b) => b.rarity - a.rarity) : [];
   });
   const levelRewards = libs.createMemo(() => accumulatedRewards().filter(reward => reward.layer === state()?.level));
+  const levelRewardsTitle = libs.createMemo(() => {
+    const title = GetLocalization("#HuntBossIntermission_LevelRewards");
+    const keyIntensity = state()?.key_intensities?.[String(playerID)] ?? 0;
+    return keyIntensity > 0 ? title + LocalizeWithVars("#HuntBossIntermission_KeyExtraDrop", {
+      intensity: keyIntensity
+    }) : title;
+  });
+  const cumulativeRewardRows = libs.createMemo(() => {
+    const rewards = accumulatedRewards();
+    const rows = [];
+    for (let index = 0; index < rewards.length; index += 8) rows.push(rewards.slice(index, index + 8));
+    return rows;
+  });
   const [now, setNow] = libs.createSignal(Game.GetGameTime());
   const timer = setInterval(() => setNow(Game.GetGameTime()), 100);
   const isIntermission = libs.createMemo(() => state()?.phase === "intermission");
@@ -223,11 +228,6 @@ const HuntBossProgress = () => {
     level: state()?.level ?? 0
   }));
   const continueText = libs.createMemo(() => isReady() ? GetLocalization("#HuntBossIntermission_Ready") : GetLocalization("#HuntBossIntermission_Continue"));
-  const [isRewardExpanded, setIsRewardExpanded] = libs.createSignal(true);
-  libs.createEffect(() => {
-    const current = state();
-    console.log(`[HuntBossProgress] state phase=${current?.phase ?? "undefined"} level=${current?.level ?? 0} localPlayer=${playerID} participant=${isParticipant()} matchRecord=${JSON.stringify(currentMatchRecord())}`);
-  });
   const ready = () => {
     if (!isIntermission() || !isParticipant() || isReady()) return;
     GameEvents.SendCustomEventToServer("hunt_boss_intermission_ready", {});
@@ -237,6 +237,9 @@ const HuntBossProgress = () => {
     GameEvents.SendCustomEventToServer("hunt_boss_intermission_retreat", {});
   };
   libs.onCleanup(() => clearInterval(timer));
+  libs.createEffect(() => {
+    $.Msg(levelRewards());
+  });
   return libs.createComponent(libs.Show, {
     get when() {
       return libs.memo(() => !!isIntermission())() && isParticipant();
@@ -255,146 +258,124 @@ const HuntBossProgress = () => {
         },
         get children() {
           return [(() => {
-            const _el$7 = libs.createElement("Label", {
-              id: "HuntBossProgressRule",
-              get text() {
-                return GetLocalization("#HuntBossIntermission_Rule");
-              }
-            }, null);
-            libs.effect(_$p => libs.setProp(_el$7, "text", GetLocalization("#HuntBossIntermission_Rule"), _$p));
-            return _el$7;
-          })(), (() => {
-            const _el$8 = libs.createElement("Panel", {
+            const _el$3 = libs.createElement("Panel", {
                 id: "HuntBossLevelRewards"
               }, null),
-              _el$9 = libs.createElement("Label", {
+              _el$4 = libs.createElement("Panel", {
+                id: "HuntBossLevelRewardsHeader"
+              }, _el$3),
+              _el$5 = libs.createElement("Label", {
                 "class": "HuntBossProgressSectionTitle",
                 get text() {
-                  return GetLocalization("#HuntBossIntermission_LevelRewards");
-                }
-              }, _el$8),
-              _el$0 = libs.createElement("Panel", {
+                  return levelRewardsTitle();
+                },
+                hittest: false
+              }, _el$4),
+              _el$6 = libs.createElement("Image", {
+                id: "HuntBossProgressRuleInfo"
+              }, _el$4),
+              _el$7 = libs.createElement("Panel", {
                 id: "HuntBossLevelRewardList"
-              }, _el$8);
-            libs.insert(_el$0, libs.createComponent(libs.For, {
+              }, _el$3);
+            libs.insert(_el$7, libs.createComponent(libs.For, {
               get each() {
                 return levelRewards();
               },
               children: reward => (() => {
-                const _el$22 = libs.createElement("Panel", {
+                const _el$19 = libs.createElement("Panel", {
                   "class": "HuntBossLevelReward"
                 }, null);
-                libs.insert(_el$22, libs.createComponent(server_huntloot.Huntloot, libs.mergeProps$1(() => toHuntlootDisplayData(reward), {
+                libs.insert(_el$19, libs.createComponent(server_huntloot.Huntloot, libs.mergeProps$1(() => toHuntlootDisplayData(reward), {
                   get tooltipData() {
                     return toHuntlootTooltipData(reward);
                   }
                 })));
-                return _el$22;
+                return _el$19;
               })()
             }));
-            libs.effect(_$p => libs.setProp(_el$9, "text", GetLocalization("#HuntBossIntermission_LevelRewards"), _$p));
-            return _el$8;
+            libs.effect(_p$ => {
+              const _v$ = levelRewardsTitle(),
+                _v$2 = GetLocalization("#HuntBossIntermission_Rule");
+              _v$ !== _p$._v$ && (_p$._v$ = libs.setProp(_el$5, "text", _v$, _p$._v$));
+              _v$2 !== _p$._v$2 && (_p$._v$2 = libs.setProp(_el$6, "tooltip_text", _v$2, _p$._v$2));
+              return _p$;
+            }, {
+              _v$: undefined,
+              _v$2: undefined
+            });
+            return _el$3;
           })(), (() => {
-            const _el$1 = libs.createElement("Panel", {
+            const _el$8 = libs.createElement("Panel", {
                 id: "HuntBossCumulativeRewards"
               }, null),
-              _el$10 = libs.createElement("Panel", {
+              _el$9 = libs.createElement("Panel", {
                 id: "HuntBossCumulativeRewardsHeader"
-              }, _el$1);
+              }, _el$8);
               libs.createElement("Image", {
                 id: "HuntBossCumulativeRewardsChest",
                 hittest: false
-              }, _el$10);
-              const _el$12 = libs.createElement("Label", {
+              }, _el$9);
+              const _el$1 = libs.createElement("Label", {
                 "class": "HuntBossProgressSectionTitle",
                 get text() {
                   return GetLocalization("#HuntBossIntermission_CumulativeRewards");
                 }
-              }, _el$10),
-              _el$13 = libs.createElement("Button", {
-                id: "HuntBossCumulativeRewardsToggle"
-              }, _el$10),
-              _el$14 = libs.createElement("Label", {
-                get text() {
-                  return isRewardExpanded() ? "−" : "+";
-                }
-              }, _el$13);
-            libs.setProp(_el$13, "onactivate", () => setIsRewardExpanded(value => !value));
-            libs.insert(_el$1, libs.createComponent(libs.Show, {
-              get when() {
-                return isRewardExpanded();
+              }, _el$9),
+              _el$10 = libs.createElement("Panel", {
+                id: "HuntBossCumulativeRewardList",
+                scroll: "y"
+              }, _el$8);
+            libs.setProp(_el$10, "scroll", "y");
+            libs.insert(_el$10, libs.createComponent(libs.For, {
+              get each() {
+                return cumulativeRewardRows();
               },
-              get children() {
-                const _el$15 = libs.createElement("Panel", {
-                  id: "HuntBossCumulativeRewardList",
-                  scroll: "y"
+              children: row => (() => {
+                const _el$20 = libs.createElement("Panel", {
+                  "class": "HuntBossCumulativeRewardRow"
                 }, null);
-                libs.setProp(_el$15, "scroll", "y");
-                libs.insert(_el$15, libs.createComponent(libs.For, {
-                  get each() {
-                    return accumulatedRewards();
-                  },
+                libs.insert(_el$20, libs.createComponent(libs.For, {
+                  each: row,
                   children: reward => (() => {
-                    const _el$23 = libs.createElement("Panel", {
+                    const _el$21 = libs.createElement("Panel", {
                       "class": "HuntBossCumulativeReward"
                     }, null);
-                    libs.insert(_el$23, libs.createComponent(server_huntloot.Huntloot, libs.mergeProps$1(() => toHuntlootDisplayData(reward), {
+                    libs.insert(_el$21, libs.createComponent(server_huntloot.Huntloot, libs.mergeProps$1(() => toHuntlootDisplayData(reward), {
                       get tooltipData() {
                         return toHuntlootTooltipData(reward);
                       }
                     })));
-                    return _el$23;
+                    return _el$21;
                   })()
                 }));
-                return _el$15;
-              }
-            }), null);
-            libs.effect(_p$ => {
-              const _v$3 = {
-                  Collapsed: !isRewardExpanded()
-                },
-                _v$4 = GetLocalization("#HuntBossIntermission_CumulativeRewards"),
-                _v$5 = isRewardExpanded() ? "−" : "+";
-              _v$3 !== _p$._v$3 && (_p$._v$3 = libs.setProp(_el$1, "classList", _v$3, _p$._v$3));
-              _v$4 !== _p$._v$4 && (_p$._v$4 = libs.setProp(_el$12, "text", _v$4, _p$._v$4));
-              _v$5 !== _p$._v$5 && (_p$._v$5 = libs.setProp(_el$14, "text", _v$5, _p$._v$5));
-              return _p$;
-            }, {
-              _v$3: undefined,
-              _v$4: undefined,
-              _v$5: undefined
-            });
-            return _el$1;
-          })(), libs.createComponent(HuntBossCountdown, {
-            get progress() {
-              return countdownProgress();
-            },
-            get seconds() {
-              return remainSeconds();
-            }
-          }), (() => {
-            const _el$16 = libs.createElement("Panel", {
+                return _el$20;
+              })()
+            }));
+            libs.effect(_$p => libs.setProp(_el$1, "text", GetLocalization("#HuntBossIntermission_CumulativeRewards"), _$p));
+            return _el$8;
+          })(), (() => {
+            const _el$11 = libs.createElement("Panel", {
                 id: "HuntBossProgressActions"
               }, null),
-              _el$17 = libs.createElement("Panel", {
+              _el$12 = libs.createElement("Panel", {
                 "class": "HuntBossProgressAction"
-              }, _el$16),
-              _el$18 = libs.createElement("Label", {
+              }, _el$11),
+              _el$13 = libs.createElement("Label", {
                 "class": "HuntBossProgressActionHint Retreat",
                 get text() {
                   return GetLocalization("#HuntBossIntermission_RetreatHint");
                 }
-              }, _el$17),
-              _el$19 = libs.createElement("Panel", {
+              }, _el$12),
+              _el$14 = libs.createElement("Panel", {
                 "class": "HuntBossProgressAction ContinueAction"
-              }, _el$16),
-              _el$20 = libs.createElement("Label", {
+              }, _el$11),
+              _el$17 = libs.createElement("Label", {
                 "class": "HuntBossProgressActionHint Continue",
                 get text() {
                   return GetLocalization("#HuntBossIntermission_ContinueHint");
                 }
-              }, _el$19);
-            libs.insert(_el$17, libs.createComponent(EOM_Button.EOM_Button, {
+              }, _el$14);
+            libs.insert(_el$12, libs.createComponent(EOM_Button.EOM_Button, {
               id: "HuntBossProgressRetreatButton",
               color: "Cancel",
               get enabled() {
@@ -404,8 +385,32 @@ const HuntBossProgress = () => {
                 return GetLocalization("#HuntBossIntermission_Retreat");
               },
               onactivate: retreat
-            }), null);
-            libs.insert(_el$19, libs.createComponent(EOM_Button.EOM_Button, {
+            }), _el$13);
+            libs.insert(_el$14, libs.createComponent(libs.Show, {
+              get when() {
+                return nextLevelBuffs().length > 0;
+              },
+              get children() {
+                const _el$15 = libs.createElement("Panel", {
+                    id: "HuntBossNextLevelBuffs"
+                  }, null),
+                  _el$16 = libs.createElement("Panel", {
+                    id: "HuntBossNextLevelBuffList"
+                  }, _el$15);
+                libs.insert(_el$16, libs.createComponent(libs.For, {
+                  get each() {
+                    return nextLevelBuffs();
+                  },
+                  children: buff => libs.createComponent(hunt_buff_icon.HuntBuffIcon, {
+                    "class": "HuntBossNextLevelBuffIcon",
+                    buff: buff,
+                    tooltipType: "field"
+                  })
+                }));
+                return _el$15;
+              }
+            }), _el$17);
+            libs.insert(_el$14, libs.createComponent(EOM_Button.EOM_Button, {
               id: "HuntBossProgressContinueButton",
               color: "Confirm",
               get enabled() {
@@ -415,31 +420,38 @@ const HuntBossProgress = () => {
                 return continueText();
               },
               onactivate: ready
-            }), null);
+            }), _el$17);
             libs.effect(_p$ => {
-              const _v$6 = GetLocalization("#HuntBossIntermission_RetreatHint"),
-                _v$7 = GetLocalization("#HuntBossIntermission_ContinueHint");
-              _v$6 !== _p$._v$6 && (_p$._v$6 = libs.setProp(_el$18, "text", _v$6, _p$._v$6));
-              _v$7 !== _p$._v$7 && (_p$._v$7 = libs.setProp(_el$20, "text", _v$7, _p$._v$7));
+              const _v$3 = GetLocalization("#HuntBossIntermission_RetreatHint"),
+                _v$4 = GetLocalization("#HuntBossIntermission_ContinueHint");
+              _v$3 !== _p$._v$3 && (_p$._v$3 = libs.setProp(_el$13, "text", _v$3, _p$._v$3));
+              _v$4 !== _p$._v$4 && (_p$._v$4 = libs.setProp(_el$17, "text", _v$4, _p$._v$4));
               return _p$;
             }, {
-              _v$6: undefined,
-              _v$7: undefined
+              _v$3: undefined,
+              _v$4: undefined
             });
-            return _el$16;
+            return _el$11;
           })(), libs.createComponent(libs.Show, {
             get when() {
               return isReady();
             },
             get children() {
-              const _el$21 = libs.createElement("Label", {
+              const _el$18 = libs.createElement("Label", {
                 id: "HuntBossProgressReadyHint",
                 get text() {
                   return GetLocalization("#HuntBossIntermission_ReadyHint");
                 }
               }, null);
-              libs.effect(_$p => libs.setProp(_el$21, "text", GetLocalization("#HuntBossIntermission_ReadyHint"), _$p));
-              return _el$21;
+              libs.effect(_$p => libs.setProp(_el$18, "text", GetLocalization("#HuntBossIntermission_ReadyHint"), _$p));
+              return _el$18;
+            }
+          }), libs.createComponent(HuntBossCountdown, {
+            get progress() {
+              return countdownProgress();
+            },
+            get seconds() {
+              return remainSeconds();
             }
           })];
         }
@@ -451,6 +463,7 @@ const HuntBossProgress = () => {
 const HuntBossHud = () => {
   const playerID = Players.GetLocalPlayer();
   const state = solid_utils.createNetDataSignal("hunt_boss", "state");
+  const demoState = solid_utils.createPlayerNetDataSignal("common", "demo_hunt_effects");
   const isParticipant = libs.createMemo(() => {
     const playerIDs = state()?.active_player_ids;
     return Array.isArray(playerIDs) && playerIDs.includes(playerID);
@@ -460,6 +473,28 @@ const HuntBossHud = () => {
   const levelText = libs.createMemo(() => LocalizeWithVars("#HuntBossHudLevel", {
     level: state()?.level ?? 0
   }));
+  const difficultyText = libs.createMemo(() => {
+    const keyIntensity = state()?.key_intensities?.[String(playerID)];
+    const keyIntensityText = keyIntensity === undefined || keyIntensity === 0 ? "" : `-${keyIntensity}`;
+    return GetLocalization("PlayerInfo_Difficulty") + ` ${state()?.difficulty ?? 0}` + keyIntensityText;
+  });
+  const demoBuffs = libs.createMemo(() => {
+    const data = demoState();
+    if (data === undefined || data.hero_ent_index < 0) return [];
+    const activeIDs = Array.isArray(data.active_ids) ? data.active_ids : [];
+    const effects = Array.isArray(data.effects) ? data.effects : [];
+    return effects.filter(effect => activeIDs.includes(effect.id)).map(effect => hunt_buff_icon.GetHuntBuffData(effect.id, effect.level)).filter(buff => buff !== undefined);
+  });
+  const mergeBuffs = (buffs, type) => {
+    const result = Array.isArray(buffs) ? [...buffs] : [];
+    for (const buff of demoBuffs()) {
+      if (buff.type === type && !result.some(existing => existing.id === buff.id && (existing.level ?? 1) === buff.level)) result.push(buff);
+    }
+    return result;
+  };
+  const fixedBuffs = libs.createMemo(() => mergeBuffs(isVisible() ? state()?.fixed_buffs : undefined, 1));
+  const fieldBuffs = libs.createMemo(() => mergeBuffs(isVisible() ? state()?.current_level_buffs : undefined, 2));
+  const isHudVisible = libs.createMemo(() => isVisible() || demoBuffs().length > 0);
   const statusText = libs.createMemo(() => {
     switch (state()?.phase) {
       case "battle":
@@ -474,55 +509,149 @@ const HuntBossHud = () => {
   });
   return (() => {
     const _el$ = libs.createElement("Panel", {
-        id: "HUDHuntBossRoot",
-        get ["class"]() {
-          return libs.classNames("CustomHudRoot", {
-            Show: isVisible()
+      id: "HUDHuntBossRoot",
+      get ["class"]() {
+        return libs.classNames("CustomHudRoot", {
+          Show: isHudVisible()
+        });
+      },
+      hittest: false
+    }, null);
+    libs.insert(_el$, libs.createComponent(libs.Show, {
+      get when() {
+        return isVisible();
+      },
+      get children() {
+        return [(() => {
+          const _el$2 = libs.createElement("Panel", {
+              id: "HuntBossTopCenter"
+            }, null),
+            _el$3 = libs.createElement("Panel", {
+              id: "HuntBossHeaderRow"
+            }, _el$2),
+            _el$4 = libs.createElement("Panel", {
+              "class": "HuntBossHeaderSlot"
+            }, _el$3),
+            _el$5 = libs.createElement("Panel", {
+              id: "HuntBossTitleGroup"
+            }, _el$4),
+            _el$6 = libs.createElement("Label", {
+              id: "HuntBossTitle",
+              get text() {
+                return GetLocalization("#HuntBossHudTitle");
+              }
+            }, _el$5),
+            _el$7 = libs.createElement("Label", {
+              id: "HuntBossDifficulty",
+              get text() {
+                return difficultyText();
+              }
+            }, _el$5),
+            _el$8 = libs.createElement("Panel", {
+              "class": "HuntBossHeaderSlot HuntBossLevelSlot"
+            }, _el$3),
+            _el$9 = libs.createElement("Label", {
+              id: "HuntBossLevel",
+              get text() {
+                return levelText();
+              }
+            }, _el$8),
+            _el$0 = libs.createElement("Panel", {
+              "class": "HuntBossHeaderSlot"
+            }, _el$3),
+            _el$1 = libs.createElement("Label", {
+              id: "HuntBossStatus",
+              get text() {
+                return statusText();
+              }
+            }, _el$0);
+          libs.effect(_p$ => {
+            const _v$ = GetLocalization("#HuntBossHudTitle"),
+              _v$2 = difficultyText(),
+              _v$3 = levelText(),
+              _v$4 = statusText();
+            _v$ !== _p$._v$ && (_p$._v$ = libs.setProp(_el$6, "text", _v$, _p$._v$));
+            _v$2 !== _p$._v$2 && (_p$._v$2 = libs.setProp(_el$7, "text", _v$2, _p$._v$2));
+            _v$3 !== _p$._v$3 && (_p$._v$3 = libs.setProp(_el$9, "text", _v$3, _p$._v$3));
+            _v$4 !== _p$._v$4 && (_p$._v$4 = libs.setProp(_el$1, "text", _v$4, _p$._v$4));
+            return _p$;
+          }, {
+            _v$: undefined,
+            _v$2: undefined,
+            _v$3: undefined,
+            _v$4: undefined
           });
-        },
-        hittest: false
-      }, null),
-      _el$2 = libs.createElement("Panel", {
-        id: "HuntBossTopCenter"
-      }, _el$),
-      _el$3 = libs.createElement("Label", {
-        id: "HuntBossTitle",
-        get text() {
-          return GetLocalization("#HuntBossHudTitle");
-        }
-      }, _el$2),
-      _el$4 = libs.createElement("Label", {
-        id: "HuntBossStatus",
-        get text() {
-          return statusText();
-        }
-      }, _el$2),
-      _el$5 = libs.createElement("Label", {
-        id: "HuntBossLevel",
-        get text() {
-          return levelText();
-        }
-      }, _el$2);
-    libs.insert(_el$, libs.createComponent(HuntBossHealth, {}), null);
-    libs.insert(_el$, libs.createComponent(HuntBossProgress, {}), null);
-    libs.effect(_p$ => {
-      const _v$ = libs.classNames("CustomHudRoot", {
-          Show: isVisible()
-        }),
-        _v$2 = GetLocalization("#HuntBossHudTitle"),
-        _v$3 = statusText(),
-        _v$4 = levelText();
-      _v$ !== _p$._v$ && (_p$._v$ = libs.setProp(_el$, "class", _v$, _p$._v$));
-      _v$2 !== _p$._v$2 && (_p$._v$2 = libs.setProp(_el$3, "text", _v$2, _p$._v$2));
-      _v$3 !== _p$._v$3 && (_p$._v$3 = libs.setProp(_el$4, "text", _v$3, _p$._v$3));
-      _v$4 !== _p$._v$4 && (_p$._v$4 = libs.setProp(_el$5, "text", _v$4, _p$._v$4));
-      return _p$;
-    }, {
-      _v$: undefined,
-      _v$2: undefined,
-      _v$3: undefined,
-      _v$4: undefined
-    });
+          return _el$2;
+        })(), libs.createComponent(HuntBossHealth, {})];
+      }
+    }), null);
+    libs.insert(_el$, libs.createComponent(libs.Show, {
+      get when() {
+        return fixedBuffs().length > 0 || fieldBuffs().length > 0;
+      },
+      get children() {
+        const _el$10 = libs.createElement("Panel", {
+          id: "HuntBossCurrentBuffs",
+          hittest: false,
+          hittestchildren: true
+        }, null);
+        libs.insert(_el$10, libs.createComponent(libs.Show, {
+          get when() {
+            return fixedBuffs().length > 0;
+          },
+          get children() {
+            const _el$11 = libs.createElement("Panel", {
+              "class": "HuntBossCurrentBuffGroup",
+              hittest: false
+            }, null);
+            libs.insert(_el$11, libs.createComponent(libs.For, {
+              get each() {
+                return fixedBuffs();
+              },
+              children: buff => libs.createComponent(hunt_buff_icon.HuntBuffIcon, {
+                buff: buff,
+                hittest: true
+              })
+            }));
+            return _el$11;
+          }
+        }), null);
+        libs.insert(_el$10, libs.createComponent(libs.Show, {
+          get when() {
+            return fieldBuffs().length > 0;
+          },
+          get children() {
+            const _el$12 = libs.createElement("Panel", {
+              "class": "HuntBossCurrentBuffGroup",
+              hittest: false
+            }, null);
+            libs.insert(_el$12, libs.createComponent(libs.For, {
+              get each() {
+                return fieldBuffs();
+              },
+              children: buff => libs.createComponent(hunt_buff_icon.HuntBuffIcon, {
+                buff: buff,
+                tooltipType: "field",
+                hittest: true
+              })
+            }));
+            return _el$12;
+          }
+        }), null);
+        return _el$10;
+      }
+    }), null);
+    libs.insert(_el$, libs.createComponent(libs.Show, {
+      get when() {
+        return isVisible();
+      },
+      get children() {
+        return libs.createComponent(HuntBossProgress, {});
+      }
+    }), null);
+    libs.effect(_$p => libs.setProp(_el$, "class", libs.classNames("CustomHudRoot", {
+      Show: isHudVisible()
+    }), _$p));
     return _el$;
   })();
 };

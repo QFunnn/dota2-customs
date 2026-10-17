@@ -73,11 +73,24 @@ for b, c in ipairs({
 	"modifier_respawn",
 	"modifier_shield",
 	"modifier_simulate_cast",
+	"modifier_summon_disabled",
 	"modifier_tracing_support",
 	"modifier_trap_thinker",
 	"modifier_tutorial_stun",
 }) do
 	require("modifiers.framework." .. c)
+end
+for b, c in ipairs({
+	"modifier_hunt_calm",
+	"modifier_hunt_energy_orb",
+	"modifier_hunt_field_unit",
+	"modifier_hunt_freeze",
+	"modifier_hunt_heavy",
+	"modifier_hunt_lightning_zone",
+	"modifier_hunt_potion",
+	"modifier_hunt_tide",
+}) do
+	require("modifiers.hunt_boss." .. c)
 end
 for b, c in ipairs({ "modifier_debuff_1", "modifier_debuff_2", "modifier_debuff_3", "modifier_debuff_4" }) do
 	require("modifiers.key." .. c)

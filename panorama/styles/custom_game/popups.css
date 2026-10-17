@@ -8,7 +8,7 @@
 ]]
 
 
-/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+/* Prettified by Source 2 Viewer 20.1.0.0 - https://valveresourceformat.github.io */
 
 .CustomHudRoot
 {
@@ -4322,6 +4322,245 @@
 		opacity: 0.2;
 	}
 	
+}
+
+#Popup_HuntSaveArchive
+{
+	width: 1120px;
+}
+
+#Popup_HuntSaveArchive .EOM_PopupContent
+{
+	padding: 80px 42px 42px 42px;
+}
+
+#Popup_HuntSaveArchive #HuntSaveArchiveContent
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+}
+
+#Popup_HuntSaveArchive #HuntSaveUsage
+{
+	width: 100%;
+	text-align: center;
+	font-size: 24px;
+	color: #e6d4a4;
+}
+
+#Popup_HuntSaveArchive #HuntSaveAction
+{
+	horizontal-align: center;
+	margin-top: 50px;
+}
+
+#Popup_HuntSaveArchive .HuntSaveSectionTitle
+{
+	margin-top: 36px;
+	font-size: 32px;
+	color: #e6c985;
+	horizontal-align: center;
+}
+
+#Popup_HuntSaveArchive #HuntSaveSnapshotHeader,#Popup_HuntSaveArchive .HuntSaveRecordHeader
+{
+	width: 100%;
+	horizontal-align: center;
+	flow-children: right;
+}
+
+#Popup_HuntSaveArchive #HuntSaveSnapshotHeader
+{
+	height: 34px;
+	margin-top: 4px;
+}
+
+#Popup_HuntSaveArchive #HuntSaveSnapshotHeader Label
+{
+	vertical-align: center;
+	font-size: 20px;
+	text-align: center;
+	color: #e6c985;
+}
+
+#Popup_HuntSaveArchive #HuntSaveCurrentRecord
+{
+	width: 100%;
+	height: 84px;
+	horizontal-align: center;
+	background-image: url("s2r://panorama/images/custom_game/f2_file/f2_button_victory_png.vtex");
+	background-size: 100% 100%;
+}
+
+#Popup_HuntSaveArchive #HuntSaveCurrentRecord .HuntSaveRecordHeader
+{
+	height: 100%;
+}
+
+#Popup_HuntSaveArchive .HuntSaveHeaderTime,#Popup_HuntSaveArchive .HuntSaveSnapshotTime
+{
+	width: 90px;
+}
+
+#Popup_HuntSaveArchive .HuntSaveHeaderHero,#Popup_HuntSaveArchive .HuntSaveSnapshotHero
+{
+	width: 70px;
+}
+
+#Popup_HuntSaveArchive .HuntSaveHeaderDamage,#Popup_HuntSaveArchive .HuntSaveSnapshotDamage
+{
+	width: 110px;
+}
+
+#Popup_HuntSaveArchive .HuntSaveHeaderItems,#Popup_HuntSaveArchive .HuntSaveItemsColumn
+{
+	width: fill-parent-flow(1);
+}
+
+#Popup_HuntSaveArchive .HuntSaveItemsColumn
+{
+	height: 100%;
+}
+
+#Popup_HuntSaveArchive .HuntSaveSnapshotTime,#Popup_HuntSaveArchive .HuntSaveSnapshotDamage
+{
+	vertical-align: center;
+	text-align: center;
+	font-size: 16px;
+	color: #e6d4a4;
+}
+
+#Popup_HuntSaveArchive .HuntSaveSnapshotDamage,#Popup_HuntSaveArchive .HuntSaveSlotDamage
+{
+	color: #c02a26;
+	font-size: 26px;
+	horizontal-align: center;
+}
+
+#Popup_HuntSaveArchive .HuntSaveSnapshotHero
+{
+	align: center center;
+}
+
+#Popup_HuntSaveArchive .HuntSaveSnapshotHero .EOM_HeroImage
+{
+	width: 62px;
+	height: 62px;
+	align: center center;
+}
+
+#Popup_HuntSaveArchive .HuntSaveItems
+{
+	max-width: 300px;
+	height: 40px;
+	vertical-align: center;
+	horizontal-align: center;
+}
+
+#Popup_HuntSaveArchive .HuntSaveItems .CommonItem
+{
+	width: 36px;
+	height: 36px;
+	margin: 0px;
+}
+
+#Popup_HuntSaveArchive #HuntSaveSlotList
+{
+	width: 100%;
+	height: 150px;
+	flow-children: right;
+	margin-top: 6px;
+}
+
+#Popup_HuntSaveArchive .HuntSaveSlot
+{
+	width: fill-parent-flow(1);
+	height: 184px;
+	margin: 0px 5px;
+	background-image: url("s2r://panorama/images/custom_game/f2_file/f2_button_victory_png.vtex");
+	background-size: 100% 100%;
+	border: 1px solid #725d3d;
+}
+
+#Popup_HuntSaveArchive .HuntSaveSlot.Empty
+{
+	border-style: dashed;
+	opacity: 0.65;
+}
+
+#Popup_HuntSaveArchive .HuntSaveSlot.Selected
+{
+	border: 2px solid #ffe791;
+	background-color: #7c602633;
+	box-shadow: #ffe79155 0px 0px 8px 0px;
+}
+
+#Popup_HuntSaveArchive .HuntSaveEmptySlot
+{
+	align: center center;
+	font-size: 18px;
+	color: #b9b1a6;
+}
+
+#Popup_HuntSaveArchive .HuntSaveSlotContent
+{
+	width: 100%;
+	height: 100%;
+	padding: 12px;
+	flow-children: down;
+}
+
+#Popup_HuntSaveArchive .HuntSaveSlotHero
+{
+	width: 54px;
+	height: 54px;
+	horizontal-align: center;
+}
+
+#Popup_HuntSaveArchive .HuntSaveSlotPrimary
+{
+	horizontal-align: center;
+}
+
+#Popup_HuntSaveArchive .HuntSaveSlotPrimary Label
+{
+	font-size: 18px;
+	color: #e6d4a4;
+}
+
+#Popup_HuntSaveArchive .HuntSaveSlotTime
+{
+	width: 200px;
+	horizontal-align: center;
+	text-align: center;
+	font-size: 15px;
+	color: #958d83;
+}
+
+#Popup_HuntSaveArchive #HuntSaveSavedState
+{
+	width: 100%;
+	flow-children: down;
+	margin-top: 20px;
+}
+
+#Popup_HuntSaveArchive #HuntSaveSavedState Label
+{
+	width: 100%;
+	margin-top: 8px;
+	text-align: center;
+	font-size: 17px;
+	color: #8fcb78;
+}
+
+#Popup_HuntSaveArchive #HuntSaveReplaceHint
+{
+	width: 100%;
+	margin-top: 8px;
+	text-align: center;
+	font-size: 17px;
+	color: #c9a66c;
 }
 
 .Popup_PropUse #CenterBlock

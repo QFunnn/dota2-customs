@@ -45,7 +45,7 @@ function k.prototype.SummonTreant(self, m)
 		return
 	end
 	local l = self:GetCaster()
-	local r = l:SummonUnit("shredder_treant", m)
+	local r = l:SummonUnit("shredder_treant", m, nil, nil, true)
 	if r ~= nil then
 		local s = DungeonManager:GetCurrentRoom()
 		if s ~= nil then

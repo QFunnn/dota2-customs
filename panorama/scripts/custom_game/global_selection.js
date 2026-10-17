@@ -12,6 +12,17 @@
 
 var libs = require('./libs.js');
 
+const formatDateText = timestamp => {
+  if (timestamp === undefined || !Number.isFinite(timestamp) || timestamp <= 0) {
+    return "-";
+  }
+  const date = new Date(timestamp * 1000);
+  if (!Number.isFinite(date.getTime())) return "-";
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+};
 const PREVIEW_SELECTION_EVENT = "preview_selection_changed";
 const previewSelectionSignals = {};
 function getPreviewSelections() {
@@ -117,3 +128,4 @@ function createPreviewCourierIDSignal(defaultCourierID = "600001") {
 exports.createPreviewCourierIDSignal = createPreviewCourierIDSignal;
 exports.createPreviewHeroNameSignal = createPreviewHeroNameSignal;
 exports.createPreviewWeaponIDSignal = createPreviewWeaponIDSignal;
+exports.formatDateText = formatDateText;

@@ -8,7 +8,7 @@
 ]]
 
 
-/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+/* Prettified by Source 2 Viewer 20.1.0.0 - https://valveresourceformat.github.io */
 
 .RarityColor1 .EquipRarityLabel
 {
@@ -420,12 +420,29 @@
 	horizontal-align: center;
 	vertical-align: bottom;
 	margin-bottom: 188px;
+	width: 494px;
+	background-image: url("s2r://panorama/images/custom_game/e1_equipment/liesha_equip_png.vtex");
+	background-size: 494px 102px;
+	background-position: center bottom;
+	background-repeat: no-repeat;
+}
+
+#HuntlootSlotList .HuntlootSlotContainer
+{
+	horizontal-align: center;
+	vertical-align: bottom;
 	flow-children: right;
+}
+
+#HuntlootSlotList #HuntlootSlot_1,#HuntlootSlotList #HuntlootSlot_3
+{
+	margin-bottom: 10px;
 }
 
 #HuntlootSlotList .HuntlootSlot
 {
-	margin: 0px 4px;
+	margin: 0px 19px;
+	vertical-align: bottom;
 }
 
 #HuntlootSlotList .HuntlootSlot .SlotIcon .Huntloot
@@ -545,7 +562,7 @@
 #ItemsRoot #PartFilter .PartTab
 {
 	width: 50px;
-	height: fill-parent-flow(1);
+	height: 78px;
 	horizontal-align: center;
 	background-repeat: no-repeat;
 	background-position: center center;
@@ -593,11 +610,6 @@
 	width: 45px;
 	height: 45px;
 	wash-color: #686868;
-}
-
-#ItemsRoot #PartFilter.Gem .PartTab
-{
-	height: 78px;
 }
 
 #ItemsRoot #BtnsContainer
@@ -699,7 +711,7 @@
 	margin-top: 11px;
 }
 
-#FilterWindow #EquipmentFilterContent
+#FilterWindow #EquipmentFilterContent,#FilterWindow .HuntlootFilterContent
 {
 	width: 100%;
 	height: 100%;
@@ -708,12 +720,12 @@
 	overflow: squish scroll;
 }
 
-#FilterWindow #EquipmentFilterContent VerticalScrollBar
+#FilterWindow #EquipmentFilterContent VerticalScrollBar,#FilterWindow .HuntlootFilterContent VerticalScrollBar
 {
 	margin-right: -5px;
 }
 
-#FilterWindow #EquipmentSubEntryFilterList
+#FilterWindow #EquipmentSubEntryFilterList,#FilterWindow .HuntlootEntryFilterList
 {
 	width: 100%;
 	height: fit-children;
@@ -722,7 +734,7 @@
 	flow-children: down;
 }
 
-#FilterWindow #EquipmentSubEntryFilterList .EquipmentSubEntryFilterRow
+#FilterWindow #EquipmentSubEntryFilterList .EquipmentSubEntryFilterRow,#FilterWindow .HuntlootEntryFilterList .EquipmentSubEntryFilterRow
 {
 	width: 100%;
 	height: fit-children;
@@ -730,7 +742,7 @@
 	flow-children: right;
 }
 
-#FilterWindow #EquipmentSubEntryFilterList .EquipmentSubEntryFilterRow .EquipmentSubEntryName
+#FilterWindow #EquipmentSubEntryFilterList .EquipmentSubEntryFilterRow .EquipmentSubEntryName,#FilterWindow .HuntlootEntryFilterList .EquipmentSubEntryFilterRow .EquipmentSubEntryName
 {
 	width: fill-parent-flow(1);
 	vertical-align: center;
@@ -739,7 +751,7 @@
 	text-overflow: shrink;
 }
 
-#FilterWindow #EquipmentSubEntryFilterList .EquipmentSubEntryFilterRow .EquipmentSubEntryMode
+#FilterWindow #EquipmentSubEntryFilterList .EquipmentSubEntryFilterRow .EquipmentSubEntryMode,#FilterWindow .HuntlootEntryFilterList .EquipmentSubEntryFilterRow .EquipmentSubEntryMode
 {
 	width: 188px;
 	height: fit-children;
@@ -748,27 +760,27 @@
 	horizontal-align: right;
 }
 
-#FilterWindow #EquipmentSubEntryFilterList .EquipmentSubEntryFilterRow .EquipmentSubEntryMode Label
+#FilterWindow #EquipmentSubEntryFilterList .EquipmentSubEntryFilterRow .EquipmentSubEntryMode Label,#FilterWindow .HuntlootEntryFilterList .EquipmentSubEntryFilterRow .EquipmentSubEntryMode Label
 {
 	vertical-align: center;
 	font-size: 16px;
 }
 
-#FilterWindow #EquipmentSubEntryFilterList .EquipmentSubEntryFilterRow .EquipmentSubEntryMode .EquipmentSubEntryModeOption
+#FilterWindow #EquipmentSubEntryFilterList .EquipmentSubEntryFilterRow .EquipmentSubEntryMode .EquipmentSubEntryModeOption,#FilterWindow .HuntlootEntryFilterList .EquipmentSubEntryFilterRow .EquipmentSubEntryMode .EquipmentSubEntryModeOption
 {
 	height: fit-children;
 	min-height: 30px;
 	flow-children: right;
 }
 
-#FilterWindow #EquipmentSubEntryFilterList .EquipmentSubEntryFilterRow .EquipmentSubEntryMode .EquipmentSubEntryModeOption .EquipmentSubEntryModeButton
+#FilterWindow #EquipmentSubEntryFilterList .EquipmentSubEntryFilterRow .EquipmentSubEntryMode .EquipmentSubEntryModeOption .EquipmentSubEntryModeButton,#FilterWindow .HuntlootEntryFilterList .EquipmentSubEntryFilterRow .EquipmentSubEntryMode .EquipmentSubEntryModeOption .EquipmentSubEntryModeButton
 {
 	max-width: 150px;
 	height: fit-children;
 	min-height: 30px;
 }
 
-#FilterWindow #EquipmentSubEntryFilterList .EquipmentSubEntryFilterRow .EquipmentSubEntryMode .EquipmentSubEntryModeOption .EquipmentSubEntryModeButton Label
+#FilterWindow #EquipmentSubEntryFilterList .EquipmentSubEntryFilterRow .EquipmentSubEntryMode .EquipmentSubEntryModeOption .EquipmentSubEntryModeButton Label,#FilterWindow .HuntlootEntryFilterList .EquipmentSubEntryFilterRow .EquipmentSubEntryMode .EquipmentSubEntryModeOption .EquipmentSubEntryModeButton Label
 {
 	max-width: 150px;
 	height: fit-children;
@@ -779,22 +791,22 @@
 	text-overflow: shrink;
 }
 
-#FilterWindow #EquipmentSubEntryFilterList .EquipmentSubEntryFilterRow .EquipmentSubEntryMode .EquipmentSubEntryModeOption .EquipmentSubEntryModeButton.Selected Label
+#FilterWindow #EquipmentSubEntryFilterList .EquipmentSubEntryFilterRow .EquipmentSubEntryMode .EquipmentSubEntryModeOption .EquipmentSubEntryModeButton.Selected Label,#FilterWindow .HuntlootEntryFilterList .EquipmentSubEntryFilterRow .EquipmentSubEntryMode .EquipmentSubEntryModeOption .EquipmentSubEntryModeButton.Selected Label
 {
 	color: #F1E7D0;
 }
 
-#FilterWindow #EquipmentSubEntryFilterList .EquipmentSubEntryFilterRow .EquipmentSubEntryMode .EquipmentSubEntryModeOption .EquipmentSubEntryModeButton.include.Selected Label
+#FilterWindow #EquipmentSubEntryFilterList .EquipmentSubEntryFilterRow .EquipmentSubEntryMode .EquipmentSubEntryModeOption .EquipmentSubEntryModeButton.include.Selected Label,#FilterWindow .HuntlootEntryFilterList .EquipmentSubEntryFilterRow .EquipmentSubEntryMode .EquipmentSubEntryModeOption .EquipmentSubEntryModeButton.include.Selected Label
 {
 	color: #86C985;
 }
 
-#FilterWindow #EquipmentSubEntryFilterList .EquipmentSubEntryFilterRow .EquipmentSubEntryMode .EquipmentSubEntryModeOption .EquipmentSubEntryModeButton.exclude.Selected Label
+#FilterWindow #EquipmentSubEntryFilterList .EquipmentSubEntryFilterRow .EquipmentSubEntryMode .EquipmentSubEntryModeOption .EquipmentSubEntryModeButton.exclude.Selected Label,#FilterWindow .HuntlootEntryFilterList .EquipmentSubEntryFilterRow .EquipmentSubEntryMode .EquipmentSubEntryModeOption .EquipmentSubEntryModeButton.exclude.Selected Label
 {
 	color: #DD7770;
 }
 
-#FilterWindow #EquipmentSubEntryFilterList .EquipmentSubEntryFilterRow .EquipmentSubEntryMode .EquipmentSubEntryModeOption .EquipmentSubEntryModeSeparator
+#FilterWindow #EquipmentSubEntryFilterList .EquipmentSubEntryFilterRow .EquipmentSubEntryMode .EquipmentSubEntryModeOption .EquipmentSubEntryModeSeparator,#FilterWindow .HuntlootEntryFilterList .EquipmentSubEntryFilterRow .EquipmentSubEntryMode .EquipmentSubEntryModeOption .EquipmentSubEntryModeSeparator
 {
 	margin: 0px 2px;
 	color: #766F69;
@@ -1317,6 +1329,12 @@
 	width: 150%;
 	height: 150%;
 	overflow: noclip;
+}
+
+#EquipForge #LeftArea.HuntlootDevourMode
+{
+	margin-top: 100px;
+	margin-bottom: 24px;
 }
 
 #EquipForge #LeftArea
@@ -5444,6 +5462,225 @@
 	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_blackgold_png.vtex");
 }
 
+.HuntlootTierIIEffect
+{
+	ignore-parent-flow: true;
+	align: left bottom;
+	width: 100%;
+	height: 3px;
+	overflow: clip;
+	animation-name: HuntlootTierIIColors;
+	animation-duration: 6.6s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+}
+
+.HuntlootTierIIEffect .HuntlootTierIIFlow,.HuntlootTierIIEffect .HuntlootTierIICore
+{
+	ignore-parent-flow: true;
+	align: left bottom;
+	width: 100%;
+	animation-name: HuntlootTierIISweep;
+	animation-duration: 2.8s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+.HuntlootTierIIEffect .HuntlootTierIIFlow
+{
+	height: 3px;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#6CB6FF00), color-stop(0.16, #6CB6FF00), color-stop(0.32, #6CB6FF36), color-stop(0.44, #A58BFF66), color-stop(0.5, #E7C4858C), color-stop(0.58, #E7C48500), to(#E7C48500));
+}
+
+.HuntlootTierIIEffect .HuntlootTierIICore
+{
+	height: 1px;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#FFFFFF00), color-stop(0.36, #FFFFFF00), color-stop(0.48, #FFFFFF80), color-stop(0.5, #FFFFFFF0), color-stop(0.54, #FFFFFF00), to(#FFFFFF00));
+}
+
+@keyframes 'HuntlootTierIISweep'
+{
+	0%
+	{
+		transform: translateX(-50%);
+		opacity: 0;
+	}
+	
+	10%
+	{
+		opacity: 1;
+	}
+	
+	90%
+	{
+		opacity: 1;
+	}
+	
+	100%
+	{
+		transform: translateX(50%);
+		opacity: 0;
+	}
+	
+}
+
+@keyframes 'HuntlootTierIIColors'
+{
+	0%
+	{
+		wash-color: #85DFFF66;
+	}
+	
+	33%
+	{
+		wash-color: #B69AFF66;
+	}
+	
+	66%
+	{
+		wash-color: #FFD89966;
+	}
+	
+	100%
+	{
+		wash-color: #85DFFF66;
+	}
+	
+}
+
+.ServerHuntlootDetail
+{
+	horizontal-align: center;
+}
+
+.ServerHuntlootDetail #Bottom
+{
+	width: 100%;
+	margin: 0px;
+	padding: 0px 5px;
+	horizontal-align: center;
+	flow-children: down;
+}
+
+.ServerHuntlootDetail #EquipedInfoContainer
+{
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+	horizontal-align: left;
+	flow-children: down;
+}
+
+.ServerHuntlootDetail #EquipedTips
+{
+	margin: 0px;
+	horizontal-align: left;
+	font-size: 16px;
+}
+
+.ServerHuntlootDetail #EquipedInfo
+{
+	width: 100%;
+	margin: 7px 0px 0px;
+	horizontal-align: left;
+	flow-children: right-wrap;
+}
+
+.ServerHuntlootDetail .EquipState
+{
+	margin-right: 24px;
+	flow-children: right;
+	width: fit-children;
+	height: fit-children;
+	vertical-align: center;
+}
+
+.ServerHuntlootDetail .EquipState .HeroSmallAvatar
+{
+	width: 28px;
+	height: 28px;
+}
+
+.ServerHuntlootDetail .EquipState #EquipSuit
+{
+	vertical-align: center;
+	font-size: 16px;
+}
+
+.ServerHuntlootDetail .EquipState .HeroSmallAvatar
+{
+	vertical-align: center;
+}
+
+.ServerHuntlootDetail #ServerEquipDetailLoaded #Bottom #ModeDetailsTips
+{
+	horizontal-align: center;
+	flow-children: right;
+	width: fit-children;
+}
+
+.ServerHuntlootDetail #ServerEquipDetailLoaded #Bottom #ModeDetailsTips #Tips
+{
+	margin-top: 1px;
+	text-align: center;
+	vertical-align: center;
+	color: #6D655B;
+	font-size: 16px;
+}
+
+.ServerHuntlootDetail #ServerEquipDetailLoaded #Bottom #ModeDetailsTips #Hotkey
+{
+	width: 32px;
+	height: 19px;
+	font-size: 16px;
+	color: #BFAA82;
+	border: 1px solid #575048;
+	text-align: center;
+}
+
+.ServerHuntlootDetail #ServerEquipDetailLoaded .Huntloot
+{
+	width: 100px;
+	height: 100px;
+	margin-right: -10px;
+	margin-top: -10px;
+	horizontal-align: right;
+	padding: 0px;
+	background-image: none;
+}
+
+.ServerHuntlootDetail #ServerEquipDetailLoaded .Huntloot #HuntlootIcon
+{
+	width: 100%;
+	height: 100%;
+}
+
+.ServerHuntlootDetail #ServerEquipDetailLoaded .Huntloot #Lock,.ServerHuntlootDetail #ServerEquipDetailLoaded .Huntloot #EquipedTag,.ServerHuntlootDetail #ServerEquipDetailLoaded .Huntloot #LevelLabel
+{
+	visibility: collapse;
+}
+
+.HuntlootTooltipAttrRow.WithDifficulty #AttrName
+{
+	width: fill-parent-flow(1);
+	text-align: left;
+}
+
+.HuntlootTooltipAttrRow.WithDifficulty #CompareTag
+{
+	ignore-parent-flow: false;
+	margin: 0px 8px;
+}
+
+.HuntlootTooltipAttrRow.WithDifficulty .AttrDifficulty
+{
+	margin-left: 8px;
+	vertical-align: center;
+	font-size: 14px;
+	color: #958D83;
+	white-space: nowrap;
+}
+
 .EOM_Switch
 {
 	width: 56px;
@@ -9045,6 +9282,27 @@
 	flow-children: down;
 }
 
+#InlayPanel .GemResultEntry,.GemSwapLeftContent .GemResultEntry
+{
+	width: 100%;
+	height: fit-children;
+}
+
+#InlayPanel .GemResultEntry .EquipmentAttrRow,.GemSwapLeftContent .GemResultEntry .EquipmentAttrRow
+{
+	width: 100%;
+}
+
+#InlayPanel .GemResultEntry .GemResultEntryHighlightFrame,.GemSwapLeftContent .GemResultEntry .GemResultEntryHighlightFrame
+{
+	width: 100%;
+	height: 100%;
+	border-image-source: url("s2r://panorama/images/custom_game/e1_equipment/e1_select_png.vtex");
+	border-width: 4px;
+	border-image-slice: 10px;
+	border-image-repeat: stretch;
+}
+
 #InlayPanel .SectionTitle,.GemSwapLeftContent .SectionTitle
 {
 	width: 100%;
@@ -11316,14 +11574,18 @@
 
 #HuntlootDevourRoot
 {
-	width: 100%;
+	width: 888px;
 	height: 100%;
+	padding-bottom: 12px;
 	flow-children: down;
 	vertical-align: center;
+	margin-left: 96px;
+	overflow: noclip;
 }
 
 #HuntlootDevourRoot #HuntlootDevourMainContent
 {
+	height: fill-parent-flow(1);
 	flow-children: right;
 	horizontal-align: center;
 }
@@ -11339,16 +11601,11 @@
 
 #HuntlootDevourRoot #HuntlootDevourOperation
 {
-	height: 140px;
+	width: 100%;
+	height: 128px;
+	min-height: 128px;
 	margin-top: 12px;
-	flow-children: right;
 	horizontal-align: center;
-}
-
-#HuntlootDevourRoot #HuntlootDevourOperation #HuntlootDevourBackButton
-{
-	vertical-align: bottom;
-	margin-right: 24px;
 }
 
 #HuntlootDevourRoot #HuntlootDevourOperation #HuntlootDevourStartButtons
@@ -11405,23 +11662,38 @@
 	margin-top: 16px;
 }
 
-#HuntlootDevourRoot #HuntlootDevourOperation #HuntlootDevourCheckConfirmButton
+#HuntlootDevourRoot #HuntlootDevourOperation #HuntlootDevourCheckButtons
 {
-	vertical-align: bottom;
-	margin-right: 16px;
+	vertical-align: center;
+	horizontal-align: center;
+	width: 80%;
+	flow-children: right;
 }
 
-#HuntlootDevourRoot #HuntlootDevourOperation #HuntlootDevourResetButton
+#HuntlootDevourRoot #HuntlootDevourOperation #HuntlootDevourCheckButtons .HuntlootDevourCheckButtonSlot
 {
-	vertical-align: bottom;
+	width: fill-parent-flow(1);
+	flow-children: right;
+}
+
+#HuntlootDevourRoot #HuntlootDevourOperation #HuntlootDevourCheckButtons #HuntlootDevourCheckConfirmButton
+{
+	horizontal-align: center;
+	margin-right: 8px;
+}
+
+#HuntlootDevourRoot #HuntlootDevourOperation #HuntlootDevourCheckButtons #HuntlootDevourResetButton
+{
+	horizontal-align: center;
+	margin-left: 8px;
 }
 
 .HuntlootDetailCard
 {
-	width: 430px;
-	height: 560px;
-	background-image: url("s2r://panorama/images/custom_game/e1_eqp_up/e1_panel_png.vtex");
-	background-size: 100%;
+	width: 422px;
+	height: 100%;
+	background-image: url("s2r://panorama/images/custom_game/s3_skill_runes/s3_panel_rune2_png.vtex");
+	background-size: 100% 100%;
 	overflow: noclip;
 }
 
@@ -11431,6 +11703,11 @@
 	height: 100%;
 	flow-children: down;
 	padding-bottom: 18px;
+}
+
+.HuntlootDetailCard .HuntlootDetailCardContent VerticalScrollBar
+{
+	opacity: 0;
 }
 
 .HuntlootDetailCard .EmptyMask
@@ -11445,16 +11722,15 @@
 	width: 100%;
 	text-align: center;
 	color: #9f9382;
-	text-overflow: shrink;
 }
 
 .HuntlootDetailCard .HuntlootDevourCardIcon
 {
-	width: 88px;
-	height: 88px;
+	width: 78px;
+	height: 76px;
 	horizontal-align: center;
 	margin-top: 14px;
-	margin-bottom: 8px;
+	margin-bottom: 26px;
 }
 
 .HuntlootDetailCard .HuntlootDevourCardIcon .HuntlootDevourCardIconPlus
@@ -11469,6 +11745,17 @@
 .HuntlootDetailCard .HuntlootDevourCardIcon .Huntloot
 {
 	align: center center;
+	width: 100%;
+	height: 100%;
+	padding: 0px;
+	background-image: none;
+}
+
+.HuntlootDetailCard .HuntlootDevourCardIcon .Huntloot #HuntlootIcon
+{
+	width: 79%;
+	height: 79%;
+	align: center center;
 }
 
 .HuntlootDetailCard .HuntlootDevourCardIcon .EOM_CloseButton
@@ -11482,8 +11769,9 @@
 
 .HuntlootDetailCard .HuntlootDevourCardName
 {
-	width: 100%;
-	margin-bottom: 12px;
+	horizontal-align: center;
+	width: 90%;
+	margin-bottom: 8px;
 }
 
 .HuntlootDetailCard .HuntlootDevourCardName #HuntlootDevourCardNameBG
@@ -11499,6 +11787,7 @@
 .HuntlootDetailCard .HuntlootDevourCardName .HuntlootDevourCardNameText
 {
 	width: 100%;
+	padding: 0px 10px;
 	text-align: center;
 	text-overflow: shrink;
 	vertical-align: center;
@@ -11542,9 +11831,12 @@
 
 .HuntlootDetailCard .HuntlootDetailCardEntryList
 {
-	width: 100%;
-	padding: 0px 16px;
+	width: 80%;
+	height: fill-parent-flow(1);
+	horizontal-align: center;
+	padding: 0px 0px 8px;
 	flow-children: down;
+	overflow: squish scroll;
 }
 
 .HuntlootDetailCard .HuntlootDetailCardSeparator
@@ -11558,13 +11850,15 @@
 .HuntlootDetailCard .HuntlootDetailCardEntryRow
 {
 	width: 100%;
+	height: fit-children;
 	min-height: 34px;
 	margin-bottom: 6px;
 }
 
 .HuntlootDetailCard .HuntlootDetailCardEntryRow .HuntlootDetailCardEntryRowContent
 {
-	width: fill-parent-flow(1);
+	width: 100%;
+	height: fit-children;
 	flow-children: right;
 	vertical-align: center;
 	overflow: noclip;
@@ -11598,6 +11892,7 @@
 .HuntlootDetailCard .HuntlootDetailCardEntryRow .HuntlootDetailCardAttrRow
 {
 	width: fill-parent-flow(1);
+	height: fit-children;
 	min-height: 0px;
 	margin: 0px;
 	flow-children: right;
@@ -11617,15 +11912,33 @@
 
 .HuntlootDetailCard .HuntlootDetailCardEntryRow .HuntlootDetailCardAttrRow #AttrValue
 {
+	vertical-align: center;
+	white-space: nowrap;
 	color: #FFFFFF;
-	font-size: 20px;
+	font-size: 18px;
 	margin-right: 6px;
 }
 
 .HuntlootDetailCard .HuntlootDetailCardEntryRow .HuntlootDetailCardAttrRow #AttrName
 {
+	width: fill-parent-flow(1);
+	height: fit-children;
+	vertical-align: center;
+	white-space: normal;
+	text-overflow: clip;
 	color: #BFAA82;
-	font-size: 20px;
+	font-size: 18px;
+}
+
+.HuntlootDetailCard .HuntlootDetailCardEntryRow .HuntlootDetailCardAttrRow .HuntlootEntryDifficulty
+{
+	min-width: 24px;
+	margin-left: 8px;
+	vertical-align: center;
+	text-align: right;
+	font-size: 14px;
+	color: #958D83;
+	white-space: nowrap;
 }
 
 .HuntlootDetailCard .HuntlootDetailCardEntryRow .HuntlootDetailCardAttrRow.gray #Point

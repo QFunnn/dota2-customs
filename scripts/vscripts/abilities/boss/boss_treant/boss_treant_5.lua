@@ -51,92 +51,93 @@ function p.prototype.OnSpellStart(self)
 		return
 	end
 	local s = r:FindAbilityByName("boss_shredder_1")
+	local t = q
 	if IsValid(s) then
-		local t = s:CutDownTree(q)
-		if IsValid(t) then
-			t:AddNewModifier(r, self, "modifier_boss_treant_5", {})
-		else
-			q:AddNewModifier(r, self, "modifier_boss_treant_5", {})
+		local u = s:CutDownTree(q, true, false)
+		if IsValid(u) then
+			t = u
 		end
-	else
-		q:AddNewModifier(r, self, "modifier_boss_treant_5", {})
 	end
+	if not IsValid(t) or not t:IsAlive() then
+		return
+	end
+	t:AddNewModifier(r, self, "modifier_boss_treant_5", {})
 	r:SimulateCast({ duration = 0.4 })
 end
 p = f(
 	{
 		o(nil, {
-			funcCondition = function(u, s)
+			funcCondition = function(v, s)
 				return s:GetCatchUnit() == nil
 			end,
-			funcUnitsCallback = function(u, v)
-				return e(v, function(u, w)
-					return w:HasModifier("modifier_boss_treant_5")
+			funcUnitsCallback = function(v, w)
+				return e(w, function(v, x)
+					return x:HasModifier("modifier_boss_treant_5")
 				end)
 			end,
 		}),
 	},
 	p
 )
-local x = c()
-x.name = "modifier_boss_treant_5"
-d(x, j)
-function x.prototype.____constructor(self, ...)
+local y = c()
+y.name = "modifier_boss_treant_5"
+d(y, j)
+function y.prototype.____constructor(self, ...)
 	j.prototype.____constructor(self, ...)
 	self.hitlocOffset = Vector(0, 0, 0)
 end
-function x.prototype.OnCreated(self, y)
+function y.prototype.OnCreated(self, z)
 	if IsServer() then
-		local z = self:GetParent()
-		local A = z:GetAttachmentPosition("attach_hitloc")
-		self.hitlocOffset = z:GetAbsOrigin() - A
+		local A = self:GetParent()
+		local B = A:GetAttachmentPosition("attach_hitloc")
+		self.hitlocOffset = A:GetAbsOrigin() - B
 		if not self:ApplyHorizontalMotionController() or not self:ApplyVerticalMotionController() then
 			self:Destroy()
 			return
 		end
 		local s = self:GetAbility()
-		s.catch_unit = z
+		s.catch_unit = A
 	end
 end
-function x.prototype.OnDestroy(self)
+function y.prototype.OnDestroy(self)
 	if IsServer() then
 		local s = self:GetAbility()
 		s.catch_unit = nil
 	end
 end
-function x.prototype.OnHorizontalMotionInterrupted(self)
+function y.prototype.OnHorizontalMotionInterrupted(self)
 	if IsServer() then
 		self:Destroy()
 	end
 end
-function x.prototype.OnVerticalMotionInterrupted(self)
+function y.prototype.OnVerticalMotionInterrupted(self)
 	if IsServer() then
 		self:Destroy()
 	end
 end
-function x.prototype.UpdateVerticalMotion(self, B, C)
+function y.prototype.UpdateVerticalMotion(self, C, D)
 	local r = self:GetCaster()
 	if IsValid(r) then
-		B:SetAbsOrigin(r:GetAttachmentPosition("attach_hand_l") + self.hitlocOffset)
+		C:SetAbsOrigin(r:GetAttachmentPosition("attach_hand_l") + self.hitlocOffset)
 	end
 end
-function x.prototype.UpdateHorizontalMotion(self, B, C)
+function y.prototype.UpdateHorizontalMotion(self, C, D)
 	local r = self:GetCaster()
 	if IsValid(r) then
-		local D = r:GetAttachmentAngles(r:ScriptLookupAttachment("attach_hand_l"))
-		B:SetAbsOrigin(r:GetAttachmentPosition("attach_hand_l") + self.hitlocOffset)
+		local E = r:GetAttachmentAngles(r:ScriptLookupAttachment("attach_hand_l"))
+		C:SetAbsOrigin(r:GetAttachmentPosition("attach_hand_l") + self.hitlocOffset)
 	end
 end
-function x.prototype.StaticDeclare(self)
+function y.prototype.StaticDeclare(self)
 	return { [MODIFIER_PROPERTY_OVERRIDE_ANIMATION] = ACT_DOTA_FLAIL }
 end
-function x.prototype.StaticState(self)
+function y.prototype.StaticState(self)
 	return { [StateEnum.NO_HEALTH_BAR] = true }
 end
-function x.prototype.CheckState(self)
+function y.prototype.CheckState(self)
 	return { [MODIFIER_STATE_STUNNED] = true, [MODIFIER_STATE_NO_UNIT_COLLISION] = true, [MODIFIER_STATE_INVULNERABLE] = true }
 end
-x = f(
+y = f(
 	{
 		k(
 			a,
@@ -150,15 +151,15 @@ x = f(
 			}
 		),
 	},
-	x
+	y
 )
-local E = c()
-E.name = "modifier_boss_treant_5_movespeed"
-d(E, i)
-function E.prototype.StaticProperty(self)
+local F = c()
+F.name = "modifier_boss_treant_5_movespeed"
+d(F, i)
+function F.prototype.StaticProperty(self)
 	return { [PropertyFunction.MOVESPEED_AMPLIFY] = 150 }
 end
-E = f(
+F = f(
 	{
 		k(
 			a,
@@ -172,6 +173,6 @@ E = f(
 			}
 		),
 	},
-	E
+	F
 )
 return g

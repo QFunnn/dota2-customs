@@ -683,10 +683,16 @@ function HasResource(path) {
     }
     return (list === null || list === void 0 ? void 0 : list[normalized]) != undefined;
 }
-/** 获取图标路径 */
-function GetTexturePath(name) {
+/** 获取图标路径；Dota 内置图标读取资源包中的编译纹理。 */
+function GetTexturePath(name, source) {
+    if (source === void 0) { source = "auto"; }
     if (!name)
         return;
+    if (source === "dota") {
+        return name.startsWith("item_")
+            ? "s2r://panorama/images/items/".concat(name.substring(5), "_png.vtex")
+            : "s2r://panorama/images/spellicons/".concat(name, "_png.vtex");
+    }
     if (name.startsWith("item_")) {
         var rawPath_1 = "resource/flash3/images/items/".concat(name.substring(5), ".png");
         if (HasResource(rawPath_1)) {
@@ -827,6 +833,10 @@ var StateEnum;
     StateEnum[StateEnum["BLIND"] = 11] = "BLIND";
     /** 迷雾免疫 */
     StateEnum[StateEnum["SMOKE_IMMUNE"] = 12] = "SMOKE_IMMUNE";
+    /** 免疫外部控制；由 modifier 状态、属性和位移入口共同检查。 */
+    StateEnum[StateEnum["CONTROL_IMMUNE"] = 13] = "CONTROL_IMMUNE";
+    /** 禁止受状态限制的召唤。 */
+    StateEnum[StateEnum["SUMMON_DISABLED"] = 14] = "SUMMON_DISABLED";
 })(StateEnum || (StateEnum = {}));
 /** 支付类型 */
 var PayType;
@@ -866,9 +876,9 @@ var EOM_DAMAGE_FLAGS;
     EOM_DAMAGE_FLAGS[EOM_DAMAGE_FLAGS["CONVERTED_DAMAGE"] = 32] = "CONVERTED_DAMAGE";
     /** TODO:召唤伤害 */
     EOM_DAMAGE_FLAGS[EOM_DAMAGE_FLAGS["SUMMONED_DAMAGE"] = 64] = "SUMMONED_DAMAGE";
-    /** TODO:无输出伤害调整 */
-    EOM_DAMAGE_FLAGS[EOM_DAMAGE_FLAGS["NO_OUTGOING_ADJUST"] = 128] = "NO_OUTGOING_ADJUST";
-    /** TODO:无承受伤害调整 */
+    /** 不受目标承伤加成和伤害减免影响 */
+    EOM_DAMAGE_FLAGS[EOM_DAMAGE_FLAGS["NO_INCOMING_AMPLIFY"] = 128] = "NO_INCOMING_AMPLIFY";
+    /** 跳过承受伤害调整和规避伤害；护盾仍由 IGNORE_BARRIER 控制 */
     EOM_DAMAGE_FLAGS[EOM_DAMAGE_FLAGS["NO_INCOMING_ADJUST"] = 256] = "NO_INCOMING_ADJUST";
     /** 无视护盾 */
     EOM_DAMAGE_FLAGS[EOM_DAMAGE_FLAGS["IGNORE_BARRIER"] = 512] = "IGNORE_BARRIER";
@@ -1090,6 +1100,7 @@ var InteractType;
     InteractType["Arena"] = "Arena";
     InteractType["Meepo"] = "Meepo";
     InteractType["Abyssal"] = "Abyssal";
+    InteractType["Hunt"] = "Hunt";
 })(InteractType || (InteractType = {}));
 var RoomType;
 (function (RoomType) {
@@ -1555,7 +1566,7 @@ var BOSS_SHRINK_OUTSIDE_DAMAGE_PCT = 5;
 /** Boss缩圈伤害tick */
 var BOSS_SHRINK_TICK_INTERVAL = 1;
 /** 最大难度 */
-var MAX_DIFFICULTY = 17;
+var MAX_DIFFICULTY = 19;
 /**最大装备数量 */
 var EQUIP_MAX_COUNT = 400;
 /** 商店物品数量 */
@@ -2962,6 +2973,8 @@ var PropType;
     PropType[PropType["Key"] = 19] = "Key";
     /** 装备图纸 */
     PropType[PropType["Drawing"] = 20] = "Drawing";
+    /** 猎魂战利品 */
+    PropType[PropType["Huntloot"] = 22] = "Huntloot";
 })(PropType || (PropType = {}));
 /** 获取商城物品售价 */
 function GetStoreItemCost(itemData, count) {
@@ -3230,11 +3243,14 @@ var PROPERTY_LIST = [
     "spell_damage_amplify",
     "backstab_damage_amplify",
     "backstab_damage_boost",
+    "backstab_damage_boost_2",
     "barrier_damage_amplify",
     "barrier_damage_boost",
+    "barrier_damage_boost_2",
     "retaliated_damage_amplify",
     "ring_damage_amplify",
     "ring_damage_boost",
+    "ring_damage_boost_2",
     "blade_damage_amplify",
     "blade_speed_amplify",
     "damage_reduction",
@@ -3257,6 +3273,7 @@ var PROPERTY_LIST = [
     "movespeed",
     "movespeed_not_calculated",
     "movespeed_amplify",
+    "movespeed_reduce_mul",
     "shop_discount",
     "shop_refresh_refund",
     "split_count",
@@ -3307,6 +3324,7 @@ var PROPERTY_LIST = [
     "bleed_stacks_amplify",
     "freeze_stacks_amplify",
     "shield_amplify",
+    "shield_reduction_mul",
     "crit_damage_amplify",
     "melee_hero_damage_amplify",
     "ranger_hero_damage_amplify",
@@ -3314,10 +3332,13 @@ var PROPERTY_LIST = [
     "crit_chance_amplify",
     "splash_damage_amplify",
     "splash_damage_boost",
+    "splash_damage_boost_2",
     "debuff_target_damage_amplify",
     "minion_damage_boost",
     "boss_damage_boost",
+    "boss_damage_boost_2",
     "elite_damage_boost",
+    "elite_damage_boost_2",
     "all_stats_amplify",
     "ultimate_mana_cost_reduce",
     "buff_duration",
@@ -3355,8 +3376,11 @@ var PROPERTY_LIST = [
     "equip_potential_lucky",
     "equip_recast_lucky",
     "melee_damage_boost",
+    "melee_damage_boost_2",
     "ranged_damage_boost",
+    "ranged_damage_boost_2",
     "execute_damage",
+    "fury_reduction_mul",
     "rage_capacity_amplify",
     "heavy_attack",
     "hp_regeneration",
@@ -3385,32 +3409,47 @@ var PROPERTY_LIST = [
     "rage_gain_percent_per_ultimate",
     "poison_damage_amplify",
     "poison_damage_boost",
+    "poison_damage_boost_2",
     "lightning_damage_amplify",
     "lightning_damage_boost",
+    "lightning_damage_boost_2",
     "holy_shield_damage_boost",
+    "holy_shield_damage_boost_2",
     "bleed_damage_amplify",
     "bleed_damage_boost",
+    "bleed_damage_boost_2",
     "blade_damage_boost",
+    "blade_damage_boost_2",
     "freeze_damage_amplify",
     "freeze_damage_boost",
+    "freeze_damage_boost_2",
     "shield_damage_amplify",
     "execute_damage_amplify",
     "conditional_damage_amplify",
     "attack_damage_boost",
+    "attack_damage_boost_2",
     "spell_damage_boost",
+    "spell_damage_boost_2",
     "skill_damage_amplify",
     "skill_damage_boost",
+    "skill_damage_boost_2",
     "ultimate_damage_amplify",
     "ultimate_damage_boost",
+    "ultimate_damage_boost_2",
     "dodge_damage_amplify",
     "dodge_damage_boost",
+    "dodge_damage_boost_2",
     "defense_damage_amplify",
     "defense_damage_boost",
+    "defense_damage_boost_2",
     "melee_hero_damage_boost",
     "ranger_hero_damage_boost",
     "damage_boost",
+    "damage_boost_2",
     "magical_damage_boost",
+    "magical_damage_boost_2",
     "physical_damage_boost",
+    "physical_damage_boost_2",
     "damage_boost_per_level",
     "physical_damage_boost_per_level",
     "magical_damage_boost_per_level",

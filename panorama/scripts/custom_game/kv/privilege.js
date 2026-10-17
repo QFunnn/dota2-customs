@@ -96,6 +96,7 @@ GameUI.CustomUIConfig().privilege = {
 		"CombatPowerFactor": 0.003,
 		"IsGlobal": 0,
 		"IsStackable": 0,
+		"ExcludeGameMode": "hunt_boss",
 		"AbilityValues": {
 			"item_count": "1 1 1 1 1 1",
 			"rarity": "1 1 1 1 1 1",
@@ -123,6 +124,7 @@ GameUI.CustomUIConfig().privilege = {
 		"CombatPowerFactor": 0.003,
 		"IsGlobal": 0,
 		"IsStackable": 0,
+		"ExcludeGameMode": "hunt_boss",
 		"AbilityValues": {
 			"rarity": 1,
 			"chance": "10 20 30 40 50 60"
@@ -141,7 +143,8 @@ GameUI.CustomUIConfig().privilege = {
 		"Note": "初始获得1次技能天赋选择",
 		"CombatPowerFactor": 0.003,
 		"IsGlobal": 0,
-		"IsStackable": 0
+		"IsStackable": 0,
+		"ExcludeGameMode": "hunt_boss"
 	},
 	"privilege_017": {
 		"Note": "每局游戏前三次金币袋额外获得20金币",
@@ -158,6 +161,7 @@ GameUI.CustomUIConfig().privilege = {
 		"CombatPowerFactor": 0.003,
 		"IsGlobal": 0,
 		"IsStackable": 0,
+		"ExcludeGameMode": "hunt_boss",
 		"AbilityValues": {
 			"upgrade_count": 1
 		}
@@ -504,6 +508,7 @@ GameUI.CustomUIConfig().privilege = {
 		"CombatPowerFactor": 0.006,
 		"IsGlobal": 0,
 		"IsStackable": 0,
+		"ExcludeGameMode": "hunt_boss",
 		"AbilityValues": {
 			"sword_count": 5
 		}
@@ -512,19 +517,22 @@ GameUI.CustomUIConfig().privilege = {
 		"Note": "开局获得雷电祝福【<Ability|item_zeus_expose_crit/>】<Ability|item_zeus_expose_crit_description/>",
 		"CombatPowerFactor": 0.003,
 		"IsGlobal": 0,
-		"IsStackable": 0
+		"IsStackable": 0,
+		"ExcludeGameMode": "hunt_boss"
 	},
 	"privilege_suit_011": {
 		"Note": "开局获得冰冻祝福【<Ability|item_ice_frozen_crit/>】<Ability|item_ice_frozen_crit_description/>",
 		"CombatPowerFactor": 0.006,
 		"IsGlobal": 0,
-		"IsStackable": 0
+		"IsStackable": 0,
+		"ExcludeGameMode": "hunt_boss"
 	},
 	"privilege_suit_012": {
 		"Note": "开局获得暴击祝福【<Ability|item_crit_sword_damage/>】<Ability|item_crit_sword_damage_description/>",
 		"CombatPowerFactor": 0.006,
 		"IsGlobal": 0,
 		"IsStackable": 0,
+		"ExcludeGameMode": "hunt_boss",
 		"AbilityValues": {
 			"crit_damage_bonus": 25
 		}
@@ -534,6 +542,7 @@ GameUI.CustomUIConfig().privilege = {
 		"CombatPowerFactor": 0.006,
 		"IsGlobal": 0,
 		"IsStackable": 0,
+		"ExcludeGameMode": "hunt_boss",
 		"AbilityValues": {
 			"bounce_count": 1
 		}
@@ -543,6 +552,7 @@ GameUI.CustomUIConfig().privilege = {
 		"CombatPowerFactor": 0.003,
 		"IsGlobal": 0,
 		"IsStackable": 0,
+		"ExcludeGameMode": "hunt_boss",
 		"AbilityValues": {
 			"trigger_count": 3,
 			"damage": 100
@@ -553,6 +563,7 @@ GameUI.CustomUIConfig().privilege = {
 		"CombatPowerFactor": 0.003,
 		"IsGlobal": 0,
 		"IsStackable": 0,
+		"ExcludeGameMode": "hunt_boss",
 		"AbilityValues": {
 			"mana_threshold_pct": 60,
 			"damage_bonus_pct": 30
@@ -563,6 +574,7 @@ GameUI.CustomUIConfig().privilege = {
 		"CombatPowerFactor": 0.006,
 		"IsGlobal": 0,
 		"IsStackable": 0,
+		"ExcludeGameMode": "hunt_boss",
 		"AbilityValues": {
 			"item_crit_chance": 8
 		}
@@ -647,6 +659,7 @@ GameUI.CustomUIConfig().privilege = {
 	"privilege_suit_025": {
 		"Note": "开局获得剧毒祝福【<Ability|item_poison_room/>】<Ability|item_poison_room_description/>",
 		"CombatPowerFactor": 0.003,
+		"ExcludeGameMode": "hunt_boss",
 		"AbilityValues": {
 			"duration": 15,
 			"poison_stack": 4,
@@ -671,6 +684,7 @@ GameUI.CustomUIConfig().privilege = {
 	"privilege_suit_028": {
 		"Note": "开局获得雷电祝福【<Ability|item_zeus_thunder_blessing/>】，<Ability|item_zeus_thunder_blessing_description/>",
 		"CombatPowerFactor": 0.003,
+		"ExcludeGameMode": "hunt_boss",
 		"AbilityValues": {
 			"radius": 500,
 			"expose_stack": 2,
@@ -697,6 +711,7 @@ GameUI.CustomUIConfig().privilege = {
 	"privilege_suit_031": {
 		"Note": "开局获得狂暴祝福：每隔%cd%秒攻击施加%damage_pct%%攻击力的<Bleed:流血/>",
 		"CombatPowerFactor": 0.006,
+		"ExcludeGameMode": "hunt_boss",
 		"AbilityValues": {
 			"damage_pct": 20,
 			"cd": 5
@@ -823,6 +838,7 @@ GameUI.CustomUIConfig().privilege = {
 		"CombatPowerFactor": 0.001,
 		"IsGlobal": 0,
 		"IsStackable": 0,
+		"ExcludeGameMode": "hunt_boss",
 		"AbilityValues": {
 			"interval": 1
 		}
@@ -1231,6 +1247,7 @@ GameUI.CustomUIConfig().privilege = {
 		"CombatPowerFactor": 0.003,
 		"IsGlobal": 0,
 		"IsStackable": 0,
+		"ExcludeGameMode": "hunt_boss",
 		"AbilityValues": {
 			"rarity": 4
 		}
@@ -1352,6 +1369,7 @@ GameUI.CustomUIConfig().privilege = {
 		"CombatPowerFactor": 0.006,
 		"IsGlobal": 0,
 		"IsStackable": 0,
+		"ExcludeGameMode": "hunt_boss",
 		"AbilityValues": {
 			"enemy_count": 50,
 			"trig_count_max": 2
@@ -1526,6 +1544,7 @@ GameUI.CustomUIConfig().privilege = {
 		"CombatPowerFactor": 0.003,
 		"IsGlobal": 0,
 		"IsStackable": 0,
+		"ExcludeGameMode": "hunt_boss",
 		"Priority": 10,
 		"AbilityValues": {
 			"extra_discount": 5
@@ -1551,7 +1570,8 @@ GameUI.CustomUIConfig().privilege = {
 		"Note": "初始获得1个随机2级御风祝福",
 		"CombatPowerFactor": 0.003,
 		"IsGlobal": 0,
-		"IsStackable": 0
+		"IsStackable": 0,
+		"ExcludeGameMode": "hunt_boss"
 	},
 	"privilege_bless_011": {
 		"Note": "祝福升级三选一有%upgrade2level_chance%%概率出现提升2级的选项",
@@ -1645,6 +1665,7 @@ GameUI.CustomUIConfig().privilege = {
 		"CombatPowerFactor": 0.003,
 		"IsGlobal": 0,
 		"IsStackable": 0,
+		"ExcludeGameMode": "hunt_boss",
 		"AbilityValues": {
 			"item_count": 1,
 			"rarity": 2
@@ -1666,6 +1687,7 @@ GameUI.CustomUIConfig().privilege = {
 		"CombatPowerFactor": 0.003,
 		"IsGlobal": 0,
 		"IsStackable": 0,
+		"ExcludeGameMode": "hunt_boss",
 		"AbilityValues": {
 			"item_count": 1,
 			"rarity": 3
@@ -1676,6 +1698,7 @@ GameUI.CustomUIConfig().privilege = {
 		"CombatPowerFactor": 0.003,
 		"IsGlobal": 0,
 		"IsStackable": 0,
+		"ExcludeGameMode": "hunt_boss",
 		"AbilityValues": {
 			"item_count": 1,
 			"rarity": 3
@@ -1686,6 +1709,7 @@ GameUI.CustomUIConfig().privilege = {
 		"CombatPowerFactor": 0.003,
 		"IsGlobal": 0,
 		"IsStackable": 0,
+		"ExcludeGameMode": "hunt_boss",
 		"AbilityValues": {
 			"item_count": 1,
 			"rarity": 4
@@ -1899,6 +1923,7 @@ GameUI.CustomUIConfig().privilege = {
 		"CombatPowerFactor": 0.003,
 		"IsGlobal": 0,
 		"IsStackable": 0,
+		"ExcludeGameMode": "hunt_boss",
 		"AbilityValues": {
 			"value": 1
 		}
@@ -2299,6 +2324,7 @@ GameUI.CustomUIConfig().privilege = {
 		"CombatPowerFactor": 0.003,
 		"IsGlobal": 0,
 		"IsStackable": 0,
+		"ExcludeGameMode": "hunt_boss",
 		"AbilityValues": {
 			"upgrade_count": 1
 		}

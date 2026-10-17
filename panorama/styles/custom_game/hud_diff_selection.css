@@ -8,7 +8,7 @@
 ]]
 
 
-/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+/* Prettified by Source 2 Viewer 20.1.0.0 - https://valveresourceformat.github.io */
 
 .CustomHudRoot
 {
@@ -3889,4 +3889,1038 @@
 #KeyOwnerAvatar
 {
 	vertical-align: center;
+}
+
+.CommonItem
+{
+	width: 64px;
+	height: 64px;
+}
+
+.CommonItem.large
+{
+	width: 128px;
+	height: 128px;
+}
+
+.CommonItem.large .Border.Rarity1
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_grey_big_png.vtex");
+}
+
+.CommonItem.large .Border.Rarity2
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_green_big_png.vtex");
+}
+
+.CommonItem.large .Border.Rarity3
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_blue_big_png.vtex");
+}
+
+.CommonItem.large .Border.Rarity4
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_purple_big_png.vtex");
+}
+
+.CommonItem.large .Border.Rarity5
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_golden_big_png.vtex");
+}
+
+.CommonItem.large .Border.Rarity6
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_red_big_png.vtex");
+}
+
+.CommonItem .ItemIcon
+{
+	align: center center;
+	width: 68%;
+	height: width-percentage(100%);
+}
+
+.CommonItem .Border
+{
+	width: 100%;
+	height: 100%;
+	background-size: 100%;
+}
+
+.CommonItem .Border.Rarity1
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_grey_png.vtex");
+}
+
+.CommonItem .Border.Rarity2
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_green_png.vtex");
+}
+
+.CommonItem .Border.Rarity3
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_blue_png.vtex");
+}
+
+.CommonItem .Border.Rarity4
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_purple_png.vtex");
+}
+
+.CommonItem .Border.Rarity5
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_golden_png.vtex");
+}
+
+.CommonItem .Border.Rarity6
+{
+	background-image: url("s2r://panorama/images/custom_game/hud/h_artifact_red_png.vtex");
+}
+
+.CommonItem .StackCount
+{
+	align: right bottom;
+	margin: 10%;
+	font-size: 16px;
+	color: white;
+}
+
+.AspectRatio4x3 .EOM_PopupMain.large
+{
+	ui-scale: 90%;
+}
+
+.EOM_PopupMain
+{
+	align: center center;
+	width: 981px;
+	height: 620px;
+	opacity: 0;
+	transition-property: opacity, transform, pre-transform-scale2d, wash-color;
+}
+
+.EOM_PopupMain.Custom
+{
+	width: fit-children;
+	height: fit-children;
+}
+
+.EOM_PopupMain.normal
+{
+	width: 884px;
+	height: 635px;
+}
+
+.EOM_PopupMain.small
+{
+	width: 814px;
+	height: 380px;
+}
+
+.EOM_PopupMain.small .EOM_CloseButton
+{
+	margin: 2px -11px 0px 0px;
+}
+
+.EOM_PopupMain.large
+{
+	width: 1362px;
+	height: 872px;
+}
+
+.EOM_PopupMain.PopupType_LeftTop
+{
+	transition-duration: 0.4s;
+	transform: translateX(-120px) translateY(-60px);
+	pre-transform-scale2d: 0.95;
+	perspective-origin: 62% 5% invert;
+	perspective: 1000;
+}
+
+.EOM_PopupMain.PopupType_LeftTop.EOM_PopupMainShow
+{
+	opacity: 1;
+	pre-transform-scale2d: 1;
+	transform: none;
+}
+
+.EOM_PopupMain.PopupType_PopOut
+{
+	transition-duration: 0.2s;
+	animation-name: PopOut;
+	animation-duration: 0.2s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+.EOM_PopupMain.PopupType_PopOut.EOM_PopupMainShow
+{
+	opacity: 1;
+}
+
+.EOM_PopupMain.PopupType_PopOut.EOM_PopupMainClose
+{
+	opacity: 0;
+	animation-name: PopOutClose;
+	animation-duration: 0.2s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+}
+
+.EOM_PopupMain .EOM_PopupBG
+{
+	width: 100%;
+	height: 100%;
+}
+
+.small.EOM_PopupMain .EOM_PopupBG
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/popup/popup_small_png.vtex");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.normal.EOM_PopupMain .EOM_PopupBG
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/popup/popup_middle_png.vtex");
+	background-size: 100% 602px;
+	background-position: center top 23px;
+	background-repeat: no-repeat;
+}
+
+.large.EOM_PopupMain .EOM_PopupBG
+{
+	background-image: url("s2r://panorama/images/custom_game/conv/popup/popup_big_png.vtex");
+	background-size: 1362px 804px;
+	background-position: center top 23px;
+	background-repeat: no-repeat;
+}
+
+.EOM_PopupMain .EOM_PopupTitle
+{
+	width: 408px;
+	height: 66px;
+	text-align: center;
+	horizontal-align: center;
+	font-size: 24px;
+	font-weight: normal;
+	color: #e1cb7e;
+	text-shadow: 0px 0px 3px 3 rgba(0, 0, 0, 0.5);
+	background-image: url("s2r://panorama/images/custom_game/conv/popup/popup_title_png.vtex");
+	background-size: 408px 66px;
+	background-position: center;
+	background-repeat: no-repeat;
+	padding-top: 22px;
+}
+
+.small.EOM_PopupMain .EOM_PopupTitle
+{
+	width: 592px;
+	margin-top: 42px;
+	padding-top: 5px;
+	font-size: 22px;
+	color: #D0CA95;
+	background-image: url("s2r://panorama/images/custom_game/conv/popup/popup_board_title_png.vtex");
+	background-size: 592px 34px;
+	background-position: center top;
+}
+
+.EOM_PopupMain .EOM_PopupContent
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+	padding: 100px 60px 60px 60px;
+}
+
+.EOM_PopupMain .EOM_PopupContent.Custom
+{
+	width: fit-children;
+	height: fit-children;
+	margin: 0px;
+}
+
+.small.EOM_PopupMain .EOM_PopupContent
+{
+	padding: 85px 63px 40px 63px;
+}
+
+.normal.EOM_PopupMain .EOM_PopupContent
+{
+	padding: 73px 32px 48px 30px;
+}
+
+.EOM_PopupMain .EOM_CloseButton
+{
+	horizontal-align: right;
+	margin-top: 15px;
+	margin-right: -6px;
+}
+
+.EOM_PopupMain .EOM_CloseButton:active
+{
+	sound: "ui_settings_out_multi";
+}
+
+.EOM_PopupMain .EOM_CloseButton:hover
+{
+	wash-color: none;
+}
+
+@keyframes 'PopOut'
+{
+	0%
+	{
+		pre-transform-scale2d: 0.9;
+	}
+	
+	50%
+	{
+		pre-transform-scale2d: 1.05;
+	}
+	
+	100%
+	{
+		pre-transform-scale2d: 1;
+	}
+	
+}
+
+@keyframes 'PopOutClose'
+{
+	0%
+	{
+		pre-transform-scale2d: 1;
+	}
+	
+	50%
+	{
+		pre-transform-scale2d: 1.05;
+	}
+	
+	100%
+	{
+		pre-transform-scale2d: 0.9;
+	}
+	
+}
+
+.EOM_HeroImage.icon
+{
+	width: 38px;
+	height: 38px;
+}
+
+.EOM_HeroImage.portrait
+{
+	width: 180px;
+	height: 200px;
+}
+
+.EOM_HeroImage.landscape
+{
+	width: 127px;
+	height: 72px;
+}
+
+.EOM_ProgressBar
+{
+	border-radius: 5px;
+	width: 320px;
+	height: 22px;
+	border: 2px solid #232222;
+	background-color: #222222ff;
+}
+
+.EOM_ProgressBar .EOM_ProgressBar_Left
+{
+	height: 100%;
+	background-color: gradient(linear, 60% 0%, 0% 100%, from(#b6261f), to(#65211b));
+	border-radius: 3px;
+	border-top: 1px solid rgba(255, 255, 255, 0.18);
+	transition-property: position, width;
+	transition-duration: 0.6s;
+}
+
+.EOM_ProgressBar .EOM_ProgressBar_Right
+{
+	height: 100%;
+	horizontal-align: right;
+	z-index: -1;
+}
+
+.EOM_ProgressBar.Tui12
+{
+	background-color: #2A284FFF;
+	border-radius: 0px;
+	border: 0px;
+	padding: 5px;
+}
+
+.EOM_ProgressBar.Tui12 .EOM_ProgressBar_Left
+{
+	background-color: #D5B661FF;
+	border-radius: 0px;
+}
+
+.EOM_ProgressBar.Tui12 .EOM_ProgressBar_Right
+{
+	background-color: #2A284FFF;
+}
+
+.HuntBuffIcon
+{
+	width: 48px;
+	height: fit-children;
+	flow-children: down;
+}
+
+.HuntBuffIcon .HuntBuffIconImage
+{
+	width: 100%;
+	height: width-percentage(100%);
+	horizontal-align: center;
+}
+
+.HuntBuffIcon .HuntBuffIconLevel
+{
+	width: fit-children;
+	max-width: 100%;
+	height: 18px;
+	margin: 2px 0px 0px;
+	padding: 0px;
+	text-align: center;
+	horizontal-align: center;
+	font-size: 14px;
+	font-weight: semi-bold;
+	color: #E6D4A4;
+	text-shadow: 0px 0px 2px 2 #000000;
+	white-space: nowrap;
+	text-overflow: shrink;
+}
+
+#DiffSelection #HuntBossSelection
+{
+	width: 100%;
+	height: 100%;
+}
+
+#DiffSelection #HuntBossSelection #HuntBossSelectionContent
+{
+	width: 100%;
+	height: 100%;
+	flow-children: right;
+}
+
+#DiffSelection #HuntBossSelection #HuntBossPreview
+{
+	width: fill-parent-flow(1);
+	height: 100%;
+	flow-children: down;
+}
+
+#DiffSelection #HuntBossSelection #HuntBossPreview #HuntBossPreviewHeader
+{
+	horizontal-align: center;
+	margin-top: 110px;
+	flow-children: right;
+}
+
+#DiffSelection #HuntBossSelection #HuntBossPreview #HuntBossPreviewTitle
+{
+	font-size: 38px;
+	color: #e6d4a4;
+	text-shadow: 0 2px 6px 3 #000000;
+}
+
+#DiffSelection #HuntBossSelection #HuntBossPreview #HuntBossPreviewInfo
+{
+	width: 32px;
+	height: 32px;
+	margin-left: 12px;
+	vertical-align: center;
+	background-image: url("s2r://panorama/images/custom_game/v1_void/v1_tag_info_png.vtex");
+	background-size: 100%;
+}
+
+#DiffSelection #HuntBossSelection #HuntBossPreview #HuntBossPreviewImage
+{
+	width: 420px;
+	height: 420px;
+	horizontal-align: center;
+	margin-top: 22px;
+}
+
+#DiffSelection #HuntBossSelection #DiffRight
+{
+	width: 440px;
+	margin-top: 66px;
+	margin-right: 32px;
+	margin-bottom: 16px;
+	flow-children: down;
+	height: 100%;
+}
+
+#DiffSelection #HuntBossSelection #DiffRight #DiffInfo
+{
+	width: 440px;
+	height: 195px;
+	background-image: url("s2r://panorama/images/custom_game/d1_difficulty/d1_panel_difficulty_png.vtex");
+	background-size: 100%;
+}
+
+#DiffSelection #HuntBossSelection #DiffRight #DiffInfo #DiffContainer
+{
+	height: 60px;
+	margin-top: 82px;
+	align: center top;
+	flow-children: right;
+}
+
+#DiffSelection #HuntBossSelection #DiffRight #DiffInfo #DiffContainer #RightArrow
+{
+	pre-transform-rotate2d: 180deg;
+}
+
+#DiffSelection #HuntBossSelection #DiffRight #DiffInfo #DiffContainer .DiffSelectionArrow
+{
+	width: 35px;
+	height: 52px;
+	background-image: url("s2r://panorama/images/custom_game/d1_difficulty/d1_btn_arrow_png.vtex");
+	background-size: 100%;
+	vertical-align: center;
+}
+
+#DiffSelection #HuntBossSelection #DiffRight #DiffInfo #DiffContainer #DiffList
+{
+	width: 340px;
+	horizontal-align: center;
+}
+
+#DiffSelection #HuntBossSelection #DiffRight #DiffInfo #DiffContainer .Diff
+{
+	width: 60px;
+	height: 60px;
+	vertical-align: center;
+	horizontal-align: center;
+	transition-property: transform, z-index;
+	transition-duration: 0.3s;
+}
+
+#DiffSelection #HuntBossSelection #DiffRight #DiffInfo #DiffContainer .Diff .DiffButton
+{
+	width: 52px;
+	height: 56px;
+	align: center center;
+	background-image: url("s2r://panorama/images/custom_game/d1_difficulty/d1_list_b_png.vtex");
+	background-size: 100%;
+}
+
+#DiffSelection #HuntBossSelection #DiffRight #DiffInfo #DiffContainer .Diff .DiffButton.Select
+{
+	background-image: url("s2r://panorama/images/custom_game/d1_difficulty/d1_list_a_png.vtex");
+}
+
+#DiffSelection #HuntBossSelection #DiffRight #DiffInfo #DiffContainer .Diff .DiffName
+{
+	width: 100%;
+	vertical-align: center;
+	text-align: center;
+	font-size: 22px;
+	color: #bfaa82;
+}
+
+#DiffSelection #HuntBossSelection #DiffRight #DiffInfo #DiffContainer .Diff .SelectParticle
+{
+	align: center center;
+	width: 200%;
+	height: 300%;
+	overflow: noclip;
+	opacity: 0;
+}
+
+#DiffSelection #HuntBossSelection #DiffRight #DiffInfo #DiffContainer .Diff.Index-2
+{
+	opacity: 0;
+	transform: translateX(-188px);
+}
+
+#DiffSelection #HuntBossSelection #DiffRight #DiffInfo #DiffContainer .Diff.Index-1
+{
+	opacity: 1;
+	transform: translateX(-94px);
+}
+
+#DiffSelection #HuntBossSelection #DiffRight #DiffInfo #DiffContainer .Diff.Index0
+{
+	opacity: 1;
+	transform: translateX(0px);
+	z-index: 2;
+}
+
+#DiffSelection #HuntBossSelection #DiffRight #DiffInfo #DiffContainer .Diff.Index0 .SelectParticle
+{
+	opacity: 1;
+}
+
+#DiffSelection #HuntBossSelection #DiffRight #DiffInfo #DiffContainer .Diff.Index1
+{
+	opacity: 1;
+	transform: translateX(94px);
+}
+
+#DiffSelection #HuntBossSelection #DiffRight #DiffInfo #DiffContainer .Diff.Index2
+{
+	opacity: 0;
+	transform: translateX(188px);
+}
+
+#DiffSelection #HuntBossSelection #DiffRight #HuntBossContent
+{
+	width: 100%;
+	height: fill-parent-flow(1);
+	padding: 20px;
+	flow-children: down;
+}
+
+#DiffSelection #HuntBossSelection #DiffRight .HuntBossDetailSection
+{
+	margin-bottom: 15px;
+	horizontal-align: center;
+	flow-children: down;
+	width: 100%;
+}
+
+#DiffSelection #HuntBossSelection #DiffRight .HuntBossDetailSection .HuntBossDetailTitle
+{
+	width: 100%;
+	padding-left: 14px;
+	font-size: 22px;
+	color: #bfaa82;
+}
+
+#DiffSelection #HuntBossSelection #DiffRight .HuntBossDetailSection .DetailDivider
+{
+	margin-top: 4px;
+	margin-bottom: 12px;
+	width: 100%;
+	height: 14px;
+	background-image: url("s2r://panorama/images/custom_game/conv/tooltip/line_divider1_png.vtex");
+	background-size: 100%;
+}
+
+#DiffSelection #HuntBossSelection #DiffRight .HuntBossDetailSection .HuntBossDetailBody
+{
+	width: 100%;
+	padding-left: 14px;
+	flow-children: down;
+}
+
+#DiffSelection #HuntBossSelection #DiffRight .HuntBossDetailSection #HuntBossDetailText
+{
+	width: 100%;
+	font-size: 20px;
+	color: #958d83;
+}
+
+#DiffSelection #HuntBossSelection #DiffRight #HuntBossBuffs #HuntBossBuffList
+{
+	horizontal-align: center;
+	flow-children: right;
+}
+
+#DiffSelection #HuntBossSelection #DiffRight #HuntBossBuffs .HuntBossBuffIcon
+{
+	margin: 0px 6px;
+}
+
+#DiffSelection #HuntBossSelection #DiffRight #HuntBossFieldEffectsButton
+{
+	horizontal-align: center;
+}
+
+#DiffSelection #HuntBossSelection #DiffRight #HuntBossFieldEffectsButton #HuntBossFieldEffectsText
+{
+	font-size: 20px;
+	color: #958d83;
+	background-image: url("s2r://panorama/images/custom_game/f2_file/f2_glass_icon_png.vtex");
+	background-size: 26px 30px;
+	background-position: right center;
+	padding-right: 32px;
+	min-height: 30px;
+	background-repeat: no-repeat;
+}
+
+#DiffSelection #HuntBossSelection #DiffRight #HuntBossIntelligence #HuntBossIntelligenceProgress
+{
+	width: 100%;
+}
+
+#DiffSelection #HuntBossSelection #DiffRight #HuntBossIntelligence #HuntBossIntelligenceProgress #HuntBossIntelligenceProgressValue
+{
+	align: center center;
+	font-size: 16px;
+	color: #FFFFFF;
+	text-shadow: 0px 0px 2px 2 #000000;
+}
+
+#DiffSelection #HuntBossSelection #DiffRight #HuntBossSaveButton
+{
+	ui-scale: 200%;
+	horizontal-align: center;
+	padding: 5px 10px;
+}
+
+#DiffSelection #HuntBossSelection #DiffRight #HuntBossSaveButton #HuntBossSaveButtonEmpty
+{
+	align: center center;
+	font-size: 30px;
+	color: #e6d4a4;
+}
+
+#DiffSelection #HuntBossSelection #DiffRight #HuntBossSaveButton #HuntBossSelectedSave
+{
+	width: 100%;
+	height: 100%;
+	align: center center;
+	flow-children: right;
+}
+
+#DiffSelection #HuntBossSelection #DiffRight #HuntBossSaveButton #HuntBossSelectedSave .EOM_HeroImage
+{
+	ui-scale: 90%;
+	vertical-align: center;
+}
+
+#DiffSelection #HuntBossSelection #DiffRight #HuntBossSaveButton #HuntBossSelectedSaveInfo,#DiffSelection #HuntBossSelection #DiffRight #HuntBossSaveButton #HuntBossSelectedSaveDamage
+{
+	width: fill-parent-flow(1);
+	margin-left: 6px;
+	margin-bottom: 0px;
+	vertical-align: center;
+	font-size: 12px;
+	line-height: 14px;
+	letter-spacing: 0px;
+	text-overflow: shrink;
+	text-shadow: none;
+	color: #e6d4a4;
+}
+
+#DiffSelection #HuntBossSelection #DiffRight #HuntBossSaveButton #HuntBossSelectedSaveDamage
+{
+	text-align: right;
+	color: #c02a26;
+}
+
+#DiffSelection #HuntBossSelection #DiffRight #HuntBossBottom
+{
+	width: 100%;
+	flow-children: down;
+	horizontal-align: center;
+}
+
+#DiffSelection #HuntBossSelection #DiffRight #SaveDiffLimit
+{
+	width: 100%;
+	font-size: 18px;
+	text-align: center;
+	color: #D84A3A;
+	margin-top: 5px;
+}
+
+#DiffSelection #HuntBossSelection #DiffRight #HuntBossPlayerSaves
+{
+	horizontal-align: center;
+	flow-children: right;
+	margin-top: 8px;
+}
+
+#DiffSelection #HuntBossSelection #DiffRight .HuntBossPlayerSave
+{
+	width: 36px;
+	height: 36px;
+	margin: 0 4px;
+}
+
+#DiffSelection #HuntBossSelection #DiffRight .HuntBossPlayerSave .EOM_Avatar
+{
+	width: 36px;
+	height: 36px;
+}
+
+#DiffSelection #HuntBossSelection #DiffRight .HuntBossPlayerSave.NoSave .EOM_Avatar
+{
+	saturation: 0;
+	brightness: 0.5;
+}
+
+#DiffSelection #HuntBossSelection #DiffRight .HuntBossSaveReadyCheck
+{
+	width: 80%;
+	height: 80%;
+	align: center center;
+	background-image: url("s2r://panorama/images/custom_game/conv/tag/conv_tag_checkmark_png.vtex");
+	background-size: 100%;
+}
+
+#DiffSelection #HuntBossSelection #DiffRight #Start:disabled
+{
+	saturation: 0;
+	brightness: 0.5;
+}
+
+#DiffSelection #HuntBossSelection #DiffRight #Start
+{
+	width: 335px;
+	height: 97px;
+	horizontal-align: center;
+	background-image: url("s2r://panorama/images/custom_game/d1_difficulty/d1_btn_strat_png.vtex");
+	background-size: 100%;
+}
+
+#DiffSelection #HuntBossSelection #DiffRight #Start Label
+{
+	align: center center;
+	font-size: 26px;
+	color: #e6d4a4;
+}
+
+#DiffSelection #HuntBossSelection #DiffRight #Teammate
+{
+	width: 100%;
+	horizontal-align: center;
+	flow-children: down;
+}
+
+#DiffSelection #HuntBossSelection #DiffRight #TeammateDiff
+{
+	width: 100%;
+	height: 96px;
+	background-image: url("s2r://panorama/images/custom_game/d1_difficulty/d1_frame_txt_png.vtex");
+	background-size: 100%;
+}
+
+#DiffSelection #HuntBossSelection #DiffRight #TeammateDiff Label
+{
+	font-size: 24px;
+	align: center center;
+	color: #bfaa82;
+}
+
+#DiffSelection #HuntBossSelection #DiffRight #StartCountdown
+{
+	width: 100%;
+	text-align: center;
+	horizontal-align: center;
+	font-size: 14px;
+	margin-top: 10px;
+	color: #b9b1a6;
+}
+
+#DiffSelection #HuntBossSelection #HuntBossFieldEffectsOverlay,#DiffSelection #HuntBossSelection #HuntBossSaveSelectorOverlay
+{
+	width: 100%;
+	height: 100%;
+	background-color: #000000b8;
+	z-index: 3;
+}
+
+#DiffSelection #HuntBossSelection #HuntBossFieldEffectsList
+{
+	margin: 20px;
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+}
+
+#DiffSelection #HuntBossSelection #HuntBossFieldEffectsList .ScrollThumb
+{
+	opacity: 0;
+}
+
+#DiffSelection #HuntBossSelection #HuntBossFieldEffectsList .HuntBossFieldEffectRow
+{
+	width: 100%;
+	flow-children: right;
+	margin-bottom: 18px;
+}
+
+#DiffSelection #HuntBossSelection #HuntBossFieldEffectsList .HuntBossFieldEffectInfo
+{
+	width: fill-parent-flow(1);
+	flow-children: down;
+	margin-left: 14px;
+	margin-right: 14px;
+}
+
+#DiffSelection #HuntBossSelection #HuntBossFieldEffectsList .HuntBossFieldEffectName
+{
+	font-size: 22px;
+	color: #e6d4a4;
+	margin-bottom: 6px;
+}
+
+#DiffSelection #HuntBossSelection #HuntBossFieldEffectsList .HuntBossFieldEffectDescription
+{
+	width: 100%;
+	font-size: 18px;
+	color: #958d83;
+}
+
+#DiffSelection #HuntBossSelection #HuntBossSaveSelectorOverlay #HuntBossSaveSelector .EOM_PopupContent
+{
+	padding: 92px 42px 58px 42px;
+}
+
+#DiffSelection #HuntBossSelection #HuntBossSaveSelectorOverlay #HuntBossSaveSelector #HuntBossSaveSelectorContent
+{
+	width: 100%;
+	height: 100%;
+	flow-children: down;
+}
+
+#DiffSelection #HuntBossSelection #HuntBossSaveSelectorOverlay #HuntBossSaveSelector #HuntBossSaveUsage
+{
+	width: 100%;
+	margin-bottom: 14px;
+	text-align: center;
+	font-size: 24px;
+	color: #e6d4a4;
+}
+
+#DiffSelection #HuntBossSelection #HuntBossSaveSelectorOverlay #HuntBossSaveSelector #HuntBossSaveHeader
+{
+	width: 1278px;
+	height: 40px;
+	horizontal-align: center;
+	flow-children: right;
+}
+
+#DiffSelection #HuntBossSelection #HuntBossSaveSelectorOverlay #HuntBossSaveSelector #HuntBossSaveHeader .HuntBossSaveCol
+{
+	vertical-align: center;
+	text-align: center;
+	font-size: 22px;
+	color: #e6c985;
+}
+
+#DiffSelection #HuntBossSelection #HuntBossSaveSelectorOverlay #HuntBossSaveSelector .HuntBossSaveDivider
+{
+	width: 1226px;
+	height: 6px;
+	horizontal-align: center;
+	margin: 7px 0px;
+	background-image: url("s2r://panorama/images/custom_game/f2_file/f2_line_png.vtex");
+	background-size: 100%;
+}
+
+#DiffSelection #HuntBossSelection #HuntBossSaveSelectorOverlay #HuntBossSaveSelector #HuntBossSaveList
+{
+	width: 1278px;
+	horizontal-align: center;
+	flow-children: down;
+}
+
+#DiffSelection #HuntBossSelection #HuntBossSaveSelectorOverlay #HuntBossSaveSelector .HuntBossSaveRow
+{
+	width: 1278px;
+	height: 104px;
+	margin: 1px 0px;
+	flow-children: right;
+	background-image: url("s2r://panorama/images/custom_game/f2_file/f2_button_victory_png.vtex");
+	background-size: 100%;
+	border-bottom: 1px solid rgba(61, 52, 36, 0.5);
+}
+
+#DiffSelection #HuntBossSelection #HuntBossSaveSelectorOverlay #HuntBossSaveSelector .HuntBossSaveRow:hover
+{
+	brightness: 1.25;
+}
+
+#DiffSelection #HuntBossSelection #HuntBossSaveSelectorOverlay #HuntBossSaveSelector .HuntBossSaveCol
+{
+	vertical-align: center;
+	font-size: 21px;
+	color: #e6d4a4;
+	text-align: center;
+	text-overflow: shrink;
+}
+
+#DiffSelection #HuntBossSelection #HuntBossSaveSelectorOverlay #HuntBossSaveSelector .HuntBossSaveTime
+{
+	width: 160px;
+}
+
+#DiffSelection #HuntBossSelection #HuntBossSaveSelectorOverlay #HuntBossSaveSelector .HuntBossSaveHero
+{
+	width: 120px;
+}
+
+#DiffSelection #HuntBossSelection #HuntBossSaveSelectorOverlay #HuntBossSaveSelector .HuntBossSaveHero .EOM_HeroImage
+{
+	horizontal-align: center;
+}
+
+#DiffSelection #HuntBossSelection #HuntBossSaveSelectorOverlay #HuntBossSaveSelector .HuntBossSaveStatusCell
+{
+	height: fit-children;
+	flow-children: down;
+}
+
+#DiffSelection #HuntBossSelection #HuntBossSaveSelectorOverlay #HuntBossSaveSelector .HuntBossSaveDifficultyValue
+{
+	width: 100%;
+	text-align: center;
+}
+
+#DiffSelection #HuntBossSelection #HuntBossSaveSelectorOverlay #HuntBossSaveSelector .HuntBossSaveWarning
+{
+	width: fit-children;
+	max-width: 100%;
+	horizontal-align: center;
+	margin-top: 4px;
+	font-size: 14px;
+	color: #f26f66;
+	text-align: center;
+	white-space: nowrap;
+	text-overflow: shrink;
+}
+
+#DiffSelection #HuntBossSelection #HuntBossSaveSelectorOverlay #HuntBossSaveSelector .HuntBossSaveDifficulty
+{
+	width: 160px;
+}
+
+#DiffSelection #HuntBossSelection #HuntBossSaveSelectorOverlay #HuntBossSaveSelector .HuntBossSaveDamage
+{
+	width: 120px;
+	color: #c02a26;
+}
+
+#DiffSelection #HuntBossSelection #HuntBossSaveSelectorOverlay #HuntBossSaveSelector .HuntBossSaveBlessing,#DiffSelection #HuntBossSelection #HuntBossSaveSelectorOverlay #HuntBossSaveSelector .HuntBossSaveArtifact
+{
+	width: 359px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+#DiffSelection #HuntBossSelection #HuntBossSaveSelectorOverlay #HuntBossSaveSelector .HuntBossSaveItemCell
+{
+	height: 40px;
+}
+
+#DiffSelection #HuntBossSelection #HuntBossSaveSelectorOverlay #HuntBossSaveSelector .HuntBossSaveItems
+{
+	max-width: 300px;
+	height: 40px;
+	vertical-align: center;
+	horizontal-align: center;
+}
+
+#DiffSelection #HuntBossSelection #HuntBossSaveSelectorOverlay #HuntBossSaveSelector .HuntBossSaveItems .CommonItem
+{
+	width: 36px;
+	height: 36px;
+	margin: 0px;
 }

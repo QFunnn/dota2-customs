@@ -182,7 +182,7 @@ function p.prototype.GetTargetPosition(self)
 	return self.target:GetAbsOrigin()
 end
 function p.prototype.GetBossGapMultiplier(self)
-	return 1 + math.max(0, GetBossGapAmplify(self:GetParent())) / 100
+	return math.max(0.01, 1 + GetBossGapAmplify(self:GetParent()) / 100)
 end
 function p.prototype.GetGapDuration(self, t)
 	if t == self.queenofpain_1 then

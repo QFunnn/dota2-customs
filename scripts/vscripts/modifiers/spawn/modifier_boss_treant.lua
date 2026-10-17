@@ -170,7 +170,7 @@ function m.prototype.GetTargetPosition(self)
 	return self.target:GetAbsOrigin()
 end
 function m.prototype.GetBossGapMultiplier(self)
-	return 1 + math.max(0, GetBossGapAmplify(self:GetParent())) / 100
+	return math.max(0.01, 1 + GetBossGapAmplify(self:GetParent()) / 100)
 end
 function m.prototype.GetGapDuration(self, o)
 	if o == self.boss_treant_1 then

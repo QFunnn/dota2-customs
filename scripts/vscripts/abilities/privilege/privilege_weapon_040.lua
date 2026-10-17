@@ -38,7 +38,7 @@ function j.prototype.EventListener(self)
 				return
 			end
 			local r = self:GetSpecialValueFor("attr_value")
-			n:AddProperty(PropertyFunction.MOVESPEED, r)
+			n:AddProperty(PropertyFunction.MOVESPEED, r, "privilege_weapon_040")
 			Notification:CombatToPlayer(
 				o,
 				{ message = "Notify_privilege_weapon_040", item_name = "item_whisky", int_attr_value = r }

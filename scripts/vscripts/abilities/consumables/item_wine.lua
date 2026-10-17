@@ -27,7 +27,7 @@ function j.prototype.OnCreated(self)
 end
 function j.prototype.OnSpellStart(self)
 	local k = self:GetCaster()
-	k:AddProperty(PropertyFunction.COOLDOWN_REDUCTION, self:GetSpecialValueFor("cooldown_reduction"))
+	k:AddProperty(PropertyFunction.COOLDOWN_REDUCTION, self:GetSpecialValueFor("cooldown_reduction"), self:GetName())
 	k:EmitSoundParams("Hero_Tusk.DrinkingBuddies.Cast", 0, 0.5, 0)
 	k:RemoveItem(self)
 end

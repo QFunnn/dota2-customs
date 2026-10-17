@@ -23,7 +23,7 @@ GameUI.CustomUIConfig().task = {
 		description: "抽卡1次",
 		rewards: {
 			"120001": 50,
-			"1300003": 200
+			"1300004": 200
 		},
 		vip_blessing: 0,
 		achievement_group: 0,
@@ -45,7 +45,7 @@ GameUI.CustomUIConfig().task = {
 		description: "使用任意英雄通关任意难度1次",
 		rewards: {
 			"210001": 100,
-			"1300003": 200
+			"1300004": 200
 		},
 		vip_blessing: 0,
 		achievement_group: 0,
@@ -67,7 +67,7 @@ GameUI.CustomUIConfig().task = {
 		description: "完成2个每日悬赏",
 		rewards: {
 			"120001": 50,
-			"1300003": 200
+			"1300004": 200
 		},
 		vip_blessing: 0,
 		achievement_group: 0,
@@ -89,7 +89,7 @@ GameUI.CustomUIConfig().task = {
 		description: "钓鱼10次",
 		rewards: {
 			"110003": 30,
-			"1300003": 200
+			"1300004": 200
 		},
 		vip_blessing: 0,
 		achievement_group: 0,
@@ -111,7 +111,7 @@ GameUI.CustomUIConfig().task = {
 		description: "分解装备1次",
 		rewards: {
 			"200001": 50,
-			"1300003": 200
+			"1300004": 200
 		},
 		vip_blessing: 0,
 		achievement_group: 0,
@@ -133,7 +133,7 @@ GameUI.CustomUIConfig().task = {
 		description: "完成1次信使远征",
 		rewards: {
 			"110005": 20,
-			"1300003": 200
+			"1300004": 200
 		},
 		vip_blessing: 0,
 		achievement_group: 0,
@@ -156,7 +156,7 @@ GameUI.CustomUIConfig().task = {
 		description: "购买3次啤酒",
 		rewards: {
 			"120001": 50,
-			"1300003": 200
+			"1300004": 200
 		},
 		vip_blessing: 0,
 		achievement_group: 0,
@@ -179,7 +179,7 @@ GameUI.CustomUIConfig().task = {
 		description: "购买3次龙舌兰",
 		rewards: {
 			"120001": 50,
-			"1300003": 200
+			"1300004": 200
 		},
 		vip_blessing: 0,
 		achievement_group: 0,
@@ -201,7 +201,7 @@ GameUI.CustomUIConfig().task = {
 		description: "在许愿池许愿5次",
 		rewards: {
 			"120001": 50,
-			"1300003": 200
+			"1300004": 200
 		},
 		vip_blessing: 0,
 		achievement_group: 0,
@@ -223,7 +223,7 @@ GameUI.CustomUIConfig().task = {
 		description: "击杀100个敌人",
 		rewards: {
 			"210001": 100,
-			"1300003": 200
+			"1300004": 200
 		},
 		vip_blessing: 0,
 		achievement_group: 0,
@@ -245,7 +245,7 @@ GameUI.CustomUIConfig().task = {
 		description: "抽卡1次",
 		rewards: {
 			"120002": 50,
-			"1300003": 200
+			"1300004": 200
 		},
 		vip_blessing: 0,
 		achievement_group: 0,
@@ -267,7 +267,7 @@ GameUI.CustomUIConfig().task = {
 		description: "使用任意英雄通关任意难度1次",
 		rewards: {
 			"210001": 200,
-			"1300003": 200
+			"1300004": 200
 		},
 		vip_blessing: 0,
 		achievement_group: 0,
@@ -289,7 +289,7 @@ GameUI.CustomUIConfig().task = {
 		description: "完成2个每日悬赏",
 		rewards: {
 			"120002": 50,
-			"1300003": 200
+			"1300004": 200
 		},
 		vip_blessing: 0,
 		achievement_group: 0,
@@ -311,7 +311,7 @@ GameUI.CustomUIConfig().task = {
 		description: "钓鱼10次",
 		rewards: {
 			"110003": 60,
-			"1300003": 200
+			"1300004": 200
 		},
 		vip_blessing: 0,
 		achievement_group: 0,
@@ -333,7 +333,7 @@ GameUI.CustomUIConfig().task = {
 		description: "分解装备1次",
 		rewards: {
 			"200001": 100,
-			"1300003": 200
+			"1300004": 200
 		},
 		vip_blessing: 0,
 		achievement_group: 0,
@@ -355,7 +355,7 @@ GameUI.CustomUIConfig().task = {
 		description: "完成1次信使远征",
 		rewards: {
 			"110005": 20,
-			"1300003": 200
+			"1300004": 200
 		},
 		vip_blessing: 0,
 		achievement_group: 0,
@@ -378,7 +378,7 @@ GameUI.CustomUIConfig().task = {
 		description: "购买3次啤酒",
 		rewards: {
 			"120002": 50,
-			"1300003": 200
+			"1300004": 200
 		},
 		vip_blessing: 0,
 		achievement_group: 0,
@@ -401,7 +401,7 @@ GameUI.CustomUIConfig().task = {
 		description: "购买3次龙舌兰",
 		rewards: {
 			"120002": 50,
-			"1300003": 200
+			"1300004": 200
 		},
 		vip_blessing: 0,
 		achievement_group: 0,
@@ -423,7 +423,7 @@ GameUI.CustomUIConfig().task = {
 		description: "在许愿池许愿5次",
 		rewards: {
 			"120002": 50,
-			"1300003": 200
+			"1300004": 200
 		},
 		vip_blessing: 0,
 		achievement_group: 0,
@@ -445,7 +445,7 @@ GameUI.CustomUIConfig().task = {
 		description: "击杀100个敌人",
 		rewards: {
 			"210001": 200,
-			"1300003": 200
+			"1300004": 200
 		},
 		vip_blessing: 0,
 		achievement_group: 0,
@@ -467,7 +467,7 @@ GameUI.CustomUIConfig().task = {
 		description: "抽卡10次",
 		rewards: {
 			"120006": 10,
-			"1300003": 600
+			"1300004": 600
 		},
 		vip_blessing: 0,
 		achievement_group: 0,
@@ -489,7 +489,7 @@ GameUI.CustomUIConfig().task = {
 		description: "完成8个每周悬赏任务",
 		rewards: {
 			"120006": 10,
-			"1300003": 600
+			"1300004": 600
 		},
 		vip_blessing: 0,
 		achievement_group: 0,
@@ -511,7 +511,7 @@ GameUI.CustomUIConfig().task = {
 		description: "完成10个每日悬赏任务",
 		rewards: {
 			"120006": 10,
-			"1300003": 600
+			"1300004": 600
 		},
 		vip_blessing: 0,
 		achievement_group: 0,
@@ -533,7 +533,7 @@ GameUI.CustomUIConfig().task = {
 		description: "使用任意英雄通关任意难度10次",
 		rewards: {
 			"120006": 10,
-			"1300003": 600
+			"1300004": 600
 		},
 		vip_blessing: 0,
 		achievement_group: 0,
@@ -555,7 +555,7 @@ GameUI.CustomUIConfig().task = {
 		description: "钓鱼80次",
 		rewards: {
 			"120006": 10,
-			"1300003": 600
+			"1300004": 600
 		},
 		vip_blessing: 0,
 		achievement_group: 0,
@@ -577,7 +577,7 @@ GameUI.CustomUIConfig().task = {
 		description: "完成5次信使远征",
 		rewards: {
 			"120006": 10,
-			"1300003": 600
+			"1300004": 600
 		},
 		vip_blessing: 0,
 		achievement_group: 0,
@@ -599,7 +599,7 @@ GameUI.CustomUIConfig().task = {
 		description: "完成10个日常任务",
 		rewards: {
 			"120006": 10,
-			"1300003": 600
+			"1300004": 600
 		},
 		vip_blessing: 0,
 		achievement_group: 0,
@@ -622,7 +622,7 @@ GameUI.CustomUIConfig().task = {
 		description: "击杀骷髅王BOSS次数",
 		rewards: {
 			"120006": 10,
-			"1300003": 600
+			"1300004": 600
 		},
 		vip_blessing: 0,
 		achievement_group: 0,
@@ -645,7 +645,7 @@ GameUI.CustomUIConfig().task = {
 		description: "击杀神牛BOSS次数",
 		rewards: {
 			"120006": 10,
-			"1300003": 600
+			"1300004": 600
 		},
 		vip_blessing: 0,
 		achievement_group: 0,
@@ -668,7 +668,7 @@ GameUI.CustomUIConfig().task = {
 		description: "击杀血魔BOSS次数",
 		rewards: {
 			"120006": 10,
-			"1300003": 600
+			"1300004": 600
 		},
 		vip_blessing: 0,
 		achievement_group: 0,
@@ -691,7 +691,7 @@ GameUI.CustomUIConfig().task = {
 		description: "击杀BOSS伐木机",
 		rewards: {
 			"120006": 10,
-			"1300003": 600
+			"1300004": 600
 		},
 		vip_blessing: 0,
 		achievement_group: 0,
@@ -714,7 +714,7 @@ GameUI.CustomUIConfig().task = {
 		description: "击杀BOSS斧王5次",
 		rewards: {
 			"120006": 10,
-			"1300003": 600
+			"1300004": 600
 		},
 		vip_blessing: 0,
 		achievement_group: 0,
@@ -737,7 +737,7 @@ GameUI.CustomUIConfig().task = {
 		description: "击杀BOSS天涯墨客5次",
 		rewards: {
 			"120006": 10,
-			"1300003": 600
+			"1300004": 600
 		},
 		vip_blessing: 0,
 		achievement_group: 0,
@@ -760,7 +760,7 @@ GameUI.CustomUIConfig().task = {
 		description: "击杀BOSS莱恩5次",
 		rewards: {
 			"120006": 10,
-			"1300003": 600
+			"1300004": 600
 		},
 		vip_blessing: 0,
 		achievement_group: 0,
@@ -783,7 +783,7 @@ GameUI.CustomUIConfig().task = {
 		rewards: {
 			"120006": 10,
 			"190004": 1,
-			"1300003": 600
+			"1300004": 600
 		},
 		vip_blessing: 0,
 		achievement_group: 0,
@@ -806,7 +806,7 @@ GameUI.CustomUIConfig().task = {
 		rewards: {
 			"120006": 10,
 			"190004": 1,
-			"1300003": 600
+			"1300004": 600
 		},
 		vip_blessing: 0,
 		achievement_group: 0,
@@ -829,7 +829,7 @@ GameUI.CustomUIConfig().task = {
 		rewards: {
 			"120006": 10,
 			"190004": 1,
-			"1300003": 600
+			"1300004": 600
 		},
 		vip_blessing: 0,
 		achievement_group: 0,
@@ -852,7 +852,7 @@ GameUI.CustomUIConfig().task = {
 		rewards: {
 			"120006": 10,
 			"190004": 1,
-			"1300003": 600
+			"1300004": 600
 		},
 		vip_blessing: 0,
 		achievement_group: 0,
@@ -875,7 +875,7 @@ GameUI.CustomUIConfig().task = {
 		rewards: {
 			"120006": 10,
 			"190004": 1,
-			"1300003": 600
+			"1300004": 600
 		},
 		vip_blessing: 0,
 		achievement_group: 0,
@@ -898,7 +898,7 @@ GameUI.CustomUIConfig().task = {
 		rewards: {
 			"120006": 10,
 			"190004": 1,
-			"1300003": 600
+			"1300004": 600
 		},
 		vip_blessing: 0,
 		achievement_group: 0,
@@ -921,7 +921,7 @@ GameUI.CustomUIConfig().task = {
 		rewards: {
 			"120006": 10,
 			"190004": 1,
-			"1300003": 600
+			"1300004": 600
 		},
 		vip_blessing: 0,
 		achievement_group: 0,
@@ -945,7 +945,7 @@ GameUI.CustomUIConfig().task = {
 		rewards: {
 			"120006": 10,
 			"190004": 1,
-			"1300003": 600
+			"1300004": 600
 		},
 		vip_blessing: 0,
 		achievement_group: 0,
@@ -969,7 +969,7 @@ GameUI.CustomUIConfig().task = {
 		rewards: {
 			"120006": 10,
 			"190004": 1,
-			"1300003": 600
+			"1300004": 600
 		},
 		vip_blessing: 0,
 		achievement_group: 0,
@@ -993,7 +993,7 @@ GameUI.CustomUIConfig().task = {
 		rewards: {
 			"120006": 10,
 			"190004": 1,
-			"1300003": 600
+			"1300004": 600
 		},
 		vip_blessing: 0,
 		achievement_group: 0,
@@ -1017,7 +1017,7 @@ GameUI.CustomUIConfig().task = {
 		rewards: {
 			"120006": 10,
 			"190004": 1,
-			"1300003": 600
+			"1300004": 600
 		},
 		vip_blessing: 0,
 		achievement_group: 0,
@@ -1041,7 +1041,7 @@ GameUI.CustomUIConfig().task = {
 		rewards: {
 			"120006": 10,
 			"190004": 1,
-			"1300003": 600
+			"1300004": 600
 		},
 		vip_blessing: 0,
 		achievement_group: 0,
@@ -1065,7 +1065,7 @@ GameUI.CustomUIConfig().task = {
 		rewards: {
 			"120006": 10,
 			"190004": 1,
-			"1300003": 600
+			"1300004": 600
 		},
 		vip_blessing: 0,
 		achievement_group: 0,
@@ -1089,7 +1089,7 @@ GameUI.CustomUIConfig().task = {
 		rewards: {
 			"120006": 10,
 			"190004": 1,
-			"1300003": 600
+			"1300004": 600
 		},
 		vip_blessing: 0,
 		achievement_group: 0,
@@ -15280,4 +15280,4 @@ GameUI.CustomUIConfig().task = {
 		pre_task: 0,
 		status: 1
 	}
-};
+};

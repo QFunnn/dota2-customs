@@ -77,7 +77,7 @@ GameUI.CustomUIConfig().gem_diff = {
 		diff: 18,
 		layers_limit: 30,
 		class: 5,
-		chaos_change_1: 2,
+		chaos_change_1: 3,
 		chaos_change_2: 8,
 		chaos_change_3: 18
 	},
@@ -85,7 +85,7 @@ GameUI.CustomUIConfig().gem_diff = {
 		diff: 19,
 		layers_limit: 30,
 		class: 5,
-		chaos_change_1: 2,
+		chaos_change_1: 4,
 		chaos_change_2: 8,
 		chaos_change_3: 18
 	},
@@ -93,7 +93,7 @@ GameUI.CustomUIConfig().gem_diff = {
 		diff: 20,
 		layers_limit: 30,
 		class: 5,
-		chaos_change_1: 2,
+		chaos_change_1: 4,
 		chaos_change_2: 8,
 		chaos_change_3: 18
 	}

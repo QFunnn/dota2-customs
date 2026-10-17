@@ -180,7 +180,7 @@ function m.prototype.GetGapDuration(self, n)
 	return n:GetCastPoint() + 1.5
 end
 function m.prototype.GetBossGapMultiplier(self)
-	return 1 + math.max(0, GetBossGapAmplify(self:GetParent())) / 100
+	return math.max(0.01, 1 + GetBossGapAmplify(self:GetParent()) / 100)
 end
 function m.prototype.TryCastAbility(self, n, x)
 	if not self:CanExecuteAction() or not self:CanCastAbility(n) then

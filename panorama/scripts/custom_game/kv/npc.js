@@ -65,5 +65,21 @@ GameUI.CustomUIConfig().npc = {
 		"AttackRate": 1.7,
 		"AttackCapabilities": "DOTA_UNIT_CAP_NO_ATTACK",
 		"BoundsHullName": "DOTA_HULL_SIZE_SMALLEST"
+	},
+	"npc_hunt_save": {
+		"Name": "保存情报",
+		"BaseClass": "npc_dota_creature",
+		"Model": "models/ui/treasure/mosterhunter_capsule/mosterhunter_capsule.vmdl",
+		"ModelScale": 0.6,
+		"MovementCapabilities": "DOTA_UNIT_CAP_MOVE_GROUND",
+		"StatusHealth": 100,
+		"StatusHealthRegen": 0,
+		"StatusMana": 100,
+		"StatusManaRegen": 0,
+		"AttackDamageMin": 0,
+		"AttackDamageMax": 0,
+		"AttackRate": 1.7,
+		"AttackCapabilities": "DOTA_UNIT_CAP_NO_ATTACK",
+		"BoundsHullName": "DOTA_HULL_SIZE_SMALLEST"
 	}
 };

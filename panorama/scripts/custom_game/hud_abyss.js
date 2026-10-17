@@ -1076,3 +1076,4 @@ const HUDAbyss = () => {
   })();
 };
 libs.render(() => libs.createComponent(HUDAbyss, {}), $.GetContextPanel());
+print("HUDAbyss loaded");

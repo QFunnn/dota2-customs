@@ -43,7 +43,7 @@ function k.prototype.OnCreated(self)
 end
 function k.prototype.EventListener(self)
 	return {
-		dungeon_start = function(o, p)
+		GameModeStarted = function(o, p)
 			self.parent:SetModelScale(self.parent:GetModelScale() * 0.8)
 		end,
 	}

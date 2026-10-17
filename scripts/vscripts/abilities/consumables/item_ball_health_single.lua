@@ -34,7 +34,7 @@ function k.prototype.OnSpellStart(self)
 		return
 	end
 	local o = self:GetSpecialValueFor("value")
-	n:AddProperty(PropertyFunction.HEALTH, o)
+	n:AddProperty(PropertyFunction.HEALTH, o, self:GetName())
 	local p = ParticleManager:CreateParticle(
 		"particles/items3_fx/glimmer_cape_initial_flash.vpcf",
 		PATTACH_ABSORIGIN_FOLLOW,

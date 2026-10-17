@@ -368,7 +368,7 @@ function p.prototype.GetGapDuration(self, u)
 	return I + 1.5
 end
 function p.prototype.GetBossGapMultiplier(self)
-	return 1 + math.max(0, GetBossGapAmplify(self:GetParent())) / 100
+	return math.max(0.01, 1 + GetBossGapAmplify(self:GetParent()) / 100)
 end
 function p.prototype.UpdateAggroTarget(self)
 	local o = self:GetParent()

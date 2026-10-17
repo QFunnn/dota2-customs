@@ -668,6 +668,9 @@ const StoreItemImage = props => {
     if (type == PropType.Equipment) {
       let iconName = KeyValues.info_item_equipment[local.itemid]?.icon;
       return getSrcPath("store_items/" + iconName + ".png");
+    } else if (type == PropType.Huntloot) {
+      const iconName = KeyValues.info_item_huntloot[local.itemid]?.icon;
+      return getSrcPath("store_items/" + iconName + ".png");
     } else if (type == PropType.Key) {
       let iconName = KeyValues.info_item_key[local.itemid]?.icon;
       return getSrcPath("store_items/" + iconName + ".png");

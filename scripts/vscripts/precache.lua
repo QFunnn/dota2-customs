@@ -155,6 +155,7 @@ return {
 		"soundevents/game_sounds_heroes/game_sounds_primal_beast.vsndevts",
 	},
 	particle = {
+		"particles/units/heroes/hero_pugna/pugna_life_drain.vpcf",
 		"particles/ui/hud/autocast_round/autocasting_square.vpcf",
 		"particles/ui/game/ui_game_lifebar_blue.vpcf",
 		"particles/ui/game/ui_game_lifebar_red.vpcf",
@@ -165,6 +166,9 @@ return {
 		"particles/ui/game/ui_game_box_select_fx.vpcf",
 	},
 	model = {
+		"models/props_gameplay/dummy/dummy_large.vmdl",
+		"models/heroes/juggernaut/jugg_healing_ward.vmdl",
+		"models/heroes/wisp/wisp.vmdl",
 		"models/eom/props/sm_column/eom_column_007_destroy_lv1.vmdl",
 		"models/eom/props/sm_column/eom_column_007_destroy_lv2.vmdl",
 		"models/eom/props/sm_column/eom_column_006_destroy_lv1.vmdl",

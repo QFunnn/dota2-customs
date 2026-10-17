@@ -67,4 +67,23 @@ k = e(
 	},
 	k
 )
+local m = c()
+m.name = "modifier_internal_stagger"
+d(m, k)
+m = e(
+	{
+		j(
+			a,
+			{
+				IsHidden = true,
+				IsDebuff = false,
+				IsPurgable = false,
+				IsPurgeException = false,
+				AllowIllusionDuplicate = false,
+				RemoveOnDeath = true,
+			}
+		),
+	},
+	m
+)
 return f

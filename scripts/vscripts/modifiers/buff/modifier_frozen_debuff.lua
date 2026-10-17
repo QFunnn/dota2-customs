@@ -117,6 +117,12 @@ function k.prototype.OnIntervalThink(self)
 end
 function k.prototype.DynamicProperty(self)
 	return {
+		[PropertyFunction.MOVESPEED_AMPLIFY] = function()
+			return self.parent:HasState(StateEnum.CONTROL_IMMUNE) and 0 or -50
+		end,
+		[PropertyFunction.ATTACKSPEED_REDUCTION] = function()
+			return self.parent:HasState(StateEnum.CONTROL_IMMUNE) and 0 or 25
+		end,
 		[PropertyFunction.INCOMING_DAMAGE_AMPLIFY] = function(E, l)
 			if l == nil then
 				return 0
@@ -134,9 +140,6 @@ function k.prototype.DynamicProperty(self)
 			return math.min(FROZEN_DAMAGE_AMPLIFY_MAX, H)
 		end,
 	}
-end
-function k.prototype.StaticProperty(self)
-	return { [PropertyFunction.MOVESPEED_AMPLIFY] = -50, [PropertyFunction.ATTACKSPEED_REDUCTION] = 25 }
 end
 k = f(
 	{

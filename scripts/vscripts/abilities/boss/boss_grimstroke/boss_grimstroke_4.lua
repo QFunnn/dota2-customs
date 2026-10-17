@@ -51,7 +51,7 @@ function m.prototype.OnSpellStart(self)
 			ParticleManager:SetParticleControl(x, 2, Vector(t, 0, 0))
 			self:StartThink(u, DoUniqueString("index"), function()
 				ParticleManager:DestroyParticle(x, false)
-				local y = n:SummonUnit(q, w)
+				local y = n:SummonUnit(q, w, nil, nil, true)
 				if IsValid(y) then
 					local z = DungeonManager:GetCurrentRoom()
 					if z ~= nil then

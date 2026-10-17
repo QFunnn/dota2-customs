@@ -21,6 +21,12 @@ var Player = require('./Player.js');
 var RecycleView = require('./RecycleView.js');
 var server_dungeon_key = require('./server_dungeon_key.js');
 var equipment_comp = require('./equipment_comp.js');
+var common_item = require('./common_item.js');
+var EOM_Popup = require('./EOM_Popup.js');
+var EOM_HeroImage = require('./EOM_HeroImage.js');
+var EOM_ProgressBar = require('./EOM_ProgressBar.js');
+var hunt_buff_icon = require('./hunt_buff_icon.js');
+var global_selection = require('./global_selection.js');
 require('./EOM_Countdown.js');
 require('./EOM_ImageNumber.js');
 require('./equipment_utils.js');
@@ -295,7 +301,31 @@ const AbyssalSelection = () => {
       startSelectedDiff();
     }
   });
+  let refDiffList;
   let refBGScene;
+  libs.onMount(() => {
+    const mouseEventName = DoUniqueString("AbyssalSelectionDiffList");
+    CustomUIConfig.SubscribeMouseEvent(mouseEventName, ({
+      event_name: eventName,
+      value
+    }) => {
+      if (!refDiffList?.IsValid() || !refDiffList.BHasHoverStyle()) {
+        return;
+      }
+      if (eventName === "wheeled") {
+        if (value === 1) {
+          moveDiffSelection(-1);
+        } else if (value === -1) {
+          moveDiffSelection(1);
+        }
+      }
+    });
+    libs.onCleanup(() => {
+      try {
+        CustomUIConfig.UnsubscribeMouseEvent(mouseEventName);
+      } catch (error) {}
+    });
+  });
   return (() => {
     const _el$ = libs.createElement("Panel", {
         id: "AbyssalSelection"
@@ -523,6 +553,8 @@ const AbyssalSelection = () => {
         moveDiffSelection(-1);
       }
     }), _el$9);
+    const _ref$2 = refDiffList;
+    typeof _ref$2 === "function" ? libs.use(_ref$2, _el$9) : refDiffList = _el$9;
     libs.insert(_el$9, libs.createComponent(libs.For, {
       get each() {
         return diffList();
@@ -1977,6 +2009,1046 @@ const DungeonSelection = () => {
   })()];
 };
 
+const huntKeyValues = KeyValues;
+function getHuntBossBuffs(difficulty) {
+  const raw = huntKeyValues.hunt_difficulty_affix?.[String(difficulty)]?.FixedAffixes ?? "";
+  const result = [];
+  const seen = new Set();
+  for (const entry of raw.split("|")) {
+    if (entry.trim() === "") continue;
+    const parts = entry.split(":");
+    const id = parts[0].trim();
+    const level = parts.length === 1 ? 1 : Number(parts[1].trim());
+    if (parts.length > 2 || id === "" || !Number.isInteger(level) || level < 1 || seen.has(id)) return [];
+    if (hunt_buff_icon.GetHuntBuffData(id, level)?.type !== 1) return [];
+    seen.add(id);
+    result.push({
+      id,
+      level
+    });
+  }
+  return result;
+}
+function getHuntFieldBuffCount(difficulty) {
+  const count = Number(huntKeyValues.hunt_difficulty_affix?.[String(difficulty)]?.FieldBuffCount ?? 0);
+  return Number.isFinite(count) ? Math.max(0, Math.floor(count)) : 0;
+}
+function getHuntFieldBuffs() {
+  return hunt_buff_icon.GetHuntBuffCatalog().filter(buff => buff.type === 2).map(({
+    id,
+    level
+  }) => ({
+    id,
+    level
+  }));
+}
+
+const BOSS_PREVIEW_IMAGES = ["boss_axe.png", "boss_bloodseeker.png", "boss_earthshaker.png", "boss_grimstroke.png", "boss_lion.png", "boss_queenofpain.png", "boss_shredder.png", "boss_skeleton_king.png"];
+const HUNT_BOSS_SAVE_LIMIT = 5;
+const HUNT_INTELLIGENCE_TOKEN_ID = "110025";
+const HUNT_INTELLIGENCE_MAX = 300;
+const deserializeSave = save => {
+  const snapshot = JSON.parseSafe(save.data);
+  if (snapshot?.hero_name === undefined) return undefined;
+  return {
+    id: save.slot_id,
+    time: global_selection.formatDateText(Number(snapshot.time)),
+    hero: snapshot.hero_name,
+    difficulty: save.diff,
+    strength: snapshot.strength ?? 0,
+    damage: snapshot.total_damage ?? 0,
+    blessings: snapshot.blessings?.map(blessing => blessing.name) ?? [],
+    artifacts: snapshot.artifacts?.map(artifact => artifact.item_name) ?? []
+  };
+};
+function HuntBossSaveItems(props) {
+  const width = () => props.items.length * 36;
+  return libs.createComponent(RecycleView.RecycleView, {
+    "class": "HuntBossSaveItems",
+    get style() {
+      return {
+        width: `${width()}px`
+      };
+    },
+    input: () => props.items,
+    direction: "Horizontal",
+    showBar: false,
+    childConfig: {
+      width: 36,
+      height: 36
+    },
+    children: item => libs.createComponent(common_item.CommonItem, {
+      get itemName() {
+        return item();
+      },
+      showTips: true
+    })
+  });
+}
+const HuntBossSelection = () => {
+  const playerID = Players.GetLocalPlayer();
+  const gameState = solid_utils.createNetDataSignal("common", "game_state");
+  const gameModeState = solid_utils.createNetDataSignal("common", "game_mode_state");
+  const gameModeProfiles = solid_utils.createNetDataSignal("common", "game_mode_profiles");
+  const difficultySelection = solid_utils.createNetDataSignal("common", "game_mode_difficulty_selection");
+  const inputMode = solid_utils.createPlayerNetDataSignal("common", "input_mode", {
+    mode: "keyboard",
+    isGamepad: 0
+  });
+  const heroSelection = solid_utils.createPlayerNetDataSignal("common", "hero_selection");
+  const playerHuntSaveDatas = solid_utils.createServiceNetData("player_hunt_save_datas", {});
+  const playerTokens = solid_utils.createServiceNetData("player_tokens", {});
+  const huntSaveRecords = libs.createMemo(() => Object.values(playerHuntSaveDatas()).map(deserializeSave).filter(record => record !== undefined).sort((a, b) => a.id - b.id));
+  const selectedModeProfile = libs.createMemo(() => gameModeProfiles()?.registeredModes?.hunt_boss);
+  const diffList = libs.createMemo(() => {
+    return (selectedModeProfile()?.configuredDifficulties ?? []).filter(Number.isFinite).sort((a, b) => a - b);
+  });
+  const [difficulty, setDifficulty] = libs.createSignal(1);
+  const bossBuffs = libs.createMemo(() => getHuntBossBuffs(difficulty()));
+  const fieldBuffCount = libs.createMemo(() => getHuntFieldBuffCount(difficulty()));
+  const fieldBuffs = getHuntFieldBuffs();
+  const [showFieldBuffs, setShowFieldBuffs] = libs.createSignal(false);
+  const [countdown, setCountdown] = libs.createSignal(0);
+  const [showSaveSelector, setShowSaveSelector] = libs.createSignal(false);
+  const selectedSave = libs.createMemo(() => {
+    const slotID = difficultySelection()?.playerHuntSlotIDs?.[playerID];
+    return slotID === undefined ? undefined : huntSaveRecords().find(record => record.id === slotID);
+  });
+  const selectedHeroName = libs.createMemo(() => heroSelection()?.heroName ?? "");
+  const huntIntelligence = libs.createMemo(() => playerTokens()[HUNT_INTELLIGENCE_TOKEN_ID]?.amounts ?? 0);
+  const huntIntelligenceProgress = libs.createMemo(() => huntIntelligence() / HUNT_INTELLIGENCE_MAX * 100);
+  let countdownTimer;
+  const availableDifficulties = libs.createMemo(() => {
+    return (selectedModeProfile()?.availableDifficulties ?? []).filter(info => info.available !== false && diffList().includes(info.difficulty)).map(info => info.difficulty).sort((a, b) => a - b);
+  });
+  const canEdit = libs.createMemo(() => difficultySelection()?.state !== "pending" && gameModeState()?.startingModeId === undefined);
+  const isSelectionVisible = libs.createMemo(() => gameState()?.state === "GameState_DiffSelection" && gameModeState()?.selectedModeId === "hunt_boss" && gameModeState()?.startingModeId === undefined);
+  const isInitiator = libs.createMemo(() => {
+    const initiatorPlayerId = difficultySelection()?.initiatorPlayerId;
+    return initiatorPlayerId === undefined || initiatorPlayerId === playerID;
+  });
+  const teamDifficulty = libs.createMemo(() => difficultySelection()?.resolvedDifficulty ?? difficulty());
+  const requiredSaveDifficulty = libs.createMemo(() => KeyValues.hunt_intelligence?.[String(Math.max(teamDifficulty(), difficulty()))]?.dungeon_diff ?? Infinity);
+  const participantPlayerIDs = libs.createMemo(() => Object.keys(difficultySelection()?.playerHuntSaveReady ?? {}).map(id => Number(id)));
+  const allSavesReady = libs.createMemo(() => participantPlayerIDs().length > 0 && participantPlayerIDs().every(id => difficultySelection()?.playerHuntSaveReady?.[id] === true));
+  const isGamepad = libs.createMemo(() => inputMode().isGamepad === 1);
+  const bossPreviewImage = libs.createMemo(() => {
+    const index = (Math.max(1, difficulty()) - 1) % BOSS_PREVIEW_IMAGES.length;
+    return `file://{images}/custom_game/task_icons/${BOSS_PREVIEW_IMAGES[index]}`;
+  });
+  const fallbackDifficulty = libs.createMemo(() => {
+    const available = availableDifficulties();
+    const defaultDifficulty = selectedModeProfile()?.defaultDifficulty;
+    return defaultDifficulty !== undefined && available.includes(defaultDifficulty) ? defaultDifficulty : available[0] ?? 1;
+  });
+  const stopCountdown = () => {
+    if (countdownTimer !== undefined) {
+      clearInterval(countdownTimer);
+      countdownTimer = undefined;
+    }
+  };
+  const restartCountdown = () => {
+    stopCountdown();
+    const endTime = difficultySelection()?.endTime;
+    if (endTime === undefined) {
+      setCountdown(0);
+      return;
+    }
+    const update = () => setCountdown(Math.max(0, Math.ceil(endTime - Game.GetGameTime())));
+    update();
+    if (endTime > Game.GetGameTime()) {
+      countdownTimer = setInterval(update, 1000);
+    }
+  };
+  libs.createEffect(libs.on(isSelectionVisible, visible => {
+    if (!visible) return;
+    setShowSaveSelector(false);
+  }));
+  libs.createEffect(libs.on(() => [difficultySelection()?.endTime, difficultySelection()?.state, gameState()?.state], restartCountdown));
+  libs.createEffect(() => {
+    if (canEdit() && !availableDifficulties().includes(difficulty())) {
+      setDifficulty(fallbackDifficulty());
+    }
+  });
+  libs.createEffect(libs.on(() => difficultySelection()?.playerDifficulties?.[playerID], selected => {
+    if (canEdit()) {
+      setDifficulty(selected !== undefined && availableDifficulties().includes(selected) ? selected : fallbackDifficulty());
+    }
+  }));
+  libs.onCleanup(stopCountdown);
+  const selectDifficulty = value => {
+    if (!canEdit() || !availableDifficulties().includes(value)) return;
+    setDifficulty(value);
+    GameEvents.SendCustomEventToServer("game_mode_select_difficulty", {
+      difficulty: value
+    });
+  };
+  const moveDifficulty = offset => {
+    const available = availableDifficulties();
+    const nextIndex = available.indexOf(difficulty()) + offset;
+    if (canEdit() && nextIndex >= 0 && nextIndex < available.length) selectDifficulty(available[nextIndex]);
+  };
+  const getSaveError = record => {
+    if (record.hero !== selectedHeroName()) return GetLocalization("#HuntBossDiffSelection_SaveHeroMismatch");
+    if (record.difficulty < requiredSaveDifficulty()) return GetLocalization("#HuntBossDiffSelection_SaveDifficultyTooLow");
+    return undefined;
+  };
+  const start = () => {
+    if (!canEdit() || !isInitiator() || !availableDifficulties().includes(difficulty())) return;
+    const save = selectedSave();
+    if (save === undefined) {
+      ErrorMessage(GetLocalization("#HuntBossDiffSelection_SaveNotSelected"));
+      return;
+    }
+    const error = getSaveError(save);
+    if (error !== undefined) {
+      ErrorMessage(error);
+      return;
+    }
+    if (!allSavesReady()) {
+      ErrorMessage(GetLocalization("#HuntBossDiffSelection_TeamSaveNotReady"));
+      return;
+    }
+    GameEvents.SendCustomEventToServer("game_mode_confirm_difficulty", {
+      difficulty: difficulty()
+    });
+  };
+  const selectSave = record => {
+    if (!canEdit()) return;
+    const error = getSaveError(record);
+    if (error !== undefined) {
+      ErrorMessage(error);
+      return;
+    }
+    GameEvents.SendCustomEventToServer("game_mode_select_hunt_save", {
+      hunt_slot_id: record.id
+    });
+    setShowSaveSelector(false);
+  };
+  useClientSideEvent("key_pressed", event => {
+    if (!isGamepad() || gameState()?.state !== "GameState_DiffSelection" || gameModeState()?.selectedModeId !== "hunt_boss") return;
+    if (event.keyFunction === KeyFunction.OptionUp) moveDifficulty(-1);else if (event.keyFunction === KeyFunction.OptionDown) moveDifficulty(1);else if (event.keyFunction === KeyFunction.OptionConfirm) start();
+  });
+  let refDiffList;
+  libs.onMount(() => {
+    const mouseEventName = DoUniqueString("HuntBossSelectionDiffList");
+    CustomUIConfig.SubscribeMouseEvent(mouseEventName, ({
+      event_name: eventName,
+      value
+    }) => {
+      if (!refDiffList?.IsValid() || !refDiffList.BHasHoverStyle()) {
+        return;
+      }
+      if (eventName === "wheeled") {
+        if (value === 1) {
+          moveDifficulty(-1);
+        } else if (value === -1) {
+          moveDifficulty(1);
+        }
+      }
+    });
+    libs.onCleanup(() => {
+      try {
+        CustomUIConfig.UnsubscribeMouseEvent(mouseEventName);
+      } catch (error) {}
+    });
+  });
+  return (() => {
+    const _el$ = libs.createElement("Panel", {
+        id: "HuntBossSelection"
+      }, null),
+      _el$2 = libs.createElement("Panel", {
+        id: "HuntBossPreview"
+      }, _el$),
+      _el$3 = libs.createElement("Panel", {
+        id: "HuntBossPreviewHeader"
+      }, _el$2),
+      _el$4 = libs.createElement("Label", {
+        id: "HuntBossPreviewTitle",
+        get text() {
+          return GetLocalization("#HuntBossDiffSelection_ModeTitle");
+        }
+      }, _el$3),
+      _el$5 = libs.createElement("Panel", {
+        id: "HuntBossPreviewInfo"
+      }, _el$3),
+      _el$6 = libs.createElement("Image", {
+        id: "HuntBossPreviewImage",
+        get src() {
+          return bossPreviewImage();
+        },
+        scaling: "stretch-to-fit-preserve-aspect",
+        hittest: false
+      }, _el$2),
+      _el$7 = libs.createElement("Panel", {
+        id: "DiffRight"
+      }, _el$),
+      _el$8 = libs.createElement("Panel", {
+        id: "DiffInfo"
+      }, _el$7),
+      _el$9 = libs.createElement("Panel", {
+        id: "DiffContainer"
+      }, _el$8),
+      _el$0 = libs.createElement("Panel", {
+        id: "DiffList"
+      }, _el$9),
+      _el$1 = libs.createElement("Panel", {
+        id: "HuntBossContent"
+      }, _el$7),
+      _el$10 = libs.createElement("Panel", {
+        id: "HuntBossDetail",
+        "class": "HuntBossDetailSection"
+      }, _el$1),
+      _el$11 = libs.createElement("Label", {
+        id: "HuntBossDetailTitle",
+        "class": "HuntBossDetailTitle",
+        get text() {
+          return GetLocalization("#HuntBossDiffSelection_ScopeTitle");
+        }
+      }, _el$10);
+      libs.createElement("Panel", {
+        "class": "DetailDivider"
+      }, _el$10);
+      const _el$13 = libs.createElement("Panel", {
+        "class": "HuntBossDetailBody"
+      }, _el$10),
+      _el$14 = libs.createElement("Label", {
+        id: "HuntBossDetailText",
+        get text() {
+          return GetLocalization(`#HuntBossDiffSelection_${difficulty()}_Description`);
+        }
+      }, _el$13),
+      _el$20 = libs.createElement("Panel", {
+        id: "HuntBossFieldEffects",
+        "class": "HuntBossDetailSection"
+      }, _el$1),
+      _el$21 = libs.createElement("Label", {
+        "class": "HuntBossDetailTitle",
+        get text() {
+          return GetLocalization("#HuntBossDiffSelection_FieldEffectsTitle");
+        }
+      }, _el$20);
+      libs.createElement("Panel", {
+        "class": "DetailDivider"
+      }, _el$20);
+      const _el$23 = libs.createElement("Panel", {
+        "class": "HuntBossDetailBody"
+      }, _el$20),
+      _el$25 = libs.createElement("Panel", {
+        id: "HuntBossIntelligence",
+        "class": "HuntBossDetailSection"
+      }, _el$1),
+      _el$26 = libs.createElement("Label", {
+        id: "HuntBossIntelligenceTitle",
+        "class": "HuntBossDetailTitle",
+        get text() {
+          return GetLocalization("#HuntBossDiffSelection_IntelligenceTitle");
+        }
+      }, _el$25);
+      libs.createElement("Panel", {
+        "class": "DetailDivider"
+      }, _el$25);
+      const _el$28 = libs.createElement("Panel", {
+        "class": "HuntBossDetailBody"
+      }, _el$25),
+      _el$30 = libs.createElement("Panel", {
+        id: "HuntBossSaveSection",
+        "class": "HuntBossDetailSection"
+      }, _el$1),
+      _el$31 = libs.createElement("Label", {
+        id: "HuntBossSaveTitle",
+        "class": "HuntBossDetailTitle",
+        get text() {
+          return GetLocalization("#HuntBossDiffSelection_SaveTitle");
+        }
+      }, _el$30);
+      libs.createElement("Panel", {
+        "class": "DetailDivider"
+      }, _el$30);
+      const _el$33 = libs.createElement("Panel", {
+        "class": "HuntBossDetailBody"
+      }, _el$30),
+      _el$37 = libs.createElement("Panel", {
+        width: "100%",
+        height: "fill-parent-flow(1)"
+      }, _el$1),
+      _el$38 = libs.createElement("Panel", {
+        id: "Teammate"
+      }, _el$1),
+      _el$39 = libs.createElement("Panel", {
+        id: "TeammateDiff"
+      }, _el$38),
+      _el$40 = libs.createElement("Label", {
+        get text() {
+          return LocalizeWithVars("#HuntBossDiffSelection_Difficulty", {
+            difficulty: teamDifficulty()
+          });
+        }
+      }, _el$39),
+      _el$41 = libs.createElement("Label", {
+        id: "StartCountdown",
+        get text() {
+          return LocalizeWithVars("#DiffSelection_StartCountdown", {
+            value: countdown()
+          });
+        }
+      }, _el$38),
+      _el$42 = libs.createElement("Panel", {
+        id: "HuntBossBottom"
+      }, _el$7),
+      _el$43 = libs.createElement("Label", {
+        id: "SaveDiffLimit",
+        text: "#DiffSelection_SaveCondition",
+        get vars() {
+          return {
+            diff: Math.max(teamDifficulty(), difficulty()),
+            value: requiredSaveDifficulty()
+          };
+        }
+      }, _el$42),
+      _el$45 = libs.createElement("Panel", {
+        id: "HuntBossPlayerSaves"
+      }, _el$42);
+    libs.insert(_el$9, libs.createComponent(EOM_Button.EOM_BaseButton, {
+      id: "LeftArrow",
+      "class": "DiffSelectionArrow",
+      get visible() {
+        return availableDifficulties().length >= 3;
+      },
+      get enabled() {
+        return libs.memo(() => !!canEdit())() && availableDifficulties().indexOf(difficulty()) > 0;
+      },
+      onactivate: () => moveDifficulty(-1)
+    }), _el$0);
+    const _ref$ = refDiffList;
+    typeof _ref$ === "function" ? libs.use(_ref$, _el$0) : refDiffList = _el$0;
+    libs.insert(_el$0, libs.createComponent(libs.For, {
+      get each() {
+        return availableDifficulties();
+      },
+      children: value => {
+        const positionIndex = () => Math.max(-2, Math.min(2, availableDifficulties().indexOf(value) - availableDifficulties().indexOf(difficulty())));
+        return (() => {
+          const _el$60 = libs.createElement("Panel", {
+              get ["class"]() {
+                return libs.classNames("Diff", "Index" + positionIndex());
+              }
+            }, null);
+            libs.createElement("DOTAParticleScenePanel", {
+              "class": "SelectParticle",
+              particleName: "particles/ui/game/ui_game_general_special_effects_02_fx.vpcf",
+              cameraOrigin: "0 0 60",
+              fov: 60,
+              lookAt: "0 0 0",
+              hittest: false,
+              squarePixels: true
+            }, _el$60);
+          libs.insert(_el$60, libs.createComponent(EOM_Button.EOM_BaseButton, {
+            "class": "DiffButton",
+            get classList() {
+              return {
+                Select: positionIndex() === 0
+              };
+            },
+            get enabled() {
+              return canEdit();
+            },
+            onactivate: () => selectDifficulty(value),
+            get children() {
+              const _el$62 = libs.createElement("Label", {
+                "class": "DiffName",
+                text: value
+              }, null);
+              libs.setProp(_el$62, "text", value);
+              return _el$62;
+            }
+          }), null);
+          libs.effect(_$p => libs.setProp(_el$60, "class", libs.classNames("Diff", "Index" + positionIndex()), _$p));
+          return _el$60;
+        })();
+      }
+    }));
+    libs.insert(_el$9, libs.createComponent(EOM_Button.EOM_BaseButton, {
+      id: "RightArrow",
+      "class": "DiffSelectionArrow",
+      get visible() {
+        return availableDifficulties().length >= 3;
+      },
+      get enabled() {
+        return libs.memo(() => !!canEdit())() && availableDifficulties().indexOf(difficulty()) < availableDifficulties().length - 1;
+      },
+      onactivate: () => moveDifficulty(1)
+    }), null);
+    libs.insert(_el$1, libs.createComponent(libs.Show, {
+      get when() {
+        return bossBuffs().length > 0;
+      },
+      get children() {
+        const _el$15 = libs.createElement("Panel", {
+            id: "HuntBossBuffs",
+            "class": "HuntBossDetailSection"
+          }, null),
+          _el$16 = libs.createElement("Label", {
+            id: "HuntBossBuffsTitle",
+            "class": "HuntBossDetailTitle",
+            get text() {
+              return GetLocalization("#HuntBossDiffSelection_BuffsTitle");
+            }
+          }, _el$15);
+          libs.createElement("Panel", {
+            "class": "DetailDivider"
+          }, _el$15);
+          const _el$18 = libs.createElement("Panel", {
+            "class": "HuntBossDetailBody"
+          }, _el$15),
+          _el$19 = libs.createElement("Panel", {
+            id: "HuntBossBuffList"
+          }, _el$18);
+        libs.insert(_el$19, libs.createComponent(libs.For, {
+          get each() {
+            return bossBuffs();
+          },
+          children: buff => libs.createComponent(hunt_buff_icon.HuntBuffIcon, {
+            "class": "HuntBossBuffIcon",
+            buff: buff
+          })
+        }));
+        libs.effect(_$p => libs.setProp(_el$16, "text", GetLocalization("#HuntBossDiffSelection_BuffsTitle"), _$p));
+        return _el$15;
+      }
+    }), _el$20);
+    libs.insert(_el$23, libs.createComponent(EOM_Button.EOM_BaseButton, {
+      id: "HuntBossFieldEffectsButton",
+      onactivate: () => setShowFieldBuffs(true),
+      get children() {
+        const _el$24 = libs.createElement("Label", {
+          id: "HuntBossFieldEffectsText",
+          get text() {
+            return LocalizeWithVars("#HuntBossDiffSelection_FieldEffectsCount", {
+              count: fieldBuffCount()
+            });
+          },
+          hittest: false
+        }, null);
+        libs.effect(_$p => libs.setProp(_el$24, "text", LocalizeWithVars("#HuntBossDiffSelection_FieldEffectsCount", {
+          count: fieldBuffCount()
+        }), _$p));
+        return _el$24;
+      }
+    }));
+    libs.insert(_el$28, libs.createComponent(EOM_ProgressBar.EOM_ProgressBar, {
+      id: "HuntBossIntelligenceProgress",
+      get value() {
+        return huntIntelligenceProgress();
+      },
+      get children() {
+        const _el$29 = libs.createElement("Label", {
+          id: "HuntBossIntelligenceProgressValue",
+          get text() {
+            return LocalizeWithVars("#HuntBossDiffSelection_IntelligenceProgress", {
+              current: huntIntelligence(),
+              maximum: HUNT_INTELLIGENCE_MAX
+            });
+          }
+        }, null);
+        libs.effect(_$p => libs.setProp(_el$29, "text", LocalizeWithVars("#HuntBossDiffSelection_IntelligenceProgress", {
+          current: huntIntelligence(),
+          maximum: HUNT_INTELLIGENCE_MAX
+        }), _$p));
+        return _el$29;
+      }
+    }));
+    libs.insert(_el$33, libs.createComponent(EOM_Button.EOM_Button, {
+      size: "Small",
+      id: "HuntBossSaveButton",
+      get enabled() {
+        return canEdit();
+      },
+      onactivate: () => setShowSaveSelector(true),
+      get children() {
+        return libs.createComponent(libs.Show, {
+          get when() {
+            return selectedSave();
+          },
+          get fallback() {
+            return (() => {
+              const _el$63 = libs.createElement("Label", {
+                id: "HuntBossSaveButtonEmpty",
+                get text() {
+                  return GetLocalization("#HuntBossDiffSelection_SelectSaveButton");
+                }
+              }, null);
+              libs.effect(_$p => libs.setProp(_el$63, "text", GetLocalization("#HuntBossDiffSelection_SelectSaveButton"), _$p));
+              return _el$63;
+            })();
+          },
+          get children() {
+            const _el$34 = libs.createElement("Panel", {
+                id: "HuntBossSelectedSave"
+              }, null),
+              _el$35 = libs.createElement("Label", {
+                id: "HuntBossSelectedSaveInfo",
+                get text() {
+                  return LocalizeWithVars("#HuntBossDiffSelection_SaveDifficulty", {
+                    difficulty: selectedSave().difficulty,
+                    strength: selectedSave().strength
+                  });
+                }
+              }, _el$34),
+              _el$36 = libs.createElement("Label", {
+                id: "HuntBossSelectedSaveDamage",
+                get text() {
+                  return FormatNumber(selectedSave().damage);
+                }
+              }, _el$34);
+            libs.insert(_el$34, libs.createComponent(EOM_HeroImage.EOM_HeroImage, {
+              get heroname() {
+                return selectedSave().hero;
+              },
+              heroimagestyle: "icon"
+            }), _el$35);
+            libs.effect(_p$ => {
+              const _v$ = LocalizeWithVars("#HuntBossDiffSelection_SaveDifficulty", {
+                  difficulty: selectedSave().difficulty,
+                  strength: selectedSave().strength
+                }),
+                _v$2 = FormatNumber(selectedSave().damage);
+              _v$ !== _p$._v$ && (_p$._v$ = libs.setProp(_el$35, "text", _v$, _p$._v$));
+              _v$2 !== _p$._v$2 && (_p$._v$2 = libs.setProp(_el$36, "text", _v$2, _p$._v$2));
+              return _p$;
+            }, {
+              _v$: undefined,
+              _v$2: undefined
+            });
+            return _el$34;
+          }
+        });
+      }
+    }));
+    libs.setProp(_el$37, "width", "100%");
+    libs.setProp(_el$37, "height", "fill-parent-flow(1)");
+    libs.insert(_el$42, libs.createComponent(EOM_Button.EOM_BaseButton, {
+      id: "Start",
+      get visible() {
+        return libs.memo(() => !!isInitiator())() && canEdit();
+      },
+      get enabled() {
+        return libs.memo(() => !!availableDifficulties().includes(difficulty()))() && allSavesReady();
+      },
+      onactivate: start,
+      get children() {
+        const _el$44 = libs.createElement("Label", {
+          get text() {
+            return GetLocalization("#HuntBossDiffSelection_Start");
+          }
+        }, null);
+        libs.effect(_$p => libs.setProp(_el$44, "text", GetLocalization("#HuntBossDiffSelection_Start"), _$p));
+        return _el$44;
+      }
+    }), _el$45);
+    libs.insert(_el$45, libs.createComponent(libs.For, {
+      get each() {
+        return participantPlayerIDs();
+      },
+      children: id => {
+        const steamID = () => Game.GetPlayerInfo(id)?.player_steamid;
+        const isSaveReady = () => difficultySelection()?.playerHuntSaveReady?.[id] === true;
+        return (() => {
+          const _el$64 = libs.createElement("Panel", {
+              "class": "HuntBossPlayerSave"
+            }, null),
+            _el$65 = libs.createElement("Image", {
+              "class": "HuntBossSaveReadyCheck",
+              hittest: false
+            }, _el$64);
+          libs.insert(_el$64, libs.createComponent(Player.EOM_Avatar, {
+            style: {
+              align: "center center"
+            },
+            get steamid() {
+              return steamID();
+            },
+            get accountid() {
+              return libs.memo(() => steamID() !== undefined)() ? Steam_64_3(steamID()) : "-1";
+            }
+          }), _el$65);
+          libs.effect(_p$ => {
+            const _v$21 = {
+                NoSave: !isSaveReady()
+              },
+              _v$22 = Players.GetPlayerName(id),
+              _v$23 = isSaveReady();
+            _v$21 !== _p$._v$21 && (_p$._v$21 = libs.setProp(_el$64, "classList", _v$21, _p$._v$21));
+            _v$22 !== _p$._v$22 && (_p$._v$22 = libs.setProp(_el$64, "tooltip_text", _v$22, _p$._v$22));
+            _v$23 !== _p$._v$23 && (_p$._v$23 = libs.setProp(_el$65, "visible", _v$23, _p$._v$23));
+            return _p$;
+          }, {
+            _v$21: undefined,
+            _v$22: undefined,
+            _v$23: undefined
+          });
+          return _el$64;
+        })();
+      }
+    }));
+    libs.insert(_el$, libs.createComponent(libs.Show, {
+      get when() {
+        return showFieldBuffs();
+      },
+      get children() {
+        const _el$46 = libs.createElement("Panel", {
+          id: "HuntBossFieldEffectsOverlay",
+          hittest: true
+        }, null);
+        libs.insert(_el$46, libs.createComponent(EOM_Popup.EOM_Popup, {
+          id: "HuntBossFieldEffectsPopup",
+          size: "normal",
+          popType: "PopupType_PopOut",
+          get title() {
+            return GetLocalization("#HuntBossDiffSelection_FieldEffectsTitle");
+          },
+          classList: {
+            EOM_PopupMainShow: true
+          },
+          onClose: () => setShowFieldBuffs(false),
+          get children() {
+            const _el$47 = libs.createElement("Panel", {
+              id: "HuntBossFieldEffectsList",
+              scroll: "y"
+            }, null);
+            libs.setProp(_el$47, "scroll", "y");
+            libs.insert(_el$47, libs.createComponent(libs.For, {
+              each: fieldBuffs,
+              children: buff => (() => {
+                const _el$66 = libs.createElement("Panel", {
+                    "class": "HuntBossFieldEffectRow"
+                  }, null),
+                  _el$67 = libs.createElement("Panel", {
+                    "class": "HuntBossFieldEffectInfo"
+                  }, _el$66),
+                  _el$68 = libs.createElement("Label", {
+                    "class": "HuntBossFieldEffectName",
+                    get text() {
+                      return hunt_buff_icon.GetHuntEffectName(buff.id, buff.level);
+                    }
+                  }, _el$67),
+                  _el$69 = libs.createElement("Label", {
+                    "class": "HuntBossFieldEffectDescription",
+                    get text() {
+                      return hunt_buff_icon.GetHuntEffectDescription(buff.id, buff.level);
+                    }
+                  }, _el$67);
+                libs.insert(_el$66, libs.createComponent(hunt_buff_icon.HuntBuffIcon, {
+                  buff: buff,
+                  tooltipType: "field",
+                  showTips: false,
+                  hittest: false
+                }), _el$67);
+                libs.effect(_p$ => {
+                  const _v$24 = hunt_buff_icon.GetHuntEffectName(buff.id, buff.level),
+                    _v$25 = hunt_buff_icon.GetHuntEffectDescription(buff.id, buff.level);
+                  _v$24 !== _p$._v$24 && (_p$._v$24 = libs.setProp(_el$68, "text", _v$24, _p$._v$24));
+                  _v$25 !== _p$._v$25 && (_p$._v$25 = libs.setProp(_el$69, "text", _v$25, _p$._v$25));
+                  return _p$;
+                }, {
+                  _v$24: undefined,
+                  _v$25: undefined
+                });
+                return _el$66;
+              })()
+            }));
+            return _el$47;
+          }
+        }));
+        return _el$46;
+      }
+    }), null);
+    libs.insert(_el$, libs.createComponent(libs.Show, {
+      get when() {
+        return showSaveSelector();
+      },
+      get children() {
+        const _el$48 = libs.createElement("Panel", {
+          id: "HuntBossSaveSelectorOverlay",
+          hittest: true
+        }, null);
+        libs.insert(_el$48, libs.createComponent(EOM_Popup.EOM_Popup, {
+          id: "HuntBossSaveSelector",
+          size: "large",
+          popType: "PopupType_PopOut",
+          get title() {
+            return GetLocalization("#HuntBossDiffSelection_SelectSave");
+          },
+          classList: {
+            EOM_PopupMainShow: true
+          },
+          onClose: () => setShowSaveSelector(false),
+          get children() {
+            const _el$49 = libs.createElement("Panel", {
+                id: "HuntBossSaveSelectorContent"
+              }, null),
+              _el$50 = libs.createElement("Label", {
+                id: "HuntBossSaveUsage",
+                get text() {
+                  return LocalizeWithVars("#HuntBossDiffSelection_SaveUsage", {
+                    used: huntSaveRecords().length,
+                    maximum: HUNT_BOSS_SAVE_LIMIT
+                  });
+                }
+              }, _el$49),
+              _el$51 = libs.createElement("Panel", {
+                id: "HuntBossSaveHeader"
+              }, _el$49),
+              _el$52 = libs.createElement("Label", {
+                "class": "HuntBossSaveCol HuntBossSaveTime",
+                get text() {
+                  return GetLocalization("#HuntBossDiffSelection_SaveTime");
+                }
+              }, _el$51),
+              _el$53 = libs.createElement("Label", {
+                "class": "HuntBossSaveCol HuntBossSaveHero",
+                get text() {
+                  return GetLocalization("#HuntBossDiffSelection_SaveHero");
+                }
+              }, _el$51),
+              _el$54 = libs.createElement("Label", {
+                "class": "HuntBossSaveCol HuntBossSaveDifficulty",
+                get text() {
+                  return GetLocalization("#HuntBossDiffSelection_SaveDifficultyTitle");
+                }
+              }, _el$51),
+              _el$55 = libs.createElement("Label", {
+                "class": "HuntBossSaveCol HuntBossSaveDamage",
+                get text() {
+                  return GetLocalization("#HuntBossDiffSelection_SaveDamage");
+                }
+              }, _el$51),
+              _el$56 = libs.createElement("Label", {
+                "class": "HuntBossSaveCol HuntBossSaveBlessing",
+                get text() {
+                  return GetLocalization("#HuntBossDiffSelection_SaveBlessing");
+                }
+              }, _el$51),
+              _el$57 = libs.createElement("Label", {
+                "class": "HuntBossSaveCol HuntBossSaveArtifact",
+                get text() {
+                  return GetLocalization("#HuntBossDiffSelection_SaveArtifact");
+                }
+              }, _el$51);
+              libs.createElement("Panel", {
+                "class": "HuntBossSaveDivider"
+              }, _el$49);
+              const _el$59 = libs.createElement("Panel", {
+                id: "HuntBossSaveList"
+              }, _el$49);
+            libs.insert(_el$59, libs.createComponent(libs.For, {
+              get each() {
+                return huntSaveRecords();
+              },
+              children: record => {
+                const meetsDifficulty = () => record.difficulty >= requiredSaveDifficulty();
+                const matchesHero = () => record.hero === selectedHeroName();
+                return libs.createComponent(EOM_Button.EOM_BaseButton, {
+                  "class": "HuntBossSaveRow",
+                  get enabled() {
+                    return canEdit();
+                  },
+                  onactivate: () => selectSave(record),
+                  get children() {
+                    return [(() => {
+                      const _el$70 = libs.createElement("Label", {
+                        "class": "HuntBossSaveCol HuntBossSaveTime",
+                        get text() {
+                          return record.time;
+                        }
+                      }, null);
+                      libs.effect(_$p => libs.setProp(_el$70, "text", record.time, _$p));
+                      return _el$70;
+                    })(), (() => {
+                      const _el$71 = libs.createElement("Panel", {
+                        "class": "HuntBossSaveCol HuntBossSaveHero HuntBossSaveStatusCell"
+                      }, null);
+                      libs.insert(_el$71, libs.createComponent(EOM_HeroImage.EOM_HeroImage, {
+                        get heroname() {
+                          return record.hero;
+                        },
+                        heroimagestyle: "icon",
+                        hittest: false
+                      }), null);
+                      libs.insert(_el$71, libs.createComponent(libs.Show, {
+                        get when() {
+                          return !matchesHero();
+                        },
+                        get children() {
+                          const _el$72 = libs.createElement("Label", {
+                            "class": "HuntBossSaveWarning",
+                            get text() {
+                              return GetLocalization("#HuntBossDiffSelection_SaveHeroMismatch");
+                            },
+                            hittest: false
+                          }, null);
+                          libs.effect(_$p => libs.setProp(_el$72, "text", GetLocalization("#HuntBossDiffSelection_SaveHeroMismatch"), _$p));
+                          return _el$72;
+                        }
+                      }), null);
+                      return _el$71;
+                    })(), (() => {
+                      const _el$73 = libs.createElement("Panel", {
+                          "class": "HuntBossSaveCol HuntBossSaveDifficulty HuntBossSaveStatusCell"
+                        }, null),
+                        _el$74 = libs.createElement("Label", {
+                          "class": "HuntBossSaveDifficultyValue",
+                          get text() {
+                            return LocalizeWithVars("#HuntBossDiffSelection_SaveDifficulty", {
+                              difficulty: record.difficulty,
+                              strength: record.strength
+                            });
+                          },
+                          hittest: false
+                        }, _el$73);
+                      libs.insert(_el$73, libs.createComponent(libs.Show, {
+                        get when() {
+                          return !meetsDifficulty();
+                        },
+                        get children() {
+                          const _el$75 = libs.createElement("Label", {
+                            "class": "HuntBossSaveWarning",
+                            get text() {
+                              return GetLocalization("#HuntBossDiffSelection_SaveDifficultyTooLow");
+                            },
+                            hittest: false
+                          }, null);
+                          libs.effect(_$p => libs.setProp(_el$75, "text", GetLocalization("#HuntBossDiffSelection_SaveDifficultyTooLow"), _$p));
+                          return _el$75;
+                        }
+                      }), null);
+                      libs.effect(_$p => libs.setProp(_el$74, "text", LocalizeWithVars("#HuntBossDiffSelection_SaveDifficulty", {
+                        difficulty: record.difficulty,
+                        strength: record.strength
+                      }), _$p));
+                      return _el$73;
+                    })(), (() => {
+                      const _el$76 = libs.createElement("Label", {
+                        "class": "HuntBossSaveCol HuntBossSaveDamage",
+                        get text() {
+                          return FormatNumber(record.damage);
+                        }
+                      }, null);
+                      libs.effect(_$p => libs.setProp(_el$76, "text", FormatNumber(record.damage), _$p));
+                      return _el$76;
+                    })(), (() => {
+                      const _el$77 = libs.createElement("Panel", {
+                        "class": "HuntBossSaveCol HuntBossSaveBlessing HuntBossSaveItemCell"
+                      }, null);
+                      libs.insert(_el$77, libs.createComponent(HuntBossSaveItems, {
+                        get items() {
+                          return record.blessings;
+                        }
+                      }));
+                      return _el$77;
+                    })(), (() => {
+                      const _el$78 = libs.createElement("Panel", {
+                        "class": "HuntBossSaveCol HuntBossSaveArtifact HuntBossSaveItemCell"
+                      }, null);
+                      libs.insert(_el$78, libs.createComponent(HuntBossSaveItems, {
+                        get items() {
+                          return record.artifacts;
+                        }
+                      }));
+                      return _el$78;
+                    })()];
+                  }
+                });
+              }
+            }));
+            libs.effect(_p$ => {
+              const _v$3 = LocalizeWithVars("#HuntBossDiffSelection_SaveUsage", {
+                  used: huntSaveRecords().length,
+                  maximum: HUNT_BOSS_SAVE_LIMIT
+                }),
+                _v$4 = GetLocalization("#HuntBossDiffSelection_SaveTime"),
+                _v$5 = GetLocalization("#HuntBossDiffSelection_SaveHero"),
+                _v$6 = GetLocalization("#HuntBossDiffSelection_SaveDifficultyTitle"),
+                _v$7 = GetLocalization("#HuntBossDiffSelection_SaveDamage"),
+                _v$8 = GetLocalization("#HuntBossDiffSelection_SaveBlessing"),
+                _v$9 = GetLocalization("#HuntBossDiffSelection_SaveArtifact");
+              _v$3 !== _p$._v$3 && (_p$._v$3 = libs.setProp(_el$50, "text", _v$3, _p$._v$3));
+              _v$4 !== _p$._v$4 && (_p$._v$4 = libs.setProp(_el$52, "text", _v$4, _p$._v$4));
+              _v$5 !== _p$._v$5 && (_p$._v$5 = libs.setProp(_el$53, "text", _v$5, _p$._v$5));
+              _v$6 !== _p$._v$6 && (_p$._v$6 = libs.setProp(_el$54, "text", _v$6, _p$._v$6));
+              _v$7 !== _p$._v$7 && (_p$._v$7 = libs.setProp(_el$55, "text", _v$7, _p$._v$7));
+              _v$8 !== _p$._v$8 && (_p$._v$8 = libs.setProp(_el$56, "text", _v$8, _p$._v$8));
+              _v$9 !== _p$._v$9 && (_p$._v$9 = libs.setProp(_el$57, "text", _v$9, _p$._v$9));
+              return _p$;
+            }, {
+              _v$3: undefined,
+              _v$4: undefined,
+              _v$5: undefined,
+              _v$6: undefined,
+              _v$7: undefined,
+              _v$8: undefined,
+              _v$9: undefined
+            });
+            return _el$49;
+          }
+        }));
+        return _el$48;
+      }
+    }), null);
+    libs.effect(_p$ => {
+      const _v$0 = GetLocalization("#HuntBossDiffSelection_ModeTitle"),
+        _v$1 = GetLocalization("#HuntBossDiffSelection_Info"),
+        _v$10 = bossPreviewImage(),
+        _v$11 = GetLocalization("#HuntBossDiffSelection_ScopeTitle"),
+        _v$12 = GetLocalization(`#HuntBossDiffSelection_${difficulty()}_Description`),
+        _v$13 = GetLocalization("#HuntBossDiffSelection_FieldEffectsTitle"),
+        _v$14 = GetLocalization("#HuntBossDiffSelection_IntelligenceTitle"),
+        _v$15 = GetLocalization("#HuntBossDiffSelection_SaveTitle"),
+        _v$16 = difficultySelection()?.state === "pending",
+        _v$17 = LocalizeWithVars("#HuntBossDiffSelection_Difficulty", {
+          difficulty: teamDifficulty()
+        }),
+        _v$18 = LocalizeWithVars("#DiffSelection_StartCountdown", {
+          value: countdown()
+        }),
+        _v$19 = Number.isFinite(requiredSaveDifficulty()),
+        _v$20 = {
+          diff: Math.max(teamDifficulty(), difficulty()),
+          value: requiredSaveDifficulty()
+        };
+      _v$0 !== _p$._v$0 && (_p$._v$0 = libs.setProp(_el$4, "text", _v$0, _p$._v$0));
+      _v$1 !== _p$._v$1 && (_p$._v$1 = libs.setProp(_el$5, "tooltip_text", _v$1, _p$._v$1));
+      _v$10 !== _p$._v$10 && (_p$._v$10 = libs.setProp(_el$6, "src", _v$10, _p$._v$10));
+      _v$11 !== _p$._v$11 && (_p$._v$11 = libs.setProp(_el$11, "text", _v$11, _p$._v$11));
+      _v$12 !== _p$._v$12 && (_p$._v$12 = libs.setProp(_el$14, "text", _v$12, _p$._v$12));
+      _v$13 !== _p$._v$13 && (_p$._v$13 = libs.setProp(_el$21, "text", _v$13, _p$._v$13));
+      _v$14 !== _p$._v$14 && (_p$._v$14 = libs.setProp(_el$26, "text", _v$14, _p$._v$14));
+      _v$15 !== _p$._v$15 && (_p$._v$15 = libs.setProp(_el$31, "text", _v$15, _p$._v$15));
+      _v$16 !== _p$._v$16 && (_p$._v$16 = libs.setProp(_el$38, "visible", _v$16, _p$._v$16));
+      _v$17 !== _p$._v$17 && (_p$._v$17 = libs.setProp(_el$40, "text", _v$17, _p$._v$17));
+      _v$18 !== _p$._v$18 && (_p$._v$18 = libs.setProp(_el$41, "text", _v$18, _p$._v$18));
+      _v$19 !== _p$._v$19 && (_p$._v$19 = libs.setProp(_el$43, "visible", _v$19, _p$._v$19));
+      _v$20 !== _p$._v$20 && (_p$._v$20 = libs.setProp(_el$43, "vars", _v$20, _p$._v$20));
+      return _p$;
+    }, {
+      _v$0: undefined,
+      _v$1: undefined,
+      _v$10: undefined,
+      _v$11: undefined,
+      _v$12: undefined,
+      _v$13: undefined,
+      _v$14: undefined,
+      _v$15: undefined,
+      _v$16: undefined,
+      _v$17: undefined,
+      _v$18: undefined,
+      _v$19: undefined,
+      _v$20: undefined
+    });
+    return _el$;
+  })();
+};
+
 const DiffSelection = () => {
   const gameState = solid_utils.createNetDataSignal("common", "game_state");
   const gameModeState = solid_utils.createNetDataSignal("common", "game_mode_state");
@@ -2011,6 +3083,13 @@ const DiffSelection = () => {
           },
           get children() {
             return libs.createComponent(AbyssalSelection, {});
+          }
+        }), libs.createComponent(libs.Match, {
+          get when() {
+            return selectedModeId() === "hunt_boss";
+          },
+          get children() {
+            return libs.createComponent(HuntBossSelection, {});
           }
         })];
       }

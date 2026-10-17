@@ -8,7 +8,7 @@
 ]]
 
 
-/* Prettified by Source 2 Viewer 20.0.0.0 - https://valveresourceformat.github.io */
+/* Prettified by Source 2 Viewer 20.1.0.0 - https://valveresourceformat.github.io */
 
 #Contents.tooltips_server_huntloot
 {
@@ -25,7 +25,7 @@
 {
 	horizontal-align: center;
 	padding-top: 29px;
-	min-height: 250px;
+	height: fit-children;
 }
 
 .DetailContainer.ShowOrnament .OrnamentPanel
@@ -36,20 +36,32 @@
 .ServerHuntlootDetail
 {
 	horizontal-align: center;
+	padding-bottom: 4px;
 }
 
 .ServerHuntlootDetail #ServerEquipDetailLoaded
 {
-	min-height: 248px;
+	height: fit-children;
+	overflow: noclip;
+	background-size: 100% 100%, 2px 100%, 2px 100%;
+	background-position: left top, left top, right top;
+}
+
+.ServerHuntlootDetail #ServerEquipDetailLoaded #ALTTipsContainer
+{
+	margin-bottom: 0px;
 }
 
 .BGImg
 {
+	ignore-parent-flow: true;
 	horizontal-align: center;
 	margin: -6px 16px 0px 16px;
 	width: 100%;
 	height: 100%;
 	background-image: url("s2r://panorama/images/custom_game/eom_design/tooltip/conv_tips_1_png.vtex");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
 	border-image-source: url("s2r://panorama/images/custom_game/eom_design/tooltip/conv_tips_2_png.vtex");
 	border-width: 33px 33px 33px 33px;
 	border-image-slice: 33px 33px 33px 33px;
@@ -58,6 +70,7 @@
 
 .OrnamentPanel
 {
+	ignore-parent-flow: true;
 	margin-top: -31px;
 	width: 460px;
 	height: 90px;
@@ -610,6 +623,92 @@
 .HuntlootIcon.Rarity7
 {
 	background-image: url("s2r://panorama/images/custom_game/conv/item/conv_item_blackgold_png.vtex");
+}
+
+.HuntlootTierIIEffect
+{
+	ignore-parent-flow: true;
+	align: left bottom;
+	width: 100%;
+	height: 3px;
+	overflow: clip;
+	animation-name: HuntlootTierIIColors;
+	animation-duration: 6.6s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+}
+
+.HuntlootTierIIEffect .HuntlootTierIIFlow,.HuntlootTierIIEffect .HuntlootTierIICore
+{
+	ignore-parent-flow: true;
+	align: left bottom;
+	width: 100%;
+	animation-name: HuntlootTierIISweep;
+	animation-duration: 2.8s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+}
+
+.HuntlootTierIIEffect .HuntlootTierIIFlow
+{
+	height: 3px;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#6CB6FF00), color-stop(0.16, #6CB6FF00), color-stop(0.32, #6CB6FF36), color-stop(0.44, #A58BFF66), color-stop(0.5, #E7C4858C), color-stop(0.58, #E7C48500), to(#E7C48500));
+}
+
+.HuntlootTierIIEffect .HuntlootTierIICore
+{
+	height: 1px;
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(#FFFFFF00), color-stop(0.36, #FFFFFF00), color-stop(0.48, #FFFFFF80), color-stop(0.5, #FFFFFFF0), color-stop(0.54, #FFFFFF00), to(#FFFFFF00));
+}
+
+@keyframes 'HuntlootTierIISweep'
+{
+	0%
+	{
+		transform: translateX(-50%);
+		opacity: 0;
+	}
+	
+	10%
+	{
+		opacity: 1;
+	}
+	
+	90%
+	{
+		opacity: 1;
+	}
+	
+	100%
+	{
+		transform: translateX(50%);
+		opacity: 0;
+	}
+	
+}
+
+@keyframes 'HuntlootTierIIColors'
+{
+	0%
+	{
+		wash-color: #85DFFF66;
+	}
+	
+	33%
+	{
+		wash-color: #B69AFF66;
+	}
+	
+	66%
+	{
+		wash-color: #FFD89966;
+	}
+	
+	100%
+	{
+		wash-color: #85DFFF66;
+	}
+	
 }
 
 .ServerEquipDetail
@@ -1320,11 +1419,96 @@
 	horizontal-align: center;
 }
 
+.ServerHuntlootDetail #Bottom
+{
+	width: 100%;
+	margin: 0px;
+	padding: 0px 5px;
+	horizontal-align: center;
+	flow-children: down;
+}
+
+.ServerHuntlootDetail #EquipedInfoContainer
+{
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+	horizontal-align: left;
+	flow-children: down;
+}
+
+.ServerHuntlootDetail #EquipedTips
+{
+	margin: 0px;
+	horizontal-align: left;
+	font-size: 16px;
+}
+
+.ServerHuntlootDetail #EquipedInfo
+{
+	width: 100%;
+	margin: 7px 0px 0px;
+	horizontal-align: left;
+	flow-children: right-wrap;
+}
+
+.ServerHuntlootDetail .EquipState
+{
+	margin-right: 24px;
+	flow-children: right;
+	width: fit-children;
+	height: fit-children;
+	vertical-align: center;
+}
+
+.ServerHuntlootDetail .EquipState .HeroSmallAvatar
+{
+	width: 28px;
+	height: 28px;
+}
+
+.ServerHuntlootDetail .EquipState #EquipSuit
+{
+	vertical-align: center;
+	font-size: 16px;
+}
+
+.ServerHuntlootDetail .EquipState .HeroSmallAvatar
+{
+	vertical-align: center;
+}
+
+.ServerHuntlootDetail #ServerEquipDetailLoaded #Bottom #ModeDetailsTips
+{
+	horizontal-align: center;
+	flow-children: right;
+	width: fit-children;
+}
+
+.ServerHuntlootDetail #ServerEquipDetailLoaded #Bottom #ModeDetailsTips #Tips
+{
+	margin-top: 1px;
+	text-align: center;
+	vertical-align: center;
+	color: #6D655B;
+	font-size: 16px;
+}
+
+.ServerHuntlootDetail #ServerEquipDetailLoaded #Bottom #ModeDetailsTips #Hotkey
+{
+	width: 32px;
+	height: 19px;
+	font-size: 16px;
+	color: #BFAA82;
+	border: 1px solid #575048;
+	text-align: center;
+}
+
 .ServerHuntlootDetail #ServerEquipDetailLoaded .Huntloot
 {
 	width: 100px;
 	height: 100px;
-	margin-right: -20px;
+	margin-right: -10px;
 	margin-top: -10px;
 	horizontal-align: right;
 	padding: 0px;

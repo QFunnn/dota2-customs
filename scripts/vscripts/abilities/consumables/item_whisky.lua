@@ -28,7 +28,7 @@ function k.prototype.OnCreated(self)
 end
 function k.prototype.OnSpellStart(self)
 	local l = self:GetCaster()
-	l:AddProperty(PropertyFunction.MOVESPEED, self:GetSpecialValueFor("move_speed"))
+	l:AddProperty(PropertyFunction.MOVESPEED, self:GetSpecialValueFor("move_speed"), self:GetName())
 	l:EmitSoundParams("Hero_Tusk.DrinkingBuddies.Cast", 0, 0.5, 0)
 	l:RemoveItem(self)
 end

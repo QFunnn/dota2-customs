@@ -31,8 +31,8 @@ function k.prototype.OnSpellStart(self)
 	local m = l:GetPlayerOwnerID()
 	local n = Player:GetHero(m)
 	if IsValid(n) then
-		n:AddProperty(PropertyFunction.ATTACK, self:GetSpecialValueFor("value"))
-		n:AddProperty(PropertyFunction.SPELL_DAMAGE_AMPLIFY, self:GetSpecialValueFor("spell_damage"))
+		n:AddProperty(PropertyFunction.ATTACK, self:GetSpecialValueFor("value"), self:GetName())
+		n:AddProperty(PropertyFunction.SPELL_DAMAGE_AMPLIFY, self:GetSpecialValueFor("spell_damage"), self:GetName())
 		local o = ParticleManager:CreateParticle(
 			"particles/items3_fx/blink_overwhelming_start.vpcf",
 			PATTACH_ABSORIGIN_FOLLOW,

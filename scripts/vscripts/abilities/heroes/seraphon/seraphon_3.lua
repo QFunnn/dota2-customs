@@ -33,7 +33,7 @@ end
 function n.prototype.OnSpellStart(self)
 	local p = self:GetCaster()
 	local q = self:GetSpecialValueFor("duration")
-	p:AddNewModifier(p, self, "modifier_seraphon_3", { duration = self:GetSpecialValueFor("duration") })
+	p:AddNewModifier(p, self, "modifier_seraphon_3", { duration = q })
 	if p:HasAbilityUpgrade("seraphon_upgrade_14") then
 		local r = p:GetAbilityByTag(AbilityTag.Skill)
 		if IsValid(r) then
@@ -131,7 +131,7 @@ function F.prototype.OnCreated(self, G)
 	local H = self:GetParent()
 	if IsServer() then
 		H:AddShield(self.shield, "modifier_seraphon_3", "override")
-		self:GetAbility():SetFrozenCooldown(true)
+		self:FreezeCooldown()
 		if self.interval > 0 then
 			self:StartIntervalThink(self.interval)
 		end
@@ -146,9 +146,26 @@ function F.prototype.OnCreated(self, G)
 		end
 	end
 end
+function F.prototype.OnRefresh(self)
+	if IsServer() then
+		self:FreezeCooldown()
+	end
+end
+function F.prototype.FreezeCooldown(self)
+	local E = self:GetAbility()
+	if not IsValid(E) then
+		return
+	end
+	E:SetFrozenCooldown(true, self:GetRemainingTime())
+	self:StartThink(0, function()
+		if IsValid(E) then
+			E:SetFrozenCooldown(true, self:GetRemainingTime())
+		end
+		return -1
+	end)
+end
 function F.prototype.OnDestroy(self)
 	if IsServer() then
-		self:GetAbility():SetFrozenCooldown(false)
 		local H = self:GetParent()
 		local E = self:GetAbility()
 		if H:HasAbilityUpgrade("seraphon_upgrade_22") then

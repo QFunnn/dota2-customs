@@ -78,9 +78,12 @@ function o.prototype.RemoveTree(self, A)
 	ArrayRemove(self.treeList, A)
 	A:SafeRemoveUnit()
 end
-function o.prototype.CutDownTree(self, A, B)
+function o.prototype.CutDownTree(self, A, B, C)
 	if B == nil then
 		B = true
+	end
+	if C == nil then
+		C = true
 	end
 	if not e(self.treeList, A) then
 		return
@@ -89,31 +92,31 @@ function o.prototype.CutDownTree(self, A, B)
 	if not B then
 		return
 	end
-	local C = self:GetSpecialValueFor("treant_limit")
-	self.summonRecords = f(self.summonRecords, function(D, E)
-		return IsValid(E) and E:IsAlive()
+	local D = self:GetSpecialValueFor("treant_limit")
+	self.summonRecords = f(self.summonRecords, function(E, F)
+		return IsValid(F) and F:IsAlive()
 	end)
-	if #self.summonRecords >= C then
+	if #self.summonRecords >= D then
 		return
 	end
 	local p = self:GetCaster()
-	local F = A:GetAbsOrigin()
-	local G = p:SummonUnit("shredder_treant", F)
-	if G ~= nil then
-		local H = DungeonManager:GetCurrentRoom()
-		if H ~= nil then
-			H:ApplyDifficultyModifiers(G)
+	local G = A:GetAbsOrigin()
+	local H = p:SummonUnit("shredder_treant", G, nil, nil, C)
+	if H ~= nil then
+		local I = DungeonManager:GetCurrentRoom()
+		if I ~= nil then
+			I:ApplyDifficultyModifiers(H)
 		end
-		FindClearSpaceForUnit(G, F, true)
-		local I = self.summonRecords
-		I[#I + 1] = G
+		FindClearSpaceForUnit(H, G, true)
+		local J = self.summonRecords
+		J[#J + 1] = H
 	end
-	return G
+	return H
 end
 function o.prototype.EventListener(self)
 	return {
-		entity_killed = function(D, J)
-			if J.victim == self:GetCaster() then
+		entity_killed = function(E, K)
+			if K.victim == self:GetCaster() then
 				self:OnDestroy()
 			end
 		end,
@@ -127,35 +130,35 @@ function o.prototype.OnDestroy(self)
 		end
 	end
 	self.treeList = {}
-	for D, G in ipairs(self.summonRecords) do
-		if IsValid(G) then
-			G:Kill(self, p)
+	for E, H in ipairs(self.summonRecords) do
+		if IsValid(H) then
+			H:Kill(self, p)
 		end
 	end
 	self.summonRecords = {}
 end
 o = g(
 	{ n(nil, {
-		funcCondition = function(D, K)
-			return #K.treeList < K:GetSpecialValueFor("tree_limit")
+		funcCondition = function(E, L)
+			return #L.treeList < L:GetSpecialValueFor("tree_limit")
 		end,
 	}) },
 	o
 )
-local L = c()
-L.name = "modifier_boss_shredder_1_thinker"
-d(L, j)
-function L.prototype.StaticState(self)
+local M = c()
+M.name = "modifier_boss_shredder_1_thinker"
+d(M, j)
+function M.prototype.StaticState(self)
 	return { [StateEnum.NO_HEALTH_BAR] = true }
 end
-function L.prototype.CheckState(self)
+function M.prototype.CheckState(self)
 	return {
 		[MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY] = true,
 		[MODIFIER_STATE_INVULNERABLE] = true,
 		[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
 	}
 end
-L = g(
+M = g(
 	{
 		k(
 			a,
@@ -169,6 +172,6 @@ L = g(
 			}
 		),
 	},
-	L
+	M
 )
 return h

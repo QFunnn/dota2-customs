@@ -5295,6 +5295,574 @@ GameUI.CustomUIConfig().npc_units_custom = {
 			}
 		}
 	},
+	"hunt_boss_deep_magma_earthshaker": {
+		"Name": "BOSS-深渊撼地者",
+		"Filter": "boss",
+		"BaseClass": "npc_dota_creature",
+		"Model": "models/eom/enemy/boss_earth_shaker/boss_earth_shaker.vmdl",
+		"ModelScale": 1.8,
+		"SoundSet": "Hero_Earthshaker",
+		"BGM": "EarthShaker.Battle",
+		"Ability1": "magma_earthshaker_1",
+		"Ability2": "magma_earthshaker_2",
+		"Ability3": "magma_earthshaker_3",
+		"Ability4": "magma_earthshaker_4",
+		"Ability5": "magma_earthshaker_5",
+		"Ability6": "magma_earthshaker_6",
+		"Ability7": "magma_earthshaker_7",
+		"MovementCapabilities": "DOTA_UNIT_CAP_MOVE_GROUND",
+		"MovementSpeed": 270,
+		"MovementTurnRate": 0.5,
+		"HealthBarOffset": 260,
+		"StatusHealth": 1000000,
+		"LogicalStatusHealth": 3535005679648,
+		"StatusHealthRegen": 0,
+		"StatusMana": 0,
+		"StatusManaRegen": 0,
+		"AttackDamageMin": 800,
+		"AttackDamageMax": 800,
+		"AttackRate": 1.7,
+		"AttackAnimationPoint": 0.8,
+		"AttackCapabilities": "DOTA_UNIT_CAP_NO_ATTACK",
+		"AttackRange": 500,
+		"ProjectileType": "PROJECTILE_TYPE_LINEAR",
+		"IntroDuration": 4,
+		"IntroFocusDistance": 520,
+		"IntroHeightOffset": 160,
+		"SpawnModifier": "modifier_boss_earthshaker",
+		"BoundsHullName": "DOTA_HULL_SIZE_SMALL",
+		"RingRadius": 90,
+		"UnitLabel": "boss",
+		"CombatClassAttack": "DOTA_COMBAT_CLASS_ATTACK_HERO",
+		"CombatClassDefend": "DOTA_COMBAT_CLASS_DEFEND_HERO",
+		"ArmorPhysical": 0,
+		"MagicalResistance": 0,
+		"AnimationModifier": "totem_roll_gesture",
+		"HasInventory": 0,
+		"BountyXP": 0,
+		"IsAncient": 0,
+		"BountyGoldMin": 0,
+		"BountyGoldMax": 0,
+		"AttackAcquisitionRange": 3000,
+		"VisionDaytimeRange": 3000,
+		"VisionNighttimeRange": 3000,
+		"DisableClumpingBehavior": 1,
+		"Creature": {
+			"DisableClumpingBehavior": 1,
+			"AttachWearables": {
+				"1": {
+					"ItemDef": 27158
+				},
+				"2": {
+					"ItemDef": 27159
+				},
+				"3": {
+					"ItemDef": 27161
+				},
+				"4": {
+					"ItemDef": 29936
+				}
+			}
+		}
+	},
+	"hunt_boss_axe": {
+		"Name": "斧王",
+		"Filter": "boss",
+		"BaseClass": "npc_dota_creature",
+		"Model": "models/eom/enemy/boss_axe/boss_axe.vmdl",
+		"ModelScale": 1.5,
+		"SoundSet": "Hero_Axe",
+		"BGM": "Axe.Battle",
+		"Ability1": "boss_axe_1",
+		"Ability2": "boss_axe_2",
+		"Ability3": "boss_axe_3",
+		"Ability4": "boss_axe_4",
+		"MovementCapabilities": "DOTA_UNIT_CAP_MOVE_GROUND",
+		"MovementSpeed": 300,
+		"MovementTurnRate": 0.5,
+		"HealthBarOffset": 400,
+		"StatusHealth": 1000000,
+		"LogicalStatusHealth": 3535005679648,
+		"StatusHealthRegen": 0,
+		"StatusMana": 0,
+		"StatusManaRegen": 0,
+		"AttackDamageMin": 800,
+		"AttackDamageMax": 800,
+		"AttackRate": 1.7,
+		"AttackAnimationPoint": 0.36,
+		"AttackCapabilities": "DOTA_UNIT_CAP_NO_ATTACK",
+		"AttackRange": 500,
+		"ProjectileSpeed": 1300,
+		"IntroDuration": 4,
+		"IntroFocusDistance": 520,
+		"IntroHeightOffset": 160,
+		"SpawnModifier": "modifier_boss_axe",
+		"BoundsHullName": "DOTA_HULL_SIZE_SMALL",
+		"RingRadius": 40,
+		"UnitLabel": "boss",
+		"CombatClassAttack": "DOTA_COMBAT_CLASS_ATTACK_HERO",
+		"CombatClassDefend": "DOTA_COMBAT_CLASS_DEFEND_HERO",
+		"ArmorPhysical": 0,
+		"MagicalResistance": 0,
+		"HasInventory": 0,
+		"BountyXP": 0,
+		"IsAncient": 0,
+		"BountyGoldMin": 0,
+		"BountyGoldMax": 0,
+		"AttackAcquisitionRange": 3000,
+		"VisionDaytimeRange": 3000,
+		"VisionNighttimeRange": 3000,
+		"DisableClumpingBehavior": 1,
+		"Creature": {
+			"DisableClumpingBehavior": 1,
+			"AttachWearables": {
+				"1": {
+					"ItemDef": 36136
+				},
+				"2": {
+					"ItemDef": 36137
+				},
+				"3": {
+					"ItemDef": 36138
+				},
+				"4": {
+					"ItemDef": 36139
+				},
+				"5": {
+					"ItemDef": 36140
+				}
+			}
+		}
+	},
+	"hunt_boss_lion": {
+		"Name": "Lion",
+		"Filter": "boss",
+		"BaseClass": "npc_dota_creature",
+		"Model": "models/eom/enemy/boss_lion/boss_lion.vmdl",
+		"ModelScale": 1.5,
+		"SoundSet": "Hero_Lion",
+		"BGM": "Lion.Battle",
+		"Ability1": "boss_lion_1",
+		"Ability2": "boss_lion_2",
+		"Ability3": "boss_lion_3",
+		"Ability4": "boss_lion_4",
+		"Ability5": "boss_lion_5",
+		"MovementCapabilities": "DOTA_UNIT_CAP_MOVE_GROUND",
+		"MovementSpeed": 300,
+		"MovementTurnRate": 0.5,
+		"HealthBarOffset": 400,
+		"StatusHealth": 1000000,
+		"LogicalStatusHealth": 3535005679648,
+		"StatusHealthRegen": 0,
+		"StatusMana": 0,
+		"StatusManaRegen": 0,
+		"AttackDamageMin": 800,
+		"AttackDamageMax": 800,
+		"AttackRate": 1.7,
+		"AttackAnimationPoint": 0.36,
+		"AttackCapabilities": "DOTA_UNIT_CAP_NO_ATTACK",
+		"AttackRange": 400,
+		"ProjectileSpeed": 1300,
+		"IntroDuration": 4,
+		"IntroFocusDistance": 520,
+		"IntroHeightOffset": 160,
+		"SpawnModifier": "modifier_boss_lion",
+		"BoundsHullName": "DOTA_HULL_SIZE_SMALL",
+		"RingRadius": 40,
+		"UnitLabel": "boss",
+		"CombatClassAttack": "DOTA_COMBAT_CLASS_ATTACK_HERO",
+		"CombatClassDefend": "DOTA_COMBAT_CLASS_DEFEND_HERO",
+		"ArmorPhysical": 0,
+		"MagicalResistance": 0,
+		"HasInventory": 0,
+		"BountyXP": 0,
+		"IsAncient": 0,
+		"BountyGoldMin": 0,
+		"BountyGoldMax": 0,
+		"AttackAcquisitionRange": 3000,
+		"VisionDaytimeRange": 3000,
+		"VisionNighttimeRange": 3000,
+		"DisableClumpingBehavior": 1,
+		"Creature": {
+			"DisableClumpingBehavior": 1,
+			"AttachWearables": {
+				"1": {
+					"ItemDef": 25680
+				},
+				"2": {
+					"ItemDef": 25681
+				},
+				"3": {
+					"ItemDef": 25700
+				},
+				"4": {
+					"ItemDef": 25701
+				},
+				"5": {
+					"ItemDef": 25703
+				}
+			}
+		}
+	},
+	"hunt_boss_bloodseeker": {
+		"Name": "血魔",
+		"Filter": "boss",
+		"BaseClass": "npc_dota_creature",
+		"Model": "models/eom/enemy/boss_bloodseeker/boss_bloodseeker.vmdl",
+		"ModelScale": 2.2,
+		"SoundSet": "Hero_BloodSeeker",
+		"BGM": "BloodSeeker.Battle",
+		"Ability1": "boss_bloodseeker_1",
+		"Ability2": "boss_bloodseeker_2",
+		"Ability3": "boss_bloodseeker_3",
+		"Ability4": "boss_bloodseeker_4",
+		"MovementCapabilities": "DOTA_UNIT_CAP_MOVE_GROUND",
+		"MovementSpeed": 420,
+		"MovementTurnRate": 0.5,
+		"HealthBarOffset": 400,
+		"StatusHealth": 1000000,
+		"LogicalStatusHealth": 3535005679648,
+		"StatusHealthRegen": 0,
+		"StatusMana": 0,
+		"StatusManaRegen": 0,
+		"AttackDamageMin": 800,
+		"AttackDamageMax": 800,
+		"AttackRate": 1.7,
+		"AttackAnimationPoint": 0.36,
+		"AttackCapabilities": "DOTA_UNIT_CAP_NO_ATTACK",
+		"AttackRange": 400,
+		"ProjectileSpeed": 1300,
+		"IntroDuration": 4,
+		"IntroFocusDistance": 520,
+		"IntroHeightOffset": 160,
+		"SpawnModifier": "modifier_boss_bloodseeker",
+		"BoundsHullName": "DOTA_HULL_SIZE_SMALL",
+		"RingRadius": 40,
+		"UnitLabel": "boss",
+		"CombatClassAttack": "DOTA_COMBAT_CLASS_ATTACK_HERO",
+		"CombatClassDefend": "DOTA_COMBAT_CLASS_DEFEND_HERO",
+		"ArmorPhysical": 0,
+		"MagicalResistance": 0,
+		"HasInventory": 0,
+		"BountyXP": 0,
+		"IsAncient": 0,
+		"BountyGoldMin": 0,
+		"BountyGoldMax": 0,
+		"AttackAcquisitionRange": 3000,
+		"VisionDaytimeRange": 3000,
+		"VisionNighttimeRange": 3000,
+		"DisableClumpingBehavior": 1,
+		"Creature": {
+			"DisableClumpingBehavior": 1,
+			"AttachWearables": {
+				"1": {
+					"ItemDef": 5505
+				},
+				"2": {
+					"ItemDef": 5506
+				},
+				"3": {
+					"ItemDef": 5508
+				},
+				"4": {
+					"ItemDef": 5509
+				},
+				"5": {
+					"ItemDef": 5510
+				},
+				"6": {
+					"ItemDef": 5511
+				},
+				"7": {
+					"ItemDef": 5512
+				}
+			}
+		}
+	},
+	"hunt_boss_shredder": {
+		"Name": "伐木机",
+		"Filter": "boss",
+		"BaseClass": "npc_dota_creature",
+		"Model": "models/heroes/shredder/shredder.vmdl",
+		"ModelScale": 1.5,
+		"SoundSet": "Hero_Shredder",
+		"BGM": "Shredder.Battle",
+		"Ability1": "boss_shredder_1",
+		"Ability2": "boss_shredder_2",
+		"Ability3": "boss_shredder_3",
+		"Ability4": "boss_shredder_4",
+		"Ability5": "boss_shredder_5",
+		"MovementCapabilities": "DOTA_UNIT_CAP_MOVE_GROUND",
+		"MovementSpeed": 400,
+		"MovementTurnRate": 0.5,
+		"HealthBarOffset": 400,
+		"StatusHealth": 1000000,
+		"LogicalStatusHealth": 3535005679648,
+		"StatusHealthRegen": 0,
+		"StatusMana": 0,
+		"StatusManaRegen": 0,
+		"AttackDamageMin": 800,
+		"AttackDamageMax": 800,
+		"AttackRate": 1.7,
+		"AttackAnimationPoint": 0.36,
+		"AttackCapabilities": "DOTA_UNIT_CAP_NO_ATTACK",
+		"AttackRange": 500,
+		"ProjectileSpeed": 1300,
+		"IntroDuration": 4,
+		"IntroFocusDistance": 520,
+		"IntroHeightOffset": 160,
+		"SpawnModifier": "modifier_boss_shredder",
+		"BoundsHullName": "DOTA_HULL_SIZE_SMALL",
+		"RingRadius": 40,
+		"UnitLabel": "boss",
+		"CombatClassAttack": "DOTA_COMBAT_CLASS_ATTACK_HERO",
+		"CombatClassDefend": "DOTA_COMBAT_CLASS_DEFEND_HERO",
+		"ArmorPhysical": 0,
+		"MagicalResistance": 0,
+		"HasInventory": 0,
+		"BountyXP": 0,
+		"IsAncient": 0,
+		"BountyGoldMin": 0,
+		"BountyGoldMax": 0,
+		"AttackAcquisitionRange": 3000,
+		"VisionDaytimeRange": 3000,
+		"VisionNighttimeRange": 3000,
+		"DisableClumpingBehavior": 1,
+		"Creature": {
+			"DisableClumpingBehavior": 1,
+			"AttachWearables": {
+				"1": {
+					"ItemDef": 7430
+				},
+				"2": {
+					"ItemDef": 7431
+				},
+				"3": {
+					"ItemDef": 7744
+				},
+				"4": {
+					"ItemDef": 8018
+				},
+				"5": {
+					"ItemDef": 8019
+				},
+				"6": {
+					"ItemDef": 8020
+				}
+			}
+		}
+	},
+	"hunt_boss_grimstroke": {
+		"Name": "黑暗风鸢",
+		"Filter": "boss",
+		"BaseClass": "npc_dota_creature",
+		"Model": "models/eom/enemy/boss_grimstroke/boss_grimstroke.vmdl",
+		"ModelScale": 1.2,
+		"SoundSet": "Hero_Grimstroke",
+		"BGM": "Grimstroke.Battle",
+		"Ability1": "boss_grimstroke_1",
+		"Ability2": "boss_grimstroke_2",
+		"Ability3": "boss_grimstroke_3",
+		"Ability4": "boss_grimstroke_5",
+		"Ability5": "boss_grimstroke_6",
+		"MovementCapabilities": "DOTA_UNIT_CAP_MOVE_GROUND",
+		"MovementSpeed": 350,
+		"MovementTurnRate": 0.5,
+		"HealthBarOffset": 400,
+		"StatusHealth": 1000000,
+		"LogicalStatusHealth": 3535005679648,
+		"StatusHealthRegen": 0,
+		"StatusMana": 0,
+		"StatusManaRegen": 0,
+		"AttackDamageMin": 800,
+		"AttackDamageMax": 800,
+		"AttackRate": 1.7,
+		"AttackAnimationPoint": 0.36,
+		"AttackCapabilities": "DOTA_UNIT_CAP_NO_ATTACK",
+		"AttackRange": 400,
+		"ProjectileSpeed": 1300,
+		"IntroDuration": 4,
+		"IntroFocusDistance": 520,
+		"IntroHeightOffset": 160,
+		"SpawnModifier": "modifier_boss_grimstroke",
+		"BoundsHullName": "DOTA_HULL_SIZE_SMALL",
+		"RingRadius": 40,
+		"UnitLabel": "boss",
+		"CombatClassAttack": "DOTA_COMBAT_CLASS_ATTACK_HERO",
+		"CombatClassDefend": "DOTA_COMBAT_CLASS_DEFEND_HERO",
+		"ArmorPhysical": 0,
+		"MagicalResistance": 0,
+		"HasInventory": 0,
+		"BountyXP": 0,
+		"IsAncient": 0,
+		"BountyGoldMin": 0,
+		"BountyGoldMax": 0,
+		"AttackAcquisitionRange": 3000,
+		"VisionDaytimeRange": 3000,
+		"VisionNighttimeRange": 3000,
+		"DisableClumpingBehavior": 1,
+		"Creature": {
+			"DisableClumpingBehavior": 1,
+			"AttachWearables": {
+				"1": {
+					"ItemDef": 13900
+				},
+				"2": {
+					"ItemDef": 13901
+				},
+				"3": {
+					"ItemDef": 13902
+				},
+				"4": {
+					"ItemDef": 13903
+				}
+			}
+		}
+	},
+	"hunt_boss_treant": {
+		"Name": "树精",
+		"Filter": "boss",
+		"BaseClass": "npc_dota_creature",
+		"Model": "models/eom/enemy/treant_protector/treant_protector.vmdl",
+		"ModelScale": 1.2,
+		"SoundSet": "Hero_Treant",
+		"BGM": "Axe.Battle",
+		"Ability1": "boss_treant_1",
+		"Ability2": "boss_treant_2",
+		"Ability3": "boss_treant_3",
+		"Ability4": "boss_treant_4",
+		"Ability5": "boss_treant_5",
+		"Ability6": "boss_treant_6",
+		"Ability7": "boss_treant_7",
+		"Ability8": "boss_shredder_1",
+		"MovementCapabilities": "DOTA_UNIT_CAP_MOVE_GROUND",
+		"MovementSpeed": 200,
+		"MovementTurnRate": 0.5,
+		"HealthBarOffset": 400,
+		"StatusHealth": 1000000,
+		"LogicalStatusHealth": 3535005679648,
+		"StatusHealthRegen": 0,
+		"StatusMana": 0,
+		"StatusManaRegen": 0,
+		"AttackDamageMin": 800,
+		"AttackDamageMax": 800,
+		"AttackRate": 1.7,
+		"AttackAnimationPoint": 0.36,
+		"AttackCapabilities": "DOTA_UNIT_CAP_NO_ATTACK",
+		"AttackRange": 500,
+		"ProjectileSpeed": 1300,
+		"IntroDuration": 4,
+		"IntroFocusDistance": 520,
+		"IntroHeightOffset": 160,
+		"SpawnModifier": "modifier_boss_treant",
+		"BoundsHullName": "DOTA_HULL_SIZE_SMALL",
+		"RingRadius": 40,
+		"UnitLabel": "boss",
+		"CombatClassAttack": "DOTA_COMBAT_CLASS_ATTACK_HERO",
+		"CombatClassDefend": "DOTA_COMBAT_CLASS_DEFEND_HERO",
+		"ArmorPhysical": 0,
+		"MagicalResistance": 0,
+		"AnimationModifier": "hunt_boss_treant",
+		"HasInventory": 0,
+		"BountyXP": 0,
+		"IsAncient": 0,
+		"BountyGoldMin": 0,
+		"BountyGoldMax": 0,
+		"AttackAcquisitionRange": 3000,
+		"VisionDaytimeRange": 3000,
+		"VisionNighttimeRange": 3000,
+		"DisableClumpingBehavior": 1,
+		"Creature": {
+			"DisableClumpingBehavior": 1,
+			"AttachWearables": {
+				"1": {
+					"ItemDef": 9901
+				},
+				"2": {
+					"ItemDef": 19317
+				},
+				"3": {
+					"ItemDef": 19318
+				},
+				"4": {
+					"ItemDef": 19319
+				}
+			}
+		}
+	},
+	"hunt_boss_queenofpain": {
+		"Name": "痛苦女王",
+		"Filter": "boss",
+		"BaseClass": "npc_dota_creature",
+		"Model": "models/eom/enemy/boss_queenofpain/queenofpain_arcana.vmdl",
+		"ModelScale": 1.4,
+		"SoundSet": "Hero_QueenOfPain",
+		"Ability1": "queenofpain_1",
+		"Ability2": "queenofpain_2",
+		"Ability3": "queenofpain_3",
+		"Ability4": "queenofpain_4",
+		"Ability5": "queenofpain_5",
+		"Ability6": "queenofpain_6",
+		"Ability7": "queenofpain_7",
+		"Ability8": "queenofpain_8",
+		"Ability9": "queenofpain_9",
+		"Ability10": "queenofpain_10",
+		"MovementCapabilities": "DOTA_UNIT_CAP_MOVE_GROUND",
+		"MovementSpeed": 420,
+		"MovementTurnRate": 0.5,
+		"HealthBarOffset": 200,
+		"StatusHealth": 1000000,
+		"LogicalStatusHealth": 3535005679648,
+		"StatusHealthRegen": 0,
+		"StatusMana": 0,
+		"StatusManaRegen": 0,
+		"AttackDamageMin": 800,
+		"AttackDamageMax": 800,
+		"AttackRate": 1.7,
+		"AttackAnimationPoint": 0.36,
+		"AttackCapabilities": "DOTA_UNIT_CAP_NO_ATTACK",
+		"AttackRange": 600,
+		"ProjectileModel": "particles/econ/items/queen_of_pain/qop_ti8_immortal/queen_ti8_shadow_strike.vpcf",
+		"ProjectileSpeed": 1300,
+		"IntroDuration": 5.5,
+		"IntroFocusDistance": 520,
+		"IntroHeightOffset": 160,
+		"SpawnModifier": "modifier_boss_queenofpain",
+		"BoundsHullName": "DOTA_HULL_SIZE_SMALL",
+		"RingRadius": 40,
+		"UnitLabel": "boss",
+		"CombatClassAttack": "DOTA_COMBAT_CLASS_ATTACK_HERO",
+		"CombatClassDefend": "DOTA_COMBAT_CLASS_DEFEND_HERO",
+		"ArmorPhysical": 0,
+		"MagicalResistance": 0,
+		"AnimationModifier": "boss",
+		"HasInventory": 0,
+		"BountyXP": 0,
+		"IsAncient": 0,
+		"BountyGoldMin": 0,
+		"BountyGoldMax": 0,
+		"AttackAcquisitionRange": 3000,
+		"VisionDaytimeRange": 3000,
+		"VisionNighttimeRange": 3000,
+		"DisableClumpingBehavior": 1,
+		"Creature": {
+			"DisableClumpingBehavior": 1,
+			"AttachWearables": {
+				"1": {
+					"ItemDef": 12930
+				},
+				"2": {
+					"ItemDef": 13768
+				},
+				"3": {
+					"ItemDef": 13769
+				},
+				"4": {
+					"ItemDef": 13770
+				}
+			}
+		}
+	},
 	"npc_portal": {
 		"Name": "传送门",
 		"BaseClass": "npc_dota_creature",
@@ -6248,6 +6816,22 @@ GameUI.CustomUIConfig().npc_units_custom = {
 		"AttackCapabilities": "DOTA_UNIT_CAP_NO_ATTACK",
 		"BoundsHullName": "DOTA_HULL_SIZE_SMALLEST"
 	},
+	"npc_hunt_save": {
+		"Name": "保存情报",
+		"BaseClass": "npc_dota_creature",
+		"Model": "models/ui/treasure/mosterhunter_capsule/mosterhunter_capsule.vmdl",
+		"ModelScale": 0.6,
+		"MovementCapabilities": "DOTA_UNIT_CAP_MOVE_GROUND",
+		"StatusHealth": 100,
+		"StatusHealthRegen": 0,
+		"StatusMana": 100,
+		"StatusManaRegen": 0,
+		"AttackDamageMin": 0,
+		"AttackDamageMax": 0,
+		"AttackRate": 1.7,
+		"AttackCapabilities": "DOTA_UNIT_CAP_NO_ATTACK",
+		"BoundsHullName": "DOTA_HULL_SIZE_SMALLEST"
+	},
 	"laser_unit": {
 		"BaseClass": "npc_dota_creature",
 		"Model": "models/development/invisiblebox.vmdl",
@@ -6281,6 +6865,122 @@ GameUI.CustomUIConfig().npc_units_custom = {
 		"VisionDaytimeRange": 0,
 		"VisionNighttimeRange": 0,
 		"BoundsHullName": "DOTA_HULL_SIZE_SMALL"
+	},
+	"npc_hunt_effect_test_target": {
+		"BaseClass": "npc_dota_creature",
+		"Model": "models/props_gameplay/dummy/dummy_large.vmdl",
+		"StatusHealth": 10000,
+		"StatusHealthRegen": 0,
+		"StatusMana": 0,
+		"StatusManaRegen": 0,
+		"AttackCapabilities": "DOTA_UNIT_CAP_NO_ATTACK",
+		"MovementCapabilities": "DOTA_UNIT_CAP_MOVE_GROUND",
+		"MovementSpeed": 0,
+		"BoundsHullName": "DOTA_HULL_SIZE_SMALL",
+		"BountyGoldMin": 0,
+		"BountyGoldMax": 0,
+		"BountyXP": 0,
+		"UnitLabel": "HuntEffectTestTarget"
+	},
+	"npc_hunt_field_totem": {
+		"BaseClass": "npc_dota_creature",
+		"Model": "models/heroes/juggernaut/jugg_healing_ward.vmdl",
+		"ModelScale": 1.5,
+		"StatusHealth": 100,
+		"StatusHealthRegen": 0,
+		"StatusMana": 0,
+		"StatusManaRegen": 0,
+		"AttackCapabilities": "DOTA_UNIT_CAP_NO_ATTACK",
+		"MovementCapabilities": "DOTA_UNIT_CAP_MOVE_GROUND",
+		"MovementSpeed": 0,
+		"BoundsHullName": "DOTA_HULL_SIZE_SMALL",
+		"HealthBarOffset": 150,
+		"BountyGoldMin": 0,
+		"BountyGoldMax": 0,
+		"BountyXP": 0,
+		"SpawnModifier": "modifier_hunt_field_unit",
+		"UnitLabel": "HuntFieldAuxiliary"
+	},
+	"npc_hunt_field_hunter": {
+		"BaseClass": "npc_dota_creature",
+		"Model": "models/eom/enemy/pudge/pudge.vmdl",
+		"Creature": {
+			"DisableClumpingBehavior": 1,
+			"AttachWearables": {
+				"1": {
+					"ItemDef": 47
+				},
+				"2": {
+					"ItemDef": 260
+				},
+				"3": {
+					"ItemDef": 7373
+				},
+				"4": {
+					"ItemDef": 8343
+				},
+				"5": {
+					"ItemDef": 258
+				}
+			}
+		},
+		"StatusHealth": 100,
+		"StatusHealthRegen": 0,
+		"StatusMana": 0,
+		"StatusManaRegen": 0,
+		"AttackCapabilities": "DOTA_UNIT_CAP_NO_ATTACK",
+		"MovementCapabilities": "DOTA_UNIT_CAP_MOVE_GROUND",
+		"MovementSpeed": 100,
+		"BoundsHullName": "DOTA_HULL_SIZE_SMALL",
+		"BountyGoldMin": 0,
+		"BountyGoldMax": 0,
+		"BountyXP": 0,
+		"SpawnModifier": "modifier_hunt_field_unit",
+		"UnitLabel": "HuntFieldAuxiliary"
+	},
+	"npc_hunt_field_auxiliary": {
+		"Name": "棒子",
+		"Creature": {
+			"DisableClumpingBehavior": 1,
+			"AttachWearables": {
+				"1": {
+					"ItemDef": 8627
+				}
+			}
+		},
+		"BountyXP": 15,
+		"BountyGoldMin": 1,
+		"BountyGoldMax": 3,
+		"IsAncient": 0,
+		"BaseClass": "npc_dota_creature",
+		"Model": "models/items/pugna/ward/nether_heart/nether_heart.vmdl",
+		"ModelScale": 1.2,
+		"SoundSet": "Hero_Clinkz",
+		"HealthBarOffset": 200,
+		"MovementSpeed": 270,
+		"MovementTurnRate": 0.5,
+		"MovementCapabilities": "DOTA_UNIT_CAP_MOVE_NONE",
+		"ArmorPhysical": 0,
+		"MagicalResistance": 0,
+		"StatusHealth": 100,
+		"StatusHealthRegen": 0,
+		"StatusMana": 0,
+		"StatusManaRegen": 0,
+		"VisionDaytimeRange": 1800,
+		"VisionNighttimeRange": 1800,
+		"AttackDamageMin": 22,
+		"AttackDamageMax": 22,
+		"AttackRate": 5,
+		"AttackAnimationPoint": 0.5,
+		"AttackCapabilities": "DOTA_UNIT_CAP_NO_ATTACK",
+		"AttackRange": 600,
+		"AttackAcquisitionRange": 1200,
+		"BoundsHullName": "DOTA_HULL_SIZE_SMALL",
+		"HasInventory": 0,
+		"RingRadius": 60,
+		"CombatClassAttack": "DOTA_COMBAT_CLASS_ATTACK_HERO",
+		"CombatClassDefend": "DOTA_COMBAT_CLASS_DEFEND_HERO",
+		"BehaviorTree": "range_attack"
 	},
 	"demo_dummy": {
 		"BaseClass": "npc_dota_creature",

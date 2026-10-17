@@ -2048,5 +2048,245 @@ GameUI.CustomUIConfig().equip_drop = {
 		chance: 50,
 		drop_base: 100,
 		drop_num: 1
+	},
+	"205": {
+		id: 205,
+		diff: 18,
+		round: 1,
+		drop_pool: "BOSS",
+		equip_rarity: "1:0|2:25|3:44|4:246|5:246|6:69|7:114",
+		chance: 100,
+		drop_base: 190,
+		drop_num: 2.6
+	},
+	"206": {
+		id: 206,
+		diff: 18,
+		round: 1,
+		drop_pool: "ELITE",
+		equip_rarity: "1:0|2:19|3:20|4:104|5:135|6:20|7:22",
+		chance: 10,
+		drop_base: 100,
+		drop_num: 1
+	},
+	"207": {
+		id: 207,
+		diff: 18,
+		round: 1,
+		drop_pool: "NORMAL",
+		equip_rarity: "1:0|2:28|3:22|4:103|5:130|6:21|7:16",
+		chance: 2,
+		drop_base: 100,
+		drop_num: 1
+	},
+	"208": {
+		id: 208,
+		diff: 18,
+		round: 1,
+		drop_pool: "REWARD",
+		equip_rarity: "1:100|2:70|3:60|4:50|5:40|6:0|7:0",
+		chance: 50,
+		drop_base: 100,
+		drop_num: 1
+	},
+	"209": {
+		id: 209,
+		diff: 18,
+		round: 2,
+		drop_pool: "BOSS",
+		equip_rarity: "1:0|2:22|3:35|4:189|5:186|6:132|7:180",
+		chance: 100,
+		drop_base: 220,
+		drop_num: 3.05
+	},
+	"210": {
+		id: 210,
+		diff: 18,
+		round: 2,
+		drop_pool: "ELITE",
+		equip_rarity: "1:0|2:16|3:17|4:88|5:115|6:40|7:44",
+		chance: 70,
+		drop_base: 100,
+		drop_num: 1
+	},
+	"211": {
+		id: 211,
+		diff: 18,
+		round: 2,
+		drop_pool: "NORMAL",
+		equip_rarity: "1:0|2:25|3:19|4:89|5:112|6:43|7:32",
+		chance: 2,
+		drop_base: 100,
+		drop_num: 1
+	},
+	"212": {
+		id: 212,
+		diff: 18,
+		round: 2,
+		drop_pool: "REWARD",
+		equip_rarity: "1:100|2:70|3:60|4:50|5:10|6:0|7:0",
+		chance: 50,
+		drop_base: 100,
+		drop_num: 1
+	},
+	"213": {
+		id: 213,
+		diff: 18,
+		round: 3,
+		drop_pool: "BOSS",
+		equip_rarity: "1:0|2:13|3:22|4:85|5:85|6:227|7:312",
+		chance: 100,
+		drop_base: 230,
+		drop_num: 3.6
+	},
+	"214": {
+		id: 214,
+		diff: 18,
+		round: 3,
+		drop_pool: "ELITE",
+		equip_rarity: "1:0|2:10|3:11|4:56|5:73|6:81|7:89",
+		chance: 70,
+		drop_base: 100,
+		drop_num: 1
+	},
+	"215": {
+		id: 215,
+		diff: 18,
+		round: 3,
+		drop_pool: "NORMAL",
+		equip_rarity: "1:0|2:17|3:13|4:62|5:78|6:86|7:64",
+		chance: 2,
+		drop_base: 100,
+		drop_num: 1
+	},
+	"216": {
+		id: 216,
+		diff: 18,
+		round: 3,
+		drop_pool: "REWARD",
+		equip_rarity: "1:100|2:70|3:60|4:50|5:10|6:0|7:0",
+		chance: 50,
+		drop_base: 100,
+		drop_num: 1
+	},
+	"217": {
+		id: 217,
+		diff: 19,
+		round: 1,
+		drop_pool: "BOSS",
+		equip_rarity: "1:0|2:25|3:44|4:246|5:246|6:69|7:114",
+		chance: 100,
+		drop_base: 190,
+		drop_num: 2.6
+	},
+	"218": {
+		id: 218,
+		diff: 19,
+		round: 1,
+		drop_pool: "ELITE",
+		equip_rarity: "1:0|2:19|3:20|4:104|5:135|6:20|7:22",
+		chance: 10,
+		drop_base: 100,
+		drop_num: 1
+	},
+	"219": {
+		id: 219,
+		diff: 19,
+		round: 1,
+		drop_pool: "NORMAL",
+		equip_rarity: "1:0|2:28|3:22|4:103|5:130|6:21|7:16",
+		chance: 2,
+		drop_base: 100,
+		drop_num: 1
+	},
+	"220": {
+		id: 220,
+		diff: 19,
+		round: 1,
+		drop_pool: "REWARD",
+		equip_rarity: "1:100|2:70|3:60|4:50|5:40|6:0|7:0",
+		chance: 50,
+		drop_base: 100,
+		drop_num: 1
+	},
+	"221": {
+		id: 221,
+		diff: 19,
+		round: 2,
+		drop_pool: "BOSS",
+		equip_rarity: "1:0|2:22|3:35|4:189|5:186|6:132|7:180",
+		chance: 100,
+		drop_base: 220,
+		drop_num: 3.05
+	},
+	"222": {
+		id: 222,
+		diff: 19,
+		round: 2,
+		drop_pool: "ELITE",
+		equip_rarity: "1:0|2:16|3:17|4:88|5:115|6:40|7:44",
+		chance: 70,
+		drop_base: 100,
+		drop_num: 1
+	},
+	"223": {
+		id: 223,
+		diff: 19,
+		round: 2,
+		drop_pool: "NORMAL",
+		equip_rarity: "1:0|2:25|3:19|4:89|5:112|6:43|7:32",
+		chance: 2,
+		drop_base: 100,
+		drop_num: 1
+	},
+	"224": {
+		id: 224,
+		diff: 19,
+		round: 2,
+		drop_pool: "REWARD",
+		equip_rarity: "1:100|2:70|3:60|4:50|5:10|6:0|7:0",
+		chance: 50,
+		drop_base: 100,
+		drop_num: 1
+	},
+	"225": {
+		id: 225,
+		diff: 19,
+		round: 3,
+		drop_pool: "BOSS",
+		equip_rarity: "1:0|2:13|3:22|4:85|5:85|6:227|7:312",
+		chance: 100,
+		drop_base: 230,
+		drop_num: 3.6
+	},
+	"226": {
+		id: 226,
+		diff: 19,
+		round: 3,
+		drop_pool: "ELITE",
+		equip_rarity: "1:0|2:10|3:11|4:56|5:73|6:81|7:89",
+		chance: 70,
+		drop_base: 100,
+		drop_num: 1
+	},
+	"227": {
+		id: 227,
+		diff: 19,
+		round: 3,
+		drop_pool: "NORMAL",
+		equip_rarity: "1:0|2:17|3:13|4:62|5:78|6:86|7:64",
+		chance: 2,
+		drop_base: 100,
+		drop_num: 1
+	},
+	"228": {
+		id: 228,
+		diff: 19,
+		round: 3,
+		drop_pool: "REWARD",
+		equip_rarity: "1:100|2:70|3:60|4:50|5:10|6:0|7:0",
+		chance: 50,
+		drop_base: 100,
+		drop_num: 1
 	}
 };
